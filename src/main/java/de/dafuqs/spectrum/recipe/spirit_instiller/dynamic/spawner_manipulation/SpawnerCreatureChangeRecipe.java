@@ -1,9 +1,9 @@
-package de.dafuqs.spectrum.recipe.spirit_instiller.spawner;
+package de.dafuqs.spectrum.recipe.spirit_instiller.dynamic.spawner_manipulation;
 
+import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.spectrum.blocks.mob_head.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.matchbooks.recipe.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
@@ -24,8 +24,8 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 	
 	@Override
 	public boolean canCraftWithBlockEntityTag(NbtCompound spawnerBlockEntityNbt, ItemStack firstBowlStack, ItemStack secondBowlStack) {
-		Optional<EntityType<?>> entityType = SpectrumSkullBlockItem.getEntityTypeOfSkullStack(firstBowlStack);
-		entityType = entityType.isEmpty() ? SpectrumSkullBlockItem.getEntityTypeOfSkullStack(secondBowlStack) : entityType;
+		Optional<EntityType<?>> entityType = SpectrumSkullBlock.getEntityTypeOfSkullStack(firstBowlStack);
+		entityType = entityType.isEmpty() ? SpectrumSkullBlock.getEntityTypeOfSkullStack(secondBowlStack) : entityType;
 
 		if (entityType.isEmpty()) {
 			return false;
@@ -59,8 +59,8 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 	
 	@Override
 	public NbtCompound getSpawnerResultNbt(NbtCompound spawnerBlockEntityNbt, ItemStack firstBowlStack, ItemStack secondBowlStack) {
-		Optional<EntityType<?>> entityType = SpectrumSkullBlockItem.getEntityTypeOfSkullStack(firstBowlStack);
-		entityType = entityType.isEmpty() ? SpectrumSkullBlockItem.getEntityTypeOfSkullStack(secondBowlStack) : entityType;
+		Optional<EntityType<?>> entityType = SpectrumSkullBlock.getEntityTypeOfSkullStack(firstBowlStack);
+		entityType = entityType.isEmpty() ? SpectrumSkullBlock.getEntityTypeOfSkullStack(secondBowlStack) : entityType;
 
 		if (entityType.isEmpty()) {
 			return spawnerBlockEntityNbt;

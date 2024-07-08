@@ -1,12 +1,12 @@
-package de.dafuqs.spectrum.recipe.spirit_instiller.spawner;
+package de.dafuqs.spectrum.recipe.spirit_instiller.dynamic.spawner_manipulation;
 
+import de.dafuqs.matchbooks.recipe.*;
+import de.dafuqs.matchbooks.recipe.matchbook.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.item_bowl.*;
 import de.dafuqs.spectrum.blocks.spirit_instiller.*;
 import de.dafuqs.spectrum.recipe.spirit_instiller.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.matchbooks.recipe.*;
-import de.dafuqs.matchbooks.recipe.matchbook.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;

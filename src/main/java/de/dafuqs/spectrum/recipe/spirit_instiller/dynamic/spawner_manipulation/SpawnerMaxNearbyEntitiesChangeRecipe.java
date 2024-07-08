@@ -1,9 +1,9 @@
-package de.dafuqs.spectrum.recipe.spirit_instiller.spawner;
+package de.dafuqs.spectrum.recipe.spirit_instiller.dynamic.spawner_manipulation;
 
-import de.dafuqs.spectrum.recipe.*;
-import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.matchbooks.recipe.matchbook.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.recipe.*;

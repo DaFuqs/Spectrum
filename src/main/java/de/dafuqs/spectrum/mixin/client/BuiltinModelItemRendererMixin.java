@@ -1,10 +1,10 @@
 package de.dafuqs.spectrum.mixin.client;
 
 import de.dafuqs.spectrum.blocks.mob_head.*;
+import de.dafuqs.spectrum.blocks.mob_head.client.*;
 import net.fabricmc.api.*;
 import net.minecraft.block.*;
 import net.minecraft.client.render.*;
-import net.minecraft.client.render.block.entity.*;
 import net.minecraft.client.render.item.*;
 import net.minecraft.client.render.model.json.*;
 import net.minecraft.client.util.math.*;
@@ -22,10 +22,10 @@ public abstract class BuiltinModelItemRendererMixin {
 		Item item = stack.getItem();
 		if (item instanceof BlockItem blockItem) {
 			Block block = blockItem.getBlock();
-			if (block instanceof SpectrumSkullBlock || block instanceof SpectrumWallSkullBlock) {
-				SpectrumSkullBlockType spectrumSkullBlockType = (SpectrumSkullBlockType) ((SpectrumSkullBlock) block).getSkullType();
-				RenderLayer renderLayer = SpectrumSkullBlockEntityRenderer.getRenderLayer(spectrumSkullBlockType);
-				SkullBlockEntityModel model = SpectrumSkullBlockEntityRenderer.getModel(spectrumSkullBlockType);
+			if (block instanceof SpectrumSkullBlock spectrumSkullBlock) {
+				SpectrumSkullType spectrumSkullType = (SpectrumSkullType) (spectrumSkullBlock).getSkullType();
+				RenderLayer renderLayer = SpectrumSkullBlockEntityRenderer.getRenderLayer(spectrumSkullType);
+				SpectrumSkullModel model = SpectrumSkullBlockEntityRenderer.getModel(spectrumSkullType);
 				SpectrumSkullBlockEntityRenderer.renderSkull(null, 180.0F, 0.0F, matrices, vertexConsumers, light, model, renderLayer);
 				ci.cancel();
 			}

@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.registries.client;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.blocks.mob_head.models.*;
+import de.dafuqs.spectrum.blocks.mob_head.client.models.*;
 import de.dafuqs.spectrum.entity.models.*;
 import de.dafuqs.spectrum.render.armor.*;
 import net.fabricmc.api.*;
@@ -119,6 +119,7 @@ public class SpectrumModelLayers {
 	public static final EntityModelLayer STRIDER_HEAD = new EntityModelLayer(SpectrumCommon.locate("strider_head"), "main");
 	public static final EntityModelLayer TADPOLE_HEAD = new EntityModelLayer(SpectrumCommon.locate("tadpole_head"), "main");
 	public static final EntityModelLayer TROPICAL_FISH_HEAD = new EntityModelLayer(SpectrumCommon.locate("tropical_fish_head"), "main");
+	public static final EntityModelLayer TROPICAL_FISH_HEAD_PATTERN = new EntityModelLayer(SpectrumCommon.locate("tropical_fish_head"), "pattern");
 	public static final EntityModelLayer TURTLE_HEAD = new EntityModelLayer(SpectrumCommon.locate("turtle_head"), "main");
 	public static final EntityModelLayer VEX_HEAD = new EntityModelLayer(SpectrumCommon.locate("vex_head"), "main");
 	public static final EntityModelLayer VILLAGER_HEAD = new EntityModelLayer(SpectrumCommon.locate("villager_head"), "main");
@@ -176,6 +177,7 @@ public class SpectrumModelLayers {
 		EntityModelLayerRegistry.registerModelLayer(CAVE_SPIDER_HEAD, SpiderHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(CHICKEN_HEAD, ChickenHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(TROPICAL_FISH_HEAD, TropicalFishHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(TROPICAL_FISH_HEAD_PATTERN, TropicalFishHeadModel::getTexturedModelDataPattern);
 		EntityModelLayerRegistry.registerModelLayer(COW_HEAD, CowHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(DONKEY_HEAD, HorseHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(DROWNED_HEAD, DrownedHeadModel::getTexturedModelData);
@@ -194,7 +196,7 @@ public class SpectrumModelLayers {
 		EntityModelLayerRegistry.registerModelLayer(GUARDIAN_HEAD, GuardianHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(HOGLIN_HEAD, HoglinHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(HORSE_HEAD, HorseHeadModel::getTexturedModelData);
-		EntityModelLayerRegistry.registerModelLayer(HUSK_HEAD, SkullEntityModel::getSkullTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(HUSK_HEAD, ZombieHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(ILLUSIONER_HEAD, IllagerHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(IRON_GOLEM_HEAD, IronGolemHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(LLAMA_HEAD, LlamaHeadModel::getTexturedModelData);
@@ -236,7 +238,7 @@ public class SpectrumModelLayers {
 		EntityModelLayerRegistry.registerModelLayer(SHULKER_YELLOW_HEAD, ShulkerHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(SILVERFISH_HEAD, SilverfishHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(SLIME_HEAD, SlimeHeadModel::getTexturedModelData);
-		EntityModelLayerRegistry.registerModelLayer(SNOW_GOLEM_HEAD, SkullEntityModel::getSkullTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(SNOW_GOLEM_HEAD, ZombieHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(SPIDER_HEAD, SpiderHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(SQUID_HEAD, SquidHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(STRAY_HEAD, SkullEntityModel::getSkullTexturedModelData);
@@ -249,7 +251,7 @@ public class SpectrumModelLayers {
 		EntityModelLayerRegistry.registerModelLayer(WANDERING_TRADER_HEAD, VillagerHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(WARDEN_HEAD, WardenHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(WITCH_HEAD, WitchHeadModel::getTexturedModelData);
-		EntityModelLayerRegistry.registerModelLayer(WITHER_HEAD, SkullEntityModel::getSkullTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(WITHER_HEAD, ZombieHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(WOLF_HEAD, WolfHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(ZOGLIN_HEAD, HoglinHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(ZOMBIE_VILLAGER_HEAD, VillagerHeadModel::getTexturedModelData);

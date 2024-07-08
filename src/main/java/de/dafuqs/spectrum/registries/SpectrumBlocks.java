@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.registries;
 
-import com.google.common.collect.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.amphora.*;
@@ -80,7 +79,6 @@ import net.minecraft.util.math.*;
 import net.minecraft.util.math.intprovider.*;
 import net.minecraft.world.*;
 import net.minecraft.world.explosion.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -1344,9 +1342,6 @@ public class SpectrumBlocks {
 	public static final Block WITHER_SKELETON_IDOL = new StatusEffectIdolBlock(idol(SpectrumBlockSoundGroups.WITHER_SKELETON_IDOL), ParticleTypes.ENCHANTED_HIT, StatusEffects.WITHER, 0, 100);
 	public static final Block ZOMBIE_IDOL = new VillagerConvertingIdolBlock(idol(SpectrumBlockSoundGroups.ZOMBIE_IDOL), ParticleTypes.ENCHANTED_HIT);
 	
-	public static BiMap<SpectrumSkullBlockType, Block> MOB_HEADS;
-	public static BiMap<SpectrumSkullBlockType, Block> MOB_WALL_HEADS;
-	
 	static boolean never(BlockState state, BlockView world, BlockPos pos, EntityType<?> type) {
 		return false;
 	}
@@ -2575,48 +2570,17 @@ public class SpectrumBlocks {
 		registerBlockWithItem("zombie_idol", ZOMBIE_IDOL, settings, DyeColor.PINK);
 	}
 	
-	// Most mob heads vanilla is missing (vanilla only has: skeleton, wither skeleton, zombie, player, creeper, ender dragon)
+	// All the mob heads vanilla is missing
 	private static void registerMobHeads(FabricItemSettings settings) {
-		MOB_HEADS = EnumHashBiMap.create(SpectrumSkullBlockType.class);
-		MOB_WALL_HEADS = EnumHashBiMap.create(SpectrumSkullBlockType.class);
 		
-		for (SpectrumSkullBlockType type : SpectrumSkullBlockType.values()) {
+		for (SpectrumSkullType type : SpectrumSkullType.values()) {
 			Block head = new SpectrumSkullBlock(type, FabricBlockSettings.copyOf(Blocks.SKELETON_SKULL));
 			registerBlock(type.name().toLowerCase(Locale.ROOT) + "_head", head);
 			Block wallHead = new SpectrumWallSkullBlock(type, FabricBlockSettings.copyOf(Blocks.SKELETON_SKULL).dropsLike(head));
 			registerBlock(type.name().toLowerCase(Locale.ROOT) + "_wall_head", wallHead);
-			BlockItem headItem = new SpectrumSkullBlockItem(head, wallHead, (settings), type.getEntityType());
+			BlockItem headItem = new SpectrumSkullBlockItem(head, wallHead, (settings), type);
 			registerBlockItem(type.name().toLowerCase(Locale.ROOT) + "_head", headItem, DyeColor.GRAY);
-			
-			MOB_HEADS.put(type, head);
-			MOB_WALL_HEADS.put(type, wallHead);
 		}
-	}
-	
-	public static Block getMobHead(SpectrumSkullBlockType skullType) {
-		return MOB_HEADS.get(skullType);
-	}
-	
-	public static SpectrumSkullBlockType getSkullType(Block block) {
-		if (block instanceof SpectrumWallSkullBlock) {
-			return MOB_WALL_HEADS.inverse().get(block);
-		} else {
-			return MOB_HEADS.inverse().get(block);
-		}
-	}
-	
-	public static Block getMobWallHead(SpectrumSkullBlockType skullType) {
-		return MOB_WALL_HEADS.get(skullType);
-	}
-	
-	@Contract(pure = true)
-	public static @NotNull Collection<Block> getMobHeads() {
-		return MOB_HEADS.values();
-	}
-	
-	@Contract(pure = true)
-	public static @NotNull Collection<Block> getMobWallHeads() {
-		return MOB_WALL_HEADS.values();
 	}
 	
 	public static void registerClient() {

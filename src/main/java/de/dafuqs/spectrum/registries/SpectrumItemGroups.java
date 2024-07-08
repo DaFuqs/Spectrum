@@ -4,6 +4,7 @@ import de.dafuqs.fractal.api.*;
 import de.dafuqs.fractal.interfaces.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.memory.*;
+import de.dafuqs.spectrum.blocks.mob_head.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.compat.ae2.*;
 import de.dafuqs.spectrum.compat.gobber.*;
@@ -15,8 +16,6 @@ import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import net.fabricmc.fabric.api.itemgroup.v1.*;
 import net.minecraft.block.*;
-import net.minecraft.client.*;
-import net.minecraft.client.network.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.item.*;
 import net.minecraft.registry.*;
@@ -1308,7 +1307,7 @@ public class SpectrumItemGroups {
 	}).build();
 	
 	public static final ItemSubGroup MOB_HEADS = new ItemSubGroup.Builder(MAIN, Text.translatable("itemGroup.spectrum.mob_heads")).backgroundTexture(TEXTURE).entries((displayContext, entries) -> {
-		for (Block skullBlock : SpectrumBlocks.MOB_HEADS.values()) {
+		for (Block skullBlock : SpectrumSkullBlock.MOB_HEADS.values()) {
 			entries.add(skullBlock.asItem());
 		}
 	}).build();

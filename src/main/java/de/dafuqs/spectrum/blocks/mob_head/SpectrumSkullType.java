@@ -4,7 +4,7 @@ import de.dafuqs.spectrum.entity.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
 
-public enum SpectrumSkullBlockType implements SkullBlock.SkullType {
+public enum SpectrumSkullType implements SkullBlock.SkullType {
     // Vanilla
     ALLAY(EntityType.ALLAY),
     AXOLOTL_BLUE(EntityType.AXOLOTL),
@@ -113,11 +113,11 @@ public enum SpectrumSkullBlockType implements SkullBlock.SkullType {
 	PRESERVATION_TURRET(SpectrumEntityTypes.PRESERVATION_TURRET);
 
     private final EntityType<?> entityType;
-
-    SpectrumSkullBlockType(EntityType<?> entityType) {
+    
+    SpectrumSkullType(EntityType<?> entityType) {
         this.entityType = entityType;
     }
-
+    
     public EntityType<?> getEntityType() {
         return this.entityType;
     }

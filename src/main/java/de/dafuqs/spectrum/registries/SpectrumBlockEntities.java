@@ -18,6 +18,7 @@ import de.dafuqs.spectrum.blocks.item_roundel.*;
 import de.dafuqs.spectrum.blocks.jade_vines.*;
 import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.blocks.mob_head.*;
+import de.dafuqs.spectrum.blocks.mob_head.client.*;
 import de.dafuqs.spectrum.blocks.particle_spawner.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
@@ -137,8 +138,7 @@ public class SpectrumBlockEntities {
 		
 		// All the skulls
 		List<Block> skullBlocksList = new ArrayList<>();
-		skullBlocksList.addAll(SpectrumBlocks.getMobHeads());
-		skullBlocksList.addAll(SpectrumBlocks.getMobWallHeads());
+		skullBlocksList.addAll(SpectrumSkullBlock.getMobHeads());
 		
 		Block[] skullBlocksArray = new Block[skullBlocksList.size()];
 		skullBlocksArray = skullBlocksList.toArray(skullBlocksArray);

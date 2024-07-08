@@ -4,7 +4,7 @@ import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.compat.REI.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.spirit_instiller.*;
-import de.dafuqs.spectrum.recipe.spirit_instiller.spawner.*;
+import de.dafuqs.spectrum.recipe.spirit_instiller.dynamic.spawner_manipulation.*;
 import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.display.basic.*;
 import me.shedaniel.rei.api.common.entry.*;

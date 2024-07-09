@@ -3,10 +3,9 @@ package de.dafuqs.spectrum.cca;
 import de.dafuqs.spectrum.cca.azure_dike.*;
 import dev.onyxstudios.cca.api.v3.entity.*;
 import dev.onyxstudios.cca.api.v3.level.*;
-import dev.onyxstudios.cca.api.v3.world.*;
 import net.minecraft.entity.*;
 
-public class SpectrumComponentInitializers implements EntityComponentInitializer, LevelComponentInitializer, WorldComponentInitializer {
+public class SpectrumComponentInitializers implements EntityComponentInitializer, LevelComponentInitializer {
 
 	@Override
 	public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
@@ -27,8 +26,4 @@ public class SpectrumComponentInitializers implements EntityComponentInitializer
 		registry.register(HardcoreDeathComponent.HARDCORE_DEATHS_COMPONENT, e -> new HardcoreDeathComponent());
 	}
 	
-	@Override
-	public void registerWorldComponentFactories(WorldComponentFactoryRegistry registry) {
-		registry.register(DDWorldEffectsComponent.DD_WORLD_EFFECTS_COMPONENT, DDWorldEffectsComponent::new);
-	}
 }

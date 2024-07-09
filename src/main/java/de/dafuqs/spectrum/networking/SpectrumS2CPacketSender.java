@@ -4,12 +4,11 @@ import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
-import de.dafuqs.spectrum.api.item.ExperienceStorageItem;
-import de.dafuqs.spectrum.blocks.chests.BlackHoleChestBlockEntity;
-import de.dafuqs.spectrum.blocks.chests.CompactingChestBlockEntity;
+import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
-import de.dafuqs.spectrum.blocks.pastel_network.nodes.PastelNodeBlockEntity;
+import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.particle.*;
@@ -430,8 +429,4 @@ public class SpectrumS2CPacketSender {
 		}
 	}
 
-	public static void playMutableMusic(ServerPlayerEntity player) {
-		PacketByteBuf buf = PacketByteBufs.create();
-		ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_MUTABLE_MUSIC, buf);
-	}
 }

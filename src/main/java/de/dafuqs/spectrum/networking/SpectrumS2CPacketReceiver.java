@@ -7,7 +7,7 @@ import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.fusion_shrine.*;
 import de.dafuqs.spectrum.blocks.particle_spawner.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
-import de.dafuqs.spectrum.blocks.pastel_network.nodes.PastelNodeBlockEntity;
+import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.blocks.present.*;
 import de.dafuqs.spectrum.blocks.shooting_star.*;
@@ -20,7 +20,6 @@ import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.*;
-import de.dafuqs.spectrum.sound.music.SpectrumAudioManager;
 import de.dafuqs.spectrum.spells.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
@@ -483,10 +482,5 @@ public class SpectrumS2CPacketReceiver {
 			});
 		}))));
 
-        ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_MUTABLE_MUSIC, ((client, handler, buf, responseSender) -> {
-            client.execute(() -> {
-                SpectrumAudioManager.getInstance().start();
-            });
-        }));
     }
 }

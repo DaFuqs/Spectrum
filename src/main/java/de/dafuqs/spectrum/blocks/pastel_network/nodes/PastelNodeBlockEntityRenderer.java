@@ -1,27 +1,22 @@
 package de.dafuqs.spectrum.blocks.pastel_network.nodes;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.cca.DDWorldEffectsComponent;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.LightmapTextureManager;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.block.entity.BlockEntityRenderer;
-import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
-import net.minecraft.client.render.model.json.ModelTransformationMode;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RotationAxis;
-import org.joml.Matrix3f;
-import org.joml.Matrix4f;
-import org.joml.Vector3f;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.client.*;
+import net.minecraft.client.render.*;
+import net.minecraft.client.render.block.entity.*;
+import net.minecraft.client.render.model.json.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import org.joml.*;
+
+import java.lang.Math;
 
 public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<PastelNodeBlockEntity> {
+    
+    private static final long REAL_DAY_LENGTH = 86400 * 20;
 
     private static final Crystal CONNECTION = new Crystal(SpectrumItems.CONNECTION_NODE_CRYSTAL.getDefaultStack(), 0.25, false);
     private static final Crystal PROVIDER = new Crystal(SpectrumItems.PROVIDER_NODE_CRYSTAL.getDefaultStack(), 0.1, true);
@@ -44,8 +39,8 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
         var world = node.getWorld();
         if (world == null)
             return;
-
-        var time = (world.getTime() + node.getCreationStamp()) % DDWorldEffectsComponent.REAL_DAY_LENGTH + tickDelta;
+        
+        var time = (world.getTime() + node.getCreationStamp()) % REAL_DAY_LENGTH + tickDelta;
 
         var crystal = switch (node.getNodeType()) {
             case CONNECTION -> CONNECTION;

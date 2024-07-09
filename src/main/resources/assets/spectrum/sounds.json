@@ -1,10 +1,4 @@
 {
-  "testmusic": {
-    "subtitle": "spectrum.subtitles.uh_oh",
-    "sounds": [
-      {"name": "fabric-sound-api-v1:empty", "stream": true}
-    ]
-  },
   "item.primordial_lighter.use": {
     "subtitle": "spectrum.subtitles.primordial_lighter.use",
     "sounds": [

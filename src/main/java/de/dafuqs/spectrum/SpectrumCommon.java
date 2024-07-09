@@ -197,9 +197,6 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumTrackedDataHandlerRegistry.register();
 		SpectrumEntityTypes.register();
 		
-		logInfo("Registering Weather...");
-		SpectrumWeatherStates.register();
-		
 		logInfo("Registering Omni Accelerator Projectiles & Behaviors...");
 		SpectrumOmniAcceleratorProjectiles.register();
 		SpectrumItemProjectileBehaviors.register();

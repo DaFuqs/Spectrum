@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum;
 
-import com.google.common.collect.ImmutableList;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.api.energy.*;
@@ -12,14 +11,12 @@ import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.compat.ears.*;
 import de.dafuqs.spectrum.compat.idwtialsimmoedm.*;
 import de.dafuqs.spectrum.data_loaders.*;
-import de.dafuqs.spectrum.deeper_down.weather.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.mixin.accessors.WorldRendererAccessor;
-import de.dafuqs.spectrum.mixin.client.accessors.RenderLayerAccessor;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.particle.render.*;
@@ -28,7 +25,6 @@ import de.dafuqs.spectrum.progression.toast.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.*;
 import de.dafuqs.spectrum.render.*;
-import de.dafuqs.spectrum.sound.music.SpectrumAudioManager;
 import de.dafuqs.spectrum.render.capes.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.fabricmc.api.*;
@@ -70,7 +66,6 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 	@Environment(EnvType.CLIENT)
 	public static final SkyLerper skyLerper = new SkyLerper();
 	public static final boolean foodEffectsTooltipsModLoaded = FabricLoader.getInstance().isModLoaded("foodeffecttooltips");
-	public static final WeatherThread WEATHER_THREAD = new WeatherThread();
 
 	// initial impl
 	public static final ObjectOpenHashSet<ModelIdentifier> CUSTOM_ITEM_MODELS = new ObjectOpenHashSet<>();
@@ -83,9 +78,6 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 
 		logInfo("Registering Model Layers...");
 		SpectrumModelLayers.register();
-
-		SpectrumShaderPrograms.initPrograms();
-		SpectrumRenderPhases.init();
 
 		logInfo("Setting up Block Rendering...");
 		SpectrumBlocks.registerClient();
@@ -125,10 +117,6 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		logInfo("Registering Particle Factories...");
 		SpectrumParticleFactories.register();
 
-		logInfo("Initializing Dynamic Music...");
-		SpectrumDynamicAudio.init();
-		SpectrumAudioManager.getInstance().init();
-
 		logInfo("Registering Overlays...");
 		HudRenderers.register();
 
@@ -138,14 +126,9 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		logInfo("Registering Dimension Effects...");
 		SpectrumDimensions.registerClient();
 
-		logInfo("Adding Chunk Render Layers...");
-		var renderLayers = ImmutableList.<RenderLayer>builder().addAll(RenderLayerAccessor.getBLOCK_LAYERS()).add(SpectrumRenderPhases.STARFIELD).build();
-		RenderLayerAccessor.setBLOCK_LAYERS(renderLayers);
-
 		logInfo("Registering Event Listeners...");
 		ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> SpectrumColorProviders.registerClient());
 		ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> Pastel.clearClientInstance());
-		ClientTickEvents.END_CLIENT_TICK.register(client -> SpectrumAudioManager.getInstance().tick());
 
 		ItemTooltipCallback.EVENT.register((stack, context, lines) -> {
 			if (!foodEffectsTooltipsModLoaded && stack.isFood()) {
@@ -202,9 +185,6 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 
 		RevealingCallback.register(this);
 		ClientAdvancementPacketCallback.registerCallback(this);
-		
-		logInfo("Initializing Weather Thread...");
-		WEATHER_THREAD.initialize();
 
 		logInfo("Client startup completed!");
 	}
@@ -371,7 +351,4 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		return false;
 	}
 	
-	public static WeatherThread weatherThread() {
-		return WEATHER_THREAD;
-	}
 }

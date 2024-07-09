@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.color.*;
-import de.dafuqs.spectrum.deeper_down.weather.*;
 import de.dafuqs.spectrum.entity.variants.*;
 import de.dafuqs.spectrum.explosion.*;
 import de.dafuqs.spectrum.items.tools.*;
@@ -44,10 +43,6 @@ public class SpectrumRegistries {
 	private static final Identifier EXPLOSION_MODIFIERS_ID = SpectrumCommon.locate("explosion_effect_modifier");
 	public static final RegistryKey<Registry<ExplosionModifier>> EXPLOSION_MODIFIERS_KEY = RegistryKey.ofRegistry(EXPLOSION_MODIFIERS_ID);
 	public static final Registry<ExplosionModifier> EXPLOSION_MODIFIERS = FabricRegistryBuilder.createSimple(EXPLOSION_MODIFIERS_KEY).attribute(RegistryAttribute.SYNCED).buildAndRegister();
-	
-	private static final Identifier WEATHER_STATE_ID = SpectrumCommon.locate("weather_state");
-	public static final RegistryKey<Registry<WeatherState>> WEATHER_STATE_KEY = RegistryKey.ofRegistry(WEATHER_STATE_ID);
-	public static final Registry<WeatherState> WEATHER_STATES = FabricRegistryBuilder.createSimple(WEATHER_STATE_KEY).attribute(RegistryAttribute.SYNCED).buildAndRegister();
 
 	public static <T> T getRandomTagEntry(Registry<T> registry, TagKey<T> tag, Random random, T fallback) {
 		Optional<RegistryEntryList.Named<T>> tagEntries = registry.getEntryList(tag);

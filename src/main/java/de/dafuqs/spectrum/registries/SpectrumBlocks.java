@@ -44,7 +44,6 @@ import de.dafuqs.spectrum.blocks.rock_candy.*;
 import de.dafuqs.spectrum.blocks.shooting_star.*;
 import de.dafuqs.spectrum.blocks.spirit_instiller.*;
 import de.dafuqs.spectrum.blocks.spirit_sallow.*;
-import de.dafuqs.spectrum.blocks.starfield.*;
 import de.dafuqs.spectrum.blocks.structure.*;
 import de.dafuqs.spectrum.blocks.titration_barrel.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
@@ -54,7 +53,6 @@ import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.items.conditional.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
-import de.dafuqs.spectrum.render.*;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.*;
 import net.fabricmc.fabric.api.item.v1.*;
 import net.fabricmc.fabric.api.object.builder.v1.block.*;
@@ -1247,8 +1245,6 @@ public class SpectrumBlocks {
 	public static final Block PRESERVATION_BRICKS = new Block(preservationBlock());
 	public static final Block SHIMMERING_PRESERVATION_BRICKS = new Block(FabricBlockSettings.copyOf(preservationBlock()).luminance(5));
 	public static final Block COURIER_STATUE = new StatueBlock(preservationBlock());
-
-    public static final Block STARFIELD = new StarfieldBlock(preservationBlock());
 
 	public static final Block BLACK_CHISELED_PRESERVATION_STONE = new Block(preservationBlock());
 	public static final Block BLUE_CHISELED_PRESERVATION_STONE = new Block(preservationBlock());
@@ -2551,8 +2547,6 @@ public class SpectrumBlocks {
 		registerBlockWithItem("invisible_wall", INVISIBLE_WALL, settings, DyeColor.BLUE);
 		registerBlockWithItem("courier_statue", COURIER_STATUE, settings, DyeColor.BLUE);
 		registerBlockWithItem("preservation_chest", PRESERVATION_CHEST, settings, DyeColor.BLUE);
-
-		registerBlockWithItem("starfield", STARFIELD, settings, DyeColor.BLUE);
 	}
 	
 	private static void registerJadeVineBlocks(FabricItemSettings settings) {
@@ -3036,9 +3030,6 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.HUMMINGSTONE, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.HUMMINGSTONE_GLASS, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CLEAR_HUMMINGSTONE_GLASS, RenderLayer.getTranslucent());
-
-		// Injected Chunk Render Layers
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.STARFIELD, SpectrumRenderPhases.STARFIELD);
 	}
 	
 }

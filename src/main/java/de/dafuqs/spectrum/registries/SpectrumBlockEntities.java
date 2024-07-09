@@ -27,7 +27,6 @@ import de.dafuqs.spectrum.blocks.present.*;
 import de.dafuqs.spectrum.blocks.redstone.*;
 import de.dafuqs.spectrum.blocks.spirit_instiller.*;
 import de.dafuqs.spectrum.blocks.spirit_sallow.*;
-import de.dafuqs.spectrum.blocks.starfield.*;
 import de.dafuqs.spectrum.blocks.structure.*;
 import de.dafuqs.spectrum.blocks.titration_barrel.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
@@ -83,8 +82,6 @@ public class SpectrumBlockEntities {
 	public static BlockEntityType<HummingstoneBlockEntity> HUMMINGSTONE;
 	public static BlockEntityType<PlacedItemBlockEntity> PLACED_ITEM;
 
-	public static BlockEntityType<StarfieldBlockEntity> STARFIELD;
-
 	public static BlockEntityType<PreservationControllerBlockEntity> PRESERVATION_CONTROLLER;
 	public static BlockEntityType<PreservationRoundelBlockEntity> PRESERVATION_ROUNDEL;
 	public static BlockEntityType<PreservationBlockDetectorBlockEntity> PRESERVATION_BLOCK_DETECTOR;
@@ -133,9 +130,6 @@ public class SpectrumBlockEntities {
 		PRESERVATION_ROUNDEL = register("preservation_roundel", PreservationRoundelBlockEntity::new, SpectrumBlocks.PRESERVATION_ROUNDEL);
 		PRESERVATION_BLOCK_DETECTOR = register("preservation_block_detector", PreservationBlockDetectorBlockEntity::new, SpectrumBlocks.PRESERVATION_BLOCK_DETECTOR);
 
-		// Rendering magic blocks
-		STARFIELD = register("starfield", StarfieldBlockEntity::new, SpectrumBlocks.STARFIELD);
-
 		// All the upgrades
 		List<Block> upgradeBlocksList = UpgradeBlock.getUpgradeBlocks();
 		Block[] upgradeBlocksArray = new Block[upgradeBlocksList.size()];
@@ -172,8 +166,6 @@ public class SpectrumBlockEntities {
 		BlockEntityRendererFactories.register(SpectrumBlockEntities.COLOR_PICKER, ColorPickerBlockEntityRenderer::new);
 
 		BlockEntityRendererFactories.register(SpectrumBlockEntities.PASTEL_NODE, PastelNodeBlockEntityRenderer::new);
-
-		BlockEntityRendererFactories.register(SpectrumBlockEntities.STARFIELD, StarfieldBlockEntityRenderer::new);
 	}
 	
 }

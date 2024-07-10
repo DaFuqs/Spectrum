@@ -146,13 +146,6 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 		return amount;
 	}
 	
-	@Inject(at = @At("TAIL"), method = "isInvulnerableTo(Lnet/minecraft/entity/damage/DamageSource;)Z", cancellable = true)
-	public void spectrum$isInvulnerableTo(DamageSource damageSource, CallbackInfoReturnable<Boolean> cir) {
-		if (!cir.getReturnValue() && damageSource.isIn(DamageTypeTags.IS_FIRE) && SpectrumTrinketItem.hasEquipped((PlayerEntity) (Object) this, SpectrumItems.ASHEN_CIRCLET)) {
-			cir.setReturnValue(true);
-		}
-	}
-	
 	@Override
 	public void setSpectrumBobber(SpectrumFishingBobberEntity bobber) {
 		this.spectrum$fishingBobber = bobber;

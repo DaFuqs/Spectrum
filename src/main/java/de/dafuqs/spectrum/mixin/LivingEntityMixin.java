@@ -300,35 +300,6 @@ public abstract class LivingEntityMixin {
 		}
 	}
 
-	@Inject(at = @At("RETURN"), method = "tryUseTotem(Lnet/minecraft/entity/damage/DamageSource;)Z", cancellable = true)
-	public void spectrum$checkForTotemPendant(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
-		if (!cir.getReturnValue()) {
-			// if no other totem triggered: check for a totem pendant
-			LivingEntity thisEntity = (LivingEntity) (Object) this;
-			Optional<TrinketComponent> optionalTrinketComponent = TrinketsApi.getTrinketComponent(thisEntity);
-			if (optionalTrinketComponent.isPresent()) {
-				List<Pair<SlotReference, ItemStack>> totems = optionalTrinketComponent.get().getEquipped(SpectrumItems.TOTEM_PENDANT);
-				for (Pair<SlotReference, ItemStack> pair : totems) {
-					if (pair.getRight().getCount() > 0) {
-						// consume pendant
-						pair.getRight().decrement(1);
-
-						// Heal and add effects
-						thisEntity.setHealth(1.0F);
-						thisEntity.clearStatusEffects();
-						thisEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 900, 1));
-						thisEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 100, 1));
-						thisEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 800, 0));
-						thisEntity.getWorld().sendEntityStatus(thisEntity, (byte) 35);
-
-						// override the previous return value
-						cir.setReturnValue(true);
-					}
-				}
-			}
-		}
-	}
-
 	@Inject(method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isDead()Z", ordinal = 1))
 	public void spectrum$TriggerArmorWithHitEffect(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		LivingEntity thisEntity = (LivingEntity) (Object) this;

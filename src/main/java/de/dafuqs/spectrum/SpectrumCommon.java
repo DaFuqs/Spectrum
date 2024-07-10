@@ -10,6 +10,7 @@ import de.dafuqs.spectrum.api.item_group.*;
 import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
+import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.compat.reverb.*;
 import de.dafuqs.spectrum.config.*;
@@ -33,6 +34,7 @@ import de.dafuqs.spectrum.recipe.enchantment_upgrade.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.*;
 import de.dafuqs.spectrum.spells.*;
+import dev.emi.trinkets.api.*;
 import me.shedaniel.autoconfig.*;
 import me.shedaniel.autoconfig.serializer.*;
 import net.fabricmc.api.*;
@@ -45,10 +47,14 @@ import net.fabricmc.fabric.api.resource.*;
 import net.fabricmc.fabric.api.transfer.v1.fluid.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.fabricmc.loader.api.*;
+import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.*;
+import net.minecraft.entity.damage.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.entity.player.*;
 import net.minecraft.entity.projectile.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
@@ -56,11 +62,13 @@ import net.minecraft.particle.*;
 import net.minecraft.recipe.*;
 import net.minecraft.registry.*;
 import net.minecraft.registry.entry.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.resource.*;
 import net.minecraft.server.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
+import net.minecraft.stat.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
@@ -244,7 +252,7 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumResourceConditions.register();
 		logInfo("Registering Structure WeightedPool Element Types...");
 		SpectrumStructurePoolElementTypes.register();
-
+		
 		AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
 			if (!world.isClient && !player.isSpectator()) {
 				
@@ -264,16 +272,13 @@ public class SpectrumCommon implements ModInitializer {
 					}
 					world.playSound(null, player.getBlockPos(), SoundEvents.BLOCK_DISPENSER_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
 					return ActionResult.FAIL;
-				}
-				else if(mainHandStack.getItem() instanceof TuningStampItem tuningStampItem) {
+				} else if (mainHandStack.getItem() instanceof TuningStampItem tuningStampItem) {
 					if (mainHandStack.getOrCreateNbt().contains(TuningStampItem.DATA))
 						tuningStampItem.clearData(Optional.of(player), mainHandStack);
 				}
 			}
 			return ActionResult.PASS;
 		});
-
-
 		
 		CommonLifecycleEvents.TAGS_LOADED.register((registries, client) -> {
 			if (client) {
@@ -343,7 +348,7 @@ public class SpectrumCommon implements ModInitializer {
 				}
 			}
 			
-			SpectrumCommon.logInfo("Injecting additional recipes...");
+			SpectrumCommon.logInfo("Injecting dynamic recipes into recipe manager...");
 			FirestarterIdolBlock.addBlockSmeltingRecipes(server);
 			injectEnchantmentUpgradeRecipes(server);
 		});
@@ -358,6 +363,19 @@ public class SpectrumCommon implements ModInitializer {
 				
 				entity.setHealth(entity.getMaxHealth());
 				WhispyCircletItem.removeNegativeStatusEffects(entity);
+			}
+		});
+		
+		ServerEntityCombatEvents.AFTER_KILLED_OTHER_ENTITY.register((world, entity, killedEntity) -> {
+			if (entity instanceof ServerPlayerEntity serverPlayerEntity && SpectrumTrinketItem.hasEquipped(serverPlayerEntity, SpectrumItems.JEOPARDANT)) {
+				SpectrumAdvancementCriteria.JEOPARDANT_KILL.trigger(serverPlayerEntity, killedEntity);
+			}
+		});
+		
+		// CCA 1.21 supports mob conversion by default, but for now we have to persist this component ourselves
+		ServerLivingEntityEvents.MOB_CONVERSION.register((previous, converted, keepEquipment) -> {
+			if (EverpromiseRibbonComponent.hasRibbon(previous)) {
+				EverpromiseRibbonComponent.attachRibbon(converted);
 			}
 		});
 		
@@ -444,6 +462,70 @@ public class SpectrumCommon implements ModInitializer {
 					GlassCrestCrossbowItem.unOvercharge(crossbow);
 				}
 			}
+		});
+		
+		ServerLivingEntityEvents.ALLOW_DEATH.register((entity, damageSource, damageAmount) -> {
+			if (damageSource.isIn(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+				return true;
+			}
+			
+			Optional<TrinketComponent> optionalTrinketComponent = TrinketsApi.getTrinketComponent(entity);
+			if (optionalTrinketComponent.isPresent()) {
+				List<Pair<SlotReference, ItemStack>> totems = optionalTrinketComponent.get().getEquipped(SpectrumItems.TOTEM_PENDANT);
+				for (Pair<SlotReference, ItemStack> pair : totems) {
+					ItemStack totemStack = pair.getRight();
+					
+					if (totemStack.getCount() > 0) {
+						// increase stat
+						if (entity instanceof ServerPlayerEntity serverPlayerEntity) {
+							serverPlayerEntity.incrementStat(Stats.USED.getOrCreateStat(Items.TOTEM_OF_UNDYING));
+							Criteria.USED_TOTEM.trigger(serverPlayerEntity, totemStack);
+						}
+						
+						// consume pendant
+						totemStack.decrement(1);
+						
+						// Heal and add effects
+						entity.setHealth(1.0F);
+						entity.clearStatusEffects();
+						entity.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 900, 1));
+						entity.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 100, 1));
+						entity.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 800, 0));
+						entity.getWorld().sendEntityStatus(entity, (byte) 35);
+						
+						return false;
+					}
+				}
+			}
+			return true;
+		});
+		
+		ServerLivingEntityEvents.AFTER_DEATH.register((entity, damageSource) -> {
+			if (entity instanceof PlayerEntity player) {
+				if (entity.getWorld().getLevelProperties().isHardcore() || HardcoreDeathComponent.isInHardcore(player)) {
+					HardcoreDeathComponent.addHardcoreDeath(player.getGameProfile());
+				}
+			}
+		});
+		
+		ServerLivingEntityEvents.ALLOW_DAMAGE.register((entity, source, amount) -> {
+			
+			
+			// If the player is damaged by lava and wears an ashen circlet:
+			// prevent damage and grant fire resistance
+			if (source.isOf(DamageTypes.LAVA)) {
+				Optional<ItemStack> ashenCircletStack = SpectrumTrinketItem.getFirstEquipped(entity, SpectrumItems.ASHEN_CIRCLET);
+				if (ashenCircletStack.isPresent()) {
+					if (AshenCircletItem.getCooldownTicks(ashenCircletStack.get(), entity.getWorld()) == 0) {
+						AshenCircletItem.grantFireResistance(ashenCircletStack.get(), entity);
+						return false;
+					}
+				}
+			} else if (source.isIn(DamageTypeTags.IS_FIRE) && SpectrumTrinketItem.hasEquipped(entity, SpectrumItems.ASHEN_CIRCLET)) {
+				return false;
+			}
+			
+			return true;
 		});
 		
 		logInfo("Registering RecipeCache reload listener");

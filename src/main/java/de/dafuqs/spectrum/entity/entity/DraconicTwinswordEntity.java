@@ -44,7 +44,7 @@ public class DraconicTwinswordEntity extends BidentBaseEntity implements NonLivi
 	
 	
 	public DraconicTwinswordEntity(World world) {
-		this(SpectrumEntityTypes.DRAGON_TWINSWORD, world);
+		this(SpectrumEntityTypes.DRACONIC_TWINSWORD, world);
 	}
 	
 	public DraconicTwinswordEntity(EntityType<? extends TridentEntity> entityType, World world) {

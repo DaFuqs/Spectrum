@@ -1,7 +1,7 @@
 {
   "parent": "spectrum:item/handheld_oversized",
   "textures": {
-    "layer0": "spectrum:item/dragon_needle"
+    "layer0": "spectrum:item/draconic_twinsword"
   },
   "overrides": [
     {
@@ -9,7 +9,7 @@
         "in_world": 1.0,
         "reserved": 0.0
       },
-      "model": "spectrum:item/dragon_needle_oversized"
+      "model": "spectrum:item/draconic_twinsword_oversized"
     },
     {
       "predicate": {
@@ -23,7 +23,7 @@
         "in_world": 0.0,
         "reserved": 1.0
       },
-      "model": "spectrum:item/dragon_needle_phantom"
+      "model": "spectrum:item/draconic_twinsword_phantom"
     }
   ]
 }

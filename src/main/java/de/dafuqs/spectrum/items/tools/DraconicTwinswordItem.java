@@ -113,9 +113,9 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
 	
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-		tooltip.add(Text.translatable("item.spectrum.dragon_talon.tooltip").formatted(Formatting.GRAY));
-		tooltip.add(Text.translatable("item.spectrum.dragon_talon.tooltip2").formatted(Formatting.GRAY));
-		tooltip.add(Text.translatable("item.spectrum.dragon_talon.tooltip3").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.draconic_twinsword.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.draconic_twinsword.tooltip2").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.draconic_twinsword.tooltip3").formatted(Formatting.GRAY));
 	}
 	
 	@Override

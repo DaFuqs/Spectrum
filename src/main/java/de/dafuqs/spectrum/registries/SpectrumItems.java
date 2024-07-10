@@ -754,8 +754,8 @@ public class SpectrumItems {
 		
 		register("dreamflayer", DREAMFLAYER, DyeColor.RED);
 		register("nightfalls_blade", NIGHTFALLS_BLADE, DyeColor.GRAY);
-		register("dragon_talon", DRACONIC_TWINSWORD, DyeColor.YELLOW);
-		register("dragon_needle", DRAGON_TALON, DyeColor.YELLOW);
+		register("draconic_twinsword", DRACONIC_TWINSWORD, DyeColor.YELLOW);
+		register("dragon_talon", DRAGON_TALON, DyeColor.YELLOW);
 	}
 	
 	public static void registerMagicalTools() {

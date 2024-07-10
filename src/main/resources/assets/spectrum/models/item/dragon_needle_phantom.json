@@ -1,6 +1,0 @@
-{
-  "parent": "item/handheld",
-  "textures": {
-    "layer0": "spectrum:item/dragon_needle_phantom"
-  }
-}

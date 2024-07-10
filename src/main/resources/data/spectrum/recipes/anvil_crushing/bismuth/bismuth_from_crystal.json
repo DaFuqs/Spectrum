@@ -3,11 +3,11 @@
   "ingredient": {
     "item": "spectrum:bismuth_crystal"
   },
-  "crushedItemsPerPointOfDamage": 2.0,
+  "crushedItemsPerPointOfDamage": 0.75,
   "experience": 1.0,
   "result": {
     "item": "spectrum:bismuth_flake",
-    "count": 4
+    "count": 2
   },
   "particleEffectIdentifier": "enchanted_hit",
   "particleCount": 10,

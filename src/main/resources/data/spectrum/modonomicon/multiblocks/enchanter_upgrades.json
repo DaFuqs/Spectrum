@@ -70,23 +70,28 @@
   "mapping": {
     "X": {
       "type": "modonomicon:tag",
-      "tag": "#spectrum:polished_base_blocks"
+      "display": "spectrum:polished_basalt",
+      "tag": "#spectrum:structure/bases"
     },
     "P": {
       "type": "modonomicon:tag",
-      "tag": "#spectrum:pillar_base_blocks"
+      "display": "spectrum:polished_basalt_pillar[axis=y]",
+      "tag": "#spectrum:structure/pillars"
     },
     "B": {
       "type": "modonomicon:tag",
-      "tag": "#spectrum:polished_base_block_slabs"
+      "display": "spectrum:polished_basalt_slab",
+      "tag": "#spectrum:structure/base_slabs"
     },
     "L": {
       "type": "modonomicon:tag",
-      "tag": "#spectrum:gemstone_lamps"
+      "display": "spectrum:amethyst_basalt_lamp",
+      "tag": "#spectrum:structure/lights"
     },
     "G": {
       "type": "modonomicon:tag",
-      "tag": "#spectrum:gemstone_storage_blocks"
+      "display": "spectrum:amethyst_storage_block",
+      "tag": "#spectrum:structure/gemstones"
     },
     "F": {
       "type": "modonomicon:block",
@@ -98,6 +103,7 @@
     },
     "I": {
       "type": "modonomicon:tag",
+      "display": "spectrum:item_bowl_basalt",
       "tag": "#spectrum:item_bowls"
     },
     "U": {
@@ -106,7 +112,8 @@
     },
     "0": {
       "type": "modonomicon:tag",
-      "tag": "#spectrum:polished_base_blocks"
+      "display": "spectrum:polished_basalt",
+      "tag": "#spectrum:structure/bases"
     }
   }
 }

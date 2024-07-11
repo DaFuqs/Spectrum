@@ -60,26 +60,32 @@
   "mapping": {
     "X": {
       "type": "modonomicon:tag",
-      "tag": "#spectrum:polished_base_blocks"
+      "display": "spectrum:polished_basalt",
+      "tag": "#spectrum:structure/bases"
     },
     "P": {
       "type": "modonomicon:tag",
-      "tag": "#spectrum:pillar_base_blocks"
+      "display": "spectrum:polished_basalt_pillar[axis=y]",
+      "tag": "#spectrum:structure/pillars"
     },
     "L": {
       "type": "modonomicon:tag",
-      "tag": "#spectrum:polished_base_block_slabs"
+      "display": "spectrum:polished_basalt_slab",
+      "tag": "#spectrum:structure/base_slabs"
     },
     "S": {
       "type": "modonomicon:tag",
-      "tag": "#spectrum:gemstone_storage_blocks"
+      "display": "spectrum:amethyst_storage_block",
+      "tag": "#spectrum:structure/gemstones"
     },
     "C": {
       "type": "modonomicon:tag",
-      "tag": "#spectrum:chiseled_base_blocks"
+      "display": "spectrum:chiseled_polished_basalt",
+      "tag": "#spectrum:structure/chiseled"
     },
     "F": {
       "type": "modonomicon:tag",
+      "display": "spectrum:fusion_shrine_basalt",
       "tag": "#spectrum:fusion_shrines"
     },
     "U": {
@@ -88,7 +94,8 @@
     },
     "0": {
       "type": "modonomicon:tag",
-      "tag": "#spectrum:polished_base_blocks"
+      "display": "spectrum:polished_basalt",
+      "tag": "#spectrum:structure/bases"
     }
   }
 }

@@ -4,10 +4,11 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.ae2.*;
 import de.dafuqs.spectrum.compat.alloy_forgery.*;
 import de.dafuqs.spectrum.compat.botania.*;
-import de.dafuqs.spectrum.compat.create.CreateCompat;
+import de.dafuqs.spectrum.compat.create.*;
 import de.dafuqs.spectrum.compat.gobber.*;
 import de.dafuqs.spectrum.compat.modonomicon.*;
 import de.dafuqs.spectrum.compat.travelersbackpack.*;
+import net.fabricmc.api.*;
 import net.fabricmc.loader.api.*;
 
 import java.util.*;
@@ -53,6 +54,7 @@ public class SpectrumIntegrationPacks {
 		}
 	}
 	
+	@Environment(EnvType.CLIENT)
 	public static void registerClient() {
 		for (ModIntegrationPack container : INTEGRATION_PACKS.values()) {
 			container.registerClient();

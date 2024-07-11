@@ -4,6 +4,7 @@ import com.tiviacz.travelersbackpack.fluids.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.transfer.v1.fluid.*;
 import net.fabricmc.fabric.api.transfer.v1.storage.*;
 import net.minecraft.enchantment.*;
@@ -17,6 +18,20 @@ import net.minecraft.world.*;
 import java.util.*;
 
 public class TravelersBackpackCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
+	
+	public abstract static class SpectrumEffectFluid extends EffectFluid {
+		
+		public SpectrumEffectFluid(String id, Fluid fluid) {
+			super(id, fluid, 81000L);
+		}
+		
+		public abstract void affectDrinker(StorageView<FluidVariant> fluidStack, World world, Entity entity);
+		
+		public boolean canExecuteEffect(StorageView<FluidVariant> stack, World world, Entity entity) {
+			return stack.getAmount() >= this.amountRequired;
+		}
+		
+	}
 	
 	@Override
 	public void register() {
@@ -74,22 +89,10 @@ public class TravelersBackpackCompat extends SpectrumIntegrationPacks.ModIntegra
 		});
 	}
 	
+	@Environment(EnvType.CLIENT)
 	@Override
 	public void registerClient() {
 	
 	}
 	
-	public abstract static class SpectrumEffectFluid extends EffectFluid {
-		
-		public SpectrumEffectFluid(String id, Fluid fluid) {
-			super(id, fluid, 81000L);
-		}
-		
-		public abstract void affectDrinker(StorageView<FluidVariant> fluidStack, World world, Entity entity);
-		
-		public boolean canExecuteEffect(StorageView<FluidVariant> stack, World world, Entity entity) {
-			return stack.getAmount() >= this.amountRequired;
-		}
-		
-	}
 }

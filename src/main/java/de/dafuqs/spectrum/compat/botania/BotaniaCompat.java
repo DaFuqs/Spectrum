@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.compat.botania;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.event.lifecycle.v1.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.*;
@@ -49,6 +50,7 @@ public class BotaniaCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 		}));
 	}
 	
+	@Environment(EnvType.CLIENT)
 	@Override
 	public void registerClient() {
 	

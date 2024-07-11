@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.fusion_shrine;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.recipe.*;
@@ -274,12 +273,8 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
     }
 
     private void setLightForFluid(World world, BlockPos blockPos, Fluid fluid) {
-        if (SpectrumCommon.fluidLuminance.containsKey(fluid)) {
-            int light = SpectrumCommon.fluidLuminance.get(fluid);
-            world.setBlockState(blockPos, world.getBlockState(blockPos).with(FusionShrineBlock.LIGHT_LEVEL, light), 3);
-        } else {
-            world.setBlockState(blockPos, world.getBlockState(blockPos).with(FusionShrineBlock.LIGHT_LEVEL, 0), 3);
-        }
+		int fluidLight = SpectrumEventListeners.getFluidLuminance(fluid);
+		world.setBlockState(blockPos, world.getBlockState(blockPos).with(FusionShrineBlock.LIGHT_LEVEL, fluidLight), Block.NOTIFY_ALL);
     }
 
     // PLAYER OWNED

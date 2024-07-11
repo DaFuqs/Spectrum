@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.compat.alloy_forgery;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.*;
+import net.fabricmc.api.*;
 import net.minecraft.util.*;
 
 public class AlloyForgeryCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
@@ -18,6 +19,7 @@ public class AlloyForgeryCompat extends SpectrumIntegrationPacks.ModIntegrationP
 	
 	}
 	
+	@Environment(EnvType.CLIENT)
 	@Override
 	public void registerClient() {
 	

@@ -1,13 +1,13 @@
 package de.dafuqs.spectrum.compat.create;
 
-import com.simibubi.create.api.event.PipeCollisionEvent;
-import de.dafuqs.spectrum.blocks.fluid.SpectrumFluidBlock;
-import de.dafuqs.spectrum.compat.SpectrumIntegrationPacks;
-import net.minecraft.block.BlockState;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
+import com.simibubi.create.api.event.*;
+import de.dafuqs.spectrum.blocks.fluid.*;
+import de.dafuqs.spectrum.compat.*;
+import net.fabricmc.api.*;
+import net.minecraft.block.*;
+import net.minecraft.fluid.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
 public class CreateCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 
@@ -43,7 +43,8 @@ public class CreateCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
             return spectrumFluid.handleFluidCollision(world, state, otherState);
         return null;
     }
-
+    
+    @Environment(EnvType.CLIENT)
     @Override
     public void registerClient() {
 

@@ -10,6 +10,7 @@
     "AbstractHorseEntityMixin",
     "AdvancementDisplayMixin",
     "AllowCopyBlockEntityDataMixin",
+    "AnimalEntityMixin",
     "AnvilBlockMixin",
     "ApplyBonusLootFunctionMixin",
     "BlockMixin",

@@ -40,7 +40,14 @@
         "maxCount": 2
       }
     ],
-    "creature": [],
+    "creature": [
+      {
+        "type": "minecraft:sniffer",
+        "weight": 10,
+        "minCount": 3,
+        "maxCount": 4
+      }
+    ],
     "misc": [],
     "monster": [],
     "underground_water_creature": [

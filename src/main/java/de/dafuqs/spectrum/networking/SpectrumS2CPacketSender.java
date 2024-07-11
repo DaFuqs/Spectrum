@@ -388,13 +388,28 @@ public class SpectrumS2CPacketSender {
 		}
 	}
 
+	public static void sendRestockingChestStatusUpdate(RestockingChestBlockEntity chest) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeBlockPos(chest.getPos());
+		buf.writeBoolean(chest.isFullServer());
+		buf.writeBoolean(chest.hasValidRecipes());
+		buf.writeInt(chest.getRecipeOutputs().size());
+		for (ItemStack recipeOutput : chest.getRecipeOutputs()) {
+			buf.writeItemStack(recipeOutput);
+		}
+
+		for (ServerPlayerEntity player : PlayerLookup.tracking(chest)) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.RESTOCKING_CHEST_STATUS_UPDATE, buf);
+		}
+	}
+
 	public static void sendBlackHoleChestUpdate(BlackHoleChestBlockEntity chest) {
 		var xpStack = chest.getStack(BlackHoleChestBlockEntity.EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT);
 
 
 		PacketByteBuf buf = PacketByteBufs.create();
 		buf.writeBlockPos(chest.getPos());
-		buf.writeBoolean(chest.isFullButActually());
+		buf.writeBoolean(chest.isFullServer());
 		buf.writeBoolean(chest.canStoreExperience());
 		if (xpStack.getItem() instanceof ExperienceStorageItem experienceStorageItem) {
 			buf.writeLong(ExperienceStorageItem.getStoredExperience(xpStack));

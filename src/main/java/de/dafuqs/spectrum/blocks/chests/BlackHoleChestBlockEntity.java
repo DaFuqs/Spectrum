@@ -153,7 +153,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 		return inventory.get(EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT).getItem() instanceof ExperienceStorageItem;
 	}
 
-	public boolean isFullButActually() {
+	public boolean isFullServer() {
 		return isFull;
 	}
 

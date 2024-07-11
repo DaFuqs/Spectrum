@@ -1,20 +1,16 @@
 package de.dafuqs.spectrum.compat.modonomicon.pages;
 
-import com.google.gson.JsonObject;
-import com.klikli_dev.modonomicon.book.BookTextHolder;
-import com.klikli_dev.modonomicon.book.conditions.BookCondition;
-import com.klikli_dev.modonomicon.book.conditions.BookNoneCondition;
-import com.klikli_dev.modonomicon.book.page.BookTextPage;
-import com.klikli_dev.modonomicon.util.BookGsonHelper;
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
-import de.dafuqs.spectrum.compat.modonomicon.ModonomiconCompat;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
+import com.google.gson.*;
+import com.klikli_dev.modonomicon.book.*;
+import com.klikli_dev.modonomicon.book.conditions.*;
+import com.klikli_dev.modonomicon.book.page.*;
+import com.klikli_dev.modonomicon.util.*;
+import de.dafuqs.spectrum.compat.modonomicon.*;
+import net.minecraft.network.*;
+import net.minecraft.recipe.*;
+import net.minecraft.util.*;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class BookHintPage extends BookTextPage {
 
@@ -67,11 +63,6 @@ public class BookHintPage extends BookTextPage {
         return cost;
     }
 
-    public boolean isUnlocked() {
-        MinecraftClient client = MinecraftClient.getInstance();
-        return AdvancementHelper.hasAdvancement(client.player, completionAdvancement);
-    }
-
     @Override
     public Identifier getType() {
         return ModonomiconCompat.HINT_PAGE;
@@ -82,13 +73,6 @@ public class BookHintPage extends BookTextPage {
         super.toNetwork(buffer);
         buffer.writeIdentifier(completionAdvancement);
         cost.write(buffer);
-    }
-
-    @Override
-    public boolean matchesQuery(String query) {
-        return isUnlocked()
-                ? super.matchesQuery(query)
-                : query.toLowerCase().contains("hint");
     }
 
 }

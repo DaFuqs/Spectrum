@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.compat.modonomicon.client.pages;
 import com.klikli_dev.modonomicon.book.*;
 import com.klikli_dev.modonomicon.client.gui.book.*;
 import com.klikli_dev.modonomicon.client.render.page.*;
+import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.compat.modonomicon.pages.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.*;
@@ -68,8 +69,8 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
                 .withFont(page.getBook().getFont());
 
         obfuscatedText = null;
-
-        boolean isDone = page.isUnlocked();
+        
+        boolean isDone = AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, page.getCompletionAdvancement());
         if (!isDone) {
             revealProgress = -1;
 

@@ -12,7 +12,7 @@ import org.jetbrains.annotations.*;
 
 public class RestockingChestBlock extends SpectrumChestBlock {
 	
-	protected static final VoxelShape CHEST_SHAPE = Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 10.0D, 15.0D);
+	protected static final VoxelShape CHEST_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D);
 	
 	public RestockingChestBlock(Settings settings) {
 		super(settings);
@@ -39,7 +39,12 @@ public class RestockingChestBlock extends SpectrumChestBlock {
 			}
 		}
 	}
-	
+
+	@Override
+	public BlockRenderType getRenderType(BlockState state) {
+		return BlockRenderType.MODEL;
+	}
+
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return CHEST_SHAPE;

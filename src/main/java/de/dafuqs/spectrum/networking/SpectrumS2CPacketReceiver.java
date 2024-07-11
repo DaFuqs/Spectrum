@@ -442,6 +442,26 @@ public class SpectrumS2CPacketReceiver {
 			});
 		})));
 
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.RESTOCKING_CHEST_STATUS_UPDATE, (((client, handler, buf, responseSender) -> {
+			var pos = buf.readBlockPos();
+			var isFull = buf.readBoolean();
+			var hasValidRecipes = buf.readBoolean();
+			var outputCount = buf.readInt();
+			final var cachedOutputs = new ArrayList<ItemStack>(4);
+			for (int i = 0; i < outputCount; i++) {
+				cachedOutputs.add(buf.readItemStack());
+			}
+
+			client.execute(() -> {
+				var entity = client.world.getBlockEntity(pos, SpectrumBlockEntities.RESTOCKING_CHEST);
+
+				if (entity.isEmpty())
+					return;
+
+				entity.get().updateState(isFull, hasValidRecipes, cachedOutputs);
+			});
+		})));
+
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.BLACK_HOLE_CHEST_STATUS_UPDATE, (((client, handler, buf, responseSender) -> {
 			var pos = buf.readBlockPos();
 			var isFull = buf.readBoolean();

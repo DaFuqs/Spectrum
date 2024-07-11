@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.helpers;
 
 import de.dafuqs.spectrum.api.interaction.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
+import net.fabricmc.fabric.api.transfer.v1.storage.StorageUtil;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.*;
@@ -346,6 +347,40 @@ public class InventoryHelper {
 			}
 		}
 		
+		return remainders;
+	}
+
+	@SuppressWarnings("UnstableApiUsage")
+    public static boolean canFitStacks(List<ItemStack> stacks, Inventory inventory) {
+		var storage = InventoryStorage.of(inventory, null);
+
+		if (!storage.supportsInsertion())
+			return false;
+
+		for (ItemStack stack : stacks) {
+			if (stack.isEmpty())
+				continue;
+
+			if (StorageUtil.simulateInsert(storage, ItemVariant.of(stack), stack.getMaxCount(), null) != stack.getCount())
+				return false;
+		}
+
+		return true;
+	}
+
+	public static List<ItemStack> getRemainders(List<Ingredient> ingredients, Inventory inventory) {
+		List<ItemStack> remainders = new ArrayList<>();
+
+		for (Ingredient ingredient : ingredients) {
+			if (ingredient.isEmpty()) {
+				continue;
+			}
+
+			if (ingredient.getMatchingStacks().length > 0) {
+				remainders.add(ingredient.getMatchingStacks()[0].getRecipeRemainder());
+			}
+		}
+
 		return remainders;
 	}
 	

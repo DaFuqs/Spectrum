@@ -11,9 +11,7 @@
     "foliage_color": 3819567,
     "grass_color_modifier": "none",
     "mood_sound": {
-      "sound": {
-        "sound_id": "spectrum:ambient.dimension_sounds"
-      },
+      "sound": "spectrum:ambient.dimension_sounds",
       "tick_delay": 3000,
       "block_search_extent": 8,
       "offset": 2

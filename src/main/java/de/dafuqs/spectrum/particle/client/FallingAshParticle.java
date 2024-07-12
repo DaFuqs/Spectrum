@@ -20,6 +20,8 @@ public class FallingAshParticle extends SpriteBillboardParticle {
 	private final int simInterval = SpectrumCommon.CONFIG.WindSimInterval, simOffset;
 	private int slowTicks, axisTicks = 0;
 	
+	private static final BlockPos.Mutable pos = new BlockPos.Mutable(); // to prevent us from having to create lots of BlockPos objects per (render) tick
+	
 	protected FallingAshParticle(ClientWorld clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ, SpriteProvider spriteProvider) {
 		super(clientWorld, x, y, z);
 		setSprite(spriteProvider);
@@ -41,12 +43,14 @@ public class FallingAshParticle extends SpriteBillboardParticle {
 	
 	@Override
 	public void tick() {
+		pos.set(x, y, z);
+		
 		this.prevAngle = this.angle;
-		var water = !this.world.getFluidState(new BlockPos((int) this.x, (int) this.y, (int) this.z)).isEmpty();
+		var water = !this.world.getFluidState(pos).isEmpty();
 		var time = world.getTime() % 432000;
 		
 		if ((age + 2 < maxAge)
-				&& world.getBiome(new BlockPos((int) x, (int) y, (int) z)).getKey().map(key -> !key.equals(SpectrumBiomes.HOWLING_SPIRES)).orElse(true)) {
+				&& world.getBiome(pos).matchesKey(SpectrumBiomes.HOWLING_SPIRES)) {
 			age++;
 		}
 		
@@ -106,7 +110,6 @@ public class FallingAshParticle extends SpriteBillboardParticle {
 	}
 	
 	private void adjustGravityForLift() {
-		var pos = new BlockPos.Mutable((int) x, (int) y, (int) z);
 		var height = 0F;
 		var groundFound = false;
 		for (; height < 20; ++height) {

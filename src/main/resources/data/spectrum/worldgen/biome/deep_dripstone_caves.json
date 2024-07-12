@@ -121,10 +121,10 @@
       "spectrum:dd_pointed_dripstone"
     ],
     [
-      "spectrum:dd_water_springs",
-      "spectrum:dd_lava_springs"
+      "spectrum:dd_water_springs"
     ],
     [
+      "minecraft:cave_vines",
       "minecraft:brown_mushroom_nether",
       "minecraft:red_mushroom_nether",
       "spectrum:dd_lush_caves_clay",

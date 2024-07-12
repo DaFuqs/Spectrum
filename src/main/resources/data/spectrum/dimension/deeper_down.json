@@ -40,8 +40,8 @@
           "biome": "spectrum:deep_dripstone_caves",
           "parameters": {
             "temperature": [
-              -0.25,
-              0.75
+              0.1,
+              1
             ],
             "humidity": [
               0,
@@ -60,7 +60,7 @@
               1
             ],
             "depth": [
-              -1.75,
+              -1.8,
               -0.25
             ],
             "offset": 0
@@ -71,7 +71,7 @@
           "parameters": {
             "temperature": [
               -1,
-              -0.25
+              -0.1
             ],
             "humidity": [
               -1,
@@ -90,8 +90,8 @@
               1
             ],
             "depth": [
-              -1.75,
-              0
+              -1.8,
+              -0.25
             ],
             "offset": 0
           }
@@ -160,16 +160,16 @@
           "biome": "spectrum:crystal_gardens",
           "parameters": {
             "temperature": [
-              -1,
-              0
+              -0.5,
+              0.5
             ],
             "humidity": [
-              -1,
-              0
+              -0.5,
+              0.5
             ],
             "continentalness": [
-              0,
-              1
+              -1,
+              0
             ],
             "erosion": [
               -1,
@@ -180,8 +180,8 @@
               -0.5
             ],
             "depth": [
-              0.5,
-              1.1
+              0.05,
+              0.75
             ],
             "offset": 0
           }
@@ -190,8 +190,8 @@
           "biome": "spectrum:razor_edge",
           "parameters": {
             "temperature": [
-              -1,
-              0
+              0,
+              0.5
             ],
             "humidity": [
               -1,
@@ -210,8 +210,8 @@
               -0.1
             ],
             "depth": [
-              0.5,
-              1.1
+              0.4,
+              0.9
             ],
             "offset": 0
           }
@@ -240,8 +240,8 @@
               0
             ],
             "depth": [
-              0.5,
-              1.1
+              0.4,
+              0.9
             ],
             "offset": 0
           }

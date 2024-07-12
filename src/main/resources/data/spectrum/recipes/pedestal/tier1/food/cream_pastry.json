@@ -24,7 +24,7 @@
       "item": "spectrum:clotted_cream"
     },
     "X": {
-      "item": "minecraft:egg"
+      "tag": "c:eggs"
     }
   },
   "result": {

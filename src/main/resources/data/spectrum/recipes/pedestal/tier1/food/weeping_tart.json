@@ -21,7 +21,7 @@
       "item": "spectrum:jaramel"
     },
     "E": {
-      "item": "minecraft:egg"
+      "tag": "c:eggs"
     },
     "M": {
       "tag": "c:milk"

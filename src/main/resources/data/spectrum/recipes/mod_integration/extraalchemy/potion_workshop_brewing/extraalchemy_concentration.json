@@ -5,7 +5,7 @@
     "item": "minecraft:nether_wart"
   },
   "ingredient2": {
-    "item": "minecraft:egg"
+    "tag": "c:eggs"
   },
   "effect": "extraalchemy:concentration",
   "base_duration_ticks": 0,

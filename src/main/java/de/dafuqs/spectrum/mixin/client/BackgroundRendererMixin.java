@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.mixin.client;
 
 import com.llamalad7.mixinextras.sugar.*;
+import de.dafuqs.spectrum.deeper_down.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.spectrum.registries.client.*;
 import net.minecraft.client.*;
 import net.minecraft.client.render.*;
 import net.minecraft.util.math.*;
@@ -25,12 +25,12 @@ public class BackgroundRendererMixin {
 		if (dim == SpectrumDimensions.DIMENSION_KEY) {
 			var fogPoint = fogData.fogStart;
 			fogData.fogShape = FogShape.SPHERE;
-			float adjustedTicks = SpectrumClientEventListeners.spireTicks;
+			float adjustedTicks = HowlingSpireEffects.spireTicks;
 			
-			if (SpectrumClientEventListeners.spireTicks > SpectrumClientEventListeners.lastSpireTicks) {
-				adjustedTicks = SpectrumClientEventListeners.spireTicks + tickDelta;
-			} else if (SpectrumClientEventListeners.spireTicks < SpectrumClientEventListeners.lastSpireTicks) {
-				adjustedTicks = SpectrumClientEventListeners.spireTicks - tickDelta;
+			if (HowlingSpireEffects.spireTicks > HowlingSpireEffects.lastSpireTicks) {
+				adjustedTicks = HowlingSpireEffects.spireTicks + tickDelta;
+			} else if (HowlingSpireEffects.spireTicks < HowlingSpireEffects.lastSpireTicks) {
+				adjustedTicks = HowlingSpireEffects.spireTicks - tickDelta;
 			}
 			
 			fogPoint = MathHelper.clampedLerp(fogPoint, -fogData.fogEnd, adjustedTicks / 60F);

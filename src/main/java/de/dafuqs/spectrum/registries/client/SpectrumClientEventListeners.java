@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.data_loaders.*;
+import de.dafuqs.spectrum.deeper_down.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tools.*;
@@ -30,6 +31,7 @@ import net.minecraft.client.render.*;
 import net.minecraft.client.util.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.client.world.*;
+import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.registry.*;
@@ -56,7 +58,6 @@ public class SpectrumClientEventListeners {
 	public static final ObjectOpenHashSet<ModelIdentifier> CUSTOM_ITEM_MODELS = new ObjectOpenHashSet<>();
 	
 	public static final boolean foodEffectsTooltipsModLoaded = FabricLoader.getInstance().isModLoaded("foodeffecttooltips");
-	public static int spireTicks, lastSpireTicks;
 	
 	
 	private static void registerCustomItemRenderer(String id, Item item, Supplier<DynamicItemRenderer> renderer) {
@@ -101,19 +102,13 @@ public class SpectrumClientEventListeners {
 		
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
 			var world = client.world;
+			Entity cameraEntity = client.getCameraEntity();
 			if (client.getCameraEntity() == null)
 				return;
 			
 			RegistryEntry<Biome> biome = world.getBiome(client.getCameraEntity().getBlockPos());
-			lastSpireTicks = spireTicks;
 			
-			if (biome.matchesKey(SpectrumBiomes.HOWLING_SPIRES)) {
-				if (spireTicks < 60) {
-					spireTicks++;
-				}
-			} else if (spireTicks > 0) {
-				spireTicks--;
-			}
+			HowlingSpireEffects.clientTick(world, cameraEntity, biome);
 		});
 	}
 	

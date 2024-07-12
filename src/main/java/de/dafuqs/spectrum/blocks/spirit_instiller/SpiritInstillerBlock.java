@@ -64,7 +64,7 @@ public class SpiritInstillerBlock extends InWorldInteractionBlock {
 			if (world.isClient) {
 				Multiblock currentMultiBlock = MultiblockPreviewRenderer.getMultiblock();
 				if (currentMultiBlock == multiblock) {
-					lastBlockRotation = BlockRotation.values()[(lastBlockRotation.ordinal() + 1) % BlockRotation.values().length]; // cycle rotation
+					lastBlockRotation = BlockRotation.values()[(MultiblockPreviewRenderer.getFacingRotation().ordinal() + 1) % BlockRotation.values().length]; // cycle rotation
 					spiritInstillerBlockEntity.setMultiblockRotation(lastBlockRotation);
 				}
 				ModonomiconHelper.renderMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.SPIRIT_INSTILLER), SpectrumMultiblocks.SPIRIT_INSTILLER_TEXT, blockPos.down(2).offset(Support.directionFromRotation(lastBlockRotation), offset), lastBlockRotation);

@@ -56,6 +56,14 @@ public final class BlockReference {
         return state != null && pos != null;
     }
 
+    public boolean isOf(Block block) {
+        return  state.isOf(block);
+    }
+
+    public boolean isOf(BlockState blockState) {
+        return state == blockState;
+    }
+
     public boolean validateBE() {
         return be.isPresent();
     }

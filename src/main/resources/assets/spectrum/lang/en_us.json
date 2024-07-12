@@ -6139,6 +6139,12 @@
   "book.spectrum.guidebook.dimension.weather_manipulation.name": "Weather Manipulation",
   "book.spectrum.guidebook.dimension.weather_manipulation.page0.text": "I would like to note one observation:\\\nNot only does the environment have an influence on the [Fusion Shrine](entry://general/fusion_shrine), I have also noticed that the [Fusion Shrine](entry://general/fusion_shrine) has an influence on its surroundings!\\\n\\\nWith the right combination of materials, I can influence the weather.",
 
+  "book.spectrum.guidebook.mod_integration.tconstruct.name": "Tinkers / Hephaestus",
+  "book.spectrum.guidebook.mod_integration.tconstruct.page0.text": "Modular tools were always a field I was interested in. Let's see what I can come up with to make my life easier.",
+  "book.spectrum.guidebook.mod_integration.tconstruct.page1.title": "Auto-Harvesting",
+  "book.spectrum.guidebook.mod_integration.tconstruct.page1.text": "The [Crystal Apothecary](entry://ink/crystal_apothecary)[#]() is able to harvest [#](bb00bb)Crystals[#]() automatically - even if you are not near those geodes at all!",
+  "book.spectrum.guidebook.mod_integration.tconstruct.page2.title": "Moving Budding Blocks",
+  "book.spectrum.guidebook.mod_integration.tconstruct.page2.text": "Tools enchanted with [Resonance](entry://enchanting/resonance)[#]() are able to harvest Budding Blocks.",
 
 
   "______special_named_items_and_lore": "Special Item Names:",

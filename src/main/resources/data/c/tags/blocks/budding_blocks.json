@@ -137,6 +137,23 @@
     {
       "id": "betterend:budding_smaragdant_crystal",
       "required": false
+    },
+
+    {
+      "id": "tconstruct:budding_earth_slime_crystal",
+      "required": false
+    },
+    {
+      "id": "tconstruct:budding_sky_slime_crystal",
+      "required": false
+    },
+    {
+      "id": "tconstruct:budding_ichor_slime_crystal",
+      "required": false
+    },
+    {
+      "id": "tconstruct:budding_ender_slime_crystal",
+      "required": false
     }
   ]
 }

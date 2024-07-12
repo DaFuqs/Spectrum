@@ -153,9 +153,7 @@
       "block": "spectrum:upgrade_speed"
     },
     "0": {
-      "type": "modonomicon:tag",
-      "display": "spectrum:polished_basalt",
-      "tag": "#spectrum:structure/bases"
+      "type": "modonomicon:any"
     }
   }
 }

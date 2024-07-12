@@ -36,13 +36,17 @@ public class ColorSelectionWidget extends ClickableWidget {
 	final int selectedDotY;
 	
 	public ColorSelectionWidget(int x, int y, int selectedDotX, int selectedDotY, Screen screen, ColorPickerBlockEntity colorPicker) {
+		this(x, y, selectedDotX, selectedDotY, screen, colorPicker, List.of(InkColors.CYAN, InkColors.LIGHT_BLUE, InkColors.BLUE, InkColors.PURPLE, InkColors.MAGENTA, InkColors.PINK, InkColors.RED, InkColors.ORANGE, InkColors.YELLOW, InkColors.LIME, InkColors.GREEN, InkColors.BROWN, InkColors.BLACK, InkColors.GRAY, InkColors.LIGHT_GRAY, InkColors.WHITE));
+	}
+	
+	public ColorSelectionWidget(int x, int y, int selectedDotX, int selectedDotY, Screen screen, ColorPickerBlockEntity colorPicker, List<InkColor> availableColors) {
 		super(x, y, 56, 14, Text.literal(""));
 		this.colorPicker = colorPicker;
 		this.selectedDotX = selectedDotX;
 		this.selectedDotY = selectedDotY;
 		this.screen = screen;
 		
-		for (InkColor inkColor : InkColor.all()) {
+		for (InkColor inkColor : availableColors) {
 			usableColors.add(new Pair<>(inkColor, AdvancementHelper.hasAdvancementClient(inkColor.getRequiredAdvancement())));
 		}
 	}
@@ -65,8 +69,8 @@ public class ColorSelectionWidget extends ClickableWidget {
 	@Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
 		MinecraftClient client = MinecraftClient.getInstance();
-		boolean colorUnselectionClicked = mouseX >= (double) selectedDotX && mouseX < (double) (selectedDotX + 4) && mouseY >= (double) selectedDotY && mouseY < (double) (selectedDotY + 4);
-		if (colorUnselectionClicked) {
+		
+		if (isUnselection(mouseX, mouseY)) {
 			client.player.playSound(SpectrumSoundEvents.BUTTON_CLICK, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 			onChanged(null);
 		}
@@ -79,16 +83,16 @@ public class ColorSelectionWidget extends ClickableWidget {
 			int horizontalColorOffset = xOffset / 7;
 			int verticalColorOffset = yOffset / 7;
 			int newColorIndex = horizontalColorOffset + verticalColorOffset * 8;
-			InkColor newColor = InkColor.all().get(newColorIndex);
-			if (this.colorPicker.getSelectedColor() != newColor) {
-				if (AdvancementHelper.hasAdvancementClient(newColor.getRequiredAdvancement())) {
-					client.player.playSound(SpectrumSoundEvents.BUTTON_CLICK, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-					onChanged(newColor);
-				} else {
-					client.player.playSound(SpectrumSoundEvents.USE_FAIL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-					onChanged(null);
-				}
+			
+			Pair<InkColor, Boolean> clickedColor = usableColors.get(newColorIndex);
+			if (clickedColor.getRight()) {
+				client.player.playSound(SpectrumSoundEvents.BUTTON_CLICK, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+				onChanged(clickedColor.getLeft());
+			} else {
+				client.player.playSound(SpectrumSoundEvents.USE_FAIL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+				onChanged(null);
 			}
+			
 			return true;
 		} else {
 			return false;
@@ -124,6 +128,14 @@ public class ColorSelectionWidget extends ClickableWidget {
 		}
 	}
 	
+	private boolean isUnselection(double mouseX, double mouseY) {
+		return mouseX >= (double) selectedDotX && mouseX < (double) (selectedDotX + 4) && mouseY >= (double) selectedDotY && mouseY < (double) (selectedDotY + 4);
+	}
+	
+	public boolean isMouseOver(double mouseX, double mouseY) {
+		return super.isMouseOver(mouseX, mouseY) || (this.active && this.visible && isUnselection(mouseX, mouseY));
+	}
+	
 	public void drawMouseoverTooltip(DrawContext drawContext, int mouseX, int mouseY) {
 		MinecraftClient client = MinecraftClient.getInstance();
 		boolean overUnselection = mouseX >= (double) selectedDotX && mouseX < (double) (selectedDotX + 4) && mouseY >= (double) selectedDotY && mouseY < (double) (selectedDotY + 4);
@@ -137,10 +149,10 @@ public class ColorSelectionWidget extends ClickableWidget {
 			int horizontalColorOffset = xOffset / 7;
 			int verticalColorOffset = yOffset / 7;
 			int newColorIndex = horizontalColorOffset + verticalColorOffset * 8;
-			InkColor newColor = InkColor.all().get(newColorIndex);
 			
-			if (AdvancementHelper.hasAdvancementClient(newColor.getRequiredAdvancement())) {
-				drawContext.drawTooltip(client.textRenderer, List.of(newColor.getName()), Optional.empty(), getX(), getY());
+			Pair<InkColor, Boolean> hoveredColor = usableColors.get(newColorIndex);
+			if (hoveredColor.getRight()) {
+				drawContext.drawTooltip(client.textRenderer, List.of(hoveredColor.getLeft().getName()), Optional.empty(), getX(), getY());
 			} else {
 				drawContext.drawTooltip(client.textRenderer, List.of(Text.translatable("spectrum.tooltip.ink_powered.unselect_color")), Optional.empty(), getX(), getY());
 			}

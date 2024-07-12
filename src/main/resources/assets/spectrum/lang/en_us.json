@@ -3607,7 +3607,6 @@
   "advancements.spectrum.fail_to_glitch_into_preservation_ruin.description": "Find out that you are not invited",
   "advancements.spectrum.tame_lizard.title": "Friend or Foe? Why not Both!",
   "advancements.spectrum.tame_lizard.description": "'Tame' a Lurking Lizard",
-
   "advancements.spectrum.spectrum_endgame.title": "Spectrum - A Final Encore",
   "advancements.spectrum.spectrum_endgame.description": "A story about all you have learned",
   "advancements.spectrum.find_forgotten_city.title": "Remnants of the Past",
@@ -3644,6 +3643,9 @@
   "advancements.spectrum.eat_each_cookbook_heavy_meal.description": "Take a culinary tour of all the great meals in the underground cookbooks",
   "advancements.spectrum.dip_something_into_liquid_crystal.title": "Sparkle Infused",
   "advancements.spectrum.dip_something_into_liquid_crystal.description": "Some things turn into something else when coming in contact with Liquid Crystal",
+  "advancements.spectrum.get_killed_while_out_of_deeper_down_bounds.title": "Duct Tape Escape",
+  "advancements.spectrum.get_killed_while_out_of_deeper_down_bounds.description": "Find the way back to your home via unusual means",
+
   "book.spectrum.guidebook.brewing.name": "Brewing & Effects",
   "book.spectrum.guidebook.brewing.another_roll.name": "Another Roll",
   "book.spectrum.guidebook.brewing.another_roll.page0.title": "Another Roll",

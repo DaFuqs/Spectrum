@@ -52,6 +52,7 @@ import net.minecraft.sound.*;
 import net.minecraft.stat.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
+import net.minecraft.world.*;
 
 import java.util.*;
 
@@ -120,7 +121,20 @@ public class SpectrumEventListeners {
 			return ActionResult.PASS;
 		});
 		
-		ServerTickEvents.END_SERVER_TICK.register(server -> Pastel.getServerInstance().tick());
+		ServerTickEvents.END_SERVER_TICK.register(server -> {
+			Pastel.getServerInstance().tick();
+			
+			PlayerManager playerManager = server.getPlayerManager();
+			for (ServerPlayerEntity player : playerManager.getPlayerList()) {
+				World world = player.getWorld();
+				if (!player.isCreative() && world.getRegistryKey() == SpectrumDimensions.DIMENSION_KEY && player.getY() > world.getTopY()) {
+					player.damage(player.getDamageSources().outOfWorld(), 10.0F);
+					if (player.isDead()) {
+						Support.grantAdvancementCriterion(player, "lategame/get_killed_while_out_of_deeper_down_bounds", "get_rekt");
+					}
+				}
+			}
+		});
 		
 		ServerTickEvents.START_WORLD_TICK.register(world -> {
 			// these would actually be nicer to have as Spawners in ServerWorld

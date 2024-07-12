@@ -1,0 +1,20 @@
+{
+  "criteria": {
+    "visit_howling_spires": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "spectrum:howling_spires"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

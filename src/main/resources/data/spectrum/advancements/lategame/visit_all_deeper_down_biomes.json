@@ -55,6 +55,12 @@
         "advancement_identifier": "spectrum:hidden/visit_dd_biomes/razor_edge"
       }
     },
+    "howling_spires": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/visit_dd_biomes/howling_spires"
+      }
+    },
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {

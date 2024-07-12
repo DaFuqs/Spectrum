@@ -31,6 +31,7 @@ import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
+import java.util.stream.*;
 
 public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, RecipeInputProvider, SidedInventory, PlayerOwned {
 	
@@ -46,8 +47,13 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 	public static final int FIRST_REAGENT_SLOT = 5;
 	public static final int FIRST_INVENTORY_SLOT = 9;
 	public static final int INVENTORY_SLOT_COUNT = 12;
-	public static final int[] INGREDIENT_SLOTS = new int[]{2, 3, 4};
-	public static final int[] REAGENT_SLOTS = new int[]{5, 6, 7, 8};
+	public static final int[] INGREDIENT_SLOTS = IntStream.rangeClosed(2, 4).toArray();
+	public static final int[] REAGENT_SLOTS = IntStream.rangeClosed(5, 8).toArray();
+	
+	private static final int[] ACCESSIBLE_SLOTS_UP = {0, 1, 2, 3, 4};
+	private static final int[] ACCESSIBLE_SLOTS_SIDE_WITHOUT_UNLOCK = {5, 6, 7};
+	private static final int[] ACCESSIBLE_SLOTS_SIDE_WITH_UNLOCK = {5, 6, 7, 8};
+	private static final int[] ACCESSIBLE_SLOTS_DOWN = {9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
 	
 	public static final Identifier FOURTH_BREWING_SLOT_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("milestones/unlock_fourth_potion_workshop_reagent_slot");
 	
@@ -205,7 +211,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 	}
 	
 	private static boolean isBrewingRecipeApplicable(PotionWorkshopBrewingRecipe recipe, ItemStack baseIngredient, PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
-        return hasUniqueReagents(potionWorkshopBlockEntity) && recipe.recipeData.isApplicableTo(baseIngredient, getPotionModFromReagents(potionWorkshopBlockEntity));
+		return hasUniqueReagents(potionWorkshopBlockEntity) && recipe.recipeData.isApplicableTo(baseIngredient, getPotionModFromReagents(potionWorkshopBlockEntity));
 	}
 	
 	private static void craftRecipe(PotionWorkshopBlockEntity potionWorkshopBlockEntity, PotionWorkshopCraftingRecipe recipe) {
@@ -233,12 +239,12 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		for (int i = 0; i < brewedAmount; i++) {
 			results.add(brewingRecipe.getPotion(potionWorkshopBlockEntity.getStack(BASE_INPUT_SLOT_ID), potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, world.random));
 		}
-
+		
 		// consume ingredients
 		decrementIngredientSlots(potionWorkshopBlockEntity);
 		decrementBaseIngredientSlot(potionWorkshopBlockEntity, brewedAmount);
 		decrementReagentSlots(potionWorkshopBlockEntity);
-
+		
 		// trigger advancements for all brewed potions
 		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) potionWorkshopBlockEntity.getOwnerIfOnline();
 		if (brewedAmount <= 0) {
@@ -270,12 +276,12 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		// calculate outputs
 		ItemStack arrows = potionWorkshopBlockEntity.inventory.get(BASE_INPUT_SLOT_ID);
 		ItemStack tippedArrows = brewingRecipe.getTippedArrows(arrows, potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, tippedAmount, potionWorkshopBlockEntity.world.random);
-
+		
 		// consume ingredients
 		decrementIngredientSlots(potionWorkshopBlockEntity);
 		decrementBaseIngredientSlot(potionWorkshopBlockEntity, tippedAmount);
 		decrementReagentSlots(potionWorkshopBlockEntity);
-
+		
 		// trigger advancements for all brewed potions
 		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) potionWorkshopBlockEntity.getOwnerIfOnline();
 		InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, tippedArrows, FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + INVENTORY_SLOT_COUNT);
@@ -293,12 +299,12 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 			PotionMod potionMod = getPotionModFromReagents(potionWorkshopBlockEntity);
 			
 			brewingRecipe.fillPotionFillable(potionFillableStack, potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, potionWorkshopBlockEntity.world.random);
-
+			
 			// consume ingredients
 			decrementIngredientSlots(potionWorkshopBlockEntity);
 			decrementReagentSlots(potionWorkshopBlockEntity);
 			potionWorkshopBlockEntity.inventory.set(BASE_INPUT_SLOT_ID, ItemStack.EMPTY);
-
+			
 			// trigger advancements for all brewed potions
 			ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) potionWorkshopBlockEntity.getOwnerIfOnline();
 			InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, potionFillableStack, FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + INVENTORY_SLOT_COUNT);
@@ -310,7 +316,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		}
 	}
 	
-	private static PotionMod getPotionModFromReagents(PotionWorkshopBlockEntity potionWorkshopBlockEntity) {	
+	private static PotionMod getPotionModFromReagents(PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
 		World world = potionWorkshopBlockEntity.getWorld();
 		
 		PotionMod potionMod = new PotionMod();
@@ -350,7 +356,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 							InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, currentRemainder, FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + INVENTORY_SLOT_COUNT);
 						}
 					}
-
+					
 					break;
 				}
 			}
@@ -483,7 +489,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 	
 	@Override
 	public boolean isValid(int slot, ItemStack stack) {
-		if(stack.isOf(SpectrumItems.MERMAIDS_GEM)) {
+		if (stack.isOf(SpectrumItems.MERMAIDS_GEM)) {
 			return slot == MERMAIDS_GEM_INPUT_SLOT_ID;
 		} else if (slot == BASE_INPUT_SLOT_ID) {
 			return true;
@@ -514,14 +520,14 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 	@Override
 	public int[] getAvailableSlots(Direction side) {
 		if (side == Direction.DOWN) {
-			return new int[]{9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+			return ACCESSIBLE_SLOTS_DOWN;
 		} else if (side == Direction.UP) {
-			return new int[]{0, 1, 2, 3, 4};
+			return ACCESSIBLE_SLOTS_UP;
 		} else {
 			if (this.hasFourthReagentSlotUnlocked()) {
-				return new int[]{5, 6, 7, 8};
+				return ACCESSIBLE_SLOTS_SIDE_WITH_UNLOCK;
 			} else {
-				return new int[]{5, 6, 7};
+				return ACCESSIBLE_SLOTS_SIDE_WITHOUT_UNLOCK;
 			}
 		}
 	}

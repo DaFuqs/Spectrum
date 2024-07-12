@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.blocks.chests;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.items.*;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
+import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.*;
@@ -19,13 +19,14 @@ import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
+import java.util.stream.*;
 
 public class RestockingChestBlockEntity extends SpectrumChestBlockEntity implements SidedInventory {
 	
 	public static final int INVENTORY_SIZE = 27 + 4 + 4; // 27 items, 4 crafting tablets, 4 result slots
-	public static final int[] CHEST_SLOTS = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26};
-	public static final int[] RECIPE_SLOTS = new int[]{27, 28, 29, 30};
-	public static final int[] RESULT_SLOTS = new int[]{31, 32, 33, 34};
+	public static final int[] CHEST_SLOTS = IntStream.rangeClosed(0, 26).toArray();
+	public static final int[] RECIPE_SLOTS = IntStream.rangeClosed(27, 30).toArray();
+	public static final int[] RESULT_SLOTS = IntStream.rangeClosed(31, 34).toArray();
 	private List<ItemStack> cachedOutputs = new ArrayList<>(4);
 	private int coolDownTicks = 0;
 	private boolean isOpen, isFull, hasValidRecipes;

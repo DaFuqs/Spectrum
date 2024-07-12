@@ -44,9 +44,13 @@ import java.util.*;
 public class PedestalBlockEntity extends LockableContainerBlockEntity implements MultiblockCrafter, RecipeInputProvider, SidedInventory, ExtendedScreenHandlerFactory {
 	
 	public static final int INVENTORY_SIZE = 16; // 9 crafting, 5 gems, 1 craftingTablet, 1 output
-	public static final int FIRST_POWDER_SLOT_ID = 9;
 	public static final int CRAFTING_TABLET_SLOT_ID = 14;
 	public static final int OUTPUT_SLOT_ID = 15;
+	
+	private static final int[] ACCESSIBLE_SLOTS_UP = {0, 1, 2, 3, 4, 5, 6, 7, 8};
+	private static final int[] ACCESSIBLE_SLOTS_BASIC = {9, 10, 11};
+	private static final int[] ACCESSIBLE_SLOTS_ADVANCED = {9, 10, 11, 12};
+	private static final int[] ACCESSIBLE_SLOTS_COMPLEX = {9, 10, 11, 12, 13};
 	
 	protected final AutoCraftingInventory autoCraftingInventory;
 	protected final PropertyDelegate propertyDelegate;
@@ -672,17 +676,17 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		if (side == Direction.DOWN) {
 			return new int[]{OUTPUT_SLOT_ID};
 		} else if (side == Direction.UP) {
-			return new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8};
+			return ACCESSIBLE_SLOTS_UP;
 		} else {
 			switch (this.pedestalVariant.getRecipeTier()) {
 				case COMPLEX -> {
-					return new int[]{9, 10, 11, 12, 13};
+					return ACCESSIBLE_SLOTS_COMPLEX;
 				}
 				case ADVANCED -> {
-					return new int[]{9, 10, 11, 12};
+					return ACCESSIBLE_SLOTS_ADVANCED;
 				}
 				default -> {
-					return new int[]{9, 10, 11};
+					return ACCESSIBLE_SLOTS_BASIC;
 				}
 			}
 		}

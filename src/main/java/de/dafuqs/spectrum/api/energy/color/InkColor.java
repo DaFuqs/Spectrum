@@ -26,7 +26,7 @@ public abstract class InkColor {
 	protected InkColor(DyeColor dyeColor, int color, int textColor, Identifier requiredAdvancement, boolean darkShade) {
 		this.dyeColor = dyeColor;
 		this.colorInt = color;
-		this.colorVec = ColorHelper.colorIntToVec(0x5bffed);
+		this.colorVec = ColorHelper.colorIntToVec(color);
 		this.textColor = textColor;
 		this.requiredAdvancement = requiredAdvancement;
 		this.darkShade = darkShade;

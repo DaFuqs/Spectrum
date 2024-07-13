@@ -86,7 +86,7 @@ public class InkAssortmentItem extends Item implements InkStorageItem<Individual
 		var progress = Math.round(MathHelper.clampedLerp(0, 14, (float) storage.getCurrentTotal() / storage.getMaxTotal()));
 		if (colors.size() == 1) {
 			var color = colors.get(0);
-			return new ExtendedItemBarProvider.BarSignature(1, 13, 14, progress, 1, ColorHelper.colorVecToRGB(color.getColor()) | 0xFF000000, 2, DEFAULT_BACKGROUND_COLOR);
+			return new ExtendedItemBarProvider.BarSignature(1, 13, 14, progress, 1, ColorHelper.colorVecToRGB(color.getColorVec()) | 0xFF000000, 2, DEFAULT_BACKGROUND_COLOR);
 		}
 		
 		var delta = MinecraftClient.getInstance().getTickDelta();
@@ -95,8 +95,7 @@ public class InkAssortmentItem extends Item implements InkStorageItem<Individual
 		
 		
 		var blendFactor = (((float) time + delta) % 30) / 30F;
-		var blendedColor = ColorHelper.interpolate(
-				curColor == InkColors.BLACK ? ColorHelper.colorIntToVec(InkColors.ALT_BLACK) : curColor.getColor(), nextColor == InkColors.BLACK ? ColorHelper.colorIntToVec(InkColors.ALT_BLACK) : nextColor.getColor(), blendFactor);
+		var blendedColor = ColorHelper.interpolate(curColor == InkColors.BLACK ? InkColors.ALT_BLACK : curColor.getColorVec(), nextColor == InkColors.BLACK ? InkColors.ALT_BLACK : nextColor.getColorVec(), blendFactor);
 		
 		return new ExtendedItemBarProvider.BarSignature(1, 13, 14, progress, 1, blendedColor, 2, DEFAULT_BACKGROUND_COLOR);
 	}

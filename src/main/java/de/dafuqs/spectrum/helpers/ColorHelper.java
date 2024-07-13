@@ -22,7 +22,7 @@ public class ColorHelper {
 	public static List<DyeColor> VANILLA_DYE_COLORS = Arrays.stream(DyeColor.values()).filter(dyeColor -> dyeColor.getId() < 16).toList();
 	
 	public static Vector3f getRGBVec(DyeColor dyeColor) {
-		return InkColor.of(dyeColor).getColor();
+		return InkColor.of(dyeColor).getColorVec();
 	}
 	
 	public static int getInt(DyeColor dyeColor) {

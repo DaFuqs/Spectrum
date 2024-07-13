@@ -23,7 +23,7 @@ public class LizardHornsFeatureRenderer<T extends LizardEntity> extends FeatureR
         LizardHornVariant horns = lizard.getHorns();
         if (horns != LizardHornVariant.ONLY_LIKES_YOU_AS_A_FRIEND) {
             VertexConsumer vertexConsumer = vertexConsumers.getBuffer(SpectrumRenderLayers.GlowInTheDarkRenderLayer.get(horns.texture()));
-            Vector3f color = lizard.getColor().getColor();
+			Vector3f color = lizard.getColor().getColorVec();
             this.getContextModel().render(matrices, vertexConsumer, 15728640, OverlayTexture.DEFAULT_UV, color.x(), color.y(), color.z(), 1.0F);
         }
     }

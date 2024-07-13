@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.items.tools;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.render.*;
-import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.client.item.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
@@ -17,13 +16,18 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 // riptide w/o weather requirement; damages enemies on touch; iframes?
-public class FerociousBidentItem extends MalachiteBidentItem implements SlotBackgroundEffectProvider {
+public class FerociousBidentItem extends MalachiteBidentItem implements SlotBackgroundEffectProvider, InkPowered {
 	
 	public static final InkCost RIPTIDE_COST = new InkCost(InkColors.WHITE, 10);
 	public static final int BUILTIN_RIPTIDE_LEVEL = 1;
 	
 	public FerociousBidentItem(Settings settings, double attackSpeed, double damage, float armorPierce, float protPierce) {
 		super(settings, attackSpeed, damage, armorPierce, protPierce);
+	}
+	
+	@Override
+	public List<InkColor> getUsedColors() {
+		return List.of(RIPTIDE_COST.getColor());
 	}
 	
 	@Override
@@ -68,7 +72,7 @@ public class FerociousBidentItem extends MalachiteBidentItem implements SlotBack
 		tooltip.add(Text.translatable("item.spectrum.ferocious_glass_crest_bident.tooltip").formatted(Formatting.GRAY));
 		tooltip.add(Text.translatable("item.spectrum.ferocious_glass_crest_bident.tooltip2").formatted(Formatting.GRAY));
 		tooltip.add(Text.translatable("item.spectrum.ferocious_glass_crest_bident.tooltip3").formatted(Formatting.GRAY));
-		tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.white").formatted(Formatting.GRAY));
+		addInkPoweredTooltip(tooltip);
 	}
 	
 	@Override
@@ -84,7 +88,7 @@ public class FerociousBidentItem extends MalachiteBidentItem implements SlotBack
 	
 	@Override
 	public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
-		return ColorHelper.colorVecToRGB(InkColors.ORANGE.getColor());
+		return InkColors.ORANGE_COLOR;
 	}
 	
 	@Override

@@ -163,18 +163,10 @@ public class ExchangeStaffItem extends BuildingStaffItem implements ExtendedEnch
 	@Override
 	@Environment(EnvType.CLIENT)
 	public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
-		MinecraftClient client = MinecraftClient.getInstance();
 		super.appendTooltip(stack, world, tooltip, context);
+		tooltip.add(Text.translatable("item.spectrum.exchanging_staff.tooltip.range", getRange(MinecraftClient.getInstance().player)).formatted(Formatting.GRAY));
+		getStoredBlock(stack).ifPresent(block -> tooltip.add(Text.translatable("item.spectrum.exchanging_staff.tooltip.target", block.getName()).formatted(Formatting.GRAY)));
 		addInkPoweredTooltip(tooltip);
-		tooltip.add(Text.translatable("item.spectrum.exchanging_staff.tooltip.range", getRange(client.player))
-				.formatted(Formatting.GRAY));
-
-		Optional<Block> optionalBlock = getStoredBlock(stack);
-		if (optionalBlock.isPresent()) {
-			tooltip.add(
-					Text.translatable("item.spectrum.exchanging_staff.tooltip.target", optionalBlock.get().getName())
-							.formatted(Formatting.GRAY));
-		}
 	}
 	
 	@Override

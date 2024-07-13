@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.render.*;
-import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
@@ -179,6 +178,6 @@ public class DreamflayerItem extends SwordItem implements InkPowered, Activatabl
 	
 	@Override
 	public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
-		return ColorHelper.colorVecToRGB(InkColors.RED.getColor());
+		return InkColors.RED_COLOR;
 	}
 }

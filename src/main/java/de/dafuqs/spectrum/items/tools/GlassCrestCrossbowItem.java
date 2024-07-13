@@ -24,7 +24,7 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 // right click ability: able to overload an already loaded arrow
-public class GlassCrestCrossbowItem extends MalachiteCrossbowItem implements ExtendedItemBarProvider, SlotBackgroundEffectProvider {
+public class GlassCrestCrossbowItem extends MalachiteCrossbowItem implements ExtendedItemBarProvider, SlotBackgroundEffectProvider, InkPowered {
     
     private static final InkCost OVERCHARGE_COST = new InkCost(InkColors.WHITE, 1000);
     private static final int OVERCHARGE_DURATION_MAX_TICKS = 20 * 6; // 6 seconds
@@ -32,7 +32,12 @@ public class GlassCrestCrossbowItem extends MalachiteCrossbowItem implements Ext
     public GlassCrestCrossbowItem(Settings settings) {
         super(settings);
     }
-    
+	
+	@Override
+	public List<InkColor> getUsedColors() {
+		return List.of(OVERCHARGE_COST.getColor());
+	}
+	
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
@@ -114,7 +119,7 @@ public class GlassCrestCrossbowItem extends MalachiteCrossbowItem implements Ext
         float overcharge = getOvercharge(itemStack);
         if (overcharge == 0) {
             tooltip.add(Text.translatable("item.spectrum.glass_crest_crossbow.tooltip.how_to_overcharge").formatted(Formatting.GRAY));
-            tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.white").formatted(Formatting.GRAY));
+			addInkPoweredTooltip(tooltip);
         } else {
             tooltip.add(Text.translatable("item.spectrum.glass_crest_crossbow.tooltip.overcharged", Support.DF.format(overcharge * 100)).formatted(Formatting.GRAY));
         }

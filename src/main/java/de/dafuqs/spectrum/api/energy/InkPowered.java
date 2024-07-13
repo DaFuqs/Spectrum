@@ -49,10 +49,10 @@ public interface InkPowered {
 			if (getUsedColors().size() > 1) {
 				tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.prefix").formatted(Formatting.GRAY));
 				for (InkColor color : getUsedColors()) {
-					tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet." + color.toString()));
+					tooltip.add(color.getInkName().formatted(Formatting.GRAY));
 				}
 			} else {
-				tooltip.add(Text.translatable("spectrum.tooltip.ink_powered." + getUsedColors().get(0).toString()).formatted(Formatting.GRAY));
+				tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.consume", getUsedColors().get(0).getInkName()).formatted(Formatting.GRAY));
 			}
 		}
 	}

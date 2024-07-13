@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.energy.storage.*;
 import de.dafuqs.spectrum.api.render.*;
-import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.player.*;
@@ -51,7 +50,7 @@ public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStora
 				pow++;
 			} while (storedInk >= nextStepInk);
 			
-			tooltip.add(Text.translatable("spectrum.tooltip.ink_drain.tooltip.ink_for_next_step." + inkStorage.getStoredColor().toString(), Support.getShortenedNumberString(nextStepInk - storedInk)).formatted(Formatting.GRAY));
+			tooltip.add(Text.translatable("spectrum.tooltip.ink_drain.tooltip.ink_for_next_step", Support.getShortenedNumberString(nextStepInk - storedInk), inkStorage.getStoredColor().getInkName()).formatted(Formatting.GRAY));
 		}
 	}
 	
@@ -122,7 +121,7 @@ public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStora
 		if (progress == 0 || progress == 14)
 			return PASS;
 		
-		var color = inkColor == InkColors.BLACK ? InkColors.ALT_BLACK : ColorHelper.colorVecToRGB(inkColor.getColor());
+		var color = inkColor == InkColors.BLACK ? InkColors.ALT_BLACK_COLOR : inkColor.getColorInt();
 		
 		return new BarSignature(1, 13, 14, progress, 1, color, 2, ExtendedItemBarProvider.DEFAULT_BACKGROUND_COLOR);
 	}
@@ -141,6 +140,6 @@ public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStora
 	
 	@Override
 	public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
-		return ColorHelper.colorVecToRGB(inkColor.getColor());
+		return inkColor.getColorInt();
 	}
 }

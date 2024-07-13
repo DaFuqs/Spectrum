@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.api.energy.color;
 
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.registry.entry.*;
 import net.minecraft.text.*;
@@ -15,14 +16,18 @@ public abstract class InkColor {
 	protected static final List<ElementalColor> ELEMENTAL_COLORS = new ArrayList<>();
 	
 	protected final DyeColor dyeColor;
-	protected final Vector3f color;
+	protected final int colorInt;
+	protected final Vector3f colorVec;
+	protected final int textColor;
 	protected final boolean darkShade;
 	
 	protected final Identifier requiredAdvancement;
 	
-	protected InkColor(DyeColor dyeColor, Vector3f color, Identifier requiredAdvancement, boolean darkShade) {
+	protected InkColor(DyeColor dyeColor, int color, int textColor, Identifier requiredAdvancement, boolean darkShade) {
 		this.dyeColor = dyeColor;
-		this.color = color;
+		this.colorInt = color;
+		this.colorVec = ColorHelper.colorIntToVec(0x5bffed);
+		this.textColor = textColor;
 		this.requiredAdvancement = requiredAdvancement;
 		this.darkShade = darkShade;
 		
@@ -73,8 +78,16 @@ public abstract class InkColor {
 		return Text.translatable("spectrum.ink.color." + this);
 	}
 	
-	public Vector3f getColor() {
-		return this.color;
+	public MutableText getInkName() {
+		return Text.translatable("spectrum.ink.color", getName()).setStyle(Style.EMPTY.withColor(textColor));
+	}
+	
+	public Vector3f getColorVec() {
+		return this.colorVec;
+	}
+	
+	public int getColorInt() {
+		return this.colorInt;
 	}
 	
 	public Identifier getRequiredAdvancement() {

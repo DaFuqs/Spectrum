@@ -250,23 +250,23 @@ public class TotalCappedElementalInkStorage implements InkStorage {
 		}
 		long cyan = this.storedEnergy.get(InkColors.CYAN);
 		if (cyan > 0) {
-			tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet.cyan", getShortenedNumberString(cyan)));
+			tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet_amount", getShortenedNumberString(cyan), InkColors.CYAN.getInkName()));
 		}
 		long magenta = this.storedEnergy.get(InkColors.MAGENTA);
 		if (magenta > 0) {
-			tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet.magenta", getShortenedNumberString(magenta)));
+			tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet_amount", getShortenedNumberString(magenta), InkColors.MAGENTA.getInkName()));
 		}
 		long yellow = this.storedEnergy.get(InkColors.YELLOW);
 		if (yellow > 0) {
-			tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet.yellow", getShortenedNumberString(yellow)));
+			tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet_amount", getShortenedNumberString(yellow), InkColors.YELLOW.getInkName()));
 		}
 		long black = this.storedEnergy.get(InkColors.BLACK);
 		if (black > 0) {
-			tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet.black", getShortenedNumberString(black)));
+			tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet_amount", getShortenedNumberString(black), InkColors.BLACK.getInkName()));
 		}
 		long white = this.storedEnergy.get(InkColors.WHITE);
 		if (white > 0) {
-			tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet.white", getShortenedNumberString(white)));
+			tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet_amount", getShortenedNumberString(white), InkColors.WHITE.getInkName()));
 		}
 	}
 	

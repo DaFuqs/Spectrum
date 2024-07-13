@@ -73,7 +73,7 @@ public class InkGaugeWidget implements Drawable, Element, Selectable {
 		for (InkColor color : InkColor.all()) {
 			long amount = blockEntity.getEnergyStorage().getEnergy(color);
 			if (amount > 0) {
-				tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet." + color.toString().toLowerCase(Locale.ROOT), getShortenedNumberString(amount)));
+				tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet_amount", getShortenedNumberString(amount), color.getInkName()));
 			}
 		}
 		if (tooltip.size() == 0) {
@@ -112,7 +112,7 @@ public class InkGaugeWidget implements Drawable, Element, Selectable {
 								centerX, centerY, // center point
 								centerX + p3x, centerY + p3y, // end point
 								centerX + p2x, centerY + p2y, // start point
-								color.getColor());
+								color.getColorVec());
 						
 						double middleRad = startRad + curr * Math.PI;
 						int pmx = (int) (radius * Math.cos(middleRad));
@@ -121,7 +121,7 @@ public class InkGaugeWidget implements Drawable, Element, Selectable {
 								centerX + p3x, centerY + p3y,
 								centerX + pmx, centerY + pmy,
 								centerX + p2x, centerY + p2y,
-								color.getColor());
+								color.getColorVec());
 						
 						startRad = endRad;
 					}

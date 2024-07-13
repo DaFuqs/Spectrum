@@ -88,7 +88,7 @@ public class StackedInkMeterWidget implements Drawable, Element, Selectable {
 				if (amount > 0) {
 					int height = Math.round(((float) amount / (float) maxTotal * this.height));
 					if (height > 0) {
-						RenderHelper.fillQuad(drawContext.getMatrices(), this.x, currentHeight - height, height, this.width, color.getColor());
+						RenderHelper.fillQuad(drawContext.getMatrices(), this.x, currentHeight - height, height, this.width, color.getColorVec());
 					}
 					currentHeight -= height;
 				}

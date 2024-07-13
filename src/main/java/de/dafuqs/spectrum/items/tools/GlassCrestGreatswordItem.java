@@ -28,7 +28,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class GlassCrestGreatswordItem extends GreatswordItem implements SplitDamageItem, ExtendedItemBarProvider, SlotBackgroundEffectProvider {
+public class GlassCrestGreatswordItem extends GreatswordItem implements SplitDamageItem, ExtendedItemBarProvider, SlotBackgroundEffectProvider, InkPowered {
 	
 	private static final InkCost GROUND_SLAM_COST = new InkCost(InkColors.WHITE, 25);
 	public static final float MAGIC_DAMAGE_SHARE = 0.25F;
@@ -43,7 +43,7 @@ public class GlassCrestGreatswordItem extends GreatswordItem implements SplitDam
 		super.appendTooltip(stack, world, tooltip, context);
 		tooltip.add(Text.translatable("item.spectrum.glass_crest_ultra_greatsword.tooltip", (int) (MAGIC_DAMAGE_SHARE * 100)));
 		tooltip.add(Text.translatable("item.spectrum.glass_crest_ultra_greatsword.tooltip2"));
-		tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.white"));
+		addInkPoweredTooltip(tooltip);
 	}
 	
 	@Override
@@ -159,4 +159,10 @@ public class GlassCrestGreatswordItem extends GreatswordItem implements SplitDam
 		var progress = Math.round(MathHelper.clampedLerp(0, 13, ((float) player.getItemUseTime() / GROUND_SLAM_CHARGE_TICKS)));
 		return new BarSignature(2, 13, 13, progress, 1, 0xFFFFFFFF, 2, ExtendedItemBarProvider.DEFAULT_BACKGROUND_COLOR);
 	}
+	
+	@Override
+	public List<InkColor> getUsedColors() {
+		return List.of(GROUND_SLAM_COST.getColor());
+	}
+	
 }

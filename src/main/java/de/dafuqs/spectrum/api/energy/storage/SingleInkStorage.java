@@ -156,7 +156,7 @@ public class SingleInkStorage implements InkStorage {
 			tooltip.add(Text.translatable("item.spectrum.ink_flask.tooltip", getShortenedNumberString(this.maxEnergy)));
 		}
 		if (this.storedEnergy > 0) {
-			tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet." + this.storedColor.toString().toLowerCase(Locale.ROOT), getShortenedNumberString(this.storedEnergy)));
+			tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet_amount", getShortenedNumberString(this.storedEnergy), this.storedColor.getInkName()));
 		}
 	}
 	

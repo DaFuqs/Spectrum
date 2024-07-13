@@ -48,14 +48,14 @@ public class NaturesStaffItem extends Item implements ExtendedEnchantable, InkPo
 		int efficiencyLevel = EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, itemStack);
 		if (efficiencyLevel == 0) {
 			if (InkPowered.canUseClient()) {
-				tooltip.add(Text.translatable("item.spectrum.natures_staff.tooltip_with_ink"));
+				tooltip.add(Text.translatable("item.spectrum.natures_staff.tooltip_with_ink", INK_COST.getColor().getInkName()));
 			} else {
 				tooltip.add(Text.translatable("item.spectrum.natures_staff.tooltip"));
 			}
 		} else {
 			int chancePercent = (int) (getInkCostMod(itemStack) * 100);
 			if (InkPowered.canUseClient()) {
-				tooltip.add(Text.translatable("item.spectrum.natures_staff.tooltip_with_ink_and_chance", chancePercent));
+				tooltip.add(Text.translatable("item.spectrum.natures_staff.tooltip_with_ink_and_chance", INK_COST.getColor().getInkName(), chancePercent));
 			} else {
 				tooltip.add(Text.translatable("item.spectrum.natures_staff.tooltip_with_chance", chancePercent));
 			}

@@ -147,7 +147,7 @@ public class ArtistsPaletteItem extends SpectrumTrinketItem implements InkStorag
 		
 		if (colors.size() == 1) {
 			var color = colors.get(0);
-			return ColorHelper.colorVecToRGB(color.getColor());
+			return ColorHelper.colorVecToRGB(color.getColorVec());
 		}
 		
 		var curColor = colors.get((int) (time % (30L * colors.size()) / 30));
@@ -155,7 +155,7 @@ public class ArtistsPaletteItem extends SpectrumTrinketItem implements InkStorag
 		var blendFactor = (((float) time + delta) % 30) / 30F;
 		
 		var fill = Math.round(storage.getTotalFillPercent() * 255);
-		var finalColor = ColorHelper.interpolate(curColor == InkColors.BLACK ? ColorHelper.colorIntToVec(InkColors.ALT_BLACK) : curColor.getColor(), nextColor == InkColors.BLACK ? ColorHelper.colorIntToVec(InkColors.ALT_BLACK) : nextColor.getColor(), blendFactor);
+		var finalColor = ColorHelper.interpolate(curColor == InkColors.BLACK ? InkColors.ALT_BLACK : curColor.getColorVec(), nextColor == InkColors.BLACK ? InkColors.ALT_BLACK : nextColor.getColorVec(), blendFactor);
 		finalColor = (finalColor & 0x00FFFFFF) | fill << 24;
 		
 		return finalColor;

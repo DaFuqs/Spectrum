@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.entity.entity.*;
-import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.item.*;
 import net.minecraft.enchantment.*;
@@ -223,7 +222,7 @@ public class DragonTalonItem extends MalachiteBidentItem implements MergeableIte
 	
 	@Override
 	public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
-		return ColorHelper.colorVecToRGB(InkColors.YELLOW.getColor());
+		return InkColors.YELLOW_COLOR;
 	}
 	
 	@Override

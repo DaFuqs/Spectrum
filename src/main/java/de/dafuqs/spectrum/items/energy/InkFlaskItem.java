@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.energy.storage.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.render.*;
-import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.block.entity.*;
@@ -94,6 +93,6 @@ public class InkFlaskItem extends Item implements InkStorageItem<SingleInkStorag
 			return ExtendedItemBarProvider.PASS;
 		
 		var progress = Math.round(MathHelper.clampedLerp(0, 14, (float) storage.getCurrentTotal() / storage.getMaxTotal()));
-		return new BarSignature(1, 13, 14, progress, 1, ColorHelper.colorVecToRGB(color == InkColors.BLACK ? ColorHelper.colorIntToVec(InkColors.ALT_BLACK) : color.getColor()), 2, DEFAULT_BACKGROUND_COLOR);
+		return new BarSignature(1, 13, 14, progress, 1, color == InkColors.BLACK ? InkColors.ALT_BLACK_COLOR : color.getColorInt(), 2, DEFAULT_BACKGROUND_COLOR);
 	}
 }

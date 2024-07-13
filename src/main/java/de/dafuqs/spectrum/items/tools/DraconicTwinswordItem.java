@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.entity.entity.*;
-import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.item.*;
 import net.minecraft.enchantment.*;
@@ -226,7 +225,7 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
 		
 		
 		var progress = Math.round(MathHelper.clampedLerp(0, 13, ((float) player.getItemUseTime() / MAX_CHARGE_TIME)));
-		return new BarSignature(2, 13, 13, progress, 1, ColorHelper.colorVecToRGB(InkColors.YELLOW.getColor()), 2, ExtendedItemBarProvider.DEFAULT_BACKGROUND_COLOR);
+		return new BarSignature(2, 13, 13, progress, 1, InkColors.YELLOW_COLOR, 2, ExtendedItemBarProvider.DEFAULT_BACKGROUND_COLOR);
 	}
 	
 	@Override
@@ -236,6 +235,6 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
 	
 	@Override
 	public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
-		return ColorHelper.colorVecToRGB(InkColors.YELLOW.getColor());
+		return InkColors.YELLOW_COLOR;
 	}
 }

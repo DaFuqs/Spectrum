@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.items.tools;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.render.*;
-import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.client.item.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
@@ -18,7 +17,7 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 // gets thrown as copy instead of getting removed from the player's inv
-public class FractalBidentItem extends MalachiteBidentItem implements SlotBackgroundEffectProvider {
+public class FractalBidentItem extends MalachiteBidentItem implements SlotBackgroundEffectProvider, InkPowered {
 	
 	public static final InkCost MIRROR_IMAGE_COST = new InkCost(InkColors.WHITE, 25);
 	
@@ -37,12 +36,17 @@ public class FractalBidentItem extends MalachiteBidentItem implements SlotBackgr
 	}
 	
 	@Override
+	public List<InkColor> getUsedColors() {
+		return List.of(MIRROR_IMAGE_COST.getColor());
+	}
+	
+	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		tooltip.add(Text.translatable("item.spectrum.fractal_glass_crest_bident.tooltip").formatted(Formatting.GRAY));
 		tooltip.add(Text.translatable("item.spectrum.fractal_glass_crest_bident.tooltip2").formatted(Formatting.GRAY));
 		tooltip.add(Text.translatable("item.spectrum.fractal_glass_crest_bident.tooltip3").formatted(Formatting.GRAY));
-		tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.white").formatted(Formatting.GRAY));
+		addInkPoweredTooltip(tooltip);
 	}
 	
 	@Override
@@ -68,7 +72,7 @@ public class FractalBidentItem extends MalachiteBidentItem implements SlotBackgr
 	
 	@Override
 	public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
-		return ColorHelper.colorVecToRGB(InkColors.PURPLE.getColor());
+		return InkColors.PURPLE_COLOR;
 	}
 	
 }

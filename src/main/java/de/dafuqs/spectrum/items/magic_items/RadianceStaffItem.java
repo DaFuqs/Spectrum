@@ -33,6 +33,7 @@ public class RadianceStaffItem extends Item implements InkPowered {
 	public static final int PLACEMENT_TRIES_PER_STEP = 4;
 	public static final int MIN_LIGHT_LEVEL = 10;
 	
+	public static final InkCost INK_COST = new InkCost(InkColors.YELLOW, 10);
 	public static final ItemStack COST = new ItemStack(SpectrumItems.SHIMMERSTONE_GEM, 1);
 	
 	public RadianceStaffItem(Settings settings) {
@@ -46,12 +47,12 @@ public class RadianceStaffItem extends Item implements InkPowered {
 
 		BlockState targetBlockState = world.getBlockState(targetPos);
 		if (targetBlockState.isAir()) {
-			if (playerEntity.isCreative() || InkPowered.tryDrainEnergy(playerEntity, InkColors.YELLOW, 10L) || InventoryHelper.removeFromInventoryWithRemainders(playerEntity, COST)) {
+			if (playerEntity.isCreative() || InkPowered.tryDrainEnergy(playerEntity, INK_COST) || InventoryHelper.removeFromInventoryWithRemainders(playerEntity, COST)) {
 				world.setBlockState(targetPos, SpectrumBlocks.WAND_LIGHT_BLOCK.getDefaultState(), 3);
 				return true;
 			}
 		} else if (targetBlockState.isOf(Blocks.WATER)) {
-			if (playerEntity.isCreative() || InkPowered.tryDrainEnergy(playerEntity, InkColors.YELLOW, 10L) || InventoryHelper.removeFromInventoryWithRemainders(playerEntity, COST)) {
+			if (playerEntity.isCreative() || InkPowered.tryDrainEnergy(playerEntity, INK_COST) || InventoryHelper.removeFromInventoryWithRemainders(playerEntity, COST)) {
 				world.setBlockState(targetPos, SpectrumBlocks.WAND_LIGHT_BLOCK.getDefaultState().with(WATERLOGGED, true), 3);
 				return true;
 			}
@@ -66,9 +67,7 @@ public class RadianceStaffItem extends Item implements InkPowered {
         } else {
             pitch = Math.min(1.5F, 0.7F + 0.1F * useTimes);
         }
-        SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, Vec3d.ofCenter(targetPos),
-                SpectrumParticleTypes.SHIMMERSTONE_SPARKLE, 20, Vec3d.ZERO, new Vec3d(0.3, 0.3, 0.3));
-
+		SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, Vec3d.ofCenter(targetPos), SpectrumParticleTypes.SHIMMERSTONE_SPARKLE, 20, Vec3d.ZERO, new Vec3d(0.3, 0.3, 0.3));
         world.playSound(null, playerEntity.getX() + 0.5, playerEntity.getY() + 0.5, playerEntity.getZ() + 0.5, SpectrumSoundEvents.RADIANCE_STAFF_PLACE, SoundCategory.PLAYERS, (float) Math.max(0.25, 1.0F - (float) iteration * 0.1F), pitch);
     }
 	
@@ -80,7 +79,7 @@ public class RadianceStaffItem extends Item implements InkPowered {
 	@Environment(EnvType.CLIENT)
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		if (InkPowered.canUseClient()) {
-			tooltip.add(Text.translatable("item.spectrum.radiance_staff.tooltip.ink"));
+			tooltip.add(Text.translatable("item.spectrum.radiance_staff.tooltip.ink", INK_COST.getColor().getInkName()));
 		} else {
 			tooltip.add(Text.translatable("item.spectrum.radiance_staff.tooltip"));
 		}
@@ -181,6 +180,6 @@ public class RadianceStaffItem extends Item implements InkPowered {
 	
 	@Override
 	public List<InkColor> getUsedColors() {
-		return List.of(InkColors.YELLOW);
+		return List.of(INK_COST.getColor());
 	}
 }

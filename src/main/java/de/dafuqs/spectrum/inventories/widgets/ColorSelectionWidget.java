@@ -111,7 +111,7 @@ public class ColorSelectionWidget extends ClickableWidget {
 		int currentY = this.getY() + 1;
 		for (Pair<InkColor, Boolean> color : usableColors) {
 			if (color.getRight()) {
-				fillQuad(drawContext.getMatrices(), currentX, currentY, 5, 5, color.getLeft().getColor());
+				fillQuad(drawContext.getMatrices(), currentX, currentY, 5, 5, color.getLeft().getColorVec());
 			}
 			i = i + 1;
 			currentX = currentX + 7;
@@ -124,7 +124,7 @@ public class ColorSelectionWidget extends ClickableWidget {
 		// draw currently selected icon
 		InkColor selectedColor = this.colorPicker.getSelectedColor();
 		if (selectedColor != null) {
-			fillQuad(drawContext.getMatrices(), selectedDotX, selectedDotY, 4, 4, selectedColor.getColor());
+			fillQuad(drawContext.getMatrices(), selectedDotX, selectedDotY, 4, 4, selectedColor.getColorVec());
 		}
 	}
 	

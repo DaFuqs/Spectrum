@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.entity.entity.*;
-import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.item.*;
 import net.minecraft.enchantment.*;
@@ -79,14 +78,14 @@ public class GlassCrestWorkstaffItem extends WorkstaffItem implements SlotBackgr
 		var fortune = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack) > 0;
 		
 		if (resonance)
-			return ColorHelper.colorVecToRGB(InkColors.WHITE.getColor());
+			return InkColors.WHITE_COLOR;
 		
 		if (silkTouch)
-			return ColorHelper.colorVecToRGB(InkColors.CYAN.getColor());
+			return InkColors.CYAN_COLOR;
 		
 		if (fortune)
-			return ColorHelper.colorVecToRGB(InkColors.LIGHT_BLUE.getColor());
+			return InkColors.LIGHT_BLUE_COLOR;
 		
-		return ColorHelper.colorVecToRGB(InkColors.LIGHT_GRAY.getColor());
+		return InkColors.LIGHT_GRAY_COLOR;
 	}
 }

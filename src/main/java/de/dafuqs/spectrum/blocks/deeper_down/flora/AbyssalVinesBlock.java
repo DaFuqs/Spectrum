@@ -1,35 +1,21 @@
 package de.dafuqs.spectrum.blocks.deeper_down.flora;
 
-import de.dafuqs.spectrum.helpers.BlockReference;
-import de.dafuqs.spectrum.helpers.InventoryHelper;
-import de.dafuqs.spectrum.registries.SpectrumBlockTags;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.fabric.api.tag.convention.v1.*;
 import net.minecraft.block.*;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.EnumProperty;
-import net.minecraft.state.property.Properties;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.StringIdentifiable;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
-import net.minecraft.world.WorldView;
-import net.minecraft.world.event.GameEvent;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.state.*;
+import net.minecraft.state.property.*;
+import net.minecraft.util.*;
+import net.minecraft.util.hit.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
+import net.minecraft.world.*;
+import net.minecraft.world.event.*;
 
 public class AbyssalVinesBlock extends PlantBlock implements Fertilizable {
 
@@ -40,11 +26,10 @@ public class AbyssalVinesBlock extends PlantBlock implements Fertilizable {
         super(settings);
         setDefaultState(getDefaultState().with(BERRIES, false).with(LIFE_STAGE, LifeStage.GROWING));
     }
-
-    @Nullable
+    
     @Override
-    public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return super.getPlacementState(ctx);
+    public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
+        return new ItemStack(SpectrumItems.FISSURE_PLUM);
     }
 
     @Override

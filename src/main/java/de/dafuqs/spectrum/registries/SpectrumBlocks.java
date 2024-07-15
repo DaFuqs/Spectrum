@@ -15,9 +15,9 @@ import de.dafuqs.spectrum.blocks.conditional.blood_orchid.*;
 import de.dafuqs.spectrum.blocks.conditional.colored_tree.*;
 import de.dafuqs.spectrum.blocks.conditional.resonant_lily.*;
 import de.dafuqs.spectrum.blocks.crystallarieum.*;
-import de.dafuqs.spectrum.blocks.deeper_down.*;
 import de.dafuqs.spectrum.blocks.decay.*;
 import de.dafuqs.spectrum.blocks.decoration.*;
+import de.dafuqs.spectrum.blocks.deeper_down.*;
 import de.dafuqs.spectrum.blocks.deeper_down.flora.*;
 import de.dafuqs.spectrum.blocks.deeper_down.groundcover.*;
 import de.dafuqs.spectrum.blocks.enchanter.*;
@@ -1671,8 +1671,8 @@ public class SpectrumBlocks {
 		registerBlockWithItem("bristle_sprouts", BRISTLE_SPROUTS, settings, DyeColor.LIME);
 		registerBlock("doombloom", DOOMBLOOM);
 		registerBlockWithItem("snapping_ivy", SNAPPING_IVY, settings, DyeColor.RED);
-
-		registerBlockWithItem("abyssal_vines", ABYSSAL_VINES, settings, DyeColor.BROWN);
+		
+		registerBlock("abyssal_vines", ABYSSAL_VINES);
 		
 		registerBlockWithItem("varia_sprout", VARIA_SPROUT, settings, DyeColor.WHITE);
 

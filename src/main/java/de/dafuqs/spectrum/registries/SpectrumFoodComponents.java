@@ -21,6 +21,11 @@ public class SpectrumFoodComponents {
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.TOUGHNESS, 300, 0), 0.05F)
 			.build();
 	
+	public static final FoodComponent FISSURE_PLUM = new FoodComponent.Builder()
+			.hunger(2).saturationModifier(0.6F)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.SWIFTNESS, 300, 0), 0.05F)
+			.build();
+	
 	public static final FoodComponent STAR_CANDY = new FoodComponent.Builder()
 			.hunger(3).saturationModifier(0.2F).snack()
 			.build();

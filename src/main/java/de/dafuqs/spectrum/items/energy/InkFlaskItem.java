@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.energy.storage.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.render.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.block.entity.*;
@@ -14,7 +15,6 @@ import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.registry.entry.*;
 import net.minecraft.text.*;
-import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
@@ -61,7 +61,7 @@ public class InkFlaskItem extends Item implements InkStorageItem<SingleInkStorag
 	@Environment(EnvType.CLIENT)
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		getEnergyStorage(stack).addTooltip(tooltip, true);
+		getEnergyStorage(stack).addTooltip(tooltip);
 		addBannerPatternProviderTooltip(tooltip);
 	}
 	
@@ -92,7 +92,7 @@ public class InkFlaskItem extends Item implements InkStorageItem<SingleInkStorag
 		if (storage.isEmpty())
 			return ExtendedItemBarProvider.PASS;
 		
-		var progress = Math.round(MathHelper.clampedLerp(0, 14, (float) storage.getCurrentTotal() / storage.getMaxTotal()));
-		return new BarSignature(1, 13, 14, progress, 1, color == InkColors.BLACK ? InkColors.ALT_BLACK_COLOR : color.getColorInt(), 2, DEFAULT_BACKGROUND_COLOR);
+		var progress = Support.getSensiblePercent(storage.getCurrentTotal(), storage.getMaxTotal(), 14);
+		return new BarSignature(1, 13, 14, progress, 1, color.getColorInt(), 2, ExtendedItemBarProvider.DEFAULT_BACKGROUND_COLOR);
 	}
 }

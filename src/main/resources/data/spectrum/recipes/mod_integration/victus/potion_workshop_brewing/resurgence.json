@@ -16,7 +16,7 @@
   "applicable_to_tipped_arrows": true,
   "applicable_to_potion_fillables": true,
   "required_advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
-  "ink_color": "red",
+  "ink_color": "spectrum:red",
   "ink_cost": 8,
   "fabric:load_conditions": [
     {

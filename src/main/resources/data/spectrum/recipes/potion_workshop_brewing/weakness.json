@@ -13,6 +13,6 @@
   "applicable_to_potions": true,
   "applicable_to_tipped_arrows": true,
   "applicable_to_potion_fillables": true,
-  "ink_color": "red",
+  "ink_color": "spectrum:red",
   "ink_cost": 4
 }

@@ -2,6 +2,8 @@ package de.dafuqs.spectrum.api.energy.storage;
 
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.registries.*;
+import it.unimi.dsi.fastutil.objects.*;
 import net.fabricmc.api.*;
 import net.minecraft.nbt.*;
 import net.minecraft.text.*;
@@ -14,45 +16,22 @@ import static de.dafuqs.spectrum.helpers.Support.*;
 public class TotalCappedInkStorage implements InkStorage {
 	
 	protected final long maxEnergyTotal;
-	protected final Map<InkColor, Long> storedEnergy;
+	protected final Map<InkColor, Long> storedEnergy = new Object2LongArrayMap<>();
 	protected long currentTotal; // This is a cache for quick lookup. Can be recalculated anytime using the values in storedEnergy.
 	
-	public TotalCappedInkStorage(long maxEnergyTotal) {
-		this.maxEnergyTotal = maxEnergyTotal;
-		this.currentTotal = 0;
-		
-		this.storedEnergy = new HashMap<>();
-		for (InkColor color : InkColor.all()) {
-			this.storedEnergy.put(color, 0L);
-		}
-	}
-	
-	public TotalCappedInkStorage(long maxEnergyTotal, Map<InkColor, Long> colors) {
+	public TotalCappedInkStorage(long maxEnergyTotal, Map<InkColor, Long> energy) {
 		this.maxEnergyTotal = maxEnergyTotal;
 
 		this.currentTotal = 0;
-		this.storedEnergy = colors;
-		for (Map.Entry<InkColor, Long> color : colors.entrySet()) {
+		this.storedEnergy.putAll(energy);
+		for (Map.Entry<InkColor, Long> color : energy.entrySet()) {
 			this.currentTotal += color.getValue();
 		}
 	}
 	
-	public static @Nullable TotalCappedInkStorage fromNbt(@NotNull NbtCompound compound) {
-		if (compound.contains("MaxEnergyTotal", NbtElement.LONG_TYPE)) {
-			long maxEnergyTotal = compound.getLong("MaxEnergyTotal");
-			
-			Map<InkColor, Long> colors = new HashMap<>();
-			for (InkColor color : InkColor.all()) {
-				colors.put(color, compound.getLong(color.toString()));
-			}
-			return new TotalCappedInkStorage(maxEnergyTotal, colors);
-		}
-		return null;
-	}
-	
 	@Override
 	public boolean accepts(InkColor color) {
-		return color instanceof ElementalColor;
+		return true;
 	}
 	
 	@Override
@@ -60,13 +39,13 @@ public class TotalCappedInkStorage implements InkStorage {
 		long overflow = Math.max(0, amount + this.currentTotal - this.maxEnergyTotal);
 		long amountToAdd = amount - overflow;
 		this.currentTotal += amountToAdd;
-		this.storedEnergy.put(color, this.storedEnergy.get(color) + amountToAdd);
+		this.storedEnergy.put(color, this.storedEnergy.getOrDefault(color, 0L) + amountToAdd);
 		return overflow;
 	}
 	
 	@Override
 	public boolean requestEnergy(InkColor color, long amount) {
-		long storedAmount = this.storedEnergy.get(color);
+		long storedAmount = this.storedEnergy.getOrDefault(color, 0L);
 		if (storedAmount < amount) {
 			return false;
 		} else {
@@ -78,7 +57,7 @@ public class TotalCappedInkStorage implements InkStorage {
 	
 	@Override
 	public long drainEnergy(InkColor color, long amount) {
-		long storedAmount = this.storedEnergy.get(color);
+		long storedAmount = this.storedEnergy.getOrDefault(color, 0L);
 		long drainedAmount = Math.min(storedAmount, amount);
 		this.storedEnergy.put(color, storedAmount - drainedAmount);
 		this.currentTotal -= drainedAmount;
@@ -87,7 +66,7 @@ public class TotalCappedInkStorage implements InkStorage {
 	
 	@Override
 	public long getEnergy(InkColor color) {
-		return this.storedEnergy.get(color);
+		return this.storedEnergy.getOrDefault(color, 0L);
 	}
 	
 	@Override
@@ -131,10 +110,14 @@ public class TotalCappedInkStorage implements InkStorage {
 	public NbtCompound toNbt() {
 		NbtCompound compound = new NbtCompound();
 		compound.putLong("MaxEnergyTotal", this.maxEnergyTotal);
-		for (Map.Entry<InkColor, Long> color : this.storedEnergy.entrySet()) {
-			compound.putLong(color.getKey().toString(), color.getValue());
-		}
+		compound.put("Energy", InkStorage.writeEnergy(this.storedEnergy));
 		return compound;
+	}
+	
+	public static TotalCappedInkStorage fromNbt(@NotNull NbtCompound compound) {
+		long maxEnergyTotal = compound.getLong("MaxEnergyTotal");
+		Map<InkColor, Long> colors = InkStorage.readEnergy(compound.getCompound("Energy"));
+		return new TotalCappedInkStorage(maxEnergyTotal, colors);
 	}
 	
 	@Override
@@ -144,26 +127,35 @@ public class TotalCappedInkStorage implements InkStorage {
 	
 	@Override
 	public void fillCompletely() {
-		long energyPerColor = this.maxEnergyTotal / this.storedEnergy.size();
-		this.storedEnergy.replaceAll((c, v) -> energyPerColor);
-		this.currentTotal = this.maxEnergyTotal;
+		this.storedEnergy.clear();
+		
+		int inkColorCount = SpectrumRegistries.INK_COLORS.size();
+		long energyPerColor = this.maxEnergyTotal / inkColorCount;
+		for (InkColor color : InkColors.all()) {
+			this.storedEnergy.put(color, energyPerColor);
+		}
+		this.currentTotal = energyPerColor * inkColorCount; // in case rounding is weird
 	}
 	
 	@Override
 	public void clear() {
-		this.storedEnergy.replaceAll((c, v) -> 0L);
+		this.storedEnergy.clear();
 		this.currentTotal = 0;
 	}
 	
 	@Override
 	@Environment(EnvType.CLIENT)
-	public void addTooltip(List<Text> tooltip, boolean includeHeader) {
-		if (includeHeader) {
-			tooltip.add(Text.translatable("item.spectrum.total_capped_simple_pigment_energy_storage.tooltip", getShortenedNumberString(maxEnergyTotal)));
-		}
-		for (Map.Entry<InkColor, Long> color : this.storedEnergy.entrySet()) {
-			if (color.getValue() > 0) {
-				tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet_amount", getShortenedNumberString(color.getValue()), color.getKey().getInkName()));
+	public void addTooltip(List<Text> tooltip) {
+		tooltip.add(Text.translatable("item.spectrum.total_capped_simple_pigment_energy_storage.tooltip", getShortenedNumberString(maxEnergyTotal)));
+		addInkContentTooltip(tooltip);
+	}
+	
+	protected void addInkContentTooltip(List<Text> tooltip) {
+		// we are iterating them this way to preserve the ordering in which they were registered
+		for (InkColor color : SpectrumRegistries.INK_COLORS) {
+			long amount = this.storedEnergy.getOrDefault(color, 0L);
+			if (amount > 0) {
+				InkStorage.addInkStoreBulletTooltip(tooltip, color, amount);
 			}
 		}
 	}

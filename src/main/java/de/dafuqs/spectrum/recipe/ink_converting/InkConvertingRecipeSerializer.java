@@ -28,7 +28,7 @@ public class InkConvertingRecipeSerializer implements GatedRecipeSerializer<InkC
 		JsonElement jsonElement = JsonHelper.hasArray(jsonObject, "ingredient") ? JsonHelper.getArray(jsonObject, "ingredient") : JsonHelper.getObject(jsonObject, "ingredient");
 		Ingredient ingredient = Ingredient.fromJson(jsonElement);
 		
-		InkColor inkColor = InkColor.of(JsonHelper.getString(jsonObject, "color"));
+		InkColor inkColor = InkColor.ofIdString(JsonHelper.getString(jsonObject, "ink_color"));
 		long inkAmount = JsonHelper.getLong(jsonObject, "amount");
 		
 		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, ingredient, inkColor, inkAmount);
@@ -41,7 +41,7 @@ public class InkConvertingRecipeSerializer implements GatedRecipeSerializer<InkC
 		writeNullableIdentifier(packetByteBuf, recipe.requiredAdvancementIdentifier);
 		
 		recipe.inputIngredient.write(packetByteBuf);
-		packetByteBuf.writeString(recipe.color.toString());
+		packetByteBuf.writeIdentifier(recipe.color.getID());
 		packetByteBuf.writeLong(recipe.amount);
 	}
 	
@@ -52,7 +52,7 @@ public class InkConvertingRecipeSerializer implements GatedRecipeSerializer<InkC
 		Identifier requiredAdvancementIdentifier = readNullableIdentifier(packetByteBuf);
 		
 		Ingredient ingredient = Ingredient.fromPacket(packetByteBuf);
-		InkColor inkColor = InkColor.of(packetByteBuf.readString());
+		InkColor inkColor = InkColor.ofId(packetByteBuf.readIdentifier());
 		long inkAmount = packetByteBuf.readLong();
 		
 		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, ingredient, inkColor, inkAmount);

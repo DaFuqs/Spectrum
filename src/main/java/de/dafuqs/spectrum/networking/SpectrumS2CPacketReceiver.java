@@ -306,7 +306,7 @@ public class SpectrumS2CPacketReceiver {
 			int colorEntries = buf.readInt();
 			Map<InkColor, Long> colors = new HashMap<>();
 			for (int i = 0; i < colorEntries; i++) {
-				colors.put(InkColor.of(buf.readString()), buf.readLong());
+				colors.put(InkColor.ofId(buf.readIdentifier()), buf.readLong());
 			}
 			
 			client.execute(() -> {
@@ -325,8 +325,8 @@ public class SpectrumS2CPacketReceiver {
 				
 				InkColor color;
 				if (isSelection) {
-					String inkColorString = buf.readString();
-					color = InkColor.of(inkColorString);
+					Identifier inkColor = buf.readIdentifier();
+					color = InkColor.ofId(inkColor);
 				} else {
 					color = null;
 				}
@@ -335,7 +335,7 @@ public class SpectrumS2CPacketReceiver {
 		});
 		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_INK_EFFECT_PARTICLES, (client, handler, buf, responseSender) -> {
-			InkColor inkColor = InkColor.of(buf.readString());
+			InkColor inkColor = InkColor.ofId(buf.readIdentifier());
 			double posX = buf.readDouble();
 			double posY = buf.readDouble();
 			double posZ = buf.readDouble();

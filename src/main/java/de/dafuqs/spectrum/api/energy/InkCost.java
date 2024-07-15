@@ -22,12 +22,12 @@ public class InkCost {
 	}
 	
 	public void writeNbt(NbtCompound nbt) {
-		nbt.putString("InkColor", color.toString());
+		nbt.putString("InkColor", color.getID().toString());
 		nbt.putLong("InkCost", cost);
 	}
 	
 	public static InkCost fromNbt(NbtCompound nbt) {
-		InkColor inkColor = InkColor.of(nbt.getString("InkColor"));
+		InkColor inkColor = InkColor.ofIdString(nbt.getString("InkColor"));
 		long inkCost = nbt.getLong("InkCost");
 		return new InkCost(inkColor, inkCost);
 	}

@@ -302,7 +302,7 @@ public class SpectrumS2CPacketSender {
 		Map<InkColor, Long> colors = inkStorage.getEnergy();
 		buf.writeInt(colors.size());
 		for (Map.Entry<InkColor, Long> color : colors.entrySet()) {
-			buf.writeString(color.getKey().toString());
+			buf.writeIdentifier(color.getKey().getID());
 			buf.writeLong(color.getValue());
 		}
 		
@@ -315,14 +315,14 @@ public class SpectrumS2CPacketSender {
 			packetByteBuf.writeBoolean(false);
 		} else {
 			packetByteBuf.writeBoolean(true);
-			packetByteBuf.writeString(color.toString());
+			packetByteBuf.writeIdentifier(color.getID());
 		}
 		ServerPlayNetworking.send(player, SpectrumS2CPackets.INK_COLOR_SELECTED, packetByteBuf);
 	}
 	
 	public static void playInkEffectParticles(ServerWorld serverWorld, InkColor inkColor, Vec3d effectPos, float potency) {
 		PacketByteBuf packetByteBuf = PacketByteBufs.create();
-		packetByteBuf.writeString(inkColor.toString());
+		packetByteBuf.writeIdentifier(inkColor.getID());
 		packetByteBuf.writeDouble(effectPos.x);
 		packetByteBuf.writeDouble(effectPos.y);
 		packetByteBuf.writeDouble(effectPos.z);

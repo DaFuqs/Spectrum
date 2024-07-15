@@ -8,7 +8,6 @@ import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.items.trinkets.*;
-import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.block.entity.*;
@@ -18,7 +17,6 @@ import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.registry.entry.*;
-import net.minecraft.server.network.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
@@ -27,7 +25,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class PigmentPaletteItem extends SpectrumTrinketItem implements InkStorageItem<PigmentPaletteItem.PigmentPaletteInkStorage>, LoomPatternProvider, ExtendedItemBarProvider {
+public class PigmentPaletteItem extends SpectrumTrinketItem implements InkStorageItem<IndividualCappedInkStorage>, LoomPatternProvider, ExtendedItemBarProvider {
 	
 	private final long maxEnergyPerColor;
 	
@@ -42,12 +40,12 @@ public class PigmentPaletteItem extends SpectrumTrinketItem implements InkStorag
 	}
 	
 	@Override
-	public PigmentPaletteInkStorage getEnergyStorage(ItemStack itemStack) {
+	public IndividualCappedInkStorage getEnergyStorage(ItemStack itemStack) {
 		NbtCompound compound = itemStack.getNbt();
 		if (compound != null && compound.contains("EnergyStore")) {
-			return PigmentPaletteInkStorage.fromNbt(compound.getCompound("EnergyStore"));
+			return IndividualCappedInkStorage.fromNbt(compound.getCompound("EnergyStore"));
 		}
-		return new PigmentPaletteInkStorage(this.maxEnergyPerColor);
+		return new IndividualCappedInkStorage(this.maxEnergyPerColor);
 	}
 	
 	// Omitting this would crash outside the dev env o.O
@@ -58,7 +56,7 @@ public class PigmentPaletteItem extends SpectrumTrinketItem implements InkStorag
 	
 	@Override
 	public void setEnergyStorage(ItemStack itemStack, InkStorage storage) {
-		if (storage instanceof PigmentPaletteInkStorage pigmentPaletteInkStorage) {
+		if (storage instanceof IndividualCappedInkStorage pigmentPaletteInkStorage) {
 			NbtCompound compound = itemStack.getOrCreateNbt();
 			compound.put("EnergyStore", pigmentPaletteInkStorage.toNbt());
 		}
@@ -69,62 +67,13 @@ public class PigmentPaletteItem extends SpectrumTrinketItem implements InkStorag
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		tooltip.add(Text.translatable("item.spectrum.pigment_palette.tooltip.target").formatted(Formatting.GRAY));
-		getEnergyStorage(stack).addTooltip(tooltip, true);
+		getEnergyStorage(stack).addTooltip(tooltip);
 		addBannerPatternProviderTooltip(tooltip);
 	}
 	
 	@Override
 	public RegistryEntry<BannerPattern> getPattern() {
 		return SpectrumBannerPatterns.PALETTE;
-	}
-
-	public static class PigmentPaletteInkStorage extends IndividualCappedInkStorage {
-
-		public PigmentPaletteInkStorage(long maxEnergyPerColor) {
-			super(maxEnergyPerColor);
-		}
-
-		public PigmentPaletteInkStorage(long maxEnergyPerColor, Map<InkColor, Long> colors) {
-			super(maxEnergyPerColor, colors);
-		}
-
-		public static @Nullable PigmentPaletteItem.PigmentPaletteInkStorage fromNbt(@NotNull NbtCompound compound) {
-			if (compound.contains("MaxEnergyPerColor", NbtElement.LONG_TYPE)) {
-				long maxEnergyPerColor = compound.getLong("MaxEnergyPerColor");
-
-				Map<InkColor, Long> colors = new HashMap<>();
-				for (InkColor color : InkColor.all()) {
-					colors.put(color, compound.getLong(color.toString()));
-				}
-				return new PigmentPaletteInkStorage(maxEnergyPerColor, colors);
-			}
-			return null;
-		}
-
-		public long addEnergy(InkColor color, long amount, ItemStack stack, ServerPlayerEntity serverPlayerEntity) {
-			long leftoverEnergy = super.addEnergy(color, amount);
-			if (leftoverEnergy != amount) {
-				SpectrumAdvancementCriteria.INK_CONTAINER_INTERACTION.trigger(serverPlayerEntity, stack, this, color, amount - leftoverEnergy);
-			}
-			return leftoverEnergy;
-		}
-
-		public boolean requestEnergy(InkColor color, long amount, ItemStack stack, ServerPlayerEntity serverPlayerEntity) {
-			boolean success = super.requestEnergy(color, amount);
-			if (success) {
-				SpectrumAdvancementCriteria.INK_CONTAINER_INTERACTION.trigger(serverPlayerEntity, stack, this, color, -amount);
-			}
-			return success;
-		}
-
-		public long drainEnergy(InkColor color, long amount, ItemStack stack, ServerPlayerEntity serverPlayerEntity) {
-			long drainedAmount = super.drainEnergy(color, amount);
-			if (drainedAmount != 0) {
-				SpectrumAdvancementCriteria.INK_CONTAINER_INTERACTION.trigger(serverPlayerEntity, stack, this, color, -drainedAmount);
-			}
-			return drainedAmount;
-		}
-		
 	}
 	
 	@Override
@@ -157,10 +106,8 @@ public class PigmentPaletteItem extends SpectrumTrinketItem implements InkStorag
 		var curColor = colors.get((int) (time % (30L * colors.size()) / 30));
 		var nextColor = colors.get((int) ((time % (30L * colors.size()) / 30 + 1) % colors.size()));
 		
-		
 		var blendFactor = (((float) time + delta) % 30) / 30F;
-		var blendedColor = ColorHelper.interpolate(
-				curColor == InkColors.BLACK ? InkColors.ALT_BLACK : curColor.getColorVec(), nextColor == InkColors.BLACK ? InkColors.ALT_BLACK : nextColor.getColorVec(), blendFactor);
+		var blendedColor = ColorHelper.interpolate(curColor == InkColors.BLACK ? InkColors.BLACK_TEXT_VEC : curColor.getColorVec(), nextColor == InkColors.BLACK ? InkColors.BLACK_TEXT_VEC : nextColor.getColorVec(), blendFactor);
 		
 		return new ExtendedItemBarProvider.BarSignature(1, 13, 14, progress, 1, blendedColor, 2, DEFAULT_BACKGROUND_COLOR);
 	}

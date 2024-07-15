@@ -9,7 +9,7 @@
     "spectrum:azurite_cluster"
   ],
   "seconds_per_growth_stage": 300,
-  "ink_color": "blue",
+  "ink_color": "spectrum:blue",
   "ink_cost_tier": 4,
   "grows_without_catalyst": false,
   "catalysts": [

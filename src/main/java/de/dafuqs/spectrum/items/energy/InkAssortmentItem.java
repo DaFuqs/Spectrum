@@ -60,7 +60,7 @@ public class InkAssortmentItem extends Item implements InkStorageItem<Individual
 	@Environment(EnvType.CLIENT)
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		getEnergyStorage(stack).addTooltip(tooltip, true);
+		getEnergyStorage(stack).addTooltip(tooltip);
 	}
 	
 	@Override
@@ -95,7 +95,7 @@ public class InkAssortmentItem extends Item implements InkStorageItem<Individual
 		
 		
 		var blendFactor = (((float) time + delta) % 30) / 30F;
-		var blendedColor = ColorHelper.interpolate(curColor == InkColors.BLACK ? InkColors.ALT_BLACK : curColor.getColorVec(), nextColor == InkColors.BLACK ? InkColors.ALT_BLACK : nextColor.getColorVec(), blendFactor);
+		var blendedColor = ColorHelper.interpolate(curColor == InkColors.BLACK ? InkColors.BLACK_TEXT_VEC : curColor.getColorVec(), nextColor == InkColors.BLACK ? InkColors.BLACK_TEXT_VEC : nextColor.getColorVec(), blendFactor);
 		
 		return new ExtendedItemBarProvider.BarSignature(1, 13, 14, progress, 1, blendedColor, 2, DEFAULT_BACKGROUND_COLOR);
 	}

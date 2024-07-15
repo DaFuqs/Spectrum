@@ -255,8 +255,8 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 		World world = firstParent.getWorld();
 		InkColor color1 = firstParent.getColor();
 		InkColor color2 = secondParent.getColor();
-
-		return InkColor.getRandomMixedColor(color1, color2, world.random);
+		
+		return InkColorMixes.getRandomMixedColor(color1, color2, world.random);
 	}
 
 	private LizardFrillVariant getChildFrills(LizardEntity firstParent, LizardEntity secondParent) {

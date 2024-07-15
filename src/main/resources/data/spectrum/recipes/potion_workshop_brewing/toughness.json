@@ -12,7 +12,7 @@
   "applicable_to_potions": true,
   "applicable_to_tipped_arrows": true,
   "applicable_to_potion_fillables": true,
-  "ink_color": "pink",
+  "ink_color": "spectrum:pink",
   "ink_cost": 8,
   "required_advancement": "spectrum:unlocks/potions/toughness"
 }

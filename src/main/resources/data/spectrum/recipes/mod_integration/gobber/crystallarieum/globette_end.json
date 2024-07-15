@@ -9,7 +9,7 @@
     "spectrum:globette_end_cluster"
   ],
   "seconds_per_growth_stage": 180,
-  "ink_color": "green",
+  "ink_color": "spectrum:green",
   "ink_cost_tier": 4,
   "grows_without_catalyst": false,
   "catalysts": [

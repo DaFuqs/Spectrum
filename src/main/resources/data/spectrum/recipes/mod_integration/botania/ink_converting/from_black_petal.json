@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "botania:black_petal"
   },
-  "color": "black",
+  "ink_color": "spectrum:black",
   "amount": 25,
   "required_advancement": "spectrum:hidden/collect_pigment/collect_black_pigment",
   "fabric:load_conditions": [

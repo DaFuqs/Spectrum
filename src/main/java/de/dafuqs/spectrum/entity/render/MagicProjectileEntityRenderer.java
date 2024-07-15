@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.entity.render;
 
-import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.entity.*;
@@ -24,7 +23,7 @@ public class MagicProjectileEntityRenderer extends EntityRenderer<MagicProjectil
 	@Override
 	public void render(MagicProjectileEntity magicProjectileEntity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
 		matrixStack.push();
-		Vector3f starColor = InkColor.of(magicProjectileEntity.getDyeColor()).getColorVec();
+		Vector3f starColor = magicProjectileEntity.getInkColor().getColorVec();
 		
 		double time = (magicProjectileEntity.getWorld().getTime() % 24000) + tickDelta + Random.create(magicProjectileEntity.getId()).nextInt(200);
 		float scale = 0.75F + 0.1F * (float) Math.sin(time / 10);

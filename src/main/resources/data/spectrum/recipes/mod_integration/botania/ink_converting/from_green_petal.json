@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "botania:green_petal"
   },
-  "color": "green",
+  "ink_color": "spectrum:green",
   "amount": 25,
   "required_advancement": "spectrum:hidden/collect_pigment/collect_green_pigment",
   "fabric:load_conditions": [

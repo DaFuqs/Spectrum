@@ -9,7 +9,7 @@
     "spectrum:globette_nether_cluster"
   ],
   "seconds_per_growth_stage": 120,
-  "ink_color": "red",
+  "ink_color": "spectrum:red",
   "ink_cost_tier": 3,
   "grows_without_catalyst": false,
   "catalysts": [

@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "botania:pink_petal"
   },
-  "color": "pink",
+  "ink_color": "spectrum:pink",
   "amount": 25,
   "required_advancement": "spectrum:hidden/collect_pigment/collect_pink_pigment",
   "fabric:load_conditions": [

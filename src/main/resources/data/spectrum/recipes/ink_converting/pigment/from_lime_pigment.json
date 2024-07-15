@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "spectrum:lime_pigment"
   },
-  "color": "lime",
+  "ink_color": "spectrum:lime",
   "amount": 100,
   "required_advancement": "spectrum:hidden/collect_pigment/collect_lime_pigment"
 }

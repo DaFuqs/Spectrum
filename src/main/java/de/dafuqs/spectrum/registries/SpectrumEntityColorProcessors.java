@@ -49,10 +49,10 @@ public class SpectrumEntityColorProcessors {
 			return true;
 		});
 		EntityColorProcessorRegistry.register(SpectrumEntityTypes.INK_PROJECTILE, (entity, dyeColor) -> {
-			if (entity.getDyeColor() == dyeColor) {
+			if (entity.getInkColor().getDyeColor() == dyeColor) {
 				return false;
 			}
-			entity.setColor(InkColor.of(dyeColor));
+			entity.setColor(InkColor.ofDyeColor(dyeColor));
 			return true;
 		});
 	}

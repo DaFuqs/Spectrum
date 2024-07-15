@@ -5,12 +5,12 @@ import de.dafuqs.spectrum.items.tools.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.fabricmc.fabric.api.networking.v1.*;
-import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
+import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.minecraft.entity.player.*;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.network.*;
 import net.minecraft.recipe.*;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
 
 @Environment(EnvType.CLIENT)
@@ -41,7 +41,7 @@ public class SpectrumC2SPacketSender {
 			packetByteBuf.writeBoolean(false);
 		} else {
 			packetByteBuf.writeBoolean(true);
-			packetByteBuf.writeString(color.toString());
+			packetByteBuf.writeIdentifier(color.getID());
 		}
 		ClientPlayNetworking.send(SpectrumC2SPackets.INK_COLOR_SELECTED, packetByteBuf);
 	}

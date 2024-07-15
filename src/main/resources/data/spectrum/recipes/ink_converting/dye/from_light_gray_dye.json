@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:light_gray_dye"
   },
-  "color": "light_gray",
+  "ink_color": "spectrum:light_gray",
   "amount": 5,
   "required_advancement": "spectrum:hidden/collect_pigment/collect_light_gray_pigment"
 }

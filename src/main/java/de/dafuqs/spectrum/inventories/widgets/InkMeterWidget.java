@@ -67,7 +67,7 @@ public class InkMeterWidget implements Drawable, Element, Selectable {
 	public void drawMouseoverTooltip(DrawContext drawContext, int x, int y) {
 		MinecraftClient client = MinecraftClient.getInstance();
 		List<Text> tooltip = new ArrayList<>();
-		inkStorageBlockEntity.getEnergyStorage().addTooltip(tooltip, false);
+		inkStorageBlockEntity.getEnergyStorage().addTooltip(tooltip);
 		drawContext.drawTooltip(client.textRenderer, tooltip, Optional.empty(), x, y);
 	}
 	

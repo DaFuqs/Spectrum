@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:brown_dye"
   },
-  "color": "brown",
+  "ink_color": "spectrum:brown",
   "amount": 5,
   "required_advancement": "spectrum:hidden/collect_pigment/collect_brown_pigment"
 }

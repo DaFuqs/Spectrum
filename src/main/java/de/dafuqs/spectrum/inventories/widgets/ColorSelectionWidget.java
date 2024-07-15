@@ -36,7 +36,7 @@ public class ColorSelectionWidget extends ClickableWidget {
 	final int selectedDotY;
 	
 	public ColorSelectionWidget(int x, int y, int selectedDotX, int selectedDotY, Screen screen, ColorPickerBlockEntity colorPicker) {
-		this(x, y, selectedDotX, selectedDotY, screen, colorPicker, List.of(InkColors.CYAN, InkColors.LIGHT_BLUE, InkColors.BLUE, InkColors.PURPLE, InkColors.MAGENTA, InkColors.PINK, InkColors.RED, InkColors.ORANGE, InkColors.YELLOW, InkColors.LIME, InkColors.GREEN, InkColors.BROWN, InkColors.BLACK, InkColors.GRAY, InkColors.LIGHT_GRAY, InkColors.WHITE));
+		this(x, y, selectedDotX, selectedDotY, screen, colorPicker, InkColors.BUILTIN_COLORS);
 	}
 	
 	public ColorSelectionWidget(int x, int y, int selectedDotX, int selectedDotY, Screen screen, ColorPickerBlockEntity colorPicker, List<InkColor> availableColors) {

@@ -1360,7 +1360,7 @@ public class SpectrumItemGroups {
 	
 	public static final ItemSubGroup ENERGY = new ItemSubGroup.Builder(MAIN, ItemGroupIDs.SUBTAB_ENERGY, Text.translatable("itemGroup.spectrum.energy")).backgroundTexture(ItemGroupIDs.BACKGROUND_TEXTURE).entries((displayContext, entries) -> {
 		entries.add(SpectrumItems.INK_FLASK);
-		for (InkColor color : InkColor.all()) {
+		for (InkColor color : InkColors.all()) {
 			entries.add(SpectrumItems.INK_FLASK.getFullStack(color));
 		}
 		entries.add(SpectrumItems.INK_ASSORTMENT);

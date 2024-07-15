@@ -69,7 +69,7 @@ public class CreativeInkAssortmentItem extends Item implements InkStorageItem<Cr
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		CreativeOnlyItem.appendTooltip(tooltip);
-		getEnergyStorage(stack).addTooltip(tooltip, true);
+		getEnergyStorage(stack).addTooltip(tooltip);
 	}
 	
 	@Override
@@ -99,6 +99,6 @@ public class CreativeInkAssortmentItem extends Item implements InkStorageItem<Cr
 		var nextColor = colors.get((int) ((time % (50L * colors.size()) / 50 + 1) % colors.size()));
 		var blendFactor = (((float) time + delta) % 50) / 50F;
 		
-		return ColorHelper.interpolate(curColor == InkColors.BLACK ? InkColors.ALT_BLACK : curColor.getColorVec(), nextColor == InkColors.BLACK ? InkColors.ALT_BLACK : nextColor.getColorVec(), blendFactor);
+		return ColorHelper.interpolate(curColor == InkColors.BLACK ? InkColors.BLACK_TEXT_VEC : curColor.getColorVec(), nextColor == InkColors.BLACK ? InkColors.BLACK_TEXT_VEC : nextColor.getColorVec(), blendFactor);
 	}
 }

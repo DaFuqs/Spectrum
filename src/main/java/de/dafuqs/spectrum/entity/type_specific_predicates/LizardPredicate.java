@@ -37,7 +37,7 @@ public class LizardPredicate implements TypeSpecificPredicate {
 	
 	public static LizardPredicate fromJson(JsonObject json) {
 		JsonElement colorElement = json.get(COLOR_KEY);
-		Optional<InkColor> color = colorElement == null ? Optional.empty() : Optional.of(InkColor.of(json.get(COLOR_KEY).getAsString().toUpperCase(Locale.ROOT)));
+		Optional<InkColor> color = colorElement == null ? Optional.empty() : Optional.of(InkColor.ofIdString(json.get(COLOR_KEY).getAsString()));
 		
 		JsonElement frillsElement = json.get(HORN_VARIANT_KEY);
 		Optional<LizardFrillVariant> frills = frillsElement == null ? Optional.empty() : SpectrumRegistries.LIZARD_FRILL_VARIANT.getOrEmpty(Identifier.tryParse(frillsElement.getAsString()));
@@ -51,7 +51,7 @@ public class LizardPredicate implements TypeSpecificPredicate {
 	@Override
 	public JsonObject typeSpecificToJson() {
 		JsonObject jsonObject = new JsonObject();
-		this.color.ifPresent(color -> jsonObject.add(COLOR_KEY, new JsonPrimitive(color.toString())));
+		this.color.ifPresent(color -> jsonObject.add(COLOR_KEY, new JsonPrimitive(color.getID().toString())));
 		this.frills.ifPresent(frills -> jsonObject.add(FRILLS_VARIANT_KEY, new JsonPrimitive(SpectrumRegistries.LIZARD_FRILL_VARIANT.getId(frills).toString())));
 		this.horns.ifPresent(horns -> jsonObject.add(HORN_VARIANT_KEY, new JsonPrimitive(SpectrumRegistries.LIZARD_HORN_VARIANT.getId(horns).toString())));
 		return jsonObject;

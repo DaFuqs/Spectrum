@@ -15,14 +15,11 @@ public class FixedSingleInkStorage extends SingleInkStorage {
 		super(maxEnergy, color, amount);
 	}
 	
-	public static @Nullable FixedSingleInkStorage fromNbt(@NotNull NbtCompound compound) {
-		if (compound.contains("MaxEnergyTotal", NbtElement.LONG_TYPE)) {
-			long maxEnergyTotal = compound.getLong("MaxEnergyTotal");
-			InkColor color = InkColor.of(compound.getString("Color"));
-			long amount = compound.getLong("Amount");
-			return new FixedSingleInkStorage(maxEnergyTotal, color, amount);
-		}
-		return null;
+	public static FixedSingleInkStorage fromNbt(@NotNull NbtCompound compound) {
+		long maxEnergyTotal = compound.getLong("MaxEnergyTotal");
+		InkColor color = InkColor.ofIdString(compound.getString("Color"));
+		long amount = compound.getLong("Amount");
+		return new FixedSingleInkStorage(maxEnergyTotal, color, amount);
 	}
 
 	@Override

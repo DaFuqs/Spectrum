@@ -6,26 +6,26 @@ import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.energy.storage.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.render.*;
-import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.items.trinkets.*;
-import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.block.entity.*;
+import net.minecraft.client.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.registry.entry.*;
-import net.minecraft.server.network.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
+import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class ArtistsPaletteItem extends SpectrumTrinketItem implements InkStorageItem<ArtistsPaletteItem.ArtistsPaletteInkStorage>, LoomPatternProvider, SlotBackgroundEffectProvider {
+public class ArtistsPaletteItem extends SpectrumTrinketItem implements InkStorageItem<TotalCappedElementalMixingInkStorage>, LoomPatternProvider, ExtendedItemBarProvider {
 	
 	private final long maxEnergyTotal;
 	
@@ -40,12 +40,12 @@ public class ArtistsPaletteItem extends SpectrumTrinketItem implements InkStorag
 	}
 	
 	@Override
-	public ArtistsPaletteInkStorage getEnergyStorage(ItemStack itemStack) {
+	public TotalCappedElementalMixingInkStorage getEnergyStorage(ItemStack itemStack) {
 		NbtCompound compound = itemStack.getNbt();
 		if (compound != null && compound.contains("EnergyStore")) {
-			return ArtistsPaletteInkStorage.fromNbt(compound.getCompound("EnergyStore"));
+			return TotalCappedElementalMixingInkStorage.fromNbt(compound.getCompound("EnergyStore"));
 		}
-		return new ArtistsPaletteInkStorage(this.maxEnergyTotal);
+		return new TotalCappedElementalMixingInkStorage(this.maxEnergyTotal, Map.of());
 	}
 	
 	// Omitting this would crash outside the dev env o.O
@@ -56,7 +56,7 @@ public class ArtistsPaletteItem extends SpectrumTrinketItem implements InkStorag
 	
 	@Override
 	public void setEnergyStorage(ItemStack itemStack, InkStorage storage) {
-		if (storage instanceof ArtistsPaletteInkStorage artistsPaletteInkStorage) {
+		if (storage instanceof TotalCappedElementalMixingInkStorage artistsPaletteInkStorage) {
 			NbtCompound compound = itemStack.getOrCreateNbt();
 			compound.put("EnergyStore", artistsPaletteInkStorage.toNbt());
 		}
@@ -67,7 +67,7 @@ public class ArtistsPaletteItem extends SpectrumTrinketItem implements InkStorag
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		tooltip.add(Text.translatable("item.spectrum.pigment_palette.tooltip.target").formatted(Formatting.GRAY));
-		getEnergyStorage(stack).addTooltip(tooltip, true);
+		getEnergyStorage(stack).addTooltip(tooltip);
 		addBannerPatternProviderTooltip(tooltip);
 	}
 	
@@ -75,89 +75,44 @@ public class ArtistsPaletteItem extends SpectrumTrinketItem implements InkStorag
 	public RegistryEntry<BannerPattern> getPattern() {
 		return SpectrumBannerPatterns.PALETTE;
 	}
-
-	public static class ArtistsPaletteInkStorage extends TotalCappedElementalInkStorage {
-
-		public ArtistsPaletteInkStorage(long maxEnergyTotal) {
-			super(maxEnergyTotal);
-		}
-
-		public ArtistsPaletteInkStorage(long maxEnergyTotal, long cyan, long magenta, long yellow, long black, long white) {
-			super(maxEnergyTotal, cyan, magenta, yellow, black, white);
-		}
-
-		public static @Nullable ArtistsPaletteItem.ArtistsPaletteInkStorage fromNbt(@NotNull NbtCompound compound) {
-			if (compound.contains("MaxEnergyTotal", NbtElement.LONG_TYPE)) {
-				long maxEnergyTotal = compound.getLong("MaxEnergyTotal");
-				long cyan = compound.getLong("Cyan");
-				long magenta = compound.getLong("Magenta");
-				long yellow = compound.getLong("Yellow");
-				long black = compound.getLong("Black");
-				long white = compound.getLong("White");
-				return new ArtistsPaletteInkStorage(maxEnergyTotal, cyan, magenta, yellow, black, white);
-			}
-			return null;
-		}
-
-		public long addEnergy(InkColor color, long amount, ItemStack stack, ServerPlayerEntity serverPlayerEntity) {
-			long leftoverEnergy = super.addEnergy(color, amount);
-			if (leftoverEnergy != amount) {
-				SpectrumAdvancementCriteria.INK_CONTAINER_INTERACTION.trigger(serverPlayerEntity, stack, this, color, amount - leftoverEnergy);
-			}
-			return leftoverEnergy;
-		}
-
-		public boolean requestEnergy(InkColor color, long amount, ItemStack stack, ServerPlayerEntity serverPlayerEntity) {
-			boolean success = super.requestEnergy(color, amount);
-			if (success) {
-				SpectrumAdvancementCriteria.INK_CONTAINER_INTERACTION.trigger(serverPlayerEntity, stack, this, color, -amount);
-			}
-			return success;
-		}
-
-		public long drainEnergy(InkColor color, long amount, ItemStack stack, ServerPlayerEntity serverPlayerEntity) {
-			long drainedAmount = super.drainEnergy(color, amount);
-			if (drainedAmount != 0) {
-				SpectrumAdvancementCriteria.INK_CONTAINER_INTERACTION.trigger(serverPlayerEntity, stack, this, color, -drainedAmount);
-			}
-			return drainedAmount;
-		}
-		
-	}
 	
 	@Override
-	public SlotEffect backgroundType(@Nullable PlayerEntity player, ItemStack stack) {
-		return getEnergyStorage(stack).isEmpty() ? SlotEffect.NONE : SlotEffect.FULL_PACKAGE;
+	public int barCount(ItemStack stack) {
+		return 1;
 	}
 	
+	
 	@Override
-	public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float delta) {
+	public ExtendedItemBarProvider.BarSignature getSignature(@Nullable PlayerEntity player, @NotNull ItemStack stack, int index) {
 		var storage = getEnergyStorage(stack);
 		var colors = new ArrayList<InkColor>();
 		
 		if (player == null || storage.isEmpty())
-			return 0;
+			return ExtendedItemBarProvider.PASS;
 		
 		var time = player.getWorld().getTime() % 864000;
 		
-		for (InkColor inkColor : SpectrumRegistries.INK_COLORS) {
-			if (storage.getEnergy(inkColor) > 0)
-				colors.add(inkColor);
+		for (RegistryEntry<InkColor> inkColor : InkColors.elementals()) {
+			if (storage.getEnergy(inkColor.value()) > 0)
+				colors.add(inkColor.value());
 		}
 		
+		var progress = Math.round(MathHelper.clampedLerp(0, 14, (float) storage.getCurrentTotal() / storage.getMaxTotal()));
 		if (colors.size() == 1) {
 			var color = colors.get(0);
-			return ColorHelper.colorVecToRGB(color.getColorVec());
+			return new ExtendedItemBarProvider.BarSignature(1, 13, 14, progress, 1, color.getColorInt() | 0xFF000000, 2, DEFAULT_BACKGROUND_COLOR);
 		}
 		
+		var delta = MinecraftClient.getInstance().getTickDelta();
 		var curColor = colors.get((int) (time % (30L * colors.size()) / 30));
 		var nextColor = colors.get((int) ((time % (30L * colors.size()) / 30 + 1) % colors.size()));
+		
+		
 		var blendFactor = (((float) time + delta) % 30) / 30F;
+		var blendedColor = ColorHelper.interpolate(
+				curColor == InkColors.BLACK ? InkColors.BLACK_TEXT_VEC : curColor.getColorVec(), nextColor == InkColors.BLACK ? InkColors.BLACK_TEXT_VEC : nextColor.getColorVec(), blendFactor);
 		
-		var fill = Math.round(storage.getTotalFillPercent() * 255);
-		var finalColor = ColorHelper.interpolate(curColor == InkColors.BLACK ? InkColors.ALT_BLACK : curColor.getColorVec(), nextColor == InkColors.BLACK ? InkColors.ALT_BLACK : nextColor.getColorVec(), blendFactor);
-		finalColor = (finalColor & 0x00FFFFFF) | fill << 24;
-		
-		return finalColor;
+		return new ExtendedItemBarProvider.BarSignature(1, 13, 14, progress, 1, blendedColor, 2, DEFAULT_BACKGROUND_COLOR);
 	}
+	
 }

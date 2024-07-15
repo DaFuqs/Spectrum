@@ -70,7 +70,7 @@ public class StackedInkMeterWidget implements Drawable, Element, Selectable {
 		InkStorage inkStorage = this.blockEntity.getEnergyStorage();
 		long currentTotal = inkStorage.getCurrentTotal();
 		String readableCurrentTotalString = Support.getShortenedNumberString(currentTotal);
-		String percent = Support.getSensiblePercent(inkStorage.getCurrentTotal(), (inkStorage.getMaxTotal()));
+		String percent = Support.getSensiblePercentString(inkStorage.getCurrentTotal(), (inkStorage.getMaxTotal()));
 		drawContext.drawTooltip(client.textRenderer,List.of(Text.translatable("spectrum.tooltip.ink_powered.percent_filled", readableCurrentTotalString, percent)),
 			Optional.empty(), x, y);
 	}
@@ -83,7 +83,7 @@ public class StackedInkMeterWidget implements Drawable, Element, Selectable {
 			long maxTotal = inkStorage.getMaxTotal();
 			
 			int currentHeight = this.y + this.height;
-			for (InkColor color : InkColor.all()) {
+			for (InkColor color : InkColors.all()) {
 				long amount = inkStorage.getEnergy(color);
 				if (amount > 0) {
 					int height = Math.round(((float) amount / (float) maxTotal * this.height));

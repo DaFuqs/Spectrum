@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:white_dye"
   },
-  "color": "white",
+  "ink_color": "spectrum:white",
   "amount": 5,
   "required_advancement": "spectrum:hidden/collect_pigment/collect_white_pigment"
 }

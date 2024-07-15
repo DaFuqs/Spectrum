@@ -52,11 +52,6 @@ public class SpectrumRegistries {
 			return fallback;
 		}
 	}
-	
-	public static <T> List<RegistryEntry<T>> getEntries(Registry<T> registry, TagKey<T> tag) {
-		Optional<RegistryEntryList.Named<T>> tagEntries = registry.getEntryList(tag);
-		return tagEntries.map(registryEntries -> registryEntries.stream().toList()).orElseGet(List::of);
-	}
 
 	public static void register() {
 		LizardFrillVariant.init();

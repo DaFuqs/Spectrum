@@ -9,7 +9,7 @@
     "spectrum:bloodstone_cluster"
   ],
   "seconds_per_growth_stage": 300,
-  "ink_color": "red",
+  "ink_color": "spectrum:red",
   "ink_cost_tier": 4,
   "grows_without_catalyst": false,
   "catalysts": [

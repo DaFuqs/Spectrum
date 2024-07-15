@@ -69,8 +69,8 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 	}
 	
 	@Override
-	public DyeColor getDyeColor() {
-		return DyeColor.byId(this.dataTracker.get(COLOR));
+	public InkColor getInkColor() {
+		return InkColor.ofDyeColor(DyeColor.byId(this.dataTracker.get(COLOR)));
 	}
 	
 	public void setColor(InkColor inkColor) {
@@ -122,7 +122,7 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 		
 		Entity entity = entityHitResult.getEntity();
 		
-		if (EntityColorProcessorRegistry.colorEntity(entity, getDyeColor())) {
+		if (EntityColorProcessorRegistry.colorEntity(entity, getInkColor().getDyeColor())) {
 			entity.getWorld().playSoundFromEntity(null, entity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
 		}
 		
@@ -269,7 +269,7 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 				continue;
 			}
 			
-			if (EntityColorProcessorRegistry.colorEntity(entity, getDyeColor())) {
+			if (EntityColorProcessorRegistry.colorEntity(entity, getInkColor().getDyeColor())) {
 				entity.getWorld().playSoundFromEntity(null, entity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
 			}
 			
@@ -304,7 +304,7 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 	
 	@Override
 	public void spawnImpactParticles() {
-		DyeColor dyeColor = getDyeColor();
+		DyeColor dyeColor = getInkColor().getDyeColor();
 		World world = getWorld();
 		Vec3d targetPos = getPos();
 		Vec3d velocity = getVelocity();

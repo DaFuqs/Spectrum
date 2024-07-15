@@ -9,7 +9,7 @@
     "spectrum:bismuth_cluster"
   ],
   "seconds_per_growth_stage": 120,
-  "ink_color": "cyan",
+  "ink_color": "spectrum:cyan",
   "ink_cost_tier": 4,
   "grows_without_catalyst": false,
   "catalysts": [

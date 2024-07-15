@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:blue_dye"
   },
-  "color": "blue",
+  "ink_color": "spectrum:blue",
   "amount": 5,
   "required_advancement": "spectrum:hidden/collect_pigment/collect_blue_pigment"
 }

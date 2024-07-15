@@ -2,53 +2,48 @@ package de.dafuqs.spectrum.api.energy.color;
 
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.registry.entry.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import org.joml.*;
 
 import java.util.*;
 
-public abstract class InkColor {
+public class InkColor {
 	
 	protected static final Map<DyeColor, InkColor> DYE_TO_COLOR = new HashMap<>();
-	protected static final List<InkColor> ALL_COLORS = new ArrayList<>();
-	protected static final List<ElementalColor> ELEMENTAL_COLORS = new ArrayList<>();
 	
 	protected final DyeColor dyeColor;
 	protected final int colorInt;
 	protected final Vector3f colorVec;
 	protected final int textColor;
-	protected final boolean darkShade;
 	
 	protected final Identifier requiredAdvancement;
 	
-	protected InkColor(DyeColor dyeColor, int color, int textColor, Identifier requiredAdvancement, boolean darkShade) {
+	protected InkColor(DyeColor dyeColor, int color, Identifier requiredAdvancement) {
+		this(dyeColor, color, color, requiredAdvancement);
+	}
+	
+	protected InkColor(DyeColor dyeColor, int color, int textColor, Identifier requiredAdvancement) {
 		this.dyeColor = dyeColor;
 		this.colorInt = color;
 		this.colorVec = ColorHelper.colorIntToVec(color);
 		this.textColor = textColor;
 		this.requiredAdvancement = requiredAdvancement;
-		this.darkShade = darkShade;
 		
-		ALL_COLORS.add(this);
 		DYE_TO_COLOR.put(dyeColor, this);
 	}
 	
-	public static InkColor of(DyeColor dyeColor) {
+	public static InkColor ofDyeColor(DyeColor dyeColor) {
 		return DYE_TO_COLOR.get(dyeColor);
 	}
 	
-	public static InkColor of(String colorString) {
-		return DYE_TO_COLOR.get(DyeColor.valueOf(colorString.toUpperCase(Locale.ROOT)));
+	public static InkColor ofId(Identifier id) {
+		return SpectrumRegistries.INK_COLORS.get(id);
 	}
 	
-	public static List<InkColor> all() {
-		return ALL_COLORS;
-	}
-	
-	public static List<ElementalColor> elementals() {
-		return ELEMENTAL_COLORS;
+	public static InkColor ofIdString(String idString) {
+		return SpectrumRegistries.INK_COLORS.get(new Identifier(idString));
 	}
 	
 	public DyeColor getDyeColor() {
@@ -57,7 +52,7 @@ public abstract class InkColor {
 	
 	@Override
 	public String toString() {
-		return this.dyeColor.toString();
+		return this.getID().toString();
 	}
 	
 	@Override
@@ -75,7 +70,8 @@ public abstract class InkColor {
 	}
 	
 	public Text getName() {
-		return Text.translatable("spectrum.ink.color." + this);
+		Identifier id = this.getID();
+		return Text.translatable("spectrum.ink.color." + id.getNamespace() + "." + id.getPath());
 	}
 	
 	public MutableText getInkName() {
@@ -90,41 +86,22 @@ public abstract class InkColor {
 		return this.colorInt;
 	}
 	
+	public int getTextColor() {
+		return this.textColor;
+	}
+	
 	public Identifier getRequiredAdvancement() {
 		return requiredAdvancement;
 	}
 	
-	public boolean isDarkShade() {
-		return darkShade;
+	public Identifier getID() {
+		return SpectrumRegistries.INK_COLORS.getId(this);
 	}
-
-	public static InkColor getRandomMixedColor(InkColor color1, InkColor color2, net.minecraft.util.math.random.Random random) {
-		boolean color1Elemental = color1 instanceof ElementalColor;
-		boolean color2Elemental = color2 instanceof ElementalColor;
-
-		if (color1Elemental && color2Elemental) {
-			List<InkColor> possibleOutcomes = new ArrayList<>();
-
-			for (RegistryEntry<InkColor> c : SpectrumRegistries.getEntries(SpectrumRegistries.INK_COLORS, InkColorTags.COMPOUND_COLORS)) {
-				if (((CompoundColor) c.value()).isMixedUsing((ElementalColor) color1) && ((CompoundColor) c.value()).isMixedUsing((ElementalColor) color2)) {
-					possibleOutcomes.add(c.value());
-				}
-			}
-
-			if (!possibleOutcomes.isEmpty()) { // this should always be the case, but you never know
-				Collections.shuffle(possibleOutcomes);
-				return possibleOutcomes.get(0);
-			}
-			return color1;
-		} else if (color1Elemental) {
-			return color1;
-		} else if (color2Elemental) {
-			return color2;
-		} else {
-			return random.nextBoolean() ? color1 : color2;
-		}
+	
+	public boolean isIn(TagKey<InkColor> tag) {
+		return SpectrumRegistries.INK_COLORS.getEntry(this).isIn(tag);
 	}
-
+	
 }
 
 

@@ -47,7 +47,7 @@ public class CrystallarieumRecipeSerializer implements GatedRecipeSerializer<Cry
 			}
 		}
 		int secondsPerGrowthStage = JsonHelper.getInt(jsonObject, "seconds_per_growth_stage");
-		InkColor inkColor = InkColor.of(JsonHelper.getString(jsonObject, "ink_color"));
+		InkColor inkColor = InkColor.ofIdString(JsonHelper.getString(jsonObject, "ink_color"));
 		int inkCostTier = JsonHelper.getInt(jsonObject, "ink_cost_tier");
 		int inkPerSecond = inkCostTier == 0 ? 0 : (int) Math.pow(2, inkCostTier - 1);
 		boolean growsWithoutCatalyst = JsonHelper.getBoolean(jsonObject,   "grows_without_catalyst", false);
@@ -84,7 +84,7 @@ public class CrystallarieumRecipeSerializer implements GatedRecipeSerializer<Cry
 			packetByteBuf.writeString(RecipeUtils.blockStateToString(state));
 		}
 		packetByteBuf.writeInt(recipe.secondsPerGrowthStage);
-		packetByteBuf.writeString(recipe.inkColor.toString());
+		packetByteBuf.writeIdentifier(recipe.inkColor.getID());
 		packetByteBuf.writeInt(recipe.inkPerSecond);
 		packetByteBuf.writeBoolean(recipe.growsWithoutCatalyst);
 		packetByteBuf.writeInt(recipe.catalysts.size());
@@ -117,7 +117,7 @@ public class CrystallarieumRecipeSerializer implements GatedRecipeSerializer<Cry
 		}
 
 		int secondsPerGrowthStage = packetByteBuf.readInt();
-		InkColor inkColor = InkColor.of(packetByteBuf.readString());
+		InkColor inkColor = InkColor.ofId(packetByteBuf.readIdentifier());
 		int inkPerSecond = packetByteBuf.readInt();
 		boolean growthWithoutCatalyst = packetByteBuf.readBoolean();
 		List<CrystallarieumCatalyst> catalysts = new ArrayList<>();

@@ -53,7 +53,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 		super(SpectrumBlockEntities.COLOR_PICKER, blockPos, blockState);
 		
 		this.inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
-		this.inkStorage = new TotalCappedInkStorage(STORAGE_AMOUNT);
+		this.inkStorage = new TotalCappedInkStorage(STORAGE_AMOUNT, Map.of());
 		this.selectedColor = null;
 	}
 	
@@ -93,7 +93,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 		}
 		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
 		if (nbt.contains("SelectedColor", NbtElement.STRING_TYPE)) {
-			this.selectedColor = InkColor.of(nbt.getString("SelectedColor"));
+			this.selectedColor = InkColor.ofIdString(nbt.getString("SelectedColor"));
 		}
 	}
 	
@@ -106,7 +106,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 		nbt.put("InkStorage", this.inkStorage.toNbt());
 		PlayerOwned.writeOwnerUUID(nbt, this.ownerUUID);
 		if (this.selectedColor != null) {
-			nbt.putString("SelectedColor", this.selectedColor.toString());
+			nbt.putString("SelectedColor", this.selectedColor.getID().toString());
 		}
 	}
 	
@@ -193,7 +193,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 			buf.writeBoolean(false);
 		} else {
 			buf.writeBoolean(true);
-			buf.writeString(selectedColor.toString());
+			buf.writeString(selectedColor.getID().toString());
 		}
 	}
 	
@@ -262,7 +262,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 			}
 
 			if (this.selectedColor == null) {
-				for (InkColor color : InkColor.all()) {
+				for (InkColor color : InkColors.all()) {
 					transferredAmount += tryTransferInk(owner, stack, itemStorage, color);
 				}
 			} else {

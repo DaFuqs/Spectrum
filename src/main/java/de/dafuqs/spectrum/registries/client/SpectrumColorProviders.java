@@ -108,7 +108,7 @@ public class SpectrumColorProviders {
 		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> {
 			if (tintIndex == 1) {
 				List<InkPoweredStatusEffectInstance> effects = InkPoweredStatusEffectInstance.getEffects(stack);
-				if (effects.size() > 0) {
+				if (!effects.isEmpty()) {
 					return effects.get(0).getColor();
 				}
 			}

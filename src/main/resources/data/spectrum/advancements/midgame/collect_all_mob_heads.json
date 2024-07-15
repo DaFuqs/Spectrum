@@ -550,13 +550,193 @@
         ]
       }
     },
-    "has_lizard_head": {
+    "has_lizard_black_head": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "spectrum:lizard_head"
+              "spectrum:lizard_black_head"
+            ]
+          }
+        ]
+      }
+    },
+    "has_lizard_blue_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:lizard_blue_head"
+            ]
+          }
+        ]
+      }
+    },
+    "has_lizard_brown_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:lizard_brown_head"
+            ]
+          }
+        ]
+      }
+    },
+    "has_lizard_cyan_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:lizard_cyan_head"
+            ]
+          }
+        ]
+      }
+    },
+    "has_lizard_gray_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:lizard_gray_head"
+            ]
+          }
+        ]
+      }
+    },
+    "has_lizard_green_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:lizard_green_head"
+            ]
+          }
+        ]
+      }
+    },
+    "has_lizard_light_blue_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:lizard_light_blue_head"
+            ]
+          }
+        ]
+      }
+    },
+    "has_lizard_light_gray_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:lizard_light_gray_head"
+            ]
+          }
+        ]
+      }
+    },
+    "has_lizard_lime_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:lizard_lime_head"
+            ]
+          }
+        ]
+      }
+    },
+    "has_lizard_magenta_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:lizard_magenta_head"
+            ]
+          }
+        ]
+      }
+    },
+    "has_lizard_orange_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:lizard_orange_head"
+            ]
+          }
+        ]
+      }
+    },
+    "has_lizard_pink_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:lizard_pink_head"
+            ]
+          }
+        ]
+      }
+    },
+    "has_lizard_purple_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:lizard_purple_head"
+            ]
+          }
+        ]
+      }
+    },
+    "has_lizard_red_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:lizard_red_head"
+            ]
+          }
+        ]
+      }
+    },
+    "has_lizard_white_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:lizard_white_head"
+            ]
+          }
+        ]
+      }
+    },
+    "has_lizard_yellow_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:lizard_yellow_head"
             ]
           }
         ]

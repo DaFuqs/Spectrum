@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.blocks.mob_head.client;
 
 import com.google.common.collect.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.mob_head.*;
 import de.dafuqs.spectrum.blocks.mob_head.client.models.*;
 import de.dafuqs.spectrum.entity.render.*;
@@ -134,7 +135,22 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
         builder.put(SpectrumSkullType.EGG_LAYING_WOOLY_PIG, new Pair<>(new EggLayingWoolyPigHeadModel(modelLoader.getModelPart(SpectrumModelLayers.EGG_LAYING_WOOLY_PIG_HEAD)), EggLayingWoolyPigEntityRenderer.TEXTURE));
         builder.put(SpectrumSkullType.ERASER, new Pair<>(new SpiderHeadModel(modelLoader.getModelPart(SpectrumModelLayers.ERASER_HEAD)), SpectrumCommon.locate("textures/entity/eraser/eraser_combined.png")));
         builder.put(SpectrumSkullType.KINDLING, new Pair<>(new KindlingHeadModel(modelLoader.getModelPart(SpectrumModelLayers.KINDLING_HEAD)), KindlingVariant.DEFAULT.defaultTexture()));
-        builder.put(SpectrumSkullType.LIZARD, new Pair<>(new LizardHeadModel(modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD)), SpectrumCommon.locate("textures/entity/lizard/lizard_head.png")));
+        builder.put(SpectrumSkullType.LIZARD_BLACK, new Pair<>(new LizardHeadModel(modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD), modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD_FRILLS), InkColors.BLACK.getColorVec()), LizardHeadModel.HEAD_TEXTURE));
+        builder.put(SpectrumSkullType.LIZARD_BLUE, new Pair<>(new LizardHeadModel(modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD), modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD_FRILLS), InkColors.BLUE.getColorVec()), LizardHeadModel.HEAD_TEXTURE));
+        builder.put(SpectrumSkullType.LIZARD_BROWN, new Pair<>(new LizardHeadModel(modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD), modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD_FRILLS), InkColors.BROWN.getColorVec()), LizardHeadModel.HEAD_TEXTURE));
+        builder.put(SpectrumSkullType.LIZARD_CYAN, new Pair<>(new LizardHeadModel(modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD), modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD_FRILLS), InkColors.CYAN.getColorVec()), LizardHeadModel.HEAD_TEXTURE));
+        builder.put(SpectrumSkullType.LIZARD_GRAY, new Pair<>(new LizardHeadModel(modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD), modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD_FRILLS), InkColors.GRAY.getColorVec()), LizardHeadModel.HEAD_TEXTURE));
+        builder.put(SpectrumSkullType.LIZARD_GREEN, new Pair<>(new LizardHeadModel(modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD), modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD_FRILLS), InkColors.GREEN.getColorVec()), LizardHeadModel.HEAD_TEXTURE));
+        builder.put(SpectrumSkullType.LIZARD_LIGHT_BLUE, new Pair<>(new LizardHeadModel(modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD), modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD_FRILLS), InkColors.LIGHT_BLUE.getColorVec()), LizardHeadModel.HEAD_TEXTURE));
+        builder.put(SpectrumSkullType.LIZARD_LIGHT_GRAY, new Pair<>(new LizardHeadModel(modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD), modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD_FRILLS), InkColors.LIGHT_GRAY.getColorVec()), LizardHeadModel.HEAD_TEXTURE));
+        builder.put(SpectrumSkullType.LIZARD_LIME, new Pair<>(new LizardHeadModel(modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD), modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD_FRILLS), InkColors.LIME.getColorVec()), LizardHeadModel.HEAD_TEXTURE));
+        builder.put(SpectrumSkullType.LIZARD_MAGENTA, new Pair<>(new LizardHeadModel(modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD), modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD_FRILLS), InkColors.MAGENTA.getColorVec()), LizardHeadModel.HEAD_TEXTURE));
+        builder.put(SpectrumSkullType.LIZARD_ORANGE, new Pair<>(new LizardHeadModel(modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD), modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD_FRILLS), InkColors.ORANGE.getColorVec()), LizardHeadModel.HEAD_TEXTURE));
+        builder.put(SpectrumSkullType.LIZARD_PINK, new Pair<>(new LizardHeadModel(modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD), modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD_FRILLS), InkColors.PINK.getColorVec()), LizardHeadModel.HEAD_TEXTURE));
+        builder.put(SpectrumSkullType.LIZARD_PURPLE, new Pair<>(new LizardHeadModel(modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD), modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD_FRILLS), InkColors.PURPLE.getColorVec()), LizardHeadModel.HEAD_TEXTURE));
+        builder.put(SpectrumSkullType.LIZARD_RED, new Pair<>(new LizardHeadModel(modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD), modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD_FRILLS), InkColors.RED.getColorVec()), LizardHeadModel.HEAD_TEXTURE));
+        builder.put(SpectrumSkullType.LIZARD_WHITE, new Pair<>(new LizardHeadModel(modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD), modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD_FRILLS), InkColors.WHITE.getColorVec()), LizardHeadModel.HEAD_TEXTURE));
+        builder.put(SpectrumSkullType.LIZARD_YELLOW, new Pair<>(new LizardHeadModel(modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD), modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD_FRILLS), InkColors.YELLOW.getColorVec()), LizardHeadModel.HEAD_TEXTURE));
         builder.put(SpectrumSkullType.MONSTROSITY, new Pair<>(new MonstrosityHeadModel(modelLoader.getModelPart(SpectrumModelLayers.MONSTROSITY_HEAD)), MonstrosityEntityRenderer.TEXTURE));
         builder.put(SpectrumSkullType.PRESERVATION_TURRET, new Pair<>(new PreservationTurretHeadModel(modelLoader.getModelPart(SpectrumModelLayers.PRESERVATION_TURRET_HEAD)), PreservationTurretEntityRenderer.TEXTURE));
 

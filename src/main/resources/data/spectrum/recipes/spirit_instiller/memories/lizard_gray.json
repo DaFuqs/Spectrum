@@ -1,0 +1,27 @@
+﻿{
+  "type": "spectrum:spirit_instiller",
+  "group": "memories",
+  "time": 800,
+  "experience": 4.0,
+  "ingredient1": {
+    "item": "spectrum:lizard_gray_head"
+  },
+  "ingredient2": {
+    "tag": "c:raw_meat"
+  },
+  "center_ingredient": {
+    "tag": "spectrum:memory_bonding_agents",
+    "count": 4
+  },
+  "result": {
+    "item": "spectrum:memory",
+    "nbt": {
+      "EntityTag": {
+        "id": "spectrum:lizard",
+        "color": "spectrum:gray"
+      },
+      "TicksToManifest": 16
+    }
+  },
+  "required_advancement": "spectrum:unlocks/blocks/memories"
+}

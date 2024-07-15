@@ -119,7 +119,7 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 	@Override
 	public void writeCustomDataToNbt(NbtCompound nbt) {
 		super.writeCustomDataToNbt(nbt);
-		nbt.putString("color", SpectrumRegistries.INK_COLORS.getId(this.getColor()).toString());
+		nbt.putString("color", this.getColor().getID().toString());
 		nbt.putString("frills", SpectrumRegistries.LIZARD_FRILL_VARIANT.getId(this.getFrills()).toString());
 		nbt.putString("horns", SpectrumRegistries.LIZARD_HORN_VARIANT.getId(this.getHorns()).toString());
 		writePOIPosToNbt(nbt);

@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.loot;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.mob_head.*;
 import de.dafuqs.spectrum.compat.gofish.*;
 import de.dafuqs.spectrum.entity.type_specific_predicates.*;
@@ -21,7 +22,7 @@ import java.util.*;
 
 public class SpectrumLootPoolModifiers {
 	
-	private static final Map<Identifier, TreasureHunterDropDefinition> trophyHunterLootPools = new HashMap<>() {{
+	private static final Map<Identifier, TreasureHunterDropDefinition> treasureHunterLootPools = new HashMap<>() {{
 		// Additional vanilla head drops
 		put(new Identifier("entities/creeper"), new TreasureHunterDropDefinition(Items.CREEPER_HEAD, 0.02F));
 		put(new Identifier("entities/skeleton"), new TreasureHunterDropDefinition(Items.SKELETON_SKULL, 0.02F));
@@ -103,7 +104,6 @@ public class SpectrumLootPoolModifiers {
 		put(new Identifier("spectrum:entities/kindling"), new TreasureHunterDropDefinition(SpectrumSkullBlock.getBlock(SpectrumSkullType.KINDLING).get().asItem(), 0.1F));
 		put(new Identifier("spectrum:entities/preservation_turret"), new TreasureHunterDropDefinition(SpectrumSkullBlock.getBlock(SpectrumSkullType.PRESERVATION_TURRET).get().asItem(), 0.1F));
 		put(new Identifier("spectrum:entities/monstrosity"), new TreasureHunterDropDefinition(SpectrumSkullBlock.getBlock(SpectrumSkullType.MONSTROSITY).get().asItem(), 0.1F));
-		put(new Identifier("spectrum:entities/lizard"), new TreasureHunterDropDefinition(SpectrumSkullBlock.getBlock(SpectrumSkullType.LIZARD).get().asItem(), 0.1F));
 		put(new Identifier("spectrum:entities/eraser"), new TreasureHunterDropDefinition(SpectrumSkullBlock.getBlock(SpectrumSkullType.ERASER).get().asItem(), 0.1F));
 	}};
 	
@@ -111,8 +111,8 @@ public class SpectrumLootPoolModifiers {
 		LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
 			
 			// Treasure hunter pools
-			if (trophyHunterLootPools.containsKey(id)) {
-				TreasureHunterDropDefinition treasureHunterDropDefinition = trophyHunterLootPools.get(id);
+			if (treasureHunterLootPools.containsKey(id)) {
+				TreasureHunterDropDefinition treasureHunterDropDefinition = treasureHunterLootPools.get(id);
 				tableBuilder.pool(getLootPool(treasureHunterDropDefinition));
 				// Some treasure hunter pools use custom loot conditions
 				// because vanillas are too generic (fox/snow fox both use "fox" loot table)
@@ -140,6 +140,23 @@ public class SpectrumLootPoolModifiers {
 				tableBuilder.pool(getShulkerLootPool(DyeColor.RED, SpectrumSkullBlock.getBlock(SpectrumSkullType.SHULKER_RED).get().asItem(), 0.05F));
 				tableBuilder.pool(getShulkerLootPool(DyeColor.WHITE, SpectrumSkullBlock.getBlock(SpectrumSkullType.SHULKER_WHITE).get().asItem(), 0.05F));
 				tableBuilder.pool(getShulkerLootPool(DyeColor.YELLOW, SpectrumSkullBlock.getBlock(SpectrumSkullType.SHULKER_YELLOW).get().asItem(), 0.05F));
+			} else if (id.equals(SpectrumCommon.locate("entities/lizard"))) {
+				tableBuilder.pool(getLizardLootPool(InkColors.BLACK, SpectrumSkullBlock.getBlock(SpectrumSkullType.LIZARD_BLACK).get().asItem(), 0.05F));
+				tableBuilder.pool(getLizardLootPool(InkColors.BLUE, SpectrumSkullBlock.getBlock(SpectrumSkullType.LIZARD_BLUE).get().asItem(), 0.05F));
+				tableBuilder.pool(getLizardLootPool(InkColors.BROWN, SpectrumSkullBlock.getBlock(SpectrumSkullType.LIZARD_BROWN).get().asItem(), 0.05F));
+				tableBuilder.pool(getLizardLootPool(InkColors.CYAN, SpectrumSkullBlock.getBlock(SpectrumSkullType.LIZARD_CYAN).get().asItem(), 0.05F));
+				tableBuilder.pool(getLizardLootPool(InkColors.GRAY, SpectrumSkullBlock.getBlock(SpectrumSkullType.LIZARD_GRAY).get().asItem(), 0.05F));
+				tableBuilder.pool(getLizardLootPool(InkColors.GREEN, SpectrumSkullBlock.getBlock(SpectrumSkullType.LIZARD_GREEN).get().asItem(), 0.05F));
+				tableBuilder.pool(getLizardLootPool(InkColors.LIGHT_BLUE, SpectrumSkullBlock.getBlock(SpectrumSkullType.LIZARD_LIGHT_BLUE).get().asItem(), 0.05F));
+				tableBuilder.pool(getLizardLootPool(InkColors.LIGHT_GRAY, SpectrumSkullBlock.getBlock(SpectrumSkullType.LIZARD_LIGHT_GRAY).get().asItem(), 0.05F));
+				tableBuilder.pool(getLizardLootPool(InkColors.LIME, SpectrumSkullBlock.getBlock(SpectrumSkullType.LIZARD_LIME).get().asItem(), 0.05F));
+				tableBuilder.pool(getLizardLootPool(InkColors.MAGENTA, SpectrumSkullBlock.getBlock(SpectrumSkullType.LIZARD_MAGENTA).get().asItem(), 0.05F));
+				tableBuilder.pool(getLizardLootPool(InkColors.ORANGE, SpectrumSkullBlock.getBlock(SpectrumSkullType.LIZARD_ORANGE).get().asItem(), 0.05F));
+				tableBuilder.pool(getLizardLootPool(InkColors.PINK, SpectrumSkullBlock.getBlock(SpectrumSkullType.LIZARD_PINK).get().asItem(), 0.05F));
+				tableBuilder.pool(getLizardLootPool(InkColors.PURPLE, SpectrumSkullBlock.getBlock(SpectrumSkullType.LIZARD_PURPLE).get().asItem(), 0.05F));
+				tableBuilder.pool(getLizardLootPool(InkColors.RED, SpectrumSkullBlock.getBlock(SpectrumSkullType.LIZARD_RED).get().asItem(), 0.05F));
+				tableBuilder.pool(getLizardLootPool(InkColors.WHITE, SpectrumSkullBlock.getBlock(SpectrumSkullType.LIZARD_WHITE).get().asItem(), 0.05F));
+				tableBuilder.pool(getLizardLootPool(InkColors.YELLOW, SpectrumSkullBlock.getBlock(SpectrumSkullType.LIZARD_YELLOW).get().asItem(), 0.05F));
 			} else if (id.equals(new Identifier("entities/axolotl"))) {
 				tableBuilder.pool(getAxolotlLootPool(AxolotlEntity.Variant.BLUE, SpectrumSkullBlock.getBlock(SpectrumSkullType.AXOLOTL_BLUE).get().asItem(), 0.02F));
 				tableBuilder.pool(getAxolotlLootPool(AxolotlEntity.Variant.CYAN, SpectrumSkullBlock.getBlock(SpectrumSkullType.AXOLOTL_CYAN).get().asItem(), 0.02F));
@@ -213,6 +230,15 @@ public class SpectrumLootPoolModifiers {
 				.rolls(ConstantLootNumberProvider.create(1))
 				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
 				.conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().typeSpecific(ShulkerPredicate.of(c.orElse(null))).build()).build())
+				.with(ItemEntry.builder(item).build())
+				.build();
+	}
+	
+	private static LootPool getLizardLootPool(InkColor linkColor, Item item, float chance) {
+		return new LootPool.Builder()
+				.rolls(ConstantLootNumberProvider.create(1))
+				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
+				.conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().typeSpecific(LizardPredicate.of(Optional.of(linkColor), Optional.empty(), Optional.empty())).build()).build())
 				.with(ItemEntry.builder(item).build())
 				.build();
 	}

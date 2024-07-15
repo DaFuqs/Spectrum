@@ -42,10 +42,11 @@ import java.util.*;
 public class SanityCommand {
 
 	private static final List<Identifier> ADVANCEMENT_GATING_WARNING_WHITELIST = List.of(
-			SpectrumCommon.locate("find_preservation_ruins"),                    // does not have a prerequisite
-			SpectrumCommon.locate("fail_to_glitch_into_preservation_ruin"),        // does not have a prerequisite
+			SpectrumCommon.locate("find_preservation_ruins"),                     // does not have a prerequisite
+			SpectrumCommon.locate("fail_to_glitch_into_preservation_ruin"),       // does not have a prerequisite
 			SpectrumCommon.locate("midgame/craft_blacklisted_memory_success"),    // its parent is 2 parents in
-			SpectrumCommon.locate("lategame/collect_myceylon")                    // its parent is 2 parents in
+			SpectrumCommon.locate("lategame/collect_myceylon"),                   // its parent is 2 parents in
+			SpectrumCommon.locate("lategame/strike_up_hummingstone_hymn")         // its parent is 2 parents in
 	);
 	
 	public static void register(LiteralCommandNode<ServerCommandSource> root) {

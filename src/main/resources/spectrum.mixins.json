@@ -96,7 +96,6 @@
     "accessors.DimensionEffectsAccessor",
     "accessors.InGameHudAccessor",
     "accessors.WorldRendererAccessor",
-
     "client.AbstractClientEntityMixin",
     "client.BackgroundRendererMixin",
     "client.BipedEntityModelMixin",
@@ -115,6 +114,7 @@
     "client.InGameOverlayRendererMixin",
     "client.ItemRendererMixin",
     "client.LightmapTextureManagerMixin",
+    "client.MinecraftClientMixin",
     "client.MixinParticleManager",
     "client.PotionItemClientMixin",
     "client.TranslationStorageMixin",

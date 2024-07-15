@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.mixin.client;
 
 import com.llamalad7.mixinextras.injector.*;
-import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.*;
 import net.minecraft.client.render.*;
@@ -15,7 +15,7 @@ public class LightmapTextureManagerMixin {
 	@ModifyReturnValue(method = "getDarkness", at = @At("RETURN"))
 	private float spectrum$getDarkness(float original) {
 		if (isInDim()) {
-			if (SpectrumCommon.CONFIG.Torchless) {
+			if (SpectrumCommon.CONFIG.ExtraDarkDimension) {
 				return Math.max(0.24F, original);
 			}
 			else {
@@ -29,7 +29,7 @@ public class LightmapTextureManagerMixin {
 	@ModifyExpressionValue(method = "update", at = @At(value = "INVOKE", target = "Ljava/lang/Double;floatValue()F", ordinal = 1))
 	private float spectrum$decreaseGamma(float original) {
 		if (isInDim()) {
-			if (SpectrumCommon.CONFIG.Torchless) {
+			if (SpectrumCommon.CONFIG.ExtraDarkDimension) {
 				return -1.5F;
 			}
 			else {
@@ -41,7 +41,7 @@ public class LightmapTextureManagerMixin {
 
 	@ModifyExpressionValue(method = "update", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;hasStatusEffect(Lnet/minecraft/entity/effect/StatusEffect;)Z", ordinal = 0))
 	private boolean spectrum$disableNightVision(boolean original) {
-		if (isInDim() && SpectrumCommon.CONFIG.Torchless) {
+		if (isInDim() && SpectrumCommon.CONFIG.ExtraDarkDimension) {
 			return false;
 		}
 		return original;
@@ -50,7 +50,7 @@ public class LightmapTextureManagerMixin {
 	@Unique
 	private static boolean isInDim() {
 		MinecraftClient client = MinecraftClient.getInstance();
-		return SpectrumDimensions.DIMENSION_KEY.equals(client.player.getWorld().getRegistryKey());
+		return SpectrumDimensions.DIMENSION_KEY == client.world.getRegistryKey();
 	}
 
 }

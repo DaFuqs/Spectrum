@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.blocks.dd_deco.*;
+import de.dafuqs.spectrum.blocks.deeper_down.flora.Dragonjag;
 import net.minecraft.registry.*;
 import net.minecraft.world.gen.feature.*;
 

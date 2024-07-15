@@ -15,9 +15,11 @@ import de.dafuqs.spectrum.blocks.conditional.blood_orchid.*;
 import de.dafuqs.spectrum.blocks.conditional.colored_tree.*;
 import de.dafuqs.spectrum.blocks.conditional.resonant_lily.*;
 import de.dafuqs.spectrum.blocks.crystallarieum.*;
-import de.dafuqs.spectrum.blocks.dd_deco.*;
+import de.dafuqs.spectrum.blocks.deeper_down.*;
 import de.dafuqs.spectrum.blocks.decay.*;
 import de.dafuqs.spectrum.blocks.decoration.*;
+import de.dafuqs.spectrum.blocks.deeper_down.flora.*;
+import de.dafuqs.spectrum.blocks.deeper_down.groundcover.*;
 import de.dafuqs.spectrum.blocks.enchanter.*;
 import de.dafuqs.spectrum.blocks.ender.*;
 import de.dafuqs.spectrum.blocks.energy.*;
@@ -272,6 +274,7 @@ public class SpectrumBlocks {
 	public static final Block BONE_ASH_TILE_WALL = new WallBlock(Settings.copy(BONE_ASH_TILES));
 
 	public static final Block SLUSH = new PillarBlock(blackslag(BlockSoundGroup.MUDDY_MANGROVE_ROOTS));
+	public static final Block OVERGROWN_SLUSH = new SlushVegetationBlock(blackslag(BlockSoundGroup.MUDDY_MANGROVE_ROOTS));
 	public static final Block TILLED_SLUSH = new TilledSlushBlock(Settings.copy(SLUSH), SLUSH.getDefaultState());
 
 	public static final Block BLACK_MATERIA = new BlackMateriaBlock(settings(MapColor.TERRACOTTA_BLACK, BlockSoundGroup.SAND, 0.0F).instrument(Instrument.SNARE).ticksRandomly());
@@ -625,7 +628,7 @@ public class SpectrumBlocks {
 	public static final Block STRIPPED_SLATE_NOXCAP_HYPHAE = new PillarBlock(noxcap(MapColor.GRAY));
 	public static final Block SLATE_NOXCAP_HYPHAE = new StrippingLootPillarBlock(noxcap(MapColor.GRAY), STRIPPED_SLATE_NOXCAP_HYPHAE, SpectrumCommon.locate("gameplay/stripping/slate_noxcap_stripping"));
 	public static final Block SLATE_NOXCAP_BLOCK = new Block(noxcap(MapColor.GRAY));
-	public static final PillarBlock SLATE_NOXCAP_GILLS = new PillarBlock(noxcap(MapColor.DIAMOND_BLUE).luminance(state -> 12).emissiveLighting(SpectrumBlocks::always).postProcess(SpectrumBlocks::always));
+	public static final PillarBlock SLATE_NOXCAP_GILLS = new PillarBlock(noxcap(MapColor.DIAMOND_BLUE).luminance(state -> 9).emissiveLighting(SpectrumBlocks::always).postProcess(SpectrumBlocks::always));
 	public static final Block SLATE_NOXWOOD_PLANKS = new Block(noxcap(MapColor.GRAY));
 	public static final StairsBlock SLATE_NOXWOOD_STAIRS = new StairsBlock(SLATE_NOXWOOD_PLANKS.getDefaultState(), noxcap(MapColor.GRAY));
 	public static final SlabBlock SLATE_NOXWOOD_SLAB = new SlabBlock(noxcap(MapColor.GRAY));
@@ -646,7 +649,7 @@ public class SpectrumBlocks {
 	public static final Block STRIPPED_EBONY_NOXCAP_HYPHAE = new PillarBlock(noxcap(MapColor.TERRACOTTA_BLACK));
 	public static final Block EBONY_NOXCAP_HYPHAE = new StrippingLootPillarBlock(noxcap(MapColor.TERRACOTTA_BLACK), STRIPPED_EBONY_NOXCAP_HYPHAE, SpectrumCommon.locate("gameplay/stripping/ebony_noxcap_stripping"));
 	public static final Block EBONY_NOXCAP_BLOCK = new Block(noxcap(MapColor.TERRACOTTA_BLACK));
-	public static final PillarBlock EBONY_NOXCAP_GILLS = new PillarBlock(noxcap(MapColor.DIAMOND_BLUE).luminance(state -> 12).emissiveLighting(SpectrumBlocks::always).postProcess(SpectrumBlocks::always));
+	public static final PillarBlock EBONY_NOXCAP_GILLS = new PillarBlock(noxcap(MapColor.DIAMOND_BLUE).luminance(state -> 9).emissiveLighting(SpectrumBlocks::always).postProcess(SpectrumBlocks::always));
 	public static final Block EBONY_NOXWOOD_PLANKS = new Block(noxcap(MapColor.TERRACOTTA_BLACK));
 	public static final StairsBlock EBONY_NOXWOOD_STAIRS = new StairsBlock(EBONY_NOXWOOD_PLANKS.getDefaultState(), noxcap(MapColor.TERRACOTTA_BLACK));
 	public static final SlabBlock EBONY_NOXWOOD_SLAB = new SlabBlock(noxcap(MapColor.TERRACOTTA_BLACK));
@@ -667,7 +670,7 @@ public class SpectrumBlocks {
 	public static final Block STRIPPED_IVORY_NOXCAP_HYPHAE = new PillarBlock(noxcap(MapColor.OFF_WHITE));
 	public static final Block IVORY_NOXCAP_HYPHAE = new StrippingLootPillarBlock(noxcap(MapColor.OFF_WHITE), STRIPPED_IVORY_NOXCAP_HYPHAE, SpectrumCommon.locate("gameplay/stripping/ivory_noxcap_stripping"));
 	public static final Block IVORY_NOXCAP_BLOCK = new Block(noxcap(MapColor.OFF_WHITE));
-	public static final PillarBlock IVORY_NOXCAP_GILLS = new PillarBlock(noxcap(MapColor.DIAMOND_BLUE).luminance(state -> 12).emissiveLighting(SpectrumBlocks::always).postProcess(SpectrumBlocks::always));
+	public static final PillarBlock IVORY_NOXCAP_GILLS = new PillarBlock(noxcap(MapColor.DIAMOND_BLUE).luminance(state -> 9).emissiveLighting(SpectrumBlocks::always).postProcess(SpectrumBlocks::always));
 	public static final Block IVORY_NOXWOOD_PLANKS = new Block(noxcap(MapColor.OFF_WHITE));
 	public static final StairsBlock IVORY_NOXWOOD_STAIRS = new StairsBlock(IVORY_NOXWOOD_PLANKS.getDefaultState(), noxcap(MapColor.OFF_WHITE));
 	public static final SlabBlock IVORY_NOXWOOD_SLAB = new SlabBlock(noxcap(MapColor.OFF_WHITE));
@@ -688,7 +691,7 @@ public class SpectrumBlocks {
 	public static final Block STRIPPED_CHESTNUT_NOXCAP_HYPHAE = new PillarBlock(noxcap(MapColor.OFF_WHITE));
 	public static final Block CHESTNUT_NOXCAP_HYPHAE = new StrippingLootPillarBlock(noxcap(MapColor.OFF_WHITE), STRIPPED_CHESTNUT_NOXCAP_HYPHAE, SpectrumCommon.locate("gameplay/stripping/chestnut_noxcap_stripping"));
 	public static final Block CHESTNUT_NOXCAP_BLOCK = new Block(noxcap(MapColor.DULL_RED));
-	public static final PillarBlock CHESTNUT_NOXCAP_GILLS = new PillarBlock(noxcap(MapColor.DIAMOND_BLUE).luminance(state -> 12).emissiveLighting(SpectrumBlocks::always).postProcess(SpectrumBlocks::always));
+	public static final PillarBlock CHESTNUT_NOXCAP_GILLS = new PillarBlock(noxcap(MapColor.DIAMOND_BLUE).luminance(state -> 9).emissiveLighting(SpectrumBlocks::always).postProcess(SpectrumBlocks::always));
 	public static final Block CHESTNUT_NOXWOOD_PLANKS = new Block(noxcap(MapColor.DULL_RED));
 	public static final StairsBlock CHESTNUT_NOXWOOD_STAIRS = new StairsBlock(CHESTNUT_NOXWOOD_PLANKS.getDefaultState(), noxcap(MapColor.DULL_RED));
 	public static final SlabBlock CHESTNUT_NOXWOOD_SLAB = new SlabBlock(noxcap(MapColor.DULL_RED));
@@ -729,13 +732,16 @@ public class SpectrumBlocks {
 	public static final Block TALL_PINK_DRAGONJAG = new TallDragonjagBlock(dragonjag(MapColor.DARK_DULL_PINK), Dragonjag.Variant.PINK);
 	public static final Block TALL_PURPLE_DRAGONJAG = new TallDragonjagBlock(dragonjag(MapColor.PURPLE), Dragonjag.Variant.PURPLE);
 	public static final Block TALL_BLACK_DRAGONJAG = new TallDragonjagBlock(dragonjag(MapColor.TERRACOTTA_BLACK), Dragonjag.Variant.BLACK);
-	
+
+	//Flora
 	public static final Block ALOE = new AloeBlock(settings(MapColor.DARK_GREEN, BlockSoundGroup.GRASS, 1.0F).noCollision().ticksRandomly().nonOpaque());
 	public static final Block SAWBLADE_HOLLY_BUSH = new SawbladeHollyBushBlock(settings(MapColor.TERRACOTTA_GREEN, BlockSoundGroup.GRASS, 0.0F).noCollision().ticksRandomly().nonOpaque());
 	public static final Block BRISTLE_SPROUTS = new BristleSproutsBlock(settings(MapColor.PALE_GREEN, BlockSoundGroup.GRASS, 0.0F).noCollision().nonOpaque().offset(OffsetType.XZ));
 	public static final Block DOOMBLOOM = new DoomBloomBlock(settings(MapColor.PALE_GREEN, BlockSoundGroup.GRASS, 0.0F).ticksRandomly().noCollision().luminance((state) -> state.get(DoomBloomBlock.AGE) * 2).nonOpaque());
 	public static final Block SNAPPING_IVY = new SnappingIvyBlock(settings(MapColor.PALE_GREEN, BlockSoundGroup.GRASS, 3.0F).noCollision().nonOpaque());
-	
+
+	public static final AbyssalVinesBlock ABYSSAL_VINES = new AbyssalVinesBlock(settings(MapColor.DARK_GREEN, BlockSoundGroup.CAVE_VINES, 2.0F).noCollision().ticksRandomly().nonOpaque().luminance(state -> state.get(Properties.BERRIES) ? 13 : 0));
+
 	public static final Block HUMMINGSTONE_GLASS = new GlassBlock(settings(MapColor.PALE_YELLOW, BlockSoundGroup.GLASS, 5.0F, 100.0F).nonOpaque().requiresTool());
 	public static final Block HUMMINGSTONE = new HummingstoneBlock(Settings.copy(HUMMINGSTONE_GLASS).luminance((state) -> 14));
 	public static final Block CLEAR_HUMMINGSTONE_GLASS = new GlassBlock(Settings.copy(HUMMINGSTONE_GLASS));
@@ -1665,6 +1671,8 @@ public class SpectrumBlocks {
 		registerBlockWithItem("bristle_sprouts", BRISTLE_SPROUTS, settings, DyeColor.LIME);
 		registerBlock("doombloom", DOOMBLOOM);
 		registerBlockWithItem("snapping_ivy", SNAPPING_IVY, settings, DyeColor.RED);
+
+		registerBlockWithItem("abyssal_vines", ABYSSAL_VINES, settings, DyeColor.BROWN);
 		
 		registerBlockWithItem("varia_sprout", VARIA_SPROUT, settings, DyeColor.WHITE);
 
@@ -2100,8 +2108,9 @@ public class SpectrumBlocks {
 		
 		registerBlockWithItem("polished_bone_ash_pillar", POLISHED_BONE_ASH_PILLAR, settings, DyeColor.CYAN);
 		registerBlockWithItem("bone_ash_shingles", BONE_ASH_SHINGLES, settings, DyeColor.CYAN);
-		
+
 		registerBlockWithItem("slush", SLUSH, settings, DyeColor.BROWN);
+		registerBlockWithItem("overgrown_slush", OVERGROWN_SLUSH, settings, DyeColor.BROWN);
 		registerBlockWithItem("tilled_slush", TILLED_SLUSH, settings, DyeColor.BROWN);
 		registerBlockWithItem("black_sludge", BLACK_SLUDGE, IS.of(), DyeColor.GRAY);
 		
@@ -2862,7 +2871,9 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.AMARANTH, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.AMARANTH_BUSHEL, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_AMARANTH_BUSHEL, RenderLayer.getCutout());
-		
+
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ABYSSAL_VINES, RenderLayer.getCutout());
+
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.BLOOD_ORCHID, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_BLOOD_ORCHID, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_RESONANT_LILY, RenderLayer.getCutout());

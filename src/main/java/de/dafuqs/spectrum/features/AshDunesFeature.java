@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.features;
 
 import com.mojang.serialization.*;
-import de.dafuqs.spectrum.blocks.dd_deco.*;
+import de.dafuqs.spectrum.blocks.deeper_down.groundcover.AshPileBlock;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.state.property.*;
 import net.minecraft.util.math.*;

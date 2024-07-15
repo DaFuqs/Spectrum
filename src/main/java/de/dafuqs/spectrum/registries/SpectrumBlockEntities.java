@@ -8,7 +8,7 @@ import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.blocks.cinderhearth.*;
 import de.dafuqs.spectrum.blocks.crystallarieum.*;
-import de.dafuqs.spectrum.blocks.dd_deco.*;
+import de.dafuqs.spectrum.blocks.deeper_down.*;
 import de.dafuqs.spectrum.blocks.enchanter.*;
 import de.dafuqs.spectrum.blocks.ender.*;
 import de.dafuqs.spectrum.blocks.energy.*;

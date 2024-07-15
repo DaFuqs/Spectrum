@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.helpers;
 
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.state.property.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
@@ -27,7 +28,7 @@ public final class BlockReference {
         return new BlockReference(state, Optional.empty(), pos);
     }
 
-    public static BlockReference of(World world, BlockPos pos) {
+    public static BlockReference of(WorldAccess world, BlockPos pos) {
         return new BlockReference(world.getBlockState(pos), Optional.ofNullable(world.getBlockEntity(pos)), pos);
     }
 
@@ -35,7 +36,7 @@ public final class BlockReference {
         return new BlockReference(state, Optional.of(entity), pos);
     }
 
-    public BlockReference tryRecreateWithBE(World world) {
+    public BlockReference tryRecreateWithBE(WorldAccess world) {
         return new BlockReference(state, Optional.ofNullable(world.getBlockEntity(pos)), pos);
     }
 
@@ -54,13 +55,17 @@ public final class BlockReference {
     public boolean exists() {
         return state != null && pos != null;
     }
-    
+
     public boolean isOf(Block block) {
         return state.isOf(block);
     }
-    
+
     public boolean isOf(BlockState blockState) {
         return state == blockState;
+    }
+
+    public boolean isIn(TagKey<Block> tag) {
+        return state.isIn(tag);
     }
 
     public boolean validateBE() {
@@ -71,11 +76,11 @@ public final class BlockReference {
         return be;
     }
 
-    public void update(World world, int flags) {
+    public void update(WorldAccess world, int flags) {
         world.setBlockState(pos, state, flags);
     }
 
-    public void update(World world) {
+    public void update(WorldAccess world) {
         update(world, Block.NOTIFY_ALL);
     }
 }

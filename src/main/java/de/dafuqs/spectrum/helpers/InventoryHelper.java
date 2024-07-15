@@ -510,5 +510,18 @@ public class InventoryHelper {
 		}
 		return contentCount;
 	}
-	
+
+	public static void insertOrDropItemstacks(Inventory inventory, World world, BlockPos pos, ItemStack ... stacks) {
+		if (canFitStacks(List.of(stacks), inventory)) {
+			for (ItemStack stack : stacks) {
+				smartAddToInventory(stack, inventory, null);
+			}
+			return;
+		}
+
+		for (ItemStack stack : stacks) {
+			Block.dropStack(world, pos, stack);
+
+		}
+	}
 }

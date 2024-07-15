@@ -1,8 +1,10 @@
 package de.dafuqs.spectrum.particle.client;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.deeper_down.HowlingSpireEffects;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.render.*;
 import net.minecraft.client.world.*;
@@ -44,6 +46,13 @@ public class FallingAshParticle extends SpriteBillboardParticle {
 	@Override
 	public void tick() {
 		pos.set(x, y, z);
+
+		var camPos = MinecraftClient.getInstance().getCameraEntity().getPos();
+		var distance = Math.sqrt(camPos.squaredDistanceTo(x, y, z));
+		if (distance > HowlingSpireEffects.getRenderRadius() - 1) {
+			markDead();
+			return;
+		}
 		
 		this.prevAngle = this.angle;
 		var water = !this.world.getFluidState(pos).isEmpty();

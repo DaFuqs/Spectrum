@@ -1,20 +1,27 @@
 package de.dafuqs.spectrum.mixin.client;
 
 import com.llamalad7.mixinextras.injector.*;
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.*;
 import net.minecraft.client.render.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 
-@Mixin(LightmapTextureManager.class)
+@Mixin(value = LightmapTextureManager.class, priority = 9999)
 
 public class LightmapTextureManagerMixin {
 	
 	@ModifyReturnValue(method = "getDarkness", at = @At("RETURN"))
 	private float spectrum$getDarkness(float original) {
 		if (isInDim()) {
-			return Math.max(0.12F, original);
+			if (SpectrumCommon.CONFIG.Torchless) {
+				return Math.max(0.24F, original);
+			}
+			else {
+				return Math.max(0.12F, original);
+			}
+
 		}
 		return original;
 	}
@@ -22,7 +29,20 @@ public class LightmapTextureManagerMixin {
 	@ModifyExpressionValue(method = "update", at = @At(value = "INVOKE", target = "Ljava/lang/Double;floatValue()F", ordinal = 1))
 	private float spectrum$decreaseGamma(float original) {
 		if (isInDim()) {
-			return original - 0.5F;
+			if (SpectrumCommon.CONFIG.Torchless) {
+				return -1.5F;
+			}
+			else {
+				return original - 0.5F;
+			}
+		}
+		return original;
+	}
+
+	@ModifyExpressionValue(method = "update", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;hasStatusEffect(Lnet/minecraft/entity/effect/StatusEffect;)Z", ordinal = 0))
+	private boolean spectrum$disableNightVision(boolean original) {
+		if (isInDim() && SpectrumCommon.CONFIG.Torchless) {
+			return false;
 		}
 		return original;
 	}

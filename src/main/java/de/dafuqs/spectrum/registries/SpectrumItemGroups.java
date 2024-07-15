@@ -340,6 +340,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.JARAMEL);
 		entries.add(SpectrumItems.MOONSTRUCK_NECTAR);
 		entries.add(SpectrumItems.GLASS_PEACH);
+		entries.add(SpectrumItems.FISSURE_PLUM);
 		entries.add(SpectrumItems.BLOODBOIL_SYRUP);
 		entries.add(SpectrumItems.SCONE);
 		entries.add(SpectrumItems.STAR_CANDY);
@@ -841,6 +842,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.BONE_ASH_SHINGLES);
 		entries.add(SpectrumBlocks.BLACK_MATERIA);
 		entries.add(SpectrumBlocks.SLUSH);
+		entries.add(SpectrumBlocks.OVERGROWN_SLUSH);
 		entries.add(SpectrumBlocks.TILLED_SLUSH);
 		entries.add(SpectrumBlocks.BLACK_SLUDGE);
 		

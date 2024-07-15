@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.particle.client.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.*;
 import net.minecraft.entity.*;
 import net.minecraft.registry.entry.*;
@@ -24,8 +25,12 @@ public class HowlingSpireEffects {
 	private static double targetAshVelocity = 0.215, lastAshVelocity = 0.215, ashScaleA = 20000, ashScaleB = 2200, ashScaleC = 200;
 	private static int ashSwitchTicks = 50, ashSpawns;
 	private static Direction.Axis ashAxis = Direction.Axis.X;
+	private static MinecraftClient client = MinecraftClient.getInstance();
 	
 	public static void clientTick(ClientWorld world, Entity cameraEntity, RegistryEntry<Biome> biome) {
+		if (client.isPaused())
+			return;
+
 		lastSpireTicks = spireTicks;
 		
 		boolean inHowlingSpires = biome.matchesKey(SpectrumBiomes.HOWLING_SPIRES);
@@ -86,21 +91,39 @@ public class HowlingSpireEffects {
 		targetAshVelocity = BASE_ASH_VELOCITY * (random.nextDouble() * 0.5 + 0.5) * (random.nextBoolean() ? -1 : 1);
 		ashAxis = newAxis;
 	}
-	
-	// TODO: why is this spawned here and not via the biome jsons particle entry?
+
 	private static void spawnHowlingSpiresAsh(Entity cameraEntity, int maxAsh, Random random, ClientWorld clientWorld, RegistryEntry<Biome> biome) {
 		var camera = cameraEntity.getPos();
-		
+		var renderDistance = getRenderRadius();
+		var maxSpawnDistance = Math.min(96, renderDistance) * 2;
+
 		for (int i = 0; i < maxAsh; i++) {
-			var x = camera.getX() + random.nextInt(192) - 96;
+			var x = camera.getX() + random.nextInt(maxSpawnDistance) - maxSpawnDistance / 2F;
 			var y = camera.getY() + random.nextInt(64) - 32;
-			var z = camera.getZ() + random.nextInt(192) - 96;
+			var z = camera.getZ() + random.nextInt(maxSpawnDistance) - maxSpawnDistance / 2F;
 			var pos = new BlockPos((int) x, (int) y, (int) z);
 			
 			if (clientWorld.getBlockState(pos).isAir()) {
 				clientWorld.addParticle(SpectrumParticleTypes.FALLING_ASH, x, y, z, 0, 0, 0);
 			}
 		}
+
+		maxSpawnDistance /= 2;
+
+		for (int i = 0; i < maxAsh; i++) {
+			var x = camera.getX() + random.nextInt(maxSpawnDistance) - maxSpawnDistance / 2F;
+			var y = camera.getY() + random.nextInt(29) - 8;
+			var z = camera.getZ() + random.nextInt(maxSpawnDistance) - maxSpawnDistance / 2F;
+			var pos = new BlockPos((int) x, (int) y, (int) z);
+
+			if (clientWorld.getBlockState(pos).isAir()) {
+				clientWorld.addParticle(SpectrumParticleTypes.FALLING_ASH, x, y, z, 0, 0, 0);
+			}
+		}
+	}
+
+	public static int getRenderRadius() {
+		return (client.options.getViewDistance().getValue() + 1) * 16;
 	}
 	
 }

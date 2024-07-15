@@ -8,16 +8,11 @@
   "flag": "spectrum:enchantment_exists_spectrum_resonance",
   "category": "spectrum:enchanting",
   "hide_while_locked ": true,
-  "parents": [
-    {
-      "entry": "spectrum:enchanting/enchanter",
-      "line_reversed": true
-    }
-  ],
+  "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "y": 4,
-  "x": 3,
+  "y": -4,
+  "x": 2,
   "pages": [
     {
       "type": "modonomicon:text",

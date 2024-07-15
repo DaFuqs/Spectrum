@@ -6,7 +6,7 @@ import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.energy.storage.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.render.*;
-import de.dafuqs.spectrum.helpers.ColorHelper;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
@@ -19,7 +19,6 @@ import net.minecraft.nbt.*;
 import net.minecraft.registry.entry.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
@@ -96,7 +95,7 @@ public class PigmentPaletteItem extends SpectrumTrinketItem implements InkStorag
 				colors.add(inkColor);
 		}
 		
-		var progress = Math.round(MathHelper.clampedLerp(0, 14, (float) storage.getCurrentTotal() / storage.getMaxTotal()));
+		var progress = Support.getSensiblePercent(storage.getCurrentTotal(), storage.getMaxTotal(), 14);
 		if (colors.size() == 1) {
 			var color = colors.get(0);
 			return new ExtendedItemBarProvider.BarSignature(1, 13, 14, progress, 1, color.getColorInt() | 0xFF000000, 2, DEFAULT_BACKGROUND_COLOR);
@@ -107,7 +106,7 @@ public class PigmentPaletteItem extends SpectrumTrinketItem implements InkStorag
 		var nextColor = colors.get((int) ((time % (30L * colors.size()) / 30 + 1) % colors.size()));
 		
 		var blendFactor = (((float) time + delta) % 30) / 30F;
-		var blendedColor = ColorHelper.interpolate(curColor == InkColors.BLACK ? InkColors.BLACK_TEXT_VEC : curColor.getColorVec(), nextColor == InkColors.BLACK ? InkColors.BLACK_TEXT_VEC : nextColor.getColorVec(), blendFactor);
+		var blendedColor = ColorHelper.interpolate(curColor.getTextColorVec(), nextColor.getTextColorVec(), blendFactor);
 		
 		return new ExtendedItemBarProvider.BarSignature(1, 13, 14, progress, 1, blendedColor, 2, DEFAULT_BACKGROUND_COLOR);
 	}

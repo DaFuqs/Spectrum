@@ -17,6 +17,7 @@ public class InkColor {
 	protected final int colorInt;
 	protected final Vector3f colorVec;
 	protected final int textColor;
+	protected final Vector3f textColorVec;
 	
 	protected final Identifier requiredAdvancement;
 	
@@ -29,6 +30,8 @@ public class InkColor {
 		this.colorInt = color;
 		this.colorVec = ColorHelper.colorIntToVec(color);
 		this.textColor = textColor;
+		this.textColorVec = ColorHelper.colorIntToVec(textColor);
+		;
 		this.requiredAdvancement = requiredAdvancement;
 		
 		DYE_TO_COLOR.put(dyeColor, this);
@@ -86,8 +89,12 @@ public class InkColor {
 		return this.colorInt;
 	}
 	
-	public int getTextColor() {
+	public int getTextColorInt() {
 		return this.textColor;
+	}
+	
+	public Vector3f getTextColorVec() {
+		return this.textColorVec;
 	}
 	
 	public Identifier getRequiredAdvancement() {
@@ -101,6 +108,7 @@ public class InkColor {
 	public boolean isIn(TagKey<InkColor> tag) {
 		return SpectrumRegistries.INK_COLORS.getEntry(this).isIn(tag);
 	}
+	
 	
 }
 

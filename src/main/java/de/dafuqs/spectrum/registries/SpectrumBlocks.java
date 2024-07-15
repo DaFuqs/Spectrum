@@ -585,13 +585,13 @@ public class SpectrumBlocks {
 	public static Settings ash(BlockSoundGroup soundGroup) {
 		return settings(MapColor.OFF_WHITE, soundGroup, ASH_STRENGTH, ASH_STRENGTH).requiresTool();
 	}
-	
+
 	public static final Block ASHEN_BLACKSLAG = new BlackslagBlock(blackslag(BlockSoundGroup.DEEPSLATE).mapColor(MapColor.OFF_WHITE));
 	public static final Block ASH = new AshBlock(ash(BlockSoundGroup.POWDER_SNOW));
 	public static final Block ASH_PILE = new AshPileBlock(ash(BlockSoundGroup.POWDER_SNOW).replaceable().blockVision((state, world, pos) -> state.get(SnowBlock.LAYERS) >= 8).pistonBehavior(PistonBehavior.DESTROY));
-	
+
 	public static final float OPALINE_STRENGTH = 15F;
-	
+
 	public static Settings opal(BlockSoundGroup soundGroup) {
 		return settings(MapColor.LIGHT_BLUE, soundGroup, OPALINE_STRENGTH, OPALINE_STRENGTH / 2F);
 	}
@@ -741,6 +741,7 @@ public class SpectrumBlocks {
 	public static final Block SNAPPING_IVY = new SnappingIvyBlock(settings(MapColor.PALE_GREEN, BlockSoundGroup.GRASS, 3.0F).noCollision().nonOpaque());
 
 	public static final AbyssalVinesBlock ABYSSAL_VINES = new AbyssalVinesBlock(settings(MapColor.DARK_GREEN, BlockSoundGroup.CAVE_VINES, 2.0F).noCollision().ticksRandomly().nonOpaque().luminance(state -> state.get(Properties.BERRIES) ? 13 : 0));
+	public static final Block SWEET_PEA = new FlowerBlock(StatusEffects.NIGHT_VISION, 5, settings(MapColor.MAGENTA, BlockSoundGroup.GRASS, 0.0F).offset(OffsetType.XZ).noCollision().nonOpaque().luminance(s -> 9).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always));
 
 	public static final Block HUMMINGSTONE_GLASS = new GlassBlock(settings(MapColor.PALE_YELLOW, BlockSoundGroup.GLASS, 5.0F, 100.0F).nonOpaque().requiresTool());
 	public static final Block HUMMINGSTONE = new HummingstoneBlock(Settings.copy(HUMMINGSTONE_GLASS).luminance((state) -> 14));
@@ -1671,9 +1672,10 @@ public class SpectrumBlocks {
 		registerBlockWithItem("bristle_sprouts", BRISTLE_SPROUTS, settings, DyeColor.LIME);
 		registerBlock("doombloom", DOOMBLOOM);
 		registerBlockWithItem("snapping_ivy", SNAPPING_IVY, settings, DyeColor.RED);
-		
-		registerBlock("abyssal_vines", ABYSSAL_VINES);
-		
+
+        registerBlock("abyssal_vines", ABYSSAL_VINES);
+		registerBlockWithItem("sweet_pea", SWEET_PEA, settings, DyeColor.YELLOW);
+
 		registerBlockWithItem("varia_sprout", VARIA_SPROUT, settings, DyeColor.WHITE);
 
 		registerBlockWithItem("hummingstone", HUMMINGSTONE, settings, DyeColor.LIME);
@@ -2873,6 +2875,7 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_AMARANTH_BUSHEL, RenderLayer.getCutout());
 
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ABYSSAL_VINES, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SWEET_PEA, RenderLayer.getCutout());
 
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.BLOOD_ORCHID, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_BLOOD_ORCHID, RenderLayer.getCutout());

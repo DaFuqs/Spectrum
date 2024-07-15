@@ -309,7 +309,7 @@ public class SpectrumItems {
 	public static final Item SUSPICIOUS_BREW = new SuspiciousBrewItem(IS.of(16).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item REPRISE = new RepriseItem(IS.of(16).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item PURE_ALCOHOL = new Item(IS.of(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURE_ALCOHOL).recipeRemainder(Items.GLASS_BOTTLE));
-	public static final Item JADE_WINE = new JadeWineItem(IS.of(16).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item JADE_WINE = new JadeWineItem(IS.of(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item CHRYSOCOLLA = new Item(IS.of(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURE_ALCOHOL).recipeRemainder(Items.GLASS_BOTTLE));
 	
 	public static final Item HONEY_PASTRY = new Item(IS.of().food(SpectrumFoodComponents.HONEY_PASTRY));
@@ -319,8 +319,8 @@ public class SpectrumItems {
 	public static final Item FREIGEIST = new FreigeistItem(IS.of(16).food(SpectrumFoodComponents.FREIGEIST).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item DIVINATION_HEART = new Item(IS.of().food(SpectrumFoodComponents.DIVINATION_HEART));
 	
-	public static final Item STAR_CANDY = new StarCandyItem(IS.of(16).food(SpectrumFoodComponents.STAR_CANDY));
-	public static final Item PURPLE_STAR_CANDY = new EnchantedStarCandyItem(IS.of(16, Rarity.RARE).food(SpectrumFoodComponents.PURPLE_STAR_CANDY));
+	public static final Item STAR_CANDY = new StarCandyItem(IS.of(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.STAR_CANDY));
+	public static final Item PURPLE_STAR_CANDY = new EnchantedStarCandyItem(IS.of(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURPLE_STAR_CANDY));
 	
 	public static final Item ENCHANTED_GOLDEN_CARROT = new ItemWithGlint(IS.of(Rarity.EPIC).food(SpectrumFoodComponents.ENCHANTED_GOLDEN_CARROT));
 	public static final Item JARAMEL = new Item(IS.of().food(SpectrumFoodComponents.JARAMEL));

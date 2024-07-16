@@ -7,6 +7,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.server.world.*;
+import net.minecraft.state.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
@@ -17,7 +18,7 @@ import net.minecraft.world.explosion.*;
 
 import java.util.*;
 
-public class StuckStormStoneBlock extends Block implements RevelationAware {
+public class StuckStormStoneBlock extends HorizontalFacingBlock implements RevelationAware {
 	
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(4.0D, 0.0D, 4.0D, 11.0D, 2.0D, 11.0D);
 	
@@ -27,16 +28,25 @@ public class StuckStormStoneBlock extends Block implements RevelationAware {
 	}
 	
 	@Override
+	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+		super.appendProperties(builder);
+		builder.add(FACING);
+	}
+	
+	@Override
+	@SuppressWarnings("deprecation")
 	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
 		return world.getBlockState(pos.down()).isSolidBlock(world, pos);
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public VoxelShape getCameraCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return VoxelShapes.empty();
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public float getAmbientOcclusionLightLevel(BlockState state, BlockView world, BlockPos pos) {
 		return 1.0F;
 	}
@@ -79,6 +89,7 @@ public class StuckStormStoneBlock extends Block implements RevelationAware {
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		if (this.isVisibleTo(context)) {
 			return SHAPE;
@@ -87,6 +98,7 @@ public class StuckStormStoneBlock extends Block implements RevelationAware {
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		if (context instanceof EntityShapeContext entityShapeContext) {
 			Entity var4 = entityShapeContext.getEntity();
@@ -110,9 +122,10 @@ public class StuckStormStoneBlock extends Block implements RevelationAware {
 	}
 	
 	/**
-	 * If it gets ticked there is a chance to vanish
+	 * If it gets ticked, there is a chance to vanish
 	 */
 	@Override
+	@SuppressWarnings("deprecation")
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		if (random.nextFloat() < 0.1) {
 			world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);

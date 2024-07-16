@@ -127,7 +127,7 @@ public class SpectrumEventListeners {
 			PlayerManager playerManager = server.getPlayerManager();
 			for (ServerPlayerEntity player : playerManager.getPlayerList()) {
 				World world = player.getWorld();
-				if (!player.isCreative() && world.getRegistryKey() == SpectrumDimensions.DIMENSION_KEY && player.getY() > world.getTopY()) {
+				if (!player.isCreative() && !player.isSpectator() && world.getRegistryKey() == SpectrumDimensions.DIMENSION_KEY && player.getY() > world.getTopY()) {
 					player.damage(player.getDamageSources().outOfWorld(), 10.0F);
 					if (player.isDead()) {
 						Support.grantAdvancementCriterion(player, "lategame/get_killed_while_out_of_deeper_down_bounds", "get_rekt");

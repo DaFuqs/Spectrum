@@ -139,9 +139,8 @@ public class SanityCommand {
 		// Pedestal recipes that use gemstone powder not available at that tier yet
 		for (PedestalRecipe pedestalRecipe : recipeManager.listAllOfType(SpectrumRecipeTypes.PEDESTAL)) {
 			/* There are some recipes that use advanced ingredients by design
-			   despite being of a low tier, like black colored lamps.
+			   despite being of a low tier, like black colored lights.
 			   While the player does not have access to that yet it is no problem at all
-			   To exclude those recipes in these warnings there is a boolean flag in the recipe jsons
 			*/
 			if (pedestalRecipe.getTier() == PedestalRecipeTier.BASIC || pedestalRecipe.getTier() == PedestalRecipeTier.SIMPLE) {
 				if (pedestalRecipe.getPowderInputs().getOrDefault(BuiltinGemstoneColor.BLACK, 0) > 0) {

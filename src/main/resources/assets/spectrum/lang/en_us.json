@@ -2857,6 +2857,7 @@
   "item.spectrum.freigeist.tooltip": "§4♥§r You wish you were an Angel? §4♡§r",
   "item.spectrum.divination_heart": "Divination Heart",
   "item.spectrum.crescent_clock": "Crescent Clock",
+  "item.spectrum.crescent_clock.tooltip": "Tells the current moon phase",
   "item.spectrum.primordial_lighter": "Primordial Lighter",
   "item.spectrum.primordial_lighter.tooltip": "Sets the world on fire",
   "item.spectrum.omni_accelerator": "Omni-Accelerator",

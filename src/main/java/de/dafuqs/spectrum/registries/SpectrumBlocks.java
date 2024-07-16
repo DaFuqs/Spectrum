@@ -349,20 +349,20 @@ public class SpectrumBlocks {
 	public static final Block POLISHED_CALCITE_BUTTON = new ButtonBlock(Settings.create().noCollision().strength(0.5F), SpectrumBlockSetTypes.POLISHED_CALCITE, 5, false);
 	public static final Block POLISHED_CALCITE_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, Settings.create().mapColor(MapColor.TERRACOTTA_WHITE).solid().instrument(Instrument.BASEDRUM).requiresTool().noCollision().strength(0.5F).pistonBehavior(PistonBehavior.DESTROY), SpectrumBlockSetTypes.POLISHED_CALCITE);
 	
-	// GEMSTONE LAMPS
-	private static Settings gemstoneLamp(AbstractBlock block) {
+	private static Settings gemstoneLight(AbstractBlock block) {
 		return FabricBlockSettings.copyOf(block).luminance(15).nonOpaque().solid();
 	}
-	public static final Block TOPAZ_BASALT_LAMP = new Block(gemstoneLamp(POLISHED_BASALT));
-	public static final Block AMETHYST_BASALT_LAMP = new Block(gemstoneLamp(POLISHED_BASALT));
-	public static final Block CITRINE_BASALT_LAMP = new Block(gemstoneLamp(POLISHED_BASALT));
-	public static final Block ONYX_BASALT_LAMP = new Block(gemstoneLamp(POLISHED_BASALT));
-	public static final Block MOONSTONE_BASALT_LAMP = new Block(gemstoneLamp(POLISHED_BASALT));
-	public static final Block TOPAZ_CALCITE_LAMP = new Block(gemstoneLamp(POLISHED_CALCITE));
-	public static final Block AMETHYST_CALCITE_LAMP = new Block(gemstoneLamp(POLISHED_CALCITE));
-	public static final Block CITRINE_CALCITE_LAMP = new Block(gemstoneLamp(POLISHED_CALCITE));
-	public static final Block ONYX_CALCITE_LAMP = new Block(gemstoneLamp(POLISHED_CALCITE));
-	public static final Block MOONSTONE_CALCITE_LAMP = new Block(gemstoneLamp(POLISHED_CALCITE));
+	
+	public static final Block TOPAZ_BASALT_LIGHT = new PillarBlock(gemstoneLight(POLISHED_BASALT));
+	public static final Block AMETHYST_BASALT_LIGHT = new PillarBlock(gemstoneLight(POLISHED_BASALT));
+	public static final Block CITRINE_BASALT_LIGHT = new PillarBlock(gemstoneLight(POLISHED_BASALT));
+	public static final Block ONYX_BASALT_LIGHT = new PillarBlock(gemstoneLight(POLISHED_BASALT));
+	public static final Block MOONSTONE_BASALT_LIGHT = new PillarBlock(gemstoneLight(POLISHED_BASALT));
+	public static final Block TOPAZ_CALCITE_LIGHT = new PillarBlock(gemstoneLight(POLISHED_CALCITE));
+	public static final Block AMETHYST_CALCITE_LIGHT = new PillarBlock(gemstoneLight(POLISHED_CALCITE));
+	public static final Block CITRINE_CALCITE_LIGHT = new PillarBlock(gemstoneLight(POLISHED_CALCITE));
+	public static final Block ONYX_CALCITE_LIGHT = new PillarBlock(gemstoneLight(POLISHED_CALCITE));
+	public static final Block MOONSTONE_CALCITE_LAMP = new PillarBlock(gemstoneLight(POLISHED_CALCITE));
 	
 	// GLASS
 	private static Settings gemstoneGlass(BlockSoundGroup soundGroup, MapColor mapColor) {
@@ -2146,17 +2146,17 @@ public class SpectrumBlocks {
 	}
 	
 	private static void registerGemstoneLamps(FabricItemSettings settings) {
-		registerBlockWithItem("topaz_calcite_lamp", TOPAZ_CALCITE_LAMP, settings, DyeColor.CYAN);
-		registerBlockWithItem("amethyst_calcite_lamp", AMETHYST_CALCITE_LAMP, settings, DyeColor.MAGENTA);
-		registerBlockWithItem("citrine_calcite_lamp", CITRINE_CALCITE_LAMP, settings, DyeColor.YELLOW);
-		registerBlockWithItem("onyx_calcite_lamp", ONYX_CALCITE_LAMP, settings, DyeColor.BLACK);
+		registerBlockWithItem("topaz_calcite_lamp", TOPAZ_CALCITE_LIGHT, settings, DyeColor.CYAN);
+		registerBlockWithItem("amethyst_calcite_lamp", AMETHYST_CALCITE_LIGHT, settings, DyeColor.MAGENTA);
+		registerBlockWithItem("citrine_calcite_lamp", CITRINE_CALCITE_LIGHT, settings, DyeColor.YELLOW);
+		registerBlockWithItem("onyx_calcite_lamp", ONYX_CALCITE_LIGHT, settings, DyeColor.BLACK);
 		registerBlockWithItem("moonstone_calcite_lamp", MOONSTONE_CALCITE_LAMP, settings, DyeColor.WHITE);
 		
-		registerBlockWithItem("topaz_basalt_lamp", TOPAZ_BASALT_LAMP, settings, DyeColor.CYAN);
-		registerBlockWithItem("amethyst_basalt_lamp", AMETHYST_BASALT_LAMP, settings, DyeColor.MAGENTA);
-		registerBlockWithItem("citrine_basalt_lamp", CITRINE_BASALT_LAMP, settings, DyeColor.YELLOW);
-		registerBlockWithItem("onyx_basalt_lamp", ONYX_BASALT_LAMP, settings, DyeColor.BLACK);
-		registerBlockWithItem("moonstone_basalt_lamp", MOONSTONE_BASALT_LAMP, settings, DyeColor.WHITE);
+		registerBlockWithItem("topaz_basalt_lamp", TOPAZ_BASALT_LIGHT, settings, DyeColor.CYAN);
+		registerBlockWithItem("amethyst_basalt_lamp", AMETHYST_BASALT_LIGHT, settings, DyeColor.MAGENTA);
+		registerBlockWithItem("citrine_basalt_lamp", CITRINE_BASALT_LIGHT, settings, DyeColor.YELLOW);
+		registerBlockWithItem("onyx_basalt_lamp", ONYX_BASALT_LIGHT, settings, DyeColor.BLACK);
+		registerBlockWithItem("moonstone_basalt_lamp", MOONSTONE_BASALT_LIGHT, settings, DyeColor.WHITE);
 	}
 	
 	private static void registerColoredWood(FabricItemSettings settings) {
@@ -2722,18 +2722,18 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CRYSTALLARIEUM, RenderLayer.getTranslucent());
 		
 		// Gemstone Lights
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TOPAZ_CALCITE_LAMP, RenderLayer.getTranslucent());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.AMETHYST_CALCITE_LAMP, RenderLayer.getTranslucent());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CITRINE_CALCITE_LAMP, RenderLayer.getTranslucent());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TOPAZ_CALCITE_LIGHT, RenderLayer.getTranslucent());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.AMETHYST_CALCITE_LIGHT, RenderLayer.getTranslucent());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CITRINE_CALCITE_LIGHT, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MOONSTONE_CALCITE_LAMP, RenderLayer.getTranslucent());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ONYX_CALCITE_LAMP, RenderLayer.getTranslucent());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ONYX_CALCITE_LIGHT, RenderLayer.getTranslucent());
 		
 		// Gemstone Lamps
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TOPAZ_BASALT_LAMP, RenderLayer.getTranslucent());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.AMETHYST_BASALT_LAMP, RenderLayer.getTranslucent());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CITRINE_BASALT_LAMP, RenderLayer.getTranslucent());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MOONSTONE_BASALT_LAMP, RenderLayer.getTranslucent());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ONYX_BASALT_LAMP, RenderLayer.getTranslucent());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TOPAZ_BASALT_LIGHT, RenderLayer.getTranslucent());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.AMETHYST_BASALT_LIGHT, RenderLayer.getTranslucent());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CITRINE_BASALT_LIGHT, RenderLayer.getTranslucent());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MOONSTONE_BASALT_LIGHT, RenderLayer.getTranslucent());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ONYX_BASALT_LIGHT, RenderLayer.getTranslucent());
 		
 		// Noxwood
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.IVORY_NOXWOOD_DOOR, RenderLayer.getCutout());

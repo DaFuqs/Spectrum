@@ -997,16 +997,16 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.PALTAERIA_FRAGMENT_BLOCK);
 		entries.add(SpectrumBlocks.HOVER_BLOCK);
 		
-		entries.add(SpectrumBlocks.TOPAZ_CALCITE_LAMP);
-		entries.add(SpectrumBlocks.AMETHYST_CALCITE_LAMP);
-		entries.add(SpectrumBlocks.CITRINE_CALCITE_LAMP);
-		entries.add(SpectrumBlocks.ONYX_CALCITE_LAMP);
+		entries.add(SpectrumBlocks.TOPAZ_CALCITE_LIGHT);
+		entries.add(SpectrumBlocks.AMETHYST_CALCITE_LIGHT);
+		entries.add(SpectrumBlocks.CITRINE_CALCITE_LIGHT);
+		entries.add(SpectrumBlocks.ONYX_CALCITE_LIGHT);
 		entries.add(SpectrumBlocks.MOONSTONE_CALCITE_LAMP);
-		entries.add(SpectrumBlocks.TOPAZ_BASALT_LAMP);
-		entries.add(SpectrumBlocks.AMETHYST_BASALT_LAMP);
-		entries.add(SpectrumBlocks.CITRINE_BASALT_LAMP);
-		entries.add(SpectrumBlocks.ONYX_BASALT_LAMP);
-		entries.add(SpectrumBlocks.MOONSTONE_BASALT_LAMP);
+		entries.add(SpectrumBlocks.TOPAZ_BASALT_LIGHT);
+		entries.add(SpectrumBlocks.AMETHYST_BASALT_LIGHT);
+		entries.add(SpectrumBlocks.CITRINE_BASALT_LIGHT);
+		entries.add(SpectrumBlocks.ONYX_BASALT_LIGHT);
+		entries.add(SpectrumBlocks.MOONSTONE_BASALT_LIGHT);
 		
 		entries.add(SpectrumBlocks.BASALT_SHIMMERSTONE_LIGHT);
 		entries.add(SpectrumBlocks.CALCITE_SHIMMERSTONE_LIGHT);

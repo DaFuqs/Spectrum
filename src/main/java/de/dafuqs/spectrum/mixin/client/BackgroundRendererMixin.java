@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.mixin.client;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.*;
 import de.dafuqs.spectrum.deeper_down.*;
 import de.dafuqs.spectrum.registries.*;

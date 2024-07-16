@@ -9,8 +9,7 @@
   "white": 0,
   "experience": 1.0,
   "pattern": [
-    "YYY",
-    "AAA"
+    "AYA"
   ],
   "key": {
     "Y": {
@@ -22,7 +21,7 @@
   },
   "result": {
     "item": "spectrum:myceylon_cookie",
-    "count": 4
+    "count": 8
   },
   "required_advancement": "spectrum:unlocks/food/myceylon_pastries"
 }

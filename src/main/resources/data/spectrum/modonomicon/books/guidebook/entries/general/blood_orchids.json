@@ -1,6 +1,6 @@
 {
   "name": "block.spectrum.blood_orchid",
-  "icon": "spectrum:blood_orchid_petal",
+  "icon": "spectrum:blood_orchid",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/blood_orchid"
@@ -17,7 +17,7 @@
   ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 0,
+  "x": 4,
   "y": 6,
   "pages": [
     {

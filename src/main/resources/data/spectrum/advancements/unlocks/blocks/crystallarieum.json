@@ -6,9 +6,11 @@
         "advancement_identifier": "spectrum:lategame/collect_bismuth_crystal"
       }
     },
-    "collected_paltaeria": {
+    "collected_pigment": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:lategame/collect_paltaeria" }
+      "conditions": {
+        "advancement_identifier": "spectrum:collect_pigment"
+      }
     }
   }
 }

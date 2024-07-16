@@ -20,7 +20,7 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 	public static final RecipeSerializer<SpawnerCreatureChangeRecipe> SERIALIZER = new EmptyRecipeSerializer<>(SpawnerCreatureChangeRecipe::new);
 	
 	public SpawnerCreatureChangeRecipe(Identifier identifier) {
-		super(identifier, IngredientStack.of(Ingredient.fromTag(SpectrumItemTags.SKULLS)), IngredientStack.ofItems(4, SpectrumItems.REFINED_BLOODSTONE), SpectrumCommon.locate("milestones/unlock_spawner_creature_change"));
+		super(identifier, IngredientStack.of(Ingredient.fromTag(SpectrumItemTags.SKULLS)), IngredientStack.ofItems(4, SpectrumItems.DOWNSTONE_FRAGMENTS), SpectrumCommon.locate("milestones/unlock_spawner_creature_change"));
 	}
 	
 	@Override

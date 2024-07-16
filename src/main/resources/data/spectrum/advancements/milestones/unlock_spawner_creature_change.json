@@ -6,10 +6,10 @@
         "advancement_identifier": "spectrum:milestones/unlock_spawner_manipulation"
       }
     },
-    "grown_bloodstone_in_crystallarieum": {
+    "collected_downstone_fragments": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/grow_bloodstone_in_crystallarieum"
+        "advancement_identifier": "spectrum:lategame/collect_downstone_fragments"
       }
     }
   }

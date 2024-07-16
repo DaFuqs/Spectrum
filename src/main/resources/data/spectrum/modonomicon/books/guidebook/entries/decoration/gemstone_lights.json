@@ -1,9 +1,9 @@
 {
-  "name": "book.spectrum.guidebook.decoration.gemstone_lamps.name",
+  "name": "book.spectrum.guidebook.decoration.gemstone_lights.name",
   "icon": "spectrum:citrine_basalt_lamp",
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:collect_shimmerstone"
+    "advancement_id": "spectrum:unlocks/gemstone_lights/any"
   },
   "category": "spectrum:decoration",
   "hide_while_locked ": true,
@@ -27,14 +27,14 @@
       "item": {
         "item": "spectrum:citrine_basalt_lamp"
       },
-      "title": "book.spectrum.guidebook.decoration.gemstone_lamps.page0.title",
-      "text": "book.spectrum.guidebook.decoration.gemstone_lamps.page0.text"
+      "title": "book.spectrum.guidebook.decoration.gemstone_lights.page0.title",
+      "text": "book.spectrum.guidebook.decoration.gemstone_lights.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.decoration.gemstone_lamps.page1.title",
-      "recipe_id_1": "spectrum:pedestal/tier1/gem_lamps/citrine_basalt_lamp",
-      "text": "book.spectrum.guidebook.decoration.gemstone_lamps.page1.text"
+      "title1": "book.spectrum.guidebook.decoration.gemstone_lights.page1.title",
+      "recipe_id_1": "spectrum:pedestal/tier1/gemstone_lights/citrine_basalt_light",
+      "text": "book.spectrum.guidebook.decoration.gemstone_lights.page1.text"
     }
   ]
 }

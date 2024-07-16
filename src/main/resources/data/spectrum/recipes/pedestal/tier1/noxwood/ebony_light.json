@@ -10,9 +10,9 @@
   "black": 0,
   "experience": 0.1,
   "pattern": [
-    "SGS",
+    "SSS",
     "GXG",
-    "SGS"
+    "SSS"
   ],
   "key": {
     "S": {
@@ -22,7 +22,7 @@
       "item": "spectrum:ebony_noxcap_gills"
     },
     "X": {
-      "item": "spectrum:shimmerstone_gem"
+      "item": "spectrum:shimmerstone_block"
     }
   },
   "result": {

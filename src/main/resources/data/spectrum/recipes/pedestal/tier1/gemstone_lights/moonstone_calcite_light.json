@@ -1,6 +1,6 @@
 {
   "type": "spectrum:pedestal",
-  "group": "moonstone_lamps",
+  "group": "moonstone_lights",
   "time": 40,
   "tier": "complex",
   "cyan": 0,
@@ -10,24 +10,24 @@
   "black": 0,
   "experience": 0.3,
   "pattern": [
-    "CBC",
+    "TTT",
     "BSB",
-    "CBC"
+    "TTT"
   ],
   "key": {
     "B": {
-      "item": "spectrum:moonstone_shard"
+      "item": "spectrum:moonstone_block"
     },
-    "C": {
+    "T": {
       "item": "spectrum:polished_calcite"
     },
     "S": {
-      "item": "spectrum:shimmerstone_gem"
+      "item": "spectrum:shimmerstone_block"
     }
   },
   "result": {
     "item": "spectrum:moonstone_calcite_lamp",
     "count": 4
   },
-  "required_advancement": "spectrum:unlocks/gemstone_lamps/moonstone_lamps"
+  "required_advancement": "spectrum:unlocks/gemstone_lights/moonstone"
 }

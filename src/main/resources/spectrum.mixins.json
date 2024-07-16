@@ -117,6 +117,7 @@
     "client.MinecraftClientMixin",
     "client.MixinParticleManager",
     "client.PotionItemClientMixin",
+    "client.RenderSystemMixin",
     "client.TranslationStorageMixin",
     "client.TransparentBlockMixin",
     "client.accessors.BakedOverrideAccessor",

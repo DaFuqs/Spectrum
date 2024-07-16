@@ -243,7 +243,9 @@ public class SpectrumBlocks {
 	public static final Block WEATHERED_SHALE_CLAY_TILE_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.WEATHERED, WEATHERED_SHALE_CLAY_TILES.getDefaultState(), Settings.copy(SHALE_CLAY));
 	public static final Block WEATHERED_SHALE_CLAY_TILE_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.WEATHERED, Settings.copy(SHALE_CLAY));
 
-	public static final Block PYRITE = new PillarBlock(settings(MapColor.TERRACOTTA_YELLOW, BlockSoundGroup.CHAIN, 50.0F));
+	public static final Block ROCK_CRYSTAL = new Block(settings(MapColor.OFF_WHITE, BlockSoundGroup.NETHER_BRICKS, 200F).requiresTool());
+
+	public static final Block PYRITE = new PillarBlock(settings(MapColor.TERRACOTTA_YELLOW, BlockSoundGroup.CHAIN, 50.0F).requiresTool());
 	public static final Block PYRITE_PILE = new PillarBlock(Settings.copy(PYRITE));
 	public static final Block PYRITE_TILE = new Block(Settings.copy(PYRITE));
 	public static final Block PYRITE_PLATING = new Block(Settings.copy(PYRITE));
@@ -741,8 +743,9 @@ public class SpectrumBlocks {
 	public static final Block SNAPPING_IVY = new SnappingIvyBlock(settings(MapColor.PALE_GREEN, BlockSoundGroup.GRASS, 3.0F).noCollision().nonOpaque());
 
 	public static final AbyssalVinesBlock ABYSSAL_VINES = new AbyssalVinesBlock(settings(MapColor.DARK_GREEN, BlockSoundGroup.CAVE_VINES, 2.0F).noCollision().ticksRandomly().nonOpaque().luminance(state -> state.get(Properties.BERRIES) ? 13 : 0));
-	public static final Block SWEET_PEA = new FlowerBlock(StatusEffects.NIGHT_VISION, 5, settings(MapColor.MAGENTA, BlockSoundGroup.GRASS, 0.0F).offset(OffsetType.XZ).noCollision().nonOpaque().luminance(s -> 9).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always));
-	public static final Block APRICOTTI = new FlowerBlock(StatusEffects.GLOWING, 5, settings(MapColor.ORANGE, BlockSoundGroup.GRASS, 0.0F).offset(OffsetType.XZ).noCollision().nonOpaque().luminance(s -> 9).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always));
+	public static final Block SWEET_PEA = new FlowerBlock(StatusEffects.NIGHT_VISION, 5, settings(MapColor.MAGENTA, BlockSoundGroup.GRASS, 0.0F).offset(OffsetType.XZ).noCollision().nonOpaque().luminance(s -> 11).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always));
+	public static final Block APRICOTTI = new FlowerBlock(StatusEffects.GLOWING, 5, settings(MapColor.ORANGE, BlockSoundGroup.GRASS, 0.0F).offset(OffsetType.XZ).noCollision().nonOpaque().luminance(s -> 11).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always));
+	public static final Block HUMMING_BELL = new FlowerBlock(SpectrumStatusEffects.LIGHTWEIGHT, 5, settings(MapColor.LIGHT_BLUE, BlockSoundGroup.GRASS, 0.0F).offset(OffsetType.XZ).noCollision().nonOpaque().luminance(s -> 9).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always));
 
 	public static final Block HUMMINGSTONE_GLASS = new GlassBlock(settings(MapColor.PALE_YELLOW, BlockSoundGroup.GLASS, 5.0F, 100.0F).nonOpaque().requiresTool());
 	public static final Block HUMMINGSTONE = new HummingstoneBlock(Settings.copy(HUMMINGSTONE_GLASS).luminance((state) -> 14));
@@ -1677,6 +1680,7 @@ public class SpectrumBlocks {
         registerBlock("abyssal_vines", ABYSSAL_VINES);
 		registerBlockWithItem("sweet_pea", SWEET_PEA, settings, DyeColor.YELLOW);
 		registerBlockWithItem("apricotti", APRICOTTI, settings, DyeColor.YELLOW);
+		registerBlockWithItem("humming_bell", HUMMING_BELL, settings, DyeColor.LIME);
 
 		registerBlockWithItem("varia_sprout", VARIA_SPROUT, settings, DyeColor.WHITE);
 
@@ -2117,7 +2121,9 @@ public class SpectrumBlocks {
 		registerBlockWithItem("overgrown_slush", OVERGROWN_SLUSH, settings, DyeColor.BROWN);
 		registerBlockWithItem("tilled_slush", TILLED_SLUSH, settings, DyeColor.BROWN);
 		registerBlockWithItem("black_sludge", BLACK_SLUDGE, IS.of(), DyeColor.GRAY);
-		
+
+		registerBlockWithItem("rock_crystal", ROCK_CRYSTAL, settings, DyeColor.BROWN);
+
 		registerBlockWithItem("pyrite", PYRITE, settings, DyeColor.PURPLE);
 		registerBlockWithItem("pyrite_pile", PYRITE_PILE, settings, DyeColor.PURPLE);
 		registerBlockWithItem("pyrite_tile", PYRITE_TILE, settings, DyeColor.PURPLE);
@@ -2877,7 +2883,7 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_AMARANTH_BUSHEL, RenderLayer.getCutout());
 
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ABYSSAL_VINES, RenderLayer.getCutout());
-		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), SpectrumBlocks.SWEET_PEA, SpectrumBlocks.APRICOTTI);
+		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), SpectrumBlocks.SWEET_PEA, SpectrumBlocks.APRICOTTI, HUMMING_BELL);
 
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.BLOOD_ORCHID, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_BLOOD_ORCHID, RenderLayer.getCutout());

@@ -850,6 +850,8 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.ASH);
 		entries.add(SpectrumBlocks.ASH_PILE);
 
+		entries.add(SpectrumBlocks.ROCK_CRYSTAL);
+
 		entries.add(SpectrumItems.PYRITE_CHUNK);
 		entries.add(SpectrumBlocks.PYRITE);
 		entries.add(SpectrumBlocks.PYRITE_PILE);
@@ -969,6 +971,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.HUMMINGSTONE_GLASS);
 		entries.add(SpectrumBlocks.SWEET_PEA);
 		entries.add(SpectrumBlocks.APRICOTTI);
+		entries.add(SpectrumBlocks.HUMMING_BELL);
 		entries.add(SpectrumBlocks.CLEAR_HUMMINGSTONE_GLASS);
 		entries.add(SpectrumBlocks.NEPHRITE_BLOSSOM_STEM);
 		entries.add(SpectrumBlocks.NEPHRITE_BLOSSOM_LEAVES);

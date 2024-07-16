@@ -83,7 +83,7 @@ public class DarknessEffects {
         }
         //depth darkening
         else if (y < -256) {
-            adjustedInterp = (float) Math.max(interp, Math.min(0.85F, interp + (y + 256) / -64F));
+            adjustedInterp = (float) Math.max(interp, Math.min(0.725F, interp + (y + 256) / -196F));
         }
         else {
             adjustedInterp = interp;
@@ -122,10 +122,10 @@ public class DarknessEffects {
 
     static {
         var builder = ImmutableMap.<RegistryKey<Biome>, Float>builder();
-        builder.put(SpectrumBiomes.BLACK_LANGAST, 0.575F);
+        builder.put(SpectrumBiomes.BLACK_LANGAST, 0.7F);
         builder.put(SpectrumBiomes.DEEP_BARRENS, 0.65F);
-        builder.put(SpectrumBiomes.DEEP_DRIPSTONE_CAVES, 0.3F);
-        builder.put(SpectrumBiomes.NOXSHROOM_FOREST, 0.15F);
+        builder.put(SpectrumBiomes.DEEP_DRIPSTONE_CAVES, 0.2F);
+        builder.put(SpectrumBiomes.NOXSHROOM_FOREST, 0.125F);
         INTERP_MULTIPLIERS = builder.build();
 
         var fogBuilder = ImmutableMap.<RegistryKey<Biome>, Float>builder();
@@ -137,9 +137,10 @@ public class DarknessEffects {
 
         var transMultiplier = ImmutableMap.<RegistryKey<Biome>, float[]>builder();
         transMultiplier.put(SpectrumBiomes.NOXSHROOM_FOREST, new float[]{1.25F, 1F});
-        transMultiplier.put(SpectrumBiomes.HOWLING_SPIRES, new float[]{-5F, 0.8F});
+        transMultiplier.put(SpectrumBiomes.HOWLING_SPIRES, new float[]{-10F, 0.85F});
         transMultiplier.put(SpectrumBiomes.DEEP_BARRENS, new float[]{-1F, 0.5F});
-        transMultiplier.put(SpectrumBiomes.DRAGONROT_SWAMP, new float[]{-5F, 0.75F});
+        transMultiplier.put(SpectrumBiomes.BLACK_LANGAST, new float[]{0.8F, 0.8F});
+        transMultiplier.put(SpectrumBiomes.DRAGONROT_SWAMP, new float[]{-5F, 0.8F});
         TRANS_MULTIPLIERS = transMultiplier.build();
     }
 }

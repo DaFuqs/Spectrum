@@ -1,0 +1,33 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "spectrum:block/moss_ball"
+      },
+      {
+        "model": "spectrum:block/moss_ball"
+      },
+      {
+        "model": "spectrum:block/moss_ball"
+      },
+      {
+        "model": "spectrum:block/moss_ball"
+      },
+      {
+        "model": "spectrum:block/moss_ball_tuft"
+      },
+      {
+        "model": "spectrum:block/moss_ball_tuft",
+        "y": 90
+      },
+      {
+        "model": "spectrum:block/moss_ball_tuft",
+        "y": 180
+      },
+      {
+        "model": "spectrum:block/moss_ball_tuft",
+        "y": 270
+      }
+    ]
+  }
+}

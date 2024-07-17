@@ -1,0 +1,22 @@
+{
+  "type": "spectrum:cinderhearth",
+  "ingredient": {
+    "item": "spectrum:rock_crystal"
+  },
+  "results": [
+    {
+      "item": "ae2:silicon",
+      "count": 24
+    }
+  ],
+  "experience": 1,
+  "time": 1200,
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "ae2"
+      ]
+    }
+  ]
+}

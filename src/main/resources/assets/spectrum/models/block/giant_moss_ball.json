@@ -1,0 +1,77 @@
+{
+	"credit": "~ XOXO Azzyypaaras ~",
+	"texture_size": [32, 32],
+	"textures": {
+		"0": "spectrum:block/giant_moss_ball_side",
+		"1": "spectrum:block/giant_moss_ball_top",
+		"2": "spectrum:block/giant_moss_ball_bottom",
+		"particle": "spectrum:block/giant_moss_ball_particle"
+	},
+	"elements": [
+		{
+			"name": "ball",
+			"from": [-3.5, 0, -3.5],
+			"to": [19.5, 23, 19.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-3.5, 0, -3.5]},
+			"faces": {
+				"north": {"uv": [0, 4.5, 11.5, 16], "texture": "#0"},
+				"east": {"uv": [0, 4.5, 11.5, 16], "texture": "#0"},
+				"south": {"uv": [0, 4.5, 11.5, 16], "texture": "#0"},
+				"west": {"uv": [0, 4.5, 11.5, 16], "texture": "#0"},
+				"up": {"uv": [0, 4.5, 11.5, 16], "texture": "#1"},
+				"down": {"uv": [0, 4.5, 11.5, 16], "texture": "#2"}
+			}
+		},
+		{
+			"name": "ball_inner",
+			"from": [19.5, 23, 19.5],
+			"to": [-3.5, 0, -3.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 11.5, 8]},
+			"faces": {
+				"north": {"uv": [11.5, 16, 0, 4.5], "texture": "#0"},
+				"east": {"uv": [11.5, 16, 0, 4.5], "texture": "#0"},
+				"south": {"uv": [11.5, 16, 0, 4.5], "texture": "#0"},
+				"west": {"uv": [11.5, 16, 0, 4.5], "texture": "#0"},
+				"up": {"uv": [16, 0, 16, 0], "texture": "#2"},
+				"down": {"uv": [0, 4.5, 11.5, 16], "texture": "#1"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.15, 0.15, 0.15]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.15, 0.15, 0.15]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 45, 0],
+			"scale": [0.3, 0.3, 0.3]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 225, 0],
+			"scale": [0.3, 0.3, 0.3]
+		},
+		"ground": {
+			"translation": [0, 3, 0],
+			"scale": [0.2, 0.2, 0.2]
+		},
+		"gui": {
+			"rotation": [30, 225, 0],
+			"translation": [0, -1.5, 0],
+			"scale": [0.35, 0.35, 0.35]
+		},
+		"head": {
+			"rotation": [0, 180, 0],
+			"translation": [0, 13, 7],
+			"scale": [0.667, 0.667, 0.667]
+		},
+		"fixed": {
+			"scale": [0.334, 0.334, 0.334]
+		}
+	}
+}

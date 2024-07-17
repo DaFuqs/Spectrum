@@ -1,5 +1,5 @@
 {
-  "type": "spectrum:liquid_crystal_converting",
+  "type": "spectrum:mud_converting",
   "required_advancement": "spectrum:hidden/collected_ash_and_slush",
   "ingredient": {
     "item": "spectrum:ash"

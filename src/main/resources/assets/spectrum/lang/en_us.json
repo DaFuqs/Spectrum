@@ -885,6 +885,8 @@
   "block.spectrum.polished_bone_ash_pillar": "Polished Bone Ash Pillar",
   "block.spectrum.bone_ash_shingles": "Bone Ash Shingles",
 
+  "block.spectrum.rock_crystal": "Rock Crystal",
+
   "block.spectrum.pyrite": "Pyrite",
   "block.spectrum.pyrite_panneling": "Pyrite Paneling",
   "block.spectrum.pyrite_pile": "Pyrite Pile",
@@ -931,6 +933,9 @@
   "block.spectrum.abyssal_vines": "Abyssal Vines",
   "block.spectrum.sweet_pea": "Sweet Pea",
   "block.spectrum.apricotti": "Apricotti",
+  "block.spectrum.humming_bell": "Humming Bell",
+  "block.spectrum.moss_ball": "Moss Ball",
+  "block.spectrum.giant_moss_ball": "Giant Moss Ball",
   "message.spectrum.needs_item_to_harvest": "Harvesting requires a ",
   "block.spectrum.jade_vine_roots": "Jade Vine Roots",
   "block.spectrum.jade_vine_bulb": "Jade Vine Bulb",

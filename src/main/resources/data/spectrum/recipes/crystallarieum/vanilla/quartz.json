@@ -15,19 +15,19 @@
   "catalysts": [
     {
       "ingredient": {
-        "item": "minecraft:coal"
+        "item": "spectrum:rock_crystal"
       },
-      "growth_acceleration_mod": 4.0,
-      "ink_consumption_mod": 1.0,
+      "growth_acceleration_mod": 12.0,
+      "ink_consumption_mod": 0.5,
       "consume_chance_per_second": 0.1
     },
     {
       "ingredient": {
-        "item": "spectrum:jade_vine_petals"
+        "item": "minecraft:sand"
       },
-      "growth_acceleration_mod": 32.0,
-      "ink_consumption_mod": 8.0,
-      "consume_chance_per_second": 0.1
+      "growth_acceleration_mod": 3.0,
+      "ink_consumption_mod": 2.0,
+      "consume_chance_per_second": 0.25
     },
     {
       "ingredient": {

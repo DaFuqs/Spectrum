@@ -4,10 +4,10 @@
     {
       "type": "minecraft:count_on_every_layer",
       "count": {
-        "type": "minecraft:biased_to_bottom",
+        "type": "minecraft:uniform",
         "value": {
           "min_inclusive": 0,
-          "max_inclusive": 1
+          "max_inclusive": 3
         }
       }
     },

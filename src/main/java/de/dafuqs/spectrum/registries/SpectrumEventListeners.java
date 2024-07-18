@@ -149,7 +149,7 @@ public class SpectrumEventListeners {
 				}
 				
 				/* TODO: Monstrosity
-				if (world.getRegistryKey().equals(SpectrumDimensions.DIMENSION_KEY)) {
+				if (world.getRegistryKey() == SpectrumDimensions.DIMENSION_KEY) {
 					MonstrositySpawner.INSTANCE.spawn(world, true, true);
 				}*/
 			}

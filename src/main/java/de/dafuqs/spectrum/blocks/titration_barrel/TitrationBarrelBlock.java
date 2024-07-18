@@ -146,7 +146,9 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 								world.playSound(null, pos, SpectrumSoundEvents.NEW_RECIPE, SoundCategory.BLOCKS, 1.0F, 1.0F);
 							}
 							
-							if (!recipe.get().isFermentingLongEnoughToTap(barrelEntity.getSealSeconds())) {
+							// funky check to allow shenanigans when sealing it when changing the computer's clock to the past
+							long sealSeconds = barrelEntity.getSealSeconds();
+							if (sealSeconds >= 0 && !recipe.get().isFermentingLongEnoughToTap(barrelEntity.getSealSeconds())) {
 								player.sendMessage(Text.translatable("block.spectrum.titration_barrel.not_yet_ready", barrelEntity.getSealMinecraftDays(), barrelEntity.getSealRealDays()), true);
 								break;
 							}

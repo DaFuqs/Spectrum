@@ -14,14 +14,14 @@ import net.minecraft.util.math.random.*;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 
-public class EtherealGlassBlock extends AbstractGlassBlock {
+public class EtherealPlatformBlock extends AbstractGlassBlock {
 	
 	public static final int MAX_AGE = 5;
 	public static final BooleanProperty EXTEND = BooleanProperty.of("extend");
 	public static final IntProperty AGE = Properties.AGE_5;
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(0.0D, 15.0D, 0.0D, 16.0D, 16.0D, 16.0D);
 	
-	public EtherealGlassBlock(Settings settings) {
+	public EtherealPlatformBlock(Settings settings) {
 		super(settings);
 	}
 	
@@ -38,7 +38,7 @@ public class EtherealGlassBlock extends AbstractGlassBlock {
 			for (Direction direction : Direction.Type.HORIZONTAL) {
 				BlockPos offsetPos = pos.offset(direction);
 				BlockState directionState = world.getBlockState(offsetPos);
-				if (directionState.getBlock() instanceof EtherealGlassBlock) {
+				if (directionState.getBlock() instanceof EtherealPlatformBlock) {
 					world.setBlockState(offsetPos, directionState.with(AGE, MAX_AGE - 1).with(EXTEND, true), Block.NOTIFY_LISTENERS);
 					world.scheduleBlockTick(offsetPos, this, 2);
 				}
@@ -55,7 +55,7 @@ public class EtherealGlassBlock extends AbstractGlassBlock {
 			for (Direction direction : Direction.Type.HORIZONTAL) {
 				BlockPos offsetPos = pos.offset(direction);
 				BlockState directionState = world.getBlockState(offsetPos);
-				if (directionState.getBlock() instanceof EtherealGlassBlock && age > directionState.get(AGE)) {
+				if (directionState.getBlock() instanceof EtherealPlatformBlock && age > directionState.get(AGE)) {
 					world.setBlockState(offsetPos, directionState.with(AGE, age - 1).with(EXTEND, true), Block.NOTIFY_LISTENERS);
 					world.scheduleBlockTick(offsetPos, this, 2);
 				}

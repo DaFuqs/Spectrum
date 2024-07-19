@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.helpers;
 
 import de.dafuqs.spectrum.api.interaction.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
-import net.fabricmc.fabric.api.transfer.v1.storage.StorageUtil;
+import net.fabricmc.fabric.api.transfer.v1.storage.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.*;
@@ -511,17 +511,4 @@ public class InventoryHelper {
 		return contentCount;
 	}
 
-	public static void insertOrDropItemstacks(Inventory inventory, World world, BlockPos pos, ItemStack ... stacks) {
-		if (canFitStacks(List.of(stacks), inventory)) {
-			for (ItemStack stack : stacks) {
-				smartAddToInventory(stack, inventory, null);
-			}
-			return;
-		}
-
-		for (ItemStack stack : stacks) {
-			Block.dropStack(world, pos, stack);
-
-		}
-	}
 }

@@ -66,7 +66,7 @@ public class AbyssalVinesBlock extends PlantBlock implements Fertilizable {
         reference.setProperty(BERRIES, false);
         reference.update(world);
         world.playSound(null, pos, SoundEvents.BLOCK_CAVE_VINES_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, MathHelper.nextBetween(world.random, 0.8F, 1.2F));
-        InventoryHelper.insertOrDropItemstacks(player.getInventory(), world, pos, SpectrumItems.FISSURE_PLUM.getDefaultStack());
+        player.getInventory().offerOrDrop(SpectrumItems.FISSURE_PLUM.getDefaultStack());
 
         world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(player, reference.getState()));
         return ActionResult.success(world.isClient());

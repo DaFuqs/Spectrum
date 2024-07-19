@@ -171,9 +171,9 @@ public class SpectrumConfig implements ConfigData {
 	public int GemstoneArmorWeaknessAmplifier = 1;
 	public int GemstoneArmorSlownessAmplifier = 1;
 	public int GemstoneArmorAbsorptionAmplifier = 0;
-	public int GemstoneArmorResistanceAmplifier = 1;
-	public int GemstoneArmorRegenerationAmplifier = 1;
-	public int GemstoneArmorSpeedAmplifier = 2;
+	public int GemstoneArmorResistanceAmplifier = 0;
+	public int GemstoneArmorRegenerationAmplifier = 0;
+	public int GemstoneArmorSpeedAmplifier = 1;
 	
 	public int BedrockArmorHelmetProtection = 5;
 	public int BedrockArmorLeggingsProtection = 9;

@@ -443,6 +443,11 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	
 	public static void craftEnchanterRecipe(World world, @NotNull EnchanterBlockEntity enchanterBlockEntity, @NotNull EnchanterRecipe enchanterRecipe) {
 		enchanterBlockEntity.drainExperience(enchanterRecipe.getRequiredExperience());
+
+		// if there is room: place the output on the table
+		// otherwise: pop it off
+		ItemStack resultStack = enchanterRecipe.craft(enchanterBlockEntity.virtualInventoryIncludingBowlStacks, world.getRegistryManager());
+		ItemStack existingCenterStack = enchanterBlockEntity.getStack(0);
 		
 		// decrement stacks in item bowls
 		for (int i = 0; i < 8; i++) {
@@ -451,7 +456,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 				double efficiencyModifier = 1.0 / enchanterBlockEntity.upgrades.getEffectiveValue(UpgradeType.EFFICIENCY);
 				resultAmountAfterEfficiencyMod = Support.getIntFromDecimalWithChance(efficiencyModifier, world.random);
 			}
-
+			
 			if (resultAmountAfterEfficiencyMod > 0) {
 				// since this recipe uses 1 item in each slot we can just iterate them all and decrement with 1
 				BlockPos itemBowlPos = enchanterBlockEntity.pos.add(getItemBowlPositionOffset(i, enchanterBlockEntity.virtualInventoryRecipeOrientation));
@@ -462,11 +467,6 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 				}
 			}
 		}
-
-		// if there is room: place the output on the table
-		// otherwise: pop it off
-		ItemStack resultStack = enchanterRecipe.craft(enchanterBlockEntity.virtualInventoryIncludingBowlStacks, world.getRegistryManager()).copy();
-		ItemStack existingCenterStack = enchanterBlockEntity.getStack(0);
 
 		if (!enchanterRecipe.areYieldAndEfficiencyUpgradesDisabled() && enchanterBlockEntity.upgrades.getEffectiveValue(UpgradeType.YIELD) != 1.0) {
 			int resultCountMod = Support.getIntFromDecimalWithChance(resultStack.getCount() * enchanterBlockEntity.upgrades.getEffectiveValue(UpgradeType.YIELD), world.random);

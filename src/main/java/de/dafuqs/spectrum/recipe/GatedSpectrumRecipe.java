@@ -2,8 +2,11 @@ package de.dafuqs.spectrum.recipe;
 
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.api.recipe.*;
+import de.dafuqs.spectrum.helpers.NbtHelper;
+import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
+import net.minecraft.nbt.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
@@ -91,6 +94,21 @@ public abstract class GatedSpectrumRecipe implements GatedRecipe {
 		ItemStack stack = item.getDefaultStack();
 		stack.setCount(count);
 		return stack;
+	}
+	
+	protected static ItemStack copyNbt(ItemStack sourceStack, ItemStack output) {
+		// this overrides all nbt data, that are not nested compounds (like lists)...
+		NbtCompound sourceNbt = sourceStack.getNbt();
+		if (sourceNbt != null) {
+			ItemStack modifiedOutput = output.copy();
+			NbtCompound modifiedNbt = sourceNbt.copy();
+			NbtHelper.mergeNbt(modifiedNbt, sourceNbt);
+			modifiedNbt.remove(ItemStack.DAMAGE_KEY);
+			modifiedOutput.setNbt(modifiedNbt);
+			// ...therefore, we need to restore all previous enchantments that the original item had and are still applicable to the new item
+			output = SpectrumEnchantmentHelper.clearAndCombineEnchantments(modifiedOutput, false, false, output, sourceStack);
+		}
+		return output;
 	}
 	
 }

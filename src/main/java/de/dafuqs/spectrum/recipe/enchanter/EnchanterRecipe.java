@@ -22,8 +22,10 @@ public class EnchanterRecipe extends GatedSpectrumRecipe {
 	protected final int requiredExperience;
 	protected final int craftingTime;
 	protected final boolean noBenefitsFromYieldAndEfficiencyUpgrades;
+	// copy all nbt data from the first stack in the ingredients to the output stack
+	protected final boolean copyNbt;
 	
-	public EnchanterRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, DefaultedList<Ingredient> inputs, ItemStack output, int craftingTime, int requiredExperience, boolean noBenefitsFromYieldAndEfficiencyUpgrades) {
+	public EnchanterRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, DefaultedList<Ingredient> inputs, ItemStack output, int craftingTime, int requiredExperience, boolean noBenefitsFromYieldAndEfficiencyUpgrades, boolean copyNbt) {
 		super(id, group, secret, requiredAdvancementIdentifier);
 		
 		this.inputs = inputs;
@@ -31,6 +33,7 @@ public class EnchanterRecipe extends GatedSpectrumRecipe {
 		this.requiredExperience = requiredExperience;
 		this.craftingTime = craftingTime;
 		this.noBenefitsFromYieldAndEfficiencyUpgrades = noBenefitsFromYieldAndEfficiencyUpgrades;
+		this.copyNbt = copyNbt;
 		
 		registerInToastManager(getType(), this);
 	}
@@ -60,6 +63,9 @@ public class EnchanterRecipe extends GatedSpectrumRecipe {
 	
 	@Override
 	public ItemStack craft(Inventory inv, DynamicRegistryManager drm) {
+		if (this.copyNbt) {
+			return copyNbt(inv.getStack(0), output.copy());
+		}
 		return output.copy();
 	}
 	

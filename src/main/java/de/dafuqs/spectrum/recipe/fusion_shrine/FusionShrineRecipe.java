@@ -7,14 +7,12 @@ import de.dafuqs.spectrum.api.predicate.world.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.fusion_shrine.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
-import de.dafuqs.spectrum.helpers.NbtHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.fluid.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
-import net.minecraft.nbt.*;
 import net.minecraft.recipe.*;
 import net.minecraft.registry.*;
 import net.minecraft.server.world.*;
@@ -238,17 +236,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 		}
 
 		if (this.copyNbt) {
-			// this overrides all nbt data, that are not nested compounds (like lists)...
-			NbtCompound sourceNbt = firstStack.getNbt();
-			if (sourceNbt != null) {
-				ItemStack modifiedOutput = output.copy();
-				NbtCompound modifiedNbt = sourceNbt.copy();
-				NbtHelper.mergeNbt(modifiedNbt, sourceNbt);
-				modifiedNbt.remove(ItemStack.DAMAGE_KEY);
-				modifiedOutput.setNbt(modifiedNbt);
-				// ...therefore, we need to restore all previous enchantments that the original item had and are still applicable to the new item
-				output = SpectrumEnchantmentHelper.clearAndCombineEnchantments(modifiedOutput, false, false, output, firstStack);
-			}
+			output = copyNbt(firstStack, output);
 		}
 		
 		spawnCraftingResultAndXP(world, fusionShrineBlockEntity, output, maxAmount); // spawn results

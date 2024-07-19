@@ -11,6 +11,7 @@
   ],
   "experience": 1,
   "time": 1200,
+  "required_advancement": "spectrum:hidden/collect_rock_crystal",
   "fabric:load_conditions": [
     {
       "condition": "fabric:all_mods_loaded",

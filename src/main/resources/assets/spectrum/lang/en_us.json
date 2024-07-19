@@ -4063,7 +4063,6 @@
   "book.spectrum.guidebook.cuisine.rock_candy.page2.title": "Growing Rock Candy",
   "book.spectrum.guidebook.cuisine.rock_candy.page2.text": "[#](449900)Silk Touch[#]() retains its size for use as a fancy light, or simply for storage.",
   "book.spectrum.guidebook.cuisine.rock_candy.page3.title": "Gemstone Rock Candy",
-
   "book.spectrum.guidebook.cuisine.rock_candy.page3.text": "By dissolving [Gemstone Powder](entry://general/gemstone_powder) in the liquid instead of Sugar, the Rock Candy took on the typical color of the gemstone.\\\n\\\nI've always wanted to know what those taste like! Certainly seems like the healthier option compared to snorting them up my nose.",
   "book.spectrum.guidebook.cuisine.sawblade_holly.name": "Sawblade Holly",
   "book.spectrum.guidebook.cuisine.sawblade_holly.page0.title": "Sawblade Holly",
@@ -4317,7 +4316,6 @@
   "book.spectrum.guidebook.dimension.noxshroom_forest.page0.title": "Noxshroom Forest",
   "book.spectrum.guidebook.dimension.noxshroom_forest.page0.text": "A strange mixture of tree and fungus towers over this biome.",
   "book.spectrum.guidebook.dimension.noxshroom_forest.page1.text": "Blackslag, coverd with a thin layer of a mycelial fungus.",
-
   "book.spectrum.guidebook.dimension.abyssal_vines.name": "Abyssal Vines",
   "book.spectrum.guidebook.dimension.abyssal_vines.page0.title": "Abyssal Vines",
   "book.spectrum.guidebook.dimension.abyssal_vines.page0.text": "Serpentine stalks and glowing fruit make for an awfully familiar sight. Though dimmer and leafier, it is easy to see that these hanging vines are related to glow berries.\\\nGiven their paleness and crystalline aura, I guess that centuries of darkness and feeding on [liquid crystal](entry://general/liquid_crystal) transformed them into something that feels at home in the cool twilight of the abyss.",
@@ -4327,7 +4325,6 @@
   "book.spectrum.guidebook.dimension.abyssal_vines.page2.text": "Naturally, these vines also bear fruit, but it is weirder than I expected. What at first seemed like two berries turned out to be one singular drupe split into two large, plump lobes.\\\nTheir flavor is complex, pungent, and aromatic; a strong sweet and nutty taste is underlined by notes of pine and musk - I think I can even taste some floral notes!",
   "book.spectrum.guidebook.dimension.abyssal_vines.page3.title": "Subterranean Stone Fruit",
   "book.spectrum.guidebook.dimension.abyssal_vines.page3.text": " The unripe ones are astringent but good for pickling\\\n\\\n*It stopped glowing after picking it off the vine p_p*",
-
   "book.spectrum.guidebook.dimension.noxwood.name": "Noxwood",
   "book.spectrum.guidebook.dimension.noxwood.page0.title": "Noxwood",
   "book.spectrum.guidebook.dimension.noxwood.page0.text": "A type of mushroom - or is it more a tree? - which can be found all over the [Noxshroom Forest](entry://dimension/noxshroom_forest).\\\nThey come in a variety of colors.\\\n\\\nThe trunks are as firm as wood, while the caps are almost soft and squishy. The bioluminescent gills give off a pleasant glow, which makes them excelent light sources.",
@@ -4344,12 +4341,10 @@
   "book.spectrum.guidebook.dimension.noxwood.page7.text": "Sort of like [#](bb00bb)Barrels[#](), but with twice the storage space.",
   "book.spectrum.guidebook.dimension.noxwood.page8.title": "Beams",
   "book.spectrum.guidebook.dimension.noxwood.page9.title": "Lanterns",
-
   "book.spectrum.guidebook.dimension.preservation_turrets.name": "Preservation Turrets",
   "book.spectrum.guidebook.dimension.preservation_turrets.page0.title": "Preservation Turrets",
   "book.spectrum.guidebook.dimension.preservation_turrets.page0.text": "*True engineering excellence. But, boy, does that excellence hurt.*",
   "book.spectrum.guidebook.dimension.preservation_turrets.page1.text": "High-tech machines, consisting of a reinforced shell of Basalt and Calcite, powered by an unknown source of energy that pulsates gently in the heart of these contraptions.\\\n\\\nReady to poke holes in me as soon as I make my presence known.",
-
   "book.spectrum.guidebook.dimension.pyrite.name": "Pyrite",
   "book.spectrum.guidebook.dimension.pyrite.page0.title": "Pyrite",
   "book.spectrum.guidebook.dimension.pyrite.page0.text": "Hard, sharp and yet surprisingly brittle. I found Pyrite all over the [Razor Edge](entry://dimension/razor_edge).",
@@ -4366,7 +4361,6 @@
   "book.spectrum.guidebook.dimension.razor_edge.page2.text": "Small mean plants that sting immensely when I make contact with them.",
   "book.spectrum.guidebook.dimension.shale_clay.name": "Shale Clay",
   "book.spectrum.guidebook.dimension.shale_clay.page0.title": "Shale Clay",
-
   "book.spectrum.guidebook.dimension.shale_clay.page0.text": "A sedimentary rock consisting of, well, layered shale and clay. Pretty unspectacular, apart from being pretty to look at.",
   "book.spectrum.guidebook.dimension.shale_clay.page1.title": "All Variants",
   "book.spectrum.guidebook.dimension.shale_clay.page1.text": "I can shape Shale Clay into many decorative blocks using [#](bb00bb)Crafting[#]() or the [#](bb00bb)Stonecutter[#]().",
@@ -4634,7 +4628,6 @@
   "book.spectrum.guidebook.enchanting.vanilla_enchantments.page37.title": "Thorns",
   "book.spectrum.guidebook.enchanting.vanilla_enchantments.page38.title": "Unbreaking",
   "book.spectrum.guidebook.enchanting.vanilla_enchantments.page39.title": "Curse of Vanishing",
-
   "book.spectrum.guidebook.equipment.name": "Equipment",
   "book.spectrum.guidebook.equipment.ashen_circlet.name": "Ashen Circlet",
   "book.spectrum.guidebook.equipment.ashen_circlet.page0.title": "Ashen Circlet",
@@ -4908,25 +4901,25 @@
   "book.spectrum.guidebook.general.gemstone_powder.page2.title": "Compression",
   "book.spectrum.guidebook.general.gemstone_powder.page2.text": "$(item)Gemstone Powder$() can be compacted for storage or decoration.",
   "book.spectrum.guidebook.general.gemstone_powder.page3.title": "Decompression",
-
-
-  "book.spectrum.guidebook.general.intro.name": "Intro",
   "book.spectrum.guidebook.general.intro.description": "Getting Started",
   "book.spectrum.guidebook.general.intro.page0.title": "Welcome to Spectrum!",
-  "book.spectrum.guidebook.general.intro.page0.text": "Spectrum is a progression- and exploration-driven magic mod where you combine colors.",
-  "book.spectrum.guidebook.general.intro.page1.text": "It's color mixing of the subtractive color system (CMYK). Subtractive color mixing may be familiar to you from painting with watercolors or printing.\\\n\\\nSpectrum's main colors are represented by gemstones, found in geodes scattered around the world, with the vanilla Amethyst representing the Magenta part of the spectrum.",
+  "book.spectrum.guidebook.general.intro.page0.text": "Spectrum is a progression and exploration-driven magic mod where you combine colors.",
+  "book.spectrum.guidebook.general.intro.page1.text": "You will be tinkering with color mixing in the subtractive color system (CMYK). You may be familiar with subtractive color mixing from watercolor painting or printing.\\\n\\\nThe main colors of the spectrum are represented with gemstones, you can find in geodes scattered around the world, with the vanilla Amethyst representing Magenta.",
   "book.spectrum.guidebook.general.intro.page2.title": "Progression System",
-  "book.spectrum.guidebook.general.intro.page2.text": "Spectrum comes with a complex progression system where you unlock new things as you progress.\\\nAs you delve deeper, you will notice changes in the world. Differences only you can perceive.\\\n\\\nEverything you learn will bring you closer to your final destination: Finding out what is waiting for you beneath the impenetrable bedrock floor.",
+  "book.spectrum.guidebook.general.intro.page2.text": "Spectrum features a unique progression system where you unlock new things as you progress.\\\nAs you progress, you will notice changes in the world. Differences that only *you* personally can perceive.\\\n\\\nEverything you learn will bring you closer to your ultimate goal: To find out what lies beneath the impenetrable bedrock floor.",
   "book.spectrum.guidebook.general.intro.page3.link_text": "Spectrum's Discord",
   "book.spectrum.guidebook.general.intro.page3.text": "No idea on how to progress? Take a look at this book or your advancements. These give a lot of hints on what to do next. Press the bottom center arrow to get started!\\\n\\\nSpectrum is still in development. If you find a bug or have a suggestion, visit Spectrum's Discord or report them on GitHub.\\\nHave fun!        - DaFuqs",
   "book.spectrum.guidebook.general.midnight_aberration.name": "The Perfect Compound?",
   "book.spectrum.guidebook.general.midnight_aberration.page0.title": "The Perfect Compound?",
-  "book.spectrum.guidebook.general.midnight_aberration.page0.text": "The findings from your [last experiment](entry://general/failing)[#]() make you strive for more and more: to squeeze every last ounce of energy out of your Gemstones.\\\n\\\n[Neolith](entry://general/failing@neolith)[#]() is the key! With such strength and power, it will combine the powers of all the gemstones into one. This relic will be the capstone to your creation, alone for you and ONLY for you, master of Pigment!",
+  "book.spectrum.guidebook.general.midnight_aberration.page0.text": "The results of my [last experiment](entry://general/failing) make me long for more: how much power can I squeeze out of these gemstones?\\\nI am sure there's more, and [Neolith](entry://general/neolith) must will be my entry gate! With such coherence, it may allow me to unite the powers of all the gems into one. This relic shall be the capstone to my creation, my personal Philosopher's stone, making me a living god!",
   "book.spectrum.guidebook.general.midnight_aberration.page1.title": "Fusion Recipe",
-  "book.spectrum.guidebook.general.midnight_aberration.page1.text": "The fusion of these magical energies will try your Shrine like nothing before - with a display to match. Who knows what might manifest? Best to make sure your shrine and the blocks around it are fortified and isolated.\\\nRequires daytime and a clear sky.",
+  "book.spectrum.guidebook.general.midnight_aberration.page1.text": "Requires daytime and a clear sky.\\\n\\\nThe fusion of these magical energies will stress my Fusion Shrine like nothing before - with a display to match. Best to make sure it and the blocks around it are fortified and isolated.",
   "book.spectrum.guidebook.general.midnight_aberration.page2.title": "Midnight Aberration",
-  "book.spectrum.guidebook.general.midnight_aberration.page2.text": "*This abomination of a Gemstone radiates an eerie aura.*\\\n\\\nIt looks loosely connected at best. No wonder it falls apart in your hands in no time. Total failure.",
-  "book.spectrum.guidebook.general.midnight_aberration.page3.text": "While the chaos that ensued *definitely* was not the outcome you craved for, the result still does hold immense power.\\\nSo much in fact, that if not used quick it crumbles into dust.\\\n\\\nAnd then there is that aggressive blackish fluid that manifested in the process. Because of its color you named it [Midnight Solution](entry://general/midnight_solution).",
+  "book.spectrum.guidebook.general.midnight_aberration.page2.text": "*This abomination of a gemstone radiates an eerie aura.*\\\n\\\nIt looks loosely connected at best. No wonder it falls apart in my hands in no time. Total failure. Diary, I am both *devastated* and disappointed in myself.",
+  "book.spectrum.guidebook.general.midnight_aberration.page3.text": "While the chaos that ensued was *definitely* not the result I craved for, the result does indeed hold immense power.\\\nSo much so that it will crumble to dust if not used quickly.\\\n\\\nAnd then there is that aggressive blackish fluid that manifested in the process. Because of its color I named it [Midnight Solution](entry://general/midnight_solution).",
+
+
+
   "book.spectrum.guidebook.general.moonstone_shards.name": "Moonstone Shards",
   "book.spectrum.guidebook.general.moonstone_shards.page0.title": "Moonstone Shards",
   "book.spectrum.guidebook.general.moonstone_shards.page0.text": "You were quite simple-minded, weren't you? Thought you knew everything, but this everything was always merely half the truth.\\\n\\\nYou know better now. This white, pure gemstone you hold in your hand, shimmering in a soft, warm glow, is the monument to that.",

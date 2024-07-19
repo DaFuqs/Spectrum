@@ -354,6 +354,9 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 							currentRemainder = currentRemainder.copy();
 							currentRemainder.setCount(ingredientStack.getCount());
 							InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, currentRemainder, FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + INVENTORY_SLOT_COUNT);
+							if (!currentRemainder.isEmpty()) {
+								ItemScatterer.spawn(potionWorkshopBlockEntity.world, potionWorkshopBlockEntity.pos.getX(), potionWorkshopBlockEntity.pos.getY(), potionWorkshopBlockEntity.pos.getZ(), currentRemainder);
+							}
 						}
 					}
 					

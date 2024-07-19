@@ -97,8 +97,10 @@ public class BedrockAnvilScreen extends ForgingScreen<BedrockAnvilScreenHandler>
 			return true;
 		}
 		
-		return (this.getFocused() != null && this.getFocused().keyPressed(keyCode, scanCode, modifiers))
-				|| super.keyPressed(keyCode, scanCode, modifiers);
+		
+		Element focused = this.getFocused();
+		return (focused == null || !focused.keyPressed(keyCode, scanCode, modifiers)) || focused instanceof TextFieldWidget textFieldWidget && textFieldWidget.isActive() || super.keyPressed(keyCode, scanCode, modifiers);
+
 	}
 	
 	private void onRenamed(String name) {

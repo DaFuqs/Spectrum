@@ -5,7 +5,7 @@
       "type": "minecraft:uniform",
       "value": {
         "min_inclusive": 8,
-        "max_inclusive": 14
+        "max_inclusive": 13
       }
     },
     "node_quantity": {

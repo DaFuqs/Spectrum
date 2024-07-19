@@ -4697,10 +4697,6 @@
   "book.spectrum.guidebook.equipment.gemstone_armor.name": "Gemstone Armor",
   "book.spectrum.guidebook.equipment.gemstone_armor.page0.title": "Gemstone Armor",
   "book.spectrum.guidebook.equipment.gemstone_armor.page0.text": "You had more than enough time to develop your own individual fighting style.\\\nTo best support this style, you've designed a range of matching gear out of interesting materials.\\\n\\\nDisadvantage: The shards used in the production are kind of brittle. Therefore, this equipment has a comparatively low durability.",
-  "book.spectrum.guidebook.equipment.gemstone_armor.page1.checklist.entry0": "Helmet: when nothingness meets hell",
-  "book.spectrum.guidebook.equipment.gemstone_armor.page1.checklist.entry1": "Chestplate: the Golden Ratio",
-  "book.spectrum.guidebook.equipment.gemstone_armor.page1.checklist.entry2": "Leggings: the source of nightmares",
-  "book.spectrum.guidebook.equipment.gemstone_armor.page1.checklist.entry3": "Boots: mourning of the Nether",
   "book.spectrum.guidebook.equipment.gemstone_armor.page1.text": "They can be repaired in Anvils by using [Gemstone Shards](entry://general/shards)[#]().\\\n\\\nTo take advantage of their unique abilities you will need some special materials:",
   "book.spectrum.guidebook.equipment.gemstone_armor.page2.text": "Gives attackers Weakness and Slowness when they hit you, letting you slip through their claws like a shadow.",
   "book.spectrum.guidebook.equipment.gemstone_armor.page3.text": "Grants Absorption and Resistance when you get hit, making you a massive wall for a short duration.",
@@ -6139,6 +6135,11 @@
 
   "book.spectrum.guidebook.mod_integration.ae2.silicon_from_rock_crystal.title": "Efficient Silicon",
   "book.spectrum.guidebook.mod_integration.ae2.silicon_from_rock_crystal.text": "Rock Crystal is a great source of Silicon",
+
+  "book.spectrum.guidebook.equipment.gemstone_armor.page1.checklist.entry0": "Helmet: when nothingness meets hell",
+  "book.spectrum.guidebook.equipment.gemstone_armor.page1.checklist.entry1": "Chestplate: the Golden Ratio",
+  "book.spectrum.guidebook.equipment.gemstone_armor.page1.checklist.entry2": "Leggings: mourning of the Nether",
+  "book.spectrum.guidebook.equipment.gemstone_armor.page1.checklist.entry3": "Boots: the source of nightmares",
 
   "______special_named_items_and_lore": "Special Item Names:",
   "named_item.spectrum.dirt_of_shame": "Dirt of Shame",

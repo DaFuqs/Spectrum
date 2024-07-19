@@ -1,4 +1,5 @@
 {
+	"parent": "block/block",
 	"credit": "~ XOXO Azzyypaaras ~",
 	"texture_size": [32, 32],
 	"textures": {

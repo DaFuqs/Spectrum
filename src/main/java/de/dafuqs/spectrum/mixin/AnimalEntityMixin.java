@@ -15,7 +15,7 @@ public class AnimalEntityMixin {
 	// it does, however, not remove the ambient light requirement for animal spawns
 	@Inject(method = "getPathfindingFavor(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/WorldView;)F", at = @At("HEAD"), cancellable = true)
 	public void getPathfindingFavor(BlockPos pos, WorldView world, CallbackInfoReturnable<Float> cir) {
-		if (world.getBlockState(pos.down()).isOf(SpectrumBlocks.OVERGROWN_BLACKSLAG)) {
+		if (world.getBlockState(pos.down()).isIn(SpectrumBlockTags.ANIMALS_SPAWNABLE_ON_ADDITIONS)) {
 			cir.setReturnValue(10.0F);
 		}
 	}

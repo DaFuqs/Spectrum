@@ -1,19 +1,13 @@
 package de.dafuqs.spectrum.blocks.deeper_down.flora;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Fertilizable;
-import net.minecraft.block.PlantBlock;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.ai.pathing.NavigationType;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldView;
+import net.minecraft.block.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.ai.pathing.*;
+import net.minecraft.server.world.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
+import net.minecraft.util.shape.*;
+import net.minecraft.world.*;
 
 public class MossBallBlock extends PlantBlock implements Fertilizable {
 
@@ -30,7 +24,8 @@ public class MossBallBlock extends PlantBlock implements Fertilizable {
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPE;
+        Vec3d vec3d = state.getModelOffset(world, pos);
+        return SHAPE.offset(vec3d.x, vec3d.y, vec3d.z);
     }
 
     @Override

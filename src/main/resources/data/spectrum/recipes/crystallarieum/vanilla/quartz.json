@@ -15,14 +15,6 @@
   "catalysts": [
     {
       "ingredient": {
-        "item": "spectrum:rock_crystal"
-      },
-      "growth_acceleration_mod": 12.0,
-      "ink_consumption_mod": 0.5,
-      "consume_chance_per_second": 0.1
-    },
-    {
-      "ingredient": {
         "item": "minecraft:sand"
       },
       "growth_acceleration_mod": 3.0,
@@ -36,6 +28,14 @@
       "growth_acceleration_mod": 1.0,
       "ink_consumption_mod": 0.25,
       "consume_chance_per_second": 0.01
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:rock_crystal"
+      },
+      "growth_acceleration_mod": 12.0,
+      "ink_consumption_mod": 0.5,
+      "consume_chance_per_second": 0.1
     }
   ],
   "additional_recipe_manager_outputs": [

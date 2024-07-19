@@ -210,9 +210,14 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		if (context instanceof EntityShapeContext entityShapeContext) {
-			Entity var4 = entityShapeContext.getEntity();
-			if (var4 instanceof PlayerEntity player) {
-				return this.isVisibleTo(player) ? SHAPE : VoxelShapes.empty();
+			Entity contextEntity = entityShapeContext.getEntity();
+			if (contextEntity instanceof PlayerEntity player) {
+				if (this.isVisibleTo(player)) {
+					Vec3d vec3d = state.getModelOffset(world, pos);
+					return SHAPE.offset(vec3d.x, vec3d.y, vec3d.z);
+				} else {
+					return VoxelShapes.empty();
+				}
 			}
 		}
 		return VoxelShapes.fullCube();

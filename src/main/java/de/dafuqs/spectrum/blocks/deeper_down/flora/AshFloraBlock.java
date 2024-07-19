@@ -5,7 +5,7 @@ import net.minecraft.block.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 
-public class AshFloraBlock extends FernBlock {
+public class AshFloraBlock extends FernBlock { // TODO: you sure? that makes them turn into ferns when bonemealed. ☜(ﾟヮﾟ☜)
 	
 	public AshFloraBlock(Settings settings) {
 		super(settings);

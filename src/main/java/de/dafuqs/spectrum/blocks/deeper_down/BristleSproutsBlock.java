@@ -20,7 +20,8 @@ public class BristleSproutsBlock extends PlantBlock implements Fertilizable {
 	
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		return SHAPE;
+		Vec3d vec3d = state.getModelOffset(world, pos);
+		return SHAPE.offset(vec3d.x, vec3d.y, vec3d.z);
 	}
 	
 	@Override

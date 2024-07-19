@@ -1,16 +1,10 @@
 package de.dafuqs.spectrum.blocks.deeper_down.flora;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
+import net.minecraft.block.*;
+import net.minecraft.entity.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.shape.*;
+import net.minecraft.world.*;
 
 public class GiantMossBallBlock extends MossBallBlock{
 
@@ -32,6 +26,7 @@ public class GiantMossBallBlock extends MossBallBlock{
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return VoxelShapes.fullCube();
+        Vec3d vec3d = state.getModelOffset(world, pos);
+        return VoxelShapes.fullCube().offset(vec3d.x, vec3d.y, vec3d.z);
     }
 }

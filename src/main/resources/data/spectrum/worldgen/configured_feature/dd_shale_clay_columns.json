@@ -2,20 +2,20 @@
   "type": "spectrum:columns",
   "config": {
     "state": {
-      "Name": "minecraft:andesite"
+      "Name": "spectrum:shale_clay"
     },
     "reach": {
       "type": "minecraft:uniform",
       "value": {
         "min_inclusive": 2,
-        "max_inclusive": 3
+        "max_inclusive": 7
       }
     },
     "height": {
       "type": "minecraft:uniform",
       "value": {
-        "min_inclusive": 5,
-        "max_inclusive": 10
+        "min_inclusive": 2,
+        "max_inclusive": 7
       }
     }
   }

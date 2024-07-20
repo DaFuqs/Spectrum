@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.api.interaction;
 
 import de.dafuqs.spectrum.entity.entity.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.predicate.item.*;
@@ -62,7 +63,7 @@ public interface OmniAcceleratorProjectile {
 	 * @return The sound effect to play when the projectile has been fired successfully
 	 */
 	default SoundEvent getSoundEffect() {
-		return SoundEvents.ENTITY_SNOWBALL_THROW;
+		return SpectrumSoundEvents.OMNI_ACCELERATOR_SHOOT;
 	}
 	
 	static void setVelocity(Entity projectile, double x, double y, double z, float speed, float divergence) {

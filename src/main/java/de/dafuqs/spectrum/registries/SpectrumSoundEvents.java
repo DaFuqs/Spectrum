@@ -31,6 +31,8 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent BIDENT_MIRROR_IMAGE_THROWN = register("bident_mirror_image_thrown");
 	public static final SoundEvent BIDENT_HIT_GROUND = register("bident_hit_ground");
 	public static final SoundEvent MOONSTONE_STRIKE = register("moonstone_strike");
+	public static final SoundEvent ENTITY_BLOCK_FLOODER_THROW = register("entity.block_flooder.throw");
+	public static final SoundEvent OMNI_ACCELERATOR_SHOOT = register("item.omni_accelerator.shoot");
 	
 	public static final SoundEvent ENCHANTER_WORKING = register("enchanter_working");
 	public static final SoundEvent ENCHANTER_DING = register("enchanter_ding");

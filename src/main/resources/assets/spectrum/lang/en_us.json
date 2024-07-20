@@ -528,6 +528,8 @@
   "spectrum.subtitles.incandescent_charge": "Apparatus charges",
   "spectrum.subtitles.incandescent_arm": "Apparatus arms",
   "spectrum.subtitles.block.parametric_mining_device.throw": "Mining Device flies",
+  "spectrum.subtitles.entity.block_flooder.throw": "Block Flooder flies",
+  "spectrum.subtitles.item.omni_accelerator.shoot": "Omni Accelerator shoots",
 
   "spectrum.subtitles.critical_crunch": "Critical Hit!",
   "spectrum.subtitles.impact_base": "Intense impact",

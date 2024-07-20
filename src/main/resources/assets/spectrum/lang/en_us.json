@@ -2313,6 +2313,7 @@
   "item.spectrum.spawner.tooltip.spawn_count": "Spawn Count: %d",
   "item.spectrum.spawner.tooltip.min_spawn_delay": "Min Spawn Delay: %d",
   "item.spectrum.spawner.tooltip.max_spawn_delay": "Max Spawn Delay: %d",
+  "item.spectrum.spawner.tooltip.max_nearby_entities": "Max Nearby Entities: %d",
   "item.spectrum.spawner.tooltip.spawn_range": "Spawn Range: %d",
   "item.spectrum.spawner.tooltip.required_player_range": "Required Player Range: %d",
   "recipe.spectrum.spawner.lore.changed_creature": "Changes the creature to that of the head",

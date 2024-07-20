@@ -26,6 +26,18 @@ public class SpectrumFoodComponents {
 			.statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 400, 0), 0.1F)
 			.build();
 
+	public static final FoodComponent NIGHTDEW_SPROUT = new FoodComponent.Builder()
+			.hunger(-1).saturationModifier(0).alwaysEdible()
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.CALMING, 200, 0), 0.5F)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.SOMNOLENCE, 200, 0), 0.5F)
+			.build();
+
+	public static final FoodComponent NECTARDEW_BURGEON = new FoodComponent.Builder()
+			.hunger(-1).saturationModifier(0).alwaysEdible()
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.ETERNAL_SLUMBER, 6000, 0), 0.95F)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.FATAL_SLUMBER, 100, 0), 0.05F)
+			.build();
+
 	public static final FoodComponent STAR_CANDY = new FoodComponent.Builder()
 			.hunger(3).saturationModifier(0.2F).snack()
 			.build();

@@ -2,13 +2,15 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.additionalentityattributes.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.energy.InkPoweredStatusEffectInstance;
 import de.dafuqs.spectrum.status_effects.*;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.registry.*;
 
 public class SpectrumStatusEffects {
-	
+
+	public static final int ETERNAL_SLUMBER_COLOR = 0xc35fee;
 	public static boolean effectsAreGettingStacked = false;
 	
 	/**
@@ -121,7 +123,18 @@ public class SpectrumStatusEffects {
 	public static final StatusEffect LAVA_GLIDING = registerStatusEffect("lava_gliding", new SpectrumStatusEffect(StatusEffectCategory.BENEFICIAL, 0xc42e0e)
 			.addAttributeModifier(AdditionalEntityAttributes.LAVA_SPEED, "9812c88f-dc8e-47d1-a092-38339da9891e", 0.1D, EntityAttributeModifier.Operation.ADDITION)
 			.addAttributeModifier(AdditionalEntityAttributes.LAVA_VISIBILITY, "9812c88f-dc8e-47d1-a092-38339da9891e", 8.0D, EntityAttributeModifier.Operation.ADDITION));
-	
+
+	/**
+	 * NOT YET IMPLEMENTED
+	 * <p>
+	 * TODO: sleep effects
+	 */
+	public static final StatusEffect CALMING = registerStatusEffect("calming", new SpectrumStatusEffect(StatusEffectCategory.BENEFICIAL, 0x5fd7b3));
+	public static final StatusEffect SOMNOLENCE = registerStatusEffect("somnolence", new SpectrumStatusEffect(StatusEffectCategory.NEUTRAL, 0xae7bec));
+	public static final StatusEffect ETERNAL_SLUMBER = registerStatusEffect("eternal_slumber", new SpectrumStatusEffect(StatusEffectCategory.HARMFUL, ETERNAL_SLUMBER_COLOR));
+	public static final StatusEffect FATAL_SLUMBER = registerStatusEffect("fatal_slumber", new SpectrumStatusEffect(StatusEffectCategory.HARMFUL, 0x8136c2));
+
+
 	/**
 	 * % Chance to protect from projectiles per level
 	 */
@@ -136,5 +149,12 @@ public class SpectrumStatusEffects {
 	public static void register() {
 	
 	}
-	
+
+	public static boolean isStrongSleepEffect(StatusEffectInstance instance) {
+		return instance.getEffectType() == ETERNAL_SLUMBER || instance.getEffectType() == FATAL_SLUMBER;
+	}
+
+	public static boolean isStrongSleepEffect(InkPoweredStatusEffectInstance instance) {
+		return isStrongSleepEffect(instance.getStatusEffectInstance());
+	}
 }

@@ -1,0 +1,22 @@
+{
+  "type": "spectrum:potion_workshop_brewing",
+  "group": "sleep_potions",
+  "ingredient1": {
+    "item": "minecraft:nether_wart"
+  },
+  "ingredient2": {
+    "item": "spectrum:nightdew_sprout"
+  },
+  "ingredient3": {
+    "item": "minecraft:flowering_azalea"
+  },
+  "effect": "spectrum:calming",
+  "base_duration_ticks": 3600,
+  "potency_modifier": 1.0,
+  "applicable_to_potions": true,
+  "applicable_to_tipped_arrows": true,
+  "applicable_to_potion_fillables": true,
+  "required_advancement": "spectrum:unlocks/potions/weak_sleep_effects",
+  "ink_color": "spectrum:purple",
+  "ink_cost": 4
+}

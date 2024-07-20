@@ -4,7 +4,7 @@
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/collect_fissure_plum"
   },
-  "icon": "spectrum:abyssal_vines",
+  "icon": "spectrum:textures/block/abyssal_vines.png",
   "category": "spectrum:dimension",
   "hide_while_locked ": true,
   "parents": [

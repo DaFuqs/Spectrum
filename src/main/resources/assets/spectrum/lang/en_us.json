@@ -157,6 +157,10 @@
   "spectrum.tooltip.able_to_summon_warden": "Calls out to the Warden",
   "spectrum.tooltip.biomemakeover_cursed": "Got cursed by a wicked altar",
 
+  "container.spectrum.rei.pedestal_crafting.secret_recipe": "Secret Recipe!",
+  "container.spectrum.rei.pedestal_crafting.secret_recipe.hint": "Secret Recipe! Hint:",
+  "recipe.spectrum.pedestal/tier1/food/salted_jaramel_tart.hint": "A very salty tart",
+
   "spectrum.gui.guidebook.reveal_hint_button.text": "Reveal Hint    ",
   "spectrum.gui.guidebook.reveal_hint_button.tooltip.pay": "Pay a small fee to unlock a hint",
   "spectrum.gui.guidebook.reveal_hint_button.tooltip.lacking_resource": "You do not have this fee in your inventory",

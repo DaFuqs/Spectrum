@@ -7,6 +7,7 @@ import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.display.basic.*;
 import me.shedaniel.rei.api.common.entry.*;
 import net.minecraft.client.*;
+import net.minecraft.text.*;
 import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
 
@@ -37,6 +38,11 @@ public class NaturesStaffConversionsDisplay extends BasicDisplay implements Gate
 	@Override
 	public boolean isSecret() {
 		return false;
+	}
+	
+	@Override
+	public @Nullable Text getSecretHintText() {
+		return null;
 	}
 	
 }

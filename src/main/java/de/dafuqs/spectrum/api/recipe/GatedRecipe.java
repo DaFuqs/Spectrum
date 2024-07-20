@@ -8,6 +8,7 @@ import net.minecraft.inventory.*;
 import net.minecraft.recipe.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
+import org.jetbrains.annotations.*;
 
 public interface GatedRecipe extends Recipe<Inventory> {
 	
@@ -32,6 +33,14 @@ public interface GatedRecipe extends Recipe<Inventory> {
 	@Environment(EnvType.CLIENT)
 	private void registerInToastManagerClient(RecipeType<?> recipeType, GatedRecipe gatedRecipe) {
 		UnlockToastManager.registerGatedRecipe(recipeType, gatedRecipe);
+	}
+	
+	default @Nullable Text getSecretHintText() {
+		if (isSecret()) {
+			String secretHintLangKey = getId().toTranslationKey("recipe", "hint");
+			return Language.getInstance().hasTranslation(secretHintLangKey) ? Text.translatable(secretHintLangKey) : null;
+		}
+		return null;
 	}
 	
 }

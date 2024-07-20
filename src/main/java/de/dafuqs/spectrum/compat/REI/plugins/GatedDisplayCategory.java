@@ -14,6 +14,12 @@ import java.util.*;
 @Environment(EnvType.CLIENT)
 public abstract class GatedDisplayCategory<T extends GatedRecipeDisplay> implements DisplayCategory<T> {
 	
+	public static final Text HIDDEN_LINE_1 = Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1");
+	public static final Text HIDDEN_LINE_2 = Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2");
+	
+	public static final Text SECRET = Text.translatable("container.spectrum.rei.pedestal_crafting.secret_recipe");
+	public static final Text SECRET_HINT = Text.translatable("container.spectrum.rei.pedestal_crafting.secret_recipe.hint");
+	
 	@Override
 	public List<Widget> setupDisplay(@NotNull T display, @NotNull Rectangle bounds) {
 		Point startPoint = new Point(bounds.getCenterX() - 58, bounds.getCenterY() - getDisplayHeight() / 2 + 5);
@@ -22,10 +28,19 @@ public abstract class GatedDisplayCategory<T extends GatedRecipeDisplay> impleme
 		widgets.add(Widgets.createRecipeBase(bounds));
 		
 		if (display.isUnlocked()) {
-			setupWidgets(startPoint, bounds, widgets, display);
+			if (display.isSecret()) {
+				if (display.getSecretHintText() == null) {
+					widgets.add(Widgets.createLabel(new Point(bounds.getCenterX(), bounds.getCenterY() - 9), SECRET).centered().color(0x3f3f3f).noShadow());
+				} else {
+					widgets.add(Widgets.createLabel(new Point(bounds.getCenterX(), bounds.getCenterY() - 9), SECRET_HINT).centered().color(0x3f3f3f).noShadow());
+					widgets.add(Widgets.createLabel(new Point(bounds.getCenterX(), bounds.getCenterY() + 1), display.getSecretHintText()).centered().color(0x3f3f3f).noShadow());
+				}
+			} else {
+				setupWidgets(startPoint, bounds, widgets, display);
+			}
 		} else {
-			widgets.add(Widgets.createLabel(new Point(startPoint.x - 6, bounds.getCenterY() - 9), Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
-			widgets.add(Widgets.createLabel(new Point(startPoint.x - 6, bounds.getCenterY() + 1), Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(bounds.getCenterX(), bounds.getCenterY() - 9), HIDDEN_LINE_1).centered().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(bounds.getCenterX(), bounds.getCenterY() + 1), HIDDEN_LINE_2).centered().color(0x3f3f3f).noShadow());
 		}
 		
 		return widgets;

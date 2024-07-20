@@ -1,20 +1,19 @@
 package de.dafuqs.spectrum.compat.emi;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.block.FilterConfigurable;
-import de.dafuqs.spectrum.api.recipe.*;
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.compat.emi.handlers.*;
 import de.dafuqs.spectrum.compat.emi.recipes.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.inventories.*;
-import de.dafuqs.spectrum.inventories.slots.ShadowSlot;
+import de.dafuqs.spectrum.inventories.slots.*;
 import de.dafuqs.spectrum.registries.*;
 import dev.emi.emi.api.*;
 import dev.emi.emi.api.recipe.*;
 import dev.emi.emi.api.stack.*;
 import net.minecraft.block.*;
-import net.minecraft.client.gui.screen.ingame.HandledScreen;
+import net.minecraft.client.gui.screen.ingame.*;
 import net.minecraft.inventory.*;
 import net.minecraft.recipe.*;
 import net.minecraft.registry.*;
@@ -189,9 +188,6 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 
 	public <C extends Inventory, T extends Recipe<C>> void addAll(EmiRegistry registry, RecipeType<T> type, Function<T, EmiRecipe> constructor) {
 		for (T recipe : registry.getRecipeManager().listAllOfType(type)) {
-			if (recipe instanceof GatedRecipe gatedRecipe && gatedRecipe.isSecret()) {
-				continue; // secret recipes should never be shown in recipe viewers
-			}
 			registry.addRecipe(constructor.apply(recipe));
 		}
 	}

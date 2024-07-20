@@ -2,10 +2,8 @@ package de.dafuqs.spectrum.registries;
 
 import com.google.common.collect.*;
 import de.dafuqs.arrowhead.api.*;
-import de.dafuqs.fractal.api.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.item.*;
-import de.dafuqs.spectrum.api.item_group.*;
 import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
@@ -26,7 +24,6 @@ import net.fabricmc.fabric.api.entity.event.v1.*;
 import net.fabricmc.fabric.api.event.lifecycle.v1.*;
 import net.fabricmc.fabric.api.event.player.*;
 import net.fabricmc.fabric.api.item.v1.*;
-import net.fabricmc.fabric.api.itemgroup.v1.*;
 import net.fabricmc.fabric.api.resource.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.*;
@@ -360,14 +357,6 @@ public class SpectrumEventListeners {
 				return id;
 			}
 		});
-		
-		ItemSubGroupEvents.modifyEntriesEvent(ItemGroupIDs.SUBTAB_BLOCKS).register(new ItemSubGroupEvents.ModifyEntries() {
-			@Override
-			public void modifyEntries(FabricItemGroupEntries entries) {
-				entries.add(new ItemStack(Items.APPLE));
-			}
-		});
-		
 	}
 	
 	// It could have been so much easier and performant, but KubeJS overrides the ENTIRE recipe manager

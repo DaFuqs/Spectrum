@@ -113,7 +113,7 @@ public class SpectrumOmniAcceleratorProjectiles {
 			
 			@Override
 			public SoundEvent getSoundEffect() {
-				return SoundEvents.ENTITY_SNOWBALL_THROW;
+				return SpectrumSoundEvents.ENTITY_BLOCK_FLOODER_THROW;
 			}
 		}, SpectrumItems.BLOCK_FLOODER);
 		

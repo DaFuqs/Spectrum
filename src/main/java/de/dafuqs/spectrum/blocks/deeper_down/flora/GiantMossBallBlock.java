@@ -15,7 +15,7 @@ public class GiantMossBallBlock extends MossBallBlock{
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (entity instanceof LivingEntity && entity.getType() != EntityType.FOX && entity.getType() != EntityType.BEE) {
-            entity.slowMovement(state, new Vec3d(0.9F, 0.75, 0.9F));
+            entity.slowMovement(state, new Vec3d(0.9F, 0.334, 0.9F));
         }
     }
 

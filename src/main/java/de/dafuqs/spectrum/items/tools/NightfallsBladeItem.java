@@ -9,6 +9,7 @@ import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.effect.*;
+import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.*;
@@ -63,7 +64,8 @@ public class NightfallsBladeItem extends ToolItem implements Vanishable, InkPowe
 	
 	@Override
 	public long adjustFinalCostFor(@NotNull InkPoweredStatusEffectInstance instance) {
-		return Math.round(Math.pow(instance.getInkCost().getCost(), 1.75 + instance.getStatusEffectInstance().getAmplifier()));
+		var mod = SpectrumStatusEffects.isStrongSleepEffect(instance) ? 1 : 0;
+		return Math.round(Math.pow(instance.getInkCost().getCost(), 1.75 + instance.getStatusEffectInstance().getAmplifier() + mod));
 	}
 	
 	@Override

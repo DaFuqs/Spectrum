@@ -1,0 +1,22 @@
+{
+  "type": "spectrum:potion_workshop_brewing",
+  "group": "sleep_potions",
+  "ingredient1": {
+    "item": "minecraft:nether_wart"
+  },
+  "ingredient2": {
+    "item": "spectrum:nightdew_sprout"
+  },
+  "ingredient3": {
+    "item": "spectrum:neolith"
+  },
+  "effect": "spectrum:somnolence",
+  "base_duration_ticks": 1200,
+  "potency_modifier": 0.5,
+  "applicable_to_potions": true,
+  "applicable_to_tipped_arrows": true,
+  "applicable_to_potion_fillables": true,
+  "required_advancement": "spectrum:unlocks/potions/weak_sleep_effects",
+  "ink_color": "spectrum:purple",
+  "ink_cost": 8
+}

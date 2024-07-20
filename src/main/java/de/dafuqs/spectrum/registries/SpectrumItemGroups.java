@@ -341,6 +341,8 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.MOONSTRUCK_NECTAR);
 		entries.add(SpectrumItems.GLASS_PEACH);
 		entries.add(SpectrumItems.FISSURE_PLUM);
+		entries.add(SpectrumItems.NIGHTDEW_SPROUT);
+		entries.add(SpectrumItems.NECTARDEW_BURGEON);
 		entries.add(SpectrumItems.BLOODBOIL_SYRUP);
 		entries.add(SpectrumItems.SCONE);
 		entries.add(SpectrumItems.STAR_CANDY);

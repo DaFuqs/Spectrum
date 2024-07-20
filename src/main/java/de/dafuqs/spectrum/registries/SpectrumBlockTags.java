@@ -17,6 +17,7 @@ public class SpectrumBlockTags {
 	public static final TagKey<Block> ALOE_PLANTABLE = of("aloe_plantable");
 	public static final TagKey<Block> ALOE_CONVERTED = of("aloe_converted");
 	public static final TagKey<Block> GROWTH_ACCELERATORS = of("growth_accelerators");
+	public static final TagKey<Block> NIGHTDEW_SOILS = of("nightdew_soils");
 
 	// DECAY
 	public static final TagKey<Block> DECAY = of("decay/decay");

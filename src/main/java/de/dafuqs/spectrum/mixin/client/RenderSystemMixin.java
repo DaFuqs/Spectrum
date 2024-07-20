@@ -9,12 +9,12 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(value = RenderSystem.class, priority = 1001)
+@Mixin(value = RenderSystem.class, priority = 1001, remap = false)
 public class RenderSystemMixin {
 
     @Shadow @Final private static float[] shaderFogColor;
 
-    @Inject(method = "getShaderFogColor", at = @At("RETURN"), remap = false, cancellable = true)
+    @Inject(method = "getShaderFogColor", at = @At("RETURN"), cancellable = true)
     private static void alterFogColor(CallbackInfoReturnable<float[]> cir) {
         var darkening = DarknessEffects.fogDarkness;
         var r = shaderFogColor[0] * darkening;

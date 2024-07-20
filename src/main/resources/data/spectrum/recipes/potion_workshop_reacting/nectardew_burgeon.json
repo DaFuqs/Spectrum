@@ -1,0 +1,19 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "spectrum:nectardew_burgeon",
+  "modifiers": {
+    "potency_multiplier": 3.0,
+    "duration_multiplier": 0.334,
+    "additional_effects": [
+      {
+        "effect": "spectrum:eternal_slumber",
+        "base_duration_ticks": 800,
+        "potency_modifier": 0.0,
+        "ink_color": "spectrum:purple",
+        "ink_cost": 32,
+        "chance": 1
+      }
+    ]
+  },
+  "required_advancement": "spectrum:hidden/collect_nectardew"
+}

@@ -2,18 +2,10 @@
   "type": "spectrum:potion_workshop_reacting",
   "item": "spectrum:nightdew_sprout",
   "modifiers": {
-    "flat_potency_bonus": 2.0,
+    "flat_potency_bonus": 1.0,
     "duration_multiplier": 1.5,
-    "additional_effects": [
-      {
-        "effect": "spectrum:somnolence",
-        "base_duration_ticks": 800,
-        "potency_modifier": 0.0,
-        "ink_color": "spectrum:purple",
-        "ink_cost": 8,
-        "chance": 1
-      }
-    ]
+    "flat_yield_bonus": -1.0
+
   },
   "required_advancement": "spectrum:hidden/collect_nightdew"
 }

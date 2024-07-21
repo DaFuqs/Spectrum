@@ -1,0 +1,34 @@
+{
+  "parent": "spectrum:lategame/collect_secret_cookbook",
+  "display": {
+    "icon": {
+      "item": "spectrum:nectardew_burgeon"
+    },
+    "title": {
+      "translate": "advancements.spectrum.create_evernectar.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.create_evernectar.description"
+    }
+  },
+  "criteria": {
+    "has_evernectar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:nectardew_burgeon"
+            ]
+          }
+        ]
+      }
+    },
+    "discovered_nectardew": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_nectardew"
+      }
+    }
+  }
+}

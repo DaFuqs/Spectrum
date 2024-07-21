@@ -125,14 +125,19 @@ public class SpectrumStatusEffects {
 			.addAttributeModifier(AdditionalEntityAttributes.LAVA_VISIBILITY, "9812c88f-dc8e-47d1-a092-38339da9891e", 8.0D, EntityAttributeModifier.Operation.ADDITION));
 
 	/**
+	 * Reduces detection range and enemy spawn.
+	 */
+	public static final StatusEffect CALMING = registerStatusEffect("calming", new SleepStatusEffect(StatusEffectCategory.BENEFICIAL, 0.25F, 0x5fd7b3)
+	);
+
+	/**
 	 * NOT YET IMPLEMENTED
 	 * <p>
 	 * TODO: sleep effects
 	 */
-	public static final StatusEffect CALMING = registerStatusEffect("calming", new SpectrumStatusEffect(StatusEffectCategory.BENEFICIAL, 0x5fd7b3));
-	public static final StatusEffect SOMNOLENCE = registerStatusEffect("somnolence", new SpectrumStatusEffect(StatusEffectCategory.NEUTRAL, 0xae7bec));
-	public static final StatusEffect ETERNAL_SLUMBER = registerStatusEffect("eternal_slumber", new SpectrumStatusEffect(StatusEffectCategory.HARMFUL, ETERNAL_SLUMBER_COLOR));
-	public static final StatusEffect FATAL_SLUMBER = registerStatusEffect("fatal_slumber", new SpectrumStatusEffect(StatusEffectCategory.HARMFUL, 0x8136c2));
+	public static final StatusEffect SOMNOLENCE = registerStatusEffect("somnolence", new SleepStatusEffect(StatusEffectCategory.NEUTRAL, 0.667F, 0xae7bec));
+	public static final StatusEffect ETERNAL_SLUMBER = registerStatusEffect("eternal_slumber", new SleepStatusEffect(StatusEffectCategory.HARMFUL, 2F, ETERNAL_SLUMBER_COLOR));
+	public static final StatusEffect FATAL_SLUMBER = registerStatusEffect("fatal_slumber", new SleepStatusEffect(StatusEffectCategory.HARMFUL, 2F, 0x8136c2));
 
 
 	/**
@@ -156,5 +161,9 @@ public class SpectrumStatusEffects {
 
 	public static boolean isStrongSleepEffect(InkPoweredStatusEffectInstance instance) {
 		return isStrongSleepEffect(instance.getStatusEffectInstance());
+	}
+
+	public static float getCalmingMultiplier(StatusEffectInstance instance) {
+		return Math.max(1 - (instance.getAmplifier() + 1) * 0.0625F, 0.1F);
 	}
 }

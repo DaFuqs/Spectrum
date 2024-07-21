@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.item.SleepStatusAffectingItem;
 import de.dafuqs.spectrum.registries.*;
 import dev.emi.trinkets.api.*;
 import net.minecraft.client.item.*;
@@ -16,7 +17,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class WhispyCircletItem extends SpectrumTrinketItem {
+public class WhispyCircletItem extends SpectrumTrinketItem implements SleepStatusAffectingItem {
 	
 	private final static int TRIGGER_EVERY_X_TICKS = 100;
 	private final static int NEGATIVE_EFFECT_SHORTENING_TICKS = 200;
@@ -118,5 +119,14 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 			}
 		}
 	}
-	
+
+	@Override
+	public float getSleepFlatModifier(ServerPlayerEntity player, ItemStack stack) {
+		return -0.5F;
+	}
+
+	@Override
+	public float getSleepMultModifier(ServerPlayerEntity player, ItemStack stack) {
+		return -0.125F;
+	}
 }

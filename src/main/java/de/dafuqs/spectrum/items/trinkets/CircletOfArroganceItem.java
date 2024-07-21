@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.item.SleepStatusAffectingItem;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.status_effects.*;
@@ -17,7 +18,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class CircletOfArroganceItem extends SpectrumTrinketItem {
+public class CircletOfArroganceItem extends SpectrumTrinketItem implements SleepStatusAffectingItem {
 
     private final static int TRIGGER_EVERY_X_TICKS = 240;
     private final static int EFFECT_DURATION = TRIGGER_EVERY_X_TICKS + 10;
@@ -52,5 +53,16 @@ public class CircletOfArroganceItem extends SpectrumTrinketItem {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
         tooltip.add(Text.translatable("item.spectrum.circlet_of_arrogance.tooltip").formatted(Formatting.GRAY));
+    }
+
+
+    @Override
+    public float getSleepFlatModifier(ServerPlayerEntity player, ItemStack stack) {
+        return 0F;
+    }
+
+    @Override
+    public float getSleepMultModifier(ServerPlayerEntity player, ItemStack stack) {
+        return -0.334F;
     }
 }

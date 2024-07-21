@@ -37,7 +37,7 @@ public interface GatedRecipe extends Recipe<Inventory> {
 	
 	default @Nullable Text getSecretHintText() {
 		if (isSecret()) {
-			String secretHintLangKey = getId().toTranslationKey("recipe", "hint");
+			String secretHintLangKey = getId().toTranslationKey("recipe", "hint").replace("/", ".");
 			return Language.getInstance().hasTranslation(secretHintLangKey) ? Text.translatable(secretHintLangKey) : null;
 		}
 		return null;

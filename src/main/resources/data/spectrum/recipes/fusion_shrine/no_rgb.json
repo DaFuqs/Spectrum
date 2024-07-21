@@ -23,5 +23,6 @@
     "nothing"
   ],
   "finish_crafting_effect": "nothing",
-  "description": "spectrum.recipe.fusion_shrine.explanation.no_rgb"
+  "description": "spectrum.recipe.fusion_shrine.explanation.no_rgb",
+  "required_advancement": "spectrum:hidden/collect_every_refined_resource"
 }

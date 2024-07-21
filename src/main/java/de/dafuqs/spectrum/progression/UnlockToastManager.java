@@ -37,6 +37,11 @@ public class UnlockToastManager {
 	public static void registerGatedRecipe(RecipeType<?> recipeType, GatedRecipe gatedRecipe) {
 		Identifier requiredAdvancementIdentifier = gatedRecipe.getRequiredAdvancementIdentifier();
 		
+		// secret recipes should not have a popup
+		if (gatedRecipe.isSecret()) {
+			return;
+		}
+		
 		if (gatedRecipes.containsKey(requiredAdvancementIdentifier)) {
 			Map<RecipeType<?>, List<GatedRecipe>> recipeTypeListMap = gatedRecipes.get(requiredAdvancementIdentifier);
 			if (recipeTypeListMap.containsKey(recipeType)) {

@@ -1,0 +1,16 @@
+{
+  "type": "spectrum:cinderhearth",
+  "ingredient": {
+    "item": "spectrum:mermaids_gem",
+    "count": 16
+  },
+  "results": [
+    {
+      "item": "spectrum:mermaids_popcorn",
+      "count": 1
+    }
+  ],
+  "experience": 0.1,
+  "time": 200,
+  "required_advancement": "spectrum:collect_mermaids_gem"
+}

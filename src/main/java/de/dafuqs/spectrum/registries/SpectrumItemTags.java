@@ -10,6 +10,7 @@ public class SpectrumItemTags {
 	
 	// "c" namespace
 	public static final TagKey<Item> SKULLS = common("skulls");
+	public static final TagKey<Item> FRUITS = common("fruits");
 	
 	// "spectrum" namespace
 	public static final TagKey<Item> COLORED_SAPLINGS = of("colored_saplings");
@@ -32,7 +33,7 @@ public class SpectrumItemTags {
 	public static final TagKey<Item> KINDLING_FOOD = of("kindling_food");
 	public static final TagKey<Item> COLORED_FENCES = of("colored_fences");
 	public static final TagKey<Item> COLORED_FENCE_GATES = of("colored_fence_gates");
-	
+
 	private static TagKey<Item> of(String id) {
 		return TagKey.of(RegistryKeys.ITEM, SpectrumCommon.locate(id));
 	}

@@ -341,6 +341,10 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.SCONE);
 		entries.add(SpectrumItems.STAR_CANDY);
 		entries.add(SpectrumItems.PURPLE_STAR_CANDY);
+		entries.add(SpectrumItems.CHEONG);
+		entries.add(SpectrumItems.MERMAIDS_JAM);
+		entries.add(SpectrumItems.MERMAIDS_POPCORN);
+		entries.add(SpectrumItems.LE_FISHE_AU_CHOCOLAT);
 		entries.add(SpectrumItems.LUCKY_ROLL);
 		entries.add(SpectrumItems.HONEY_PASTRY);
 		entries.add(SpectrumItems.JARAMEL_TART);

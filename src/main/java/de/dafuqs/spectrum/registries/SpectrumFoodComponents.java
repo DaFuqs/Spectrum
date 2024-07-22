@@ -410,5 +410,24 @@ public class SpectrumFoodComponents {
 			.hunger(5).saturationModifier(0.6F)
 			.statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 6000, 10), 1.0F)
 			.build();
+
+	public static final FoodComponent CHEONG = new FoodComponent.Builder()
+			.hunger(6).saturationModifier(0.6F)
+			.build();
+
+	public static final FoodComponent MERMAIDS_JAM = new FoodComponent.Builder()
+			.hunger(6).saturationModifier(0.6F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.WATER_BREATHING, 400, 0), 1.0F)
+			.build();
+
+	public static final FoodComponent MERMAIDS_POPCORN = new FoodComponent.Builder()
+			.hunger(6).saturationModifier(0.6F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.DOLPHINS_GRACE, 400, 0), 1.0F)
+			.build();
+
+	public static final FoodComponent LE_FISHE_AU_CHOCOLAT = new FoodComponent.Builder()
+			.hunger(10).saturationModifier(1.2F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 100, 0), 0.5F)
+			.build();
 	
 }

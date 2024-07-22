@@ -1,10 +1,15 @@
 {
   "replace": false,
   "values": [
-    "spectrum:glass_peach",
     "minecraft:apple",
     "minecraft:melon_slice",
     "minecraft:sweet_berries",
-    "minecraft:glow_berries"
+    "minecraft:glow_berries",
+    "spectrum:glass_peach",
+    "spectrum:mermaids_gem"
   ]
 }
+
+
+
+

@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.recipe.titration_barrel.dynamic;
 
 import de.dafuqs.matchbooks.recipe.*;
-import de.dafuqs.matchbooks.recipe.matchbook.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -27,8 +26,8 @@ public class AquaRegiaRecipe extends SweetenableTitrationBarrelRecipe {
 	public static final ItemStack OUTPUT_STACK = getDefaultStackWithCount(SpectrumItems.AQUA_REGIA, 4);
 	public static final Item TAPPING_ITEM = Items.GLASS_BOTTLE;
 	public static final List<IngredientStack> INGREDIENT_STACKS = new ArrayList<>() {{
-		add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.JADEITE_LOTUS_BULB)));
-		add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.JADEITE_PETALS), Matchbook.empty(), null, 3));
+		add(IngredientStack.ofItems(SpectrumItems.JADEITE_LOTUS_BULB));
+		add(IngredientStack.ofItems(3, SpectrumItems.JADEITE_PETALS));
 	}};
 
 	public AquaRegiaRecipe(Identifier identifier) {

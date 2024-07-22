@@ -1,12 +1,11 @@
 package de.dafuqs.spectrum.recipe.spirit_instiller.spawner;
 
+import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.item_bowl.*;
 import de.dafuqs.spectrum.blocks.spirit_instiller.*;
 import de.dafuqs.spectrum.recipe.spirit_instiller.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.matchbooks.recipe.*;
-import de.dafuqs.matchbooks.recipe.matchbook.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
@@ -22,7 +21,7 @@ public abstract class SpawnerChangeRecipe extends SpiritInstillerRecipe {
 	
 	public SpawnerChangeRecipe(Identifier identifier, IngredientStack ingredient) {
 		super(identifier, "spawner_manipulation", false, SpectrumCommon.locate("milestones/unlock_spawner_manipulation"),
-				IngredientStack.of(Ingredient.ofItems(Items.SPAWNER)), ingredient, IngredientStack.of(Ingredient.ofItems(SpectrumItems.VEGETAL), Matchbook.empty(), null, 4),
+				IngredientStack.ofItems(Items.SPAWNER), ingredient, IngredientStack.ofItems(4, SpectrumItems.VEGETAL),
 				Items.SPAWNER.getDefaultStack(), 200, 0, true);
 	}
 	

@@ -1,9 +1,8 @@
 package de.dafuqs.spectrum.recipe.spirit_instiller.spawner;
 
+import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.matchbooks.recipe.*;
-import de.dafuqs.matchbooks.recipe.matchbook.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.recipe.*;
@@ -17,7 +16,7 @@ public class SpawnerSpawnDelayChangeRecipe extends SpawnerChangeRecipe {
 	protected static final int DEFAULT_MAX_DELAY = 800;
 	protected static final int MIN_DELAY = 20;
 	public SpawnerSpawnDelayChangeRecipe(Identifier identifier) {
-		super(identifier, IngredientStack.of(Ingredient.ofItems(SpectrumItems.MIDNIGHT_CHIP), Matchbook.empty(), null, 4));
+		super(identifier, IngredientStack.ofItems(4, SpectrumItems.MIDNIGHT_CHIP));
 	}
 	
 	@Override

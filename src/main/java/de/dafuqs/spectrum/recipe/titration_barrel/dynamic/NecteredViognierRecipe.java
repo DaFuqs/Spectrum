@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.recipe.titration_barrel.dynamic;
 
 import de.dafuqs.matchbooks.recipe.*;
-import de.dafuqs.matchbooks.recipe.matchbook.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -28,8 +27,8 @@ public class NecteredViognierRecipe extends SweetenableTitrationBarrelRecipe {
 	public static final ItemStack OUTPUT_STACK = getDefaultStackWithCount(SpectrumItems.NECTERED_VIOGNIER, 4);
 	public static final Item TAPPING_ITEM = Items.GLASS_BOTTLE;
 	public static final List<IngredientStack> INGREDIENT_STACKS = new ArrayList<>() {{
-		add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.NEPHRITE_BLOSSOM_BULB)));
-		add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.GLASS_PEACH), Matchbook.empty(), null, 4));
+		add(IngredientStack.ofItems(SpectrumItems.NEPHRITE_BLOSSOM_BULB));
+		add(IngredientStack.ofItems(4, SpectrumItems.GLASS_PEACH));
 	}};
 
 	public NecteredViognierRecipe(Identifier identifier) {

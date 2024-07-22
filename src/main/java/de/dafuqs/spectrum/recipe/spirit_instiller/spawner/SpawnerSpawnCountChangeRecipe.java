@@ -1,9 +1,8 @@
 package de.dafuqs.spectrum.recipe.spirit_instiller.spawner;
 
+import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.matchbooks.recipe.*;
-import de.dafuqs.matchbooks.recipe.matchbook.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.recipe.*;
@@ -16,7 +15,7 @@ public class SpawnerSpawnCountChangeRecipe extends SpawnerChangeRecipe {
 	protected static final int DEFAULT_SPAWN_COUNT = 4;
 	protected static final int MAX_SPAWN_COUNT = 16;
 	public SpawnerSpawnCountChangeRecipe(Identifier identifier) {
-		super(identifier, IngredientStack.of(Ingredient.ofItems(SpectrumItems.NEOLITH), Matchbook.empty(), null, 4));
+		super(identifier, IngredientStack.ofItems(4, SpectrumItems.NEOLITH));
 	}
 	
 	@Override

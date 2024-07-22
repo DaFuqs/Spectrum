@@ -1,9 +1,8 @@
 package de.dafuqs.spectrum.recipe.spirit_instiller.spawner;
 
+import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.matchbooks.recipe.*;
-import de.dafuqs.matchbooks.recipe.matchbook.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.recipe.*;
@@ -16,7 +15,7 @@ public class SpawnerRequiredPlayerRangeChangeRecipe extends SpawnerChangeRecipe 
 	protected static final int DEFAULT_DETECTION_RANGE = 16;
 	protected static final int MAX_DETECTION_RANGE = 64;
 	public SpawnerRequiredPlayerRangeChangeRecipe(Identifier identifier) {
-		super(identifier, IngredientStack.of(Ingredient.ofItems(SpectrumItems.STRATINE_GEM), Matchbook.empty(), null, 4));
+		super(identifier, IngredientStack.ofItems(4, SpectrumItems.STRATINE_GEM));
 	}
 	
 	@Override

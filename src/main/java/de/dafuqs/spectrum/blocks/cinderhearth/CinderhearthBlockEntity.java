@@ -440,7 +440,8 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 			
 			// use up input ingredient
 			ItemStack inputStackCopy = inputStack.copy();
-			inputStack.decrement(1);
+			int amountToDecrementInput = cinderhearth.currentRecipe instanceof CinderhearthRecipe cinderhearthRecipe ? cinderhearthRecipe.getIngredientStacks().get(0).getCount() : 1;
+			inputStack.decrement(amountToDecrementInput);
 			
 			if (remainder.isEmpty()) {
 				boolean remainderAdded = InventoryHelper.addToInventory(cinderhearth, remainder, FIRST_OUTPUT_SLOT_ID, LAST_OUTPUT_SLOT_ID + 1);

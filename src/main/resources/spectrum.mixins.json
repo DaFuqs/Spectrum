@@ -76,8 +76,6 @@
     "SugarCaneBlockMixin",
     "TemptGoalMixin",
     "TridentEntityMixin",
-    "WalkNodeProcessorMixin",
-    "WaterPathNodeMarkerMixin",
     "WitherEntityMixin",
     "WorldMixin",
     "accessors.BiomeAccessor",

@@ -283,6 +283,8 @@ public class SpectrumBlocks {
 	public static final Block SMALL_SAG_BUBBLE = new BlackSludgePlantBlock(FabricBlockSettings.copyOf(Blocks.GRASS).mapColor(MapColor.TERRACOTTA_BLACK));
 	
 	public static final PrimordialFireBlock PRIMORDIAL_FIRE = new PrimordialFireBlock(Settings.copy(Blocks.FIRE).mapColor(MapColor.PURPLE).luminance((state) -> 10));
+	public static final Block PRIMORDIAL_TORCH = new TorchBlock(Settings.copy(Blocks.SOUL_TORCH), SpectrumParticleTypes.PRIMORDIAL_FLAME);
+	public static final Block PRIMORDIAL_WALL_TORCH = new WallTorchBlock(Settings.copy(SOUL_WALL_TORCH), SpectrumParticleTypes.PRIMORDIAL_FLAME);
 
 	public static final Block SMOOTH_BASALT_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.BASALT));
 	public static final Block SMOOTH_BASALT_WALL = new WallBlock(FabricBlockSettings.copyOf(Blocks.BASALT));

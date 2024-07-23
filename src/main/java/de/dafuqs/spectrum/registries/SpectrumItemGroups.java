@@ -172,6 +172,7 @@ public class SpectrumItemGroups {
 				entries.add(SpectrumItems.PIPE_BOMB);
 				entries.add(SpectrumItems.CRESCENT_CLOCK);
 				entries.add(SpectrumItems.PRIMORDIAL_LIGHTER);
+				entries.add(SpectrumBlocks.PRIMORDIAL_TORCH);
 				entries.add(SpectrumItems.MYSTERIOUS_LOCKET);
 				entries.add(SpectrumItems.MYSTERIOUS_COMPASS);
 			}).build();

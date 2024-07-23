@@ -824,6 +824,7 @@
   "block.spectrum.preservation_stone": "Preservation Stone",
   "block.spectrum.preservation_stairs": "Preservation Stairs",
   "block.spectrum.preservation_slab": "Preservation Slab",
+  "block.spectrum.preservation_wall": "Preservation Wall",
   "block.spectrum.preservation_glass": "Preservation Glass",
   "block.spectrum.tinted_preservation_glass": "Tinted Preservation Glass",
   "block.spectrum.preservation_bricks": "Preservation Bricks",
@@ -1530,6 +1531,7 @@
   "block.spectrum.shimmel": "Shimmel",
   "block.spectrum.overgrown_blackslag": "Overgrown Blackslag",
   "block.spectrum.primordial_fire": "Primordial Fire",
+  "block.spectrum.primordial_torch": "Primordial Torch",
   "block.spectrum.glistering_melon": "Glistering Melon",
   "block.spectrum.glistering_melon_stem": "Glistering Melon Stem",
   "block.spectrum.attached_glistering_melon_stem": "Glistering Melon Stem",
@@ -3192,6 +3194,7 @@
   "tag.spectrum.swimmable_fluid": "Additional Swimmable Fluids",
   "tag.spectrum.midnight_solution_converted": "Midnight Solution Converted",
   "tag.spectrum.effulgent_feathers": "Effulgent Feathers",
+  "tag.spectrum.smelts_to_bone_ash": "Smelts to Bone Ash",
 
   "tag.trinkets.chest.pin": "Pins",
   "tag.trinkets.head.crown": "Crowns",

@@ -2,7 +2,7 @@
   "type": "spectrum:pedestal",
   "group": "gemstone_glass_panes",
   "time": 20,
-  "tier": "basic",
+  "tier": "advanced",
   "magenta": 0,
   "yellow": 0,
   "cyan": 0,
@@ -22,5 +22,5 @@
     "item": "spectrum:onyx_glass_pane",
     "count": 16
   },
-  "required_advancement": "spectrum:hidden/collect_shards/collect_onyx_shard"
+  "required_advancement": "spectrum:create_onyx_shard"
 }

@@ -2,7 +2,7 @@
   "type": "spectrum:pedestal",
   "group": "gemstone_glass_panes",
   "time": 20,
-  "tier": "basic",
+  "tier": "complex",
   "magenta": 0,
   "yellow": 0,
   "cyan": 0,
@@ -22,5 +22,5 @@
     "item": "spectrum:moonstone_glass_pane",
     "count": 16
   },
-  "required_advancement": "spectrum:hidden/collect_shards/collect_moonstone_shard"
+  "required_advancement": "spectrum:lategame/collect_moonstone_shard"
 }

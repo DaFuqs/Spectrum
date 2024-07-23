@@ -980,7 +980,6 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.HUMMINGSTONE);
 		entries.add(SpectrumBlocks.WAXED_HUMMINGSTONE);
 		entries.add(SpectrumBlocks.HUMMINGSTONE_GLASS);
-		entries.add(SpectrumBlocks.CLEAR_HUMMINGSTONE_GLASS);
 		entries.add(SpectrumBlocks.HUMMINGSTONE_GLASS_PANE);
 		entries.add(SpectrumBlocks.MOSS_BALL);
 		entries.add(SpectrumBlocks.GIANT_MOSS_BALL);

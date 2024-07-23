@@ -1,15 +1,15 @@
 {
   "criteria": {
-    "grow_bloodstone_in_crystallarieum": {
+    "collected_raw_bloodstone": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/grow_bloodstone_in_crystallarieum"
+        "advancement_identifier": "spectrum:hidden/collect_raw_bloodstone"
       }
     },
-    "collected_red_pigment": {
+    "solved_wireless_redstone_preservation_ruin": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_pigment/collect_red_pigment"
+        "advancement_identifier": "spectrum:solve_wireless_redstone_preservation_ruin"
       }
     }
   }

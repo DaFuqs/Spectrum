@@ -12,15 +12,15 @@
       "item": "minecraft:netherite_sword"
     },
     {
-      "item": "spectrum:refined_bloodstone",
+      "item": "spectrum:raw_bloodstone",
       "count": 4
     },
     {
-      "item": "spectrum:pure_gold",
+      "item": "minecraft:gold_ingot",
       "count": 8
     },
     {
-      "item": "spectrum:pure_quartz",
+      "item": "spectrum:blood_orchid_petal",
       "count": 8
     },
     {

@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:clear_hummingstone_glass"
+          "name": "spectrum:hummingstone_glass_pane"
         }
       ],
       "conditions": [

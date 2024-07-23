@@ -1654,10 +1654,11 @@ public class SpectrumBlocks {
 		registerBlockWithItem("snapping_ivy", SNAPPING_IVY, settings, DyeColor.RED);
 
 		registerBlockWithItem("varia_sprout", VARIA_SPROUT, settings, DyeColor.WHITE);
-		
-		registerBlockWithItem("hummingstone", HUMMINGSTONE, settings, DyeColor.LIME);
-		registerBlockWithItem("hummingstone_glass", HUMMINGSTONE_GLASS, settings, DyeColor.LIME);
-		registerBlockWithItem("clear_hummingstone_glass", CLEAR_HUMMINGSTONE_GLASS, settings, DyeColor.LIME);
+
+		registerBlockWithItem("hummingstone_glass", HUMMINGSTONE_GLASS, settings, DyeColor.LIGHT_BLUE);
+		registerBlockWithItem("hummingstone_glass_pane", HUMMINGSTONE_GLASS_PANE, settings, DyeColor.LIGHT_BLUE);
+		registerBlockWithItem("hummingstone", HUMMINGSTONE, settings, DyeColor.LIGHT_BLUE);
+		registerBlockWithItem("waxed_hummingstone", WAXED_HUMMINGSTONE, settings, DyeColor.LIGHT_BLUE);
 	}
 	
 	private static void registerCrystallarieumGrowingBlocks(FabricItemSettings settings) {
@@ -3038,10 +3039,12 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CHESTNUT_NOXSHROOM, RenderLayer.getCutout());
 		
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.PYRITE_RIPPER, RenderLayer.getCutoutMipped());
-		
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.HUMMINGSTONE, RenderLayer.getTranslucent());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.HUMMINGSTONE_GLASS, RenderLayer.getTranslucent());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CLEAR_HUMMINGSTONE_GLASS, RenderLayer.getTranslucent());
+
+		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),
+				SpectrumBlocks.HUMMINGSTONE,
+				SpectrumBlocks.WAXED_HUMMINGSTONE,
+				SpectrumBlocks.HUMMINGSTONE_GLASS,
+				SpectrumBlocks.HUMMINGSTONE_GLASS_PANE);
 	}
 	
 }

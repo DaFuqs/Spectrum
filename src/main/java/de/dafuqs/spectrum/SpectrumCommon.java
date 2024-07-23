@@ -221,6 +221,7 @@ public class SpectrumCommon implements ModInitializer {
 		logInfo("Adding to Fabric's Registries...");
 		SpectrumFlammableBlocks.register();
 		SpectrumStrippableBlocks.register();
+		SpectrumWaxableBlocks.register();
 		SpectrumTillableBlocks.register();
 		SpectrumCompostableBlocks.register();
 		

@@ -5355,6 +5355,11 @@
       "radius": 14
     },
     {
+      "block": "spectrum:waxed_hummingstone",
+      "color": "#light_blue",
+      "radius": 14
+    },
+    {
       "block": "spectrum:wet_lava_sponge",
       "color": "#orange",
       "radius": 9

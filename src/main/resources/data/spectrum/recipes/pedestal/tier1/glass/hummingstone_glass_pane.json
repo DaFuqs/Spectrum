@@ -1,0 +1,25 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 20,
+  "tier": "basic",
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 0.1,
+  "pattern": [
+    "GGG",
+    "GGG"
+  ],
+  "key": {
+    "G": {
+      "item": "spectrum:hummingstone_glass"
+    }
+  },
+  "result": {
+    "item": "spectrum:hummingstone_glass_pane",
+    "count": 16
+  },
+  "required_advancement": "spectrum:lategame/collect_hummingstone"
+}

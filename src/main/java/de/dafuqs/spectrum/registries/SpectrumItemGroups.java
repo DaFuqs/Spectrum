@@ -1077,7 +1077,8 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.EFFULGENT_BLOCK);
 		entries.add(SpectrumBlocks.EFFULGENT_CUSHION);
 		entries.add(SpectrumBlocks.EFFULGENT_CARPET);
-		
+		entries.add(SpectrumBlocks.EFFULGENT_BED);
+
 		entries.add(SpectrumBlocks.WHITE_BLOCK);
 		entries.add(SpectrumBlocks.ORANGE_BLOCK);
 		entries.add(SpectrumBlocks.MAGENTA_BLOCK);

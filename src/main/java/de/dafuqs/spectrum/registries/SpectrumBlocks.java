@@ -775,6 +775,7 @@ public class SpectrumBlocks {
 	public static final Block EFFULGENT_BLOCK = new CushionedFacingBlock(Settings.copy(Blocks.RED_WOOL));
 	public static final Block EFFULGENT_CUSHION = new CushionBlock(Settings.copy(EFFULGENT_BLOCK).nonOpaque().allowsSpawning(SpectrumBlocks::never));
 	public static final Block EFFULGENT_CARPET = new CushionedCarpetBlock(Settings.copy(Blocks.RED_CARPET));
+	public static final Block EFFULGENT_BED = new SpectrumBedBlock(DyeColor.RED, Settings.copy(Blocks.RED_BED));
 
 	// JADE VINES
 	public static Settings jadeVine() {
@@ -1917,6 +1918,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("effulgent_block", EFFULGENT_BLOCK, settings.rarity(Rarity.UNCOMMON), DyeColor.YELLOW);
 		registerBlockWithItem("effulgent_cushion", EFFULGENT_CUSHION, settings.rarity(Rarity.UNCOMMON), DyeColor.YELLOW);
 		registerBlockWithItem("effulgent_carpet", EFFULGENT_CARPET, settings.rarity(Rarity.UNCOMMON), DyeColor.YELLOW);
+		registerBlockWithItem("effulgent_bed", EFFULGENT_BED, settings.rarity(Rarity.UNCOMMON), DyeColor.YELLOW);
 	}
 
 	private static void registerOreStorageBlocks(FabricItemSettings settings, FabricItemSettings settingsFireproof) {

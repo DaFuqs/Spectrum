@@ -1028,6 +1028,13 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.ONYX_GLASS);
 		entries.add(SpectrumBlocks.MOONSTONE_GLASS);
 		entries.add(SpectrumBlocks.RADIANT_GLASS);
+
+		entries.add(SpectrumBlocks.TOPAZ_GLASS_PANE);
+		entries.add(SpectrumBlocks.AMETHYST_GLASS_PANE);
+		entries.add(SpectrumBlocks.CITRINE_GLASS_PANE);
+		entries.add(SpectrumBlocks.ONYX_GLASS_PANE);
+		entries.add(SpectrumBlocks.MOONSTONE_GLASS_PANE);
+		entries.add(SpectrumBlocks.RADIANT_GLASS_PANE);
 		
 		entries.add(SpectrumBlocks.TOPAZ_CHIME);
 		entries.add(SpectrumBlocks.AMETHYST_CHIME);

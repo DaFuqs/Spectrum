@@ -373,7 +373,14 @@ public class SpectrumBlocks {
 	public static final Block ONYX_GLASS = new GemstoneGlassBlock(gemstoneGlass(SpectrumBlockSoundGroups.ONYX_CLUSTER, MapColor.BLACK), BuiltinGemstoneColor.BLACK);
 	public static final Block MOONSTONE_GLASS = new GemstoneGlassBlock(gemstoneGlass(SpectrumBlockSoundGroups.MOONSTONE_CLUSTER, MapColor.WHITE), BuiltinGemstoneColor.WHITE);
 	public static final Block RADIANT_GLASS = new RadiantGlassBlock(gemstoneGlass(BlockSoundGroup.GLASS, MapColor.PALE_YELLOW).luminance(value -> 12));
-	
+
+	public static final Block TOPAZ_GLASS_PANE = new PaneBlock(gemstoneGlass(SpectrumBlockSoundGroups.TOPAZ_CLUSTER, MapColor.CYAN));
+	public static final Block AMETHYST_GLASS_PANE = new PaneBlock(gemstoneGlass(BlockSoundGroup.AMETHYST_CLUSTER, MapColor.MAGENTA));
+	public static final Block CITRINE_GLASS_PANE = new PaneBlock(gemstoneGlass(SpectrumBlockSoundGroups.CITRINE_CLUSTER, MapColor.YELLOW));
+	public static final Block ONYX_GLASS_PANE = new PaneBlock(gemstoneGlass(SpectrumBlockSoundGroups.ONYX_CLUSTER, MapColor.BLACK));
+	public static final Block MOONSTONE_GLASS_PANE = new PaneBlock(gemstoneGlass(SpectrumBlockSoundGroups.MOONSTONE_CLUSTER, MapColor.WHITE));
+	public static final Block RADIANT_GLASS_PANE = new PaneBlock(gemstoneGlass(BlockSoundGroup.GLASS, MapColor.PALE_YELLOW).luminance(value -> 12));
+
 	public static final Block ETHEREAL_PLATFORM = new EtherealGlassBlock(gemstoneGlass(BlockSoundGroup.AMETHYST_BLOCK, MapColor.CLEAR).pistonBehavior(PistonBehavior.NORMAL));
 	public static final Block UNIVERSE_SPYHOLE = new GlassBlock(settings(MapColor.CLEAR, SpectrumBlockSoundGroups.CITRINE_BLOCK, 1.5F).requiresTool().blockVision(SpectrumBlocks::never));
 
@@ -727,9 +734,10 @@ public class SpectrumBlocks {
 	public static final Block SNAPPING_IVY = new SnappingIvyBlock(settings(MapColor.PALE_GREEN, BlockSoundGroup.GRASS, 3.0F).noCollision().nonOpaque());
 	
 	public static final Block HUMMINGSTONE_GLASS = new GlassBlock(settings(MapColor.PALE_YELLOW, BlockSoundGroup.GLASS, 5.0F, 100.0F).nonOpaque().requiresTool());
+	public static final Block HUMMINGSTONE_GLASS_PANE = new PaneBlock(Settings.copy(HUMMINGSTONE_GLASS));
 	public static final Block HUMMINGSTONE = new HummingstoneBlock(Settings.copy(HUMMINGSTONE_GLASS).luminance((state) -> 14));
-	public static final Block CLEAR_HUMMINGSTONE_GLASS = new GlassBlock(Settings.copy(HUMMINGSTONE_GLASS));
-	
+	public static final Block WAXED_HUMMINGSTONE = new GlassBlock(Settings.copy(HUMMINGSTONE));
+
 	public static final Block EFFULGENT_BLOCK = new CushionedFacingBlock(Settings.copy(Blocks.RED_WOOL));
 	public static final Block EFFULGENT_CUSHION = new CushionBlock(Settings.copy(EFFULGENT_BLOCK).nonOpaque().allowsSpawning(SpectrumBlocks::never));
 	public static final Block EFFULGENT_CARPET = new CushionedCarpetBlock(Settings.copy(Blocks.RED_CARPET));
@@ -1913,6 +1921,14 @@ public class SpectrumBlocks {
 		registerBlockWithItem("moonstone_glass", MOONSTONE_GLASS, settings, DyeColor.WHITE);
 		
 		registerBlockWithItem("radiant_glass", RADIANT_GLASS, settings, DyeColor.WHITE);
+
+		registerBlockWithItem("topaz_glass_pane", TOPAZ_GLASS_PANE, settings, DyeColor.CYAN);
+		registerBlockWithItem("amethyst_glass_pane", AMETHYST_GLASS_PANE, settings, DyeColor.MAGENTA);
+		registerBlockWithItem("citrine_glass_pane", CITRINE_GLASS_PANE, settings, DyeColor.YELLOW);
+		registerBlockWithItem("onyx_glass_pane", ONYX_GLASS_PANE, settings, DyeColor.BLACK);
+		registerBlockWithItem("moonstone_glass_pane", MOONSTONE_GLASS_PANE, settings, DyeColor.WHITE);
+
+		registerBlockWithItem("radiant_glass_pane", RADIANT_GLASS_PANE, settings, DyeColor.WHITE);
 	}
 	
 	private static void registerPlayerOnlyGlass(FabricItemSettings settings) {
@@ -2703,13 +2719,10 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_BISMUTH_BUD, RenderLayer.getCutout());
 		
 		// Glass
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TOPAZ_GLASS, RenderLayer.getTranslucent());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.AMETHYST_GLASS, RenderLayer.getTranslucent());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CITRINE_GLASS, RenderLayer.getTranslucent());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MOONSTONE_GLASS, RenderLayer.getTranslucent());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ONYX_GLASS, RenderLayer.getTranslucent());
-		
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.RADIANT_GLASS, RenderLayer.getTranslucent());
+		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(), SpectrumBlocks.TOPAZ_GLASS, SpectrumBlocks.AMETHYST_GLASS, SpectrumBlocks.CITRINE_GLASS, SpectrumBlocks.ONYX_GLASS, SpectrumBlocks.MOONSTONE_GLASS);
+		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(), SpectrumBlocks.TOPAZ_GLASS_PANE, SpectrumBlocks.AMETHYST_GLASS_PANE, SpectrumBlocks.CITRINE_GLASS_PANE, SpectrumBlocks.ONYX_GLASS_PANE, SpectrumBlocks.MOONSTONE_GLASS_PANE);
+
+		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(), SpectrumBlocks.RADIANT_GLASS, RADIANT_GLASS_PANE);
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.RADIANT_SEMI_PERMEABLE_GLASS, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TINTED_SEMI_PERMEABLE_GLASS, RenderLayer.getTranslucent());
 		

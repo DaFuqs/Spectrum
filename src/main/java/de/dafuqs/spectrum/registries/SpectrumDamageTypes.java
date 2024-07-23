@@ -39,10 +39,16 @@ public class SpectrumDamageTypes {
 	public static final RegistryKey<DamageType> IMPALING = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("impaling"));
 	public static final RegistryKey<DamageType> EVISCERATION = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("evisceration"));
 
+	public static final RegistryKey<DamageType> SLEEP = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("sleep"));
+
 	public static final RegistryKey<DamageType> MOB_HEAD_DROP = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("mob_head_drop"));
 	
 	public static DamageSource mobHeadDrop(World world) {
 		return new DamageSource(world.getDamageSources().registry.entryOf(MOB_HEAD_DROP));
+	}
+
+	public static DamageSource sleep(World world, @Nullable LivingEntity attacker) {
+		return new DamageSource(world.getDamageSources().registry.entryOf(SLEEP), attacker);
 	}
 	
 	public static DamageSource sawtooth(World world) {

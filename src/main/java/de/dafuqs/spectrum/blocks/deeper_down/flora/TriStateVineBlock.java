@@ -80,13 +80,13 @@ public abstract class TriStateVineBlock extends PlantBlock implements Fertilizab
         var world = ctx.getWorld();
         var pos = ctx.getBlockPos();
 
-        var state = SpectrumBlocks.ABYSSAL_VINES.getDefaultState();
+        var state = getDefaultState();
         var roof = BlockReference.of(world, pos.up());
 
-        if (!canPlantOnTop(world.getBlockState(pos), world, pos) || !world.isAir(pos))
+        if (!canPlaceAt(world.getBlockState(pos), world, pos) || !world.isAir(pos))
             return null;
 
-        if (roof.isOf(SpectrumBlocks.ABYSSAL_VINES)) {
+        if (roof.isOf(this)) {
             state = state.with(LIFE_STAGE, roof.getProperty(LIFE_STAGE));
             roof.setProperty(LIFE_STAGE, LifeStage.STALK);
             roof.update(world);

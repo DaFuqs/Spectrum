@@ -11,7 +11,7 @@
     "item": "spectrum:effulgent_feather"
   },
   "effect": "spectrum:eternal_slumber",
-  "base_duration_ticks": 100,
+  "base_duration_ticks": 6000,
   "potency_modifier": 0.1,
   "applicable_to_potions": true,
   "applicable_to_tipped_arrows": false,

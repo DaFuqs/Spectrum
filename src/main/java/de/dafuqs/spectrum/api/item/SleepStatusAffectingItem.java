@@ -1,11 +1,12 @@
 package de.dafuqs.spectrum.api.item;
 
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.network.ServerPlayerEntity;
 
 public interface SleepStatusAffectingItem {
 
-    float getSleepFlatModifier(ServerPlayerEntity player, ItemStack stack);
-
-    float getSleepMultModifier(ServerPlayerEntity player, ItemStack stack);
+    /**
+     * @return a value between 0 - 1 indicating a reduction in sleep effect vulnerability.
+     */
+    float getSleepResistance(PlayerEntity player, ItemStack stack);
 }

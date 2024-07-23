@@ -2,7 +2,6 @@
   "replace": false,
   "values": [
     "minecraft:evoker",
-    "#minecraft:arthropod",
     "minecraft:piglin_brute",
     "minecraft:sniffer",
     "minecraft:guardian",

@@ -2,9 +2,13 @@ package de.dafuqs.spectrum.deeper_down;
 
 import com.google.common.collect.ImmutableMap;
 import de.dafuqs.spectrum.registries.SpectrumBiomes;
+import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
+import de.dafuqs.spectrum.status_effects.SleepStatusEffect;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.math.MathHelper;
@@ -17,26 +21,77 @@ public class DarknessEffects {
     public static final float INTERP_TICKS = 160;
     private static final Map<RegistryKey<Biome>, Float> INTERP_MULTIPLIERS, FOG_MULTIPLIERS;
     private static final Map<RegistryKey<Biome>, float[]> TRANS_MULTIPLIERS;
-    public static boolean isInDarkenedBiome;
+    public static boolean isInDarkenedBiome, sleepAfflicted, forceFogEffects;
     public static int darkenTicks, darken, lastDarkenTicks, interpInterpTicks;
     public static float interpTarget, interp, lastInterpTarget, fogTarget = 1F, fogDarkness = 1F,
-            lastFogTarget = 1F, nearTarget = 1F, near = 1F, lastNearTarget = 1F, farTarget = 1F, far = 1F, lastFarTarget = 1F;
-    public static RegistryEntry<Biome> currentBiome;
+            lastFogTarget = 1F, nearTarget = 1F, near = 1F, lastNearTarget = 1F, farTarget = 1F, far = 1F, lastFarTarget = 1F,
+            redTarget, red, lastRedTarget, greenTarget, green, lastGreenTarget, blueTarget, blue, lastBlueTarget, blendTarget, blend, lastBlendTarget;
+    private static RegistryEntry<Biome> currentBiome;
+    private static StatusEffect currentSleepEffect;
     private static final MinecraftClient client = MinecraftClient.getInstance();
 
-    public static void clientTick(ClientWorld world, Entity cameraEntity, RegistryEntry<Biome> biome) {
+    public static void clientTick(ClientWorld world, LivingEntity camera, RegistryEntry<Biome> biome) {
         if (client.isPaused())
             return;
 
         lastDarkenTicks = darkenTicks;
+        var sleepPotency = SleepStatusEffect.getGeneralSleepVulnerability(camera);
+        var sleepEffect = SleepStatusEffect.getFirstSleepEffect(camera);
 
-        if (currentBiome == null || !currentBiome.getKey().equals(biome.getKey())) {
+        if (currentSleepEffect != sleepEffect) {
+            var targets = MathHelper.clamp(sleepPotency / 2.5F, 0, 1);
+            currentSleepEffect = sleepEffect;
+            interpInterpTicks = 0;
+            updateTargets();
+
+            if (camera.hasStatusEffect(SpectrumStatusEffects.FATAL_SLUMBER)) {
+                sleepAfflicted = true;
+
+                blendTarget = 1F;
+                interpTarget = 1F;
+                redTarget = 14 / 255F;
+                greenTarget = 4 / 255F;
+                blueTarget = 27 / 255F;
+                nearTarget = -2F;
+                farTarget = 0.125F;
+                forceFogEffects = true;
+            }
+            else if (camera.hasStatusEffect(SpectrumStatusEffects.ETERNAL_SLUMBER)) {
+                sleepAfflicted = true;
+
+                blendTarget = targets;
+                interpTarget = targets;
+                redTarget = 73 / 255F;
+                greenTarget = 36 / 255F;
+                blueTarget = 115 / 255F;
+                nearTarget = -2F;
+                farTarget = 0.9F;
+                forceFogEffects = true;
+            }
+            else if (camera.hasStatusEffect(SpectrumStatusEffects.SOMNOLENCE)) {
+                sleepAfflicted = true;
+
+                blendTarget = targets;
+                interpTarget = targets;
+                redTarget = 195 / 255F;
+                greenTarget = 95 / 255F;
+                blueTarget = 238 / 255F;
+                nearTarget = -5F;
+                forceFogEffects = true;
+            }
+            else {
+                blendTarget = 0;
+                redTarget = 0;
+                greenTarget = 0;
+                blueTarget = 0;
+                currentBiome = null;
+                forceFogEffects = false;
+            }
+        }
+        else if (currentBiome == null || !currentBiome.getKey().equals(biome.getKey())) {
             var biomeKey = biome.getKey().orElse(null);
             currentBiome = biome;
-            lastInterpTarget = interp;
-            lastFogTarget = fogDarkness;
-            lastNearTarget = near;
-            lastFarTarget = far;
+            updateTargets();
 
             interpTarget = INTERP_MULTIPLIERS.getOrDefault(biomeKey, 0F);
             fogTarget = FOG_MULTIPLIERS.getOrDefault(biomeKey, 1F);
@@ -54,6 +109,11 @@ public class DarknessEffects {
         fogDarkness = MathHelper.lerp((float) interpInterpTicks / Math.round(INTERP_TICKS / 1.5F), lastFogTarget, fogTarget);
         near = MathHelper.lerp((float) interpInterpTicks / Math.round(INTERP_TICKS / 1.5F), lastNearTarget, nearTarget);
         far = MathHelper.lerp((float) interpInterpTicks / Math.round(INTERP_TICKS / 1.5F), lastFarTarget, farTarget);
+        red = MathHelper.lerp((float) interpInterpTicks / Math.round(INTERP_TICKS / 1.5F), lastRedTarget, redTarget);
+        green = MathHelper.lerp((float) interpInterpTicks / Math.round(INTERP_TICKS / 1.5F), lastGreenTarget, greenTarget);
+        blue = MathHelper.lerp((float) interpInterpTicks / Math.round(INTERP_TICKS / 1.5F), lastBlueTarget, blueTarget);
+        blend = MathHelper.lerp((float) interpInterpTicks / Math.round(INTERP_TICKS / 1.5F), lastBlendTarget, blendTarget);
+
 
         isInDarkenedBiome = INTERP_MULTIPLIERS.containsKey(biome.getKey().orElse(null));
         if (isInDarkenedBiome) {
@@ -68,6 +128,17 @@ public class DarknessEffects {
         else if (darkenTicks > 0) {
             darkenTicks--;
         }
+    }
+
+    private static void updateTargets() {
+        lastInterpTarget = interp;
+        lastFogTarget = fogDarkness;
+        lastNearTarget = near;
+        lastFarTarget = far;
+        lastRedTarget = red;
+        lastGreenTarget = green;
+        lastBlueTarget = blue;
+        lastBlendTarget = blend;
     }
 
     public static float getInterp() {

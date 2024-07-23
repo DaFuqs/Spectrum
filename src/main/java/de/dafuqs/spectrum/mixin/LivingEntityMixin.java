@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.mixin;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.sugar.*;
 import com.llamalad7.mixinextras.sugar.ref.*;
 import de.dafuqs.spectrum.*;
@@ -91,14 +93,11 @@ public abstract class LivingEntityMixin {
 	public abstract ItemStack getOffHandStack();
 	
 	@Shadow
-	public abstract void damageArmor(DamageSource source, float amount);
-	
-	@Shadow
 	public abstract int getArmor();
 	
 	@Shadow
 	public abstract double getAttributeValue(EntityAttribute attribute);
-	
+
 	@ModifyArg(method = "dropXp()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"), index = 2)
 	protected int spectrum$applyExuberance(int originalXP) {
 		return (int) (originalXP * spectrum$getExuberanceMod(this.attackingPlayer));
@@ -117,11 +116,28 @@ public abstract class LivingEntityMixin {
 	@Inject(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;hasNoDrag()Z"))
 	public void spectrum$travel(CallbackInfo ci, @Local(ordinal = 1) LocalFloatRef f) {
 		var needle = (DragonTalonItem) SpectrumItems.DRAGON_TALON;
+		var entity = (LivingEntity) (Object) this;
 		if (needle.isReservingSlot(this.getMainHandStack()) || needle.isReservingSlot(this.getOffHandStack())) {
-			if (!((LivingEntity) (Object) this).isOnGround()) {
+			if (!(entity).isOnGround()) {
 				f.set(0.945F);
 			}
 		}
+	}
+
+	@ModifyExpressionValue(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/Block;getSlipperiness()F"))
+	public float spectrum$increaseSlipperiness(float original) {
+		var entity = (LivingEntity) (Object) this;
+		var random = entity.getRandom();
+		var potency = SleepStatusEffect.getGeneralSleepVulnerability(entity);
+		if (potency > 0) {
+
+			if (entity instanceof PlayerEntity && random.nextFloat() < potency * 0.0334) {
+				return 0.35F + random.nextFloat() * 0.45F;
+			}
+
+			original = (float) Math.min(original + 0.3 + (potency / 25F), 0.9975F);
+		}
+		return original;
 	}
 	
 	@ModifyVariable(method = "damageArmor(Lnet/minecraft/entity/damage/DamageSource;F)V", at = @At("HEAD"), ordinal = 0, argsOnly = true)
@@ -248,6 +264,31 @@ public abstract class LivingEntityMixin {
 		}
 		
 		return AzureDikeProvider.absorbDamage(living, amount);
+	}
+
+	/**
+	 * We do not force player sleeping because that would do funny things to the sleep cycle
+	 */
+	@ModifyReturnValue(method = "isSleeping", at = @At("RETURN"))
+	public boolean spectrum$forceSleepingState(boolean original) {
+		if (hasStatusEffect(SpectrumStatusEffects.ETERNAL_SLUMBER) || hasStatusEffect(SpectrumStatusEffects.FATAL_SLUMBER))
+			return !(((LivingEntity) (Object) this) instanceof PlayerEntity);
+
+		return original;
+	}
+
+	@Inject(method = "addStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;Lnet/minecraft/entity/Entity;)Z", at = @At("HEAD"))
+	public void spectrum$modifySlumberEffectLengths(StatusEffectInstance effect, Entity source, CallbackInfoReturnable<Boolean> cir) {
+		var entity = (LivingEntity) (Object) this;
+		var potency = SleepStatusEffect.getSleepVulnerability(effect, entity);
+		if (effect.getEffectType() == SpectrumStatusEffects.ETERNAL_SLUMBER) {
+			if (SleepStatusEffect.isImmuneish(entity)) {
+				((StatusEffectInstanceAccessor) effect).setDuration(Math.round(effect.getDuration() * potency));
+			}
+			else if (!entity.getType().isIn(SpectrumEntityTypeTags.SLEEP_RESISTANT)) {
+				((StatusEffectInstanceAccessor) effect).setDuration(-1);
+			}
+		}
 	}
 
 	@Inject(at = @At("RETURN"), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z")

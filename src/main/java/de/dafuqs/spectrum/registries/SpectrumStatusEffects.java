@@ -125,17 +125,23 @@ public class SpectrumStatusEffects {
 			.addAttributeModifier(AdditionalEntityAttributes.LAVA_VISIBILITY, "9812c88f-dc8e-47d1-a092-38339da9891e", 8.0D, EntityAttributeModifier.Operation.ADDITION));
 
 	/**
-	 * Reduces detection range and enemy spawn.
+	 * Reduces detection range and enemy spawn rates.
 	 */
 	public static final StatusEffect CALMING = registerStatusEffect("calming", new SleepStatusEffect(StatusEffectCategory.BENEFICIAL, 0.25F, 0x5fd7b3)
 	);
+
+	/**
+	 * Slows down enemy AI and causes them to forget their target at times.
+	 * ON PLAYER: removes UI elements and reduces acceleration
+	 */
+	public static final StatusEffect SOMNOLENCE = registerStatusEffect("somnolence", new SleepStatusEffect(StatusEffectCategory.NEUTRAL, 0.667F, 0xae7bec));
+
 
 	/**
 	 * NOT YET IMPLEMENTED
 	 * <p>
 	 * TODO: sleep effects
 	 */
-	public static final StatusEffect SOMNOLENCE = registerStatusEffect("somnolence", new SleepStatusEffect(StatusEffectCategory.NEUTRAL, 0.667F, 0xae7bec));
 	public static final StatusEffect ETERNAL_SLUMBER = registerStatusEffect("eternal_slumber", new SleepStatusEffect(StatusEffectCategory.HARMFUL, 2F, ETERNAL_SLUMBER_COLOR));
 	public static final StatusEffect FATAL_SLUMBER = registerStatusEffect("fatal_slumber", new SleepStatusEffect(StatusEffectCategory.HARMFUL, 2F, 0x8136c2));
 

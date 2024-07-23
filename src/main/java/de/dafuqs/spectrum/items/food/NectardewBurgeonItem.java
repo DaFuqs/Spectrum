@@ -8,6 +8,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -20,7 +21,7 @@ public class NectardewBurgeonItem extends CloakedItem implements SlotBackgroundE
 
     public NectardewBurgeonItem(Settings settings, String lore, Identifier cloakAdvancementIdentifier, Item cloakItem) {
         super(settings, cloakAdvancementIdentifier, cloakItem);
-        this.lore = Text.translatable(lore);
+        this.lore = Text.translatable(lore).formatted(Formatting.GRAY);
     }
 
     @Override

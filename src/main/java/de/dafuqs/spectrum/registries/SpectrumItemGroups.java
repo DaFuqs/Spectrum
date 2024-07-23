@@ -1390,6 +1390,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.PRESERVATION_STONE);
 		entries.add(SpectrumBlocks.PRESERVATION_STAIRS);
 		entries.add(SpectrumBlocks.PRESERVATION_SLAB);
+		entries.add(SpectrumBlocks.PRESERVATION_WALL);
 		entries.add(SpectrumBlocks.PRESERVATION_BRICKS);
 		entries.add(SpectrumBlocks.SHIMMERING_PRESERVATION_BRICKS);
 		entries.add(SpectrumBlocks.POWDER_CHISELED_PRESERVATION_STONE);

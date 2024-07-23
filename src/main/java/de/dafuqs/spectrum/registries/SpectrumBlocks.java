@@ -1239,6 +1239,7 @@ public class SpectrumBlocks {
 	public static final Block PRESERVATION_STONE = new Block(preservationBlock());
 	public static final Block PRESERVATION_STAIRS = new StairsBlock(PRESERVATION_STONE.getDefaultState(), preservationBlock());
 	public static final Block PRESERVATION_SLAB = new SlabBlock(preservationBlock());
+	public static final Block PRESERVATION_WALL = new WallBlock(preservationBlock());
 	public static final Block POWDER_CHISELED_PRESERVATION_STONE = new Block(preservationBlock().luminance(state -> 2));
 	public static final Block DIKE_CHISELED_PRESERVATION_STONE = new Block(preservationBlock().luminance(state -> 6));
 	public static final Block DIKE_GATE_FOUNTAIN = new SpectrumFacingBlock(preservationBlock());
@@ -1410,7 +1411,7 @@ public class SpectrumBlocks {
 		Registry.register(Registries.ITEM, locate(name), blockItem);
 		ItemColors.ITEM_COLORS.registerColorMapping(blockItem, dyeColor);
 	}
-	
+
 	public static void registerBlockWithItem(String name, Block block, FabricItemSettings itemSettings, DyeColor dyeColor) {
 		Registry.register(Registries.BLOCK, locate(name), block);
 		BlockItem blockItem = new BlockItem(block, itemSettings);
@@ -1531,6 +1532,8 @@ public class SpectrumBlocks {
 		registerBlock("small_sag_bubble", SMALL_SAG_BUBBLE);
 		
 		registerBlock("primordial_fire", PRIMORDIAL_FIRE);
+		registerBlockWithItem("primordial_torch", PRIMORDIAL_TORCH, new VerticallyAttachableBlockItem(PRIMORDIAL_TORCH, PRIMORDIAL_WALL_TORCH, IS.of(), Direction.DOWN), DyeColor.ORANGE);
+		registerBlock("primordial_wall_torch", PRIMORDIAL_WALL_TORCH);
 		registerBlock("deeper_down_portal", DEEPER_DOWN_PORTAL);
 		registerBlock("glistering_melon_stem", GLISTERING_MELON_STEM);
 		registerBlock("attached_glistering_melon_stem", ATTACHED_GLISTERING_MELON_STEM);
@@ -1542,7 +1545,7 @@ public class SpectrumBlocks {
 		
 		registerMobHeads(IS.of());
 	}
-	
+
 	private static void registerDDFlora(FabricItemSettings settings) {
 		registerBlockWithItem("sawblade_grass", SAWBLADE_GRASS, settings, DyeColor.LIME);
 		registerBlockWithItem("overgrown_blackslag", OVERGROWN_BLACKSLAG, settings, DyeColor.LIME);
@@ -2520,6 +2523,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("preservation_stone", PRESERVATION_STONE, settings, DyeColor.BLUE);
 		registerBlockWithItem("preservation_stairs", PRESERVATION_STAIRS, settings, DyeColor.BLUE);
 		registerBlockWithItem("preservation_slab", PRESERVATION_SLAB, settings, DyeColor.BLUE);
+		registerBlockWithItem("preservation_wall", PRESERVATION_WALL, settings, DyeColor.BLUE);
 		registerBlockWithItem("preservation_bricks", PRESERVATION_BRICKS, settings, DyeColor.BLUE);
 		registerBlockWithItem("shimmering_preservation_bricks", SHIMMERING_PRESERVATION_BRICKS, settings, DyeColor.BLUE);
 		registerBlockWithItem("powder_chiseled_preservation_stone", POWDER_CHISELED_PRESERVATION_STONE, settings, DyeColor.BLUE);
@@ -2867,7 +2871,7 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ONYX_CHIME, RenderLayer.getTranslucent());
 		
 		// Others
-		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), SpectrumBlocks.PRIMORDIAL_FIRE);
+		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), SpectrumBlocks.PRIMORDIAL_FIRE, SpectrumBlocks.PRIMORDIAL_TORCH);
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.PRESENT, RenderLayer.getCutout());
 		
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.GLISTERING_MELON_STEM, RenderLayer.getCutout());

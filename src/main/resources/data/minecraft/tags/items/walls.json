@@ -24,6 +24,7 @@
 
     "spectrum:polished_bone_ash_wall",
     "spectrum:bone_ash_brick_wall",
-    "spectrum:bone_ash_tile_wall"
+    "spectrum:bone_ash_tile_wall",
+    "spectrum:preservation_wall"
   ]
 }

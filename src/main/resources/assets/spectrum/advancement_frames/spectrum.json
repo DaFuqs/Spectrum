@@ -12,7 +12,7 @@
     "frame": "paginatedadvancements:heart"
   },
   {
-    "advancement": "spectrum:midgame/potion_mastery",
+    "advancement": "spectrum:lategame/create_jade_vine",
     "frame": "paginatedadvancements:heart"
   },
 
@@ -110,6 +110,10 @@
   },
   {
     "advancement": "spectrum:midgame/build_cinderhearth_structure_without_lava",
+    "frame": "spectrum:pile_of_poo"
+  },
+  {
+    "advancement": "spectrum:lategame/get_killed_while_out_of_deeper_down_bounds",
     "frame": "spectrum:pile_of_poo"
   },
 

@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:evoker",
+    "minecraft:piglin_brute",
+    "minecraft:sniffer",
+    "minecraft:guardian",
+    "minecraft:elder_guardian",
+    "minecraft:blaze",
+    "minecraft:shulker"
+  ]
+}

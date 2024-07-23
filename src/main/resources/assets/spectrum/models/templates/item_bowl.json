@@ -1,6 +1,5 @@
 {
   "parent": "block/block",
-  "credit": "Made with Blockbench",
   "textures": {
     "0": "spectrum:block/item_bowl_basalt",
     "1": "spectrum:block/polished_basalt_pillar_side",

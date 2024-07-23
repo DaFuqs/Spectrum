@@ -1,0 +1,62 @@
+{
+  "name": "book.spectrum.guidebook.cuisine.amaranth.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:milestones/reveal_amaranth"
+  },
+  "icon": "spectrum:amaranth_bushel",
+  "category": "spectrum:cuisine",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 6,
+  "y": 0,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.cuisine.amaranth.page0.title",
+      "text": "book.spectrum.guidebook.cuisine.amaranth.page0.text"
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "title1": "book.spectrum.guidebook.cuisine.amaranth.page1.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:collect_amaranth_bushel"
+      },
+      "recipe_id_1": "spectrum:anvil_crushing/amaranth_grains",
+      "text": "book.spectrum.guidebook.cuisine.amaranth.page1.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:collect_amaranth_bushel"
+      },
+      "title1": "book.spectrum.guidebook.cuisine.amaranth.page2.title",
+      "recipe_id_1": "spectrum:pedestal/tier1/food/honey_pastry",
+      "text": "book.spectrum.guidebook.cuisine.amaranth.page2.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:collect_amaranth_bushel"
+      },
+      "title1": "book.spectrum.guidebook.cuisine.amaranth.page3.title",
+      "recipe_id_1": "spectrum:pedestal/tier1/food/scone",
+      "text": "book.spectrum.guidebook.cuisine.amaranth.page3.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/food/triple_meat_pot_pie"
+      },
+      "title1": "book.spectrum.guidebook.cuisine.amaranth.page4.title",
+      "recipe_id_1": "spectrum:pedestal/tier1/food/triple_meat_pot_pie",
+      "text": "book.spectrum.guidebook.cuisine.amaranth.page4.text"
+    }
+  ]
+}

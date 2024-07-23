@@ -4,16 +4,14 @@
   "creature_spawn_probability": 0,
   "effects": {
     "sky_color": 0,
-    "fog_color": 0,
+    "fog_color": 8884632,
     "water_color": 10085631,
     "water_fog_color": 6993885,
     "grass_color": 3512181,
     "foliage_color": 2521181,
     "grass_color_modifier": "none",
     "mood_sound": {
-      "sound": {
-        "sound_id": "spectrum:ambient.dimension_sounds"
-      },
+      "sound": "spectrum:ambient.dimension_sounds",
       "tick_delay": 4000,
       "block_search_extent": 8,
       "offset": 2
@@ -75,7 +73,8 @@
     ],
     [],
     [
-      "spectrum:varia_sprouts"
+      "spectrum:varia_sprouts",
+      "spectrum:jadeite_lotuses"
     ],
     [
       "spectrum:small_ash_pile"

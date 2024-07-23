@@ -1,0 +1,40 @@
+{
+  "criteria": {
+    "has_refined_azurite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:refined_azurite"
+            ]
+          }
+        ]
+      }
+    },
+    "has_refined_bloodstone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:refined_bloodstone"
+            ]
+          }
+        ]
+      }
+    },
+    "has_refined_malachite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:refined_malachite"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

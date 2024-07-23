@@ -10,7 +10,7 @@ import java.io.*;
 
 
 public class DumpRegistriesCommand {
-
+	
 	public static void register(LiteralCommandNode<ServerCommandSource> root) {
 		LiteralCommandNode<ServerCommandSource> dumpRegistries = CommandManager.literal("dump_registries")
 				.requires((source) -> source.hasPermissionLevel(2))
@@ -18,10 +18,10 @@ public class DumpRegistriesCommand {
 				.build();
 		root.addChild(dumpRegistries);
 	}
-
+	
 	private static int execute(ServerCommandSource source) {
 		File directory = FabricLoader.getInstance().getGameDir().resolve("registry_dump").toFile();
-
+		
 		source.getRegistryManager().streamAllRegistries().forEach(registry -> {
 			File file = new File(directory, registry.key().getValue().toString().replace(":", "/") + ".txt");
 			file.getParentFile().mkdirs();
@@ -37,10 +37,10 @@ public class DumpRegistriesCommand {
 				throw new RuntimeException(e);
 			}
 		});
-
+		
 		source.sendMessage(Text.literal("Registries exported to directory 'registry_dump'"));
-
+		
 		return 0;
 	}
-
+	
 }

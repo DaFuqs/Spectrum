@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "spectrum:light_blue_block"
   },
-  "color": "light_blue",
+  "ink_color": "spectrum:light_blue",
   "amount": 900,
   "required_advancement": "spectrum:hidden/collect_pigment/collect_light_blue_pigment"
 }

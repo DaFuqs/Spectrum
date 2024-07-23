@@ -31,6 +31,8 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent BIDENT_MIRROR_IMAGE_THROWN = register("bident_mirror_image_thrown");
 	public static final SoundEvent BIDENT_HIT_GROUND = register("bident_hit_ground");
 	public static final SoundEvent MOONSTONE_STRIKE = register("moonstone_strike");
+	public static final SoundEvent ENTITY_BLOCK_FLOODER_THROW = register("entity.block_flooder.throw");
+	public static final SoundEvent OMNI_ACCELERATOR_SHOOT = register("item.omni_accelerator.shoot");
 	
 	public static final SoundEvent ENCHANTER_WORKING = register("enchanter_working");
 	public static final SoundEvent ENCHANTER_DING = register("enchanter_ding");
@@ -62,7 +64,7 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent SHATTER_HEAVY = register("shatter_heavy");
 	public static final SoundEvent GLASS_SHIMMER = register("glass_shimmer");
 	public static final SoundEvent SOFT_HUM = register("soft_hum");
-
+	
 	public static final SoundEvent CRITICAL_CRUNCH = register("critical_crunch");
 	public static final SoundEvent IMPACT_BASE = register("impact_base");
 	public static final SoundEvent IMPALING_HIT = register("impaling_hit");
@@ -70,7 +72,7 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent METAL_HIT = register("metal_hit");
 	public static final SoundEvent METAL_TAP = register("metal_tap");
 	public static final SoundEvent METALLIC_UNSHEATHE = register("metallic_unsheathe");
-
+	
 	public static final SoundEvent ELECTRIC_DISCHARGE = register("discharge");
 
 
@@ -236,7 +238,7 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent ENTITY_KINDLING_SHOOT = register("entity.kindling.shoot");
 	public static final SoundEvent ENTITY_KINDLING_ANGRY = register("entity.kindling.angry");
 	public static final SoundEvent ENTITY_KINDLING_JUMP = register("entity.kindling.jump");
-
+	
 	private static SoundEvent register(String id) {
 		Identifier identifier = SpectrumCommon.locate(id);
 		return Registry.register(Registries.SOUND_EVENT, identifier, SoundEvent.of(identifier));

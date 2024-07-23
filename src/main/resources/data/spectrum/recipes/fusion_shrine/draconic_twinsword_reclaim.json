@@ -6,7 +6,7 @@
   "copy_nbt": true,
   "ingredients": [
     {
-      "item": "spectrum:dragon_needle"
+      "item": "spectrum:dragon_talon"
     },
     {
       "item": "minecraft:netherite_sword"
@@ -29,7 +29,7 @@
     }
   ],
   "result": {
-    "item": "spectrum:dragon_talon"
+    "item": "spectrum:draconic_twinsword"
   },
   "required_advancement": "spectrum:unlocks/equipment/draconic_twinsword",
   "world_conditions": [],

@@ -1,0 +1,22 @@
+{
+  "type": "spectrum:entry_link",
+  "entry_to_open": "spectrum:ink/color_picker",
+
+  "name": "book.spectrum.guidebook.ink.color_picker.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/color_picker"
+  },
+  "icon": "spectrum:color_picker",
+  "category": "spectrum:equipment",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:equipment/trinkets/base_trinkets"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 4,
+  "x": 10,
+  "y": 5
+}

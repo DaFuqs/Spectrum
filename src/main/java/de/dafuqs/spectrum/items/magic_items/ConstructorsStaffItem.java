@@ -61,13 +61,12 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 	@Override
 	@Environment(EnvType.CLIENT)
 	public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
-		MinecraftClient client = MinecraftClient.getInstance();
 		super.appendTooltip(stack, world, tooltip, context);
-		addInkPoweredTooltip(tooltip);
-		tooltip.add(Text.translatable("item.spectrum.constructors_staff.tooltip.range", getRange(client.player)).formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.constructors_staff.tooltip.range", getRange(MinecraftClient.getInstance().player)).formatted(Formatting.GRAY));
 		tooltip.add(Text.translatable("item.spectrum.constructors_staff.tooltip.crouch").formatted(Formatting.GRAY));
+		addInkPoweredTooltip(tooltip);
 	}
-
+	
 	@Override
 	public ActionResult useOnBlock(ItemUsageContext context) {
 		PlayerEntity player = context.getPlayer();
@@ -112,7 +111,7 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 						1.0F, 1.0F);
 			}
 		}
-
+		
 		return ActionResult.FAIL;
 	}
 	
@@ -122,7 +121,7 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 			// Only place blocks where you are allowed to do so
 			if (!GenericClaimModsCompat.canPlaceBlock(world, position, player))
 				continue;
-
+			
 			BlockState originalState = world.getBlockState(position);
 			if (originalState.isAir() || originalState.getBlock() instanceof FluidBlock || (originalState.isReplaceable() && originalState.getCollisionShape(world, position).isEmpty())) {
 				BlockState stateToPlace = blockToPlace.getPlacementState(new BuildingStaffPlacementContext(world, player, new BlockHitResult(Vec3d.ofBottomCenter(position), side, position, false)));
@@ -136,16 +135,16 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 				}
 			}
 		}
-
+		
 		if (!player.isCreative()) {
 			InventoryHelper.removeFromInventoryWithRemainders(player, new ItemStack(itemToConsume, placedBlocks));
 			InkPowered.tryDrainEnergy(player, USED_COLOR, (long) targetPositions.size() * ConstructorsStaffItem.INK_COST_PER_BLOCK);
 		}
 	}
-
+	
 	@Override
 	public List<InkColor> getUsedColors() {
 		return List.of(USED_COLOR);
 	}
-
+	
 }

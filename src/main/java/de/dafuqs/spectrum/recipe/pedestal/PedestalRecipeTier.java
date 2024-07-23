@@ -3,7 +3,9 @@ package de.dafuqs.spectrum.recipe.pedestal;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.entity.player.*;
+import net.minecraft.text.*;
 import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
 
@@ -62,6 +64,46 @@ public enum PedestalRecipeTier {
 			return Optional.of(PedestalRecipeTier.COMPLEX);
 		}
 		return Optional.empty();
+	}
+	
+	
+	@Contract(pure = true)
+	public @Nullable Identifier getStructureID(PlayerEntity player) {
+		switch (this) {
+			case COMPLEX -> {
+				if (AdvancementHelper.hasAdvancement(player, SpectrumCommon.locate("lategame/build_complex_pedestal_structure_without_moonstone"))) {
+					return SpectrumMultiblocks.PEDESTAL_COMPLEX;
+				} else {
+					return SpectrumMultiblocks.PEDESTAL_COMPLEX_WITHOUT_MOONSTONE;
+				}
+			}
+			case ADVANCED -> {
+				return SpectrumMultiblocks.PEDESTAL_ADVANCED;
+			}
+			case SIMPLE -> {
+				return SpectrumMultiblocks.PEDESTAL_SIMPLE;
+			}
+			default -> {
+				return null;
+			}
+		}
+	}
+	
+	public @Nullable Text getStructureText() {
+		switch (this) {
+			case COMPLEX -> {
+				return SpectrumMultiblocks.PEDESTAL_COMPLEX_TEXT;
+			}
+			case ADVANCED -> {
+				return SpectrumMultiblocks.PEDESTAL_ADVANCED_TEXT;
+			}
+			case SIMPLE -> {
+				return SpectrumMultiblocks.PEDESTAL_SIMPLE_TEXT;
+			}
+			default -> {
+				return null;
+			}
+		}
 	}
 	
 }

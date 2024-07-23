@@ -1,0 +1,39 @@
+{
+  "name": "book.spectrum.guidebook.hints.mermaids_gems.name",
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 5,
+  "x": 2,
+  "y": 3,
+  "icon": "minecraft:writable_book",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:midgame/build_advanced_pedestal_structure"
+  },
+  "read_by_default": true,
+  "turnin": "spectrum:collect_mermaids_gem",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "book.spectrum.guidebook.hints.mermaids_gems.page0.title",
+      "completion_advancement": "spectrum:triggers/hints/mermaids_gems_page0",
+      "cost": {
+        "item": "spectrum:onyx_shard",
+        "count": 4
+      },
+      "text": "book.spectrum.guidebook.hints.mermaids_gems.page0.text"
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "book.spectrum.guidebook.hints.mermaids_gems.page1.title",
+      "cost": {
+        "item": "spectrum:onyx_shard",
+        "count": 12
+      },
+      "text": "book.spectrum.guidebook.hints.mermaids_gems.page1.text",
+      "completion_advancement": "spectrum:triggers/hints/mermaids_gems_page1"
+    }
+  ]
+}

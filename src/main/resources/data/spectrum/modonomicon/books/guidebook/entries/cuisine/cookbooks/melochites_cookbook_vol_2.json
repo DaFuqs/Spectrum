@@ -1,0 +1,84 @@
+{
+  "name": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.name",
+  "icon": "spectrum:melochites_cookbook_vol_2",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/collect_cookbooks/melochites_cookbook_vol_2"
+  },
+  "category": "spectrum:cuisine",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": -2,
+  "y": 0,
+  "pages": [
+    {
+      "type": "spectrum:snippet",
+      "title": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page0.title",
+      "resource_path": "spectrum:textures/gui/guidebook/mehrunes_chellaya_vol_2.png",
+      "resource_width": 116,
+      "resource_height": 116,
+      "texture_x": 0,
+      "texture_y": 0,
+      "texture_width": 116,
+      "texture_height": 116,
+      "border": false,
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page1.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page2.title",
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page2.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page3.text",
+      "recipe_id_1": "spectrum:pedestal/tier1/food/slushslide"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page4.title",
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page4.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page5.text",
+      "recipe_id_1": "spectrum:pedestal/tier1/food/berliner"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page6.title",
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page6.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page7.text",
+      "recipe_id_1": "spectrum:pedestal/tier1/food/cream_pastry"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page8.title",
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page8.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page9.text",
+      "recipe_id_1": "spectrum:pedestal/tier1/food/rabbit_cream_pie"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page10.title",
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page10.text"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page11.text",
+      "recipe_id_1": "spectrum:titration_barrel/peach_jam"
+    }
+  ]
+}

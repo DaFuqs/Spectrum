@@ -1,0 +1,85 @@
+{
+  "name": "book.spectrum.guidebook.creating_life.creature_manipulation.name",
+  "icon": "spectrum:shulker_red_head",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/head_fusion"
+  },
+  "category": "spectrum:creating_life",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:creating_life/mob_heads"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 2,
+  "y": 6,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.creating_life.creature_manipulation.page0.title",
+      "text": "book.spectrum.guidebook.creating_life.creature_manipulation.page0.text"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "recipe_id_1": "spectrum:spirit_instiller/head_fusion/glow_squid"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "recipe_id_1": "spectrum:spirit_instiller/head_fusion/mooshroom_brown"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "recipe_id_1": "spectrum:spirit_instiller/head_fusion/mooshroom_red"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "recipe_id_1": "spectrum:spirit_instiller/head_fusion/mule"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "recipe_id_1": "spectrum:spirit_instiller/head_fusion/zombie_horse"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "recipe_id_1": "spectrum:spirit_instiller/head_fusion/skeleton_horse"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "recipe_id_1": "spectrum:spirit_instiller/head_fusion/witch"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "recipe_id_1": "spectrum:spirit_instiller/head_fusion/wither_skeleton"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "recipe_id_1": "spectrum:spirit_instiller/head_fusion/zoglin"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "recipe_id_1": "spectrum:spirit_instiller/head_fusion/zombie_villager"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "recipe_id_1": "spectrum:spirit_instiller/head_fusion/zombified_piglin"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "recipe_id_1": "spectrum:spirit_instiller/head_fusion/recoloring/axolotl_blue",
+      "text": "book.spectrum.guidebook.creating_life.creature_manipulation.axolotls.text"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "recipe_id_1": "spectrum:spirit_instiller/head_fusion/recoloring/parrot_green",
+      "text": "book.spectrum.guidebook.creating_life.creature_manipulation.parrots.text"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "recipe_id_1": "spectrum:spirit_instiller/head_fusion/recoloring/shulker_pink",
+      "text": "book.spectrum.guidebook.creating_life.creature_manipulation.shulkers.text"
+    }
+  ]
+}

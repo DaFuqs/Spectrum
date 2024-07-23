@@ -189,7 +189,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 					if (canTap) {
 						long secondsFermented = (this.tapTime - this.sealTime) / 1000;
 						float downfall = ((BiomeAccessor)(Object) biome).getWeather().downfall();
-						harvestedStack = recipe.tap(this.inventory, secondsFermented, downfall);
+						harvestedStack = recipe.getResult(this.inventory, secondsFermented, downfall);
 						
 						this.extractedBottles += 1;
 						shouldReset = isEmpty(biome.getTemperature(), this.extractedBottles, recipe);

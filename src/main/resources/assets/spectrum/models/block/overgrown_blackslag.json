@@ -1,7 +1,7 @@
 {
 	"parent": "spectrum:block/overgrown_base",
 	"textures": {
-      "side": "spectrum:block/overgrown_blackslag",
+      "side": "spectrum:block/overgrown_blackslag_side",
       "top": "spectrum:block/overgrown_blackslag_top",
       "fronds": "spectrum:block/overgrown_blackslag_fronds",
       "bottom": "spectrum:block/blackslag_top"

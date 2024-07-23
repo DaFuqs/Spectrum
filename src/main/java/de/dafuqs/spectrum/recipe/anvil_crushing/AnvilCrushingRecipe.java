@@ -14,7 +14,7 @@ import net.minecraft.util.collection.*;
 import net.minecraft.world.*;
 
 public class AnvilCrushingRecipe extends GatedSpectrumRecipe {
-
+	
 	protected final Ingredient input;
 	protected final ItemStack output;
 	protected final float crushedItemsPerPointOfDamage;
@@ -28,7 +28,7 @@ public class AnvilCrushingRecipe extends GatedSpectrumRecipe {
 							   float experience, Identifier particleEffectIdentifier, int particleCount, Identifier soundEventIdentifier) {
 		
 		super(id, group, secret, requiredAdvancementIdentifier);
-
+		
 		this.input = input;
 		this.output = output;
 		this.crushedItemsPerPointOfDamage = crushedItemsPerPointOfDamage;

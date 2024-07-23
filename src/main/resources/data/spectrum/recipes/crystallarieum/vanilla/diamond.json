@@ -9,7 +9,7 @@
     "spectrum:diamond_cluster"
   ],
   "seconds_per_growth_stage": 480,
-  "ink_color": "cyan",
+  "ink_color": "spectrum:cyan",
   "ink_cost_tier": 3,
   "grows_without_catalyst": false,
   "catalysts": [

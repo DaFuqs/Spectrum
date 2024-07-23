@@ -21,7 +21,7 @@
       "item": "minecraft:honey_bottle"
     },
     "E": {
-      "item": "minecraft:egg"
+      "tag": "c:eggs"
     },
     "S": {
       "item": "minecraft:sugar"

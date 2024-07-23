@@ -95,7 +95,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements I
 	public ItemStack getOutput(DynamicRegistryManager registryManager) {
 		return getDefaultTap(1);
 	}
-
+	
 	// used for recipe viewers to show recipe outputs with a few example fermentation times
 	public Collection<ItemStack> getOutputVariations(List<Integer> timeMultipliers) {
 		List<ItemStack> list = new ArrayList<>();
@@ -199,7 +199,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements I
 		return SpectrumRecipeTypes.TITRATION_BARREL_RECIPE_SERIALIZER;
 	}
 	
-	// sadly we cannot use text.append() here, since patchouli does not support it
+	// sadly we cannot use text.append() here, since the guidebook does not support it
 	// but this way it might be easier for translations either way
 	public static MutableText getDurationText(int minFermentationTimeHours, FermentationData fermentationData) {
 		MutableText text;

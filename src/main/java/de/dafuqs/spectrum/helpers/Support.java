@@ -75,7 +75,7 @@ public class Support {
 	 * If x > 0 the result is always at least 1%,
 	 * If it approaches 100%, but is not exactly 100%, returns 99
 	 */
-	public static String getSensiblePercent(long x, long y) {
+	public static String getSensiblePercentString(long x, long y) {
 		if (y == 0) {
 			return "0";
 		}
@@ -87,6 +87,21 @@ public class Support {
 			return "99";
 		} else {
 			return DF.format(Math.round(result * 100L));
+		}
+	}
+	
+	public static int getSensiblePercent(long x, long y, int max) {
+		if (y == 0) {
+			return 0;
+		}
+		
+		int result = (int) MathHelper.clampedLerp(0, max, (double) x / y);
+		if (result < 1 && x > 0) {
+			return 1;
+		} else if (result == max && x != y) {
+			return max - 1;
+		} else {
+			return result;
 		}
 	}
 	

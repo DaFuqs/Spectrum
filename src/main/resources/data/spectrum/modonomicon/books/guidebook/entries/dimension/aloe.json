@@ -1,0 +1,33 @@
+{
+  "name": "book.spectrum.guidebook.cuisine.aloe.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/collect_aloe"
+  },
+  "icon": "spectrum:aloe_leaf",
+  "category": "spectrum:dimension",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:dimension/black_langast"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 6,
+  "y": -3,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.cuisine.aloe.page0.title",
+      "text": "book.spectrum.guidebook.cuisine.aloe.page0.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:aloe_leaf"
+      },
+      "text": "book.spectrum.guidebook.cuisine.aloe.page1.text"
+    }
+  ]
+}

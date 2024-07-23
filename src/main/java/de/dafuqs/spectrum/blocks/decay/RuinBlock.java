@@ -58,7 +58,13 @@ public class RuinBlock extends DecayBlock {
 		super.onStateReplaced(state, world, pos, newState, moved);
 		
 		if (state.get(RuinBlock.CONVERSION) != Conversion.NONE && newState.isAir()) {
-			if (world.getRegistryKey() == World.OVERWORLD && pos.getY() == world.getBottomY()) {
+			if (world.getRegistryKey() == World.NETHER) {
+				if (pos.getY() == world.getBottomY() + world.getDimension().logicalHeight() - 1) { // Attempt to match the nether ceiling. Tricky...
+					world.setBlockState(pos, SpectrumBlocks.DEEPER_DOWN_PORTAL.getDefaultState().with(DeeperDownPortalBlock.FACING_UP, true), 3);
+				} else if (pos.getY() == world.getBottomY()) {
+					world.setBlockState(pos, SpectrumBlocks.DEEPER_DOWN_PORTAL.getDefaultState().with(DeeperDownPortalBlock.FACING_UP, false), 3);
+				}
+			} else if (world.getRegistryKey() == World.OVERWORLD && pos.getY() == world.getBottomY()) {
 				world.setBlockState(pos, SpectrumBlocks.DEEPER_DOWN_PORTAL.getDefaultState().with(DeeperDownPortalBlock.FACING_UP, false), 3);
 			} else if (world.getRegistryKey() == SpectrumDimensions.DIMENSION_KEY && pos.getY() == world.getTopY() - 1) { // highest layer cannot be built on
 				world.setBlockState(pos, SpectrumBlocks.DEEPER_DOWN_PORTAL.getDefaultState().with(DeeperDownPortalBlock.FACING_UP, true), 3);

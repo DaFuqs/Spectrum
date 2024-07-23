@@ -1,0 +1,20 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:allay",
+    "minecraft:vex",
+    "minecraft:cow",
+    "minecraft:pig",
+    "minecraft:sheep",
+    "minecraft:goat",
+    "minecraft:fox",
+    "minecraft:wolf",
+    "minecraft:hoglin",
+    "minecraft:warden",
+    "minecraft:ravager",
+    "minecraft:axolotl",
+    "minecraft:strider",
+    "minecraft:frog",
+    "spectrum:egg_laying_wooly_pig"
+  ]
+}

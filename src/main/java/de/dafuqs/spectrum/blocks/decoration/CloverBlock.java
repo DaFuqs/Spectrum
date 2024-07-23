@@ -9,9 +9,9 @@ import net.minecraft.util.math.random.*;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 
-public class CloverBlock extends FernBlock {
-
-	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 1.0D, 14.0D, 2.0D, 14.0D);
+public class CloverBlock extends PlantBlock implements Fertilizable {
+	
+	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D);
 
 	public CloverBlock(Settings settings) {
 		super(settings);
@@ -20,6 +20,11 @@ public class CloverBlock extends FernBlock {
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return SHAPE;
+	}
+	
+	@Override
+	public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
+		return true;
 	}
 
 	@Override

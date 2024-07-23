@@ -11,7 +11,7 @@ public record ColumnsFeatureConfig(BlockState blockState, IntProvider reach,
 
     public static final Codec<ColumnsFeatureConfig> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
             BlockState.CODEC.fieldOf("state").forGetter((config) -> config.blockState),
-            IntProvider.createValidatingCodec(1, 10).fieldOf("height").forGetter((config) -> config.height),
+            IntProvider.createValidatingCodec(1, 10).fieldOf("reach").forGetter((config) -> config.reach),
             IntProvider.createValidatingCodec(1, 10).fieldOf("height").forGetter((config) -> config.height)
     ).apply(instance, ColumnsFeatureConfig::new));
 

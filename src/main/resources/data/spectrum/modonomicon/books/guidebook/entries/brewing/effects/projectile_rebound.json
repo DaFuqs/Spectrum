@@ -1,0 +1,23 @@
+{
+  "name": "effect.spectrum.projectile_rebound",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/status_effects/projectile_rebound"
+  },
+  "icon": "spectrum:textures/mob_effect/projectile_rebound.png",
+  "category": "spectrum:brewing",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 4,
+  "x": 3,
+  "y": 0,
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "title": "effect.spectrum.projectile_rebound",
+      "status_effect_id": "spectrum:projectile_rebound",
+      "text": "book.spectrum.guidebook.brewing.projectile_rebound.page0.text"
+    }
+  ]
+}

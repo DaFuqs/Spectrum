@@ -1,8 +1,10 @@
 package de.dafuqs.spectrum.blocks.pastel_network.nodes;
 
 import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.api.item.Stampable;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
+import de.dafuqs.spectrum.helpers.BlockReference;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.lookup.v1.block.*;
@@ -11,6 +13,7 @@ import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.fabricmc.fabric.api.transfer.v1.storage.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
@@ -30,12 +33,12 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 import java.util.function.*;
 
-public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigurable, ExtendedScreenHandlerFactory {
+public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigurable, ExtendedScreenHandlerFactory, Stampable {
 	
 	public static final int ITEM_FILTER_COUNT = 5;
 	public static final int RANGE = 12;
-	protected PastelNetwork network;
-	protected @Nullable UUID networkUUIDToMerge = null;
+	protected PastelNetwork parentNetwork;
+	protected Optional<UUID> parentID = Optional.empty();
 	protected long lastTransferTick = 0;
 	protected final long cachedRedstonePowerTick = 0;
 	protected boolean cachedNoRedstonePower = true;
@@ -46,6 +49,9 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	protected Direction cachedDirection = null;
 
     private final List<Item> filterItems;
+    float rotationTarget, crystalRotation, lastRotationTarget, heightTarget, crystalHeight, lastHeightTarget, alphaTarget, ringAlpha, lastAlphaTarget;
+    long creationStamp = -1, interpTicks, interpLength = -1, spinTicks;
+    private State state;
 
     public PastelNodeBlockEntity(BlockPos blockPos, BlockState blockState) {
         super(SpectrumBlockEntities.PASTEL_NODE, blockPos, blockState);
@@ -64,17 +70,58 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
         return connectedStorageCache.find(cachedDirection);
     }
 
+    public static void tick(@NotNull World world, BlockPos pos, BlockState state, PastelNodeBlockEntity node) {
+        if (node.parentNetwork == null) {
+            node.changeState(State.DISCONNECTED);
+            node.interpLength = 17;
+        }
+        else if (!node.canTransfer()) {
+            node.changeState(State.INACTIVE);
+            node.interpLength = 21;
+        }
+        else if(node.spinTicks > 0) {
+            node.changeState(State.ACTIVE);
+            node.interpLength = 17;
+        }
+        else {
+            node.changeState(State.CONNECTED);
+            node.interpLength = 13;
+        }
+
+        if (node.interpTicks < node.interpLength)
+            node.interpTicks++;
+
+        if (node.spinTicks > 0)
+            node.spinTicks--;
+    }
+
+    public void changeState(State state) {
+        if (this.state != state) {
+            this.state = state;
+            lastRotationTarget = crystalRotation;
+            lastHeightTarget = crystalHeight;
+            lastAlphaTarget = ringAlpha;
+            interpTicks = 0;
+        }
+    }
+
     @Override
     public void setWorld(World world) {
         super.setWorld(world);
+        if (creationStamp == -1) {
+            creationStamp = (world.getTime() + world.getRandom().nextInt(7)) % 20;
+        }
+
         if (!world.isClient) {
-            if (this.networkUUIDToMerge != null) {
-                this.network = Pastel.getServerInstance().joinNetwork(this, this.networkUUIDToMerge);
-                this.networkUUIDToMerge = null;
-            } else if (this.network == null) {
-                this.network = Pastel.getServerInstance().joinNetwork(this, null);
+            if (this.parentID.isPresent() && parentNetwork == null) {
+                this.parentNetwork = Pastel.getServerInstance().JoinOrCreateNetwork(this, this.parentID.get());
+                this.parentID = Optional.empty();
             }
         }
+    }
+
+    public float getRedstoneAlphaMult() {
+        return 0.25F;
     }
 
     public boolean canTransfer() {
@@ -96,10 +143,13 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
         if (nbt.contains("Network")) {
             UUID networkUUID = nbt.getUuid("Network");
             if (this.getWorld() == null) {
-                this.networkUUIDToMerge = networkUUID;
+                this.parentID = Optional.of(networkUUID);
             } else {
-                this.network = Pastel.getInstance(world.isClient).joinNetwork(this, networkUUID);
+                this.parentNetwork = Pastel.getInstance(world.isClient).JoinOrCreateNetwork(this, networkUUID);
             }
+        }
+        if (nbt.contains("creationStamp")) {
+            this.creationStamp = nbt.getLong("creationStamp");
         }
         if (nbt.contains("LastTransferTick", NbtElement.LONG_TYPE)) {
             this.lastTransferTick = nbt.getLong("LastTransferTick");
@@ -115,8 +165,11 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
     @Override
     protected void writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
-        if (this.network != null) {
-            nbt.putUuid("Network", this.network.getUUID());
+        if (this.parentNetwork != null) {
+            nbt.putUuid("Network", this.parentNetwork.getUUID());
+        }
+        if (creationStamp != -1) {
+            nbt.putLong("creationStamp", creationStamp);
         }
         nbt.putLong("LastTransferTick", this.lastTransferTick);
         nbt.putLong("ItemCountUnderway", this.itemCountUnderway);
@@ -153,8 +206,8 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
         return this.pos.isWithinDistance(node.pos, RANGE);
     }
 
-    public PastelNetwork getNetwork() {
-        return this.network;
+    public PastelNetwork getParentNetwork() {
+        return this.parentNetwork;
     }
 
     public PastelNodeType getNodeType() {
@@ -164,8 +217,8 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
         return PastelNodeType.CONNECTION;
     }
 
-    public void setNetwork(PastelNetwork network) {
-        this.network = network;
+    public void setParentNetwork(PastelNetwork parentNetwork) {
+        this.parentNetwork = parentNetwork;
         if (this.getWorld() != null && !this.getWorld().isClient()) {
             updateInClientWorld();
             this.markDirty();
@@ -212,6 +265,10 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
         }
     }
 
+    public long getCreationStamp() {
+        return creationStamp;
+    }
+
     @Override
     public Text getDisplayName() {
         return Text.translatable("block.spectrum.pastel_node");
@@ -234,5 +291,65 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
     
     public int hashCode() {
         return this.pos.hashCode();
+    }
+
+    @Override
+    public StampData recordStampData(Optional<PlayerEntity> user, BlockReference reference, World world) {
+        return new StampData(user.map(Entity::getUuid), reference, this);
+    }
+
+    @Override
+    public boolean handleImpression(Optional<UUID> stamper, Optional<PlayerEntity> user, BlockReference reference, World world) {
+        var sourceNode = (PastelNodeBlockEntity) reference.tryGetBlockEntity().orElseThrow(() -> new IllegalStateException("Attempted to connect a non-existent node - what did you do?!"));
+        var manager = Pastel.getInstance(world.isClient());
+
+        if (sourceNode.parentID.map(uuid -> uuid.equals(this.parentID.orElse(null))).orElse(false))
+            return false;
+
+        if (sourceNode.parentNetwork != null && sourceNode.parentNetwork == this.parentNetwork)
+            return false;
+
+        if (!sourceNode.canConnect(this))
+            return false;
+
+        manager.connectNodes(this, sourceNode);
+        return true;
+    }
+
+    @Override
+    public void clearImpression() {
+        if (parentNetwork != null) {
+            Pastel.getInstance(world.isClient()).removeNode(this, NodeRemovalReason.DISCONNECT);
+            parentNetwork = null;
+            parentID = Optional.empty();
+        }
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    @Override
+    public Category getStampCategory() {
+        return Category.PASTEL_NODE;
+    }
+
+    @Override
+    public boolean canUserStamp(Optional<PlayerEntity> stamper) {
+        return true;
+    }
+
+    @Override
+    public void onImpressedOther(StampData data, boolean success) {}
+
+    public enum State {
+        DISCONNECTED,
+        CONNECTED,
+        ACTIVE,
+        INACTIVE;
+    }
+
+    public void setSpinTicks(long spinTicks) {
+        this.spinTicks = spinTicks;
     }
 }

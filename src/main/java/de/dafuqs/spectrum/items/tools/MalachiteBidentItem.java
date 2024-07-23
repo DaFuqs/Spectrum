@@ -6,24 +6,23 @@ import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.item.TooltipContext;
+import net.minecraft.client.gui.screen.*;
+import net.minecraft.client.item.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.entity.projectile.*;
 import net.minecraft.item.*;
-import net.minecraft.screen.slot.Slot;
+import net.minecraft.screen.slot.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.stat.*;
-import net.minecraft.text.Text;
+import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
-import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -154,25 +153,25 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 			playerEntity.getInventory().removeOne(stack);
 		}
 	}
-
+	
 	public void markDisabled(ItemStack stack, boolean disabled) {
 		stack.getOrCreateNbt().putBoolean(THROW_EFFECTS_DISABLED, disabled);
 	}
-
+	
 	public boolean isDisabled(ItemStack stack) {
 		return stack.getOrCreateNbt().getBoolean(THROW_EFFECTS_DISABLED);
 	}
-
+	
 	public boolean canBeDisabled() {
 		return false;
 	}
-
+	
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		if (isDisabled(stack))
 			tooltip.add(Text.translatable("item.spectrum.bident.toolTip.disabled").formatted(Formatting.RED, Formatting.ITALIC));
 	}
-
+	
 	@Override
 	public boolean onStackClicked(ItemStack stack, Slot slot, ClickType clickType, PlayerEntity player) {
 		if (canBeDisabled() && clickType == ClickType.RIGHT) {
@@ -181,7 +180,7 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 		}
 		return false;
 	}
-
+	
 	public float getThrowSpeed(ItemStack stack) {
 		return 3F;
 	}
@@ -198,22 +197,22 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 	public boolean acceptsEnchantment(Enchantment enchantment) {
 		return enchantment == Enchantments.SHARPNESS || enchantment == Enchantments.SMITE || enchantment == Enchantments.BANE_OF_ARTHROPODS || enchantment == Enchantments.LOOTING || enchantment == SpectrumEnchantments.CLOVERS_FAVOR;
 	}
-
+	
 	@Override
 	public float getDefenseMultiplier(LivingEntity target, ItemStack stack) {
 		return 1 - armorPierce;
 	}
-
+	
 	@Override
 	public float getToughnessMultiplier(LivingEntity target, ItemStack stack) {
 		return 1;
 	}
-
+	
 	@Override
 	public float getProtReduction(LivingEntity target, ItemStack stack) {
 		return protPierce;
 	}
-
+	
 	@Override
 	public DamageComposition getDamageComposition(LivingEntity attacker, LivingEntity target, ItemStack stack, float damage) {
 		var composition = new DamageComposition();
@@ -222,20 +221,19 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 		composition.add(source, damage);
 		return composition;
 	}
-
+	
 	@Override
 	public void expandTooltip(ItemStack stack, @Nullable PlayerEntity player, List<Text> tooltip, TooltipContext context) {
 		if (Screen.hasShiftDown()) {
 			tooltip.add(Text.translatable("item.spectrum.bident.postToolTip.ap", armorPierce * 100).formatted(Formatting.DARK_GREEN));
-
+			
 			if (protPierce > 0) {
 				tooltip.add(Text.translatable("item.spectrum.bident.postToolTip.pp", protPierce * 100).formatted(Formatting.DARK_GREEN));
 			}
 			if (canBeDisabled()) {
 				tooltip.add(Text.translatable("item.spectrum.bident.postToolTip.disable").formatted(Formatting.DARK_GRAY, Formatting.ITALIC));
 			}
-		}
-		else {
+		} else {
 			tooltip.add(Text.translatable("spectrum.tooltip.press_shift_for_more").formatted(Formatting.DARK_GRAY, Formatting.ITALIC));
 		}
 	}

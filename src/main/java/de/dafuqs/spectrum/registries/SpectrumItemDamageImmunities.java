@@ -17,6 +17,7 @@ public class SpectrumItemDamageImmunities {
 		ItemDamageImmunity.registerImmunity(SpectrumBlocks.WET_LAVA_SPONGE.asItem(), DamageTypeTags.IS_FIRE);
 		ItemDamageImmunity.registerImmunity(SpectrumBlocks.DOOMBLOOM.asItem(), DamageTypeTags.IS_FIRE);
 		ItemDamageImmunity.registerImmunity(SpectrumItems.DOOMBLOOM_SEED, DamageTypeTags.IS_FIRE);
+		ItemDamageImmunity.registerImmunity(SpectrumBlocks.BLAZING_CRYSTAL, DamageTypeTags.IS_FIRE);
 
 		ItemDamageImmunity.registerImmunity(SpectrumItems.PURE_NETHERITE_SCRAP, DamageTypeTags.IS_FIRE);
 		ItemDamageImmunity.registerImmunity(SpectrumBlocks.PURE_NETHERITE_SCRAP_BLOCK, DamageTypeTags.IS_FIRE);

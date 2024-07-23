@@ -4,8 +4,11 @@ import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
+import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.particle.*;
@@ -299,7 +302,7 @@ public class SpectrumS2CPacketSender {
 		Map<InkColor, Long> colors = inkStorage.getEnergy();
 		buf.writeInt(colors.size());
 		for (Map.Entry<InkColor, Long> color : colors.entrySet()) {
-			buf.writeString(color.getKey().toString());
+			buf.writeIdentifier(color.getKey().getID());
 			buf.writeLong(color.getValue());
 		}
 		
@@ -312,14 +315,14 @@ public class SpectrumS2CPacketSender {
 			packetByteBuf.writeBoolean(false);
 		} else {
 			packetByteBuf.writeBoolean(true);
-			packetByteBuf.writeString(color.toString());
+			packetByteBuf.writeIdentifier(color.getID());
 		}
 		ServerPlayNetworking.send(player, SpectrumS2CPackets.INK_COLOR_SELECTED, packetByteBuf);
 	}
 	
 	public static void playInkEffectParticles(ServerWorld serverWorld, InkColor inkColor, Vec3d effectPos, float potency) {
 		PacketByteBuf packetByteBuf = PacketByteBufs.create();
-		packetByteBuf.writeString(inkColor.toString());
+		packetByteBuf.writeIdentifier(inkColor.getID());
 		packetByteBuf.writeDouble(effectPos.x);
 		packetByteBuf.writeDouble(effectPos.y);
 		packetByteBuf.writeDouble(effectPos.z);
@@ -374,5 +377,71 @@ public class SpectrumS2CPacketSender {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.MOONSTONE_BLAST, buf);
 		}
 	}
-	
+
+	public static void sendCompactingChestStatusUpdate(CompactingChestBlockEntity chest) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeBlockPos(chest.getPos());
+		buf.writeBoolean(chest.hasToCraft());
+
+		for (ServerPlayerEntity player : PlayerLookup.tracking(chest)) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.COMPACTING_CHEST_STATUS_UPDATE, buf);
+		}
+	}
+
+	public static void sendRestockingChestStatusUpdate(RestockingChestBlockEntity chest) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeBlockPos(chest.getPos());
+		buf.writeBoolean(chest.isFullServer());
+		buf.writeBoolean(chest.hasValidRecipes());
+		buf.writeInt(chest.getRecipeOutputs().size());
+		for (ItemStack recipeOutput : chest.getRecipeOutputs()) {
+			buf.writeItemStack(recipeOutput);
+		}
+
+		for (ServerPlayerEntity player : PlayerLookup.tracking(chest)) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.RESTOCKING_CHEST_STATUS_UPDATE, buf);
+		}
+	}
+
+	public static void sendBlackHoleChestUpdate(BlackHoleChestBlockEntity chest) {
+		var xpStack = chest.getStack(BlackHoleChestBlockEntity.EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT);
+
+
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeBlockPos(chest.getPos());
+		buf.writeBoolean(chest.isFullServer());
+		buf.writeBoolean(chest.canStoreExperience());
+		if (xpStack.getItem() instanceof ExperienceStorageItem experienceStorageItem) {
+			buf.writeLong(ExperienceStorageItem.getStoredExperience(xpStack));
+			buf.writeLong(experienceStorageItem.getMaxStoredExperience(xpStack));
+		}
+		else {
+			buf.writeLong(0);
+			buf.writeLong(0);
+		}
+
+		for (ServerPlayerEntity player : PlayerLookup.tracking(chest)) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.BLACK_HOLE_CHEST_STATUS_UPDATE, buf);
+		}
+	}
+
+	public static void sendPastelNodeStatusUpdate(List<PastelNodeBlockEntity> nodes, boolean longSpin) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeInt(nodes.size());
+		for (PastelNodeBlockEntity node : nodes) {
+			var world = node.getWorld();
+
+			if (world == null)
+				continue;
+
+			var time = longSpin ? 24 + world.getRandom().nextInt(11) : 10 + world.getRandom().nextInt(11);
+			buf.writeBlockPos(node.getPos());
+			buf.writeInt(time);
+		}
+
+		for (ServerPlayerEntity player : PlayerLookup.tracking(nodes.get(0))) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.PASTEL_NODE_STATUS_UPDATE, buf);
+		}
+	}
+
 }

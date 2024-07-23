@@ -5,6 +5,8 @@ import net.minecraft.entity.damage.*;
 import net.minecraft.registry.*;
 import net.minecraft.registry.tag.*;
 
+import static de.dafuqs.spectrum.SpectrumCommon.*;
+
 public class SpectrumDamageTypeTags {
 	
 	public static final TagKey<DamageType> DROPS_LOOT_LIKE_PLAYERS = of("drops_loot_like_players");
@@ -13,6 +15,7 @@ public class SpectrumDamageTypeTags {
 	public static final TagKey<DamageType> INCREASED_ARMOR_DAMAGE = of("increased_armor_damage");
 	public static final TagKey<DamageType> CALCULATES_DAMAGE_BASED_ON_TOUGHNESS = of("calculates_damage_based_on_toughness");
 	public static final TagKey<DamageType> PARTLY_IGNORES_PROTECTION = of("partly_ignores_protection");
+	public static final TagKey<DamageType> ALWAYS_DROPS_MOB_HEAD = of("always_drops_mob_head");
 	
 	private static TagKey<DamageType> of(String id) {
 		return TagKey.of(RegistryKeys.DAMAGE_TYPE, SpectrumCommon.locate(id));

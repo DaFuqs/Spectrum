@@ -1,0 +1,37 @@
+{
+  "name": "book.spectrum.guidebook.magical_blocks.black_hole_chest.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/black_hole_chest"
+  },
+  "icon": "spectrum:black_hole_chest",
+  "category": "spectrum:magical_blocks",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 3,
+  "y": 0,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.magical_blocks.black_hole_chest.page0.text",
+      "title": "book.spectrum.guidebook.magical_blocks.black_hole_chest.page0.title"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.magical_blocks.black_hole_chest.page1.text",
+      "title1": "book.spectrum.guidebook.magical_blocks.black_hole_chest.page1.title",
+      "recipe_id_1": "spectrum:pedestal/tier3/black_hole_chest"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.magical_blocks.black_hole_chest.page2.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/items/knowledge_gem"
+      },
+      "text": "book.spectrum.guidebook.magical_blocks.black_hole_chest.page2.text"
+    }
+  ]
+}

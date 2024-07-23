@@ -1,0 +1,29 @@
+{
+  "name": "book.spectrum.guidebook.magical_blocks.hoverblock.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:lategame/collect_hover_block"
+  },
+  "icon": "spectrum:hover_block",
+  "category": "spectrum:magical_blocks",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 8,
+  "y": 0,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:hover_block"
+      },
+      "text": "book.spectrum.guidebook.magical_blocks.hoverblock.page0.text",
+      "title": "book.spectrum.guidebook.magical_blocks.hoverblock.page0.title"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.magical_blocks.hoverblock.page1.text"
+    }
+  ]
+}

@@ -4,16 +4,14 @@
   "creature_spawn_probability": 0,
   "effects": {
     "sky_color": 0,
-    "fog_color": 0,
+    "fog_color": 9384991,
     "water_color": 13132108,
     "water_fog_color": 13132108,
     "grass_color": 12340777,
     "foliage_color": 14895399,
     "grass_color_modifier": "none",
     "mood_sound": {
-      "sound": {
-        "sound_id": "spectrum:ambient.dimension_sounds"
-      },
+      "sound": "spectrum:ambient.dimension_sounds",
       "tick_delay": 3000,
       "block_search_extent": 8,
       "offset": 2

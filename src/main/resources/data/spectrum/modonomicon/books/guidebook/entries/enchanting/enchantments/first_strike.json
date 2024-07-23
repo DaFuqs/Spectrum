@@ -1,0 +1,51 @@
+{
+  "name": "book.spectrum.guidebook.enchanting.first_strike.name",
+  "icon": "minecraft:iron_sword",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/enchantments/first_strike"
+  },
+  "flag": "spectrum:enchantment_exists_spectrum_first_strike",
+  "category": "spectrum:enchanting",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "y": 4,
+  "x": 4,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.enchanting.first_strike.page0.text",
+      "title": "book.spectrum.guidebook.enchanting.first_strike.page0.title"
+    },
+    {
+      "type": "spectrum:nbt_spotlight",
+      "title": "book.spectrum.guidebook.enchanting.first_strike.page1.title",
+      "item": {
+        "item": "minecraft:iron_sword",
+        "nbt": {
+          "Enchantments": [
+            {
+              "id": "spectrum:first_strike",
+              "lvl": "2s"
+            }
+          ]
+        }
+      },
+      "text": "book.spectrum.guidebook.enchanting.first_strike.page1.text"
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "text": "book.spectrum.guidebook.enchanting.first_strike.page2.text",
+      "title1": "book.spectrum.guidebook.enchanting.first_strike.page2.title",
+      "recipe_id_1": "spectrum:enchanter/spectrum_books/book_first_strike"
+    },
+    {
+      "type": "spectrum:enchanter_upgrading",
+      "text": "book.spectrum.guidebook.enchanting.first_strike.page3.text",
+      "title1": "book.spectrum.guidebook.enchanting.first_strike.page3.title",
+      "recipe_id_1": "spectrum:enchantment_upgrade/spectrum/first_strike_level_2"
+    }
+  ]
+}

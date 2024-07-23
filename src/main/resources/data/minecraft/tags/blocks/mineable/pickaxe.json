@@ -15,7 +15,7 @@
     "#spectrum:shooting_stars",
     "#spectrum:idols",
     "#spectrum:glowblocks",
-    "#spectrum:gemstone_lamps",
+    "#spectrum:gemstone_lights",
     "#spectrum:crystallarieum_growable_clusters",
     "#spectrum:crystallarieum_growable_buds",
     "#spectrum:pastel_network_nodes",
@@ -32,6 +32,7 @@
     "#spectrum:shale_clays",
     "#spectrum:dragonbone_blocks",
     "#spectrum:pyrite",
+    "#spectrum:rock_crystal",
     "#spectrum:alloy_forges",
 
     "spectrum:topaz_cluster",

@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "spectrum:orange_block"
   },
-  "color": "orange",
+  "ink_color": "spectrum:orange",
   "amount": 900,
   "required_advancement": "spectrum:hidden/collect_pigment/collect_orange_pigment"
 }

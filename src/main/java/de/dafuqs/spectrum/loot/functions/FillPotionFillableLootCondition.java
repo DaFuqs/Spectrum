@@ -45,10 +45,10 @@ public class FillPotionFillableLootCondition extends ConditionalLootFunction {
 			JsonElement colorElement = jsonObject.get("ink_color");
 			if (colorElement instanceof JsonArray jsonArray) {
 				for (JsonElement element : jsonArray) {
-					inkColors.add(InkColor.of(element.getAsString()));
+					inkColors.add(InkColor.ofIdString(element.getAsString()));
 				}
 			} else {
-				inkColors.add(InkColor.of(colorElement.getAsString()));
+				inkColors.add(InkColor.ofIdString(colorElement.getAsString()));
 			}
 			
 			return new InkPoweredPotionTemplate(ambient, showParticles, duration, statusEffects.stream().toList(), color, amplifier, inkColors.stream().toList(), inkCost, unidentifiable);
@@ -70,7 +70,7 @@ public class FillPotionFillableLootCondition extends ConditionalLootFunction {
 			
 			JsonArray inkColorArray = new JsonArray();
 			for (InkColor inkColor : this.inkColors) {
-				inkColorArray.add(inkColor.toString());
+				inkColorArray.add(inkColor.getID().toString());
 			}
 			jsonObject.add("ink_color", inkColorArray);
 		}

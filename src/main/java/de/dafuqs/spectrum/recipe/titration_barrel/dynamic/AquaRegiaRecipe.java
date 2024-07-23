@@ -55,7 +55,7 @@ public class AquaRegiaRecipe extends SweetenableTitrationBarrelRecipe {
 			effectDuration *= 1.5;
 		}
 		if (alcPercent >= 35) {
-			effects.add(new StatusEffectInstance(SpectrumStatusEffects.SWIFTNESS, effectDuration, (int) (alcPercent / 15)));
+			effects.add(new StatusEffectInstance(SpectrumStatusEffects.EFFECT_PROLONGING, effectDuration, (int) (alcPercent / 12)));
 			effectDuration *= 2;
 		}
 		if (alcPercent >= 30) {

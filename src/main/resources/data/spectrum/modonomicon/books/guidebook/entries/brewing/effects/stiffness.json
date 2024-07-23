@@ -1,0 +1,27 @@
+{
+  "name": "effect.spectrum.stiffness",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/status_effects/stiffness"
+  },
+  "icon": "spectrum:textures/mob_effect/stiffness.png",
+  "category": "spectrum:brewing",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:brewing/effects/swiftness"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 4,
+  "x": 7,
+  "y": 2,
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "title": "effect.spectrum.stiffness",
+      "status_effect_id": "spectrum:stiffness",
+      "text": "book.spectrum.guidebook.brewing.swiftness_stiffness.page1.text"
+    }
+  ]
+}

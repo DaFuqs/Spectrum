@@ -42,13 +42,14 @@ public class SpectrumModelPredicateProviders {
 		registerKnowledgeDropPredicates(SpectrumItems.KNOWLEDGE_GEM);
 		registerAshenCircletPredicates(SpectrumItems.ASHEN_CIRCLET);
 		registerColorPredicate(SpectrumItems.PAINTBRUSH);
+		registerStampingItemPredicate(SpectrumItems.TUNING_STAMP);
 		registerInkColorPredicate(SpectrumItems.INK_FLASK);
 		registerInkFillStateItemPredicate(SpectrumItems.INK_FLASK);
 		registerMoonPhasePredicates(SpectrumItems.CRESCENT_CLOCK);
 		registerActivatableItemPredicate(SpectrumItems.DREAMFLAYER);
 		registerOversizedItemPredicate(SpectrumItems.DREAMFLAYER);
 		registerOversizedItemPredicate(SpectrumItems.BEDROCK_SWORD);
-
+		
 		registerOversizedItemPredicate(SpectrumItems.DRACONIC_TWINSWORD);
 		registerOversizedItemPredicate(SpectrumItems.DRAGON_TALON);
 		registerSlotReservingItem(SpectrumItems.DRAGON_TALON);
@@ -221,6 +222,16 @@ public class SpectrumModelPredicateProviders {
 		});
 	}
 
+	private static void registerStampingItemPredicate(Item item) {
+		ModelPredicateProviderRegistry.register(item, new Identifier("stamped"), ((stack, world, entity, seed) -> {
+			var nbt = stack.getOrCreateNbt();
+			if (nbt.contains(Stampable.STAMPING_DATA_TAG))
+				return 1F;
+
+			return 0F;
+		}));
+	}
+	
 	private static void registerSlotReservingItem(Item item) {
 		ModelPredicateProviderRegistry.register(item, new Identifier(SlotReservingItem.NBT_STRING), (itemStack, clientWorld, livingEntity, i) -> {
 			if (itemStack.getItem() instanceof SlotReservingItem reserver && reserver.isReservingSlot(itemStack)) {

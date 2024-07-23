@@ -1,17 +1,22 @@
 package de.dafuqs.spectrum.api.energy;
 
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.nbt.*;
 import net.minecraft.text.*;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
+
+import static de.dafuqs.spectrum.helpers.Support.*;
 
 /**
  * This interface defines that an object can
  * store pigment energy and how much
  **/
-public interface InkStorage {
+public interface InkStorage extends Clearable {
 	
 	/**
 	 * Transfer Ink from one storage to another
@@ -121,19 +126,19 @@ public interface InkStorage {
 	@Deprecated
 	void setEnergy(Map<InkColor, Long> colors, long total);
 	
-	// gets the amount of energy that can be stored per individual color
+	// the amount of energy that can be stored per individual color
 	long getMaxPerColor();
 	
-	// gets the amount of energy that can be stored in total
+	// the amount of energy that can be stored in total
 	long getMaxTotal();
 	
-	// gets the amount of energy that is currently stored
+	// the amount of energy that is currently stored
 	long getCurrentTotal();
 	
-	// returns true if no energy is stored
+	// true if no energy is stored
 	boolean isEmpty();
 	
-	// returns true if the max total is reached
+	// true if the max total is reached
 	boolean isFull();
 	
 	// fill up the storage with as much energy as possible
@@ -141,25 +146,44 @@ public interface InkStorage {
 	
 	// completely empty the storage
 	void clear();
-
-	// Returns how full the storage is, as a float.
+	
+	// Returns how full the storage is, as a float
 	default float getFillPercent(InkColor color) {
 		return MathHelper.clamp((float) getEnergy(color) / getMaxPerColor(), 0, 1);
 	}
-
+	
 	// Same as above, but in total.
 	default float getTotalFillPercent() {
 		return MathHelper.clamp((float) getCurrentTotal() / getMaxTotal(), 0, 1);
 	}
 	
-	// returns true if all energy could be drained successfully
-	// boolean requestEnergy(Map<CMYKColor, Integer> colors);
-	
-	// returns all stored energy with amounts
-	//Map<ICMYKColor, Integer> getEnergy();
-	
-	void addTooltip(List<Text> tooltip, boolean includeHeader);
+	void addTooltip(List<Text> tooltip);
 	
 	long getRoom(InkColor color);
+	
+	static @NotNull Map<InkColor, Long> readEnergy(NbtCompound compound) {
+		Map<InkColor, Long> energy = new HashMap<>();
+		if (compound != null) {
+			for (String key : compound.getKeys()) {
+				InkColor inkColor = SpectrumRegistries.INK_COLORS.get(new Identifier(key));
+				long amount = compound.getLong(key);
+				energy.put(inkColor, amount);
+			}
+		}
+		return energy;
+	}
+	
+	static @NotNull NbtCompound writeEnergy(Map<InkColor, Long> storedEnergy) {
+		NbtCompound energy = new NbtCompound();
+		for (Map.Entry<InkColor, Long> color : storedEnergy.entrySet()) {
+			energy.putLong(color.getKey().getID().toString(), color.getValue());
+		}
+		return energy;
+	}
+	
+	static void addInkStoreBulletTooltip(List<Text> tooltip, InkColor color, long amount) {
+		MutableText inkName = color.getInkName();
+		tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet_amount", Text.literal(getShortenedNumberString(amount)).formatted(Formatting.WHITE), inkName).setStyle(inkName.getStyle()));
+	}
 	
 }

@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.fusion_shrine;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.recipe.*;
@@ -190,11 +189,6 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		return world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.FUSION_SHRINE, fusionShrineBlockEntity, world).orElse(null);
 	}
 	
-	// calculate the max amount of items that will be crafted
-	// note that we only check each ingredient once, if a match was found
-	// custom recipes therefore should not use items / tags that match multiple items
-	// at once, since we can not rely on positions in a grid like vanilla does
-	// in its crafting table
 	private static void craft(World world, BlockPos blockPos, FusionShrineBlockEntity fusionShrineBlockEntity, FusionShrineRecipe recipe) {
 		recipe.craft(world, fusionShrineBlockEntity);
 		
@@ -208,7 +202,6 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		fusionShrineBlockEntity.fluidStorage.variant = FluidVariant.blank();
 		fusionShrineBlockEntity.fluidStorage.amount = 0;
 		world.setBlockState(blockPos, world.getBlockState(blockPos).with(FusionShrineBlock.LIGHT_LEVEL, 0), 3);
-		
 	}
 
 	@Override
@@ -263,7 +256,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 			world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), soundEvent, SoundCategory.BLOCKS, volume, 0.9F + random.nextFloat() * 0.15F);
 		}
     }
-
+	
 	public void grantPlayerFusionCraftingAdvancement(ItemStack stack, int experience) {
         ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) getOwnerIfOnline();
         if (serverPlayerEntity != null) {
@@ -280,12 +273,8 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
     }
 
     private void setLightForFluid(World world, BlockPos blockPos, Fluid fluid) {
-        if (SpectrumCommon.fluidLuminance.containsKey(fluid)) {
-            int light = SpectrumCommon.fluidLuminance.get(fluid);
-            world.setBlockState(blockPos, world.getBlockState(blockPos).with(FusionShrineBlock.LIGHT_LEVEL, light), 3);
-        } else {
-            world.setBlockState(blockPos, world.getBlockState(blockPos).with(FusionShrineBlock.LIGHT_LEVEL, 0), 3);
-        }
+		int fluidLight = SpectrumEventListeners.getFluidLuminance(fluid);
+		world.setBlockState(blockPos, world.getBlockState(blockPos).with(FusionShrineBlock.LIGHT_LEVEL, fluidLight), Block.NOTIFY_ALL);
     }
 
     // PLAYER OWNED

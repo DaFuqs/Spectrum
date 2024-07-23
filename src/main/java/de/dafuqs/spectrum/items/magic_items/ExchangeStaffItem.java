@@ -84,14 +84,14 @@ public class ExchangeStaffItem extends BuildingStaffItem implements ExtendedEnch
 		}
 		return Optional.empty();
 	}
-
+	
 	public static boolean exchange(World world, BlockPos pos, @NotNull PlayerEntity player, @NotNull Block targetBlock,
-			ItemStack exchangeStaffItemStack, Direction side) {
+								   ItemStack exchangeStaffItemStack, Direction side) {
 		return exchange(world, pos, player, targetBlock, exchangeStaffItemStack, false, side);
 	}
-
+	
 	public static boolean exchange(World world, BlockPos pos, @NotNull PlayerEntity player, @NotNull Block targetBlock,
-			ItemStack exchangeStaffItemStack, boolean single, Direction side) {
+								   ItemStack exchangeStaffItemStack, boolean single, Direction side) {
 		Triplet<Block, Item, Integer> replaceData = countSuitableReplacementItems(player, targetBlock, single,
 				INK_COST_PER_BLOCK);
 
@@ -124,7 +124,7 @@ public class ExchangeStaffItem extends BuildingStaffItem implements ExtendedEnch
 							world.getBlockEntity(targetPosition), player, exchangeStaffItemStack));
 				}
 				world.setBlockState(targetPosition, Blocks.AIR.getDefaultState());
-
+				
 				stateToPlace = targetBlock.getPlacementState(new BuildingStaffPlacementContext(world, player,
 						new BlockHitResult(Vec3d.ofBottomCenter(targetPosition), side, targetPosition, false)));
 				if (stateToPlace != null && stateToPlace.canPlaceAt(world, targetPosition)) {
@@ -163,20 +163,12 @@ public class ExchangeStaffItem extends BuildingStaffItem implements ExtendedEnch
 	@Override
 	@Environment(EnvType.CLIENT)
 	public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
-		MinecraftClient client = MinecraftClient.getInstance();
 		super.appendTooltip(stack, world, tooltip, context);
+		tooltip.add(Text.translatable("item.spectrum.exchanging_staff.tooltip.range", getRange(MinecraftClient.getInstance().player)).formatted(Formatting.GRAY));
+		getStoredBlock(stack).ifPresent(block -> tooltip.add(Text.translatable("item.spectrum.exchanging_staff.tooltip.target", block.getName()).formatted(Formatting.GRAY)));
 		addInkPoweredTooltip(tooltip);
-		tooltip.add(Text.translatable("item.spectrum.exchanging_staff.tooltip.range", getRange(client.player))
-				.formatted(Formatting.GRAY));
-
-		Optional<Block> optionalBlock = getStoredBlock(stack);
-		if (optionalBlock.isPresent()) {
-			tooltip.add(
-					Text.translatable("item.spectrum.exchanging_staff.tooltip.target", optionalBlock.get().getName())
-							.formatted(Formatting.GRAY));
-		}
 	}
-
+	
 	@Override
 	public ActionResult useOnBlock(ItemUsageContext context) {
 		PlayerEntity player = context.getPlayer();
@@ -224,30 +216,30 @@ public class ExchangeStaffItem extends BuildingStaffItem implements ExtendedEnch
 				return ActionResult.success(world.isClient);
 			}
 		}
-
+		
 		world.playSound(null, player.getBlockPos(), SoundEvents.BLOCK_DISPENSER_FAIL, SoundCategory.PLAYERS, 1.0F,
 				1.0F);
 		return ActionResult.FAIL;
 	}
-
+	
 	public void storeBlockAsTarget(@NotNull ItemStack exchangeStaffItemStack, Block block) {
 		NbtCompound compound = exchangeStaffItemStack.getOrCreateNbt();
 		Identifier blockIdentifier = Registries.BLOCK.getId(block);
 		compound.putString("TargetBlock", blockIdentifier.toString());
 		exchangeStaffItemStack.setNbt(compound);
 	}
-
+	
 	@Override
 	public boolean isEnchantable(ItemStack stack) {
 		return stack.getCount() == 1;
 	}
-
+	
 	@Override
 	public boolean acceptsEnchantment(Enchantment enchantment) {
 		return enchantment == Enchantments.FORTUNE || enchantment == Enchantments.SILK_TOUCH
 				|| enchantment == SpectrumEnchantments.RESONANCE;
 	}
-
+	
 	@Override
 	public int getEnchantability() {
 		return 3;
@@ -257,5 +249,5 @@ public class ExchangeStaffItem extends BuildingStaffItem implements ExtendedEnch
 	public List<InkColor> getUsedColors() {
 		return List.of(USED_COLOR);
 	}
-
+	
 }

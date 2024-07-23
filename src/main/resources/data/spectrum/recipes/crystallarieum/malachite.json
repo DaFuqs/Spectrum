@@ -9,7 +9,7 @@
     "spectrum:malachite_cluster"
   ],
   "seconds_per_growth_stage": 300,
-  "ink_color": "white",
+  "ink_color": "spectrum:white",
   "ink_cost_tier": 4,
   "grows_without_catalyst": false,
   "catalysts": [

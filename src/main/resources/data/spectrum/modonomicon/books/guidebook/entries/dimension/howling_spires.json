@@ -1,0 +1,23 @@
+{
+  "name": "book.spectrum.guidebook.dimension.howling_spires.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/visit_dd_biomes/howling_spires"
+  },
+  "icon": "spectrum:ashen_blackslag",
+  "category": "spectrum:dimension",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:dimension/biomes",
+      "line_reversed": true
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 4,
+  "x": 4,
+  "y": 9,
+  "pages": [
+
+  ]
+}

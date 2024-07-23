@@ -1,0 +1,28 @@
+{
+  "name": "item.spectrum.resonance_shard",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:lategame/strike_up_hummingstone_hymn"
+  },
+  "icon": "spectrum:resonance_shard",
+  "category": "spectrum:dimension",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:dimension/hummingstone"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 8,
+  "y": -1,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:resonance_shard"
+      },
+      "text": "book.spectrum.guidebook.dimension.hummingstone.page3.text"
+    }
+  ]
+}

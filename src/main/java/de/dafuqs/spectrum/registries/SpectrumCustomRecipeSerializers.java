@@ -6,8 +6,8 @@ import de.dafuqs.spectrum.recipe.fluid_converting.dynamic.*;
 import de.dafuqs.spectrum.recipe.fusion_shrine.dynamic.*;
 import de.dafuqs.spectrum.recipe.pedestal.dynamic.*;
 import de.dafuqs.spectrum.recipe.primordial_fire_burning.dynamic.*;
-import de.dafuqs.spectrum.recipe.spirit_instiller.*;
-import de.dafuqs.spectrum.recipe.spirit_instiller.spawner.*;
+import de.dafuqs.spectrum.recipe.spirit_instiller.dynamic.*;
+import de.dafuqs.spectrum.recipe.spirit_instiller.dynamic.spawner_manipulation.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.dynamic.*;
 import net.minecraft.recipe.*;
 import net.minecraft.registry.*;
@@ -46,6 +46,7 @@ public class SpectrumCustomRecipeSerializers {
 		register(SpawnerSpawnDelayChangeRecipe.SERIALIZER, "spirit_instiller_spawner_spawn_delay_change");
 		
 		register(HardcorePlayerRevivalRecipe.SERIALIZER, "spirit_instiller_hardcore_player_revival");
+		register(MemoryToHeadRecipe.SERIALIZER, "spirit_instiller_memory_to_head");
 		
 		// Titration Barrel
 		register(JadeWineRecipe.SERIALIZER, "titration_barrel_jade_wine");

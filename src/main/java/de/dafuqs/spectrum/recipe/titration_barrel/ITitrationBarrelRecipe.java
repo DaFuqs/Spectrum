@@ -4,10 +4,14 @@ import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.helpers.TimeHelper;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.items.food.beverages.properties.*;
 import de.dafuqs.spectrum.registries.*;
+import net.minecraft.entity.effect.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
+import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 
@@ -22,6 +26,21 @@ import java.util.*;
 public interface ITitrationBarrelRecipe extends GatedRecipe {
 	
 	Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/titration_barrel");
+	
+	// Called by the titration barrel when tapped
+	default ItemStack getResult(Inventory inventory, long secondsFermented, float downfall) {
+		// Dr. Who would be proud
+		if (secondsFermented < 0) {
+			float ageIngameDays = TimeHelper.minecraftDaysFromSeconds(secondsFermented);
+			;
+			List<StatusEffectInstance> statusEffects = List.of(new StatusEffectInstance(StatusEffects.INVISIBILITY, 3600, 0));
+			ItemStack stack = new StatusEffectBeverageProperties((long) ageIngameDays, 0, 0, statusEffects).getStack(SpectrumItems.SUSPICIOUS_BREW.getDefaultStack());
+			LoreHelper.setLore(stack, Text.translatable("lore.spectrum.time_travel_tap"));
+			return stack;
+		}
+		
+		return tap(inventory, secondsFermented, downfall);
+	}
 	
 	ItemStack tap(Inventory inventory, long secondsFermented, float downfall);
 	
@@ -38,7 +57,7 @@ public interface ITitrationBarrelRecipe extends GatedRecipe {
 		if (getFermentationData() == null) {
 			return originalOutputCount;
 		}
-
+		
 		// Linearly adjust the output count based on angelsShareResultCount
 		float angelsShareResultCount = getAngelsShareResultCount(secondsFermented, temperature);
 		if (angelsShareResultCount > 0) {

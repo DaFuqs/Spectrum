@@ -24,7 +24,7 @@
       "item": "spectrum:polished_basalt"
     },
     "P": {
-      "item": "spectrum:paltaeria_fragments"
+      "tag": "spectrum:pigment_blocks"
     },
     "L": {
       "item": "spectrum:liquid_crystal_bucket"

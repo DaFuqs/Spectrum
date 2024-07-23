@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
+import de.dafuqs.spectrum.blocks.mob_head.*;
 import de.dafuqs.spectrum.blocks.shooting_star.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.items.tools.*;
@@ -54,7 +55,7 @@ public class SpectrumDispenserBehaviors {
 		
 		// Equipping Mob Heads
 		DispenserBehavior armorEquipBehavior = SpectrumBlocks.ENDER_DROPPER.getDefaultBehaviorForItem(Items.PLAYER_HEAD.getDefaultStack());
-		for (Block skullBlock : SpectrumBlocks.MOB_HEADS.values()) {
+		for (Block skullBlock : SpectrumSkullBlock.MOB_HEADS.values()) {
 			DispenserBlock.registerBehavior(skullBlock, armorEquipBehavior);
 		}
 		

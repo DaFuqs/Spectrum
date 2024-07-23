@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:magenta_dye"
   },
-  "color": "magenta",
+  "ink_color": "spectrum:magenta",
   "amount": 5,
   "required_advancement": "spectrum:hidden/collect_pigment/collect_magenta_pigment"
 }

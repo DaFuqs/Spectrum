@@ -1,0 +1,56 @@
+{
+  "name": "book.spectrum.guidebook.general.midnight_aberration.name",
+  "icon": "spectrum:midnight_aberration",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/midnight_aberration"
+  },
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:general/neolith"
+    },
+    {
+      "entry": "spectrum:general/liquid_crystal"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 1,
+  "x": 14,
+  "y": 1,
+  "turnin": "spectrum:midgame/create_midnight_aberration",
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.general.midnight_aberration.page0.text",
+      "title": "book.spectrum.guidebook.general.midnight_aberration.page0.title"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title1": "book.spectrum.guidebook.general.midnight_aberration.page1.title",
+      "recipe_id_1": "spectrum:fusion_shrine/midnight_aberration",
+      "text": "book.spectrum.guidebook.general.midnight_aberration.page1.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:midnight_aberration"
+      },
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/create_midnight_aberration"
+      },
+      "title": "book.spectrum.guidebook.general.midnight_aberration.page2.title",
+      "text": "book.spectrum.guidebook.general.midnight_aberration.page2.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/create_midnight_aberration"
+      },
+      "text": "book.spectrum.guidebook.general.midnight_aberration.page3.text"
+    }
+  ]
+}

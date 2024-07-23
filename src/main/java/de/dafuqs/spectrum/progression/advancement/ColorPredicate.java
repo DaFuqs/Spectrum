@@ -4,8 +4,6 @@ import com.google.gson.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import org.jetbrains.annotations.*;
 
-import java.util.*;
-
 public class ColorPredicate {
 	
 	public static final ColorPredicate ANY;
@@ -23,8 +21,7 @@ public class ColorPredicate {
 	
 	public static ColorPredicate fromJson(@Nullable JsonElement json) {
 		if (json != null && !json.isJsonNull() && json instanceof JsonPrimitive) {
-			String colorString = json.getAsString();
-			InkColor color = InkColor.of(colorString.toUpperCase(Locale.ROOT));
+			InkColor color = InkColor.ofIdString(json.getAsString());
 			return new ColorPredicate(color);
 		} else {
 			return ANY;
@@ -44,7 +41,7 @@ public class ColorPredicate {
 		} else {
 			JsonObject jsonObject = new JsonObject();
 			if (this.color != null) {
-				jsonObject.addProperty("color", this.color.toString());
+				jsonObject.addProperty("color", this.color.getID().toString());
 			}
 			return jsonObject;
 		}

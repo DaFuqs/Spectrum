@@ -41,7 +41,7 @@ public class KindlingEntityRenderer extends MobEntityRenderer<KindlingEntity, Ki
 		if (isClipped) {
 			return isBlinking ? variant.blinkingClippedTexture() : variant.clippedTexture();
 		}
-
+		
 		return isBlinking ? variant.blinkingTexture() : variant.defaultTexture();
 	}
 	

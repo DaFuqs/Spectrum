@@ -29,7 +29,7 @@
     }
   },
   "result": {
-    "item": "spectrum:chestnut_noxwood_lamp",
+    "item": "spectrum:chestnut_noxwood_lantern",
     "count": 2
   },
   "required_advancement": "spectrum:lategame/collect_noxwood"

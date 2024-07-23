@@ -1,0 +1,52 @@
+{
+  "name": "book.spectrum.guidebook.equipment.gemstone_armor.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/equipment/gemstone_armor_category"
+  },
+  "icon": "spectrum:ferocious_chestplate",
+  "category": "spectrum:equipment",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 0,
+  "y": 0,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.equipment.gemstone_armor.page0.text",
+      "title": "book.spectrum.guidebook.equipment.gemstone_armor.page0.title"
+    },
+    {
+      "type": "spectrum:checklist",
+      "checklist": {
+        "spectrum:hidden/collect_vanilla/collect_ender_eye": "book.spectrum.guidebook.equipment.gemstone_armor.page1.checklist.entry0",
+        "spectrum:hidden/collect_vanilla/collect_nautilus_shell": "book.spectrum.guidebook.equipment.gemstone_armor.page1.checklist.entry1",
+        "spectrum:hidden/collect_vanilla/collect_ghast_tear": "book.spectrum.guidebook.equipment.gemstone_armor.page1.checklist.entry2",
+        "spectrum:hidden/collect_vanilla/collect_phantom_membrane": "book.spectrum.guidebook.equipment.gemstone_armor.page1.checklist.entry3"
+      },
+      "text": "book.spectrum.guidebook.equipment.gemstone_armor.page1.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.equipment.gemstone_armor.page2.text",
+      "recipe_id_1": "spectrum:pedestal/tier2/gemstone_armor/fetchling_helmet"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.equipment.gemstone_armor.page3.text",
+      "recipe_id_1": "spectrum:pedestal/tier2/gemstone_armor/ferocious_chestplate"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.equipment.gemstone_armor.page4.text",
+      "recipe_id_1": "spectrum:pedestal/tier2/gemstone_armor/sylph_leggings"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.equipment.gemstone_armor.page5.text",
+      "recipe_id_1": "spectrum:pedestal/tier2/gemstone_armor/oread_boots"
+    }
+  ]
+}

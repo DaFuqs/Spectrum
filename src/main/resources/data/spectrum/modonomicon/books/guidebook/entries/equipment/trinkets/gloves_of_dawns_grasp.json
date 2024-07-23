@@ -1,0 +1,37 @@
+{
+  "name": "book.spectrum.guidebook.equipment.gloves_of_dawns_grasp.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/trinkets/gloves_of_dawns_grasp"
+  },
+  "icon": "spectrum:gloves_of_dawns_grasp",
+  "category": "spectrum:equipment",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:equipment/trinkets/base_trinkets",
+      "line_enabled": false
+    },
+    {
+      "entry": "spectrum:equipment/color_picker",
+      "line_enabled": false
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 11,
+  "y": 4,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.equipment.gloves_of_dawns_grasp.page0.text",
+      "title": "book.spectrum.guidebook.equipment.gloves_of_dawns_grasp.page0.title"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "text": "book.spectrum.guidebook.equipment.gloves_of_dawns_grasp.page1.text",
+      "title1": "book.spectrum.guidebook.equipment.gloves_of_dawns_grasp.page1.title",
+      "recipe_id_1": "spectrum:fusion_shrine/trinkets/gloves_of_dawns_grasp"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.commands;
 
-import com.mojang.brigadier.tree.LiteralCommandNode;
+import com.mojang.brigadier.tree.*;
 import de.dafuqs.spectrum.*;
 import net.minecraft.server.command.*;
 import net.minecraft.text.*;

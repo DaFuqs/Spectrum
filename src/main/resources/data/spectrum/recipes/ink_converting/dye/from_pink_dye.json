@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:pink_dye"
   },
-  "color": "pink",
+  "ink_color": "spectrum:pink",
   "amount": 5,
   "required_advancement": "spectrum:hidden/collect_pigment/collect_pink_pigment"
 }

@@ -1,0 +1,61 @@
+{
+  "name": "book.spectrum.guidebook.general.paltaeria.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:lategame/collect_paltaeria"
+  },
+  "icon": "spectrum:paltaeria_fragments",
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:general/pedestal_upgrade_moonstone_2"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 8,
+  "y": 11,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.general.paltaeria.page0.title",
+      "item": {
+        "item": "spectrum:paltaeria_fragments"
+      },
+      "text": "book.spectrum.guidebook.general.paltaeria.page0.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "book.spectrum.guidebook.general.paltaeria.page1.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_paltaeria_gem"
+      },
+      "recipe_id_1": "spectrum:pedestal/tier4/paltaeria_gem",
+      "text": "book.spectrum.guidebook.general.paltaeria.page1.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.general.paltaeria.page2.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/carry_too_many_low_gravity_blocks"
+      },
+      "item": {
+        "item": "spectrum:paltaeria_fragment_block"
+      },
+      "text": "book.spectrum.guidebook.general.paltaeria.page2.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/carry_too_many_low_gravity_blocks"
+      },
+      "text": "book.spectrum.guidebook.general.paltaeria.page3.text",
+      "title1": "book.spectrum.guidebook.general.paltaeria.page3.title",
+      "recipe_id_1": "spectrum:pedestal/tier1/compacting/paltaeria_fragment_block"
+    }
+  ]
+}

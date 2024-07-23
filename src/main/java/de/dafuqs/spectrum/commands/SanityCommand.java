@@ -42,19 +42,20 @@ import java.util.*;
 public class SanityCommand {
 
 	private static final List<Identifier> ADVANCEMENT_GATING_WARNING_WHITELIST = List.of(
-			SpectrumCommon.locate("find_preservation_ruins"),                    // does not have a prerequisite
-			SpectrumCommon.locate("fail_to_glitch_into_preservation_ruin"),        // does not have a prerequisite
+			SpectrumCommon.locate("find_preservation_ruins"),                     // does not have a prerequisite
+			SpectrumCommon.locate("fail_to_glitch_into_preservation_ruin"),       // does not have a prerequisite
 			SpectrumCommon.locate("midgame/craft_blacklisted_memory_success"),    // its parent is 2 parents in
-			SpectrumCommon.locate("lategame/collect_myceylon")                    // its parent is 2 parents in
+			SpectrumCommon.locate("lategame/collect_myceylon"),                   // its parent is 2 parents in
+			SpectrumCommon.locate("lategame/strike_up_hummingstone_hymn")         // its parent is 2 parents in
 	);
-
+	
 	public static void register(LiteralCommandNode<ServerCommandSource> root) {
 		LiteralCommandNode<ServerCommandSource> sanity = CommandManager.literal("sanity")
 				.requires((source) -> source.hasPermissionLevel(2))
 				.executes((context) -> execute(context.getSource(), SpectrumCommon.MOD_ID)).build();
 		ArgumentCommandNode<ServerCommandSource, String> modId = CommandManager.argument("mod_id", StringArgumentType.word())
 				.executes((context) -> execute(context.getSource(), StringArgumentType.getString(context, "mod_id"))).build();
-
+		
 		sanity.addChild(modId);
 		root.addChild(sanity);
 	}
@@ -138,9 +139,8 @@ public class SanityCommand {
 		// Pedestal recipes that use gemstone powder not available at that tier yet
 		for (PedestalRecipe pedestalRecipe : recipeManager.listAllOfType(SpectrumRecipeTypes.PEDESTAL)) {
 			/* There are some recipes that use advanced ingredients by design
-			   despite being of a low tier, like black colored lamps.
+			   despite being of a low tier, like black colored lights.
 			   While the player does not have access to that yet it is no problem at all
-			   To exclude those recipes in these warnings there is a boolean flag in the recipe jsons
 			*/
 			if (pedestalRecipe.getTier() == PedestalRecipeTier.BASIC || pedestalRecipe.getTier() == PedestalRecipeTier.SIMPLE) {
 				if (pedestalRecipe.getPowderInputs().getOrDefault(BuiltinGemstoneColor.BLACK, 0) > 0) {

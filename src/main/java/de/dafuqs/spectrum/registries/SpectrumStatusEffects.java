@@ -2,13 +2,15 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.additionalentityattributes.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.energy.InkPoweredStatusEffectInstance;
 import de.dafuqs.spectrum.status_effects.*;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.registry.*;
 
 public class SpectrumStatusEffects {
-	
+
+	public static final int ETERNAL_SLUMBER_COLOR = 0xc35fee;
 	public static boolean effectsAreGettingStacked = false;
 	
 	/**
@@ -121,7 +123,29 @@ public class SpectrumStatusEffects {
 	public static final StatusEffect LAVA_GLIDING = registerStatusEffect("lava_gliding", new SpectrumStatusEffect(StatusEffectCategory.BENEFICIAL, 0xc42e0e)
 			.addAttributeModifier(AdditionalEntityAttributes.LAVA_SPEED, "9812c88f-dc8e-47d1-a092-38339da9891e", 0.1D, EntityAttributeModifier.Operation.ADDITION)
 			.addAttributeModifier(AdditionalEntityAttributes.LAVA_VISIBILITY, "9812c88f-dc8e-47d1-a092-38339da9891e", 8.0D, EntityAttributeModifier.Operation.ADDITION));
-	
+
+	/**
+	 * Reduces detection range and enemy spawn rates.
+	 */
+	public static final StatusEffect CALMING = registerStatusEffect("calming", new SleepStatusEffect(StatusEffectCategory.BENEFICIAL, 0.25F, 0x5fd7b3)
+	);
+
+	/**
+	 * Slows down enemy AI and causes them to forget their target at times.
+	 * ON PLAYER: removes UI elements and reduces acceleration
+	 */
+	public static final StatusEffect SOMNOLENCE = registerStatusEffect("somnolence", new SleepStatusEffect(StatusEffectCategory.NEUTRAL, 0.667F, 0xae7bec));
+
+
+	/**
+	 * NOT YET IMPLEMENTED
+	 * <p>
+	 * TODO: sleep effects
+	 */
+	public static final StatusEffect ETERNAL_SLUMBER = registerStatusEffect("eternal_slumber", new SleepStatusEffect(StatusEffectCategory.HARMFUL, 2F, ETERNAL_SLUMBER_COLOR));
+	public static final StatusEffect FATAL_SLUMBER = registerStatusEffect("fatal_slumber", new SleepStatusEffect(StatusEffectCategory.HARMFUL, 2F, 0x8136c2));
+
+
 	/**
 	 * % Chance to protect from projectiles per level
 	 */
@@ -136,5 +160,16 @@ public class SpectrumStatusEffects {
 	public static void register() {
 	
 	}
-	
+
+	public static boolean isStrongSleepEffect(StatusEffectInstance instance) {
+		return instance.getEffectType() == ETERNAL_SLUMBER || instance.getEffectType() == FATAL_SLUMBER;
+	}
+
+	public static boolean isStrongSleepEffect(InkPoweredStatusEffectInstance instance) {
+		return isStrongSleepEffect(instance.getStatusEffectInstance());
+	}
+
+	public static float getCalmingMultiplier(StatusEffectInstance instance) {
+		return Math.max(1 - (instance.getAmplifier() + 1) * 0.0625F, 0.1F);
+	}
 }

@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:green_dye"
   },
-  "color": "green",
+  "ink_color": "spectrum:green",
   "amount": 5,
   "required_advancement": "spectrum:hidden/collect_pigment/collect_green_pigment"
 }

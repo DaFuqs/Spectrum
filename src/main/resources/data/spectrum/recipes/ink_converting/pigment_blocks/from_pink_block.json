@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "spectrum:pink_block"
   },
-  "color": "pink",
+  "ink_color": "spectrum:pink",
   "amount": 900,
   "required_advancement": "spectrum:hidden/collect_pigment/collect_pink_pigment"
 }

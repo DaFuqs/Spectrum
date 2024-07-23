@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:mud",
+
+    {
+      "id": "regions_unexplored:peat_mud",
+      "required": false
+    },
+    {
+      "id": "regions_unexplored:silt_mud",
+      "required": false
+    }
+  ]
+}

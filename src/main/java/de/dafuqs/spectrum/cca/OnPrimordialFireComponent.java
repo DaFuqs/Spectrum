@@ -123,7 +123,7 @@ public class OnPrimordialFireComponent implements AutoSyncedComponent, ServerTic
 	}
 
 	public boolean isAffectingConstruct() {
-		return provider.getType().isIn(SpectrumEntityTypeTags.CONSTRUCTS);
+		return provider.getType().isIn(SpectrumEntityTypeTags.SOULLESS);
 	}
 
 	/**

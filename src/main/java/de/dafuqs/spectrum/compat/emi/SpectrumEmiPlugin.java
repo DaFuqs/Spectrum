@@ -1,17 +1,19 @@
 package de.dafuqs.spectrum.compat.emi;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.recipe.*;
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.compat.emi.handlers.*;
 import de.dafuqs.spectrum.compat.emi.recipes.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.inventories.*;
+import de.dafuqs.spectrum.inventories.slots.*;
 import de.dafuqs.spectrum.registries.*;
 import dev.emi.emi.api.*;
 import dev.emi.emi.api.recipe.*;
 import dev.emi.emi.api.stack.*;
 import net.minecraft.block.*;
+import net.minecraft.client.gui.screen.ingame.*;
 import net.minecraft.inventory.*;
 import net.minecraft.recipe.*;
 import net.minecraft.registry.*;
@@ -27,6 +29,25 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 		registerCategories(registry);
 		registerRecipes(registry);
 		registerRecipeHandlers(registry);
+		registerDragDropHandlers(registry);
+	}
+
+	@SuppressWarnings("UnstableApiUsage")
+    public void registerDragDropHandlers(EmiRegistry registry) {
+		// Registering here since this is a trivial solution.
+		var handlerOne = new EmiDragDropHandler.SlotBased<>((_ignored, slot) -> slot instanceof ShadowSlot && slot.inventory instanceof FilterConfigurable.FilterInventory,
+				(screen, slot, ingredient) -> {
+					if (ingredient instanceof ItemEmiStack stack)
+						((FilterConfigurable.FilterInventory)slot.inventory).getClicker().clickShadowSlot(screen.getScreenHandler().syncId, slot, stack.getItemStack());
+				});
+
+		registerDragDropHandler(registry, BlackHoleChestScreen.class, handlerOne);
+		registerDragDropHandler(registry, FilteringScreen.class, handlerOne);
+	}
+
+	// Type erasure BS
+	private void registerDragDropHandler(EmiRegistry registry, Class<? extends HandledScreen<?>> clazz, EmiDragDropHandler<HandledScreen<?>> handler) {
+		registry.addDragDropHandler((Class<HandledScreen<?>>)clazz, handler);
 	}
 
 	public void registerCategories(EmiRegistry registry) {
@@ -167,9 +188,6 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 
 	public <C extends Inventory, T extends Recipe<C>> void addAll(EmiRegistry registry, RecipeType<T> type, Function<T, EmiRecipe> constructor) {
 		for (T recipe : registry.getRecipeManager().listAllOfType(type)) {
-			if (recipe instanceof GatedRecipe gatedRecipe && gatedRecipe.isSecret()) {
-				continue; // secret recipes should never be shown in recipe viewers
-			}
 			registry.addRecipe(constructor.apply(recipe));
 		}
 	}

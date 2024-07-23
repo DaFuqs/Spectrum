@@ -1,0 +1,32 @@
+{
+  "name": "book.spectrum.guidebook.equipment.lesser_potion_pendant.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/trinkets/lesser_potion_pendant"
+  },
+  "icon": "spectrum:lesser_potion_pendant",
+  "category": "spectrum:brewing",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:brewing/potion_workshop_brewing"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": -3,
+  "y": 0,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.equipment.lesser_potion_pendant.page0.text",
+      "title": "book.spectrum.guidebook.equipment.lesser_potion_pendant.page0.title"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "text": "book.spectrum.guidebook.equipment.lesser_potion_pendant.page1.text",
+      "title1": "book.spectrum.guidebook.equipment.lesser_potion_pendant.page1.title",
+      "recipe_id_1": "spectrum:fusion_shrine/trinkets/lesser_potion_pendant"
+    }
+  ]
+}

@@ -30,6 +30,17 @@ public class PastelNetwork {
 		}
 	}
 
+    public void incorporate(PastelNetwork networkToIncorporate) {
+        for (Map.Entry<PastelNodeType, Set<PastelNodeBlockEntity>> nodesToIncorporate : networkToIncorporate.getNodes().entrySet()) {
+            PastelNodeType type = nodesToIncorporate.getKey();
+            for (PastelNodeBlockEntity nodeToIncorporate : nodesToIncorporate.getValue()) {
+                this.nodes.get(type).add(nodeToIncorporate);
+                nodeToIncorporate.setParentNetwork(this);
+            }
+        }
+        this.graph = null;
+    }
+
     public World getWorld() {
         return this.world;
     }
@@ -147,6 +158,8 @@ public class PastelNetwork {
         transmissions.tick();
     }
 
+
+
     public UUID getUUID() {
         return this.uuid;
     }
@@ -186,6 +199,8 @@ public class PastelNetwork {
                 getNodes(PastelNodeType.GATHER).size() +
                 " - Stor: " +
                 getNodes(PastelNodeType.STORAGE).size() +
+                " - Buff: " +
+                getNodes(PastelNodeType.BUFFER).size() +
                 " - Conn: " +
                 getNodes(PastelNodeType.CONNECTION).size();
     }

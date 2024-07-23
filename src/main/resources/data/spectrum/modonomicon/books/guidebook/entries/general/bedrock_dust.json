@@ -1,0 +1,47 @@
+{
+  "name": "item.spectrum.bedrock_dust",
+  "icon": "spectrum:bedrock_dust",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:midgame/break_decayed_bedrock"
+  },
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:general/ruin"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 18,
+  "y": 1,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.creating_life.ruin.page2.title",
+      "anchor": "bedrock_dust",
+      "item": {
+        "item": "spectrum:bedrock_dust"
+      },
+      "text": "book.spectrum.guidebook.creating_life.ruin.page2.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.creating_life.ruin.page3.title",
+      "text": "book.spectrum.guidebook.creating_life.ruin.page3.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "book.spectrum.guidebook.creating_life.ruin.page4.title",
+      "recipe_id_1": "spectrum:pedestal/tier1/compacting/bedrock_storage_block",
+      "text": "book.spectrum.guidebook.creating_life.ruin.page4.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "book.spectrum.guidebook.creating_life.ruin.page5.title",
+      "recipe_id_1": "spectrum:pedestal/tier1/compacting/bedrock_storage_block_uncrafting",
+      "text": "book.spectrum.guidebook.creating_life.ruin.page5.text"
+    }
+  ]
+}

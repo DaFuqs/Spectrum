@@ -9,7 +9,7 @@
     "spectrum:netherite_scrap_cluster"
   ],
   "seconds_per_growth_stage": 960,
-  "ink_color": "brown",
+  "ink_color": "spectrum:brown",
   "ink_cost_tier": 3,
   "grows_without_catalyst": false,
   "catalysts": [

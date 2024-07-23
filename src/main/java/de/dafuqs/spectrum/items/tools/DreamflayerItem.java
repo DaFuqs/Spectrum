@@ -4,8 +4,7 @@ import com.google.common.collect.*;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.item.*;
-import de.dafuqs.spectrum.api.render.SlotBackgroundEffectProvider;
-import de.dafuqs.spectrum.helpers.ColorHelper;
+import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
@@ -167,18 +166,18 @@ public class DreamflayerItem extends SwordItem implements InkPowered, Activatabl
 		}
 		return composition;
 	}
-
+	
 	@Override
 	public SlotEffect backgroundType(@Nullable PlayerEntity player, ItemStack stack) {
 		if (ActivatableItem.isActivated(stack))
 			return SlotEffect.FULL_PACKAGE;
-
+		
 		var usable = InkPowered.hasAvailableInk(player, new InkCost(InkColors.RED, INK_COST_FOR_ACTIVATION));
 		return usable ? SlotEffect.BORDER_FADE : SlotEffect.NONE;
 	}
-
+	
 	@Override
 	public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
-		return ColorHelper.colorVecToRGB(InkColors.RED.getColor());
+		return InkColors.RED_COLOR;
 	}
 }

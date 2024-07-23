@@ -1,0 +1,27 @@
+{
+  "name": "book.spectrum.guidebook.magical_blocks.resonant_lily.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:midgame/collect_resonant_lily"
+  },
+  "icon": "spectrum:resonant_lily",
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:general/liquid_crystal",
+      "line_reversed": true
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 7,
+  "y": 4,
+  "pages": [
+    {
+      "type": "spectrum:liquid_crystal_converting",
+      "recipe_id_1": "spectrum:liquid_crystal_converting/resonant_lily",
+      "text": "book.spectrum.guidebook.magical_blocks.liquid_crystal.page5.text"
+    }
+  ]
+}

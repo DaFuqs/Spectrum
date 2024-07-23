@@ -6,11 +6,13 @@ import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.blocks.particle_spawner.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
+import de.dafuqs.spectrum.inventories.slots.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.networking.v1.*;
+import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.minecraft.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.*;
@@ -18,9 +20,11 @@ import net.minecraft.item.*;
 import net.minecraft.network.*;
 import net.minecraft.recipe.*;
 import net.minecraft.screen.*;
+import net.minecraft.screen.slot.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
+import net.minecraft.util.*;
 
 import java.util.*;
 
@@ -81,15 +85,16 @@ public class SpectrumC2SPacketReceiver {
 		});
 		
 		ServerPlayNetworking.registerGlobalReceiver(SpectrumC2SPackets.GUIDEBOOK_HINT_BOUGHT, (server, player, handler, buf, responseSender) -> {
-			// pay cost
+			Identifier completionAdvancement = buf.readIdentifier();
 			Ingredient payment = Ingredient.fromPacket(buf);
-			
+
 			for (ItemStack remainder : InventoryHelper.removeFromInventoryWithRemainders(List.of(payment), player.getInventory())) {
 				InventoryHelper.smartAddToInventory(remainder, player.getInventory(), null);
 			}
 			
 			// give the player the hidden "used_tip" advancement and play a sound
 			Support.grantAdvancementCriterion(player, "hidden/used_tip", "used_tip");
+			Support.grantAdvancementCriterion(player, completionAdvancement, "hint_purchased");
 			player.getWorld().playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1.0F, 1.0F);
 		});
 		
@@ -120,8 +125,8 @@ public class SpectrumC2SPacketReceiver {
 				
 				InkColor color;
 				if (isSelection) {
-					String inkColorString = buf.readString();
-					color = InkColor.of(inkColorString);
+					Identifier inkColor = buf.readIdentifier();
+					color = InkColor.ofId(inkColor);
 				} else {
 					color = null;
 				}
@@ -143,6 +148,27 @@ public class SpectrumC2SPacketReceiver {
                 WorkstaffItem.GUIToggle toggle = WorkstaffItem.GUIToggle.values()[buf.readInt()];
 				workstaffScreenHandler.onWorkstaffToggleSelectionPacket(toggle);
 			}
+		});
+
+		ServerPlayNetworking.registerGlobalReceiver(SpectrumC2SPackets.SET_SHADOW_SLOT, (server, player, handler, buf, responseSender) -> {
+			ScreenHandler screenHandler = player.currentScreenHandler;
+
+			int syncId = buf.readInt();
+			if (screenHandler == null || screenHandler.syncId != syncId) {
+				buf.skipBytes(buf.readableBytes());
+				return;
+			}
+
+			Slot slot = screenHandler.getSlot(buf.readInt());
+			if (slot == null || !(slot instanceof ShadowSlot) || !(slot.inventory instanceof FilterConfigurable.FilterInventory filterInventory)) {
+				buf.skipBytes(buf.readableBytes());
+				return;
+			}
+
+            @SuppressWarnings("UnstableApiUsage")
+			ItemStack shadowStack = ItemVariant.fromPacket(buf).toStack(buf.readInt());
+
+			filterInventory.getClicker().clickShadowSlot(syncId, slot, shadowStack);
 		});
 		
 	}

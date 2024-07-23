@@ -52,28 +52,28 @@ public class EnchanterBlockEntityRenderer implements BlockEntityRenderer<de.dafu
 				default -> {
 				}
 			}
-
+			
 			MinecraftClient.getInstance().getItemRenderer().renderItem(
 					stack, ModelTransformationMode.GROUND, light, overlay, matrixStack, vertexConsumerProvider, blockEntity.getWorld(), 0);
 			matrixStack.pop();
 		}
-
+		
 		// The Experience Item rendered in the air
 		ItemStack experienceItemStack = blockEntity.getStack(1);
 		if (!experienceItemStack.isEmpty()) {
 			float timeWithTickDelta = (blockEntity.getWorld().getTime() % 50000) + tickDelta;
 			float scale = 0.5F + (float) (Math.sin(timeWithTickDelta / 8.0) / 8.0);
-
+			
 			matrixStack.push();
 			matrixStack.translate(0.5D, 2.5D, 0.5D);
 			matrixStack.multiply(dispatcher.camera.getRotation());
 			matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180.0F));
 			matrixStack.scale(scale, scale, scale);
-
+			
 			MinecraftClient.getInstance().getItemRenderer().renderItem(
 					experienceItemStack, ModelTransformationMode.FIXED, LightmapTextureManager.MAX_LIGHT_COORDINATE,
 					overlay, matrixStack, vertexConsumerProvider, blockEntity.getWorld(), 0);
-
+			
 			matrixStack.pop();
 		}
 	}

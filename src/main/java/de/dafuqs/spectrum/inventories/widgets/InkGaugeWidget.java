@@ -12,8 +12,6 @@ import net.minecraft.text.*;
 
 import java.util.*;
 
-import static de.dafuqs.spectrum.helpers.Support.*;
-
 @Environment(EnvType.CLIENT)
 public class InkGaugeWidget implements Drawable, Element, Selectable {
 	
@@ -70,13 +68,13 @@ public class InkGaugeWidget implements Drawable, Element, Selectable {
 	public void drawMouseoverTooltip(DrawContext drawContext, int x, int y) {
 		MinecraftClient client = MinecraftClient.getInstance();
 		List<Text> tooltip = new ArrayList<>();
-		for (InkColor color : InkColor.all()) {
+		for (InkColor color : InkColors.all()) {
 			long amount = blockEntity.getEnergyStorage().getEnergy(color);
 			if (amount > 0) {
-				tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet." + color.toString().toLowerCase(Locale.ROOT), getShortenedNumberString(amount)));
+				InkStorage.addInkStoreBulletTooltip(tooltip, color, amount);
 			}
 		}
-		if (tooltip.size() == 0) {
+		if (tooltip.isEmpty()) {
 			tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.empty"));
 		} else {
 			tooltip.add(0, Text.translatable("spectrum.tooltip.ink_powered.stored"));
@@ -93,7 +91,7 @@ public class InkGaugeWidget implements Drawable, Element, Selectable {
 			int radius = 22;
 			
 			double startRad = -0.5 * Math.PI;
-			for (InkColor color : InkColor.all()) {
+			for (InkColor color : InkColors.all()) {
 				long currentInk = blockEntity.getEnergyStorage().getEnergy(color);
 				if (currentInk > 0) {
 					double thisPart = ((double) currentInk / (double) totalInk);
@@ -112,7 +110,7 @@ public class InkGaugeWidget implements Drawable, Element, Selectable {
 								centerX, centerY, // center point
 								centerX + p3x, centerY + p3y, // end point
 								centerX + p2x, centerY + p2y, // start point
-								color.getColor());
+								color.getColorVec());
 						
 						double middleRad = startRad + curr * Math.PI;
 						int pmx = (int) (radius * Math.cos(middleRad));
@@ -121,7 +119,7 @@ public class InkGaugeWidget implements Drawable, Element, Selectable {
 								centerX + p3x, centerY + p3y,
 								centerX + pmx, centerY + pmy,
 								centerX + p2x, centerY + p2y,
-								color.getColor());
+								color.getColorVec());
 						
 						startRad = endRad;
 					}

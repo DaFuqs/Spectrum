@@ -1,0 +1,115 @@
+{
+  "type": "modonomicon:dense",
+  "pattern": [
+    [
+      "________",
+      "________",
+      "__M_____",
+      "________",
+      "________",
+      "________",
+      "__M_____",
+      "________",
+      "________"
+    ],
+    [
+      "________",
+      "________",
+      "________",
+      "________",
+      "________",
+      "________",
+      "________",
+      "________",
+      "________"
+    ],
+    [
+      "______U_",
+      "K_______",
+      "__I_____",
+      "________",
+      "________",
+      "________",
+      "__I_____",
+      "K_______",
+      "______U_"
+    ],
+    [
+      "______G_",
+      "P_______",
+      "__C_____",
+      "_LLLLL__",
+      "_LSLLL__",
+      "_LLLLL__",
+      "__C_____",
+      "P_______",
+      "______G_"
+    ],
+    [
+      "______P_",
+      "PXXXX___",
+      "XXXXXX__",
+      "XXXXXXXL",
+      "XXXXXX0L",
+      "XXXXXXXL",
+      "XXXXXX__",
+      "PXXXX___",
+      "______P_"
+    ]
+  ],
+  "mapping": {
+    "S": {
+      "type": "modonomicon:block",
+      "block": "spectrum:spirit_instiller"
+    },
+    "X": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:polished_basalt",
+      "tag": "#spectrum:structure/bases"
+    },
+    "L": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:polished_basalt_slab",
+      "tag": "#spectrum:structure/base_slabs"
+    },
+    "P": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:polished_basalt_pillar[axis=y]",
+      "tag": "#spectrum:structure/pillars"
+    },
+    "C": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:chiseled_polished_basalt",
+      "tag": "#spectrum:structure/chiseled"
+    },
+    "G": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:onyx_chiseled_basalt",
+      "tag": "#spectrum:structure/midgame_runes"
+    },
+    "K": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:notched_polished_basalt",
+      "tag": "#spectrum:structure/notched"
+    },
+    "I": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:item_bowl_basalt",
+      "tag": "#spectrum:item_bowls"
+    },
+    "M": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:amethyst_chime",
+      "tag": "#spectrum:gemstone_chimes"
+    },
+    "U": {
+      "type": "modonomicon:block",
+      "block": "spectrum:upgrade_speed"
+    },
+    "0": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:polished_basalt",
+      "tag": "#spectrum:structure/bases"
+    }
+  }
+}

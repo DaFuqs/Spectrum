@@ -1,0 +1,43 @@
+{
+  "name": "book.spectrum.guidebook.general.paintbrush.name",
+  "icon": "spectrum:paintbrush",
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 1,
+  "x": -6,
+  "y": 2,
+  "turnin": "spectrum:craft_using_pedestal",
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.general.paintbrush.page0.title",
+      "text": "book.spectrum.guidebook.general.paintbrush.page0.text"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "title1": "book.spectrum.guidebook.general.paintbrush.page1.title",
+      "recipe_id_1": "spectrum:crafting_table/paintbrush",
+      "text": "book.spectrum.guidebook.general.paintbrush.page1.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.general.paintbrush.page2.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:collect_pigment"
+      },
+      "text": "book.spectrum.guidebook.general.paintbrush.page2.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.general.paintbrush.page3.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/fill_ink_container"
+      },
+      "text": "book.spectrum.guidebook.general.paintbrush.page3.text"
+    }
+  ]
+}

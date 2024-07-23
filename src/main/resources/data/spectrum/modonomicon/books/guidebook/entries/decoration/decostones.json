@@ -1,0 +1,32 @@
+{
+  "name": "book.spectrum.guidebook.decoration.decostones.name",
+  "icon": "spectrum:amethyst_decostone",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/decostones/any_decostone"
+  },
+  "category": "spectrum:decoration",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:decoration/shards"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": -1,
+  "y": -1,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.decoration.decostones.page0.title",
+      "text": "book.spectrum.guidebook.decoration.decostones.page0.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "book.spectrum.guidebook.decoration.decostones.page1.title",
+      "recipe_id_1": "spectrum:pedestal/tier1/decostones/topaz_decostone",
+      "text": "book.spectrum.guidebook.decoration.decostones.page1.text"
+    }
+  ]
+}

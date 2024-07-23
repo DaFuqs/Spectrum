@@ -179,7 +179,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 		return nbtCompound;
 	}
 	
-	protected static Optional<Entity> hatchEntity(ServerWorld world, BlockPos blockPos, ItemStack memoryItemStack) {
+	public static Optional<Entity> hatchEntity(ServerWorld world, BlockPos blockPos, ItemStack memoryItemStack) {
 		NbtCompound nbt = memoryItemStack.getNbt();
 		if (nbt == null) {
 			return Optional.empty();

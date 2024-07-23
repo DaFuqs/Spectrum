@@ -16,8 +16,6 @@ public class SpectrumCommands {
 			PrimordialFireCommand.register(spectrumNode);
 			DumpRegistriesCommand.register(spectrumNode);
 			DumpTagsCommand.register(spectrumNode);
-			DimWeatherCommand.register(spectrumNode);
-			SeasonCommand.register(spectrumNode);
 
 			dispatcher.getRoot().addChild(spectrumNode);
 		});

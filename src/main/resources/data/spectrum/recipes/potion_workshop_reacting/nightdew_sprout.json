@@ -1,0 +1,11 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "spectrum:nightdew_sprout",
+  "modifiers": {
+    "flat_potency_bonus": 1.0,
+    "duration_multiplier": 1.5,
+    "flat_yield_bonus": -1.0
+
+  },
+  "required_advancement": "spectrum:hidden/collect_nightdew"
+}

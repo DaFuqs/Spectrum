@@ -71,7 +71,11 @@ public class SpectrumFlammableBlocks {
 		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.CHESTNUT_NOXWOOD_STAIRS, 5, 20);
 		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.CHESTNUT_NOXWOOD_BEAM, 5, 20);
 		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.CHESTNUT_NOXWOOD_LIGHT, 5, 20);
-		
+
+		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.MOSS_BALL, 1, 5);
+		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.GIANT_MOSS_BALL, 1, 5);
+
+		// Gala wood is intentionally non-flammable
 	}
 	
 }

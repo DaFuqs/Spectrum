@@ -3,6 +3,8 @@ package de.dafuqs.spectrum.blocks.pastel_network.network;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
+import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import net.minecraft.nbt.*;
 import net.minecraft.registry.*;
 import net.minecraft.util.*;
@@ -24,15 +26,9 @@ public class ServerPastelNetwork extends PastelNetwork {
 		this.transmissionLogic = new PastelTransmissionLogic(this);
 	}
 
+	@Override
 	public void incorporate(PastelNetwork networkToIncorporate) {
-        for (Map.Entry<PastelNodeType, Set<PastelNodeBlockEntity>> nodesToIncorporate : networkToIncorporate.getNodes().entrySet()) {
-            PastelNodeType type = nodesToIncorporate.getKey();
-            for (PastelNodeBlockEntity nodeToIncorporate : nodesToIncorporate.getValue()) {
-                this.nodes.get(type).add(nodeToIncorporate);
-                nodeToIncorporate.setNetwork(this);
-            }
-        }
-		this.graph = null;
+        super.incorporate(networkToIncorporate);
 		this.transmissionLogic.invalidateCache();
 	}
 	
@@ -62,6 +58,36 @@ public class ServerPastelNetwork extends PastelNetwork {
 				// hmmmmmm. Block getting unloaded / new one placed while logic is running?
 			}
 		}
+		tickNodeEffects();
+	}
+
+	private void tickNodeEffects() {
+		List<PastelNodeBlockEntity> nodeSync = new ArrayList<>();
+
+
+		for (Map.Entry<PastelTransmission, Integer> transPair : transmissions) {
+			var transmission = transPair.getKey();
+			var remainingTravelTime = transPair.getValue();
+			var nodes = transmission.getNodePositions();
+
+			if (nodes.isEmpty())
+				continue;
+
+			var travelTime = (nodes.size() - 1) * PastelTransmissionLogic.TRANSFER_TICKS_PER_NODE;
+			double progress = travelTime - remainingTravelTime;
+
+			if (progress != 0 && progress % PastelTransmissionLogic.TRANSFER_TICKS_PER_NODE == 0) {
+				var node = world.getBlockEntity(nodes.get((int) Math.round((nodes.size() - 1) * progress / travelTime)));
+
+				if (!(node instanceof PastelNodeBlockEntity pastelNode))
+					continue;
+
+				nodeSync.add(pastelNode);
+			}
+		}
+
+		if (!nodeSync.isEmpty())
+			SpectrumS2CPacketSender.sendPastelNodeStatusUpdate(nodeSync, false);
 	}
 	
 	@Override

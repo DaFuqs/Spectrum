@@ -35,7 +35,7 @@ public record PotionRecipeEffect(boolean applicableToPotions, boolean applicable
 		}
 		StatusEffect statusEffect = Registries.STATUS_EFFECT.get(statusEffectIdentifier);
 		
-		InkColor inkColor = InkColor.of(JsonHelper.getString(jsonObject, "ink_color"));
+		InkColor inkColor = InkColor.ofIdString(JsonHelper.getString(jsonObject, "ink_color"));
 		int inkCost = JsonHelper.getInt(jsonObject, "ink_cost");
 		
 		return new PotionRecipeEffect(applicableToPotions, applicableToTippedArrows, applicableToPotionFillabes, applicableToWeapons, baseDurationTicks, potencyHardCap, potencyModifier, statusEffect, inkColor, inkCost);
@@ -50,7 +50,7 @@ public record PotionRecipeEffect(boolean applicableToPotions, boolean applicable
 		packetByteBuf.writeBoolean(applicableToTippedArrows);
 		packetByteBuf.writeBoolean(applicableToPotionFillabes);
 		packetByteBuf.writeBoolean(applicableToWeapons);
-		packetByteBuf.writeString(inkColor.toString());
+		packetByteBuf.writeIdentifier(inkColor.getID());
 		packetByteBuf.writeInt(inkCost);
 	}
 	
@@ -63,7 +63,7 @@ public record PotionRecipeEffect(boolean applicableToPotions, boolean applicable
 		boolean applicableToTippedArrows = packetByteBuf.readBoolean();
 		boolean applicableToPotionFillabes = packetByteBuf.readBoolean();
 		boolean applicableToWeapons = packetByteBuf.readBoolean();
-		InkColor inkColor = InkColor.of(packetByteBuf.readString());
+		InkColor inkColor = InkColor.ofId(packetByteBuf.readIdentifier());
 		int inkCost = packetByteBuf.readInt();
 		
 		return new PotionRecipeEffect(applicableToPotions, applicableToTippedArrows, applicableToPotionFillabes, applicableToWeapons, baseDurationTicks, hardCap, potencyModifier, statusEffect, inkColor, inkCost);
@@ -99,7 +99,7 @@ public record PotionRecipeEffect(boolean applicableToPotions, boolean applicable
 				potency = 0;
 			}
 		}
-
+		
 		// Prevents some status effects from getting out of hand.
 		// While strong potions are always fun, there are things the player should not be able to make,
 		// such as resistance 5 which would grant invulnerability.

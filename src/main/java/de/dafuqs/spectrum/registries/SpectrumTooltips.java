@@ -86,6 +86,7 @@ public class SpectrumTooltips {
 			short maxSpawnDelay = blockEntityTag.getShort("MaxSpawnDelay");
 			short spawnRange = blockEntityTag.getShort("SpawnRange");
 			short requiredPlayerRange = blockEntityTag.getShort("RequiredPlayerRange");
+			short maxNearbyEntities = blockEntityTag.getShort("MaxNearbyEntities");
 			
 			if (entityType.isPresent()) {
 				lines.add(Text.translatable(entityType.get().getTranslationKey()));
@@ -106,6 +107,9 @@ public class SpectrumTooltips {
 			}
 			if (requiredPlayerRange > 0) {
 				lines.add(Text.translatable("item.spectrum.spawner.tooltip.required_player_range", requiredPlayerRange).formatted(Formatting.GRAY));
+			}
+			if (maxNearbyEntities > 0) {
+				lines.add(Text.translatable("item.spectrum.spawner.tooltip.max_nearby_entities", maxNearbyEntities).formatted(Formatting.GRAY));
 			}
 		} catch (Exception e) {
 			lines.add(Text.translatable("item.spectrum.spawner.tooltip.unknown_mob"));

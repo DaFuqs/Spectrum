@@ -8,7 +8,7 @@ import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.blocks.cinderhearth.*;
 import de.dafuqs.spectrum.blocks.crystallarieum.*;
-import de.dafuqs.spectrum.blocks.dd_deco.*;
+import de.dafuqs.spectrum.blocks.deeper_down.*;
 import de.dafuqs.spectrum.blocks.enchanter.*;
 import de.dafuqs.spectrum.blocks.ender.*;
 import de.dafuqs.spectrum.blocks.energy.*;
@@ -18,6 +18,7 @@ import de.dafuqs.spectrum.blocks.item_roundel.*;
 import de.dafuqs.spectrum.blocks.jade_vines.*;
 import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.blocks.mob_head.*;
+import de.dafuqs.spectrum.blocks.mob_head.client.*;
 import de.dafuqs.spectrum.blocks.particle_spawner.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
@@ -122,13 +123,13 @@ public class SpectrumBlockEntities {
 		CINDERHEARTH = register("cinderhearth", CinderhearthBlockEntity::new, SpectrumBlocks.CINDERHEARTH);
 		PRESENT = register("present", PresentBlockEntity::new, SpectrumBlocks.PRESENT);
 		TITRATION_BARREL = register("titration_barrel", TitrationBarrelBlockEntity::new, SpectrumBlocks.TITRATION_BARREL);
-		PASTEL_NODE = register("pastel_node", PastelNodeBlockEntity::new, SpectrumBlocks.CONNECTION_NODE, SpectrumBlocks.PROVIDER_NODE, SpectrumBlocks.STORAGE_NODE, SpectrumBlocks.SENDER_NODE, SpectrumBlocks.GATHER_NODE);
+		PASTEL_NODE = register("pastel_node", PastelNodeBlockEntity::new, SpectrumBlocks.CONNECTION_NODE, SpectrumBlocks.PROVIDER_NODE, SpectrumBlocks.STORAGE_NODE, SpectrumBlocks.SENDER_NODE, SpectrumBlocks.GATHER_NODE, SpectrumBlocks.BUFFER_NODE);
 		HUMMINGSTONE = register("hummingstone", HummingstoneBlockEntity::new, SpectrumBlocks.HUMMINGSTONE);
 		PLACED_ITEM = register("placed_item", PlacedItemBlockEntity::new, SpectrumBlocks.INCANDESCENT_AMALGAM, SpectrumBlocks.THREAT_CONFLUX, SpectrumBlocks.PARAMETRIC_MINING_DEVICE);
 		PRESERVATION_CONTROLLER = register("preservation_controller", PreservationControllerBlockEntity::new, SpectrumBlocks.PRESERVATION_CONTROLLER);
 		PRESERVATION_ROUNDEL = register("preservation_roundel", PreservationRoundelBlockEntity::new, SpectrumBlocks.PRESERVATION_ROUNDEL);
 		PRESERVATION_BLOCK_DETECTOR = register("preservation_block_detector", PreservationBlockDetectorBlockEntity::new, SpectrumBlocks.PRESERVATION_BLOCK_DETECTOR);
-		
+
 		// All the upgrades
 		List<Block> upgradeBlocksList = UpgradeBlock.getUpgradeBlocks();
 		Block[] upgradeBlocksArray = new Block[upgradeBlocksList.size()];
@@ -137,8 +138,8 @@ public class SpectrumBlockEntities {
 		
 		// All the skulls
 		List<Block> skullBlocksList = new ArrayList<>();
-		skullBlocksList.addAll(SpectrumBlocks.getMobHeads());
-		skullBlocksList.addAll(SpectrumBlocks.getMobWallHeads());
+		skullBlocksList.addAll(SpectrumSkullBlock.getMobHeads());
+		skullBlocksList.addAll(SpectrumWallSkullBlock.getMobWallHeads());
 		
 		Block[] skullBlocksArray = new Block[skullBlocksList.size()];
 		skullBlocksArray = skullBlocksList.toArray(skullBlocksArray);
@@ -163,6 +164,8 @@ public class SpectrumBlockEntities {
 		BlockEntityRendererFactories.register(SpectrumBlockEntities.JADE_VINE_ROOTS, JadeVineRootsBlockEntityRenderer::new);
 		BlockEntityRendererFactories.register(SpectrumBlockEntities.CRYSTALLARIEUM, CrystallarieumBlockEntityRenderer::new);
 		BlockEntityRendererFactories.register(SpectrumBlockEntities.COLOR_PICKER, ColorPickerBlockEntityRenderer::new);
+
+		BlockEntityRendererFactories.register(SpectrumBlockEntities.PASTEL_NODE, PastelNodeBlockEntityRenderer::new);
 	}
 	
 }

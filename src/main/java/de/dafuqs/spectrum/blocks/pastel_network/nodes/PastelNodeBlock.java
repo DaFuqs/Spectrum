@@ -71,13 +71,22 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements BlockEntityP
         return blockState.isOf(this) && blockState.get(FACING) == direction ? this.getDefaultState().with(FACING, direction.getOpposite()) : this.getDefaultState().with(FACING, direction);
     }
 
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        if (world.isClient())
+            return ((w, p, s, b) -> PastelNodeBlockEntity.tick(w, p, s, (PastelNodeBlockEntity) b));
+
+        return BlockEntityProvider.super.getTicker(world, state, type);
+    }
+
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
         super.onPlaced(world, pos, state, placer, itemStack);
         if (placer instanceof ServerPlayerEntity serverPlayerEntity) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
             if (blockEntity instanceof PastelNodeBlockEntity pastelNodeBlockEntity) {
-                SpectrumAdvancementCriteria.PASTEL_NETWORK_CREATING.trigger(serverPlayerEntity, (ServerPastelNetwork) pastelNodeBlockEntity.getNetwork());
+                SpectrumAdvancementCriteria.PASTEL_NETWORK_CREATING.trigger(serverPlayerEntity, (ServerPastelNetwork) pastelNodeBlockEntity.getParentNetwork());
             }
         }
     }
@@ -99,7 +108,12 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements BlockEntityP
 	@SuppressWarnings("deprecation")
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		PastelNodeBlockEntity blockEntity = getBlockEntity(world, pos);
-		if (player.getStackInHand(hand).isOf(SpectrumItems.PAINTBRUSH)) {
+        var stack = player.getStackInHand(hand);
+
+        if (stack.isOf(SpectrumItems.TUNING_STAMP))
+            return ActionResult.PASS;
+
+		if (stack.isOf(SpectrumItems.PAINTBRUSH)) {
 			return sendDebugMessage(world, player, blockEntity);
 		} else if (this.pastelNodeType.usesFilters()) {
             if (world.isClient) {
@@ -116,7 +130,7 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements BlockEntityP
     private static ActionResult sendDebugMessage(World world, PlayerEntity player, PastelNodeBlockEntity blockEntity) {
         if (world.isClient) {
             if (blockEntity != null) {
-                PastelNetwork network = blockEntity.network;
+                PastelNetwork network = blockEntity.parentNetwork;
                 player.sendMessage(Text.translatable("block.spectrum.pastel_network_nodes.connection_debug"));
                 if (network == null) {
                     player.sendMessage(Text.literal("C: No connected network :("));
@@ -128,7 +142,7 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements BlockEntityP
             return ActionResult.SUCCESS;
         } else {
             if (blockEntity != null) {
-                PastelNetwork network = blockEntity.network;
+                PastelNetwork network = blockEntity.parentNetwork;
                 if (network == null) {
                     player.sendMessage(Text.literal("S: No connected network :("));
                 } else {

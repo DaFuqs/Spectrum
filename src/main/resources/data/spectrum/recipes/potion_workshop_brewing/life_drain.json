@@ -16,6 +16,6 @@
   "applicable_to_tipped_arrows": true,
   "applicable_to_potion_fillables": true,
   "required_advancement": "spectrum:unlocks/potions/life_drain",
-  "ink_color": "gray",
+  "ink_color": "spectrum:gray",
   "ink_cost": 4
 }

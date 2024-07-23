@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "botania:light_blue_petal"
   },
-  "color": "light_blue",
+  "ink_color": "spectrum:light_blue",
   "amount": 25,
   "required_advancement": "spectrum:hidden/collect_pigment/collect_light_blue_pigment",
   "fabric:load_conditions": [

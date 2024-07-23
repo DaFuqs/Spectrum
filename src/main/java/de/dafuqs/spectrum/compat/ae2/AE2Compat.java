@@ -3,11 +3,12 @@ package de.dafuqs.spectrum.compat.ae2;
 import de.dafuqs.spectrum.blocks.crystallarieum.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.*;
 import net.fabricmc.fabric.api.item.v1.*;
 import net.fabricmc.fabric.api.object.builder.v1.block.*;
 import net.minecraft.block.*;
-import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.block.piston.*;
 import net.minecraft.client.render.*;
 import net.minecraft.item.*;
 import net.minecraft.sound.*;
@@ -62,6 +63,7 @@ public class AE2Compat extends SpectrumIntegrationPacks.ModIntegrationPack {
 		SpectrumItems.register("pure_fluix", PURE_FLUIX, DyeColor.YELLOW);
 	}
 	
+	@Environment(EnvType.CLIENT)
 	@Override
 	public void registerClient() {
 		BlockRenderLayerMap.INSTANCE.putBlock(SMALL_CERTUS_QUARTZ_BUD, RenderLayer.getCutout());

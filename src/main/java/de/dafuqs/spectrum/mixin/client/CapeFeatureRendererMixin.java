@@ -32,7 +32,7 @@ public abstract class CapeFeatureRendererMixin extends FeatureRenderer<AbstractC
 		if (!player.isPartVisible(PlayerModelPart.CAPE)) {
 			return;
 		}
-
+		
 		// Check for the chestplate, and begin rendering the cape if equipped
 		ItemStack chestStack = player.getEquippedStack(EquipmentSlot.CHEST);
 		if (chestStack.getItem() == SpectrumItems.BEDROCK_CHESTPLATE) {

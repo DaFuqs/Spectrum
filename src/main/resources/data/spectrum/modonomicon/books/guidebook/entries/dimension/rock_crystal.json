@@ -1,0 +1,34 @@
+{
+  "name": "block.spectrum.rock_crystal",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/collect_rock_crystal"
+  },
+  "icon": "spectrum:rock_crystal",
+  "category": "spectrum:dimension",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:dimension/razor_edge"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 5,
+  "y": -8,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:rock_crystal"
+      },
+      "title": "block.spectrum.rock_crystal",
+      "text": "book.spectrum.guidebook.dimension.rock_crystal.about.text"
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "recipe_id_1": "spectrum:anvil_crushing/spectrum_pulverising/quartz_from_rock_crystal",
+      "text": "book.spectrum.guidebook.general.rock_crystal.crushing.text"
+    }
+  ]
+}

@@ -107,19 +107,19 @@ public class BuildingHelper {
 	public static @NotNull List<BlockPos> calculateBuildingStaffSelection(@NotNull World world, @NotNull BlockPos originPos, Direction direction, long maxCount, int maxRange, boolean sameBlockOnly) {
 		BlockPos offsetPos = originPos.offset(direction);
 		BlockState originState = world.getBlockState(originPos);
-
+		
 		List<BlockPos> selectedPositions = new ArrayList<>();
 		int count = 1;
-
+		
 		List<BlockPos> storedNeighbors = new ArrayList<>();
 		if (world.canPlace(originState, offsetPos, ShapeContext.absent())) {
 			storedNeighbors.add(offsetPos);
 		}
-
+		
 		while (count < maxCount && !storedNeighbors.isEmpty()) {
 			selectedPositions.addAll(storedNeighbors);
 			List<BlockPos> newNeighbors = new ArrayList<>();
-
+			
 			for (BlockPos neighbor : storedNeighbors) {
 				List<BlockPos> facingNeighbors = getValidNeighbors(world, neighbor, direction, originState,
 						sameBlockOnly);
@@ -147,7 +147,7 @@ public class BuildingHelper {
 			BlockPos targetPos = startPos.add(neighborVectors);
 			BlockState targetState = world.getBlockState(targetPos);
 			BlockState facingAgainstState = world.getBlockState(targetPos.offset(facingDirection.getOpposite()));
-
+			
 			if ((targetState.isReplaceable() || !targetState.getFluidState().isEmpty())
 					&& world.canPlace(originState, targetPos, ShapeContext.absent())) {
 				if (similarBlockOnly) {
@@ -161,10 +161,10 @@ public class BuildingHelper {
 				}
 			}
 		}
-
+		
 		return foundNeighbors;
 	}
-
+	
 	private static @NotNull List<Vec3i> getNeighborVectors(@NotNull Direction direction) {
 		if (direction.getAxis() == Direction.Axis.Y) {
 			return NEIGHBOR_VECTORS_Y;
@@ -179,7 +179,7 @@ public class BuildingHelper {
 			};
 		}
 	}
-
+	
 	private static List<Block> getSimilarBlocks(Block block) {
 		List<Block> similarBlocks = SIMILAR_BLOCKS_CACHE.get(block);
 		if (similarBlocks == null) {

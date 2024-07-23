@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "spectrum:gray_block"
   },
-  "color": "gray",
+  "ink_color": "spectrum:gray",
   "amount": 900,
   "required_advancement": "spectrum:hidden/collect_pigment/collect_gray_pigment"
 }

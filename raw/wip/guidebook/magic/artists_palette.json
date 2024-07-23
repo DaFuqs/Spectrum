@@ -3,13 +3,13 @@
   "advancement": "spectrum:unlocks/trinkets/artists_palette",
   "secret": true,
   "icon": "spectrum:artists_palette",
-  "category": "spectrum:magic_category",
+  "category": "spectrum:ink",
   "extra_recipe_mappings": {
     "spectrum:artists_palette": 0
   },
   "pages": [
     {
-      "type": "patchouli:text",
+      "type": "modonomicon:text",
       "text": "The Artist's Palette combines the Ink-storing ability of the $(l:magic/pigment_palette)Pigment Palette$(/l) with your new capabilities to mix colors.$(br)It directly stores elemental Ink and mixes the others on the fly, while having vastly increased capacity."
     },
     {

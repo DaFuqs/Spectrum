@@ -13,7 +13,6 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.fluid.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
-import net.minecraft.nbt.*;
 import net.minecraft.recipe.*;
 import net.minecraft.registry.*;
 import net.minecraft.server.world.*;
@@ -78,7 +77,8 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 	}
 	
 	/**
-	 * Only tests the items. The required fluid has to be tested manually by the crafting block
+	 * Only tests the items.
+	 * The required fluid has to be tested manually by the crafting block.
 	 */
 	@Override
 	public boolean matches(Inventory inv, World world) {
@@ -125,8 +125,8 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 	}
 	
 	/**
-	 * Returns a boolean depending on if the recipes condition is set
-	 * This can be always true, a specific day or moon phase, or weather.
+	 * Returns a boolean depending on if the recipe condition is met.
+	 * This can always be true, a specific day or moon phase, or weather.
 	 */
 	public boolean areConditionMetCurrently(ServerWorld world, BlockPos pos) {
 		for (WorldConditionPredicate worldCondition : this.worldConditions) {
@@ -152,34 +152,33 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 	public FusionShrineRecipeWorldEffect getWorldEffectForTick(int tick, int totalTicks) {
 		if (tick == 1) {
 			return this.startWorldEffect;
-		} else if (tick == totalTicks) {
-			return this.finishWorldEffect;
-		} else {
-			if (this.duringWorldEffects.size() == 0) {
-				return null;
-			} else if (this.duringWorldEffects.size() == 1) {
-				return this.duringWorldEffects.get(0);
-			} else {
-				// we really have to calculate the current effect, huh?
-				float parts = (float) totalTicks / this.duringWorldEffects.size();
-				int index = (int) (tick / (parts));
-				FusionShrineRecipeWorldEffect effect = this.duringWorldEffects.get(index);
-				if (effect.isOneTimeEffect()) {
-					if (index != (int) parts) {
-						return null;
-					}
-				}
-				return effect;
-			}
 		}
+		if (tick == totalTicks) {
+			return this.finishWorldEffect;
+		}
+		if (this.duringWorldEffects.isEmpty()) {
+			return null;
+		}
+		if (this.duringWorldEffects.size() == 1) {
+			return this.duringWorldEffects.get(0);
+		}
+		
+		// we really have to calculate the current effect, huh?
+		float parts = (float) totalTicks / this.duringWorldEffects.size();
+		int index = (int) (tick / (parts));
+		FusionShrineRecipeWorldEffect effect = this.duringWorldEffects.get(index);
+		if (effect.isOneTimeEffect() && index != (int) parts) {
+			return null;
+		}
+		
+		return effect;
 	}
 	
 	public Optional<Text> getDescription() {
 		if (this.description == null) {
 			return Optional.empty();
-		} else {
-			return Optional.of(this.description);
 		}
+		return Optional.of(this.description);
 	}
 
 	@Override
@@ -192,6 +191,10 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 		return SpectrumRecipeTypes.FUSION_SHRINE_ID;
 	}
 	
+	// calculate the max number of items that will be crafted.
+	// note that we only check each ingredient once if a match was found.
+	// custom recipes therefore should not use items / tags that match multiple items
+	// at once, since we cannot rely on positions in a grid like vanilla does in its crafting table.
 	public void craft(World world, FusionShrineBlockEntity fusionShrineBlockEntity) {
 		ItemStack firstStack = ItemStack.EMPTY;
 		
@@ -233,15 +236,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 		}
 
 		if (this.copyNbt) {
-			// this overrides all nbt data, that are not nested compounds (like lists)
-			NbtCompound sourceNbt = firstStack.getNbt();
-			if (sourceNbt != null) {
-				sourceNbt = sourceNbt.copy();
-				sourceNbt.remove(ItemStack.DAMAGE_KEY);
-				output.setNbt(sourceNbt);
-				// so we need to restore all previous enchantments that the original item had and are still applicable to the new item
-				output = SpectrumEnchantmentHelper.clearAndCombineEnchantments(output.copy(), false, false, output, firstStack);
-			}
+			output = copyNbt(firstStack, output);
 		}
 		
 		spawnCraftingResultAndXP(world, fusionShrineBlockEntity, output, maxAmount); // spawn results

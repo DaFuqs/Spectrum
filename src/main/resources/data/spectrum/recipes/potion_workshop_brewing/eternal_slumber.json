@@ -1,0 +1,23 @@
+{
+  "type": "spectrum:potion_workshop_brewing",
+  "group": "sleep_potions",
+  "ingredient1": {
+    "item": "minecraft:nether_wart"
+  },
+  "ingredient2": {
+    "item": "spectrum:nectardew_burgeon"
+  },
+  "ingredient3": {
+    "item": "spectrum:effulgent_feather"
+  },
+  "effect": "spectrum:eternal_slumber",
+  "base_duration_ticks": 6000,
+  "potency_modifier": 0.1,
+  "applicable_to_potions": true,
+  "applicable_to_tipped_arrows": false,
+  "applicable_to_potion_fillables": true,
+  "required_advancement": "spectrum:unlocks/potions/strong_sleep_effects",
+  "ink_color": "spectrum:purple",
+  "ink_cost": 32,
+  "potency_hard_cap": 1
+}

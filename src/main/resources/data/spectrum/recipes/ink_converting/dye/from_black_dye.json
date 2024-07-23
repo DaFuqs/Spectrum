@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:black_dye"
   },
-  "color": "black",
+  "ink_color": "spectrum:black",
   "amount": 5,
   "required_advancement": "spectrum:hidden/collect_pigment/collect_black_pigment"
 }

@@ -17,13 +17,16 @@ public class SpectrumConfig implements ConfigData {
 	
 	@Comment("The reverb density for sound effects in Spectrum's dimension")
 	public float DimensionReverbDensity = 0.5F;
-
+	
 	@Comment("Graphical options for spectrum's dimension")
 	public boolean WindSim = true;
 	public boolean ReducedParticles = false;
-
+	
 	@Comment("Affects how often the wind simulation updates - A lower number makes the simulation smoother, but increases the performance impact significantly")
 	public int WindSimInterval = 3;
+
+	@Comment("Story accurate dimension lighting. Deepens the dimension's darkness and prevents night vision from cutting through it. WARNING - This makes traversal significantly harder")
+	public boolean ExtraDarkDimension = false;
 
 	@Comment("Mod Integration Packs to not load (in case of mod compat errors)")
 	public List<String> IntegrationPacksToSkipLoading = new ArrayList<>();
@@ -168,9 +171,9 @@ public class SpectrumConfig implements ConfigData {
 	public int GemstoneArmorWeaknessAmplifier = 1;
 	public int GemstoneArmorSlownessAmplifier = 1;
 	public int GemstoneArmorAbsorptionAmplifier = 0;
-	public int GemstoneArmorResistanceAmplifier = 1;
-	public int GemstoneArmorRegenerationAmplifier = 1;
-	public int GemstoneArmorSpeedAmplifier = 2;
+	public int GemstoneArmorResistanceAmplifier = 0;
+	public int GemstoneArmorRegenerationAmplifier = 0;
+	public int GemstoneArmorSpeedAmplifier = 1;
 	
 	public int BedrockArmorHelmetProtection = 5;
 	public int BedrockArmorLeggingsProtection = 9;
@@ -257,11 +260,10 @@ public class SpectrumConfig implements ConfigData {
 			StormStonesWorlds.add("starry_skies:overworld");
 			StormStonesWorlds.add("paradise_lost:paradise_lost");
 		}
-
+		
 		if (WindSimInterval <= 0) {
 			WindSimInterval = 1;
-		}
-		else if (WindSimInterval > 10) {
+		} else if (WindSimInterval > 10) {
 			WindSimInterval = 10;
 		}
 	}

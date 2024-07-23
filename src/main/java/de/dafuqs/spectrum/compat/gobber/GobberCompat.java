@@ -3,11 +3,12 @@ package de.dafuqs.spectrum.compat.gobber;
 import de.dafuqs.spectrum.blocks.crystallarieum.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.*;
 import net.fabricmc.fabric.api.item.v1.*;
 import net.fabricmc.fabric.api.object.builder.v1.block.*;
 import net.minecraft.block.*;
-import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.block.piston.*;
 import net.minecraft.client.render.*;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
@@ -78,6 +79,7 @@ public class GobberCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 		SpectrumItems.register("pure_globette_end", PURE_GLOBETTE_END, DyeColor.GREEN);
 	}
 	
+	@Environment(EnvType.CLIENT)
 	@Override
 	public void registerClient() {
 		BlockRenderLayerMap.INSTANCE.putBlock(SMALL_GLOBETTE_BUD, RenderLayer.getCutout());

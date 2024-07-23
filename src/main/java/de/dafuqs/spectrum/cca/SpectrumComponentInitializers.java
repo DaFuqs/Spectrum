@@ -3,16 +3,15 @@ package de.dafuqs.spectrum.cca;
 import de.dafuqs.spectrum.cca.azure_dike.*;
 import dev.onyxstudios.cca.api.v3.entity.*;
 import dev.onyxstudios.cca.api.v3.level.*;
-import dev.onyxstudios.cca.api.v3.world.*;
 import net.minecraft.entity.*;
 
-public class SpectrumComponentInitializers implements EntityComponentInitializer, LevelComponentInitializer, WorldComponentInitializer {
+public class SpectrumComponentInitializers implements EntityComponentInitializer, LevelComponentInitializer {
 
 	@Override
 	public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
 		registry.registerFor(LivingEntity.class, AzureDikeProvider.AZURE_DIKE_COMPONENT, DefaultAzureDikeComponent::new);
 		registry.registerForPlayers(AzureDikeProvider.AZURE_DIKE_COMPONENT, DefaultAzureDikeComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
-
+		
 		registry.beginRegistration(LivingEntity.class, EverpromiseRibbonComponent.EVERPROMISE_RIBBON_COMPONENT).respawnStrategy(RespawnCopyStrategy.ALWAYS_COPY).end(EverpromiseRibbonComponent::new);
 
 		registry.registerFor(LivingEntity.class, LastKillComponent.LAST_KILL_COMPONENT, LastKillComponent::new);
@@ -26,9 +25,5 @@ public class SpectrumComponentInitializers implements EntityComponentInitializer
 	public void registerLevelComponentFactories(LevelComponentFactoryRegistry registry) {
 		registry.register(HardcoreDeathComponent.HARDCORE_DEATHS_COMPONENT, e -> new HardcoreDeathComponent());
 	}
-
-	@Override
-	public void registerWorldComponentFactories(WorldComponentFactoryRegistry registry) {
-		registry.register(DDWorldEffectsComponent.DD_WORLD_EFFECTS_COMPONENT, DDWorldEffectsComponent::new);
-	}
+	
 }

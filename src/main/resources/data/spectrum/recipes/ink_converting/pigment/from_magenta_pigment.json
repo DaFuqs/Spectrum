@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "spectrum:magenta_pigment"
   },
-  "color": "magenta",
+  "ink_color": "spectrum:magenta",
   "amount": 100,
   "required_advancement": "spectrum:hidden/collect_pigment/collect_magenta_pigment"
 }

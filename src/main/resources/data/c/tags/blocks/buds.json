@@ -378,6 +378,55 @@
     {
       "id": "byg:small_therium_crystal_bud",
       "required": false
+    },
+
+    {
+      "id": "tconstruct:small_earth_slime_crystal_bud",
+      "required": false
+    },
+    {
+      "id": "tconstruct:small_sky_slime_crystal_bud",
+      "required": false
+    },
+    {
+      "id": "tconstruct:small_ichor_slime_crystal_bud",
+      "required": false
+    },
+    {
+      "id": "tconstruct:small_ender_slime_crystal_bud",
+      "required": false
+    },
+    {
+      "id": "tconstruct:medium_earth_slime_crystal_bud",
+      "required": false
+    },
+    {
+      "id": "tconstruct:medium_sky_slime_crystal_bud",
+      "required": false
+    },
+    {
+      "id": "tconstruct:medium_ichor_slime_crystal_bud",
+      "required": false
+    },
+    {
+      "id": "tconstruct:medium_ender_slime_crystal_bud",
+      "required": false
+    },
+    {
+      "id": "tconstruct:large_earth_slime_crystal_bud",
+      "required": false
+    },
+    {
+      "id": "tconstruct:large_sky_slime_crystal_bud",
+      "required": false
+    },
+    {
+      "id": "tconstruct:large_ichor_slime_crystal_bud",
+      "required": false
+    },
+    {
+      "id": "tconstruct:large_ender_slime_crystal_bud",
+      "required": false
     }
   ]
 }

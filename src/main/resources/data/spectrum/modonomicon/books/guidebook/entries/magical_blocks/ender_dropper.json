@@ -1,0 +1,31 @@
+{
+  "name": "book.spectrum.guidebook.magical_blocks.ender_dropper.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/ender_blocks"
+  },
+  "icon": "spectrum:ender_dropper",
+  "category": "spectrum:magical_blocks",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 1,
+  "y": 2,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.magical_blocks.ender_dropper.page0.title",
+      "item": {
+        "item": "spectrum:ender_dropper"
+      },
+      "text": "book.spectrum.guidebook.magical_blocks.ender_dropper.page0.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.magical_blocks.ender_dropper.page1.text",
+      "title1": "book.spectrum.guidebook.magical_blocks.ender_dropper.page1.title",
+      "recipe_id_1": "spectrum:pedestal/tier2/ender_dropper"
+    }
+  ]
+}

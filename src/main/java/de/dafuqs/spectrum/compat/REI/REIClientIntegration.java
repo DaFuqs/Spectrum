@@ -137,10 +137,7 @@ public class REIClientIntegration implements REIClientPlugin {
 			// do not list recipes in REI at all, until they are unlocked
 			// secret recipes are never shown
 			if (display instanceof GatedRecipeDisplay gatedRecipeDisplay) {
-				if (gatedRecipeDisplay.isSecret()) {
-					return EventResult.interruptFalse();
-				}
-				if (!SpectrumCommon.CONFIG.REIListsRecipesAsNotUnlocked && !gatedRecipeDisplay.isUnlocked()) {
+				if (!gatedRecipeDisplay.isUnlocked() && (SpectrumCommon.CONFIG.REIListsRecipesAsNotUnlocked || gatedRecipeDisplay.isSecret())) {
 					return EventResult.interruptFalse();
 				}
 			}

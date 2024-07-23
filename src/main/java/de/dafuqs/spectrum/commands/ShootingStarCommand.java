@@ -1,10 +1,9 @@
 package de.dafuqs.spectrum.commands;
 
 import com.mojang.brigadier.arguments.*;
-import com.mojang.brigadier.tree.ArgumentCommandNode;
-import com.mojang.brigadier.tree.LiteralCommandNode;
+import com.mojang.brigadier.tree.*;
 import de.dafuqs.spectrum.entity.spawners.*;
-import net.minecraft.command.EntitySelector;
+import net.minecraft.command.*;
 import net.minecraft.command.argument.*;
 import net.minecraft.server.command.*;
 import net.minecraft.server.network.*;
@@ -14,7 +13,7 @@ import net.minecraft.text.*;
 import java.util.*;
 
 public class ShootingStarCommand {
-
+	
 	public static void register(LiteralCommandNode<ServerCommandSource> root) {
 		LiteralCommandNode<ServerCommandSource> spawnShootingStar = CommandManager.literal("spawn_shooting_star")
 				.requires((source) -> source.hasPermissionLevel(2)).build();
@@ -22,7 +21,7 @@ public class ShootingStarCommand {
 				.executes((context) -> execute(context.getSource(), EntityArgumentType.getPlayers(context, "targets"), 1)).build();
 		ArgumentCommandNode<ServerCommandSource, Integer> targetsAmount = CommandManager.argument("amount", IntegerArgumentType.integer(1))
 				.executes((context) -> execute(context.getSource(), EntityArgumentType.getPlayers(context, "targets"), IntegerArgumentType.getInteger(context, "amount"))).build();
-
+		
 		targets.addChild(targetsAmount);
 		spawnShootingStar.addChild(targets);
 		root.addChild(spawnShootingStar);

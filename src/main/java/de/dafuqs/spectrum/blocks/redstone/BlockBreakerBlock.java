@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
 import de.dafuqs.spectrum.compat.claims.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.*;
@@ -18,7 +19,7 @@ import org.jetbrains.annotations.*;
 
 public class BlockBreakerBlock extends RedstoneInteractionBlock implements BlockEntityProvider {
 	
-	private static final ItemStack BREAK_STACK = Items.IRON_PICKAXE.getDefaultStack();
+	private static ItemStack BREAK_STACK;
 	
 	public BlockBreakerBlock(Settings settings) {
 		super(settings);
@@ -92,6 +93,9 @@ public class BlockBreakerBlock extends RedstoneInteractionBlock implements Block
 		world.playSound(null, pos, blockState.getSoundGroup().getBreakSound(), SoundCategory.BLOCKS, 0.2f, (1.0f + world.random.nextFloat()) * 2f);
 		
 		BlockEntity blockEntity = blockState.hasBlockEntity() ? world.getBlockEntity(pos) : null;
+		if (BREAK_STACK == null) { // we do it here instead of it being final because of load order shenanigans
+			BREAK_STACK = SpectrumItems.MULTITOOL.getDefaultStack();
+		}
 		Block.dropStacks(blockState, world, pos, blockEntity, breaker, BREAK_STACK);
 		
 		if (world.setBlockState(pos, fluidState.getBlockState(), Block.NOTIFY_ALL, 512)) {

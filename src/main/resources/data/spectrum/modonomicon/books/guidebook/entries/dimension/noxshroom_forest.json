@@ -1,0 +1,38 @@
+{
+  "name": "book.spectrum.guidebook.dimension.noxshroom_forest.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/visit_dd_biomes/noxshroom_forest"
+  },
+  "icon": "spectrum:shimmel",
+  "category": "spectrum:dimension",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:dimension/biomes",
+      "line_reversed": true
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 4,
+  "x": 4,
+  "y": 7,
+  "pages": [
+    {
+      "type": "modonomicon:image",
+      "title": "book.spectrum.guidebook.dimension.noxshroom_forest.page0.title",
+      "images": [
+        "spectrum:textures/gui/guidebook/dd_noxshroom_forest.png"
+      ],
+      "border": true,
+      "text": "book.spectrum.guidebook.dimension.noxshroom_forest.page0.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:shimmel"
+      },
+      "text": "book.spectrum.guidebook.dimension.noxshroom_forest.page1.text"
+    }
+  ]
+}

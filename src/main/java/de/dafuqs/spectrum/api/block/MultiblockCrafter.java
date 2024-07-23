@@ -18,7 +18,7 @@ import java.util.*;
 public interface MultiblockCrafter extends Upgradeable, PlayerOwned {
 	
 	Vec3d RECIPE_STACK_VELOCITY = new Vec3d(0.0, 0.3, 0.0);
-
+	
 	static <T extends Recipe<?>> @Nullable T getRecipeFromNbt(@Nullable World world, NbtCompound nbt, Class<T> recipeClass) {
 		if (nbt.contains("CurrentRecipe")) {
 			String recipeString = nbt.getString("CurrentRecipe");

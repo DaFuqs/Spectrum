@@ -69,9 +69,15 @@ public class PastelTransmissionLogic {
 	}
 	
 	public void tick() {
+		transferBetween(PastelNodeType.BUFFER, PastelNodeType.GATHER, TransferMode.PULL);
 		transferBetween(PastelNodeType.SENDER, PastelNodeType.GATHER, TransferMode.PUSH_PULL);
 		transferBetween(PastelNodeType.PROVIDER, PastelNodeType.GATHER, TransferMode.PULL);
 		transferBetween(PastelNodeType.STORAGE, PastelNodeType.GATHER, TransferMode.PULL);
+
+		transferBetween(PastelNodeType.SENDER, PastelNodeType.BUFFER, TransferMode.PUSH_PULL);
+		transferBetween(PastelNodeType.PROVIDER, PastelNodeType.BUFFER, TransferMode.PULL);
+		transferBetween(PastelNodeType.STORAGE, PastelNodeType.BUFFER, TransferMode.PULL);
+
 		transferBetween(PastelNodeType.SENDER, PastelNodeType.STORAGE, TransferMode.PUSH);
 	}
 	
@@ -171,6 +177,8 @@ public class PastelTransmissionLogic {
 			for (PastelNodeBlockEntity vertex : graphPath.getVertexList()) {
 				vertexPositions.add(vertex.getPos());
 			}
+
+			SpectrumS2CPacketSender.sendPastelNodeStatusUpdate(List.of(source), true);
 			return Optional.of(new PastelTransmission(vertexPositions, variant, amount));
 		}
 		return Optional.empty();

@@ -1,27 +1,20 @@
 package de.dafuqs.spectrum.registries;
 
-import de.dafuqs.spectrum.api.damage_type.StackTracking;
+import de.dafuqs.spectrum.api.damage_type.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.spells.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.*;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.registry.*;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.registry.tag.TagKey;
-import net.minecraft.text.Text;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
-import java.util.Optional;
-
 import static de.dafuqs.spectrum.SpectrumCommon.*;
 
-// Damage Types handle the logic of how the damage behaves, determined via tags
+// Damage Types handle the logic of how the damage behaves, determined via tag
 // Damage Sources decide how death messages are handled
-// Make a custom damage source if you want a custom message, otherwise just return a damage source with the type you want
+// Make a custom damage source if you want a custom message, otherwise return a damage source with the type you want
 public class SpectrumDamageTypes {
 	
 	public static boolean recursiveDamageFlag = false;
@@ -46,6 +39,18 @@ public class SpectrumDamageTypes {
 	public static final RegistryKey<DamageType> IMPALING = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("impaling"));
 	public static final RegistryKey<DamageType> EVISCERATION = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("evisceration"));
 
+	public static final RegistryKey<DamageType> SLEEP = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("sleep"));
+
+	public static final RegistryKey<DamageType> MOB_HEAD_DROP = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("mob_head_drop"));
+	
+	public static DamageSource mobHeadDrop(World world) {
+		return new DamageSource(world.getDamageSources().registry.entryOf(MOB_HEAD_DROP));
+	}
+
+	public static DamageSource sleep(World world, @Nullable LivingEntity attacker) {
+		return new DamageSource(world.getDamageSources().registry.entryOf(SLEEP), attacker);
+	}
+	
 	public static DamageSource sawtooth(World world) {
 		return new DamageSource(world.getDamageSources().registry.entryOf(SAWTOOTH));
 	}
@@ -69,11 +74,11 @@ public class SpectrumDamageTypes {
 	public static DamageSource irradiance(World world, @Nullable LivingEntity attacker) {
 		return new IrradianceDamageSource(world, attacker);
 	}
-
+	
 	public static DamageSource impaling(World world, Entity weapon, @Nullable Entity attacker) {
 		return new DamageSource(world.getDamageSources().registry.entryOf(IMPALING), weapon, attacker);
 	}
-
+	
 	public static DamageSource evisceration(World world, @Nullable Entity attacker) {
 		return new DamageSource(world.getDamageSources().registry.entryOf(EVISCERATION), attacker);
 	}
@@ -133,7 +138,7 @@ public class SpectrumDamageTypes {
 	public static DamageSource primordialFire(World world, @Nullable LivingEntity attacker) {
 		return new PrimordialFireDamageSource(world, attacker);
 	}
-
+	
 	public static void wrapWithStackTracking(DamageSource source, ItemStack stack) {
 		((StackTracking) source).spectrum$setTrackedStack(stack);
 	}

@@ -123,6 +123,23 @@
     {
       "id": "byg:ametrine_cluster",
       "required": false
+    },
+
+    {
+      "id": "tconstruct:earth_slime_crystal_cluster",
+      "required": false
+    },
+    {
+      "id": "tconstruct:sky_slime_crystal_cluster",
+      "required": false
+    },
+    {
+      "id": "tconstruct:ichor_slime_crystal_cluster",
+      "required": false
+    },
+    {
+      "id": "tconstruct:ender_slime_crystal_cluster",
+      "required": false
     }
   ]
 }

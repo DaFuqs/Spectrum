@@ -1,0 +1,38 @@
+{
+  "variants": {
+    "snowy=true": [
+      {
+        "model": "spectrum:block/overgrown_slush_snow"
+      },
+      {
+        "model": "spectrum:block/overgrown_slush_snow",
+        "y": 90
+      },
+      {
+        "model": "spectrum:block/overgrown_slush_snow",
+        "y": 180
+      },
+      {
+        "model": "spectrum:block/overgrown_slush_snow",
+        "y": 270
+      }
+    ],
+    "snowy=false": [
+      {
+        "model": "spectrum:block/overgrown_slush"
+      },
+      {
+        "model": "spectrum:block/overgrown_slush",
+        "y": 90
+      },
+      {
+        "model": "spectrum:block/overgrown_slush",
+        "y": 180
+      },
+      {
+        "model": "spectrum:block/overgrown_slush",
+        "y": 270
+      }
+    ]
+  }
+}

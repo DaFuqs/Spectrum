@@ -14,6 +14,7 @@ import net.minecraft.entity.player.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
 import net.minecraft.registry.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
@@ -111,56 +112,84 @@ public class DeeperDownPortalBlock extends Block {
 
 	@Override
 	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-		if (world instanceof ServerWorld
-				&& !entity.hasVehicle()
-				&& !entity.hasPassengers()
-				&& entity.canUsePortals()) {
-
+		if (world instanceof ServerWorld serverWorld && entity.canUsePortals() && !entity.hasPortalCooldown()) {
+			
+			entity.resetPortalCooldown();
 			RegistryKey<World> currentWorldKey = world.getRegistryKey();
+			
+			if (currentWorldKey == World.NETHER) {
+				// teleport between top/bottom of the nether
+				boolean facingUp = state.get(FACING_UP); // true of on top of nether
+				
+				if (facingUp) {
+					BlockPos portalPos = new BlockPos(pos.getX(), world.getBottomY(), pos.getZ());
+					if (!world.getBlockState(portalPos).isOf(SpectrumBlocks.DEEPER_DOWN_PORTAL)) {
+						world.setBlockState(portalPos, SpectrumBlocks.DEEPER_DOWN_PORTAL.getDefaultState().with(FACING_UP, false));
+					}
+					
+					if (entity instanceof PlayerEntity) {
+						makeRoomAround(world, portalPos, 4, 2, true, BlockTags.BASE_STONE_NETHER);
+					}
+					
+					BlockPos targetPos = portalPos.up(2);
+					FabricDimensions.teleport(entity, serverWorld, new TeleportTarget(Vec3d.ofCenter(targetPos), Vec3d.ZERO, entity.getYaw(), entity.getPitch()));
+					teleportToSafePosition(serverWorld, entity, targetPos, 3);
+				} else {
+					BlockPos portalPos = new BlockPos(pos.getX(), world.getBottomY() + world.getDimension().logicalHeight() - 1, pos.getZ());
+					if (!world.getBlockState(portalPos).isOf(SpectrumBlocks.DEEPER_DOWN_PORTAL)) {
+						world.setBlockState(portalPos, SpectrumBlocks.DEEPER_DOWN_PORTAL.getDefaultState().with(FACING_UP, true));
+					}
+					
+					if (entity instanceof PlayerEntity) {
+						makeRoomAround(world, portalPos, 4, 2, false, BlockTags.BASE_STONE_NETHER);
+					}
+					
+					BlockPos targetPos = portalPos.down(3);
+					FabricDimensions.teleport(entity, serverWorld, new TeleportTarget(Vec3d.ofCenter(targetPos), Vec3d.ZERO, entity.getYaw(), entity.getPitch()));
+					teleportToSafePosition(serverWorld, entity, targetPos.down(), 5);
+				}
+				
+				return;
+			}
+			
 			if (currentWorldKey == World.OVERWORLD) {
-				if (!entity.hasPortalCooldown()) {
-					entity.resetPortalCooldown();
-
-					// => teleport to DD
-					ServerWorld targetWorld = ((ServerWorld) world).getServer().getWorld(SpectrumDimensions.DIMENSION_KEY);
-					if (targetWorld != null) {
-						BlockPos portalPos = new BlockPos(pos.getX(), targetWorld.getTopY() - 1, pos.getZ());
-						if (!targetWorld.getBlockState(portalPos).isOf(SpectrumBlocks.DEEPER_DOWN_PORTAL)) {
-							targetWorld.setBlockState(portalPos, SpectrumBlocks.DEEPER_DOWN_PORTAL.getDefaultState().with(FACING_UP, true));
-						}
-
-						if (entity instanceof PlayerEntity) {
-							makeRoomAround(targetWorld, portalPos, 4, 2, false);
-						}
-						
-						BlockPos targetPos = portalPos.down(3);
-						FabricDimensions.teleport(entity, targetWorld, new TeleportTarget(Vec3d.ofCenter(targetPos), Vec3d.ZERO, entity.getYaw(), entity.getPitch()));
-						teleportToSafePosition(targetWorld, entity, targetPos.down(), 5);
+				// => teleport to DD
+				ServerWorld targetWorld = serverWorld.getServer().getWorld(SpectrumDimensions.DIMENSION_KEY);
+				if (targetWorld != null) {
+					BlockPos portalPos = new BlockPos(pos.getX(), targetWorld.getTopY() - 1, pos.getZ());
+					if (!targetWorld.getBlockState(portalPos).isOf(SpectrumBlocks.DEEPER_DOWN_PORTAL)) {
+						targetWorld.setBlockState(portalPos, SpectrumBlocks.DEEPER_DOWN_PORTAL.getDefaultState().with(FACING_UP, true));
 					}
-				}
-			} else {
-				if (!entity.hasPortalCooldown()) {
-					entity.resetPortalCooldown();
-
-					// => teleport to Overworld
-					ServerWorld targetWorld = ((ServerWorld) world).getServer().getWorld(World.OVERWORLD);
-					if (targetWorld != null) {
-						BlockPos portalPos = new BlockPos(pos.getX(), targetWorld.getBottomY(), pos.getZ());
-						if (!targetWorld.getBlockState(portalPos).isOf(SpectrumBlocks.DEEPER_DOWN_PORTAL)) {
-							targetWorld.setBlockState(portalPos, SpectrumBlocks.DEEPER_DOWN_PORTAL.getDefaultState().with(FACING_UP, false));
-						}
-						makeRoomAround(targetWorld, portalPos, 4, 2, true);
-						
-						BlockPos targetPos = portalPos.up(2);
-						FabricDimensions.teleport(entity, targetWorld, new TeleportTarget(Vec3d.ofCenter(targetPos), Vec3d.ZERO, entity.getYaw(), entity.getPitch()));
-						teleportToSafePosition(targetWorld, entity, targetPos, 3);
+					
+					if (entity instanceof PlayerEntity) {
+						makeRoomAround(targetWorld, portalPos, 4, 2, false, SpectrumBlockTags.BASE_STONE_DEEPER_DOWN);
 					}
+					
+					BlockPos targetPos = portalPos.down(3);
+					FabricDimensions.teleport(entity, targetWorld, new TeleportTarget(Vec3d.ofCenter(targetPos), Vec3d.ZERO, entity.getYaw(), entity.getPitch()));
+					teleportToSafePosition(targetWorld, entity, targetPos.down(), 5);
+					
+					return;
 				}
+			}
+			
+			// => teleport to Overworld
+			ServerWorld targetWorld = serverWorld.getServer().getWorld(World.OVERWORLD);
+			if (targetWorld != null) {
+				BlockPos portalPos = new BlockPos(pos.getX(), targetWorld.getBottomY(), pos.getZ());
+				if (!targetWorld.getBlockState(portalPos).isOf(SpectrumBlocks.DEEPER_DOWN_PORTAL)) {
+					targetWorld.setBlockState(portalPos, SpectrumBlocks.DEEPER_DOWN_PORTAL.getDefaultState().with(FACING_UP, false));
+				}
+				makeRoomAround(targetWorld, portalPos, 4, 2, true, BlockTags.BASE_STONE_OVERWORLD);
+				
+				BlockPos targetPos = portalPos.up(2);
+				FabricDimensions.teleport(entity, targetWorld, new TeleportTarget(Vec3d.ofCenter(targetPos), Vec3d.ZERO, entity.getYaw(), entity.getPitch()));
+				teleportToSafePosition(targetWorld, entity, targetPos, 3);
 			}
 		}
 	}
 	
-	public void makeRoomAround(World world, BlockPos blockPos, int height, int maxWidth, boolean pointingUp) {
+	public void makeRoomAround(World world, BlockPos blockPos, int height, int maxWidth, boolean pointingUp, TagKey<Block> tagToClear) {
 		BlockState state = world.getBlockState(blockPos);
 		if (state.getCollisionShape(world, blockPos).isEmpty() && state.getCollisionShape(world, blockPos.up()).isEmpty()) {
 			return;
@@ -172,10 +201,10 @@ public class DeeperDownPortalBlock extends Block {
 			}
 
 			state = world.getBlockState(pos);
-			if (state.isOf(Blocks.BEDROCK) || state.isIn(SpectrumBlockTags.BASE_STONE_DEEPER_DOWN)) {
+			if (state.isOf(Blocks.BEDROCK) || state.isIn(tagToClear)) {
 				world.breakBlock(pos, true, null);
 			}
-
+			
 		}
 	}
 	

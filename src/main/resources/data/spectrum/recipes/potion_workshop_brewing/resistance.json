@@ -14,7 +14,7 @@
   "applicable_to_tipped_arrows": true,
   "applicable_to_potion_fillables": true,
   "required_advancement": "spectrum:unlocks/potions/resistance",
-  "ink_color": "blue",
+  "ink_color": "spectrum:blue",
   "ink_cost": 8,
   "potency_hard_cap": 3
 }

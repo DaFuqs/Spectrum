@@ -1,0 +1,51 @@
+{
+  "name": "book.spectrum.guidebook.enchanting.tight_grip.name",
+  "icon": "minecraft:iron_sword",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/enchantments/tight_grip"
+  },
+  "flag": "spectrum:enchantment_exists_spectrum_tight_grip",
+  "category": "spectrum:enchanting",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "y": 3,
+  "x": 4,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.enchanting.tight_grip.page0.text",
+      "title": "book.spectrum.guidebook.enchanting.tight_grip.page0.title"
+    },
+    {
+      "type": "spectrum:nbt_spotlight",
+      "title": "book.spectrum.guidebook.enchanting.tight_grip.page1.title",
+      "item": {
+        "item": "minecraft:iron_sword",
+        "nbt": {
+          "Enchantments": [
+            {
+              "id": "spectrum:tight_grip",
+              "lvl": "2s"
+            }
+          ]
+        }
+      },
+      "text": "book.spectrum.guidebook.enchanting.tight_grip.page1.text"
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "text": "book.spectrum.guidebook.enchanting.tight_grip.page2.text",
+      "title1": "book.spectrum.guidebook.enchanting.tight_grip.page2.title",
+      "recipe_id_1": "spectrum:enchanter/spectrum_books/book_tight_grip"
+    },
+    {
+      "type": "spectrum:enchanter_upgrading",
+      "text": "book.spectrum.guidebook.enchanting.tight_grip.page3.text",
+      "title1": "book.spectrum.guidebook.enchanting.tight_grip.page3.title",
+      "recipe_id_1": "spectrum:enchantment_upgrade/spectrum/tight_grip_level_2"
+    }
+  ]
+}

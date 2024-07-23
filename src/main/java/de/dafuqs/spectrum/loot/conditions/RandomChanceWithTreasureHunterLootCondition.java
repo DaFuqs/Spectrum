@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
+import net.minecraft.entity.damage.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.loot.condition.*;
@@ -44,6 +45,11 @@ public class RandomChanceWithTreasureHunterLootCondition implements LootConditio
 	
 	@Override
 	public boolean test(LootContext lootContext) {
+		DamageSource damageSource = lootContext.get(LootContextParameters.DAMAGE_SOURCE);
+		if (damageSource != null && damageSource.isIn(SpectrumDamageTypeTags.ALWAYS_DROPS_MOB_HEAD)) {
+			return true;
+		}
+		
 		Entity entity = lootContext.get(LootContextParameters.KILLER_ENTITY);
 		int treasureHunterLevel = 0;
 		if (entity instanceof PlayerEntity playerEntity) {

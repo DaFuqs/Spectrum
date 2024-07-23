@@ -1,7 +1,9 @@
 package de.dafuqs.spectrum.blocks.fusion_shrine;
 
+import com.klikli_dev.modonomicon.api.multiblock.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.compat.modonomicon.*;
 import de.dafuqs.spectrum.inventories.storage.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
@@ -23,7 +25,6 @@ import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.state.*;
 import net.minecraft.state.property.*;
-import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
 import net.minecraft.util.hit.*;
@@ -31,7 +32,6 @@ import net.minecraft.util.math.*;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
-import vazkii.patchouli.api.*;
 
 @SuppressWarnings("UnstableApiUsage")
 public class FusionShrineBlock extends InWorldInteractionBlock {
@@ -47,9 +47,8 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 	
 	public static void clearCurrentlyRenderedMultiBlock(World world) {
 		if (world.isClient) {
-			IMultiblock currentlyRenderedMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
-			if (currentlyRenderedMultiBlock != null && currentlyRenderedMultiBlock.getID().equals(SpectrumMultiblocks.FUSION_SHRINE_IDENTIFIER)) {
-				PatchouliAPI.get().clearMultiblock();
+			if (world.isClient()) {
+				ModonomiconHelper.clearRenderedMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.FUSION_SHRINE));
 			}
 		}
 	}
@@ -85,7 +84,7 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 	}
 	
 	public static boolean verifyStructure(World world, BlockPos blockPos, @Nullable ServerPlayerEntity serverPlayerEntity) {
-		IMultiblock multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.FUSION_SHRINE_IDENTIFIER);
+		Multiblock multiblock = SpectrumMultiblocks.get(SpectrumMultiblocks.FUSION_SHRINE);
 		boolean valid = multiblock.validate(world, blockPos.down(), BlockRotation.NONE);
 		
 		if (valid) {
@@ -94,12 +93,7 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 			}
 		} else {
 			if (world.isClient) {
-				IMultiblock currentMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
-				if (currentMultiBlock == multiblock) {
-					PatchouliAPI.get().clearMultiblock();
-				} else {
-					PatchouliAPI.get().showMultiblock(multiblock, Text.translatable("multiblock.spectrum.fusion_shrine.structure"), blockPos.down(2), BlockRotation.NONE);
-				}
+				ModonomiconHelper.renderMultiblock(multiblock, SpectrumMultiblocks.FUSION_SHRINE_TEXT, blockPos.down(2), BlockRotation.NONE);
 			} else if (world.getBlockEntity(blockPos) instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
 				fusionShrineBlockEntity.scatterContents(world);
 			}

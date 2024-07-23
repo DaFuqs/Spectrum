@@ -1,0 +1,39 @@
+{
+  "name": "book.spectrum.guidebook.hints.resonance_shards.name",
+  "category": "spectrum:dimension",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 5,
+  "x": 9,
+  "y": -1,
+  "icon": "minecraft:writable_book",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:lategame/build_complex_pedestal_structure"
+  },
+  "read_by_default": true,
+  "turnin": "spectrum:lategame/strike_up_hummingstone_hymn",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "book.spectrum.guidebook.hints.resonance_shards.page0.title",
+      "completion_advancement": "spectrum:triggers/hints/resonance_shards_page0",
+      "cost": {
+        "item": "spectrum:hummingstone_glass",
+        "count": 16
+      },
+      "text": "book.spectrum.guidebook.hints.resonance_shards.page0.text"
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "book.spectrum.guidebook.hints.resonance_shards.page1.title",
+      "cost": {
+        "item": "spectrum:hummingstone_glass",
+        "count": 48
+      },
+      "text": "book.spectrum.guidebook.hints.resonance_shards.page1.text",
+      "completion_advancement": "spectrum:triggers/hints/resonance_shards_page1"
+    }
+  ]
+}

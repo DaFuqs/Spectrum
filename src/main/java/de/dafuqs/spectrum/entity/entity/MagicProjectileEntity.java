@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.entity.entity;
 
+import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.*;
 import net.minecraft.entity.*;
@@ -7,7 +8,6 @@ import net.minecraft.entity.player.*;
 import net.minecraft.entity.projectile.*;
 import net.minecraft.particle.*;
 import net.minecraft.sound.*;
-import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
@@ -130,7 +130,7 @@ public abstract class MagicProjectileEntity extends ProjectileEntity {
 	protected EntityHitResult getEntityCollision(Vec3d currentPosition, Vec3d nextPosition) {
 		return ProjectileUtil.getEntityCollision(this.getWorld(), this, currentPosition, nextPosition, this.getBoundingBox().stretch(this.getVelocity()).expand(1.0D), this::canHit);
 	}
-
-    public abstract DyeColor getDyeColor();
+	
+	public abstract InkColor getInkColor();
 
 }

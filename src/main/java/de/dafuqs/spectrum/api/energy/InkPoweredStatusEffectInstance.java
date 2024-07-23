@@ -116,7 +116,7 @@ public class InkPoweredStatusEffectInstance {
 					mutableText = Text.translatable("potion.withDuration", mutableText, StatusEffectUtil.getDurationText(effect, 1.0F));
 				}
 				mutableText.formatted(effect.getEffectType().getCategory().getFormatting());
-				mutableText.append(Text.translatable("spectrum.tooltip.ink_cost." + cost.getColor().toString().toLowerCase(Locale.ROOT), Support.getShortenedNumberString(cost.getCost())).formatted(Formatting.GRAY));
+				mutableText.append(Text.translatable("spectrum.tooltip.ink_cost", Support.getShortenedNumberString(cost.getCost()), cost.getColor().getInkName()).formatted(Formatting.GRAY));
 				tooltip.add(mutableText);
 				
 				Map<EntityAttribute, EntityAttributeModifier> map = effect.getEffectType().getAttributeModifiers();

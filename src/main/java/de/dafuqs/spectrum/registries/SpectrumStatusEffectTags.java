@@ -9,10 +9,12 @@ public class SpectrumStatusEffectTags {
 	
 	public static TagKey<StatusEffect> UNCURABLE;
 	public static TagKey<StatusEffect> NO_DURATION_EXTENSION;
-	
+	public static TagKey<StatusEffect> SOPORIFIC;
+
 	public static void register() {
 		UNCURABLE = of("uncurable");
 		NO_DURATION_EXTENSION = of("no_duration_extension");
+		SOPORIFIC = of("soporific");
 	}
 	
 	private static TagKey<StatusEffect> of(String id) {

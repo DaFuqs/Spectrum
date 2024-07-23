@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:germinated_jade_vine_bulb"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.create_jade_vine.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.create_jade_vine.description"
+    }
+  },
+  "parent": "spectrum:lategame/spectrum_lategame",
+  "criteria": {
+    "created_germinated_jade_vine_bulb": {
+      "trigger": "spectrum:crafted_with_spirit_instiller",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:germinated_jade_vine_bulb"
+            ]
+          }
+        ]
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/spectrum_lategame"
+      }
+    }
+  }
+}

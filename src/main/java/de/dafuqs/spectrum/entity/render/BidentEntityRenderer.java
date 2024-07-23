@@ -24,7 +24,7 @@ public class BidentEntityRenderer extends EntityRenderer<BidentBaseEntity> {
 	public BidentEntityRenderer(EntityRendererFactory.Context context) {
 		this(context, 2F, -0.625F);
 	}
-
+	
 	public BidentEntityRenderer(EntityRendererFactory.Context context, float scale, float offset) {
 		super(context);
 		this.itemRenderer = context.getItemRenderer();

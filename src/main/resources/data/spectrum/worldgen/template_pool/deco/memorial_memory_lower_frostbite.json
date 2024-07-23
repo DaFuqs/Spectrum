@@ -463,6 +463,30 @@
           }
         }
       }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "spectrum:single_block_element",
+        "projection": "rigid",
+        "block": {
+          "Name": "spectrum:memory"
+        },
+        "nbt": {
+          "MemoryItem": {
+            "Count": 1,
+            "id": "spectrum:memory",
+            "tag": {
+              "TicksToManifest": 5,
+              "EntityTag": {
+                "id": "minecraft:illusioner",
+                "PersistenceRequired": true
+              },
+              "SpawnAsAdult": true
+            }
+          }
+        }
+      }
     }
   ]
 }

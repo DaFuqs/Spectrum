@@ -1,0 +1,23 @@
+{
+  "name": "effect.spectrum.another_roll",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/status_effects/another_roll"
+  },
+  "icon": "spectrum:textures/mob_effect/another_roll.png",
+  "category": "spectrum:brewing",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 4,
+  "x": 7,
+  "y": 0,
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "title": "effect.spectrum.another_roll",
+      "status_effect_id": "spectrum:another_roll",
+      "text": "book.spectrum.guidebook.brewing.another_roll.page0.text"
+    }
+  ]
+}

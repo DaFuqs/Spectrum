@@ -1,0 +1,79 @@
+{
+	"credit": "~ XOXO Azzyypaaras ~",
+	"textures": {
+		"2": "spectrum:block/provider_node_crystal"
+	},
+	"elements": [
+		{
+			"name": "crystal",
+			"from": [6.5, 8, 6.5],
+			"to": [9.5, 11, 9.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 9.5, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 3, 3], "texture": "#2"},
+				"east": {"uv": [3, 0, 6, 3], "texture": "#2"},
+				"south": {"uv": [0, 0, 3, 3], "texture": "#2"},
+				"west": {"uv": [3, 0, 6, 3], "texture": "#2"},
+				"up": {"uv": [3, 3, 6, 6], "rotation": 270, "texture": "#2"},
+				"down": {"uv": [0, 3, 3, 6], "rotation": 90, "texture": "#2"}
+			}
+		},
+		{
+			"name": "crystal inner",
+			"from": [9.64264, 11.15, 9.65736],
+			"to": [6.34264, 7.85, 6.35736],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 9.5, 8]},
+			"faces": {
+				"north": {"uv": [6, 0, 9, 3], "texture": "#2"},
+				"east": {"uv": [6, 0, 9, 3], "texture": "#2"},
+				"south": {"uv": [6, 0, 9, 3], "texture": "#2"},
+				"west": {"uv": [6, 0, 9, 3], "texture": "#2"},
+				"up": {"uv": [6, 0, 9, 3], "rotation": 270, "texture": "#2"},
+				"down": {"uv": [6, 0, 9, 3], "rotation": 90, "texture": "#2"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 3],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 3],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 45, 0],
+			"translation": [0.25, 1.5, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 225, 0],
+			"translation": [0.25, 1.5, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"translation": [0, 1, 0],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"gui": {
+			"rotation": [30, 225, 0],
+			"translation": [0, 1.75, 0],
+			"scale": [0.75, 0.75, 0.75]
+		},
+		"fixed": {
+			"scale": [0.5, 0.5, 0.5]
+		}
+	},
+	"groups": [
+		{
+			"name": "crystal",
+			"origin": [8, 3.5, 8],
+			"color": 0,
+			"nbt": "{}",
+			"children": [0, 1]
+		}
+	]
+}

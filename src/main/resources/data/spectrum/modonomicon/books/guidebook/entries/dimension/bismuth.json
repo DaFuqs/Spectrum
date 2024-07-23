@@ -1,0 +1,37 @@
+{
+  "name": "book.spectrum.guidebook.general.bismuth.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:lategame/collect_bismuth"
+  },
+  "icon": "spectrum:bismuth_flake",
+  "category": "spectrum:dimension",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:dimension/crystal_gardens"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 6,
+  "y": 1,
+  "turnin": "spectrum:lategame/collect_bismuth_crystal",
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.general.bismuth.page0.title",
+      "text": "book.spectrum.guidebook.general.bismuth.page0.text"
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/crystallarieum"
+      },
+      "title1": "book.spectrum.guidebook.general.bismuth.page1.title",
+      "recipe_id_1": "spectrum:crystallarieum/bismuth",
+      "text": "book.spectrum.guidebook.general.bismuth.page1.text"
+    }
+  ]
+}

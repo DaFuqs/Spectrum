@@ -1,0 +1,39 @@
+{
+  "name": "book.spectrum.guidebook.hints.downstone_fragments.name",
+  "category": "spectrum:dimension",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 5,
+  "x": -6,
+  "y": 5,
+  "icon": "minecraft:writable_book",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:lategame/build_complex_pedestal_structure"
+  },
+  "read_by_default": true,
+  "turnin": "spectrum:lategame/collect_downstone_fragments",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "book.spectrum.guidebook.hints.downstone_fragments.page0.title",
+      "completion_advancement": "spectrum:triggers/hints/downstone_fragments_page0",
+      "cost": {
+        "item": "spectrum:moonstone_shard",
+        "count": 8
+      },
+      "text": "book.spectrum.guidebook.hints.downstone_fragments.page0.text"
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "book.spectrum.guidebook.hints.downstone_fragments.page1.title",
+      "cost": {
+        "item": "spectrum:moonstone_shard",
+        "count": 24
+      },
+      "text": "book.spectrum.guidebook.hints.downstone_fragments.page1.text",
+      "completion_advancement": "spectrum:triggers/hints/downstone_fragments_page1"
+    }
+  ]
+}

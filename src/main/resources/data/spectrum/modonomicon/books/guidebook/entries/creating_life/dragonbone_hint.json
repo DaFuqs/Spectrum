@@ -1,0 +1,39 @@
+{
+  "name": "book.spectrum.guidebook.hints.dragonbone.name",
+  "category": "spectrum:creating_life",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 5,
+  "x": 6,
+  "y": 0,
+  "icon": "minecraft:writable_book",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:milestones/reveal_dragonbone"
+  },
+  "read_by_default": true,
+  "turnin": "spectrum:hidden/collect_dragonbone",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "book.spectrum.guidebook.hints.dragonbone.page0.title",
+      "completion_advancement": "spectrum:triggers/hints/dragonbone_page0",
+      "cost": {
+        "item": "spectrum:doombloom_seed",
+        "count": 4
+      },
+      "text": "book.spectrum.guidebook.hints.dragonbone.page0.text"
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "book.spectrum.guidebook.hints.dragonbone.page1.title",
+      "cost": {
+        "item": "spectrum:doombloom_seed",
+        "count": 12
+      },
+      "text": "book.spectrum.guidebook.hints.dragonbone.page1.text",
+      "completion_advancement": "spectrum:triggers/hints/dragonbone_page1"
+    }
+  ]
+}

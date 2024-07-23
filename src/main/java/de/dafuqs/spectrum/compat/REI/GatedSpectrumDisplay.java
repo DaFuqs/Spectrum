@@ -8,7 +8,9 @@ import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.client.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
+import net.minecraft.text.*;
 import net.minecraft.util.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -16,7 +18,8 @@ public abstract class GatedSpectrumDisplay extends BasicDisplay implements Gated
 
 	private final Identifier requiredAdvancementIdentifier;
 	private final boolean secret;
-
+	private final @Nullable Text secretHintText;
+	
 	// 1 input => 1 output
 	public GatedSpectrumDisplay(GatedRecipe recipe, Ingredient input, ItemStack output) {
 		this(recipe, Collections.singletonList(EntryIngredients.ofIngredient(input)), Collections.singletonList(EntryIngredients.of(output)));
@@ -32,6 +35,7 @@ public abstract class GatedSpectrumDisplay extends BasicDisplay implements Gated
 		super(inputs, outputs);
 		this.secret = recipe.isSecret();
 		this.requiredAdvancementIdentifier = recipe.getRequiredAdvancementIdentifier();
+		this.secretHintText = recipe.getSecretHintText();
 	}
 
 	@Override
@@ -42,7 +46,11 @@ public abstract class GatedSpectrumDisplay extends BasicDisplay implements Gated
 
 	@Override
 	public boolean isSecret() {
-		return secret;
+		return this.secret;
+	}
+	
+	public @Nullable Text getSecretHintText() {
+		return this.secretHintText;
 	}
 
 }

@@ -5,8 +5,7 @@ import net.minecraft.recipe.*;
 
 import java.util.function.Supplier;
 
-import static net.minecraft.item.ToolMaterials.IRON;
-import static net.minecraft.item.ToolMaterials.DIAMOND;
+import static net.minecraft.item.ToolMaterials.*;
 
 public class SpectrumToolMaterials {
 	

@@ -60,38 +60,50 @@ public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 		return false;
 	}
 
-	/**
-	 * @param world The world
-	 * @param pos   The position in the world
-	 * @param state BlockState of the midnight solution. Included the height/fluid level
-	 * @return Dunno, actually. I just mod things.
-	 */
+	@Override
 	public boolean receiveNeighborFluids(World world, BlockPos pos, BlockState state) {
+		// Shouldn't happen but check anyway
+		// If it IS true then do nothing, since no interaction can take place at this position
+		final FluidState fluidState = state.getFluidState();
+		if (fluidState == null || fluidState.isEmpty()) return true;
+
 		for (Direction direction : Direction.values()) {
 			BlockPos neighborPos = pos.offset(direction);
 			FluidState neighborFluidState = world.getFluidState(neighborPos);
-			if (neighborFluidState.isIn(FluidTags.LAVA)) {
-				world.setBlockState(pos, Blocks.TERRACOTTA.getDefaultState());
-				playExtinguishSound(world, pos);
+
+			// Do nothing if neighbor fluid state is empty. [matters for both collision and spread]
+			if (neighborFluidState == null || neighborFluidState.isEmpty()) continue;
+
+			// Fluid collision interaction
+			final BlockState setState = handleFluidCollision(world, fluidState, neighborFluidState);
+			if (setState != null) {
+				fireExtinguishEvent(world, pos);
+				world.setBlockState(pos, setState);
 				return false;
 			}
 
+			// World interaction
 			boolean isNeighborFluidBlock = world.getBlockState(neighborPos).getBlock() instanceof FluidBlock;
 			// spread to the fluid
 			boolean doesTickEntities = world.getWorldChunk(pos).getLevelType().isAfter(ChunkLevelType.ENTITY_TICKING);
 			if (!neighborFluidState.isEmpty() && doesTickEntities) {
 				if (!isNeighborFluidBlock) {
 					world.setBlockState(pos, SPREAD_BLOCKSTATE);
-					playExtinguishSound(world, pos);
+					fireExtinguishEvent(world, pos);
 				} else {
 					if (!neighborFluidState.isOf(this.fluid) && !neighborFluidState.isIn(SpectrumFluidTags.MIDNIGHT_SOLUTION_CONVERTED) && !world.getBlockState(neighborPos).isOf(this)) {
 						world.setBlockState(pos, SPREAD_BLOCKSTATE);
-						playExtinguishSound(world, neighborPos);
+						fireExtinguishEvent(world, neighborPos);
 					}
 				}
 			}
 		}
 		return true;
+	}
+
+	public @Nullable BlockState handleFluidCollision(World world, @NotNull FluidState state, @NotNull FluidState otherState) {
+		if (otherState.isIn(FluidTags.LAVA)) return Blocks.TERRACOTTA.getDefaultState();
+		return null;
 	}
 
 }

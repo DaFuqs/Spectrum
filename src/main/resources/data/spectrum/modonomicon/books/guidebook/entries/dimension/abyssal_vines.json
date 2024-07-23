@@ -1,0 +1,47 @@
+{
+  "name": "book.spectrum.guidebook.dimension.abyssal_vines.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/collect_fissure_plum"
+  },
+  "icon": "spectrum:textures/block/abyssal_vines.png",
+  "category": "spectrum:dimension",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:dimension/biomes",
+      "line_enabled": "false"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": -6,
+  "y": -4,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.dimension.abyssal_vines.page0.title",
+      "text": "book.spectrum.guidebook.dimension.abyssal_vines.page0.text"
+    },
+    {
+      "type": "modonomicon:multiblock",
+      "multiblock_name": "book.spectrum.guidebook.dimension.abyssal_vines.page1.title",
+      "multiblock_id": "spectrum:abyssal_vines",
+      "show_visualize_button": false,
+      "text": "book.spectrum.guidebook.dimension.abyssal_vines.page1.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.dimension.abyssal_vines.page2.title",
+      "text": "book.spectrum.guidebook.dimension.abyssal_vines.page2.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:fissure_plum"
+      },
+      "title": "book.spectrum.guidebook.dimension.abyssal_vines.page3.title",
+      "text": "book.spectrum.guidebook.dimension.abyssal_vines.page3.text"
+    }
+  ]
+}

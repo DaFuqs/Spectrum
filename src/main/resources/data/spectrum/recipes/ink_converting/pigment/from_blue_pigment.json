@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "spectrum:blue_pigment"
   },
-  "color": "blue",
+  "ink_color": "spectrum:blue",
   "amount": 100,
   "required_advancement": "spectrum:hidden/collect_pigment/collect_blue_pigment"
 }

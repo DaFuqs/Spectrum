@@ -126,6 +126,18 @@
       "minecraft:random/bow"
     ]
   },
+  "entity.block_flooder.throw": {
+    "subtitle": "spectrum.subtitles.entity.block_flooder.throw",
+    "sounds": [
+      "minecraft:random/bow"
+    ]
+  },
+  "item.omni_accelerator.shoot": {
+    "subtitle": "spectrum.subtitles.item.omni_accelerator.shoot",
+    "sounds": [
+      "minecraft:random/bow"
+    ]
+  },
   "bident_mirror_image_thrown": {
     "subtitle": "spectrum.subtitles.bident_mirror_image_thrown",
     "sounds": [

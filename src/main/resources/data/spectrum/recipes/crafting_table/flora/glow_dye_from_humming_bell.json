@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "pigment_to_dye",
+  "ingredients": [
+    {
+      "item": "spectrum:sweet_pea"
+    }
+  ],
+  "result": {
+    "item": "minecraft:glow_ink_sac",
+    "count": 2
+  }
+}

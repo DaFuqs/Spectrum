@@ -1,0 +1,47 @@
+{
+  "name": "book.spectrum.guidebook.general.pedestal.name",
+  "icon": "spectrum:pedestal_basic_amethyst",
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:general/shards",
+      "line_reversed": true
+    },
+    {
+      "entry": "spectrum:general/paintbrush",
+      "line_reversed": true
+    },
+    {
+      "entry": "spectrum:general/gemstone_powder"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 1,
+  "x": -4,
+  "y": 1,
+  "turnin": "spectrum:craft_using_pedestal",
+  "pages": [
+    {
+      "type": "modonomicon:crafting_recipe",
+      "title1": "book.spectrum.guidebook.general.pedestal.page0.title",
+      "recipe_id_1": "spectrum:crafting_table/pedestal_basic_amethyst",
+      "text": "book.spectrum.guidebook.general.pedestal.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.general.pedestal.page1.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.general.pedestal.page2.title",
+      "text": "book.spectrum.guidebook.general.pedestal.page2.text"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "title1": "book.spectrum.guidebook.general.pedestal.page3.title",
+      "recipe_id_1": "spectrum:crafting_table/pedestal_basic_topaz",
+      "recipe_id_2": "spectrum:crafting_table/pedestal_basic_citrine"
+    }
+  ]
+}

@@ -4,7 +4,7 @@
     "icon": {
       "item": "spectrum:paintbrush",
       "nbt": {
-        "Color": "red"
+        "Color": "spectrum:red"
       }
     },
     "title": {

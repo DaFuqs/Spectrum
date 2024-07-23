@@ -5,16 +5,18 @@
   "name": "Spectrum",
   "description": "A full-feature magic mod about harnessing the powers of color",
   "authors": [
-    "DaFuqs",
-    "Azzyypaaras",
-    "Noaaan"
+    "DaFuqs - Big Boss (Furry)",
+    "Azzyypaaras - Easygoing egoist (Art and Writing, Gayest)",
+    "Noaaan - Mythic Coder (Hard Carries on MC Updates)"
   ],
   "contributors": [
-    "Electro_593",
-    "Maya",
-    "Notawallplan",
-    "Quarx_",
-    "HoneyHive"
+    "Electro_593 (A lot of code)",
+    "Maya (Gay)",
+    "HoneyHive (Illustrations)",
+    "800020h (Structures)",
+    "MsRandom (Gayer, Shaders)",
+    "Quarx_ (Sound design and Music)",
+    "Notawallplan (Music, Writing)"
   ],
   "contact": {
     "homepage": "https://github.com/DaFuqs/",
@@ -58,8 +60,7 @@
       "spectrum:hardcore_deaths",
       "spectrum:last_kill",
       "spectrum:everpromise_ribbon",
-      "spectrum:on_primordial_fire",
-      "spectrum:dd_world_effects"
+      "spectrum:on_primordial_fire"
     ],
     "lithium:options": {
       "entity.collisions.fluid": false
@@ -72,7 +73,7 @@
     "java": ">=17",
     "revelationary": "*",
     "cloth-config": "*",
-    "patchouli": "*",
+    "modonomicon": "*",
     "trinkets": "*",
     "matchbooks": "*"
   },

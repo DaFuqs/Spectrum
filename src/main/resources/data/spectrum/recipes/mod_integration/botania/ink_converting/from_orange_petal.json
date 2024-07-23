@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "botania:orange_petal"
   },
-  "color": "orange",
+  "ink_color": "spectrum:orange",
   "amount": 25,
   "required_advancement": "spectrum:hidden/collect_pigment/collect_orange_pigment",
   "fabric:load_conditions": [

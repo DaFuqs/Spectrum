@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "spectrum:white_block"
   },
-  "color": "white",
+  "ink_color": "spectrum:white",
   "amount": 900,
   "required_advancement": "spectrum:hidden/collect_pigment/collect_white_pigment"
 }

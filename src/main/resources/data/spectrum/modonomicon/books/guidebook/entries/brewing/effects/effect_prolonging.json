@@ -1,0 +1,28 @@
+{
+  "name": "effect.spectrum.effect_prolonging",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/status_effects/effect_prolonging"
+  },
+  "icon": "spectrum:textures/mob_effect/effect_prolonging.png",
+  "category": "spectrum:brewing",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 4,
+  "x": 3,
+  "y": -1,
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "title": "effect.spectrum.effect_prolonging",
+      "status_effect_id": "spectrum:effect_prolonging",
+      "text": "book.spectrum.guidebook.brewing.effect_prolonging.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.brewing.effect_prolonging.page1.title",
+      "text": "book.spectrum.guidebook.brewing.effect_prolonging.page1.text"
+    }
+  ]
+}

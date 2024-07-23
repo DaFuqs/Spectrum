@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "spectrum:purple_block"
   },
-  "color": "purple",
+  "ink_color": "spectrum:purple",
   "amount": 900,
   "required_advancement": "spectrum:hidden/collect_pigment/collect_purple_pigment"
 }

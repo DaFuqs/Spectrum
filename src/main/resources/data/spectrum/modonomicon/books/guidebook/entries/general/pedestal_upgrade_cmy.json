@@ -1,0 +1,60 @@
+{
+  "name": "book.spectrum.guidebook.general.pedestal_upgrade_cmy.name",
+  "icon": "spectrum:pedestal_all_basic",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/cmy_pedestal"
+  },
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:general/pedestal"
+    },
+    {
+      "entry": "spectrum:general/shards",
+      "line_reversed": true
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 1,
+  "x": -2,
+  "y": 0,
+  "turnin": "spectrum:build_basic_pedestal_structure",
+  "pages": [
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "book.spectrum.guidebook.general.pedestal_upgrade_cmy.page0.title",
+      "recipe_id_1": "spectrum:pedestal/tier1/pedestal_all_basic",
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_cmy.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.general.pedestal_upgrade_cmy.page1.title",
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_cmy.page1.text"
+    },
+    {
+      "type": "modonomicon:multiblock",
+      "multiblock_name": "book.spectrum.guidebook.general.pedestal_upgrade_cmy.page2.multiblock_name",
+      "multiblock_id": "spectrum:pedestal_simple",
+      "show_visualize_button": true,
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_cmy.page2.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.general.pedestal_upgrade_cmy.page3.title",
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_cmy.page3.text"
+    },
+    {
+      "type": "modonomicon:image",
+      "title": "book.spectrum.guidebook.general.pedestal_upgrade_cmy.page4.title",
+      "images": [
+        "spectrum:textures/gui/guidebook/spectrum_focus_customisation.png"
+      ]
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_cmy.page5.text"
+    }
+  ]
+}

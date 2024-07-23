@@ -67,7 +67,7 @@ public class InkMeterWidget implements Drawable, Element, Selectable {
 	public void drawMouseoverTooltip(DrawContext drawContext, int x, int y) {
 		MinecraftClient client = MinecraftClient.getInstance();
 		List<Text> tooltip = new ArrayList<>();
-		inkStorageBlockEntity.getEnergyStorage().addTooltip(tooltip, false);
+		inkStorageBlockEntity.getEnergyStorage().addTooltip(tooltip);
 		drawContext.drawTooltip(client.textRenderer, tooltip, Optional.empty(), x, y);
 	}
 	
@@ -81,7 +81,7 @@ public class InkMeterWidget implements Drawable, Element, Selectable {
 			long amount = inkStorage.getEnergy(inkColor);
 			if (amount > 0) {
 				int height = Math.max(1, Math.round(((float) amount / ((float) total / this.height))));
-				RenderHelper.fillQuad(drawContext.getMatrices(), this.x + currentXOffset, startHeight - height, height, WIDTH_PER_COLOR, inkColor.getColor());
+				RenderHelper.fillQuad(drawContext.getMatrices(), this.x + currentXOffset, startHeight - height, height, WIDTH_PER_COLOR, inkColor.getColorVec());
 			}
 			currentXOffset = currentXOffset + WIDTH_PER_COLOR + SPACE_BETWEEN_COLORS;
 		}

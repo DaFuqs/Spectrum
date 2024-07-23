@@ -22,8 +22,10 @@ public class EnchanterRecipe extends GatedSpectrumRecipe {
 	protected final int requiredExperience;
 	protected final int craftingTime;
 	protected final boolean noBenefitsFromYieldAndEfficiencyUpgrades;
+	// copy all nbt data from the first stack in the ingredients to the output stack
+	protected final boolean copyNbt;
 	
-	public EnchanterRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, DefaultedList<Ingredient> inputs, ItemStack output, int craftingTime, int requiredExperience, boolean noBenefitsFromYieldAndEfficiencyUpgrades) {
+	public EnchanterRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, DefaultedList<Ingredient> inputs, ItemStack output, int craftingTime, int requiredExperience, boolean noBenefitsFromYieldAndEfficiencyUpgrades, boolean copyNbt) {
 		super(id, group, secret, requiredAdvancementIdentifier);
 		
 		this.inputs = inputs;
@@ -31,6 +33,7 @@ public class EnchanterRecipe extends GatedSpectrumRecipe {
 		this.requiredExperience = requiredExperience;
 		this.craftingTime = craftingTime;
 		this.noBenefitsFromYieldAndEfficiencyUpgrades = noBenefitsFromYieldAndEfficiencyUpgrades;
+		this.copyNbt = copyNbt;
 		
 		registerInToastManager(getType(), this);
 	}
@@ -38,15 +41,18 @@ public class EnchanterRecipe extends GatedSpectrumRecipe {
 	@Override
 	public boolean matches(Inventory inv, World world) {
 		if (inv.size() > 9) {
+			// the item on the enchanter
 			if (!inputs.get(0).test(inv.getStack(0))) {
 				return false;
 			}
+			// is there an experience provider with enough XP?
 			if (this.getRequiredExperience() > 0
 					&& !(inv.getStack(1).getItem() instanceof ExperienceStorageItem)
 					&& ExperienceStorageItem.getStoredExperience(inv.getStack(1)) < this.getRequiredExperience()) {
 				return false;
 			}
 			
+			// match stacks
 			for (int i = 1; i < 9; i++) {
 				if (!inputs.get(i).test(inv.getStack(i + 1))) {
 					return false;
@@ -60,6 +66,9 @@ public class EnchanterRecipe extends GatedSpectrumRecipe {
 	
 	@Override
 	public ItemStack craft(Inventory inv, DynamicRegistryManager drm) {
+		if (this.copyNbt) {
+			return copyNbt(inv.getStack(0), output.copy());
+		}
 		return output.copy();
 	}
 	

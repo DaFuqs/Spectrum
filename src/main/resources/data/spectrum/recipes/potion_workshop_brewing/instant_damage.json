@@ -16,7 +16,7 @@
   "applicable_to_potions": true,
   "applicable_to_tipped_arrows": true,
   "applicable_to_potion_fillables": false,
-  "ink_color": "black",
+  "ink_color": "spectrum:black",
   "ink_cost": 16,
   "potency_hard_cap": 4
 }

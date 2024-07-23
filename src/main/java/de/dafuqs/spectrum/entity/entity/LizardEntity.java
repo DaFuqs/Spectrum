@@ -119,7 +119,7 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 	@Override
 	public void writeCustomDataToNbt(NbtCompound nbt) {
 		super.writeCustomDataToNbt(nbt);
-		nbt.putString("color", SpectrumRegistries.INK_COLORS.getId(this.getColor()).toString());
+		nbt.putString("color", this.getColor().getID().toString());
 		nbt.putString("frills", SpectrumRegistries.LIZARD_FRILL_VARIANT.getId(this.getFrills()).toString());
 		nbt.putString("horns", SpectrumRegistries.LIZARD_HORN_VARIANT.getId(this.getHorns()).toString());
 		writePOIPosToNbt(nbt);
@@ -255,8 +255,8 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 		World world = firstParent.getWorld();
 		InkColor color1 = firstParent.getColor();
 		InkColor color2 = secondParent.getColor();
-
-		return InkColor.getRandomMixedColor(color1, color2, world.random);
+		
+		return InkColorMixes.getRandomMixedColor(color1, color2, world.random);
 	}
 
 	private LizardFrillVariant getChildFrills(LizardEntity firstParent, LizardEntity secondParent) {

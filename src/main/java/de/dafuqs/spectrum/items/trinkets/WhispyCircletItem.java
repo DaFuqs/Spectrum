@@ -38,7 +38,7 @@ public class WhispyCircletItem extends SpectrumTrinketItem implements SleepStatu
 		List<StatusEffectInstance> negativeEffects = new ArrayList<>();
 		for (StatusEffectInstance statusEffectInstance : currentEffects) {
 			StatusEffect effect = statusEffectInstance.getEffectType();
-			if (effect.getCategory() == category && !SpectrumStatusEffectTags.isUncurable(effect)) {
+			if (effect.getCategory() == category && !SpectrumStatusEffectTags.isIn(SpectrumStatusEffectTags.SOPORIFIC, effect) && !SpectrumStatusEffectTags.isIncurable(effect)) {
 				negativeEffects.add(statusEffectInstance);
 			}
 		}
@@ -92,7 +92,7 @@ public class WhispyCircletItem extends SpectrumTrinketItem implements SleepStatu
 	}
 	
 	public static boolean affects(StatusEffect statusEffect) {
-		return statusEffect.getCategory() == StatusEffectCategory.HARMFUL && !SpectrumStatusEffectTags.isUncurable(statusEffect);
+		return statusEffect.getCategory() == StatusEffectCategory.HARMFUL && !SpectrumStatusEffectTags.isIn(SpectrumStatusEffectTags.SOPORIFIC, statusEffect) && !SpectrumStatusEffectTags.isIncurable(statusEffect);
 	}
 	
 	public static void preventPhantomSpawns(@NotNull ServerPlayerEntity serverPlayerEntity) {

@@ -37,7 +37,10 @@ public class SleepStatusEffect extends SpectrumStatusEffect {
 
         var vulnerability = ((SleepStatusEffect) instance.getEffectType()).baseStrength * (instance.getAmplifier() + 1);
         if (entity.hasStatusEffect(SpectrumStatusEffects.IMMUNITY))
-            vulnerability *= 0.25F;
+            vulnerability *= 0.334F;
+
+        if (entity.hasStatusEffect(SpectrumStatusEffects.DIVINITY))
+            vulnerability *= 0.875F;
 
         if (entity instanceof PlayerEntity player) {
             return vulnerability * getPlayerMod(player);

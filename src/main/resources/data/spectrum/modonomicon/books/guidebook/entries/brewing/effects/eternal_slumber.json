@@ -1,0 +1,32 @@
+{
+  "name": "effect.spectrum.eternal_slumber",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/status_effects/eternal_slumber"
+  },
+  "icon": "spectrum:textures/mob_effect/eternal_slumber.png",
+  "category": "spectrum:brewing",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:brewing/effects/somnolence"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 4,
+  "x": 8,
+  "y": -3,
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "title": "effect.spectrum.eternal_slumber",
+      "status_effect_id": "spectrum:eternal_slumber",
+      "text": "book.spectrum.guidebook.brewing.eternal_slumber.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.brewing.eternal_slumber.page1.title",
+      "text": "book.spectrum.guidebook.brewing.eternal_slumber.page1.text"
+    }
+  ]
+}

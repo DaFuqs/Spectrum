@@ -1,0 +1,36 @@
+{
+  "criteria": {
+    "calming": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/status_effects/calming"
+      }
+    },
+    "somnolence": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/status_effects/somnolence"
+      }
+    },
+    "eternal_slumber": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/status_effects/eternal_slumber"
+      }
+    },
+    "fatal_slumber": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/status_effects/fatal_slumber"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "calming",
+      "somnolence",
+      "eternal_slumber",
+      "fatal_slumber"
+    ]
+  ]
+}

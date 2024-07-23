@@ -2,10 +2,8 @@ package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
 import de.dafuqs.spectrum.status_effects.SleepStatusEffect;
-import de.dafuqs.spectrum.status_effects.SpectrumStatusEffect;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.util.math.MathHelper;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -24,18 +22,13 @@ public abstract class MobEntityMixin {
     public void slowDownAIticks(CallbackInfo ci) {
         var entity = (MobEntity) (Object) this;
 
-        if (entity.hasStatusEffect(SpectrumStatusEffects.ETERNAL_SLUMBER) || entity.hasStatusEffect(SpectrumStatusEffects.FATAL_SLUMBER)) {
+        if (entity.hasStatusEffect(SpectrumStatusEffects.ETERNAL_SLUMBER) || (entity.hasStatusEffect(SpectrumStatusEffects.FATAL_SLUMBER) && !SleepStatusEffect.isImmuneish(entity))) {
             target = null;
             ci.cancel();
             return;
         }
 
-        var effect = entity.getStatusEffect(SpectrumStatusEffects.SOMNOLENCE);
-
-        if (effect == null)
-            return;
-
-        var potency = SleepStatusEffect.getSleepVulnerability(effect, entity);
+        var potency = SleepStatusEffect.getGeneralSleepVulnerability(entity);
 
         if (potency <= 0 || entity.getRandom().nextFloat() > Math.min(potency * 0.05, 0.3))
             return;

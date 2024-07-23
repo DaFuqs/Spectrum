@@ -7,12 +7,12 @@ import net.minecraft.registry.tag.*;
 
 public class SpectrumStatusEffectTags {
 	
-	public static TagKey<StatusEffect> UNCURABLE;
+	public static TagKey<StatusEffect> INCURABLE;
 	public static TagKey<StatusEffect> NO_DURATION_EXTENSION;
 	public static TagKey<StatusEffect> SOPORIFIC;
 
 	public static void register() {
-		UNCURABLE = of("uncurable");
+		INCURABLE = of("uncurable");
 		NO_DURATION_EXTENSION = of("no_duration_extension");
 		SOPORIFIC = of("soporific");
 	}
@@ -25,8 +25,8 @@ public class SpectrumStatusEffectTags {
 		return Registries.STATUS_EFFECT.getEntry(effect).isIn(tag);
 	}
 	
-	public static boolean isUncurable(StatusEffect statusEffect) {
-		return isIn(SpectrumStatusEffectTags.UNCURABLE, statusEffect);
+	public static boolean isIncurable(StatusEffect statusEffect) {
+		return isIn(SpectrumStatusEffectTags.INCURABLE, statusEffect);
 	}
 	
 }

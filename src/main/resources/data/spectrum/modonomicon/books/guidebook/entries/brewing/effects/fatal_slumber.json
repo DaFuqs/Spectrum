@@ -1,0 +1,32 @@
+{
+  "name": "effect.spectrum.fatal_slumber",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/status_effects/fatal_slumber"
+  },
+  "icon": "spectrum:textures/mob_effect/fatal_slumber.png",
+  "category": "spectrum:brewing",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:brewing/effects/eternal_slumber"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 4,
+  "x": 7,
+  "y": -4,
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "title": "effect.spectrum.fatal_slumber",
+      "status_effect_id": "spectrum:fatal_slumber",
+      "text": "book.spectrum.guidebook.brewing.fatal_slumber.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.brewing.fatal_slumber.page1.title",
+      "text": "book.spectrum.guidebook.brewing.fatal_slumber.page1.text"
+    }
+  ]
+}

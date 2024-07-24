@@ -1,0 +1,22 @@
+{
+  "criteria": {
+    "eternal_slumber": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/status_effects/eternal_slumber"
+      }
+    },
+    "fatal_slumber": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/status_effects/fatal_slumber"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "eternal_slumber",
+      "fatal_slumber"
+    ]
+  ]
+}

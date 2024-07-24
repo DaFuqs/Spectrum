@@ -1,0 +1,28 @@
+{
+  "name": "effect.spectrum.somnolence",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/status_effects/somnolence"
+  },
+  "icon": "spectrum:textures/mob_effect/somnolence.png",
+  "category": "spectrum:brewing",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 4,
+  "x": 9,
+  "y": -4,
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "title": "effect.spectrum.somnolence",
+      "status_effect_id": "spectrum:somnolence",
+      "text": "book.spectrum.guidebook.brewing.somnolence.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.brewing.somnolence.page1.title",
+      "text": "book.spectrum.guidebook.brewing.somnolence.page1.text"
+    }
+  ]
+}

@@ -271,10 +271,13 @@ public abstract class LivingEntityMixin {
 	 */
 	@ModifyReturnValue(method = "isSleeping", at = @At("RETURN"))
 	public boolean spectrum$forceSleepingState(boolean original) {
+		if (original)
+			return true;
+
 		if (hasStatusEffect(SpectrumStatusEffects.ETERNAL_SLUMBER) || hasStatusEffect(SpectrumStatusEffects.FATAL_SLUMBER))
 			return !(((LivingEntity) (Object) this) instanceof PlayerEntity);
 
-		return original;
+		return false;
 	}
 
 	@Inject(method = "addStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;Lnet/minecraft/entity/Entity;)Z", at = @At("HEAD"))
@@ -288,6 +291,9 @@ public abstract class LivingEntityMixin {
 			else if (!entity.getType().isIn(SpectrumEntityTypeTags.SLEEP_RESISTANT)) {
 				((StatusEffectInstanceAccessor) effect).setDuration(-1);
 			}
+		}
+		else if (effect.getEffectType() == SpectrumStatusEffects.FATAL_SLUMBER) {
+			((StatusEffectInstanceAccessor) effect).setDuration(Math.max(Math.round(effect.getDuration() / potency), 40));
 		}
 	}
 
@@ -364,7 +370,7 @@ public abstract class LivingEntityMixin {
 
 	@Inject(method = "canHaveStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;)Z", at = @At("RETURN"), cancellable = true)
 	public void spectrum$canHaveStatusEffect(StatusEffectInstance statusEffectInstance, CallbackInfoReturnable<Boolean> cir) {
-		if (cir.getReturnValue() && this.hasStatusEffect(SpectrumStatusEffects.IMMUNITY) && statusEffectInstance.getEffectType().getCategory() == StatusEffectCategory.HARMFUL && !SpectrumStatusEffectTags.isUncurable(statusEffectInstance.getEffectType())) {
+		if (cir.getReturnValue() && this.hasStatusEffect(SpectrumStatusEffects.IMMUNITY) && statusEffectInstance.getEffectType().getCategory() == StatusEffectCategory.HARMFUL && !SpectrumStatusEffectTags.isIncurable(statusEffectInstance.getEffectType())) {
 			cir.setReturnValue(false);
 		}
 	}

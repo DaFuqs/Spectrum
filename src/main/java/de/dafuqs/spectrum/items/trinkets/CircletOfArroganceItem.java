@@ -21,7 +21,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class CircletOfArroganceItem extends SpectrumTrinketItem implements SleepStatusAffectingItem, ExpandedStatTooltip {
+public class CircletOfArroganceItem extends SpectrumTrinketItem implements ExpandedStatTooltip {
 
     private static final int TRIGGER_EVERY_X_TICKS = 240;
     private static final int EFFECT_DURATION = TRIGGER_EVERY_X_TICKS + 10;
@@ -58,14 +58,8 @@ public class CircletOfArroganceItem extends SpectrumTrinketItem implements Sleep
         tooltip.add(Text.translatable("item.spectrum.circlet_of_arrogance.tooltip").formatted(Formatting.GRAY));
     }
 
-
-    @Override
-    public float getSleepResistance(PlayerEntity player, ItemStack stack) {
-        return 0.15F;
-    }
-
     @Override
     public void expandTooltip(ItemStack stack, @Nullable PlayerEntity player, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.translatable("info.spectrum.tooltip.sleep_resist.positive", StringUtils.left(String.valueOf(getSleepResistance(null, stack) * 100), 4)).styled(s -> s.withColor(SpectrumStatusEffects.ETERNAL_SLUMBER_COLOR)));
+        tooltip.add(Text.translatable("info.spectrum.tooltip.sleep_resist.positive", "12.5").styled(s -> s.withColor(SpectrumStatusEffects.ETERNAL_SLUMBER_COLOR)));
     }
 }

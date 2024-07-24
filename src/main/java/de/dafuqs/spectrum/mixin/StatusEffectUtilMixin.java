@@ -27,7 +27,7 @@ public class StatusEffectUtilMixin {
     private static MutableText spectrum$modifyDurationTextInfinite(String string, Operation<MutableText> original, @Local(argsOnly = true) StatusEffectInstance effect) {
         var text = original.call(string);
         if (effect.getEffectType() == SpectrumStatusEffects.ETERNAL_SLUMBER) {
-            return Text.translatable("effect.spectrum.eternal_slumber.duration", text);
+            return Text.translatable("effect.spectrum.eternal_slumber.duration_inf");
         }
         return text;
     }

@@ -136,13 +136,14 @@ public class SpectrumStatusEffects {
 	 */
 	public static final StatusEffect SOMNOLENCE = registerStatusEffect("somnolence", new SleepStatusEffect(StatusEffectCategory.NEUTRAL, 0.667F, 0xae7bec));
 
-
 	/**
-	 * NOT YET IMPLEMENTED
-	 * <p>
-	 * TODO: sleep effects
+	 * Like somnolence, but stronger and does not naturally end most of the time.
 	 */
 	public static final StatusEffect ETERNAL_SLUMBER = registerStatusEffect("eternal_slumber", new SleepStatusEffect(StatusEffectCategory.HARMFUL, 2F, ETERNAL_SLUMBER_COLOR));
+
+	/**
+	 * Kills you if it runs out naturally.
+	 */
 	public static final StatusEffect FATAL_SLUMBER = registerStatusEffect("fatal_slumber", new SleepStatusEffect(StatusEffectCategory.HARMFUL, 2F, 0x8136c2));
 
 

@@ -16,6 +16,9 @@ import net.minecraft.world.biome.Biome;
 
 import java.util.Map;
 
+/**
+ * I admit that this class is a mess
+ */
 public class DarknessEffects {
 
     public static final float INTERP_TICKS = 160;
@@ -52,8 +55,8 @@ public class DarknessEffects {
                 redTarget = 14 / 255F;
                 greenTarget = 4 / 255F;
                 blueTarget = 27 / 255F;
-                nearTarget = -2F;
-                farTarget = 0.125F;
+                nearTarget = -10F;
+                farTarget = 0.25F;
                 forceFogEffects = true;
             }
             else if (camera.hasStatusEffect(SpectrumStatusEffects.ETERNAL_SLUMBER)) {
@@ -80,6 +83,8 @@ public class DarknessEffects {
                 forceFogEffects = true;
             }
             else {
+                sleepAfflicted = false;
+
                 blendTarget = 0;
                 redTarget = 0;
                 greenTarget = 0;
@@ -116,7 +121,7 @@ public class DarknessEffects {
 
 
         isInDarkenedBiome = INTERP_MULTIPLIERS.containsKey(biome.getKey().orElse(null));
-        if (isInDarkenedBiome) {
+        if (isInDarkenedBiome || sleepAfflicted) {
             if (darkenTicks < INTERP_TICKS) {
                 darkenTicks++;
             }

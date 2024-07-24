@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "type": "spectrum:gated_crafting_shaped",
   "pattern": [
     "MMM",
     "MMM",

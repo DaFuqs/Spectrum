@@ -14,7 +14,7 @@ import net.minecraft.world.*;
 
 import java.util.*;
 
-public class InkConvertingRecipe extends GatedSpectrumRecipe {
+public class InkConvertingRecipe extends GatedSpectrumRecipe<Inventory> {
 	
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("midgame/place_color_picker");
 	protected static final List<Item> INPUT_ITEMS = new ArrayList<>();

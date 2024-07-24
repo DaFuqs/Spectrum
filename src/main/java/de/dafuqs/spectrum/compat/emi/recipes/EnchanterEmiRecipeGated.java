@@ -17,7 +17,7 @@ import net.minecraft.util.*;
 
 import java.util.stream.*;
 
-public class EnchanterEmiRecipeGated extends GatedSpectrumEmiRecipe<GatedSpectrumRecipe> {
+public class EnchanterEmiRecipeGated extends GatedSpectrumEmiRecipe<GatedSpectrumRecipe<?>> {
 	private final static Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/container/enchanter.png");
 	private final Text description;
 	private final int craftingTime;
@@ -40,8 +40,8 @@ public class EnchanterEmiRecipeGated extends GatedSpectrumEmiRecipe<GatedSpectru
 		}
 		inputs.add(EmiStack.of(KnowledgeGemItem.getKnowledgeDropStackWithXP(recipe.getRequiredExperience(), true)));
 	}
-	
-	private EnchanterEmiRecipeGated(EmiRecipeCategory category, GatedSpectrumRecipe recipe, Text description, int craftingTime) {
+
+	private EnchanterEmiRecipeGated(EmiRecipeCategory category, GatedSpectrumRecipe<?> recipe, Text description, int craftingTime) {
 		super(category, recipe, 132, 80);
 		this.craftingTime = craftingTime;
 		this.description = description;

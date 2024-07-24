@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.registries;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.recipe.anvil_crushing.*;
 import de.dafuqs.spectrum.recipe.cinderhearth.*;
+import de.dafuqs.spectrum.recipe.crafting.*;
 import de.dafuqs.spectrum.recipe.crystallarieum.*;
 import de.dafuqs.spectrum.recipe.enchanter.*;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.*;
@@ -18,6 +19,11 @@ import net.minecraft.recipe.*;
 import net.minecraft.registry.*;
 
 public class SpectrumRecipeTypes {
+
+	public static final String SHAPED_GATED_CRAFTING_RECIPE_ID = "gated_crafting_shaped";
+	public static final String SHAPELESS_GATED_CRAFTING_RECIPE_ID = "gated_crafting_shapeless";
+	public static RecipeSerializer<ShapedGatedCraftingRecipe> SHAPED_GATED_CRAFTING_RECIPE_SERIALIZER;
+	public static RecipeSerializer<ShapelessGatedCraftingRecipe> SHAPELESS_GATED_CRAFTING_RECIPE_SERIALIZER;
 	
 	public static final String SHAPED_PEDESTAL_RECIPE_ID = "pedestal";
 	public static final String SHAPELESS_PEDESTAL_RECIPE_ID = "pedestal_shapeless";
@@ -107,10 +113,13 @@ public class SpectrumRecipeTypes {
 	}
 	
 	public static void registerSerializer() {
+		SHAPED_GATED_CRAFTING_RECIPE_SERIALIZER = registerSerializer(SHAPED_GATED_CRAFTING_RECIPE_ID, new ShapedGatedCraftingRecipeSerializer(ShapedGatedCraftingRecipe::new));
+		SHAPELESS_GATED_CRAFTING_RECIPE_SERIALIZER = registerSerializer(SHAPELESS_GATED_CRAFTING_RECIPE_ID, new ShapelessGatedCraftingRecipeSerializer(ShapelessGatedCraftingRecipe::new));
+
 		SHAPED_PEDESTAL_RECIPE_SERIALIZER = registerSerializer(SHAPED_PEDESTAL_RECIPE_ID, new ShapedPedestalRecipeSerializer(ShapedPedestalRecipe::new));
 		SHAPELESS_PEDESTAL_RECIPE_SERIALIZER = registerSerializer(SHAPELESS_PEDESTAL_RECIPE_ID, new ShapelessPedestalRecipeSerializer(ShapelessPedestalRecipe::new));
 		PEDESTAL = registerRecipeType(SHAPED_PEDESTAL_RECIPE_ID);
-		
+
 		ANVIL_CRUSHING_RECIPE_SERIALIZER = registerSerializer(ANVIL_CRUSHING_ID, new AnvilCrushingRecipeSerializer(AnvilCrushingRecipe::new));
 		ANVIL_CRUSHING = registerRecipeType(ANVIL_CRUSHING_ID);
 		

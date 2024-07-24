@@ -14,7 +14,7 @@ import net.minecraft.world.*;
 
 import java.util.*;
 
-public class BookGatedRecipePage<T extends GatedRecipe> extends BookRecipePage<T> implements de.dafuqs.spectrum.interfaces.GatedGuidebookPage {
+public class BookGatedRecipePage<T extends GatedRecipe<?>> extends BookRecipePage<T> implements de.dafuqs.spectrum.interfaces.GatedGuidebookPage {
 	
 	private final Identifier pageType;
 	
@@ -34,8 +34,8 @@ public class BookGatedRecipePage<T extends GatedRecipe> extends BookRecipePage<T
 		BookCondition[] conditions = {condition, new RecipesLoadedAndUnlockedCondition(null, list)};
 		return new BookAndCondition(null, conditions);
 	}
-	
-	public static <T extends GatedRecipe> BookGatedRecipePage<T> fromJson(Identifier pageType, RecipeType<T> recipeType, JsonObject json) {
+
+	public static <T extends GatedRecipe<?>> BookGatedRecipePage<T> fromJson(Identifier pageType, RecipeType<T> recipeType, JsonObject json) {
 		var common = BookRecipePage.commonFromJson(json);
 		var anchor = JsonHelper.getString(json, "anchor", "");
 		var condition = json.has("condition")
@@ -43,8 +43,8 @@ public class BookGatedRecipePage<T extends GatedRecipe> extends BookRecipePage<T
 				: new BookNoneCondition();
 		return new BookGatedRecipePage<>(recipeType, pageType, common.title1(), common.recipeId1(), common.title2(), common.recipeId2(), common.text(), anchor, condition);
 	}
-	
-	public static <T extends GatedRecipe> BookGatedRecipePage<T> fromNetwork(Identifier pageType, RecipeType<T> recipeType, PacketByteBuf buffer) {
+
+	public static <T extends GatedRecipe<?>> BookGatedRecipePage<T> fromNetwork(Identifier pageType, RecipeType<T> recipeType, PacketByteBuf buffer) {
 		var common = BookRecipePage.commonFromNetwork(buffer);
 		var anchor = buffer.readString();
 		var condition = BookCondition.fromNetwork(buffer);

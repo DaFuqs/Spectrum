@@ -24,7 +24,7 @@ import net.minecraft.world.*;
 
 import java.util.*;
 
-public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe {
+public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<Inventory> {
 	
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("midgame/build_spirit_instiller_structure");
 	

@@ -23,7 +23,7 @@ import java.util.*;
  * Making it a non-ticking block entity and also "fermenting" when the game is not running
  * This also means TitrationBarrelRecipes have to calculate their time using real life seconds, instead of game ticks
  */
-public interface ITitrationBarrelRecipe extends GatedRecipe {
+public interface ITitrationBarrelRecipe extends GatedRecipe<Inventory> {
 	
 	Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/titration_barrel");
 	

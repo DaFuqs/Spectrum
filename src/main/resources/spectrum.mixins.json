@@ -91,6 +91,7 @@
     "accessors.ProjectileAttackGoalAccessor",
     "accessors.RecipeManagerAccessor",
     "accessors.ShapedRecipeAccessor",
+    "accessors.ShapelessRecipeSerializerAccessor",
     "accessors.SlimeEntityAccessor",
     "accessors.StatusEffectInstanceAccessor",
     "accessors.TridentEntityAccessor",

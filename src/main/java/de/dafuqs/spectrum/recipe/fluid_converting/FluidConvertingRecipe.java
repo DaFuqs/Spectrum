@@ -10,7 +10,7 @@ import net.minecraft.util.collection.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
-public abstract class FluidConvertingRecipe extends GatedSpectrumRecipe {
+public abstract class FluidConvertingRecipe extends GatedSpectrumRecipe<Inventory> {
 	
 	protected final Ingredient input;
 	protected final ItemStack output;

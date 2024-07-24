@@ -15,7 +15,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public abstract class PotionWorkshopRecipe extends GatedStackSpectrumRecipe {
+public abstract class PotionWorkshopRecipe extends GatedStackSpectrumRecipe<Inventory> {
 	
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/potion_workshop");
 	public static final int[] INGREDIENT_SLOTS = new int[]{2, 3, 4};

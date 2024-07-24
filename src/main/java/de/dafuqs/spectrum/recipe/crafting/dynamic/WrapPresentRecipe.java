@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.recipe.crafting;
+package de.dafuqs.spectrum.recipe.crafting.dynamic;
 
 import de.dafuqs.spectrum.blocks.present.*;
 import de.dafuqs.spectrum.items.*;

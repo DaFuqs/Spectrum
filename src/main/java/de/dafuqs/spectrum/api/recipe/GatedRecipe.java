@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.api.recipe;
 
+import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.progression.*;
 import net.fabricmc.api.*;
 import net.fabricmc.loader.api.*;
@@ -12,26 +13,33 @@ import org.jetbrains.annotations.*;
 
 public interface GatedRecipe<C extends Inventory> extends Recipe<C> {
 	
-	boolean canPlayerCraft(PlayerEntity playerEntity);
-	
 	boolean isSecret();
-	
 	Identifier getRequiredAdvancementIdentifier();
-	
 	Identifier getRecipeTypeUnlockIdentifier();
 	
-	Text getSingleUnlockToastString();
+	String getRecipeTypeShortID();
 	
-	Text getMultipleUnlockToastString();
+	default boolean canPlayerCraft(PlayerEntity playerEntity) {
+		return AdvancementHelper.hasAdvancement(playerEntity, getRecipeTypeUnlockIdentifier())
+				&& AdvancementHelper.hasAdvancement(playerEntity, getRequiredAdvancementIdentifier());
+	}
 	
-	default void registerInToastManager(RecipeType<?> recipeType, GatedRecipe gatedRecipe) {
+	default Text getSingleUnlockToastString() {
+		return Text.translatable("spectrum.toast." + getRecipeTypeShortID() + "_recipe_unlocked.title");
+	}
+	
+	default Text getMultipleUnlockToastString() {
+		return Text.translatable("spectrum.toast." + getRecipeTypeShortID() + "_recipes_unlocked.title");
+	}
+	
+	default void registerInToastManager(RecipeType<?> recipeType, GatedRecipe<C> gatedRecipe) {
 		if (FabricLoader.getInstance().getEnvironmentType() != EnvType.SERVER) {
 			registerInToastManagerClient(recipeType, gatedRecipe);
 		}
 	}
 	
 	@Environment(EnvType.CLIENT)
-	private void registerInToastManagerClient(RecipeType<?> recipeType, GatedRecipe gatedRecipe) {
+	private void registerInToastManagerClient(RecipeType<?> recipeType, GatedRecipe<C> gatedRecipe) {
 		UnlockToastManager.registerGatedRecipe(recipeType, gatedRecipe);
 	}
 	

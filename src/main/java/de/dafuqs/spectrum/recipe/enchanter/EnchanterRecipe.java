@@ -12,7 +12,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
 import net.minecraft.world.*;
 
-public class EnchanterRecipe extends GatedSpectrumRecipe {
+public class EnchanterRecipe extends GatedSpectrumRecipe<Inventory> {
 	
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("midgame/build_enchanting_structure");
 	

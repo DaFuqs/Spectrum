@@ -231,7 +231,7 @@ public class SpectrumCommon implements ModInitializer {
 		//noinspection UnstableApiUsage
 		FluidStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.fluidStorage, SpectrumBlockEntities.FUSION_SHRINE);
 		//noinspection UnstableApiUsage
-		FluidStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.fluidStorage, SpectrumBlockEntities.TITRATION_BARREL);
+		FluidStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.getFluidStorage(), SpectrumBlockEntities.TITRATION_BARREL);
 		
 		// Builtin Resource Packs
 		logInfo("Registering Builtin Resource Packs...");

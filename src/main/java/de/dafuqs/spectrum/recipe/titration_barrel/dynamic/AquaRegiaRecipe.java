@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.recipe.titration_barrel.dynamic;
 import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.recipe.*;
+import de.dafuqs.spectrum.blocks.titration_barrel.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
@@ -96,7 +97,7 @@ public class AquaRegiaRecipe extends SweetenableTitrationBarrelRecipe {
 	}
 	
 	@Override
-	public boolean matches(Inventory inventory, World world) {
+	public boolean matches(TitrationBarrelBlockEntity inventory, World world) {
 		boolean bulbsFound = false;
 		
 		for (int i = 0; i < inventory.size(); i++) {

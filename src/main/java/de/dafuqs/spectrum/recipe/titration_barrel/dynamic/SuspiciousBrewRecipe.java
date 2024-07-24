@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.recipe.titration_barrel.dynamic;
 import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.recipe.*;
+import de.dafuqs.spectrum.blocks.titration_barrel.*;
 import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.food.beverages.properties.*;
@@ -106,7 +107,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 	}
 	
 	@Override
-	public boolean matches(Inventory inventory, World world) {
+	public boolean matches(TitrationBarrelBlockEntity inventory, World world) {
 		boolean flowerFound = false;
 		for (int i = 0; i < inventory.size(); i++) {
 			ItemStack stack = inventory.getStack(i);

@@ -59,7 +59,6 @@ public class TitrationBarrelEmiRecipeGated extends GatedSpectrumEmiRecipe<ITitra
 			widgets.addSlot(outputs.get(0), 100, 5).large(true).recipeContext(this);
 		} else {
 			widgets.addGeneratedSlot(random -> displayedStacks.get((int) (MinecraftClient.getInstance().world.getTime() % displayedStacks.size())), 1, 100, 5).large(true).recipeContext(this);
-			
 		}
 		
 		Text text = TitrationBarrelRecipe.getDurationText(recipe.getMinFermentationTimeHours(), recipe.getFermentationData());

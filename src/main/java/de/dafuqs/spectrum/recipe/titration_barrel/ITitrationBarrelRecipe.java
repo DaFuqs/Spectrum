@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.recipe.titration_barrel;
 
 import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.recipe.*;
+import de.dafuqs.spectrum.blocks.titration_barrel.*;
 import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.food.beverages.properties.*;
@@ -24,7 +24,7 @@ import java.util.*;
  * Making it a non-ticking block entity and also "fermenting" when the game is not running
  * This also means TitrationBarrelRecipes have to calculate their time using real life seconds, instead of game ticks
  */
-public interface ITitrationBarrelRecipe<C extends FluidStackInventory> extends GatedRecipe<C> {
+public interface ITitrationBarrelRecipe extends GatedRecipe<TitrationBarrelBlockEntity> {
 	
 	Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/titration_barrel");
 	
@@ -59,19 +59,19 @@ public interface ITitrationBarrelRecipe<C extends FluidStackInventory> extends G
 			return originalOutputCount;
 		}
 		
-		// Linearly adjust the output count based on angelsShareResultCount
-		float angelsShareResultCount = getAngelsShareResultCount(secondsFermented, temperature);
-		if (angelsShareResultCount > 0) {
-			return Math.max(1, (int) Math.ceil((originalOutputCount - angelsShareResultCount)));
+		// Linearly adjust the output count based on angel's share
+		float angelsShareResultCountMod = getAngelsShareResultCountMod(secondsFermented, temperature);
+		if (angelsShareResultCountMod > 0) {
+			return Math.max(1, (int) Math.ceil((originalOutputCount - angelsShareResultCountMod)));
 		} else {
-			return Math.max(1, (int) Math.floor((originalOutputCount - angelsShareResultCount)));
+			return Math.max(1, (int) Math.floor((originalOutputCount - angelsShareResultCountMod)));
 		}
 	}
 	
 	// the amount of fluid that evaporated while fermenting
 	// the higher the temperature in the biome is, the more evaporates
 	// making colder biomes more desirable
-	default float getAngelsShareResultCount(long secondsFermented, float temperature) {
+	default float getAngelsShareResultCountMod(long secondsFermented, float temperature) {
 		return Math.max(0.1F, temperature / 10F) * TimeHelper.minecraftDaysFromSeconds(secondsFermented) * getAngelsSharePerMcDay();
 	}
 	

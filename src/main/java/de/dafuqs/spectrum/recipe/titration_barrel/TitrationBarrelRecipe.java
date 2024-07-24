@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.recipe.titration_barrel;
 
 import de.dafuqs.matchbooks.recipe.*;
-import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.recipe.*;
+import de.dafuqs.spectrum.blocks.titration_barrel.*;
 import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.food.beverages.properties.*;
@@ -23,7 +23,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class TitrationBarrelRecipe<C extends FluidStackInventory> extends GatedStackSpectrumRecipe<C> implements ITitrationBarrelRecipe<C> {
+public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<TitrationBarrelBlockEntity> implements ITitrationBarrelRecipe {
 	
 	public static final List<Integer> FERMENTATION_DURATION_DISPLAY_TIME_MULTIPLIERS = new ArrayList<>() {{
 		add(1);
@@ -53,7 +53,7 @@ public class TitrationBarrelRecipe<C extends FluidStackInventory> extends GatedS
 	}
 	
 	@Override
-	public boolean matches(FluidStackInventory inventory, World world) {
+	public boolean matches(TitrationBarrelBlockEntity inventory, World world) {
 		SingleVariantStorage<FluidVariant> fluidStorage = inventory.getFluidStorage();
 		if (!this.fluid.test(fluidStorage.variant)) {
 			return false;
@@ -86,7 +86,7 @@ public class TitrationBarrelRecipe<C extends FluidStackInventory> extends GatedS
 	
 	@Override
 	@Deprecated
-	public ItemStack craft(FluidStackInventory inventory, DynamicRegistryManager drm) {
+	public ItemStack craft(TitrationBarrelBlockEntity inventory, DynamicRegistryManager drm) {
 		return getDefaultTap(1).copy();
 	}
 	

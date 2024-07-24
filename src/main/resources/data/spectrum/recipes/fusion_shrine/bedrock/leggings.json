@@ -3,7 +3,9 @@
   "group": "bedrock_armor",
   "time": 1200,
   "experience": 16.0,
-  "fluid": "spectrum:midnight_solution",
+  "fluid": {
+    "fluid": "spectrum:midnight_solution"
+  },
   "copy_nbt": true,
   "ingredients": [
     {

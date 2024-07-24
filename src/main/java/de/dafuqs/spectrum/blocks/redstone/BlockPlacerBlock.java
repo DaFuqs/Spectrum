@@ -1,11 +1,13 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.claims.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
+import net.minecraft.registry.*;
 import net.minecraft.screen.*;
 import net.minecraft.server.world.*;
 import net.minecraft.util.*;
@@ -71,7 +73,9 @@ public class BlockPlacerBlock extends RedstoneInteractionBlock implements BlockE
 				world.syncWorldEvent(WorldEvents.DISPENSER_DISPENSES, pointer.getPos(), 0);
 				world.syncWorldEvent(WorldEvents.DISPENSER_ACTIVATED, pointer.getPos(), pointer.getBlockState().get(BlockPlacerBlock.ORIENTATION).getFacing().getId());
                 world.emitGameEvent(null, GameEvent.BLOCK_PLACE, placementPos);
-			} catch (Exception ignored) {
+			} catch (Exception e) {
+				SpectrumCommon.logError("Block Placer encountered an error placing a block at " + placementPos + " when placing " + Registries.ITEM.getId(blockItem));
+				e.printStackTrace();
 			}
 		} else {
 			world.syncWorldEvent(WorldEvents.DISPENSER_FAILS, pointer.getPos(), 0);

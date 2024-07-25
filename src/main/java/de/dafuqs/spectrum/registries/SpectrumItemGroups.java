@@ -126,6 +126,10 @@ public class SpectrumItemGroups {
 				entries.add(SpectrumItems.GLOVES_OF_DAWNS_GRASP.getFullStack());
 				entries.add(SpectrumItems.RING_OF_PURSUIT);
 				entries.add(SpectrumItems.RING_OF_PURSUIT.getFullStack());
+				entries.add(SpectrumItems.RING_OF_DENSER_STEPS);
+				entries.add(SpectrumItems.RING_OF_DENSER_STEPS.getFullStack());
+				entries.add(SpectrumItems.RING_OF_AERIAL_GRACE);
+				entries.add(SpectrumItems.RING_OF_AERIAL_GRACE.getFullStack());
 				entries.add(SpectrumItems.GLEAMING_PIN);
 				entries.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(SpectrumItems.GLEAMING_PIN));
 				entries.add(SpectrumItems.LESSER_POTION_PENDANT);

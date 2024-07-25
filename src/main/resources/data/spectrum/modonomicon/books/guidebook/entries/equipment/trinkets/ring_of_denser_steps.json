@@ -1,0 +1,37 @@
+{
+  "name": "item.spectrum.ring_of_denser_steps",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/trinkets/ring_of_denser_steps"
+  },
+  "icon": "spectrum:ring_of_denser_steps",
+  "category": "spectrum:equipment",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:equipment/trinkets/base_trinkets",
+      "line_enabled": false
+    },
+    {
+      "entry": "spectrum:equipment/color_picker",
+      "line_enabled": false
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 12,
+  "y": 5,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "item.spectrum.ring_of_denser_steps",
+      "text": "book.spectrum.guidebook.equipment.ring_of_denser_steps.page0.text"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title1": "book.spectrum.guidebook.equipment.ring_of_denser_steps.page1.title",
+      "recipe_id_1": "spectrum:fusion_shrine/trinkets/ring_of_denser_steps",
+      "text": "book.spectrum.guidebook.equipment.ring_of_denser_steps.page1.text"
+    }
+  ]
+}

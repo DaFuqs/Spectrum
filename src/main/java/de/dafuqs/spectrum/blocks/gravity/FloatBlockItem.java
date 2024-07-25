@@ -21,8 +21,8 @@ public class FloatBlockItem extends BlockItem implements GravitableItem {
 	}
 	
 	@Override
-	public float getGravityMod() {
-		return gravityMod;
+	public float getGravityMod(ItemStack stack) {
+		return this.gravityMod;
 	}
 	
 }

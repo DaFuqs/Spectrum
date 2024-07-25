@@ -1,0 +1,30 @@
+{
+  "type": "spectrum:fusion_shrine",
+  "time": 600,
+  "experience": 2.0,
+  "fluid": "spectrum:liquid_crystal",
+  "ingredients": [
+    {
+      "item": "spectrum:fanciful_stone_ring"
+    },
+    {
+      "item": "spectrum:quartz",
+      "count": 8
+    },
+    {
+      "item": "spectrum:stratine_fragments",
+      "count": 8
+    },
+    {
+      "item": "spectrum:stratine_gem"
+    }
+  ],
+  "result": {
+    "item": "spectrum:ring_of_denser_steps"
+  },
+  "required_advancement": "spectrum:unlocks/trinkets/ring_of_denser_steps",
+  "world_conditions": [],
+  "start_crafting_effect": "nothing",
+  "during_crafting_effects": [],
+  "finish_crafting_effect": "single_visual_explosion_on_shrine"
+}

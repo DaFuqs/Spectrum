@@ -116,6 +116,10 @@
     "advancement": "spectrum:lategame/get_killed_while_out_of_deeper_down_bounds",
     "frame": "spectrum:pile_of_poo"
   },
+  {
+    "advancement": "spectrum:lategame/wear_both_gravity_trinkets",
+    "frame": "spectrum:pile_of_poo"
+  },
 
   {
     "advancement": "spectrum:lategame/collect_one_cookbook",

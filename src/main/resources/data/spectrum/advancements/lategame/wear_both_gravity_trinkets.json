@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:ring_of_aerial_grace"
+    },
+    "title": {
+      "translate": "advancements.spectrum.wear_both_gravity_trinkets.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.wear_both_gravity_trinkets.description"
+    }
+  },
+  "parent": "spectrum:lategame/collect_paltaeria",
+  "criteria": {
+    "wearing_both_gravity_trinkets": {
+      "trigger": "spectrum:trinket_change",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:ring_of_aerial_grace",
+              "spectrum:ring_of_denser_steps"
+            ]
+          }
+        ]
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_paltaeria"
+      }
+    }
+  }
+}

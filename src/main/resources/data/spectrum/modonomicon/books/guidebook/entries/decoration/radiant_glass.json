@@ -28,7 +28,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title1": "book.spectrum.guidebook.decoration.radiant_glass.page1.title",
-      "recipe_id_1": "spectrum:pedestal/tier1/radiant_glass",
+      "recipe_id_1": "spectrum:pedestal/tier1/glass/radiant_glass",
       "text": "book.spectrum.guidebook.decoration.radiant_glass.page1.text"
     }
   ]

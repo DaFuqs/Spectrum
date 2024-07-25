@@ -474,11 +474,13 @@ public class SpectrumItems {
 	public static final TakeOffBeltItem TAKE_OFF_BELT = new TakeOffBeltItem(IS.of(1, Rarity.UNCOMMON));
 	public static final Item AZURE_DIKE_BELT = new AzureDikeBeltItem(IS.of(1, Rarity.UNCOMMON));
 	public static final Item AZURE_DIKE_RING = new AzureDikeRingItem(IS.of(1, Rarity.UNCOMMON));
-	public static final AzureDikeAmuletItem SHIELDGRASP_AMULET = new AzureDikeAmuletItem(IS.of(1, Rarity.UNCOMMON));
-	public static final ExtraHealthRingItem HEARTSINGERS_REWARD = new ExtraHealthRingItem(IS.of(1, Rarity.UNCOMMON));
-	public static final ExtraReachGlovesItem GLOVES_OF_DAWNS_GRASP = new ExtraReachGlovesItem(IS.of(1, Rarity.UNCOMMON));
-	public static final ExtraMiningSpeedRingItem RING_OF_PURSUIT = new ExtraMiningSpeedRingItem(IS.of(1, Rarity.UNCOMMON));
-	
+	public static final InkDrainTrinketItem SHIELDGRASP_AMULET = new AzureDikeAmuletItem(IS.of(1, Rarity.UNCOMMON));
+	public static final InkDrainTrinketItem HEARTSINGERS_REWARD = new ExtraHealthRingItem(IS.of(1, Rarity.UNCOMMON));
+	public static final InkDrainTrinketItem GLOVES_OF_DAWNS_GRASP = new ExtraReachGlovesItem(IS.of(1, Rarity.UNCOMMON));
+	public static final InkDrainTrinketItem RING_OF_PURSUIT = new ExtraMiningSpeedRingItem(IS.of(1, Rarity.UNCOMMON));
+	public static final InkDrainTrinketItem RING_OF_DENSER_STEPS = new RingOfDenserStepsItem(IS.of(1, Rarity.UNCOMMON));
+	public static final InkDrainTrinketItem RING_OF_AERIAL_GRACE = new RingOfAerialGraceItem(IS.of(1, Rarity.UNCOMMON));
+
 	public static final InkFlaskItem INK_FLASK = new InkFlaskItem(IS.of(1), 64 * 64 * 100); // 64 stacks of pigments (1 pigment => 100 energy)
 	public static final InkAssortmentItem INK_ASSORTMENT = new InkAssortmentItem(IS.of(1), 64 * 100);
 	public static final PigmentPaletteItem PIGMENT_PALETTE = new PigmentPaletteItem(IS.of(1, Rarity.UNCOMMON), 64 * 64 * 100);
@@ -938,6 +940,8 @@ public class SpectrumItems {
 		register("heartsingers_reward", HEARTSINGERS_REWARD, DyeColor.PINK);
 		register("gloves_of_dawns_grasp", GLOVES_OF_DAWNS_GRASP, DyeColor.YELLOW);
 		register("ring_of_pursuit", RING_OF_PURSUIT, DyeColor.MAGENTA);
+		register("ring_of_denser_steps", RING_OF_DENSER_STEPS, DyeColor.BROWN);
+		register("ring_of_aerial_grace", RING_OF_AERIAL_GRACE, DyeColor.WHITE);
 		register("gleaming_pin", GLEAMING_PIN, DyeColor.YELLOW);
 		register("lesser_potion_pendant", LESSER_POTION_PENDANT, DyeColor.PINK);
 		register("greater_potion_pendant", GREATER_POTION_PENDANT, DyeColor.PINK);

@@ -1,7 +1,7 @@
 {
   "type": "spectrum:enchanter",
-  "time": 300,
-  "required_experience": 100,
+  "time": 1000,
+  "required_experience": 1000,
   "ingredients": [
     {
       "item": "minecraft:book"

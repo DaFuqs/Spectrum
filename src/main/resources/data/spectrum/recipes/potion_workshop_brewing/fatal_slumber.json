@@ -2,13 +2,13 @@
   "type": "spectrum:potion_workshop_brewing",
   "group": "sleep_potions",
   "ingredient1": {
-    "item": "minecraft:nether_wart"
+    "item": "spectrum:nectardew_burgeon"
   },
   "ingredient2": {
     "item": "spectrum:nectardew_burgeon"
   },
   "ingredient3": {
-    "item": "spectrum:spectral_shard"
+    "item": "spectrum:nectardew_burgeon"
   },
   "effect": "spectrum:fatal_slumber",
   "base_duration_ticks": 200,

@@ -2,10 +2,10 @@
   "type": "spectrum:potion_workshop_brewing",
   "group": "sleep_potions",
   "ingredient1": {
-    "item": "minecraft:nether_wart"
+    "item": "spectrum:nectardew_burgeon"
   },
   "ingredient2": {
-    "item": "spectrum:nectardew_burgeon"
+    "item": "spectrum:jadeite_petals"
   },
   "ingredient3": {
     "item": "spectrum:effulgent_feather"

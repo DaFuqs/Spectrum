@@ -4,9 +4,9 @@
     "item": "spectrum:raw_bloodstone"
   },
   "growth_stage_states": [
-    "spectrum:small_bloodstone_bud",
-    "spectrum:large_bloodstone_bud",
-    "spectrum:bloodstone_cluster"
+    "spectrum:small_bloodstone_bud[facing=up]",
+    "spectrum:large_bloodstone_bud[facing=up]",
+    "spectrum:bloodstone_cluster[facing=up]"
   ],
   "seconds_per_growth_stage": 300,
   "ink_color": "spectrum:red",

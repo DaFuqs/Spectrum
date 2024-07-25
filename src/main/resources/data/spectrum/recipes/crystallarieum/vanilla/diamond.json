@@ -4,9 +4,9 @@
     "item": "minecraft:diamond"
   },
   "growth_stage_states": [
-    "spectrum:small_diamond_bud",
-    "spectrum:large_diamond_bud",
-    "spectrum:diamond_cluster"
+    "spectrum:small_diamond_bud[facing=up]",
+    "spectrum:large_diamond_bud[facing=up]",
+    "spectrum:diamond_cluster[facing=up]"
   ],
   "seconds_per_growth_stage": 480,
   "ink_color": "spectrum:cyan",

@@ -4,9 +4,9 @@
     "item": "spectrum:bismuth_flake"
   },
   "growth_stage_states": [
-    "spectrum:small_bismuth_bud",
-    "spectrum:large_bismuth_bud",
-    "spectrum:bismuth_cluster"
+    "spectrum:small_bismuth_bud[facing=up]",
+    "spectrum:large_bismuth_bud[facing=up]",
+    "spectrum:bismuth_cluster[facing=up]"
   ],
   "seconds_per_growth_stage": 120,
   "ink_color": "spectrum:cyan",

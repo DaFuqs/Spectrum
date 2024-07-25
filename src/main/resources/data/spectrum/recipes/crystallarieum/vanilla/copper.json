@@ -4,9 +4,9 @@
     "item": "minecraft:raw_copper"
   },
   "growth_stage_states": [
-    "spectrum:small_copper_bud",
-    "spectrum:large_copper_bud",
-    "spectrum:copper_cluster"
+    "spectrum:small_copper_bud[facing=up]",
+    "spectrum:large_copper_bud[facing=up]",
+    "spectrum:copper_cluster[facing=up]"
   ],
   "seconds_per_growth_stage": 60,
   "ink_color": "spectrum:brown",

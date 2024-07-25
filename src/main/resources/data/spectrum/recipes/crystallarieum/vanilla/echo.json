@@ -4,9 +4,9 @@
     "item": "minecraft:echo_shard"
   },
   "growth_stage_states": [
-    "spectrum:small_echo_bud",
-    "spectrum:large_echo_bud",
-    "spectrum:echo_cluster"
+    "spectrum:small_echo_bud[facing=up]",
+    "spectrum:large_echo_bud[facing=up]",
+    "spectrum:echo_cluster[facing=up]"
   ],
   "seconds_per_growth_stage": 960,
   "ink_color": "spectrum:brown",

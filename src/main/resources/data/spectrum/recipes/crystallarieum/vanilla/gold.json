@@ -4,9 +4,9 @@
     "item": "minecraft:raw_gold"
   },
   "growth_stage_states": [
-    "spectrum:small_gold_bud",
-    "spectrum:large_gold_bud",
-    "spectrum:gold_cluster"
+    "spectrum:small_gold_bud[facing=up]",
+    "spectrum:large_gold_bud[facing=up]",
+    "spectrum:gold_cluster[facing=up]"
   ],
   "seconds_per_growth_stage": 60,
   "ink_color": "spectrum:brown",

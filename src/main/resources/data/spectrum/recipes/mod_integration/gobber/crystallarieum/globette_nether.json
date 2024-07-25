@@ -4,9 +4,9 @@
     "item": "gobber2:gobber2_globette_nether"
   },
   "growth_stage_states": [
-    "spectrum:small_globette_nether_bud",
-    "spectrum:large_globette_nether_bud",
-    "spectrum:globette_nether_cluster"
+    "spectrum:small_globette_nether_bud[facing=up]",
+    "spectrum:large_globette_nether_bud[facing=up]",
+    "spectrum:globette_nether_cluster[facing=up]"
   ],
   "seconds_per_growth_stage": 120,
   "ink_color": "spectrum:red",

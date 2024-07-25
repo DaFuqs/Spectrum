@@ -6,17 +6,17 @@ import net.minecraft.entity.player.*;
 import net.minecraft.world.*;
 
 public class LagoonFishingBobberEntity extends SpectrumFishingBobberEntity {
-	
-	public LagoonFishingBobberEntity(EntityType<? extends LagoonFishingBobberEntity> type, World world, int luckOfTheSeaLevel, int lureLevel, int exuberanceLevel, int bigCatchLevel, boolean inventoryInsertion, boolean foundry) {
-		super(type, world, luckOfTheSeaLevel, lureLevel, exuberanceLevel, bigCatchLevel, inventoryInsertion, foundry);
+
+	public LagoonFishingBobberEntity(EntityType<? extends LagoonFishingBobberEntity> type, World world, int luckOfTheSeaLevel, int lureLevel, int exuberanceLevel, int bigCatchLevel, int serendipityReelLevel, boolean inventoryInsertion, boolean foundry) {
+		super(type, world, luckOfTheSeaLevel, lureLevel, exuberanceLevel, bigCatchLevel, serendipityReelLevel, inventoryInsertion, foundry);
 	}
 	
 	public LagoonFishingBobberEntity(EntityType<? extends LagoonFishingBobberEntity> entityType, World world) {
 		super(entityType, world);
 	}
-	
-	public LagoonFishingBobberEntity(PlayerEntity thrower, World world, int luckOfTheSeaLevel, int lureLevel, int exuberanceLevel, int bigCatchLevel, boolean inventoryInsertion, boolean foundry) {
-		super(SpectrumEntityTypes.LAGOON_FISHING_BOBBER, thrower, world, luckOfTheSeaLevel, lureLevel, exuberanceLevel, bigCatchLevel, inventoryInsertion, foundry);
+
+	public LagoonFishingBobberEntity(PlayerEntity thrower, World world, int luckOfTheSeaLevel, int lureLevel, int exuberanceLevel, int bigCatchLevel, int serendipityReelLevel, boolean inventoryInsertion, boolean foundry) {
+		super(SpectrumEntityTypes.LAGOON_FISHING_BOBBER, thrower, world, luckOfTheSeaLevel, lureLevel, exuberanceLevel, bigCatchLevel, serendipityReelLevel, inventoryInsertion, foundry);
 	}
 	
 }

@@ -7,31 +7,31 @@ import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
 
-public class BigCatchEnchantment extends SpectrumEnchantment {
-	
-	public BigCatchEnchantment(Rarity weight, Identifier unlockAdvancementIdentifier, EquipmentSlot... slotTypes) {
+public class SerendipityReelEnchantment extends SpectrumEnchantment {
+
+	public SerendipityReelEnchantment(Rarity weight, Identifier unlockAdvancementIdentifier, EquipmentSlot... slotTypes) {
 		super(weight, EnchantmentTarget.FISHING_ROD, slotTypes, unlockAdvancementIdentifier);
 	}
-	
+
 	@Override
 	public int getMinPower(int level) {
-		return 20;
+		return 40;
 	}
-	
+
 	@Override
 	public int getMaxPower(int level) {
-		return super.getMinPower(level) + 30;
+		return super.getMinPower(level) + 80;
 	}
-	
+
 	@Override
 	public int getMaxLevel() {
-		return SpectrumCommon.CONFIG.BigCatchMaxLevel;
+		return SpectrumCommon.CONFIG.SerendipityReelMaxLevel;
 	}
-	
+
 	@Override
 	public boolean isAcceptableItem(ItemStack stack) {
 		return stack.getItem() instanceof SpectrumFishingRodItem;
 	}
-	
-	
+
+
 }

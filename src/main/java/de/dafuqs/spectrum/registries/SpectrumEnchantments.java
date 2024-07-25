@@ -25,6 +25,7 @@ public class SpectrumEnchantments {
 	public static final SpectrumEnchantment STEADFAST = new SteadfastEnchantment(Enchantment.Rarity.COMMON, SpectrumCommon.locate("unlocks/enchantments/steadfast"), EquipmentSlot.MAINHAND); // ItemStacks with this enchantment are not destroyed by cactus, fire, lava, ...
 	public static final SpectrumEnchantment INDESTRUCTIBLE = new IndestructibleEnchantment(Enchantment.Rarity.RARE, SpectrumCommon.locate("unlocks/enchantments/indestructible"), EquipmentSlot.MAINHAND); // Make tools not use up durability
 	public static final SpectrumEnchantment BIG_CATCH = new BigCatchEnchantment(Enchantment.Rarity.RARE, SpectrumCommon.locate("unlocks/enchantments/big_catch"), EquipmentSlot.MAINHAND); // Increase the chance to reel in entities instead of fishing loot
+	public static final SpectrumEnchantment SERENDIPITY_REEL = new SerendipityReelEnchantment(Enchantment.Rarity.RARE, SpectrumCommon.locate("unlocks/enchantments/serendipity_reel"), EquipmentSlot.MAINHAND); // Increase luck when fishing
 	public static final SpectrumEnchantment RAZING = new RazingEnchantment(Enchantment.Rarity.UNCOMMON, SpectrumCommon.locate("unlocks/enchantments/razing_usage"), EquipmentSlot.MAINHAND); // increased mining speed for very hard blocks
 	public static final SpectrumEnchantment INEXORABLE = new InexorableEnchantment(Enchantment.Rarity.VERY_RARE, SpectrumCommon.locate("unlocks/enchantments/inexorable"), EquipmentSlot.MAINHAND, EquipmentSlot.CHEST, EquipmentSlot.OFFHAND); // prevents mining & movement slowdowns
 	
@@ -76,6 +77,9 @@ public class SpectrumEnchantments {
 		}
 		if (SpectrumCommon.CONFIG.BigCatchEnchantmentEnabled) {
 			register("big_catch", BIG_CATCH);
+		}
+		if (SpectrumCommon.CONFIG.SerendipityReelEnchantmentEnabled) {
+			register("serendipity_reel", SERENDIPITY_REEL);
 		}
 		if (SpectrumCommon.CONFIG.RazingEnchantmentEnabled) {
 			register("razing", RAZING);

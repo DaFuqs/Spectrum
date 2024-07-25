@@ -7,6 +7,7 @@ import net.minecraft.state.property.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 
+import java.lang.ref.WeakReference;
 import java.util.*;
 
 /**
@@ -15,12 +16,12 @@ import java.util.*;
 public final class BlockReference {
 
     private BlockState state;
-    private final Optional<BlockEntity> be;
+    private final Optional<WeakReference<BlockEntity>> be;
     public final BlockPos pos;
 
     private BlockReference(BlockState state, Optional<BlockEntity> be, BlockPos pos) {
         this.state = state;
-        this.be = be;
+        this.be = be.map(WeakReference::new);
         this.pos = pos;
     }
 
@@ -73,7 +74,7 @@ public final class BlockReference {
     }
 
     public Optional<BlockEntity> tryGetBlockEntity() {
-        return be;
+        return be.map(WeakReference::get);
     }
 
     public void update(WorldAccess world, int flags) {

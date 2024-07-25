@@ -1,14 +1,17 @@
 package de.dafuqs.spectrum.blocks.deeper_down.flora;
 
+import de.dafuqs.spectrum.blocks.SpreadableFloraBlock;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
 
-public class AshFloraBlock extends FernBlock { // TODO: you sure? that makes them turn into ferns when bonemealed. ☜(ﾟヮﾟ☜)
+public class AshFloraBlock extends SpreadableFloraBlock {
 	
 	public AshFloraBlock(Settings settings) {
-		super(settings);
+		super(7, settings);
 	}
 	
 	@Override

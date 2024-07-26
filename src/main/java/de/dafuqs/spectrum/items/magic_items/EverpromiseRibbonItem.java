@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.items.magic_items;
 import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.mob.*;
@@ -26,6 +27,9 @@ public class EverpromiseRibbonItem extends Item {
 	public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
 		World world = user.getWorld();
 		if (!GenericClaimModsCompat.canInteract(world, entity, user)) {
+			return ActionResult.FAIL;
+		}
+		if (entity.getType().isIn(SpectrumEntityTypeTags.EVERPROMISE_RIBBON_BLACKLISTED)) {
 			return ActionResult.FAIL;
 		}
 		

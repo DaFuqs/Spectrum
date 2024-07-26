@@ -13,6 +13,7 @@ public class SpectrumEntityTypeTags {
 	
 	public static final TagKey<EntityType<?>> STAFF_OF_REMEMBRANCE_BLACKLISTED = getReference("staff_of_remembrance_blacklisted");
 	public static final TagKey<EntityType<?>> SPAWNER_MANIPULATION_BLACKLISTED = getReference("spawner_manipulation_blacklisted");
+	public static final TagKey<EntityType<?>> EVERPROMISE_RIBBON_BLACKLISTED = getReference("everpromise_ribbon_blacklisted");
 	
 	
 	private static TagKey<EntityType<?>> getReference(String id) {

@@ -1,19 +1,8 @@
 {
   "criteria": {
-    "gotten_gilded_book_in_preservation_ruins": {
+    "gotten_gilded_book": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
-        "player": [
-          {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "location": {
-                "structure": "spectrum:preservation_ruins"
-              }
-            }
-          }
-        ],
         "items": [
           {
             "items": [

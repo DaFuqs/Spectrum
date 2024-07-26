@@ -34,8 +34,8 @@ public class BottomlessBundleBlockEntity extends BlockEntity {
 
 		@Override
 		public long insert(ItemVariant insertedVariant, long maxAmount, TransactionContext transaction) {
-			if (isVoiding) return maxAmount;
-			return super.insert(insertedVariant, maxAmount, transaction);
+			long inserted = super.insert(insertedVariant, maxAmount, transaction);
+			return isVoiding ? maxAmount : inserted;
 		}
 		
 		@Override

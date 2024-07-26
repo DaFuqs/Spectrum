@@ -4173,6 +4173,11 @@
       "radius": 12
     },
     {
+      "block": "spectrum:radiant_glass_pane",
+      "color": "#shimmerstone",
+      "radius": 12
+    },
+    {
       "block": "spectrum:radiant_semi_permeable_glass",
       "color": "#shimmerstone",
       "radius": 12
@@ -5351,6 +5356,11 @@
       "state": {
         "humming": false
       },
+      "color": "#light_blue",
+      "radius": 14
+    },
+    {
+      "block": "spectrum:waxed_hummingstone",
       "color": "#light_blue",
       "radius": 14
     },

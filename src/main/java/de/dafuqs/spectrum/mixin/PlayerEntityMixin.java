@@ -217,6 +217,15 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 
 		return original;
 	}
+
+	@WrapOperation(method = "updatePose", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;setPose(Lnet/minecraft/entity/EntityPose;)V"))
+	public void spectrum$forceSwimmingState(PlayerEntity instance, EntityPose entityPose, Operation<Void> original) {
+		if (instance.hasStatusEffect(SpectrumStatusEffects.FATAL_SLUMBER) && wouldPoseNotCollide(EntityPose.SWIMMING)) {
+			instance.setPose(EntityPose.SWIMMING);
+			return;
+		}
+		original.call(instance, entityPose);
+	}
 	
 	@Unique
 	private boolean isInexorableActive() {

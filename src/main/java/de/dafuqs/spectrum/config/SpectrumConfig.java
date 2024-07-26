@@ -127,6 +127,7 @@ public class SpectrumConfig implements ConfigData {
 	public boolean SteadfastEnchantmentEnabled = true;
 	public boolean IndestructibleEnchantmentEnabled = true;
 	public boolean BigCatchEnchantmentEnabled = true;
+	public boolean SerendipityReelEnchantmentEnabled = true;
 	public boolean RazingEnchantmentEnabled = true;
 	public boolean InexorableEnchantmentEnabled = true;
 	
@@ -139,7 +140,8 @@ public class SpectrumConfig implements ConfigData {
 	public int CloversFavorMaxLevel = 3;
 	public int TightGripMaxLevel = 2;
 	public int BigCatchMaxLevel = 3;
-	
+	public int SerendipityReelMaxLevel = 2;
+
 	@Comment("Exuberance increases experience gained when killing mobs. With 25% bonus XP and 5 levels this would mean 2,25x XP on max level")
 	public int ExuberanceMaxLevel = 5;
 	public float ExuberanceBonusExperiencePercentPerLevel = 0.25F;
@@ -207,7 +209,7 @@ public class SpectrumConfig implements ConfigData {
 	public int AzureDikeHudOffsetY = 0;
 	public int AzureDikeHudOffsetYWithArmor = -10;
 	public int AzureDikeHudOffsetYForEachRowOfExtraHearts = -10;
-	
+
 	@Override
 	public void validatePostLoad() {
 		if (VanillaRecipeCraftingTimeTicks <= 0) {
@@ -248,6 +250,9 @@ public class SpectrumConfig implements ConfigData {
 		}
 		if (BigCatchMaxLevel <= 0) {
 			BigCatchMaxLevel = 3;
+		}
+		if (SerendipityReelMaxLevel <= 0) {
+			SerendipityReelMaxLevel = 2;
 		}
 		
 		if (ShootingStarWorlds.isEmpty()) {

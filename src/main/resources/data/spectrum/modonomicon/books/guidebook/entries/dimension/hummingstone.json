@@ -33,11 +33,6 @@
       "text": "book.spectrum.guidebook.dimension.hummingstone.page1.text"
     },
     {
-      "type": "spectrum:cinderhearth_smelting",
-      "text": "book.spectrum.guidebook.dimension.hummingstone.page2.text",
-      "recipe_id_1": "spectrum:cinderhearth/clear_hummingstone_glass"
-    },
-    {
       "type": "modonomicon:spotlight",
       "condition": {
         "type": "modonomicon:advancement",

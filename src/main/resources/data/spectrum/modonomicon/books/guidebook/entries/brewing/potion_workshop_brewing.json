@@ -148,6 +148,42 @@
         "advancement_id": "spectrum:unlocks/potions/scarred"
       },
       "recipe_id_1": "spectrum:potion_workshop_brewing/scarred"
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page15.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/potions/weak_sleep_effects"
+      },
+      "recipe_id_1": "spectrum:potion_workshop_brewing/calming"
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page16.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/potions/weak_sleep_effects"
+      },
+      "recipe_id_1": "spectrum:potion_workshop_brewing/somnolence"
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page17.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/potions/strong_sleep_effects"
+      },
+      "recipe_id_1": "spectrum:potion_workshop_brewing/eternal_slumber"
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page18.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/potions/strong_sleep_effects"
+      },
+      "recipe_id_1": "spectrum:potion_workshop_brewing/fatal_slumber"
     }
   ]
 }

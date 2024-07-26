@@ -192,6 +192,7 @@ public class SpectrumCommon implements ModInitializer {
 		logInfo("Adding to Fabric's Registries...");
 		SpectrumFlammableBlocks.register();
 		SpectrumStrippableBlocks.register();
+		SpectrumWaxableBlocks.register();
 		SpectrumTillableBlocks.register();
 		SpectrumCompostableBlocks.register();
 		
@@ -219,6 +220,8 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumStructurePoolElementTypes.register();
 		logInfo("Registering Event Listeners...");
 		SpectrumEventListeners.register();
+		logInfo("Registering Path Node Types...");
+		SpectrumPathNodeTypes.register();
 		
 		//noinspection UnstableApiUsage
 		ItemStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.storage, SpectrumBlockEntities.BOTTOMLESS_BUNDLE);

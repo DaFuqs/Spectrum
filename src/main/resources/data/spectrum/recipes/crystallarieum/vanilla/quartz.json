@@ -4,9 +4,9 @@
     "item": "minecraft:quartz"
   },
   "growth_stage_states": [
-    "spectrum:small_quartz_bud",
-    "spectrum:large_quartz_bud",
-    "spectrum:quartz_cluster"
+    "spectrum:small_quartz_bud[facing=up]",
+    "spectrum:large_quartz_bud[facing=up]",
+    "spectrum:quartz_cluster[facing=up]"
   ],
   "seconds_per_growth_stage": 180,
   "ink_color": "spectrum:cyan",

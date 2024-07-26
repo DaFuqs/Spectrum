@@ -33,22 +33,22 @@ public class GlassArrowEntityRenderer extends EntityRenderer<GlassArrowEntity> {
 
     private void renderAsItemStack(PersistentProjectileEntity entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, ItemStack itemStack) {
         BakedModel bakedModel = this.itemRenderer.getModel(itemStack, entity.getWorld(), null, entity.getId());
-        boolean hasDepth = bakedModel.hasDepth();
-    
+
         matrixStack.push();
         matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(MathHelper.lerp(tickDelta, entity.prevYaw, entity.getYaw()) - 90.0F));
         matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(getAdditionalPitch() + MathHelper.lerp(tickDelta, entity.prevPitch, entity.getPitch())));
-    
-        float yScale = bakedModel.getTransformation().getTransformation(ModelTransformationMode.GROUND).scale.y();
-        matrixStack.translate(0.0, (0.25F * yScale), 0.0);
-    
+
+        Transformation transformation = bakedModel.getTransformation().getTransformation(ModelTransformationMode.GROUND);
+        float scaleX = transformation.scale.x();
+        float scaleY = transformation.scale.y();
+        float scaleZ = transformation.scale.z();
+
+        matrixStack.translate(0.0, (0.25F * scaleY), 0.0);
+
         float scale = getScale();
         matrixStack.scale(scale, scale, scale);
-    
-        float scaleX = bakedModel.getTransformation().ground.scale.x();
-        float scaleY = bakedModel.getTransformation().ground.scale.y();
-        float scaleZ = bakedModel.getTransformation().ground.scale.z();
-        if (!hasDepth) {
+
+        if (!bakedModel.hasDepth()) {
             float r = -0.0F * (float) (0) * 0.5F * scaleX;
             float s = -0.0F * (float) (0) * 0.5F * scaleY;
             float t = -0.09375F * (float) (0) * 0.5F * scaleZ;

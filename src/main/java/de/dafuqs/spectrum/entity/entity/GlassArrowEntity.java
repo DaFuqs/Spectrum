@@ -147,7 +147,7 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 		if (type == HitResult.Type.BLOCK) {
 			BlockPos hitPos = ((BlockHitResult) hitResult).getBlockPos();
 			BlockState state = this.getWorld().getBlockState(hitPos);
-			if (state.isSolidBlock(this.getWorld(), hitPos)) {
+			if (!state.isSolidBlock(this.getWorld(), hitPos)) {
 				return;
 			}
 		}

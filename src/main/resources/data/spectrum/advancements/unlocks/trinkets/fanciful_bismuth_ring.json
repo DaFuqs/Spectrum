@@ -11,12 +11,19 @@
       "conditions": {
         "advancement_identifier": "spectrum:unlocks/trinkets/neat_ring"
       }
+    },
+    "unlocked_ring_of_aerial_grace": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/trinkets/ring_of_aerial_grace"
+      }
     }
   },
   "requirements": [
     [
       "unlocked_ring_of_pursuit",
-      "unlocked_neat_ring"
+      "unlocked_neat_ring",
+      "unlocked_ring_of_aerial_grace"
     ]
   ]
 }

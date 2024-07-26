@@ -1,0 +1,6 @@
+{
+  "particle_type": "spectrum:falling_ash",
+  "gui_texture": "spectrum:ash_flake_0",
+  "unlock_identifier": "spectrum:hidden/visit_dd_biomes/howling_spires",
+  "supports_coloring": false
+}

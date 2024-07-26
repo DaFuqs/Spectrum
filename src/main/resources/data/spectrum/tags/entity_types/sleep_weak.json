@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "#minecraft:undead",
     "minecraft:allay",
     "minecraft:vex",
     "minecraft:cow",

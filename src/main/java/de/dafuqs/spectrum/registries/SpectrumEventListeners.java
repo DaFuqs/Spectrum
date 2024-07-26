@@ -238,6 +238,27 @@ public class SpectrumEventListeners {
 				}
 			}
 		});
+
+		EntitySleepEvents.ALLOW_SLEEP_TIME.register((player, sleepingPos, vanillaResult) -> {
+			if (player.hasStatusEffect(SpectrumStatusEffects.SOMNOLENCE))
+				return ActionResult.SUCCESS;
+
+			return ActionResult.PASS;
+		});
+
+		EntitySleepEvents.ALLOW_NEARBY_MONSTERS.register((player, sleepingPos, vanillaResult) -> {
+			if (player.hasStatusEffect(SpectrumStatusEffects.SOMNOLENCE))
+				return ActionResult.SUCCESS;
+
+			return ActionResult.PASS;
+		});
+
+		EntitySleepEvents.ALLOW_SLEEP_TIME.register((player, sleepingPos, vanillaResult) -> {
+			if (player.hasStatusEffect(SpectrumStatusEffects.SOMNOLENCE))
+				return ActionResult.SUCCESS;
+
+			return ActionResult.PASS;
+		});
 		
 		CrossbowShootingCallback.register((world, shooter, hand, crossbow, projectile, projectileEntity) -> {
 			if (crossbow.getItem() instanceof GlassCrestCrossbowItem && GlassCrestCrossbowItem.isOvercharged(crossbow)) {

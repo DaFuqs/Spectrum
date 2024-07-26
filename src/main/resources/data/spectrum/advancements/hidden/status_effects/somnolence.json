@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "somnolence": {
+      "trigger": "minecraft:effects_changed",
+      "conditions": {
+        "effects": {
+          "spectrum:somnolence": {}
+        }
+      }
+    }
+  }
+}

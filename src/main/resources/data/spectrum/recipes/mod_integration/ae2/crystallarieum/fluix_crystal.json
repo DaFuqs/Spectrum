@@ -4,9 +4,9 @@
     "item": "ae2:fluix_crystal"
   },
   "growth_stage_states": [
-    "spectrum:small_fluix_bud",
-    "spectrum:large_fluix_bud",
-    "spectrum:fluix_cluster"
+    "spectrum:small_fluix_bud[facing=up]",
+    "spectrum:large_fluix_bud[facing=up]",
+    "spectrum:fluix_cluster[facing=up]"
   ],
   "seconds_per_growth_stage": 60,
   "ink_color": "spectrum:yellow",

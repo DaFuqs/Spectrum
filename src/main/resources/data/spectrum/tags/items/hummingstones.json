@@ -1,7 +1,8 @@
 {
   "values": [
     "spectrum:hummingstone",
+    "spectrum:waxed_hummingstone",
     "spectrum:hummingstone_glass",
-    "spectrum:clear_hummingstone_glass"
+    "spectrum:hummingstone_glass_pane"
   ]
 }

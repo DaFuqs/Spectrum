@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "has_raw_bloodstone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:raw_bloodstone"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

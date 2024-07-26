@@ -4,9 +4,9 @@
     "item": "ae2:certus_quartz_crystal"
   },
   "growth_stage_states": [
-    "spectrum:small_certus_quartz_bud",
-    "spectrum:large_certus_quartz_bud",
-    "spectrum:certus_quartz_cluster"
+    "spectrum:small_certus_quartz_bud[facing=up]",
+    "spectrum:large_certus_quartz_bud[facing=up]",
+    "spectrum:certus_quartz_cluster[facing=up]"
   ],
   "seconds_per_growth_stage": 60,
   "ink_color": "spectrum:yellow",

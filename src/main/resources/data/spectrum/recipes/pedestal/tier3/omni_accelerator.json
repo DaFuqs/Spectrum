@@ -9,15 +9,15 @@
   "black": 2,
   "experience": 4.0,
   "pattern": [
-    "BMB",
+    "GMG",
     "STS",
-    "PBP"
+    "MCM"
   ],
   "key": {
-    "B": {
-      "item": "spectrum:bismuth_crystal"
-    },
     "M": {
+      "item": "spectrum:refined_malachite"
+    },
+    "C": {
       "item": "spectrum:moonstone_core"
     },
     "T": {
@@ -26,8 +26,8 @@
     "S": {
       "item": "minecraft:string"
     },
-    "P": {
-      "item": "spectrum:black_pigment"
+    "G": {
+      "item": "spectrum:pure_gold"
     }
   },
   "result": {

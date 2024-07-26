@@ -60,9 +60,7 @@ public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStora
 	}
 	
 	private boolean isMaxedOut(ItemStack stack) {
-		FixedSingleInkStorage inkStorage = getEnergyStorage(stack);
-		long storedInk = inkStorage.getEnergy(inkStorage.getStoredColor());
-		return storedInk >= MAX_INK;
+		return getEnergyStorage(stack).isFull();
 	}
 	
 	@Override

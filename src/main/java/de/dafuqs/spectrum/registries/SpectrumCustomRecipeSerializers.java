@@ -53,7 +53,8 @@ public class SpectrumCustomRecipeSerializers {
 		register(AquaRegiaRecipe.SERIALIZER, "titration_barrel_aqua_regia");
 		register(NecteredViognierRecipe.SERIALIZER, "titration_barrel_nectered_viognier");
 		register(SuspiciousBrewRecipe.SERIALIZER, "titration_barrel_suspicious_brew");
-		
+		register(CheongRecipe.SERIALIZER, "titration_barrel_cheong");
+
 		// Primordial Fire Burning
 		register(MemoryDementiaRecipe.SERIALIZER, "memory_dementia");
 		register(EnchantedBookUnsoulingRecipe.SERIALIZER, "enchanted_book_unsouling");

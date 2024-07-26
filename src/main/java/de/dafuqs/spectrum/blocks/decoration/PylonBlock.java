@@ -16,12 +16,12 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class PylonBlock extends Block implements FluidLogging.SpectrumFluidLoggable {
+public class PylonBlock extends Block implements Waterloggable {
 
     public static final EnumProperty<Section> SECTION = EnumProperty.of("section", Section.class);
     public static final EnumProperty<Direction> FACING = Properties.FACING;
     public static final BooleanProperty PEDESTAL = BooleanProperty.of("pedestal");
-    public static final EnumProperty<FluidLogging.State> LOGGED = FluidLogging.ANY_INCLUDING_NONE;
+    public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
 
     public static final Map<Direction.Axis, VoxelShape> PYLON_SHAPES;
     public static final Map<Direction, VoxelShape> PEDESTAL_SHAPES;
@@ -30,7 +30,7 @@ public class PylonBlock extends Block implements FluidLogging.SpectrumFluidLogga
         super(settings);
 
         setDefaultState(getStateManager().getDefaultState()
-                .with(LOGGED, FluidLogging.State.NOT_LOGGED)
+                .with(WATERLOGGED, false)
                 .with(SECTION, Section.FOOT)
                 .with(FACING, Direction.UP)
                 .with(PEDESTAL, false));
@@ -51,7 +51,7 @@ public class PylonBlock extends Block implements FluidLogging.SpectrumFluidLogga
         Section placedSection = shifting ? Section.BODY : Section.HEAD;
 
         FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
-        state = state.with(LOGGED, FluidLogging.State.getForFluidState(fluidState));
+        state = state.with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
 
         var placementDirection = ctx.getSide().getOpposite();
         state = state.with(FACING, placementDirection.getOpposite());
@@ -107,7 +107,12 @@ public class PylonBlock extends Block implements FluidLogging.SpectrumFluidLogga
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         super.appendProperties(builder);
-        builder.add(FACING, SECTION, PEDESTAL, LOGGED);
+        builder.add(FACING, SECTION, PEDESTAL, WATERLOGGED);
+    }
+
+    @Override
+    public FluidState getFluidState(BlockState state) {
+        return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
     }
 
     @Override

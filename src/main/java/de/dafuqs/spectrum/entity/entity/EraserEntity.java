@@ -196,17 +196,29 @@ public class EraserEntity extends SpiderEntity implements PackEntity<EraserEntit
 		
 		StatusEffect statusEffect;
 		int amplifier = 0;
-		switch (world.random.nextInt(8)) {
+		switch (world.random.nextInt(30)) {
 			case 1 -> {
-				statusEffect = SpectrumStatusEffects.STIFFNESS;
+				statusEffect = StatusEffects.SPEED;
 				amplifier = random.nextInt(2);
 			}
 			case 2 -> {
+				statusEffect = StatusEffects.STRENGTH;
+				amplifier = random.nextInt(2);
+			}
+			case 3 -> {
+				statusEffect = StatusEffects.NAUSEA;
+				amplifier = 0;
+			}
+			case 4, 5, 6 -> {
+				statusEffect = SpectrumStatusEffects.STIFFNESS;
+				amplifier = random.nextInt(2);
+			}
+			case 7, 8, 9 -> {
 				statusEffect = SpectrumStatusEffects.FRENZY;
 				amplifier = random.nextInt(2);
 			}
-			case 3 -> statusEffect = SpectrumStatusEffects.SCARRED;
-			case 4 -> {
+			case 10, 11, 12 -> statusEffect = SpectrumStatusEffects.SCARRED;
+			case 13, 14, 15 -> {
 				statusEffect = SpectrumStatusEffects.VULNERABILITY;
 				amplifier = random.nextInt(2);
 			}

@@ -125,6 +125,10 @@ public class PrintConfigCommand {
 			anyEnchantmentSettingsChanged = true;
 			send(source, "Enchantment settings changed: BigCatchMaxLevel " + SpectrumCommon.CONFIG.BigCatchMaxLevel);
 		}
+		if (SpectrumCommon.CONFIG.SerendipityReelMaxLevel != 2) {
+			anyEnchantmentSettingsChanged = true;
+			send(source, "Enchantment settings changed: SerendipityReelMaxLevel " + SpectrumCommon.CONFIG.SerendipityReelMaxLevel);
+		}
 		if (!anyEnchantmentSettingsChanged) {
 			send(source, "Enchantment settings changed: none");
 		}

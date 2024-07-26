@@ -2,13 +2,13 @@
   "type": "spectrum:potion_workshop_brewing",
   "group": "sleep_potions",
   "ingredient1": {
-    "item": "minecraft:nether_wart"
-  },
-  "ingredient2": {
     "item": "spectrum:nightdew_sprout"
   },
+  "ingredient2": {
+    "item": "spectrum:moonstruck_nectar"
+  },
   "ingredient3": {
-    "item": "minecraft:flowering_azalea"
+    "item": "spectrum:frostbite_essence"
   },
   "effect": "spectrum:calming",
   "base_duration_ticks": 3600,

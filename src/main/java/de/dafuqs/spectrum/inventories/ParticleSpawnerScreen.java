@@ -145,10 +145,15 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 	protected void drawForeground(DrawContext drawContext, int mouseX, int mouseY) {
 		var tr = this.textRenderer;
 		drawContext.drawText(tr, this.title, this.titleX, this.titleY, 2236962, false);
-		
+
 		drawContext.drawText(tr, Text.literal("C").formatted(Formatting.AQUA), 7, 54, TEXT_COLOR, false);
 		drawContext.drawText(tr, Text.literal("M").formatted(Formatting.LIGHT_PURPLE), 47, 54, TEXT_COLOR, false);
 		drawContext.drawText(tr, Text.literal("Y").formatted(Formatting.GOLD), 90, 54, TEXT_COLOR, false);
+		/*  this still uses the old color format, since it is easier to read on the background
+		drawContext.drawText(tr, Text.literal("C").setStyle(Style.EMPTY.withColor(InkColors.CYAN_COLOR)), 7, 54, TEXT_COLOR, false);
+		drawContext.drawText(tr, Text.literal("M").setStyle(Style.EMPTY.withColor(InkColors.MAGENTA_COLOR)), 47, 54, TEXT_COLOR, false);
+		drawContext.drawText(tr, Text.literal("Y").setStyle(Style.EMPTY.withColor(InkColors.YELLOW_COLOR)), 90, 54, TEXT_COLOR, false);
+		 */
 		drawContext.drawText(tr, Text.literal("Glow"), 130, 54, TEXT_COLOR, false);
 		
 		int offset = 23;

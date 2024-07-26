@@ -1,0 +1,6 @@
+{
+  "particle_type": "spectrum:void_fog",
+  "gui_texture": "spectrum:void_fog",
+  "unlock_identifier": "spectrum:lategame/spectrum_lategame",
+  "supports_coloring": false
+}

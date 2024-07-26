@@ -174,81 +174,67 @@
       }
     }
   ],
+  "gui_light": "front",
   "display": {
     "thirdperson_righthand": {
-      "rotation": [
-        -17,
-        0,
-        0
-      ],
       "translation": [
         0,
-        5,
-        -1.25
+        0,
+        -4
       ],
       "scale": [
-        0.7,
-        0.7,
-        0.7
+        0.55,
+        0.55,
+        0.55
       ]
     },
     "thirdperson_lefthand": {
-      "rotation": [
-        -17,
-        0,
-        0
-      ],
       "translation": [
         0,
-        5,
-        -1.25
+        0,
+        -4
       ],
       "scale": [
-        0.7,
-        0.7,
-        0.7
+        0.55,
+        0.55,
+        0.55
       ]
     },
     "firstperson_righthand": {
       "rotation": [
-        33,
         0,
-        0
+        90,
+        25
       ],
       "translation": [
-        5,
-        2.5,
-        -0.5
+        -2.87,
+        3.2,
+        1.13
       ],
       "scale": [
-        0.7,
-        0.7,
-        0.7
+        0.68,
+        0.68,
+        0.68
       ]
     },
     "firstperson_lefthand": {
       "rotation": [
-        33,
         0,
-        0
+        90,
+        25
       ],
       "translation": [
-        5,
-        5,
-        0.7
+        -2.87,
+        3.2,
+        1.13
       ],
       "scale": [
-        0.7,
-        0.7,
-        0.7
+        0.68,
+        0.68,
+        0.68
       ]
     },
     "ground": {
-      "translation": [
-        0,
-        4,
-        0
-      ],
       "scale": [
         0.5,
         0.5,
@@ -257,31 +243,33 @@
     },
     "gui": {
       "rotation": [
-        120,
         0,
-        -30
-      ],
-      "translation": [
-        4.5,
-        -4.5,
+        180,
         0
       ],
       "scale": [
-        1.25,
-        1.25,
-        1.25
+        1.5,
+        1.5,
+        1.5
       ]
     },
-    "fixed": {
+    "head": {
       "rotation": [
-        -90,
+        90,
         0,
         0
       ],
       "translation": [
         0,
+        14,
+        0
+      ]
+    },
+    "fixed": {
+      "translation": [
         0,
-        -12
+        0,
+        -11
       ],
       "scale": [
         1.5,

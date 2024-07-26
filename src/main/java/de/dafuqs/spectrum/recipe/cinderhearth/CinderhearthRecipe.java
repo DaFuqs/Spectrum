@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.recipe.cinderhearth;
 
+import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.*;
@@ -15,16 +16,16 @@ import net.minecraft.world.*;
 
 import java.util.*;
 
-public class CinderhearthRecipe extends GatedSpectrumRecipe {
+public class CinderhearthRecipe extends GatedStackSpectrumRecipe {
 	
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/cinderhearth");
-	
-	protected final Ingredient inputIngredient;
+
+	protected final IngredientStack inputIngredient;
 	protected final int time;
 	protected final float experience;
 	protected final List<Pair<ItemStack, Float>> outputsWithChance;
-	
-	public CinderhearthRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, Ingredient inputIngredient, int time, float experience, List<Pair<ItemStack, Float>> outputsWithChance) {
+
+	public CinderhearthRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, IngredientStack inputIngredient, int time, float experience, List<Pair<ItemStack, Float>> outputsWithChance) {
 		super(id, group, secret, requiredAdvancementIdentifier);
 		
 		this.inputIngredient = inputIngredient;
@@ -80,11 +81,16 @@ public class CinderhearthRecipe extends GatedSpectrumRecipe {
 	public String getRecipeTypeShortID() {
 		return SpectrumRecipeTypes.CINDERHEARTH_ID;
 	}
-	
+
+	@Override
+	public List<IngredientStack> getIngredientStacks() {
+		return List.of(this.inputIngredient);
+	}
+
 	@Override
 	public DefaultedList<Ingredient> getIngredients() {
 		DefaultedList<Ingredient> defaultedList = DefaultedList.of();
-		defaultedList.add(this.inputIngredient);
+		defaultedList.add(this.inputIngredient.getIngredient());
 		return defaultedList;
 	}
 	

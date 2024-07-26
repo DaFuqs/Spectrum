@@ -4,23 +4,15 @@
     "item": "spectrum:raw_azurite"
   },
   "growth_stage_states": [
-    "spectrum:small_azurite_bud",
-    "spectrum:large_azurite_bud",
-    "spectrum:azurite_cluster"
+    "spectrum:small_azurite_bud[facing=up]",
+    "spectrum:large_azurite_bud[facing=up]",
+    "spectrum:azurite_cluster[facing=up]"
   ],
   "seconds_per_growth_stage": 300,
   "ink_color": "spectrum:blue",
   "ink_cost_tier": 4,
   "grows_without_catalyst": false,
   "catalysts": [
-    {
-      "ingredient": {
-        "item": "spectrum:pure_copper"
-      },
-      "growth_acceleration_mod": 1.708,
-      "ink_consumption_mod": 0.707,
-      "consume_chance_per_second": 0.01
-    },
     {
       "ingredient": {
         "item": "minecraft:raw_copper"
@@ -36,6 +28,14 @@
       "growth_acceleration_mod": 1.0,
       "ink_consumption_mod": 0.5,
       "consume_chance_per_second": 0.15
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:pure_copper"
+      },
+      "growth_acceleration_mod": 1.708,
+      "ink_consumption_mod": 0.707,
+      "consume_chance_per_second": 0.01
     }
   ],
   "additional_recipe_manager_outputs": [

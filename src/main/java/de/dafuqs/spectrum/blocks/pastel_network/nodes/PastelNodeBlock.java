@@ -24,12 +24,12 @@ import java.util.*;
 public class PastelNodeBlock extends SpectrumFacingBlock implements BlockEntityProvider {
 	
 	public static final Map<Direction, VoxelShape> SHAPES = new HashMap<>() {{
-		put(Direction.UP, Block.createCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 8.0D, 12.0D));
-		put(Direction.DOWN, Block.createCuboidShape(4.0D, 8.0D, 4.0D, 12.0D, 16.0D, 12.0D));
-		put(Direction.NORTH, Block.createCuboidShape(4.0D, 4.0D, 8.0D, 12.0D, 12.0D, 16.0D));
-		put(Direction.SOUTH, Block.createCuboidShape(4.0D, 4.0D, 0.0D, 12.0D, 12.0D, 8.0D));
-		put(Direction.EAST, Block.createCuboidShape(0.0D, 4.0D, 4.0D, 8.0D, 12.0D, 12.0D));
-		put(Direction.WEST, Block.createCuboidShape(8.0D, 4.0D, 4.0D, 16.0D, 12.0D, 12.0D));
+		put(Direction.UP, Block.createCuboidShape(5.0D, 0.0D, 5.0D, 11.0D, 4.0D, 11.0D));
+		put(Direction.DOWN, Block.createCuboidShape(5.0D, 12.0D, 5.0D, 11.0D, 16.0D, 11.0D));
+		put(Direction.NORTH, Block.createCuboidShape(5.0D, 5.0D, 12.0D, 11.0D, 11.0D, 16.0D));
+		put(Direction.SOUTH, Block.createCuboidShape(5.0D, 5.0D, 0.0D, 11.0D, 11.0D, 4.0D));
+		put(Direction.EAST, Block.createCuboidShape(0.0D, 5.0D, 5.0D, 4.0D, 11.0D, 11.0D));
+		put(Direction.WEST, Block.createCuboidShape(12.0D, 5.0D, 5.0D, 16.0D, 11.0D, 11.0D));
 	}};
 
     protected final PastelNodeType pastelNodeType;
@@ -41,7 +41,7 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements BlockEntityP
 	
 	@Override
 	public BlockRenderType getRenderType(BlockState state) {
-		return BlockRenderType.MODEL;
+		return BlockRenderType.ENTITYBLOCK_ANIMATED;
 	}
 	
 	@Override

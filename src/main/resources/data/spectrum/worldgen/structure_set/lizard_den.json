@@ -11,6 +11,10 @@
     {
       "structure": "spectrum:lizard_den/dripstone",
       "weight": 1
+    },
+    {
+      "structure": "spectrum:lizard_den/basal_marble",
+      "weight": 1
     }
   ],
   "placement": {

@@ -5,7 +5,5 @@
   },
   "ink_color": "spectrum:pink",
   "amount": 100,
-  "required_advancement": "spectrum:hidden/collect_pigment/"
-  pink
-  "
+  "required_advancement": "spectrum:hidden/collect_pigment/pink"
 }

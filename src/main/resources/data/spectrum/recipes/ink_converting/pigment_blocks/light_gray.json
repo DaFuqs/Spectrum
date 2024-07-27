@@ -5,7 +5,5 @@
   },
   "ink_color": "spectrum:light_gray",
   "amount": 900,
-  "required_advancement": "spectrum:hidden/collect_pigment/"
-  light_gray
-  "
+  "required_advancement": "spectrum:hidden/collect_pigment/light_gray"
 }

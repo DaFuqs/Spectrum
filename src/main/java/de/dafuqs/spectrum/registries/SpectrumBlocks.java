@@ -734,7 +734,25 @@ public class SpectrumBlocks {
 	public static final Block GALA_PLANKS = new Block(gala(MapColor.BROWN));
 
 	public static final Block GLAZED_PLANKS = new Block(gala(MapColor.OFF_WHITE));
-
+	
+	public static Settings basalMarble() {
+		return settings(MapColor.GRAY, BlockSoundGroup.DRIPSTONE_BLOCK, 8.0F).instrument(Instrument.BASEDRUM).requiresTool();
+	}
+	
+	public static final Block BASAL_MARBLE = new PillarBlock(basalMarble());
+	public static final Block BASAL_MARBLE_STAIRS = new StairsBlock(BASAL_MARBLE.getDefaultState(), basalMarble());
+	public static final Block BASAL_MARBLE_SLAB = new SlabBlock(basalMarble());
+	public static final Block BASAL_MARBLE_WALL = new WallBlock(basalMarble());
+	public static final Block BASAL_MARBLE_PILLAR = new PillarBlock(basalMarble());
+	public static final Block BASAL_MARBLE_TILES = new Block(basalMarble());
+	public static final Block BASAL_MARBLE_TILE_STAIRS = new StairsBlock(BASAL_MARBLE_TILES.getDefaultState(), Settings.copy(BASAL_MARBLE_TILES));
+	public static final Block BASAL_MARBLE_TILE_SLAB = new SlabBlock(Settings.copy(BASAL_MARBLE_TILES));
+	public static final Block BASAL_MARBLE_TILE_WALL = new WallBlock(Settings.copy(BASAL_MARBLE_TILES));
+	public static final Block BASAL_MARBLE_BRICKS = new Block(basalMarble());
+	public static final Block BASAL_MARBLE_BRICK_STAIRS = new StairsBlock(BASAL_MARBLE_BRICKS.getDefaultState(), Settings.copy(BASAL_MARBLE_BRICKS));
+	public static final Block BASAL_MARBLE_BRICK_SLAB = new SlabBlock(Settings.copy(BASAL_MARBLE_BRICKS));
+	public static final Block BASAL_MARBLE_BRICK_WALL = new WallBlock(Settings.copy(BASAL_MARBLE_BRICKS));
+	
 	public static Settings dragonjag(MapColor color) {
 		return settings(color, BlockSoundGroup.GRASS, 1.0F);
 	}
@@ -2174,16 +2192,30 @@ public class SpectrumBlocks {
 		registerBlockWithItem("black_sludge", BLACK_SLUDGE, IS.of(), DyeColor.GRAY);
 
 		registerBlockWithItem("rock_crystal", ROCK_CRYSTAL, settings, DyeColor.BROWN);
-
-		registerBlockWithItem("pyrite", PYRITE, settings, DyeColor.PURPLE);
-		registerBlockWithItem("pyrite_pile", PYRITE_PILE, settings, DyeColor.PURPLE);
-		registerBlockWithItem("pyrite_tile", PYRITE_TILE, settings, DyeColor.PURPLE);
-		registerBlockWithItem("pyrite_plating", PYRITE_PLATING, settings, DyeColor.PURPLE);
-		registerBlockWithItem("pyrite_tubing", PYRITE_TUBING, settings, DyeColor.PURPLE);
-		registerBlockWithItem("pyrite_relief", PYRITE_RELIEF, settings, DyeColor.PURPLE);
-		registerBlockWithItem("pyrite_stack", PYRITE_STACK, settings, DyeColor.PURPLE);
-		registerBlockWithItem("pyrite_panneling", PYRITE_PANNELING, settings, DyeColor.PURPLE);
-		registerBlockWithItem("pyrite_vent", PYRITE_VENT, settings, DyeColor.PURPLE);
+		
+		registerBlockWithItem("basal_marble", BASAL_MARBLE, settings, DyeColor.BROWN);
+		registerBlockWithItem("basal_marble_stairs", BASAL_MARBLE_STAIRS, settings, DyeColor.BROWN);
+		registerBlockWithItem("basal_marble_slab", BASAL_MARBLE_SLAB, settings, DyeColor.BROWN);
+		registerBlockWithItem("basal_marble_wall", BASAL_MARBLE_WALL, settings, DyeColor.BROWN);
+		registerBlockWithItem("basal_marble_pillar", BASAL_MARBLE_PILLAR, settings, DyeColor.BROWN);
+		registerBlockWithItem("basal_marble_tiles", BASAL_MARBLE_TILES, settings, DyeColor.BROWN);
+		registerBlockWithItem("basal_marble_tile_stairs", BASAL_MARBLE_TILE_STAIRS, settings, DyeColor.BROWN);
+		registerBlockWithItem("basal_marble_tile_slab", BASAL_MARBLE_TILE_SLAB, settings, DyeColor.BROWN);
+		registerBlockWithItem("basal_marble_tile_wall", BASAL_MARBLE_TILE_WALL, settings, DyeColor.BROWN);
+		registerBlockWithItem("basal_marble_bricks", BASAL_MARBLE_BRICKS, settings, DyeColor.BROWN);
+		registerBlockWithItem("basal_marble_brick_stairs", BASAL_MARBLE_BRICK_STAIRS, settings, DyeColor.BROWN);
+		registerBlockWithItem("basal_marble_brick_slab", BASAL_MARBLE_BRICK_SLAB, settings, DyeColor.BROWN);
+		registerBlockWithItem("basal_marble_brick_wall", BASAL_MARBLE_BRICK_WALL, settings, DyeColor.BROWN);
+		
+		registerBlockWithItem("pyrite", PYRITE, settings, DyeColor.BROWN);
+		registerBlockWithItem("pyrite_pile", PYRITE_PILE, settings, DyeColor.BROWN);
+		registerBlockWithItem("pyrite_tiles", PYRITE_TILES, settings, DyeColor.BROWN);
+		registerBlockWithItem("pyrite_plating", PYRITE_PLATING, settings, DyeColor.BROWN);
+		registerBlockWithItem("pyrite_tubing", PYRITE_TUBING, settings, DyeColor.BROWN);
+		registerBlockWithItem("pyrite_relief", PYRITE_RELIEF, settings, DyeColor.BROWN);
+		registerBlockWithItem("pyrite_stack", PYRITE_STACK, settings, DyeColor.BROWN);
+		registerBlockWithItem("pyrite_panneling", PYRITE_PANNELING, settings, DyeColor.BROWN);
+		registerBlockWithItem("pyrite_vent", PYRITE_VENT, settings, DyeColor.BROWN);
 		registerBlockWithItem("pyrite_ripper", PYRITE_RIPPER, settings, DyeColor.RED);
 
 		registerBlockWithItem("dragonbone", DRAGONBONE, settings, DyeColor.GREEN);

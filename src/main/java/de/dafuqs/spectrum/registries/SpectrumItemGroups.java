@@ -874,6 +874,20 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.PYRITE_PANNELING);
 		entries.add(SpectrumBlocks.PYRITE_VENT);
 		entries.add(SpectrumBlocks.PYRITE_RIPPER);
+		
+		entries.add(SpectrumBlocks.BASAL_MARBLE);
+		entries.add(SpectrumBlocks.BASAL_MARBLE_STAIRS);
+		entries.add(SpectrumBlocks.BASAL_MARBLE_SLAB);
+		entries.add(SpectrumBlocks.BASAL_MARBLE_WALL);
+		entries.add(SpectrumBlocks.BASAL_MARBLE_PILLAR);
+		entries.add(SpectrumBlocks.BASAL_MARBLE_TILES);
+		entries.add(SpectrumBlocks.BASAL_MARBLE_TILE_STAIRS);
+		entries.add(SpectrumBlocks.BASAL_MARBLE_TILE_SLAB);
+		entries.add(SpectrumBlocks.BASAL_MARBLE_TILE_WALL);
+		entries.add(SpectrumBlocks.BASAL_MARBLE_BRICKS);
+		entries.add(SpectrumBlocks.BASAL_MARBLE_BRICK_STAIRS);
+		entries.add(SpectrumBlocks.BASAL_MARBLE_BRICK_SLAB);
+		entries.add(SpectrumBlocks.BASAL_MARBLE_BRICK_WALL);
 
 		entries.add(SpectrumBlocks.DRAGONBONE);
 		entries.add(SpectrumBlocks.CRACKED_DRAGONBONE);

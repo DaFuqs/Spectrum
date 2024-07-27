@@ -22,6 +22,10 @@
     "spectrum:blackslag_tile_wall",
     "spectrum:blackslag_brick_wall",
 
+    "spectrum:basal_marble_wall",
+    "spectrum:basal_marble_brick_wall",
+    "spectrum:basal_marble_tile_wall",
+
     "spectrum:polished_bone_ash_wall",
     "spectrum:bone_ash_brick_wall",
     "spectrum:bone_ash_tile_wall",

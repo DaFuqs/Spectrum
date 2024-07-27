@@ -34,6 +34,7 @@
     "#spectrum:pyrite",
     "#spectrum:rock_crystal",
     "#spectrum:alloy_forges",
+    "#spectrum:basal_marbles",
 
     "spectrum:topaz_cluster",
     "spectrum:citrine_cluster",
@@ -44,8 +45,6 @@
     "spectrum:sawblade_grass",
     "spectrum:dragonbone",
     "spectrum:cracked_dragonbone",
-    "spectrum:overgrown_blackslag",
-    "spectrum:ashen_blackslag",
     "spectrum:pyrite_ripper",
 
     "spectrum:citrine_block",
@@ -87,7 +86,6 @@
     "spectrum:radiant_glass_pane",
     "spectrum:item_roundel",
     "spectrum:present",
-    "spectrum:blackslag",
     "spectrum:cinderhearth",
     "spectrum:crystallarieum",
     "spectrum:color_picker",

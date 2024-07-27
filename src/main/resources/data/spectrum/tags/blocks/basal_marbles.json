@@ -1,0 +1,17 @@
+{
+  "values": [
+    "spectrum:basal_marble",
+    "spectrum:basal_marble_stairs",
+    "spectrum:basal_marble_slab",
+    "spectrum:basal_marble_wall",
+    "spectrum:basal_marble_pillar",
+    "spectrum:basal_marble_tiles",
+    "spectrum:basal_marble_tile_stairs",
+    "spectrum:basal_marble_tile_slab",
+    "spectrum:basal_marble_tile_wall",
+    "spectrum:basal_marble_bricks",
+    "spectrum:basal_marble_brick_stairs",
+    "spectrum:basal_marble_brick_slab",
+    "spectrum:basal_marble_brick_wall"
+  ]
+}

@@ -2,10 +2,12 @@
   "replace": false,
   "values": [
     "#spectrum:deep_soils",
-    "spectrum:downstone",
     "#spectrum:blackslags",
     "#spectrum:groundcover",
     "#spectrum:rock_crystal",
-    "#spectrum:pyrite"
+    "#spectrum:pyrite",
+    "#spectrum:basal_marbles",
+
+    "spectrum:downstone"
   ]
 }

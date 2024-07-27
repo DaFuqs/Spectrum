@@ -743,6 +743,10 @@ public class SpectrumBlocks {
 	public static final Block BASAL_MARBLE_STAIRS = new StairsBlock(BASAL_MARBLE.getDefaultState(), basalMarble());
 	public static final Block BASAL_MARBLE_SLAB = new SlabBlock(basalMarble());
 	public static final Block BASAL_MARBLE_WALL = new WallBlock(basalMarble());
+	public static final Block POLISHED_BASAL_MARBLE = new PillarBlock(basalMarble());
+	public static final Block POLISHED_BASAL_MARBLE_STAIRS = new StairsBlock(POLISHED_BASAL_MARBLE.getDefaultState(), basalMarble());
+	public static final Block POLISHED_BASAL_MARBLE_SLAB = new SlabBlock(basalMarble());
+	public static final Block POLISHED_BASAL_MARBLE_WALL = new WallBlock(basalMarble());
 	public static final Block BASAL_MARBLE_PILLAR = new PillarBlock(basalMarble());
 	public static final Block BASAL_MARBLE_TILES = new Block(basalMarble());
 	public static final Block BASAL_MARBLE_TILE_STAIRS = new StairsBlock(BASAL_MARBLE_TILES.getDefaultState(), Settings.copy(BASAL_MARBLE_TILES));
@@ -2197,6 +2201,10 @@ public class SpectrumBlocks {
 		registerBlockWithItem("basal_marble_stairs", BASAL_MARBLE_STAIRS, settings, DyeColor.BROWN);
 		registerBlockWithItem("basal_marble_slab", BASAL_MARBLE_SLAB, settings, DyeColor.BROWN);
 		registerBlockWithItem("basal_marble_wall", BASAL_MARBLE_WALL, settings, DyeColor.BROWN);
+		registerBlockWithItem("polished_basal_marble", POLISHED_BASAL_MARBLE, settings, DyeColor.BROWN);
+		registerBlockWithItem("polished_basal_marble_stairs", POLISHED_BASAL_MARBLE_STAIRS, settings, DyeColor.BROWN);
+		registerBlockWithItem("polished_basal_marble_slab", POLISHED_BASAL_MARBLE_SLAB, settings, DyeColor.BROWN);
+		registerBlockWithItem("polished_basal_marble_wall", POLISHED_BASAL_MARBLE_WALL, settings, DyeColor.BROWN);
 		registerBlockWithItem("basal_marble_pillar", BASAL_MARBLE_PILLAR, settings, DyeColor.BROWN);
 		registerBlockWithItem("basal_marble_tiles", BASAL_MARBLE_TILES, settings, DyeColor.BROWN);
 		registerBlockWithItem("basal_marble_tile_stairs", BASAL_MARBLE_TILE_STAIRS, settings, DyeColor.BROWN);

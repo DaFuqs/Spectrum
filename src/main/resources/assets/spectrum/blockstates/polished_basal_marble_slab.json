@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "spectrum:block/polished_basal_marble_slab"
+    },
+    "type=double": {
+      "model": "spectrum:block/polished_basal_marbles"
+    },
+    "type=top": {
+      "model": "spectrum:block/polished_basal_marble_slab_top"
+    }
+  }
+}

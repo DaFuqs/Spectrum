@@ -1,4 +1,4 @@
-﻿$new = @("block_detector", "block_breaker", "block_placer")
+﻿$new = @("polished_basal_marble_wall")
 
 enum BlockType {
     Default
@@ -1361,7 +1361,7 @@ Function Generate-BlockFiles {
             # ITEM MODEL
             if($blockType -eq [BlockType]::Wall) {
                 $itemModel = Get-ItemModelWall -Name $_
-            if($blockType -eq [BlockType]::Upgrade) {
+            } elseif($blockType -eq [BlockType]::Upgrade) {
                 $itemModel = Get-ItemModel -Name ($_ -replace "[0-9]", "")
             } elseif($blockType -eq [BlockType]::TallFlower) {
                 $itemModel = Get-ItemModelTallFlower -Name $_
@@ -1391,4 +1391,4 @@ Function Generate-BlockFiles {
     }
 }
 
-Generate-BlockFiles -BlockNames $new -BlockType ([BlockType]::Orientable)
+Generate-BlockFiles -BlockNames $new -BlockType ([BlockType]::Wall)

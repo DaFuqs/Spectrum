@@ -879,6 +879,10 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.BASAL_MARBLE_STAIRS);
 		entries.add(SpectrumBlocks.BASAL_MARBLE_SLAB);
 		entries.add(SpectrumBlocks.BASAL_MARBLE_WALL);
+		entries.add(SpectrumBlocks.POLISHED_BASAL_MARBLE);
+		entries.add(SpectrumBlocks.POLISHED_BASAL_MARBLE_STAIRS);
+		entries.add(SpectrumBlocks.POLISHED_BASAL_MARBLE_SLAB);
+		entries.add(SpectrumBlocks.POLISHED_BASAL_MARBLE_WALL);
 		entries.add(SpectrumBlocks.BASAL_MARBLE_PILLAR);
 		entries.add(SpectrumBlocks.BASAL_MARBLE_TILES);
 		entries.add(SpectrumBlocks.BASAL_MARBLE_TILE_STAIRS);

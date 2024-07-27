@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "has_nautilus_shell": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:nautilus_shell"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

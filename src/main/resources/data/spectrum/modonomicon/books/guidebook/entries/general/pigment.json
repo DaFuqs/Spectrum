@@ -26,7 +26,7 @@
     {
       "type": "spectrum:checklist",
       "checklist": {
-        "spectrum:hidden/collect_pigment/collect_black_pigment": "book.spectrum.guidebook.general.pigment.page1.checklist.entry0",
+        "spectrum:hidden/collect_pigment/black_pigment": "book.spectrum.guidebook.general.pigment.page1.checklist.entry0",
         "spectrum:hidden/collect_pigment/collect_blue_pigment": "book.spectrum.guidebook.general.pigment.page1.checklist.entry1",
         "spectrum:hidden/collect_pigment/collect_brown_pigment": "book.spectrum.guidebook.general.pigment.page1.checklist.entry2",
         "spectrum:hidden/collect_pigment/collect_cyan_pigment": "book.spectrum.guidebook.general.pigment.page1.checklist.entry3",

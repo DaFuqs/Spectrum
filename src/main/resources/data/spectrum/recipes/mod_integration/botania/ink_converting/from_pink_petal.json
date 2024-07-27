@@ -5,7 +5,7 @@
   },
   "ink_color": "spectrum:pink",
   "amount": 25,
-  "required_advancement": "spectrum:hidden/collect_pigment/collect_pink_pigment",
+  "required_advancement": "spectrum:hidden/collect_pigment/pink_pigment",
   "fabric:load_conditions": [
     {
       "condition": "fabric:all_mods_loaded",

@@ -9,7 +9,7 @@
     "collected_nether_star": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_vanilla/collect_nether_star"
+        "advancement_identifier": "spectrum:hidden/collect_vanilla/nether_star"
       }
     },
     "collected_bismuth_crystal": {

@@ -18,6 +18,6 @@
     "item": "spectrum:citrine_powder",
     "count": 9
   },
-  "required_advancement": "spectrum:hidden/collect_shards/collect_citrine_shard",
+  "required_advancement": "spectrum:hidden/collect_shards/citrine",
   "disable_yield_upgrades": true
 }

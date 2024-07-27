@@ -83,11 +83,11 @@ public class SpectrumItems {
 	public static final Item MOONSTONE_SHARD = new CloakedItem(IS.of(), SpectrumCommon.locate("midgame/break_decayed_bedrock"), Items.WHITE_DYE);
 	public static final Item SPECTRAL_SHARD = new Item(IS.of(Rarity.RARE));
 	
-	public static final Item TOPAZ_POWDER = new GemstonePowderItem(IS.of(), SpectrumCommon.locate("hidden/collect_shards/collect_topaz_shard"), BuiltinGemstoneColor.CYAN);
-	public static final Item AMETHYST_POWDER = new GemstonePowderItem(IS.of(), SpectrumCommon.locate("hidden/collect_shards/collect_amethyst_shard"), BuiltinGemstoneColor.MAGENTA);
-	public static final Item CITRINE_POWDER = new GemstonePowderItem(IS.of(), SpectrumCommon.locate("hidden/collect_shards/collect_citrine_shard"), BuiltinGemstoneColor.YELLOW);
+	public static final Item TOPAZ_POWDER = new GemstonePowderItem(IS.of(), SpectrumCommon.locate("hidden/collect_shards/topaz"), BuiltinGemstoneColor.CYAN);
+	public static final Item AMETHYST_POWDER = new GemstonePowderItem(IS.of(), SpectrumCommon.locate("hidden/collect_shards/amethyst"), BuiltinGemstoneColor.MAGENTA);
+	public static final Item CITRINE_POWDER = new GemstonePowderItem(IS.of(), SpectrumCommon.locate("hidden/collect_shards/citrine"), BuiltinGemstoneColor.YELLOW);
 	public static final Item ONYX_POWDER = new GemstonePowderItem(IS.of(), SpectrumCommon.locate("create_onyx_shard"), BuiltinGemstoneColor.BLACK);
-	public static final Item MOONSTONE_POWDER = new GemstonePowderItem(IS.of(), SpectrumCommon.locate("lategame/collect_moonstone_shard"), BuiltinGemstoneColor.WHITE);
+	public static final Item MOONSTONE_POWDER = new GemstonePowderItem(IS.of(), SpectrumCommon.locate("lategame/collect_moonstone"), BuiltinGemstoneColor.WHITE);
 	
 	// Pigment
 	public static final Item BLACK_PIGMENT = new PigmentItem(IS.of(), DyeColor.BLACK);

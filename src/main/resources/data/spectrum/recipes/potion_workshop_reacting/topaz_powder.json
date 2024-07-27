@@ -4,5 +4,5 @@
   "modifiers": {
     "no_particles": true
   },
-  "required_advancement": "spectrum:hidden/collect_shards/collect_topaz_shard"
+  "required_advancement": "spectrum:hidden/collect_shards/topaz"
 }

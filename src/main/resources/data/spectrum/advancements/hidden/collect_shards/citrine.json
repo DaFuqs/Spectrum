@@ -1,0 +1,14 @@
+{
+  "criteria": {
+    "has_citrine_shard": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "spectrum:citrine_crystals"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -3,7 +3,7 @@
     "backwards_compat_proxy": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/collect_moonstone_shard"
+        "advancement_identifier": "spectrum:lategame/collect_moonstone"
       }
     }
   }

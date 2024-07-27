@@ -5,5 +5,5 @@
   },
   "ink_color": "spectrum:red",
   "amount": 5,
-  "required_advancement": "spectrum:hidden/collect_pigment/collect_red_pigment"
+  "required_advancement": "spectrum:hidden/collect_pigment/red"
 }

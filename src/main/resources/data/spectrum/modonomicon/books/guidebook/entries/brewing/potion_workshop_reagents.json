@@ -56,7 +56,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/collect_vanilla/collect_dragon_breath"
+        "advancement_id": "spectrum:hidden/collect_vanilla/dragon_breath"
       },
       "text": "book.spectrum.guidebook.brewing.potion_workshop_reagents.page5.text"
     },
@@ -95,7 +95,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/collect_moonstone_shard"
+        "advancement_id": "spectrum:lategame/collect_moonstone"
       },
       "text": "book.spectrum.guidebook.brewing.potion_workshop_reagents.page10.text"
     },

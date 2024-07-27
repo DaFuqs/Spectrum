@@ -15,7 +15,7 @@
     "collected_white_pigment": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_pigment/collect_white_pigment"
+        "advancement_identifier": "spectrum:hidden/collect_pigment/white"
       }
     },
     "collected_azurite": {

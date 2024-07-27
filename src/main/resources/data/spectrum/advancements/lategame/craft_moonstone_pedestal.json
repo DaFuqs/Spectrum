@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:lategame/collect_moonstone_shard",
+  "parent": "spectrum:lategame/collect_moonstone",
   "display": {
     "icon": {
       "item": "spectrum:pedestal_moonstone"
@@ -23,7 +23,7 @@
               "type_specific": {
                 "type": "player",
                 "advancements": {
-                  "spectrum:lategame/collect_moonstone_shard": true
+                  "spectrum:lategame/collect_moonstone": true
                 }
               }
             }
@@ -52,7 +52,7 @@
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/collect_moonstone_shard"
+        "advancement_identifier": "spectrum:lategame/collect_moonstone"
       }
     }
   },

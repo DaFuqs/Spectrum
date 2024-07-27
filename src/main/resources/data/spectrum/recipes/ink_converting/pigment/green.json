@@ -5,5 +5,7 @@
   },
   "ink_color": "spectrum:green",
   "amount": 100,
-  "required_advancement": "spectrum:hidden/collect_pigment/collect_green_pigment"
+  "required_advancement": "spectrum:hidden/collect_pigment/"
+  green
+  "
 }

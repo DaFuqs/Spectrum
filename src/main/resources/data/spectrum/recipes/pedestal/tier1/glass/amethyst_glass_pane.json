@@ -22,5 +22,5 @@
     "item": "spectrum:amethyst_glass_pane",
     "count": 16
   },
-  "required_advancement": "spectrum:hidden/collect_shards/collect_amethyst_shard"
+  "required_advancement": "spectrum:hidden/collect_shards/amethyst"
 }

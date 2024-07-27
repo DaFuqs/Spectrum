@@ -6,7 +6,9 @@
     },
     "has_citrine_shard": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_shards/collect_citrine_shard" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_shards/citrine"
+      }
     },
     "has_any_pigment": {
       "trigger":"revelationary:advancement_gotten",

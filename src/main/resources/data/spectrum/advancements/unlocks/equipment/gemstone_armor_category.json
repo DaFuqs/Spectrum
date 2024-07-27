@@ -6,19 +6,27 @@
     },
     "collected_ender_eye": {
       "trigger": "revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_vanilla/collect_ender_eye" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_vanilla/ender_eye"
+      }
     },
     "collected_nautilus_shell": {
       "trigger": "revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_vanilla/collect_nautilus_shell" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_vanilla/nautilus_shell"
+      }
     },
     "collected_phantom_membrane": {
       "trigger": "revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_vanilla/collect_phantom_membrane" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_vanilla/phantom_membrane"
+      }
     },
     "collected_ghast_tear": {
       "trigger": "revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_vanilla/collect_ghast_tear" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_vanilla/ghast_tear"
+      }
     }
   },
   "requirements": [

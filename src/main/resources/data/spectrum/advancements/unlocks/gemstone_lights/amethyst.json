@@ -2,7 +2,9 @@
   "criteria": {
     "collected_gemstone_shard": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_shards/collect_amethyst_shard" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_shards/amethyst"
+      }
     },
     "collected_shimmerstone_gem": {
       "trigger":"revelationary:advancement_gotten",

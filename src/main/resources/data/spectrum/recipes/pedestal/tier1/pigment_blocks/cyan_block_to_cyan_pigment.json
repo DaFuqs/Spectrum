@@ -17,6 +17,6 @@
     "item": "spectrum:cyan_pigment",
     "count": 9
   },
-  "required_advancement": "spectrum:hidden/collect_pigment/collect_cyan_pigment",
+  "required_advancement": "spectrum:hidden/collect_pigment/cyan",
   "disable_yield_upgrades": true
 }

@@ -8,7 +8,7 @@
       "item": "spectrum:mermaids_gem"
     }
   ],
-  "required_advancement": "spectrum:unlocks/weather/weather_rain",
+  "required_advancement": "spectrum:unlocks/weather/rain",
   "world_conditions": [
     {
       "type": "weather",

@@ -13,7 +13,7 @@
     "advancement_id": "spectrum:spectrum"
   },
   "read_by_default": true,
-  "turnin": "spectrum:hidden/collect_shards/collect_citrine_shard",
+  "turnin": "spectrum:hidden/collect_shards/citrine",
   "pages": [
     {
       "type": "spectrum:hint",

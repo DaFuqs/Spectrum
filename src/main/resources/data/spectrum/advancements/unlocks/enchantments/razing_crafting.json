@@ -9,7 +9,7 @@
     "collected_gray_pigment": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_pigment/collect_gray_pigment"
+        "advancement_identifier": "spectrum:hidden/collect_pigment/gray"
       }
     },
     "crafted_bottle_of_ruin": {

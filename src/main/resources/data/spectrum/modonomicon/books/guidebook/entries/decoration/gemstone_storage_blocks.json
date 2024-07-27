@@ -27,7 +27,7 @@
       "title1": "book.spectrum.guidebook.decoration.gemstone_storage_blocks.page1.title",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/collect_shards/collect_topaz_shard"
+        "advancement_id": "spectrum:hidden/collect_shards/topaz"
       },
       "recipe_id_1": "spectrum:crafting_table/gem_blocks/topaz_storage_block",
       "recipe_id_2": "spectrum:crafting_table/gem_blocks/topaz_shards_from_topaz_storage_block"
@@ -37,7 +37,7 @@
       "title1": "book.spectrum.guidebook.decoration.gemstone_storage_blocks.page2.title",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/collect_shards/collect_amethyst_shard"
+        "advancement_id": "spectrum:hidden/collect_shards/amethyst"
       },
       "recipe_id_1": "spectrum:crafting_table/gem_blocks/amethyst_storage_block",
       "recipe_id_2": "spectrum:crafting_table/gem_blocks/amethyst_shards_from_amethyst_storage_block"
@@ -47,7 +47,7 @@
       "title1": "book.spectrum.guidebook.decoration.gemstone_storage_blocks.page3.title",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/collect_shards/collect_citrine_shard"
+        "advancement_id": "spectrum:hidden/collect_shards/citrine"
       },
       "recipe_id_1": "spectrum:crafting_table/gem_blocks/citrine_storage_block",
       "recipe_id_2": "spectrum:crafting_table/gem_blocks/citrine_shards_from_citrine_storage_block"
@@ -67,7 +67,7 @@
       "title1": "book.spectrum.guidebook.decoration.gemstone_storage_blocks.page5.title",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/collect_moonstone_shard"
+        "advancement_id": "spectrum:lategame/collect_moonstone"
       },
       "recipe_id_1": "spectrum:crafting_table/gem_blocks/moonstone_storage_block",
       "recipe_id_2": "spectrum:crafting_table/gem_blocks/moonstone_shards_from_moonstone_storage_block"

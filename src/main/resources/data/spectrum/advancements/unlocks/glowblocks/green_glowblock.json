@@ -8,7 +8,9 @@
     },
     "has_green_pigment": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_green_pigment" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_pigment/green"
+      }
     }
   }
 }

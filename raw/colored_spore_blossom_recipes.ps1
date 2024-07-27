@@ -29,7 +29,7 @@ New-Item -Name "$_`_glowblock.json" -ItemType File -Value @"
     "item": "spectrum:$_`_glowblock",
     "count": 4
   },
-  "required_advancements": ["spectrum:hidden/collect_pigment/collect_$_`_pigment"]
+  "required_advancements": ["spectrum:hidden/collect_pigment/$_`"]
 }
 "@
 

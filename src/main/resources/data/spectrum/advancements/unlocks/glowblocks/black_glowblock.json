@@ -8,7 +8,9 @@
     },
     "has_black_pigment": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_black_pigment" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_pigment/black"
+      }
     }
   }
 }

@@ -24,7 +24,7 @@
       "anchor": "topaz",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/collect_shards/collect_topaz_shard"
+        "advancement_id": "spectrum:hidden/collect_shards/topaz"
       },
       "title": "book.spectrum.guidebook.general.shards.page1.title",
       "item": {
@@ -37,7 +37,7 @@
       "anchor": "amethyst",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/collect_shards/collect_amethyst_shard"
+        "advancement_id": "spectrum:hidden/collect_shards/amethyst"
       },
       "title": "book.spectrum.guidebook.general.shards.page2.title",
       "item": {
@@ -50,7 +50,7 @@
       "anchor": "citrine",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/collect_shards/collect_citrine_shard"
+        "advancement_id": "spectrum:hidden/collect_shards/citrine"
       },
       "title": "book.spectrum.guidebook.general.shards.page3.title",
       "item": {
@@ -76,7 +76,7 @@
       "anchor": "moonstone",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/collect_moonstone_shard"
+        "advancement_id": "spectrum:lategame/collect_moonstone"
       },
       "title": "book.spectrum.guidebook.general.shards.page5.title",
       "item": {

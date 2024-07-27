@@ -977,23 +977,23 @@ public class SpectrumBlocks {
 	public static final Block BLOOD_ORCHID = new BloodOrchidBlock(SpectrumStatusEffects.FRENZY, 10, FabricBlockSettings.copyOf(Blocks.POPPY).offset(AbstractBlock.OffsetType.NONE).ticksRandomly());
 
 	private static final UniformIntProvider gemOreExperienceProvider = UniformIntProvider.create(1, 4);
-	public static final Block TOPAZ_ORE = new GemstoneOreBlock(ore(), gemOreExperienceProvider, BuiltinGemstoneColor.CYAN, locate("hidden/collect_shards/collect_topaz_shard"), Blocks.STONE.getDefaultState());
-	public static final Block AMETHYST_ORE = new GemstoneOreBlock(ore(), gemOreExperienceProvider, BuiltinGemstoneColor.MAGENTA, locate("hidden/collect_shards/collect_amethyst_shard"), Blocks.STONE.getDefaultState());
-	public static final Block CITRINE_ORE = new GemstoneOreBlock(ore(), gemOreExperienceProvider, BuiltinGemstoneColor.YELLOW, locate("hidden/collect_shards/collect_citrine_shard"), Blocks.STONE.getDefaultState());
+	public static final Block TOPAZ_ORE = new GemstoneOreBlock(ore(), gemOreExperienceProvider, BuiltinGemstoneColor.CYAN, locate("hidden/collect_shards/topaz"), Blocks.STONE.getDefaultState());
+	public static final Block AMETHYST_ORE = new GemstoneOreBlock(ore(), gemOreExperienceProvider, BuiltinGemstoneColor.MAGENTA, locate("hidden/collect_shards/amethyst"), Blocks.STONE.getDefaultState());
+	public static final Block CITRINE_ORE = new GemstoneOreBlock(ore(), gemOreExperienceProvider, BuiltinGemstoneColor.YELLOW, locate("hidden/collect_shards/citrine"), Blocks.STONE.getDefaultState());
 	public static final Block ONYX_ORE = new GemstoneOreBlock(ore(), gemOreExperienceProvider, BuiltinGemstoneColor.BLACK, locate("create_onyx_shard"), Blocks.STONE.getDefaultState());
-	public static final Block MOONSTONE_ORE = new GemstoneOreBlock(ore(), gemOreExperienceProvider, BuiltinGemstoneColor.WHITE, locate("lategame/collect_moonstone_shard"), Blocks.STONE.getDefaultState());
-
-	public static final Block DEEPSLATE_TOPAZ_ORE = new GemstoneOreBlock(deepslateOre(), gemOreExperienceProvider, BuiltinGemstoneColor.CYAN, locate("hidden/collect_shards/collect_topaz_shard"), Blocks.DEEPSLATE.getDefaultState());
-	public static final Block DEEPSLATE_AMETHYST_ORE = new GemstoneOreBlock(deepslateOre(), gemOreExperienceProvider, BuiltinGemstoneColor.MAGENTA, locate("hidden/collect_shards/collect_amethyst_shard"), Blocks.DEEPSLATE.getDefaultState());
-	public static final Block DEEPSLATE_CITRINE_ORE = new GemstoneOreBlock(deepslateOre(), gemOreExperienceProvider, BuiltinGemstoneColor.YELLOW, locate("hidden/collect_shards/collect_citrine_shard"), Blocks.DEEPSLATE.getDefaultState());
+	public static final Block MOONSTONE_ORE = new GemstoneOreBlock(ore(), gemOreExperienceProvider, BuiltinGemstoneColor.WHITE, locate("lategame/collect_moonstone"), Blocks.STONE.getDefaultState());
+	
+	public static final Block DEEPSLATE_TOPAZ_ORE = new GemstoneOreBlock(deepslateOre(), gemOreExperienceProvider, BuiltinGemstoneColor.CYAN, locate("hidden/collect_shards/topaz"), Blocks.DEEPSLATE.getDefaultState());
+	public static final Block DEEPSLATE_AMETHYST_ORE = new GemstoneOreBlock(deepslateOre(), gemOreExperienceProvider, BuiltinGemstoneColor.MAGENTA, locate("hidden/collect_shards/amethyst"), Blocks.DEEPSLATE.getDefaultState());
+	public static final Block DEEPSLATE_CITRINE_ORE = new GemstoneOreBlock(deepslateOre(), gemOreExperienceProvider, BuiltinGemstoneColor.YELLOW, locate("hidden/collect_shards/citrine"), Blocks.DEEPSLATE.getDefaultState());
 	public static final Block DEEPSLATE_ONYX_ORE = new GemstoneOreBlock(deepslateOre(), gemOreExperienceProvider, BuiltinGemstoneColor.BLACK, locate("create_onyx_shard"), Blocks.DEEPSLATE.getDefaultState());
-	public static final Block DEEPSLATE_MOONSTONE_ORE = new GemstoneOreBlock(deepslateOre(), gemOreExperienceProvider, BuiltinGemstoneColor.WHITE, locate("lategame/collect_moonstone_shard"), Blocks.DEEPSLATE.getDefaultState());
-
-	public static final Block BLACKSLAG_TOPAZ_ORE = new GemstoneOreBlock(blackslagOre(), gemOreExperienceProvider, BuiltinGemstoneColor.CYAN, locate("hidden/collect_shards/collect_topaz_shard"), SpectrumBlocks.BLACKSLAG.getDefaultState());
-	public static final Block BLACKSLAG_AMETHYST_ORE = new GemstoneOreBlock(blackslagOre(), gemOreExperienceProvider, BuiltinGemstoneColor.MAGENTA, locate("hidden/collect_shards/collect_amethyst_shard"), SpectrumBlocks.BLACKSLAG.getDefaultState());
-	public static final Block BLACKSLAG_CITRINE_ORE = new GemstoneOreBlock(blackslagOre(), gemOreExperienceProvider, BuiltinGemstoneColor.YELLOW, locate("hidden/collect_shards/collect_citrine_shard"), SpectrumBlocks.BLACKSLAG.getDefaultState());
+	public static final Block DEEPSLATE_MOONSTONE_ORE = new GemstoneOreBlock(deepslateOre(), gemOreExperienceProvider, BuiltinGemstoneColor.WHITE, locate("lategame/collect_moonstone"), Blocks.DEEPSLATE.getDefaultState());
+	
+	public static final Block BLACKSLAG_TOPAZ_ORE = new GemstoneOreBlock(blackslagOre(), gemOreExperienceProvider, BuiltinGemstoneColor.CYAN, locate("hidden/collect_shards/topaz"), SpectrumBlocks.BLACKSLAG.getDefaultState());
+	public static final Block BLACKSLAG_AMETHYST_ORE = new GemstoneOreBlock(blackslagOre(), gemOreExperienceProvider, BuiltinGemstoneColor.MAGENTA, locate("hidden/collect_shards/amethyst"), SpectrumBlocks.BLACKSLAG.getDefaultState());
+	public static final Block BLACKSLAG_CITRINE_ORE = new GemstoneOreBlock(blackslagOre(), gemOreExperienceProvider, BuiltinGemstoneColor.YELLOW, locate("hidden/collect_shards/citrine"), SpectrumBlocks.BLACKSLAG.getDefaultState());
 	public static final Block BLACKSLAG_ONYX_ORE = new GemstoneOreBlock(blackslagOre(), gemOreExperienceProvider, BuiltinGemstoneColor.BLACK, locate("create_onyx_shard"), SpectrumBlocks.BLACKSLAG.getDefaultState());
-	public static final Block BLACKSLAG_MOONSTONE_ORE = new GemstoneOreBlock(blackslagOre(), gemOreExperienceProvider, BuiltinGemstoneColor.WHITE, locate("lategame/collect_moonstone_shard"), SpectrumBlocks.BLACKSLAG.getDefaultState());
+	public static final Block BLACKSLAG_MOONSTONE_ORE = new GemstoneOreBlock(blackslagOre(), gemOreExperienceProvider, BuiltinGemstoneColor.WHITE, locate("lategame/collect_moonstone"), SpectrumBlocks.BLACKSLAG.getDefaultState());
 
 	private static Settings gemStorageBlock(MapColor mapColor, BlockSoundGroup soundGroup) {
 		return settings(mapColor, soundGroup, 5.0F, 6.0F);

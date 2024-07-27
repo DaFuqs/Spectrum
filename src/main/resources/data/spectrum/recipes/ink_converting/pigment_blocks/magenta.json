@@ -5,5 +5,7 @@
   },
   "ink_color": "spectrum:magenta",
   "amount": 900,
-  "required_advancement": "spectrum:hidden/collect_pigment/collect_magenta_pigment"
+  "required_advancement": "spectrum:hidden/collect_pigment/"
+  magenta
+  "
 }

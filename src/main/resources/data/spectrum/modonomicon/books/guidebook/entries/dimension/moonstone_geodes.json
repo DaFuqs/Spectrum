@@ -3,7 +3,7 @@
   "icon": "spectrum:moonstone_cluster",
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:lategame/collect_moonstone_shard"
+    "advancement_id": "spectrum:lategame/collect_moonstone"
   },
   "category": "spectrum:dimension",
   "hide_while_locked ": true,

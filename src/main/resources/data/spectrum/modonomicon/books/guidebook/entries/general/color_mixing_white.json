@@ -3,7 +3,7 @@
   "icon": "minecraft:white_dye",
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:lategame/collect_moonstone_shard"
+    "advancement_id": "spectrum:lategame/collect_moonstone"
   },
   "category": "spectrum:general",
   "hide_while_locked ": true,

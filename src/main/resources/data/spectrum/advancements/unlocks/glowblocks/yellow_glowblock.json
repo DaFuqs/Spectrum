@@ -8,7 +8,9 @@
     },
     "has_yellow_pigment": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_yellow_pigment" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_pigment/yellow"
+      }
     }
   }
 }

@@ -6,7 +6,9 @@
     },
     "collected_light_gray_pigment": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_light_gray_pigment" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_pigment/light_gray"
+      }
     },
     "collected_paltaeria": {
       "trigger":"revelationary:advancement_gotten",

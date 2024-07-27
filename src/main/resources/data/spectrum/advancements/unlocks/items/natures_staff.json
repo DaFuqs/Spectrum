@@ -2,11 +2,15 @@
   "criteria": {
     "collected_brown_pigment": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_brown_pigment" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_pigment/brown"
+      }
     },
     "collected_lime_pigment": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_lime_pigment" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_pigment/lime"
+      }
     }
   }
 }

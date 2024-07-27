@@ -15,7 +15,7 @@
     "collected_echo_shard": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_vanilla/collect_echo_shard"
+        "advancement_identifier": "spectrum:hidden/collect_vanilla/echo_shard"
       }
     }
   }

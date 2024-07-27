@@ -6,7 +6,9 @@
     },
     "collected_ender_eye": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_vanilla/collect_ender_eye" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_vanilla/ender_eye"
+      }
     },
     "gotten_radiating_ender": {
       "trigger":"revelationary:advancement_gotten",

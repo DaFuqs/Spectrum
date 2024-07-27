@@ -6,7 +6,9 @@
     },
     "collected_brown_pigment": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_brown_pigment" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_pigment/brown"
+      }
     },
     "collected_mermaids_gem": {
       "trigger":"revelationary:advancement_gotten",

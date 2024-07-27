@@ -18,6 +18,6 @@
     "item": "spectrum:moonstone_powder",
     "count": 9
   },
-  "required_advancement": "spectrum:lategame/collect_moonstone_shard",
+  "required_advancement": "spectrum:lategame/collect_moonstone",
   "disable_yield_upgrades": true
 }

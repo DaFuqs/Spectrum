@@ -5,7 +5,7 @@
   },
   "ink_color": "spectrum:brown",
   "amount": 25,
-  "required_advancement": "spectrum:hidden/collect_pigment/collect_brown_pigment",
+  "required_advancement": "spectrum:hidden/collect_pigment/brown",
   "fabric:load_conditions": [
     {
       "condition": "fabric:all_mods_loaded",

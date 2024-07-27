@@ -20,19 +20,19 @@
     "has_amethyst_shard": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_shards/collect_amethyst_shard"
+        "advancement_identifier": "spectrum:hidden/collect_shards/amethyst"
       }
     },
     "has_citrine_shard": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_shards/collect_citrine_shard"
+        "advancement_identifier": "spectrum:hidden/collect_shards/citrine"
       }
     },
     "has_topaz_shard": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_shards/collect_topaz_shard"
+        "advancement_identifier": "spectrum:hidden/collect_shards/topaz"
       }
     }
   },

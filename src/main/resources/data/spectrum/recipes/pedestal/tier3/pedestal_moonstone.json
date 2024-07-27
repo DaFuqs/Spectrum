@@ -17,6 +17,6 @@
     "item": "spectrum:pedestal_moonstone",
     "count": 1
   },
-  "required_advancement": "spectrum:lategame/collect_moonstone_shard",
+  "required_advancement": "spectrum:lategame/collect_moonstone",
   "disable_yield_upgrades": true
 }

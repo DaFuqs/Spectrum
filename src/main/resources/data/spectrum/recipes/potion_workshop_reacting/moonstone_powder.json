@@ -4,5 +4,5 @@
   "modifiers": {
     "make_effects_positive": true
   },
-  "required_advancement": "spectrum:lategame/collect_moonstone_shard"
+  "required_advancement": "spectrum:lategame/collect_moonstone"
 }

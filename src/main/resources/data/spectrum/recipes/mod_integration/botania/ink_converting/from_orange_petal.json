@@ -5,7 +5,7 @@
   },
   "ink_color": "spectrum:orange",
   "amount": 25,
-  "required_advancement": "spectrum:hidden/collect_pigment/collect_orange_pigment",
+  "required_advancement": "spectrum:hidden/collect_pigment/orange_pigment",
   "fabric:load_conditions": [
     {
       "condition": "fabric:all_mods_loaded",

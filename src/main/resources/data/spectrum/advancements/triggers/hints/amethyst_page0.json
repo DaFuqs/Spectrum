@@ -6,7 +6,7 @@
     "advancement_gotten": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_shards/collect_amethyst_shard"
+        "advancement_identifier": "spectrum:hidden/collect_shards/amethyst"
       }
     }
   },

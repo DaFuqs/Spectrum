@@ -17,6 +17,6 @@
     "item": "spectrum:blue_pigment",
     "count": 9
   },
-  "required_advancement": "spectrum:hidden/collect_pigment/collect_blue_pigment",
+  "required_advancement": "spectrum:hidden/collect_pigment/blue",
   "disable_yield_upgrades": true
 }

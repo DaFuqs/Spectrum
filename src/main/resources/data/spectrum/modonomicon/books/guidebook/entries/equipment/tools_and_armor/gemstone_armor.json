@@ -21,10 +21,10 @@
     {
       "type": "spectrum:checklist",
       "checklist": {
-        "spectrum:hidden/collect_vanilla/collect_ender_eye": "book.spectrum.guidebook.equipment.gemstone_armor.page1.checklist.entry0",
-        "spectrum:hidden/collect_vanilla/collect_nautilus_shell": "book.spectrum.guidebook.equipment.gemstone_armor.page1.checklist.entry1",
-        "spectrum:hidden/collect_vanilla/collect_ghast_tear": "book.spectrum.guidebook.equipment.gemstone_armor.page1.checklist.entry2",
-        "spectrum:hidden/collect_vanilla/collect_phantom_membrane": "book.spectrum.guidebook.equipment.gemstone_armor.page1.checklist.entry3"
+        "spectrum:hidden/collect_vanilla/ender_eye": "book.spectrum.guidebook.equipment.gemstone_armor.page1.checklist.entry0",
+        "spectrum:hidden/collect_vanilla/nautilus_shell": "book.spectrum.guidebook.equipment.gemstone_armor.page1.checklist.entry1",
+        "spectrum:hidden/collect_vanilla/ghast_tear": "book.spectrum.guidebook.equipment.gemstone_armor.page1.checklist.entry2",
+        "spectrum:hidden/collect_vanilla/phantom_membrane": "book.spectrum.guidebook.equipment.gemstone_armor.page1.checklist.entry3"
       },
       "text": "book.spectrum.guidebook.equipment.gemstone_armor.page1.text"
     },

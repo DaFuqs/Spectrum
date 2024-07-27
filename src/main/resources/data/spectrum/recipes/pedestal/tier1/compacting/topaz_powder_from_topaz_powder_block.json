@@ -18,6 +18,6 @@
     "item": "spectrum:topaz_powder",
     "count": 9
   },
-  "required_advancement": "spectrum:hidden/collect_shards/collect_topaz_shard",
+  "required_advancement": "spectrum:hidden/collect_shards/topaz",
   "disable_yield_upgrades": true
 }

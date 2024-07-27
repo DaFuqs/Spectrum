@@ -23,7 +23,7 @@
                 "type_specific": {
                   "type": "player",
                   "advancements": {
-                    "spectrum:hidden/collect_shards/collect_amethyst_shard": true
+                    "spectrum:hidden/collect_shards/amethyst": true
                   }
                 }
               }
@@ -41,7 +41,7 @@
                 "type_specific": {
                   "type": "player",
                   "advancements": {
-                    "spectrum:hidden/collect_shards/collect_topaz_shard": true
+                    "spectrum:hidden/collect_shards/topaz": true
                   }
                 }
               }
@@ -59,7 +59,7 @@
                 "type_specific": {
                   "type": "player",
                   "advancements": {
-                    "spectrum:hidden/collect_shards/collect_citrine_shard": true
+                    "spectrum:hidden/collect_shards/citrine": true
                   }
                 }
               }
@@ -95,7 +95,7 @@
                 "type_specific": {
                   "type": "player",
                   "advancements": {
-                    "spectrum:lategame/collect_moonstone_shard": true
+                    "spectrum:lategame/collect_moonstone": true
                   }
                 }
               }

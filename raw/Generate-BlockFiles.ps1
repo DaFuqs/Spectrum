@@ -206,6 +206,8 @@ Function Generate-BlockFiles {
 
 
         function Get-BlockStateSlab($Name) {
+            $normalBlockName = $Name -replace "_slab", "s"
+
   Write-Output @"
   {
     "variants": {
@@ -213,7 +215,7 @@ Function Generate-BlockFiles {
         "model": "spectrum:block/$Name`"
       },
       "type=double": {
-        "model": "spectrum:block/$Name`"
+        "model": "spectrum:block/$normalBlockName`"
       },
       "type=top": {
         "model": "spectrum:block/$Name`_top"
@@ -1107,7 +1109,18 @@ Function Generate-BlockFiles {
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "srias_flowers:block/$Name`_top"
+    "layer0": "spectrum:block/$Name`_top"
+  }
+}
+"@
+        }
+
+        function Get-ItemModelWall($Name) {
+            Write-Output @"
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "spectrum:block/$Name`_inventory"
   }
 }
 "@
@@ -1346,6 +1359,8 @@ Function Generate-BlockFiles {
             }
 
             # ITEM MODEL
+            if($blockType -eq [BlockType]::Wall) {
+                $itemModel = Get-ItemModelWall -Name $_
             if($blockType -eq [BlockType]::Upgrade) {
                 $itemModel = Get-ItemModel -Name ($_ -replace "[0-9]", "")
             } elseif($blockType -eq [BlockType]::TallFlower) {

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WWW",
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "item": "spectrum:basal_marble_tiles"
+    }
+  },
+  "result": {
+    "item": "spectrum:basal_marble_tile_wall",
+    "count": 6
+  }
+}

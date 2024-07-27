@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": [
+    {
+      "item": "spectrum:basal_marble_brick_stairs"
+    },
+    {
+      "item": "spectrum:basal_marble_brick_wall"
+    },
+    {
+      "item": "spectrum:basal_marble_bricks"
+    },
+    {
+      "item": "spectrum:basal_marble_tile_stairs"
+    },
+    {
+      "item": "spectrum:basal_marble_tile_wall"
+    },
+    {
+      "item": "spectrum:basal_marble_tiles"
+    },
+    {
+      "item": "spectrum:basal_marble_pillar"
+    },
+    {
+      "item": "spectrum:polished_basal_marble_stairs"
+    },
+    {
+      "item": "spectrum:polished_basal_marble_wall"
+    }
+  ],
+  "result": "spectrum:polished_basal_marble",
+  "experience": 0.1,
+  "cookingtime": 200
+}

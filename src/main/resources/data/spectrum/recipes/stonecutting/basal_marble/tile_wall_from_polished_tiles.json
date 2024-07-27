@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "spectrum:basal_marble_tiles"
+  },
+  "result": "spectrum:basal_marble_tile_wall",
+  "count": 1
+}

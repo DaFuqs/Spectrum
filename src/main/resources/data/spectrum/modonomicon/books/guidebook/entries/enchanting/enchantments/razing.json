@@ -43,7 +43,7 @@
       },
       "text": "book.spectrum.guidebook.enchanting.razing.page2.text",
       "title1": "book.spectrum.guidebook.enchanting.razing.page2.title",
-      "recipe_id_1": "spectrum:enchanter/spectrum_books/book_razing"
+      "recipe_id_1": "spectrum:enchanter/spectrum_books/razing"
     },
     {
       "type": "spectrum:enchanter_upgrading",

@@ -26,15 +26,15 @@
     {
       "type": "modonomicon:blasting_recipe",
       "title1": "book.spectrum.guidebook.general.pure_resources.page1.title",
-      "recipe_id_1": "spectrum:blasting/pure_resources/pure_iron",
-      "recipe_id_2": "spectrum:blasting/pure_resources/pure_gold",
+      "recipe_id_1": "spectrum:blasting/pure_resources/iron",
+      "recipe_id_2": "spectrum:blasting/pure_resources/gold",
       "text": "book.spectrum.guidebook.general.pure_resources.page1.text"
     },
     {
       "type": "spectrum:cinderhearth_smelting",
       "title1": "book.spectrum.guidebook.general.pure_resources.page2.title",
-      "recipe_id_1": "spectrum:cinderhearth/pure_resources/pure_iron",
-      "recipe_id_2": "spectrum:cinderhearth/pure_resources/pure_gold",
+      "recipe_id_1": "spectrum:cinderhearth/pure_resources/iron",
+      "recipe_id_2": "spectrum:cinderhearth/pure_resources/gold",
       "text": "book.spectrum.guidebook.general.pure_resources.page2.text"
     },
     {

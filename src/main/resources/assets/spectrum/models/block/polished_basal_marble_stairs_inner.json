@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/inner_stairs",
   "textures": {
-    "bottom": "spectrum:block/polished_basal_marbles",
-    "top": "spectrum:block/polished_basal_marbles",
-    "side": "spectrum:block/polished_basal_marbles"
+    "bottom": "spectrum:block/polished_basal_marble",
+    "top": "spectrum:block/polished_basal_marble",
+    "side": "spectrum:block/polished_basal_marble"
   }
 }

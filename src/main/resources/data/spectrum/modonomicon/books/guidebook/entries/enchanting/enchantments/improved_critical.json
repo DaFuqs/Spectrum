@@ -39,7 +39,7 @@
       "type": "spectrum:enchanter_crafting",
       "text": "book.spectrum.guidebook.enchanting.improved_critical.page2.text",
       "title1": "book.spectrum.guidebook.enchanting.improved_critical.page2.title",
-      "recipe_id_1": "spectrum:enchanter/spectrum_books/book_improved_critical"
+      "recipe_id_1": "spectrum:enchanter/spectrum_books/improved_critical"
     },
     {
       "type": "spectrum:enchanter_upgrading",

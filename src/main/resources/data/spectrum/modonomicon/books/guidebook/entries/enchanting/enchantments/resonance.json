@@ -43,7 +43,7 @@
       },
       "text": "book.spectrum.guidebook.enchanting.resonance.page2.text",
       "title1": "book.spectrum.guidebook.enchanting.resonance.page2.title",
-      "recipe_id_1": "spectrum:enchanter/spectrum_books/book_resonance"
+      "recipe_id_1": "spectrum:enchanter/spectrum_books/resonance"
     },
     {
       "type": "modonomicon:spotlight",

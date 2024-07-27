@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/wall_inventory",
   "textures": {
-    "wall": "spectrum:block/polished_basal_marbles"
+    "wall": "spectrum:block/polished_basal_marble"
   }
 }

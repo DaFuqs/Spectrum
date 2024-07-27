@@ -39,7 +39,7 @@
       "type": "spectrum:enchanter_crafting",
       "text": "book.spectrum.guidebook.enchanting.tight_grip.page2.text",
       "title1": "book.spectrum.guidebook.enchanting.tight_grip.page2.title",
-      "recipe_id_1": "spectrum:enchanter/spectrum_books/book_tight_grip"
+      "recipe_id_1": "spectrum:enchanter/spectrum_books/tight_grip"
     },
     {
       "type": "spectrum:enchanter_upgrading",

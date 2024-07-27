@@ -33,7 +33,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title1": "book.spectrum.guidebook.general.colored_trees.page1.title",
-      "recipe_id_1": "spectrum:pedestal/tier1/saplings/red_sapling",
+      "recipe_id_1": "spectrum:pedestal/tier1/saplings/red",
       "text": "book.spectrum.guidebook.general.colored_trees.page1.text"
     },
     {

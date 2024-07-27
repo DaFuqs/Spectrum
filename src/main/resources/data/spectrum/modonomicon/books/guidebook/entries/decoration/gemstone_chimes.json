@@ -28,7 +28,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title1": "book.spectrum.guidebook.decoration.gemstone_chimes.page1.title",
-      "recipe_id_1": "spectrum:pedestal/tier3/gemstone_chimes/topaz_chime",
+      "recipe_id_1": "spectrum:pedestal/tier3/gemstone_chimes/topaz",
       "text": "book.spectrum.guidebook.decoration.gemstone_chimes.page1.text"
     }
   ]

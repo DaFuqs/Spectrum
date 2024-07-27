@@ -25,7 +25,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title1": "book.spectrum.guidebook.decoration.colored_spore_blossoms.page1.title",
-      "recipe_id_1": "spectrum:pedestal/tier2/colored_spore_blossoms/orange_spore_blossom",
+      "recipe_id_1": "spectrum:pedestal/tier2/colored_spore_blossoms/orange",
       "text": "book.spectrum.guidebook.decoration.colored_spore_blossoms.page1.text"
     }
   ]

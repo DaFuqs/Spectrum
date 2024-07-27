@@ -39,7 +39,7 @@
       "type": "spectrum:enchanter_crafting",
       "text": "book.spectrum.guidebook.enchanting.exuberance.page2.text",
       "title1": "book.spectrum.guidebook.enchanting.exuberance.page2.title",
-      "recipe_id_1": "spectrum:enchanter/spectrum_books/book_exuberance"
+      "recipe_id_1": "spectrum:enchanter/spectrum_books/exuberance"
     },
     {
       "type": "spectrum:enchanter_upgrading",

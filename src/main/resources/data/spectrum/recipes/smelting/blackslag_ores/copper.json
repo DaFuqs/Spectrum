@@ -5,6 +5,6 @@
     "item": "spectrum:blackslag_copper_ore"
   },
   "result": "minecraft:raw_copper",
-  "experience": 0.1,
+  "experience": 1.0,
   "cookingtime": 200
 }

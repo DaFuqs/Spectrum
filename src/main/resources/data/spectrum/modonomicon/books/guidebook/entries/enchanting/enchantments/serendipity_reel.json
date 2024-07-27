@@ -48,7 +48,7 @@
       "type": "spectrum:enchanter_crafting",
       "text": "book.spectrum.guidebook.enchanting.serendipity_reel.page2.text",
       "title1": "book.spectrum.guidebook.enchanting.serendipity_reel.page2.title",
-      "recipe_id_1": "spectrum:enchanter/spectrum_books/book_serendipity_reel"
+      "recipe_id_1": "spectrum:enchanter/spectrum_books/serendipity_reel"
     },
     {
       "type": "spectrum:enchanter_upgrading",

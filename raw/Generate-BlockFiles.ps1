@@ -1,4 +1,4 @@
-﻿$new = @("polished_basal_marble_wall")
+﻿$new = @("weeping_gala_slab")
 
 enum BlockType {
     Default
@@ -795,8 +795,8 @@ Function Generate-BlockFiles {
 {
     "parent": "minecraft:block/cube_column",
     "textures": {
-    "end": "spectrum:block/$_Name`_top",
-    "side": "spectrum:block/$Name"
+        "end": "spectrum:block/$_Name`_top",
+        "side": "spectrum:block/$Name"
     }
 }
 "@
@@ -807,8 +807,8 @@ Function Generate-BlockFiles {
 {
     "parent": "minecraft:block/cube_column_horizontal",
     "textures": {
-    "end": "spectrum:block/$Name`_top",
-    "side": "spectrum:block/$Name"
+        "end": "spectrum:block/$Name`_top",
+        "side": "spectrum:block/$Name"
     }
 }
 "@
@@ -1391,4 +1391,4 @@ Function Generate-BlockFiles {
     }
 }
 
-Generate-BlockFiles -BlockNames $new -BlockType ([BlockType]::Wall)
+Generate-BlockFiles -BlockNames $new -BlockType ([BlockType]::Slab)

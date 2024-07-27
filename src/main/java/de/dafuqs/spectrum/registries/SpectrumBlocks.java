@@ -58,6 +58,7 @@ import de.dafuqs.spectrum.recipe.pedestal.*;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.*;
 import net.fabricmc.fabric.api.item.v1.*;
 import net.fabricmc.fabric.api.object.builder.v1.block.*;
+import net.fabricmc.fabric.api.object.builder.v1.block.type.*;
 import net.minecraft.block.*;
 import net.minecraft.block.AbstractBlock.*;
 import net.minecraft.block.enums.Instrument;
@@ -724,16 +725,31 @@ public class SpectrumBlocks {
 	public static final Block CHESTNUT_NOXWOOD_LANTERN = new RedstoneLampBlock(noxcap(MapColor.DULL_RED).luminance(LANTERN_LIGHT_PROVIDER));
 	public static final Block CHESTNUT_NOXWOOD_LIGHT = new PillarBlock(noxcap(MapColor.DULL_RED).luminance(state -> 15));
 	public static final Block CHESTNUT_NOXWOOD_LAMP = new FlexLanternBlock(FabricBlockSettings.copyOf(Blocks.LANTERN).luminance(13).pistonBehavior(PistonBehavior.DESTROY));
-
-	public static Settings gala(MapColor color) {
-		return settings(color, BlockSoundGroup.CHERRY_WOOD, 30.0F).instrument(Instrument.BASS);
+	
+	public static Settings galaWood(MapColor color) {
+		return settings(color, BlockSoundGroup.CHERRY_WOOD, 30.0F).instrument(Instrument.BASS).burnable();
 	}
-
-	public static final Block GALA_LOG = new PillarBlock(gala(MapColor.BROWN));
-	public static final Block STRIPPED_GALA_LOG = new PillarBlock(gala(MapColor.BROWN));
-	public static final Block GALA_PLANKS = new Block(gala(MapColor.BROWN));
-
-	public static final Block GLAZED_PLANKS = new Block(gala(MapColor.OFF_WHITE));
+	
+	public static final Block WEEPING_GALA_SPRIG = new SaplingBlock(new WeepingGalaSaplingGenerator(), copyWithMapColor(OAK_SAPLING, MapColor.BRIGHT_TEAL));
+	public static final Block WEEPING_GALA_LEAVES = new LeavesBlock(copyWithMapColor(OAK_LEAVES, MapColor.BRIGHT_TEAL));
+	public static final Block WEEPING_GALA_LOG = new PillarBlock(galaWood(MapColor.BROWN));
+	public static final Block STRIPPED_WEEPING_GALA_LOG = new PillarBlock(galaWood(MapColor.BROWN));
+	public static final Block WEEPING_GALA_WOOD = new PillarBlock(galaWood(MapColor.BROWN));
+	public static final Block STRIPPED_WEEPING_GALA_WOOD = new PillarBlock(galaWood(MapColor.BROWN));
+	public static final Block POTTED_WEEPING_GALA_SPRIG = new FlowerPotBlock(WEEPING_GALA_SPRIG, pottedPlant());
+	
+	public static final BlockSetType GALA_BLOCK_SET_TYPE = BlockSetTypeBuilder.copyOf(BlockSetType.CHERRY).build(SpectrumCommon.locate("gala"));
+	public static final WoodType GALA_WOOD_TYPE = WoodTypeBuilder.copyOf(WoodType.CHERRY).build(SpectrumCommon.locate("gala"), GALA_BLOCK_SET_TYPE);
+	
+	public static final Block WEEPING_GALA_PLANKS = new Block(galaWood(MapColor.BROWN));
+	public static final Block WEEPING_GALA_STAIRS = new StairsBlock(WEEPING_GALA_PLANKS.getDefaultState(), galaWood(MapColor.BROWN));
+	public static final Block WEEPING_GALA_DOOR = new DoorBlock(galaWood(MapColor.BROWN), GALA_BLOCK_SET_TYPE);
+	public static final Block WEEPING_GALA_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, galaWood(MapColor.BROWN), GALA_BLOCK_SET_TYPE);
+	public static final Block WEEPING_GALA_FENCE = new FenceBlock(galaWood(MapColor.BROWN));
+	public static final Block WEEPING_GALA_TRAPDOOR = new TrapdoorBlock(galaWood(MapColor.BROWN), GALA_BLOCK_SET_TYPE);
+	public static final Block WEEPING_GALA_FENCE_GATE = new FenceGateBlock(galaWood(MapColor.BROWN), GALA_WOOD_TYPE);
+	public static final Block WEEPING_GALA_BUTTON = Blocks.createWoodenButtonBlock(GALA_BLOCK_SET_TYPE);
+	public static final Block WEEPING_GALA_SLAB = new SlabBlock(galaWood(MapColor.BROWN));
 	
 	public static Settings basalMarble() {
 		return settings(MapColor.GRAY, BlockSoundGroup.DRIPSTONE_BLOCK, 8.0F).instrument(Instrument.BASEDRUM).requiresTool();
@@ -1008,111 +1024,111 @@ public class SpectrumBlocks {
 	//public static final Block SPECTRAL_SHARD_STORAGE_BLOCK = new Block(gemStorageBlock(MapColor.OFF_WHITE, SpectrumBlockSoundGroups.SPECTRAL_BLOCK));
 
 	// COLORED TREES
-	private static Settings coloredBlock(Block baseBlock, MapColor color) {
+	private static Settings copyWithMapColor(Block baseBlock, MapColor color) {
 		return FabricBlockSettings.copyOf(baseBlock).mapColor(color);
 	}
-
-	public static final Block BLACK_SAPLING = new ColoredSaplingBlock(coloredBlock(Blocks.OAK_SAPLING, MapColor.BLACK), DyeColor.BLACK);
-	public static final Block BLUE_SAPLING = new ColoredSaplingBlock(coloredBlock(Blocks.OAK_SAPLING, MapColor.BLUE), DyeColor.BLUE);
-	public static final Block BROWN_SAPLING = new ColoredSaplingBlock(coloredBlock(Blocks.OAK_SAPLING, MapColor.BROWN), DyeColor.BROWN);
-	public static final Block CYAN_SAPLING = new ColoredSaplingBlock(coloredBlock(Blocks.OAK_SAPLING, MapColor.CYAN), DyeColor.CYAN);
-	public static final Block GRAY_SAPLING = new ColoredSaplingBlock(coloredBlock(Blocks.OAK_SAPLING, MapColor.GRAY), DyeColor.GRAY);
-	public static final Block GREEN_SAPLING = new ColoredSaplingBlock(coloredBlock(Blocks.OAK_SAPLING, MapColor.GREEN), DyeColor.GREEN);
-	public static final Block LIGHT_BLUE_SAPLING = new ColoredSaplingBlock(coloredBlock(Blocks.OAK_SAPLING, MapColor.LIGHT_BLUE), DyeColor.LIGHT_BLUE);
-	public static final Block LIGHT_GRAY_SAPLING = new ColoredSaplingBlock(coloredBlock(Blocks.OAK_SAPLING, MapColor.LIGHT_GRAY), DyeColor.LIGHT_GRAY);
-	public static final Block LIME_SAPLING = new ColoredSaplingBlock(coloredBlock(Blocks.OAK_SAPLING, MapColor.LIME), DyeColor.LIME);
-	public static final Block MAGENTA_SAPLING = new ColoredSaplingBlock(coloredBlock(Blocks.OAK_SAPLING, MapColor.MAGENTA), DyeColor.MAGENTA);
-	public static final Block ORANGE_SAPLING = new ColoredSaplingBlock(coloredBlock(Blocks.OAK_SAPLING, MapColor.ORANGE), DyeColor.ORANGE);
-	public static final Block PINK_SAPLING = new ColoredSaplingBlock(coloredBlock(Blocks.OAK_SAPLING, MapColor.PINK), DyeColor.PINK);
-	public static final Block PURPLE_SAPLING = new ColoredSaplingBlock(coloredBlock(Blocks.OAK_SAPLING, MapColor.PURPLE), DyeColor.PURPLE);
-	public static final Block RED_SAPLING = new ColoredSaplingBlock(coloredBlock(Blocks.OAK_SAPLING, MapColor.RED), DyeColor.RED);
-	public static final Block WHITE_SAPLING = new ColoredSaplingBlock(coloredBlock(Blocks.OAK_SAPLING, MapColor.WHITE), DyeColor.WHITE);
-	public static final Block YELLOW_SAPLING = new ColoredSaplingBlock(coloredBlock(Blocks.OAK_SAPLING, MapColor.YELLOW), DyeColor.YELLOW);
-
-	public static final Block BLACK_LEAVES = new ColoredLeavesBlock(coloredBlock(Blocks.OAK_LEAVES, MapColor.BLACK), DyeColor.BLACK);
-	public static final Block BLUE_LEAVES = new ColoredLeavesBlock(coloredBlock(Blocks.OAK_LEAVES, MapColor.BLUE), DyeColor.BLUE);
-	public static final Block BROWN_LEAVES = new ColoredLeavesBlock(coloredBlock(Blocks.OAK_LEAVES, MapColor.BROWN), DyeColor.BROWN);
-	public static final Block CYAN_LEAVES = new ColoredLeavesBlock(coloredBlock(Blocks.OAK_LEAVES, MapColor.CYAN), DyeColor.CYAN);
-	public static final Block GRAY_LEAVES = new ColoredLeavesBlock(coloredBlock(Blocks.OAK_LEAVES, MapColor.GRAY), DyeColor.GRAY);
-	public static final Block GREEN_LEAVES = new ColoredLeavesBlock(coloredBlock(Blocks.OAK_LEAVES, MapColor.GREEN), DyeColor.GREEN);
-	public static final Block LIGHT_BLUE_LEAVES = new ColoredLeavesBlock(coloredBlock(Blocks.OAK_LEAVES, MapColor.LIGHT_BLUE), DyeColor.LIGHT_BLUE);
-	public static final Block LIGHT_GRAY_LEAVES = new ColoredLeavesBlock(coloredBlock(Blocks.OAK_LEAVES, MapColor.LIGHT_GRAY), DyeColor.LIGHT_GRAY);
-	public static final Block LIME_LEAVES = new ColoredLeavesBlock(coloredBlock(Blocks.OAK_LEAVES, MapColor.LIME), DyeColor.LIME);
-	public static final Block MAGENTA_LEAVES = new ColoredLeavesBlock(coloredBlock(Blocks.OAK_LEAVES, MapColor.MAGENTA), DyeColor.MAGENTA);
-	public static final Block ORANGE_LEAVES = new ColoredLeavesBlock(coloredBlock(Blocks.OAK_LEAVES, MapColor.ORANGE), DyeColor.ORANGE);
-	public static final Block PINK_LEAVES = new ColoredLeavesBlock(coloredBlock(Blocks.OAK_LEAVES, MapColor.PINK), DyeColor.PINK);
-	public static final Block PURPLE_LEAVES = new ColoredLeavesBlock(coloredBlock(Blocks.OAK_LEAVES, MapColor.PURPLE), DyeColor.PURPLE);
-	public static final Block RED_LEAVES = new ColoredLeavesBlock(coloredBlock(Blocks.OAK_LEAVES, MapColor.RED), DyeColor.RED);
-	public static final Block WHITE_LEAVES = new ColoredLeavesBlock(coloredBlock(Blocks.OAK_LEAVES, MapColor.WHITE), DyeColor.WHITE);
-	public static final Block YELLOW_LEAVES = new ColoredLeavesBlock(coloredBlock(Blocks.OAK_LEAVES, MapColor.YELLOW), DyeColor.YELLOW);
-
-	public static final Block BLACK_LOG = new ColoredLogBlock(coloredBlock(Blocks.OAK_LOG, MapColor.BLACK), DyeColor.BLACK);
-	public static final Block BLUE_LOG = new ColoredLogBlock(coloredBlock(Blocks.OAK_LOG, MapColor.BLUE), DyeColor.BLUE);
-	public static final Block BROWN_LOG = new ColoredLogBlock(coloredBlock(Blocks.OAK_LOG, MapColor.BROWN), DyeColor.BROWN);
-	public static final Block CYAN_LOG = new ColoredLogBlock(coloredBlock(Blocks.OAK_LOG, MapColor.CYAN), DyeColor.CYAN);
-	public static final Block GRAY_LOG = new ColoredLogBlock(coloredBlock(Blocks.OAK_LOG, MapColor.GRAY), DyeColor.GRAY);
-	public static final Block GREEN_LOG = new ColoredLogBlock(coloredBlock(Blocks.OAK_LOG, MapColor.GREEN), DyeColor.GREEN);
-	public static final Block LIGHT_BLUE_LOG = new ColoredLogBlock(coloredBlock(Blocks.OAK_LOG, MapColor.LIGHT_BLUE), DyeColor.LIGHT_BLUE);
-	public static final Block LIGHT_GRAY_LOG = new ColoredLogBlock(coloredBlock(Blocks.OAK_LOG, MapColor.LIGHT_GRAY), DyeColor.LIGHT_GRAY);
-	public static final Block LIME_LOG = new ColoredLogBlock(coloredBlock(Blocks.OAK_LOG, MapColor.LIME), DyeColor.LIME);
-	public static final Block MAGENTA_LOG = new ColoredLogBlock(coloredBlock(Blocks.OAK_LOG, MapColor.MAGENTA), DyeColor.MAGENTA);
-	public static final Block ORANGE_LOG = new ColoredLogBlock(coloredBlock(Blocks.OAK_LOG, MapColor.ORANGE), DyeColor.ORANGE);
-	public static final Block PINK_LOG = new ColoredLogBlock(coloredBlock(Blocks.OAK_LOG, MapColor.PINK), DyeColor.PINK);
-	public static final Block PURPLE_LOG = new ColoredLogBlock(coloredBlock(Blocks.OAK_LOG, MapColor.PURPLE), DyeColor.PURPLE);
-	public static final Block RED_LOG = new ColoredLogBlock(coloredBlock(Blocks.OAK_LOG, MapColor.RED), DyeColor.RED);
-	public static final Block WHITE_LOG = new ColoredLogBlock(coloredBlock(Blocks.OAK_LOG, MapColor.WHITE), DyeColor.WHITE);
-	public static final Block YELLOW_LOG = new ColoredLogBlock(coloredBlock(Blocks.OAK_LOG, MapColor.YELLOW), DyeColor.YELLOW);
-
-	public static final Block STRIPPED_BLACK_LOG = new ColoredStrippedLogBlock(coloredBlock(Blocks.STRIPPED_OAK_LOG, MapColor.BLACK), DyeColor.BLACK);
-	public static final Block STRIPPED_BLUE_LOG = new ColoredStrippedLogBlock(coloredBlock(Blocks.STRIPPED_OAK_LOG, MapColor.BLUE), DyeColor.BLUE);
-	public static final Block STRIPPED_BROWN_LOG = new ColoredStrippedLogBlock(coloredBlock(Blocks.STRIPPED_OAK_LOG, MapColor.BROWN), DyeColor.BROWN);
-	public static final Block STRIPPED_CYAN_LOG = new ColoredStrippedLogBlock(coloredBlock(Blocks.STRIPPED_OAK_LOG, MapColor.CYAN), DyeColor.CYAN);
-	public static final Block STRIPPED_GRAY_LOG = new ColoredStrippedLogBlock(coloredBlock(Blocks.STRIPPED_OAK_LOG, MapColor.GRAY), DyeColor.GRAY);
-	public static final Block STRIPPED_GREEN_LOG = new ColoredStrippedLogBlock(coloredBlock(Blocks.STRIPPED_OAK_LOG, MapColor.GREEN), DyeColor.GREEN);
-	public static final Block STRIPPED_LIGHT_BLUE_LOG = new ColoredStrippedLogBlock(coloredBlock(Blocks.STRIPPED_OAK_LOG, MapColor.LIGHT_BLUE), DyeColor.LIGHT_BLUE);
-	public static final Block STRIPPED_LIGHT_GRAY_LOG = new ColoredStrippedLogBlock(coloredBlock(Blocks.STRIPPED_OAK_LOG, MapColor.LIGHT_GRAY), DyeColor.LIGHT_GRAY);
-	public static final Block STRIPPED_LIME_LOG = new ColoredStrippedLogBlock(coloredBlock(Blocks.STRIPPED_OAK_LOG, MapColor.LIME), DyeColor.LIME);
-	public static final Block STRIPPED_MAGENTA_LOG = new ColoredStrippedLogBlock(coloredBlock(Blocks.STRIPPED_OAK_LOG, MapColor.MAGENTA), DyeColor.MAGENTA);
-	public static final Block STRIPPED_ORANGE_LOG = new ColoredStrippedLogBlock(coloredBlock(Blocks.STRIPPED_OAK_LOG, MapColor.ORANGE), DyeColor.ORANGE);
-	public static final Block STRIPPED_PINK_LOG = new ColoredStrippedLogBlock(coloredBlock(Blocks.STRIPPED_OAK_LOG, MapColor.PINK), DyeColor.PINK);
-	public static final Block STRIPPED_PURPLE_LOG = new ColoredStrippedLogBlock(coloredBlock(Blocks.STRIPPED_OAK_LOG, MapColor.PURPLE), DyeColor.PURPLE);
-	public static final Block STRIPPED_RED_LOG = new ColoredStrippedLogBlock(coloredBlock(Blocks.STRIPPED_OAK_LOG, MapColor.RED), DyeColor.RED);
-	public static final Block STRIPPED_WHITE_LOG = new ColoredStrippedLogBlock(coloredBlock(Blocks.STRIPPED_OAK_LOG, MapColor.WHITE), DyeColor.WHITE);
-	public static final Block STRIPPED_YELLOW_LOG = new ColoredStrippedLogBlock(coloredBlock(Blocks.STRIPPED_OAK_LOG, MapColor.YELLOW), DyeColor.YELLOW);
-
-	public static final Block BLACK_WOOD = new ColoredWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.BLACK), DyeColor.BLACK);
-	public static final Block BLUE_WOOD = new ColoredWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.BLUE), DyeColor.BLUE);
-	public static final Block BROWN_WOOD = new ColoredWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.BROWN), DyeColor.BROWN);
-	public static final Block CYAN_WOOD = new ColoredWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.CYAN), DyeColor.CYAN);
-	public static final Block GRAY_WOOD = new ColoredWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.GRAY), DyeColor.GRAY);
-	public static final Block GREEN_WOOD = new ColoredWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.GREEN), DyeColor.GREEN);
-	public static final Block LIGHT_BLUE_WOOD = new ColoredWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.LIGHT_BLUE), DyeColor.LIGHT_BLUE);
-	public static final Block LIGHT_GRAY_WOOD = new ColoredWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.LIGHT_GRAY), DyeColor.LIGHT_GRAY);
-	public static final Block LIME_WOOD = new ColoredWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.LIME), DyeColor.LIME);
-	public static final Block MAGENTA_WOOD = new ColoredWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.MAGENTA), DyeColor.MAGENTA);
-	public static final Block ORANGE_WOOD = new ColoredWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.ORANGE), DyeColor.ORANGE);
-	public static final Block PINK_WOOD = new ColoredWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.PINK), DyeColor.PINK);
-	public static final Block PURPLE_WOOD = new ColoredWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.PURPLE), DyeColor.PURPLE);
-	public static final Block RED_WOOD = new ColoredWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.RED), DyeColor.RED);
-	public static final Block WHITE_WOOD = new ColoredWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.WHITE), DyeColor.WHITE);
-	public static final Block YELLOW_WOOD = new ColoredWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.YELLOW), DyeColor.YELLOW);
-
-	public static final Block STRIPPED_BLACK_WOOD = new ColoredStrippedWoodBlock(coloredBlock(Blocks.STRIPPED_OAK_WOOD, MapColor.BLACK), DyeColor.BLACK);
-	public static final Block STRIPPED_BLUE_WOOD = new ColoredStrippedWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.BLUE), DyeColor.BLUE);
-	public static final Block STRIPPED_BROWN_WOOD = new ColoredStrippedWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.BROWN), DyeColor.BROWN);
-	public static final Block STRIPPED_CYAN_WOOD = new ColoredStrippedWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.CYAN), DyeColor.CYAN);
-	public static final Block STRIPPED_GRAY_WOOD = new ColoredStrippedWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.GRAY), DyeColor.GRAY);
-	public static final Block STRIPPED_GREEN_WOOD = new ColoredStrippedWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.GREEN), DyeColor.GREEN);
-	public static final Block STRIPPED_LIGHT_BLUE_WOOD = new ColoredStrippedWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.LIGHT_BLUE), DyeColor.LIGHT_BLUE);
-	public static final Block STRIPPED_LIGHT_GRAY_WOOD = new ColoredStrippedWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.LIGHT_GRAY), DyeColor.LIGHT_GRAY);
-	public static final Block STRIPPED_LIME_WOOD = new ColoredStrippedWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.LIME), DyeColor.LIME);
-	public static final Block STRIPPED_MAGENTA_WOOD = new ColoredStrippedWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.MAGENTA), DyeColor.MAGENTA);
-	public static final Block STRIPPED_ORANGE_WOOD = new ColoredStrippedWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.ORANGE), DyeColor.ORANGE);
-	public static final Block STRIPPED_PINK_WOOD = new ColoredStrippedWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.PINK), DyeColor.PINK);
-	public static final Block STRIPPED_PURPLE_WOOD = new ColoredStrippedWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.PURPLE), DyeColor.PURPLE);
-	public static final Block STRIPPED_RED_WOOD = new ColoredStrippedWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.RED), DyeColor.RED);
-	public static final Block STRIPPED_WHITE_WOOD = new ColoredStrippedWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.WHITE), DyeColor.WHITE);
-	public static final Block STRIPPED_YELLOW_WOOD = new ColoredStrippedWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.YELLOW), DyeColor.YELLOW);
+	
+	public static final Block BLACK_SAPLING = new ColoredSaplingBlock(copyWithMapColor(Blocks.OAK_SAPLING, MapColor.BLACK), DyeColor.BLACK);
+	public static final Block BLUE_SAPLING = new ColoredSaplingBlock(copyWithMapColor(Blocks.OAK_SAPLING, MapColor.BLUE), DyeColor.BLUE);
+	public static final Block BROWN_SAPLING = new ColoredSaplingBlock(copyWithMapColor(Blocks.OAK_SAPLING, MapColor.BROWN), DyeColor.BROWN);
+	public static final Block CYAN_SAPLING = new ColoredSaplingBlock(copyWithMapColor(Blocks.OAK_SAPLING, MapColor.CYAN), DyeColor.CYAN);
+	public static final Block GRAY_SAPLING = new ColoredSaplingBlock(copyWithMapColor(Blocks.OAK_SAPLING, MapColor.GRAY), DyeColor.GRAY);
+	public static final Block GREEN_SAPLING = new ColoredSaplingBlock(copyWithMapColor(Blocks.OAK_SAPLING, MapColor.GREEN), DyeColor.GREEN);
+	public static final Block LIGHT_BLUE_SAPLING = new ColoredSaplingBlock(copyWithMapColor(Blocks.OAK_SAPLING, MapColor.LIGHT_BLUE), DyeColor.LIGHT_BLUE);
+	public static final Block LIGHT_GRAY_SAPLING = new ColoredSaplingBlock(copyWithMapColor(Blocks.OAK_SAPLING, MapColor.LIGHT_GRAY), DyeColor.LIGHT_GRAY);
+	public static final Block LIME_SAPLING = new ColoredSaplingBlock(copyWithMapColor(Blocks.OAK_SAPLING, MapColor.LIME), DyeColor.LIME);
+	public static final Block MAGENTA_SAPLING = new ColoredSaplingBlock(copyWithMapColor(Blocks.OAK_SAPLING, MapColor.MAGENTA), DyeColor.MAGENTA);
+	public static final Block ORANGE_SAPLING = new ColoredSaplingBlock(copyWithMapColor(Blocks.OAK_SAPLING, MapColor.ORANGE), DyeColor.ORANGE);
+	public static final Block PINK_SAPLING = new ColoredSaplingBlock(copyWithMapColor(Blocks.OAK_SAPLING, MapColor.PINK), DyeColor.PINK);
+	public static final Block PURPLE_SAPLING = new ColoredSaplingBlock(copyWithMapColor(Blocks.OAK_SAPLING, MapColor.PURPLE), DyeColor.PURPLE);
+	public static final Block RED_SAPLING = new ColoredSaplingBlock(copyWithMapColor(Blocks.OAK_SAPLING, MapColor.RED), DyeColor.RED);
+	public static final Block WHITE_SAPLING = new ColoredSaplingBlock(copyWithMapColor(Blocks.OAK_SAPLING, MapColor.WHITE), DyeColor.WHITE);
+	public static final Block YELLOW_SAPLING = new ColoredSaplingBlock(copyWithMapColor(Blocks.OAK_SAPLING, MapColor.YELLOW), DyeColor.YELLOW);
+	
+	public static final Block BLACK_LEAVES = new ColoredLeavesBlock(copyWithMapColor(Blocks.OAK_LEAVES, MapColor.BLACK), DyeColor.BLACK);
+	public static final Block BLUE_LEAVES = new ColoredLeavesBlock(copyWithMapColor(Blocks.OAK_LEAVES, MapColor.BLUE), DyeColor.BLUE);
+	public static final Block BROWN_LEAVES = new ColoredLeavesBlock(copyWithMapColor(Blocks.OAK_LEAVES, MapColor.BROWN), DyeColor.BROWN);
+	public static final Block CYAN_LEAVES = new ColoredLeavesBlock(copyWithMapColor(Blocks.OAK_LEAVES, MapColor.CYAN), DyeColor.CYAN);
+	public static final Block GRAY_LEAVES = new ColoredLeavesBlock(copyWithMapColor(Blocks.OAK_LEAVES, MapColor.GRAY), DyeColor.GRAY);
+	public static final Block GREEN_LEAVES = new ColoredLeavesBlock(copyWithMapColor(Blocks.OAK_LEAVES, MapColor.GREEN), DyeColor.GREEN);
+	public static final Block LIGHT_BLUE_LEAVES = new ColoredLeavesBlock(copyWithMapColor(Blocks.OAK_LEAVES, MapColor.LIGHT_BLUE), DyeColor.LIGHT_BLUE);
+	public static final Block LIGHT_GRAY_LEAVES = new ColoredLeavesBlock(copyWithMapColor(Blocks.OAK_LEAVES, MapColor.LIGHT_GRAY), DyeColor.LIGHT_GRAY);
+	public static final Block LIME_LEAVES = new ColoredLeavesBlock(copyWithMapColor(Blocks.OAK_LEAVES, MapColor.LIME), DyeColor.LIME);
+	public static final Block MAGENTA_LEAVES = new ColoredLeavesBlock(copyWithMapColor(Blocks.OAK_LEAVES, MapColor.MAGENTA), DyeColor.MAGENTA);
+	public static final Block ORANGE_LEAVES = new ColoredLeavesBlock(copyWithMapColor(Blocks.OAK_LEAVES, MapColor.ORANGE), DyeColor.ORANGE);
+	public static final Block PINK_LEAVES = new ColoredLeavesBlock(copyWithMapColor(Blocks.OAK_LEAVES, MapColor.PINK), DyeColor.PINK);
+	public static final Block PURPLE_LEAVES = new ColoredLeavesBlock(copyWithMapColor(Blocks.OAK_LEAVES, MapColor.PURPLE), DyeColor.PURPLE);
+	public static final Block RED_LEAVES = new ColoredLeavesBlock(copyWithMapColor(Blocks.OAK_LEAVES, MapColor.RED), DyeColor.RED);
+	public static final Block WHITE_LEAVES = new ColoredLeavesBlock(copyWithMapColor(Blocks.OAK_LEAVES, MapColor.WHITE), DyeColor.WHITE);
+	public static final Block YELLOW_LEAVES = new ColoredLeavesBlock(copyWithMapColor(Blocks.OAK_LEAVES, MapColor.YELLOW), DyeColor.YELLOW);
+	
+	public static final Block BLACK_LOG = new ColoredLogBlock(copyWithMapColor(Blocks.OAK_LOG, MapColor.BLACK), DyeColor.BLACK);
+	public static final Block BLUE_LOG = new ColoredLogBlock(copyWithMapColor(Blocks.OAK_LOG, MapColor.BLUE), DyeColor.BLUE);
+	public static final Block BROWN_LOG = new ColoredLogBlock(copyWithMapColor(Blocks.OAK_LOG, MapColor.BROWN), DyeColor.BROWN);
+	public static final Block CYAN_LOG = new ColoredLogBlock(copyWithMapColor(Blocks.OAK_LOG, MapColor.CYAN), DyeColor.CYAN);
+	public static final Block GRAY_LOG = new ColoredLogBlock(copyWithMapColor(Blocks.OAK_LOG, MapColor.GRAY), DyeColor.GRAY);
+	public static final Block GREEN_LOG = new ColoredLogBlock(copyWithMapColor(Blocks.OAK_LOG, MapColor.GREEN), DyeColor.GREEN);
+	public static final Block LIGHT_BLUE_LOG = new ColoredLogBlock(copyWithMapColor(Blocks.OAK_LOG, MapColor.LIGHT_BLUE), DyeColor.LIGHT_BLUE);
+	public static final Block LIGHT_GRAY_LOG = new ColoredLogBlock(copyWithMapColor(Blocks.OAK_LOG, MapColor.LIGHT_GRAY), DyeColor.LIGHT_GRAY);
+	public static final Block LIME_LOG = new ColoredLogBlock(copyWithMapColor(Blocks.OAK_LOG, MapColor.LIME), DyeColor.LIME);
+	public static final Block MAGENTA_LOG = new ColoredLogBlock(copyWithMapColor(Blocks.OAK_LOG, MapColor.MAGENTA), DyeColor.MAGENTA);
+	public static final Block ORANGE_LOG = new ColoredLogBlock(copyWithMapColor(Blocks.OAK_LOG, MapColor.ORANGE), DyeColor.ORANGE);
+	public static final Block PINK_LOG = new ColoredLogBlock(copyWithMapColor(Blocks.OAK_LOG, MapColor.PINK), DyeColor.PINK);
+	public static final Block PURPLE_LOG = new ColoredLogBlock(copyWithMapColor(Blocks.OAK_LOG, MapColor.PURPLE), DyeColor.PURPLE);
+	public static final Block RED_LOG = new ColoredLogBlock(copyWithMapColor(Blocks.OAK_LOG, MapColor.RED), DyeColor.RED);
+	public static final Block WHITE_LOG = new ColoredLogBlock(copyWithMapColor(Blocks.OAK_LOG, MapColor.WHITE), DyeColor.WHITE);
+	public static final Block YELLOW_LOG = new ColoredLogBlock(copyWithMapColor(Blocks.OAK_LOG, MapColor.YELLOW), DyeColor.YELLOW);
+	
+	public static final Block STRIPPED_BLACK_LOG = new ColoredStrippedLogBlock(copyWithMapColor(Blocks.STRIPPED_OAK_LOG, MapColor.BLACK), DyeColor.BLACK);
+	public static final Block STRIPPED_BLUE_LOG = new ColoredStrippedLogBlock(copyWithMapColor(Blocks.STRIPPED_OAK_LOG, MapColor.BLUE), DyeColor.BLUE);
+	public static final Block STRIPPED_BROWN_LOG = new ColoredStrippedLogBlock(copyWithMapColor(Blocks.STRIPPED_OAK_LOG, MapColor.BROWN), DyeColor.BROWN);
+	public static final Block STRIPPED_CYAN_LOG = new ColoredStrippedLogBlock(copyWithMapColor(Blocks.STRIPPED_OAK_LOG, MapColor.CYAN), DyeColor.CYAN);
+	public static final Block STRIPPED_GRAY_LOG = new ColoredStrippedLogBlock(copyWithMapColor(Blocks.STRIPPED_OAK_LOG, MapColor.GRAY), DyeColor.GRAY);
+	public static final Block STRIPPED_GREEN_LOG = new ColoredStrippedLogBlock(copyWithMapColor(Blocks.STRIPPED_OAK_LOG, MapColor.GREEN), DyeColor.GREEN);
+	public static final Block STRIPPED_LIGHT_BLUE_LOG = new ColoredStrippedLogBlock(copyWithMapColor(Blocks.STRIPPED_OAK_LOG, MapColor.LIGHT_BLUE), DyeColor.LIGHT_BLUE);
+	public static final Block STRIPPED_LIGHT_GRAY_LOG = new ColoredStrippedLogBlock(copyWithMapColor(Blocks.STRIPPED_OAK_LOG, MapColor.LIGHT_GRAY), DyeColor.LIGHT_GRAY);
+	public static final Block STRIPPED_LIME_LOG = new ColoredStrippedLogBlock(copyWithMapColor(Blocks.STRIPPED_OAK_LOG, MapColor.LIME), DyeColor.LIME);
+	public static final Block STRIPPED_MAGENTA_LOG = new ColoredStrippedLogBlock(copyWithMapColor(Blocks.STRIPPED_OAK_LOG, MapColor.MAGENTA), DyeColor.MAGENTA);
+	public static final Block STRIPPED_ORANGE_LOG = new ColoredStrippedLogBlock(copyWithMapColor(Blocks.STRIPPED_OAK_LOG, MapColor.ORANGE), DyeColor.ORANGE);
+	public static final Block STRIPPED_PINK_LOG = new ColoredStrippedLogBlock(copyWithMapColor(Blocks.STRIPPED_OAK_LOG, MapColor.PINK), DyeColor.PINK);
+	public static final Block STRIPPED_PURPLE_LOG = new ColoredStrippedLogBlock(copyWithMapColor(Blocks.STRIPPED_OAK_LOG, MapColor.PURPLE), DyeColor.PURPLE);
+	public static final Block STRIPPED_RED_LOG = new ColoredStrippedLogBlock(copyWithMapColor(Blocks.STRIPPED_OAK_LOG, MapColor.RED), DyeColor.RED);
+	public static final Block STRIPPED_WHITE_LOG = new ColoredStrippedLogBlock(copyWithMapColor(Blocks.STRIPPED_OAK_LOG, MapColor.WHITE), DyeColor.WHITE);
+	public static final Block STRIPPED_YELLOW_LOG = new ColoredStrippedLogBlock(copyWithMapColor(Blocks.STRIPPED_OAK_LOG, MapColor.YELLOW), DyeColor.YELLOW);
+	
+	public static final Block BLACK_WOOD = new ColoredWoodBlock(copyWithMapColor(Blocks.OAK_WOOD, MapColor.BLACK), DyeColor.BLACK);
+	public static final Block BLUE_WOOD = new ColoredWoodBlock(copyWithMapColor(Blocks.OAK_WOOD, MapColor.BLUE), DyeColor.BLUE);
+	public static final Block BROWN_WOOD = new ColoredWoodBlock(copyWithMapColor(Blocks.OAK_WOOD, MapColor.BROWN), DyeColor.BROWN);
+	public static final Block CYAN_WOOD = new ColoredWoodBlock(copyWithMapColor(Blocks.OAK_WOOD, MapColor.CYAN), DyeColor.CYAN);
+	public static final Block GRAY_WOOD = new ColoredWoodBlock(copyWithMapColor(Blocks.OAK_WOOD, MapColor.GRAY), DyeColor.GRAY);
+	public static final Block GREEN_WOOD = new ColoredWoodBlock(copyWithMapColor(Blocks.OAK_WOOD, MapColor.GREEN), DyeColor.GREEN);
+	public static final Block LIGHT_BLUE_WOOD = new ColoredWoodBlock(copyWithMapColor(Blocks.OAK_WOOD, MapColor.LIGHT_BLUE), DyeColor.LIGHT_BLUE);
+	public static final Block LIGHT_GRAY_WOOD = new ColoredWoodBlock(copyWithMapColor(Blocks.OAK_WOOD, MapColor.LIGHT_GRAY), DyeColor.LIGHT_GRAY);
+	public static final Block LIME_WOOD = new ColoredWoodBlock(copyWithMapColor(Blocks.OAK_WOOD, MapColor.LIME), DyeColor.LIME);
+	public static final Block MAGENTA_WOOD = new ColoredWoodBlock(copyWithMapColor(Blocks.OAK_WOOD, MapColor.MAGENTA), DyeColor.MAGENTA);
+	public static final Block ORANGE_WOOD = new ColoredWoodBlock(copyWithMapColor(Blocks.OAK_WOOD, MapColor.ORANGE), DyeColor.ORANGE);
+	public static final Block PINK_WOOD = new ColoredWoodBlock(copyWithMapColor(Blocks.OAK_WOOD, MapColor.PINK), DyeColor.PINK);
+	public static final Block PURPLE_WOOD = new ColoredWoodBlock(copyWithMapColor(Blocks.OAK_WOOD, MapColor.PURPLE), DyeColor.PURPLE);
+	public static final Block RED_WOOD = new ColoredWoodBlock(copyWithMapColor(Blocks.OAK_WOOD, MapColor.RED), DyeColor.RED);
+	public static final Block WHITE_WOOD = new ColoredWoodBlock(copyWithMapColor(Blocks.OAK_WOOD, MapColor.WHITE), DyeColor.WHITE);
+	public static final Block YELLOW_WOOD = new ColoredWoodBlock(copyWithMapColor(Blocks.OAK_WOOD, MapColor.YELLOW), DyeColor.YELLOW);
+	
+	public static final Block STRIPPED_BLACK_WOOD = new ColoredStrippedWoodBlock(copyWithMapColor(Blocks.STRIPPED_OAK_WOOD, MapColor.BLACK), DyeColor.BLACK);
+	public static final Block STRIPPED_BLUE_WOOD = new ColoredStrippedWoodBlock(copyWithMapColor(Blocks.OAK_WOOD, MapColor.BLUE), DyeColor.BLUE);
+	public static final Block STRIPPED_BROWN_WOOD = new ColoredStrippedWoodBlock(copyWithMapColor(Blocks.OAK_WOOD, MapColor.BROWN), DyeColor.BROWN);
+	public static final Block STRIPPED_CYAN_WOOD = new ColoredStrippedWoodBlock(copyWithMapColor(Blocks.OAK_WOOD, MapColor.CYAN), DyeColor.CYAN);
+	public static final Block STRIPPED_GRAY_WOOD = new ColoredStrippedWoodBlock(copyWithMapColor(Blocks.OAK_WOOD, MapColor.GRAY), DyeColor.GRAY);
+	public static final Block STRIPPED_GREEN_WOOD = new ColoredStrippedWoodBlock(copyWithMapColor(Blocks.OAK_WOOD, MapColor.GREEN), DyeColor.GREEN);
+	public static final Block STRIPPED_LIGHT_BLUE_WOOD = new ColoredStrippedWoodBlock(copyWithMapColor(Blocks.OAK_WOOD, MapColor.LIGHT_BLUE), DyeColor.LIGHT_BLUE);
+	public static final Block STRIPPED_LIGHT_GRAY_WOOD = new ColoredStrippedWoodBlock(copyWithMapColor(Blocks.OAK_WOOD, MapColor.LIGHT_GRAY), DyeColor.LIGHT_GRAY);
+	public static final Block STRIPPED_LIME_WOOD = new ColoredStrippedWoodBlock(copyWithMapColor(Blocks.OAK_WOOD, MapColor.LIME), DyeColor.LIME);
+	public static final Block STRIPPED_MAGENTA_WOOD = new ColoredStrippedWoodBlock(copyWithMapColor(Blocks.OAK_WOOD, MapColor.MAGENTA), DyeColor.MAGENTA);
+	public static final Block STRIPPED_ORANGE_WOOD = new ColoredStrippedWoodBlock(copyWithMapColor(Blocks.OAK_WOOD, MapColor.ORANGE), DyeColor.ORANGE);
+	public static final Block STRIPPED_PINK_WOOD = new ColoredStrippedWoodBlock(copyWithMapColor(Blocks.OAK_WOOD, MapColor.PINK), DyeColor.PINK);
+	public static final Block STRIPPED_PURPLE_WOOD = new ColoredStrippedWoodBlock(copyWithMapColor(Blocks.OAK_WOOD, MapColor.PURPLE), DyeColor.PURPLE);
+	public static final Block STRIPPED_RED_WOOD = new ColoredStrippedWoodBlock(copyWithMapColor(Blocks.OAK_WOOD, MapColor.RED), DyeColor.RED);
+	public static final Block STRIPPED_WHITE_WOOD = new ColoredStrippedWoodBlock(copyWithMapColor(Blocks.OAK_WOOD, MapColor.WHITE), DyeColor.WHITE);
+	public static final Block STRIPPED_YELLOW_WOOD = new ColoredStrippedWoodBlock(copyWithMapColor(Blocks.OAK_WOOD, MapColor.YELLOW), DyeColor.YELLOW);
 
 	public static final Block POTTED_BLACK_SAPLING = new PottedColoredSaplingBlock(BLACK_SAPLING, pottedPlant(), DyeColor.BLACK);
 	public static final Block POTTED_BLUE_SAPLING = new PottedColoredSaplingBlock(BLUE_SAPLING, pottedPlant(), DyeColor.BLUE);
@@ -1707,17 +1723,28 @@ public class SpectrumBlocks {
 		registerBlockWithItem("chestnut_noxwood_lantern", CHESTNUT_NOXWOOD_LANTERN, settings, DyeColor.LIME);
 		registerBlockWithItem("chestnut_noxwood_light", CHESTNUT_NOXWOOD_LIGHT, settings, DyeColor.LIME);
 		registerBlockWithItem("chestnut_noxwood_lamp", CHESTNUT_NOXWOOD_LAMP, settings, DyeColor.LIME);
-
-
+		
 		registerBlock("potted_slate_noxshroom", POTTED_SLATE_NOXSHROOM);
 		registerBlock("potted_ebony_noxshroom", POTTED_EBONY_NOXSHROOM);
 		registerBlock("potted_ivory_noxshroom", POTTED_IVORY_NOXSHROOM);
 		registerBlock("potted_chestnut_noxshroom", POTTED_CHESTNUT_NOXSHROOM);
-
-		registerBlockWithItem("gala_log", GALA_LOG, settings, DyeColor.BLUE);
-		registerBlockWithItem("stripped_gala_log", STRIPPED_GALA_LOG, settings, DyeColor.BLUE);
-		registerBlockWithItem("gala_planks", GALA_PLANKS, settings, DyeColor.BLUE);
-		registerBlockWithItem("glazed_planks", GLAZED_PLANKS, settings, DyeColor.BLUE);
+		
+		registerBlockWithItem("weeping_gala_sprig", WEEPING_GALA_SPRIG, settings, DyeColor.LIME);
+		registerBlockWithItem("weeping_gala_leaves", WEEPING_GALA_LEAVES, settings, DyeColor.LIME);
+		registerBlockWithItem("weeping_gala_log", WEEPING_GALA_LOG, settings, DyeColor.LIME);
+		registerBlockWithItem("stripped_weeping_gala_log", STRIPPED_WEEPING_GALA_LOG, settings, DyeColor.LIME);
+		registerBlockWithItem("weeping_gala_wood", WEEPING_GALA_WOOD, settings, DyeColor.LIME);
+		registerBlockWithItem("stripped_weeping_gala_wood", STRIPPED_WEEPING_GALA_WOOD, settings, DyeColor.LIME);
+		registerBlock("potted_weeping_gala_sprig", POTTED_WEEPING_GALA_SPRIG);
+		registerBlockWithItem("weeping_gala_planks", WEEPING_GALA_PLANKS, settings, DyeColor.LIME);
+		registerBlockWithItem("weeping_gala_stairs", WEEPING_GALA_STAIRS, settings, DyeColor.LIME);
+		registerBlockWithItem("weeping_gala_door", WEEPING_GALA_DOOR, settings, DyeColor.LIME);
+		registerBlockWithItem("weeping_gala_pressure_plate", WEEPING_GALA_PRESSURE_PLATE, settings, DyeColor.LIME);
+		registerBlockWithItem("weeping_gala_fence", WEEPING_GALA_FENCE, settings, DyeColor.LIME);
+		registerBlockWithItem("weeping_gala_trapdoor", WEEPING_GALA_TRAPDOOR, settings, DyeColor.LIME);
+		registerBlockWithItem("weeping_gala_fence_gate", WEEPING_GALA_FENCE_GATE, settings, DyeColor.LIME);
+		registerBlockWithItem("weeping_gala_button", WEEPING_GALA_BUTTON, settings, DyeColor.LIME);
+		registerBlockWithItem("weeping_gala_slab", WEEPING_GALA_SLAB, settings, DyeColor.LIME);
 
 		registerBlockWithItem("small_red_dragonjag", SMALL_RED_DRAGONJAG, settings, DyeColor.LIME);
 		registerBlockWithItem("small_yellow_dragonjag", SMALL_YELLOW_DRAGONJAG, settings, DyeColor.LIME);
@@ -2893,6 +2920,9 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_SLATE_NOXSHROOM, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_IVORY_NOXSHROOM, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_CHESTNUT_NOXSHROOM, RenderLayer.getCutout());
+		
+		
+		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), SpectrumBlocks.WEEPING_GALA_SPRIG, SpectrumBlocks.POTTED_WEEPING_GALA_SPRIG);
 
 		// Spore Blossoms
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.BLACK_SPORE_BLOSSOM, RenderLayer.getCutout());

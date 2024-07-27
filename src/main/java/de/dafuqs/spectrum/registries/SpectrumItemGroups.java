@@ -984,10 +984,23 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.CHESTNUT_NOXWOOD_LANTERN);
 		entries.add(SpectrumBlocks.CHESTNUT_NOXWOOD_LIGHT);
 		entries.add(SpectrumBlocks.CHESTNUT_NOXWOOD_LAMP);
-		entries.add(SpectrumBlocks.GALA_LOG);
-		entries.add(SpectrumBlocks.STRIPPED_GALA_LOG);
-		entries.add(SpectrumBlocks.GALA_PLANKS);
-		entries.add(SpectrumBlocks.GLAZED_PLANKS);
+		
+		entries.add(SpectrumBlocks.WEEPING_GALA_SPRIG);
+		entries.add(SpectrumBlocks.WEEPING_GALA_LEAVES);
+		entries.add(SpectrumBlocks.WEEPING_GALA_LOG);
+		entries.add(SpectrumBlocks.STRIPPED_WEEPING_GALA_LOG);
+		entries.add(SpectrumBlocks.WEEPING_GALA_WOOD);
+		entries.add(SpectrumBlocks.STRIPPED_WEEPING_GALA_WOOD);
+		entries.add(SpectrumBlocks.WEEPING_GALA_PLANKS);
+		entries.add(SpectrumBlocks.WEEPING_GALA_STAIRS);
+		entries.add(SpectrumBlocks.WEEPING_GALA_DOOR);
+		entries.add(SpectrumBlocks.WEEPING_GALA_PRESSURE_PLATE);
+		entries.add(SpectrumBlocks.WEEPING_GALA_FENCE);
+		entries.add(SpectrumBlocks.WEEPING_GALA_TRAPDOOR);
+		entries.add(SpectrumBlocks.WEEPING_GALA_FENCE_GATE);
+		entries.add(SpectrumBlocks.WEEPING_GALA_BUTTON);
+		entries.add(SpectrumBlocks.WEEPING_GALA_SLAB);
+		
 		entries.add(SpectrumBlocks.SMALL_RED_DRAGONJAG);
 		entries.add(SpectrumBlocks.SMALL_YELLOW_DRAGONJAG);
 		entries.add(SpectrumBlocks.SMALL_PINK_DRAGONJAG);

@@ -159,6 +159,10 @@ public class SanityCommand {
 		
 		// Items / Blocks without a translation
 		for (Map.Entry<RegistryKey<Item>, Item> item : Registries.ITEM.getEntrySet()) {
+			if (!Registries.ITEM.getId(item.getValue()).getNamespace().equals(SpectrumCommon.MOD_ID)) {
+				continue;
+			}
+			
 			if (!Language.getInstance().hasTranslation(item.getValue().getTranslationKey())) {
 				SpectrumCommon.logWarning("[SANITY: Item Lang] Missing translation string " + item.getValue().getTranslationKey());
 			}
@@ -279,8 +283,8 @@ public class SanityCommand {
 		// Pedestal Recipes in wrong data folder
 		for (PedestalRecipe recipe : recipeManager.listAllOfType(SpectrumRecipeTypes.PEDESTAL)) {
 			Identifier id = recipe.getId();
-			if (id.getPath().startsWith("mod_integration/") || id.getPath().contains("/glass/") || id.getPath().contains("/saplings/") || id.getPath().contains("/detectors/") || id.getPath().contains("/gem_lamps/") || id.getPath().contains("/decostones/")
-					|| id.getPath().contains("/runes/") || id.getPath().contains("/pastel_network/") || id.getPath().contains("/gemstone_chimes/") || id.getPath().contains("/pastel_network/") || id.getPath().contains("/player_only_glass/")) {
+			if (id.getPath().startsWith("mod_integration/") || id.getPath().contains("/glass/") || id.getPath().contains("/saplings/") || id.getPath().contains("/detectors/") || id.getPath().contains("/gemstone_lights/") || id.getPath().contains("/decostones/")
+					|| id.getPath().contains("/runes/") || id.getPath().contains("/pastel_network/") || id.getPath().contains("/gemstone_chimes/") || id.getPath().contains("/pastel_network/") || id.getPath().contains("/semi_permeable_glass/")) {
 				continue;
 			}
 

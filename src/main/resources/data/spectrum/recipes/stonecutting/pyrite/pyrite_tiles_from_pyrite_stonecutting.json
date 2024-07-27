@@ -3,6 +3,6 @@
   "ingredient": {
     "item": "spectrum:pyrite"
   },
-  "result": "spectrum:pyrite_tile",
+  "result": "spectrum:pyrite_tiles",
   "count": 1
 }

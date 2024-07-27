@@ -248,7 +248,7 @@ public class SpectrumBlocks {
 
 	public static final Block PYRITE = new PillarBlock(settings(MapColor.TERRACOTTA_YELLOW, BlockSoundGroup.CHAIN, 50.0F).requiresTool());
 	public static final Block PYRITE_PILE = new PillarBlock(Settings.copy(PYRITE));
-	public static final Block PYRITE_TILE = new Block(Settings.copy(PYRITE));
+	public static final Block PYRITE_TILES = new Block(Settings.copy(PYRITE));
 	public static final Block PYRITE_PLATING = new Block(Settings.copy(PYRITE));
 	public static final Block PYRITE_TUBING = new PillarBlock(Settings.copy(PYRITE));
 	public static final Block PYRITE_RELIEF = new PillarBlock(Settings.copy(PYRITE));

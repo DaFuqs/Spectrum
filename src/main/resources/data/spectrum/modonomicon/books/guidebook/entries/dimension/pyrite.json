@@ -36,7 +36,7 @@
       "title": "book.spectrum.guidebook.dimension.pyrite.page2.title",
       "items": [
         "spectrum:pyrite_pile",
-        "spectrum:pyrite_tile",
+        "spectrum:pyrite_tiles",
         "spectrum:pyrite_plating",
         "spectrum:pyrite_tubing",
         "spectrum:pyrite_relief",

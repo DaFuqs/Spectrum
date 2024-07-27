@@ -866,7 +866,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.PYRITE_CHUNK);
 		entries.add(SpectrumBlocks.PYRITE);
 		entries.add(SpectrumBlocks.PYRITE_PILE);
-		entries.add(SpectrumBlocks.PYRITE_TILE);
+		entries.add(SpectrumBlocks.PYRITE_TILES);
 		entries.add(SpectrumBlocks.PYRITE_PLATING);
 		entries.add(SpectrumBlocks.PYRITE_TUBING);
 		entries.add(SpectrumBlocks.PYRITE_RELIEF);

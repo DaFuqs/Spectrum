@@ -158,6 +158,7 @@ public class SpectrumItemGroups {
 				entries.add(SpectrumItems.CELESTIAL_POCKETWATCH);
 				entries.add(SpectrumItems.GILDED_BOOK);
 				entries.add(SpectrumItems.ENCHANTMENT_CANVAS);
+				entries.add(SpectrumItems.NIGHT_SALTS);
 				entries.add(SpectrumItems.EVERPROMISE_RIBBON);
 				entries.add(SpectrumItems.BAG_OF_HOLDING);
 				entries.add(SpectrumItems.RADIANCE_STAFF);
@@ -317,7 +318,9 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.MELOCHITES_COOKBOOK_VOL_1);
 		entries.add(SpectrumItems.MELOCHITES_COOKBOOK_VOL_2);
 		entries.add(SpectrumItems.BREWERS_HANDBOOK);
-		
+		entries.add(SpectrumItems.VARIA_COOKBOOK);
+		entries.add(SpectrumItems.POISONERS_COOKBOOK);
+
 		entries.add(SpectrumBlocks.SUGAR_STICK);
 		entries.add(SpectrumBlocks.TOPAZ_SUGAR_STICK);
 		entries.add(SpectrumBlocks.AMETHYST_SUGAR_STICK);
@@ -423,6 +426,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.JADE_WINE);
 		entries.add(SpectrumItems.CHRYSOCOLLA);
 		entries.add(SpectrumItems.AQUA_REGIA);
+		entries.add(SpectrumItems.EVERNECTAR);
 	}).build();
 	
 	public static final ItemSubGroup RESOURCES = new ItemSubGroup.Builder(MAIN, ItemGroupIDs.SUBTAB_RESOURCES, Text.translatable("itemGroup.spectrum.resources")).backgroundTexture(ItemGroupIDs.BACKGROUND_TEXTURE).entries((displayContext, entries) -> {

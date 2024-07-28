@@ -318,14 +318,14 @@ public class SpectrumItems {
 	public static final Item PURE_ALCOHOL = new Item(IS.of(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURE_ALCOHOL).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item JADE_WINE = new JadeWineItem(IS.of(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item CHRYSOCOLLA = new Item(IS.of(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURE_ALCOHOL).recipeRemainder(Items.GLASS_BOTTLE));
-	
+
 	public static final Item HONEY_PASTRY = new Item(IS.of().food(SpectrumFoodComponents.HONEY_PASTRY));
 	public static final Item LUCKY_ROLL = new Item(IS.of(16).food(SpectrumFoodComponents.LUCKY_ROLL));
 	public static final Item TRIPLE_MEAT_POT_PIE = new CustomUseTimeItem(IS.of(8).food(SpectrumFoodComponents.TRIPLE_MEAT_POT_PIE), 96);
 	public static final Item GLISTERING_JELLY_TEA = new TeaItem(IS.of(16).food(SpectrumFoodComponents.GLISTERING_JELLY_TEA).recipeRemainder(Items.GLASS_BOTTLE), SpectrumFoodComponents.GLISTERING_JELLY_TEA_SCONE_BONUS);
 	public static final Item FREIGEIST = new FreigeistItem(IS.of(16).food(SpectrumFoodComponents.FREIGEIST).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item DIVINATION_HEART = new Item(IS.of().food(SpectrumFoodComponents.DIVINATION_HEART));
-	
+
 	public static final Item STAR_CANDY = new StarCandyItem(IS.of(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.STAR_CANDY));
 	public static final Item PURPLE_STAR_CANDY = new EnchantedStarCandyItem(IS.of(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURPLE_STAR_CANDY));
 	
@@ -343,7 +343,7 @@ public class SpectrumItems {
 	public static final Item SALTED_JARAMEL_TRIFLE = new Item(IS.of().food(SpectrumFoodComponents.SALTED_JARAMEL_TRIFLE));
 	public static final Item MONSTER_TRIFLE = new Item(IS.of().food(SpectrumFoodComponents.MONSTER_TRIFLE));
 	public static final Item DEMON_TRIFLE = new Item(IS.of().food(SpectrumFoodComponents.DEMON_TRIFLE));
-	
+
 	public static final Item MYCEYLON = new CloakedItem(IS.of(), SpectrumCommon.locate("lategame/collect_myceylon"), Items.ORANGE_DYE);
 	public static final Item MYCEYLON_APPLE_PIE = new Item(IS.of().food(SpectrumFoodComponents.MYCEYLON_APPLE_PIE));
 	public static final Item MYCEYLON_PUMPKIN_PIE = new Item(IS.of().food(SpectrumFoodComponents.MYCEYLON_PUMPKIN_PIE));
@@ -363,7 +363,9 @@ public class SpectrumItems {
 	public static final Item IMBRIFER_COOKBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/imbrifer_cookbook");
 	public static final Item IMPERIAL_COOKBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/imperial_cookbook");
 	public static final Item BREWERS_HANDBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/brewers_handbook");
-	
+	public static final Item VARIA_COOKBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/varia_cookbook");
+	public static final Item POISONERS_COOKBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.EPIC), "cuisine/poisoners_cookbook");
+
 	public static final Item AQUA_REGIA = new JadeWineItem(IS.of(16).food(SpectrumFoodComponents.AQUA_REGIA));
 	public static final Item BAGNUN = new Item(IS.of().food(SpectrumFoodComponents.BAGNUN));
 	public static final Item BANYASH = new Item(IS.of().food(SpectrumFoodComponents.BANYASH));
@@ -392,7 +394,8 @@ public class SpectrumItems {
 	public static final Item SEDATIVES = new SedativesItem(IS.of().food(SpectrumFoodComponents.SEDATIVES), "item.spectrum.sedatives.tooltip");
 	public static final Item SLUSHSLIDE = new ItemWithTooltip(IS.of().food(SpectrumFoodComponents.SLUSHSLIDE), "item.spectrum.slushslide.tooltip");
 	public static final Item SURSTROMMING = new Item(IS.of().food(SpectrumFoodComponents.SURSTROMMING));
-	
+	public static final Item EVERNECTAR = new EvernectarItem(IS.of(1, Rarity.EPIC).food(SpectrumFoodComponents.EVERNECTAR).recipeRemainder(Items.GLASS_BOTTLE), "item.spectrum.evernectar.tooltip");
+
 	// Banner Patterns
 	public static final Item LOGO_BANNER_PATTERN = new BannerPatternItem(SpectrumBannerPatterns.SPECTRUM_LOGO_TAG, IS.of(1, Rarity.UNCOMMON));
 	public static final Item AMETHYST_SHARD_BANNER_PATTERN = new BannerPatternItem(SpectrumBannerPatterns.AMETHYST_SHARD_TAG, IS.of(1));
@@ -419,6 +422,8 @@ public class SpectrumItems {
 	public static final Item PERTURBED_EYE = new PerturbedEyeItem(IS.of(Rarity.UNCOMMON));
 	public static final Item CRESCENT_CLOCK = new ItemWithTooltip(IS.of(1), "item.spectrum.crescent_clock.tooltip");
 	public static final Item PRIMORDIAL_LIGHTER = new PrimordialLighterItem(IS.of(1));
+
+	public static final Item NIGHT_SALTS = new NightSaltsItem(IS.of(24));
 
 	public static final Item INCANDESCENT_ESSENCE = new CloakedItem(IS.of(), SpectrumCommon.locate("midgame/spectrum_midgame"), Items.ORANGE_DYE);
 	public static final Item FROSTBITE_ESSENCE = new CloakedItem(IS.of(), SpectrumCommon.locate("midgame/spectrum_midgame"), Items.LIGHT_BLUE_DYE);
@@ -798,6 +803,8 @@ public class SpectrumItems {
 		register("crescent_clock", CRESCENT_CLOCK, DyeColor.MAGENTA);
 		register("primordial_lighter", PRIMORDIAL_LIGHTER, DyeColor.ORANGE);
 
+		register("night_salts", NIGHT_SALTS, DyeColor.PURPLE);
+
 		register("mysterious_locket", MYSTERIOUS_LOCKET, DyeColor.GRAY);
 		register("mysterious_compass", MYSTERIOUS_COMPASS, DyeColor.GRAY);
 	}
@@ -872,6 +879,7 @@ public class SpectrumItems {
 		register("suspicious_brew", SUSPICIOUS_BREW, DyeColor.LIME);
 		register("jade_wine", JADE_WINE, DyeColor.LIME);
 		register("chrysocolla", CHRYSOCOLLA, DyeColor.LIME);
+		register("evernectar", EVERNECTAR, DyeColor.LIME);
 		register("freigeist", FREIGEIST, DyeColor.RED);
 		register("divination_heart", DIVINATION_HEART, DyeColor.RED);
 		
@@ -880,7 +888,9 @@ public class SpectrumItems {
 		register("melochites_cookbook_vol_1", MELOCHITES_COOKBOOK_VOL_1, DyeColor.PURPLE);
 		register("melochites_cookbook_vol_2", MELOCHITES_COOKBOOK_VOL_2, DyeColor.PURPLE);
 		register("brewers_handbook", BREWERS_HANDBOOK, DyeColor.PURPLE);
-		
+		register("varia_cookbook", VARIA_COOKBOOK, DyeColor.PURPLE);
+		register("poisoners_cookbook", POISONERS_COOKBOOK, DyeColor.PURPLE);
+
 		register("aqua_regia", AQUA_REGIA, DyeColor.PINK);
 		register("bagnun", BAGNUN, DyeColor.PINK);
 		register("banyash", BANYASH, DyeColor.PINK);

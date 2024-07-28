@@ -1,0 +1,33 @@
+{
+  "type": "spectrum:titration_barrel",
+  "ingredients": [
+    {
+      "item": "spectrum:nectardew_burgeon",
+      "count": 4
+    },
+    {
+      "item": "spectrum:pure_coal",
+      "count": 8
+    },
+    {
+      "item": "spectrum:frostbite_essence",
+      "count": 8
+    },
+    {
+      "item": "spectrum:star_fragment",
+      "count": 2
+    },
+    {
+      "item": "spectrum:quitoxic_powder",
+      "count": 2
+    }
+  ],
+  "fluid": {
+    "fluid": "spectrum:liquid_crystal"
+  },
+  "required_advancement": "spectrum:lategame/collect_secret_cookbook",
+  "min_fermentation_time_hours": 24,
+  "result": {
+    "item": "spectrum:evernectar"
+  }
+}

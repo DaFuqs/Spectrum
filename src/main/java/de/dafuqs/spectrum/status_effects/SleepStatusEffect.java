@@ -66,7 +66,7 @@ public class SleepStatusEffect extends SpectrumStatusEffect {
      */
     public static float getGeneralSleepVulnerability(LivingEntity entity) {
         if (entity.hasStatusEffect(SpectrumStatusEffects.FATAL_SLUMBER)) {
-            return getSleepVulnerability(entity.getStatusEffect(SpectrumStatusEffects.FATAL_SLUMBER), entity);
+            return getSleepVulnerability(entity.getStatusEffect(SpectrumStatusEffects.FATAL_SLUMBER), entity) * 2F;
         }
         else if (entity.hasStatusEffect(SpectrumStatusEffects.ETERNAL_SLUMBER)) {
             return getSleepVulnerability(entity.getStatusEffect(SpectrumStatusEffects.ETERNAL_SLUMBER), entity);

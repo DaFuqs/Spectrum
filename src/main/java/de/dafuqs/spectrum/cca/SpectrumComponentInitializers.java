@@ -19,6 +19,8 @@ public class SpectrumComponentInitializers implements EntityComponentInitializer
 		
 		registry.registerFor(LivingEntity.class, OnPrimordialFireComponent.ON_PRIMORDIAL_FIRE_COMPONENT, OnPrimordialFireComponent::new);
 		registry.registerForPlayers(OnPrimordialFireComponent.ON_PRIMORDIAL_FIRE_COMPONENT, OnPrimordialFireComponent::new, RespawnCopyStrategy.NEVER_COPY);
+
+		registry.registerForPlayers(MiscPlayerDataComponent.MISC_PLAYER_DATA_COMPONENT, MiscPlayerDataComponent::new, RespawnCopyStrategy.NEVER_COPY);
 	}
 	
 	@Override

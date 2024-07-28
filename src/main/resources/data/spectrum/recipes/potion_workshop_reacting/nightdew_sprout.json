@@ -7,5 +7,5 @@
     "flat_yield_bonus": -1.0
 
   },
-  "required_advancement": "spectrum:hidden/collect_nightdew"
+  "required_advancement": "spectrum:collect_nightdew"
 }

@@ -44,6 +44,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 	@Shadow
 	public abstract Iterable<ItemStack> getHandItems();
 
+	@Shadow private int sleepTimer;
 	public SpectrumFishingBobberEntity spectrum$fishingBobber;
 	
 	@Inject(method = "onKilledOther", at = @At("HEAD"))
@@ -56,7 +57,15 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 			((FrenzyStatusEffect) frenzy.getEffectType()).onKill(entity, frenzy.getAmplifier());
 		}
 	}
-	
+
+	@Inject(method = "damage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z"))
+	private void spectrum$stopSleep(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+		if (amount > 0) {
+			PlayerEntity entity = (PlayerEntity) (Object) this;
+			MiscPlayerDataComponent.get(entity).notifyHit();
+		}
+	}
+
 	@Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;getAttributeValue(Lnet/minecraft/entity/attribute/EntityAttribute;)D"))
 	protected void spectrum$calculateModifiers(Entity target, CallbackInfo ci) {
 		PlayerEntity player = (PlayerEntity) (Object) this;
@@ -150,7 +159,12 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 	public void setSpectrumBobber(SpectrumFishingBobberEntity bobber) {
 		this.spectrum$fishingBobber = bobber;
 	}
-	
+
+	@Override
+	public void setSleepTimer(int ticks) {
+		this.sleepTimer = ticks;
+	}
+
 	@Override
 	public SpectrumFishingBobberEntity getSpectrumBobber() {
 		return this.spectrum$fishingBobber;
@@ -216,11 +230,19 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 		}
 
 		return original;
+
+	}
+
+	@Inject(method = "wakeUp(ZZ)V", at = @At(value = "HEAD"))
+	public void spectrum$applyWakeUpEffects(boolean skipSleepTimer, boolean updateSleepingPlayers, CallbackInfo ci) {
+		var player = (PlayerEntity) (Object) this;
+		if (!player.getWorld().isClient())
+			MiscPlayerDataComponent.get(player).resetSleepingState(true);
 	}
 
 	@WrapOperation(method = "updatePose", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;setPose(Lnet/minecraft/entity/EntityPose;)V"))
 	public void spectrum$forceSwimmingState(PlayerEntity instance, EntityPose entityPose, Operation<Void> original) {
-		if (instance.hasStatusEffect(SpectrumStatusEffects.FATAL_SLUMBER) && wouldPoseNotCollide(EntityPose.SWIMMING)) {
+		if ((MiscPlayerDataComponent.get(instance).shouldLieDown() || instance.hasStatusEffect(SpectrumStatusEffects.FATAL_SLUMBER)) && wouldPoseNotCollide(EntityPose.SWIMMING)) {
 			instance.setPose(EntityPose.SWIMMING);
 			return;
 		}

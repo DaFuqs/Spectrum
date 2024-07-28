@@ -266,6 +266,30 @@ public abstract class LivingEntityMixin {
 		return AzureDikeProvider.absorbDamage(living, amount);
 	}
 
+	@Inject(method = "tickStatusEffects", at = @At(value = "INVOKE", target = "Ljava/util/Iterator;remove()V"))
+	public void spectrum$fatalSlumberKill(CallbackInfo ci, @Local StatusEffectInstance effectInstance) {
+		if (effectInstance.getEffectType() == SpectrumStatusEffects.FATAL_SLUMBER) {
+			var entity = (LivingEntity) (Object) this;
+
+			if (entity.getWorld().isClient())
+				return;
+
+			var damage = Float.MAX_VALUE;
+			if (SleepStatusEffect.isImmuneish(entity)) {
+				if (entity instanceof PlayerEntity player) {
+					damage = entity.getHealth() * 0.95F;
+					if (!player.getWorld().isClient()) {
+						Support.grantAdvancementCriterion((ServerPlayerEntity) player, "lategame/survive_fatal_slumber", "get_slumbered_idiot");
+					}
+				}
+				else {
+					damage = entity.getMaxHealth() * 0.3F;
+				}
+			}
+			entity.damage(SpectrumDamageTypes.sleep(entity.getWorld(), null), damage);
+		}
+	}
+
 	/**
 	 * We do not force player sleeping because that would do funny things to the sleep cycle
 	 */
@@ -326,6 +350,7 @@ public abstract class LivingEntityMixin {
 			if (target.isDead()) {
 				target.onDeath(source);
 			}
+			cir.setReturnValue(true);
 			return;
 		}
 

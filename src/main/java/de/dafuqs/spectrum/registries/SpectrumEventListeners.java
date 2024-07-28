@@ -239,15 +239,21 @@ public class SpectrumEventListeners {
 			}
 		});
 
-		EntitySleepEvents.ALLOW_SLEEP_TIME.register((player, sleepingPos, vanillaResult) -> {
-			if (player.hasStatusEffect(SpectrumStatusEffects.SOMNOLENCE))
+		EntitySleepEvents.ALLOW_BED.register((entity, sleepingPos, state, vanillaResult) -> {
+			if (entity instanceof PlayerEntity player && MiscPlayerDataComponent.get(player).isSleeping())
 				return ActionResult.SUCCESS;
 
 			return ActionResult.PASS;
 		});
 
+		EntitySleepEvents.MODIFY_SLEEPING_DIRECTION.register((entity, sleepingPos, sleepingDirection) -> {
+			if (entity instanceof PlayerEntity player && MiscPlayerDataComponent.get(player).isSleeping())
+				return player.getHorizontalFacing();
+			return sleepingDirection;
+		});
+
 		EntitySleepEvents.ALLOW_NEARBY_MONSTERS.register((player, sleepingPos, vanillaResult) -> {
-			if (player.hasStatusEffect(SpectrumStatusEffects.SOMNOLENCE))
+			if (MiscPlayerDataComponent.get(player).isSleeping() || player.hasStatusEffect(SpectrumStatusEffects.SOMNOLENCE))
 				return ActionResult.SUCCESS;
 
 			return ActionResult.PASS;

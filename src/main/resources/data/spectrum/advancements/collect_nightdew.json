@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:nightdew_sprout"
+    },
+    "title": {
+      "translate": "advancements.spectrum.collect_nightdew.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.collect_nightdew.description"
+    },
+    "hidden": true
+  },
+  "parent": "spectrum:place_pedestal",
+  "criteria": {
+    "has_nightdew_sprout": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:nightdew_sprout"
+            ]
+          }
+        ]
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:place_pedestal"
+      }
+    }
+  }
+}

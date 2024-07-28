@@ -5,10 +5,10 @@
     "item": "spectrum:nectardew_burgeon"
   },
   "ingredient2": {
-    "item": "spectrum:nectardew_burgeon"
+    "item": "spectrum:evernectar"
   },
   "ingredient3": {
-    "item": "spectrum:nectardew_burgeon"
+    "item": "spectrum:moonstone_powder"
   },
   "effect": "spectrum:fatal_slumber",
   "base_duration_ticks": 200,

@@ -114,6 +114,11 @@ public class SpectrumFoodComponents {
 			.statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 20 * 30, 2), 1.0F)
 			.statusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 20 * 60, 2), 1.0F)
 			.build();
+
+	public static final FoodComponent EVERNECTAR = new FoodComponent.Builder()
+			.hunger(2).saturationModifier(0.2F).alwaysEdible()
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.FATAL_SLUMBER, 20 * 10), 1.0F)
+			.build();
 	
 	public static final FoodComponent KIMCHI = new FoodComponent.Builder()
 			.hunger(6).saturationModifier(0.6F)

@@ -60,7 +60,8 @@
       "spectrum:hardcore_deaths",
       "spectrum:last_kill",
       "spectrum:everpromise_ribbon",
-      "spectrum:on_primordial_fire"
+      "spectrum:on_primordial_fire",
+      "spectrum:misc_player_data"
     ],
     "lithium:options": {
       "entity.collisions.fluid": false

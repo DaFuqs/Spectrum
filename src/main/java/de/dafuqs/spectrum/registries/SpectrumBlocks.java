@@ -731,7 +731,7 @@ public class SpectrumBlocks {
 	}
 	
 	public static final Block WEEPING_GALA_SPRIG = new SaplingBlock(new WeepingGalaSaplingGenerator(), copyWithMapColor(OAK_SAPLING, MapColor.BRIGHT_TEAL));
-	public static final Block WEEPING_GALA_LEAVES = new LeavesBlock(copyWithMapColor(OAK_LEAVES, MapColor.BRIGHT_TEAL));
+	public static final Block WEEPING_GALA_LEAVES = new LeavesBlock(copyWithMapColor(OAK_LEAVES, MapColor.BRIGHT_TEAL).luminance(13).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always));
 	public static final Block WEEPING_GALA_LOG = new PillarBlock(galaWood(MapColor.BROWN));
 	public static final Block STRIPPED_WEEPING_GALA_LOG = new PillarBlock(galaWood(MapColor.BROWN));
 	public static final Block WEEPING_GALA_WOOD = new PillarBlock(galaWood(MapColor.BROWN));
@@ -1031,7 +1031,7 @@ public class SpectrumBlocks {
 	//public static final Block SPECTRAL_SHARD_STORAGE_BLOCK = new Block(gemStorageBlock(MapColor.OFF_WHITE, SpectrumBlockSoundGroups.SPECTRAL_BLOCK));
 
 	// COLORED TREES
-	private static Settings copyWithMapColor(Block baseBlock, MapColor color) {
+	private static FabricBlockSettings copyWithMapColor(Block baseBlock, MapColor color) {
 		return FabricBlockSettings.copyOf(baseBlock).mapColor(color);
 	}
 	

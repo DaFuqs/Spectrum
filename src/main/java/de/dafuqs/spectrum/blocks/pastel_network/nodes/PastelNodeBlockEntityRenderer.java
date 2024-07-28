@@ -72,7 +72,7 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
         switch (node.getState()) {
             case CONNECTED -> {
                 node.rotationTarget = mod(time / (Math.PI * 3));
-                node.heightTarget = (float) Math.sin(time / 19F) / 10F + 0.5F;
+                node.heightTarget = (float) Math.sin(time / 19F) / 10F + 0.75F;
                 node.alphaTarget = 1F;
             }
             case DISCONNECTED -> {
@@ -81,12 +81,12 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
             }
             case ACTIVE -> {
                 node.rotationTarget = mod(time / (Math.PI * 1));
-                node.heightTarget = (float) Math.sin(time / 19F) / 10F + 0.5F;
+                node.heightTarget = (float) Math.sin(time / 19F) / 10F + 0.75F;
                 node.alphaTarget = 1F;
             }
             case INACTIVE -> {
                 node.rotationTarget = mod(time / (Math.PI * 7));
-                node.heightTarget = (float) Math.sin(time / 19F) / 20F + 0.25F;
+                node.heightTarget = (float) Math.sin(time / 19F) / 20F + 0.45F;
                 node.alphaTarget = 0.275F;
             }
         };
@@ -124,7 +124,7 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
         
         matrices.multiply(RotationAxis.POSITIVE_Y.rotation(quarterCrystalRotation * 2));
         
-        matrices.scale(0.4F, 0.4F, 0.4F);
+        matrices.scale(0.75F, 0.75F, 0.75F);
         
         var ringHeight = node.crystalHeight - 0.3F;
         var innerRing = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucentEmissive(INNER_RING));
@@ -137,7 +137,7 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
             var outerRing = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucentEmissive(OUTER_RING));
             renderRing(matrices, outerRing, 5.75F + ringHeight * 2, 11F, node.ringAlpha, overlay, facing);
         }
-        
+
         matrices.translate(0.0, node.crystalHeight + crystal.yOffset, 0.0);
         MinecraftClient.getInstance().getItemRenderer().renderItem(crystal.crystal, ModelTransformationMode.NONE, LightmapTextureManager.MAX_LIGHT_COORDINATE, overlay, matrices, vertexConsumers, node.getWorld(), 0);
         matrices.pop();

@@ -1,0 +1,21 @@
+{
+  "parent": "spectrum:lategame/collect_nectardew",
+  "display": {
+    "icon": {
+      "item": "spectrum:evernectar"
+    },
+    "frame": "challenge",
+    "title": {
+      "translate": "advancements.spectrum.survive_fatal_slumber.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.survive_fatal_slumber.description"
+    },
+    "hidden": true
+  },
+  "criteria": {
+    "get_slumbered_idiot": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

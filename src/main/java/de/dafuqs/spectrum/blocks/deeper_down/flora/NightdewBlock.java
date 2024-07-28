@@ -3,15 +3,17 @@ package de.dafuqs.spectrum.blocks.deeper_down.flora;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.BlockView;
 
 public class NightdewBlock extends TriStateVineBlock {
 
-    public static final float BASE_BURGEON_CHANCE = 1;
+    public static final float BASE_BURGEON_CHANCE = 1000;
 
     public NightdewBlock(Settings settings) {
         super(settings, 6, 1F, 0.3F, 0.85F);
@@ -30,7 +32,9 @@ public class NightdewBlock extends TriStateVineBlock {
     @Override
     public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack tool, boolean dropExperience) {
         var random = world.getRandom();
-        var dropChance = MathHelper.clampedLerp(BASE_BURGEON_CHANCE, 200, 0);
+
+        var sleepingEntities = Math.min(world.getEntitiesByClass(LivingEntity.class, new Box(pos).expand(20), LivingEntity::isSleeping).size() / 20F, 1F);
+        var dropChance = MathHelper.clampedLerp(BASE_BURGEON_CHANCE, 100, sleepingEntities);
 
         if (random.nextFloat() < 1 / dropChance)
             dropStack(world, pos, SpectrumItems.NECTARDEW_BURGEON.getDefaultStack());

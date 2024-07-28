@@ -1001,6 +1001,12 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.WEEPING_GALA_FENCE_GATE);
 		entries.add(SpectrumBlocks.WEEPING_GALA_BUTTON);
 		entries.add(SpectrumBlocks.WEEPING_GALA_SLAB);
+		entries.add(SpectrumBlocks.WEEPING_GALA_PILLAR);
+		entries.add(SpectrumBlocks.WEEPING_GALA_BARREL);
+		entries.add(SpectrumBlocks.WEEPING_GALA_AMPHORA);
+		entries.add(SpectrumBlocks.WEEPING_GALA_LANTERN);
+		entries.add(SpectrumBlocks.WEEPING_GALA_LAMP);
+		entries.add(SpectrumBlocks.WEEPING_GALA_LIGHT);
 		
 		entries.add(SpectrumBlocks.SMALL_RED_DRAGONJAG);
 		entries.add(SpectrumBlocks.SMALL_YELLOW_DRAGONJAG);

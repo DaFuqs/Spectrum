@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "hanging=false,diagonal=false,alt=false": {
+      "model": "spectrum:block/weeping_gala_lantern"
+    },
+    "hanging=false,diagonal=false,alt=true": {
+      "model": "spectrum:block/weeping_gala_lantern_alt"
+    },
+    "hanging=false,diagonal=true,alt=false": {
+      "model": "spectrum:block/weeping_gala_lantern_diagonal"
+    },
+    "hanging=false,diagonal=true,alt=true": {
+      "model": "spectrum:block/weeping_gala_lantern_diagonal_alt"
+    },
+    "hanging=true,diagonal=false,alt=false": {
+      "model": "spectrum:block/weeping_gala_lantern_hanging"
+    },
+    "hanging=true,diagonal=false,alt=true": {
+      "model": "spectrum:block/weeping_gala_lantern_hanging_alt"
+    },
+    "hanging=true,diagonal=true,alt=false": {
+      "model": "spectrum:block/weeping_gala_lantern_hanging_diagonal"
+    },
+    "hanging=true,diagonal=true,alt=true": {
+      "model": "spectrum:block/weeping_gala_lantern_hanging_diagonal_alt"
+    }
+  }
+}

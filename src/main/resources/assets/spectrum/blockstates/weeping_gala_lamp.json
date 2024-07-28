@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "spectrum:block/weeping_gala_lamp_off"
+    },
+    "lit=true": {
+      "model": "spectrum:block/weeping_gala_lamp_on"
+    }
+  }
+}

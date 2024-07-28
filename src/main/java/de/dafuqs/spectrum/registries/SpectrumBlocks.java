@@ -751,6 +751,13 @@ public class SpectrumBlocks {
 	public static final Block WEEPING_GALA_BUTTON = Blocks.createWoodenButtonBlock(GALA_BLOCK_SET_TYPE);
 	public static final Block WEEPING_GALA_SLAB = new SlabBlock(galaWood(MapColor.BROWN));
 	
+	public static final Block WEEPING_GALA_PILLAR = new PillarBlock(galaWood(MapColor.BROWN));
+	public static final Block WEEPING_GALA_BARREL = new BarrelBlock(galaWood(MapColor.BROWN));
+	public static final Block WEEPING_GALA_AMPHORA = new AmphoraBlock(galaWood(MapColor.BROWN));
+	public static final Block WEEPING_GALA_LANTERN = new FlexLanternBlock(galaWood(MapColor.BROWN).luminance(state -> 13).pistonBehavior(PistonBehavior.DESTROY));
+	public static final Block WEEPING_GALA_LAMP = new RedstoneLampBlock(galaWood(MapColor.BROWN).luminance(LANTERN_LIGHT_PROVIDER));
+	public static final Block WEEPING_GALA_LIGHT = new PillarBlock(galaWood(MapColor.BROWN).luminance(state -> 15));
+	
 	public static Settings basalMarble() {
 		return settings(MapColor.GRAY, BlockSoundGroup.DRIPSTONE_BLOCK, 8.0F).instrument(Instrument.BASEDRUM).requiresTool();
 	}
@@ -1745,7 +1752,14 @@ public class SpectrumBlocks {
 		registerBlockWithItem("weeping_gala_fence_gate", WEEPING_GALA_FENCE_GATE, settings, DyeColor.LIME);
 		registerBlockWithItem("weeping_gala_button", WEEPING_GALA_BUTTON, settings, DyeColor.LIME);
 		registerBlockWithItem("weeping_gala_slab", WEEPING_GALA_SLAB, settings, DyeColor.LIME);
-
+		
+		registerBlockWithItem("weeping_gala_pillar", WEEPING_GALA_PILLAR, settings, DyeColor.LIME);
+		registerBlockWithItem("weeping_gala_barrel", WEEPING_GALA_BARREL, settings, DyeColor.LIME);
+		registerBlockWithItem("weeping_gala_amphora", WEEPING_GALA_AMPHORA, settings, DyeColor.LIME);
+		registerBlockWithItem("weeping_gala_lantern", WEEPING_GALA_LANTERN, settings, DyeColor.LIME);
+		registerBlockWithItem("weeping_gala_lamp", WEEPING_GALA_LAMP, settings, DyeColor.LIME);
+		registerBlockWithItem("weeping_gala_light", WEEPING_GALA_LIGHT, settings, DyeColor.LIME);
+		
 		registerBlockWithItem("small_red_dragonjag", SMALL_RED_DRAGONJAG, settings, DyeColor.LIME);
 		registerBlockWithItem("small_yellow_dragonjag", SMALL_YELLOW_DRAGONJAG, settings, DyeColor.LIME);
 		registerBlockWithItem("small_pink_dragonjag", SMALL_PINK_DRAGONJAG, settings, DyeColor.LIME);

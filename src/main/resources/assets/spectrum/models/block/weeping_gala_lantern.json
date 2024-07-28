@@ -1,0 +1,6 @@
+{
+  "parent": "spectrum:templates/noxwood_lamp",
+  "textures": {
+    "all": "spectrum:block/weeping_gala_lantern"
+  }
+}

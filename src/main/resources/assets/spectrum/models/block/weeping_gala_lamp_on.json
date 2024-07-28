@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "spectrum:block/glazed_planks"
+    "all": "spectrum:block/weeping_gala_lamp_on"
   }
 }

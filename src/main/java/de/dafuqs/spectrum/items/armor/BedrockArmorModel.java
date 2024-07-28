@@ -7,10 +7,10 @@ import net.minecraft.client.util.math.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.decoration.*;
 
-public class FullArmorModel extends BipedEntityModel<LivingEntity> {
+public class BedrockArmorModel extends BipedEntityModel<LivingEntity> {
 	final EquipmentSlot slot;
 	
-	public FullArmorModel(ModelPart root, EquipmentSlot slot) {
+	public BedrockArmorModel(ModelPart root, EquipmentSlot slot) {
 		super(root);
 		this.slot = slot;
 	}
@@ -58,6 +58,10 @@ public class FullArmorModel extends BipedEntityModel<LivingEntity> {
 	
 	private void renderArmorPart(EquipmentSlot slot) {
 		setVisible(false);
+		rightLeg.getChild("right_leg_armor").visible = false;
+		leftLeg.getChild("left_leg_armor").visible = false;
+		rightLeg.getChild("right_boot").visible = false;
+		leftLeg.getChild("left_boot").visible = false;
 		switch (slot) {
 			case HEAD -> head.visible = true;
 			case CHEST -> {
@@ -65,9 +69,17 @@ public class FullArmorModel extends BipedEntityModel<LivingEntity> {
 				rightArm.visible = true;
 				leftArm.visible = true;
 			}
-			case LEGS, FEET -> {
+			case LEGS -> {
 				rightLeg.visible = true;
 				leftLeg.visible = true;
+				rightLeg.getChild("right_leg_armor").visible = true;
+				leftLeg.getChild("left_leg_armor").visible = true;
+			}
+			case FEET -> {
+				rightLeg.visible = true;
+				leftLeg.visible = true;
+				rightLeg.getChild("right_boot").visible = true;
+				leftLeg.getChild("left_boot").visible = true;
 			}
 			case MAINHAND, OFFHAND -> { }
 		}

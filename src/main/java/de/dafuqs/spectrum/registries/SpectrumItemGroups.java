@@ -349,6 +349,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.NIGHTDEW_SPROUT);
 		entries.add(SpectrumItems.NECTARDEW_BURGEON);
 		entries.add(SpectrumItems.BLOODBOIL_SYRUP);
+		entries.add(SpectrumItems.MILKY_RESIN);
 		entries.add(SpectrumItems.SCONE);
 		entries.add(SpectrumItems.STAR_CANDY);
 		entries.add(SpectrumItems.PURPLE_STAR_CANDY);

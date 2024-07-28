@@ -290,7 +290,8 @@ public class SpectrumItems {
 	public static final Item MOONSTONE_ROCK_CANDY = new RockCandyItem(IS.of().food(SpectrumFoodComponents.MOONSTONE_ROCK_CANDY), RockCandy.RockCandyVariant.MOONSTONE);
 	
 	public static final Item BLOODBOIL_SYRUP = new DrinkItem(IS.of(16).food(SpectrumFoodComponents.BLOODBOIL_SYRUP).recipeRemainder(Items.GLASS_BOTTLE));
-
+	public static final Item MILKY_RESIN = new Item(IS.of(16, Rarity.UNCOMMON));
+	
 	// Food & drinks
 	public static final Item MOONSTRUCK_NECTAR = new MoonstruckNectarItem(IS.of(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.MOONSTRUCK_NECTAR).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item JADE_JELLY = new ItemWithTooltip(IS.of().food(SpectrumFoodComponents.JADE_JELLY), "item.spectrum.jade_jelly.tooltip");
@@ -836,6 +837,7 @@ public class SpectrumItems {
 		register("nightdew_sprout", NIGHTDEW_SPROUT, DyeColor.PURPLE);
 		register("nectardew_burgeon", NECTARDEW_BURGEON, DyeColor.PURPLE);
 		register("bloodboil_syrup", BLOODBOIL_SYRUP, DyeColor.RED);
+		register("milky_resin", MILKY_RESIN, DyeColor.LIGHT_GRAY);
 		
 		register("scone", SCONE, DyeColor.PINK);
 		register("star_candy", STAR_CANDY, DyeColor.PINK);

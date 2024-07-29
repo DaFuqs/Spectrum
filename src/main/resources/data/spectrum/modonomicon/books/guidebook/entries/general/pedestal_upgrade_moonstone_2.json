@@ -46,14 +46,14 @@
     },
     {
       "type": "modonomicon:image",
-      "title": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.page4.title",
+      "title": "book.spectrum.guidebook.general.pedestal_customisation.title",
       "images": [
         "spectrum:textures/gui/guidebook/spectrum_complex_customisation.png"
       ]
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.page5.text"
+      "text": "book.spectrum.guidebook.general.pedestal_customisation.text"
     }
   ]
 }

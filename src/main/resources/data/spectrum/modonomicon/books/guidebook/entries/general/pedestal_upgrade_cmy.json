@@ -47,14 +47,14 @@
     },
     {
       "type": "modonomicon:image",
-      "title": "book.spectrum.guidebook.general.pedestal_upgrade_cmy.page4.title",
+      "title": "book.spectrum.guidebook.general.pedestal_customisation.title",
       "images": [
         "spectrum:textures/gui/guidebook/spectrum_focus_customisation.png"
       ]
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.general.pedestal_upgrade_cmy.page5.text"
+      "text": "book.spectrum.guidebook.general.pedestal_customisation.text"
     }
   ]
 }

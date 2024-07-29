@@ -3,6 +3,7 @@
     "icon": {
       "item": "spectrum:pedestal_moonstone"
     },
+    "frame": "challenge",
     "title": {
       "translate": "advancements.spectrum.collect_enough_hints.title"
     },

@@ -40,6 +40,10 @@
     "advancement": "spectrum:midgame/enter_dimension",
     "frame": "spectrum:amethyst_shard"
   },
+  {
+    "advancement": "spectrum:lategame/collect_enough_hints",
+    "frame": "spectrum:amethyst_shard"
+  },
 
 
   {
@@ -123,6 +127,18 @@
 
   {
     "advancement": "spectrum:lategame/collect_one_cookbook",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:collect_nightdew",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:lategame/collect_secret_cookbook",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:lategame/collect_nectardew",
     "frame": "paginatedadvancements:squircle"
   },
   {

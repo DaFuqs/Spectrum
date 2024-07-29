@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:weeping_gala_glass_lantern"
+          "name": "spectrum:weeping_gala_lantern"
         }
       ],
       "conditions": [

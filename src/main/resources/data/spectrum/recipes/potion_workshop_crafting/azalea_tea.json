@@ -1,0 +1,19 @@
+{
+  "type": "spectrum:potion_workshop_crafting",
+  "group": "azalea_tea",
+  "base_ingredient": {
+    "item": "minecraft:glass_bottle"
+  },
+  "use_up_base_ingredient": true,
+  "color": 9997393,
+  "ingredient1": {
+    "item": "minecraft:flowering_azalea"
+  },
+  "ingredient2": {
+    "item": "spectrum:nightdew_sprout"
+  },
+  "result": {
+    "item": "spectrum:azalea_tea"
+  },
+  "required_advancement": "spectrum:unlocks/food/azalea_tea"
+}

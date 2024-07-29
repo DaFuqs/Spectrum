@@ -1,0 +1,20 @@
+{
+  "criteria": {
+    "broken_nightdew": {
+      "trigger": "spectrum:block_broken",
+      "conditions": {
+        "broken_block": {
+          "blocks": [
+            "spectrum:nightdew"
+          ]
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/spectrum_lategame"
+      }
+    }
+  }
+}

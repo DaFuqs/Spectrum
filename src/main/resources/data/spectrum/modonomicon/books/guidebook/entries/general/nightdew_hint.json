@@ -1,0 +1,39 @@
+{
+  "name": "book.spectrum.guidebook.hints.nightdew_sprout.name",
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 5,
+  "x": 1,
+  "y": -3,
+  "icon": "minecraft:writable_book",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:tap_titration_barrel"
+  },
+  "read_by_default": true,
+  "turnin": "spectrum:collect_nightdew",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "book.spectrum.guidebook.hints.nightdew_sprout.page0.title",
+      "completion_advancement": "spectrum:triggers/hints/nightdew_sprout_page0",
+      "cost": {
+        "item": "spectrum:mermaids_gem",
+        "count": 8
+      },
+      "text": "book.spectrum.guidebook.hints.nightdew_sprout.page0.text"
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "book.spectrum.guidebook.hints.nightdew_sprout.page1.title",
+      "cost": {
+        "item": "spectrum:mermaids_gem",
+        "count": 32
+      },
+      "text": "book.spectrum.guidebook.hints.nightdew_sprout.page1.text",
+      "completion_advancement": "spectrum:triggers/hints/nightdew_sprout_page1"
+    }
+  ]
+}

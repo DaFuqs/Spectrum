@@ -1,0 +1,23 @@
+{
+  "type": "spectrum:potion_workshop_crafting",
+  "base_ingredient": {
+    "item": "minecraft:glass_bottle",
+    "count": 2
+  },
+  "use_up_base_ingredient": true,
+  "color": 16758914,
+  "ingredient1": {
+    "item": "spectrum:sweetened_condensed_milk"
+  },
+  "ingredient2": {
+    "item": "spectrum:nightdew_sprout"
+  },
+  "ingredient3": {
+    "item": "minecraft:beetroot_seeds"
+  },
+  "result": {
+    "item": "spectrum:karak_chai",
+    "count": 2
+  },
+  "required_advancement": "spectrum:unlocks/food/karak_chai"
+}

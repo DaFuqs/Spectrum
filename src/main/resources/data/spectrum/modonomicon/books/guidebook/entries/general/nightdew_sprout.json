@@ -1,0 +1,34 @@
+{
+  "name": "book.spectrum.guidebook.general.nightdew_sprout.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:collect_nightdew"
+  },
+  "icon": "spectrum:nightdew_sprout",
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 2,
+  "y": -3,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.general.nightdew_sprout.page0.title",
+      "item": {
+        "item": "spectrum:nightdew_sprout"
+      },
+      "text": "book.spectrum.guidebook.general.nightdew_sprout.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/break_nightdew_vine"
+      },
+      "title": "book.spectrum.guidebook.general.nightdew_sprout.page1.title",
+      "text": "book.spectrum.guidebook.general.nightdew_sprout.page1.text"
+    }
+  ]
+}

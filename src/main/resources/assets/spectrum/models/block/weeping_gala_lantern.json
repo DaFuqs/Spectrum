@@ -1,6 +1,7 @@
 {
-  "parent": "spectrum:templates/noxwood_lamp",
+  "parent": "spectrum:templates/base_trans_lantern_bulb",
   "textures": {
-    "all": "spectrum:block/weeping_gala_lantern"
+    "glass": "spectrum:block/weeping_gala_lantern_glass_on",
+    "case": "spectrum:block/weeping_gala_lantern_case_on"
   }
 }

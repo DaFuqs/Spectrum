@@ -13,6 +13,9 @@
     "item": "spectrum:frostbite_essence",
     "count": 2
   },
+  "ingredient3": {
+    "item": "spectrum:nightdew_sprout"
+  },
   "result": {
     "item": "spectrum:sedatives"
   },

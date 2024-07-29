@@ -303,7 +303,10 @@ public class SpectrumItems {
 	public static final Item KIMCHI = new KimchiItem(IS.of().food(SpectrumFoodComponents.KIMCHI));
 	public static final Item CLOTTED_CREAM = new ClottedCreamItem(IS.of().food(SpectrumFoodComponents.CLOTTED_CREAM), new String[]{"item.spectrum.clotted_cream.tooltip", "item.spectrum.clotted_cream.tooltip2"});
 	public static final Item FRESH_CHOCOLATE = new CustomUseTimeItem(IS.of().food(SpectrumFoodComponents.FRESH_CHOCOLATE), 10);
+	public static final Item SWEETENED_CONDENSED_MILK = new CustomUseTimeItem(IS.of().food(SpectrumFoodComponents.SWEETENED_CONDENSED_MILK), 96);
 	public static final Item HOT_CHOCOLATE = new TeaItem(IS.of().food(SpectrumFoodComponents.HOT_CHOCOLATE), SpectrumFoodComponents.HOT_CHOCOLATE_SCONE_BONUS);
+	public static final Item KARAK_CHAI = new TeaItem(IS.of().food(SpectrumFoodComponents.KARAK_CHAI), SpectrumFoodComponents.KARAK_CHAI_SCONE_BONUS);
+	public static final Item AZALEA_TEA = new AzaleaTeaItem(IS.of().food(SpectrumFoodComponents.AZALEA_TEA), SpectrumFoodComponents.AZALEA_TEA_SCONE_BONUS);
 	public static final Item BODACIOUS_BERRY_BAR = new Item(IS.of().food(SpectrumFoodComponents.BODACIOUS_BERRY_BAR));
 	public static final Item DEMON_TEA = new TeaItem(IS.of().food(SpectrumFoodComponents.DEMON_TEA), SpectrumFoodComponents.DEMON_TEA_SCONE_BONUS);
 	public static final Item SCONE = new Item(IS.of().food(SpectrumFoodComponents.SCONE));
@@ -828,11 +831,14 @@ public class SpectrumItems {
 		
 		register("clotted_cream", CLOTTED_CREAM, DyeColor.PINK);
 		register("fresh_chocolate", FRESH_CHOCOLATE, DyeColor.PINK);
+		register("sweetened_condensed_milk", SWEETENED_CONDENSED_MILK, DyeColor.PINK);
 		register("bodacious_berry_bar", BODACIOUS_BERRY_BAR, DyeColor.PINK);
-		
+
 		register("hot_chocolate", HOT_CHOCOLATE, DyeColor.PINK);
+		register("karak_chai", KARAK_CHAI, DyeColor.PINK);
 		register("restoration_tea", RESTORATION_TEA, DyeColor.PINK);
 		register("glistering_jelly_tea", GLISTERING_JELLY_TEA, DyeColor.PINK);
+		register("azalea_tea", AZALEA_TEA, DyeColor.PURPLE);
 		register("demon_tea", DEMON_TEA, DyeColor.RED);
 
 		register("enchanted_golden_carrot", ENCHANTED_GOLDEN_CARROT, DyeColor.PINK);

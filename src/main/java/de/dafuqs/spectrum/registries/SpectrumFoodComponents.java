@@ -131,7 +131,13 @@ public class SpectrumFoodComponents {
 	public static final FoodComponent FRESH_CHOCOLATE = new FoodComponent.Builder()
 			.snack().hunger(4).saturationModifier(0.6F)
 			.build();
-	
+
+	public static final FoodComponent SWEETENED_CONDENSED_MILK = new FoodComponent.Builder()
+			.snack().hunger(10).saturationModifier(0.5F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 600), 1.0F)
+			.alwaysEdible()
+			.build();
+
 	public static final FoodComponent HOT_CHOCOLATE = new FoodComponent.Builder()
 			.hunger(6).saturationModifier(0.2F)
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.NOURISHING, 1200), 1.0F)
@@ -139,6 +145,27 @@ public class SpectrumFoodComponents {
 	
 	public static final FoodComponent HOT_CHOCOLATE_SCONE_BONUS = new FoodComponent.Builder()
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.NOURISHING, 1200), 1.0F)
+			.build();
+
+	public static final FoodComponent KARAK_CHAI = new FoodComponent.Builder()
+			.hunger(5).saturationModifier(1F)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.CALMING, 2400, 1), 1.0F)
+			.build();
+
+	public static final FoodComponent KARAK_CHAI_SCONE_BONUS = new FoodComponent.Builder()
+			.hunger(5).saturationModifier(1F)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.CALMING, 6000, 2), 1.0F)
+			.build();
+
+	public static final FoodComponent AZALEA_TEA = new FoodComponent.Builder()
+			.hunger(2).saturationModifier(0.1F)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.SOMNOLENCE, 1200), 1.0F)
+			.build();
+
+	public static final FoodComponent AZALEA_TEA_SCONE_BONUS = new FoodComponent.Builder()
+			.hunger(2).saturationModifier(0.1F)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.SOMNOLENCE, 1200), 1.0F)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.CALMING, 1200), 1.0F)
 			.build();
 	
 	public static final FoodComponent SCONE = new FoodComponent.Builder()

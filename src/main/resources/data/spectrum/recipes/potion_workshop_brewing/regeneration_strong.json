@@ -1,0 +1,19 @@
+{
+  "type": "spectrum:potion_workshop_brewing",
+  "group": "vanilla_potions",
+  "ingredient1": {
+    "item": "minecraft:nether_wart"
+  },
+  "ingredient2": {
+    "item": "spectrum:milky_resin"
+  },
+  "effect": "minecraft:regeneration",
+  "base_duration_ticks": 300,
+  "potency_modifier": 2.0,
+  "applicable_to_potions": true,
+  "applicable_to_tipped_arrows": true,
+  "applicable_to_potion_fillables": true,
+  "required_advancement": "spectrum:hidden/collect_milky_resin",
+  "ink_color": "spectrum:pink",
+  "ink_cost": 16
+}

@@ -199,9 +199,9 @@ public class DarknessEffects {
     static {
         var builder = ImmutableMap.<RegistryKey<Biome>, Float>builder();
         builder.put(SpectrumBiomes.BLACK_LANGAST, 0.7F);
-        builder.put(SpectrumBiomes.DEEP_BARRENS, 0.65F);
-        builder.put(SpectrumBiomes.DEEP_DRIPSTONE_CAVES, 0.2F);
-        builder.put(SpectrumBiomes.NOXSHROOM_FOREST, 0.125F);
+        builder.put(SpectrumBiomes.DEEP_BARRENS, 0.5F);
+        builder.put(SpectrumBiomes.DEEP_DRIPSTONE_CAVES, 0.125F);
+        builder.put(SpectrumBiomes.NOXSHROOM_FOREST, 0.075F);
         INTERP_MULTIPLIERS = builder.build();
 
         var fogBuilder = ImmutableMap.<RegistryKey<Biome>, Float>builder();

@@ -338,10 +338,13 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.KIMCHI);
 		entries.add(SpectrumItems.CLOTTED_CREAM);
 		entries.add(SpectrumItems.FRESH_CHOCOLATE);
+		entries.add(SpectrumItems.SWEETENED_CONDENSED_MILK);
 		entries.add(SpectrumItems.BODACIOUS_BERRY_BAR);
 		entries.add(SpectrumItems.HOT_CHOCOLATE);
+		entries.add(SpectrumItems.KARAK_CHAI);
 		entries.add(SpectrumItems.RESTORATION_TEA);
 		entries.add(SpectrumItems.GLISTERING_JELLY_TEA);
+		entries.add(SpectrumItems.AZALEA_TEA);
 		entries.add(SpectrumItems.DEMON_TEA);
 		entries.add(SpectrumItems.ENCHANTED_GOLDEN_CARROT);
 		entries.add(SpectrumItems.JADE_JELLY);

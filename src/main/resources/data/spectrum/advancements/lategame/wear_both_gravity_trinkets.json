@@ -3,6 +3,7 @@
     "icon": {
       "item": "spectrum:ring_of_aerial_grace"
     },
+    "hidden": true,
     "title": {
       "translate": "advancements.spectrum.wear_both_gravity_trinkets.title"
     },

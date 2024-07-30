@@ -2834,7 +2834,7 @@
   "item.spectrum.ring_of_pursuit.tooltip": "Increases your Mining Speed",
   "item.spectrum.ring_of_denser_steps": "Ring of Denser Steps",
   "item.spectrum.ring_of_denser_steps.tooltip": "Grants you knockback resistance, but increases your gravity",
-  "item.spectrum.ring_of_denser_steps.tooltip2": "Makes you able to walk under water",
+  "item.spectrum.ring_of_denser_steps.tooltip2": "Enables you to sprint underwater",
   "item.spectrum.ring_of_aerial_grace": "Ring of Aetherial Grace",
   "item.spectrum.ring_of_aerial_grace.tooltip": "Lowers your gravity, but increases knockback",
   "item.spectrum.crafting_tablet": "Crafting Tablet",

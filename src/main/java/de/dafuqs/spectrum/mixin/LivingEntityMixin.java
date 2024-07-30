@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
-import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
-import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import com.llamalad7.mixinextras.injector.*;
 import com.llamalad7.mixinextras.sugar.*;
 import com.llamalad7.mixinextras.sugar.ref.*;
 import de.dafuqs.spectrum.*;
@@ -37,7 +36,6 @@ import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.*;
-import net.minecraft.util.collection.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
@@ -55,10 +53,6 @@ public abstract class LivingEntityMixin {
 	protected PlayerEntity attackingPlayer;
 
 	@Shadow
-	@Final
-	private DefaultedList<ItemStack> syncedArmorStacks;
-
-	@Shadow
 	public abstract boolean hasStatusEffect(StatusEffect effect);
 
 	@Shadow
@@ -73,9 +67,6 @@ public abstract class LivingEntityMixin {
 
 	@Shadow
 	public abstract boolean canHaveStatusEffect(StatusEffectInstance effect);
-
-	@Shadow
-	protected ItemStack activeItemStack;
 
 	@Shadow
 	public abstract void readCustomDataFromNbt(NbtCompound nbt);

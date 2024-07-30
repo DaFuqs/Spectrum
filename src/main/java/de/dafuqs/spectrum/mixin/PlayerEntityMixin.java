@@ -47,6 +47,14 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 	@Shadow private int sleepTimer;
 	public SpectrumFishingBobberEntity spectrum$fishingBobber;
 	
+	@Inject(method = "updateSwimming()V", at = @At("HEAD"), cancellable = true)
+	public void spectrum$updateSwimming(CallbackInfo ci) {
+		if (SpectrumTrinketItem.hasEquipped(this, SpectrumItems.RING_OF_DENSER_STEPS)) {
+			this.setSwimming(false);
+			ci.cancel();
+		}
+	}
+	
 	@Inject(method = "onKilledOther", at = @At("HEAD"))
 	private void spectrum$rememberKillOther(ServerWorld world, LivingEntity other, CallbackInfoReturnable<Boolean> cir) {
 		PlayerEntity entity = (PlayerEntity) (Object) this;

@@ -4642,7 +4642,6 @@
   "book.spectrum.guidebook.enchanting.indestructible.page0.title": "Indestructible",
   "book.spectrum.guidebook.enchanting.indestructible.page0.text": "I've come this far, and yet I still have to contend with the fact that my common tools, such as [#](bb00bb)Flint and Steel[#]() tend to break if I use them too often. And I have more than my fair share of equipment that was previously too fragile to be used for long.\\\nNow, with some inspiration from my full armada of nearly indestructible items? No problem.",
   "book.spectrum.guidebook.enchanting.indestructible.page1.title": "Characteristics",
-  "book.spectrum.guidebook.enchanting.indestructible.page1.text": "Makes a tool fully unbreakable.\\\n\\\nMax Level: 1\\\nApplicable to all damageable tools, with some single exceptions.",
   "book.spectrum.guidebook.enchanting.indestructible.page2.title": "Enchanter Recipe",
   "book.spectrum.guidebook.enchanting.indestructible.page2.text": "I can infuse a [#](bb00bb)common Book[#]() with this enchantment by surrounding the [Enchanter](entry://enchanting/enchanter) with [Pigment](entry://general/pigment) and the other necessary materials.",
   "book.spectrum.guidebook.enchanting.inertia.name": "Inertia",
@@ -6330,6 +6329,7 @@
   "book.spectrum.guidebook.equipment.ring_of_aerial_grace.page0.text": "TODO",
   "book.spectrum.guidebook.equipment.ring_of_aerial_grace.page1.title": "Fusion Recipe",
   "book.spectrum.guidebook.equipment.ring_of_aerial_grace.page1.text": "TODO",
+  "book.spectrum.guidebook.enchanting.indestructible.page1.text": "Makes a tool fully unbreakable.\\\n\\\nMax Level: 1\\\nApplicable to all damageable tools, with some single exceptions.\\\nMutually exclusive with Unbreaking, Mending, Efficiency & Infinity.",
 
   "______special_named_items_and_lore": "Special Item Names:",
   "named_item.spectrum.dirt_of_shame": "Dirt of Shame",

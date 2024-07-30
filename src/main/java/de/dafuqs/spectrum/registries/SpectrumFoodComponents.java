@@ -479,4 +479,22 @@ public class SpectrumFoodComponents {
 			.statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 100, 0), 0.5F)
 			.build();
 	
+	public static final FoodComponent STUFFED_PETALS = new FoodComponent.Builder()
+			.hunger(10).saturationModifier(1.2F)
+			//.statusEffect(new StatusEffectInstance(StatusEffects.WALK_IN_WATER, 100, 0), 1.0F)
+			.build();
+	
+	public static final FoodComponent PASTICHE = new FoodComponent.Builder()
+			.hunger(16).saturationModifier(1.6F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.HEALTH_BOOST, 3300, 1), 1.0F)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.NOURISHING, 3300, 1), 1.0F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 1800, 0), 1.0F)
+			.build();
+	
+	public static final FoodComponent VITTORIAS_ROAST = new FoodComponent.Builder()
+			.hunger(16).saturationModifier(1.6F)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.NOURISHING, 3600, 1), 1.0F)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.TOUGHNESS, 1800, 1), 1.0F)
+			.build();
+	
 }

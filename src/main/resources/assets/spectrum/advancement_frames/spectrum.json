@@ -134,7 +134,11 @@
     "frame": "paginatedadvancements:squircle"
   },
   {
-    "advancement": "spectrum:lategame/collect_secret_cookbook",
+    "advancement": "spectrum:lategame/collect_poisoners_cookbook",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:lategame/collect_varia_cookbook",
     "frame": "paginatedadvancements:squircle"
   },
   {

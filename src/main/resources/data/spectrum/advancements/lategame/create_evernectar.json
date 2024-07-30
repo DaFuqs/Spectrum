@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:lategame/collect_secret_cookbook",
+  "parent": "spectrum:lategame/collect_poisoners_cookbook",
   "display": {
     "icon": {
       "item": "spectrum:evernectar"

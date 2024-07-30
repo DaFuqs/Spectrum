@@ -363,6 +363,9 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.MERMAIDS_JAM);
 		entries.add(SpectrumItems.MERMAIDS_POPCORN);
 		entries.add(SpectrumItems.LE_FISHE_AU_CHOCOLAT);
+		entries.add(SpectrumItems.STUFFED_PETALS);
+		entries.add(SpectrumItems.PASTICHE);
+		entries.add(SpectrumItems.VITTORIAS_ROAST);
 		entries.add(SpectrumItems.LUCKY_ROLL);
 		entries.add(SpectrumItems.HONEY_PASTRY);
 		entries.add(SpectrumItems.JARAMEL_TART);

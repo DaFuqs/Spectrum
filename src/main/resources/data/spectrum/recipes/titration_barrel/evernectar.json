@@ -25,9 +25,9 @@
   "fluid": {
     "fluid": "spectrum:liquid_crystal"
   },
-  "required_advancement": "spectrum:lategame/collect_secret_cookbook",
   "min_fermentation_time_hours": 24,
   "result": {
     "item": "spectrum:evernectar"
-  }
+  },
+  "required_advancement": "spectrum:hidden/collect_cookbooks/poisoners_cookbook"
 }

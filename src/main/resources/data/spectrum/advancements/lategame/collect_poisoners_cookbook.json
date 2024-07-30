@@ -1,0 +1,29 @@
+{
+  "parent": "spectrum:lategame/collect_nectardew",
+  "display": {
+    "icon": {
+      "item": "spectrum:poisoners_cookbook"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.collect_poisoners_cookbook.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.collect_poisoners_cookbook.description"
+    }
+  },
+  "criteria": {
+    "found_poisoners_cookbook": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_cookbooks/poisoners_cookbook"
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_nectardew"
+      }
+    }
+  }
+}

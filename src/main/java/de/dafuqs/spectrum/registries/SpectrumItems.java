@@ -315,6 +315,9 @@ public class SpectrumItems {
 	public static final Item MERMAIDS_JAM = new Item(IS.of().food(SpectrumFoodComponents.MERMAIDS_JAM));
 	public static final Item MERMAIDS_POPCORN = new ItemWithTooltip(IS.of().food(SpectrumFoodComponents.MERMAIDS_POPCORN), "item.spectrum.mermaids_popcorn.tooltip");
 	public static final Item LE_FISHE_AU_CHOCOLAT = new Item(IS.of().food(SpectrumFoodComponents.LE_FISHE_AU_CHOCOLAT));
+	public static final Item STUFFED_PETALS = new Item(IS.of().food(SpectrumFoodComponents.STUFFED_PETALS));
+	public static final Item PASTICHE = new Item(IS.of().food(SpectrumFoodComponents.PASTICHE));
+	public static final Item VITTORIAS_ROAST = new Item(IS.of().food(SpectrumFoodComponents.VITTORIAS_ROAST));
 
 	public static final Item INFUSED_BEVERAGE = new VariantBeverageItem(IS.of(16).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item SUSPICIOUS_BREW = new SuspiciousBrewItem(IS.of(16).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
@@ -825,6 +828,9 @@ public class SpectrumItems {
 		register("mermaids_jam", MERMAIDS_JAM, DyeColor.PINK);
 		register("mermaids_popcorn", MERMAIDS_POPCORN, DyeColor.PINK);
 		register("le_fishe_au_chocolat", LE_FISHE_AU_CHOCOLAT, DyeColor.PINK);
+		register("stuffed_petals", STUFFED_PETALS, DyeColor.PINK);
+		register("pastiche", PASTICHE, DyeColor.PINK);
+		register("vittorias_roast", VITTORIAS_ROAST, DyeColor.PINK);
 
 		register("triple_meat_pot_pie", TRIPLE_MEAT_POT_PIE, DyeColor.PINK);
 		register("kimchi", KIMCHI, DyeColor.PINK);

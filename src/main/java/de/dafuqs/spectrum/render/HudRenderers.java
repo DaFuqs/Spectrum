@@ -31,9 +31,9 @@ public class HudRenderers {
 	// this is run in InGameHudMixin instead to render behind the chat and other gui elements
 	public static void renderAzureDike(DrawContext drawContext, PlayerEntity cameraPlayer, int x, int y) {
 		AzureDikeComponent azureDikeComponent = AzureDikeProvider.getAzureDikeComponent(cameraPlayer);
-		int maxCharges = azureDikeComponent.getMaxProtection();
+		int maxCharges = (int) Math.ceil(azureDikeComponent.getMaxProtection());
 		if (maxCharges > 0) {
-			int charges = azureDikeComponent.getProtection();
+			int charges = (int) Math.ceil(azureDikeComponent.getProtection());
 
 			boolean blink = false;
 			if (cameraPlayer.getRecentDamageSource() != null && cameraPlayer.getWorld() != null) {

@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.cca.azure_dike;
 import de.dafuqs.spectrum.progression.*;
 import dev.onyxstudios.cca.api.v3.component.sync.*;
 import dev.onyxstudios.cca.api.v3.entity.*;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.network.*;
@@ -15,24 +16,24 @@ public class DefaultAzureDikeComponent implements AzureDikeComponent, AutoSynced
 	
 	private final LivingEntity provider;
 	
-	private int protection = 0;
+	private float protection = 0;
 	private int currentRechargeDelay = 0;
 	
-	private int maxProtection = 0;
+	private float maxProtection = 0;
 	private int rechargeDelayDefault = 0;
 	private int rechargeDelayTicksAfterDamage = 0;
-	
+
 	public DefaultAzureDikeComponent(LivingEntity entity) {
 		this.provider = entity;
 	}
 	
 	@Override
-	public int getProtection() {
+	public float getProtection() {
 		return this.protection;
 	}
 	
 	@Override
-	public int getMaxProtection() {
+	public float getMaxProtection() {
 		return this.maxProtection;
 	}
 	
@@ -55,24 +56,25 @@ public class DefaultAzureDikeComponent implements AzureDikeComponent, AutoSynced
 	public float absorbDamage(float incomingDamage) {
 		this.currentRechargeDelay = this.rechargeDelayTicksAfterDamage;
 		if (this.protection > 0) {
-			int usedProtection = Math.min(protection, (int) incomingDamage);
-			this.protection -= usedProtection;
+			float absorbedDamage = Math.min(protection, incomingDamage);
+			float consumedDike = absorbedDamage / 2; //Make dike have a bit more mileage, still a fairly fragile form of hp but it doesn't get smoked entirely.
+			this.protection -= consumedDike;
 			
-			if (usedProtection > 0) {
+			if (consumedDike > 0) {
 				AzureDikeProvider.AZURE_DIKE_COMPONENT.sync(provider);
 				if (provider instanceof ServerPlayerEntity serverPlayerEntity) {
-					SpectrumAdvancementCriteria.AZURE_DIKE_CHARGE.trigger(serverPlayerEntity, this.protection, this.rechargeDelayDefault, -usedProtection);
+					SpectrumAdvancementCriteria.AZURE_DIKE_CHARGE.trigger(serverPlayerEntity, this.protection, this.rechargeDelayDefault, -consumedDike);
 				}
 			}
 			
-			return incomingDamage - usedProtection;
+			return incomingDamage - absorbedDamage;
 		} else {
 			return incomingDamage;
 		}
 	}
 	
 	@Override
-	public void set(int maxProtection, int rechargeDelayDefault, int fasterRechargeAfterDamageTicks, boolean resetCharge) {
+	public void set(float maxProtection, int rechargeDelayDefault, int fasterRechargeAfterDamageTicks, boolean resetCharge) {
 		this.maxProtection = maxProtection;
 		this.rechargeDelayDefault = rechargeDelayDefault;
 		this.rechargeDelayTicksAfterDamage = fasterRechargeAfterDamageTicks;
@@ -98,10 +100,10 @@ public class DefaultAzureDikeComponent implements AzureDikeComponent, AutoSynced
 	
 	@Override
 	public void writeToNbt(NbtCompound tag) {
-		tag.putInt("protection", this.protection);
+		tag.putFloat("protection", this.protection);
 		tag.putInt("current_recharge_delay", this.currentRechargeDelay);
 		
-		tag.putInt("max_protection", this.maxProtection);
+		tag.putFloat("max_protection", this.maxProtection);
 		tag.putInt("recharge_delay_default", this.rechargeDelayDefault);
 		tag.putInt("recharge_delay_after_damage", this.rechargeDelayTicksAfterDamage);
 	}
@@ -111,7 +113,7 @@ public class DefaultAzureDikeComponent implements AzureDikeComponent, AutoSynced
 		if (this.currentRechargeDelay > 0) {
 			this.currentRechargeDelay--;
 		} else if (this.protection < this.maxProtection) {
-			this.protection++;
+			protection = Math.min(maxProtection, protection + 1);
 			this.currentRechargeDelay = this.rechargeDelayDefault;
 			AzureDikeProvider.AZURE_DIKE_COMPONENT.sync(provider);
 			if (provider instanceof ServerPlayerEntity serverPlayerEntity) {

@@ -26,7 +26,7 @@ public class AzureDikeChargeCriterion extends AbstractCriterion<AzureDikeChargeC
 		return new AzureDikeChargeCriterion.Conditions(lootContextPredicate, chargesRange, rechargeRateRange, changeRange);
 	}
 
-	public void trigger(ServerPlayerEntity player, int charges, int rechargeRate, int change) {
+	public void trigger(ServerPlayerEntity player, float charges, int rechargeRate, float change) {
 		this.trigger(player, (conditions) -> conditions.matches(charges, rechargeRate, change));
 	}
 	
@@ -52,8 +52,8 @@ public class AzureDikeChargeCriterion extends AbstractCriterion<AzureDikeChargeC
 			return jsonObject;
 		}
 		
-		public boolean matches(int charges, int rechargeRate, int change) {
-			return this.chargesRange.test(charges) && this.rechargeRateRange.test(rechargeRate) && this.changeRange.test(change);
+		public boolean matches(float charges, int rechargeRate, float change) {
+			return this.chargesRange.test(Math.round(charges)) && this.rechargeRateRange.test(rechargeRate) && this.changeRange.test(Math.round(change));
 		}
 	}
 	

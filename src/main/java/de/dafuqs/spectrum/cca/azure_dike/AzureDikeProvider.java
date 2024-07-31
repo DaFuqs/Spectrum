@@ -19,11 +19,11 @@ public class AzureDikeProvider {
 		return AZURE_DIKE_COMPONENT.get(provider).absorbDamage(incomingDamage);
 	}
 	
-	public static int getAzureDikeCharges(LivingEntity provider) {
+	public static float getAzureDikeCharges(LivingEntity provider) {
 		return AZURE_DIKE_COMPONENT.get(provider).getProtection();
 	}
 	
-	public static int getMaxAzureDikeCharges(LivingEntity provider) {
+	public static float getMaxAzureDikeCharges(LivingEntity provider) {
 		return AZURE_DIKE_COMPONENT.get(provider).getMaxProtection();
 	}
 	

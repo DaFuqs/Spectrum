@@ -8,9 +8,9 @@ public interface AzureDikeComponent extends ServerTickingComponent {
 	
 	Identifier AZURE_DIKE_BAR_TEXTURE = SpectrumCommon.locate("textures/gui/azure_dike_overlay.png");
 	
-	int getProtection();
+	float getProtection();
 	
-	int getMaxProtection();
+	float getMaxProtection();
 	
 	int getRechargeDelayDefault();
 	
@@ -20,5 +20,5 @@ public interface AzureDikeComponent extends ServerTickingComponent {
 	
 	float absorbDamage(float incomingDamage);
 	
-	void set(int maxProtection, int rechargeDelayDefault, int fasterRechargeAfterDamageTicks, boolean resetCharge);
+	void set(float maxProtection, int rechargeDelayDefault, int fasterRechargeAfterDamageTicks, boolean resetCharge);
 }

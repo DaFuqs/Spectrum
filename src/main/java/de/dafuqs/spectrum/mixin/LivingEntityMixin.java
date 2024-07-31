@@ -1,6 +1,8 @@
 package de.dafuqs.spectrum.mixin;
 
 import com.llamalad7.mixinextras.injector.*;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.*;
 import com.llamalad7.mixinextras.sugar.ref.*;
 import de.dafuqs.spectrum.*;
@@ -88,6 +90,8 @@ public abstract class LivingEntityMixin {
 	
 	@Shadow
 	public abstract double getAttributeValue(EntityAttribute attribute);
+
+	@Shadow protected abstract void applyDamage(DamageSource source, float amount);
 
 	@ModifyArg(method = "dropXp()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"), index = 2)
 	protected int spectrum$applyExuberance(int originalXP) {
@@ -214,7 +218,7 @@ public abstract class LivingEntityMixin {
 				Optional<TrinketComponent> component = TrinketsApi.getTrinketComponent(thisEntity);
 				if (component.isPresent()) {
 					if (!component.get().getEquipped(SpectrumItems.PUFF_CIRCLET).isEmpty()) {
-						int charges = AzureDikeProvider.getAzureDikeCharges(thisEntity);
+						var charges = AzureDikeProvider.getAzureDikeCharges(thisEntity);
 						if (charges > 0) {
 							AzureDikeProvider.absorbDamage(thisEntity, PuffCircletItem.FALL_DAMAGE_NEGATING_COST);
 							
@@ -242,19 +246,25 @@ public abstract class LivingEntityMixin {
 		if (vulnerability != null) {
 			amount *= 1 + (SpectrumStatusEffects.VULNERABILITY_ADDITIONAL_DAMAGE_PERCENT_PER_LEVEL * vulnerability.getAmplifier());
 		}
-		
-		LivingEntity living = (LivingEntity) (Object) this;
-		
-		if (amount <= 0
-				|| source.isIn(SpectrumDamageTypeTags.BYPASSES_DIKE)
-				|| this.blockedByShield(source)
-				|| living.isInvulnerableTo(source)
-				|| (source.isIn(DamageTypeTags.IS_FIRE) && hasStatusEffect(StatusEffects.FIRE_RESISTANCE))) {
-			
-			return amount;
+		return amount;
+	}
+
+	@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;applyDamage(Lnet/minecraft/entity/damage/DamageSource;F)V", ordinal = 0), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z")
+	public void spectrum$applyDike1(LivingEntity instance, DamageSource source, float amount, Operation<Void> original) {
+		if (source.isIn(SpectrumDamageTypeTags.BYPASSES_DIKE)) {
+			original.call(instance, source, amount);
+			return;
 		}
-		
-		return AzureDikeProvider.absorbDamage(living, amount);
+		instance.applyDamage(source, AzureDikeProvider.absorbDamage(instance, amount));
+	}
+
+	@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;applyDamage(Lnet/minecraft/entity/damage/DamageSource;F)V", ordinal = 1), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z")
+	public void spectrum$applyDike2(LivingEntity instance, DamageSource source, float amount, Operation<Void> original) {
+		if (source.isIn(SpectrumDamageTypeTags.BYPASSES_DIKE)) {
+			original.call(instance, source, amount);
+			return;
+		}
+		instance.applyDamage(source, AzureDikeProvider.absorbDamage(instance, amount));
 	}
 
 	@Inject(method = "tickStatusEffects", at = @At(value = "INVOKE", target = "Ljava/util/Iterator;remove()V"))

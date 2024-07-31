@@ -29,10 +29,7 @@ public abstract class ActiveTargetGoalMixin extends TrackTargetGoal {
 
         var calming = targetEntity.getStatusEffect(SpectrumStatusEffects.CALMING);
 
-        if (calming == null)
-            return;
-
-        if (mob.distanceTo(targetEntity) > getFollowRange() * SpectrumStatusEffects.getCalmingMultiplier(calming))
+        if (mob.distanceTo(targetEntity) > getFollowRange() * SpectrumStatusEffects.getCalmingMultiplier(targetEntity, calming))
             targetEntity = null;
     }
 }

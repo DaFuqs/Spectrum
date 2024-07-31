@@ -48,7 +48,7 @@ public abstract class ProjectileEntityMixin {
 					if (component.isPresent()) {
 						List<Pair<SlotReference, ItemStack>> equipped = component.get().getEquipped(SpectrumItems.PUFF_CIRCLET);
 						if (!equipped.isEmpty()) {
-							int charges = AzureDikeProvider.getAzureDikeCharges(livingEntity);
+							var charges = AzureDikeProvider.getAzureDikeCharges(livingEntity);
 							if (charges > 0) {
 								AzureDikeProvider.absorbDamage(livingEntity, PuffCircletItem.PROJECTILE_DEFLECTION_COST);
 								protect = true;

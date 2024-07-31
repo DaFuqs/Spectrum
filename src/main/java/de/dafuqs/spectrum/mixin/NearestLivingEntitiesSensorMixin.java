@@ -23,10 +23,7 @@ public abstract class NearestLivingEntitiesSensorMixin<T extends LivingEntity> {
             var entity = original.get(i);
             var calming = entity.getStatusEffect(SpectrumStatusEffects.CALMING);
 
-            if (calming == null)
-                continue;
-
-            if (!caller.isInRange(entity, getHorizontalExpansion() * SpectrumStatusEffects.getCalmingMultiplier(calming)))
+            if (!caller.isInRange(entity, getHorizontalExpansion() * SpectrumStatusEffects.getCalmingMultiplier(entity, calming)))
                 original.remove(entity);
         }
         return original;

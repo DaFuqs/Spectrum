@@ -90,7 +90,7 @@ public class SpectrumBossEntity extends PathAwareEntity {
 	}
 	
 	@Override
-	protected void applyDamage(DamageSource source, float amount) {
+	public void applyDamage(DamageSource source, float amount) {
 		// called when damage was dealt
 		Entity dealer = source.getAttacker();
 		if (!hasInvincibilityTicks() && dealer instanceof PlayerEntity && EntityHelper.isRealPlayerProjectileOrPet(dealer)) {

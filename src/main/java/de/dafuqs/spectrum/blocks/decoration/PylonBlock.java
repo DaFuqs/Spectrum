@@ -162,10 +162,10 @@ public class PylonBlock extends Block implements Waterloggable {
         PYLON_SHAPES = pylonBuilder.build();
 
         var pedestalBuilder = ImmutableMap.<Direction, VoxelShape>builder();
-        pedestalBuilder.put(Direction.NORTH, Block.createCuboidShape(0, 0, 0, 16, 16, 2));
-        pedestalBuilder.put(Direction.SOUTH, Block.createCuboidShape(0, 0, 14, 16, 16, 16));
-        pedestalBuilder.put(Direction.WEST, Block.createCuboidShape(0, 0, 0, 2, 16, 16));
-        pedestalBuilder.put(Direction.EAST, Block.createCuboidShape(14, 0, 0, 16, 16, 16));
+        pedestalBuilder.put(Direction.NORTH, Block.createCuboidShape(0, 0, 14, 16, 16, 16));
+        pedestalBuilder.put(Direction.SOUTH, Block.createCuboidShape(0, 0, 0, 16, 16, 2));
+        pedestalBuilder.put(Direction.WEST, Block.createCuboidShape(14, 0, 0, 16, 16, 16));
+        pedestalBuilder.put(Direction.EAST, Block.createCuboidShape(0, 0, 0, 2, 16, 16));
         pedestalBuilder.put(Direction.UP, Block.createCuboidShape(0, 0, 0, 16, 2, 16));
         pedestalBuilder.put(Direction.DOWN, Block.createCuboidShape(0, 14, 0, 16, 16, 16));
         PEDESTAL_SHAPES = pedestalBuilder.build();

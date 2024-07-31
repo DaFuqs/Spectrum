@@ -242,19 +242,15 @@ public abstract class LivingEntityMixin {
 		if (vulnerability != null) {
 			amount *= 1 + (SpectrumStatusEffects.VULNERABILITY_ADDITIONAL_DAMAGE_PERCENT_PER_LEVEL * vulnerability.getAmplifier());
 		}
-		
-		LivingEntity living = (LivingEntity) (Object) this;
-		
-		if (amount <= 0
-				|| source.isIn(SpectrumDamageTypeTags.BYPASSES_DIKE)
-				|| this.blockedByShield(source)
-				|| living.isInvulnerableTo(source)
-				|| (source.isIn(DamageTypeTags.IS_FIRE) && hasStatusEffect(StatusEffects.FIRE_RESISTANCE))) {
-			
-			return amount;
+		return amount;
+	}
+
+	@ModifyExpressionValue(method = "applyDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;modifyAppliedDamage(Lnet/minecraft/entity/damage/DamageSource;F)F"))
+	public float spectrum$applyDikeInTheRightPlace(float original, @Local(argsOnly = true) DamageSource source) {
+		if (source.isIn(SpectrumDamageTypeTags.BYPASSES_DIKE)) {
+			return original;
 		}
-		
-		return AzureDikeProvider.absorbDamage(living, amount);
+		return AzureDikeProvider.absorbDamage((LivingEntity) (Object) this, original);
 	}
 
 	@Inject(method = "tickStatusEffects", at = @At(value = "INVOKE", target = "Ljava/util/Iterator;remove()V"))

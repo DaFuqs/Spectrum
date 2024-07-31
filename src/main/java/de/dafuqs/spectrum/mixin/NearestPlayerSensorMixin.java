@@ -14,8 +14,8 @@ public class NearestPlayerSensorMixin {
 
     @WrapOperation(method = "method_19098", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isInRange(Lnet/minecraft/entity/Entity;D)Z"))
     private static boolean modifyPlayerdetectionRange(LivingEntity instance, Entity entity, double v, Operation<Boolean> original) {
-        if (entity instanceof LivingEntity living && living.hasStatusEffect(SpectrumStatusEffects.CALMING)) {
-            return instance.isInRange(living, 16 * SpectrumStatusEffects.getCalmingMultiplier(living.getStatusEffect(SpectrumStatusEffects.CALMING)));
+        if (entity instanceof LivingEntity living) {
+            return instance.isInRange(living, 16 * SpectrumStatusEffects.getCalmingMultiplier(living, living.getStatusEffect(SpectrumStatusEffects.CALMING)));
         }
         return original.call(instance, entity, v);
     }

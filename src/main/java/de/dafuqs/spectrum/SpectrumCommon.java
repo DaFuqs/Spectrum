@@ -236,7 +236,7 @@ public class SpectrumCommon implements ModInitializer {
 		if (modContainer.isPresent()) {
 			ResourceManagerHelper.registerBuiltinResourcePack(locate("spectrum_style_amethyst"), modContainer.get(), Text.of("Spectrum Style Amethyst"), ResourcePackActivationType.NORMAL);
 			ResourceManagerHelper.registerBuiltinResourcePack(locate("spectrum_programmer_art"), modContainer.get(), Text.of("Spectrum's Programmer Art"), ResourcePackActivationType.NORMAL);
-			ResourceManagerHelper.registerBuiltinResourcePack(locate("jinc"), modContainer.get(), Text.of("Alternate Spectrum textures"), ResourcePackActivationType.NORMAL);
+			//ResourceManagerHelper.registerBuiltinResourcePack(locate("jinc"), modContainer.get(), Text.of("Alternate Spectrum textures"), ResourcePackActivationType.NORMAL);
 		}
 		
 		logInfo("Common startup completed!");

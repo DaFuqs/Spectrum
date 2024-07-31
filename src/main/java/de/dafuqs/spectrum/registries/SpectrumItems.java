@@ -492,6 +492,7 @@ public class SpectrumItems {
 	public static final InkDrainTrinketItem RING_OF_PURSUIT = new ExtraMiningSpeedRingItem(IS.of(1, Rarity.UNCOMMON));
 	public static final InkDrainTrinketItem RING_OF_DENSER_STEPS = new RingOfDenserStepsItem(IS.of(1, Rarity.UNCOMMON));
 	public static final InkDrainTrinketItem RING_OF_AERIAL_GRACE = new RingOfAerialGraceItem(IS.of(1, Rarity.UNCOMMON));
+	public static final InkDrainTrinketItem GARLAND_OF_TRANQUILITY = new GarlandOfTranquilityItem(IS.of(1, Rarity.UNCOMMON));
 
 	public static final InkFlaskItem INK_FLASK = new InkFlaskItem(IS.of(1), 64 * 64 * 100); // 64 stacks of pigments (1 pigment => 100 energy)
 	public static final InkAssortmentItem INK_ASSORTMENT = new InkAssortmentItem(IS.of(1), 64 * 100);
@@ -966,6 +967,7 @@ public class SpectrumItems {
 		register("ring_of_pursuit", RING_OF_PURSUIT, DyeColor.MAGENTA);
 		register("ring_of_denser_steps", RING_OF_DENSER_STEPS, DyeColor.BROWN);
 		register("ring_of_aerial_grace", RING_OF_AERIAL_GRACE, DyeColor.WHITE);
+		register("garland_of_tranquility", GARLAND_OF_TRANQUILITY, DyeColor.PURPLE);
 		register("gleaming_pin", GLEAMING_PIN, DyeColor.YELLOW);
 		register("lesser_potion_pendant", LESSER_POTION_PENDANT, DyeColor.PINK);
 		register("greater_potion_pendant", GREATER_POTION_PENDANT, DyeColor.PINK);

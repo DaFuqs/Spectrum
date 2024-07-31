@@ -23,6 +23,12 @@
       "conditions": {
         "advancement_identifier": "spectrum:lategame/grow_malachite_in_crystallarieum"
       }
+    },
+    "struck_up_hummingstone_hymn": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/strike_up_hummingstone_hymn"
+      }
     }
   }
 }

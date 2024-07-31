@@ -106,6 +106,7 @@ public class SpectrumFoodComponents {
 	
 	public static final FoodComponent BEVERAGE = new FoodComponent.Builder()
 			.hunger(2).saturationModifier(0.2F)
+			.alwaysEdible()
 			.build();
 	
 	public static final FoodComponent PURE_ALCOHOL = new FoodComponent.Builder()
@@ -113,6 +114,7 @@ public class SpectrumFoodComponents {
 			.statusEffect(new StatusEffectInstance(StatusEffects.POISON, 20 * 15, 4), 1.0F)
 			.statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 20 * 30, 2), 1.0F)
 			.statusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 20 * 60, 2), 1.0F)
+			.alwaysEdible()
 			.build();
 
 	public static final FoodComponent EVERNECTAR = new FoodComponent.Builder()

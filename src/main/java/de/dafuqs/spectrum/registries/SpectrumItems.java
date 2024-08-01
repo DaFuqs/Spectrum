@@ -259,7 +259,6 @@ public class SpectrumItems {
 	public static final Item DOWNSTONE_FRAGMENTS = new CloakedItem(IS.of(16, Rarity.UNCOMMON), SpectrumCommon.locate("lategame/find_excavation_site"), Items.LIGHT_GRAY_DYE);
 	public static final Item RESONANCE_SHARD = new CloakedItem(IS.of(16, Rarity.UNCOMMON), SpectrumCommon.locate("lategame/strike_up_hummingstone_hymn"), Items.LIGHT_BLUE_DYE);
 	
-	public static final Item VARIA_OPAL = new Item(IS.of(1, Rarity.EPIC));
 	public static final Item TEARSTONE = new Item(IS.of());
 	public static final Item ASH_FLAKES = new AshItem(IS.of(), "item.spectrum.ash_flakes.tooltip");
 
@@ -675,7 +674,6 @@ public class SpectrumItems {
 		register("downstone_fragments", DOWNSTONE_FRAGMENTS, DyeColor.LIGHT_GRAY);
 		register("resonance_shard", RESONANCE_SHARD, DyeColor.WHITE);
 
-		register("varia_opal", VARIA_OPAL, DyeColor.BLUE);
 		register("tearstone", TEARSTONE, DyeColor.PINK);
 		register("ash_flakes", ASH_FLAKES, DyeColor.LIGHT_GRAY);
 

@@ -578,8 +578,6 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.STARDUST);
 		entries.add(SpectrumBlocks.STARDUST_BLOCK);
 		entries.add(SpectrumItems.STAR_FRAGMENT);
-
-		entries.add(SpectrumItems.VARIA_OPAL);
 		entries.add(SpectrumBlocks.RADIATING_ENDER);
 		
 		entries.add(SpectrumItems.WHITE_PIGMENT);

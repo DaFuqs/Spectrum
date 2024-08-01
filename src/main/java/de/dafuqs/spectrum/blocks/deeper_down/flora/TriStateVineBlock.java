@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.tag.convention.v1.*;
 import net.minecraft.block.*;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.server.world.*;
@@ -17,9 +16,7 @@ import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
 import net.minecraft.world.event.*;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.Optional;
+import org.jetbrains.annotations.*;
 
 public abstract class TriStateVineBlock extends PlantBlock implements Fertilizable {
 
@@ -51,8 +48,8 @@ public abstract class TriStateVineBlock extends PlantBlock implements Fertilizab
 
             reference.setProperty(LIFE_STAGE, LifeStage.MATURE);
             reference.update(world);
-
-            world.playSound(null, pos, SoundEvents.BLOCK_BEEHIVE_SHEAR, SoundCategory.BLOCKS, 1.0F, MathHelper.nextBetween(world.random, 0.6F, 1.0F));
+            
+            world.playSound(null, pos, SoundEvents.BLOCK_BEEHIVE_SHEAR, SoundCategory.BLOCKS, 1.0F, MathHelper.nextBetween(world.random, 0.6F, 1.0F)); // TODO: custom sound event because subtitles
             world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(player, reference.getState()));
             return ActionResult.success(world.isClient());
         }
@@ -65,8 +62,8 @@ public abstract class TriStateVineBlock extends PlantBlock implements Fertilizab
 
             reference.setProperty(LIFE_STAGE, LifeStage.GROWING);
             reference.update(world);
-
-            world.playSound(null, pos, SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME, SoundCategory.BLOCKS, 1.0F, MathHelper.nextBetween(world.random, 0.6F, 1.0F));
+            
+            world.playSound(null, pos, SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME, SoundCategory.BLOCKS, 1.0F, MathHelper.nextBetween(world.random, 0.6F, 1.0F)); // TODO: custom sound event because subtitles
             world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(player, reference.getState()));
             return ActionResult.success(world.isClient());
         }

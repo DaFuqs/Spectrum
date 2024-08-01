@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "#spectrum:colored_fence_gates",
-    "#spectrum:noxwood_fence_gates"
+    "#spectrum:noxwood_fence_gates",
+    "spectrum:weeping_gala_fence_gate"
   ]
 }

@@ -1,9 +1,6 @@
 {
   "replace": false,
   "values": [
-    "#spectrum:colored_slabs",
-    "#spectrum:noxwood_slabs",
-
     "spectrum:smooth_basalt_slab",
     "spectrum:polished_basalt_slab",
     "spectrum:basalt_brick_slab",

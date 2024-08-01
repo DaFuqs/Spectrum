@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "#spectrum:colored_buttons"
+    "#spectrum:colored_buttons",
+    "#spectrum:noxwood_buttons",
+    "spectrum:weeping_gala_button"
   ]
 }

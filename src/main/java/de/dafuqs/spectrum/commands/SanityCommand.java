@@ -80,6 +80,7 @@ public class SanityCommand {
 						&& !blockState.isIn(BlockTags.HOE_MINEABLE)
 						&& !blockState.isIn(FabricMineableTags.SHEARS_MINEABLE)
 						&& !blockState.isIn(FabricMineableTags.SWORD_MINEABLE)
+						&& !blockState.isIn(BlockTags.SWORD_EFFICIENT)
 						&& !blockState.isIn(SpectrumBlockTags.EXEMPT_FROM_MINEABLE_DEBUG_CHECK)) {
 					SpectrumCommon.logWarning("[SANITY: Mineable Tags] Block " + registryKey.getValue() + " is not contained in a any vanilla mineable tag.");
 				}

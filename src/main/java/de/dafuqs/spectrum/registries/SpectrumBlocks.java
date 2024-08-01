@@ -737,7 +737,10 @@ public class SpectrumBlocks {
 	public static final Block WEEPING_GALA_WOOD = new PillarBlock(galaWood(MapColor.BROWN));
 	public static final Block STRIPPED_WEEPING_GALA_WOOD = new PillarBlock(galaWood(MapColor.BROWN));
 	public static final Block POTTED_WEEPING_GALA_SPRIG = new FlowerPotBlock(WEEPING_GALA_SPRIG, pottedPlant());
-	
+
+	public static final Block WEEPING_GALA_FRONDS = new Block(jadeVine());
+	public static final Block WEEPING_GALA_FRONDS_PLANT = new Block(jadeVine());
+
 	public static final BlockSetType GALA_BLOCK_SET_TYPE = BlockSetTypeBuilder.copyOf(BlockSetType.CHERRY).build(SpectrumCommon.locate("gala"));
 	public static final WoodType GALA_WOOD_TYPE = WoodTypeBuilder.copyOf(WoodType.CHERRY).build(SpectrumCommon.locate("gala"), GALA_BLOCK_SET_TYPE);
 	
@@ -1738,6 +1741,8 @@ public class SpectrumBlocks {
 		
 		registerBlockWithItem("weeping_gala_sprig", WEEPING_GALA_SPRIG, settings, DyeColor.LIME);
 		registerBlockWithItem("weeping_gala_leaves", WEEPING_GALA_LEAVES, settings, DyeColor.LIME);
+		registerBlock("weeping_gala_fronds", WEEPING_GALA_FRONDS);
+		registerBlock("weeping_gala_fronds_plant", WEEPING_GALA_FRONDS_PLANT);
 		registerBlockWithItem("weeping_gala_log", WEEPING_GALA_LOG, settings, DyeColor.LIME);
 		registerBlockWithItem("stripped_weeping_gala_log", STRIPPED_WEEPING_GALA_LOG, settings, DyeColor.LIME);
 		registerBlockWithItem("weeping_gala_wood", WEEPING_GALA_WOOD, settings, DyeColor.LIME);

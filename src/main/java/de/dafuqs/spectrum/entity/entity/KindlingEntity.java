@@ -130,7 +130,7 @@ public class KindlingEntity extends AbstractHorseEntity implements RangedAttackM
 				case STANDING -> this.standingAnimationState.start(this.age);
 				case DIGGING -> this.walkingAnimationState.start(this.age);
 				case ROARING -> this.standingAngryAnimationState.start(this.age);
-				case SNIFFING -> this.walkingAngryAnimationState.start(this.age);
+				case EMERGING -> this.walkingAngryAnimationState.start(this.age);
 				case FALL_FLYING -> this.glidingAnimationState.start(this.age);
 				default -> {
 				}
@@ -534,11 +534,6 @@ public class KindlingEntity extends AbstractHorseEntity implements RangedAttackM
 	
 	public boolean isIncited() {
 		return dataTracker.get(INCITED);
-	}
-	
-	@Override
-	public boolean isAngry() {
-		return super.isAngry() || this.getAngerTime() > 0;
 	}
 	
 	@Override

@@ -19,5 +19,7 @@
   "required_advancement": "spectrum:unlocks/potions/strong_sleep_effects",
   "ink_color": "spectrum:purple",
   "ink_cost": 640,
-  "potency_hard_cap": 1
+  "potency_hard_cap": 1,
+  "yield_hard_cap": 1,
+  "base_yield": 1
 }

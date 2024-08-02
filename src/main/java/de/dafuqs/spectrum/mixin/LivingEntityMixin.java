@@ -318,7 +318,7 @@ public abstract class LivingEntityMixin {
 			}
 		}
 		else if (effect.getEffectType() == SpectrumStatusEffects.FATAL_SLUMBER) {
-			((StatusEffectInstanceAccessor) effect).setDuration(Math.max(Math.round(effect.getDuration() / potency), 40));
+			((StatusEffectInstanceAccessor) effect).setDuration(Math.max(Math.round(effect.getDuration() / potency * 2), 100));
 		}
 	}
 

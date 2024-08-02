@@ -22,7 +22,7 @@ import java.util.*;
 public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	
 	public static final int BASE_POTION_COUNT_ON_BREWING = 3;
-	public static final int BASE_ARROW_COUNT_ON_BREWING = 12;
+	public static final int ARROW_COUNT_MULTIPLIER = 4;
 	
 	/**
 	 * When potionMod.potentDecreasingEffect is set each status effect is split into separate
@@ -144,6 +144,16 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		ItemStack stack = new ItemStack(Items.POTION);
 		PotionUtil.setCustomPotionEffects(stack, List.of(new StatusEffectInstance(recipeData.statusEffect(), recipeData.baseDurationTicks())));
 		return stack;
+	}
+
+	public float getYieldModifiers(PotionMod potionMod) {
+		var yield = recipeData.baseYield();
+		yield += potionMod.yield;
+
+		if (recipeData.yieldHardCap() > 0)
+			yield = recipeData.yieldHardCap();
+
+		return yield;
 	}
 	
 	public ItemStack getPotion(ItemStack stack, PotionMod potionMod, PotionWorkshopBrewingRecipe lastRecipe, Random random) {

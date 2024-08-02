@@ -15,7 +15,7 @@ import org.jetbrains.annotations.*;
 
 public record PotionRecipeEffect(boolean applicableToPotions, boolean applicableToTippedArrows,
 								 boolean applicableToPotionFillabes, boolean applicableToWeapons,
-								 int baseDurationTicks, int potencyHardCap, float potencyModifier,
+								 int baseDurationTicks, float baseYield, int potencyHardCap, int yieldHardCap, float potencyModifier,
 								 StatusEffect statusEffect,
 								 InkColor inkColor, int inkCost) {
 	
@@ -24,9 +24,11 @@ public record PotionRecipeEffect(boolean applicableToPotions, boolean applicable
 		boolean applicableToTippedArrows = JsonHelper.getBoolean(jsonObject, "applicable_to_tipped_arrows", true);
 		boolean applicableToPotionFillabes = JsonHelper.getBoolean(jsonObject, "applicable_to_potion_fillables", true);
 		boolean applicableToWeapons = JsonHelper.getBoolean(jsonObject, "applicable_to_potion_weapons", true);
-		
+
 		int potencyHardCap = JsonHelper.getInt(jsonObject, "potency_hard_cap", -1);
+		int yieldHardCap = JsonHelper.getInt(jsonObject, "yield_hard_cap", -1);
 		int baseDurationTicks = JsonHelper.getInt(jsonObject, "base_duration_ticks", 1600);
+		float baseYield = JsonHelper.getFloat(jsonObject, "base_yield", PotionWorkshopBrewingRecipe.BASE_POTION_COUNT_ON_BREWING);
 		float potencyModifier = JsonHelper.getFloat(jsonObject, "potency_modifier", 1.0F);
 		
 		Identifier statusEffectIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "effect"));
@@ -38,13 +40,15 @@ public record PotionRecipeEffect(boolean applicableToPotions, boolean applicable
 		InkColor inkColor = InkColor.ofIdString(JsonHelper.getString(jsonObject, "ink_color"));
 		int inkCost = JsonHelper.getInt(jsonObject, "ink_cost");
 		
-		return new PotionRecipeEffect(applicableToPotions, applicableToTippedArrows, applicableToPotionFillabes, applicableToWeapons, baseDurationTicks, potencyHardCap, potencyModifier, statusEffect, inkColor, inkCost);
+		return new PotionRecipeEffect(applicableToPotions, applicableToTippedArrows, applicableToPotionFillabes, applicableToWeapons, baseDurationTicks, baseYield, potencyHardCap, yieldHardCap, potencyModifier, statusEffect, inkColor, inkCost);
 	}
 	
 	public void write(PacketByteBuf packetByteBuf) {
 		packetByteBuf.writeIdentifier(Registries.STATUS_EFFECT.getId(statusEffect));
 		packetByteBuf.writeInt(baseDurationTicks);
+		packetByteBuf.writeFloat(baseYield);
 		packetByteBuf.writeInt(potencyHardCap);
+		packetByteBuf.writeInt(yieldHardCap);
 		packetByteBuf.writeFloat(potencyModifier);
 		packetByteBuf.writeBoolean(applicableToPotions);
 		packetByteBuf.writeBoolean(applicableToTippedArrows);
@@ -57,7 +61,9 @@ public record PotionRecipeEffect(boolean applicableToPotions, boolean applicable
 	public static PotionRecipeEffect read(PacketByteBuf packetByteBuf) {
 		StatusEffect statusEffect = Registries.STATUS_EFFECT.get(packetByteBuf.readIdentifier());
 		int baseDurationTicks = packetByteBuf.readInt();
+		float baseYield = packetByteBuf.readFloat();
 		int hardCap = packetByteBuf.readInt();
+		int yieldCap = packetByteBuf.readInt();
 		float potencyModifier = packetByteBuf.readFloat();
 		boolean applicableToPotions = packetByteBuf.readBoolean();
 		boolean applicableToTippedArrows = packetByteBuf.readBoolean();
@@ -66,7 +72,7 @@ public record PotionRecipeEffect(boolean applicableToPotions, boolean applicable
 		InkColor inkColor = InkColor.ofId(packetByteBuf.readIdentifier());
 		int inkCost = packetByteBuf.readInt();
 		
-		return new PotionRecipeEffect(applicableToPotions, applicableToTippedArrows, applicableToPotionFillabes, applicableToWeapons, baseDurationTicks, hardCap, potencyModifier, statusEffect, inkColor, inkCost);
+		return new PotionRecipeEffect(applicableToPotions, applicableToTippedArrows, applicableToPotionFillabes, applicableToWeapons, baseDurationTicks, baseYield, hardCap, yieldCap, potencyModifier, statusEffect, inkColor, inkCost);
 	}
 	
 	public @Nullable InkPoweredStatusEffectInstance getStatusEffectInstance(@NotNull PotionMod potionMod, Random random) {

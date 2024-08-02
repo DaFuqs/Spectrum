@@ -11,9 +11,10 @@ public class WeepingGalaSprigBlock extends SaplingBlock {
 	public WeepingGalaSprigBlock(SaplingGenerator generator, AbstractBlock.Settings settings) {
 		super(generator, settings);
 	}
-	
+
+	@Override
 	protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-		return super.canPlantOnTop(floor, world, pos) || floor.isOf(SpectrumBlocks.ASHEN_BLACKSLAG);
+		return floor.isIn(SpectrumBlockTags.ASH) || floor.isOf(SpectrumBlocks.ASHEN_BLACKSLAG) || super.canPlantOnTop(floor, world, pos);
 	}
 	
 }

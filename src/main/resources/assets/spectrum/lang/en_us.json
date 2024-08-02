@@ -4993,7 +4993,7 @@
   "book.spectrum.guidebook.equipment.garland_of_tranquility.page0.title": "Laurels of Serenity",
   "book.spectrum.guidebook.equipment.garland_of_tranquility.page0.text": "The idea of being left alone is great! What isn't so great is having my tongue go numb from drinking leaf juice every fifteen minutes. The solution to my problems is self evident, simply wear the nightdew!... and pump it full of purple ink.\\\n\\\n*Wait - since this is made from the flowers, does that make it a lei?*",
   "book.spectrum.guidebook.equipment.garland_of_tranquility.page1.title": "Fusion Recipe",
-  "book.spectrum.guidebook.equipment.garland_of_tranquility.page1.text": "Infuse it with [Purple Ink](entry://ink/ink) in a [Color Picker](entry://ink/color_picker)[#]() to increase your Mining Speed.",
+  "book.spectrum.guidebook.equipment.garland_of_tranquility.page1.text": "Infuse it with [Purple Ink](entry://ink/ink) in a [Color Picker](entry://ink/color_picker)[#]() to increase your stealth.\\\n\\\n*~The sleep resistance is complimentary~*",
   "book.spectrum.guidebook.equipment.seven_league_boots.name": "Seven League Boots",
   "book.spectrum.guidebook.equipment.seven_league_boots.page0.title": "Seven League Boots",
   "book.spectrum.guidebook.equipment.seven_league_boots.page0.text": "Getting from A to B is tedious. Your travel time only seems to go up, especially with [Geodes](entry://general/geodes) scattered across the land as they are. To solve this issue, you designed the Seven League Boots, making you much more mobile than before.",

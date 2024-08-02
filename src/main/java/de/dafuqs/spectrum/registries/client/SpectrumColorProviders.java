@@ -2,11 +2,13 @@ package de.dafuqs.spectrum.registries.client;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.energy.color.InkColor;
 import de.dafuqs.spectrum.api.energy.storage.*;
 import de.dafuqs.spectrum.blocks.conditional.colored_tree.*;
 import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.energy.*;
+import de.dafuqs.spectrum.items.magic_items.PaintbrushItem;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
@@ -44,6 +46,7 @@ public class SpectrumColorProviders {
 		registerPotionFillables(SpectrumItems.LESSER_POTION_PENDANT, SpectrumItems.GREATER_POTION_PENDANT, SpectrumItems.MALACHITE_GLASS_AMPOULE);
 		registerPickyPotionFillables(SpectrumItems.NIGHTFALLS_BLADE);
 		registerSingleInkStorages(SpectrumItems.INK_FLASK);
+		registerPaintbrush(SpectrumItems.PAINTBRUSH);
 		registerBrewColors(SpectrumItems.INFUSED_BEVERAGE);
 	}
 	
@@ -99,6 +102,16 @@ public class SpectrumColorProviders {
 				InkFlaskItem i = (InkFlaskItem) stack.getItem();
 				SingleInkStorage storage = i.getEnergyStorage(stack);
 				return ColorHelper.getInt(storage.getStoredColor().getDyeColor());
+			}
+			return -1;
+		}, items);
+	}
+
+	private static void registerPaintbrush(Item... items) {
+		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> {
+			if (tintIndex == 1) {
+				var potentialColor = PaintbrushItem.getColor(stack);
+				return potentialColor.map(InkColor::getColorInt).orElse(-1);
 			}
 			return -1;
 		}, items);

@@ -88,6 +88,8 @@
   "recipeGroup.spectrum.hare_roasts": "Hare Roasts",
   "recipeGroup.spectrum.pure_to_vanilla_resources": "Pure Resource Blasting",
   "recipeGroup.spectrum.head_fusion": "Creature Manipulation",
+  "recipeGroup.spectrum.azalea_tea": "Azalea Tea",
+  "recipeGroup.spectrum.sleep_potions": "Sleep Potions",
 
   "biome.spectrum.deep_barrens": "Deep Barrens",
   "biome.spectrum.crystal_gardens": "Crystal Gardens",
@@ -1519,6 +1521,8 @@
 
   "block.spectrum.weeping_gala_sprig": "Weeping Gala Sprig",
   "block.spectrum.weeping_gala_leaves": "Weeping Gala Leaves",
+  "block.spectrum.weeping_gala_fronds": "Weeping Gala Fronds",
+  "block.spectrum.weeping_gala_fronds_plant": "Weeping Gala Fronds Plant",
   "block.spectrum.weeping_gala_log": "Weeping Gala Log",
   "block.spectrum.stripped_weeping_gala_log": "Stripped Weeping Gala Log",
   "block.spectrum.weeping_gala_wood": "Weeping Gala Wood",
@@ -2161,6 +2165,10 @@
   "item.spectrum.imperial_cookbook.tooltip": "§c§oFeeding an Imperator - Imperial recipes third edition",
   "item.spectrum.brewers_handbook": "Brewers Handbook",
   "item.spectrum.brewers_handbook.tooltip": "§6§oBrewers Handbook, extended edition",
+  "item.spectrum.poisoners_cookbook": "Poisoner's Handbook",
+  "item.spectrum.poisoners_cookbook.tooltip": "TODO",
+  "item.spectrum.varia_cookbook": "Varia Cookbook",
+  "item.spectrum.varia_cookbook.tooltip": "TODO",
 
   "item.spectrum.aqua_regia": "Aqua Regia",
   "item.spectrum.aqua_regia.tooltip.preview": "Brew it with a combination of Bulbs & Petals",

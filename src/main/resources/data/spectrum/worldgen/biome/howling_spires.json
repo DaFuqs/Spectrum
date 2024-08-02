@@ -47,9 +47,7 @@
       "spectrum:moonstone_geode",
       "spectrum:basal_marble_disk",
       "spectrum:blackslag_pile",
-      "spectrum:basal_marble_pile",
-      "spectrum:large_ash_pile",
-      "spectrum:small_ash_pile"
+      "spectrum:basal_marble_pile"
     ],
     [],
     [],
@@ -71,14 +69,15 @@
       "spectrum:dd_andesite",
       "spectrum:dd_stone"
     ],
-    [
-    ],
+    [],
     [],
     [
+      "spectrum:weeping_gala",
       "spectrum:varia_sprouts",
       "spectrum:jadeite_lotuses"
     ],
     [
+      "spectrum:large_ash_pile",
       "spectrum:small_ash_pile"
     ]
   ],

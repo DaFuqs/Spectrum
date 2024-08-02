@@ -222,6 +222,8 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumEventListeners.register();
 		logInfo("Registering Path Node Types...");
 		SpectrumPathNodeTypes.register();
+		logInfo("Registering Tree Decorator Types...");
+		SpectrumTreeDecoratorTypes.register();
 		
 		//noinspection UnstableApiUsage
 		ItemStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.storage, SpectrumBlockEntities.BOTTOMLESS_BUNDLE);

@@ -61,7 +61,7 @@ public class FrenzyStatusEffect extends SpectrumStatusEffect implements Stackabl
 			updateAttributes(entity, amplifier, -1);
 		}
 
-		var potency = SleepStatusEffect.getGeneralSleepVulnerability(entity) * (amplifier + 1) / 20;
+		var potency = (SleepStatusEffect.getGeneralSleepVulnerability(entity) * (amplifier + 1) / 4) / 20;
 		if (potency > 0 && entity.getHealth() > potency) {
 			entity.damage(SpectrumDamageTypes.sleep(entity.getWorld(), null), potency);
 		}

@@ -1,0 +1,8 @@
+{
+  "parent": "spectrum:item/handheld_oversized",
+  "textures": {
+    "layer0": "spectrum:item/paintbrush_oversized",
+    "layer1": "spectrum:item/paintbrush_oversized_tint",
+    "layer2": "spectrum:item/paintbrush_oversized_overlay"
+  }
+}

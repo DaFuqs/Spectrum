@@ -22,6 +22,13 @@
     "spectrum:bottomless_bundle",
     "spectrum:amaranth",
     "spectrum:amaranth_bushel",
-    "spectrum:titration_barrel"
+    "spectrum:titration_barrel",
+
+    "spectrum:weeping_gala_lantern",
+    "spectrum:weeping_gala_lamp",
+    "spectrum:weeping_gala_amphora",
+    "spectrum:weeping_gala_barrel",
+    "spectrum:weeping_gala_pillar",
+    "spectrum:weeping_gala_light"
   ]
 }

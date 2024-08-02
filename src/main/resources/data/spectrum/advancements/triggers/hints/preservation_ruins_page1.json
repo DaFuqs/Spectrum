@@ -6,7 +6,7 @@
     "advancement_gotten": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:generate_preservation_ruins_loot"
+        "advancement_identifier": "spectrum:solve_dike_gate_preservation_ruin"
       }
     }
   },

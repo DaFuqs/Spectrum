@@ -6,7 +6,7 @@
     "advancement_gotten": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:enter_color_mixing_preservation_ruin"
+        "advancement_identifier": "spectrum:solve_color_mixing_preservation_ruin"
       }
     }
   },

@@ -6,8 +6,7 @@ import de.dafuqs.spectrum.blocks.mob_head.*;
 import de.dafuqs.spectrum.compat.gofish.*;
 import de.dafuqs.spectrum.entity.type_specific_predicates.*;
 import de.dafuqs.spectrum.loot.conditions.*;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.spectrum.registries.SpectrumItems;
+import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.loot.v2.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.item.*;
@@ -120,8 +119,10 @@ public class SpectrumLootPoolModifiers {
 				// because vanillas are too generic (fox/snow fox both use "fox" loot table)
 			}
 			else if (id.equals(new Identifier("gameplay/sniffer_digging"))) {
-				tableBuilder.pool(getDiggingLootPool(SpectrumItems.NIGHTDEW_SPROUT, 0.25F));
-				tableBuilder.pool(getDiggingLootPool(SpectrumBlocks.WEEPING_GALA_SPRIG.asItem(), 0.05F));
+				tableBuilder.modifyPools(builder -> {
+					builder.with(ItemEntry.builder(SpectrumBlocks.WEEPING_GALA_SPRIG).weight(2));
+					builder.with(ItemEntry.builder(SpectrumItems.NIGHTDEW_SPROUT).weight(1));
+				});
 			} else if (id.equals(new Identifier("entities/fox"))) {
 				tableBuilder.pool(getFoxLootPool(FoxEntity.Type.RED, SpectrumSkullBlock.getBlock(SpectrumSkullType.FOX).get().asItem(), 0.02F));
 				tableBuilder.pool(getFoxLootPool(FoxEntity.Type.SNOW, SpectrumSkullBlock.getBlock(SpectrumSkullType.FOX_ARCTIC).get().asItem(), 0.02F));
@@ -208,14 +209,6 @@ public class SpectrumLootPoolModifiers {
 				.rolls(ConstantLootNumberProvider.create(1))
 				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, dropItem).build())
 				.with(ItemEntry.builder(dropItem).build())
-				.build();
-	}
-
-	private static LootPool getDiggingLootPool(Item item, float chance) {
-		return new LootPool.Builder()
-				.rolls(ConstantLootNumberProvider.create(1))
-				.conditionally(RandomChanceLootCondition.builder(chance).build())
-				.with(ItemEntry.builder(item).build())
 				.build();
 	}
 	

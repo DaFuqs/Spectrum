@@ -1,13 +1,13 @@
 {
-  "feature": "spectrum:basal_marble_pile",
+  "feature": "spectrum:dd_howling_delta",
   "placement": [
     {
       "type": "minecraft:count_on_every_layer",
-      "count": 1
+      "count": 2
     },
     {
       "type": "minecraft:rarity_filter",
-      "chance": 3
+      "chance": 2
     },
     {
       "type": "minecraft:biome"

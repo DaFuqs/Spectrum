@@ -1,5 +1,5 @@
 {
-  "feature": "spectrum:basal_marble_pile",
+  "feature": "spectrum:ash_geode",
   "placement": [
     {
       "type": "minecraft:count_on_every_layer",
@@ -7,7 +7,7 @@
     },
     {
       "type": "minecraft:rarity_filter",
-      "chance": 3
+      "chance": 4
     },
     {
       "type": "minecraft:biome"

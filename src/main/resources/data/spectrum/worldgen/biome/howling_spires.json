@@ -45,12 +45,15 @@
     [
       "spectrum:dd_downstone_sloped",
       "spectrum:moonstone_geode",
+      "spectrum:ash_geode",
       "spectrum:basal_marble_disk",
       "spectrum:blackslag_pile",
       "spectrum:basal_marble_pile"
     ],
     [],
-    [],
+    [
+      "spectrum:dd_howling_delta"
+    ],
     [
       "spectrum:dd_malachite_ore",
       "spectrum:dd_shimmerstone_ore",

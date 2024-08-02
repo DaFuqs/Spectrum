@@ -1,0 +1,29 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "weeping_gala_deco",
+  "time": 240,
+  "tier": "basic",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 0.1,
+  "pattern": [
+    "S",
+    "P"
+  ],
+  "key": {
+    "S": {
+      "item": "spectrum:shimmerstone_gem"
+    },
+    "P": {
+      "item": "spectrum:weeping_gala_planks"
+    }
+  },
+  "result": {
+    "item": "spectrum:weeping_gala_lantern",
+    "count": 1
+  },
+  "required_advancement": "spectrum:hidden/collect_weeping_gala"
+}

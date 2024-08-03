@@ -5483,7 +5483,7 @@
   "book.spectrum.guidebook.magical_blocks.ender_dropper.page0.title": "Ender Dropper",
   "book.spectrum.guidebook.magical_blocks.ender_dropper.page0.text": "The Ender Dropper is the counterpart to the [Ender Hopper](entry://magical_blocks/ender_hopper). On an [#](449900)redstone pulse[#]() it ejects an item from my [#](bb00bb)Ender Inventory[#]().\\\n\\\nBeware: Who's to stop someone from placing a button next to it and emptying it completely?. The counterpart to the [Ender Hopper](entry://magical_blocks/ender_hopper).",
   "book.spectrum.guidebook.magical_blocks.ender_dropper.page1.title": "Pedestal Recipe",
-  "book.spectrum.guidebook.only_works_when_owner_online": "Only works while it's owner is online.",
+  "book.spectrum.guidebook.only_works_when_owner_online": "Only works while its owner is online.",
   "book.spectrum.guidebook.magical_blocks.ender_hopper.name": "Ender Hopper",
   "book.spectrum.guidebook.magical_blocks.ender_hopper.page0.title": "Ender Hopper",
   "book.spectrum.guidebook.magical_blocks.ender_hopper.page0.text": "Designed to resemble an ordinary hopper in form and function, the Ender Hopper has the special ability to put items directly into my [#](bb00bb)Ender Inventory[#](). The counterpart to the [Ender Dropper](entry://magical_blocks/ender_dropper).",

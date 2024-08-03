@@ -29,7 +29,7 @@ public class IndestructibleEnchantment extends SpectrumEnchantment {
 	
 	@Override
 	public boolean canAccept(Enchantment other) {
-		return super.canAccept(other) && other != Enchantments.INFINITY && other != Enchantments.UNBREAKING && other != Enchantments.EFFICIENCY && other != Enchantments.MENDING;
+		return super.canAccept(other) && other != Enchantments.INFINITY && other != Enchantments.UNBREAKING && other != Enchantments.EFFICIENCY && other != Enchantments.MENDING && other != Enchantments.PROTECTION;
 	}
 	
 	@Override

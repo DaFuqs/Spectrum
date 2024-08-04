@@ -16,5 +16,6 @@
   "required_advancement": "spectrum:unlocks/potions/resistance",
   "ink_color": "spectrum:blue",
   "ink_cost": 8,
-  "potency_hard_cap": 3
+  "potency_hard_cap": 3,
+  "base_yield": 1
 }

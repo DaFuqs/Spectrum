@@ -93,6 +93,8 @@ public abstract class LivingEntityMixin {
 
 	@Shadow protected abstract void applyDamage(DamageSource source, float amount);
 
+	@Shadow public abstract void remove(Entity.RemovalReason reason);
+
 	@ModifyArg(method = "dropXp()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"), index = 2)
 	protected int spectrum$applyExuberance(int originalXP) {
 		return (int) (originalXP * spectrum$getExuberanceMod(this.attackingPlayer));
@@ -110,13 +112,25 @@ public abstract class LivingEntityMixin {
 	
 	@Inject(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;hasNoDrag()Z"))
 	public void spectrum$travel(CallbackInfo ci, @Local(ordinal = 1) LocalFloatRef f) {
-		var needle = (DragonTalonItem) SpectrumItems.DRAGON_TALON;
+		var talon = (DragonTalonItem) SpectrumItems.DRAGON_TALON;
 		var entity = (LivingEntity) (Object) this;
-		if (needle.isReservingSlot(this.getMainHandStack()) || needle.isReservingSlot(this.getOffHandStack())) {
+		var friction = -1F;
+
+		if (talon.isReservingSlot(this.getMainHandStack()) || talon.isReservingSlot(this.getOffHandStack())) {
 			if (!(entity).isOnGround()) {
-				f.set(0.945F);
+				friction = 0.945F;
 			}
 		}
+
+		var trinket = tryGetTrinket(SpectrumItems.RING_OF_AERIAL_GRACE);
+		if (!entity.isOnGround() && trinket.isPresent()) {
+			var inkStorage = SpectrumItems.RING_OF_AERIAL_GRACE.getEnergyStorage(trinket.get());
+			var storedInk = inkStorage.getEnergy(inkStorage.getStoredColor());
+			friction = (float) Math.max(friction, 0.91 + (((RingOfAerialGraceItem) SpectrumItems.RING_OF_AERIAL_GRACE).getBonus(storedInk) / 150F));
+		}
+
+		if (friction >= 0)
+			f.set(friction);
 	}
 
 	@ModifyExpressionValue(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/Block;getSlipperiness()F"))
@@ -133,6 +147,34 @@ public abstract class LivingEntityMixin {
 			original = (float) Math.min(original + 0.3 + (potency / 25F), 0.9975F);
 		}
 		return original;
+	}
+
+	@ModifyReturnValue(method = "canWalkOnFluid", at = @At("RETURN"))
+	public boolean spectrum$modifyFluidWalking(boolean original) {
+		var entity = (LivingEntity) (Object) this;
+		var trinket = tryGetTrinket(SpectrumItems.RING_OF_AERIAL_GRACE);
+
+		if (trinket.isPresent())
+			return !entity.isSubmergedInWater();
+
+		return original;
+	}
+
+	@Unique
+	private Optional<ItemStack> tryGetTrinket(Item item) {
+		var entity = (LivingEntity) (Object) this;
+
+		var comp = TrinketsApi.getTrinketComponent(entity);
+
+		if (comp.isEmpty())
+			return Optional.empty();
+
+		var trinket = comp.get().getEquipped(item);
+
+		if (trinket.isEmpty())
+			return Optional.empty();
+
+		return Optional.ofNullable(trinket.get(0).getRight());
 	}
 	
 	@ModifyVariable(method = "damageArmor(Lnet/minecraft/entity/damage/DamageSource;F)V", at = @At("HEAD"), ordinal = 0, argsOnly = true)

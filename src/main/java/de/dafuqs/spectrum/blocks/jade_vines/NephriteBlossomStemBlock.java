@@ -32,7 +32,7 @@ public class NephriteBlossomStemBlock extends PlantBlock {
 	
 	@Override
 	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
-		return SpectrumItems.NEPHRITE_BLOSSOM_BULB.getDefaultStack();
+		return SpectrumBlocks.NEPHRITE_BLOSSOM_BULB.asItem().getDefaultStack();
 	}
 	
 	@Override

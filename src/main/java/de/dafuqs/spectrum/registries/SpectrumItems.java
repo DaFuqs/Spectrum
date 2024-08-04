@@ -274,10 +274,7 @@ public class SpectrumItems {
 	public static final Item GERMINATED_JADE_VINE_BULB = new GerminatedJadeVineBulbItem(IS.of(16), SpectrumCommon.locate("hidden/collect_hibernating_jade_vine_bulb"), Items.LIME_DYE);
 	public static final Item JADE_VINE_PETALS = new CloakedItemWithLoomPattern(IS.of(), SpectrumCommon.locate("midgame/build_spirit_instiller_structure"), Items.LIME_DYE, SpectrumBannerPatterns.JADE_VINE);
 	
-	public static final Item NEPHRITE_BLOSSOM_BULB = new BlockItem(SpectrumBlocks.NEPHRITE_BLOSSOM_BULB, IS.of(16));
-	public static final Item JADEITE_LOTUS_BULB = new BlockItem(SpectrumBlocks.JADEITE_LOTUS_BULB, IS.of(16));
 	public static final Item JADEITE_PETALS = new Item(IS.of(Rarity.UNCOMMON));
-
 	
 	public static final Item BLOOD_ORCHID_PETAL = new CloakedItem(IS.of(), SpectrumCommon.locate("solve_wireless_redstone_preservation_ruin"), Items.RED_DYE);
 
@@ -688,10 +685,6 @@ public class SpectrumItems {
 		register("hibernating_jade_vine_bulb", HIBERNATING_JADE_VINE_BULB, DyeColor.GRAY);
 		register("germinated_jade_vine_bulb", GERMINATED_JADE_VINE_BULB, DyeColor.LIME);
 		register("jade_vine_petals", JADE_VINE_PETALS, DyeColor.LIME);
-		
-		register("nephrite_blossom_bulb", NEPHRITE_BLOSSOM_BULB, DyeColor.PINK);
-		
-		register("jadeite_lotus_bulb", JADEITE_LOTUS_BULB, DyeColor.BROWN);
 		register("jadeite_petals", JADEITE_PETALS, DyeColor.BROWN);
 		
 		register("glistering_melon_seeds", GLISTERING_MELON_SEEDS, DyeColor.LIME);

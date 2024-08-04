@@ -8,7 +8,6 @@ import de.dafuqs.spectrum.items.food.beverages.properties.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.entity.effect.*;
-import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
 
@@ -26,16 +25,6 @@ public abstract class SweetenableTitrationBarrelRecipe extends TitrationBarrelRe
 	}
 	
 	protected abstract List<StatusEffectInstance> getEffects(boolean nectar, double bloominess, double alcPercent);
-	
-	@Override
-	public ItemStack tap(Inventory inventory, long secondsFermented, float downfall) {
-		int bulbCount = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.JADEITE_LOTUS_BULB);
-		int petalCount = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.JADEITE_PETALS);
-		boolean nectar = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.MOONSTRUCK_NECTAR) > 0;
-		
-		float thickness = getThickness(bulbCount, petalCount);
-		return tapWith(bulbCount, petalCount, nectar, thickness, secondsFermented, downfall);
-	}
 	
 	protected ItemStack tapWith(int bulbCount, int petalCount, boolean nectar, float thickness, long secondsFermented, float downfall) {
 		double bloominess = getBloominess(bulbCount, petalCount);

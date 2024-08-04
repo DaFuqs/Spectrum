@@ -613,8 +613,8 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.HIBERNATING_JADE_VINE_BULB);
 		entries.add(SpectrumItems.GERMINATED_JADE_VINE_BULB);
 		entries.add(SpectrumItems.JADE_VINE_PETALS);
-		entries.add(SpectrumItems.NEPHRITE_BLOSSOM_BULB);
-		entries.add(SpectrumItems.JADEITE_LOTUS_BULB);
+		entries.add(SpectrumBlocks.NEPHRITE_BLOSSOM_BULB);
+		entries.add(SpectrumBlocks.JADEITE_LOTUS_BULB);
 		entries.add(SpectrumItems.JADEITE_PETALS);
 
 		entries.add(SpectrumItems.TEARSTONE);

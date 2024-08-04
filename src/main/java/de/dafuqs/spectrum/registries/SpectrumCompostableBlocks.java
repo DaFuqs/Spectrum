@@ -28,8 +28,8 @@ public class SpectrumCompostableBlocks {
 		CompostingChanceRegistry.INSTANCE.add(SpectrumItems.HIBERNATING_JADE_VINE_BULB, HIGH);
 		CompostingChanceRegistry.INSTANCE.add(SpectrumItems.GERMINATED_JADE_VINE_BULB, HIGH);
 		CompostingChanceRegistry.INSTANCE.add(SpectrumItems.JADE_VINE_PETALS, HIGH);
-		CompostingChanceRegistry.INSTANCE.add(SpectrumItems.NEPHRITE_BLOSSOM_BULB, HIGH);
-		CompostingChanceRegistry.INSTANCE.add(SpectrumItems.JADEITE_LOTUS_BULB, HIGH);
+		CompostingChanceRegistry.INSTANCE.add(SpectrumBlocks.NEPHRITE_BLOSSOM_BULB, HIGH);
+		CompostingChanceRegistry.INSTANCE.add(SpectrumBlocks.JADEITE_LOTUS_BULB, HIGH);
 		CompostingChanceRegistry.INSTANCE.add(SpectrumItems.JADEITE_PETALS, HIGH);
 		
 		CompostingChanceRegistry.INSTANCE.add(SpectrumBlocks.NEPHRITE_BLOSSOM_LEAVES, LOW);

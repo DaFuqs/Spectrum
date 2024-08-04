@@ -35,7 +35,7 @@ public class JadeiteFlowerBlock extends SpectrumFacingBlock {
     
     @Override
     public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
-        return SpectrumItems.JADEITE_LOTUS_BULB.getDefaultStack();
+        return SpectrumBlocks.JADEITE_LOTUS_BULB.asItem().getDefaultStack();
     }
     
     @Override

@@ -186,7 +186,7 @@
   "container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2": "this recipe yet",
   "container.spectrum.rei.enchanting.title": "Spectrum Enchanting",
   "container.spectrum.rei.enchanting.crafting_time": "%f seconds",
-  "container.spectrum.rei.enchanting.crafting_time_one_second": "%f seconds",
+  "container.spectrum.rei.enchanting.crafting_time_one_second": "%f second",
   "container.spectrum.rei.enchantment_upgrading.title": "Enchantment Upgrading",
   "container.spectrum.rei.enchantment_upgrade.required_item_count": "(%fx)",
   "container.spectrum.rei.mud_converting.title": "Mud Dipping",

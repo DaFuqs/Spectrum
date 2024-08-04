@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.registries.client;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.mob_head.client.models.*;
 import de.dafuqs.spectrum.entity.models.*;
-import de.dafuqs.spectrum.render.armor.*;
+import de.dafuqs.spectrum.items.armor.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
 import net.minecraft.client.model.*;
@@ -272,7 +272,7 @@ public class SpectrumModelLayers {
 		EntityModelLayerRegistry.registerModelLayer(LIZARD_HEAD_FRILLS, LizardHeadModel::getTexturedModelDataFrills);
 		EntityModelLayerRegistry.registerModelLayer(PRESERVATION_TURRET_HEAD, PreservationTurretHeadModel::getTexturedModelData);
 		
-		EntityModelLayerRegistry.registerModelLayer(MAIN_BEDROCK_LAYER, () -> TexturedModelData.of(BedrockArmorModelData.getModelData(), 128, 128));
+		EntityModelLayerRegistry.registerModelLayer(MAIN_BEDROCK_LAYER, () -> TexturedModelData.of(BedrockArmorModel.getModelData(), 128, 128));
 	}
 	
 }

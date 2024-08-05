@@ -16,18 +16,19 @@ public class BedrockCapeRenderer {
 	 */
 	public static void renderBedrockCapeAndCloth(MatrixStack ms, VertexConsumerProvider vertices, int light, AbstractClientPlayerEntity player, float h, ItemStack stack) {
 
+		// Transform and render front cloth
 		var frontCapeRotation = BedrockArmorModel.computeFrontClothRotation(player, h);
-				// Transform and render front cloth
+
 		VertexConsumer vertexConsumer = vertices.getBuffer(((BedrockArmorItem) stack.getItem()).getRenderLayer(stack));
 		ms.push();
-		ms.translate(0, 0.35, 0);
+		ms.translate(0, 0.5, 0);
 		ms.multiply(RotationAxis.POSITIVE_X.rotationDegrees(frontCapeRotation.getLeft()));
 		if (!player.isInSneakingPose()) {
 			ms.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(frontCapeRotation.getRight() / 2.0F));
 		}
 
 		// Make some space for your legs if crouching
-		ms.translate(0, -0.65, -0.15);
+		ms.translate(0, -0.5, -0.025);
 		if (player.isInSneakingPose()) {
 			ms.translate(0, 0.05, 0.35);
 		}

@@ -153,7 +153,7 @@ public class BedrockArmorModel extends BipedEntityModel<LivingEntity> {
         double o = MathHelper.sin(yaw * (float) (Math.PI / 180.0));
         double p = -MathHelper.cos(yaw * (float) (Math.PI / 180.0));
         float q = (float) y * 10.0F;
-        q = MathHelper.clamp(q, -6.0F, 32.0F);
+        q = MathHelper.clamp(q, -2.0F, 24.0F);
         float r = (float) (x * o + z * p) * 100.0F;
         r = MathHelper.clamp(r, 0.0F, 150.0F);
         float capeZOffset = (float) (x * p - z * o) * 100.0F;

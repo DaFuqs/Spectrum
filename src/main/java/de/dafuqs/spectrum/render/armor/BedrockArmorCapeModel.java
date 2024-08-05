@@ -22,8 +22,8 @@ public class BedrockArmorCapeModel {
             "loincloth",
             ModelPartBuilder.create()
                 .uv(72, 78)
-                .cuboid(-3.5F, 0.0F, -0.3F, 7.0F, 15.0F, 0.0F, Dilation.NONE),
-            ModelTransform.pivot(0.0F, 14.5F, 1.05F)
+                .cuboid(-3.5F, -8.35F, -2.5F, 7.0F, 15.0F, 0.0F, Dilation.NONE),
+            ModelTransform.pivot(0.0F, 18.0F, 0.0F)
         );
         return data.getRoot().createPart(128, 128);
     }

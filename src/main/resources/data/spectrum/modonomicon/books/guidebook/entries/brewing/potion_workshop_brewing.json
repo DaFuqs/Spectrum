@@ -25,13 +25,13 @@
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page1.title",
+      "title1": "effect.minecraft.fire_resistance",
       "recipe_id_1": "spectrum:potion_workshop_brewing/fire_resistance",
       "text": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page1.text"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page2.strong.title",
+      "title1": "effect.minecraft.regeneration",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_milky_resin"
@@ -41,7 +41,7 @@
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page2.title",
+      "title1": "effect.minecraft.absorption",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
@@ -50,7 +50,7 @@
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page3.title",
+      "title1": "effect.minecraft.glowing",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
@@ -59,7 +59,7 @@
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page4.title",
+      "title1": "effect.minecraft.haste",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
@@ -69,7 +69,7 @@
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page5.title",
+      "title1": "effect.minecraft.saturation",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
@@ -79,7 +79,7 @@
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page6.title",
+      "title1": "effect.minecraft.levitation",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/potions/levitation"
@@ -88,7 +88,7 @@
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page7.title",
+      "title1": "effect.minecraft.luck",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/potions/luck"
@@ -98,7 +98,7 @@
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page8.title",
+      "title1": "effect.minecraft.resistance",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/potions/resistance"
@@ -107,7 +107,7 @@
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page9.title",
+      "title1": "effect.minecraft.wither",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/potions/wither"
@@ -116,7 +116,7 @@
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page10.title",
+      "title1": "effect.minecraft.darkness",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/potions/darkness"
@@ -125,7 +125,7 @@
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page11.title",
+      "title1": "effect.spectrum.toughness",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/potions/toughness"
@@ -134,7 +134,7 @@
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page12.title",
+      "title1": "effect.spectrum.deadly_poison",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/potions/deadly_poison"
@@ -143,7 +143,7 @@
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page13.title",
+      "title1": "effect.spectrum.life_drain",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/potions/life_drain"
@@ -152,7 +152,7 @@
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page14.title",
+      "title1": "effect.spectrum.scarred",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/potions/scarred"
@@ -161,7 +161,7 @@
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page15.title",
+      "title1": "effect.spectrum.calming",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/potions/weak_sleep_effects"
@@ -170,7 +170,7 @@
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page16.title",
+      "title1": "effect.spectrum.somnolence",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/potions/weak_sleep_effects"
@@ -179,7 +179,7 @@
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page17.title",
+      "title1": "effect.spectrum.eternal_slumber",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/potions/strong_sleep_effects"
@@ -188,7 +188,7 @@
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page18.title",
+      "title1": "effect.spectrum.fatal_slumber",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/potions/strong_sleep_effects"

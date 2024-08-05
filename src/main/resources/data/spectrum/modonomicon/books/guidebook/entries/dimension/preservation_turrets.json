@@ -22,7 +22,7 @@
   "pages": [
     {
       "type": "modonomicon:entity",
-      "title": "book.spectrum.guidebook.dimension.preservation_turrets.page0.title",
+      "title": "book.spectrum.guidebook.dimension.preservation_turrets.name",
       "entity_id": "spectrum:preservation_turret",
       "scale": 0.5,
       "offset": 0.4,

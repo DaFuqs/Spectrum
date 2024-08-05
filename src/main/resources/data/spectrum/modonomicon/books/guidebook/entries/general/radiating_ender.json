@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.general.radiating_ender.name",
+  "name": "block.spectrum.radiating_ender",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:milestones/reveal_radiating_ender"
@@ -16,11 +16,11 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.general.radiating_ender.page0.text",
-      "title": "book.spectrum.guidebook.general.radiating_ender.page0.title"
+      "title": "block.spectrum.radiating_ender"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.general.radiating_ender.page1.title",
+      "title": "block.spectrum.radiating_ender",
       "item": {
         "item": "spectrum:radiating_ender"
       },

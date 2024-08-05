@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.magical_items.incandescent_amalgam.name",
+  "name": "block.spectrum.incandescent_amalgam",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/items/incandescent_amalgam"
@@ -16,7 +16,7 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.magical_items.incandescent_amalgam.page0.text",
-      "title": "book.spectrum.guidebook.magical_items.incandescent_amalgam.page0.title"
+      "title": "block.spectrum.incandescent_amalgam"
     },
     {
       "type": "modonomicon:text",

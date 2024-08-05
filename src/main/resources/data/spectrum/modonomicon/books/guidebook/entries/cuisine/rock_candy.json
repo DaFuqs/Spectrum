@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.cuisine.rock_candy.name",
+  "name": "item.spectrum.rock_candy",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/food/rock_candy"
@@ -16,11 +16,11 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.cuisine.rock_candy.page0.text",
-      "title": "book.spectrum.guidebook.cuisine.rock_candy.page0.title"
+      "title": "item.spectrum.rock_candy"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.cuisine.rock_candy.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier1/food/sugar_stick",
       "text": "book.spectrum.guidebook.cuisine.rock_candy.page1.text"
     },

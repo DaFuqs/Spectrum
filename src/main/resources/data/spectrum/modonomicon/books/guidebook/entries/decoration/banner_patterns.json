@@ -15,7 +15,7 @@
   "pages": [
     {
       "type": "modonomicon:image",
-      "title": "book.spectrum.guidebook.decoration.banner_patterns.page0.title",
+      "title": "book.spectrum.guidebook.decoration.banner_patterns.name",
       "border": true,
       "images": [
         "spectrum:textures/gui/guidebook/banners.png"

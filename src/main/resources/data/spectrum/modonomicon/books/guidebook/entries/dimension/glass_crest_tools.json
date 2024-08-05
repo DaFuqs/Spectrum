@@ -23,7 +23,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.equipment.glass_crest_tools.page0.title",
+      "title": "book.spectrum.guidebook.equipment.glass_crest_tools.name",
       "text": "book.spectrum.guidebook.equipment.glass_crest_tools.page0.text"
     },
     {
@@ -33,7 +33,7 @@
         "advancement_id": "spectrum:unlocks/malachite/glass_crest_workstaff"
       },
       "text": "book.spectrum.guidebook.equipment.glass_crest_tools.page1.text",
-      "title1": "book.spectrum.guidebook.equipment.glass_crest_tools.page1.title",
+      "title1": "item.spectrum.workstaff",
       "recipe_id_1": "spectrum:fusion_shrine/malachite/glass_crest_workstaff"
     },
     {
@@ -53,7 +53,7 @@
         "advancement_id": "spectrum:unlocks/malachite/glass_crest_crossbow"
       },
       "text": "book.spectrum.guidebook.equipment.glass_crest_tools.page3.text",
-      "title1": "book.spectrum.guidebook.equipment.glass_crest_tools.page3.title",
+      "title1": "book.spectrum.guidebook.crossbow",
       "recipe_id_1": "spectrum:fusion_shrine/malachite/glass_crest_crossbow"
     },
     {

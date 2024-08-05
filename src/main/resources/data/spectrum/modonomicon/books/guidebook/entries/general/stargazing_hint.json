@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.hints.stargazing.name",
+  "name": "book.spectrum.guidebook.hints.a_new_resource",
   "category": "spectrum:general",
   "hide_while_locked ": true,
   "parents": [],
@@ -27,7 +27,7 @@
     },
     {
       "type": "spectrum:hint",
-      "title": "book.spectrum.guidebook.hints.stargazing.page1.title",
+      "title": "book.spectrum.guidebook.hints.concise_instructions",
       "cost": {
         "item": "spectrum:shimmerstone_gem",
         "count": 24

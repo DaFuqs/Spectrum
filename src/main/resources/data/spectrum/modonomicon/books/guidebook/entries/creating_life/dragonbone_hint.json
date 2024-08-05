@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.hints.dragonbone.name",
+  "name": "book.spectrum.guidebook.hints.a_new_resource",
   "category": "spectrum:creating_life",
   "hide_while_locked ": true,
   "parents": [],
@@ -17,7 +17,7 @@
   "pages": [
     {
       "type": "spectrum:hint",
-      "title": "book.spectrum.guidebook.hints.dragonbone.page0.title",
+      "title": "book.spectrum.guidebook.hints.small_clue",
       "completion_advancement": "spectrum:triggers/hints/dragonbone_page0",
       "cost": {
         "item": "spectrum:doombloom_seed",
@@ -27,7 +27,7 @@
     },
     {
       "type": "spectrum:hint",
-      "title": "book.spectrum.guidebook.hints.dragonbone.page1.title",
+      "title": "book.spectrum.guidebook.hints.concise_instructions",
       "cost": {
         "item": "spectrum:doombloom_seed",
         "count": 12

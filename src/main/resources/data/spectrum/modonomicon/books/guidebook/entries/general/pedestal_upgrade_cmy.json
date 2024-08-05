@@ -35,14 +35,14 @@
     },
     {
       "type": "modonomicon:multiblock",
-      "multiblock_name": "book.spectrum.guidebook.general.pedestal_upgrade_cmy.page2.multiblock_name",
+      "multiblock_name": "multiblock.spectrum.pedestal_simple",
       "multiblock_id": "spectrum:pedestal_simple",
       "show_visualize_button": true,
       "text": "book.spectrum.guidebook.general.pedestal_upgrade_cmy.page2.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.general.pedestal_upgrade_cmy.page3.title",
+      "title": "book.spectrum.guidebook.block_checklist",
       "text": "book.spectrum.guidebook.general.pedestal_upgrade_cmy.page3.text"
     },
     {

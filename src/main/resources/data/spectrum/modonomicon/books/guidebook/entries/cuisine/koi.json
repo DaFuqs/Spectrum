@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.cuisine.koi.name",
+  "name": "item.spectrum.koi",
   "icon": "spectrum:koi",
   "condition": {
     "type": "modonomicon:advancement",
@@ -23,7 +23,7 @@
       "item": {
         "item": "spectrum:koi"
       },
-      "title": "book.spectrum.guidebook.cuisine.koi.page0.title",
+      "title": "item.spectrum.koi",
       "text": "book.spectrum.guidebook.cuisine.koi.page0.text"
     }
   ]

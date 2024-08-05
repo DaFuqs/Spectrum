@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.enchanting.enchanting_items.name",
+  "name": "container.spectrum.rei.enchanting.title",
   "icon": "spectrum:enchanter",
   "condition": {
     "type": "modonomicon:advancement",
@@ -20,7 +20,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.enchanting.enchanting_items.page0.title",
+      "title": "container.spectrum.rei.enchanting.title",
       "text": "book.spectrum.guidebook.enchanting.enchanting_items.page0.text"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.creating_life.decay_away.name",
+  "name": "block.spectrum.decay_away",
   "icon": "spectrum:bottle_of_decay_away",
   "condition": {
     "type": "modonomicon:advancement",
@@ -21,7 +21,7 @@
   "y": -1,
   "pages": [
     {
-      "title": "book.spectrum.guidebook.creating_life.decay_away.page0.title",
+      "title": "block.spectrum.decay_away",
       "type": "modonomicon:spotlight",
       "item": {
         "item": "spectrum:bottle_of_decay_away"
@@ -30,7 +30,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.creating_life.decay_away.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier3/bottle_of_decay_away",
       "text": "book.spectrum.guidebook.creating_life.decay_away.page1.text"
     }

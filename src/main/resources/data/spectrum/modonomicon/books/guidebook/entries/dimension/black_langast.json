@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.dimension.black_langast.name",
+  "name": "biome.spectrum.black_langast",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/visit_dd_biomes/black_langast"
@@ -20,7 +20,7 @@
   "pages": [
     {
       "type": "modonomicon:image",
-      "title": "book.spectrum.guidebook.dimension.black_langast.page0.title",
+      "title": "biome.spectrum.black_langast",
       "images": [
         "spectrum:textures/gui/guidebook/dd_black_langast.png"
       ],

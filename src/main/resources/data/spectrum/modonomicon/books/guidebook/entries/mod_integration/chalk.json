@@ -25,7 +25,7 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.mod_integration.chalk.page0.text",
-      "title": "book.spectrum.guidebook.mod_integration.chalk.page0.title"
+      "title": "book.spectrum.guidebook.mod_integration.chalk.name"
     },
     {
       "type": "spectrum:pedestal_crafting",

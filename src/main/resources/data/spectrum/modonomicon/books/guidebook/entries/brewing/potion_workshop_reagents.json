@@ -20,7 +20,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.brewing.potion_workshop_reagents.page0.title",
+      "title": "book.spectrum.guidebook.brewing.potion_workshop_reagents.name",
       "text": "book.spectrum.guidebook.brewing.potion_workshop_reagents.page0.text"
     },
     {

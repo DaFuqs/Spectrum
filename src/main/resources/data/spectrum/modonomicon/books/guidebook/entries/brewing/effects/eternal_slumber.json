@@ -25,8 +25,8 @@
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.brewing.eternal_slumber.page1.title",
-      "text": "book.spectrum.guidebook.brewing.eternal_slumber.page1.text"
+      "title": "book.spectrum.guidebook.soporific",
+      "text": "book.spectrum.guidebook.sleep_resistance"
     }
   ]
 }

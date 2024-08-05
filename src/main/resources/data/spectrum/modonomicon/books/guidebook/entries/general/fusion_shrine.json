@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.general.fusion_shrine.name",
+  "name": "block.spectrum.fusion_shrine",
   "icon": "spectrum:fusion_shrine_basalt",
   "condition": {
     "type": "modonomicon:advancement",
@@ -23,7 +23,7 @@
   "pages": [
     {
       "type": "spectrum:collection",
-      "title": "book.spectrum.guidebook.general.fusion_shrine.page0.title",
+      "title": "block.spectrum.fusion_shrine",
       "items": [
         "spectrum:fusion_shrine_basalt",
         "spectrum:fusion_shrine_calcite"
@@ -32,7 +32,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.general.fusion_shrine.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier2/fusion_shrine_basalt",
       "text": "book.spectrum.guidebook.general.fusion_shrine.page1.text"
     },
@@ -45,7 +45,7 @@
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.general.fusion_shrine.page3.title",
+      "title": "book.spectrum.guidebook.block_checklist",
       "text": "book.spectrum.guidebook.general.fusion_shrine.page3.text"
     },
     {

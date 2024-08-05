@@ -12,7 +12,7 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.dimension.delving_deeper_down.page0.title",
+      "title": "book.spectrum.guidebook.dimension.delving_deeper_down.name",
       "item": {
         "item": "minecraft:bedrock"
       },

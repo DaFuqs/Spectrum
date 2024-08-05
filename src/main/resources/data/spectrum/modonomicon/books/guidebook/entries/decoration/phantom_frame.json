@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.decoration.phantom_frame.name",
+  "name": "item.spectrum.phantom_frame",
   "icon": "spectrum:phantom_frame",
   "condition": {
     "type": "modonomicon:advancement",
@@ -24,13 +24,13 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.decoration.phantom_frame.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier1/phantom_frame",
       "text": "book.spectrum.guidebook.decoration.phantom_frame.page1.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.decoration.phantom_frame.page2.title",
+      "title1": "item.spectrum.glow_phantom_frame",
       "recipe_id_1": "spectrum:pedestal/tier1/glow_phantom_frame",
       "text": "book.spectrum.guidebook.decoration.phantom_frame.page2.text"
     }

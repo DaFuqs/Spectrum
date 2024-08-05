@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.cuisine.myceylon.name",
+  "name": "item.spectrum.myceylon",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:lategame/collect_myceylon"
@@ -15,7 +15,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.cuisine.myceylon.page0.title",
+      "title": "item.spectrum.myceylon",
       "text": "book.spectrum.guidebook.cuisine.myceylon.page0.text"
     },
     {

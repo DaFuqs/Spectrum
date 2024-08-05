@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.hints.resonance_shards.name",
+  "name": "book.spectrum.guidebook.hints.a_new_resource",
   "category": "spectrum:dimension",
   "hide_while_locked ": true,
   "parents": [],
@@ -17,7 +17,7 @@
   "pages": [
     {
       "type": "spectrum:hint",
-      "title": "book.spectrum.guidebook.hints.resonance_shards.page0.title",
+      "title": "book.spectrum.guidebook.hints.where_to_find",
       "completion_advancement": "spectrum:triggers/hints/resonance_shards_page0",
       "cost": {
         "item": "spectrum:hummingstone_glass",
@@ -27,7 +27,7 @@
     },
     {
       "type": "spectrum:hint",
-      "title": "book.spectrum.guidebook.hints.resonance_shards.page1.title",
+      "title": "book.spectrum.guidebook.hints.concise_instructions",
       "cost": {
         "item": "spectrum:hummingstone_glass",
         "count": 48

@@ -15,7 +15,7 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.cuisine.blood_orchid_products.page0.title",
+      "title": "book.spectrum.guidebook.cuisine.blood_orchid_products.name",
       "item": {
         "item": "spectrum:bloodboil_syrup"
       },
@@ -55,7 +55,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/food/rabbit_poison"
       },
-      "title1": "book.spectrum.guidebook.cuisine.blood_orchid_products.page5.title",
+      "title1": "item.spectrum.infused_beverage.tooltip.variant.rabbit_poison",
       "recipe_id_1": "spectrum:titration_barrel/infused_beverages/rabbit_poison",
       "text": "book.spectrum.guidebook.cuisine.blood_orchid_products.page5.text"
     }

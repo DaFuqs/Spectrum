@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.cuisine.titration_barrel.name",
+  "name": "block.spectrum.titration_barrel",
   "icon": "spectrum:titration_barrel",
   "condition": {
     "type": "modonomicon:advancement",
@@ -16,17 +16,17 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.cuisine.titration_barrel.page0.text",
-      "title": "book.spectrum.guidebook.cuisine.titration_barrel.page0.title"
+      "title": "block.spectrum.titration_barrel"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.cuisine.titration_barrel.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier1/titration_barrel",
       "text": "book.spectrum.guidebook.cuisine.titration_barrel.page1.text"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "title1": "book.spectrum.guidebook.cuisine.titration_barrel.page2.title",
+      "title1": "item.spectrum.kimchi",
       "anchor": "kimchi",
       "recipe_id_1": "spectrum:titration_barrel/kimchi",
       "text": "book.spectrum.guidebook.cuisine.titration_barrel.page2.text"
@@ -39,7 +39,7 @@
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "title1": "book.spectrum.guidebook.cuisine.titration_barrel.page4.title",
+      "title1": "item.spectrum.clotted_cream",
       "anchor": "clotted_cream",
       "recipe_id_1": "spectrum:titration_barrel/clotted_cream",
       "recipe_id_2": "spectrum:titration_barrel/clotted_cream_fluid",
@@ -47,14 +47,14 @@
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "title1": "book.spectrum.guidebook.cuisine.titration_barrel.page5.title",
+      "title1": "item.spectrum.fresh_chocolate",
       "anchor": "fresh_chocolate",
       "recipe_id_1": "spectrum:titration_barrel/fresh_chocolate",
       "text": "book.spectrum.guidebook.cuisine.titration_barrel.page5.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.cuisine.titration_barrel.page6.title",
+      "title1": "item.spectrum.bodacious_berry_bar",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/food/bodacious_berry_bar"
@@ -65,7 +65,7 @@
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title1": "book.spectrum.guidebook.cuisine.titration_barrel.page7.title",
+      "title1": "item.spectrum.hot_chocolate",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/potion_workshop"

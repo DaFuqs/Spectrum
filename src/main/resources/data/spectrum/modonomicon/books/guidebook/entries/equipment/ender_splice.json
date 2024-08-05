@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.magical_items.ender_splice.name",
+  "name": "item.spectrum.ender_splice",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/items/ender_splice"
@@ -19,12 +19,12 @@
         "item": "spectrum:ender_splice"
       },
       "text": "book.spectrum.guidebook.magical_items.ender_splice.page0.text",
-      "title": "book.spectrum.guidebook.magical_items.ender_splice.page0.title"
+      "title": "item.spectrum.ender_splice"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.magical_items.ender_splice.page1.text",
-      "title1": "book.spectrum.guidebook.magical_items.ender_splice.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier3/ender_splice"
     },
     {
@@ -33,7 +33,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/build_enchanting_structure"
       },
-      "title": "book.spectrum.guidebook.magical_items.ender_splice.page2.title",
+      "title": "enchantment.minecraft.unbreaking",
       "item": {
         "item": "spectrum:ender_splice",
         "nbt": {
@@ -53,7 +53,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/create_resonance_enchanted_book"
       },
-      "title": "book.spectrum.guidebook.magical_items.ender_splice.page3.title",
+      "title": "enchantment.spectrum.resonance",
       "item": {
         "item": "spectrum:ender_splice",
         "nbt": {

@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.magical_items.bottomless_bundle.name",
+  "name": "item.spectrum.bottomless_bundle",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/items/bottomless_bundle"
@@ -19,12 +19,12 @@
         "item": "spectrum:bottomless_bundle"
       },
       "text": "book.spectrum.guidebook.magical_items.bottomless_bundle.page0.text",
-      "title": "book.spectrum.guidebook.magical_items.bottomless_bundle.page0.title"
+      "title": "item.spectrum.bottomless_bundle"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.magical_items.bottomless_bundle.page1.text",
-      "title1": "book.spectrum.guidebook.magical_items.bottomless_bundle.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier2/bottomless_bundle"
     },
     {
@@ -45,7 +45,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/build_enchanting_structure"
       },
-      "title": "book.spectrum.guidebook.magical_items.bottomless_bundle.page4.title",
+      "title": "enchantment.minecraft.power",
       "item": {
         "item": "spectrum:bottomless_bundle",
         "nbt": {
@@ -65,7 +65,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/build_enchanting_structure"
       },
-      "title": "book.spectrum.guidebook.magical_items.bottomless_bundle.page5.title",
+      "title": "enchantment.spectrum.voiding",
       "item": {
         "item": "spectrum:bottomless_bundle",
         "nbt": {

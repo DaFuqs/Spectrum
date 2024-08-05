@@ -25,7 +25,7 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.mod_integration.gofish.page0.text",
-      "title": "book.spectrum.guidebook.mod_integration.gofish.page0.title"
+      "title": "book.spectrum.guidebook.mod_integration.gofish.name"
     },
     {
       "type": "modonomicon:spotlight",
@@ -61,7 +61,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/enchanter"
       },
-      "title1": "book.spectrum.guidebook.mod_integration.gofish.page3.title",
+      "title1": "container.spectrum.rei.enchanter_recipe",
       "recipe_id_1": "spectrum:mod_integration/gofish/enchanter/book_deepfry"
     }
   ]

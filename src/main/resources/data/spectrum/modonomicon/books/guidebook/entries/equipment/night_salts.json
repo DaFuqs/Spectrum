@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.magical_items.night_salts.name",
+  "name": "item.spectrum.night_salts",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/items/night_salts"
@@ -16,7 +16,7 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.magical_items.night_salts.page0.text",
-      "title": "book.spectrum.guidebook.magical_items.night_salts.page0.title"
+      "title": "item.spectrum.night_salts"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",

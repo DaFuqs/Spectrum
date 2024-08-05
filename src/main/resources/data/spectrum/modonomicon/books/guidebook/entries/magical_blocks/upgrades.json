@@ -16,7 +16,7 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.magical_blocks.upgrades.page0.text",
-      "title": "book.spectrum.guidebook.magical_blocks.upgrades.page0.title"
+      "title": "book.spectrum.guidebook.magical_blocks.upgrades.name"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -88,14 +88,14 @@
       "type": "modonomicon:multiblock",
       "multiblock_id": "spectrum:pedestal_advanced_upgrades",
       "show_visualize_button": false,
-      "text": "book.spectrum.guidebook.magical_blocks.upgrades.page10.text",
+      "text": "book.spectrum.guidebook.magical_blocks.four_upgrade_slots",
       "multiblock_name": "book.spectrum.guidebook.magical_blocks.upgrades.page10.multiblock_name"
     },
     {
       "type": "modonomicon:multiblock",
       "multiblock_id": "spectrum:fusion_shrine_upgrades",
       "show_visualize_button": false,
-      "text": "book.spectrum.guidebook.magical_blocks.upgrades.page11.text",
+      "text": "book.spectrum.guidebook.magical_blocks.four_upgrade_slots",
       "multiblock_name": "book.spectrum.guidebook.magical_blocks.upgrades.page11.multiblock_name"
     },
     {
@@ -106,7 +106,7 @@
       },
       "multiblock_id": "spectrum:enchanter_upgrades",
       "show_visualize_button": false,
-      "text": "book.spectrum.guidebook.magical_blocks.upgrades.page12.text",
+      "text": "book.spectrum.guidebook.magical_blocks.four_upgrade_slots",
       "multiblock_name": "book.spectrum.guidebook.magical_blocks.upgrades.page12.multiblock_name"
     },
     {
@@ -117,7 +117,7 @@
       },
       "multiblock_id": "spectrum:cinderhearth_upgrades",
       "show_visualize_button": false,
-      "text": "book.spectrum.guidebook.magical_blocks.upgrades.page13.text",
+      "text": "book.spectrum.guidebook.magical_blocks.two_upgrade_slots",
       "multiblock_name": "book.spectrum.guidebook.magical_blocks.upgrades.page13.multiblock_name"
     },
     {
@@ -128,7 +128,7 @@
       },
       "multiblock_id": "spectrum:spirit_instiller_upgrades",
       "show_visualize_button": false,
-      "text": "book.spectrum.guidebook.magical_blocks.upgrades.page14.text",
+      "text": "book.spectrum.guidebook.magical_blocks.two_upgrade_slots",
       "multiblock_name": "book.spectrum.guidebook.magical_blocks.upgrades.page14.multiblock_name"
     }
   ]

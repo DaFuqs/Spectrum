@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.dimension.shale_clay.name",
+  "name": "block.spectrum.shale_clay",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/collect_shale_clay"
@@ -20,11 +20,11 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.dimension.shale_clay.page0.text",
-      "title": "book.spectrum.guidebook.dimension.shale_clay.page0.title"
+      "title": "block.spectrum.shale_clay"
     },
     {
       "type": "spectrum:collection",
-      "title": "book.spectrum.guidebook.dimension.shale_clay.page1.title",
+      "title": "book.spectrum.guidebook.all_variants",
       "items": [
         "spectrum:shale_clay",
         "spectrum:shale_clay_bricks",
@@ -63,9 +63,9 @@
     },
     {
       "type": "modonomicon:smelting_recipe",
-      "title1": "book.spectrum.guidebook.dimension.shale_clay.page3.title",
+      "title1": "book.spectrum.guidebook.smelting_back",
       "recipe_id_1": "spectrum:smelting/polished_shale_clay_unsmelting",
-      "text": "book.spectrum.guidebook.dimension.shale_clay.page3.text"
+      "text": "book.spectrum.guidebook.turn_back_to_polished"
     },
     {
       "type": "modonomicon:spotlight",

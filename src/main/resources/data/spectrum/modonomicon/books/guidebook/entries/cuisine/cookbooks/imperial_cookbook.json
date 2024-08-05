@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.cuisine.imperial_cookbook.name",
+  "name": "item.spectrum.imperial_cookbook",
   "icon": "spectrum:imperial_cookbook",
   "condition": {
     "type": "modonomicon:advancement",

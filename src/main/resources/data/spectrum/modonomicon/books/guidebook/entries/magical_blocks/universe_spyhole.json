@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.magical_blocks.universe_spyhole.name",
+  "name": "block.spectrum.universe_spyhole",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/universe_spyhole"
@@ -16,12 +16,12 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.magical_blocks.universe_spyhole.page0.text",
-      "title": "book.spectrum.guidebook.magical_blocks.universe_spyhole.page0.title"
+      "title": "block.spectrum.universe_spyhole"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.magical_blocks.universe_spyhole.page1.text",
-      "title1": "book.spectrum.guidebook.magical_blocks.universe_spyhole.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier3/universe_spyhole"
     }
   ]

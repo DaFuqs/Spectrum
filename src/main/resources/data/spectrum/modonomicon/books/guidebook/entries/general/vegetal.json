@@ -20,7 +20,7 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.creating_life.fading.page2.title",
+      "title": "item.spectrum.vegetal",
       "item": {
         "item": "spectrum:vegetal"
       },

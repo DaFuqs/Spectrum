@@ -16,7 +16,7 @@
   "pages": [
     {
       "type": "modonomicon:image",
-      "title": "book.spectrum.guidebook.general.color_mixing.page0.title",
+      "title": "book.spectrum.guidebook.general.color_mixing.name",
       "images": [
         "spectrum:textures/gui/guidebook/color_mixing.png"
       ],

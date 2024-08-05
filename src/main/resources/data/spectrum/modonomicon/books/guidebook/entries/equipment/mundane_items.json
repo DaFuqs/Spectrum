@@ -15,7 +15,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.magical_items.vanilla.page0.title",
+      "title": "book.spectrum.guidebook.magical_items.vanilla.name",
       "text": "book.spectrum.guidebook.magical_items.vanilla.page0.text"
     },
     {

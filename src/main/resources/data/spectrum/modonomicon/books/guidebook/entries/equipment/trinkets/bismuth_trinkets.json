@@ -19,7 +19,7 @@
   "pages": [
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.equipment.base_trinkets.page6.title",
+      "title1": "item.spectrum.fanciful_bismuth_ring",
       "recipe_id_1": "spectrum:pedestal/tier4/fanciful_bismuth_ring"
     }
   ]

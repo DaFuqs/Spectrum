@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.decoration.particle_spawner.name",
+  "name": "block.spectrum.particle_spawner",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/particle_spawner"
@@ -24,11 +24,11 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.decoration.particle_spawner.page0.text",
-      "title": "book.spectrum.guidebook.decoration.particle_spawner.page0.title"
+      "title": "block.spectrum.particle_spawner"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.decoration.particle_spawner.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier2/particle_spawner",
       "text": "book.spectrum.guidebook.decoration.particle_spawner.page1.text"
     }

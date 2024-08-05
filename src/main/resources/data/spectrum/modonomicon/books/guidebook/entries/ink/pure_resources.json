@@ -21,7 +21,7 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.general.pure_resources.page0.text",
-      "title": "book.spectrum.guidebook.general.pure_resources.page0.title"
+      "title": "book.spectrum.guidebook.general.pure_resources.name"
     },
     {
       "type": "modonomicon:blasting_recipe",

@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.decoration.item_roundel.name",
+  "name": "block.spectrum.item_roundel",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/item_roundel"
@@ -23,11 +23,11 @@
         "item": "spectrum:item_roundel"
       },
       "text": "book.spectrum.guidebook.decoration.item_roundel.page0.text",
-      "title": "book.spectrum.guidebook.decoration.item_roundel.page0.title"
+      "title": "block.spectrum.item_roundel"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.decoration.item_roundel.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier2/item_roundel",
       "text": "book.spectrum.guidebook.decoration.item_roundel.page1.text"
     }

@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.dimension.pyrite.name",
+  "name": "block.spectrum.pyrite",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/collect_pyrite"
@@ -23,7 +23,7 @@
         "item": "spectrum:pyrite"
       },
       "text": "book.spectrum.guidebook.dimension.pyrite.page0.text",
-      "title": "book.spectrum.guidebook.dimension.pyrite.page0.title"
+      "title": "block.spectrum.pyrite"
     },
     {
       "type": "modonomicon:crafting_recipe",
@@ -33,7 +33,7 @@
     },
     {
       "type": "spectrum:collection",
-      "title": "book.spectrum.guidebook.dimension.pyrite.page2.title",
+      "title": "book.spectrum.guidebook.all_variants",
       "items": [
         "spectrum:pyrite_pile",
         "spectrum:pyrite_tiles",

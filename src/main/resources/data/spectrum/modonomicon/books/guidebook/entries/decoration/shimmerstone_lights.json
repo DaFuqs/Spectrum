@@ -22,7 +22,7 @@
   "pages": [
     {
       "type": "spectrum:collection",
-      "title": "book.spectrum.guidebook.decoration.shimmerstone_lights.page0.title",
+      "title": "book.spectrum.guidebook.decoration.shimmerstone_lights.name",
       "items": [
         "spectrum:andesite_shimmerstone_light",
         "spectrum:basalt_shimmerstone_light",
@@ -36,7 +36,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.decoration.shimmerstone_lights.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier1/shimmerstone_lights/basalt",
       "text": "book.spectrum.guidebook.decoration.shimmerstone_lights.page1.text"
     },

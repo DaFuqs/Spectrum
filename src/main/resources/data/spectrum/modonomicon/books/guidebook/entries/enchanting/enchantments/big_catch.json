@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.enchanting.big_catch.name",
+  "name": "enchantment.spectrum.big_catch",
   "icon": "spectrum:lagoon_rod",
   "condition": {
     "type": "modonomicon:and",
@@ -26,11 +26,11 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.enchanting.big_catch.page0.text",
-      "title": "book.spectrum.guidebook.enchanting.big_catch.page0.title"
+      "title": "enchantment.spectrum.big_catch"
     },
     {
       "type": "spectrum:nbt_spotlight",
-      "title": "book.spectrum.guidebook.enchanting.big_catch.page1.title",
+      "title": "book.spectrum.guidebook.enchantment_characteristics",
       "item": {
         "item": "spectrum:lagoon_rod",
         "nbt": {
@@ -46,14 +46,14 @@
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "text": "book.spectrum.guidebook.enchanting.big_catch.page2.text",
-      "title1": "book.spectrum.guidebook.enchanting.big_catch.page2.title",
+      "text": "book.spectrum.guidebook.enchanting.crafting",
+      "title1": "container.spectrum.rei.enchanter_recipe",
       "recipe_id_1": "spectrum:enchanter/spectrum_books/big_catch"
     },
     {
       "type": "spectrum:enchanter_upgrading",
-      "text": "book.spectrum.guidebook.enchanting.big_catch.page3.text",
-      "title1": "book.spectrum.guidebook.enchanting.big_catch.page3.title",
+      "text": "book.spectrum.guidebook.enchanting.upgrading.text",
+      "title1": "container.spectrum.rei.enchantment_upgrading.title",
       "recipe_id_1": "spectrum:enchantment_upgrade/spectrum/big_catch_level_2"
     }
   ]

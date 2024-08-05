@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.creating_life.mob_heads.name",
+  "name": "tag.spectrum.mob_heads",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/enchantments/treasure_hunter"
@@ -15,7 +15,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.creating_life.mob_heads.page0.title",
+      "title": "tag.spectrum.mob_heads",
       "text": "book.spectrum.guidebook.creating_life.mob_heads.page0.text"
     },
     {

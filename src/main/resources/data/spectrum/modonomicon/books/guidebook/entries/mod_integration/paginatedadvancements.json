@@ -25,7 +25,7 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.mod_integration.paginatedadvancements.page0.text",
-      "title": "book.spectrum.guidebook.mod_integration.paginatedadvancements.page0.title"
+      "title": "book.spectrum.guidebook.mod_integration.paginatedadvancements.name"
     },
     {
       "type": "spectrum:snippet",

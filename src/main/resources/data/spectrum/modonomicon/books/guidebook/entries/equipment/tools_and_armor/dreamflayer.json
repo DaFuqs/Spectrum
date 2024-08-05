@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.equipment.dreamflayer.name",
+  "name": "item.spectrum.dreamflayer",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/equipment/dreamflayer"
@@ -16,7 +16,7 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.equipment.dreamflayer.page0.text",
-      "title": "book.spectrum.guidebook.equipment.dreamflayer.page0.title"
+      "title": "item.spectrum.dreamflayer"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

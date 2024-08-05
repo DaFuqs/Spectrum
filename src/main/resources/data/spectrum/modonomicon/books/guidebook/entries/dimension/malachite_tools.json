@@ -20,13 +20,13 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.equipment.malachite_tools.page0.text",
-      "title": "book.spectrum.guidebook.equipment.malachite_tools.page0.title"
+      "title": "book.spectrum.guidebook.equipment.malachite_tools.name"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "anchor": "workstaff",
       "text": "book.spectrum.guidebook.equipment.malachite_tools.page1.text",
-      "title1": "book.spectrum.guidebook.equipment.malachite_tools.page1.title",
+      "title1": "item.spectrum.workstaff",
       "recipe_id_1": "spectrum:fusion_shrine/malachite/malachite_workstaff"
     },
     {
@@ -40,14 +40,14 @@
       "type": "spectrum:fusion_shrine_crafting",
       "anchor": "bident",
       "text": "book.spectrum.guidebook.equipment.malachite_tools.page3.text",
-      "title1": "book.spectrum.guidebook.equipment.malachite_tools.page3.title",
+      "title1": "entity.spectrum.bident",
       "recipe_id_1": "spectrum:fusion_shrine/malachite/malachite_bident"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "anchor": "crossbow",
       "text": "book.spectrum.guidebook.equipment.malachite_tools.page4.text",
-      "title1": "book.spectrum.guidebook.equipment.malachite_tools.page4.title",
+      "title1": "book.spectrum.guidebook.crossbow",
       "recipe_id_1": "spectrum:fusion_shrine/malachite/malachite_crossbow"
     }
   ]

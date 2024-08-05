@@ -21,7 +21,7 @@
   "pages": [
     {
       "type": "spectrum:nbt_spotlight",
-      "title": "book.spectrum.guidebook.enchanting.overchanting.page0.title",
+      "title": "book.spectrum.guidebook.enchanting.overchanting.name",
       "item": {
         "item": "minecraft:enchanted_book",
         "nbt": {
@@ -42,7 +42,7 @@
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.enchanting.overchanting.page2.title",
+      "title": "book.spectrum.guidebook.enchanting.vanilla_enchantments.name",
       "text": "book.spectrum.guidebook.enchanting.overchanting.page2.text"
     },
     {

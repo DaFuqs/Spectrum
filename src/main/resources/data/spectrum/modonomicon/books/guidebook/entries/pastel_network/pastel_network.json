@@ -15,7 +15,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.pastel_network.pastel_network.page0.title",
+      "title": "book.spectrum.guidebook.pastel_network.name",
       "text": "book.spectrum.guidebook.pastel_network.pastel_network.page0.text"
     },
     {

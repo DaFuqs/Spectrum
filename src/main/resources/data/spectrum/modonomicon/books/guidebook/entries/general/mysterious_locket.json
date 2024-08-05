@@ -25,7 +25,7 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.general.mysterious_locket.page0.title",
+      "title": "book.spectrum.guidebook.general.mysterious_locket.name",
       "item": {
         "item": "spectrum:mysterious_locket"
       },

@@ -21,7 +21,7 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.enchanting.upgrading_enchanted_books.page0.text",
-      "title": "book.spectrum.guidebook.enchanting.upgrading_enchanted_books.page0.title"
+      "title": "book.spectrum.guidebook.enchanting.upgrading_enchanted_books.name"
     },
     {
       "type": "modonomicon:image",

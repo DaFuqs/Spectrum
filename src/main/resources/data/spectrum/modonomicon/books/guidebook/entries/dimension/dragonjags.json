@@ -19,7 +19,7 @@
   "pages": [
     {
       "type": "spectrum:collection",
-      "title": "book.spectrum.guidebook.dimension.dragonjags.page0.title",
+      "title": "book.spectrum.guidebook.dimension.dragonjags.name",
       "items": [
         "spectrum:small_red_dragonjag",
         "spectrum:small_yellow_dragonjag",

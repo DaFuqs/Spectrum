@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.general.pedestal.name",
+  "name": "block.spectrum.pedestal",
   "icon": "spectrum:pedestal_basic_amethyst",
   "category": "spectrum:general",
   "hide_while_locked ": true,
@@ -24,7 +24,7 @@
   "pages": [
     {
       "type": "modonomicon:crafting_recipe",
-      "title1": "book.spectrum.guidebook.general.pedestal.page0.title",
+      "title1": "block.spectrum.pedestal",
       "recipe_id_1": "spectrum:crafting_table/pedestal_basic_amethyst",
       "text": "book.spectrum.guidebook.general.pedestal.page0.text"
     },

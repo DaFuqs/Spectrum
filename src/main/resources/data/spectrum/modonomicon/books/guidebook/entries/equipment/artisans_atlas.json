@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.magical_items.artisans_atlas.name",
+  "name": "item.spectrum.artisans_atlas",
   "icon": "spectrum:artisans_atlas",
   "condition": {
     "type": "modonomicon:advancement",
@@ -16,11 +16,11 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.magical_items.artisans_atlas.page0.text",
-      "title": "book.spectrum.guidebook.magical_items.artisans_atlas.page0.title"
+      "title": "item.spectrum.artisans_atlas"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.magical_items.artisans_atlas.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier3/artisans_atlas"
     }
   ]

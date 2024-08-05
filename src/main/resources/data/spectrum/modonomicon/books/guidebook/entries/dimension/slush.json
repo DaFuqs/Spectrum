@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.dimension.slush.name",
+  "name": "block.spectrum.slush",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/collect_slush"
@@ -23,7 +23,7 @@
         "item": "spectrum:slush"
       },
       "text": "book.spectrum.guidebook.dimension.slush.page0.text",
-      "title": "book.spectrum.guidebook.dimension.slush.page0.title"
+      "title": "block.spectrum.slush"
     },
     {
       "type": "modonomicon:spotlight",

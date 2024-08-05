@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.creating_life.spirit_instiller.name",
+  "name": "block.spectrum.spirit_instiller",
   "icon": "spectrum:spirit_instiller",
   "condition": {
     "type": "modonomicon:advancement",
@@ -16,11 +16,11 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.creating_life.spirit_instiller.page0.text",
-      "title": "book.spectrum.guidebook.creating_life.spirit_instiller.page0.title"
+      "title": "block.spectrum.spirit_instiller"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.creating_life.spirit_instiller.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier3/spirit_instiller",
       "text": "book.spectrum.guidebook.creating_life.spirit_instiller.page1.text"
     },
@@ -33,7 +33,7 @@
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.creating_life.spirit_instiller.page3.title",
+      "title": "book.spectrum.guidebook.block_checklist",
       "text": "book.spectrum.guidebook.creating_life.spirit_instiller.page3.text"
     }
   ]

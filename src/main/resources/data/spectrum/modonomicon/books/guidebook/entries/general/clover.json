@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.general.clover.name",
+  "name": "block.spectrum.clover",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/collect_clover"
@@ -15,7 +15,7 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.general.clover.page0.title",
+      "title": "block.spectrum.clover",
       "item": {
         "item": "spectrum:clover"
       },

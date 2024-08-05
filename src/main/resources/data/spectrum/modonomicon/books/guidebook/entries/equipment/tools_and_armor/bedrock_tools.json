@@ -16,7 +16,7 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.equipment.bedrock_tools.page0.text",
-      "title": "book.spectrum.guidebook.equipment.bedrock_tools.page0.title"
+      "title": "book.spectrum.guidebook.equipment.bedrock_tools.name"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

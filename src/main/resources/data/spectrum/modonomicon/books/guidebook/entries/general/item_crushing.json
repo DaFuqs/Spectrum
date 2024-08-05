@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.general.anvil_crushing.name",
+  "name": "container.spectrum.rei.anvil_crushing.title",
   "icon": "minecraft:anvil",
   "condition": {
     "type": "modonomicon:advancement",
@@ -16,7 +16,7 @@
   "pages": [
     {
       "type": "modonomicon:image",
-      "title": "book.spectrum.guidebook.general.anvil_crushing.page0.title",
+      "title": "container.spectrum.rei.anvil_crushing.title",
       "images": [
         "spectrum:textures/gui/guidebook/anvil_crushing.png"
       ],

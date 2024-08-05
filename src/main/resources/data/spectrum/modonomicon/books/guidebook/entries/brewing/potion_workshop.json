@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.brewing.potion_workshop.name",
+  "name": "block.spectrum.potion_workshop",
   "icon": "spectrum:potion_workshop",
   "condition": {
     "type": "modonomicon:advancement",
@@ -16,11 +16,11 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.brewing.potion_workshop.page0.text",
-      "title": "book.spectrum.guidebook.brewing.potion_workshop.page0.title"
+      "title": "block.spectrum.potion_workshop"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier3/potion_workshop",
       "text": "book.spectrum.guidebook.brewing.potion_workshop.page1.text"
     }

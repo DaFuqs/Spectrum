@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.enchanting.inventory_insertion.name",
+  "name": "enchantment.spectrum.inventory_insertion",
   "icon": "spectrum:multitool",
   "condition": {
     "type": "modonomicon:advancement",
@@ -17,11 +17,11 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.enchanting.inventory_insertion.page0.text",
-      "title": "book.spectrum.guidebook.enchanting.inventory_insertion.page0.title"
+      "title": "enchantment.spectrum.inventory_insertion"
     },
     {
       "type": "spectrum:nbt_spotlight",
-      "title": "book.spectrum.guidebook.enchanting.inventory_insertion.page1.title",
+      "title": "book.spectrum.guidebook.enchantment_characteristics",
       "item": {
         "item": "spectrum:multitool",
         "nbt": {
@@ -37,8 +37,8 @@
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "text": "book.spectrum.guidebook.enchanting.inventory_insertion.page2.text",
-      "title1": "book.spectrum.guidebook.enchanting.inventory_insertion.page2.title",
+      "text": "book.spectrum.guidebook.enchanting.crafting",
+      "title1": "container.spectrum.rei.enchanter_recipe",
       "recipe_id_1": "spectrum:enchanter/spectrum_books/inventory_insertion"
     }
   ]

@@ -22,12 +22,12 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.creating_life.kindlings.page0.title",
+      "title": "book.spectrum.guidebook.creating_life.kindlings.name",
       "text": "book.spectrum.guidebook.creating_life.kindlings.page0.text"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title1": "book.spectrum.guidebook.creating_life.kindlings.page1.title",
+      "title1": "book.spectrum.guidebook.remembering",
       "recipe_id_1": "spectrum:spirit_instiller/memories/kindling_from_dragonbone",
       "text": "book.spectrum.guidebook.creating_life.kindlings.page1.text"
     },

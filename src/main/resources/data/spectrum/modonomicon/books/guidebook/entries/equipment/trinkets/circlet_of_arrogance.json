@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.equipment.circlet_of_arrogance.name",
+  "name": "item.spectrum.circlet_of_arrogance",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/trinkets/circlet_of_arrogance"
@@ -21,12 +21,12 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.equipment.circlet_of_arrogance.page0.text",
-      "title": "book.spectrum.guidebook.equipment.circlet_of_arrogance.page0.title"
+      "title": "item.spectrum.circlet_of_arrogance"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "text": "book.spectrum.guidebook.equipment.circlet_of_arrogance.page1.text",
-      "title1": "book.spectrum.guidebook.equipment.circlet_of_arrogance.page1.title",
+      "title1": "container.spectrum.rei.fusion_recipe",
       "recipe_id_1": "spectrum:fusion_shrine/trinkets/circlet_of_arrogance"
     }
   ]

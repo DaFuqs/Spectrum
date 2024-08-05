@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.magical_items.celestial_pocketwatch.name",
+  "name": "item.spectrum.celestial_pocketwatch",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/items/celestial_pocketwatch"
@@ -16,12 +16,12 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.magical_items.celestial_pocketwatch.page0.text",
-      "title": "book.spectrum.guidebook.magical_items.celestial_pocketwatch.page0.title"
+      "title": "item.spectrum.celestial_pocketwatch"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.magical_items.celestial_pocketwatch.page1.text",
-      "title1": "book.spectrum.guidebook.magical_items.celestial_pocketwatch.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier4/celestial_pocketwatch"
     }
   ]

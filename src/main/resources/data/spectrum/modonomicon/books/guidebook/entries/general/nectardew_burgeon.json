@@ -19,7 +19,7 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.general.nectardew_burgeon.page0.title",
+      "title": "book.spectrum.guidebook.general.nectardew_burgeon.name",
       "item": {
         "item": "spectrum:nectardew_burgeon"
       },

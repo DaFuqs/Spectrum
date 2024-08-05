@@ -16,7 +16,7 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.equipment.base_trinkets.page0.text",
-      "title": "book.spectrum.guidebook.equipment.base_trinkets.page0.title"
+      "title": "book.spectrum.guidebook.equipment.base_trinkets.name"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -33,7 +33,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/trinkets/fanciful_circlet"
       },
-      "title1": "book.spectrum.guidebook.equipment.base_trinkets.page2.title",
+      "title1": "item.spectrum.fanciful_circlet",
       "recipe_id_1": "spectrum:pedestal/tier3/trinkets/fanciful_circlet"
     },
     {
@@ -42,7 +42,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/trinkets/fanciful_belt"
       },
-      "title1": "book.spectrum.guidebook.equipment.base_trinkets.page3.title",
+      "title1": "item.spectrum.fanciful_belt",
       "recipe_id_1": "spectrum:pedestal/tier3/trinkets/fanciful_belt"
     },
     {
@@ -51,7 +51,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/trinkets/fanciful_pendant"
       },
-      "title1": "book.spectrum.guidebook.equipment.base_trinkets.page4.title",
+      "title1": "item.spectrum.fanciful_pendant",
       "recipe_id_1": "spectrum:pedestal/tier3/trinkets/fanciful_pendant"
     },
     {
@@ -60,7 +60,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/trinkets/fanciful_gloves"
       },
-      "title1": "book.spectrum.guidebook.equipment.base_trinkets.page5.title",
+      "title1": "item.spectrum.fanciful_gloves",
       "recipe_id_1": "spectrum:pedestal/tier3/trinkets/fanciful_gloves"
     }
   ]

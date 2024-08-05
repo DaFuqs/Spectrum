@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.hints.midnight_chip.name",
+  "name": "book.spectrum.guidebook.hints.a_new_resource",
   "category": "spectrum:general",
   "hide_while_locked ": true,
   "parents": [],
@@ -27,7 +27,7 @@
     },
     {
       "type": "spectrum:hint",
-      "title": "book.spectrum.guidebook.hints.midnight_chip.page1.title",
+      "title": "book.spectrum.guidebook.hints.concise_instructions",
       "completion_advancement": "spectrum:triggers/hints/midnight_chip_page1",
       "cost": {
         "item": "spectrum:neolith",

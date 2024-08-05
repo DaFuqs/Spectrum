@@ -2,7 +2,7 @@
   "type": "spectrum:entry_link",
   "entry_to_open": "spectrum:ink/color_picker",
 
-  "name": "book.spectrum.guidebook.ink.color_picker.name",
+  "name": "block.spectrum.color_picker",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/color_picker"

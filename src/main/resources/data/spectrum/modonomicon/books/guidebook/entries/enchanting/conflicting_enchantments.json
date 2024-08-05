@@ -21,7 +21,7 @@
   "pages": [
     {
       "type": "spectrum:nbt_spotlight",
-      "title": "book.spectrum.guidebook.enchanting.conflicting_enchantments.page0.title",
+      "title": "book.spectrum.guidebook.enchanting.conflicting_enchantments.name",
       "item": {
         "item": "minecraft:diamond_chestplate",
         "nbt": {

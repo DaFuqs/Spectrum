@@ -25,7 +25,7 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.mod_integration.conjuring.page0.text",
-      "title": "book.spectrum.guidebook.mod_integration.conjuring.page0.title"
+      "title": "book.spectrum.guidebook.mod_integration.conjuring.name"
     },
     {
       "type": "spectrum:potion_workshop_brewing",

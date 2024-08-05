@@ -16,7 +16,7 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.magical_items.perturbed_eye.page0.text",
-      "title": "book.spectrum.guidebook.magical_items.perturbed_eye.page0.title"
+      "title": "book.spectrum.guidebook.magical_items.perturbed_eye.name"
     },
     {
       "type": "modonomicon:image",
@@ -29,7 +29,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.magical_items.perturbed_eye.page2.text",
-      "title1": "book.spectrum.guidebook.magical_items.perturbed_eye.page2.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier4/perturbed_eye"
     },
     {

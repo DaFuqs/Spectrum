@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.cuisine.azalea_tea.name",
+  "name": "item.spectrum.azalea_tea",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/food/azalea_tea"
@@ -16,13 +16,13 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.cuisine.azalea_tea.page0.text",
-      "title": "book.spectrum.guidebook.cuisine.azalea_tea.page0.title"
+      "title": "item.spectrum.azalea_tea"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title1": "book.spectrum.guidebook.cuisine.azalea_tea.page1.title",
+      "title1": "book.spectrum.guidebook.potion_workshop_crafting",
       "recipe_id_1": "spectrum:potion_workshop_crafting/azalea_tea",
-      "text": "book.spectrum.guidebook.cuisine.azalea_tea.page1.text"
+      "text": "book.spectrum.guidebook.cuisine.no_milk_pls"
     }
   ]
 }

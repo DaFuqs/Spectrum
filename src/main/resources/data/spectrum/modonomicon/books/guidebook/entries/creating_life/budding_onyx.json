@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.general.budding_onyx.name",
+  "name": "block.spectrum.budding_onyx",
   "icon": "spectrum:onyx_cluster",
   "condition": {
     "type": "modonomicon:advancement",
@@ -20,12 +20,12 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.general.budding_onyx.page0.title",
+      "title": "block.spectrum.budding_onyx",
       "text": "book.spectrum.guidebook.general.budding_onyx.page0.text"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title1": "book.spectrum.guidebook.general.budding_onyx.page1.title",
+      "title1": "book.spectrum.guidebook.spirit_instiller_recipe",
       "recipe_id_1": "spectrum:spirit_instiller/budding_onyx",
       "text": "book.spectrum.guidebook.general.budding_onyx.page1.text"
     }

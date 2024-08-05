@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.dimension.hummingstone.name",
+  "name": "block.spectrum.hummingstone",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/collect_hummingstone"
@@ -23,7 +23,7 @@
         "item": "spectrum:hummingstone_glass"
       },
       "text": "book.spectrum.guidebook.dimension.hummingstone.page0.text",
-      "title": "book.spectrum.guidebook.dimension.hummingstone.page0.title"
+      "title": "block.spectrum.hummingstone"
     },
     {
       "type": "modonomicon:spotlight",

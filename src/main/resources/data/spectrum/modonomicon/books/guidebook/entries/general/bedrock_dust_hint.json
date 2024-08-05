@@ -17,7 +17,7 @@
   "pages": [
     {
       "type": "spectrum:hint",
-      "title": "book.spectrum.guidebook.hints.ruin.page0.title",
+      "title": "book.spectrum.guidebook.hints.small_clue",
       "completion_advancement": "spectrum:triggers/hints/ruin_page0",
       "cost": {
         "item": "spectrum:brown_pigment",
@@ -27,7 +27,7 @@
     },
     {
       "type": "spectrum:hint",
-      "title": "book.spectrum.guidebook.hints.ruin.page1.title",
+      "title": "book.spectrum.guidebook.hints.concise_instructions",
       "cost": {
         "item": "spectrum:brown_pigment",
         "count": 24

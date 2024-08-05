@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.magical_blocks.ender_hopper.name",
+  "name": "block.spectrum.ender_hopper",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/ender_blocks"
@@ -15,7 +15,7 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.magical_blocks.ender_hopper.page0.title",
+      "title": "block.spectrum.ender_hopper",
       "item": {
         "item": "spectrum:ender_hopper"
       },
@@ -23,7 +23,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.magical_blocks.ender_hopper.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier2/ender_hopper",
       "text": "book.spectrum.guidebook.only_works_when_owner_online"
     }

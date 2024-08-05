@@ -16,7 +16,7 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.equipment.glass_arrows.page0.text",
-      "title": "book.spectrum.guidebook.equipment.glass_arrows.page0.title"
+      "title": "book.spectrum.guidebook.equipment.glass_arrows.name"
     },
     {
       "type": "spectrum:pedestal_crafting",

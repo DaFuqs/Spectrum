@@ -30,7 +30,7 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.mod_integration.extraalchemy.page0.text",
-      "title": "book.spectrum.guidebook.mod_integration.extraalchemy.page0.title"
+      "title": "book.spectrum.guidebook.mod_integration.extraalchemy.name"
     },
     {
       "type": "spectrum:potion_workshop_brewing",

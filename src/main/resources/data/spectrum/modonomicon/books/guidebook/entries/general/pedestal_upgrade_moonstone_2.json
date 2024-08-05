@@ -21,7 +21,7 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.page0.title",
+      "title": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone.name",
       "item": {
         "item": "spectrum:moonstone_chiseled_basalt"
       },
@@ -29,19 +29,19 @@
     },
     {
       "type": "modonomicon:multiblock",
-      "multiblock_name": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.page1.multiblock_name",
+      "multiblock_name": "multiblock.spectrum.pedestal_complex",
       "multiblock_id": "spectrum:pedestal_complex",
       "show_visualize_button": true,
-      "text": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.page1.text"
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone.dimensions"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.page2.title",
+      "title": "book.spectrum.guidebook.checklist_complete",
       "text": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.page2.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.page3.title",
+      "title": "book.spectrum.guidebook.checklist_upgrade",
       "text": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.page3.text"
     },
     {

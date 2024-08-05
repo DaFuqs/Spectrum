@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.equipment.bedrock_armor.name",
+  "name": "tag.spectrum.bedrock_armor",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/equipment/bedrock_tools"
@@ -16,7 +16,7 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.equipment.bedrock_armor.page0.text",
-      "title": "book.spectrum.guidebook.equipment.bedrock_armor.page0.title"
+      "title": "tag.spectrum.bedrock_armor"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

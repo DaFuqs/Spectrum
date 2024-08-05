@@ -21,7 +21,7 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.pastel_network.redstone_interaction.page0.text",
-      "title": "book.spectrum.guidebook.pastel_network.redstone_interaction.page0.title"
+      "title": "book.spectrum.guidebook.pastel_network.redstone_interaction.name"
     },
     {
       "type": "modonomicon:text",

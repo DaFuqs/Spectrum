@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.cuisine.brewers_handbook.name",
+  "name": "item.spectrum.brewers_handbook",
   "icon": "spectrum:brewers_handbook",
   "condition": {
     "type": "modonomicon:advancement",

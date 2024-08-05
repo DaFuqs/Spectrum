@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.magical_items.knowledge_gem.name",
+  "name": "item.spectrum.knowledge_gem",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/items/knowledge_gem"
@@ -21,12 +21,12 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.magical_items.knowledge_gem.page0.text",
-      "title": "book.spectrum.guidebook.magical_items.knowledge_gem.page0.title"
+      "title": "item.spectrum.knowledge_gem"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.magical_items.knowledge_gem.page1.text",
-      "title1": "book.spectrum.guidebook.magical_items.knowledge_gem.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier3/knowledge_gem"
     },
     {

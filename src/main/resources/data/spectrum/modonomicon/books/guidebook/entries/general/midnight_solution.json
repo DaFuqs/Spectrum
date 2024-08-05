@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.magical_blocks.midnight_solution.name",
+  "name": "block.spectrum.midnight_solution",
   "icon": "spectrum:midnight_solution_bucket",
   "condition": {
     "type": "modonomicon:advancement",
@@ -21,11 +21,11 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.magical_blocks.midnight_solution.page0.text",
-      "title": "book.spectrum.guidebook.magical_blocks.midnight_solution.page0.title"
+      "title": "block.spectrum.midnight_solution"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.magical_blocks.midnight_solution.page1.title",
+      "title": "item.spectrum.midnight_chip",
       "item": {
         "item": "spectrum:midnight_chip"
       },
@@ -43,12 +43,12 @@
         "advancement_id": "spectrum:unlocks/blocks/midnight_solution"
       },
       "text": "book.spectrum.guidebook.magical_blocks.midnight_solution.page2.text",
-      "title1": "book.spectrum.guidebook.magical_blocks.midnight_solution.page2.title",
+      "title1": "item.spectrum.midnight_solution_bucket",
       "recipe_id_1": "spectrum:potion_workshop_crafting/midnight_solution_bucket"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.magical_blocks.midnight_solution.page3.title",
+      "title": "block.spectrum.black_materia",
       "item": {
         "item": "spectrum:black_materia"
       },
@@ -60,7 +60,7 @@
     },
     {
       "type": "spectrum:midnight_solution_converting",
-      "title1": "book.spectrum.guidebook.magical_blocks.midnight_solution.page4.title",
+      "title1": "book.spectrum.guidebook.item_conversion",
       "recipe_id_1": "spectrum:midnight_solution_converting/blackstone",
       "text": "book.spectrum.guidebook.magical_blocks.midnight_solution.page4.text"
     },

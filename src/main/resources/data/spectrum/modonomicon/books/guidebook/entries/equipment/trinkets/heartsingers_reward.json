@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.equipment.heartsingers_reward.name",
+  "name": "item.spectrum.heartsingers_reward",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/trinkets/heartsingers_reward"
@@ -25,12 +25,12 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.equipment.heartsingers_reward.page0.text",
-      "title": "book.spectrum.guidebook.equipment.heartsingers_reward.page0.title"
+      "title": "item.spectrum.heartsingers_reward"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "text": "book.spectrum.guidebook.equipment.heartsingers_reward.page1.text",
-      "title1": "book.spectrum.guidebook.equipment.heartsingers_reward.page1.title",
+      "title1": "container.spectrum.rei.fusion_recipe",
       "recipe_id_1": "spectrum:fusion_shrine/trinkets/heartsingers_reward"
     }
   ]

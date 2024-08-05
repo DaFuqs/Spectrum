@@ -25,7 +25,7 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.mod_integration.ae2.page0.text",
-      "title": "book.spectrum.guidebook.mod_integration.ae2.page0.title"
+      "title": "book.spectrum.guidebook.mod_integration.ae2.name"
     },
     {
       "type": "modonomicon:spotlight",

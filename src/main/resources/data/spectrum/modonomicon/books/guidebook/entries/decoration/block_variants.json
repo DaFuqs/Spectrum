@@ -16,7 +16,7 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.decoration.block_variants.page0.text",
-      "title": "book.spectrum.guidebook.decoration.block_variants.page0.title"
+      "title": "book.spectrum.guidebook.decoration.block_variants.name"
     },
     {
       "type": "spectrum:collection",
@@ -34,7 +34,7 @@
     {
       "type": "modonomicon:smelting_recipe",
       "anchor": "polishing",
-      "title1": "book.spectrum.guidebook.decoration.block_variants.page2.title",
+      "title1": "book.spectrum.guidebook.polishing",
       "recipe_id_1": "spectrum:smelting/smooth_basalt_to_polished_basalt",
       "recipe_id_2": "spectrum:smelting/calcite_to_polished_calcite",
       "text": "book.spectrum.guidebook.decoration.block_variants.page2.text"
@@ -100,16 +100,16 @@
     },
     {
       "type": "spectrum:anvil_crushing",
-      "title1": "book.spectrum.guidebook.decoration.block_variants.page6.title",
+      "title1": "book.spectrum.guidebook.cracking",
       "recipe_id_1": "spectrum:anvil_crushing/spectrum_pulverising/cracked_calcite_bricks",
       "text": "book.spectrum.guidebook.decoration.block_variants.page6.text"
     },
     {
       "type": "modonomicon:smelting_recipe",
-      "title1": "book.spectrum.guidebook.decoration.block_variants.page7.title",
+      "title1": "book.spectrum.guidebook.smelting_back",
       "recipe_id_1": "spectrum:smelting/polished_basalt_unsmelting",
       "recipe_id_2": "spectrum:smelting/polished_calcite_unsmelting",
-      "text": "book.spectrum.guidebook.decoration.block_variants.page7.text"
+      "text": "book.spectrum.guidebook.turn_back_to_polished"
     }
   ]
 }

@@ -24,11 +24,11 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.general.midnight_aberration.page0.text",
-      "title": "book.spectrum.guidebook.general.midnight_aberration.page0.title"
+      "title": "book.spectrum.guidebook.general.midnight_aberration.name"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title1": "book.spectrum.guidebook.general.midnight_aberration.page1.title",
+      "title1": "container.spectrum.rei.fusion_recipe",
       "recipe_id_1": "spectrum:fusion_shrine/midnight_aberration",
       "text": "book.spectrum.guidebook.general.midnight_aberration.page1.text"
     },
@@ -41,7 +41,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/create_midnight_aberration"
       },
-      "title": "book.spectrum.guidebook.general.midnight_aberration.page2.title",
+      "title": "item.spectrum.midnight_aberration",
       "text": "book.spectrum.guidebook.general.midnight_aberration.page2.text"
     },
     {

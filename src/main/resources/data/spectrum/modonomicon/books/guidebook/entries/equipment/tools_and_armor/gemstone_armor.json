@@ -16,7 +16,7 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.equipment.gemstone_armor.page0.text",
-      "title": "book.spectrum.guidebook.equipment.gemstone_armor.page0.title"
+      "title": "book.spectrum.guidebook.equipment.gemstone_armor.name"
     },
     {
       "type": "spectrum:checklist",

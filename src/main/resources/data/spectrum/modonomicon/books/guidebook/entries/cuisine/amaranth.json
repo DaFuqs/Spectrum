@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.cuisine.amaranth.name",
+  "name": "block.spectrum.amaranth",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:milestones/reveal_amaranth"
@@ -15,12 +15,12 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.cuisine.amaranth.page0.title",
+      "title": "block.spectrum.amaranth",
       "text": "book.spectrum.guidebook.cuisine.amaranth.page0.text"
     },
     {
       "type": "spectrum:anvil_crushing",
-      "title1": "book.spectrum.guidebook.cuisine.amaranth.page1.title",
+      "title1": "item.spectrum.amaranth_grains",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_amaranth_bushel"
@@ -34,7 +34,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_amaranth_bushel"
       },
-      "title1": "book.spectrum.guidebook.cuisine.amaranth.page2.title",
+      "title1": "item.spectrum.honey_pastry",
       "recipe_id_1": "spectrum:pedestal/tier1/food/honey_pastry",
       "text": "book.spectrum.guidebook.cuisine.amaranth.page2.text"
     },
@@ -54,7 +54,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/food/triple_meat_pot_pie"
       },
-      "title1": "book.spectrum.guidebook.cuisine.amaranth.page4.title",
+      "title1": "item.spectrum.triple_meat_pot_pie",
       "recipe_id_1": "spectrum:pedestal/tier1/food/triple_meat_pot_pie",
       "text": "book.spectrum.guidebook.cuisine.amaranth.page4.text"
     }

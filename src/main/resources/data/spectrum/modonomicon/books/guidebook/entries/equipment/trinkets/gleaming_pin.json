@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.equipment.gleaming_pin.name",
+  "name": "item.spectrum.gleaming_pin",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/trinkets/gleaming_pin"
@@ -21,12 +21,12 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.equipment.gleaming_pin.page0.text",
-      "title": "book.spectrum.guidebook.equipment.gleaming_pin.page0.title"
+      "title": "item.spectrum.gleaming_pin"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "text": "book.spectrum.guidebook.equipment.gleaming_pin.page1.text",
-      "title1": "book.spectrum.guidebook.equipment.gleaming_pin.page1.title",
+      "title1": "container.spectrum.rei.fusion_recipe",
       "recipe_id_1": "spectrum:fusion_shrine/trinkets/gleaming_pin"
     },
     {
@@ -35,7 +35,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/sniper"
       },
-      "title": "book.spectrum.guidebook.equipment.gleaming_pin.page2.title",
+      "title": "enchantment.spectrum.sniper",
       "item": {
         "item": "spectrum:gleaming_pin",
         "nbt": {

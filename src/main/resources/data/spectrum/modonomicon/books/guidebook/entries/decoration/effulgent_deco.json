@@ -16,7 +16,7 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.decoration.effulgent_deco.page0.text",
-      "title": "book.spectrum.guidebook.decoration.effulgent_deco.page0.title"
+      "title": "book.spectrum.guidebook.decoration.effulgent_deco.name"
     },
     {
       "type": "spectrum:pedestal_crafting",

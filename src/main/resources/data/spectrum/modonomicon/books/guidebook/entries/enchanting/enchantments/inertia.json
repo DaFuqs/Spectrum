@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.enchanting.inertia.name",
+  "name": "enchantment.spectrum.inertia",
   "icon": "minecraft:iron_pickaxe",
   "condition": {
     "type": "modonomicon:advancement",
@@ -17,11 +17,11 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.enchanting.inertia.page0.text",
-      "title": "book.spectrum.guidebook.enchanting.inertia.page0.title"
+      "title": "enchantment.spectrum.inertia"
     },
     {
       "type": "spectrum:nbt_spotlight",
-      "title": "book.spectrum.guidebook.enchanting.inertia.page1.title",
+      "title": "book.spectrum.guidebook.enchantment_characteristics",
       "item": {
         "item": "minecraft:iron_pickaxe",
         "nbt": {
@@ -37,14 +37,14 @@
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "text": "book.spectrum.guidebook.enchanting.inertia.page2.text",
-      "title1": "book.spectrum.guidebook.enchanting.inertia.page2.title",
+      "text": "book.spectrum.guidebook.enchanting.crafting",
+      "title1": "container.spectrum.rei.enchanter_recipe",
       "recipe_id_1": "spectrum:enchanter/spectrum_books/inertia"
     },
     {
       "type": "spectrum:enchanter_upgrading",
-      "text": "book.spectrum.guidebook.enchanting.inertia.page3.text",
-      "title1": "book.spectrum.guidebook.enchanting.inertia.page3.title",
+      "text": "book.spectrum.guidebook.enchanting.upgrading.text",
+      "title1": "container.spectrum.rei.enchantment_upgrading.title",
       "recipe_id_1": "spectrum:enchantment_upgrade/spectrum/inertia_level_2"
     }
   ]

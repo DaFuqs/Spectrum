@@ -21,7 +21,7 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page0.text",
-      "title": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page0.title"
+      "title": "book.spectrum.guidebook.enchanting.vanilla_enchantments.name"
     },
     {
       "type": "spectrum:enchanter_crafting",

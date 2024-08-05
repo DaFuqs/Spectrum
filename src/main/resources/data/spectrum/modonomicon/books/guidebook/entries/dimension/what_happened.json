@@ -21,11 +21,11 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.general.what_happened.page0.text",
-      "title": "book.spectrum.guidebook.general.what_happened.page0.title"
+      "title": "book.spectrum.guidebook.general.what_happened.name"
     },
     {
       "type": "spectrum:checklist",
-      "title": "book.spectrum.guidebook.general.what_happened.page1.title",
+      "title": "book.spectrum.guidebook.hints.where_to_look",
       "checklist": {
         "spectrum:lategame/visit_all_deeper_down_biomes": "book.spectrum.guidebook.general.what_happened.page1.checklist.entry0",
         "spectrum:lategame/reached_dd_floor": "book.spectrum.guidebook.general.what_happened.page1.checklist.entry1",

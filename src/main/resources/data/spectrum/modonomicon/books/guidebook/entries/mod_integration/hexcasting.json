@@ -25,7 +25,7 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.mod_integration.hexcasting.page0.text",
-      "title": "book.spectrum.guidebook.mod_integration.hexcasting.page0.title"
+      "title": "book.spectrum.guidebook.mod_integration.hexcasting.name"
     },
     {
       "type": "spectrum:anvil_crushing",
@@ -55,7 +55,7 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.mod_integration.hexcasting.page4.title",
+      "title": "book.spectrum.guidebook.potion_reagent",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/potion_workshop"

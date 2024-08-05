@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.cuisine.imbrifer_cookbook.name",
+  "name": "item.spectrum.imbrifer_cookbook",
   "icon": "spectrum:imbrifer_cookbook",
   "condition": {
     "type": "modonomicon:advancement",

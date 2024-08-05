@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.magical_blocks.fabrication_chest.name",
+  "name": "block.spectrum.restocking_chest",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/restocking_chest"
@@ -19,12 +19,12 @@
         "item": "spectrum:restocking_chest"
       },
       "text": "book.spectrum.guidebook.magical_blocks.fabrication_chest.page0.text",
-      "title": "book.spectrum.guidebook.magical_blocks.fabrication_chest.page0.title"
+      "title": "block.spectrum.restocking_chest"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.magical_blocks.fabrication_chest.page1.text",
-      "title1": "book.spectrum.guidebook.magical_blocks.fabrication_chest.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier3/restocking_chest"
     }
   ]

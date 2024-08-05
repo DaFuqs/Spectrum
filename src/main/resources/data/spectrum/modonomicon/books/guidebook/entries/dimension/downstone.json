@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.dimension.downstone.name",
+  "name": "block.spectrum.downstone",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:lategame/reached_dd_floor"
@@ -23,7 +23,7 @@
         "item": "spectrum:downstone"
       },
       "text": "book.spectrum.guidebook.dimension.downstone.page0.text",
-      "title": "book.spectrum.guidebook.dimension.downstone.page0.title"
+      "title": "block.spectrum.downstone"
     }
   ]
 }

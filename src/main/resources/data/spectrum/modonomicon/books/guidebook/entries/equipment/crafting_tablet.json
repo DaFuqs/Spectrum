@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.magical_items.crafting_tablet.name",
+  "name": "item.spectrum.crafting_tablet",
   "icon": "spectrum:crafting_tablet",
   "condition": {
     "type": "modonomicon:advancement",
@@ -16,7 +16,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.magical_items.crafting_tablet.page0.text",
-      "title1": "book.spectrum.guidebook.magical_items.crafting_tablet.page0.title",
+      "title1": "item.spectrum.crafting_tablet",
       "recipe_id_1": "spectrum:pedestal/tier1/crafting_tablet"
     },
     {

@@ -19,7 +19,7 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.creating_life.failing.page2.title",
+      "title": "item.spectrum.neolith",
       "anchor": "neolith",
       "item": {
         "item": "spectrum:neolith"

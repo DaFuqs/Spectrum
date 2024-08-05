@@ -16,11 +16,11 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.enchanting.enchanter.page0.text",
-      "title": "book.spectrum.guidebook.enchanting.enchanter.page0.title"
+      "title": "book.spectrum.guidebook.enchanting.enchanter.name"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "book.spectrum.guidebook.enchanting.enchanter.page1.title",
+      "title": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier3/enchanter",
       "text": "book.spectrum.guidebook.enchanting.enchanter.page1.text"
     },
@@ -33,7 +33,7 @@
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.enchanting.enchanter.page3.title",
+      "title": "book.spectrum.guidebook.block_checklist",
       "text": "book.spectrum.guidebook.enchanting.enchanter.page3.text"
     }
   ]

@@ -19,7 +19,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.creating_life.creature_manipulation.page0.title",
+      "title": "book.spectrum.guidebook.creating_life.creature_manipulation.name",
       "text": "book.spectrum.guidebook.creating_life.creature_manipulation.page0.text"
     },
     {

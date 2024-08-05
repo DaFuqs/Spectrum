@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.equipment.omni_accelerator.name",
+  "name": "item.spectrum.omni_accelerator",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/equipment/omni_accelerator"
@@ -16,7 +16,7 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.equipment.omni_accelerator.page0.text",
-      "title": "book.spectrum.guidebook.equipment.omni_accelerator.page0.title"
+      "title": "item.spectrum.omni_accelerator"
     },
     {
       "type": "spectrum:pedestal_crafting",

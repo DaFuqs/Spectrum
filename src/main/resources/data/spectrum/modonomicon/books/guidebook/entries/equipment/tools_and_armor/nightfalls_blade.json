@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.equipment.nightfalls_blade.name",
+  "name": "item.spectrum.nightfalls_blade",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/equipment/nightfalls_blade"
@@ -16,7 +16,7 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.equipment.nightfalls_blade.page0.text",
-      "title": "book.spectrum.guidebook.equipment.nightfalls_blade.page0.title"
+      "title": "item.spectrum.nightfalls_blade"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

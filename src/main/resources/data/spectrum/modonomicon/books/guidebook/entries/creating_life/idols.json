@@ -19,7 +19,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.magical_blocks.idols.page0.title",
+      "title": "book.spectrum.guidebook.magical_blocks.idols.name",
       "text": "book.spectrum.guidebook.magical_blocks.idols.page0.text"
     },
     {

@@ -16,7 +16,7 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.equipment.preenchanted_tools.page0.text",
-      "title": "book.spectrum.guidebook.equipment.preenchanted_tools.page0.title"
+      "title": "book.spectrum.guidebook.equipment.preenchanted_tools.name"
     },
     {
       "type": "modonomicon:text",

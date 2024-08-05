@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.general.quitoxic_reeds.name",
+  "name": "block.spectrum.quitoxic_reeds",
   "icon": "spectrum:quitoxic_reeds",
   "condition": {
     "type": "modonomicon:advancement",
@@ -15,7 +15,7 @@
   "pages": [
     {
       "type": "modonomicon:image",
-      "title": "book.spectrum.guidebook.general.quitoxic_reeds.page0.title",
+      "title": "block.spectrum.quitoxic_reeds",
       "images": [
         "spectrum:textures/gui/guidebook/quitoxic_reed.png"
       ],
@@ -24,7 +24,7 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.general.quitoxic_reeds.page1.title",
+      "title": "item.spectrum.quitoxic_powder",
       "anchor": "quitoxic_powder",
       "item": {
         "item": "spectrum:quitoxic_powder"

@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.equipment.neat_ring.name",
+  "name": "item.spectrum.neat_ring",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/trinkets/neat_ring"
@@ -21,11 +21,11 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.equipment.neat_ring.page0.text",
-      "title": "book.spectrum.guidebook.equipment.neat_ring.page0.title"
+      "title": "item.spectrum.neat_ring"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title1": "book.spectrum.guidebook.equipment.neat_ring.page1.title",
+      "title1": "container.spectrum.rei.fusion_recipe",
       "recipe_id_1": "spectrum:fusion_shrine/trinkets/neat_ring"
     }
   ]

@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.cuisine.aloe.name",
+  "name": "block.spectrum.aloe",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/collect_aloe"
@@ -19,7 +19,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.cuisine.aloe.page0.title",
+      "title": "block.spectrum.aloe",
       "text": "book.spectrum.guidebook.cuisine.aloe.page0.text"
     },
     {

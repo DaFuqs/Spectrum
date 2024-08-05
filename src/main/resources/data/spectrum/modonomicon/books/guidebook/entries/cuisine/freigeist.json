@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.cuisine.freigeist.name",
+  "name": "item.spectrum.freigeist",
   "icon": "spectrum:freigeist",
   "condition": {
     "type": "modonomicon:advancement",
@@ -21,7 +21,7 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.cuisine.freigeist.page0.text",
-      "title": "book.spectrum.guidebook.cuisine.freigeist.page0.title"
+      "title": "item.spectrum.freigeist"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",

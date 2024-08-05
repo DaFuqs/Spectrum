@@ -20,7 +20,7 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.general.storm_stones.page1.title",
+      "title": "book.spectrum.guidebook.general.storm_stones.name",
       "item": {
         "item": "spectrum:storm_stone"
       },

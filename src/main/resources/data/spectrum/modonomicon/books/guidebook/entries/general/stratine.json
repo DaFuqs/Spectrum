@@ -15,7 +15,7 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.general.stratine.page0.title",
+      "title": "book.spectrum.guidebook.general.stratine.name",
       "item": {
         "item": "spectrum:stratine_fragments"
       },
@@ -23,17 +23,17 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.general.stratine.page1.title",
+      "title1": "item.spectrum.stratine_gem",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_stratine_gem"
       },
       "recipe_id_1": "spectrum:pedestal/tier3/stratine_gem",
-      "text": "book.spectrum.guidebook.general.stratine.page1.text"
+      "text": "book.spectrum.guidebook.rare_intact_gem"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.general.stratine.page2.title",
+      "title": "block.spectrum.stratine_fragment_block",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/carry_too_many_heavy_gravity_blocks"
@@ -50,7 +50,7 @@
         "advancement_id": "spectrum:midgame/carry_too_many_heavy_gravity_blocks"
       },
       "text": "book.spectrum.guidebook.general.stratine.page3.text",
-      "title1": "book.spectrum.guidebook.general.stratine.page3.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier1/compacting/stratine_fragment_block"
     }
   ]

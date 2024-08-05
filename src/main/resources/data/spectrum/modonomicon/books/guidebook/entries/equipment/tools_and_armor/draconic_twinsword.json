@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.magical_items.draconic_twinsword.name",
+  "name": "item.spectrum.draconic_twinsword",
   "icon": "spectrum:draconic_twinsword",
   "condition": {
     "type": "modonomicon:advancement",
@@ -15,7 +15,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.magical_items.draconic_twinsword.name",
+      "title": "item.spectrum.draconic_twinsword",
       "text": "book.spectrum.guidebook.magical_items.draconic_twinsword.page0.text"
     },
     {

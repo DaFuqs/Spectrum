@@ -20,7 +20,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.general.bismuth.page0.title",
+      "title": "book.spectrum.guidebook.general.bismuth.name",
       "text": "book.spectrum.guidebook.general.bismuth.page0.text"
     },
     {

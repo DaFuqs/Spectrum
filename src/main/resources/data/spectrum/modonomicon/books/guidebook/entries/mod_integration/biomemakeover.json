@@ -25,7 +25,7 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.mod_integration.biomemakeover.page0.text",
-      "title": "book.spectrum.guidebook.mod_integration.biomemakeover.page0.title"
+      "title": "book.spectrum.guidebook.mod_integration.biomemakeover.name"
     },
     {
       "type": "spectrum:potion_workshop_brewing",

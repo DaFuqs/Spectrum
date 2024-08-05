@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.magical_blocks.lava_sponge.name",
+  "name": "block.spectrum.lava_sponge",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/lava_sponge"
@@ -15,13 +15,13 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.magical_blocks.lava_sponge.page0.title",
+      "title": "block.spectrum.lava_sponge",
       "text": "book.spectrum.guidebook.magical_blocks.lava_sponge.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.magical_blocks.lava_sponge.page1.text",
-      "title1": "book.spectrum.guidebook.magical_blocks.lava_sponge.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier1/lava_sponge"
     },
     {

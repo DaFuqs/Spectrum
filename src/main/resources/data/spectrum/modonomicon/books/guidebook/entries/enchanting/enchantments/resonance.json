@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.enchanting.resonance.name",
+  "name": "enchantment.spectrum.resonance",
   "icon": "spectrum:resonant_pickaxe",
   "condition": {
     "type": "modonomicon:advancement",
@@ -17,11 +17,11 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.enchanting.resonance.page0.text",
-      "title": "book.spectrum.guidebook.enchanting.resonance.page0.title"
+      "title": "enchantment.spectrum.resonance"
     },
     {
       "type": "spectrum:nbt_spotlight",
-      "title": "book.spectrum.guidebook.enchanting.resonance.page1.title",
+      "title": "book.spectrum.guidebook.enchantment_characteristics",
       "item": {
         "item": "minecraft:iron_pickaxe",
         "nbt": {
@@ -41,8 +41,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/resonance_crafting"
       },
-      "text": "book.spectrum.guidebook.enchanting.resonance.page2.text",
-      "title1": "book.spectrum.guidebook.enchanting.resonance.page2.title",
+      "text": "book.spectrum.guidebook.enchanting.crafting",
+      "title1": "container.spectrum.rei.enchanter_recipe",
       "recipe_id_1": "spectrum:enchanter/spectrum_books/resonance"
     },
     {
@@ -55,7 +55,7 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.enchanting.resonance.page4.title",
+      "title": "book.spectrum.guidebook.general.pure_resources.name",
       "item": {
         "item": "spectrum:pure_iron"
       },
@@ -67,7 +67,7 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.enchanting.resonance.page5.title",
+      "title": "",
       "item": {
         "item": "spectrum:orange_leaves"
       },
@@ -75,7 +75,7 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.enchanting.resonance.page6.title",
+      "title": "book.spectrum.guidebook.harvesting_spawners",
       "item": {
         "item": "minecraft:spawner"
       },

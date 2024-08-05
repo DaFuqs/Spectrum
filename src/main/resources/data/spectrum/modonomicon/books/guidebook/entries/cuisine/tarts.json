@@ -21,13 +21,13 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.cuisine.tarts.page0.text",
-      "title": "book.spectrum.guidebook.cuisine.tarts.page0.title"
+      "title": "book.spectrum.guidebook.cuisine.tarts.name"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.cuisine.tarts.page1.title",
+      "title1": "item.spectrum.jaramel_tart",
       "recipe_id_1": "spectrum:pedestal/tier1/food/jaramel_tart",
-      "text": "book.spectrum.guidebook.cuisine.tarts.page1.text"
+      "text": "book.spectrum.guidebook.cuisine.enemy_tears"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -36,7 +36,7 @@
         "advancement_id": "spectrum:craft_salted_jaramel_trifle_or_tart"
       },
       "recipe_id_1": "spectrum:pedestal/tier1/food/salted_jaramel_tart",
-      "text": "book.spectrum.guidebook.cuisine.tarts.page2.text"
+      "text": "book.spectrum.guidebook.cuisine.extra_salty"
     },
     {
       "type": "spectrum:pedestal_crafting",

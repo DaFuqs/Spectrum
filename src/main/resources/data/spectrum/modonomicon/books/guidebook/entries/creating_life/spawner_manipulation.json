@@ -22,7 +22,7 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.creating_life.spawner_manipulation.page0.title",
+      "title": "book.spectrum.guidebook.harvesting_spawners",
       "item": {
         "item": "spectrum:resonant_pickaxe"
       },

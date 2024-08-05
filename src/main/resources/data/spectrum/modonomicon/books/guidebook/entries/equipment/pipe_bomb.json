@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.magical_items.pipe_bomb.name",
+  "name": "item.spectrum.pipe_bomb",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/items/pipe_bomb"
@@ -16,7 +16,7 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.magical_items.pipe_bomb.page0.text",
-      "title": "book.spectrum.guidebook.magical_items.pipe_bomb.page0.title"
+      "title": "item.spectrum.pipe_bomb"
     },
     {
       "type": "spectrum:pedestal_crafting",

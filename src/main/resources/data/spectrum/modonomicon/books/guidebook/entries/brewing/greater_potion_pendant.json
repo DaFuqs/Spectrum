@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.equipment.greater_potion_pendant.name",
+  "name": "item.spectrum.greater_potion_pendant",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/trinkets/greater_potion_pendant"
@@ -20,12 +20,12 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.equipment.greater_potion_pendant.page0.text",
-      "title": "book.spectrum.guidebook.equipment.greater_potion_pendant.page0.title"
+      "title": "item.spectrum.greater_potion_pendant"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "text": "book.spectrum.guidebook.equipment.greater_potion_pendant.page1.text",
-      "title1": "book.spectrum.guidebook.equipment.greater_potion_pendant.page1.title",
+      "text": "book.spectrum.guidebook.use_in_potion_workshop_bottle_slot",
+      "title1": "container.spectrum.rei.fusion_recipe",
       "recipe_id_1": "spectrum:fusion_shrine/trinkets/greater_potion_pendant"
     }
   ]

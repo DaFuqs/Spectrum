@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.magical_items.exchanging_staff.name",
+  "name": "item.spectrum.exchanging_staff",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/items/exchanging_staff"
@@ -16,12 +16,12 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.magical_items.exchanging_staff.page0.text",
-      "title": "book.spectrum.guidebook.magical_items.exchanging_staff.page0.title"
+      "title": "item.spectrum.exchanging_staff"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.magical_items.exchanging_staff.page1.text",
-      "title1": "book.spectrum.guidebook.magical_items.exchanging_staff.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier4/exchanging_staff"
     },
     {
@@ -30,7 +30,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/build_enchanting_structure"
       },
-      "title": "book.spectrum.guidebook.magical_items.exchanging_staff.page2.title",
+      "title": "enchantment.minecraft.fortune",
       "item": {
         "item": "spectrum:exchanging_staff",
         "nbt": {
@@ -50,7 +50,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/build_enchanting_structure"
       },
-      "title": "book.spectrum.guidebook.magical_items.exchanging_staff.page3.title",
+      "title": "enchantment.minecraft.silk_touch",
       "item": {
         "item": "spectrum:exchanging_staff",
         "nbt": {
@@ -70,7 +70,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/resonance_usage"
       },
-      "title": "book.spectrum.guidebook.magical_items.exchanging_staff.page4.title",
+      "title": "enchantment.spectrum.resonance",
       "item": {
         "item": "spectrum:exchanging_staff",
         "nbt": {

@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.magical_blocks.mud.name",
+  "name": "block.spectrum.mud",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/mud"
@@ -15,7 +15,7 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.magical_blocks.mud.page0.title",
+      "title": "block.spectrum.mud",
       "item": {
         "item": "spectrum:mud_bucket"
       },
@@ -24,12 +24,12 @@
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.magical_blocks.mud.page1.text",
-      "title1": "book.spectrum.guidebook.magical_blocks.mud.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier1/mud_bucket"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.magical_blocks.mud.page2.title",
+      "title": "book.spectrum.guidebook.item_conversion",
       "text": "book.spectrum.guidebook.magical_blocks.mud.page2.text"
     },
     {

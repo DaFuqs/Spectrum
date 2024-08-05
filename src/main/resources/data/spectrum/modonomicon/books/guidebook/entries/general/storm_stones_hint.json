@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.hints.storm_stones.name",
+  "name": "book.spectrum.guidebook.hints.a_new_resource",
   "category": "spectrum:general",
   "hide_while_locked ": true,
   "parents": [],
@@ -17,7 +17,7 @@
   "pages": [
     {
       "type": "spectrum:hint",
-      "title": "book.spectrum.guidebook.hints.storm_stones.page0.title",
+      "title": "book.spectrum.guidebook.hints.where_to_find",
       "completion_advancement": "spectrum:triggers/hints/storm_stones_page0",
       "cost": {
         "item": "spectrum:neolith",
@@ -27,7 +27,7 @@
     },
     {
       "type": "spectrum:hint",
-      "title": "book.spectrum.guidebook.hints.storm_stones.page1.title",
+      "title": "book.spectrum.guidebook.hints.concise_instructions",
       "cost": {
         "item": "spectrum:neolith",
         "count": 24

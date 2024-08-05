@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.magical_blocks.crystallarieum.name",
+  "name": "block.spectrum.crystallarieum",
   "icon": "spectrum:crystallarieum",
   "condition": {
     "type": "modonomicon:advancement",
@@ -21,12 +21,12 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.magical_blocks.crystallarieum.page0.text",
-      "title": "book.spectrum.guidebook.magical_blocks.crystallarieum.page0.title"
+      "title": "block.spectrum.crystallarieum"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.magical_blocks.crystallarieum.page1.text",
-      "title1": "book.spectrum.guidebook.magical_blocks.crystallarieum.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier4/crystallarieum"
     },
     {

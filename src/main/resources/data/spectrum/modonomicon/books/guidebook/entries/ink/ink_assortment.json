@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.ink.ink_assortment.name",
+  "name": "item.spectrum.ink_assortment",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/items/ink_assortment"
@@ -21,11 +21,11 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.ink.ink_assortment.page0.text",
-      "title": "book.spectrum.guidebook.ink.ink_assortment.page0.title"
+      "title": "item.spectrum.ink_assortment"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.ink.ink_assortment.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier2/ink_assortment"
     }
   ]

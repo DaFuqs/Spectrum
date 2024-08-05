@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.magical_blocks.hoverblock.name",
+  "name": "block.spectrum.hover_block",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:lategame/collect_hover_block"
@@ -19,7 +19,7 @@
         "item": "spectrum:hover_block"
       },
       "text": "book.spectrum.guidebook.magical_blocks.hoverblock.page0.text",
-      "title": "book.spectrum.guidebook.magical_blocks.hoverblock.page0.title"
+      "title": "block.spectrum.hover_block"
     },
     {
       "type": "modonomicon:text",

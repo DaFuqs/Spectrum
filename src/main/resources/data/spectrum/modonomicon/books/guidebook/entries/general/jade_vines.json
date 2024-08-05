@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.general.jade_vines.name",
+  "name": "block.spectrum.jade_vines",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/collect_hibernating_jade_vine_bulb"
@@ -19,7 +19,7 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.general.jade_vines.page0.title",
+      "title": "block.spectrum.jade_vines",
       "item": {
         "item": "spectrum:hibernating_jade_vine_bulb"
       },
@@ -49,7 +49,7 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.general.jade_vines.page3.title",
+      "title": "item.spectrum.jade_jelly",
       "anchor": "jade_jelly",
       "item": {
         "item": "spectrum:jade_jelly"
@@ -62,7 +62,7 @@
     },
     {
       "type": "spectrum:cinderhearth_smelting",
-      "title1": "book.spectrum.guidebook.general.jade_vines.page4.title",
+      "title1": "item.spectrum.jaramel",
       "anchor": "jaramel",
       "recipe_id_1": "spectrum:cinderhearth/jaramel",
       "condition": {
@@ -86,7 +86,7 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.general.jade_vines.page6.title",
+      "title": "item.spectrum.moonstruck_nectar",
       "anchor": "nectar",
       "item": {
         "item": "spectrum:moonstruck_nectar"

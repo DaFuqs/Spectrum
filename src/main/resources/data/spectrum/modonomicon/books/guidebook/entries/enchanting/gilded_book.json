@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.enchanting.gilded_book.name",
+  "name": "item.spectrum.gilded_book",
   "icon": "spectrum:gilded_book",
   "condition": {
     "type": "modonomicon:advancement",
@@ -18,7 +18,7 @@
       "item": {
         "item": "spectrum:gilded_book"
       },
-      "title": "book.spectrum.guidebook.enchanting.gilded_book.page0.title",
+      "title": "item.spectrum.gilded_book",
       "text": "book.spectrum.guidebook.enchanting.gilded_book.page0.text"
     },
     {

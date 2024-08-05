@@ -19,7 +19,7 @@
   "pages": [
     {
       "type": "spectrum:collection",
-      "title": "book.spectrum.guidebook.decoration.item_bowl.page0.title",
+      "title": "book.spectrum.guidebook.decoration.item_bowl.name",
       "items": [
         "spectrum:item_bowl_basalt",
         "spectrum:item_bowl_calcite"
@@ -28,7 +28,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.decoration.item_bowl.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier3/item_bowl_calcite",
       "text": "book.spectrum.guidebook.decoration.item_bowl.page1.text"
     }

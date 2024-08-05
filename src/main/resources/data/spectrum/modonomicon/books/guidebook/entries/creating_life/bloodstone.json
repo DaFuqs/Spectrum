@@ -20,7 +20,7 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.general.bloodstone.page0.title",
+      "title": "book.spectrum.guidebook.general.bloodstone.name",
       "item": {
         "item": "spectrum:effulgent_feather"
       },

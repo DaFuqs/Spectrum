@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.general.paintbrush.name",
+  "name": "item.spectrum.paintbrush",
   "icon": "spectrum:paintbrush",
   "category": "spectrum:general",
   "hide_while_locked ": true,
@@ -12,7 +12,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.general.paintbrush.page0.title",
+      "title": "item.spectrum.paintbrush",
       "text": "book.spectrum.guidebook.general.paintbrush.page0.text"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.dimension.deep_dripstone_caves.name",
+  "name": "biome.spectrum.deep_dripstone_caves",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/visit_dd_biomes/deep_dripstone_caves"
@@ -20,7 +20,7 @@
   "pages": [
     {
       "type": "modonomicon:image",
-      "title": "book.spectrum.guidebook.dimension.deep_dripstone_caves.page0.title",
+      "title": "biome.spectrum.deep_dripstone_caves",
       "images": [
         "spectrum:textures/gui/guidebook/dd_deep_dripstone_caves.png"
       ],

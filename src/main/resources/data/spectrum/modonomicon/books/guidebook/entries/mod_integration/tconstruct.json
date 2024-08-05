@@ -29,7 +29,7 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.mod_integration.tconstruct.page1.title",
+      "title": "book.spectrum.guidebook.auto_harvesting",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/crystal_apothecary"
@@ -41,7 +41,7 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.mod_integration.geode_plus.page2.title",
+      "title": "book.spectrum.guidebook.moving_budding_blocks",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/resonance_usage"

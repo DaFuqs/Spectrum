@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.redstone.weather_detector.name",
+  "name": "block.spectrum.weather_detector",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/redstone/weather_detector"
@@ -15,12 +15,12 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.redstone.weather_detector.page0.title",
+      "title": "block.spectrum.weather_detector",
       "text": "book.spectrum.guidebook.redstone.weather_detector.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.redstone.weather_detector.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier1/detectors/weather_detector",
       "text": "book.spectrum.guidebook.redstone.weather_detector.page1.text"
     }

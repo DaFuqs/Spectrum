@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.magical_items.constructors_staff.name",
+  "name": "item.spectrum.constructors_staff",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/items/constructors_staff"
@@ -16,12 +16,12 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.magical_items.constructors_staff.page0.text",
-      "title": "book.spectrum.guidebook.magical_items.constructors_staff.page0.title"
+      "title": "item.spectrum.constructors_staff"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.magical_items.constructors_staff.page1.text",
-      "title1": "book.spectrum.guidebook.magical_items.constructors_staff.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier2/constructors_staff"
     }
   ]

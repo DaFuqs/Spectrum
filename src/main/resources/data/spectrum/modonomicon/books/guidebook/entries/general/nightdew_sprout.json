@@ -15,7 +15,7 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.general.nightdew_sprout.page0.title",
+      "title": "book.spectrum.guidebook.general.nightdew_sprout.name",
       "item": {
         "item": "spectrum:nightdew_sprout"
       },

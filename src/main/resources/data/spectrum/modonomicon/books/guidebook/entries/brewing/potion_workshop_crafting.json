@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.brewing.potion_workshop_crafting.name",
+  "name": "book.spectrum.guidebook.potion_workshop_crafting",
   "icon": "spectrum:potion_workshop",
   "condition": {
     "type": "modonomicon:advancement",
@@ -21,7 +21,7 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page0.text",
-      "title": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page0.title"
+      "title": "book.spectrum.guidebook.potion_workshop_crafting"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
@@ -36,17 +36,17 @@
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page3.title",
+      "title1": "block.spectrum.mud",
       "recipe_id_1": "spectrum:potion_workshop_crafting/mud_bucket"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page4.title",
+      "title1": "block.spectrum.liquid_crystal",
       "recipe_id_1": "spectrum:potion_workshop_crafting/liquid_crystal_bucket"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page5.title",
+      "title1": "block.spectrum.midnight_solution",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/midnight_solution"
@@ -55,7 +55,7 @@
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page6.title",
+      "title1": "block.spectrum.dragonrot",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/dragonrot_bucket"

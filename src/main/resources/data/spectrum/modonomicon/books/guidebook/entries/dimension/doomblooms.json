@@ -20,7 +20,7 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.dimension.doomblooms.page0.text",
-      "title": "book.spectrum.guidebook.dimension.doomblooms.page0.title"
+      "title": "book.spectrum.guidebook.dimension.doomblooms.name"
     },
     {
       "type": "modonomicon:spotlight",

@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.redstone.block_placer.name",
+  "name": "block.spectrum.block_placer",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/redstone/block_placer"
@@ -19,11 +19,11 @@
         "item": "spectrum:block_placer"
       },
       "text": "book.spectrum.guidebook.redstone.block_placer.page0.text",
-      "title": "book.spectrum.guidebook.redstone.block_placer.page0.title"
+      "title": "block.spectrum.block_placer"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.redstone.block_placer.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier1/block_placer",
       "text": "book.spectrum.guidebook.redstone.block_placer.page1.text"
     }

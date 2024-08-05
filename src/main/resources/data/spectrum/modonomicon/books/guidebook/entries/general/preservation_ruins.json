@@ -16,7 +16,7 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.general.preservation_ruins.page0.title",
+      "title": "book.spectrum.guidebook.general.preservation_ruins.name",
       "item": {
         "item": "spectrum:preservation_controller"
       },
@@ -73,7 +73,7 @@
     },
     {
       "type": "modonomicon:image",
-      "title": "book.spectrum.guidebook.general.preservation_ruins.page5.title",
+      "title": "advancements.spectrum.enter_wireless_redstone_preservation_ruin.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:enter_wireless_redstone_preservation_ruin"

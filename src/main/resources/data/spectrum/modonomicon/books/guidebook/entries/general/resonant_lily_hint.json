@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.hints.resonant_lily.name",
+  "name": "book.spectrum.guidebook.hints.a_new_resource",
   "category": "spectrum:general",
   "hide_while_locked ": true,
   "parents": [],
@@ -17,7 +17,7 @@
   "pages": [
     {
       "type": "spectrum:hint",
-      "title": "book.spectrum.guidebook.hints.resonant_lily.page0.title",
+      "title": "book.spectrum.guidebook.hints.where_to_find",
       "completion_advancement": "spectrum:triggers/hints/resonant_lily_page0",
       "cost": {
         "item": "spectrum:frostbite_essence",
@@ -27,7 +27,7 @@
     },
     {
       "type": "spectrum:hint",
-      "title": "book.spectrum.guidebook.hints.resonant_lily.page1.title",
+      "title": "book.spectrum.guidebook.hints.concise_instructions",
       "completion_advancement": "spectrum:triggers/hints/resonant_lily_page1",
       "cost": {
         "item": "spectrum:incandescent_essence",

@@ -17,7 +17,7 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.general.shards.page0.text",
-      "title": "book.spectrum.guidebook.general.shards.page0.title"
+      "title": "book.spectrum.guidebook.general.shards.name"
     },
     {
       "type": "modonomicon:spotlight",
@@ -78,7 +78,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/collect_moonstone"
       },
-      "title": "book.spectrum.guidebook.general.shards.page5.title",
+      "title": "book.spectrum.guidebook.general.moonstone_shards.name",
       "item": {
         "item": "spectrum:moonstone_shard"
       },

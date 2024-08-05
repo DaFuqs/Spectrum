@@ -21,12 +21,12 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.pastel_network.connection_node.page0.text",
-      "title": "book.spectrum.guidebook.pastel_network.connection_node.page0.title"
+      "title": "book.spectrum.guidebook.pastel_network.connection_node.name"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.pastel_network.connection_node.page1.text",
-      "title1": "book.spectrum.guidebook.pastel_network.connection_node.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier3/pastel_network/connection_node"
     }
   ]

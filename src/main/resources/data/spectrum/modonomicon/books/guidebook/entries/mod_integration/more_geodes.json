@@ -25,11 +25,11 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.mod_integration.more_geodes.page0.text",
-      "title": "book.spectrum.guidebook.mod_integration.more_geodes.page0.title"
+      "title": "book.spectrum.guidebook.mod_integration.more_geodes.name"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.mod_integration.more_geodes.page1.title",
+      "title": "book.spectrum.guidebook.auto_harvesting",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/crystal_apothecary"
@@ -37,11 +37,11 @@
       "item": {
         "item": "spectrum:crystal_apothecary"
       },
-      "text": "book.spectrum.guidebook.mod_integration.more_geodes.page1.text"
+      "text": "book.spectrum.guidebook.crystal_apothecary_harvesting"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.mod_integration.more_geodes.page2.title",
+      "title": "book.spectrum.guidebook.moving_budding_blocks",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/resonance_usage"
@@ -49,7 +49,7 @@
       "item": {
         "item": "spectrum:resonant_pickaxe"
       },
-      "text": "book.spectrum.guidebook.mod_integration.more_geodes.page2.text"
+      "text": "book.spectrum.guidebook.resonance_harvesting"
     }
   ]
 }

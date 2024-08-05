@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.dimension.dragonrot_swamp.name",
+  "name": "biome.spectrum.dragonrot_swamp",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/visit_dd_biomes/dragonrot_swamp"
@@ -20,7 +20,7 @@
   "pages": [
     {
       "type": "modonomicon:image",
-      "title": "book.spectrum.guidebook.dimension.dragonrot_swamp.page0.title",
+      "title": "biome.spectrum.dragonrot_swamp",
       "images": [
         "spectrum:textures/gui/guidebook/dd_dragonrot_swamp.png"
       ],

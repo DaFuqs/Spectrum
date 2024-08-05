@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.dimension.abyssal_vines.name",
+  "name": "block.spectrum.abyssal_vines",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/collect_fissure_plum"
@@ -20,7 +20,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.dimension.abyssal_vines.page0.title",
+      "title": "block.spectrum.abyssal_vines",
       "text": "book.spectrum.guidebook.dimension.abyssal_vines.page0.text"
     },
     {

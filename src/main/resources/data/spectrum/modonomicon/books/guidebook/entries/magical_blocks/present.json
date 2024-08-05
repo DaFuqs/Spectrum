@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.magical_blocks.present.name",
+  "name": "block.spectrum.present",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/present"
@@ -16,12 +16,12 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.magical_blocks.present.page0.text",
-      "title": "book.spectrum.guidebook.magical_blocks.present.page0.title"
+      "title": "block.spectrum.present"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.magical_blocks.present.page1.text",
-      "title1": "book.spectrum.guidebook.magical_blocks.present.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier1/present"
     },
     {

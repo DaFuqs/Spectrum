@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.cuisine.crawfish.name",
+  "name": "item.spectrum.crawfish",
   "icon": "spectrum:crawfish",
   "condition": {
     "type": "modonomicon:advancement",
@@ -24,7 +24,7 @@
         "item": "spectrum:crawfish"
       },
       "text": "book.spectrum.guidebook.cuisine.crawfish.page0.text",
-      "title": "book.spectrum.guidebook.cuisine.crawfish.page0.title"
+      "title": "item.spectrum.crawfish"
     }
   ]
 }

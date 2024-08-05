@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.magical_items.block_flooder.name",
+  "name": "item.spectrum.block_flooder",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/block_flooder"
@@ -16,12 +16,12 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.magical_items.block_flooder.page0.text",
-      "title": "book.spectrum.guidebook.magical_items.block_flooder.page0.title"
+      "title": "item.spectrum.block_flooder"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.magical_items.block_flooder.page1.text",
-      "title1": "book.spectrum.guidebook.magical_items.block_flooder.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier2/block_flooder"
     }
   ]

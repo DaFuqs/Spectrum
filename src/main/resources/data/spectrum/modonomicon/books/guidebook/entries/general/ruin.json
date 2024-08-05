@@ -24,11 +24,11 @@
         "item": "spectrum:bottle_of_ruin"
       },
       "text": "book.spectrum.guidebook.creating_life.ruin.page0.text",
-      "title": "book.spectrum.guidebook.creating_life.ruin.page0.title"
+      "title": "book.spectrum.guidebook.creating_life.ruin.name"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.creating_life.ruin.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier3/bottle_of_ruin",
       "text": "book.spectrum.guidebook.creating_life.ruin.page1.text"
     },
@@ -38,7 +38,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/break_decayed_bedrock"
       },
-      "title": "book.spectrum.guidebook.creating_life.ruin.page2.title",
+      "title": "item.spectrum.bedrock_dust",
       "anchor": "bedrock_dust",
       "item": {
         "item": "spectrum:bedrock_dust"
@@ -70,7 +70,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/break_decayed_bedrock"
       },
-      "title1": "book.spectrum.guidebook.creating_life.ruin.page5.title",
+      "title1": "book.spectrum.guidebook.decompression",
       "recipe_id_1": "spectrum:pedestal/tier1/compacting/bedrock_storage_block_uncrafting",
       "text": "book.spectrum.guidebook.creating_life.ruin.page5.text"
     }

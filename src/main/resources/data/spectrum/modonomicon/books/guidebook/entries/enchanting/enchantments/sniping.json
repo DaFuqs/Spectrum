@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.enchanting.sniper.name",
+  "name": "enchantment.spectrum.sniper",
   "icon": "minecraft:crossbow",
   "condition": {
     "type": "modonomicon:advancement",
@@ -17,11 +17,11 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.enchanting.sniper.page0.text",
-      "title": "book.spectrum.guidebook.enchanting.sniper.page0.title"
+      "title": "enchantment.spectrum.sniper"
     },
     {
       "type": "spectrum:nbt_spotlight",
-      "title": "book.spectrum.guidebook.enchanting.sniper.page1.title",
+      "title": "book.spectrum.guidebook.enchantment_characteristics",
       "item": {
         "item": "minecraft:crossbow",
         "nbt": {
@@ -37,8 +37,8 @@
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "text": "book.spectrum.guidebook.enchanting.sniper.page2.text",
-      "title1": "book.spectrum.guidebook.enchanting.sniper.page2.title",
+      "text": "book.spectrum.guidebook.enchanting.crafting",
+      "title1": "container.spectrum.rei.enchanter_recipe",
       "recipe_id_1": "spectrum:enchanter/spectrum_books/sniper"
     }
   ]

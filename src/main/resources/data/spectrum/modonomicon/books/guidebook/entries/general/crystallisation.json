@@ -27,12 +27,12 @@
       "item": {
         "item": "spectrum:blazing_crystal"
       },
-      "title": "book.spectrum.guidebook.general.liquid_crystal_essences.page0.title",
+      "title": "block.spectrum.blazing_crystal",
       "text": "book.spectrum.guidebook.general.liquid_crystal_essences.page0.text"
     },
     {
       "type": "spectrum:anvil_crushing",
-      "title1": "book.spectrum.guidebook.general.liquid_crystal_essences.page1.title",
+      "title1": "item.spectrum.incandescent_essence",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_blazing_crystal"
@@ -53,7 +53,7 @@
     },
     {
       "type": "spectrum:anvil_crushing",
-      "title1": "book.spectrum.guidebook.general.liquid_crystal_essences.page3.title",
+      "title1": "item.spectrum.frostbite_essence",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_frostbite_crystal"

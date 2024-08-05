@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.redstone.ender_glass.name",
+  "name": "block.spectrum.ender_glass",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/ender_glass"
@@ -19,7 +19,7 @@
         "item": "spectrum:ender_glass"
       },
       "text": "book.spectrum.guidebook.redstone.ender_glass.page0.text",
-      "title": "book.spectrum.guidebook.redstone.ender_glass.page0.title"
+      "title": "block.spectrum.ender_glass"
     },
     {
       "type": "modonomicon:text",
@@ -31,7 +31,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.redstone.ender_glass.page3.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier1/ender_glass",
       "test": "With the smallest external influence in the form of blocks it falls back to the state of lowest energy."
     }

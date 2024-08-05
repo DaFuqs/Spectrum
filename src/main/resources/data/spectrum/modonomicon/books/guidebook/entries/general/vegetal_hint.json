@@ -17,7 +17,7 @@
   "pages": [
     {
       "type": "spectrum:hint",
-      "title": "book.spectrum.guidebook.hints.fading.page0.title",
+      "title": "book.spectrum.guidebook.hints.small_clue",
       "completion_advancement": "spectrum:triggers/hints/fading_page0",
       "cost": {
         "item": "spectrum:shimmerstone_gem",
@@ -27,7 +27,7 @@
     },
     {
       "type": "spectrum:hint",
-      "title": "book.spectrum.guidebook.hints.fading.page1.title",
+      "title": "book.spectrum.guidebook.hints.concise_instructions",
       "cost": {
         "item": "spectrum:shimmerstone_gem",
         "count": 48

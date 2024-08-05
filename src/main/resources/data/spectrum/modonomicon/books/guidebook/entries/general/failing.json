@@ -27,11 +27,11 @@
         "item": "spectrum:bottle_of_failing"
       },
       "text": "book.spectrum.guidebook.creating_life.failing.page0.text",
-      "title": "book.spectrum.guidebook.creating_life.failing.page0.title"
+      "title": "book.spectrum.guidebook.creating_life.failing.name"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.creating_life.failing.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier3/bottle_of_failing",
       "text": "book.spectrum.guidebook.creating_life.failing.page1.text"
     },
@@ -41,7 +41,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/collect_neolith"
       },
-      "title": "book.spectrum.guidebook.creating_life.failing.page2.title",
+      "title": "item.spectrum.neolith",
       "anchor": "neolith",
       "item": {
         "item": "spectrum:neolith"

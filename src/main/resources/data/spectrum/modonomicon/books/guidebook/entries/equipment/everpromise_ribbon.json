@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.magical_items.everpromise_ribbon.name",
+  "name": "item.spectrum.everpromise_ribbon",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/items/everpromise_ribbon_guidebook"
@@ -16,7 +16,7 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.magical_items.everpromise_ribbon.page0.text",
-      "title": "book.spectrum.guidebook.magical_items.everpromise_ribbon.page0.title"
+      "title": "item.spectrum.everpromise_ribbon"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -25,7 +25,7 @@
         "advancement_id": "spectrum:unlocks/items/everpromise_ribbon_recipe"
       },
       "text": "book.spectrum.guidebook.magical_items.everpromise_ribbon.page1.text",
-      "title1": "book.spectrum.guidebook.magical_items.everpromise_ribbon.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier4/everpromise_ribbon"
     }
   ]

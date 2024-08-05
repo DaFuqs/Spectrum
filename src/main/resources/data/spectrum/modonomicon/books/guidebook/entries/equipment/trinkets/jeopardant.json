@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.equipment.jeopardant.name",
+  "name": "item.spectrum.jeopardant",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/trinkets/jeopardant"
@@ -21,12 +21,12 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.equipment.jeopardant.page0.text",
-      "title": "book.spectrum.guidebook.equipment.jeopardant.page0.title"
+      "title": "item.spectrum.jeopardant"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "text": "book.spectrum.guidebook.equipment.jeopardant.page1.text",
-      "title1": "book.spectrum.guidebook.equipment.jeopardant.page1.title",
+      "title1": "container.spectrum.rei.fusion_recipe",
       "recipe_id_1": "spectrum:fusion_shrine/trinkets/jeopardant"
     }
   ]

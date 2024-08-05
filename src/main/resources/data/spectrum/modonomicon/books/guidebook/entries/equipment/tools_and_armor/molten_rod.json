@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.equipment.molten_rod.name",
+  "name": "item.spectrum.molten_rod",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/equipment/molten_rod"
@@ -20,12 +20,12 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.equipment.molten_rod.page0.text",
-      "title": "book.spectrum.guidebook.equipment.molten_rod.page0.title"
+      "title": "item.spectrum.molten_rod"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.equipment.molten_rod.page1.text",
-      "title1": "book.spectrum.guidebook.equipment.molten_rod.page1.title",
+      "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier1/tools/molten_rod"
     }
   ]

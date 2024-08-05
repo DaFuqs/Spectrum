@@ -4480,6 +4480,7 @@
   "item.spectrum.restoration_tea.tooltip_milk": "With Milk",
   "item.spectrum.ring_of_aerial_grace": "Ring of Aetherial Grace",
   "item.spectrum.ring_of_aerial_grace.tooltip": "Lowers your gravity, but increases knockback",
+  "item.spectrum.ring_of_aerial_grace.tooltip2": "Enables you to walk on water",
   "item.spectrum.ring_of_denser_steps": "Ring of Denser Steps",
   "item.spectrum.ring_of_denser_steps.tooltip": "Grants you knockback resistance, but increases your gravity",
   "item.spectrum.ring_of_denser_steps.tooltip2": "Enables you to sprint underwater",

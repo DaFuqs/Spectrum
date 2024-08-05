@@ -96,10 +96,10 @@
   "commands.spectrum.progression_sanity.success": "Imprimiu as descobertas dos cheques de sanidade no console do servidor",
 
   "spectrum.recipe.fusion_shrine.explanation.onyx_shard": "Meia noite, apenas em uma lua nova",
-  "spectrum.recipe.fusion_shrine.explanation.decay_away":  "Precisa do céu limpo",
-  "spectrum.recipe.fusion_shrine.explanation.ominous_sapling":  "Precisa ser de dia",
-  "spectrum.recipe.fusion_shrine.explanation.stratine_gem":  "Precise ser durante uma tempestade de trovões",
-  "spectrum.recipe.fusion_shrine.explanation.paltaeria_gem":  "Precise ser durante uma tempestade de trovões",
+  "spectrum.recipe.fusion_shrine.explanation.decay_away": "Precisa do céu limpo",
+  "spectrum.recipe.fusion_shrine.explanation.ominous_sapling": "Precisa ser de dia",
+  "spectrum.recipe.fusion_shrine.explanation.stratine_gem": "Precise ser durante uma tempestade de trovões",
+  "spectrum.recipe.fusion_shrine.explanation.paltaeria_gem": "Precise ser durante uma tempestade de trovões",
   "spectrum.recipe.fusion_shrine.explanation.midnight_aberration": "De dia com tempo ensolarado",
   "spectrum.recipe.fusion_shrine.explanation.spectral_shard": "O Composto perfeito",
   "spectrum.recipe.fusion_shrine.explanation.netherite_ingot": "arriscado, mas produzindo...",
@@ -1747,7 +1747,7 @@
 
   "block.minecraft.polished_basalt": "Pilar de Basalto",
 
-  "______vanilla_additions" : "Additions:",
+  "______vanilla_additions": "Additions:",
   "potion.potency.7": "VII",
   "potion.potency.8": "VIII",
   "potion.potency.9": "IX",
@@ -1763,7 +1763,7 @@
   "potion.potency.19": "XIX",
   "potion.potency.20": "XX",
 
-  "______done_until_here" : "TODO:",
+  "______done_until_here": "TODO:",
   "advancements.spectrum.craft_energy_collector.title": "Sim capitão",
   "advancements.spectrum.craft_energy_collector.description": "Construa um coletor poderoso o suficiente para coletar energia de geodos",
   "advancements.spectrum.place_energy_collector.title": "Uma nova forma de energia",
@@ -2500,7 +2500,6 @@
   "block.spectrum.snapping_ivy": "Snapping Ivy",
   "block.spectrum.sniffer_head": "Sniffer Head",
   "block.spectrum.stardust_block": "Block of Stardust",
-  "block.spectrum.stonesetting_workshop": "Stonesetting Workshop",
   "block.spectrum.stripped_black_log": "Stripped Black Log",
   "block.spectrum.stripped_black_wood": "Stripped Black Wood",
   "block.spectrum.stripped_blue_log": "Stripped Blue Log",
@@ -2576,7 +2575,6 @@
   "block.spectrum.topaz_glass_pane": "Topaz Glass Pane",
   "block.spectrum.topaz_powder_block": "Block of Topaz Powder",
   "block.spectrum.topaz_sugar_stick": "Topaz Sugar Stick",
-  "block.spectrum.varia_sprout": "Varia Sprout",
   "block.spectrum.vegetal_block": "Block of Vegetal",
   "block.spectrum.villager_converting_idol.tooltip": "§7Converts Villagers to Zombie Villagers",
   "block.spectrum.warden_head": "Warden Head",

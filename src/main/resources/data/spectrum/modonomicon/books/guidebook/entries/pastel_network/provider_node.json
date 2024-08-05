@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.pastel_network.provider_node.name",
+  "name": "book.spectrum.guidebook.provider_node.name",
   "icon": "spectrum:provider_node",
   "condition": {
     "type": "modonomicon:advancement",
@@ -20,8 +20,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.pastel_network.provider_node.name",
-      "text": "book.spectrum.guidebook.pastel_network.provider_node.page0.text"
+      "title": "book.spectrum.guidebook.provider_node.name",
+      "text": "book.spectrum.guidebook.provider_node.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",

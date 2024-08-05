@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.creating_life.vegetal.name",
+  "name": "book.spectrum.guidebook.vegetal.name",
   "icon": "spectrum:vegetal",
   "condition": {
     "type": "modonomicon:advancement",
@@ -24,7 +24,7 @@
       "item": {
         "item": "spectrum:vegetal"
       },
-      "text": "book.spectrum.guidebook.creating_life.fading.page2.text"
+      "text": "book.spectrum.guidebook.fading.page2.text"
     },
     {
       "type": "spectrum:pedestal_crafting",

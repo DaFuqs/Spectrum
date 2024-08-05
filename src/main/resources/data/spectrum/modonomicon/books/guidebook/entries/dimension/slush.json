@@ -22,7 +22,7 @@
       "item": {
         "item": "spectrum:slush"
       },
-      "text": "book.spectrum.guidebook.dimension.slush.page0.text",
+      "text": "book.spectrum.guidebook.slush.page0.text",
       "title": "block.spectrum.slush"
     },
     {
@@ -30,7 +30,7 @@
       "item": {
         "item": "spectrum:tilled_slush"
       },
-      "text": "book.spectrum.guidebook.dimension.slush.page1.text"
+      "text": "book.spectrum.guidebook.slush.page1.text"
     }
   ]
 }

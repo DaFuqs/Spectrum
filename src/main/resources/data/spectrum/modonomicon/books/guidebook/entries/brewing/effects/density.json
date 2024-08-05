@@ -21,7 +21,7 @@
       "type": "spectrum:status_effect",
       "title": "effect.spectrum.density",
       "status_effect_id": "spectrum:density",
-      "text": "book.spectrum.guidebook.brewing.lightweight_density.page1.text"
+      "text": "book.spectrum.guidebook.lightweight_density.page1.text"
     }
   ]
 }

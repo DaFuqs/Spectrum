@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.general.onyx_shards.name",
+  "name": "book.spectrum.guidebook.onyx_shards.name",
   "icon": "spectrum:onyx_shard",
   "condition": {
     "type": "modonomicon:advancement",
@@ -20,26 +20,26 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.general.onyx_shards.page0.text",
-      "title": "book.spectrum.guidebook.general.onyx_shards.name"
+      "text": "book.spectrum.guidebook.onyx_shards.page0.text",
+      "title": "book.spectrum.guidebook.onyx_shards.name"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title1": "container.spectrum.rei.fusion_recipe",
       "recipe_id_1": "spectrum:fusion_shrine/onyx_shard",
-      "text": "book.spectrum.guidebook.general.onyx_shards.page1.text"
+      "text": "book.spectrum.guidebook.onyx_shards.page1.text"
     },
     {
       "type": "modonomicon:image",
-      "title": "book.spectrum.guidebook.general.onyx_shards.page2.title",
+      "title": "book.spectrum.guidebook.onyx_shards.page2.title",
       "images": [
         "spectrum:textures/gui/guidebook/moon_phases.png"
       ],
-      "text": "book.spectrum.guidebook.general.onyx_shards.page2.text"
+      "text": "book.spectrum.guidebook.onyx_shards.page2.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.general.onyx_shards.page3.text"
+      "text": "book.spectrum.guidebook.onyx_shards.page3.text"
     }
   ]
 }

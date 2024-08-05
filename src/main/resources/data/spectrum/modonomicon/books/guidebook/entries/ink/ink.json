@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.ink.ink.name",
+  "name": "book.spectrum.guidebook.ink.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/items/basic_ink_storage_items"
@@ -15,26 +15,26 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.ink.ink.page0.text",
-      "title": "book.spectrum.guidebook.ink.ink.name"
+      "text": "book.spectrum.guidebook.ink.page0.text",
+      "title": "book.spectrum.guidebook.ink.name"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.ink.ink.page1.title",
-      "text": "book.spectrum.guidebook.ink.ink.page1.text"
+      "title": "book.spectrum.guidebook.ink.page1.title",
+      "text": "book.spectrum.guidebook.ink.page1.text"
     },
     {
       "type": "modonomicon:image",
-      "title": "book.spectrum.guidebook.ink.ink.page2.title",
+      "title": "book.spectrum.guidebook.ink.page2.title",
       "anchor": "transfer",
       "images": [
         "spectrum:textures/gui/guidebook/ink_transfer.png"
       ],
-      "text": "book.spectrum.guidebook.ink.ink.page2.text"
+      "text": "book.spectrum.guidebook.ink.page2.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.ink.ink.page3.text"
+      "text": "book.spectrum.guidebook.ink.page3.text"
     }
   ]
 }

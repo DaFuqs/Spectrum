@@ -18,14 +18,14 @@
       "item": {
         "item": "spectrum:redstone_calculator"
       },
-      "text": "book.spectrum.guidebook.redstone.redstone_calculator.page0.text",
+      "text": "book.spectrum.guidebook.redstone_calculator.page0.text",
       "title": "block.spectrum.redstone_calculator"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier1/redstone_calculator",
-      "text": "book.spectrum.guidebook.redstone.redstone_calculator.page1.text"
+      "text": "book.spectrum.guidebook.redstone_calculator.page1.text"
     }
   ]
 }

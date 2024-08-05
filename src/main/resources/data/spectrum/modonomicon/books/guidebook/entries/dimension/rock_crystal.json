@@ -23,12 +23,12 @@
         "item": "spectrum:rock_crystal"
       },
       "title": "block.spectrum.rock_crystal",
-      "text": "book.spectrum.guidebook.dimension.rock_crystal.about.text"
+      "text": "book.spectrum.guidebook.rock_crystal.about.text"
     },
     {
       "type": "spectrum:anvil_crushing",
       "recipe_id_1": "spectrum:anvil_crushing/spectrum_pulverising/quartz_from_rock_crystal",
-      "text": "book.spectrum.guidebook.general.rock_crystal.crushing.text"
+      "text": "book.spectrum.guidebook.rock_crystal.crushing.text"
     }
   ]
 }

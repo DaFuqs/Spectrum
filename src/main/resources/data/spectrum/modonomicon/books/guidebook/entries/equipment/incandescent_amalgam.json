@@ -15,34 +15,34 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.magical_items.incandescent_amalgam.page0.text",
+      "text": "book.spectrum.guidebook.incandescent_amalgam.page0.text",
       "title": "block.spectrum.incandescent_amalgam"
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.magical_items.incandescent_amalgam.page1.text"
+      "text": "book.spectrum.guidebook.incandescent_amalgam.page1.text"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "text": "book.spectrum.guidebook.magical_items.incandescent_amalgam.page2.text",
-      "title1": "book.spectrum.guidebook.magical_items.incandescent_amalgam.page2.title",
+      "text": "book.spectrum.guidebook.incandescent_amalgam.page2.text",
+      "title1": "book.spectrum.guidebook.incandescent_amalgam.page2.title",
       "recipe_id_1": "spectrum:titration_barrel/incandescent_amalgam_doom"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "text": "book.spectrum.guidebook.magical_items.incandescent_amalgam.page3.text",
-      "title1": "book.spectrum.guidebook.magical_items.incandescent_amalgam.page3.title",
+      "text": "book.spectrum.guidebook.incandescent_amalgam.page3.text",
+      "title1": "book.spectrum.guidebook.incandescent_amalgam.page3.title",
       "recipe_id_1": "spectrum:titration_barrel/incandescent_amalgam_pure"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "title1": "book.spectrum.guidebook.magical_items.incandescent_amalgam.page4.title",
+      "title1": "book.spectrum.guidebook.incandescent_amalgam.page4.title",
       "recipe_id_1": "spectrum:titration_barrel/incandescent_amalgam_simple"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "text": "book.spectrum.guidebook.magical_items.incandescent_amalgam.page5.text",
-      "title1": "book.spectrum.guidebook.magical_items.incandescent_amalgam.page5.title",
+      "text": "book.spectrum.guidebook.incandescent_amalgam.page5.text",
+      "title1": "book.spectrum.guidebook.incandescent_amalgam.page5.title",
       "recipe_id_1": "spectrum:titration_barrel/fast_pure_alcohol"
     }
   ]

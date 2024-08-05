@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.creating_life.failing.name",
+  "name": "book.spectrum.guidebook.failing.name",
   "icon": "spectrum:bottle_of_failing",
   "condition": {
     "type": "modonomicon:advancement",
@@ -26,14 +26,14 @@
       "item": {
         "item": "spectrum:bottle_of_failing"
       },
-      "text": "book.spectrum.guidebook.creating_life.failing.page0.text",
-      "title": "book.spectrum.guidebook.creating_life.failing.name"
+      "text": "book.spectrum.guidebook.failing.page0.text",
+      "title": "book.spectrum.guidebook.failing.name"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier3/bottle_of_failing",
-      "text": "book.spectrum.guidebook.creating_life.failing.page1.text"
+      "text": "book.spectrum.guidebook.failing.page1.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -46,7 +46,7 @@
       "item": {
         "item": "spectrum:neolith"
       },
-      "text": "book.spectrum.guidebook.creating_life.failing.page2.text"
+      "text": "book.spectrum.guidebook.failing.page2.text"
     },
     {
       "type": "spectrum:pedestal_crafting",

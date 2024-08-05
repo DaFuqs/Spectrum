@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.cuisine.blood_orchid_products.name",
+  "name": "book.spectrum.guidebook.blood_orchid_products.name",
   "icon": "spectrum:bloodboil_syrup",
   "condition": {
     "type": "modonomicon:advancement",
@@ -15,21 +15,21 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.cuisine.blood_orchid_products.name",
+      "title": "book.spectrum.guidebook.blood_orchid_products.name",
       "item": {
         "item": "spectrum:bloodboil_syrup"
       },
-      "text": "book.spectrum.guidebook.cuisine.blood_orchid_products.page0.text"
+      "text": "book.spectrum.guidebook.blood_orchid_products.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.cuisine.blood_orchid_products.page1.title",
-      "text": "book.spectrum.guidebook.cuisine.blood_orchid_products.page1.text"
+      "title": "book.spectrum.guidebook.blood_orchid_products.page1.title",
+      "text": "book.spectrum.guidebook.blood_orchid_products.page1.text"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
       "recipe_id_1": "spectrum:potion_workshop_crafting/bloodboil_syrup",
-      "text": "book.spectrum.guidebook.cuisine.blood_orchid_products.page2.text"
+      "text": "book.spectrum.guidebook.blood_orchid_products.page2.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -38,7 +38,7 @@
         "advancement_id": "spectrum:unlocks/food/demon_trifle"
       },
       "recipe_id_1": "spectrum:pedestal/tier1/food/demon_trifle",
-      "text": "book.spectrum.guidebook.cuisine.blood_orchid_products.page3.text"
+      "text": "book.spectrum.guidebook.blood_orchid_products.page3.text"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
@@ -47,7 +47,7 @@
         "advancement_id": "spectrum:unlocks/food/demon_tea"
       },
       "recipe_id_1": "spectrum:potion_workshop_crafting/demon_tea",
-      "text": "book.spectrum.guidebook.cuisine.blood_orchid_products.page4.text"
+      "text": "book.spectrum.guidebook.blood_orchid_products.page4.text"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
@@ -57,7 +57,7 @@
       },
       "title1": "item.spectrum.infused_beverage.tooltip.variant.rabbit_poison",
       "recipe_id_1": "spectrum:titration_barrel/infused_beverages/rabbit_poison",
-      "text": "book.spectrum.guidebook.cuisine.blood_orchid_products.page5.text"
+      "text": "book.spectrum.guidebook.blood_orchid_products.page5.text"
     }
   ]
 }

@@ -25,11 +25,11 @@
         "spectrum:textures/gui/guidebook/dd_deep_dripstone_caves.png"
       ],
       "border": true,
-      "text": "book.spectrum.guidebook.dimension.deep_dripstone_caves.page0.text"
+      "text": "book.spectrum.guidebook.deep_dripstone_caves.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.dimension.deep_dripstone_caves.page1.text"
+      "text": "book.spectrum.guidebook.deep_dripstone_caves.page1.text"
     }
   ]
 }

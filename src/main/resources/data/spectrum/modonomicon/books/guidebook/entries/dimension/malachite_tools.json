@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.equipment.malachite_tools.name",
+  "name": "book.spectrum.guidebook.malachite_tools.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/malachite/malachite_tools"
@@ -19,34 +19,34 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.equipment.malachite_tools.page0.text",
-      "title": "book.spectrum.guidebook.equipment.malachite_tools.name"
+      "text": "book.spectrum.guidebook.malachite_tools.page0.text",
+      "title": "book.spectrum.guidebook.malachite_tools.name"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "anchor": "workstaff",
-      "text": "book.spectrum.guidebook.equipment.malachite_tools.page1.text",
+      "text": "book.spectrum.guidebook.malachite_tools.page1.text",
       "title1": "item.spectrum.workstaff",
       "recipe_id_1": "spectrum:fusion_shrine/malachite/malachite_workstaff"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "anchor": "greatsword",
-      "text": "book.spectrum.guidebook.equipment.malachite_tools.page2.text",
-      "title1": "book.spectrum.guidebook.equipment.malachite_tools.page2.title",
+      "text": "book.spectrum.guidebook.malachite_tools.page2.text",
+      "title1": "book.spectrum.guidebook.malachite_tools.page2.title",
       "recipe_id_1": "spectrum:fusion_shrine/malachite/malachite_ultra_greatsword"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "anchor": "bident",
-      "text": "book.spectrum.guidebook.equipment.malachite_tools.page3.text",
+      "text": "book.spectrum.guidebook.malachite_tools.page3.text",
       "title1": "entity.spectrum.bident",
       "recipe_id_1": "spectrum:fusion_shrine/malachite/malachite_bident"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "anchor": "crossbow",
-      "text": "book.spectrum.guidebook.equipment.malachite_tools.page4.text",
+      "text": "book.spectrum.guidebook.malachite_tools.page4.text",
       "title1": "book.spectrum.guidebook.crossbow",
       "recipe_id_1": "spectrum:fusion_shrine/malachite/malachite_crossbow"
     }

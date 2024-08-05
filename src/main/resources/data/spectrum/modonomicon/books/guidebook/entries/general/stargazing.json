@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.general.stargazing.name",
+  "name": "book.spectrum.guidebook.stargazing.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:milestones/unlock_shooting_stars"
@@ -19,12 +19,12 @@
   "pages": [
     {
       "type": "modonomicon:image",
-      "title": "book.spectrum.guidebook.general.stargazing.page0.title",
+      "title": "book.spectrum.guidebook.stargazing.page0.title",
       "images": [
         "spectrum:textures/gui/guidebook/stargazing.png"
       ],
       "border": true,
-      "text": "book.spectrum.guidebook.general.stargazing.page0.text"
+      "text": "book.spectrum.guidebook.stargazing.page0.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -32,11 +32,11 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_star_fragment"
       },
-      "title": "book.spectrum.guidebook.general.stargazing.page1.title",
+      "title": "book.spectrum.guidebook.stargazing.page1.title",
       "item": {
         "item": "spectrum:glistering_shooting_star"
       },
-      "text": "book.spectrum.guidebook.general.stargazing.page1.text"
+      "text": "book.spectrum.guidebook.stargazing.page1.text"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
@@ -44,9 +44,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_all_shooting_star_variants"
       },
-      "title1": "book.spectrum.guidebook.general.stargazing.page2.title",
+      "title1": "book.spectrum.guidebook.stargazing.page2.title",
       "recipe_id_1": "spectrum:fusion_shrine/shooting_star_hardening",
-      "text": "book.spectrum.guidebook.general.stargazing.page2.text"
+      "text": "book.spectrum.guidebook.stargazing.page2.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -54,11 +54,11 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_star_fragment"
       },
-      "title": "book.spectrum.guidebook.general.stargazing.page3.title",
+      "title": "book.spectrum.guidebook.stargazing.page3.title",
       "item": {
         "item": "spectrum:star_fragment"
       },
-      "text": "book.spectrum.guidebook.general.stargazing.page3.text"
+      "text": "book.spectrum.guidebook.stargazing.page3.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -71,7 +71,7 @@
       "item": {
         "item": "spectrum:stardust"
       },
-      "text": "book.spectrum.guidebook.general.stargazing.page4.text"
+      "text": "book.spectrum.guidebook.stargazing.page4.text"
     },
     {
       "type": "spectrum:pedestal_crafting",

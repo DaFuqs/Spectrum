@@ -20,14 +20,14 @@
     {
       "type": "modonomicon:text",
       "title": "block.spectrum.aloe",
-      "text": "book.spectrum.guidebook.cuisine.aloe.page0.text"
+      "text": "book.spectrum.guidebook.aloe.page0.text"
     },
     {
       "type": "modonomicon:spotlight",
       "item": {
         "item": "spectrum:aloe_leaf"
       },
-      "text": "book.spectrum.guidebook.cuisine.aloe.page1.text"
+      "text": "book.spectrum.guidebook.aloe.page1.text"
     }
   ]
 }

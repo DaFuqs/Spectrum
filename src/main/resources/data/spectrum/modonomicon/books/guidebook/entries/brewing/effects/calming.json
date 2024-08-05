@@ -17,12 +17,12 @@
       "type": "spectrum:status_effect",
       "title": "effect.spectrum.calming",
       "status_effect_id": "spectrum:calming",
-      "text": "book.spectrum.guidebook.brewing.calming.page0.text"
+      "text": "book.spectrum.guidebook.calming.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.brewing.calming.page1.title",
-      "text": "book.spectrum.guidebook.brewing.calming.page1.text"
+      "title": "book.spectrum.guidebook.calming.page1.title",
+      "text": "book.spectrum.guidebook.calming.page1.text"
     }
   ]
 }

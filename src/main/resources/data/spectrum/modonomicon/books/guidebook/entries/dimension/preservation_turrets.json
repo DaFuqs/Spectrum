@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.dimension.preservation_turrets.name",
+  "name": "book.spectrum.guidebook.preservation_turrets.name",
   "icon": "spectrum:preservation_turret_head",
   "condition": {
     "type": "modonomicon:advancement",
@@ -22,15 +22,15 @@
   "pages": [
     {
       "type": "modonomicon:entity",
-      "title": "book.spectrum.guidebook.dimension.preservation_turrets.name",
+      "title": "book.spectrum.guidebook.preservation_turrets.name",
       "entity_id": "spectrum:preservation_turret",
       "scale": 0.5,
       "offset": 0.4,
-      "text": "book.spectrum.guidebook.dimension.preservation_turrets.page0.text"
+      "text": "book.spectrum.guidebook.preservation_turrets.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.dimension.preservation_turrets.page1.text"
+      "text": "book.spectrum.guidebook.preservation_turrets.page1.text"
     }
   ]
 }

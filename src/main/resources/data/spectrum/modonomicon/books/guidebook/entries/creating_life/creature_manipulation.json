@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.creating_life.creature_manipulation.name",
+  "name": "book.spectrum.guidebook.creature_manipulation.name",
   "icon": "spectrum:shulker_red_head",
   "condition": {
     "type": "modonomicon:advancement",
@@ -19,8 +19,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.creating_life.creature_manipulation.name",
-      "text": "book.spectrum.guidebook.creating_life.creature_manipulation.page0.text"
+      "title": "book.spectrum.guidebook.creature_manipulation.name",
+      "text": "book.spectrum.guidebook.creature_manipulation.page0.text"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
@@ -69,17 +69,17 @@
     {
       "type": "spectrum:spirit_instiller_crafting",
       "recipe_id_1": "spectrum:spirit_instiller/head_fusion/recoloring/axolotl_blue",
-      "text": "book.spectrum.guidebook.creating_life.creature_manipulation.axolotls.text"
+      "text": "book.spectrum.guidebook.creature_manipulation.axolotls.text"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
       "recipe_id_1": "spectrum:spirit_instiller/head_fusion/recoloring/parrot_green",
-      "text": "book.spectrum.guidebook.creating_life.creature_manipulation.parrots.text"
+      "text": "book.spectrum.guidebook.creature_manipulation.parrots.text"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
       "recipe_id_1": "spectrum:spirit_instiller/head_fusion/recoloring/shulker_pink",
-      "text": "book.spectrum.guidebook.creating_life.creature_manipulation.shulkers.text"
+      "text": "book.spectrum.guidebook.creature_manipulation.shulkers.text"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.decoration.gemstone_runes.name",
+  "name": "book.spectrum.guidebook.gemstone_runes.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:create_onyx_shard"
@@ -23,20 +23,20 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.decoration.gemstone_runes.page0.text",
-      "title": "book.spectrum.guidebook.decoration.gemstone_runes.name"
+      "text": "book.spectrum.guidebook.gemstone_runes.page0.text",
+      "title": "book.spectrum.guidebook.gemstone_runes.name"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier1/runes/topaz_chiseled_basalt_from_shards",
-      "text": "book.spectrum.guidebook.decoration.gemstone_runes.page1.text"
+      "text": "book.spectrum.guidebook.gemstone_runes.page1.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.decoration.gemstone_runes.page2.title",
+      "title1": "book.spectrum.guidebook.gemstone_runes.page2.title",
       "recipe_id_1": "spectrum:pedestal/tier1/runes/amethyst_chiseled_basalt_from_cluster",
-      "text": "book.spectrum.guidebook.decoration.gemstone_runes.page2.text"
+      "text": "book.spectrum.guidebook.gemstone_runes.page2.text"
     }
   ]
 }

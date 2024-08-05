@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.magical_blocks.glistering_melons.name",
+  "name": "book.spectrum.guidebook.glistering_melons.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:collect_vegetal"
@@ -15,11 +15,11 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.magical_blocks.glistering_melons.page0.title",
+      "title": "book.spectrum.guidebook.glistering_melons.page0.title",
       "item": {
         "item": "minecraft:glistering_melon_slice"
       },
-      "text": "book.spectrum.guidebook.magical_blocks.glistering_melons.page0.text"
+      "text": "book.spectrum.guidebook.glistering_melons.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",

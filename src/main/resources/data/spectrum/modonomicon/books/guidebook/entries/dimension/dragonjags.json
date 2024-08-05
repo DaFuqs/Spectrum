@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.dimension.dragonjags.name",
+  "name": "book.spectrum.guidebook.dragonjags.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/collect_dragonjag"
@@ -19,7 +19,7 @@
   "pages": [
     {
       "type": "spectrum:collection",
-      "title": "book.spectrum.guidebook.dimension.dragonjags.name",
+      "title": "book.spectrum.guidebook.dragonjags.name",
       "items": [
         "spectrum:small_red_dragonjag",
         "spectrum:small_yellow_dragonjag",
@@ -27,7 +27,7 @@
         "spectrum:small_purple_dragonjag",
         "spectrum:small_black_dragonjag"
       ],
-      "text": "book.spectrum.guidebook.dimension.dragonjags.page0.text"
+      "text": "book.spectrum.guidebook.dragonjags.page0.text"
     },
     {
       "type": "modonomicon:image",
@@ -35,7 +35,7 @@
         "spectrum:textures/gui/guidebook/dd_dragonjags.png"
       ],
       "border": true,
-      "text": "book.spectrum.guidebook.dimension.dragonjags.page1.text"
+      "text": "book.spectrum.guidebook.dragonjags.page1.text"
     }
   ]
 }

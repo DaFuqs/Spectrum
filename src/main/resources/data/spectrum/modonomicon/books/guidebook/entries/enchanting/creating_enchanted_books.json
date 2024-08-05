@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.enchanting.creating_enchanted_books.name",
+  "name": "book.spectrum.guidebook.creating_enchanted_books.name",
   "icon": "minecraft:enchanted_book",
   "condition": {
     "type": "modonomicon:advancement",
@@ -20,8 +20,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.enchanting.creating_enchanted_books.page0.text",
-      "title": "book.spectrum.guidebook.enchanting.creating_enchanted_books.name"
+      "text": "book.spectrum.guidebook.creating_enchanted_books.page0.text",
+      "title": "book.spectrum.guidebook.creating_enchanted_books.name"
     },
     {
       "type": "modonomicon:image",
@@ -29,7 +29,7 @@
         "spectrum:textures/gui/guidebook/creating_enchanted_books.png"
       ],
       "border": true,
-      "text": "book.spectrum.guidebook.enchanting.creating_enchanted_books.page1.text"
+      "text": "book.spectrum.guidebook.creating_enchanted_books.page1.text"
     }
   ]
 }

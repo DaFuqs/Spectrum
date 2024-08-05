@@ -20,18 +20,18 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.cuisine.jade_wine.page0.text",
+      "text": "book.spectrum.guidebook.jade_wine.page0.text",
       "title": "item.spectrum.jade_wine"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
       "title1": "book.spectrum.guidebook.titration_recipe",
       "recipe_id_1": "spectrum:titration_barrel/special/jade_wine",
-      "text": "book.spectrum.guidebook.cuisine.jade_wine.page1.text"
+      "text": "book.spectrum.guidebook.jade_wine.page1.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.cuisine.jade_wine.page2.title",
+      "title": "book.spectrum.guidebook.jade_wine.page2.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/tap_sweetened_jade_wine"
@@ -40,7 +40,7 @@
       "item": {
         "item": "spectrum:moonstruck_nectar"
       },
-      "text": "book.spectrum.guidebook.cuisine.jade_wine.page2.text"
+      "text": "book.spectrum.guidebook.jade_wine.page2.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -52,7 +52,7 @@
       "item": {
         "item": "spectrum:chrysocolla"
       },
-      "text": "book.spectrum.guidebook.cuisine.jade_wine.page3.text"
+      "text": "book.spectrum.guidebook.jade_wine.page3.text"
     }
   ]
 }

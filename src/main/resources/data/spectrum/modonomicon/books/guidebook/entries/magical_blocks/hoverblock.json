@@ -18,12 +18,12 @@
       "item": {
         "item": "spectrum:hover_block"
       },
-      "text": "book.spectrum.guidebook.magical_blocks.hoverblock.page0.text",
+      "text": "book.spectrum.guidebook.hoverblock.page0.text",
       "title": "block.spectrum.hover_block"
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.magical_blocks.hoverblock.page1.text"
+      "text": "book.spectrum.guidebook.hoverblock.page1.text"
     }
   ]
 }

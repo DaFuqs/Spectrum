@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.equipment.name",
+  "name": "book.spectrum.guidebook.category.equipment.name",
   "icon": "spectrum:multitool",
   "sort_number": 3,
   "show_category_button": true,

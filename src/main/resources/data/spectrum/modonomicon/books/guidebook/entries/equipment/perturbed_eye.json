@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.magical_items.perturbed_eye.name",
+  "name": "book.spectrum.guidebook.perturbed_eye.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/items/perturbed_eye"
@@ -15,8 +15,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.magical_items.perturbed_eye.page0.text",
-      "title": "book.spectrum.guidebook.magical_items.perturbed_eye.name"
+      "text": "book.spectrum.guidebook.perturbed_eye.page0.text",
+      "title": "book.spectrum.guidebook.perturbed_eye.name"
     },
     {
       "type": "modonomicon:image",
@@ -24,19 +24,19 @@
         "spectrum:textures/gui/guidebook/end_portal.png"
       ],
       "border": true,
-      "text": "book.spectrum.guidebook.magical_items.perturbed_eye.page1.text"
+      "text": "book.spectrum.guidebook.perturbed_eye.page1.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "text": "book.spectrum.guidebook.magical_items.perturbed_eye.page2.text",
+      "text": "book.spectrum.guidebook.perturbed_eye.page2.text",
       "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier4/perturbed_eye"
     },
     {
       "type": "modonomicon:multiblock",
       "multiblock_id": "spectrum:perturbed_eye",
-      "text": "book.spectrum.guidebook.magical_items.perturbed_eye.page3.text",
-      "multiblock_name": "book.spectrum.guidebook.magical_items.perturbed_eye.page3.multiblock_name"
+      "text": "book.spectrum.guidebook.perturbed_eye.page3.text",
+      "multiblock_name": "book.spectrum.guidebook.perturbed_eye.page3.multiblock_name"
     }
   ]
 }

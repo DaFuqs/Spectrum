@@ -16,18 +16,18 @@
     {
       "type": "modonomicon:text",
       "title": "block.spectrum.lava_sponge",
-      "text": "book.spectrum.guidebook.magical_blocks.lava_sponge.page0.text"
+      "text": "book.spectrum.guidebook.lava_sponge.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "text": "book.spectrum.guidebook.magical_blocks.lava_sponge.page1.text",
+      "text": "book.spectrum.guidebook.lava_sponge.page1.text",
       "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier1/lava_sponge"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.magical_blocks.lava_sponge.page2.title",
-      "text": "book.spectrum.guidebook.magical_blocks.lava_sponge.page2.text"
+      "title": "book.spectrum.guidebook.lava_sponge.page2.title",
+      "text": "book.spectrum.guidebook.lava_sponge.page2.text"
     }
   ]
 }

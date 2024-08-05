@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.general.nectardew_burgeon.name",
+  "name": "book.spectrum.guidebook.nectardew_burgeon.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:lategame/collect_nectardew"
@@ -19,11 +19,11 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.general.nectardew_burgeon.name",
+      "title": "book.spectrum.guidebook.nectardew_burgeon.name",
       "item": {
         "item": "spectrum:nectardew_burgeon"
       },
-      "text": "book.spectrum.guidebook.general.nectardew_burgeon.page0.text"
+      "text": "book.spectrum.guidebook.nectardew_burgeon.page0.text"
     },
     {
       "type": "modonomicon:text",
@@ -31,8 +31,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/break_nightdew_vine"
       },
-      "title": "book.spectrum.guidebook.general.nectardew_burgeon.page1.title",
-      "text": "book.spectrum.guidebook.general.nectardew_burgeon.page1.text"
+      "title": "book.spectrum.guidebook.nectardew_burgeon.page1.title",
+      "text": "book.spectrum.guidebook.nectardew_burgeon.page1.text"
     }
   ]
 }

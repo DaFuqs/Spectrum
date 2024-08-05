@@ -17,11 +17,11 @@
       "type": "spectrum:status_effect",
       "title": "effect.spectrum.immunity",
       "status_effect_id": "spectrum:immunity",
-      "text": "book.spectrum.guidebook.brewing.immunity.page0.text"
+      "text": "book.spectrum.guidebook.immunity.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.brewing.immunity.page1.text"
+      "text": "book.spectrum.guidebook.immunity.page1.text"
     }
   ]
 }

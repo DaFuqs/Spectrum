@@ -28,30 +28,30 @@
         "spectrum:fusion_shrine_basalt",
         "spectrum:fusion_shrine_calcite"
       ],
-      "text": "book.spectrum.guidebook.general.fusion_shrine.page0.text"
+      "text": "book.spectrum.guidebook.fusion_shrine.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier2/fusion_shrine_basalt",
-      "text": "book.spectrum.guidebook.general.fusion_shrine.page1.text"
+      "text": "book.spectrum.guidebook.fusion_shrine.page1.text"
     },
     {
       "type": "modonomicon:multiblock",
-      "multiblock_name": "book.spectrum.guidebook.general.fusion_shrine.page2.multiblock_name",
+      "multiblock_name": "book.spectrum.guidebook.fusion_shrine.page2.multiblock_name",
       "multiblock_id": "spectrum:fusion_shrine",
       "show_visualize_button": true,
-      "text": "book.spectrum.guidebook.general.fusion_shrine.page2.text"
+      "text": "book.spectrum.guidebook.fusion_shrine.page2.text"
     },
     {
       "type": "modonomicon:text",
       "title": "book.spectrum.guidebook.block_checklist",
-      "text": "book.spectrum.guidebook.general.fusion_shrine.page3.text"
+      "text": "book.spectrum.guidebook.fusion_shrine.page3.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.general.fusion_shrine.page4.title",
-      "text": "book.spectrum.guidebook.general.fusion_shrine.page4.text"
+      "title": "book.spectrum.guidebook.fusion_shrine.page4.title",
+      "text": "book.spectrum.guidebook.fusion_shrine.page4.text"
     }
   ]
 }

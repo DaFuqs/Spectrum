@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.equipment.bedrock_tools.name",
+  "name": "book.spectrum.guidebook.bedrock_tools.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/equipment/bedrock_tools"
@@ -15,52 +15,52 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.equipment.bedrock_tools.page0.text",
-      "title": "book.spectrum.guidebook.equipment.bedrock_tools.name"
+      "text": "book.spectrum.guidebook.bedrock_tools.page0.text",
+      "title": "book.spectrum.guidebook.bedrock_tools.name"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "text": "book.spectrum.guidebook.equipment.bedrock_tools.page1.text",
+      "text": "book.spectrum.guidebook.bedrock_tools.page1.text",
       "recipe_id_1": "spectrum:fusion_shrine/bedrock/pickaxe"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "text": "book.spectrum.guidebook.equipment.bedrock_tools.page2.text",
+      "text": "book.spectrum.guidebook.bedrock_tools.page2.text",
       "recipe_id_1": "spectrum:fusion_shrine/bedrock/axe"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "text": "book.spectrum.guidebook.equipment.bedrock_tools.page3.text",
+      "text": "book.spectrum.guidebook.bedrock_tools.page3.text",
       "recipe_id_1": "spectrum:fusion_shrine/bedrock/shovel"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "text": "book.spectrum.guidebook.equipment.bedrock_tools.page4.text",
+      "text": "book.spectrum.guidebook.bedrock_tools.page4.text",
       "recipe_id_1": "spectrum:fusion_shrine/bedrock/sword"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "text": "book.spectrum.guidebook.equipment.bedrock_tools.page5.text",
+      "text": "book.spectrum.guidebook.bedrock_tools.page5.text",
       "recipe_id_1": "spectrum:fusion_shrine/bedrock/hoe"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "text": "book.spectrum.guidebook.equipment.bedrock_tools.page6.text",
+      "text": "book.spectrum.guidebook.bedrock_tools.page6.text",
       "recipe_id_1": "spectrum:fusion_shrine/bedrock/bow"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "text": "book.spectrum.guidebook.equipment.bedrock_tools.page7.text",
+      "text": "book.spectrum.guidebook.bedrock_tools.page7.text",
       "recipe_id_1": "spectrum:fusion_shrine/bedrock/crossbow"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "text": "book.spectrum.guidebook.equipment.bedrock_tools.page8.text",
+      "text": "book.spectrum.guidebook.bedrock_tools.page8.text",
       "recipe_id_1": "spectrum:fusion_shrine/bedrock/shears"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "text": "book.spectrum.guidebook.equipment.bedrock_tools.page9.text",
+      "text": "book.spectrum.guidebook.bedrock_tools.page9.text",
       "recipe_id_1": "spectrum:fusion_shrine/bedrock/fishing_rod"
     }
   ]

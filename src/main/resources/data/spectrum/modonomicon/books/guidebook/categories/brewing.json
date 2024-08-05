@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.brewing.name",
+  "name": "book.spectrum.guidebook.category.brewing.name",
   "icon": "spectrum:potion_workshop",
   "sort_number": 11,
   "show_category_button": true,

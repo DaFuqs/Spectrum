@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.general.azurite.name",
+  "name": "book.spectrum.guidebook.azurite.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:midgame/collect_azurite"
@@ -16,11 +16,11 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.general.azurite.name",
+      "title": "book.spectrum.guidebook.azurite.name",
       "item": {
         "item": "spectrum:raw_azurite"
       },
-      "text": "book.spectrum.guidebook.general.azurite.page0.text"
+      "text": "book.spectrum.guidebook.azurite.page0.text"
     },
     {
       "type": "spectrum:snippet",
@@ -39,9 +39,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/resources/refined_azurite"
       },
-      "title1": "book.spectrum.guidebook.general.azurite.page1.title",
+      "title1": "book.spectrum.guidebook.azurite.page1.title",
       "recipe_id_1": "spectrum:fusion_shrine/refined_azurite",
-      "text": "book.spectrum.guidebook.general.azurite.page1.text"
+      "text": "book.spectrum.guidebook.azurite.page1.text"
     },
     {
       "type": "spectrum:crystallarieum_growing",
@@ -49,7 +49,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/resources/azurite_growing"
       },
-      "title1": "book.spectrum.guidebook.general.azurite.page2.title",
+      "title1": "book.spectrum.guidebook.azurite.page2.title",
       "recipe_id_1": "spectrum:crystallarieum/azurite"
     }
   ]

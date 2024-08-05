@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.dimension.howling_spires.name",
+  "name": "book.spectrum.guidebook.howling_spires.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/visit_dd_biomes/howling_spires"

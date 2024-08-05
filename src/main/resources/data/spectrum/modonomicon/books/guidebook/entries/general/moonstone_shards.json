@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.general.moonstone_shards.name",
+  "name": "book.spectrum.guidebook.moonstone_shards.name",
   "icon": "spectrum:moonstone_shard",
   "condition": {
     "type": "modonomicon:advancement",
@@ -17,12 +17,12 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.general.moonstone_shards.page0.text",
-      "title": "book.spectrum.guidebook.general.moonstone_shards.name"
+      "text": "book.spectrum.guidebook.moonstone_shards.page0.text",
+      "title": "book.spectrum.guidebook.moonstone_shards.name"
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.general.moonstone_shards.page1.text"
+      "text": "book.spectrum.guidebook.moonstone_shards.page1.text"
     }
   ]
 }

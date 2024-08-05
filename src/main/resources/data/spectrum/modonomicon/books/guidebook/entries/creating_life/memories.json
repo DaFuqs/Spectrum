@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.creating_life.memories.name",
+  "name": "book.spectrum.guidebook.memories.name",
   "icon": {
     "item": "spectrum:memory",
     "nbt": {
@@ -33,7 +33,7 @@
   "pages": [
     {
       "type": "spectrum:nbt_spotlight",
-      "title": "book.spectrum.guidebook.creating_life.memories.name",
+      "title": "book.spectrum.guidebook.memories.name",
       "item": {
         "item": "spectrum:memory",
         "nbt": {
@@ -43,18 +43,18 @@
           "TicksToManifest": 20
         }
       },
-      "text": "book.spectrum.guidebook.creating_life.memories.page0.text"
+      "text": "book.spectrum.guidebook.memories.page0.text"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
       "title1": "book.spectrum.guidebook.spirit_instiller_recipe",
       "recipe_id_1": "spectrum:spirit_instiller/memories/fox",
-      "text": "book.spectrum.guidebook.creating_life.memories.page1.text"
+      "text": "book.spectrum.guidebook.memories.page1.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.creating_life.memories.page2.title",
-      "text": "book.spectrum.guidebook.creating_life.memories.page2.text"
+      "title": "book.spectrum.guidebook.memories.page2.title",
+      "text": "book.spectrum.guidebook.memories.page2.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -62,11 +62,11 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:milestones/unlock_remembering_boss_memories"
       },
-      "title": "book.spectrum.guidebook.creating_life.memories.page3.title",
+      "title": "book.spectrum.guidebook.memories.page3.title",
       "item": {
         "item": "minecraft:dragon_head"
       },
-      "text": "book.spectrum.guidebook.creating_life.memories.page3.text"
+      "text": "book.spectrum.guidebook.memories.page3.text"
     }
   ]
 }

@@ -16,7 +16,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.enchanting.steadfast.page0.text",
+      "text": "book.spectrum.guidebook.steadfast.page0.text",
       "title": "enchantment.spectrum.steadfast"
     },
     {
@@ -33,11 +33,11 @@
           ]
         }
       },
-      "text": "book.spectrum.guidebook.enchanting.steadfast.page1.text"
+      "text": "book.spectrum.guidebook.steadfast.page1.text"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "text": "book.spectrum.guidebook.enchanting.crafting",
+      "text": "book.spectrum.guidebook.crafting",
       "title1": "container.spectrum.rei.enchanter_recipe",
       "recipe_id_1": "spectrum:enchanter/spectrum_books/steadfast"
     }

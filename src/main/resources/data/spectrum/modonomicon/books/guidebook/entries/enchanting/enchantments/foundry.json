@@ -16,7 +16,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.enchanting.foundry.page0.text",
+      "text": "book.spectrum.guidebook.foundry.page0.text",
       "title": "enchantment.spectrum.autosmelt"
     },
     {
@@ -33,11 +33,11 @@
           ]
         }
       },
-      "text": "book.spectrum.guidebook.enchanting.foundry.page1.text"
+      "text": "book.spectrum.guidebook.foundry.page1.text"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "text": "book.spectrum.guidebook.enchanting.crafting",
+      "text": "book.spectrum.guidebook.crafting",
       "title1": "container.spectrum.rei.enchanter_recipe",
       "recipe_id_1": "spectrum:enchanter/spectrum_books/autosmelt"
     }

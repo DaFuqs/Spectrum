@@ -25,21 +25,21 @@
         "spectrum:textures/gui/guidebook/dd_dragonrot_swamp.png"
       ],
       "border": true,
-      "text": "book.spectrum.guidebook.dimension.dragonrot_swamp.page0.text"
+      "text": "book.spectrum.guidebook.dragonrot_swamp.page0.text"
     },
     {
       "type": "modonomicon:spotlight",
       "item": {
         "item": "spectrum:snapping_ivy"
       },
-      "text": "book.spectrum.guidebook.dimension.dragonrot_swamp.page1.text"
+      "text": "book.spectrum.guidebook.dragonrot_swamp.page1.text"
     },
     {
       "type": "modonomicon:spotlight",
       "item": {
         "item": "spectrum:rotten_ground"
       },
-      "text": "book.spectrum.guidebook.dimension.dragonrot_swamp.page2.text"
+      "text": "book.spectrum.guidebook.dragonrot_swamp.page2.text"
     }
   ]
 }

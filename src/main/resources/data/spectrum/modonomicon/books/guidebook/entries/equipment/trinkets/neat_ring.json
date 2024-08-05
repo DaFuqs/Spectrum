@@ -20,7 +20,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.equipment.neat_ring.page0.text",
+      "text": "book.spectrum.guidebook.neat_ring.page0.text",
       "title": "item.spectrum.neat_ring"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.general.mysterious_locket.name",
+  "name": "book.spectrum.guidebook.mysterious_locket.name",
   "icon": "spectrum:mysterious_locket",
   "condition": {
     "type": "modonomicon:advancement",
@@ -25,30 +25,30 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.general.mysterious_locket.name",
+      "title": "book.spectrum.guidebook.mysterious_locket.name",
       "item": {
         "item": "spectrum:mysterious_locket"
       },
-      "text": "book.spectrum.guidebook.general.mysterious_locket.page0.text"
+      "text": "book.spectrum.guidebook.mysterious_locket.page0.text"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title1": "book.spectrum.guidebook.general.mysterious_locket.page1.title",
+      "title1": "book.spectrum.guidebook.mysterious_locket.page1.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/mysterious_locket_socketing"
       },
       "recipe_id_1": "spectrum:fusion_shrine/mysterious_locket_socketing",
-      "text": "book.spectrum.guidebook.general.mysterious_locket.page1.text"
+      "text": "book.spectrum.guidebook.mysterious_locket.page1.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.general.mysterious_locket.page2.title",
+      "title": "book.spectrum.guidebook.mysterious_locket.page2.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:endgame/open_mysterious_compass"
       },
-      "text": "book.spectrum.guidebook.general.mysterious_locket.page2.text"
+      "text": "book.spectrum.guidebook.mysterious_locket.page2.text"
     },
     {
       "type": "modonomicon:image",
@@ -60,16 +60,16 @@
         "spectrum:textures/gui/guidebook/locket.png"
       ],
       "border": true,
-      "text": "book.spectrum.guidebook.general.mysterious_locket.page3.text"
+      "text": "book.spectrum.guidebook.mysterious_locket.page3.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.general.mysterious_locket.page4.title",
+      "title": "book.spectrum.guidebook.mysterious_locket.page4.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:endgame/learn_dreiton"
       },
-      "text": "book.spectrum.guidebook.general.mysterious_locket.page4.text"
+      "text": "book.spectrum.guidebook.mysterious_locket.page4.text"
     }
   ]
 }

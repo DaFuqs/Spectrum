@@ -25,7 +25,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.enchanting.big_catch.page0.text",
+      "text": "book.spectrum.guidebook.big_catch.page0.text",
       "title": "enchantment.spectrum.big_catch"
     },
     {
@@ -42,17 +42,17 @@
           ]
         }
       },
-      "text": "book.spectrum.guidebook.enchanting.big_catch.page1.text"
+      "text": "book.spectrum.guidebook.big_catch.page1.text"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "text": "book.spectrum.guidebook.enchanting.crafting",
+      "text": "book.spectrum.guidebook.crafting",
       "title1": "container.spectrum.rei.enchanter_recipe",
       "recipe_id_1": "spectrum:enchanter/spectrum_books/big_catch"
     },
     {
       "type": "spectrum:enchanter_upgrading",
-      "text": "book.spectrum.guidebook.enchanting.upgrading.text",
+      "text": "book.spectrum.guidebook.upgrading.text",
       "title1": "container.spectrum.rei.enchantment_upgrading.title",
       "recipe_id_1": "spectrum:enchantment_upgrade/spectrum/big_catch_level_2"
     }

@@ -20,12 +20,12 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.equipment.ashen_circlet.page0.text",
+      "text": "book.spectrum.guidebook.ashen_circlet.page0.text",
       "title": "item.spectrum.ashen_circlet"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "text": "book.spectrum.guidebook.equipment.ashen_circlet.page1.text",
+      "text": "book.spectrum.guidebook.ashen_circlet.page1.text",
       "title1": "container.spectrum.rei.fusion_recipe",
       "recipe_id_1": "spectrum:fusion_shrine/trinkets/ashen_circlet"
     }

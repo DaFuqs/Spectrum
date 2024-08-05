@@ -20,19 +20,19 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page0.text",
+      "text": "book.spectrum.guidebook.potion_workshop_crafting.page0.text",
       "title": "book.spectrum.guidebook.potion_workshop_crafting"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page1.title",
+      "title1": "book.spectrum.guidebook.potion_workshop_crafting.page1.title",
       "recipe_id_1": "spectrum:potion_workshop_crafting/water_bucket"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page2.title",
+      "title1": "book.spectrum.guidebook.potion_workshop_crafting.page2.title",
       "recipe_id_1": "spectrum:potion_workshop_crafting/lava_bucket",
-      "text": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page2.text"
+      "text": "book.spectrum.guidebook.potion_workshop_crafting.page2.text"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
@@ -64,24 +64,24 @@
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page7.title",
+      "title1": "book.spectrum.guidebook.potion_workshop_crafting.page7.title",
       "recipe_id_1": "spectrum:potion_workshop_crafting/honey_bottle"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page8.title",
+      "title1": "book.spectrum.guidebook.potion_workshop_crafting.page8.title",
       "recipe_id_1": "spectrum:potion_workshop_crafting/powder_snow_bucket"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page9.title",
+      "title1": "book.spectrum.guidebook.potion_workshop_crafting.page9.title",
       "recipe_id_1": "spectrum:potion_workshop_crafting/experience_bottle",
-      "text": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page9.text"
+      "text": "book.spectrum.guidebook.potion_workshop_crafting.page9.text"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
       "recipe_id_1": "spectrum:potion_workshop_crafting/dragon_breath",
-      "text": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page10.text"
+      "text": "book.spectrum.guidebook.potion_workshop_crafting.page10.text"
     }
   ]
 }

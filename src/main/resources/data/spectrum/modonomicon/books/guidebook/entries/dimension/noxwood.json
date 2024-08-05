@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.dimension.noxwood.name",
+  "name": "book.spectrum.guidebook.noxwood.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:lategame/collect_noxwood"
@@ -19,23 +19,23 @@
   "pages": [
     {
       "type": "spectrum:collection",
-      "title": "book.spectrum.guidebook.dimension.noxwood.name",
+      "title": "book.spectrum.guidebook.noxwood.name",
       "items": [
         "spectrum:slate_noxshroom",
         "spectrum:ebony_noxshroom",
         "spectrum:ivory_noxshroom",
         "spectrum:chestnut_noxshroom"
       ],
-      "text": "book.spectrum.guidebook.dimension.noxwood.page0.text"
+      "text": "book.spectrum.guidebook.noxwood.page0.text"
     },
     {
       "type": "modonomicon:crafting_recipe",
       "recipe_id_1": "spectrum:crafting_table/mushroom_stew",
-      "text": "book.spectrum.guidebook.dimension.noxwood.page1.text"
+      "text": "book.spectrum.guidebook.noxwood.page1.text"
     },
     {
       "type": "spectrum:collection",
-      "title": "book.spectrum.guidebook.dimension.noxwood.page2.title",
+      "title": "book.spectrum.guidebook.noxwood.page2.title",
       "items": [
         "spectrum:slate_noxcap_block",
         "spectrum:slate_noxcap_stem",
@@ -81,7 +81,7 @@
     },
     {
       "type": "spectrum:collection",
-      "title": "book.spectrum.guidebook.dimension.noxwood.page3.title",
+      "title": "book.spectrum.guidebook.noxwood.page3.title",
       "items": [
         "spectrum:ivory_noxcap_block",
         "spectrum:ivory_noxcap_stem",
@@ -127,36 +127,36 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "book.spectrum.guidebook.dimension.noxwood.page4.title",
+      "title": "book.spectrum.guidebook.noxwood.page4.title",
       "recipe_id_1": "spectrum:pedestal/tier1/noxwood/ivory_noxcap_hyphae",
-      "text": "book.spectrum.guidebook.dimension.noxwood.page4.text"
+      "text": "book.spectrum.guidebook.noxwood.page4.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.dimension.noxwood.page5.title",
-      "text": "book.spectrum.guidebook.dimension.noxwood.page5.text",
+      "title1": "book.spectrum.guidebook.noxwood.page5.title",
+      "text": "book.spectrum.guidebook.noxwood.page5.text",
       "recipe_id_1": "spectrum:pedestal/tier1/noxwood/ivory_light"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.dimension.noxwood.page6.title",
+      "title1": "book.spectrum.guidebook.noxwood.page6.title",
       "recipe_id_1": "spectrum:pedestal/tier1/noxwood/ivory_lamp",
-      "text": "book.spectrum.guidebook.dimension.noxwood.page6.text"
+      "text": "book.spectrum.guidebook.noxwood.page6.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.dimension.noxwood.page7.title",
+      "title1": "book.spectrum.guidebook.noxwood.page7.title",
       "recipe_id_1": "spectrum:pedestal/tier1/noxwood/ivory_amphora",
-      "text": "book.spectrum.guidebook.dimension.noxwood.page7.text"
+      "text": "book.spectrum.guidebook.noxwood.page7.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.dimension.noxwood.page8.title",
+      "title1": "book.spectrum.guidebook.noxwood.page8.title",
       "recipe_id_1": "spectrum:pedestal/tier1/noxwood/ivory_beam"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.dimension.noxwood.page9.title",
+      "title1": "book.spectrum.guidebook.noxwood.page9.title",
       "recipe_id_1": "spectrum:pedestal/tier1/noxwood/ivory_lantern"
     }
   ]

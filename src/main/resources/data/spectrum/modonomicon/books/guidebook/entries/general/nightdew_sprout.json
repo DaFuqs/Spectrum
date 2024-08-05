@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.general.nightdew_sprout.name",
+  "name": "book.spectrum.guidebook.nightdew_sprout.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:collect_nightdew"
@@ -15,11 +15,11 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.general.nightdew_sprout.name",
+      "title": "book.spectrum.guidebook.nightdew_sprout.name",
       "item": {
         "item": "spectrum:nightdew_sprout"
       },
-      "text": "book.spectrum.guidebook.general.nightdew_sprout.page0.text"
+      "text": "book.spectrum.guidebook.nightdew_sprout.page0.text"
     },
     {
       "type": "modonomicon:text",
@@ -27,8 +27,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/break_nightdew_vine"
       },
-      "title": "book.spectrum.guidebook.general.nightdew_sprout.page1.title",
-      "text": "book.spectrum.guidebook.general.nightdew_sprout.page1.text"
+      "title": "book.spectrum.guidebook.nightdew_sprout.page1.title",
+      "text": "book.spectrum.guidebook.nightdew_sprout.page1.text"
     }
   ]
 }

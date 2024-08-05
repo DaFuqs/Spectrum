@@ -15,12 +15,12 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.magical_blocks.bedrock_anvil.page0.text",
+      "text": "book.spectrum.guidebook.bedrock_anvil.page0.text",
       "title": "block.spectrum.bedrock_anvil"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "text": "book.spectrum.guidebook.magical_blocks.bedrock_anvil.page1.text",
+      "text": "book.spectrum.guidebook.bedrock_anvil.page1.text",
       "title1": "container.spectrum.rei.fusion_recipe",
       "recipe_id_1": "spectrum:fusion_shrine/bedrock/anvil"
     }

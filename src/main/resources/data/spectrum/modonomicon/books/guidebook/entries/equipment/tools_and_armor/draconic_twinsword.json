@@ -16,27 +16,27 @@
     {
       "type": "modonomicon:text",
       "title": "item.spectrum.draconic_twinsword",
-      "text": "book.spectrum.guidebook.magical_items.draconic_twinsword.page0.text"
+      "text": "book.spectrum.guidebook.draconic_twinsword.page0.text"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe_id_1": "spectrum:fusion_shrine/draconic_twinsword",
-      "text": "book.spectrum.guidebook.magical_items.draconic_twinsword.page5.text"
+      "text": "book.spectrum.guidebook.draconic_twinsword.page5.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.magical_items.draconic_twinsword.page2.text"
+      "text": "book.spectrum.guidebook.draconic_twinsword.page2.text"
     },
     {
       "type": "modonomicon:spotlight",
       "item": {
         "item": "spectrum:draconic_twinsword"
       },
-      "text": "book.spectrum.guidebook.magical_items.draconic_twinsword.page3.text"
+      "text": "book.spectrum.guidebook.draconic_twinsword.page3.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.magical_items.draconic_twinsword.page4.text"
+      "text": "book.spectrum.guidebook.draconic_twinsword.page4.text"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

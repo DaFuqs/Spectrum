@@ -25,14 +25,14 @@
         "spectrum:textures/gui/guidebook/dd_noxshroom_forest.png"
       ],
       "border": true,
-      "text": "book.spectrum.guidebook.dimension.noxshroom_forest.page0.text"
+      "text": "book.spectrum.guidebook.noxshroom_forest.page0.text"
     },
     {
       "type": "modonomicon:spotlight",
       "item": {
         "item": "spectrum:shimmel"
       },
-      "text": "book.spectrum.guidebook.dimension.noxshroom_forest.page1.text"
+      "text": "book.spectrum.guidebook.noxshroom_forest.page1.text"
     }
   ]
 }

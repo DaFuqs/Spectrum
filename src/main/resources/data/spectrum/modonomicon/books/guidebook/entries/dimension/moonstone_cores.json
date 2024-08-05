@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.general.moonstone_cores.name",
+  "name": "book.spectrum.guidebook.moonstone_cores.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:lategame/collect_moonstone_core"
@@ -22,7 +22,7 @@
       "item": {
         "item": "spectrum:moonstone_core"
       },
-      "text": "book.spectrum.guidebook.general.moonstone_cores.page0.text"
+      "text": "book.spectrum.guidebook.moonstone_cores.page0.text"
     }
   ]
 }

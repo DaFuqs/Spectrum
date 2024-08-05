@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.general.bismuth.name",
+  "name": "book.spectrum.guidebook.bismuth.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:lategame/collect_bismuth"
@@ -20,8 +20,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.general.bismuth.name",
-      "text": "book.spectrum.guidebook.general.bismuth.page0.text"
+      "title": "book.spectrum.guidebook.bismuth.name",
+      "text": "book.spectrum.guidebook.bismuth.page0.text"
     },
     {
       "type": "spectrum:crystallarieum_growing",
@@ -29,9 +29,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/crystallarieum"
       },
-      "title1": "book.spectrum.guidebook.general.bismuth.page1.title",
+      "title1": "book.spectrum.guidebook.bismuth.page1.title",
       "recipe_id_1": "spectrum:crystallarieum/bismuth",
-      "text": "book.spectrum.guidebook.general.bismuth.page1.text"
+      "text": "book.spectrum.guidebook.bismuth.page1.text"
     }
   ]
 }

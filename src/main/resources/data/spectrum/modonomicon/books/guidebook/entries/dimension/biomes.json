@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.dimension.biomes.name",
+  "name": "book.spectrum.guidebook.biomes.name",
   "icon": "spectrum:blackslag",
   "category": "spectrum:dimension",
   "hide_while_locked ": true,
@@ -15,8 +15,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.dimension.biomes.page0.title",
-      "text": "book.spectrum.guidebook.dimension.biomes.page0.text"
+      "title": "book.spectrum.guidebook.biomes.page0.title",
+      "text": "book.spectrum.guidebook.biomes.page0.text"
     }
   ]
 }

@@ -22,7 +22,7 @@
       "item": {
         "item": "spectrum:downstone"
       },
-      "text": "book.spectrum.guidebook.dimension.downstone.page0.text",
+      "text": "book.spectrum.guidebook.downstone.page0.text",
       "title": "block.spectrum.downstone"
     }
   ]

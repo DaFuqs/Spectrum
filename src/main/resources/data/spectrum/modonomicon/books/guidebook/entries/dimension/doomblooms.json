@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.dimension.doomblooms.name",
+  "name": "book.spectrum.guidebook.doomblooms.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/interact_with_doombloom"
@@ -19,15 +19,15 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.dimension.doomblooms.page0.text",
-      "title": "book.spectrum.guidebook.dimension.doomblooms.name"
+      "text": "book.spectrum.guidebook.doomblooms.page0.text",
+      "title": "book.spectrum.guidebook.doomblooms.name"
     },
     {
       "type": "modonomicon:spotlight",
       "item": {
         "item": "spectrum:doombloom_seed"
       },
-      "text": "book.spectrum.guidebook.dimension.doomblooms.page1.text"
+      "text": "book.spectrum.guidebook.doomblooms.page1.text"
     }
   ]
 }

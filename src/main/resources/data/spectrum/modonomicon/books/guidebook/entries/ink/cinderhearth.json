@@ -23,12 +23,12 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.magical_blocks.cinderhearth.page0.text",
+      "text": "book.spectrum.guidebook.cinderhearth.page0.text",
       "title": "block.spectrum.cinderhearth"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "text": "book.spectrum.guidebook.magical_blocks.cinderhearth.page1.text",
+      "text": "book.spectrum.guidebook.cinderhearth.page1.text",
       "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier3/cinderhearth"
     },
@@ -36,22 +36,22 @@
       "type": "modonomicon:multiblock",
       "multiblock_id": "spectrum:cinderhearth",
       "show_visualize_button": true,
-      "text": "book.spectrum.guidebook.magical_blocks.cinderhearth.page2.text",
-      "multiblock_name": "book.spectrum.guidebook.magical_blocks.cinderhearth.page2.multiblock_name"
+      "text": "book.spectrum.guidebook.cinderhearth.page2.text",
+      "multiblock_name": "book.spectrum.guidebook.cinderhearth.page2.multiblock_name"
     },
     {
       "type": "modonomicon:text",
       "title": "book.spectrum.guidebook.block_checklist",
-      "text": "book.spectrum.guidebook.magical_blocks.cinderhearth.page3.text"
+      "text": "book.spectrum.guidebook.cinderhearth.page3.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.magical_blocks.cinderhearth.page4.title",
-      "text": "book.spectrum.guidebook.magical_blocks.cinderhearth.page4.text"
+      "title": "book.spectrum.guidebook.cinderhearth.page4.title",
+      "text": "book.spectrum.guidebook.cinderhearth.page4.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.magical_blocks.cinderhearth.page5.text"
+      "text": "book.spectrum.guidebook.cinderhearth.page5.text"
     }
   ]
 }

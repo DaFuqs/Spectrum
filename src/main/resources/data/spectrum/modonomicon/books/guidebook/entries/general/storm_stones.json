@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.general.storm_stones.name",
+  "name": "book.spectrum.guidebook.storm_stones.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:midgame/collect_storm_stone"
@@ -15,16 +15,16 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.general.storm_stones.page0.title",
-      "text": "book.spectrum.guidebook.general.storm_stones.page0.text"
+      "title": "book.spectrum.guidebook.storm_stones.page0.title",
+      "text": "book.spectrum.guidebook.storm_stones.page0.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.general.storm_stones.name",
+      "title": "book.spectrum.guidebook.storm_stones.name",
       "item": {
         "item": "spectrum:storm_stone"
       },
-      "text": "book.spectrum.guidebook.general.storm_stones.page1.text"
+      "text": "book.spectrum.guidebook.storm_stones.page1.text"
     }
   ]
 }

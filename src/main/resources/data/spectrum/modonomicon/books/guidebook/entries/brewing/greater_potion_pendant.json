@@ -19,7 +19,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.equipment.greater_potion_pendant.page0.text",
+      "text": "book.spectrum.guidebook.greater_potion_pendant.page0.text",
       "title": "item.spectrum.greater_potion_pendant"
     },
     {

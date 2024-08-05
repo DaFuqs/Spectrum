@@ -17,7 +17,7 @@
       "type": "spectrum:status_effect",
       "title": "effect.spectrum.life_drain",
       "status_effect_id": "spectrum:life_drain",
-      "text": "book.spectrum.guidebook.brewing.life_drain.page0.text"
+      "text": "book.spectrum.guidebook.life_drain.page0.text"
     }
   ]
 }

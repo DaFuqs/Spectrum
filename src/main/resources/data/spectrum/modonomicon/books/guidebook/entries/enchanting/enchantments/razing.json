@@ -16,7 +16,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.enchanting.razing.page0.text",
+      "text": "book.spectrum.guidebook.razing.page0.text",
       "title": "enchantment.spectrum.razing"
     },
     {
@@ -33,7 +33,7 @@
           ]
         }
       },
-      "text": "book.spectrum.guidebook.enchanting.razing.page1.text"
+      "text": "book.spectrum.guidebook.razing.page1.text"
     },
     {
       "type": "spectrum:enchanter_crafting",
@@ -41,7 +41,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/razing_crafting"
       },
-      "text": "book.spectrum.guidebook.enchanting.crafting",
+      "text": "book.spectrum.guidebook.crafting",
       "title1": "container.spectrum.rei.enchanter_recipe",
       "recipe_id_1": "spectrum:enchanter/spectrum_books/razing"
     },
@@ -51,7 +51,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/razing_crafting"
       },
-      "text": "book.spectrum.guidebook.enchanting.upgrading.text",
+      "text": "book.spectrum.guidebook.upgrading.text",
       "title1": "container.spectrum.rei.enchantment_upgrading.title",
       "recipe_id_1": "spectrum:enchantment_upgrade/spectrum/razing_level_2"
     }

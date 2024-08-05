@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.general.color_mixing_white.name",
+  "name": "book.spectrum.guidebook.color_mixing_white.name",
   "icon": "minecraft:white_dye",
   "condition": {
     "type": "modonomicon:advancement",
@@ -20,16 +20,16 @@
   "pages": [
     {
       "type": "modonomicon:image",
-      "title": "book.spectrum.guidebook.general.color_mixing_white.name",
+      "title": "book.spectrum.guidebook.color_mixing_white.name",
       "images": [
         "spectrum:textures/gui/guidebook/color_mixing_white.png"
       ],
       "border": false,
-      "text": "book.spectrum.guidebook.general.color_mixing_white.page0.text"
+      "text": "book.spectrum.guidebook.color_mixing_white.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.general.color_mixing_white.page1.text"
+      "text": "book.spectrum.guidebook.color_mixing_white.page1.text"
     }
   ]
 }

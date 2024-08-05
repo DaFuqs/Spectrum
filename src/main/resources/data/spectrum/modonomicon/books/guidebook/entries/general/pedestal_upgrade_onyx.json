@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.name",
+  "name": "book.spectrum.guidebook.pedestal_upgrade_onyx.name",
   "icon": "spectrum:pedestal_onyx",
   "condition": {
     "type": "modonomicon:advancement",
@@ -20,37 +20,37 @@
   "pages": [
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.page0.title",
+      "title1": "book.spectrum.guidebook.pedestal_upgrade_onyx.page0.title",
       "recipe_id_1": "spectrum:pedestal/tier2/pedestal_onyx",
-      "text": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.page0.text"
+      "text": "book.spectrum.guidebook.pedestal_upgrade_onyx.page0.text"
     },
     {
       "type": "modonomicon:multiblock",
       "multiblock_name": "multiblock.spectrum.pedestal_advanced",
       "multiblock_id": "spectrum:pedestal_advanced",
       "show_visualize_button": true,
-      "text": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.page1.text"
+      "text": "book.spectrum.guidebook.pedestal_upgrade_onyx.page1.text"
     },
     {
       "type": "modonomicon:text",
       "title": "book.spectrum.guidebook.checklist_complete",
-      "text": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.page2.text"
+      "text": "book.spectrum.guidebook.pedestal_upgrade_onyx.page2.text"
     },
     {
       "type": "modonomicon:text",
       "title": "book.spectrum.guidebook.checklist_upgrade",
-      "text": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.page3.text"
+      "text": "book.spectrum.guidebook.pedestal_upgrade_onyx.page3.text"
     },
     {
       "type": "modonomicon:image",
-      "title": "book.spectrum.guidebook.general.pedestal_customisation.title",
+      "title": "book.spectrum.guidebook.pedestal_customisation.title",
       "images": [
         "spectrum:textures/gui/guidebook/spectrum_hall_customisation.png"
       ]
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.general.pedestal_customisation.text"
+      "text": "book.spectrum.guidebook.pedestal_customisation.text"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.enchanting.conflicting_enchantments.name",
+  "name": "book.spectrum.guidebook.conflicting_enchantments.name",
   "icon": "minecraft:enchanted_book",
   "hide_while_locked": true,
   "condition": {
@@ -21,7 +21,7 @@
   "pages": [
     {
       "type": "spectrum:nbt_spotlight",
-      "title": "book.spectrum.guidebook.enchanting.conflicting_enchantments.name",
+      "title": "book.spectrum.guidebook.conflicting_enchantments.name",
       "item": {
         "item": "minecraft:diamond_chestplate",
         "nbt": {
@@ -45,11 +45,11 @@
           ]
         }
       },
-      "text": "book.spectrum.guidebook.enchanting.conflicting_enchantments.page0.text"
+      "text": "book.spectrum.guidebook.conflicting_enchantments.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.enchanting.conflicting_enchantments.page1.text"
+      "text": "book.spectrum.guidebook.conflicting_enchantments.page1.text"
     }
   ]
 }

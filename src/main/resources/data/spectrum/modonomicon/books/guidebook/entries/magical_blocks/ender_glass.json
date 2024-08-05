@@ -18,16 +18,16 @@
       "item": {
         "item": "spectrum:ender_glass"
       },
-      "text": "book.spectrum.guidebook.redstone.ender_glass.page0.text",
+      "text": "book.spectrum.guidebook.ender_glass.page0.text",
       "title": "block.spectrum.ender_glass"
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.redstone.ender_glass.page1.text"
+      "text": "book.spectrum.guidebook.ender_glass.page1.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.redstone.ender_glass.page2.text"
+      "text": "book.spectrum.guidebook.ender_glass.page2.text"
     },
     {
       "type": "spectrum:pedestal_crafting",

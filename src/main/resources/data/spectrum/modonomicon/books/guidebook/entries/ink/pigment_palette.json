@@ -20,14 +20,14 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.ink.pigment_palette.page0.text",
+      "text": "book.spectrum.guidebook.pigment_palette.page0.text",
       "title": "item.spectrum.pigment_palette"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title1": "container.spectrum.rei.fusion_recipe",
       "recipe_id_1": "spectrum:fusion_shrine/trinkets/pigment_palette",
-      "text": "book.spectrum.guidebook.ink.pigment_palette.page1.text"
+      "text": "book.spectrum.guidebook.pigment_palette.page1.text"
     }
   ]
 }

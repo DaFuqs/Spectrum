@@ -16,7 +16,7 @@
     {
       "type": "modonomicon:text",
       "title": "item.spectrum.myceylon",
-      "text": "book.spectrum.guidebook.cuisine.myceylon.page0.text"
+      "text": "book.spectrum.guidebook.myceylon.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",

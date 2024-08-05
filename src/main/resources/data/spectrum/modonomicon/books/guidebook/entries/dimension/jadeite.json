@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.dimension.jadeite.name",
+  "name": "book.spectrum.guidebook.jadeite.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/collect_jadeite"
@@ -20,21 +20,21 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.dimension.crystal_gardens.page3.title",
+      "title": "book.spectrum.guidebook.crystal_gardens.page3.title",
       "item": {
         "item": "spectrum:jadeite_petals"
       },
-      "text": "book.spectrum.guidebook.dimension.crystal_gardens.page3.text"
+      "text": "book.spectrum.guidebook.crystal_gardens.page3.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "book.spectrum.guidebook.dimension.crystal_gardens.page4.title",
+      "title": "book.spectrum.guidebook.crystal_gardens.page4.title",
       "recipe_id_1": "spectrum:pedestal/tier1/jadeite/jadeite_petal_block",
       "text": ""
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "book.spectrum.guidebook.dimension.crystal_gardens.page5.title",
+      "title": "book.spectrum.guidebook.crystal_gardens.page5.title",
       "recipe_id_1": "spectrum:pedestal/tier1/jadeite/jadeite_petal_carpet",
       "text": ""
     }

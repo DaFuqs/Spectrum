@@ -17,12 +17,12 @@
       "type": "spectrum:status_effect",
       "title": "effect.spectrum.effect_prolonging",
       "status_effect_id": "spectrum:effect_prolonging",
-      "text": "book.spectrum.guidebook.brewing.effect_prolonging.page0.text"
+      "text": "book.spectrum.guidebook.effect_prolonging.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.brewing.stacking_effect",
-      "text": "book.spectrum.guidebook.brewing.effect_prolonging.page1.text"
+      "title": "book.spectrum.guidebook.stacking_effect",
+      "text": "book.spectrum.guidebook.effect_prolonging.page1.text"
     }
   ]
 }

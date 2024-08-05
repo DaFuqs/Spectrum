@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.general.brown_is_weird.name",
+  "name": "book.spectrum.guidebook.brown_is_weird.name",
   "icon": "spectrum:brown_pigment",
   "condition": {
     "type": "modonomicon:advancement",
@@ -23,14 +23,14 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.general.color_mixing.page2.title",
-      "text": "book.spectrum.guidebook.general.color_mixing.page2.text"
+      "title": "book.spectrum.guidebook.color_mixing.page2.title",
+      "text": "book.spectrum.guidebook.color_mixing.page2.text"
     },
     {
       "type": "spectrum:link",
-      "text": "book.spectrum.guidebook.general.color_mixing.page3.text",
+      "text": "book.spectrum.guidebook.color_mixing.page3.text",
       "url": "https://www.youtube.com/watch?v=wh4aWZRtTwU",
-      "link_text": "book.spectrum.guidebook.general.color_mixing.page3.link_text"
+      "link_text": "book.spectrum.guidebook.color_mixing.page3.link_text"
     }
   ]
 }

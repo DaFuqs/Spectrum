@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.pastel_network.redstone_interaction.name",
+  "name": "book.spectrum.guidebook.redstone_interaction.name",
   "icon": "minecraft:redstone",
   "condition": {
     "type": "modonomicon:advancement",
@@ -20,12 +20,12 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.pastel_network.redstone_interaction.page0.text",
-      "title": "book.spectrum.guidebook.pastel_network.redstone_interaction.name"
+      "text": "book.spectrum.guidebook.redstone_interaction.page0.text",
+      "title": "book.spectrum.guidebook.redstone_interaction.name"
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.pastel_network.redstone_interaction.page1.text"
+      "text": "book.spectrum.guidebook.redstone_interaction.page1.text"
     }
   ]
 }

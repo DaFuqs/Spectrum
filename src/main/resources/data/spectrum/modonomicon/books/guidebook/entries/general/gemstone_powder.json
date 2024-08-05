@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.general.gemstone_powder.name",
+  "name": "book.spectrum.guidebook.gemstone_powder.name",
   "icon": "spectrum:amethyst_powder",
   "condition": {
     "type": "modonomicon:advancement",
@@ -24,13 +24,13 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.general.gemstone_powder.page0.text",
-      "title": "book.spectrum.guidebook.general.gemstone_powder.name"
+      "text": "book.spectrum.guidebook.gemstone_powder.page0.text",
+      "title": "book.spectrum.guidebook.gemstone_powder.name"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.general.gemstone_powder.page1.title",
-      "text": "book.spectrum.guidebook.general.gemstone_powder.page1.text"
+      "title": "book.spectrum.guidebook.gemstone_powder.page1.title",
+      "text": "book.spectrum.guidebook.gemstone_powder.page1.text"
     },
     {
       "type": "spectrum:pedestal_crafting",

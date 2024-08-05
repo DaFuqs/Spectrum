@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.cuisine.tarts.name",
+  "name": "book.spectrum.guidebook.tarts.name",
   "icon": "spectrum:ashen_tart",
   "condition": {
     "type": "modonomicon:advancement",
@@ -20,14 +20,14 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.cuisine.tarts.page0.text",
-      "title": "book.spectrum.guidebook.cuisine.tarts.name"
+      "text": "book.spectrum.guidebook.tarts.page0.text",
+      "title": "book.spectrum.guidebook.tarts.name"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title1": "item.spectrum.jaramel_tart",
       "recipe_id_1": "spectrum:pedestal/tier1/food/jaramel_tart",
-      "text": "book.spectrum.guidebook.cuisine.enemy_tears"
+      "text": "book.spectrum.guidebook.enemy_tears"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -36,27 +36,27 @@
         "advancement_id": "spectrum:craft_salted_jaramel_trifle_or_tart"
       },
       "recipe_id_1": "spectrum:pedestal/tier1/food/salted_jaramel_tart",
-      "text": "book.spectrum.guidebook.cuisine.extra_salty"
+      "text": "book.spectrum.guidebook.extra_salty"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe_id_1": "spectrum:pedestal/tier1/food/ashen_tart",
-      "text": "book.spectrum.guidebook.cuisine.tarts.page3.text"
+      "text": "book.spectrum.guidebook.tarts.page3.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe_id_1": "spectrum:pedestal/tier1/food/weeping_tart",
-      "text": "book.spectrum.guidebook.cuisine.tarts.page4.text"
+      "text": "book.spectrum.guidebook.tarts.page4.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe_id_1": "spectrum:pedestal/tier1/food/whispy_tart",
-      "text": "book.spectrum.guidebook.cuisine.tarts.page5.text"
+      "text": "book.spectrum.guidebook.tarts.page5.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe_id_1": "spectrum:pedestal/tier1/food/puff_tart",
-      "text": "book.spectrum.guidebook.cuisine.tarts.page6.text"
+      "text": "book.spectrum.guidebook.tarts.page6.text"
     }
   ]
 }

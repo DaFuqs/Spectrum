@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.dimension.lizards.name",
+  "name": "book.spectrum.guidebook.lizards.name",
   "icon": "spectrum:lizard_head",
   "condition": {
     "type": "modonomicon:advancement",
@@ -19,14 +19,14 @@
   "pages": [
     {
       "type": "modonomicon:entity",
-      "title": "book.spectrum.guidebook.dimension.lizards.page0.name",
+      "title": "book.spectrum.guidebook.lizards.page0.name",
       "entity_id": "spectrum:lizard",
       "scale": 0.3,
-      "text": "book.spectrum.guidebook.dimension.lizards.page0.text"
+      "text": "book.spectrum.guidebook.lizards.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.dimension.lizards.page1.text"
+      "text": "book.spectrum.guidebook.lizards.page1.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -34,7 +34,7 @@
         "item": "spectrum:lizard_meat"
       },
       "anchor": "lizard_meat",
-      "text": "book.spectrum.guidebook.dimension.lizards.page2.text"
+      "text": "book.spectrum.guidebook.lizards.page2.text"
     }
   ]
 }

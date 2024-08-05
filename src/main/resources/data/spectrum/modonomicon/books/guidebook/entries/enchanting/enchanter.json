@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.enchanting.enchanter.name",
+  "name": "book.spectrum.guidebook.enchanter.name",
   "icon": "spectrum:enchanter",
   "condition": {
     "type": "modonomicon:advancement",
@@ -15,26 +15,26 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.enchanting.enchanter.page0.text",
-      "title": "book.spectrum.guidebook.enchanting.enchanter.name"
+      "text": "book.spectrum.guidebook.enchanter.page0.text",
+      "title": "book.spectrum.guidebook.enchanter.name"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier3/enchanter",
-      "text": "book.spectrum.guidebook.enchanting.enchanter.page1.text"
+      "text": "book.spectrum.guidebook.enchanter.page1.text"
     },
     {
       "type": "modonomicon:multiblock",
       "multiblock_id": "spectrum:enchanter",
       "show_visualize_button": true,
-      "text": "book.spectrum.guidebook.enchanting.enchanter.page2.text",
-      "multiblock_name": "book.spectrum.guidebook.enchanting.enchanter.page2.multiblock_name"
+      "text": "book.spectrum.guidebook.enchanter.page2.text",
+      "multiblock_name": "book.spectrum.guidebook.enchanter.page2.multiblock_name"
     },
     {
       "type": "modonomicon:text",
       "title": "book.spectrum.guidebook.block_checklist",
-      "text": "book.spectrum.guidebook.enchanting.enchanter.page3.text"
+      "text": "book.spectrum.guidebook.enchanter.page3.text"
     }
   ]
 }

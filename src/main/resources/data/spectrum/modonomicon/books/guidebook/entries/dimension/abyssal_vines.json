@@ -21,27 +21,27 @@
     {
       "type": "modonomicon:text",
       "title": "block.spectrum.abyssal_vines",
-      "text": "book.spectrum.guidebook.dimension.abyssal_vines.page0.text"
+      "text": "book.spectrum.guidebook.abyssal_vines.page0.text"
     },
     {
       "type": "modonomicon:multiblock",
-      "multiblock_name": "book.spectrum.guidebook.dimension.abyssal_vines.page1.title",
+      "multiblock_name": "book.spectrum.guidebook.abyssal_vines.page1.title",
       "multiblock_id": "spectrum:abyssal_vines",
       "show_visualize_button": false,
-      "text": "book.spectrum.guidebook.dimension.abyssal_vines.page1.text"
+      "text": "book.spectrum.guidebook.abyssal_vines.page1.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.dimension.abyssal_vines.page2.title",
-      "text": "book.spectrum.guidebook.dimension.abyssal_vines.page2.text"
+      "title": "book.spectrum.guidebook.abyssal_vines.page2.title",
+      "text": "book.spectrum.guidebook.abyssal_vines.page2.text"
     },
     {
       "type": "modonomicon:spotlight",
       "item": {
         "item": "spectrum:fissure_plum"
       },
-      "title": "book.spectrum.guidebook.dimension.abyssal_vines.page3.title",
-      "text": "book.spectrum.guidebook.dimension.abyssal_vines.page3.text"
+      "title": "book.spectrum.guidebook.abyssal_vines.page3.title",
+      "text": "book.spectrum.guidebook.abyssal_vines.page3.text"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.enchanting.overchanting.name",
+  "name": "book.spectrum.guidebook.overchanting.name",
   "icon": "minecraft:enchanted_book",
   "hide_while_locked": true,
   "condition": {
@@ -21,7 +21,7 @@
   "pages": [
     {
       "type": "spectrum:nbt_spotlight",
-      "title": "book.spectrum.guidebook.enchanting.overchanting.name",
+      "title": "book.spectrum.guidebook.overchanting.name",
       "item": {
         "item": "minecraft:enchanted_book",
         "nbt": {
@@ -33,21 +33,21 @@
           ]
         }
       },
-      "text": "book.spectrum.guidebook.enchanting.overchanting.page0.text"
+      "text": "book.spectrum.guidebook.overchanting.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.enchanting.overchanting.page1.title",
-      "text": "book.spectrum.guidebook.enchanting.overchanting.page1.text"
+      "title": "book.spectrum.guidebook.overchanting.page1.title",
+      "text": "book.spectrum.guidebook.overchanting.page1.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.enchanting.vanilla_enchantments.name",
-      "text": "book.spectrum.guidebook.enchanting.overchanting.page2.text"
+      "title": "book.spectrum.guidebook.vanilla_enchantments.name",
+      "text": "book.spectrum.guidebook.overchanting.page2.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.enchanting.overchanting.page3.text"
+      "text": "book.spectrum.guidebook.overchanting.page3.text"
     }
   ]
 }

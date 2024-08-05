@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.general.liquid_crystal_essences.name",
+  "name": "book.spectrum.guidebook.liquid_crystal_essences.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/collect_any_crystallized_block"
@@ -28,7 +28,7 @@
         "item": "spectrum:blazing_crystal"
       },
       "title": "block.spectrum.blazing_crystal",
-      "text": "book.spectrum.guidebook.general.liquid_crystal_essences.page0.text"
+      "text": "book.spectrum.guidebook.liquid_crystal_essences.page0.text"
     },
     {
       "type": "spectrum:anvil_crushing",
@@ -38,7 +38,7 @@
         "advancement_id": "spectrum:hidden/collect_blazing_crystal"
       },
       "recipe_id_1": "spectrum:anvil_crushing/incandescent_essence_from_blazing_crystal",
-      "text": "book.spectrum.guidebook.general.liquid_crystal_essences.page1.text"
+      "text": "book.spectrum.guidebook.liquid_crystal_essences.page1.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -49,7 +49,7 @@
       "item": {
         "item": "spectrum:frostbite_crystal"
       },
-      "text": "book.spectrum.guidebook.general.liquid_crystal_essences.page2.text"
+      "text": "book.spectrum.guidebook.liquid_crystal_essences.page2.text"
     },
     {
       "type": "spectrum:anvil_crushing",
@@ -59,7 +59,7 @@
         "advancement_id": "spectrum:hidden/collect_frostbite_crystal"
       },
       "recipe_id_1": "spectrum:anvil_crushing/frostbite_essence_from_frostbite_crystal",
-      "text": "book.spectrum.guidebook.general.liquid_crystal_essences.page3.text"
+      "text": "book.spectrum.guidebook.liquid_crystal_essences.page3.text"
     }
   ]
 }

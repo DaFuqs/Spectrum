@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.magical_blocks.midnight_chip.name",
+  "name": "book.spectrum.guidebook.midnight_chip.name",
   "icon": "spectrum:midnight_chip",
   "condition": {
     "type": "modonomicon:advancement",
@@ -24,7 +24,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/midnight_solution"
       },
-      "text": "book.spectrum.guidebook.magical_blocks.midnight_solution.page2.text",
+      "text": "book.spectrum.guidebook.midnight_solution.page2.text",
       "title1": "item.spectrum.midnight_solution_bucket",
       "recipe_id_1": "spectrum:potion_workshop_crafting/midnight_solution_bucket"
     }

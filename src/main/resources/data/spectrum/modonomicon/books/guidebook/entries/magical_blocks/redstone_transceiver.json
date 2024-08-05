@@ -18,14 +18,14 @@
       "item": {
         "item": "spectrum:redstone_transceiver"
       },
-      "text": "book.spectrum.guidebook.redstone.redstone_transceiver.page0.text",
+      "text": "book.spectrum.guidebook.redstone_transceiver.page0.text",
       "title": "block.spectrum.redstone_transceiver"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier2/redstone_transceiver",
-      "text": "book.spectrum.guidebook.redstone.redstone_transceiver.page1.text"
+      "text": "book.spectrum.guidebook.redstone_transceiver.page1.text"
     }
   ]
 }

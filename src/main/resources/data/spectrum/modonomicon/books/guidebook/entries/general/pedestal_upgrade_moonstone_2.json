@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.name",
+  "name": "book.spectrum.guidebook.pedestal_upgrade_moonstone_2.name",
   "icon": "spectrum:pedestal_moonstone",
   "condition": {
     "type": "modonomicon:advancement",
@@ -21,39 +21,39 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone.name",
+      "title": "book.spectrum.guidebook.pedestal_upgrade_moonstone.name",
       "item": {
         "item": "spectrum:moonstone_chiseled_basalt"
       },
-      "text": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.page0.text"
+      "text": "book.spectrum.guidebook.pedestal_upgrade_moonstone_2.page0.text"
     },
     {
       "type": "modonomicon:multiblock",
       "multiblock_name": "multiblock.spectrum.pedestal_complex",
       "multiblock_id": "spectrum:pedestal_complex",
       "show_visualize_button": true,
-      "text": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone.dimensions"
+      "text": "book.spectrum.guidebook.pedestal_upgrade_moonstone.dimensions"
     },
     {
       "type": "modonomicon:text",
       "title": "book.spectrum.guidebook.checklist_complete",
-      "text": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.page2.text"
+      "text": "book.spectrum.guidebook.pedestal_upgrade_moonstone_2.page2.text"
     },
     {
       "type": "modonomicon:text",
       "title": "book.spectrum.guidebook.checklist_upgrade",
-      "text": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.page3.text"
+      "text": "book.spectrum.guidebook.pedestal_upgrade_moonstone_2.page3.text"
     },
     {
       "type": "modonomicon:image",
-      "title": "book.spectrum.guidebook.general.pedestal_customisation.title",
+      "title": "book.spectrum.guidebook.pedestal_customisation.title",
       "images": [
         "spectrum:textures/gui/guidebook/spectrum_complex_customisation.png"
       ]
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.general.pedestal_customisation.text"
+      "text": "book.spectrum.guidebook.pedestal_customisation.text"
     }
   ]
 }

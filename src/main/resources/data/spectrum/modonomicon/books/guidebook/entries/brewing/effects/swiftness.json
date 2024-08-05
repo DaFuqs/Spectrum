@@ -21,7 +21,7 @@
       "type": "spectrum:status_effect",
       "title": "effect.spectrum.swiftness",
       "status_effect_id": "spectrum:swiftness",
-      "text": "book.spectrum.guidebook.brewing.swiftness_stiffness.page0.text"
+      "text": "book.spectrum.guidebook.swiftness_stiffness.page0.text"
     }
   ]
 }

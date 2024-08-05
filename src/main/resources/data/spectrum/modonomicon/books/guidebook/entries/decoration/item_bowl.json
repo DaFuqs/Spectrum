@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.decoration.item_bowl.name",
+  "name": "book.spectrum.guidebook.item_bowl.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/item_bowl"
@@ -19,18 +19,18 @@
   "pages": [
     {
       "type": "spectrum:collection",
-      "title": "book.spectrum.guidebook.decoration.item_bowl.name",
+      "title": "book.spectrum.guidebook.item_bowl.name",
       "items": [
         "spectrum:item_bowl_basalt",
         "spectrum:item_bowl_calcite"
       ],
-      "text": "book.spectrum.guidebook.decoration.item_bowl.page0.text"
+      "text": "book.spectrum.guidebook.item_bowl.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier3/item_bowl_calcite",
-      "text": "book.spectrum.guidebook.decoration.item_bowl.page1.text"
+      "text": "book.spectrum.guidebook.item_bowl.page1.text"
     }
   ]
 }

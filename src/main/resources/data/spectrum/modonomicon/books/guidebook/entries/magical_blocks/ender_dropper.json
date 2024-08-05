@@ -19,7 +19,7 @@
       "item": {
         "item": "spectrum:ender_dropper"
       },
-      "text": "book.spectrum.guidebook.magical_blocks.ender_dropper.page0.text"
+      "text": "book.spectrum.guidebook.ender_dropper.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",

@@ -15,12 +15,12 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.magical_items.exchanging_staff.page0.text",
+      "text": "book.spectrum.guidebook.exchanging_staff.page0.text",
       "title": "item.spectrum.exchanging_staff"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "text": "book.spectrum.guidebook.magical_items.exchanging_staff.page1.text",
+      "text": "book.spectrum.guidebook.exchanging_staff.page1.text",
       "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier4/exchanging_staff"
     },
@@ -42,7 +42,7 @@
           ]
         }
       },
-      "text": "book.spectrum.guidebook.magical_items.exchanging_staff.page2.text"
+      "text": "book.spectrum.guidebook.exchanging_staff.page2.text"
     },
     {
       "type": "spectrum:nbt_spotlight",
@@ -62,7 +62,7 @@
           ]
         }
       },
-      "text": "book.spectrum.guidebook.magical_items.exchanging_staff.page3.text"
+      "text": "book.spectrum.guidebook.exchanging_staff.page3.text"
     },
     {
       "type": "spectrum:nbt_spotlight",
@@ -82,7 +82,7 @@
           ]
         }
       },
-      "text": "book.spectrum.guidebook.magical_items.exchanging_staff.page4.text"
+      "text": "book.spectrum.guidebook.exchanging_staff.page4.text"
     }
   ]
 }

@@ -18,14 +18,14 @@
       "item": {
         "item": "spectrum:block_placer"
       },
-      "text": "book.spectrum.guidebook.redstone.block_placer.page0.text",
+      "text": "book.spectrum.guidebook.block_placer.page0.text",
       "title": "block.spectrum.block_placer"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier1/block_placer",
-      "text": "book.spectrum.guidebook.redstone.block_placer.page1.text"
+      "text": "book.spectrum.guidebook.block_placer.page1.text"
     }
   ]
 }

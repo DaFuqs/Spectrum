@@ -18,12 +18,12 @@
       "item": {
         "item": "spectrum:restocking_chest"
       },
-      "text": "book.spectrum.guidebook.magical_blocks.fabrication_chest.page0.text",
+      "text": "book.spectrum.guidebook.fabrication_chest.page0.text",
       "title": "block.spectrum.restocking_chest"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "text": "book.spectrum.guidebook.magical_blocks.fabrication_chest.page1.text",
+      "text": "book.spectrum.guidebook.fabrication_chest.page1.text",
       "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier3/restocking_chest"
     }

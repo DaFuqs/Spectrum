@@ -19,32 +19,32 @@
       "item": {
         "item": "spectrum:amethyst_semi_permeable_glass"
       },
-      "text": "book.spectrum.guidebook.magical_blocks.semi_permeable_glass.page0.text"
+      "text": "book.spectrum.guidebook.semi_permeable_glass.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.magical_blocks.semi_permeable_glass.page1.text"
+      "text": "book.spectrum.guidebook.semi_permeable_glass.page1.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "text": "book.spectrum.guidebook.magical_blocks.semi_permeable_glass.page2.text",
-      "title1": "book.spectrum.guidebook.magical_blocks.semi_permeable_glass.page2.title",
+      "text": "book.spectrum.guidebook.semi_permeable_glass.page2.text",
+      "title1": "book.spectrum.guidebook.semi_permeable_glass.page2.title",
       "recipe_id_1": "spectrum:pedestal/tier3/semi_permeable_glass/glass"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "text": "book.spectrum.guidebook.magical_blocks.semi_permeable_glass.page3.text",
-      "title1": "book.spectrum.guidebook.magical_blocks.semi_permeable_glass.page3.title",
+      "text": "book.spectrum.guidebook.semi_permeable_glass.page3.text",
+      "title1": "book.spectrum.guidebook.semi_permeable_glass.page3.title",
       "recipe_id_1": "spectrum:pedestal/tier3/semi_permeable_glass/amethyst"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.magical_blocks.semi_permeable_glass.page4.title",
+      "title1": "book.spectrum.guidebook.semi_permeable_glass.page4.title",
       "recipe_id_1": "spectrum:pedestal/tier3/semi_permeable_glass/tinted"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.magical_blocks.semi_permeable_glass.page5.title",
+      "title1": "book.spectrum.guidebook.semi_permeable_glass.page5.title",
       "recipe_id_1": "spectrum:pedestal/tier3/semi_permeable_glass/radiant"
     }
   ]

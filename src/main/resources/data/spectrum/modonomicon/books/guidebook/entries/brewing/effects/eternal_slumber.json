@@ -21,7 +21,7 @@
       "type": "spectrum:status_effect",
       "title": "effect.spectrum.eternal_slumber",
       "status_effect_id": "spectrum:eternal_slumber",
-      "text": "book.spectrum.guidebook.brewing.eternal_slumber.page0.text"
+      "text": "book.spectrum.guidebook.eternal_slumber.page0.text"
     },
     {
       "type": "modonomicon:text",

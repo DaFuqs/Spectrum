@@ -18,26 +18,26 @@
       "item": {
         "item": "spectrum:bottomless_bundle"
       },
-      "text": "book.spectrum.guidebook.magical_items.bottomless_bundle.page0.text",
+      "text": "book.spectrum.guidebook.bottomless_bundle.page0.text",
       "title": "item.spectrum.bottomless_bundle"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "text": "book.spectrum.guidebook.magical_items.bottomless_bundle.page1.text",
+      "text": "book.spectrum.guidebook.bottomless_bundle.page1.text",
       "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier2/bottomless_bundle"
     },
     {
       "type": "modonomicon:image",
-      "title": "book.spectrum.guidebook.magical_items.bottomless_bundle.page2.title",
+      "title": "book.spectrum.guidebook.bottomless_bundle.page2.title",
       "images": [
         "spectrum:textures/gui/guidebook/bottomless_bundle_automation.png"
       ],
-      "text": "book.spectrum.guidebook.magical_items.bottomless_bundle.page2.text"
+      "text": "book.spectrum.guidebook.bottomless_bundle.page2.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.magical_items.bottomless_bundle.page3.text"
+      "text": "book.spectrum.guidebook.bottomless_bundle.page3.text"
     },
     {
       "type": "spectrum:nbt_spotlight",
@@ -57,7 +57,7 @@
           ]
         }
       },
-      "text": "book.spectrum.guidebook.magical_items.bottomless_bundle.page4.text"
+      "text": "book.spectrum.guidebook.bottomless_bundle.page4.text"
     },
     {
       "type": "spectrum:nbt_spotlight",
@@ -77,7 +77,7 @@
           ]
         }
       },
-      "text": "book.spectrum.guidebook.magical_items.bottomless_bundle.page5.text"
+      "text": "book.spectrum.guidebook.bottomless_bundle.page5.text"
     }
   ]
 }

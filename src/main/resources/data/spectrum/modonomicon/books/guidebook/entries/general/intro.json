@@ -1,37 +1,37 @@
 {
-  "name": "book.spectrum.guidebook.general.intro.name",
+  "name": "book.spectrum.guidebook.intro.name",
+  "description": "book.spectrum.guidebook.intro.description",
   "icon": "spectrum:pedestal_basic_amethyst",
   "category": "spectrum:general",
   "hide_while_locked ": false,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 4,
-  "description": "book.spectrum.guidebook.general.intro.description",
   "x": -12,
   "y": -3,
   "pages": [
     {
       "type": "modonomicon:image",
-      "title": "book.spectrum.guidebook.general.intro.page0.title",
+      "title": "book.spectrum.guidebook.intro.page0.title",
       "images": [
         "spectrum:textures/gui/guidebook/spectrum.png"
       ],
       "border": true,
-      "text": "book.spectrum.guidebook.general.intro.page0.text"
+      "text": "book.spectrum.guidebook.intro.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.general.intro.page1.text"
+      "text": "book.spectrum.guidebook.intro.page1.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.general.intro.page2.title",
-      "text": "book.spectrum.guidebook.general.intro.page2.text"
+      "title": "book.spectrum.guidebook.intro.page2.title",
+      "text": "book.spectrum.guidebook.intro.page2.text"
     },
     {
       "type": "spectrum:link",
-      "text": "book.spectrum.guidebook.general.intro.page3.text",
-      "link_text": "book.spectrum.guidebook.general.intro.page3.link_text",
+      "text": "book.spectrum.guidebook.intro.page3.text",
+      "link_text": "book.spectrum.guidebook.intro.page3.link_text",
       "url": "https://discord.com/invite/EXU9XFXT8a"
     }
   ]

@@ -25,21 +25,21 @@
         "spectrum:textures/gui/guidebook/dd_razor_edge.png"
       ],
       "border": true,
-      "text": "book.spectrum.guidebook.dimension.razor_edge.page0.text"
+      "text": "book.spectrum.guidebook.razor_edge.page0.text"
     },
     {
       "type": "modonomicon:spotlight",
       "item": {
         "item": "spectrum:sawblade_grass"
       },
-      "text": "book.spectrum.guidebook.dimension.razor_edge.page1.text"
+      "text": "book.spectrum.guidebook.razor_edge.page1.text"
     },
     {
       "type": "modonomicon:spotlight",
       "item": {
         "item": "spectrum:bristle_sprouts"
       },
-      "text": "book.spectrum.guidebook.dimension.razor_edge.page2.text"
+      "text": "book.spectrum.guidebook.razor_edge.page2.text"
     }
   ]
 }

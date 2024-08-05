@@ -16,7 +16,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.enchanting.disarming.page0.text",
+      "text": "book.spectrum.guidebook.disarming.page0.text",
       "title": "enchantment.spectrum.disarming"
     },
     {
@@ -33,17 +33,17 @@
           ]
         }
       },
-      "text": "book.spectrum.guidebook.enchanting.disarming.page1.text"
+      "text": "book.spectrum.guidebook.disarming.page1.text"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "text": "book.spectrum.guidebook.enchanting.crafting",
+      "text": "book.spectrum.guidebook.crafting",
       "title1": "container.spectrum.rei.enchanter_recipe",
       "recipe_id_1": "spectrum:enchanter/spectrum_books/disarming"
     },
     {
       "type": "spectrum:enchanter_upgrading",
-      "text": "book.spectrum.guidebook.enchanting.upgrading.text",
+      "text": "book.spectrum.guidebook.upgrading.text",
       "title1": "container.spectrum.rei.enchantment_upgrading.title",
       "recipe_id_1": "spectrum:enchantment_upgrade/spectrum/disarming_level_2"
     }

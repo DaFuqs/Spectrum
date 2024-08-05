@@ -16,12 +16,12 @@
     {
       "type": "modonomicon:text",
       "title": "item.spectrum.primordial_lighter",
-      "text": "book.spectrum.guidebook.magical_items.primordial_lighter.page0.text"
+      "text": "book.spectrum.guidebook.primordial_lighter.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe_id_1": "spectrum:pedestal/tier3/primordial_lighter",
-      "text": "book.spectrum.guidebook.magical_items.primordial_lighter.page1.text"
+      "text": "book.spectrum.guidebook.primordial_lighter.page1.text"
     }
   ]
 }

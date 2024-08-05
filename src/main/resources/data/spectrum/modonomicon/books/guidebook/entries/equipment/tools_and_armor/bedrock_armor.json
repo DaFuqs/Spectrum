@@ -15,27 +15,27 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.equipment.bedrock_armor.page0.text",
+      "text": "book.spectrum.guidebook.bedrock_armor.page0.text",
       "title": "tag.spectrum.bedrock_armor"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "text": "book.spectrum.guidebook.equipment.bedrock_armor.page1.text",
+      "text": "book.spectrum.guidebook.bedrock_armor.page1.text",
       "recipe_id_1": "spectrum:fusion_shrine/bedrock/helmet"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "text": "book.spectrum.guidebook.equipment.bedrock_armor.page2.text",
+      "text": "book.spectrum.guidebook.bedrock_armor.page2.text",
       "recipe_id_1": "spectrum:fusion_shrine/bedrock/chestplate"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "text": "book.spectrum.guidebook.equipment.bedrock_armor.page3.text",
+      "text": "book.spectrum.guidebook.bedrock_armor.page3.text",
       "recipe_id_1": "spectrum:fusion_shrine/bedrock/leggings"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "text": "book.spectrum.guidebook.equipment.bedrock_armor.page4.text",
+      "text": "book.spectrum.guidebook.bedrock_armor.page4.text",
       "recipe_id_1": "spectrum:fusion_shrine/bedrock/boots"
     }
   ]

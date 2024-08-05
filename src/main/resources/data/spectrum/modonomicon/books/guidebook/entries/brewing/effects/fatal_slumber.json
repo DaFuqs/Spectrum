@@ -21,12 +21,12 @@
       "type": "spectrum:status_effect",
       "title": "effect.spectrum.fatal_slumber",
       "status_effect_id": "spectrum:fatal_slumber",
-      "text": "book.spectrum.guidebook.brewing.fatal_slumber.page0.text"
+      "text": "book.spectrum.guidebook.fatal_slumber.page0.text"
     },
     {
       "type": "modonomicon:text",
       "title": "book.spectrum.guidebook.soporific",
-      "text": "book.spectrum.guidebook.brewing.fatal_slumber.page1.text"
+      "text": "book.spectrum.guidebook.fatal_slumber.page1.text"
     }
   ]
 }

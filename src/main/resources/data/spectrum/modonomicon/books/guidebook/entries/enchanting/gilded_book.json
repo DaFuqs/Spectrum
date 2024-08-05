@@ -19,11 +19,11 @@
         "item": "spectrum:gilded_book"
       },
       "title": "item.spectrum.gilded_book",
-      "text": "book.spectrum.guidebook.enchanting.gilded_book.page0.text"
+      "text": "book.spectrum.guidebook.gilded_book.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.enchanting.gilded_book.page1.text"
+      "text": "book.spectrum.guidebook.gilded_book.page1.text"
     }
   ]
 }

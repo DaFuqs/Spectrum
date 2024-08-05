@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.general.color_mixing.name",
+  "name": "book.spectrum.guidebook.color_mixing.name",
   "icon": "minecraft:light_blue_dye",
   "condition": {
     "type": "modonomicon:advancement",
@@ -16,16 +16,16 @@
   "pages": [
     {
       "type": "modonomicon:image",
-      "title": "book.spectrum.guidebook.general.color_mixing.name",
+      "title": "book.spectrum.guidebook.color_mixing.name",
       "images": [
         "spectrum:textures/gui/guidebook/color_mixing.png"
       ],
       "border": false,
-      "text": "book.spectrum.guidebook.general.color_mixing.page0.text"
+      "text": "book.spectrum.guidebook.color_mixing.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.general.color_mixing.page1.text"
+      "text": "book.spectrum.guidebook.color_mixing.page1.text"
     }
   ]
 }

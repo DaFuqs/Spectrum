@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.pastel_network.connection_node.name",
+  "name": "book.spectrum.guidebook.connection_node.name",
   "icon": "spectrum:connection_node",
   "condition": {
     "type": "modonomicon:advancement",
@@ -20,12 +20,12 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.pastel_network.connection_node.page0.text",
-      "title": "book.spectrum.guidebook.pastel_network.connection_node.name"
+      "text": "book.spectrum.guidebook.connection_node.page0.text",
+      "title": "book.spectrum.guidebook.connection_node.name"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "text": "book.spectrum.guidebook.pastel_network.connection_node.page1.text",
+      "text": "book.spectrum.guidebook.connection_node.page1.text",
       "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier3/pastel_network/connection_node"
     }

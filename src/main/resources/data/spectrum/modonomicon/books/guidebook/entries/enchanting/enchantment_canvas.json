@@ -15,12 +15,12 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.magical_items.enchantment_canvas.page0.text",
+      "text": "book.spectrum.guidebook.enchantment_canvas.page0.text",
       "title": "item.spectrum.enchantment_canvas"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "text": "book.spectrum.guidebook.magical_items.enchantment_canvas.page1.text",
+      "text": "book.spectrum.guidebook.enchantment_canvas.page1.text",
       "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier2/enchantment_canvas"
     }

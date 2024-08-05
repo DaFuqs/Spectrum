@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.dimension.erasers.name",
+  "name": "book.spectrum.guidebook.erasers.name",
   "icon": "spectrum:eraser_head",
   "condition": {
     "type": "modonomicon:advancement",
@@ -19,14 +19,14 @@
   "pages": [
     {
       "type": "modonomicon:entity",
-      "title": "book.spectrum.guidebook.dimension.erasers.page0.name",
+      "title": "book.spectrum.guidebook.erasers.page0.name",
       "entity_id": "spectrum:eraser",
       "scale": 0.5,
-      "text": "book.spectrum.guidebook.dimension.erasers.page0.text"
+      "text": "book.spectrum.guidebook.erasers.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.dimension.erasers.page1.text"
+      "text": "book.spectrum.guidebook.erasers.page1.text"
     }
   ]
 }

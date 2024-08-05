@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.cuisine.enchanted_food.name",
+  "name": "book.spectrum.guidebook.enchanted_food.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:lategame/collect_pure_resource"
@@ -16,12 +16,12 @@
     {
       "type": "spectrum:enchanter_crafting",
       "recipe_id_1": "spectrum:enchanter/enchanted_golden_apple",
-      "text": "book.spectrum.guidebook.cuisine.enchanted_food.page0.text"
+      "text": "book.spectrum.guidebook.enchanted_food.page0.text"
     },
     {
       "type": "spectrum:enchanter_crafting",
       "recipe_id_1": "spectrum:enchanter/enchanted_golden_carrot",
-      "text": "book.spectrum.guidebook.cuisine.enchanted_food.page1.text"
+      "text": "book.spectrum.guidebook.enchanted_food.page1.text"
     }
   ]
 }

@@ -15,12 +15,12 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.equipment.nightfalls_blade.page0.text",
+      "text": "book.spectrum.guidebook.nightfalls_blade.page0.text",
       "title": "item.spectrum.nightfalls_blade"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "text": "book.spectrum.guidebook.equipment.nightfalls_blade.page1.text",
+      "text": "book.spectrum.guidebook.nightfalls_blade.page1.text",
       "recipe_id_1": "spectrum:fusion_shrine/nightfalls_blade"
     }
   ]

@@ -15,7 +15,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.magical_items.artisans_atlas.page0.text",
+      "text": "book.spectrum.guidebook.artisans_atlas.page0.text",
       "title": "item.spectrum.artisans_atlas"
     },
     {

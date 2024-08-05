@@ -22,14 +22,14 @@
       "item": {
         "item": "spectrum:pyrite"
       },
-      "text": "book.spectrum.guidebook.dimension.pyrite.page0.text",
+      "text": "book.spectrum.guidebook.pyrite.page0.text",
       "title": "block.spectrum.pyrite"
     },
     {
       "type": "modonomicon:crafting_recipe",
-      "title1": "book.spectrum.guidebook.dimension.pyrite.page1.title",
+      "title1": "book.spectrum.guidebook.pyrite.page1.title",
       "recipe_id_1": "spectrum:crafting_table/pyrite/pyrite_chunks_to_pyrite",
-      "text": "book.spectrum.guidebook.dimension.pyrite.page1.text"
+      "text": "book.spectrum.guidebook.pyrite.page1.text"
     },
     {
       "type": "spectrum:collection",
@@ -44,15 +44,15 @@
         "spectrum:pyrite_panneling",
         "spectrum:pyrite_vent"
       ],
-      "text": "book.spectrum.guidebook.dimension.pyrite.page2.text"
+      "text": "book.spectrum.guidebook.pyrite.page2.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.dimension.pyrite.page3.title",
+      "title": "book.spectrum.guidebook.pyrite.page3.title",
       "item": {
         "item": "spectrum:pyrite_ripper"
       },
-      "text": "book.spectrum.guidebook.dimension.pyrite.page3.text"
+      "text": "book.spectrum.guidebook.pyrite.page3.text"
     }
   ]
 }

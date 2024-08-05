@@ -16,7 +16,7 @@
     {
       "type": "modonomicon:text",
       "title": "tag.spectrum.mob_heads",
-      "text": "book.spectrum.guidebook.creating_life.mob_heads.page0.text"
+      "text": "book.spectrum.guidebook.mob_heads.page0.text"
     },
     {
       "type": "spectrum:collection",

@@ -16,7 +16,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.enchanting.improved_critical.page0.text",
+      "text": "book.spectrum.guidebook.improved_critical.page0.text",
       "title": "enchantment.spectrum.improved_critical"
     },
     {
@@ -33,17 +33,17 @@
           ]
         }
       },
-      "text": "book.spectrum.guidebook.enchanting.improved_critical.page1.text"
+      "text": "book.spectrum.guidebook.improved_critical.page1.text"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "text": "book.spectrum.guidebook.enchanting.crafting",
+      "text": "book.spectrum.guidebook.crafting",
       "title1": "container.spectrum.rei.enchanter_recipe",
       "recipe_id_1": "spectrum:enchanter/spectrum_books/improved_critical"
     },
     {
       "type": "spectrum:enchanter_upgrading",
-      "text": "book.spectrum.guidebook.enchanting.upgrading.text",
+      "text": "book.spectrum.guidebook.upgrading.text",
       "title1": "container.spectrum.rei.enchantment_upgrading.title",
       "recipe_id_1": "spectrum:enchantment_upgrade/spectrum/improved_critical_level_2"
     }

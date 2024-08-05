@@ -1,7 +1,7 @@
 {
   "type": "modonomicon:category_link",
   "category_to_open": "spectrum:dimension",
-  "name": "book.spectrum.guidebook.dimension.delving_deeper_down.name",
+  "name": "book.spectrum.guidebook.delving_deeper_down.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:midgame/enter_dimension"

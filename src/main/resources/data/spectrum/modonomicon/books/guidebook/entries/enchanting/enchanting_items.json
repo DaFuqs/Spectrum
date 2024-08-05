@@ -21,7 +21,7 @@
     {
       "type": "modonomicon:text",
       "title": "container.spectrum.rei.enchanting.title",
-      "text": "book.spectrum.guidebook.enchanting.enchanting_items.page0.text"
+      "text": "book.spectrum.guidebook.enchanting_items.page0.text"
     },
     {
       "type": "modonomicon:image",
@@ -29,20 +29,20 @@
         "spectrum:textures/gui/guidebook/enchanting_items.png"
       ],
       "border": true,
-      "text": "book.spectrum.guidebook.enchanting.enchanting_items.page1.text"
+      "text": "book.spectrum.guidebook.enchanting_items.page1.text"
     },
     {
       "type": "modonomicon:spotlight",
       "item": {
         "item": "minecraft:enchanted_book"
       },
-      "title": "book.spectrum.guidebook.enchanting.enchanting_items.page2.title",
-      "text": "book.spectrum.guidebook.enchanting.enchanting_items.page2.text"
+      "title": "book.spectrum.guidebook.enchanting_items.page2.title",
+      "text": "book.spectrum.guidebook.enchanting_items.page2.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.enchanting.enchanting_items.page3.title",
-      "text": "book.spectrum.guidebook.enchanting.enchanting_items.page3.text"
+      "title": "book.spectrum.guidebook.enchanting_items.page3.title",
+      "text": "book.spectrum.guidebook.enchanting_items.page3.text"
     }
   ]
 }

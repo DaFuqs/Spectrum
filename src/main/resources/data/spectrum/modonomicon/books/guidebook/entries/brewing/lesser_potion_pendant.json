@@ -19,7 +19,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.equipment.lesser_potion_pendant.page0.text",
+      "text": "book.spectrum.guidebook.lesser_potion_pendant.page0.text",
       "title": "item.spectrum.lesser_potion_pendant"
     },
     {

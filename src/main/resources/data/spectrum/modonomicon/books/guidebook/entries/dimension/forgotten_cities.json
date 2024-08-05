@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.dimension.forgotten_cities.name",
+  "name": "book.spectrum.guidebook.forgotten_cities.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:lategame/find_forgotten_city"
@@ -19,8 +19,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.dimension.forgotten_cities.page0.title",
-      "text": "book.spectrum.guidebook.dimension.forgotten_cities.page0.text"
+      "title": "book.spectrum.guidebook.forgotten_cities.page0.title",
+      "text": "book.spectrum.guidebook.forgotten_cities.page0.text"
     }
   ]
 }

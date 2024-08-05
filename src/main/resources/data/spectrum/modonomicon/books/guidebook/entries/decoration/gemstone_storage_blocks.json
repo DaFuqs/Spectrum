@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.decoration.gemstone_storage_blocks.name",
+  "name": "book.spectrum.guidebook.gemstone_storage_blocks.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:spectrum"
@@ -19,8 +19,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.decoration.gemstone_storage_blocks.name",
-      "text": "book.spectrum.guidebook.decoration.gemstone_storage_blocks.page0.text"
+      "title": "book.spectrum.guidebook.gemstone_storage_blocks.name",
+      "text": "book.spectrum.guidebook.gemstone_storage_blocks.page0.text"
     },
     {
       "type": "modonomicon:crafting_recipe",

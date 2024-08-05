@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.cuisine.sawblade_holly.name",
+  "name": "book.spectrum.guidebook.sawblade_holly.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:lategame/collect_prickly_bayleaf"
@@ -18,15 +18,15 @@
       "item": {
         "item": "spectrum:sawblade_holly_berry"
       },
-      "text": "book.spectrum.guidebook.cuisine.sawblade_holly.page0.text",
-      "title": "book.spectrum.guidebook.cuisine.sawblade_holly.name"
+      "text": "book.spectrum.guidebook.sawblade_holly.page0.text",
+      "title": "book.spectrum.guidebook.sawblade_holly.name"
     },
     {
       "type": "modonomicon:spotlight",
       "item": {
         "item": "spectrum:prickly_bayleaf"
       },
-      "text": "book.spectrum.guidebook.cuisine.sawblade_holly.page1.text"
+      "text": "book.spectrum.guidebook.sawblade_holly.page1.text"
     },
     {
       "type": "spectrum:pedestal_crafting",

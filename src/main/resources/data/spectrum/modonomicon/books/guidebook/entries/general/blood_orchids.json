@@ -24,7 +24,7 @@
       "type": "spectrum:spirit_instiller_crafting",
       "title": "block.spectrum.blood_orchid",
       "recipe_id_1": "spectrum:spirit_instiller/blood_orchid",
-      "text": "book.spectrum.guidebook.general.blood_orchids.page1.text"
+      "text": "book.spectrum.guidebook.blood_orchids.page1.text"
     }
   ]
 }

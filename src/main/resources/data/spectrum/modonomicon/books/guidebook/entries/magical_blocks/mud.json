@@ -19,22 +19,22 @@
       "item": {
         "item": "spectrum:mud_bucket"
       },
-      "text": "book.spectrum.guidebook.magical_blocks.mud.page0.text"
+      "text": "book.spectrum.guidebook.mud.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "text": "book.spectrum.guidebook.magical_blocks.mud.page1.text",
+      "text": "book.spectrum.guidebook.mud.page1.text",
       "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier1/mud_bucket"
     },
     {
       "type": "modonomicon:text",
       "title": "book.spectrum.guidebook.item_conversion",
-      "text": "book.spectrum.guidebook.magical_blocks.mud.page2.text"
+      "text": "book.spectrum.guidebook.mud.page2.text"
     },
     {
       "type": "spectrum:mud_converting",
-      "title1": "book.spectrum.guidebook.magical_blocks.mud.page3.title",
+      "title1": "book.spectrum.guidebook.mud.page3.title",
       "recipe_id_1": "spectrum:mud_converting/rabbit_hide"
     }
   ]

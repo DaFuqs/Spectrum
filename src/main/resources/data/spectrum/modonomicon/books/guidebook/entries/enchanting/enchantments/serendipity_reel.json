@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.enchanting.serendipity_reel.name",
+  "name": "book.spectrum.guidebook.serendipity_reel.name",
   "icon": "spectrum:lagoon_rod",
   "condition": {
     "type": "modonomicon:and",
@@ -25,8 +25,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.enchanting.serendipity_reel.page0.text",
-      "title": "book.spectrum.guidebook.enchanting.serendipity_reel.name"
+      "text": "book.spectrum.guidebook.serendipity_reel.page0.text",
+      "title": "book.spectrum.guidebook.serendipity_reel.name"
     },
     {
       "type": "spectrum:nbt_spotlight",
@@ -42,17 +42,17 @@
           ]
         }
       },
-      "text": "book.spectrum.guidebook.enchanting.serendipity_reel.page1.text"
+      "text": "book.spectrum.guidebook.serendipity_reel.page1.text"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "text": "book.spectrum.guidebook.enchanting.crafting",
+      "text": "book.spectrum.guidebook.crafting",
       "title1": "container.spectrum.rei.enchanter_recipe",
       "recipe_id_1": "spectrum:enchanter/spectrum_books/serendipity_reel"
     },
     {
       "type": "spectrum:enchanter_upgrading",
-      "text": "book.spectrum.guidebook.enchanting.upgrading.text",
+      "text": "book.spectrum.guidebook.upgrading.text",
       "title1": "container.spectrum.rei.enchantment_upgrading.title",
       "recipe_id_1": "spectrum:enchantment_upgrade/spectrum/serendipity_reel_level_2"
     }

@@ -2,7 +2,7 @@
   "type": "spectrum:entry_link",
   "entry_to_open": "spectrum:general/shimmerstone",
 
-  "name": "book.spectrum.guidebook.general.shimmerstone.name",
+  "name": "book.spectrum.guidebook.shimmerstone.name",
   "icon": "spectrum:shimmerstone_gem",
   "condition": {
     "type": "modonomicon:advancement",

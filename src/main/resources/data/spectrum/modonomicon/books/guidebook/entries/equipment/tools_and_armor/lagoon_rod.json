@@ -15,12 +15,12 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.equipment.lagoon_rod.page0.text",
+      "text": "book.spectrum.guidebook.lagoon_rod.page0.text",
       "title": "item.spectrum.lagoon_rod"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "text": "book.spectrum.guidebook.equipment.lagoon_rod.page1.text",
+      "text": "book.spectrum.guidebook.lagoon_rod.page1.text",
       "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier1/tools/lagoon_rod"
     }

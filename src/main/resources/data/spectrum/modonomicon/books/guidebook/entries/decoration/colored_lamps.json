@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.decoration.colored_lamps.name",
+  "name": "book.spectrum.guidebook.colored_lamps.name",
   "icon": "spectrum:cyan_lamp",
   "condition": {
     "type": "modonomicon:advancement",
@@ -23,14 +23,14 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.decoration.colored_lamps.page0.text",
-      "title": "book.spectrum.guidebook.decoration.colored_lamps.name"
+      "text": "book.spectrum.guidebook.colored_lamps.page0.text",
+      "title": "book.spectrum.guidebook.colored_lamps.name"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier1/colored_lamps/cyan",
-      "text": "book.spectrum.guidebook.decoration.colored_lamps.page1.text"
+      "text": "book.spectrum.guidebook.colored_lamps.page1.text"
     }
   ]
 }

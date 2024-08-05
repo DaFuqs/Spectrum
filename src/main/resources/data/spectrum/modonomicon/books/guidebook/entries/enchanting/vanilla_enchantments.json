@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.enchanting.vanilla_enchantments.name",
+  "name": "book.spectrum.guidebook.vanilla_enchantments.name",
   "icon": "spectrum:multitool",
   "condition": {
     "type": "modonomicon:advancement",
@@ -20,8 +20,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page0.text",
-      "title": "book.spectrum.guidebook.enchanting.vanilla_enchantments.name"
+      "text": "book.spectrum.guidebook.vanilla_enchantments.page0.text",
+      "title": "book.spectrum.guidebook.vanilla_enchantments.name"
     },
     {
       "type": "spectrum:enchanter_crafting",

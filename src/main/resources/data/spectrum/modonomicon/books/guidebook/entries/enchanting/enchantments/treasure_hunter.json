@@ -16,16 +16,16 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.enchanting.treasure_hunter.page0.text",
+      "text": "book.spectrum.guidebook.treasure_hunter.page0.text",
       "title": "enchantment.spectrum.treasure_hunter"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.enchanting.treasure_hunter.page1.title",
+      "title": "book.spectrum.guidebook.treasure_hunter.page1.title",
       "item": {
         "item": "spectrum:cow_head"
       },
-      "text": "book.spectrum.guidebook.enchanting.treasure_hunter.page1.text"
+      "text": "book.spectrum.guidebook.treasure_hunter.page1.text"
     },
     {
       "type": "spectrum:nbt_spotlight",
@@ -41,17 +41,17 @@
           ]
         }
       },
-      "text": "book.spectrum.guidebook.enchanting.treasure_hunter.page2.text"
+      "text": "book.spectrum.guidebook.treasure_hunter.page2.text"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "text": "book.spectrum.guidebook.enchanting.crafting",
+      "text": "book.spectrum.guidebook.crafting",
       "title1": "container.spectrum.rei.enchanter_recipe",
       "recipe_id_1": "spectrum:enchanter/spectrum_books/treasure_hunter"
     },
     {
       "type": "spectrum:enchanter_upgrading",
-      "text": "book.spectrum.guidebook.enchanting.upgrading.text",
+      "text": "book.spectrum.guidebook.upgrading.text",
       "title1": "container.spectrum.rei.enchantment_upgrading.title",
       "recipe_id_1": "spectrum:enchantment_upgrade/spectrum/treasure_hunter_level_2"
     }

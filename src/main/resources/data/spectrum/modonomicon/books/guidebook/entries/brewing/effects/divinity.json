@@ -21,7 +21,7 @@
       "type": "spectrum:status_effect",
       "title": "effect.spectrum.divinity",
       "status_effect_id": "spectrum:divinity",
-      "text": "book.spectrum.guidebook.brewing.ascension_divinity.page1.text"
+      "text": "book.spectrum.guidebook.ascension_divinity.page1.text"
     }
   ]
 }

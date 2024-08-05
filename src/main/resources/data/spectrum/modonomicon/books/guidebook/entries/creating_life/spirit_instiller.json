@@ -15,26 +15,26 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.creating_life.spirit_instiller.page0.text",
+      "text": "book.spectrum.guidebook.spirit_instiller.page0.text",
       "title": "block.spectrum.spirit_instiller"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier3/spirit_instiller",
-      "text": "book.spectrum.guidebook.creating_life.spirit_instiller.page1.text"
+      "text": "book.spectrum.guidebook.spirit_instiller.page1.text"
     },
     {
       "type": "modonomicon:multiblock",
-      "multiblock_name": "book.spectrum.guidebook.creating_life.spirit_instiller.page2.multiblock_name",
+      "multiblock_name": "book.spectrum.guidebook.spirit_instiller.page2.multiblock_name",
       "multiblock_id": "spectrum:spirit_instiller",
       "show_visualize_button": true,
-      "text": "book.spectrum.guidebook.creating_life.spirit_instiller.page2.text"
+      "text": "book.spectrum.guidebook.spirit_instiller.page2.text"
     },
     {
       "type": "modonomicon:text",
       "title": "book.spectrum.guidebook.block_checklist",
-      "text": "book.spectrum.guidebook.creating_life.spirit_instiller.page3.text"
+      "text": "book.spectrum.guidebook.spirit_instiller.page3.text"
     }
   ]
 }

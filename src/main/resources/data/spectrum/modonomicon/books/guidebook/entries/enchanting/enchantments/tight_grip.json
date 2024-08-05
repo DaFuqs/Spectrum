@@ -16,7 +16,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.enchanting.tight_grip.page0.text",
+      "text": "book.spectrum.guidebook.tight_grip.page0.text",
       "title": "enchantment.spectrum.tight_grip"
     },
     {
@@ -33,17 +33,17 @@
           ]
         }
       },
-      "text": "book.spectrum.guidebook.enchanting.tight_grip.page1.text"
+      "text": "book.spectrum.guidebook.tight_grip.page1.text"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "text": "book.spectrum.guidebook.enchanting.crafting",
+      "text": "book.spectrum.guidebook.crafting",
       "title1": "container.spectrum.rei.enchanter_recipe",
       "recipe_id_1": "spectrum:enchanter/spectrum_books/tight_grip"
     },
     {
       "type": "spectrum:enchanter_upgrading",
-      "text": "book.spectrum.guidebook.enchanting.upgrading.text",
+      "text": "book.spectrum.guidebook.upgrading.text",
       "title1": "container.spectrum.rei.enchantment_upgrading.title",
       "recipe_id_1": "spectrum:enchantment_upgrade/spectrum/tight_grip_level_2"
     }

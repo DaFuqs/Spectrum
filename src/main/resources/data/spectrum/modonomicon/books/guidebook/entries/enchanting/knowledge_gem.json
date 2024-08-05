@@ -20,23 +20,23 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.magical_items.knowledge_gem.page0.text",
+      "text": "book.spectrum.guidebook.knowledge_gem.page0.text",
       "title": "item.spectrum.knowledge_gem"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "text": "book.spectrum.guidebook.magical_items.knowledge_gem.page1.text",
+      "text": "book.spectrum.guidebook.knowledge_gem.page1.text",
       "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier3/knowledge_gem"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.magical_items.knowledge_gem.page2.title",
+      "title": "book.spectrum.guidebook.knowledge_gem.page2.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/black_hole_chest"
       },
-      "text": "book.spectrum.guidebook.magical_items.knowledge_gem.page2.text"
+      "text": "book.spectrum.guidebook.knowledge_gem.page2.text"
     }
   ]
 }

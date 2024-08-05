@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.equipment.base_trinkets.name",
+  "name": "book.spectrum.guidebook.base_trinkets.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/trinkets/any_base_trinket"
@@ -15,8 +15,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.equipment.base_trinkets.page0.text",
-      "title": "book.spectrum.guidebook.equipment.base_trinkets.name"
+      "text": "book.spectrum.guidebook.base_trinkets.page0.text",
+      "title": "book.spectrum.guidebook.base_trinkets.name"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -24,7 +24,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/trinkets/fanciful_stone_ring"
       },
-      "title1": "book.spectrum.guidebook.equipment.base_trinkets.page1.title",
+      "title1": "book.spectrum.guidebook.base_trinkets.page1.title",
       "recipe_id_1": "spectrum:pedestal/tier3/trinkets/fanciful_stone_ring"
     },
     {

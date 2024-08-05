@@ -20,12 +20,12 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.ink.ink_flask.page0.text",
+      "text": "book.spectrum.guidebook.ink_flask.page0.text",
       "title": "item.spectrum.ink_flask"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "text": "book.spectrum.guidebook.ink.ink_flask.page1.text",
+      "text": "book.spectrum.guidebook.ink_flask.page1.text",
       "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier2/ink_flask"
     }

@@ -20,7 +20,7 @@
         "spectrum:textures/gui/guidebook/quitoxic_reed.png"
       ],
       "border": true,
-      "text": "book.spectrum.guidebook.general.quitoxic_reeds.page0.text"
+      "text": "book.spectrum.guidebook.quitoxic_reeds.page0.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -29,7 +29,7 @@
       "item": {
         "item": "spectrum:quitoxic_powder"
       },
-      "text": "book.spectrum.guidebook.general.quitoxic_reeds.page1.text"
+      "text": "book.spectrum.guidebook.quitoxic_reeds.page1.text"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.equipment.bismuth_trinkets.name",
+  "name": "book.spectrum.guidebook.bismuth_trinkets.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/trinkets/fanciful_bismuth_ring"

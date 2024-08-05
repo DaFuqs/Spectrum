@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.dimension.excavation_sites.name",
+  "name": "book.spectrum.guidebook.excavation_sites.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:lategame/find_excavation_site"
@@ -19,8 +19,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.dimension.excavation_sites.name",
-      "text": "book.spectrum.guidebook.dimension.excavation_sites.page0.text"
+      "title": "book.spectrum.guidebook.excavation_sites.name",
+      "text": "book.spectrum.guidebook.excavation_sites.page0.text"
     }
   ]
 }

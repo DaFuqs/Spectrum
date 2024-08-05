@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.general.preservation_ruins.name",
+  "name": "book.spectrum.guidebook.preservation_ruins.name",
   "icon": "spectrum:preservation_controller",
   "condition": {
     "type": "modonomicon:advancement",
@@ -16,38 +16,38 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.general.preservation_ruins.name",
+      "title": "book.spectrum.guidebook.preservation_ruins.name",
       "item": {
         "item": "spectrum:preservation_controller"
       },
-      "text": "book.spectrum.guidebook.general.preservation_ruins.page0.text"
+      "text": "book.spectrum.guidebook.preservation_ruins.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.general.preservation_ruins.page1.title",
+      "title": "book.spectrum.guidebook.preservation_ruins.page1.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/solve_any_preservation_ruin"
       },
-      "text": "book.spectrum.guidebook.general.preservation_ruins.page1.text"
+      "text": "book.spectrum.guidebook.preservation_ruins.page1.text"
     },
     {
       "type": "spectrum:checklist",
-      "title": "book.spectrum.guidebook.general.preservation_ruins.page2.title",
+      "title": "book.spectrum.guidebook.preservation_ruins.page2.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/solve_any_preservation_ruin"
       },
       "checklist": {
-        "spectrum:solve_color_mixing_preservation_ruin": "book.spectrum.guidebook.general.preservation_ruins.page2.checklist.entry0",
-        "spectrum:solve_dike_gate_preservation_ruin": "book.spectrum.guidebook.general.preservation_ruins.page2.checklist.entry1",
-        "spectrum:solve_wireless_redstone_preservation_ruin": "book.spectrum.guidebook.general.preservation_ruins.page2.checklist.entry2"
+        "spectrum:solve_color_mixing_preservation_ruin": "book.spectrum.guidebook.preservation_ruins.page2.checklist.entry0",
+        "spectrum:solve_dike_gate_preservation_ruin": "book.spectrum.guidebook.preservation_ruins.page2.checklist.entry1",
+        "spectrum:solve_wireless_redstone_preservation_ruin": "book.spectrum.guidebook.preservation_ruins.page2.checklist.entry2"
       },
-      "text": "book.spectrum.guidebook.general.preservation_ruins.page2.text"
+      "text": "book.spectrum.guidebook.preservation_ruins.page2.text"
     },
     {
       "type": "modonomicon:image",
-      "title": "book.spectrum.guidebook.general.preservation_ruins.page3.title",
+      "title": "book.spectrum.guidebook.preservation_ruins.page3.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:enter_dike_gate_preservation_ruin"
@@ -56,11 +56,11 @@
         "spectrum:textures/gui/guidebook/preservation_ruin_dike_gate.png"
       ],
       "border": true,
-      "text": "book.spectrum.guidebook.general.preservation_ruins.page3.text"
+      "text": "book.spectrum.guidebook.preservation_ruins.page3.text"
     },
     {
       "type": "modonomicon:image",
-      "title": "book.spectrum.guidebook.general.preservation_ruins.page4.title",
+      "title": "book.spectrum.guidebook.preservation_ruins.page4.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:enter_color_mixing_preservation_ruin"
@@ -69,7 +69,7 @@
         "spectrum:textures/gui/guidebook/preservation_ruin_color_mixing.png"
       ],
       "border": true,
-      "text": "book.spectrum.guidebook.general.preservation_ruins.page4.text"
+      "text": "book.spectrum.guidebook.preservation_ruins.page4.text"
     },
     {
       "type": "modonomicon:image",
@@ -82,7 +82,7 @@
         "spectrum:textures/gui/guidebook/preservation_ruin_wireless_redstone.png"
       ],
       "border": true,
-      "text": "book.spectrum.guidebook.general.preservation_ruins.page5.text"
+      "text": "book.spectrum.guidebook.preservation_ruins.page5.text"
     }
   ]
 }

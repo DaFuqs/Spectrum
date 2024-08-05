@@ -16,7 +16,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.enchanting.inexorable.page0.text",
+      "text": "book.spectrum.guidebook.inexorable.page0.text",
       "title": "enchantment.spectrum.inexorable"
     },
     {
@@ -33,11 +33,11 @@
           ]
         }
       },
-      "text": "book.spectrum.guidebook.enchanting.inexorable.page1.text"
+      "text": "book.spectrum.guidebook.inexorable.page1.text"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "text": "book.spectrum.guidebook.enchanting.crafting",
+      "text": "book.spectrum.guidebook.crafting",
       "title1": "container.spectrum.rei.enchanter_recipe",
       "recipe_id_1": "spectrum:enchanter/spectrum_books/inexorable"
     }

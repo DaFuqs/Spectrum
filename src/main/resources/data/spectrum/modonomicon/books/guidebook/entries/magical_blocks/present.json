@@ -15,24 +15,24 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.magical_blocks.present.page0.text",
+      "text": "book.spectrum.guidebook.present.page0.text",
       "title": "block.spectrum.present"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "text": "book.spectrum.guidebook.magical_blocks.present.page1.text",
+      "text": "book.spectrum.guidebook.present.page1.text",
       "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier1/present"
     },
     {
       "type": "modonomicon:crafting_recipe",
-      "title1": "book.spectrum.guidebook.magical_blocks.present.page2.title",
+      "title1": "book.spectrum.guidebook.present.page2.title",
       "recipe_id_1": "spectrum:crafting_table/special/wrap_present",
-      "text": "book.spectrum.guidebook.magical_blocks.present.page2.text"
+      "text": "book.spectrum.guidebook.present.page2.text"
     },
     {
       "type": "spectrum:collection",
-      "title": "book.spectrum.guidebook.magical_blocks.present.page3.title",
+      "title": "book.spectrum.guidebook.present.page3.title",
       "items": [
         "spectrum:present{Variant: \"red\", Wrapped: 1b}",
         "spectrum:present{Variant: \"blue\", Wrapped: 1b}",
@@ -45,7 +45,7 @@
         "spectrum:present{Variant: \"winter\", Wrapped: 1b}",
         "spectrum:present{Variant: \"pride\", Wrapped: 1b}"
       ],
-      "text": "book.spectrum.guidebook.magical_blocks.present.page3.text"
+      "text": "book.spectrum.guidebook.present.page3.text"
     }
   ]
 }

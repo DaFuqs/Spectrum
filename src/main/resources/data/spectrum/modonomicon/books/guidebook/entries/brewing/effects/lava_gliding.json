@@ -17,11 +17,11 @@
       "type": "spectrum:status_effect",
       "title": "effect.spectrum.lava_gliding",
       "status_effect_id": "spectrum:lava_gliding",
-      "text": "book.spectrum.guidebook.brewing.lava_gliding.page0.text"
+      "text": "book.spectrum.guidebook.lava_gliding.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.brewing.lava_gliding.page1.text"
+      "text": "book.spectrum.guidebook.lava_gliding.page1.text"
     }
   ]
 }

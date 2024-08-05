@@ -15,7 +15,7 @@
   "pages": [
     {
       "type": "spectrum:snippet",
-      "title": "book.spectrum.guidebook.cuisine.imperial_cookbook.page0.title",
+      "title": "book.spectrum.guidebook.imperial_cookbook.page0.title",
       "resource_path": "spectrum:textures/gui/guidebook/aeverstrone.png",
       "resource_width": 116,
       "resource_height": 116,
@@ -24,61 +24,61 @@
       "texture_width": 116,
       "texture_height": 116,
       "border": false,
-      "text": "book.spectrum.guidebook.cuisine.imperial_cookbook.page0.text"
+      "text": "book.spectrum.guidebook.imperial_cookbook.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.cuisine.imperial_cookbook.page1.text"
+      "text": "book.spectrum.guidebook.imperial_cookbook.page1.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.cuisine.imperial_cookbook.page2.title",
-      "text": "book.spectrum.guidebook.cuisine.imperial_cookbook.page2.text"
+      "title": "book.spectrum.guidebook.imperial_cookbook.page2.title",
+      "text": "book.spectrum.guidebook.imperial_cookbook.page2.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe_id_1": "spectrum:pedestal/tier1/food/peaches_flambe",
-      "text": "book.spectrum.guidebook.cuisine.imperial_cookbook.page3.text"
+      "text": "book.spectrum.guidebook.imperial_cookbook.page3.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.cuisine.imperial_cookbook.page4.title",
-      "text": "book.spectrum.guidebook.cuisine.imperial_cookbook.page4.text"
+      "title": "book.spectrum.guidebook.imperial_cookbook.page4.title",
+      "text": "book.spectrum.guidebook.imperial_cookbook.page4.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe_id_1": "spectrum:pedestal/tier1/food/chauve_souris_au_vin",
-      "text": "book.spectrum.guidebook.cuisine.imperial_cookbook.page5.text"
+      "text": "book.spectrum.guidebook.imperial_cookbook.page5.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.cuisine.imperial_cookbook.page6.title",
-      "text": "book.spectrum.guidebook.cuisine.imperial_cookbook.page6.text"
+      "title": "book.spectrum.guidebook.imperial_cookbook.page6.title",
+      "text": "book.spectrum.guidebook.imperial_cookbook.page6.text"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
       "recipe_id_1": "spectrum:potion_workshop_crafting/junket",
-      "text": "book.spectrum.guidebook.cuisine.imperial_cookbook.page7.text"
+      "text": "book.spectrum.guidebook.imperial_cookbook.page7.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.cuisine.imperial_cookbook.page8.title",
-      "text": "book.spectrum.guidebook.cuisine.imperial_cookbook.page8.text"
+      "title": "book.spectrum.guidebook.imperial_cookbook.page8.title",
+      "text": "book.spectrum.guidebook.imperial_cookbook.page8.text"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
       "recipe_id_1": "spectrum:titration_barrel/faded_koi",
-      "text": "book.spectrum.guidebook.cuisine.imperial_cookbook.page9.text"
+      "text": "book.spectrum.guidebook.imperial_cookbook.page9.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.cuisine.imperial_cookbook.page10.title",
-      "text": "book.spectrum.guidebook.cuisine.imperial_cookbook.page10.text"
+      "title": "book.spectrum.guidebook.imperial_cookbook.page10.title",
+      "text": "book.spectrum.guidebook.imperial_cookbook.page10.text"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
       "recipe_id_1": "spectrum:titration_barrel/special/nectered_viognier",
-      "text": "book.spectrum.guidebook.cuisine.imperial_cookbook.page11.text"
+      "text": "book.spectrum.guidebook.imperial_cookbook.page11.text"
     }
   ]
 }

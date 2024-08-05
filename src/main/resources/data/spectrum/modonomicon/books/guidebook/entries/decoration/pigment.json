@@ -2,7 +2,7 @@
   "type": "spectrum:entry_link",
   "entry_to_open": "spectrum:general/pigment",
 
-  "name": "book.spectrum.guidebook.general.pigment.name",
+  "name": "book.spectrum.guidebook.pigment.name",
   "icon": "spectrum:magenta_pigment",
   "condition": {
     "type": "modonomicon:advancement",

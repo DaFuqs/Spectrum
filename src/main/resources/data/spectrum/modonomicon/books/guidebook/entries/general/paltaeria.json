@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.general.paltaeria.name",
+  "name": "book.spectrum.guidebook.paltaeria.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:lategame/collect_paltaeria"
@@ -19,11 +19,11 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.general.paltaeria.name",
+      "title": "book.spectrum.guidebook.paltaeria.name",
       "item": {
         "item": "spectrum:paltaeria_fragments"
       },
-      "text": "book.spectrum.guidebook.general.paltaeria.page0.text"
+      "text": "book.spectrum.guidebook.paltaeria.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -45,7 +45,7 @@
       "item": {
         "item": "spectrum:paltaeria_fragment_block"
       },
-      "text": "book.spectrum.guidebook.general.paltaeria.page2.text"
+      "text": "book.spectrum.guidebook.paltaeria.page2.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -53,7 +53,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/carry_too_many_low_gravity_blocks"
       },
-      "text": "book.spectrum.guidebook.general.paltaeria.page3.text",
+      "text": "book.spectrum.guidebook.paltaeria.page3.text",
       "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier1/compacting/paltaeria_fragment_block"
     }

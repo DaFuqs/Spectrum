@@ -25,13 +25,13 @@
     {
       "type": "modonomicon:text",
       "title": "item.spectrum.ring_of_denser_steps",
-      "text": "book.spectrum.guidebook.equipment.ring_of_denser_steps.page0.text"
+      "text": "book.spectrum.guidebook.ring_of_denser_steps.page0.text"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title1": "container.spectrum.rei.fusion_recipe",
       "recipe_id_1": "spectrum:fusion_shrine/trinkets/ring_of_denser_steps",
-      "text": "book.spectrum.guidebook.equipment.ring_of_denser_steps.page1.text"
+      "text": "book.spectrum.guidebook.ring_of_denser_steps.page1.text"
     }
   ]
 }

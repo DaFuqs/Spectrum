@@ -20,7 +20,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.ink.ink_assortment.page0.text",
+      "text": "book.spectrum.guidebook.ink_assortment.page0.text",
       "title": "item.spectrum.ink_assortment"
     },
     {

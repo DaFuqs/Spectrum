@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.enchanting.name",
+  "name": "book.spectrum.guidebook.category.enchanting.name",
   "icon": "spectrum:enchanter",
   "sort_number": 12,
   "show_category_button": true,

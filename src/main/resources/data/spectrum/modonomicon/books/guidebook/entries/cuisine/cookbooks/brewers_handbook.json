@@ -15,7 +15,7 @@
   "pages": [
     {
       "type": "spectrum:snippet",
-      "title": "book.spectrum.guidebook.cuisine.brewers_handbook.page0.title",
+      "title": "book.spectrum.guidebook.brewers_handbook.page0.title",
       "resource_path": "spectrum:textures/gui/guidebook/taswell.png",
       "resource_width": 116,
       "resource_height": 116,
@@ -24,56 +24,56 @@
       "texture_width": 116,
       "texture_height": 116,
       "border": false,
-      "text": "book.spectrum.guidebook.cuisine.brewers_handbook.page0.text"
+      "text": "book.spectrum.guidebook.brewers_handbook.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.cuisine.brewers_handbook.page1.text"
+      "text": "book.spectrum.guidebook.brewers_handbook.page1.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.cuisine.brewers_handbook.page2.title",
-      "text": "book.spectrum.guidebook.cuisine.brewers_handbook.page2.text"
+      "title": "book.spectrum.guidebook.brewers_handbook.page2.title",
+      "text": "book.spectrum.guidebook.brewers_handbook.page2.text"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
       "recipe_id_1": "spectrum:potion_workshop_crafting/peach_cream",
-      "text": "book.spectrum.guidebook.cuisine.brewers_handbook.page3.text"
+      "text": "book.spectrum.guidebook.brewers_handbook.page3.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.cuisine.brewers_handbook.page4.title",
-      "text": "book.spectrum.guidebook.cuisine.brewers_handbook.page4.text"
+      "title": "book.spectrum.guidebook.brewers_handbook.page4.title",
+      "text": "book.spectrum.guidebook.brewers_handbook.page4.text"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
       "recipe_id_1": "spectrum:potion_workshop_crafting/golden_bristle_tea",
-      "text": "book.spectrum.guidebook.cuisine.brewers_handbook.page5.text"
+      "text": "book.spectrum.guidebook.brewers_handbook.page5.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.cuisine.brewers_handbook.page6.title",
-      "text": "book.spectrum.guidebook.cuisine.brewers_handbook.page6.text"
+      "title": "book.spectrum.guidebook.brewers_handbook.page6.title",
+      "text": "book.spectrum.guidebook.brewers_handbook.page6.text"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
       "recipe_id_1": "spectrum:titration_barrel/bristle_mead",
-      "text": "book.spectrum.guidebook.cuisine.brewers_handbook.page7.text"
+      "text": "book.spectrum.guidebook.brewers_handbook.page7.text"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
       "recipe_id_1": "spectrum:titration_barrel/bristle_mead_fluid",
-      "text": "book.spectrum.guidebook.cuisine.brewers_handbook.page7.text"
+      "text": "book.spectrum.guidebook.brewers_handbook.page7.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.cuisine.brewers_handbook.page9.title",
-      "text": "book.spectrum.guidebook.cuisine.brewers_handbook.page9.text"
+      "title": "book.spectrum.guidebook.brewers_handbook.page9.title",
+      "text": "book.spectrum.guidebook.brewers_handbook.page9.text"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
       "recipe_id_1": "spectrum:titration_barrel/morchella",
-      "text": "book.spectrum.guidebook.cuisine.brewers_handbook.page10.text"
+      "text": "book.spectrum.guidebook.brewers_handbook.page10.text"
     },
     {
       "type": "modonomicon:empty"
@@ -83,18 +83,18 @@
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.cuisine.brewers_handbook.page13.title",
-      "text": "book.spectrum.guidebook.cuisine.brewers_handbook.page13.text"
+      "title": "book.spectrum.guidebook.brewers_handbook.page13.title",
+      "text": "book.spectrum.guidebook.brewers_handbook.page13.text"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
       "recipe_id_1": "spectrum:potion_workshop_crafting/sedatives",
-      "text": "book.spectrum.guidebook.cuisine.brewers_handbook.page14.text"
+      "text": "book.spectrum.guidebook.brewers_handbook.page14.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.cuisine.brewers_handbook.page15.title",
-      "text": "book.spectrum.guidebook.cuisine.brewers_handbook.page15.text"
+      "title": "book.spectrum.guidebook.brewers_handbook.page15.title",
+      "text": "book.spectrum.guidebook.brewers_handbook.page15.text"
     }
   ]
 }

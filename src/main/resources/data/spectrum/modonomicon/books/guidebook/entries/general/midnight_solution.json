@@ -25,30 +25,6 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "item.spectrum.midnight_chip",
-      "item": {
-        "item": "spectrum:midnight_chip"
-      },
-      "anchor": "midnight_chip",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/collect_midnight_chip"
-      },
-      "text": "book.spectrum.guidebook.midnight_solution.page1.text"
-    },
-    {
-      "type": "spectrum:potion_workshop_crafting",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:unlocks/blocks/midnight_solution"
-      },
-      "text": "book.spectrum.guidebook.midnight_solution.page2.text",
-      "title1": "item.spectrum.midnight_solution_bucket",
-      "recipe_id_1": "spectrum:potion_workshop_crafting/midnight_solution_bucket"
-    },
-    {
-      "type": "modonomicon:spotlight",
-      "title": "block.spectrum.black_materia",
       "item": {
         "item": "spectrum:black_materia"
       },

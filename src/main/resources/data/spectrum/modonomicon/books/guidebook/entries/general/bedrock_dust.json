@@ -20,28 +20,27 @@
     {
       "type": "modonomicon:spotlight",
       "title": "item.spectrum.bedrock_dust",
-      "anchor": "bedrock_dust",
       "item": {
         "item": "spectrum:bedrock_dust"
       },
-      "text": "book.spectrum.guidebook.ruin.page2.text"
+      "text": "book.spectrum.guidebook.bedrock_dust.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.ruin.page3.title",
-      "text": "book.spectrum.guidebook.ruin.page3.text"
+      "title": "book.spectrum.guidebook.bedrock_dust.page1.title",
+      "text": "book.spectrum.guidebook.bedrock_dust.page1.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.ruin.page4.title",
+      "title1": "book.spectrum.guidebook.bedrock_dust.page2.title",
       "recipe_id_1": "spectrum:pedestal/tier1/compacting/bedrock_storage_block",
-      "text": "book.spectrum.guidebook.ruin.page4.text"
+      "text": "book.spectrum.guidebook.bedrock_dust.page2.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title1": "book.spectrum.guidebook.decompression",
       "recipe_id_1": "spectrum:pedestal/tier1/compacting/bedrock_storage_block_uncrafting",
-      "text": "book.spectrum.guidebook.ruin.page5.text"
+      "text": "book.spectrum.guidebook.bedrock_dust.page3.text"
     }
   ]
 }

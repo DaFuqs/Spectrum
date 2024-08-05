@@ -34,31 +34,6 @@
       "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier3/bottle_of_failing",
       "text": "book.spectrum.guidebook.failing.page1.text"
-    },
-    {
-      "type": "modonomicon:spotlight",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/collect_neolith"
-      },
-      "title": "item.spectrum.neolith",
-      "anchor": "neolith",
-      "item": {
-        "item": "spectrum:neolith"
-      },
-      "text": "book.spectrum.guidebook.failing.page2.text"
-    },
-    {
-      "type": "spectrum:pedestal_crafting",
-      "title": "Compression",
-      "recipe_id_1": "spectrum:pedestal/tier1/compacting/neolith_block",
-      "text": ""
-    },
-    {
-      "type": "spectrum:pedestal_crafting",
-      "title": "Decompression",
-      "recipe_id_1": "spectrum:pedestal/tier1/compacting/neolith_from_neolith_block",
-      "text": ""
     }
   ]
 }

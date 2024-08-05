@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.midnight_chip.name",
+  "name": "item.spectrum.midnight_chip",
   "icon": "spectrum:midnight_chip",
   "condition": {
     "type": "modonomicon:advancement",
@@ -16,16 +16,21 @@
   "background_v_index": 0,
   "x": 15,
   "y": 0,
-  "turnin": "spectrum:midgame/collect_midnight_chip",
   "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:midnight_chip"
+      },
+      "text": "book.spectrum.guidebook.midnight_chip.page0.text"
+    },
     {
       "type": "spectrum:potion_workshop_crafting",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/midnight_solution"
       },
-      "text": "book.spectrum.guidebook.midnight_solution.page2.text",
-      "title1": "item.spectrum.midnight_solution_bucket",
+      "text": "book.spectrum.guidebook.midnight_chip.page1.text",
       "recipe_id_1": "spectrum:potion_workshop_crafting/midnight_solution_bucket"
     }
   ]

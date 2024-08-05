@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.neolith.name",
+  "name": "item.spectrum.neolith",
   "icon": "spectrum:neolith",
   "condition": {
     "type": "modonomicon:advancement",
@@ -20,11 +20,10 @@
     {
       "type": "modonomicon:spotlight",
       "title": "item.spectrum.neolith",
-      "anchor": "neolith",
       "item": {
         "item": "spectrum:neolith"
       },
-      "text": "book.spectrum.guidebook.failing.page2.text"
+      "text": "book.spectrum.guidebook.neolith.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",

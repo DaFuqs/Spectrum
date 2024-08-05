@@ -31,48 +31,6 @@
       "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier3/bottle_of_ruin",
       "text": "book.spectrum.guidebook.ruin.page1.text"
-    },
-    {
-      "type": "modonomicon:spotlight",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/break_decayed_bedrock"
-      },
-      "title": "item.spectrum.bedrock_dust",
-      "anchor": "bedrock_dust",
-      "item": {
-        "item": "spectrum:bedrock_dust"
-      },
-      "text": "book.spectrum.guidebook.ruin.page2.text"
-    },
-    {
-      "type": "modonomicon:text",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/break_decayed_bedrock"
-      },
-      "title": "book.spectrum.guidebook.ruin.page3.title",
-      "text": "book.spectrum.guidebook.ruin.page3.text"
-    },
-    {
-      "type": "spectrum:pedestal_crafting",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/break_decayed_bedrock"
-      },
-      "title1": "book.spectrum.guidebook.ruin.page4.title",
-      "recipe_id_1": "spectrum:pedestal/tier1/compacting/bedrock_storage_block",
-      "text": "book.spectrum.guidebook.ruin.page4.text"
-    },
-    {
-      "type": "spectrum:pedestal_crafting",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/break_decayed_bedrock"
-      },
-      "title1": "book.spectrum.guidebook.decompression",
-      "recipe_id_1": "spectrum:pedestal/tier1/compacting/bedrock_storage_block_uncrafting",
-      "text": "book.spectrum.guidebook.ruin.page5.text"
     }
   ]
 }

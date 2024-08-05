@@ -16,9 +16,12 @@
   "y": 7,
   "pages": [
     {
-      "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.moonstone_shards.page0.text",
-      "title": "book.spectrum.guidebook.moonstone_shards.name"
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.moonstone_shards.name",
+      "item": {
+        "item": "spectrum:moonstone_shard"
+      },
+      "text": "book.spectrum.guidebook.moonstone_shards.page0.text"
     },
     {
       "type": "modonomicon:text",

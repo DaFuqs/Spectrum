@@ -9,7 +9,7 @@
   "hide_while_locked ": true,
   "parents": [
     {
-      "entry": "spectrum:general/blood_orchid_petals"
+      "entry": "spectrum:general/blood_orchid_petal"
     },
     {
       "entry": "spectrum:general/resonant_lily"
@@ -20,6 +20,14 @@
   "x": 4,
   "y": 6,
   "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.moonstone_shards.name",
+      "item": {
+        "item": "spectrum:blood_orchid"
+      },
+      "text": "book.spectrum.guidebook.blood_orchids.page0.text"
+    },
     {
       "type": "spectrum:spirit_instiller_crafting",
       "title": "block.spectrum.blood_orchid",

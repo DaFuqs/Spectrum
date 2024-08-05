@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.vegetal.name",
+  "name": "item.spectrum.vegetal",
   "icon": "spectrum:vegetal",
   "condition": {
     "type": "modonomicon:advancement",
@@ -16,7 +16,6 @@
   "background_v_index": 0,
   "x": 0,
   "y": 2,
-  "turnin": "spectrum:collect_vegetal",
   "pages": [
     {
       "type": "modonomicon:spotlight",
@@ -24,7 +23,7 @@
       "item": {
         "item": "spectrum:vegetal"
       },
-      "text": "book.spectrum.guidebook.fading.page2.text"
+      "text": "book.spectrum.guidebook.vegetal.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",

@@ -20,11 +20,12 @@
   "turnin": "spectrum:lategame/build_complex_pedestal_structure",
   "pages": [
     {
-      "type": "modonomicon:spotlight",
+      "type": "spectrum:collection",
       "title": "book.spectrum.guidebook.pedestal_upgrade_moonstone.name",
-      "item": {
-        "item": "spectrum:moonstone_chiseled_basalt"
-      },
+      "items": [
+        "spectrum:moonstone_chiseled_basalt",
+        "spectrum:moonstone_chiseled_calcite"
+      ],
       "text": "book.spectrum.guidebook.pedestal_upgrade_moonstone_2.page0.text"
     },
     {

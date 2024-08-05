@@ -34,31 +34,6 @@
       "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier1/bottle_of_fading",
       "text": "book.spectrum.guidebook.fading.page1.text"
-    },
-    {
-      "type": "modonomicon:spotlight",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:collect_vegetal"
-      },
-      "title": "item.spectrum.vegetal",
-      "anchor": "vegetal",
-      "item": {
-        "item": "spectrum:vegetal"
-      },
-      "text": "book.spectrum.guidebook.fading.page2.text"
-    },
-    {
-      "type": "spectrum:pedestal_crafting",
-      "title": "Compression",
-      "recipe_id_1": "spectrum:pedestal/tier1/compacting/vegetal_block",
-      "text": ""
-    },
-    {
-      "type": "spectrum:pedestal_crafting",
-      "title": "Decompression",
-      "recipe_id_1": "spectrum:pedestal/tier1/compacting/vegetal_from_vegetal_block",
-      "text": ""
     }
   ]
 }

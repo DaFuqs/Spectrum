@@ -21,6 +21,7 @@ public class RingOfAerialGraceItem extends GravityRingItem implements Gravitable
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		tooltip.add(Text.translatable("item.spectrum.ring_of_aerial_grace.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.ring_of_aerial_grace.tooltip2").formatted(Formatting.GRAY));
 		super.appendTooltip(stack, world, tooltip, context);
 	}
 	

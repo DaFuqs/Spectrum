@@ -120,8 +120,8 @@ public class SpectrumLootPoolModifiers {
 			}
 			else if (id.equals(new Identifier("gameplay/sniffer_digging"))) {
 				tableBuilder.modifyPools(builder -> {
-					builder.with(ItemEntry.builder(SpectrumBlocks.WEEPING_GALA_SPRIG).weight(2));
-					builder.with(ItemEntry.builder(SpectrumItems.NIGHTDEW_SPROUT).weight(1));
+					builder.with(ItemEntry.builder(SpectrumBlocks.WEEPING_GALA_SPRIG).weight(1));
+					builder.with(ItemEntry.builder(SpectrumItems.NIGHTDEW_SPROUT).weight(2));
 				});
 			} else if (id.equals(new Identifier("entities/fox"))) {
 				tableBuilder.pool(getFoxLootPool(FoxEntity.Type.RED, SpectrumSkullBlock.getBlock(SpectrumSkullType.FOX).get().asItem(), 0.02F));

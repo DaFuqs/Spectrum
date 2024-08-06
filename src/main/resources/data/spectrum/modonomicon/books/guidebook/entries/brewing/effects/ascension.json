@@ -17,7 +17,7 @@
       "type": "spectrum:status_effect",
       "title": "effect.spectrum.ascension",
       "status_effect_id": "spectrum:ascension",
-      "text": "book.spectrum.guidebook.ascension_divinity.page0.text"
+      "text": "book.spectrum.guidebook.ascension.page0.text"
     }
   ]
 }

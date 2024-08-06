@@ -21,7 +21,7 @@
       "type": "spectrum:status_effect",
       "title": "effect.spectrum.lightweight",
       "status_effect_id": "spectrum:lightweight",
-      "text": "book.spectrum.guidebook.lightweight_density.page0.text"
+      "text": "book.spectrum.guidebook.lightweight.page0.text"
     }
   ]
 }

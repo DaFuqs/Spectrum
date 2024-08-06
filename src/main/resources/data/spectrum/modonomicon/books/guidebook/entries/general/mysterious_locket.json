@@ -37,7 +37,7 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title1": "book.spectrum.guidebook.mysterious_locket.page1.title",
+      "title1": "book.spectrum.guidebook.mysterious_locket.page2.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/mysterious_locket_socketing"
@@ -47,7 +47,6 @@
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.mysterious_locket.page2.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:endgame/open_mysterious_compass"

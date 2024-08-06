@@ -132,7 +132,7 @@ public class SpectrumItems {
 	public static final Item DRAGONRENDING_PICKAXE = new SpectrumPickaxeItem(SpectrumToolMaterials.ToolMaterial.DRACONIC, 1, -2.8F, IS.of(Rarity.UNCOMMON).maxDamage(SpectrumToolMaterials.ToolMaterial.DRACONIC.getDurability())) {
 		@Override
 		public Map<Enchantment, Integer> getDefaultEnchantments() {
-			return Map.of(SpectrumEnchantments.RAZING, 1);
+			return Map.of(SpectrumEnchantments.RAZING, 3);
 		}
 	};
 	public static final SpectrumFishingRodItem LAGOON_ROD = new LagoonRodItem(IS.of().maxDamage(256));

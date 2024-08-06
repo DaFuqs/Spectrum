@@ -21,7 +21,7 @@
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe_id_1": "spectrum:fusion_shrine/draconic_twinsword",
-      "text": "book.spectrum.guidebook.draconic_twinsword.page5.text"
+      "text": "book.spectrum.guidebook.draconic_twinsword.page1.text"
     },
     {
       "type": "modonomicon:text",

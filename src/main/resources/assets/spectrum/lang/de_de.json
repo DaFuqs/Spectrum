@@ -17,13 +17,13 @@
   "recipeGroup.spectrum.item_bowls": "Itemschüssel",
 
   "container.spectrum.rei.pedestal_crafting.title": "Pigmentsockel",
-  "container.spectrum.rei.pedestal_crafting.crafting_time_and_xp": "%f Sekunden - %f XP",
-  "container.spectrum.rei.pedestal_crafting.crafting_time_one_second_and_xp": "%f Sekunden - %f XP",
+  "container.spectrum.rei.crafting_time_one_second_and_xp": "%f Sekunden - %f XP",
+  "container.spectrum.rei.crafting_time_one_second_and_xp": "%f Sekunden - %f XP",
   "container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1": "Du hast dieses Rezept",
   "container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2": "noch nicht entdeckt",
   "container.spectrum.rei.enchanting.title": "Spectrum Verzauberung",
-  "container.spectrum.rei.enchanting.crafting_time": "%f Sekunden",
-  "container.spectrum.rei.enchanting.crafting_time_one_second": "%f Sekunden",
+  "container.spectrum.rei.crafting_time": "%f Sekunden",
+  "container.spectrum.rei.crafting_time_one_second": "%f Sekunden",
   "container.spectrum.rei.enchantment_upgrading.title": "Verzauberungs-Upgrade",
   "container.spectrum.rei.enchantment_upgrade.required_item_count": "(%fx)",
 

@@ -48,4 +48,24 @@ public abstract class GatedDisplayCategory<T extends GatedRecipeDisplay> impleme
 	
 	public abstract void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, @NotNull T display);
 	
+	// Special handling for "1 second"
+	// Looks nicer
+	protected static Text getCraftingTimeText(int time) {
+		if (time == 20) {
+			return Text.translatable("container.spectrum.rei.crafting_time_one_second", 1);
+		} else {
+			return Text.translatable("container.spectrum.rei.crafting_time", (time / 20));
+		}
+	}
+	
+	// Special handling for "1 second"
+	// Looks nicer
+	protected static Text getCraftingTimeText(int time, float xp) {
+		if (time == 20) {
+			return Text.translatable("container.spectrum.rei.crafting_time_one_second_and_xp", 1, xp);
+		} else {
+			return Text.translatable("container.spectrum.rei.crafting_time_and_xp", (time / 20), xp);
+		}
+	}
+	
 }

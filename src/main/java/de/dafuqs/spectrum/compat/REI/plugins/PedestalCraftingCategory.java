@@ -77,13 +77,7 @@ public class PedestalCraftingCategory extends GatedDisplayCategory<PedestalCraft
 		widgets.add(Widgets.createTexturedWidget(backgroundTexture, startPoint.x + 82, startPoint.y + 39, 200, 0, 40, 16));
 		
 		// description text
-		// special handling for "1 second". Looks nicer
-		Text text;
-		if (display.craftingTime == 20) {
-			text = Text.translatable("container.spectrum.rei.pedestal_crafting.crafting_time_one_second_and_xp", 1, display.experience);
-		} else {
-			text = Text.translatable("container.spectrum.rei.pedestal_crafting.crafting_time_and_xp", (display.craftingTime / 20), display.experience);
-		}
+		Text text = getCraftingTimeText(display.craftingTime, display.experience);
 		widgets.add(Widgets.createLabel(new Point(bounds.getCenterX(), startPoint.y + 82), text).centered().color(0x3f3f3f).noShadow());
 		
 		if (display.shapeless) {

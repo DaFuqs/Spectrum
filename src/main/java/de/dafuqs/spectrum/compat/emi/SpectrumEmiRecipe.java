@@ -45,18 +45,18 @@ public abstract class SpectrumEmiRecipe implements EmiRecipe {
 	
 	protected static Text getCraftingTimeText(int time) {
 		if (time == 20) {
-			return Text.translatable("container.spectrum.rei.enchanting.crafting_time_one_second", 1);
+			return Text.translatable("container.spectrum.rei.crafting_time_one_second", 1);
 		} else {
-			return Text.translatable("container.spectrum.rei.enchanting.crafting_time", (time / 20));
+			return Text.translatable("container.spectrum.rei.crafting_time", (time / 20));
 		}
 	}
 	
 	protected static Text getCraftingTimeText(int time, float experience) {
 		// special handling for "1 second". Looks nicer
 		if (time == 20) {
-			return Text.translatable("container.spectrum.rei.pedestal_crafting.crafting_time_one_second_and_xp", 1, experience);
+			return Text.translatable("container.spectrum.rei.crafting_time_one_second_and_xp", 1, experience);
 		} else {
-			return Text.translatable("container.spectrum.rei.pedestal_crafting.crafting_time_and_xp", (time / 20), experience);
+			return Text.translatable("container.spectrum.rei.crafting_time_and_xp", (time / 20), experience);
 		}
 	}
 	

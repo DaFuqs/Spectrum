@@ -19,8 +19,15 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.crystal_gardens.page2.title",
-      "text": "book.spectrum.guidebook.crystal_gardens.page2.text"
+      "title": "book.spectrum.guidebook.nephrite.name",
+      "text": "book.spectrum.guidebook.nephrite.page0.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:glass_peach"
+      },
+      "text": "book.spectrum.guidebook.nephrite.page1.text"
     }
   ]
 }

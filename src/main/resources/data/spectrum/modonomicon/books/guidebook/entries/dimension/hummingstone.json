@@ -2,7 +2,7 @@
   "name": "block.spectrum.hummingstone",
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:hidden/collect_hummingstone"
+    "advancement_id": "spectrum:lategame/collect_hummingstone"
   },
   "icon": "spectrum:hummingstone",
   "category": "spectrum:dimension",

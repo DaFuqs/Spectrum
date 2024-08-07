@@ -119,7 +119,12 @@ public class SpectrumEventListeners {
 		});
 		
 		ServerTickEvents.END_SERVER_TICK.register(server -> {
-			Pastel.getServerInstance().tick();
+			try {
+				Pastel.getServerInstance().tick();
+			} catch (Exception e) {
+				SpectrumCommon.logError("Error in the Pastel Network transmission loop.");
+				e.printStackTrace();
+			}
 			
 			PlayerManager playerManager = server.getPlayerManager();
 			for (ServerPlayerEntity player : playerManager.getPlayerList()) {

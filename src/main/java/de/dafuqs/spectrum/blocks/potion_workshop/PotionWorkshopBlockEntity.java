@@ -271,7 +271,8 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		PotionMod potionMod = getPotionModFromReagents(potionWorkshopBlockEntity);
 
 		// the multiplication happening after the decimal chance rounding is not a mistake it is me being evil ~ Azzyy
-		int maxTippedArrowsAmount = Support.getIntFromDecimalWithChance(brewingRecipe.getModifiedYield(potionMod), world.random) * PotionWorkshopBrewingRecipe.ARROW_COUNT_MULTIPLIER;
+		// we are nice to our players this one time ~Dafuqs
+		int maxTippedArrowsAmount = Support.getIntFromDecimalWithChance(brewingRecipe.getModifiedYield(potionMod) * PotionWorkshopBrewingRecipe.ARROW_COUNT_MULTIPLIER, world.random);
 		int tippedAmount = Math.min(potionWorkshopBlockEntity.inventory.get(BASE_INPUT_SLOT_ID).getCount(), maxTippedArrowsAmount);
 		
 		// calculate outputs

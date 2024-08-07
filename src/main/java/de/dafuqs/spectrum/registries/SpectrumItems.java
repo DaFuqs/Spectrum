@@ -427,6 +427,8 @@ public class SpectrumItems {
 	public static final Item PRIMORDIAL_LIGHTER = new PrimordialLighterItem(IS.of(1));
 
 	public static final Item NIGHT_SALTS = new NightSaltsItem(IS.of(24));
+	public static final Item CONCEALING_OILS = new ConcealingOilsItem(IS.of(1));
+	public static final Item BITTER_OILS = new DrinkItem(IS.of(24).food(SpectrumFoodComponents.BITTER_OILS));
 
 	public static final Item INCANDESCENT_ESSENCE = new CloakedItem(IS.of(), SpectrumCommon.locate("midgame/spectrum_midgame"), Items.ORANGE_DYE);
 	public static final Item FROSTBITE_ESSENCE = new CloakedItem(IS.of(), SpectrumCommon.locate("midgame/spectrum_midgame"), Items.LIGHT_BLUE_DYE);
@@ -803,6 +805,8 @@ public class SpectrumItems {
 		register("primordial_lighter", PRIMORDIAL_LIGHTER, DyeColor.ORANGE);
 
 		register("night_salts", NIGHT_SALTS, DyeColor.PURPLE);
+		register("concealing_oils", CONCEALING_OILS, DyeColor.BLACK);
+		register("bitter_oils", BITTER_OILS, DyeColor.BLUE);
 
 		register("mysterious_locket", MYSTERIOUS_LOCKET, DyeColor.GRAY);
 		register("mysterious_compass", MYSTERIOUS_COMPASS, DyeColor.GRAY);

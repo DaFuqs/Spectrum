@@ -115,7 +115,7 @@ public record PotionRecipeEffect(boolean applicableToPotions, boolean applicable
 		
 		if (potency >= 0 && durationTicks > 0) {
 			int effectColor = potionMod.getColor(random);
-			return new InkPoweredStatusEffectInstance(new StatusEffectInstance(statusEffect(), durationTicks, (int) potency, !potionMod.noParticles, !potionMod.noParticles), new InkCost(inkColor(), inkCost()), effectColor, potionMod.unidentifiable);
+			return new InkPoweredStatusEffectInstance(new StatusEffectInstance(statusEffect(), durationTicks, (int) potency, !potionMod.noParticles, !potionMod.noParticles), new InkCost(inkColor(), inkCost()), effectColor, potionMod.unidentifiable, potionMod.incurable);
 		} else {
 			// the effect is so borked that the effect would be too weak
 			return null;

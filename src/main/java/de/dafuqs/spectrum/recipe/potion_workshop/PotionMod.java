@@ -39,6 +39,7 @@ public class PotionMod {
 	public boolean potentDecreasingEffect = false;
 	public boolean negateDecreasingDuration = false;
 	public boolean randomColor = false;
+	public boolean incurable = false;
 	
 	public List<Pair<PotionRecipeEffect, Float>> additionalEffects = new ArrayList<>();
 	
@@ -106,6 +107,9 @@ public class PotionMod {
 		if (JsonHelper.hasBoolean(jsonObject, "potent_decreasing_effect")) {
 			mod.potentDecreasingEffect = JsonHelper.getBoolean(jsonObject, "potent_decreasing_effect");
 		}
+		if (JsonHelper.hasBoolean(jsonObject, "incurable")) {
+			mod.incurable = JsonHelper.getBoolean(jsonObject, "incurable");
+		}
 		if (JsonHelper.hasBoolean(jsonObject, "negate_decreasing_duration")) {
 			mod.negateDecreasingDuration = JsonHelper.getBoolean(jsonObject, "negate_decreasing_duration");
 		}
@@ -152,6 +156,7 @@ public class PotionMod {
 		packetByteBuf.writeBoolean(negateDecreasingDuration);
 		packetByteBuf.writeInt(additionalDrinkDurationTicks);
 		packetByteBuf.writeBoolean(randomColor);
+		packetByteBuf.writeBoolean(incurable);
 		
 		packetByteBuf.writeInt(additionalEffects.size());
 		for (Pair<PotionRecipeEffect, Float> effectAndChance : additionalEffects) {
@@ -185,6 +190,7 @@ public class PotionMod {
 		potionMod.negateDecreasingDuration = packetByteBuf.readBoolean();
 		potionMod.additionalDrinkDurationTicks = packetByteBuf.readInt();
 		potionMod.randomColor = packetByteBuf.readBoolean();
+		potionMod.incurable = packetByteBuf.readBoolean();
 		
 		int statusEffectCount = packetByteBuf.readInt();
 		for (int i = 0; i < statusEffectCount; i++) {
@@ -218,6 +224,7 @@ public class PotionMod {
 		this.potentDecreasingEffect |= potionMod.potentDecreasingEffect;
 		this.negateDecreasingDuration |= potionMod.negateDecreasingDuration;
 		this.randomColor |= potionMod.randomColor;
+		this.incurable |= potionMod.incurable;
 		this.additionalEffects.addAll(potionMod.additionalEffects);
 	}
 	

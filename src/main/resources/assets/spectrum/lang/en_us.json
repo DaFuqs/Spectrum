@@ -3898,6 +3898,8 @@
 
   "info.spectrum.tooltip.sleep_resist.negative": " +%d%% Sleep Vulnerability",
   "info.spectrum.tooltip.sleep_resist.positive": " +%d%% Sleep Resistance",
+  "info.spectrum.tooltip.adulterated.info": " [only you can see this]",
+  "info.spectrum.tooltip.adulterated.effect": "Tainted with %s",
 
   "item.minecraft.lingering_potion.effect.pigment_potion": "Lingering §2P§3i§cg§6m§be§en§dt§f Potion",
   "item.minecraft.potion.effect.pigment_potion": "§2P§3i§cg§6m§be§en§dt§f Potion",
@@ -4353,6 +4355,10 @@
   "item.spectrum.neolith": "Neolith",
   "item.spectrum.night_salts": "Night Salts",
   "item.spectrum.night_salts.tooltip": "Break to sleep",
+  "item.spectrum.concealing_oils": "Concealing Oils",
+  "item.spectrum.concealing_oils.tooltip": "Apply by right-clicking unto food in your inventory",
+  "item.spectrum.concealing_oils.when_poisoned": "When Poisoned:",
+  "item.spectrum.bitter_oils": "Bitter Oils",
   "item.spectrum.nightdew_sprout": "Nightdew Sprout",
   "item.spectrum.nightdew_sprout.tooltip": "§ofragrant like tea",
   "item.spectrum.nightfalls_blade": "Nightfall's Blade",
@@ -4403,6 +4409,7 @@
   "item.spectrum.potion.faster_to_drink": "Faster to drink",
   "item.spectrum.potion.slower_to_drink": "Slower to drink",
   "item.spectrum.potion.tooltip.unidentifiable": "§0Blackened beyond recognition",
+  "item.spectrum.potion.tooltip.incurable": "§5Incurable by mundane means",
   "item.spectrum.potion_pendant.tooltip_max_level": "§7Supports Effects up to level ",
   "item.spectrum.potion_pendant.tooltip_not_full_count": "§7Fill with up to §f%d§7 Effects in the §fPotion Workshop",
   "item.spectrum.potion_pendant.tooltip_not_full_one": "§7Fill with an Effect in the §fPotion Workshop",
@@ -4796,6 +4803,7 @@
   "spectrum.rei.potion_workshop_reacting.spectrum.stratine_fragments": "• +1 potency\n• +1 negative effect\n• -1 yield",
   "spectrum.rei.potion_workshop_reacting.spectrum.topaz_powder": "• makes effects not show any particles",
   "spectrum.rei.potion_workshop_reacting.spectrum.vegetal": "• +200% duration\n• -25% potency",
+  "spectrum.rei.potion_workshop_reacting.spectrum.bitter_oils": "• -4 yield\n• makes effects incurable",
 
   "spectrum.subtitles.air_launch_belt_charging": "Takeoff Belt charging",
   "spectrum.subtitles.bident_hit_ground": "Bident vibrates",

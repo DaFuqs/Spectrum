@@ -187,6 +187,11 @@ public class SpectrumFoodComponents {
 			.hunger(2).saturationModifier(0.2F).alwaysEdible()
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.DIVINITY, 600, DivinityStatusEffect.ASCENSION_AMPLIFIER), 1.0F)
 			.build();
+
+	public static final FoodComponent BITTER_OILS = new FoodComponent.Builder()
+			.hunger(0).saturationModifier(0).alwaysEdible()
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.DEADLY_POISON, 200), 1.0F)
+			.build();
 	
 	public static final FoodComponent ROCK_CANDY = new FoodComponent.Builder()
 			.hunger(2).saturationModifier(0.2F).snack()

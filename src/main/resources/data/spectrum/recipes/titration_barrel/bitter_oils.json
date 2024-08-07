@@ -1,0 +1,31 @@
+{
+  "type": "spectrum:titration_barrel",
+  "ingredients": [
+    {
+      "item": "spectrum:nectardew_burgeon"
+    },
+    {
+      "item": "spectrum:bloodboil_syrup"
+    },
+    {
+      "item": "spectrum:bedrock_dust",
+      "count": 3
+    },
+    {
+      "item": "spectrum:stratine_fragments",
+      "count": 3
+    },
+    {
+      "item": "minecraft:echo_shard"
+    }
+  ],
+  "fluid": {
+    "fluid": "spectrum:liquid_crystal"
+  },
+  "min_fermentation_time_hours": 4,
+  "result": {
+    "item": "spectrum:bitter_oils",
+    "count": 6
+  },
+  "required_advancement": "spectrum:hidden/collect_cookbooks/poisoners_cookbook"
+}

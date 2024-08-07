@@ -1,0 +1,31 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 800,
+  "tier": "complex",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "black": 8,
+  "white": 8,
+  "experience": 2.0,
+  "pattern": [
+    " F ",
+    "BNB",
+    " B "
+  ],
+  "key": {
+    "B": {
+      "item": "spectrum:pure_quartz"
+    },
+    "F": {
+      "item": "spectrum:bismuth_flake"
+    },
+    "N": {
+      "item": "spectrum:nightdew_sprout"
+    }
+  },
+  "result": {
+    "item": "spectrum:concealing_oils"
+  },
+  "required_advancement": "spectrum:hidden/collect_cookbooks/poisoners_cookbook"
+}

@@ -37,7 +37,7 @@ public interface InkPoweredPotionFillable {
 				
 				// calculate the final cost of this effect and add it
 				InkCost adjustedCost = new InkCost(newEffect.getInkCost().getColor(), adjustFinalCostFor(newEffect));
-				InkPoweredStatusEffectInstance modifiedInstance = new InkPoweredStatusEffectInstance(statusEffectInstance, adjustedCost, newEffect.getColor(), newEffect.isUnidentifiable());
+				InkPoweredStatusEffectInstance modifiedInstance = new InkPoweredStatusEffectInstance(statusEffectInstance, adjustedCost, newEffect.getColor(), newEffect.isUnidentifiable(), newEffect.isIncurable());
 				existingEffects.add(modifiedInstance);
 			}
 			

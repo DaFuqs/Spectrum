@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.api.energy;
 
 import com.google.common.collect.*;
+import de.dafuqs.spectrum.api.status_effect.Incurable;
 import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.effect.*;
@@ -16,18 +17,24 @@ public class InkPoweredStatusEffectInstance {
 	
 	public static final String NBT_KEY = "InkPoweredStatusEffects";
 	public static final String UNIDENTIFIABLE_NBT_KEY = "Unidentifiable";
+	public static final String INCURABLE_NBT_KEY = "Incurable";
 	public static final String CUSTOM_COLOR_NBT_KEY = "CustomColor";
 
 	private final StatusEffectInstance statusEffectInstance;
 	private final InkCost cost;
 	private final boolean unidentifiable;
+	private final boolean incurable;
 	private final int customColor; // -1: use effect default
 	
-	public InkPoweredStatusEffectInstance(StatusEffectInstance statusEffectInstance, InkCost cost, int customColor, boolean unidentifiable) {
+	public InkPoweredStatusEffectInstance(StatusEffectInstance statusEffectInstance, InkCost cost, int customColor, boolean unidentifiable, boolean incurable) {
 		this.statusEffectInstance = statusEffectInstance;
 		this.cost = cost;
 		this.customColor = customColor;
 		this.unidentifiable = unidentifiable;
+		this.incurable = incurable;
+
+		if (incurable)
+			((Incurable) statusEffectInstance).spectrum$setIncurable(true);
 	}
 	
 	public StatusEffectInstance getStatusEffectInstance() {
@@ -48,6 +55,9 @@ public class InkPoweredStatusEffectInstance {
 		if (unidentifiable) {
 			nbt.putBoolean(UNIDENTIFIABLE_NBT_KEY, true);
 		}
+		if (incurable) {
+			nbt.putBoolean(INCURABLE_NBT_KEY, true);
+		}
 		return nbt;
 	}
 	
@@ -62,7 +72,11 @@ public class InkPoweredStatusEffectInstance {
 		if (nbt.contains(UNIDENTIFIABLE_NBT_KEY)) {
 			unidentifiable = nbt.getBoolean(UNIDENTIFIABLE_NBT_KEY);
 		}
-		return new InkPoweredStatusEffectInstance(statusEffectInstance, cost, customColor, unidentifiable);
+		boolean incurable = false;
+		if (nbt.contains(INCURABLE_NBT_KEY)) {
+			incurable = nbt.getBoolean(INCURABLE_NBT_KEY);
+		}
+		return new InkPoweredStatusEffectInstance(statusEffectInstance, cost, customColor, unidentifiable, incurable);
 	}
 	
 	public static List<InkPoweredStatusEffectInstance> getEffects(ItemStack stack) {
@@ -102,6 +116,10 @@ public class InkPoweredStatusEffectInstance {
 			for (InkPoweredStatusEffectInstance entry : effects) {
 				if (entry.isUnidentifiable()) {
 					tooltip.add(Text.translatable("item.spectrum.potion.tooltip.unidentifiable"));
+					continue;
+				}
+				if (entry.isIncurable()) {
+					tooltip.add(Text.translatable("item.spectrum.potion.tooltip.incurable"));
 					continue;
 				}
 
@@ -163,4 +181,7 @@ public class InkPoweredStatusEffectInstance {
 		return this.unidentifiable;
 	}
 
+	public boolean isIncurable() {
+		return this.incurable;
+	}
 }

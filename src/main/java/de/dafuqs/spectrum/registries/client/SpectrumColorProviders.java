@@ -44,7 +44,7 @@ public class SpectrumColorProviders {
 		registerClovers(SpectrumBlocks.CLOVER, SpectrumBlocks.FOUR_LEAF_CLOVER);
 		registerMemory(SpectrumBlocks.MEMORY);
 		registerPotionFillables(SpectrumItems.LESSER_POTION_PENDANT, SpectrumItems.GREATER_POTION_PENDANT, SpectrumItems.MALACHITE_GLASS_AMPOULE);
-		registerPickyPotionFillables(SpectrumItems.NIGHTFALLS_BLADE);
+		registerPickyPotionFillables(SpectrumItems.NIGHTFALLS_BLADE, SpectrumItems.CONCEALING_OILS);
 		registerSingleInkStorages(SpectrumItems.INK_FLASK);
 		registerPaintbrush(SpectrumItems.PAINTBRUSH);
 		registerBrewColors(SpectrumItems.INFUSED_BEVERAGE);

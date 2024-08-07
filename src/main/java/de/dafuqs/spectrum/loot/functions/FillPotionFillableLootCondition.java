@@ -20,12 +20,13 @@ public class FillPotionFillableLootCondition extends ConditionalLootFunction {
 	
 	record InkPoweredPotionTemplate(boolean ambient, boolean showParticles, LootNumberProvider duration,
 									List<StatusEffect> statusEffects, int color, LootNumberProvider amplifier,
-									List<InkColor> inkColors, LootNumberProvider inkCost, boolean unidentifiable) {
+									List<InkColor> inkColors, LootNumberProvider inkCost, boolean unidentifiable, boolean incurable) {
 		
 		public static InkPoweredPotionTemplate fromJson(JsonObject jsonObject, JsonDeserializationContext jsonDeserializationContext) {
 			boolean ambient = JsonHelper.getBoolean(jsonObject, "ambient", false);
 			boolean showParticles = JsonHelper.getBoolean(jsonObject, "show_particles", false);
 			boolean unidentifiable = JsonHelper.getBoolean(jsonObject, "unidentifiable", false);
+			boolean incurable = JsonHelper.getBoolean(jsonObject, "incurable", false);
 			LootNumberProvider duration = JsonHelper.deserialize(jsonObject, "duration", jsonDeserializationContext, LootNumberProvider.class);
 			Set<StatusEffect> statusEffects = new HashSet<>();
 			JsonElement statusEffectElement = jsonObject.get("status_effect");
@@ -51,7 +52,7 @@ public class FillPotionFillableLootCondition extends ConditionalLootFunction {
 				inkColors.add(InkColor.ofIdString(colorElement.getAsString()));
 			}
 			
-			return new InkPoweredPotionTemplate(ambient, showParticles, duration, statusEffects.stream().toList(), color, amplifier, inkColors.stream().toList(), inkCost, unidentifiable);
+			return new InkPoweredPotionTemplate(ambient, showParticles, duration, statusEffects.stream().toList(), color, amplifier, inkColors.stream().toList(), inkCost, unidentifiable, incurable);
 		}
 		
 		public void toJson(JsonObject jsonObject, JsonSerializationContext jsonSerializationContext) {
@@ -65,6 +66,7 @@ public class FillPotionFillableLootCondition extends ConditionalLootFunction {
 			jsonObject.add("status_effect", statusEffectArray);
 			jsonObject.addProperty("color", this.color);
 			jsonObject.addProperty("unidentifiable", this.unidentifiable);
+			jsonObject.addProperty("incurable", this.incurable);
 			jsonObject.add("amplifier", jsonSerializationContext.serialize(this.amplifier));
 			jsonObject.add("ink_cost", jsonSerializationContext.serialize(this.inkCost));
 			
@@ -80,7 +82,7 @@ public class FillPotionFillableLootCondition extends ConditionalLootFunction {
 			StatusEffectInstance statusEffectInstance = new StatusEffectInstance(statusEffect, this.duration.nextInt(context), this.amplifier.nextInt(context), ambient, showParticles, true);
 			InkColor inkColor = this.inkColors.get(context.getRandom().nextInt(this.inkColors.size()));
 			int cost = this.inkCost.nextInt(context);
-			return new InkPoweredStatusEffectInstance(statusEffectInstance, new InkCost(inkColor, cost), this.color, this.unidentifiable);
+			return new InkPoweredStatusEffectInstance(statusEffectInstance, new InkCost(inkColor, cost), this.color, this.unidentifiable, this.incurable);
 		}
 		
 	}

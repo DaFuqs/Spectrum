@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.mixin;
 
 import com.llamalad7.mixinextras.injector.*;
+import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.*;
@@ -15,6 +16,7 @@ import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.cca.azure_dike.*;
 import de.dafuqs.spectrum.enchantments.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.items.ConcealingOilsItem;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
@@ -33,7 +35,6 @@ import net.minecraft.entity.mob.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
-import net.minecraft.registry.tag.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
@@ -158,6 +159,66 @@ public abstract class LivingEntityMixin {
 			return !entity.isSubmergedInWater();
 
 		return original;
+	}
+
+	@Inject(method = "applyFoodEffects", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/Item;getFoodComponent()Lnet/minecraft/item/FoodComponent;"))
+	private void spectrum$applyConcealedEffects(ItemStack stack, World world, LivingEntity targetEntity, CallbackInfo ci) {
+		if (!world.isClient() && stack.hasNbt() && stack.getNbt().contains(ConcealingOilsItem.OIL_EFFECT_ID)) {
+			var nbt = stack.getNbt().getCompound(ConcealingOilsItem.OIL_EFFECT_ID);
+			var instance = StatusEffectInstance.fromNbt(nbt);
+			targetEntity.addStatusEffect(instance);
+		}
+	}
+
+	@WrapWithCondition(method = "clearStatusEffects", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;onStatusEffectRemoved(Lnet/minecraft/entity/effect/StatusEffectInstance;)V"))
+	private boolean spectrum$preventStatusClear(LivingEntity instance, StatusEffectInstance effect, @Share("blockRemoval") LocalBooleanRef blockRemoval) {
+		if (Incurable.isIncurable(effect) && !affectedByImmunity(instance, effect.getAmplifier())) {
+			blockRemoval.set(true);
+			return false;
+		}
+
+		return true;
+	}
+
+	@WrapWithCondition(method = "clearStatusEffects", at = @At(value = "INVOKE", target = "Ljava/util/Iterator;remove()V"))
+	private boolean spectrum$preventStatusClear(Iterator instance, @Share("blockRemoval") LocalBooleanRef blockRemoval) {
+		if (blockRemoval.get()) {
+			blockRemoval.set(false);
+			return false;
+		}
+		return true;
+	}
+
+	@WrapOperation(method = "removeStatusEffect", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;removeStatusEffectInternal(Lnet/minecraft/entity/effect/StatusEffect;)Lnet/minecraft/entity/effect/StatusEffectInstance;"))
+	private StatusEffectInstance spectrum$preventStatusRemoval(LivingEntity instance, StatusEffect type, Operation<StatusEffectInstance> original) {
+		var effect = instance.getStatusEffect(type);
+		boolean cancel;
+
+		if (effect == null)
+			return original.call(instance, type);
+
+		cancel = Incurable.isIncurable(effect);
+
+		if (cancel) {
+			cancel = !affectedByImmunity(instance, effect.getAmplifier());
+		}
+
+		if (cancel)
+			return null;
+
+		return original.call(instance, type);
+	}
+
+	@Unique
+	private static boolean affectedByImmunity(LivingEntity instance, int amplifier) {
+		var immunity = instance.getStatusEffect(SpectrumStatusEffects.IMMUNITY);
+		var cost = 1200 + 600 * amplifier;
+
+		if (immunity != null && immunity.getDuration() >= cost) {
+			((StatusEffectInstanceAccessor) immunity).setDuration(Math.max(5, immunity.getDuration() - cost));
+			return true;
+		}
+		return false;
 	}
 
 	@Unique
@@ -436,11 +497,25 @@ public abstract class LivingEntityMixin {
 		}
 	}
 
-	@Inject(method = "canHaveStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;)Z", at = @At("RETURN"), cancellable = true)
-	public void spectrum$canHaveStatusEffect(StatusEffectInstance statusEffectInstance, CallbackInfoReturnable<Boolean> cir) {
-		if (cir.getReturnValue() && this.hasStatusEffect(SpectrumStatusEffects.IMMUNITY) && statusEffectInstance.getEffectType().getCategory() == StatusEffectCategory.HARMFUL && !SpectrumStatusEffectTags.isIncurable(statusEffectInstance.getEffectType())) {
-			cir.setReturnValue(false);
+	@ModifyReturnValue(method = "canHaveStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;)Z", at = @At("RETURN"))
+	public boolean spectrum$canHaveStatusEffect(boolean original, @Local(argsOnly = true) StatusEffectInstance statusEffectInstance) {
+		if (original && this.hasStatusEffect(SpectrumStatusEffects.IMMUNITY) && statusEffectInstance.getEffectType().getCategory() == StatusEffectCategory.HARMFUL && !SpectrumStatusEffectTags.isIncurable(statusEffectInstance.getEffectType())) {
+			if (Incurable.isIncurable(statusEffectInstance)) {
+				var immunity = getStatusEffect(SpectrumStatusEffects.IMMUNITY);
+				var cost = 600 * (statusEffectInstance.getAmplifier() + 1);
+
+				if (immunity.getDuration() >= cost) {
+					((StatusEffectInstanceAccessor) immunity).setDuration(Math.max(5, immunity.getDuration() - cost));
+					return false;
+                }
+				else {
+					return true;
+				}
+			}
+
+			return false;
 		}
+		return original;
 	}
 	
 	@ModifyVariable(method = "setSprinting(Z)V", at = @At("HEAD"), argsOnly = true)

@@ -145,15 +145,9 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		PotionUtil.setCustomPotionEffects(stack, List.of(new StatusEffectInstance(recipeData.statusEffect(), recipeData.baseDurationTicks())));
 		return stack;
 	}
-
-	public float getYieldModifiers(PotionMod potionMod) {
-		var yield = recipeData.baseYield();
-		yield += potionMod.yield;
-
-		if (recipeData.yieldHardCap() > 0)
-			yield = recipeData.yieldHardCap();
-
-		return yield;
+	
+	public float getModifiedYield(PotionMod potionMod) {
+		return recipeData.baseYield() + potionMod.yield;
 	}
 	
 	public ItemStack getPotion(ItemStack stack, PotionMod potionMod, PotionWorkshopBrewingRecipe lastRecipe, Random random) {

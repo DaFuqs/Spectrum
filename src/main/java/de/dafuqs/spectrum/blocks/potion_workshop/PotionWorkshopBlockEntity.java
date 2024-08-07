@@ -231,7 +231,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		// process reagents
 		PotionMod potionMod = getPotionModFromReagents(potionWorkshopBlockEntity);
 		
-		int maxBrewedPotionsAmount = Support.getIntFromDecimalWithChance(brewingRecipe.getYieldModifiers(potionMod), world.random);
+		int maxBrewedPotionsAmount = Support.getIntFromDecimalWithChance(brewingRecipe.getModifiedYield(potionMod), world.random);
 		int brewedAmount = Math.min(potionWorkshopBlockEntity.inventory.get(BASE_INPUT_SLOT_ID).getCount(), maxBrewedPotionsAmount);
 		
 		// calculate outputs
@@ -271,7 +271,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		PotionMod potionMod = getPotionModFromReagents(potionWorkshopBlockEntity);
 
 		// the multiplication happening after the decimal chance rounding is not a mistake it is me being evil ~ Azzyy
-		int maxTippedArrowsAmount = Support.getIntFromDecimalWithChance(brewingRecipe.getYieldModifiers(potionMod), world.random) * PotionWorkshopBrewingRecipe.ARROW_COUNT_MULTIPLIER;
+		int maxTippedArrowsAmount = Support.getIntFromDecimalWithChance(brewingRecipe.getModifiedYield(potionMod), world.random) * PotionWorkshopBrewingRecipe.ARROW_COUNT_MULTIPLIER;
 		int tippedAmount = Math.min(potionWorkshopBlockEntity.inventory.get(BASE_INPUT_SLOT_ID).getCount(), maxTippedArrowsAmount);
 		
 		// calculate outputs

@@ -59,7 +59,7 @@ public class BottomlessBundleBlock extends BlockWithEntity {
 					long amount = bottomlessBundleBlockEntity.storage.amount;
 					ItemVariant variant = bottomlessBundleBlockEntity.storage.getResource();
 					long maxStoredAmount = BottomlessBundleItem.getMaxStoredAmount(bottomlessBundleBlockEntity.powerLevel);
-					if (amount == 0) {
+					if (variant.isBlank()) {
 						player.sendMessage(Text.translatable("item.spectrum.bottomless_bundle.tooltip.empty"), true);
 					} else {
 						player.sendMessage(Text.translatable("item.spectrum.bottomless_bundle.tooltip.count_of", amount, maxStoredAmount).append(variant.getItem().getName()), true);

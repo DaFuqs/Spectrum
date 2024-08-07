@@ -28,8 +28,7 @@ public class BottomlessBundleBlockEntity extends BlockEntity {
 		@Override
 		protected boolean canInsert(ItemVariant variant) {
 			return variant.getItem().canBeNested()
-					&& (this.variant.isBlank()
-						|| this.variant.isOf(variant.getItem()) && this.variant.nbtMatches(variant.getNbt()));
+					&& (this.variant.isBlank() || this.variant.isOf(variant.getItem()) && this.variant.nbtMatches(variant.getNbt()));
 		}
 
 		@Override
@@ -40,7 +39,7 @@ public class BottomlessBundleBlockEntity extends BlockEntity {
 		
 		@Override
 		protected ItemVariant getBlankVariant() {
-			return ItemVariant.blank();
+			return this.variant; // lock to the item the player set it to when placing it down
 		}
 
 		@Override

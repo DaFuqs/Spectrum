@@ -14,6 +14,7 @@ import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.entity.projectile.*;
 import net.minecraft.item.*;
+import net.minecraft.nbt.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
@@ -49,9 +50,10 @@ public class DragonTalonItem extends MalachiteBidentItem implements MergeableIte
 	
 	@Override
 	public Multimap<EntityAttribute, EntityAttributeModifier> getAttributeModifiers(ItemStack stack, EquipmentSlot slot) {
-		var nbt = stack.getOrCreateNbt();
-		if (slot != EquipmentSlot.MAINHAND)
+		var nbt = stack.getNbt();
+		if (nbt == null || slot != EquipmentSlot.MAINHAND)
 			return super.getAttributeModifiers(slot);
+		
 		return this.isReservingSlot(stack) || nbt.getBoolean("cooldown") ? phantomModifiers : attributeModifiers;
 	}
 	
@@ -154,7 +156,11 @@ public class DragonTalonItem extends MalachiteBidentItem implements MergeableIte
 	
 	@Override
 	public boolean isReservingSlot(ItemStack stack) {
-		return stack.getOrCreateNbt().getBoolean(SlotReservingItem.NBT_STRING);
+		@Nullable NbtCompound nbt = stack.getNbt();
+		if (nbt == null) {
+			return false;
+		}
+		return nbt.getBoolean(SlotReservingItem.NBT_STRING);
 	}
 	
 	@Override

@@ -28,7 +28,7 @@ public class JadeWineItem extends BeverageItem {
 			String translationKey = getTranslationKey();
 			tooltip.add(Text.translatable(translationKey + ".tooltip.preview").formatted(Formatting.GRAY));
 			tooltip.add(Text.translatable(translationKey + ".tooltip.preview2").formatted(Formatting.GRAY));
-			tooltip.add(Text.translatable(translationKey + ".tooltip.preview3").formatted(Formatting.GRAY));
+			tooltip.add(Text.translatable("item.spectrum.tooltip.could_use_some_sweetener").formatted(Formatting.GRAY));
 		}
 	}
 	

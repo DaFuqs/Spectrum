@@ -1,13 +1,11 @@
 package de.dafuqs.spectrum.particle.client;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.fabricmc.api.*;
 import net.minecraft.client.particle.*;
-import net.minecraft.client.render.LightmapTextureManager;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.client.render.*;
+import net.minecraft.client.world.*;
+import net.minecraft.particle.*;
+import net.minecraft.util.math.*;
 
 public class FireflyParticle extends SpriteBillboardParticle {
     private final SpriteProvider spriteProvider;
@@ -53,8 +51,8 @@ public class FireflyParticle extends SpriteBillboardParticle {
         r /= 255F;
         g /= 255F;
         b /= 255F;
-
-        this.scale = 0.15F + random.nextFloat() * 0.3F;
+        
+        this.scale = 0.1F + random.nextFloat() * 0.3F;
         scale *= scaleMultiplier;
         setColor(r, g, b);
         setAlpha(0F);

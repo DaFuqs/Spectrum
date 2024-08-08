@@ -10,6 +10,12 @@
     "grass_color": 4444825,
     "foliage_color": 2200956,
     "grass_color_modifier": "none",
+    "particle": {
+      "options": {
+        "type": "spectrum:firefly"
+      },
+      "probability": 0.008093334
+    },
     "mood_sound": {
       "sound": "spectrum:ambient.dimension_sounds",
       "tick_delay": 4000,
@@ -106,6 +112,12 @@
       "spectrum:dd_liquid_crystal_springs"
     ],
     [
+      "spectrum:nightdew_vine",
+      "spectrum:abyssal_vines",
+      "spectrum:sweet_pea",
+      "spectrum:apricotti",
+      "spectrum:humming_bell",
+      "spectrum:moss_balls",
       "spectrum:dd_patch_grass_normal",
       "spectrum:dd_glow_lichen",
       "spectrum:dd_liquid_crystal_flower_patch",

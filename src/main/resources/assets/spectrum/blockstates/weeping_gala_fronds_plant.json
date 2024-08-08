@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "form=tip": {
+      "model": "spectrum:block/weeping_gala_fronds_plant"
+    },
+    "form=sprig": {
+      "model": "spectrum:block/weeping_gala_fronds_plant_sprig"
+    },
+    "form=resin": {
+      "model": "spectrum:block/weeping_gala_fronds_plant_resin"
+    }
+  }
+}

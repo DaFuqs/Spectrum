@@ -1,32 +1,27 @@
 {
-  "name": "book.spectrum.guidebook.provider_node.name",
-  "icon": "spectrum:provider_node",
+  "name": "book.spectrum.guidebook.tuning_stamp.name",
+  "icon": "spectrum:tuning_stamp",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/pastel_network"
   },
   "category": "spectrum:pastel_network",
   "hide_while_locked ": true,
-  "parents": [
-    {
-      "entry": "spectrum:pastel_network/pastel_network",
-      "line_reversed": true
-    }
-  ],
+  "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "x": 3,
-  "y": -2,
+  "y": 0,
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.provider_node.name",
-      "text": "book.spectrum.guidebook.provider_node.page0.text"
+      "title": "book.spectrum.guidebook.tuning_stamp.name",
+      "text": "book.spectrum.guidebook.tuning_stamp.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier3/pastel_network/provider_node"
+      "recipe_id_1": "spectrum:pedestal/tier3/pastel_network/tuning_stamp"
     }
   ]
 }

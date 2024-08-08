@@ -95,9 +95,9 @@ public class CreativeInkAssortmentItem extends Item implements InkStorageItem<Cr
 			return ColorHelper.colorVecToRGB(color.getColorVec());
 		}
 		
-		var curColor = colors.get((int) (time % (50L * colors.size()) / 50));
-		var nextColor = colors.get((int) ((time % (50L * colors.size()) / 50 + 1) % colors.size()));
-		var blendFactor = (((float) time + delta) % 50) / 50F;
+		var curColor = colors.get((int) (time % (30L * colors.size()) / 30));
+		var nextColor = colors.get((int) ((time % (30L * colors.size()) / 30 + 1) % colors.size()));
+		var blendFactor = (((float) time + delta) % 30) / 30F;
 		
 		return ColorHelper.interpolate(curColor.getTextColorVec(), nextColor.getTextColorVec(), blendFactor);
 	}

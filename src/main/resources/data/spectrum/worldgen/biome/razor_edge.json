@@ -10,6 +10,12 @@
     "grass_color": 7241038,
     "foliage_color": 3819567,
     "grass_color_modifier": "none",
+    "particle": {
+      "options": {
+        "type": "minecraft:white_ash"
+      },
+      "probability": 0.028093334
+    },
     "mood_sound": {
       "sound": "spectrum:ambient.dimension_sounds",
       "tick_delay": 4000,

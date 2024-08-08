@@ -39,7 +39,7 @@ public class ConcealingOilsItem extends DrinkItem implements InkPoweredPotionFil
 
     @Override
     public boolean onStackClicked(ItemStack stack, Slot slot, ClickType clickType, PlayerEntity player) {
-        if (clickType == ClickType.LEFT)
+        if (clickType != ClickType.RIGHT)
             return false;
 
         var appliedStack = slot.getStack();

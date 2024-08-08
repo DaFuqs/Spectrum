@@ -159,7 +159,7 @@ public class DarknessEffects {
         }
         //depth darkening
         else if (y < -256) {
-            adjustedInterp = (float) Math.max(interp, Math.min(0.725F, interp + (y + 256) / -196F));
+            adjustedInterp = (float) Math.max(interp, Math.min(0.825F, interp + (y + 256) / -256F));
         }
         else {
             adjustedInterp = interp;
@@ -199,9 +199,9 @@ public class DarknessEffects {
     static {
         var builder = ImmutableMap.<RegistryKey<Biome>, Float>builder();
         builder.put(SpectrumBiomes.BLACK_LANGAST, 0.7F);
-        builder.put(SpectrumBiomes.DEEP_BARRENS, 0.5F);
-        builder.put(SpectrumBiomes.DEEP_DRIPSTONE_CAVES, 0.125F);
-        builder.put(SpectrumBiomes.NOXSHROOM_FOREST, 0.075F);
+        builder.put(SpectrumBiomes.DEEP_BARRENS, 0.325F);
+        builder.put(SpectrumBiomes.DEEP_DRIPSTONE_CAVES, 0.1F);
+        builder.put(SpectrumBiomes.NOXSHROOM_FOREST, 0.05F);
         INTERP_MULTIPLIERS = builder.build();
 
         var fogBuilder = ImmutableMap.<RegistryKey<Biome>, Float>builder();

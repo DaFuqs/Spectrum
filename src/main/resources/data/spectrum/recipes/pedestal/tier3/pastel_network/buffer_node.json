@@ -1,0 +1,36 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "pastel_network",
+  "time": 80,
+  "tier": "advanced",
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 1.0,
+  "pattern": [
+    " A ",
+    "ASA",
+    "YXY"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:glow_ink_sac"
+    },
+    "X": {
+      "item": "spectrum:polished_basalt"
+    },
+    "Y": {
+      "item": "spectrum:polished_calcite"
+    },
+    "A": {
+      "item": "spectrum:raw_azurite"
+    }
+  },
+  "result": {
+    "item": "spectrum:buffer_node",
+    "count": 4
+  },
+  "required_advancement": "spectrum:unlocks/blocks/pastel_network"
+}

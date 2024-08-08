@@ -10,22 +10,17 @@ import net.minecraft.sound.*;
 public class HintRevelationSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
 	
 	private final PlayerEntity player;
-	private final int duration;
 	private boolean done;
-	private int playtime;
 	
-	public HintRevelationSoundInstance(PlayerEntity player, int duration) {
+	public HintRevelationSoundInstance(PlayerEntity player) {
 		super(SpectrumSoundEvents.TEXT_REVEALED, SoundCategory.PLAYERS, SoundInstance.createRandom());
 		this.repeat = true;
 		this.repeatDelay = 0;
 		this.volume = 1.0F;
 		this.player = player;
-		this.duration = duration;
 		this.x = player.getX();
 		this.y = player.getY();
 		this.z = player.getZ();
-		
-		this.playtime = 0;
 	}
 	
 	@Override
@@ -35,25 +30,23 @@ public class HintRevelationSoundInstance extends AbstractSoundInstance implement
 	
 	@Override
 	public boolean shouldAlwaysPlay() {
-		return true;
+		return false;
 	}
 	
 	@Override
 	public void tick() {
-		playtime++;
-		
 		if (this.player != null) {
 			this.x = player.getX();
 			this.y = player.getY();
 			this.z = player.getZ();
 		}
 		
-		if (player == null || !player.getMainHandStack().isOf(SpectrumItems.GUIDEBOOK) || playtime > duration) {
+		if (player == null || !player.getMainHandStack().isOf(SpectrumItems.GUIDEBOOK)) {
 			this.setDone();
 		}
 	}
 	
-	protected final void setDone() {
+	public final void setDone() {
 		this.done = true;
 		this.repeat = false;
 	}

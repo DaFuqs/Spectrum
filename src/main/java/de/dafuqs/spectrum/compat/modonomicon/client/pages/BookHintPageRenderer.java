@@ -20,6 +20,7 @@ import java.util.*;
 public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> implements PageWithTextRenderer {
     
     private Style OBFUSCATED_STYLE;
+    private HintRevelationSoundInstance soundInstance;
 
     public static class PaymentButtonWidget extends ButtonWidget {
 
@@ -186,7 +187,8 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
             return;
         }
         if (mc.player.isCreative() || InventoryHelper.hasInInventory(List.of(page.getCost()), mc.player.getInventory())) {
-            MinecraftClient.getInstance().getSoundManager().play(new HintRevelationSoundInstance(mc.player, page.getText().getString().length()));
+            soundInstance = new HintRevelationSoundInstance(mc.player);
+            MinecraftClient.getInstance().getSoundManager().play(soundInstance);
 
             SpectrumC2SPacketSender.sendGuidebookHintBoughtPacket(page.getCompletionAdvancement(), page.getCost());
             revealProgress = 1;
@@ -226,6 +228,7 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
             long currentTime = System.currentTimeMillis() / 20;
             
             if (isDoneRevealing(obfuscatedText)) {
+                soundInstance.setDone();
                 revealProgress = 0;
                 obfuscatedText = null;
             } else if (currentTime != lastRevealTime) {

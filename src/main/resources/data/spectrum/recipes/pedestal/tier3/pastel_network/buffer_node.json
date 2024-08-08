@@ -1,0 +1,29 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "pastel_network",
+  "time": 80,
+  "tier": "advanced",
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 1.0,
+  "pattern": [
+    " S ",
+    "SGS",
+    " S "
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:glow_ink_sac"
+    },
+    "G": {
+      "item": "spectrum:gather_node"
+    }
+  },
+  "result": {
+    "item": "spectrum:buffer_node"
+  },
+  "required_advancement": "spectrum:unlocks/blocks/pastel_network"
+}

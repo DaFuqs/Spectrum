@@ -37,24 +37,24 @@
     },
     "trunk_placer": {
       "type": "minecraft:upwards_branching_trunk_placer",
-      "base_height": 2,
+      "base_height": 4,
       "height_rand_a": 2,
-      "height_rand_b": 2,
+      "height_rand_b": 8,
       "extra_branch_steps": {
         "type": "minecraft:uniform",
         "value": {
-          "min_inclusive": 2,
+          "min_inclusive": 1,
           "max_inclusive": 4
         }
       },
       "extra_branch_length": {
         "type": "minecraft:uniform",
         "value": {
-          "min_inclusive": 2,
-          "max_inclusive": 3
+          "min_inclusive": 1,
+          "max_inclusive": 9
         }
       },
-      "place_branch_per_log_probability": 0.8,
+      "place_branch_per_log_probability": 0.85,
       "can_grow_through": "#minecraft:mangrove_logs_can_grow_through"
     },
     "foliage_placer": {
@@ -67,7 +67,7 @@
     "decorators": [
       {
         "type": "spectrum:fronds",
-        "chance": 0.75,
+        "chance": 0.425,
         "middle_block": {
           "type": "minecraft:simple_state_provider",
           "state": {
@@ -75,16 +75,42 @@
           }
         },
         "last_block": {
-          "type": "minecraft:simple_state_provider",
-          "state": {
-            "Name": "spectrum:weeping_gala_fronds_plant"
-          }
+          "type": "minecraft:weighted_state_provider",
+          "entries": [
+            {
+              "weight": 2,
+              "data": {
+                "Name": "spectrum:weeping_gala_fronds_plant",
+                "Properties": {
+                  "form": "tip"
+                }
+              }
+            },
+            {
+              "weight": 1,
+              "data": {
+                "Name": "spectrum:weeping_gala_fronds_plant",
+                "Properties": {
+                  "form": "sprig"
+                }
+              }
+            },
+            {
+              "weight": 1,
+              "data": {
+                "Name": "spectrum:weeping_gala_fronds_plant",
+                "Properties": {
+                  "form": "resin"
+                }
+              }
+            }
+          ]
         },
         "length": {
           "type": "minecraft:uniform",
           "value": {
             "min_inclusive": 2,
-            "max_inclusive": 3
+            "max_inclusive": 5
           }
         }
       }

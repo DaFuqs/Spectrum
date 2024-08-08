@@ -1,6 +1,6 @@
 {
-  "name": "book.spectrum.guidebook.provider_node.name",
-  "icon": "spectrum:provider_node",
+  "name": "book.spectrum.guidebook.buffer_node.name",
+  "icon": "spectrum:buffer_node",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/pastel_network"
@@ -16,17 +16,18 @@
   "background_u_index": 0,
   "background_v_index": 0,
   "x": 3,
-  "y": -2,
+  "y": 3,
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.provider_node.name",
-      "text": "book.spectrum.guidebook.provider_node.page0.text"
+      "text": "book.spectrum.guidebook.buffer_node.page0.text",
+      "title": "book.spectrum.guidebook.buffer_node.name"
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.buffer_node.page1.text",
       "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier3/pastel_network/provider_node"
+      "recipe_id_1": "spectrum:pedestal/tier3/pastel_network/buffer_node"
     }
   ]
 }

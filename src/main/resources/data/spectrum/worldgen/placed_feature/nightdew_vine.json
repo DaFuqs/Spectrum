@@ -1,9 +1,9 @@
 {
-  "feature": "spectrum:jadeite_lotus",
+  "feature": "spectrum:nightdew_vine",
   "placement": [
     {
       "type": "minecraft:count",
-      "count": 5
+      "count": 244
     },
     {
       "type": "minecraft:in_square"
@@ -23,7 +23,7 @@
     {
       "type": "minecraft:environment_scan",
       "direction_of_search": "up",
-      "max_steps": 24,
+      "max_steps": 32,
       "target_condition": {
         "type": "minecraft:has_sturdy_face",
         "direction": "down"

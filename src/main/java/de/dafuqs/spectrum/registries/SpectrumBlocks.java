@@ -725,15 +725,15 @@ public class SpectrumBlocks {
 	}
 	
 	public static final Block WEEPING_GALA_SPRIG = new WeepingGalaSprigBlock(new WeepingGalaSaplingGenerator(), copyWithMapColor(OAK_SAPLING, MapColor.BRIGHT_TEAL));
-	public static final Block WEEPING_GALA_LEAVES = new LeavesBlock(copyWithMapColor(OAK_LEAVES, MapColor.BRIGHT_TEAL).luminance(13).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always));
+	public static final Block WEEPING_GALA_LEAVES = new LeavesBlock(copyWithMapColor(OAK_LEAVES, MapColor.BRIGHT_TEAL));
 	public static final Block WEEPING_GALA_LOG = new PillarBlock(galaWood(MapColor.BROWN));
 	public static final Block STRIPPED_WEEPING_GALA_LOG = new PillarBlock(galaWood(MapColor.BROWN));
 	public static final Block WEEPING_GALA_WOOD = new PillarBlock(galaWood(MapColor.BROWN));
 	public static final Block STRIPPED_WEEPING_GALA_WOOD = new PillarBlock(galaWood(MapColor.BROWN));
 	public static final Block POTTED_WEEPING_GALA_SPRIG = new FlowerPotBlock(WEEPING_GALA_SPRIG, pottedPlant());
 
-	public static final Block WEEPING_GALA_FRONDS = new Block(jadeVine());
-	public static final Block WEEPING_GALA_FRONDS_PLANT = new Block(jadeVine());
+	public static final Block WEEPING_GALA_FRONDS = new WeepingGalaFrondsBlock(FabricBlockSettings.copyOf(WEEPING_GALA_LEAVES).noCollision());
+	public static final Block WEEPING_GALA_FRONDS_PLANT = new WeepingGalaFrondsTipBlock(FabricBlockSettings.copyOf(WEEPING_GALA_LEAVES).noCollision().luminance(s -> s.get(WeepingGalaFrondsTipBlock.FORM) == WeepingGalaFrondsTipBlock.Form.RESIN ? 13 : s.get(WeepingGalaFrondsTipBlock.FORM) == WeepingGalaFrondsTipBlock.Form.SPRIG ? 8 : 0));
 
 	public static final BlockSetType GALA_BLOCK_SET_TYPE = BlockSetTypeBuilder.copyOf(BlockSetType.CHERRY).build(SpectrumCommon.locate("gala"));
 	public static final WoodType GALA_WOOD_TYPE = WoodTypeBuilder.copyOf(WoodType.CHERRY).build(SpectrumCommon.locate("gala"), GALA_BLOCK_SET_TYPE);
@@ -2936,6 +2936,7 @@ public class SpectrumBlocks {
 		// Weeping Gala
 		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(), SpectrumBlocks.WEEPING_GALA_LANTERN, SpectrumBlocks.WEEPING_GALA_LIGHT);
 		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), SpectrumBlocks.WEEPING_GALA_SPRIG, SpectrumBlocks.POTTED_WEEPING_GALA_SPRIG);
+		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), SpectrumBlocks.WEEPING_GALA_FRONDS, SpectrumBlocks.WEEPING_GALA_FRONDS_PLANT);
 
 		// Spore Blossoms
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.BLACK_SPORE_BLOSSOM, RenderLayer.getCutout());

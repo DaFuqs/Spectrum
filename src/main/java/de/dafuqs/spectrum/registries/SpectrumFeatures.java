@@ -14,6 +14,7 @@ public class SpectrumFeatures {
 	public static Feature<GilledFungusFeatureConfig> GILLED_FUNGUS;
 	public static Feature<NephriteBlossomFeatureConfig> NEPHRITE_BLOSSOM;
 	public static Feature<JadeiteLotusFeatureConfig> JADEITE_LOTUS;
+	public static Feature<TriStateVineFeatureConfig> TRISTATE_VINE;
 	public static Feature<BlockStateFeatureConfig> PILLAR;
 	public static Feature<ColumnsFeatureConfig> COLUMNS;
 	public static Feature<CrystalFormationFeatureFeatureConfig> BLOB;
@@ -30,6 +31,7 @@ public class SpectrumFeatures {
 		GILLED_FUNGUS = registerFeature("gilled_fungus", new GilledFungusFeature(GilledFungusFeatureConfig.CODEC));
 		NEPHRITE_BLOSSOM = registerFeature("nephrite_blossom", new NephriteBlossomFeature(NephriteBlossomFeatureConfig.CODEC));
 		JADEITE_LOTUS = registerFeature("jadeite_lotus", new JadeiteLotusFeature(JadeiteLotusFeatureConfig.CODEC));
+		TRISTATE_VINE = registerFeature("tristate_vine", new TriStateVineFeature(TriStateVineFeatureConfig.CODEC));
 		PILLAR = registerFeature("pillar", new PillarFeature(BlockStateFeatureConfig.CODEC));
 		COLUMNS = registerFeature("columns", new ColumnsFeature(ColumnsFeatureConfig.CODEC));
 		BLOB = registerFeature("crystal_formation", new CrystalFormationFeature(CrystalFormationFeatureFeatureConfig.CODEC));

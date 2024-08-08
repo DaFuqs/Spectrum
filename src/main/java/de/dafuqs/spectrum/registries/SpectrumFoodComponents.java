@@ -134,12 +134,6 @@ public class SpectrumFoodComponents {
 			.snack().hunger(4).saturationModifier(0.6F)
 			.build();
 
-	public static final FoodComponent SWEETENED_CONDENSED_MILK = new FoodComponent.Builder()
-			.snack().hunger(10).saturationModifier(0.5F)
-			.statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 600), 1.0F)
-			.alwaysEdible()
-			.build();
-
 	public static final FoodComponent HOT_CHOCOLATE = new FoodComponent.Builder()
 			.hunger(6).saturationModifier(0.2F)
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.NOURISHING, 1200), 1.0F)

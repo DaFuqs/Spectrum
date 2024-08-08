@@ -2,6 +2,20 @@
   "type": "minecraft:chest",
   "pools": [
     {
+      "rolls": {
+        "min": 1,
+        "max": 2
+      },
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:pipe_bomb"
+        }
+      ],
+      "functions": []
+    },
+    {
       "rolls": 1,
       "entries": [
         {
@@ -12,8 +26,8 @@
     },
     {
       "rolls": {
-        "min": 2,
-        "max": 3
+        "min": 1,
+        "max": 2
       },
       "bonus_rolls": 0,
       "entries": [
@@ -32,10 +46,6 @@
         {
           "type": "minecraft:item",
           "name": "spectrum:jadeite_lotus_bulb"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:four_leaf_clover"
         },
         {
           "type": "minecraft:item",

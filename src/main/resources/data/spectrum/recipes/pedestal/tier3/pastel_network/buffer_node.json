@@ -10,27 +10,20 @@
   "white": 0,
   "experience": 1.0,
   "pattern": [
-    " A ",
-    "ASA",
-    "YXY"
+    " S ",
+    "SGS",
+    " S "
   ],
   "key": {
     "S": {
       "item": "minecraft:glow_ink_sac"
     },
-    "X": {
-      "item": "spectrum:polished_basalt"
-    },
-    "Y": {
-      "item": "spectrum:polished_calcite"
-    },
-    "A": {
-      "item": "spectrum:raw_azurite"
+    "G": {
+      "item": "spectrum:gather_node"
     }
   },
   "result": {
-    "item": "spectrum:buffer_node",
-    "count": 4
+    "item": "spectrum:buffer_node"
   },
   "required_advancement": "spectrum:unlocks/blocks/pastel_network"
 }

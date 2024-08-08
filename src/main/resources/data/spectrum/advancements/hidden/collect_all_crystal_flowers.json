@@ -1,0 +1,46 @@
+{
+  "criteria": {
+    "found_crystal_gardens": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/visit_dd_biomes/crystal_gardens"
+      }
+    },
+    "has_apricotti": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:apricotti"
+            ]
+          }
+        ]
+      }
+    },
+    "has_sweet_pea": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:sweet_pea"
+            ]
+          }
+        ]
+      }
+    },
+    "has_humming_bell": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:humming_bell"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

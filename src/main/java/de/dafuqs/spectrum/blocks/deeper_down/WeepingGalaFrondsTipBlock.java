@@ -88,7 +88,7 @@ public class WeepingGalaFrondsTipBlock extends WeepingGalaFrondsBlock {
         var builder = (new LootContextParameterSet.Builder(world))
                 .add(LootContextParameters.BLOCK_STATE, state)
                 .add(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
-                .addOptional(LootContextParameters.TOOL, stack);
+                .add(LootContextParameters.TOOL, stack);
 
         LootTable lootTable = world.getServer().getLootManager().getLootTable(lootTableIdentifier);
         return lootTable.generateLoot(builder.build(LootContextTypes.BLOCK));

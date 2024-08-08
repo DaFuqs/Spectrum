@@ -167,7 +167,7 @@ public class HummingstoneBlock extends BlockWithEntity {
 		}
 		
 		world.emitGameEvent(entity, SpectrumGameEvents.HUMMINGSTONE_HYMN, pos);
-		world.playSound(null, pos, SoundEvents.BLOCK_AMETHYST_BLOCK_BREAK, SoundCategory.BLOCKS, 1.0F, 0.5F + world.random.nextFloat() * 1.2F);
+		world.playSound(null, pos, SoundEvents.BLOCK_AMETHYST_BLOCK_BREAK, SoundCategory.BLOCKS, 1.25F, 0.5F + world.random.nextFloat() * 1.2F);
 		world.breakBlock(pos, false);
 		dropStack(world, pos, SpectrumItems.RESONANCE_SHARD.getDefaultStack());
 		

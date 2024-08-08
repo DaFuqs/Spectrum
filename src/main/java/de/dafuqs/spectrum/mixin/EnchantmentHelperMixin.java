@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.mixin;
 
 import com.google.common.collect.*;
+import com.llamalad7.mixinextras.injector.*;
 import de.dafuqs.spectrum.api.item.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.item.*;
@@ -15,7 +16,7 @@ import java.util.*;
 public class EnchantmentHelperMixin {
 	
 	@Inject(method = "getPossibleEntries(ILnet/minecraft/item/ItemStack;Z)Ljava/util/List;", at = @At("HEAD"), cancellable = true)
-	private static void getPossibleEntries(int power, ItemStack stack, boolean treasureAllowed, CallbackInfoReturnable<List<EnchantmentLevelEntry>> cir) {
+	private static void spectrum$getPossibleEntries(int power, ItemStack stack, boolean treasureAllowed, CallbackInfoReturnable<List<EnchantmentLevelEntry>> cir) {
 		if (stack.getItem() instanceof ExtendedEnchantable) {
 			List<EnchantmentLevelEntry> list = Lists.newArrayList();
 			Iterator<Enchantment> enchantments = Registries.ENCHANTMENT.iterator();
@@ -42,6 +43,14 @@ public class EnchantmentHelperMixin {
 				}
 			}
 		}
+	}
+	
+	@ModifyReturnValue(method = "getPossibleEntries(ILnet/minecraft/item/ItemStack;Z)Ljava/util/List;", at = @At("RETURN"))
+	private static List<EnchantmentLevelEntry> spectrum$disallowConflictingAndDuplicateEnchants(List<EnchantmentLevelEntry> original, int power, ItemStack stack, boolean treasureAllowed) {
+		for (Enchantment entry : EnchantmentHelper.get(stack).keySet()) {
+			original.removeIf(levelEntry -> levelEntry.enchantment == entry || !levelEntry.enchantment.canCombine(entry));
+		}
+		return original;
 	}
 	
 }

@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.spectrum.api.item.SleepAlteringItem;
+import de.dafuqs.spectrum.api.render.SlotBackgroundEffectProvider;
 import de.dafuqs.spectrum.cca.MiscPlayerDataComponent;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
@@ -25,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class SoothingBouquetItem extends Item implements SleepAlteringItem {
+public class SoothingBouquetItem extends Item implements SleepAlteringItem, SlotBackgroundEffectProvider {
 
     private static final MutableText TOOLTIP = Text.translatable("item.spectrum.soothing_bouquet.tooltip");
 
@@ -82,5 +83,15 @@ public class SoothingBouquetItem extends Item implements SleepAlteringItem {
     @Override
     public void applyPenalties(PlayerEntity player) {
         player.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 20 * 15));
+    }
+
+    @Override
+    public SlotEffect backgroundType(@Nullable PlayerEntity player, ItemStack stack) {
+        return SlotEffect.BORDER_FADE;
+    }
+
+    @Override
+    public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
+        return SpectrumStatusEffects.ETERNAL_SLUMBER_COLOR;
     }
 }

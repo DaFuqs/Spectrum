@@ -89,14 +89,14 @@
       "multiblock_id": "spectrum:pedestal_advanced_upgrades",
       "show_visualize_button": false,
       "text": "book.spectrum.guidebook.four_upgrade_slots",
-      "multiblock_name": "book.spectrum.guidebook.upgrades.page10.multiblock_name"
+      "multiblock_name": "multiblock.spectrum.pedestal_advanced"
     },
     {
       "type": "modonomicon:multiblock",
       "multiblock_id": "spectrum:fusion_shrine_upgrades",
       "show_visualize_button": false,
       "text": "book.spectrum.guidebook.four_upgrade_slots",
-      "multiblock_name": "book.spectrum.guidebook.upgrades.page11.multiblock_name"
+      "multiblock_name": "multiblock.spectrum.fusion_shrine"
     },
     {
       "type": "modonomicon:multiblock",
@@ -107,7 +107,7 @@
       "multiblock_id": "spectrum:enchanter_upgrades",
       "show_visualize_button": false,
       "text": "book.spectrum.guidebook.four_upgrade_slots",
-      "multiblock_name": "book.spectrum.guidebook.upgrades.page12.multiblock_name"
+      "multiblock_name": "multiblock.spectrum.enchanter"
     },
     {
       "type": "modonomicon:multiblock",
@@ -118,7 +118,7 @@
       "multiblock_id": "spectrum:cinderhearth_upgrades",
       "show_visualize_button": false,
       "text": "book.spectrum.guidebook.two_upgrade_slots",
-      "multiblock_name": "book.spectrum.guidebook.upgrades.page13.multiblock_name"
+      "multiblock_name": "multiblock.spectrum.cinderhearth"
     },
     {
       "type": "modonomicon:multiblock",
@@ -129,7 +129,7 @@
       "multiblock_id": "spectrum:spirit_instiller_upgrades",
       "show_visualize_button": false,
       "text": "book.spectrum.guidebook.two_upgrade_slots",
-      "multiblock_name": "book.spectrum.guidebook.upgrades.page14.multiblock_name"
+      "multiblock_name": "multiblock.spectrum.spirit_instiller"
     }
   ]
 }

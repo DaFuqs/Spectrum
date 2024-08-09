@@ -34,9 +34,9 @@
     },
     {
       "type": "modonomicon:multiblock",
-      "multiblock_id": "spectrum:perturbed_eye",
+      "multiblock_id": "spectrum:perturbed_eye_portal",
       "text": "book.spectrum.guidebook.perturbed_eye.page3.text",
-      "multiblock_name": "book.spectrum.guidebook.perturbed_eye.page3.multiblock_name"
+      "multiblock_name": "multiblock.spectrum.perturbed_eye_portal"
     }
   ]
 }

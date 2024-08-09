@@ -22,7 +22,7 @@
       "type": "spectrum:potion_workshop_crafting",
       "title1": "book.spectrum.guidebook.potion_workshop_crafting",
       "recipe_id_1": "spectrum:potion_workshop_crafting/restoration_tea",
-      "text": "book.spectrum.guidebook.restoration_tea.page1.text"
+      "text": "book.spectrum.guidebook.no_milk_pls"
     }
   ]
 }

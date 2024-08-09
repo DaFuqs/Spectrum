@@ -35,7 +35,7 @@
       "type": "modonomicon:multiblock",
       "show_visualize_button": true,
       "multiblock_id": "spectrum:alloy_forgery/basalt_alloy_forge",
-      "multiblock_name": "book.spectrum.guidebook.mod_integration.alloy_forgery.page2.multiblock_name"
+      "multiblock_name": "multiblock.spectrum.alloy_forgery.basalt_alloy_forge"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -47,7 +47,7 @@
       "type": "modonomicon:multiblock",
       "show_visualize_button": true,
       "multiblock_id": "spectrum:alloy_forgery/calcite_alloy_forge",
-      "multiblock_name": "book.spectrum.guidebook.mod_integration.alloy_forgery.page4.multiblock_name"
+      "multiblock_name": "multiblock.spectrum.alloy_forgery.calcite_alloy_forge"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -63,7 +63,7 @@
       },
       "show_visualize_button": true,
       "multiblock_id": "spectrum:alloy_forgery/blackslag_alloy_forge",
-      "multiblock_name": "book.spectrum.guidebook.mod_integration.alloy_forgery.page6.multiblock_name"
+      "multiblock_name": "multiblock.spectrum.alloy_forgery.calcite_alloy_forge"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -83,7 +83,7 @@
       },
       "show_visualize_button": true,
       "multiblock_id": "spectrum:alloy_forgery/shale_clay_alloy_forge",
-      "multiblock_name": "book.spectrum.guidebook.mod_integration.alloy_forgery.page8.multiblock_name"
+      "multiblock_name": "multiblock.spectrum.alloy_forgery.shale_clay_alloy_forge"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -103,7 +103,7 @@
       },
       "show_visualize_button": true,
       "multiblock_id": "spectrum:alloy_forgery/pyrite_alloy_forge",
-      "multiblock_name": "book.spectrum.guidebook.mod_integration.alloy_forgery.page10.multiblock_name"
+      "multiblock_name": "multiblock.spectrum.alloy_forgery.pyrite_alloy_forge"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -123,7 +123,7 @@
       },
       "show_visualize_button": true,
       "multiblock_id": "spectrum:alloy_forgery/bone_ash_alloy_forge",
-      "multiblock_name": "book.spectrum.guidebook.mod_integration.alloy_forgery.page12.multiblock_name"
+      "multiblock_name": "multiblock.spectrum.alloy_forgery.bone_ash_alloy_forge"
     },
     {
       "type": "spectrum:pedestal_crafting",

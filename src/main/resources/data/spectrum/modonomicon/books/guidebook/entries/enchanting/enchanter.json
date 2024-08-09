@@ -29,7 +29,7 @@
       "multiblock_id": "spectrum:enchanter",
       "show_visualize_button": true,
       "text": "book.spectrum.guidebook.enchanter.page2.text",
-      "multiblock_name": "book.spectrum.guidebook.enchanter.page2.multiblock_name"
+      "multiblock_name": "multiblock.spectrum.enchanter"
     },
     {
       "type": "modonomicon:text",

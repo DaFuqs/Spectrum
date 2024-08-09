@@ -26,7 +26,7 @@
     },
     {
       "type": "modonomicon:multiblock",
-      "multiblock_name": "book.spectrum.guidebook.spirit_instiller.page2.multiblock_name",
+      "multiblock_name": "multiblock.spectrum.spirit_instiller",
       "multiblock_id": "spectrum:spirit_instiller",
       "show_visualize_button": true,
       "text": "book.spectrum.guidebook.spirit_instiller.page2.text"

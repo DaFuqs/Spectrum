@@ -37,7 +37,7 @@
       "multiblock_id": "spectrum:cinderhearth",
       "show_visualize_button": true,
       "text": "book.spectrum.guidebook.cinderhearth.page2.text",
-      "multiblock_name": "book.spectrum.guidebook.cinderhearth.page2.multiblock_name"
+      "multiblock_name": "multiblock.spectrum.cinderhearth"
     },
     {
       "type": "modonomicon:text",

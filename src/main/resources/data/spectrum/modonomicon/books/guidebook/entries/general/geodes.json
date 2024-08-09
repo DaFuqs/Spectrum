@@ -31,7 +31,7 @@
       "show_visualize_button": false,
       "multiblock_id": "spectrum:amethyst_geode",
       "text": "book.spectrum.guidebook.geodes.page2.text",
-      "multiblock_name": "book.spectrum.guidebook.geodes.page2.multiblock_name"
+      "multiblock_name": "multiblock.spectrum.amethyst_geode"
     },
     {
       "type": "modonomicon:spotlight",

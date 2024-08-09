@@ -1,0 +1,32 @@
+{
+  "name": "item.spectrum.cheong",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/food/cheong"
+  },
+  "icon": "spectrum:cheong",
+  "category": "spectrum:cuisine",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:cuisine/titration_barrel"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 3,
+  "y": -2,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.cheong.page0.text",
+      "title": "item.spectrum.cheong"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id_1": "spectrum:pedestal/tier1/food/cheong",
+      "text": "book.spectrum.guidebook.cheong.page1.text"
+    }
+  ]
+}

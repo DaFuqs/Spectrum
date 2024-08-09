@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "has_primordial_torch": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:primordial_torch"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

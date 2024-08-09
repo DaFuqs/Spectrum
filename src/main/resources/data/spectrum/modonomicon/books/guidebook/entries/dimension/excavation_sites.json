@@ -18,9 +18,17 @@
   "y": 3,
   "pages": [
     {
-      "type": "modonomicon:text",
+      "type": "modonomicon:image",
       "title": "book.spectrum.guidebook.excavation_sites.name",
+      "images": [
+        "spectrum:textures/gui/guidebook/dd_excavation_site.png"
+      ],
+      "border": true,
       "text": "book.spectrum.guidebook.excavation_sites.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.excavation_sites.page1.text"
     }
   ]
 }

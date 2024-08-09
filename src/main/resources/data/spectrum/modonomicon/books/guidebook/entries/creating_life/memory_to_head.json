@@ -1,0 +1,31 @@
+{
+  "name": "book.spectrum.guidebook.memory_to_head.name",
+  "icon": "spectrum:sheep_head",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/memory_to_head"
+  },
+  "category": "spectrum:creating_life",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:creating_life/memories"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 0,
+  "y": 0,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.memory_to_head.name"
+      "text": "book.spectrum.guidebook.memory_to_head.page0.text"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "recipe_id_1": "spectrum:spirit_instiller/memory_to_head",
+      "text": "book.spectrum.guidebook.memory_to_head.page1.text"
+    }
+  ]
+}

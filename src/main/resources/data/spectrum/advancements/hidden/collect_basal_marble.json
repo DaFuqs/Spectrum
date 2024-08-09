@@ -1,0 +1,14 @@
+{
+  "criteria": {
+    "has_primordial_torch": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "spectrum:basal_marbles"
+          }
+        ]
+      }
+    }
+  }
+}

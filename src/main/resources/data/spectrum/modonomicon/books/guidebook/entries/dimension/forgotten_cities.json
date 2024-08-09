@@ -18,9 +18,17 @@
   "y": -2,
   "pages": [
     {
-      "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.forgotten_cities.page0.title",
+      "type": "modonomicon:image",
+      "title": "book.spectrum.guidebook.forgotten_cities.name",
+      "images": [
+        "spectrum:textures/gui/guidebook/dd_forgotten_city.png"
+      ],
+      "border": true,
       "text": "book.spectrum.guidebook.forgotten_cities.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.forgotten_cities.page1.text"
     }
   ]
 }

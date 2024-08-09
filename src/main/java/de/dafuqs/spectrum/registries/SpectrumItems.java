@@ -305,8 +305,8 @@ public class SpectrumItems {
 	public static final Item BODACIOUS_BERRY_BAR = new Item(IS.of().food(SpectrumFoodComponents.BODACIOUS_BERRY_BAR));
 	public static final Item DEMON_TEA = new TeaItem(IS.of().food(SpectrumFoodComponents.DEMON_TEA), SpectrumFoodComponents.DEMON_TEA_SCONE_BONUS);
 	public static final Item SCONE = new Item(IS.of().food(SpectrumFoodComponents.SCONE));
-
-	public static final Item CHEONG = new ItemWithTooltip(IS.of().food(SpectrumFoodComponents.CHEONG), "item.spectrum.mermaids_popcorn.tooltip");
+	
+	public static final Item CHEONG = new ItemWithTooltip(IS.of().food(SpectrumFoodComponents.CHEONG), "item.spectrum.cheong.tooltip");
 	public static final Item MERMAIDS_JAM = new Item(IS.of().food(SpectrumFoodComponents.MERMAIDS_JAM));
 	public static final Item MERMAIDS_POPCORN = new ItemWithTooltip(IS.of().food(SpectrumFoodComponents.MERMAIDS_POPCORN), "item.spectrum.mermaids_popcorn.tooltip");
 	public static final Item LE_FISHE_AU_CHOCOLAT = new Item(IS.of().food(SpectrumFoodComponents.LE_FISHE_AU_CHOCOLAT));

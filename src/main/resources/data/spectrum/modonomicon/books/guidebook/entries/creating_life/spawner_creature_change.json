@@ -19,7 +19,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.spawner_creature_change.page0.title",
+      "title": "book.spectrum.guidebook.spawner_creature_change.name",
       "text": "book.spectrum.guidebook.spawner_creature_change.page0.text"
     },
     {

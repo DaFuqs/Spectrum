@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.howling_spires.name",
+  "name": "biome.spectrum.howling_spires",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/visit_dd_biomes/howling_spires"
@@ -18,6 +18,18 @@
   "x": 4,
   "y": 9,
   "pages": [
-
+    {
+      "type": "modonomicon:image",
+      "title": "biome.spectrum.howling_spires",
+      "images": [
+        "spectrum:textures/gui/guidebook/dd_howling_spires.png"
+      ],
+      "border": true,
+      "text": "book.spectrum.guidebook.howling_spires.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.howling_spires.page1.text"
+    }
   ]
 }

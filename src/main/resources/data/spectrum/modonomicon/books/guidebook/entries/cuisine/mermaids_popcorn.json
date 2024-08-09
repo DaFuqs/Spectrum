@@ -1,0 +1,28 @@
+{
+  "name": "item.spectrum.mermaids_popcorn",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/food/mermaids_popcorn"
+  },
+  "icon": "spectrum:mermaids_popcorn",
+  "category": "spectrum:cuisine",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 6,
+  "y": 4,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "item.spectrum.mermaids_popcorn",
+      "text": "book.spectrum.guidebook.mermaids_popcorn.page0.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id_1": "spectrum:pedestal/tier1/food/mermaids_popcorn",
+      "text": "book.spectrum.guidebook.mermaids_popcorn.page1.text"
+    }
+  ]
+}

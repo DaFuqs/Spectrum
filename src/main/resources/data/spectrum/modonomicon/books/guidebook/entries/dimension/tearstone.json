@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.tearstone.name",
+  "name": "item.spectrum.tearstone",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/collect_jadeite"

@@ -15,6 +15,10 @@
     "advancement": "spectrum:lategame/create_jade_vine",
     "frame": "paginatedadvancements:heart"
   },
+  {
+    "advancement": "spectrum:tap_mermaids_jam",
+    "frame": "paginatedadvancements:heart"
+  },
 
   {
     "advancement": "spectrum:spectrum",

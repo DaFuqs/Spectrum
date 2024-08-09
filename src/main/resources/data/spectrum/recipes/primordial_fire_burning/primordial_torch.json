@@ -1,5 +1,6 @@
 {
   "type": "spectrum:primordial_fire_burning",
+  "secret": true,
   "ingredient": {
     "item": "minecraft:torch"
   },

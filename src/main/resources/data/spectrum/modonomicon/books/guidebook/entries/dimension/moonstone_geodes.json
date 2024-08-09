@@ -16,5 +16,19 @@
   "background_v_index": 1,
   "x": 0,
   "y": 4,
-  "pages": []
+  "pages": [
+    {
+      "type": "modonomicon:image",
+      "title": "book.spectrum.guidebook.moonstone_geodes.name",
+      "images": [
+        "spectrum:textures/gui/guidebook/dd_moonstone_geode.png"
+      ],
+      "border": true,
+      "text": "book.spectrum.guidebook.moonstone_geodes.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.moonstone_geodes.page1.text"
+    }
+  ]
 }

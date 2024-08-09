@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.effulgent_feathers.name",
+  "name": "item.spectrum.effulgent_feather",
   "icon": "spectrum:effulgent_feather",
   "condition": {
     "type": "modonomicon:advancement",

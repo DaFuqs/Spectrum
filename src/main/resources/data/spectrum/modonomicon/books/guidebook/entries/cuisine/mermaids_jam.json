@@ -1,0 +1,32 @@
+{
+  "name": "item.spectrum.mermaids_jam",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:tap_mermaids_jam"
+  },
+  "icon": "spectrum:mermaids_jam",
+  "category": "spectrum:cuisine",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:cuisine/cheong"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 4,
+  "y": -3,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.mermaids_jam.page0.text",
+      "title": "item.spectrum.mermaids_jam"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id_1": "spectrum:pedestal/tier1/food/mermaids_jam",
+      "text": "book.spectrum.guidebook.mermaids_jam.page1.text"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "name": "structure.spectrum.forsaken_cathedral",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:endgame/find_forsaken_cathedral"
+  },
+  "icon": "minecraft:lectern",
+  "category": "spectrum:dimension",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:dimension/what_happened"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 1,
+  "x": 0,
+  "y": -6,
+  "pages": [
+    {
+      "type": "modonomicon:image",
+      "title": "structure.spectrum.forsaken_cathedral",
+      "images": [
+        "spectrum:textures/gui/guidebook/dd_forsaken_cathedral.png"
+      ],
+      "border": true,
+      "text": "book.spectrum.guidebook.forsaken_cathedral.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.forsaken_cathedral.page1.text"
+    }
+  ]
+}

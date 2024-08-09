@@ -32,6 +32,18 @@
       "title1": "book.spectrum.guidebook.bismuth.page1.title",
       "recipe_id_1": "spectrum:crystallarieum/bismuth",
       "text": "book.spectrum.guidebook.bismuth.page1.text"
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "title1": "container.spectrum.rei.anvil_crushing.title",
+      "recipe_id_1": "spectrum:anvil_crushing/bismuth/bismuth_from_cluster",
+      "text": "book.spectrum.guidebook.bismuth.cluster_crushing.text"
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "title1": "container.spectrum.rei.anvil_crushing.title",
+      "recipe_id_1": "spectrum:anvil_crushing/bismuth/bismuth_from_crystal",
+      "text": "book.spectrum.guidebook.bismuth.crystal_crushing.text"
     }
   ]
 }

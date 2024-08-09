@@ -30,6 +30,12 @@
       "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier1/glass/radiant_glass",
       "text": "book.spectrum.guidebook.radiant_glass.page1.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id_1": "spectrum:pedestal/tier1/glass/radiant_glass_pane",
+      "text": "book.spectrum.guidebook.glass_panes.text"
     }
   ]
 }

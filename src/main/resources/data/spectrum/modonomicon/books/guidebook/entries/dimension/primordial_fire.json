@@ -27,6 +27,15 @@
       "title": "container.spectrum.rei.primordial_fire_burning.title",
       "text": "book.spectrum.guidebook.primordial_fire.page1.text",
       "recipe_id_1": "spectrum:primordial_fire_burning/torch_unsouling"
+    },
+    {
+      "type": "spectrum:primordial_fire_burning",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_primordial_torch"
+      },
+      "text": "book.spectrum.guidebook.primordial_fire.primordial_torch.text",
+      "recipe_id_1": "spectrum:primordial_fire_burning/primordial_torch"
     }
   ]
 }

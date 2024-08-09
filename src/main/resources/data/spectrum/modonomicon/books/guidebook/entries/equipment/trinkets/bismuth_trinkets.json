@@ -18,9 +18,15 @@
   "y": 0,
   "pages": [
     {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.bismuth_trinkets.name",
+      "text": "book.spectrum.guidebook.bismuth_trinkets.page0.text"
+    },
+    {
       "type": "spectrum:pedestal_crafting",
       "title1": "item.spectrum.fanciful_bismuth_ring",
-      "recipe_id_1": "spectrum:pedestal/tier4/fanciful_bismuth_ring"
+      "recipe_id_1": "spectrum:pedestal/tier4/fanciful_bismuth_ring",
+      "text": "book.spectrum.guidebook.bismuth_trinkets.page1.text"
     }
   ]
 }

@@ -24,10 +24,7 @@
       "text": "book.spectrum.guidebook.nightdew.page0.text"
     },
     {
-      "type": "modonomicon:image",
-      "item": {
-        "item": "spectrum:textures/block/nightdew_tip.png"
-      },
+      "type": "modonomicon:text",
       "title": "book.spectrum.guidebook.nightdew.page1.title",
       "text": "book.spectrum.guidebook.nightdew.page1.text"
     }

@@ -1,20 +1,22 @@
 package de.dafuqs.spectrum.particle.client;
 
-import net.fabricmc.api.*;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.particle.*;
-import net.minecraft.client.render.*;
-import net.minecraft.client.world.*;
-import net.minecraft.particle.*;
-import net.minecraft.util.math.*;
+import net.minecraft.client.render.LightmapTextureManager;
+import net.minecraft.client.world.ClientWorld;
+import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 
-public class FireflyParticle extends SpriteBillboardParticle {
+public class BloodflyParticle extends SpriteBillboardParticle {
     private final SpriteProvider spriteProvider;
 
     private double lastVelX, lastVelZ;
-    private int switchTicks = 10, blinkTicks = 11;
+    private int switchTicks = 10;
     private float r, g, b;
 
-    protected FireflyParticle(ClientWorld clientWorld, double d, double e, double f, double velocityX, double velocityY, double velocityZ, float scaleMultiplier, SpriteProvider spriteProvider) {
+    protected BloodflyParticle(ClientWorld clientWorld, double d, double e, double f, double velocityX, double velocityY, double velocityZ, float scaleMultiplier, SpriteProvider spriteProvider) {
         super(clientWorld, d, e, f, velocityX, velocityY, velocityZ);
         this.spriteProvider = spriteProvider;
         this.setSpriteForAge(spriteProvider);
@@ -22,37 +24,20 @@ public class FireflyParticle extends SpriteBillboardParticle {
         this.velocityY = 0;
         this.velocityZ = random.nextFloat() * 0.1F - 0.05F;
         var random = clientWorld.getRandom();
-        this.gravityStrength = random.nextFloat() * 0.075F - 0.0375F;
+        this.gravityStrength = random.nextFloat() * 0.05F - 0.025F;
 
         this.collidesWithWorld = true;
-        this.maxAge = 40 + random.nextInt(10);
+        this.maxAge = 30 + random.nextInt(15);
 
         r = 255;
-        g = 232;
-        b = 173;
-        var edit = random.nextInt(3);
-
-        if (edit == 0) {
-            r = MathHelper.lerp(random.nextFloat(), 255, 190);
-            g *= 0.9F;
-            b *= 0.9F;
-        }
-        else if (edit == 1) {
-            r *= 0.9F;
-            g = MathHelper.lerp(random.nextFloat(), 232, 203);
-            b *= 0.9F;
-        }
-        else {
-            r *= 0.9F;
-            g *= 0.9F;
-            b = MathHelper.lerp(random.nextFloat(), 232, 230);
-        }
+        g = MathHelper.lerp(random.nextFloat(), 110, 175);
+        b = MathHelper.lerp(random.nextFloat(), 60, 100);
 
         r /= 255F;
         g /= 255F;
         b /= 255F;
         
-        this.scale = 0.025F + random.nextFloat() * 0.375F;
+        this.scale = 0.0125F + random.nextFloat() * 0.35F;
         scale *= scaleMultiplier;
         setColor(r, g, b);
         setAlpha(0F);
@@ -69,38 +54,21 @@ public class FireflyParticle extends SpriteBillboardParticle {
             return;
         }
 
-        if (blinkTicks <= 10) {
-            var delta = Math.abs(blinkTicks) / 10F;
-
-            setColor(
-                    (MathHelper.lerp(delta, 0.25F * r, r)),
-                    (MathHelper.lerp(delta, 0.25F * g, g)),
-                    (MathHelper.lerp(delta, 0.25F * b, b))
-            );
-
-            blinkTicks++;
-            alpha = Math.min(1F, delta + 0.5F);
-        }
-
         if (switchTicks < 10)
             switchTicks++;
 
         var water = !this.world.getFluidState(BlockPos.ofFloored(this.x, this.y, this.z)).isEmpty();
 
-        if (age % 10 == 0 && random.nextBoolean()) {
+        if (age % 7 == 0 && random.nextBoolean()) {
             switchTicks = 0;
-            gravityStrength = random.nextFloat() * 0.075F - 0.0375F;
+            gravityStrength = random.nextFloat() * 0.05F - 0.025F;
             lastVelX = velocityX;
             lastVelZ = velocityZ;
             velocityX = random.nextFloat()  * 0.1F - 0.05F;
             velocityZ = random.nextFloat()  * 0.1F - 0.05F;
         }
 
-        if (age % 13 == 0 && random.nextFloat() < 0.334F) {
-            blinkTicks = -10;
-        }
-
-        var flutter = Math.sin(age / 17F) / 18F;
+        var flutter = Math.sin(age / 5F) / 20F;
 
         var curVelX = MathHelper.lerp(switchTicks / 10F, lastVelX, velocityX);
         var curVelZ = MathHelper.lerp(switchTicks / 10F, lastVelZ, velocityZ);
@@ -108,7 +76,7 @@ public class FireflyParticle extends SpriteBillboardParticle {
         if (this.onGround || water) {
             curVelX *= 0.7F;
             curVelZ *= 0.7F;
-            gravityStrength = random.nextFloat() * 0.1334F;
+            gravityStrength = random.nextFloat() * 0.03F;
         }
 
         this.velocityY -= 0.04 * (double)this.gravityStrength;
@@ -163,7 +131,7 @@ public class FireflyParticle extends SpriteBillboardParticle {
         }
 
         public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
-            return new FireflyParticle(clientWorld, d, e, f, 0.0, 0.0, 0.0, 1.0F, this.spriteProvider);
+            return new BloodflyParticle(clientWorld, d, e, f, 0.0, 0.0, 0.0, 1.0F, this.spriteProvider);
         }
     }
 }

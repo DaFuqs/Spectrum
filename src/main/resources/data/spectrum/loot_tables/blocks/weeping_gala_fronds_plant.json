@@ -1,0 +1,47 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "spectrum:abyssal_vines",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "form": "resin"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:milky_resin"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:weeping_gala_sprig"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "spectrum:abyssal_vines",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "form": "sprig"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:weeping_gala_sprig"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}

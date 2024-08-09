@@ -12,7 +12,7 @@
     "grass_color_modifier": "none",
     "particle": {
       "options": {
-        "type": "minecraft:white_ash"
+        "type": "spectrum:quartz_fluff"
       },
       "probability": 0.028093334
     },

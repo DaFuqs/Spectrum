@@ -183,8 +183,11 @@ public class SpectrumParticleTypes {
 	public static DefaultParticleType WHITE_EXPLOSION = register("white_explosion", true);
 	public static DefaultParticleType YELLOW_EXPLOSION = register("yellow_explosion", true);
 
+	// Biome particles
 	public static DefaultParticleType FALLING_ASH = register("falling_ash", true);
 	public static DefaultParticleType FIREFLY = register("firefly", true);
+	public static DefaultParticleType BLOODFLY = register("bloodfly", true);
+	public static DefaultParticleType QUARTZ_FLUFF = register("quartz_fluff", true);
 
 	public static DefaultParticleType LIGHT_RAIN = register("light_rain", true);
 	

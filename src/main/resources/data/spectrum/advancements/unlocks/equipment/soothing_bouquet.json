@@ -1,0 +1,40 @@
+{
+  "criteria": {
+    "built_complex_pedestal_structure": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure"
+      }
+    },
+    "collected_nectardew": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_nectardew"
+      }
+    },
+    "unlocked_crystallarieum": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/blocks/crystallarieum"
+      }
+    },
+    "apply_eternal_slumber": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/status_effects/eternal_slumber"
+      }
+    },
+    "has_night_salts": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:night_salts"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

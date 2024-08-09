@@ -426,6 +426,7 @@ public class SpectrumItems {
 	public static final Item PRIMORDIAL_LIGHTER = new PrimordialLighterItem(IS.of(1));
 
 	public static final Item NIGHT_SALTS = new NightSaltsItem(IS.of(24));
+	public static final Item SOOTHING_BOUQUET = new SoothingBouquetItem(IS.of(1, Rarity.RARE));
 	public static final Item CONCEALING_OILS = new ConcealingOilsItem(IS.of(1));
 	public static final Item BITTER_OILS = new DrinkItem(IS.of(24).food(SpectrumFoodComponents.BITTER_OILS));
 
@@ -804,6 +805,7 @@ public class SpectrumItems {
 		register("primordial_lighter", PRIMORDIAL_LIGHTER, DyeColor.ORANGE);
 
 		register("night_salts", NIGHT_SALTS, DyeColor.PURPLE);
+		register("soothing_bouquet", SOOTHING_BOUQUET, DyeColor.PURPLE);
 		register("concealing_oils", CONCEALING_OILS, DyeColor.BLACK);
 		register("bitter_oils", BITTER_OILS, DyeColor.BLUE);
 

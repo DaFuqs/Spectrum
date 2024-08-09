@@ -46,7 +46,7 @@ public class WeepingGalaFrondsTipBlock extends WeepingGalaFrondsBlock {
 
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if (random.nextFloat() < 0.25F) {
+        if (random.nextFloat() < 0.1F) {
             var reference = BlockReference.of(state, pos);
             var form = reference.getProperty(FORM);
 

@@ -161,6 +161,7 @@ public class SpectrumItemGroups {
 				entries.add(SpectrumItems.GILDED_BOOK);
 				entries.add(SpectrumItems.ENCHANTMENT_CANVAS);
 				entries.add(SpectrumItems.NIGHT_SALTS);
+				entries.add(SpectrumItems.SOOTHING_BOUQUET);
 				entries.add(SpectrumItems.CONCEALING_OILS);
 				entries.add(SpectrumItems.BITTER_OILS);
 				entries.add(SpectrumItems.EVERPROMISE_RIBBON);

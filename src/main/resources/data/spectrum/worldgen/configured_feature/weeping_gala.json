@@ -67,7 +67,7 @@
     "decorators": [
       {
         "type": "spectrum:fronds",
-        "chance": 0.425,
+        "chance": 0.725,
         "middle_block": {
           "type": "minecraft:simple_state_provider",
           "state": {

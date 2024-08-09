@@ -24,7 +24,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.mod_integration.more_geodes.page0.text",
+      "text": "book.spectrum.guidebook.discovered_geodes",
       "title": "book.spectrum.guidebook.mod_integration.more_geodes.name"
     },
     {

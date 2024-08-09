@@ -259,16 +259,13 @@ public class SpectrumItems {
 	public static final Item DOWNSTONE_FRAGMENTS = new CloakedItem(IS.of(16, Rarity.UNCOMMON), SpectrumCommon.locate("lategame/find_excavation_site"), Items.LIGHT_GRAY_DYE);
 	public static final Item RESONANCE_SHARD = new CloakedItem(IS.of(16, Rarity.UNCOMMON), SpectrumCommon.locate("lategame/strike_up_hummingstone_hymn"), Items.LIGHT_BLUE_DYE);
 	
-	public static final Item TEARSTONE = new Item(IS.of());
-	public static final Item ASH_FLAKES = new AshItem(IS.of(), "item.spectrum.ash_flakes.tooltip");
-
-
 	public static final Item QUITOXIC_POWDER = new CloakedItem(IS.of(), ((RevelationAware) SpectrumBlocks.QUITOXIC_REEDS).getCloakAdvancementIdentifier(), Items.PURPLE_DYE);
 	public static final Item STORM_STONE = new StormStoneItem(IS.of(16), ((RevelationAware) SpectrumBlocks.STUCK_STORM_STONE).getCloakAdvancementIdentifier(), Items.YELLOW_DYE);
 	public static final Item MERMAIDS_GEM = new MermaidsGemItem(SpectrumBlocks.MERMAIDS_BRUSH, IS.of(16));
 	public static final CloakedItem STAR_FRAGMENT = new CloakedItem(IS.of(16), SpectrumCommon.locate("milestones/unlock_shooting_stars"), Items.PURPLE_DYE);
 	public static final Item STARDUST = new CloakedItemWithLoomPattern(IS.of(), SpectrumCommon.locate("milestones/unlock_shooting_stars"), Items.PURPLE_DYE, SpectrumBannerPatterns.SHIMMER);
 	public static final ItemWithTooltip FRIGID_STARDUST = new ItemWithTooltip(IS.of(), "item.spectrum.frigid_stardust.tooltip");
+	public static final Item ASH_FLAKES = new AshItem(IS.of(), "item.spectrum.ash_flakes.tooltip");
 	
 	public static final Item HIBERNATING_JADE_VINE_BULB = new ItemWithTooltip(IS.of(16), "item.spectrum.hibernating_jade_vine_bulb.tooltip");
 	public static final Item GERMINATED_JADE_VINE_BULB = new GerminatedJadeVineBulbItem(IS.of(16), SpectrumCommon.locate("hidden/collect_hibernating_jade_vine_bulb"), Items.LIME_DYE);
@@ -434,19 +431,6 @@ public class SpectrumItems {
 	public static final Item FROSTBITE_ESSENCE = new CloakedItem(IS.of(), SpectrumCommon.locate("midgame/spectrum_midgame"), Items.LIGHT_BLUE_DYE);
 	public static final Item MOONSTONE_CORE = new CloakedItem(IS.of(8, Rarity.RARE), SpectrumCommon.locate("lategame/find_forgotten_city"), Items.WHITE_DYE);
 	
-	// Catkin
-	public static final Item VIBRANT_CYAN_CATKIN = new CatkinItem(BuiltinGemstoneColor.CYAN, false, IS.of());
-	public static final Item VIBRANT_MAGENTA_CATKIN = new CatkinItem(BuiltinGemstoneColor.MAGENTA, false, IS.of());
-	public static final Item VIBRANT_YELLOW_CATKIN = new CatkinItem(BuiltinGemstoneColor.YELLOW, false, IS.of());
-	public static final Item VIBRANT_BLACK_CATKIN = new CatkinItem(BuiltinGemstoneColor.BLACK, false, IS.of());
-	public static final Item VIBRANT_WHITE_CATKIN = new CatkinItem(BuiltinGemstoneColor.WHITE, false, IS.of());
-	
-	public static final Item LUCID_CYAN_CATKIN = new CatkinItem(BuiltinGemstoneColor.CYAN, true, IS.of(Rarity.UNCOMMON));
-	public static final Item LUCID_MAGENTA_CATKIN = new CatkinItem(BuiltinGemstoneColor.MAGENTA, true, IS.of(Rarity.UNCOMMON));
-	public static final Item LUCID_YELLOW_CATKIN = new CatkinItem(BuiltinGemstoneColor.YELLOW, true, IS.of(Rarity.UNCOMMON));
-	public static final Item LUCID_BLACK_CATKIN = new CatkinItem(BuiltinGemstoneColor.BLACK, true, IS.of(Rarity.UNCOMMON));
-	public static final Item LUCID_WHITE_CATKIN = new CatkinItem(BuiltinGemstoneColor.WHITE, true, IS.of(Rarity.UNCOMMON));
-	
 	// Misc
 	public static final Item MUSIC_DISC_SPECTRUM_THEME = new MusicDiscItem(1, SpectrumSoundEvents.SPECTRUM_THEME, IS.of(1, Rarity.RARE), 120);
 	public static final Item MUSIC_DISC_DIMENSION_THEME = new MusicDiscItem(2, SpectrumSoundEvents.BOSS_THEME, IS.of(1, Rarity.RARE), 265);
@@ -544,7 +528,6 @@ public class SpectrumItems {
 		
 		registerGemstoneItems();
 		registerPigments();
-		registerCatkin();
 		registerResources();
 		registerDecayBottles();
 		registerPreEnchantedTools();
@@ -642,20 +625,6 @@ public class SpectrumItems {
 		register("black_pigment", BLACK_PIGMENT, DyeColor.BLACK);
 	}
 	
-	public static void registerCatkin() {
-		register("vibrant_cyan_catkin", VIBRANT_CYAN_CATKIN, DyeColor.CYAN);
-		register("vibrant_magenta_catkin", VIBRANT_MAGENTA_CATKIN, DyeColor.MAGENTA);
-		register("vibrant_yellow_catkin", VIBRANT_YELLOW_CATKIN, DyeColor.YELLOW);
-		register("vibrant_black_catkin", VIBRANT_BLACK_CATKIN, DyeColor.BLACK);
-		register("vibrant_white_catkin", VIBRANT_WHITE_CATKIN, DyeColor.WHITE);
-		
-		register("lucid_cyan_catkin", LUCID_CYAN_CATKIN, DyeColor.CYAN);
-		register("lucid_magenta_catkin", LUCID_MAGENTA_CATKIN, DyeColor.MAGENTA);
-		register("lucid_yellow_catkin", LUCID_YELLOW_CATKIN, DyeColor.YELLOW);
-		register("lucid_black_catkin", LUCID_BLACK_CATKIN, DyeColor.BLACK);
-		register("lucid_white_catkin", LUCID_WHITE_CATKIN, DyeColor.WHITE);
-	}
-	
 	public static void registerResources() {
 		register("shimmerstone_gem", SHIMMERSTONE_GEM, DyeColor.YELLOW);
 		register("raw_azurite", RAW_AZURITE, DyeColor.BLUE);
@@ -673,7 +642,6 @@ public class SpectrumItems {
 		register("downstone_fragments", DOWNSTONE_FRAGMENTS, DyeColor.LIGHT_GRAY);
 		register("resonance_shard", RESONANCE_SHARD, DyeColor.WHITE);
 
-		register("tearstone", TEARSTONE, DyeColor.PINK);
 		register("ash_flakes", ASH_FLAKES, DyeColor.LIGHT_GRAY);
 
 		register("quitoxic_powder", QUITOXIC_POWDER, DyeColor.PURPLE);

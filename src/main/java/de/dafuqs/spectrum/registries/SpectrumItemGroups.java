@@ -619,7 +619,6 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.JADEITE_LOTUS_BULB);
 		entries.add(SpectrumItems.JADEITE_PETALS);
 
-		entries.add(SpectrumItems.TEARSTONE);
 		entries.add(SpectrumItems.MERMAIDS_GEM);
 		entries.add(SpectrumItems.STORM_STONE);
 		entries.add(SpectrumItems.DOOMBLOOM_SEED);

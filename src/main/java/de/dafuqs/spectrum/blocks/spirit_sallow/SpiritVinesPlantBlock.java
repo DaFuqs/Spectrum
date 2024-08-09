@@ -20,7 +20,7 @@ public class SpiritVinesPlantBlock extends AbstractPlantBlock implements SpiritV
 	
 	public SpiritVinesPlantBlock(Settings settings, GemstoneColor gemstoneColor) {
 		super(settings, Direction.DOWN, SHAPE, false);
-		this.setDefaultState((this.stateManager.getDefaultState()).with(YIELD, YieldType.NONE));
+		this.setDefaultState((this.stateManager.getDefaultState()).with(CRYSTALS, false));
 		this.gemstoneColor = gemstoneColor;
 	}
 	
@@ -50,13 +50,13 @@ public class SpiritVinesPlantBlock extends AbstractPlantBlock implements SpiritV
 	
 	@Override
 	protected BlockState copyState(BlockState from, BlockState to) {
-		return to.with(YIELD, from.get(YIELD));
+		return to.with(CRYSTALS, from.get(CRYSTALS));
 	}
 	
 	@Override
 	@Environment(EnvType.CLIENT)
 	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
-		return new ItemStack(SpiritVine.getYieldItem(state, true));
+		return new ItemStack(SpiritVine.getYieldItem(state));
 	}
 	
 	@Override
@@ -66,7 +66,7 @@ public class SpiritVinesPlantBlock extends AbstractPlantBlock implements SpiritV
 	
 	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-		builder.add(YIELD);
+		builder.add(CRYSTALS);
 	}
 	
 	@Override
@@ -81,6 +81,6 @@ public class SpiritVinesPlantBlock extends AbstractPlantBlock implements SpiritV
 	
 	@Override
 	public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-		world.setBlockState(pos, state.with(YIELD, YieldType.NONE), 2);
+		world.setBlockState(pos, state.with(CRYSTALS, false), 2);
 	}
 }

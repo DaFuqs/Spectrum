@@ -796,17 +796,6 @@
   "item.spectrum.sylph_leggings.tooltip": "Gewährt Geschwindigkeit & Unsichtbarkeit bei Treffer",
   "item.spectrum.oread_boots.tooltip": "Gewährt Widerstand & Regeneration bei Treffer",
 
-  "item.spectrum.vibrant_cyan_catkin": "Lebhaftes Türkise Catkin",
-  "item.spectrum.vibrant_magenta_catkin": "Lebhaftes Magenta Catkin",
-  "item.spectrum.vibrant_yellow_catkin": "Lebhaftes Gelb Catkin",
-  "item.spectrum.vibrant_black_catkin": "Lebhaftes Schwarz Catkin",
-  "item.spectrum.vibrant_white_catkin": "Lebhaftes Weiß Catkin",
-  "item.spectrum.lucid_cyan_catkin": "Lucid Türkiser Catkin",
-  "item.spectrum.lucid_magenta_catkin": "Lucid Magenta Catkin",
-  "item.spectrum.lucid_yellow_catkin": "Lucid Gelb Catkin",
-  "item.spectrum.lucid_black_catkin": "Lucid Schwarz Catkin",
-  "item.spectrum.lucid_white_catkin": "Lucid Weiß Catkin",
-
   "item.spectrum.block_flooder": "Block Flooder",
   "item.spectrum.block_flooder.tooltip": "§fFüllt leere Bereiche (Höhlen, Schluchten, Löcher,...) ",
   "item.spectrum.block_flooder.tooltip2": "§fWerfen zum nutzen; Radius von 10 Blöcken",

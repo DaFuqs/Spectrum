@@ -20,7 +20,7 @@ public class SpiritVinesPlantStemBlock extends AbstractPlantStemBlock implements
 	
 	public SpiritVinesPlantStemBlock(Settings settings, GemstoneColor gemstoneColor) {
 		super(settings, Direction.DOWN, SHAPE, false, 0.0D);
-		this.setDefaultState((this.stateManager.getDefaultState()).with(YIELD, YieldType.NONE));
+		this.setDefaultState((this.stateManager.getDefaultState()).with(CRYSTALS, false));
 		this.gemstoneColor = gemstoneColor;
 	}
 	
@@ -60,18 +60,18 @@ public class SpiritVinesPlantStemBlock extends AbstractPlantStemBlock implements
 	
 	@Override
 	protected BlockState copyState(BlockState from, BlockState to) {
-		return to.with(YIELD, from.get(YIELD));
+		return to.with(CRYSTALS, from.get(CRYSTALS));
 	}
 	
 	@Override
 	protected BlockState age(BlockState state, Random random) {
-		return super.age(state, random).with(YIELD, YieldType.NONE);
+		return super.age(state, random).with(CRYSTALS, false);
 	}
 	
 	@Override
 	@Environment(EnvType.CLIENT)
 	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
-		return new ItemStack(SpiritVine.getYieldItem(state, true));
+		return new ItemStack(SpiritVine.getYieldItem(state));
 	}
 	
 	@Override
@@ -82,7 +82,7 @@ public class SpiritVinesPlantStemBlock extends AbstractPlantStemBlock implements
 	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
 		super.appendProperties(builder);
-		builder.add(YIELD);
+		builder.add(CRYSTALS);
 	}
 	
 	@Override
@@ -97,6 +97,6 @@ public class SpiritVinesPlantStemBlock extends AbstractPlantStemBlock implements
 	
 	@Override
 	public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-		world.setBlockState(pos, state.with(YIELD, YieldType.NONE), 2);
+		world.setBlockState(pos, state.with(CRYSTALS, false), 2);
 	}
 }

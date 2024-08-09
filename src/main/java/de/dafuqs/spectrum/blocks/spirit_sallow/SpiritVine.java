@@ -13,14 +13,14 @@ import net.minecraft.world.*;
 public interface SpiritVine {
 
 	VoxelShape SHAPE = Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
-	EnumProperty<YieldType> YIELD = EnumProperty.of("yield", YieldType.class);
+	BooleanProperty CRYSTALS = BooleanProperty.of("crystals");
 
 	static ActionResult pick(BlockState blockState, World world, BlockPos blockPos) {
 		if (canBeHarvested(blockState)) {
-			Block.dropStack(world, blockPos, new ItemStack(getYieldItem(blockState, false), 1));
+			Block.dropStack(world, blockPos, new ItemStack(getYieldItem(blockState), 1));
 			float f = MathHelper.nextBetween(world.random, 0.8F, 1.2F);
 			world.playSound(null, blockPos, SoundEvents.BLOCK_CAVE_VINES_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, f);
-			world.setBlockState(blockPos, blockState.with(YIELD, YieldType.NONE), 2);
+			world.setBlockState(blockPos, blockState.with(CRYSTALS, false), 2);
 			return ActionResult.success(world.isClient);
 		} else {
 			return ActionResult.PASS;
@@ -28,83 +28,26 @@ public interface SpiritVine {
 	}
 
 	static boolean canBeHarvested(BlockState state) {
-		return state.contains(YIELD) && !state.get(YIELD).equals(YieldType.NONE);
+		return state.contains(CRYSTALS) && state.get(CRYSTALS);
 	}
-
-	static Item getYieldItem(BlockState blockState, boolean pickStack) {
-		Comparable<YieldType> yield = blockState.get(YIELD);
-
-		if (yield.equals(YieldType.NORMAL)) {
-			if (blockState.isOf(SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_PLANT)) {
-				return SpectrumItems.VIBRANT_CYAN_CATKIN;
-			}
-			if (blockState.isOf(SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES_PLANT)) {
-				return SpectrumItems.VIBRANT_MAGENTA_CATKIN;
-			}
-			if (blockState.isOf(SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES_PLANT)) {
-				return SpectrumItems.VIBRANT_YELLOW_CATKIN;
-			}
-			if (blockState.isOf(SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES_PLANT)) {
-				return SpectrumItems.VIBRANT_BLACK_CATKIN;
-			}
-			if (blockState.isOf(SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_PLANT)) {
-				return SpectrumItems.VIBRANT_WHITE_CATKIN;
-			}
-		} else if (yield.equals(YieldType.LUCID)) {
-			if (blockState.isOf(SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_PLANT)) {
-				return SpectrumItems.LUCID_CYAN_CATKIN;
-			}
-			if (blockState.isOf(SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES_PLANT)) {
-				return SpectrumItems.LUCID_MAGENTA_CATKIN;
-			}
-			if (blockState.isOf(SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES_PLANT)) {
-				return SpectrumItems.LUCID_YELLOW_CATKIN;
-			}
-			if (blockState.isOf(SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES_PLANT)) {
-				return SpectrumItems.LUCID_BLACK_CATKIN;
-			}
-			if (blockState.isOf(SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_PLANT)) {
-				return SpectrumItems.LUCID_WHITE_CATKIN;
-			}
-		} else if (yield.equals(YieldType.NONE) && pickStack) {
-			if (blockState.isOf(SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_PLANT)) {
-				return SpectrumItems.VIBRANT_CYAN_CATKIN;
-			}
-			if (blockState.isOf(SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES_PLANT)) {
-				return SpectrumItems.VIBRANT_MAGENTA_CATKIN;
-			}
-			if (blockState.isOf(SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES_PLANT)) {
-				return SpectrumItems.VIBRANT_YELLOW_CATKIN;
-			}
-			if (blockState.isOf(SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES_PLANT)) {
-				return SpectrumItems.VIBRANT_BLACK_CATKIN;
-			}
-			if (blockState.isOf(SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_PLANT)) {
-				return SpectrumItems.VIBRANT_WHITE_CATKIN;
-			}
+	
+	static Item getYieldItem(BlockState blockState) {
+		if (blockState.isOf(SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_PLANT)) {
+			return SpectrumItems.TOPAZ_SHARD;
 		}
-		return null;
-	}
-
-	enum YieldType implements StringIdentifiable {
-		NONE("none"),
-		NORMAL("normal"),
-		LUCID("lucid");
-
-		private final String name;
-
-		YieldType(String name) {
-			this.name = name;
+		if (blockState.isOf(SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES_PLANT)) {
+			return Items.AMETHYST_SHARD;
 		}
-
-		public String toString() {
-			return this.name;
+		if (blockState.isOf(SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES_PLANT)) {
+			return SpectrumItems.CITRINE_SHARD;
 		}
-
-		@Override
-		public String asString() {
-			return this.name;
+		if (blockState.isOf(SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES_PLANT)) {
+			return SpectrumItems.ONYX_SHARD;
 		}
+		if (blockState.isOf(SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_PLANT)) {
+			return SpectrumItems.MOONSTONE_SHARD;
+		}
+		return Items.AIR;
 	}
 
 }

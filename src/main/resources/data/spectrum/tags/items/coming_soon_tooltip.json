@@ -1,6 +1,5 @@
 {
   "values": [
-    "spectrum:frigid_stardust",
     "spectrum:artists_palette",
     "spectrum:spectral_shard",
 
@@ -10,7 +9,6 @@
     "spectrum:spirit_sallow_leaves",
     "spectrum:spirit_sallow_heart",
     "spectrum:sacred_soil",
-    "#spectrum:catkin",
 
     "spectrum:monstrosity_head"
   ]

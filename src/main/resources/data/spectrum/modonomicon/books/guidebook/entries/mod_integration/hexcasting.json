@@ -29,7 +29,7 @@
     },
     {
       "type": "spectrum:anvil_crushing",
-      "title1": "book.spectrum.guidebook.mod_integration.hexcasting.page1.title",
+      "title1": "container.spectrum.rei.anvil_crushing.title",
       "recipe_id_1": "spectrum:mod_integration/hexcasting/anvil_crushing/aventurine_edified_leaves",
       "text": "book.spectrum.guidebook.mod_integration.hexcasting.page1.text"
     },

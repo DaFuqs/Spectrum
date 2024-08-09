@@ -61,7 +61,7 @@
     },
     {
       "type": "spectrum:anvil_crushing",
-      "title1": "book.spectrum.guidebook.mod_integration.ae2.page4.title",
+      "title1": "container.spectrum.rei.anvil_crushing.title",
       "recipe_id_1": "spectrum:mod_integration/ae2/anvil_crushing/certus_quartz_dust",
       "text": "book.spectrum.guidebook.mod_integration.ae2.page4.text"
     },
@@ -73,7 +73,7 @@
     {
       "type": "spectrum:fusion_shrine_crafting",
       "text": "book.spectrum.guidebook.mod_integration.ae2.page6.text",
-      "title1": "book.spectrum.guidebook.mod_integration.ae2.page6.title",
+      "title1": "container.spectrum.rei.anvil_crushing.title",
       "recipe_id_1": "spectrum:mod_integration/ae2/fusion_shrine/fluix_crystal"
     },
     {

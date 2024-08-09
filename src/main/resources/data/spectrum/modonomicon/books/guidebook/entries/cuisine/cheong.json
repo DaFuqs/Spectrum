@@ -9,7 +9,8 @@
   "hide_while_locked ": true,
   "parents": [
     {
-      "entry": "spectrum:cuisine/titration_barrel"
+      "entry": "spectrum:cuisine/titration_barrel",
+      "line_reversed": true
     }
   ],
   "background_u_index": 0,

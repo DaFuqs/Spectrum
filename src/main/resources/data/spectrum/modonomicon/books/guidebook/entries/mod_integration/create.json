@@ -29,7 +29,7 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.mod_integration.create.page1.title",
+      "title": "container.spectrum.rei.anvil_crushing.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:spectrum"
@@ -53,7 +53,7 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.mod_integration.create.page3.title",
+      "title": "container.spectrum.rei.anvil_crushing.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_pigment"

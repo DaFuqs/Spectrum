@@ -44,7 +44,7 @@ public class SoothingBouquetItem extends Item implements SleepAlteringItem, Slot
         if (user instanceof PlayerEntity player) {
             var component = MiscPlayerDataComponent.get(player);
 
-            component.setSleepTimers(50, 20 * 5, 0);
+            component.setSleepTimers(50, 20 * 6, 0);
             component.setLastSleepItem(this);
 
             player.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.CALMING, 20 * 10, 4));

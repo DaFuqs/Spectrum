@@ -20,8 +20,10 @@ public class LightmapTextureManagerMixin {
 
 	@ModifyReturnValue(method = "getDarkness", at = @At("RETURN"))
 	private float spectrum$getDarkness(float original) {
+		var lightMod = SpectrumCommon.CONFIG.DimensionBrightnessMod * 0.25F;
+
 		if (isInDim()) {
-			var darkening = MathHelper.lerp(DarknessEffects.getDarknessInterpolation(), 0.12F, 0.225F);
+			var darkening = MathHelper.lerp(DarknessEffects.getDarknessInterpolation(), 0.11F - lightMod, 0.2125F - lightMod);
 
 			if (SpectrumCommon.CONFIG.ExtraDarkDimension) {
 				darkening *= 2;
@@ -40,12 +42,12 @@ public class LightmapTextureManagerMixin {
 				gamma = -1.5F;
 			}
 			else if (client.getCameraEntity() instanceof LivingEntity living) {
-				gamma -= living.hasStatusEffect(StatusEffects.NIGHT_VISION) ? 0.5F : 0F;
+				gamma -= living.hasStatusEffect(StatusEffects.NIGHT_VISION) ? 0.275F : 0F;
 			}
-		}
 
-		if (DarknessEffects.darkenTicks > 0) {
-			gamma = MathHelper.lerp(DarknessEffects.getDarknessInterpolation(), gamma, gamma - 3F);
+			if (DarknessEffects.darkenTicks > 0) {
+				gamma = MathHelper.lerp(DarknessEffects.getDarknessInterpolation(), gamma, gamma - 25F + SpectrumCommon.CONFIG.DimensionBrightnessMod);
+			}
 		}
 
 		return gamma;

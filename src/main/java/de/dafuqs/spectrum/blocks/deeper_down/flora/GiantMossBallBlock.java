@@ -25,6 +25,11 @@ public class GiantMossBallBlock extends MossBallBlock{
     }
 
     @Override
+    public float getVerticalModelOffsetMultiplier() {
+        return 0.25F;
+    }
+
+    @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         Vec3d vec3d = state.getModelOffset(world, pos);
         return VoxelShapes.fullCube().offset(vec3d.x, vec3d.y, vec3d.z);

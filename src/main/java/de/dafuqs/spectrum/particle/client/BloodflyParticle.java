@@ -20,24 +20,38 @@ public class BloodflyParticle extends SpriteBillboardParticle {
         super(clientWorld, d, e, f, velocityX, velocityY, velocityZ);
         this.spriteProvider = spriteProvider;
         this.setSpriteForAge(spriteProvider);
-        this.velocityX = random.nextFloat() * 0.1F - 0.05F;
+        this.velocityX = random.nextFloat() * 0.05F - 0.025F;
         this.velocityY = 0;
-        this.velocityZ = random.nextFloat() * 0.1F - 0.05F;
+        this.velocityZ = random.nextFloat() * 0.05F - 0.025F;
         var random = clientWorld.getRandom();
-        this.gravityStrength = random.nextFloat() * 0.05F - 0.025F;
+        this.gravityStrength = random.nextFloat() * 0.04F - 0.02F;
 
         this.collidesWithWorld = true;
-        this.maxAge = 30 + random.nextInt(15);
+        this.maxAge = 60 + random.nextInt(20);
 
-        r = 255;
-        g = MathHelper.lerp(random.nextFloat(), 110, 175);
-        b = MathHelper.lerp(random.nextFloat(), 60, 100);
+        var dist = random.nextFloat();
+        if (dist < 0.725F) {
+            r = 255;
+            g = MathHelper.lerp(random.nextFloat(), 110, 175);
+            b = MathHelper.lerp(random.nextFloat(), 60, 100);
+        }
+        else if (dist < 0.95F) {
+            r = 170;
+            g = MathHelper.lerp(random.nextFloat(), 200, 255);
+            b = MathHelper.lerp(random.nextFloat(), 235, 255);
+        }
+        else {
+            r = 255;
+            g = 245;
+            b = MathHelper.lerp(random.nextFloat(), 235, 250);
+
+        }
 
         r /= 255F;
         g /= 255F;
         b /= 255F;
         
-        this.scale = 0.0125F + random.nextFloat() * 0.35F;
+        this.scale = 0.01F + random.nextFloat() * 0.325F;
         scale *= scaleMultiplier;
         setColor(r, g, b);
         setAlpha(0F);
@@ -59,16 +73,16 @@ public class BloodflyParticle extends SpriteBillboardParticle {
 
         var water = !this.world.getFluidState(BlockPos.ofFloored(this.x, this.y, this.z)).isEmpty();
 
-        if (age % 7 == 0 && random.nextBoolean()) {
+        if (age % 11 == 0 && random.nextBoolean()) {
             switchTicks = 0;
-            gravityStrength = random.nextFloat() * 0.05F - 0.025F;
+            gravityStrength = random.nextFloat() * 0.04F - 0.02F;
             lastVelX = velocityX;
             lastVelZ = velocityZ;
-            velocityX = random.nextFloat()  * 0.1F - 0.05F;
-            velocityZ = random.nextFloat()  * 0.1F - 0.05F;
+            velocityX = random.nextFloat()  * 0.05F - 0.025F;
+            velocityZ = random.nextFloat()  * 0.05F - 0.025F;
         }
 
-        var flutter = Math.sin(age / 5F) / 20F;
+        var flutter = Math.sin(age / 8F) / 35F;
 
         var curVelX = MathHelper.lerp(switchTicks / 10F, lastVelX, velocityX);
         var curVelZ = MathHelper.lerp(switchTicks / 10F, lastVelZ, velocityZ);
@@ -90,12 +104,12 @@ public class BloodflyParticle extends SpriteBillboardParticle {
     }
 
     private void adjustAlpha(boolean water) {
-        if (age <= 5) {
-            alpha = MathHelper.clamp(age / 5F, 0, 1F);
+        if (age <= 15) {
+            alpha = MathHelper.clamp(age / 15F, 0, 1F);
             return;
         }
 
-        var ageFade = MathHelper.clamp(Math.min(maxAge - age, 5) / 5F, 0, 1F);
+        var ageFade = MathHelper.clamp(Math.min(maxAge - age, 20) / 20F, 0, 1F);
 
         if (ageFade < 1) {
             alpha = Math.min(alpha, ageFade);

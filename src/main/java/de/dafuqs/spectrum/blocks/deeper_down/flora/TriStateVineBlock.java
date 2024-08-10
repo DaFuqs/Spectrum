@@ -14,6 +14,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
+import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.*;
 import net.minecraft.world.event.*;
 import org.jetbrains.annotations.*;
@@ -238,5 +239,21 @@ public abstract class TriStateVineBlock extends PlantBlock implements Fertilizab
         public String asString() {
             return name;
         }
+    }
+
+    @Override
+    public float getMaxHorizontalModelOffset() {
+        return 0.1F;
+    }
+
+    @Override
+    public float getVerticalModelOffsetMultiplier() {
+        return -0.15F;
+    }
+
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        Vec3d vec3d = state.getModelOffset(world, pos);
+        return super.getOutlineShape(state, world, pos, context).offset(vec3d.x, vec3d.y, vec3d.z);
     }
 }

@@ -28,6 +28,9 @@ public class SpectrumConfig implements ConfigData {
 	@Comment("Story accurate dimension lighting. Deepens the dimension's darkness and prevents night vision from cutting through it. WARNING - This makes traversal significantly harder")
 	public boolean ExtraDarkDimension = false;
 
+	@Comment("Adjusts the general brightness of the dimension (an increase of 1 is a lot, for reference)")
+	public float DimensionBrightnessMod = 0;
+
 	@Comment("Mod Integration Packs to not load (in case of mod compat errors)")
 	public List<String> IntegrationPacksToSkipLoading = new ArrayList<>();
 	

@@ -35,6 +35,11 @@ public class MossBallBlock extends SpreadableFloraBlock {
     }
 
     @Override
+    public float getVerticalModelOffsetMultiplier() {
+        return 0.125F;
+    }
+
+    @Override
     public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
         return true;
     }

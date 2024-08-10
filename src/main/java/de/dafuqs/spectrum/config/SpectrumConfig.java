@@ -36,7 +36,10 @@ public class SpectrumConfig implements ConfigData {
 	
 	@Comment("Add some advanced tooltips to items, like if Sculk Shriekers are able to summon the Warden")
 	public boolean AddItemTooltips = true;
-	
+
+	@Comment("Replaces the ornate models of spectrum's transfer system with something simpler for increased visibility. Great for technical players!")
+	public boolean MinimalNodes = false;
+
 	@Comment("""
 			The vanilla anvil caps enchantment levels at the max level for the enchantment
 			So enchanted books that exceed the enchantments natural max level get capped

@@ -4,9 +4,9 @@
 		"0": "spectrum:block/pastel_pedestal",
 		"1": "spectrum:block/gather_node",
 		"2": "spectrum:block/gather_node_crystal",
-		"3": "spectrum:block/pastel_inner_ring_blank",
-		"4": "spectrum:block/pastel_redstone_ring_blank",
-		"5": "spectrum:block/pastel_outer_ring_blank",
+		"3": "spectrum:block/pastel_node_inner_ring_blank",
+		"4": "spectrum:block/pastel_node_redstone_ring_blank",
+		"5": "spectrum:block/pastel_node_outer_ring_blank",
 		"particle": "spectrum:block/pastel_pedestal"
 	},
 	"elements": [

@@ -54,7 +54,7 @@ public class NephriteBlossomLeavesBlock extends LeavesBlock implements Fertiliza
 		int age = state.get(AGE);
 		int leafSum = 0;
 		
-		if (state.get(PERSISTENT)) {
+		if (state.get(PERSISTENT) || random.nextFloat() > 0.05F) {
 			super.randomTick(state, world, pos, random);
 			return;
 		}

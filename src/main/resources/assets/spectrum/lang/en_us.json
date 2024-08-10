@@ -5316,6 +5316,8 @@
   "text.autoconfig.Spectrum.option.VanillaRecipeCraftingTimeTicks": "Ticks it takes the Pedestal to craft Vanilla recipes",
   "text.autoconfig.Spectrum.option.WindSim": "Enable Wind Simulation",
   "text.autoconfig.Spectrum.option.WindSimInterval": "Wind Simulation Update Interval",
+  "text.autoconfig.Spectrum.option.DimensionBrightnessMod": "Dimension Brightness",
+  "text.autoconfig.Spectrum.option.MinimalNodes": "Minimal Nodes",
   "text.autoconfig.Spectrum.title": "Spectrum",
 
   "trinkets.slot.chest.pin": "Pin",

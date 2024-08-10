@@ -448,6 +448,10 @@ public abstract class LivingEntityMixin {
 
 		// SetHealth damage does exactly that
 		if (amount > 0 && source.isIn(SpectrumDamageTypeTags.USES_SET_HEALTH)) {
+			var charges = AzureDikeProvider.getAzureDikeCharges(target);
+			if (charges > 0) {
+				amount = AzureDikeProvider.absorbDamage(target, amount);
+			}
 			float h = target.getHealth();
 			target.setHealth(h - amount);
 			target.getDamageTracker().onDamage(source, amount);

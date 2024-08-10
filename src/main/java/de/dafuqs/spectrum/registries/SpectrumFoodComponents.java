@@ -81,7 +81,7 @@ public class SpectrumFoodComponents {
 			.build();
 	
 	public static final FoodComponent RESTORATION_TEA = new FoodComponent.Builder()
-			.hunger(2).saturationModifier(0.2F).alwaysEdible()
+			.hunger(2).saturationModifier(2F)
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.IMMUNITY, 1200), 1.0F)
 			.build();
 	
@@ -90,9 +90,9 @@ public class SpectrumFoodComponents {
 			.build();
 	
 	public static final FoodComponent BODACIOUS_BERRY_BAR = new FoodComponent.Builder()
-			.hunger(8).saturationModifier(0.6F)
-			.statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 600, 2), 1.0F)
-			.statusEffect(new StatusEffectInstance(StatusEffects.HEALTH_BOOST, 1800, 4), 1.0F)
+			.hunger(8).saturationModifier(1.0F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 2), 1.0F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.HEALTH_BOOST, 1200, 4), 1.0F)
 			.build();
 	
 	public static final FoodComponent DEMON_TEA = new FoodComponent.Builder()
@@ -365,9 +365,9 @@ public class SpectrumFoodComponents {
 			.build();
 
 	public static final FoodComponent GOLDEN_BRISTLE_TEA = new FoodComponent.Builder()
-			.hunger(1).saturationModifier(1F)
+			.hunger(6).saturationModifier(1F)
 			.statusEffect(new StatusEffectInstance(StatusEffects.INSTANT_HEALTH), 0.5F)
-			.statusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 600, 4), 1)
+			.statusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 600, 3), 1)
 			.statusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 600, 0), 0.5F)
 			.build();
 

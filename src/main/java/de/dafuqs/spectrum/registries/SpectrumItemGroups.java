@@ -1506,7 +1506,6 @@ public class SpectrumItemGroups {
 		
 		entries.add(SpectrumItems.ARTISANS_ATLAS);
 		
-		//entries.add(SpectrumItems.FRIGID_STARDUST);
 		//entries.add(SpectrumItems.SPECTRAL_SHARD);
 		//entries.add(SpectrumBlocks.SPECTRAL_SHARD_BLOCK);
 		//entries.add(SpectrumBlocks.SPECTRAL_SHARD_STORAGE_BLOCK);

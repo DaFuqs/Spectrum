@@ -264,7 +264,6 @@ public class SpectrumItems {
 	public static final Item MERMAIDS_GEM = new MermaidsGemItem(SpectrumBlocks.MERMAIDS_BRUSH, IS.of(16));
 	public static final CloakedItem STAR_FRAGMENT = new CloakedItem(IS.of(16), SpectrumCommon.locate("milestones/unlock_shooting_stars"), Items.PURPLE_DYE);
 	public static final Item STARDUST = new CloakedItemWithLoomPattern(IS.of(), SpectrumCommon.locate("milestones/unlock_shooting_stars"), Items.PURPLE_DYE, SpectrumBannerPatterns.SHIMMER);
-	public static final ItemWithTooltip FRIGID_STARDUST = new ItemWithTooltip(IS.of(), "item.spectrum.frigid_stardust.tooltip");
 	public static final Item ASH_FLAKES = new AshItem(IS.of(), "item.spectrum.ash_flakes.tooltip");
 	
 	public static final Item HIBERNATING_JADE_VINE_BULB = new ItemWithTooltip(IS.of(16), "item.spectrum.hibernating_jade_vine_bulb.tooltip");
@@ -649,7 +648,6 @@ public class SpectrumItems {
 		register("storm_stone", STORM_STONE, DyeColor.YELLOW);
 		register("star_fragment", STAR_FRAGMENT, DyeColor.PURPLE);
 		register("stardust", STARDUST, DyeColor.PURPLE);
-		register("frigid_stardust", FRIGID_STARDUST, DyeColor.PURPLE);
 		register("blood_orchid_petal", BLOOD_ORCHID_PETAL, DyeColor.RED);
 		
 		register("hibernating_jade_vine_bulb", HIBERNATING_JADE_VINE_BULB, DyeColor.GRAY);

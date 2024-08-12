@@ -2,8 +2,7 @@ package de.dafuqs.spectrum.mixin;
 
 import com.llamalad7.mixinextras.injector.*;
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
-import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.llamalad7.mixinextras.injector.wrapoperation.*;
 import com.llamalad7.mixinextras.sugar.*;
 import com.llamalad7.mixinextras.sugar.ref.*;
 import de.dafuqs.spectrum.*;
@@ -16,7 +15,7 @@ import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.cca.azure_dike.*;
 import de.dafuqs.spectrum.enchantments.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.items.ConcealingOilsItem;
+import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
@@ -35,7 +34,7 @@ import net.minecraft.entity.mob.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
-import net.minecraft.network.packet.s2c.play.EntityStatusEffectS2CPacket;
+import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
@@ -58,9 +57,6 @@ public abstract class LivingEntityMixin {
 
 	@Shadow
 	public abstract boolean hasStatusEffect(StatusEffect effect);
-
-	@Shadow
-	public abstract boolean blockedByShield(DamageSource source);
 
 	@Shadow
 	public abstract ItemStack getMainHandStack();
@@ -92,8 +88,6 @@ public abstract class LivingEntityMixin {
 	
 	@Shadow
 	public abstract double getAttributeValue(EntityAttribute attribute);
-
-	@Shadow protected abstract void applyDamage(DamageSource source, float amount);
 
 	@Shadow public abstract void remove(Entity.RemovalReason reason);
 
@@ -487,10 +481,6 @@ public abstract class LivingEntityMixin {
 
 		// SetHealth damage does exactly that
 		if (amount > 0 && source.isIn(SpectrumDamageTypeTags.USES_SET_HEALTH)) {
-			var charges = AzureDikeProvider.getAzureDikeCharges(target);
-			if (charges > 0) {
-				amount = AzureDikeProvider.absorbDamage(target, amount);
-			}
 			float h = target.getHealth();
 			target.setHealth(h - amount);
 			target.getDamageTracker().onDamage(source, amount);

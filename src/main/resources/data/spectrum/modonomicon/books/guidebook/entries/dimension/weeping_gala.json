@@ -2,7 +2,7 @@
   "name": "book.spectrum.guidebook.weeping_gala.name",
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:hidden/collect_weeping_gala"
+    "advancement_id": "spectrum:lategame/discover_weeping_gala"
   },
   "icon": "spectrum:weeping_gala_sprig",
   "category": "spectrum:dimension",
@@ -18,6 +18,38 @@
   "x": 5,
   "y": 8,
   "pages": [
-
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:weeping_gala_sprig"
+      },
+      "text": "book.spectrum.guidebook.weeping_gala.page0.text"
+    },
+    {
+      "type": "spectrum:collection",
+      "title": "book.spectrum.guidebook.all_variants",
+      "items": [
+        "spectrum:weeping_gala_log",
+        "spectrum:stripped_weeping_gala_log",
+        "spectrum:weeping_gala_wood",
+        "spectrum:stripped_weeping_gala_wood",
+        "spectrum:weeping_gala_planks",
+        "spectrum:weeping_gala_stairs",
+        "spectrum:weeping_gala_slab",
+        "spectrum:weeping_gala_fence",
+        "spectrum:weeping_gala_fence_gate",
+        "spectrum:weeping_gala_door",
+        "spectrum:weeping_gala_trapdoor",
+        "spectrum:weeping_gala_pressure_plate",
+        "spectrum:weeping_gala_button",
+        "spectrum:weeping_gala_pillar",
+        "spectrum:weeping_gala_barrel",
+        "spectrum:weeping_gala_amphora",
+        "spectrum:weeping_gala_lantern",
+        "spectrum:weeping_gala_lamp",
+        "spectrum:weeping_gala_light"
+      ],
+      "text": "book.spectrum.guidebook.weeping_gala.page1.text"
+    }
   ]
 }

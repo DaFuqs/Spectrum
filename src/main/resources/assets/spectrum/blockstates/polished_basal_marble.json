@@ -1,7 +1,30 @@
 {
   "variants": {
-    "": {
+    "facing=down": {
+      "model": "spectrum:block/polished_basal_marble",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "spectrum:block/polished_basal_marble",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "spectrum:block/polished_basal_marble",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "spectrum:block/polished_basal_marble",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
       "model": "spectrum:block/polished_basal_marble"
+    },
+    "facing=west": {
+      "model": "spectrum:block/polished_basal_marble",
+      "x": 90,
+      "y": 270
     }
   }
 }

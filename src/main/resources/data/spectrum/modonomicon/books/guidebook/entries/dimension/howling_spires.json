@@ -28,7 +28,10 @@
       "text": "book.spectrum.guidebook.howling_spires.page0.text"
     },
     {
-      "type": "modonomicon:text",
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:ashen_blackslag"
+      },
       "text": "book.spectrum.guidebook.howling_spires.page1.text"
     }
   ]

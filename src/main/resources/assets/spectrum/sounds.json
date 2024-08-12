@@ -190,6 +190,18 @@
       "spectrum:glass_shimmer"
     ]
   },
+  "howling_wind_high": {
+    "subtitle": "spectrum.subtitles.howling_wind_high",
+    "sounds": [
+      "spectrum:howling_wind_high"
+    ]
+  },
+  "howling_wind_low": {
+    "subtitle": "spectrum.subtitles.howling_wind_low",
+    "sounds": [
+      "spectrum:howling_wind_low"
+    ]
+  },
   "shatter_light": {
     "subtitle": "spectrum.subtitles.shatter_light",
     "sounds": [

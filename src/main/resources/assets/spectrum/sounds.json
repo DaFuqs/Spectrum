@@ -190,18 +190,6 @@
       "spectrum:glass_shimmer"
     ]
   },
-  "howling_wind_high": {
-    "subtitle": "spectrum.subtitles.howling_wind_high",
-    "sounds": [
-      "spectrum:howling_wind_high"
-    ]
-  },
-  "howling_wind_low": {
-    "subtitle": "spectrum.subtitles.howling_wind_low",
-    "sounds": [
-      "spectrum:howling_wind_low"
-    ]
-  },
   "shatter_light": {
     "subtitle": "spectrum.subtitles.shatter_light",
     "sounds": [
@@ -555,6 +543,18 @@
       "spectrum:dimension_ambient7",
       "spectrum:dimension_ambient8",
       "spectrum:dimension_ambient9"
+    ]
+  },
+  "ambient.howling_wind_high": {
+    "subtitle": "spectrum.subtitles.howling_wind_high",
+    "sounds": [
+      "spectrum:howling_wind_high"
+    ]
+  },
+  "ambient.howling_wind_low": {
+    "subtitle": "spectrum.subtitles.howling_wind_low",
+    "sounds": [
+      "spectrum:howling_wind_low"
     ]
   },
   "pedestal_crafting": {

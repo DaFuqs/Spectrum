@@ -2,7 +2,7 @@
   "name": "block.spectrum.rock_crystal",
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:lategame/discover_rock_crystal"
+    "advancement_id": "spectrum:hidden/discover_rock_crystal"
   },
   "icon": "spectrum:rock_crystal",
   "category": "spectrum:dimension",

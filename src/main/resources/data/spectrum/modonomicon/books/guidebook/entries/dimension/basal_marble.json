@@ -2,7 +2,7 @@
   "name": "block.spectrum.basal_marble",
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:lategame/discover_basal_marble"
+    "advancement_id": "spectrum:hidden/collect_basal_marble"
   },
   "icon": "spectrum:basal_marble",
   "category": "spectrum:dimension",

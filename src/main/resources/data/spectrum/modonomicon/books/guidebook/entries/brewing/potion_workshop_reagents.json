@@ -252,22 +252,22 @@
     {
       "type": "modonomicon:spotlight",
       "item": {
-        "item": "spectrum:bismuth_crystal"
+        "item": "spectrum:bismuth_flake"
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/collect_bismuth_crystal"
+        "advancement_id": "spectrum:lategame/collect_bismuth"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.page25.text"
     },
     {
       "type": "modonomicon:spotlight",
       "item": {
-        "item": "spectrum:refined_malachite"
+        "item": "spectrum:raw_malachite"
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/grow_malachite_in_crystallarieum"
+        "advancement_id": "spectrum:lategame/collect_malachite"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.page26.text"
     },
@@ -317,6 +317,42 @@
         "advancement_id": "spectrum:hidden/collect_dragonbone"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.page30.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:bitter_oils"
+      },
+      "anchor": "bitter_oils",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_cookbooks/poisoners_cookbook"
+      },
+      "text": "book.spectrum.guidebook.potion_workshop_reagents.bitter_oils.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:nectardew_burgeon"
+      },
+      "anchor": "nectardew_burgeon",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/collect_nectardew"
+      },
+      "text": "book.spectrum.guidebook.potion_workshop_reagents.nectardew_burgeon.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:nightdew_sprout"
+      },
+      "anchor": "nightdew_sprout",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:collect_nightdew"
+      },
+      "text": "book.spectrum.guidebook.potion_workshop_reagents.nightdew_sprout.text"
     }
   ]
 }

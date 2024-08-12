@@ -3328,6 +3328,9 @@
   "book.spectrum.guidebook.potion_workshop_reagents.page7.text": "- +60s duration",
   "book.spectrum.guidebook.potion_workshop_reagents.page8.text": "- +25%% potency",
   "book.spectrum.guidebook.potion_workshop_reagents.page9.text": "- adds a very weird taste and smell to the potion, making it unidentifiable. Also colors it completely black",
+  "book.spectrum.guidebook.potion_workshop_reagents.bitter_oils.text": "- makes effects (near) incurable\n- -4 yield",
+  "book.spectrum.guidebook.potion_workshop_reagents.nectardew_burgeon.text": "- +100%% potency\n- +100%% duration\n- -3 yield\n- infused the drink with sophorific qualities",
+  "book.spectrum.guidebook.potion_workshop_reagents.nightdew_sprout.text": "- +1 potency\n- +50%% duration\n- -1 yield",
   "book.spectrum.guidebook.preenchanted_tools.name": "Preenchanted Tools",
   "book.spectrum.guidebook.preenchanted_tools.page0.text": "That stupid obsidian table is being stubborn again when it comes to giving me the enchantments I am looking for. *Yes, I am salty.*\\\n\\\nBesides that, my options are to slaughter a whole herd of cows or rob the books of a dozen villages (no wonder the inhabitants there are so stupid and only too happy to be eaten by Zombies).",
   "book.spectrum.guidebook.preenchanted_tools.page1.text": "The advantage of knowing exactly what I want gives me the ability to shape the tools so that they inherently have certain qualities. Color magic makes it possible.\\\n\\\nUnfortunately, these features make most of these tools very fragile.",
@@ -4827,7 +4830,7 @@
   "spectrum.rei.potion_workshop_reacting.spectrum.stratine_fragments": "• +1 potency\n• +1 negative effect\n• -1 yield",
   "spectrum.rei.potion_workshop_reacting.spectrum.topaz_powder": "• makes effects not show any particles",
   "spectrum.rei.potion_workshop_reacting.spectrum.vegetal": "• +200% duration\n• -25% potency",
-  "spectrum.rei.potion_workshop_reacting.spectrum.bitter_oils": "• -4 yield\n• makes effects incurable",
+  "spectrum.rei.potion_workshop_reacting.spectrum.bitter_oils": "• -4 yield\n• makes effects (near) incurable",
 
   "spectrum.subtitles.air_launch_belt_charging": "Takeoff Belt charging",
   "spectrum.subtitles.bident_hit_ground": "Bident vibrates",

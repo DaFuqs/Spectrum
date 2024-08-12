@@ -43,19 +43,4 @@ public abstract class AzureDikeTrinketItem extends SpectrumTrinketItem implement
 		tooltip.add(Text.translatable("item.spectrum.azure_dike_provider.tooltip", maxAzureDike(stack)));
 	}
 	
-	@Override
-	public int maxAzureDike(ItemStack stack) {
-		return 4;
-	}
-	
-	@Override
-	public float azureDikeRechargeBonusTicks(ItemStack stack) {
-		return 0;
-	}
-	
-	@Override
-	public float rechargeBonusAfterDamageTicks(ItemStack stack) {
-		return 0;
-	}
-	
 }

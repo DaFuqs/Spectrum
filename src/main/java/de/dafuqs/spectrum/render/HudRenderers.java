@@ -33,7 +33,7 @@ public class HudRenderers {
 		AzureDikeComponent azureDikeComponent = AzureDikeProvider.getAzureDikeComponent(cameraPlayer);
 		int maxCharges = (int) Math.ceil(azureDikeComponent.getMaxProtection());
 		if (maxCharges > 0) {
-			int charges = (int) Math.ceil(azureDikeComponent.getProtection());
+			int charges = (int) Math.ceil(azureDikeComponent.getCurrentProtection());
 
 			boolean blink = false;
 			if (cameraPlayer.getRecentDamageSource() != null && cameraPlayer.getWorld() != null) {

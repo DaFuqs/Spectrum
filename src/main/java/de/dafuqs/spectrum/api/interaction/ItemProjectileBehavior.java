@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.api.interaction;
 
-import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.enchantment.*;
@@ -97,8 +97,13 @@ public interface ItemProjectileBehavior {
 				}
 				
 				// Force-feeds food, applies potions, ...
-				if (!(target instanceof PlayerEntity) || SpectrumCommon.CONFIG.OmniAcceleratorPvP)
-					stack.getItem().finishUsing(stack, livingTarget.getWorld(), livingTarget);
+				if (target instanceof PlayerEntity && !SpectrumCommon.CONFIG.OmniAcceleratorPvP) {
+					if (stack.isIn(SpectrumItemTags.REQUIRES_OMNI_ACCELERATOR_PVP_ENABLED)) {
+						return stack;
+					}
+				}
+				
+				stack.getItem().finishUsing(stack, livingTarget.getWorld(), livingTarget);
 			}
 			return stack;
 		}

@@ -14,6 +14,7 @@ public class SpectrumEntityTypeTags {
 	public static final TagKey<EntityType<?>> SLEEP_WEAK = getReference("sleep_weak");
 	public static final TagKey<EntityType<?>> SLEEP_RESISTANT = getReference("sleep_resistant");
 	public static final TagKey<EntityType<?>> SLEEP_IMMUNEISH = getReference("sleep_immuneish");
+	public static final TagKey<EntityType<?>> UNDEFLECTABLE = getReference("undeflectable");
 
 
 	public static final TagKey<EntityType<?>> STAFF_OF_REMEMBRANCE_BLACKLISTED = getReference("staff_of_remembrance_blacklisted");

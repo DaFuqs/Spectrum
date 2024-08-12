@@ -1,0 +1,30 @@
+{
+  "name": "item.spectrum.milky_resin",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/collect_milky_resin"
+  },
+  "icon": "spectrum:milky_resin",
+  "category": "spectrum:cuisine",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 5,
+  "y": 4,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:milky_resin"
+      },
+      "text": "book.spectrum.guidebook.milky_resin.page0.text"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title1": "book.spectrum.guidebook.milky_resin.page1.title",
+      "recipe_id_1": "spectrum:titration_barrel/clotted_cream_resin",
+      "text": "book.spectrum.guidebook.milky_resin.page1.text"
+    }
+  ]
+}

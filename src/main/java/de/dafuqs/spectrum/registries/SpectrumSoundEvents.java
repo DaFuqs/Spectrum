@@ -85,7 +85,6 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent USE_FAIL = register("use_fail");
 	public static final SoundEvent NEW_REVELATION = register("spectrum.ui.new_revelation");
 	public static final SoundEvent NEW_RECIPE = register("spectrum.ui.new_recipe");
-	public static final SoundEvent DIMENSION_SOUNDS = register("ambient.dimension_sounds");
 	public static final SoundEvent ITEM_ARMOR_EQUIP_GLOW_VISION = register("armor_equip_glow_vision");
 	public static final SoundEvent PLAYER_TELEPORTS = register("player_teleports");
 	public static final SoundEvent ENDER_SPLICE_CHARGES = register("ender_splice_charges");
@@ -101,7 +100,12 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent UNLOCK = register("unlock");
 	public static final SoundEvent HUMMINGSTONE_HUM = register("hummingstone_hum");
 	public static final SoundEvent COLOR_PICKER_PROCESSING = register("color_picker_processing");
-	
+
+	// Environmental Sounds
+	public static final SoundEvent DIMENSION_SOUNDS = register("ambient.dimension_sounds");
+	public static final SoundEvent HOWLING_WIND_HIGH = register("ambient.howling_wind_high");
+	public static final SoundEvent HOWLING_WIND_LOW = register("ambient.howling_wind_low");
+
 	public static final SoundEvent BLACK_HOLE_CHEST_OPEN = register("black_hole_chest_open");
 	public static final SoundEvent BLACK_HOLE_CHEST_CLOSE = register("black_hole_chest_close");
 	public static final SoundEvent COMPACTING_CHEST_OPEN = register("compacting_chest_open");
@@ -128,7 +132,8 @@ public class SpectrumSoundEvents {
 	
 	public static final SoundEvent BLOCK_MEMORY_ADVANCE = register("block.memory.advance");
 	public static final SoundEvent ITEM_PRIMORDIAL_LIGHTER_USE = register("item.primordial_lighter.use");
-	
+
+	// Block Sounds
 	public static final SoundEvent BLOCK_THREAT_CONFLUX_ARM = register("block.threat_conflux.arm");
 	public static final SoundEvent BLOCK_THREAT_CONFLUX_PRIME = register("block.threat_conflux.prime");
 	public static final SoundEvent BLOCK_THREAT_CONFLUX_DISARM = register("block.threat_conflux.disarm");

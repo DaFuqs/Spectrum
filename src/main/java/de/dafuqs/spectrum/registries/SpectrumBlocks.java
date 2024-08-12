@@ -763,7 +763,7 @@ public class SpectrumBlocks {
 	public static final Block BASAL_MARBLE_STAIRS = new StairsBlock(BASAL_MARBLE.getDefaultState(), basalMarble());
 	public static final Block BASAL_MARBLE_SLAB = new SlabBlock(basalMarble());
 	public static final Block BASAL_MARBLE_WALL = new WallBlock(basalMarble());
-	public static final Block POLISHED_BASAL_MARBLE = new PillarBlock(basalMarble());
+	public static final Block POLISHED_BASAL_MARBLE = new SpectrumFacingBlock(basalMarble());
 	public static final Block POLISHED_BASAL_MARBLE_STAIRS = new StairsBlock(POLISHED_BASAL_MARBLE.getDefaultState(), basalMarble());
 	public static final Block POLISHED_BASAL_MARBLE_SLAB = new SlabBlock(basalMarble());
 	public static final Block POLISHED_BASAL_MARBLE_WALL = new WallBlock(basalMarble());

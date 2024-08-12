@@ -35,6 +35,7 @@ import net.minecraft.entity.mob.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
+import net.minecraft.network.packet.s2c.play.EntityStatusEffectS2CPacket;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
@@ -170,13 +171,48 @@ public abstract class LivingEntityMixin {
 		}
 	}
 
-	@WrapWithCondition(method = "clearStatusEffects", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;onStatusEffectRemoved(Lnet/minecraft/entity/effect/StatusEffectInstance;)V"))
-	private boolean spectrum$preventStatusClear(LivingEntity instance, StatusEffectInstance effect, @Share("blockRemoval") LocalBooleanRef blockRemoval) {
-		if (Incurable.isIncurable(effect) && !affectedByImmunity(instance, effect.getAmplifier())) {
-			blockRemoval.set(true);
+	@ModifyReturnValue(method = "canHaveStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;)Z", at = @At("RETURN"))
+	public boolean spectrum$canHaveStatusEffect(boolean original, @Local(argsOnly = true) StatusEffectInstance statusEffectInstance) {
+		var instance = (LivingEntity) (Object) this;
+
+		if (original && this.hasStatusEffect(SpectrumStatusEffects.IMMUNITY) && statusEffectInstance.getEffectType().getCategory() == StatusEffectCategory.HARMFUL && !SpectrumStatusEffectTags.isIncurable(statusEffectInstance.getEffectType())) {
+			if (Incurable.isIncurable(statusEffectInstance)) {
+				var immunity = getStatusEffect(SpectrumStatusEffects.IMMUNITY);
+				var cost = 600 * (statusEffectInstance.getAmplifier() + 1);
+
+				if (immunity.getDuration() >= cost) {
+					((StatusEffectInstanceAccessor) immunity).setDuration(Math.max(5, immunity.getDuration() - cost));
+					if (!instance.getWorld().isClient()) {
+						((ServerWorld) instance.getWorld()).getChunkManager().sendToNearbyPlayers(instance, new EntityStatusEffectS2CPacket(instance.getId(), immunity));
+					}
+					return false;
+				}
+				else {
+					return true;
+				}
+			}
+
 			return false;
 		}
+		return original;
+	}
 
+	@WrapWithCondition(method = "clearStatusEffects", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;onStatusEffectRemoved(Lnet/minecraft/entity/effect/StatusEffectInstance;)V"))
+	private boolean spectrum$preventStatusClear(LivingEntity instance, StatusEffectInstance effect, @Share("blockRemoval") LocalBooleanRef blockRemoval) {
+		if (Incurable.isIncurable(effect)) {
+			if (affectedByImmunity(instance, effect.getAmplifier()))
+				return true;
+
+			if (effect.getDuration() > 1200) {
+				((StatusEffectInstanceAccessor) effect).setDuration(effect.getDuration() - 1200);
+				if (!instance.getWorld().isClient()) {
+					((ServerWorld) instance.getWorld()).getChunkManager().sendToNearbyPlayers(instance, new EntityStatusEffectS2CPacket(instance.getId(), effect));
+				}
+
+				blockRemoval.set(true);
+				return false;
+			}
+		}
 		return true;
 	}
 
@@ -216,6 +252,9 @@ public abstract class LivingEntityMixin {
 
 		if (immunity != null && immunity.getDuration() >= cost) {
 			((StatusEffectInstanceAccessor) immunity).setDuration(Math.max(5, immunity.getDuration() - cost));
+			if (!instance.getWorld().isClient()) {
+				((ServerWorld) instance.getWorld()).getChunkManager().sendToNearbyPlayers(instance, new EntityStatusEffectS2CPacket(instance.getId(), immunity));
+			}
 			return true;
 		}
 		return false;
@@ -499,27 +538,6 @@ public abstract class LivingEntityMixin {
 				}
 			}
 		}
-	}
-
-	@ModifyReturnValue(method = "canHaveStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;)Z", at = @At("RETURN"))
-	public boolean spectrum$canHaveStatusEffect(boolean original, @Local(argsOnly = true) StatusEffectInstance statusEffectInstance) {
-		if (original && this.hasStatusEffect(SpectrumStatusEffects.IMMUNITY) && statusEffectInstance.getEffectType().getCategory() == StatusEffectCategory.HARMFUL && !SpectrumStatusEffectTags.isIncurable(statusEffectInstance.getEffectType())) {
-			if (Incurable.isIncurable(statusEffectInstance)) {
-				var immunity = getStatusEffect(SpectrumStatusEffects.IMMUNITY);
-				var cost = 600 * (statusEffectInstance.getAmplifier() + 1);
-
-				if (immunity.getDuration() >= cost) {
-					((StatusEffectInstanceAccessor) immunity).setDuration(Math.max(5, immunity.getDuration() - cost));
-					return false;
-                }
-				else {
-					return true;
-				}
-			}
-
-			return false;
-		}
-		return original;
 	}
 	
 	@ModifyVariable(method = "setSprinting(Z)V", at = @At("HEAD"), argsOnly = true)

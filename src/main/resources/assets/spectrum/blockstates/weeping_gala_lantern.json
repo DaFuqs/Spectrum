@@ -13,16 +13,20 @@
       "model": "spectrum:block/weeping_gala_lantern_diagonal_alt"
     },
     "hanging=true,diagonal=false,alt=false": {
-      "model": "spectrum:block/weeping_gala_lantern_hanging"
+      "model": "spectrum:block/weeping_gala_lantern",
+      "x": 180
     },
     "hanging=true,diagonal=false,alt=true": {
-      "model": "spectrum:block/weeping_gala_lantern_hanging_alt"
+      "model": "spectrum:block/weeping_gala_lantern_alt",
+      "x": 180
     },
     "hanging=true,diagonal=true,alt=false": {
-      "model": "spectrum:block/weeping_gala_lantern_hanging_diagonal"
+      "model": "spectrum:block/weeping_gala_lantern_diagonal",
+      "x": 180
     },
     "hanging=true,diagonal=true,alt=true": {
-      "model": "spectrum:block/weeping_gala_lantern_hanging_diagonal_alt"
+      "model": "spectrum:block/weeping_gala_lantern_diagonal_alt",
+      "x": 180
     }
   }
 }

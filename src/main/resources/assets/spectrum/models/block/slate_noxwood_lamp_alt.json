@@ -1,6 +1,0 @@
-{
-  "parent": "spectrum:templates/noxwood_lamp_alt",
-  "textures": {
-    "all": "spectrum:block/slate_noxwood_lamp"
-  }
-}

@@ -1,31 +1,31 @@
 {
   "variants": {
-    "hanging=false,diagonal=false,alt=false": {
-      "model": "spectrum:block/weeping_gala_lantern"
+    "hanging=false,diagonal=false,tall=true": {
+      "model": "spectrum:block/weeping_gala_lantern_tall"
     },
-    "hanging=false,diagonal=false,alt=true": {
-      "model": "spectrum:block/weeping_gala_lantern_alt"
+    "hanging=false,diagonal=false,tall=false": {
+      "model": "spectrum:block/weeping_gala_lantern_small"
     },
-    "hanging=false,diagonal=true,alt=false": {
-      "model": "spectrum:block/weeping_gala_lantern_diagonal"
+    "hanging=false,diagonal=true,tall=true": {
+      "model": "spectrum:block/weeping_gala_lantern_diagonal_tall"
     },
-    "hanging=false,diagonal=true,alt=true": {
-      "model": "spectrum:block/weeping_gala_lantern_diagonal_alt"
+    "hanging=false,diagonal=true,tall=false": {
+      "model": "spectrum:block/weeping_gala_lantern_diagonal_small"
     },
-    "hanging=true,diagonal=false,alt=false": {
-      "model": "spectrum:block/weeping_gala_lantern",
+    "hanging=true,diagonal=false,tall=true": {
+      "model": "spectrum:block/weeping_gala_lantern_tall",
       "x": 180
     },
-    "hanging=true,diagonal=false,alt=true": {
-      "model": "spectrum:block/weeping_gala_lantern_alt",
+    "hanging=true,diagonal=false,tall=false": {
+      "model": "spectrum:block/weeping_gala_lantern_small",
       "x": 180
     },
-    "hanging=true,diagonal=true,alt=false": {
-      "model": "spectrum:block/weeping_gala_lantern_diagonal",
+    "hanging=true,diagonal=true,tall=true": {
+      "model": "spectrum:block/weeping_gala_lantern_diagonal_tall",
       "x": 180
     },
-    "hanging=true,diagonal=true,alt=true": {
-      "model": "spectrum:block/weeping_gala_lantern_diagonal_alt",
+    "hanging=true,diagonal=true,tall=false": {
+      "model": "spectrum:block/weeping_gala_lantern_diagonal_small",
       "x": 180
     }
   }

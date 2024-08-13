@@ -63,18 +63,12 @@ public class GiantGilledFungusFeature extends Feature<GilledFungusFeatureConfig>
 
         this.generateStemRing(blockPos.down(3), config, world, random, stemGirth, stemHeight + 3, true);
 
-        var hatHeight = stemHeight - 3;
-
         if (stemHeight > 60 || (stemHeight > 30 && random.nextBoolean())) {
-            this.generateHat(world, random, config, blockPos, hatHeight, 1F);
-            this.generateHat(world, random, config, blockPos, Math.round(hatHeight * 0.65F), 0.7F);
+            this.generateHat(world, random, config, blockPos, stemHeight, 1F);
+            this.generateHat(world, random, config, blockPos, Math.round(stemHeight * 0.65F), 0.7F);
         }
         else {
-            this.generateHat(world, random, config, blockPos, hatHeight, 1F);
-        }
-
-        for (int i = 1; i < stemHeight / 5; i++) {
-            this.generateHat(world, random, config, blockPos.add(random.nextInt(stemGirth * 3), 0, random.nextInt(stemGirth * 3)),  hatHeight + i * 2, 1F/ i);
+            this.generateHat(world, random, config, blockPos, stemHeight, 1F);
         }
 
         for (int i = 0; i < stemHeight / 1.5F; i++) {

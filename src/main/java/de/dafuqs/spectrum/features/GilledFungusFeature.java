@@ -30,7 +30,7 @@ public class GilledFungusFeature extends Feature<GilledFungusFeatureConfig> {
         Random random = context.getRandom();
         ChunkGenerator chunkGenerator = context.getGenerator();
 
-        int stemHeight = MathHelper.nextInt(random, 4, 9);
+        int stemHeight = hugeFungusFeatureConfig.baseStemHeight().get(random);
         if (random.nextInt(12) == 0) {
             stemHeight *= 2;
         }
@@ -65,43 +65,55 @@ public class GilledFungusFeature extends Feature<GilledFungusFeatureConfig> {
     }
 
     private void generateHat(WorldAccess world, Random random, GilledFungusFeatureConfig config, BlockPos pos, int stemHeight) {
-		BlockPos.Mutable mutable = new BlockPos.Mutable();
-		int hatWidth = Math.min(random.nextInt(2 + stemHeight / 4) + 3, 4);
-		int currentHatWidth = hatWidth;
-		int outerThreshold = hatWidth / 2;
-	
-		BlockState stemState = config.stem().getDefaultState();
-		BlockState gillsState = config.gills().getDefaultState();
-		BlockState capState = config.cap().getDefaultState();
-	
-		for (int y = 0; y <= hatWidth; ++y) {
-			for (int x = -currentHatWidth; x <= currentHatWidth; ++x) {
-				for (int z = -currentHatWidth; z <= currentHatWidth; ++z) {
-				
-					boolean isCorner = Math.abs(x) == currentHatWidth && Math.abs(z) == currentHatWidth;
-					if (isCorner) {
-						continue;
-					}
+        BlockPos.Mutable mutable = new BlockPos.Mutable();
+        int hatRadius = Math.min(random.nextInt(1 + stemHeight / 5) + 4, 9);
+        int currentRadius;
+
+        BlockState gillsState = config.gills().getDefaultState();
+        BlockState capState = config.cap().getDefaultState();
+        var start = hatRadius > 4 ? -2 : -1;
+        var firstLoop = true;
+
+        for (int y = start; y < Math.max(Math.round(hatRadius / 3F), 2); ++y) {
+            var underHang = y < 0;
+            boolean isLowestLevel = y == 0;
+
+            currentRadius = underHang ? hatRadius : (int) Math.round(hatRadius / Math.pow(1.175, Math.max(y - 1, 0))) - (isLowestLevel ? 0 : 1);
+
+            for (int x = -currentRadius; x <= currentRadius; ++x) {
+                for (int z = -currentRadius; z <= currentRadius; ++z) {
+
+                    boolean isCorner = Math.abs(x) == currentRadius && Math.abs(z) == currentRadius;
+                    if (isCorner) {
+                        continue;
+                    }
 
                     mutable.set(pos, x, stemHeight + y, z);
                     if (isReplaceable(world, mutable, false)) {
-                        boolean isInnerCorner = Math.abs(x) == currentHatWidth - 1 && Math.abs(z) == currentHatWidth - 1;
-                        boolean isInner = Math.abs(x) < currentHatWidth && Math.abs(z) < currentHatWidth;
-                        boolean isLowestLevel = y == 0;
+                        var rad = Math.sqrt(mutable.getSquaredDistanceFromCenter(pos.getX(), mutable.getY(), pos.getZ()));
 
-                        if (x == 0 && z == 0) {
-							this.setBlockState(world, mutable, currentHatWidth < 2 ? capState : stemState);
-                        } else if (isInner && !isInnerCorner) {
-                            if (!isLowestLevel || Math.abs(x) > outerThreshold || Math.abs(z) > outerThreshold) {
-								this.setBlockState(world, mutable, gillsState.with(PillarBlock.AXIS, Math.abs(x) < Math.abs(z) ? Direction.Axis.X : Direction.Axis.Z));
+                        if (underHang) {
+                            if(!(random.nextInt(3) == 0 && firstLoop) && rad <= currentRadius && rad > currentRadius - 1) {
+                                this.setBlockState(world, mutable, capState);
                             }
-                        } else {
-							this.setBlockState(world, mutable, capState);
+                        }
+                        else if (isLowestLevel) {
+                            if (rad <= currentRadius - 1) {
+                                this.setBlockState(world, mutable, gillsState.with(PillarBlock.AXIS, Math.abs(x) < Math.abs(z) ? Direction.Axis.X : Direction.Axis.Z));
+                            } else if(rad <= currentRadius) {
+                                this.setBlockState(world, mutable, capState);
+
+                            }
+                        }
+                        else if (rad <= currentRadius) {
+                            this.setBlockState(world, mutable, capState);
+
                         }
                     }
                 }
             }
-            currentHatWidth -= 1;
+
+            firstLoop = false;
         }
     }
 

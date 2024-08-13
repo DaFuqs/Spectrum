@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.items.magic_items;
 
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -17,7 +18,7 @@ import net.minecraft.world.*;
 
 import java.util.*;
 
-public class EverpromiseRibbonItem extends Item {
+public class EverpromiseRibbonItem extends Item implements PrioritizedEntityInteraction {
 	
 	public EverpromiseRibbonItem(Settings settings) {
 		super(settings);

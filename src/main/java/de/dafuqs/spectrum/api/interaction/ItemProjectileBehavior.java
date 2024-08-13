@@ -5,13 +5,16 @@ import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
+import net.minecraft.entity.mob.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.entity.projectile.thrown.*;
 import net.minecraft.item.*;
+import net.minecraft.nbt.*;
 import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.predicate.item.*;
 import net.minecraft.registry.tag.*;
 import net.minecraft.server.network.*;
+import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
@@ -90,6 +93,23 @@ public interface ItemProjectileBehavior {
 		public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, Entity owner, EntityHitResult hitResult) {
 			Entity target = hitResult.getEntity();
 			// Lots of fun(tm) is to be had
+			if (stack.isIn(ItemTags.CREEPER_IGNITERS) && target instanceof CreeperEntity creeperEntity) {
+				World world = projectile.getWorld();
+				SoundEvent soundEvent = stack.isOf(Items.FIRE_CHARGE) ? SoundEvents.ITEM_FIRECHARGE_USE : SoundEvents.ITEM_FLINTANDSTEEL_USE;
+				world.playSound(null, projectile.getX(), projectile.getY(), projectile.getZ(), soundEvent, projectile.getSoundCategory(), 1.0F, world.getRandom().nextFloat() * 0.4F + 0.8F);
+				creeperEntity.ignite();
+				
+				if (stack.isDamageable()) {
+					stack.damage(1, world.getRandom(), null);
+				} else {
+					NbtCompound nbtCompound = stack.getNbt();
+					boolean isUnbreakable = nbtCompound != null && nbtCompound.getBoolean("Unbreakable");
+					if (!isUnbreakable) {
+						stack.decrement(1); // In Vanilla unbreakable Flint & Steel is not handled correctly and therefore consumed. This here probably still does not handle every modded item perfectly
+					}
+				}
+			}
+			
 			if (target instanceof LivingEntity livingTarget) {
 				// attaching name tags, saddle horses, memorize entities...
 				if (owner instanceof PlayerEntity playerOwner) {

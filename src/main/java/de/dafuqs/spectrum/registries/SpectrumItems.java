@@ -356,13 +356,13 @@ public class SpectrumItems {
 	public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM, IS.of());
 	public static final Item AMARANTH_GRAINS = new AliasedBlockItem(SpectrumBlocks.AMARANTH, IS.of());
 	
-	public static final Item MELOCHITES_COOKBOOK_VOL_1 = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/melochites_cookbook_vol_1");
-	public static final Item MELOCHITES_COOKBOOK_VOL_2 = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/melochites_cookbook_vol_2");
-	public static final Item IMBRIFER_COOKBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/imbrifer_cookbook");
-	public static final Item IMPERIAL_COOKBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/imperial_cookbook");
-	public static final Item BREWERS_HANDBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/brewers_handbook");
-	public static final Item VARIA_COOKBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/varia_cookbook");
-	public static final Item POISONERS_COOKBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.EPIC), "cuisine/poisoners_cookbook");
+	public static final Item MELOCHITES_COOKBOOK_VOL_1 = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/cookbooks/melochites_cookbook_vol_1");
+	public static final Item MELOCHITES_COOKBOOK_VOL_2 = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/cookbooks/melochites_cookbook_vol_2");
+	public static final Item IMBRIFER_COOKBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/cookbooks/imbrifer_cookbook");
+	public static final Item IMPERIAL_COOKBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/cookbooks/imperial_cookbook");
+	public static final Item BREWERS_HANDBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/cookbooks/brewers_handbook");
+	public static final Item VARIA_COOKBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/cookbooks/varia_cookbook");
+	public static final Item POISONERS_COOKBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.EPIC), "cuisine/cookbooks/poisoners_cookbook");
 
 	public static final Item AQUA_REGIA = new JadeWineItem(IS.of(16).food(SpectrumFoodComponents.AQUA_REGIA));
 	public static final Item BAGNUN = new Item(IS.of().food(SpectrumFoodComponents.BAGNUN));

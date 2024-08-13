@@ -99,6 +99,10 @@
       "spectrum:dd_stone"
     ],
     [
+      "spectrum:giant_chestnut_noxshroom",
+      "spectrum:giant_ivory_noxshroom",
+      "spectrum:giant_slate_noxshroom",
+      "spectrum:giant_ebony_noxshroom",
       "spectrum:noxshroom_fungi",
       "spectrum:noxshroom_forest_vegetation",
       "spectrum:noxstem_columns"

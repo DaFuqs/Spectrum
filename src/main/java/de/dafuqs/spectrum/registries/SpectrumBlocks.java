@@ -2790,9 +2790,8 @@ public class SpectrumBlocks {
 
 	// All the mob heads vanilla is missing
 	private static void registerMobHeads(FabricItemSettings settings) {
-
 		for (SpectrumSkullType type : SpectrumSkullType.values()) {
-			Block head = new SpectrumSkullBlock(type, FabricBlockSettings.copyOf(Blocks.SKELETON_SKULL));
+			Block head = new SpectrumSkullBlock(type, FabricBlockSettings.copyOf(Blocks.SKELETON_SKULL).instrument(Instrument.CUSTOM_HEAD));
 			registerBlock(type.name().toLowerCase(Locale.ROOT) + "_head", head);
 			Block wallHead = new SpectrumWallSkullBlock(type, FabricBlockSettings.copyOf(Blocks.SKELETON_SKULL).dropsLike(head));
 			registerBlock(type.name().toLowerCase(Locale.ROOT) + "_wall_head", wallHead);

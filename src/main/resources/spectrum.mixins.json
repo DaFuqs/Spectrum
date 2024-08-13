@@ -57,6 +57,7 @@
     "NbtPredicateMixin",
     "NearestLivingEntitiesSensorMixin",
     "NearestPlayerSensorMixin",
+    "NoteBlockMixin",
     "PiglinBrainMixin",
     "PlantOnCustomFarmlandMixin",
     "PlayerEntityMixin",

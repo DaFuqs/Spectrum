@@ -8,7 +8,7 @@ import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
-import net.minecraft.client.network.*;
+import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
 import net.minecraft.registry.*;
@@ -202,7 +202,7 @@ public class UnlockToastManager {
 	 */
 	private static @NotNull List<PedestalRecipe> getRecipesForTierWithAllConditionsMet(PedestalRecipeTier pedestalRecipeTier, List<GatedRecipe> pedestalRecipes) {
 		MinecraftClient client = MinecraftClient.getInstance();
-		ClientPlayerEntity player = client.player;
+		PlayerEntity player = client.player;
 		
 		List<PedestalRecipe> alreadyUnlockedRecipesAtNewTier = new ArrayList<>();
 		for (GatedRecipe recipe : pedestalRecipes) {

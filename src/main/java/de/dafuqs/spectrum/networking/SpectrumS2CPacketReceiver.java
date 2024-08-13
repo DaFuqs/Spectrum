@@ -25,8 +25,8 @@ import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
-import net.minecraft.client.network.*;
 import net.minecraft.client.render.*;
+import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.item.map.*;
 import net.minecraft.network.*;
@@ -372,7 +372,7 @@ public class SpectrumS2CPacketReceiver {
 		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_DIVINITY_APPLIED_EFFECTS, (client, handler, buf, responseSender) -> client.execute(() -> {
 			// Everything in this lambda is running on the render thread
-			ClientPlayerEntity player = client.player;
+			PlayerEntity player = client.player;
 			client.particleManager.addEmitter(player, SpectrumParticleTypes.DIVINITY, 30);
 			client.gameRenderer.showFloatingItem(SpectrumItems.DIVINATION_HEART.getDefaultStack());
 			client.world.playSound(null, player.getBlockPos(), SpectrumSoundEvents.FAILING_PLACED, SoundCategory.PLAYERS, 1.0F, 1.0F);
@@ -382,7 +382,7 @@ public class SpectrumS2CPacketReceiver {
 		}));
 		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.MOONSTONE_BLAST, (client, handler, buf, responseSender) -> {
-			ClientPlayerEntity player = client.player;
+			PlayerEntity player = client.player;
 			
 			double x = buf.readDouble();
 			double y = buf.readDouble();

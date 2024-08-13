@@ -12,7 +12,6 @@ import net.minecraft.advancement.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.client.item.*;
-import net.minecraft.client.network.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.registry.entry.*;
@@ -70,7 +69,7 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 	
 	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-		if (user instanceof ClientPlayerEntity) {
+		if (world.isClient()) {
 			// if the player has never opened the book before
 			// automatically open the introduction page
 			openGuidebook();

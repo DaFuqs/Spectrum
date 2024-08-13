@@ -26,7 +26,6 @@ import net.fabricmc.fabric.api.resource.*;
 import net.fabricmc.loader.api.*;
 import net.minecraft.block.*;
 import net.minecraft.client.*;
-import net.minecraft.client.network.*;
 import net.minecraft.client.render.*;
 import net.minecraft.client.util.*;
 import net.minecraft.client.util.math.*;
@@ -139,7 +138,7 @@ public class SpectrumClientEventListeners {
 	private static boolean renderPlacementStaffOutline(MatrixStack matrices, Camera camera, double d, double e, double f, VertexConsumerProvider consumers, @NotNull BlockHitResult hitResult) {
 		MinecraftClient client = MinecraftClient.getInstance();
 		ClientWorld world = client.world;
-		ClientPlayerEntity player = client.player;
+		PlayerEntity player = client.player;
 		if (player == null || world == null)
 			return false;
 		
@@ -195,7 +194,7 @@ public class SpectrumClientEventListeners {
 		BlockPos lookingAtPos = hitResult.blockPos();
 		BlockState lookingAtState = hitResult.blockState();
 		
-		ClientPlayerEntity player = client.player;
+		PlayerEntity player = client.player;
 		
 		if (player == null || world == null)
 			return false;

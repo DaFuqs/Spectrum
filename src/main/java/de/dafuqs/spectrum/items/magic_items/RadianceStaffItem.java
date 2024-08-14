@@ -102,6 +102,11 @@ public class RadianceStaffItem extends Item implements InkPowered {
 	}
 	
 	@Override
+	public int getMaxUseTime(ItemStack stack) {
+		return 72000;
+	}
+	
+	@Override
 	public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
 		// trigger the items' usage action every x ticks
 		if (user instanceof ServerPlayerEntity serverPlayerEntity && user.getItemUseTime() > USE_DURATION && user.getItemUseTime() % USE_DURATION == 0) {

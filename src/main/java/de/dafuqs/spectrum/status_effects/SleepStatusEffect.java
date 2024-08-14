@@ -21,7 +21,8 @@ public class SleepStatusEffect extends SpectrumStatusEffect {
         super(category, color);
         this.baseStrength = baseStrength;
     }
-
+    
+    // oh my god
     public static float getSleepVulnerability(@Nullable StatusEffectInstance instance, LivingEntity entity) {
         var type = entity.getType();
 
@@ -83,7 +84,8 @@ public class SleepStatusEffect extends SpectrumStatusEffect {
         }
         return null;
     }
-
+    
+    // wtf
     public static float getPlayerMod(PlayerEntity player) {
         float mod = 1F;
 
@@ -103,14 +105,16 @@ public class SleepStatusEffect extends SpectrumStatusEffect {
 
         return mod;
     }
-
+    
+    // oh no
     private static float getModFor(PlayerEntity player, ItemStack stack) {
         if (stack.getItem() instanceof SleepStatusAffectingItem sleepItem) {
             return 1 - sleepItem.getSleepResistance(player, stack);
         }
         return 1F;
     }
-
+    
+    // (⊙﹏⊙)
     public static boolean isImmuneish(LivingEntity entity) {
         if (entity.hasStatusEffect(SpectrumStatusEffects.FRENZY))
             return true;
@@ -121,8 +125,10 @@ public class SleepStatusEffect extends SpectrumStatusEffect {
 
         return type.isIn(SpectrumEntityTypeTags.SLEEP_IMMUNEISH) || type.isIn(ConventionalEntityTypeTags.BOSSES);
     }
-
+    
+    // 💀💀💀
     public static boolean hasSleepEffect(LivingEntity livingEntity) {
         return livingEntity.hasStatusEffect(SpectrumStatusEffects.ETERNAL_SLUMBER) || livingEntity.hasStatusEffect(SpectrumStatusEffects.SOMNOLENCE) || livingEntity.hasStatusEffect(SpectrumStatusEffects.FATAL_SLUMBER);
     }
+    
 }

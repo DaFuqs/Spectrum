@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.api.interaction;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.enchantment.*;
@@ -137,6 +138,10 @@ public interface ItemProjectileBehavior {
 			Direction facing = hitResult.getSide().getOpposite();
 			BlockPos placementPos = hitPos.offset(facing);
 			Direction placementDirection = world.isAir(placementPos.down()) ? facing : Direction.UP;
+			
+			if (!GenericClaimModsCompat.canPlaceBlock(world, placementPos, owner)) {
+				return stack;
+			}
 			stack.useOnBlock(new AutomaticItemPlacementContext(world, placementPos, facing, stack, placementDirection));
 			
 			return stack;

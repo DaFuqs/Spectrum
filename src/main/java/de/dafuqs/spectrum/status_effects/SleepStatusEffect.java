@@ -1,24 +1,17 @@
 package de.dafuqs.spectrum.status_effects;
 
-import de.dafuqs.spectrum.api.item.SleepStatusAffectingItem;
-import de.dafuqs.spectrum.registries.SpectrumEntityTypeTags;
-import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
-import dev.emi.trinkets.api.SlotReference;
-import dev.emi.trinkets.api.TrinketComponent;
-import dev.emi.trinkets.api.TrinketsApi;
-import net.fabricmc.fabric.api.tag.convention.v1.ConventionalEntityTypeTags;
-import net.minecraft.entity.EntityGroup;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Pair;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.registries.*;
+import dev.emi.trinkets.api.*;
+import net.fabricmc.fabric.api.tag.convention.v1.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
+import org.jetbrains.annotations.*;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class SleepStatusEffect extends SpectrumStatusEffect {
 
@@ -64,6 +57,7 @@ public class SleepStatusEffect extends SpectrumStatusEffect {
     /**
      * Get vulnerability based on the strongest sleep effect
      */
+    // TODO: Why is that not an attribute? It should be one
     public static float getGeneralSleepVulnerability(LivingEntity entity) {
         if (entity.hasStatusEffect(SpectrumStatusEffects.FATAL_SLUMBER)) {
             return getSleepVulnerability(entity.getStatusEffect(SpectrumStatusEffects.FATAL_SLUMBER), entity) * 2F;

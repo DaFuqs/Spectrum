@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
 import com.llamalad7.mixinextras.injector.*;
-import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import com.llamalad7.mixinextras.injector.wrapoperation.*;
 import com.llamalad7.mixinextras.sugar.*;
 import com.llamalad7.mixinextras.sugar.ref.*;
@@ -90,7 +89,10 @@ public abstract class LivingEntityMixin {
 	public abstract double getAttributeValue(EntityAttribute attribute);
 
 	@Shadow public abstract void remove(Entity.RemovalReason reason);
-
+	
+	@Shadow
+	public abstract void travel(Vec3d movementInput);
+	
 	@ModifyArg(method = "dropXp()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"), index = 2)
 	protected int spectrum$applyExuberance(int originalXP) {
 		return (int) (originalXP * spectrum$getExuberanceMod(this.attackingPlayer));
@@ -117,12 +119,14 @@ public abstract class LivingEntityMixin {
 				friction = 0.945F;
 			}
 		}
-
-		var trinket = tryGetTrinket(SpectrumItems.RING_OF_AERIAL_GRACE);
-		if (!entity.isOnGround() && trinket.isPresent()) {
-			var inkStorage = SpectrumItems.RING_OF_AERIAL_GRACE.getEnergyStorage(trinket.get());
-			var storedInk = inkStorage.getEnergy(inkStorage.getStoredColor());
-			friction = (float) Math.max(friction, 0.91 + (((RingOfAerialGraceItem) SpectrumItems.RING_OF_AERIAL_GRACE).getBonus(storedInk) / 150F));
+		
+		if (!entity.isOnGround()) {
+			var optionalTrinket = SpectrumTrinketItem.getFirstEquipped((LivingEntity) (Object) this, SpectrumItems.RING_OF_AERIAL_GRACE);
+			if (optionalTrinket.isPresent()) {
+				var inkStorage = SpectrumItems.RING_OF_AERIAL_GRACE.getEnergyStorage(optionalTrinket.get());
+				var storedInk = inkStorage.getEnergy(inkStorage.getStoredColor());
+				friction = (float) Math.max(friction, 0.91 + (((RingOfAerialGraceItem) SpectrumItems.RING_OF_AERIAL_GRACE).getBonus(storedInk) / 150F));
+			}
 		}
 
 		if (friction >= 0)
@@ -148,9 +152,8 @@ public abstract class LivingEntityMixin {
 	@ModifyReturnValue(method = "canWalkOnFluid", at = @At("RETURN"))
 	public boolean spectrum$modifyFluidWalking(boolean original) {
 		var entity = (LivingEntity) (Object) this;
-		var trinket = tryGetTrinket(SpectrumItems.RING_OF_AERIAL_GRACE);
-
-		if (trinket.isPresent())
+		
+		if (SpectrumTrinketItem.hasEquipped((LivingEntity) (Object) this, SpectrumItems.RING_OF_AERIAL_GRACE))
 			return !entity.isSubmergedInWater();
 
 		return original;
@@ -189,86 +192,6 @@ public abstract class LivingEntityMixin {
 			return false;
 		}
 		return original;
-	}
-
-	@WrapWithCondition(method = "clearStatusEffects", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;onStatusEffectRemoved(Lnet/minecraft/entity/effect/StatusEffectInstance;)V"))
-	private boolean spectrum$preventStatusClear(LivingEntity instance, StatusEffectInstance effect, @Share("blockRemoval") LocalBooleanRef blockRemoval) {
-		if (Incurable.isIncurable(effect)) {
-			if (affectedByImmunity(instance, effect.getAmplifier()))
-				return true;
-
-			if (effect.getDuration() > 1200) {
-				((StatusEffectInstanceAccessor) effect).setDuration(effect.getDuration() - 1200);
-				if (!instance.getWorld().isClient()) {
-					((ServerWorld) instance.getWorld()).getChunkManager().sendToNearbyPlayers(instance, new EntityStatusEffectS2CPacket(instance.getId(), effect));
-				}
-
-				blockRemoval.set(true);
-				return false;
-			}
-		}
-		return true;
-	}
-
-	@WrapWithCondition(method = "clearStatusEffects", at = @At(value = "INVOKE", target = "Ljava/util/Iterator;remove()V"))
-	private boolean spectrum$preventStatusClear(Iterator instance, @Share("blockRemoval") LocalBooleanRef blockRemoval) {
-		if (blockRemoval.get()) {
-			blockRemoval.set(false);
-			return false;
-		}
-		return true;
-	}
-
-	@WrapOperation(method = "removeStatusEffect", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;removeStatusEffectInternal(Lnet/minecraft/entity/effect/StatusEffect;)Lnet/minecraft/entity/effect/StatusEffectInstance;"))
-	private StatusEffectInstance spectrum$preventStatusRemoval(LivingEntity instance, StatusEffect type, Operation<StatusEffectInstance> original) {
-		var effect = instance.getStatusEffect(type);
-		boolean cancel;
-
-		if (effect == null)
-			return original.call(instance, type);
-
-		cancel = Incurable.isIncurable(effect);
-
-		if (cancel) {
-			cancel = !affectedByImmunity(instance, effect.getAmplifier());
-		}
-
-		if (cancel)
-			return null;
-
-		return original.call(instance, type);
-	}
-
-	@Unique
-	private static boolean affectedByImmunity(LivingEntity instance, int amplifier) {
-		var immunity = instance.getStatusEffect(SpectrumStatusEffects.IMMUNITY);
-		var cost = 1200 + 600 * amplifier;
-
-		if (immunity != null && immunity.getDuration() >= cost) {
-			((StatusEffectInstanceAccessor) immunity).setDuration(Math.max(5, immunity.getDuration() - cost));
-			if (!instance.getWorld().isClient()) {
-				((ServerWorld) instance.getWorld()).getChunkManager().sendToNearbyPlayers(instance, new EntityStatusEffectS2CPacket(instance.getId(), immunity));
-			}
-			return true;
-		}
-		return false;
-	}
-
-	@Unique
-	private Optional<ItemStack> tryGetTrinket(Item item) {
-		var entity = (LivingEntity) (Object) this;
-
-		var comp = TrinketsApi.getTrinketComponent(entity);
-
-		if (comp.isEmpty())
-			return Optional.empty();
-
-		var trinket = comp.get().getEquipped(item);
-
-		if (trinket.isEmpty())
-			return Optional.empty();
-
-		return Optional.ofNullable(trinket.get(0).getRight());
 	}
 	
 	@ModifyVariable(method = "damageArmor(Lnet/minecraft/entity/damage/DamageSource;F)V", at = @At("HEAD"), ordinal = 0, argsOnly = true)

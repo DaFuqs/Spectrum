@@ -47,6 +47,7 @@
     "KilledByPlayerLootConditionMixin",
     "LightningEntityMixin",
     "LivingEntityMixin",
+    "LivingEntityPreventStatusClearMixin",
     "LoomContainerPatternSlotMixin",
     "LoomScreenHandlerMixin",
     "MapStateMixin",

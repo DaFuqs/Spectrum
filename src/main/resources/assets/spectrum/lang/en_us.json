@@ -4433,7 +4433,7 @@
   "item.spectrum.potion.faster_to_drink": "Faster to drink",
   "item.spectrum.potion.slower_to_drink": "Slower to drink",
   "item.spectrum.potion.tooltip.unidentifiable": "§0Blackened beyond recognition",
-  "item.spectrum.potion.tooltip.incurable": "§5Incurable by mundane means",
+  "item.spectrum.potion.tooltip.incurable": "§5[Incurable]",
   "item.spectrum.potion_pendant.tooltip_max_level": "§7Supports Effects up to level ",
   "item.spectrum.potion_pendant.tooltip_not_full_count": "§7Fill with up to §f%d§7 Effects in the §fPotion Workshop",
   "item.spectrum.potion_pendant.tooltip_not_full_one": "§7Fill with an Effect in the §fPotion Workshop",

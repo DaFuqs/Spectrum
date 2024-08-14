@@ -4,7 +4,7 @@
 			"model": "spectrum:block/cyan_spirit_sallow_vines_head_none"
 		},
       "crystals=true": {
-			"model": "spectrum:block/cyan_spirit_sallow_vines_head_normal"
+        "model": "spectrum:block/cyan_spirit_sallow_vines_head_crystals"
 		}
 	}
 }

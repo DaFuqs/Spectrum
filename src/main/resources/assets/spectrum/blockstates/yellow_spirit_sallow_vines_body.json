@@ -4,7 +4,7 @@
 			"model": "spectrum:block/yellow_spirit_sallow_vines_body_none"
 		},
 		"crystals=true": {
-			"model": "spectrum:block/yellow_spirit_sallow_vines_body_normal"
+			"model": "spectrum:block/yellow_spirit_sallow_vines_body_crystals"
 		}
 	}
 }

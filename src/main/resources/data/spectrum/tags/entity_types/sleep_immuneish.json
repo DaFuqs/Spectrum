@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "c:bosses",
+    "#c:bosses",
 
     "minecraft:slime",
     "minecraft:magma_cube",

@@ -1,20 +1,18 @@
 package de.dafuqs.spectrum.deeper_down;
 
-import com.google.common.collect.ImmutableMap;
-import de.dafuqs.spectrum.registries.SpectrumBiomes;
-import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
-import de.dafuqs.spectrum.status_effects.SleepStatusEffect;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.biome.Biome;
+import com.google.common.collect.*;
+import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.status_effects.*;
+import net.minecraft.client.*;
+import net.minecraft.client.world.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.registry.*;
+import net.minecraft.registry.entry.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.biome.*;
 
-import java.util.Map;
+import java.util.*;
 
 /**
  * I admit that this class is a mess
@@ -39,15 +37,15 @@ public class DarknessEffects {
 
         lastDarkenTicks = darkenTicks;
         var sleepPotency = SleepStatusEffect.getGeneralSleepVulnerability(camera);
-        var sleepEffect = SleepStatusEffect.getFirstSleepEffect(camera);
+        var sleepEffect = SleepStatusEffect.getStrongestSleepEffect(camera); // TODO: 1. why it the effect queried here
 
         if (currentSleepEffect != sleepEffect) {
             var targets = MathHelper.clamp(sleepPotency / 2.5F, 0, 1);
             currentSleepEffect = sleepEffect;
             interpInterpTicks = 0;
             updateTargets();
-
-            if (camera.hasStatusEffect(SpectrumStatusEffects.FATAL_SLUMBER)) {
+            
+            if (camera.hasStatusEffect(SpectrumStatusEffects.FATAL_SLUMBER)) { // TODO: 2. but then queried here again?
                 sleepAfflicted = true;
 
                 blendTarget = 1F;

@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.status_effects;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.registries.*;
 import dev.emi.trinkets.api.*;
-import net.fabricmc.fabric.api.tag.convention.v1.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.entity.player.*;
@@ -38,11 +37,9 @@ public class SleepStatusEffect extends SpectrumStatusEffect {
 
         if (entity instanceof PlayerEntity player) {
             return vulnerability * getPlayerMod(player);
-        }
-        else if (entity.isUndead() || type.isIn(SpectrumEntityTypeTags.SLEEP_WEAK)) {
+        } else if (type.isIn(SpectrumEntityTypeTags.SLEEP_WEAK)) {
             vulnerability *= 2.5F;
-        }
-        else if (entity.getGroup() == EntityGroup.ARTHROPOD || type.isIn(SpectrumEntityTypeTags.SLEEP_RESISTANT)) {
+        } else if (type.isIn(SpectrumEntityTypeTags.SLEEP_RESISTANT)) {
             vulnerability *= 0.5F;
         }
         else if (isImmuneish(entity)) {
@@ -71,8 +68,8 @@ public class SleepStatusEffect extends SpectrumStatusEffect {
         }
         return 0F;
     }
-
-    public static StatusEffect getFirstSleepEffect(LivingEntity entity) {
+    
+    public static StatusEffect getStrongestSleepEffect(LivingEntity entity) {
         if (entity.hasStatusEffect(SpectrumStatusEffects.FATAL_SLUMBER)) {
             return SpectrumStatusEffects.FATAL_SLUMBER;
         }
@@ -120,15 +117,19 @@ public class SleepStatusEffect extends SpectrumStatusEffect {
             return true;
 
         var type = entity.getType();
-        if (entity.isUndead() || type.isIn(SpectrumEntityTypeTags.SLEEP_WEAK))
+        if (type.isIn(SpectrumEntityTypeTags.SLEEP_WEAK))
             return false;
-
-        return type.isIn(SpectrumEntityTypeTags.SLEEP_IMMUNEISH) || type.isIn(ConventionalEntityTypeTags.BOSSES);
+        
+        return type.isIn(SpectrumEntityTypeTags.SLEEP_IMMUNEISH);
     }
     
-    // 💀💀💀
     public static boolean hasSleepEffect(LivingEntity livingEntity) {
-        return livingEntity.hasStatusEffect(SpectrumStatusEffects.ETERNAL_SLUMBER) || livingEntity.hasStatusEffect(SpectrumStatusEffects.SOMNOLENCE) || livingEntity.hasStatusEffect(SpectrumStatusEffects.FATAL_SLUMBER);
+        for (StatusEffect statusEffect : livingEntity.getActiveStatusEffects().keySet()) {
+            if (SpectrumStatusEffectTags.isIn(SpectrumStatusEffectTags.SOPORIFIC, statusEffect)) {
+                return true;
+            }
+        }
+        return false;
     }
     
 }

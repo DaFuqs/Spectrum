@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
+    "c:bosses",
+
     "minecraft:slime",
     "minecraft:magma_cube",
     "spectrum:kindling"

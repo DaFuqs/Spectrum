@@ -406,11 +406,11 @@ public class SpectrumBlocks {
 		return FabricBlockSettings.copyOf(block).nonOpaque();
 	}
 
-	public static final Block TOPAZ_DECOSTONE = new DecoStoneBlock(decostone(TOPAZ_BLOCK));
+	public static final Block TOPAZ_DECOSTONE = new PylonBlock(decostone(TOPAZ_BLOCK));
 	public static final Block AMETHYST_DECOSTONE = new PylonBlock(decostone(Blocks.AMETHYST_BLOCK));
-	public static final Block CITRINE_DECOSTONE = new DecoStoneBlock(decostone(CITRINE_BLOCK));
-	public static final Block ONYX_DECOSTONE = new DecoStoneBlock(decostone(ONYX_BLOCK));
-	public static final Block MOONSTONE_DECOSTONE = new DecoStoneBlock(decostone(MOONSTONE_BLOCK));
+	public static final Block CITRINE_DECOSTONE = new PylonBlock(decostone(CITRINE_BLOCK));
+	public static final Block ONYX_DECOSTONE = new PylonBlock(decostone(ONYX_BLOCK));
+	public static final Block MOONSTONE_DECOSTONE = new PylonBlock(decostone(MOONSTONE_BLOCK));
 
 	public static final Block SEMI_PERMEABLE_GLASS = new AlternatePlayerOnlyGlassBlock(FabricBlockSettings.copyOf(Blocks.GLASS), Blocks.GLASS, false);
 	public static final Block TINTED_SEMI_PERMEABLE_GLASS = new AlternatePlayerOnlyGlassBlock(FabricBlockSettings.copyOf(Blocks.TINTED_GLASS), Blocks.TINTED_GLASS, true);
@@ -2972,12 +2972,6 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.RED_LAMP, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.WHITE_LAMP, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.YELLOW_LAMP, RenderLayer.getTranslucent());
-
-		// Decostones
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TOPAZ_DECOSTONE, RenderLayer.getTranslucent());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CITRINE_DECOSTONE, RenderLayer.getTranslucent());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MOONSTONE_DECOSTONE, RenderLayer.getTranslucent());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ONYX_DECOSTONE, RenderLayer.getTranslucent());
 
 		// Chimes
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TOPAZ_CHIME, RenderLayer.getTranslucent());

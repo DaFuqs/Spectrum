@@ -4,26 +4,23 @@
 			"model": "spectrum:block/moonstone_chiseled_basalt_down"
 		},
 		"facing=east": {
-			"model": "spectrum:block/moonstone_chiseled_basalt",
-			"x": 90,
-			"y": 90
+			"model": "spectrum:block/moonstone_chiseled_basalt"
 		},
 		"facing=north": {
 			"model": "spectrum:block/moonstone_chiseled_basalt",
-			"x": 90
+			"y": 270
 		},
 		"facing=south": {
 			"model": "spectrum:block/moonstone_chiseled_basalt",
-			"x": 90,
-			"y": 180
+			"y": 90
 		},
 		"facing=up": {
-          "model": "spectrum:block/moonstone_chiseled_basalt_up"
+          "model": "spectrum:block/moonstone_chiseled_basalt_down",
+			"x": 180
 		},
 		"facing=west": {
 			"model": "spectrum:block/moonstone_chiseled_basalt",
-			"x": 90,
-			"y": 270
+			"y": 180
 		}
 	}
 }

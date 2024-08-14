@@ -2,8 +2,8 @@
   "parent": "minecraft:block/block",
   "textures": {
     "2": "spectrum:block/moonstone_chiseled_basalt",
-    "3": "spectrum:block/polished_basalt",
-    "particle": "spectrum:block/moonstone_chiseled_basalt"
+    "3": "spectrum:block/basalt_cap",
+    "particle": "spectrum:block/basalt_cap"
   },
   "elements": [
     {

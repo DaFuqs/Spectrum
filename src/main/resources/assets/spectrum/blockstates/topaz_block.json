@@ -1,7 +1,12 @@
 {
 	"variants": {
-		"": {
-			"model": "spectrum:block/topaz_block"
-		}
+		"": [
+			{
+				"model": "spectrum:block/topaz_block"
+			},
+			{
+				"model": "spectrum:block/topaz_block_mirrored"
+			}
+		]
 	}
 }

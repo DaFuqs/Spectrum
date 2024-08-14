@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.api.block;
+package de.dafuqs.spectrum.blocks;
 
 import de.dafuqs.spectrum.inventories.slots.*;
 import de.dafuqs.spectrum.networking.*;

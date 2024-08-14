@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.networking;
 
+import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.blocks.particle_spawner.*;
 import de.dafuqs.spectrum.energy.color.*;

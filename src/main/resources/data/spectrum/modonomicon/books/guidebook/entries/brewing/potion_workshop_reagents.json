@@ -1,6 +1,6 @@
 {
   "name": "book.spectrum.guidebook.potion_workshop_reagents.name",
-  "icon": "spectrum:potion_workshop",
+  "icon": "minecraft:glowstone_dust",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/potion_workshop"

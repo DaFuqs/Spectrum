@@ -1,6 +1,6 @@
 {
   "name": "book.spectrum.guidebook.potion_workshop_crafting",
-  "icon": "spectrum:potion_workshop",
+  "icon": "minecraft:crafting_table",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/potion_workshop"

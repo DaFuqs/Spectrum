@@ -1,12 +1,14 @@
 package de.dafuqs.spectrum.blocks.pastel_network.nodes;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.client.*;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.block.entity.*;
-import net.minecraft.client.util.*;
+import net.minecraft.client.render.model.json.*;
 import net.minecraft.client.util.math.*;
-import net.minecraft.screen.*;
+import net.minecraft.item.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import org.jetbrains.annotations.*;
@@ -17,15 +19,13 @@ import java.lang.Math;
 public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<PastelNodeBlockEntity> {
     
     private static final long REAL_DAY_LENGTH = 86400 * 20;
-    
-    private static final SpriteIdentifier SENDER_NODE_SPRITE_ID = new SpriteIdentifier(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("block/sender_node_crystal"));
-    
-    private static final Crystal CONNECTION = new Crystal(getSenderNodeBaseTexturedModelData().createModel(), 0.25, false);
-    private static final Crystal PROVIDER = new Crystal(getSenderNodeBaseTexturedModelData().createModel(), 0.1, true);
-    private static final Crystal SENDER = new Crystal(getSenderNodeBaseTexturedModelData().createModel(), 0.1, true);
-    private static final Crystal STORAGE = new Crystal(getSenderNodeBaseTexturedModelData().createModel(), 0.15, true);
-    private static final Crystal BUFFER = new Crystal(getSenderNodeBaseTexturedModelData().createModel(), 0.1, true);
-    private static final Crystal GATHER = new Crystal(getSenderNodeBaseTexturedModelData().createModel(), 0.1, false);
+
+    private static final Crystal CONNECTION = new Crystal(SpectrumItems.CONNECTION_NODE_CRYSTAL.getDefaultStack(), 0.25, false);
+    private static final Crystal PROVIDER = new Crystal(SpectrumItems.PROVIDER_NODE_CRYSTAL.getDefaultStack(), 0.1, true);
+    private static final Crystal SENDER = new Crystal(SpectrumItems.SENDER_NODE_CRYSTAL.getDefaultStack(), 0.1, true);
+    private static final Crystal STORAGE = new Crystal(SpectrumItems.STORAGE_NODE_CRYSTAL.getDefaultStack(), 0.15, true);
+    private static final Crystal BUFFER = new Crystal(SpectrumItems.BUFFER_NODE_CRYSTAL.getDefaultStack(), 0.1, true);
+    private static final Crystal GATHER = new Crystal(SpectrumItems.GATHER_NODE_CRYSTAL.getDefaultStack(), 0.1, false);
     
     private static final Identifier BASE = SpectrumCommon.locate("textures/block/pastel_node_base.png");
     private static final Identifier INNER_RING = SpectrumCommon.locate("textures/block/pastel_node_inner_ring_blank.png");
@@ -46,15 +46,6 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
         modelPartData.addChild("leaf2", ModelPartBuilder.create().uv(-4, 4).cuboid(-2.0F, 1.0F, 0.0F, 4.0F, 0.0F, 4.0F), ModelTransform.of(0.0F, 0.0F, 1.0F, -0.5236F, 0.0F, 0.0F));
         modelPartData.addChild("leaf3", ModelPartBuilder.create().uv(-4, 8).cuboid(0.0F, 1.0F, -2.0F, 4.0F, 0.0F, 4.0F), ModelTransform.of(1.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.5236F));
         modelPartData.addChild("leaf4", ModelPartBuilder.create().uv(-4, 12).cuboid(-4.0F, 1.0F, -2.0F, 4.0F, 0.0F, 4.0F), ModelTransform.of(-1.0F, 0.0F, 0.0F, 0.0F, 0.0F, -0.5236F));
-        return TexturedModelData.of(modelData, 16, 16);
-    }
-    
-    public static @NotNull TexturedModelData getSenderNodeBaseTexturedModelData() {
-        ModelData modelData = new ModelData();
-        ModelPartData modelPartData = modelData.getRoot();
-        modelPartData.addChild("crystal", ModelPartBuilder.create()
-                .uv(0, 0).cuboid(-1.5F, -7.5F, -1.5F, 3.0F, 3.0F, 3.0F)
-                .uv(4, 14).cuboid(1.6574F, -4.35F, 1.6574F, -3.3F, -3.3F, -3.3F), ModelTransform.pivot(0.0F, 8.0F, 0.0F));
         return TexturedModelData.of(modelData, 16, 16);
     }
     
@@ -156,18 +147,15 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
         }
 
         matrices.translate(0.0, node.crystalHeight + crystal.yOffset, 0.0);
-        crystal.crystal.render(matrices, SENDER_NODE_SPRITE_ID.getVertexConsumer(vertexConsumers, RenderLayer::getEntityTranslucentEmissive), LightmapTextureManager.MAX_LIGHT_COORDINATE, overlay);
-        
-        //MinecraftClient.getInstance().getItemRenderer().renderItem(crystal.crystal, ModelTransformationMode.NONE, LightmapTextureManager.MAX_LIGHT_COORDINATE, overlay, matrices, vertexConsumers, node.getWorld(), 0);
+        MinecraftClient.getInstance().getItemRenderer().renderItem(crystal.crystal, ModelTransformationMode.NONE, LightmapTextureManager.MAX_LIGHT_COORDINATE, overlay, matrices, vertexConsumers, node.getWorld(), 0);
         matrices.pop();
     }
 
     private float mod(double in) {
         return (float) (in % (Math.PI * 2));
     }
-    
-    private record Crystal(ModelPart crystal, double yOffset, boolean hasOuterRing) {
-    }
+
+    private record Crystal(ItemStack crystal, double yOffset, boolean hasOuterRing) {}
 
     private void renderRing(MatrixStack matrices, VertexConsumer vertices, float height, float scale, float alpha, int overlay, Direction facing) {
         height /= 16F;

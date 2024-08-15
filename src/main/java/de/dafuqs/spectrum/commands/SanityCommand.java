@@ -9,6 +9,7 @@ import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.blocks.deeper_down.flora.WeepingGalaFrondsBlock;
 import de.dafuqs.spectrum.blocks.gemstone.*;
 import de.dafuqs.spectrum.enchantments.*;
 import de.dafuqs.spectrum.items.*;
@@ -98,6 +99,9 @@ public class SanityCommand {
 				}
 				if (block instanceof SpectrumBuddingBlock) {
 					continue; // does not have any drop by default
+				}
+				if (block instanceof WeepingGalaFrondsBlock) {
+					continue; // Fronds do not drop anything by default
 				}
 				
 				BlockState blockState = entry.getValue().getDefaultState();

@@ -139,6 +139,9 @@ public class ItemColors extends ColorRegistry<Item> {
 		put(Blocks.DARK_OAK_SAPLING.asItem(), DyeColor.GREEN);
 		put(Blocks.AZALEA.asItem(), DyeColor.GREEN);
 		put(Blocks.FLOWERING_AZALEA.asItem(), DyeColor.GREEN);
+
+		put(Blocks.POPPY.asItem(), DyeColor.PURPLE);
+
 		
 		put(Items.ACACIA_PLANKS, DyeColor.LIME);
 		put(Items.BIRCH_PLANKS, DyeColor.LIME);

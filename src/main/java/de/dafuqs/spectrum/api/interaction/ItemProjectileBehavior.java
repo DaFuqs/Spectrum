@@ -136,13 +136,23 @@ public interface ItemProjectileBehavior {
 			
 			hitResult.withSide(hitResult.getSide());
 			Direction facing = hitResult.getSide().getOpposite();
-			BlockPos placementPos = hitPos.offset(facing);
+			BlockPos placementPos = hitPos.offset(facing.getOpposite());
 			Direction placementDirection = world.isAir(placementPos.down()) ? facing : Direction.UP;
 			
 			if (!GenericClaimModsCompat.canPlaceBlock(world, placementPos, owner)) {
 				return stack;
 			}
-			stack.useOnBlock(new AutomaticItemPlacementContext(world, placementPos, facing, stack, placementDirection));
+			
+			try {
+				if (stack.getItem() instanceof BlockItem blockItem) {
+					blockItem.place(new ItemProjectileBehavior.ItemProjectilePlacementContext(world, projectile, hitResult));
+				} else {
+					stack.useOnBlock(new AutomaticItemPlacementContext(world, placementPos, facing, stack, placementDirection));
+				}
+			} catch (Exception e) {
+				SpectrumCommon.logError("Item Projectile failed to use item " + stack.getItem().getName());
+				e.printStackTrace();
+			}
 			
 			return stack;
 		}
@@ -192,6 +202,48 @@ public interface ItemProjectileBehavior {
 			}
 			return stack;
 		}
+	}
+	
+	class ItemProjectilePlacementContext extends ItemPlacementContext {
+		
+		ItemProjectileEntity itemProjectileEntity;
+		
+		public ItemProjectilePlacementContext(World world, ItemProjectileEntity itemProjectileEntity, BlockHitResult blockHitResult) {
+			super(world, null, Hand.MAIN_HAND, itemProjectileEntity.getStack(), blockHitResult);
+			this.itemProjectileEntity = itemProjectileEntity;
+		}
+		
+		@Override
+		public Direction getPlayerLookDirection() {
+			return Direction.getLookDirectionForAxis(itemProjectileEntity, Direction.Axis.Y);
+		}
+		
+		@Override
+		public Direction getVerticalPlayerLookDirection() {
+			return itemProjectileEntity.getPitch(1.0F) < 0.0F ? Direction.UP : Direction.DOWN;
+		}
+		
+		@Override
+		public Direction[] getPlacementDirections() {
+			Direction[] directions = Direction.getEntityFacingOrder(itemProjectileEntity);
+			if (this.canReplaceExisting) {
+				return directions;
+			} else {
+				Direction direction = this.getSide();
+				
+				int i;
+				for (i = 0; i < directions.length && directions[i] != direction.getOpposite(); ++i) {
+				}
+				
+				if (i > 0) {
+					System.arraycopy(directions, 0, directions, 1, i);
+					directions[0] = direction.getOpposite();
+				}
+				
+				return directions;
+			}
+		}
+		
 	}
 	
 }

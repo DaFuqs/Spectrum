@@ -144,11 +144,11 @@ public class IndividualCappedInkStorage implements InkStorage {
 	@Override
 	@Environment(EnvType.CLIENT)
 	public void addTooltip(List<Text> tooltip) {
-		tooltip.add(Text.translatable("item.spectrum.pigment_palette.tooltip", getShortenedNumberString(maxEnergyPerColor)));
+		tooltip.add(Text.translatable("item.spectrum.ink_storage.stores_ink_per_type", getShortenedNumberString(maxEnergyPerColor)));
 		
 		// we are iterating them this way to preserve the ordering
 		for (InkColor color : SpectrumRegistries.INK_COLORS) {
-			long amount = this.storedEnergy.get(color);
+			long amount = this.storedEnergy.getOrDefault(color, 0L);
 			if (amount > 0) {
 				InkStorage.addInkStoreBulletTooltip(tooltip, color, amount);
 			}

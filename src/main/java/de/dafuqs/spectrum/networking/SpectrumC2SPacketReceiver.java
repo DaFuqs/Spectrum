@@ -123,12 +123,13 @@ public class SpectrumC2SPacketReceiver {
 			if (screenHandler instanceof InkColorSelectedPacketReceiver inkColorSelectedPacketReceiver) {
 				boolean isSelection = buf.readBoolean();
 				
-				InkColor color;
+				InkColor color = null;
 				if (isSelection) {
 					Identifier inkColor = buf.readIdentifier();
-					color = InkColor.ofId(inkColor);
-				} else {
-					color = null;
+					Optional<InkColor> optionalColor = InkColor.ofId(inkColor);
+					if (optionalColor.isPresent()) {
+						color = optionalColor.get();
+					}
 				}
 				
 				// send the newly selected color to all players that have the same gui open

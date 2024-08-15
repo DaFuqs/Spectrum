@@ -46,8 +46,15 @@ public class CrystallarieumRecipeSerializer implements GatedRecipeSerializer<Cry
 				return null;
 			}
 		}
+		
 		int secondsPerGrowthStage = JsonHelper.getInt(jsonObject, "seconds_per_growth_stage");
-		InkColor inkColor = InkColor.ofIdString(JsonHelper.getString(jsonObject, "ink_color"));
+		
+		String inkColorString = JsonHelper.getString(jsonObject, "ink_color");
+		Optional<InkColor> inkColor = InkColor.ofIdString(inkColorString);
+		if (inkColor.isEmpty()) {
+			throw new JsonParseException("InkColor " + inkColorString + " in Crystallarieum recipe " + identifier + " does not exist.");
+		}
+		
 		int inkCostTier = JsonHelper.getInt(jsonObject, "ink_cost_tier");
 		int inkPerSecond = inkCostTier == 0 ? 0 : (int) Math.pow(2, inkCostTier - 1);
 		boolean growsWithoutCatalyst = JsonHelper.getBoolean(jsonObject,   "grows_without_catalyst", false);
@@ -68,8 +75,8 @@ public class CrystallarieumRecipeSerializer implements GatedRecipeSerializer<Cry
 				additionalOutputs.add(itemStack);
 			}
 		}
-
-		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, inputIngredient, growthStages, secondsPerGrowthStage, inkColor, inkPerSecond, growsWithoutCatalyst, catalysts, additionalOutputs);
+		
+		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, inputIngredient, growthStages, secondsPerGrowthStage, inkColor.get(), inkPerSecond, growsWithoutCatalyst, catalysts, additionalOutputs);
 	}
 	
 	@Override
@@ -117,7 +124,7 @@ public class CrystallarieumRecipeSerializer implements GatedRecipeSerializer<Cry
 		}
 
 		int secondsPerGrowthStage = packetByteBuf.readInt();
-		InkColor inkColor = InkColor.ofId(packetByteBuf.readIdentifier());
+		InkColor inkColor = InkColor.ofId(packetByteBuf.readIdentifier()).get();
 		int inkPerSecond = packetByteBuf.readInt();
 		boolean growthWithoutCatalyst = packetByteBuf.readBoolean();
 		List<CrystallarieumCatalyst> catalysts = new ArrayList<>();

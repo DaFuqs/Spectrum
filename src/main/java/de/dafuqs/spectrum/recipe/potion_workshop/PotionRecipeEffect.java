@@ -10,8 +10,10 @@ import net.minecraft.item.*;
 import net.minecraft.network.*;
 import net.minecraft.registry.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.random.*;
+import net.minecraft.util.math.random.Random;
 import org.jetbrains.annotations.*;
+
+import java.util.*;
 
 public record PotionRecipeEffect(boolean applicableToPotions, boolean applicableToTippedArrows,
 								 boolean applicableToPotionFillabes, boolean applicableToWeapons,
@@ -36,10 +38,15 @@ public record PotionRecipeEffect(boolean applicableToPotions, boolean applicable
 		}
 		StatusEffect statusEffect = Registries.STATUS_EFFECT.get(statusEffectIdentifier);
 		
-		InkColor inkColor = InkColor.ofIdString(JsonHelper.getString(jsonObject, "ink_color"));
+		String inkColorString = JsonHelper.getString(jsonObject, "ink_color");
+		Optional<InkColor> inkColor = InkColor.ofIdString(inkColorString);
+		if (inkColor.isEmpty()) {
+			throw new JsonParseException("InkColor " + inkColorString + " for Potion Recipe Effect json does not exist.");
+		}
+		
 		int inkCost = JsonHelper.getInt(jsonObject, "ink_cost");
 		
-		return new PotionRecipeEffect(applicableToPotions, applicableToTippedArrows, applicableToPotionFillabes, applicableToWeapons, baseDurationTicks, baseYield, potencyHardCap, potencyModifier, statusEffect, inkColor, inkCost);
+		return new PotionRecipeEffect(applicableToPotions, applicableToTippedArrows, applicableToPotionFillabes, applicableToWeapons, baseDurationTicks, baseYield, potencyHardCap, potencyModifier, statusEffect, inkColor.get(), inkCost);
 	}
 	
 	public void write(PacketByteBuf packetByteBuf) {
@@ -66,7 +73,7 @@ public record PotionRecipeEffect(boolean applicableToPotions, boolean applicable
 		boolean applicableToTippedArrows = packetByteBuf.readBoolean();
 		boolean applicableToPotionFillabes = packetByteBuf.readBoolean();
 		boolean applicableToWeapons = packetByteBuf.readBoolean();
-		InkColor inkColor = InkColor.ofId(packetByteBuf.readIdentifier());
+		InkColor inkColor = InkColor.ofId(packetByteBuf.readIdentifier()).get();
 		int inkCost = packetByteBuf.readInt();
 		
 		return new PotionRecipeEffect(applicableToPotions, applicableToTippedArrows, applicableToPotionFillabes, applicableToWeapons, baseDurationTicks, baseYield, hardCap, potencyModifier, statusEffect, inkColor, inkCost);

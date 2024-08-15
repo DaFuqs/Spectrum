@@ -41,12 +41,12 @@ public class InkColor {
 		return DYE_TO_COLOR.get(dyeColor);
 	}
 	
-	public static InkColor ofId(Identifier id) {
-		return SpectrumRegistries.INK_COLORS.get(id);
+	public static Optional<InkColor> ofId(Identifier id) {
+		return SpectrumRegistries.INK_COLORS.getOrEmpty(id);
 	}
 	
-	public static InkColor ofIdString(String idString) {
-		return SpectrumRegistries.INK_COLORS.get(new Identifier(idString));
+	public static Optional<InkColor> ofIdString(String idString) {
+		return SpectrumRegistries.INK_COLORS.getOrEmpty(new Identifier(idString));
 	}
 	
 	public DyeColor getDyeColor() {

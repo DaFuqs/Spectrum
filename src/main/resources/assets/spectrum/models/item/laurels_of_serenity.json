@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "spectrum:item/garland_of_tranquility"
+    "layer0": "spectrum:item/laurels_of_serenity"
   }
 }

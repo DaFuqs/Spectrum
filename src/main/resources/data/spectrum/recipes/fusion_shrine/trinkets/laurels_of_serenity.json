@@ -24,9 +24,9 @@
     }
   ],
   "result": {
-    "item": "spectrum:garland_of_tranquility"
+    "item": "spectrum:laurels_of_serenity"
   },
-  "required_advancement": "spectrum:unlocks/trinkets/garland_of_tranquility",
+  "required_advancement": "spectrum:unlocks/trinkets/laurels_of_serenity",
   "world_conditions": [],
   "start_crafting_effect": "nothing",
   "during_crafting_effects": [],

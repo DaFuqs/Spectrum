@@ -1,10 +1,10 @@
 {
-  "name": "item.spectrum.garland_of_tranquility",
+  "name": "item.spectrum.laurels_of_serenity",
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:unlocks/trinkets/garland_of_tranquility"
+    "advancement_id": "spectrum:unlocks/trinkets/laurels_of_serenity"
   },
-  "icon": "spectrum:garland_of_tranquility",
+  "icon": "spectrum:laurels_of_serenity",
   "category": "spectrum:equipment",
   "hide_while_locked ": true,
   "parents": [
@@ -20,14 +20,14 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.garland_of_tranquility.page0.text",
-      "title": "item.spectrum.garland_of_tranquility"
+      "text": "book.spectrum.guidebook.laurels_of_serenity.page0.text",
+      "title": "item.spectrum.laurels_of_serenity"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title1": "container.spectrum.rei.fusion_recipe",
-      "recipe_id_1": "spectrum:fusion_shrine/trinkets/garland_of_tranquility",
-      "text": "book.spectrum.guidebook.garland_of_tranquility.page1.text"
+      "recipe_id_1": "spectrum:fusion_shrine/trinkets/laurels_of_serenity",
+      "text": "book.spectrum.guidebook.laurels_of_serenity.page1.text"
     }
   ]
 }

@@ -130,8 +130,8 @@ public class SpectrumItemGroups {
 				entries.add(SpectrumItems.RING_OF_DENSER_STEPS.getFullStack());
 				entries.add(SpectrumItems.RING_OF_AERIAL_GRACE);
 				entries.add(SpectrumItems.RING_OF_AERIAL_GRACE.getFullStack());
-				entries.add(SpectrumItems.GARLAND_OF_TRANQUILITY);
-				entries.add(SpectrumItems.GARLAND_OF_TRANQUILITY.getFullStack());
+				entries.add(SpectrumItems.LAURELS_OF_SERENITY);
+				entries.add(SpectrumItems.LAURELS_OF_SERENITY.getFullStack());
 				entries.add(SpectrumItems.GLEAMING_PIN);
 				entries.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(SpectrumItems.GLEAMING_PIN));
 				entries.add(SpectrumItems.LESSER_POTION_PENDANT);

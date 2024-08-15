@@ -18,9 +18,9 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class GarlandOfTranquilityItem extends InkDrainTrinketItem implements SleepStatusAffectingItem, ExpandedStatTooltip {
-
-    public GarlandOfTranquilityItem(Settings settings) {
+public class LaurelsOfSerenityItem extends InkDrainTrinketItem implements SleepStatusAffectingItem, ExpandedStatTooltip {
+    
+    public LaurelsOfSerenityItem(Settings settings) {
         super(settings, SpectrumCommon.locate("unlocks/trinkets/laurels_of_serenity"), InkColors.PURPLE);
     }
 
@@ -71,6 +71,6 @@ public class GarlandOfTranquilityItem extends InkDrainTrinketItem implements Sle
         if (trinket.isEmpty())
             return 1F;
         
-        return ((GarlandOfTranquilityItem) SpectrumItems.LAURELS_OF_SERENITY).getDetectionRangeMultiplier(trinket.get(0).getRight());
+        return ((LaurelsOfSerenityItem) SpectrumItems.LAURELS_OF_SERENITY).getDetectionRangeMultiplier(trinket.get(0).getRight());
     }
 }

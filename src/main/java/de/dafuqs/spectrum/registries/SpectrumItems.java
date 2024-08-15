@@ -473,7 +473,7 @@ public class SpectrumItems {
 	public static final InkDrainTrinketItem RING_OF_PURSUIT = new ExtraMiningSpeedRingItem(IS.of(1, Rarity.UNCOMMON));
 	public static final InkDrainTrinketItem RING_OF_DENSER_STEPS = new RingOfDenserStepsItem(IS.of(1, Rarity.UNCOMMON));
 	public static final InkDrainTrinketItem RING_OF_AERIAL_GRACE = new RingOfAerialGraceItem(IS.of(1, Rarity.UNCOMMON));
-	public static final InkDrainTrinketItem LAURELS_OF_SERENITY = new GarlandOfTranquilityItem(IS.of(1, Rarity.UNCOMMON));
+	public static final InkDrainTrinketItem LAURELS_OF_SERENITY = new LaurelsOfSerenityItem(IS.of(1, Rarity.UNCOMMON));
 
 	public static final InkFlaskItem INK_FLASK = new InkFlaskItem(IS.of(1), 64 * 64 * 100); // 64 stacks of pigments (1 pigment => 100 energy)
 	public static final InkAssortmentItem INK_ASSORTMENT = new InkAssortmentItem(IS.of(1), 64 * 100);

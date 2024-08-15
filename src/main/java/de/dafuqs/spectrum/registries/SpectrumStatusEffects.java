@@ -2,19 +2,14 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.additionalentityattributes.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.energy.InkPoweredStatusEffectInstance;
-import de.dafuqs.spectrum.items.trinkets.GarlandOfTranquilityItem;
+import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.status_effects.*;
-import dev.emi.trinkets.api.TrinketComponent;
-import dev.emi.trinkets.api.TrinketsApi;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.registry.*;
-import net.minecraft.util.Pair;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.ArrayList;
+import org.jetbrains.annotations.*;
 
 public class SpectrumStatusEffects {
 
@@ -180,8 +175,8 @@ public class SpectrumStatusEffects {
 
 	// Gets the strongest of either the calming potion effect or an upgraded garland
 	public static float getCalmingMultiplier(LivingEntity affected, @Nullable StatusEffectInstance instance) {
-		var potionEffect = instance == null ? 1 : Math.max(1 - (instance.getAmplifier() + 1) * 0.0625F, 0.1F);
-		var necklaceEffect = GarlandOfTranquilityItem.getEffectFor(affected);
+		var potionEffect = instance == null ? 1 : Math.max(1 - (instance.getAmplifier() + 1) * 0.0625F, 0.1F); // TODO: Use detection range from AdditionalEntityAttributes on 1.21
+		var necklaceEffect = LaurelsOfSerenityItem.getEffectFor(affected);
 		return Math.min(potionEffect, necklaceEffect);
 	}
 }

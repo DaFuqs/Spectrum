@@ -40,12 +40,14 @@ public class ItemRoundelBlockEntityRenderer<T extends ItemRoundelBlockEntity> im
 			
 			float time = blockEntity.getWorld().getTime() % 24000 + tickDelta;
 			double radiant = Math.toRadians(360.0F / inventoryStacks.size());
-			
+
 			for (int i = 0; i < inventoryStacks.size(); i++) {
 				matrixStack.push();
+
+				double bob = Math.sin((time / 19) + i) * 0.075;
 				
 				double currentRadiant = radiant * i + (radiant * (time / 16.0) / (8.0F / inventoryStacks.size()));
-				matrixStack.translate(distance * Math.sin(currentRadiant) + 0.5, 0.6, distance * Math.cos(currentRadiant) + 0.5); // position offset
+				matrixStack.translate(distance * Math.sin(currentRadiant) + 0.5, 0.4 + bob, distance * Math.cos(currentRadiant) + 0.5); // position offset
 				matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees((float) (i * 360 / inventoryStacks.size()) + (time / 16 / 8 * 360))); // item stack rotation; takes 0..360
 				
 				MinecraftClient.getInstance().getItemRenderer().renderItem(inventoryStacks.get(i), ModelTransformationMode.GROUND, light, overlay, matrixStack, vertexConsumerProvider, blockEntity.getWorld(), 0);

@@ -128,7 +128,7 @@
   "effect.spectrum.vulnerability.desc": "增加你受到的伤害。",
   "effect.spectrum.magic_annulation": "魔法抵抗",
   "effect.spectrum.magic_annulation.desc": "每级减少1点受到的魔法伤害。",
-  "effect.spectrum.deadly_poison": "致命毒药",
+  "effect.spectrum.deadly_poison": "致命毒素",
   "effect.spectrum.deadly_poison.desc": "类似于中毒，但更致命。",
   "effect.spectrum.toughness": "坚韧",
   "effect.spectrum.toughness.desc": "受到的伤害降低。",

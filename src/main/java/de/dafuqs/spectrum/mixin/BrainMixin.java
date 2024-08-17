@@ -19,11 +19,7 @@ public abstract class BrainMixin<E extends LivingEntity> { ;
 
     @Shadow public abstract void doExclusively(Activity activity);
 
-    @Shadow public abstract void stopAllTasks(ServerWorld world, E entity);
-
     @Shadow public abstract <U> void forget(MemoryModuleType<U> type);
-
-    @Shadow protected abstract void forgetIrrelevantMemories(Activity except);
 
     @Inject(method = "tick", at = @At("HEAD"), cancellable = true)
     public void slowDownBrainTicks(ServerWorld world, E entity, CallbackInfo ci) {
@@ -44,7 +40,6 @@ public abstract class BrainMixin<E extends LivingEntity> { ;
 
         if (entity.getRandom().nextFloat() < potency * 0.5) {
             forget(MemoryModuleType.ANGRY_AT);
-            forget(MemoryModuleType.ATTACK_TARGET);
             doExclusively(Activity.REST);
         }
 

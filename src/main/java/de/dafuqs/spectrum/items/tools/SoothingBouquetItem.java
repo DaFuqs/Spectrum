@@ -48,6 +48,7 @@ public class SoothingBouquetItem extends Item implements SleepAlteringItem, Slot
             component.setLastSleepItem(this);
 
             player.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.CALMING, 20 * 10, 4));
+            player.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.SOMNOLENCE, 20 * 10, 4));
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 50, 3));
         }
         else {

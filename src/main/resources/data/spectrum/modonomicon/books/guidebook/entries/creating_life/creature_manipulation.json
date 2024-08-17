@@ -52,6 +52,10 @@
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
+      "recipe_id_1": "spectrum:spirit_instiller/head_fusion/ghast"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
       "recipe_id_1": "spectrum:spirit_instiller/head_fusion/wither_skeleton"
     },
     {

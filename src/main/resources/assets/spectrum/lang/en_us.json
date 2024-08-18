@@ -444,6 +444,9 @@
   "advancements.spectrum.wear_complete_set_of_bedrock_armor.description": "Black Knight of the roses, everlasting. Wear a full suit of Bedrock Armor",
   "advancements.spectrum.wear_complete_set_of_bedrock_armor.title": "Black Knight",
 
+  "attribute.name.spectrum.induced_sleep_resistance": "Induced Sleep Resistance",
+  "attribute.name.spectrum.induced_sleep_resistance.desc": "Protection from sleep related effects",
+
   "biome.spectrum.black_langast": "Black Langast",
   "biome.spectrum.crystal_gardens": "Crystal Gardens",
   "biome.spectrum.deep_barrens": "Deep Barrens",
@@ -3931,8 +3934,6 @@
   "gui.spectrum.quick_navigation.controls1": "Movement Keys to move",
   "gui.spectrum.quick_navigation.controls2": "Drop/Inventory to select",
 
-  "info.spectrum.tooltip.sleep_resist.negative": " +%d%% Sleep Vulnerability",
-  "info.spectrum.tooltip.sleep_resist.positive": " +%d%% Sleep Resistance",
   "info.spectrum.tooltip.adulterated.info": " [only you can see this]",
   "info.spectrum.tooltip.adulterated.effect": "Tainted with %s",
 

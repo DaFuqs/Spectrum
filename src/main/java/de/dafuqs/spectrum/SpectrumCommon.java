@@ -79,6 +79,7 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumRegistries.register();
 		InkColors.register();
 		InkColorMixes.register();
+		SpectrumEntityAttributes.register();
 		
 		logInfo("Registering Banner Patterns...");
 		SpectrumBannerPatterns.register();

@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
+import net.minecraft.entity.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.registry.*;
 import net.minecraft.registry.tag.*;
@@ -27,6 +28,15 @@ public class SpectrumStatusEffectTags {
 	
 	public static boolean isIncurable(StatusEffect statusEffect) {
 		return isIn(SpectrumStatusEffectTags.INCURABLE, statusEffect);
+	}
+	
+	public static boolean hasEffectWithTag(LivingEntity livingEntity, TagKey<StatusEffect> tag) {
+		for (StatusEffect statusEffect : livingEntity.getActiveStatusEffects().keySet()) {
+			if (SpectrumStatusEffectTags.isIn(tag, statusEffect)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 }

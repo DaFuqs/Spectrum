@@ -93,6 +93,12 @@ public abstract class LivingEntityMixin {
 	@Shadow
 	public abstract void travel(Vec3d movementInput);
 	
+	// FabricDefaultAttributeRegistry seems to only allow adding full containers and only single entity types?
+	@Inject(method = "createLivingAttributes()Lnet/minecraft/entity/attribute/DefaultAttributeContainer$Builder;", require = 1, allow = 1, at = @At("RETURN"))
+	private static void spectrum$addAttributes(final CallbackInfoReturnable<DefaultAttributeContainer.Builder> cir) {
+		cir.getReturnValue().add(SpectrumEntityAttributes.INDUCED_SLEEP_RESISTANCE);
+	}
+	
 	@ModifyArg(method = "dropXp()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"), index = 2)
 	protected int spectrum$applyExuberance(int originalXP) {
 		return (int) (originalXP * spectrum$getExuberanceMod(this.attackingPlayer));
@@ -137,8 +143,8 @@ public abstract class LivingEntityMixin {
 	public float spectrum$increaseSlipperiness(float original) {
 		var entity = (LivingEntity) (Object) this;
 		var random = entity.getRandom();
-		var potency = SleepStatusEffect.getGeneralSleepVulnerability(entity);
-		if (potency > 0) {
+		var potency = SleepStatusEffect.getGeneralSleepResistanceIfEntityHasSoporificEffect(entity);
+		if (potency != -1) {
 
 			if (entity instanceof PlayerEntity && random.nextFloat() < potency * 0.0334) {
 				return 0.35F + random.nextFloat() * 0.45F;
@@ -338,9 +344,7 @@ public abstract class LivingEntityMixin {
 			if (SleepStatusEffect.isImmuneish(entity)) {
 				if (entity instanceof PlayerEntity player) {
 					damage = entity.getHealth() * 0.95F;
-					if (!player.getWorld().isClient()) {
-						Support.grantAdvancementCriterion((ServerPlayerEntity) player, "lategame/survive_fatal_slumber", "get_slumbered_idiot");
-					}
+					Support.grantAdvancementCriterion((ServerPlayerEntity) player, "lategame/survive_fatal_slumber", "get_slumbered_idiot");
 				}
 				else {
 					damage = entity.getMaxHealth() * 0.3F;
@@ -367,24 +371,22 @@ public abstract class LivingEntityMixin {
 	@Inject(method = "addStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;Lnet/minecraft/entity/Entity;)Z", at = @At("HEAD"))
 	public void spectrum$modifySlumberEffectLengths(StatusEffectInstance effect, Entity source, CallbackInfoReturnable<Boolean> cir) {
 		var entity = (LivingEntity) (Object) this;
-		var potency = SleepStatusEffect.getSleepVulnerability(effect, entity);
+		var resistanceModifier = SleepStatusEffect.getSleepResistanceModifier(effect, entity);
 		if (effect.getEffectType() == SpectrumStatusEffects.ETERNAL_SLUMBER) {
 			if (SleepStatusEffect.isImmuneish(entity)) {
-				((StatusEffectInstanceAccessor) effect).setDuration(Math.round(effect.getDuration() * potency));
+				((StatusEffectInstanceAccessor) effect).setDuration(Math.round(effect.getDuration() / resistanceModifier));
+			} else if (!entity.getType().isIn(SpectrumEntityTypeTags.SLEEP_RESISTANT)) {
+				((StatusEffectInstanceAccessor) effect).setDuration(-1); // StatusEffectInstance.INFINITE = -1
 			}
-			else if (!entity.getType().isIn(SpectrumEntityTypeTags.SLEEP_RESISTANT)) {
-				((StatusEffectInstanceAccessor) effect).setDuration(-1);
-			}
-		}
-		else if (effect.getEffectType() == SpectrumStatusEffects.FATAL_SLUMBER) {
-			((StatusEffectInstanceAccessor) effect).setDuration(Math.max(Math.round(effect.getDuration() / potency * 2), 100));
+		} else if (effect.getEffectType() == SpectrumStatusEffects.FATAL_SLUMBER) {
+			((StatusEffectInstanceAccessor) effect).setDuration(Math.max(Math.round(effect.getDuration() * resistanceModifier * 2), 100));
 		}
 	}
 
 	@Inject(at = @At("RETURN"), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z")
 	public void spectrum$applyDisarmingEnchantment(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		// true if the entity got hurt
-		if (cir.getReturnValue() != null && cir.getReturnValue()) {
+		if (amount > 0 && cir.getReturnValue() != null && cir.getReturnValue()) {
 			// Disarming does not trigger when dealing damage to enemies using thorns
 			if (!source.isOf(DamageTypes.THORNS)) {
 				if (source.getAttacker() instanceof LivingEntity livingSource && SpectrumEnchantments.DISARMING.canEntityUse(livingSource)) {

@@ -1,9 +1,9 @@
 {
   "criteria": {
-    "collected_dragonbone": {
+    "collected_raw_bloodstone": {
       "trigger":"revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_dragonbone"
+        "advancement_identifier": "spectrum:hidden/collect_raw_bloodstone"
       }
     },
     "unlocked_knowledge_gem": {

@@ -50,6 +50,15 @@
       "texture_width": 100,
       "texture_height": 150,
       "border": false
+    },
+    {
+      "type": "modonomicon:text",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/status_effects/somnolence"
+      },
+      "title": "book.spectrum.guidebook.kindlings.page4.title",
+      "text": "book.spectrum.guidebook.kindlings.page4.text"
     }
   ]
 }

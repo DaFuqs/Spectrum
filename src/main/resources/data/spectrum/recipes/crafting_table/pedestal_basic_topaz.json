@@ -1,28 +1,25 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "DED",
-    "SFS",
-    "WRW"
+    "SSS",
+    "WTW",
+    "CRC"
   ],
   "key": {
     "S": {
       "item": "spectrum:topaz_shard"
     },
-    "D": {
-      "item": "minecraft:cyan_dye"
-    },
-    "E": {
+    "C": {
       "item": "spectrum:polished_calcite"
     },
-    "F": {
-      "item": "spectrum:polished_basalt"
+    "W": {
+      "tag": "minecraft:wool"
     },
     "R": {
       "item": "minecraft:redstone"
     },
-    "W": {
-      "tag": "minecraft:planks"
+    "T": {
+      "item": "minecraft:crafting_table"
     }
   },
   "result": {

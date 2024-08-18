@@ -13,13 +13,13 @@
       "item": "spectrum:polished_calcite"
     },
     "W": {
-      "tag": "spectrum:polished_basalt"
+      "item": "spectrum:polished_basalt"
     },
     "R": {
       "item": "minecraft:redstone"
     },
     "T": {
-      "item": "minecraft:crafting_table"
+      "tag": "minecraft:planks"
     }
   },
   "result": {

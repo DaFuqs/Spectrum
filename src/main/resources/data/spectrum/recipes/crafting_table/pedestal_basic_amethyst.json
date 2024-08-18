@@ -1,32 +1,29 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "DED",
-    "SFS",
-    "WRW"
+    "SSS",
+    "WTW",
+    "CRC"
   ],
   "key": {
     "S": {
-      "item": "minecraft:amethyst_shard"
+      "item": "spectrum:amethyst_shard"
     },
-    "D": {
-      "item": "minecraft:magenta_dye"
-    },
-    "E": {
+    "C": {
       "item": "spectrum:polished_calcite"
     },
-    "F": {
-      "item": "spectrum:polished_basalt"
+    "W": {
+      "tag": "spectrum:polished_basalt"
     },
     "R": {
       "item": "minecraft:redstone"
     },
-    "W": {
-      "tag": "minecraft:planks"
+    "T": {
+      "item": "minecraft:crafting_table"
     }
   },
   "result": {
-    "item": "spectrum:pedestal_basic_amethyst",
+    "item": "spectrum:pedestal_basic_topaz",
     "count": 1
   }
 }

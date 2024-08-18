@@ -1,10 +1,9 @@
 {
-	"credit": "Made with Blockbench",
 	"parent": "minecraft:block/block",
 	"textures": {
+		"shimmerstone": "spectrum:block/shimmerstone_light",
 		"particle": "block/smooth_stone",
-		"outer": "block/smooth_stone",
-		"inner": "spectrum:block/shimmerstone_light"
+		"outer": "block/smooth_stone"
 	},
 	"elements": [
 		{
@@ -113,61 +112,52 @@
 			"faces": {
 				"north": {
 					"uv": [
-						11,
-						9,
-						15,
-						15
+						1,
+						1,
+						5,
+						7
 					],
 					"rotation": 180,
-					"texture": "#inner"
+					"texture": "#shimmerstone"
 				},
 				"east": {
 					"uv": [
+						0,
 						1,
 						1,
-						7,
-						2
+						7
 					],
-					"rotation": 90,
-					"texture": "#inner"
-				},
-				"south": {
-					"uv": [
-						13,
-						1,
-						15,
-						5
-					],
-					"texture": "#inner"
+					"rotation": 180,
+					"texture": "#shimmerstone"
 				},
 				"west": {
 					"uv": [
-						9,
-						13,
-						15,
-						14
+						5,
+						1,
+						6,
+						7
 					],
-					"rotation": 270,
-					"texture": "#inner"
+					"rotation": 180,
+					"texture": "#shimmerstone"
 				},
 				"up": {
 					"uv": [
-						10,
-						2,
-						14,
-						3
+						1,
+						0,
+						5,
+						1
 					],
-					"texture": "#inner"
+					"texture": "#shimmerstone"
 				},
 				"down": {
 					"uv": [
-						2,
-						14,
-						6,
-						15
+						1,
+						7,
+						5,
+						8
 					],
 					"rotation": 180,
-					"texture": "#inner"
+					"texture": "#shimmerstone"
 				}
 			}
 		}

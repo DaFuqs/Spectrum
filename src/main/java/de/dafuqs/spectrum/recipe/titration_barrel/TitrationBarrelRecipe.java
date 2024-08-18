@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.recipe.titration_barrel;
 
 import de.dafuqs.matchbooks.recipe.*;
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.helpers.TimeHelper;
@@ -8,6 +9,8 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.food.beverages.properties.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.fabric.api.transfer.v1.fluid.*;
+import net.fabricmc.fabric.api.transfer.v1.storage.base.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
@@ -20,7 +23,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements ITitrationBarrelRecipe {
+public class TitrationBarrelRecipe<C extends FluidStackInventory> extends GatedStackSpectrumRecipe<C> implements ITitrationBarrelRecipe<C> {
 	
 	public static final List<Integer> FERMENTATION_DURATION_DISPLAY_TIME_MULTIPLIERS = new ArrayList<>() {{
 		add(1);
@@ -50,7 +53,14 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements I
 	}
 	
 	@Override
-	public boolean matches(Inventory inventory, World world) {
+	public boolean matches(FluidStackInventory inventory, World world) {
+		SingleVariantStorage<FluidVariant> fluidStorage = inventory.getFluidStorage();
+		if (!this.fluid.test(fluidStorage.variant)) {
+			return false;
+		}
+		if (fluidStorage.getAmount() != fluidStorage.getCapacity()) {
+			return false;
+		}
 		return matchIngredientStacksExclusively(inventory, getIngredientStacks());
 	}
 	
@@ -76,7 +86,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements I
 	
 	@Override
 	@Deprecated
-	public ItemStack craft(Inventory inventory, DynamicRegistryManager drm) {
+	public ItemStack craft(FluidStackInventory inventory, DynamicRegistryManager drm) {
 		return getDefaultTap(1).copy();
 	}
 	

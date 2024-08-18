@@ -5,13 +5,14 @@ import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.helpers.NbtHelper;
 import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
 
-public abstract class GatedSpectrumRecipe implements GatedRecipe {
+public abstract class GatedSpectrumRecipe<C extends Inventory> implements GatedRecipe<C> {
 	
 	public final Identifier id;
 	public final String group;

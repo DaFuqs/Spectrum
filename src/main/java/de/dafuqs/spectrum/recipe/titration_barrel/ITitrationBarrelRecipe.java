@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.recipe.titration_barrel;
 
 import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.helpers.*;
@@ -23,7 +24,7 @@ import java.util.*;
  * Making it a non-ticking block entity and also "fermenting" when the game is not running
  * This also means TitrationBarrelRecipes have to calculate their time using real life seconds, instead of game ticks
  */
-public interface ITitrationBarrelRecipe extends GatedRecipe {
+public interface ITitrationBarrelRecipe<C extends FluidStackInventory> extends GatedRecipe<C> {
 	
 	Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/titration_barrel");
 	

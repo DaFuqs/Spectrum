@@ -10,7 +10,7 @@ import net.minecraft.text.*;
 import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
 
-public interface GatedRecipe extends Recipe<Inventory> {
+public interface GatedRecipe<C extends Inventory> extends Recipe<C> {
 	
 	boolean canPlayerCraft(PlayerEntity playerEntity);
 	

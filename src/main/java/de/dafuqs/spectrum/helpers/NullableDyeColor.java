@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.helpers;
 
+import de.dafuqs.spectrum.api.energy.color.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.text.*;
@@ -92,7 +93,7 @@ public enum NullableDyeColor implements StringIdentifiable {
 	public static void addTooltip(ItemStack stack, List<Text> tooltip) {
 		NullableDyeColor color = NullableDyeColor.get(stack.getNbt());
 		if (color != NullableDyeColor.NONE) {
-			tooltip.add(Text.translatable("spectrum.ink.color." + color.getName()));
+			tooltip.add(InkColor.ofDyeColor(color.dyeColor).getInkName());
 		}
 	}
 	

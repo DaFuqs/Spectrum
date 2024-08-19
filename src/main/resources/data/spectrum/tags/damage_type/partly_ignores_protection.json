@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "spectrum:evisceration",
-    "spectrum:irradiance"
+    "spectrum:evisceration"
   ]
 }

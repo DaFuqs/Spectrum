@@ -135,6 +135,11 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
 	public boolean acceptsEnchantment(Enchantment enchantment) {
 		return enchantment == Enchantments.CHANNELING || enchantment == Enchantments.PIERCING || enchantment == SpectrumEnchantments.INERTIA;
 	}
+
+	@Override
+	public boolean hasGlint(ItemStack stack) {
+		return super.hasGlint(stack) && !isReservingSlot(stack);
+	}
 	
 	@Override
 	public ItemStack getResult(ServerPlayerEntity player, ItemStack parent) {

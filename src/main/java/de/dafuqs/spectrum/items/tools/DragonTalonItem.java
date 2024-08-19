@@ -35,7 +35,7 @@ public class DragonTalonItem extends MalachiteBidentItem implements MergeableIte
 		super(settings, 0, 0, 0, 0);
 		ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
 		builder.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(ATTACK_DAMAGE_MODIFIER_ID, "Tool modifier", damage + toolMaterial.getAttackDamage(), EntityAttributeModifier.Operation.ADDITION));
-		builder.put(EntityAttributes.GENERIC_ATTACK_SPEED, new EntityAttributeModifier(ATTACK_SPEED_MODIFIER_ID, "Tool modifier", -0.8, EntityAttributeModifier.Operation.ADDITION));
+		builder.put(EntityAttributes.GENERIC_ATTACK_SPEED, new EntityAttributeModifier(ATTACK_SPEED_MODIFIER_ID, "Tool modifier", -2.0, EntityAttributeModifier.Operation.ADDITION));
 		builder.put(ReachEntityAttributes.ATTACK_RANGE, new EntityAttributeModifier(REACH_MODIFIER_ID, "Tool modifier", extraReach, EntityAttributeModifier.Operation.ADDITION));
 		this.attributeModifiers = builder.build();
 		
@@ -134,7 +134,12 @@ public class DragonTalonItem extends MalachiteBidentItem implements MergeableIte
 			needle.recall();
 		}
 	}
-	
+
+	@Override
+	public boolean hasGlint(ItemStack stack) {
+		return super.hasGlint(stack) && !isReservingSlot(stack);
+	}
+
 	@Override
 	public boolean canMerge(ServerPlayerEntity player, ItemStack parent, ItemStack other) {
 		if (player.getItemCooldownManager().isCoolingDown(parent.getItem()))

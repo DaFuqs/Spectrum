@@ -38,5 +38,9 @@ public class OblivionPickaxeItem extends SpectrumPickaxeItem {
 	public ItemStack getDefaultStack() {
 		return getDefaultEnchantedStack(this);
 	}
-	
+
+	@Override
+	public boolean hasGlint(ItemStack stack) {
+		return false;
+	}
 }

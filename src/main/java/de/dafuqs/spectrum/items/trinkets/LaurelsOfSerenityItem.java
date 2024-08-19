@@ -1,24 +1,24 @@
 package de.dafuqs.spectrum.items.trinkets;
 
+import com.google.common.collect.*;
+import de.dafuqs.additionalentityattributes.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.energy.storage.*;
-import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.registries.*;
 import dev.emi.trinkets.api.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
+import net.minecraft.entity.attribute.*;
 import net.minecraft.item.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
-import org.apache.commons.lang3.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class LaurelsOfSerenityItem extends InkDrainTrinketItem implements SleepStatusAffectingItem, ExpandedStatTooltip {
+public class LaurelsOfSerenityItem extends InkDrainTrinketItem {
     
     public LaurelsOfSerenityItem(Settings settings) {
         super(settings, SpectrumCommon.locate("unlocks/trinkets/laurels_of_serenity"), InkColors.PURPLE);
@@ -29,48 +29,42 @@ public class LaurelsOfSerenityItem extends InkDrainTrinketItem implements SleepS
         tooltip.add(Text.translatable("item.spectrum.laurels_of_serenity.tooltip").formatted(Formatting.GRAY));
         super.appendTooltip(stack, world, tooltip, context);
     }
-
+    
     @Override
-    public void expandTooltip(ItemStack stack, @Nullable PlayerEntity player, List<Text> tooltip, TooltipContext context) {
-        var resist = getSleepResistance(player, stack);
-        if (resist == 0)
-            return;
+    public Multimap<EntityAttribute, EntityAttributeModifier> getModifiers(ItemStack stack, SlotReference slot, LivingEntity entity, UUID uuid) {
+        Multimap<EntityAttribute, EntityAttributeModifier> modifiers = super.getModifiers(stack, slot, entity, uuid);
         
-        tooltip.add(Text.translatable("item.spectrum.laurels_of_serenity.tooltip.post", StringUtils.left(String.valueOf((1 - getDetectionRangeMultiplier(stack)) * 100), 4)).formatted(Formatting.BLUE));
-        tooltip.add(Text.translatable("info.spectrum.tooltip.sleep_resist.positive", StringUtils.left(String.valueOf(resist * 100), 4)).styled(s -> s.withColor(SpectrumStatusEffects.ETERNAL_SLUMBER_COLOR)));
-    }
-
-    public float getDetectionRangeMultiplier(ItemStack stack) {
         FixedSingleInkStorage inkStorage = getEnergyStorage(stack);
-        var bonus = getBonus(inkStorage.getEnergy(inkStorage.getStoredColor()));
-        return (float) (1 - bonus * 0.15); //TODO: reduce to 0.1 once the ink trinket cap is set back to 1.6 billion
+        long storedInk = inkStorage.getEnergy(inkStorage.getStoredColor());
+        double detectionRangeMod = getDetectionRangeMultiplier(storedInk);
+        if (detectionRangeMod != 0) {
+            // For some weird reason, Pug, who PRd the attribute to Additional Entity Attributes
+            // made negative values be the 'good' variant (aka reducing the distance mobs need to be in to detect an entity)
+            // so it shows up red in tooltips. Hmmmm
+            modifiers.put(AdditionalEntityAttributes.MOB_DETECTION_RANGE, new EntityAttributeModifier(uuid, "spectrum:laurels_of_serenity_detection_range", -detectionRangeMod, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
+        }
+        double sleepResistanceMod = getInducedSleepResistanceMod(storedInk);
+        if (sleepResistanceMod != 0) {
+            modifiers.put(SpectrumEntityAttributes.INDUCED_SLEEP_RESISTANCE, new EntityAttributeModifier(uuid, "spectrum:laurels_of_serenity_sleep", sleepResistanceMod, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
+        }
+        
+        return modifiers;
     }
-
-    @Override
-    public float getSleepResistance(PlayerEntity player, ItemStack stack) {
-        FixedSingleInkStorage inkStorage = getEnergyStorage(stack);
-        return (float) (0.1 * getBonus(inkStorage.getEnergy(inkStorage.getStoredColor()))); //TODO: also tweak this when that time comes
-    }
-
-    public double getBonus(long storedInk) {
+    
+    public float getDetectionRangeMultiplier(long storedInk) {
         if (storedInk < 100) {
             return 0;
         } else {
-            return 1 + (int) (Math.log(storedInk / 100.0f) / Math.log(8));
+            return 0.15F * (int) (Math.log(storedInk / 100.0f) / Math.log(8)); //TODO: reduce once the ink trinket cap is set back to 1.6 billion
+        }
+    }
+    
+    public float getInducedSleepResistanceMod(long storedInk) {
+        if (storedInk < 100) {
+            return 0;
+        } else {
+            return 0.15F * (int) (Math.log(storedInk / 100.0f) / Math.log(8)); //TODO: reduce once the ink trinket cap is set back to 1.6 billion
         }
     }
 
-    public static float getEffectFor(LivingEntity livingEntity) {
-        var comp = TrinketsApi.getTrinketComponent(livingEntity);
-
-        if (comp.isEmpty())
-            return 1F;
-        
-        var trinket = comp.get().getEquipped(SpectrumItems.LAURELS_OF_SERENITY);
-
-        if (trinket.isEmpty())
-            return 1F;
-        
-        return ((LaurelsOfSerenityItem) SpectrumItems.LAURELS_OF_SERENITY).getDetectionRangeMultiplier(trinket.get(0).getRight());
-    }
 }

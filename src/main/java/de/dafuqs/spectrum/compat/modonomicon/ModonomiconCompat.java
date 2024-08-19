@@ -59,13 +59,13 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
     
     @Override
     public void register() {
+        LoaderRegistry.registerEntryType(ENTRY_LINK_PAGE_TYPE, EntryLinkBookEntry::fromJson, EntryLinkBookEntry::fromNetwork);
+        
         registerPages();
         registerUnlockConditions();
     }
     
     public void registerPages() {
-        LoaderRegistry.registerEntryType(ENTRY_LINK_PAGE_TYPE, EntryLinkBookEntry::fromJson, EntryLinkBookEntry::fromNetwork);
-        
         registerGatedRecipePage(ANVIL_CRUSHING_PAGE, SpectrumRecipeTypes.ANVIL_CRUSHING);
         registerGatedRecipePage(PEDESTAL_CRAFTING_PAGE, SpectrumRecipeTypes.PEDESTAL);
         registerGatedRecipePage(FUSION_SHRINE_CRAFTING_PAGE, SpectrumRecipeTypes.FUSION_SHRINE);

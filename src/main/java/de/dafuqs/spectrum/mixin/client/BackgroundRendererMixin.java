@@ -1,18 +1,15 @@
 package de.dafuqs.spectrum.mixin.client;
 
-import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
-import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.llamalad7.mixinextras.injector.wrapoperation.*;
 import com.llamalad7.mixinextras.sugar.*;
-import com.llamalad7.mixinextras.sugar.ref.LocalBooleanRef;
+import com.llamalad7.mixinextras.sugar.ref.*;
 import de.dafuqs.spectrum.deeper_down.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.spectrum.status_effects.SleepStatusEffect;
+import de.dafuqs.spectrum.status_effects.*;
 import net.minecraft.client.*;
 import net.minecraft.client.render.*;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.entity.*;
+import net.minecraft.util.math.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -39,7 +36,7 @@ public class BackgroundRendererMixin {
 
 	@Inject(method = "applyFog", at = @At(value = "HEAD"))
 	private static void spectrum$makeFogThick(Camera camera, BackgroundRenderer.FogType fogType, float viewDistance, boolean thickFog, float tickDelta, CallbackInfo ci, @Local(argsOnly = true, ordinal = 0) LocalBooleanRef tfog) {
-		if (!thickFog && MinecraftClient.getInstance().cameraEntity instanceof LivingEntity livingEntity && SleepStatusEffect.hasSleepEffect(livingEntity))
+		if (!thickFog && MinecraftClient.getInstance().cameraEntity instanceof LivingEntity livingEntity && SleepStatusEffect.getStrongestSleepEffect(livingEntity) != null)
 			tfog.set(true);
 	}
 

@@ -1,23 +1,17 @@
 package de.dafuqs.spectrum.mixin.client;
 
-import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import com.llamalad7.mixinextras.injector.*;
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
-import de.dafuqs.spectrum.registries.SpectrumDimensions;
-import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
-import de.dafuqs.spectrum.render.HudRenderers;
-import de.dafuqs.spectrum.status_effects.SleepStatusEffect;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.gui.hud.InGameHud;
-import net.minecraft.entity.player.HungerManager;
-import net.minecraft.entity.player.PlayerEntity;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
+import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.render.*;
+import de.dafuqs.spectrum.status_effects.*;
+import net.minecraft.client.*;
+import net.minecraft.client.gui.*;
+import net.minecraft.client.gui.hud.*;
+import net.minecraft.entity.player.*;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.callback.*;
 
 @Mixin(InGameHud.class)
 public abstract class InGameHudMixin {
@@ -45,8 +39,8 @@ public abstract class InGameHudMixin {
 
         if (player == null)
             return true;
-
-        var potency = SleepStatusEffect.getGeneralSleepVulnerability(player);
+		
+		var potency = SleepStatusEffect.getGeneralSleepResistanceIfEntityHasSoporificEffect(player);
 
         return potency <= 0.5F;
     }
@@ -57,8 +51,8 @@ public abstract class InGameHudMixin {
 
         if (player == null)
             return true;
-
-        var potency = SleepStatusEffect.getGeneralSleepVulnerability(player);
+		
+		var potency = SleepStatusEffect.getGeneralSleepResistanceIfEntityHasSoporificEffect(player);
 
         return potency <= 0.5F;
     }
@@ -69,8 +63,8 @@ public abstract class InGameHudMixin {
 
         if (player == null)
             return true;
-
-        var potency = SleepStatusEffect.getGeneralSleepVulnerability(player);
+		
+		var potency = SleepStatusEffect.getGeneralSleepResistanceIfEntityHasSoporificEffect(player);
 
         return potency <= 0.5F;
     }

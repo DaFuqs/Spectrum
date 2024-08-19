@@ -1,13 +1,11 @@
 package de.dafuqs.spectrum.mixin.client;
 
-import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
-import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
-import de.dafuqs.spectrum.status_effects.SleepStatusEffect;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.Mouse;
-import net.minecraft.util.math.MathHelper;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
+import com.llamalad7.mixinextras.injector.*;
+import de.dafuqs.spectrum.status_effects.*;
+import net.minecraft.client.*;
+import net.minecraft.util.math.*;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.injection.*;
 
 @Mixin(Mouse.class)
 public class MouseMixin<T> {
@@ -19,8 +17,8 @@ public class MouseMixin<T> {
 
         if (player == null)
             return original;
-
-        var potency = SleepStatusEffect.getGeneralSleepVulnerability(player);
+		
+		var potency = SleepStatusEffect.getGeneralSleepResistanceIfEntityHasSoporificEffect(player);
 
         return (T) (Object) MathHelper.clampedLerp(sensitivity, sensitivity / 2, potency / 2.5);
     }

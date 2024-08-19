@@ -202,7 +202,10 @@ public abstract class LivingEntityMixin {
 	
 	@ModifyVariable(method = "damageArmor(Lnet/minecraft/entity/damage/DamageSource;F)V", at = @At("HEAD"), ordinal = 0, argsOnly = true)
 	private float spectrum$damageArmor(float amount, DamageSource source) {
-		if (source.isIn(SpectrumDamageTypeTags.INCREASED_ARMOR_DAMAGE)) {
+		if (source.isIn(SpectrumDamageTypeTags.DOES_NOT_DAMAGE_ARMOR)) {
+			return 0;
+		}
+		else if (source.isIn(SpectrumDamageTypeTags.INCREASED_ARMOR_DAMAGE)) {
 			return amount * 10;
 		}
 		return amount;

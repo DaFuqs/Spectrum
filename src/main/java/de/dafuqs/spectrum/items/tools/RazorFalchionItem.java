@@ -21,5 +21,9 @@ public class RazorFalchionItem extends SwordItem implements Preenchanted {
 	public ItemStack getDefaultStack() {
 		return getDefaultEnchantedStack(this);
 	}
-	
+
+	@Override
+	public boolean hasGlint(ItemStack stack) {
+		return false;
+	}
 }

@@ -20,13 +20,13 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.cheong.page0.text",
-      "title": "item.spectrum.cheong"
+      "title": "item.spectrum.cheong",
+      "text": "book.spectrum.guidebook.cheong.page0.text"
     },
     {
-      "type": "spectrum:pedestal_crafting",
-      "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier1/food/cheong",
+      "type": "spectrum:titration_barrel_fermenting",
+      "title1": "book.spectrum.guidebook.titration_recipe",
+      "recipe_id_1": "spectrum:titration_barrel/special/cheong",
       "text": "book.spectrum.guidebook.cheong.page1.text"
     }
   ]

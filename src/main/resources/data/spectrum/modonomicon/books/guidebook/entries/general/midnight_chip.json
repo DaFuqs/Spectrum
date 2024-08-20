@@ -10,6 +10,9 @@
   "parents": [
     {
       "entry": "spectrum:general/midnight_solution"
+    },
+    {
+      "entry": "spectrum:general/midnight_aberration"
     }
   ],
   "background_u_index": 0,

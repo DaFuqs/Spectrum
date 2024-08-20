@@ -150,35 +150,54 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		return recipeData.baseYield() + potionMod.yield;
 	}
 	
-	public ItemStack getPotion(ItemStack stack, PotionMod potionMod, PotionWorkshopBrewingRecipe lastRecipe, Random random) {
-		List<InkPoweredStatusEffectInstance> effects = generateEffects(stack, potionMod, lastRecipe, random);
-		
+	public List<ItemStack> getPotions(PotionMod potionMod, PotionWorkshopBrewingRecipe lastRecipe, Random random, int brewedAmount) {
 		// potion type
 		ItemStack itemStack;
 		if (potionMod.makeSplashing) {
-			itemStack = potionMod.makeLingering ? new ItemStack(Items.LINGERING_POTION) : new ItemStack(Items.SPLASH_POTION);
+			if (potionMod.makeLingering) {
+				itemStack = new ItemStack(Items.LINGERING_POTION);
+				if (potionMod.negateDecreasingDuration) {
+					potionMod.durationMultiplier += 3;
+				}
+			} else {
+				itemStack = new ItemStack(Items.SPLASH_POTION);
+			}
 		} else {
 			itemStack = new ItemStack(Items.POTION);
 		}
 		
+		List<ItemStack> results = new ArrayList<>();
+		for (int i = 0; i < brewedAmount; i++) {
+			results.add(getPotion(itemStack, potionMod, lastRecipe, random));
+		}
+		
+		return results;
+	}
+	
+	public ItemStack getPotion(ItemStack stack, PotionMod potionMod, PotionWorkshopBrewingRecipe lastRecipe, Random random) {
+		List<InkPoweredStatusEffectInstance> effects = generateEffects(stack, potionMod, lastRecipe, random);
+		
 		// apply to potion
 		if (effects.isEmpty()) {
 			// no effects: thick potion
-			PotionUtil.setPotion(itemStack, Potions.THICK);
+			PotionUtil.setPotion(stack, Potions.THICK);
 		} else {
-			PotionUtil.setPotion(itemStack, SpectrumPotions.PIGMENT_POTION);
+			PotionUtil.setPotion(stack, SpectrumPotions.PIGMENT_POTION);
 		}
-		setCustomPotionEffects(itemStack, potionMod, effects);
+		setCustomPotionEffects(stack, potionMod, effects);
 		
 		if (potionMod.additionalDrinkDurationTicks != 0) {
-			NbtCompound compound = itemStack.getOrCreateNbt();
-			itemStack.setNbt(compound);
+			NbtCompound compound = stack.getOrCreateNbt();
+			stack.setNbt(compound);
 		}
 		
-		return itemStack;
+		return stack;
 	}
 	
 	public ItemStack getTippedArrows(ItemStack stack, PotionMod potionMod, PotionWorkshopBrewingRecipe lastRecipe, int amount, Random random) {
+		if (potionMod.negateDecreasingDuration) {
+			potionMod.durationMultiplier += 7;
+		}
 		List<InkPoweredStatusEffectInstance> effects = generateEffects(stack, potionMod, lastRecipe, random);
 		
 		ItemStack itemStack = new ItemStack(Items.TIPPED_ARROW, amount);

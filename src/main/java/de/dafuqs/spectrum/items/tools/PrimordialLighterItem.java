@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.items.tools;
 
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.advancement.criterion.*;
@@ -18,7 +19,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class PrimordialLighterItem extends FlintAndSteelItem {
+public class PrimordialLighterItem extends FlintAndSteelItem implements CreativeOnlyItem {
 	
 	public PrimordialLighterItem(Settings settings) {
 		super(settings);
@@ -28,6 +29,7 @@ public class PrimordialLighterItem extends FlintAndSteelItem {
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		tooltip.add(Text.translatable("item.spectrum.primordial_lighter.tooltip").formatted(Formatting.GRAY));
+		CreativeOnlyItem.appendTooltip(tooltip);
 	}
 	
 	@Override

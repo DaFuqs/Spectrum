@@ -1,10 +1,10 @@
 {
   "type": "spectrum:potion_workshop_reacting",
-  "item": "botania:pixie_dust",
+  "item": "spectrum:blackest_lotus",
   "modifiers": {
-    "make_splashing": true,
-    "make_lingering": true,
-    "potency_multiplier": 0.75
+    "additional_random_positive_effect_count": 3.0,
+    "additional_random_negative_effect_count": 1.0,
+    "unidentifiable": true
   },
   "fabric:load_conditions": [
     {

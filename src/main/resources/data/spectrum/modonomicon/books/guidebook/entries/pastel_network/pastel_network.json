@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.name",
+  "name": "book.spectrum.guidebook.category.pastel_network.name",
   "icon": "spectrum:provider_node",
   "condition": {
     "type": "modonomicon:advancement",
@@ -15,7 +15,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.name",
+      "title": "book.spectrum.guidebook.category.pastel_network.name",
       "text": "book.spectrum.guidebook.pastel_network.page0.text"
     },
     {

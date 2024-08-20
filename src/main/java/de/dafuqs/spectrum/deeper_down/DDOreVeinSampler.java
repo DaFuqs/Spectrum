@@ -64,8 +64,8 @@ public final class DDOreVeinSampler {
 		GOLD(Blocks.DEEPSLATE_GOLD_ORE.getDefaultState(), SpectrumBlocks.BLACKSLAG_GOLD_ORE.getDefaultState(), Blocks.RAW_GOLD_BLOCK.getDefaultState(), Blocks.DIORITE.getDefaultState(), -260, -128),
 		DIAMOND(Blocks.DEEPSLATE_DIAMOND_ORE.getDefaultState(), SpectrumBlocks.BLACKSLAG_DIAMOND_ORE.getDefaultState(), Blocks.COAL_BLOCK.getDefaultState(), Blocks.TUFF.getDefaultState(), -316, -192),
 		REDSTONE(Blocks.DEEPSLATE_REDSTONE_ORE.getDefaultState(), SpectrumBlocks.BLACKSLAG_REDSTONE_ORE.getDefaultState(), Blocks.REDSTONE_BLOCK.getDefaultState(), Blocks.GRANITE.getDefaultState(), -220, -80),
-		LAPIS(Blocks.DEEPSLATE_LAPIS_ORE.getDefaultState(), SpectrumBlocks.BLACKSLAG_LAPIS_ORE.getDefaultState(), Blocks.LAPIS_BLOCK.getDefaultState(), Blocks.DEEPSLATE.getDefaultState(), -260, -128),
-		EMERALD(Blocks.DEEPSLATE_EMERALD_ORE.getDefaultState(), SpectrumBlocks.BLACKSLAG_EMERALD_ORE.getDefaultState(), SpectrumBlocks.BLACKSLAG.getDefaultState(), Blocks.DIORITE.getDefaultState(), -316, -128);
+		LAPIS(Blocks.DEEPSLATE_LAPIS_ORE.getDefaultState(), SpectrumBlocks.BLACKSLAG_LAPIS_ORE.getDefaultState(), Blocks.LAPIS_BLOCK.getDefaultState(), Blocks.ANDESITE.getDefaultState(), -260, -128),
+		EMERALD(Blocks.DEEPSLATE_EMERALD_ORE.getDefaultState(), SpectrumBlocks.BLACKSLAG_EMERALD_ORE.getDefaultState(), SpectrumBlocks.BLACKSLAG.getDefaultState(), SpectrumBlocks.BASAL_MARBLE.getDefaultState(), -316, -128);
 		
 		final BlockState deepslateOre;
 		final BlockState blackslagOre;

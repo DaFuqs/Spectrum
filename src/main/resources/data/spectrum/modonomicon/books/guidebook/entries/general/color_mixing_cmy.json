@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.color_mixing.name",
+  "name": "book.spectrum.guidebook.color_mixing_cmy.name",
   "icon": "spectrum:textures/gui/guidebook/icons/color_mixing_cmy.png",
   "condition": {
     "type": "modonomicon:advancement",
@@ -24,11 +24,11 @@
       "texture_width": 100,
       "texture_height": 100,
       "border": false,
-      "text": "book.spectrum.guidebook.color_mixing.page0.text"
+      "text": "book.spectrum.guidebook.color_mixing_cmy.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.color_mixing.page1.text"
+      "text": "book.spectrum.guidebook.color_mixing_cmy.page1.text"
     }
   ]
 }

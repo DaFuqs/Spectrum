@@ -15,7 +15,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.biomes.page0.title",
+      "title": "book.spectrum.guidebook.biomes.name",
       "text": "book.spectrum.guidebook.biomes.page0.text"
     }
   ]

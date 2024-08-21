@@ -1,6 +1,6 @@
 {
   "name": "book.spectrum.guidebook.color_mixing_white.name",
-  "icon": "minecraft:white_dye",
+  "icon": "spectrum:textures/gui/guidebook/icons/color_mixing_white.png",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:lategame/collect_moonstone"

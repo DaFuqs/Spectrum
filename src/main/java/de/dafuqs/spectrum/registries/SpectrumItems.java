@@ -362,7 +362,7 @@ public class SpectrumItems {
 	public static final Item IMPERIAL_COOKBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/cookbooks/imperial_cookbook");
 	public static final Item BREWERS_HANDBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/cookbooks/brewers_handbook");
 	public static final Item VARIA_COOKBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/cookbooks/varia_cookbook");
-	public static final Item POISONERS_COOKBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.EPIC), "cuisine/cookbooks/poisoners_cookbook");
+	public static final Item POISONERS_HANDBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.EPIC), "cuisine/cookbooks/poisoners_handbook");
 
 	public static final Item AQUA_REGIA = new JadeWineItem(IS.of(16).food(SpectrumFoodComponents.AQUA_REGIA));
 	public static final Item BAGNUN = new Item(IS.of().food(SpectrumFoodComponents.BAGNUN));
@@ -865,7 +865,7 @@ public class SpectrumItems {
 		register("melochites_cookbook_vol_2", MELOCHITES_COOKBOOK_VOL_2, DyeColor.PURPLE);
 		register("brewers_handbook", BREWERS_HANDBOOK, DyeColor.PURPLE);
 		register("varia_cookbook", VARIA_COOKBOOK, DyeColor.PURPLE);
-		register("poisoners_cookbook", POISONERS_COOKBOOK, DyeColor.PURPLE);
+		register("poisoners_handbook", POISONERS_HANDBOOK, DyeColor.PURPLE);
 
 		register("aqua_regia", AQUA_REGIA, DyeColor.PINK);
 		register("bagnun", BAGNUN, DyeColor.PINK);

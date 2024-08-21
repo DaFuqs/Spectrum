@@ -4,19 +4,18 @@
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/collect_all_crystal_flowers"
   },
-  "icon": "spectrum:textures/block/sweet_pea.png",
+  "icon": "spectrum:sweet_pea",
   "category": "spectrum:dimension",
   "hide_while_locked ": true,
   "parents": [
     {
-      "entry": "spectrum:dimension/biomes",
-      "line_enabled": "false"
+      "entry": "spectrum:dimension/crystal_gardens"
     }
   ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": -7,
-  "y": -4,
+  "x": 5,
+  "y": -1,
   "pages": [
     {
       "type": "modonomicon:text",

@@ -324,7 +324,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.MELOCHITES_COOKBOOK_VOL_2);
 		entries.add(SpectrumItems.BREWERS_HANDBOOK);
 		entries.add(SpectrumItems.VARIA_COOKBOOK);
-		entries.add(SpectrumItems.POISONERS_COOKBOOK);
+		entries.add(SpectrumItems.POISONERS_HANDBOOK);
 
 		entries.add(SpectrumBlocks.SUGAR_STICK);
 		entries.add(SpectrumBlocks.TOPAZ_SUGAR_STICK);

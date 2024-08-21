@@ -14,6 +14,15 @@
   "y": 6,
   "pages": [
     {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.glass_ampoules.name",
+      "text": "book.spectrum.guidebook.glass_ampoules.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.glass_ampoules.page1.text"
+    },
+    {
       "type": "spectrum:pedestal_crafting",
       "recipe_id_1": "spectrum:pedestal/tier4/glass_ampoules/azurite"
     },

@@ -5,5 +5,5 @@
     "incurable": true,
     "flat_yield_bonus": -3.0
   },
-  "required_advancement": "spectrum:hidden/collect_cookbooks/poisoners_cookbook"
+  "required_advancement": "spectrum:hidden/collect_cookbooks/poisoners_handbook"
 }

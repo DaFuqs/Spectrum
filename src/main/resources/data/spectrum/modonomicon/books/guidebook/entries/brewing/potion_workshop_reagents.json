@@ -326,7 +326,7 @@
       "anchor": "bitter_oils",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/collect_cookbooks/poisoners_cookbook"
+        "advancement_id": "spectrum:hidden/collect_cookbooks/poisoners_handbook"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.bitter_oils.text"
     },

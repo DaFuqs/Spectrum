@@ -26,15 +26,6 @@
       },
       "title": "book.spectrum.guidebook.delving_deeper_down.page1.title",
       "text": "book.spectrum.guidebook.delving_deeper_down.page1.text"
-    },
-    {
-      "type": "modonomicon:text",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:__todo/monstrosity"
-      },
-      "title": "book.spectrum.guidebook.delving_deeper_down.page2.title",
-      "text": "book.spectrum.guidebook.delving_deeper_down.page2.text"
     }
   ]
 }

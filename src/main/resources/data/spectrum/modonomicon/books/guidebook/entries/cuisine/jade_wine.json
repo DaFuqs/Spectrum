@@ -41,18 +41,6 @@
         "item": "spectrum:moonstruck_nectar"
       },
       "text": "book.spectrum.guidebook.jade_wine.page2.text"
-    },
-    {
-      "type": "modonomicon:spotlight",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/tap_chrysocolla"
-      },
-      "anchor": "chrysocolla",
-      "item": {
-        "item": "spectrum:chrysocolla"
-      },
-      "text": "book.spectrum.guidebook.jade_wine.page3.text"
     }
   ]
 }

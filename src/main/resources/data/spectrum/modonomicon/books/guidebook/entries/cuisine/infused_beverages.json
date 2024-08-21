@@ -20,17 +20,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.infused_beverages.page0.title",
+      "title": "book.spectrum.guidebook.infused_beverages.name",
       "text": "book.spectrum.guidebook.infused_beverages.page0.text"
-    },
-    {
-      "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.infused_beverages.page1.title",
-      "text": "book.spectrum.guidebook.infused_beverages.page1.text"
-    },
-    {
-      "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.infused_beverages.page2.text"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
@@ -47,15 +38,6 @@
       },
       "recipe_id_1": "spectrum:titration_barrel/infused_beverages/myceylon_apple_juice",
       "text": "book.spectrum.guidebook.infused_beverages.page4.text"
-    },
-    {
-      "type": "spectrum:confirmation_button",
-      "title": "book.spectrum.guidebook.infused_beverages.page5.title",
-      "checked_advancement": "spectrum:triggers/confirmed_drinking_age",
-      "button_text": "book.spectrum.guidebook.infused_beverages.page5.button_text",
-      "button_text_confirmed": "book.spectrum.guidebook.infused_beverages.page5.button_text_confirmed",
-      "confirmation": "confirm_drinking_age",
-      "text": "book.spectrum.guidebook.infused_beverages.page5.text"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
@@ -251,19 +233,6 @@
       "recipe_id_1": "spectrum:titration_barrel/infused_beverages/sawblade_holly_cider",
       "title2": "item.spectrum.infused_beverage.tooltip.variant.sawblade_holly_liquor",
       "recipe_id_2": "spectrum:titration_barrel/infused_beverages/sawblade_holly_liquor"
-    },
-    {
-      "type": "modonomicon:spotlight",
-      "title": "item.spectrum.pure_alcohol",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:tap_pure_alcohol"
-      },
-      "anchor": "pure_alcohol",
-      "item": {
-        "item": "spectrum:pure_alcohol"
-      },
-      "text": "book.spectrum.guidebook.infused_beverages.page26.text"
     }
   ]
 }

@@ -18,6 +18,23 @@
   "x": 6,
   "y": 3,
   "pages": [
-
+    {
+      "type": "modonomicon:spotlight",
+      "title": "item.spectrum.effulgent_feather",
+      "item": {
+        "item": "spectrum:effulgent_feather"
+      },
+      "text": "book.spectrum.guidebook.effulgent_feathers.page0.text"
+    },
+    {
+      "type": "spectrum:liquid_crystal_converting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_raw_bloodstone"
+      },
+      "title1": "book.spectrum.guidebook.effulgent_feathers.page1.title",
+      "recipe_id_1": "spectrum:liquid_crystal_converting/raw_bloodstone",
+      "text": "book.spectrum.guidebook.effulgent_feathers.page1.text"
+    }
   ]
 }

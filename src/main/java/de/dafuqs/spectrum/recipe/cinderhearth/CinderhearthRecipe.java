@@ -16,7 +16,7 @@ import net.minecraft.world.*;
 
 import java.util.*;
 
-public class CinderhearthRecipe extends GatedStackSpectrumRecipe {
+public class CinderhearthRecipe extends GatedStackSpectrumRecipe<Inventory> {
 	
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/cinderhearth");
 

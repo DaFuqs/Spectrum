@@ -3,7 +3,9 @@
   "group": "horse_armor",
   "time": 200,
   "experience": 1.0,
-  "fluid": "minecraft:water",
+  "fluid": {
+    "fluid": "minecraft:water"
+  },
   "ingredients": [
     {
       "item": "minecraft:gold_ingot",

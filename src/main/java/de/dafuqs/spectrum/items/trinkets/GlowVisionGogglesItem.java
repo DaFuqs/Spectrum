@@ -78,7 +78,7 @@ public class GlowVisionGogglesItem extends SpectrumTrinketItem implements InkPow
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
 		if (InkPowered.canUseClient()) {
-			tooltip.add(Text.translatable("item.spectrum.glow_vision_goggles.tooltip_with_ink", INK_COST.getColor()));
+			tooltip.add(Text.translatable("item.spectrum.glow_vision_goggles.tooltip_with_ink", INK_COST.getColor().getInkName()));
 		} else {
 			tooltip.add(Text.translatable("item.spectrum.glow_vision_goggles.tooltip"));
 		}

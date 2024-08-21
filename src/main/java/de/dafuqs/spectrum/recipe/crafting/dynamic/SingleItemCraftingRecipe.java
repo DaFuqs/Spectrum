@@ -1,10 +1,10 @@
-package de.dafuqs.spectrum.recipe.crafting;
+package de.dafuqs.spectrum.recipe.crafting.dynamic;
 
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
-import net.minecraft.recipe.book.CraftingRecipeCategory;
-import net.minecraft.registry.DynamicRegistryManager;
+import net.minecraft.recipe.book.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 

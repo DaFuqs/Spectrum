@@ -3,7 +3,8 @@
   "item": "botania:pixie_dust",
   "modifiers": {
     "make_splashing": true,
-    "make_lingering": true
+    "make_lingering": true,
+    "potency_multiplier": 0.75
   },
   "fabric:load_conditions": [
     {

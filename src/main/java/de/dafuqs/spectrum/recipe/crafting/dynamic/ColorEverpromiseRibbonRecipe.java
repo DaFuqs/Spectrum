@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.recipe.crafting;
+package de.dafuqs.spectrum.recipe.crafting.dynamic;
 
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.*;

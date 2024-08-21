@@ -20,7 +20,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class PrimordialFireBurningRecipe extends GatedSpectrumRecipe {
+public class PrimordialFireBurningRecipe extends GatedSpectrumRecipe<Inventory> {
 	
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("lategame/collect_doombloom_seed");
 	

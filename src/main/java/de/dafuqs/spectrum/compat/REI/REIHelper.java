@@ -1,8 +1,9 @@
 package de.dafuqs.spectrum.compat.REI;
 
+import de.dafuqs.matchbooks.recipe.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
-import de.dafuqs.matchbooks.recipe.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -16,6 +17,13 @@ public class REIHelper {
 	
 	public static EntryIngredient ofIngredientStack(@NotNull IngredientStack ingredientStack) {
 		return EntryIngredients.ofItemStacks(ingredientStack.getStacks());
+	}
+	
+	public static EntryIngredient ofFluidIngredient(FluidIngredient fluidIngredient) {
+		if (fluidIngredient.isTag()) {
+			return EntryIngredients.ofFluidTag(fluidIngredient.tag().get());
+		}
+		return EntryIngredients.of(fluidIngredient.fluid().get());
 	}
 	
 }

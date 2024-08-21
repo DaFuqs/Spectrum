@@ -1,7 +1,7 @@
-package de.dafuqs.spectrum.recipe.crafting;
+package de.dafuqs.spectrum.recipe.crafting.dynamic;
 
 import de.dafuqs.spectrum.items.magic_items.*;
-import de.dafuqs.spectrum.recipe.EmptyRecipeSerializer;
+import de.dafuqs.spectrum.recipe.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
 import net.minecraft.util.*;

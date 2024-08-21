@@ -1,0 +1,27 @@
+{
+  "feature": "spectrum:dd_emerald_ore_howling",
+  "placement": [
+    {
+      "type": "minecraft:count",
+      "count": 32
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:trapezoid",
+        "min_inclusive": {
+          "above_bottom": 64
+        },
+        "max_inclusive": {
+          "below_top": 32
+        }
+      }
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

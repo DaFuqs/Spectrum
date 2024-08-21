@@ -117,7 +117,7 @@ public class PipeBombItem extends Item implements DamageAwareItem, TickAwareItem
 	
 	public static boolean isArmed(ItemStack stack) {
 		var nbt = stack.getNbt();
-		return nbt == null || nbt.getBoolean("armed");
+		return nbt != null && nbt.getBoolean("armed");
 	}
 	
 	@Override

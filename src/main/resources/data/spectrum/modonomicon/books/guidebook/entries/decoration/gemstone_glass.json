@@ -29,7 +29,7 @@
       "type": "spectrum:pedestal_crafting",
       "title1": "container.spectrum.rei.pedestal_recipe",
       "recipe_id_1": "spectrum:pedestal/tier1/glass/topaz_glass",
-      "text": "book.spectrum.guidebook.gemstone_glass.page1.text"
+      "text": "book.spectrum.guidebook.every_gemstone_will_do"
     },
     {
       "type": "spectrum:pedestal_crafting",

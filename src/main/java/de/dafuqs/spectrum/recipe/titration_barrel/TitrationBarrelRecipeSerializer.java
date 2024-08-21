@@ -69,7 +69,7 @@ public class TitrationBarrelRecipeSerializer implements GatedRecipeSerializer<Ti
 		writeNullableIdentifier(packetByteBuf, recipe.requiredAdvancementIdentifier);
 		
 		packetByteBuf.writeShort(recipe.inputStacks.size());
-		for (IngredientStack ingredientStack : recipe.inputStacks) {
+		for (IngredientStack ingredientStack : recipe.getIngredientStacks()) {
 			ingredientStack.write(packetByteBuf);
 		}
 		writeFluidIngredient(packetByteBuf, recipe.fluid);

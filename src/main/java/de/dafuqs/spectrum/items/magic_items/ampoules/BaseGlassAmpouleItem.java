@@ -25,13 +25,13 @@ public abstract class BaseGlassAmpouleItem extends Item {
     }
     
     @Override
-    public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        if (trigger(stack, attacker, target)) {
-            if (!(attacker instanceof PlayerEntity player && player.isCreative())) {
+    public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
+        if (trigger(stack, user, entity)) {
+            if (!(user.isCreative())) {
                 stack.decrement(1);
             }
         }
-        return super.postHit(stack, target, attacker);
+        return super.useOnEntity(stack, user, entity, hand);
     }
     
     public abstract boolean trigger(ItemStack stack, LivingEntity attacker, @Nullable LivingEntity target);

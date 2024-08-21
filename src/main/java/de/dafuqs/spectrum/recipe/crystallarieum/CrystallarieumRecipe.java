@@ -16,7 +16,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class CrystallarieumRecipe extends GatedSpectrumRecipe {
+public class CrystallarieumRecipe extends GatedSpectrumRecipe<Inventory> {
 
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/crystallarieum");
 

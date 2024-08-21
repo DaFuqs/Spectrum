@@ -9,7 +9,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public abstract class GatedSpectrumEmiRecipe<T extends GatedRecipe> extends SpectrumEmiRecipe {
+public abstract class GatedSpectrumEmiRecipe<T extends GatedRecipe<?>> extends SpectrumEmiRecipe {
 	
 	public static final Text SECRET = Text.translatable("container.spectrum.rei.pedestal_crafting.secret_recipe");
 	public static final Text SECRET_HINT = Text.translatable("container.spectrum.rei.pedestal_crafting.secret_recipe.hint");

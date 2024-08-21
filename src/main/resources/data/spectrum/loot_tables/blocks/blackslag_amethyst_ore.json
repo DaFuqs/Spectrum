@@ -31,7 +31,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:amethyst_shard",
+          "name": "minecraft:amethyst_shard",
           "functions": [
             {
               "function": "minecraft:set_count",

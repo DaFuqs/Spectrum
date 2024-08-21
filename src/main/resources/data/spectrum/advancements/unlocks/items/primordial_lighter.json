@@ -1,10 +1,7 @@
 {
   "criteria": {
-    "collected_doombloom_seed": {
-      "trigger": "revelationary:advancement_gotten",
-      "conditions": {
-        "advancement_identifier": "spectrum:lategame/collect_doombloom_seed"
-      }
+    "free_real_estate": {
+      "trigger": "minecraft:impossible"
     }
   }
 }

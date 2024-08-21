@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.items.magic_items.ampoules;
 
 import com.google.common.collect.*;
 import com.jamieswhiteshirt.reachentityattributes.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
@@ -14,7 +15,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class BloodstoneGlassAmpouleItem extends BaseGlassAmpouleItem {
+public class BloodstoneGlassAmpouleItem extends BaseGlassAmpouleItem implements PrioritizedEntityInteraction {
 	
 	protected static final float EXTRA_REACH = 12.0F;
 	protected static final UUID REACH_MODIFIER_ID = UUID.fromString("c81a7152-313c-452f-b15e-fcf51322ccc0");
@@ -25,6 +26,7 @@ public class BloodstoneGlassAmpouleItem extends BaseGlassAmpouleItem {
 		super(settings);
 		
 		ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
+		builder.put(ReachEntityAttributes.REACH, new EntityAttributeModifier(REACH_MODIFIER_ID, "Weapon modifier", EXTRA_REACH, EntityAttributeModifier.Operation.ADDITION));
 		builder.put(ReachEntityAttributes.ATTACK_RANGE, new EntityAttributeModifier(REACH_MODIFIER_ID, "Weapon modifier", EXTRA_REACH, EntityAttributeModifier.Operation.ADDITION));
 		this.attributeModifiers = builder.build();
 	}

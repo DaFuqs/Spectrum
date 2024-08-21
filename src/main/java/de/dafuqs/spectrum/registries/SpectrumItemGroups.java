@@ -183,7 +183,7 @@ public class SpectrumItemGroups {
 				entries.add(SpectrumBlocks.THREAT_CONFLUX);
 				entries.add(SpectrumItems.PIPE_BOMB);
 				entries.add(SpectrumItems.CRESCENT_CLOCK);
-				entries.add(SpectrumItems.PRIMORDIAL_LIGHTER);
+				entries.add(SpectrumItems.ARTISANS_ATLAS);
 				entries.add(SpectrumBlocks.PRIMORDIAL_TORCH);
 				entries.add(SpectrumItems.MYSTERIOUS_LOCKET);
 				entries.add(SpectrumItems.MYSTERIOUS_COMPASS);
@@ -1458,6 +1458,7 @@ public class SpectrumItemGroups {
 
 		entries.add(SpectrumBlocks.CREATIVE_PARTICLE_SPAWNER);
 		entries.add(SpectrumItems.CREATIVE_INK_ASSORTMENT);
+		entries.add(SpectrumItems.PRIMORDIAL_LIGHTER);
 
 		entries.add(SpectrumItems.CONNECTION_NODE_CRYSTAL);
 		entries.add(SpectrumItems.PROVIDER_NODE_CRYSTAL);
@@ -1503,8 +1504,6 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.PRESERVATION_CHEST);
 		
 		entries.add(SpectrumItems.DIVINATION_HEART);
-		
-		entries.add(SpectrumItems.ARTISANS_ATLAS);
 		
 		//entries.add(SpectrumItems.SPECTRAL_SHARD);
 		//entries.add(SpectrumBlocks.SPECTRAL_SHARD_BLOCK);

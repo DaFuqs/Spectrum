@@ -482,7 +482,7 @@ public class SpectrumFoodComponents {
 	
 	public static final FoodComponent STUFFED_PETALS = new FoodComponent.Builder()
 			.hunger(10).saturationModifier(1.2F)
-			//.statusEffect(new StatusEffectInstance(StatusEffects.WALK_IN_WATER, 100, 0), 1.0F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.DOLPHINS_GRACE, 400, 0), 1.0F)
 			.build();
 	
 	public static final FoodComponent PASTICHE = new FoodComponent.Builder()

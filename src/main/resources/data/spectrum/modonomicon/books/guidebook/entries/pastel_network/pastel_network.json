@@ -19,13 +19,15 @@
       "text": "book.spectrum.guidebook.pastel_network.page0.text"
     },
     {
-      "type": "modonomicon:image",
-      "title": "book.spectrum.guidebook.pastel_network.page1.title",
-      "images": [
-        "spectrum:textures/gui/guidebook/pastel_travel.png"
-      ],
-      "border": false,
-      "text": "book.spectrum.guidebook.pastel_network.page1.text"
+      "type": "spectrum:snippet",
+      "resource_path": "spectrum:textures/gui/guidebook/pastel_travel.png",
+      "resource_width": 108,
+      "resource_height": 162,
+      "texture_x": 0,
+      "texture_y": 0,
+      "texture_width": 108,
+      "texture_height": 162,
+      "border": false
     }
   ]
 }

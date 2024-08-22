@@ -2,12 +2,16 @@ package de.dafuqs.spectrum.api.energy.storage;
 
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import it.unimi.dsi.fastutil.objects.*;
+import net.fabricmc.fabric.api.transfer.v1.storage.StorageView;
+import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
 import net.minecraft.nbt.*;
 import net.minecraft.text.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
+@SuppressWarnings("UnstableApiUsage")
 public class CreativeInkStorage implements InkStorage {
 	
 	private static final Map<InkColor, Long> STORAGE = new HashMap<>() {{
@@ -15,12 +19,50 @@ public class CreativeInkStorage implements InkStorage {
 			put(inkColor, Long.MAX_VALUE);
 		}
 	}};
+
+	protected static final ObjectSet<StorageView<InkColor>> VIEWS;
+
+	static {
+		var list = new ObjectArraySet<CreativeInkView>();
+		for (InkColor inkColor : InkColors.all()) {
+			list.add(new CreativeInkView(inkColor));
+		}
+		VIEWS = ObjectSets.unmodifiable(list);
+	}
+
+	record CreativeInkView(InkColor color) implements StorageView<InkColor> {
+
+		@Override
+		public long extract(InkColor resource, long maxAmount, TransactionContext transaction) {
+			return maxAmount;
+		}
+
+		@Override
+		public boolean isResourceBlank() {
+			return color.isBlank();
+		}
+
+		@Override
+		public InkColor getResource() {
+			return color;
+		}
+
+		@Override
+		public long getAmount() {
+			return Long.MAX_VALUE;
+		}
+
+		@Override
+		public long getCapacity() {
+			return Long.MAX_VALUE;
+		}
+	}
 	
 	public CreativeInkStorage() {
 		super();
 	}
 	
-	public static CreativeInkStorage fromNbt(@NotNull NbtCompound compound) {
+	public static CreativeInkStorage fromNbt(@NotNull NbtCompound ignored) {
 		return new CreativeInkStorage();
 	}
 	
@@ -100,5 +142,18 @@ public class CreativeInkStorage implements InkStorage {
 	public long getRoom(InkColor color) {
 		return Long.MAX_VALUE;
 	}
-	
+
+	// Do nothing since transfers don't mutate this storage's state
+	@Override
+	public void updateSnapshots(TransactionContext transaction) {}
+
+	@Override
+	public long getCapacity(InkColor variant) {
+		return Long.MAX_VALUE;
+	}
+
+	@Override
+	public @NotNull Iterator<StorageView<InkColor>> iterator() {
+		return VIEWS.iterator();
+	}
 }

@@ -2,6 +2,8 @@ package de.dafuqs.spectrum.api.energy;
 
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.fabric.api.transfer.v1.storage.*;
+import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
 import net.minecraft.nbt.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
@@ -16,7 +18,8 @@ import static de.dafuqs.spectrum.helpers.Support.*;
  * This interface defines that an object can
  * store pigment energy and how much
  **/
-public interface InkStorage extends Clearable {
+@SuppressWarnings("UnstableApiUsage")
+public interface InkStorage extends Clearable, Storage<InkColor> {
 	
 	/**
 	 * Transfer Ink from one storage to another
@@ -134,6 +137,11 @@ public interface InkStorage extends Clearable {
 	
 	// the amount of energy that is currently stored
 	long getCurrentTotal();
+
+	// gets the max containable amount of stored energy of that type (may change from transfers)
+	default long getCapacity(InkColor variant) {
+		return getEnergy(variant) + getRoom(variant);
+	}
 	
 	// true if no energy is stored
 	boolean isEmpty();
@@ -184,6 +192,56 @@ public interface InkStorage extends Clearable {
 	static void addInkStoreBulletTooltip(List<Text> tooltip, InkColor color, long amount) {
 		MutableText inkName = color.getInkName();
 		tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet_amount", Text.literal(getShortenedNumberString(amount)).formatted(Formatting.WHITE), inkName).setStyle(inkName.getStyle()));
+	}
+
+	// Same thing as the method of the same name in SnapshotParticipant
+	// but declared here for use by the default transfer methods' implementations
+	void updateSnapshots(TransactionContext transaction);
+
+	@Override
+	default long insert(InkColor insertedVariant, long maxAmount, TransactionContext transaction) {
+		StoragePreconditions.notBlankNotNegative(insertedVariant, maxAmount);
+		long overflow = addEnergy(insertedVariant, maxAmount);
+		long insertedAmount = maxAmount - overflow;
+		if (insertedAmount > 0) updateSnapshots(transaction);
+		return insertedAmount;
+	}
+
+	@Override
+	default long extract(InkColor extractedVariant, long maxAmount, TransactionContext transaction) {
+		StoragePreconditions.notBlankNotNegative(extractedVariant, maxAmount);
+		// this one returns the extracted amount already so no need for additional calculations
+		long extractedAmount = drainEnergy(extractedVariant, maxAmount);
+		if (extractedAmount > 0) updateSnapshots(transaction);
+		return extractedAmount;
+	}
+
+	record InkView(InkStorage storage, InkColor color) implements StorageView<InkColor> {
+
+		@Override
+		public long extract(InkColor resource, long maxAmount, TransactionContext transaction) {
+			return storage.extract(resource, maxAmount, transaction);
+		}
+
+		@Override
+		public boolean isResourceBlank() {
+			return color.isBlank();
+		}
+
+		@Override
+		public InkColor getResource() {
+			return color;
+		}
+
+		@Override
+		public long getAmount() {
+			return storage.getEnergy(color);
+		}
+
+		@Override
+		public long getCapacity() {
+			return !isResourceBlank() ? storage.getCapacity(color) : storage.getMaxTotal();
+		}
 	}
 	
 }

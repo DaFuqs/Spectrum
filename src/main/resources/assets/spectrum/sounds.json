@@ -1750,6 +1750,73 @@
     ]
   },
 
+  "entity.egg_laying_wooly_pig.ambient": {
+    "subtitle": "spectrum.subtitles.entity.egg_laying_wooly_pig.ambient",
+    "sounds": [
+      "minecraft:mob/pig/say1",
+      "minecraft:mob/pig/say2",
+      "minecraft:mob/pig/say3"
+    ]
+  },
+  "entity.egg_laying_wooly_pig.hurt": {
+    "subtitle": "spectrum.subtitles.entity.egg_laying_wooly_pig.hurt",
+    "sounds": [
+      "minecraft:mob/pig/say1",
+      "minecraft:mob/pig/say2",
+      "minecraft:mob/pig/say3"
+    ]
+  },
+  "entity.egg_laying_wooly_pig.death": {
+    "subtitle": "spectrum.subtitles.entity.egg_laying_wooly_pig.death",
+    "sounds": [
+      "minecraft:mob/pig/death"
+    ]
+  },
+  "entity.egg_laying_wooly_pig.step": {
+    "subtitle": "spectrum.subtitles.entity.egg_laying_wooly_pig.step",
+    "sounds": [
+      "minecraft:mob/pig/step1",
+      "minecraft:mob/pig/step2",
+      "minecraft:mob/pig/step3",
+      "minecraft:mob/pig/step4",
+      "minecraft:mob/pig/step5"
+    ]
+  },
+
+  "entity.eraser.ambient": {
+    "subtitle": "spectrum.subtitles.entity.eraser.ambient",
+    "sounds": [
+      "minecraft:mob/spider/say1",
+      "minecraft:mob/spider/say2",
+      "minecraft:mob/spider/say3",
+      "minecraft:mob/spider/say4"
+    ]
+  },
+  "entity.eraser.hurt": {
+    "subtitle": "spectrum.subtitles.entity.eraser.hurt",
+    "sounds": [
+      "minecraft:mob/spider/say1",
+      "minecraft:mob/spider/say2",
+      "minecraft:mob/spider/say3",
+      "minecraft:mob/spider/say4"
+    ]
+  },
+  "entity.eraser.death": {
+    "subtitle": "spectrum.subtitles.entity.eraser.death",
+    "sounds": [
+      "minecraft:mob/spider/death"
+    ]
+  },
+  "entity.eraser.step": {
+    "subtitle": "spectrum.subtitles.entity.eraser.step",
+    "sounds": [
+      "minecraft:mob/spider/step1",
+      "minecraft:mob/spider/step2",
+      "minecraft:mob/spider/step3",
+      "minecraft:mob/spider/step4"
+    ]
+  },
+
   "entity.preservation_turret.ambient": {
     "subtitle": "spectrum.subtitles.entity.preservation_turret.ambient",
     "sounds": [

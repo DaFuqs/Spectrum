@@ -181,22 +181,22 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 	
 	@Override
 	protected SoundEvent getAmbientSound() {
-		return SoundEvents.ENTITY_PIG_AMBIENT;
+		return SpectrumSoundEvents.ENTITY_EGG_LAYING_WOOLY_PIG_AMBIENT;
 	}
 	
 	@Override
 	protected SoundEvent getHurtSound(DamageSource source) {
-		return SoundEvents.ENTITY_PIG_HURT;
+		return SpectrumSoundEvents.ENTITY_EGG_LAYING_WOOLY_HURT;
 	}
 	
 	@Override
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.ENTITY_PIG_DEATH;
+		return SpectrumSoundEvents.ENTITY_EGG_LAYING_WOOLY_DEATH;
 	}
 	
 	@Override
 	protected void playStepSound(BlockPos pos, BlockState state) {
-		this.playSound(SoundEvents.ENTITY_PIG_STEP, 0.15F, 1.0F);
+		this.playSound(SpectrumSoundEvents.ENTITY_EGG_LAYING_WOOLY_STEP, 0.15F, 1.0F);
 	}
 	
 	@Override

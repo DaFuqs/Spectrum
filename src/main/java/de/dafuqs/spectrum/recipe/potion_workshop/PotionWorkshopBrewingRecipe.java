@@ -150,35 +150,54 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		return recipeData.baseYield() + potionMod.yield;
 	}
 	
-	public ItemStack getPotion(ItemStack stack, PotionMod potionMod, PotionWorkshopBrewingRecipe lastRecipe, Random random) {
-		List<InkPoweredStatusEffectInstance> effects = generateEffects(stack, potionMod, lastRecipe, random);
-		
+	public List<ItemStack> getPotions(PotionMod potionMod, PotionWorkshopBrewingRecipe lastRecipe, Random random, int brewedAmount) {
 		// potion type
 		ItemStack itemStack;
 		if (potionMod.makeSplashing) {
-			itemStack = potionMod.makeLingering ? new ItemStack(Items.LINGERING_POTION) : new ItemStack(Items.SPLASH_POTION);
+			if (potionMod.makeLingering) {
+				itemStack = new ItemStack(Items.LINGERING_POTION);
+				if (potionMod.negateDecreasingDuration) {
+					potionMod.durationMultiplier += 3;
+				}
+			} else {
+				itemStack = new ItemStack(Items.SPLASH_POTION);
+			}
 		} else {
 			itemStack = new ItemStack(Items.POTION);
 		}
 		
+		List<ItemStack> results = new ArrayList<>();
+		for (int i = 0; i < brewedAmount; i++) {
+			results.add(getPotion(itemStack, potionMod, lastRecipe, random));
+		}
+		
+		return results;
+	}
+	
+	public ItemStack getPotion(ItemStack stack, PotionMod potionMod, PotionWorkshopBrewingRecipe lastRecipe, Random random) {
+		List<InkPoweredStatusEffectInstance> effects = generateEffects(stack, potionMod, lastRecipe, random);
+		
 		// apply to potion
 		if (effects.isEmpty()) {
 			// no effects: thick potion
-			PotionUtil.setPotion(itemStack, Potions.THICK);
+			PotionUtil.setPotion(stack, Potions.THICK);
 		} else {
-			PotionUtil.setPotion(itemStack, SpectrumPotions.PIGMENT_POTION);
+			PotionUtil.setPotion(stack, SpectrumPotions.PIGMENT_POTION);
 		}
-		setCustomPotionEffects(itemStack, potionMod, effects);
+		setCustomPotionEffects(stack, potionMod, effects);
 		
 		if (potionMod.additionalDrinkDurationTicks != 0) {
-			NbtCompound compound = itemStack.getOrCreateNbt();
-			itemStack.setNbt(compound);
+			NbtCompound compound = stack.getOrCreateNbt();
+			stack.setNbt(compound);
 		}
 		
-		return itemStack;
+		return stack;
 	}
 	
 	public ItemStack getTippedArrows(ItemStack stack, PotionMod potionMod, PotionWorkshopBrewingRecipe lastRecipe, int amount, Random random) {
+		if (potionMod.negateDecreasingDuration) {
+			potionMod.durationMultiplier += 7;
+		}
 		List<InkPoweredStatusEffectInstance> effects = generateEffects(stack, potionMod, lastRecipe, random);
 		
 		ItemStack itemStack = new ItemStack(Items.TIPPED_ARROW, amount);
@@ -223,7 +242,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		addEffect(potionMod, random, effects); // main effect
 		addLastEffect(baseIngredient, potionMod, lastRecipe, random, effects);
 		addAdditionalEffects(baseIngredient, potionMod, random, effects);
-		addRandomEffects(potionMod, random, effects);
+		addRandomEffects(baseIngredient, potionMod, random, effects);
 		
 		// split durations, if set
 		if (potionMod.potentDecreasingEffect) {
@@ -269,63 +288,53 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		}
 	}
 	
-	private void addRandomEffects(PotionMod potionMod, Random random, List<InkPoweredStatusEffectInstance> effects) {
+	private void addRandomEffects(ItemStack baseIngredient, PotionMod potionMod, Random random, List<InkPoweredStatusEffectInstance> effects) {
 		// random positive ones
-		if (!positiveRecipes.isEmpty()) {
-			int additionalPositiveEffects = Support.getIntFromDecimalWithChance(potionMod.additionalRandomPositiveEffectCount, random);
-			for (int i = 0; i < additionalPositiveEffects; i++) {
-				int r;
-				int tries = 0;
-				PotionWorkshopBrewingRecipe selectedRecipe;
-				do {
-					r = random.nextInt(positiveRecipes.size());
-					selectedRecipe = positiveRecipes.get(r);
-					if (containsEffect(effects, selectedRecipe.recipeData.statusEffect())) {
-						selectedRecipe = null;
-						tries++;
-					}
-				} while (selectedRecipe == null && tries < 5);
-				if (selectedRecipe != null) {
-					InkPoweredStatusEffectInstance statusEffectInstance = selectedRecipe.recipeData.getStatusEffectInstance(potionMod, random);
-					if (statusEffectInstance != null) {
-						effects.add(statusEffectInstance);
-					}
+		int additionalPositiveEffectCount = Support.getIntFromDecimalWithChance(potionMod.additionalRandomPositiveEffectCount, random);
+		if (additionalPositiveEffectCount > 0) {
+			List<PotionWorkshopBrewingRecipe> randomlySelectedRecipes = pullRandomMatchingRecipes(positiveRecipes, additionalPositiveEffectCount, effects, baseIngredient);
+			for (PotionWorkshopBrewingRecipe recipe : randomlySelectedRecipes) {
+				InkPoweredStatusEffectInstance statusEffectInstance = recipe.recipeData.getStatusEffectInstance(potionMod, random);
+				if (statusEffectInstance != null) {
+					effects.add(statusEffectInstance);
 				}
 			}
 		}
 		
 		// random negative ones
-		if (!negativeRecipes.isEmpty()) {
-			int additionalNegativeEffects = Support.getIntFromDecimalWithChance(potionMod.additionalRandomNegativeEffectCount, random);
-			for (int i = 0; i < additionalNegativeEffects; i++) {
-				int r;
-				int tries = 0;
-				PotionWorkshopBrewingRecipe selectedRecipe;
-				
-				do {
-					r = random.nextInt(negativeRecipes.size());
-					selectedRecipe = negativeRecipes.get(r);
-					
-					if (potionMod.makeEffectsPositive) {
-						selectedRecipe = this;
-						PotionWorkshopBrewingRecipe positiveRecipe = getPositiveRecipe(recipeData.statusEffect());
-						if (positiveRecipe != null) {
-							selectedRecipe = positiveRecipe;
-						}
-					}
-					if (containsEffect(effects, selectedRecipe.recipeData.statusEffect())) {
-						selectedRecipe = null;
-						tries++;
-					}
-				} while (selectedRecipe == null && tries < 5);
-				if (selectedRecipe != null) {
-					InkPoweredStatusEffectInstance statusEffectInstance = selectedRecipe.recipeData.getStatusEffectInstance(potionMod, random);
-					if (statusEffectInstance != null) {
-						effects.add(statusEffectInstance);
-					}
+		int additionalNegativeEffectCount = Support.getIntFromDecimalWithChance(potionMod.additionalRandomNegativeEffectCount, random);
+		if (additionalNegativeEffectCount > 0) {
+			List<PotionWorkshopBrewingRecipe> randomlySelectedRecipes = pullRandomMatchingRecipes(potionMod.makeEffectsPositive ? positiveRecipes : negativeRecipes, additionalNegativeEffectCount, effects, baseIngredient);
+			for (PotionWorkshopBrewingRecipe recipe : randomlySelectedRecipes) {
+				InkPoweredStatusEffectInstance statusEffectInstance = recipe.recipeData.getStatusEffectInstance(potionMod, random);
+				if (statusEffectInstance != null) {
+					effects.add(statusEffectInstance);
 				}
 			}
 		}
+	}
+	
+	private List<PotionWorkshopBrewingRecipe> pullRandomMatchingRecipes(List<PotionWorkshopBrewingRecipe> list, int amount, List<InkPoweredStatusEffectInstance> effects, ItemStack baseIngredient) {
+		List<PotionWorkshopBrewingRecipe> results = new ArrayList<>();
+		List<PotionWorkshopBrewingRecipe> shuffledPositiveRecipes = new ArrayList<>(list);
+		Collections.shuffle(shuffledPositiveRecipes);
+		
+		int i = 0;
+		for (PotionWorkshopBrewingRecipe recipe : shuffledPositiveRecipes) {
+			if (i == amount) {
+				break;
+			}
+			if (!recipe.isValidBaseIngredient(baseIngredient)) {
+				continue;
+			}
+			if (containsEffect(effects, recipe.recipeData.statusEffect())) {
+				continue;
+			}
+			results.add(recipe);
+			i++;
+		}
+		
+		return results;
 	}
 	
 	private boolean containsEffect(List<InkPoweredStatusEffectInstance> effects, StatusEffect statusEffect) {

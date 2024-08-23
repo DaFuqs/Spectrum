@@ -14,7 +14,10 @@
   "y": 0,
   "pages": [
     {
-      "type": "modonomicon:text",
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:amaranth_grains"
+      },
       "title": "block.spectrum.amaranth",
       "text": "book.spectrum.guidebook.amaranth.page0.text"
     },

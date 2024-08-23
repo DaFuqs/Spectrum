@@ -93,7 +93,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 		}
 		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
 		if (nbt.contains("SelectedColor", NbtElement.STRING_TYPE)) {
-			this.selectedColor = InkColor.ofIdString(nbt.getString("SelectedColor"));
+			this.selectedColor = InkColor.ofIdString(nbt.getString("SelectedColor")).orElse(InkColors.CYAN);
 		}
 	}
 	

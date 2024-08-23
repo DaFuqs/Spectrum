@@ -1,6 +1,8 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube_bottom_top",
   "textures": {
-    "all": "spectrum:block/polished_basal_marble"
+    "bottom": "spectrum:block/polished_basal_marble_bottom",
+    "side": "spectrum:block/polished_basal_marble_side",
+    "top": "spectrum:block/polished_basal_marble_top"
   }
 }

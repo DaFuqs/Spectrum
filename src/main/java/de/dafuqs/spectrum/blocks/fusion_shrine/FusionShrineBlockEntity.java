@@ -134,7 +134,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		}
 		
 		FusionShrineRecipe recipe = fusionShrineBlockEntity.currentRecipe;
-		if (recipe == null || !recipe.getFluidInput().equals(fusionShrineBlockEntity.fluidStorage.variant.getFluid())) {
+		if (recipe == null) {
 			return;
 		}
 		
@@ -271,6 +271,10 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
             return FluidVariant.blank();
         }
     }
+	
+	public @NotNull SingleVariantStorage<FluidVariant> getFluidStorage() {
+		return this.fluidStorage;
+	}
 
     private void setLightForFluid(World world, BlockPos blockPos, Fluid fluid) {
 		int fluidLight = SpectrumEventListeners.getFluidLuminance(fluid);

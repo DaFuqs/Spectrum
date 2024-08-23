@@ -15,8 +15,7 @@ import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
-import net.minecraft.world.World;
-
+import net.minecraft.world.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -34,48 +33,49 @@ public abstract class ProjectileEntityMixin {
 		// if the target has a Puff circlet equipped
 		// protect it from this projectile
 		ProjectileEntity thisEntity = (ProjectileEntity) (Object) this;
-		World world = thisEntity.getWorld();
-		if (!world.isClient) {
-			Entity entity = entityHitResult.getEntity();
-			if (entity instanceof LivingEntity livingEntity) {
-				boolean protect = false;
-				
-				StatusEffectInstance reboundInstance = livingEntity.getStatusEffect(SpectrumStatusEffects.PROJECTILE_REBOUND);
-				if (reboundInstance != null && entity.getWorld().getRandom().nextFloat() < SpectrumStatusEffects.PROJECTILE_REBOUND_CHANCE_PER_LEVEL * reboundInstance.getAmplifier()) {
-					protect = true;
-				} else {
-					Optional<TrinketComponent> component = TrinketsApi.getTrinketComponent(livingEntity);
-					if (component.isPresent()) {
-						List<Pair<SlotReference, ItemStack>> equipped = component.get().getEquipped(SpectrumItems.PUFF_CIRCLET);
-						if (!equipped.isEmpty()) {
-							var charges = AzureDikeProvider.getAzureDikeCharges(livingEntity);
-							if (charges > 0) {
-								AzureDikeProvider.absorbDamage(livingEntity, PuffCircletItem.PROJECTILE_DEFLECTION_COST);
-								protect = true;
+		if (!thisEntity.getType().isIn(SpectrumEntityTypeTags.UNDEFLECTABLE)) {
+			World world = thisEntity.getWorld();
+			if (!world.isClient) {
+				Entity entity = entityHitResult.getEntity();
+				if (entity instanceof LivingEntity livingEntity) {
+					boolean protect = false;
+					
+					StatusEffectInstance reboundInstance = livingEntity.getStatusEffect(SpectrumStatusEffects.PROJECTILE_REBOUND);
+					if (reboundInstance != null && entity.getWorld().getRandom().nextFloat() < SpectrumStatusEffects.PROJECTILE_REBOUND_CHANCE_PER_LEVEL * reboundInstance.getAmplifier()) {
+						protect = true;
+					} else {
+						Optional<TrinketComponent> component = TrinketsApi.getTrinketComponent(livingEntity);
+						if (component.isPresent()) {
+							List<Pair<SlotReference, ItemStack>> equipped = component.get().getEquipped(SpectrumItems.PUFF_CIRCLET);
+							if (!equipped.isEmpty()) {
+								var charges = AzureDikeProvider.getAzureDikeCharges(livingEntity);
+								if (charges > 0) {
+									AzureDikeProvider.absorbDamage(livingEntity, PuffCircletItem.PROJECTILE_DEFLECTION_COST);
+									protect = true;
+								}
 							}
 						}
 					}
-				}
-				
-				if (protect) {
-					this.setVelocity(0, 0, 0, 0, 0);
 					
-					SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, thisEntity.getPos(),
-							SpectrumParticleTypes.WHITE_CRAFTING, 6,
-							new Vec3d(0, 0, 0),
-							new Vec3d(thisEntity.getX() - livingEntity.getPos().x, thisEntity.getY() - livingEntity.getPos().y, thisEntity.getZ() - livingEntity.getPos().z));
-					SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, thisEntity.getPos(),
-							SpectrumParticleTypes.BLUE_CRAFTING, 6,
-							new Vec3d(0, 0, 0),
-							new Vec3d(thisEntity.getX() - livingEntity.getPos().x, thisEntity.getY() - livingEntity.getPos().y, thisEntity.getZ() - livingEntity.getPos().z));
+					if (protect) {
+						this.setVelocity(0, 0, 0, 0, 0);
+						
+						SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, thisEntity.getPos(),
+								SpectrumParticleTypes.WHITE_CRAFTING, 6,
+								new Vec3d(0, 0, 0),
+								new Vec3d(thisEntity.getX() - livingEntity.getPos().x, thisEntity.getY() - livingEntity.getPos().y, thisEntity.getZ() - livingEntity.getPos().z));
+						SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, thisEntity.getPos(),
+								SpectrumParticleTypes.BLUE_CRAFTING, 6,
+								new Vec3d(0, 0, 0),
+								new Vec3d(thisEntity.getX() - livingEntity.getPos().x, thisEntity.getY() - livingEntity.getPos().y, thisEntity.getZ() - livingEntity.getPos().z));
+						
+						world.playSound(null, thisEntity.getBlockPos(), SpectrumSoundEvents.PUFF_CIRCLET_PFFT, SoundCategory.PLAYERS, 1.0F, 1.0F);
+						ci.cancel();
+					}
 					
-					world.playSound(null, thisEntity.getBlockPos(), SpectrumSoundEvents.PUFF_CIRCLET_PFFT, SoundCategory.PLAYERS, 1.0F, 1.0F);
-					ci.cancel();
 				}
-				
 			}
 		}
 	}
-	
 	
 }

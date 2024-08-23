@@ -1,30 +1,21 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.api.item.SleepAlteringItem;
-import de.dafuqs.spectrum.api.render.SlotBackgroundEffectProvider;
-import de.dafuqs.spectrum.cca.MiscPlayerDataComponent;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.UseAction;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.api.render.*;
+import de.dafuqs.spectrum.cca.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class SoothingBouquetItem extends Item implements SleepAlteringItem, SlotBackgroundEffectProvider {
 
@@ -44,10 +35,11 @@ public class SoothingBouquetItem extends Item implements SleepAlteringItem, Slot
         if (user instanceof PlayerEntity player) {
             var component = MiscPlayerDataComponent.get(player);
 
-            component.setSleepTimers(50, 20 * 5, 0);
+            component.setSleepTimers(50, 20 * 6, 0);
             component.setLastSleepItem(this);
-
-            player.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.CALMING, 20 * 10, 4));
+			
+			player.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.CALMING, 20 * 10, 4)); // TODO: this should probably be a food component, so it shows up as tooltip
+            player.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.SOMNOLENCE, 20 * 10, 4));
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 50, 3));
         }
         else {

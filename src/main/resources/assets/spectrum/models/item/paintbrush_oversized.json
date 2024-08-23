@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:item/handheld_oversized",
+  "parent": "spectrum:item/handheld_oversized_high_grip",
   "textures": {
     "layer0": "spectrum:item/paintbrush_oversized",
     "layer1": "spectrum:item/paintbrush_oversized_tint",

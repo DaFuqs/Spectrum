@@ -118,10 +118,6 @@ public class InkPoweredStatusEffectInstance {
 					tooltip.add(Text.translatable("item.spectrum.potion.tooltip.unidentifiable"));
 					continue;
 				}
-				if (entry.isIncurable()) {
-					tooltip.add(Text.translatable("item.spectrum.potion.tooltip.incurable"));
-					continue;
-				}
 
 				StatusEffectInstance effect = entry.getStatusEffectInstance();
 				InkCost cost = entry.getInkCost();
@@ -135,6 +131,9 @@ public class InkPoweredStatusEffectInstance {
 				}
 				mutableText.formatted(effect.getEffectType().getCategory().getFormatting());
 				mutableText.append(Text.translatable("spectrum.tooltip.ink_cost", Support.getShortenedNumberString(cost.getCost()), cost.getColor().getInkName()).formatted(Formatting.GRAY));
+				if (entry.isIncurable()) {
+					mutableText.append(Text.translatable("item.spectrum.potion.tooltip.incurable"));
+				}
 				tooltip.add(mutableText);
 				
 				Map<EntityAttribute, EntityAttributeModifier> map = effect.getEffectType().getAttributeModifiers();

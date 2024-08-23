@@ -56,21 +56,11 @@ public class AzureDikeAmuletItem extends InkDrainTrinketItem implements AzureDik
 		}
 	}
 	
-	@Override
-	public float azureDikeRechargeBonusTicks(ItemStack stack) {
-		return 0;
-	}
-	
-	@Override
-	public float rechargeBonusAfterDamageTicks(ItemStack stack) {
-		return 0;
-	}
-	
 	public int getDike(long storedInk) {
 		if (storedInk < 100) {
 			return 0;
 		} else {
-			return 1 + (int) (Math.log(storedInk / 100.0f) / Math.log(8));
+			return 2 + 2 * (int) (Math.log(storedInk / 100.0f) / Math.log(8));
 		}
 	}
 	

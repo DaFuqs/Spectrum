@@ -9,7 +9,7 @@
     "description": {
       "translate": "advancements.spectrum.spectrum_endgame.description"
     },
-    "background": "spectrum:textures/gui/advancement_background_lategame.png"
+    "background": "spectrum:textures/gui/advancement_background_endgame.png"
   },
   "criteria": {
     "built_complex_pedestal_structure": {

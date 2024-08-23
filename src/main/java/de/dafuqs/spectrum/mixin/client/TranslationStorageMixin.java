@@ -24,6 +24,8 @@ public class TranslationStorageMixin {
         Map<String, String> builder = new HashMap<>(translations);
         builder.put("block.spectrum.crystallarieum", getCrystallarieuaeuieueum());
         builder.put("item.spectrum.ring_of_pursuit", "Ring of Fursuit");
+        builder.put("item.spectrum.draconic_twinsword", "Draconic Winblade");
+        builder.put("item.spectrum.dragon_talon", "Sellsword Winblades");
 
         this.translations = builder;
     }

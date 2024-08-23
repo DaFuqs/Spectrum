@@ -31,6 +31,11 @@ public class SpectrumSkullBlock extends SkullBlock {
 		ENTITY_TYPE_TO_SKULL_TYPE.put(skullType.getEntityType(), skullType);
 	}
 	
+	@Override
+	public SpectrumSkullType getSkullType() {
+		return (SpectrumSkullType) super.getSkullType();
+	}
+	
 	public static Optional<EntityType<?>> getEntityTypeOfSkullStack(ItemStack itemStack) {
 		Item item = itemStack.getItem();
 		if (item instanceof SpectrumSkullBlockItem spectrumSkullBlockItem) {

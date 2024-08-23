@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.pastel_network.nodes;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.decoration.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.progression.*;
@@ -41,7 +42,7 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements BlockEntityP
 	
 	@Override
 	public BlockRenderType getRenderType(BlockState state) {
-		return BlockRenderType.ENTITYBLOCK_ANIMATED;
+		return SpectrumCommon.CONFIG.MinimalNodes ? BlockRenderType.ENTITYBLOCK_ANIMATED : BlockRenderType.MODEL;
 	}
 	
 	@Override

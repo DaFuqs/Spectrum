@@ -9,13 +9,13 @@
   "hide_while_locked ": true,
   "parents": [
     {
-      "entry": "spectrum:dimension/razor_edge"
+      "entry": "spectrum:dimension/howling_spires"
     }
   ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 0,
-  "y": 0,
+  "x": 6,
+  "y": 10,
   "pages": [
     {
       "type": "modonomicon:spotlight",
@@ -23,16 +23,31 @@
         "item": "spectrum:basal_marble"
       },
       "title": "block.spectrum.basal_marble",
-      "text": "book.spectrum.guidebook.basal_marble.about.text"
+      "text": "book.spectrum.guidebook.basal_marble.page0.text"
     },
     {
-      "type": "spectrum:anvil_crushing",
-      "title1": "container.spectrum.rei.anvil_crushing.title"
-      <--
-      add
-      collection
-      "recipe_id_1": "spectrum:anvil_crushing/spectrum_pulverising/quartz_from_rock_crystal",
-      "text": "book.spectrum.guidebook.basal_marble.crushing.text"
+      "type": "spectrum:collection",
+      "title": "book.spectrum.guidebook.all_variants",
+      "items": [
+        "spectrum:basal_marble",
+        "spectrum:basal_marble_stairs",
+        "spectrum:basal_marble_slab",
+        "spectrum:basal_marble_wall",
+        "spectrum:polished_basal_marble",
+        "spectrum:polished_basal_marble_stairs",
+        "spectrum:polished_basal_marble_slab",
+        "spectrum:polished_basal_marble_wall",
+        "spectrum:basal_marble_pillar",
+        "spectrum:basal_marble_tiles",
+        "spectrum:basal_marble_tile_stairs",
+        "spectrum:basal_marble_tile_slab",
+        "spectrum:basal_marble_tile_wall",
+        "spectrum:basal_marble_bricks",
+        "spectrum:basal_marble_brick_stairs",
+        "spectrum:basal_marble_brick_slab",
+        "spectrum:basal_marble_brick_wall"
+      ],
+      "text": "book.spectrum.guidebook.basal_marble.page1.text"
     }
   ]
 }

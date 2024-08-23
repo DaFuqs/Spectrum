@@ -16,9 +16,13 @@ public interface AzureDikeItem {
 	
 	int maxAzureDike(ItemStack stack);
 	
-	float azureDikeRechargeBonusTicks(ItemStack stack);
+	default float azureDikeRechargeSpeedModifier(ItemStack stack) {
+		return 1.0F;
+	}
 	
-	float rechargeBonusAfterDamageTicks(ItemStack stack);
+	default float rechargeDelayAfterDamageModifier(ItemStack stack) {
+		return 1.0F;
+	}
 	
 	default void recalculate(LivingEntity livingEntity) {
 		World world = livingEntity.getWorld();
@@ -27,22 +31,22 @@ public interface AzureDikeItem {
 			
 			Optional<TrinketComponent> trinketComponent = TrinketsApi.getTrinketComponent(livingEntity);
 			if (trinketComponent.isPresent()) {
-				int maxProtection = 0;
-				int rechargeRateDefaultBonus = 0;
-				int rechargeTicksAfterDamageBonus = 0;
+				int maxAzureDike = 0;
+				float rechargeSpeedModifier = 1F;
+				float rechargeDelayAfterDamageModifier = 1F;
 				for (Pair<SlotReference, ItemStack> pair : trinketComponent.get().getAllEquipped()) {
 					ItemStack stack = pair.getRight();
 					if (pair.getRight().getItem() instanceof AzureDikeItem azureDikeItem) {
-						maxProtection += azureDikeItem.maxAzureDike(stack);
-						rechargeRateDefaultBonus += azureDikeItem.azureDikeRechargeBonusTicks(stack);
-						rechargeTicksAfterDamageBonus += azureDikeItem.rechargeBonusAfterDamageTicks(stack);
+						maxAzureDike += azureDikeItem.maxAzureDike(stack);
+						rechargeSpeedModifier += azureDikeItem.azureDikeRechargeSpeedModifier(stack) - 1;
+						rechargeDelayAfterDamageModifier += azureDikeItem.rechargeDelayAfterDamageModifier(stack) - 1;
 					}
 				}
 				
-				int rechargeRateDefault = Math.max(1, DefaultAzureDikeComponent.BASE_RECHARGE_RATE_DELAY_TICKS_DEFAULT - rechargeRateDefaultBonus);
-				int rechargeTicksAfterDamage = Math.max(1, DefaultAzureDikeComponent.BASE_RECHARGE_RATE_DELAY_TICKS_AFTER_DAMAGE - rechargeTicksAfterDamageBonus);
+				int ticksPerPointOfRecharge = (int) Math.max(1, DefaultAzureDikeComponent.BASE_RECHARGE_DELAY_TICKS / rechargeSpeedModifier);
+				int rechargeDelayTicksAfterGettingHit = (int) Math.max(1, DefaultAzureDikeComponent.BASE_RECHARGE_DELAY_TICKS_AFTER_DAMAGE / rechargeDelayAfterDamageModifier);
 				
-				azureDikeComponent.set(maxProtection, rechargeRateDefault, rechargeTicksAfterDamage, false);
+				azureDikeComponent.set(maxAzureDike, ticksPerPointOfRecharge, rechargeDelayTicksAfterGettingHit, false);
 			}
 		}
 	}

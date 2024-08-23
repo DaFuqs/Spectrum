@@ -9,7 +9,7 @@
   "hide_while_locked ": true,
   "parents": [
     {
-      "entry": "spectrum:general/midnight_aberration"
+      "entry": "spectrum:general/the_perfect_compound"
     }
   ],
   "background_u_index": 0,
@@ -24,17 +24,6 @@
       "title": "block.spectrum.midnight_solution"
     },
     {
-      "type": "modonomicon:spotlight",
-      "item": {
-        "item": "spectrum:black_materia"
-      },
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/break_black_materia"
-      },
-      "text": "book.spectrum.guidebook.midnight_solution.page3.text"
-    },
-    {
       "type": "spectrum:midnight_solution_converting",
       "title1": "book.spectrum.guidebook.item_conversion",
       "recipe_id_1": "spectrum:midnight_solution_converting/blackstone",
@@ -44,6 +33,17 @@
       "type": "modonomicon:text",
       "title": "book.spectrum.guidebook.midnight_solution.page5.title",
       "text": "book.spectrum.guidebook.midnight_solution.page5.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:black_materia"
+      },
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/break_black_materia"
+      },
+      "text": "book.spectrum.guidebook.midnight_solution.page3.text"
     }
   ]
 }

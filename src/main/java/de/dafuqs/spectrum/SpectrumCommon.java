@@ -79,6 +79,7 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumRegistries.register();
 		InkColors.register();
 		InkColorMixes.register();
+		SpectrumEntityAttributes.register();
 		
 		logInfo("Registering Banner Patterns...");
 		SpectrumBannerPatterns.register();
@@ -230,7 +231,7 @@ public class SpectrumCommon implements ModInitializer {
 		//noinspection UnstableApiUsage
 		FluidStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.fluidStorage, SpectrumBlockEntities.FUSION_SHRINE);
 		//noinspection UnstableApiUsage
-		FluidStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.fluidStorage, SpectrumBlockEntities.TITRATION_BARREL);
+		FluidStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.getFluidStorage(), SpectrumBlockEntities.TITRATION_BARREL);
 		
 		// Builtin Resource Packs
 		logInfo("Registering Builtin Resource Packs...");

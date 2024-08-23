@@ -1,13 +1,10 @@
 {
 	"variants": {
-		"yield=none": {
+      "crystals=false": {
 			"model": "spectrum:block/white_spirit_sallow_vines_head_none"
 		},
-		"yield=normal": {
-			"model": "spectrum:block/white_spirit_sallow_vines_head_normal"
-		},
-		"yield=lucid": {
-			"model": "spectrum:block/white_spirit_sallow_vines_head_lucid"
+      "crystals=true": {
+        "model": "spectrum:block/white_spirit_sallow_vines_head_crystals"
 		}
 	}
 }

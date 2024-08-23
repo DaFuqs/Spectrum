@@ -1,0 +1,37 @@
+{
+  "name": "book.spectrum.guidebook.the_perfect_compound.name",
+  "description": "book.spectrum.guidebook.the_perfect_compound.description",
+  "icon": "spectrum:midnight_aberration",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/midnight_aberration"
+  },
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:general/neolith"
+    },
+    {
+      "entry": "spectrum:general/liquid_crystal"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 1,
+  "x": 14,
+  "y": 1,
+  "turnin": "spectrum:midgame/create_midnight_aberration",
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.the_perfect_compound.name",
+      "text": "book.spectrum.guidebook.the_perfect_compound.page0.text"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title1": "container.spectrum.rei.fusion_recipe",
+      "recipe_id_1": "spectrum:fusion_shrine/midnight_aberration",
+      "text": "book.spectrum.guidebook.the_perfect_compound.page1.text"
+    }
+  ]
+}

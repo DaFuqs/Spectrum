@@ -69,10 +69,13 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
             case GATHER -> GATHER;
         };
 
+        var minimal = SpectrumCommon.CONFIG.MinimalNodes;
+        var heightMod = minimal ? 0.7F : 0.5F;
+
         switch (node.getState()) {
             case CONNECTED -> {
                 node.rotationTarget = mod(time / (Math.PI * 3));
-                node.heightTarget = (float) Math.sin(time / 19F) / 10F + 0.75F;
+                node.heightTarget = (float) Math.sin(time / 19F) / 10F + heightMod;
                 node.alphaTarget = 1F;
             }
             case DISCONNECTED -> {
@@ -81,12 +84,12 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
             }
             case ACTIVE -> {
                 node.rotationTarget = mod(time / (Math.PI * 1));
-                node.heightTarget = (float) Math.sin(time / 19F) / 10F + 0.75F;
+                node.heightTarget = (float) Math.sin(time / 19F) / 10F + heightMod;
                 node.alphaTarget = 1F;
             }
             case INACTIVE -> {
                 node.rotationTarget = mod(time / (Math.PI * 7));
-                node.heightTarget = (float) Math.sin(time / 19F) / 20F + 0.45F;
+                node.heightTarget = (float) Math.sin(time / 19F) / 20F + heightMod / 2F;
                 node.alphaTarget = 0.275F;
             }
         };
@@ -117,14 +120,19 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
 
         matrices.translate(0, -0.5, 0);
         
-        float quarterCrystalRotation = node.crystalRotation / 2;
-        matrices.multiply(RotationAxis.POSITIVE_Y.rotation(quarterCrystalRotation));
-        var rootBuffer = vertexConsumers.getBuffer(RenderLayer.getEntityCutout(BASE));
-        base.render(matrices, rootBuffer, light, overlay);
-        
-        matrices.multiply(RotationAxis.POSITIVE_Y.rotation(quarterCrystalRotation * 2));
-        
-        matrices.scale(0.75F, 0.75F, 0.75F);
+        if (minimal) {
+            float quarterCrystalRotation = node.crystalRotation / 2;
+            matrices.multiply(RotationAxis.POSITIVE_Y.rotation(quarterCrystalRotation));
+            var rootBuffer = vertexConsumers.getBuffer(RenderLayer.getEntityCutout(BASE));
+            base.render(matrices, rootBuffer, light, overlay);
+
+            matrices.multiply(RotationAxis.POSITIVE_Y.rotation(quarterCrystalRotation * 2));
+
+            matrices.scale(0.6F, 0.6F, 0.6F);
+        }
+        else {
+            matrices.multiply(RotationAxis.POSITIVE_Y.rotation(node.crystalRotation));
+        }
         
         var ringHeight = node.crystalHeight - 0.3F;
         var innerRing = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucentEmissive(INNER_RING));

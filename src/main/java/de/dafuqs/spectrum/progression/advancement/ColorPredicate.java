@@ -21,7 +21,7 @@ public class ColorPredicate {
 	
 	public static ColorPredicate fromJson(@Nullable JsonElement json) {
 		if (json != null && !json.isJsonNull() && json instanceof JsonPrimitive) {
-			InkColor color = InkColor.ofIdString(json.getAsString());
+			InkColor color = InkColor.ofIdString(json.getAsString()).orElseThrow();
 			return new ColorPredicate(color);
 		} else {
 			return ANY;

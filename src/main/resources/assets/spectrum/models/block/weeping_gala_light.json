@@ -1,8 +1,10 @@
 {
-  "parent": "spectrum:templates/multilayer_light",
+  "parent": "spectrum:templates/base_trans_light_core",
   "textures": {
-    "top": "spectrum:block/weeping_gala_pillar_top",
-    "side": "spectrum:block/weeping_gala_light",
-    "inside": "spectrum:block/weeping_gala_light_inside"
+    "case": "spectrum:block/weeping_gala_light",
+    "base": "spectrum:block/weeping_gala_light_base",
+    "glass": "spectrum:block/weeping_gala_light_glass",
+    "shell": "spectrum:block/weeping_gala_light_shell",
+    "ends": "spectrum:block/weeping_gala_light_ends"
   }
 }

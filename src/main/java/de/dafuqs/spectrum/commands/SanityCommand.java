@@ -9,6 +9,7 @@ import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.blocks.deeper_down.flora.*;
 import de.dafuqs.spectrum.blocks.gemstone.*;
 import de.dafuqs.spectrum.enchantments.*;
 import de.dafuqs.spectrum.items.*;
@@ -24,6 +25,7 @@ import net.minecraft.advancement.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.*;
+import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.loot.*;
 import net.minecraft.recipe.*;
@@ -98,6 +100,9 @@ public class SanityCommand {
 				}
 				if (block instanceof SpectrumBuddingBlock) {
 					continue; // does not have any drop by default
+				}
+				if (block instanceof WeepingGalaFrondsBlock) {
+					continue; // Fronds do not drop anything by default
 				}
 				
 				BlockState blockState = entry.getValue().getDefaultState();
@@ -179,7 +184,7 @@ public class SanityCommand {
 		recipeManager.keys().forEach(identifier -> {
 			Optional<? extends Recipe<?>> recipe = recipeManager.get(identifier);
 			if (recipe.isPresent()) {
-				if (recipe.get() instanceof GatedSpectrumRecipe gatedSpectrumRecipe) {
+				if (recipe.get() instanceof GatedSpectrumRecipe<?> gatedSpectrumRecipe) {
 					String group = gatedSpectrumRecipe.getGroup();
 					if (group == null) {
 						SpectrumCommon.logWarning("Recipe with null group found! :" + gatedSpectrumRecipe.getId());
@@ -428,9 +433,9 @@ public class SanityCommand {
 
 		return 0;
 	}
-
-	private static <R extends GatedRecipe> void testRecipeUnlocks(RecipeType<R> recipeType, String name, RecipeManager recipeManager, ServerAdvancementLoader advancementLoader) {
-		for (GatedRecipe recipe : recipeManager.listAllOfType(recipeType)) {
+	
+	private static <R extends GatedRecipe<C>, C extends Inventory> void testRecipeUnlocks(RecipeType<R> recipeType, String name, RecipeManager recipeManager, ServerAdvancementLoader advancementLoader) {
+		for (GatedRecipe<C> recipe : recipeManager.listAllOfType(recipeType)) {
 			Identifier advancementIdentifier = recipe.getRequiredAdvancementIdentifier();
 			if (advancementIdentifier != null && advancementLoader.get(advancementIdentifier) == null) {
 				SpectrumCommon.logWarning("[SANITY: " + name + " Recipe Unlocks] Advancement '" + recipe.getRequiredAdvancementIdentifier() + "' in recipe '" + recipe.getId() + "' does not exist");
@@ -438,8 +443,8 @@ public class SanityCommand {
 		}
 	}
 	
-	private static <R extends GatedRecipe> void testIngredientsAndOutputInColorRegistry(RecipeType<R> recipeType, String name, RecipeManager recipeManager, DynamicRegistryManager registryManager) {
-		for (GatedRecipe recipe : recipeManager.listAllOfType(recipeType)) {
+	private static <R extends GatedRecipe<C>, C extends Inventory> void testIngredientsAndOutputInColorRegistry(RecipeType<R> recipeType, String name, RecipeManager recipeManager, DynamicRegistryManager registryManager) {
+		for (GatedRecipe<C> recipe : recipeManager.listAllOfType(recipeType)) {
 			for (Ingredient inputIngredient : recipe.getIngredients()) {
 				for (ItemStack matchingItemStack : inputIngredient.getMatchingStacks()) {
 					if (ColorRegistry.ITEM_COLORS.getMapping(matchingItemStack.getItem()).isEmpty()) {

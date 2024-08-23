@@ -1,0 +1,33 @@
+{
+  "name": "item.spectrum.laurels_of_serenity",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/trinkets/laurels_of_serenity"
+  },
+  "icon": "spectrum:laurels_of_serenity",
+  "category": "spectrum:equipment",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:equipment/trinkets/base_trinkets",
+      "line_enabled": false
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 10,
+  "y": 6,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.laurels_of_serenity.page0.text",
+      "title": "item.spectrum.laurels_of_serenity"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title1": "container.spectrum.rei.fusion_recipe",
+      "recipe_id_1": "spectrum:fusion_shrine/trinkets/laurels_of_serenity",
+      "text": "book.spectrum.guidebook.laurels_of_serenity.page1.text"
+    }
+  ]
+}

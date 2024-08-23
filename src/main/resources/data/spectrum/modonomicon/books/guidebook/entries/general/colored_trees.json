@@ -10,7 +10,7 @@
   "hide_while_locked ": true,
   "parents": [
     {
-      "entry": "spectrum:general/color_mixing",
+      "entry": "spectrum:general/color_mixing_cmy",
       "line_reversed": true
     },
     {

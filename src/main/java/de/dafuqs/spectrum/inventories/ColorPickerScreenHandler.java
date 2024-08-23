@@ -36,7 +36,7 @@ public class ColorPickerScreenHandler extends ScreenHandler implements InkColorS
 	}
 	
 	public ColorPickerScreenHandler(int syncId, PlayerInventory playerInventory, PacketByteBuf buf) {
-		this(syncId, playerInventory, buf.readBlockPos(), buf.readBoolean() ? InkColor.ofId(buf.readIdentifier()) : null);
+		this(syncId, playerInventory, buf.readBlockPos(), buf.readBoolean() ? InkColor.ofId(buf.readIdentifier()).orElse(InkColors.CYAN) : null);
 	}
 	
 	public ColorPickerScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos readBlockPos, @Nullable InkColor selectedColor) {

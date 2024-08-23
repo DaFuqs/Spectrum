@@ -13,7 +13,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
 import net.minecraft.world.*;
 
-public class AnvilCrushingRecipe extends GatedSpectrumRecipe {
+public class AnvilCrushingRecipe extends GatedSpectrumRecipe<Inventory> {
 	
 	protected final Ingredient input;
 	protected final ItemStack output;

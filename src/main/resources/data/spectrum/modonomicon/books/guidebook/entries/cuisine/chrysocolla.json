@@ -1,0 +1,32 @@
+{
+  "name": "item.spectrum.chrysocolla",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:midgame/tap_chrysocolla"
+  },
+  "icon": "spectrum:chrysocolla",
+  "category": "spectrum:cuisine",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:cuisine/jade_wine"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 4,
+  "y": 2,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:chrysocolla"
+      },
+      "text": "book.spectrum.guidebook.chrysocolla.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.chrysocolla.page1.text"
+    }
+  ]
+}

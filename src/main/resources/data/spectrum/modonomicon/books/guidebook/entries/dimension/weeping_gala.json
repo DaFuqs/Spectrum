@@ -14,10 +14,72 @@
     }
   ],
   "background_u_index": 0,
-  "background_v_index": 4,
+  "background_v_index": 0,
   "x": 5,
-  "y": 8,
+  "y": 10,
   "pages": [
-
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:weeping_gala_sprig"
+      },
+      "text": "book.spectrum.guidebook.weeping_gala.page0.text"
+    },
+    {
+      "type": "spectrum:collection",
+      "title": "book.spectrum.guidebook.all_variants",
+      "items": [
+        "spectrum:weeping_gala_log",
+        "spectrum:stripped_weeping_gala_log",
+        "spectrum:weeping_gala_wood",
+        "spectrum:stripped_weeping_gala_wood",
+        "spectrum:weeping_gala_planks",
+        "spectrum:weeping_gala_stairs",
+        "spectrum:weeping_gala_slab",
+        "spectrum:weeping_gala_fence",
+        "spectrum:weeping_gala_fence_gate",
+        "spectrum:weeping_gala_door",
+        "spectrum:weeping_gala_trapdoor",
+        "spectrum:weeping_gala_pressure_plate",
+        "spectrum:weeping_gala_button",
+        "spectrum:weeping_gala_pillar",
+        "spectrum:weeping_gala_barrel",
+        "spectrum:weeping_gala_amphora",
+        "spectrum:weeping_gala_lantern",
+        "spectrum:weeping_gala_lamp",
+        "spectrum:weeping_gala_light"
+      ],
+      "text": "book.spectrum.guidebook.weeping_gala.page1.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id_1": "spectrum:pedestal/tier1/weeping_gala/barrel",
+      "text": "book.spectrum.guidebook.weeping_gala.barrel.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.weeping_gala.amphora.text",
+      "recipe_id_1": "spectrum:pedestal/tier1/weeping_gala/amphora"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id_1": "spectrum:pedestal/tier1/weeping_gala/lamp",
+      "text": "book.spectrum.guidebook.weeping_gala.lamp.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id_1": "spectrum:pedestal/tier1/weeping_gala/lantern",
+      "text": "book.spectrum.guidebook.weeping_gala.lantern.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id_1": "spectrum:pedestal/tier1/weeping_gala/light",
+      "text": "book.spectrum.guidebook.weeping_gala.light.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id_1": "spectrum:pedestal/tier1/weeping_gala/pillar",
+      "text": "book.spectrum.guidebook.weeping_gala.pillar.text"
+    }
   ]
 }

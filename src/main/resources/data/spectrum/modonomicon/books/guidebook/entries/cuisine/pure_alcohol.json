@@ -1,0 +1,33 @@
+{
+  "name": "item.spectrum.pure_alcohol",
+  "icon": "spectrum:pure_alcohol",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:tap_pure_alcohol"
+  },
+  "category": "spectrum:cuisine",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:cuisine/infused_beverages"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 4,
+  "y": 0,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "title": "item.spectrum.pure_alcohol",
+      "item": {
+        "item": "spectrum:pure_alcohol"
+      },
+      "text": "book.spectrum.guidebook.pure_alcohol.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.pure_alcohol.page1.text"
+    }
+  ]
+}

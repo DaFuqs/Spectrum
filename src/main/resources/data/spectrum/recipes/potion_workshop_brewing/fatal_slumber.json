@@ -13,7 +13,7 @@
   "effect": "spectrum:fatal_slumber",
   "base_duration_ticks": 200,
   "potency_modifier": 0.1,
-  "applicable_to_potions": true,
+  "applicable_to_potions": false,
   "applicable_to_tipped_arrows": false,
   "applicable_to_potion_fillables": true,
   "required_advancement": "spectrum:unlocks/potions/strong_sleep_effects",

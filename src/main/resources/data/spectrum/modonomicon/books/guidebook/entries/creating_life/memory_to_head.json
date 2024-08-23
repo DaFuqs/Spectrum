@@ -1,6 +1,6 @@
 {
   "name": "book.spectrum.guidebook.memory_to_head.name",
-  "icon": "spectrum:sheep_head",
+  "icon": "minecraft:zombie_head",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/memory_to_head"
@@ -10,16 +10,19 @@
   "parents": [
     {
       "entry": "spectrum:creating_life/memories"
+    },
+    {
+      "entry": "spectrum:creating_life/mob_heads"
     }
   ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 0,
-  "y": 0,
+  "x": 4,
+  "y": 4,
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.memory_to_head.name"
+      "title": "book.spectrum.guidebook.memory_to_head.name",
       "text": "book.spectrum.guidebook.memory_to_head.page0.text"
     },
     {

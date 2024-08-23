@@ -34,6 +34,10 @@ public final class Plugin implements IMixinConfigPlugin {
 		boolean isPresentMixin = mixinPath[compatRoot.length + 1].equals(COMPAT_PRESENT_KEY);
 
 		if (isPresentMixin) {
+			// Sodium compat breaks with embeddium
+			if (compatModId.equals("sodium") && LOADER.isModLoaded("embeddium"))
+				return false;
+
 			// We only load the mixin if the mod we want to be present is found
 			return LOADER.isModLoaded(compatModId);
 		}

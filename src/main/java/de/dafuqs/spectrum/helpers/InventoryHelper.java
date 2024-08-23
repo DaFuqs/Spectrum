@@ -510,5 +510,13 @@ public class InventoryHelper {
 		}
 		return contentCount;
 	}
+	
+	public static int countItemsInInventory(List<ItemStack> inventory) {
+		int contentCount = 0;
+		for (ItemStack stack : inventory) {
+			contentCount += stack.getCount();
+		}
+		return contentCount;
+	}
 
 }

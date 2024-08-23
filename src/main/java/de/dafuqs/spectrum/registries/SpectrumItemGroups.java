@@ -130,8 +130,8 @@ public class SpectrumItemGroups {
 				entries.add(SpectrumItems.RING_OF_DENSER_STEPS.getFullStack());
 				entries.add(SpectrumItems.RING_OF_AERIAL_GRACE);
 				entries.add(SpectrumItems.RING_OF_AERIAL_GRACE.getFullStack());
-				entries.add(SpectrumItems.GARLAND_OF_TRANQUILITY);
-				entries.add(SpectrumItems.GARLAND_OF_TRANQUILITY.getFullStack());
+				entries.add(SpectrumItems.LAURELS_OF_SERENITY);
+				entries.add(SpectrumItems.LAURELS_OF_SERENITY.getFullStack());
 				entries.add(SpectrumItems.GLEAMING_PIN);
 				entries.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(SpectrumItems.GLEAMING_PIN));
 				entries.add(SpectrumItems.LESSER_POTION_PENDANT);
@@ -183,7 +183,7 @@ public class SpectrumItemGroups {
 				entries.add(SpectrumBlocks.THREAT_CONFLUX);
 				entries.add(SpectrumItems.PIPE_BOMB);
 				entries.add(SpectrumItems.CRESCENT_CLOCK);
-				entries.add(SpectrumItems.PRIMORDIAL_LIGHTER);
+				entries.add(SpectrumItems.ARTISANS_ATLAS);
 				entries.add(SpectrumBlocks.PRIMORDIAL_TORCH);
 				entries.add(SpectrumItems.MYSTERIOUS_LOCKET);
 				entries.add(SpectrumItems.MYSTERIOUS_COMPASS);
@@ -324,7 +324,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.MELOCHITES_COOKBOOK_VOL_2);
 		entries.add(SpectrumItems.BREWERS_HANDBOOK);
 		entries.add(SpectrumItems.VARIA_COOKBOOK);
-		entries.add(SpectrumItems.POISONERS_COOKBOOK);
+		entries.add(SpectrumItems.POISONERS_HANDBOOK);
 
 		entries.add(SpectrumBlocks.SUGAR_STICK);
 		entries.add(SpectrumBlocks.TOPAZ_SUGAR_STICK);
@@ -1458,6 +1458,7 @@ public class SpectrumItemGroups {
 
 		entries.add(SpectrumBlocks.CREATIVE_PARTICLE_SPAWNER);
 		entries.add(SpectrumItems.CREATIVE_INK_ASSORTMENT);
+		entries.add(SpectrumItems.PRIMORDIAL_LIGHTER);
 
 		entries.add(SpectrumItems.CONNECTION_NODE_CRYSTAL);
 		entries.add(SpectrumItems.PROVIDER_NODE_CRYSTAL);
@@ -1504,9 +1505,6 @@ public class SpectrumItemGroups {
 		
 		entries.add(SpectrumItems.DIVINATION_HEART);
 		
-		entries.add(SpectrumItems.ARTISANS_ATLAS);
-		
-		//entries.add(SpectrumItems.FRIGID_STARDUST);
 		//entries.add(SpectrumItems.SPECTRAL_SHARD);
 		//entries.add(SpectrumBlocks.SPECTRAL_SHARD_BLOCK);
 		//entries.add(SpectrumBlocks.SPECTRAL_SHARD_STORAGE_BLOCK);

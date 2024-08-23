@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.particle.client.*;
 import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.sound.HowlingWindSoundInstance;
 import net.fabricmc.api.*;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.*;
@@ -32,7 +33,8 @@ public class HowlingSpireEffects {
 			return;
 
 		lastSpireTicks = spireTicks;
-		
+		HowlingWindSoundInstance.update(biome);
+
 		boolean inHowlingSpires = biome.matchesKey(SpectrumBiomes.HOWLING_SPIRES);
 		if (inHowlingSpires) {
 			if (spireTicks < 60) {

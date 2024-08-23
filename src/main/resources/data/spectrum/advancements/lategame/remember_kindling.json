@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:hidden/collect_dragonbone",
+  "parent": "spectrum:lategame/break_cracked_dragonbone",
   "display": {
     "icon": {
       "item": "spectrum:kindling_head"

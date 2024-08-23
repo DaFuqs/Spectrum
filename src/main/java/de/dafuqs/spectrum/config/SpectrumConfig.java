@@ -28,12 +28,18 @@ public class SpectrumConfig implements ConfigData {
 	@Comment("Story accurate dimension lighting. Deepens the dimension's darkness and prevents night vision from cutting through it. WARNING - This makes traversal significantly harder")
 	public boolean ExtraDarkDimension = false;
 
+	@Comment("Adjusts the general brightness of the dimension (an increase of 1 is a lot, for reference)")
+	public float DimensionBrightnessMod = 0;
+
 	@Comment("Mod Integration Packs to not load (in case of mod compat errors)")
 	public List<String> IntegrationPacksToSkipLoading = new ArrayList<>();
 	
 	@Comment("Add some advanced tooltips to items, like if Sculk Shriekers are able to summon the Warden")
 	public boolean AddItemTooltips = true;
-	
+
+	@Comment("Replaces the ornate models of spectrum's transfer system with something simpler for increased visibility. Great for technical players!")
+	public boolean MinimalNodes = false;
+
 	@Comment("""
 			The vanilla anvil caps enchantment levels at the max level for the enchantment
 			So enchanted books that exceed the enchantments natural max level get capped
@@ -160,7 +166,7 @@ public class SpectrumConfig implements ConfigData {
 	public float TightGripAttackSpeedBonusPercentPerLevel = 0.0625F;
 	@Comment("The duration a glow ink sac gives night vision when wearing a glow vision helmet in seconds")
 	public int GlowVisionGogglesDuration = 240;
-	@Comment("If the Omni Accelerator should be able to have interactions in PvP that can drain the targets XP, modify their equipment, ...")
+	@Comment("If the Omni Accelerator should be able to have interactions in PvP that can drain the targets XP, modify their equipment, ... (configured via the requires_omni_accelerator_pvp_enabled item tag)")
 	public boolean OmniAcceleratorPvP = false;
 	
 	public int GemstoneArmorHelmetProtection = 3;

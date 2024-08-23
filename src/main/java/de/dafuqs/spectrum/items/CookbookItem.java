@@ -29,7 +29,11 @@ public class CookbookItem extends Item {
 			
 			return TypedActionResult.success(user.getStackInHand(hand));
 		} else {
-			openGuidebookPage(SpectrumCommon.locate(guidebookPageToOpen), 0);
+			try {
+				openGuidebookPage(SpectrumCommon.locate(guidebookPageToOpen), 0);
+			} catch (NullPointerException e) {
+				SpectrumCommon.logError(user.getName().getString() + " used a CookbookItem to open the guidebook page " + this.guidebookPageToOpen + " but it does not exist");
+			}
 		}
 		
 		return TypedActionResult.consume(user.getStackInHand(hand));

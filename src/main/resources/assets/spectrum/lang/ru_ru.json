@@ -2520,8 +2520,6 @@
   "item.spectrum.crafting_tablet.tooltip.recipe": "%d %s",
   "item.spectrum.star_fragment": "Фрагмент Звезды",
   "item.spectrum.stardust": "Звездопыль",
-  "item.spectrum.frigid_stardust": "Остывшая Звездопыль",
-  "item.spectrum.frigid_stardust.tooltip": "§o§9Нежная Сила",
   "item.spectrum.hibernating_jade_vine_bulb": "Засохшая Нефритовая Луковица",
   "item.spectrum.hibernating_jade_vine_bulb.tooltip": "Как-то... Мертвенно?",
   "item.spectrum.germinated_jade_vine_bulb": "Зарождённая Нефритовая Луковица",

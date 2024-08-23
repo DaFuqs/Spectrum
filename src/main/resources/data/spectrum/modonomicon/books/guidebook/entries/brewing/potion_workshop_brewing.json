@@ -1,6 +1,11 @@
 {
   "name": "book.spectrum.guidebook.potion_workshop_brewing.name",
-  "icon": "spectrum:potion_workshop",
+  "icon": {
+    "item": "minecraft:potion",
+    "nbt": {
+      "CustomPotionColor": 16776960
+    }
+  },
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/potion_workshop"

@@ -26,7 +26,6 @@ public class TallCropBlock extends CropBlock {
     /**
      * @param lastSingleBlockAge The highest age for which this block is one block tall.
      */
-    // For PL flax, lastSingleBlockAge is 3.
     public TallCropBlock(Settings settings, int lastSingleBlockAge) {
         super(settings);
         this.lastSingleBlockAge = lastSingleBlockAge;

@@ -1,9 +1,7 @@
 package de.dafuqs.spectrum.mixin;
 
 import com.llamalad7.mixinextras.injector.*;
-import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
-import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.llamalad7.mixinextras.injector.wrapoperation.*;
 import com.llamalad7.mixinextras.sugar.*;
 import com.llamalad7.mixinextras.sugar.ref.*;
 import de.dafuqs.spectrum.*;
@@ -16,7 +14,7 @@ import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.cca.azure_dike.*;
 import de.dafuqs.spectrum.enchantments.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.items.ConcealingOilsItem;
+import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
@@ -35,6 +33,7 @@ import net.minecraft.entity.mob.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
+import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
@@ -57,9 +56,6 @@ public abstract class LivingEntityMixin {
 
 	@Shadow
 	public abstract boolean hasStatusEffect(StatusEffect effect);
-
-	@Shadow
-	public abstract boolean blockedByShield(DamageSource source);
 
 	@Shadow
 	public abstract ItemStack getMainHandStack();
@@ -92,10 +88,17 @@ public abstract class LivingEntityMixin {
 	@Shadow
 	public abstract double getAttributeValue(EntityAttribute attribute);
 
-	@Shadow protected abstract void applyDamage(DamageSource source, float amount);
-
 	@Shadow public abstract void remove(Entity.RemovalReason reason);
-
+	
+	@Shadow
+	public abstract void travel(Vec3d movementInput);
+	
+	// FabricDefaultAttributeRegistry seems to only allow adding full containers and only single entity types?
+	@Inject(method = "createLivingAttributes()Lnet/minecraft/entity/attribute/DefaultAttributeContainer$Builder;", require = 1, allow = 1, at = @At("RETURN"))
+	private static void spectrum$addAttributes(final CallbackInfoReturnable<DefaultAttributeContainer.Builder> cir) {
+		cir.getReturnValue().add(SpectrumEntityAttributes.INDUCED_SLEEP_RESISTANCE);
+	}
+	
 	@ModifyArg(method = "dropXp()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"), index = 2)
 	protected int spectrum$applyExuberance(int originalXP) {
 		return (int) (originalXP * spectrum$getExuberanceMod(this.attackingPlayer));
@@ -122,12 +125,14 @@ public abstract class LivingEntityMixin {
 				friction = 0.945F;
 			}
 		}
-
-		var trinket = tryGetTrinket(SpectrumItems.RING_OF_AERIAL_GRACE);
-		if (!entity.isOnGround() && trinket.isPresent()) {
-			var inkStorage = SpectrumItems.RING_OF_AERIAL_GRACE.getEnergyStorage(trinket.get());
-			var storedInk = inkStorage.getEnergy(inkStorage.getStoredColor());
-			friction = (float) Math.max(friction, 0.91 + (((RingOfAerialGraceItem) SpectrumItems.RING_OF_AERIAL_GRACE).getBonus(storedInk) / 150F));
+		
+		if (!entity.isOnGround()) {
+			var optionalTrinket = SpectrumTrinketItem.getFirstEquipped((LivingEntity) (Object) this, SpectrumItems.RING_OF_AERIAL_GRACE);
+			if (optionalTrinket.isPresent()) {
+				var inkStorage = SpectrumItems.RING_OF_AERIAL_GRACE.getEnergyStorage(optionalTrinket.get());
+				var storedInk = inkStorage.getEnergy(inkStorage.getStoredColor());
+				friction = (float) Math.max(friction, 0.91 + (((RingOfAerialGraceItem) SpectrumItems.RING_OF_AERIAL_GRACE).getBonus(storedInk) / 150F));
+			}
 		}
 
 		if (friction >= 0)
@@ -138,8 +143,8 @@ public abstract class LivingEntityMixin {
 	public float spectrum$increaseSlipperiness(float original) {
 		var entity = (LivingEntity) (Object) this;
 		var random = entity.getRandom();
-		var potency = SleepStatusEffect.getGeneralSleepVulnerability(entity);
-		if (potency > 0) {
+		var potency = SleepStatusEffect.getGeneralSleepResistanceIfEntityHasSoporificEffect(entity);
+		if (potency != -1) {
 
 			if (entity instanceof PlayerEntity && random.nextFloat() < potency * 0.0334) {
 				return 0.35F + random.nextFloat() * 0.45F;
@@ -153,9 +158,8 @@ public abstract class LivingEntityMixin {
 	@ModifyReturnValue(method = "canWalkOnFluid", at = @At("RETURN"))
 	public boolean spectrum$modifyFluidWalking(boolean original) {
 		var entity = (LivingEntity) (Object) this;
-		var trinket = tryGetTrinket(SpectrumItems.RING_OF_AERIAL_GRACE);
-
-		if (trinket.isPresent())
+		
+		if (SpectrumTrinketItem.hasEquipped((LivingEntity) (Object) this, SpectrumItems.RING_OF_AERIAL_GRACE))
 			return !entity.isSubmergedInWater();
 
 		return original;
@@ -170,77 +174,38 @@ public abstract class LivingEntityMixin {
 		}
 	}
 
-	@WrapWithCondition(method = "clearStatusEffects", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;onStatusEffectRemoved(Lnet/minecraft/entity/effect/StatusEffectInstance;)V"))
-	private boolean spectrum$preventStatusClear(LivingEntity instance, StatusEffectInstance effect, @Share("blockRemoval") LocalBooleanRef blockRemoval) {
-		if (Incurable.isIncurable(effect) && !affectedByImmunity(instance, effect.getAmplifier())) {
-			blockRemoval.set(true);
+	@ModifyReturnValue(method = "canHaveStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;)Z", at = @At("RETURN"))
+	public boolean spectrum$canHaveStatusEffect(boolean original, @Local(argsOnly = true) StatusEffectInstance statusEffectInstance) {
+		var instance = (LivingEntity) (Object) this;
+
+		if (original && this.hasStatusEffect(SpectrumStatusEffects.IMMUNITY) && statusEffectInstance.getEffectType().getCategory() == StatusEffectCategory.HARMFUL && !SpectrumStatusEffectTags.isIncurable(statusEffectInstance.getEffectType())) {
+			if (Incurable.isIncurable(statusEffectInstance)) {
+				var immunity = getStatusEffect(SpectrumStatusEffects.IMMUNITY);
+				var cost = 600 * (statusEffectInstance.getAmplifier() + 1);
+
+				if (immunity.getDuration() >= cost) {
+					((StatusEffectInstanceAccessor) immunity).setDuration(Math.max(5, immunity.getDuration() - cost));
+					if (!instance.getWorld().isClient()) {
+						((ServerWorld) instance.getWorld()).getChunkManager().sendToNearbyPlayers(instance, new EntityStatusEffectS2CPacket(instance.getId(), immunity));
+					}
+					return false;
+				}
+				else {
+					return true;
+				}
+			}
+
 			return false;
 		}
-
-		return true;
-	}
-
-	@WrapWithCondition(method = "clearStatusEffects", at = @At(value = "INVOKE", target = "Ljava/util/Iterator;remove()V"))
-	private boolean spectrum$preventStatusClear(Iterator instance, @Share("blockRemoval") LocalBooleanRef blockRemoval) {
-		if (blockRemoval.get()) {
-			blockRemoval.set(false);
-			return false;
-		}
-		return true;
-	}
-
-	@WrapOperation(method = "removeStatusEffect", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;removeStatusEffectInternal(Lnet/minecraft/entity/effect/StatusEffect;)Lnet/minecraft/entity/effect/StatusEffectInstance;"))
-	private StatusEffectInstance spectrum$preventStatusRemoval(LivingEntity instance, StatusEffect type, Operation<StatusEffectInstance> original) {
-		var effect = instance.getStatusEffect(type);
-		boolean cancel;
-
-		if (effect == null)
-			return original.call(instance, type);
-
-		cancel = Incurable.isIncurable(effect);
-
-		if (cancel) {
-			cancel = !affectedByImmunity(instance, effect.getAmplifier());
-		}
-
-		if (cancel)
-			return null;
-
-		return original.call(instance, type);
-	}
-
-	@Unique
-	private static boolean affectedByImmunity(LivingEntity instance, int amplifier) {
-		var immunity = instance.getStatusEffect(SpectrumStatusEffects.IMMUNITY);
-		var cost = 1200 + 600 * amplifier;
-
-		if (immunity != null && immunity.getDuration() >= cost) {
-			((StatusEffectInstanceAccessor) immunity).setDuration(Math.max(5, immunity.getDuration() - cost));
-			return true;
-		}
-		return false;
-	}
-
-	@Unique
-	private Optional<ItemStack> tryGetTrinket(Item item) {
-		var entity = (LivingEntity) (Object) this;
-
-		var comp = TrinketsApi.getTrinketComponent(entity);
-
-		if (comp.isEmpty())
-			return Optional.empty();
-
-		var trinket = comp.get().getEquipped(item);
-
-		if (trinket.isEmpty())
-			return Optional.empty();
-
-		return Optional.ofNullable(trinket.get(0).getRight());
+		return original;
 	}
 	
 	@ModifyVariable(method = "damageArmor(Lnet/minecraft/entity/damage/DamageSource;F)V", at = @At("HEAD"), ordinal = 0, argsOnly = true)
 	private float spectrum$damageArmor(float amount, DamageSource source) {
-		if (source.isIn(SpectrumDamageTypeTags.INCREASED_ARMOR_DAMAGE)) {
+		if (source.isIn(SpectrumDamageTypeTags.DOES_NOT_DAMAGE_ARMOR)) {
+			return 0;
+		}
+		else if (source.isIn(SpectrumDamageTypeTags.INCREASED_ARMOR_DAMAGE)) {
 			return amount * 10;
 		}
 		return amount;
@@ -382,9 +347,7 @@ public abstract class LivingEntityMixin {
 			if (SleepStatusEffect.isImmuneish(entity)) {
 				if (entity instanceof PlayerEntity player) {
 					damage = entity.getHealth() * 0.95F;
-					if (!player.getWorld().isClient()) {
-						Support.grantAdvancementCriterion((ServerPlayerEntity) player, "lategame/survive_fatal_slumber", "get_slumbered_idiot");
-					}
+					Support.grantAdvancementCriterion((ServerPlayerEntity) player, "lategame/survive_fatal_slumber", "get_slumbered_idiot");
 				}
 				else {
 					damage = entity.getMaxHealth() * 0.3F;
@@ -411,24 +374,22 @@ public abstract class LivingEntityMixin {
 	@Inject(method = "addStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;Lnet/minecraft/entity/Entity;)Z", at = @At("HEAD"))
 	public void spectrum$modifySlumberEffectLengths(StatusEffectInstance effect, Entity source, CallbackInfoReturnable<Boolean> cir) {
 		var entity = (LivingEntity) (Object) this;
-		var potency = SleepStatusEffect.getSleepVulnerability(effect, entity);
+		var resistanceModifier = SleepStatusEffect.getSleepResistanceModifier(effect, entity);
 		if (effect.getEffectType() == SpectrumStatusEffects.ETERNAL_SLUMBER) {
 			if (SleepStatusEffect.isImmuneish(entity)) {
-				((StatusEffectInstanceAccessor) effect).setDuration(Math.round(effect.getDuration() * potency));
+				((StatusEffectInstanceAccessor) effect).setDuration(Math.round(effect.getDuration() / resistanceModifier));
+			} else if (!entity.getType().isIn(SpectrumEntityTypeTags.SLEEP_RESISTANT)) {
+				((StatusEffectInstanceAccessor) effect).setDuration(-1); // StatusEffectInstance.INFINITE = -1
 			}
-			else if (!entity.getType().isIn(SpectrumEntityTypeTags.SLEEP_RESISTANT)) {
-				((StatusEffectInstanceAccessor) effect).setDuration(-1);
-			}
-		}
-		else if (effect.getEffectType() == SpectrumStatusEffects.FATAL_SLUMBER) {
-			((StatusEffectInstanceAccessor) effect).setDuration(Math.max(Math.round(effect.getDuration() / potency * 2), 100));
+		} else if (effect.getEffectType() == SpectrumStatusEffects.FATAL_SLUMBER) {
+			((StatusEffectInstanceAccessor) effect).setDuration(Math.max(Math.round(effect.getDuration() * resistanceModifier * 2), 100));
 		}
 	}
 
 	@Inject(at = @At("RETURN"), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z")
 	public void spectrum$applyDisarmingEnchantment(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		// true if the entity got hurt
-		if (cir.getReturnValue() != null && cir.getReturnValue()) {
+		if (amount > 0 && cir.getReturnValue() != null && cir.getReturnValue()) {
 			// Disarming does not trigger when dealing damage to enemies using thorns
 			if (!source.isOf(DamageTypes.THORNS)) {
 				if (source.getAttacker() instanceof LivingEntity livingSource && SpectrumEnchantments.DISARMING.canEntityUse(livingSource)) {
@@ -495,27 +456,6 @@ public abstract class LivingEntityMixin {
 				}
 			}
 		}
-	}
-
-	@ModifyReturnValue(method = "canHaveStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;)Z", at = @At("RETURN"))
-	public boolean spectrum$canHaveStatusEffect(boolean original, @Local(argsOnly = true) StatusEffectInstance statusEffectInstance) {
-		if (original && this.hasStatusEffect(SpectrumStatusEffects.IMMUNITY) && statusEffectInstance.getEffectType().getCategory() == StatusEffectCategory.HARMFUL && !SpectrumStatusEffectTags.isIncurable(statusEffectInstance.getEffectType())) {
-			if (Incurable.isIncurable(statusEffectInstance)) {
-				var immunity = getStatusEffect(SpectrumStatusEffects.IMMUNITY);
-				var cost = 600 * (statusEffectInstance.getAmplifier() + 1);
-
-				if (immunity.getDuration() >= cost) {
-					((StatusEffectInstanceAccessor) immunity).setDuration(Math.max(5, immunity.getDuration() - cost));
-					return false;
-                }
-				else {
-					return true;
-				}
-			}
-
-			return false;
-		}
-		return original;
 	}
 	
 	@ModifyVariable(method = "setSprinting(Z)V", at = @At("HEAD"), argsOnly = true)

@@ -30,7 +30,7 @@ import java.util.*;
 public class OmniAcceleratorItem extends BundleItem implements InkPowered, ExtendedItemBarProvider, SlotBackgroundEffectProvider {
 	
 	protected static final InkCost COST = new InkCost(InkColors.YELLOW, 20);
-	protected static final int CHARGE_TIME = 20;
+	protected static final int CHARGE_TIME = 10;
 	
 	public OmniAcceleratorItem(Settings settings) {
 		super(settings);
@@ -48,23 +48,22 @@ public class OmniAcceleratorItem extends BundleItem implements InkPowered, Exten
 	
 	@Override
 	public int getMaxUseTime(ItemStack stack) {
-		return 72000;
+		return CHARGE_TIME;
 	}
 	
 	@Override
-	public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
-		if (this.getMaxUseTime(stack) - remainingUseTicks < CHARGE_TIME) return;
-		if (!(user instanceof ServerPlayerEntity player)) return;
+	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
+		if (!(user instanceof ServerPlayerEntity player)) return stack;
 		
 		Optional<ItemStack> shootStackOptional = getFirstStack(stack);
 		if (shootStackOptional.isEmpty()) {
 			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.BLOCK_DISPENSER_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
-			return;
+			return stack;
 		}
 		
 		if (!InkPowered.tryDrainEnergy(player, COST)) {
 			world.playSound(null, user.getX(), user.getY(), user.getZ(), SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
-			return;
+			return stack;
 		}
 		
 		ItemStack shootStack = shootStackOptional.get();
@@ -75,6 +74,8 @@ public class OmniAcceleratorItem extends BundleItem implements InkPowered, Exten
 				decrementFirstItem(stack);
 			}
 		}
+		
+		return stack;
 	}
 	
 	public static void decrementFirstItem(ItemStack acceleratorStack) {

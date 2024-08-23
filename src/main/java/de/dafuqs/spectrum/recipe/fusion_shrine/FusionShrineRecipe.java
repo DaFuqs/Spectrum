@@ -10,8 +10,8 @@ import de.dafuqs.spectrum.blocks.upgrade.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.fluid.*;
-import net.minecraft.inventory.*;
+import net.fabricmc.fabric.api.transfer.v1.fluid.*;
+import net.fabricmc.fabric.api.transfer.v1.storage.base.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
 import net.minecraft.registry.*;
@@ -24,12 +24,12 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
+public class FusionShrineRecipe extends GatedStackSpectrumRecipe<FusionShrineBlockEntity> {
 	
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("build_fusion_shrine");
 	
 	protected final List<IngredientStack> craftingInputs;
-	protected final Fluid fluidInput;
+	protected final FluidIngredient fluid;
 	protected final ItemStack output;
 	protected final float experience;
 	protected final int craftingTime;
@@ -54,12 +54,12 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 	protected final boolean copyNbt;
 	
 	public FusionShrineRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier,
-							  List<IngredientStack> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, boolean yieldUpgradesDisabled, boolean playCraftingFinishedEffects, boolean copyNbt,
+							  List<IngredientStack> craftingInputs, FluidIngredient fluid, ItemStack output, float experience, int craftingTime, boolean yieldUpgradesDisabled, boolean playCraftingFinishedEffects, boolean copyNbt,
 							  List<WorldConditionPredicate> worldConditions, @NotNull FusionShrineRecipeWorldEffect startWorldEffect, @NotNull List<FusionShrineRecipeWorldEffect> duringWorldEffects, @NotNull FusionShrineRecipeWorldEffect finishWorldEffect, @Nullable Text description) {
 		super(id, group, secret, requiredAdvancementIdentifier);
 		
 		this.craftingInputs = craftingInputs;
-		this.fluidInput = fluidInput;
+		this.fluid = fluid;
 		this.output = output;
 		this.experience = experience;
 		this.craftingTime = craftingTime;
@@ -81,12 +81,19 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 	 * The required fluid has to be tested manually by the crafting block.
 	 */
 	@Override
-	public boolean matches(Inventory inv, World world) {
+	public boolean matches(FusionShrineBlockEntity inv, World world) {
+		SingleVariantStorage<FluidVariant> fluidStorage = inv.getFluidStorage();
+		if (!this.fluid.test(fluidStorage.variant)) {
+			return false;
+		}
+		if (fluidStorage.getAmount() != fluidStorage.getCapacity()) {
+			return false;
+		}
 		return matchIngredientStacksExclusively(inv, getIngredientStacks());
 	}
 	
 	@Override
-	public ItemStack craft(Inventory inv, DynamicRegistryManager drm) {
+	public ItemStack craft(FusionShrineBlockEntity inv, DynamicRegistryManager drm) {
 		return output.copy();
 	}
 	
@@ -137,8 +144,8 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 		return true;
 	}
 	
-	public Fluid getFluidInput() {
-		return this.fluidInput;
+	public FluidIngredient getFluid() {
+		return this.fluid;
 	}
 	
 	public int getCraftingTime() {

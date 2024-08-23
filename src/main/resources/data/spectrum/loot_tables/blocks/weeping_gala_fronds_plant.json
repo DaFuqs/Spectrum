@@ -5,7 +5,7 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "spectrum:abyssal_vines",
+          "block": "spectrum:weeping_gala_fronds_plant",
           "condition": "minecraft:block_state_property",
           "properties": {
             "form": "resin"
@@ -28,7 +28,7 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "spectrum:abyssal_vines",
+          "block": "spectrum:weeping_gala_fronds_plant",
           "condition": "minecraft:block_state_property",
           "properties": {
             "form": "sprig"

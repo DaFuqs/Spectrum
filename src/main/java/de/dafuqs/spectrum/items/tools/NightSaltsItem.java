@@ -1,28 +1,20 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.api.item.SleepAlteringItem;
-import de.dafuqs.spectrum.cca.MiscPlayerDataComponent;
-import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.UseAction;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.cca.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class NightSaltsItem extends Item implements SleepAlteringItem {
 
@@ -44,8 +36,8 @@ public class NightSaltsItem extends Item implements SleepAlteringItem {
 
             component.setSleepTimers(20 * 10, 20 * 10, 0);
             component.setLastSleepItem(this);
-
-            player.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.CALMING, 20 * 20, 2));
+			
+			player.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.CALMING, 20 * 20, 2)); // TODO: this should probs be moved to a food component, so the effect shows up as tooltip
             if (!player.getAbilities().creativeMode)
                 stack.decrement(1);
         }

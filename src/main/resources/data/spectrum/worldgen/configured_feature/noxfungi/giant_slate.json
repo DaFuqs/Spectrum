@@ -1,0 +1,16 @@
+{
+  "type": "spectrum:giant_gilled_fungus",
+  "config": {
+    "valid_base_block": "spectrum:shimmel",
+    "cap_block": "spectrum:slate_noxcap_block",
+    "gills_block": "spectrum:slate_noxcap_gills",
+    "stem_block": "spectrum:slate_noxcap_stem",
+    "base_stem_height": {
+      "type": "minecraft:uniform",
+      "value": {
+        "min_inclusive": 24,
+        "max_inclusive": 90
+      }
+    }
+  }
+}

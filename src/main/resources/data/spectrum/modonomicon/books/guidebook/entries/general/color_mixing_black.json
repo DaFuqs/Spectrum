@@ -1,6 +1,6 @@
 {
   "name": "book.spectrum.guidebook.color_mixing_black.name",
-  "icon": "minecraft:black_dye",
+  "icon": "spectrum:textures/gui/guidebook/icons/color_mixing_black.png",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:create_onyx_shard"
@@ -9,7 +9,7 @@
   "hide_while_locked ": true,
   "parents": [
     {
-      "entry": "spectrum:general/color_mixing"
+      "entry": "spectrum:general/color_mixing_cmy"
     }
   ],
   "background_u_index": 0,

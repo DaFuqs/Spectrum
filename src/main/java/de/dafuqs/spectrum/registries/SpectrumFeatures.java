@@ -12,6 +12,7 @@ public class SpectrumFeatures {
 	public static Feature<RandomBudsFeaturesConfig> RANDOM_BUDS;
 	public static Feature<OreFeatureConfig> AIR_CHECK_DISK;
 	public static Feature<GilledFungusFeatureConfig> GILLED_FUNGUS;
+	public static Feature<GilledFungusFeatureConfig> GIANT_GILLED_FUNGUS;
 	public static Feature<NephriteBlossomFeatureConfig> NEPHRITE_BLOSSOM;
 	public static Feature<JadeiteLotusFeatureConfig> JADEITE_LOTUS;
 	public static Feature<TriStateVineFeatureConfig> TRISTATE_VINE;
@@ -29,6 +30,7 @@ public class SpectrumFeatures {
 		RANDOM_BUDS = registerFeature("random_buds", new RandomBudsFeature(RandomBudsFeaturesConfig.CODEC));
 		AIR_CHECK_DISK = registerFeature("air_check_disk", new AirCheckDiskFeature(OreFeatureConfig.CODEC));
 		GILLED_FUNGUS = registerFeature("gilled_fungus", new GilledFungusFeature(GilledFungusFeatureConfig.CODEC));
+		GIANT_GILLED_FUNGUS = registerFeature("giant_gilled_fungus", new GiantGilledFungusFeature(GilledFungusFeatureConfig.CODEC));
 		NEPHRITE_BLOSSOM = registerFeature("nephrite_blossom", new NephriteBlossomFeature(NephriteBlossomFeatureConfig.CODEC));
 		JADEITE_LOTUS = registerFeature("jadeite_lotus", new JadeiteLotusFeature(JadeiteLotusFeatureConfig.CODEC));
 		TRISTATE_VINE = registerFeature("tristate_vine", new TriStateVineFeature(TriStateVineFeatureConfig.CODEC));

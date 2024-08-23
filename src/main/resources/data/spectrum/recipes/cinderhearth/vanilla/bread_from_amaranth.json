@@ -1,0 +1,16 @@
+{
+  "type": "spectrum:cinderhearth",
+  "ingredient": {
+    "item": "spectrum:amaranth_grains",
+    "count": 2
+  },
+  "results": [
+    {
+      "item": "minecraft:bread",
+      "count": 1
+    }
+  ],
+  "experience": 0.6,
+  "time": 200,
+  "required_advancement": "spectrum:collect_amaranth_bushel"
+}

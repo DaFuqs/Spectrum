@@ -17,6 +17,10 @@
       "type": "modonomicon:text",
       "title": "book.spectrum.guidebook.creatures.name",
       "text": "book.spectrum.guidebook.creatures.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.creatures.page1.text"
     }
   ]
 }

@@ -17,6 +17,10 @@
       "type": "modonomicon:text",
       "title": "book.spectrum.guidebook.biomes.name",
       "text": "book.spectrum.guidebook.biomes.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.biomes.page1.text"
     }
   ]
 }

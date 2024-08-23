@@ -16,11 +16,18 @@ import java.util.concurrent.*;
 public class PastelNetwork {
     
     protected final Map<PastelNodeType, Set<PastelNodeBlockEntity>> nodes = new ConcurrentHashMap<>();
+    protected final Set<PastelNodeBlockEntity> priorityNodes = new HashSet<>();
+    protected final Set<PastelNodeBlockEntity> highPriorityNodes = new HashSet<>();
     protected @Nullable Graph<PastelNodeBlockEntity, DefaultEdge> graph;
 	protected final World world;
 	protected final UUID uuid;
 	protected final SchedulerMap<PastelTransmission> transmissions = new SchedulerMap<>();
-	
+
+    public enum Priority {
+        GENERIC,
+        MODERATE,
+        HIGH
+    }
 	
 	public PastelNetwork(World world, @Nullable UUID uuid) {
 		this.world = world;
@@ -36,6 +43,7 @@ public class PastelNetwork {
             for (PastelNodeBlockEntity nodeToIncorporate : nodesToIncorporate.getValue()) {
                 this.nodes.get(type).add(nodeToIncorporate);
                 nodeToIncorporate.setParentNetwork(this);
+                updateNodePriority(nodeToIncorporate, nodeToIncorporate.getPriority());
             }
         }
         this.graph = null;
@@ -90,6 +98,21 @@ public class PastelNetwork {
                 }
             }
         }
+
+        // check for priority
+        addPriorityNode(node);
+    }
+
+    private void addPriorityNode(PastelNodeBlockEntity node) {
+        switch (node.getPriority()) {
+            case MODERATE -> priorityNodes.add(node);
+            case HIGH -> highPriorityNodes.add(node);
+        }
+    }
+
+    public void updateNodePriority(PastelNodeBlockEntity node, Priority oldPriority) {
+        removePriorityNode(node, oldPriority);
+        addPriorityNode(node);
     }
 
     protected boolean removeNode(PastelNodeBlockEntity node, NodeRemovalReason reason) {
@@ -103,7 +126,16 @@ public class PastelNetwork {
             this.graph.removeVertex(node);
         }
 
+        removePriorityNode(node, node.getPriority());
+
         return true;
+    }
+
+    private void removePriorityNode(PastelNodeBlockEntity node, Priority priority) {
+        switch (priority) {
+            case MODERATE -> priorityNodes.remove(node);
+            case HIGH -> highPriorityNodes.remove(node);
+        }
     }
 
     public boolean hasNodes() {
@@ -116,7 +148,15 @@ public class PastelNetwork {
     }
 
     public Set<PastelNodeBlockEntity> getNodes(PastelNodeType type) {
-        return this.nodes.get(type);
+        return getNodes(type, Priority.GENERIC);
+    }
+
+    public Set<PastelNodeBlockEntity> getNodes(PastelNodeType type, Priority priority) {
+        return switch (priority) {
+            case GENERIC -> this.nodes.get(type);
+            case MODERATE -> this.priorityNodes;
+            case HIGH -> this.highPriorityNodes;
+        };
     }
 
     public Map<PastelNodeType, Set<PastelNodeBlockEntity>> getNodes() {

@@ -28,7 +28,9 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
     private static final Crystal GATHER = new Crystal(SpectrumItems.GATHER_NODE_CRYSTAL.getDefaultStack(), 0.1, false);
     
     private static final Identifier BASE = SpectrumCommon.locate("textures/block/pastel_node_base.png");
+
     private static final Identifier INNER_RING = SpectrumCommon.locate("textures/block/pastel_node_inner_ring_blank.png");
+
     private static final Identifier OUTER_RING = SpectrumCommon.locate("textures/block/pastel_node_outer_ring_blank.png");
     private static final Identifier REDSTONE_RING = SpectrumCommon.locate("textures/block/pastel_node_redstone_ring_blank.png");
     
@@ -135,14 +137,14 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
         }
         
         var ringHeight = node.crystalHeight - 0.3F;
-        var innerRing = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucentEmissive(INNER_RING));
+        var innerRing = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucentEmissive(node.getInnerRing().map(PastelNodeBlockEntity.UpgradeSignature::mainPath).orElse(INNER_RING)));
         renderRing(matrices, innerRing, 3.75F + ringHeight / 2F, 7F, node.ringAlpha, overlay, facing);
 
-        var redstoneRing = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucentEmissive(REDSTONE_RING));
+        var redstoneRing = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucentEmissive(node.getRedstoneRing().map(PastelNodeBlockEntity.UpgradeSignature::mainPath).orElse(REDSTONE_RING)));
         renderRing(matrices, redstoneRing, 5F + ringHeight, 15F, node.ringAlpha * node.getRedstoneAlphaMult(), overlay, facing);
 
         if (crystal.hasOuterRing()) {
-            var outerRing = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucentEmissive(OUTER_RING));
+            var outerRing = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucentEmissive(node.getOuterRing().map(PastelNodeBlockEntity.UpgradeSignature::altPath).orElse(OUTER_RING)));
             renderRing(matrices, outerRing, 5.75F + ringHeight * 2, 11F, node.ringAlpha, overlay, facing);
         }
 

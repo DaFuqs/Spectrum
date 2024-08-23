@@ -2293,7 +2293,7 @@
     
   "item.spectrum.knowledge_gem": "知识宝石",
   "item.spectrum.knowledge_gem.tooltip.stored_experience": "/%d经验被存储",
-  "item.spectrum.knowledge_gem.tooltip.use": "使用提取经验，或潜行使用以储存经验 (每刻填装%d个经验值)",
+  "item.spectrum.knowledge_gem.tooltip.use": "使用提取经验，或潜行使用以储存经验 (每刻填装%d经验值)",
 
   "item.spectrum.celestial_pocketwatch": "天体怀表",
   "item.spectrum.celestial_pocketwatch.tooltip.working": "日月轮转？不过弹指一拨尔。",

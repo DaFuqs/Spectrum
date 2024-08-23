@@ -139,13 +139,14 @@ public class TotalCappedElementalMixingInkStorage extends TotalCappedInkStorage 
 	@Override
 	public void fillCompletely() {
 		this.storedEnergy.clear();
-		
+		try{
 		RegistryEntryList.Named<InkColor> elementals = InkColors.elementals();
 		long energyPerColor = this.maxEnergyTotal / elementals.size();
 		for (RegistryEntry<InkColor> color : elementals) {
 			this.storedEnergy.put(color.value(), energyPerColor);
 		}
 		this.currentTotal = energyPerColor * elementals.size(); // in case rounding is weird
+		} catch (Exception e) {e.printStackTrace();}
 	}
 	
 	@Override

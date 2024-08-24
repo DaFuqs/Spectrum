@@ -427,6 +427,7 @@ public class SpectrumS2CPacketSender {
 
 	public static void sendPastelNodeStatusUpdate(List<PastelNodeBlockEntity> nodes, boolean longSpin) {
 		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeBoolean(longSpin);
 		buf.writeInt(nodes.size());
 		for (PastelNodeBlockEntity node : nodes) {
 			var world = node.getWorld();

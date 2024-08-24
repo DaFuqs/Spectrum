@@ -60,9 +60,17 @@ public class SpectrumConfig implements ConfigData {
 	@Comment("Worlds where lightning strikes can spawn Storm Stones")
 	public List<String> StormStonesWorlds = new ArrayList<>();
 	
-	@Comment("chance for a lightning strike to spawn a Storm Stone")
+	@Comment("Chance for a lightning strike to spawn a Storm Stone")
 	public float StormStonesChance = 0.4F;
-	
+
+	@Comment("""
+			Enables quitoxic reed tag-based spawning.
+			By default, the reeds spawn in any biome that is
+			wet, hot, and not an ocean.
+			This can be swapped to using a tag, for more delicate filtering.
+			""")
+	public boolean QuitoxicSpawnTag = false;
+
 	@Comment("""
 			Shooting star spawns are checked every night between time 13000 and 22000, every 100 ticks (so 100 chances per night).
 			By default, there is a 0.0075 ^= 0.75 % chance at each of those check times. Making it ~1 shooting star spawn

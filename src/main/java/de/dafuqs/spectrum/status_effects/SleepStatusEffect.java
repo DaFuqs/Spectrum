@@ -8,8 +8,11 @@ import org.jetbrains.annotations.*;
 
 public class SleepStatusEffect extends SpectrumStatusEffect {
 
-    public SleepStatusEffect(StatusEffectCategory category, int color) {
+    private final boolean scales;
+
+    public SleepStatusEffect(StatusEffectCategory category, int color, boolean scales) {
         super(category, color);
+        this.scales = scales;
     }
     
     // oh my god
@@ -64,9 +67,11 @@ public class SleepStatusEffect extends SpectrumStatusEffect {
         return null;
     }
 
-    // Sleep effects don't scale
+    // Sleep effects don't scale except for uh, calming ufck
     @Override
     public double adjustModifierAmount(int amplifier, EntityAttributeModifier modifier) {
+        if (scales)
+            return super.adjustModifierAmount(amplifier, modifier);
         return modifier.getValue();
     }
 }

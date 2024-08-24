@@ -132,7 +132,7 @@ public class SpectrumStatusEffects {
 	 */
 	public static final StatusEffect CALMING = registerStatusEffect("calming", new SleepStatusEffect(StatusEffectCategory.BENEFICIAL, 0x5fd7b3)
 			.addAttributeModifier(AdditionalEntityAttributes.MOB_DETECTION_RANGE, "1a822e8e-42e0-4300-a06c-d7933a8ce09e", 0.25, EntityAttributeModifier.Operation.MULTIPLY_TOTAL)
-			.addAttributeModifier(SpectrumEntityAttributes.INDUCED_SLEEP_VULNERABILITY, "49242a56-26bb-40a3-98b6-06962201287d", -0.5, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
+			.addAttributeModifier(SpectrumEntityAttributes.INDUCED_SLEEP_VULNERABILITY, "49242a56-26bb-40a3-98b6-06962201287d", 0.5, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
 
 	/**
 	 * Slows down enemy AI and causes them to forget their target at times.

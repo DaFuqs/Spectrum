@@ -10,23 +10,28 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:bone_meal"
+          "name": "minecraft:bone_meal",
+          "weight": 3
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:bucket"
+          "name": "minecraft:bucket",
+          "weight": 2
         },
         {
           "type": "minecraft:item",
-          "name": "spectrum:multitool"
+          "name": "spectrum:multitool",
+          "weight": 2
         },
         {
           "type": "minecraft:item",
-          "name": "spectrum:rock_candy"
+          "name": "spectrum:rock_candy",
+          "weight": 2
         },
         {
           "type": "minecraft:item",
-          "name": "spectrum:enchanted_golden_carrot"
+          "name": "spectrum:peach_cream",
+          "quality": 5
         }
       ]
     }

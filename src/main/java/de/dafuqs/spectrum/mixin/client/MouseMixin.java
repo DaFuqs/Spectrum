@@ -18,7 +18,7 @@ public class MouseMixin<T> {
         if (player == null)
             return original;
 		
-		var potency = SleepStatusEffect.getGeneralSleepResistanceIfEntityHasSoporificEffect(player);
+		var potency = SleepStatusEffect.getGeneralSleepStrengthIfEntityHasSoporificEffect(player);
 
         return (T) (Object) MathHelper.clampedLerp(sensitivity, sensitivity / 2, potency / 2.5);
     }

@@ -36,7 +36,7 @@ public class DarknessEffects {
 			return;
 		
 		lastDarkenTicks = darkenTicks;
-		var sleepPotency = SleepStatusEffect.getGeneralSleepResistanceIfEntityHasSoporificEffect(camera);
+		var sleepPotency = SleepStatusEffect.getGeneralSleepStrengthIfEntityHasSoporificEffect(camera);
 		var sleepEffect = SleepStatusEffect.getStrongestSleepEffect(camera);
 		
 		if (currentSleepEffect != sleepEffect) {

@@ -2,33 +2,34 @@ package de.dafuqs.spectrum.status_effects;
 
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.entity.*;
+import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.effect.*;
 import org.jetbrains.annotations.*;
 
 public class SleepStatusEffect extends SpectrumStatusEffect {
-    
+
     public SleepStatusEffect(StatusEffectCategory category, int color) {
         super(category, color);
     }
     
     // oh my god
     // TODO: can the tag check be implemented into the entities base attribute modifier somehow?
-    public static float getSleepResistanceModifier(@Nullable StatusEffectInstance strongestSleepEffect, LivingEntity entity) {
+    public static float getSleepEffectStrength(@Nullable StatusEffectInstance sleepEffect, LivingEntity entity) {
         var type = entity.getType();
         
-        if (strongestSleepEffect == null || type.isIn(SpectrumEntityTypeTags.SOULLESS))
-            return Float.MAX_VALUE;
+        if (sleepEffect == null || type.isIn(SpectrumEntityTypeTags.SOULLESS))
+            return 0;
         
-        float resistance = (float) entity.getAttributeValue(SpectrumEntityAttributes.INDUCED_SLEEP_RESISTANCE);
+        float resistance = (float) entity.getAttributeValue(SpectrumEntityAttributes.INDUCED_SLEEP_VULNERABILITY);
         if (type.isIn(SpectrumEntityTypeTags.SLEEP_WEAK)) {
-            resistance *= 0.4F;
+            resistance *= 3F;
         } else if (type.isIn(SpectrumEntityTypeTags.SLEEP_RESISTANT)) {
-            resistance *= 2.0F;
+            resistance /= 2.0F;
         } else if (isImmuneish(entity)) {
-            resistance *= 10F;
+            resistance /= 10F;
         }
         
-        return Math.max(resistance, 0);
+        return Math.max(resistance - 1, 0);
     }
     
     // TODO: can the tag check be implemented into the entities base attribute modifier somehow?
@@ -43,9 +44,9 @@ public class SleepStatusEffect extends SpectrumStatusEffect {
         return type.isIn(SpectrumEntityTypeTags.SLEEP_IMMUNEISH);
     }
     
-    public static float getGeneralSleepResistanceIfEntityHasSoporificEffect(LivingEntity entity) {
+    public static float getGeneralSleepStrengthIfEntityHasSoporificEffect(LivingEntity entity) {
         if (SpectrumStatusEffectTags.hasEffectWithTag(entity, SpectrumStatusEffectTags.SOPORIFIC)) {
-            return getSleepResistanceModifier(entity.getStatusEffect(SpectrumStatusEffects.ETERNAL_SLUMBER), entity);
+            return getSleepEffectStrength(entity.getStatusEffect(getStrongestSleepEffect(entity)), entity);
         }
         return -1F;
     }
@@ -62,5 +63,10 @@ public class SleepStatusEffect extends SpectrumStatusEffect {
         }
         return null;
     }
-    
+
+    // Sleep effects don't scale
+    @Override
+    public double adjustModifierAmount(int amplifier, EntityAttributeModifier modifier) {
+        return modifier.getValue();
+    }
 }

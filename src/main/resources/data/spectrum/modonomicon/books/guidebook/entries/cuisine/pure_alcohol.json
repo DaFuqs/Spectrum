@@ -6,7 +6,7 @@
     "advancement_id": "spectrum:tap_pure_alcohol"
   },
   "category": "spectrum:cuisine",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:cuisine/infused_beverages"

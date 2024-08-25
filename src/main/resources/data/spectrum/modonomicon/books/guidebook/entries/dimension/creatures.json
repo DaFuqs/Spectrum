@@ -2,7 +2,7 @@
   "name": "book.spectrum.guidebook.creatures.name",
   "icon": "spectrum:lizard_spawn_egg",
   "category": "spectrum:dimension",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:midgame/enter_dimension"

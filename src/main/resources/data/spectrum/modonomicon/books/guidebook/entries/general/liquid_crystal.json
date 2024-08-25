@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:liquid_crystal_bucket",
   "category": "spectrum:general",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:general/mermaids_brush"

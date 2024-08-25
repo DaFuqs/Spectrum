@@ -2,7 +2,7 @@
   "name": "book.spectrum.guidebook.shards.name",
   "icon": "minecraft:amethyst_shard",
   "category": "spectrum:general",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:general/geodes"

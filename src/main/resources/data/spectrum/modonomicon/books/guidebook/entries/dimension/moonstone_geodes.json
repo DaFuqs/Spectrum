@@ -6,7 +6,7 @@
     "advancement_id": "spectrum:lategame/collect_moonstone"
   },
   "category": "spectrum:dimension",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:dimension/blackslag"

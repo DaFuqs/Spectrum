@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:nectardew_burgeon",
   "category": "spectrum:general",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:general/nightdew_sprout"

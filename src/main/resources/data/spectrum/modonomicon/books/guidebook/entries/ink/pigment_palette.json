@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:pigment_palette",
   "category": "spectrum:ink",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:ink/color_picker",

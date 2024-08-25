@@ -3,7 +3,7 @@
   "icon": "minecraft:bedrock",
   "turnin": "spectrum:midgame/enter_dimension",
   "category": "spectrum:dimension",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:midgame/enter_dimension"

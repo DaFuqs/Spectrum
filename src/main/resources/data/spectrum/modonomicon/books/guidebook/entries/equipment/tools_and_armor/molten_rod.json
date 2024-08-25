@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:molten_rod",
   "category": "spectrum:equipment",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:equipment/tools_and_armor/lagoon_rod"

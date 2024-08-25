@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:raw_bloodstone",
   "category": "spectrum:creating_life",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:creating_life/effulgent_feathers"

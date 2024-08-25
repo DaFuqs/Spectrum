@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:shale_clay",
   "category": "spectrum:dimension",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:dimension/razor_edge"

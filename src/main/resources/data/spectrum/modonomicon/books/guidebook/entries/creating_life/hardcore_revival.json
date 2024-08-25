@@ -6,7 +6,7 @@
     "advancement_id": "spectrum:midgame/build_spirit_instiller_structure"
   },
   "category": "spectrum:creating_life",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:creating_life/spirit_instiller"

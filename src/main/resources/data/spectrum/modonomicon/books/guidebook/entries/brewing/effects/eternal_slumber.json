@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:textures/mob_effect/eternal_slumber.png",
   "category": "spectrum:brewing",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:brewing/effects/somnolence"

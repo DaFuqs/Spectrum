@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:greater_potion_pendant",
   "category": "spectrum:brewing",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:brewing/lesser_potion_pendant"

@@ -6,7 +6,7 @@
     "advancement_id": "spectrum:unlocks/food/trifles"
   },
   "category": "spectrum:cuisine",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:cuisine/amaranth",

@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:ring_of_pursuit",
   "category": "spectrum:equipment",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:equipment/trinkets/bismuth_trinkets",

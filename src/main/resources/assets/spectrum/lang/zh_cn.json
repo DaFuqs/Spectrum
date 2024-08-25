@@ -86,13 +86,13 @@
   "recipeGroup.spectrum.chalk_chalk": "不可破坏的粉笔",
   "recipeGroup.spectrum.chalk_glow_chalk": "不可破坏的荧光粉笔",
   "recipeGroup.spectrum.block_cracking": "块状裂纹",
-  "recipeGroup.spectrum.glass_arrows": "玻璃箭",
+  "recipeGroup.spectrum.glass_arrows": "宝石箭",
   "recipeGroup.spectrum.crafting_tablet": "合成模板",
   "recipeGroup.spectrum.noxwood_planks": "夜木木板",
   "recipeGroup.spectrum.deserts": "魔法沙漠",
   "recipeGroup.spectrum.glass_ampoules": "玻璃安瓿",
   "recipeGroup.spectrum.compacting": "压缩",
-  "recipeGroup.spectrum.effulgent_decorations": "闪亮的装饰",
+  "recipeGroup.spectrum.effulgent_decorations": "龙翎装饰",
   "recipeGroup.spectrum.jade_decorations": "玉藤装饰",
   "recipeGroup.spectrum.jadeite_decorations": "翡翠装饰",
   "recipeGroup.spectrum.pigment_compacting": "颜料压缩",
@@ -357,12 +357,15 @@
   "entity.spectrum.mining_projectile": "采矿弹",
   "entity.spectrum.bident_mirror_image": "双叉戟镜像",
   "entity.spectrum.bident": "双叉戟",
+  "entity.spectrum.draconic_twinsword": "龙之双剑",
+  "entity.spectrum.dragon_talon": "龙爪",
   "entity.spectrum.monstrosity": "§k畸形之物",
   "entity.spectrum.preservation_turret": "哨戒炮塔",
   "entity.spectrum.kindling": "小火龙",
   "entity.spectrum.kindling_cough": "小火龙的吐息",
   "entity.spectrum.lizard": "恶蜥",
   "entity.spectrum.eraser": "幽影蜘蛛",
+  "entity.spectrum.glass_arrow": "宝石箭",
   
   "commands.spectrum.spawn_shooting_star.success": "为选定的玩家各生成了%d个流星",
   "commands.spectrum.progression_sanity.success": "配方与进度合理性检验结果已输出到服务器控制台",
@@ -973,10 +976,10 @@
   "block.spectrum.dragonbone": "龙骨",
   "block.spectrum.cracked_dragonbone": "破碎的龙骨",
 
-  "block.spectrum.effulgent_block": "闪亮的羽毛块",
-  "block.spectrum.effulgent_cushion": "闪亮的垫子",
-  "block.spectrum.effulgent_carpet": "闪亮的地毯",
-  "block.spectrum.effulgent_bed": "闪亮的床",
+  "block.spectrum.effulgent_block": "龙翎块",
+  "block.spectrum.effulgent_cushion": "龙翎垫子",
+  "block.spectrum.effulgent_carpet": "龙翎地毯",
+  "block.spectrum.effulgent_bed": "龙翎床",
 
   "item.spectrum.ash_flakes": "灰烬残渣",
   "item.spectrum.ash_flakes.tooltip": "§o熔炼之后留下的残渣。",
@@ -2430,18 +2433,18 @@
   "item.spectrum.bident.postToolTip.pp": " %d%% 穿刺",
   "item.spectrum.bident.toolTip.disabled": "投掷效果已禁用",
 
-  "item.spectrum.malachite_glass_arrow": "玻璃箭",
+  "item.spectrum.malachite_glass_arrow": "宝石箭",
   "item.spectrum.glass_arrow.tooltip": "可以在水下射击",
   "item.spectrum.glass_arrow.tooltip2": "穿透半透明方块并造成更高的伤害",
-  "item.spectrum.topaz_glass_arrow": "托帕石玻璃箭",
+  "item.spectrum.topaz_glass_arrow": "托帕石宝石箭",
   "item.spectrum.topaz_glass_arrow.tooltip": "将目标拉向你的方向",
-  "item.spectrum.amethyst_glass_arrow": "紫水晶玻璃箭",
+  "item.spectrum.amethyst_glass_arrow": "紫水晶宝石箭",
   "item.spectrum.amethyst_glass_arrow.tooltip": "冻结目标并造成冰冻伤害",
-  "item.spectrum.citrine_glass_arrow": "黄水晶玻璃箭",
+  "item.spectrum.citrine_glass_arrow": "黄水晶宝石箭",
   "item.spectrum.citrine_glass_arrow.tooltip": "将目标击退的更远",
-  "item.spectrum.onyx_glass_arrow": "缟玛瑙玻璃箭",
+  "item.spectrum.onyx_glass_arrow": "缟玛瑙宝石箭",
   "item.spectrum.onyx_glass_arrow.tooltip": "造成魔法伤害，忽略无敌帧；对盾牌造成额外伤害",
-  "item.spectrum.moonstone_glass_arrow": "月长石玻璃箭",
+  "item.spectrum.moonstone_glass_arrow": "月长石宝石箭",
   "item.spectrum.moonstone_glass_arrow.tooltip": "制造能量爆炸，造成AoE伤害",
 
   "item.spectrum.azurite_glass_ampoule": "石青玻璃安瓿",
@@ -2520,7 +2523,7 @@
   "block.spectrum.malachite_block": "孔雀石块",
   "item.spectrum.refined_malachite": "精炼孔雀石",
   "item.spectrum.dragonbone_chunk": "龙骨",
-  "item.spectrum.effulgent_feather": "闪亮的羽毛",
+  "item.spectrum.effulgent_feather": "龙翎",
   "item.spectrum.raw_bloodstone": "粗蕴血石",
   "block.spectrum.bloodstone_block": "蕴血石块",
   "item.spectrum.refined_bloodstone": "精制蕴血石",
@@ -3037,7 +3040,7 @@
   "block.spectrum.bristle_sprouts": "锯叶冬青芽",
   "block.spectrum.doombloom": "末日花",
   "item.spectrum.doombloom_seed": "末日花种子",
-  "block.spectrum.snapping_ivy": "捕捉常春藤",
+  "block.spectrum.snapping_ivy": "捕兽藤",
   "block.spectrum.sawblade_holly_bush": "锯叶冬青灌木丛",
   "item.spectrum.sawblade_holly_berry": "锯叶冬青浆果",
   "item.spectrum.prickly_bayleaf": "多刺月桂叶",
@@ -3280,7 +3283,7 @@
   "tag.spectrum.gemstone_ores": "宝石矿石",
   "tag.spectrum.gemstone_powders": "宝石粉末",
   "tag.spectrum.gemstone_shards": "宝石碎片",
-  "tag.spectrum.glass_arrows": "玻璃箭",
+  "tag.spectrum.glass_arrows": "宝石箭",
   "tag.spectrum.greatswords": "巨剑",
   "tag.spectrum.dragonjags": "龙牙",
   "tag.spectrum.lean_meats": "瘦肉",
@@ -3403,7 +3406,7 @@
   "tag.spectrum.bedrock_rod_fishable_in": "基岩钓竿可钓",
   "tag.spectrum.swimmable_fluid": "额外可游泳液体",
   "tag.spectrum.midnight_solution_converted": "转换后的午夜溶液",
-  "tag.spectrum.effulgent_feathers": "闪亮的羽毛",
+  "tag.spectrum.effulgent_feathers": "龙翎",
 
   "tag.trinkets.chest.pin": "胸针",
   "tag.trinkets.head.crown": "皇冠",
@@ -3761,7 +3764,7 @@
   "book.spectrum.guidebook.creature_manipulation.page0.text": "我的整个\"创造生命\" 计划到目前为止仍然非常复杂。但是慢慢地，我觉得我已*参透其中奥秘*了。\\\n\\\n从无到有创造生命是一件困难的事情，但是结合现有的知识呢？\\\n\\\n这就是弗兰肯斯坦的感觉吗？ *这符不符合伦理？我不确定，但我非常愿意尝试。*",
 
   "book.spectrum.guidebook.crescent_clock.page0.text": "这座由时间见证者组成的时钟，将引导我穿越这伊始与终焉之间的循环往复，永续轮回。\\\n\\\n\\\n\\\n*若我等影子冒犯于你，知晓此事终将得以弥补。*",
-  "book.spectrum.guidebook.crescent_clock.page1.text": "*你不过是在此小憩，这些幻象便浮现眼前。\\\n这虚弱而无趣的主题，不过一场梦境。*",
+  "book.spectrum.guidebook.crescent_clock.page1.text": "*我不过是在此小憩，这些幻象便浮现眼前。\\\n这虚弱而无趣的主题，不过一场梦境。*",
 
   "book.spectrum.guidebook.crossbow": "弩",
 
@@ -3840,6 +3843,105 @@
   "book.spectrum.guidebook.downstone.page0.text": "在渊底的最深处，我发现了这种没见过的新石头。\\\n坚硬程度就连[#](bb00bb)基岩[#]()在这石头面前都显得微不足道。",
 
   "book.spectrum.guidebook.downstone_fragments.page0.text": "似乎这里以前的人能借助这[巨大且宏伟的钻头](entry://dimension/excavation_sites)采集到渊深石！\\\n\\\n以前的人似乎用它来制作[#](bb00bb)保护石[#]()？",
+
+  "book.spectrum.guidebook.excavation_sites.name": "挖掘现场",
+  "book.spectrum.guidebook.excavation_sites.page0.text": "*一个施工场地？*",
+  "book.spectrum.guidebook.excavation_sites.page1.text": "在地下深处——确切地说是在[渊深石](entry://dimension/downstone)层之间的最深处，我发现了一个奇怪的机械外观的结构。",
+
+  "book.spectrum.guidebook.exchanging_staff.page0.text": "只要不是住在[#](bb00bb)火柴盒[#]()里的——或者连家都没有的人——当然，我不是在写我自己——应该都想过替换法杖的点子。它可以在眨眼间交换一大堆相连的方块。非常适合重新装饰。",
+  "book.spectrum.guidebook.exchanging_staff.page1.text": "*挖矿旅程又变得妙趣横生了起来*",
+  "book.spectrum.guidebook.exchanging_staff.page2.text": "为魔杖注入时运魔咒即可在转换矿石的时候掉落更多矿物，类似通常的时运魔咒。",
+  "book.spectrum.guidebook.exchanging_staff.page3.text": "为魔杖注入精准采集魔咒即可完全一对一地进行方块的替换，而不会破坏诸如玻璃和矿石这样的方块。",
+  "book.spectrum.guidebook.exchanging_staff.page4.text": "为魔杖注入共振魔咒即可完整地采集某些特殊的方块。",
+
+  "book.spectrum.guidebook.draconic_twinsword.page0.text": "我的沉思创造出了一个多功能的杰作。\\\n平衡性极好的一把武器，横扫攻击不仅范围大。而且[蕴血石](entry://creating_life/bloodstone)的材质使其变得更加坚硬，无论砍多少次都不会卷刃。\\\n\\\n一把不那么友好但让人着迷的武器。",
+  "book.spectrum.guidebook.draconic_twinsword.page1.text": "剑中流淌的[#](f0af15)黄色颜料[#]()可以让我在将其向上抛出后以极快的速度击打它，剑就嗖的一下射出去了，就像打羽毛球一样。右键点击可以接住它——只需要小心反弹。\\\n\\\n*我应该尽量避免不要拿它自杀。*",
+  "book.spectrum.guidebook.draconic_twinsword.page2.text": "这把武器的主动性远不止于此。此时如果我的副手空闲的话，手持切换就可以将剑分成两把迅捷而致命的双刃匕首。这把匕首也可以投掷，尽管投掷方式有点不同。同样的微风使得移动更加灵活多变。",
+  "book.spectrum.guidebook.draconic_twinsword.page3.text": "在投掷匕首后，我可以随时右键召回它们——将我向前抛出，或者将击中的怪物向我抛来。有很多因素影响谁向谁奔赴，也可能会双向奔赴？所以我应该多玩一会。",
+  "book.spectrum.guidebook.draconic_twinsword.page4.text": "作为附注，这把武器有一些独特的附魔改进。\n- [惯性](entry://enchanting/enchantments/inertia)每次反弹时都会增强双剑的力量，而龙爪的抓取效果会变得更强。\n- [暴击增强](entry://enchanting/enchantments/improved_critical)提高对空中目标的命中。\n- 引雷提高横扫攻击范围，并将单目标远程伤害转化为范围伤害。\n- 穿透正如我所预料的那样。",
+
+  "book.spectrum.guidebook.dragonbone.page0.text": "这些巨大的遗骸真的是龙留下来的吗？\\\n老实说我并不知道，但看这个大小真的很有可能是龙的遗骨！\\\n\\\n即使是现在，这些骨头也被一种神秘光环所保护，保护它免受公然的*破坏*。我只是用手指在它们粗糙的表面上划过就感到非常兴奋。",
+  "book.spectrum.guidebook.dragonbone.page1.text": "也许力大砖飞的用[#](449900)爆炸[#]()破坏龙骨似乎可以突破保护光环, 让我最终能够挖掘它。\\\n掉落的碎片仍然保留了一些古老的魔法。",
+  "book.spectrum.guidebook.dragonbone.page2.title": "尘归尘",
+  "book.spectrum.guidebook.dragonbone.page2.text": "[炼化炉](entry://ink/cinderhearth)是唯一能产生足够热量将这些骨头变成灰烬的东西",
+  "book.spectrum.guidebook.dragonbone.page6.text": "大多数方块可以通过[炼化炉](entry://ink/cinderhearth)恢复到其磨制状态。",
+
+  "book.spectrum.guidebook.dragonjags.name": "龙棘草",
+  "book.spectrum.guidebook.dragonjags.page0.text": "这些野蛮的植物几乎可以在任何地方生长，甚至可以长在普通的岩石上。",
+  "book.spectrum.guidebook.dragonjags.page1.text": "[#](bb00bb)骨粉[#]()可以使它们生长和扩散。",
+
+  "book.spectrum.guidebook.dragonrot.page0.text": "看起来像炽热的液体火焰，摸起来就像地狱一样烧灼我的皮肤（虽说好奇心害死人，但我*必须*满足一下我的好奇心……），但它完全不散发热量。\\\n\\\n如果说[午夜溶液](entry://general/midnight_solution)的破坏性源于自身引起的蜕变，那么龙腐脓浆在我看来纯粹是彻底的破坏。",
+  "book.spectrum.guidebook.dragonrot.page1.text": "扔进去一些东西似乎会把它们腐蚀到变成其他东西。",
+
+  "book.spectrum.guidebook.dragonrot_swamp.page0.text": "充斥[龙腐脓浆](entry://dimension/dragonrot)的湖渗透在这里的沼泽丛林中。\\\n而且空气中弥漫着一种酸臭味.",
+  "book.spectrum.guidebook.dragonrot_swamp.page1.text": "这些小植物像常春藤一样在地面上蔓延。嫩绿一簇簇地生长在沼地中。当我给它们施肥时，它们会扩散得更远。",
+  "book.spectrum.guidebook.dragonrot_swamp.page2.text": "非土非泥，这是某种...呃...某种东西？但是不管是啥，当我踩上去时，这玩意儿会让人深陷其中。",
+
+  "book.spectrum.guidebook.dreamflayer.page0.text": "论外级武器。“进攻就是最好的防御”的完美诠释。\"离梦利刃的本质是平衡力量：\"\\\n我的对手盔甲越是坚固，它造成的伤害就越大。\\\n想化身裸装近战大神？[#]()\\\n\\\n潜行使用即可将其充能，期间会快速消耗大量[#](8f2121)红色墨水[#]()。区区削铁如泥破甲如风，不过如此！",
+  "book.spectrum.guidebook.dreamflayer.page1.text": "需要满月之夜才能制作。\\\n\\\n*若需轻装上阵，这便是我最好的理由。*",
+  
+  "book.spectrum.guidebook.effect_prolonging.name": "效果延长 （叠加）",
+  "book.spectrum.guidebook.effect_prolonging.page0.text": "当我获得其他状态效果时，只要这个效果激活，其他效果的持续时间就会延长。",
+  "book.spectrum.guidebook.effect_prolonging.page1.text": "相反，当我再次获得效果延长效果时，将会在现有等级之上叠加额外等级，增加效果的强度，而不是重置其持续时间。",
+
+  "book.spectrum.guidebook.effulgent_deco.name": "龙翎装饰",
+  "book.spectrum.guidebook.effulgent_deco.page0.text": "我真的很羡慕我的[小火龙](entry://creating_life/kindlings)，能天天在他们身上那柔软轻便的柔羽上睡觉。不仅柔软——在触感和颜色上都非常奢华。甚至有[#](f0af15)金色的光辉[#]()流淌在羽毛表面。\\\n\\\n我都可以想象自己躺在用这些羽毛做的毯子上睡着了。",
+  "book.spectrum.guidebook.effulgent_deco.page1.text": "可以重新分解为[#](bb00bb)龙翎[#]()。",
+
+  "book.spectrum.guidebook.egg_laying_wooly_pig.name": "下蛋的毛猪",
+  "book.spectrum.guidebook.egg_laying_wooly_pig.page0.text": "我们在走弗兰肯斯坦的路，对吧？我还有一个更*疯狂*的想法……但这些想法不恰恰是最棒的吗？",
+  "book.spectrum.guidebook.egg_laying_wooly_pig.page1.title": "疯狂的想法",
+  "book.spectrum.guidebook.egg_laying_wooly_pig.page1.text": "我的新造物会喜欢吃什么呢？这很重要，因为它们[相互关联](entry://creating_life/memories)。",
+  "book.spectrum.guidebook.egg_laying_wooly_pig.page2.text": "[苋菜](entry://cuisine/amaranth)[#]() 就是答案！",
+  "book.spectrum.guidebook.egg_laying_wooly_pig.page3.text": "多么奇妙的生物。能[#](449900)剪毛[#]()能[#](449900)挤奶[#]()，同时还会[#](449900)下蛋[#]()。",
+
+  "book.spectrum.guidebook.enchanted_food.name": "附魔食物",
+  "book.spectrum.guidebook.enchanted_food.page0.text": "制作过程几乎和我的生活一样艰难。",
+  "book.spectrum.guidebook.enchanted_food.page1.text": "当然，这种效果肯定比[#](bb00bb)附魔金苹果[#]()要弱得多，但仍然是适合短途旅行的便携小饼干儿。",
+
+  "book.spectrum.guidebook.enchanter.name": "附魔基座",
+  "book.spectrum.guidebook.enchanter.page0.text": "在寻找完美工具的过程中，我发现用[#](bb00bb)普通的附魔台[#]()来打造完美工具未免有点犯难。使用这款高度改造的附魔台应该就能解决不少痛点了。\\\n\\\n它可以：\n- [制作附魔书](entry://enchanting/creating_enchanted_books)\n- [升级附魔](entry://enchanting/upgrading_enchanted_books)\n- [在不消耗附魔书的情况下附魔物品](entry://enchanting/enchanting_items)",
+  "book.spectrum.guidebook.enchanter.page1.text": "附魔基座需要基座结构才能工作。",
+  "book.spectrum.guidebook.enchanter.page2.text": "结构尺寸：11x11x5\\\n基座[升级](entry://magical_blocks/upgrades)放置在四个宝石晶方块上即可生效。",
+  "book.spectrum.guidebook.enchanter.page3.text": "- 1个附魔基座\n- 8个物品底座\n- 4+桶液态水晶\n- 4个磨制宝石晶块\n- 8个宝石晶灯\n- 12根磨制岩石柱\n- 24个磨制岩石半砖\n- 159个磨制岩石方块\\\n\\\n*宝石晶方块周围的水池需要注入[液态水晶](entry://general/liquid_crystal)*",
+
+  "book.spectrum.guidebook.enchanting_items.page0.text": "使用附魔基座来附魔物品非常简单：\\\n将[#](bb00bb)附魔书[#]()放在[物品底座](entry://decoration/item_bowl)中，并将我想要附魔的物品放在附魔基座上。\\\n\\\n与普通附魔不同，这不消耗附魔书——但相对地消耗更多的经验",
+  "book.spectrum.guidebook.enchanting_items.page1.text": "最后通过[知识宝石](entry://enchanting/knowledge_gem)提供稳定的经验流即可。",
+  "book.spectrum.guidebook.enchanting_items.page2.title": "复制附魔书",
+  "book.spectrum.guidebook.enchanting_items.page2.text": "要制作新的[#](bb00bb)附魔书[#]()我需要将我想要复制的[#](bb00bb)附魔书[#]()放在[物品底座](entry://decoration/item_bowl)中，并在[附魔基座](entry://enchanting/enchanter)上放置一本[#](bb00bb)普通的书本[#]()。\\\n\\\n当然，给普通的书本注入魔力确实还是要消耗大量经验的。",
+  "book.spectrum.guidebook.enchanting_items.page3.title": "所需经验",
+  "book.spectrum.guidebook.enchanting_items.page3.text": "通常情况下，每次附魔所需的经验**在50到200之间**。\\\n附魔的稀有程度，附魔的等级，附魔对象对魔咒的亲和力，以及其它各项因素都会影响所需经验。\\\n干扰项也会造成影响，例如与物品本身无法兼容的附魔。",
+
+  "book.spectrum.guidebook.enchantment_canvas.page0.text": "我看着我背包中快要坏掉的极品附魔工具而烦恼，想要修复要面临过于昂贵的问题。\\\n\\\n即使我不能拯救工具，至少我可以拯救附魔！这个画布不能捕捉颜色：但是当用于工具时，附魔就会被交换。",
+  "book.spectrum.guidebook.enchantment_canvas.page1.text": "一旦使用，所使用物品的附魔就会画在画布上，可以将其绑定到该类型的物品上。",
+
+  "book.spectrum.guidebook.ender_dropper.page0.text": "末影投掷器会在接收到[#](449900)红石脉冲[#]()后，从我的[#](bb00bb)末影箱[#]()中投掷一个物品。\\\n\\\n注意：这个机关可是谁都可以交互的哦——别被偷光了！\\\n末影投掷器与[末影漏斗](entry://magical_blocks/ender_hopper)在功能上互补。",
+
+  "book.spectrum.guidebook.ender_glass.page0.text": "从我把配方写在纸上的那一刻起，我就觉得这个创造会很特别。\\\n\\\n[#](449900)末地[#]()、[#](449900)红石[#]()和[#](449900)魔法[#]()的结合赋予了它非常奇特的属性。",
+  "book.spectrum.guidebook.ender_glass.page1.text": "根据施加的[#](449900)红石信号[#]()的强度，这个方块会呈现不同的属性：\n- 没有红石时，它是固体方块\n- 有[#](449900)红石信号[#]()时，会变的透明，几乎像那么一点玻璃的样子\n- 然而，它在满强度红石信号下会达到最奇特的状态……",
+  "book.spectrum.guidebook.ender_glass.page2.text": "更奇怪的是，这种材料似乎只对最后施加的信号做出反应，而不是最强的信号。\\\n\\\n确实是末地的一个奇观。",
+
+  "book.spectrum.guidebook.ender_hopper.page0.text": "与普通漏斗的功能形态相仿，但是它会将物品直接放到我的[#](bb00bb)末影箱[#]()中。\\\n末影漏斗与[末影投掷器](entry://magical_blocks/ender_dropper)在功能上互补。",
+
+  "book.spectrum.guidebook.ender_splice.page0.text": "毫无疑问，末影人最有趣的地方在于它们的传送能力。我对这份能力的复现也相当成功！但是，若要指定传送目的地，我首先必须截取一份当地的快照。似乎末影人不需要这样做。为什么呢？或者它们*确实*需要？",
+  "book.spectrum.guidebook.ender_splice.page1.text": "第一次使用绑定到当前位置\n第二次使用传送到绑定的位置\n- 可以对其他玩家使用\n- 不能跨维度传送",
+  "book.spectrum.guidebook.ender_splice.page2.text": "减少使用时破碎的几率。",
+  "book.spectrum.guidebook.ender_splice.page3.text": "允许跨纬度传送。",
+
+  "book.spectrum.guidebook.enemy_tears": "经典之作。唯一能让它更美味的就是敌人的眼泪。",
+
+  "book.spectrum.guidebook.entity_detector.name": "生物探测器",
+  "book.spectrum.guidebook.entity_detector.page0.text": "生物探测器内置的宝石对地面的微振动做出反应。\\\n这使生物探测器能够测量附近生物的数量。",
+  "book.spectrum.guidebook.entity_detector.page1.text": "对于半径为10方块的每个生物，生物探测器会额外输出1的强度。",
+
+  "book.spectrum.guidebook.erasers.name": "幽影蜘蛛",
+  "book.spectrum.guidebook.erasers.page0.text": "*给自己的备注：不要让它们压倒你！*",
+  "book.spectrum.guidebook.erasers.page1.text": "小, 意味着难以击杀, 被这种群居蜘蛛咬伤会造成各种恶心的效果。\\\n\\\n这些扭曲生物丑恶无比，如果是这些东西导致古文明的衰落，我也不会感到惊讶。\\\n\\\n我通常用剑或修脚的方式对付它们并没有多大帮助，因为它们太小太灵活了。使用能造成范围伤害的东西有可能一窝端这恶心玩意儿。",
+
+  "book.spectrum.guidebook.eternal_slumber.page0.text": "比[嗜睡](entry://brewing/effects/somnolence)[#](449900)更猛的升级版[#]() 并且效果*不会*自行结束，除非是最坚韧的生物（显然不包括我）。而且这个效果并不能在白天睡觉来消除——因为我好像陷入了类似梦幻般的迷雾中……\\\n\\\n*庄生晓梦迷蝴蝶，望帝春心托杜鹃。*",
+
+  "book.spectrum.guidebook.ethereal_platform.page0.text": "在寻找一种对我来说可通行但不会破坏我建筑外观的方块时，[流星](entry://general/stargazing)给了我一个启发。\\\n\\\n利用[缟玛瑙](entry://general/onyx_shards)的强力潜能，我就可以将微小的粒子凝结为实体。",
+  "book.spectrum.guidebook.ethereal_platform.page1.text": "缥缈平台的一大亮点是它只对活物起效。诸如物品之类的东西只会穿过它。",
 
 
 

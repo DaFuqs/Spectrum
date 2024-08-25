@@ -114,11 +114,11 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 		}
 	}
 	
-	public void manifest(@NotNull ServerWorld world, BlockPos blockPos) {
+	protected void manifest(@NotNull ServerWorld world, BlockPos blockPos) {
 		manifest(world, blockPos, this.memoryItemStack, this.ownerUUID);
 	}
 	
-	public static void manifest(@NotNull ServerWorld world, BlockPos blockPos, ItemStack memoryItemStack, @Nullable UUID ownerUUID) {
+	public static boolean manifest(@NotNull ServerWorld world, BlockPos blockPos, ItemStack memoryItemStack, @Nullable UUID ownerUUID) {
 		BlockState blockState = world.getBlockState(blockPos);
 		if (blockState.getBlock() instanceof Waterloggable && blockState.get(Properties.WATERLOGGED)) {
 			world.setBlockState(blockPos, Blocks.WATER.getDefaultState());
@@ -146,7 +146,11 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 			if (owner instanceof ServerPlayerEntity serverPlayerEntity) {
 				SpectrumAdvancementCriteria.MEMORY_MANIFESTING.trigger(serverPlayerEntity, hatchedEntity);
 			}
+			
+			return true;
 		}
+		
+		return false;
 	}
 	
 	public int getEggColor(int tintIndex) {

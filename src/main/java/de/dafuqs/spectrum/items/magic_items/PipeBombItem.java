@@ -13,6 +13,7 @@ import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.registry.tag.*;
 import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
@@ -47,13 +48,18 @@ public class PipeBombItem extends Item implements DamageAwareItem, TickAwareItem
 	
 	@Override
 	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
+		arm(stack, world, user.getPos(), user);
+		return stack;
+	}
+	
+	public static void arm(ItemStack stack, World world, Vec3d pos, @Nullable Entity user) {
 		var nbt = stack.getOrCreateNbt();
-		
 		nbt.putBoolean("armed", true);
 		nbt.putLong("timestamp", world.getTime());
-		nbt.putUuid("owner", user.getUuid());
-		user.playSound(SpectrumSoundEvents.INCANDESCENT_ARM, 2F, 0.9F);
-		return stack;
+		if (user != null) {
+			nbt.putUuid("owner", user.getUuid());
+		}
+		world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SpectrumSoundEvents.INCANDESCENT_ARM, SoundCategory.PLAYERS, 2F, 0.9F);
 	}
 	
 	@Override

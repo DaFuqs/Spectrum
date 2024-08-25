@@ -101,7 +101,9 @@ public class ArtistsPaletteItem extends SpectrumTrinketItem implements InkStorag
 			var color = colors.get(0);
 			return new ExtendedItemBarProvider.BarSignature(1, 13, 14, progress, 1, color.getColorInt() | 0xFF000000, 2, DEFAULT_BACKGROUND_COLOR);
 		}
-		
+
+		if(colors.isEmpty()) return new ExtendedItemBarProvider.BarSignature(1, 13, 14, progress, 1, 0xFF000000, 2, DEFAULT_BACKGROUND_COLOR);
+
 		var delta = MinecraftClient.getInstance().getTickDelta();
 		var curColor = colors.get((int) (time % (30L * colors.size()) / 30));
 		var nextColor = colors.get((int) ((time % (30L * colors.size()) / 30 + 1) % colors.size()));

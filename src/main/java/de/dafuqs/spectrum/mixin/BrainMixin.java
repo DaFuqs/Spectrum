@@ -27,7 +27,7 @@ public abstract class BrainMixin<E extends LivingEntity> { ;
         if (effect == null)
             return;
         
-        var resistanceModifier = SleepStatusEffect.getSleepResistanceModifier(effect, entity);
+        var resistanceModifier = SleepStatusEffect.getSleepEffectStrength(effect, entity);
         if (resistanceModifier <= 0 || entity.getRandom().nextFloat() > Math.min(resistanceModifier / 0.05, 0.3))
             return;
         

@@ -24,7 +24,7 @@ public abstract class MobEntityMixin {
             return;
         }
         
-        var potency = SleepStatusEffect.getGeneralSleepResistanceIfEntityHasSoporificEffect(entity);
+        var potency = SleepStatusEffect.getGeneralSleepStrengthIfEntityHasSoporificEffect(entity);
 
         if (potency <= 0 || entity.getRandom().nextFloat() > Math.min(potency * 0.05, 0.3))
             return;

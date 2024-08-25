@@ -93,7 +93,7 @@ public class ServerPastelNetwork extends PastelNetwork {
 					continue;
 
 				nodeSync.add(pastelNode);
-				if (pastelNode.getRedstoneRing().map(r -> r == PastelNodeBlockEntity.DETECTOR).orElse(false))
+				if (pastelNode.getRedstoneRing().map(r -> r == PastelNodeBlockEntity.SENSOR).orElse(false))
 					pastelNode.pulseRedstone();
 			}
 		}
@@ -143,5 +143,4 @@ public class ServerPastelNetwork extends PastelNetwork {
 		}
 		return network;
 	}
-
 }

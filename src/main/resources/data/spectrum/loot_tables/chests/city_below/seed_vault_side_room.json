@@ -10,8 +10,17 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:bone_meal",
-          "weight": 3
+          "name": "spectrum:vegetal",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 3,
+                "max": 6
+              }
+            }
+          ]
         },
         {
           "type": "minecraft:item",
@@ -21,7 +30,14 @@
         {
           "type": "minecraft:item",
           "name": "spectrum:multitool",
-          "weight": 2
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": 30,
+              "treasure": true
+            }
+          ]
         },
         {
           "type": "minecraft:item",

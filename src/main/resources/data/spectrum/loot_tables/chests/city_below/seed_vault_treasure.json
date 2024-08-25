@@ -3,42 +3,114 @@
   "pools": [
     {
       "rolls": {
-        "min": 2,
-        "max": 3
+        "min": 3,
+        "max": 4
       },
-      "bonus_rolls": 0,
+      "bonus_rolls": 0.3,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:beetroot_seeds"
+          "name": "minecraft:carrot"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:wheat_seeds"
+          "name": "minecraft:potato",
+          "weight": 3
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:melon_seeds"
+          "name": "minecraft:beetroot_seeds",
+          "weight": 3
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:pumpkin_seeds"
+          "name": "minecraft:wheat_seeds",
+          "weight": 3
         },
         {
           "type": "minecraft:item",
-          "name": "spectrum:glistering_melon_seeds"
+          "name": "minecraft:cocoa_beans",
+          "weight": 3
         },
         {
           "type": "minecraft:item",
-          "name": "spectrum:nephrite_blossom_bulb"
+          "name": "minecraft:melon_seeds",
+          "weight": 3
         },
         {
           "type": "minecraft:item",
-          "name": "spectrum:jadeite_lotus_bulb"
+          "name": "minecraft:pumpkin_seeds",
+          "weight": 3
         },
         {
           "type": "minecraft:item",
-          "name": "spectrum:aloe_leaf"
+          "name": "minecraft:torchflower_seeds",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:amaranth_grains",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:nephrite_blossom_bulb",
+          "weight": 8
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:jadeite_lotus_bulb",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:aloe_leaf",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:sweet_berries",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:mermaids_gem",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:sawblade_holly_berry",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:glow_berries",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:fissure_plum",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:nightdew_sprout",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:pitcher_pod",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:nether_wart",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:kelp",
+          "weight": 3
         }
       ],
       "functions": [
@@ -46,6 +118,97 @@
           "function": "minecraft:set_count",
           "count": {
             "min": 3,
+            "max": 7
+          }
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 1,
+        "max": 2
+      },
+      "bonus_rolls": 0.5,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:oak_sapling"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:birch_sapling"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:jungle_sapling"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:spruce_sapling"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:acacia_sapling"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:dark_oak_sapling"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:azalea"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:flowering_azalea"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:mangrove_propagule"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cherry_sapling"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:weeping_gala_sprig"
+        },
+        {
+          "type": "minecraft:tag",
+          "name": "c:mushrooms",
+          "expand": true
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:crimson_fungus"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:warped_fungus"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:bamboo"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:sugar_cane"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:quitoxic_reeds"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:clover"
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_count",
+          "count": {
+            "min": 4,
             "max": 7
           }
         }

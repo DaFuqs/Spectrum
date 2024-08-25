@@ -194,26 +194,33 @@ public interface InkStorage extends Clearable, Storage<InkColor> {
 		tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet_amount", Text.literal(getShortenedNumberString(amount)).formatted(Formatting.WHITE), inkName).setStyle(inkName.getStyle()));
 	}
 
+	// Call right before mutating state to save the original state for this transaction.
+	// Idempotent -- no need to call more than once for the current transaction, and it's a noop doing so.
 	// Same thing as the method of the same name in SnapshotParticipant
 	// but declared here for use by the default transfer methods' implementations
 	void updateSnapshots(TransactionContext transaction);
 
+	// NOTE: updateSnapshots is currently unconditionally called,
+	// due to the fact that the current API this default impl wraps around mutates state.
+	// This will be reverted to the proper usage (calling it when the inserted/extracted amount is greater than 0)
+	// when the Transfer API is fully integrated into the ink transfer system.
+	// This is only a minor problem in the form of a waste of a couple extra CPU cycles, and is a non-issue in itself,
+	// but it will be rid of anyway.
 	@Override
 	default long insert(InkColor insertedVariant, long maxAmount, TransactionContext transaction) {
 		StoragePreconditions.notBlankNotNegative(insertedVariant, maxAmount);
+		updateSnapshots(transaction);
+		// this method returns the amount of ink that was *not* into the system, out of the requested amount.
 		long overflow = addEnergy(insertedVariant, maxAmount);
-		long insertedAmount = maxAmount - overflow;
-		if (insertedAmount > 0) updateSnapshots(transaction);
-		return insertedAmount;
+		return maxAmount - overflow;
 	}
 
 	@Override
 	default long extract(InkColor extractedVariant, long maxAmount, TransactionContext transaction) {
 		StoragePreconditions.notBlankNotNegative(extractedVariant, maxAmount);
+		updateSnapshots(transaction);
 		// this one returns the extracted amount already so no need for additional calculations
-		long extractedAmount = drainEnergy(extractedVariant, maxAmount);
-		if (extractedAmount > 0) updateSnapshots(transaction);
-		return extractedAmount;
+		return drainEnergy(extractedVariant, maxAmount);
 	}
 
 	record InkView(InkStorage storage, InkColor color) implements StorageView<InkColor> {

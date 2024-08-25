@@ -4,12 +4,6 @@
       "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:collect_shimmerstone" }
     },
-    "has_citrine_shard": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_shards/citrine"
-      }
-    },
     "has_yellow_pigment": {
       "trigger":"revelationary:advancement_gotten",
       "conditions": {

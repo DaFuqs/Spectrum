@@ -91,9 +91,9 @@ public class ArtistsPaletteItem extends SpectrumTrinketItem implements InkStorag
 		
 		var time = player.getWorld().getTime() % 864000;
 		
-		for (RegistryEntry<InkColor> inkColor : InkColors.elementals()) {
-			if (storage.getEnergy(inkColor.value()) > 0)
-				colors.add(inkColor.value());
+		for (InkColor inkColor : InkColors.elementals()) {
+			if (storage.getEnergy(inkColor) > 0)
+				colors.add(inkColor);
 		}
 		
 		var progress = Support.getSensiblePercent(storage.getCurrentTotal(), storage.getMaxTotal(), 14);

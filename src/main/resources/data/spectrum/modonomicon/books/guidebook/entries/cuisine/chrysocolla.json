@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:chrysocolla",
   "category": "spectrum:cuisine",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:cuisine/jade_wine"

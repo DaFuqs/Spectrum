@@ -6,7 +6,7 @@
     "advancement_id": "spectrum:unlocks/blocks/pastel_network"
   },
   "category": "spectrum:pastel_network",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:pastel_network/pastel_network",

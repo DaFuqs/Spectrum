@@ -122,6 +122,10 @@ public class SpectrumFusionShrineWorldEffects {
 			if (world.getRandom().nextFloat() < 0.05F) {
 				Optional<BlockPos> targetPos = Support.getNexReplaceableBlockPosUpDown(world, pos.add(5 - world.getRandom().nextInt(10), 1, 5 - world.getRandom().nextInt(10)), 5);
 				if (targetPos.isPresent()) {
+					BlockPos p = targetPos.get();
+					if (p.getX() == pos.getX() && p.getZ() == pos.getZ()) {
+						return;
+					}
 					world.setBlockState(targetPos.get(), SpectrumBlocks.MIDNIGHT_SOLUTION.getDefaultState());
 					MidnightSolutionFluidBlock.playExtinguishSound(world, targetPos.get());
 				}
@@ -133,7 +137,11 @@ public class SpectrumFusionShrineWorldEffects {
 		public void trigger(ServerWorld world, BlockPos pos) {
 			Optional<BlockPos> targetPos = Support.getNexReplaceableBlockPosUpDown(world, pos.add(5 - world.getRandom().nextInt(10), 1, 5 - world.getRandom().nextInt(10)), 5);
 			if (targetPos.isPresent()) {
-				world.setBlockState(targetPos.get(), SpectrumBlocks.MIDNIGHT_SOLUTION.getDefaultState());
+				BlockPos p = targetPos.get();
+				if (p.getX() == pos.getX() && p.getZ() == pos.getZ()) {
+					return;
+				}
+				world.setBlockState(p, SpectrumBlocks.MIDNIGHT_SOLUTION.getDefaultState());
 				MidnightSolutionFluidBlock.playExtinguishSound(world, targetPos.get());
 			}
 		}

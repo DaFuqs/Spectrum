@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:ethereal_platform",
   "category": "spectrum:decoration",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:decoration/shimmerstone",

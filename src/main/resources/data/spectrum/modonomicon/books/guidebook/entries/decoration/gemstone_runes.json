@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:citrine_chiseled_calcite",
   "category": "spectrum:decoration",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:decoration/shards",

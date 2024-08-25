@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:fanciful_bismuth_ring",
   "category": "spectrum:equipment",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:equipment/trinkets/base_trinkets"

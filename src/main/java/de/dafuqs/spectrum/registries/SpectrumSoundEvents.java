@@ -244,6 +244,16 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent ENTITY_KINDLING_ANGRY = register("entity.kindling.angry");
 	public static final SoundEvent ENTITY_KINDLING_JUMP = register("entity.kindling.jump");
 	
+	public static final SoundEvent ENTITY_EGG_LAYING_WOOLY_PIG_AMBIENT = register("entity.egg_laying_wooly_pig.ambient");
+	public static final SoundEvent ENTITY_EGG_LAYING_WOOLY_HURT = register("entity.egg_laying_wooly_pig.hurt");
+	public static final SoundEvent ENTITY_EGG_LAYING_WOOLY_DEATH = register("entity.egg_laying_wooly_pig.death");
+	public static final SoundEvent ENTITY_EGG_LAYING_WOOLY_STEP = register("entity.egg_laying_wooly_pig.step");
+	
+	public static final SoundEvent ENTITY_ERASER_AMBIENT = register("entity.eraser.ambient");
+	public static final SoundEvent ENTITY_ERASER_HURT = register("entity.eraser.hurt");
+	public static final SoundEvent ENTITY_ERASER_DEATH = register("entity.eraser.death");
+	public static final SoundEvent ENTITY_ERASER_STEP = register("entity.eraser.step");
+	
 	private static SoundEvent register(String id) {
 		Identifier identifier = SpectrumCommon.locate(id);
 		return Registry.register(Registries.SOUND_EVENT, identifier, SoundEvent.of(identifier));

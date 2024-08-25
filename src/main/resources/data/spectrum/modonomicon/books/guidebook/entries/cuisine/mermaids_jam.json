@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:mermaids_jam",
   "category": "spectrum:cuisine",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:cuisine/cheong"

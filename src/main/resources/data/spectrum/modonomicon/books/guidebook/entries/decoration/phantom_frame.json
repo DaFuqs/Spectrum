@@ -6,7 +6,7 @@
     "advancement_id": "spectrum:collect_shimmerstone"
   },
   "category": "spectrum:decoration",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:decoration/shimmerstone"

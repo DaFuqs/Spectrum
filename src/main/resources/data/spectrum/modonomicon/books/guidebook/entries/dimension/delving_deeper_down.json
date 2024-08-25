@@ -4,7 +4,10 @@
   "turnin": "spectrum:midgame/enter_dimension",
   "category": "spectrum:dimension",
   "hide_while_locked ": true,
-  "parents": [],
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:midgame/enter_dimension"
+  },
   "background_u_index": 0,
   "background_v_index": 1,
   "x": 0,

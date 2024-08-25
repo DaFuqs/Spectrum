@@ -8,7 +8,7 @@
   },
   "icon": "spectrum:black_glowblock",
   "category": "spectrum:general",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:general/ruin"

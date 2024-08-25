@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:item_roundel",
   "category": "spectrum:decoration",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:decoration/block_variants"

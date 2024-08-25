@@ -6,7 +6,7 @@
   },
   "icon": "minecraft:spawner",
   "category": "spectrum:creating_life",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:creating_life/spawner_manipulation"

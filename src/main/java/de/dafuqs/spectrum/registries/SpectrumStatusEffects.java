@@ -18,7 +18,7 @@ public class SpectrumStatusEffects {
 	 * and makes it immune against new ones
 	 */
 	public static final StatusEffect IMMUNITY = registerStatusEffect("immunity", new ImmunityStatusEffect(StatusEffectCategory.NEUTRAL, 0x4bbed5))
-			.addAttributeModifier(SpectrumEntityAttributes.INDUCED_SLEEP_RESISTANCE, "916b3d21-193e-42a3-a429-1cbd08529469", 2.0, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
+			.addAttributeModifier(SpectrumEntityAttributes.INDUCED_SLEEP_VULNERABILITY, "916b3d21-193e-42a3-a429-1cbd08529469", -0.5, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
 	
 	/**
 	 * Like Saturation, but not OP
@@ -106,7 +106,7 @@ public class SpectrumStatusEffects {
 			.addAttributeModifier(EntityAttributes.GENERIC_ARMOR, "ce69cebb-c3fe-4f00-8d4a-0e3d524f237e", 2.0D, EntityAttributeModifier.Operation.ADDITION)
 			.addAttributeModifier(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, "5af92757-cdf2-4443-856c-9f5eb633b1ef", 2.0D, EntityAttributeModifier.Operation.ADDITION)
 			.addAttributeModifier(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, "924896a5-8538-4b83-a510-509bccf0a897", 1.0D, EntityAttributeModifier.Operation.ADDITION))
-			.addAttributeModifier(SpectrumEntityAttributes.INDUCED_SLEEP_RESISTANCE, "916b3d21-193e-42a3-a429-1cbd08529469", 0.25, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
+			.addAttributeModifier(SpectrumEntityAttributes.INDUCED_SLEEP_VULNERABILITY, "916b3d21-193e-42a3-a429-1cbd08529469", -0.25, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
 	
 	/**
 	 * damage, attack speed, speed & knockback resistance are buffed the more the player kills.
@@ -118,7 +118,7 @@ public class SpectrumStatusEffects {
 			.addAttributeModifier(EntityAttributes.GENERIC_ATTACK_DAMAGE, FrenzyStatusEffect.ATTACK_DAMAGE_UUID_STRING, FrenzyStatusEffect.ATTACK_DAMAGE_PER_STAGE, EntityAttributeModifier.Operation.ADDITION)
 			.addAttributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, FrenzyStatusEffect.MOVEMENT_SPEED_UUID_STRING, FrenzyStatusEffect.MOVEMENT_SPEED_PER_STAGE, EntityAttributeModifier.Operation.MULTIPLY_TOTAL)
 			.addAttributeModifier(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, FrenzyStatusEffect.KNOCKBACK_RESISTANCE_UUID_STRING, FrenzyStatusEffect.KNOCKBACK_RESISTANCE_PER_STAGE, EntityAttributeModifier.Operation.ADDITION)
-			.addAttributeModifier(SpectrumEntityAttributes.INDUCED_SLEEP_RESISTANCE, "8b4684e6-c3c2-4b83-8cb9-f9b3a4ace52d", 100, EntityAttributeModifier.Operation.ADDITION);
+			.addAttributeModifier(SpectrumEntityAttributes.INDUCED_SLEEP_VULNERABILITY, "8b4684e6-c3c2-4b83-8cb9-f9b3a4ace52d", -100, EntityAttributeModifier.Operation.ADDITION);
 	
 	/**
 	 * Increases speed and visibility in lava
@@ -130,28 +130,28 @@ public class SpectrumStatusEffects {
 	/**
 	 * Reduces detection range and enemy spawn rates
 	 */
-	public static final StatusEffect CALMING = registerStatusEffect("calming", new SleepStatusEffect(StatusEffectCategory.BENEFICIAL, 0x5fd7b3)
-			.addAttributeModifier(AdditionalEntityAttributes.MOB_DETECTION_RANGE, "1a822e8e-42e0-4300-a06c-d7933a8ce09e", -0.5, EntityAttributeModifier.Operation.MULTIPLY_TOTAL)
-			.addAttributeModifier(SpectrumEntityAttributes.INDUCED_SLEEP_RESISTANCE, "49242a56-26bb-40a3-98b6-06962201287d", 4F, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
+	public static final StatusEffect CALMING = registerStatusEffect("calming", new SleepStatusEffect(StatusEffectCategory.BENEFICIAL, 0x5fd7b3, true)
+			.addAttributeModifier(AdditionalEntityAttributes.MOB_DETECTION_RANGE, "1a822e8e-42e0-4300-a06c-d7933a8ce09e", -0.25, EntityAttributeModifier.Operation.MULTIPLY_TOTAL)
+			.addAttributeModifier(SpectrumEntityAttributes.INDUCED_SLEEP_VULNERABILITY, "49242a56-26bb-40a3-98b6-06962201287d", 0.1, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
 
 	/**
 	 * Slows down enemy AI and causes them to forget their target at times.
 	 * ON PLAYER: removes UI elements and reduces acceleration
 	 */
-	public static final StatusEffect SOMNOLENCE = registerStatusEffect("somnolence", new SleepStatusEffect(StatusEffectCategory.NEUTRAL, 0xae7bec)
-			.addAttributeModifier(SpectrumEntityAttributes.INDUCED_SLEEP_RESISTANCE, "7c3ef24e-6c4f-4390-b197-6b9db6bcc1c7", 0.5F, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
+	public static final StatusEffect SOMNOLENCE = registerStatusEffect("somnolence", new SleepStatusEffect(StatusEffectCategory.NEUTRAL, 0xae7bec, true)
+			.addAttributeModifier(SpectrumEntityAttributes.INDUCED_SLEEP_VULNERABILITY, "7c3ef24e-6c4f-4390-b197-6b9db6bcc1c7", 0.65, EntityAttributeModifier.Operation.ADDITION));
 
 	/**
 	 * Like somnolence, but stronger and does not naturally end most of the time.
 	 */
-	public static final StatusEffect ETERNAL_SLUMBER = registerStatusEffect("eternal_slumber", new SleepStatusEffect(StatusEffectCategory.HARMFUL, ETERNAL_SLUMBER_COLOR))
-			.addAttributeModifier(SpectrumEntityAttributes.INDUCED_SLEEP_RESISTANCE, "103d526c-44d2-427f-8fa4-bd21ed978422", -1.0, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
+	public static final StatusEffect ETERNAL_SLUMBER = registerStatusEffect("eternal_slumber", new SleepStatusEffect(StatusEffectCategory.HARMFUL, ETERNAL_SLUMBER_COLOR, false))
+			.addAttributeModifier(SpectrumEntityAttributes.INDUCED_SLEEP_VULNERABILITY, "103d526c-44d2-427f-8fa4-bd21ed978422", 2.0, EntityAttributeModifier.Operation.ADDITION);
 
 	/**
 	 * Kills you if it runs out naturally.
 	 */
-	public static final StatusEffect FATAL_SLUMBER = registerStatusEffect("fatal_slumber", new SleepStatusEffect(StatusEffectCategory.HARMFUL, 0x8136c2))
-			.addAttributeModifier(SpectrumEntityAttributes.INDUCED_SLEEP_RESISTANCE, "44a47b7a-bd39-4dbf-8403-79f51d1af62b", -1.0, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
+	public static final StatusEffect FATAL_SLUMBER = registerStatusEffect("fatal_slumber", new SleepStatusEffect(StatusEffectCategory.HARMFUL, 0x8136c2, false))
+			.addAttributeModifier(SpectrumEntityAttributes.INDUCED_SLEEP_VULNERABILITY, "44a47b7a-bd39-4dbf-8403-79f51d1af62b", 2.0, EntityAttributeModifier.Operation.ADDITION);
 	
 	/**
 	 * % Chance to protect from projectiles per level

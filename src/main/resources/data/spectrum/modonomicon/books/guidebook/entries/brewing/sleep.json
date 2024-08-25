@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:nectardew_burgeon",
   "category": "spectrum:brewing",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 4,

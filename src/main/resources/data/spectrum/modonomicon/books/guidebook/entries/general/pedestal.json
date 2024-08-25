@@ -2,7 +2,7 @@
   "name": "block.spectrum.pedestal",
   "icon": "spectrum:pedestal_basic_amethyst",
   "category": "spectrum:general",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:general/shards",

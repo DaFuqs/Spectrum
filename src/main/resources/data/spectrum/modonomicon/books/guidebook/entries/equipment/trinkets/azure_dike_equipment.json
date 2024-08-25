@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:textures/gui/guidebook/icons/azure_dike_heart.png",
   "category": "spectrum:equipment",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:equipment/trinkets/base_trinkets",

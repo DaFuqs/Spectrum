@@ -40,7 +40,7 @@ public abstract class InGameHudMixin {
         if (player == null)
             return true;
 		
-		var potency = SleepStatusEffect.getGeneralSleepResistanceIfEntityHasSoporificEffect(player);
+		var potency = SleepStatusEffect.getGeneralSleepStrengthIfEntityHasSoporificEffect(player);
 
         return potency <= 0.5F;
     }
@@ -52,7 +52,7 @@ public abstract class InGameHudMixin {
         if (player == null)
             return true;
 		
-		var potency = SleepStatusEffect.getGeneralSleepResistanceIfEntityHasSoporificEffect(player);
+		var potency = SleepStatusEffect.getGeneralSleepStrengthIfEntityHasSoporificEffect(player);
 
         return potency <= 0.5F;
     }
@@ -64,7 +64,7 @@ public abstract class InGameHudMixin {
         if (player == null)
             return true;
 		
-		var potency = SleepStatusEffect.getGeneralSleepResistanceIfEntityHasSoporificEffect(player);
+		var potency = SleepStatusEffect.getGeneralSleepStrengthIfEntityHasSoporificEffect(player);
 
         return potency <= 0.5F;
     }

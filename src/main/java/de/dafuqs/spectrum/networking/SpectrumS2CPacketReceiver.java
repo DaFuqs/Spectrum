@@ -495,6 +495,7 @@ public class SpectrumS2CPacketReceiver {
 		})));
 
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PASTEL_NODE_STATUS_UPDATE, ((((client, handler, buf, responseSender) -> {
+			var trigger = buf.readBoolean();
 			var nodeCount = buf.readInt();
 			var positions = new ArrayList<BlockPos>(nodeCount);
 			var times = new ArrayList<Integer>(nodeCount);
@@ -512,6 +513,9 @@ public class SpectrumS2CPacketReceiver {
 						continue;
 
 					node.setSpinTicks(times.get(index));
+
+					if (trigger && node.getRedstoneRing().map(PastelNodeBlockEntity.TRIGGER::is).orElse(false))
+						node.markTrigger();
 				}
 			});
 		}))));

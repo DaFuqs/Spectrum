@@ -10,6 +10,7 @@ import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -55,6 +56,7 @@ public interface OmniAcceleratorProjectile {
 	 * @param world   The World
 	 * @return The created projectile. If not null, the fired stack will be decremented and the getSoundEffect() sound will play
 	 */
+	@Nullable
 	Entity createProjectile(ItemStack stack, LivingEntity shooter, World world);
 	
 	/**

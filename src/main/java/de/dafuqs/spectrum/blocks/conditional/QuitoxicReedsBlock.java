@@ -28,7 +28,10 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 	
 	public static final EnumProperty<FluidLogging.State> LOGGED = FluidLogging.ANY_INCLUDING_NONE;
 	public static final IntProperty AGE = Properties.AGE_7;
-	public static final BooleanProperty ALWAYS_DROP = BooleanProperty.of("always_drop"); // I have no idea why this works anymore and at this point I am too afraid to ask
+	
+	// 'always drop' has no cloak and therefore drops normally even when broken 'via the world'
+	// without player context (the reeds dropping one after one on scheduledTick())
+	public static final BooleanProperty ALWAYS_DROP = BooleanProperty.of("always_drop");
 	
 	public static final int MAX_GROWTH_HEIGHT_WATER = 5;
 	public static final int MAX_GROWTH_HEIGHT_CRYSTAL = 7;
@@ -220,7 +223,7 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 				}
 			}
 		}
-		return VoxelShapes.fullCube();
+		return VoxelShapes.fullCube(); // like breaking particles
 	}
 	
 	@Override
@@ -234,23 +237,28 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 	 */
 	private boolean isValidBlock(WorldView world, BlockPos pos) {
 		BlockState downState = world.getBlockState(pos.down());
-		if (!downState.isOf(this) && !downState.isIn(SpectrumBlockTags.QUITOXIC_REEDS_PLANTABLE)) {
-			return false;
-		}
-		
-		BlockState state = world.getBlockState(pos);
-		if (state.isOf(this) || state.isAir()) {
+		if (downState.isOf(this)) {
 			return true;
+		}
+		if (!downState.isIn(SpectrumBlockTags.QUITOXIC_REEDS_PLANTABLE)) {
+			return false;
 		}
 		
 		BlockState upState = world.getBlockState(pos.up());
 		BlockState upState2 = world.getBlockState(pos.up(2));
-		if (!upState.isAir() && !upState.isOf(this) && !upState2.isAir() && !upState2.isOf(this)) {
-			return false;
+		if (!upState.isOf(this)) {
+			if (!upState.isAir() && !upState2.isAir()) {
+				return false;
+			}
+		}
+		
+		BlockState state = world.getBlockState(pos);
+		if (state.isOf(this)) {
+			return true;
 		}
 		
 		FluidState fluidState = world.getFluidState(pos);
-		return (fluidState.isIn(FluidTags.WATER) && fluidState.getLevel() == 8) || (state.isOf(SpectrumBlocks.LIQUID_CRYSTAL));
+		return fluidState.getLevel() == 8 && (fluidState.isIn(FluidTags.WATER) || state.isOf(SpectrumBlocks.LIQUID_CRYSTAL));
 	}
 	
 	@Override

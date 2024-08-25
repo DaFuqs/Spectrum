@@ -124,7 +124,7 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 	@Override
 	public Multimap<EntityAttribute, EntityAttributeModifier> getModifiers(ItemStack stack, SlotReference slot, LivingEntity entity, UUID uuid) {
 		Multimap<EntityAttribute, EntityAttributeModifier> modifiers = super.getModifiers(stack, slot, entity, uuid);
-		modifiers.put(SpectrumEntityAttributes.INDUCED_SLEEP_RESISTANCE, new EntityAttributeModifier(uuid, "spectrum:neat_ring", 0.3, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
+		modifiers.put(SpectrumEntityAttributes.INDUCED_SLEEP_VULNERABILITY, new EntityAttributeModifier(uuid, "spectrum:neat_ring", -0.3, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
 		return modifiers;
 	}
 

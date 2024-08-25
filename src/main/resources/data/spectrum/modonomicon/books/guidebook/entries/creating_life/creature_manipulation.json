@@ -6,7 +6,7 @@
     "advancement_id": "spectrum:unlocks/head_fusion"
   },
   "category": "spectrum:creating_life",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:creating_life/mob_heads"

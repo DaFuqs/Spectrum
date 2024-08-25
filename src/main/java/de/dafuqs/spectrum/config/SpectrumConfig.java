@@ -29,7 +29,7 @@ public class SpectrumConfig implements ConfigData {
 	public boolean ExtraDarkDimension = false;
 
 	@Comment("Adjusts the general brightness of the dimension (an increase of 1 is a lot, for reference)")
-	public float DimensionBrightnessMod = 0;
+	public float DimensionBrightnessMod = 1.0F;
 
 	@Comment("Mod Integration Packs to not load (in case of mod compat errors)")
 	public List<String> IntegrationPacksToSkipLoading = new ArrayList<>();

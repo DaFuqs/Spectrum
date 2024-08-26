@@ -378,6 +378,12 @@ public class SpectrumS2CPacketSender {
 		}
 	}
 
+	public static void sendMentalPresenceSync(ServerPlayerEntity player, double value) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeDouble(value);
+		ServerPlayNetworking.send(player, SpectrumS2CPackets.SYNC_MENTAL_PRESENCE, buf);
+	}
+
 	public static void sendCompactingChestStatusUpdate(CompactingChestBlockEntity chest) {
 		PacketByteBuf buf = PacketByteBufs.create();
 		buf.writeBlockPos(chest.getPos());

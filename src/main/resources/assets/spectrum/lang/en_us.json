@@ -444,8 +444,8 @@
   "advancements.spectrum.wear_complete_set_of_bedrock_armor.description": "Black Knight of the roses, everlasting. Wear a full suit of Bedrock Armor",
   "advancements.spectrum.wear_complete_set_of_bedrock_armor.title": "Black Knight",
 
-  "attribute.name.spectrum.induced_sleep_resistance": "Induced Sleep Strength",
-  "attribute.name.spectrum.induced_sleep_resistance.desc": "Potency of sleep related effects",
+  "attribute.name.spectrum.mental_presence": "Mental Presence",
+  "attribute.name.spectrum.mental_presence.desc": "Potency of mind related effects",
 
   "biome.spectrum.black_langast": "Black Langast",
   "biome.spectrum.crystal_gardens": "Crystal Gardens",

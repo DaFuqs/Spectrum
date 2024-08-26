@@ -3,6 +3,8 @@ package de.dafuqs.spectrum.cca;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.api.entity.PlayerEntityAccessor;
 import de.dafuqs.spectrum.api.item.SleepAlteringItem;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.registries.*;
 import dev.onyxstudios.cca.api.v3.component.ComponentKey;
 import dev.onyxstudios.cca.api.v3.component.ComponentRegistry;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
@@ -13,6 +15,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.server.network.*;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
@@ -27,6 +30,7 @@ public class MiscPlayerDataComponent implements AutoSyncedComponent, CommonTicki
     public static final ComponentKey<MiscPlayerDataComponent> MISC_PLAYER_DATA_COMPONENT = ComponentRegistry.getOrCreate(SpectrumCommon.locate("misc_player_data"), MiscPlayerDataComponent.class);
     private final PlayerEntity player;
     private int ticksBeforeSleep = -1, sleepingWindow = -1, sleepInvincibility;
+    private double lastSyncedSleepPotency = -2;
     private Optional<SleepAlteringItem> sleepConsumable = Optional.empty();
 
     public MiscPlayerDataComponent(PlayerEntity player) {
@@ -37,6 +41,17 @@ public class MiscPlayerDataComponent implements AutoSyncedComponent, CommonTicki
     @Override
     public void tick() {
         tickSleep();
+    }
+
+    @Override
+    public void serverTick() {
+        CommonTickingComponent.super.serverTick();
+
+        var fortitude = player.getAttributeValue(SpectrumEntityAttributes.MENTAL_PRESENCE);
+        if (lastSyncedSleepPotency != fortitude) {
+            lastSyncedSleepPotency = fortitude;
+            SpectrumS2CPacketSender.sendMentalPresenceSync((ServerPlayerEntity) player, fortitude);
+        }
     }
 
     private void tickSleep() {
@@ -139,5 +154,13 @@ public class MiscPlayerDataComponent implements AutoSyncedComponent, CommonTicki
 
     public static MiscPlayerDataComponent get(@NotNull PlayerEntity player) {
         return MISC_PLAYER_DATA_COMPONENT.get(player);
+    }
+
+    public void setLastSyncedSleepPotency(double lastSyncedSleepPotency) {
+        this.lastSyncedSleepPotency = lastSyncedSleepPotency;
+    }
+
+    public double getLastSyncedSleepPotency() {
+        return lastSyncedSleepPotency;
     }
 }

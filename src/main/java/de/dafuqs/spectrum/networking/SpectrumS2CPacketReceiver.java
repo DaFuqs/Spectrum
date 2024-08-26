@@ -11,6 +11,8 @@ import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.blocks.present.*;
 import de.dafuqs.spectrum.blocks.shooting_star.*;
+import de.dafuqs.spectrum.cca.*;
+import de.dafuqs.spectrum.deeper_down.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.helpers.*;
@@ -441,6 +443,17 @@ public class SpectrumS2CPacketReceiver {
 				}
 			});
 		});
+
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.SYNC_MENTAL_PRESENCE, ((client, handler, buf, responseSender) -> {
+			double value = buf.readDouble();
+
+			client.execute(() -> {
+				if (client.player != null) {
+					MiscPlayerDataComponent.get(client.player).setLastSyncedSleepPotency(value);
+					DarknessEffects.markForEffectUpdate();
+				}
+			});
+		}));
 
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.COMPACTING_CHEST_STATUS_UPDATE, (((client, handler, buf, responseSender) -> {
 			var pos = buf.readBlockPos();

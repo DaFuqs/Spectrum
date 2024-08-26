@@ -45,7 +45,7 @@ public class LaurelsOfSerenityItem extends InkDrainTrinketItem {
         }
         double sleepResistanceMod = getInducedSleepResistanceMod(storedInk);
         if (sleepResistanceMod != 0) {
-            modifiers.put(SpectrumEntityAttributes.INDUCED_SLEEP_VULNERABILITY, new EntityAttributeModifier(uuid, "spectrum:laurels_of_serenity_sleep", -sleepResistanceMod, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
+            modifiers.put(SpectrumEntityAttributes.MENTAL_PRESENCE, new EntityAttributeModifier(uuid, "spectrum:laurels_of_serenity_sleep", sleepResistanceMod, EntityAttributeModifier.Operation.ADDITION));
         }
         
         return modifiers;

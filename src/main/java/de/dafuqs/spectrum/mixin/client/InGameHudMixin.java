@@ -40,9 +40,9 @@ public abstract class InGameHudMixin {
         if (player == null)
             return true;
 		
-		var potency = SleepStatusEffect.getGeneralSleepStrengthIfEntityHasSoporificEffect(player);
+		var potency = SleepStatusEffect.getSleepScaling(player);
 
-        return potency <= 0.5F;
+        return potency <= 0.25F;
     }
 
     @WrapWithCondition(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/InGameHud;renderHotbar(FLnet/minecraft/client/gui/DrawContext;)V"))
@@ -52,9 +52,9 @@ public abstract class InGameHudMixin {
         if (player == null)
             return true;
 		
-		var potency = SleepStatusEffect.getGeneralSleepStrengthIfEntityHasSoporificEffect(player);
+		var potency = SleepStatusEffect.getSleepScaling(player);
 
-        return potency <= 0.5F;
+        return potency <= 0.4F;
     }
 
     @WrapWithCondition(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/InGameHud;renderStatusBars(Lnet/minecraft/client/gui/DrawContext;)V"))
@@ -64,9 +64,9 @@ public abstract class InGameHudMixin {
         if (player == null)
             return true;
 		
-		var potency = SleepStatusEffect.getGeneralSleepStrengthIfEntityHasSoporificEffect(player);
+		var potency = SleepStatusEffect.getSleepScaling(player);
 
-        return potency <= 0.5F;
+        return potency <= 0.4F;
     }
 
     @Unique

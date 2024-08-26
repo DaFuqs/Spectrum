@@ -36,7 +36,7 @@ public abstract class ServerWorldMixin {
 	private void spectrum$sleepThroughDay(ServerWorld instance, long timeOfDay, Operation<Void> original, @Local long l) {
 		var time = TimeHelper.getTimeOfDay(l);
 		if (time.isDay()) {
-			setTimeOfDay(13000);
+			setTimeOfDay((l - l % 24000L) - 11000L);
 			return;
 		}
 		original.call(instance, timeOfDay);

@@ -133,15 +133,6 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 		original.call(instance, except, x, y, z, sound, category, volume, pitch);
 	}
 	
-	
-	@ModifyExpressionValue(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;squaredDistanceTo(Lnet/minecraft/entity/Entity;)D", shift = At.Shift.AFTER))
-	protected double spectrum$increaseSweepMaxDistance(double original) {
-		var stack = this.getStackInHand(Hand.MAIN_HAND);
-		if (stack.getItem() == SpectrumItems.DRACONIC_TWINSWORD)
-			return original * 3 * ((getChanneling(stack) + 1) * 1.5);
-		return original;
-	}
-	
 	@Unique
 	protected int getChanneling(ItemStack stack) {
 		return EnchantmentHelper.getLevel(Enchantments.CHANNELING, stack);

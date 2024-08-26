@@ -14,7 +14,7 @@
   "criteria": {
     "built_structure": {
       "trigger": "spectrum:completed_multiblock",
-      "conditions": { "multiblock_identifier": "spectrum:spirit_instiller_structure" }
+      "conditions": { "multiblock_identifier": "spectrum:spirit_instiller" }
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",

@@ -40,7 +40,7 @@ public class InkColors {
 	public static final int BROWN_COLOR = 0xff70400d;
 	public static final int LIGHT_GRAY_COLOR = 0xffadadad;
 	public static final int GRAY_COLOR = 0xff464646;
-	
+
 	public static final InkColor CYAN = register("cyan", new InkColor(DyeColor.CYAN, CYAN_COLOR, BASE_ADVANCEMENT_ID));
 	public static final InkColor LIGHT_BLUE = register("light_blue", new InkColor(DyeColor.LIGHT_BLUE, LIGHT_BLUE_COLOR, BASE_ADVANCEMENT_ID));
 	public static final InkColor BLUE = register("blue", new InkColor(DyeColor.BLUE, BLUE_COLOR, BASE_ADVANCEMENT_ID));
@@ -74,12 +74,12 @@ public class InkColors {
 		return SpectrumRegistries.INK_COLORS;
 	}
 	
-	public static RegistryEntryList.Named<InkColor> elementals() {
-		return SpectrumRegistries.INK_COLORS.getEntryList(InkColorTags.ELEMENTAL_COLORS).get();
+	public static List<InkColor> elementals() {
+        return SpectrumRegistries.INK_COLORS.getEntryList(InkColorTags.ELEMENTAL_COLORS).map(entries -> entries.stream().map(RegistryEntry::value).toList()).orElseGet(() -> List.of(CYAN, MAGENTA, YELLOW, WHITE, BLACK));
 	}
 	
-	public static RegistryEntryList.Named<InkColor> compounds() {
-		return SpectrumRegistries.INK_COLORS.getEntryList(InkColorTags.COMPOUND_COLORS).get();
+	public static List<InkColor> compounds() {
+		return SpectrumRegistries.INK_COLORS.getEntryList(InkColorTags.COMPOUND_COLORS).map(entries -> entries.stream().map(RegistryEntry::value).toList()).orElseGet(() -> List.of(LIGHT_BLUE, BLUE, PURPLE, PINK, RED, ORANGE, LIME, GREEN, BROWN, GRAY, LIGHT_GRAY));
 	}
 	
 }

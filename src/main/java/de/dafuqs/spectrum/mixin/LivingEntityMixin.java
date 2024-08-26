@@ -226,7 +226,7 @@ public abstract class LivingEntityMixin {
 		return protection;
 	}
 	
-	@ModifyVariable(method = "applyArmorToDamage", at = @At("STORE"))
+	@ModifyVariable(method = "applyArmorToDamage", at = @At("STORE"), ordinal = 0)
 	public float spectrum$applyArmorToDamage(float amount, DamageSource source) {
 		float defense = getArmor();
 		float toughness = getToughness();

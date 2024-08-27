@@ -9,6 +9,7 @@ public class SpectrumS2CPackets {
 	public static final Identifier PLAY_PARTICLE_WITH_RANDOM_OFFSET_AND_VELOCITY = SpectrumCommon.locate("play_particle_random");
 	public static final Identifier PLAY_PARTICLE_WITH_EXACT_VELOCITY = SpectrumCommon.locate("play_particle_exact");
 	public static final Identifier PLAY_PARTICLE_PACKET_WITH_PATTERN_AND_VELOCITY_ID = SpectrumCommon.locate("play_particle_with_pattern_and_velocity");
+	public static final Identifier PLAY_PARTICLE_AROUND_BLOCK_SIDES = SpectrumCommon.locate("play_sided_block_particles");
 
 	public static final Identifier PLAY_PEDESTAL_CRAFTING_FINISHED_PARTICLE_PACKET_ID = SpectrumCommon.locate("play_pedestal_crafting_finished_particle");
 	public static final Identifier PLAY_PEDESTAL_UPGRADED_PARTICLE_PACKET_ID = SpectrumCommon.locate("play_pedestal_upgraded_particle");

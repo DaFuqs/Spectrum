@@ -86,6 +86,9 @@
     "bettercombat": "*",
     "continuity": "*"
   },
+  "conflicts": {
+    "amethyst_imbuement": "*"
+  },
   "breaks": {
     "idwtialsimmoedm": "<0.3.0-"
   }

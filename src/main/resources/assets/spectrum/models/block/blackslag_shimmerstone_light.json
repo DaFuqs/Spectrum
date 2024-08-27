@@ -1,8 +1,8 @@
 {
-  "parent": "spectrum:templates/shimmerstone_light",
+  "parent": "spectrum:templates/base_flat_light",
   "textures": {
-    "outer": "spectrum:block/polished_blackslag",
+    "outer": "spectrum:block/blackslag_flat_light",
     "inner": "spectrum:block/shimmerstone_light",
-    "particle": "spectrum:block/polished_blackslag"
+    "particle": "spectrum:block/blackslag_flat_light"
   }
 }

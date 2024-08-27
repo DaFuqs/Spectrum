@@ -15,7 +15,7 @@ public abstract class BindingInkStorage implements Storage<InkColor>, Transactio
     // Since we don't need to care about storing snapshots, we can do this instead,
     // assuming the user doesn't do unorthodox transaction tricks which would break most storage impls anyway.
     // The kind that would break default Fabric storage APIs, that is, which nobody in their sane mind would do.
-    protected int curDepth = -1;
+    protected boolean addOuterClose = true;
 
     public BindingInkStorage(Storage<InkColor> wrapped) {
         this.wrapped = wrapped;
@@ -27,24 +27,13 @@ public abstract class BindingInkStorage implements Storage<InkColor>, Transactio
     public void afterOuterClose(TransactionContext.Result result) {
         // only mark dirty if the full transaction actually went through
         if (result.wasCommitted()) markDirty();
-    }
-
-    public void onClose(TransactionContext transaction, int expectedDepth, int prevDepth) {
-        if (transaction.nestingDepth() != expectedDepth)
-            throw new IllegalStateException("Sanity check failed: closed transaction's depth doesn't match expected depth");
-        if (prevDepth == -1) transaction.addOuterCloseCallback(this);
-        this.curDepth = prevDepth;
+        this.addOuterClose = true;
     }
 
     public void bookkeeping(TransactionContext transaction) {
-        int nestingDepth = transaction.nestingDepth();
-        // do sanity check anyway
-        if (curDepth > nestingDepth)
-            throw new IllegalStateException("Illegal transaction access: opened lower-depth transaction without closing higher-depth transaction first");
-
-        if (curDepth < nestingDepth) {
-            transaction.addCloseCallback((t, _res) -> this.onClose(t, nestingDepth, curDepth));
-            this.curDepth = nestingDepth;
+        if (addOuterClose) {
+            transaction.addOuterCloseCallback(this);
+            addOuterClose = false;
         }
     }
 

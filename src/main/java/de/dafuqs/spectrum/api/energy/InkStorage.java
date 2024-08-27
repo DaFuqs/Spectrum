@@ -106,14 +106,25 @@ public interface InkStorage extends Clearable, Storage<InkColor> {
 	boolean accepts(InkColor color);
 	
 	// returns the amount of energy that could not be added
-	long addEnergy(InkColor color, long amount);
+	long addEnergy(InkColor color, long amount, boolean simulate);
+
+	default long addEnergy(InkColor color, long amount) {
+		return addEnergy(color, amount, false);
+	}
 	
 	// Drains energy from the storage. Returns the amount of energy that could be drained
 	// In contrast to requestEnergy this drains the energy up until 0, even if not requestedAmount of energy is stored
-	long drainEnergy(InkColor color, long requestedAmount);
-	
+	// ... unless simulate is true, in which case it doesn't drain either way.
+	long drainEnergy(InkColor color, long requestedAmount, boolean simulate);
+
+	default long drainEnergy(InkColor color, long requestedAmount) {
+		return drainEnergy(color, requestedAmount, false);
+	}
+
+
 	// returns true if the energy could be drained successfully
 	// if not enough energy is stored, the amount of stored energy remains unchanged
+	// NOTE: nobody uses this??????
 	boolean requestEnergy(InkColor color, long requestedAmount);
 	
 	// gets the amount of stored energy of that type
@@ -139,8 +150,8 @@ public interface InkStorage extends Clearable, Storage<InkColor> {
 	long getCurrentTotal();
 
 	// gets the max containable amount of stored energy of that type (may change from transfers)
-	default long getCapacity(InkColor variant) {
-		return getEnergy(variant) + getRoom(variant);
+	default long getCapacity(InkColor color) {
+		return getEnergy(color) + getRoom(color);
 	}
 	
 	// true if no energy is stored
@@ -201,11 +212,11 @@ public interface InkStorage extends Clearable, Storage<InkColor> {
 	void updateSnapshots(TransactionContext transaction);
 
 	// NOTE: updateSnapshots is currently unconditionally called,
-	// due to the fact that the current API this default impl wraps around mutates state.
-	// This will be reverted to the proper usage (calling it when the inserted/extracted amount is greater than 0)
-	// when the Transfer API is fully integrated into the ink transfer system.
-	// This is only a minor problem in the form of a waste of a couple extra CPU cycles, and is a non-issue in itself,
-	// but it will be rid of anyway.
+	// due to the fact that the current API this default impl wraps around
+	// does not have the capability to call it right before changing state.
+	// This probably won't change, considering that simulating a given operation, then conditionally
+	// doing a non-simulated one right after, might incur greater overhead than the current solution.
+	// Override these methods if unconditional snapshot creation is a considerable performance problem.
 	@Override
 	default long insert(InkColor insertedVariant, long maxAmount, TransactionContext transaction) {
 		StoragePreconditions.notBlankNotNegative(insertedVariant, maxAmount);

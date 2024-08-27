@@ -62,18 +62,14 @@ public class IndividualCappedInkStorage extends SnapshotParticipant<IndividualCa
 	}
 	
 	@Override
-	public long addEnergy(InkColor color, long amount) {
+	public long addEnergy(InkColor color, long amount, boolean simulate) {
 		long resultingAmount = this.storedEnergy.get(color) + amount;
-		if (resultingAmount > this.maxEnergyPerColor) {
-			long overflow = resultingAmount - this.maxEnergyPerColor;
-			this.currentTotal = this.maxEnergyPerColor;
-			this.storedEnergy.put(color, this.maxEnergyPerColor);
-			return overflow;
-		} else {
-			this.currentTotal += amount;
-			this.storedEnergy.put(color, resultingAmount);
-			return 0;
+		long overflow = Math.max(0, resultingAmount - this.maxEnergyPerColor);
+		if (!simulate) {
+			this.currentTotal += amount - overflow;
+			this.storedEnergy.put(color, resultingAmount - overflow);
 		}
+		return overflow;
 	}
 	
 	@Override
@@ -89,11 +85,13 @@ public class IndividualCappedInkStorage extends SnapshotParticipant<IndividualCa
 	}
 	
 	@Override
-	public long drainEnergy(InkColor color, long amount) {
+	public long drainEnergy(InkColor color, long amount, boolean simulate) {
 		long storedAmount = this.storedEnergy.getOrDefault(color, 0L);
 		long drainedAmount = Math.min(storedAmount, amount);
-		this.storedEnergy.put(color, storedAmount - drainedAmount);
-		this.currentTotal -= drainedAmount;
+		if (!simulate) {
+			this.storedEnergy.put(color, storedAmount - drainedAmount);
+			this.currentTotal -= drainedAmount;
+		}
 		return drainedAmount;
 	}
 	

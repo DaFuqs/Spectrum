@@ -63,14 +63,15 @@ public class TotalCappedElementalMixingInkStorage extends TotalCappedInkStorage 
 	}
 	
 	@Override
-	public long drainEnergy(InkColor color, long amount) {
+	public long drainEnergy(InkColor color, long amount, boolean simulate) {
 		if (color.isIn(InkColorTags.ELEMENTAL_COLORS)) {
 			// can be output directly
 			long storedAmount = this.storedEnergy.get(color);
 			long drainedAmount = Math.min(storedAmount, amount);
-			this.storedEnergy.put(color, storedAmount - drainedAmount);
-			
-			this.currentTotal -= drainedAmount;
+			if (!simulate) {
+				this.storedEnergy.put(color, storedAmount - drainedAmount);
+				this.currentTotal -= drainedAmount;
+			}
 			return drainedAmount;
 		}
 		
@@ -89,17 +90,19 @@ public class TotalCappedElementalMixingInkStorage extends TotalCappedInkStorage 
 				percentageAbleToDrain = Math.min(percentageAbleToDrain, storedAmount / (float) requiredAmount);
 			}
 		}
-		
+
+		long totalDrained = (int) Math.floor(percentageAbleToDrain * amount);
+		if (simulate) return totalDrained;
+
 		// drain
 		for (Map.Entry<InkColor, Float> entry : requiredElementals.get().entrySet()) {
 			long storedAmount = this.storedEnergy.get(entry.getKey());
 			long drainedAmount = (int) Math.ceil(entry.getValue() * amount * percentageAbleToDrain);
 			this.storedEnergy.put(entry.getKey(), storedAmount - drainedAmount);
 		}
-		
-		long drainedAmount = (int) Math.floor(percentageAbleToDrain * amount);
-		this.currentTotal -= drainedAmount;
-		return drainedAmount;
+
+		this.currentTotal -= totalDrained;
+		return totalDrained;
 	}
 	
 	@Override

@@ -21,7 +21,7 @@ public class SingleInkStorage extends SingleVariantStorage<InkColor> implements 
 	 * Can only be filled with a new type if it is empty
 	 **/
 	public SingleInkStorage(long maxEnergy) {
-		this(maxEnergy, InkColors.CYAN, 0);
+		this(maxEnergy, InkColors.BLANK, 0);
 	}
 
 	public SingleInkStorage(long maxEnergy, InkColor color) {
@@ -62,21 +62,13 @@ public class SingleInkStorage extends SingleVariantStorage<InkColor> implements 
 	}
 	
 	@Override
-	public long addEnergy(InkColor color, long amount) {
-		if (color == variant) {
-			long resultingAmount = this.amount + amount;
-			this.amount = resultingAmount;
-			if (resultingAmount > this.maxEnergy) {
-				long overflow = this.amount - this.maxEnergy;
-				this.amount = this.maxEnergy;
-				return overflow;
-			}
-			return 0;
-		} else if (this.amount == 0) {
-			this.variant = color;
-			this.amount = amount;
+	public long addEnergy(InkColor color, long amount, boolean simulate) {
+		long overflow = color == variant ? Math.max(0, this.amount + amount - maxEnergy) : amount;
+		if (!simulate) {
+			if (this.amount == 0) this.variant = color;
+			this.amount += amount - overflow;
 		}
-		return amount;
+		return overflow;
 	}
 	
 	@Override
@@ -90,14 +82,10 @@ public class SingleInkStorage extends SingleVariantStorage<InkColor> implements 
 	}
 	
 	@Override
-	public long drainEnergy(InkColor color, long amount) {
-		if (color == this.variant) {
-			long drainedAmount = Math.min(this.amount, amount);
-			this.amount -= drainedAmount;
-			return drainedAmount;
-		} else {
-			return 0;
-		}
+	public long drainEnergy(InkColor color, long amount, boolean simulate) {
+		long drainedAmount = color == this.variant ? Math.min(this.amount, amount) : 0;
+		if (!simulate) this.amount -= drainedAmount;
+		return drainedAmount;
 	}
 	
 	@Override

@@ -46,14 +46,12 @@ public class ShimmerstoneOreBlock extends CloakedOreBlock {
 
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if (random.nextBoolean()) {
-            SpectrumS2CPacketSender.playParticleAroundBlockSides(world, 1, Vec3d.of(pos), new Vec3d(0, 0.025, 0), SpectrumParticleTypes.SHIMMERSTONE_SPARKLE, player -> {
-                if (!isVisibleTo(player))
-                    return false;
+        SpectrumS2CPacketSender.playParticleAroundBlockSides(world, 1, Vec3d.of(pos), new Vec3d(0, 0.025, 0), SpectrumParticleTypes.SHIMMERSTONE_SPARKLE, player -> {
+            if (!isVisibleTo(player))
+                return false;
 
-                return player.getBlockPos().isWithinDistance(pos, 7);
+            return player.getBlockPos().isWithinDistance(pos, 7);
             }, Direction.values());
-        }
         super.randomTick(state, world, pos, random);
     }
 

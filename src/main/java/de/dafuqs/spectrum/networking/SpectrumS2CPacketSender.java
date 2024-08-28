@@ -144,6 +144,32 @@ public class SpectrumS2CPacketSender {
 		}
 	}
 
+	public static void playParticleAroundArea(ServerWorld world, int quantity, double yOffset, boolean triangular, boolean solidSpawns, @NotNull Vec3d scale, @NotNull Vec3d position, @NotNull Vec3d velocity, @NotNull ParticleEffect particleEffect, Predicate<ServerPlayerEntity> sendCheck) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeInt(quantity);
+		buf.writeDouble(yOffset);
+		buf.writeBoolean(triangular);
+		buf.writeBoolean(solidSpawns);
+		buf.writeDouble(scale.x);
+		buf.writeDouble(scale.y);
+		buf.writeDouble(scale.z);
+		buf.writeDouble(position.x);
+		buf.writeDouble(position.y);
+		buf.writeDouble(position.z);
+		buf.writeDouble(velocity.x);
+		buf.writeDouble(velocity.y);
+		buf.writeDouble(velocity.z);
+		buf.writeIdentifier(Registries.PARTICLE_TYPE.getId(particleEffect.getType()));
+
+		// Iterate over all players tracking a position in the world and send the packet to each player
+		for (ServerPlayerEntity player : PlayerLookup.tracking(world, BlockPos.ofFloored(position))) {
+			if (!sendCheck.test(player))
+				continue;
+
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PARTICLE_AROUND_AREA, buf);
+		}
+	}
+
 	/**
 	 * @param world     the world
 	 * @param blockPos  the blockpos of the pedestal

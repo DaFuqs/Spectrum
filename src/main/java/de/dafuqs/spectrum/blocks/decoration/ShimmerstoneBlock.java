@@ -29,5 +29,4 @@ public class ShimmerstoneBlock extends Block {
 			}
 		}
 	}
-	
 }

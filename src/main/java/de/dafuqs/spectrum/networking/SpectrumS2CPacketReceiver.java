@@ -148,6 +148,51 @@ public class SpectrumS2CPacketReceiver {
 				});
 			}
 		});
+
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_PARTICLE_AROUND_AREA, (client, handler, buf, responseSender) -> {
+			int quantity = buf.readInt();
+			double bonusYOffset = buf.readDouble();
+			boolean triangular = buf.readBoolean();
+			boolean solidSpawns = buf.readBoolean();
+			Vec3d scale = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
+			Vec3d position = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
+			Vec3d velocity = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
+			ParticleType<?> particleType = Registries.PARTICLE_TYPE.get(buf.readIdentifier());
+
+			if (particleType instanceof ParticleEffect particleEffect) {
+				client.execute(() -> {
+					var world = client.world;
+					if (world == null)
+						return;
+
+					var random = world.getRandom();
+
+					for (int i = 0; i < quantity; i++) {
+
+						double d;
+						double e;
+						double f;
+
+						if (triangular) {
+							d = random.nextTriangular(0, scale.x);
+							e = random.nextTriangular(0, scale.y) + bonusYOffset;
+							f = random.nextTriangular(0, scale.z);
+						}
+						else {
+							d = random.nextDouble() * 2 * scale.x - scale.x;
+							e = random.nextDouble() * 2 * scale.y - scale.y +- bonusYOffset;
+							f = random.nextDouble() * 2 * scale.z - scale.z;
+						}
+
+						if (!solidSpawns && world.isAir(BlockPos.ofFloored(position))) {
+							continue;
+						}
+
+						world.addParticle(particleEffect, position.getX() + d, position.getY() + e, position.getZ() + f, velocity.getX(), velocity.getY(), velocity.getZ());
+					}
+				});
+			}
+		});
 		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.START_SKY_LERPING, (client, handler, buf, responseSender) -> {
 			DimensionType dimensionType = client.world.getDimension();

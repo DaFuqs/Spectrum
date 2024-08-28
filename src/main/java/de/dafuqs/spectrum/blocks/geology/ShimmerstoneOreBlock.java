@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks;
+package de.dafuqs.spectrum.blocks.geology;
 
 import de.dafuqs.spectrum.blocks.conditional.*;
 import de.dafuqs.spectrum.networking.*;

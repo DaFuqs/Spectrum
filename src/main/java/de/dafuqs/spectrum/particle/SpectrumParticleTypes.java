@@ -33,7 +33,11 @@ public class SpectrumParticleTypes {
 	public static DefaultParticleType DRAKEBLOOD_DIKE_RUNES_MAJOR = register("drakeblood_dike_runes_major", false);
 	public static DefaultParticleType MALACHITE_DIKE_RUNES = register("malachite_dike_runes", false);
 	public static DefaultParticleType MALACHITE_DIKE_RUNES_MAJOR = register("malachite_dike_runes_major", false);
-	
+
+	public static DefaultParticleType AZURE_AURA = register("azure_aura", false);
+	public static DefaultParticleType AZURE_MOTE = register("azure_mote", false);
+	public static DefaultParticleType AZURE_MOTE_SMALL = register("azure_mote_small", false);
+
 	public static DefaultParticleType BLUE_BUBBLE_POP = register("blue_bubble_pop", false);
 	public static DefaultParticleType GREEN_BUBBLE_POP = register("green_bubble_pop", false);
 	

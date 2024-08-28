@@ -15,6 +15,7 @@ import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.particle.render.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.render.*;
+import de.dafuqs.spectrum.sound.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.*;
@@ -102,13 +103,16 @@ public class SpectrumClientEventListeners {
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
 			var world = client.world;
 			Entity cameraEntity = client.getCameraEntity();
-			if (client.getCameraEntity() == null)
+			if (world == null || cameraEntity == null)
 				return;
 			
 			RegistryEntry<Biome> biome = world.getBiome(client.getCameraEntity().getBlockPos());
 
 			HowlingSpireEffects.clientTick(world, cameraEntity, biome);
 			DarknessEffects.clientTick(world, (LivingEntity) cameraEntity, biome);
+
+			if (SpectrumBlocks.AZURITE_ORE.isVisibleTo(ShapeContext.of(cameraEntity)) && world.getTime() % CrystalAuraSoundInstance.getTickTime() == 0)
+				CrystalAuraSoundInstance.update(world, cameraEntity);
 		});
 	}
 	

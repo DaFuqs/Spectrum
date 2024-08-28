@@ -14,7 +14,7 @@ public class AzureMoteParticle extends BloodflyParticle {
         this.blue = 1F;
         this.red = 0.15F * random.nextFloat();
         this.green = 0.3F + random.nextFloat() * 0.55F;
-        this.maxAge = 40 + random.nextInt(10);
+        this.maxAge = 40 + random.nextInt(61);
     }
 
     @Override

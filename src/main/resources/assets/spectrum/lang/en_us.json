@@ -2443,7 +2443,7 @@
   "book.spectrum.guidebook.fusion_shrine.page3.text": "- 1 Fusion Shrine\n- 4 Polished Gemstone Blocks\n- 4 Chiseled Polished Blocks\n- 8 Polished Pillars\n- 12 Polished Slabs\n- 77 Polished Blocks\\\n\\\nI'm able to switch [#](bb00bb)Basalt[#]() with [#](bb00bb)Calcite[#]() and choose the [Gemstone Blocks](entry://decoration/gemstone_storage_blocks) to my liking, as always.",
   "book.spectrum.guidebook.gather_node.name": "Gather Node",
   "book.spectrum.guidebook.gather_node.page0.text": "The Gather Node will actively request items from other nodes and put them in the connected inventory.\\\n\\\nSpecify the items to be collected in its [#](449900)filter[#]().",
-  "book.spectrum.guidebook.gather_node.page1.text": "Gathering Order:\n1. [Sender Nodes](entry://pastel_network/sender_node)\n2. [Provider Nodes](entry://pastel_network/provider_node)\n3. [Storage Nodes](entry://pastel_network/storage_node)",
+  "book.spectrum.guidebook.gather_node.page1.text": "Gathering Order:\n1. [Buffer Nodes](entry://pastel_network/buffer_node)\n2. [Sender Nodes](entry://pastel_network/sender_node)\n3. [Provider Nodes](entry://pastel_network/provider_node)\n4. [Storage Nodes](entry://pastel_network/storage_node)",
   "book.spectrum.guidebook.gemstone_armor.name": "Gemstone Armor",
   "book.spectrum.guidebook.gemstone_armor.page0.text": "I've had more than enough time to develop my own individual fighting style.\\\nTo best support it, I've designed a range of matching gear.\\\n\\\nDisadvantage: The ingredients used to make them are very brittle. Therefore, the durability of this equipment is relatively low.",
   "book.spectrum.guidebook.gemstone_armor.page1.checklist.entry0": "Helmet: when nothingness meets hell",

@@ -49,10 +49,10 @@ public class AzuriteOreBlock extends CloakedOreBlock {
 
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        SpectrumS2CPacketSender.playParticleAroundArea(world, 11, -12, false, true, new Vec3d(32, 8, 32), Vec3d.of(pos), new Vec3d(0, 0.04D + random.nextDouble() * 0.06, 0), SpectrumParticleTypes.AZURE_AURA, this::isVisibleTo);
-        SpectrumS2CPacketSender.playParticleAroundArea(world, 11, -12, true, true, new Vec3d(32, 8, 32), Vec3d.of(pos), new Vec3d(0, 0.04D + random.nextDouble() * 0.06, 0), SpectrumParticleTypes.AZURE_AURA, this::isVisibleTo);
-        SpectrumS2CPacketSender.playParticleAroundArea(world, 22, -8, false, false, new Vec3d(24, 8,24), Vec3d.of(pos), Vec3d.ZERO, SpectrumParticleTypes.AZURE_MOTE_SMALL, this::isVisibleTo);
-        SpectrumS2CPacketSender.playParticleAroundArea(world, 18, -6, true, false, new Vec3d(24, 6,24), Vec3d.of(pos), Vec3d.ZERO, SpectrumParticleTypes.AZURE_MOTE, this::isVisibleTo);
+        SpectrumS2CPacketSender.playParticleAroundArea(world, 8, -12, false, true, new Vec3d(32, 8, 32), Vec3d.of(pos), new Vec3d(0, 0.04D + random.nextDouble() * 0.06, 0), SpectrumParticleTypes.AZURE_AURA, this::isVisibleTo);
+        SpectrumS2CPacketSender.playParticleAroundArea(world, 12, -12, true, true, new Vec3d(32, 8, 32), Vec3d.of(pos), new Vec3d(0, 0.04D + random.nextDouble() * 0.06, 0), SpectrumParticleTypes.AZURE_AURA, this::isVisibleTo);
+        SpectrumS2CPacketSender.playParticleAroundArea(world, 19, -8, false, false, new Vec3d(24, 8,24), Vec3d.of(pos), Vec3d.ZERO, SpectrumParticleTypes.AZURE_MOTE_SMALL, this::isVisibleTo);
+        SpectrumS2CPacketSender.playParticleAroundArea(world, 17, -6, true, false, new Vec3d(24, 6,24), Vec3d.of(pos), Vec3d.ZERO, SpectrumParticleTypes.AZURE_MOTE, this::isVisibleTo);
         SpectrumS2CPacketSender.playParticleAroundArea(world, 5, 0, false, true, new Vec3d(2, 0, 2), Vec3d.of(pos), new Vec3d(0, 0.07D + random.nextDouble() * 0.06, 0), SpectrumParticleTypes.AZURE_AURA, this::isVisibleTo);
         SpectrumS2CPacketSender.playParticleAroundBlockSides(world, random.nextBetween(1, 3), Vec3d.of(pos), Vec3d.ZERO, SpectrumParticleTypes.AZURE_MOTE, this::isVisibleTo, Direction.values());
         world.playSound(null, pos, SpectrumSoundEvents.SOFT_HUM, SoundCategory.BLOCKS, 1F, random.nextFloat() * 0.5F + 1F);

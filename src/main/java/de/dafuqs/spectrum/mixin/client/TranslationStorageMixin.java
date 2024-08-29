@@ -26,6 +26,8 @@ public class TranslationStorageMixin {
         builder.put("item.spectrum.ring_of_pursuit", "Ring of Fursuit");
         builder.put("item.spectrum.draconic_twinsword", "Draconic Winblade");
         builder.put("item.spectrum.dragon_talon", "Sellsword Winblades");
+        builder.put("effect.spectrum.fatal_slumber", "Fat Slumber");
+        builder.put("item.spectrum.fissure_plum", "Queerscaped Sponsored Fruit");
 
         this.translations = builder;
     }

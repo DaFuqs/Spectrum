@@ -9,14 +9,13 @@
   "hide_while_locked": true,
   "parents": [
     {
-      "entry": "spectrum:dimension/biomes",
-      "line_enabled": "false"
+      "entry": "spectrum:dimension/deep_dripstone_caves"
     }
   ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": -6,
-  "y": -4,
+  "x": 5,
+  "y": 2,
   "pages": [
     {
       "type": "modonomicon:text",

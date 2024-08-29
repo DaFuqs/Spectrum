@@ -49,7 +49,7 @@ public class AzuriteOreBlock extends CloakedOreBlock {
 
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        SpectrumS2CPacketSender.playParticleAroundArea(world, 20, -12, true, true, new Vec3d(32, 8, 32), Vec3d.of(pos), new Vec3d(0, 0.04D + random.nextDouble() * 0.06, 0), SpectrumParticleTypes.AZURE_AURA, this::isVisibleTo);
+        SpectrumS2CPacketSender.playParticleAroundArea(world, 19, -12, true, true, new Vec3d(32, 8, 32), Vec3d.of(pos), new Vec3d(0, 0.04D + random.nextDouble() * 0.06, 0), SpectrumParticleTypes.AZURE_AURA, this::isVisibleTo);
         SpectrumS2CPacketSender.playParticleAroundArea(world, 25, -8, false, false, new Vec3d(24, 8,24), Vec3d.of(pos), Vec3d.ZERO, SpectrumParticleTypes.AZURE_MOTE_SMALL, this::isVisibleTo);
         SpectrumS2CPacketSender.playParticleAroundArea(world, 18, -6, false, false, new Vec3d(12, 6,12), Vec3d.of(pos), Vec3d.ZERO, SpectrumParticleTypes.AZURE_MOTE, this::isVisibleTo);
         SpectrumS2CPacketSender.playParticleAroundArea(world, 5, 0, false, true, new Vec3d(2, 0, 2), Vec3d.of(pos), new Vec3d(0, 0.07D + random.nextDouble() * 0.06, 0), SpectrumParticleTypes.AZURE_AURA, this::isVisibleTo);

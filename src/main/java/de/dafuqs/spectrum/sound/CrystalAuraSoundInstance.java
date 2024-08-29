@@ -59,7 +59,7 @@ public class CrystalAuraSoundInstance extends AbstractSoundInstance implements T
     public void updateState(float distanceMod , float countMod) {
         interpTicks = 0;
         this.lastDistanceMod = this.distanceMod;
-        this.distanceMod = distanceMod * 1.667F;
+        this.distanceMod = distanceMod * 1.4F;
         this.lastCountMod = this.countMod;
         this.countMod = countMod;
     }
@@ -103,11 +103,11 @@ public class CrystalAuraSoundInstance extends AbstractSoundInstance implements T
             INSTANCE = Optional.empty();
         }
 
-        if (count > 4) {
+        if (count >= 10) {
             if (INSTANCE.isEmpty()) {
                 INSTANCE = Optional.of(new CrystalAuraSoundInstance(SpectrumSoundEvents.CRYSTAL_AURA,
                         (float) MathHelper.clamp(soundSource.distanceTo(player.getPos()) / 24F, 0, 1),
-                        MathHelper.clamp(count / 20F, 0, 1)
+                        MathHelper.clamp(count / 50F, 0, 1)
                         ));
                 client.getSoundManager().play(INSTANCE.get());
             }
@@ -117,8 +117,8 @@ public class CrystalAuraSoundInstance extends AbstractSoundInstance implements T
             var instance = INSTANCE.get();
             instance.setActive(count > 0);
             instance.updateState(
-                    1 - (float) MathHelper.clamp(soundSource.distanceTo(player.getPos()) / 24 + 0.175, 0, 1),
-                    MathHelper.clamp(count / 20F, 0, 1)
+                    1 - (float) MathHelper.clamp((soundSource.distanceTo(player.getPos()) - 3) / 24, 0, 1),
+                    MathHelper.clamp(count / 50F, 0, 1)
             );
         }
     }

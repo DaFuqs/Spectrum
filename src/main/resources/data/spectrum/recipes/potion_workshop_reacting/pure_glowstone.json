@@ -1,0 +1,10 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "spectrum:pure_glowstone",
+  "modifiers": {
+    "flat_duration_bonus_ticks": -2400,
+    "flat_potency_bonus": 3.0,
+    "flat_yield_bonus": -1.0
+  },
+  "required_advancement": "spectrum:lategame/collect_pure_resource"
+}

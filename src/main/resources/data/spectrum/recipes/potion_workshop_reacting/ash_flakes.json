@@ -1,0 +1,8 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "spectrum:ash_flakes",
+  "modifiers": {
+    "flat_duration_bonus_negative_effects": -600
+  },
+  "required_advancement": "spectrum:hidden/collect_ash"
+}

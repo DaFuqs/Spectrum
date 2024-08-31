@@ -65,7 +65,7 @@ public class TuningStampItem extends Item implements ExpandedStatTooltip {
             var target = potentialTarget.get();
 
             if (!source.verifyStampData(target) || !target.canUserStamp(player)) {
-                tryPlaySound(player, SpectrumSoundEvents.SHATTER_LIGHT);
+                tryPlaySound(player, SpectrumSoundEvents.SHATTER_LIGHT, 0.75F);
                 return ActionResult.FAIL;
             }
             var interactable = target.source();
@@ -74,16 +74,19 @@ public class TuningStampItem extends Item implements ExpandedStatTooltip {
             source.notifySourceOfChange(target, targetChanged);
 
             if (!targetChanged) {
-                tryPlaySound(player, SpectrumSoundEvents.SHATTER_HEAVY);
+                tryPlaySound(player, SpectrumSoundEvents.SHATTER_HEAVY, 0.45F);
                 return ActionResult.FAIL;
             }
 
             //Allow for 'rolling' linking for flow.
             player.ifPresent(user -> {
-                if (user.isSneaking()) {
+                if (!user.isSneaking()) {
                     var newSource = target.source().recordStampData(player, reference, world);
                     saveToNbt(stack, newSource);
-                    tryPlaySound(player, SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME);
+                    tryPlaySound(player, SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME, 0.825F);
+                }
+                else {
+                    tryPlaySound(player, SpectrumSoundEvents.BLOCK_ONYX_BLOCK_CHIME, 0.825F);
                 }
             });
 
@@ -96,14 +99,14 @@ public class TuningStampItem extends Item implements ExpandedStatTooltip {
             if (player.map(Entity::isSneaking).orElse(false)) {
                 if (candidate.map(d -> d.canUserStamp(player)).orElse(false)) {
                     candidate.get().source().clearImpression();
-                    tryPlaySound(player, SoundEvents.BLOCK_AMETHYST_BLOCK_BREAK);
+                    tryPlaySound(player, SoundEvents.BLOCK_AMETHYST_BLOCK_BREAK, 0.825F);
                 }
                 return ActionResult.success(world.isClient());
             }
 
             if (candidate.isPresent() && candidate.get().canUserStamp(player)) {
                 saveToNbt(stack, candidate.get());
-                tryPlaySound(player, SpectrumSoundEvents.CRYSTAL_STRIKE);
+                tryPlaySound(player, SpectrumSoundEvents.CRYSTAL_STRIKE, 0.75F);
                 return ActionResult.success(world.isClient());
             }
         }
@@ -113,12 +116,12 @@ public class TuningStampItem extends Item implements ExpandedStatTooltip {
 
     public void clearData(Optional<PlayerEntity> player, ItemStack stack) {
         stack.getOrCreateNbt().remove(DATA);
-        tryPlaySound(player, SoundEvents.ITEM_BRUSH_BRUSHING_GENERIC);
+        tryPlaySound(player, SoundEvents.ITEM_BRUSH_BRUSHING_GENERIC, 1F);
     }
 
 
-    private void tryPlaySound(Optional<PlayerEntity> player, SoundEvent sound) {
-        player.ifPresent(p -> p.getWorld().playSoundFromEntity(null, p, sound, SoundCategory.PLAYERS, 0.75F, 0.9F + p.getRandom().nextFloat() / 5F));
+    private void tryPlaySound(Optional<PlayerEntity> player, SoundEvent sound, float volume) {
+        player.ifPresent(p -> p.getWorld().playSoundFromEntity(null, p, sound, SoundCategory.PLAYERS, volume, 0.9F + p.getRandom().nextFloat() / 5F));
     }
 
     private void saveToNbt(ItemStack stack, Stampable.StampData data) {

@@ -2,8 +2,12 @@
   "feature": "spectrum:azurite_ore",
   "placement": [
     {
+      "type": "minecraft:rarity_filter",
+      "chance": 40
+    },
+    {
       "type": "minecraft:count",
-      "count": 6
+      "count": 1
     },
     {
       "type": "minecraft:in_square"

@@ -39,6 +39,7 @@ public class SpectrumAdvancementCriteria {
 	public static ConsumedTeaWithSconeCriterion CONSUMED_TEA_WITH_SCONE;
 	public static HummingstoneHymnCriterion CREATE_HUMMINGSTONE_HYMN;
 	public static PastelNetworkCreationCriterion PASTEL_NETWORK_CREATING;
+	public static PastelNodeUpgradeCriterion PASTEL_NODE_UPGRADING;
 	public static PreservationCheckCriterion PRESERVATION_CHECK;
 	public static FluidDippingCriterion FLUID_DIPPING;
 
@@ -77,6 +78,7 @@ public class SpectrumAdvancementCriteria {
 		CONSUMED_TEA_WITH_SCONE = Criteria.register(new ConsumedTeaWithSconeCriterion());
 		CREATE_HUMMINGSTONE_HYMN = Criteria.register(new HummingstoneHymnCriterion());
 		PASTEL_NETWORK_CREATING = Criteria.register(new PastelNetworkCreationCriterion());
+		PASTEL_NODE_UPGRADING = Criteria.register(new PastelNodeUpgradeCriterion());
 		PRESERVATION_CHECK = Criteria.register(new PreservationCheckCriterion());
 		FLUID_DIPPING = Criteria.register(new FluidDippingCriterion());
 	}

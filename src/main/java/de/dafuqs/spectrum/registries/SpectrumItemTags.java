@@ -27,6 +27,7 @@ public class SpectrumItemTags {
 	public static final TagKey<Item> COLORED_FENCES = of("colored_fences");
 	public static final TagKey<Item> COLORED_FENCE_GATES = of("colored_fence_gates");
 	public static final TagKey<Item> REQUIRES_OMNI_ACCELERATOR_PVP_ENABLED = of("requires_omni_accelerator_pvp_enabled");
+	public static final TagKey<Item> EMISSIVE = of("emissive");
 	
 	private static TagKey<Item> of(String id) {
 		return TagKey.of(RegistryKeys.ITEM, SpectrumCommon.locate(id));

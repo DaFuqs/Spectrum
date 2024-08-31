@@ -27,6 +27,7 @@ import de.dafuqs.spectrum.blocks.farming.*;
 import de.dafuqs.spectrum.blocks.fluid.*;
 import de.dafuqs.spectrum.blocks.fusion_shrine.*;
 import de.dafuqs.spectrum.blocks.gemstone.*;
+import de.dafuqs.spectrum.blocks.geology.*;
 import de.dafuqs.spectrum.blocks.gravity.*;
 import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.blocks.item_bowl.*;
@@ -864,14 +865,14 @@ public class SpectrumBlocks {
 		return FabricBlockSettings.copyOf(Blocks.END_STONE).strength(3.0F, 3.0F).requiresTool();
 	}
 
-	public static final Block SHIMMERSTONE_ORE = new CloakedOreBlock(ore(), UniformIntProvider.create(2, 4), locate("milestones/reveal_shimmerstone"), Blocks.STONE.getDefaultState());
-	public static final Block DEEPSLATE_SHIMMERSTONE_ORE = new CloakedOreBlock(deepslateOre(), UniformIntProvider.create(2, 4), locate("milestones/reveal_shimmerstone"), Blocks.DEEPSLATE.getDefaultState());
-	public static final Block BLACKSLAG_SHIMMERSTONE_ORE = new CloakedOreBlock(blackslagOre(), UniformIntProvider.create(2, 4), locate("milestones/reveal_shimmerstone"), BLACKSLAG.getDefaultState());
-	public static final Block SHIMMERSTONE_BLOCK = new SparklestoneBlock(settings(MapColor.YELLOW, BlockSoundGroup.GLASS, 2.0F).luminance((state) -> 15));
+	public static final Block SHIMMERSTONE_ORE = new ShimmerstoneOreBlock(ore().ticksRandomly(), UniformIntProvider.create(2, 4), locate("milestones/reveal_shimmerstone"), Blocks.STONE.getDefaultState());
+	public static final Block DEEPSLATE_SHIMMERSTONE_ORE = new ShimmerstoneOreBlock(deepslateOre().ticksRandomly(), UniformIntProvider.create(2, 4), locate("milestones/reveal_shimmerstone"), Blocks.DEEPSLATE.getDefaultState());
+	public static final Block BLACKSLAG_SHIMMERSTONE_ORE = new ShimmerstoneOreBlock(blackslagOre().ticksRandomly(), UniformIntProvider.create(2, 4), locate("milestones/reveal_shimmerstone"), BLACKSLAG.getDefaultState());
+	public static final Block SHIMMERSTONE_BLOCK = new ShimmerstoneBlock(settings(MapColor.YELLOW, BlockSoundGroup.GLASS, 2.0F).luminance((state) -> 15));
 
-	public static final Block AZURITE_ORE = new CloakedOreBlock(ore(), UniformIntProvider.create(4, 7), locate("milestones/reveal_azurite"), Blocks.STONE.getDefaultState());
-	public static final Block DEEPSLATE_AZURITE_ORE = new CloakedOreBlock(deepslateOre(), UniformIntProvider.create(4, 7), locate("milestones/reveal_azurite"), Blocks.DEEPSLATE.getDefaultState());
-	public static final Block BLACKSLAG_AZURITE_ORE = new CloakedOreBlock(blackslagOre(), UniformIntProvider.create(4, 7), locate("milestones/reveal_azurite"), SpectrumBlocks.BLACKSLAG.getDefaultState());
+	public static final AzuriteOreBlock AZURITE_ORE = new AzuriteOreBlock(ore().ticksRandomly(), UniformIntProvider.create(4, 7), locate("milestones/reveal_azurite"), Blocks.STONE.getDefaultState());
+	public static final Block DEEPSLATE_AZURITE_ORE = new AzuriteOreBlock(deepslateOre().ticksRandomly(), UniformIntProvider.create(4, 7), locate("milestones/reveal_azurite"), Blocks.DEEPSLATE.getDefaultState());
+	public static final Block BLACKSLAG_AZURITE_ORE = new AzuriteOreBlock(blackslagOre().ticksRandomly(), UniformIntProvider.create(4, 7), locate("milestones/reveal_azurite"), SpectrumBlocks.BLACKSLAG.getDefaultState());
 	public static final Block AZURITE_BLOCK = new SpectrumFacingBlock(FabricBlockSettings.copyOf(Blocks.LAPIS_BLOCK).mapColor(MapColor.BLUE));
 	public static final Block AZURITE_CLUSTER = new AmethystClusterBlock(7, 3, gemstone(MapColor.BLUE, SpectrumBlockSoundGroups.SMALL_ONYX_BUD, 2));
 	public static final Block LARGE_AZURITE_BUD = new AmethystClusterBlock(5, 3, gemstone(MapColor.BLUE, SpectrumBlockSoundGroups.LARGE_ONYX_BUD, 3));

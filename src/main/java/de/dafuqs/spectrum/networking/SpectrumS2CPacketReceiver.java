@@ -11,6 +11,8 @@ import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.blocks.present.*;
 import de.dafuqs.spectrum.blocks.shooting_star.*;
+import de.dafuqs.spectrum.cca.*;
+import de.dafuqs.spectrum.deeper_down.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.helpers.*;
@@ -106,6 +108,88 @@ public class SpectrumS2CPacketReceiver {
 				client.execute(() -> {
 					// Everything in this lambda is running on the render thread
 					ParticleHelper.playParticleWithPatternAndVelocityClient(client.world, position, particleEffect, pattern, velocity);
+				});
+			}
+		});
+
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_PARTICLE_AROUND_BLOCK_SIDES, (client, handler, buf, responseSender) -> {
+			int quantity = buf.readInt();
+			Vec3d position = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
+			Vec3d velocity = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
+			ParticleType<?> particleType = Registries.PARTICLE_TYPE.get(buf.readIdentifier());
+			var sideCount = buf.readInt();
+			var sides = new ArrayList<Direction>();
+			for (int i = 0; i < sideCount; i++) {
+				sides.add(Direction.values()[buf.readInt()]);
+			}
+
+			if (particleType instanceof ParticleEffect particleEffect) {
+				client.execute(() -> {
+					var world = client.world;
+					if (world == null)
+						return;;
+
+					var random = world.getRandom();
+					var basePos = BlockPos.ofFloored(position);
+
+					for (Direction direction : sides) {
+						BlockPos blockPos = basePos.offset(direction);
+						BlockState state = world.getBlockState(blockPos);
+						if (state.isOpaque() && state.isSideSolidFullSquare(world, blockPos, direction.getOpposite()))
+							continue;
+
+						for (int i = 0; i < quantity; i++) {
+							double d = direction.getOffsetX() == 0 ? random.nextDouble() : 0.5D + (double) direction.getOffsetX() * 0.6D;
+							double e = direction.getOffsetY() == 0 ? random.nextDouble() : 0.5D + (double) direction.getOffsetY() * 0.6D;
+							double f = direction.getOffsetZ() == 0 ? random.nextDouble() : 0.5D + (double) direction.getOffsetZ() * 0.6D;
+							world.addParticle(particleEffect, position.getX() + d, position.getY() + e, position.getZ() + f, velocity.getX(), velocity.getY(), velocity.getZ());
+						}
+					}
+				});
+			}
+		});
+
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_PARTICLE_AROUND_AREA, (client, handler, buf, responseSender) -> {
+			int quantity = buf.readInt();
+			double bonusYOffset = buf.readDouble();
+			boolean triangular = buf.readBoolean();
+			boolean solidSpawns = buf.readBoolean();
+			Vec3d scale = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
+			Vec3d position = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
+			Vec3d velocity = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
+			ParticleType<?> particleType = Registries.PARTICLE_TYPE.get(buf.readIdentifier());
+
+			if (particleType instanceof ParticleEffect particleEffect) {
+				client.execute(() -> {
+					var world = client.world;
+					if (world == null)
+						return;
+
+					var random = world.getRandom();
+
+					for (int i = 0; i < quantity; i++) {
+
+						double d;
+						double e;
+						double f;
+
+						if (triangular) {
+							d = random.nextTriangular(0, scale.x);
+							e = random.nextTriangular(0, scale.y) + bonusYOffset;
+							f = random.nextTriangular(0, scale.z);
+						}
+						else {
+							d = random.nextDouble() * 2 * scale.x - scale.x;
+							e = random.nextDouble() * 2 * scale.y - scale.y +- bonusYOffset;
+							f = random.nextDouble() * 2 * scale.z - scale.z;
+						}
+
+						if (!solidSpawns && world.isAir(BlockPos.ofFloored(position))) {
+							continue;
+						}
+
+						world.addParticle(particleEffect, position.getX() + d, position.getY() + e, position.getZ() + f, velocity.getX(), velocity.getY(), velocity.getZ());
+					}
 				});
 			}
 		});
@@ -441,6 +525,17 @@ public class SpectrumS2CPacketReceiver {
 				}
 			});
 		});
+
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.SYNC_MENTAL_PRESENCE, ((client, handler, buf, responseSender) -> {
+			double value = buf.readDouble();
+
+			client.execute(() -> {
+				if (client.player != null) {
+					MiscPlayerDataComponent.get(client.player).setLastSyncedSleepPotency(value);
+					DarknessEffects.markForEffectUpdate();
+				}
+			});
+		}));
 
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.COMPACTING_CHEST_STATUS_UPDATE, (((client, handler, buf, responseSender) -> {
 			var pos = buf.readBlockPos();

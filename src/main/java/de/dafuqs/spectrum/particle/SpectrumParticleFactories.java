@@ -93,7 +93,11 @@ public class SpectrumParticleFactories {
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.DRAKEBLOOD_DIKE_RUNES_MAJOR, LitParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.MALACHITE_DIKE_RUNES, LitParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.MALACHITE_DIKE_RUNES_MAJOR, LitParticle.Factory::new);
-		
+
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.AZURE_AURA, AzureAuraParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.AZURE_MOTE, AzureMoteParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.AZURE_MOTE_SMALL, AzureMoteParticle.Factory::new);
+
 		// Fluid Splash
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.MUD_SPLASH, WaterSplashParticle.SplashFactory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.LIQUID_CRYSTAL_SPLASH, WaterSplashParticle.SplashFactory::new);

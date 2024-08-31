@@ -11,7 +11,7 @@ public class SpectrumEntityAttributes {
 	 * <1 means it is more resistant than the default, getting weaker effects
 	 * >1 means it is more vulnerable
 	 */
-	public static final EntityAttribute INDUCED_SLEEP_VULNERABILITY = register("induced_sleep_vulnerable", new ClampedEntityAttribute("attribute.name.spectrum.induced_sleep_resistance", 1.0, 0.0, 1024.0));
+	public static final EntityAttribute MENTAL_PRESENCE = register("mental_presence", new ClampedEntityAttribute("attribute.name.spectrum.mental_presence", 1.0, 0, 1024));
 	
 	
 	private static EntityAttribute register(String name, EntityAttribute attribute) {

@@ -1,0 +1,8 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "spectrum:pure_echo",
+  "modifiers": {
+    "chance_to_add_last_effect": 1.0
+  },
+  "required_advancement": "spectrum:lategame/collect_pure_resource"
+}

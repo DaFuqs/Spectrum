@@ -29,9 +29,9 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	 * instances defined in this list. First value is the new effects new potency mod, second the duration
 	 */
 	protected static final List<Pair<Float, Float>> SPLIT_EFFECT_POTENCY_AND_DURATION = new ArrayList<>() {{
-		add(new Pair<>(2.0F, 0.15F));
-		add(new Pair<>(0.75F, 0.5F));
-		add(new Pair<>(0.25F, 1.0F));
+		add(new Pair<>(1.667F, 0.1F));
+		add(new Pair<>(0.75F, 0.334F));
+		add(new Pair<>(0.25F, 0.667F));
 	}};
 	
 	public static final Map<StatusEffect, StatusEffect> negativeToPositiveEffect = new HashMap<>() {{

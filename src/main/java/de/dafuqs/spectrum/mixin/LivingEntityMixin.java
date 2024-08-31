@@ -23,6 +23,7 @@ import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.status_effects.*;
 import dev.emi.trinkets.api.*;
+import net.fabricmc.fabric.api.tag.convention.v1.*;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
@@ -96,7 +97,7 @@ public abstract class LivingEntityMixin {
 	// FabricDefaultAttributeRegistry seems to only allow adding full containers and only single entity types?
 	@Inject(method = "createLivingAttributes()Lnet/minecraft/entity/attribute/DefaultAttributeContainer$Builder;", require = 1, allow = 1, at = @At("RETURN"))
 	private static void spectrum$addAttributes(final CallbackInfoReturnable<DefaultAttributeContainer.Builder> cir) {
-		cir.getReturnValue().add(SpectrumEntityAttributes.INDUCED_SLEEP_VULNERABILITY);
+		cir.getReturnValue().add(SpectrumEntityAttributes.MENTAL_PRESENCE);
 	}
 	
 	@ModifyArg(method = "dropXp()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"), index = 2)
@@ -143,10 +144,11 @@ public abstract class LivingEntityMixin {
 	public float spectrum$increaseSlipperiness(float original) {
 		var entity = (LivingEntity) (Object) this;
 		var random = entity.getRandom();
-		var potency = SleepStatusEffect.getGeneralSleepStrengthIfEntityHasSoporificEffect(entity);
+		var potency = SleepStatusEffect.getSleepScaling(entity);
 		if (potency != -1) {
+			potency *= 2;
 
-			if (entity instanceof PlayerEntity && random.nextFloat() < potency * 0.0334) {
+			if (entity instanceof PlayerEntity && random.nextFloat() < potency * 0.05) {
 				return 0.35F + random.nextFloat() * 0.45F;
 			}
 
@@ -226,7 +228,7 @@ public abstract class LivingEntityMixin {
 		return protection;
 	}
 	
-	@ModifyVariable(method = "applyArmorToDamage", at = @At("STORE"))
+	@ModifyVariable(method = "applyArmorToDamage", at = @At("STORE"), ordinal = 0)
 	public float spectrum$applyArmorToDamage(float amount, DamageSource source) {
 		float defense = getArmor();
 		float toughness = getToughness();
@@ -374,15 +376,20 @@ public abstract class LivingEntityMixin {
 	@Inject(method = "addStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;Lnet/minecraft/entity/Entity;)Z", at = @At("HEAD"))
 	public void spectrum$modifySlumberEffectLengths(StatusEffectInstance effect, Entity source, CallbackInfoReturnable<Boolean> cir) {
 		var entity = (LivingEntity) (Object) this;
-		var resistanceModifier = SleepStatusEffect.getSleepEffectStrength(effect, entity);
+		var resistanceModifier = MathHelper.clamp(SleepStatusEffect.getSleepResistance(effect, entity), 0.1F, 10F);
 		if (effect.getEffectType() == SpectrumStatusEffects.ETERNAL_SLUMBER) {
 			if (SleepStatusEffect.isImmuneish(entity)) {
 				((StatusEffectInstanceAccessor) effect).setDuration(Math.round(effect.getDuration() / resistanceModifier));
 			} else if (!entity.getType().isIn(SpectrumEntityTypeTags.SLEEP_RESISTANT)) {
-				((StatusEffectInstanceAccessor) effect).setDuration(-1); // StatusEffectInstance.INFINITE = -1
+				((StatusEffectInstanceAccessor) effect).setDuration(StatusEffectInstance.INFINITE);
 			}
 		} else if (effect.getEffectType() == SpectrumStatusEffects.FATAL_SLUMBER) {
-			((StatusEffectInstanceAccessor) effect).setDuration(Math.max(Math.round(effect.getDuration() * resistanceModifier * 2), 100));
+			if (SleepStatusEffect.isImmuneish(entity) && entity.getType().isIn(ConventionalEntityTypeTags.BOSSES)) {
+				((StatusEffectInstanceAccessor) effect).setDuration(20 * 60);
+			}
+			else {
+				((StatusEffectInstanceAccessor) effect).setDuration(Math.max(Math.round(effect.getDuration() * resistanceModifier * 3), 20 * 10));
+			}
 		}
 	}
 

@@ -26,14 +26,14 @@ public class ServerPastelNetwork extends PastelNetwork {
 	}
 
 	@Override
-	public void incorporate(PastelNetwork networkToIncorporate) {
-        super.incorporate(networkToIncorporate);
+	public void incorporate(PastelNetwork networkToIncorporate, PastelNodeBlockEntity node, PastelNodeBlockEntity otherNode) {
+        super.incorporate(networkToIncorporate, node, otherNode);
 		this.transmissionLogic.invalidateCache();
 	}
 	
 	@Override
-	public void addNode(PastelNodeBlockEntity node) {
-		super.addNode(node);
+	public void addNodeAndLoadMemory(PastelNodeBlockEntity node) {
+		super.addNodeAndLoadMemory(node);
 		this.transmissionLogic.invalidateCache();
 	}
 	
@@ -43,7 +43,19 @@ public class ServerPastelNetwork extends PastelNetwork {
 		this.transmissionLogic.invalidateCache();
 		return result;
 	}
-	
+
+	@Override
+	public void addAndRememberEdge(PastelNodeBlockEntity newNode, PastelNodeBlockEntity parent) {
+		super.addAndRememberEdge(newNode, parent);
+		this.transmissionLogic.invalidateCache();
+	}
+
+	@Override
+	public void removeAndForgetEdge(PastelNodeBlockEntity node, PastelNodeBlockEntity parent) {
+		super.removeAndForgetEdge(node, parent);
+		this.transmissionLogic.invalidateCache();
+	}
+
 	@Override
 	public void tick() {
 		this.transmissions.tick();

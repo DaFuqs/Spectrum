@@ -106,6 +106,8 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent HOWLING_WIND_HIGH = register("ambient.howling_wind_high");
 	public static final SoundEvent HOWLING_WIND_LOW = register("ambient.howling_wind_low");
 
+	public static final SoundEvent CRYSTAL_AURA = register("ambient.crystal_aura");
+
 	public static final SoundEvent BLACK_HOLE_CHEST_OPEN = register("black_hole_chest_open");
 	public static final SoundEvent BLACK_HOLE_CHEST_CLOSE = register("black_hole_chest_close");
 	public static final SoundEvent COMPACTING_CHEST_OPEN = register("compacting_chest_open");

@@ -37,7 +37,7 @@ public class PastelNetwork {
 		}
 	}
 
-    public void incorporate(PastelNetwork networkToIncorporate) {
+    public void incorporate(PastelNetwork networkToIncorporate, PastelNodeBlockEntity node, PastelNodeBlockEntity otherNode) {
         for (Map.Entry<PastelNodeType, Set<PastelNodeBlockEntity>> nodesToIncorporate : networkToIncorporate.getNodes().entrySet()) {
             PastelNodeType type = nodesToIncorporate.getKey();
             for (PastelNodeBlockEntity nodeToIncorporate : nodesToIncorporate.getValue()) {
@@ -46,7 +46,10 @@ public class PastelNetwork {
                 updateNodePriority(nodeToIncorporate, nodeToIncorporate.getPriority());
             }
         }
-        this.graph = null;
+
+        node.remember(otherNode);
+        otherNode.remember(node);
+        this.graph = buildGraph(this);
     }
 
     public World getWorld() {
@@ -62,19 +65,25 @@ public class PastelNetwork {
 
     private static @NotNull SimpleGraph<PastelNodeBlockEntity, DefaultEdge> buildGraph(@NotNull PastelNetwork network) {
         SimpleGraph<PastelNodeBlockEntity, DefaultEdge> g = new SimpleGraph<>(DefaultEdge.class);
+        var world = network.world;
 
         for (PastelNodeBlockEntity node : network.getAllNodes()) {
             g.addVertex(node);
         }
 
         for (PastelNodeBlockEntity node : network.getAllNodes()) {
-            for (PastelNodeBlockEntity node2 : network.getAllNodes()) {
-                if (node == node2) {
+            var memory = node.getRememberedConnections();
+
+            for (BlockPos pos : memory) {
+                if (!world.isPosLoaded(pos.getX(), pos.getZ()))
                     continue;
-                }
-                if (node.canConnect(node2)) {
-                    g.addEdge(node, node2);
-                }
+
+                var rememberedNode = network.getNodeAt(pos);
+
+                if (rememberedNode == null || !network.getAllNodes().contains(rememberedNode))
+                    continue;
+
+                g.addEdge(node, rememberedNode);
             }
         }
 
@@ -82,25 +91,89 @@ public class PastelNetwork {
     }
 
     public void addNode(PastelNodeBlockEntity node) {
-        if (!this.nodes.get(node.getNodeType()).add(node)) {
+        if (addNodeOrReturn(node))
             return;
-        }
+
+        this.graph.addVertex(node);
+        addPriorityNode(node);
+    }
+
+    public void addNodeAndLoadMemory(PastelNodeBlockEntity node) {
+        if (addNodeOrReturn(node))
+            return;
 
         // calculate connections for new node
-        if (this.graph != null) {
-            this.graph.addVertex(node);
-            for (PastelNodeBlockEntity existingNode : this.getAllNodes()) {
-                if (node == existingNode) {
-                    continue;
-                }
-                if (node.canConnect(existingNode)) {
-                    this.graph.addEdge(node, existingNode);
-                }
-            }
+        this.graph.addVertex(node);
+        for (BlockPos memory : node.getRememberedConnections()) {
+            if (!world.isPosLoaded(memory.getX(), memory.getZ()))
+                continue;
+
+            var rememberedNode = getNodeAt(memory);
+
+            if (rememberedNode == null || !getAllNodes().contains(rememberedNode))
+                continue;
+
+            this.graph.addEdge(node, rememberedNode);
         }
 
         // check for priority
         addPriorityNode(node);
+    }
+
+    /**
+     * Note: this does not check if the nodes can connect, that should be done before calling this method.
+     */
+    public void addNodeAndConnect(PastelNodeBlockEntity newNode, PastelNodeBlockEntity parent) {
+        if (addNodeOrReturn(newNode, true))
+            return;
+
+        this.graph.addVertex(newNode);
+        addAndRememberEdge(newNode, parent);
+
+        // check for priority
+        addPriorityNode(newNode);
+    }
+
+    public void addAndRememberEdge(PastelNodeBlockEntity newNode, PastelNodeBlockEntity parent) {
+        getGraph().addEdge(newNode, parent);
+        newNode.remember(parent);
+        parent.remember(newNode);
+    }
+
+    public void removeAndForgetEdge(PastelNodeBlockEntity node, PastelNodeBlockEntity parent) {
+        if (graph != null) {
+            graph.removeEdge(node, parent);
+        }
+
+        node.forget(parent);
+        parent.forget(node);
+    }
+
+    public boolean hasEdge(PastelNodeBlockEntity node, PastelNodeBlockEntity otherNode) {
+        if (this.graph == null)
+            return false;
+
+        if (!graph.containsVertex(node) || !graph.containsVertex(otherNode))
+            return false;
+
+        return graph.containsEdge(node, otherNode);
+    }
+
+    private boolean addNodeOrReturn(PastelNodeBlockEntity node, boolean allowGraphCreation) {
+        if (!this.nodes.get(node.getNodeType()).add(node)) {
+            return true;
+        }
+
+        if (graph == null && allowGraphCreation) {
+            this.graph = buildGraph(this);
+            return false;
+        }
+
+        return this.graph == null;
+    }
+
+    private boolean addNodeOrReturn(PastelNodeBlockEntity node) {
+        return addNodeOrReturn(node, false);
     }
 
     private void addPriorityNode(PastelNodeBlockEntity node) {
@@ -123,12 +196,26 @@ public class PastelNetwork {
 
         if (this.graph != null) {
             // delete the now removed node from this networks graph
-            this.graph.removeVertex(node);
+            removeAndForget(node);
         }
 
+        node.forgetAll();
         removePriorityNode(node, node.getPriority());
 
         return true;
+    }
+
+    private void removeAndForget(PastelNodeBlockEntity node) {
+        assert graph != null;
+        for (DefaultEdge edge : this.graph.edgesOf(node)) {
+            var target = graph.getEdgeSource(edge);
+
+            if (target == node)
+                target = graph.getEdgeTarget(edge);
+
+            target.forget(node);
+        }
+        this.graph.removeVertex(node);
     }
 
     private void removePriorityNode(PastelNodeBlockEntity node, Priority priority) {

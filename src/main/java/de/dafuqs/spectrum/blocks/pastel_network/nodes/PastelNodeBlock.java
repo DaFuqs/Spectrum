@@ -96,12 +96,6 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements BlockEntityP
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
         super.onPlaced(world, pos, state, placer, itemStack);
-        if (placer instanceof ServerPlayerEntity serverPlayerEntity) {
-            BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof PastelNodeBlockEntity pastelNodeBlockEntity) {
-                SpectrumAdvancementCriteria.PASTEL_NETWORK_CREATING.trigger(serverPlayerEntity, (ServerPastelNetwork) pastelNodeBlockEntity.getParentNetwork());
-            }
-        }
     }
 	
 	@Override
@@ -147,6 +141,9 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements BlockEntityP
             return sendDebugMessage(world, player, blockEntity);
 		}
         else if (blockEntity.tryInteractRings(stack.getItem(), pastelNodeType)) {
+            if (!world.isClient())
+                SpectrumAdvancementCriteria.PASTEL_NODE_UPGRADING.trigger((ServerPlayerEntity) player, stack);
+
             if (!player.getAbilities().creativeMode)
                 stack.decrement(1);
 

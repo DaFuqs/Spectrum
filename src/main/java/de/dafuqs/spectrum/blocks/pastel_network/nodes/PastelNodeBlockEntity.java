@@ -8,6 +8,7 @@ import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.helpers.BlockReference;
 import de.dafuqs.spectrum.inventories.*;
+import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.lookup.v1.block.*;
 import net.fabricmc.fabric.api.screenhandler.v1.*;
@@ -521,6 +522,13 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
         }
 
         manager.connectNodes(this, sourceNode);
+
+        if (this.parentNetwork != null) {
+            user.filter(u -> u instanceof ServerPlayerEntity).ifPresent(p -> {
+                SpectrumAdvancementCriteria.PASTEL_NETWORK_CREATING.trigger((ServerPlayerEntity) p, (ServerPastelNetwork) parentNetwork);
+            });
+        }
+
         return true;
     }
 

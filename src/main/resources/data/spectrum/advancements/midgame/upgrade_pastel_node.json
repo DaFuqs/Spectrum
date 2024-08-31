@@ -1,23 +1,22 @@
 {
   "display": {
     "icon": {
-      "item": "spectrum:provider_node"
+      "item": "spectrum:storage_node"
     },
-    "hidden": true,
     "title": {
-      "translate": "advancements.spectrum.create_big_pastel_network.title"
+      "translate": "advancements.spectrum.upgrade_pastel_node.title"
     },
     "description": {
-      "translate": "advancements.spectrum.create_big_pastel_network.description"
+      "translate": "advancements.spectrum.upgrade_pastel_node.description"
     }
   },
   "parent": "spectrum:midgame/create_pastel_network",
   "criteria": {
-    "created_16_node_pastel_network": {
-      "trigger": "spectrum:pastel_network_creation",
+    "applied_any_upgrade": {
+      "trigger": "spectrum:pastel_node_upgrade",
       "conditions": {
-        "total_nodes": {
-          "min": 32
+        "input": {
+          "tag": "spectrum:pastel_node_upgrades"
         }
       }
     },

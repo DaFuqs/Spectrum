@@ -25,7 +25,7 @@ public class ClientPastelNetworkManager implements PastelNetworkManager {
 		for (int i = 0; i < this.networks.size(); i++) {
 			PastelNetwork network = this.networks.get(i);
 			if (network.getUUID().equals(uuid)) {
-				network.addNode(node);
+				network.addNodeAndLoadMemory(node);
 				foundNetwork = network;
 			} else {
 				if (network.removeNode(node, NodeRemovalReason.MOVED)) {
@@ -42,8 +42,13 @@ public class ClientPastelNetworkManager implements PastelNetworkManager {
 		}
 		
 		PastelNetwork network = createNetwork(node.getWorld(), uuid);
-		network.addNode(node);
+		network.addNodeAndLoadMemory(node);
 		return network;
+	}
+
+	@Override
+	public Optional<? extends PastelNetwork> getNetwork(UUID uuid) {
+		return networks.stream().filter(n -> n.uuid.equals(uuid)).findFirst();
 	}
 
 	@Override
@@ -53,27 +58,37 @@ public class ClientPastelNetworkManager implements PastelNetworkManager {
 		if (parent.getParentNetwork() != null) {
 			parentNetwork = parent.getParentNetwork();
 			otherNetwork = node.getParentNetwork();
+
+			if (otherNetwork == null) {
+				parentNetwork.addNodeAndConnect(node, parent);
+				node.setParentNetwork(parentNetwork);
+				return;
+			}
 		}
 		else if (node.getParentNetwork() != null) {
 			parentNetwork = node.getParentNetwork();
 			otherNetwork = parent.getParentNetwork();
+
+			if (otherNetwork == null) {
+				parentNetwork.addNodeAndConnect(parent, node);
+				parent.setParentNetwork(parentNetwork);
+				return;
+			}
 		}
 		else {
 			parentNetwork = createNetwork(node.getWorld(), null);
 			parentNetwork.addNode(parent);
 			parent.setParentNetwork(parentNetwork);
-			parentNetwork.addNode(node);
+			parentNetwork.addNodeAndConnect(node, parent);
 			node.setParentNetwork(parentNetwork);
 			return;
 		}
 
-		if (otherNetwork == null) {
-			parentNetwork.addNode(node);
-			node.setParentNetwork(parentNetwork);
+		if (parentNetwork == otherNetwork) {
 			return;
 		}
 
-		parentNetwork.incorporate(otherNetwork);
+		parentNetwork.incorporate(otherNetwork, node, parent);
 		this.networks.remove(otherNetwork);
 	}
 

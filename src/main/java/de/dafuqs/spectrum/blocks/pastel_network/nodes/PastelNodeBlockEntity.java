@@ -38,6 +38,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
+import java.util.stream.*;
 
 public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigurable, ExtendedScreenHandlerFactory, Stampable {
 
@@ -56,6 +57,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	protected PastelNetwork parentNetwork;
 	protected Optional<UUID> parentID = Optional.empty();
     protected Optional<UpgradeSignature> outerRing, innerRing, redstoneRing;
+    protected Set<BlockPos> connectionMemory = new HashSet<>();
 	protected long lastTransferTick = 0;
 	protected final long cachedRedstonePowerTick = 0;
 	protected boolean cachedNoRedstonePower = true, lit, triggerTransfer;
@@ -219,6 +221,28 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
         markDirty();
     }
 
+    public Set<BlockPos> getRememberedConnections() {
+        return connectionMemory;
+    }
+
+    public void remember(PastelNodeBlockEntity otherNode) {
+        if (this == otherNode) {
+            throw new IllegalArgumentException("Tried to make a pastel node remember itself");
+        }
+        connectionMemory.add(otherNode.pos);
+        markDirty();
+    }
+
+    public void forget(PastelNodeBlockEntity otherNode) {
+        connectionMemory.remove(otherNode.pos);
+        markDirty();
+    }
+
+    public void forgetAll() {
+        connectionMemory.clear();
+        markDirty();
+    }
+
     public void pulseRedstone() {
         if (world != null) {
             var state = getCachedState();
@@ -326,6 +350,9 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
         if(nbt.contains("RedstoneRing")) {
             redstoneRing = Optional.of(UPGRADES.get(Registries.ITEM.get(Identifier.tryParse(nbt.getString("RedstoneRing")))));
         }
+        if (nbt.contains("ConnectionMemory")) {
+            connectionMemory = Arrays.stream(nbt.getLongArray("ConnectionMemory")).mapToObj(BlockPos::fromLong).collect(Collectors.toSet());
+        }
         if (this.getNodeType().usesFilters()) {
             readFilterNbt(nbt, this.filterItems);
         }
@@ -350,6 +377,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
         outerRing.ifPresent(r -> nbt.putString("OuterRing", Registries.ITEM.getId(r.upgradeItem).toString()));
         innerRing.ifPresent(r -> nbt.putString("InnerRing", Registries.ITEM.getId(r.upgradeItem).toString()));
         redstoneRing.ifPresent(r -> nbt.putString("RedstoneRing", Registries.ITEM.getId(r.upgradeItem).toString()));
+        nbt.putLongArray("ConnectionMemory", connectionMemory.stream().map(BlockPos::asLong).toList());
     }
 
     @Nullable
@@ -478,14 +506,19 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
         var sourceNode = (PastelNodeBlockEntity) reference.tryGetBlockEntity().orElseThrow(() -> new IllegalStateException("Attempted to connect a non-existent node - what did you do?!"));
         var manager = Pastel.getInstance(world.isClient());
 
-        if (sourceNode.parentID.map(uuid -> uuid.equals(this.parentID.orElse(null))).orElse(false))
-            return false;
-
-        if (sourceNode.parentNetwork != null && sourceNode.parentNetwork == this.parentNetwork)
-            return false;
-
         if (!sourceNode.canConnect(this))
             return false;
+
+        if (sourceNode.parentNetwork != null && sourceNode.parentNetwork == this.parentNetwork) {
+            if (manager.tryRemoveEdge(this, sourceNode))
+                return true;
+
+            return manager.tryAddEdge(this, sourceNode);
+        }
+
+        if (sourceNode.parentID.map(uuid -> uuid.equals(this.parentID.orElse(null))).orElse(false)) {
+            return false;
+        }
 
         manager.connectNodes(this, sourceNode);
         return true;

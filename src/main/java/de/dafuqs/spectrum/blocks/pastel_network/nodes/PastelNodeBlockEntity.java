@@ -44,7 +44,9 @@ import java.util.stream.*;
 public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigurable, ExtendedScreenHandlerFactory, Stampable {
 
     public static final Map<Item, UpgradeSignature> UPGRADES;
-    public static final int ITEM_FILTER_COUNT = 5;
+    public static final int MAX_FILTER_SLOTS = 25;
+    public static final int SLOTS_PER_ROW = 5;
+    public static final int DEFAULT_FILTER_SLOT_ROWS = 1;
 	public static final int RANGE = 12;
 
     public static final UpgradeSignature ALWAYS_ON = UpgradeSignature.redstone(SpectrumItems.PURE_REDSTONE, "always_active");
@@ -67,6 +69,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	protected long itemCountUnderway = 0;
     protected long transferCount = PastelTransmissionLogic.DEFAULT_MAX_TRANSFER_AMOUNT;
     protected int transferTime = PastelTransmissionLogic.DEFAULT_TRANSFER_TICKS_PER_NODE;
+    protected int filterSlotRows = DEFAULT_FILTER_SLOT_ROWS;
 	
 	protected BlockApiCache<Storage<ItemVariant>, Direction> connectedStorageCache = null;
 	protected Direction cachedDirection = null;
@@ -78,7 +81,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 
     public PastelNodeBlockEntity(BlockPos blockPos, BlockState blockState) {
         super(SpectrumBlockEntities.PASTEL_NODE, blockPos, blockState);
-        this.filterItems = DefaultedList.ofSize(ITEM_FILTER_COUNT, Items.AIR);
+        this.filterItems = DefaultedList.ofSize(MAX_FILTER_SLOTS, Items.AIR);
         this.outerRing = Optional.empty();
         this.innerRing = Optional.empty();
         this.redstoneRing = Optional.empty();
@@ -205,6 +208,8 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
     public void updateUpgrades() {
         transferCount = PastelTransmissionLogic.DEFAULT_MAX_TRANSFER_AMOUNT;
         transferTime = PastelTransmissionLogic.DEFAULT_TRANSFER_TICKS_PER_NODE;
+        var oldFilterSlotCount = filterSlotRows;
+        filterSlotRows = DEFAULT_FILTER_SLOT_ROWS;
         triggerTransfer = false;
         lit = false;
         var oldPriority = priority;
@@ -218,6 +223,12 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 
         if (world != null && getCachedState().get(Properties.LIT) != lit)
             world.setBlockState(pos, getCachedState().with(Properties.LIT, lit));
+
+        if (filterSlotRows < oldFilterSlotCount) {
+            for (int i = getDrawnSlots(); i < filterItems.size(); i++) {
+                filterItems.set(i, Items.AIR);
+            }
+        }
 
         markDirty();
     }
@@ -485,8 +496,18 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
     }
 
     @Override
+    public int getFilterRows() {
+        return filterSlotRows;
+    }
+
+    @Override
+    public int getDrawnSlots() {
+        return getFilterRows() * SLOTS_PER_ROW;
+    }
+
+    @Override
     public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
-        FilterConfigurable.writeScreenOpeningData(buf, filterItems);
+        FilterConfigurable.writeScreenOpeningData(buf, this);
     }
 
     public boolean equals(Object obj) {
@@ -569,13 +590,13 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
         this.spinTicks = spinTicks;
     }
 
-    public record UpgradeSignature(Item upgradeItem, Identifier mainPath, Identifier altPath, int stackEffect, int speedEffect, float stackMult, float speedMult, boolean light, boolean priority, boolean redstone, UpgradeCategory category) {
+    public record UpgradeSignature(Item upgradeItem, Identifier mainPath, Identifier altPath, int stackEffect, int speedEffect, int filterRowEffect, float stackMult, float speedMult, boolean light, boolean priority, boolean redstone, UpgradeCategory category) {
 
-        public static UpgradeSignature of(Item upgradeItem, String name, int stackEffect, int speedEffect, float stackMult, float speedMult, boolean light, boolean priority, UpgradeCategory category) {
+        public static UpgradeSignature of(Item upgradeItem, String name, int stackEffect, int speedEffect, int filterRowEffect, float stackMult, float speedMult, boolean light, boolean priority, UpgradeCategory category) {
             return new UpgradeSignature(upgradeItem,
                     SpectrumCommon.locate("textures/block/pastel_node_inner_ring_" + name + ".png"),
                     SpectrumCommon.locate("textures/block/pastel_node_outer_ring_" + name + ".png"),
-                    stackEffect, speedEffect, stackMult, speedMult, light, priority, false, category
+                    stackEffect, speedEffect, filterRowEffect, stackMult, speedMult, light, priority, false, category
                     );
         }
 
@@ -584,7 +605,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
             return new UpgradeSignature(upgradeItem,
                     SpectrumCommon.locate("textures/block/pastel_node_redstone_ring_" + name + ".png"),
                     null,
-                    0, 0, 0, 0, false, false, true, UpgradeCategory.NON_COMPOUNDING
+                    0, 0, 0, 0, 0, false, false, true, UpgradeCategory.NON_COMPOUNDING
             );
         }
 
@@ -611,11 +632,13 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
         public void applyBase(PastelNodeBlockEntity node) {
             node.transferCount += stackEffect;
             node.transferTime += speedEffect;
+            node.filterSlotRows += node.getNodeType().hasOuterRing() ? filterRowEffect : filterRowEffect * 2;
         }
 
         public void applyCompounding(PastelNodeBlockEntity node) {
             node.transferCount *= stackMult;
             node.transferTime *= speedMult;
+            node.filterSlotRows += node.getNodeType().hasOuterRing() ? filterRowEffect : filterRowEffect * 2;
         }
 
         private static void upgradePriority(PastelNodeBlockEntity node) {
@@ -642,12 +665,14 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
     static {
         var builder = ImmutableMap.<Item, UpgradeSignature>builder();
 
-        builder.put(SpectrumItems.RAW_BLOODSTONE, UpgradeSignature.of(SpectrumItems.RAW_BLOODSTONE, "weak_stack", 3, 0, 2, 1, false, false, UpgradeSignature.UpgradeCategory.STACK));
-        builder.put(SpectrumItems.REFINED_BLOODSTONE, UpgradeSignature.of(SpectrumItems.REFINED_BLOODSTONE, "strong_stack", 15, 0, 4, 1, false, false, UpgradeSignature.UpgradeCategory.STACK));
-        builder.put(SpectrumItems.RAW_MALACHITE, UpgradeSignature.of(SpectrumItems.RAW_MALACHITE, "weak_speed", 0, -5, 1, 0.8F, false, false, UpgradeSignature.UpgradeCategory.LATENCY));
-        builder.put(SpectrumItems.REFINED_MALACHITE, UpgradeSignature.of(SpectrumItems.REFINED_MALACHITE, "strong_speed", 0, -10, 1, 0.5F, false, false, UpgradeSignature.UpgradeCategory.LATENCY));
-        builder.put(SpectrumItems.RESONANCE_SHARD, UpgradeSignature.of(SpectrumItems.RESONANCE_SHARD, "rate", 0, 0, 1, 1, false, true, UpgradeSignature.UpgradeCategory.NON_COMPOUNDING));
-        builder.put(SpectrumItems.SHIMMERSTONE_GEM, UpgradeSignature.of(SpectrumItems.SHIMMERSTONE_GEM, "light", 0, 0, 1, 1, true, false, UpgradeSignature.UpgradeCategory.NON_COMPOUNDING));
+        builder.put(SpectrumItems.RAW_BLOODSTONE, UpgradeSignature.of(SpectrumItems.RAW_BLOODSTONE, "weak_stack", 3, 0, 0, 2, 1, false, false, UpgradeSignature.UpgradeCategory.STACK));
+        builder.put(SpectrumItems.REFINED_BLOODSTONE, UpgradeSignature.of(SpectrumItems.REFINED_BLOODSTONE, "strong_stack", 15, 0, 0, 4, 1, false, false, UpgradeSignature.UpgradeCategory.STACK));
+        builder.put(SpectrumItems.RAW_MALACHITE, UpgradeSignature.of(SpectrumItems.RAW_MALACHITE, "weak_speed", 0, -5, 0, 1, 0.8F, false, false, UpgradeSignature.UpgradeCategory.LATENCY));
+        builder.put(SpectrumItems.REFINED_MALACHITE, UpgradeSignature.of(SpectrumItems.REFINED_MALACHITE, "strong_speed", 0, -10, 0, 1, 0.5F, false, false, UpgradeSignature.UpgradeCategory.LATENCY));
+        builder.put(SpectrumItems.RAW_AZURITE, UpgradeSignature.of(SpectrumItems.RAW_AZURITE, "weak_filter", 0, 0, 1, 1, 1, false, false, UpgradeSignature.UpgradeCategory.LATENCY));
+        builder.put(SpectrumItems.REFINED_AZURITE, UpgradeSignature.of(SpectrumItems.REFINED_AZURITE, "strong_filter", 0, 0, 2, 1, 1, false, false, UpgradeSignature.UpgradeCategory.LATENCY));
+        builder.put(SpectrumItems.RESONANCE_SHARD, UpgradeSignature.of(SpectrumItems.RESONANCE_SHARD, "rate", 0, 0, 0, 1, 1, false, true, UpgradeSignature.UpgradeCategory.NON_COMPOUNDING));
+        builder.put(SpectrumItems.SHIMMERSTONE_GEM, UpgradeSignature.of(SpectrumItems.SHIMMERSTONE_GEM, "light", 0, 0, 0, 1, 1, true, false, UpgradeSignature.UpgradeCategory.NON_COMPOUNDING));
         builder.put(SpectrumItems.PURE_REDSTONE, ALWAYS_ON);
         builder.put(SpectrumItems.PURE_LAPIS, ALWAYS_OFF);
         builder.put(SpectrumItems.PURE_COAL, INVERTED);

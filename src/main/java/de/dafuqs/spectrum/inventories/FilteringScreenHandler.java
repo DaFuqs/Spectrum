@@ -18,31 +18,51 @@ public class FilteringScreenHandler extends ScreenHandler {
 	protected final World world;
 	protected FilterConfigurable filterConfigurable;
 	protected final Inventory filterInventory;
+	protected final int rows, slotsPerRow, drawnSlots;
 
 	public FilteringScreenHandler(int syncId, PlayerInventory playerInventory, PacketByteBuf packetByteBuf) {
 		this(SpectrumScreenHandlerTypes.FILTERING, syncId, playerInventory,
-				(handler) -> FilterConfigurable.getFilterInventoryFromPacketHandler(syncId, playerInventory, packetByteBuf, handler));
+				(handler) -> FilterConfigurable.getFilterInventoryWithRowDataFromPacket(syncId, playerInventory, packetByteBuf, handler));
 	}
 
 	public FilteringScreenHandler(int syncId, PlayerInventory playerInventory, FilterConfigurable filterConfigurable) {
 		this(SpectrumScreenHandlerTypes.FILTERING, syncId, playerInventory,
-				(handler) -> FilterConfigurable.getFilterInventoryFromItemsHandler(syncId, playerInventory, filterConfigurable.getItemFilters(), handler));
+				(handler) -> new Pair<>(FilterConfigurable.getFilterInventoryFromItemsHandler(syncId, playerInventory, filterConfigurable.getItemFilters(), handler), new Integer[]{
+						filterConfigurable.getFilterRows(),
+						filterConfigurable.getSlotsPerRow(),
+						filterConfigurable.getDrawnSlots()
+				}));
 		this.filterConfigurable = filterConfigurable;
 	}
 
-	protected FilteringScreenHandler(ScreenHandlerType<?> type, int syncId, PlayerInventory playerInventory, Function<ScreenHandler, Inventory> filterInventoryFactory) {
+	protected FilteringScreenHandler(ScreenHandlerType<?> type, int syncId, PlayerInventory playerInventory, Function<ScreenHandler, Pair<Inventory, Integer[]>> filterInventoryFactory) {
 		super(type, syncId);
 		this.world = playerInventory.player.getWorld();
-		this.filterInventory = filterInventoryFactory.apply(this);
+		var pair = filterInventoryFactory.apply(this);
+		this.filterInventory = pair.getLeft();
+		var slotData = pair.getRight();
+		rows = slotData[0];
+		slotsPerRow = slotData[1];
+		drawnSlots = slotData[2];
+		int nonObligatoryRows = rows - 1;
+		var slotCount = Math.min(filterInventory.size(), drawnSlots);
 
 		// filter slots
-		int startX = (176 / 2) - (filterInventory.size() + 1) * 9;
-		for (int k = 0; k < filterInventory.size(); ++k) {
-			this.addSlot(new FilterSlot(filterInventory, k, startX + k * 23, 18));
+		slotDraw: {
+			int startX = (176 / 2) - (slotsPerRow + 1) * 9;
+			int index = 0;
+			for (int i = 0; i < rows; i++) {
+				for (int k = 0; k < slotsPerRow; ++k) {
+					if (index == slotCount)
+						break slotDraw;
+					this.addSlot(new FilterSlot(filterInventory, index, startX + k * 23, 18 + i * (FilteringScreen.STRIP_HEIGHT + 8)));
+					index++;
+				}
+			}
 		}
 
 		// player inventory slots
-		int i = 52;
+		int i = 52 + ((int) Math.round(nonObligatoryRows * 1.5) * FilteringScreen.STRIP_HEIGHT);
 		for (int j = 0; j < 3; ++j) {
 			for (int k = 0; k < 9; ++k) {
 				this.addSlot(new Slot(playerInventory, k + j * 9 + 9, 8 + k * 18, j * 18 + i));
@@ -54,8 +74,11 @@ public class FilteringScreenHandler extends ScreenHandler {
 		}
 
 	}
-	
-	
+
+	public int getRows() {
+		return rows;
+	}
+
 	@Override
 	public boolean canUse(PlayerEntity player) {
 		return true;

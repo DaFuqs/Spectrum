@@ -3663,6 +3663,8 @@
   "book.spectrum.guidebook.pastel_upgrades.page1.title": "Enhancing Nodes",
   "book.spectrum.guidebook.pastel_upgrades.page2.text": "Latency can be a problem sometimes.\\\n\\\n• One Ring: *Slightly reduces [#](449900)travel time[#]()*\\\n• Two Rings: *Modestly reduces [#](449900)travel time[#]()*",
   "book.spectrum.guidebook.pastel_upgrades.page3.text": "Travel time? Never heard of it.\\\n\\\n• One Ring: *Significantly reduces [#](449900)travel time[#]()*\\\n• Two Rings: *Reduces [#](449900)travel time[#]() to the utmost*",
+  "book.spectrum.guidebook.pastel_upgrades.weak_azurite.text": "Filter? I barely know her!\\\n\\\n• Each Ring: *+1 row of [#](449900)filter slots[#]()*\\\n• Note: *[Gather Nodes](entry://pastel_network/gather_node) gain twice as many rows.*",
+  "book.spectrum.guidebook.pastel_upgrades.strong_azurite.text": "...not that I would mind it, though. <- *queer*\\\n\\\n• Each Ring: *+2 rows of [#](449900)filter slots[#]()*\\\n• Note: *[Gather Nodes](entry://pastel_network/gather_node) gain twice as many rows.*",
   "book.spectrum.guidebook.pastel_upgrades.page4.text": "Are dragons this stacked?\\\n\\\n• One Ring: *Max [#](449900)transfer size[#]() of 4*\\\n• Two Rings: *Doubles the [#](449900)previous boost[#]()*",
   "book.spectrum.guidebook.pastel_upgrades.page5.text": "All the things, all at once!\\\n\\\n• One Ring: *Max [#](449900)transfer size[#]() of 16*\\\n• Two Rings: *Quadruples the [#](449900)previous boost[#]() - wow.*",
   "book.spectrum.guidebook.pastel_upgrades.page6.text": "Steady? No. Slow? Also no!\\\n\\\n• One Ring: *Appreciably boosts [#](449900)transfer rate[#]()*\\\n• Two Rings: *Boosts [#](449900)transfer rate[#]() to the utmost*",

@@ -23,6 +23,18 @@ public interface FilterConfigurable {
 
     void setFilterItem(int slot, Item item);
 
+    default int getFilterRows() {
+        return 1;
+    }
+
+    default int getSlotsPerRow() {
+        return 5;
+    }
+
+    default int getDrawnSlots() {
+        return getItemFilters().size();
+    }
+
     default void writeFilterNbt(NbtCompound tag, List<Item> filterItems) {
         for (int i = 0; i < filterItems.size(); i++) {
 			tag.putString("Filter" + i, Registries.ITEM.getId(filterItems.get(i)).toString());
@@ -53,6 +65,17 @@ public interface FilterConfigurable {
             inventory.setStack(i, Registries.ITEM.get(packetByteBuf.readIdentifier()).getDefaultStack());
         }
         return inventory;
+    }
+
+    static Pair<Inventory, Integer[]> getFilterInventoryWithRowDataFromPacket(int syncId, @NotNull PlayerInventory playerInventory, PacketByteBuf packetByteBuf, @NotNull ScreenHandler thisHandler) {
+        var inventory = getFilterInventoryFromPacketHandler(syncId, playerInventory, packetByteBuf, thisHandler);
+        var arr = new Integer[]{
+                packetByteBuf.readInt(),
+                packetByteBuf.readInt(),
+                packetByteBuf.readInt()
+        };
+
+        return new Pair<>(inventory, arr);
     }
 
     static Inventory getFilterInventoryFromPacketHandler(int syncId, @NotNull PlayerInventory playerInventory, PacketByteBuf packetByteBuf, @NotNull ScreenHandler thisHandler) {
@@ -136,11 +159,18 @@ public interface FilterConfigurable {
         }
     }
 
-    static void writeScreenOpeningData(PacketByteBuf buf, List<Item> filterItems) {
+    static void writeScreenOpeningData(PacketByteBuf buf, FilterConfigurable configurable) {
+        writeScreenOpeningData(buf, configurable.getItemFilters(), configurable.getFilterRows(), configurable.getSlotsPerRow(), configurable.getDrawnSlots());
+    }
+
+    static void writeScreenOpeningData(PacketByteBuf buf, List<Item> filterItems, int rows, int slotsPerRow, int drawnSlots) {
         buf.writeInt(filterItems.size());
         for (Item filterItem : filterItems) {
-			buf.writeIdentifier(Registries.ITEM.getId(filterItem));
+            buf.writeIdentifier(Registries.ITEM.getId(filterItem));
         }
+        buf.writeInt(rows);
+        buf.writeInt(slotsPerRow);
+        buf.writeInt(drawnSlots);
     }
 
     default boolean hasEmptyFilter() {

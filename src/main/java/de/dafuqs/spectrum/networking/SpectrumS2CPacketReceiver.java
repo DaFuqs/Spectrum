@@ -609,8 +609,8 @@ public class SpectrumS2CPacketReceiver {
 
 					node.setSpinTicks(times.get(index));
 
-					if (trigger && node.getRedstoneRing().map(PastelNodeBlockEntity.TRIGGER::is).orElse(false))
-						node.markTrigger();
+					if (trigger && node.isTriggerTransfer())
+						node.markTriggered();
 				}
 			});
 		}))));

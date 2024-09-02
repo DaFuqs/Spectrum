@@ -113,6 +113,12 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumItemGroups.register();
 		logInfo("Registering Block Entities...");
 		SpectrumBlockEntities.register();
+
+		// Pastel
+		logInfo("Registering Pastel Upgrades...");
+		SpectrumPastelUpgrades.register();
+		logInfo("Registering Stamp Categories...");
+		SpectrumStampDataCategories.register();
 		
 		// Worldgen
 		logInfo("Registering Features...");

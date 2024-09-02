@@ -2,6 +2,8 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.api.pastel.*;
 import de.dafuqs.spectrum.entity.variants.*;
 import de.dafuqs.spectrum.explosion.*;
 import de.dafuqs.spectrum.items.tools.*;
@@ -43,6 +45,14 @@ public class SpectrumRegistries {
 	private static final Identifier EXPLOSION_MODIFIERS_ID = SpectrumCommon.locate("explosion_effect_modifier");
 	public static final RegistryKey<Registry<ExplosionModifier>> EXPLOSION_MODIFIERS_KEY = RegistryKey.ofRegistry(EXPLOSION_MODIFIERS_ID);
 	public static final Registry<ExplosionModifier> EXPLOSION_MODIFIERS = FabricRegistryBuilder.createSimple(EXPLOSION_MODIFIERS_KEY).attribute(RegistryAttribute.SYNCED).buildAndRegister();
+
+	private static final Identifier PASTEL_UPGRADE_ID = SpectrumCommon.locate("pastel_upgrade");
+	public static final RegistryKey<Registry<PastelUpgradeSignature>> PASTEL_UPGRADE_KEY = RegistryKey.ofRegistry(PASTEL_UPGRADE_ID);
+	public static final Registry<PastelUpgradeSignature> PASTEL_UPGRADE = FabricRegistryBuilder.createSimple(PASTEL_UPGRADE_KEY).attribute(RegistryAttribute.SYNCED).buildAndRegister();
+
+	private static final Identifier STAMP_DATA_CATEGORY_ID = SpectrumCommon.locate("stamp_data_category");
+	public static final RegistryKey<Registry<StampDataCategory>> STAMP_DATA_CATEGORY_KEY = RegistryKey.ofRegistry(STAMP_DATA_CATEGORY_ID);
+	public static final Registry<StampDataCategory> STAMP_DATA_CATEGORY = FabricRegistryBuilder.createSimple(STAMP_DATA_CATEGORY_KEY).attribute(RegistryAttribute.SYNCED).buildAndRegister();
 
 	public static <T> T getRandomTagEntry(Registry<T> registry, TagKey<T> tag, Random random, T fallback) {
 		Optional<RegistryEntryList.Named<T>> tagEntries = registry.getEntryList(tag);

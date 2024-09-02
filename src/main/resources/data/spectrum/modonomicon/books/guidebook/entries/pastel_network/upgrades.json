@@ -52,6 +52,24 @@
     {
       "type": "modonomicon:spotlight",
       "item": {
+        "item": "spectrum:raw_azurite"
+      },
+      "text": "book.spectrum.guidebook.pastel_upgrades.weak_azurite.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:refined_azurite"
+      },
+      "text": "book.spectrum.guidebook.pastel_upgrades.strong_azurite.text",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/create_refined_azurite"
+      }
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
         "item": "spectrum:raw_bloodstone"
       },
       "text": "book.spectrum.guidebook.pastel_upgrades.page4.text",

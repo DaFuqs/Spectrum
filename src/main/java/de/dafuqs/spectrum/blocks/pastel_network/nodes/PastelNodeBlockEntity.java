@@ -53,7 +53,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
     protected Set<BlockPos> connectionMemory = new HashSet<>();
 	protected long lastTransferTick = 0;
 	protected final long cachedRedstonePowerTick = 0;
-	protected boolean cachedNoRedstonePower = true;
+	protected boolean cachedUnpowered = true;
     protected PastelNetwork.Priority priority = PastelNetwork.Priority.GENERIC;
     protected long itemCountUnderway = 0;
 
@@ -93,7 +93,20 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 
     public static void tick(@NotNull World world, BlockPos pos, BlockState state, PastelNodeBlockEntity node) {
         if (node.lamp && state.get(Properties.LIT) != node.canTransfer()) {
-            world.setBlockState(pos, state.with(Properties.LIT, node.cachedNoRedstonePower));
+            world.setBlockState(pos, state.with(Properties.LIT, node.cachedUnpowered));
+        }
+
+        //Trigger transfer logic needs to be ticked here
+        if (node.triggerTransfer) {
+            var powered = world.isReceivingRedstonePower(pos);
+
+            if (node.waiting && !powered) {
+                node.waiting = false;
+            }
+
+            if (!node.triggered && !node.waiting && powered) {
+                node.triggered = true;
+            }
         }
 
         if (world.isClient()) {
@@ -291,7 +304,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 
     public boolean canTransfer() {
         var result = redstoneRing.map(r -> r.preProcessor
-                .apply(new PastelUpgradeSignature.RedstoneContext(this, world, pos, cachedNoRedstonePower))).orElse(ActionResult.PASS);
+                .apply(new PastelUpgradeSignature.RedstoneContext(this, world, pos, cachedUnpowered))).orElse(ActionResult.PASS);
 
         if (result == ActionResult.SUCCESS)
             return true;
@@ -301,11 +314,11 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 
         long time = this.getWorld().getTime();
         if (time > this.cachedRedstonePowerTick && !getCachedState().get(PastelNodeBlock.EMITTING)) {
-            this.cachedNoRedstonePower = world.getReceivedRedstonePower(this.pos) == 0;
+            this.cachedUnpowered = world.getReceivedRedstonePower(this.pos) == 0;
         }
 
         boolean notPowered = redstoneRing.map(r -> {
-            var post = r.postProcessor.apply(new PastelUpgradeSignature.RedstoneContext(this, world, pos, cachedNoRedstonePower));
+            var post = r.postProcessor.apply(new PastelUpgradeSignature.RedstoneContext(this, world, pos, cachedUnpowered));
 
             if (post == ActionResult.SUCCESS)
                 return true;
@@ -313,23 +326,15 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
             if (post == ActionResult.FAIL)
                 return false;
 
-            return cachedNoRedstonePower;
-        }).orElse(cachedNoRedstonePower);
+            return cachedUnpowered;
+        }).orElse(cachedUnpowered);
 
+        var canTransfer = this.getWorld().getTime() > lastTransferTick;
         if (triggerTransfer) {
-            if (waiting && notPowered) {
-                waiting = false;
-            }
-
-            if (!triggered && !waiting && !notPowered) {
-                triggered = true;
-            }
-
-            var canTransfer = this.getWorld().getTime() > lastTransferTick;
             return triggered && canTransfer;
         }
 
-        return this.getWorld().getTime() > lastTransferTick && notPowered;
+        return canTransfer && notPowered;
     }
 
     public void markTransferred() {

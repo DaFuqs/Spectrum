@@ -41,7 +41,7 @@ public class SpectrumPastelUpgrades {
         STRONG_STACK = register(PastelUpgradeSignature.builder(SpectrumItems.REFINED_BLOODSTONE, STACK, NAMESPACE).named("strong_stack").stackMod(15).stackMult(4).build());
 
         WEAK_SPEED = register(PastelUpgradeSignature.builder(SpectrumItems.RAW_MALACHITE, SPEED, NAMESPACE).named("weak_speed").speedMod(-5).speedMult(0.8F).build());
-        STRONG_SPEED = register(PastelUpgradeSignature.builder(SpectrumItems.REFINED_MALACHITE, SPEED, NAMESPACE).named("strong_speed").speedMod(-10).stackMult(0.5F).build());
+        STRONG_SPEED = register(PastelUpgradeSignature.builder(SpectrumItems.REFINED_MALACHITE, SPEED, NAMESPACE).named("strong_speed").speedMod(-10).speedMult(0.5F).build());
 
         WEAK_FILTER = register(PastelUpgradeSignature.builder(SpectrumItems.RAW_AZURITE, FILTER, NAMESPACE).named("weak_filter").slotRowMod(1).build());
         STRONG_FILTER = register(PastelUpgradeSignature.builder(SpectrumItems.REFINED_AZURITE, FILTER, NAMESPACE).named("strong_filter").slotRowMod(2).build());

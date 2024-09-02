@@ -227,6 +227,15 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
         innerRing.ifPresent(r -> apply(r, outerRing.map(List::of).orElse(Collections.emptyList())));
         redstoneRing.ifPresent(r -> apply(r, Collections.emptyList()));
 
+        // Sanity
+        transferCount = Math.max(transferCount, 1);
+        transferTime = MathHelper.clamp(transferTime, 2, 100);
+        filterSlotRows = MathHelper.clamp(filterSlotRows, 1, 5);
+
+        if (lit && lamp) {
+            lit = false;
+        }
+
         if (parentNetwork != null)
             parentNetwork.updateNodePriority(this, oldPriority);
 

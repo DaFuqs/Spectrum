@@ -29,7 +29,6 @@ public class SpectrumPastelUpgrades {
     public static PastelUpgradeSignature TRIGGER;
     public static PastelUpgradeSignature LAMP;
 
-
     public static final PastelUpgradeSignature.Category NON_COMPOUNDING = PastelUpgradeSignature.Category.nonCompounding();
     public static final PastelUpgradeSignature.Category STACK = PastelUpgradeSignature.Category.simple();
     public static final PastelUpgradeSignature.Category SPEED = PastelUpgradeSignature.Category.simple();

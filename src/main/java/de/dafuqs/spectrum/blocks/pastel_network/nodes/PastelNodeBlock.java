@@ -69,9 +69,9 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements BlockEntityP
             PastelNodeBlockEntity blockEntity = getBlockEntity(world, pos);
             if (blockEntity != null) {
                 blockEntity.onBroken();
-                blockEntity.getOuterRing().ifPresent(r -> dropStack(world, pos, r.upgradeItem().getDefaultStack()));
-                blockEntity.getInnerRing().ifPresent(r -> dropStack(world, pos, r.upgradeItem().getDefaultStack()));
-                blockEntity.getRedstoneRing().ifPresent(r -> dropStack(world, pos, r.upgradeItem().getDefaultStack()));
+                blockEntity.getOuterRing().ifPresent(r -> dropStack(world, pos, r.upgradeItem.getDefaultStack()));
+                blockEntity.getInnerRing().ifPresent(r -> dropStack(world, pos, r.upgradeItem.getDefaultStack()));
+                blockEntity.getRedstoneRing().ifPresent(r -> dropStack(world, pos, r.upgradeItem.getDefaultStack()));
             }
         }
         super.onStateReplaced(state, world, pos, newState, moved);
@@ -87,10 +87,7 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements BlockEntityP
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        if (world.isClient())
-            return ((w, p, s, b) -> PastelNodeBlockEntity.tick(w, p, s, (PastelNodeBlockEntity) b));
-
-        return BlockEntityProvider.super.getTicker(world, state, type);
+        return ((w, p, s, b) -> PastelNodeBlockEntity.tick(w, p, s, (PastelNodeBlockEntity) b));
     }
 
     @Override
@@ -140,7 +137,7 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements BlockEntityP
 		else if (stack.isOf(SpectrumItems.PAINTBRUSH)) {
             return sendDebugMessage(world, player, blockEntity);
 		}
-        else if (blockEntity.tryInteractRings(stack.getItem(), pastelNodeType)) {
+        else if (stack.isIn(SpectrumItemTags.PASTEL_NODE_UPGRADES) && blockEntity.tryInteractRings(stack, pastelNodeType)) {
             if (!world.isClient())
                 SpectrumAdvancementCriteria.PASTEL_NODE_UPGRADING.trigger((ServerPlayerEntity) player, stack);
 

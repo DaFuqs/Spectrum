@@ -1,9 +1,8 @@
 package de.dafuqs.spectrum.blocks.pastel_network.nodes;
 
-import com.google.common.collect.*;
-import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.api.pastel.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.helpers.BlockReference;
@@ -24,14 +23,13 @@ import net.minecraft.network.*;
 import net.minecraft.network.listener.*;
 import net.minecraft.network.packet.*;
 import net.minecraft.network.packet.s2c.play.*;
-import net.minecraft.registry.Registries;
 import net.minecraft.screen.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.*;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
@@ -41,33 +39,27 @@ import java.util.*;
 import java.util.function.*;
 import java.util.stream.*;
 
-public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigurable, ExtendedScreenHandlerFactory, Stampable {
+public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigurable, ExtendedScreenHandlerFactory, Stampable, PastelUpgradeable {
 
-    public static final Map<Item, UpgradeSignature> UPGRADES;
     public static final int MAX_FILTER_SLOTS = 25;
     public static final int SLOTS_PER_ROW = 5;
     public static final int DEFAULT_FILTER_SLOT_ROWS = 1;
 	public static final int RANGE = 12;
 
-    public static final UpgradeSignature ALWAYS_ON = UpgradeSignature.redstone(SpectrumItems.PURE_REDSTONE, "always_active");
-    public static final UpgradeSignature ALWAYS_OFF = UpgradeSignature.redstone(SpectrumItems.PURE_LAPIS, "always_inactive");
-    public static final UpgradeSignature INVERTED = UpgradeSignature.redstone(SpectrumItems.PURE_COAL, "inverted");
-    public static final UpgradeSignature SENSOR = UpgradeSignature.redstone(SpectrumItems.PURE_ECHO, "sensor");
-    public static final UpgradeSignature TRIGGER = UpgradeSignature.redstone(SpectrumItems.PURE_QUARTZ, "trigger");
-    public static final UpgradeSignature LAMP = UpgradeSignature.redstone(SpectrumItems.PURE_GLOWSTONE, "lamp");
-
     @Nullable
 	protected PastelNetwork parentNetwork;
 	protected Optional<UUID> parentID = Optional.empty();
-    protected Optional<UpgradeSignature> outerRing, innerRing, redstoneRing;
+    protected Optional<PastelUpgradeSignature> outerRing, innerRing, redstoneRing;
     protected Set<BlockPos> connectionMemory = new HashSet<>();
 	protected long lastTransferTick = 0;
 	protected final long cachedRedstonePowerTick = 0;
-	protected boolean cachedNoRedstonePower = true, lit, triggerTransfer;
+	protected boolean cachedNoRedstonePower = true;
     protected PastelNetwork.Priority priority = PastelNetwork.Priority.GENERIC;
+    protected long itemCountUnderway = 0;
 
-	protected long itemCountUnderway = 0;
-    protected long transferCount = PastelTransmissionLogic.DEFAULT_MAX_TRANSFER_AMOUNT;
+    // upgrade impl stuff
+    protected boolean lit, triggerTransfer, triggered, waiting, lamp, sensor;
+    protected int transferCount = PastelTransmissionLogic.DEFAULT_MAX_TRANSFER_AMOUNT;
     protected int transferTime = PastelTransmissionLogic.DEFAULT_TRANSFER_TICKS_PER_NODE;
     protected int filterSlotRows = DEFAULT_FILTER_SLOT_ROWS;
 	
@@ -100,31 +92,33 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
     }
 
     public static void tick(@NotNull World world, BlockPos pos, BlockState state, PastelNodeBlockEntity node) {
-        if (node.parentNetwork == null) {
-            node.changeState(State.DISCONNECTED);
-            node.interpLength = 17;
-        }
-        else if (!node.canTransfer()) {
-            node.changeState(State.INACTIVE);
-            node.interpLength = 21;
-        }
-        else if(node.spinTicks > 0) {
-            node.changeState(State.ACTIVE);
-            node.interpLength = 17;
-        }
-        else {
-            node.changeState(State.CONNECTED);
-            node.interpLength = 13;
+        if (node.lamp && state.get(Properties.LIT) != node.canTransfer()) {
+            world.setBlockState(pos, state.with(Properties.LIT, node.cachedNoRedstonePower));
         }
 
-        if (node.interpTicks < node.interpLength)
-            node.interpTicks++;
+        if (world.isClient()) {
+            if (node.parentNetwork == null) {
+                node.changeState(State.DISCONNECTED);
+                node.interpLength = 17;
+            }
+            else if (!node.canTransfer()) {
+                node.changeState(State.INACTIVE);
+                node.interpLength = 21;
+            }
+            else if(node.spinTicks > 0) {
+                node.changeState(State.ACTIVE);
+                node.interpLength = 17;
+            }
+            else {
+                node.changeState(State.CONNECTED);
+                node.interpLength = 13;
+            }
 
-        if (node.spinTicks > 0)
-            node.spinTicks--;
+            if (node.interpTicks < node.interpLength)
+                node.interpTicks++;
 
-        if (node.getRedstoneRing().map(LAMP::is).orElse(false) && node.getCachedState().get(Properties.LIT) != node.cachedNoRedstonePower) {
-            world.setBlockState(pos, node.getCachedState().with(Properties.LIT, node.cachedNoRedstonePower));
+            if (node.spinTicks > 0)
+                node.spinTicks--;
         }
     }
 
@@ -138,15 +132,15 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
         }
     }
 
-    public Optional<UpgradeSignature> getInnerRing() {
+    public Optional<PastelUpgradeSignature> getInnerRing() {
         return innerRing;
     }
 
-    public Optional<UpgradeSignature> getOuterRing() {
+    public Optional<PastelUpgradeSignature> getOuterRing() {
         return outerRing;
     }
 
-    public Optional<UpgradeSignature> getRedstoneRing() {
+    public Optional<PastelUpgradeSignature> getRedstoneRing() {
         return redstoneRing;
     }
 
@@ -155,12 +149,10 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
     }
 
     // outer goes first, then inner, then redstone
-    public boolean tryInteractRings(Item item, PastelNodeType type) {
-        var upgrade = UPGRADES.get(item);
-        if (upgrade == null)
-            return false;
+    public boolean tryInteractRings(ItemStack item, PastelNodeType type) {
+        var upgrade = SpectrumPastelUpgrades.of(item);
 
-        if (upgrade.redstone) {
+        if (upgrade.category.isRedstone()) {
             if (redstoneRing.isEmpty()) {
                 redstoneRing = Optional.of(upgrade);
                 return true;
@@ -212,12 +204,16 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
         filterSlotRows = DEFAULT_FILTER_SLOT_ROWS;
         triggerTransfer = false;
         lit = false;
+        lamp = false;
+        sensor = false;
         var oldPriority = priority;
         priority = PastelNetwork.Priority.GENERIC;
 
         //First one processed can't compound because it has nothing to compound on
-        outerRing.ifPresent(r -> r.apply(this, UpgradeSignature.UpgradeCategory.NON_COMPOUNDING));
-        innerRing.ifPresent(r -> r.apply(this, outerRing.map(UpgradeSignature::category).orElse(UpgradeSignature.UpgradeCategory.NON_COMPOUNDING)));
+        outerRing.ifPresent(r -> apply(r, Collections.emptyList()));
+        innerRing.ifPresent(r -> apply(r, outerRing.map(List::of).orElse(Collections.emptyList())));
+        redstoneRing.ifPresent(r -> apply(r, Collections.emptyList()));
+
         if (parentNetwork != null)
             parentNetwork.updateNodePriority(this, oldPriority);
 
@@ -255,7 +251,8 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
         markDirty();
     }
 
-    public void pulseRedstone() {
+    @Override
+    public void notifySensor() {
         if (world != null) {
             var state = getCachedState();
             world.setBlockState(pos, state.with(Properties.POWERED, true));
@@ -293,41 +290,55 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
     }
 
     public boolean canTransfer() {
-        if (redstoneRing.map(ALWAYS_OFF::is).orElse(false)) // this exists solely because I thought it would be funny.
-            return false;
+        var result = redstoneRing.map(r -> r.preProcessor
+                .apply(new PastelUpgradeSignature.RedstoneContext(this, world, pos, cachedNoRedstonePower))).orElse(ActionResult.PASS);
 
-        if (redstoneRing.map(ALWAYS_ON::is).orElse(false))
+        if (result == ActionResult.SUCCESS)
             return true;
 
+        if (result == ActionResult.FAIL)
+            return false;
+
         long time = this.getWorld().getTime();
-        if (time > this.cachedRedstonePowerTick && !redstoneRing.filter(SENSOR::is).map(r -> getCachedState().get(PastelNodeBlock.EMITTING)).orElse(false)) {
+        if (time > this.cachedRedstonePowerTick && !getCachedState().get(PastelNodeBlock.EMITTING)) {
             this.cachedNoRedstonePower = world.getReceivedRedstonePower(this.pos) == 0;
         }
 
-        if (redstoneRing.map(TRIGGER::is).orElse(false)) {
-            if (triggerTransfer) {
-                if (cachedNoRedstonePower) {
-                    triggerTransfer = false;
-                }
+        boolean notPowered = redstoneRing.map(r -> {
+            var post = r.postProcessor.apply(new PastelUpgradeSignature.RedstoneContext(this, world, pos, cachedNoRedstonePower));
+
+            if (post == ActionResult.SUCCESS)
+                return true;
+
+            if (post == ActionResult.FAIL)
                 return false;
+
+            return cachedNoRedstonePower;
+        }).orElse(cachedNoRedstonePower);
+
+        if (triggerTransfer) {
+            if (waiting && notPowered) {
+                waiting = false;
             }
-            return this.getWorld().getTime() > lastTransferTick && !cachedNoRedstonePower;
+
+            if (!triggered && !waiting && !notPowered) {
+                triggered = true;
+            }
+
+            var canTransfer = this.getWorld().getTime() > lastTransferTick;
+            return triggered && canTransfer;
         }
 
-        return this.getWorld().getTime() > lastTransferTick && redstoneRing.filter(INVERTED::is).map(r -> !this.cachedNoRedstonePower).orElse(this.cachedNoRedstonePower);
+        return this.getWorld().getTime() > lastTransferTick && notPowered;
     }
 
     public void markTransferred() {
-        if (redstoneRing.map(TRIGGER::is).orElse(false)) {
-            markTrigger();
+        if (triggerTransfer) {
+            markTriggered();
         }
 
         this.lastTransferTick = world.getTime();
         this.markDirty();
-    }
-
-    public void markTrigger() {
-        triggerTransfer = true;
     }
 
     @Override
@@ -341,8 +352,11 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
                 this.parentNetwork = Pastel.getInstance(world.isClient).JoinOrCreateNetwork(this, networkUUID);
             }
         }
-        if (nbt.contains("Trigger")) {
-            this.triggerTransfer = nbt.getBoolean("Trigger");
+        if (nbt.contains("Triggered")) {
+            this.triggered = nbt.getBoolean("Triggered");
+        }
+        if (nbt.contains("Waiting")) {
+            this.waiting = nbt.getBoolean("Waiting");
         }
         if (nbt.contains("creationStamp")) {
             this.creationStamp = nbt.getLong("creationStamp");
@@ -354,13 +368,13 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
             this.itemCountUnderway = nbt.getLong("ItemCountUnderway");
         }
         if(nbt.contains("OuterRing")) {
-            outerRing = Optional.of(UPGRADES.get(Registries.ITEM.get(Identifier.tryParse(nbt.getString("OuterRing")))));
+            outerRing = Optional.ofNullable(SpectrumRegistries.PASTEL_UPGRADE.get(Identifier.tryParse(nbt.getString("OuterRing"))));
         }
         if(nbt.contains("InnerRing")) {
-            innerRing = Optional.of(UPGRADES.get(Registries.ITEM.get(Identifier.tryParse(nbt.getString("InnerRing")))));
+            innerRing = Optional.ofNullable(SpectrumRegistries.PASTEL_UPGRADE.get(Identifier.tryParse(nbt.getString("InnerRing"))));
         }
         if(nbt.contains("RedstoneRing")) {
-            redstoneRing = Optional.of(UPGRADES.get(Registries.ITEM.get(Identifier.tryParse(nbt.getString("RedstoneRing")))));
+            redstoneRing = Optional.ofNullable(SpectrumRegistries.PASTEL_UPGRADE.get(Identifier.tryParse(nbt.getString("RedstoneRing"))));
         }
         if (nbt.contains("ConnectionMemory")) {
             connectionMemory = Arrays.stream(nbt.getLongArray("ConnectionMemory")).mapToObj(BlockPos::fromLong).collect(Collectors.toSet());
@@ -380,15 +394,16 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
         if (creationStamp != -1) {
             nbt.putLong("creationStamp", creationStamp);
         }
+        nbt.putBoolean("Triggered", this.triggered);
+        nbt.putBoolean("Waiting", waiting);
         nbt.putLong("LastTransferTick", this.lastTransferTick);
         nbt.putLong("ItemCountUnderway", this.itemCountUnderway);
-        nbt.putBoolean("Trigger", this.triggerTransfer);
         if (this.getNodeType().usesFilters()) {
             writeFilterNbt(nbt, this.filterItems);
         }
-        outerRing.ifPresent(r -> nbt.putString("OuterRing", Registries.ITEM.getId(r.upgradeItem).toString()));
-        innerRing.ifPresent(r -> nbt.putString("InnerRing", Registries.ITEM.getId(r.upgradeItem).toString()));
-        redstoneRing.ifPresent(r -> nbt.putString("RedstoneRing", Registries.ITEM.getId(r.upgradeItem).toString()));
+        outerRing.ifPresent(r -> nbt.putString("OuterRing", SpectrumPastelUpgrades.toString(r)));
+        innerRing.ifPresent(r -> nbt.putString("InnerRing", SpectrumPastelUpgrades.toString(r)));
+        redstoneRing.ifPresent(r -> nbt.putString("RedstoneRing", SpectrumPastelUpgrades.toString(r)));
         nbt.putLongArray("ConnectionMemory", connectionMemory.stream().map(BlockPos::asLong).toList());
     }
 
@@ -567,8 +582,8 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
     }
 
     @Override
-    public Category getStampCategory() {
-        return Category.PASTEL_NODE;
+    public StampDataCategory getStampCategory() {
+        return SpectrumStampDataCategories.PASTEL;
     }
 
     @Override
@@ -590,96 +605,65 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
         this.spinTicks = spinTicks;
     }
 
-    public record UpgradeSignature(Item upgradeItem, Identifier mainPath, Identifier altPath, int stackEffect, int speedEffect, int filterRowEffect, float stackMult, float speedMult, boolean light, boolean priority, boolean redstone, UpgradeCategory category) {
-
-        public static UpgradeSignature of(Item upgradeItem, String name, int stackEffect, int speedEffect, int filterRowEffect, float stackMult, float speedMult, boolean light, boolean priority, UpgradeCategory category) {
-            return new UpgradeSignature(upgradeItem,
-                    SpectrumCommon.locate("textures/block/pastel_node_inner_ring_" + name + ".png"),
-                    SpectrumCommon.locate("textures/block/pastel_node_outer_ring_" + name + ".png"),
-                    stackEffect, speedEffect, filterRowEffect, stackMult, speedMult, light, priority, false, category
-                    );
-        }
-
-        // redstone interaction upgrades have special handling
-        public static UpgradeSignature redstone(Item upgradeItem, String name) {
-            return new UpgradeSignature(upgradeItem,
-                    SpectrumCommon.locate("textures/block/pastel_node_redstone_ring_" + name + ".png"),
-                    null,
-                    0, 0, 0, 0, 0, false, false, true, UpgradeCategory.NON_COMPOUNDING
-            );
-        }
-
-        public void apply(PastelNodeBlockEntity node, UpgradeCategory category) {
-            if (light) {
-                node.lit = true;
-            }
-
-            if (redstone)
-                return;
-
-            if (category != UpgradeCategory.NON_COMPOUNDING && this.category == category) {
-                applyCompounding(node);
-            }
-            else {
-                applyBase(node);
-            }
-
-            if (priority) {
-                upgradePriority(node);
-            }
-        }
-
-        public void applyBase(PastelNodeBlockEntity node) {
-            node.transferCount += stackEffect;
-            node.transferTime += speedEffect;
-            node.filterSlotRows += node.getNodeType().hasOuterRing() ? filterRowEffect : filterRowEffect * 2;
-        }
-
-        public void applyCompounding(PastelNodeBlockEntity node) {
-            node.transferCount *= stackMult;
-            node.transferTime *= speedMult;
-            node.filterSlotRows += node.getNodeType().hasOuterRing() ? filterRowEffect : filterRowEffect * 2;
-        }
-
-        private static void upgradePriority(PastelNodeBlockEntity node) {
-            if (node.priority == PastelNetwork.Priority.GENERIC) {
-                node.priority = PastelNetwork.Priority.MODERATE;
-            }
-            else {
-                node.priority = PastelNetwork.Priority.HIGH;
-            }
-        }
-
-        public boolean is(UpgradeSignature other) {
-            return this == other;
-        }
-
-        public enum UpgradeCategory {
-            STACK,
-            LATENCY,
-            NON_COMPOUNDING
-        }
+    @Override
+    public void markLit() {
+        lit = true;
     }
 
-    //TODO: this could maybe be made into a registry for addons to play with. Would need some bound checks tho.
-    static {
-        var builder = ImmutableMap.<Item, UpgradeSignature>builder();
+    @Override
+    public void markLamp() {
+        this.lamp = true;
+    }
 
-        builder.put(SpectrumItems.RAW_BLOODSTONE, UpgradeSignature.of(SpectrumItems.RAW_BLOODSTONE, "weak_stack", 3, 0, 0, 2, 1, false, false, UpgradeSignature.UpgradeCategory.STACK));
-        builder.put(SpectrumItems.REFINED_BLOODSTONE, UpgradeSignature.of(SpectrumItems.REFINED_BLOODSTONE, "strong_stack", 15, 0, 0, 4, 1, false, false, UpgradeSignature.UpgradeCategory.STACK));
-        builder.put(SpectrumItems.RAW_MALACHITE, UpgradeSignature.of(SpectrumItems.RAW_MALACHITE, "weak_speed", 0, -5, 0, 1, 0.8F, false, false, UpgradeSignature.UpgradeCategory.LATENCY));
-        builder.put(SpectrumItems.REFINED_MALACHITE, UpgradeSignature.of(SpectrumItems.REFINED_MALACHITE, "strong_speed", 0, -10, 0, 1, 0.5F, false, false, UpgradeSignature.UpgradeCategory.LATENCY));
-        builder.put(SpectrumItems.RAW_AZURITE, UpgradeSignature.of(SpectrumItems.RAW_AZURITE, "weak_filter", 0, 0, 1, 1, 1, false, false, UpgradeSignature.UpgradeCategory.LATENCY));
-        builder.put(SpectrumItems.REFINED_AZURITE, UpgradeSignature.of(SpectrumItems.REFINED_AZURITE, "strong_filter", 0, 0, 2, 1, 1, false, false, UpgradeSignature.UpgradeCategory.LATENCY));
-        builder.put(SpectrumItems.RESONANCE_SHARD, UpgradeSignature.of(SpectrumItems.RESONANCE_SHARD, "rate", 0, 0, 0, 1, 1, false, true, UpgradeSignature.UpgradeCategory.NON_COMPOUNDING));
-        builder.put(SpectrumItems.SHIMMERSTONE_GEM, UpgradeSignature.of(SpectrumItems.SHIMMERSTONE_GEM, "light", 0, 0, 0, 1, 1, true, false, UpgradeSignature.UpgradeCategory.NON_COMPOUNDING));
-        builder.put(SpectrumItems.PURE_REDSTONE, ALWAYS_ON);
-        builder.put(SpectrumItems.PURE_LAPIS, ALWAYS_OFF);
-        builder.put(SpectrumItems.PURE_COAL, INVERTED);
-        builder.put(SpectrumItems.PURE_ECHO, SENSOR);
-        builder.put(SpectrumItems.PURE_QUARTZ, TRIGGER);
-        builder.put(SpectrumItems.PURE_GLOWSTONE, LAMP);
+    @Override
+    public void markTriggerTransfer() {
+        triggerTransfer = true;
+    }
 
-        UPGRADES = builder.build();
+    @Override
+    public void markSensor() {
+        sensor = true;
+    }
+
+    @Override
+    public void markTriggered() {
+        triggered = false;
+        waiting = true;
+    }
+
+    @Override
+    public boolean isTriggerTransfer() {
+        return triggerTransfer;
+    }
+
+    @Override
+    public boolean isSensor() {
+        return sensor;
+    }
+
+    @Override
+    public void applySlotUpgrade(PastelUpgradeSignature upgrade) {
+        filterSlotRows += getNodeType().hasOuterRing() ? upgrade.slotRows : upgrade.slotRows * 2;
+    }
+
+    @Override
+    public void applySimple(PastelUpgradeSignature upgrade) {
+        transferCount += upgrade.stack;
+        transferTime += upgrade.speed;
+    }
+
+    @Override
+    public void applyCompounding(PastelUpgradeSignature upgrade) {
+        transferCount = Math.round(transferCount * upgrade.stackMult);
+        transferTime = Math.round(transferTime * upgrade.speedMult);
+    }
+
+    @Override
+    public void upgradePriority() {
+        if (priority == PastelNetwork.Priority.GENERIC) {
+            priority = PastelNetwork.Priority.MODERATE;
+        } else {
+            priority = PastelNetwork.Priority.HIGH;
+        }
     }
 }

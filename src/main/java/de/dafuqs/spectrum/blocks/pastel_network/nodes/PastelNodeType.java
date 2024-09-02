@@ -1,7 +1,5 @@
 package de.dafuqs.spectrum.blocks.pastel_network.nodes;
 
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.minecraft.item.Item;
 import net.minecraft.text.*;
 
 public enum PastelNodeType {

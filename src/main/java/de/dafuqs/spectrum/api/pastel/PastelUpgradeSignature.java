@@ -49,10 +49,6 @@ public final class PastelUpgradeSignature {
         return innerRing;
     }
 
-    public boolean is(PastelUpgradeSignature other) {
-        return this == other;
-    }
-
     public static Builder builder(Item upgradeItem, Category category, String namespace) {
         return new Builder(upgradeItem, category, namespace);
     }

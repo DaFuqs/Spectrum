@@ -4,58 +4,57 @@ import java.util.*;
 
 public interface PastelUpgradeable {
 
-    default void apply(PastelUpgradeSignature upgrade, List<PastelUpgradeSignature> previousUpgrades) {
-        if (upgrade.light) {
-            markLit();
-        }
+	default void apply(PastelUpgradeSignature upgrade, List<PastelUpgradeSignature> previousUpgrades) {
+		if (upgrade.light) {
+			markLit();
+		}
 
-        if (upgrade.triggerTransfer)
-            markTriggerTransfer();
+		if (upgrade.triggerTransfer)
+			markTriggerTransfer();
 
-        if (upgrade.lamp)
-            markLamp();
+		if (upgrade.lamp)
+			markLamp();
 
-        if (upgrade.sensor)
-            markSensor();
+		if (upgrade.sensor)
+			markSensor();
 
-        if (upgrade.category.isRedstone())
-            return;
+		if (upgrade.category.isRedstone())
+			return;
 
-        if (previousUpgrades.stream().anyMatch(u -> u.category.compoundsWith(upgrade.category))) {
-            applyCompounding(upgrade);
-        }
-        else {
-            applySimple(upgrade);
-        }
+		if (previousUpgrades.stream().anyMatch(u -> u.category.compoundsWith(upgrade.category))) {
+			applyCompounding(upgrade);
+		} else {
+			applySimple(upgrade);
+		}
 
-        applySlotUpgrade(upgrade);
+		applySlotUpgrade(upgrade);
 
-        if (upgrade.priority) {
-            upgradePriority();
-        }
-    }
+		if (upgrade.priority) {
+			upgradePriority();
+		}
+	}
 
-    void applyCompounding(PastelUpgradeSignature upgrade);
+	void applyCompounding(PastelUpgradeSignature upgrade);
 
-    void applySimple(PastelUpgradeSignature upgrade);
+	void applySimple(PastelUpgradeSignature upgrade);
 
-    void applySlotUpgrade(PastelUpgradeSignature upgrade);
+	void applySlotUpgrade(PastelUpgradeSignature upgrade);
 
-    void upgradePriority();
+	void upgradePriority();
 
-    void markLit();
+	void markLit();
 
-    void markLamp();
+	void markLamp();
 
-    void markTriggerTransfer();
+	void markTriggerTransfer();
 
-    void markTriggered();
+	void markTriggered();
 
-    void markSensor();
+	void markSensor();
 
-    boolean isTriggerTransfer();
+	boolean isTriggerTransfer();
 
-    boolean isSensor();
+	boolean isSensor();
 
-    void notifySensor();
+	void notifySensor();
 }

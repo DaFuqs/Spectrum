@@ -112,7 +112,9 @@ public class StuckStormStoneBlock extends HorizontalFacingBlock implements Revel
 	@Override
 	public Map<BlockState, BlockState> getBlockStateCloaks() {
 		Map<BlockState, BlockState> map = new Hashtable<>();
-		map.put(this.getDefaultState(), Blocks.AIR.getDefaultState());
+		for (Direction direction : Direction.Type.HORIZONTAL) {
+			map.put(this.getDefaultState().with(FACING, direction), Blocks.AIR.getDefaultState());
+		}
 		return map;
 	}
 	

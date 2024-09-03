@@ -29,8 +29,8 @@
     },
     {
       "type": "spectrum:anvil_crushing",
-      "title1": "container.spectrum.rei.anvil_crushing.title",
-      "recipe_id_1": "spectrum:mod_integration/botania/anvil_crushing/petals/magenta_mystical_flower_to_petals",
+      "title": "container.spectrum.rei.anvil_crushing.title",
+      "recipe_id": "spectrum:mod_integration/botania/anvil_crushing/petals/magenta_mystical_flower_to_petals",
       "text": "book.spectrum.guidebook.mod_integration.botania.page1.text"
     },
     {
@@ -44,19 +44,19 @@
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.mod_integration.botania.page3.text",
-      "title1": "book.spectrum.guidebook.mod_integration.botania.page3.title",
-      "recipe_id_1": "spectrum:mod_integration/botania/pedestal/glimmering_flowers/purple_glimmering_flower"
+      "title": "book.spectrum.guidebook.mod_integration.botania.page3.title",
+      "recipe_id": "spectrum:mod_integration/botania/pedestal/glimmering_flowers/purple_glimmering_flower"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.mod_integration.botania.page4.text",
-      "title1": "book.spectrum.guidebook.mod_integration.botania.page4.title",
-      "recipe_id_1": "spectrum:mod_integration/botania/pedestal/mushrooms/blue_mushroom"
+      "title": "book.spectrum.guidebook.mod_integration.botania.page4.title",
+      "recipe_id": "spectrum:mod_integration/botania/pedestal/mushrooms/blue_mushroom"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.mod_integration.botania.page5.text",
-      "recipe_id_1": "spectrum:mod_integration/botania/pedestal/floral_fertilizer"
+      "recipe_id": "spectrum:mod_integration/botania/pedestal/floral_fertilizer"
     },
     {
       "type": "modonomicon:spotlight",
@@ -67,22 +67,22 @@
     {
       "type": "spectrum:spirit_instiller_crafting",
       "text": "book.spectrum.guidebook.mod_integration.botania.page6.text",
-      "recipe_id_1": "spectrum:mod_integration/botania/spirit_instiller/blacker_lotus"
+      "recipe_id": "spectrum:mod_integration/botania/spirit_instiller/blacker_lotus"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
       "text": "book.spectrum.guidebook.mod_integration.botania.blackest_lotus.text",
-      "recipe_id_1": "spectrum:mod_integration/botania/spirit_instiller/blackest_lotus"
+      "recipe_id": "spectrum:mod_integration/botania/spirit_instiller/blackest_lotus"
     },
     {
       "type": "spectrum:primordial_fire_burning",
       "text": "book.spectrum.guidebook.mod_integration.botania.least_black_lotus.text",
-      "recipe_id_1": "spectrum:mod_integration/botania/primordial_fire_burning/least_black_lotus"
+      "recipe_id": "spectrum:mod_integration/botania/primordial_fire_burning/least_black_lotus"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
       "text": "book.spectrum.guidebook.mod_integration.botania.page7.text",
-      "recipe_id_1": "spectrum:mod_integration/botania/spirit_instiller/overgrowth_seed"
+      "recipe_id": "spectrum:mod_integration/botania/spirit_instiller/overgrowth_seed"
     },
     {
       "type": "modonomicon:spotlight",

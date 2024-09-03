@@ -24,13 +24,13 @@
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.mud.page1.text",
-      "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier1/mud_bucket"
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "spectrum:pedestal/tier1/mud_bucket"
     },
     {
       "type": "spectrum:mud_converting",
       "title": "book.spectrum.guidebook.item_conversion",
-      "recipe_id_1": "spectrum:mud_converting/rabbit_hide",
+      "recipe_id": "spectrum:mud_converting/rabbit_hide",
       "text": "book.spectrum.guidebook.mud.page2.text"
     }
   ]

@@ -1,15 +1,15 @@
 {
   "criteria": {
-    "placed_pedestal": {
+    "collected_shimmerstone": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:place_pedestal"
+        "advancement_identifier": "spectrum:collect_shimmerstone"
       }
     },
-    "has_storm_stone": {
+    "collected_citrine": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:midgame/collect_storm_stone"
+        "advancement_identifier": "spectrum:hidden/collect_shards/citrine"
       }
     }
   }

@@ -20,24 +20,24 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier1/effulgent/effulgent_block",
+      "recipe_id": "spectrum:pedestal/tier1/effulgent/effulgent_block",
       "text": "book.spectrum.guidebook.effulgent_deco.page1.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier1/effulgent/effulgent_bed"
+      "recipe_id": "spectrum:pedestal/tier1/effulgent/effulgent_bed"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier1/effulgent/effulgent_cushion"
+      "recipe_id": "spectrum:pedestal/tier1/effulgent/effulgent_cushion"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier1/effulgent/effulgent_carpet_from_feathers"
+      "recipe_id": "spectrum:pedestal/tier1/effulgent/effulgent_carpet_from_feathers"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier1/effulgent/effulgent_carpet_from_blocks"
+      "recipe_id": "spectrum:pedestal/tier1/effulgent/effulgent_carpet_from_blocks"
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "type": "spectrum:pedestal",
-  "group": "moonstone_runes",
+  "group": "gemstone_chiseled_blocks",
   "time": 80,
   "tier": "complex",
   "magenta": 0,
@@ -24,7 +24,7 @@
   },
   "result": {
     "item": "spectrum:moonstone_chiseled_basalt",
-    "count": 4
+    "count": 8
   },
   "required_advancement": "spectrum:lategame/collect_moonstone"
 }

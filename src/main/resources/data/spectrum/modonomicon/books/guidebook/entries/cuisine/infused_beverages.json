@@ -25,18 +25,18 @@
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "title1": "item.spectrum.infused_beverage.tooltip.variant.malt_beer",
-      "recipe_id_1": "spectrum:titration_barrel/infused_beverages/malt_beer",
+      "title": "item.spectrum.infused_beverage.tooltip.variant.malt_beer",
+      "recipe_id": "spectrum:titration_barrel/infused_beverages/malt_beer",
       "text": "book.spectrum.guidebook.infused_beverages.page3.text"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "title1": "item.spectrum.infused_beverage.tooltip.variant.myceylon_apple_juice",
+      "title": "item.spectrum.infused_beverage.tooltip.variant.myceylon_apple_juice",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/collect_myceylon"
       },
-      "recipe_id_1": "spectrum:titration_barrel/infused_beverages/myceylon_apple_juice",
+      "recipe_id": "spectrum:titration_barrel/infused_beverages/myceylon_apple_juice",
       "text": "book.spectrum.guidebook.infused_beverages.page4.text"
     },
     {
@@ -45,9 +45,10 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:triggers/confirmed_drinking_age"
       },
-      "title1": "book.spectrum.guidebook.infused_beverages.page6.title",
-      "recipe_id_1": "spectrum:titration_barrel/infused_beverages/beer",
-      "recipe_id_2": "spectrum:titration_barrel/infused_beverages/ale",
+      "title": "item.spectrum.infused_beverage.tooltip.variant.beer",
+      "recipe_id": "spectrum:titration_barrel/infused_beverages/beer",
+      "title2": "item.spectrum.infused_beverage.tooltip.variant.ale",
+      "recipe_id2": "spectrum:titration_barrel/infused_beverages/ale",
       "text": "book.spectrum.guidebook.infused_beverages.page6.text"
     },
     {
@@ -56,8 +57,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:triggers/confirmed_drinking_age"
       },
-      "title1": "item.spectrum.infused_beverage.tooltip.variant.porter",
-      "recipe_id_2": "spectrum:titration_barrel/infused_beverages/porter",
+      "title": "item.spectrum.infused_beverage.tooltip.variant.porter",
+      "recipe_id2": "spectrum:titration_barrel/infused_beverages/porter",
+      "title2": "item.spectrum.infused_beverage.tooltip.variant.porter",
       "text": "book.spectrum.guidebook.infused_beverages.page7.text"
     },
     {
@@ -66,9 +68,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:triggers/confirmed_drinking_age"
       },
-      "title1": "item.spectrum.infused_beverage.tooltip.variant.lager",
-      "recipe_id_1": "spectrum:titration_barrel/infused_beverages/lager",
-      "recipe_id_2": "spectrum:titration_barrel/infused_beverages/lager_fluid",
+      "title": "item.spectrum.infused_beverage.tooltip.variant.lager",
+      "recipe_id": "spectrum:titration_barrel/infused_beverages/lager",
+      "recipe_id2": "spectrum:titration_barrel/infused_beverages/lager_fluid",
       "text": "book.spectrum.guidebook.infused_beverages.page8.text"
     },
     {
@@ -77,8 +79,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/food/gin"
       },
-      "title1": "item.spectrum.infused_beverage.tooltip.variant.gin",
-      "recipe_id_1": "spectrum:titration_barrel/infused_beverages/gin",
+      "title": "item.spectrum.infused_beverage.tooltip.variant.gin",
+      "recipe_id": "spectrum:titration_barrel/infused_beverages/gin",
       "text": "book.spectrum.guidebook.infused_beverages.page9.text"
     },
     {
@@ -87,8 +89,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:triggers/confirmed_drinking_age"
       },
-      "title1": "item.spectrum.infused_beverage.tooltip.variant.rum",
-      "recipe_id_1": "spectrum:titration_barrel/infused_beverages/rum",
+      "title": "item.spectrum.infused_beverage.tooltip.variant.rum",
+      "recipe_id": "spectrum:titration_barrel/infused_beverages/rum",
       "text": "book.spectrum.guidebook.infused_beverages.page10.text"
     },
     {
@@ -97,9 +99,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:triggers/confirmed_drinking_age"
       },
-      "title1": "item.spectrum.infused_beverage.tooltip.variant.mead",
-      "recipe_id_1": "spectrum:titration_barrel/infused_beverages/mead",
-      "recipe_id_2": "spectrum:titration_barrel/infused_beverages/mead_fluid",
+      "title": "item.spectrum.infused_beverage.tooltip.variant.mead",
+      "recipe_id": "spectrum:titration_barrel/infused_beverages/mead",
+      "recipe_id2": "spectrum:titration_barrel/infused_beverages/mead_fluid",
       "text": "book.spectrum.guidebook.infused_beverages.page11.text"
     },
     {
@@ -108,8 +110,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:triggers/confirmed_drinking_age"
       },
-      "title1": "item.spectrum.infused_beverage.tooltip.variant.apple_cider",
-      "recipe_id_1": "spectrum:titration_barrel/infused_beverages/apple_cider",
+      "title": "item.spectrum.infused_beverage.tooltip.variant.apple_cider",
+      "recipe_id": "spectrum:titration_barrel/infused_beverages/apple_cider",
       "text": "book.spectrum.guidebook.infused_beverages.page12.text"
     },
     {
@@ -118,9 +120,10 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:triggers/confirmed_drinking_age"
       },
-      "title1": "book.spectrum.guidebook.infused_beverages.page13.title",
-      "recipe_id_1": "spectrum:titration_barrel/infused_beverages/golden_apple_cider",
-      "recipe_id_2": "spectrum:titration_barrel/infused_beverages/enchanted_apple_cider",
+      "title": "item.spectrum.infused_beverage.tooltip.variant.golden_apple_cider",
+      "recipe_id": "spectrum:titration_barrel/infused_beverages/golden_apple_cider",
+      "title2": "item.spectrum.infused_beverage.tooltip.variant.enchanted_apple_cider",
+      "recipe_id2": "spectrum:titration_barrel/infused_beverages/enchanted_apple_cider",
       "text": "book.spectrum.guidebook.infused_beverages.page13.text"
     },
     {
@@ -129,9 +132,10 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:triggers/confirmed_drinking_age"
       },
-      "title1": "item.spectrum.infused_beverage.tooltip.variant.berry_cider",
-      "recipe_id_1": "spectrum:titration_barrel/infused_beverages/berry_cider",
-      "recipe_id_2": "spectrum:titration_barrel/infused_beverages/glow_berry_cider",
+      "title": "item.spectrum.infused_beverage.tooltip.variant.berry_cider",
+      "recipe_id": "spectrum:titration_barrel/infused_beverages/berry_cider",
+      "title2": "item.spectrum.infused_beverage.tooltip.variant.glow_berry_cider",
+      "recipe_id2": "spectrum:titration_barrel/infused_beverages/glow_berry_cider",
       "text": "book.spectrum.guidebook.infused_beverages.page14.text"
     },
     {
@@ -140,9 +144,10 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:triggers/confirmed_drinking_age"
       },
-      "title1": "item.spectrum.infused_beverage.tooltip.variant.berry_liquor",
-      "recipe_id_1": "spectrum:titration_barrel/infused_beverages/berry_liquor",
-      "recipe_id_2": "spectrum:titration_barrel/infused_beverages/glow_berry_liquor",
+      "title": "item.spectrum.infused_beverage.tooltip.variant.berry_liquor",
+      "recipe_id": "spectrum:titration_barrel/infused_beverages/berry_liquor",
+      "title2": "item.spectrum.infused_beverage.tooltip.variant.glow_berry_liquor",
+      "recipe_id2": "spectrum:titration_barrel/infused_beverages/glow_berry_liquor",
       "text": "book.spectrum.guidebook.infused_beverages.page15.text"
     },
     {
@@ -151,10 +156,10 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/food/mint_beverages"
       },
-      "title1": "item.spectrum.infused_beverage.tooltip.variant.mint_cream",
-      "recipe_id_1": "spectrum:titration_barrel/infused_beverages/mint_cream",
+      "title": "item.spectrum.infused_beverage.tooltip.variant.mint_cream",
+      "recipe_id": "spectrum:titration_barrel/infused_beverages/mint_cream",
       "title2": "item.spectrum.infused_beverage.tooltip.variant.mint_schnapps",
-      "recipe_id_2": "spectrum:titration_barrel/infused_beverages/mint_schnapps",
+      "recipe_id2": "spectrum:titration_barrel/infused_beverages/mint_schnapps",
       "text": "book.spectrum.guidebook.infused_beverages.page16.text"
     },
     {
@@ -163,9 +168,10 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:triggers/confirmed_drinking_age"
       },
-      "title1": "book.spectrum.guidebook.infused_beverages.page17.title",
-      "recipe_id_1": "spectrum:titration_barrel/infused_beverages/artemisa",
-      "recipe_id_2": "spectrum:titration_barrel/infused_beverages/advocaat"
+      "title": "item.spectrum.infused_beverage.tooltip.variant.artemisa",
+      "recipe_id": "spectrum:titration_barrel/infused_beverages/artemisa",
+      "title2": "item.spectrum.infused_beverage.tooltip.variant.advocaat",
+      "recipe_id2": "spectrum:titration_barrel/infused_beverages/advocaat"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
@@ -173,9 +179,10 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:triggers/confirmed_drinking_age"
       },
-      "title1": "book.spectrum.guidebook.infused_beverages.page18.title",
-      "recipe_id_1": "spectrum:titration_barrel/infused_beverages/damassine",
-      "recipe_id_2": "spectrum:titration_barrel/infused_beverages/hare_bane_creme"
+      "title": "item.spectrum.infused_beverage.tooltip.variant.damassine",
+      "recipe_id": "spectrum:titration_barrel/infused_beverages/damassine",
+      "title2": "item.spectrum.infused_beverage.tooltip.variant.hare_bane_creme",
+      "recipe_id2": "spectrum:titration_barrel/infused_beverages/hare_bane_creme"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
@@ -183,9 +190,10 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:triggers/confirmed_drinking_age"
       },
-      "title1": "item.spectrum.infused_beverage.tooltip.variant.vodka",
-      "recipe_id_1": "spectrum:titration_barrel/infused_beverages/vodka",
-      "recipe_id_2": "spectrum:titration_barrel/infused_beverages/poisonous_vodka",
+      "title": "item.spectrum.infused_beverage.tooltip.variant.vodka",
+      "recipe_id": "spectrum:titration_barrel/infused_beverages/vodka",
+      "title2": "book.spectrum.guidebook.infused_beverages.poisonous_vodka.title",
+      "recipe_id2": "spectrum:titration_barrel/infused_beverages/poisonous_vodka",
       "text": "book.spectrum.guidebook.infused_beverages.page19.text"
     },
     {
@@ -194,8 +202,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:triggers/confirmed_drinking_age"
       },
-      "title1": "item.spectrum.infused_beverage.tooltip.variant.tequila",
-      "recipe_id_1": "spectrum:titration_barrel/infused_beverages/tequila",
+      "title": "item.spectrum.infused_beverage.tooltip.variant.tequila",
+      "recipe_id": "spectrum:titration_barrel/infused_beverages/tequila",
       "text": "book.spectrum.guidebook.infused_beverages.page20.text"
     },
     {
@@ -204,35 +212,35 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/food/moonshine"
       },
-      "title1": "item.spectrum.infused_beverage.tooltip.variant.moonshine",
-      "recipe_id_1": "spectrum:titration_barrel/infused_beverages/moonshine",
+      "title": "item.spectrum.infused_beverage.tooltip.variant.moonshine",
+      "recipe_id": "spectrum:titration_barrel/infused_beverages/moonshine",
       "text": "book.spectrum.guidebook.infused_beverages.page21.text"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "title1": "item.spectrum.infused_beverage.tooltip.variant.myceylon_liquor",
-      "recipe_id_1": "spectrum:titration_barrel/infused_beverages/myceylon_liquor",
+      "title": "item.spectrum.infused_beverage.tooltip.variant.myceylon_liquor",
+      "recipe_id": "spectrum:titration_barrel/infused_beverages/myceylon_liquor",
       "text": "book.spectrum.guidebook.infused_beverages.page22.text"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "title1": "item.spectrum.infused_beverage.tooltip.variant.spiked_mullet_wine",
-      "recipe_id_1": "spectrum:titration_barrel/infused_beverages/spiked_mullet_wine",
+      "title": "item.spectrum.infused_beverage.tooltip.variant.spiked_mullet_wine",
+      "recipe_id": "spectrum:titration_barrel/infused_beverages/spiked_mullet_wine",
       "text": "book.spectrum.guidebook.infused_beverages.page23.text"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "title1": "item.spectrum.infused_beverage.tooltip.variant.glass_peach_cider",
-      "recipe_id_1": "spectrum:titration_barrel/infused_beverages/glass_peach_cider",
+      "title": "item.spectrum.infused_beverage.tooltip.variant.glass_peach_cider",
+      "recipe_id": "spectrum:titration_barrel/infused_beverages/glass_peach_cider",
       "title2": "item.spectrum.infused_beverage.tooltip.variant.glass_peach_liquor",
-      "recipe_id_2": "spectrum:titration_barrel/infused_beverages/glass_peach_liquor"
+      "recipe_id2": "spectrum:titration_barrel/infused_beverages/glass_peach_liquor"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "title1": "item.spectrum.infused_beverage.tooltip.variant.sawblade_holly_cider",
-      "recipe_id_1": "spectrum:titration_barrel/infused_beverages/sawblade_holly_cider",
+      "title": "item.spectrum.infused_beverage.tooltip.variant.sawblade_holly_cider",
+      "recipe_id": "spectrum:titration_barrel/infused_beverages/sawblade_holly_cider",
       "title2": "item.spectrum.infused_beverage.tooltip.variant.sawblade_holly_liquor",
-      "recipe_id_2": "spectrum:titration_barrel/infused_beverages/sawblade_holly_liquor"
+      "recipe_id2": "spectrum:titration_barrel/infused_beverages/sawblade_holly_liquor"
     }
   ]
 }

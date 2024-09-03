@@ -35,13 +35,13 @@
     {
       "type": "spectrum:anvil_crushing",
       "title": "container.spectrum.rei.anvil_crushing.title",
-      "recipe_id_1": "spectrum:anvil_crushing/dye/green_dye_from_clover",
+      "recipe_id": "spectrum:anvil_crushing/dye/green_dye_from_clover",
       "text": "book.spectrum.guidebook.clover.clover_crushing.text"
     },
     {
       "type": "spectrum:anvil_crushing",
       "title": "container.spectrum.rei.anvil_crushing.title",
-      "recipe_id_1": "spectrum:anvil_crushing/dye/green_dye_from_four_leaf_clover",
+      "recipe_id": "spectrum:anvil_crushing/dye/green_dye_from_four_leaf_clover",
       "text": "book.spectrum.guidebook.clover.four_leaf_clover_crushing.text"
     }
   ]

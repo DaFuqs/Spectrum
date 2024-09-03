@@ -21,8 +21,8 @@
     {
       "type": "spectrum:titration_barrel_fermenting",
       "text": "book.spectrum.guidebook.night_salts.page1.text",
-      "title1": "book.spectrum.guidebook.night_salts.page1.title",
-      "recipe_id_1": "spectrum:titration_barrel/night_salts"
+      "title": "book.spectrum.guidebook.night_salts.page1.title",
+      "recipe_id": "spectrum:titration_barrel/night_salts"
     }
   ]
 }

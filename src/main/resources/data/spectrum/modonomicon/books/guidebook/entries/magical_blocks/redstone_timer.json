@@ -23,8 +23,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier1/redstone_timer",
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "spectrum:pedestal/tier1/redstone_timer",
       "text": "book.spectrum.guidebook.redstone_timer.page1.text"
     }
   ]

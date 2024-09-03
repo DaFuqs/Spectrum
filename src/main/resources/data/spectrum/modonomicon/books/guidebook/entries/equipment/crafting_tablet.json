@@ -16,8 +16,8 @@
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.crafting_tablet.page0.text",
-      "title1": "item.spectrum.crafting_tablet",
-      "recipe_id_1": "spectrum:pedestal/tier1/crafting_tablet"
+      "title": "item.spectrum.crafting_tablet",
+      "recipe_id": "spectrum:pedestal/tier1/crafting_tablet"
     },
     {
       "type": "modonomicon:text",

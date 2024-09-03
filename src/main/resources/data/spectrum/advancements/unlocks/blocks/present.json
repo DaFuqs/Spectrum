@@ -4,16 +4,22 @@
       "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:collect_shimmerstone" }
     },
+    "collected_pigment": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:collect_pigment"
+      }
+    },
     "collected_topaz": {
       "trigger":"revelationary:advancement_gotten",
       "conditions": {
         "advancement_identifier": "spectrum:hidden/collect_shards/topaz"
       }
     },
-    "collected_amethyst": {
+    "collected_citrine": {
       "trigger":"revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_shards/amethyst"
+        "advancement_identifier": "spectrum:hidden/collect_shards/citrine"
       }
     }
   }

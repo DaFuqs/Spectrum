@@ -3,6 +3,10 @@
   "icon": "minecraft:amethyst_shard",
   "category": "spectrum:general",
   "hide_while_locked": true,
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:spectrum"
+  },
   "parents": [
     {
       "entry": "spectrum:general/geodes"
@@ -16,13 +20,11 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.shards.page0.text",
-      "title": "book.spectrum.guidebook.shards.name"
+      "title": "book.spectrum.guidebook.shards.name",
+      "text": "book.spectrum.guidebook.shards.page0.text"
     },
     {
-      "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.shards.page0.text",
-      "title": "book.spectrum.guidebook.shards.name"
+      "type": "modonomicon:empty"
     },
     {
       "type": "modonomicon:spotlight",
@@ -39,6 +41,10 @@
     },
     {
       "type": "spectrum:snippet",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_shards/topaz"
+      },
       "resource_path": "spectrum:textures/gui/guidebook/shards/topaz.png",
       "resource_width": 85,
       "resource_height": 106,
@@ -64,6 +70,10 @@
     },
     {
       "type": "spectrum:snippet",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_shards/amethyst"
+      },
       "resource_path": "spectrum:textures/gui/guidebook/shards/amethyst.png",
       "resource_width": 101,
       "resource_height": 95,
@@ -89,6 +99,10 @@
     },
     {
       "type": "spectrum:snippet",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_shards/citrine"
+      },
       "resource_path": "spectrum:textures/gui/guidebook/shards/citrine.png",
       "resource_width": 95,
       "resource_height": 101,
@@ -114,6 +128,10 @@
     },
     {
       "type": "spectrum:snippet",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:create_onyx_shard"
+      },
       "resource_path": "spectrum:textures/gui/guidebook/shards/onyx.png",
       "resource_width": 58,
       "resource_height": 90,
@@ -139,6 +157,10 @@
     },
     {
       "type": "spectrum:snippet",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/collect_moonstone"
+      },
       "resource_path": "spectrum:textures/gui/guidebook/shards/moonstone.png",
       "resource_width": 56,
       "resource_height": 105,

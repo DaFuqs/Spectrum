@@ -31,9 +31,8 @@
       "text": "book.spectrum.guidebook.colored_trees.page0.text"
     },
     {
-      "type": "spectrum:pedestal_crafting",
-      "title1": "",
-      "recipe_id_1": "spectrum:pedestal/tier1/saplings/red",
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.colored_trees.crafting_colored_saplings.title",
       "text": "book.spectrum.guidebook.colored_trees.page1.text"
     },
     {
@@ -55,9 +54,73 @@
         "advancement_id": "spectrum:craft_colored_sapling"
       },
       "anchor": "colored_wood",
-      "title1": "",
+      "title": "",
       "recipe_id_1": "spectrum:crafting_table/colored_wood/light_blue_planks",
       "text": "book.spectrum.guidebook.colored_trees.page3.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/saplings/black"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/saplings/blue"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/saplings/brown"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/saplings/cyan"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/saplings/gray"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/saplings/green"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/saplings/light_blue"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/saplings/light_gray"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/saplings/lime"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/saplings/magenta"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/saplings/orange"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/saplings/pink"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/saplings/purple"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/saplings/red"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/saplings/white"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/saplings/yellow"
     }
   ]
 }

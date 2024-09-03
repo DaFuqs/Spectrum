@@ -21,7 +21,7 @@
     {
       "type": "spectrum:fusion_shrine_crafting",
       "text": "book.spectrum.guidebook.soothing_bouquet.page1.text",
-      "recipe_id_1": "spectrum:fusion_shrine/soothing_bouquet"
+      "recipe_id": "spectrum:fusion_shrine/soothing_bouquet"
     }
   ]
 }

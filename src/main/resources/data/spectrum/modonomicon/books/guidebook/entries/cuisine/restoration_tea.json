@@ -20,8 +20,8 @@
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title1": "book.spectrum.guidebook.potion_workshop_crafting",
-      "recipe_id_1": "spectrum:potion_workshop_crafting/restoration_tea",
+      "title": "book.spectrum.guidebook.potion_workshop_crafting",
+      "recipe_id": "spectrum:potion_workshop_crafting/restoration_tea",
       "text": "book.spectrum.guidebook.no_milk_pls"
     }
   ]

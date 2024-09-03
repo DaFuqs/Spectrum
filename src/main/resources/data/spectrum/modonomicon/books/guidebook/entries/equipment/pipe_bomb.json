@@ -21,7 +21,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.pipe_bomb.page1.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/boom/pipe_bomb"
+      "recipe_id": "spectrum:pedestal/tier3/boom/pipe_bomb"
     }
   ]
 }

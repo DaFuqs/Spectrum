@@ -32,14 +32,14 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.bedrock_dust.page2.title",
-      "recipe_id_1": "spectrum:pedestal/tier1/compacting/bedrock_storage_block",
+      "title": "book.spectrum.guidebook.bedrock_dust.page2.title",
+      "recipe_id": "spectrum:pedestal/tier1/compacting/bedrock_storage_block",
       "text": "book.spectrum.guidebook.bedrock_dust.page2.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.decompression",
-      "recipe_id_1": "spectrum:pedestal/tier1/compacting/bedrock_storage_block_uncrafting",
+      "title": "book.spectrum.guidebook.decompression",
+      "recipe_id": "spectrum:pedestal/tier1/compacting/bedrock_storage_block_uncrafting",
       "text": "book.spectrum.guidebook.bedrock_dust.page3.text"
     }
   ]

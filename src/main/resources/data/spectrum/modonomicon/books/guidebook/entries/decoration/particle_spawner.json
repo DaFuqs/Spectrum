@@ -28,8 +28,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier2/particle_spawner",
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "spectrum:pedestal/tier2/particle_spawner",
       "text": "book.spectrum.guidebook.particle_spawner.page1.text"
     }
   ]

@@ -20,7 +20,7 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "recipe_id_1": "spectrum:fusion_shrine/draconic_twinsword",
+      "recipe_id": "spectrum:fusion_shrine/draconic_twinsword",
       "text": "book.spectrum.guidebook.draconic_twinsword.page1.text"
     },
     {
@@ -40,7 +40,7 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "recipe_id_1": "spectrum:fusion_shrine/draconic_twinsword_reclaim"
+      "recipe_id": "spectrum:fusion_shrine/draconic_twinsword_reclaim"
     }
   ]
 }

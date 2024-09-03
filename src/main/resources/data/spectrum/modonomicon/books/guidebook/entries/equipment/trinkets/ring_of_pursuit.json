@@ -29,8 +29,8 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title1": "container.spectrum.rei.fusion_recipe",
-      "recipe_id_1": "spectrum:fusion_shrine/trinkets/ring_of_pursuit",
+      "title": "container.spectrum.rei.fusion_recipe",
+      "recipe_id": "spectrum:fusion_shrine/trinkets/ring_of_pursuit",
       "text": "book.spectrum.guidebook.ring_of_pursuit.page1.text"
     }
   ]

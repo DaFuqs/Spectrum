@@ -19,9 +19,9 @@
       "text": "book.spectrum.guidebook.mermaids_popcorn.page0.text"
     },
     {
-      "type": "spectrum:pedestal_crafting",
-      "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier1/food/mermaids_popcorn",
+      "type": "spectrum:cinderhearth_smelting",
+      "title": "container.spectrum.rei.cinderhearth_recipe",
+      "recipe_id": "spectrum:cinderhearth/mermaids_popcorn",
       "text": "book.spectrum.guidebook.mermaids_popcorn.page1.text"
     }
   ]

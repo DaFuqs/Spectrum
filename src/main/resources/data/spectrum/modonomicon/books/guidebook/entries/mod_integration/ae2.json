@@ -61,32 +61,32 @@
     },
     {
       "type": "spectrum:anvil_crushing",
-      "title1": "container.spectrum.rei.anvil_crushing.title",
-      "recipe_id_1": "spectrum:mod_integration/ae2/anvil_crushing/certus_quartz_dust",
+      "title": "container.spectrum.rei.anvil_crushing.title",
+      "recipe_id": "spectrum:mod_integration/ae2/anvil_crushing/certus_quartz_dust",
       "text": "book.spectrum.guidebook.mod_integration.ae2.page4.text"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "text": "book.spectrum.guidebook.mod_integration.ae2.page5.text",
-      "recipe_id_1": "spectrum:mod_integration/ae2/fusion_shrine/charged_certus_quartz_crystal"
+      "recipe_id": "spectrum:mod_integration/ae2/fusion_shrine/charged_certus_quartz_crystal"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "text": "book.spectrum.guidebook.mod_integration.ae2.page6.text",
-      "title1": "container.spectrum.rei.anvil_crushing.title",
-      "recipe_id_1": "spectrum:mod_integration/ae2/fusion_shrine/fluix_crystal"
+      "title": "container.spectrum.rei.anvil_crushing.title",
+      "recipe_id": "spectrum:mod_integration/ae2/fusion_shrine/fluix_crystal"
     },
     {
       "type": "spectrum:crystallarieum_growing",
       "text": "book.spectrum.guidebook.mod_integration.ae2.page7.text",
-      "title1": "book.spectrum.guidebook.mod_integration.ae2.page7.title",
-      "recipe_id_1": "spectrum:mod_integration/ae2/crystallarieum/certus_quartz_crystal"
+      "title": "book.spectrum.guidebook.mod_integration.ae2.page7.title",
+      "recipe_id": "spectrum:mod_integration/ae2/crystallarieum/certus_quartz_crystal"
     },
     {
       "type": "spectrum:cinderhearth_smelting",
-      "title1": "book.spectrum.guidebook.mod_integration.ae2.silicon_from_rock_crystal.title",
+      "title": "book.spectrum.guidebook.mod_integration.ae2.silicon_from_rock_crystal.title",
       "text": "book.spectrum.guidebook.mod_integration.ae2.silicon_from_rock_crystal.text",
-      "recipe_id_1": "spectrum:mod_integration/ae2/cinderhearth/silicon_from_rock_crystal"
+      "recipe_id": "spectrum:mod_integration/ae2/cinderhearth/silicon_from_rock_crystal"
     }
   ]
 }

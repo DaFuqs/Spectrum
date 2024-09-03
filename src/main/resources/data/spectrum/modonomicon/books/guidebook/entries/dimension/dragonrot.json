@@ -25,8 +25,8 @@
     {
       "type": "spectrum:dragonrot_converting",
       "text": "book.spectrum.guidebook.dragonrot.page1.text",
-      "title1": "book.spectrum.guidebook.item_conversion",
-      "recipe_id_1": "spectrum:dragonrot_converting/blackslag_from_deepslate"
+      "title": "book.spectrum.guidebook.item_conversion",
+      "recipe_id": "spectrum:dragonrot_converting/blackslag_from_deepslate"
     }
   ]
 }

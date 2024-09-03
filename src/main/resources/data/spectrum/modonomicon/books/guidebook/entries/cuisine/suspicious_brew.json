@@ -25,8 +25,8 @@
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "title1": "book.spectrum.guidebook.titration_recipe",
-      "recipe_id_1": "spectrum:titration_barrel/special/suspicious_brew",
+      "title": "book.spectrum.guidebook.titration_recipe",
+      "recipe_id": "spectrum:titration_barrel/special/suspicious_brew",
       "text": "book.spectrum.guidebook.suspicious_brew.page1.text"
     }
   ]

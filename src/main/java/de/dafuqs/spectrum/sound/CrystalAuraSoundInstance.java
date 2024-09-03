@@ -81,8 +81,7 @@ public class CrystalAuraSoundInstance extends AbstractSoundInstance implements T
 
         double x = 0, y = 0, z = 0;
         int count = 0;
-        var iter = BlockPos.iterateOutwards(player.getBlockPos(), 24, 24,24);
-        for (BlockPos pos : iter) {
+        for (BlockPos pos : BlockPos.iterateOutwards(player.getBlockPos(), 16, 16, 16)) {
             if (world.getBlockState(pos).isIn(SpectrumBlockTags.AZURITE_ORES)) {
                 x += pos.getX();
                 y += pos.getY();
@@ -124,6 +123,6 @@ public class CrystalAuraSoundInstance extends AbstractSoundInstance implements T
     }
 
     public static int getTickTime() {
-        return INSTANCE.isPresent() ? 5 : 20;
+        return INSTANCE.isPresent() ? 5 : 80;
     }
 }

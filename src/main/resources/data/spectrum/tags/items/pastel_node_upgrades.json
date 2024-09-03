@@ -2,6 +2,8 @@
   "values": [
     "spectrum:raw_bloodstone",
     "spectrum:refined_bloodstone",
+    "spectrum:raw_azurite",
+    "spectrum:refined_azurite",
     "spectrum:raw_malachite",
     "spectrum:refined_malachite",
     "spectrum:resonance_shard",

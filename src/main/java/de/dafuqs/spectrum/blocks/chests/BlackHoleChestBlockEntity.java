@@ -41,7 +41,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	public static final int EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT = 27;
 	private static final int RANGE = 12;
 	private final ItemAndExperienceEventQueue itemAndExperienceEventQueue;
-	private final List<Item> filterItems;
+	private final List<ItemStack> filterItems;
 	private State state;
 	private boolean isOpen, isFull, hasXPStorage;
 	float storageTarget, storagePos, lastStorageTarget, capTarget, capPos, lastCapTarget, orbTarget, orbPos, lastOrbTarget, yawTarget, orbYaw, lastYawTarget;
@@ -51,7 +51,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	public BlackHoleChestBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntities.BLACK_HOLE_CHEST, blockPos, blockState);
 		this.itemAndExperienceEventQueue = new ItemAndExperienceEventQueue(new BlockPositionSource(this.pos), RANGE, this);
-		this.filterItems = DefaultedList.ofSize(ITEM_FILTER_SLOT_COUNT, Items.AIR);
+		this.filterItems = DefaultedList.ofSize(ITEM_FILTER_SLOT_COUNT, ItemStack.EMPTY);
 	}
 
 	public static void tick(@NotNull World world, BlockPos pos, BlockState state, BlackHoleChestBlockEntity chest) {
@@ -211,20 +211,14 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	@Override
 	public void writeNbt(NbtCompound tag) {
 		super.writeNbt(tag);
-		for (int i = 0; i < ITEM_FILTER_SLOT_COUNT; i++) {
-			tag.putString("Filter" + i, Registries.ITEM.getId(this.filterItems.get(i)).toString());
-		}
+		FilterConfigurable.writeFilterNbt(tag, filterItems);
 		tag.putLong("age", age);
 	}
 	
 	@Override
 	public void readNbt(NbtCompound tag) {
 		super.readNbt(tag);
-		for (int i = 0; i < ITEM_FILTER_SLOT_COUNT; i++) {
-			if (tag.contains("Filter" + i, NbtElement.STRING_TYPE)) {
-				this.filterItems.set(i, Registries.ITEM.get(new Identifier(tag.getString("Filter" + i))));
-			}
-		}
+		FilterConfigurable.readFilterNbt(tag, filterItems);
 		age = tag.getLong("age");
 	}
 	
@@ -311,14 +305,14 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	@Override
 	public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
 		buf.writeBlockPos(this.pos);
-		FilterConfigurable.writeScreenOpeningData(buf, filterItems);
+		FilterConfigurable.writeScreenOpeningData(buf, filterItems, 1, ITEM_FILTER_SLOT_COUNT, ITEM_FILTER_SLOT_COUNT);
 	}
 
-	public List<Item> getItemFilters() {
+	public List<ItemStack> getItemFilters() {
 		return this.filterItems;
 	}
 
-	public void setFilterItem(int slot, Item item) {
+	public void setFilterItem(int slot, ItemStack item) {
 		this.filterItems.set(slot, item);
 		this.markDirty();
 	}
@@ -330,10 +324,10 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 		
 		boolean allAir = true;
 		for (int i = 0; i < ITEM_FILTER_SLOT_COUNT; i++) {
-			Item filterItem = this.filterItems.get(i);
-			if (filterItem.equals(itemStack.getItem())) {
+			ItemStack filterItem = this.filterItems.get(i);
+			if (filterItem.getItem().equals(itemStack.getItem())) {
 				return true;
-			} else if (!filterItem.equals(Items.AIR)) {
+			} else if (!filterItem.getItem().equals(Items.AIR)) {
 				allAir = false;
 			}
 		}

@@ -3,7 +3,7 @@
   "icon": "spectrum:shimmerstone_gem",
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:unlocks/blocks/pastel_network"
+    "advancement_id": "spectrum:midgame/create_pastel_network_using_every_node_type"
   },
   "category": "spectrum:pastel_network",
   "hide_while_locked": true,
@@ -47,6 +47,24 @@
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/malachite/malachite_tools"
+      }
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:raw_azurite"
+      },
+      "text": "book.spectrum.guidebook.pastel_upgrades.weak_azurite.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:refined_azurite"
+      },
+      "text": "book.spectrum.guidebook.pastel_upgrades.strong_azurite.text",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/create_refined_azurite"
       }
     },
     {

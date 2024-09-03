@@ -5,7 +5,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.util.Pair;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.ApiStatus;
@@ -38,7 +38,7 @@ public interface Stampable {
      */
     void clearImpression();
 
-    Category getStampCategory();
+    StampDataCategory getStampCategory();
 
     boolean canUserStamp(Optional<PlayerEntity> stamper);
 
@@ -93,7 +93,7 @@ public interface Stampable {
     }
 
     default boolean verifyStampData(StampData data) {
-        if (data.source.getStampCategory() == Category.UNIQUE) {
+        if (data.source.getStampCategory() == StampDataCategory.UNIQUE) {
             return verifyUniqueStampData(data);
         }
         return data.source.getStampCategory() == this.getStampCategory();
@@ -133,8 +133,4 @@ public interface Stampable {
         }
     }
 
-    enum Category {
-        PASTEL_NODE,
-        UNIQUE
-    }
 }

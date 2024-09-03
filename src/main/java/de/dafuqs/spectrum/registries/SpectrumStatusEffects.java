@@ -78,18 +78,18 @@ public class SpectrumStatusEffects {
 	public static final StatusEffect DEADLY_POISON = registerStatusEffect("deadly_poison", new DeadlyPoisonStatusEffect(StatusEffectCategory.HARMFUL, 5149489));
 	
 	/**
-	 * Increases toughness. Simple, effective
+	 * Increased toughness. Simple, effective
 	 */
 	public static final StatusEffect TOUGHNESS = registerStatusEffect("toughness", new SpectrumStatusEffect(StatusEffectCategory.BENEFICIAL, 0x28bbe0)
 			.addAttributeModifier(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, "599817d7-e8d2-4cbc-962b-59b7050ca59c", 1.0, EntityAttributeModifier.Operation.ADDITION));
 	
 	/**
-	 * Ouch.
+	 * Increases the durations of other effects
 	 */
 	public static final StatusEffect EFFECT_PROLONGING = registerStatusEffect("effect_prolonging", new EffectProlongingStatusEffect(StatusEffectCategory.BENEFICIAL, 0xc081d5));
 	
 	/**
-	 * Ouch.
+	 * Reduced health over time
 	 */
 	public static final StatusEffect LIFE_DRAIN = registerStatusEffect("life_drain", new LifeDrainStatusEffect(StatusEffectCategory.HARMFUL, 0x222222)
 			.addAttributeModifier(EntityAttributes.GENERIC_MAX_HEALTH, LifeDrainStatusEffect.ATTRIBUTE_UUID_STRING, -1.0, EntityAttributeModifier.Operation.ADDITION));
@@ -109,7 +109,7 @@ public class SpectrumStatusEffects {
 			.addAttributeModifier(SpectrumEntityAttributes.MENTAL_PRESENCE, "916b3d21-193e-42a3-a429-1cbd08529469", 0.25, EntityAttributeModifier.Operation.ADDITION);
 	
 	/**
-	 * damage, attack speed, speed & knockback resistance are buffed the more the player kills.
+	 * Damage, attack speed, speed & knockback resistance are buffed the more the player kills.
 	 * But if they do not score a kill in 20 seconds they get negative effects.
 	 * Stacking $(thing)Frenzy$() (applying the effect while they already have it) increases these effects amplitude
 	 */

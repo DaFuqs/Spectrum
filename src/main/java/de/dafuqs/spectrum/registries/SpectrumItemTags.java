@@ -29,6 +29,7 @@ public class SpectrumItemTags {
 	public static final TagKey<Item> REQUIRES_OMNI_ACCELERATOR_PVP_ENABLED = of("requires_omni_accelerator_pvp_enabled");
 	public static final TagKey<Item> EMISSIVE = of("emissive");
 	public static final TagKey<Item> PASTEL_NODE_UPGRADES = of("pastel_node_upgrades");
+	public static final TagKey<Item> TAG_FILTERING_ITEMS = of("tag_filtering_items");
 
 	private static TagKey<Item> of(String id) {
 		return TagKey.of(RegistryKeys.ITEM, SpectrumCommon.locate(id));

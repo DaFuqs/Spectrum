@@ -568,10 +568,10 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		boolean nullSourceFilter = false;
 
 		// A few corrections for ease of use
-		if (StringUtils.equalsIgnoreCase(target, "durability"))
+		if (StringUtils.equalsAnyIgnoreCase(target, "durability", "uses"))
 			target = "Damage";
 
-		if (StringUtils.equalsIgnoreCase(target, "enchs") || StringUtils.equalsIgnoreCase(target, "enchants")) {
+		if (StringUtils.equalsAnyIgnoreCase(target, "enchs", "enchants", "enchantment")) {
 			target = "Enchantments";
 		}
 
@@ -595,6 +595,9 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		assert testedData != null;
 		if (!nullSourceFilter && sourceData.getType() != testedData.getType())
 			return false;
+
+		boolean lessThan = StringUtils.containsIgnoreCase(predicateString, LESSER_THAN_KEYWORD);
+		boolean moreThan = StringUtils.containsIgnoreCase(predicateString, GREATER_THAN_KEYWORD);
 
 		// Enchantments are so fucking cursed
 		if (target.equals("Enchantments") || target.equals("StoredEnchantments")) {
@@ -624,11 +627,11 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 					return testedEnchants.get(enchantment.get()) == Math.round(getNumber(noKeyWordString));
 				}
 
-				if (StringUtils.containsIgnoreCase(predicateString, LESSER_THAN_KEYWORD)) {
+				if (lessThan) {
 					return testedEnchants.get(enchantment.get()) < Math.round(getNumber(noKeyWordString));
 				}
 
-				if (StringUtils.containsIgnoreCase(predicateString, GREATER_THAN_KEYWORD)) {
+				if (moreThan) {
 					return testedEnchants.get(enchantment.get()) > Math.round(getNumber(noKeyWordString));
 				}
 
@@ -656,14 +659,14 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 					}
 				}
 
-				if (StringUtils.containsIgnoreCase(predicateString, LESSER_THAN_KEYWORD)) {
+				if (lessThan) {
 					double comparator;
 					comparator = getNumber(predicateString);
 
 					return testedNum < comparator;
 				}
 
-				if (StringUtils.containsIgnoreCase(predicateString, GREATER_THAN_KEYWORD)) {
+				if (moreThan) {
 					double comparator;
 					comparator = getNumber(predicateString);
 

@@ -60,7 +60,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	protected Set<BlockPos> connectionMemory = new HashSet<>();
 	protected long lastTransferTick = 0;
 	protected final long cachedRedstonePowerTick = 0;
-	protected boolean cachedUnpowered = true, tagFiltering;
+	protected boolean cachedUnpowered = true;
 	protected PastelNetwork.Priority priority = PastelNetwork.Priority.GENERIC;
 	protected long itemCountUnderway = 0;
 
@@ -247,8 +247,6 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 			for (int i = getDrawnSlots(); i < filterItems.size(); i++) {
 				filterItems.set(i, ItemStack.EMPTY);
 			}
-
-			updateFilteringStatus();
 		}
 
 		markDirty();
@@ -375,9 +373,6 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		if (nbt.contains("Waiting")) {
 			this.waiting = nbt.getBoolean("Waiting");
 		}
-		if (nbt.contains("TagFiltering")) {
-			this.tagFiltering = nbt.getBoolean("TagFiltering");
-		}
 		if (nbt.contains("creationStamp")) {
 			this.creationStamp = nbt.getLong("creationStamp");
 		}
@@ -416,7 +411,6 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		}
 		nbt.putBoolean("Triggered", this.triggered);
 		nbt.putBoolean("Waiting", this.waiting);
-		nbt.putBoolean("TagFiltering", this.tagFiltering);
 		nbt.putLong("LastTransferTick", this.lastTransferTick);
 		nbt.putLong("ItemCountUnderway", this.itemCountUnderway);
 		if (this.getNodeType().usesFilters()) {
@@ -499,11 +493,6 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	@Override
 	public void setFilterItem(int slot, ItemStack item) {
 		this.filterItems.set(slot, item);
-		updateFilteringStatus();
-	}
-
-	public void updateFilteringStatus() {
-		tagFiltering = filterItems.stream().anyMatch(i -> i.isIn(SpectrumItemTags.TAG_FILTERING_ITEMS));
 	}
 
 	public Predicate<ItemVariant> getTransferFilterTo(PastelNodeBlockEntity other) {
@@ -538,7 +527,12 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 					if (!stack.hasCustomName() || !stack.isIn(SpectrumItemTags.TAG_FILTERING_ITEMS))
 						return stack.getItem() == variant.getItem();
 
-					var name = stack.getName().getString();
+					var name = StringUtils.trim(stack.getName().getString());
+
+					// This is to allow nbt filtering without item / tag filtering.
+					if (StringUtils.equalsAnyIgnoreCase(name, "*", "any", "all", "everything", "c:*", "c:any", "c:all", "c:everything"))
+						return true;
+
 					var id = Identifier.tryParse(StringUtils.remove(name, '#')); // let's be nice and remove any pound signs for the dumb idiots
 					if (id == null)
 						return false;

@@ -1,0 +1,25 @@
+{
+  "replace": false,
+  "values": [
+    "#spectrum:deep_soils",
+    "#spectrum:deeper_down_carver_replaceables",
+    "#spectrum:groundcover",
+    "#spectrum:base_stone_deeper_down",
+    "spectrum:rock_crystal",
+    "spectrum:pyrite",
+    "spectrum:basal_marble",
+    "spectrum:infested_blackslag",
+    "#minecraft:dirt",
+    "minecraft:gravel",
+    "minecraft:sand",
+    "minecraft:clay",
+    "#spectrum:bismuth_buds",
+    "#spectrum:woody_plants",
+    "#minecraft:small_flowers",
+    "#minecraft:replaceable_by_trees",
+    "spectrum:hummingstone",
+    "spectrum:hummingstone_glass",
+    "minecraft:air",
+    "minecraft:cave_air"
+  ]
+}

@@ -6,6 +6,13 @@
       "count": 2
     },
     {
+      "type": "minecraft:block_predicate_filter",
+      "predicate": {
+        "type": "minecraft:matching_block_tag",
+        "tag": "spectrum:deeper_down_lake_replaceables"
+      }
+    },
+    {
       "type": "minecraft:biome"
     }
   ]

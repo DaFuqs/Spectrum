@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.blocks.conditional;
 
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
@@ -132,6 +133,11 @@ public class StuckStormStoneBlock extends HorizontalFacingBlock implements Revel
 		if (random.nextFloat() < 0.1) {
 			world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
 		}
+	}
+	
+	@Override
+	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
+		return new ItemStack(SpectrumItems.STORM_STONE);
 	}
 	
 }

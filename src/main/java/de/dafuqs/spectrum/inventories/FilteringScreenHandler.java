@@ -111,7 +111,7 @@ public class FilteringScreenHandler extends ScreenHandler {
 		@Override
 		public boolean onClicked(ItemStack heldStack, ClickType type, PlayerEntity player) {
 			if (!world.isClient && filterConfigurable != null) {
-				filterConfigurable.setFilterItem(getIndex(), heldStack.getItem());
+				filterConfigurable.setFilterItem(getIndex(), heldStack.copyWithCount(1));
 			}
 			return super.onClicked(heldStack, type, player);
 		}

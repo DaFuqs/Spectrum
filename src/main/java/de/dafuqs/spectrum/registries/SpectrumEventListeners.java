@@ -372,11 +372,12 @@ public class SpectrumEventListeners {
 		});
 		
 		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
-			private final Identifier id = SpectrumCommon.locate("compacting_cache_clearer");
+			private final Identifier id = SpectrumCommon.locate("cache_clearer");
 			
 			@Override
 			public void reload(ResourceManager manager) {
 				CompactingChestBlockEntity.clearCache();
+				SpectrumCommon.CACHED_ITEM_TAG_MAP.clear();
 				
 				if (SpectrumCommon.minecraftServer != null) {
 					injectEnchantmentUpgradeRecipes(SpectrumCommon.minecraftServer);

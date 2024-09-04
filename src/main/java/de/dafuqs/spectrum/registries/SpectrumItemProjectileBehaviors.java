@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.blocks.boom.*;
 import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.entity.entity.*;
-import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tools.*;
 import net.minecraft.block.entity.*;

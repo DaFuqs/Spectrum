@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.items;
+package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.helpers.*;

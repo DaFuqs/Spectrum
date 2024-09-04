@@ -4632,7 +4632,7 @@
   "item.spectrum.tuning_stamp.controls": "Right Click to start/apply links",
   "item.spectrum.tuning_stamp.controls2": "Strike a block to clear the stamp",
   "item.spectrum.tuning_stamp.controls3": "Shift to remain tuned to the last node",
-  "item.spectrum.tuning_stamp.tooltip": "Can impress Links",
+  "item.spectrum.tuning_stamp.tooltip": "Impresses links between Pastel Nodes",
   "item.spectrum.tuning_stamp.tooltip.linked": "Impressing %d",
   "item.spectrum.tuning_stamp.tooltip.missing": "Impressing... nothing?",
   "item.spectrum.tuning_stamp.tooltip2": "tuned to %d %d %d",

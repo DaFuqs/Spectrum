@@ -363,6 +363,10 @@ public class SpectrumFoodComponents {
 	public static final FoodComponent LIZARD_MEAT = new FoodComponent.Builder()
 			.hunger(2).saturationModifier(0.6F).meat()
 			.build();
+	
+	public static final FoodComponent COOKED_LIZARD_MEAT = new FoodComponent.Builder()
+			.hunger(4).saturationModifier(1.6F).meat()
+			.build();
 
 	public static final FoodComponent GOLDEN_BRISTLE_TEA = new FoodComponent.Builder()
 			.hunger(6).saturationModifier(1F)

@@ -36,18 +36,18 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier1/shimmerstone_lights/basalt",
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "spectrum:pedestal/tier1/shimmerstone_lights/basalt",
       "text": "book.spectrum.guidebook.shimmerstone_lights.page1.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.shimmerstone_lights.page2.title",
+      "title": "book.spectrum.guidebook.shimmerstone_lights.page2.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/blackslag_shimmerstone_light"
       },
-      "recipe_id_1": "spectrum:pedestal/tier1/shimmerstone_lights/blackslag",
+      "recipe_id": "spectrum:pedestal/tier1/shimmerstone_lights/blackslag",
       "text": "book.spectrum.guidebook.shimmerstone_lights.page2.text"
     }
   ]

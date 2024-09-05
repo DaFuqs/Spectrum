@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.inventories.slots.*;
-import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.entity.*;

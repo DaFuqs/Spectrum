@@ -376,6 +376,7 @@ public class SpectrumItems {
 	public static final Item FADED_KOI = new Item(IS.of().food(SpectrumFoodComponents.FADED_KOI));
 	public static final Item FISHCAKE = new Item(IS.of().food(SpectrumFoodComponents.FISHCAKE));
 	public static final Item LIZARD_MEAT = new Item(IS.of().food(SpectrumFoodComponents.LIZARD_MEAT));
+	public static final Item COOKED_LIZARD_MEAT = new Item(IS.of().food(SpectrumFoodComponents.COOKED_LIZARD_MEAT));
 	public static final Item GOLDEN_BRISTLE_TEA = new TeaItem(IS.of().food(SpectrumFoodComponents.GOLDEN_BRISTLE_TEA), SpectrumFoodComponents.GOLDEN_BRISTLE_TEA_SCONE_BONUS);
 	public static final Item HARE_ROAST = new CustomUseTimeItem(IS.of().food(SpectrumFoodComponents.HARE_ROAST), 64);
 	public static final Item JUNKET = new Item(IS.of().food(SpectrumFoodComponents.JUNKET));
@@ -879,6 +880,7 @@ public class SpectrumItems {
 		register("faded_koi", FADED_KOI, DyeColor.PINK);
 		register("fishcake", FISHCAKE, DyeColor.PINK);
 		register("lizard_meat", LIZARD_MEAT, DyeColor.PINK);
+		register("cooked_lizard_meat", COOKED_LIZARD_MEAT, DyeColor.PINK);
 		register("golden_bristle_tea", GOLDEN_BRISTLE_TEA, DyeColor.PINK);
 		register("hare_roast", HARE_ROAST, DyeColor.PINK);
 		register("junket", JUNKET, DyeColor.PINK);

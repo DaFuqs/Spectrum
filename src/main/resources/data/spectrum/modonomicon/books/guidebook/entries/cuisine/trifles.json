@@ -25,8 +25,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "item.spectrum.jaramel_trifle",
-      "recipe_id_1": "spectrum:pedestal/tier1/food/jaramel_trifle",
+      "title": "item.spectrum.jaramel_trifle",
+      "recipe_id": "spectrum:pedestal/tier1/food/jaramel_trifle",
       "text": "book.spectrum.guidebook.enemy_tears"
     },
     {
@@ -35,12 +35,12 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:craft_salted_jaramel_trifle_or_tart"
       },
-      "recipe_id_1": "spectrum:pedestal/tier1/food/salted_jaramel_trifle",
+      "recipe_id": "spectrum:pedestal/tier1/food/salted_jaramel_trifle",
       "text": "book.spectrum.guidebook.extra_salty"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier1/food/monster_trifle",
+      "recipe_id": "spectrum:pedestal/tier1/food/monster_trifle",
       "text": "book.spectrum.guidebook.trifles.page3.text"
     }
   ]

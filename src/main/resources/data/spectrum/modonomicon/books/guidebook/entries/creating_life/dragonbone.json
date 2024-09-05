@@ -37,8 +37,8 @@
         "advancement_id": "spectrum:hidden/collect_dragonbone"
       },
       "text": "book.spectrum.guidebook.dragonbone.page2.text",
-      "title1": "book.spectrum.guidebook.dragonbone.page2.title",
-      "recipe_id_1": "spectrum:cinderhearth/bone_ash"
+      "title": "book.spectrum.guidebook.dragonbone.page2.title",
+      "recipe_id": "spectrum:cinderhearth/bone_ash"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -46,7 +46,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_dragonbone"
       },
-      "recipe_id_1": "spectrum:pedestal/tier1/dragonbone/polished_bone_ash"
+      "recipe_id": "spectrum:pedestal/tier1/dragonbone/polished_bone_ash"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -54,7 +54,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_dragonbone"
       },
-      "recipe_id_1": "spectrum:pedestal/tier1/dragonbone/bone_ash_shingles"
+      "recipe_id": "spectrum:pedestal/tier1/dragonbone/bone_ash_shingles"
     },
     {
       "type": "spectrum:collection",
@@ -83,8 +83,8 @@
         "advancement_id": "spectrum:hidden/collect_dragonbone"
       },
       "text": "book.spectrum.guidebook.dragonbone.page6.text",
-      "title1": "book.spectrum.guidebook.smelting_back",
-      "recipe_id_1": "spectrum:cinderhearth/bone_ash_unsmelting"
+      "title": "book.spectrum.guidebook.smelting_back",
+      "recipe_id": "spectrum:cinderhearth/bone_ash_unsmelting"
     }
   ]
 }

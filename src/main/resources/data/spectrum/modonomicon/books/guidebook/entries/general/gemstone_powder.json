@@ -35,13 +35,13 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "book.spectrum.guidebook.compression",
-      "recipe_id_1": "spectrum:pedestal/tier1/compacting/amethyst_powder_block",
+      "recipe_id": "spectrum:pedestal/tier1/compacting/amethyst_powder_block",
       "text": ""
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "book.spectrum.guidebook.decompression",
-      "recipe_id_1": "spectrum:pedestal/tier1/compacting/amethyst_powder_from_amethyst_powder_block",
+      "recipe_id": "spectrum:pedestal/tier1/compacting/amethyst_powder_from_amethyst_powder_block",
       "text": ""
     }
   ]

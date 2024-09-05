@@ -1,5 +1,6 @@
 {
   "type": "spectrum:pedestal",
+  "group": "radiant_glass",
   "time": 80,
   "tier": "basic",
   "magenta": 0,
@@ -25,5 +26,5 @@
     "item": "spectrum:radiant_glass",
     "count": 2
   },
-  "required_advancement": "spectrum:collect_shimmerstone"
+  "required_advancement": "spectrum:unlocks/blocks/radiant_glass"
 }

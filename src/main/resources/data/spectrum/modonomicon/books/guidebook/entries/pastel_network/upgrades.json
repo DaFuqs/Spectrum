@@ -3,7 +3,7 @@
   "icon": "spectrum:shimmerstone_gem",
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:unlocks/blocks/pastel_network"
+    "advancement_id": "spectrum:midgame/create_pastel_network_using_every_node_type"
   },
   "category": "spectrum:pastel_network",
   "hide_while_locked": true,

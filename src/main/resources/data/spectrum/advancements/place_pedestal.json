@@ -12,6 +12,35 @@
   },
   "parent": "spectrum:spectrum",
   "criteria": {
+    "interact_with_existing_pedestal": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type_specific": {
+                "type": "player",
+                "advancements": {
+                  "spectrum:create_onyx_shard": true
+                }
+              }
+            }
+          }
+        ],
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "tag": "spectrum:pedestals"
+              }
+            }
+          }
+        ]
+      }
+    },
     "used_pedestal1": {
       "trigger": "minecraft:placed_block",
       "conditions": {
@@ -87,6 +116,7 @@
   },
   "requirements": [
     [
+      "interact_with_existing_pedestal",
       "used_pedestal1",
       "used_pedestal2",
       "used_pedestal3",

@@ -28,8 +28,9 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier1/colored_lamps/cyan",
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "skip_recipe_unlock_check": true,
+      "recipe_id": "spectrum:pedestal/tier1/colored_lamps/cyan",
       "text": "book.spectrum.guidebook.colored_lamps.page1.text"
     }
   ]

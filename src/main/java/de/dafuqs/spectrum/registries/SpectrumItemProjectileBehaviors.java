@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.blocks.boom.*;
 import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.entity.entity.*;
-import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tools.*;
 import net.minecraft.block.entity.*;
@@ -249,7 +248,7 @@ public class SpectrumItemProjectileBehaviors {
 			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {
 				Recipe<?> recipe = CraftingTabletItem.getStoredRecipe(projectile.getWorld(), stack);
 				if (recipe instanceof CraftingRecipe craftingRecipe && hitResult.getEntity() instanceof ServerPlayerEntity target) {
-					CraftingTabletItem.tryCraftRecipe(target, craftingRecipe);
+					CraftingTabletItem.tryCraftRecipe(target, craftingRecipe, projectile.getWorld());
 				}
 				return stack;
 			}

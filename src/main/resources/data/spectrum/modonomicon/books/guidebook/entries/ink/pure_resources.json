@@ -25,29 +25,29 @@
     },
     {
       "type": "modonomicon:blasting_recipe",
-      "title1": "book.spectrum.guidebook.pure_resources.page1.title",
-      "recipe_id_1": "spectrum:blasting/pure_resources/iron",
-      "recipe_id_2": "spectrum:blasting/pure_resources/gold",
+      "title": "book.spectrum.guidebook.pure_resources.page1.title",
+      "recipe_id": "spectrum:blasting/pure_resources/iron",
+      "recipe_id2": "spectrum:blasting/pure_resources/gold",
       "text": "book.spectrum.guidebook.pure_resources.page1.text"
     },
     {
       "type": "spectrum:cinderhearth_smelting",
-      "title1": "book.spectrum.guidebook.pure_resources.page2.title",
-      "recipe_id_1": "spectrum:cinderhearth/pure_resources/iron",
-      "recipe_id_2": "spectrum:cinderhearth/pure_resources/gold",
+      "title": "book.spectrum.guidebook.pure_resources.page2.title",
+      "recipe_id": "spectrum:cinderhearth/pure_resources/iron",
+      "recipe_id2": "spectrum:cinderhearth/pure_resources/gold",
       "text": "book.spectrum.guidebook.pure_resources.page2.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.pure_resources.page3.text",
-      "title1": "book.spectrum.guidebook.pure_resources.page3.title",
-      "recipe_id_1": "spectrum:pedestal/tier1/compacting/pure_quartz_block"
+      "title": "book.spectrum.guidebook.pure_resources.page3.title",
+      "recipe_id": "spectrum:pedestal/tier1/compacting/pure_quartz_block"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "text": "book.spectrum.guidebook.pure_resources.page4.text",
-      "title1": "book.spectrum.guidebook.pure_resources.page4.title",
-      "recipe_id_1": "spectrum:fusion_shrine/vanilla/pure_netherite_ingot"
+      "title": "book.spectrum.guidebook.pure_resources.page4.title",
+      "recipe_id": "spectrum:fusion_shrine/vanilla/pure_netherite_ingot"
     }
   ]
 }

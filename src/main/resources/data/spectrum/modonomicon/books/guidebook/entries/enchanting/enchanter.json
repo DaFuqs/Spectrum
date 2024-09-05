@@ -21,7 +21,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier3/enchanter",
+      "recipe_id": "spectrum:pedestal/tier3/enchanter",
       "text": "book.spectrum.guidebook.enchanter.page1.text"
     },
     {

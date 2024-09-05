@@ -37,7 +37,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier1/food/crawfish_cocktail",
+      "recipe_id": "spectrum:pedestal/tier1/food/crawfish_cocktail",
       "text": "book.spectrum.guidebook.imbrifer_cookbook.page3.text"
     },
     {
@@ -47,7 +47,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier1/food/bagnun",
+      "recipe_id": "spectrum:pedestal/tier1/food/bagnun",
       "text": "book.spectrum.guidebook.imbrifer_cookbook.page5.text"
     },
     {
@@ -57,7 +57,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier1/food/mellow_shallot_soup",
+      "recipe_id": "spectrum:pedestal/tier1/food/mellow_shallot_soup",
       "text": "book.spectrum.guidebook.imbrifer_cookbook.page7.text"
     },
     {
@@ -67,7 +67,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier1/food/fishcake",
+      "recipe_id": "spectrum:pedestal/tier1/food/fishcake",
       "text": "book.spectrum.guidebook.imbrifer_cookbook.page9.text"
     },
     {
@@ -77,7 +77,7 @@
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "recipe_id_1": "spectrum:titration_barrel/special/aqua_regia",
+      "recipe_id": "spectrum:titration_barrel/special/aqua_regia",
       "text": "book.spectrum.guidebook.imbrifer_cookbook.page11.text"
     }
   ]

@@ -20,8 +20,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier3/spirit_instiller",
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "spectrum:pedestal/tier3/spirit_instiller",
       "text": "book.spectrum.guidebook.spirit_instiller.page1.text"
     },
     {

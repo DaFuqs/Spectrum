@@ -30,8 +30,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier3/bottle_of_decay_away",
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "spectrum:pedestal/tier3/bottle_of_decay_away",
       "text": "book.spectrum.guidebook.decay_away.page1.text"
     }
   ]

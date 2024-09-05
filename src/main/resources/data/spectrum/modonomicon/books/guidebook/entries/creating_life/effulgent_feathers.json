@@ -32,8 +32,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_raw_bloodstone"
       },
-      "title1": "book.spectrum.guidebook.effulgent_feathers.page1.title",
-      "recipe_id_1": "spectrum:liquid_crystal_converting/raw_bloodstone",
+      "title": "book.spectrum.guidebook.effulgent_feathers.page1.title",
+      "recipe_id": "spectrum:liquid_crystal_converting/raw_bloodstone",
       "text": "book.spectrum.guidebook.effulgent_feathers.page1.text"
     }
   ]

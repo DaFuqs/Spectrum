@@ -4,6 +4,11 @@
   "sort_number": 12,
   "show_category_button": true,
 
+  "condition": {
+    "type": "modonomicon:category_has_visible_entries",
+    "category_id": "spectrum:enchanting"
+  },
+
   "entry_textures": "spectrum:textures/gui/modonomicon/entry_textures.png",
   "background": "spectrum:textures/gui/modonomicon/category_background.png",
   "background_width": 1024,

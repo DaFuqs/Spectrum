@@ -25,8 +25,8 @@
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title1": "book.spectrum.guidebook.spirit_instiller_recipe",
-      "recipe_id_1": "spectrum:spirit_instiller/budding_onyx",
+      "title": "book.spectrum.guidebook.spirit_instiller_recipe",
+      "recipe_id": "spectrum:spirit_instiller/budding_onyx",
       "text": "book.spectrum.guidebook.budding_onyx.page1.text"
     }
   ]

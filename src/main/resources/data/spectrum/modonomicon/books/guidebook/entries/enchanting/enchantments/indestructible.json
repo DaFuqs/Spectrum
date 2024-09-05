@@ -38,8 +38,8 @@
     {
       "type": "spectrum:enchanter_crafting",
       "text": "book.spectrum.guidebook.crafting",
-      "title1": "container.spectrum.rei.enchanter_recipe",
-      "recipe_id_1": "spectrum:enchanter/spectrum_books/indestructible"
+      "title": "container.spectrum.rei.enchanter_recipe",
+      "recipe_id": "spectrum:enchanter/spectrum_books/indestructible"
     }
   ]
 }

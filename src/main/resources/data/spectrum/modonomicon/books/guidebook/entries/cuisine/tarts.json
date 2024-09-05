@@ -25,8 +25,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "item.spectrum.jaramel_tart",
-      "recipe_id_1": "spectrum:pedestal/tier1/food/jaramel_tart",
+      "title": "item.spectrum.jaramel_tart",
+      "recipe_id": "spectrum:pedestal/tier1/food/jaramel_tart",
       "text": "book.spectrum.guidebook.enemy_tears"
     },
     {
@@ -35,27 +35,27 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:craft_salted_jaramel_trifle_or_tart"
       },
-      "recipe_id_1": "spectrum:pedestal/tier1/food/salted_jaramel_tart",
+      "recipe_id": "spectrum:pedestal/tier1/food/salted_jaramel_tart",
       "text": "book.spectrum.guidebook.extra_salty"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier1/food/ashen_tart",
+      "recipe_id": "spectrum:pedestal/tier1/food/ashen_tart",
       "text": "book.spectrum.guidebook.tarts.page3.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier1/food/weeping_tart",
+      "recipe_id": "spectrum:pedestal/tier1/food/weeping_tart",
       "text": "book.spectrum.guidebook.tarts.page4.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier1/food/whispy_tart",
+      "recipe_id": "spectrum:pedestal/tier1/food/whispy_tart",
       "text": "book.spectrum.guidebook.tarts.page5.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier1/food/puff_tart",
+      "recipe_id": "spectrum:pedestal/tier1/food/puff_tart",
       "text": "book.spectrum.guidebook.tarts.page6.text"
     }
   ]

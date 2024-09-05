@@ -24,8 +24,8 @@
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.bag_of_holding.page1.text",
-      "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier1/bag_of_holding"
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "spectrum:pedestal/tier1/bag_of_holding"
     }
   ]
 }

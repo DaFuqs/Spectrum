@@ -27,7 +27,7 @@
     },
     {
       "type": "spectrum:liquid_crystal_converting",
-      "recipe_id_1": "spectrum:liquid_crystal_converting/resonant_lily",
+      "recipe_id": "spectrum:liquid_crystal_converting/resonant_lily",
       "text": ""
     }
   ]

@@ -24,32 +24,32 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title1": "book.spectrum.guidebook.weather_manipulation.page1.title",
+      "title": "book.spectrum.guidebook.weather_manipulation.page1.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/weather/clear"
       },
-      "recipe_id_1": "spectrum:fusion_shrine/weather/clear",
+      "recipe_id": "spectrum:fusion_shrine/weather/clear",
       "text": "book.spectrum.guidebook.weather_manipulation.page1.text"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title1": "book.spectrum.guidebook.weather_manipulation.page2.title",
+      "title": "book.spectrum.guidebook.weather_manipulation.page2.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/weather/rain"
       },
-      "recipe_id_1": "spectrum:fusion_shrine/weather/rain",
+      "recipe_id": "spectrum:fusion_shrine/weather/rain",
       "text": "book.spectrum.guidebook.weather_manipulation.page2.text"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title1": "book.spectrum.guidebook.weather_manipulation.page3.title",
+      "title": "book.spectrum.guidebook.weather_manipulation.page3.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/weather/thunder"
       },
-      "recipe_id_1": "spectrum:fusion_shrine/weather/thunder",
+      "recipe_id": "spectrum:fusion_shrine/weather/thunder",
       "text": "book.spectrum.guidebook.weather_manipulation.page3.text"
     }
   ]

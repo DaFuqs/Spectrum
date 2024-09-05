@@ -24,27 +24,27 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier4/glass_ampoules/azurite"
+      "recipe_id": "spectrum:pedestal/tier4/glass_ampoules/azurite"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier4/glass_ampoules/azurite_from_refined"
+      "recipe_id": "spectrum:pedestal/tier4/glass_ampoules/azurite_from_refined"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier4/glass_ampoules/malachite"
+      "recipe_id": "spectrum:pedestal/tier4/glass_ampoules/malachite"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier4/glass_ampoules/malachite_from_refined"
+      "recipe_id": "spectrum:pedestal/tier4/glass_ampoules/malachite_from_refined"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier4/glass_ampoules/bloodstone"
+      "recipe_id": "spectrum:pedestal/tier4/glass_ampoules/bloodstone"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier4/glass_ampoules/bloodstone_from_refined"
+      "recipe_id": "spectrum:pedestal/tier4/glass_ampoules/bloodstone_from_refined"
     }
   ]
 }

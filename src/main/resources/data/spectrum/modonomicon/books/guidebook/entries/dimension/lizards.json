@@ -29,11 +29,10 @@
       "text": "book.spectrum.guidebook.lizards.page1.text"
     },
     {
-      "type": "modonomicon:spotlight",
-      "item": {
-        "item": "spectrum:lizard_meat"
-      },
+      "type": "modonomicon:smelting_recipe",
       "anchor": "lizard_meat",
+      "title1": "item.spectrum.lizard_meat",
+      "recipe_id_1": "spectrum:smelting/food/cooked_lizard_meat",
       "text": "book.spectrum.guidebook.lizards.page2.text"
     }
   ]

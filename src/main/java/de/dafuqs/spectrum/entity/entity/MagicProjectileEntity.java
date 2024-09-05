@@ -15,7 +15,7 @@ import org.jetbrains.annotations.*;
 
 public abstract class MagicProjectileEntity extends ProjectileEntity {
 	
-	private static final double I_HAVE_NO_IDEA_WHAT_THIS_IS = 57.2957763671875D;
+	private static final double RAD_TO_DEG_CONSTANT = 180F / Math.PI;
 	
 	public MagicProjectileEntity(EntityType<? extends MagicProjectileEntity> type, World world) {
         super(type, world);
@@ -41,8 +41,8 @@ public abstract class MagicProjectileEntity extends ProjectileEntity {
 		Vec3d thisVelocity = this.getVelocity();
 		if (this.prevPitch == 0.0F && this.prevYaw == 0.0F) {
 			double d = thisVelocity.horizontalLength();
-			this.setYaw((float) (MathHelper.atan2(thisVelocity.x, thisVelocity.z) * I_HAVE_NO_IDEA_WHAT_THIS_IS));
-			this.setPitch((float) (MathHelper.atan2(thisVelocity.y, d) * I_HAVE_NO_IDEA_WHAT_THIS_IS));
+			this.setYaw((float) (MathHelper.atan2(thisVelocity.x, thisVelocity.z) * RAD_TO_DEG_CONSTANT));
+			this.setPitch((float) (MathHelper.atan2(thisVelocity.y, d) * RAD_TO_DEG_CONSTANT));
 			this.prevYaw = this.getYaw();
 			this.prevPitch = this.getPitch();
 		}
@@ -87,12 +87,12 @@ public abstract class MagicProjectileEntity extends ProjectileEntity {
 		double k = this.getZ() + velocityZ;
 		double l = thisVelocity.horizontalLength();
 		if (noClip) {
-			this.setYaw((float) (MathHelper.atan2(-velocityX, -velocityZ) * I_HAVE_NO_IDEA_WHAT_THIS_IS));
+			this.setYaw((float) (MathHelper.atan2(-velocityX, -velocityZ) * RAD_TO_DEG_CONSTANT));
 		} else {
-			this.setYaw((float) (MathHelper.atan2(velocityX, velocityZ) * I_HAVE_NO_IDEA_WHAT_THIS_IS));
+			this.setYaw((float) (MathHelper.atan2(velocityX, velocityZ) * RAD_TO_DEG_CONSTANT));
 		}
 		
-		this.setPitch((float) (MathHelper.atan2(velocityY, l) * I_HAVE_NO_IDEA_WHAT_THIS_IS));
+		this.setPitch((float) (MathHelper.atan2(velocityY, l) * RAD_TO_DEG_CONSTANT));
 		this.setPitch(updateRotation(this.prevPitch, this.getPitch()));
 		this.setYaw(updateRotation(this.prevYaw, this.getYaw()));
 

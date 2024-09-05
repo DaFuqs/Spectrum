@@ -25,8 +25,8 @@
     {
       "type": "spectrum:fusion_shrine_crafting",
       "text": "book.spectrum.guidebook.use_in_potion_workshop_bottle_slot",
-      "title1": "container.spectrum.rei.fusion_recipe",
-      "recipe_id_1": "spectrum:fusion_shrine/trinkets/greater_potion_pendant"
+      "title": "container.spectrum.rei.fusion_recipe",
+      "recipe_id": "spectrum:fusion_shrine/trinkets/greater_potion_pendant"
     }
   ]
 }

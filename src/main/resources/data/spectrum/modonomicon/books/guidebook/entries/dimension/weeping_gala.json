@@ -53,32 +53,32 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier1/weeping_gala/barrel",
+      "recipe_id": "spectrum:pedestal/tier1/weeping_gala/barrel",
       "text": "book.spectrum.guidebook.weeping_gala.barrel.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.weeping_gala.amphora.text",
-      "recipe_id_1": "spectrum:pedestal/tier1/weeping_gala/amphora"
+      "recipe_id": "spectrum:pedestal/tier1/weeping_gala/amphora"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier1/weeping_gala/lamp",
+      "recipe_id": "spectrum:pedestal/tier1/weeping_gala/lamp",
       "text": "book.spectrum.guidebook.weeping_gala.lamp.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier1/weeping_gala/lantern",
+      "recipe_id": "spectrum:pedestal/tier1/weeping_gala/lantern",
       "text": "book.spectrum.guidebook.weeping_gala.lantern.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier1/weeping_gala/light",
+      "recipe_id": "spectrum:pedestal/tier1/weeping_gala/light",
       "text": "book.spectrum.guidebook.weeping_gala.light.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier1/weeping_gala/pillar",
+      "recipe_id": "spectrum:pedestal/tier1/weeping_gala/pillar",
       "text": "book.spectrum.guidebook.weeping_gala.pillar.text"
     }
   ]

@@ -3,17 +3,23 @@
   "pools": [
     {
       "rolls": {
-        "min": 2,
-        "max": 3
+        "min": 3,
+        "max": 4
       },
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:book"
+          "name": "minecraft:book",
+          "weight": 3
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:paper"
+          "name": "minecraft:paper",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:enchantment_canvas"
         }
       ],
       "functions": [
@@ -58,6 +64,25 @@
         {
           "type": "minecraft:item",
           "name": "spectrum:imperial_cookbook"
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 0,
+        "max": 1,
+        "bonus_rolls": 1
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:gilded_book",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:empty",
+          "weight": 10,
+          "quality": -1
         }
       ]
     }

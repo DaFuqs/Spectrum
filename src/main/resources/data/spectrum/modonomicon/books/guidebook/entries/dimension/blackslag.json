@@ -60,8 +60,8 @@
     },
     {
       "type": "spectrum:anvil_crushing",
-      "title1": "book.spectrum.guidebook.cracking",
-      "recipe_id_1": "spectrum:anvil_crushing/spectrum_pulverising/cracked_blackslag_bricks",
+      "title": "book.spectrum.guidebook.cracking",
+      "recipe_id": "spectrum:anvil_crushing/spectrum_pulverising/cracked_blackslag_bricks",
       "text": "book.spectrum.guidebook.blackslag.page2.text"
     },
     {

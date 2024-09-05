@@ -35,7 +35,7 @@
       "type": "modonomicon:text",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/remember_kindling"
+        "advancement_id": "spectrum:remember_kindling"
       },
       "title": "book.spectrum.guidebook.kindlings.page2.title",
       "text": "book.spectrum.guidebook.kindlings.page2.text"

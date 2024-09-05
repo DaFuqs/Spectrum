@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:lategame/pluck_effulgent_feather",
+  "parent": "spectrum:pluck_effulgent_feather",
   "display": {
     "icon": {
       "item": "spectrum:refined_bloodstone"
@@ -25,7 +25,7 @@
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/pluck_effulgent_feather"
+        "advancement_identifier": "spectrum:pluck_effulgent_feather"
       }
     }
   }

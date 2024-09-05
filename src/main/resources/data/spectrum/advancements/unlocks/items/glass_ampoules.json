@@ -15,7 +15,7 @@
     "grown_bloodstone_in_crystallarieum": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/grow_bloodstone_in_crystallarieum"
+        "advancement_identifier": "spectrum:grow_bloodstone_in_crystallarieum"
       }
     },
     "grown_malachite_in_crystallarieum": {

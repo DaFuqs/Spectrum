@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:lategame/collect_dd_resources",
+  "parent": "spectrum:spectrum",
   "display": {
     "icon": {
       "item": "spectrum:dragonbone_chunk"
@@ -23,11 +23,34 @@
         }
       }
     },
+    "has_dragonbone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:dragonbone",
+              "spectrum:cracked_dragonbone",
+              "spectrum:dragonbone_chunk"
+            ]
+          }
+        ]
+      }
+    },
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/spectrum_lategame"
+        "advancement_identifier": "spectrum:spectrum"
       }
     }
-  }
+  },
+  "requirements": [
+    [
+      "broken_cracked_dragonbone",
+      "has_dragonbone"
+    ],
+    [
+      "gotten_previous"
+    ]
+  ]
 }

@@ -16,7 +16,7 @@
   "background_v_index": 0,
   "x": 8,
   "y": 3,
-  "turnin": "spectrum:lategame/grow_bloodstone_in_crystallarieum",
+  "turnin": "spectrum:grow_bloodstone_in_crystallarieum",
   "pages": [
     {
       "type": "modonomicon:spotlight",

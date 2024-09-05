@@ -1,0 +1,121 @@
+{
+  "type": "spectrum:titration_barrel",
+  "group": "infused_beverages",
+  "ingredients": [
+    {
+      "item": "spectrum:moonstone_powder",
+      "count": 4
+    },
+    {
+      "item": "spectrum:neolith",
+      "count": 2
+    },
+    {
+      "item": "spectrum:jadeite_petals",
+      "count": 4
+    },
+    {
+      "item": "spectrum:pure_coal",
+      "count": 1
+    },
+    {
+      "item": "spectrum:nectardew_burgeon",
+      "count": 1
+    }
+  ],
+  "min_fermentation_time_hours": 24,
+  "fluid": {
+    "fluid": "spectrum:liquid_crystal"
+  },
+  "tapping_item": "minecraft:glass_bottle",
+  "fermentation_data": {
+    "fermentation_speed_mod": 0.075,
+    "effects": [
+      {
+        "id": "spectrum:eternal_slumber",
+        "base_duration": 6000,
+        "potency": [
+          {
+            "potency": 0
+          }
+        ]
+      },
+      {
+        "id": "spectrum:effect_prolonging",
+        "base_duration": 1200,
+        "potency": [
+          {
+            "min_alc": 10
+          },
+          {
+            "min_alc": 20,
+            "potency": 1
+          },
+          {
+            "min_alc": 30,
+            "potency": 2
+          },
+          {
+            "min_alc": 40,
+            "potency": 3
+          },
+          {
+            "min_alc": 50,
+            "potency": 4
+          },
+          {
+            "min_alc": 60,
+            "potency": 5
+          },
+          {
+            "min_alc": 70,
+            "potency": 6
+          },
+          {
+            "min_alc": 80,
+            "potency": 7
+          }
+        ]
+      },
+      {
+        "id": "spectrum:deadly_poison",
+        "base_duration": 1200,
+        "potency": [
+          {
+            "min_alc": 10
+          },
+          {
+            "min_alc": 30,
+            "potency": 1
+          },
+          {
+            "min_alc": 50,
+            "potency": 2
+          },
+          {
+            "min_alc": 70,
+            "potency": 3
+          }
+        ]
+      },
+      {
+        "id": "spectrum:immunity",
+        "base_duration": 1200,
+        "potency": [
+          {
+            "min_alc": 80
+          }
+        ]
+      }
+    ]
+  },
+  "result": {
+    "item": "spectrum:infused_beverage",
+    "count": 4,
+    "nbt": {
+      "Variant": "night_cream",
+      "Color": 12982783
+    }
+  },
+  "required_advancement": "spectrum:hidden/collect_cookbooks/poisoners_handbook"
+}

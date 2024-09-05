@@ -402,6 +402,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.FADED_KOI);
 		entries.add(SpectrumItems.FISHCAKE);
 		entries.add(SpectrumItems.LIZARD_MEAT);
+		entries.add(SpectrumItems.COOKED_LIZARD_MEAT);
 		entries.add(SpectrumItems.GOLDEN_BRISTLE_TEA);
 		entries.add(SpectrumItems.HARE_ROAST);
 		entries.add(SpectrumItems.JUNKET);

@@ -194,7 +194,8 @@ public class SpectrumParticleTypes {
 	public static DefaultParticleType QUARTZ_FLUFF = register("quartz_fluff", true);
 
 	public static DefaultParticleType LIGHT_RAIN = register("light_rain", true);
-	
+	public static DefaultParticleType RAIN_SPLASH = register("rain_splash", false);
+
 	public static DefaultParticleType LIGHT_TRAIL = register("light_trail", true);
 	
 	public static ParticleType<DynamicParticleEffect> DYNAMIC = register("particle_spawner", DynamicParticleEffect.FACTORY, (particleType) -> DynamicParticleEffect.CODEC, false);

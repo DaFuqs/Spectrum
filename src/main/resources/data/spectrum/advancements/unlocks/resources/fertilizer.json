@@ -1,0 +1,18 @@
+{
+  "criteria": {
+    "collected_milky_resin": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_milky_resin" }
+    },
+    "collected_ash_flakes": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_ash" }
+    },
+	"collected_fissure_plum": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_fissure_plum"
+      }
+    }
+  }
+}

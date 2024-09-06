@@ -15,13 +15,13 @@
       "count": 1
     }
   ],
-  "min_fermentation_time_hours": 8,
+  "min_fermentation_time_hours": 24,
   "fluid": {
     "fluid": "minecraft:water"
   },
   "tapping_item": "minecraft:glass_bottle",
   "fermentation_data": {
-    "fermentation_speed_mod": 0.2,
+    "fermentation_speed_mod": 0.25,
     "effects": [
       {
         "id": "spectrum:somnolence",
@@ -87,7 +87,7 @@
   },
   "result": {
     "item": "spectrum:infused_beverage",
-    "count": 6,
+    "count": 12,
     "nbt": {
       "Variant": "verdigris_wine",
       "Color": 4237444

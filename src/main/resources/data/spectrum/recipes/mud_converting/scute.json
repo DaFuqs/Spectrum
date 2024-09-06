@@ -1,0 +1,10 @@
+{
+  "type": "spectrum:mud_converting",
+  "required_advancement": "spectrum:collect_four_leaf_clover",
+  "ingredient": {
+    "item": "spectrum:four_leaf_clover"
+  },
+  "result": {
+    "item": "minecraft:scute"
+  }
+}

@@ -32,6 +32,22 @@
       "title": "book.spectrum.guidebook.item_conversion",
       "recipe_id": "spectrum:mud_converting/rabbit_hide",
       "text": "book.spectrum.guidebook.mud.page2.text"
+    },
+    {
+      "type": "spectrum:mud_converting",
+      "title": "book.spectrum.guidebook.item_conversion",
+      "recipe_id": "spectrum:mud_converting/string",
+      "text": "book.spectrum.guidebook.mud.page3.text"
+    },
+    {
+      "type": "spectrum:mud_converting",
+      "title": "book.spectrum.guidebook.item_conversion",
+      "recipe_id": "spectrum:mud_converting/scute",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:collect_four_leaf_clover"
+      },
+      "text": "book.spectrum.guidebook.mud.page4.text"
     }
   ]
 }

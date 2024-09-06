@@ -44,8 +44,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_all_shooting_star_variants"
       },
-      "title1": "book.spectrum.guidebook.stargazing.page2.title",
-      "recipe_id_1": "spectrum:fusion_shrine/shooting_star_hardening",
+      "title": "book.spectrum.guidebook.stargazing.page2.title",
+      "recipe_id": "spectrum:fusion_shrine/shooting_star_hardening",
       "text": "book.spectrum.guidebook.stargazing.page2.text"
     },
     {
@@ -76,13 +76,13 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "book.spectrum.guidebook.compression",
-      "recipe_id_1": "spectrum:pedestal/tier1/compacting/stardust_block",
+      "recipe_id": "spectrum:pedestal/tier1/compacting/stardust_block",
       "text": ""
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "book.spectrum.guidebook.decompression",
-      "recipe_id_1": "spectrum:pedestal/tier1/compacting/stardust_from_stardust_block",
+      "recipe_id": "spectrum:pedestal/tier1/compacting/stardust_from_stardust_block",
       "text": ""
     }
   ]

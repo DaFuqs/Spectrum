@@ -25,8 +25,8 @@
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "title1": "book.spectrum.guidebook.titration_recipe",
-      "recipe_id_1": "spectrum:titration_barrel/reprise",
+      "title": "book.spectrum.guidebook.titration_recipe",
+      "recipe_id": "spectrum:titration_barrel/reprise",
       "text": "book.spectrum.guidebook.reprise.page1.text"
     }
   ]

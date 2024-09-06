@@ -108,7 +108,7 @@ Function SetTranslatedGuidebookEntry {
         }
 
         If ($RecipeTypes -contains $Page.type) {
-            SetProperty $Lang "$PagePrefix.title1" $Page.title
+            SetProperty $Lang "$PagePrefix.title" $Page.title
         }
         Else {
             SetProperty $Lang "$PagePrefix.title" $Page.title

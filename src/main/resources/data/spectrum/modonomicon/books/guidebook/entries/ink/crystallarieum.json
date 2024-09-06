@@ -26,8 +26,8 @@
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.crystallarieum.page1.text",
-      "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier4/crystallarieum"
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "spectrum:pedestal/tier4/crystallarieum"
     },
     {
       "type": "modonomicon:text",
@@ -41,68 +41,68 @@
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title1": "book.spectrum.guidebook.crystallarieum.page4.title",
-      "recipe_id_1": "spectrum:crystallarieum/vanilla/coal"
+      "title": "book.spectrum.guidebook.crystallarieum.page4.title",
+      "recipe_id": "spectrum:crystallarieum/vanilla/coal"
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title1": "book.spectrum.guidebook.crystallarieum.page5.title",
-      "recipe_id_1": "spectrum:crystallarieum/vanilla/copper"
+      "title": "book.spectrum.guidebook.crystallarieum.page5.title",
+      "recipe_id": "spectrum:crystallarieum/vanilla/copper"
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title1": "book.spectrum.guidebook.crystallarieum.page6.title",
-      "recipe_id_1": "spectrum:crystallarieum/vanilla/diamond"
+      "title": "book.spectrum.guidebook.crystallarieum.page6.title",
+      "recipe_id": "spectrum:crystallarieum/vanilla/diamond"
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title1": "book.spectrum.guidebook.crystallarieum.page7.title",
-      "recipe_id_1": "spectrum:crystallarieum/vanilla/echo"
+      "title": "book.spectrum.guidebook.crystallarieum.page7.title",
+      "recipe_id": "spectrum:crystallarieum/vanilla/echo"
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title1": "book.spectrum.guidebook.crystallarieum.page8.title",
-      "recipe_id_1": "spectrum:crystallarieum/vanilla/emerald"
+      "title": "book.spectrum.guidebook.crystallarieum.page8.title",
+      "recipe_id": "spectrum:crystallarieum/vanilla/emerald"
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title1": "book.spectrum.guidebook.crystallarieum.page9.title",
-      "recipe_id_1": "spectrum:crystallarieum/vanilla/glowstone"
+      "title": "book.spectrum.guidebook.crystallarieum.page9.title",
+      "recipe_id": "spectrum:crystallarieum/vanilla/glowstone"
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title1": "book.spectrum.guidebook.crystallarieum.page10.title",
-      "recipe_id_1": "spectrum:crystallarieum/vanilla/gold"
+      "title": "book.spectrum.guidebook.crystallarieum.page10.title",
+      "recipe_id": "spectrum:crystallarieum/vanilla/gold"
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title1": "book.spectrum.guidebook.crystallarieum.page11.title",
-      "recipe_id_1": "spectrum:crystallarieum/vanilla/iron"
+      "title": "book.spectrum.guidebook.crystallarieum.page11.title",
+      "recipe_id": "spectrum:crystallarieum/vanilla/iron"
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title1": "book.spectrum.guidebook.crystallarieum.page12.title",
-      "recipe_id_1": "spectrum:crystallarieum/vanilla/lapis"
+      "title": "book.spectrum.guidebook.crystallarieum.page12.title",
+      "recipe_id": "spectrum:crystallarieum/vanilla/lapis"
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title1": "book.spectrum.guidebook.crystallarieum.page13.title",
-      "recipe_id_1": "spectrum:crystallarieum/vanilla/netherite_scrap"
+      "title": "book.spectrum.guidebook.crystallarieum.page13.title",
+      "recipe_id": "spectrum:crystallarieum/vanilla/netherite_scrap"
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title1": "book.spectrum.guidebook.crystallarieum.page14.title",
-      "recipe_id_1": "spectrum:crystallarieum/vanilla/prismarine_crystal"
+      "title": "book.spectrum.guidebook.crystallarieum.page14.title",
+      "recipe_id": "spectrum:crystallarieum/vanilla/prismarine_crystal"
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title1": "book.spectrum.guidebook.crystallarieum.page15.title",
-      "recipe_id_1": "spectrum:crystallarieum/vanilla/quartz"
+      "title": "book.spectrum.guidebook.crystallarieum.page15.title",
+      "recipe_id": "spectrum:crystallarieum/vanilla/quartz"
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title1": "book.spectrum.guidebook.crystallarieum.page16.title",
-      "recipe_id_1": "spectrum:crystallarieum/vanilla/redstone"
+      "title": "book.spectrum.guidebook.crystallarieum.page16.title",
+      "recipe_id": "spectrum:crystallarieum/vanilla/redstone"
     }
   ]
 }

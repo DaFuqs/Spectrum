@@ -37,12 +37,12 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title1": "book.spectrum.guidebook.mysterious_locket.page2.title",
+      "title": "book.spectrum.guidebook.mysterious_locket.page2.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/mysterious_locket_socketing"
       },
-      "recipe_id_1": "spectrum:fusion_shrine/mysterious_locket_socketing",
+      "recipe_id": "spectrum:fusion_shrine/mysterious_locket_socketing",
       "text": "book.spectrum.guidebook.mysterious_locket.page2.text"
     },
     {

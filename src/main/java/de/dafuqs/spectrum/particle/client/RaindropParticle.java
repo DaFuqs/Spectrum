@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.particle.client;
 
-import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.particle.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.render.*;
@@ -14,20 +14,29 @@ import java.lang.Math;
 public class RaindropParticle extends SpriteBillboardParticle {
 	
 	private static final Vec3d VERTICAL = new Vec3d(0, 1, 0);
-	private final int simInterval = SpectrumCommon.CONFIG.WindSimInterval, simOffset;
+	private static final BlockPos.Mutable pos = new BlockPos.Mutable();
+	//private final int simInterval = SpectrumCommon.CONFIG.WindSimInterval, simOffset;
 	
 	public RaindropParticle(ClientWorld clientWorld, double d, double e, double f, SpriteProvider spriteProvider) {
 		super(clientWorld, d, e, f);
 		setSprite(spriteProvider);
 		gravityStrength = 5.25F;
-		scale = 0.25F + random.nextFloat() * 0.2F;
-		this.simOffset = random.nextInt(simInterval);
+		scale = 0.1F + random.nextFloat() * 0.3125F;
+		//this.simOffset = random.nextInt(simInterval);
 		maxAge = 25;
 	}
 	
 	@Override
 	public void tick() {
+		pos.set(x, y, z);
+
 		if (onGround) {
+			spawnDroplets(0.85F, 4);
+			markDead();
+			return;
+		}
+		else if(world.isWater(pos)) {
+			spawnDroplets(0.625F, 7);
 			markDead();
 			return;
 		}
@@ -35,7 +44,19 @@ public class RaindropParticle extends SpriteBillboardParticle {
 		adjustAlpha();
 		super.tick();
 	}
-	
+
+	private void spawnDroplets(float velMult, int drops) {
+		if (isAlive()) {
+			var spawns = random.nextInt(drops) + 1;
+			for (int i = 0; i < spawns; i++) {
+				var xVel = random.nextFloat() * 0.8 - 0.4F;
+				var zVel = random.nextFloat() * 0.8 - 0.4F;
+				world.addParticle(SpectrumParticleTypes.RAIN_SPLASH, x, y, z, xVel * velMult, 0, zVel * velMult);
+			}
+
+		}
+	}
+
 	private void adjustAlpha() {
 		if (age <= 5) {
 			alpha = MathHelper.clamp(age / 5F, 0, 1F);
@@ -60,7 +81,7 @@ public class RaindropParticle extends SpriteBillboardParticle {
 		
 		Quaternionf quaternionf = RotationAxis.POSITIVE_Y.rotation((float) MathHelper.atan2(xOffset, zOffset));
 		
-		Vector3f[] vector3fs = new Vector3f[]{new Vector3f(-1.0F, -1.0F, 0.0F), new Vector3f(-1.0F, 1.0F, 0.0F), new Vector3f(1.0F, 1.0F, 0.0F), new Vector3f(1.0F, -1.0F, 0.0F)};
+		Vector3f[] vector3fs = new Vector3f[]{new Vector3f(-0.75F, -1.75F, 0.0F), new Vector3f(-0.75F, 1.75F, 0.0F), new Vector3f(0.75F, 1.75F, 0.0F), new Vector3f(0.75F, -1.75F, 0.0F)};
 		float i = this.getSize(tickDelta);
 		
 		for (int j = 0; j < 4; ++j) {

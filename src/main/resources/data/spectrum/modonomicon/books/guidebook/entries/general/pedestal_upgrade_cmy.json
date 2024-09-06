@@ -24,8 +24,8 @@
   "pages": [
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.pedestal_upgrade_cmy.page0.title",
-      "recipe_id_1": "spectrum:pedestal/tier1/pedestal_all_basic",
+      "title": "book.spectrum.guidebook.pedestal_upgrade_cmy.page0.title",
+      "recipe_id": "spectrum:pedestal/tier1/pedestal_all_basic",
       "text": "book.spectrum.guidebook.pedestal_upgrade_cmy.page0.text"
     },
     {

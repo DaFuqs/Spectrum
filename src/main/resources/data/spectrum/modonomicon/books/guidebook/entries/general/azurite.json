@@ -39,8 +39,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/resources/refined_azurite"
       },
-      "title1": "book.spectrum.guidebook.azurite.page1.title",
-      "recipe_id_1": "spectrum:fusion_shrine/refined_azurite",
+      "title": "book.spectrum.guidebook.azurite.page1.title",
+      "recipe_id": "spectrum:fusion_shrine/refined_azurite",
       "text": "book.spectrum.guidebook.azurite.page1.text"
     },
     {
@@ -49,8 +49,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/resources/azurite_growing"
       },
-      "title1": "book.spectrum.guidebook.azurite.page2.title",
-      "recipe_id_1": "spectrum:crystallarieum/azurite"
+      "title": "book.spectrum.guidebook.azurite.page2.title",
+      "recipe_id": "spectrum:crystallarieum/azurite"
     }
   ]
 }

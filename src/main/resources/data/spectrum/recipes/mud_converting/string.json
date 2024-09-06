@@ -1,0 +1,10 @@
+{
+  "type": "spectrum:mud_converting",
+  "ingredient": {
+    "item": "minecraft:wheat"
+  },
+  "result": {
+    "item": "minecraft:string",
+    "count": 2
+  }
+}

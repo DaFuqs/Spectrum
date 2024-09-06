@@ -28,7 +28,7 @@
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "recipe_id_1": "spectrum:potion_workshop_crafting/bloodboil_syrup",
+      "recipe_id": "spectrum:potion_workshop_crafting/bloodboil_syrup",
       "text": "book.spectrum.guidebook.blood_orchid_products.page2.text"
     },
     {
@@ -37,7 +37,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/food/demon_trifle"
       },
-      "recipe_id_1": "spectrum:pedestal/tier1/food/demon_trifle",
+      "recipe_id": "spectrum:pedestal/tier1/food/demon_trifle",
       "text": "book.spectrum.guidebook.blood_orchid_products.page3.text"
     },
     {
@@ -46,7 +46,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/food/demon_tea"
       },
-      "recipe_id_1": "spectrum:potion_workshop_crafting/demon_tea",
+      "recipe_id": "spectrum:potion_workshop_crafting/demon_tea",
       "text": "book.spectrum.guidebook.blood_orchid_products.page4.text"
     },
     {
@@ -55,8 +55,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/food/rabbit_poison"
       },
-      "title1": "item.spectrum.infused_beverage.tooltip.variant.rabbit_poison",
-      "recipe_id_1": "spectrum:titration_barrel/infused_beverages/rabbit_poison",
+      "title": "item.spectrum.infused_beverage.tooltip.variant.rabbit_poison",
+      "recipe_id": "spectrum:titration_barrel/infused_beverages/rabbit_poison",
       "text": "book.spectrum.guidebook.blood_orchid_products.page5.text"
     }
   ]

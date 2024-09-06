@@ -8,15 +8,51 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:stick"
+          "name": "minecraft:clock"
         },
         {
           "type": "minecraft:item",
-          "name": "spectrum:crafting_tablet"
+          "name": "spectrum:crafting_tablet",
+          "functions": [
+            {
+              "function": "spectrum:merge_nbt_randomly",
+              "tags": [
+                "{recipe: \"spectrum:pedestal/tier1/food/myceylon_apple_pie\"}",
+                "{recipe: \"spectrum:pedestal/tier1/food/myceylon_apple_pie\"}",
+                "{repice: \"minecraft:bread\"}",
+                "{recipe: \"spectrum:pedestal/tier1/food/crawfish_cocktail\"}",
+                "{recipe: \"spectrum:pedestal/tier1/food/hare_roast_malt\"}",
+                "{recipe: \"spectrum:pedestal/tier2/bottomless_bundle\"}",
+                "{recipe: \"spectrum:crafting_table/mushroom_stew\"}",
+                "{recipe: \"spectrum:crafting_table/flora/glow_dye_from_humming_bell\"}",
+                "{recipe: \"spectrum:pedestal/tier1/food/cream_pastry\"}",
+                "{recipe: \"spectrum:crafting_table/blackslag/blackslag_bricks\"}",
+                "{recipe: \"spectrum:pedestal/tier1/crafting_tablet\"}",
+                "{recipe: \"minecraft:lead\"}",
+                "{recipe: \"minecraft:beetroot_soup\"}",
+                "{recipe: \"minecraft:beetroot_soup\"}",
+                "{recipe: \"minecraft:beetroot_soup\"}",
+                "{recipe: \"minecraft:red_dye_from_beetroot\"}",
+                "{recipe: \"minecraft:red_dye_from_beetroot\"}",
+                "{recipe: \"minecraft:red_dye_from_beetroot\"}",
+                "{recipe: \"spectrum:pedestal/tier1/food/pastiche\"}",
+                "{recipe: \"spectrum:pedestal/tier1/food/pastiche\"}",
+                "{recipe: \"minecraft:glistering_melon_slice\"}",
+                "{recipe: \"minecraft:glistering_melon_slice\"}",
+                "{recipe: \"spectrum:pedestal/tier1/tools/lagoon_rod\"}",
+                "{recipe: \"spectrum:pedestal/tier1/noxwood/chestnut_planks\"}",
+                "{recipe: \"spectrum:pedestal/tier1/noxwood/chestnut_planks\"}"
+              ]
+            }
+          ]
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:beetroot_seeds"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:melon_seeds"
         },
         {
           "type": "minecraft:item",

@@ -22,6 +22,8 @@ import net.minecraft.world.event.*;
 
 public class SawbladeHollyBushBlock extends PlantBlock implements Fertilizable {
     
+    public static final float DAMAGE = 2.0F;
+	
     public static final int MAX_TINY_AGE = 0;
     public static final int MAX_SMALL_AGE = 2;
     public static final int MAX_AGE = Properties.AGE_7_MAX;
@@ -69,7 +71,7 @@ public class SawbladeHollyBushBlock extends PlantBlock implements Fertilizable {
 				double difX = Math.abs(entity.getX() - entity.lastRenderX);
 				double difZ = Math.abs(entity.getZ() - entity.lastRenderZ);
 				if (difX >= 0.003 || difZ >= 0.003) {
-					entity.damage(SpectrumDamageTypes.bristeSprouts(world), 1.0F);
+                    entity.damage(SpectrumDamageTypes.bristeSprouts(world), DAMAGE);
 				}
 			}
 		}

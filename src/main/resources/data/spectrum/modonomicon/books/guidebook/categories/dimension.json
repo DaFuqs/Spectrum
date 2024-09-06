@@ -4,6 +4,11 @@
   "sort_number": 14,
   "show_category_button": true,
 
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:midgame/enter_dimension"
+  },
+
   "entry_textures": "spectrum:textures/gui/modonomicon/entry_textures.png",
   "background": "spectrum:textures/gui/modonomicon/category_background.png",
   "background_width": 1024,

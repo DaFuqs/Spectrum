@@ -1,12 +1,9 @@
 {
   "name": "book.spectrum.guidebook.geodes.name",
-  "condition": {
-    "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:spectrum"
-  },
   "icon": "minecraft:amethyst_cluster",
   "category": "spectrum:general",
   "hide_while_locked": false,
+  "turnin": "spectrum:spectrum",
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
@@ -24,25 +21,35 @@
     },
     {
       "type": "modonomicon:text",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:spectrum"
+      },
       "text": "book.spectrum.guidebook.geodes.page1.text"
     },
     {
       "type": "modonomicon:multiblock",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:spectrum"
+      },
       "show_visualize_button": false,
       "multiblock_id": "spectrum:amethyst_geode",
       "text": "book.spectrum.guidebook.geodes.page2.text",
       "multiblock_name": "multiblock.spectrum.amethyst_geode"
     },
     {
-      "type": "modonomicon:spotlight",
+      "type": "spectrum:collection",
+      "title": "book.spectrum.guidebook.geodes.page3.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:break_gemstone_ore"
       },
-      "title": "book.spectrum.guidebook.geodes.page3.title",
-      "item": {
-        "item": "spectrum:amethyst_ore"
-      },
+      "items": [
+        "spectrum:topaz_ore",
+        "spectrum:amethyst_ore",
+        "spectrum:citrine_ore"
+      ],
       "text": "book.spectrum.guidebook.geodes.page3.text"
     },
     {

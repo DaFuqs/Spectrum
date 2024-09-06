@@ -24,7 +24,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/food/myceylon_pastries"
       },
-      "recipe_id_1": "spectrum:pedestal/tier1/food/myceylon_pumpkin_pie"
+      "recipe_id": "spectrum:pedestal/tier1/food/myceylon_pumpkin_pie"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -32,7 +32,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/food/myceylon_pastries"
       },
-      "recipe_id_1": "spectrum:pedestal/tier1/food/myceylon_apple_pie"
+      "recipe_id": "spectrum:pedestal/tier1/food/myceylon_apple_pie"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -40,7 +40,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/food/myceylon_pastries"
       },
-      "recipe_id_1": "spectrum:pedestal/tier1/food/myceylon_cookie"
+      "recipe_id": "spectrum:pedestal/tier1/food/myceylon_cookie"
     }
   ]
 }

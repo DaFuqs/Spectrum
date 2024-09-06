@@ -25,8 +25,8 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title1": "container.spectrum.rei.fusion_recipe",
-      "recipe_id_1": "spectrum:fusion_shrine/trinkets/weeping_circlet",
+      "title": "container.spectrum.rei.fusion_recipe",
+      "recipe_id": "spectrum:fusion_shrine/trinkets/weeping_circlet",
       "text": "book.spectrum.guidebook.weeping_circlet.page1.text"
     }
   ]

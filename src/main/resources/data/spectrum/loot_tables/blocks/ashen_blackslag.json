@@ -40,7 +40,7 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "spectrum:blackslag",
+              "name": "spectrum:cobbled_blackslag",
               "conditions": [
                 {
                   "condition": "minecraft:survives_explosion"

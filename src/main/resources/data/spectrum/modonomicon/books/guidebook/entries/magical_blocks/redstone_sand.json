@@ -23,8 +23,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier1/redstone_sand",
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "spectrum:pedestal/tier1/redstone_sand",
       "text": "book.spectrum.guidebook.redstone_sand.page1.text"
     }
   ]

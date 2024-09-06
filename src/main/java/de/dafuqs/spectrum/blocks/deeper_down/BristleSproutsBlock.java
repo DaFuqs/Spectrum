@@ -12,6 +12,8 @@ import net.minecraft.world.*;
 
 public class BristleSproutsBlock extends PlantBlock implements Fertilizable {
 	
+	public static final float DAMAGE = 2.0F;
+	
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 3.0, 14.0);
 	
 	public BristleSproutsBlock(AbstractBlock.Settings settings) {
@@ -31,7 +33,7 @@ public class BristleSproutsBlock extends PlantBlock implements Fertilizable {
 				double difX = Math.abs(entity.getX() - entity.lastRenderX);
 				double difZ = Math.abs(entity.getZ() - entity.lastRenderZ);
 				if (difX >= 0.003 || difZ >= 0.003) {
-					entity.damage(SpectrumDamageTypes.bristeSprouts(world), 1.0F);
+					entity.damage(SpectrumDamageTypes.bristeSprouts(world), DAMAGE);
 				}
 			}
 		}

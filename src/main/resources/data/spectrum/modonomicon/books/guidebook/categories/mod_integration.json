@@ -4,15 +4,15 @@
   "sort_number": 16,
   "show_category_button": true,
 
+  "condition": {
+    "type": "modonomicon:category_has_visible_entries",
+    "category_id": "spectrum:mod_integration"
+  },
+
   "entry_textures": "spectrum:textures/gui/modonomicon/entry_textures.png",
   "background": "spectrum:textures/gui/modonomicon/category_background.png",
   "background_width": 1024,
   "background_height": 1024,
   "background_texture_zoom_multiplier": 1.0,
-  "background_parallax_layers": [],
-
-  "condition": {
-    "type": "modonomicon:category_has_entries",
-    "category_id": "spectrum:mod_integration"
-  }
+  "background_parallax_layers": []
 }

@@ -39,13 +39,13 @@
       "type": "spectrum:enchanter_crafting",
       "text": "book.spectrum.guidebook.crafting",
       "title1": "container.spectrum.rei.enchanter_recipe",
-      "recipe_id_1": "spectrum:enchanter/spectrum_books/improved_critical"
+      "recipe_id": "spectrum:enchanter/spectrum_books/improved_critical"
     },
     {
       "type": "spectrum:enchanter_upgrading",
       "text": "book.spectrum.guidebook.upgrading.text",
       "title1": "container.spectrum.rei.enchantment_upgrading.title",
-      "recipe_id_1": "spectrum:enchantment_upgrade/spectrum/improved_critical_level_2"
+      "recipe_id": "spectrum:enchantment_upgrade/spectrum/improved_critical_level_2"
     }
   ]
 }

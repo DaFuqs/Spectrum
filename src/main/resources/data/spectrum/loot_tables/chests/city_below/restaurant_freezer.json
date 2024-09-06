@@ -3,39 +3,106 @@
   "pools": [
     {
       "rolls": {
-        "min": 3,
-        "max": 4
+        "min": 4,
+        "max": 5
       },
       "bonus_rolls": 0.5,
       "entries": [
         {
           "type": "minecraft:tag",
-          "name": "minecraft:spectrum/raw_water_meats",
-          "expand": true
+          "name": "spectrum:raw_water_meats",
+          "expand": true,
+          "weight": 2
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:porkchop"
+          "name": "minecraft:porkchop",
+          "weight": 2
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:beef"
+          "name": "minecraft:beef",
+          "weight": 2
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:mutton"
+          "name": "minecraft:mutton",
+          "weight": 2
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:chicken"
+          "name": "minecraft:chicken",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:rabbit",
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:lizard_meat",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:moss_carpet",
+          "weight": 8,
+          "quality": -2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:rotten_flesh",
+          "weight": 8,
+          "quality": -2
         }
       ],
       "functions": [
         {
           "function": "minecraft:set_count",
           "count": {
-            "min": 2,
-            "max": 6
+            "min": 3,
+            "max": 7
+          }
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 1,
+        "max": 2
+      },
+      "bonus_rolls": 0.2,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:frostbite_essence",
+          "quality": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:ice",
+          "weight": 8,
+          "quality": -1
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:packed_ice",
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:blue_ice",
+          "weight": 2,
+          "quality": 1
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_count",
+          "count": {
+            "min": 4,
+            "max": 10
           }
         }
       ]

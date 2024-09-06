@@ -20,7 +20,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier3/primordial_lighter",
+      "recipe_id": "spectrum:pedestal/tier3/primordial_lighter",
       "text": "book.spectrum.guidebook.primordial_lighter.page1.text"
     }
   ]

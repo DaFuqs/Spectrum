@@ -28,8 +28,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier3/item_bowl_calcite",
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "spectrum:pedestal/tier3/item_bowl_calcite",
       "text": "book.spectrum.guidebook.item_bowl.page1.text"
     }
   ]

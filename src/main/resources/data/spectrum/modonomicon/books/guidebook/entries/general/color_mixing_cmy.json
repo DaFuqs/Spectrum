@@ -1,5 +1,6 @@
 {
   "name": "book.spectrum.guidebook.color_mixing_cmy.name",
+  "description": "book.spectrum.guidebook.color_mixing_cmy.description",
   "icon": "spectrum:textures/gui/guidebook/icons/color_mixing_cmy.png",
   "condition": {
     "type": "modonomicon:advancement",

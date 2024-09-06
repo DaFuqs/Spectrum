@@ -23,12 +23,12 @@
     },
     {
       "type": "spectrum:anvil_crushing",
-      "title1": "item.spectrum.amaranth_grains",
+      "title": "item.spectrum.amaranth_grains",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_amaranth_bushel"
       },
-      "recipe_id_1": "spectrum:anvil_crushing/amaranth_grains",
+      "recipe_id": "spectrum:anvil_crushing/amaranth_grains",
       "text": "book.spectrum.guidebook.amaranth.page1.text"
     },
     {
@@ -37,8 +37,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_amaranth_bushel"
       },
-      "title1": "item.spectrum.honey_pastry",
-      "recipe_id_1": "spectrum:pedestal/tier1/food/honey_pastry",
+      "title": "item.spectrum.honey_pastry",
+      "recipe_id": "spectrum:pedestal/tier1/food/honey_pastry",
       "text": "book.spectrum.guidebook.amaranth.page2.text"
     },
     {
@@ -47,8 +47,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_amaranth_bushel"
       },
-      "title1": "book.spectrum.guidebook.amaranth.page3.title",
-      "recipe_id_1": "spectrum:pedestal/tier1/food/scone",
+      "title": "book.spectrum.guidebook.amaranth.page3.title",
+      "recipe_id": "spectrum:pedestal/tier1/food/scone",
       "text": "book.spectrum.guidebook.amaranth.page3.text"
     },
     {
@@ -57,8 +57,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/food/triple_meat_pot_pie"
       },
-      "title1": "item.spectrum.triple_meat_pot_pie",
-      "recipe_id_1": "spectrum:pedestal/tier1/food/triple_meat_pot_pie",
+      "title": "item.spectrum.triple_meat_pot_pie",
+      "recipe_id": "spectrum:pedestal/tier1/food/triple_meat_pot_pie",
       "text": "book.spectrum.guidebook.amaranth.page4.text"
     }
   ]

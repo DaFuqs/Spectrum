@@ -26,12 +26,12 @@
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.modular_explosives.page2.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/boom/threat_conflux"
+      "recipe_id": "spectrum:pedestal/tier3/boom/threat_conflux"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.modular_explosives.page3.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/boom/parametric_mining_device"
+      "recipe_id": "spectrum:pedestal/tier3/boom/parametric_mining_device"
     },
     {
       "type": "modonomicon:text",

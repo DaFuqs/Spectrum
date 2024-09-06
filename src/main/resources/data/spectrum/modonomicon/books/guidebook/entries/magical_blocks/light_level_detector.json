@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.light_level_detector.name",
+  "name": "block.spectrum.light_level_detector",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/redstone/light_level_detector"
@@ -20,8 +20,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier1/detectors/light_level_detector",
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "spectrum:pedestal/tier1/detectors/light_level_detector",
       "text": "book.spectrum.guidebook.light_level_detector.page1.text"
     }
   ]

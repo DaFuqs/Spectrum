@@ -25,25 +25,25 @@
     {
       "type": "spectrum:titration_barrel_fermenting",
       "text": "book.spectrum.guidebook.incandescent_amalgam.page2.text",
-      "title1": "book.spectrum.guidebook.incandescent_amalgam.page2.title",
-      "recipe_id_1": "spectrum:titration_barrel/incandescent_amalgam_doom"
+      "title": "book.spectrum.guidebook.incandescent_amalgam.page2.title",
+      "recipe_id": "spectrum:titration_barrel/incandescent_amalgam_doom"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
       "text": "book.spectrum.guidebook.incandescent_amalgam.page3.text",
-      "title1": "book.spectrum.guidebook.incandescent_amalgam.page3.title",
-      "recipe_id_1": "spectrum:titration_barrel/incandescent_amalgam_pure"
+      "title": "book.spectrum.guidebook.incandescent_amalgam.page3.title",
+      "recipe_id": "spectrum:titration_barrel/incandescent_amalgam_pure"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "title1": "book.spectrum.guidebook.incandescent_amalgam.page4.title",
-      "recipe_id_1": "spectrum:titration_barrel/incandescent_amalgam_simple"
+      "title": "book.spectrum.guidebook.incandescent_amalgam.page4.title",
+      "recipe_id": "spectrum:titration_barrel/incandescent_amalgam_simple"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
       "text": "book.spectrum.guidebook.incandescent_amalgam.page5.text",
-      "title1": "book.spectrum.guidebook.incandescent_amalgam.page5.title",
-      "recipe_id_1": "spectrum:titration_barrel/fast_pure_alcohol"
+      "title": "book.spectrum.guidebook.incandescent_amalgam.page5.title",
+      "recipe_id": "spectrum:titration_barrel/fast_pure_alcohol"
     }
   ]
 }

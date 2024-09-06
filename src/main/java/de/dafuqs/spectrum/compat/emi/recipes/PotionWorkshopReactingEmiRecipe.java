@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.compat.emi.recipes;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.compat.emi.*;
+import de.dafuqs.spectrum.recipe.potion_workshop.*;
 import dev.emi.emi.api.recipe.*;
 import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.TextWidget.*;
@@ -12,16 +13,16 @@ import net.minecraft.client.*;
 import java.util.*;
 
 public class PotionWorkshopReactingEmiRecipe extends EmiInfoRecipe {
-	private final DescriptiveGatedRecipe recipe;
+	private final DescriptiveGatedRecipe<?> recipe;
 	
-	public PotionWorkshopReactingEmiRecipe(DescriptiveGatedRecipe recipe) {
+	public PotionWorkshopReactingEmiRecipe(DescriptiveGatedRecipe<?> recipe) {
 		super(List.of(EmiStack.of(recipe.getItem())), List.of(recipe.getDescription()), recipe.getId());
 		this.recipe = recipe;
 	}
 	
 	public boolean isUnlocked() {
 		MinecraftClient client = MinecraftClient.getInstance();
-		return AdvancementHelper.hasAdvancement(client.player, recipe.getRequiredAdvancementIdentifier());
+		return AdvancementHelper.hasAdvancement(client.player, PotionWorkshopRecipe.UNLOCK_IDENTIFIER) && AdvancementHelper.hasAdvancement(client.player, recipe.getRequiredAdvancementIdentifier());
 	}
 	
 	@Override

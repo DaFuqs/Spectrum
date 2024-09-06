@@ -23,8 +23,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier2/redstone_transceiver",
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "spectrum:pedestal/tier2/redstone_transceiver",
       "text": "book.spectrum.guidebook.redstone_transceiver.page1.text"
     }
   ]

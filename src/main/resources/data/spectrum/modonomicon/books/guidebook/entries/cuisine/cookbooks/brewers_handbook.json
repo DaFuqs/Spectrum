@@ -37,7 +37,7 @@
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "recipe_id_1": "spectrum:potion_workshop_crafting/peach_cream",
+      "recipe_id": "spectrum:potion_workshop_crafting/peach_cream",
       "text": "book.spectrum.guidebook.brewers_handbook.page3.text"
     },
     {
@@ -47,7 +47,7 @@
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "recipe_id_1": "spectrum:potion_workshop_crafting/golden_bristle_tea",
+      "recipe_id": "spectrum:potion_workshop_crafting/golden_bristle_tea",
       "text": "book.spectrum.guidebook.brewers_handbook.page5.text"
     },
     {
@@ -57,12 +57,12 @@
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "recipe_id_1": "spectrum:titration_barrel/bristle_mead",
+      "recipe_id": "spectrum:titration_barrel/bristle_mead",
       "text": "book.spectrum.guidebook.brewers_handbook.page7.text"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "recipe_id_1": "spectrum:titration_barrel/bristle_mead_fluid",
+      "recipe_id": "spectrum:titration_barrel/bristle_mead_fluid",
       "text": "book.spectrum.guidebook.brewers_handbook.page7.text"
     },
     {
@@ -72,7 +72,7 @@
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "recipe_id_1": "spectrum:titration_barrel/morchella",
+      "recipe_id": "spectrum:titration_barrel/morchella",
       "text": "book.spectrum.guidebook.brewers_handbook.page10.text"
     },
     {
@@ -88,7 +88,7 @@
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "recipe_id_1": "spectrum:potion_workshop_crafting/sedatives",
+      "recipe_id": "spectrum:potion_workshop_crafting/sedatives",
       "text": "book.spectrum.guidebook.brewers_handbook.page14.text"
     },
     {

@@ -20,7 +20,14 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:moonstone_core"
+          "name": "spectrum:moonstone_core",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:nectardew_burgeon",
+          "weight": 0,
+          "quality": 1
         }
       ]
     },
@@ -33,7 +40,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:wheat_seeds"
+          "name": "spectrum:amaranth_grains"
         },
         {
           "type": "minecraft:item",
@@ -41,7 +48,8 @@
         },
         {
           "type": "minecraft:item",
-          "name": "spectrum:nephrite_blossom_bulb"
+          "name": "spectrum:nephrite_blossom_bulb",
+          "weight": 2
         },
         {
           "type": "minecraft:item",
@@ -49,7 +57,11 @@
         },
         {
           "type": "minecraft:item",
-          "name": "spectrum:aloe_leaf"
+          "name": "spectrum:doombloom_seed"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:nightdew_sprout"
         }
       ],
       "functions": [

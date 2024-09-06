@@ -10,6 +10,15 @@
       "chance": 3
     },
     {
+      "type": "minecraft:block_predicate_filter",
+      "predicate": {
+        "type": "minecraft:not",
+        "predicate": {
+          "type": "spectrum:overlaps_structure"
+        }
+      }
+    },
+    {
       "type": "minecraft:biome"
     }
   ]

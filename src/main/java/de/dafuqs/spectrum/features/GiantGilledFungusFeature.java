@@ -45,7 +45,7 @@ public class GiantGilledFungusFeature extends Feature<GilledFungusFeatureConfig>
 
         // Find out just how tall we can go
         for (; stemHeight < maxHeight; ++stemHeight) {
-            if (!isReplaceable(world, mutable.move(Direction.UP, 4), false)) {
+            if (!isReplaceable(world, mutable.move(Direction.UP, 1), false)) {
                 break;
             }
         }

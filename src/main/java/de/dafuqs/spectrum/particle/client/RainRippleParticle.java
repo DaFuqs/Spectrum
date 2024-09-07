@@ -13,70 +13,34 @@ import org.joml.*;
 
 import java.lang.Math;
 
-public class RaindropParticle extends SpriteBillboardParticle {
-	
-	private static final Vec3d VERTICAL = new Vec3d(0, 1, 0);
-	private static final BlockPos.Mutable pos = new BlockPos.Mutable();
-	//private final int simInterval = SpectrumCommon.CONFIG.WindSimInterval, simOffset;
-	
-	public RaindropParticle(ClientWorld clientWorld, double d, double e, double f, SpriteProvider spriteProvider) {
+public class RainRippleParticle extends SpriteBillboardParticle {
+
+	private float width, lastWidth, alphaMult;
+
+	public RainRippleParticle(ClientWorld clientWorld, double d, double e, double f, SpriteProvider spriteProvider) {
 		super(clientWorld, d, e, f);
 		setSprite(spriteProvider);
-		gravityStrength = 5.25F;
-		scale = 0.1F + random.nextFloat() * 0.3125F;
-		//this.simOffset = random.nextInt(simInterval);
-		maxAge = 25;
-	}
-
-	@Override
-	public void tick() {
-		pos.set(x, y, z);
-		var waterColor = ColorHelper.colorIntToVec(BiomeColors.getWaterColor(world, pos));
+		gravityStrength = 0F;
+		scale = 0.2F + random.nextFloat() * 0.1F;
+		alphaMult = 0.75F + random.nextFloat() * 0.25F;
+		alpha = alphaMult;
+		var waterColor = ColorHelper.colorIntToVec(BiomeColors.getWaterColor(world, BlockPos.ofFloored(x, y, z)));
 		red = waterColor.x;
 		green = waterColor.y;
 		blue = waterColor.z;
-
-		if (onGround) {
-			spawnDroplets(0.85F, 4, false);
-			markDead();
-			return;
-		}
-		else if(world.isWater(pos)) {
-			spawnDroplets(0.625F, 7, true);
-			markDead();
-			return;
-		}
-		
+		maxAge = 13;
+	}
+	
+	@Override
+	public void tick() {
+		lastWidth = width;
+		width = Math.max(0.05F, age / 13F) + 0.1F;
 		adjustAlpha();
 		super.tick();
 	}
 
-	private void spawnDroplets(float velMult, int drops, boolean water) {
-		var spawnY = y + 0.01F;
-
-		if (water)
-			spawnY = Math.ceil(y) - 0.05F;
-
-		if (isAlive()) {
-			var spawns = random.nextInt(drops) + 1;
-			for (int i = 0; i < spawns; i++) {
-				var xVel = random.nextFloat() * 0.8 - 0.4F;
-				var zVel = random.nextFloat() * 0.8 - 0.4F;
-				world.addParticle(SpectrumParticleTypes.RAIN_SPLASH, x, spawnY, z, xVel * velMult, 0, zVel * velMult);
-			}
-			world.addParticle(SpectrumParticleTypes.RAIN_RIPPLE, x, spawnY, z, 0, 0, 0);
-		}
-	}
-
 	private void adjustAlpha() {
-		if (age <= 5) {
-			alpha = MathHelper.clamp(age / 5F, 0, 1F);
-			return;
-		}
-		
-		var ageFade = MathHelper.clamp(Math.min(maxAge - age, 5) / 5F, 0, 1F);
-		alpha = Math.min(alpha, ageFade);
-		
+		alpha = MathHelper.clamp(Math.min(maxAge - age, 6) / 6F, 0, alphaMult);
 		if (alpha < 0.01F) {
 			markDead();
 		}
@@ -87,17 +51,13 @@ public class RaindropParticle extends SpriteBillboardParticle {
 		float f = (float) (MathHelper.lerp(tickDelta, this.prevPosX, this.x) - vec3d.getX());
 		float g = (float) (MathHelper.lerp(tickDelta, this.prevPosY, this.y) - vec3d.getY());
 		float h = (float) (MathHelper.lerp(tickDelta, this.prevPosZ, this.z) - vec3d.getZ());
-		var xOffset = x - camera.getPos().x;
-		var zOffset = z - camera.getPos().z;
-		
-		Quaternionf quaternionf = RotationAxis.POSITIVE_Y.rotation((float) MathHelper.atan2(xOffset, zOffset));
-		
-		Vector3f[] vector3fs = new Vector3f[]{new Vector3f(-0.75F, -1.75F, 0.0F), new Vector3f(-0.75F, 1.75F, 0.0F), new Vector3f(0.75F, 1.75F, 0.0F), new Vector3f(0.75F, -1.75F, 0.0F)};
+
+		var effWidth = MathHelper.lerp(tickDelta, lastWidth, width);
+		Vector3f[] vector3fs = new Vector3f[]{new Vector3f(-effWidth, 0, -effWidth), new Vector3f(-effWidth, 0, effWidth), new Vector3f(effWidth, 0, effWidth), new Vector3f(effWidth, 0, -effWidth)};
 		float i = this.getSize(tickDelta);
 		
 		for (int j = 0; j < 4; ++j) {
 			Vector3f vector3f = vector3fs[j];
-			vector3f.rotate(quaternionf);
 			vector3f.mul(i);
 			vector3f.add(f, g, h);
 		}
@@ -128,7 +88,7 @@ public class RaindropParticle extends SpriteBillboardParticle {
 		
 		@Override
 		public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
-			return new RaindropParticle(clientWorld, d, e, f, spriteProvider);
+			return new RainRippleParticle(clientWorld, d, e, f, spriteProvider);
 		}
 	}
 }

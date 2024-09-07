@@ -41,6 +41,26 @@
       },
       "title": "book.spectrum.guidebook.abyssal_vines.page3.title",
       "text": "book.spectrum.guidebook.abyssal_vines.page3.text"
+    },
+    {
+      "type": "spectrum:cinderhearth_smelting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_fissure_plum"
+      },
+      "text": "book.spectrum.guidebook.abyssal_vines.page4.text",
+      "title": "book.spectrum.guidebook.abyssal_vines.page4.title",
+      "recipe_id": "spectrum:cinderhearth/vanilla/sugar_from_fissure_plum"
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "text": "book.spectrum.guidebook.abyssal_vines.page5.text",
+      "title": "book.spectrum.guidebook.abyssal_vines.page5.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/resources/fertilizer"
+      },
+      "recipe_id": "spectrum:potion_workshop_crafting/bone_meal"
     }
   ]
 }

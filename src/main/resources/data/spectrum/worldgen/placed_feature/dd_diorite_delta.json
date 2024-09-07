@@ -1,13 +1,13 @@
 {
-  "feature": "spectrum:noxfungi/giant_ivory",
+  "feature": "spectrum:dd_diorite_delta",
   "placement": [
     {
       "type": "minecraft:rarity_filter",
-      "chance": 40
+      "chance": 15
     },
     {
       "type": "minecraft:count_on_every_layer",
-      "count": 1
+      "count": 6
     },
     {
       "type": "minecraft:biome"

@@ -7,7 +7,7 @@
         "type": "minecraft:biased_to_bottom",
         "value": {
           "min_inclusive": 0,
-          "max_inclusive": 1
+          "max_inclusive": 2
         }
       }
     },

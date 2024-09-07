@@ -7,6 +7,7 @@ import net.minecraft.client.sound.AbstractSoundInstance;
 import net.minecraft.client.sound.SoundInstance;
 import net.minecraft.client.sound.TickableSoundInstance;
 import net.minecraft.entity.Entity;
+import net.minecraft.registry.*;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -18,22 +19,25 @@ import net.minecraft.world.biome.Biome;
 
 import java.util.Optional;
 
-public class HowlingWindSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
+public class BiomeAttenuatingSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
 
-    public static Optional<HowlingWindSoundInstance> HIGH = Optional.empty();
-    public static Optional<HowlingWindSoundInstance> LOW = Optional.empty();
+    public static Optional<BiomeAttenuatingSoundInstance> WIND_HIGH = Optional.empty();
+    public static Optional<BiomeAttenuatingSoundInstance> WIND_LOW = Optional.empty();
+    public static Optional<BiomeAttenuatingSoundInstance> SHOWER = Optional.empty();
     private final MinecraftClient client = MinecraftClient.getInstance();
     private static final int MAX_DURATION = 80;
+    private final RegistryKey<Biome> biome;
     private final float volumeMod;
     private float coverage, lastCoverage;
     private int biomeTicks = 1, coverageUpdateTicks;
     private final boolean altPitch;
     private boolean finished;
 
-    protected HowlingWindSoundInstance(SoundEvent sound, float volumeMod, boolean altMod) {
+    protected BiomeAttenuatingSoundInstance(RegistryKey<Biome> biome, SoundEvent sound, float volumeMod, boolean altMod) {
         super(sound, SoundCategory.AMBIENT, SoundInstance.createRandom());
         repeat = true;
         repeatDelay = 0;
+        this.biome = biome;
         this.volumeMod = volumeMod;
         this.altPitch = altMod;
         this.relative = true;
@@ -66,7 +70,7 @@ public class HowlingWindSoundInstance extends AbstractSoundInstance implements T
             updateCoverage(world, camera);
         }
 
-        if (world.getBiome(camera.getBlockPos()).matchesKey(SpectrumBiomes.HOWLING_SPIRES) && biomeTicks < MAX_DURATION) {
+        if (world.getBiome(camera.getBlockPos()).matchesKey(biome) && biomeTicks < MAX_DURATION) {
             biomeTicks++;
         }
         else if (biomeTicks > 0) {
@@ -128,23 +132,33 @@ public class HowlingWindSoundInstance extends AbstractSoundInstance implements T
     public static void update(RegistryEntry<Biome> biome) {
         var client = MinecraftClient.getInstance();
 
-        if (HIGH.map(TickableSoundInstance::isDone).orElse(false)) {
-            HIGH = Optional.empty();
+        if (WIND_HIGH.map(TickableSoundInstance::isDone).orElse(false)) {
+            WIND_HIGH = Optional.empty();
         }
 
-        if (LOW.map(TickableSoundInstance::isDone).orElse(false)) {
-            LOW = Optional.empty();
+        if (WIND_LOW.map(TickableSoundInstance::isDone).orElse(false)) {
+            WIND_LOW = Optional.empty();
+        }
+
+        if (SHOWER.map(TickableSoundInstance::isDone).orElse(false)) {
+            SHOWER = Optional.empty();
         }
 
         if (biome.matchesKey(SpectrumBiomes.HOWLING_SPIRES)) {
-            if (HIGH.isEmpty()) {
-                HIGH = Optional.of(new HowlingWindSoundInstance(SpectrumSoundEvents.HOWLING_WIND_HIGH, 0.525F, false));
-                client.getSoundManager().play(HIGH.get());
+            if (WIND_HIGH.isEmpty()) {
+                WIND_HIGH = Optional.of(new BiomeAttenuatingSoundInstance(SpectrumBiomes.HOWLING_SPIRES, SpectrumSoundEvents.HOWLING_WIND_HIGH, 0.525F, false));
+                client.getSoundManager().play(WIND_HIGH.get());
             }
 
-            if (LOW.isEmpty()) {
-                LOW = Optional.of(new HowlingWindSoundInstance(SpectrumSoundEvents.HOWLING_WIND_LOW, 1.8F, true));
-                client.getSoundManager().play(LOW.get());
+            if (WIND_LOW.isEmpty()) {
+                WIND_LOW = Optional.of(new BiomeAttenuatingSoundInstance(SpectrumBiomes.HOWLING_SPIRES, SpectrumSoundEvents.HOWLING_WIND_LOW, 1.8F, true));
+                client.getSoundManager().play(WIND_LOW.get());
+            }
+        }
+        else if (biome.matchesKey(SpectrumBiomes.DEEP_DRIPSTONE_CAVES)) {
+            if (SHOWER.isEmpty()) {
+                SHOWER = Optional.of(new BiomeAttenuatingSoundInstance(SpectrumBiomes.DEEP_DRIPSTONE_CAVES, SpectrumSoundEvents.SHOWER, 2F, false));
+                client.getSoundManager().play(SHOWER.get());
             }
         }
     }

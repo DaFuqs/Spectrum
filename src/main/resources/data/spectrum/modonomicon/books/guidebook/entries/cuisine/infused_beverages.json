@@ -41,6 +41,24 @@
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
+      "title": "item.spectrum.infused_beverage.tooltip.variant.camomillesque",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:collect_nightdew"
+      },
+      "recipe_id": "spectrum:titration_barrel/infused_beverages/camomillesque"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "item.spectrum.infused_beverage.tooltip.variant.verdigris_wine",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/items/night_salts"
+      },
+      "recipe_id": "spectrum:titration_barrel/infused_beverages/verdigris_wine"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:triggers/confirmed_drinking_age"
@@ -241,6 +259,18 @@
       "recipe_id": "spectrum:titration_barrel/infused_beverages/sawblade_holly_cider",
       "title2": "item.spectrum.infused_beverage.tooltip.variant.sawblade_holly_liquor",
       "recipe_id2": "spectrum:titration_barrel/infused_beverages/sawblade_holly_liquor"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "item.spectrum.infused_beverage.tooltip.variant.plum_cider",
+      "recipe_id": "spectrum:titration_barrel/infused_beverages/plum_cider",
+      "title2": "item.spectrum.infused_beverage.tooltip.variant.plum_liquor",
+      "recipe_id2": "spectrum:titration_barrel/infused_beverages/plum_liquor"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "item.spectrum.infused_beverage.tooltip.variant.gatorwine",
+      "recipe_id": "spectrum:titration_barrel/infused_beverages/gatorwine"
     }
   ]
 }

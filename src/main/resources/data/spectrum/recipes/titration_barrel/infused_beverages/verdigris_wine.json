@@ -1,0 +1,97 @@
+{
+  "type": "spectrum:titration_barrel",
+  "group": "infused_beverages",
+  "ingredients": [
+    {
+      "item": "spectrum:quitoxic_reeds",
+      "count": 2
+    },
+    {
+      "item": "spectrum:onyx_powder",
+      "count": 4
+    },
+    {
+      "item": "spectrum:nightdew_sprout",
+      "count": 1
+    }
+  ],
+  "min_fermentation_time_hours": 24,
+  "fluid": {
+    "fluid": "minecraft:water"
+  },
+  "tapping_item": "minecraft:glass_bottle",
+  "fermentation_data": {
+    "fermentation_speed_mod": 0.25,
+    "effects": [
+      {
+        "id": "spectrum:somnolence",
+        "base_duration": 12000,
+        "potency": [
+          {
+            "potency": 0
+          },
+          {
+            "min_alc": 15,
+            "potency": 1
+          },
+          {
+            "min_alc": 30,
+            "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "minecraft:blindness",
+        "base_duration": 12000,
+        "potency": [
+          {
+            "min_alc": 20
+          }
+        ]
+      },
+      {
+        "id": "minecraft:weakness",
+        "base_duration": 12000,
+        "potency": [
+          {
+            "min_alc": 10
+          },
+          {
+            "min_alc": 30,
+            "potency": 1
+          },
+          {
+            "min_alc": 50,
+            "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "minecraft:slowness",
+        "base_duration": 12000,
+        "potency": [
+          {
+            "min_alc": 10
+          },
+          {
+            "min_alc": 30,
+            "potency": 1
+          },
+          {
+            "min_alc": 50,
+            "potency": 2
+          }
+        ]
+      }
+    ]
+  },
+  "result": {
+    "item": "spectrum:infused_beverage",
+    "count": 12,
+    "nbt": {
+      "Variant": "verdigris_wine",
+      "Color": 4237444
+    }
+  },
+  "required_advancement": "spectrum:unlocks/items/night_salts"
+}

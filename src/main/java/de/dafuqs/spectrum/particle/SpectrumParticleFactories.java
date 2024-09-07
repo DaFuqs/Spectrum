@@ -223,6 +223,8 @@ public class SpectrumParticleFactories {
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.BLOODFLY, BloodflyParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.QUARTZ_FLUFF, QuartzFluffParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.LIGHT_RAIN, RaindropParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.RAIN_SPLASH, TranslucentSplashParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.RAIN_RIPPLE, RainRippleParticle.Factory::new);
 
 		
 		// Since these can reference other particle types, they should always come last

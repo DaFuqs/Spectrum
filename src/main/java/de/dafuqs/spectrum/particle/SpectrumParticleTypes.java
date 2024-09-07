@@ -195,6 +195,7 @@ public class SpectrumParticleTypes {
 
 	public static DefaultParticleType LIGHT_RAIN = register("light_rain", true);
 	public static DefaultParticleType RAIN_SPLASH = register("rain_splash", false);
+	public static DefaultParticleType RAIN_RIPPLE = register("rain_ripple", false);
 
 	public static DefaultParticleType LIGHT_TRAIL = register("light_trail", true);
 	

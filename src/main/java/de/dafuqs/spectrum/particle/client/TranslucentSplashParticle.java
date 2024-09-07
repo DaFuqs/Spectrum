@@ -1,9 +1,12 @@
 package de.dafuqs.spectrum.particle.client;
 
+import de.dafuqs.spectrum.helpers.ColorHelper;
 import net.fabricmc.api.*;
+import net.minecraft.client.color.world.*;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.*;
 import net.minecraft.particle.*;
+import net.minecraft.util.math.*;
 
 @Environment(EnvType.CLIENT)
 
@@ -11,6 +14,11 @@ public class TranslucentSplashParticle extends RainSplashParticle {
 
 	protected TranslucentSplashParticle(ClientWorld clientWorld, double d, double e, double f) {
 		super(clientWorld, d, e, f);
+		var waterColor = ColorHelper.colorIntToVec(BiomeColors.getWaterColor(world, BlockPos.ofFloored(x, y, z)));
+		red = waterColor.x;
+		green = waterColor.y;
+		blue = waterColor.z;
+		scale *= 0.667F;
 	}
 
 	@Override

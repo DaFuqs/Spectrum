@@ -22,7 +22,7 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.moonstone_shards.name",
+      "title": "block.spectrum.blood_orchid",
       "item": {
         "item": "spectrum:blood_orchid"
       },

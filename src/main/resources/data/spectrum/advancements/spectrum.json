@@ -35,10 +35,16 @@
         "advancement_identifier": "spectrum:hidden/collect_shards/topaz"
       }
     },
-    "has_clover": {
-      "trigger": "revelationary:advancement_gotten",
+    "has_nightdew": {
+      "trigger": "minecraft:inventory_changed",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_clover"
+        "items": [
+          {
+            "items": [
+              "spectrum:nightdew_sprout"
+            ]
+          }
+        ]
       }
     },
     "has_mermaids_gem": {
@@ -77,7 +83,7 @@
       "has_amethyst_shard",
       "has_citrine_shard",
       "has_topaz_shard",
-      "has_clover",
+      "has_nightdew",
       "has_mermaids_gem",
       "has_radiating_ender",
       "found_preservation_ruin"

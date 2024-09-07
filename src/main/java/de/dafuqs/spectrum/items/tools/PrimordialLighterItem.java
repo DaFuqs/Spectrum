@@ -11,7 +11,6 @@ import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.server.network.*;
 import net.minecraft.sound.*;
-import net.minecraft.state.property.Properties;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
@@ -29,26 +28,12 @@ public class PrimordialLighterItem extends FlintAndSteelItem implements Creative
 			this.setSuccess(true);
 			Direction direction = pointer.getBlockState().get(DispenserBlock.FACING);
 			BlockPos blockPos = pointer.getPos().offset(direction);
-			BlockState blockState = world.getBlockState(blockPos);
-			if (PrimordialFireBlock.canPlaceAt(world, blockPos, direction)) {
-				world.setBlockState(blockPos, SpectrumBlocks.PRIMORDIAL_FIRE.getStateForPosition(world, blockPos));
-				world.emitGameEvent(null, GameEvent.BLOCK_PLACE, blockPos);
-			} else if (!CampfireBlock.canBeLit(blockState) && !CandleBlock.canBeLit(blockState) && !CandleCakeBlock.canBeLit(blockState)) {
-				if (blockState.getBlock() instanceof TntBlock) {
-					TntBlock.primeTnt(world, blockPos);
-					world.removeBlock(blockPos, false);
-				} else {
-					this.setSuccess(false);
-				}
+			if (PrimordialFireBlock.tryPlacePrimordialFire(world, blockPos, direction)) {
+				stack.damage(1, world.random, null);
+				this.setSuccess(true);
 			} else {
-				world.setBlockState(blockPos, blockState.with(Properties.LIT, true));
-				world.emitGameEvent(null, GameEvent.BLOCK_CHANGE, blockPos);
+				this.setSuccess(false);
 			}
-			
-			if (this.isSuccess() && stack.damage(1, world.random, null)) {
-				stack.setCount(0);
-			}
-			
 			return stack;
 		}
 	};

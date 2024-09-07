@@ -3,7 +3,7 @@
   "icon": "spectrum:textures/gui/guidebook/icons/color_mixing_white.png",
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:lategame/collect_moonstone"
+    "advancement_id": "spectrum:lategame/build_complex_pedestal_structure"
   },
   "category": "spectrum:general",
   "hide_while_locked": true,

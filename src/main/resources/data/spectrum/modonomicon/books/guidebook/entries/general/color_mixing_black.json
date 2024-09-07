@@ -3,7 +3,7 @@
   "icon": "spectrum:textures/gui/guidebook/icons/color_mixing_black.png",
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:create_onyx_shard"
+    "advancement_id": "spectrum:midgame/build_advanced_pedestal_structure"
   },
   "category": "spectrum:general",
   "hide_while_locked": true,

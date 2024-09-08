@@ -75,7 +75,8 @@ public class SpectrumClientEventListeners {
 		WorldRenderEvents.AFTER_ENTITIES.register(context -> ((ExtendedParticleManager) MinecraftClient.getInstance().particleManager).render(context.matrixStack(), context.consumers(), context.camera(), context.tickDelta()));
 		WorldRenderEvents.AFTER_TRANSLUCENT.register(context -> Pastel.getClientInstance().renderLines(context));
 		WorldRenderEvents.BLOCK_OUTLINE.register(SpectrumClientEventListeners::renderExtendedBlockOutline);
-		
+		BiomeAttenuatingSoundInstance.clear();
+
 		ModelLoadingPlugin.register((ctx) -> {
 			ctx.modifyModelAfterBake().register((orig, c) -> {
 				Identifier id = c.id();
@@ -103,8 +104,10 @@ public class SpectrumClientEventListeners {
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
 			var world = client.world;
 			Entity cameraEntity = client.getCameraEntity();
-			if (world == null || cameraEntity == null)
+			if (world == null || cameraEntity == null) {
+				BiomeAttenuatingSoundInstance.clear();
 				return;
+			}
 			
 			RegistryEntry<Biome> biome = world.getBiome(client.getCameraEntity().getBlockPos());
 

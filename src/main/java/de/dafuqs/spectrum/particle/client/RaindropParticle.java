@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.particle.client;
 
 import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.color.world.*;
 import net.minecraft.client.particle.*;
@@ -26,6 +27,11 @@ public class RaindropParticle extends SpriteBillboardParticle {
 		scale = 0.1F + random.nextFloat() * 0.3125F;
 		//this.simOffset = random.nextInt(simInterval);
 		maxAge = 25;
+		pos.set(x, y, z);
+		var waterColor = ColorHelper.colorIntToVec(BiomeColors.getWaterColor(world, pos));
+		red = waterColor.x;
+		green = waterColor.y;
+		blue = waterColor.z;
 	}
 
 	@Override
@@ -41,7 +47,7 @@ public class RaindropParticle extends SpriteBillboardParticle {
 			markDead();
 			return;
 		}
-		else if(world.isWater(pos)) {
+		else if(!world.getFluidState(pos).isEmpty()) {
 			spawnDroplets(0.625F, 7, true);
 			markDead();
 			return;
@@ -52,10 +58,15 @@ public class RaindropParticle extends SpriteBillboardParticle {
 	}
 
 	private void spawnDroplets(float velMult, int drops, boolean water) {
+		var state = world.getBlockState(pos);
 		var spawnY = y + 0.01F;
 
-		if (water)
+		if (water) {
 			spawnY = Math.ceil(y) - 0.05F;
+		}
+		else if(state.isOf(SpectrumBlocks.ROTTEN_GROUND)){
+			spawnY = pos.getY() + 1.01F;
+		}
 
 		if (isAlive()) {
 			var spawns = random.nextInt(drops) + 1;

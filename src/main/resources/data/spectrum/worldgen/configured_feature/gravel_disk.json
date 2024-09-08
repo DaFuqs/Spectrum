@@ -9,7 +9,7 @@
           "predicate_type": "minecraft:always_true"
         },
         "state": {
-          "Name": "spectrum:gravel_disk"
+          "Name": "minecraft:gravel"
         }
       }
     ]

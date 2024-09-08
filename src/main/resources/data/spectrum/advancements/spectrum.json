@@ -76,7 +76,7 @@
       "conditions": {
         "advancement_identifier": "spectrum:find_preservation_ruins"
       }
-    },
+    }
   },
   "requirements": [
     [

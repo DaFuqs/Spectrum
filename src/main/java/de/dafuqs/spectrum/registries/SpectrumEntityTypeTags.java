@@ -10,6 +10,7 @@ public class SpectrumEntityTypeTags {
 	public static final TagKey<EntityType<?>> POKING_DAMAGE_IMMUNE = getReference("poking_damage_immune");
 	public static final TagKey<EntityType<?>> PRIMORDIAL_FIRE_IMMUNE = getReference("primordial_fire_immune");
 	public static final TagKey<EntityType<?>> SOULLESS = getReference("soulless");
+	public static final TagKey<EntityType<?>> DRACONIC = getReference("draconic");
 
 	public static final TagKey<EntityType<?>> SLEEP_WEAK = getReference("sleep_weak");
 	public static final TagKey<EntityType<?>> SLEEP_RESISTANT = getReference("sleep_resistant");

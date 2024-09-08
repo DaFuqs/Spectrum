@@ -9,4 +9,8 @@ public interface StatusEffectInstanceAccessor {
 	
 	@Accessor(value = "duration")
 	void setDuration(int newDuration);
+
+	@Accessor(value = "amplifier")
+	void setAmplifier(int newAmplifier);
+
 }

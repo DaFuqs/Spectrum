@@ -22,6 +22,6 @@
     "item": "spectrum:polished_bone_ash_wall",
     "count": 6
   },
-  "required_advancement": "spectrum:hidden/collect_dragonbone",
+  "required_advancement": "spectrum:break_cracked_dragonbone",
   "disable_yield_upgrades": true
 }

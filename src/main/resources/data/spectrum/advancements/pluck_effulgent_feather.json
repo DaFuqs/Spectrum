@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:lategame/remember_kindling",
+  "parent": "spectrum:remember_kindling",
   "display": {
     "icon": {
       "item": "spectrum:effulgent_feather"
@@ -25,7 +25,7 @@
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/remember_kindling"
+        "advancement_identifier": "spectrum:remember_kindling"
       }
     }
   }

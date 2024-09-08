@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.worldgen;
+package de.dafuqs.spectrum.worldgen.tree_decorators;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;

@@ -2,7 +2,7 @@
   "type": "spectrum:pedestal",
   "group": "glowblocks",
   "time": 200,
-  "tier": "advanced",
+  "tier": "complex",
   "cyan": 0,
   "magenta": 0,
   "yellow": 0,

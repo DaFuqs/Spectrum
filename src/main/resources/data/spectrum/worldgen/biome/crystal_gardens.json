@@ -85,7 +85,9 @@
     [
       "spectrum:dragon_fossil_buried"
     ],
-    [],
+    [
+      "spectrum:dd_diorite_delta"
+    ],
     [],
     [
       "spectrum:disk_overgrown_slush",

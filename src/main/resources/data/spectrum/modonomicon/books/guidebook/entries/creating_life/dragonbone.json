@@ -3,7 +3,7 @@
   "icon": "spectrum:dragonbone",
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:hidden/collect_dragonbone"
+    "advancement_id": "spectrum:break_cracked_dragonbone"
   },
   "category": "spectrum:creating_life",
   "hide_while_locked": true,
@@ -22,7 +22,7 @@
       "type": "modonomicon:spotlight",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/collect_dragonbone"
+        "advancement_id": "spectrum:break_cracked_dragonbone"
       },
       "anchor": "dragonbone_chunks",
       "item": {
@@ -34,7 +34,7 @@
       "type": "spectrum:cinderhearth_smelting",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/collect_dragonbone"
+        "advancement_id": "spectrum:break_cracked_dragonbone"
       },
       "text": "book.spectrum.guidebook.dragonbone.page2.text",
       "title": "book.spectrum.guidebook.dragonbone.page2.title",
@@ -44,7 +44,7 @@
       "type": "spectrum:pedestal_crafting",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/collect_dragonbone"
+        "advancement_id": "spectrum:break_cracked_dragonbone"
       },
       "recipe_id": "spectrum:pedestal/tier1/dragonbone/polished_bone_ash"
     },
@@ -52,7 +52,7 @@
       "type": "spectrum:pedestal_crafting",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/collect_dragonbone"
+        "advancement_id": "spectrum:break_cracked_dragonbone"
       },
       "recipe_id": "spectrum:pedestal/tier1/dragonbone/bone_ash_shingles"
     },
@@ -80,7 +80,7 @@
       "type": "spectrum:cinderhearth_smelting",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/collect_dragonbone"
+        "advancement_id": "spectrum:break_cracked_dragonbone"
       },
       "text": "book.spectrum.guidebook.dragonbone.page6.text",
       "title": "book.spectrum.guidebook.smelting_back",

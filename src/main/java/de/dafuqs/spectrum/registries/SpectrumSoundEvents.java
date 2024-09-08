@@ -106,6 +106,7 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent HOWLING_WIND_HIGH = register("ambient.howling_wind_high");
 	public static final SoundEvent HOWLING_WIND_LOW = register("ambient.howling_wind_low");
 	public static final SoundEvent SHOWER = register("ambient.rain_shower");
+	public static final SoundEvent LAMENTS = register("ambient.laments");
 
 
 	public static final SoundEvent CRYSTAL_AURA = register("ambient.crystal_aura");

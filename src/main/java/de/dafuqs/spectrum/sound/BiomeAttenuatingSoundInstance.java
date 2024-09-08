@@ -24,6 +24,8 @@ public class BiomeAttenuatingSoundInstance extends AbstractSoundInstance impleme
     public static Optional<BiomeAttenuatingSoundInstance> WIND_HIGH = Optional.empty();
     public static Optional<BiomeAttenuatingSoundInstance> WIND_LOW = Optional.empty();
     public static Optional<BiomeAttenuatingSoundInstance> SHOWER = Optional.empty();
+    public static Optional<BiomeAttenuatingSoundInstance> LAMENTS = Optional.empty();
+    private static boolean clear = true;
     private final MinecraftClient client = MinecraftClient.getInstance();
     private static final int MAX_DURATION = 80;
     private final RegistryKey<Biome> biome;
@@ -131,6 +133,7 @@ public class BiomeAttenuatingSoundInstance extends AbstractSoundInstance impleme
 
     public static void update(RegistryEntry<Biome> biome) {
         var client = MinecraftClient.getInstance();
+        clear = false;
 
         if (WIND_HIGH.map(TickableSoundInstance::isDone).orElse(false)) {
             WIND_HIGH = Optional.empty();
@@ -142,6 +145,10 @@ public class BiomeAttenuatingSoundInstance extends AbstractSoundInstance impleme
 
         if (SHOWER.map(TickableSoundInstance::isDone).orElse(false)) {
             SHOWER = Optional.empty();
+        }
+
+        if (LAMENTS.map(TickableSoundInstance::isDone).orElse(false)) {
+            LAMENTS = Optional.empty();
         }
 
         if (biome.matchesKey(SpectrumBiomes.HOWLING_SPIRES)) {
@@ -161,5 +168,42 @@ public class BiomeAttenuatingSoundInstance extends AbstractSoundInstance impleme
                 client.getSoundManager().play(SHOWER.get());
             }
         }
+        else if (biome.matchesKey(SpectrumBiomes.DRAGONROT_SWAMP)) {
+            if (LAMENTS.isEmpty()) {
+                LAMENTS = Optional.of(new BiomeAttenuatingSoundInstance(SpectrumBiomes.DRAGONROT_SWAMP, SpectrumSoundEvents.LAMENTS, 1.25F, true));
+                client.getSoundManager().play(LAMENTS.get());
+            }
+            if (SHOWER.isEmpty()) {
+                SHOWER = Optional.of(new BiomeAttenuatingSoundInstance(SpectrumBiomes.DRAGONROT_SWAMP, SpectrumSoundEvents.SHOWER, 2F, false));
+                client.getSoundManager().play(SHOWER.get());
+            }
+        }
+    }
+
+    public static void clear() {
+        if (clear)
+            return;
+
+        if (WIND_HIGH.isPresent()) {
+            WIND_HIGH.get().finished = true;
+            WIND_HIGH = Optional.empty();
+        }
+
+        if (WIND_LOW.isPresent()) {
+            WIND_LOW.get().finished = true;
+            WIND_LOW = Optional.empty();
+        }
+
+        if (SHOWER.isPresent()) {
+            SHOWER.get().finished = true;
+            SHOWER = Optional.empty();
+        }
+
+        if (LAMENTS.isPresent()) {
+            LAMENTS.get().finished = true;
+            LAMENTS = Optional.empty();
+        }
+
+        clear = true;
     }
 }

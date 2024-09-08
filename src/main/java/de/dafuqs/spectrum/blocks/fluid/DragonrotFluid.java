@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.blocks.fluid;
 
+import de.dafuqs.spectrum.cca.*;
+import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import de.dafuqs.spectrum.registries.*;
@@ -8,10 +10,13 @@ import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.entity.mob.*;
+import net.minecraft.entity.player.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
+import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.particle.*;
 import net.minecraft.recipe.*;
+import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.state.*;
 import net.minecraft.state.property.*;
@@ -114,19 +119,49 @@ public abstract class DragonrotFluid extends SpectrumFluid {
 		if (!world.isClient && entity instanceof LivingEntity livingEntity) {
 			// just check every 20 ticks for performance
 			if (!livingEntity.isDead() && world.getTime() % 20 == 0 && !(livingEntity instanceof Monster)) {
+				var dragon = entity.getType().isIn(SpectrumEntityTypeTags.DRACONIC);
+				var damage = dragon ? 30 : 6;
+				var ticks = dragon ? 20 : 5;
+				var cut = dragon ? 30 : 10;
+
 				if (livingEntity.isSubmergedIn(SpectrumFluidTags.DRAGONROT)) {
-					livingEntity.damage(SpectrumDamageTypes.dragonrot(world), 6);
+					livingEntity.damage(SpectrumDamageTypes.dragonrot(world), damage);
 				} else {
-					livingEntity.damage(SpectrumDamageTypes.dragonrot(world), 3);
+					livingEntity.damage(SpectrumDamageTypes.dragonrot(world), damage / 2F);
 				}
 				if (!livingEntity.isDead()) {
 					StatusEffectInstance existingEffect = livingEntity.getStatusEffect(SpectrumStatusEffects.LIFE_DRAIN);
-					if (existingEffect == null || existingEffect.getDuration() < 1000) {
-						livingEntity.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.LIFE_DRAIN, 2000, 0));
+					boolean success = false;
+					if (livingEntity instanceof PlayerEntity player) {
+						success = MiscPlayerDataComponent.get(player).tryIncrementDragonrotTicks(ticks);
 					}
+
+					if (!success && (existingEffect == null || existingEffect.getDuration() < 500)) {
+						livingEntity.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.LIFE_DRAIN, 1000, 0));
+					}
+
 					existingEffect = livingEntity.getStatusEffect(SpectrumStatusEffects.DEADLY_POISON);
 					if (existingEffect == null || existingEffect.getDuration() < 80) {
 						livingEntity.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.DEADLY_POISON, 160, 0));
+					}
+
+					existingEffect = livingEntity.getStatusEffect(SpectrumStatusEffects.IMMUNITY);
+					if (existingEffect != null) {
+						if (existingEffect.getDuration() <= cut) {
+							livingEntity.removeStatusEffect(SpectrumStatusEffects.IMMUNITY);
+						}
+						else {
+							((StatusEffectInstanceAccessor) existingEffect).setDuration(existingEffect.getDuration() - cut);
+							((ServerWorld) world).getChunkManager().sendToNearbyPlayers(livingEntity, new EntityStatusEffectS2CPacket(livingEntity.getId(), existingEffect));
+						}
+					}
+
+					if (!dragon)
+						return;
+
+					existingEffect = livingEntity.getStatusEffect(SpectrumStatusEffects.DENSITY);
+					if (existingEffect == null || existingEffect.getDuration() < 120) {
+						livingEntity.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.DENSITY, 2000, 1));
 					}
 				}
 			}

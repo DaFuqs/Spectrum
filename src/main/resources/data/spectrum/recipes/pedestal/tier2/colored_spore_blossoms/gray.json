@@ -2,7 +2,7 @@
   "type": "spectrum:pedestal",
   "group": "colored_spore_blossoms",
   "time": 80,
-  "tier": "simple",
+  "tier": "complex",
   "cyan": 0,
   "magenta": 0,
   "yellow": 0,

@@ -75,7 +75,7 @@
       "text": "book.spectrum.guidebook.pastel_upgrades.page4.text",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/pluck_effulgent_feather"
+        "advancement_id": "spectrum:pluck_effulgent_feather"
       }
     },
     {

@@ -3,7 +3,7 @@
   "icon": "spectrum:effulgent_block",
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:lategame/pluck_effulgent_feather"
+    "advancement_id": "spectrum:pluck_effulgent_feather"
   },
   "category": "spectrum:decoration",
   "hide_while_locked": true,

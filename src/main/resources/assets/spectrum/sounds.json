@@ -570,6 +570,12 @@
       "spectrum:shower"
     ]
   },
+  "ambient.laments": {
+    "subtitle": "spectrum.subtitles.laments",
+    "sounds": [
+      "spectrum:laments"
+    ]
+  },
   "ambient.crystal_aura": {
     "subtitle": "spectrum.subtitles.crystal_aura",
     "sounds": [

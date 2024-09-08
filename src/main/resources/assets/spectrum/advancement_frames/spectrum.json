@@ -128,6 +128,10 @@
     "advancement": "spectrum:lategame/wear_both_gravity_trinkets",
     "frame": "spectrum:pile_of_poo"
   },
+  {
+    "advancement": "spectrum:ascend_kindling",
+    "frame": "spectrum:pile_of_poo"
+  },
 
   {
     "advancement": "spectrum:lategame/collect_one_cookbook",
@@ -378,7 +382,7 @@
     "frame": "paginatedadvancements:squircle"
   },
   {
-    "advancement": "spectrum:lategame/break_cracked_dragonbone",
+    "advancement": "spectrum:break_cracked_dragonbone",
     "frame": "paginatedadvancements:squircle"
   },
   {
@@ -442,11 +446,11 @@
     "frame": "paginatedadvancements:squircle"
   },
   {
-    "advancement": "spectrum:lategame/pluck_effulgent_feather",
+    "advancement": "spectrum:pluck_effulgent_feather",
     "frame": "paginatedadvancements:squircle"
   },
   {
-    "advancement": "spectrum:lategame/grow_bloodstone_in_crystallarieum",
+    "advancement": "spectrum:grow_bloodstone_in_crystallarieum",
     "frame": "paginatedadvancements:squircle"
   },
   {

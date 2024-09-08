@@ -1,7 +1,10 @@
 package de.dafuqs.spectrum.particle.client;
 
+import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
+import net.minecraft.client.color.world.*;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.render.*;
 import net.minecraft.client.world.*;
@@ -24,19 +27,28 @@ public class RaindropParticle extends SpriteBillboardParticle {
 		scale = 0.1F + random.nextFloat() * 0.3125F;
 		//this.simOffset = random.nextInt(simInterval);
 		maxAge = 25;
+		pos.set(x, y, z);
+		var waterColor = ColorHelper.colorIntToVec(BiomeColors.getWaterColor(world, pos));
+		red = waterColor.x;
+		green = waterColor.y;
+		blue = waterColor.z;
 	}
-	
+
 	@Override
 	public void tick() {
 		pos.set(x, y, z);
+		var waterColor = ColorHelper.colorIntToVec(BiomeColors.getWaterColor(world, pos));
+		red = waterColor.x;
+		green = waterColor.y;
+		blue = waterColor.z;
 
 		if (onGround) {
-			spawnDroplets(0.85F, 4);
+			spawnDroplets(0.85F, 4, false);
 			markDead();
 			return;
 		}
-		else if(world.isWater(pos)) {
-			spawnDroplets(0.625F, 7);
+		else if(!world.getFluidState(pos).isEmpty()) {
+			spawnDroplets(0.625F, 7, true);
 			markDead();
 			return;
 		}
@@ -45,15 +57,25 @@ public class RaindropParticle extends SpriteBillboardParticle {
 		super.tick();
 	}
 
-	private void spawnDroplets(float velMult, int drops) {
+	private void spawnDroplets(float velMult, int drops, boolean water) {
+		var state = world.getBlockState(pos);
+		var spawnY = y + 0.01F;
+
+		if (water) {
+			spawnY = Math.ceil(y) - 0.05F;
+		}
+		else if(state.isOf(SpectrumBlocks.ROTTEN_GROUND)){
+			spawnY = pos.getY() + 1.01F;
+		}
+
 		if (isAlive()) {
 			var spawns = random.nextInt(drops) + 1;
 			for (int i = 0; i < spawns; i++) {
 				var xVel = random.nextFloat() * 0.8 - 0.4F;
 				var zVel = random.nextFloat() * 0.8 - 0.4F;
-				world.addParticle(SpectrumParticleTypes.RAIN_SPLASH, x, y, z, xVel * velMult, 0, zVel * velMult);
+				world.addParticle(SpectrumParticleTypes.RAIN_SPLASH, x, spawnY, z, xVel * velMult, 0, zVel * velMult);
 			}
-
+			world.addParticle(SpectrumParticleTypes.RAIN_RIPPLE, x, spawnY, z, 0, 0, 0);
 		}
 	}
 

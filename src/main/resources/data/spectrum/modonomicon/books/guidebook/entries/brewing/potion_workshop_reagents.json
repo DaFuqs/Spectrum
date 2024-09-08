@@ -344,7 +344,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/pluck_effulgent_feather"
+        "advancement_id": "spectrum:pluck_effulgent_feather"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.page27.text"
     },
@@ -392,7 +392,7 @@
       "anchor": "bone_ash",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/collect_dragonbone"
+        "advancement_id": "spectrum:break_cracked_dragonbone"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.page30.text"
     },

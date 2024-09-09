@@ -13,8 +13,7 @@
       "predicate": {
         "type": "minecraft:not",
         "predicate": {
-          "type": "spectrum:overlaps_structure",
-          "structure": "spectrum:city_below"
+          "type": "spectrum:overlaps_structure"
         }
       }
     }

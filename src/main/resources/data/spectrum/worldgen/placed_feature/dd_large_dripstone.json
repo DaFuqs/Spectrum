@@ -28,6 +28,27 @@
     },
     {
       "type": "minecraft:biome"
+    },
+    {
+      "type": "minecraft:block_predicate_filter",
+      "predicate": {
+        "type": "minecraft:not",
+        "predicate": {
+          "type": "minecraft:any_of",
+          "predicates": [
+            {
+              "type": "spectrum:overlaps_structure"
+            },
+            {
+              "type": "minecraft:matching_blocks",
+              "blocks": [
+                "spectrum:moonstone_block",
+                "spectrum:budding_moonstone"
+              ]
+            }
+          ]
+        }
+      }
     }
   ]
 }

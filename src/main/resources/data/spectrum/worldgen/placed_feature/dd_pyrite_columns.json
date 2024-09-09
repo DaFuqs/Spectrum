@@ -19,7 +19,19 @@
       "predicate": {
         "type": "minecraft:not",
         "predicate": {
-          "type": "spectrum:overlaps_structure"
+          "type": "minecraft:any_of",
+          "predicates": [
+            {
+              "type": "spectrum:overlaps_structure"
+            },
+            {
+              "type": "minecraft:matching_blocks",
+              "blocks": [
+                "spectrum:moonstone_block",
+                "spectrum:budding_moonstone"
+              ]
+            }
+          ]
         }
       }
     }

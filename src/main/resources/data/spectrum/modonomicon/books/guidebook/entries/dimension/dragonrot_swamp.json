@@ -28,11 +28,6 @@
       "text": "book.spectrum.guidebook.dragonrot_swamp.page0.text"
     },
     {
-      "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.dragonrot_swamp.page1.text",
-      "title": "book.spectrum.guidebook.dragonrot_swamp.page1.title"
-    },
-    {
       "type": "modonomicon:spotlight",
       "item": {
         "item": "spectrum:snapping_ivy"

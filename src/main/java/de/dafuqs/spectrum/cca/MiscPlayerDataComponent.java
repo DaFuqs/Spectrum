@@ -54,7 +54,7 @@ public class MiscPlayerDataComponent implements AutoSyncedComponent, CommonTicki
     @Override
     public void serverTick() {
         CommonTickingComponent.super.serverTick();
-        tickDragonrotSwampEnvironment();
+        //tickDragonrotSwampEnvironment();
 
         var fortitude = player.getAttributeValue(SpectrumEntityAttributes.MENTAL_PRESENCE);
         if (lastSyncedSleepPotency != fortitude) {

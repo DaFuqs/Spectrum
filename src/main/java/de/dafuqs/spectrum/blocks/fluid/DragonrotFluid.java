@@ -125,13 +125,13 @@ public abstract class DragonrotFluid extends SpectrumFluid {
 				}
 				if (!livingEntity.isDead()) {
 					StatusEffectInstance existingEffect = livingEntity.getStatusEffect(SpectrumStatusEffects.LIFE_DRAIN);
-					boolean success = false;
-					if (livingEntity instanceof PlayerEntity player) {
-						success = MiscPlayerDataComponent.get(player).tryIncrementDragonrotTicks(ticks);
+					if (existingEffect == null) {
+						livingEntity.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.LIFE_DRAIN, 600, 0));
 					}
+					else if(existingEffect.getDuration() < 500) {
+						((StatusEffectInstanceAccessor) existingEffect).setDuration(300);
 
-					if (!success && (existingEffect == null || existingEffect.getDuration() < 500)) {
-						livingEntity.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.LIFE_DRAIN, 1000, 0));
+						((ServerWorld) world).getChunkManager().sendToNearbyPlayers(livingEntity, new EntityStatusEffectS2CPacket(livingEntity.getId(), existingEffect));
 					}
 
 					existingEffect = livingEntity.getStatusEffect(SpectrumStatusEffects.DEADLY_POISON);

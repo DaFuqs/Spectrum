@@ -2,7 +2,7 @@
   "parent": "minecraft:block/cube_bottom_top",
   "textures": {
     "bottom": "spectrum:block/preservation_stone_bottom",
-    "side": "spectrum:block/preservation_stone",
+    "side": "spectrum:block/preservation_stone_10",
     "top": "spectrum:block/preservation_stone_top_0"
   }
 }

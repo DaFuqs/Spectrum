@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.mixin;
+package de.dafuqs.spectrum.mixin.compat.quilt_status_effect.absent;
 
 import com.llamalad7.mixinextras.injector.v2.*;
 import com.llamalad7.mixinextras.injector.wrapoperation.*;
@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.*;
 
 import java.util.*;
 
-@Mixin(value = LivingEntity.class, priority = 1001) // Separate mixin to fix conflict with Quilt standard lib
+@Mixin(LivingEntity.class)
 public abstract class LivingEntityPreventStatusClearMixin {
 	
 	@Shadow

@@ -56,23 +56,17 @@ public abstract class DragonrotFluid extends SpectrumFluid {
 	public void randomDisplayTick(World world, BlockPos pos, FluidState state, Random random) {
 		BlockPos topPos = pos.up();
 		BlockState topState = world.getBlockState(topPos);
-		if (topState.isAir() && !topState.isOpaqueFullCube(world, topPos)) {
+		if (topState.isAir() && random.nextInt(3) == 0) {
 			float soundRandom = random.nextFloat();
 			if (soundRandom < 0.0003F) {
 				world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_HONEY_BOTTLE_DRINK, SoundCategory.AMBIENT, random.nextFloat() * 0.65F + 0.25F, random.nextFloat() * 0.2F, false);
-			} else if (soundRandom < 0.00048F) {
-				world.playSound(pos.getX(), pos.getY(), pos.getZ(), SpectrumSoundEvents.MUD_AMBIENT, SoundCategory.AMBIENT, random.nextFloat() * 0.65F + 0.25F, random.nextFloat() * 0.2F, false);
-			} else if (soundRandom < 0.0006F) {
+			}else if (soundRandom < 0.0006F) {
 				world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_HONEY_BLOCK_SLIDE, SoundCategory.AMBIENT, random.nextFloat() * 0.4F + 0.25F, random.nextFloat() * 0.5F + 0.1F, false);
 			} else if (soundRandom < 0.0008F) {
 				world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_FROG_AMBIENT, SoundCategory.AMBIENT, random.nextFloat() + 0.25F, random.nextFloat() * 0.3F + 0.01F, false);
 			} else if (soundRandom < 0.001F) {
 				world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_SCULK_PLACE, SoundCategory.AMBIENT, random.nextFloat() + 0.25F, random.nextFloat() * 0.4F + 0.2F, false);
-			} else if (soundRandom < 0.0014F) {
-				world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_HONEY_BLOCK_STEP, SoundCategory.AMBIENT, random.nextFloat() * 2F, 0.1F, false);
-			} else if (soundRandom < 0.00144F) {
-				world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_VILLAGER_DEATH, SoundCategory.AMBIENT, random.nextFloat() * 0.334F + 0.1F, 1F, false);
-			} else if (soundRandom < 0.00148F) {
+			}  else if (soundRandom < 0.00148F) {
 				world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_PARROT_DEATH, SoundCategory.AMBIENT, random.nextFloat() * 0.334F + 0.1F, 1F, false);
 			} else if (soundRandom < 0.00152F) {
 				world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_CAT_DEATH, SoundCategory.AMBIENT, random.nextFloat() * 0.334F + 0.1F, 1F, false);
@@ -122,7 +116,7 @@ public abstract class DragonrotFluid extends SpectrumFluid {
 				var dragon = entity.getType().isIn(SpectrumEntityTypeTags.DRACONIC);
 				var damage = dragon ? 30 : 6;
 				var ticks = dragon ? 20 : 5;
-				var cut = dragon ? 30 : 10;
+				var cut = dragon ? 100 : 40;
 
 				if (livingEntity.isSubmergedIn(SpectrumFluidTags.DRAGONROT)) {
 					livingEntity.damage(SpectrumDamageTypes.dragonrot(world), damage);

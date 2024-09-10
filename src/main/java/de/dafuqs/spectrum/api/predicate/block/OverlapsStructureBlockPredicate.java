@@ -7,8 +7,10 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.structure.StructureStart;
 import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkSectionPos;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.StructureWorldAccess;
+import net.minecraft.world.chunk.ChunkStatus;
 import net.minecraft.world.gen.blockpredicate.BlockPredicate;
 import net.minecraft.world.gen.blockpredicate.BlockPredicateType;
 import net.minecraft.world.gen.structure.Structure;
@@ -36,12 +38,13 @@ public class OverlapsStructureBlockPredicate implements BlockPredicate {
     }
 
     public boolean test(StructureWorldAccess structureWorldAccess, BlockPos blockPos) {
-        if(structureWorldAccess.toServerWorld().getStructureAccessor().hasStructureReferences(blockPos.add(this.offset)))
-        {
-            return false;
-        }
         BlockBox exclusionZone = new BlockBox(blockPos.add(this.offset).getX() - this.range, blockPos.add(this.offset).getY() - this.range, blockPos.add(this.offset).getZ() - this.range,blockPos.add(this.offset).getX() + this.range, blockPos.add(this.offset).getY() + this.range, blockPos.add(this.offset).getZ() + this.range);
-        Map<Structure, StructureStart> structureMap = structureWorldAccess.toServerWorld().getChunk(blockPos.add(this.offset)).getStructureStarts();
+        Map<Structure, StructureStart> structureMap = structureWorldAccess.toServerWorld().getChunk(ChunkSectionPos.getSectionCoord(blockPos.add(this.offset).getX()), ChunkSectionPos.getSectionCoord(blockPos.add(this.offset).getZ()), ChunkStatus.STRUCTURE_STARTS).getStructureStarts();
+        Structure targetStruct = null;
+        if(this.structure.isPresent())
+        {
+            targetStruct = structureWorldAccess.toServerWorld().getStructureAccessor().getRegistryManager().get(RegistryKeys.STRUCTURE).get(this.structure.get());
+        }
         if(structureMap.isEmpty())
         {
             return false;
@@ -50,7 +53,6 @@ public class OverlapsStructureBlockPredicate implements BlockPredicate {
         {
             if(this.structure.isPresent())
             {
-                Structure targetStruct = structureWorldAccess.toServerWorld().getStructureAccessor().getRegistryManager().get(RegistryKeys.STRUCTURE).get(this.structure.get());
                 if(targetStruct!=struct.getKey())
                 {
                     continue;

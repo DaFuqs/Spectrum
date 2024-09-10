@@ -37,7 +37,8 @@
           "type": "minecraft:any_of",
           "predicates": [
             {
-              "type": "spectrum:overlaps_structure"
+              "type": "spectrum:overlaps_structure",
+              "range": 8
             },
             {
               "type": "minecraft:matching_blocks",

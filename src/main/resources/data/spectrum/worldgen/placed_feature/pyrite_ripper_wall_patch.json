@@ -29,7 +29,8 @@
         "type": "minecraft:not",
         "predicate": {
           "type": "spectrum:overlaps_structure",
-          "structure": "spectrum:lizard_den/basal_marble"
+          "structure": "spectrum:lizard_den/basal_marble",
+          "range": 6
         }
       }
     },
@@ -39,7 +40,8 @@
         "type": "minecraft:not",
         "predicate": {
           "type": "spectrum:overlaps_structure",
-          "structure": "spectrum:lizard_den/blackslag"
+          "structure": "spectrum:lizard_den/blackslag",
+          "range": 6
         }
       }
     },
@@ -49,7 +51,8 @@
         "type": "minecraft:not",
         "predicate": {
           "type": "spectrum:overlaps_structure",
-          "structure": "spectrum:lizard_den/dripstone"
+          "structure": "spectrum:lizard_den/dripstone",
+          "range": 6
         }
       }
     },
@@ -59,7 +62,8 @@
         "type": "minecraft:not",
         "predicate": {
           "type": "spectrum:overlaps_structure",
-          "structure": "spectrum:lizard_den/shalerite"
+          "structure": "spectrum:lizard_den/shalerite",
+          "range": 6
         }
       }
     }

@@ -25,7 +25,8 @@
       "predicate": {
         "type": "minecraft:not",
         "predicate": {
-          "type": "spectrum:overlaps_structure"
+          "type": "spectrum:overlaps_structure",
+          "range": 8
         }
       }
     },

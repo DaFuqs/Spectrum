@@ -1,0 +1,15 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": {
+    "item": "spectrum:dragonbone_chunk"
+  },
+  "crushedItemsPerPointOfDamage": 0.3,
+  "experience": 0.1,
+  "result": {
+    "item": "minecraft:bone_meal",
+    "count": 32
+  },
+  "particleEffectIdentifier": "cloud",
+  "soundEventIdentifier": "block.bone_block.break",
+  "required_advancement": "spectrum:break_cracked_dragonbone"
+}

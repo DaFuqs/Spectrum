@@ -11,10 +11,10 @@ import de.dafuqs.spectrum.datafixer.fix.InkStorageItemFix;
 import de.dafuqs.spectrum.datafixer.quilt_dfu.api.QuiltDataFixes;
 import de.dafuqs.spectrum.datafixer.quilt_dfu.impl.ServerFreezer;
 import de.dafuqs.spectrum.datafixer.quilt_dfu.impl.client.ClientFreezer;
+import de.dafuqs.spectrum.datafixer.schema.Schema1;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.SharedConstants;
-import net.minecraft.datafixer.schema.IdentifierNormalizingSchema;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +23,12 @@ import java.util.concurrent.Executors;
 
 public class SpectrumDataFixers {
     public static final int DATA_FIXER_VERSION = 1;
+
+    public static final List<String> INK_STORAGE_BLOCKS = List.of(
+            "spectrum:cinderhearth",
+            "spectrum:color_picker",
+            "spectrum:crystallarieum"
+    );
 
     private static final List<String> INK_COLOR_IDS = List.of(
             "black",
@@ -57,8 +63,10 @@ public class SpectrumDataFixers {
     private static void addFixers(DataFixerBuilder builder) {
         builder.addSchema(0, QuiltDataFixes.BASE_SCHEMA);
 
-        Schema schemaV1 = builder.addSchema(1, IdentifierNormalizingSchema::new);
-        builder.addFixer(new InkStorageBlockFix(schemaV1));
+        Schema schemaV1 = builder.addSchema(1, Schema1::new);
+        for (String block : INK_STORAGE_BLOCKS) {
+            builder.addFixer(new InkStorageBlockFix(schemaV1, block));
+        }
         builder.addFixer(new InkStorageItemFix(schemaV1));
     }
 
@@ -78,22 +86,21 @@ public class SpectrumDataFixers {
     public static Dynamic<?> processMultiple(Dynamic<?> dynamic) {
         boolean changed = false;
         Dynamic<?> processed = dynamic;
+        Dynamic<?> energy = dynamic.emptyMap();
 
         for (String id : INK_COLOR_IDS) {
             Optional<? extends Dynamic<?>> optionalDynamicColor = dynamic.get(id).result();
             if (optionalDynamicColor.isPresent()) {
                 Dynamic<?> dynamicColor = optionalDynamicColor.get();
-                Optional<String> optionalColorId = dynamicColor.asString().result();
-                if (optionalColorId.isPresent()) {
-                    Optional<InkColor> optionalColor = InkColor.ofIdString(SpectrumCommon.MOD_ID+":"+optionalColorId.get());
+                Optional<Number> optionalColorNumber = dynamicColor.asNumber().result();
+                if (optionalColorNumber.isPresent()) {
+                    Optional<InkColor> optionalColor = InkColor.ofIdString(SpectrumCommon.MOD_ID+":"+id);
                     if (optionalColor.isPresent()) {
                         InkColor color = optionalColor.get();
-                        long amount = dynamicColor.asLong(0);
+                        long amount = optionalColorNumber.get().longValue();
 
                         processed = processed.remove(id);
-                        if (amount != 0L) {
-                            processed = processed.set(color.getID().toString(), processed.createLong(amount));
-                        }
+                        energy = energy.set(color.getID().toString(), energy.createLong(amount));
 
                         if (!changed) {
                             changed = true;
@@ -101,6 +108,10 @@ public class SpectrumDataFixers {
                     }
                 }
             }
+        }
+
+        if (changed) {
+            processed.set("Energy", energy);
         }
 
         return changed ? processed : null;

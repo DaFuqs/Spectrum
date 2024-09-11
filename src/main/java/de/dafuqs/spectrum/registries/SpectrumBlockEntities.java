@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.registries;
 
+import com.mojang.datafixers.types.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.amphora.*;
@@ -90,7 +91,8 @@ public class SpectrumBlockEntities {
 	
 	private static <T extends BlockEntity> BlockEntityType<T> register(String path, FabricBlockEntityTypeBuilder.Factory<T> factory, Block... blocks) {
 		Identifier id = SpectrumCommon.locate(path);
-		return Registry.register(Registries.BLOCK_ENTITY_TYPE, id, FabricBlockEntityTypeBuilder.create(factory, blocks).build(Util.getChoiceType(TypeReferences.BLOCK_ENTITY, id.toString())));
+		Type<?> type = Util.getChoiceType(TypeReferences.BLOCK_ENTITY, id.toString());
+		return Registry.register(Registries.BLOCK_ENTITY_TYPE, id, FabricBlockEntityTypeBuilder.create(factory, blocks).build(type));
 	}
 	
 	public static void register() {

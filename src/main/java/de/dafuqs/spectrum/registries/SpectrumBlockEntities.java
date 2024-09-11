@@ -34,7 +34,9 @@ import net.fabricmc.fabric.api.object.builder.v1.block.entity.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.client.render.block.entity.*;
+import net.minecraft.datafixer.*;
 import net.minecraft.registry.*;
+import net.minecraft.util.*;
 
 import java.util.*;
 
@@ -86,8 +88,9 @@ public class SpectrumBlockEntities {
 	public static BlockEntityType<PreservationRoundelBlockEntity> PRESERVATION_ROUNDEL;
 	public static BlockEntityType<PreservationBlockDetectorBlockEntity> PRESERVATION_BLOCK_DETECTOR;
 	
-	private static <T extends BlockEntity> BlockEntityType<T> register(String id, FabricBlockEntityTypeBuilder.Factory<T> factory, Block... blocks) {
-		return Registry.register(Registries.BLOCK_ENTITY_TYPE, SpectrumCommon.locate(id), FabricBlockEntityTypeBuilder.create(factory, blocks).build());
+	private static <T extends BlockEntity> BlockEntityType<T> register(String path, FabricBlockEntityTypeBuilder.Factory<T> factory, Block... blocks) {
+		Identifier id = SpectrumCommon.locate(path);
+		return Registry.register(Registries.BLOCK_ENTITY_TYPE, id, FabricBlockEntityTypeBuilder.create(factory, blocks).build(Util.getChoiceType(TypeReferences.BLOCK_ENTITY, id.toString())));
 	}
 	
 	public static void register() {

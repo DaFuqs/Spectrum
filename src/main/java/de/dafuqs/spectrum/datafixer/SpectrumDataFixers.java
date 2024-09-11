@@ -4,6 +4,7 @@ import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.mojang.datafixers.DataFixerBuilder;
 import com.mojang.datafixers.schemas.Schema;
 import com.mojang.serialization.Dynamic;
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.api.energy.color.InkColor;
 import de.dafuqs.spectrum.datafixer.fix.InkStorageBlockFix;
 import de.dafuqs.spectrum.datafixer.fix.InkStorageItemFix;
@@ -50,7 +51,7 @@ public class SpectrumDataFixers {
         addFixers(builder);
 
         ExecutorService executor = Executors.newSingleThreadExecutor(new ThreadFactoryBuilder().setNameFormat("Spectrum DataFixer Bootstrap").setDaemon(true).setPriority(1).build());
-        QuiltDataFixes.registerFixer("spectrum", DATA_FIXER_VERSION, builder.buildOptimized(SharedConstants.requiredDataFixTypes, executor));
+        QuiltDataFixes.registerFixer(SpectrumCommon.MOD_ID, DATA_FIXER_VERSION, builder.buildOptimized(SharedConstants.requiredDataFixTypes, executor));
     }
 
     private static void addFixers(DataFixerBuilder builder) {
@@ -64,7 +65,7 @@ public class SpectrumDataFixers {
     public static Dynamic<?> processSingle(Dynamic<?> dynamic, Dynamic<?> dynamicColor) {
         Optional<String> optionalColorId = dynamicColor.asString().result();
         if (optionalColorId.isPresent()) {
-            Optional<InkColor> optionalColor = InkColor.ofIdString("spectrum:"+optionalColorId.get());
+            Optional<InkColor> optionalColor = InkColor.ofIdString(SpectrumCommon.MOD_ID+":"+optionalColorId.get());
             if (optionalColor.isPresent()) {
                 InkColor color = optionalColor.get();
                 return dynamic.remove("Color").set("Color", dynamic.createString(color.getID().toString()));
@@ -84,7 +85,7 @@ public class SpectrumDataFixers {
                 Dynamic<?> dynamicColor = optionalDynamicColor.get();
                 Optional<String> optionalColorId = dynamicColor.asString().result();
                 if (optionalColorId.isPresent()) {
-                    Optional<InkColor> optionalColor = InkColor.ofIdString("spectrum:"+optionalColorId.get());
+                    Optional<InkColor> optionalColor = InkColor.ofIdString(SpectrumCommon.MOD_ID+":"+optionalColorId.get());
                     if (optionalColor.isPresent()) {
                         InkColor color = optionalColor.get();
                         long amount = dynamicColor.asLong(0);

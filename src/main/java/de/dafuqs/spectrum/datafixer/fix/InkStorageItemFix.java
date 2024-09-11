@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.datafixer.fix;
 import com.mojang.datafixers.schemas.Schema;
 import com.mojang.serialization.Dynamic;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.datafixer.DatafixerUtils;
+import de.dafuqs.spectrum.datafixer.SpectrumDataFixers;
 import net.minecraft.datafixer.fix.ItemNbtFix;
 
 import java.util.List;
@@ -39,19 +39,19 @@ public class InkStorageItemFix extends ItemNbtFix {
             // SingleInkStorage
             Optional<? extends Dynamic<?>> optionalDynamicColor = dynamic.get("Color").result();
             if (optionalDynamicColor.isPresent()) {
-                processed = DatafixerUtils.processSingle(dynamicEnergyStore, optionalDynamicColor.get());
+                processed = SpectrumDataFixers.processSingle(dynamicEnergyStore, optionalDynamicColor.get());
             }
 
             // IndividualCappedInkStorage
             Optional<? extends Dynamic<?>> optionalMaxEnergyPerColor = dynamicEnergyStore.get("MaxEnergyPerColor").result();
             if (optionalMaxEnergyPerColor.isPresent()) {
-                processed = DatafixerUtils.processMultiple(dynamicEnergyStore);
+                processed = SpectrumDataFixers.processMultiple(dynamicEnergyStore);
             }
 
             // TotalCappedInkStorage
             Optional<? extends Dynamic<?>> optionalMaxEnergyTotal = dynamicEnergyStore.get("MaxEnergyTotal").result();
             if (optionalMaxEnergyTotal.isPresent()) {
-                processed = DatafixerUtils.processMultiple(dynamicEnergyStore);
+                processed = SpectrumDataFixers.processMultiple(dynamicEnergyStore);
             }
 
             if (processed != null) {

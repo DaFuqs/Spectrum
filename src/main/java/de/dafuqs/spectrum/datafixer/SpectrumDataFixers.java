@@ -1,12 +1,28 @@
 package de.dafuqs.spectrum.datafixer;
 
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import com.mojang.datafixers.DataFixerBuilder;
+import com.mojang.datafixers.schemas.Schema;
 import com.mojang.serialization.Dynamic;
 import de.dafuqs.spectrum.api.energy.color.InkColor;
+import de.dafuqs.spectrum.datafixer.fix.InkStorageBlockFix;
+import de.dafuqs.spectrum.datafixer.fix.InkStorageItemFix;
+import de.dafuqs.spectrum.datafixer.quilt_dfu.api.QuiltDataFixes;
+import de.dafuqs.spectrum.datafixer.quilt_dfu.impl.ServerFreezer;
+import de.dafuqs.spectrum.datafixer.quilt_dfu.impl.client.ClientFreezer;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.minecraft.SharedConstants;
+import net.minecraft.datafixer.schema.IdentifierNormalizingSchema;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-public class DatafixerUtils {
+public class SpectrumDataFixers {
+    public static final int DATA_FIXER_VERSION = 1;
+
     private static final List<String> INK_COLOR_IDS = List.of(
             "black",
             "blue",
@@ -25,6 +41,25 @@ public class DatafixerUtils {
             "white",
             "yellow"
     );
+
+    public static void init() {
+        ClientLifecycleEvents.CLIENT_STARTED.register(new ClientFreezer());
+        ServerLifecycleEvents.SERVER_STARTING.register(new ServerFreezer());
+
+        DataFixerBuilder builder = new DataFixerBuilder(DATA_FIXER_VERSION);
+        addFixers(builder);
+
+        ExecutorService executor = Executors.newSingleThreadExecutor(new ThreadFactoryBuilder().setNameFormat("Spectrum DataFixer Bootstrap").setDaemon(true).setPriority(1).build());
+        QuiltDataFixes.registerFixer("spectrum", DATA_FIXER_VERSION, builder.buildOptimized(SharedConstants.requiredDataFixTypes, executor));
+    }
+
+    private static void addFixers(DataFixerBuilder builder) {
+        builder.addSchema(0, QuiltDataFixes.BASE_SCHEMA);
+
+        Schema schemaV1 = builder.addSchema(1, IdentifierNormalizingSchema::new);
+        builder.addFixer(new InkStorageBlockFix(schemaV1));
+        builder.addFixer(new InkStorageItemFix(schemaV1));
+    }
 
     public static Dynamic<?> processSingle(Dynamic<?> dynamic, Dynamic<?> dynamicColor) {
         Optional<String> optionalColorId = dynamicColor.asString().result();

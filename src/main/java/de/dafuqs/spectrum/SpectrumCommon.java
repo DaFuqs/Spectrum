@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.compat.reverb.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.data_loaders.*;
+import de.dafuqs.spectrum.datafixer.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.events.*;
 import de.dafuqs.spectrum.explosion.*;
@@ -250,6 +251,9 @@ public class SpectrumCommon implements ModInitializer {
 			ResourceManagerHelper.registerBuiltinResourcePack(locate("spectrum_programmer_art"), modContainer.get(), Text.of("Spectrum's Programmer Art"), ResourcePackActivationType.NORMAL);
 			//ResourceManagerHelper.registerBuiltinResourcePack(locate("jinc"), modContainer.get(), Text.of("Alternate Spectrum textures"), ResourcePackActivationType.NORMAL);
 		}
+		
+		logInfo("Registering Data Fixers...");
+		SpectrumDataFixers.init();
 		
 		logInfo("Common startup completed!");
 	}

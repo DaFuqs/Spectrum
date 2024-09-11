@@ -73,7 +73,7 @@ public final class QuiltDataFixesInternalsImpl extends QuiltDataFixesInternals {
 			int modDataVersion = QuiltDataFixesInternals.getModDataVersion(compound, entry.getKey());
 			DataFixerEntry dataFixerEntry = entry.getValue();
 
-			current = dataFixerEntry.dataFixer().update(((DataFixTypesAccessor) dataFixTypes).getTypeReference(), current, modDataVersion, dataFixerEntry.currentVersion());
+			current = dataFixerEntry.dataFixer().update(((DataFixTypesAccessor) (Object) dataFixTypes).getTypeReference(), current, modDataVersion, dataFixerEntry.currentVersion());
 		}
 
 		return (NbtCompound) current.getValue();

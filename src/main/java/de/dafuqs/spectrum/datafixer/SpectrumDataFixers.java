@@ -111,7 +111,7 @@ public class SpectrumDataFixers {
         }
 
         if (changed) {
-            processed.set("Energy", energy);
+            processed = processed.set("Energy", energy);
         }
 
         return changed ? processed : null;

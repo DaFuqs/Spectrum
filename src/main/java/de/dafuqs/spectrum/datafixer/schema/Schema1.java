@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.datafixer.schema;
 import com.mojang.datafixers.DSL;
 import com.mojang.datafixers.schemas.Schema;
 import com.mojang.datafixers.types.templates.TypeTemplate;
-import net.minecraft.datafixer.TypeReferences;
 import net.minecraft.datafixer.schema.IdentifierNormalizingSchema;
 
 import java.util.Map;
@@ -20,12 +19,8 @@ public class Schema1 extends IdentifierNormalizingSchema {
     public Map<String, Supplier<TypeTemplate>> registerBlockEntities(Schema schema) {
         Map<String, Supplier<TypeTemplate>> map = super.registerBlockEntities(schema);
         for (String block : INK_STORAGE_BLOCKS) {
-            targetItems(schema, map, block);
+            schema.register(map, block, DSL::remainder);
         }
         return map;
-    }
-
-    protected static void targetItems(Schema schema, Map<String, Supplier<TypeTemplate>> map, String entityId) {
-        schema.register(map, entityId, () -> DSL.optionalFields("Items", DSL.list(TypeReferences.ITEM_STACK.in(schema))));
     }
 }

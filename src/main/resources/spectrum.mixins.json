@@ -38,6 +38,7 @@
     "FoxEntityMixin",
     "GeodesGenerateWithGemstoneOresMixin",
     "GlassBottleItemMixin",
+    "HoneyBottleItemMixin",
     "InfestedBlockMixin",
     "ItemEntityMixin",
     "ItemFrameEntityMixin",

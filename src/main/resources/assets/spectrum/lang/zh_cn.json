@@ -2934,7 +2934,7 @@
   "item.spectrum.fissure_plum.tooltip": "§o散发着坚果味的芳香",
   "item.spectrum.nightdew_sprout": "夜露嫩芽",
   "item.spectrum.nightdew_sprout.tooltip": "§o像茶一样芳香",
-  "item.spectrum.nectardew_burgeon": "蜜露嫩枝",
+  "item.spectrum.nectardew_burgeon": "夜露花蕾",
   "item.spectrum.nectardew_burgeon.tooltip": "§o极其稀有",
   "item.spectrum.milky_resin": "乳状树脂",
   "item.spectrum.mermaids_jam": "美人鱼果酱",
@@ -3428,8 +3428,8 @@
   "book.spectrum.guidebook.milky_resin.page0.text": "这种焦糖色的树脂有一种甜美的香气和奢侈的味道，有着和牛奶一样的用途，只需要进行一点发酵。\\\n\\\n*树脂本身也很美味，但太粘稠，无从入口。*",
   "book.spectrum.guidebook.milky_resin.page1.text": "*~ 加一点糖和一点爱，然后 - [凝结成奶油](entry://cuisine/titration_barrel#4)！~*",
 
-  "book.spectrum.guidebook.laurels_of_serenity.page0.text": "没有怪物骚扰我的感觉真是太爽了！，但是每隔一段时间磕一次药导致我的舌头发麻，那我能不能换一种形式，直接戴上呢？ 然后再注满紫色墨水。\\\n\\\n等等 - 既然这是用花做的，那它算不算是花环？*",
-  "book.spectrum.guidebook.laurels_of_serenity.page1.text": "在[颜色选取器](entry://ink/color_picker)[#]()中注入[紫色墨水](entry://ink/ink)以减少怪物探测范围（类似于隐身）。\\\n\\\n*~ 睡眠抗性是附带的 ~*",
+  "book.spectrum.guidebook.laurels_of_serenity.page0.text": "没有怪物骚扰我的感觉真是太爽了！，但是每隔一段时间嚼一次叶子导致我的舌头有点发麻，既然如此，那我能不能换一种形式，直接戴在头上呢？...然后再往里面灌满紫色墨水。\\\n\\\n等等 - 既然这是用花做的，那它算不算是花环？*",
+  "book.spectrum.guidebook.laurels_of_serenity.page1.text": "在[颜色选取器](entry://ink/color_picker)[#]()中注入[紫色墨水](entry://ink/ink)以减少怪物探测范围（类似于隐身）。\\\n\\\n*~ 催眠抗性是附带的 ~*",
 
   "book.spectrum.guidebook.abyssal_vines.page0.text": "蜿蜒的根茎和发光的果实构成了一幅极为熟悉的景象。虽然颜色较暗且枝叶较多，但很容易看出这些悬挂的藤蔓与发光浆果有关。\\\n鉴于它们苍白和晶莹的特性，我猜想，经历了几个世纪的黑暗和以[液态水晶](entry://general/liquid_crystal)为食，使它们进化成了在渊深的凉爽暮光中如鱼得水的植物。",
   "book.spectrum.guidebook.abyssal_vines.page1.text": "*触摸毛茸茸的东西会头晕*",
@@ -4556,6 +4556,154 @@
   "book.spectrum.guidebook.mud.page3.text": "其他物品则会固化。\\\n为什么小麦会变成线呢？怎么会事呢？ 莫非是米线？（笑）",
   "book.spectrum.guidebook.mud.page4.text": "我不小心把一片[四叶草](entry://general/clover)掉进了泥里。\\\n我试图捞起但无济于事，但幸运的是，我发现了一片[翠绿色的贝壳！](item://minecraft:scute)",
 
+  "book.spectrum.guidebook.multitool.page0.text": "每次出门冒险的时候，我总要带上一大包工具，虽然相比身上大把大把的石头是不值一提。但无论如何，一种结合了镐、斧、锹和锄功能的万能工具对我来说会非常合适。",
+  "book.spectrum.guidebook.multitool.page1.text": "多功能工具仅仅只是结合多方面的功能，性能上并没有比单项的工具要来得优越，但总比每三秒钟换一个工具要来得好。",
+
+  "book.spectrum.guidebook.myceylon.page0.text": "使用[#](bb00bb)斧子[#]()或者[多功能工具](entry://equipment/tools_and_armor/multitool)能从[夜光菇木](entry://dimension/noxshroom_forest)上剥下一小块比我想象中还要硬的树皮。这对于蘑菇来说既硬又……美味。\\\n\\\n这种我称之为锡兰肉桂的东西，绝对能为烘焙的食品和饮料增添极好的风味。",
+
+  "book.spectrum.guidebook.mysterious_locket.name": "神秘挂坠",
+  "book.spectrum.guidebook.mysterious_locket.page0.text": "我在一个藏宝箱中发现了这个神秘的挂坠。它紧紧地锁着。\\\n\\\n其上有一个形似凹槽的奇怪装饰，散发着淡淡的白光，让人想起月亮的光芒。",
+  "book.spectrum.guidebook.mysterious_locket.page1.text": "里面似乎有东西。背面还有一个雕刻，或许是我没有见过的一种语言？\\\n\\\n它是做什么用的？\\\n它是谁遗落下来的？\\\n它为什么会在那里？\\\n\\\n太多的迷题了。",
+  "book.spectrum.guidebook.mysterious_locket.page2.title": "镶嵌核心",
+  "book.spectrum.guidebook.mysterious_locket.page2.text": "我注意到这个凹槽似乎与[月石核心](entry://dimension/moonstone_cores)完美契合。",
+  "book.spectrum.guidebook.mysterious_locket.page3.text": "挂坠里有一小块水晶，散发着微弱但温暖的光芒。\\\n\\\n在[基岩之下](entry://dimension/delving_deeper_down)时，它随着我的转动而轻轻震动。",
+
+  "book.spectrum.guidebook.natures_staff.page0.text": "结合[#](613c20)自然[#]()与[#](5faa19)生机[#]()的元素，我想出了这个天才的创意。\\\n[#](bb00bb)骨粉[#]()在我的新工具面前简直就是笑话——这根法杖在很多连[#](bb00bb)骨粉[#]()都望而却步的地方都能起作用。",
+  "book.spectrum.guidebook.natures_staff.page1.text": "*随心所指之处，花朵自然绽放*",
+  "book.spectrum.guidebook.natures_staff.page2.text": "[#](449900)效率[#]()降低了[植本质](entry://general/vegetal)被消耗的几率。",
+
+  "book.spectrum.guidebook.neat_ring.page0.text": "*我只是觉得它很整洁。*",
+
+  "book.spectrum.guidebook.nectardew_burgeon.name": "夜露花蕾",
+  "book.spectrum.guidebook.nectardew_burgeon.page0.text": "夜露藤蔓能开花是很自然的事。然而，我没想到它开的花会是……*这样的*。其枝叶间蕴含的宁静精华，竟化作一束深邃如海的催眠魔法，仿佛我正潜入一片无尽的梦境。\\\n\\\n*...我仿佛见到了曾经的友人...*",
+  "book.spectrum.guidebook.nectardew_burgeon.page1.title": "附录 - 沉睡的果实",
+  "book.spectrum.guidebook.nectardew_burgeon.page1.text": "这些花蕾的稀有性确实成了一个问题。不过，倒也有解决之道。当附近有陷入沉睡中的生物时，这些植物会更加容易绽放开花……\\\n这不对吧？不是沉睡，而是……这样的事物*不可能*凭空出现。这魔法的根源太深，深入水面之下隐藏的事物。",
+
+  "book.spectrum.guidebook.neolith.page0.text": "黑曜石都被化为齑粉。原来这就是纯粹的力量吗！\\\n\\\n产物就是这种坚实的材料。\\\n\\\n非常强大的材料。\\\n实验非常成功。\\\n但我还没有达到极限。",
+
+  "book.spectrum.guidebook.nephrite.name": "软玉花",
+  "book.spectrum.guidebook.nephrite.page0.text": "一颗小树，就是看上去那么大。实际上更像是大型灌木……或者巨型灌木。\\\n\\\n*呃，很细节。*",
+  "book.spectrum.guidebook.nephrite.page1.text": "结出的果实并不是玻璃做的，只是晶莹剔透的看起来像玻璃。果实也确实非常美味！\\\n吃一个可能会让我获得短暂的[坚韧](entry://brewing/effects/toughness)效果。\\\n\\\n果实还可以[发酵](entry://cuisine/infused_beverages)和[用来酿造药水](entry://brewing/potion_workshop_brewing)。",
+
+  "book.spectrum.guidebook.night_salts.page0.text": "尽管我很愿意日夜工作，但睡眠终究是必需的，但我却没有好好管理睡眠。伴随着实验和探索的漫漫长夜对我的精神来说真的很难熬。\\\n\\\n\\\n*连幻翼都提醒我该睡一觉了。*",
+  "book.spectrum.guidebook.night_salts.page1.title": "发酵合成",
+  "book.spectrum.guidebook.night_salts.page1.text": "这个小瓶子应该能解决我失眠的问题。只要闻一下里面的盐，不到十秒就会昏睡过去。\\\n\\\n*闻起来很像氯仿~*",
+
+  "book.spectrum.guidebook.nightdew.page0.text": "看来，所有事物终究会回归原点。夜露之母终于在我面前显现，就隐藏在基岩之下—— 一株扇叶藤蔓，木质呈银色，散发着茶香……\\\n\\\n*……等等，花在哪里？*",
+  "book.spectrum.guidebook.nightdew.page1.text": "*每当我靠近这些藤蔓，我只想躺下睡个好觉。\\\n每次躺下后，我都会做一个奇怪的梦，梦见荒芜的水域。\\\n\\\n……恍惚间，我看到藤蔓上忽然出现了一株花蕾，但奇怪的是一眨眼就会消失。*",
+  "book.spectrum.guidebook.nightdew.page1.title": "幻梦藤",
+
+  "book.spectrum.guidebook.nightdew_sprout.name": "夜露嫩芽",
+  "book.spectrum.guidebook.nightdew_sprout.page0.text": "一根奇异的小枝条，令人联想到茶叶！其提取物甜美可口，成熟后具有镇静效果。唯一的问题是，我似乎不知道该将它种在哪里。\\\n\\\n*~ 一位芳香的小友 ~*",
+  "book.spectrum.guidebook.nightdew_sprout.page1.title": "附录 - 栽培",
+  "book.spectrum.guidebook.nightdew_sprout.page1.text": "啊哈。经过仔细观察，终于发现了栽培这些植物的方法。这些藤蔓很挑剔，只会在深处特有的某些自然方块上生长。",
+
+  "book.spectrum.guidebook.nightfalls_blade.page0.text": "这细细的刀刃不会造成太大的伤害，但它有许多锋利的毛刺，可以刺进对手的肉里。\\\n\\\n用[药水工作站](entry://brewing/potion_workshop)注入效果后，被击中的敌人会受到影响——前提是我身上有足够的[墨水](entry://ink/ink)。",
+  "book.spectrum.guidebook.nightfalls_blade.page1.text": "*残忍，折磨，高效*",
+
+  "book.spectrum.guidebook.noxshroom_forest.page0.text": "一种奇特的真菌与树木的杂交种在这个生物群系中高耸而立。",
+  "book.spectrum.guidebook.noxshroom_forest.page1.text": "黑渣岩上面覆盖着一层薄薄的菌丝真菌。",
+
+  "book.spectrum.guidebook.noxwood.name": "夜木",
+  "book.spectrum.guidebook.noxwood.page0.text": "一种蘑菇——不如说更像是一棵树？——可以在[永夜菇林](entry://dimension/noxshroom_forest)中找到。它们有各种颜色。\\\n\\\n树干坚硬如木，而菌盖则柔软松散。发光的菌褶散发出令人愉悦的光芒，使它们成为幽深环境中极好的光源。",
+  "book.spectrum.guidebook.noxwood.page1.text": "太好吃了，每一口都让我兴奋不已。",
+  "book.spectrum.guidebook.noxwood.page2.title": "空间很大",
+  "book.spectrum.guidebook.noxwood.page3.title": "用于庆典一样的活动",
+  "book.spectrum.guidebook.noxwood.page4.title": "菌丝",
+  "book.spectrum.guidebook.noxwood.page4.text": "有去皮和未去皮两种。",
+  "book.spectrum.guidebook.noxwood.page5.title": "木灯",
+  "book.spectrum.guidebook.noxwood.page5.text": "天然的光源。",
+  "book.spectrum.guidebook.noxwood.page6.title": "红石灯",
+  "book.spectrum.guidebook.noxwood.page6.text": "给予[#](bb00bb)红石信号[#]()时会亮起。",
+  "book.spectrum.guidebook.noxwood.page7.title": "罐子",
+  "book.spectrum.guidebook.noxwood.page7.text": "类似于[#](bb00bb)木桶[#]()，但存储空间是它的两倍。",
+  "book.spectrum.guidebook.noxwood.page8.title": "木梁",
+  "book.spectrum.guidebook.noxwood.page9.title": "灯笼",
+
+  "book.spectrum.guidebook.omni_accelerator.page0.text": "我给这个玩具起名字的时候，真的是认真的。\\\n\\\n全能发射器能装载任何物品或方块，甚至是食物药水等，并可以从远处发射出去——它只需要一个强大的能量源，即[月石核心](entry://dimension/moonstone_cores)。\\\n发射出去的方块会被放置或激活，而如果某个倒霉的家伙被射出的物品击中会受到其相应的效果。",
+  "book.spectrum.guidebook.omni_accelerator.page1.text": "我发现，锋利的滴水石锥并不是唯一能用的弹药。或许可以使用其他物品充当弹药，还可以做一些……*有趣*……的事情。",
+
+  "book.spectrum.guidebook.only_works_when_owner_online": "仅在主人在线的时候可用。",
+
+  "book.spectrum.guidebook.onyx_shards.name": "制作缟玛瑙碎片",
+  "book.spectrum.guidebook.onyx_shards.page0.text": "想要制作棕色颜料的话，我得先让橙色变暗。\\\n暗！现在想想，这真是太合逻辑了！这三种宝石晶不正是光谱的三原色吗！\\\n将这三者混合到一起之后，我创造出了某种……近乎超脱凡世的黑色碎片。",
+  "book.spectrum.guidebook.onyx_shards.page1.text": "既然要在[融合圣坛](entry://general/fusion_shrine)上制作“最黑的黑色”，就得确保任何杂光都不能污染晶体。那么，*新月的月光就很纯洁*！\\\n\\\n最好带上一个时钟。",
+  "book.spectrum.guidebook.onyx_shards.page2.title": "月相",
+  "book.spectrum.guidebook.onyx_shards.page2.text": "根据太阳和月亮的位置，月亮反射的光线多少有些不一样。",
+  "book.spectrum.guidebook.onyx_shards.page3.text": "这些被称为[#](449900)月相[#]()。\\\n\\\n当月亮最亮时，称为[#](449900)满月[#]()。当最暗时，称为[#](449900)新月[#]()。\\\n\\\n从新月到下一个新月的整个月相周期也称为[#](449900)朔望月[#]()。",
+
+  "book.spectrum.guidebook.overchanting.name": "超限附魔",
+  "book.spectrum.guidebook.overchanting.page0.text": "我对魔法和使用[附魔基座](entry://enchanting/enchanter)方面的经验让我有了另一个新发现：\\\n那就是[#](449900)超限附魔[#]()。\\\n\\\n然而，将这么多魔法能量注入一本[#](bb00bb)附魔书[#]()中的代价*相当高昂*。大部分情况下，可能并不值得。",
+  "book.spectrum.guidebook.overchanting.page1.title": "光谱附魔",
+  "book.spectrum.guidebook.overchanting.page1.text": "- 四叶草的眷佑: 3 → 6\n- 缴械: 2 → 4\n- 经验充沛: 5 → 10\n- 先发制人: 2 → 5\n- 暴击增强: 2 → 4\n- 惯性: 2 → 5\n- 利落把柄: 2 → 4\n- 奇珍猎手: 3 → 5\n- 狙击: 2 → 4",
+
+  "book.spectrum.guidebook.overchanting.page2.text": "- 节肢杀手: 5 → 8\n- 爆炸保护: 4 → 8\n- 深海探索者: 3 → 3\n- 效率: 5 → 8\n- 摔落保护: 4 → 6\n- 火焰附加: 2 → 4\n- 火焰保护: 4 → 8\n- 时运: 3 → 5\n- 冰霜行者: 2 → 4\n- 穿刺: 5 → 8\n- 击退: 2 → 5\n- 抢夺: 3 → 6\n- 忠诚: 3 → 4",
+  "book.spectrum.guidebook.overchanting.page3.text": "- 海之眷顾: 3 → 5\n- 饵钓: 3 → 5\n- 穿透: 4 → 8\n- 力量: 5 → 8\n- 弹射物保护: 4 → 8\n- 保护: 4 → 8\n- 冲击: 2 → 5\n- 快速装填: 3 → 5\n- 水下呼吸: 3 → 6\n- 激流: 3 → 4\n- 锋利: 5 → 8\n- 亡灵杀手: 5 → 8\n- 灵魂疾行: 3 → 4\n- 横扫之刃: 3 → 7\n- 荆棘: 3 → 6\n- 耐久: 3 → 6",
+
+  "book.spectrum.guidebook.paintbrush.page0.text": "这*画笔*又是怎么一回事呢？\\\n\\\n好问题啊，好问题，我也曾思索过。这一选择的直觉，兴许是因为五彩斑斓的基座与晶莹剔透的晶体唤醒了我内心深处的艺术家吧。",
+  "book.spectrum.guidebook.paintbrush.page1.title": "合成配方",
+  "book.spectrum.guidebook.paintbrush.page1.text": "给[七彩基座](entry://general/pedestal)狠狠的敲上那么一下就可以开始合成了。",
+  "book.spectrum.guidebook.paintbrush.page2.title": "方块上色",
+  "book.spectrum.guidebook.paintbrush.page2.text": "[颜料](entry://general/pigment)就是要拿来涂抹绘画的嘛！\\\n\\\n[#](449900)手持画笔的时候潜行即可打开颜色选择界面[#]()。\\\n\\\n只要对着方块轻轻一抹，[颜料](entry://general/pigment)便会匀染其上，将其变成相应的上色版本。",
+  "book.spectrum.guidebook.paintbrush.page3.title": "墨水投掷",
+  "book.spectrum.guidebook.paintbrush.page3.text": "手头有了墨水，画笔就有新的用途了：我可以用我的画笔把墨水捆起来，然后将其像抛射物一样抛出去。\\\n\\\n被击中的方块（或生物）若能吸收颜料，目标表面则会被颜料上色，并造成大量击退效果。",
+
+  "book.spectrum.guidebook.paltaeria.name": "苍绿碎片",
+  "book.spectrum.guidebook.paltaeria.page0.text": "淡蓝色是这种矿石的标志性颜色。仅在末地中生成。\\\n\\\n就像末地本身一样，这种材料的奇特特性不容忽视。",
+  "book.spectrum.guidebook.paltaeria.page2.text": "根据我之前应对苍绿碎片的经验，我已经猜到把这个方块放在开阔的天空下并非明智之举——未来的我会感激现在的决定。",
+  "book.spectrum.guidebook.paltaeria.page3.text": "\\\n       *给我高高的飞起来啊！*",
+
+  "book.spectrum.guidebook.particle_spawner.page0.text": "[流星](entry://general/stargazing)[#]()坠落时四处播撒的粒子在夜空中划出一道璀璨的尾迹，此等奇观势必要捕捉重现。为此，我打造了高度可配置的粒子生成器，去营造更为繁华多样的景观。\\\n无论是平实的烟囱还是耀眼的火箭尾焰，还是用来点缀祭坛的气势磅礴的人工雨，粒子生成器应有尽有。\\\n*或许随着我的进步，我还能从更多的粒子中获得灵感！*",
+  "book.spectrum.guidebook.particle_spawner.page1.text": "在粒子生成器的交互界面内我可以随心指定需要的粒子效果。通上[#](449900)红石信号[#]()来开始一场华丽的表演吧！",
+
+  "book.spectrum.guidebook.pastel_network.name": "绘彩网络",
+  "book.spectrum.guidebook.pastel_network.page0.text": "[#](449900)漏斗、矿车、管道[#]()等其他普通的运输方式虽然不错，但还是*有所欠缺*。这些由石青驱动的传输节点——我称之为[#](449900)绘彩网络[#]()——是应对物流挑战的更优雅、更高效的解决方案。\\\n\\\n即使我不在旁边，这些节点也能传输物品，这其中蕴含着某些独特的原理。这无疑再次证明了我的天才之处！",
+  "book.spectrum.guidebook.pastel_network.page2.title": "标签过滤",
+  "book.spectrum.guidebook.pastel_network.page2.text": "虽然我觉得我这小脑袋瓜挺聪明的，但我的传输节点可没有脑子。这在需要更细节的过滤时可是个问题。\\\n不过还好，我反而可以利用这一点，通过在一张羊皮纸上写下[#](449900)物品标签[#]()，这样节点就只会听我的命令什么该过滤什么不该过滤！",
+  "book.spectrum.guidebook.pastel_network.page3.title": "NBT过滤",
+  "book.spectrum.guidebook.pastel_network.page3.text": "可以修改描述，让节点过滤NBT字段。在某些情况下，可以使用一些额外的关键字。\\\n*Numbers: above, below*\\\n*Text: is (not) blank*\\\n*Enchs: with {id} + level (optional)*\\\n*Durability: (not) damaged*\\\n*Eg: Durability, Age above 100, Enchantments with minecraft:sharpness above 3*",
+
+  "book.spectrum.guidebook.pedestal.page0.text": "如此美丽的工作台！\\\n\\\n我受到了那些宝石晶的启发。所以创造了这个增强的[#](bb00bb)工作台[#]()。它可以使用[宝石晶粉末](entry://general/gemstone_powder)来创造前所未见的新物品。",
+  "book.spectrum.guidebook.pedestal.topaz_pedestal.text": "鲜艳的青色看上去非常高贵。",
+  "book.spectrum.guidebook.pedestal.amethyst_pedestal.text": "品红色与木材形成了鲜明的对比。",
+  "book.spectrum.guidebook.pedestal.citrine_pedestal.text": "鲜艳的黄色看起来充满活力。",
+  "book.spectrum.guidebook.pedestal.page2.title": "基座变体",
+  "book.spectrum.guidebook.pedestal.page2.text": "\\\n在外观上，可以由我选定合成的宝石晶决定。\\\n\\\n虽然看起来不同，但功能上还是一样的。",
+  "book.spectrum.guidebook.pedestal.page3.title": "基座配方",
+
+  "book.spectrum.guidebook.pedestal_customisation.title": "个性化！",
+  "book.spectrum.guidebook.pedestal_customisation.text": "我可以随意选取方解石、玄武岩与宝石晶块的搭配。\\\n也可以将[#](bb00bb)方解石[#]()和[#](bb00bb)玄武岩[#]()二者混合，给结构增添我个人的风格。",
+
+  "book.spectrum.guidebook.pedestal.automation.title": "基座自动化合成",
+  "book.spectrum.guidebook.pedestal.automation.text": "我可以使用[合成模板](entry://equipment/crafting_tablet)实现七彩基座自动化合成。\\\n在合成模板上设置一个配方并将其放入基座的指定槽位中时，七彩基座会按照预先设置好的指示均匀地落在对应的合成位上。",
+
+  "book.spectrum.guidebook.pedestal_upgrade_cmy.name": "基座CMY升级",
+  "book.spectrum.guidebook.pedestal_upgrade_cmy.page0.text": "我手头上有三种不同的宝石，能做些什么呢？ *对了！* 我可以用这三种宝石来升级我的[基座](entry://general/pedestal)！这样不仅更美观，还能制作更多的新物品。",
+  "book.spectrum.guidebook.pedestal_upgrade_cmy.page0.title": "CMY变体",
+  "book.spectrum.guidebook.pedestal_upgrade_cmy.page1.text": "为了使用到高级功能，我需要一个特别的结构来将宝石晶的能量串联集中到[七彩基座](entry://general/pedestal)上。\\\n\\\n我称之为**光谱聚焦**。",
+  "book.spectrum.guidebook.pedestal_upgrade_cmy.page1.title": "基座结构",
+  "book.spectrum.guidebook.pedestal_upgrade_cmy.page2.text": "尺寸：11x11x4。但最好留出一些额外的空间，以防万一。",
+  "book.spectrum.guidebook.pedestal_upgrade_cmy.page3.text": "- 1个七彩基座\n- 4个磨制宝石晶方块\n- 4个雕纹磨制岩石方块\n- 4个无印磨制岩石方块\n- 8个磨制岩石柱\n- 68个磨制岩石方块",
+
+  "book.spectrum.guidebook.pedestal_upgrade_moonstone.dimensions": "尺寸：13x13x7",
+  "book.spectrum.guidebook.pedestal_upgrade_moonstone.name": "月长石基座",
+  "book.spectrum.guidebook.pedestal_upgrade_moonstone.page0.text": "我可以使用[月长石碎片](entry://general/shards@moonstone)来升级我的[七彩基座](entry://general/pedestal)。",
+  "book.spectrum.guidebook.pedestal_upgrade_moonstone.page2.text": "- 1个七彩基座\n- 4个雕纹缟玛瑙岩石方块\n- 4个无印磨制岩石方块\n- 8个宝石晶灯\n- 16个雕纹宝石晶岩石方块\n- 12个磨制宝石晶方块\n- 4个雕纹磨制岩石方块\n- 36个磨制岩石柱\n- 52个磨制饰纹岩石方块\n- 144个磨制岩石方块",
+  "book.spectrum.guidebook.pedestal_upgrade_moonstone.page3.text": "- 4个雕纹缟玛瑙岩石方块\n- 4个磨制宝石晶方块\n- 36个磨制饰纹岩石方块\n- 12个磨制岩石方块",
+  "book.spectrum.guidebook.pedestal_upgrade_moonstone_2.name": "月长石基座 (2)",
+  "book.spectrum.guidebook.pedestal_upgrade_moonstone_2.page0.text": "新结构总感觉……好像缺少了什么。仔细一想，这才恍然大悟；原来是结构还缺少更多的[#](d0d6d7)月长石元素[#]()啊。 但问题是：要制作[#](bb00bb)雕纹月长石岩石方块[#]()，我必须得借助完整的[#](bb00bb)月长石基座[#]()才能制作，但是结构现在还不完整，我还不能使用月长石粉末的能量。\\\n*车到山前必有路，或许还有别的方法完善结构。*",
+  "book.spectrum.guidebook.pedestal_upgrade_moonstone_2.page2.text": "- 1个七彩基座\n- 4个雕纹缟玛瑙岩石方块\n- 4个无印磨制岩石方块\n- 8个宝石晶灯\n- 16个雕纹宝石晶岩石方块\n- 12个磨制宝石晶方块\n- 4个雕纹磨制岩石方块\n- 28个雕纹月长石岩石方块\n- 36个磨制岩石柱\n- 52个磨制饰纹岩石方块\n- 144个磨制岩石方块",
+  "book.spectrum.guidebook.pedestal_upgrade_moonstone_2.page3.text": "- 28个雕纹月长石岩石方块",
+
+  "book.spectrum.guidebook.pedestal_upgrade_onyx.name": "缟玛瑙基座升级",
+  "book.spectrum.guidebook.pedestal_upgrade_onyx.page0.text": "可以使用[缟玛瑙碎片](entry://general/shards@onyx)来升级我的[七彩基座](entry://general/pedestal)，以进一步增加其魔法力量。",
+  "book.spectrum.guidebook.pedestal_upgrade_onyx.page0.title": "缟玛瑙变体",
+  "book.spectrum.guidebook.pedestal_upgrade_onyx.page1.text": "尺寸：13x13x6",
+  "book.spectrum.guidebook.pedestal_upgrade_onyx.page2.text": "- 1个七彩基座\n- 8个磨制宝石晶方块\n- 8个宝石晶灯\n- 4个雕纹磨制岩石方块\n- 16个雕纹宝石晶岩石方块\n- 16个磨制饰纹岩石方块\n- 4个无印磨制岩石方块\n- 36个磨制岩石柱\n- 160个磨制岩石方块",
+  "book.spectrum.guidebook.pedestal_upgrade_onyx.page3.text": "- 4个磨制宝石晶方块\n- 8个宝石晶灯\n- 16个雕纹宝石晶岩石方块\n- 16个磨制饰纹岩石方块\n- 28个磨制岩石柱\n- 92个磨制岩石方块",
+
+  "book.spectrum.guidebook.perturbed_eye.name": "末地传送门搬迁",
+
 
   "book.spectrum.guidebook.mod_integration.ae2.name": "AE2",
   "book.spectrum.guidebook.mod_integration.ae2.page0.text": "\"我曾听说，\" 任何足够先进的技术都与魔法无异。\\\n我不清楚这个系统是怎么在这么小的空间里存储这么多方块的，但是一想到我不也经常随身带个数百平方米的泥土，我也就释然了。",
@@ -4765,8 +4913,8 @@
   "advancements.spectrum.upgrade_pastel_node_throughput.description": "体验最好的提升吞吐量的粉彩升级",
   "advancements.spectrum.upgrade_pastel_node_lamp.title": "粉彩华灯",
   "advancements.spectrum.upgrade_pastel_node_lamp.description": "将粉彩节点变成一个可能价格过高但不亏的华丽灯具",
-  "advancements.spectrum.collect_nectardew.title": "蜜露",
-  "advancements.spectrum.collect_nectardew.description": "发现一种罕见且迷人的花",
+  "advancements.spectrum.collect_nectardew.title": "花蜜",
+  "advancements.spectrum.collect_nectardew.description": "发现一种罕见且芳香的花蕾",
   "advancements.spectrum.collect_nightdew.title": "也就比洋甘菊强一点",
   "advancements.spectrum.collect_nightdew.description": "发现一种类似茶叶的叶子",
   "advancements.spectrum.collect_poisoners_cookbook.title": "禁忌之书",

@@ -541,4 +541,11 @@ public abstract class LivingEntityMixin {
 	public boolean spectrum$isWet(LivingEntity livingEntity) {
 		return livingEntity.isTouchingWater() ? ((TouchingWaterAware) livingEntity).spectrum$isActuallyTouchingWater() : livingEntity.isWet();
 	}
+
+
+	@com.llamalad7.mixinextras.injector.v2.WrapWithCondition(method = "damage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;tiltScreen(DD)V"))
+	private boolean shouldTiltScreen(LivingEntity entity, double deltaX, double deltaZ, DamageSource source,
+			float amount) {
+		return !source.isIn(SpectrumDamageTypeTags.USES_SET_HEALTH);
+	}
 }

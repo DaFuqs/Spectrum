@@ -58,6 +58,7 @@
     "NbtPredicateMixin",
     "NoteBlockMixin",
     "PiglinBrainMixin",
+    "PistonBlockMixin",
     "PlantOnCustomFarmlandMixin",
     "PlayerEntityMixin",
     "PlayerInventoryMixin",

@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.structure.StructurePiece;
 import net.minecraft.structure.StructureStart;
 import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
@@ -15,6 +16,8 @@ import net.minecraft.world.gen.blockpredicate.BlockPredicate;
 import net.minecraft.world.gen.blockpredicate.BlockPredicateType;
 import net.minecraft.world.gen.structure.Structure;
 import de.dafuqs.spectrum.registries.SpectrumBlockPredicates;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 import java.util.Optional;
@@ -28,8 +31,8 @@ public class OverlapsStructureBlockPredicate implements BlockPredicate {
 
     private final Vec3i offset;
     private final int range;
-
     private final Optional<RegistryKey<Structure>> structure;
+    public static final Logger LOGGER = LoggerFactory.getLogger("Spectrum");
 
     public OverlapsStructureBlockPredicate(Vec3i offset,  Optional<RegistryKey<Structure>> structure, int range) {
         this.structure = structure;
@@ -58,9 +61,21 @@ public class OverlapsStructureBlockPredicate implements BlockPredicate {
                     continue;
                 }
             }
-            if(struct.getValue().getBoundingBox().intersects(exclusionZone))
+            if(!struct.getValue().hasChildren())
             {
-                return true;
+                if(struct.getValue().getBoundingBox().intersects(exclusionZone))
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                for(StructurePiece piece : struct.getValue().getChildren())
+                {
+                    if(piece.getBoundingBox().intersects(exclusionZone)) {
+                        return true;
+                    }
+                }
             }
         }
         return false;

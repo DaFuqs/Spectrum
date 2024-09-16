@@ -362,7 +362,7 @@ public class SpectrumItems {
 	public static final Item IMPERIAL_COOKBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/cookbooks/imperial_cookbook");
 	public static final Item BREWERS_HANDBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/cookbooks/brewers_handbook");
 	public static final Item VARIA_COOKBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/cookbooks/varia_cookbook");
-	public static final Item POISONERS_HANDBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.EPIC), "cuisine/cookbooks/poisoners_handbook");
+	public static final Item POISONERS_HANDBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.EPIC), "dimension/lore/poisoners_handbook", SpectrumStatusEffects.ETERNAL_SLUMBER_COLOR);
 
 	public static final Item AQUA_REGIA = new JadeWineItem(IS.of(16).food(SpectrumFoodComponents.AQUA_REGIA));
 	public static final Item BAGNUN = new Item(IS.of().food(SpectrumFoodComponents.BAGNUN));

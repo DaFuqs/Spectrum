@@ -16,10 +16,16 @@ import java.util.*;
 public class CookbookItem extends Item {
 	
 	public String guidebookPageToOpen;
+	private final int toolTipColor;
 	
 	public CookbookItem(Settings settings, String guidebookPageToOpen) {
+		this(settings, guidebookPageToOpen, -1);
+	}
+
+	public CookbookItem(Settings settings, String guidebookPageToOpen, int toolTipColor) {
 		super(settings);
 		this.guidebookPageToOpen = guidebookPageToOpen;
+		this.toolTipColor = toolTipColor;
 	}
 	
 	@Override
@@ -48,7 +54,12 @@ public class CookbookItem extends Item {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		tooltip.add(Text.translatable(this.getTranslationKey() + ".tooltip").formatted(Formatting.GRAY));
+		if (toolTipColor == -1) {
+			tooltip.add(Text.translatable(this.getTranslationKey() + ".tooltip").formatted(Formatting.GRAY));
+			return;
+		}
+
+		tooltip.add(Text.translatable(this.getTranslationKey() + ".tooltip").styled(s -> s.withColor(toolTipColor)));
 	}
 	
 }

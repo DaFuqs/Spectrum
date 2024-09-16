@@ -1,0 +1,176 @@
+{
+  "name": "item.spectrum.poisoners_handbook",
+  "icon": "spectrum:poisoners_handbook",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/collect_cookbooks/poisoners_handbook"
+  },
+  "category": "spectrum:dimension",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": -5,
+  "y": -5,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.poisoners_handbook.page0.title",
+      "text": "book.spectrum.guidebook.poisoners_handbook.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.poisoners_handbook.page1.title",
+      "text": "book.spectrum.guidebook.poisoners_handbook.page1.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.poisoners_handbook.page2.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.poisoners_handbook.page3.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.poisoners_handbook.page.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.poisoners_handbook.page.text"
+    },
+    {
+
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.poisoners_handbook.page6.title",
+      "text": "book.spectrum.guidebook.poisoners_handbook.page6.text"
+    },
+    {
+
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.poisoners_handbook.page7.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.poisoners_handbook.page8.title",
+      "text": "book.spectrum.guidebook.poisoners_handbook.page8.text"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "item.spectrum.infused_beverage.tooltip.variant.velvet_brandy",
+      "recipe_id": "spectrum:titration_barrel/infused_beverages/velvet_brandy",
+      "text": "book.spectrum.guidebook.poisoners_handbook.page9.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.poisoners_handbook.page10.title",
+      "text": "book.spectrum.guidebook.poisoners_handbook.page10.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:nectardew_burgeon"
+      },
+      "title": "book.spectrum.guidebook.poisoners_handbook.page11.title",
+      "text": "book.spectrum.guidebook.poisoners_handbook.page11.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.poisoners_handbook.page12.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.poisoners_handbook.page13.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.poisoners_handbook.page14.title",
+      "text": "book.spectrum.guidebook.poisoners_handbook.page14.text"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "item.spectrum.infused_beverage.tooltip.variant.night_cream",
+      "recipe_id": "spectrum:titration_barrel/infused_beverages/night_cream",
+      "text": "book.spectrum.guidebook.poisoners_handbook.page15.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.poisoners_handbook.page24.title",
+      "text": "book.spectrum.guidebook.poisoners_handbook.page24.text"
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "recipe_id": "spectrum:potion_workshop_brewing/immunity",
+      "title": "effect.spectrum.immunity",
+      "text": "book.spectrum.guidebook.poisoners_handbook.page25.text"
+    },
+    {
+
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.poisoners_handbook.page4.title",
+      "text": "book.spectrum.guidebook.poisoners_handbook.page4.text"
+    },
+    {
+      "type": "spectrum:snippet",
+      "title": "book.spectrum.guidebook.poisoners_handbook.page5.title",
+      "resource_path": "spectrum:textures/gui/guidebook/manxi_and_her_master.png",
+      "resource_width": 116,
+      "resource_height": 116,
+      "texture_x": 0,
+      "texture_y": 0,
+      "texture_width": 116,
+      "texture_height": 116,
+      "border": false,
+      "text": "book.spectrum.guidebook.poisoners_handbook.page5.text"
+    },
+    {
+
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.poisoners_handbook.page16.text"
+    },
+    {
+
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.poisoners_handbook.page17.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.poisoners_handbook.page18.text"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "item.spectrum.evernectar",
+      "recipe_id": "spectrum:titration_barrel/evernectar",
+      "text": "book.spectrum.guidebook.poisoners_handbook.page19.text"
+    },{
+
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.poisoners_handbook.page20.text"
+    },
+    {
+
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.poisoners_handbook.page21.text"
+    },
+    {
+
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.poisoners_handbook.page.text"
+    },
+    {
+
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.poisoners_handbook.page.text"
+    },
+    {
+
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.poisoners_handbook.page22.text"
+    },
+    {
+
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.poisoners_handbook.page23.text"
+    }
+  ]
+}

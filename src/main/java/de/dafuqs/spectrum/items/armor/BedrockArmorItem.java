@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.items.armor;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.registries.client.*;
+import de.dafuqs.spectrum.render.armor.BedrockArmorModel;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
 import net.minecraft.client.render.*;

@@ -9,7 +9,13 @@ public class BedrockArmorCapeModel {
     private static ModelPart createCape() {
         ModelData data = new ModelData();
         var root = data.getRoot();
-        // TODO - Move cape here
+
+        root.addChild("cape", ModelPartBuilder.create()
+            .uv(64, 14).cuboid(-5.0F, 1.4167F, -0.6833F, 10.0F, 5.0F, 3.0F, Dilation.NONE)
+            .uv(0, 49).cuboid(-4.5F, -1.8333F, -0.0833F, 9.0F, 21.0F, 0.0F, Dilation.NONE)
+            .uv(62, 78).cuboid(-7.0F, 0.1667F, 0.1667F, 5.0F, 21.0F, 0.0F, Dilation.NONE)
+            .uv(52, 68).cuboid(2.0F, 0.1667F, 0.1667F, 5.0F, 21.0F, 0.0F, Dilation.NONE), ModelTransform.pivot(-0.5F, 1.8333F, 2.6833F));
+
 
         return data.getRoot().createPart(128, 128);
     }

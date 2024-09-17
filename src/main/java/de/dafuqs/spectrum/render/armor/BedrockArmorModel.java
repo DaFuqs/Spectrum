@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.items.armor;
+package de.dafuqs.spectrum.render.armor;
 
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.*;
@@ -50,18 +50,11 @@ public class BedrockArmorModel extends BipedEntityModel<LivingEntity> {
 
         var body_roll = body.addChild("body_roll", ModelPartBuilder.create()
                 .uv(28, 31)
-            .cuboid(-6.0F, -3.5F, -1.25F, 12.0F, 5.0F, 5.0F, Dilation.NONE), ModelTransform.of(-0.5F, 1.5F, 2.5F, -0.7854F, 0.0F, 0.0F));
+            .cuboid(-5.5F, -3.5F, -1.25F, 12.0F, 5.0F, 5.0F, Dilation.NONE), ModelTransform.of(-0.5F, 1.5F, 2.5F, -0.7854F, 0.0F, 0.0F));
 
         var body_collar = body.addChild("body_collar", ModelPartBuilder.create()
                 .uv(0, 83).cuboid(-4.5F, -1.5F, -4.25F, 9.0F, 5.0F, 7.0F, Dilation.NONE)
                 .uv(0, 18).cuboid(-5.5F, -1.5F, -5.25F, 11.0F, 5.0F, 8.0F, Dilation.NONE), ModelTransform.of(0.0F, -1.0F, 0.0F, 0.1745F, 0.0F, 0.0F));
-
-
-        var cape = body.addChild("cape", ModelPartBuilder.create()
-                .uv(64, 14).cuboid(-5.0F, 1.4167F, -0.6833F, 10.0F, 5.0F, 3.0F, Dilation.NONE)
-                .uv(0, 49).cuboid(-4.5F, -1.8333F, -0.0833F, 9.0F, 21.0F, 0.0F, Dilation.NONE)
-                .uv(62, 78).cuboid(-7.0F, 0.1667F, 0.1667F, 5.0F, 21.0F, 0.0F, Dilation.NONE)
-                .uv(52, 68).cuboid(2.0F, 0.1667F, 0.1667F, 5.0F, 21.0F, 0.0F, Dilation.NONE), ModelTransform.pivot(-0.5F, 1.8333F, 2.6833F));
 
         var right_arm = root.addChild("right_arm", ModelPartBuilder.create()
                 .uv(18, 56).cuboid(-4.0F, -1.5F, -2.5F, 5.0F, 12.0F, 5.0F, Dilation.NONE)
@@ -167,7 +160,7 @@ public class BedrockArmorModel extends BipedEntityModel<LivingEntity> {
         if (player.isInSneakingPose()) {
             q += 25.0F;
         }
-        return new Pair<>(MathHelper.clamp(-(6.0F + r / 2.0F + q), -25, 0), capeZOffset);
+        return new Pair<>(-(6.0F + r / 2.0F + q), capeZOffset);
     }
 
     private void renderArmorPart(EquipmentSlot slot) {

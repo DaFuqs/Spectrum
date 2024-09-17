@@ -1,6 +1,7 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube_column",
   "textures": {
-    "all": "spectrum:block/yellow_chiseled_preservation_stone"
+    "end": "spectrum:block/preservation_stone_top_generic",
+    "side": "spectrum:block/yellow_chiseled_preservation_stone"
   }
 }

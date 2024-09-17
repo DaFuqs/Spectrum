@@ -5,6 +5,12 @@
       "minecraft:fire/ignite"
     ]
   },
+  "item.guidebook.pages": {
+    "subtitle": "spectrum.subtitles.item.guidebook.pages",
+    "sounds": [
+      "spectrum:guidebook_pages"
+    ]
+  },
   "use_fail": {
     "subtitle": "spectrum.subtitles.use_fail",
     "sounds": [

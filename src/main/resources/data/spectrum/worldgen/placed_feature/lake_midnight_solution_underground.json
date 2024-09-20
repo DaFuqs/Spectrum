@@ -6,17 +6,17 @@
       "count": 7
     },
     {
+      "type": "minecraft:biome"
+    },
+    {
       "type": "minecraft:block_predicate_filter",
       "predicate": {
         "type": "minecraft:not",
         "predicate": {
           "type": "spectrum:overlaps_structure",
-          "range": 4
+          "range": 32
         }
       }
-    },
-    {
-      "type": "minecraft:biome"
     }
   ]
 }

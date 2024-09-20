@@ -25,7 +25,7 @@ public class BedrockArmorModel extends BipedEntityModel<LivingEntity> {
         root.addChild("hat", ModelPartBuilder.create(), ModelTransform.NONE);
 
         var head = root.addChild("head", ModelPartBuilder.create()
-                .uv(0, 0).cuboid(-4.5F, -8.5F, -4.5F, 9.0F, 9.0F, 9.0F, Dilation.NONE), ModelTransform.NONE);
+                .uv(0, 0).cuboid(-4.5F, -8.5F, -4.5F, 9.0F, 9.0F, 9.0F, new Dilation(.5f)), ModelTransform.NONE);
 
         var head_plume = head.addChild("head_plume", ModelPartBuilder.create()
                 .uv(38, 61).cuboid(0.0F, -0.0806F, 0.1517F, 0.0F, 11.0F, 7.0F, Dilation.NONE), ModelTransform.of(0.0F, -11.25F, 2.0F, 0.4363F, 0.0F, 0.0F));
@@ -43,7 +43,7 @@ public class BedrockArmorModel extends BipedEntityModel<LivingEntity> {
 
         var body = root.addChild("body", ModelPartBuilder.create()
                 .uv(0, 31)
-                .cuboid(-4.5F, -1.0F, -3.0F, 9.0F, 13.0F, 5.0F, Dilation.NONE)
+                .cuboid(-4.5F, -1.0F, -2.5F, 9.0F, 13.0F, 5.0F, new Dilation(0.25f))
                 .uv(28, 41)
                 .cuboid(-4.5F, -1.0F, -3.75F, 9.0F, 12.0F, 3.0F, Dilation.NONE),
             ModelTransform.pivot(0.0F, 0.5F, 0.5F));
@@ -57,16 +57,16 @@ public class BedrockArmorModel extends BipedEntityModel<LivingEntity> {
                 .uv(0, 18).cuboid(-5.5F, -1.5F, -5.25F, 11.0F, 5.0F, 8.0F, Dilation.NONE), ModelTransform.of(0.0F, -1.0F, 0.0F, 0.1745F, 0.0F, 0.0F));
 
         var right_arm = root.addChild("right_arm", ModelPartBuilder.create()
-                .uv(18, 56).cuboid(-4.0F, -1.5F, -2.5F, 5.0F, 12.0F, 5.0F, Dilation.NONE)
-                .uv(56, 35).cuboid(-4.5F, -1.5F, -3.0F, 6.0F, 6.0F, 6.0F, Dilation.NONE), ModelTransform.pivot(-4.0F, 2.0F, 0.0F));
+                .uv(18, 56).cuboid(-4.0F, -1.5F, -2.5F, 5.0F, 12.0F, 5.0F, new Dilation(0.175f))
+                .uv(56, 35).cuboid(-4.5F, -1.5F, -3.0F, 6.0F, 6.0F, 6.0F, new Dilation(0.175f)), ModelTransform.pivot(-4.0F, 2.0F, 0.0F));
 
         var right_arm_pauldron_top = right_arm.addChild("right_arm_pauldron_top", ModelPartBuilder.create()
                 .uv(74, 22).cuboid(1.0F, -1.0F, -2.5F, 2.0F, 5.0F, 7.0F, Dilation.NONE)
                 .uv(57, 3).cuboid(-4.0F, 0.0F, -2.5F, 5.0F, 4.0F, 7.0F, Dilation.NONE), ModelTransform.of(-3.0F, -2.5F, -1.0F, 0.0F, 0.0F, -0.2618F));
 
         var left_arm = root.addChild("left_arm", ModelPartBuilder.create()
-                .uv(47, 51).cuboid(-1.0F, -2.0F, -2.5F, 5.0F, 12.0F, 5.0F, Dilation.NONE)
-                .uv(16, 73).cuboid(0.5F, 0.0F, -3.0F, 4.0F, 5.0F, 6.0F, Dilation.NONE), ModelTransform.pivot(4.0F, 2.5F, 0.0F));
+                .uv(47, 51).cuboid(-1.0F, -2.0F, -2.5F, 5.0F, 12.0F, 5.0F, new Dilation(0.175f))
+                .uv(16, 73).cuboid(0.5F, 0.0F, -3.0F, 4.0F, 5.0F, 6.0F, new Dilation(0.175f)), ModelTransform.pivot(4.0F, 2.5F, 0.0F));
 
         var left_arm_bauldron_top = left_arm.addChild("left_arm_bauldron_top", ModelPartBuilder.create()
                 .uv(74, 0).cuboid(-0.5F, -5.0F, -3.0F, 5.0F, 1.0F, 6.0F, Dilation.NONE)
@@ -136,13 +136,13 @@ public class BedrockArmorModel extends BipedEntityModel<LivingEntity> {
 
     public static Pair<Float, Float> computeFrontClothRotation(PlayerEntity player, float delta) {
         // Vanilla cape values
-        double x = MathHelper.lerpAngleDegrees(delta / 2, (float) player.prevCapeX, (float) player.capeX)
-                - MathHelper.lerpAngleDegrees(delta / 2, (float) player.prevX, (float) player.getX());
-        double y = MathHelper.lerpAngleDegrees(delta / 2, (float) player.prevCapeY, (float) player.capeY)
-                - MathHelper.lerpAngleDegrees(delta / 2, (float) player.prevY, (float) player.getY());
-        double z = MathHelper.lerpAngleDegrees(delta / 2, (float) player.prevCapeZ, (float) player.capeZ)
-                - MathHelper.lerpAngleDegrees(delta / 2, (float) player.prevZ, (float) player.getZ());
-        float yaw = player.prevBodyYaw + (player.bodyYaw - player.prevBodyYaw);
+        double x = MathHelper.lerp(delta / 2, player.prevCapeX, player.capeX)
+                - MathHelper.lerp(delta / 2, player.prevX, player.getX());
+        double y = MathHelper.lerp(delta / 2, player.prevCapeY, player.capeY)
+                - MathHelper.lerp(delta / 2, player.prevY, player.getY());
+        double z = MathHelper.lerp(delta / 2, player.prevCapeZ, player.capeZ)
+                - MathHelper.lerp(delta / 2, player.prevZ, player.getZ());
+        float yaw = MathHelper.lerpAngleDegrees(delta, player.prevBodyYaw, player.bodyYaw);
         double o = MathHelper.sin(yaw * (float) (Math.PI / 180.0));
         double p = -MathHelper.cos(yaw * (float) (Math.PI / 180.0));
         float q = (float) y * 10.0F;

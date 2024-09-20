@@ -36,8 +36,9 @@ public class BedrockCapeRenderer {
 		BedrockArmorCapeModel.FRONT_CLOTH.render(ms, vertexConsumer, light, OverlayTexture.DEFAULT_UV);
 		ms.pop();
 
-		// Respect the players own cape, Elytras and Fabrics Render Event
-		if (player.getCapeTexture() != null || RenderingContext.isElytraRendered || !LivingEntityFeatureRenderEvents.ALLOW_CAPE_RENDER.invoker().allowCapeRender(player)) {
+		// TODO - Respect player capes once armor tailoring is implemented
+		// Respect Elytras and Fabrics Render Event
+		if (RenderingContext.isElytraRendered || !LivingEntityFeatureRenderEvents.ALLOW_CAPE_RENDER.invoker().allowCapeRender(player)) {
 			return;
 		}
 
@@ -49,7 +50,7 @@ public class BedrockCapeRenderer {
 		ms.translate(0, -0.05, 0.0); // Push up and backwards, then rotate
 		ms.multiply(RotationAxis.POSITIVE_X.rotationDegrees(backCapeRotation));
 		ms.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(capeZOffset / 2.0F));
-		ms.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180.0F - capeZOffset / 1.25F));
+		ms.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180.0F - capeZOffset / 3.5F));
 		ms.translate(0, 0.05, -0.325); // Move back down
 		if (player.isInSneakingPose()) {
 			ms.translate(0, 0.15, 0.125);

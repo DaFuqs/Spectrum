@@ -47,6 +47,8 @@ public class SpectrumModelPredicateProviders {
 		registerMoonPhasePredicates(SpectrumItems.CRESCENT_CLOCK);
 		registerActivatableItemPredicate(SpectrumItems.DREAMFLAYER);
 		registerOversizedItemPredicate(SpectrumItems.DREAMFLAYER);
+		registerOversizedItemPredicate(SpectrumItems.KNOTTED_SWORD);
+		registerOversizedItemPredicate(SpectrumItems.NECTAR_LANCE);
 		registerOversizedItemPredicate(SpectrumItems.BEDROCK_SWORD);
 		registerOversizedItemPredicate(SpectrumItems.BEDROCK_AXE);
 

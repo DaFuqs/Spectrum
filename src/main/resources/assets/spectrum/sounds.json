@@ -73,6 +73,26 @@
       "spectrum:discharge"
     ]
   },
+  "lunge_crit": {
+    "sounds": [
+      "spectrum:lunge_crit"
+    ]
+  },
+  "lunge": {
+    "sounds": [
+      "spectrum:lunge"
+    ]
+  },
+  "perfect_parry": {
+    "sounds": [
+      "spectrum:perfect_parry"
+    ]
+  },
+  "sword_block": {
+    "sounds": [
+      "spectrum:sword_block"
+    ]
+  },
   "paintbrush_paint": {
     "subtitle": "spectrum.subtitles.paintbrush_paint",
     "sounds": [

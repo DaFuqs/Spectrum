@@ -1,0 +1,14 @@
+{
+  "parent": "spectrum:item/handheld_oversized",
+  "textures": {
+    "layer0": "spectrum:item/knotted_sword"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "in_world": 1.0
+      },
+      "model": "spectrum:item/knotted_sword_oversized"
+    }
+  ]
+}

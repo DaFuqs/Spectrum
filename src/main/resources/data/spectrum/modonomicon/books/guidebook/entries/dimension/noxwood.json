@@ -134,7 +134,6 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "book.spectrum.guidebook.noxwood.page5.title",
-      "text": "book.spectrum.guidebook.noxwood.page5.text",
       "recipe_id": "spectrum:pedestal/tier1/noxwood/ivory_light"
     },
     {
@@ -157,7 +156,8 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "book.spectrum.guidebook.noxwood.page9.title",
-      "recipe_id": "spectrum:pedestal/tier1/noxwood/ivory_lantern"
+      "recipe_id": "spectrum:pedestal/tier1/noxwood/ivory_lantern",
+      "text": "book.spectrum.guidebook.noxwood.page9.text"
     }
   ]
 }

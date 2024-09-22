@@ -1351,7 +1351,7 @@ public class SpectrumBlocks {
 	public static final Block YELLOW_CHISELED_PRESERVATION_STONE = new Block(preservationBlock());
 
 	public static final Block PRESERVATION_GLASS = new GlassBlock(preservationBlock().sounds(BlockSoundGroup.GLASS).nonOpaque().solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
-	public static final Block TINTED_PRESERVATION_GLASS = new GlassBlock(FabricBlockSettings.copyOf(PRESERVATION_GLASS).luminance(12).strength(Float.MAX_VALUE, 3600000.0F));
+	public static final Block TINTED_PRESERVATION_GLASS = new TintedGlassBlock(FabricBlockSettings.copyOf(PRESERVATION_GLASS));
 	public static final Block PRESERVATION_ROUNDEL = new PreservationRoundelBlock(preservationBlock().nonOpaque());
 	public static final Block PRESERVATION_BLOCK_DETECTOR = new PreservationBlockDetectorBlock(preservationBlock());
 

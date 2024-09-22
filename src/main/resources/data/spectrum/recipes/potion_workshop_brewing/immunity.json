@@ -1,0 +1,24 @@
+{
+  "type": "spectrum:potion_workshop_brewing",
+  "group": "sleep_potions",
+  "ingredient1": {
+    "item": "spectrum:nectardew_burgeon"
+  },
+  "ingredient2": {
+    "item": "spectrum:moonstruck_nectar"
+  },
+  "ingredient3": {
+    "item": "spectrum:jade_jelly"
+  },
+  "effect": "spectrum:immunity",
+  "base_duration_ticks": 300,
+  "potency_modifier": 0.1,
+  "applicable_to_potions": true,
+  "applicable_to_tipped_arrows": true,
+  "applicable_to_potion_fillables": true,
+  "required_advancement": "spectrum:lategame/collect_poisoners_handbook",
+  "ink_color": "spectrum:pink",
+  "ink_cost": 64,
+  "potency_hard_cap": 1,
+  "base_yield": 1
+}

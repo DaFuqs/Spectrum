@@ -33,7 +33,9 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent MOONSTONE_STRIKE = register("moonstone_strike");
 	public static final SoundEvent ENTITY_BLOCK_FLOODER_THROW = register("entity.block_flooder.throw");
 	public static final SoundEvent OMNI_ACCELERATOR_SHOOT = register("item.omni_accelerator.shoot");
-	
+
+	public static final SoundEvent GUIDEBOOK_PAGES = register("item.guidebook.pages");
+
 	public static final SoundEvent ENCHANTER_WORKING = register("enchanter_working");
 	public static final SoundEvent ENCHANTER_DING = register("enchanter_ding");
 	
@@ -74,6 +76,11 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent METALLIC_UNSHEATHE = register("metallic_unsheathe");
 	
 	public static final SoundEvent ELECTRIC_DISCHARGE = register("discharge");
+
+	public static final SoundEvent PERFECT_PARRY = register("perfect_parry");
+	public static final SoundEvent LUNGE = register("lunge");
+	public static final SoundEvent LUNGE_CRIT = register("lunge_crit");
+	public static final SoundEvent SWORD_BLOCK = register("sword_block");
 
 
 	public static final SoundEvent INCANDESCENT_CHARGE = register("incandescent_charge");

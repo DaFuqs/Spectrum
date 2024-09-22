@@ -10,6 +10,7 @@ import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.enchantments.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
@@ -121,6 +122,54 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 			return entities;
 		}
 		return original;
+	}
+
+	@ModifyVariable(method = "attack", at = @At(value = "STORE:LAST"), index = 8, require = 1, allow = 1)
+	private boolean spectrum$binglebongle(boolean value, Entity target) {
+		if (hasForcedCrits()) {
+			return true;
+		}
+
+		return value;
+	}
+
+	@ModifyExpressionValue(
+			method = {"attack(Lnet/minecraft/entity/Entity;)V"},
+			at = {@At(
+					value = "CONSTANT",
+					args = {"floatValue=1.5F"}
+			)}
+	)
+	private float spectrum$perfectCounter(float original) {
+		var player = (PlayerEntity) (Object) this;
+		if (MiscPlayerDataComponent.get(player).consumePerfectCounter())
+			return  original * 2;
+
+		return original;
+	}
+
+	@Unique
+	protected boolean hasForcedCrits() {
+		var player = (PlayerEntity) (Object) this;
+		var component = MiscPlayerDataComponent.get(player);
+
+		if (component.isParrying()) {
+			component.setParryTicks(0);
+			return true;
+		}
+		else return component.isLunging();
+	}
+
+	@WrapOperation(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;playSound(Lnet/minecraft/entity/player/PlayerEntity;DDDLnet/minecraft/sound/SoundEvent;Lnet/minecraft/sound/SoundCategory;FF)V", ordinal = 2))
+	protected void spectrum$switchCritSound(World instance, PlayerEntity except, double x, double y, double z, SoundEvent sound, SoundCategory category, float volume, float pitch, Operation<Void> original) {
+		var player = (PlayerEntity) (Object) this;
+		var stack = this.getStackInHand(Hand.MAIN_HAND);
+		var component = MiscPlayerDataComponent.get(player);
+		if (stack.getItem() instanceof LightGreatswordItem && component.isLunging()) {
+			original.call(instance, except, x, y, z, SpectrumSoundEvents.LUNGE_CRIT, category, 1F, 1F + random.nextFloat() * 0.2F);
+			return;
+		}
+		original.call(instance, except, x, y, z, sound, category, volume, pitch);
 	}
 	
 	@WrapOperation(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;playSound(Lnet/minecraft/entity/player/PlayerEntity;DDDLnet/minecraft/sound/SoundEvent;Lnet/minecraft/sound/SoundCategory;FF)V", ordinal = 1))
@@ -244,7 +293,8 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 
 	@WrapOperation(method = "updatePose", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;setPose(Lnet/minecraft/entity/EntityPose;)V"))
 	public void spectrum$forceSwimmingState(PlayerEntity instance, EntityPose entityPose, Operation<Void> original) {
-		if ((MiscPlayerDataComponent.get(instance).shouldLieDown() || instance.hasStatusEffect(SpectrumStatusEffects.FATAL_SLUMBER)) && wouldPoseNotCollide(EntityPose.SWIMMING)) {
+		var component = MiscPlayerDataComponent.get(instance);
+		if ((component.shouldLieDown() || instance.hasStatusEffect(SpectrumStatusEffects.FATAL_SLUMBER)) && wouldPoseNotCollide(EntityPose.SWIMMING)) {
 			instance.setPose(EntityPose.SWIMMING);
 			return;
 		}

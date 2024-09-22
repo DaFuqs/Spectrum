@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.registries.client;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.mob_head.client.models.*;
 import de.dafuqs.spectrum.entity.models.*;
-import de.dafuqs.spectrum.render.armor.*;
+import de.dafuqs.spectrum.render.armor.BedrockArmorModel;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
 import net.minecraft.client.model.*;
@@ -145,7 +145,6 @@ public class SpectrumModelLayers {
 	/**
 	 * Armor
 	 */
-	public static final EntityModelLayer FEET_BEDROCK_LAYER = new EntityModelLayer(SpectrumCommon.locate("bedrock_armor"), "feet");
 	public static final EntityModelLayer MAIN_BEDROCK_LAYER = new EntityModelLayer(SpectrumCommon.locate("bedrock_armor"), "main");
 	public static final Identifier BEDROCK_ARMOR_MAIN_ID = SpectrumCommon.locate("textures/armor/bedrock_armor_main.png");
 	
@@ -273,7 +272,6 @@ public class SpectrumModelLayers {
 		EntityModelLayerRegistry.registerModelLayer(LIZARD_HEAD_FRILLS, LizardHeadModel::getTexturedModelDataFrills);
 		EntityModelLayerRegistry.registerModelLayer(PRESERVATION_TURRET_HEAD, PreservationTurretHeadModel::getTexturedModelData);
 		
-		EntityModelLayerRegistry.registerModelLayer(FEET_BEDROCK_LAYER, () -> TexturedModelData.of(BedrockArmorModel.getModelData(), 128, 128));
 		EntityModelLayerRegistry.registerModelLayer(MAIN_BEDROCK_LAYER, () -> TexturedModelData.of(BedrockArmorModel.getModelData(), 128, 128));
 	}
 	

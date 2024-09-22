@@ -19,12 +19,16 @@
   "turnin": "spectrum:craft_colored_sapling",
   "pages": [
     {
-      "type": "modonomicon:image",
-      "title": "book.spectrum.guidebook.color_mixing_black.name",
-      "images": [
-        "spectrum:textures/gui/guidebook/color_mixing_black.png"
-      ],
+      "type": "spectrum:snippet",
+      "resource_path": "spectrum:textures/gui/guidebook/color_mixing_black.png",
+      "resource_width": 129,
+      "resource_height": 50,
+      "texture_x": 0,
+      "texture_y": 0,
+      "texture_width": 129,
+      "texture_height": 50,
       "border": false,
+      "title": "book.spectrum.guidebook.color_mixing_black.name",
       "text": "book.spectrum.guidebook.color_mixing_black.page0.text"
     },
     {

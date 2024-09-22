@@ -16,7 +16,7 @@
   ],
   "key": {
     "H": {
-      "tag": "spectrum:mob_heads/sheep_heads"
+      "item": "spectrum:sheep_head"
     },
     "V": {
       "item": "spectrum:vegetal"

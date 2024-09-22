@@ -5,6 +5,12 @@
       "minecraft:fire/ignite"
     ]
   },
+  "item.guidebook.pages": {
+    "subtitle": "spectrum.subtitles.item.guidebook.pages",
+    "sounds": [
+      "spectrum:guidebook_pages"
+    ]
+  },
   "use_fail": {
     "subtitle": "spectrum.subtitles.use_fail",
     "sounds": [
@@ -65,6 +71,26 @@
   "discharge": {
     "sounds": [
       "spectrum:discharge"
+    ]
+  },
+  "lunge_crit": {
+    "sounds": [
+      "spectrum:lunge_crit"
+    ]
+  },
+  "lunge": {
+    "sounds": [
+      "spectrum:lunge"
+    ]
+  },
+  "perfect_parry": {
+    "sounds": [
+      "spectrum:perfect_parry"
+    ]
+  },
+  "sword_block": {
+    "sounds": [
+      "spectrum:sword_block"
     ]
   },
   "paintbrush_paint": {

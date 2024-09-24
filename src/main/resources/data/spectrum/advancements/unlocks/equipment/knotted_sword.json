@@ -1,0 +1,26 @@
+{
+  "criteria": {
+    "collected_nightdew": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:collect_nightdew"
+      }
+    },
+    "collected_quitoxic_reeds": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:collect_quitoxic_reeds"
+      }
+    },
+    "collected_vegetal": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:collect_vegetal"
+      }
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:collect_all_basic_pigments" }
+    }
+  }
+}

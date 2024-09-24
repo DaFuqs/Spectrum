@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.items.tools;
 
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.enchantment.*;
@@ -12,12 +13,12 @@ import net.minecraft.registry.tag.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 
-public class LightGreatswordItem extends ParryingSwordItem {
+public class LightGreatswordItem extends ParryingSwordItem implements SplitDamageItem {
 
 	private final int barColor;
 
-	public LightGreatswordItem(ToolMaterial material, int attackDamage, float attackSpeed, float reach, int barColor, Settings settings) {
-		super(material, attackDamage, attackSpeed, reach, settings);
+	public LightGreatswordItem(ToolMaterial material, int attackDamage, float attackSpeed, float crit, float reach, int barColor, Settings settings) {
+		super(material, attackDamage, attackSpeed, crit, reach, settings);
 		this.barColor = barColor;
 	}
 
@@ -77,7 +78,7 @@ public class LightGreatswordItem extends ParryingSwordItem {
 			return;
 
 		var effect = target.isUndead() ? StatusEffects.REGENERATION : StatusEffects.POISON;
-		var sharpness = EnchantmentHelper.get(stack).get(Enchantments.SHARPNESS);
+		int sharpness = EnchantmentHelper.get(stack).getOrDefault(Enchantments.SHARPNESS, 0);
 		target.addStatusEffect(new StatusEffectInstance(effect, 20 * (5 + sharpness), 1));
 	}
 
@@ -91,5 +92,18 @@ public class LightGreatswordItem extends ParryingSwordItem {
 			}
 		}
 		return super.postHit(stack, target, attacker);
+	}
+
+	@Override
+	public DamageComposition getDamageComposition(LivingEntity attacker, LivingEntity target, ItemStack stack, float damage) {
+		var composition = new DamageComposition();
+		var source = composition.getPlayerOrEntity(attacker);
+
+		if (attacker instanceof PlayerEntity player && MiscPlayerDataComponent.get(player).isLunging()) {
+			source = SpectrumDamageTypes.impaling(player.getWorld(), player);
+		}
+
+		composition.add(source, damage);
+		return composition;
 	}
 }

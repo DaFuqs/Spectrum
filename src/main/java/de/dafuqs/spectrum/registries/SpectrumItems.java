@@ -183,8 +183,8 @@ public class SpectrumItems {
 	public static final Item NIGHTFALLS_BLADE = new NightfallsBladeItem(SpectrumToolMaterials.ToolMaterial.NIGHTFALL, 0, -3.4F, IS.of(1, Rarity.UNCOMMON));
 	public static final DraconicTwinswordItem DRACONIC_TWINSWORD = new DraconicTwinswordItem(SpectrumToolMaterials.ToolMaterial.DRACONIC, 6, -3.0F, IS.of(1, Rarity.RARE));
 	public static final DragonTalonItem DRAGON_TALON = new DragonTalonItem(SpectrumToolMaterials.ToolMaterial.DRACONIC, -3.0, -1.0, IS.of(1, Rarity.RARE).maxDamage(SpectrumToolMaterials.ToolMaterial.DRACONIC.getDurability()));
-	public static final LightGreatswordItem KNOTTED_SWORD = new LightGreatswordItem(SpectrumToolMaterials.ToolMaterial.VERDIGRIS, 3, -2.4F, 1F, 0xFFd4d6ff, IS.of(1, Rarity.UNCOMMON).maxDamage(SpectrumToolMaterials.ToolMaterial.VERDIGRIS.getDurability()));
-	public static final LightGreatswordItem NECTAR_LANCE = new NectarLanceItem(SpectrumToolMaterials.ToolMaterial.NECTAR, 0, -2.4F, 2F, 0xFFf8e8ff, IS.of(1, Rarity.EPIC).maxDamage(SpectrumToolMaterials.ToolMaterial.NECTAR.getDurability()));
+	public static final LightGreatswordItem KNOTTED_SWORD = new LightGreatswordItem(SpectrumToolMaterials.ToolMaterial.VERDIGRIS, 3, -2.4F, 0.25F, 1F, 0xFFd4d6ff, IS.of(1, Rarity.UNCOMMON).maxDamage(SpectrumToolMaterials.ToolMaterial.VERDIGRIS.getDurability()));
+	public static final LightGreatswordItem NECTAR_LANCE = new NectarLanceItem(SpectrumToolMaterials.ToolMaterial.NECTAR, 0, -2.4F, 0.5F, 2F, 0xFFf8e8ff, IS.of(1, Rarity.EPIC).maxDamage(SpectrumToolMaterials.ToolMaterial.NECTAR.getDurability()));
 
 	// Bedrock Armor
 	public static final Item BEDROCK_HELMET = new BedrockArmorItem(SpectrumArmorMaterials.BEDROCK, ArmorItem.Type.HELMET, IS.of(Rarity.UNCOMMON).fireproof().maxDamage(-1)) {

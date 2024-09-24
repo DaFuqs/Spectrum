@@ -1,0 +1,26 @@
+{
+  "name": "item.spectrum.aether_graced_nectar_gloves",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/collect_cookbooks/poisoners_handbook"
+  },
+  "icon": "spectrum:aether_graced_nectar_gloves",
+  "category": "spectrum:dimension",
+  "hide_while_locked": true,
+  "parents": [
+    {
+      "entry": "spectrum:dimension/lore/poisoners_handbook"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": -4,
+  "y": -6,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.aether_graced_nectar_gloves.page0.text",
+      "title": "item.spectrum.aether_graced_nectar_gloves"
+    }
+  ]
+}

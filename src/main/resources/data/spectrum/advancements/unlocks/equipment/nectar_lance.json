@@ -1,0 +1,22 @@
+{
+  "criteria": {
+    "unlocked_knotted_Sword": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/equipment/knotted_sword"
+      }
+    },
+    "collected_evernectar": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/create_evernectar"
+      }
+    },
+    "collected_aether_vestiges": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_aether_vestiges"
+      }
+    }
+  }
+}

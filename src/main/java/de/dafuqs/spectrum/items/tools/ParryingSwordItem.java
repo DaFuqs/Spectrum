@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.items.tools;
 
 import com.google.common.collect.*;
 import com.jamieswhiteshirt.reachentityattributes.*;
+import de.dafuqs.additionalentityattributes.*;
 import de.dafuqs.spectrum.api.render.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.*;
@@ -19,20 +20,22 @@ import java.util.*;
 public abstract class ParryingSwordItem extends SwordItem implements ExtendedItemBarProvider {
 
 	protected static final UUID REACH_MODIFIER_ID = UUID.fromString("b011e7af-6117-4aef-b4e9-a613f4fb0a2a");
+	protected static final UUID CRIT_MODIFIER_ID = UUID.fromString("50cfc2f8-42fb-4bf5-b21c-c0ff4ee952bf");
 
-	public static final int DEFAULT_MAX_BLOCK_TIME = 50;
+	public static final int DEFAULT_MAX_BLOCK_TIME = 40;
 	public static final int DEFAULT_PERFECT_PARRY_WINDOW = 5;
 	protected static final int COOLDOWN_MERCY = 2;
 
 	private final float attackDamage;
 	private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
 
-	public ParryingSwordItem(ToolMaterial material, int attackDamage, float attackSpeed, float reach, Settings settings) {
+	public ParryingSwordItem(ToolMaterial material, int attackDamage, float attackSpeed, float crit, float reach, Settings settings) {
 		super(material, attackDamage, attackSpeed, settings);
 		this.attackDamage = (float) attackDamage + material.getAttackDamage();
 		ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
 		builder.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(ATTACK_DAMAGE_MODIFIER_ID, "Weapon modifier", this.attackDamage, EntityAttributeModifier.Operation.ADDITION));
 		builder.put(EntityAttributes.GENERIC_ATTACK_SPEED, new EntityAttributeModifier(ATTACK_SPEED_MODIFIER_ID, "Weapon modifier", attackSpeed, EntityAttributeModifier.Operation.ADDITION));
+		builder.put(AdditionalEntityAttributes.CRITICAL_BONUS_DAMAGE, new EntityAttributeModifier(CRIT_MODIFIER_ID, "Weapon modifier", crit, EntityAttributeModifier.Operation.ADDITION));
 		builder.put(ReachEntityAttributes.ATTACK_RANGE, new EntityAttributeModifier(REACH_MODIFIER_ID, "Weapon modifier", reach, EntityAttributeModifier.Operation.ADDITION));
 		this.attributeModifiers = builder.build();
 	}
@@ -65,8 +68,8 @@ public abstract class ParryingSwordItem extends SwordItem implements ExtendedIte
 	}
 
 	private void cooldownAndDamage(ItemStack stack, PlayerEntity player, int usedTime) {
-		if (usedTime > getPerfectParryWindow(player, stack) + COOLDOWN_MERCY) {
-			player.getItemCooldownManager().set(this, usedTime);
+		if (usedTime > 1) {
+			player.getItemCooldownManager().set(this, Math.max(usedTime, 10));
 		}
 		stack.damage(1, player, p -> p.sendToolBreakStatus(player.getActiveHand()));
 	}

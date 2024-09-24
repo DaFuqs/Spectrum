@@ -1,0 +1,74 @@
+{
+  "parent": "spectrum:lategame/collect_pure_resource",
+  "display": {
+    "icon": {
+      "item": "spectrum:dragon_talon"
+    },
+    "frame": "challenge",
+    "title": {
+      "translate": "advancements.spectrum.collect_all_legendary_weapons.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.collect_all_legendary_weapons.description"
+    }
+  },
+  "criteria": {
+    "unlocked_draconic_twinsword": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/equipment/draconic_twinsword"
+      }
+    },
+    "unlocked_nectar_lance": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/equipment/nectar_lance"
+      }
+    },
+    "unlocked_nightfalls_blade": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/equipment/nightfalls_blade"
+      }
+    },
+    "unlocked_dreamflayer": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/equipment/dreamflayer"
+      }
+    },
+    "collected_draconic_twinsword": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "conditions": { "items": [{ "items": [ "spectrum:draconic_twinsword" ]}] }
+      }
+    },
+    "collected_nectar_lance": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "conditions": { "items": [{ "items": [ "spectrum:nectar_lance" ]}] }
+      }
+    },
+    "collected_nightfalls_blade": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "conditions": { "items": [{ "items": [ "spectrum:nightfalls_blade" ]}] }
+      }
+    },
+    "collected_dreamflayer": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "conditions": { "items": [{ "items": [ "spectrum:dreamflayer" ]}] }
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_pure_resource"
+      }
+    }
+  },
+  "rewards": {
+    "experience": 1000
+  }
+}

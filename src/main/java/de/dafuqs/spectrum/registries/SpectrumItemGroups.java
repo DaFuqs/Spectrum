@@ -142,6 +142,7 @@ public class SpectrumItemGroups {
 				entries.add(SpectrumItems.WEEPING_CIRCLET);
 				entries.add(SpectrumItems.PUFF_CIRCLET);
 				entries.add(SpectrumItems.WHISPY_CIRCLET);
+				entries.add(SpectrumItems.AZURESQUE_DIKE_CORE);
 				entries.add(SpectrumItems.CIRCLET_OF_ARROGANCE);
 				entries.add(SpectrumItems.AETHER_GRACED_NECTAR_GLOVES);
 				entries.add(SpectrumItems.NEAT_RING);

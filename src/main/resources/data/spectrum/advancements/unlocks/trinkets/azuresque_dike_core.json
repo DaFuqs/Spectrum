@@ -1,0 +1,28 @@
+{
+  "criteria": {
+    "collected_aether_vestiges": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_aether_vestiges"
+      }
+    },
+    "collected_moonstone_core": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_moonstone_core"
+      }
+    },
+    "collected_downstone_fragments": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_downstone_fragments"
+      }
+    },
+    "got_large_amounts_of_dike": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/get_substantial_azure_dike_charge"
+      }
+    }
+  }
+}

@@ -130,8 +130,6 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumPlacedFeatures.addBiomeModifications();
 		logInfo("Registering Structure Types...");
 		SpectrumStructureTypes.register();
-		logInfo("Registering Block Predicates...");
-		SpectrumBlockPredicates.register();
 		
 		// Dimension
 		logInfo("Registering Dimension...");

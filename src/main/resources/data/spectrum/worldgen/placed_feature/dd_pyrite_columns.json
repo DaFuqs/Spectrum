@@ -22,7 +22,7 @@
           "type": "minecraft:any_of",
           "predicates": [
             {
-              "type": "spectrum:overlaps_structure",
+              "type": "exclusions_lib:overlaps_structure",
               "range": 8
             },
             {

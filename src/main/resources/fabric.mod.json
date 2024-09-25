@@ -76,7 +76,8 @@
     "cloth-config": "*",
     "modonomicon": "*",
     "trinkets": "*",
-    "matchbooks": "*"
+    "matchbooks": "*",
+    "exclusions_lib": "*"
   },
   "suggests": {
     "chalk": "*",

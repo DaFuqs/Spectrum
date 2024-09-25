@@ -3,7 +3,7 @@
   "time": 1200,
   "experience": 16.0,
   "fluid": {
-    "fluid": "minecraft:water"
+    "fluid": "spectrum:liquid_crystal"
   },
   "copy_nbt": true,
   "ingredients": [

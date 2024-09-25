@@ -3,6 +3,8 @@ package de.dafuqs.spectrum.mixin;
 import com.google.common.collect.*;
 import com.llamalad7.mixinextras.injector.*;
 import com.llamalad7.mixinextras.injector.wrapoperation.*;
+import com.llamalad7.mixinextras.sugar.*;
+import com.llamalad7.mixinextras.sugar.ref.*;
 import de.dafuqs.additionalentityattributes.*;
 import de.dafuqs.spectrum.api.entity.*;
 import de.dafuqs.spectrum.api.item.*;
@@ -46,6 +48,9 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 	public abstract Iterable<ItemStack> getHandItems();
 
 	@Shadow private int sleepTimer;
+
+	@Shadow public abstract boolean damage(DamageSource source, float amount);
+
 	public SpectrumFishingBobberEntity spectrum$fishingBobber;
 	
 	@Inject(method = "updateSwimming()V", at = @At("HEAD"), cancellable = true)
@@ -126,34 +131,35 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 
 	@ModifyVariable(method = "attack", at = @At(value = "STORE:LAST"), index = 8, require = 1, allow = 1)
 	private boolean spectrum$binglebongle(boolean value, Entity target) {
-		if (hasForcedCrits()) {
+		if (hasForcedCrits(target)) {
 			return true;
 		}
 
 		return value;
 	}
 
-	@ModifyExpressionValue(
+	@Inject(
 			method = {"attack(Lnet/minecraft/entity/Entity;)V"},
 			at = {@At(
-					value = "CONSTANT",
-					args = {"floatValue=1.5F"}
-			)}
+					value = "INVOKE",
+					target = "Lnet/minecraft/enchantment/EnchantmentHelper;getFireAspect(Lnet/minecraft/entity/LivingEntity;)I")}
 	)
-	private float spectrum$perfectCounter(float original) {
+	private void spectrum$perfectCounter(Entity target, CallbackInfo ci, @Local(ordinal = 0) LocalFloatRef damage) {
 		var player = (PlayerEntity) (Object) this;
-		if (MiscPlayerDataComponent.get(player).consumePerfectCounter())
-			return  original * 2;
-
-		return original;
+		if (MiscPlayerDataComponent.get(player).consumePerfectCounter()) {
+			damage.set(damage.get() * 1.5F);
+		}
 	}
 
 	@Unique
-	protected boolean hasForcedCrits() {
+	protected boolean hasForcedCrits(Entity target) {
 		var player = (PlayerEntity) (Object) this;
 		var component = MiscPlayerDataComponent.get(player);
 
-		if (component.isParrying()) {
+		if (NectarLanceItem.sleepCrits(player, target)) {
+			return true;
+		}
+		else if (component.isParrying()) {
 			component.setParryTicks(0);
 			return true;
 		}

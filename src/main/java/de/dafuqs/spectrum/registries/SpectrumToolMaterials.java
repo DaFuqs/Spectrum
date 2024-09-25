@@ -19,7 +19,7 @@ public class SpectrumToolMaterials {
 		GLASS_CREST(5, 1536 * 4, 18.0F, 10.0F, 5, () -> Ingredient.ofItems(SpectrumItems.REFINED_MALACHITE)),
 
 		VERDIGRIS(3, 1536, 7.0F, 2.5F, 14, () -> Ingredient.ofItems(SpectrumItems.NIGHTDEW_SPROUT)),
-		NECTAR(6, GLASS_CREST.itemDurability, 9.5F, 10.0F, 30, () -> Ingredient.ofItems(SpectrumItems.AETHER_VESTIGES)),
+		NECTAR(6, GLASS_CREST.itemDurability, 9.5F, 9.0F, 30, () -> Ingredient.ofItems(SpectrumItems.AETHER_VESTIGES)),
 
 		DREAMFLAYER(IRON.getMiningLevel(), 650, 5.0F, 2.0F, 20, () -> Ingredient.ofItems(SpectrumItems.BISMUTH_CRYSTAL)),
 		NIGHTFALL(IRON.getMiningLevel(), 650, 2.0F, 1.0F, 0, () -> Ingredient.ofItems(SpectrumItems.MIDNIGHT_CHIP));

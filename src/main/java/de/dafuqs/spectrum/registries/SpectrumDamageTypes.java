@@ -78,6 +78,10 @@ public class SpectrumDamageTypes {
 	public static DamageSource impaling(World world, Entity weapon, @Nullable Entity attacker) {
 		return new DamageSource(world.getDamageSources().registry.entryOf(IMPALING), weapon, attacker);
 	}
+
+	public static DamageSource impaling(World world, @Nullable Entity attacker) {
+		return new DamageSource(world.getDamageSources().registry.entryOf(IMPALING), attacker);
+	}
 	
 	public static DamageSource evisceration(World world, @Nullable Entity attacker) {
 		return new DamageSource(world.getDamageSources().registry.entryOf(EVISCERATION), attacker);

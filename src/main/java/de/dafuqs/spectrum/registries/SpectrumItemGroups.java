@@ -100,6 +100,8 @@ public class SpectrumItemGroups {
 				addEquipmentEntry(SpectrumItems.NIGHTFALLS_BLADE, entries);
 				addEquipmentEntry(SpectrumItems.DRACONIC_TWINSWORD, entries);
 				addEquipmentEntry(SpectrumItems.DRAGON_TALON, entries);
+				addEquipmentEntry(SpectrumItems.KNOTTED_SWORD, entries);
+				addEquipmentEntry(SpectrumItems.NECTAR_LANCE, entries);
 				addEquipmentEntry(SpectrumItems.OMNI_ACCELERATOR, entries);
 				addEquipmentEntry(SpectrumItems.FANCIFUL_STONE_RING, entries);
 				addEquipmentEntry(SpectrumItems.FANCIFUL_BELT, entries);
@@ -140,7 +142,9 @@ public class SpectrumItemGroups {
 				entries.add(SpectrumItems.WEEPING_CIRCLET);
 				entries.add(SpectrumItems.PUFF_CIRCLET);
 				entries.add(SpectrumItems.WHISPY_CIRCLET);
+				entries.add(SpectrumItems.AZURESQUE_DIKE_CORE);
 				entries.add(SpectrumItems.CIRCLET_OF_ARROGANCE);
+				entries.add(SpectrumItems.AETHER_GRACED_NECTAR_GLOVES);
 				entries.add(SpectrumItems.NEAT_RING);
 				entries.add(SpectrumItems.CRAFTING_TABLET);
 				entries.add(SpectrumItems.BOTTOMLESS_BUNDLE);
@@ -628,6 +632,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.BONE_ASH);
 		entries.add(SpectrumItems.DOWNSTONE_FRAGMENTS);
 		entries.add(SpectrumItems.RESONANCE_SHARD);
+		entries.add(SpectrumItems.AETHER_VESTIGES);
 		entries.add(SpectrumItems.MOONSTONE_CORE);
 		
 		entries.add(SpectrumItems.LIQUID_CRYSTAL_BUCKET);

@@ -39,8 +39,9 @@ jobs:
       - name: capture build artifacts
         # Only capture artifacts from one OS (Linux)
         if: ${{ runner.os == 'Linux' && matrix.java == '17' }} # Only upload artifacts built from latest java on one OS
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: Artifacts
           path: build/libs/
+
 

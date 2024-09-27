@@ -26,8 +26,8 @@ import java.util.List;
 public class NightdewBlock extends TriStateVineBlock {
 
     public static final Identifier BURGEON_LOOT_TABLE = SpectrumCommon.locate("gameplay/nightdew_vine_rare_drop");
-    public static final float BASE_BURGEON_CHANCE = 1000;
-    public static final float MAX_BURGEON_CHANCE = 100;
+    public static final float BASE_BURGEON_CHANCE = 10000;
+    public static final float MAX_BURGEON_CHANCE = 1000;
 
 
     public NightdewBlock(Settings settings) {

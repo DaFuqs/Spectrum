@@ -7,11 +7,15 @@
   },
   "category": "spectrum:dimension",
   "hide_while_locked": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:dimension/undergrowth_manor"
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": -5,
-  "y": -5,
+  "x": -4,
+  "y": -4,
   "pages": [
     {
       "type": "modonomicon:text",

@@ -77,6 +77,11 @@ public class SpectrumSoundEvents {
 	
 	public static final SoundEvent ELECTRIC_DISCHARGE = register("discharge");
 
+	public static final SoundEvent PERFECT_PARRY = register("perfect_parry");
+	public static final SoundEvent LUNGE = register("lunge");
+	public static final SoundEvent LUNGE_CRIT = register("lunge_crit");
+	public static final SoundEvent SWORD_BLOCK = register("sword_block");
+
 
 	public static final SoundEvent INCANDESCENT_CHARGE = register("incandescent_charge");
 	public static final SoundEvent INCANDESCENT_ARM = register("incandescent_arm");

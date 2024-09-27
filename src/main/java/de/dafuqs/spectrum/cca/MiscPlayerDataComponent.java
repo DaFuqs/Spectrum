@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.cca;
 
+import de.dafuqs.additionalentityattributes.*;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.api.entity.PlayerEntityAccessor;
 import de.dafuqs.spectrum.api.item.SleepAlteringItem;
@@ -10,6 +11,7 @@ import dev.onyxstudios.cca.api.v3.component.ComponentKey;
 import dev.onyxstudios.cca.api.v3.component.ComponentRegistry;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import dev.onyxstudios.cca.api.v3.component.tick.CommonTickingComponent;
+import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -24,7 +26,7 @@ import net.minecraft.text.*;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Optional;
+import java.util.*;
 
 /**
  * Because not every niche thing can have its own component
@@ -34,12 +36,19 @@ public class MiscPlayerDataComponent implements AutoSyncedComponent, CommonTicki
     public static final ComponentKey<MiscPlayerDataComponent> MISC_PLAYER_DATA_COMPONENT = ComponentRegistry.getOrCreate(SpectrumCommon.locate("misc_player_data"), MiscPlayerDataComponent.class);
     public static final int MAX_DRAGONROT_TICKS = 10 * 60 * 20;
     private final PlayerEntity player;
+
+    // Sleep
     private int ticksBeforeSleep = -1, sleepingWindow = -1, sleepInvincibility;
-    private int dragonrotTicks = 0;
     private double lastSyncedSleepPotency = -2;
-    private boolean isBeingAfflictedByDragonrot;
     private Optional<SleepAlteringItem> sleepConsumable = Optional.empty();
 
+    // Rot
+    private int dragonrotTicks = 0;
+    private boolean isBeingAfflictedByDragonrot;
+
+    // Sword mechanics
+    private boolean isLunging, bHopWindow, perfectCounter;
+    private int parryTicks;
 
     public MiscPlayerDataComponent(PlayerEntity player) {
         this.player = player;
@@ -49,6 +58,7 @@ public class MiscPlayerDataComponent implements AutoSyncedComponent, CommonTicki
     @Override
     public void tick() {
         tickSleep();
+        tickSwordMechanics();
     }
 
     @Override
@@ -97,6 +107,10 @@ public class MiscPlayerDataComponent implements AutoSyncedComponent, CommonTicki
         }
     }
 
+    private boolean isInModifiedMotionState() {
+        return player.isOnGround() || player.isSwimming() || player.isFallFlying() || player.getAbilities().flying;
+    }
+
     private void applyEnvironmentalLifeDrain(int amplifier) {
         if (player.age % 20 != 0 || player.hasStatusEffect(SpectrumStatusEffects.IMMUNITY) || player.isSpectator() || player.isCreative())
             return;
@@ -125,6 +139,67 @@ public class MiscPlayerDataComponent implements AutoSyncedComponent, CommonTicki
             return true;
         }
         return false;
+    }
+
+    public void initiateLungeState() {
+        isLunging = true;
+        bHopWindow = true;
+    }
+
+    public void endLunge() {
+        isLunging = false;
+        bHopWindow = false;
+    }
+
+    public boolean isLunging() {
+        return isLunging;
+    }
+
+    public void setParryTicks(int ticks) {
+        parryTicks = ticks;
+    }
+
+    public void markForPerfectCounter() {
+        perfectCounter = true;
+    }
+
+    public boolean consumePerfectCounter() {
+        if (perfectCounter) {
+            perfectCounter = false;
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean isParrying() {
+        return parryTicks > 0;
+    }
+
+    private void tickSwordMechanics() {
+        if (parryTicks > 1) {
+            parryTicks--;
+        }
+        else if (parryTicks == 1) {
+            parryTicks = 0;
+            consumePerfectCounter();
+        }
+
+        if (!bHopWindow && isLunging) {
+            if (isInModifiedMotionState()) {
+                isLunging = false;
+            }
+            else {
+                bHopWindow = true;
+            }
+        }
+        else if (isLunging && isInModifiedMotionState()) {
+            bHopWindow = false;
+        }
+    }
+
+    public float getFrictionModifiers() {
+        return isLunging ? 0.04F : 0F;
     }
 
     private void tickSleep() {

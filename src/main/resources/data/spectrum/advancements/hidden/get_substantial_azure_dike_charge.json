@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "criteria": {
+      "max_azure_dike_charge": {
+        "trigger": "spectrum:azure_dike_charge_change",
+        "new_charges": {
+          "min": 30
+        }
+      },
+      "gotten_previous": {
+        "trigger":"revelationary:advancement_gotten",
+        "conditions": { "advancement_identifier": "spectrum:midgame/get_azure_dike_charge" }
+      }
+    }
+  }
+}

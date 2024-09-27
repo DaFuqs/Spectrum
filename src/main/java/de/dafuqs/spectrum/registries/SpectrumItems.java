@@ -183,6 +183,8 @@ public class SpectrumItems {
 	public static final Item NIGHTFALLS_BLADE = new NightfallsBladeItem(SpectrumToolMaterials.ToolMaterial.NIGHTFALL, 0, -3.4F, IS.of(1, Rarity.UNCOMMON));
 	public static final DraconicTwinswordItem DRACONIC_TWINSWORD = new DraconicTwinswordItem(SpectrumToolMaterials.ToolMaterial.DRACONIC, 6, -3.0F, IS.of(1, Rarity.RARE));
 	public static final DragonTalonItem DRAGON_TALON = new DragonTalonItem(SpectrumToolMaterials.ToolMaterial.DRACONIC, -3.0, -1.0, IS.of(1, Rarity.RARE).maxDamage(SpectrumToolMaterials.ToolMaterial.DRACONIC.getDurability()));
+	public static final LightGreatswordItem KNOTTED_SWORD = new LightGreatswordItem(SpectrumToolMaterials.ToolMaterial.VERDIGRIS, 3, -2.4F, 0.25F, 0.5F, 0xFFd4d6ff, IS.of(1, Rarity.UNCOMMON).maxDamage(SpectrumToolMaterials.ToolMaterial.VERDIGRIS.getDurability()));
+	public static final LightGreatswordItem NECTAR_LANCE = new NectarLanceItem(SpectrumToolMaterials.ToolMaterial.NECTAR, 0, -2.4F, 0.5F, 1.5F, 0xFFf8e8ff, IS.of(1, Rarity.EPIC).maxDamage(SpectrumToolMaterials.ToolMaterial.NECTAR.getDurability()));
 
 	// Bedrock Armor
 	public static final Item BEDROCK_HELMET = new BedrockArmorItem(SpectrumArmorMaterials.BEDROCK, ArmorItem.Type.HELMET, IS.of(Rarity.UNCOMMON).fireproof().maxDamage(-1)) {
@@ -258,7 +260,8 @@ public class SpectrumItems {
 	public static final Item REFINED_BLOODSTONE = new CloakedItem(IS.of(Rarity.UNCOMMON), SpectrumCommon.locate("pluck_effulgent_feather"), Items.RED_DYE);
 	public static final Item DOWNSTONE_FRAGMENTS = new CloakedItem(IS.of(16, Rarity.UNCOMMON), SpectrumCommon.locate("lategame/find_excavation_site"), Items.LIGHT_GRAY_DYE);
 	public static final Item RESONANCE_SHARD = new CloakedItem(IS.of(16, Rarity.UNCOMMON), SpectrumCommon.locate("lategame/strike_up_hummingstone_hymn"), Items.LIGHT_BLUE_DYE);
-	
+	public static final Item AETHER_VESTIGES = new AetherVestigesItem(IS.of(1, Rarity.EPIC).fireproof(), "item.spectrum.aether_vestiges.tooltip");
+
 	public static final Item QUITOXIC_POWDER = new CloakedItem(IS.of(), ((RevelationAware) SpectrumBlocks.QUITOXIC_REEDS).getCloakAdvancementIdentifier(), Items.PURPLE_DYE);
 	public static final Item STORM_STONE = new StormStoneItem(IS.of(), ((RevelationAware) SpectrumBlocks.STUCK_STORM_STONE).getCloakAdvancementIdentifier(), Items.YELLOW_DYE);
 	public static final Item MERMAIDS_GEM = new MermaidsGemItem(SpectrumBlocks.MERMAIDS_BRUSH, IS.of());
@@ -468,6 +471,7 @@ public class SpectrumItems {
 	public static final TakeOffBeltItem TAKE_OFF_BELT = new TakeOffBeltItem(IS.of(1, Rarity.UNCOMMON));
 	public static final Item AZURE_DIKE_BELT = new AzureDikeBeltItem(IS.of(1, Rarity.UNCOMMON));
 	public static final Item AZURE_DIKE_RING = new AzureDikeRingItem(IS.of(1, Rarity.UNCOMMON));
+	public static final Item AZURESQUE_DIKE_CORE = new AzureDikeCoreItem(IS.of(1, Rarity.EPIC));
 	public static final InkDrainTrinketItem SHIELDGRASP_AMULET = new AzureDikeAmuletItem(IS.of(1, Rarity.UNCOMMON));
 	public static final InkDrainTrinketItem HEARTSINGERS_REWARD = new ExtraHealthRingItem(IS.of(1, Rarity.UNCOMMON));
 	public static final InkDrainTrinketItem GLOVES_OF_DAWNS_GRASP = new ExtraReachGlovesItem(IS.of(1, Rarity.UNCOMMON));
@@ -491,6 +495,8 @@ public class SpectrumItems {
 	public static final Item WHISPY_CIRCLET = new WhispyCircletItem(IS.of(1, Rarity.UNCOMMON));
 	public static final Item CIRCLET_OF_ARROGANCE = new CircletOfArroganceItem(IS.of(1, Rarity.UNCOMMON));
 	public static final Item NEAT_RING = new NeatRingItem(IS.of(1, Rarity.EPIC));
+
+	public static final Item AETHER_GRACED_NECTAR_GLOVES = new AetherGracedNectarGlovesItem(IS.of(1, Rarity.EPIC));
 	
 	// Pure Clusters
 	public static final Item PURE_EMERALD = new Item(IS.of());
@@ -641,6 +647,7 @@ public class SpectrumItems {
 		register("refined_bloodstone", REFINED_BLOODSTONE, DyeColor.RED);
 		register("downstone_fragments", DOWNSTONE_FRAGMENTS, DyeColor.LIGHT_GRAY);
 		register("resonance_shard", RESONANCE_SHARD, DyeColor.WHITE);
+		register("aether_vestiges", AETHER_VESTIGES, DyeColor.WHITE);
 
 		register("ash_flakes", ASH_FLAKES, DyeColor.LIGHT_GRAY);
 
@@ -745,6 +752,8 @@ public class SpectrumItems {
 		register("nightfalls_blade", NIGHTFALLS_BLADE, DyeColor.GRAY);
 		register("draconic_twinsword", DRACONIC_TWINSWORD, DyeColor.YELLOW);
 		register("dragon_talon", DRAGON_TALON, DyeColor.YELLOW);
+		register("knotted_sword", KNOTTED_SWORD, DyeColor.GREEN);
+		register("nectar_lance", NECTAR_LANCE, DyeColor.PURPLE);
 	}
 	
 	public static void registerMagicalTools() {
@@ -924,6 +933,7 @@ public class SpectrumItems {
 		register("take_off_belt", TAKE_OFF_BELT, DyeColor.YELLOW);
 		register("azure_dike_belt", AZURE_DIKE_BELT, DyeColor.BLUE);
 		register("azure_dike_ring", AZURE_DIKE_RING, DyeColor.BLUE);
+		register("azuresque_dike_core", AZURESQUE_DIKE_CORE, DyeColor.WHITE);
 		register("shieldgrasp_amulet", SHIELDGRASP_AMULET, DyeColor.BLUE);
 		register("heartsingers_reward", HEARTSINGERS_REWARD, DyeColor.PINK);
 		register("gloves_of_dawns_grasp", GLOVES_OF_DAWNS_GRASP, DyeColor.YELLOW);
@@ -940,6 +950,7 @@ public class SpectrumItems {
 		register("whispy_circlet", WHISPY_CIRCLET, DyeColor.BROWN);
 		register("circlet_of_arrogance", CIRCLET_OF_ARROGANCE, DyeColor.RED);
 		register("neat_ring", NEAT_RING, DyeColor.GREEN);
+		register("aether_graced_nectar_gloves", AETHER_GRACED_NECTAR_GLOVES, DyeColor.PURPLE);
 	}
 	
 	public static void registerFluidBuckets() {

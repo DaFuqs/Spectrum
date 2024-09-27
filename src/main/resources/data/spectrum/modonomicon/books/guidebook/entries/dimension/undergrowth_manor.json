@@ -1,0 +1,34 @@
+{
+  "name": "book.spectrum.guidebook.undergrowth_mannor.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:lategame/find_forgotten_city"
+  },
+  "icon": "minecraft:magenta_banner",
+  "category": "spectrum:dimension",
+  "hide_while_locked": true,
+  "parents": [
+    {
+      "entry": "spectrum:dimension/delving_deeper_down"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 4,
+  "x": -2,
+  "y": -4,
+  "pages": [
+    {
+      "type": "modonomicon:image",
+      "title": "book.spectrum.guidebook.undergrowth_mannor.name",
+      "images": [
+        "spectrum:textures/gui/guidebook/dd_forgotten_city.png"
+      ],
+      "border": true,
+      "text": "book.spectrum.guidebook.undergrowth_mannor.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.undergrowth_mannor.page1.text"
+    }
+  ]
+}

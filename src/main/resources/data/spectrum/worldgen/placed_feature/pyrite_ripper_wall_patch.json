@@ -29,40 +29,7 @@
         "type": "minecraft:not",
         "predicate": {
           "type": "exclusions_lib:overlaps_structure",
-          "structure": "spectrum:lizard_den/basal_marble",
-          "range": 6
-        }
-      }
-    },
-    {
-      "type": "minecraft:block_predicate_filter",
-      "predicate": {
-        "type": "minecraft:not",
-        "predicate": {
-          "type": "exclusions_lib:overlaps_structure",
-          "structure": "spectrum:lizard_den/blackslag",
-          "range": 6
-        }
-      }
-    },
-    {
-      "type": "minecraft:block_predicate_filter",
-      "predicate": {
-        "type": "minecraft:not",
-        "predicate": {
-          "type": "exclusions_lib:overlaps_structure",
-          "structure": "spectrum:lizard_den/dripstone",
-          "range": 6
-        }
-      }
-    },
-    {
-      "type": "minecraft:block_predicate_filter",
-      "predicate": {
-        "type": "minecraft:not",
-        "predicate": {
-          "type": "exclusions_lib:overlaps_structure",
-          "structure": "spectrum:lizard_den/shalerite",
+          "structures": "#spectrum:lizard_dens",
           "range": 6
         }
       }

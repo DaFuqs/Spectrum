@@ -5,6 +5,7 @@
     "base": "spectrum:block/weeping_gala_light_base",
     "glass": "spectrum:block/weeping_gala_light_glass",
     "shell": "spectrum:block/weeping_gala_light_shell",
+    "filament": "spectrum:block/weeping_gala_light_filament",
     "ends": "spectrum:block/weeping_gala_light_ends"
   }
 }

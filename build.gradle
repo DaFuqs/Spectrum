@@ -44,6 +44,7 @@ dependencies {
 	modImplementation ("net.fabricmc.fabric-api:fabric-api:${project.fabric_version}")
 
 	// mine
+	modImplementation ("maven.modrinth:exclusions-lib:0.6")
 	modImplementation ("maven.modrinth:Revelationary:${project.revelationary_version}")
 	modImplementation include("maven.modrinth:AdditionalEntityAttributes:${project.additional_entity_attributes_version}")
 	modImplementation include("com.github.DaFuqs:Arrowhead:${project.arrowhead_version}")

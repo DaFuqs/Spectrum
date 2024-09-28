@@ -16,7 +16,12 @@
       "direction_of_search": "down",
       "max_steps": 2,
       "target_condition": {
-        "type": "minecraft:solid"
+        "type": "minecraft:solid",
+        "offset": [
+          0,
+          -1,
+          0
+        ]
       }
     },
     {

@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "#spectrum:unbreakable_structure_blocks",
+    "spectrum:downstone",
+    "spectrum:mud",
+    "spectrum:dragonrot",
+    "spectrum:liquid_crystal",
+    "spectrum:midnight_solution",
+    "spectrum:dragonbone"
+  ]
+}

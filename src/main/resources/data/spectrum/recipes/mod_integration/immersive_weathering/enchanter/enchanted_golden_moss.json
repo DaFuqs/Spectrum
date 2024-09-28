@@ -1,0 +1,46 @@
+{
+  "type": "spectrum:enchanter",
+  "time": 600,
+  "required_experience": 50,
+  "ingredients": [
+    {
+      "item": "immersive_weathering:moss_clump"
+    },
+    {
+      "item": "spectrum:shimmerstone_block"
+    },
+    {
+      "item": "spectrum:shimmerstone_block"
+    },
+    {
+      "item": "spectrum:pure_gold_block"
+    },
+    {
+      "item": "spectrum:pure_gold_block"
+    },
+    {
+      "item": "spectrum:shimmerstone_block"
+    },
+    {
+      "item": "spectrum:shimmerstone_block"
+    },
+    {
+      "item": "spectrum:pure_gold_block"
+    },
+    {
+      "item": "spectrum:pure_gold_block"
+    }
+  ],
+  "result": {
+    "item": "immersive_weathering:enchanted_golden_moss_clump"
+  },
+  "required_advancement": "spectrum:lategame/collect_pure_resource",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "immersive_weathering"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "advancement": "spectrum:milestones/reveal_colored_trees_cmy",
+  "block_states": {
+    "immersive_weathering:spectrum/orange_leaf_pile": "immersive_weathering:oak_leaf_pile",
+    "immersive_weathering:spectrum/magenta_leaf_pile": "immersive_weathering:oak_leaf_pile",
+    "immersive_weathering:spectrum/light_blue_leaf_pile": "immersive_weathering:oak_leaf_pile",
+    "immersive_weathering:spectrum/yellow_leaf_pile": "immersive_weathering:oak_leaf_pile",
+    "immersive_weathering:spectrum/lime_leaf_pile": "immersive_weathering:oak_leaf_pile",
+    "immersive_weathering:spectrum/pink_leaf_pile": "immersive_weathering:oak_leaf_pile",
+    "immersive_weathering:spectrum/cyan_leaf_pile": "immersive_weathering:oak_leaf_pile",
+    "immersive_weathering:spectrum/purple_leaf_pile": "immersive_weathering:oak_leaf_pile",
+    "immersive_weathering:spectrum/blue_leaf_pile": "immersive_weathering:oak_leaf_pile",
+    "immersive_weathering:spectrum/green_leaf_pile": "immersive_weathering:oak_leaf_pile",
+    "immersive_weathering:spectrum/red_leaf_pile": "immersive_weathering:oak_leaf_pile"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "advancement": "spectrum:milestones/reveal_colored_trees_k",
+  "block_states": {
+    "immersive_weathering:spectrum/brown_leaf_pile": "immersive_weathering:oak_leaf_pile",
+    "immersive_weathering:spectrum/black_leaf_pile": "immersive_weathering:oak_leaf_pile"
+  }
+}

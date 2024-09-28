@@ -1980,7 +1980,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("effulgent_block", EFFULGENT_BLOCK, settings.rarity(Rarity.UNCOMMON), DyeColor.YELLOW);
 		registerBlockWithItem("effulgent_cushion", EFFULGENT_CUSHION, settings.rarity(Rarity.UNCOMMON), DyeColor.YELLOW);
 		registerBlockWithItem("effulgent_carpet", EFFULGENT_CARPET, settings.rarity(Rarity.UNCOMMON), DyeColor.YELLOW);
-		registerBlockWithItem("effulgent_bed", EFFULGENT_BED, settings.rarity(Rarity.UNCOMMON), DyeColor.YELLOW);
+		registerBlockWithItem("effulgent_bed", EFFULGENT_BED, IS.of(1, Rarity.UNCOMMON), DyeColor.YELLOW);
 	}
 
 	private static void registerOreStorageBlocks(FabricItemSettings settings, FabricItemSettings settingsFireproof) {
@@ -2994,6 +2994,7 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ITEM_ROUNDEL, RenderLayer.getCutout());
 
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEMORY, RenderLayer.getTranslucent());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.EFFULGENT_BED, RenderLayer.getCutout());
 
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.JADE_VINE_ROOTS, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.JADE_VINE_BULB, RenderLayer.getCutout());

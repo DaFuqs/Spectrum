@@ -4,5 +4,13 @@
     "immersive_weathering:spectrum/white_leaf_pile": "immersive_weathering:oak_leaf_pile",
     "immersive_weathering:spectrum/gray_leaf_pile": "immersive_weathering:oak_leaf_pile",
     "immersive_weathering:spectrum/light_gray_leaf_pile": "immersive_weathering:oak_leaf_pile"
-  }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "immersive_weathering"
+      ]
+    }
+  ]
 }

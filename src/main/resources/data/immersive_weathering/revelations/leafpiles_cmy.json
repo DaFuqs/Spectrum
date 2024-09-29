@@ -12,5 +12,13 @@
     "immersive_weathering:spectrum/blue_leaf_pile": "immersive_weathering:oak_leaf_pile",
     "immersive_weathering:spectrum/green_leaf_pile": "immersive_weathering:oak_leaf_pile",
     "immersive_weathering:spectrum/red_leaf_pile": "immersive_weathering:oak_leaf_pile"
-  }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "immersive_weathering"
+      ]
+    }
+  ]
 }

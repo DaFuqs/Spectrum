@@ -309,9 +309,9 @@ public class SpectrumItems {
 	public static final Item MERMAIDS_JAM = new Item(IS.of().food(SpectrumFoodComponents.MERMAIDS_JAM));
 	public static final Item MERMAIDS_POPCORN = new ItemWithTooltip(IS.of().food(SpectrumFoodComponents.MERMAIDS_POPCORN), "item.spectrum.mermaids_popcorn.tooltip");
 	public static final Item LE_FISHE_AU_CHOCOLAT = new Item(IS.of().food(SpectrumFoodComponents.LE_FISHE_AU_CHOCOLAT));
-	public static final Item STUFFED_PETALS = new Item(IS.of().food(SpectrumFoodComponents.STUFFED_PETALS));
-	public static final Item PASTICHE = new Item(IS.of().food(SpectrumFoodComponents.PASTICHE));
-	public static final Item VITTORIAS_ROAST = new Item(IS.of().food(SpectrumFoodComponents.VITTORIAS_ROAST));
+	//public static final Item STUFFED_PETALS = new Item(IS.of().food(SpectrumFoodComponents.STUFFED_PETALS));
+	//public static final Item PASTICHE = new Item(IS.of().food(SpectrumFoodComponents.PASTICHE));
+	//public static final Item VITTORIAS_ROAST = new Item(IS.of().food(SpectrumFoodComponents.VITTORIAS_ROAST));
 
 	public static final Item INFUSED_BEVERAGE = new VariantBeverageItem(IS.of(16).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item SUSPICIOUS_BREW = new SuspiciousBrewItem(IS.of(16).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
@@ -364,7 +364,7 @@ public class SpectrumItems {
 	public static final Item IMBRIFER_COOKBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/cookbooks/imbrifer_cookbook");
 	public static final Item IMPERIAL_COOKBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/cookbooks/imperial_cookbook");
 	public static final Item BREWERS_HANDBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/cookbooks/brewers_handbook");
-	public static final Item VARIA_COOKBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/cookbooks/varia_cookbook");
+	//public static final Item VARIA_COOKBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/cookbooks/varia_cookbook");
 	public static final Item POISONERS_HANDBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.EPIC), "dimension/lore/poisoners_handbook", SpectrumStatusEffects.ETERNAL_SLUMBER_COLOR);
 
 	public static final Item AQUA_REGIA = new JadeWineItem(IS.of(16).food(SpectrumFoodComponents.AQUA_REGIA));
@@ -801,9 +801,9 @@ public class SpectrumItems {
 		register("mermaids_jam", MERMAIDS_JAM, DyeColor.PINK);
 		register("mermaids_popcorn", MERMAIDS_POPCORN, DyeColor.PINK);
 		register("le_fishe_au_chocolat", LE_FISHE_AU_CHOCOLAT, DyeColor.PINK);
-		register("stuffed_petals", STUFFED_PETALS, DyeColor.PINK);
-		register("pastiche", PASTICHE, DyeColor.PINK);
-		register("vittorias_roast", VITTORIAS_ROAST, DyeColor.PINK);
+		//register("stuffed_petals", STUFFED_PETALS, DyeColor.PINK);
+		//register("pastiche", PASTICHE, DyeColor.PINK);
+		//register("vittorias_roast", VITTORIAS_ROAST, DyeColor.PINK);
 
 		register("triple_meat_pot_pie", TRIPLE_MEAT_POT_PIE, DyeColor.PINK);
 		register("kimchi", KIMCHI, DyeColor.PINK);
@@ -874,7 +874,7 @@ public class SpectrumItems {
 		register("melochites_cookbook_vol_1", MELOCHITES_COOKBOOK_VOL_1, DyeColor.PURPLE);
 		register("melochites_cookbook_vol_2", MELOCHITES_COOKBOOK_VOL_2, DyeColor.PURPLE);
 		register("brewers_handbook", BREWERS_HANDBOOK, DyeColor.PURPLE);
-		register("varia_cookbook", VARIA_COOKBOOK, DyeColor.PURPLE);
+		//register("varia_cookbook", VARIA_COOKBOOK, DyeColor.PURPLE);
 		register("poisoners_handbook", POISONERS_HANDBOOK, DyeColor.PURPLE);
 
 		register("aqua_regia", AQUA_REGIA, DyeColor.PINK);

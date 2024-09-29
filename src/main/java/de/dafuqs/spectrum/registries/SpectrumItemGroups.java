@@ -327,7 +327,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.MELOCHITES_COOKBOOK_VOL_1);
 		entries.add(SpectrumItems.MELOCHITES_COOKBOOK_VOL_2);
 		entries.add(SpectrumItems.BREWERS_HANDBOOK);
-		entries.add(SpectrumItems.VARIA_COOKBOOK);
+		//entries.add(SpectrumItems.VARIA_COOKBOOK);
 		entries.add(SpectrumItems.POISONERS_HANDBOOK);
 
 		entries.add(SpectrumBlocks.SUGAR_STICK);
@@ -371,9 +371,9 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.MERMAIDS_JAM);
 		entries.add(SpectrumItems.MERMAIDS_POPCORN);
 		entries.add(SpectrumItems.LE_FISHE_AU_CHOCOLAT);
-		entries.add(SpectrumItems.STUFFED_PETALS);
-		entries.add(SpectrumItems.PASTICHE);
-		entries.add(SpectrumItems.VITTORIAS_ROAST);
+		//entries.add(SpectrumItems.STUFFED_PETALS);
+		//entries.add(SpectrumItems.PASTICHE);
+		//entries.add(SpectrumItems.VITTORIAS_ROAST);
 		entries.add(SpectrumItems.LUCKY_ROLL);
 		entries.add(SpectrumItems.HONEY_PASTRY);
 		entries.add(SpectrumItems.JARAMEL_TART);

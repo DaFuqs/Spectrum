@@ -4,18 +4,18 @@
   "time": 800,
   "experience": 4.0,
   "ingredient1": {
-    "item": "spectrum:phantom_head"
+    "item": "minecraft:zombie_head"
   },
   "ingredient2": {
-    "item": "spectrum:nightdew_sprout",
-    "count": 2
+    "item": "spectrum:incandescent_essence",
+    "count": 4
   },
   "center_ingredient": {
     "item": "spectrum:vegetal",
     "count": 4
   },
   "result": {
-    "item": "spectrum:ghast_head"
+    "item": "spectrum:husk_head"
   },
   "required_advancement": "spectrum:unlocks/head_fusion"
 }

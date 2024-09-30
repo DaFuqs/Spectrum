@@ -31,6 +31,7 @@ public class UnlockToastManager {
 		put(SpectrumCommon.locate("midgame/spectrum_midgame"), new Pair<>(SpectrumBlocks.PEDESTAL_ONYX.asItem().getDefaultStack(), "second_advancement_tree_unlocked"));
 		put(SpectrumCommon.locate("lategame/spectrum_lategame"), new Pair<>(SpectrumBlocks.PEDESTAL_MOONSTONE.asItem().getDefaultStack(), "third_advancement_tree_unlocked"));
 		put(SpectrumCommon.locate("ascend_kindling"), new Pair<>(SpectrumBlocks.PEDESTAL_MOONSTONE.asItem().getDefaultStack(), "ascend_kindling"));
+		put(SpectrumCommon.locate("vivisect_kindling"), new Pair<>(SpectrumItems.DIVINATION_HEART.getDefaultStack(), "vivisect_kindling"));
 		put(PaintbrushItem.UNLOCK_COLORING_ADVANCEMENT_ID, new Pair<>(SpectrumItems.PAINTBRUSH.getDefaultStack(), "block_coloring_unlocked"));
 		put(PaintbrushItem.UNLOCK_INK_SLINGING_ADVANCEMENT_ID, new Pair<>(SpectrumItems.PAINTBRUSH.getDefaultStack(), "paint_flinging_unlocked"));
 	}};

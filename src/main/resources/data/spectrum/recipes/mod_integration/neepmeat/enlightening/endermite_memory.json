@@ -1,0 +1,20 @@
+{
+  "type": "neepmeat:enlightening",
+  "item_input": {
+    "resource": "spectrum:silverfish_head",
+    "amount": 1
+  },
+  "data": 1000,
+  "output": {
+    "resource": "spectrum:endermite_head",
+    "amount": 1
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "neepmeat"
+      ]
+    }
+  ]
+}

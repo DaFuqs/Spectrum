@@ -1,0 +1,27 @@
+{
+  "type": "neepmeat:advanced_crushing",
+  "input": {
+    "resource": "spectrum:amaranth_bushel",
+    "amount": 1
+  },
+  "output": {
+    "resource": "spectrum:amaranth_grains",
+    "min": 2,
+    "max": 3
+  },
+  "extra": {
+    "resource": "spectrum:amaranth_grains",
+    "amount": 1,
+    "chance": 0.5
+  },
+  "experience": 0.7,
+  "processtime": 10,
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "neepmeat"
+      ]
+    }
+  ]
+}

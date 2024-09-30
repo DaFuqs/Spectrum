@@ -910,6 +910,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.BASAL_MARBLE_BRICK_STAIRS);
 		entries.add(SpectrumBlocks.BASAL_MARBLE_BRICK_SLAB);
 		entries.add(SpectrumBlocks.BASAL_MARBLE_BRICK_WALL);
+		entries.add(SpectrumBlocks.LONGING_CHIMERA);
 
 		entries.add(SpectrumBlocks.DRAGONBONE);
 		entries.add(SpectrumBlocks.CRACKED_DRAGONBONE);

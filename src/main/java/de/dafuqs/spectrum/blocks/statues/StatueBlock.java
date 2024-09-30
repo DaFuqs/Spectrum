@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.structure;
+package de.dafuqs.spectrum.blocks.statues;
 
 import de.dafuqs.spectrum.blocks.decoration.*;
 import net.minecraft.block.*;

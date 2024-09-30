@@ -1209,6 +1209,10 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.LOGO_BANNER_PATTERN);
 		entries.add(SpectrumItems.AMETHYST_SHARD_BANNER_PATTERN);
 		entries.add(SpectrumItems.AMETHYST_CLUSTER_BANNER_PATTERN);
+		entries.add(SpectrumItems.ASTROLOGER_BANNER_PATTERN);
+		entries.add(SpectrumItems.VELVET_ASTROLOGER_BANNER_PATTERN);
+		entries.add(SpectrumItems.POISONBLOOM_BANNER_PATTERN);
+		entries.add(SpectrumItems.DEEP_LIGHT_BANNER_PATTERN);
 		entries.add(SpectrumItems.MUSIC_DISC_SPECTRUM_THEME);
 		entries.add(SpectrumItems.MUSIC_DISC_DIMENSION_THEME);
 		entries.add(SpectrumItems.MUSIC_DISC_EVERREFLECTIVE);

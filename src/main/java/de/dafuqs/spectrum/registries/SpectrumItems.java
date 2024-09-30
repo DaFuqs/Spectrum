@@ -402,7 +402,12 @@ public class SpectrumItems {
 	public static final Item LOGO_BANNER_PATTERN = new BannerPatternItem(SpectrumBannerPatterns.SPECTRUM_LOGO_TAG, IS.of(1, Rarity.UNCOMMON));
 	public static final Item AMETHYST_SHARD_BANNER_PATTERN = new BannerPatternItem(SpectrumBannerPatterns.AMETHYST_SHARD_TAG, IS.of(1));
 	public static final Item AMETHYST_CLUSTER_BANNER_PATTERN = new BannerPatternItem(SpectrumBannerPatterns.AMETHYST_CLUSTER_TAG, IS.of(1));
-	
+	public static final Item ASTROLOGER_BANNER_PATTERN = new BannerPatternItem(SpectrumBannerPatterns.ASTROLOGER_TAG, IS.of(1, Rarity.UNCOMMON));
+	public static final Item VELVET_ASTROLOGER_BANNER_PATTERN = new BannerPatternItem(SpectrumBannerPatterns.VELVET_ASTROLOGER_TAG, IS.of(1, Rarity.UNCOMMON));
+	public static final Item POISONBLOOM_BANNER_PATTERN = new BannerPatternItem(SpectrumBannerPatterns.POISONBLOOM_TAG, IS.of(1, Rarity.RARE));
+	public static final Item DEEP_LIGHT_BANNER_PATTERN = new BannerPatternItem(SpectrumBannerPatterns.DEEP_LIGHT_TAG, IS.of(1, Rarity.RARE));
+
+
 	public static final Item BUCKET_OF_ERASER = new EmptyFluidEntityBucketItem(SpectrumEntityTypes.ERASER, Fluids.EMPTY, SoundEvents.ITEM_BUCKET_EMPTY, IS.of());
 	
 	public static final Item EGG_LAYING_WOOLY_PIG_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG, 0x3a2c38, 0xfff2e0, IS.of());
@@ -596,6 +601,10 @@ public class SpectrumItems {
 		register("logo_banner_pattern", LOGO_BANNER_PATTERN, DyeColor.LIGHT_BLUE);
 		register("amethyst_shard_banner_pattern", AMETHYST_SHARD_BANNER_PATTERN, DyeColor.LIGHT_BLUE);
 		register("amethyst_cluster_banner_pattern", AMETHYST_CLUSTER_BANNER_PATTERN, DyeColor.LIGHT_BLUE);
+		register("astrologer_banner_pattern", ASTROLOGER_BANNER_PATTERN, DyeColor.LIGHT_BLUE);
+		register("velvet_astrologer_banner_pattern", VELVET_ASTROLOGER_BANNER_PATTERN, DyeColor.LIGHT_BLUE);
+		register("poisonbloom_banner_pattern", POISONBLOOM_BANNER_PATTERN, DyeColor.LIGHT_BLUE);
+		register("deep_light_banner_pattern", DEEP_LIGHT_BANNER_PATTERN, DyeColor.LIGHT_BLUE);
 	}
 	
 	public static void registerGemstoneItems() {

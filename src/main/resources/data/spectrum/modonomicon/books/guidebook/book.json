@@ -8,6 +8,7 @@
 
   "generate_book_item": false,
   "auto_add_read_conditions": false,
+  "allow_open_book_with_invalid_links": true,
 
   "frame_texture": "spectrum:textures/gui/modonomicon/guidebook_frame.png",
   "book_content_texture": "spectrum:textures/gui/modonomicon/guidebook_entry.png",

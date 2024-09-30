@@ -4,6 +4,15 @@
     "immersive_weathering:spectrum/brown_leaf_pile": "immersive_weathering:oak_leaf_pile",
     "immersive_weathering:spectrum/black_leaf_pile": "immersive_weathering:oak_leaf_pile"
   },
+  "items": {
+    "immersive_weathering:spectrum/brown_bark": "immersive_weathering:oak_bark",
+    "immersive_weathering:spectrum/black_bark": "immersive_weathering:oak_bark"
+
+  },
+  "item_name_replacements": {
+    "immersive_weathering:spectrum/brown_bark": "Oak Bark?",
+    "immersive_weathering:spectrum/black_bark": "Oak Bark?"
+  },
   "fabric:load_conditions": [
     {
       "condition": "fabric:all_mods_loaded",

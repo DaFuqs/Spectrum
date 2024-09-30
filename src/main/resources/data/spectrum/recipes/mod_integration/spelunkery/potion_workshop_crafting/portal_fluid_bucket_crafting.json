@@ -1,0 +1,29 @@
+{
+  "type": "spectrum:potion_workshop_crafting",
+  "base_ingredient": {
+    "item": "minecraft:bucket"
+  },
+  "use_up_base_ingredient": true,
+  "color": 2884203,
+  "ingredient1": {
+    "item": "spectrum:radiating_ender"
+  },
+  "ingredient2": {
+    "item": "spectrum:neolith"
+  },
+  "ingredient3": {
+    "item": "minecraft:popped_chorus_fruit"
+  },
+  "result": {
+    "item": "spelunkery:portal_fluid_bucket"
+  },
+  "required_advancement": "spectrum:unlocks/items/ender_splice",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "spelunkery"
+      ]
+    }
+  ]
+}

@@ -95,9 +95,9 @@ public class KindlingEntity extends AbstractHorseEntity implements RangedAttackM
 	protected void initGoals() {
 		this.goalSelector.add(0, new SwimGoal(this));
 		this.goalSelector.add(1, new HorseBondWithPlayerGoal(this, 1.4));
-		this.goalSelector.add(2, new PounceAtTargetGoal(this, 0.2F));
+		this.goalSelector.add(2, new PounceAtTargetGoal(this, 0.5F));
+		this.goalSelector.add(3, new CancellableProjectileAttackGoal(this, 1.25, 30, 20.0F));
 		this.goalSelector.add(3, new MeleeChaseGoal(this));
-		this.goalSelector.add(4, new CancellableProjectileAttackGoal(this, 1.25, 40, 20.0F));
 		this.goalSelector.add(5, new AnimalMateGoal(this, 1.0D));
 		this.goalSelector.add(6, new PlayRoughGoal(this));
 		this.goalSelector.add(7, new TemptGoal(this, 1.25, FOOD, false));
@@ -757,7 +757,7 @@ public class KindlingEntity extends AbstractHorseEntity implements RangedAttackM
 	protected class MeleeChaseGoal extends MeleeAttackGoal {
 		
 		public MeleeChaseGoal(KindlingEntity kindling) {
-			super(kindling, 0.5F, true);
+			super(kindling, 0.6F, true);
 		}
 		
 		@Override
@@ -871,12 +871,12 @@ public class KindlingEntity extends AbstractHorseEntity implements RangedAttackM
 		
 		@Override
 		public boolean shouldContinue() {
-			return KindlingEntity.this.hasAngerTime() && super.shouldContinue() && distanceTo(getProjectileTarget()) > 5F;
+			return KindlingEntity.this.hasAngerTime() && super.shouldContinue() && distanceTo(getProjectileTarget()) > 3F;
 		}
 		
 		@Override
 		public boolean canStart() {
-			return super.canStart() && !isPlaying() && distanceTo(getProjectileTarget()) > 6F;
+			return super.canStart() && !isPlaying() && distanceTo(getProjectileTarget()) > 4F;
 		}
 		
 		protected LivingEntity getProjectileTarget() {

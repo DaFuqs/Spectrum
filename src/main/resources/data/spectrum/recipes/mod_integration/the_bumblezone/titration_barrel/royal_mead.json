@@ -1,22 +1,16 @@
 {
   "type": "spectrum:titration_barrel",
+  "group": "infused_beverages",
   "ingredients": [
     {
-      "item": "spectrum:sawblade_holly_berry",
-      "count": 4
-    },
-    {
-      "item": "spectrum:bristle_sprouts",
-      "count": 8
-    },
-    {
-      "item": "spectrum:jaramel",
+      "item": "minecraft:honeycomb",
       "count": 2
     }
   ],
   "fluid": {
-    "tag": "minecraft:water"
+    "tag": "c:honey"
   },
+  "tapping_item": "minecraft:glass_bottle",
   "min_fermentation_time_hours": 24,
   "fermentation_data": {
     "fermentation_speed_mod": 0.25,
@@ -102,17 +96,20 @@
       }
     ]
   },
-  "tapping_item": "minecraft:glass_bottle",
   "result": {
-    "item": "spectrum:bristle_mead",
-    "count": 4
+    "item": "spectrum:infused_beverage",
+    "count": 4,
+    "nbt": {
+      "Variant": "royal_mead",
+      "Color": 16726964
+    }
   },
-  "required_advancement": "spectrum:hidden/collect_cookbooks/brewers_handbook",
+  "required_advancement": "spectrum:triggers/confirmed_drinking_age",
   "fabric:load_conditions": [
     {
-      "condition": "fabric:fluid_tags_populated",
+      "condition": "fabric:all_mods_loaded",
       "values": [
-        "c:honey"
+        "the_bumblezone"
       ]
     }
   ]

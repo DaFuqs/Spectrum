@@ -7,7 +7,7 @@
   "experience": 2.0,
   "result": {
     "item": "create:cinder_flour",
-    "count": 45
+    "count": 64
   },
   "particleEffectIdentifier": "enchanted_hit",
   "soundEventIdentifier": "block.metal.break",

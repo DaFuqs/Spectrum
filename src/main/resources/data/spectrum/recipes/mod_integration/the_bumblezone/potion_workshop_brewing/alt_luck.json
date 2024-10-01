@@ -1,0 +1,27 @@
+{
+  "type": "spectrum:potion_workshop_brewing",
+  "group": "the_bumblezone",
+  "ingredient1": {
+    "item": "minecraft:nether_wart"
+  },
+  "ingredient2": {
+    "item": "the_bumblezone:glistering_honey_crystal"
+  },
+  "effect": "minecraft:luck",
+  "base_duration_ticks": 6000,
+  "potency_modifier": 1.0,
+  "applicable_to_potions": true,
+  "applicable_to_tipped_arrows": true,
+  "applicable_to_potion_fillables": true,
+  "required_advancement": "spectrum:unlocks/potions/luck",
+  "ink_color": "spectrum:light_blue",
+  "ink_cost": 2,
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "the_bumblezone"
+      ]
+    }
+  ]
+}

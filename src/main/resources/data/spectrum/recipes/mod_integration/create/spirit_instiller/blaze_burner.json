@@ -10,10 +10,12 @@
     "count": 4
   },
   "center_ingredient": {
-    "item": "create:empty_blaze_burner"
+    "item": "create:empty_blaze_burner",
+    "count": 4
   },
   "result": {
-    "item": "create:blaze_burner"
+    "item": "create:blaze_burner",
+    "count": 4
   },
   "fabric:load_conditions": [
     {

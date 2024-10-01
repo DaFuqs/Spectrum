@@ -16,7 +16,8 @@
     "800020h (Structures)",
     "MsRandom (Gayer, Shaders)",
     "Quarx_ (Sound design and Music)",
-    "Notawallplan (Music, Writing)"
+    "Notawallplan (Music, Writing)",
+    "Athebyne (Gay Dragon)"
   ],
   "contact": {
     "homepage": "https://github.com/DaFuqs/",
@@ -76,7 +77,8 @@
     "cloth-config": "*",
     "modonomicon": "*",
     "trinkets": "*",
-    "matchbooks": "*"
+    "matchbooks": "*",
+    "exclusions_lib": "*"
   },
   "suggests": {
     "chalk": "*",

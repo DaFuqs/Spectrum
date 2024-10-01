@@ -22,6 +22,17 @@
     },
     {
       "type": "minecraft:biome"
+    },
+    {
+      "type": "minecraft:block_predicate_filter",
+      "predicate": {
+        "type": "minecraft:not",
+        "predicate": {
+          "type": "exclusions_lib:overlaps_structure",
+          "structures": "#spectrum:lizard_dens",
+          "range": 6
+        }
+      }
     }
   ]
 }

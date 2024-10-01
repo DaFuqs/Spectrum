@@ -327,7 +327,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.MELOCHITES_COOKBOOK_VOL_1);
 		entries.add(SpectrumItems.MELOCHITES_COOKBOOK_VOL_2);
 		entries.add(SpectrumItems.BREWERS_HANDBOOK);
-		entries.add(SpectrumItems.VARIA_COOKBOOK);
+		//entries.add(SpectrumItems.VARIA_COOKBOOK);
 		entries.add(SpectrumItems.POISONERS_HANDBOOK);
 
 		entries.add(SpectrumBlocks.SUGAR_STICK);
@@ -371,9 +371,9 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.MERMAIDS_JAM);
 		entries.add(SpectrumItems.MERMAIDS_POPCORN);
 		entries.add(SpectrumItems.LE_FISHE_AU_CHOCOLAT);
-		entries.add(SpectrumItems.STUFFED_PETALS);
-		entries.add(SpectrumItems.PASTICHE);
-		entries.add(SpectrumItems.VITTORIAS_ROAST);
+		//entries.add(SpectrumItems.STUFFED_PETALS);
+		//entries.add(SpectrumItems.PASTICHE);
+		//entries.add(SpectrumItems.VITTORIAS_ROAST);
 		entries.add(SpectrumItems.LUCKY_ROLL);
 		entries.add(SpectrumItems.HONEY_PASTRY);
 		entries.add(SpectrumItems.JARAMEL_TART);
@@ -916,6 +916,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.BASAL_MARBLE_BRICK_STAIRS);
 		entries.add(SpectrumBlocks.BASAL_MARBLE_BRICK_SLAB);
 		entries.add(SpectrumBlocks.BASAL_MARBLE_BRICK_WALL);
+		entries.add(SpectrumBlocks.LONGING_CHIMERA);
 
 		entries.add(SpectrumBlocks.DRAGONBONE);
 		entries.add(SpectrumBlocks.CRACKED_DRAGONBONE);
@@ -1214,6 +1215,10 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.LOGO_BANNER_PATTERN);
 		entries.add(SpectrumItems.AMETHYST_SHARD_BANNER_PATTERN);
 		entries.add(SpectrumItems.AMETHYST_CLUSTER_BANNER_PATTERN);
+		entries.add(SpectrumItems.ASTROLOGER_BANNER_PATTERN);
+		entries.add(SpectrumItems.VELVET_ASTROLOGER_BANNER_PATTERN);
+		entries.add(SpectrumItems.POISONBLOOM_BANNER_PATTERN);
+		entries.add(SpectrumItems.DEEP_LIGHT_BANNER_PATTERN);
 		entries.add(SpectrumItems.MUSIC_DISC_SPECTRUM_THEME);
 		entries.add(SpectrumItems.MUSIC_DISC_DIMENSION_THEME);
 		entries.add(SpectrumItems.MUSIC_DISC_EVERREFLECTIVE);

@@ -23,7 +23,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class NectarLanceItem extends LightGreatswordItem implements SlotBackgroundEffectProvider, ArmorPiercingItem, ExpandedStatTooltip {
+public class NectarLanceItem extends LightGreatswordItem implements SlotBackgroundEffectProvider {
 
 	public NectarLanceItem(ToolMaterial material, int attackDamage, float attackSpeed, float crit, float reach, int barColor, Settings settings) {
 		super(material, attackDamage, attackSpeed, crit, reach, barColor, settings);
@@ -159,45 +159,5 @@ public class NectarLanceItem extends LightGreatswordItem implements SlotBackgrou
 	@Override
 	public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
 		return InkColors.PURPLE_COLOR;
-	}
-
-	@Override
-	public float getDefenseMultiplier(LivingEntity target, ItemStack stack) {
-		return 0.75F;
-	}
-
-	@Override
-	public float getToughnessMultiplier(LivingEntity target, ItemStack stack) {
-		return 1;
-	}
-
-	@Override
-	public float getProtReduction(LivingEntity target, ItemStack stack) {
-		return 0.5F;
-	}
-
-	@Override
-	public DamageComposition getDamageComposition(LivingEntity attacker, LivingEntity target, ItemStack stack, float damage) {
-		var composition = new DamageComposition();
-		var source = composition.getPlayerOrEntity(attacker);
-
-		if (attacker instanceof PlayerEntity player && MiscPlayerDataComponent.get(player).isLunging()) {
-			source = SpectrumDamageTypes.impaling(player.getWorld(), player);
-		}
-
-		SpectrumDamageTypes.wrapWithStackTracking(source, stack);
-		composition.add(source, damage);
-		return composition;
-	}
-
-	@Override
-	public void expandTooltip(ItemStack stack, @Nullable PlayerEntity player, List<Text> tooltip, TooltipContext context) {
-		if (Screen.hasShiftDown()) {
-			tooltip.add(Text.translatable("item.spectrum.bident.postToolTip.ap", 25).formatted(Formatting.BLUE));
-
-			tooltip.add(Text.translatable("item.spectrum.bident.postToolTip.pp", 50).formatted(Formatting.BLUE));
-		} else {
-			tooltip.add(Text.translatable("spectrum.tooltip.press_shift_for_more").formatted(Formatting.DARK_GRAY, Formatting.ITALIC));
-		}
 	}
 }

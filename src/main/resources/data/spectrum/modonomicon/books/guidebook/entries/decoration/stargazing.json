@@ -1,11 +1,10 @@
 {
   "type": "spectrum:entry_link",
   "entry_to_open": "spectrum:general/stargazing",
-
-  "name": "book.spectrum.guidebook.stargazing.name",
+  "name": "book.spectrum.guidebook.stargazing.page1.title",
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:milestones/unlock_shooting_stars"
+    "advancement_id": "spectrum:collect_star_fragment"
   },
   "icon": "spectrum:colorful_shooting_star",
   "category": "spectrum:decoration",

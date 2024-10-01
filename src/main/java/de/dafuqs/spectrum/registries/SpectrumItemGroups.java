@@ -892,7 +892,8 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.PYRITE_PANNELING);
 		entries.add(SpectrumBlocks.PYRITE_VENT);
 		entries.add(SpectrumBlocks.PYRITE_RIPPER);
-		
+		entries.add(SpectrumBlocks.PYRITE_PROJECTOR);
+
 		entries.add(SpectrumBlocks.BASAL_MARBLE);
 		entries.add(SpectrumBlocks.BASAL_MARBLE_STAIRS);
 		entries.add(SpectrumBlocks.BASAL_MARBLE_SLAB);

@@ -137,14 +137,14 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
 		}
 
 		var ringHeight = node.crystalHeight - 0.3F;
-		var innerRing = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucentEmissive(node.getInnerRing().map(PastelUpgradeSignature::innerRing).orElse(INNER_RING)));
+		var innerRing = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(node.getInnerRing().map(PastelUpgradeSignature::innerRing).orElse(INNER_RING)));
 		renderRing(matrices, innerRing, 3.75F + ringHeight / 2F, 7F, node.ringAlpha, overlay, facing);
 
-		var redstoneRing = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucentEmissive(node.getRedstoneRing().map(PastelUpgradeSignature::outerRing).orElse(REDSTONE_RING)));
+		var redstoneRing = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(node.getRedstoneRing().map(PastelUpgradeSignature::outerRing).orElse(REDSTONE_RING)));
 		renderRing(matrices, redstoneRing, 5F + ringHeight, 15F, node.ringAlpha * node.getRedstoneAlphaMult(), overlay, facing);
 
 		if (crystal.hasOuterRing()) {
-			var outerRing = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucentEmissive(node.getOuterRing().map(PastelUpgradeSignature::outerRing).orElse(OUTER_RING)));
+			var outerRing = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(node.getOuterRing().map(PastelUpgradeSignature::outerRing).orElse(OUTER_RING)));
 			renderRing(matrices, outerRing, 5.75F + ringHeight * 2, 11F, node.ringAlpha, overlay, facing);
 		}
 

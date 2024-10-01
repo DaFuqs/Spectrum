@@ -298,6 +298,9 @@ public class SpectrumBlocks {
 
 	public static final Block POLISHED_BASALT = new Block(settings(MapColor.BLACK, BlockSoundGroup.BASALT, 2.0F, 5.0F).instrument(Instrument.BASEDRUM).requiresTool());
 	public static final Block PLANED_BASALT = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT));
+	public static final Block PLANED_BASALT_SLAB = new SlabBlock(FabricBlockSettings.copyOf(PLANED_BASALT));
+	public static final Block PLANED_BASALT_STAIRS = new StairsBlock(PLANED_BASALT.getDefaultState(), FabricBlockSettings.copyOf(PLANED_BASALT));
+	public static final Block PLANED_BASALT_WALL = new WallBlock(FabricBlockSettings.copyOf(PLANED_BASALT));
 	public static final Block POLISHED_BASALT_PILLAR = new PillarBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block POLISHED_BASALT_CREST = new CardinalFacingBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block CHISELED_POLISHED_BASALT = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT));
@@ -330,6 +333,9 @@ public class SpectrumBlocks {
 
 	public static final Block POLISHED_CALCITE = new Block(settings(MapColor.TERRACOTTA_WHITE, BlockSoundGroup.CALCITE, 2.0F, 5.0F).instrument(Instrument.BASEDRUM).requiresTool());
 	public static final Block PLANED_CALCITE = new Block(FabricBlockSettings.copyOf(POLISHED_CALCITE));
+	public static final Block PLANED_CALCITE_SLAB = new SlabBlock(FabricBlockSettings.copyOf(PLANED_CALCITE));
+	public static final Block PLANED_CALCITE_STAIRS = new StairsBlock(PLANED_CALCITE.getDefaultState(), FabricBlockSettings.copyOf(PLANED_CALCITE));
+	public static final Block PLANED_CALCITE_WALL = new WallBlock(FabricBlockSettings.copyOf(PLANED_CALCITE));
 	public static final Block POLISHED_CALCITE_STAIRS = new StairsBlock(POLISHED_CALCITE.getDefaultState(), FabricBlockSettings.copyOf(POLISHED_CALCITE));
 	public static final Block POLISHED_CALCITE_PILLAR = new PillarBlock(FabricBlockSettings.copyOf(POLISHED_CALCITE));
 	public static final Block POLISHED_CALCITE_CREST = new CardinalFacingBlock(FabricBlockSettings.copyOf(POLISHED_CALCITE));
@@ -2091,6 +2097,9 @@ public class SpectrumBlocks {
 
 		registerBlockWithItem("polished_basalt", POLISHED_BASALT, settings, DyeColor.BROWN);
 		registerBlockWithItem("planed_basalt", PLANED_BASALT, settings, DyeColor.BROWN);
+		registerBlockWithItem("planed_basalt_slab", PLANED_BASALT_SLAB, settings, DyeColor.BROWN);
+		registerBlockWithItem("planed_basalt_stairs", PLANED_BASALT_STAIRS, settings, DyeColor.BROWN);
+		registerBlockWithItem("planed_basalt_wall", PLANED_BASALT_WALL, settings, DyeColor.BROWN);
 		registerBlockWithItem("polished_basalt_pillar", POLISHED_BASALT_PILLAR, settings, DyeColor.BROWN);
 		registerBlockWithItem("polished_basalt_crest", POLISHED_BASALT_CREST, settings, DyeColor.BROWN);
 		registerBlockWithItem("chiseled_polished_basalt", CHISELED_POLISHED_BASALT, settings, DyeColor.BROWN);
@@ -2120,6 +2129,9 @@ public class SpectrumBlocks {
 
 		registerBlockWithItem("polished_calcite", POLISHED_CALCITE, settings, DyeColor.BROWN);
 		registerBlockWithItem("planed_calcite", PLANED_CALCITE, settings, DyeColor.BROWN);
+		registerBlockWithItem("planed_calcite_slab", PLANED_CALCITE_SLAB, settings, DyeColor.BROWN);
+		registerBlockWithItem("planed_calcite_stairs", PLANED_CALCITE_STAIRS, settings, DyeColor.BROWN);
+		registerBlockWithItem("planed_calcite_wall", PLANED_CALCITE_WALL, settings, DyeColor.BROWN);
 		registerBlockWithItem("polished_calcite_pillar", POLISHED_CALCITE_PILLAR, settings, DyeColor.BROWN);
 		registerBlockWithItem("polished_calcite_crest", POLISHED_CALCITE_CREST, settings, DyeColor.BROWN);
 		registerBlockWithItem("chiseled_polished_calcite", CHISELED_POLISHED_CALCITE, settings, DyeColor.BROWN);

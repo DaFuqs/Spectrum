@@ -6,20 +6,20 @@
   "overrides": [
     {
       "predicate": {
-        "render_large": 1.0
+        "oversized": 1.0
       },
       "model": "spectrum:item/fractal_glass_crest_bident_oversized"
     },
     {
       "predicate": {
-        "render_large": 1.0,
+        "oversized": 1.0,
         "bident_throwing": 0.5
       },
       "model": "spectrum:item/fractal_glass_crest_bident_oversized_throwing"
     },
     {
       "predicate": {
-        "render_large": 1.0,
+        "oversized": 1.0,
         "bident_throwing": 1.0
       },
       "model": "spectrum:item/fractal_glass_crest_bident_oversized_projectile"

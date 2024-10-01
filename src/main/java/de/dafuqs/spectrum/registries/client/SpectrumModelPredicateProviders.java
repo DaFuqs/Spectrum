@@ -248,7 +248,7 @@ public class SpectrumModelPredicateProviders {
 	}
 	
 	private static void registerOversizedItemPredicate(Item item) {
-		ModelPredicateProviderRegistry.register(item, new Identifier("render_large"), (itemStack, world, livingEntity, seed) -> seed == 817210941 ? 1.0F : 0.0F);
+		ModelPredicateProviderRegistry.register(item, new Identifier("oversized"), (itemStack, world, livingEntity, seed) -> seed == 817210941 ? 1.0F : 0.0F);
 	}
 	
 	private static void registerBowPredicates(Item bowItem) {

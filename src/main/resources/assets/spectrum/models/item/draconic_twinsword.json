@@ -6,21 +6,21 @@
   "overrides": [
     {
       "predicate": {
-        "render_large": 1.0,
+        "oversized": 1.0,
         "reserved": 0.0
       },
       "model": "spectrum:item/draconic_twinsword_oversized"
     },
     {
       "predicate": {
-        "render_large": 1.0,
+        "oversized": 1.0,
         "reserved": 1.0
       },
       "model": "spectrum:item/dragon_blank"
     },
     {
       "predicate": {
-        "render_large": 0.0,
+        "oversized": 0.0,
         "reserved": 1.0
       },
       "model": "spectrum:item/draconic_twinsword_phantom"

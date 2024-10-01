@@ -8,7 +8,7 @@
   "overrides": [
     {
       "predicate": {
-        "render_large": 1.0
+        "oversized": 1.0
       },
       "model": "spectrum:item/paintbrush_oversized"
     }

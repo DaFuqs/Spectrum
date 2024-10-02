@@ -170,6 +170,7 @@ public class SpectrumBlockEntities {
 		BlockEntityRendererFactories.register(SpectrumBlockEntities.JADE_VINE_ROOTS, JadeVineRootsBlockEntityRenderer::new);
 		BlockEntityRendererFactories.register(SpectrumBlockEntities.CRYSTALLARIEUM, CrystallarieumBlockEntityRenderer::new);
 		BlockEntityRendererFactories.register(SpectrumBlockEntities.COLOR_PICKER, ColorPickerBlockEntityRenderer::new);
+		BlockEntityRendererFactories.register(SpectrumBlockEntities.PRESERVATION_CONTROLLER, PreservationControllerBlockEntityRenderer::new);
 		BlockEntityRendererFactories.register(SpectrumBlockEntities.PROJECTOR, ProjectorBlockEntityRenderer::new);
 		BlockEntityRendererFactories.register(SpectrumBlockEntities.MANXI, ManxiBlockEntityRenderer::new);
 

@@ -3027,6 +3027,7 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(VARIA_SPROUT, RenderLayer.getCutout());
 
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.DIKE_GATE, RenderLayer.getTranslucent());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.PRESERVATION_CONTROLLER, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.INVISIBLE_WALL, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.PRESERVATION_GLASS, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TINTED_PRESERVATION_GLASS, RenderLayer.getTranslucent());

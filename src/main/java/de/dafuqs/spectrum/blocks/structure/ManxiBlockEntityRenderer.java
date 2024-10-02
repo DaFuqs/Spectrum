@@ -51,7 +51,7 @@ public class ManxiBlockEntityRenderer implements BlockEntityRenderer<ManxiBlockE
 
 		assert MinecraftClient.getInstance().player != null;
 		if (!entity.hasTaken(MinecraftClient.getInstance().player)) {
-			matrices.translate(-0.2, 1.4 - (yBreath / 3), -0.55);
+			matrices.translate(-0.2, 1.4 + (yBreath / 6), -0.55);
 			matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(100));
 			matrices.scale(1.15F, 1.15F, 1.15F);
 			MinecraftClient.getInstance().getItemRenderer().renderItem(SpectrumItems.POISONERS_HANDBOOK.getDefaultStack(), ModelTransformationMode.GROUND, light, overlay, matrices, vertexConsumers, entity.getWorld(), 0);

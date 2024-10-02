@@ -440,9 +440,9 @@ public class SpectrumItems {
 	public static final Item MOONSTONE_CORE = new CloakedItem(IS.of(16, Rarity.RARE), SpectrumCommon.locate("lategame/find_forgotten_city"), Items.WHITE_DYE);
 	
 	// Misc
-	public static final Item MUSIC_DISC_SPECTRUM_THEME = new MusicDiscItem(1, SpectrumSoundEvents.SPECTRUM_THEME, IS.of(1, Rarity.RARE), 120);
-	public static final Item MUSIC_DISC_DIMENSION_THEME = new MusicDiscItem(2, SpectrumSoundEvents.BOSS_THEME, IS.of(1, Rarity.RARE), 265);
-	public static final Item MUSIC_DISC_EVERREFLECTIVE = new MusicDiscItem(3, SpectrumSoundEvents.DIVINITY, IS.of(1, Rarity.RARE), 289);
+	public static final Item MUSIC_DISC_DISCOVERY = new MusicDiscItem(1, SpectrumSoundEvents.MUSIC_DISCOVERY, IS.of(1, Rarity.RARE), 120);
+	public static final Item MUSIC_DISC_CREDITS = new MusicDiscItem(2, SpectrumSoundEvents.MUSIC_CREDITS, IS.of(1, Rarity.RARE), 265);
+	public static final Item MUSIC_DISC_DIVINITY = new MusicDiscItem(3, SpectrumSoundEvents.MUSIC_DIVINITY, IS.of(1, Rarity.RARE), 289);
 	
 	public static final Item PHANTOM_FRAME = new PhantomFrameItem(SpectrumEntityTypes.PHANTOM_FRAME, IS.of());
 	public static final Item GLOW_PHANTOM_FRAME = new PhantomGlowFrameItem(SpectrumEntityTypes.GLOW_PHANTOM_FRAME, IS.of());
@@ -556,9 +556,9 @@ public class SpectrumItems {
 	}
 	
 	public static void registerMusicDisks() {
-		register("music_disc_spectrum_theme", MUSIC_DISC_SPECTRUM_THEME, DyeColor.GREEN);
-		register("music_disc_dimension_theme", MUSIC_DISC_DIMENSION_THEME, DyeColor.GREEN);
-		register("music_disc_everreflective", MUSIC_DISC_EVERREFLECTIVE, DyeColor.GREEN);
+		register("music_disc_discovery", MUSIC_DISC_DISCOVERY, DyeColor.GREEN);
+		register("music_disc_credits", MUSIC_DISC_CREDITS, DyeColor.GREEN);
+		register("music_disc_divinity", MUSIC_DISC_DIVINITY, DyeColor.GREEN);
 	}
 	
 	public static void registerSpawningStuff() {

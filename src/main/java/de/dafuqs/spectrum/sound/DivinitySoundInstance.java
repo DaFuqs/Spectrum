@@ -17,7 +17,7 @@ public class DivinitySoundInstance extends AbstractSoundInstance implements Tick
 	private boolean done;
 	
 	public DivinitySoundInstance() {
-		super(SpectrumSoundEvents.DIVINITY, SoundCategory.RECORDS, SoundInstance.createRandom());
+		super(SpectrumSoundEvents.MUSIC_DIVINITY, SoundCategory.RECORDS, SoundInstance.createRandom());
 		this.repeat = true;
 		this.repeatDelay = 0;
 		this.volume = 0.8F;

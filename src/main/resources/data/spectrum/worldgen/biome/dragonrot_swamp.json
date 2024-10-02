@@ -23,7 +23,7 @@
       "probability": 0.0255
     },
     "music": {
-      "sound": "spectrum:music.deeper_down",
+      "sound": "spectrum:music.deeper_down.dragonrot_swamp",
       "min_delay": 12000,
       "max_delay": 24000,
       "replace_current_music": false

@@ -469,28 +469,19 @@
       "spectrum:block.ruin.place"
     ]
   },
-  "music.spectrum_theme": {
-    "subtitle": "spectrum.subtitles.spectrum_theme_plays",
+
+  "music.discovery": {
     "sounds": [
       {
-        "name": "spectrum:music/spectrum_theme",
+        "name": "spectrum:music/davejf_the_mist",
         "stream": true
       }
     ]
   },
-  "music.boss_theme": {
-    "subtitle": "spectrum.subtitles.boss_theme_plays",
+  "music.credits": {
     "sounds": [
       {
         "name": "spectrum:music/radiarc_irrelevance_fading",
-        "stream": true
-      }
-    ]
-  },
-  "music.deeper_down": {
-    "sounds": [
-      {
-        "name": "spectrum:music/sunsette_darker_than_hell",
         "stream": true
       }
     ]
@@ -503,6 +494,72 @@
       }
     ]
   },
+
+  "music.deeper_down.black_langast": {
+    "sounds": [
+      {
+        "name": "spectrum:music/sunsette_darker_than_hell",
+        "stream": true
+      }
+    ]
+  },
+  "music.deeper_down.crystal_gardens": {
+    "sounds": [
+      {
+        "name": "spectrum:music/sunsette_darker_than_hell",
+        "stream": true
+      }
+    ]
+  },
+  "music.deeper_down.deep_barrens": {
+    "sounds": [
+      {
+        "name": "spectrum:music/sunsette_darker_than_hell",
+        "stream": true
+      }
+    ]
+  },
+  "music.deeper_down.deep_dripstone_caves": {
+    "sounds": [
+      {
+        "name": "spectrum:music/sunsette_darker_than_hell",
+        "stream": true
+      }
+    ]
+  },
+  "music.deeper_down.dragonrot_swamp": {
+    "sounds": [
+      {
+        "name": "spectrum:music/sunsette_darker_than_hell",
+        "stream": true
+      }
+    ]
+  },
+  "music.deeper_down.howling_spires": {
+    "sounds": [
+      {
+        "name": "spectrum:music/sunsette_darker_than_hell",
+        "stream": true
+      }
+    ]
+  },
+  "music.deeper_down.noxshroom_forest": {
+    "sounds": [
+      {
+        "name": "spectrum:music/sunsette_darker_than_hell",
+        "stream": true
+      }
+    ]
+  },
+  "music.deeper_down.razor_edge": {
+    "sounds": [
+      {
+        "name": "spectrum:music/sunsette_darker_than_hell",
+        "stream": true
+      }
+    ]
+  },
+
   "spectrum.ui.new_revelation": {
     "sounds": [
       "spectrum:new_revelation"

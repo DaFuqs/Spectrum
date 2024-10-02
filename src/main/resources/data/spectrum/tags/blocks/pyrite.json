@@ -8,6 +8,7 @@
     "spectrum:pyrite_relief",
     "spectrum:pyrite_stack",
     "spectrum:pyrite_panneling",
-    "spectrum:pyrite_vent"
+    "spectrum:pyrite_vent",
+    "spectrum:pyrite_projector"
   ]
 }

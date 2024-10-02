@@ -892,7 +892,8 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.PYRITE_PANNELING);
 		entries.add(SpectrumBlocks.PYRITE_VENT);
 		entries.add(SpectrumBlocks.PYRITE_RIPPER);
-		
+		entries.add(SpectrumBlocks.PYRITE_PROJECTOR);
+
 		entries.add(SpectrumBlocks.BASAL_MARBLE);
 		entries.add(SpectrumBlocks.BASAL_MARBLE_STAIRS);
 		entries.add(SpectrumBlocks.BASAL_MARBLE_SLAB);
@@ -1512,6 +1513,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.YELLOW_CHISELED_PRESERVATION_STONE);
 		entries.add(SpectrumBlocks.INVISIBLE_WALL);
 		entries.add(SpectrumBlocks.COURIER_STATUE);
+		entries.add(SpectrumBlocks.MANXI);
 		entries.add(SpectrumBlocks.PRESERVATION_CHEST);
 		
 		entries.add(SpectrumItems.DIVINATION_HEART);

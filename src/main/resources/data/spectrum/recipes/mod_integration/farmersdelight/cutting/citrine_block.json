@@ -2,20 +2,18 @@
   "type": "farmersdelight:cutting",
   "ingredients": [
     {
-      "item": "spectrum:amaranth_bushel"
+      "item": "spectrum:citrine_block"
     }
   ],
   "result": [
     {
-      "item": "spectrum:amaranth_grains",
-      "count": 2
-    },
-    {
-      "item": "farmersdelight:straw"
+      "item": "spectrum:citrine_shard",
+      "count": 4
     }
   ],
   "tool": {
-    "tag": "c:tools/knives"
+    "fabric:type": "farmersdelight:tool_action",
+    "action": "pickaxe_dig"
   },
   "fabric:load_conditions": [
     {

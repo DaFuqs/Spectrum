@@ -4391,6 +4391,7 @@
   "item.spectrum.infused_beverage.tooltip.variant.tequila": "Tequila",
   "item.spectrum.infused_beverage.tooltip.variant.unknown": "Undefinable flavor",
   "item.spectrum.infused_beverage.tooltip.variant.vodka": "Vodka",
+  "item.spectrum.infused_beverage.tooltip.variant.crown_jewel": "Crown Jewel",
   "item.spectrum.ink_assortment": "Ink Assortment",
   "item.spectrum.ink_flask": "Ink Flask",
   "item.spectrum.ink_storage.stores_ink_per_type": "§7Stores up to %d§7 Ink per type",

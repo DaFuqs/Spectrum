@@ -15,7 +15,7 @@
     }
   ],
   "fluid": {
-    "tag": "minecraft:water"
+    "fluid": "spectrum:liquid_crystal"
   },
   "min_fermentation_time_hours": 24,
   "fermentation_data": {

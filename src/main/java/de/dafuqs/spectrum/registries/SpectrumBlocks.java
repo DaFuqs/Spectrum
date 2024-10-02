@@ -1335,6 +1335,7 @@ public class SpectrumBlocks {
 	public static final Block PRESERVATION_BRICKS = new Block(preservationBlock());
 	public static final Block SHIMMERING_PRESERVATION_BRICKS = new Block(FabricBlockSettings.copyOf(preservationBlock()).luminance(5));
 	public static final Block COURIER_STATUE = new StatueBlock(preservationBlock());
+	public static final Block MANXI = new ManxiBlock(preservationBlock().nonOpaque().noCollision().dropsNothing());
 
 	public static final Block BLACK_CHISELED_PRESERVATION_STONE = new Block(preservationBlock());
 	public static final Block BLUE_CHISELED_PRESERVATION_STONE = new Block(preservationBlock());
@@ -2702,6 +2703,7 @@ public class SpectrumBlocks {
 
 		registerBlockWithItem("invisible_wall", INVISIBLE_WALL, settings, DyeColor.BLUE);
 		registerBlockWithItem("courier_statue", COURIER_STATUE, settings, DyeColor.BLUE);
+		registerBlockWithItem("manxi", MANXI, settings, DyeColor.PURPLE);
 		registerBlockWithItem("preservation_chest", PRESERVATION_CHEST, settings, DyeColor.BLUE);
 	}
 

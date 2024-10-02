@@ -2304,10 +2304,10 @@ public class SpectrumBlocks {
 		registerBlockWithItem("pyrite_tubing", PYRITE_TUBING, settings, DyeColor.BROWN);
 		registerBlockWithItem("pyrite_relief", PYRITE_RELIEF, settings, DyeColor.BROWN);
 		registerBlockWithItem("pyrite_stack", PYRITE_STACK, settings, DyeColor.BROWN);
-		registerBlockWithItem("pyrite_paneling", PYRITE_PANELING, settings, DyeColor.BROWN);
-		registerBlockWithItem("pyrite_paneling_slab", PYRITE_PANELING_SLAB, settings, DyeColor.BROWN);
-		registerBlockWithItem("pyrite_paneling_stairs", PYRITE_PANELING_STAIRS, settings, DyeColor.BROWN);
-		registerBlockWithItem("pyrite_paneling_wall", PYRITE_PANELING_WALL, settings, DyeColor.BROWN);
+		registerBlockWithItem("pyrite_panneling", PYRITE_PANELING, settings, DyeColor.BROWN);
+		registerBlockWithItem("pyrite_panneling_slab", PYRITE_PANELING_SLAB, settings, DyeColor.BROWN);
+		registerBlockWithItem("pyrite_panneling_stairs", PYRITE_PANELING_STAIRS, settings, DyeColor.BROWN);
+		registerBlockWithItem("pyrite_panneling_wall", PYRITE_PANELING_WALL, settings, DyeColor.BROWN);
 		registerBlockWithItem("pyrite_vent", PYRITE_VENT, settings, DyeColor.BROWN);
 		registerBlockWithItem("pyrite_ripper", PYRITE_RIPPER, settings, DyeColor.RED);
 

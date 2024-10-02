@@ -6,11 +6,11 @@
   ],
   "key": {
     "X": {
-      "item": "spectrum:pyrite_paneling"
+      "item": "spectrum:pyrite_panneling"
     }
   },
   "result": {
-    "item": "spectrum:pyrite_paneling_wall",
+    "item": "spectrum:pyrite_panneling_wall",
     "count": 6
   }
 }

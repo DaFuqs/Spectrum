@@ -3,6 +3,6 @@
   "textures": {
     "bottom": "spectrum:block/pyrite_plating",
     "top": "spectrum:block/pyrite_plating",
-    "side": "spectrum:block/pyrite_paneling"
+    "side": "spectrum:block/pyrite_panneling"
   }
 }

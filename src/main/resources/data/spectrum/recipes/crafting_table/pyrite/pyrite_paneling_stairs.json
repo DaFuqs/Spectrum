@@ -7,11 +7,11 @@
   ],
   "key": {
     "X": {
-      "item": "spectrum:pyrite_paneling"
+      "item": "spectrum:pyrite_panneling"
     }
   },
   "result": {
-    "item": "spectrum:pyrite_paneling_stairs",
+    "item": "spectrum:pyrite_panneling_stairs",
     "count": 4
   }
 }

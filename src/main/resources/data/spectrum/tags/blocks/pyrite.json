@@ -19,10 +19,10 @@
     "spectrum:pyrite_tubing",
     "spectrum:pyrite_relief",
     "spectrum:pyrite_stack",
-    "spectrum:pyrite_paneling",
-    "spectrum:pyrite_paneling_slab",
-    "spectrum:pyrite_paneling_stairs",
-    "spectrum:pyrite_paneling_wall",
+    "spectrum:pyrite_panneling",
+    "spectrum:pyrite_panneling_slab",
+    "spectrum:pyrite_panneling_stairs",
+    "spectrum:pyrite_panneling_wall",
     "spectrum:pyrite_vent"
   ]
 }

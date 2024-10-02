@@ -889,13 +889,28 @@ public class SpectrumItemGroups {
 
 		entries.add(SpectrumItems.PYRITE_CHUNK);
 		entries.add(SpectrumBlocks.PYRITE);
+		entries.add(SpectrumBlocks.PYRITE_SLAB);
+		entries.add(SpectrumBlocks.PYRITE_STAIRS);
+		entries.add(SpectrumBlocks.PYRITE_WALL);
 		entries.add(SpectrumBlocks.PYRITE_PILE);
+		entries.add(SpectrumBlocks.PYRITE_PILE_SLAB);
+		entries.add(SpectrumBlocks.PYRITE_PILE_STAIRS);
+		entries.add(SpectrumBlocks.PYRITE_PILE_WALL);
 		entries.add(SpectrumBlocks.PYRITE_TILES);
+		entries.add(SpectrumBlocks.PYRITE_TILES_SLAB);
+		entries.add(SpectrumBlocks.PYRITE_TILES_STAIRS);
+		entries.add(SpectrumBlocks.PYRITE_TILES_WALL);
 		entries.add(SpectrumBlocks.PYRITE_PLATING);
+		entries.add(SpectrumBlocks.PYRITE_PLATING_SLAB);
+		entries.add(SpectrumBlocks.PYRITE_PLATING_STAIRS);
+		entries.add(SpectrumBlocks.PYRITE_PLATING_WALL);
 		entries.add(SpectrumBlocks.PYRITE_TUBING);
 		entries.add(SpectrumBlocks.PYRITE_RELIEF);
 		entries.add(SpectrumBlocks.PYRITE_STACK);
-		entries.add(SpectrumBlocks.PYRITE_PANNELING);
+		entries.add(SpectrumBlocks.PYRITE_PANELING);
+		entries.add(SpectrumBlocks.PYRITE_PANELING_SLAB);
+		entries.add(SpectrumBlocks.PYRITE_PANELING_STAIRS);
+		entries.add(SpectrumBlocks.PYRITE_PANELING_WALL);
 		entries.add(SpectrumBlocks.PYRITE_VENT);
 		entries.add(SpectrumBlocks.PYRITE_RIPPER);
 		

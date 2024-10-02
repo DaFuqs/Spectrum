@@ -250,13 +250,28 @@ public class SpectrumBlocks {
 	public static final Block ROCK_CRYSTAL = new Block(settings(MapColor.OFF_WHITE, BlockSoundGroup.NETHER_BRICKS, 200F).requiresTool());
 
 	public static final Block PYRITE = new PillarBlock(settings(MapColor.TERRACOTTA_YELLOW, BlockSoundGroup.CHAIN, 50.0F).requiresTool());
+	public static final Block PYRITE_SLAB = new SlabBlock(Settings.copy(PYRITE));
+	public static final Block PYRITE_STAIRS = new StairsBlock(PYRITE.getDefaultState(), Settings.copy(PYRITE));
+	public static final Block PYRITE_WALL = new WallBlock(Settings.copy(PYRITE));
 	public static final Block PYRITE_PILE = new PillarBlock(Settings.copy(PYRITE));
+	public static final Block PYRITE_PILE_SLAB = new SlabBlock(Settings.copy(PYRITE_PILE));
+	public static final Block PYRITE_PILE_STAIRS = new StairsBlock(PYRITE_PILE.getDefaultState(), Settings.copy(PYRITE_PILE));
+	public static final Block PYRITE_PILE_WALL = new WallBlock(Settings.copy(PYRITE_PILE));
 	public static final Block PYRITE_TILES = new Block(Settings.copy(PYRITE));
+	public static final Block PYRITE_TILES_SLAB = new SlabBlock(Settings.copy(PYRITE_TILES));
+	public static final Block PYRITE_TILES_STAIRS = new StairsBlock(PYRITE_TILES.getDefaultState(), Settings.copy(PYRITE_TILES));
+	public static final Block PYRITE_TILES_WALL = new WallBlock(Settings.copy(PYRITE_TILES));
 	public static final Block PYRITE_PLATING = new Block(Settings.copy(PYRITE));
+	public static final Block PYRITE_PLATING_SLAB = new SlabBlock(Settings.copy(PYRITE_PLATING));
+	public static final Block PYRITE_PLATING_STAIRS = new StairsBlock(PYRITE_PLATING.getDefaultState(), Settings.copy(PYRITE_PLATING));
+	public static final Block PYRITE_PLATING_WALL = new WallBlock(Settings.copy(PYRITE_PLATING));
 	public static final Block PYRITE_TUBING = new PillarBlock(Settings.copy(PYRITE));
 	public static final Block PYRITE_RELIEF = new PillarBlock(Settings.copy(PYRITE));
 	public static final Block PYRITE_STACK = new Block(Settings.copy(PYRITE));
-	public static final Block PYRITE_PANNELING = new Block(Settings.copy(PYRITE));
+	public static final Block PYRITE_PANELING = new Block(Settings.copy(PYRITE));
+	public static final Block PYRITE_PANELING_SLAB = new SlabBlock(Settings.copy(PYRITE_PANELING));
+	public static final Block PYRITE_PANELING_STAIRS = new StairsBlock(PYRITE_PANELING.getDefaultState(), Settings.copy(PYRITE_PANELING));
+	public static final Block PYRITE_PANELING_WALL = new WallBlock(Settings.copy(PYRITE_PANELING));
 	public static final Block PYRITE_VENT = new Block(Settings.copy(PYRITE));
 	public static final Block PYRITE_RIPPER = new PyriteRipperBlock(Settings.copy(PYRITE).nonOpaque().allowsSpawning(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
 
@@ -2271,13 +2286,28 @@ public class SpectrumBlocks {
 		registerBlockWithItem("longing_chimera", LONGING_CHIMERA, settings, DyeColor.BROWN);
 
 		registerBlockWithItem("pyrite", PYRITE, settings, DyeColor.BROWN);
+		registerBlockWithItem("pyrite_slab", PYRITE_SLAB, settings, DyeColor.BROWN);
+		registerBlockWithItem("pyrite_stairs", PYRITE_STAIRS, settings, DyeColor.BROWN);
+		registerBlockWithItem("pyrite_wall", PYRITE_WALL, settings, DyeColor.BROWN);
 		registerBlockWithItem("pyrite_pile", PYRITE_PILE, settings, DyeColor.BROWN);
+		registerBlockWithItem("pyrite_pile_slab", PYRITE_PILE_SLAB, settings, DyeColor.BROWN);
+		registerBlockWithItem("pyrite_pile_stairs", PYRITE_PILE_STAIRS, settings, DyeColor.BROWN);
+		registerBlockWithItem("pyrite_pile_wall", PYRITE_PILE_WALL, settings, DyeColor.BROWN);
 		registerBlockWithItem("pyrite_tiles", PYRITE_TILES, settings, DyeColor.BROWN);
+		registerBlockWithItem("pyrite_tiles_slab", PYRITE_TILES_SLAB, settings, DyeColor.BROWN);
+		registerBlockWithItem("pyrite_tiles_stairs", PYRITE_TILES_STAIRS, settings, DyeColor.BROWN);
+		registerBlockWithItem("pyrite_tiles_wall", PYRITE_TILES_WALL, settings, DyeColor.BROWN);
 		registerBlockWithItem("pyrite_plating", PYRITE_PLATING, settings, DyeColor.BROWN);
+		registerBlockWithItem("pyrite_plating_slab", PYRITE_PLATING_SLAB, settings, DyeColor.BROWN);
+		registerBlockWithItem("pyrite_plating_stairs", PYRITE_PLATING_STAIRS, settings, DyeColor.BROWN);
+		registerBlockWithItem("pyrite_plating_wall", PYRITE_PLATING_WALL, settings, DyeColor.BROWN);
 		registerBlockWithItem("pyrite_tubing", PYRITE_TUBING, settings, DyeColor.BROWN);
 		registerBlockWithItem("pyrite_relief", PYRITE_RELIEF, settings, DyeColor.BROWN);
 		registerBlockWithItem("pyrite_stack", PYRITE_STACK, settings, DyeColor.BROWN);
-		registerBlockWithItem("pyrite_panneling", PYRITE_PANNELING, settings, DyeColor.BROWN);
+		registerBlockWithItem("pyrite_paneling", PYRITE_PANELING, settings, DyeColor.BROWN);
+		registerBlockWithItem("pyrite_paneling_slab", PYRITE_PANELING_SLAB, settings, DyeColor.BROWN);
+		registerBlockWithItem("pyrite_paneling_stairs", PYRITE_PANELING_STAIRS, settings, DyeColor.BROWN);
+		registerBlockWithItem("pyrite_paneling_wall", PYRITE_PANELING_WALL, settings, DyeColor.BROWN);
 		registerBlockWithItem("pyrite_vent", PYRITE_VENT, settings, DyeColor.BROWN);
 		registerBlockWithItem("pyrite_ripper", PYRITE_RIPPER, settings, DyeColor.RED);
 

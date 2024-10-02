@@ -10,7 +10,7 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "spectrum:pyrite_panneling",
+              "name": "spectrum:pyrite_paneling",
               "conditions": [
                 {
                   "condition": "minecraft:match_tool",

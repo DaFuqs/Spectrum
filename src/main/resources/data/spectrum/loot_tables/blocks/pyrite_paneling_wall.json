@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:pyrite_panneling_wall",
+          "name": "spectrum:pyrite_paneling_wall",
           "functions": [
             {
               "function": "minecraft:explosion_decay"

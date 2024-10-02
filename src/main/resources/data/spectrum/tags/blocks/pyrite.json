@@ -23,6 +23,7 @@
     "spectrum:pyrite_paneling_slab",
     "spectrum:pyrite_paneling_stairs",
     "spectrum:pyrite_paneling_wall",
-    "spectrum:pyrite_vent"
+    "spectrum:pyrite_vent",
+    "spectrum:pyrite_projector"
   ]
 }

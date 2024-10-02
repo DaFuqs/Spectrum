@@ -12,6 +12,7 @@ import org.jgrapht.graph.*;
 
 import java.util.*;
 import java.util.concurrent.*;
+import java.util.stream.*;
 
 public class PastelNetwork {
     
@@ -239,11 +240,17 @@ public class PastelNetwork {
     }
 
     public Set<PastelNodeBlockEntity> getNodes(PastelNodeType type, Priority priority) {
-        return switch (priority) {
-            case GENERIC -> this.nodes.get(type);
-            case MODERATE -> this.priorityNodes;
-            case HIGH -> this.highPriorityNodes;
-        };
+        var nodeType = this.nodes.get(type);
+
+        if (priority == Priority.MODERATE) {
+            return nodeType.stream().filter(priorityNodes::contains).collect(Collectors.toSet());
+        }
+
+        if (priority == Priority.HIGH) {
+            return nodeType.stream().filter(highPriorityNodes::contains).collect(Collectors.toSet());
+        }
+
+        return nodeType;
     }
 
     public Map<PastelNodeType, Set<PastelNodeBlockEntity>> getNodes() {

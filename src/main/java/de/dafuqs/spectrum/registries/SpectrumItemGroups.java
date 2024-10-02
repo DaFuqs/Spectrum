@@ -913,7 +913,8 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.PYRITE_PANELING_WALL);
 		entries.add(SpectrumBlocks.PYRITE_VENT);
 		entries.add(SpectrumBlocks.PYRITE_RIPPER);
-		
+		entries.add(SpectrumBlocks.PYRITE_PROJECTOR);
+
 		entries.add(SpectrumBlocks.BASAL_MARBLE);
 		entries.add(SpectrumBlocks.BASAL_MARBLE_STAIRS);
 		entries.add(SpectrumBlocks.BASAL_MARBLE_SLAB);
@@ -1234,9 +1235,9 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.VELVET_ASTROLOGER_BANNER_PATTERN);
 		entries.add(SpectrumItems.POISONBLOOM_BANNER_PATTERN);
 		entries.add(SpectrumItems.DEEP_LIGHT_BANNER_PATTERN);
-		entries.add(SpectrumItems.MUSIC_DISC_SPECTRUM_THEME);
-		entries.add(SpectrumItems.MUSIC_DISC_DIMENSION_THEME);
-		entries.add(SpectrumItems.MUSIC_DISC_EVERREFLECTIVE);
+		entries.add(SpectrumItems.MUSIC_DISC_DISCOVERY);
+		entries.add(SpectrumItems.MUSIC_DISC_CREDITS);
+		entries.add(SpectrumItems.MUSIC_DISC_DIVINITY);
 	}).build();
 	
 	public static final ItemSubGroup COLORED_WOOD = new ItemSubGroup.Builder(MAIN, ItemGroupIDs.SUBTAB_COLORED_WOOD, Text.translatable("itemGroup.spectrum.colored_wood")).backgroundTexture(ItemGroupIDs.BACKGROUND_TEXTURE).entries((displayContext, entries) -> {
@@ -1533,6 +1534,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.YELLOW_CHISELED_PRESERVATION_STONE);
 		entries.add(SpectrumBlocks.INVISIBLE_WALL);
 		entries.add(SpectrumBlocks.COURIER_STATUE);
+		entries.add(SpectrumBlocks.MANXI);
 		entries.add(SpectrumBlocks.PRESERVATION_CHEST);
 		
 		entries.add(SpectrumItems.DIVINATION_HEART);

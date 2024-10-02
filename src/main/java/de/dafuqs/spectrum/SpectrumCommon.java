@@ -100,8 +100,6 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumParticleTypes.register();
 		logInfo("Registering Sound Events...");
 		SpectrumSoundEvents.register();
-		logInfo("Registering Music...");
-		SpectrumMusicType.register();
 		logInfo("Registering BlockSound Groups...");
 		SpectrumBlockSoundGroups.register();
 		logInfo("Registering Fluids...");

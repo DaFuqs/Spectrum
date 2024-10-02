@@ -8,10 +8,19 @@ import net.minecraft.util.*;
 public class SpectrumSoundEvents {
 	
 	// Music
-	public static final SoundEvent SPECTRUM_THEME = register("music.spectrum_theme");
-	public static final SoundEvent BOSS_THEME = register("music.boss_theme");
-	public static final SoundEvent DEEPER_DOWN = register("music.deeper_down");
-	public static final SoundEvent DIVINITY = register("music.divinity");
+	public static final SoundEvent MUSIC_DISCOVERY = register("music.discovery");
+	public static final SoundEvent MUSIC_CREDITS = register("music.credits");
+	public static final SoundEvent MUSIC_DIVINITY = register("music.divinity");
+	
+	// Music referenced in the biome.jsons
+	public static final SoundEvent MUSIC_DEEPER_DOWN_BLACK_LANGAST = register("music.deeper_down.black_langast");
+	public static final SoundEvent MUSIC_DEEPER_DOWN_CRYSTAL_GARDENS = register("music.deeper_down.crystal_gardens");
+	public static final SoundEvent MUSIC_DEEPER_DOWN_DEEP_BARRENS = register("music.deeper_down.deep_barrens");
+	public static final SoundEvent MUSIC_DEEPER_DOWN_DEEP_DRIPSTONE_CAVES = register("music.deeper_down.deep_dripstone_caves");
+	public static final SoundEvent MUSIC_DEEPER_DOWN_DRAGONROT_SWAMP = register("music.deeper_down.dragonrot_swamp");
+	public static final SoundEvent MUSIC_DEEPER_DOWN_HOWLING_SPIRES = register("music.deeper_down.howling_spires");
+	public static final SoundEvent MUSIC_DEEPER_DOWN_NOXSHROOM_FOREST = register("music.deeper_down.noxshroom_forest");
+	public static final SoundEvent MUSIC_DEEPER_DOWN_RAZOR_EDGE = register("music.deeper_down.razor_edge");
 	
 	// Sounds
 	public static final SoundEvent PEDESTAL_CRAFTING = register("pedestal_crafting");

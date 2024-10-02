@@ -128,7 +128,6 @@
     "client.InGameOverlayRendererMixin",
     "client.ItemRendererMixin",
     "client.LightmapTextureManagerMixin",
-    "client.MinecraftClientMixin",
     "client.MixinParticleManager",
     "client.MouseMixin",
     "client.PlayerEntityRendererMixin",

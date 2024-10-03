@@ -17,7 +17,7 @@
       "immersive_weathering:sandy_chiseled_stone_bricks"
     ]
   },
-  "nbt_to_copy": [
+  "state_properties_to_copy": [
     "sand_age",
     "sandiness"
   ],

@@ -15,7 +15,7 @@
     }
   ],
   "fluid": {
-    "fluid": "spectrum:liquid_crystal"
+    "tag": "c:honey"
   },
   "min_fermentation_time_hours": 24,
   "fermentation_data": {

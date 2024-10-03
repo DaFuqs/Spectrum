@@ -1,7 +1,9 @@
 package de.dafuqs.spectrum.items.food;
 
+import de.dafuqs.spectrum.compat.neepmeat.NEEPMeatCompat;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.item.*;
@@ -30,7 +32,10 @@ public class SedativesItem extends ItemWithTooltip {
 				}
 				
 			}
-			
+			if(FabricLoader.getInstance().isModLoaded("neepmeat"))
+			{
+				NEEPMeatCompat.sedateEnlightenment(user);
+			}
 		}
 		
 		return super.finishUsing(stack, world, user);

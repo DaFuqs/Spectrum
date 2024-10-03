@@ -80,7 +80,7 @@
       },
       {
         "id": "minecraft:slowness",
-        "base_duration": 9600,
+        "base_duration": 6000,
         "potency": [
           {
             "min_alc": 10,

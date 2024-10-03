@@ -131,7 +131,7 @@ public interface ShootingStar {
 					}
 				}
 				case COLORFUL -> {
-					return ColorHelper.getRGBVec(DyeColor.values()[random.nextInt(DyeColor.values().length)]);
+					return ColorHelper.getRGBVec(ColorHelper.VANILLA_DYE_COLORS.values()[random.nextInt(ColorHelper.VANILLA_DYE_COLORS.values().length)]);
 				}
 				case FIERY -> {
 					int r = random.nextInt(2);

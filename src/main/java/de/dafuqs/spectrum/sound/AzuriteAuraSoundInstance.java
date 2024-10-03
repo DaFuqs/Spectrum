@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.sound;
 
 import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
 import net.minecraft.client.*;
 import net.minecraft.client.sound.*;
 import net.minecraft.entity.*;
@@ -10,17 +11,17 @@ import net.minecraft.world.*;
 
 import java.util.*;
 
-public class CrystalAuraSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
-
-    public static Optional<CrystalAuraSoundInstance> INSTANCE = Optional.empty();
+public class AzuriteAuraSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
+    
+    public static Optional<AzuriteAuraSoundInstance> INSTANCE = Optional.empty();
     private final MinecraftClient client = MinecraftClient.getInstance();
     private static final int MAX_DURATION = 80;
     private int activeTicks = 1, interpTicks = 5;
     private boolean finished, active;
     private float lastDistanceMod, distanceMod;
     private float lastCountMod, countMod;
-
-    protected CrystalAuraSoundInstance(SoundEvent sound, float distMod, float countMod) {
+    
+    protected AzuriteAuraSoundInstance(SoundEvent sound, float distMod, float countMod) {
         super(sound, SoundCategory.AMBIENT, SoundInstance.createRandom());
         repeat = true;
         repeatDelay = 0;
@@ -75,13 +76,21 @@ public class CrystalAuraSoundInstance extends AbstractSoundInstance implements T
     public boolean isDone() {
         return activeTicks == 0 || finished;
     }
-
-    public static void update(World world, Entity player) {
+    
+    public static void update(World world, Entity cameraEntity) {
+        if (!SpectrumBlocks.AZURITE_ORE.isVisibleTo(ShapeContext.of(cameraEntity))) {
+            INSTANCE.ifPresent(azuriteAuraSoundInstance -> azuriteAuraSoundInstance.finished = true);
+            return;
+        }
+        if (world.getTime() % getTickTime() == 0) {
+            return;
+        }
+        
         var client = MinecraftClient.getInstance();
-
+        
         double x = 0, y = 0, z = 0;
         int count = 0;
-        for (BlockPos pos : BlockPos.iterateOutwards(player.getBlockPos(), 16, 16, 16)) {
+        for (BlockPos pos : BlockPos.iterateOutwards(cameraEntity.getBlockPos(), 16, 16, 16)) {
             if (world.getBlockState(pos).isIn(SpectrumBlockTags.AZURITE_ORES)) {
                 x += pos.getX();
                 y += pos.getY();
@@ -104,8 +113,8 @@ public class CrystalAuraSoundInstance extends AbstractSoundInstance implements T
 
         if (count >= 40) {
             if (INSTANCE.isEmpty()) {
-                INSTANCE = Optional.of(new CrystalAuraSoundInstance(SpectrumSoundEvents.CRYSTAL_AURA,
-                        (float) MathHelper.clamp((soundSource.distanceTo(player.getPos()) - 3) / 24F, 0, 1),
+                INSTANCE = Optional.of(new AzuriteAuraSoundInstance(SpectrumSoundEvents.CRYSTAL_AURA,
+                        (float) MathHelper.clamp((soundSource.distanceTo(cameraEntity.getPos()) - 3) / 24F, 0, 1),
                         MathHelper.clamp(count / 100F, 0, 1)
                         ));
                 client.getSoundManager().play(INSTANCE.get());
@@ -116,7 +125,7 @@ public class CrystalAuraSoundInstance extends AbstractSoundInstance implements T
             var instance = INSTANCE.get();
             instance.setActive(count > 0);
             instance.updateState(
-                    1 - (float) MathHelper.clamp((soundSource.distanceTo(player.getPos()) - 3) / 24, 0, 1),
+                    1 - (float) MathHelper.clamp((soundSource.distanceTo(cameraEntity.getPos()) - 3) / 24, 0, 1),
                     MathHelper.clamp(count / 100F, 0, 1)
             );
         }

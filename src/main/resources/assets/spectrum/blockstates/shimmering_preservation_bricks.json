@@ -3,12 +3,6 @@
 		"": [
 			{
 				"model": "spectrum:block/shimmering_preservation_bricks"
-			},
-			{
-				"model": "spectrum:block/shimmering_preservation_bricks_slow"
-			},
-			{
-				"model": "spectrum:block/shimmering_preservation_bricks_fast"
 			}
 		]
 	}

@@ -25,8 +25,7 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 public class DraconicTwinswordItem extends SwordItem implements SplittableItem, SlotReservingItem, Preenchanted, ExtendedEnchantable, ExtendedItemBarProvider, SlotBackgroundEffectProvider {
-	
-	private static final InkCost THROW_COST = new InkCost(InkColors.YELLOW, 20);
+
 	public static final float MAX_CHARGE_TIME = 60;
 	private final Multimap<EntityAttribute, EntityAttributeModifier> phantomModifiers;
 	

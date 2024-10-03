@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#spectrum:coming_soon_tooltip"
+    "#spectrum:coming_soon_tooltip",
+    "spectrum:manxi"
   ]
 }

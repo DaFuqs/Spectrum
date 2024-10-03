@@ -88,7 +88,8 @@ public class SpectrumBlockEntities {
 	public static BlockEntityType<PreservationControllerBlockEntity> PRESERVATION_CONTROLLER;
 	public static BlockEntityType<PreservationRoundelBlockEntity> PRESERVATION_ROUNDEL;
 	public static BlockEntityType<PreservationBlockDetectorBlockEntity> PRESERVATION_BLOCK_DETECTOR;
-	public static BlockEntityType<ManxiBlockEntity> MANXI;
+	public static BlockEntityType<DeepLightBlockEntity> DEEP_LIGHT;
+	public static BlockEntityType<PlayerTrackerBlockEntity> PLAYER_TRACKING;
 	
 	private static <T extends BlockEntity> BlockEntityType<T> register(String id, FabricBlockEntityTypeBuilder.Factory<T> factory, Block... blocks) {
 		return Registry.register(Registries.BLOCK_ENTITY_TYPE, SpectrumCommon.locate(id), FabricBlockEntityTypeBuilder.create(factory, blocks).build());
@@ -134,7 +135,8 @@ public class SpectrumBlockEntities {
 		PRESERVATION_CONTROLLER = register("preservation_controller", PreservationControllerBlockEntity::new, SpectrumBlocks.PRESERVATION_CONTROLLER);
 		PRESERVATION_ROUNDEL = register("preservation_roundel", PreservationRoundelBlockEntity::new, SpectrumBlocks.PRESERVATION_ROUNDEL);
 		PRESERVATION_BLOCK_DETECTOR = register("preservation_block_detector", PreservationBlockDetectorBlockEntity::new, SpectrumBlocks.PRESERVATION_BLOCK_DETECTOR);
-		MANXI = register("manxi", ManxiBlockEntity::new, SpectrumBlocks.MANXI);
+		DEEP_LIGHT = register("deep_light", DeepLightBlockEntity::new, SpectrumBlocks.DEEP_LIGHT_CHISELED_PRESERVATION_STONE);
+		PLAYER_TRACKING = register("player_tracking", PlayerTrackerBlockEntity::new, SpectrumBlocks.MANXI, SpectrumBlocks.TREASURE_ITEM_BOWL);
 
 		// All the upgrades
 		List<Block> upgradeBlocksList = UpgradeBlock.getUpgradeBlocks();
@@ -172,7 +174,8 @@ public class SpectrumBlockEntities {
 		BlockEntityRendererFactories.register(SpectrumBlockEntities.COLOR_PICKER, ColorPickerBlockEntityRenderer::new);
 		BlockEntityRendererFactories.register(SpectrumBlockEntities.PRESERVATION_CONTROLLER, PreservationControllerBlockEntityRenderer::new);
 		BlockEntityRendererFactories.register(SpectrumBlockEntities.PROJECTOR, ProjectorBlockEntityRenderer::new);
-		BlockEntityRendererFactories.register(SpectrumBlockEntities.MANXI, ManxiBlockEntityRenderer::new);
+		BlockEntityRendererFactories.register(SpectrumBlockEntities.DEEP_LIGHT, DeepLightBlockEntityRenderer::new);
+		BlockEntityRendererFactories.register(SpectrumBlockEntities.PLAYER_TRACKING, PlayerTrackingBlockEntityRenderer::new);
 
 		BlockEntityRendererFactories.register(SpectrumBlockEntities.PASTEL_NODE, PastelNodeBlockEntityRenderer::new);
 	}

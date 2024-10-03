@@ -1488,12 +1488,16 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.SHIMMERING_PRESERVATION_BRICKS);
 		entries.add(SpectrumBlocks.POWDER_CHISELED_PRESERVATION_STONE);
 		entries.add(SpectrumBlocks.DIKE_CHISELED_PRESERVATION_STONE);
+		entries.add(SpectrumBlocks.DREAM_CHISELED_PRESERVATION_STONE);
+		entries.add(SpectrumBlocks.DEEP_LIGHT_CHISELED_PRESERVATION_STONE);
+		entries.add(SpectrumBlocks.TREASURE_ITEM_BOWL);
 		entries.add(SpectrumBlocks.PRESERVATION_GLASS);
 		entries.add(SpectrumBlocks.TINTED_PRESERVATION_GLASS);
 		entries.add(SpectrumBlocks.PRESERVATION_ROUNDEL);
 		entries.add(SpectrumBlocks.PRESERVATION_BLOCK_DETECTOR);
 		entries.add(SpectrumBlocks.DIKE_GATE_FOUNTAIN);
 		entries.add(SpectrumBlocks.DIKE_GATE);
+		entries.add(SpectrumBlocks.DREAM_GATE);
 		entries.add(SpectrumBlocks.PRESERVATION_CONTROLLER);
 		entries.add(SpectrumBlocks.BLACK_CHISELED_PRESERVATION_STONE);
 		entries.add(SpectrumBlocks.BLUE_CHISELED_PRESERVATION_STONE);

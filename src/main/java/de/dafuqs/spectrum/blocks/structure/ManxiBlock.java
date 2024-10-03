@@ -34,7 +34,7 @@ public class ManxiBlock extends HorizontalFacingBlock implements BlockEntityProv
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		var entity = world.getBlockEntity(pos);
 
-		if (!(entity instanceof ManxiBlockEntity manxi))
+		if (!(entity instanceof PlayerTrackerBlockEntity manxi))
 			return ActionResult.PASS;
 
 		if (manxi.hasTaken(player))
@@ -50,6 +50,6 @@ public class ManxiBlock extends HorizontalFacingBlock implements BlockEntityProv
 	@Nullable
 	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-		return new ManxiBlockEntity(pos, state);
+		return new PlayerTrackerBlockEntity(pos, state);
 	}
 }

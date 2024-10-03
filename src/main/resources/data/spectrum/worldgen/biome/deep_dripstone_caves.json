@@ -23,7 +23,7 @@
       "offset": 2
     },
     "music": {
-      "sound": "spectrum:music.deeper_down",
+      "sound": "spectrum:music.deeper_down.deep_dripstone_caves",
       "min_delay": 12000,
       "max_delay": 24000,
       "replace_current_music": false

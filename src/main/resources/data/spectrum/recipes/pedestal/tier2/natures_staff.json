@@ -9,8 +9,8 @@
   "black": 0,
   "experience": 2.0,
   "pattern": [
-    " BL",
-    " MB",
+    " LM",
+    " SL",
     "S  "
   ],
   "key": {
@@ -22,9 +22,6 @@
     },
     "L": {
       "item": "spectrum:lime_pigment"
-    },
-    "B": {
-      "item": "spectrum:brown_pigment"
     }
   },
   "result": {

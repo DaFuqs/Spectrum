@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "spectrum:block/longing_chimera",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "spectrum:block/longing_chimera"
+    },
+    "facing=south": {
+      "model": "spectrum:block/longing_chimera",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "spectrum:block/longing_chimera",
+      "y": 270
+    }
+  }
+}

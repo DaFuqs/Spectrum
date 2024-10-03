@@ -26,8 +26,7 @@
     {
       "type": "modonomicon:blasting_recipe",
       "title": "book.spectrum.guidebook.pure_resources.page1.title",
-      "recipe_id": "spectrum:blasting/pure_resources/iron",
-      "recipe_id2": "spectrum:blasting/pure_resources/gold",
+      "recipe_id_1": "spectrum:blasting/pure_resources/iron",
       "text": "book.spectrum.guidebook.pure_resources.page1.text"
     },
     {

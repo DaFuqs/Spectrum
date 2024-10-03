@@ -47,6 +47,7 @@ import de.dafuqs.spectrum.blocks.rock_candy.*;
 import de.dafuqs.spectrum.blocks.shooting_star.*;
 import de.dafuqs.spectrum.blocks.spirit_instiller.*;
 import de.dafuqs.spectrum.blocks.spirit_sallow.*;
+import de.dafuqs.spectrum.blocks.statues.*;
 import de.dafuqs.spectrum.blocks.structure.*;
 import de.dafuqs.spectrum.blocks.titration_barrel.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
@@ -258,6 +259,7 @@ public class SpectrumBlocks {
 	public static final Block PYRITE_PANNELING = new Block(Settings.copy(PYRITE));
 	public static final Block PYRITE_VENT = new Block(Settings.copy(PYRITE));
 	public static final Block PYRITE_RIPPER = new PyriteRipperBlock(Settings.copy(PYRITE).nonOpaque().allowsSpawning(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
+	public static final Block PYRITE_PROJECTOR = new ProjectorBlock(Settings.copy(PYRITE), "pyrite_projector_projection", 16, 14, 1.375F, 1F, 16F);
 
 	public static final Block DRAGONBONE = new DragonboneBlock(Settings.copy(Blocks.BONE_BLOCK).strength(-1.0F, 22.0F).pistonBehavior(PistonBehavior.BLOCK));
 	public static final Block CRACKED_DRAGONBONE = new PillarBlock(Settings.copy(Blocks.BONE_BLOCK).strength(100.0F, 1200.0F).pistonBehavior(PistonBehavior.BLOCK));
@@ -777,6 +779,7 @@ public class SpectrumBlocks {
 	public static final Block BASAL_MARBLE_BRICK_STAIRS = new StairsBlock(BASAL_MARBLE_BRICKS.getDefaultState(), Settings.copy(BASAL_MARBLE_BRICKS));
 	public static final Block BASAL_MARBLE_BRICK_SLAB = new SlabBlock(Settings.copy(BASAL_MARBLE_BRICKS));
 	public static final Block BASAL_MARBLE_BRICK_WALL = new WallBlock(Settings.copy(BASAL_MARBLE_BRICKS));
+	public static final Block LONGING_CHIMERA = new GrotesqueBlock(basalMarble().nonOpaque(), 12, 15, "block.spectrum.longing_chimera.tooltip");
 	
 	public static Settings dragonjag(MapColor color) {
 		return settings(color, BlockSoundGroup.GRASS, 1.0F);
@@ -836,7 +839,7 @@ public class SpectrumBlocks {
 	public static final Block NEPHRITE_BLOSSOM_BULB = new NephriteBlossomBulbBlock(FabricBlockSettings.copyOf(NEPHRITE_BLOSSOM_STEM));
 
 	public static Settings jadeite() {
-		return settings(MapColor.WHITE_GRAY, BlockSoundGroup.WOOL, 0.1F).noCollision().nonOpaque();
+		return settings(MapColor.WHITE_GRAY, BlockSoundGroup.WOOL, 0.1F).noCollision().nonOpaque().luminance(state -> 12).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always);
 	}
 
 	public static final Block JADEITE_LOTUS_STEM = new JadeiteLotusStemBlock(settings(MapColor.BLACK, BlockSoundGroup.WOOL, 2.0F).nonOpaque().noCollision());
@@ -1332,6 +1335,7 @@ public class SpectrumBlocks {
 	public static final Block PRESERVATION_BRICKS = new Block(preservationBlock());
 	public static final Block SHIMMERING_PRESERVATION_BRICKS = new Block(FabricBlockSettings.copyOf(preservationBlock()).luminance(5));
 	public static final Block COURIER_STATUE = new StatueBlock(preservationBlock());
+	public static final Block MANXI = new ManxiBlock(preservationBlock().nonOpaque().noCollision().dropsNothing());
 
 	public static final Block BLACK_CHISELED_PRESERVATION_STONE = new Block(preservationBlock());
 	public static final Block BLUE_CHISELED_PRESERVATION_STONE = new Block(preservationBlock());
@@ -2254,7 +2258,8 @@ public class SpectrumBlocks {
 		registerBlockWithItem("basal_marble_brick_stairs", BASAL_MARBLE_BRICK_STAIRS, settings, DyeColor.BROWN);
 		registerBlockWithItem("basal_marble_brick_slab", BASAL_MARBLE_BRICK_SLAB, settings, DyeColor.BROWN);
 		registerBlockWithItem("basal_marble_brick_wall", BASAL_MARBLE_BRICK_WALL, settings, DyeColor.BROWN);
-		
+		registerBlockWithItem("longing_chimera", LONGING_CHIMERA, settings, DyeColor.BROWN);
+
 		registerBlockWithItem("pyrite", PYRITE, settings, DyeColor.BROWN);
 		registerBlockWithItem("pyrite_pile", PYRITE_PILE, settings, DyeColor.BROWN);
 		registerBlockWithItem("pyrite_tiles", PYRITE_TILES, settings, DyeColor.BROWN);
@@ -2265,6 +2270,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("pyrite_panneling", PYRITE_PANNELING, settings, DyeColor.BROWN);
 		registerBlockWithItem("pyrite_vent", PYRITE_VENT, settings, DyeColor.BROWN);
 		registerBlockWithItem("pyrite_ripper", PYRITE_RIPPER, settings, DyeColor.RED);
+		registerBlockWithItem("pyrite_projector", PYRITE_PROJECTOR, settings, DyeColor.YELLOW);
 
 		registerBlockWithItem("dragonbone", DRAGONBONE, settings, DyeColor.GREEN);
 		registerBlockWithItem("cracked_dragonbone", CRACKED_DRAGONBONE, settings, DyeColor.GREEN);
@@ -2697,6 +2703,7 @@ public class SpectrumBlocks {
 
 		registerBlockWithItem("invisible_wall", INVISIBLE_WALL, settings, DyeColor.BLUE);
 		registerBlockWithItem("courier_statue", COURIER_STATUE, settings, DyeColor.BLUE);
+		registerBlockWithItem("manxi", MANXI, settings, DyeColor.PURPLE);
 		registerBlockWithItem("preservation_chest", PRESERVATION_CHEST, settings, DyeColor.BLUE);
 	}
 
@@ -2995,6 +3002,7 @@ public class SpectrumBlocks {
 
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEMORY, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.EFFULGENT_BED, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LONGING_CHIMERA, RenderLayer.getCutout());
 
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.JADE_VINE_ROOTS, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.JADE_VINE_BULB, RenderLayer.getCutout());
@@ -3019,6 +3027,7 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(VARIA_SPROUT, RenderLayer.getCutout());
 
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.DIKE_GATE, RenderLayer.getTranslucent());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.PRESERVATION_CONTROLLER, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.INVISIBLE_WALL, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.PRESERVATION_GLASS, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TINTED_PRESERVATION_GLASS, RenderLayer.getTranslucent());

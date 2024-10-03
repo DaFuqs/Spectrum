@@ -50,8 +50,10 @@ public class SpectrumIntegrationPacks {
 		registerIntegrationPack(TRAVELERS_BACKPACK_ID, () -> new TravelersBackpackCompat());
 		registerIntegrationPack(BOTANIA_ID, () -> new BotaniaCompat());
 		registerIntegrationPack(MODONOMICON_ID, () -> new ModonomiconCompat());
-		registerIntegrationPack(CREATE_ID, () -> new CreateCompat());
 		registerIntegrationPack(NEEPMEAT_ID, () -> new NEEPMeatCompat());
+		if (!FabricLoader.getInstance().isModLoaded("forgified-fabric-api")) {
+			registerIntegrationPack(CREATE_ID, () -> new CreateCompat());
+		}
 		
 		for (ModIntegrationPack container : INTEGRATION_PACKS.values()) {
 			container.register();

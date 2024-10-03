@@ -36,7 +36,7 @@ public class RadiatingEnderBlock extends Block implements RevelationAware {
 
 	@Override
 	public List<ItemStack> getDroppedStacks(BlockState state, LootContextParameterSet.Builder builder) {
-		Entity entity = builder.get(LootContextParameters.THIS_ENTITY);
+		Entity entity = builder.getOptional(LootContextParameters.THIS_ENTITY);
 		if (entity instanceof EndermanEntity) {
 			return List.of(SpectrumBlocks.RADIATING_ENDER.asItem().getDefaultStack());
 		}

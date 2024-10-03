@@ -500,6 +500,18 @@
       {
         "name": "spectrum:music/sunsette_darker_than_hell",
         "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_home",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_finality",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_submerged",
+        "stream": true
       }
     ]
   },
@@ -507,6 +519,18 @@
     "sounds": [
       {
         "name": "spectrum:music/sunsette_darker_than_hell",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_circumstance",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_uncertainty",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_submerged",
         "stream": true
       }
     ]
@@ -516,13 +540,37 @@
       {
         "name": "spectrum:music/sunsette_darker_than_hell",
         "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_despite",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_home",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_amnion",
+        "stream": true
       }
     ]
   },
   "music.deeper_down.deep_dripstone_caves": {
     "sounds": [
       {
-        "name": "spectrum:music/sunsette_darker_than_hell",
+        "name": "spectrum:music/radiarc_circumstance",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_uncertainty",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_amnion",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_amble",
         "stream": true
       }
     ]
@@ -532,13 +580,37 @@
       {
         "name": "spectrum:music/sunsette_darker_than_hell",
         "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_home",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_finality",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_amnion",
+        "stream": true
       }
     ]
   },
   "music.deeper_down.howling_spires": {
     "sounds": [
       {
-        "name": "spectrum:music/sunsette_darker_than_hell",
+        "name": "spectrum:music/radiarc_finality",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_despite",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_uncertainty",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_submerged",
         "stream": true
       }
     ]
@@ -548,6 +620,18 @@
       {
         "name": "spectrum:music/sunsette_darker_than_hell",
         "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_despite",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_amble",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_amnion",
+        "stream": true
       }
     ]
   },
@@ -555,6 +639,18 @@
     "sounds": [
       {
         "name": "spectrum:music/sunsette_darker_than_hell",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_despite",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_submerged",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_amble",
         "stream": true
       }
     ]

@@ -37,15 +37,16 @@ public class DeepLightBlockEntityRenderer implements BlockEntityRenderer<DeepLig
 		float time = entity.getWorld().getTime() % 24000 + tickDelta;
 		double bob = Math.sin(time / 37) * 0.05;
 
-		float f = (entity.getCachedState().get(DeepLightBlock.FACING).getOpposite()).asRotation();
+		float f = (entity.getCachedState().get(DeepLightBlock.FACING)).asRotation();
+		matrices.translate(0.5, 0, 0.5);
 		matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-f));
-		matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(180));
-		matrices.translate(-0.7, -1.4 + bob, -0.2);
+		matrices.translate(1.3, 1.4 + bob, -0.7);
 		matrices.scale(0.00875F, 0.00875F, 0.00875F);
 
 		var interp = MathHelper.clamp(Math.sqrt(MinecraftClient.getInstance().player.squaredDistanceTo(entity.getPos().toCenterPos())) / 8F, 0, 1) * 1.25F;
 		var alpha = (int) MathHelper.clampedLerp(255, 2, interp);
 
+		matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(180));
 		for (int i = 0; i < text.size(); i++) {
 			textRenderer.draw(text.get(i), 0, 14 * i + ((i == 0) ? -20 : 0),  (alpha & 255) << 24 | 0xe9c4ff, false, matrices.peek().getPositionMatrix(), vertexConsumers, TextRenderer.TextLayerType.SEE_THROUGH, 0, LightmapTextureManager.MAX_LIGHT_COORDINATE);
 		}

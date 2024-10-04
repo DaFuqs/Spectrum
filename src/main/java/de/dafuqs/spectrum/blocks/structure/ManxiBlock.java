@@ -7,6 +7,7 @@ import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.sound.*;
 import net.minecraft.state.*;
+import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
@@ -45,6 +46,14 @@ public class ManxiBlock extends HorizontalFacingBlock implements BlockEntityProv
 		manxi.markTaken(player);
 
 		return ActionResult.CONSUME;
+	}
+
+	@Override
+	public void onBlockBreakStart(BlockState state, World world, BlockPos pos, PlayerEntity player) {
+		if (!world.isClient() && !player.getAbilities().creativeMode) {
+			player.sendMessage(Text.translatable("block.spectrum.manxi.nope").styled(s -> s.withColor(SpectrumStatusEffects.ETERNAL_SLUMBER_COLOR)), true);
+			player.damage(SpectrumDamageTypes.sleep(world, null), 1);
+		}
 	}
 
 	@Nullable

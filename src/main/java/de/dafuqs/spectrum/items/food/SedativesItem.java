@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.items.food;
 
+import de.dafuqs.spectrum.compat.SpectrumIntegrationPacks;
 import de.dafuqs.spectrum.compat.neepmeat.NEEPMeatCompat;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.registries.*;
@@ -32,7 +33,7 @@ public class SedativesItem extends ItemWithTooltip {
 				}
 				
 			}
-			if(FabricLoader.getInstance().isModLoaded("neepmeat"))
+			if(FabricLoader.getInstance().isModLoaded("neepmeat") && SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.NEEPMEAT_ID))
 			{
 				NEEPMeatCompat.sedateEnlightenment(user);
 			}

@@ -1,6 +1,5 @@
 {
   "type": "spectrum:enchantment_upgrade",
-  "group": "mod_compat",
   "enchantment": "create:capacity",
   "levels": [
     {

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "spectrum:ivory_noxcap_stems"
+    }
+  ],
+  "result": {
+    "item": "spectrum:ivory_noxwood_planks",
+    "count": 4
+  }
+}

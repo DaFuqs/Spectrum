@@ -4088,6 +4088,8 @@
   "enchantment.spectrum.voiding.desc": "Destroys all broken blocks",
 
   "entity.spectrum.bedrock_fishing_bobber": "Bedrock Fishing Bobber",
+  "entity.spectrum.draconic_twinsword": "Draconic Twinsword",
+  "entity.spectrum.dragon_talon": "Dragon Talon",
   "entity.spectrum.bident": "Bident",
   "entity.spectrum.bident_mirror_image": "Bident Mirror Image",
   "entity.spectrum.block_flooder_projectile": "Block Flooder",
@@ -5262,8 +5264,8 @@
   "spectrum.tooltip.ink_powered.prefix": "Consumes the following ink:",
   "spectrum.tooltip.ink_powered.stored": "Stored:",
   "spectrum.tooltip.ink_powered.unselect_color": "Unselect Color",
-  "spectrum.tooltip.press_shift_for_controls": "press Shift to view controls",
-  "spectrum.tooltip.press_shift_for_more": "press Shift to view additional stats",
+  "spectrum.tooltip.press_shift_for_controls": "Press Shift to view controls",
+  "spectrum.tooltip.press_shift_for_more": "Press Shift to view additional stats",
 
   "tag.c.amethyst": "Amethyst",
   "tag.c.amethyst_blocks": "Amethyst Blocks",

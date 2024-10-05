@@ -168,7 +168,7 @@ public class SpectrumBlocks {
 	public static final Block MOONSTONE_POWDER_BLOCK = new SandBlock(DyeColor.WHITE.getFireworkColor(), FabricBlockSettings.copyOf(Blocks.SAND).mapColor(MapColor.WHITE));
 
 	public static final Block VEGETAL_BLOCK = new Block(settings(MapColor.PALE_GREEN, BlockSoundGroup.FUNGUS, 2.0F));
-	public static final Block NEOLITH_BLOCK = new Block(settings(MapColor.PURPLE, BlockSoundGroup.COPPER, 6.0F).requiresTool().instrument(Instrument.BASEDRUM));
+	public static final Block NEOLITH_BLOCK = new SpectrumFacingBlock(settings(MapColor.PURPLE, BlockSoundGroup.COPPER, 6.0F).requiresTool().instrument(Instrument.BASEDRUM).luminance(state -> 13).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always));
 	public static final Block BEDROCK_STORAGE_BLOCK = new BlockWithTooltip(settings(MapColor.STONE_GRAY, BlockSoundGroup.STONE, 100.0F, 3600.0F).pistonBehavior(PistonBehavior.BLOCK).requiresTool().instrument(Instrument.BASEDRUM), Text.translatable("spectrum.tooltip.dragon_and_wither_immune"));
 
 	public static final SpectrumClusterBlock BISMUTH_CLUSTER = new SpectrumClusterBlock(gemstone(MapColor.DARK_AQUA, BlockSoundGroup.CHAIN, 8), SpectrumClusterBlock.GrowthStage.CLUSTER);
@@ -2006,7 +2006,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("moonstone_powder_block", MOONSTONE_POWDER_BLOCK, settings, DyeColor.WHITE);
 
 		registerBlockWithItem("vegetal_block", VEGETAL_BLOCK, IS.of(), DyeColor.GREEN);
-		registerBlockWithItem("neolith_block", NEOLITH_BLOCK, IS.of(), DyeColor.BROWN);
+		registerBlockWithItem("neolith_block", NEOLITH_BLOCK, IS.of(), DyeColor.PINK);
 		registerBlockWithItem("bedrock_storage_block", BEDROCK_STORAGE_BLOCK, IS.of(Rarity.UNCOMMON), DyeColor.BLACK);
 		//registerBlockWithItem("spectral_shard_block", SPECTRAL_SHARD_BLOCK, IS.of(Rarity.RARE), DyeColor.WHITE);
 
@@ -3010,6 +3010,7 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ITEM_ROUNDEL, RenderLayer.getCutout());
 
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEMORY, RenderLayer.getTranslucent());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.VEGETAL_BLOCK, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.EFFULGENT_BED, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LONGING_CHIMERA, RenderLayer.getCutout());
 

@@ -202,9 +202,6 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 			}
 			
 			affectEntitiesInRange(this.getOwner());
-			
-			// TODO: uncomment this when all 16 ink effects are finished
-			// InkSpellEffect.trigger(InkColor.of(dyeColor), this.getWorld(), blockHitResult.getPos(), SPELL_POTENCY);
 		}
 		
 		this.discard();

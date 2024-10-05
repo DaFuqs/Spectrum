@@ -371,20 +371,6 @@ public class SpectrumS2CPacketSender {
 		ServerPlayNetworking.send(player, SpectrumS2CPackets.INK_COLOR_SELECTED, packetByteBuf);
 	}
 	
-	public static void playInkEffectParticles(ServerWorld serverWorld, InkColor inkColor, Vec3d effectPos, float potency) {
-		PacketByteBuf packetByteBuf = PacketByteBufs.create();
-		packetByteBuf.writeIdentifier(inkColor.getID());
-		packetByteBuf.writeDouble(effectPos.x);
-		packetByteBuf.writeDouble(effectPos.y);
-		packetByteBuf.writeDouble(effectPos.z);
-		packetByteBuf.writeFloat(potency);
-		
-		// Iterate over all players tracking a position in the world and send the packet to each player
-		for (ServerPlayerEntity player : PlayerLookup.tracking(serverWorld, BlockPos.ofFloored(effectPos))) {
-			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_INK_EFFECT_PARTICLES, packetByteBuf);
-		}
-	}
-	
 	public static void playPresentOpeningParticles(ServerWorld serverWorld, BlockPos pos, Map<DyeColor, Integer> colors) {
 		PacketByteBuf packetByteBuf = PacketByteBufs.create();
 		packetByteBuf.writeBlockPos(pos);

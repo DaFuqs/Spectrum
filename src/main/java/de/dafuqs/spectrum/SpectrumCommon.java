@@ -16,7 +16,6 @@ import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.spectrum.spells.*;
 import me.shedaniel.autoconfig.*;
 import me.shedaniel.autoconfig.serializer.*;
 import net.fabricmc.api.*;
@@ -207,9 +206,6 @@ public class SpectrumCommon implements ModInitializer {
 		logInfo("Registering Game Events...");
 		SpectrumGameEvents.register();
 		SpectrumPositionSources.register();
-		
-		logInfo("Registering Spell Effects...");
-		InkSpellEffects.register();
 		
 		logInfo("Registering Explosion Effects & Providers...");
 		ExplosionModifiers.register();

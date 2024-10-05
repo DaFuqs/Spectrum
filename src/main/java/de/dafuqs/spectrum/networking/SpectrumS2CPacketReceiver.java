@@ -374,30 +374,6 @@ public class SpectrumS2CPacketReceiver {
 			}
 		});
 		
-		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_INK_EFFECT_PARTICLES, (client, handler, buf, responseSender) -> {
-			InkColor inkColor;
-			Optional<InkColor> optionalInkColor = InkColor.ofId(buf.readIdentifier());
-			if (optionalInkColor.isPresent()) {
-				inkColor = optionalInkColor.get();
-			} else {
-				inkColor = null;
-			}
-			
-			double posX = buf.readDouble();
-			double posY = buf.readDouble();
-			double posZ = buf.readDouble();
-			float potency = buf.readFloat();
-			
-			if (inkColor == null) {
-				return;
-			}
-			
-			client.execute(() -> {
-				// Everything in this lambda is running on the render thread
-				InkSpellEffects.getEffect(inkColor).playEffects(client.world, new Vec3d(posX, posY, posZ), potency);
-			});
-		});
-		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_PRESENT_OPENING_PARTICLES, (client, handler, buf, responseSender) -> {
 			BlockPos pos = buf.readBlockPos();
 			int colorCount = buf.readInt();

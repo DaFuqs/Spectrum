@@ -16,6 +16,7 @@ public class AshFloraBlock extends SpreadableFloraBlock {
 	
 	@Override
 	protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-		return floor.isIn(SpectrumBlockTags.ASH) || floor.isOf(SpectrumBlocks.ASHEN_BLACKSLAG) || super.canPlantOnTop(floor, world, pos);
+		return (floor.isIn(SpectrumBlockTags.ASH) || floor.isOf(SpectrumBlocks.ASHEN_BLACKSLAG) || super.canPlantOnTop(floor, world, pos))
+				&& floor.isSideSolidFullSquare(world, pos, Direction.UP);
 	}
 }

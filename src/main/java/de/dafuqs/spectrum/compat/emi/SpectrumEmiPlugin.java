@@ -87,6 +87,7 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 		}
 		
 		registry.addWorkstation(VanillaEmiRecipeCategories.CRAFTING, EmiStack.of(SpectrumItems.CRAFTING_TABLET));
+		registry.addWorkstation(VanillaEmiRecipeCategories.CRAFTING, EmiStack.of(SpectrumBlocks.RESTOCKING_CHEST));
 		registry.addWorkstation(VanillaEmiRecipeCategories.BLASTING, EmiStack.of(SpectrumBlocks.CINDERHEARTH));
 		
 		registry.addWorkstation(SpectrumEmiRecipeCategories.ANVIL_CRUSHING, EmiStack.of(Blocks.ANVIL));
@@ -116,6 +117,12 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 	}
 
 	public void registerRecipes(EmiRegistry registry) {
+		// TODO: Register our recipes ourselves
+		// right now dev.emi.emi.VanillaPlugin handles them
+		// which does not process the unlock check
+		//addAll(registry, RecipeType.CRAFTING, ShapedGatedCraftingEMIRecipe::new);
+		//addAll(registry, RecipeType.CRAFTING, ShapelessGatedCraftingEMIRecipe::new);
+
 		addAll(registry, SpectrumRecipeTypes.ANVIL_CRUSHING, AnvilCrushingEmiRecipeGated::new);
 		addAll(registry, SpectrumRecipeTypes.PEDESTAL, PedestalCraftingEmiRecipeGated::new);
 		addAll(registry, SpectrumRecipeTypes.FUSION_SHRINE, FusionShrineEmiRecipeGated::new);
@@ -191,4 +198,5 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 			registry.addRecipe(constructor.apply(recipe));
 		}
 	}
+	
 }

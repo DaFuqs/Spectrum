@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:lucky_pickaxe",
   "category": "spectrum:equipment",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
@@ -29,7 +29,7 @@
         "advancement_id": "spectrum:unlocks/equipment/tender_pickaxe"
       },
       "text": "book.spectrum.guidebook.preenchanted_tools.page2.text",
-      "recipe_id_1": "spectrum:pedestal/tier1/tools/tender_pickaxe"
+      "recipe_id": "spectrum:pedestal/tier1/tools/tender_pickaxe"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -38,7 +38,7 @@
         "advancement_id": "spectrum:unlocks/equipment/lucky_pickaxe"
       },
       "text": "book.spectrum.guidebook.preenchanted_tools.page3.text",
-      "recipe_id_1": "spectrum:pedestal/tier1/tools/lucky_pickaxe"
+      "recipe_id": "spectrum:pedestal/tier1/tools/lucky_pickaxe"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -47,7 +47,7 @@
         "advancement_id": "spectrum:unlocks/equipment/razor_falchion"
       },
       "text": "book.spectrum.guidebook.preenchanted_tools.page4.text",
-      "recipe_id_1": "spectrum:pedestal/tier1/tools/razor_falchion"
+      "recipe_id": "spectrum:pedestal/tier1/tools/razor_falchion"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -56,7 +56,7 @@
         "advancement_id": "spectrum:unlocks/equipment/oblivion_pickaxe"
       },
       "text": "book.spectrum.guidebook.preenchanted_tools.page5.text",
-      "recipe_id_1": "spectrum:pedestal/tier2/oblivion_pickaxe"
+      "recipe_id": "spectrum:pedestal/tier2/oblivion_pickaxe"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -65,7 +65,7 @@
         "advancement_id": "spectrum:unlocks/equipment/resonant_pickaxe"
       },
       "text": "book.spectrum.guidebook.preenchanted_tools.page6.text",
-      "recipe_id_1": "spectrum:pedestal/tier4/resonant_pickaxe"
+      "recipe_id": "spectrum:pedestal/tier4/resonant_pickaxe"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -74,7 +74,7 @@
         "advancement_id": "spectrum:unlocks/equipment/dragonrending_pickaxe"
       },
       "text": "book.spectrum.guidebook.preenchanted_tools.page7.text",
-      "recipe_id_1": "spectrum:pedestal/tier4/dragonrending_pickaxe"
+      "recipe_id": "spectrum:pedestal/tier4/dragonrending_pickaxe"
     }
   ]
 }

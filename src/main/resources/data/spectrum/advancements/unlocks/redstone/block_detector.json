@@ -1,9 +1,9 @@
 {
   "criteria": {
-    "crafted_using_pedestal": {
+    "placed_pedestal": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:craft_using_pedestal"
+        "advancement_identifier": "spectrum:place_pedestal"
       }
     },
     "has_storm_stone": {

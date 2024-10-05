@@ -16,7 +16,7 @@
     "built_structure": {
       "trigger": "spectrum:completed_multiblock",
       "conditions": {
-        "multiblock_identifier": "spectrum:pedestal_complex_structure_without_moonstone_check"
+        "multiblock_identifier": "spectrum:pedestal_complex_without_moonstone"
       }
     },
     "built_complete_structure": {

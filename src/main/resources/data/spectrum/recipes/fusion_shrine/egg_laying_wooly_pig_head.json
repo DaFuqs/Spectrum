@@ -2,13 +2,15 @@
   "type": "spectrum:fusion_shrine",
   "time": 1200,
   "experience": 16.0,
-  "fluid": "spectrum:midnight_solution",
+  "fluid": {
+    "fluid": "spectrum:midnight_solution"
+  },
   "ingredients": [
     {
       "item": "spectrum:cow_head"
     },
     {
-      "tag": "spectrum:mob_heads/sheep_heads"
+      "item": "spectrum:sheep_head"
     },
     {
       "item": "spectrum:pig_head"

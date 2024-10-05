@@ -5,8 +5,8 @@
   "effects": {
     "sky_color": 0,
     "fog_color": 9384991,
-    "water_color": 13132108,
-    "water_fog_color": 13132108,
+    "water_color": 11998731,
+    "water_fog_color": 11998731,
     "grass_color": 12340777,
     "foliage_color": 14895399,
     "grass_color_modifier": "none",
@@ -16,8 +16,14 @@
       "block_search_extent": 8,
       "offset": 2
     },
+    "particle": {
+      "options": {
+        "type": "spectrum:heavy_rain"
+      },
+      "probability": 0.0255
+    },
     "music": {
-      "sound": "spectrum:music.deeper_down_theme",
+      "sound": "spectrum:music.deeper_down.dragonrot_swamp",
       "min_delay": 12000,
       "max_delay": 24000,
       "replace_current_music": false

@@ -9,7 +9,7 @@ import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.*;
-import de.dafuqs.spectrum.blocks.deeper_down.flora.WeepingGalaFrondsBlock;
+import de.dafuqs.spectrum.blocks.deeper_down.flora.*;
 import de.dafuqs.spectrum.blocks.gemstone.*;
 import de.dafuqs.spectrum.enchantments.*;
 import de.dafuqs.spectrum.items.*;
@@ -25,6 +25,7 @@ import net.minecraft.advancement.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.*;
+import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.loot.*;
 import net.minecraft.recipe.*;
@@ -183,7 +184,7 @@ public class SanityCommand {
 		recipeManager.keys().forEach(identifier -> {
 			Optional<? extends Recipe<?>> recipe = recipeManager.get(identifier);
 			if (recipe.isPresent()) {
-				if (recipe.get() instanceof GatedSpectrumRecipe gatedSpectrumRecipe) {
+				if (recipe.get() instanceof GatedSpectrumRecipe<?> gatedSpectrumRecipe) {
 					String group = gatedSpectrumRecipe.getGroup();
 					if (group == null) {
 						SpectrumCommon.logWarning("Recipe with null group found! :" + gatedSpectrumRecipe.getId());
@@ -289,7 +290,8 @@ public class SanityCommand {
 		for (PedestalRecipe recipe : recipeManager.listAllOfType(SpectrumRecipeTypes.PEDESTAL)) {
 			Identifier id = recipe.getId();
 			if (id.getPath().startsWith("mod_integration/") || id.getPath().contains("/glass/") || id.getPath().contains("/saplings/") || id.getPath().contains("/detectors/") || id.getPath().contains("/gemstone_lights/") || id.getPath().contains("/decostones/")
-					|| id.getPath().contains("/runes/") || id.getPath().contains("/pastel_network/") || id.getPath().contains("/gemstone_chimes/") || id.getPath().contains("/pastel_network/") || id.getPath().contains("/semi_permeable_glass/")) {
+					|| id.getPath().contains("/runes/") || id.getPath().contains("/pastel_network/") || id.getPath().contains("/gemstone_chimes/") || id.getPath().contains("/pastel_network/") || id.getPath().contains("/semi_permeable_glass/")
+					|| id.getPath().contains("/colored_lamps/") || id.getPath().contains("/colored_spore_blossoms/") || id.getPath().contains("/glowblocks/")) {
 				continue;
 			}
 
@@ -432,9 +434,9 @@ public class SanityCommand {
 
 		return 0;
 	}
-
-	private static <R extends GatedRecipe> void testRecipeUnlocks(RecipeType<R> recipeType, String name, RecipeManager recipeManager, ServerAdvancementLoader advancementLoader) {
-		for (GatedRecipe recipe : recipeManager.listAllOfType(recipeType)) {
+	
+	private static <R extends GatedRecipe<C>, C extends Inventory> void testRecipeUnlocks(RecipeType<R> recipeType, String name, RecipeManager recipeManager, ServerAdvancementLoader advancementLoader) {
+		for (GatedRecipe<C> recipe : recipeManager.listAllOfType(recipeType)) {
 			Identifier advancementIdentifier = recipe.getRequiredAdvancementIdentifier();
 			if (advancementIdentifier != null && advancementLoader.get(advancementIdentifier) == null) {
 				SpectrumCommon.logWarning("[SANITY: " + name + " Recipe Unlocks] Advancement '" + recipe.getRequiredAdvancementIdentifier() + "' in recipe '" + recipe.getId() + "' does not exist");
@@ -442,8 +444,8 @@ public class SanityCommand {
 		}
 	}
 	
-	private static <R extends GatedRecipe> void testIngredientsAndOutputInColorRegistry(RecipeType<R> recipeType, String name, RecipeManager recipeManager, DynamicRegistryManager registryManager) {
-		for (GatedRecipe recipe : recipeManager.listAllOfType(recipeType)) {
+	private static <R extends GatedRecipe<C>, C extends Inventory> void testIngredientsAndOutputInColorRegistry(RecipeType<R> recipeType, String name, RecipeManager recipeManager, DynamicRegistryManager registryManager) {
+		for (GatedRecipe<C> recipe : recipeManager.listAllOfType(recipeType)) {
 			for (Ingredient inputIngredient : recipe.getIngredients()) {
 				for (ItemStack matchingItemStack : inputIngredient.getMatchingStacks()) {
 					if (ColorRegistry.ITEM_COLORS.getMapping(matchingItemStack.getItem()).isEmpty()) {

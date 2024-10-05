@@ -39,7 +39,10 @@ public class SpectrumBlockTags {
 	public static final TagKey<Block> FORFEITURE_SAFE = of("decay/forfeiture_safe");
 	public static final TagKey<Block> FORFEITURE_CONVERSIONS = of("decay/forfeiture_conversions");
 	public static final TagKey<Block> FORFEITURE_SPECIAL_CONVERSIONS = of("decay/forfeiture_special_conversions");
-	
+
+	// TECHNICAL
+	public static final TagKey<Block> UNBREAKABLE_MOVABLE = of("technical/unbreakable_movable");
+
 	// MISC
 	public static final TagKey<Block> MULTITOOL_MINEABLE = of("multitool_mineable");
 	public static final TagKey<Block> BLACK_SLUDGE_BLOCKS = of("black_sludge_blocks");
@@ -57,6 +60,9 @@ public class SpectrumBlockTags {
 	public static final TagKey<Block> ASH = of("ash");
 	public static final TagKey<Block> PRECIPITATION_SOURCES = of("precipitation_source");
 	public static final TagKey<Block> ANIMALS_SPAWNABLE_ON_ADDITIONS = of("animals_spawnable_on_additions");
+
+	// ORES
+	public static final TagKey<Block> AZURITE_ORES = of("azurite_ores");
 
 	// DEBUG
 	public static final TagKey<Block> EXEMPT_FROM_MINEABLE_DEBUG_CHECK = of("exempt_from_mineable_debug_check");

@@ -1,0 +1,21 @@
+{
+  "type": "neepmeat:grinding",
+  "input": {
+    "resource": "spectrum:blazing_crystal",
+    "amount": 1
+  },
+  "output": {
+    "resource": "spectrum:incandescent_essence",
+    "amount": 14
+  },
+  "experience": 0.7,
+  "processtime": 45,
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "neepmeat"
+      ]
+    }
+  ]
+}

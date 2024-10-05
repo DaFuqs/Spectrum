@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:bottomless_bundle",
   "category": "spectrum:equipment",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
@@ -24,8 +24,8 @@
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.bottomless_bundle.page1.text",
-      "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier2/bottomless_bundle"
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "spectrum:pedestal/tier2/bottomless_bundle"
     },
     {
       "type": "modonomicon:image",

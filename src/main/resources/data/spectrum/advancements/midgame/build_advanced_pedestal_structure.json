@@ -15,7 +15,7 @@
   "criteria": {
     "built_structure": {
       "trigger": "spectrum:completed_multiblock",
-      "conditions": { "multiblock_identifier": "spectrum:pedestal_advanced_structure_check" }
+      "conditions": { "multiblock_identifier": "spectrum:pedestal_advanced" }
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",

@@ -6,10 +6,10 @@
     "advancement_id": "spectrum:collect_all_basic_pigments_besides_brown"
   },
   "category": "spectrum:general",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
-      "entry": "spectrum:general/color_mixing"
+      "entry": "spectrum:general/color_mixing_cmy"
     },
     {
       "entry": "spectrum:general/pigment"

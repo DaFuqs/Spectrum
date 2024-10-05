@@ -3,8 +3,11 @@
   "icon": "minecraft:bedrock",
   "turnin": "spectrum:midgame/enter_dimension",
   "category": "spectrum:dimension",
-  "hide_while_locked ": true,
-  "parents": [],
+  "hide_while_locked": true,
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:midgame/enter_dimension"
+  },
   "background_u_index": 0,
   "background_v_index": 1,
   "x": 0,
@@ -26,15 +29,6 @@
       },
       "title": "book.spectrum.guidebook.delving_deeper_down.page1.title",
       "text": "book.spectrum.guidebook.delving_deeper_down.page1.text"
-    },
-    {
-      "type": "modonomicon:text",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:__todo/monstrosity"
-      },
-      "title": "book.spectrum.guidebook.delving_deeper_down.page2.title",
-      "text": "book.spectrum.guidebook.delving_deeper_down.page2.text"
     }
   ]
 }

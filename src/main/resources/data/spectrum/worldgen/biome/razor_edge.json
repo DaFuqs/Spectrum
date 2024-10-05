@@ -23,7 +23,7 @@
       "offset": 2
     },
     "music": {
-      "sound": "spectrum:music.deeper_down_theme",
+      "sound": "spectrum:music.deeper_down.razor_edge",
       "min_delay": 12000,
       "max_delay": 24000,
       "replace_current_music": false
@@ -93,9 +93,7 @@
       "spectrum:dd_shale_clay_pillar",
       "spectrum:blackslag_pile"
     ],
-    [
-      "spectrum:dragon_fossil_buried"
-    ],
+    [],
     [
       "spectrum:dd_shale_clay_columns",
       "spectrum:dd_pyrite_columns",
@@ -109,6 +107,7 @@
       "spectrum:dd_shimmerstone_ore",
       "spectrum:dd_iron_ore",
       "spectrum:dd_gold_ore",
+      "spectrum:dd_coal_ore_razor",
       "spectrum:dd_diamond_ore",
       "spectrum:dd_emerald_ore",
       "spectrum:dd_tuff",

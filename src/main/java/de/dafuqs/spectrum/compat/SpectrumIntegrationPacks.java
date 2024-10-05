@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.compat.botania.*;
 import de.dafuqs.spectrum.compat.create.*;
 import de.dafuqs.spectrum.compat.gobber.*;
 import de.dafuqs.spectrum.compat.modonomicon.*;
+import de.dafuqs.spectrum.compat.neepmeat.NEEPMeatCompat;
 import de.dafuqs.spectrum.compat.travelersbackpack.*;
 import net.fabricmc.api.*;
 import net.fabricmc.loader.api.*;
@@ -39,6 +40,8 @@ public class SpectrumIntegrationPacks {
 	public static final String MODONOMICON_ID = "modonomicon";
 	public static final String CREATE_ID = "create";
 
+	public static final String NEEPMEAT_ID = "neepmeat";
+
 	@SuppressWarnings("Convert2MethodRef")
 	public static void register() {
 		registerIntegrationPack(AE2_ID, () -> new AE2Compat());
@@ -47,7 +50,10 @@ public class SpectrumIntegrationPacks {
 		registerIntegrationPack(TRAVELERS_BACKPACK_ID, () -> new TravelersBackpackCompat());
 		registerIntegrationPack(BOTANIA_ID, () -> new BotaniaCompat());
 		registerIntegrationPack(MODONOMICON_ID, () -> new ModonomiconCompat());
-		registerIntegrationPack(CREATE_ID, () -> new CreateCompat());
+		registerIntegrationPack(NEEPMEAT_ID, () -> new NEEPMeatCompat());
+		if (!FabricLoader.getInstance().isModLoaded("forgified-fabric-api")) {
+			registerIntegrationPack(CREATE_ID, () -> new CreateCompat());
+		}
 		
 		for (ModIntegrationPack container : INTEGRATION_PACKS.values()) {
 			container.register();

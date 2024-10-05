@@ -7,7 +7,7 @@
   },
   "flag": "spectrum:enchantment_exists_spectrum_voiding",
   "category": "spectrum:enchanting",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
@@ -42,8 +42,8 @@
         "advancement_id": "spectrum:unlocks/enchantments/voiding_crafting"
       },
       "text": "book.spectrum.guidebook.crafting",
-      "title1": "container.spectrum.rei.enchanter_recipe",
-      "recipe_id_1": "spectrum:enchanter/spectrum_books/voiding"
+      "title": "container.spectrum.rei.enchanter_recipe",
+      "recipe_id": "spectrum:enchanter/spectrum_books/voiding"
     }
   ]
 }

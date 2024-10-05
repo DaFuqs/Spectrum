@@ -23,6 +23,6 @@
     "item": "spectrum:bloodstone_block",
     "count": 1
   },
-  "required_advancement": "spectrum:lategame/grow_bloodstone_in_crystallarieum",
+  "required_advancement": "spectrum:grow_bloodstone_in_crystallarieum",
   "disable_yield_upgrades": true
 }

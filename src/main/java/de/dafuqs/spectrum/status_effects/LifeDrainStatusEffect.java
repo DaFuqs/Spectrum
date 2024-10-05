@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.status_effects;
 
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.effect.*;
@@ -19,10 +20,11 @@ public class LifeDrainStatusEffect extends SpectrumStatusEffect {
 	public void applyUpdateEffect(LivingEntity entity, int amplifier) {
 		EntityAttributeInstance instance = entity.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);
 		if (instance != null) {
+			var dragon = entity.getType().isIn(SpectrumEntityTypeTags.DRACONIC);
 			EntityAttributeModifier currentMod = instance.getModifier(ATTRIBUTE_UUID);
 			if (currentMod != null) {
 				instance.removeModifier(currentMod);
-				EntityAttributeModifier newModifier = new EntityAttributeModifier(UUID.fromString(ATTRIBUTE_UUID_STRING), this::getTranslationKey, currentMod.getValue() - 1, EntityAttributeModifier.Operation.ADDITION);
+				EntityAttributeModifier newModifier = new EntityAttributeModifier(UUID.fromString(ATTRIBUTE_UUID_STRING), this::getTranslationKey, currentMod.getValue() - (dragon ? 2 : 1), EntityAttributeModifier.Operation.ADDITION);
 				instance.addPersistentModifier(newModifier);
 				instance.getValue(); // recalculate final value
 				if (entity.getHealth() > entity.getMaxHealth()) {

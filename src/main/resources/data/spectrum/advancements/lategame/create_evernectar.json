@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:lategame/collect_poisoners_cookbook",
+  "parent": "spectrum:lategame/collect_nectardew",
   "display": {
     "icon": {
       "item": "spectrum:evernectar"
@@ -33,7 +33,7 @@
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/collect_poisoners_cookbook"
+        "advancement_identifier": "spectrum:lategame/collect_poisoners_handbook"
       }
     }
   }

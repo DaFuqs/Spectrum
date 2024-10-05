@@ -1,9 +1,11 @@
 package de.dafuqs.spectrum.items.tools;
 
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.*;
+import net.minecraft.block.dispenser.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
@@ -18,7 +20,23 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class PrimordialLighterItem extends FlintAndSteelItem {
+public class PrimordialLighterItem extends FlintAndSteelItem implements CreativeOnlyItem {
+	
+	public static final DispenserBehavior DISPENSER_BEHAVIOR = new FallibleItemDispenserBehavior() {
+		protected ItemStack dispenseSilently(BlockPointer pointer, ItemStack stack) {
+			World world = pointer.getWorld();
+			this.setSuccess(true);
+			Direction direction = pointer.getBlockState().get(DispenserBlock.FACING);
+			BlockPos blockPos = pointer.getPos().offset(direction);
+			if (PrimordialFireBlock.tryPlacePrimordialFire(world, blockPos, direction)) {
+				stack.damage(1, world.random, null);
+				this.setSuccess(true);
+			} else {
+				this.setSuccess(false);
+			}
+			return stack;
+		}
+	};
 	
 	public PrimordialLighterItem(Settings settings) {
 		super(settings);
@@ -28,6 +46,7 @@ public class PrimordialLighterItem extends FlintAndSteelItem {
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		tooltip.add(Text.translatable("item.spectrum.primordial_lighter.tooltip").formatted(Formatting.GRAY));
+		CreativeOnlyItem.appendTooltip(tooltip);
 	}
 	
 	@Override

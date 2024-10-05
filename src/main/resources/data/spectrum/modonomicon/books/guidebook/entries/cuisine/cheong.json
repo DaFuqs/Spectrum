@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:cheong",
   "category": "spectrum:cuisine",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:cuisine/titration_barrel",
@@ -20,13 +20,13 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.cheong.page0.text",
-      "title": "item.spectrum.cheong"
+      "title": "item.spectrum.cheong",
+      "text": "book.spectrum.guidebook.cheong.page0.text"
     },
     {
-      "type": "spectrum:pedestal_crafting",
-      "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier1/food/cheong",
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "book.spectrum.guidebook.titration_recipe",
+      "recipe_id": "spectrum:titration_barrel/special/cheong",
       "text": "book.spectrum.guidebook.cheong.page1.text"
     }
   ]

@@ -27,8 +27,10 @@ import net.minecraft.util.*;
 
 public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
     
+    // Entry Types
     public static final Identifier ENTRY_LINK_PAGE_TYPE = SpectrumCommon.locate("entry_link");
     
+    // Page Types
     public static final Identifier ANVIL_CRUSHING_PAGE = SpectrumCommon.locate("anvil_crushing");
     public static final Identifier PEDESTAL_CRAFTING_PAGE = SpectrumCommon.locate("pedestal_crafting");
     public static final Identifier FUSION_SHRINE_CRAFTING_PAGE = SpectrumCommon.locate("fusion_shrine_crafting");
@@ -54,34 +56,35 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
     public static final Identifier COLLECTION_PAGE = SpectrumCommon.locate("collection");
     public static final Identifier PRIMORDIAL_FIRE_BURNING_PAGE = SpectrumCommon.locate("primordial_fire_burning");
     
+    // Unlock Conditions
     public static final Identifier ENCHANTMENT_REGISTERED = SpectrumCommon.locate("enchantment_registered");
     public static final Identifier RECIPE_LOADED_AND_UNLOCKED = SpectrumCommon.locate("recipe_loaded_and_unlocked");
     
     @Override
     public void register() {
+        LoaderRegistry.registerEntryType(ENTRY_LINK_PAGE_TYPE, EntryLinkBookEntry::fromJson, EntryLinkBookEntry::fromNetwork);
+        
         registerPages();
         registerUnlockConditions();
     }
     
     public void registerPages() {
-        LoaderRegistry.registerEntryType(ENTRY_LINK_PAGE_TYPE, EntryLinkBookEntry::fromJson, EntryLinkBookEntry::fromNetwork);
-        
-        registerGatedRecipePage(ANVIL_CRUSHING_PAGE, SpectrumRecipeTypes.ANVIL_CRUSHING);
-        registerGatedRecipePage(PEDESTAL_CRAFTING_PAGE, SpectrumRecipeTypes.PEDESTAL);
-        registerGatedRecipePage(FUSION_SHRINE_CRAFTING_PAGE, SpectrumRecipeTypes.FUSION_SHRINE);
-        registerGatedRecipePage(ENCHANTER_CRAFTING_PAGE, SpectrumRecipeTypes.ENCHANTER);
-        registerGatedRecipePage(ENCHANTER_UPGRADING_PAGE, SpectrumRecipeTypes.ENCHANTMENT_UPGRADE);
-        registerGatedRecipePage(POTION_WORKSHOP_BREWING_PAGE, SpectrumRecipeTypes.POTION_WORKSHOP_BREWING);
-        registerGatedRecipePage(POTION_WORKSHOP_CRAFTING_PAGE, SpectrumRecipeTypes.POTION_WORKSHOP_CRAFTING);
-        registerGatedRecipePage(SPIRIT_INSTILLER_CRAFTING_PAGE, SpectrumRecipeTypes.SPIRIT_INSTILLING);
-        registerGatedRecipePage(LIQUID_CRYSTAL_CONVERTING_PAGE, SpectrumRecipeTypes.LIQUID_CRYSTAL_CONVERTING);
-        registerGatedRecipePage(MIDNIGHT_SOLUTION_CONVERTING_PAGE, SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING);
-        registerGatedRecipePage(DRAGONROT_CONVERTING_PAGE, SpectrumRecipeTypes.DRAGONROT_CONVERTING);
-        registerGatedRecipePage(MUD_CONVERTING_PAGE, SpectrumRecipeTypes.MUD_CONVERTING);
-        registerGatedRecipePage(CRYSTALLARIEUM_GROWING_PAGE, SpectrumRecipeTypes.CRYSTALLARIEUM);
-        registerGatedRecipePage(CINDERHEARTH_SMELTING_PAGE, SpectrumRecipeTypes.CINDERHEARTH);
-        registerGatedRecipePage(TITRATION_BARREL_FERMENTING_PAGE, SpectrumRecipeTypes.TITRATION_BARREL);
-        registerGatedRecipePage(PRIMORDIAL_FIRE_BURNING_PAGE, SpectrumRecipeTypes.PRIMORDIAL_FIRE_BURNING);
+        registerGatedRecipePage(ANVIL_CRUSHING_PAGE, SpectrumRecipeTypes.ANVIL_CRUSHING, false);
+        registerGatedRecipePage(PEDESTAL_CRAFTING_PAGE, SpectrumRecipeTypes.PEDESTAL, false);
+        registerGatedRecipePage(FUSION_SHRINE_CRAFTING_PAGE, SpectrumRecipeTypes.FUSION_SHRINE, false);
+        registerGatedRecipePage(ENCHANTER_CRAFTING_PAGE, SpectrumRecipeTypes.ENCHANTER, false);
+        registerGatedRecipePage(ENCHANTER_UPGRADING_PAGE, SpectrumRecipeTypes.ENCHANTMENT_UPGRADE, false);
+        registerGatedRecipePage(POTION_WORKSHOP_BREWING_PAGE, SpectrumRecipeTypes.POTION_WORKSHOP_BREWING, false);
+        registerGatedRecipePage(POTION_WORKSHOP_CRAFTING_PAGE, SpectrumRecipeTypes.POTION_WORKSHOP_CRAFTING, false);
+        registerGatedRecipePage(SPIRIT_INSTILLER_CRAFTING_PAGE, SpectrumRecipeTypes.SPIRIT_INSTILLING, false);
+        registerGatedRecipePage(LIQUID_CRYSTAL_CONVERTING_PAGE, SpectrumRecipeTypes.LIQUID_CRYSTAL_CONVERTING, false);
+        registerGatedRecipePage(MIDNIGHT_SOLUTION_CONVERTING_PAGE, SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING, false);
+        registerGatedRecipePage(DRAGONROT_CONVERTING_PAGE, SpectrumRecipeTypes.DRAGONROT_CONVERTING, false);
+        registerGatedRecipePage(MUD_CONVERTING_PAGE, SpectrumRecipeTypes.MUD_CONVERTING, false);
+        registerGatedRecipePage(CRYSTALLARIEUM_GROWING_PAGE, SpectrumRecipeTypes.CRYSTALLARIEUM, false);
+        registerGatedRecipePage(CINDERHEARTH_SMELTING_PAGE, SpectrumRecipeTypes.CINDERHEARTH, false);
+        registerGatedRecipePage(TITRATION_BARREL_FERMENTING_PAGE, SpectrumRecipeTypes.TITRATION_BARREL, true);
+        registerGatedRecipePage(PRIMORDIAL_FIRE_BURNING_PAGE, SpectrumRecipeTypes.PRIMORDIAL_FIRE_BURNING, false);
 
         LoaderRegistry.registerPageLoader(STATUS_EFFECT_PAGE, BookStatusEffectPage::fromJson, BookStatusEffectPage::fromNetwork);
         LoaderRegistry.registerPageLoader(HINT_PAGE, BookHintPage::fromJson, BookHintPage::fromNetwork);
@@ -93,9 +96,9 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
         LoaderRegistry.registerPageLoader(COLLECTION_PAGE, BookCollectionPage::fromJson, BookCollectionPage::fromNetwork);
     }
     
-    private void registerGatedRecipePage(Identifier id, RecipeType<? extends GatedRecipe> recipeType) {
+    private void registerGatedRecipePage(Identifier id, RecipeType<? extends GatedRecipe<?>> recipeType, boolean supportsTwoRecipesOnOnePage) {
         LoaderRegistry.registerPageLoader(id,
-                json -> BookGatedRecipePage.fromJson(id, recipeType, json),
+                json -> BookGatedRecipePage.fromJson(id, recipeType, json, supportsTwoRecipesOnOnePage),
                 buffer -> BookGatedRecipePage.fromNetwork(id, recipeType, buffer));
     }
     
@@ -118,7 +121,7 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
         PageRendererRegistry.registerPageRenderer(CRYSTALLARIEUM_GROWING_PAGE, p -> new BookCrystallarieumGrowingPageRenderer((BookGatedRecipePage<CrystallarieumRecipe>) p));
         PageRendererRegistry.registerPageRenderer(CINDERHEARTH_SMELTING_PAGE, p -> new BookCinderhearthSmeltingPageRenderer((BookGatedRecipePage<CinderhearthRecipe>) p));
         PageRendererRegistry.registerPageRenderer(TITRATION_BARREL_FERMENTING_PAGE, p -> new BookTitrationBarrelFermentingPageRenderer((BookGatedRecipePage<TitrationBarrelRecipe>) p));
-        PageRendererRegistry.registerPageRenderer(PRIMORDIAL_FIRE_BURNING_PAGE, p -> new BookPrimordialFireBurningPageRenderer((BookGatedRecipePage<PrimordialFireBurningRecipe>) p));
+        PageRendererRegistry.registerPageRenderer(PRIMORDIAL_FIRE_BURNING_PAGE, p -> new BookPrimordialFireBurningPageRenderer<>((BookGatedRecipePage<PrimordialFireBurningRecipe>) p));
         
         PageRendererRegistry.registerPageRenderer(STATUS_EFFECT_PAGE, p -> new BookStatusEffectPageRenderer((BookStatusEffectPage) p));
         PageRendererRegistry.registerPageRenderer(HINT_PAGE, p -> new BookHintPageRenderer((BookHintPage) p));

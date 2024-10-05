@@ -6,7 +6,7 @@
     "advancement_id": "spectrum:unlocks/items/artisans_atlas"
   },
   "category": "spectrum:equipment",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
@@ -20,8 +20,9 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier3/artisans_atlas"
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "spectrum:pedestal/tier3/artisans_atlas",
+      "text": "book.spectrum.guidebook.artisans_atlas.page1.text"
     }
   ]
 }

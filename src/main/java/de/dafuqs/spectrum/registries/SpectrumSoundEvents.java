@@ -8,10 +8,19 @@ import net.minecraft.util.*;
 public class SpectrumSoundEvents {
 	
 	// Music
-	public static final SoundEvent SPECTRUM_THEME = register("music.spectrum_theme");
-	public static final SoundEvent BOSS_THEME = register("music.boss_theme");
-	public static final SoundEvent DEEPER_DOWN_THEME = register("music.deeper_down_theme");
-	public static final SoundEvent DIVINITY = register("music.divinity");
+	public static final SoundEvent MUSIC_DISCOVERY = register("music.discovery");
+	public static final SoundEvent MUSIC_CREDITS = register("music.credits");
+	public static final SoundEvent MUSIC_DIVINITY = register("music.divinity");
+	
+	// Music referenced in the biome.jsons
+	public static final SoundEvent MUSIC_DEEPER_DOWN_BLACK_LANGAST = register("music.deeper_down.black_langast");
+	public static final SoundEvent MUSIC_DEEPER_DOWN_CRYSTAL_GARDENS = register("music.deeper_down.crystal_gardens");
+	public static final SoundEvent MUSIC_DEEPER_DOWN_DEEP_BARRENS = register("music.deeper_down.deep_barrens");
+	public static final SoundEvent MUSIC_DEEPER_DOWN_DEEP_DRIPSTONE_CAVES = register("music.deeper_down.deep_dripstone_caves");
+	public static final SoundEvent MUSIC_DEEPER_DOWN_DRAGONROT_SWAMP = register("music.deeper_down.dragonrot_swamp");
+	public static final SoundEvent MUSIC_DEEPER_DOWN_HOWLING_SPIRES = register("music.deeper_down.howling_spires");
+	public static final SoundEvent MUSIC_DEEPER_DOWN_NOXSHROOM_FOREST = register("music.deeper_down.noxshroom_forest");
+	public static final SoundEvent MUSIC_DEEPER_DOWN_RAZOR_EDGE = register("music.deeper_down.razor_edge");
 	
 	// Sounds
 	public static final SoundEvent PEDESTAL_CRAFTING = register("pedestal_crafting");
@@ -33,7 +42,9 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent MOONSTONE_STRIKE = register("moonstone_strike");
 	public static final SoundEvent ENTITY_BLOCK_FLOODER_THROW = register("entity.block_flooder.throw");
 	public static final SoundEvent OMNI_ACCELERATOR_SHOOT = register("item.omni_accelerator.shoot");
-	
+
+	public static final SoundEvent GUIDEBOOK_PAGES = register("item.guidebook.pages");
+
 	public static final SoundEvent ENCHANTER_WORKING = register("enchanter_working");
 	public static final SoundEvent ENCHANTER_DING = register("enchanter_ding");
 	
@@ -75,6 +86,11 @@ public class SpectrumSoundEvents {
 	
 	public static final SoundEvent ELECTRIC_DISCHARGE = register("discharge");
 
+	public static final SoundEvent PERFECT_PARRY = register("perfect_parry");
+	public static final SoundEvent LUNGE = register("lunge");
+	public static final SoundEvent LUNGE_CRIT = register("lunge_crit");
+	public static final SoundEvent SWORD_BLOCK = register("sword_block");
+
 
 	public static final SoundEvent INCANDESCENT_CHARGE = register("incandescent_charge");
 	public static final SoundEvent INCANDESCENT_ARM = register("incandescent_arm");
@@ -105,6 +121,11 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent DIMENSION_SOUNDS = register("ambient.dimension_sounds");
 	public static final SoundEvent HOWLING_WIND_HIGH = register("ambient.howling_wind_high");
 	public static final SoundEvent HOWLING_WIND_LOW = register("ambient.howling_wind_low");
+	public static final SoundEvent SHOWER = register("ambient.rain_shower");
+	public static final SoundEvent LAMENTS = register("ambient.laments");
+
+
+	public static final SoundEvent CRYSTAL_AURA = register("ambient.crystal_aura");
 
 	public static final SoundEvent BLACK_HOLE_CHEST_OPEN = register("black_hole_chest_open");
 	public static final SoundEvent BLACK_HOLE_CHEST_CLOSE = register("black_hole_chest_close");
@@ -243,6 +264,16 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent ENTITY_KINDLING_SHOOT = register("entity.kindling.shoot");
 	public static final SoundEvent ENTITY_KINDLING_ANGRY = register("entity.kindling.angry");
 	public static final SoundEvent ENTITY_KINDLING_JUMP = register("entity.kindling.jump");
+	
+	public static final SoundEvent ENTITY_EGG_LAYING_WOOLY_PIG_AMBIENT = register("entity.egg_laying_wooly_pig.ambient");
+	public static final SoundEvent ENTITY_EGG_LAYING_WOOLY_HURT = register("entity.egg_laying_wooly_pig.hurt");
+	public static final SoundEvent ENTITY_EGG_LAYING_WOOLY_DEATH = register("entity.egg_laying_wooly_pig.death");
+	public static final SoundEvent ENTITY_EGG_LAYING_WOOLY_STEP = register("entity.egg_laying_wooly_pig.step");
+	
+	public static final SoundEvent ENTITY_ERASER_AMBIENT = register("entity.eraser.ambient");
+	public static final SoundEvent ENTITY_ERASER_HURT = register("entity.eraser.hurt");
+	public static final SoundEvent ENTITY_ERASER_DEATH = register("entity.eraser.death");
+	public static final SoundEvent ENTITY_ERASER_STEP = register("entity.eraser.step");
 	
 	private static SoundEvent register(String id) {
 		Identifier identifier = SpectrumCommon.locate(id);

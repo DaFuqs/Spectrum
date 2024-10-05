@@ -1,7 +1,160 @@
 {
 	"variants": {
-		"": {
-			"model": "spectrum:block/preservation_stone"
-		}
+		"": [
+			{
+				"model": "spectrum:block/preservation_stone",
+				"weight": 10
+			},
+			{
+				"model": "spectrum:block/preservation_stone_1"
+			},
+			{
+				"model": "spectrum:block/preservation_stone_2"
+			},
+			{
+				"model": "spectrum:block/preservation_stone_3"
+			},
+			{
+				"model": "spectrum:block/preservation_stone_4"
+			},
+			{
+				"model": "spectrum:block/preservation_stone_5"
+			},
+			{
+				"model": "spectrum:block/preservation_stone_7"
+			},
+			{
+				"model": "spectrum:block/preservation_stone_8"
+			},
+			{
+				"model": "spectrum:block/preservation_stone_9"
+			},
+			{
+				"model": "spectrum:block/preservation_stone_10"
+			},
+			{
+				"model": "spectrum:block/preservation_stone",
+				"y": 90,
+				"weight": 10
+			},
+			{
+				"model": "spectrum:block/preservation_stone_1",
+				"y": 90
+			},
+			{
+				"model": "spectrum:block/preservation_stone_2",
+				"y": 90
+			},
+			{
+				"model": "spectrum:block/preservation_stone_3",
+				"y": 90
+			},
+			{
+				"model": "spectrum:block/preservation_stone_4",
+				"y": 90
+			},
+			{
+				"model": "spectrum:block/preservation_stone_5",
+				"y": 90
+			},
+			{
+				"model": "spectrum:block/preservation_stone_7",
+				"y": 90
+			},
+			{
+				"model": "spectrum:block/preservation_stone_8",
+				"y": 90
+			},
+			{
+				"model": "spectrum:block/preservation_stone_9",
+				"y": 90
+			},
+			{
+				"model": "spectrum:block/preservation_stone_10",
+				"y": 90
+			},
+			{
+				"model": "spectrum:block/preservation_stone",
+				"y": 180,
+				"weight": 10
+			},
+			{
+				"model": "spectrum:block/preservation_stone_1",
+				"y": 180
+			},
+			{
+				"model": "spectrum:block/preservation_stone_2",
+				"y": 180
+			},
+			{
+				"model": "spectrum:block/preservation_stone_3",
+				"y": 180
+			},
+			{
+				"model": "spectrum:block/preservation_stone_4",
+				"y": 180
+			},
+			{
+				"model": "spectrum:block/preservation_stone_5",
+				"y": 180
+			},
+			{
+				"model": "spectrum:block/preservation_stone_7",
+				"y": 180
+			},
+			{
+				"model": "spectrum:block/preservation_stone_8",
+				"y": 180
+			},
+			{
+				"model": "spectrum:block/preservation_stone_9",
+				"y": 180
+			},
+			{
+				"model": "spectrum:block/preservation_stone_10",
+				"y": 180
+			},
+			{
+				"model": "spectrum:block/preservation_stone",
+				"y": 270,
+				"weight": 10
+			},
+			{
+				"model": "spectrum:block/preservation_stone_1",
+				"y": 270
+			},
+			{
+				"model": "spectrum:block/preservation_stone_2",
+				"y": 270
+			},
+			{
+				"model": "spectrum:block/preservation_stone_3",
+				"y": 270
+			},
+			{
+				"model": "spectrum:block/preservation_stone_4",
+				"y": 270
+			},
+			{
+				"model": "spectrum:block/preservation_stone_5",
+				"y": 270
+			},
+			{
+				"model": "spectrum:block/preservation_stone_7",
+				"y": 270
+			},
+			{
+				"model": "spectrum:block/preservation_stone_8",
+				"y": 270
+			},
+			{
+				"model": "spectrum:block/preservation_stone_9",
+				"y": 270
+			},
+			{
+				"model": "spectrum:block/preservation_stone_10",
+				"y": 270
+			}
+		]
 	}
 }

@@ -2,11 +2,11 @@
   "name": "block.spectrum.radiant_glass",
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:collect_shimmerstone"
+    "advancement_id": "spectrum:unlocks/blocks/radiant_glass"
   },
   "icon": "spectrum:radiant_glass",
   "category": "spectrum:decoration",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:decoration/shimmerstone"
@@ -27,14 +27,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier1/glass/radiant_glass",
-      "text": "book.spectrum.guidebook.radiant_glass.page1.text"
-    },
-    {
-      "type": "spectrum:pedestal_crafting",
-      "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier1/glass/radiant_glass_pane",
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "spectrum:pedestal/tier1/glass/radiant_glass",
       "text": "book.spectrum.guidebook.glass_panes.text"
     }
   ]

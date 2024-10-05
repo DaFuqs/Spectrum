@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:upgrade_speed",
   "category": "spectrum:magical_blocks",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 1,
@@ -25,19 +25,19 @@
         "advancement_id": "spectrum:unlocks/upgrades/upgrade_speed"
       },
       "text": "book.spectrum.guidebook.upgrades.page1.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/upgrade_speed"
+      "recipe_id": "spectrum:pedestal/tier3/upgrade_speed"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:unlocks/upgrades/upgrade_speed2",
       "text": "book.spectrum.guidebook.upgrades.page2.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/upgrade_speed2"
+      "recipe_id": "spectrum:pedestal/tier3/upgrade_speed2"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:unlocks/upgrades/upgrade_speed3",
       "text": "book.spectrum.guidebook.upgrades.page3.text",
-      "recipe_id_1": "spectrum:pedestal/tier4/upgrade_speed3"
+      "recipe_id": "spectrum:pedestal/tier4/upgrade_speed3"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -46,13 +46,13 @@
         "advancement_id": "spectrum:unlocks/upgrades/upgrade_experience"
       },
       "text": "book.spectrum.guidebook.upgrades.page4.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/upgrade_experience"
+      "recipe_id": "spectrum:pedestal/tier3/upgrade_experience"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:unlocks/upgrades/upgrade_experience2",
       "text": "book.spectrum.guidebook.upgrades.page5.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/upgrade_experience2"
+      "recipe_id": "spectrum:pedestal/tier3/upgrade_experience2"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -61,13 +61,13 @@
         "advancement_id": "spectrum:unlocks/upgrades/upgrade_efficiency"
       },
       "text": "book.spectrum.guidebook.upgrades.page6.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/upgrade_efficiency"
+      "recipe_id": "spectrum:pedestal/tier3/upgrade_efficiency"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:unlocks/upgrades/upgrade_efficiency2",
       "text": "book.spectrum.guidebook.upgrades.page7.text",
-      "recipe_id_1": "spectrum:pedestal/tier4/upgrade_efficiency2"
+      "recipe_id": "spectrum:pedestal/tier4/upgrade_efficiency2"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -76,13 +76,13 @@
         "advancement_id": "spectrum:unlocks/upgrades/upgrade_yield"
       },
       "text": "book.spectrum.guidebook.upgrades.page8.text",
-      "recipe_id_1": "spectrum:pedestal/tier4/upgrade_yield"
+      "recipe_id": "spectrum:pedestal/tier4/upgrade_yield"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:unlocks/upgrades/upgrade_yield2",
       "text": "book.spectrum.guidebook.upgrades.page9.text",
-      "recipe_id_1": "spectrum:pedestal/tier4/upgrade_yield2"
+      "recipe_id": "spectrum:pedestal/tier4/upgrade_yield2"
     },
     {
       "type": "modonomicon:multiblock",

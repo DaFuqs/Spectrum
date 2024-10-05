@@ -1,7 +1,7 @@
 {
   "name": "book.spectrum.guidebook.hints.a_new_resource",
   "category": "spectrum:creating_life",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 5,
@@ -13,7 +13,7 @@
     "advancement_id": "spectrum:milestones/reveal_dragonbone"
   },
   "read_by_default": true,
-  "turnin": "spectrum:hidden/collect_dragonbone",
+  "turnin": "spectrum:break_cracked_dragonbone",
   "pages": [
     {
       "type": "spectrum:hint",

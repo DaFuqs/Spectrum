@@ -30,6 +30,7 @@ import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
+import java.util.function.*;
 
 public class SpectrumS2CPacketSender {
 
@@ -116,6 +117,56 @@ public class SpectrumS2CPacketSender {
 			if (!player.equals(notThisPlayerEntity)) {
 				ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PARTICLE_PACKET_WITH_PATTERN_AND_VELOCITY_ID, buf);
 			}
+		}
+	}
+
+	public static void playParticleAroundBlockSides(ServerWorld world, int quantity, @NotNull Vec3d position, @NotNull Vec3d velocity, @NotNull ParticleEffect particleEffect, Predicate<ServerPlayerEntity> sendCheck, @NotNull Direction ... sides) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeInt(quantity);
+		buf.writeDouble(position.x);
+		buf.writeDouble(position.y);
+		buf.writeDouble(position.z);
+		buf.writeDouble(velocity.x);
+		buf.writeDouble(velocity.y);
+		buf.writeDouble(velocity.z);
+		buf.writeIdentifier(Registries.PARTICLE_TYPE.getId(particleEffect.getType()));
+		buf.writeInt(sides.length);
+		for (Direction side : sides) {
+			buf.writeInt(side.ordinal());
+		}
+
+		// Iterate over all players tracking a position in the world and send the packet to each player
+		for (ServerPlayerEntity player : PlayerLookup.tracking(world, BlockPos.ofFloored(position))) {
+			if (!sendCheck.test(player))
+				continue;
+
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PARTICLE_AROUND_BLOCK_SIDES, buf);
+		}
+	}
+
+	public static void playParticleAroundArea(ServerWorld world, int quantity, double yOffset, boolean triangular, boolean solidSpawns, @NotNull Vec3d scale, @NotNull Vec3d position, @NotNull Vec3d velocity, @NotNull ParticleEffect particleEffect, Predicate<ServerPlayerEntity> sendCheck) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeInt(quantity);
+		buf.writeDouble(yOffset);
+		buf.writeBoolean(triangular);
+		buf.writeBoolean(solidSpawns);
+		buf.writeDouble(scale.x);
+		buf.writeDouble(scale.y);
+		buf.writeDouble(scale.z);
+		buf.writeDouble(position.x);
+		buf.writeDouble(position.y);
+		buf.writeDouble(position.z);
+		buf.writeDouble(velocity.x);
+		buf.writeDouble(velocity.y);
+		buf.writeDouble(velocity.z);
+		buf.writeIdentifier(Registries.PARTICLE_TYPE.getId(particleEffect.getType()));
+
+		// Iterate over all players tracking a position in the world and send the packet to each player
+		for (ServerPlayerEntity player : PlayerLookup.tracking(world, BlockPos.ofFloored(position))) {
+			if (!sendCheck.test(player))
+				continue;
+
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PARTICLE_AROUND_AREA, buf);
 		}
 	}
 
@@ -378,6 +429,12 @@ public class SpectrumS2CPacketSender {
 		}
 	}
 
+	public static void sendMentalPresenceSync(ServerPlayerEntity player, double value) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeDouble(value);
+		ServerPlayNetworking.send(player, SpectrumS2CPackets.SYNC_MENTAL_PRESENCE, buf);
+	}
+
 	public static void sendCompactingChestStatusUpdate(CompactingChestBlockEntity chest) {
 		PacketByteBuf buf = PacketByteBufs.create();
 		buf.writeBlockPos(chest.getPos());
@@ -427,6 +484,7 @@ public class SpectrumS2CPacketSender {
 
 	public static void sendPastelNodeStatusUpdate(List<PastelNodeBlockEntity> nodes, boolean longSpin) {
 		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeBoolean(longSpin);
 		buf.writeInt(nodes.size());
 		for (PastelNodeBlockEntity node : nodes) {
 			var world = node.getWorld();

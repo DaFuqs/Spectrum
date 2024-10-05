@@ -363,6 +363,10 @@ public class SpectrumFoodComponents {
 	public static final FoodComponent LIZARD_MEAT = new FoodComponent.Builder()
 			.hunger(2).saturationModifier(0.6F).meat()
 			.build();
+	
+	public static final FoodComponent COOKED_LIZARD_MEAT = new FoodComponent.Builder()
+			.hunger(4).saturationModifier(1.6F).meat()
+			.build();
 
 	public static final FoodComponent GOLDEN_BRISTLE_TEA = new FoodComponent.Builder()
 			.hunger(6).saturationModifier(1F)
@@ -482,7 +486,7 @@ public class SpectrumFoodComponents {
 	
 	public static final FoodComponent STUFFED_PETALS = new FoodComponent.Builder()
 			.hunger(10).saturationModifier(1.2F)
-			//.statusEffect(new StatusEffectInstance(StatusEffects.WALK_IN_WATER, 100, 0), 1.0F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.DOLPHINS_GRACE, 400, 0), 1.0F)
 			.build();
 	
 	public static final FoodComponent PASTICHE = new FoodComponent.Builder()

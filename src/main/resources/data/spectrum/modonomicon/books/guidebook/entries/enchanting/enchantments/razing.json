@@ -7,7 +7,7 @@
   },
   "flag": "spectrum:enchantment_exists_spectrum_razing",
   "category": "spectrum:enchanting",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
@@ -42,8 +42,8 @@
         "advancement_id": "spectrum:unlocks/enchantments/razing_crafting"
       },
       "text": "book.spectrum.guidebook.crafting",
-      "title1": "container.spectrum.rei.enchanter_recipe",
-      "recipe_id_1": "spectrum:enchanter/spectrum_books/razing"
+      "title": "container.spectrum.rei.enchanter_recipe",
+      "recipe_id": "spectrum:enchanter/spectrum_books/razing"
     },
     {
       "type": "spectrum:enchanter_upgrading",
@@ -52,8 +52,8 @@
         "advancement_id": "spectrum:unlocks/enchantments/razing_crafting"
       },
       "text": "book.spectrum.guidebook.upgrading.text",
-      "title1": "container.spectrum.rei.enchantment_upgrading.title",
-      "recipe_id_1": "spectrum:enchantment_upgrade/spectrum/razing_level_2"
+      "title": "container.spectrum.rei.enchantment_upgrading.title",
+      "recipe_id": "spectrum:enchantment_upgrade/spectrum/razing_level_2"
     }
   ]
 }

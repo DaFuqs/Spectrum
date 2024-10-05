@@ -1,0 +1,28 @@
+{
+  "type": "spectrum:spirit_instiller",
+  "time": 200,
+  "experience": 0.5,
+  "ingredient1": {
+    "item": "spectrum:vegetal",
+    "count": 4
+  },
+  "ingredient2": {
+    "item": "neepmeat:whisper_flour"
+  },
+  "center_ingredient": {
+    "item": "minecraft:copper_ingot",
+    "count": 2
+  },
+  "result": {
+    "item": "neepmeat:whisper_brass_ingot",
+    "count": 2
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "neepmeat"
+      ]
+    }
+  ]
+}

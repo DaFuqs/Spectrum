@@ -32,7 +32,7 @@ public class FirestarterIdolBlock extends IdolBlock {
 		put(Blocks.RED_MUSHROOM, new Pair<>(Blocks.CRIMSON_FUNGUS.getDefaultState(), 0.2F));
 		put(Blocks.BROWN_MUSHROOM, new Pair<>(Blocks.WARPED_FUNGUS.getDefaultState(), 0.2F));
 		put(Blocks.SAND, new Pair<>(Blocks.RED_SAND.getDefaultState(), 1.0F));
-		put(Blocks.GRASS, new Pair<>(Blocks.DIRT.getDefaultState(), 0.05F));
+		put(Blocks.GRASS_BLOCK, new Pair<>(Blocks.DIRT.getDefaultState(), 0.05F));
 		put(Blocks.CALCITE, new Pair<>(Blocks.BASALT.getDefaultState(), 0.5F));
 		put(Blocks.NETHERRACK, new Pair<>(Blocks.MAGMA_BLOCK.getDefaultState(), 0.25F));
 		put(Blocks.MAGMA_BLOCK, new Pair<>(Blocks.LAVA.getDefaultState(), 0.5F));

@@ -76,20 +76,16 @@ public class FluidIngredient {
     public @NotNull Ingredient into() {
         if (this == EMPTY) return Ingredient.empty();
         if (this.fluid != null)
-            return Ingredient.ofStacks(this.fluid.getBucketItem()
-                                                 .getDefaultStack());
+            return Ingredient.ofStacks(this.fluid.getBucketItem().getDefaultStack());
         if (this.tag != null) {
             // Handle custom fluid registries
             // in the case of FluidIngredient objects created by other mods.
             Registry<Fluid> registry = RegistryHelper.getRegistryOf(this.tag);
             if(registry == null) return Ingredient.empty();
-            Optional<RegistryEntryList.Named<Fluid>> optional =
-                    registry.getEntryList(this.tag);
+            Optional<RegistryEntryList.Named<Fluid>> optional = registry.getEntryList(this.tag);
             if(optional.isEmpty()) return Ingredient.empty();
             RegistryEntryList.Named<Fluid> list = optional.get();
-            Stream<ItemStack> stacks = list.stream().map(
-                    (entry) -> entry.value().getBucketItem().getDefaultStack()
-            );
+            Stream<ItemStack> stacks = list.stream().map((entry) -> entry.value().getBucketItem().getDefaultStack());
             return Ingredient.ofStacks(stacks);
         }
 

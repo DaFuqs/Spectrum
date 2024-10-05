@@ -6,11 +6,11 @@
     "advancement_id": "spectrum:hidden/collect_cookbooks/imperial_cookbook"
   },
   "category": "spectrum:cuisine",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": -2,
+  "x": -3,
   "y": 1,
   "pages": [
     {
@@ -37,7 +37,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier1/food/peaches_flambe",
+      "recipe_id": "spectrum:pedestal/tier1/food/peaches_flambe",
       "text": "book.spectrum.guidebook.imperial_cookbook.page3.text"
     },
     {
@@ -47,7 +47,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier1/food/chauve_souris_au_vin",
+      "recipe_id": "spectrum:pedestal/tier1/food/chauve_souris_au_vin",
       "text": "book.spectrum.guidebook.imperial_cookbook.page5.text"
     },
     {
@@ -57,7 +57,7 @@
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "recipe_id_1": "spectrum:potion_workshop_crafting/junket",
+      "recipe_id": "spectrum:potion_workshop_crafting/junket",
       "text": "book.spectrum.guidebook.imperial_cookbook.page7.text"
     },
     {
@@ -67,7 +67,7 @@
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "recipe_id_1": "spectrum:titration_barrel/faded_koi",
+      "recipe_id": "spectrum:titration_barrel/faded_koi",
       "text": "book.spectrum.guidebook.imperial_cookbook.page9.text"
     },
     {
@@ -77,7 +77,7 @@
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "recipe_id_1": "spectrum:titration_barrel/special/nectered_viognier",
+      "recipe_id": "spectrum:titration_barrel/special/nectered_viognier",
       "text": "book.spectrum.guidebook.imperial_cookbook.page11.text"
     }
   ]

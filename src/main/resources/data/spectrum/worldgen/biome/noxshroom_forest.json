@@ -23,7 +23,7 @@
       "offset": 2
     },
     "music": {
-      "sound": "spectrum:music.deeper_down_theme",
+      "sound": "spectrum:music.deeper_down.noxshroom_forest",
       "min_delay": 12000,
       "max_delay": 24000,
       "replace_current_music": false
@@ -79,9 +79,7 @@
       "spectrum:moonstone_geode",
       "spectrum:blackslag_pile"
     ],
-    [
-      "spectrum:dragon_fossil_buried"
-    ],
+    [],
     [],
     [],
     [

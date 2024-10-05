@@ -1,0 +1,54 @@
+{
+  "type": "spectrum:enchanter",
+  "time": 300,
+  "required_experience": 100,
+  "ingredients": [
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "spectrum:red_pigment"
+    },
+    {
+      "item": "spectrum:red_pigment"
+    },
+    {
+      "item": "spectrum:stardust"
+    },
+    {
+      "item": "minecraft:flint"
+    },
+    {
+      "item": "spectrum:red_pigment"
+    },
+    {
+      "item": "spectrum:red_pigment"
+    },
+    {
+      "item": "spectrum:stardust"
+    },
+    {
+      "item": "minecraft:flint"
+    }
+  ],
+  "result": {
+    "item": "minecraft:enchanted_book",
+    "nbt": {
+      "StoredEnchantments": [
+        {
+          "id": "farmersdelight:backstabbing",
+          "lvl": "1s"
+        }
+      ]
+    }
+  },
+  "required_advancement": "spectrum:hidden/collect_stardust",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "farmersdelight"
+      ]
+    }
+  ]
+}

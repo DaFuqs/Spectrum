@@ -15,7 +15,7 @@
     ]
   },
   "category": "spectrum:mod_integration",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
@@ -29,8 +29,8 @@
     },
     {
       "type": "spectrum:anvil_crushing",
-      "title1": "container.spectrum.rei.anvil_crushing.title",
-      "recipe_id_1": "spectrum:mod_integration/hexcasting/anvil_crushing/aventurine_edified_leaves",
+      "title": "container.spectrum.rei.anvil_crushing.title",
+      "recipe_id": "spectrum:mod_integration/hexcasting/anvil_crushing/aventurine_edified_leaves",
       "text": "book.spectrum.guidebook.mod_integration.hexcasting.page1.text"
     },
     {
@@ -40,8 +40,8 @@
         "advancement_id": "spectrum:unlocks/blocks/spirit_instiller"
       },
       "text": "book.spectrum.guidebook.mod_integration.hexcasting.page2.text",
-      "title1": "book.spectrum.guidebook.mod_integration.hexcasting.page2.title",
-      "recipe_id_1": "spectrum:mod_integration/hexcasting/spirit_instiller/citrine_edified_leaves"
+      "title": "book.spectrum.guidebook.mod_integration.hexcasting.page2.title",
+      "recipe_id": "spectrum:mod_integration/hexcasting/spirit_instiller/citrine_edified_leaves"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
@@ -50,8 +50,8 @@
         "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
       },
       "text": "book.spectrum.guidebook.mod_integration.hexcasting.page3.text",
-      "title1": "book.spectrum.guidebook.mod_integration.hexcasting.page3.title",
-      "recipe_id_1": "spectrum:mod_integration/hexcasting/fusion_shrine/charged_amethyst_from_amethyst_shard_fusion"
+      "title": "book.spectrum.guidebook.mod_integration.hexcasting.page3.title",
+      "recipe_id": "spectrum:mod_integration/hexcasting/fusion_shrine/charged_amethyst_from_amethyst_shard_fusion"
     },
     {
       "type": "modonomicon:spotlight",

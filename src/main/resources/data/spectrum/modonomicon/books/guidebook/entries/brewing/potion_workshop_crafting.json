@@ -1,12 +1,12 @@
 {
   "name": "book.spectrum.guidebook.potion_workshop_crafting",
-  "icon": "spectrum:potion_workshop",
+  "icon": "minecraft:crafting_table",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
   },
   "category": "spectrum:brewing",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:brewing/potion_workshop",
@@ -25,62 +25,62 @@
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title1": "book.spectrum.guidebook.potion_workshop_crafting.page1.title",
-      "recipe_id_1": "spectrum:potion_workshop_crafting/water_bucket"
+      "title": "book.spectrum.guidebook.potion_workshop_crafting.page1.title",
+      "recipe_id": "spectrum:potion_workshop_crafting/water_bucket"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title1": "book.spectrum.guidebook.potion_workshop_crafting.page2.title",
-      "recipe_id_1": "spectrum:potion_workshop_crafting/lava_bucket",
+      "title": "book.spectrum.guidebook.potion_workshop_crafting.page2.title",
+      "recipe_id": "spectrum:potion_workshop_crafting/lava_bucket",
       "text": "book.spectrum.guidebook.potion_workshop_crafting.page2.text"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title1": "block.spectrum.mud",
-      "recipe_id_1": "spectrum:potion_workshop_crafting/mud_bucket"
+      "title": "block.spectrum.mud",
+      "recipe_id": "spectrum:potion_workshop_crafting/mud_bucket"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title1": "block.spectrum.liquid_crystal",
-      "recipe_id_1": "spectrum:potion_workshop_crafting/liquid_crystal_bucket"
+      "title": "block.spectrum.liquid_crystal",
+      "recipe_id": "spectrum:potion_workshop_crafting/liquid_crystal_bucket"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title1": "block.spectrum.midnight_solution",
+      "title": "block.spectrum.midnight_solution",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/midnight_solution"
       },
-      "recipe_id_1": "spectrum:potion_workshop_crafting/midnight_solution_bucket"
+      "recipe_id": "spectrum:potion_workshop_crafting/midnight_solution_bucket"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title1": "block.spectrum.dragonrot",
+      "title": "block.spectrum.dragonrot",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/dragonrot_bucket"
       },
-      "recipe_id_1": "spectrum:potion_workshop_crafting/dragonrot_bucket"
+      "recipe_id": "spectrum:potion_workshop_crafting/dragonrot_bucket"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title1": "book.spectrum.guidebook.potion_workshop_crafting.page7.title",
-      "recipe_id_1": "spectrum:potion_workshop_crafting/honey_bottle"
+      "title": "book.spectrum.guidebook.potion_workshop_crafting.page7.title",
+      "recipe_id": "spectrum:potion_workshop_crafting/honey_bottle"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title1": "book.spectrum.guidebook.potion_workshop_crafting.page8.title",
-      "recipe_id_1": "spectrum:potion_workshop_crafting/powder_snow_bucket"
+      "title": "book.spectrum.guidebook.potion_workshop_crafting.page8.title",
+      "recipe_id": "spectrum:potion_workshop_crafting/powder_snow_bucket"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title1": "book.spectrum.guidebook.potion_workshop_crafting.page9.title",
-      "recipe_id_1": "spectrum:potion_workshop_crafting/experience_bottle",
+      "title": "book.spectrum.guidebook.potion_workshop_crafting.page9.title",
+      "recipe_id": "spectrum:potion_workshop_crafting/experience_bottle",
       "text": "book.spectrum.guidebook.potion_workshop_crafting.page9.text"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "recipe_id_1": "spectrum:potion_workshop_crafting/dragon_breath",
+      "recipe_id": "spectrum:potion_workshop_crafting/dragon_breath",
       "text": "book.spectrum.guidebook.potion_workshop_crafting.page10.text"
     }
   ]

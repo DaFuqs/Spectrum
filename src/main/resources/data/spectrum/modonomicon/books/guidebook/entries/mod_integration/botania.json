@@ -15,7 +15,7 @@
     ]
   },
   "category": "spectrum:mod_integration",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
@@ -29,8 +29,8 @@
     },
     {
       "type": "spectrum:anvil_crushing",
-      "title1": "container.spectrum.rei.anvil_crushing.title",
-      "recipe_id_1": "spectrum:mod_integration/botania/anvil_crushing/petals/magenta_mystical_flower_to_petals",
+      "title": "container.spectrum.rei.anvil_crushing.title",
+      "recipe_id": "spectrum:mod_integration/botania/anvil_crushing/petals/magenta_mystical_flower_to_petals",
       "text": "book.spectrum.guidebook.mod_integration.botania.page1.text"
     },
     {
@@ -44,45 +44,47 @@
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.mod_integration.botania.page3.text",
-      "title1": "book.spectrum.guidebook.mod_integration.botania.page3.title",
-      "recipe_id_1": "spectrum:mod_integration/botania/pedestal/glimmering_flowers/purple_glimmering_flower"
+      "title": "book.spectrum.guidebook.mod_integration.botania.page3.title",
+      "recipe_id": "spectrum:mod_integration/botania/pedestal/glimmering_flowers/purple_glimmering_flower"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.mod_integration.botania.page4.text",
-      "title1": "book.spectrum.guidebook.mod_integration.botania.page4.title",
-      "recipe_id_1": "spectrum:mod_integration/botania/pedestal/mushrooms/blue_mushroom"
+      "title": "book.spectrum.guidebook.mod_integration.botania.page4.title",
+      "recipe_id": "spectrum:mod_integration/botania/pedestal/mushrooms/blue_mushroom"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.mod_integration.botania.page5.text",
-      "recipe_id_1": "spectrum:mod_integration/botania/pedestal/floral_fertilizer"
+      "recipe_id": "spectrum:mod_integration/botania/pedestal/floral_fertilizer"
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "botania:black_hole_talisman",
+      "item": {
+        "item": "botania:black_hole_talisman"
+      },
       "text": "book.spectrum.guidebook.mod_integration.botania.page20.text",
       "title": "book.spectrum.guidebook.mod_integration.botania.page20.title"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
       "text": "book.spectrum.guidebook.mod_integration.botania.page6.text",
-      "recipe_id_1": "spectrum:mod_integration/botania/spirit_instiller/blacker_lotus"
+      "recipe_id": "spectrum:mod_integration/botania/spirit_instiller/blacker_lotus"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
       "text": "book.spectrum.guidebook.mod_integration.botania.blackest_lotus.text",
-      "recipe_id_1": "spectrum:mod_integration/botania/spirit_instiller/blackest_lotus"
+      "recipe_id": "spectrum:mod_integration/botania/spirit_instiller/blackest_lotus"
     },
     {
       "type": "spectrum:primordial_fire_burning",
       "text": "book.spectrum.guidebook.mod_integration.botania.least_black_lotus.text",
-      "recipe_id_1": "spectrum:mod_integration/botania/primordial_fire_burning/least_black_lotus"
+      "recipe_id": "spectrum:mod_integration/botania/primordial_fire_burning/least_black_lotus"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
       "text": "book.spectrum.guidebook.mod_integration.botania.page7.text",
-      "recipe_id_1": "spectrum:mod_integration/botania/spirit_instiller/overgrowth_seed"
+      "recipe_id": "spectrum:mod_integration/botania/spirit_instiller/overgrowth_seed"
     },
     {
       "type": "modonomicon:spotlight",
@@ -106,7 +108,7 @@
       "item": {
         "item": "botania:black_lotus"
       },
-      "text": "book.spectrum.guidebook.mod_integration.botania.page9.text"
+      "text": "book.spectrum.guidebook.mod_integration.botania.black_lotus_reagent.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -118,7 +120,31 @@
       "item": {
         "item": "botania:blacker_lotus"
       },
-      "text": "book.spectrum.guidebook.mod_integration.botania.page10.text"
+      "text": "book.spectrum.guidebook.mod_integration.botania.blacker_lotus_reagent.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.potion_reagent",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
+      },
+      "item": {
+        "item": "spectrum:blackest_lotus"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.botania.blackest_lotus_reagent.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.potion_reagent",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
+      },
+      "item": {
+        "item": "spectrum:least_black_lotus"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.botania.least_black_lotus_reagent.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -130,7 +156,7 @@
       "item": {
         "item": "botania:life_essence"
       },
-      "text": "book.spectrum.guidebook.mod_integration.botania.page11.text"
+      "text": "book.spectrum.guidebook.mod_integration.botania.life_essence_reagent.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -142,7 +168,7 @@
       "item": {
         "item": "botania:mana_powder"
       },
-      "text": "book.spectrum.guidebook.mod_integration.botania.page12.text"
+      "text": "book.spectrum.guidebook.mod_integration.botania.mana_powder_reagent.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -154,7 +180,7 @@
       "item": {
         "item": "botania:pixie_dust"
       },
-      "text": "book.spectrum.guidebook.mod_integration.botania.page13.text"
+      "text": "book.spectrum.guidebook.mod_integration.botania.pixie_dust_reagent.text"
     }
   ]
 }

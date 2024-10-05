@@ -14,42 +14,42 @@ import org.jetbrains.annotations.*;
 public class PaintbrushScreen extends QuickNavigationGridScreen<PaintbrushScreenHandler> {
 	
 	public static final QuickNavigationGridScreen.Grid MAGENTA_GRID = new QuickNavigationGridScreen.Grid(
-			GridEntry.colored(InkColors.MAGENTA.getColorVec(), "spectrum.ink.color.magenta", (screen) -> chooseColor(InkColors.MAGENTA)),
-			GridEntry.colored(InkColors.PINK.getColorVec(), "spectrum.ink.color.pink", (screen) -> chooseColor(InkColors.PINK)),
-			GridEntry.colored(InkColors.RED.getColorVec(), "spectrum.ink.color.red", (screen) -> chooseColor(InkColors.RED)),
-			GridEntry.colored(InkColors.PURPLE.getColorVec(), "spectrum.ink.color.purple", (screen) -> chooseColor(InkColors.PURPLE)),
+			GridEntry.colored(InkColors.MAGENTA.getColorVec(), "spectrum.ink.color.spectrum.magenta", (screen) -> chooseColor(InkColors.MAGENTA)),
+			GridEntry.colored(InkColors.PINK.getColorVec(), "spectrum.ink.color.spectrum.pink", (screen) -> chooseColor(InkColors.PINK)),
+			GridEntry.colored(InkColors.RED.getColorVec(), "spectrum.ink.color.spectrum.red", (screen) -> chooseColor(InkColors.RED)),
+			GridEntry.colored(InkColors.PURPLE.getColorVec(), "spectrum.ink.color.spectrum.purple", (screen) -> chooseColor(InkColors.PURPLE)),
 			GridEntry.BACK
 	);
 	
 	public static final QuickNavigationGridScreen.Grid CYAN_GRID = new QuickNavigationGridScreen.Grid(
-			GridEntry.colored(InkColors.CYAN.getColorVec(), "spectrum.ink.color.cyan", (screen) -> chooseColor(InkColors.CYAN)),
+			GridEntry.colored(InkColors.CYAN.getColorVec(), "spectrum.ink.color.spectrum.cyan", (screen) -> chooseColor(InkColors.CYAN)),
 			GridEntry.BACK,
-			GridEntry.colored(InkColors.LIGHT_BLUE.getColorVec(), "spectrum.ink.color.light_blue", (screen) -> chooseColor(InkColors.LIGHT_BLUE)),
-			GridEntry.colored(InkColors.BLUE.getColorVec(), "spectrum.ink.color.blue", (screen) -> chooseColor(InkColors.BLUE)),
-			GridEntry.colored(InkColors.LIME.getColorVec(), "spectrum.ink.color.lime", (screen) -> chooseColor(InkColors.LIME))
+			GridEntry.colored(InkColors.LIGHT_BLUE.getColorVec(), "spectrum.ink.color.spectrum.light_blue", (screen) -> chooseColor(InkColors.LIGHT_BLUE)),
+			GridEntry.colored(InkColors.BLUE.getColorVec(), "spectrum.ink.color.spectrum.blue", (screen) -> chooseColor(InkColors.BLUE)),
+			GridEntry.colored(InkColors.LIME.getColorVec(), "spectrum.ink.color.spectrum.lime", (screen) -> chooseColor(InkColors.LIME))
 	);
 	
 	public static final QuickNavigationGridScreen.Grid YELLOW_GRID = new QuickNavigationGridScreen.Grid(
-			GridEntry.colored(InkColors.YELLOW.getColorVec(), "spectrum.ink.color.yellow", (screen) -> chooseColor(InkColors.YELLOW)),
-			GridEntry.colored(InkColors.GREEN.getColorVec(), "spectrum.ink.color.green", (screen) -> chooseColor(InkColors.GREEN)),
+			GridEntry.colored(InkColors.YELLOW.getColorVec(), "spectrum.ink.color.spectrum.yellow", (screen) -> chooseColor(InkColors.YELLOW)),
+			GridEntry.colored(InkColors.GREEN.getColorVec(), "spectrum.ink.color.spectrum.green", (screen) -> chooseColor(InkColors.GREEN)),
 			GridEntry.BACK,
-			GridEntry.colored(InkColors.BROWN.getColorVec(), "spectrum.ink.color.brown", (screen) -> chooseColor(InkColors.BROWN)),
-			GridEntry.colored(InkColors.ORANGE.getColorVec(), "spectrum.ink.color.orange", (screen) -> chooseColor(InkColors.ORANGE))
+			GridEntry.colored(InkColors.BROWN.getColorVec(), "spectrum.ink.color.spectrum.brown", (screen) -> chooseColor(InkColors.BROWN)),
+			GridEntry.colored(InkColors.ORANGE.getColorVec(), "spectrum.ink.color.spectrum.orange", (screen) -> chooseColor(InkColors.ORANGE))
 	);
 	
 	public static final QuickNavigationGridScreen.Grid BLACK_GRID = new QuickNavigationGridScreen.Grid(
-			GridEntry.colored(InkColors.BLACK.getColorVec(), "spectrum.ink.color.black", (screen) -> chooseColor(InkColors.BLACK)),
-			GridEntry.colored(InkColors.WHITE.getColorVec(), "spectrum.ink.color.white", (screen) -> chooseColor(InkColors.WHITE)),
-			GridEntry.colored(InkColors.GRAY.getColorVec(), "spectrum.ink.color.gray", (screen) -> chooseColor(InkColors.GRAY)),
+			GridEntry.colored(InkColors.BLACK.getColorVec(), "spectrum.ink.color.spectrum.black", (screen) -> chooseColor(InkColors.BLACK)),
+			GridEntry.colored(InkColors.WHITE.getColorVec(), "spectrum.ink.color.spectrum.white", (screen) -> chooseColor(InkColors.WHITE)),
+			GridEntry.colored(InkColors.GRAY.getColorVec(), "spectrum.ink.color.spectrum.gray", (screen) -> chooseColor(InkColors.GRAY)),
 			GridEntry.BACK,
-			GridEntry.colored(InkColors.LIGHT_GRAY.getColorVec(), "spectrum.ink.color.light_gray", (screen) -> chooseColor(InkColors.LIGHT_GRAY))
+			GridEntry.colored(InkColors.LIGHT_GRAY.getColorVec(), "spectrum.ink.color.spectrum.light_gray", (screen) -> chooseColor(InkColors.LIGHT_GRAY))
 	);
 	
 	public PaintbrushScreen(PaintbrushScreenHandler handler, PlayerInventory playerInventory, Text title) {
 		super(handler, playerInventory, title);
 		gridStack.push(new QuickNavigationGridScreen.Grid(
 				GridEntry.CLOSE,
-				handler.hasAccessToWhites() ? GridEntry.colored(InkColors.BLACK.getColorVec(), "spectrum.ink.color.group_blacks", (screen) -> selectGrid(BLACK_GRID)) : GridEntry.colored(InkColors.BLACK.getColorVec(), "spectrum.ink.color.black", (screen) -> chooseColor(InkColors.BLACK)),
+				handler.hasAccessToWhites() ? GridEntry.colored(InkColors.BLACK.getColorVec(), "spectrum.ink.color.group_blacks", (screen) -> selectGrid(BLACK_GRID)) : GridEntry.colored(InkColors.BLACK.getColorVec(), "spectrum.ink.color.spectrum.black", (screen) -> chooseColor(InkColors.BLACK)),
 				GridEntry.colored(InkColors.MAGENTA.getColorVec(), "spectrum.ink.color.group_magentas", (screen) -> selectGrid(MAGENTA_GRID)),
 				GridEntry.colored(InkColors.CYAN.getColorVec(), "spectrum.ink.color.group_cyans", (screen) -> selectGrid(CYAN_GRID)),
 				GridEntry.colored(InkColors.YELLOW.getColorVec(), "spectrum.ink.color.group_yellows", (screen) -> selectGrid(YELLOW_GRID))

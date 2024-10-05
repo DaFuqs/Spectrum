@@ -42,9 +42,12 @@ public class SingleInkStorage implements InkStorage {
 	
 	public static SingleInkStorage fromNbt(@NotNull NbtCompound compound) {
 		long maxEnergyTotal = compound.getLong("MaxEnergyTotal");
-		InkColor color = InkColor.ofIdString(compound.getString("Color"));
-		long amount = compound.getLong("Amount");
-		return new SingleInkStorage(maxEnergyTotal, color, amount);
+		Optional<InkColor> color = InkColor.ofIdString(compound.getString("Color"));
+		if (color.isPresent()) {
+			long amount = compound.getLong("Amount");
+			return new SingleInkStorage(maxEnergyTotal, color.get(), amount);
+		}
+		return new SingleInkStorage(maxEnergyTotal, InkColors.CYAN, 0);
 	}
 	
 	public InkColor getStoredColor() {
@@ -149,7 +152,7 @@ public class SingleInkStorage implements InkStorage {
 	
 	@Override
 	public void addTooltip(List<Text> tooltip) {
-		tooltip.add(Text.translatable("item.spectrum.ink_flask.tooltip", getShortenedNumberString(this.maxEnergy)));
+		tooltip.add(Text.translatable("item.spectrum.ink_storage.stores_up_to_ink_per_type", getShortenedNumberString(this.maxEnergy)));
 		if (this.storedEnergy > 0) {
 			InkStorage.addInkStoreBulletTooltip(tooltip, this.storedColor, this.storedEnergy);
 		}

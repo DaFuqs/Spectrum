@@ -44,5 +44,9 @@ public class KindlingEntityRenderer extends MobEntityRenderer<KindlingEntity, Ki
 		
 		return isBlinking ? variant.blinkingTexture() : variant.defaultTexture();
 	}
-	
+
+	@Override
+	protected boolean isShaking(KindlingEntity entity) {
+		return entity.getEepyTime() > 0;
+	}
 }

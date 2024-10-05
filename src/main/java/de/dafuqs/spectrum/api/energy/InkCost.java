@@ -3,6 +3,8 @@ package de.dafuqs.spectrum.api.energy;
 import de.dafuqs.spectrum.api.energy.color.*;
 import net.minecraft.nbt.*;
 
+import java.util.*;
+
 public class InkCost {
 	
 	private final InkColor color;
@@ -27,9 +29,9 @@ public class InkCost {
 	}
 	
 	public static InkCost fromNbt(NbtCompound nbt) {
-		InkColor inkColor = InkColor.ofIdString(nbt.getString("InkColor"));
+		Optional<InkColor> inkColor = InkColor.ofIdString(nbt.getString("InkColor"));
 		long inkCost = nbt.getLong("InkCost");
-		return new InkCost(inkColor, inkCost);
+		return new InkCost(inkColor.orElse(InkColors.CYAN), inkCost);
 	}
 	
 }

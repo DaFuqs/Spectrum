@@ -87,11 +87,11 @@ public class InkFlaskItem extends Item implements InkStorageItem<SingleInkStorag
 	@Override
 	public BarSignature getSignature(@Nullable PlayerEntity player, @NotNull ItemStack stack, int index) {
 		var storage = getEnergyStorage(stack);
-		var color = storage.getStoredColor();
 		
 		if (storage.isEmpty())
 			return ExtendedItemBarProvider.PASS;
 		
+		var color = storage.getStoredColor();
 		var progress = Support.getSensiblePercent(storage.getCurrentTotal(), storage.getMaxTotal(), 14);
 		return new BarSignature(1, 13, 14, progress, 1, color.getColorInt(), 2, ExtendedItemBarProvider.DEFAULT_BACKGROUND_COLOR);
 	}

@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:rotten_ground",
   "category": "spectrum:dimension",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:dimension/biomes",
@@ -32,14 +32,14 @@
       "item": {
         "item": "spectrum:snapping_ivy"
       },
-      "text": "book.spectrum.guidebook.dragonrot_swamp.page1.text"
+      "text": "book.spectrum.guidebook.dragonrot_swamp.page2.text"
     },
     {
       "type": "modonomicon:spotlight",
       "item": {
         "item": "spectrum:rotten_ground"
       },
-      "text": "book.spectrum.guidebook.dragonrot_swamp.page2.text"
+      "text": "book.spectrum.guidebook.dragonrot_swamp.page3.text"
     }
   ]
 }

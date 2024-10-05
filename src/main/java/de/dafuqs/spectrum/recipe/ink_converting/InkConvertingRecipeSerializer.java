@@ -7,6 +7,8 @@ import net.minecraft.network.*;
 import net.minecraft.recipe.*;
 import net.minecraft.util.*;
 
+import java.util.*;
+
 public class InkConvertingRecipeSerializer implements GatedRecipeSerializer<InkConvertingRecipe> {
 	
 	public final InkConvertingRecipeSerializer.RecipeFactory recipeFactory;
@@ -28,10 +30,14 @@ public class InkConvertingRecipeSerializer implements GatedRecipeSerializer<InkC
 		JsonElement jsonElement = JsonHelper.hasArray(jsonObject, "ingredient") ? JsonHelper.getArray(jsonObject, "ingredient") : JsonHelper.getObject(jsonObject, "ingredient");
 		Ingredient ingredient = Ingredient.fromJson(jsonElement);
 		
-		InkColor inkColor = InkColor.ofIdString(JsonHelper.getString(jsonObject, "ink_color"));
+		String inkColorString = JsonHelper.getString(jsonObject, "ink_color");
+		Optional<InkColor> inkColor = InkColor.ofIdString(inkColorString);
+		if (inkColor.isEmpty()) {
+			throw new JsonParseException("InkColor " + inkColorString + " in Ink Converting recipe " + identifier + " does not exist.");
+		}
 		long inkAmount = JsonHelper.getLong(jsonObject, "amount");
 		
-		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, ingredient, inkColor, inkAmount);
+		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, ingredient, inkColor.get(), inkAmount);
 	}
 	
 	@Override
@@ -52,7 +58,7 @@ public class InkConvertingRecipeSerializer implements GatedRecipeSerializer<InkC
 		Identifier requiredAdvancementIdentifier = readNullableIdentifier(packetByteBuf);
 		
 		Ingredient ingredient = Ingredient.fromPacket(packetByteBuf);
-		InkColor inkColor = InkColor.ofId(packetByteBuf.readIdentifier());
+		InkColor inkColor = InkColor.ofId(packetByteBuf.readIdentifier()).get();
 		long inkAmount = packetByteBuf.readLong();
 		
 		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, ingredient, inkColor, inkAmount);

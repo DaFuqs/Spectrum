@@ -6,10 +6,13 @@
     "advancement_id": "spectrum:midgame/create_midnight_aberration"
   },
   "category": "spectrum:general",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:general/midnight_solution"
+    },
+    {
+      "entry": "spectrum:general/midnight_aberration"
     }
   ],
   "background_u_index": 0,
@@ -31,7 +34,7 @@
         "advancement_id": "spectrum:unlocks/blocks/midnight_solution"
       },
       "text": "book.spectrum.guidebook.midnight_chip.page1.text",
-      "recipe_id_1": "spectrum:potion_workshop_crafting/midnight_solution_bucket"
+      "recipe_id": "spectrum:potion_workshop_crafting/midnight_solution_bucket"
     }
   ]
 }

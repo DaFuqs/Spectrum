@@ -23,7 +23,7 @@
       "offset": 2
     },
     "music": {
-      "sound": "spectrum:music.deeper_down_theme",
+      "sound": "spectrum:music.deeper_down.crystal_gardens",
       "min_delay": 12000,
       "max_delay": 24000,
       "replace_current_music": false
@@ -82,10 +82,10 @@
       "spectrum:dd_downstone_sloped",
       "spectrum:moonstone_geode"
     ],
-    [
-      "spectrum:dragon_fossil_buried"
-    ],
     [],
+    [
+      "spectrum:dd_diorite_delta"
+    ],
     [],
     [
       "spectrum:disk_overgrown_slush",

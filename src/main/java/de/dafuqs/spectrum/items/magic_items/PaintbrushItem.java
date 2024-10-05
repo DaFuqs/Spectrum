@@ -101,7 +101,7 @@ public class PaintbrushItem extends Item implements SignChangingItem {
 	public static Optional<InkColor> getColor(ItemStack stack) {
 		NbtCompound compound = stack.getNbt();
 		if (compound != null && compound.contains(COLOR_NBT_STRING)) {
-			return Optional.ofNullable(InkColor.ofIdString(compound.getString(COLOR_NBT_STRING)));
+			return InkColor.ofIdString(compound.getString(COLOR_NBT_STRING));
 		}
 		return Optional.empty();
 	}

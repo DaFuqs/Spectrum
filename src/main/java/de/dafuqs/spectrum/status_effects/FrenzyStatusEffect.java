@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.*;
-import net.minecraft.entity.damage.DamageSources;
 import net.minecraft.entity.effect.*;
 import org.jetbrains.annotations.*;
 
@@ -60,8 +59,8 @@ public class FrenzyStatusEffect extends SpectrumStatusEffect implements Stackabl
 		if (!scoredKillInTime && lastKillTickDifference % REQUIRE_KILL_EVERY_X_TICKS == 0) {
 			updateAttributes(entity, amplifier, -1);
 		}
-
-		var potency = (SleepStatusEffect.getGeneralSleepVulnerability(entity) * (amplifier + 1) / 4) / 20;
+		
+		var potency = (SleepStatusEffect.getSleepScaling(entity) * (amplifier + 1) / 3) / 20;
 		if (potency > 0 && entity.getHealth() > potency) {
 			entity.damage(SpectrumDamageTypes.sleep(entity.getWorld(), null), potency);
 		}

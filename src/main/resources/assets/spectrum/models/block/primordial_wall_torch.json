@@ -1,6 +1,104 @@
 {
-  "parent": "minecraft:block/template_torch_wall",
-  "textures": {
-    "torch": "spectrum:block/primordial_torch"
-  }
+	"credit": "~ XOXO Azzyypaaras ~",
+	"textures": {
+		"0": "spectrum:block/primordial_torch",
+		"particle": "spectrum:block/primordial_torch"
+	},
+	"elements": [
+		{
+			"name": "body",
+			"from": [2.79635, -1.24121, 7],
+			"to": [4.79635, 12.75879, 9],
+			"rotation": {"angle": -22.5, "axis": "z", "origin": [8, 11.0625, 8]},
+			"faces": {
+				"north": {"uv": [3, 2, 5, 16], "texture": "#0"},
+				"east": {"uv": [3, 2, 5, 16], "texture": "#0"},
+				"south": {"uv": [3, 2, 5, 16], "texture": "#0"},
+				"west": {"uv": [3, 2, 5, 16], "texture": "#0"},
+				"up": {"uv": [6, 5, 8, 7], "rotation": 90, "texture": "#0"},
+				"down": {"uv": [6, 14, 8, 16], "rotation": 270, "texture": "#0"}
+			}
+		},
+		{
+			"name": "neck",
+			"from": [2.29635, 7.25879, 6.5],
+			"to": [5.29635, 10.25879, 9.5],
+			"rotation": {"angle": -22.5, "axis": "z", "origin": [8, 11.0625, 8]},
+			"faces": {
+				"north": {"uv": [10, 7, 13, 10], "texture": "#0"},
+				"east": {"uv": [10, 7, 13, 10], "texture": "#0"},
+				"south": {"uv": [10, 7, 13, 10], "texture": "#0"},
+				"west": {"uv": [10, 7, 13, 10], "texture": "#0"},
+				"up": {"uv": [13, 13, 16, 16], "rotation": 90, "texture": "#0"},
+				"down": {"uv": [13, 13, 16, 16], "rotation": 270, "texture": "#0"}
+			}
+		},
+		{
+			"name": "neck inner",
+			"from": [5.29635, 10.25879, 9.5],
+			"to": [2.29635, 7.25879, 6.5],
+			"rotation": {"angle": -22.5, "axis": "z", "origin": [8, 11.0625, 8]},
+			"faces": {
+				"north": {"uv": [10, 10, 13, 7], "texture": "#0"},
+				"east": {"uv": [10, 10, 13, 7], "texture": "#0"},
+				"south": {"uv": [10, 10, 13, 7], "texture": "#0"},
+				"west": {"uv": [10, 10, 13, 7], "texture": "#0"},
+				"up": {"uv": [13, 13, 16, 16], "rotation": 90, "texture": "#0"},
+				"down": {"uv": [13, 13, 16, 16], "rotation": 270, "texture": "#0"}
+			}
+		},
+		{
+			"name": "glow",
+			"from": [5.04635, 13.00879, 9.25],
+			"to": [2.54635, 9.75879, 6.75],
+			"rotation": {"angle": -22.5, "axis": "z", "origin": [8, 11.0625, 8]},
+			"faces": {
+				"north": {"uv": [8, 5, 10, 7], "texture": "#0"},
+				"east": {"uv": [8, 5, 10, 7], "texture": "#0"},
+				"south": {"uv": [8, 5, 10, 7], "texture": "#0"},
+				"west": {"uv": [8, 5, 10, 7], "texture": "#0"},
+				"up": {"uv": [8, 5, 10, 7], "rotation": 90, "texture": "#0"},
+				"down": {"uv": [8, 5, 10, 7], "rotation": 270, "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 45, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 225, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"translation": [0, 3, 0],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"gui": {
+			"rotation": [30, 225, 0],
+			"scale": [0.625, 0.625, 0.625]
+		},
+		"fixed": {
+			"scale": [0.5, 0.5, 0.5]
+		}
+	},
+	"groups": [
+		{
+			"name": "torch",
+			"origin": [9, 11.25, 10],
+			"color": 0,
+			"children": [0, 1, 2, 3]
+		}
+	]
 }

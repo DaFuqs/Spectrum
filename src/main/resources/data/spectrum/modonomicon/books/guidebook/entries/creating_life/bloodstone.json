@@ -2,11 +2,11 @@
   "name": "book.spectrum.guidebook.bloodstone.name",
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:unlocks/resources/bloodstone"
+    "advancement_id": "spectrum:hidden/collect_raw_bloodstone"
   },
   "icon": "spectrum:raw_bloodstone",
   "category": "spectrum:creating_life",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:creating_life/effulgent_feathers"
@@ -16,13 +16,13 @@
   "background_v_index": 0,
   "x": 8,
   "y": 3,
-  "turnin": "spectrum:lategame/grow_bloodstone_in_crystallarieum",
+  "turnin": "spectrum:grow_bloodstone_in_crystallarieum",
   "pages": [
     {
       "type": "modonomicon:spotlight",
       "title": "book.spectrum.guidebook.bloodstone.name",
       "item": {
-        "item": "spectrum:effulgent_feather"
+        "item": "spectrum:raw_bloodstone"
       },
       "text": "book.spectrum.guidebook.bloodstone.page0.text"
     },
@@ -30,10 +30,10 @@
       "type": "spectrum:crystallarieum_growing",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:unlocks/blocks/crystallarieum"
+        "advancement_id": "spectrum:unlocks/resources/bloodstone"
       },
-      "title1": "book.spectrum.guidebook.bloodstone.page1.title",
-      "recipe_id_1": "spectrum:crystallarieum/bloodstone",
+      "title": "book.spectrum.guidebook.bloodstone.page1.title",
+      "recipe_id": "spectrum:crystallarieum/bloodstone",
       "text": "book.spectrum.guidebook.bloodstone.page1.text"
     }
   ]

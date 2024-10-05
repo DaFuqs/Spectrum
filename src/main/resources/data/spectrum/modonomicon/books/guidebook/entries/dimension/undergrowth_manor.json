@@ -1,0 +1,55 @@
+{
+  "name": "structure.spectrum.undergrowth_manor",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:lategame/find_undergrowth_manor"
+  },
+  "icon": "spectrum:longing_chimera",
+  "category": "spectrum:dimension",
+  "hide_while_locked": true,
+  "parents": [
+    {
+      "entry": "spectrum:dimension/delving_deeper_down"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 4,
+  "x": -2,
+  "y": -4,
+  "pages": [
+    {
+      "type": "modonomicon:image",
+      "title": "structure.spectrum.undergrowth_manor",
+      "images": [
+        "spectrum:textures/gui/guidebook/undergrowth_manor.png"
+      ],
+      "border": true,
+      "text": "book.spectrum.guidebook.undergrowth_manor.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.undergrowth_manor.page1.text"
+    },
+    {
+      "type": "modonomicon:image",
+      "title": "book.spectrum.guidebook.undergrowth_manor.page4.title",
+      "images": [
+        "spectrum:textures/gui/guidebook/stargazer_manxi.png"
+      ],
+      "border": true,
+      "text": "book.spectrum.guidebook.undergrowth_manor.page4.text",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_cookbooks/poisoners_handbook"
+      }
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.undergrowth_manor.page5.text",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_cookbooks/poisoners_handbook"
+      }
+    }
+  ]
+}

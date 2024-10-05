@@ -3,7 +3,7 @@
   "item": "spectrum:bitter_oils",
   "modifiers": {
     "incurable": true,
-    "flat_yield_bonus": -3.0
+    "flat_yield_bonus": -4.0
   },
-  "required_advancement": "spectrum:hidden/collect_cookbooks/poisoners_cookbook"
+  "required_advancement": "spectrum:hidden/collect_cookbooks/poisoners_handbook"
 }

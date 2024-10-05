@@ -3,14 +3,15 @@ package de.dafuqs.spectrum.compat.modonomicon.client.pages;
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.compat.modonomicon.*;
 import de.dafuqs.spectrum.compat.modonomicon.pages.*;
 import de.dafuqs.spectrum.recipe.fusion_shrine.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.fluid.*;
-import net.minecraft.item.*;
+import net.minecraft.recipe.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -43,21 +44,13 @@ public class BookFusionShrineCraftingPageRenderer extends BookGatedRecipePageRen
         for (int i = 0; i < ingredients.size(); i++) {
             ModonomiconHelper.renderIngredientStack(drawContext, parentScreen, recipeX + startX + i * 16, recipeY + 3, mouseX, mouseY, ingredients.get(i));
         }
-
-        if (recipe.getFluidInput() != Fluids.EMPTY) {
-            Item fluidBucketItem = recipe.getFluidInput().getBucketItem();
-            if (fluidBucketItem != null) {
-                // the shrine
-                parentScreen.renderItemStack(drawContext, recipeX + 14, recipeY + 31, mouseX, mouseY, recipe.createIcon());
-
-                // the fluid as a bucket
-                ItemStack fluidBucketItemStack = new ItemStack(fluidBucketItem);
-                parentScreen.renderItemStack(drawContext, recipeX + 30, recipeY + 31, mouseX, mouseY, fluidBucketItemStack);
-
-            }
+        
+        if (recipe.getFluid() != FluidIngredient.EMPTY) {
+            @NotNull Ingredient fluidIngredient = recipe.getFluid().into();
+            parentScreen.renderItemStack(drawContext, recipeX + 14, recipeY + 31, mouseX, mouseY, recipe.createIcon()); // the shrine
+            parentScreen.renderIngredient(drawContext, recipeX + 30, recipeY + 31, mouseX, mouseY, fluidIngredient); // the fluid
         } else {
-            // the shrine
-            parentScreen.renderItemStack(drawContext, recipeX + 22, recipeY + 31, mouseX, mouseY, recipe.createIcon());
+            parentScreen.renderItemStack(drawContext, recipeX + 22, recipeY + 31, mouseX, mouseY, recipe.createIcon()); // the shrine
         }
 
         // the output

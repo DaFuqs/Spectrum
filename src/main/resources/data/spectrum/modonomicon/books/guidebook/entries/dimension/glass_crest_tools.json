@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:glass_crest_workstaff",
   "category": "spectrum:dimension",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:dimension/malachite_tools"
@@ -33,8 +33,8 @@
         "advancement_id": "spectrum:unlocks/malachite/glass_crest_workstaff"
       },
       "text": "book.spectrum.guidebook.glass_crest_tools.page1.text",
-      "title1": "item.spectrum.workstaff",
-      "recipe_id_1": "spectrum:fusion_shrine/malachite/glass_crest_workstaff"
+      "title": "item.spectrum.workstaff",
+      "recipe_id": "spectrum:fusion_shrine/malachite/glass_crest_workstaff"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
@@ -43,8 +43,8 @@
         "advancement_id": "spectrum:unlocks/malachite/glass_crest_ultra_greatsword"
       },
       "text": "book.spectrum.guidebook.glass_crest_tools.page2.text",
-      "title1": "book.spectrum.guidebook.glass_crest_tools.page2.title",
-      "recipe_id_1": "spectrum:fusion_shrine/malachite/glass_crest_ultra_greatsword"
+      "title": "book.spectrum.guidebook.glass_crest_tools.page2.title",
+      "recipe_id": "spectrum:fusion_shrine/malachite/glass_crest_ultra_greatsword"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
@@ -53,8 +53,8 @@
         "advancement_id": "spectrum:unlocks/malachite/glass_crest_crossbow"
       },
       "text": "book.spectrum.guidebook.glass_crest_tools.page3.text",
-      "title1": "book.spectrum.guidebook.crossbow",
-      "recipe_id_1": "spectrum:fusion_shrine/malachite/glass_crest_crossbow"
+      "title": "book.spectrum.guidebook.crossbow",
+      "recipe_id": "spectrum:fusion_shrine/malachite/glass_crest_crossbow"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
@@ -63,8 +63,8 @@
         "advancement_id": "spectrum:unlocks/malachite/ferocious_glass_crest_bident"
       },
       "text": "book.spectrum.guidebook.glass_crest_tools.page4.text",
-      "title1": "book.spectrum.guidebook.glass_crest_tools.page4.title",
-      "recipe_id_1": "spectrum:fusion_shrine/malachite/ferocious_glass_crest_bident"
+      "title": "book.spectrum.guidebook.glass_crest_tools.page4.title",
+      "recipe_id": "spectrum:fusion_shrine/malachite/ferocious_glass_crest_bident"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
@@ -73,8 +73,8 @@
         "advancement_id": "spectrum:unlocks/malachite/fractal_glass_crest_bident"
       },
       "text": "book.spectrum.guidebook.glass_crest_tools.page5.text",
-      "title1": "book.spectrum.guidebook.glass_crest_tools.page5.title",
-      "recipe_id_1": "spectrum:fusion_shrine/malachite/fractal_glass_crest_bident"
+      "title": "book.spectrum.guidebook.glass_crest_tools.page5.title",
+      "recipe_id": "spectrum:fusion_shrine/malachite/fractal_glass_crest_bident"
     }
   ]
 }

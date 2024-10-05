@@ -2,7 +2,11 @@
   "name": "book.spectrum.guidebook.shards.name",
   "icon": "minecraft:amethyst_shard",
   "category": "spectrum:general",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:spectrum"
+  },
   "parents": [
     {
       "entry": "spectrum:general/geodes"
@@ -16,8 +20,11 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.shards.page0.text",
-      "title": "book.spectrum.guidebook.shards.name"
+      "title": "book.spectrum.guidebook.shards.name",
+      "text": "book.spectrum.guidebook.shards.page0.text"
+    },
+    {
+      "type": "modonomicon:empty"
     },
     {
       "type": "modonomicon:spotlight",
@@ -33,6 +40,22 @@
       "text": "book.spectrum.guidebook.shards.page1.text"
     },
     {
+      "type": "spectrum:snippet",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_shards/topaz"
+      },
+      "resource_path": "spectrum:textures/gui/guidebook/shards/topaz.png",
+      "resource_width": 85,
+      "resource_height": 106,
+      "texture_x": 0,
+      "texture_y": 0,
+      "texture_width": 85,
+      "texture_height": 106,
+      "border": false,
+      "text": "book.spectrum.guidebook.shards.illustration.topaz.text"
+    },
+    {
       "type": "modonomicon:spotlight",
       "anchor": "amethyst",
       "condition": {
@@ -44,6 +67,22 @@
         "item": "minecraft:amethyst_shard"
       },
       "text": "book.spectrum.guidebook.shards.page2.text"
+    },
+    {
+      "type": "spectrum:snippet",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_shards/amethyst"
+      },
+      "resource_path": "spectrum:textures/gui/guidebook/shards/amethyst.png",
+      "resource_width": 101,
+      "resource_height": 95,
+      "texture_x": 0,
+      "texture_y": 0,
+      "texture_width": 101,
+      "texture_height": 95,
+      "border": false,
+      "text": "book.spectrum.guidebook.shards.illustration.amethyst.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -59,6 +98,22 @@
       "text": "book.spectrum.guidebook.shards.page3.text"
     },
     {
+      "type": "spectrum:snippet",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_shards/citrine"
+      },
+      "resource_path": "spectrum:textures/gui/guidebook/shards/citrine.png",
+      "resource_width": 95,
+      "resource_height": 101,
+      "texture_x": 0,
+      "texture_y": 0,
+      "texture_width": 95,
+      "texture_height": 101,
+      "border": false,
+      "text": "book.spectrum.guidebook.shards.illustration.citrine.text"
+    },
+    {
       "type": "modonomicon:spotlight",
       "anchor": "onyx",
       "condition": {
@@ -72,6 +127,22 @@
       "text": "book.spectrum.guidebook.shards.page4.text"
     },
     {
+      "type": "spectrum:snippet",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:create_onyx_shard"
+      },
+      "resource_path": "spectrum:textures/gui/guidebook/shards/onyx.png",
+      "resource_width": 58,
+      "resource_height": 90,
+      "texture_x": 0,
+      "texture_y": 0,
+      "texture_width": 58,
+      "texture_height": 90,
+      "border": false,
+      "text": "book.spectrum.guidebook.shards.illustration.onyx.text"
+    },
+    {
       "type": "modonomicon:spotlight",
       "anchor": "moonstone",
       "condition": {
@@ -83,6 +154,22 @@
         "item": "spectrum:moonstone_shard"
       },
       "text": "book.spectrum.guidebook.shards.page5.text"
+    },
+    {
+      "type": "spectrum:snippet",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/collect_moonstone"
+      },
+      "resource_path": "spectrum:textures/gui/guidebook/shards/moonstone.png",
+      "resource_width": 56,
+      "resource_height": 105,
+      "texture_x": 0,
+      "texture_y": 0,
+      "texture_width": 56,
+      "texture_height": 105,
+      "border": false,
+      "text": "book.spectrum.guidebook.shards.illustration.moonstone.text"
     }
   ]
 }

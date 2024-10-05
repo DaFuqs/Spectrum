@@ -2,11 +2,11 @@
   "name": "book.spectrum.guidebook.gemstone_storage_blocks.name",
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:spectrum"
+    "advancement_id": "spectrum:place_pedestal"
   },
   "icon": "spectrum:citrine_storage_block",
   "category": "spectrum:decoration",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:decoration/shards"
@@ -34,41 +34,41 @@
     },
     {
       "type": "modonomicon:crafting_recipe",
-      "title1": "block.spectrum.amethyst_storage_block",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_shards/amethyst"
       },
+      "title1": "block.spectrum.amethyst_storage_block",
       "recipe_id_1": "spectrum:crafting_table/gem_blocks/amethyst_storage_block",
       "recipe_id_2": "spectrum:crafting_table/gem_blocks/amethyst_shards_from_amethyst_storage_block"
     },
     {
       "type": "modonomicon:crafting_recipe",
-      "title1": "block.spectrum.citrine_storage_block",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_shards/citrine"
       },
+      "title1": "block.spectrum.citrine_storage_block",
       "recipe_id_1": "spectrum:crafting_table/gem_blocks/citrine_storage_block",
       "recipe_id_2": "spectrum:crafting_table/gem_blocks/citrine_shards_from_citrine_storage_block"
     },
     {
       "type": "modonomicon:crafting_recipe",
-      "title1": "block.spectrum.onyx_storage_block",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:create_onyx_shard"
       },
+      "title1": "block.spectrum.onyx_storage_block",
       "recipe_id_1": "spectrum:crafting_table/gem_blocks/onyx_storage_block",
       "recipe_id_2": "spectrum:crafting_table/gem_blocks/onyx_shards_from_onyx_storage_block"
     },
     {
       "type": "modonomicon:crafting_recipe",
-      "title1": "block.spectrum.moonstone_storage_block",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/collect_moonstone"
       },
+      "title1": "block.spectrum.moonstone_storage_block",
       "recipe_id_1": "spectrum:crafting_table/gem_blocks/moonstone_storage_block",
       "recipe_id_2": "spectrum:crafting_table/gem_blocks/moonstone_shards_from_moonstone_storage_block"
     }

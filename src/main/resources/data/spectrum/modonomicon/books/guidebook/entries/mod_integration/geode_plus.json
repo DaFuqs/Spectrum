@@ -1,6 +1,6 @@
 {
   "name": "book.spectrum.guidebook.mod_integration.geode_plus.name",
-  "icon": "geode:celestite_cluster",
+  "icon": "geode_plus:celestite_cluster",
   "condition": {
     "type": "modonomicon:and",
     "children": [
@@ -15,7 +15,7 @@
     ]
   },
   "category": "spectrum:mod_integration",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,

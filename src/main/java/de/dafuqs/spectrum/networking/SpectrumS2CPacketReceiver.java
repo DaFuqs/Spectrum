@@ -11,6 +11,8 @@ import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.blocks.present.*;
 import de.dafuqs.spectrum.blocks.shooting_star.*;
+import de.dafuqs.spectrum.cca.*;
+import de.dafuqs.spectrum.deeper_down.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.helpers.*;
@@ -106,6 +108,41 @@ public class SpectrumS2CPacketReceiver {
 				client.execute(() -> {
 					// Everything in this lambda is running on the render thread
 					ParticleHelper.playParticleWithPatternAndVelocityClient(client.world, position, particleEffect, pattern, velocity);
+				});
+			}
+		});
+
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_PARTICLE_AROUND_BLOCK_SIDES, (client, handler, buf, responseSender) -> {
+			int quantity = buf.readInt();
+			Vec3d position = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
+			Vec3d velocity = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
+			ParticleType<?> particleType = Registries.PARTICLE_TYPE.get(buf.readIdentifier());
+			var sideCount = buf.readInt();
+			var sides = new Direction[sideCount];
+			for (int i = 0; i < sideCount; i++) {
+				sides[i] = Direction.values()[buf.readInt()];
+			}
+			
+			if (particleType instanceof ParticleEffect particleEffect && client.world != null) {
+				client.execute(() -> {
+					ParticleHelper.playParticleAroundBlockSides(client.world, particleEffect, position, sides, quantity, velocity);
+				});
+			}
+		});
+
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_PARTICLE_AROUND_AREA, (client, handler, buf, responseSender) -> {
+			int quantity = buf.readInt();
+			double bonusYOffset = buf.readDouble();
+			boolean triangular = buf.readBoolean();
+			boolean solidSpawns = buf.readBoolean();
+			Vec3d scale = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
+			Vec3d position = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
+			Vec3d velocity = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
+			ParticleType<?> particleType = Registries.PARTICLE_TYPE.get(buf.readIdentifier());
+			
+			if (particleType instanceof ParticleEffect particleEffect && client.world != null) {
+				client.execute(() -> {
+					ParticleHelper.playTriangulatedParticle(client.world, particleEffect, quantity, triangular, scale, bonusYOffset, solidSpawns, position, velocity);
 				});
 			}
 		});
@@ -306,7 +343,10 @@ public class SpectrumS2CPacketReceiver {
 			int colorEntries = buf.readInt();
 			Map<InkColor, Long> colors = new HashMap<>();
 			for (int i = 0; i < colorEntries; i++) {
-				colors.put(InkColor.ofId(buf.readIdentifier()), buf.readLong());
+				Optional<InkColor> optionalInkColor = InkColor.ofId(buf.readIdentifier());
+				if (optionalInkColor.isPresent()) {
+					colors.put(optionalInkColor.get(), buf.readLong());
+				}
 			}
 			
 			client.execute(() -> {
@@ -323,23 +363,34 @@ public class SpectrumS2CPacketReceiver {
 			if (screenHandler instanceof InkColorSelectedPacketReceiver inkColorSelectedPacketReceiver) {
 				boolean isSelection = buf.readBoolean();
 				
-				InkColor color;
+				InkColor color = null;
 				if (isSelection) {
-					Identifier inkColor = buf.readIdentifier();
-					color = InkColor.ofId(inkColor);
-				} else {
-					color = null;
+					Optional<InkColor> optionalInkColor = InkColor.ofId(buf.readIdentifier());
+					if (optionalInkColor.isPresent()) {
+						color = optionalInkColor.get();
+					}
 				}
 				inkColorSelectedPacketReceiver.onInkColorSelectedPacket(color);
 			}
 		});
 		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_INK_EFFECT_PARTICLES, (client, handler, buf, responseSender) -> {
-			InkColor inkColor = InkColor.ofId(buf.readIdentifier());
+			InkColor inkColor;
+			Optional<InkColor> optionalInkColor = InkColor.ofId(buf.readIdentifier());
+			if (optionalInkColor.isPresent()) {
+				inkColor = optionalInkColor.get();
+			} else {
+				inkColor = null;
+			}
+			
 			double posX = buf.readDouble();
 			double posY = buf.readDouble();
 			double posZ = buf.readDouble();
 			float potency = buf.readFloat();
+			
+			if (inkColor == null) {
+				return;
+			}
 			
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
@@ -428,6 +479,17 @@ public class SpectrumS2CPacketReceiver {
 			});
 		});
 
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.SYNC_MENTAL_PRESENCE, ((client, handler, buf, responseSender) -> {
+			double value = buf.readDouble();
+
+			client.execute(() -> {
+				if (client.player != null) {
+					MiscPlayerDataComponent.get(client.player).setLastSyncedSleepPotency(value);
+					DarknessEffects.markForEffectUpdate();
+				}
+			});
+		}));
+
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.COMPACTING_CHEST_STATUS_UPDATE, (((client, handler, buf, responseSender) -> {
 			var pos = buf.readBlockPos();
 			var hasToCraft = buf.readBoolean();
@@ -481,6 +543,7 @@ public class SpectrumS2CPacketReceiver {
 		})));
 
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PASTEL_NODE_STATUS_UPDATE, ((((client, handler, buf, responseSender) -> {
+			var trigger = buf.readBoolean();
 			var nodeCount = buf.readInt();
 			var positions = new ArrayList<BlockPos>(nodeCount);
 			var times = new ArrayList<Integer>(nodeCount);
@@ -498,9 +561,13 @@ public class SpectrumS2CPacketReceiver {
 						continue;
 
 					node.setSpinTicks(times.get(index));
+
+					if (trigger && node.isTriggerTransfer())
+						node.markTriggered();
 				}
 			});
 		}))));
 
     }
+	
 }

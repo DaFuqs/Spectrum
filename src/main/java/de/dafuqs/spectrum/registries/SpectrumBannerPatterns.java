@@ -26,11 +26,19 @@ public class SpectrumBannerPatterns {
 	public static RegistryEntry<BannerPattern> BEDROCK_DUST;
 	public static RegistryEntry<BannerPattern> SHIMMERSTONE;
 	public static RegistryEntry<BannerPattern> JADE_VINE;
-	
+	public static RegistryEntry<BannerPattern> ASTROLOGER;
+	public static RegistryEntry<BannerPattern> VELVET_ASTROLOGER;
+	public static RegistryEntry<BannerPattern> POISONBLOOM;
+	public static RegistryEntry<BannerPattern> DEEP_LIGHT;
+
 	public static final TagKey<BannerPattern> SPECTRUM_LOGO_TAG = of("pattern_item/logo");
 	public static final TagKey<BannerPattern> AMETHYST_CLUSTER_TAG = of("pattern_item/amethyst_cluster");
 	public static final TagKey<BannerPattern> AMETHYST_SHARD_TAG = of("pattern_item/amethyst_shard");
-	
+	public static final TagKey<BannerPattern> ASTROLOGER_TAG = of("pattern_item/astrologer");
+	public static final TagKey<BannerPattern> VELVET_ASTROLOGER_TAG = of("pattern_item/velvet_astrologer");
+	public static final TagKey<BannerPattern> POISONBLOOM_TAG = of("pattern_item/poisonbloom");
+	public static final TagKey<BannerPattern> DEEP_LIGHT_TAG = of("pattern_item/deep_light");
+
 	private static TagKey<BannerPattern> of(String id) {
 		return TagKey.of(Registries.BANNER_PATTERN.getKey(), SpectrumCommon.locate(id));
 	}
@@ -59,6 +67,10 @@ public class SpectrumBannerPatterns {
 		BEDROCK_DUST = registerPattern("bedrock_dust", "bd");
 		SHIMMERSTONE = registerPattern("shimmerstone", "sp");
 		JADE_VINE = registerPattern("jade_vine", "jv");
+		ASTROLOGER = registerPattern("astrologer", "ast");
+		VELVET_ASTROLOGER = registerPattern("velvet_astrologer", "vast");
+		POISONBLOOM = registerPattern("poisonbloom", "psn");
+		DEEP_LIGHT = registerPattern("deep_light", "dl");
 	}
 	
 }

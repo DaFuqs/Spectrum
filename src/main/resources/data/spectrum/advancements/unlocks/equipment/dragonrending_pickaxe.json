@@ -9,13 +9,13 @@
     "collected_dragonbone": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_dragonbone"
+        "advancement_identifier": "spectrum:break_cracked_dragonbone"
       }
     },
     "plucked_effulgent_feather": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/pluck_effulgent_feather"
+        "advancement_identifier": "spectrum:pluck_effulgent_feather"
       }
     }
   }

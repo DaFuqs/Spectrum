@@ -25,7 +25,9 @@ import net.fabricmc.fabric.api.resource.*;
 import net.fabricmc.fabric.api.transfer.v1.fluid.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.fabricmc.loader.api.*;
+import net.minecraft.item.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.resource.*;
 import net.minecraft.server.*;
 import net.minecraft.text.*;
@@ -41,8 +43,9 @@ public class SpectrumCommon implements ModInitializer {
 	public static final String MOD_ID = "spectrum";
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("Spectrum");
+	public static final Map<Identifier, TagKey<Item>> CACHED_ITEM_TAG_MAP = new HashMap<>();
 	public static SpectrumConfig CONFIG;
-	
+
 	public static void logInfo(String message) {
 		LOGGER.info("[Spectrum] " + message);
 	}
@@ -79,6 +82,7 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumRegistries.register();
 		InkColors.register();
 		InkColorMixes.register();
+		SpectrumEntityAttributes.register();
 		
 		logInfo("Registering Banner Patterns...");
 		SpectrumBannerPatterns.register();
@@ -96,8 +100,6 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumParticleTypes.register();
 		logInfo("Registering Sound Events...");
 		SpectrumSoundEvents.register();
-		logInfo("Registering Music...");
-		SpectrumMusicType.register();
 		logInfo("Registering BlockSound Groups...");
 		SpectrumBlockSoundGroups.register();
 		logInfo("Registering Fluids...");
@@ -112,6 +114,12 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumItemGroups.register();
 		logInfo("Registering Block Entities...");
 		SpectrumBlockEntities.register();
+
+		// Pastel
+		logInfo("Registering Pastel Upgrades...");
+		SpectrumPastelUpgrades.register();
+		logInfo("Registering Stamp Categories...");
+		SpectrumStampDataCategories.register();
 		
 		// Worldgen
 		logInfo("Registering Features...");
@@ -230,7 +238,7 @@ public class SpectrumCommon implements ModInitializer {
 		//noinspection UnstableApiUsage
 		FluidStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.fluidStorage, SpectrumBlockEntities.FUSION_SHRINE);
 		//noinspection UnstableApiUsage
-		FluidStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.fluidStorage, SpectrumBlockEntities.TITRATION_BARREL);
+		FluidStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.getFluidStorage(), SpectrumBlockEntities.TITRATION_BARREL);
 		
 		// Builtin Resource Packs
 		logInfo("Registering Builtin Resource Packs...");

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "spectrum:chestnut_noxcap_stems"
+    }
+  ],
+  "result": {
+    "item": "spectrum:chestnut_noxwood_planks",
+    "count": 4
+  }
+}

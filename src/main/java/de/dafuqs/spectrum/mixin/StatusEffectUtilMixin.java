@@ -1,16 +1,13 @@
 package de.dafuqs.spectrum.mixin;
 
-import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.llamalad7.mixinextras.sugar.Local;
-import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffectUtil;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.StringHelper;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
+import com.llamalad7.mixinextras.injector.wrapoperation.*;
+import com.llamalad7.mixinextras.sugar.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.injection.*;
 
 @Mixin(StatusEffectUtil.class)
 public class StatusEffectUtilMixin {
@@ -25,10 +22,9 @@ public class StatusEffectUtilMixin {
 
     @WrapOperation(method = "getDurationText", at = @At(value = "INVOKE", target = "Lnet/minecraft/text/Text;translatable(Ljava/lang/String;)Lnet/minecraft/text/MutableText;"))
     private static MutableText spectrum$modifyDurationTextInfinite(String string, Operation<MutableText> original, @Local(argsOnly = true) StatusEffectInstance effect) {
-        var text = original.call(string);
         if (effect.getEffectType() == SpectrumStatusEffects.ETERNAL_SLUMBER) {
             return Text.translatable("effect.spectrum.eternal_slumber.duration_inf");
         }
-        return text;
+        return original.call(string);
     }
 }

@@ -6,12 +6,12 @@
   },
   "icon": "spectrum:exchanging_staff",
   "category": "spectrum:equipment",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "x": 11,
-  "y": 6,
+  "y": 8,
   "pages": [
     {
       "type": "modonomicon:text",
@@ -21,8 +21,8 @@
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.exchanging_staff.page1.text",
-      "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier4/exchanging_staff"
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "spectrum:pedestal/tier4/exchanging_staff"
     },
     {
       "type": "spectrum:nbt_spotlight",

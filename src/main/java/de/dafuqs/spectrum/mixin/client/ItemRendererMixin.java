@@ -1,6 +1,8 @@
 package de.dafuqs.spectrum.mixin.client;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.*;
 import de.dafuqs.spectrum.api.render.*;
+import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.render.*;
@@ -20,7 +22,15 @@ import java.util.*;
 @Environment(EnvType.CLIENT)
 @Mixin(ItemRenderer.class)
 public abstract class ItemRendererMixin {
-	
+
+	@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/item/ItemRenderer;renderBakedItemModel(Lnet/minecraft/client/render/model/BakedModel;Lnet/minecraft/item/ItemStack;IILnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumer;)V"), method = "renderItem(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformationMode;ZLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;IILnet/minecraft/client/render/model/BakedModel;)V")
+	private void spectrum$emissiveItems(ItemRenderer instance, BakedModel model, ItemStack stack, int light, int overlay, MatrixStack matrices, VertexConsumer vertices, Operation<Void> original) {
+		if (stack.isIn(SpectrumItemTags.EMISSIVE))
+			light = LightmapTextureManager.MAX_LIGHT_COORDINATE;
+
+		original.call(instance, model, stack, light, overlay, matrices, vertices);
+	}
+
 	@Inject(at = @At("HEAD"), method = "renderItem(Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformationMode;ZLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;Lnet/minecraft/world/World;III)V")
 	private void spectrum$storeItemRenderMode1(LivingEntity entity, ItemStack stack, ModelTransformationMode renderMode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, World world, int light, int overlay, int seed, CallbackInfo ci) {
 		SpectrumModelPredicateProviders.currentItemRenderMode = renderMode;

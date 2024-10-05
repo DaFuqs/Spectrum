@@ -10,7 +10,7 @@ import net.minecraft.util.collection.*;
 
 import java.util.*;
 
-public abstract class GatedStackSpectrumRecipe extends GatedSpectrumRecipe {
+public abstract class GatedStackSpectrumRecipe<C extends Inventory> extends GatedSpectrumRecipe<C> {
 	
 	protected GatedStackSpectrumRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier) {
 		super(id, group, secret, requiredAdvancementIdentifier);

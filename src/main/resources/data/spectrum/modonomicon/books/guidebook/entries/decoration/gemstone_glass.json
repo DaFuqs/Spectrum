@@ -6,7 +6,7 @@
     "advancement_id": "spectrum:place_pedestal"
   },
   "category": "spectrum:decoration",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:decoration/shards"
@@ -18,24 +18,29 @@
   "y": 0,
   "pages": [
     {
-      "type": "modonomicon:spotlight",
-      "item": {
-        "item": "spectrum:topaz_glass"
-      },
+      "type": "modonomicon:text",
       "title": "book.spectrum.guidebook.gemstone_glass.name",
       "text": "book.spectrum.guidebook.gemstone_glass.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier1/glass/topaz_glass",
-      "text": "book.spectrum.guidebook.gemstone_glass.page1.text"
+      "recipe_id": "spectrum:pedestal/tier1/glass/topaz_glass"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier1/glass/topaz_glass_pane",
-      "text": "book.spectrum.guidebook.glass_panes.text"
+      "recipe_id": "spectrum:pedestal/tier1/glass/amethyst_glass"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/glass/citrine_glass"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/glass/onyx_glass"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/glass/moonstone_glass"
     }
   ]
 }

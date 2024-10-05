@@ -1,0 +1,29 @@
+{
+  "type": "spectrum:potion_workshop_crafting",
+  "base_ingredient": {
+    "item": "minecraft:bucket"
+  },
+  "use_up_base_ingredient": true,
+  "color": 2451682,
+  "ingredient1": {
+    "item": "spectrum:light_blue_pigment",
+    "count": 4
+  },
+  "ingredient2": {
+    "item": "spectrum:pink_pigment"
+  },
+  "ingredient3": {
+    "item": "spelunkery:sulfur"
+  },
+  "result": {
+    "item": "spelunkery:spring_water_bucket"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "spelunkery"
+      ]
+    }
+  ]
+}

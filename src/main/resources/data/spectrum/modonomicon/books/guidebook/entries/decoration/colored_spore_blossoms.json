@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:orange_spore_blossom",
   "category": "spectrum:decoration",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:decoration/pigment"
@@ -18,15 +18,82 @@
   "y": 6,
   "pages": [
     {
+      "type": "spectrum:collection",
+      "title": "book.spectrum.guidebook.colored_spore_blossoms.name",
+      "items": [
+        "spectrum:cyan_spore_blossom",
+        "spectrum:magenta_spore_blossom",
+        "spectrum:yellow_spore_blossom"
+      ],
+      "text": "book.spectrum.guidebook.colored_spore_blossoms.page0.text"
+    },
+    {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.colored_spore_blossoms.page0.text",
-      "title": "book.spectrum.guidebook.colored_spore_blossoms.name"
+      "text": "book.spectrum.guidebook.colored_spore_blossoms.page1.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier2/colored_spore_blossoms/orange",
-      "text": "book.spectrum.guidebook.colored_spore_blossoms.page1.text"
+      "recipe_id": "spectrum:pedestal/tier2/colored_spore_blossoms/black"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier2/colored_spore_blossoms/blue"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier2/colored_spore_blossoms/brown"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier2/colored_spore_blossoms/cyan"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier2/colored_spore_blossoms/gray"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier2/colored_spore_blossoms/green"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier2/colored_spore_blossoms/light_blue"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier2/colored_spore_blossoms/light_gray"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier2/colored_spore_blossoms/lime"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier2/colored_spore_blossoms/magenta"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier2/colored_spore_blossoms/orange"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier2/colored_spore_blossoms/pink"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier2/colored_spore_blossoms/purple"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier2/colored_spore_blossoms/red"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier2/colored_spore_blossoms/white"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier2/colored_spore_blossoms/yellow"
     }
   ]
 }

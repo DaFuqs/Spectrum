@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.items.food;
 
+import de.dafuqs.spectrum.items.trinkets.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.effect.*;

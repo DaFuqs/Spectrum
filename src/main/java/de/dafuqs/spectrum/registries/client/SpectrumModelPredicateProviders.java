@@ -47,6 +47,8 @@ public class SpectrumModelPredicateProviders {
 		registerMoonPhasePredicates(SpectrumItems.CRESCENT_CLOCK);
 		registerActivatableItemPredicate(SpectrumItems.DREAMFLAYER);
 		registerOversizedItemPredicate(SpectrumItems.DREAMFLAYER);
+		registerOversizedItemPredicate(SpectrumItems.KNOTTED_SWORD);
+		registerOversizedItemPredicate(SpectrumItems.NECTAR_LANCE);
 		registerOversizedItemPredicate(SpectrumItems.BEDROCK_SWORD);
 		registerOversizedItemPredicate(SpectrumItems.BEDROCK_AXE);
 
@@ -346,6 +348,10 @@ public class SpectrumModelPredicateProviders {
 		ModelPredicateProviderRegistry.register(SpectrumItems.INK_FLASK, new Identifier("color"), (itemStack, clientWorld, livingEntity, i) -> {
 			SingleInkStorage storage = SpectrumItems.INK_FLASK.getEnergyStorage(itemStack);
 			InkColor color = storage.getStoredColor();
+			
+			if (color == null) {
+				return 0F;
+			}
 			return (1F + color.getDyeColor().getId()) / 100F;
 		});
 	}

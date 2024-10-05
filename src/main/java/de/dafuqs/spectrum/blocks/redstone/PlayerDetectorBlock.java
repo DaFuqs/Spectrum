@@ -50,11 +50,11 @@ public class PlayerDetectorBlock extends DetectorBlock implements BlockEntityPro
 	
 	@Override
 	protected void updateState(BlockState state, World world, BlockPos pos) {
-		List<PlayerEntity> players = world.getEntitiesByType(EntityType.PLAYER, getBoxWithRadius(pos, 10), LivingEntity::isAlive);
+		List<PlayerEntity> players = world.getEntitiesByType(EntityType.PLAYER, getBoxWithRadius(pos, 10), player -> player.isAlive() && !player.isSpectator());
 		
 		int power = 0;
 		
-		if (players.size() > 0) {
+		if (!players.isEmpty()) {
 			power = 8;
 			UUID ownerUUID = getOwnerUUID(world, pos);
 			if (ownerUUID != null) {

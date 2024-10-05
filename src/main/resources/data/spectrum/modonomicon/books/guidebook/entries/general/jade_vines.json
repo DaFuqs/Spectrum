@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:hibernating_jade_vine_bulb",
   "category": "spectrum:general",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:general/preservation_ruins"
@@ -27,12 +27,12 @@
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title1": "book.spectrum.guidebook.jade_vines.page1.title",
+      "title": "book.spectrum.guidebook.jade_vines.page1.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/build_spirit_instiller_structure"
       },
-      "recipe_id_1": "spectrum:spirit_instiller/germinated_jade_vine_bulb",
+      "recipe_id": "spectrum:spirit_instiller/germinated_jade_vine_bulb",
       "text": "book.spectrum.guidebook.jade_vines.page1.text"
     },
     {
@@ -62,9 +62,9 @@
     },
     {
       "type": "spectrum:cinderhearth_smelting",
-      "title1": "item.spectrum.jaramel",
+      "title": "item.spectrum.jaramel",
       "anchor": "jaramel",
-      "recipe_id_1": "spectrum:cinderhearth/jaramel",
+      "recipe_id": "spectrum:cinderhearth/jaramel",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/food/jaramel"

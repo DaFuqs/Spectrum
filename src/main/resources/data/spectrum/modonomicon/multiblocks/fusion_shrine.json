@@ -85,6 +85,7 @@
     },
     "F": {
       "type": "modonomicon:tag",
+      "display": "spectrum:fusion_shrine_basalt",
       "tag": "#spectrum:fusion_shrines"
     },
     "0": {

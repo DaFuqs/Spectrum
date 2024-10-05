@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:totem_pendant",
   "category": "spectrum:equipment",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:equipment/trinkets/base_trinkets",
@@ -25,8 +25,8 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title1": "container.spectrum.rei.fusion_recipe",
-      "recipe_id_1": "spectrum:fusion_shrine/trinkets/totem_pendant",
+      "title": "container.spectrum.rei.fusion_recipe",
+      "recipe_id": "spectrum:fusion_shrine/trinkets/totem_pendant",
       "text": "book.spectrum.guidebook.totem_pendant.page1.text"
     }
   ]

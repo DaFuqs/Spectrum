@@ -2,19 +2,11 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.additionalentityattributes.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.energy.InkPoweredStatusEffectInstance;
-import de.dafuqs.spectrum.items.trinkets.GarlandOfTranquilityItem;
+import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.status_effects.*;
-import dev.emi.trinkets.api.TrinketComponent;
-import dev.emi.trinkets.api.TrinketsApi;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.registry.*;
-import net.minecraft.util.Pair;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.ArrayList;
 
 public class SpectrumStatusEffects {
 
@@ -25,7 +17,8 @@ public class SpectrumStatusEffects {
 	 * Clears negative effects on the entity
 	 * and makes it immune against new ones
 	 */
-	public static final StatusEffect IMMUNITY = registerStatusEffect("immunity", new ImmunityStatusEffect(StatusEffectCategory.NEUTRAL, 0x4bbed5));
+	public static final StatusEffect IMMUNITY = registerStatusEffect("immunity", new ImmunityStatusEffect(StatusEffectCategory.NEUTRAL, 0x4bbed5))
+			.addAttributeModifier(SpectrumEntityAttributes.MENTAL_PRESENCE, "916b3d21-193e-42a3-a429-1cbd08529469", 1.0, EntityAttributeModifier.Operation.ADDITION);
 	
 	/**
 	 * Like Saturation, but not OP
@@ -85,18 +78,18 @@ public class SpectrumStatusEffects {
 	public static final StatusEffect DEADLY_POISON = registerStatusEffect("deadly_poison", new DeadlyPoisonStatusEffect(StatusEffectCategory.HARMFUL, 5149489));
 	
 	/**
-	 * Increases toughness. Simple, effective
+	 * Increased toughness. Simple, effective
 	 */
 	public static final StatusEffect TOUGHNESS = registerStatusEffect("toughness", new SpectrumStatusEffect(StatusEffectCategory.BENEFICIAL, 0x28bbe0)
 			.addAttributeModifier(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, "599817d7-e8d2-4cbc-962b-59b7050ca59c", 1.0, EntityAttributeModifier.Operation.ADDITION));
 	
 	/**
-	 * Ouch.
+	 * Increases the durations of other effects
 	 */
 	public static final StatusEffect EFFECT_PROLONGING = registerStatusEffect("effect_prolonging", new EffectProlongingStatusEffect(StatusEffectCategory.BENEFICIAL, 0xc081d5));
 	
 	/**
-	 * Ouch.
+	 * Reduced health over time
 	 */
 	public static final StatusEffect LIFE_DRAIN = registerStatusEffect("life_drain", new LifeDrainStatusEffect(StatusEffectCategory.HARMFUL, 0x222222)
 			.addAttributeModifier(EntityAttributes.GENERIC_MAX_HEALTH, LifeDrainStatusEffect.ATTRIBUTE_UUID_STRING, -1.0, EntityAttributeModifier.Operation.ADDITION));
@@ -112,10 +105,11 @@ public class SpectrumStatusEffects {
 			.addAttributeModifier(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, "f9e4ae93-2cf5-4ef5-b06a-ae4fefd5c035", 1.0D, EntityAttributeModifier.Operation.ADDITION)
 			.addAttributeModifier(EntityAttributes.GENERIC_ARMOR, "ce69cebb-c3fe-4f00-8d4a-0e3d524f237e", 2.0D, EntityAttributeModifier.Operation.ADDITION)
 			.addAttributeModifier(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, "5af92757-cdf2-4443-856c-9f5eb633b1ef", 2.0D, EntityAttributeModifier.Operation.ADDITION)
-			.addAttributeModifier(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, "924896a5-8538-4b83-a510-509bccf0a897", 1.0D, EntityAttributeModifier.Operation.ADDITION));
+			.addAttributeModifier(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, "924896a5-8538-4b83-a510-509bccf0a897", 1.0D, EntityAttributeModifier.Operation.ADDITION))
+			.addAttributeModifier(SpectrumEntityAttributes.MENTAL_PRESENCE, "916b3d21-193e-42a3-a429-1cbd08529469", 0.25, EntityAttributeModifier.Operation.ADDITION);
 	
 	/**
-	 * damage, attack speed, speed & knockback resistance are buffed the more the player kills.
+	 * Damage, attack speed, speed & knockback resistance are buffed the more the player kills.
 	 * But if they do not score a kill in 20 seconds they get negative effects.
 	 * Stacking $(thing)Frenzy$() (applying the effect while they already have it) increases these effects amplitude
 	 */
@@ -123,7 +117,8 @@ public class SpectrumStatusEffects {
 			.addAttributeModifier(EntityAttributes.GENERIC_ATTACK_SPEED, FrenzyStatusEffect.ATTACK_SPEED_UUID_STRING, FrenzyStatusEffect.ATTACK_SPEED_PER_STAGE, EntityAttributeModifier.Operation.MULTIPLY_TOTAL)
 			.addAttributeModifier(EntityAttributes.GENERIC_ATTACK_DAMAGE, FrenzyStatusEffect.ATTACK_DAMAGE_UUID_STRING, FrenzyStatusEffect.ATTACK_DAMAGE_PER_STAGE, EntityAttributeModifier.Operation.ADDITION)
 			.addAttributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, FrenzyStatusEffect.MOVEMENT_SPEED_UUID_STRING, FrenzyStatusEffect.MOVEMENT_SPEED_PER_STAGE, EntityAttributeModifier.Operation.MULTIPLY_TOTAL)
-			.addAttributeModifier(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, FrenzyStatusEffect.KNOCKBACK_RESISTANCE_UUID_STRING, FrenzyStatusEffect.KNOCKBACK_RESISTANCE_PER_STAGE, EntityAttributeModifier.Operation.ADDITION);
+			.addAttributeModifier(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, FrenzyStatusEffect.KNOCKBACK_RESISTANCE_UUID_STRING, FrenzyStatusEffect.KNOCKBACK_RESISTANCE_PER_STAGE, EntityAttributeModifier.Operation.ADDITION)
+			.addAttributeModifier(SpectrumEntityAttributes.MENTAL_PRESENCE, "8b4684e6-c3c2-4b83-8cb9-f9b3a4ace52d", 5, EntityAttributeModifier.Operation.ADDITION);
 	
 	/**
 	 * Increases speed and visibility in lava
@@ -133,28 +128,31 @@ public class SpectrumStatusEffects {
 			.addAttributeModifier(AdditionalEntityAttributes.LAVA_VISIBILITY, "9812c88f-dc8e-47d1-a092-38339da9891e", 8.0D, EntityAttributeModifier.Operation.ADDITION));
 
 	/**
-	 * Reduces detection range and enemy spawn rates.
+	 * Reduces detection range and enemy spawn rates
 	 */
-	public static final StatusEffect CALMING = registerStatusEffect("calming", new SleepStatusEffect(StatusEffectCategory.BENEFICIAL, 0.25F, 0x5fd7b3)
-	);
+	public static final StatusEffect CALMING = registerStatusEffect("calming", new SleepStatusEffect(StatusEffectCategory.BENEFICIAL, 0x5fd7b3, true)
+			.addAttributeModifier(AdditionalEntityAttributes.MOB_DETECTION_RANGE, "1a822e8e-42e0-4300-a06c-d7933a8ce09e", -0.25, EntityAttributeModifier.Operation.MULTIPLY_TOTAL)
+			.addAttributeModifier(SpectrumEntityAttributes.MENTAL_PRESENCE, "49242a56-26bb-40a3-98b6-06962201287d", -0.1, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
 
 	/**
 	 * Slows down enemy AI and causes them to forget their target at times.
 	 * ON PLAYER: removes UI elements and reduces acceleration
 	 */
-	public static final StatusEffect SOMNOLENCE = registerStatusEffect("somnolence", new SleepStatusEffect(StatusEffectCategory.NEUTRAL, 0.667F, 0xae7bec));
+	public static final StatusEffect SOMNOLENCE = registerStatusEffect("somnolence", new SleepStatusEffect(StatusEffectCategory.NEUTRAL, 0xae7bec, true)
+			.addAttributeModifier(SpectrumEntityAttributes.MENTAL_PRESENCE, "7c3ef24e-6c4f-4390-b197-6b9db6bcc1c7", -0.5, EntityAttributeModifier.Operation.ADDITION));
 
 	/**
 	 * Like somnolence, but stronger and does not naturally end most of the time.
 	 */
-	public static final StatusEffect ETERNAL_SLUMBER = registerStatusEffect("eternal_slumber", new SleepStatusEffect(StatusEffectCategory.HARMFUL, 2F, ETERNAL_SLUMBER_COLOR));
+	public static final StatusEffect ETERNAL_SLUMBER = registerStatusEffect("eternal_slumber", new SleepStatusEffect(StatusEffectCategory.HARMFUL, ETERNAL_SLUMBER_COLOR, false))
+			.addAttributeModifier(SpectrumEntityAttributes.MENTAL_PRESENCE, "103d526c-44d2-427f-8fa4-bd21ed978422", -2.0, EntityAttributeModifier.Operation.ADDITION);
 
 	/**
 	 * Kills you if it runs out naturally.
 	 */
-	public static final StatusEffect FATAL_SLUMBER = registerStatusEffect("fatal_slumber", new SleepStatusEffect(StatusEffectCategory.HARMFUL, 2F, 0x8136c2));
-
-
+	public static final StatusEffect FATAL_SLUMBER = registerStatusEffect("fatal_slumber", new SleepStatusEffect(StatusEffectCategory.HARMFUL, 0x8136c2, false))
+			.addAttributeModifier(SpectrumEntityAttributes.MENTAL_PRESENCE, "44a47b7a-bd39-4dbf-8403-79f51d1af62b", -2.0, EntityAttributeModifier.Operation.ADDITION);
+	
 	/**
 	 * % Chance to protect from projectiles per level
 	 */
@@ -178,10 +176,4 @@ public class SpectrumStatusEffects {
 		return isStrongSleepEffect(instance.getStatusEffectInstance());
 	}
 
-	// Gets the strongest of either the calming potion effect or an upgraded garland
-	public static float getCalmingMultiplier(LivingEntity affected, @Nullable StatusEffectInstance instance) {
-		var potionEffect = instance == null ? 1 : Math.max(1 - (instance.getAmplifier() + 1) * 0.0625F, 0.1F);
-		var necklaceEffect = GarlandOfTranquilityItem.getEffectFor(affected);
-		return Math.min(potionEffect, necklaceEffect);
-	}
 }

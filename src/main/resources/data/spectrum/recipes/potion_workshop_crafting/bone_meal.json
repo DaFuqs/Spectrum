@@ -1,0 +1,23 @@
+{
+  "type": "spectrum:potion_workshop_crafting",
+  "base_ingredient": {
+    "item": "spectrum:vegetal"
+  },
+  "use_up_base_ingredient": false,
+  "color": 15852761,
+  "ingredient1": {
+    "item": "spectrum:ash_flakes",
+    "count": 2
+  },
+  "ingredient2": {
+    "item": "spectrum:fissure_plum"
+  },
+  "ingredient3": {
+    "item": "spectrum:milky_resin"
+  },
+  "result": {
+    "item": "minecraft:bone_meal",
+    "count": 24
+  },
+  "required_advancement": "spectrum:unlocks/resources/fertilizer"
+}

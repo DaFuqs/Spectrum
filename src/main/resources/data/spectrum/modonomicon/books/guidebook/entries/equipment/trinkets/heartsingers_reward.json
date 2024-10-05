@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:heartsingers_reward",
   "category": "spectrum:equipment",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:equipment/trinkets/base_trinkets",
@@ -20,7 +20,7 @@
   "background_u_index": 0,
   "background_v_index": 0,
   "x": 9,
-  "y": 4,
+  "y": 5,
   "pages": [
     {
       "type": "modonomicon:text",
@@ -30,8 +30,8 @@
     {
       "type": "spectrum:fusion_shrine_crafting",
       "text": "book.spectrum.guidebook.heartsingers_reward.page1.text",
-      "title1": "container.spectrum.rei.fusion_recipe",
-      "recipe_id_1": "spectrum:fusion_shrine/trinkets/heartsingers_reward"
+      "title": "container.spectrum.rei.fusion_recipe",
+      "recipe_id": "spectrum:fusion_shrine/trinkets/heartsingers_reward"
     }
   ]
 }

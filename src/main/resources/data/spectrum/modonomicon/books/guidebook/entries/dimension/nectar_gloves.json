@@ -1,0 +1,33 @@
+{
+  "name": "item.spectrum.aether_graced_nectar_gloves",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:lategame/collect_nectar_gloves"
+  },
+  "icon": "spectrum:aether_graced_nectar_gloves",
+  "category": "spectrum:dimension",
+  "hide_while_locked": true,
+  "parents": [
+    {
+      "entry": "spectrum:dimension/undergrowth_manor"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": -4,
+  "y": -6,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.nectar_gloves.page0.text",
+      "title": "item.spectrum.aether_graced_nectar_gloves"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:aether_graced_nectar_gloves"
+      },
+      "text": "book.spectrum.guidebook.nectar_gloves.page1.text"
+    }
+  ]
+}

@@ -6,7 +6,7 @@
     "advancement_id": "spectrum:lategame/collect_moonstone"
   },
   "category": "spectrum:general",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:general/moonstone_shards"
@@ -20,8 +20,8 @@
   "pages": [
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.pedestal_upgrade_moonstone.name",
-      "recipe_id_1": "spectrum:pedestal/tier3/pedestal_moonstone",
+      "title": "book.spectrum.guidebook.pedestal_upgrade_moonstone.name",
+      "recipe_id": "spectrum:pedestal/tier3/pedestal_moonstone",
       "text": "book.spectrum.guidebook.pedestal_upgrade_moonstone.page0.text"
     },
     {

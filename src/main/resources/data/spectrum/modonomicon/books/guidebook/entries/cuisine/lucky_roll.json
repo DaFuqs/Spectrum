@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:lucky_roll",
   "category": "spectrum:cuisine",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:cuisine/amaranth",
@@ -25,8 +25,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier1/food/lucky_roll",
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "spectrum:pedestal/tier1/food/lucky_roll",
       "text": "book.spectrum.guidebook.lucky_roll.page1.text"
     }
   ]

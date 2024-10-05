@@ -42,11 +42,6 @@ public class EnchantmentRegisteredCondition extends BookCondition {
     }
     
     @Override
-    public boolean requiresMultiPassUnlockTest() {
-        return false;
-    }
-    
-    @Override
     public void toNetwork(PacketByteBuf buffer) {
         buffer.writeBoolean(this.tooltip != null);
         if (this.tooltip != null) {

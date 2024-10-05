@@ -91,9 +91,9 @@ public class ArtistsPaletteItem extends SpectrumTrinketItem implements InkStorag
 		
 		var time = player.getWorld().getTime() % 864000;
 		
-		for (RegistryEntry<InkColor> inkColor : InkColors.elementals()) {
-			if (storage.getEnergy(inkColor.value()) > 0)
-				colors.add(inkColor.value());
+		for (InkColor inkColor : InkColors.elementals()) {
+			if (storage.getEnergy(inkColor) > 0)
+				colors.add(inkColor);
 		}
 		
 		var progress = Support.getSensiblePercent(storage.getCurrentTotal(), storage.getMaxTotal(), 14);
@@ -101,7 +101,9 @@ public class ArtistsPaletteItem extends SpectrumTrinketItem implements InkStorag
 			var color = colors.get(0);
 			return new ExtendedItemBarProvider.BarSignature(1, 13, 14, progress, 1, color.getColorInt() | 0xFF000000, 2, DEFAULT_BACKGROUND_COLOR);
 		}
-		
+
+		if(colors.isEmpty()) return new ExtendedItemBarProvider.BarSignature(1, 13, 14, progress, 1, 0xFF000000, 2, DEFAULT_BACKGROUND_COLOR);
+
 		var delta = MinecraftClient.getInstance().getTickDelta();
 		var curColor = colors.get((int) (time % (30L * colors.size()) / 30));
 		var nextColor = colors.get((int) ((time % (30L * colors.size()) / 30 + 1) % colors.size()));

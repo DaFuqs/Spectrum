@@ -1,17 +1,15 @@
 package de.dafuqs.spectrum.recipe;
 
-import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.helpers.NbtHelper;
 import de.dafuqs.spectrum.helpers.*;
-import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
-import net.minecraft.text.*;
 import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
 
-public abstract class GatedSpectrumRecipe implements GatedRecipe {
+public abstract class GatedSpectrumRecipe<C extends Inventory> implements GatedRecipe<C> {
 	
 	public final Identifier id;
 	public final String group;
@@ -53,24 +51,6 @@ public abstract class GatedSpectrumRecipe implements GatedRecipe {
 	
 	@Override
 	public abstract Identifier getRecipeTypeUnlockIdentifier();
-	
-	@Override
-	public boolean canPlayerCraft(PlayerEntity playerEntity) {
-		return AdvancementHelper.hasAdvancement(playerEntity, getRecipeTypeUnlockIdentifier())
-				&& AdvancementHelper.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
-	}
-	
-	public abstract String getRecipeTypeShortID();
-	
-	@Override
-	public Text getSingleUnlockToastString() {
-		return Text.translatable("spectrum.toast." + getRecipeTypeShortID() + "_recipe_unlocked.title");
-	}
-	
-	@Override
-	public Text getMultipleUnlockToastString() {
-		return Text.translatable("spectrum.toast." + getRecipeTypeShortID() + "_recipes_unlocked.title");
-	}
 	
 	@Override
 	public boolean isIgnoredInRecipeBook() {

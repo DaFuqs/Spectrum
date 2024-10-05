@@ -66,8 +66,7 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.add(new CinderhearthCategory());
 		registry.add(new TitrationBarrelCategory());
 		registry.add(new PrimordialFireBurningCategory());
-		
-		
+
 		EntryIngredient pedestals = EntryIngredient.of(
 				EntryStacks.of(SpectrumBlocks.PEDESTAL_BASIC_TOPAZ),
 				EntryStacks.of(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST),
@@ -82,6 +81,7 @@ public class REIClientIntegration implements REIClientPlugin {
 		}
 		
 		registry.addWorkstations(BuiltinPlugin.CRAFTING, EntryStacks.of(SpectrumItems.CRAFTING_TABLET));
+		registry.addWorkstations(BuiltinPlugin.CRAFTING, EntryStacks.of(SpectrumBlocks.RESTOCKING_CHEST));
 		registry.addWorkstations(BuiltinPlugin.BLASTING, EntryStacks.of(SpectrumBlocks.CINDERHEARTH));
 		
 		registry.addWorkstations(SpectrumPlugins.ANVIL_CRUSHING, EntryStacks.of(Blocks.ANVIL), EntryStacks.of(SpectrumBlocks.BEDROCK_ANVIL), EntryStacks.of(SpectrumBlocks.STRATINE_FRAGMENT_BLOCK), EntryStacks.of(SpectrumBlocks.PALTAERIA_FRAGMENT_BLOCK));

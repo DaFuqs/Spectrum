@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:overgrown_blackslag",
   "category": "spectrum:dimension",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:dimension/biomes",
@@ -33,6 +33,15 @@
         "item": "spectrum:overgrown_blackslag"
       },
       "text": "book.spectrum.guidebook.crystal_gardens.page1.text"
+    },
+    {
+      "type": "spectrum:collection",
+      "title": "book.spectrum.guidebook.crystal_gardens.moss_balls.title",
+      "items": [
+        "spectrum:moss_ball",
+        "spectrum:giant_moss_ball"
+      ],
+      "text": "book.spectrum.guidebook.crystal_gardens.moss_balls.text"
     }
   ]
 }

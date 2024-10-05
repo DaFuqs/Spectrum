@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:slate_noxwood_lamp",
   "category": "spectrum:dimension",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:dimension/delving_deeper_down"

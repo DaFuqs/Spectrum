@@ -1,0 +1,40 @@
+{
+  "type": "spectrum:modify_drops",
+  "block": {
+    "tag": "c:ores"
+  },
+  "modify_drops": [
+    {
+      "input": {
+        "item": "spelunkery:rough_diamond"
+      },
+      "output": "spectrum:pure_diamond"
+    },
+    {
+      "input": {
+        "item": "spelunkery:rough_emerald"
+      },
+      "output": "spectrum:pure_emerald"
+    },
+    {
+      "input": {
+        "item": "spelunkery:rough_lazurite"
+      },
+      "output": "spectrum:pure_lapis"
+    },
+    {
+      "input": {
+        "item": "spelunkery:rough_cinnabar"
+      },
+      "output": "spectrum:pure_redstone"
+    }
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "spelunkery"
+      ]
+    }
+  ]
+}

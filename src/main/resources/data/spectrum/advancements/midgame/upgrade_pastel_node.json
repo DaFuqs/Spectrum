@@ -1,0 +1,30 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:storage_node"
+    },
+    "title": {
+      "translate": "advancements.spectrum.upgrade_pastel_node.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.upgrade_pastel_node.description"
+    }
+  },
+  "parent": "spectrum:midgame/create_pastel_network",
+  "criteria": {
+    "applied_any_upgrade": {
+      "trigger": "spectrum:pastel_node_upgrade",
+      "conditions": {
+        "input": {
+          "tag": "spectrum:pastel_node_upgrades"
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/create_pastel_network"
+      }
+    }
+  }
+}

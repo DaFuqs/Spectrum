@@ -1,8 +1,11 @@
 {
-  "parent": "minecraft:block/orientable",
+  "parent": "spectrum:templates/complex_orientable",
   "textures": {
-    "top": "spectrum:block/preservation_stone",
+    "top": "spectrum:block/preservation_block_detector_top",
     "front": "spectrum:block/preservation_block_detector_front",
-    "side": "spectrum:block/preservation_stone"
+    "side": "spectrum:block/preservation_block_detector_side",
+    "bottom": "spectrum:block/preservation_stone_top_generic",
+    "back": "spectrum:block/preservation_block_detector_back",
+    "particle": "spectrum:block/preservation_block_detector_side"
   }
 }

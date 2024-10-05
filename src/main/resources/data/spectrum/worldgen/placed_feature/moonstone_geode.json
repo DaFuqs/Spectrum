@@ -29,7 +29,7 @@
         "type": "minecraft:not",
         "predicate": {
           "type": "exclusions_lib:overlaps_structure",
-          "range": 4
+          "range": 7
         }
       }
     }

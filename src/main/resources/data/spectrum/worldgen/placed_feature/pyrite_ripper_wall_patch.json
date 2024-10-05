@@ -29,7 +29,7 @@
         "type": "minecraft:not",
         "predicate": {
           "type": "exclusions_lib:overlaps_structure",
-          "structures": "#spectrum:lizard_dens",
+          "structures": "#spectrum:no_wall_features",
           "range": 6
         }
       }

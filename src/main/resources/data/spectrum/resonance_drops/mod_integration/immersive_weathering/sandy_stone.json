@@ -1,0 +1,32 @@
+{
+  "type": "spectrum:drop_self",
+  "block": {
+    "blocks": [
+      "immersive_weathering:sandy_stone",
+      "immersive_weathering:sandy_stone_stairs",
+      "immersive_weathering:sandy_stone_slab",
+      "immersive_weathering:sandy_stone_wall",
+      "immersive_weathering:sandy_cobblestone",
+      "immersive_weathering:sandy_cobblestone_stairs",
+      "immersive_weathering:sandy_cobblestone_slab",
+      "immersive_weathering:sandy_cobblestone_wall",
+      "immersive_weathering:sandy_stone_bricks",
+      "immersive_weathering:sandy_stone_brick_stairs",
+      "immersive_weathering:sandy_stone_brick_slab",
+      "immersive_weathering:sandy_stone_brick_wall",
+      "immersive_weathering:sandy_chiseled_stone_bricks"
+    ]
+  },
+  "state_properties_to_copy": [
+    "sand_age",
+    "sandiness"
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "immersive_weathering"
+      ]
+    }
+  ]
+}

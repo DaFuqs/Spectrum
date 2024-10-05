@@ -1,0 +1,34 @@
+{
+  "type": "spectrum:enchantment_upgrade",
+  "enchantment": "farmersdelight:backstabbing",
+  "levels": [
+    {
+      "experience": 200,
+      "item": "spectrum:red_pigment",
+      "item_count": 8
+    },
+    {
+      "experience": 400,
+      "item": "spectrum:red_pigment",
+      "item_count": 32
+    },
+    {
+      "experience": 2000,
+      "item": "spectrum:red_pigment",
+      "item_count": 128
+    },
+    {
+      "experience": 4000,
+      "item": "spectrum:red_pigment",
+      "item_count": 512
+    }
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "farmersdelight"
+      ]
+    }
+  ]
+}

@@ -45,7 +45,7 @@ dependencies {
 	modImplementation ("net.fabricmc.fabric-api:fabric-api:${project.fabric_version}")
 
 	// mine
-	modImplementation include("maven.modrinth:exclusions-lib:0.6")
+	modImplementation ("maven.modrinth:exclusions-lib:${project.exclusionslib_version}")
 	modImplementation ("maven.modrinth:Revelationary:${project.revelationary_version}")
 	modImplementation include("maven.modrinth:AdditionalEntityAttributes:${project.additional_entity_attributes_version}")
 	modImplementation include("com.github.DaFuqs:Arrowhead:${project.arrowhead_version}")
@@ -92,6 +92,7 @@ dependencies {
 	modCompileOnly("maven.modrinth:sodium:${project.sodium_version}") { transitive = false }
 	modCompileOnly("com.unascribed:ears-api:${project.ears_version}")
 	modCompileOnly("maven.modrinth:create-fabric:${project.create_version}") { transitive = false }
+	modCompileOnly("maven.modrinth:neepmeat:${project.neepmeat_version}") { transitive = false }
 	// modCompileOnly("maven.modrinth:enchantment-descriptions:${project.enchantment_descriptions_version}")
 	modCompileOnly("maven.modrinth:travelersbackpack:${project.travelers_backpack_version}")
 	modCompileOnly("maven.modrinth:botania:${project.botania_version}")

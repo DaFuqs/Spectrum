@@ -1,0 +1,23 @@
+{
+  "type": "neepmeat:vivisection",
+  "entity": "spectrum:kindling",
+  "max_health": 2,
+  "output": [
+    {
+      "resource": "spectrum:effulgent_feather",
+      "amount": 4
+    },
+    {
+      "resource": "spectrum:dragonbone_chunk",
+      "amount": 1
+    }
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "neepmeat"
+      ]
+    }
+  ]
+}

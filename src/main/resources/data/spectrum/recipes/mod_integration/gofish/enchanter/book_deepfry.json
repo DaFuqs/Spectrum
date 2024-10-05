@@ -42,6 +42,7 @@
       ]
     }
   },
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_water",
   "fabric:load_conditions": [
     {
       "condition": "fabric:all_mods_loaded",

@@ -1,0 +1,34 @@
+{
+  "type": "spectrum:enchantment_upgrade",
+  "enchantment": "create:potato_recovery",
+  "levels": [
+    {
+      "experience": 200,
+      "item": "spectrum:purple_pigment",
+      "item_count": 8
+    },
+    {
+      "experience": 400,
+      "item": "spectrum:purple_pigment",
+      "item_count": 32
+    },
+    {
+      "experience": 2000,
+      "item": "spectrum:purple_pigment",
+      "item_count": 128
+    },
+    {
+      "experience": 4000,
+      "item": "spectrum:purple_pigment",
+      "item_count": 512
+    }
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "create"
+      ]
+    }
+  ]
+}

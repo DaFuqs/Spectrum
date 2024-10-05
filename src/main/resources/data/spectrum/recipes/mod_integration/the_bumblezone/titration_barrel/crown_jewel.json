@@ -1,0 +1,132 @@
+{
+  "type": "spectrum:titration_barrel",
+  "group": "infused_beverages",
+  "ingredients": [
+    {
+      "item": "minecraft:honeycomb",
+      "count": 2
+    },
+    {
+      "item": "the_bumblezone:honey_crystal_shards",
+      "count": 4
+    }
+  ],
+  "fluid": {
+    "fluid": "the_bumblezone:royal_jelly_fluid_still"
+  },
+  "tapping_item": "minecraft:glass_bottle",
+  "min_fermentation_time_hours": 24,
+  "fermentation_data": {
+    "fermentation_speed_mod": 0.2,
+    "effects": [
+      {
+        "id": "spectrum:swiftness",
+        "base_duration": 4800,
+        "potency": [
+          {
+            "potency": 0
+          }
+        ]
+      },
+      {
+        "id": "the_bumblezone:beenergized",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "potency": 0
+          },
+          {
+            "min_alc": 20,
+            "potency": 1
+          },
+          {
+            "min_alc": 30,
+            "potency": 2
+          },
+          {
+            "min_alc": 40,
+            "potency": 3
+          },
+          {
+            "min_alc": 50,
+            "potency": 4
+          }
+        ]
+      },
+      {
+        "id": "minecraft:strength",
+        "base_duration": 2400,
+        "potency": [
+          {
+            "min_alc": 25,
+            "min_thickness": 1
+          },
+          {
+            "min_alc": 30,
+            "min_thickness": 1.5,
+            "potency": 1
+          },
+          {
+            "min_alc": 35,
+            "min_thickness": 2,
+            "potency": 2
+          },
+          {
+            "min_alc": 75,
+            "min_thickness": 0.5,
+            "potency": 3
+          }
+        ]
+      },
+      {
+        "id": "minecraft:slowness",
+        "base_duration": 6000,
+        "potency": [
+          {
+            "min_alc": 10,
+            "min_thickness": 1.5
+          },
+          {
+            "min_alc": 12.5,
+            "min_thickness": 2.5,
+            "potency": 1
+          },
+          {
+            "min_alc": 15,
+            "min_thickness": 3.5,
+            "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "the_bumblezone:paralyzed",
+        "base_duration": 100,
+        "potency": [
+          {
+            "min_thickness": 2
+          },
+          {
+            "min_alc": 35
+          }
+        ]
+      }
+    ]
+  },
+  "result": {
+    "item": "spectrum:infused_beverage",
+    "count": 4,
+    "nbt": {
+      "Variant": "crown_jewel",
+      "Color": 16726964
+    }
+  },
+  "required_advancement": "spectrum:triggers/confirmed_drinking_age",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "the_bumblezone"
+      ]
+    }
+  ]
+}

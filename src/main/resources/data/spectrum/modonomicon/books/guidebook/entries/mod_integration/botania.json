@@ -60,7 +60,9 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "botania:black_hole_talisman",
+      "item": {
+        "item": "botania:black_hole_talisman"
+      },
       "text": "book.spectrum.guidebook.mod_integration.botania.page20.text",
       "title": "book.spectrum.guidebook.mod_integration.botania.page20.title"
     },

@@ -49,7 +49,7 @@ public class DreamGateBlock extends DikeGateBlock {
 				return;
 
 			var sleep = SleepStatusEffect.getGeneralSleepResistanceIfEntityHasSoporificEffect(livingEntity);
-			if ( sleep == -1) {
+			if ( sleep == -1 && serverWorld.getTime() % 5 == 0) {
 				entity.damage(SpectrumDamageTypes.sleep(serverWorld, null), 2);
 				SpectrumS2CPacketSender.playParticles(serverWorld, pos, SpectrumParticleTypes.AZURE_DIKE_RUNES, 10);
 				if (entity instanceof ServerPlayerEntity serverPlayerEntity && (!decreasedSounds || ((ServerWorld) world).getTime() % 10 == 0)) {

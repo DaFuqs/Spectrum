@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.structure;
 
 import de.dafuqs.spectrum.cca.azure_dike.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
@@ -34,6 +35,10 @@ public class DreamGateBlock extends DikeGateBlock {
 
 				var sleep = SleepStatusEffect.getGeneralSleepResistanceIfEntityHasSoporificEffect(livingEntity);
 				if (sleep != -1) {
+					if (entity instanceof ServerPlayerEntity player) {
+						Support.grantAdvancementCriterion(player, "lategame/enter_strange_preservation_ruin", "enter_dream_gate");
+					}
+
 					return VoxelShapes.empty();
 				}
 			}

@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:lategame/collect_poisoners_handbook",
+  "parent": "spectrum:lategame/collect_nectardew",
   "display": {
     "icon": {
       "item": "spectrum:evernectar"

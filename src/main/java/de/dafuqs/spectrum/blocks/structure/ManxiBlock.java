@@ -52,7 +52,9 @@ public class ManxiBlock extends HorizontalFacingBlock implements BlockEntityProv
 	public void onBlockBreakStart(BlockState state, World world, BlockPos pos, PlayerEntity player) {
 		if (!world.isClient() && !player.getAbilities().creativeMode) {
 			player.sendMessage(Text.translatable("block.spectrum.manxi.nope").styled(s -> s.withColor(SpectrumStatusEffects.ETERNAL_SLUMBER_COLOR)), true);
-			player.damage(SpectrumDamageTypes.sleep(world, null), 1);
+			world.playSoundAtBlockCenter(pos, SpectrumSoundEvents.DEEP_CRYSTAL_RING, SoundCategory.BLOCKS, 1, 1.5F, true);
+			player.damage(SpectrumDamageTypes.sleep(world, null), 6);
+			player.takeKnockback(2, player.getX() - (pos.getX() + 0.5), player.getZ() - (pos.getZ() + 0.5));
 		}
 	}
 

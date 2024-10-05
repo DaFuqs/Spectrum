@@ -1,10 +1,10 @@
 {
-  "name": "book.spectrum.guidebook.undergrowth_mannor.name",
+  "name": "structure.spectrum.undergrowth_manor",
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:lategame/find_forgotten_city"
+    "advancement_id": "spectrum:lategame/find_undergrowth_manor"
   },
-  "icon": "minecraft:magenta_banner",
+  "icon": "spectrum:longing_chimera",
   "category": "spectrum:dimension",
   "hide_while_locked": true,
   "parents": [
@@ -19,16 +19,37 @@
   "pages": [
     {
       "type": "modonomicon:image",
-      "title": "book.spectrum.guidebook.undergrowth_mannor.name",
+      "title": "structure.spectrum.undergrowth_manor",
       "images": [
-        "spectrum:textures/gui/guidebook/dd_forgotten_city.png"
+        "spectrum:textures/gui/guidebook/undergrowth_manor.png"
       ],
       "border": true,
-      "text": "book.spectrum.guidebook.undergrowth_mannor.page0.text"
+      "text": "book.spectrum.guidebook.undergrowth_manor.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.undergrowth_mannor.page1.text"
+      "text": "book.spectrum.guidebook.undergrowth_manor.page1.text"
+    },
+    {
+      "type": "modonomicon:image",
+      "title": "book.spectrum.guidebook.undergrowth_manor.page4.title",
+      "images": [
+        "spectrum:textures/gui/guidebook/stargazer_manxi.png"
+      ],
+      "border": true,
+      "text": "book.spectrum.guidebook.undergrowth_manor.page4.text",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_cookbooks/poisoners_handbook"
+      }
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.undergrowth_manor.page5.text",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_cookbooks/poisoners_handbook"
+      }
     }
   ]
 }

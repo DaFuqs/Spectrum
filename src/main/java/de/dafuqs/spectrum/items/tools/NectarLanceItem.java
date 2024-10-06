@@ -1,14 +1,10 @@
 package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.spectrum.api.energy.color.*;
-import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.api.status_effect.*;
-import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.status_effects.*;
-import net.minecraft.client.gui.screen.*;
-import net.minecraft.client.item.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.*;
@@ -17,11 +13,7 @@ import net.minecraft.entity.effect.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.registry.tag.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
-
-import java.util.*;
 
 public class NectarLanceItem extends LightGreatswordItem implements SlotBackgroundEffectProvider {
 
@@ -31,9 +23,9 @@ public class NectarLanceItem extends LightGreatswordItem implements SlotBackgrou
 
 	@Override
 	public float getBlockingMultiplier(DamageSource source, ItemStack stack, LivingEntity entity, int usedTime) {
-		if (source.isIn(DamageTypeTags.IS_PROJECTILE))
+		if (source.isIn(DamageTypeTags.IS_PROJECTILE)) {
 			return 0;
-
+		}
 		if (canPerfectParry(stack, entity, usedTime)) {
 			return 0.0F;
 		}
@@ -43,7 +35,6 @@ public class NectarLanceItem extends LightGreatswordItem implements SlotBackgrou
 		else if (usedTime <= getMaxShieldingTime(entity, stack) / 2F) {
 			return 0.25F;
 		}
-
 		return 0.6F;
 	}
 

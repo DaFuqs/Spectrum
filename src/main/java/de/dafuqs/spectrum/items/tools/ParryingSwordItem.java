@@ -24,7 +24,6 @@ public abstract class ParryingSwordItem extends SwordItem implements ExtendedIte
 
 	public static final int DEFAULT_MAX_BLOCK_TIME = 40;
 	public static final int DEFAULT_PERFECT_PARRY_WINDOW = 5;
-	protected static final int COOLDOWN_MERCY = 2;
 
 	private final float attackDamage;
 	private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;

@@ -47,7 +47,7 @@
     "KilledByPlayerLootConditionMixin",
     "LightningEntityMixin",
     "LivingEntityMixin",
-    "LivingEntityPreventStatusClearMixin",
+    "compat.quilt_status_effect.absent.LivingEntityPreventStatusClearMixin",
     "LoomContainerPatternSlotMixin",
     "LoomScreenHandlerMixin",
     "MapStateMixin",
@@ -103,7 +103,8 @@
     "compat.connectormod.absent.ExplosionMixin",
     "compat.connectormod.absent.PlayerEntityMixin",
     "compat.connectormod.present.ExplosionMixin",
-    "compat.connectormod.present.PlayerEntityMixin"
+    "compat.connectormod.present.PlayerEntityMixin",
+    "compat.quilt_status_effect.present.SpectrumEventListenersMixin"
   ],
   "client": [
     "accessors.DimensionEffectsAccessor",

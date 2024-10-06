@@ -10,49 +10,6 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "spectrum:amaranth_grains",
-              "functions": [
-                {
-                  "function": "minecraft:set_count",
-                  "count": {
-                    "min": 2,
-                    "max": 4
-                  }
-                },
-                {
-                  "function": "minecraft:apply_bonus",
-                  "enchantment": "minecraft:fortune",
-                  "formula": "minecraft:binomial_with_bonus_count",
-                  "parameters": {
-                    "extra": 1,
-                    "probability": 0.5714286
-                  }
-                }
-              ],
-              "conditions": [
-                {
-                  "condition": "minecraft:match_tool",
-                  "predicate": {
-                    "tag": "farmersdelight:tools/knives"
-                  }
-                },
-                {
-                  "condition": "minecraft:block_state_property",
-                  "block": "spectrum:amaranth",
-                  "properties": {
-                    "age": "7"
-                  }
-                },
-                {
-                  "condition": "fabric:all_mods_loaded",
-                  "values": [
-                    "farmersdelight"
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "minecraft:item",
               "name": "spectrum:amaranth_bushel",
               "conditions": [
                 {
@@ -86,30 +43,6 @@
               "type": "minecraft:item",
               "name": "spectrum:amaranth_grains",
               "count": 1
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "rolls": 1,
-      "bonus_rolls": 0,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "farmersdelight:straw",
-          "conditions": [
-            {
-              "condition": "minecraft:match_tool",
-              "predicate": {
-                "tag": "farmersdelight:tools/knives"
-              }
-            },
-            {
-              "condition": "fabric:all_mods_loaded",
-              "values": [
-                "farmersdelight"
-              ]
             }
           ]
         }

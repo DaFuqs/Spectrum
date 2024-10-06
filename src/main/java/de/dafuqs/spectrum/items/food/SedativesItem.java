@@ -1,10 +1,9 @@
 package de.dafuqs.spectrum.items.food;
 
-import de.dafuqs.spectrum.compat.SpectrumIntegrationPacks;
-import de.dafuqs.spectrum.compat.neepmeat.NEEPMeatCompat;
+import de.dafuqs.spectrum.compat.*;
+import de.dafuqs.spectrum.compat.neepmeat.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.registries.*;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.item.*;
@@ -18,7 +17,7 @@ public class SedativesItem extends ItemWithTooltip {
 	
 	@Override
 	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-		if (!world.isClient) { // TODO: do we need this? Frenzy is self-stacking
+		if (!world.isClient) { // TODO: do we need this? Frenzy is self-stacking; this also removed all hidden status effects that are not max potency!
 			var frenzy = user.getStatusEffect(SpectrumStatusEffects.FRENZY);
 			
 			if (frenzy != null) {
@@ -31,10 +30,9 @@ public class SedativesItem extends ItemWithTooltip {
 						user.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.FRENZY, duration, level - 1, frenzy.isAmbient(), frenzy.shouldShowParticles(), frenzy.shouldShowIcon()));
 					}
 				}
-				
 			}
-			if(FabricLoader.getInstance().isModLoaded("neepmeat") && SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.NEEPMEAT_ID))
-			{
+			
+			if (SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.NEEPMEAT_ID)) {
 				NEEPMeatCompat.sedateEnlightenment(user);
 			}
 		}

@@ -25,20 +25,6 @@
     "immersive_weathering:spectrum/blue_bark": "immersive_weathering:oak_bark",
     "immersive_weathering:spectrum/green_bark": "immersive_weathering:oak_bark",
     "immersive_weathering:spectrum/red_bark": "immersive_weathering:oak_bark"
-
-  },
-  "item_name_replacements": {
-    "immersive_weathering:spectrum/orange_bark": "Oak Bark?",
-    "immersive_weathering:spectrum/magenta_bark": "Oak Bark?",
-    "immersive_weathering:spectrum/light_blue_bark": "Oak Bark?",
-    "immersive_weathering:spectrum/yellow_bark": "Oak Bark?",
-    "immersive_weathering:spectrum/lime_bark": "Oak Bark?",
-    "immersive_weathering:spectrum/pink_bark": "Oak Bark?",
-    "immersive_weathering:spectrum/cyan_bark": "Oak Bark?",
-    "immersive_weathering:spectrum/purple_bark": "Oak Bark?",
-    "immersive_weathering:spectrum/blue_bark": "Oak Bark?",
-    "immersive_weathering:spectrum/green_bark": "Oak Bark?",
-    "immersive_weathering:spectrum/red_bark": "Oak Bark?"
   },
   "fabric:load_conditions": [
     {

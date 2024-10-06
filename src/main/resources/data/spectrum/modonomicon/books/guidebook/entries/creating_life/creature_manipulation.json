@@ -72,18 +72,23 @@
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "recipe_id": "spectrum:spirit_instiller/head_fusion/recoloring/axolotl_blue",
+      "recipe_id": "spectrum:spirit_instiller/head_fusion/variant_changing/axolotl_blue",
       "text": "book.spectrum.guidebook.creature_manipulation.axolotls.text"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "recipe_id": "spectrum:spirit_instiller/head_fusion/recoloring/parrot_green",
+      "recipe_id": "spectrum:spirit_instiller/head_fusion/variant_changing/parrot_green",
       "text": "book.spectrum.guidebook.creature_manipulation.parrots.text"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "recipe_id": "spectrum:spirit_instiller/head_fusion/recoloring/shulker_pink",
+      "recipe_id": "spectrum:spirit_instiller/head_fusion/variant_changing/shulker_pink",
       "text": "book.spectrum.guidebook.creature_manipulation.shulkers.text"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "recipe_id": "spectrum:spirit_instiller/head_fusion/variant_changing/fox_arctic",
+      "text": "book.spectrum.guidebook.creature_manipulation.foxes.text"
     }
   ]
 }

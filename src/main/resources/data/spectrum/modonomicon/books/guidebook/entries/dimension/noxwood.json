@@ -126,9 +126,9 @@
       ]
     },
     {
-      "type": "spectrum:pedestal_crafting",
+      "type": "modonomicon:crafting_recipe",
       "title": "book.spectrum.guidebook.noxwood.page4.title",
-      "recipe_id": "spectrum:pedestal/tier1/noxwood/ivory_noxcap_hyphae",
+      "recipe_id": "spectrum:crafting_table/noxwood/ivory_noxcap_hyphae",
       "text": "book.spectrum.guidebook.noxwood.page4.text"
     },
     {

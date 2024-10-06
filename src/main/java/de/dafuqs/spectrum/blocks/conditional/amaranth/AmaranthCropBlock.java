@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.*;
 import de.dafuqs.spectrum.blocks.*;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.*;
 import net.minecraft.item.*;
@@ -36,10 +35,6 @@ public class AmaranthCropBlock extends TallCropBlock implements RevelationAware 
 	
 	public AmaranthCropBlock(Settings settings) {
 		super(settings, LAST_SINGLE_BLOCK_AGE);
-		if(FabricLoader.getInstance().isModLoaded("farmersdelight"))
-		{
-			this.lootTableId = SpectrumCommon.locate("blocks/amaranth_fd");
-		}
 		RevelationAware.register(this);
 	}
 	

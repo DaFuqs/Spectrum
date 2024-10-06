@@ -20,7 +20,7 @@
       "options": {
         "type": "spectrum:heavy_rain"
       },
-      "probability": 0.0255
+      "probability": 0.02
     },
     "music": {
       "sound": "spectrum:music.deeper_down.dragonrot_swamp",

@@ -14,7 +14,7 @@
       "options": {
         "type": "spectrum:light_rain"
       },
-      "probability": 0.01475
+      "probability": 0.01
     },
     "mood_sound": {
       "sound": "spectrum:ambient.dimension_sounds",

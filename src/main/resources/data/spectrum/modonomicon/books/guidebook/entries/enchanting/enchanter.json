@@ -6,7 +6,7 @@
     "advancement_id": "spectrum:unlocks/blocks/enchanter"
   },
   "category": "spectrum:enchanting",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 1,
@@ -21,7 +21,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier3/enchanter",
+      "recipe_id": "spectrum:pedestal/tier3/enchanter",
       "text": "book.spectrum.guidebook.enchanter.page1.text"
     },
     {

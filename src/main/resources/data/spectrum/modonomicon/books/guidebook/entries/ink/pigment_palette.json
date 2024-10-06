@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:pigment_palette",
   "category": "spectrum:ink",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:ink/color_picker",
@@ -25,8 +25,8 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title1": "container.spectrum.rei.fusion_recipe",
-      "recipe_id_1": "spectrum:fusion_shrine/trinkets/pigment_palette",
+      "title": "container.spectrum.rei.fusion_recipe",
+      "recipe_id": "spectrum:fusion_shrine/trinkets/pigment_palette",
       "text": "book.spectrum.guidebook.pigment_palette.page1.text"
     }
   ]

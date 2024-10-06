@@ -19,11 +19,13 @@ public class PastelTransmission implements SchedulerMap.Callback {
     private final List<BlockPos> nodePositions;
     private final ItemVariant variant;
     private final long amount;
+    private final int vertexTime;
     
-    public PastelTransmission(List<BlockPos> nodePositions, ItemVariant variant, long amount) {
+    public PastelTransmission(List<BlockPos> nodePositions, ItemVariant variant, long amount, int vertexTime) {
         this.nodePositions = nodePositions;
         this.variant = variant;
         this.amount = amount;
+        this.vertexTime = vertexTime;
     }
 
     public void setNetwork(@NotNull PastelNetwork network) {
@@ -36,6 +38,14 @@ public class PastelTransmission implements SchedulerMap.Callback {
 
     public List<BlockPos> getNodePositions() {
         return nodePositions;
+    }
+
+    public int getVertexTime() {
+        return vertexTime;
+    }
+
+    public int getTransmissionDuration() {
+        return vertexTime * (nodePositions.size() - 1);
     }
 
     public ItemVariant getVariant() {
@@ -87,6 +97,7 @@ public class PastelTransmission implements SchedulerMap.Callback {
         NbtCompound compound = new NbtCompound();
         compound.put("Variant", this.variant.toNbt());
         compound.putLong("Amount", this.amount);
+        compound.putInt("VertexTime", this.vertexTime);
         NbtList posList = new NbtList();
         for (BlockPos pos : nodePositions) {
             NbtCompound posCompound = new NbtCompound();
@@ -102,6 +113,7 @@ public class PastelTransmission implements SchedulerMap.Callback {
     public static PastelTransmission fromNbt(NbtCompound nbt) {
         ItemVariant variant = ItemVariant.fromNbt(nbt.getCompound("Variant"));
         long amount = nbt.getLong("Amount");
+        int time = nbt.getInt("VertexTime");
 
         List<BlockPos> posList = new ArrayList<>();
         for (NbtElement e : nbt.getList("NodePositions", NbtElement.COMPOUND_TYPE)) {
@@ -110,7 +122,7 @@ public class PastelTransmission implements SchedulerMap.Callback {
             posList.add(blockPos);
         }
 
-        return new PastelTransmission(posList, variant, amount);
+        return new PastelTransmission(posList, variant, amount, time);
     }
 
     public static void writeToBuf(PacketByteBuf buf, PastelTransmission transfer) {
@@ -120,6 +132,7 @@ public class PastelTransmission implements SchedulerMap.Callback {
         }
         transfer.variant.toPacket(buf);
         buf.writeLong(transfer.amount);
+        buf.writeInt(transfer.vertexTime);
     }
 
     public static PastelTransmission fromPacket(PacketByteBuf buf) {
@@ -130,7 +143,8 @@ public class PastelTransmission implements SchedulerMap.Callback {
         }
         ItemVariant variant = ItemVariant.fromPacket(buf);
         long amount = buf.readLong();
-        return new PastelTransmission(posList, variant, amount);
+        int time = buf.readInt();
+        return new PastelTransmission(posList, variant, amount, time);
     }
 
 }

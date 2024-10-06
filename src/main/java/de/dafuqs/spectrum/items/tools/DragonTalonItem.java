@@ -153,10 +153,10 @@ public class DragonTalonItem extends MalachiteBidentItem implements MergeableIte
 			return TypedActionResult.fail(user.getStackInHand(hand));
 		return super.use(world, user, hand);
 	}
-	
+
 	@Override
-	public SoundProvider getMergeSound() {
-		return (player -> player.playSound(SpectrumSoundEvents.METALLIC_UNSHEATHE, SoundCategory.PLAYERS, 0.3F, 0.4F + player.getRandom().nextFloat() * 0.2F));
+	public void playSound(ServerPlayerEntity player) {
+		player.playSound(SpectrumSoundEvents.METALLIC_UNSHEATHE, SoundCategory.PLAYERS, 0.5F, 0.8F + player.getRandom().nextFloat() * 0.4F);
 	}
 	
 	@Override

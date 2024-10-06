@@ -6,7 +6,7 @@
     "advancement_id": "spectrum:unlocks/blocks/pastel_network"
   },
   "category": "spectrum:pastel_network",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 1,
@@ -19,13 +19,35 @@
       "text": "book.spectrum.guidebook.pastel_network.page0.text"
     },
     {
-      "type": "modonomicon:image",
-      "title": "book.spectrum.guidebook.pastel_network.page1.title",
-      "images": [
-        "spectrum:textures/gui/guidebook/pastel_travel.png"
-      ],
-      "border": false,
-      "text": "book.spectrum.guidebook.pastel_network.page1.text"
+      "type": "spectrum:snippet",
+      "resource_path": "spectrum:textures/gui/guidebook/pastel_travel.png",
+      "resource_width": 108,
+      "resource_height": 162,
+      "texture_x": 0,
+      "texture_y": 0,
+      "texture_width": 108,
+      "texture_height": 162,
+      "border": false
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "minecraft:name_tag"
+      },
+      "title": "book.spectrum.guidebook.pastel_network.page2.title",
+      "text": "book.spectrum.guidebook.pastel_network.page2.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:bedrock_anvil"
+      },
+      "title": "book.spectrum.guidebook.pastel_network.page3.title",
+      "text": "book.spectrum.guidebook.pastel_network.page3.text",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/equipment/bedrock_tools"
+      }
     }
   ]
 }

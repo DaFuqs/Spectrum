@@ -1,0 +1,11 @@
+{
+  "type": "spectrum:dragonrot_converting",
+  "ingredient": {
+    "item": "spectrum:bone_ash"
+  },
+  "result": {
+    "item": "spectrum:ash_flakes",
+    "count": 1
+  },
+  "required_advancement": "spectrum:break_cracked_dragonbone"
+}

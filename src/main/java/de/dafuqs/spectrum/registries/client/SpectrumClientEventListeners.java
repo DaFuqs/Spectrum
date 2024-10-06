@@ -15,6 +15,7 @@ import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.particle.render.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.render.*;
+import de.dafuqs.spectrum.sound.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.*;
@@ -74,7 +75,8 @@ public class SpectrumClientEventListeners {
 		WorldRenderEvents.AFTER_ENTITIES.register(context -> ((ExtendedParticleManager) MinecraftClient.getInstance().particleManager).render(context.matrixStack(), context.consumers(), context.camera(), context.tickDelta()));
 		WorldRenderEvents.AFTER_TRANSLUCENT.register(context -> Pastel.getClientInstance().renderLines(context));
 		WorldRenderEvents.BLOCK_OUTLINE.register(SpectrumClientEventListeners::renderExtendedBlockOutline);
-		
+		BiomeAttenuatingSoundInstance.clear();
+
 		ModelLoadingPlugin.register((ctx) -> {
 			ctx.modifyModelAfterBake().register((orig, c) -> {
 				Identifier id = c.id();
@@ -102,13 +104,16 @@ public class SpectrumClientEventListeners {
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
 			var world = client.world;
 			Entity cameraEntity = client.getCameraEntity();
-			if (client.getCameraEntity() == null)
+			if (world == null || cameraEntity == null) {
+				BiomeAttenuatingSoundInstance.clear();
 				return;
+			}
 			
 			RegistryEntry<Biome> biome = world.getBiome(client.getCameraEntity().getBlockPos());
 
 			HowlingSpireEffects.clientTick(world, cameraEntity, biome);
 			DarknessEffects.clientTick(world, (LivingEntity) cameraEntity, biome);
+			AzuriteAuraSoundInstance.update(world, cameraEntity);
 		});
 	}
 	

@@ -235,7 +235,8 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		int brewedAmount = Math.min(potionWorkshopBlockEntity.inventory.get(BASE_INPUT_SLOT_ID).getCount(), maxBrewedPotionsAmount);
 		
 		// calculate outputs
-		List<ItemStack> results = brewingRecipe.getPotions(potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, world.random, brewedAmount);
+		ItemStack bottles = potionWorkshopBlockEntity.inventory.get(BASE_INPUT_SLOT_ID);
+		List<ItemStack> results = brewingRecipe.getPotions(bottles, potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, world.random, brewedAmount);
 		
 		// consume ingredients
 		decrementIngredientSlots(potionWorkshopBlockEntity);

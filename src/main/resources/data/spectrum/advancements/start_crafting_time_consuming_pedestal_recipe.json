@@ -31,7 +31,7 @@
           }
         ],
         "crafting_duration_ticks": {
-          "min": 1200
+          "min": 1201
         }
       }
     },

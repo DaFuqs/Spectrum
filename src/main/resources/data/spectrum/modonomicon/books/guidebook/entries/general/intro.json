@@ -1,9 +1,9 @@
 {
   "name": "book.spectrum.guidebook.intro.name",
   "description": "book.spectrum.guidebook.intro.description",
-  "icon": "spectrum:pedestal_basic_amethyst",
+  "icon": "spectrum:textures/gui/guidebook/icons/spectrum.png",
   "category": "spectrum:general",
-  "hide_while_locked ": false,
+  "hide_while_locked": false,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 4,

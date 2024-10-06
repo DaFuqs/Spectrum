@@ -2,7 +2,11 @@
   "name": "block.spectrum.pedestal",
   "icon": "spectrum:pedestal_basic_amethyst",
   "category": "spectrum:general",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:spectrum"
+  },
   "parents": [
     {
       "entry": "spectrum:general/shards",
@@ -23,25 +27,60 @@
   "turnin": "spectrum:craft_using_pedestal",
   "pages": [
     {
-      "type": "modonomicon:crafting_recipe",
-      "title1": "block.spectrum.pedestal",
-      "recipe_id_1": "spectrum:crafting_table/pedestal_basic_amethyst",
+      "type": "modonomicon:text",
+      "title": "block.spectrum.pedestal",
       "text": "book.spectrum.guidebook.pedestal.page0.text"
     },
     {
-      "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.pedestal.page1.text"
+      "type": "modonomicon:crafting_recipe",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_shards/topaz"
+      },
+      "title1": "block.spectrum.pedestal",
+      "recipe_id_1": "spectrum:crafting_table/pedestal_basic_topaz",
+      "text": "book.spectrum.guidebook.pedestal.topaz_pedestal.text"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_shards/amethyst"
+      },
+      "title1": "block.spectrum.pedestal",
+      "recipe_id_1": "spectrum:crafting_table/pedestal_basic_amethyst",
+      "text": "book.spectrum.guidebook.pedestal.amethyst_pedestal.text"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_shards/citrine"
+      },
+      "title1": "block.spectrum.pedestal",
+      "recipe_id_1": "spectrum:crafting_table/pedestal_basic_citrine",
+      "text": "book.spectrum.guidebook.pedestal.citrine_pedestal.text"
     },
     {
       "type": "modonomicon:text",
       "title": "book.spectrum.guidebook.pedestal.page2.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:place_pedestal"
+      },
       "text": "book.spectrum.guidebook.pedestal.page2.text"
     },
     {
-      "type": "modonomicon:crafting_recipe",
-      "title1": "book.spectrum.guidebook.pedestal.page3.title",
-      "recipe_id_1": "spectrum:crafting_table/pedestal_basic_topaz",
-      "recipe_id_2": "spectrum:crafting_table/pedestal_basic_citrine"
+      "type": "modonomicon:spotlight",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/items/crafting_tablet"
+      },
+      "item": {
+        "item": "spectrum:crafting_tablet"
+      },
+      "title": "book.spectrum.guidebook.pedestal.automation.title",
+      "text": "book.spectrum.guidebook.pedestal.automation.text"
     }
   ]
 }

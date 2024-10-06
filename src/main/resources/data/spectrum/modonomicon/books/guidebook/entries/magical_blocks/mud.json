@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:mud_bucket",
   "category": "spectrum:magical_blocks",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
@@ -24,14 +24,30 @@
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.mud.page1.text",
-      "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier1/mud_bucket"
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "spectrum:pedestal/tier1/mud_bucket"
     },
     {
       "type": "spectrum:mud_converting",
       "title": "book.spectrum.guidebook.item_conversion",
-      "recipe_id_1": "spectrum:mud_converting/rabbit_hide",
+      "recipe_id": "spectrum:mud_converting/rabbit_hide",
       "text": "book.spectrum.guidebook.mud.page2.text"
+    },
+    {
+      "type": "spectrum:mud_converting",
+      "title": "book.spectrum.guidebook.item_conversion",
+      "recipe_id": "spectrum:mud_converting/string",
+      "text": "book.spectrum.guidebook.mud.page3.text"
+    },
+    {
+      "type": "spectrum:mud_converting",
+      "title": "book.spectrum.guidebook.item_conversion",
+      "recipe_id": "spectrum:mud_converting/scute",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:collect_four_leaf_clover"
+      },
+      "text": "book.spectrum.guidebook.mud.page4.text"
     }
   ]
 }

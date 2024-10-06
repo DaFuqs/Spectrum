@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:ashen_blackslag",
   "category": "spectrum:dimension",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:dimension/biomes",
@@ -32,7 +32,14 @@
       "item": {
         "item": "spectrum:ashen_blackslag"
       },
-      "text": "book.spectrum.guidebook.howling_spires.page1.text"
+      "text": "book.spectrum.guidebook.howling_spires.ashen_blackslag.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:varia_sprout"
+      },
+      "text": "book.spectrum.guidebook.howling_spires.varia_sprout.text"
     }
   ]
 }

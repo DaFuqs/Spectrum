@@ -37,7 +37,7 @@ public class NeatRingItem extends SpectrumTrinketItem {
 	@Override
 	public Multimap<EntityAttribute, EntityAttributeModifier> getModifiers(ItemStack stack, SlotReference slot, LivingEntity entity, UUID uuid) {
 		Multimap<EntityAttribute, EntityAttributeModifier> modifiers = super.getModifiers(stack, slot, entity, uuid);
-		modifiers.put(SpectrumEntityAttributes.INDUCED_SLEEP_RESISTANCE, new EntityAttributeModifier(uuid, "spectrum:neat_ring", 0.0069, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
+		modifiers.put(SpectrumEntityAttributes.MENTAL_PRESENCE, new EntityAttributeModifier(uuid, "spectrum:neat_ring", 0.69, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
 		return modifiers;
 	}
 	

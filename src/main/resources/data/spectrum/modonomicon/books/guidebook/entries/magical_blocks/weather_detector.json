@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:player_detector",
   "category": "spectrum:magical_blocks",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
@@ -20,8 +20,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier1/detectors/weather_detector",
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "spectrum:pedestal/tier1/detectors/weather_detector",
       "text": "book.spectrum.guidebook.weather_detector.page1.text"
     }
   ]

@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:ring_of_denser_steps",
   "category": "spectrum:equipment",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:equipment/trinkets/base_trinkets",
@@ -29,8 +29,8 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title1": "container.spectrum.rei.fusion_recipe",
-      "recipe_id_1": "spectrum:fusion_shrine/trinkets/ring_of_denser_steps",
+      "title": "container.spectrum.rei.fusion_recipe",
+      "recipe_id": "spectrum:fusion_shrine/trinkets/ring_of_denser_steps",
       "text": "book.spectrum.guidebook.ring_of_denser_steps.page1.text"
     }
   ]

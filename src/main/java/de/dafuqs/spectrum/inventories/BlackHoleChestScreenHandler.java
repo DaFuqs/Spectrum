@@ -82,7 +82,7 @@ public class BlackHoleChestScreenHandler extends ScreenHandler {
 		
 		// filter slots
 		for (k = 0; k < BlackHoleChestBlockEntity.ITEM_FILTER_SLOT_COUNT; ++k) {
-			this.addSlot(new SuckingChestFilterSlot(filterInventory, k, 8 + k * 23, 18));
+			this.addSlot(new BlackHoleChestFilterSlot(filterInventory, k, 8 + k * 23, 18));
 		}
 	}
 	
@@ -130,16 +130,16 @@ public class BlackHoleChestScreenHandler extends ScreenHandler {
 		return this.blackHoleChestBlockEntity;
 	}
 
-	protected class SuckingChestFilterSlot extends ShadowSlot {
+	protected class BlackHoleChestFilterSlot extends ShadowSlot {
 
-		public SuckingChestFilterSlot(Inventory inventory, int index, int x, int y) {
+		public BlackHoleChestFilterSlot(Inventory inventory, int index, int x, int y) {
 			super(inventory, index, x, y);
 		}
 
 		@Override
 		public boolean onClicked(ItemStack heldStack, ClickType type, PlayerEntity player) {
 			if (blackHoleChestBlockEntity != null) {
-				blackHoleChestBlockEntity.setFilterItem(getIndex(), heldStack.getItem());
+				blackHoleChestBlockEntity.setFilterItem(getIndex(), heldStack.copyWithCount(1));
 			}
 			return super.onClicked(heldStack, type, player);
 		}

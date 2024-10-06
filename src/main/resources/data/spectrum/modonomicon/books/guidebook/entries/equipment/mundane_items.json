@@ -1,12 +1,12 @@
 {
-  "name": "book.spectrum.guidebook.vanilla.name",
+  "name": "book.spectrum.guidebook.mundane_items.name",
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:craft_using_pedestal"
+    "advancement_id": "spectrum:place_pedestal"
   },
   "icon": "minecraft:bundle",
   "category": "spectrum:equipment",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
@@ -15,46 +15,46 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.vanilla.name",
-      "text": "book.spectrum.guidebook.vanilla.page0.text"
+      "title": "book.spectrum.guidebook.mundane_items.name",
+      "text": "book.spectrum.guidebook.mundane_items.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier1/vanilla/bundle"
+      "recipe_id": "spectrum:pedestal/tier1/vanilla/bundle"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier1/vanilla/cobweb"
+      "recipe_id": "spectrum:pedestal/tier1/vanilla/cobweb"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier1/vanilla/writable_book"
+      "recipe_id": "spectrum:pedestal/tier1/vanilla/writable_book"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier1/vanilla/spectral_arrow"
+      "recipe_id": "spectrum:pedestal/tier1/vanilla/spectral_arrow"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.vanilla.page4.title",
-      "recipe_id_1": "spectrum:pedestal/tier1/vanilla/unstable_tnt",
-      "text": "book.spectrum.guidebook.vanilla.page4.text"
+      "title": "book.spectrum.guidebook.mundane_items.page4.title",
+      "recipe_id": "spectrum:pedestal/tier1/vanilla/unstable_tnt",
+      "text": "book.spectrum.guidebook.mundane_items.page4.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier2/vanilla/bell"
+      "recipe_id": "spectrum:pedestal/tier2/vanilla/bell"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier2/vanilla/name_tag"
+      "recipe_id": "spectrum:pedestal/tier2/vanilla/name_tag"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier4/vanilla/elytra"
+      "recipe_id": "spectrum:pedestal/tier4/vanilla/elytra"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier4/vanilla/trident"
+      "recipe_id": "spectrum:pedestal/tier4/vanilla/trident"
     }
   ]
 }

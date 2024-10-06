@@ -4,7 +4,7 @@
     "top": "spectrum:block/block_placer_top",
     "front": "spectrum:block/block_placer_front",
     "side": "spectrum:block/block_placer_side",
-    "bottom": "spectrum:block/notched_polished_calcite",
+    "bottom": "spectrum:block/notched_polished_calcite_top",
     "back": "spectrum:block/block_placer_back",
     "particle": "spectrum:block/block_placer_side"
   }

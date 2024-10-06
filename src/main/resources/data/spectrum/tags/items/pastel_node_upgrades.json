@@ -1,0 +1,18 @@
+{
+  "values": [
+    "spectrum:raw_bloodstone",
+    "spectrum:refined_bloodstone",
+    "spectrum:raw_azurite",
+    "spectrum:refined_azurite",
+    "spectrum:raw_malachite",
+    "spectrum:refined_malachite",
+    "spectrum:resonance_shard",
+    "spectrum:shimmerstone_gem",
+    "spectrum:pure_redstone",
+    "spectrum:pure_lapis",
+    "spectrum:pure_quartz",
+    "spectrum:pure_coal",
+    "spectrum:pure_echo",
+    "spectrum:pure_glowstone"
+  ]
+}

@@ -24,17 +24,17 @@ public class WrapPresentRecipe extends SpecialCraftingRecipe {
 	}
 	
 	@Override
-	public ItemStack getOutput(DynamicRegistryManager registryManager) {
-		return SpectrumBlocks.PRESENT.asItem().getDefaultStack();
+	public DefaultedList<Ingredient> getIngredients() {
+		DefaultedList<Ingredient> list = DefaultedList.ofSize(1, Ingredient.EMPTY);
+		list.set(0, Ingredient.ofStacks(SpectrumBlocks.PRESENT.asItem().getDefaultStack()));
+		return list;
 	}
 	
 	@Override
-	public DefaultedList<Ingredient> getIngredients() {
-		DefaultedList<Ingredient> list = DefaultedList.ofSize(1, Ingredient.EMPTY);
+	public ItemStack getOutput(DynamicRegistryManager registryManager) {
 		ItemStack stack = SpectrumBlocks.PRESENT.asItem().getDefaultStack();
 		PresentItem.wrap(stack, PresentBlock.WrappingPaper.RED, Map.of());
-		list.set(0, Ingredient.ofStacks(stack));
-		return list;
+		return stack;
 	}
 	
 	@Override

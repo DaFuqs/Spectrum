@@ -7,7 +7,7 @@ import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
-import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.progression.*;

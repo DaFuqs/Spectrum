@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:resonant_lily",
   "category": "spectrum:general",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:general/liquid_crystal",
@@ -27,7 +27,7 @@
     },
     {
       "type": "spectrum:liquid_crystal_converting",
-      "recipe_id_1": "spectrum:liquid_crystal_converting/resonant_lily",
+      "recipe_id": "spectrum:liquid_crystal_converting/resonant_lily",
       "text": ""
     }
   ]

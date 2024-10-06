@@ -4,7 +4,7 @@
   "modifiers": {
     "potency_multiplier": 2.0,
     "additional_drink_duration_ticks": 54,
-    "flat_yield_bonus": -1.0
+    "flat_yield_bonus": -2.0
   },
-  "required_advancement": "spectrum:lategame/pluck_effulgent_feather"
+  "required_advancement": "spectrum:pluck_effulgent_feather"
 }

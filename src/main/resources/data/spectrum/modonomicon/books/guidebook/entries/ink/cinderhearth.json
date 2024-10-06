@@ -6,7 +6,7 @@
     "advancement_id": "spectrum:unlocks/blocks/cinderhearth"
   },
   "category": "spectrum:ink",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:ink/color_picker",
@@ -29,8 +29,8 @@
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.cinderhearth.page1.text",
-      "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier3/cinderhearth"
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "spectrum:pedestal/tier3/cinderhearth"
     },
     {
       "type": "modonomicon:multiblock",

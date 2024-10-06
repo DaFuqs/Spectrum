@@ -69,7 +69,7 @@ public class RecipesLoadedAndUnlockedCondition extends BookCondition {
             Optional<? extends Recipe<?>> optionalRecipe = player.getWorld().getRecipeManager().get(recipeID);
             if (optionalRecipe.isPresent()) {
                 Recipe<?> recipe = optionalRecipe.get();
-                if (recipe instanceof GatedRecipe gatedRecipe) {
+                if (recipe instanceof GatedRecipe<?> gatedRecipe) {
                     if (gatedRecipe.canPlayerCraft(player)) {
                         return true;
                     }

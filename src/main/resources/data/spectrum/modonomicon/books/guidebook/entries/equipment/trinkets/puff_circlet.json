@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:puff_circlet",
   "category": "spectrum:equipment",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:equipment/trinkets/base_trinkets",
@@ -26,8 +26,8 @@
     {
       "type": "spectrum:fusion_shrine_crafting",
       "text": "book.spectrum.guidebook.puff_circlet.page1.text",
-      "title1": "container.spectrum.rei.fusion_recipe",
-      "recipe_id_1": "spectrum:fusion_shrine/trinkets/puff_circlet"
+      "title": "container.spectrum.rei.fusion_recipe",
+      "recipe_id": "spectrum:fusion_shrine/trinkets/puff_circlet"
     }
   ]
 }

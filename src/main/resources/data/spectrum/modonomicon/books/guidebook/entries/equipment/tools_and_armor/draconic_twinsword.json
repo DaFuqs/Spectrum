@@ -6,12 +6,12 @@
     "advancement_id": "spectrum:unlocks/equipment/draconic_twinsword"
   },
   "category": "spectrum:equipment",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "x": 2,
-  "y": 2,
+  "y": 1,
   "pages": [
     {
       "type": "modonomicon:text",
@@ -20,7 +20,7 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "recipe_id_1": "spectrum:fusion_shrine/draconic_twinsword",
+      "recipe_id": "spectrum:fusion_shrine/draconic_twinsword",
       "text": "book.spectrum.guidebook.draconic_twinsword.page1.text"
     },
     {
@@ -40,7 +40,7 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "recipe_id_1": "spectrum:fusion_shrine/draconic_twinsword_reclaim"
+      "recipe_id": "spectrum:fusion_shrine/draconic_twinsword_reclaim"
     }
   ]
 }

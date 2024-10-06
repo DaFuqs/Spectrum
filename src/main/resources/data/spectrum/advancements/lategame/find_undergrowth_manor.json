@@ -1,0 +1,39 @@
+{
+  "parent": "spectrum:lategame/spectrum_lategame",
+  "display": {
+    "icon": {
+      "item": "spectrum:longing_chimera"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.find_undergrowth_manor.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.find_undergrowth_manor.description"
+    }
+  },
+  "criteria": {
+    "in_manor": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "spectrum:undergrowth_manor"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/spectrum_lategame"
+      }
+    }
+  }
+}

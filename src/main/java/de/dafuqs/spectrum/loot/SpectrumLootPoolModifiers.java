@@ -118,6 +118,13 @@ public class SpectrumLootPoolModifiers {
 				// Some treasure hunter pools use custom loot conditions
 				// because vanillas are too generic (fox/snow fox both use "fox" loot table)
 			}
+			else if (id.equals(new Identifier("archaeology/ocean_ruin_cold")) || id.equals(new Identifier("archaeology/ocean_ruin_warm")) ||
+					id.equals(new Identifier("archaeology/trail_ruins_rare")) || id.equals(new Identifier("archaeology/desert_pyramid")) || id.equals(new Identifier("archaeology/desert_well")))
+			{
+				tableBuilder.modifyPools(builder -> {
+					builder.with(ItemEntry.builder(SpectrumItems.NIGHTDEW_SPROUT).weight(2).quality(-1));
+				});
+			}
 			else if (id.equals(new Identifier("gameplay/sniffer_digging"))) {
 				tableBuilder.modifyPools(builder -> {
 					builder.with(ItemEntry.builder(SpectrumBlocks.WEEPING_GALA_SPRIG).weight(1));

@@ -19,40 +19,54 @@ import java.util.*;
 
 public interface FilterConfigurable {
 
-    List<Item> getItemFilters();
+    List<ItemStack> getItemFilters();
 
-    void setFilterItem(int slot, Item item);
+    void setFilterItem(int slot, ItemStack item);
 
-    default void writeFilterNbt(NbtCompound tag, List<Item> filterItems) {
+    default int getFilterRows() {
+        return 1;
+    }
+
+    default int getSlotsPerRow() {
+        return 5;
+    }
+
+    default int getDrawnSlots() {
+        return getItemFilters().size();
+    }
+
+    static void writeFilterNbt(NbtCompound tag, List<ItemStack> filterItems) {
         for (int i = 0; i < filterItems.size(); i++) {
-			tag.putString("Filter" + i, Registries.ITEM.getId(filterItems.get(i)).toString());
+			tag.put("FilterStack" + i, filterItems.get(i).writeNbt(new NbtCompound()));
         }
     }
 
-    default void readFilterNbt(NbtCompound tag, List<Item> filterItems) {
+    static void readFilterNbt(NbtCompound tag, List<ItemStack> filterItems) {
         for (int i = 0; i < filterItems.size(); i++) {
-            if (tag.contains("Filter" + i, NbtElement.STRING_TYPE)) {
-				filterItems.set(i, Registries.ITEM.get(new Identifier(tag.getString("Filter" + i))));
+            if (tag.contains("FilterStack" + i)) {
+				filterItems.set(i, ItemStack.fromNbt(tag.getCompound("FilterStack" + i)));
             }
         }
-    }
-
-    static Inventory getFilterInventoryFromPacket(PacketByteBuf packetByteBuf) {
-        int size = packetByteBuf.readInt();
-        Inventory inventory = new SimpleInventory(size);
-        for (int i = 0; i < size; i++) {
-			inventory.setStack(i, Registries.ITEM.get(packetByteBuf.readIdentifier()).getDefaultStack());
-        }
-        return inventory;
     }
 
     static Inventory getFilterInventoryFromPacketClicker(PacketByteBuf packetByteBuf, ShadowSlotClicker clicker) {
         int size = packetByteBuf.readInt();
         Inventory inventory = new FilterInventory(clicker, size);
         for (int i = 0; i < size; i++) {
-            inventory.setStack(i, Registries.ITEM.get(packetByteBuf.readIdentifier()).getDefaultStack());
+            inventory.setStack(i, packetByteBuf.readItemStack());
         }
         return inventory;
+    }
+
+    static Pair<Inventory, Integer[]> getFilterInventoryWithRowDataFromPacket(int syncId, @NotNull PlayerInventory playerInventory, PacketByteBuf packetByteBuf, @NotNull ScreenHandler thisHandler) {
+        var inventory = getFilterInventoryFromPacketHandler(syncId, playerInventory, packetByteBuf, thisHandler);
+        var arr = new Integer[]{
+                packetByteBuf.readInt(),
+                packetByteBuf.readInt(),
+                packetByteBuf.readInt()
+        };
+
+        return new Pair<>(inventory, arr);
     }
 
     static Inventory getFilterInventoryFromPacketHandler(int syncId, @NotNull PlayerInventory playerInventory, PacketByteBuf packetByteBuf, @NotNull ScreenHandler thisHandler) {
@@ -60,23 +74,15 @@ public interface FilterConfigurable {
         return getFilterInventoryFromPacketClicker(packetByteBuf, clicker);
     }
 
-    static Inventory getFilterInventoryFromItems(List<Item> items) {
-        Inventory inventory = new SimpleInventory(items.size());
-        for (int i = 0; i < items.size(); i++) {
-            inventory.setStack(i, items.get(i).getDefaultStack());
-        }
-        return inventory;
-    }
-
-    static Inventory getFilterInventoryFromItemsClicker(List<Item> items, ShadowSlotClicker clicker) {
+    static Inventory getFilterInventoryFromItemsClicker(List<ItemStack> items, ShadowSlotClicker clicker) {
         Inventory inventory = new FilterInventory(clicker, items.size());
         for (int i = 0; i < items.size(); i++) {
-            inventory.setStack(i, items.get(i).getDefaultStack());
+            inventory.setStack(i, items.get(i));
         }
         return inventory;
     }
 
-    static Inventory getFilterInventoryFromItemsHandler(int syncId, @NotNull PlayerInventory playerInventory, List<Item> items, @NotNull ScreenHandler thisHandler) {
+    static Inventory getFilterInventoryFromItemsHandler(int syncId, @NotNull PlayerInventory playerInventory, List<ItemStack> items, @NotNull ScreenHandler thisHandler) {
         final var clicker = new ShadowSlotClicker.FromHandler(thisHandler, playerInventory.player, syncId);
         return getFilterInventoryFromItemsClicker(items, clicker);
     }
@@ -136,20 +142,22 @@ public interface FilterConfigurable {
         }
     }
 
-    static void writeScreenOpeningData(PacketByteBuf buf, List<Item> filterItems) {
+    static void writeScreenOpeningData(PacketByteBuf buf, FilterConfigurable configurable) {
+        writeScreenOpeningData(buf, configurable.getItemFilters(), configurable.getFilterRows(), configurable.getSlotsPerRow(), configurable.getDrawnSlots());
+    }
+
+    static void writeScreenOpeningData(PacketByteBuf buf, List<ItemStack> filterItems, int rows, int slotsPerRow, int drawnSlots) {
         buf.writeInt(filterItems.size());
-        for (Item filterItem : filterItems) {
-			buf.writeIdentifier(Registries.ITEM.getId(filterItem));
+        for (ItemStack filterItem : filterItems) {
+            buf.writeItemStack(filterItem);
         }
+        buf.writeInt(rows);
+        buf.writeInt(slotsPerRow);
+        buf.writeInt(drawnSlots);
     }
 
     default boolean hasEmptyFilter() {
-        for (Item item : getItemFilters()) {
-            if (item != Items.AIR) {
-                return false;
-            }
-        }
-        return true;
+        return getItemFilters().stream().allMatch(ItemStack::isEmpty);
     }
 
 }

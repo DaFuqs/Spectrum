@@ -1,0 +1,56 @@
+{
+  "parent": "spectrum:spectrum",
+  "display": {
+    "icon": {
+      "item": "spectrum:dragonbone_chunk"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.break_cracked_dragonbone.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.break_cracked_dragonbone.description"
+    }
+  },
+  "criteria": {
+    "broken_cracked_dragonbone": {
+      "trigger": "spectrum:block_broken",
+      "conditions": {
+        "broken_block": {
+          "blocks": [
+            "spectrum:cracked_dragonbone"
+          ]
+        }
+      }
+    },
+    "has_dragonbone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:dragonbone",
+              "spectrum:cracked_dragonbone",
+              "spectrum:dragonbone_chunk"
+            ]
+          }
+        ]
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:spectrum"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "broken_cracked_dragonbone",
+      "has_dragonbone"
+    ],
+    [
+      "gotten_previous"
+    ]
+  ]
+}

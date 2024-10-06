@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.items.tools;
 
+import net.minecraft.enchantment.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ToolMaterial;
 
@@ -11,6 +12,10 @@ public class GlintlessPickaxe extends SpectrumPickaxeItem {
 
     @Override
     public boolean hasGlint(ItemStack stack) {
-        return false;
+        var enchants = EnchantmentHelper.get(stack);
+        getDefaultEnchantments().forEach((e, i) -> {
+            enchants.remove(e);
+        });
+        return !enchants.isEmpty();
     }
 }

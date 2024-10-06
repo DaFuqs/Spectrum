@@ -20,7 +20,7 @@
     ]
   },
   "category": "spectrum:mod_integration",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
@@ -38,8 +38,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
       },
-      "title1": "book.spectrum.guidebook.mod_integration.extraalchemy.page1.title",
-      "recipe_id_1": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_combustion"
+      "title": "book.spectrum.guidebook.mod_integration.extraalchemy.page1.title",
+      "recipe_id": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_combustion"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
@@ -47,8 +47,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
       },
-      "title1": "book.spectrum.guidebook.mod_integration.extraalchemy.page2.title",
-      "recipe_id_1": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_concentration"
+      "title": "book.spectrum.guidebook.mod_integration.extraalchemy.page2.title",
+      "recipe_id": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_concentration"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
@@ -56,8 +56,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
       },
-      "title1": "book.spectrum.guidebook.mod_integration.extraalchemy.page3.title",
-      "recipe_id_1": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_crumbling"
+      "title": "book.spectrum.guidebook.mod_integration.extraalchemy.page3.title",
+      "recipe_id": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_crumbling"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
@@ -65,8 +65,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
       },
-      "title1": "book.spectrum.guidebook.mod_integration.extraalchemy.page4.title",
-      "recipe_id_1": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_detection"
+      "title": "book.spectrum.guidebook.mod_integration.extraalchemy.page4.title",
+      "recipe_id": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_detection"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
@@ -74,8 +74,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
       },
-      "title1": "book.spectrum.guidebook.mod_integration.extraalchemy.page5.title",
-      "recipe_id_1": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_fuse"
+      "title": "book.spectrum.guidebook.mod_integration.extraalchemy.page5.title",
+      "recipe_id": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_fuse"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
@@ -83,90 +83,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
       },
-      "title1": "book.spectrum.guidebook.mod_integration.extraalchemy.page6.title",
-      "recipe_id_1": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_gravity"
-    },
-    {
-      "type": "spectrum:potion_workshop_brewing",
-      "flag": "mod:pekhui",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
-      },
-      "title1": "book.spectrum.guidebook.mod_integration.extraalchemy.page7.title",
-      "recipe_id_1": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_growing"
-    },
-    {
-      "type": "spectrum:potion_workshop_brewing",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
-      },
-      "title1": "book.spectrum.guidebook.mod_integration.extraalchemy.page8.title",
-      "recipe_id_1": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_learning"
-    },
-    {
-      "type": "spectrum:potion_workshop_brewing",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
-      },
-      "title1": "book.spectrum.guidebook.mod_integration.extraalchemy.page9.title",
-      "recipe_id_1": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_magnetism"
-    },
-    {
-      "type": "spectrum:potion_workshop_brewing",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
-      },
-      "title1": "book.spectrum.guidebook.mod_integration.extraalchemy.page10.title",
-      "recipe_id_1": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_pacifism"
-    },
-    {
-      "type": "spectrum:potion_workshop_brewing",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
-      },
-      "title1": "book.spectrum.guidebook.mod_integration.extraalchemy.page11.title",
-      "recipe_id_1": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_photosynthesis"
-    },
-    {
-      "type": "spectrum:potion_workshop_brewing",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
-      },
-      "title1": "book.spectrum.guidebook.mod_integration.extraalchemy.page12.title",
-      "recipe_id_1": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_piper"
-    },
-    {
-      "type": "spectrum:potion_workshop_brewing",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
-      },
-      "title1": "book.spectrum.guidebook.mod_integration.extraalchemy.page13.title",
-      "recipe_id_1": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_recall"
-    },
-    {
-      "type": "spectrum:potion_workshop_brewing",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
-      },
-      "title1": "book.spectrum.guidebook.mod_integration.extraalchemy.page14.title",
-      "recipe_id_1": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_returning"
-    },
-    {
-      "type": "spectrum:potion_workshop_brewing",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
-      },
-      "title1": "book.spectrum.guidebook.mod_integration.extraalchemy.page15.title",
-      "recipe_id_1": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_sails"
+      "title": "book.spectrum.guidebook.mod_integration.extraalchemy.page6.title",
+      "recipe_id": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_gravity"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
@@ -175,8 +93,90 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
       },
-      "title1": "book.spectrum.guidebook.mod_integration.extraalchemy.page16.title",
-      "recipe_id_1": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_shrinking"
+      "title": "book.spectrum.guidebook.mod_integration.extraalchemy.page7.title",
+      "recipe_id": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_growing"
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
+      },
+      "title": "book.spectrum.guidebook.mod_integration.extraalchemy.page8.title",
+      "recipe_id": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_learning"
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
+      },
+      "title": "book.spectrum.guidebook.mod_integration.extraalchemy.page9.title",
+      "recipe_id": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_magnetism"
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
+      },
+      "title": "book.spectrum.guidebook.mod_integration.extraalchemy.page10.title",
+      "recipe_id": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_pacifism"
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
+      },
+      "title": "book.spectrum.guidebook.mod_integration.extraalchemy.page11.title",
+      "recipe_id": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_photosynthesis"
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
+      },
+      "title": "book.spectrum.guidebook.mod_integration.extraalchemy.page12.title",
+      "recipe_id": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_piper"
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
+      },
+      "title": "book.spectrum.guidebook.mod_integration.extraalchemy.page13.title",
+      "recipe_id": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_recall"
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
+      },
+      "title": "book.spectrum.guidebook.mod_integration.extraalchemy.page14.title",
+      "recipe_id": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_returning"
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
+      },
+      "title": "book.spectrum.guidebook.mod_integration.extraalchemy.page15.title",
+      "recipe_id": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_sails"
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "flag": "mod:pekhui",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
+      },
+      "title": "book.spectrum.guidebook.mod_integration.extraalchemy.page16.title",
+      "recipe_id": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_shrinking"
     }
   ]
 }

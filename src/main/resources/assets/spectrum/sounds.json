@@ -5,6 +5,12 @@
       "minecraft:fire/ignite"
     ]
   },
+  "item.guidebook.pages": {
+    "subtitle": "spectrum.subtitles.item.guidebook.pages",
+    "sounds": [
+      "spectrum:guidebook_pages"
+    ]
+  },
   "use_fail": {
     "subtitle": "spectrum.subtitles.use_fail",
     "sounds": [
@@ -65,6 +71,26 @@
   "discharge": {
     "sounds": [
       "spectrum:discharge"
+    ]
+  },
+  "lunge_crit": {
+    "sounds": [
+      "spectrum:lunge_crit"
+    ]
+  },
+  "lunge": {
+    "sounds": [
+      "spectrum:lunge"
+    ]
+  },
+  "perfect_parry": {
+    "sounds": [
+      "spectrum:perfect_parry"
+    ]
+  },
+  "sword_block": {
+    "sounds": [
+      "spectrum:sword_block"
     ]
   },
   "paintbrush_paint": {
@@ -443,33 +469,193 @@
       "spectrum:block.ruin.place"
     ]
   },
-  "music.spectrum_theme": {
-    "subtitle": "spectrum.subtitles.spectrum_theme_plays",
+
+  "music.discovery": {
     "sounds": [
-      "spectrum:spectrum_theme"
-    ],
-    "stream": true
+      {
+        "name": "spectrum:music/davejf_the_mist",
+        "stream": true
+      }
+    ]
   },
-  "music.boss_theme": {
-    "subtitle": "spectrum.subtitles.boss_theme_plays",
+  "music.credits": {
     "sounds": [
-      "spectrum:radiarc_irrelevance_fading"
-    ],
-    "stream": true
-  },
-  "music.deeper_down_theme": {
-    "subtitle": "spectrum.subtitles.deeper_down_theme_plays",
-    "sounds": [
-      "spectrum:sunsette_darker_than_hell"
-    ],
-    "stream": true
+      {
+        "name": "spectrum:music/radiarc_irrelevance_fading",
+        "stream": true
+      }
+    ]
   },
   "music.divinity": {
     "sounds": [
-      "spectrum:proper_motions_everreflective"
-    ],
-    "stream": true
+      {
+        "name": "spectrum:music/proper_motions_everreflective",
+        "stream": true
+      }
+    ]
   },
+
+  "music.deeper_down.black_langast": {
+    "sounds": [
+      {
+        "name": "spectrum:music/sunsette_darker_than_hell",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_home",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_finality",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_submerged",
+        "stream": true
+      }
+    ]
+  },
+  "music.deeper_down.crystal_gardens": {
+    "sounds": [
+      {
+        "name": "spectrum:music/sunsette_darker_than_hell",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_circumstance",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_uncertainty",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_submerged",
+        "stream": true
+      }
+    ]
+  },
+  "music.deeper_down.deep_barrens": {
+    "sounds": [
+      {
+        "name": "spectrum:music/sunsette_darker_than_hell",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_despite",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_home",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_amnion",
+        "stream": true
+      }
+    ]
+  },
+  "music.deeper_down.deep_dripstone_caves": {
+    "sounds": [
+      {
+        "name": "spectrum:music/radiarc_circumstance",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_uncertainty",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_amnion",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_amble",
+        "stream": true
+      }
+    ]
+  },
+  "music.deeper_down.dragonrot_swamp": {
+    "sounds": [
+      {
+        "name": "spectrum:music/sunsette_darker_than_hell",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_home",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_finality",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_amnion",
+        "stream": true
+      }
+    ]
+  },
+  "music.deeper_down.howling_spires": {
+    "sounds": [
+      {
+        "name": "spectrum:music/radiarc_finality",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_despite",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_uncertainty",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_submerged",
+        "stream": true
+      }
+    ]
+  },
+  "music.deeper_down.noxshroom_forest": {
+    "sounds": [
+      {
+        "name": "spectrum:music/sunsette_darker_than_hell",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_despite",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_amble",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_amnion",
+        "stream": true
+      }
+    ]
+  },
+  "music.deeper_down.razor_edge": {
+    "sounds": [
+      {
+        "name": "spectrum:music/sunsette_darker_than_hell",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_despite",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_submerged",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_amble",
+        "stream": true
+      }
+    ]
+  },
+
   "spectrum.ui.new_revelation": {
     "sounds": [
       "spectrum:new_revelation"
@@ -555,6 +741,24 @@
     "subtitle": "spectrum.subtitles.howling_wind_low",
     "sounds": [
       "spectrum:howling_wind_low"
+    ]
+  },
+  "ambient.rain_shower": {
+    "subtitle": "spectrum.subtitles.rain_shower",
+    "sounds": [
+      "spectrum:shower"
+    ]
+  },
+  "ambient.laments": {
+    "subtitle": "spectrum.subtitles.laments",
+    "sounds": [
+      "spectrum:laments"
+    ]
+  },
+  "ambient.crystal_aura": {
+    "subtitle": "spectrum.subtitles.crystal_aura",
+    "sounds": [
+      "spectrum:crystal_aura"
     ]
   },
   "pedestal_crafting": {
@@ -1747,6 +1951,73 @@
     "subtitle": "spectrum.subtitles.entity.kindling.jump",
     "sounds": [
       "spectrum:entity.kindling.jump"
+    ]
+  },
+
+  "entity.egg_laying_wooly_pig.ambient": {
+    "subtitle": "spectrum.subtitles.entity.egg_laying_wooly_pig.ambient",
+    "sounds": [
+      "minecraft:mob/pig/say1",
+      "minecraft:mob/pig/say2",
+      "minecraft:mob/pig/say3"
+    ]
+  },
+  "entity.egg_laying_wooly_pig.hurt": {
+    "subtitle": "spectrum.subtitles.entity.egg_laying_wooly_pig.hurt",
+    "sounds": [
+      "minecraft:mob/pig/say1",
+      "minecraft:mob/pig/say2",
+      "minecraft:mob/pig/say3"
+    ]
+  },
+  "entity.egg_laying_wooly_pig.death": {
+    "subtitle": "spectrum.subtitles.entity.egg_laying_wooly_pig.death",
+    "sounds": [
+      "minecraft:mob/pig/death"
+    ]
+  },
+  "entity.egg_laying_wooly_pig.step": {
+    "subtitle": "spectrum.subtitles.entity.egg_laying_wooly_pig.step",
+    "sounds": [
+      "minecraft:mob/pig/step1",
+      "minecraft:mob/pig/step2",
+      "minecraft:mob/pig/step3",
+      "minecraft:mob/pig/step4",
+      "minecraft:mob/pig/step5"
+    ]
+  },
+
+  "entity.eraser.ambient": {
+    "subtitle": "spectrum.subtitles.entity.eraser.ambient",
+    "sounds": [
+      "minecraft:mob/spider/say1",
+      "minecraft:mob/spider/say2",
+      "minecraft:mob/spider/say3",
+      "minecraft:mob/spider/say4"
+    ]
+  },
+  "entity.eraser.hurt": {
+    "subtitle": "spectrum.subtitles.entity.eraser.hurt",
+    "sounds": [
+      "minecraft:mob/spider/say1",
+      "minecraft:mob/spider/say2",
+      "minecraft:mob/spider/say3",
+      "minecraft:mob/spider/say4"
+    ]
+  },
+  "entity.eraser.death": {
+    "subtitle": "spectrum.subtitles.entity.eraser.death",
+    "sounds": [
+      "minecraft:mob/spider/death"
+    ]
+  },
+  "entity.eraser.step": {
+    "subtitle": "spectrum.subtitles.entity.eraser.step",
+    "sounds": [
+      "minecraft:mob/spider/step1",
+      "minecraft:mob/spider/step2",
+      "minecraft:mob/spider/step3",
+      "minecraft:mob/spider/step4"
     ]
   },
 

@@ -1,12 +1,12 @@
 {
-  "name": "book.spectrum.guidebook.bismuth_trinkets.name",
+  "name": "item.spectrum.fanciful_bismuth_ring",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/trinkets/fanciful_bismuth_ring"
   },
   "icon": "spectrum:fanciful_bismuth_ring",
   "category": "spectrum:equipment",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:equipment/trinkets/base_trinkets"
@@ -24,8 +24,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "item.spectrum.fanciful_bismuth_ring",
-      "recipe_id_1": "spectrum:pedestal/tier4/fanciful_bismuth_ring",
+      "title": "item.spectrum.fanciful_bismuth_ring",
+      "recipe_id": "spectrum:pedestal/tier4/fanciful_bismuth_ring",
       "text": "book.spectrum.guidebook.bismuth_trinkets.page1.text"
     }
   ]

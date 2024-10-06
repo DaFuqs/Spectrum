@@ -1,0 +1,18 @@
+{
+  "type": "spectrum:spirit_instiller",
+  "time": 1200,
+  "experience": 16.0,
+  "ingredient1": {
+    "item": "spectrum:evernectar"
+  },
+  "ingredient2": {
+    "item": "spectrum:aether_vestiges"
+  },
+  "center_ingredient": {
+    "item": "spectrum:knotted_sword"
+  },
+  "result": {
+    "item": "spectrum:nectar_lance"
+  },
+  "required_advancement": "spectrum:unlocks/equipment/nectar_lance"
+}

@@ -6,7 +6,7 @@
     "advancement_id": "spectrum:unlocks/blocks/spirit_instiller"
   },
   "category": "spectrum:creating_life",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
@@ -20,8 +20,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier3/spirit_instiller",
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "spectrum:pedestal/tier3/spirit_instiller",
       "text": "book.spectrum.guidebook.spirit_instiller.page1.text"
     },
     {

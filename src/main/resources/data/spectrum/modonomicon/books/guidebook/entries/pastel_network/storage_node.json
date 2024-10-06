@@ -6,7 +6,7 @@
     "advancement_id": "spectrum:unlocks/blocks/pastel_network"
   },
   "category": "spectrum:pastel_network",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:pastel_network/pastel_network",
@@ -25,8 +25,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier3/pastel_network/storage_node"
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "spectrum:pedestal/tier3/pastel_network/storage_node"
     }
   ]
 }

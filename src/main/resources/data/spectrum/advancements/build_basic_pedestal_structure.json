@@ -16,7 +16,7 @@
     "built_structure": {
       "trigger": "spectrum:completed_multiblock",
       "conditions": {
-        "multiblock_identifier": "spectrum:pedestal_simple_structure_check"
+        "multiblock_identifier": "spectrum:pedestal_simple"
       }
     },
     "gotten_previous": {

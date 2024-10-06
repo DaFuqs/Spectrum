@@ -1,0 +1,26 @@
+{
+  "type": "neepmeat:advanced_crushing",
+  "input": {
+    "resource": "spectrum:yellow_leaves",
+    "amount": 1
+  },
+  "output": {
+    "resource": "spectrum:yellow_pigment",
+    "amount": 1
+  },
+  "extra": {
+    "resource": "spectrum:yellow_sapling",
+    "amount": 1,
+    "chance": 0.03
+  },
+  "experience": 0.7,
+  "processtime": 45,
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "neepmeat"
+      ]
+    }
+  ]
+}

@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:color_picker",
   "category": "spectrum:ink",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:ink/ink"
@@ -24,8 +24,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier2/color_picker",
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "spectrum:pedestal/tier2/color_picker",
       "text": "book.spectrum.guidebook.color_picker.page1.text"
     }
   ]

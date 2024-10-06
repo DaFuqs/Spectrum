@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:mermaids_jam",
   "category": "spectrum:cuisine",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:cuisine/cheong"
@@ -24,8 +24,8 @@
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "title1": "book.spectrum.guidebook.titration_recipe",
-      "recipe_id_1": "spectrum:titration_barrel/special/cheong",
+      "title": "book.spectrum.guidebook.titration_recipe",
+      "recipe_id": "spectrum:titration_barrel/special/cheong",
       "text": "book.spectrum.guidebook.mermaids_jam.page1.text"
     }
   ]

@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:item/handheld_oversized",
+  "parent": "item/generated",
   "textures": {
     "layer0": "spectrum:item/concealing_oils",
     "layer1": "spectrum:item/concealing_oils_tint",

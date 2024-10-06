@@ -1,24 +1,17 @@
 package de.dafuqs.spectrum.compat.modonomicon.pages;
 
-import com.google.gson.JsonObject;
-import com.klikli_dev.modonomicon.book.BookTextHolder;
-import com.klikli_dev.modonomicon.book.RenderedBookTextHolder;
-import com.klikli_dev.modonomicon.book.conditions.BookCondition;
-import com.klikli_dev.modonomicon.book.conditions.BookNoneCondition;
-import com.klikli_dev.modonomicon.book.page.BookTextPage;
-import com.klikli_dev.modonomicon.client.gui.book.markdown.BookTextRenderer;
-import com.klikli_dev.modonomicon.util.BookGsonHelper;
-import de.dafuqs.spectrum.compat.modonomicon.ModonomiconCompat;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
+import com.google.gson.*;
+import com.klikli_dev.modonomicon.book.*;
+import com.klikli_dev.modonomicon.book.conditions.*;
+import com.klikli_dev.modonomicon.book.page.*;
+import com.klikli_dev.modonomicon.client.gui.book.markdown.*;
+import com.klikli_dev.modonomicon.util.*;
+import de.dafuqs.spectrum.compat.modonomicon.*;
+import net.minecraft.network.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class BookChecklistPage extends BookTextPage {
 

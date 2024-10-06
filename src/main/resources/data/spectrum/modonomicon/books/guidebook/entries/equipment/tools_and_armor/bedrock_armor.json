@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:bedrock_chestplate",
   "category": "spectrum:equipment",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
@@ -21,22 +21,22 @@
     {
       "type": "spectrum:fusion_shrine_crafting",
       "text": "book.spectrum.guidebook.bedrock_armor.page1.text",
-      "recipe_id_1": "spectrum:fusion_shrine/bedrock/helmet"
+      "recipe_id": "spectrum:fusion_shrine/bedrock/helmet"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "text": "book.spectrum.guidebook.bedrock_armor.page2.text",
-      "recipe_id_1": "spectrum:fusion_shrine/bedrock/chestplate"
+      "recipe_id": "spectrum:fusion_shrine/bedrock/chestplate"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "text": "book.spectrum.guidebook.bedrock_armor.page3.text",
-      "recipe_id_1": "spectrum:fusion_shrine/bedrock/leggings"
+      "recipe_id": "spectrum:fusion_shrine/bedrock/leggings"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "text": "book.spectrum.guidebook.bedrock_armor.page4.text",
-      "recipe_id_1": "spectrum:fusion_shrine/bedrock/boots"
+      "recipe_id": "spectrum:fusion_shrine/bedrock/boots"
     }
   ]
 }

@@ -25,8 +25,7 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 public class DraconicTwinswordItem extends SwordItem implements SplittableItem, SlotReservingItem, Preenchanted, ExtendedEnchantable, ExtendedItemBarProvider, SlotBackgroundEffectProvider {
-	
-	private static final InkCost THROW_COST = new InkCost(InkColors.YELLOW, 20);
+
 	public static final float MAX_CHARGE_TIME = 60;
 	private final Multimap<EntityAttribute, EntityAttributeModifier> phantomModifiers;
 	
@@ -173,10 +172,10 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
 			case OFF_HAND -> player.getStackInHand(Hand.MAIN_HAND).isEmpty();
 		};
 	}
-	
+
 	@Override
-	public SoundProvider getSplitSound() {
-		return (player -> player.playSound(SpectrumSoundEvents.METALLIC_UNSHEATHE, SoundCategory.PLAYERS, 0.5F, 0.8F + player.getRandom().nextFloat() * 0.4F));
+	public void playSound(ServerPlayerEntity player) {
+		player.playSound(SpectrumSoundEvents.METALLIC_UNSHEATHE, SoundCategory.PLAYERS, 0.5F, 0.8F + player.getRandom().nextFloat() * 0.4F);
 	}
 	
 	@Override

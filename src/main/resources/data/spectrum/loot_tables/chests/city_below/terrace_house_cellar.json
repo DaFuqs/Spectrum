@@ -24,14 +24,14 @@
     },
     {
       "rolls": {
-        "min": 2,
-        "max": 3
+        "min": 3,
+        "max": 4
       },
-      "bonus_rolls": 0.5,
+      "bonus_rolls": 0.6,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:sand",
+          "name": "spectrum:slush",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -57,11 +57,30 @@
         },
         {
           "type": "minecraft:item",
+          "name": "spectrum:frostbite_essence",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 4,
+                "max": 7
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
           "name": "minecraft:bucket"
         },
         {
           "type": "minecraft:loot_table",
           "name": "spectrum:chests/sub_tables/ancient_infused_beverages"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:bottle_of_fading",
+          "weight": 0,
+          "quality": -2
         }
       ]
     },

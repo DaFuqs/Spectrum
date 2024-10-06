@@ -6,7 +6,7 @@
     "advancement_id": "spectrum:unlocks/blocks/blood_orchid"
   },
   "category": "spectrum:general",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:general/blood_orchid_petal"
@@ -22,7 +22,7 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.moonstone_shards.name",
+      "title": "block.spectrum.blood_orchid",
       "item": {
         "item": "spectrum:blood_orchid"
       },
@@ -31,7 +31,7 @@
     {
       "type": "spectrum:spirit_instiller_crafting",
       "title": "block.spectrum.blood_orchid",
-      "recipe_id_1": "spectrum:spirit_instiller/blood_orchid",
+      "recipe_id": "spectrum:spirit_instiller/blood_orchid",
       "text": "book.spectrum.guidebook.blood_orchids.page1.text"
     }
   ]

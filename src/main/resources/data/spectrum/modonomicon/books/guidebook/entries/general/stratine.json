@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:stratine_fragments",
   "category": "spectrum:general",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
@@ -23,12 +23,12 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "item.spectrum.stratine_gem",
+      "title": "item.spectrum.stratine_gem",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_stratine_gem"
       },
-      "recipe_id_1": "spectrum:pedestal/tier3/stratine_gem",
+      "recipe_id": "spectrum:pedestal/tier3/stratine_gem",
       "text": "book.spectrum.guidebook.rare_intact_gem"
     },
     {
@@ -50,8 +50,8 @@
         "advancement_id": "spectrum:midgame/carry_too_many_heavy_gravity_blocks"
       },
       "text": "book.spectrum.guidebook.stratine.page3.text",
-      "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier1/compacting/stratine_fragment_block"
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "spectrum:pedestal/tier1/compacting/stratine_fragment_block"
     }
   ]
 }

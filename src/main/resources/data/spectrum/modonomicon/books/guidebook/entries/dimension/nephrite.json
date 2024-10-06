@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:nephrite_blossom_bulb",
   "category": "spectrum:dimension",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:dimension/crystal_gardens"

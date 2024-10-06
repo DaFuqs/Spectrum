@@ -3,7 +3,6 @@
   "values": [
     "spectrum:dragonrot",
     "spectrum:irradiance",
-    "spectrum:set_health_damage",
-    "spectrum:evisceration"
+    "spectrum:set_health_damage"
   ]
 }

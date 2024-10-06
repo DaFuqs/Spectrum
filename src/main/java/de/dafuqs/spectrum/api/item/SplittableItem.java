@@ -14,5 +14,5 @@ public interface SplittableItem {
 		stack.getOrCreateNbt().putLong("pairSignature", player.getWorld().getTime() + player.getUuid().getMostSignificantBits());
 	}
 	
-	SoundProvider getSplitSound();
+	void playSound(ServerPlayerEntity player);
 }

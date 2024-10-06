@@ -10,6 +10,7 @@ public class SpectrumDamageTypeTags {
 	public static final TagKey<DamageType> DROPS_LOOT_LIKE_PLAYERS = of("drops_loot_like_players");
 	public static final TagKey<DamageType> USES_SET_HEALTH = of("uses_set_health");
 	public static final TagKey<DamageType> BYPASSES_DIKE = of("bypasses_dike");
+	public static final TagKey<DamageType> BYPASSES_PARRYING = of("bypasses_dike");
 	public static final TagKey<DamageType> INCREASED_ARMOR_DAMAGE = of("increased_armor_damage");
 	public static final TagKey<DamageType> DOES_NOT_DAMAGE_ARMOR = of("does_not_damage_armor");
 	public static final TagKey<DamageType> CALCULATES_DAMAGE_BASED_ON_TOUGHNESS = of("calculates_damage_based_on_toughness");

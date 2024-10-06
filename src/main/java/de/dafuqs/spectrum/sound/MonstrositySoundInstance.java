@@ -15,7 +15,7 @@ public class MonstrositySoundInstance extends MovingSoundInstance {
 	private final SpectrumBossEntity bossEntity;
 	
 	private MonstrositySoundInstance(SpectrumBossEntity bossEntity) {
-		super(SpectrumSoundEvents.BOSS_THEME, SoundCategory.RECORDS, SoundInstance.createRandom());
+		super(SpectrumSoundEvents.MUSIC_CREDITS, SoundCategory.RECORDS, SoundInstance.createRandom());
 		this.bossEntity = bossEntity;
 		this.repeat = true;
 		instances++;

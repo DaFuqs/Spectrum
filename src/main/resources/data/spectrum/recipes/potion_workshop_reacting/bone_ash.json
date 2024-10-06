@@ -2,9 +2,8 @@
   "type": "spectrum:potion_workshop_reacting",
   "item": "spectrum:bone_ash",
   "modifiers": {
-    "chance_to_add_last_effect": 0.1,
     "last_effect_duration_modifier": 2.0,
     "last_effect_potency_modifier": 2.0
   },
-  "required_advancement": "spectrum:hidden/collect_dragonbone"
+  "required_advancement": "spectrum:break_cracked_dragonbone"
 }

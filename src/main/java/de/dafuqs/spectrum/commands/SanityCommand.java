@@ -290,7 +290,8 @@ public class SanityCommand {
 		for (PedestalRecipe recipe : recipeManager.listAllOfType(SpectrumRecipeTypes.PEDESTAL)) {
 			Identifier id = recipe.getId();
 			if (id.getPath().startsWith("mod_integration/") || id.getPath().contains("/glass/") || id.getPath().contains("/saplings/") || id.getPath().contains("/detectors/") || id.getPath().contains("/gemstone_lights/") || id.getPath().contains("/decostones/")
-					|| id.getPath().contains("/runes/") || id.getPath().contains("/pastel_network/") || id.getPath().contains("/gemstone_chimes/") || id.getPath().contains("/pastel_network/") || id.getPath().contains("/semi_permeable_glass/")) {
+					|| id.getPath().contains("/runes/") || id.getPath().contains("/pastel_network/") || id.getPath().contains("/gemstone_chimes/") || id.getPath().contains("/pastel_network/") || id.getPath().contains("/semi_permeable_glass/")
+					|| id.getPath().contains("/colored_lamps/") || id.getPath().contains("/colored_spore_blossoms/") || id.getPath().contains("/glowblocks/")) {
 				continue;
 			}
 

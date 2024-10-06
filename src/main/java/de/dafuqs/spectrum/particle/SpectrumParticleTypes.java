@@ -33,7 +33,11 @@ public class SpectrumParticleTypes {
 	public static DefaultParticleType DRAKEBLOOD_DIKE_RUNES_MAJOR = register("drakeblood_dike_runes_major", false);
 	public static DefaultParticleType MALACHITE_DIKE_RUNES = register("malachite_dike_runes", false);
 	public static DefaultParticleType MALACHITE_DIKE_RUNES_MAJOR = register("malachite_dike_runes_major", false);
-	
+
+	public static DefaultParticleType AZURE_AURA = register("azure_aura", false);
+	public static DefaultParticleType AZURE_MOTE = register("azure_mote", false);
+	public static DefaultParticleType AZURE_MOTE_SMALL = register("azure_mote_small", false);
+
 	public static DefaultParticleType BLUE_BUBBLE_POP = register("blue_bubble_pop", false);
 	public static DefaultParticleType GREEN_BUBBLE_POP = register("green_bubble_pop", false);
 	
@@ -190,7 +194,10 @@ public class SpectrumParticleTypes {
 	public static DefaultParticleType QUARTZ_FLUFF = register("quartz_fluff", true);
 
 	public static DefaultParticleType LIGHT_RAIN = register("light_rain", true);
-	
+	public static DefaultParticleType HEAVY_RAIN = register("heavy_rain", true);
+	public static DefaultParticleType RAIN_SPLASH = register("rain_splash", false);
+	public static DefaultParticleType RAIN_RIPPLE = register("rain_ripple", false);
+
 	public static DefaultParticleType LIGHT_TRAIL = register("light_trail", true);
 	
 	public static ParticleType<DynamicParticleEffect> DYNAMIC = register("particle_spawner", DynamicParticleEffect.FACTORY, (particleType) -> DynamicParticleEffect.CODEC, false);

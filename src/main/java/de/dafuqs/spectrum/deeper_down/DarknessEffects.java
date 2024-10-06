@@ -28,21 +28,21 @@ public class DarknessEffects {
 			lastFogTarget = 1F, nearTarget = 1F, near = 1F, lastNearTarget = 1F, farTarget = 1F, far = 1F, lastFarTarget = 1F,
 			redTarget, red, lastRedTarget, greenTarget, green, lastGreenTarget, blueTarget, blue, lastBlueTarget, blendTarget, blend, lastBlendTarget;
 	private static RegistryEntry<Biome> currentBiome;
-	private static StatusEffect currentSleepEffect;
 	private static final MinecraftClient client = MinecraftClient.getInstance();
+	private static boolean shouldUpdate, forceBiomeUpdate;
 	
 	public static void clientTick(ClientWorld world, LivingEntity camera, RegistryEntry<Biome> biome) {
 		if (client.isPaused())
 			return;
 		
 		lastDarkenTicks = darkenTicks;
-		var sleepPotency = SleepStatusEffect.getGeneralSleepResistanceIfEntityHasSoporificEffect(camera);
+		var sleepPotency = SleepStatusEffect.getSleepScaling(camera);
 		var sleepEffect = SleepStatusEffect.getStrongestSleepEffect(camera);
 		
-		if (currentSleepEffect != sleepEffect) {
-			var targets = MathHelper.clamp(sleepPotency / 2.5F, 0, 1);
-			currentSleepEffect = sleepEffect;
+		if (shouldUpdate) {
+			var targets = MathHelper.clamp(sleepPotency / 2F, 0, 1);
 			interpInterpTicks = 0;
+			shouldUpdate = false;
 			updateTargets();
 			
 			if (sleepEffect == SpectrumStatusEffects.FATAL_SLUMBER) {
@@ -86,8 +86,12 @@ public class DarknessEffects {
 				blueTarget = 0;
 				currentBiome = null;
 				forceFogEffects = false;
+				forceBiomeUpdate = true;
 			}
 		} else if (currentBiome == null || !currentBiome.getKey().equals(biome.getKey())) {
+			if (forceBiomeUpdate)
+				forceBiomeUpdate = false;
+
 			var biomeKey = biome.getKey().orElse(null);
 			currentBiome = biome;
 			updateTargets();
@@ -136,7 +140,11 @@ public class DarknessEffects {
 		lastBlueTarget = blue;
 		lastBlendTarget = blend;
 	}
-	
+
+	public static void markForEffectUpdate() {
+		shouldUpdate = true;
+	}
+
 	public static float getInterp() {
 		if (client.cameraEntity == null)
 			return interp;

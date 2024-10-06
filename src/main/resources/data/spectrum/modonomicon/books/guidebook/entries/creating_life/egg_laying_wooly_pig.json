@@ -6,7 +6,7 @@
     "advancement_id": "spectrum:unlocks/blocks/egg_laying_wooly_pig_head"
   },
   "category": "spectrum:creating_life",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:creating_life/creature_manipulation"
@@ -24,12 +24,12 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title1": "book.spectrum.guidebook.egg_laying_wooly_pig.page1.title",
+      "title": "book.spectrum.guidebook.egg_laying_wooly_pig.page1.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/egg_laying_wooly_pig_head"
       },
-      "recipe_id_1": "spectrum:fusion_shrine/egg_laying_wooly_pig_head",
+      "recipe_id": "spectrum:fusion_shrine/egg_laying_wooly_pig_head",
       "text": "book.spectrum.guidebook.egg_laying_wooly_pig.page1.text"
     },
     {
@@ -38,8 +38,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/remember_egg_laying_wooly_pig"
       },
-      "title1": "book.spectrum.guidebook.remembering",
-      "recipe_id_1": "spectrum:spirit_instiller/memories/egg_laying_wooly_pig",
+      "title": "book.spectrum.guidebook.remembering",
+      "recipe_id": "spectrum:spirit_instiller/memories/egg_laying_wooly_pig",
       "text": "book.spectrum.guidebook.egg_laying_wooly_pig.page2.text"
     },
     {

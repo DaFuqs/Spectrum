@@ -1,0 +1,9 @@
+{
+  "extra": [
+    
+  ],
+
+  "deny": [
+    "spectrum:monstrosity"
+  ]
+}

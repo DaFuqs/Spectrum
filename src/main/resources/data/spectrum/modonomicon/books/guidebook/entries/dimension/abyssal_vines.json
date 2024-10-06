@@ -6,17 +6,16 @@
   },
   "icon": "spectrum:textures/block/abyssal_vines.png",
   "category": "spectrum:dimension",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
-      "entry": "spectrum:dimension/biomes",
-      "line_enabled": "false"
+      "entry": "spectrum:dimension/deep_dripstone_caves"
     }
   ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": -6,
-  "y": -4,
+  "x": 5,
+  "y": 2,
   "pages": [
     {
       "type": "modonomicon:text",
@@ -42,6 +41,26 @@
       },
       "title": "book.spectrum.guidebook.abyssal_vines.page3.title",
       "text": "book.spectrum.guidebook.abyssal_vines.page3.text"
+    },
+    {
+      "type": "spectrum:cinderhearth_smelting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_fissure_plum"
+      },
+      "text": "book.spectrum.guidebook.abyssal_vines.page4.text",
+      "title": "book.spectrum.guidebook.abyssal_vines.page4.title",
+      "recipe_id": "spectrum:cinderhearth/vanilla/sugar_from_fissure_plum"
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "text": "book.spectrum.guidebook.abyssal_vines.page5.text",
+      "title": "book.spectrum.guidebook.abyssal_vines.page5.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/resources/fertilizer"
+      },
+      "recipe_id": "spectrum:potion_workshop_crafting/bone_meal"
     }
   ]
 }

@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:textures/gui/guidebook/icons/azure_dike_heart.png",
   "category": "spectrum:equipment",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:equipment/trinkets/base_trinkets",
@@ -43,8 +43,8 @@
         "advancement_id": "spectrum:unlocks/trinkets/azure_dike_ring"
       },
       "text": "book.spectrum.guidebook.azure_dike_equipment.page2.text",
-      "title1": "item.spectrum.azure_dike_ring",
-      "recipe_id_1": "spectrum:fusion_shrine/trinkets/azure_dike_ring"
+      "title": "item.spectrum.azure_dike_ring",
+      "recipe_id": "spectrum:fusion_shrine/trinkets/azure_dike_ring"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
@@ -53,8 +53,8 @@
         "advancement_id": "spectrum:unlocks/trinkets/azure_dike_belt"
       },
       "text": "book.spectrum.guidebook.azure_dike_equipment.page3.text",
-      "title1": "item.spectrum.azure_dike_belt",
-      "recipe_id_1": "spectrum:fusion_shrine/trinkets/azure_dike_belt"
+      "title": "item.spectrum.azure_dike_belt",
+      "recipe_id": "spectrum:fusion_shrine/trinkets/azure_dike_belt"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
@@ -63,8 +63,8 @@
         "advancement_id": "spectrum:unlocks/trinkets/shieldgrasp_amulet"
       },
       "text": "book.spectrum.guidebook.azure_dike_equipment.page4.text",
-      "title1": "item.spectrum.shieldgrasp_amulet",
-      "recipe_id_1": "spectrum:fusion_shrine/trinkets/shieldgrasp_amulet"
+      "title": "item.spectrum.shieldgrasp_amulet",
+      "recipe_id": "spectrum:fusion_shrine/trinkets/shieldgrasp_amulet"
     }
   ]
 }

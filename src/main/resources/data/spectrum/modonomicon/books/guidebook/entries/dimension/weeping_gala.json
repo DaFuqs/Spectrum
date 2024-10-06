@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:weeping_gala_sprig",
   "category": "spectrum:dimension",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:dimension/howling_spires",
@@ -16,7 +16,7 @@
   "background_u_index": 0,
   "background_v_index": 0,
   "x": 5,
-  "y": 8,
+  "y": 10,
   "pages": [
     {
       "type": "modonomicon:spotlight",
@@ -50,6 +50,36 @@
         "spectrum:weeping_gala_light"
       ],
       "text": "book.spectrum.guidebook.weeping_gala.page1.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/weeping_gala/barrel",
+      "text": "book.spectrum.guidebook.weeping_gala.barrel.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.weeping_gala.amphora.text",
+      "recipe_id": "spectrum:pedestal/tier1/weeping_gala/amphora"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/weeping_gala/lamp",
+      "text": "book.spectrum.guidebook.weeping_gala.lamp.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/weeping_gala/lantern",
+      "text": "book.spectrum.guidebook.weeping_gala.lantern.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/weeping_gala/light",
+      "text": "book.spectrum.guidebook.weeping_gala.light.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/weeping_gala/pillar",
+      "text": "book.spectrum.guidebook.weeping_gala.pillar.text"
     }
   ]
 }

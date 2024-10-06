@@ -1,0 +1,40 @@
+{
+  "name": "book.spectrum.guidebook.the_art_of_brewing.name",
+  "icon": "spectrum:titration_barrel",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/titration_barrel"
+  },
+  "category": "spectrum:cuisine",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 2,
+  "x": -1,
+  "y": 0,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.the_art_of_brewing.name",
+      "text": "book.spectrum.guidebook.the_art_of_brewing.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.the_art_of_brewing.page1.title",
+      "text": "book.spectrum.guidebook.the_art_of_brewing.page1.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.the_art_of_brewing.page2.text"
+    },
+    {
+      "type": "spectrum:confirmation_button",
+      "title": "book.spectrum.guidebook.the_art_of_brewing.drinking_age.title",
+      "checked_advancement": "spectrum:triggers/confirmed_drinking_age",
+      "button_text": "book.spectrum.guidebook.the_art_of_brewing.drinking_age.button_text",
+      "button_text_confirmed": "book.spectrum.guidebook.the_art_of_brewing.drinking_age.button_text_confirmed",
+      "confirmation": "confirm_drinking_age",
+      "text": "book.spectrum.guidebook.the_art_of_brewing.drinking_age.text"
+    }
+  ]
+}

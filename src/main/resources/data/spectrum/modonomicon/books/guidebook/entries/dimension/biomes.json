@@ -2,7 +2,11 @@
   "name": "book.spectrum.guidebook.biomes.name",
   "icon": "spectrum:blackslag",
   "category": "spectrum:dimension",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:midgame/enter_dimension"
+  },
   "parents": [
     {
       "entry": "spectrum:dimension/delving_deeper_down"
@@ -15,8 +19,12 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.biomes.page0.title",
+      "title": "book.spectrum.guidebook.biomes.name",
       "text": "book.spectrum.guidebook.biomes.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.biomes.page1.text"
     }
   ]
 }

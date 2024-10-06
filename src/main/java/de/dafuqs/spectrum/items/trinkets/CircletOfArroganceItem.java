@@ -59,7 +59,7 @@ public class CircletOfArroganceItem extends SpectrumTrinketItem {
 	@Override
 	public Multimap<EntityAttribute, EntityAttributeModifier> getModifiers(ItemStack stack, SlotReference slot, LivingEntity entity, UUID uuid) {
 		Multimap<EntityAttribute, EntityAttributeModifier> modifiers = super.getModifiers(stack, slot, entity, uuid);
-		modifiers.put(SpectrumEntityAttributes.INDUCED_SLEEP_RESISTANCE, new EntityAttributeModifier(uuid, "spectrum:circlet_of_arrogance", 0.25, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
+		modifiers.put(SpectrumEntityAttributes.MENTAL_PRESENCE, new EntityAttributeModifier(uuid, "spectrum:circlet_of_arrogance", 0.25, EntityAttributeModifier.Operation.MULTIPLY_BASE));
 		return modifiers;
     }
 	

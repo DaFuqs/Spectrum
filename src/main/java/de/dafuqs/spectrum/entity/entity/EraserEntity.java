@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.entity.entity;
 import de.dafuqs.spectrum.api.entity.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.advancement.criterion.*;
+import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.*;
@@ -17,6 +18,7 @@ import net.minecraft.nbt.*;
 import net.minecraft.server.network.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.*;
+import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
@@ -56,6 +58,22 @@ public class EraserEntity extends SpiderEntity implements PackEntity<EraserEntit
 		this.targetSelector.add(1, new RevengeGoal(this));
 		this.targetSelector.add(2, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
 		this.targetSelector.add(3, new ActiveTargetGoal<>(this, IronGolemEntity.class, true));
+	}
+	
+	protected SoundEvent getAmbientSound() {
+		return SpectrumSoundEvents.ENTITY_ERASER_AMBIENT;
+	}
+	
+	protected SoundEvent getHurtSound(DamageSource source) {
+		return SpectrumSoundEvents.ENTITY_ERASER_HURT;
+	}
+	
+	protected SoundEvent getDeathSound() {
+		return SpectrumSoundEvents.ENTITY_ERASER_DEATH;
+	}
+	
+	protected void playStepSound(BlockPos pos, BlockState state) {
+		this.playSound(SpectrumSoundEvents.ENTITY_ERASER_STEP, 0.15F, 1.0F);
 	}
 	
 	@Override

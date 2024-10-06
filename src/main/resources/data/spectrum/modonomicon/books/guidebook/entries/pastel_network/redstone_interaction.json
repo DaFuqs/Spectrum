@@ -1,3 +1,4 @@
+
 {
   "name": "book.spectrum.guidebook.redstone_interaction.name",
   "icon": "minecraft:redstone",
@@ -6,7 +7,7 @@
     "advancement_id": "spectrum:unlocks/blocks/pastel_network"
   },
   "category": "spectrum:pastel_network",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:pastel_network/pastel_network",
@@ -26,6 +27,81 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.redstone_interaction.page1.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.redstone_interaction.page2.text",
+      "title": "book.spectrum.guidebook.redstone_interaction.page2.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/collect_pure_resource"
+      }
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:pure_redstone"
+      },
+      "text": "book.spectrum.guidebook.redstone_interaction.page3.text",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/collect_pure_resource"
+      }
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:pure_coal"
+      },
+      "text": "book.spectrum.guidebook.redstone_interaction.page4.text",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/collect_pure_resource"
+      }
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:pure_echo"
+      },
+      "text": "book.spectrum.guidebook.redstone_interaction.page5.text",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/collect_pure_resource"
+      }
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:pure_lapis"
+      },
+      "text": "book.spectrum.guidebook.redstone_interaction.page6.text",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/collect_pure_resource"
+      }
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:pure_quartz"
+      },
+      "text": "book.spectrum.guidebook.redstone_interaction.page7.text",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/collect_pure_resource"
+      }
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:pure_glowstone"
+      },
+      "text": "book.spectrum.guidebook.redstone_interaction.page8.text",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/collect_pure_resource"
+      }
     }
   ]
 }

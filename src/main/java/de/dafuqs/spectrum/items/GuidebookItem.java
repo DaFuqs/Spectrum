@@ -73,6 +73,14 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 			// if the player has never opened the book before
 			// automatically open the introduction page
 			openGuidebook();
+			
+			/** TODO: this can be removed by putting
+			 * "entry_to_open": "spectrum:general/intro",
+			 * "open_entry_to_open_only_once": true,
+			 *
+			 * in the general category entry in 1.21
+			 * https://klikli-dev.github.io/modonomicon/docs/basics/structure/categories
+			 */
 			if (!hasOpenedGuidebookBefore()) {
 				openGuidebook(SpectrumCommon.locate("general/intro"), 0);
 			}

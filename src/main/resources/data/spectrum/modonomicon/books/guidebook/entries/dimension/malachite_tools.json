@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:malachite_workstaff",
   "category": "spectrum:dimension",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:dimension/malachite"
@@ -26,29 +26,29 @@
       "type": "spectrum:fusion_shrine_crafting",
       "anchor": "workstaff",
       "text": "book.spectrum.guidebook.malachite_tools.page1.text",
-      "title1": "item.spectrum.workstaff",
-      "recipe_id_1": "spectrum:fusion_shrine/malachite/malachite_workstaff"
+      "title": "item.spectrum.workstaff",
+      "recipe_id": "spectrum:fusion_shrine/malachite/malachite_workstaff"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "anchor": "greatsword",
       "text": "book.spectrum.guidebook.malachite_tools.page2.text",
-      "title1": "book.spectrum.guidebook.malachite_tools.page2.title",
-      "recipe_id_1": "spectrum:fusion_shrine/malachite/malachite_ultra_greatsword"
+      "title": "book.spectrum.guidebook.malachite_tools.page2.title",
+      "recipe_id": "spectrum:fusion_shrine/malachite/malachite_ultra_greatsword"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "anchor": "bident",
       "text": "book.spectrum.guidebook.malachite_tools.page3.text",
-      "title1": "entity.spectrum.bident",
-      "recipe_id_1": "spectrum:fusion_shrine/malachite/malachite_bident"
+      "title": "entity.spectrum.bident",
+      "recipe_id": "spectrum:fusion_shrine/malachite/malachite_bident"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "anchor": "crossbow",
       "text": "book.spectrum.guidebook.malachite_tools.page4.text",
-      "title1": "book.spectrum.guidebook.crossbow",
-      "recipe_id_1": "spectrum:fusion_shrine/malachite/malachite_crossbow"
+      "title": "book.spectrum.guidebook.crossbow",
+      "recipe_id": "spectrum:fusion_shrine/malachite/malachite_crossbow"
     }
   ]
 }

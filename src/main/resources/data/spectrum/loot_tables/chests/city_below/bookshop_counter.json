@@ -2,6 +2,21 @@
   "type": "minecraft:chest",
   "pools": [
     {
+      "rolls": 1,
+      "entries":[
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:crafting_tablet"
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_nbt",
+          "tag": "{recipe: \"spectrum:pedestal/tier1/vanilla/writable_book\"}"
+        }
+      ]
+    },
+    {
       "rolls": {
         "min": 2,
         "max": 3
@@ -13,7 +28,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:gold_nugget"
+          "name": "spectrum:shimmerstone_gem"
         }
       ],
       "functions": [
@@ -27,12 +42,64 @@
       ]
     },
     {
+      "rolls": 2,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:fanciful_gloves",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:spyglass",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:crescent_clock",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:knowledge_gem",
+          "quality": 1,
+          "functions": [
+            {
+              "function": "spectrum:merge_nbt_randomly",
+              "tags": [
+                "{stored_experience: 5}",
+                "{stored_experience: 25}",
+                "{stored_experience: 50}",
+                "{stored_experience: 50}",
+                "{stored_experience: 50}",
+                "{stored_experience: 100}",
+                "{stored_experience: 150}",
+                "{stored_experience: 150}",
+                "{stored_experience: 150}",
+                "{stored_experience: 250}",
+                "{stored_experience: 250}",
+                "{stored_experience: 250}",
+                "{stored_experience: 500}",
+                "{stored_experience: 750}"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:book"
+          "name": "minecraft:book",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:enchantment_canvas"
         }
+
       ],
       "functions": [
         {
@@ -42,18 +109,6 @@
             "max": 20
           },
           "treasure": true
-        }
-      ]
-    },
-    {
-      "rolls": {
-        "min": 0,
-        "max": 1
-      },
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:gilded_book"
         }
       ]
     }

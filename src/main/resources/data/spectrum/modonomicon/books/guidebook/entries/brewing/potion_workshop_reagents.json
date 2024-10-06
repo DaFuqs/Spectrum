@@ -6,7 +6,7 @@
     "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
   },
   "category": "spectrum:brewing",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:brewing/potion_workshop",
@@ -38,9 +38,52 @@
     {
       "type": "modonomicon:spotlight",
       "item": {
+        "item": "spectrum:pure_redstone"
+      },
+      "anchor": "pure_redstone",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/collect_pure_resource"
+      },
+      "text": "book.spectrum.guidebook.potion_workshop_reagents.pure_redstone.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
         "item": "minecraft:glowstone_dust"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.page3.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:pure_glowstone"
+      },
+      "anchor": "pure_glowstone",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/collect_pure_resource"
+      },
+      "text": "book.spectrum.guidebook.potion_workshop_reagents.pure_glowstone.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "minecraft:lapis_lazuli"
+      },
+      "text": "book.spectrum.guidebook.potion_workshop_reagents.lapis_lazuli.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:pure_lapis"
+      },
+      "anchor": "pure_lapis",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/collect_pure_resource"
+      },
+      "text": "book.spectrum.guidebook.potion_workshop_reagents.pure_lapis.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -59,6 +102,29 @@
         "advancement_id": "spectrum:hidden/collect_vanilla/dragon_breath"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.page5.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "minecraft:echo_shard"
+      },
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_vanilla/echo_shard"
+      },
+      "text": "book.spectrum.guidebook.potion_workshop_reagents.echo_shard.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:pure_echo"
+      },
+      "anchor": "pure_echo",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/collect_pure_resource"
+      },
+      "text": "book.spectrum.guidebook.potion_workshop_reagents.pure_echo.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -278,7 +344,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/pluck_effulgent_feather"
+        "advancement_id": "spectrum:pluck_effulgent_feather"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.page27.text"
     },
@@ -309,14 +375,38 @@
     {
       "type": "modonomicon:spotlight",
       "item": {
+        "item": "spectrum:fissure_plum"
+      },
+      "anchor": "fissure_plum",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_fissure_plum"
+      },
+      "text": "book.spectrum.guidebook.potion_workshop_reagents.fissure_plum.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
         "item": "spectrum:bone_ash"
       },
       "anchor": "bone_ash",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/collect_dragonbone"
+        "advancement_id": "spectrum:break_cracked_dragonbone"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.page30.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:ash_flakes"
+      },
+      "anchor": "ash_flakes",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_ash"
+      },
+      "text": "book.spectrum.guidebook.potion_workshop_reagents.ash_flakes.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -326,21 +416,9 @@
       "anchor": "bitter_oils",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/collect_cookbooks/poisoners_cookbook"
+        "advancement_id": "spectrum:hidden/collect_cookbooks/poisoners_handbook"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.bitter_oils.text"
-    },
-    {
-      "type": "modonomicon:spotlight",
-      "item": {
-        "item": "spectrum:nectardew_burgeon"
-      },
-      "anchor": "nectardew_burgeon",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/collect_nectardew"
-      },
-      "text": "book.spectrum.guidebook.potion_workshop_reagents.nectardew_burgeon.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -353,6 +431,18 @@
         "advancement_id": "spectrum:collect_nightdew"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.nightdew_sprout.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:nectardew_burgeon"
+      },
+      "anchor": "nectardew_burgeon",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/collect_nectardew"
+      },
+      "text": "book.spectrum.guidebook.potion_workshop_reagents.nectardew_burgeon.text"
     }
   ]
 }

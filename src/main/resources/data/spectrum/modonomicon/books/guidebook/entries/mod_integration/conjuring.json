@@ -15,7 +15,7 @@
     ]
   },
   "category": "spectrum:mod_integration",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
@@ -34,8 +34,8 @@
         "advancement_id": "spectrum:midgame/brew_powerful_potion_in_potion_workshop"
       },
       "text": "book.spectrum.guidebook.mod_integration.conjuring.page1.text",
-      "title1": "book.spectrum.guidebook.mod_integration.conjuring.page1.title",
-      "recipe_id_1": "spectrum:mod_integration/conjuring/potion_workshop_brewing/distilled_spirit_resistance"
+      "title": "book.spectrum.guidebook.mod_integration.conjuring.page1.title",
+      "recipe_id": "spectrum:mod_integration/conjuring/potion_workshop_brewing/distilled_spirit_resistance"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
@@ -44,7 +44,7 @@
         "advancement_id": "spectrum:midgame/build_spirit_instiller_structure"
       },
       "text": "book.spectrum.guidebook.mod_integration.conjuring.page2.text",
-      "recipe_id_1": "spectrum:mod_integration/conjuring/spirit_instiller/lesser_conjuration_essence"
+      "recipe_id": "spectrum:mod_integration/conjuring/spirit_instiller/lesser_conjuration_essence"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
@@ -53,7 +53,7 @@
         "advancement_id": "spectrum:midgame/build_spirit_instiller_structure"
       },
       "text": "book.spectrum.guidebook.mod_integration.conjuring.page3.text",
-      "recipe_id_1": "spectrum:mod_integration/conjuring/spirit_instiller/mob_spawner"
+      "recipe_id": "spectrum:mod_integration/conjuring/spirit_instiller/mob_spawner"
     }
   ]
 }

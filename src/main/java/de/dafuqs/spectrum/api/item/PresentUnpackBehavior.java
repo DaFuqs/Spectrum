@@ -14,7 +14,7 @@ public interface PresentUnpackBehavior {
     /**
      * Invoked when an item is unwrapped from a present
      *
-     * @return the resulting stack after unpacking. Can be the original stack, ItemStack.AIR, or a new stack alltogether
+     * @return the resulting stack after unpacking. Can be the original stack, ItemStack.AIR, or a new stack altogether
      */
     ItemStack onPresentUnpack(ItemStack stack, PresentBlockEntity presentBlockEntity, ServerWorld world, BlockPos pos, Random random);
     

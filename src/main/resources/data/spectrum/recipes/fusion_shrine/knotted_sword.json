@@ -1,0 +1,45 @@
+{
+  "type": "spectrum:fusion_shrine",
+  "time": 400,
+  "experience": 12.0,
+  "fluid": {
+    "fluid": "minecraft:water"
+  },
+  "copy_nbt": true,
+  "ingredients": [
+    {
+      "item": "minecraft:iron_sword"
+    },
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "spectrum:nightdew_sprout",
+      "count": 3
+    },
+    {
+      "item": "spectrum:vegetal",
+      "count": 8
+    },
+    {
+      "item": "spectrum:quitoxic_powder",
+      "count": 8
+    },
+    {
+      "item": "spectrum:purple_pigment",
+      "count": 16
+    }
+  ],
+  "result": {
+    "item": "spectrum:knotted_sword"
+  },
+  "required_advancement": "spectrum:unlocks/equipment/knotted_sword",
+  "world_conditions": [],
+  "start_crafting_effect": "single_visual_explosion_on_shrine",
+  "during_crafting_effects": [
+    "nothing",
+    "visual_explosions_on_shrine",
+    "nothing"
+  ],
+  "finish_crafting_effect": "legendary_tool_craft"
+}

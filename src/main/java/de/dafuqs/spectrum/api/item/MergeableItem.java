@@ -21,6 +21,6 @@ public interface MergeableItem {
 			return parNbt.getLong("pairSignature") == otherNbt.getLong("pairSignature");
 		return false;
 	}
-	
-	SoundProvider getMergeSound();
+
+	void playSound(ServerPlayerEntity player);
 }

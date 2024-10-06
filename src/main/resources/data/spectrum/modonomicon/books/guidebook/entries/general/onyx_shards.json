@@ -6,7 +6,7 @@
     "advancement_id": "spectrum:unlocks/blocks/fusion_shrine"
   },
   "category": "spectrum:general",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:general/fusion_shrine"
@@ -25,8 +25,9 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title1": "container.spectrum.rei.fusion_recipe",
-      "recipe_id_1": "spectrum:fusion_shrine/onyx_shard",
+      "title": "container.spectrum.rei.fusion_recipe",
+      "skip_recipe_unlock_check": true,
+      "recipe_id": "spectrum:fusion_shrine/onyx_shard",
       "text": "book.spectrum.guidebook.onyx_shards.page1.text"
     },
     {

@@ -1,0 +1,33 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:sender_node"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.upgrade_pastel_node_lamp.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.upgrade_pastel_node_lamp.description"
+    }
+  },
+  "parent": "spectrum:midgame/upgrade_pastel_node",
+  "criteria": {
+    "applied_resonance_shard": {
+      "trigger": "spectrum:pastel_node_upgrade",
+      "conditions": {
+        "input": {
+          "items": [
+            "spectrum:pure_glowstone"
+          ]
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/create_pastel_network"
+      }
+    }
+  }
+}

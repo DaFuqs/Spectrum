@@ -7,11 +7,11 @@ import net.minecraft.registry.*;
 public class SpectrumEntityAttributes {
 	
 	/**
-	 * How resistant the entity is to sleep effects. The sleep effects use this value as a multiplier
-	 * <1 means it is more vulnerable than the default, getting stronger effects
-	 * >1 means it is more resistant
+	 * How vulnerable the entity is to sleep effects. The sleep effects use this value as a multiplier
+	 * <1 means it is more resistant than the default, getting weaker effects
+	 * >1 means it is more vulnerable
 	 */
-	public static final EntityAttribute INDUCED_SLEEP_RESISTANCE = register("induced_sleep_resistance", new ClampedEntityAttribute("attribute.name.spectrum.induced_sleep_resistance", 1.0, 0.0, 1024.0));
+	public static final EntityAttribute MENTAL_PRESENCE = register("mental_presence", new ClampedEntityAttribute("attribute.name.spectrum.mental_presence", 1.0, 0, 1024));
 	
 	
 	private static EntityAttribute register(String name, EntityAttribute attribute) {

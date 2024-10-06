@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import net.minecraft.nbt.*;
 import net.minecraft.registry.*;
 import net.minecraft.util.*;
@@ -27,14 +26,14 @@ public class ServerPastelNetwork extends PastelNetwork {
 	}
 
 	@Override
-	public void incorporate(PastelNetwork networkToIncorporate) {
-        super.incorporate(networkToIncorporate);
+	public void incorporate(PastelNetwork networkToIncorporate, PastelNodeBlockEntity node, PastelNodeBlockEntity otherNode) {
+        super.incorporate(networkToIncorporate, node, otherNode);
 		this.transmissionLogic.invalidateCache();
 	}
 	
 	@Override
-	public void addNode(PastelNodeBlockEntity node) {
-		super.addNode(node);
+	public void addNodeAndLoadMemory(PastelNodeBlockEntity node) {
+		super.addNodeAndLoadMemory(node);
 		this.transmissionLogic.invalidateCache();
 	}
 	
@@ -44,16 +43,39 @@ public class ServerPastelNetwork extends PastelNetwork {
 		this.transmissionLogic.invalidateCache();
 		return result;
 	}
-	
+
+	@Override
+	public void addAndRememberEdge(PastelNodeBlockEntity newNode, PastelNodeBlockEntity parent) {
+		super.addAndRememberEdge(newNode, parent);
+		this.transmissionLogic.invalidateCache();
+	}
+
+	@Override
+	public void removeAndForgetEdge(PastelNodeBlockEntity node, PastelNodeBlockEntity parent) {
+		super.removeAndForgetEdge(node, parent);
+		this.transmissionLogic.invalidateCache();
+	}
+
 	@Override
 	public void tick() {
 		this.transmissions.tick();
+		var priority = Priority.GENERIC;
+
+		if (transferLooper.getTick() % 5 == 0) {
+			priority = Priority.MODERATE;
+		}
+		else if (transferLooper.getTick() % 2 == 0) {
+			priority = Priority.HIGH;
+		}
 
 		this.transferLooper.tick();
-		if (this.transferLooper.reachedCap()) {
-			this.transferLooper.reset();
+		var cap = transferLooper.reachedCap();
+		if (cap || priority != Priority.GENERIC) {
+			if (cap) {
+				this.transferLooper.reset();
+			}
 			try {
-				this.transmissionLogic.tick();
+				this.transmissionLogic.tick(priority);
 			} catch (Exception e) {
 				// hmmmmmm. Block getting unloaded / new one placed while logic is running?
 			}
@@ -73,16 +95,18 @@ public class ServerPastelNetwork extends PastelNetwork {
 			if (nodes.isEmpty())
 				continue;
 
-			var travelTime = (nodes.size() - 1) * PastelTransmissionLogic.TRANSFER_TICKS_PER_NODE;
+			var travelTime = transmission.getTransmissionDuration();
 			double progress = travelTime - remainingTravelTime;
 
-			if (progress != 0 && progress % PastelTransmissionLogic.TRANSFER_TICKS_PER_NODE == 0) {
+			if (progress != 0 && progress % transmission.getVertexTime() == 0) {
 				var node = world.getBlockEntity(nodes.get((int) Math.round((nodes.size() - 1) * progress / travelTime)));
 
 				if (!(node instanceof PastelNodeBlockEntity pastelNode))
 					continue;
 
 				nodeSync.add(pastelNode);
+				if (pastelNode.isSensor())
+					pastelNode.notifySensor();
 			}
 		}
 
@@ -131,5 +155,4 @@ public class ServerPastelNetwork extends PastelNetwork {
 		}
 		return network;
 	}
-
 }

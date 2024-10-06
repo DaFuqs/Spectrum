@@ -1,15 +1,14 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import de.dafuqs.additionalentityattributes.AdditionalEntityAttributes;
-import de.dafuqs.spectrum.compat.claims.GenericClaimModsCompat;
+import de.dafuqs.additionalentityattributes.*;
+import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.variants.*;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.tag.convention.v1.*;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.ai.goal.*;
@@ -28,17 +27,16 @@ import net.minecraft.loot.context.*;
 import net.minecraft.nbt.*;
 import net.minecraft.particle.*;
 import net.minecraft.recipe.*;
-import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.registry.tag.FluidTags;
+import net.minecraft.registry.tag.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
-import net.minecraft.text.Text;
+import net.minecraft.util.TimeHelper;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.intprovider.*;
 import net.minecraft.world.*;
 import net.minecraft.world.event.*;
-import net.minecraft.world.explosion.Explosion;
+import net.minecraft.world.explosion.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -97,9 +95,9 @@ public class KindlingEntity extends AbstractHorseEntity implements RangedAttackM
 	protected void initGoals() {
 		this.goalSelector.add(0, new SwimGoal(this));
 		this.goalSelector.add(1, new HorseBondWithPlayerGoal(this, 1.4));
-		this.goalSelector.add(2, new PounceAtTargetGoal(this, 0.2F));
+		this.goalSelector.add(2, new PounceAtTargetGoal(this, 0.5F));
+		this.goalSelector.add(3, new CancellableProjectileAttackGoal(this, 1.25, 30, 20.0F));
 		this.goalSelector.add(3, new MeleeChaseGoal(this));
-		this.goalSelector.add(4, new CancellableProjectileAttackGoal(this, 1.25, 40, 20.0F));
 		this.goalSelector.add(5, new AnimalMateGoal(this, 1.0D));
 		this.goalSelector.add(6, new PlayRoughGoal(this));
 		this.goalSelector.add(7, new TemptGoal(this, 1.25, FOOD, false));
@@ -382,7 +380,7 @@ public class KindlingEntity extends AbstractHorseEntity implements RangedAttackM
 		playSound(SoundEvents.ENTITY_ENDER_DRAGON_AMBIENT, 1F, 2F);
 
 		((ServerWorld) world).getPlayers(p -> p.distanceTo(this) < 64).forEach( p -> {
-			Support.grantAdvancementCriterion(p, "lategame/ascend_kindling", "he_explarded");
+			Support.grantAdvancementCriterion(p, "ascend_kindling", "he_explarded");
 		});
 
 		for (int i = 0; i < 5; i++) {
@@ -759,7 +757,7 @@ public class KindlingEntity extends AbstractHorseEntity implements RangedAttackM
 	protected class MeleeChaseGoal extends MeleeAttackGoal {
 		
 		public MeleeChaseGoal(KindlingEntity kindling) {
-			super(kindling, 0.5F, true);
+			super(kindling, 0.6F, true);
 		}
 		
 		@Override
@@ -873,12 +871,12 @@ public class KindlingEntity extends AbstractHorseEntity implements RangedAttackM
 		
 		@Override
 		public boolean shouldContinue() {
-			return KindlingEntity.this.hasAngerTime() && super.shouldContinue() && distanceTo(getProjectileTarget()) > 5F;
+			return KindlingEntity.this.hasAngerTime() && super.shouldContinue() && distanceTo(getProjectileTarget()) > 3F;
 		}
 		
 		@Override
 		public boolean canStart() {
-			return super.canStart() && !isPlaying() && distanceTo(getProjectileTarget()) > 6F;
+			return super.canStart() && !isPlaying() && distanceTo(getProjectileTarget()) > 4F;
 		}
 		
 		protected LivingEntity getProjectileTarget() {

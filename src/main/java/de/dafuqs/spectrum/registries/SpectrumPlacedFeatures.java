@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.*;
 import net.fabricmc.fabric.api.biome.v1.*;
 import net.fabricmc.fabric.api.tag.convention.v1.*;
 import net.minecraft.registry.*;
+import net.minecraft.world.dimension.DimensionOptions;
 import net.minecraft.world.gen.*;
 import net.minecraft.world.gen.feature.*;
 
@@ -28,9 +29,28 @@ public class SpectrumPlacedFeatures {
 		
 		// Plants
 		BiomeModifications.addFeature(BiomeSelectors.tag(SpectrumBiomeTags.MERMAIDS_BRUSHES_GENERATING_IN), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(RegistryKeys.PLACED_FEATURE, SpectrumCommon.locate("mermaids_brushes")));
-		BiomeModifications.addFeature(BiomeSelectors.tag(SpectrumBiomeTags.QUITOXIC_REEDS_GENERATING_IN), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(RegistryKeys.PLACED_FEATURE, SpectrumCommon.locate("quitoxic_reeds")));
 		BiomeModifications.addFeature(BiomeSelectors.tag(SpectrumBiomeTags.CLOVER_GENERATING_IN), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(RegistryKeys.PLACED_FEATURE, SpectrumCommon.locate("clover_patch")));
-		
+
+		if (SpectrumCommon.CONFIG.QuitoxicSpawnTag) {
+			BiomeModifications.addFeature(BiomeSelectors.tag(SpectrumBiomeTags.QUITOXIC_REEDS_GENERATING_IN), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(RegistryKeys.PLACED_FEATURE, SpectrumCommon.locate("quitoxic_reeds")));
+		}
+		else {
+			BiomeModifications.addFeature(context -> {
+				if (!context.canGenerateIn(DimensionOptions.OVERWORLD))
+					return false;
+
+				if (context.hasTag(ConventionalBiomeTags.AQUATIC))
+					return false;
+
+				//Either the biome is hot, lush, and wet, or it is a straight-up swamp.
+				return ((context.hasTag(ConventionalBiomeTags.CLIMATE_HOT) &&
+						context.hasTag(ConventionalBiomeTags.VEGETATION_DENSE)) ||
+						context.hasTag(ConventionalBiomeTags.SWAMP)) &&
+						context.hasTag(ConventionalBiomeTags.CLIMATE_WET);
+
+			}, GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(RegistryKeys.PLACED_FEATURE, SpectrumCommon.locate("quitoxic_reeds")));
+		}
+
 		// Dragonbone in the Overworld
 		BiomeModifications.addFeature(BiomeSelectors.tag(SpectrumBiomeTags.DRAGONBONE_FOSSILS_GENERATING_IN), GenerationStep.Feature.UNDERGROUND_DECORATION, RegistryKey.of(RegistryKeys.PLACED_FEATURE, SpectrumCommon.locate("dragon_fossil_overworld_buried")));
 		BiomeModifications.addFeature(BiomeSelectors.tag(SpectrumBiomeTags.DRAGONBONE_FOSSILS_GENERATING_IN), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(RegistryKeys.PLACED_FEATURE, SpectrumCommon.locate("dragon_fossil_overworld_exposed")));

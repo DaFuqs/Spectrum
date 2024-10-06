@@ -27,6 +27,7 @@ import de.dafuqs.spectrum.blocks.farming.*;
 import de.dafuqs.spectrum.blocks.fluid.*;
 import de.dafuqs.spectrum.blocks.fusion_shrine.*;
 import de.dafuqs.spectrum.blocks.gemstone.*;
+import de.dafuqs.spectrum.blocks.geology.*;
 import de.dafuqs.spectrum.blocks.gravity.*;
 import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.blocks.item_bowl.*;
@@ -46,6 +47,7 @@ import de.dafuqs.spectrum.blocks.rock_candy.*;
 import de.dafuqs.spectrum.blocks.shooting_star.*;
 import de.dafuqs.spectrum.blocks.spirit_instiller.*;
 import de.dafuqs.spectrum.blocks.spirit_sallow.*;
+import de.dafuqs.spectrum.blocks.statues.*;
 import de.dafuqs.spectrum.blocks.structure.*;
 import de.dafuqs.spectrum.blocks.titration_barrel.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
@@ -164,9 +166,9 @@ public class SpectrumBlocks {
 	public static final Block CITRINE_POWDER_BLOCK = new SandBlock(DyeColor.YELLOW.getFireworkColor(), FabricBlockSettings.copyOf(Blocks.SAND).mapColor(MapColor.YELLOW));
 	public static final Block ONYX_POWDER_BLOCK = new SandBlock(DyeColor.BLACK.getFireworkColor(), FabricBlockSettings.copyOf(Blocks.SAND).mapColor(MapColor.BLACK));
 	public static final Block MOONSTONE_POWDER_BLOCK = new SandBlock(DyeColor.WHITE.getFireworkColor(), FabricBlockSettings.copyOf(Blocks.SAND).mapColor(MapColor.WHITE));
-
-	public static final Block VEGETAL_BLOCK = new Block(settings(MapColor.PALE_GREEN, BlockSoundGroup.FUNGUS, 2.0F));
-	public static final Block NEOLITH_BLOCK = new Block(settings(MapColor.PURPLE, BlockSoundGroup.COPPER, 6.0F).requiresTool().instrument(Instrument.BASEDRUM));
+	
+	public static final Block VEGETAL_BLOCK = new Block(settings(MapColor.PALE_GREEN, BlockSoundGroup.FUNGUS, 2.0F).nonOpaque());
+	public static final Block NEOLITH_BLOCK = new SpectrumFacingBlock(settings(MapColor.PURPLE, BlockSoundGroup.COPPER, 6.0F).requiresTool().instrument(Instrument.BASEDRUM).luminance(state -> 13).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always));
 	public static final Block BEDROCK_STORAGE_BLOCK = new BlockWithTooltip(settings(MapColor.STONE_GRAY, BlockSoundGroup.STONE, 100.0F, 3600.0F).pistonBehavior(PistonBehavior.BLOCK).requiresTool().instrument(Instrument.BASEDRUM), Text.translatable("spectrum.tooltip.dragon_and_wither_immune"));
 
 	public static final SpectrumClusterBlock BISMUTH_CLUSTER = new SpectrumClusterBlock(gemstone(MapColor.DARK_AQUA, BlockSoundGroup.CHAIN, 8), SpectrumClusterBlock.GrowthStage.CLUSTER);
@@ -257,6 +259,7 @@ public class SpectrumBlocks {
 	public static final Block PYRITE_PANNELING = new Block(Settings.copy(PYRITE));
 	public static final Block PYRITE_VENT = new Block(Settings.copy(PYRITE));
 	public static final Block PYRITE_RIPPER = new PyriteRipperBlock(Settings.copy(PYRITE).nonOpaque().allowsSpawning(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
+	public static final Block PYRITE_PROJECTOR = new ProjectorBlock(Settings.copy(PYRITE), "pyrite_projector_projection", 16, 14, 1.375F, 1F, 16F);
 
 	public static final Block DRAGONBONE = new DragonboneBlock(Settings.copy(Blocks.BONE_BLOCK).strength(-1.0F, 22.0F).pistonBehavior(PistonBehavior.BLOCK));
 	public static final Block CRACKED_DRAGONBONE = new PillarBlock(Settings.copy(Blocks.BONE_BLOCK).strength(100.0F, 1200.0F).pistonBehavior(PistonBehavior.BLOCK));
@@ -288,8 +291,8 @@ public class SpectrumBlocks {
 	public static final Block SMALL_SAG_BUBBLE = new BlackSludgePlantBlock(FabricBlockSettings.copyOf(Blocks.GRASS).mapColor(MapColor.TERRACOTTA_BLACK));
 
 	public static final PrimordialFireBlock PRIMORDIAL_FIRE = new PrimordialFireBlock(Settings.copy(Blocks.FIRE).mapColor(MapColor.PURPLE).luminance((state) -> 10));
-	public static final Block PRIMORDIAL_TORCH = new TorchBlock(Settings.copy(Blocks.SOUL_TORCH), SpectrumParticleTypes.PRIMORDIAL_FLAME);
-	public static final Block PRIMORDIAL_WALL_TORCH = new WallTorchBlock(Settings.copy(SOUL_WALL_TORCH), SpectrumParticleTypes.PRIMORDIAL_FLAME);
+	public static final Block PRIMORDIAL_TORCH = new TorchBlock(Settings.copy(Blocks.SOUL_TORCH).luminance(s -> 13), SpectrumParticleTypes.PRIMORDIAL_FLAME);
+	public static final Block PRIMORDIAL_WALL_TORCH = new WallTorchBlock(Settings.copy(SOUL_WALL_TORCH).luminance(s -> 13), SpectrumParticleTypes.PRIMORDIAL_FLAME);
 
 	public static final Block SMOOTH_BASALT_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.BASALT));
 	public static final Block SMOOTH_BASALT_WALL = new WallBlock(FabricBlockSettings.copyOf(Blocks.BASALT));
@@ -776,6 +779,7 @@ public class SpectrumBlocks {
 	public static final Block BASAL_MARBLE_BRICK_STAIRS = new StairsBlock(BASAL_MARBLE_BRICKS.getDefaultState(), Settings.copy(BASAL_MARBLE_BRICKS));
 	public static final Block BASAL_MARBLE_BRICK_SLAB = new SlabBlock(Settings.copy(BASAL_MARBLE_BRICKS));
 	public static final Block BASAL_MARBLE_BRICK_WALL = new WallBlock(Settings.copy(BASAL_MARBLE_BRICKS));
+	public static final Block LONGING_CHIMERA = new GrotesqueBlock(basalMarble().nonOpaque(), 12, 15, "block.spectrum.longing_chimera.tooltip");
 	
 	public static Settings dragonjag(MapColor color) {
 		return settings(color, BlockSoundGroup.GRASS, 1.0F);
@@ -795,7 +799,7 @@ public class SpectrumBlocks {
 
 	//Flora
 	public static final Block ALOE = new AloeBlock(settings(MapColor.DARK_GREEN, BlockSoundGroup.GRASS, 1.0F).noCollision().ticksRandomly().nonOpaque());
-	public static final Block SAWBLADE_HOLLY_BUSH = new SawbladeHollyBushBlock(settings(MapColor.TERRACOTTA_GREEN, BlockSoundGroup.GRASS, 0.0F).noCollision().ticksRandomly().nonOpaque());
+	public static final Block SAWBLADE_HOLLY_BUSH = new SawbladeHollyBushBlock(settings(MapColor.TERRACOTTA_GREEN, BlockSoundGroup.GRASS, 0.0F).noCollision().ticksRandomly().nonOpaque().luminance(s -> s.get(SawbladeHollyBushBlock.AGE) == SawbladeHollyBushBlock.MAX_AGE ? 10 : 0));
 	public static final Block BRISTLE_SPROUTS = new BristleSproutsBlock(settings(MapColor.PALE_GREEN, BlockSoundGroup.GRASS, 0.0F).noCollision().nonOpaque().offset(OffsetType.XZ));
 	public static final Block DOOMBLOOM = new DoomBloomBlock(settings(MapColor.PALE_GREEN, BlockSoundGroup.GRASS, 0.0F).ticksRandomly().noCollision().luminance((state) -> state.get(DoomBloomBlock.AGE) * 2).nonOpaque());
 	public static final Block SNAPPING_IVY = new SnappingIvyBlock(settings(MapColor.PALE_GREEN, BlockSoundGroup.GRASS, 3.0F).noCollision().nonOpaque());
@@ -835,7 +839,7 @@ public class SpectrumBlocks {
 	public static final Block NEPHRITE_BLOSSOM_BULB = new NephriteBlossomBulbBlock(FabricBlockSettings.copyOf(NEPHRITE_BLOSSOM_STEM));
 
 	public static Settings jadeite() {
-		return settings(MapColor.WHITE_GRAY, BlockSoundGroup.WOOL, 0.1F).noCollision().nonOpaque();
+		return settings(MapColor.WHITE_GRAY, BlockSoundGroup.WOOL, 0.1F).noCollision().nonOpaque().luminance(state -> 12).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always);
 	}
 
 	public static final Block JADEITE_LOTUS_STEM = new JadeiteLotusStemBlock(settings(MapColor.BLACK, BlockSoundGroup.WOOL, 2.0F).nonOpaque().noCollision());
@@ -864,14 +868,14 @@ public class SpectrumBlocks {
 		return FabricBlockSettings.copyOf(Blocks.END_STONE).strength(3.0F, 3.0F).requiresTool();
 	}
 
-	public static final Block SHIMMERSTONE_ORE = new CloakedOreBlock(ore(), UniformIntProvider.create(2, 4), locate("milestones/reveal_shimmerstone"), Blocks.STONE.getDefaultState());
-	public static final Block DEEPSLATE_SHIMMERSTONE_ORE = new CloakedOreBlock(deepslateOre(), UniformIntProvider.create(2, 4), locate("milestones/reveal_shimmerstone"), Blocks.DEEPSLATE.getDefaultState());
-	public static final Block BLACKSLAG_SHIMMERSTONE_ORE = new CloakedOreBlock(blackslagOre(), UniformIntProvider.create(2, 4), locate("milestones/reveal_shimmerstone"), BLACKSLAG.getDefaultState());
-	public static final Block SHIMMERSTONE_BLOCK = new SparklestoneBlock(settings(MapColor.YELLOW, BlockSoundGroup.GLASS, 2.0F).luminance((state) -> 15));
+	public static final Block SHIMMERSTONE_ORE = new ShimmerstoneOreBlock(ore().ticksRandomly(), UniformIntProvider.create(2, 4), locate("milestones/reveal_shimmerstone"), Blocks.STONE.getDefaultState());
+	public static final Block DEEPSLATE_SHIMMERSTONE_ORE = new ShimmerstoneOreBlock(deepslateOre().ticksRandomly(), UniformIntProvider.create(2, 4), locate("milestones/reveal_shimmerstone"), Blocks.DEEPSLATE.getDefaultState());
+	public static final Block BLACKSLAG_SHIMMERSTONE_ORE = new ShimmerstoneOreBlock(blackslagOre().ticksRandomly(), UniformIntProvider.create(2, 4), locate("milestones/reveal_shimmerstone"), BLACKSLAG.getDefaultState());
+	public static final Block SHIMMERSTONE_BLOCK = new ShimmerstoneBlock(settings(MapColor.YELLOW, BlockSoundGroup.GLASS, 2.0F).luminance((state) -> 15));
 
-	public static final Block AZURITE_ORE = new CloakedOreBlock(ore(), UniformIntProvider.create(4, 7), locate("milestones/reveal_azurite"), Blocks.STONE.getDefaultState());
-	public static final Block DEEPSLATE_AZURITE_ORE = new CloakedOreBlock(deepslateOre(), UniformIntProvider.create(4, 7), locate("milestones/reveal_azurite"), Blocks.DEEPSLATE.getDefaultState());
-	public static final Block BLACKSLAG_AZURITE_ORE = new CloakedOreBlock(blackslagOre(), UniformIntProvider.create(4, 7), locate("milestones/reveal_azurite"), SpectrumBlocks.BLACKSLAG.getDefaultState());
+	public static final AzuriteOreBlock AZURITE_ORE = new AzuriteOreBlock(ore().ticksRandomly(), UniformIntProvider.create(4, 7), locate("milestones/reveal_azurite"), Blocks.STONE.getDefaultState());
+	public static final Block DEEPSLATE_AZURITE_ORE = new AzuriteOreBlock(deepslateOre().ticksRandomly(), UniformIntProvider.create(4, 7), locate("milestones/reveal_azurite"), Blocks.DEEPSLATE.getDefaultState());
+	public static final Block BLACKSLAG_AZURITE_ORE = new AzuriteOreBlock(blackslagOre().ticksRandomly(), UniformIntProvider.create(4, 7), locate("milestones/reveal_azurite"), SpectrumBlocks.BLACKSLAG.getDefaultState());
 	public static final Block AZURITE_BLOCK = new SpectrumFacingBlock(FabricBlockSettings.copyOf(Blocks.LAPIS_BLOCK).mapColor(MapColor.BLUE));
 	public static final Block AZURITE_CLUSTER = new AmethystClusterBlock(7, 3, gemstone(MapColor.BLUE, SpectrumBlockSoundGroups.SMALL_ONYX_BUD, 2));
 	public static final Block LARGE_AZURITE_BUD = new AmethystClusterBlock(5, 3, gemstone(MapColor.BLUE, SpectrumBlockSoundGroups.LARGE_ONYX_BUD, 3));
@@ -1317,6 +1321,7 @@ public class SpectrumBlocks {
 
 	public static final Block PRESERVATION_CONTROLLER = new PreservationControllerBlock(preservationBlock().luminance(state -> 1).emissiveLighting(SpectrumBlocks::always).postProcess(SpectrumBlocks::always));
 	public static final Block DIKE_GATE = new DikeGateBlock(preservationBlock().luminance(state -> 3).sounds(BlockSoundGroup.GLASS).nonOpaque().emissiveLighting(SpectrumBlocks::always).postProcess(SpectrumBlocks::always).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
+	public static final Block DREAM_GATE = new DreamGateBlock(preservationBlock().luminance(state -> 3).sounds(BlockSoundGroup.GLASS).nonOpaque().emissiveLighting(SpectrumBlocks::always).postProcess(SpectrumBlocks::always).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
 	public static final Block INVISIBLE_WALL = new InvisibleWallBlock(preservationBlock().luminance(state -> 3).sounds(BlockSoundGroup.GLASS).nonOpaque().blockVision(SpectrumBlocks::never));
 	public static final Block PRESERVATION_CHEST = new TreasureChestBlock(preservationBlock());
 
@@ -1327,10 +1332,14 @@ public class SpectrumBlocks {
 	public static final Block PRESERVATION_WALL = new WallBlock(preservationBlock());
 	public static final Block POWDER_CHISELED_PRESERVATION_STONE = new Block(preservationBlock().luminance(state -> 2));
 	public static final Block DIKE_CHISELED_PRESERVATION_STONE = new Block(preservationBlock().luminance(state -> 6));
+	public static final Block DREAM_CHISELED_PRESERVATION_STONE = new Block(preservationBlock().luminance(state -> 6));
+	public static final Block DEEP_LIGHT_CHISELED_PRESERVATION_STONE = new DeepLightBlock(preservationBlock().luminance(state -> 2));
+	public static final Block TREASURE_ITEM_BOWL = new TreasureItemBowlBlock(preservationBlock().nonOpaque().solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
 	public static final Block DIKE_GATE_FOUNTAIN = new SpectrumFacingBlock(preservationBlock());
 	public static final Block PRESERVATION_BRICKS = new Block(preservationBlock());
 	public static final Block SHIMMERING_PRESERVATION_BRICKS = new Block(FabricBlockSettings.copyOf(preservationBlock()).luminance(5));
 	public static final Block COURIER_STATUE = new StatueBlock(preservationBlock());
+	public static final Block MANXI = new ManxiBlock(preservationBlock().nonOpaque().noCollision().dropsNothing());
 
 	public static final Block BLACK_CHISELED_PRESERVATION_STONE = new Block(preservationBlock());
 	public static final Block BLUE_CHISELED_PRESERVATION_STONE = new Block(preservationBlock());
@@ -1350,7 +1359,7 @@ public class SpectrumBlocks {
 	public static final Block YELLOW_CHISELED_PRESERVATION_STONE = new Block(preservationBlock());
 
 	public static final Block PRESERVATION_GLASS = new GlassBlock(preservationBlock().sounds(BlockSoundGroup.GLASS).nonOpaque().solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
-	public static final Block TINTED_PRESERVATION_GLASS = new GlassBlock(FabricBlockSettings.copyOf(PRESERVATION_GLASS).luminance(12).strength(Float.MAX_VALUE, 3600000.0F));
+	public static final Block TINTED_PRESERVATION_GLASS = new TintedGlassBlock(FabricBlockSettings.copyOf(PRESERVATION_GLASS));
 	public static final Block PRESERVATION_ROUNDEL = new PreservationRoundelBlock(preservationBlock().nonOpaque());
 	public static final Block PRESERVATION_BLOCK_DETECTOR = new PreservationBlockDetectorBlock(preservationBlock());
 
@@ -1528,16 +1537,16 @@ public class SpectrumBlocks {
 		registerBlockWithItem("cinderhearth", CINDERHEARTH, IS.of(1).fireproof(), DyeColor.ORANGE);
 		registerBlockWithItem("crystal_apothecary", CRYSTAL_APOTHECARY, IS.of(8), DyeColor.GREEN);
 		registerBlockWithItem("color_picker", COLOR_PICKER, IS.of(8), DyeColor.GREEN);
-
-		registerBlockWithItem("upgrade_speed", UPGRADE_SPEED, new UpgradeBlockItem(UPGRADE_SPEED, IS.of(8), "upgrade_speed"), DyeColor.LIGHT_GRAY);
-		registerBlockWithItem("upgrade_speed2", UPGRADE_SPEED2, new UpgradeBlockItem(UPGRADE_SPEED2, IS.of(8, Rarity.UNCOMMON), "upgrade_speed2"), DyeColor.LIGHT_GRAY);
-		registerBlockWithItem("upgrade_speed3", UPGRADE_SPEED3, new UpgradeBlockItem(UPGRADE_SPEED3, IS.of(8, Rarity.RARE), "upgrade_speed3"), DyeColor.LIGHT_GRAY);
-		registerBlockWithItem("upgrade_efficiency", UPGRADE_EFFICIENCY, new UpgradeBlockItem(UPGRADE_EFFICIENCY, IS.of(8, Rarity.UNCOMMON), "upgrade_efficiency"), DyeColor.LIGHT_GRAY);
-		registerBlockWithItem("upgrade_efficiency2", UPGRADE_EFFICIENCY2, new UpgradeBlockItem(UPGRADE_EFFICIENCY2, IS.of(8, Rarity.RARE), "upgrade_efficiency2"), DyeColor.LIGHT_GRAY);
-		registerBlockWithItem("upgrade_yield", UPGRADE_YIELD, new UpgradeBlockItem(UPGRADE_YIELD, IS.of(8, Rarity.UNCOMMON), "upgrade_yield"), DyeColor.LIGHT_GRAY);
-		registerBlockWithItem("upgrade_yield2", UPGRADE_YIELD2, new UpgradeBlockItem(UPGRADE_YIELD2, IS.of(8, Rarity.RARE), "upgrade_yield2"), DyeColor.LIGHT_GRAY);
-		registerBlockWithItem("upgrade_experience", UPGRADE_EXPERIENCE, new UpgradeBlockItem(UPGRADE_EXPERIENCE, IS.of(8), "upgrade_experience"), DyeColor.LIGHT_GRAY);
-		registerBlockWithItem("upgrade_experience2", UPGRADE_EXPERIENCE2, new UpgradeBlockItem(UPGRADE_EXPERIENCE2, IS.of(8, Rarity.UNCOMMON), "upgrade_experience2"), DyeColor.LIGHT_GRAY);
+		
+		registerBlockWithItem("upgrade_speed", UPGRADE_SPEED, new UpgradeBlockItem(UPGRADE_SPEED, IS.of(16), "upgrade_speed"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_speed2", UPGRADE_SPEED2, new UpgradeBlockItem(UPGRADE_SPEED2, IS.of(16, Rarity.UNCOMMON), "upgrade_speed2"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_speed3", UPGRADE_SPEED3, new UpgradeBlockItem(UPGRADE_SPEED3, IS.of(16, Rarity.RARE), "upgrade_speed3"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_efficiency", UPGRADE_EFFICIENCY, new UpgradeBlockItem(UPGRADE_EFFICIENCY, IS.of(16, Rarity.UNCOMMON), "upgrade_efficiency"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_efficiency2", UPGRADE_EFFICIENCY2, new UpgradeBlockItem(UPGRADE_EFFICIENCY2, IS.of(16, Rarity.RARE), "upgrade_efficiency2"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_yield", UPGRADE_YIELD, new UpgradeBlockItem(UPGRADE_YIELD, IS.of(16, Rarity.UNCOMMON), "upgrade_yield"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_yield2", UPGRADE_YIELD2, new UpgradeBlockItem(UPGRADE_YIELD2, IS.of(16, Rarity.RARE), "upgrade_yield2"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_experience", UPGRADE_EXPERIENCE, new UpgradeBlockItem(UPGRADE_EXPERIENCE, IS.of(16), "upgrade_experience"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_experience2", UPGRADE_EXPERIENCE2, new UpgradeBlockItem(UPGRADE_EXPERIENCE2, IS.of(16, Rarity.UNCOMMON), "upgrade_experience2"), DyeColor.LIGHT_GRAY);
 
 		registerPastelNetworkNodes(IS.of(16));
 		registerStoneBlocks(IS.of());
@@ -1979,7 +1988,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("effulgent_block", EFFULGENT_BLOCK, settings.rarity(Rarity.UNCOMMON), DyeColor.YELLOW);
 		registerBlockWithItem("effulgent_cushion", EFFULGENT_CUSHION, settings.rarity(Rarity.UNCOMMON), DyeColor.YELLOW);
 		registerBlockWithItem("effulgent_carpet", EFFULGENT_CARPET, settings.rarity(Rarity.UNCOMMON), DyeColor.YELLOW);
-		registerBlockWithItem("effulgent_bed", EFFULGENT_BED, settings.rarity(Rarity.UNCOMMON), DyeColor.YELLOW);
+		registerBlockWithItem("effulgent_bed", EFFULGENT_BED, IS.of(1, Rarity.UNCOMMON), DyeColor.YELLOW);
 	}
 
 	private static void registerOreStorageBlocks(FabricItemSettings settings, FabricItemSettings settingsFireproof) {
@@ -1997,7 +2006,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("moonstone_powder_block", MOONSTONE_POWDER_BLOCK, settings, DyeColor.WHITE);
 
 		registerBlockWithItem("vegetal_block", VEGETAL_BLOCK, IS.of(), DyeColor.GREEN);
-		registerBlockWithItem("neolith_block", NEOLITH_BLOCK, IS.of(), DyeColor.BROWN);
+		registerBlockWithItem("neolith_block", NEOLITH_BLOCK, IS.of(), DyeColor.PINK);
 		registerBlockWithItem("bedrock_storage_block", BEDROCK_STORAGE_BLOCK, IS.of(Rarity.UNCOMMON), DyeColor.BLACK);
 		//registerBlockWithItem("spectral_shard_block", SPECTRAL_SHARD_BLOCK, IS.of(Rarity.RARE), DyeColor.WHITE);
 
@@ -2253,7 +2262,8 @@ public class SpectrumBlocks {
 		registerBlockWithItem("basal_marble_brick_stairs", BASAL_MARBLE_BRICK_STAIRS, settings, DyeColor.BROWN);
 		registerBlockWithItem("basal_marble_brick_slab", BASAL_MARBLE_BRICK_SLAB, settings, DyeColor.BROWN);
 		registerBlockWithItem("basal_marble_brick_wall", BASAL_MARBLE_BRICK_WALL, settings, DyeColor.BROWN);
-		
+		registerBlockWithItem("longing_chimera", LONGING_CHIMERA, settings, DyeColor.BROWN);
+
 		registerBlockWithItem("pyrite", PYRITE, settings, DyeColor.BROWN);
 		registerBlockWithItem("pyrite_pile", PYRITE_PILE, settings, DyeColor.BROWN);
 		registerBlockWithItem("pyrite_tiles", PYRITE_TILES, settings, DyeColor.BROWN);
@@ -2264,6 +2274,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("pyrite_panneling", PYRITE_PANNELING, settings, DyeColor.BROWN);
 		registerBlockWithItem("pyrite_vent", PYRITE_VENT, settings, DyeColor.BROWN);
 		registerBlockWithItem("pyrite_ripper", PYRITE_RIPPER, settings, DyeColor.RED);
+		registerBlockWithItem("pyrite_projector", PYRITE_PROJECTOR, settings, DyeColor.YELLOW);
 
 		registerBlockWithItem("dragonbone", DRAGONBONE, settings, DyeColor.GREEN);
 		registerBlockWithItem("cracked_dragonbone", CRACKED_DRAGONBONE, settings, DyeColor.GREEN);
@@ -2669,12 +2680,16 @@ public class SpectrumBlocks {
 		registerBlockWithItem("shimmering_preservation_bricks", SHIMMERING_PRESERVATION_BRICKS, settings, DyeColor.BLUE);
 		registerBlockWithItem("powder_chiseled_preservation_stone", POWDER_CHISELED_PRESERVATION_STONE, settings, DyeColor.BLUE);
 		registerBlockWithItem("dike_chiseled_preservation_stone", DIKE_CHISELED_PRESERVATION_STONE, settings, DyeColor.BLUE);
+		registerBlockWithItem("dream_chiseled_preservation_stone", DREAM_CHISELED_PRESERVATION_STONE, settings, DyeColor.BLUE);
+		registerBlockWithItem("deep_light_chiseled_preservation_stone", DEEP_LIGHT_CHISELED_PRESERVATION_STONE, settings, DyeColor.BLUE);
 		registerBlockWithItem("preservation_glass", PRESERVATION_GLASS, settings, DyeColor.BLUE);
 		registerBlockWithItem("tinted_preservation_glass", TINTED_PRESERVATION_GLASS, settings, DyeColor.BLUE);
 		registerBlockWithItem("preservation_roundel", PRESERVATION_ROUNDEL, settings, DyeColor.BLUE);
 		registerBlockWithItem("preservation_block_detector", PRESERVATION_BLOCK_DETECTOR, settings, DyeColor.BLUE);
+		registerBlockWithItem("item_bowl_enlightenment", TREASURE_ITEM_BOWL, settings, DyeColor.BLUE);
 		registerBlockWithItem("dike_gate_fountain", DIKE_GATE_FOUNTAIN, settings, DyeColor.BLUE);
 		registerBlockWithItem("dike_gate", DIKE_GATE, settings, DyeColor.BLUE);
+		registerBlockWithItem("dream_gate", DREAM_GATE, settings, DyeColor.BLUE);
 		registerBlockWithItem("preservation_controller", PRESERVATION_CONTROLLER, settings, DyeColor.BLUE);
 
 		registerBlockWithItem("black_chiseled_preservation_stone", BLACK_CHISELED_PRESERVATION_STONE, settings, DyeColor.BLUE);
@@ -2696,6 +2711,7 @@ public class SpectrumBlocks {
 
 		registerBlockWithItem("invisible_wall", INVISIBLE_WALL, settings, DyeColor.BLUE);
 		registerBlockWithItem("courier_statue", COURIER_STATUE, settings, DyeColor.BLUE);
+		registerBlockWithItem("manxi", MANXI, settings, DyeColor.PURPLE);
 		registerBlockWithItem("preservation_chest", PRESERVATION_CHEST, settings, DyeColor.BLUE);
 	}
 
@@ -2711,7 +2727,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("nephrite_blossom_bulb", NEPHRITE_BLOSSOM_BULB, IS.of(16), DyeColor.PINK);
 
 		registerBlockWithItem("jadeite_lotus_stem", JADEITE_LOTUS_STEM, settings, DyeColor.LIME);
-		registerBlockWithItem("jadeite_lotus_flower", JADEITE_LOTUS_FLOWER, IS.of(8), DyeColor.LIME);
+		registerBlockWithItem("jadeite_lotus_flower", JADEITE_LOTUS_FLOWER, IS.of(16), DyeColor.LIME);
 		registerBlockWithItem("jadeite_lotus_bulb", JADEITE_LOTUS_BULB, IS.of(16), DyeColor.LIME);
 		registerBlockWithItem("jadeite_petal_block", JADEITE_PETAL_BLOCK, settings, DyeColor.LIME);
 		registerBlockWithItem("jadeite_petal_carpet", JADEITE_PETAL_CARPET, settings, DyeColor.LIME);
@@ -2981,7 +2997,7 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ONYX_CHIME, RenderLayer.getTranslucent());
 
 		// Others
-		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), SpectrumBlocks.PRIMORDIAL_FIRE, SpectrumBlocks.PRIMORDIAL_TORCH);
+		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), SpectrumBlocks.PRIMORDIAL_FIRE, SpectrumBlocks.PRIMORDIAL_TORCH, SpectrumBlocks.PRIMORDIAL_WALL_TORCH);
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.PRESENT, RenderLayer.getCutout());
 
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.GLISTERING_MELON_STEM, RenderLayer.getCutout());
@@ -2990,9 +3006,13 @@ public class SpectrumBlocks {
 
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ITEM_BOWL_BASALT, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ITEM_BOWL_CALCITE, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TREASURE_ITEM_BOWL, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ITEM_ROUNDEL, RenderLayer.getCutout());
 
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEMORY, RenderLayer.getTranslucent());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.VEGETAL_BLOCK, RenderLayer.getTranslucent());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.EFFULGENT_BED, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LONGING_CHIMERA, RenderLayer.getCutout());
 
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.JADE_VINE_ROOTS, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.JADE_VINE_BULB, RenderLayer.getCutout());
@@ -3017,6 +3037,8 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(VARIA_SPROUT, RenderLayer.getCutout());
 
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.DIKE_GATE, RenderLayer.getTranslucent());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.DREAM_GATE, RenderLayer.getTranslucent());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.PRESERVATION_CONTROLLER, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.INVISIBLE_WALL, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.PRESERVATION_GLASS, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TINTED_PRESERVATION_GLASS, RenderLayer.getTranslucent());

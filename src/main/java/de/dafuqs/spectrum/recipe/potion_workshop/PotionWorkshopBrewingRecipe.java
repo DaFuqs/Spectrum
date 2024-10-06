@@ -29,9 +29,9 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	 * instances defined in this list. First value is the new effects new potency mod, second the duration
 	 */
 	protected static final List<Pair<Float, Float>> SPLIT_EFFECT_POTENCY_AND_DURATION = new ArrayList<>() {{
-		add(new Pair<>(2.0F, 0.15F));
-		add(new Pair<>(0.75F, 0.5F));
-		add(new Pair<>(0.25F, 1.0F));
+		add(new Pair<>(1.667F, 0.1F));
+		add(new Pair<>(0.75F, 0.334F));
+		add(new Pair<>(0.25F, 0.667F));
 	}};
 	
 	public static final Map<StatusEffect, StatusEffect> negativeToPositiveEffect = new HashMap<>() {{
@@ -134,7 +134,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	@Override
 	public ItemStack getOutput(DynamicRegistryManager registryManager) {
 		if (this.cachedOutput == null) {
-			this.cachedOutput = getPotion(Items.POTION.getDefaultStack(), new PotionMod(), null, Random.create());
+			this.cachedOutput = getPotion(Items.GLASS_BOTTLE.getDefaultStack(), Items.POTION.getDefaultStack(), new PotionMod(), null, Random.create());
 		}
 		return this.cachedOutput;
 	}
@@ -150,7 +150,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		return recipeData.baseYield() + potionMod.yield;
 	}
 	
-	public List<ItemStack> getPotions(PotionMod potionMod, PotionWorkshopBrewingRecipe lastRecipe, Random random, int brewedAmount) {
+	public List<ItemStack> getPotions(ItemStack stack, PotionMod potionMod, PotionWorkshopBrewingRecipe lastRecipe, Random random, int brewedAmount) {
 		// potion type
 		ItemStack itemStack;
 		if (potionMod.makeSplashing) {
@@ -168,30 +168,30 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		
 		List<ItemStack> results = new ArrayList<>();
 		for (int i = 0; i < brewedAmount; i++) {
-			results.add(getPotion(itemStack, potionMod, lastRecipe, random));
+			results.add(getPotion(stack, itemStack.copy(), potionMod, lastRecipe, random));
 		}
 		
 		return results;
 	}
 	
-	public ItemStack getPotion(ItemStack stack, PotionMod potionMod, PotionWorkshopBrewingRecipe lastRecipe, Random random) {
-		List<InkPoweredStatusEffectInstance> effects = generateEffects(stack, potionMod, lastRecipe, random);
+	public ItemStack getPotion(ItemStack originalStack, ItemStack targetStack, PotionMod potionMod, PotionWorkshopBrewingRecipe lastRecipe, Random random) {
+		List<InkPoweredStatusEffectInstance> effects = generateEffects(originalStack, potionMod, lastRecipe, random);
 		
 		// apply to potion
 		if (effects.isEmpty()) {
 			// no effects: thick potion
-			PotionUtil.setPotion(stack, Potions.THICK);
+			PotionUtil.setPotion(targetStack, Potions.THICK);
 		} else {
-			PotionUtil.setPotion(stack, SpectrumPotions.PIGMENT_POTION);
+			PotionUtil.setPotion(targetStack, SpectrumPotions.PIGMENT_POTION);
+			setCustomPotionEffects(targetStack, potionMod, effects);
 		}
-		setCustomPotionEffects(stack, potionMod, effects);
 		
 		if (potionMod.additionalDrinkDurationTicks != 0) {
-			NbtCompound compound = stack.getOrCreateNbt();
-			stack.setNbt(compound);
+			NbtCompound compound = targetStack.getOrCreateNbt();
+			targetStack.setNbt(compound);
 		}
 		
-		return stack;
+		return targetStack;
 	}
 	
 	public ItemStack getTippedArrows(ItemStack stack, PotionMod potionMod, PotionWorkshopBrewingRecipe lastRecipe, int amount, Random random) {

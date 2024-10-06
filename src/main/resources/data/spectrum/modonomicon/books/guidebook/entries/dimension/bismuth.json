@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:bismuth_flake",
   "category": "spectrum:dimension",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:dimension/crystal_gardens"
@@ -29,20 +29,20 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/crystallarieum"
       },
-      "title1": "book.spectrum.guidebook.bismuth.page1.title",
-      "recipe_id_1": "spectrum:crystallarieum/bismuth",
+      "title": "book.spectrum.guidebook.bismuth.page1.title",
+      "recipe_id": "spectrum:crystallarieum/bismuth",
       "text": "book.spectrum.guidebook.bismuth.page1.text"
     },
     {
       "type": "spectrum:anvil_crushing",
-      "title1": "container.spectrum.rei.anvil_crushing.title",
-      "recipe_id_1": "spectrum:anvil_crushing/bismuth/bismuth_from_cluster",
+      "title": "container.spectrum.rei.anvil_crushing.title",
+      "recipe_id": "spectrum:anvil_crushing/bismuth/bismuth_from_cluster",
       "text": "book.spectrum.guidebook.bismuth.cluster_crushing.text"
     },
     {
       "type": "spectrum:anvil_crushing",
-      "title1": "container.spectrum.rei.anvil_crushing.title",
-      "recipe_id_1": "spectrum:anvil_crushing/bismuth/bismuth_from_crystal",
+      "title": "container.spectrum.rei.anvil_crushing.title",
+      "recipe_id": "spectrum:anvil_crushing/bismuth/bismuth_from_crystal",
       "text": "book.spectrum.guidebook.bismuth.crystal_crushing.text"
     }
   ]

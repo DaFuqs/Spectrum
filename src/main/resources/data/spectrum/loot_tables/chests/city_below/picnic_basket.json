@@ -8,15 +8,18 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:bowl"
+          "name": "minecraft:bowl",
+          "weight": 3
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:glass_bottle"
+          "name": "minecraft:glass_bottle",
+          "weight": 2
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:potion",
+          "weight": 3,
           "functions": [
             {
               "function": "minecraft:set_potion",
@@ -26,29 +29,21 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:bone_meal",
+          "name": "spectrum:myceylon_cookie",
+          "weight": 4,
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 1,
-                "max": 4
+                "min": 4,
+                "max": 8
               }
             }
           ]
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:torch",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 2,
-                "max": 5
-              }
-            }
-          ]
+          "name": "spectrum:radiance_pin"
         }
       ]
     },

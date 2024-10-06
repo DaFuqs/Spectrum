@@ -1,0 +1,27 @@
+{
+  "name": "item.spectrum.knotted_sword",
+  "icon": "spectrum:knotted_sword",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/equipment/knotted_sword"
+  },
+  "category": "spectrum:equipment",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 2,
+  "y": 2,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "item.spectrum.knotted_sword",
+      "text": "book.spectrum.guidebook.knotted_sword.page0.text"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe_id": "spectrum:fusion_shrine/knotted_sword",
+      "text": "book.spectrum.guidebook.knotted_sword.page1.text"
+    }
+  ]
+}

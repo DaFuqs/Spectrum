@@ -23,9 +23,9 @@ public class PastelTransmissionLogic {
 		PULL,
 		PUSH_PULL
 	}
-	
-	public static final int MAX_TRANSFER_AMOUNT = 1;
-	public static final int TRANSFER_TICKS_PER_NODE = 30;
+
+	public static final int DEFAULT_MAX_TRANSFER_AMOUNT = 1;
+	public static final int DEFAULT_TRANSFER_TICKS_PER_NODE = 30;
 	private final ServerPastelNetwork network;
 	
 	private DijkstraShortestPath<PastelNodeBlockEntity, DefaultEdge> dijkstra;
@@ -68,21 +68,21 @@ public class PastelTransmissionLogic {
 		return path;
 	}
 	
-	public void tick() {
-		transferBetween(PastelNodeType.BUFFER, PastelNodeType.GATHER, TransferMode.PULL);
-		transferBetween(PastelNodeType.SENDER, PastelNodeType.GATHER, TransferMode.PUSH_PULL);
-		transferBetween(PastelNodeType.PROVIDER, PastelNodeType.GATHER, TransferMode.PULL);
-		transferBetween(PastelNodeType.STORAGE, PastelNodeType.GATHER, TransferMode.PULL);
+	public void tick(PastelNetwork.Priority priority) {
+		transferBetween(PastelNodeType.BUFFER, PastelNodeType.GATHER, TransferMode.PULL, priority);
+		transferBetween(PastelNodeType.SENDER, PastelNodeType.GATHER, TransferMode.PUSH_PULL, priority);
+		transferBetween(PastelNodeType.PROVIDER, PastelNodeType.GATHER, TransferMode.PULL, priority);
+		transferBetween(PastelNodeType.STORAGE, PastelNodeType.GATHER, TransferMode.PULL, priority);
 
-		transferBetween(PastelNodeType.SENDER, PastelNodeType.BUFFER, TransferMode.PUSH_PULL);
-		transferBetween(PastelNodeType.PROVIDER, PastelNodeType.BUFFER, TransferMode.PULL);
-		transferBetween(PastelNodeType.STORAGE, PastelNodeType.BUFFER, TransferMode.PULL);
+		transferBetween(PastelNodeType.SENDER, PastelNodeType.BUFFER, TransferMode.PUSH_PULL, priority);
+		transferBetween(PastelNodeType.PROVIDER, PastelNodeType.BUFFER, TransferMode.PULL, priority);
+		transferBetween(PastelNodeType.STORAGE, PastelNodeType.BUFFER, TransferMode.PULL, priority);
 
-		transferBetween(PastelNodeType.SENDER, PastelNodeType.STORAGE, TransferMode.PUSH);
+		transferBetween(PastelNodeType.SENDER, PastelNodeType.STORAGE, TransferMode.PUSH, priority);
 	}
 	
-	private void transferBetween(PastelNodeType sourceType, PastelNodeType destinationType, TransferMode transferMode) {
-		for (PastelNodeBlockEntity sourceNode : this.network.getNodes(sourceType)) {
+	private void transferBetween(PastelNodeType sourceType, PastelNodeType destinationType, TransferMode transferMode, PastelNetwork.Priority priority) {
+		for (PastelNodeBlockEntity sourceNode : this.network.getNodes(sourceType, priority)) {
 			if (!sourceNode.canTransfer()) {
 				continue;
 			}
@@ -95,7 +95,7 @@ public class PastelTransmissionLogic {
 	}
 	
 	private void tryTransferToType(PastelNodeBlockEntity sourceNode, Storage<ItemVariant> sourceStorage, PastelNodeType type, TransferMode transferMode) {
-		for (PastelNodeBlockEntity destinationNode : this.network.getNodes(type)) {
+		for (PastelNodeBlockEntity destinationNode : this.network.getNodes(type, PastelNetwork.Priority.GENERIC)) {
 			if (!destinationNode.canTransfer()) {
 				continue;
 			}
@@ -128,8 +128,11 @@ public class PastelTransmissionLogic {
 				if (storedAmount <= 0) {
 					continue;
 				}
-				
-				long transferrableAmount = MAX_TRANSFER_AMOUNT;
+
+				// Transfer details are always decided by the sender
+				long transferrableAmount = sourceNode.getMaxTransferredAmount();
+				int vertexTime = sourceNode.getTransferTime();
+
 				long itemCountUnderway = destinationNode.getItemCountUnderway();
 				transferrableAmount = (int) StorageUtil.simulateInsert(destinationStorage, storedResource, transferrableAmount + itemCountUnderway, transaction);
 				transferrableAmount = transferrableAmount - itemCountUnderway; // prevention to not overfill the container (send more transfers when the existing ones would fill it already)
@@ -143,11 +146,10 @@ public class PastelTransmissionLogic {
 					continue;
 				}
 				
-				Optional<PastelTransmission> optionalTransmission = createTransmissionOnValidPath(sourceNode, destinationNode, storedResource, transferrableAmount);
+				Optional<PastelTransmission> optionalTransmission = createTransmissionOnValidPath(sourceNode, destinationNode, storedResource, transferrableAmount, vertexTime);
 				if (optionalTransmission.isPresent()) {
 					PastelTransmission transmission = optionalTransmission.get();
-					int verticesCount = transmission.getNodePositions().size() - 1;
-					int travelTime = TRANSFER_TICKS_PER_NODE * verticesCount;
+					int travelTime = transmission.getTransmissionDuration();
 					this.network.addTransmission(transmission, travelTime);
 					SpectrumS2CPacketSender.sendPastelTransmissionParticle(this.network, travelTime, transmission);
 					
@@ -170,7 +172,7 @@ public class PastelTransmissionLogic {
 		return false;
 	}
 	
-	public Optional<PastelTransmission> createTransmissionOnValidPath(PastelNodeBlockEntity source, PastelNodeBlockEntity destination, ItemVariant variant, long amount) {
+	public Optional<PastelTransmission> createTransmissionOnValidPath(PastelNodeBlockEntity source, PastelNodeBlockEntity destination, ItemVariant variant, long amount, int vertexTime) {
 		GraphPath<PastelNodeBlockEntity, DefaultEdge> graphPath = getPath(this.network.getGraph(), source, destination);
 		if (graphPath != null) {
 			List<BlockPos> vertexPositions = new ArrayList<>();
@@ -179,7 +181,7 @@ public class PastelTransmissionLogic {
 			}
 
 			SpectrumS2CPacketSender.sendPastelNodeStatusUpdate(List.of(source), true);
-			return Optional.of(new PastelTransmission(vertexPositions, variant, amount));
+			return Optional.of(new PastelTransmission(vertexPositions, variant, amount, vertexTime));
 		}
 		return Optional.empty();
 	}

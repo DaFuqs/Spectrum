@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:item_roundel",
   "category": "spectrum:decoration",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:decoration/block_variants"
@@ -27,8 +27,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id_1": "spectrum:pedestal/tier2/item_roundel",
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "spectrum:pedestal/tier2/item_roundel",
       "text": "book.spectrum.guidebook.item_roundel.page1.text"
     }
   ]

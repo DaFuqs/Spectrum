@@ -6,7 +6,7 @@
   },
   "icon": "spectrum:fox_idol",
   "category": "spectrum:creating_life",
-  "hide_while_locked ": true,
+  "hide_while_locked": true,
   "parents": [
     {
       "entry": "spectrum:creating_life/mob_heads"
@@ -25,217 +25,217 @@
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page1.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/axolotl"
+      "recipe_id": "spectrum:pedestal/tier3/idols/axolotl"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page2.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/bat"
+      "recipe_id": "spectrum:pedestal/tier3/idols/bat"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page3.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/bee"
+      "recipe_id": "spectrum:pedestal/tier3/idols/bee"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page4.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/blaze"
+      "recipe_id": "spectrum:pedestal/tier3/idols/blaze"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page5.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/cat"
+      "recipe_id": "spectrum:pedestal/tier3/idols/cat"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page6.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/chicken"
+      "recipe_id": "spectrum:pedestal/tier3/idols/chicken"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page7.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/cow"
+      "recipe_id": "spectrum:pedestal/tier3/idols/cow"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page8.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/creeper"
+      "recipe_id": "spectrum:pedestal/tier3/idols/creeper"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page9.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/ender_dragon"
+      "recipe_id": "spectrum:pedestal/tier3/idols/ender_dragon"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page10.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/enderman"
+      "recipe_id": "spectrum:pedestal/tier3/idols/enderman"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page11.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/endermite"
+      "recipe_id": "spectrum:pedestal/tier3/idols/endermite"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page12.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/evoker"
+      "recipe_id": "spectrum:pedestal/tier3/idols/evoker"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page13.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/fish"
+      "recipe_id": "spectrum:pedestal/tier3/idols/fish"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page14.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/fox"
+      "recipe_id": "spectrum:pedestal/tier3/idols/fox"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page15.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/ghast"
+      "recipe_id": "spectrum:pedestal/tier3/idols/ghast"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page16.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/glow_squid"
+      "recipe_id": "spectrum:pedestal/tier3/idols/glow_squid"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page17.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/goat"
+      "recipe_id": "spectrum:pedestal/tier3/idols/goat"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page18.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/guardian"
+      "recipe_id": "spectrum:pedestal/tier3/idols/guardian"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page19.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/horse"
+      "recipe_id": "spectrum:pedestal/tier3/idols/horse"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page20.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/illusioner"
+      "recipe_id": "spectrum:pedestal/tier3/idols/illusioner"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page21.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/ocelot"
+      "recipe_id": "spectrum:pedestal/tier3/idols/ocelot"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page22.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/parrot"
+      "recipe_id": "spectrum:pedestal/tier3/idols/parrot"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page23.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/phantom"
+      "recipe_id": "spectrum:pedestal/tier3/idols/phantom"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page24.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/pig"
+      "recipe_id": "spectrum:pedestal/tier3/idols/pig"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page25.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/piglin"
+      "recipe_id": "spectrum:pedestal/tier3/idols/piglin"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page26.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/polar_bear"
+      "recipe_id": "spectrum:pedestal/tier3/idols/polar_bear"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page27.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/pufferfish"
+      "recipe_id": "spectrum:pedestal/tier3/idols/pufferfish"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page28.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/rabbit"
+      "recipe_id": "spectrum:pedestal/tier3/idols/rabbit"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page29.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/sheep"
+      "recipe_id": "spectrum:pedestal/tier3/idols/sheep"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page30.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/shulker"
+      "recipe_id": "spectrum:pedestal/tier3/idols/shulker"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page31.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/silverfish"
+      "recipe_id": "spectrum:pedestal/tier3/idols/silverfish"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page32.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/skeleton"
+      "recipe_id": "spectrum:pedestal/tier3/idols/skeleton"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page33.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/slime"
+      "recipe_id": "spectrum:pedestal/tier3/idols/slime"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page34.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/snow_golem"
+      "recipe_id": "spectrum:pedestal/tier3/idols/snow_golem"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page35.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/spider"
+      "recipe_id": "spectrum:pedestal/tier3/idols/spider"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page36.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/squid"
+      "recipe_id": "spectrum:pedestal/tier3/idols/squid"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page37.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/stray"
+      "recipe_id": "spectrum:pedestal/tier3/idols/stray"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page38.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/strider"
+      "recipe_id": "spectrum:pedestal/tier3/idols/strider"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page39.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/turtle"
+      "recipe_id": "spectrum:pedestal/tier3/idols/turtle"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page40.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/witch"
+      "recipe_id": "spectrum:pedestal/tier3/idols/witch"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page41.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/wither"
+      "recipe_id": "spectrum:pedestal/tier3/idols/wither"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page42.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/wither_skeleton"
+      "recipe_id": "spectrum:pedestal/tier3/idols/wither_skeleton"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.idols.page43.text",
-      "recipe_id_1": "spectrum:pedestal/tier3/idols/zombie"
+      "recipe_id": "spectrum:pedestal/tier3/idols/zombie"
     }
   ]
 }

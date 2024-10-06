@@ -166,8 +166,8 @@ public class SpectrumBlocks {
 	public static final Block CITRINE_POWDER_BLOCK = new SandBlock(DyeColor.YELLOW.getFireworkColor(), FabricBlockSettings.copyOf(Blocks.SAND).mapColor(MapColor.YELLOW));
 	public static final Block ONYX_POWDER_BLOCK = new SandBlock(DyeColor.BLACK.getFireworkColor(), FabricBlockSettings.copyOf(Blocks.SAND).mapColor(MapColor.BLACK));
 	public static final Block MOONSTONE_POWDER_BLOCK = new SandBlock(DyeColor.WHITE.getFireworkColor(), FabricBlockSettings.copyOf(Blocks.SAND).mapColor(MapColor.WHITE));
-
-	public static final Block VEGETAL_BLOCK = new Block(settings(MapColor.PALE_GREEN, BlockSoundGroup.FUNGUS, 2.0F));
+	
+	public static final Block VEGETAL_BLOCK = new Block(settings(MapColor.PALE_GREEN, BlockSoundGroup.FUNGUS, 2.0F).nonOpaque());
 	public static final Block NEOLITH_BLOCK = new SpectrumFacingBlock(settings(MapColor.PURPLE, BlockSoundGroup.COPPER, 6.0F).requiresTool().instrument(Instrument.BASEDRUM).luminance(state -> 13).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always));
 	public static final Block BEDROCK_STORAGE_BLOCK = new BlockWithTooltip(settings(MapColor.STONE_GRAY, BlockSoundGroup.STONE, 100.0F, 3600.0F).pistonBehavior(PistonBehavior.BLOCK).requiresTool().instrument(Instrument.BASEDRUM), Text.translatable("spectrum.tooltip.dragon_and_wither_immune"));
 

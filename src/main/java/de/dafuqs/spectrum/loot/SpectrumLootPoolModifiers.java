@@ -3,12 +3,9 @@ package de.dafuqs.spectrum.loot;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.mob_head.*;
-import de.dafuqs.spectrum.compat.SpectrumIntegrationPacks;
-import de.dafuqs.spectrum.compat.farmersdelight.FDCompat;
 import de.dafuqs.spectrum.compat.gofish.*;
 import de.dafuqs.spectrum.entity.type_specific_predicates.*;
 import de.dafuqs.spectrum.loot.conditions.*;
-import de.dafuqs.spectrum.recipe.titration_barrel.FermentationData;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.loot.v2.*;
 import net.minecraft.entity.passive.*;
@@ -208,13 +205,6 @@ public class SpectrumLootPoolModifiers {
 					tableBuilder.modifyPools(builder -> builder.with(LootTableEntry.builder(GoFishCompat.DEFAULT_CRATES_LOOT_TABLE_ID).weight(5).quality(2).conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, new EntityPredicate.Builder().typeSpecific(FishingHookPredicate.of(true)).build()))));
 				}
 			}
-		});
-		LootTableEvents.REPLACE.register((resourceManager, lootManager, id, original, source) -> {
-			if (SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.FARMERSDELIGHT_ID) && id.equals(SpectrumCommon.locate("blocks/amaranth")))
-			{
-				return lootManager.getLootTable(SpectrumCommon.locate("blocks/amaranth_fd"));
-			}
-			return original;
 		});
 	}
 	

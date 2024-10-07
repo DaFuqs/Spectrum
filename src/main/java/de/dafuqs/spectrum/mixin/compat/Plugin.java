@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.mixin.compat;
 
+import de.dafuqs.spectrum.compat.qsl.QSLCompatASM;
 import net.fabricmc.loader.api.*;
 import org.objectweb.asm.tree.*;
 import org.spongepowered.asm.mixin.extensibility.*;
-
 import java.util.*;
 
 public final class Plugin implements IMixinConfigPlugin {
@@ -59,6 +59,8 @@ public final class Plugin implements IMixinConfigPlugin {
 	
 	@Override
 	public void postApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo) {
+		// TODO: genericize for more ASM transformers in the future.
+		QSLCompatASM.postApply(targetClass, mixinClassName);
 	}
 	
 }

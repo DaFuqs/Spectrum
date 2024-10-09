@@ -1,13 +1,5 @@
-# Spectrum licencing is split in two parts:
-- Textures, meaning all image files in /resources/assets/textures are licensed as All Rights Reserved (ARR)
-- Everything else, like code, or other resources and images like in /images/ are licensed in LGPLv3, excluding
-  commercial
-  use (“Commons Clause” License Condition). If you want to use Spectrum in a Commercial Project you are required to
-  contact the developers, like explained at https://commonsclause.com/ to obtain a license as described in
-  [#commons_clause](#commons-clause-license-condition).
-
-While not strictly required via the license, it is good practice asking before using huge chunks of Spectrums code for
-personal projects, like ports for other mod loaders.
+While not officially required via the license, it is good practice asking before using huge chunks of Spectrum's code or
+textures for personal projects, like ports for other mod loaders.
 If you just want to use it for integration, addons and similar projects: go ahead!
 
 ## Commons Clause License Condition

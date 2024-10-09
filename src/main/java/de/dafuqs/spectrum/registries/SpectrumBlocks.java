@@ -2711,7 +2711,7 @@ public class SpectrumBlocks {
 
 		registerBlockWithItem("invisible_wall", INVISIBLE_WALL, settings, DyeColor.BLUE);
 		registerBlockWithItem("courier_statue", COURIER_STATUE, settings, DyeColor.BLUE);
-		registerBlockWithItem("manxi", MANXI, settings, DyeColor.PURPLE);
+		registerBlock("manxi", MANXI);
 		registerBlockWithItem("preservation_chest", PRESERVATION_CHEST, settings, DyeColor.BLUE);
 	}
 

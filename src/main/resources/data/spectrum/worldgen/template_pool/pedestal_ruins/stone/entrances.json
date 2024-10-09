@@ -1,5 +1,4 @@
 {
-  "name": "spectrum:pedestal_ruins/stone/entrances",
   "fallback": "minecraft:empty",
   "elements": [
     {

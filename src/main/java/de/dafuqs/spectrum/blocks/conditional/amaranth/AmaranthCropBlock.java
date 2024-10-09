@@ -21,7 +21,7 @@ public class AmaranthCropBlock extends TallCropBlock implements RevelationAware 
 	public static final Identifier ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("milestones/reveal_amaranth");
 	protected static final int LAST_SINGLE_BLOCK_AGE = 2;
 	protected static final int MAX_AGE = 7;
-	
+
 	private static final VoxelShape[] AGE_TO_SHAPE = new VoxelShape[]{
 			Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D),
 			Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 10.0D, 16.0D),

@@ -6,8 +6,8 @@
   "cyan": 0,
   "magenta": 0,
   "yellow": 0,
-  "white": 2,
-  "black": 1,
+  "white": 4,
+  "black": 2,
   "experience": 1.0,
   "pattern": [
     "DDD",

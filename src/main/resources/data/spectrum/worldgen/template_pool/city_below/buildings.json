@@ -1,5 +1,4 @@
 {
-  "name": "spectrum:city_below/buildings",
   "fallback": "minecraft:empty",
   "elements": [
     {
@@ -83,7 +82,6 @@
         "processors": "minecraft:empty"
       }
     },
-
     {
       "weight": 1,
       "element": {

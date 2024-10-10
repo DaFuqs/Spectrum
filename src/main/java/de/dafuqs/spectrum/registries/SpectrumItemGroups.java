@@ -1499,6 +1499,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.DIKE_GATE);
 		entries.add(SpectrumBlocks.DREAM_GATE);
 		entries.add(SpectrumBlocks.PRESERVATION_CONTROLLER);
+		
 		entries.add(SpectrumBlocks.BLACK_CHISELED_PRESERVATION_STONE);
 		entries.add(SpectrumBlocks.BLUE_CHISELED_PRESERVATION_STONE);
 		entries.add(SpectrumBlocks.BROWN_CHISELED_PRESERVATION_STONE);
@@ -1515,9 +1516,9 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.RED_CHISELED_PRESERVATION_STONE);
 		entries.add(SpectrumBlocks.WHITE_CHISELED_PRESERVATION_STONE);
 		entries.add(SpectrumBlocks.YELLOW_CHISELED_PRESERVATION_STONE);
+		
 		entries.add(SpectrumBlocks.INVISIBLE_WALL);
 		entries.add(SpectrumBlocks.COURIER_STATUE);
-		entries.add(SpectrumBlocks.MANXI);
 		entries.add(SpectrumBlocks.PRESERVATION_CHEST);
 		
 		entries.add(SpectrumItems.DIVINATION_HEART);

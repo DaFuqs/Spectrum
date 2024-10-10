@@ -1,4 +1,0 @@
-todo: instill bees with pigment to give them the power of queerness (alt skins).
-
-this is a very important mod compat that needs to be done
-small problem: nbt crafting is pain and also i might need to add heads for every bee variant

@@ -1,5 +1,5 @@
 {
-	"parent": "spectrum:block/overgrown_base",
+  "parent": "spectrum:templates/overgrown",
 	"textures": {
       "side": "spectrum:block/overgrown_blackslag_side",
       "top": "spectrum:block/overgrown_blackslag_top",

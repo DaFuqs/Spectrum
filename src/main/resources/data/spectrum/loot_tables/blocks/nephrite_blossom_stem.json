@@ -9,7 +9,7 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "spectrum:jadeite_lotus_stem",
+              "name": "spectrum:nephrite_blossom_stem",
               "conditions": [
                 {
                   "condition": "minecraft:any_of",
@@ -34,16 +34,6 @@
                       }
                     }
                   ]
-                }
-              ]
-            },
-            {
-              "type": "minecraft:item",
-              "name": "spectrum:jadeite_petals",
-              "conditions": [
-                {
-                  "condition": "minecraft:random_chance",
-                  "chance": 0.5
                 }
               ]
             },

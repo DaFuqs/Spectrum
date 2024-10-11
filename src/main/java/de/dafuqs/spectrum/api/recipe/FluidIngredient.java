@@ -17,7 +17,7 @@ import java.util.stream.*;
 
 public class FluidIngredient {
     private final @Nullable Fluid fluid;
-    private final @Nullable TagKey<Fluid> tag;
+    private final @Nullable Identifier tag;
     // Compare against EMPTY to check if empty.
     // In order to represent an empty value, specifically use this field.
     public static FluidIngredient EMPTY = new FluidIngredient(null, null);
@@ -29,7 +29,7 @@ public class FluidIngredient {
     // Violation of either of those results in either an AssertionError or
     // undefined behavior. As such, don't even allow creation of invalid obj.
     // FluidIngredient objects with unknown/invalid tags are considered valid.
-    private FluidIngredient(@Nullable Fluid fluid, @Nullable TagKey<Fluid> tag) {
+    private FluidIngredient(@Nullable Fluid fluid, @Nullable Identifier tag) {
         this.fluid = fluid;
         this.tag = tag;
     }
@@ -50,8 +50,8 @@ public class FluidIngredient {
         Objects.requireNonNull(fluid);
         return new FluidIngredient(fluid, null);
     }
-
-    public static FluidIngredient of(@NotNull TagKey<Fluid> tag) {
+    
+    public static FluidIngredient of(@NotNull Identifier tag) {
         Objects.requireNonNull(tag);
         return new FluidIngredient(null, tag);
     }
@@ -60,15 +60,14 @@ public class FluidIngredient {
         return Optional.ofNullable(this.fluid);
     }
     public Optional<TagKey<Fluid>> tag() {
-        return Optional.ofNullable(this.tag);
+        return RegistryHelper.tryGetTagKey(Registries.FLUID, this.tag);
     }
     public boolean isTag() {
         return this.tag != null;
     }
 
     public Identifier id() {
-        return fluid != null ? Registries.FLUID.getId(fluid)
-                             : tag != null ? tag.id() : null;
+        return fluid != null ? Registries.FLUID.getId(fluid) : tag;
     }
 
     // Vanilla-friendly compatibility method.
@@ -80,9 +79,9 @@ public class FluidIngredient {
         if (this.tag != null) {
             // Handle custom fluid registries
             // in the case of FluidIngredient objects created by other mods.
-            Registry<Fluid> registry = RegistryHelper.getRegistryOf(this.tag);
+            Registry<Fluid> registry = Registries.FLUID;
             if(registry == null) return Ingredient.empty();
-            Optional<RegistryEntryList.Named<Fluid>> optional = registry.getEntryList(this.tag);
+            Optional<RegistryEntryList.Named<Fluid>> optional = registry.getEntryList(tag().get());
             if(optional.isEmpty()) return Ingredient.empty();
             RegistryEntryList.Named<Fluid> list = optional.get();
             Stream<ItemStack> stacks = list.stream().map((entry) -> entry.value().getBucketItem().getDefaultStack());
@@ -97,7 +96,7 @@ public class FluidIngredient {
         Objects.requireNonNull(fluid);
         if (this == EMPTY) return fluid == Fluids.EMPTY;
         if (this.fluid != null) return this.fluid == fluid;
-        if (this.tag != null) return fluid.getDefaultState().isIn(this.tag);
+        if (this.tag != null) return fluid.getDefaultState().isIn(tag().get());
 
         // UNREACHABLE under normal circumstances!
         throw new AssertionError("Invalid FluidIngredient object");
@@ -111,9 +110,7 @@ public class FluidIngredient {
 
     public static @NotNull FluidIngredient fromIdentifier(@Nullable Identifier id, boolean isTag) {
         if (isTag) {
-            Optional<TagKey<Fluid>> tag = RegistryHelper.tryGetTagKey(Registries.FLUID, id);
-            if (tag.isEmpty()) return FluidIngredient.EMPTY;
-            else return FluidIngredient.of(tag.get());
+            return FluidIngredient.of(id);
         } else {
             Fluid fluid = Registries.FLUID.get(id);
             if (fluid.getDefaultState().isEmpty()) return FluidIngredient.EMPTY;

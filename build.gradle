@@ -22,7 +22,7 @@ repositories {
 	maven { url = "https://cfa2.cursemaven.com" }
 	maven { url = "https://repo.unascribed.com" } // Ears API
 	maven { url = "https://dl.cloudsmith.io/public/klikli-dev/mods/maven/" } // Modonomicon
-	maven { url = "https://maven.is-immensely.gay/" } // Matchbooks
+	maven { url = "https://maven.is-immensely.gay/releases" } // Matchbooks
 	maven { url = "https://jitpack.io" } // Arrowhead, Dimensional Reverb, Step Height Entity Attribute
 	mavenCentral()
 }

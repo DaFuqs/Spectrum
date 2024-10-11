@@ -51,7 +51,7 @@ dependencies {
 	modImplementation include("com.github.DaFuqs:Arrowhead:${project.arrowhead_version}")
 	modImplementation include("com.github.DaFuqs:DimensionalReverb:${project.dimensional_reverb_version}")
 	modImplementation include("maven.modrinth:fractal-lib:${project.fractal_version}")
-	modImplementation include("com.github.Noaaan:Matchbooks:${project.matchbooks_version}")
+	modImplementation include("de.dafuqs:Matchbooks:${project.matchbooks_version}")
 
 	// external and compat
 	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") { exclude(group: "net.fabricmc.fabric-api") }

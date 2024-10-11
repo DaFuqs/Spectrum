@@ -6,14 +6,21 @@ import net.minecraft.block.*;
 import net.minecraft.item.*;
 import net.minecraft.particle.*;
 import net.minecraft.server.world.*;
+import net.minecraft.state.property.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 
 public class JadeiteFlowerBlock extends SpectrumFacingBlock {
-	
-	public static final VoxelShape SHAPE = Block.createCuboidShape(0, 8, 0, 16, 16, 16);
+    
+    protected static final VoxelShape SHAPE_UP = Block.createCuboidShape(0, 0, 0, 16, 8, 16);
+    protected static final VoxelShape SHAPE_DOWN = Block.createCuboidShape(0, 8, 0, 16, 16, 16);
+    protected static final VoxelShape SHAPE_NORTH = Block.createCuboidShape(0.0D, 0.0D, 8.0D, 16.0D, 16.0D, 16.0D);
+    protected static final VoxelShape SHAPE_SOUTH = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 8.0D);
+    protected static final VoxelShape SHAPE_EAST = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 8.0D, 16.0D, 16.0D);
+    protected static final VoxelShape SHAPE_WEST = Block.createCuboidShape(8.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
+    
     
     public JadeiteFlowerBlock(Settings settings) {
         super(settings);
@@ -22,7 +29,26 @@ public class JadeiteFlowerBlock extends SpectrumFacingBlock {
 	
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		return SHAPE;
+        switch (state.get(Properties.FACING)) {
+            case UP -> {
+                return SHAPE_UP;
+            }
+            case DOWN -> {
+                return SHAPE_DOWN;
+            }
+            case NORTH -> {
+                return SHAPE_NORTH;
+            }
+            case EAST -> {
+                return SHAPE_EAST;
+            }
+            case SOUTH -> {
+                return SHAPE_SOUTH;
+            }
+            default -> {
+                return SHAPE_WEST;
+            }
+        }
 	}
     
     @Override

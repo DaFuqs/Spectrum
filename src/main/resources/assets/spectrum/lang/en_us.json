@@ -5637,6 +5637,7 @@
   "______food_tooltips": "Food Tooltips:",
   "spectrum.food.withChance": "%s [%d%%]",
   "spectrum.food.whenEaten": "When Eaten:",
+  "spectrum.food.whenDrunk": "When Drunk:",
 
   "______structure_translations": "Structure Translations:",
   "structure.spectrum.city_below": "City Below",

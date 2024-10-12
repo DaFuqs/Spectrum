@@ -1,16 +1,22 @@
 {
   "type": "spectrum:titration_barrel",
-  "group": "infused_beverages",
   "ingredients": [
     {
-      "item": "minecraft:honey_bottle",
+      "item": "spectrum:sawblade_holly_berry",
       "count": 4
+    },
+    {
+      "item": "spectrum:bristle_sprouts",
+      "count": 8
+    },
+    {
+      "item": "spectrum:jaramel",
+      "count": 2
     }
   ],
   "fluid": {
-    "fluid": "minecraft:water"
+    "tag": "c:honey"
   },
-  "tapping_item": "minecraft:glass_bottle",
   "min_fermentation_time_hours": 24,
   "fermentation_data": {
     "fermentation_speed_mod": 0.25,
@@ -96,24 +102,18 @@
       }
     ]
   },
+  "tapping_item": "minecraft:glass_bottle",
   "result": {
-    "item": "spectrum:infused_beverage",
-    "count": 4,
-    "nbt": {
-      "Variant": "mead",
-      "Color": 16757819
-    }
+    "item": "spectrum:bristle_mead",
+    "count": 4
   },
-  "required_advancement": "spectrum:triggers/confirmed_drinking_age",
+  "required_advancement": "spectrum:hidden/collect_cookbooks/brewers_handbook",
   "fabric:load_conditions": [
     {
-      "condition": "fabric:not",
-      "value": {
-        "condition": "fabric:fluid_tags_populated",
-        "values": [
-          "c:honey"
-        ]
-      }
+      "condition": "fabric:fluid_tags_populated",
+      "values": [
+        "c:honey"
+      ]
     }
   ]
 }

@@ -4,7 +4,7 @@
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/redstone/light_level_detector"
   },
-  "icon": "spectrum:player_detector",
+  "icon": "spectrum:light_level_detector",
   "category": "spectrum:magical_blocks",
   "hide_while_locked": true,
   "parents": [],

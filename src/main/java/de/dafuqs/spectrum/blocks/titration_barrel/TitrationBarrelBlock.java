@@ -105,7 +105,7 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 									return ActionResult.CONSUME;
 								}
 								
-								if (!handStack.isIn(SpectrumItemTags.TITRATION_NEVER_FLUID) && ContainerItemContext.forPlayerInteraction(player, hand).find(FluidStorage.ITEM) != null) {
+								if (ContainerItemContext.forPlayerInteraction(player, hand).find(FluidStorage.ITEM) != null) {
 									if (FluidStorageUtil.interactWithFluidStorage(barrelEntity.fluidStorage, player, hand)) {
 										if (barrelEntity.getFluidVariant().isBlank()) {
 											if (state.get(BARREL_STATE) == TitrationBarrelBlock.BarrelState.FILLED && barrelEntity.isEmpty()) {

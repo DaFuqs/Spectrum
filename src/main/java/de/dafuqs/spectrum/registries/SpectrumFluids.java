@@ -14,6 +14,7 @@ import net.minecraft.registry.*;
 import net.minecraft.util.*;
 import org.joml.*;
 
+
 public class SpectrumFluids {
 	
 	// RenderHandler storage for compatibility purposes
@@ -56,7 +57,6 @@ public class SpectrumFluids {
 		registerFluid("mud", MUD, FLOWING_MUD, DyeColor.BROWN);
 		registerFluid("midnight_solution", MIDNIGHT_SOLUTION, FLOWING_MIDNIGHT_SOLUTION, DyeColor.GRAY);
 		registerFluid("dragonrot", DRAGONROT, FLOWING_DRAGONROT, DyeColor.GRAY);
-
 	}
 
 	private static void registerFluid(String name, Fluid stillFluid, Fluid flowingFluid, DyeColor dyeColor) {

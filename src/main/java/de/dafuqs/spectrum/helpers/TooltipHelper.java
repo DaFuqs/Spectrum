@@ -15,7 +15,7 @@ public class TooltipHelper {
 	public static void addFoodComponentEffectTooltip(ItemStack stack, List<Text> tooltip) {
 		FoodComponent foodComponent = stack.getItem().getFoodComponent();
 		if (foodComponent != null) {
-			buildEffectTooltipWithChance(tooltip, foodComponent.getStatusEffects(), Text.translatable("spectrum.food.whenEaten"));
+			buildEffectTooltipWithChance(tooltip, foodComponent.getStatusEffects(), stack.getUseAction() == UseAction.DRINK ? Text.translatable("spectrum.food.whenDrunk") : Text.translatable("spectrum.food.whenEaten"));
 		}
 	}
 	

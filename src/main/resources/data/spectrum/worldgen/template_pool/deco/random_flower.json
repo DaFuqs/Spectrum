@@ -1,5 +1,4 @@
 {
-  "name": "spectrum:deco/random_flower",
   "fallback": "minecraft:empty",
   "elements": [
     {

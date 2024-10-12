@@ -15,15 +15,15 @@ public class InkColorMixes {
 	}
 	
 	public static void register() {
-		registerMix(InkColors.LIGHT_BLUE, Map.of(CYAN, 3F / 4F, MAGENTA, 1F / 4F));
+		registerMix(InkColors.LIGHT_BLUE, Map.of(CYAN, 2F / 3F, MAGENTA, 1F / 3F));
 		registerMix(InkColors.BLUE, Map.of(CYAN, 3F / 6F, MAGENTA, 2F / 6F, YELLOW, 1F / 6F));
 		registerMix(InkColors.PURPLE, Map.of(CYAN, 2F / 6F, MAGENTA, 3F / 6F, YELLOW, 1F / 6F));
 		registerMix(InkColors.PINK, Map.of(MAGENTA, 2F / 3F, YELLOW, 1F / 3F));
 		registerMix(InkColors.RED, Map.of(MAGENTA, 1F / 2F, YELLOW, 1F / 2F));
 		registerMix(InkColors.ORANGE, Map.of(MAGENTA, 1F / 3F, YELLOW, 2F / 3F));
 		registerMix(InkColors.LIME, Map.of(CYAN, 1F / 3F, YELLOW, 2F / 3F));
-		registerMix(InkColors.GREEN, Map.of(CYAN, 2F / 5F, MAGENTA, 1F / 5F, YELLOW, 2F / 5F));
-		registerMix(InkColors.BROWN, Map.of(MAGENTA, 2F / 5F, YELLOW, 1F / 5F, BLACK, 2F / 5F));
+		registerMix(InkColors.GREEN, Map.of(CYAN, 2F / 6F, MAGENTA, 1F / 6F, YELLOW, 3F / 6F));
+		registerMix(InkColors.BROWN, Map.of(MAGENTA, 1F / 6F, YELLOW, 2F / 6F, BLACK, 3F / 6F));
 		registerMix(InkColors.GRAY, Map.of(BLACK, 2F / 3F, WHITE, 1 / 3F));
 		registerMix(InkColors.LIGHT_GRAY, Map.of(BLACK, 1F / 3F, WHITE, 2F / 3F));
 	}

@@ -104,16 +104,5 @@
       "Color": 16757819
     }
   },
-  "required_advancement": "spectrum:triggers/confirmed_drinking_age",
-  "fabric:load_conditions": [
-    {
-      "condition": "fabric:not",
-      "value": {
-        "condition": "fabric:fluid_tags_populated",
-        "values": [
-          "c:honey"
-        ]
-      }
-    }
-  ]
+  "required_advancement": "spectrum:triggers/confirmed_drinking_age"
 }

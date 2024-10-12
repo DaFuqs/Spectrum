@@ -111,16 +111,5 @@
     "item": "spectrum:bristle_mead",
     "count": 4
   },
-  "required_advancement": "spectrum:hidden/collect_cookbooks/brewers_handbook",
-  "fabric:load_conditions": [
-    {
-      "condition": "fabric:not",
-      "value": {
-        "condition": "fabric:fluid_tags_populated",
-        "values": [
-          "c:honey"
-        ]
-      }
-    }
-  ]
+  "required_advancement": "spectrum:hidden/collect_cookbooks/brewers_handbook"
 }

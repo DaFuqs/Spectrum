@@ -98,7 +98,7 @@ public abstract class SpectrumFluid extends FlowableFluid {
 				if (world.random.nextInt(100) == 0) {
 					ItemStack itemStack = itemEntity.getStack();
 					FluidConvertingRecipe recipe = getConversionRecipeFor(getDippingRecipeType(), world, itemStack);
-					if (recipe != null) {
+					if (recipe != null && !recipe.getOutput(world.getRegistryManager()).isOf(itemStack.getItem())) { // do not try to convert items into itself for performance reasons
 						world.playSound(null, itemEntity.getBlockPos(), SoundEvents.BLOCK_WOOL_BREAK, SoundCategory.NEUTRAL, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
 						
 						ItemStack result = craft(recipe, itemStack, world);

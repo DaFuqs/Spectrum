@@ -14,16 +14,5 @@
   "result": {
     "item": "spectrum:clotted_cream",
     "count": 4
-  },
-  "fabric:load_conditions": [
-    {
-      "condition": "fabric:not",
-      "value": {
-        "condition": "fabric:fluid_tags_populated",
-        "values": [
-          "c:milk"
-        ]
-      }
-    }
-  ]
+  }
 }

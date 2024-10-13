@@ -43,7 +43,6 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 	private TextFieldWidget cyanField;
 	private TextFieldWidget magentaField;
 	private TextFieldWidget yellowField;
-	private ButtonWidget glowingButton;
 	private TextFieldWidget amountField;
 	private TextFieldWidget positionXField;
 	private TextFieldWidget positionYField;
@@ -62,6 +61,7 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 	private TextFieldWidget duration;
 	private TextFieldWidget durationVariance;
 	private TextFieldWidget gravity;
+	private ButtonWidget glowingButton;
 	private ButtonWidget collisionsButton;
 	private ButtonWidget backButton;
 	private ButtonWidget forwardButton;
@@ -310,7 +310,7 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 			particleIndex++;
 		}
 		
-		if (displayedParticleEntries.size() == 0) {
+		if (displayedParticleEntries.isEmpty()) {
 			setColoringEnabled(false);
 		}
 		
@@ -320,6 +320,10 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 	
 	private void navigationButtonPressed(ButtonWidget buttonWidget) {
 		int pageCount = displayedParticleEntries.size() / PARTICLES_PER_PAGE;
+		if (pageCount == 0) {
+			return;
+		}
+		
 		if (buttonWidget == forwardButton) {
 			activeParticlePage = (activeParticlePage + 1) % pageCount;
 		} else {
@@ -356,6 +360,9 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 	private void particleButtonPressed(ButtonWidget buttonWidget) {
 		int buttonIndex = particleButtons.indexOf(buttonWidget);
 		int newIndex = PARTICLES_PER_PAGE * activeParticlePage + buttonIndex;
+		if (newIndex >= displayedParticleEntries.size()) {
+			return;
+		}
 
 		ParticleSpawnerParticlesDataLoader.ParticleSpawnerEntry entry = displayedParticleEntries.get(newIndex);
 		setColoringEnabled(entry.supportsColoring());
@@ -396,10 +403,6 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 		onValuesChanged();
 	}
 	
-	protected boolean isDecimalNumber(@NotNull String text) {
-		return text.matches("^(-)?\\d*+(?:\\.\\d*)?$");
-	}
-	
 	private boolean isPositiveDecimalNumberUnderThousand(String text) {
 		try {
 			return Double.parseDouble(text) < 1000;
@@ -431,14 +434,6 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 		} catch (NumberFormatException e) {
 			return false;
 		}
-	}
-	
-	protected boolean isPositiveDecimalNumber(@NotNull String text) {
-		return text.matches("^\\d*+(?:\\.\\d*)?$");
-	}
-	
-	protected boolean isPositiveWholeNumber(@NotNull String text) {
-		return text.matches("^\\d*$");
 	}
 	
 	protected boolean isPositiveWholeNumberUnderThousand(@NotNull String text) {

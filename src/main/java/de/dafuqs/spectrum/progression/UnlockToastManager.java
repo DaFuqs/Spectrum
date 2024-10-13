@@ -32,7 +32,7 @@ public class UnlockToastManager {
 		put(SpectrumAdvancements.ASCEND_KINDLING, new Pair<>(SpectrumBlocks.PEDESTAL_MOONSTONE.asItem().getDefaultStack(), "ascend_kindling"));
 		put(SpectrumAdvancements.VIVISECT_KINDLING, new Pair<>(SpectrumItems.DIVINATION_HEART.getDefaultStack(), "vivisect_kindling"));
 		put(SpectrumAdvancements.PAINTBRUSH_COLORING, new Pair<>(SpectrumItems.PAINTBRUSH.getDefaultStack(), "block_coloring_unlocked"));
-		put(SpectrumAdvancements.PAINTBRUSH_INK_FLINGING, new Pair<>(SpectrumItems.PAINTBRUSH.getDefaultStack(), "paint_flinging_unlocked"));
+		put(SpectrumAdvancements.PAINTBRUSH_INK_SLINGING, new Pair<>(SpectrumItems.PAINTBRUSH.getDefaultStack(), "ink_slinging_unlocked"));
 	}};
 	
 	public static void registerGatedRecipe(RecipeType<?> recipeType, GatedRecipe<?> gatedRecipe) {

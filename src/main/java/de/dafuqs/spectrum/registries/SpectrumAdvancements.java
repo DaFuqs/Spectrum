@@ -36,7 +36,7 @@ public class SpectrumAdvancements {
 	
 	// Paintbrush Abilities
 	public static final Identifier PAINTBRUSH_COLORING = SpectrumCommon.locate("collect_pigment");
-	public static final Identifier PAINTBRUSH_INK_FLINGING = SpectrumCommon.locate("midgame/fill_ink_container");
+	public static final Identifier PAINTBRUSH_INK_SLINGING = SpectrumCommon.locate("midgame/fill_ink_container");
 	
 	// Enchantments
 	public static final Identifier ENCHANTMENTS_BIG_CATCH = SpectrumCommon.locate("unlocks/enchantments/big_catch");

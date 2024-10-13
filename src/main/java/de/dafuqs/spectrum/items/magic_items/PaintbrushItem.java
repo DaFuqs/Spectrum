@@ -34,7 +34,7 @@ public class PaintbrushItem extends Item implements SignChangingItem {
 	
 	public static final int COOLDOWN_DURATION_TICKS = 10;
 	public static final int BLOCK_COLOR_COST = 25;
-	public static final int INK_FLING_COST = 100;
+	public static final int INK_SLING_COST = 100;
 	
 	public static final String COLOR_NBT_STRING = "Color";
 	
@@ -49,7 +49,7 @@ public class PaintbrushItem extends Item implements SignChangingItem {
 		
 		Optional<InkColor> color = getColor(stack);
 		boolean unlockedColoring = AdvancementHelper.hasAdvancementClient(SpectrumAdvancements.PAINTBRUSH_COLORING);
-		boolean unlockedSlinging = AdvancementHelper.hasAdvancementClient(SpectrumAdvancements.PAINTBRUSH_INK_FLINGING);
+		boolean unlockedSlinging = AdvancementHelper.hasAdvancementClient(SpectrumAdvancements.PAINTBRUSH_INK_SLINGING);
 		
 		if (unlockedColoring || unlockedSlinging) {
 			if (color.isPresent()) {
@@ -70,11 +70,11 @@ public class PaintbrushItem extends Item implements SignChangingItem {
 	}
 	
 	public static boolean canColor(PlayerEntity player) {
-		return AdvancementHelper.hasAdvancement(player, UNLOCK_COLORING_ADVANCEMENT_ID);
+		return AdvancementHelper.hasAdvancement(player, SpectrumAdvancements.PAINTBRUSH_COLORING);
 	}
 	
 	public static boolean canInkSling(PlayerEntity player) {
-		return AdvancementHelper.hasAdvancement(player, UNLOCK_INK_SLINGING_ADVANCEMENT_ID);
+		return AdvancementHelper.hasAdvancement(player, SpectrumAdvancements.PAINTBRUSH_INK_SLINGING);
 	}
 	
 	public NamedScreenHandlerFactory createScreenHandlerFactory(ItemStack itemStack) {
@@ -191,7 +191,7 @@ public class PaintbrushItem extends Item implements SignChangingItem {
 			if (optionalInkColor.isPresent()) {
 				
 				InkColor inkColor = optionalInkColor.get();
-				if (user.isCreative() || InkPowered.tryDrainEnergy(user, inkColor, INK_FLING_COST)) {
+				if (user.isCreative() || InkPowered.tryDrainEnergy(user, inkColor, INK_SLING_COST)) {
 					user.getItemCooldownManager().set(this, COOLDOWN_DURATION_TICKS);
 					
 					if (!world.isClient) {

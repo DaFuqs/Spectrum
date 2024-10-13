@@ -129,7 +129,7 @@ public class GlassCrestCrossbowItem extends MalachiteCrossbowItem implements Ext
     public float getProjectileVelocityModifier(ItemStack stack) {
         float parent = super.getProjectileVelocityModifier(stack);
         float overcharge = getOvercharge(stack);
-        return overcharge == 0 ? parent : parent * (1 + overcharge * 0.5F);
+		return overcharge == 0 ? parent : parent * (1 + overcharge * 0.75F);
     }
     
     @Override

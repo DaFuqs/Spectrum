@@ -4879,6 +4879,8 @@
   "item.spectrum.workstaff.message.fortune": "Switched Enchantment to Fortune",
   "item.spectrum.workstaff.message.resonance": "Switched Enchantment to Resonance",
   "item.spectrum.workstaff.message.silk_touch": "Switched Enchantment to Silk Touch",
+  "item.spectrum.workstaff.message.would_result_in_conflicting_enchantments": "Switching enchantments would result in a conflict",
+  "item.spectrum.workstaff.message.already_has_the_enchantment": "Enchantment is already present",
   "item.spectrum.workstaff.tooltip.mining_range": "%dx%d area mining active (§fWhite Ink§r)",
   "item.spectrum.workstaff.tooltip.projectile": "Ranged mining active (§fWhite Ink§r)",
   "item.spectrum.workstaff.tooltip.projectiles_disabled": "Ranged Mining disabled",

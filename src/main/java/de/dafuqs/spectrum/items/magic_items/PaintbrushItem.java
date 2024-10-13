@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.revelationary.api.advancements.*;
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
@@ -33,9 +32,6 @@ import java.util.*;
 
 public class PaintbrushItem extends Item implements SignChangingItem {
 	
-	public static final Identifier UNLOCK_COLORING_ADVANCEMENT_ID = SpectrumCommon.locate("collect_pigment");
-	public static final Identifier UNLOCK_INK_SLINGING_ADVANCEMENT_ID = SpectrumCommon.locate("midgame/fill_ink_container");
-	
 	public static final int COOLDOWN_DURATION_TICKS = 10;
 	public static final int BLOCK_COLOR_COST = 25;
 	public static final int INK_FLING_COST = 100;
@@ -52,8 +48,8 @@ public class PaintbrushItem extends Item implements SignChangingItem {
 		super.appendTooltip(stack, world, tooltip, context);
 		
 		Optional<InkColor> color = getColor(stack);
-		boolean unlockedColoring = AdvancementHelper.hasAdvancementClient(UNLOCK_COLORING_ADVANCEMENT_ID);
-		boolean unlockedSlinging = AdvancementHelper.hasAdvancementClient(UNLOCK_INK_SLINGING_ADVANCEMENT_ID);
+		boolean unlockedColoring = AdvancementHelper.hasAdvancementClient(SpectrumAdvancements.PAINTBRUSH_COLORING);
+		boolean unlockedSlinging = AdvancementHelper.hasAdvancementClient(SpectrumAdvancements.PAINTBRUSH_INK_FLINGING);
 		
 		if (unlockedColoring || unlockedSlinging) {
 			if (color.isPresent()) {

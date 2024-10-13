@@ -1,10 +1,9 @@
 package de.dafuqs.spectrum.blocks.conditional.amaranth;
 
 import de.dafuqs.revelationary.api.revelations.*;
-import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.*;
-import de.dafuqs.spectrum.blocks.*;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.*;
 import net.minecraft.item.*;
@@ -18,7 +17,6 @@ import java.util.*;
 
 public class AmaranthCropBlock extends TallCropBlock implements RevelationAware {
 	
-	public static final Identifier ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("milestones/reveal_amaranth");
 	protected static final int LAST_SINGLE_BLOCK_AGE = 2;
 	protected static final int MAX_AGE = 7;
 
@@ -50,7 +48,7 @@ public class AmaranthCropBlock extends TallCropBlock implements RevelationAware 
 	
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
-		return ADVANCEMENT_IDENTIFIER;
+		return SpectrumAdvancements.REVEAL_AMARANTH;
 	}
 	
 	@Override

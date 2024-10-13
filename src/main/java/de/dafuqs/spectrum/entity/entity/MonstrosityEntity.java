@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.entity.entity;
 import com.google.common.collect.*;
 import de.dafuqs.additionalentityattributes.*;
 import de.dafuqs.revelationary.api.advancements.*;
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.entity.ai.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
@@ -24,7 +23,6 @@ import net.minecraft.nbt.*;
 import net.minecraft.particle.*;
 import net.minecraft.server.world.*;
 import net.minecraft.text.*;
-import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.intprovider.*;
 import net.minecraft.world.*;
@@ -38,14 +36,12 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	public static final UUID BONUS_DAMAGE_UUID = UUID.fromString("4425979b-f987-4937-875a-1e26d727c67f");
 
 	public static @Nullable MonstrosityEntity theOneAndOnly = null;
-
-	public static final Identifier KILLED_MONSTROSITY_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("lategame/killed_monstrosity");
 	public static final Predicate<LivingEntity> ENTITY_TARGETS = (entity) -> {
 		if (entity instanceof PlayerEntity player) {
 			if (player.isSpectator() || player.isCreative()) {
 				return false;
 			}
-			return !AdvancementHelper.hasAdvancement(player, KILLED_MONSTROSITY_ADVANCEMENT_IDENTIFIER);
+			return !AdvancementHelper.hasAdvancement(player, SpectrumAdvancements.KILLED_MONSTROSITY);
 		}
 		return false;
 	};

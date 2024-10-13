@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.conditional.amaranth;
 
 import de.dafuqs.revelationary.api.revelations.*;
+import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.effect.*;
@@ -19,7 +20,7 @@ public class AmaranthBushelBlock extends FlowerBlock implements RevelationAware 
 	
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
-		return AmaranthCropBlock.ADVANCEMENT_IDENTIFIER;
+		return SpectrumAdvancements.REVEAL_AMARANTH;
 	}
 	
 	@Override

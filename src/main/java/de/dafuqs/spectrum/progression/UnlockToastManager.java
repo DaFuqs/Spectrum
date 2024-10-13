@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.progression;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.recipe.*;
-import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.progression.toast.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.*;
@@ -23,17 +22,17 @@ public class UnlockToastManager {
 	// Advancement Identifier + Recipe Type => Recipe
 	public static final Map<Identifier, Map<RecipeType<?>, List<GatedRecipe<?>>>> gatedRecipes = new HashMap<>();
 	
-	public static final HashMap<Identifier, Pair<ItemStack, String>> messageToasts = new HashMap<>() {{
-		put(SpectrumCommon.locate("milestones/unlock_shooting_stars"), new Pair<>(Items.SPYGLASS.getDefaultStack(), "shooting_stars_unlocked"));
-		put(SpectrumCommon.locate("milestones/unlock_overenchanting_with_enchanter"), new Pair<>(SpectrumBlocks.ENCHANTER.asItem().getDefaultStack(), "overchanting_unlocked"));
-		put(SpectrumCommon.locate("milestones/unlock_conflicted_enchanting_with_enchanter"), new Pair<>(SpectrumBlocks.ENCHANTER.asItem().getDefaultStack(), "enchant_conflicting_enchantments_unlocked"));
-		put(SpectrumCommon.locate("milestones/unlock_fourth_potion_workshop_reagent_slot"), new Pair<>(SpectrumBlocks.POTION_WORKSHOP.asItem().getDefaultStack(), "fourth_potion_reagent_unlocked"));
-		put(SpectrumCommon.locate("midgame/spectrum_midgame"), new Pair<>(SpectrumBlocks.PEDESTAL_ONYX.asItem().getDefaultStack(), "second_advancement_tree_unlocked"));
-		put(SpectrumCommon.locate("lategame/spectrum_lategame"), new Pair<>(SpectrumBlocks.PEDESTAL_MOONSTONE.asItem().getDefaultStack(), "third_advancement_tree_unlocked"));
-		put(SpectrumCommon.locate("ascend_kindling"), new Pair<>(SpectrumBlocks.PEDESTAL_MOONSTONE.asItem().getDefaultStack(), "ascend_kindling"));
-		put(SpectrumCommon.locate("mod_integration/neepmeat/vivisect_kindling"), new Pair<>(SpectrumItems.DIVINATION_HEART.getDefaultStack(), "vivisect_kindling"));
-		put(PaintbrushItem.UNLOCK_COLORING_ADVANCEMENT_ID, new Pair<>(SpectrumItems.PAINTBRUSH.getDefaultStack(), "block_coloring_unlocked"));
-		put(PaintbrushItem.UNLOCK_INK_SLINGING_ADVANCEMENT_ID, new Pair<>(SpectrumItems.PAINTBRUSH.getDefaultStack(), "paint_flinging_unlocked"));
+	public static final Map<Identifier, Pair<ItemStack, String>> messageToasts = new HashMap<>() {{
+		put(SpectrumAdvancements.UNLOCK_SHOOTING_STARS, new Pair<>(Items.SPYGLASS.getDefaultStack(), "shooting_stars_unlocked"));
+		put(SpectrumAdvancements.OVERENCHANTING, new Pair<>(SpectrumBlocks.ENCHANTER.asItem().getDefaultStack(), "overchanting_unlocked"));
+		put(SpectrumAdvancements.APPLY_CONFLICTING_ENCHANTMENTS, new Pair<>(SpectrumBlocks.ENCHANTER.asItem().getDefaultStack(), "enchant_conflicting_enchantments_unlocked"));
+		put(SpectrumAdvancements.FOURTH_BREWING_SLOT, new Pair<>(SpectrumBlocks.POTION_WORKSHOP.asItem().getDefaultStack(), "fourth_potion_reagent_unlocked"));
+		put(SpectrumAdvancements.MIDGAME, new Pair<>(SpectrumBlocks.PEDESTAL_ONYX.asItem().getDefaultStack(), "second_advancement_tree_unlocked"));
+		put(SpectrumAdvancements.LATEGAME, new Pair<>(SpectrumBlocks.PEDESTAL_MOONSTONE.asItem().getDefaultStack(), "third_advancement_tree_unlocked"));
+		put(SpectrumAdvancements.ASCEND_KINDLING, new Pair<>(SpectrumBlocks.PEDESTAL_MOONSTONE.asItem().getDefaultStack(), "ascend_kindling"));
+		put(SpectrumAdvancements.VIVISECT_KINDLING, new Pair<>(SpectrumItems.DIVINATION_HEART.getDefaultStack(), "vivisect_kindling"));
+		put(SpectrumAdvancements.PAINTBRUSH_COLORING, new Pair<>(SpectrumItems.PAINTBRUSH.getDefaultStack(), "block_coloring_unlocked"));
+		put(SpectrumAdvancements.PAINTBRUSH_INK_FLINGING, new Pair<>(SpectrumItems.PAINTBRUSH.getDefaultStack(), "paint_flinging_unlocked"));
 	}};
 	
 	public static void registerGatedRecipe(RecipeType<?> recipeType, GatedRecipe<?> gatedRecipe) {

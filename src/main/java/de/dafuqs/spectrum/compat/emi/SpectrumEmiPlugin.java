@@ -149,7 +149,7 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 				return;
 			}
 			Identifier id = syntheticId("freezing", key.getBlock()); // The synthetic IDs generated here assume there will never be multiple conversions of the same block with different states
-			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.FREEZING, id, in, out, SpectrumCommon.locate("unlocks/blocks/idols")));
+			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.FREEZING, id, in, out, SpectrumAdvancements.UNLOCK_IDOLS));
 		});
 		FreezingIdolBlock.FREEZING_MAP.forEach((key, value) -> {
 			EmiStack in = EmiStack.of(key);
@@ -158,7 +158,7 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 				return;
 			}
 			Identifier id = syntheticId("freezing", key);
-			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.FREEZING, id, in, out, SpectrumCommon.locate("unlocks/blocks/idols")));
+			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.FREEZING, id, in, out, SpectrumAdvancements.UNLOCK_IDOLS));
 		});
 		FirestarterIdolBlock.BURNING_MAP.forEach((key, value) -> {
 			EmiStack in = EmiStack.of(key);
@@ -167,7 +167,7 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 				return;
 			}
 			Identifier id = syntheticId("heating", key);
-			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.HEATING, id, in, out, SpectrumCommon.locate("unlocks/blocks/idols")));
+			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.HEATING, id, in, out, SpectrumAdvancements.UNLOCK_IDOLS));
 		});
 		NaturesStaffConversionDataLoader.CONVERSIONS.forEach((key, value) -> {
 			EmiStack in = EmiStack.of(key);
@@ -176,7 +176,7 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 				return;
 			}
 			Identifier id = syntheticId("natures_staff", key);
-			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.NATURES_STAFF, id, in, out, SpectrumCommon.locate("unlocks/items/natures_staff")));
+			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.NATURES_STAFF, id, in, out, SpectrumAdvancements.UNLOCK_NATURES_STAFF));
 		});
 	}
 

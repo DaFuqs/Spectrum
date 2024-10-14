@@ -5084,12 +5084,12 @@
 
   "book.spectrum.guidebook.sleep.name": "催眠炼金术",
   "book.spectrum.guidebook.sleep.page0.title": "催眠与意志力",
-  "book.spectrum.guidebook.sleep.page0.text": "反思这些夜幕药水,我很快就发现,各种各样的因素都会影响它们对效果的抵抗力.至于其他生物……主要因素是它们的精神构成和生物学的结合.节肢动物由于不会睡觉而具备对催眠有强大的抵抗力,而徘徊的亡灵似乎非常容易受到催眠的侵蚀.意志纯粹的生物可能几乎免疫这个效果.",
+  "book.spectrum.guidebook.sleep.page0.text": "反思这些夜幕药水,我很快就发现,各种各样的因素都会影响它们对效果的抵抗力.至于其他生物……主要因素是他们的心理素质和生物特性.节肢动物由于不需要睡眠而具备对催眠有强大的抵抗力,而徘徊的亡灵似乎非常容易受到催眠的侵蚀.意志纯粹的生物可能几乎免疫催眠.",
   "book.spectrum.guidebook.sleep.page1.title": "银色夜绒",
-  "book.spectrum.guidebook.sleep.page1.text": "随着我对这一分支炼金术的了解越来越多,我越发开始担心；我感觉到沉睡的感觉犹如潮水一样正威胁着将我吞没.当时看到多种效果都源于同一本质的时候,我觉得有点奇怪,但当时并没有太在意.而现在我不确定这是好是坏.这些嫩芽和花蕾,以及[致命沉眠](entry://brewing/effects/fatal_slumber)及其光的痕迹……其中有一种气息,让人很不安的联想到[神性](entry://brewing/effects/divinity).",
+  "book.spectrum.guidebook.sleep.page1.text": "随着我对这门炼金术的了解加深,我开始感到担忧;仿佛沉睡的潮水随时会将我吞没.当时看到多种效果都源于同一本质的时候,我觉得有点奇怪,但当时并没有太在意.而现在我不确定这是好是坏.这些嫩芽和花蕾,以及[致命沉眠](entry://brewing/effects/fatal_slumber)及其光的痕迹……它们的气息令人不安地让人联想到[神性](entry://brewing/effects/divinity).",
 
   "book.spectrum.guidebook.soporific": "催眠 （抗性）",
-  "book.spectrum.guidebook.sleep_resistance": "这种药水是元素夜幕炼金术的产物,以夜绒魔法为原理.因此,它会受到受害者心理素质的影响,就我而言,则受催眠抵抗力影响.",
+  "book.spectrum.guidebook.sleep_resistance": "这种药水是夜幕元素炼金术的产物,以夜绒魔法为原理.因此,它会受到受害者心理素质的影响,就我而言,则受催眠抵抗力影响.",
 
   "book.spectrum.guidebook.slush.page0.text": "土壤异常柔软、湿润.闻起来有蚯蚓的味道.",
   "book.spectrum.guidebook.slush.page1.text": "永远湿润且富含营养的农田.植物在其上茁壮成长的更快.",

@@ -59,7 +59,8 @@ public class AmaranthCropBlock extends TallCropBlock implements RevelationAware 
 		
 		Map<BlockState, BlockState> map = new Hashtable<>();
 		for (int age = 0; age <= LAST_SINGLE_BLOCK_AGE; age++) {
-			map.put(this.withAge(age), smallFern);
+			map.put(this.withAgeAndHalf(age, DoubleBlockHalf.LOWER), smallFern);
+			map.put(this.withAgeAndHalf(age, DoubleBlockHalf.UPPER), smallFern);
 		}
 		for (int age = LAST_SINGLE_BLOCK_AGE + 1; age <= MAX_AGE; age++) {
 			map.put(this.withAgeAndHalf(age, DoubleBlockHalf.LOWER), largeFernLower);

@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.blocks.deeper_down.flora.SawbladeHollyBushBlock;
+import de.dafuqs.spectrum.blocks.deeper_down.flora.*;
 import de.dafuqs.spectrum.blocks.jade_vines.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
@@ -24,7 +24,7 @@ public class ShearsDispenserBehaviorMixin {
             int age = blockState.get(SawbladeHollyBushBlock.AGE);
             if (SawbladeHollyBushBlock.canBeSheared(age)) {
                 // we do not have the real shears item used in the dispenser here, but for the default loot table that does not make much of a difference
-                for (ItemStack stack : JadeVinePlantBlock.getHarvestedStacks(blockState, world, pos, world.getBlockEntity(pos), null, Items.SHEARS.getDefaultStack(), SawbladeHollyBushBlock.SHEARING_LOOT_TABLE_ID)) {
+                for (ItemStack stack : JadeVinePlantBlock.getHarvestedStacks(blockState, world, pos, world.getBlockEntity(pos), null, Items.SHEARS.getDefaultStack(), SpectrumLootTables.SAWBLADE_HOLLY_SHEARING)) {
                     SawbladeHollyBushBlock.dropStack(world, pos, stack);
                 }
     

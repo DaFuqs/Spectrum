@@ -3,73 +3,71 @@
   "group": "infused_beverages",
   "ingredients": [
     {
-      "item": "minecraft:wheat",
-      "count": 6
-    },
-    {
-      "item": "minecraft:honey_bottle",
-      "count": 1
+      "item": "minecraft:honeycomb",
+      "count": 2
     }
   ],
-  "min_fermentation_time_hours": 4,
   "fluid": {
-    "fluid": "minecraft:water"
+    "tag": "c:honey"
   },
   "tapping_item": "minecraft:glass_bottle",
+  "min_fermentation_time_hours": 24,
   "fermentation_data": {
-    "fermentation_speed_mod": 1.25,
+    "fermentation_speed_mod": 0.25,
     "effects": [
       {
-        "id": "spectrum:lava_gliding",
+        "id": "minecraft:fire_resistance",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "potency": 0
+          }
+        ]
+      },
+      {
+        "id": "minecraft:speed",
         "base_duration": 9600,
         "potency": [
           {
             "potency": 0
           },
           {
-            "min_alc": 5,
+            "min_alc": 20,
             "potency": 1
           },
           {
-            "min_alc": 8,
+            "min_alc": 25,
             "potency": 2
+          },
+          {
+            "min_alc": 30,
+            "potency": 3
           }
         ]
       },
       {
-        "id": "spectrum:nourishing",
+        "id": "minecraft:strength",
         "base_duration": 9600,
         "potency": [
           {
-            "min_alc": 3,
-            "potency": 0
+            "min_alc": 25,
+            "min_thickness": 1.5
           },
           {
-            "min_alc": 6,
-            "potency": 1
-          }
-        ]
-      },
-      {
-        "id": "minecraft:saturation",
-        "base_duration": 120,
-        "potency": [
-          {
-            "min_alc": 7
-          },
-          {
-            "min_alc": 9,
+            "min_alc": 25,
+            "min_thickness": 2.0,
             "potency": 1
           },
           {
-            "min_alc": 11,
+            "min_alc": 25,
+            "min_thickness": 2.5,
             "potency": 2
           }
         ]
       },
       {
-        "id": "spectrum:stiffness",
-        "base_duration": 600,
+        "id": "minecraft:slowness",
+        "base_duration": 9600,
         "potency": [
           {
             "min_thickness": 2
@@ -85,14 +83,14 @@
         ]
       },
       {
-        "id": "minecraft:nausea",
+        "id": "minecraft:blindness",
         "base_duration": 600,
         "potency": [
           {
             "min_thickness": 3
           },
           {
-            "min_alc": 9
+            "min_alc": 30
           }
         ]
       }
@@ -102,20 +100,17 @@
     "item": "spectrum:infused_beverage",
     "count": 4,
     "nbt": {
-      "Variant": "lager",
-      "Color": 12080430
+      "Variant": "mead",
+      "Color": 16757819
     }
   },
   "required_advancement": "spectrum:triggers/confirmed_drinking_age",
   "fabric:load_conditions": [
     {
-      "condition": "fabric:not",
-      "value": {
-        "condition": "fabric:fluid_tags_populated",
-        "values": [
-          "c:honey"
-        ]
-      }
+      "condition": "fabric:fluid_tags_populated",
+      "values": [
+        "c:honey"
+      ]
     }
   ]
 }

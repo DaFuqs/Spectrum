@@ -27,9 +27,4 @@ public class ShootingStarBlock extends PlacedItemBlock implements ShootingStar {
 		return SHAPE;
 	}
 
-	@Override
-	public ShootingStar.Type getShootingStarType() {
-		return this.shootingStarType;
-	}
-
 }

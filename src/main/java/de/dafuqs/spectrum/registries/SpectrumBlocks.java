@@ -92,7 +92,7 @@ import static de.dafuqs.spectrum.registries.SpectrumItems.*;
 import static net.minecraft.block.Blocks.*;
 
 public class SpectrumBlocks {
-
+	
 	private static Settings settings(MapColor mapColor, BlockSoundGroup blockSoundGroup, float strength) {
 		return FabricBlockSettings.create().mapColor(mapColor).sounds(blockSoundGroup).strength(strength);
 	}
@@ -640,9 +640,9 @@ public class SpectrumBlocks {
 	private static final int NOXCAP_BUTTON_BLOCK_PRESS_TIME_TICKS = 30;
 
 	public static final PillarBlock STRIPPED_SLATE_NOXCAP_STEM = new PillarBlock(noxcap(MapColor.GRAY));
-	public static final PillarBlock SLATE_NOXCAP_STEM = new StrippingLootPillarBlock(noxcap(MapColor.GRAY), STRIPPED_SLATE_NOXCAP_STEM, SpectrumCommon.locate("gameplay/stripping/slate_noxcap_stripping"));
+	public static final PillarBlock SLATE_NOXCAP_STEM = new StrippingLootPillarBlock(noxcap(MapColor.GRAY), STRIPPED_SLATE_NOXCAP_STEM, SpectrumLootTables.SLATE_NOXCAP_STRIPPING);
 	public static final Block STRIPPED_SLATE_NOXCAP_HYPHAE = new PillarBlock(noxcap(MapColor.GRAY));
-	public static final Block SLATE_NOXCAP_HYPHAE = new StrippingLootPillarBlock(noxcap(MapColor.GRAY), STRIPPED_SLATE_NOXCAP_HYPHAE, SpectrumCommon.locate("gameplay/stripping/slate_noxcap_stripping"));
+	public static final Block SLATE_NOXCAP_HYPHAE = new StrippingLootPillarBlock(noxcap(MapColor.GRAY), STRIPPED_SLATE_NOXCAP_HYPHAE, SpectrumLootTables.SLATE_NOXCAP_STRIPPING);
 	public static final Block SLATE_NOXCAP_BLOCK = new Block(noxcap(MapColor.GRAY));
 	public static final PillarBlock SLATE_NOXCAP_GILLS = new PillarBlock(noxcap(MapColor.DIAMOND_BLUE).luminance(state -> 9).emissiveLighting(SpectrumBlocks::always).postProcess(SpectrumBlocks::always));
 	public static final Block SLATE_NOXWOOD_PLANKS = new Block(noxcap(MapColor.GRAY));
@@ -661,9 +661,9 @@ public class SpectrumBlocks {
 	public static final Block SLATE_NOXWOOD_LAMP = new FlexLanternBlock(FabricBlockSettings.copyOf(Blocks.LANTERN).luminance(13).pistonBehavior(PistonBehavior.DESTROY));
 
 	public static final PillarBlock STRIPPED_EBONY_NOXCAP_STEM = new PillarBlock(noxcap(MapColor.TERRACOTTA_BLACK));
-	public static final PillarBlock EBONY_NOXCAP_STEM = new StrippingLootPillarBlock(noxcap(MapColor.TERRACOTTA_BLACK), STRIPPED_EBONY_NOXCAP_STEM, SpectrumCommon.locate("gameplay/stripping/ebony_noxcap_stripping"));
+	public static final PillarBlock EBONY_NOXCAP_STEM = new StrippingLootPillarBlock(noxcap(MapColor.TERRACOTTA_BLACK), STRIPPED_EBONY_NOXCAP_STEM, SpectrumLootTables.EBONY_NOXCAP_STRIPPING);
 	public static final Block STRIPPED_EBONY_NOXCAP_HYPHAE = new PillarBlock(noxcap(MapColor.TERRACOTTA_BLACK));
-	public static final Block EBONY_NOXCAP_HYPHAE = new StrippingLootPillarBlock(noxcap(MapColor.TERRACOTTA_BLACK), STRIPPED_EBONY_NOXCAP_HYPHAE, SpectrumCommon.locate("gameplay/stripping/ebony_noxcap_stripping"));
+	public static final Block EBONY_NOXCAP_HYPHAE = new StrippingLootPillarBlock(noxcap(MapColor.TERRACOTTA_BLACK), STRIPPED_EBONY_NOXCAP_HYPHAE, SpectrumLootTables.EBONY_NOXCAP_STRIPPING);
 	public static final Block EBONY_NOXCAP_BLOCK = new Block(noxcap(MapColor.TERRACOTTA_BLACK));
 	public static final PillarBlock EBONY_NOXCAP_GILLS = new PillarBlock(noxcap(MapColor.DIAMOND_BLUE).luminance(state -> 9).emissiveLighting(SpectrumBlocks::always).postProcess(SpectrumBlocks::always));
 	public static final Block EBONY_NOXWOOD_PLANKS = new Block(noxcap(MapColor.TERRACOTTA_BLACK));
@@ -682,9 +682,9 @@ public class SpectrumBlocks {
 	public static final Block EBONY_NOXWOOD_LAMP = new FlexLanternBlock(FabricBlockSettings.copyOf(Blocks.LANTERN).luminance(13).pistonBehavior(PistonBehavior.DESTROY));
 
 	public static final PillarBlock STRIPPED_IVORY_NOXCAP_STEM = new PillarBlock(noxcap(MapColor.OFF_WHITE));
-	public static final PillarBlock IVORY_NOXCAP_STEM = new StrippingLootPillarBlock(noxcap(MapColor.OFF_WHITE), STRIPPED_IVORY_NOXCAP_STEM, SpectrumCommon.locate("gameplay/stripping/ivory_noxcap_stripping"));
+	public static final PillarBlock IVORY_NOXCAP_STEM = new StrippingLootPillarBlock(noxcap(MapColor.OFF_WHITE), STRIPPED_IVORY_NOXCAP_STEM, SpectrumLootTables.IVORY_NOXCAP_STRIPPING);
 	public static final Block STRIPPED_IVORY_NOXCAP_HYPHAE = new PillarBlock(noxcap(MapColor.OFF_WHITE));
-	public static final Block IVORY_NOXCAP_HYPHAE = new StrippingLootPillarBlock(noxcap(MapColor.OFF_WHITE), STRIPPED_IVORY_NOXCAP_HYPHAE, SpectrumCommon.locate("gameplay/stripping/ivory_noxcap_stripping"));
+	public static final Block IVORY_NOXCAP_HYPHAE = new StrippingLootPillarBlock(noxcap(MapColor.OFF_WHITE), STRIPPED_IVORY_NOXCAP_HYPHAE, SpectrumLootTables.IVORY_NOXCAP_STRIPPING);
 	public static final Block IVORY_NOXCAP_BLOCK = new Block(noxcap(MapColor.OFF_WHITE));
 	public static final PillarBlock IVORY_NOXCAP_GILLS = new PillarBlock(noxcap(MapColor.DIAMOND_BLUE).luminance(state -> 9).emissiveLighting(SpectrumBlocks::always).postProcess(SpectrumBlocks::always));
 	public static final Block IVORY_NOXWOOD_PLANKS = new Block(noxcap(MapColor.OFF_WHITE));
@@ -703,9 +703,9 @@ public class SpectrumBlocks {
 	public static final Block IVORY_NOXWOOD_LAMP = new FlexLanternBlock(FabricBlockSettings.copyOf(Blocks.LANTERN).luminance(13).pistonBehavior(PistonBehavior.DESTROY));
 
 	public static final PillarBlock STRIPPED_CHESTNUT_NOXCAP_STEM = new PillarBlock(noxcap(MapColor.DULL_RED));
-	public static final PillarBlock CHESTNUT_NOXCAP_STEM = new StrippingLootPillarBlock(noxcap(MapColor.DULL_RED), STRIPPED_CHESTNUT_NOXCAP_STEM, SpectrumCommon.locate("gameplay/stripping/chestnut_noxcap_stripping"));
+	public static final PillarBlock CHESTNUT_NOXCAP_STEM = new StrippingLootPillarBlock(noxcap(MapColor.DULL_RED), STRIPPED_CHESTNUT_NOXCAP_STEM, SpectrumLootTables.CHESTNUT_NOXCAP_STRIPPING);
 	public static final Block STRIPPED_CHESTNUT_NOXCAP_HYPHAE = new PillarBlock(noxcap(MapColor.OFF_WHITE));
-	public static final Block CHESTNUT_NOXCAP_HYPHAE = new StrippingLootPillarBlock(noxcap(MapColor.OFF_WHITE), STRIPPED_CHESTNUT_NOXCAP_HYPHAE, SpectrumCommon.locate("gameplay/stripping/chestnut_noxcap_stripping"));
+	public static final Block CHESTNUT_NOXCAP_HYPHAE = new StrippingLootPillarBlock(noxcap(MapColor.OFF_WHITE), STRIPPED_CHESTNUT_NOXCAP_HYPHAE, SpectrumLootTables.CHESTNUT_NOXCAP_STRIPPING);
 	public static final Block CHESTNUT_NOXCAP_BLOCK = new Block(noxcap(MapColor.DULL_RED));
 	public static final PillarBlock CHESTNUT_NOXCAP_GILLS = new PillarBlock(noxcap(MapColor.DIAMOND_BLUE).luminance(state -> 9).emissiveLighting(SpectrumBlocks::always).postProcess(SpectrumBlocks::always));
 	public static final Block CHESTNUT_NOXWOOD_PLANKS = new Block(noxcap(MapColor.DULL_RED));
@@ -867,23 +867,23 @@ public class SpectrumBlocks {
 	private static Settings endstoneOre() {
 		return FabricBlockSettings.copyOf(Blocks.END_STONE).strength(3.0F, 3.0F).requiresTool();
 	}
-
-	public static final Block SHIMMERSTONE_ORE = new ShimmerstoneOreBlock(ore().ticksRandomly(), UniformIntProvider.create(2, 4), locate("milestones/reveal_shimmerstone"), Blocks.STONE.getDefaultState());
-	public static final Block DEEPSLATE_SHIMMERSTONE_ORE = new ShimmerstoneOreBlock(deepslateOre().ticksRandomly(), UniformIntProvider.create(2, 4), locate("milestones/reveal_shimmerstone"), Blocks.DEEPSLATE.getDefaultState());
-	public static final Block BLACKSLAG_SHIMMERSTONE_ORE = new ShimmerstoneOreBlock(blackslagOre().ticksRandomly(), UniformIntProvider.create(2, 4), locate("milestones/reveal_shimmerstone"), BLACKSLAG.getDefaultState());
+	
+	public static final Block SHIMMERSTONE_ORE = new ShimmerstoneOreBlock(ore().ticksRandomly(), UniformIntProvider.create(2, 4), SpectrumAdvancements.REVEAL_SHIMMERSTONE, Blocks.STONE.getDefaultState());
+	public static final Block DEEPSLATE_SHIMMERSTONE_ORE = new ShimmerstoneOreBlock(deepslateOre().ticksRandomly(), UniformIntProvider.create(2, 4), SpectrumAdvancements.REVEAL_SHIMMERSTONE, Blocks.DEEPSLATE.getDefaultState());
+	public static final Block BLACKSLAG_SHIMMERSTONE_ORE = new ShimmerstoneOreBlock(blackslagOre().ticksRandomly(), UniformIntProvider.create(2, 4), SpectrumAdvancements.REVEAL_SHIMMERSTONE, BLACKSLAG.getDefaultState());
 	public static final Block SHIMMERSTONE_BLOCK = new ShimmerstoneBlock(settings(MapColor.YELLOW, BlockSoundGroup.GLASS, 2.0F).luminance((state) -> 15));
-
-	public static final AzuriteOreBlock AZURITE_ORE = new AzuriteOreBlock(ore().ticksRandomly(), UniformIntProvider.create(4, 7), locate("milestones/reveal_azurite"), Blocks.STONE.getDefaultState());
-	public static final Block DEEPSLATE_AZURITE_ORE = new AzuriteOreBlock(deepslateOre().ticksRandomly(), UniformIntProvider.create(4, 7), locate("milestones/reveal_azurite"), Blocks.DEEPSLATE.getDefaultState());
-	public static final Block BLACKSLAG_AZURITE_ORE = new AzuriteOreBlock(blackslagOre().ticksRandomly(), UniformIntProvider.create(4, 7), locate("milestones/reveal_azurite"), SpectrumBlocks.BLACKSLAG.getDefaultState());
+	
+	public static final AzuriteOreBlock AZURITE_ORE = new AzuriteOreBlock(ore().ticksRandomly(), UniformIntProvider.create(4, 7), SpectrumAdvancements.REVEAL_AZURITE, Blocks.STONE.getDefaultState());
+	public static final Block DEEPSLATE_AZURITE_ORE = new AzuriteOreBlock(deepslateOre().ticksRandomly(), UniformIntProvider.create(4, 7), SpectrumAdvancements.REVEAL_AZURITE, Blocks.DEEPSLATE.getDefaultState());
+	public static final Block BLACKSLAG_AZURITE_ORE = new AzuriteOreBlock(blackslagOre().ticksRandomly(), UniformIntProvider.create(4, 7), SpectrumAdvancements.REVEAL_AZURITE, SpectrumBlocks.BLACKSLAG.getDefaultState());
 	public static final Block AZURITE_BLOCK = new SpectrumFacingBlock(FabricBlockSettings.copyOf(Blocks.LAPIS_BLOCK).mapColor(MapColor.BLUE));
 	public static final Block AZURITE_CLUSTER = new AmethystClusterBlock(7, 3, gemstone(MapColor.BLUE, SpectrumBlockSoundGroups.SMALL_ONYX_BUD, 2));
 	public static final Block LARGE_AZURITE_BUD = new AmethystClusterBlock(5, 3, gemstone(MapColor.BLUE, SpectrumBlockSoundGroups.LARGE_ONYX_BUD, 3));
 	public static final Block SMALL_AZURITE_BUD = new AmethystClusterBlock(3, 4, gemstone(MapColor.BLUE, SpectrumBlockSoundGroups.ONYX_CLUSTER, 5));
-
-	public static final Block MALACHITE_ORE = new CloakedOreBlock(ore(), UniformIntProvider.create(7, 11), locate("milestones/reveal_malachite"), Blocks.STONE.getDefaultState());
-	public static final Block DEEPSLATE_MALACHITE_ORE = new CloakedOreBlock(deepslateOre(), UniformIntProvider.create(7, 11), locate("milestones/reveal_malachite"), Blocks.DEEPSLATE.getDefaultState());
-	public static final Block BLACKSLAG_MALACHITE_ORE = new CloakedOreBlock(blackslagOre(), UniformIntProvider.create(7, 11), locate("milestones/reveal_malachite"), BLACKSLAG.getDefaultState());
+	
+	public static final Block MALACHITE_ORE = new CloakedOreBlock(ore(), UniformIntProvider.create(7, 11), SpectrumAdvancements.REVEAL_MALACHITE, Blocks.STONE.getDefaultState());
+	public static final Block DEEPSLATE_MALACHITE_ORE = new CloakedOreBlock(deepslateOre(), UniformIntProvider.create(7, 11), SpectrumAdvancements.REVEAL_MALACHITE, Blocks.DEEPSLATE.getDefaultState());
+	public static final Block BLACKSLAG_MALACHITE_ORE = new CloakedOreBlock(blackslagOre(), UniformIntProvider.create(7, 11), SpectrumAdvancements.REVEAL_MALACHITE, BLACKSLAG.getDefaultState());
 	public static final Block MALACHITE_BLOCK = new SpectrumFacingBlock(gemstoneBlock(MapColor.EMERALD_GREEN, BlockSoundGroup.CHAIN));
 	public static final Block MALACHITE_CLUSTER = new AmethystClusterBlock(7, 3, gemstone(MapColor.EMERALD_GREEN, BlockSoundGroup.CHAIN, 9));
 	public static final Block LARGE_MALACHITE_BUD = new AmethystClusterBlock(5, 3, gemstone(MapColor.EMERALD_GREEN, BlockSoundGroup.CHAIN, 7));
@@ -893,9 +893,9 @@ public class SpectrumBlocks {
 	public static final Block BLOODSTONE_CLUSTER = new AmethystClusterBlock(7, 3, gemstone(MapColor.RED, SpectrumBlockSoundGroups.SMALL_ONYX_BUD, 6));
 	public static final Block LARGE_BLOODSTONE_BUD = new AmethystClusterBlock(5, 3, gemstone(MapColor.RED, SpectrumBlockSoundGroups.SMALL_ONYX_BUD, 4));
 	public static final Block SMALL_BLOODSTONE_BUD = new AmethystClusterBlock(3, 4, gemstone(MapColor.RED, SpectrumBlockSoundGroups.ONYX_CLUSTER, 3));
-
-	public static final Block STRATINE_ORE = new CloakedOreBlock(netherrackOre(), UniformIntProvider.create(3, 5), locate("milestones/reveal_stratine"), Blocks.NETHERRACK.getDefaultState());
-	public static final Block PALTAERIA_ORE = new CloakedOreBlock(endstoneOre(), UniformIntProvider.create(2, 4), locate("milestones/reveal_paltaeria"), Blocks.END_STONE.getDefaultState());
+	
+	public static final Block STRATINE_ORE = new CloakedOreBlock(netherrackOre(), UniformIntProvider.create(3, 5), SpectrumAdvancements.REVEAL_STRATINE, Blocks.NETHERRACK.getDefaultState());
+	public static final Block PALTAERIA_ORE = new CloakedOreBlock(endstoneOre(), UniformIntProvider.create(2, 4), SpectrumAdvancements.REVEAL_PALTAERIA, Blocks.END_STONE.getDefaultState());
 
 	private static Settings gravityBlock(MapColor mapColor) {
 		return settings(mapColor, BlockSoundGroup.METAL, 4.0F, 6.0F).instrument(Instrument.BASEDRUM).requiresTool();
@@ -926,8 +926,8 @@ public class SpectrumBlocks {
 	// SOLID LIQUID CRYSTAL
 	public static final Block FROSTBITE_CRYSTAL = new Block(FabricBlockSettings.copyOf(Blocks.GLOWSTONE).mapColor(MapColor.LIGHT_BLUE_GRAY));
 	public static final Block BLAZING_CRYSTAL = new Block(FabricBlockSettings.copyOf(Blocks.GLOWSTONE).mapColor(MapColor.ORANGE));
-
-	public static final Block RESONANT_LILY = new ResonantLilyBlock(StatusEffects.INSTANT_HEALTH, 5, FabricBlockSettings.copyOf(Blocks.POPPY).mapColor(MapColor.WHITE));
+	
+	public static final Block RESONANT_LILY = new ResonantLilyBlock(StatusEffects.REGENERATION, 5, FabricBlockSettings.copyOf(Blocks.POPPY).mapColor(MapColor.WHITE));
 	public static final Block QUITOXIC_REEDS = new QuitoxicReedsBlock(settings(MapColor.CLEAR, BlockSoundGroup.GRASS, 0.0F).noCollision().offset(AbstractBlock.OffsetType.XYZ).ticksRandomly().luminance(state -> state.get(QuitoxicReedsBlock.LOGGED).getLuminance()));
 	public static final Block MERMAIDS_BRUSH = new MermaidsBrushBlock(settings(MapColor.CLEAR, BlockSoundGroup.WET_GRASS, 0.0F).noCollision().ticksRandomly().luminance(state -> state.get(MermaidsBrushBlock.LOGGED).getLuminance()));
 	public static final Block RADIATING_ENDER = new RadiatingEnderBlock(FabricBlockSettings.copyOf(Blocks.EMERALD_BLOCK).mapColor(MapColor.PURPLE));
@@ -1598,7 +1598,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("blazing_crystal", BLAZING_CRYSTAL, IS.of(), DyeColor.ORANGE);
 		registerBlockWithItem("resonant_lily", RESONANT_LILY, IS.of(), DyeColor.GREEN);
 		registerBlockWithItem("clover", CLOVER, IS.of(), DyeColor.LIME);
-		registerBlockWithItem("four_leaf_clover", FOUR_LEAF_CLOVER, new FourLeafCloverItem(FOUR_LEAF_CLOVER, IS.of(), locate("milestones/reveal_four_leaf_clover"), CLOVER.asItem()), DyeColor.LIME);
+		registerBlockWithItem("four_leaf_clover", FOUR_LEAF_CLOVER, new FourLeafCloverItem(FOUR_LEAF_CLOVER, IS.of(), SpectrumAdvancements.REVEAL_FOUR_LEAF_CLOVER, CLOVER.asItem()), DyeColor.LIME);
 		registerBlockWithItem("incandescent_amalgam", INCANDESCENT_AMALGAM, new IncandescentAmalgamItem(INCANDESCENT_AMALGAM, IS.of(16).food(SpectrumFoodComponents.INCANDESCENT_AMALGAM)), DyeColor.RED);
 
 		registerBlockWithItem("blood_orchid", BLOOD_ORCHID, IS.of(), DyeColor.RED);

@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.compat.modonomicon.pages;
 
+import com.google.common.collect.*;
 import com.google.gson.*;
 import com.klikli_dev.modonomicon.book.*;
 import com.klikli_dev.modonomicon.book.conditions.*;
@@ -32,7 +33,7 @@ public class BookChecklistPage extends BookTextPage {
                 ? BookCondition.fromJson(json.getAsJsonObject("condition"))
                 : new BookNoneCondition();
         var checklistObject = JsonHelper.getObject(json, "checklist", new JsonObject());
-        var checklist = new HashMap<Identifier, BookTextHolder>();
+        Map<Identifier, BookTextHolder> checklist = new LinkedHashMap<>();
         for (var key : checklistObject.keySet()) {
             var value = BookGsonHelper.getAsBookTextHolder(checklistObject, key, BookTextHolder.EMPTY);
             checklist.put(new Identifier(key), value);
@@ -47,7 +48,7 @@ public class BookChecklistPage extends BookTextPage {
         var text = BookTextHolder.fromNetwork(buffer);
         var anchor = buffer.readString();
         var condition = BookCondition.fromNetwork(buffer);
-        var checklist = buffer.readMap(PacketByteBuf::readIdentifier, BookTextHolder::fromNetwork);
+        var checklist = buffer.readMap(Maps::newLinkedHashMapWithExpectedSize, PacketByteBuf::readIdentifier, BookTextHolder::fromNetwork);
         return new BookChecklistPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, condition, checklist);
     }
 

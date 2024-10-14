@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import de.dafuqs.spectrum.blocks.conditional.*;
-import de.dafuqs.spectrum.blocks.fluid.RemainderlessItemFluidStorage;
 import de.dafuqs.spectrum.blocks.gravity.*;
 import de.dafuqs.spectrum.blocks.jade_vines.*;
 import de.dafuqs.spectrum.blocks.rock_candy.*;
@@ -29,9 +28,6 @@ import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import net.fabricmc.fabric.api.item.v1.*;
 import net.fabricmc.fabric.api.registry.*;
-import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
-import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
-import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.minecraft.enchantment.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
@@ -44,7 +40,6 @@ import java.util.*;
 
 import static de.dafuqs.spectrum.registries.SpectrumFluids.*;
 
-@SuppressWarnings("UnstableApiUsage")
 public class SpectrumItems {
 	
 	public static class IS {
@@ -551,7 +546,7 @@ public class SpectrumItems {
 		registerInkStorage();
 		registerTrinkets();
 		registerMagicalTools();
-		registerFluidContainers();
+		registerFluidBuckets();
 		registerBannerPatterns();
 		registerPureClusters();
 		registerStructurePlacers();
@@ -967,13 +962,11 @@ public class SpectrumItems {
 		register("aether_graced_nectar_gloves", AETHER_GRACED_NECTAR_GLOVES, DyeColor.PURPLE);
 	}
 	
-	public static void registerFluidContainers() {
+	public static void registerFluidBuckets() {
 		register("liquid_crystal_bucket", LIQUID_CRYSTAL_BUCKET, DyeColor.LIGHT_GRAY);
 		register("mud_bucket", MUD_BUCKET, DyeColor.BROWN);
 		register("midnight_solution_bucket", MIDNIGHT_SOLUTION_BUCKET, DyeColor.GRAY);
 		register("dragonrot_bucket", DRAGONROT_BUCKET, DyeColor.LIGHT_GRAY);
-		FluidStorage.combinedItemApiProvider(SpectrumItems.MERMAIDS_GEM).register(context ->
-				new RemainderlessItemFluidStorage(context, FluidVariant.of(Fluids.WATER), FluidConstants.BUCKET));
 	}
 
 	public static void registerTechnicalItems() {

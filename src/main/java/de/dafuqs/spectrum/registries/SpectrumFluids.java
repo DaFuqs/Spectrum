@@ -8,12 +8,15 @@ import it.unimi.dsi.fastutil.objects.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.*;
 import net.fabricmc.fabric.api.client.render.fluid.v1.*;
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.minecraft.client.render.*;
 import net.minecraft.fluid.*;
 import net.minecraft.registry.*;
 import net.minecraft.util.*;
 import org.joml.*;
-
+@SuppressWarnings("UnstableApiUsage")
 public class SpectrumFluids {
 	
 	// RenderHandler storage for compatibility purposes
@@ -56,7 +59,8 @@ public class SpectrumFluids {
 		registerFluid("mud", MUD, FLOWING_MUD, DyeColor.BROWN);
 		registerFluid("midnight_solution", MIDNIGHT_SOLUTION, FLOWING_MIDNIGHT_SOLUTION, DyeColor.GRAY);
 		registerFluid("dragonrot", DRAGONROT, FLOWING_DRAGONROT, DyeColor.GRAY);
-
+		FluidStorage.combinedItemApiProvider(SpectrumItems.MERMAIDS_GEM).register(context ->
+				new RemainderlessItemFluidStorage(context, FluidVariant.of(Fluids.WATER), FluidConstants.BUCKET));
 	}
 
 	private static void registerFluid(String name, Fluid stillFluid, Fluid flowingFluid, DyeColor dyeColor) {

@@ -3194,6 +3194,17 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.IVORY_NOXSHROOM, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.EBONY_NOXSHROOM, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CHESTNUT_NOXSHROOM, RenderLayer.getCutout());
+		
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_PLANT, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES_PLANT, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES_PLANT, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES_PLANT, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_PLANT, RenderLayer.getCutout());
 
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.PYRITE_RIPPER, RenderLayer.getCutoutMipped());
 

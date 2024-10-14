@@ -2,14 +2,19 @@ package de.dafuqs.spectrum.api.energy.color;
 
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.fabric.api.transfer.v1.storage.TransferVariant;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.registry.tag.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
+import org.jetbrains.annotations.Nullable;
 import org.joml.*;
 
 import java.util.*;
 
-public class InkColor {
+@SuppressWarnings("UnstableApiUsage")
+public class InkColor implements TransferVariant<InkColor> {
 	
 	protected static final Map<DyeColor, InkColor> DYE_TO_COLOR = new HashMap<>();
 	
@@ -31,7 +36,6 @@ public class InkColor {
 		this.colorVec = ColorHelper.colorIntToVec(color);
 		this.textColor = textColor;
 		this.textColorVec = ColorHelper.colorIntToVec(textColor);
-		;
 		this.requiredAdvancement = requiredAdvancement;
 		
 		DYE_TO_COLOR.put(dyeColor, this);
@@ -108,8 +112,49 @@ public class InkColor {
 	public boolean isIn(TagKey<InkColor> tag) {
 		return SpectrumRegistries.INK_COLORS.getEntry(this).isIn(tag);
 	}
-	
-	
+
+	@Override
+	public boolean isBlank() {
+		return false;
+	}
+
+	public static InkColor blank() {
+		return InkColors.BLANK;
+	}
+
+	@Override
+	public InkColor getObject() {
+		return this;
+	}
+
+	@Override
+	public @Nullable NbtCompound getNbt() {
+		return null;
+	}
+
+	@Override
+	public NbtCompound toNbt() {
+		var nbt = new NbtCompound();
+		nbt.putString("color", getID().toString());
+		return nbt;
+	}
+
+	public static InkColor fromNbt(NbtCompound nbt) {
+		return SpectrumRegistries.INK_COLORS.get(new Identifier(nbt.getString("color")));
+	}
+
+	@Override
+	public void toPacket(PacketByteBuf buf) {
+		if (isBlank()) buf.writeBoolean(false);
+		else {
+			buf.writeBoolean(true);
+			buf.writeIdentifier(SpectrumRegistries.INK_COLORS.getId(this));
+		}
+	}
+
+	public static InkColor fromPacket(PacketByteBuf buf) {
+		return buf.readBoolean() ? SpectrumRegistries.INK_COLORS.get(buf.readIdentifier()) : blank();
+	}
 }
 
 

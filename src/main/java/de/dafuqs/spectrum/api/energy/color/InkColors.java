@@ -57,6 +57,13 @@ public class InkColors {
 	public static final InkColor GRAY = register("gray", new InkColor(DyeColor.GRAY, GRAY_COLOR, WHITE_ADVANCEMENT_ID));
 	public static final InkColor LIGHT_GRAY = register("light_gray", new InkColor(DyeColor.LIGHT_GRAY, LIGHT_GRAY_COLOR, WHITE_ADVANCEMENT_ID));
 	public static final InkColor WHITE = register("white", new InkColor(DyeColor.WHITE, WHITE_COLOR, WHITE_ADVANCEMENT_ID));
+
+	public static final InkColor BLANK = register("blank", new InkColor(DyeColor.WHITE, WHITE_COLOR, BASE_ADVANCEMENT_ID) {
+		@Override
+		public boolean isBlank() {
+			return true;
+		}
+	});
 	
 	// in case an addon adds new colors
 	// for places where we have to use a fixed size list, like GUIs with limited space

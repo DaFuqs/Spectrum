@@ -5,6 +5,8 @@ import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.registries.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.fabricmc.api.*;
+import net.fabricmc.fabric.api.transfer.v1.storage.StorageView;
+import net.fabricmc.fabric.api.transfer.v1.transaction.base.SnapshotParticipant;
 import net.minecraft.nbt.*;
 import net.minecraft.text.*;
 import org.jetbrains.annotations.*;
@@ -13,10 +15,12 @@ import java.util.*;
 
 import static de.dafuqs.spectrum.helpers.Support.*;
 
-public class IndividualCappedInkStorage implements InkStorage {
+@SuppressWarnings("UnstableApiUsage")
+public class IndividualCappedInkStorage extends SnapshotParticipant<IndividualCappedInkStorage.Snapshot> implements InkStorage {
 	
 	protected final long maxEnergyPerColor;
 	protected final Map<InkColor, Long> storedEnergy = new Object2LongArrayMap<>();
+	protected final ObjectSet<StorageView<InkColor>> views;
 	protected long currentTotal; // This is a cache for quick lookup. Can be recalculated anytime using the values in storedEnergy.
 	
 	// support all ink colors
@@ -28,21 +32,29 @@ public class IndividualCappedInkStorage implements InkStorage {
 	public IndividualCappedInkStorage(long maxEnergyPerColor, Iterable<InkColor> supportedColors) {
 		this.maxEnergyPerColor = maxEnergyPerColor;
 		this.currentTotal = 0;
-		
+
+		var set = new ObjectArraySet<InkView>();
 		for (InkColor color : supportedColors) {
 			this.storedEnergy.put(color, 0L);
+			set.add(new InkStorage.InkView(this, color));
 		}
+		this.views = ObjectSets.unmodifiable(set);
 	}
 	
 	public IndividualCappedInkStorage(long maxEnergyPerColor, Map<InkColor, Long> colors) {
 		this.maxEnergyPerColor = maxEnergyPerColor;
 		this.storedEnergy.putAll(colors);
-		
+
+		var set = new ObjectArraySet<InkView>();
 		for (Map.Entry<InkColor, Long> color : colors.entrySet()) {
 			this.storedEnergy.put(color.getKey(), color.getValue());
 			this.currentTotal += color.getValue();
+			set.add(new InkStorage.InkView(this, color.getKey()));
 		}
+		this.views = ObjectSets.unmodifiable(set);
 	}
+
+	public record Snapshot(Map<InkColor, Long> colors, long currentTotal) {}
 	
 	@Override
 	public boolean accepts(InkColor color) {
@@ -50,18 +62,14 @@ public class IndividualCappedInkStorage implements InkStorage {
 	}
 	
 	@Override
-	public long addEnergy(InkColor color, long amount) {
+	public long addEnergy(InkColor color, long amount, boolean simulate) {
 		long resultingAmount = this.storedEnergy.get(color) + amount;
-		if (resultingAmount > this.maxEnergyPerColor) {
-			long overflow = resultingAmount - this.maxEnergyPerColor;
-			this.currentTotal = this.maxEnergyPerColor;
-			this.storedEnergy.put(color, this.maxEnergyPerColor);
-			return overflow;
-		} else {
-			this.currentTotal += amount;
-			this.storedEnergy.put(color, resultingAmount);
-			return 0;
+		long overflow = Math.max(0, resultingAmount - this.maxEnergyPerColor);
+		if (!simulate) {
+			this.currentTotal += amount - overflow;
+			this.storedEnergy.put(color, resultingAmount - overflow);
 		}
+		return overflow;
 	}
 	
 	@Override
@@ -77,11 +85,13 @@ public class IndividualCappedInkStorage implements InkStorage {
 	}
 	
 	@Override
-	public long drainEnergy(InkColor color, long amount) {
+	public long drainEnergy(InkColor color, long amount, boolean simulate) {
 		long storedAmount = this.storedEnergy.getOrDefault(color, 0L);
 		long drainedAmount = Math.min(storedAmount, amount);
-		this.storedEnergy.put(color, storedAmount - drainedAmount);
-		this.currentTotal -= drainedAmount;
+		if (!simulate) {
+			this.storedEnergy.put(color, storedAmount - drainedAmount);
+			this.currentTotal -= drainedAmount;
+		}
 		return drainedAmount;
 	}
 	
@@ -177,5 +187,23 @@ public class IndividualCappedInkStorage implements InkStorage {
 	public Set<InkColor> getSupportedColors() {
 		return this.storedEnergy.keySet();
 	}
-	
+
+	@Override
+	public @NotNull Iterator<StorageView<InkColor>> iterator() {
+		return views.iterator();
+	}
+
+	@Override
+	protected Snapshot createSnapshot() {
+		var map = new Object2LongArrayMap<InkColor>();
+		map.putAll(storedEnergy);
+		return new Snapshot(map, currentTotal);
+	}
+
+	@Override
+	protected void readSnapshot(Snapshot snapshot) {
+		storedEnergy.clear();
+		storedEnergy.putAll(snapshot.colors);
+		currentTotal = snapshot.currentTotal;
+	}
 }

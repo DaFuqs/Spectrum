@@ -201,9 +201,15 @@ public class PaintbrushItem extends Item implements SignChangingItem {
 					if (!world.isClient) {
 						InkProjectileEntity.shoot(world, user, inkColor);
 					}
-					// cause the slightest bit of knockback
+					// cause the slightest bit of knockback (more if Red)
 					if (!user.isCreative()) {
-						causeKnockback(user, user.getYaw(), user.getPitch(), 0, 0.3F);
+						if(inkColor == InkColors.RED)
+						{
+							causeKnockback(user, user.getYaw(), user.getPitch(), 0.1F, 0.5F);
+						}
+						else{
+							causeKnockback(user, user.getYaw(), user.getPitch(), 0, 0.3F);
+						}
 					}
 				} else {
 					if (world.isClient) {

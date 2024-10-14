@@ -94,6 +94,7 @@ dependencies {
 	modCompileOnly("com.unascribed:ears-api:${project.ears_version}")
 	modCompileOnly("maven.modrinth:create-fabric:${project.create_version}") { transitive = false }
 	modCompileOnly("maven.modrinth:neepmeat:${project.neepmeat_version}") { transitive = false }
+	modCompileOnly("maven.modrinth:lodestonelib:${project.lodestone_version}") { transitive = false}
 	modCompileOnly("maven.modrinth:malum:${project.malum_version}") { transitive = false}
 	// modCompileOnly("maven.modrinth:enchantment-descriptions:${project.enchantment_descriptions_version}")
 	modCompileOnly("maven.modrinth:travelersbackpack:${project.travelers_backpack_version}")

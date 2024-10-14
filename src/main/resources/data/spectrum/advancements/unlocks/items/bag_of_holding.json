@@ -1,20 +1,37 @@
 {
   "criteria": {
     "placed_pedestal": {
-      "trigger":"revelationary:advancement_gotten",
+      "trigger": "revelationary:advancement_gotten",
       "conditions": {
         "advancement_identifier": "spectrum:place_pedestal"
       }
     },
     "collected_ender_eye": {
-      "trigger":"revelationary:advancement_gotten",
+      "trigger": "revelationary:advancement_gotten",
       "conditions": {
         "advancement_identifier": "spectrum:hidden/collect_vanilla/ender_eye"
       }
     },
+    "collected_warp_flux": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "malum:warp_flux"
+            ]
+          }
+        ]
+      }
+    },
     "gotten_radiating_ender": {
-      "trigger":"revelationary:advancement_gotten",
+      "trigger": "revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:get_radiating_ender" }
     }
-  }
+  },
+  "requirements": [
+    [ "placed_pedestal" ],
+    [ "collected_ender_eye", "collected_warp_flux" ],
+    [ "gotten_radiating_ender" ]
+  ]
 }

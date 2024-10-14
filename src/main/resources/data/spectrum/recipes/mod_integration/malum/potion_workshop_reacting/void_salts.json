@@ -1,0 +1,17 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "malum:void_salts",
+  "modifiers": {
+    "duration_multiplier": 3.0,
+    "flat_yield_bonus": -2.0
+  },
+  "required_advancement": "spectrum:mod_integration/malum/visited_well",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "malum"
+      ]
+    }
+  ]
+}

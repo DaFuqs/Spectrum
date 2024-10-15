@@ -6,32 +6,13 @@
         "advancement_identifier": "spectrum:place_pedestal"
       }
     },
-    "collected_ender_eye": {
-      "trigger": "revelationary:advancement_gotten",
-      "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_vanilla/ender_eye"
-      }
-    },
-    "collected_warp_flux": {
+    "obtain_center_ingredient": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "malum:warp_flux"
-            ]
-          }
-        ]
-      }
+      "conditions": { "items": [{ "tag": "spectrum:unlocks_bag_of_holding" }] }
     },
     "gotten_radiating_ender": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:get_radiating_ender" }
     }
-  },
-  "requirements": [
-    [ "placed_pedestal" ],
-    [ "collected_ender_eye", "collected_warp_flux" ],
-    [ "gotten_radiating_ender" ]
-  ]
+  }
 }

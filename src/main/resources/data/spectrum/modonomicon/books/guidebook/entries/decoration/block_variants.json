@@ -82,7 +82,13 @@
         "spectrum:calcite_tile_slab",
         "spectrum:basalt_tile_slab",
         "spectrum:planed_calcite",
-        "spectrum:planed_basalt"
+        "spectrum:planed_calcite_slab",
+        "spectrum:planed_calcite_stairs",
+        "spectrum:planed_calcite_wall",
+        "spectrum:planed_basalt",
+        "spectrum:planed_basalt_slab",
+        "spectrum:planed_basalt_stairs",
+        "spectrum:planed_basalt_wall"
       ]
     },
     {

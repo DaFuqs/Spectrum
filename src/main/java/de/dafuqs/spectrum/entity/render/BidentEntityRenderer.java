@@ -40,8 +40,9 @@ public class BidentEntityRenderer extends EntityRenderer<BidentBaseEntity> {
 	}
 	
 	private void renderAsItemStack(BidentBaseEntity entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, ItemStack itemStack) {
-		SpectrumModelPredicateProviders.currentItemRenderMode = ModelTransformationMode.NONE;
-		BakedModel bakedModel = this.itemRenderer.getModel(itemStack, entity.getWorld(), null, entity.getId());
+		// Originally used for over-sized item rendering.
+		//SpectrumModelPredicateProviders.currentItemRenderMode = ModelTransformationMode.NONE;
+		BakedModel bakedModel = this.itemRenderer.getModel(itemStack, entity.getWorld(), null, 817210941);
 		
 		matrixStack.push();
 		matrixStack.translate(0, entity.calculateBoundingBox().getAverageSideLength() / 2, 0);

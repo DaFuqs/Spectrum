@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X  ",
+    "XX ",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "spectrum:pyrite_tiles"
+    }
+  },
+  "result": {
+    "item": "spectrum:pyrite_tiles_stairs",
+    "count": 4
+  }
+}

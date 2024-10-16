@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "spectrum:planed_calcite"
+    }
+  },
+  "result": {
+    "item": "spectrum:planed_calcite_wall",
+    "count": 6
+  }
+}

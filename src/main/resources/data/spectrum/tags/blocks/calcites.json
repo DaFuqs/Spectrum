@@ -25,6 +25,9 @@
     "spectrum:citrine_chiseled_calcite",
     "spectrum:onyx_chiseled_calcite",
     "spectrum:moonstone_chiseled_calcite",
-    "spectrum:planed_calcite"
+    "spectrum:planed_calcite",
+    "spectrum:planed_calcite_slab",
+    "spectrum:planed_calcite_stairs",
+    "spectrum:planed_calcite_wall"
   ]
 }

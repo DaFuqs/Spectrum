@@ -151,12 +151,13 @@ public class SpectrumModelPredicateProviders {
 	 */
 	private static void registerBidentThrowingItemPredicate(Item item) {
 		ModelPredicateProviderRegistry.register(item, new Identifier("bident_throwing"), (itemStack, clientWorld, livingEntity, i) -> {
+			/* I believe this is unused now... nothing noticeable seems to have happened, but I would prefer to be safe than sorry.
 			if (currentItemRenderMode == ModelTransformationMode.NONE) {
 				if (itemStack.getItem() instanceof FractalBidentItem fractal) {
 					return fractal.isDisabled(itemStack) ? 0.5F : 1F;
 				}
 				return 1.0F;
-			}
+			}*/
 			return livingEntity != null && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 0.5F : 0.0F;
 		});
 	}
@@ -247,12 +248,7 @@ public class SpectrumModelPredicateProviders {
 	}
 	
 	private static void registerOversizedItemPredicate(Item item) {
-		ModelPredicateProviderRegistry.register(item, new Identifier("in_world"), (itemStack, world, livingEntity, i) -> {
-			if (world == null && livingEntity == null && i == 0) { // REIs 'fast batch' render mode. Without mixin' into REI there is no better way to catch this, I am afraid
-				return 0.0F;
-			}
-			return currentItemRenderMode == ModelTransformationMode.GUI || currentItemRenderMode == ModelTransformationMode.GROUND || currentItemRenderMode == ModelTransformationMode.FIXED ? 0.0F : 1.0F;
-		});
+		ModelPredicateProviderRegistry.register(item, new Identifier("oversized"), (itemStack, world, livingEntity, seed) -> seed == 817210941 ? 1.0F : 0.0F);
 	}
 	
 	private static void registerBowPredicates(Item bowItem) {

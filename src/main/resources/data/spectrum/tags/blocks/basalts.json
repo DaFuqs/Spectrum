@@ -25,6 +25,9 @@
     "spectrum:citrine_chiseled_basalt",
     "spectrum:onyx_chiseled_basalt",
     "spectrum:moonstone_chiseled_basalt",
-    "spectrum:planed_basalt"
+    "spectrum:planed_basalt",
+    "spectrum:planed_basalt_slab",
+    "spectrum:planed_basalt_stairs",
+    "spectrum:planed_basalt_wall"
   ]
 }

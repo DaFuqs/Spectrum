@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X  ",
+    "XX ",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "spectrum:planed_basalt"
+    }
+  },
+  "result": {
+    "item": "spectrum:planed_basalt_stairs",
+    "count": 4
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "spectrum:block/pyrite_plating",
+    "top": "spectrum:block/pyrite_plating",
+    "side": "spectrum:block/pyrite_plating"
+  }
+}

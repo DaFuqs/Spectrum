@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.features;
+package de.dafuqs.spectrum.worldgen.features;
 
 import com.google.common.collect.*;
 import com.mojang.serialization.*;

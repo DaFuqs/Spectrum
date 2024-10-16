@@ -1,21 +1,16 @@
-package de.dafuqs.spectrum.features;
+package de.dafuqs.spectrum.worldgen.features;
 
-import com.mojang.serialization.Codec;
-import de.dafuqs.spectrum.blocks.deeper_down.flora.TriStateVineBlock;
-import de.dafuqs.spectrum.blocks.jade_vines.JadeiteFlowerBlock;
-import de.dafuqs.spectrum.blocks.jade_vines.JadeiteLotusStemBlock;
-import de.dafuqs.spectrum.registries.SpectrumBlockTags;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.minecraft.block.Block;
-import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.state.property.Properties;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.WorldAccess;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.util.FeatureContext;
+import com.mojang.serialization.*;
+import de.dafuqs.spectrum.blocks.deeper_down.flora.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.registry.tag.*;
+import net.minecraft.state.property.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
+import net.minecraft.world.*;
+import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.feature.util.*;
 
 public class TriStateVineFeature extends Feature<TriStateVineFeatureConfig> {
 

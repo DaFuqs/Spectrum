@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.features;
+package de.dafuqs.spectrum.worldgen.features;
 
 import com.google.common.collect.*;
 import com.mojang.serialization.*;
@@ -17,11 +17,11 @@ import java.util.*;
  */
 public class ColumnsFeature extends Feature<ColumnsFeatureConfig> {
 	
-	private static final ImmutableList<Block> CANNOT_REPLACE_BLOCKS = ImmutableList.of(Blocks.LAVA, Blocks.BEDROCK, Blocks.MAGMA_BLOCK, Blocks.SOUL_SAND, Blocks.NETHER_BRICKS, Blocks.NETHER_BRICK_FENCE, Blocks.NETHER_BRICK_STAIRS, Blocks.NETHER_WART, Blocks.CHEST, Blocks.SPAWNER);
-	private static final int field_31495 = 5;
-	private static final int field_31496 = 50;
-	private static final int field_31497 = 8;
-	private static final int field_31498 = 15;
+	private static final ImmutableList<Block> CANNOT_REPLACE_BLOCKS = ImmutableList.of(Blocks.BEDROCK, Blocks.CHEST, Blocks.SPAWNER);
+	private static final int BIG_MAX_OFFSET = 5;
+	private static final int BIG_COUNT = 50;
+	private static final int SMALL_MAX_OFFSET = 8;
+	private static final int SMALL_COUNT = 15;
 	
 	public ColumnsFeature(Codec<ColumnsFeatureConfig> codec) {
 		super(codec);
@@ -38,46 +38,45 @@ public class ColumnsFeature extends Feature<ColumnsFeatureConfig> {
 			return false;
 		} else {
 			int j = config.height().get(random);
-			boolean bl = random.nextFloat() < 0.9F;
-            int k = Math.min(j, bl ? field_31495 : field_31497);
-            int l = bl ? field_31496 : field_31498;
-            boolean bl2 = false;
-
-            for (BlockPos blockPos2 : BlockPos.iterateRandomly(random, l, blockPos.getX() - k, blockPos.getY(), blockPos.getZ() - k, blockPos.getX() + k, blockPos.getY(), blockPos.getZ() + k)) {
+			boolean big = random.nextFloat() < 0.9F;
+			int max_offset = Math.min(j, big ? BIG_MAX_OFFSET : SMALL_MAX_OFFSET);
+			int count = big ? BIG_COUNT : SMALL_COUNT;
+			boolean success = false;
+			
+			for (BlockPos blockPos2 : BlockPos.iterateRandomly(random, count, blockPos.getX() - max_offset, blockPos.getY(), blockPos.getZ() - max_offset, blockPos.getX() + max_offset, blockPos.getY(), blockPos.getZ() + max_offset)) {
                 int m = j - blockPos2.getManhattanDistance(blockPos);
                 if (m >= 0) {
-                    bl2 |= this.placeColumn(structureWorldAccess, i, blockPos2, m, config.reach().get(random), config.blockState());
+					success |= this.placeColumn(structureWorldAccess, i, blockPos2, m, config.reach().get(random), config.blockState());
                 }
             }
-
-            return bl2;
+			
+			return success;
         }
     }
 
     private boolean placeColumn(WorldAccess world, int seaLevel, BlockPos pos, int height, int reach, BlockState blockState) {
-        boolean bl = false;
-        Iterator<BlockPos> var7 = BlockPos.iterate(pos.getX() - reach, pos.getY(), pos.getZ() - reach, pos.getX() + reach, pos.getY(), pos.getZ() + reach).iterator();
+		boolean success = false;
+		Iterator<BlockPos> it = BlockPos.iterate(pos.getX() - reach, pos.getY(), pos.getZ() - reach, pos.getX() + reach, pos.getY(), pos.getZ() + reach).iterator();
 
         while (true) {
-            int i;
-            BlockPos blockPos2;
+			int manhattanDistanceFromOrigin;
+			BlockPos currPos;
             do {
-                if (!var7.hasNext()) {
-                    return bl;
+				if (!it.hasNext()) {
+					return success;
                 }
-
-                BlockPos blockPos = var7.next();
-                i = blockPos.getManhattanDistance(pos);
-                blockPos2 = isAirOrFluid(world, seaLevel, blockPos) ? moveDownToGround(world, seaLevel, blockPos.mutableCopy(), i) : moveUpToAir(world, blockPos.mutableCopy(), i);
-            } while (blockPos2 == null);
-
-            int j = height - i / 2;
-
-            for (BlockPos.Mutable mutable = blockPos2.mutableCopy(); j >= 0; --j) {
+				
+				BlockPos blockPos = it.next();
+				manhattanDistanceFromOrigin = blockPos.getManhattanDistance(pos);
+				currPos = isAirOrFluid(world, seaLevel, blockPos) ? moveDownToGround(world, seaLevel, blockPos.mutableCopy(), manhattanDistanceFromOrigin) : moveUpToAir(world, blockPos.mutableCopy(), manhattanDistanceFromOrigin);
+			} while (currPos == null);
+			
+			int j = height - manhattanDistanceFromOrigin / 2;
+			for (BlockPos.Mutable mutable = currPos.mutableCopy(); j >= 0; --j) {
                 if (isAirOrFluid(world, seaLevel, mutable)) {
                     this.setBlockState(world, mutable, blockState);
                     mutable.move(Direction.UP);
-                    bl = true;
+					success = true;
                 } else {
                     if (!world.getBlockState(mutable).isOf(blockState.getBlock())) {
                         break;

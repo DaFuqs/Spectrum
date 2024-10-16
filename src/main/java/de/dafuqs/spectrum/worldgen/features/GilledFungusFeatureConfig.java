@@ -1,11 +1,10 @@
-package de.dafuqs.spectrum.features;
+package de.dafuqs.spectrum.worldgen.features;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import net.minecraft.block.*;
 import net.minecraft.registry.*;
-import net.minecraft.util.math.intprovider.IntProvider;
-import net.minecraft.util.math.intprovider.UniformIntProvider;
+import net.minecraft.util.math.intprovider.*;
 import net.minecraft.world.gen.feature.*;
 
 public record GilledFungusFeatureConfig(Block validBase, Block cap, Block gills, Block stem, IntProvider baseStemHeight) implements FeatureConfig {

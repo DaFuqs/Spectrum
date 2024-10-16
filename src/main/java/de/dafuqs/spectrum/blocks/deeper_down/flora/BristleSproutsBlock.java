@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.deeper_down;
+package de.dafuqs.spectrum.blocks.deeper_down.flora;
 
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;

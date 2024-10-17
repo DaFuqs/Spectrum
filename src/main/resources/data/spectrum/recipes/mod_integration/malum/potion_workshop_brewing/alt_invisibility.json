@@ -1,0 +1,26 @@
+{
+  "type": "spectrum:potion_workshop_brewing",
+  "group": "malum",
+  "ingredient1": {
+    "item": "minecraft:nether_wart"
+  },
+  "ingredient2": {
+    "item": "malum:astral_weave"
+  },
+  "effect": "minecraft:invisibility",
+  "base_duration_ticks": 3600,
+  "potency_modifier": 0.0,
+  "applicable_to_potions": true,
+  "applicable_to_tipped_arrows": true,
+  "applicable_to_potion_fillables": true,
+  "ink_color": "spectrum:green",
+  "ink_cost": 8,
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "malum"
+      ]
+    }
+  ]
+}

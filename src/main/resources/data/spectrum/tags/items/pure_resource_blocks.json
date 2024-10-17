@@ -34,6 +34,11 @@
     {
       "id": "spectrum:pure_globette_end_block",
       "required": false
+    },
+
+    {
+      "id": "spectrum:pure_zinc_block",
+      "required": false
     }
   ]
 }

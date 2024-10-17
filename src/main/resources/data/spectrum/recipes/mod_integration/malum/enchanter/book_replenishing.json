@@ -1,0 +1,54 @@
+{
+  "type": "spectrum:enchanter",
+  "time": 500,
+  "required_experience": 200,
+  "ingredients": [
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "spectrum:black_pigment"
+    },
+    {
+      "item": "spectrum:black_pigment"
+    },
+    {
+      "item": "malum:mnemonic_fragment"
+    },
+    {
+      "item": "spectrum:neolith"
+    },
+    {
+      "item": "spectrum:black_pigment"
+    },
+    {
+      "item": "spectrum:black_pigment"
+    },
+    {
+      "item": "malum:mnemonic_fragment"
+    },
+    {
+      "item": "spectrum:neolith"
+    }
+  ],
+  "result": {
+    "item": "minecraft:enchanted_book",
+    "nbt": {
+      "StoredEnchantments": [
+        {
+          "id": "malum:replenishing",
+          "lvl": "1s"
+        }
+      ]
+    }
+  },
+  "required_advancement": "spectrum:mod_integration/malum/replenishing",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "malum"
+      ]
+    }
+  ]
+}

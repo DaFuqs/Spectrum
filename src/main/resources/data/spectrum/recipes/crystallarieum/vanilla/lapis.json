@@ -28,6 +28,14 @@
       "growth_acceleration_mod": 0.5,
       "ink_consumption_mod": 0.1,
       "consume_chance_per_second": 0.004
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:midnight_chip"
+      },
+      "growth_acceleration_mod": 1.2,
+      "ink_consumption_mod": 1.5,
+      "consume_chance_per_second": 0.2
     }
   ],
   "additional_recipe_manager_outputs": [

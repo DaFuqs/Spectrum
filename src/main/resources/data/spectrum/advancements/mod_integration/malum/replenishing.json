@@ -1,0 +1,32 @@
+{
+  "criteria": {
+    "built_enchanting_structure": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:midgame/build_enchanting_structure" }
+    },
+    "obtain_umbral": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "malum:umbral_spirit"
+            ]
+          }
+        ]
+      }
+    },
+    "collected_neolith": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_neolith" }
+    }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "malum"
+      ]
+    }
+  ]
+}

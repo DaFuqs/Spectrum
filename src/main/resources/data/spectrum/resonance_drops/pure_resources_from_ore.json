@@ -60,12 +60,6 @@
     },
     {
       "input": {
-        "item": "minecraft:netherite_scrap"
-      },
-      "output": "spectrum:pure_netherite_scrap"
-    },
-    {
-      "input": {
         "item": "minecraft:prismarine_crystals"
       },
       "output": "spectrum:pure_prismarine"

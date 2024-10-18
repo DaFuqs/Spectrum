@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X  ",
+    "XX ",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "spectrum:planed_calcite"
+    }
+  },
+  "result": {
+    "item": "spectrum:planed_calcite_stairs",
+    "count": 4
+  }
+}

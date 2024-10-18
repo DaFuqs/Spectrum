@@ -31,7 +31,7 @@ public class SpectrumDamageTypes {
 	public static final RegistryKey<DamageType> MOONSTONE_STRIKE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("moonstone_strike"));
 	public static final RegistryKey<DamageType> BRISTLE_SPROUTS = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("bristle_sprouts"));
 	public static final RegistryKey<DamageType> SAWTOOTH = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("sawtooth"));
-	public static final RegistryKey<DamageType> SET_HEALTH_DAMAGE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("set_health_damage"));
+	public static final RegistryKey<DamageType> SET_HEALTH = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("set_health"));
 	public static final RegistryKey<DamageType> IRRADIANCE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("irradiance"));
 	public static final RegistryKey<DamageType> KINDLING_COUGH = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("kindling_cough"));
 	public static final RegistryKey<DamageType> SNAPPING_IVY = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("snapping_ivy"));
@@ -150,7 +150,7 @@ public class SpectrumDamageTypes {
 	public static class SetHealthDamageSource extends DamageSource {
 		
 		public SetHealthDamageSource(World world, @Nullable LivingEntity attacker) {
-			super(world.getDamageSources().registry.entryOf(SET_HEALTH_DAMAGE), attacker);
+			super(world.getDamageSources().registry.entryOf(SET_HEALTH), attacker);
 		}
 	}
 

@@ -8,7 +8,7 @@
   "overrides": [
     {
       "predicate": {
-        "oversized": 1.0
+        "in_world": 1.0
       },
       "model": "spectrum:item/paintbrush_oversized"
     }

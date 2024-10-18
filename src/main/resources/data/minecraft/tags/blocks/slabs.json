@@ -35,9 +35,6 @@
     "spectrum:bone_ash_tile_slab",
 
     "spectrum:pyrite_slab",
-    "spectrum:pyrite_pile_slab",
-    "spectrum:pyrite_tiles_slab",
-    "spectrum:pyrite_plating_slab",
-    "spectrum:pyrite_paneling_slab"
+    "spectrum:pyrite_tiles_slab"
   ]
 }

@@ -13,7 +13,7 @@
     },
     {
       "predicate": {
-        "oversized": 1.0,
+        "in_world": 1.0,
         "activated": 0.0
       },
       "model": "spectrum:item/dreamflayer_oversized"
@@ -21,7 +21,7 @@
     {
       "predicate": {
         "activated": 1.0,
-        "oversized": 1.0
+        "in_world": 1.0
       },
       "model": "spectrum:item/dreamflayer_activated_oversized"
     }

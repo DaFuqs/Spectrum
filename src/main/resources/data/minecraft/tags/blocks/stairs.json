@@ -35,9 +35,6 @@
     "spectrum:bone_ash_tile_stairs",
 
     "spectrum:pyrite_stairs",
-    "spectrum:pyrite_pile_stairs",
-    "spectrum:pyrite_tiles_stairs",
-    "spectrum:pyrite_plating_stairs",
-    "spectrum:pyrite_paneling_stairs"
+    "spectrum:pyrite_tiles_stairs"
   ]
 }

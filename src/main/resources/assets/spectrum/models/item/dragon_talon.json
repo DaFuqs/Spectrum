@@ -6,14 +6,14 @@
   "overrides": [
     {
       "predicate": {
-        "oversized": 1.0,
+        "in_world": 1.0,
         "reserved": 0.0
       },
       "model": "spectrum:item/dragon_talon_oversized"
     },
     {
       "predicate": {
-        "oversized": 1.0,
+        "in_world": 1.0,
         "reserved": 1.0
       },
       "model": "spectrum:item/dragon_blank"

@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.pastel_network.nodes;
 
+import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.decoration.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
@@ -116,24 +117,27 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements BlockEntityP
 	@Override
 	@SuppressWarnings("deprecation")
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-		PastelNodeBlockEntity blockEntity = getBlockEntity(world, pos);
+		// TODO: We do not handle the null possibility here!
+		@Nullable PastelNodeBlockEntity blockEntity = getBlockEntity(world, pos);
 		var stack = player.getStackInHand(hand);
 
 		if (player.isSneaking() && stack.isEmpty()) {
-			var removed = blockEntity.tryRemoveUpgrade();
-			if (!removed.isEmpty()) {
-				if (!player.getAbilities().creativeMode)
-					player.getInventory().offerOrDrop(removed);
-
-				blockEntity.updateUpgrades();
-				return ActionResult.success(world.isClient());
+			if (AdvancementHelper.hasAdvancement(player, SpectrumAdvancements.PASTEL_NODE_UPGRADING)) {
+				var removed = blockEntity.tryRemoveUpgrade();
+				if (!removed.isEmpty()) {
+					if (!player.getAbilities().creativeMode)
+						player.getInventory().offerOrDrop(removed);
+					
+					blockEntity.updateUpgrades();
+					return ActionResult.success(world.isClient());
+				}
 			}
 			return ActionResult.FAIL;
 		} else if (stack.isOf(SpectrumItems.TUNING_STAMP)) {
 			return ActionResult.PASS;
 		} else if (stack.isOf(SpectrumItems.PAINTBRUSH)) {
 			return sendDebugMessage(world, player, blockEntity);
-		} else if (stack.isIn(SpectrumItemTags.PASTEL_NODE_UPGRADES) && blockEntity.tryInteractRings(stack, pastelNodeType)) {
+		} else if (AdvancementHelper.hasAdvancement(player, SpectrumAdvancements.PASTEL_NODE_UPGRADING) && stack.isIn(SpectrumItemTags.PASTEL_NODE_UPGRADES) && blockEntity.tryInteractRings(stack, pastelNodeType)) {
 			if (!world.isClient())
 				SpectrumAdvancementCriteria.PASTEL_NODE_UPGRADING.trigger((ServerPlayerEntity) player, stack);
 

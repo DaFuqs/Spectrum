@@ -33,6 +33,7 @@ public class SpectrumAdvancements {
 	public static final Identifier SPAWNER_CREATURE_CHANGE = SpectrumCommon.locate("milestones/unlock_spawner_creature_change");
 	public static final Identifier SPAWNER_MANIPULATION = SpectrumCommon.locate("milestones/unlock_spawner_manipulation");
 	public static final Identifier UNLOCK_SHOOTING_STARS = SpectrumCommon.locate("milestones/unlock_shooting_stars");
+	public static final Identifier PASTEL_NODE_UPGRADING = SpectrumCommon.locate("milestones/unlock_pastel_node_upgrading");
 	
 	// Paintbrush Abilities
 	public static final Identifier PAINTBRUSH_COLORING = SpectrumCommon.locate("collect_pigment");
@@ -97,6 +98,4 @@ public class SpectrumAdvancements {
 	public static final Identifier SOLVE_WIRELESS_REDSTONE_PRESERVATION_RUIN = SpectrumCommon.locate("solve_wireless_redstone_preservation_ruin");
 	public static final Identifier STRIKE_UP_HUMMINGSTONE_HYMN = SpectrumCommon.locate("lategame/strike_up_hummingstone_hymn");
 	public static final Identifier VIVISECT_KINDLING = SpectrumCommon.locate("mod_integration/neepmeat/vivisect_kindling");
-	
-	
 }

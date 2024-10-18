@@ -38,6 +38,7 @@ public class PlayerTrackingBlockEntityRenderer implements BlockEntityRenderer<Pl
 		float time = entity.getWorld().getTime() % 24000 + tickDelta;
 
 		// It would sure be nice if you could have multiple BERs for one block entity type... Anyways nice janky hacks you got there
+		// Dafuqs: oh my god, this is so cursed
 		if (state.isOf(SpectrumBlocks.MANXI)) {
 			float f = (state.get(ChestBlock.FACING)).asRotation();
 			double yBreath = Math.sin(time / 19) * 0.02;

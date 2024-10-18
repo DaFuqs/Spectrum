@@ -19,7 +19,7 @@ import java.util.*;
 
 public class AetherGracedNectarGlovesItem extends AzureDikeTrinketItem implements SlotBackgroundEffectProvider {
 
-	public static final int HARMFUL_EFFECT_COST = 3;
+	public static final int HARMFUL_EFFECT_COST = 7;
 
 	public AetherGracedNectarGlovesItem(Settings settings) {
 		super(settings);

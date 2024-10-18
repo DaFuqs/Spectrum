@@ -1,26 +1,25 @@
 {
   "type": "spectrum:potion_workshop_brewing",
-  "group": "the_bumblezone",
+  "group": "malum",
   "ingredient1": {
     "item": "minecraft:nether_wart"
   },
   "ingredient2": {
-    "item": "the_bumblezone:bee_soup"
+    "item": "malum:rotting_essence"
   },
-  "effect": "the_bumblezone:paralyzed",
-  "base_duration_ticks": 200,
-  "potency_modifier": 0.0,
+  "effect": "minecraft:poison",
+  "base_duration_ticks": 900,
+  "potency_modifier": 1.0,
   "applicable_to_potions": true,
   "applicable_to_tipped_arrows": true,
   "applicable_to_potion_fillables": true,
-  "ink_color": "spectrum:yellow",
-  "ink_cost": 320,
-  "base_yield": 1,
+  "ink_color": "spectrum:pink",
+  "ink_cost": 2,
   "fabric:load_conditions": [
     {
       "condition": "fabric:all_mods_loaded",
       "values": [
-        "the_bumblezone"
+        "malum"
       ]
     }
   ]

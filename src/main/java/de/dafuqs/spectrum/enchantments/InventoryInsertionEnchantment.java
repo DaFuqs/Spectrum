@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.enchantments;
 
+import com.sammy.malum.common.item.curiosities.weapons.scythe.MalumScytheItem;
+import de.dafuqs.spectrum.compat.SpectrumIntegrationPacks;
 import de.dafuqs.spectrum.items.tools.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
@@ -42,7 +44,8 @@ public class InventoryInsertionEnchantment extends SpectrumEnchantment {
 				|| EnchantmentTarget.BOW.isAcceptableItem(item)
 				|| EnchantmentTarget.CROSSBOW.isAcceptableItem(item)
 				|| stack.getItem() instanceof ShearsItem
-				|| stack.getItem() instanceof SpectrumFishingRodItem;
+				|| stack.getItem() instanceof SpectrumFishingRodItem
+				|| (SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.MALUM_ID) && stack.getItem() instanceof MalumScytheItem);
 	}
 	
 }

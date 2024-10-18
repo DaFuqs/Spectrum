@@ -10,6 +10,7 @@ import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.blocks.mob_head.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.compat.ae2.*;
+import de.dafuqs.spectrum.compat.create.CreateCompat;
 import de.dafuqs.spectrum.compat.gobber.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.food.beverages.*;
@@ -723,6 +724,15 @@ public class SpectrumItemGroups {
 			entries.add(AE2Compat.LARGE_FLUIX_BUD);
 			entries.add(AE2Compat.FLUIX_CLUSTER);
 			entries.add(AE2Compat.PURE_FLUIX_BLOCK);
+		}
+
+		if (SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.CREATE_ID))
+		{
+			entries.add(CreateCompat.PURE_ZINC);
+			entries.add(CreateCompat.SMALL_ZINC_BUD);
+			entries.add(CreateCompat.LARGE_ZINC_BUD);
+			entries.add(CreateCompat.ZINC_CLUSTER);
+			entries.add(CreateCompat.PURE_ZINC_BLOCK);
 		}
 		
 		if (SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.GOBBER_ID)) {

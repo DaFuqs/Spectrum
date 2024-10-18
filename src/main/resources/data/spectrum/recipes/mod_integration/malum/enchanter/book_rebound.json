@@ -1,0 +1,54 @@
+{
+  "type": "spectrum:enchanter",
+  "time": 300,
+  "required_experience": 100,
+  "ingredients": [
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "spectrum:green_pigment"
+    },
+    {
+      "item": "spectrum:green_pigment"
+    },
+    {
+      "item": "malum:cursed_sapball"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "spectrum:green_pigment"
+    },
+    {
+      "item": "spectrum:green_pigment"
+    },
+    {
+      "item": "malum:cursed_sapball"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    }
+  ],
+  "result": {
+    "item": "minecraft:enchanted_book",
+    "nbt": {
+      "StoredEnchantments": [
+        {
+          "id": "malum:rebound",
+          "lvl": "1s"
+        }
+      ]
+    }
+  },
+  "required_advancement": "spectrum:midgame/build_enchanting_structure",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "malum"
+      ]
+    }
+  ]
+}

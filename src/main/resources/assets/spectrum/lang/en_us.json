@@ -4041,7 +4041,7 @@
   "effect.spectrum.immunity": "Immunity",
   "effect.spectrum.immunity.desc": "Removes all negative status effects, and prevents you from getting new ones.",
   "effect.spectrum.lava_gliding": "Lava Gliding",
-  "effect.spectrum.lava_gliding.desc": "Increases your movement speed and visibility in Lava. Does not provide Fire Resistance, however",
+  "effect.spectrum.lava_gliding.desc": "Increases your movement speed and visibility in Lava. However, does not provide Fire Resistance.",
   "effect.spectrum.life_drain": "Life Drain",
   "effect.spectrum.life_drain.desc": "Decreases your maximum health.",
   "effect.spectrum.lightweight": "Lightweight",

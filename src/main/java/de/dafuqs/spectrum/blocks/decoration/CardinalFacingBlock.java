@@ -4,6 +4,8 @@ import net.minecraft.block.*;
 import net.minecraft.item.*;
 import net.minecraft.state.*;
 import net.minecraft.state.property.*;
+import net.minecraft.util.BlockMirror;
+import net.minecraft.util.BlockRotation;
 import net.minecraft.util.math.*;
 
 public class CardinalFacingBlock extends Block {
@@ -26,6 +28,10 @@ public class CardinalFacingBlock extends Block {
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
 		builder.add(CARDINAL_FACING);
 	}
-	
-	
+
+	@Override
+	public BlockState rotate(BlockState state, BlockRotation rotation) {
+		boolean cardinal = state.get(CARDINAL_FACING);
+		return state.with(CARDINAL_FACING, (rotation.ordinal() % 2 == 1) != cardinal);
+	}
 }

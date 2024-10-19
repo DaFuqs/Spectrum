@@ -1,0 +1,6 @@
+{
+  "particle_type": "spectrum:mirror_image",
+  "gui_texture": "spectrum:mirror_image",
+  "unlock_identifier": "spectrum:midgame/enter_liquid_crystal",
+  "supports_coloring": true
+}

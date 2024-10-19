@@ -1,0 +1,31 @@
+{
+  "name": "book.spectrum.guidebook.pastel_upgrades.name",
+  "icon": "spectrum:connection_node",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:milestones/unlock_pastel_node_upgrading"
+  },
+  "category": "spectrum:pastel_network",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 1,
+  "x": 7,
+  "y": 0,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.pastel_upgrades.name",
+      "text": "book.spectrum.guidebook.pastel_upgrades.about.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:connection_node"
+      },
+      "title": "book.spectrum.guidebook.pastel_upgrades.enhancing.title",
+
+      "text": "book.spectrum.guidebook.pastel_upgrades.enhancing.text"
+    }
+  ]
+}

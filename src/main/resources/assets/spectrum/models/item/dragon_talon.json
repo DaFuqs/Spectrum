@@ -20,7 +20,7 @@
     },
     {
       "predicate": {
-        "in_world": 0.0,
+        "oversized": 0.0,
         "reserved": 1.0
       },
       "model": "spectrum:item/dragon_talon_phantom"

@@ -20,6 +20,7 @@ repositories {
 	maven { url = "https://maven.jamieswhiteshirt.com/libs-release/" } // Entity Reach Attribute
 	maven { url = "https://api.modrinth.com/maven" } // Revelationary, Additional Entity Attributes, Fractal Lib, Colorful Hearts, idwtialsimmoedm
 	maven { url = "https://cfa2.cursemaven.com" }
+	maven { url = "https://mvn.devos.one/releases/" } // Porting Lib
 	maven { url = "https://repo.unascribed.com" } // Ears API
 	maven { url = "https://dl.cloudsmith.io/public/klikli-dev/mods/maven/" } // Modonomicon
 	maven { url = "https://maven.is-immensely.gay/releases" } // Matchbooks
@@ -93,10 +94,17 @@ dependencies {
 	modCompileOnly("com.unascribed:ears-api:${project.ears_version}")
 	modCompileOnly("maven.modrinth:create-fabric:${project.create_version}") { transitive = false }
 	modCompileOnly("maven.modrinth:neepmeat:${project.neepmeat_version}") { transitive = false }
+	modCompileOnly("maven.modrinth:lodestonelib:${project.lodestone_version}") { transitive = false}
+	modCompileOnly("maven.modrinth:malum:${project.malum_version}") { transitive = false}
 	// modCompileOnly("maven.modrinth:enchantment-descriptions:${project.enchantment_descriptions_version}")
 	modCompileOnly("maven.modrinth:travelersbackpack:${project.travelers_backpack_version}")
 	modCompileOnly("maven.modrinth:botania:${project.botania_version}")
 	modImplementation("maven.modrinth:idwtialsimmoedm:${project.idwtialsimmoedm_version}")
+
+	//Porting Lib
+	for (String module in port_lib_modules.split(",")) {
+		modCompileOnly("io.github.fabricators_of_create.Porting-Lib:$module:${project.port_lib_version}") { transitive = false }
+	}
 }
 
 loom {

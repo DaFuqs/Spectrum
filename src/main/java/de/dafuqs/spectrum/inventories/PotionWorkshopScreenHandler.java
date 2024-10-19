@@ -53,7 +53,7 @@ public class PotionWorkshopScreenHandler extends ScreenHandler {
 		this.addSlot(new Slot(inventory, 4, 41, 42));
 		
 		// reagent slots
-		if (AdvancementHelper.hasAdvancement(playerInventory.player, PotionWorkshopBlockEntity.FOURTH_BREWING_SLOT_ADVANCEMENT_IDENTIFIER)) {
+		if (AdvancementHelper.hasAdvancement(playerInventory.player, SpectrumAdvancements.FOURTH_BREWING_SLOT)) {
 			this.addSlot(new ReagentSlot(inventory, 5, 51, 19));
 			this.addSlot(new ReagentSlot(inventory, 6, 74, 19));
 			this.addSlot(new ReagentSlot(inventory, 7, 97, 19));

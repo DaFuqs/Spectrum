@@ -1,0 +1,35 @@
+{
+  "type": "spectrum:enchantment_upgrade",
+  "enchantment": "malum:spirit_plunder",
+  "levels": [
+    {
+      "experience": 200,
+      "item": "spectrum:light_blue_pigment",
+      "item_count": 8
+    },
+    {
+      "experience": 1600,
+      "item": "spectrum:light_blue_pigment",
+      "item_count": 32
+    },
+    {
+      "experience": 3200,
+      "item": "spectrum:light_blue_pigment",
+      "item_count": 128
+    },
+    {
+      "experience": 6400,
+      "item": "spectrum:light_blue_pigment",
+      "item_count": 256
+    }
+  ],
+  "required_advancement": "spectrum:unlocks/enchantments/clovers_favor",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "malum"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+	"variants": {
+		"type=bottom": {
+			"model": "spectrum:block/pyrite_tiles_slab"
+		},
+		"type=double": {
+			"model": "spectrum:block/pyrite_tiles"
+		},
+		"type=top": {
+			"model": "spectrum:block/pyrite_tiles_slab_top"
+		}
+	}
+}

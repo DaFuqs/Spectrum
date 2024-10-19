@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
 import de.dafuqs.revelationary.api.revelations.*;
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
@@ -46,7 +45,7 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 	
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
-		return SpectrumCommon.locate("milestones/reveal_quitoxic_reeds");
+		return SpectrumAdvancements.REVEAL_QUITOXIC_REEDS;
 	}
 	
 	@Override

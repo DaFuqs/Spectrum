@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.items.tools;
 
+import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.item.*;
@@ -112,18 +113,18 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 	}
 	
 	public static void applyToggle(PlayerEntity player, ItemStack stack, GUIToggle toggle) {
-		NbtCompound nbt = stack.getOrCreateNbt();
+		
 		switch (toggle) {
 			case SELECT_1x1 -> {
-				nbt.remove(RANGE_NBT_STRING);
+				stack.getOrCreateNbt().remove(RANGE_NBT_STRING);
 				player.sendMessage(toggle.getTriggerText(), true);
 			}
 			case SELECT_3x3 -> {
-				nbt.putInt(RANGE_NBT_STRING, 1);
+				stack.getOrCreateNbt().putInt(RANGE_NBT_STRING, 1);
 				player.sendMessage(toggle.getTriggerText(), true);
 			}
 			case SELECT_5x5 -> {
-				nbt.putInt(RANGE_NBT_STRING, 2);
+				stack.getOrCreateNbt().putInt(RANGE_NBT_STRING, 2);
 				player.sendMessage(toggle.getTriggerText(), true);
 			}
 			// switching to another enchantment
@@ -139,28 +140,28 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 				enchantAndRemoveOthers(player, stack, toggle.getTriggerText(), SpectrumEnchantments.RESONANCE);
 			}
 			case ENABLE_RIGHT_CLICK_ACTIONS -> {
-				nbt.remove(RIGHT_CLICK_DISABLED_NBT_STRING);
+				stack.getOrCreateNbt().remove(RIGHT_CLICK_DISABLED_NBT_STRING);
 				player.sendMessage(toggle.getTriggerText(), true);
 			}
 			case DISABLE_RIGHT_CLICK_ACTIONS -> {
-				nbt.putBoolean(RIGHT_CLICK_DISABLED_NBT_STRING, true);
+				stack.getOrCreateNbt().putBoolean(RIGHT_CLICK_DISABLED_NBT_STRING, true);
 				player.sendMessage(toggle.getTriggerText(), true);
 			}
 			case ENABLE_PROJECTILES -> {
-				nbt.remove(PROJECTILES_DISABLED_NBT_STRING);
+				stack.getOrCreateNbt().remove(PROJECTILES_DISABLED_NBT_STRING);
 				player.sendMessage(toggle.getTriggerText(), true);
 			}
 			case DISABLE_PROJECTILES -> {
-				nbt.putBoolean(PROJECTILES_DISABLED_NBT_STRING, true);
+				stack.getOrCreateNbt().putBoolean(PROJECTILES_DISABLED_NBT_STRING, true);
 				player.sendMessage(toggle.getTriggerText(), true);
 			}
 		}
-		stack.setNbt(nbt);
 	}
 	
 	private static void enchantAndRemoveOthers(PlayerEntity player, ItemStack stack, Text message, Enchantment enchantment) {
 		int existingLevel = EnchantmentHelper.getLevel(enchantment, stack);
 		if (existingLevel > 0) {
+			player.sendMessage(Text.translatable("item.spectrum.workstaff.message.already_has_the_enchantment"), true);
 			return;
 		}
 		
@@ -179,11 +180,20 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 			}
 		}
 		
-		if (SpectrumEnchantmentHelper.removeEnchantments(stack, Enchantments.SILK_TOUCH, SpectrumEnchantments.RESONANCE, Enchantments.FORTUNE).getRight() > 0) {
-			SpectrumEnchantmentHelper.addOrUpgradeEnchantment(stack, enchantment, level, true, true);
-			player.sendMessage(message, true);
-		} else if (player instanceof ServerPlayerEntity serverPlayerEntity) {
-			triggerUnenchantedWorkstaffAdvancement(serverPlayerEntity);
+		ItemStack newStack = stack.copy();
+		var result = SpectrumEnchantmentHelper.removeEnchantments(newStack, Enchantments.SILK_TOUCH, SpectrumEnchantments.RESONANCE, Enchantments.FORTUNE);
+		if (result.getRight() == 0) {
+			if (player instanceof ServerPlayerEntity serverPlayerEntity) {
+				triggerUnenchantedWorkstaffAdvancement(serverPlayerEntity);
+			}
+		} else {
+			var result2 = SpectrumEnchantmentHelper.addOrUpgradeEnchantment(result.getLeft(), enchantment, level, false, AdvancementHelper.hasAdvancement(player, SpectrumAdvancements.APPLY_CONFLICTING_ENCHANTMENTS));
+			if (result2.getLeft()) {
+				stack.setNbt(result2.getRight().getNbt());
+				player.sendMessage(message, true);
+			} else {
+				player.sendMessage(Text.translatable("item.spectrum.workstaff.message.would_result_in_conflicting_enchantments"), true);
+			}
 		}
 	}
 	

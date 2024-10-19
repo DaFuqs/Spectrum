@@ -37,7 +37,7 @@
     }
   },
   "start_pool": "spectrum:undergrowth_manor/main",
-  "size": 4,
+  "size": 7,
   "start_height": {
     "absolute": -291
   },

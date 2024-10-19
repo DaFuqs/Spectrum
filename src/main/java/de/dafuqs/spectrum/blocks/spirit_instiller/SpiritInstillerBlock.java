@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.blocks.spirit_instiller;
 
 import com.klikli_dev.modonomicon.api.multiblock.*;
 import com.klikli_dev.modonomicon.client.render.*;
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.compat.modonomicon.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -21,8 +20,6 @@ import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
 public class SpiritInstillerBlock extends InWorldInteractionBlock {
-	
-	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("midgame/build_spirit_instiller_structure");
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 15.0D, 16.0D);
 	
 	public SpiritInstillerBlock(Settings settings) {

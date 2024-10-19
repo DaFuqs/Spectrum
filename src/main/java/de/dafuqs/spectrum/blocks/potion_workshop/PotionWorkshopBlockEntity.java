@@ -55,8 +55,6 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 	private static final int[] ACCESSIBLE_SLOTS_SIDE_WITH_UNLOCK = {5, 6, 7, 8};
 	private static final int[] ACCESSIBLE_SLOTS_DOWN = {9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
 	
-	public static final Identifier FOURTH_BREWING_SLOT_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("milestones/unlock_fourth_potion_workshop_reagent_slot");
-	
 	protected final PropertyDelegate propertyDelegate;
 	protected DefaultedList<ItemStack> inventory;
 	protected boolean inventoryChanged;
@@ -544,7 +542,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		if (playerEntity == null) {
 			return false;
 		} else {
-			return AdvancementHelper.hasAdvancement(playerEntity, FOURTH_BREWING_SLOT_ADVANCEMENT_IDENTIFIER);
+			return AdvancementHelper.hasAdvancement(playerEntity, SpectrumAdvancements.FOURTH_BREWING_SLOT);
 		}
 	}
 	

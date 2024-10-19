@@ -6,7 +6,7 @@
   "overrides": [
     {
       "predicate": {
-        "in_world": 0.0,
+        "oversized": 0.0,
         "activated": 1.0
       },
       "model": "spectrum:item/dreamflayer_activated"

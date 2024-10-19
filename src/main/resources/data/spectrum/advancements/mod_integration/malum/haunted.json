@@ -1,0 +1,32 @@
+{
+  "criteria": {
+    "built_enchanting_structure": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:midgame/build_enchanting_structure" }
+    },
+    "obtain_umbral": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "malum:umbral_spirit"
+            ]
+          }
+        ]
+      }
+    },
+    "collected_storm_stone": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_storm_stone" }
+    }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "malum"
+      ]
+    }
+  ]
+}

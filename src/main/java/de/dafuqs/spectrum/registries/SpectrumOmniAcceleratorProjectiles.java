@@ -19,6 +19,38 @@ public class SpectrumOmniAcceleratorProjectiles {
 		OmniAcceleratorProjectile.register(new OmniAcceleratorProjectile() {
 			@Override
 			public Entity createProjectile(ItemStack stack, LivingEntity shooter, World world) {
+				PotionEntity potionEntity = new PotionEntity(world, shooter);
+				potionEntity.setItem(stack);
+				potionEntity.setVelocity(shooter, shooter.getPitch(), shooter.getYaw(), -20.0F, 2.0F, 1.0F);
+				world.spawnEntity(potionEntity);
+				return potionEntity;
+			}
+			
+			@Override
+			public SoundEvent getSoundEffect() {
+				return SoundEvents.ENTITY_SPLASH_POTION_THROW;
+			}
+		}, Items.SPLASH_POTION);
+		
+		OmniAcceleratorProjectile.register(new OmniAcceleratorProjectile() {
+			@Override
+			public Entity createProjectile(ItemStack stack, LivingEntity shooter, World world) {
+				PotionEntity potionEntity = new PotionEntity(world, shooter);
+				potionEntity.setItem(stack);
+				potionEntity.setVelocity(shooter, shooter.getPitch(), shooter.getYaw(), -20.0F, 2.0F, 1.0F);
+				world.spawnEntity(potionEntity);
+				return potionEntity;
+			}
+			
+			@Override
+			public SoundEvent getSoundEffect() {
+				return SoundEvents.ENTITY_LINGERING_POTION_THROW;
+			}
+		}, Items.LINGERING_POTION);
+		
+		OmniAcceleratorProjectile.register(new OmniAcceleratorProjectile() {
+			@Override
+			public Entity createProjectile(ItemStack stack, LivingEntity shooter, World world) {
 				EnderPearlEntity enderPearlEntity = new EnderPearlEntity(world, shooter);
 				enderPearlEntity.setItem(stack);
 				enderPearlEntity.setVelocity(shooter, shooter.getPitch(), shooter.getYaw(), 0.0F, 2.0F, 1.0F);

@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.registries.*;
@@ -41,7 +40,6 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 	private static final TrackedData<Byte> COLOR_AND_SHEARED = DataTracker.registerData(EggLayingWoolyPigEntity.class, TrackedDataHandlerRegistry.BYTE);
 	private static final TrackedData<Boolean> HATLESS = DataTracker.registerData(EggLayingWoolyPigEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 	private static final Map<DyeColor, float[]> COLORS = new EnumMap<>(ColorHelper.VANILLA_DYE_COLORS.stream().collect(Collectors.toMap(Function.identity(), EggLayingWoolyPigEntity::getDyedColor)));
-	private static final Identifier SHEARING_LOOT_TABLE_ID = SpectrumCommon.locate("entities/egg_laying_wooly_pig_shearing");
 	
 	private int eatGrassTimer;
 	private EatGrassGoal eatGrassGoal;
@@ -250,7 +248,7 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 				.add(LootContextParameters.THIS_ENTITY, this)
 				.add(LootContextParameters.ORIGIN, this.getPos());
 		
-		LootTable lootTable = world.getServer().getLootManager().getLootTable(SHEARING_LOOT_TABLE_ID);
+		LootTable lootTable = world.getServer().getLootManager().getLootTable(SpectrumLootTables.EGG_LAYING_WOOLY_PIG_SHEARING);
 		return lootTable.generateLoot(builder.build(LootContextTypes.GIFT));
 	}
 	

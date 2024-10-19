@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
 import de.dafuqs.revelationary.api.revelations.*;
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
@@ -86,7 +85,7 @@ public class StuckStormStoneBlock extends HorizontalFacingBlock implements Revel
 	
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
-		return SpectrumCommon.locate("milestones/reveal_storm_stones");
+		return SpectrumAdvancements.REVEAL_STORM_STONES;
 	}
 
 	@Override

@@ -5,6 +5,7 @@
     "spectrum:polished_basalt_slab",
     "spectrum:basalt_brick_slab",
     "spectrum:calcite_slab",
+    "spectrum:planed_calcite_slab",
     "spectrum:polished_calcite_slab",
     "spectrum:calcite_brick_slab",
 
@@ -31,6 +32,9 @@
 
     "spectrum:polished_bone_ash_slab",
     "spectrum:bone_ash_brick_slab",
-    "spectrum:bone_ash_tile_slab"
+    "spectrum:bone_ash_tile_slab",
+
+    "spectrum:pyrite_slab",
+    "spectrum:pyrite_tiles_slab"
   ]
 }

@@ -13,7 +13,7 @@
     "separation": 80
   },
   "exclusion_zone": {
-    "chunk_count": 4,
+    "chunk_count": 16,
     "other_set": "spectrum:city_below"
   }
 }

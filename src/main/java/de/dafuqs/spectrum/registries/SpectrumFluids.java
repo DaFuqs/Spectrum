@@ -14,7 +14,7 @@ import net.minecraft.registry.*;
 import net.minecraft.util.*;
 import org.joml.*;
 
-@SuppressWarnings("UnstableApiUsage")
+
 public class SpectrumFluids {
 	
 	// RenderHandler storage for compatibility purposes

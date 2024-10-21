@@ -80,12 +80,12 @@ dependencies {
 	// mine
 	modImplementation "maven.modrinth:Revelationary:${project.revelationary_version}"
 	modImplementation include("maven.modrinth:AdditionalEntityAttributes:${project.additional_entity_attributes_version}")
-	modImplementation include("com.github.DaFuqs:Arrowhead:${project.arrowhead_version}")
+	modImplementation include("de.dafuqs:Arrowhead:${project.arrowhead_version}")
 	modImplementation include("com.github.DaFuqs:DimensionalReverb:${project.dimensional_reverb_version}")
 	modImplementation include("maven.modrinth:fractal-lib:${project.fractal_version}")
 
 	// we need a bit of concern
-	modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
+	modImplementation include("azzy.fabric:incubus-core:${project.incubus_core_version}")
 
 	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") { exclude(group: "net.fabricmc.fabric-api") }
 	modApi("com.terraformersmc:modmenu:${project.modmenu_version}")

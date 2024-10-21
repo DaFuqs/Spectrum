@@ -6,17 +6,6 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:aether_vestiges",
-          "weight": 413,
-          "quality": 612
-        }
-      ]
-    },
-    {
-      "rolls": 1,
-      "entries": [
-        {
-          "type": "minecraft:item",
           "name": "spectrum:stardust",
           "functions": [
             {
@@ -27,6 +16,17 @@
               }
             }
           ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:aether_vestiges",
+          "weight": 413,
+          "quality": 612
         }
       ]
     },
@@ -117,7 +117,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:bismuth_flake"
+          "name": "spectrum:bismuth_crystal"
         },
         {
           "type": "minecraft:item",

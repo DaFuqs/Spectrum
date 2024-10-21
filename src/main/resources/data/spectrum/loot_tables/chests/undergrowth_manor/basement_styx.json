@@ -23,7 +23,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "spectrum:onyx_powder",
+          "name": "spectrum:onyx_powder_block",
           "weight": 2,
           "functions": [
             {
@@ -112,7 +112,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:carrot",
+          "name": "minecraft:golden_carrot",
           "functions": [
             {
               "function": "minecraft:set_count",

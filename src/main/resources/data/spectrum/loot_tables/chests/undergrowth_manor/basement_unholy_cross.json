@@ -6,31 +6,6 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:potion",
-          "functions": [
-            {
-              "function": "spectrum:fill_potion_fillable",
-              "ambient": true,
-              "show_particles": true,
-              "duration": 4800,
-              "status_effect": [
-                "minecraft:water_breathing",
-                "spectrum:eternal_slumber"
-              ],
-              "color": 12804078,
-              "amplifier": 0,
-              "ink_color": "spectrum:purple",
-              "ink_cost": 32
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "rolls": 1,
-      "entries": [
-        {
-          "type": "minecraft:item",
           "name": "spectrum:nightdew_sprout",
           "functions": [
             {
@@ -50,7 +25,13 @@
         {
           "type": "minecraft:item",
           "name": "spectrum:night_salts",
-          "weight": 2
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 2
+            }
+          ]
         },
         {
           "type": "minecraft:item",
@@ -91,6 +72,31 @@
                 "min": 8,
                 "max": 12
               }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:potion",
+          "functions": [
+            {
+              "function": "spectrum:fill_potion_fillable",
+              "ambient": true,
+              "show_particles": true,
+              "duration": 4800,
+              "status_effect": [
+                "minecraft:water_breathing",
+                "spectrum:eternal_slumber"
+              ],
+              "color": 12804078,
+              "amplifier": 0,
+              "ink_color": "spectrum:purple",
+              "ink_cost": 32
             }
           ]
         }

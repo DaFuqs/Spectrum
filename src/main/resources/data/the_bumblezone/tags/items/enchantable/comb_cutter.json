@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "spectrum:bedrock_shears",
+    "spectrum:multitool",
+    "#spectrum:workstaffs"
+  ]
+}

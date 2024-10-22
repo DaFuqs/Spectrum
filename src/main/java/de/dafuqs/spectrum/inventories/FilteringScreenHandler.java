@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.inventories.slots.*;
+import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
@@ -13,6 +14,7 @@ import net.minecraft.world.*;
 
 import java.util.function.Function;
 
+@SuppressWarnings("UnstableApiUsage")
 public class FilteringScreenHandler extends ScreenHandler {
 
 	protected final World world;
@@ -111,7 +113,7 @@ public class FilteringScreenHandler extends ScreenHandler {
 		@Override
 		public boolean onClicked(ItemStack heldStack, ClickType type, PlayerEntity player) {
 			if (!world.isClient && filterConfigurable != null) {
-				filterConfigurable.setFilterItem(getIndex(), heldStack.copyWithCount(1));
+				filterConfigurable.setFilterItem(getIndex(), ItemVariant.of(heldStack));
 			}
 			return super.onClicked(heldStack, type, player);
 		}

@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.inventories.slots.*;
 import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
@@ -17,6 +18,7 @@ import net.minecraft.world.*;
 
 import java.util.function.Function;
 
+@SuppressWarnings("UnstableApiUsage")
 public class BlackHoleChestScreenHandler extends ScreenHandler {
 	
 	protected static final int ROWS = 3;
@@ -139,7 +141,7 @@ public class BlackHoleChestScreenHandler extends ScreenHandler {
 		@Override
 		public boolean onClicked(ItemStack heldStack, ClickType type, PlayerEntity player) {
 			if (blackHoleChestBlockEntity != null) {
-				blackHoleChestBlockEntity.setFilterItem(getIndex(), heldStack.copyWithCount(1));
+				blackHoleChestBlockEntity.setFilterItem(getIndex(), ItemVariant.of(heldStack));
 			}
 			return super.onClicked(heldStack, type, player);
 		}

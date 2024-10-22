@@ -462,6 +462,9 @@ public abstract class LivingEntityMixin {
 			if (entity.getWorld().isClient())
 				return;
 
+			if (entity.isSpectator() || entity instanceof PlayerEntity player && player.getAbilities().creativeMode)
+				return;
+
 			var damage = Float.MAX_VALUE;
 			if (SleepStatusEffect.isImmuneish(entity)) {
 				if (entity instanceof PlayerEntity player) {

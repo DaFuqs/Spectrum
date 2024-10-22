@@ -106,6 +106,7 @@ public class SpectrumClientEventListeners {
 			Entity cameraEntity = client.getCameraEntity();
 			if (world == null || cameraEntity == null) {
 				BiomeAttenuatingSoundInstance.clear();
+				BlockAuraSoundInstance.clear();
 				return;
 			}
 			
@@ -113,7 +114,7 @@ public class SpectrumClientEventListeners {
 
 			HowlingSpireEffects.clientTick(world, cameraEntity, biome);
 			DarknessEffects.clientTick(world, (LivingEntity) cameraEntity, biome);
-			AzuriteAuraSoundInstance.update(world, cameraEntity);
+			BlockAuraSoundInstance.update(world);
 		});
 	}
 	

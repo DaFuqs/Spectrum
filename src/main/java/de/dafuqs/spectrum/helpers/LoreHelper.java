@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.helpers;
 
 import com.google.gson.*;
+import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.text.*;
@@ -8,6 +9,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
+@SuppressWarnings("UnstableApiUsage")
 public class LoreHelper {
 	
 	public static @NotNull List<Text> getLoreTextArrayFromString(@NotNull String string) {

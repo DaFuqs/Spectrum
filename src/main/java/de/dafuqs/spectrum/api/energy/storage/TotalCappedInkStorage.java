@@ -5,6 +5,8 @@ import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.registries.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.fabricmc.api.*;
+import net.fabricmc.fabric.api.transfer.v1.storage.StorageView;
+import net.fabricmc.fabric.api.transfer.v1.transaction.base.SnapshotParticipant;
 import net.minecraft.nbt.*;
 import net.minecraft.text.*;
 import org.jetbrains.annotations.*;
@@ -13,10 +15,12 @@ import java.util.*;
 
 import static de.dafuqs.spectrum.helpers.Support.*;
 
-public class TotalCappedInkStorage implements InkStorage {
+@SuppressWarnings("UnstableApiUsage")
+public class TotalCappedInkStorage extends SnapshotParticipant<TotalCappedInkStorage.Snapshot> implements InkStorage {
 	
 	protected final long maxEnergyTotal;
 	protected final Map<InkColor, Long> storedEnergy = new Object2LongArrayMap<>();
+	protected final ObjectSet<StorageView<InkColor>> views;
 	protected long currentTotal; // This is a cache for quick lookup. Can be recalculated anytime using the values in storedEnergy.
 	
 	public TotalCappedInkStorage(long maxEnergyTotal, Map<InkColor, Long> energy) {
@@ -24,22 +28,29 @@ public class TotalCappedInkStorage implements InkStorage {
 
 		this.currentTotal = 0;
 		this.storedEnergy.putAll(energy);
+		var set = new ObjectArraySet<InkView>(energy.size());
 		for (Map.Entry<InkColor, Long> color : energy.entrySet()) {
 			this.currentTotal += color.getValue();
+			set.add(new InkStorage.InkView(this, color.getKey()));
 		}
+		this.views = ObjectSets.unmodifiable(set);
 	}
+
+	public record Snapshot(Map<InkColor, Long> colors, long currentTotal) {}
 	
 	@Override
 	public boolean accepts(InkColor color) {
 		return true;
 	}
-	
+
 	@Override
-	public long addEnergy(InkColor color, long amount) {
+	public long addEnergy(InkColor color, long amount, boolean simulate) {
 		long overflow = Math.max(0, amount + this.currentTotal - this.maxEnergyTotal);
 		long amountToAdd = amount - overflow;
-		this.currentTotal += amountToAdd;
-		this.storedEnergy.put(color, this.storedEnergy.getOrDefault(color, 0L) + amountToAdd);
+		if (!simulate) {
+			this.currentTotal += amountToAdd;
+			this.storedEnergy.put(color, this.storedEnergy.getOrDefault(color, 0L) + amountToAdd);
+		}
 		return overflow;
 	}
 	
@@ -56,11 +67,13 @@ public class TotalCappedInkStorage implements InkStorage {
 	}
 	
 	@Override
-	public long drainEnergy(InkColor color, long amount) {
+	public long drainEnergy(InkColor color, long amount, boolean simulate) {
 		long storedAmount = this.storedEnergy.getOrDefault(color, 0L);
 		long drainedAmount = Math.min(storedAmount, amount);
-		this.storedEnergy.put(color, storedAmount - drainedAmount);
-		this.currentTotal -= drainedAmount;
+		if (!simulate) {
+			this.storedEnergy.put(color, storedAmount - drainedAmount);
+			this.currentTotal -= drainedAmount;
+		}
 		return drainedAmount;
 	}
 	
@@ -68,7 +81,7 @@ public class TotalCappedInkStorage implements InkStorage {
 	public long getEnergy(InkColor color) {
 		return this.storedEnergy.getOrDefault(color, 0L);
 	}
-	
+
 	@Override
 	@Deprecated
 	public Map<InkColor, Long> getEnergy() {
@@ -159,5 +172,23 @@ public class TotalCappedInkStorage implements InkStorage {
 			}
 		}
 	}
-	
+
+	@Override
+	public @NotNull Iterator<StorageView<InkColor>> iterator() {
+		return views.iterator();
+	}
+
+	@Override
+	protected Snapshot createSnapshot() {
+		var map = new Object2LongArrayMap<InkColor>();
+		map.putAll(storedEnergy);
+		return new Snapshot(map, currentTotal);
+	}
+
+	@Override
+	protected void readSnapshot(Snapshot snapshot) {
+		storedEnergy.clear();
+		storedEnergy.putAll(snapshot.colors);
+		currentTotal = snapshot.currentTotal;
+	}
 }

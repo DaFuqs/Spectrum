@@ -6,11 +6,11 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
+@SuppressWarnings("UnstableApiUsage")
 public class FixedSingleInkStorage extends SingleInkStorage {
 	
 	public FixedSingleInkStorage(long maxEnergy, InkColor color) {
-		super(maxEnergy);
-		this.storedColor = color;
+		super(maxEnergy, color);
 	}
 	
 	public FixedSingleInkStorage(long maxEnergy, InkColor color, long amount) {
@@ -29,16 +29,27 @@ public class FixedSingleInkStorage extends SingleInkStorage {
 
 	@Override
 	public boolean accepts(InkColor color) {
-		return this.storedColor == color;
+		return this.variant == color;
 	}
 	
 	@Override
 	public long getRoom(InkColor color) {
-		if (this.storedColor == color) {
-			return this.maxEnergy - this.storedEnergy;
+		if (this.variant == color) {
+			return this.maxEnergy - this.amount;
 		} else {
 			return 0;
 		}
 	}
-	
+
+	@Override
+	public long addEnergy(InkColor color, long amount, boolean simulate) {
+		long overflow = color == variant ? Math.max(0, this.amount + amount - maxEnergy) : amount;
+		if (!simulate) this.amount += amount - overflow;
+		return overflow;
+	}
+
+	@Override
+	public long getCapacity(InkColor variant) {
+		return this.variant == variant ? maxEnergy : 0;
+	}
 }

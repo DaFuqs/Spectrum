@@ -53,7 +53,8 @@
   },
   "accessWidener": "spectrum.accesswidener",
   "mixins": [
-    "spectrum.mixins.json"
+    "spectrum.mixins.json",
+    "quilt_dfu.mixins.json"
   ],
   "custom": {
     "cardinal-components": [

@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.registries;
 
+import com.mojang.datafixers.types.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.amphora.*;
@@ -35,7 +36,9 @@ import net.fabricmc.fabric.api.object.builder.v1.block.entity.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.client.render.block.entity.*;
+import net.minecraft.datafixer.*;
 import net.minecraft.registry.*;
+import net.minecraft.util.*;
 
 import java.util.*;
 
@@ -91,8 +94,10 @@ public class SpectrumBlockEntities {
 	public static BlockEntityType<DeepLightBlockEntity> DEEP_LIGHT;
 	public static BlockEntityType<PlayerTrackerBlockEntity> PLAYER_TRACKING;
 	
-	private static <T extends BlockEntity> BlockEntityType<T> register(String id, FabricBlockEntityTypeBuilder.Factory<T> factory, Block... blocks) {
-		return Registry.register(Registries.BLOCK_ENTITY_TYPE, SpectrumCommon.locate(id), FabricBlockEntityTypeBuilder.create(factory, blocks).build());
+	private static <T extends BlockEntity> BlockEntityType<T> register(String path, FabricBlockEntityTypeBuilder.Factory<T> factory, Block... blocks) {
+		Identifier id = SpectrumCommon.locate(path);
+		Type<?> type = Util.getChoiceType(TypeReferences.BLOCK_ENTITY, id.toString());
+		return Registry.register(Registries.BLOCK_ENTITY_TYPE, id, FabricBlockEntityTypeBuilder.create(factory, blocks).build(type));
 	}
 	
 	public static void register() {

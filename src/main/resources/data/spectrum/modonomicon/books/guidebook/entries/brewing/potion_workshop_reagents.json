@@ -152,7 +152,7 @@
       "item": {
         "item": "spectrum:onyx_powder"
       },
-      "text": "book.spectrum.guidebook.potion_workshop_reagents.page9.text"
+      "text": "book.spectrum.guidebook.potion_workshop_reagents.onyx_powder.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -280,7 +280,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/collect_neolith"
       },
-      "text": "book.spectrum.guidebook.potion_workshop_reagents.page21.text"
+      "text": "book.spectrum.guidebook.potion_workshop_reagents.neolith.text"
     },
     {
       "type": "modonomicon:spotlight",

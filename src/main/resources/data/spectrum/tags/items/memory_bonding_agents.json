@@ -2,6 +2,10 @@
   "replace": false,
   "values": [
     "spectrum:vegetal",
-    "#spectrum:memory_bonding_agents_concealable"
+    "#spectrum:memory_bonding_agents_concealable",
+    {
+      "required": false,
+      "id": "malum:mnemonic_fragment"
+    }
   ]
 }

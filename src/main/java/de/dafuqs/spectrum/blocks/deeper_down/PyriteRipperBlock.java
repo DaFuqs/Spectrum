@@ -90,7 +90,7 @@ public class PyriteRipperBlock extends SpectrumFacingBlock {
 				double difX = Math.abs(entity.getX() - entity.lastRenderX);
 				double difZ = Math.abs(entity.getZ() - entity.lastRenderZ);
 				if (difX >= 0.003 || difZ >= 0.003) {
-					entity.damage(SpectrumDamageTypes.sawtooth(world), 2.0F);
+					entity.damage(SpectrumDamageTypes.ripping(world), 2.0F);
 				}
 			}
 		}

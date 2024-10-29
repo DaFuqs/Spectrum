@@ -35,6 +35,12 @@
       "conditions": {
         "advancement_identifier": "spectrum:hidden/collect_blazing_crystal"
       }
+    },
+    "unlocked_ink": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:milestones/unlock_ink_use"
+      }
     }
   }
 }

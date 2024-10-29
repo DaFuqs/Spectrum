@@ -6,6 +6,7 @@
     "spectrum:basalt_brick_stairs",
 
     "spectrum:calcite_stairs",
+    "spectrum:planed_calcite_stairs",
     "spectrum:polished_calcite_stairs",
     "spectrum:calcite_brick_stairs",
 
@@ -31,6 +32,9 @@
 
     "spectrum:polished_bone_ash_stairs",
     "spectrum:bone_ash_brick_stairs",
-    "spectrum:bone_ash_tile_stairs"
+    "spectrum:bone_ash_tile_stairs",
+
+    "spectrum:pyrite_stairs",
+    "spectrum:pyrite_tiles_stairs"
   ]
 }

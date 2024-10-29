@@ -1,0 +1,90 @@
+{
+    "type": "minecraft:archaeology",
+    "pools": [
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "spectrum:lesser_potion_pendant",
+                    "weight": 4,
+                    "functions": [
+                        {
+                            "function": "spectrum:fill_potion_fillable",
+                            "ambient": true,
+                            "show_particles": true,
+                            "duration": 1200,
+                            "status_effect": [
+                              "spectrum:somnolence"
+                            ],
+                            "color": 11434988,
+                            "amplifier": 0,
+                            "ink_color": "spectrum:purple",
+                            "ink_cost": 8
+                          }
+                    ]
+                },
+                {
+                    "type": "minecraft:item",
+                    "name": "spectrum:nectardew_burgeon",
+                    "weight": 2
+                },
+                {
+                    "type": "minecraft:item",
+                    "name": "spectrum:nightdew_sprout",
+                    "weight": 7
+                },
+                {
+                    "type": "minecraft:item",
+                    "name": "spectrum:nephrite_blossom_bulb",
+                    "weight": 7
+                },
+                {
+                    "type": "minecraft:item",
+                    "name": "minecraft:torchflower_seeds",
+                    "weight": 7
+                },
+                {
+                    "type": "minecraft:item",
+                    "name": "spectrum:glistering_melon_seeds",
+                    "weight": 7
+                },
+                {
+                    "type": "minecraft:item",
+                    "name": "minecraft:iron_nugget",
+                    "weight": 7
+                },
+                {
+                    "type": "minecraft:item",
+                    "name": "minecraft:gold_nugget",
+                    "weight": 7
+                },
+                {
+                    "type": "minecraft:item",
+                    "name": "spectrum:bismuth_flake",
+                    "weight": 7
+                },
+                {
+                    "type": "minecraft:item",
+                    "name": "minecraft:brewer_pottery_sherd",
+                    "weight": 5
+                },
+                {
+                    "type": "minecraft:item",
+                    "name": "minecraft:snort_pottery_sherd",
+                    "weight": 5
+                },
+                {
+                    "type": "minecraft:item",
+                    "name": "minecraft:prize_pottery_sherd",
+                    "weight": 5
+                },
+                {
+                    "type": "minecraft:item",
+                    "name": "minecraft:arms_up_pottery_sherd",
+                    "weight": 5
+                }
+            ]
+        }
+    ]
+}

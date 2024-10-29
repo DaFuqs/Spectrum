@@ -7,6 +7,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
+import net.minecraft.entity.effect.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.entity.projectile.*;
 import net.minecraft.item.*;
@@ -31,8 +32,8 @@ public class DoomBloomBlock extends FlowerBlock implements Fertilizable, Explosi
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(4.0, 0.0, 4.0, 12.0, 9.0, 12.0);
 	protected static final double GROW_CHANCE = 0.2;
 	
-	public DoomBloomBlock(Settings settings) {
-		super(SpectrumStatusEffects.STIFFNESS, 8, settings);
+	public DoomBloomBlock(StatusEffect suspiciousStewEffect, int effectDuration, Settings settings) {
+		super(suspiciousStewEffect, effectDuration, settings);
 	}
 	
 	@Override

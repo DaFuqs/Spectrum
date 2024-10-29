@@ -93,6 +93,11 @@ public interface ItemProjectileBehavior {
 		@Override
 		public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, Entity owner, EntityHitResult hitResult) {
 			Entity target = hitResult.getEntity();
+			
+			if (target instanceof PlayerEntity player && (player.isCreative() || player.isSpectator())) {
+				return stack;
+			}
+			
 			// Lots of fun(tm) is to be had
 			if (stack.isIn(ItemTags.CREEPER_IGNITERS) && target instanceof CreeperEntity creeperEntity) {
 				World world = projectile.getWorld();

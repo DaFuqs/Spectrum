@@ -3,6 +3,12 @@
     "collected_paltaeria_gem": {
       "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:hidden/collect_paltaeria_gem" }
+    },
+    "unlocked_ink": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:milestones/unlock_ink_use"
+      }
     }
   }
 }

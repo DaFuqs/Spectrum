@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
 @Mixin(Brain.class)
-public abstract class BrainMixin<E extends LivingEntity> { ;
+public abstract class BrainMixin<E extends LivingEntity> {
 
     @Shadow public abstract void doExclusively(Activity activity);
 

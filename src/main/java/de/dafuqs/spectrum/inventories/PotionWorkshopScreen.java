@@ -3,8 +3,8 @@ package de.dafuqs.spectrum.inventories;
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.blocks.potion_workshop.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screen.ingame.*;
 import net.minecraft.entity.player.*;
@@ -25,7 +25,7 @@ public class PotionWorkshopScreen extends HandledScreen<PotionWorkshopScreenHand
 		super(handler, playerInventory, title);
 		this.backgroundHeight = 202;
 		
-		if (AdvancementHelper.hasAdvancement(playerInventory.player, PotionWorkshopBlockEntity.FOURTH_BREWING_SLOT_ADVANCEMENT_IDENTIFIER)) {
+		if (AdvancementHelper.hasAdvancement(playerInventory.player, SpectrumAdvancements.FOURTH_BREWING_SLOT)) {
 			background = BACKGROUND_4_SLOTS;
 		} else {
 			background = BACKGROUND_3_SLOTS;

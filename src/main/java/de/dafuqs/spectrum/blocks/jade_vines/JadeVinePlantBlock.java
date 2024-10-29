@@ -114,7 +114,7 @@ public class JadeVinePlantBlock extends Block implements JadeVine, NaturesStaffT
 						handStack.decrement(1);
 						setHarvested(state, (ServerWorld) world, pos);
 						
-						List<ItemStack> harvestedStacks = getHarvestedStacks(state, (ServerWorld) world, pos, world.getBlockEntity(pos), player, handStack, NECTAR_HARVESTING_LOOT_IDENTIFIER);
+						List<ItemStack> harvestedStacks = getHarvestedStacks(state, (ServerWorld) world, pos, world.getBlockEntity(pos), player, handStack, SpectrumLootTables.JADE_VINE_HARVESTING_NECTAR);
 						for (ItemStack harvestedStack : harvestedStacks) {
 							player.getInventory().offerOrDrop(harvestedStack);
 						}
@@ -133,7 +133,7 @@ public class JadeVinePlantBlock extends Block implements JadeVine, NaturesStaffT
 			if (!world.isClient) {
 				setHarvested(state, (ServerWorld) world, pos);
 				
-				List<ItemStack> harvestedStacks = getHarvestedStacks(state, (ServerWorld) world, pos, world.getBlockEntity(pos), player, player.getMainHandStack(), PETAL_HARVESTING_LOOT_IDENTIFIER);
+				List<ItemStack> harvestedStacks = getHarvestedStacks(state, (ServerWorld) world, pos, world.getBlockEntity(pos), player, player.getMainHandStack(), SpectrumLootTables.JADE_VINE_HARVESTING_PETALS);
 				for (ItemStack harvestedStack : harvestedStacks) {
 					player.getInventory().offerOrDrop(harvestedStack);
 				}

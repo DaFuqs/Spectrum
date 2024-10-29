@@ -17,6 +17,12 @@
       "conditions": {
         "advancement_identifier": "spectrum:lategame/collect_moonstone"
       }
+    },
+    "unlocked_ink": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:milestones/unlock_ink_use"
+      }
     }
   }
 }

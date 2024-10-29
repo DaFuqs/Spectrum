@@ -11,6 +11,12 @@
       "conditions": {
         "advancement_identifier": "spectrum:collect_nightdew"
       }
+    },
+    "created_onyx": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:create_onyx_shard"
+      }
     }
   }
 }

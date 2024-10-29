@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.entity.entity;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.interaction.*;
+import de.dafuqs.spectrum.blocks.idols.FirestarterIdolBlock;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -18,6 +19,7 @@ import net.minecraft.entity.player.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.server.network.*;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
@@ -199,8 +201,15 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 				if (!coloredBlockState.isAir()) {
 					this.getWorld().setBlockState(blockPos, coloredBlockState);
 				}
+				if(this.getInkColor() == InkColors.ORANGE && this.getWorld().getBlockState(blockPos).getBlock() == Blocks.SNOW)
+				{
+					this.getWorld().setBlockState(blockPos, Blocks.AIR.getDefaultState());
+				}
 			}
-			
+			if(this.getInkColor() == InkColors.ORANGE)
+			{
+				FirestarterIdolBlock.causeFire((ServerWorld) this.getWorld(), blockHitResult.getBlockPos(), blockHitResult.getSide());
+			}
 			affectEntitiesInRange(this.getOwner());
 		}
 		
@@ -214,12 +223,21 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 			
 			
 			Entity entity = target; //this.getEffectCause();
-			
-			// TODO: this is a dummy effect
-			Vec3d vec3d = this.getVelocity().multiply(1.0D, 0.0D, 1.0D).normalize().multiply((double) 3 * 0.6D);
-			if (vec3d.lengthSquared() > 0.0D) {
-				entity.addVelocity(vec3d.x, 0.1D, vec3d.z);
+
+			if(this.getInkColor() == InkColors.ORANGE)
+			{
+				entity.setOnFireFor(2);
 			}
+			else
+			{
+				// TODO: this is a dummy effect
+				Vec3d vec3d = this.getVelocity().multiply(1.0D, 0.0D, 1.0D).normalize().multiply((double) 3 * 0.6D);
+				if (vec3d.lengthSquared() > 0.0D) {
+					entity.addVelocity(vec3d.x, 0.1D, vec3d.z);
+				}
+			}
+
+
 			
 			affectEntitiesInRange(this.getOwner());
 			

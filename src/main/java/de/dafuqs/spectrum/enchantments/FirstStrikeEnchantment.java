@@ -1,6 +1,8 @@
 package de.dafuqs.spectrum.enchantments;
 
+import com.sammy.malum.common.item.curiosities.weapons.scythe.MalumScytheItem;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.compat.SpectrumIntegrationPacks;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
@@ -29,7 +31,8 @@ public class FirstStrikeEnchantment extends SpectrumEnchantment {
 	
 	@Override
 	public boolean isAcceptableItem(ItemStack stack) {
-		return super.isAcceptableItem(stack) || stack.getItem() instanceof AxeItem;
+		return super.isAcceptableItem(stack) || stack.getItem() instanceof AxeItem ||
+				(SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.MALUM_ID) && stack.getItem() instanceof MalumScytheItem);
 	}
 	
 }

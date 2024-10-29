@@ -6,7 +6,7 @@
   "overrides": [
     {
       "predicate": {
-        "in_world": 1.0
+        "oversized": 1.0
       },
       "model": "spectrum:item/malachite_workstaff_oversized"
     }

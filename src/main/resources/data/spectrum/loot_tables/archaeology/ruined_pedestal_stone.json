@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:archaeology",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:nightdew_sprout",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:sniffer_egg"
+        }
+      ]
+    }
+  ],
+  "random_sequence": "spectrum:archaeology/pedestal_ruins_stone_gravel"
+}

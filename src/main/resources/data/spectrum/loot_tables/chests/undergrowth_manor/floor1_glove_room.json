@@ -1,0 +1,141 @@
+{
+    "type": "minecraft:chest",
+    "pools": [
+        {
+            "rolls": 1,
+            "entries": [
+              {
+                "type": "minecraft:item",
+                "name": "spectrum:light_blue_pigment",
+                "functions": [
+                  {
+                    "function": "minecraft:set_count",
+                    "count": {
+                      "min": 15,
+                      "max": 35
+                    }
+                  }
+                ]
+              }
+            ]
+        },
+        {
+            "rolls": 1,
+            "entries": [
+              {
+                "type": "minecraft:item",
+                "name": "spectrum:green_pigment",
+                "functions": [
+                  {
+                    "function": "minecraft:set_count",
+                    "count": {
+                      "min": 8,
+                      "max": 20
+                    }
+                  }
+                ]
+              }
+            ]
+        },
+        {
+            "rolls": 1,
+            "entries": [
+              {
+                "type": "minecraft:item",
+                "name": "minecraft:book",
+                "functions": [
+                  {
+                    "function": "minecraft:set_count",
+                    "count": {
+                      "min": 5,
+                      "max": 12
+                    }
+                  }
+                ]
+              }
+            ]
+        },
+        {
+            "rolls": 1,
+            "entries": [
+              {
+                "type": "minecraft:item",
+                "name": "minecraft:paper",
+                "functions": [
+                  {
+                    "function": "minecraft:set_count",
+                    "count": {
+                      "min": 12,
+                      "max": 18
+                    }
+                  }
+                ]
+              }
+            ]
+        },
+        {
+            "rolls": 1,
+            "bonus_rolls": 0.3,
+            "entries": [
+                {
+                "type": "minecraft:item",
+                "name": "spectrum:shimmerstone_gem"
+                },
+                {
+                "type": "minecraft:item",
+                "name": "minecraft:gold_nugget"
+                },
+                {
+                "type": "minecraft:item",
+                "name": "minecraft:iron_nugget"
+                }
+            ],
+            "functions": [
+                {
+                    "function": "minecraft:set_count",
+                    "count": {
+                        "min": 6,
+                        "max": 10
+                    }
+                }
+            ]
+        },
+        {
+            "rolls": 1,
+            "bonus_rolls": 0.5,
+            "entries": [
+              {
+                "type": "minecraft:item",
+                "name": "minecraft:netherite_scrap",
+                "functions": [
+                  {
+                    "function": "minecraft:set_count",
+                    "count": {
+                      "min": 2,
+                      "max": 5
+                    }
+                  }
+                ]
+              }
+            ]
+        },
+        {
+            "rolls": 1,
+            "entries": [
+              {
+                "type": "minecraft:item",
+                "name": "minecraft:candle",
+                "functions": [
+                  {
+                    "function": "minecraft:set_count",
+                    "count": {
+                      "min": 6,
+                      "max": 12
+                    }
+                  }
+                ]
+              }
+            ]
+        }
+    ]
+}

@@ -132,6 +132,10 @@
     "advancement": "spectrum:ascend_kindling",
     "frame": "spectrum:pile_of_poo"
   },
+  {
+    "advancement": "spectrum:midgame/become_enlightened",
+    "frame": "spectrum:pile_of_poo"
+  },
 
   {
     "advancement": "spectrum:lategame/collect_one_cookbook",

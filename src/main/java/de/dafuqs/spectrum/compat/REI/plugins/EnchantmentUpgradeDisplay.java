@@ -1,11 +1,11 @@
 package de.dafuqs.spectrum.compat.REI.plugins;
 
 import de.dafuqs.revelationary.api.advancements.*;
-import de.dafuqs.spectrum.blocks.enchanter.*;
 import de.dafuqs.spectrum.compat.REI.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.recipe.enchanter.*;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.*;
+import de.dafuqs.spectrum.registries.*;
 import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.display.basic.*;
 import me.shedaniel.rei.api.common.entry.*;
@@ -59,7 +59,7 @@ public class EnchantmentUpgradeDisplay extends EnchanterDisplay {
 			return false;
 		}
 		if (enchantmentDestinationLevel > enchantment.getMaxLevel()) {
-			return AdvancementHelper.hasAdvancement(client.player, EnchanterBlockEntity.OVERENCHANTING_ADVANCEMENT_IDENTIFIER);
+			return AdvancementHelper.hasAdvancement(client.player, SpectrumAdvancements.OVERENCHANTING);
 		} else {
 			return true;
 		}

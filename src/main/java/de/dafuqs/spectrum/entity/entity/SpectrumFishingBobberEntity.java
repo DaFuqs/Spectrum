@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.entity.entity;
 
 import com.mojang.logging.*;
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.entity.*;
 import de.dafuqs.spectrum.blocks.fluid.*;
 import de.dafuqs.spectrum.data_loaders.*;
@@ -10,6 +9,7 @@ import de.dafuqs.spectrum.enchantments.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.progression.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.data.*;
@@ -66,8 +66,6 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 	protected final int bigCatchLevel;
 	protected final int serendipityReelLevel;
 	protected final boolean inventoryInsertion;
-	
-	public static final Identifier LOOT_IDENTIFIER = SpectrumCommon.locate("gameplay/universal_fishing");
 
 	public SpectrumFishingBobberEntity(EntityType<? extends SpectrumFishingBobberEntity> type, World world,
 									   int luckOfTheSeaLevel, int lureLevel, int exuberanceLevel, int bigCatchLevel,
@@ -557,7 +555,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 				.luck((float) this.luckOfTheSeaLevel + playerEntity.getLuck())
 				.build(LootContextTypes.FISHING);
 		
-		LootTable lootTable = this.getWorld().getServer().getLootManager().getLootTable(LOOT_IDENTIFIER);
+		LootTable lootTable = this.getWorld().getServer().getLootManager().getLootTable(SpectrumLootTables.UNIVERSAL_FISHING);
 		List<ItemStack> list = lootTable.generateLoot(lootContextParameterSet);
 		SpectrumAdvancementCriteria.FISHING_ROD_HOOKED.trigger((ServerPlayerEntity) playerEntity, usedItem, this, null, list);
 		

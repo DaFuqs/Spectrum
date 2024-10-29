@@ -39,6 +39,9 @@
       "consume_chance_per_second": 0.2
     }
   ],
+  "additional_recipe_manager_outputs": [
+    "spectrum:pure_certus_quartz"
+  ],
   "fabric:load_conditions": [
     {
       "condition": "fabric:all_mods_loaded",

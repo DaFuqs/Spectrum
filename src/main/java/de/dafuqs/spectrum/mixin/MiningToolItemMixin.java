@@ -10,6 +10,7 @@ import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.registry.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.server.network.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
@@ -22,7 +23,11 @@ import static de.dafuqs.spectrum.enchantments.InertiaEnchantment.*;
 
 @Mixin(MiningToolItem.class)
 public abstract class MiningToolItemMixin {
-
+	
+	@Shadow
+	@Final
+	private TagKey<Block> effectiveBlocks;
+	
 	@Inject(at = @At("HEAD"), method = "postMine(Lnet/minecraft/item/ItemStack;Lnet/minecraft/world/World;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/LivingEntity;)Z")
 	public void countInertiaBlocks(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner, CallbackInfoReturnable<Boolean> cir) {
 		if (stack != null) { // thank you, gobber
@@ -56,7 +61,7 @@ public abstract class MiningToolItemMixin {
 		
 		// RAZING GAMING
 		int razingLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.RAZING, stack);
-		if (razingLevel > 0) {
+		if (razingLevel > 0 && state.isIn(this.effectiveBlocks)) {
 			float hardness = state.getBlock().getHardness();
 			original = (float) Math.max(1 + hardness, Math.pow(2, 1 + razingLevel / 8F));
 		}

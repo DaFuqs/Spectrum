@@ -48,6 +48,11 @@ public class ForfeitureBlock extends DecayBlock {
 		if (stateToSpreadTo.isIn(SpectrumBlockTags.FORFEITURE_SPECIAL_CONVERSIONS)) {
 			return this.getDefaultState().with(CONVERSION, Conversion.SPECIAL);
 		} else if (stateToSpreadTo.isIn(SpectrumBlockTags.FORFEITURE_CONVERSIONS)) {
+			// Protect the end portal to not lock players in the dim
+			if (world.getRegistryKey().equals(World.END) && Math.abs(stateToSpreadToPos.getX()) < 8 && Math.abs(stateToSpreadToPos.getZ()) < 8) {
+				return null;
+			}
+			
 			return this.getDefaultState().with(CONVERSION, Conversion.DEFAULT);
 		}
 		return stateToSpreadFrom.with(CONVERSION, Conversion.NONE);

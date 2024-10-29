@@ -18,7 +18,7 @@
         "item": "minecraft:charcoal"
       },
       "growth_acceleration_mod": 2.0,
-      "ink_consumption_mod": 0.25,
+      "ink_consumption_mod": 0.4,
       "consume_chance_per_second": 0.2
     },
     {
@@ -28,6 +28,14 @@
       "growth_acceleration_mod": 16.0,
       "ink_consumption_mod": 2.0,
       "consume_chance_per_second": 0.05
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:vegetal"
+      },
+      "growth_acceleration_mod": 0.75,
+      "ink_consumption_mod": 0.05,
+      "consume_chance_per_second": 0.4
     }
   ],
   "additional_recipe_manager_outputs": [

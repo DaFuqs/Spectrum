@@ -1,36 +1,26 @@
 package de.dafuqs.spectrum.blocks.deeper_down;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.deeper_down.flora.WeepingGalaFrondsBlock;
-import de.dafuqs.spectrum.helpers.BlockReference;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.loot.LootTable;
-import net.minecraft.loot.context.LootContextParameterSet;
-import net.minecraft.loot.context.LootContextParameters;
-import net.minecraft.loot.context.LootContextTypes;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.EnumProperty;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.StringIdentifiable;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
+import de.dafuqs.spectrum.blocks.deeper_down.flora.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.loot.*;
+import net.minecraft.loot.context.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.state.*;
+import net.minecraft.state.property.*;
+import net.minecraft.util.*;
+import net.minecraft.util.hit.*;
+import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 
-import java.util.List;
+import java.util.*;
 
 public class WeepingGalaFrondsTipBlock extends WeepingGalaFrondsBlock {
-
-    public static final Identifier SPRIG_LOOT_TABLE = SpectrumCommon.locate("gameplay/weeping_gala_sprig_resin");
 
     public static final EnumProperty<Form> FORM = EnumProperty.of("form", Form.class);
 
@@ -55,7 +45,7 @@ public class WeepingGalaFrondsTipBlock extends WeepingGalaFrondsBlock {
                 reference.update(world);
             }
             else {
-                for (ItemStack rareStack : getResinStacks(state, world, pos, ItemStack.EMPTY, SPRIG_LOOT_TABLE)) {
+                for (ItemStack rareStack : getResinStacks(state, world, pos, ItemStack.EMPTY, SpectrumLootTables.WEEPING_GALA_SPRIG_RESIN)) {
                     dropStack(world, pos, rareStack);
                 }
                 world.playSound(null, pos, SoundEvents.BLOCK_BEEHIVE_DRIP, SoundCategory.BLOCKS, 1, 0.9F + random.nextFloat() * 0.2F);
@@ -70,7 +60,7 @@ public class WeepingGalaFrondsTipBlock extends WeepingGalaFrondsBlock {
         var reference = BlockReference.of(state, pos);
         if (reference.getProperty(FORM) == Form.RESIN) {
             if (!world.isClient()) {
-                for (ItemStack rareStack : getResinStacks(state, (ServerWorld) world, pos, player.getMainHandStack(), SPRIG_LOOT_TABLE)) {
+                for (ItemStack rareStack : getResinStacks(state, (ServerWorld) world, pos, player.getMainHandStack(), SpectrumLootTables.WEEPING_GALA_SPRIG_RESIN)) {
                     dropStack(world, pos, rareStack);
                 }
             }

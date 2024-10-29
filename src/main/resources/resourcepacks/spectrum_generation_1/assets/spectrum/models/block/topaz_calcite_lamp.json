@@ -1,0 +1,8 @@
+{
+  "parent": "spectrum:templates/multilayer_light",
+  "textures": {
+    "top": "spectrum:block/polished_calcite",
+    "side": "spectrum:block/topaz_calcite_lamp",
+    "inside": "spectrum:block/topaz_lamp_inner"
+  }
+}

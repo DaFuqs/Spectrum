@@ -10,6 +10,7 @@ import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.screenhandler.v1.*;
+import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
@@ -34,6 +35,7 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 import java.util.stream.*;
 
+@SuppressWarnings("UnstableApiUsage")
 public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implements ExtendedScreenHandlerFactory, SidedInventory, EventQueue.Callback<Object> {
 	
 	public static final int INVENTORY_SIZE = 28;
@@ -41,7 +43,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	public static final int EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT = 27;
 	private static final int RANGE = 12;
 	private final ItemAndExperienceEventQueue itemAndExperienceEventQueue;
-	private final List<ItemStack> filterItems;
+	private final List<ItemVariant> filterItems;
 	private State state;
 	private boolean isOpen, isFull, hasXPStorage;
 	float storageTarget, storagePos, lastStorageTarget, capTarget, capPos, lastCapTarget, orbTarget, orbPos, lastOrbTarget, yawTarget, orbYaw, lastYawTarget;
@@ -51,7 +53,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	public BlackHoleChestBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntities.BLACK_HOLE_CHEST, blockPos, blockState);
 		this.itemAndExperienceEventQueue = new ItemAndExperienceEventQueue(new BlockPositionSource(this.pos), RANGE, this);
-		this.filterItems = DefaultedList.ofSize(ITEM_FILTER_SLOT_COUNT, ItemStack.EMPTY);
+		this.filterItems = DefaultedList.ofSize(ITEM_FILTER_SLOT_COUNT, ItemVariant.blank());
 	}
 
 	public static void tick(@NotNull World world, BlockPos pos, BlockState state, BlackHoleChestBlockEntity chest) {
@@ -308,11 +310,11 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 		FilterConfigurable.writeScreenOpeningData(buf, filterItems, 1, ITEM_FILTER_SLOT_COUNT, ITEM_FILTER_SLOT_COUNT);
 	}
 
-	public List<ItemStack> getItemFilters() {
+	public List<ItemVariant> getItemFilters() {
 		return this.filterItems;
 	}
 
-	public void setFilterItem(int slot, ItemStack item) {
+	public void setFilterItem(int slot, ItemVariant item) {
 		this.filterItems.set(slot, item);
 		this.markDirty();
 	}
@@ -324,7 +326,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 		
 		boolean allAir = true;
 		for (int i = 0; i < ITEM_FILTER_SLOT_COUNT; i++) {
-			ItemStack filterItem = this.filterItems.get(i);
+			ItemVariant filterItem = this.filterItems.get(i);
 			if (filterItem.getItem().equals(itemStack.getItem())) {
 				return true;
 			} else if (!filterItem.getItem().equals(Items.AIR)) {

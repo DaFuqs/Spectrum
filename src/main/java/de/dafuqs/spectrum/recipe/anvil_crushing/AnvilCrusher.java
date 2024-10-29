@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.recipe.anvil_crushing;
 
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.registries.*;
@@ -35,8 +36,8 @@ public class AnvilCrusher {
 				Vec3d position = itemEntity.getPos();
 				
 				ItemStack crushingOutput = recipe.getOutput(world.getRegistryManager()).copy();
-				crushingOutput.setCount(crushingOutput.getCount() * crushingInputAmount);
-				
+				Vec3d pos = itemEntity.getPos();
+
 				// Remove the input amount from the source stack
 				// Or the source stack altogether if it would be empty
 				int remainingItemStackAmount = itemStackAmount - crushingInputAmount;
@@ -46,9 +47,7 @@ public class AnvilCrusher {
 					itemEntity.remove(Entity.RemovalReason.DISCARDED);
 				}
 				
-				// Spawn the resulting item stack in the world
-				ItemEntity craftedEntity = new ItemEntity(world, position.x, position.y, position.z, crushingOutput);
-				world.spawnEntity(craftedEntity);
+				MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, pos, crushingOutput, crushingOutput.getCount() * crushingInputAmount, Vec3d.ZERO, false, null);
 				
 				// Spawn XP depending on how much is crafted, but at least 1
 				float craftingXPFloat = recipe.getExperience() * crushingInputAmount;

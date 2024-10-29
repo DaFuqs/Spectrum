@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.api.block;
 
 import de.dafuqs.spectrum.inventories.slots.ShadowSlot;
 import de.dafuqs.spectrum.networking.SpectrumC2SPacketSender;
+import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.*;
@@ -17,11 +18,12 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
+@SuppressWarnings("UnstableApiUsage")
 public interface FilterConfigurable {
 
-    List<ItemStack> getItemFilters();
+    List<ItemVariant> getItemFilters();
 
-    void setFilterItem(int slot, ItemStack item);
+    void setFilterItem(int slot, ItemVariant item);
 
     default int getFilterRows() {
         return 1;
@@ -35,16 +37,16 @@ public interface FilterConfigurable {
         return getItemFilters().size();
     }
 
-    static void writeFilterNbt(NbtCompound tag, List<ItemStack> filterItems) {
+    static void writeFilterNbt(NbtCompound tag, List<ItemVariant> filterItems) {
         for (int i = 0; i < filterItems.size(); i++) {
-			tag.put("FilterStack" + i, filterItems.get(i).writeNbt(new NbtCompound()));
+			tag.put("FilterStack" + i, filterItems.get(i).toNbt());
         }
     }
 
-    static void readFilterNbt(NbtCompound tag, List<ItemStack> filterItems) {
+    static void readFilterNbt(NbtCompound tag, List<ItemVariant> filterItems) {
         for (int i = 0; i < filterItems.size(); i++) {
             if (tag.contains("FilterStack" + i)) {
-				filterItems.set(i, ItemStack.fromNbt(tag.getCompound("FilterStack" + i)));
+				filterItems.set(i, ItemVariant.fromNbt(tag.getCompound("FilterStack" + i)));
             }
         }
     }
@@ -74,15 +76,15 @@ public interface FilterConfigurable {
         return getFilterInventoryFromPacketClicker(packetByteBuf, clicker);
     }
 
-    static Inventory getFilterInventoryFromItemsClicker(List<ItemStack> items, ShadowSlotClicker clicker) {
+    static Inventory getFilterInventoryFromItemsClicker(List<ItemVariant> items, ShadowSlotClicker clicker) {
         Inventory inventory = new FilterInventory(clicker, items.size());
         for (int i = 0; i < items.size(); i++) {
-            inventory.setStack(i, items.get(i));
+            inventory.setStack(i, items.get(i).toStack());
         }
         return inventory;
     }
 
-    static Inventory getFilterInventoryFromItemsHandler(int syncId, @NotNull PlayerInventory playerInventory, List<ItemStack> items, @NotNull ScreenHandler thisHandler) {
+    static Inventory getFilterInventoryFromItemsHandler(int syncId, @NotNull PlayerInventory playerInventory, List<ItemVariant> items, @NotNull ScreenHandler thisHandler) {
         final var clicker = new ShadowSlotClicker.FromHandler(thisHandler, playerInventory.player, syncId);
         return getFilterInventoryFromItemsClicker(items, clicker);
     }
@@ -146,10 +148,11 @@ public interface FilterConfigurable {
         writeScreenOpeningData(buf, configurable.getItemFilters(), configurable.getFilterRows(), configurable.getSlotsPerRow(), configurable.getDrawnSlots());
     }
 
-    static void writeScreenOpeningData(PacketByteBuf buf, List<ItemStack> filterItems, int rows, int slotsPerRow, int drawnSlots) {
+    static void writeScreenOpeningData(PacketByteBuf buf, List<ItemVariant> filterItems, int rows, int slotsPerRow, int drawnSlots) {
         buf.writeInt(filterItems.size());
-        for (ItemStack filterItem : filterItems) {
-            buf.writeItemStack(filterItem);
+        for (ItemVariant filterItem : filterItems) {
+            // The difference between just using filterItem.toNbt() is that ItemVariant nbt uses "item" while ItemStack uses "id"
+            buf.writeItemStack(filterItem.toStack());
         }
         buf.writeInt(rows);
         buf.writeInt(slotsPerRow);
@@ -157,7 +160,7 @@ public interface FilterConfigurable {
     }
 
     default boolean hasEmptyFilter() {
-        return getItemFilters().stream().allMatch(ItemStack::isEmpty);
+        return getItemFilters().stream().allMatch(ItemVariant::isBlank);
     }
 
 }

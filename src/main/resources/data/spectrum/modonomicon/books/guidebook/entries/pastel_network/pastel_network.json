@@ -30,24 +30,17 @@
       "border": false
     },
     {
-      "type": "modonomicon:spotlight",
+      "type": "spectrum:nbt_spotlight",
       "item": {
-        "item": "minecraft:name_tag"
+        "item": "minecraft:name_tag",
+        "nbt": {
+          "display": {
+            "Name": "{\"text\":\"c:ores\"}"
+          }
+        }
       },
       "title": "book.spectrum.guidebook.pastel_network.page2.title",
       "text": "book.spectrum.guidebook.pastel_network.page2.text"
-    },
-    {
-      "type": "modonomicon:spotlight",
-      "item": {
-        "item": "spectrum:bedrock_anvil"
-      },
-      "title": "book.spectrum.guidebook.pastel_network.page3.title",
-      "text": "book.spectrum.guidebook.pastel_network.page3.text",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:unlocks/equipment/bedrock_tools"
-      }
     }
   ]
 }

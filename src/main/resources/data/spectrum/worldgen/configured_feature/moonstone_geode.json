@@ -43,8 +43,8 @@
     "layers": {
       "filling": 2.8,
       "inner_layer": 3.5,
-      "middle_layer": 4.9,
-      "outer_layer": 6.0
+      "middle_layer": 4.5,
+      "outer_layer": 5.5
     },
     "crack": {
       "generate_crack_chance": 0.15,

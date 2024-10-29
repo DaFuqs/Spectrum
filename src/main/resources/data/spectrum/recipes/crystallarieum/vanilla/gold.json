@@ -23,6 +23,14 @@
     },
     {
       "ingredient": {
+        "item": "spectrum:shimmerstone_gem"
+      },
+      "growth_acceleration_mod": 8.0,
+      "ink_consumption_mod": 2.0,
+      "consume_chance_per_second": 0.05
+    },
+    {
+      "ingredient": {
         "item": "spectrum:neolith"
       },
       "growth_acceleration_mod": 1.5,

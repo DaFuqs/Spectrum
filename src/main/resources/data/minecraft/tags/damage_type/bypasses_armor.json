@@ -6,7 +6,7 @@
     "spectrum:dike_gate",
     "spectrum:deadly_poison",
     "spectrum:incandescence",
-    "spectrum:set_health_damage",
+    "spectrum:set_health",
     "spectrum:primordial_fire"
   ]
 }

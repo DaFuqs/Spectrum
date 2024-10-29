@@ -65,16 +65,16 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 			if (blockEntity instanceof TitrationBarrelBlockEntity barrelEntity) {
 				
 				BarrelState barrelState = state.get(BARREL_STATE);
+				ItemStack handStack = player.getStackInHand(hand);
 				switch (barrelState) {
 					case EMPTY, FILLED -> {
-						if (player.isSneaking()) {
+						if (player.isSneaking() && handStack.isEmpty()) {
 							if (barrelState == BarrelState.FILLED) {
 								tryExtractLastStack(state, world, pos, player, barrelEntity);
 							}
 						} else {
 							// player is able to put items in
 							// or seal it with a piece of colored wood
-							ItemStack handStack = player.getStackInHand(hand);
 							if (handStack.isEmpty()) {
 								int itemCount = InventoryHelper.countItemsInInventory(barrelEntity);
 								Fluid fluid = barrelEntity.fluidStorage.variant.getFluid();
@@ -105,7 +105,7 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 									return ActionResult.CONSUME;
 								}
 								
-								if (ContainerItemContext.forPlayerInteraction(player, hand).find(FluidStorage.ITEM) != null) {
+								if (ContainerItemContext.forPlayerInteraction(player, hand).find(FluidStorage.ITEM) != null ) {
 									if (FluidStorageUtil.interactWithFluidStorage(barrelEntity.fluidStorage, player, hand)) {
 										if (barrelEntity.getFluidVariant().isBlank()) {
 											if (state.get(BARREL_STATE) == TitrationBarrelBlock.BarrelState.FILLED && barrelEntity.isEmpty()) {
@@ -116,8 +116,8 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 												world.setBlockState(pos, state.with(BARREL_STATE, TitrationBarrelBlock.BarrelState.FILLED));
 											}
 										}
+										return ActionResult.CONSUME;
 									}
-									return ActionResult.CONSUME;
 								}
 								
 								int countBefore = handStack.getCount();

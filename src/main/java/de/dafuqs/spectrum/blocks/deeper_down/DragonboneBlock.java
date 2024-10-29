@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.deeper_down;
 
 import de.dafuqs.revelationary.api.revelations.*;
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
@@ -48,7 +47,7 @@ public class DragonboneBlock extends PillarBlock implements RevelationAware, Exp
 	
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
-		return SpectrumCommon.locate("milestones/reveal_dragonbone");
+		return SpectrumAdvancements.REVEAL_DRAGONBONE;
 	}
 	
 	@Override

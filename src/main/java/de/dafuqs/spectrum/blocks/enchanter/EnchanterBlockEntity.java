@@ -35,7 +35,6 @@ import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.stat.*;
-import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
@@ -57,9 +56,6 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	}};
 	
 	public static final int REQUIRED_TICKS_FOR_EACH_EXPERIENCE_POINT = 4;
-	public static final Identifier APPLY_CONFLICTING_ENCHANTMENTS_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("milestones/unlock_conflicted_enchanting_with_enchanter");
-	public static final Identifier OVERENCHANTING_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("milestones/unlock_overenchanting_with_enchanter");
-	
 	public static final int INVENTORY_SIZE = 2; // 0: any itemstack, 1: Knowledge Gem
 	
 	protected UUID ownerUUID;
@@ -809,8 +805,8 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	@Override
 	public void setOwner(PlayerEntity playerEntity) {
 		this.ownerUUID = playerEntity.getUuid();
-		this.canOwnerApplyConflictingEnchantments = AdvancementHelper.hasAdvancement(playerEntity, APPLY_CONFLICTING_ENCHANTMENTS_ADVANCEMENT_IDENTIFIER);
-		this.canOwnerOverenchant = AdvancementHelper.hasAdvancement(playerEntity, OVERENCHANTING_ADVANCEMENT_IDENTIFIER);
+		this.canOwnerApplyConflictingEnchantments = AdvancementHelper.hasAdvancement(playerEntity, SpectrumAdvancements.APPLY_CONFLICTING_ENCHANTMENTS);
+		this.canOwnerOverenchant = AdvancementHelper.hasAdvancement(playerEntity, SpectrumAdvancements.OVERENCHANTING);
 		markDirty();
 	}
 	

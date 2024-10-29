@@ -1,0 +1,30 @@
+{
+  "type": "alloy_forgery:forging",
+  "inputs": [
+    {
+      "item": "spectrum:pure_zinc",
+      "count": 2
+    }
+  ],
+  "output": {
+    "id": "create:zinc_ingot",
+    "count": 4
+  },
+  "overrides": {
+    "4+": {
+      "id": "create:zinc_ingot",
+      "count": 5
+    }
+  },
+  "min_forge_tier": 1,
+  "fuel_per_tick": 10,
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "alloy_forgery",
+        "create"
+      ]
+    }
+  ]
+}

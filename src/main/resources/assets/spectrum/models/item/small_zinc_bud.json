@@ -1,0 +1,6 @@
+{
+  "parent": "spectrum:templates_item/small_bud",
+  "textures": {
+    "layer0": "spectrum:block/small_zinc_bud"
+  }
+}

@@ -229,7 +229,7 @@ public class ShootingStarEntity extends Entity {
 					this.discard();
 				} else {
 					// spawn loot
-					List<ItemStack> loot = getLoot((ServerWorld) this.getWorld(), ShootingStar.Type.BOUNCE_LOOT_TABLE);
+					List<ItemStack> loot = getLoot((ServerWorld) this.getWorld(), SpectrumLootTables.SHOOTING_STAR_BOUNCE);
 					for (ItemStack itemStack : loot) {
 						ItemEntity itemEntity = new ItemEntity(this.getWorld(), this.getX(), this.getY(), this.getZ(), itemStack);
 						this.getWorld().spawnEntity(itemEntity);

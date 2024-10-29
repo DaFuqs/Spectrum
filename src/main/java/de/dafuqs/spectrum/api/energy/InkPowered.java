@@ -1,20 +1,26 @@
 package de.dafuqs.spectrum.api.energy;
 
+import com.sammy.malum.registry.common.MobEffectRegistry;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.compat.SpectrumIntegrationPacks;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.progression.*;
+import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
 import dev.emi.trinkets.api.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
+import net.minecraft.registry.Registries;
 import net.minecraft.server.network.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
+
 
 import java.util.*;
 
@@ -135,6 +141,10 @@ public interface InkPowered {
 		if (!canUse(player)) {
 			return false;
 		}
+		if(SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.MALUM_ID) && player.hasStatusEffect(Registries.STATUS_EFFECT.get(new Identifier("malum:silenced"))))
+		{
+			return false;
+		}
 		
 		// hands (main hand, too, if someone uses the staff from the offhand)
 		for (ItemStack itemStack : player.getHandItems()) {
@@ -204,6 +214,11 @@ public interface InkPowered {
 	
 	static boolean hasAvailableInk(PlayerEntity player, InkColor color, long amount) {
 		if (!canUse(player)) {
+			return false;
+		}
+
+		if(SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.MALUM_ID) && player.hasStatusEffect(Registries.STATUS_EFFECT.get(new Identifier("malum:silenced"))))
+		{
 			return false;
 		}
 		

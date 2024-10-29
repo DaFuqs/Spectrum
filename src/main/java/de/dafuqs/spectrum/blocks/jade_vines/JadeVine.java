@@ -1,14 +1,12 @@
 package de.dafuqs.spectrum.blocks.jade_vines;
 
-import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.helpers.TimeHelper;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import net.minecraft.block.*;
 import net.minecraft.particle.*;
 import net.minecraft.server.world.*;
 import net.minecraft.state.property.*;
-import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.util.shape.*;
@@ -21,9 +19,6 @@ public interface JadeVine {
 	VoxelShape BULB_SHAPE = Block.createCuboidShape(2.0D, 4.0D, 2.0D, 14.0D, 16.0D, 14.0D);
 	VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
 	VoxelShape TIP_SHAPE = Block.createCuboidShape(2.0D, 2.0D, 2.0D, 14.0D, 16.0D, 14.0D);
-	
-	Identifier PETAL_HARVESTING_LOOT_IDENTIFIER = SpectrumCommon.locate("gameplay/jade_vine_petal_harvesting");
-	Identifier NECTAR_HARVESTING_LOOT_IDENTIFIER = SpectrumCommon.locate("gameplay/jade_vine_nectar_harvesting");
 	
 	static void spawnBloomParticlesClient(World world, BlockPos blockPos) {
 		spawnParticlesClient(world, blockPos, SpectrumParticleTypes.JADE_VINES_BLOOM);

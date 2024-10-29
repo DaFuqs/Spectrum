@@ -73,14 +73,14 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	protected BlockApiCache<Storage<ItemVariant>, Direction> connectedStorageCache = null;
 	protected Direction cachedDirection = null;
 
-	private final List<ItemStack> filterItems;
+	private final List<ItemVariant> filterItems;
 	float rotationTarget, crystalRotation, lastRotationTarget, heightTarget, crystalHeight, lastHeightTarget, alphaTarget, ringAlpha, lastAlphaTarget;
 	long creationStamp = -1, interpTicks, interpLength = -1, spinTicks;
 	private State state;
 
 	public PastelNodeBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntities.PASTEL_NODE, blockPos, blockState);
-		this.filterItems = DefaultedList.ofSize(MAX_FILTER_SLOTS, ItemStack.EMPTY);
+		this.filterItems = DefaultedList.ofSize(MAX_FILTER_SLOTS, ItemVariant.blank());
 		this.outerRing = Optional.empty();
 		this.innerRing = Optional.empty();
 		this.redstoneRing = Optional.empty();
@@ -245,7 +245,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 
 		if (filterSlotRows < oldFilterSlotCount) {
 			for (int i = getDrawnSlots(); i < filterItems.size(); i++) {
-				filterItems.set(i, ItemStack.EMPTY);
+				filterItems.set(i, ItemVariant.blank());
 			}
 		}
 
@@ -486,12 +486,12 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	}
 
 	@Override
-	public List<ItemStack> getItemFilters() {
+	public List<ItemVariant> getItemFilters() {
 		return this.filterItems;
 	}
 
 	@Override
-	public void setFilterItem(int slot, ItemStack item) {
+	public void setFilterItem(int slot, ItemVariant item) {
 		this.filterItems.set(slot, item);
 	}
 
@@ -513,21 +513,22 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	private boolean filter(ItemVariant variant) {
 		return filterItems
 				.stream()
-				.anyMatch(stack -> {
-					if (LoreHelper.hasLore(stack)) {
+				.anyMatch(filterItem -> {
+					ItemStack filterStack = filterItem.toStack();
+					if (LoreHelper.hasLore(filterStack)) {
 						if (variant.getNbt() == null)
 							return false;
 
-						for (Text text : LoreHelper.getLoreList(stack)) {
-							if (!testNBTPredicates(text.getString(), stack, variant))
+						for (Text text : LoreHelper.getLoreList(filterStack)) {
+							if (!testNBTPredicates(text.getString(), filterStack, variant))
 								return false;
 						}
 					}
 
-					if (!stack.hasCustomName() || !stack.isIn(SpectrumItemTags.TAG_FILTERING_ITEMS))
-						return stack.getItem() == variant.getItem();
+					if (!filterStack.hasCustomName() || !filterStack.isIn(SpectrumItemTags.TAG_FILTERING_ITEMS))
+						return filterStack.getItem() == variant.getItem();
 
-					var name = StringUtils.trim(stack.getName().getString());
+					var name = StringUtils.trim(filterStack.getName().getString());
 
 					// This is to allow nbt filtering without item / tag filtering.
 					if (StringUtils.equalsAnyIgnoreCase(name, "*", "any", "all", "everything", "c:*", "c:any", "c:all", "c:everything"))

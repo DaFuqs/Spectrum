@@ -38,6 +38,9 @@
       "consume_chance_per_second": 0.1
     }
   ],
+  "additional_recipe_manager_outputs": [
+    "spectrum:pure_globette_end"
+  ],
   "fabric:load_conditions": [
     {
       "condition": "fabric:all_mods_loaded",

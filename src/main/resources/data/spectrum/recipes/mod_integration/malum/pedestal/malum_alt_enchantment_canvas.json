@@ -1,0 +1,37 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 40,
+  "tier": "simple",
+  "cyan": 8,
+  "magenta": 2,
+  "yellow": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 2.0,
+  "pattern": [
+    "PCP",
+    "C C",
+    "PCP"
+  ],
+  "key": {
+    "C": {
+      "item": "malum:astral_weave"
+    },
+    "P": {
+      "item": "spectrum:purple_pigment"
+    }
+  },
+  "result": {
+    "item": "spectrum:enchantment_canvas",
+    "count": 2
+  },
+  "required_advancement": "spectrum:unlocks/items/enchantment_canvas",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "malum"
+      ]
+    }
+  ]
+}

@@ -2,12 +2,18 @@
   "values": [
     "#spectrum:decay/decay",
     "spectrum:black_materia",
-
     {
       "id": "kibe:cursed_dirt",
       "required": false
     },
-
+    {
+      "id": "malum:blighted_soil",
+      "required": false
+    },
+    {
+      "id": "malum:blighted_earth",
+      "required": false
+    },
     "minecraft:sculk",
     "minecraft:sculk_catalyst"
   ]

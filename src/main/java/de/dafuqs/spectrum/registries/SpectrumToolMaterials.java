@@ -11,6 +11,7 @@ public class SpectrumToolMaterials {
 	
 	public enum ToolMaterial implements net.minecraft.item.ToolMaterial {
 		LOW_HEALTH(IRON.getMiningLevel(), 16, 4.0F, 2.0F, 10, Ingredient::empty),
+		LOW_HEALTH_MINING_LEVEL_4(4, 16, 4.0F, 2.0F, 10, Ingredient::empty),
 		VOIDING(DIAMOND.getMiningLevel(), 1143, 20.0F, 1.0F, 5, Ingredient::empty),
 
 		BEDROCK(4, 0, 15.0F, 5.0F, 3, () -> Ingredient.ofItems(SpectrumItems.BEDROCK_DUST)),

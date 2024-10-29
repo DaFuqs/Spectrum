@@ -10,6 +10,7 @@ import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.blocks.mob_head.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.compat.ae2.*;
+import de.dafuqs.spectrum.compat.create.CreateCompat;
 import de.dafuqs.spectrum.compat.gobber.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.food.beverages.*;
@@ -724,6 +725,15 @@ public class SpectrumItemGroups {
 			entries.add(AE2Compat.FLUIX_CLUSTER);
 			entries.add(AE2Compat.PURE_FLUIX_BLOCK);
 		}
+
+		if (SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.CREATE_ID))
+		{
+			entries.add(CreateCompat.PURE_ZINC);
+			entries.add(CreateCompat.SMALL_ZINC_BUD);
+			entries.add(CreateCompat.LARGE_ZINC_BUD);
+			entries.add(CreateCompat.ZINC_CLUSTER);
+			entries.add(CreateCompat.PURE_ZINC_BLOCK);
+		}
 		
 		if (SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.GOBBER_ID)) {
 			entries.add(GobberCompat.PURE_GLOBETTE);
@@ -769,6 +779,9 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.BASALT_TILE_SLAB);
 		entries.add(SpectrumBlocks.BASALT_TILE_WALL);
 		entries.add(SpectrumBlocks.PLANED_BASALT);
+		entries.add(SpectrumBlocks.PLANED_BASALT_SLAB);
+		entries.add(SpectrumBlocks.PLANED_BASALT_STAIRS);
+		entries.add(SpectrumBlocks.PLANED_BASALT_WALL);
 		entries.add(SpectrumBlocks.CRACKED_BASALT_TILES);
 		entries.add(SpectrumBlocks.POLISHED_BASALT_BUTTON);
 		entries.add(SpectrumBlocks.POLISHED_BASALT_PRESSURE_PLATE);
@@ -794,6 +807,9 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.CALCITE_TILE_SLAB);
 		entries.add(SpectrumBlocks.CALCITE_TILE_WALL);
 		entries.add(SpectrumBlocks.PLANED_CALCITE);
+		entries.add(SpectrumBlocks.PLANED_CALCITE_SLAB);
+		entries.add(SpectrumBlocks.PLANED_CALCITE_STAIRS);
+		entries.add(SpectrumBlocks.PLANED_CALCITE_WALL);
 		entries.add(SpectrumBlocks.CRACKED_CALCITE_TILES);
 		entries.add(SpectrumBlocks.POLISHED_CALCITE_BUTTON);
 		entries.add(SpectrumBlocks.POLISHED_CALCITE_PRESSURE_PLATE);
@@ -883,13 +899,19 @@ public class SpectrumItemGroups {
 
 		entries.add(SpectrumItems.PYRITE_CHUNK);
 		entries.add(SpectrumBlocks.PYRITE);
+		entries.add(SpectrumBlocks.PYRITE_SLAB);
+		entries.add(SpectrumBlocks.PYRITE_STAIRS);
+		entries.add(SpectrumBlocks.PYRITE_WALL);
 		entries.add(SpectrumBlocks.PYRITE_PILE);
 		entries.add(SpectrumBlocks.PYRITE_TILES);
+		entries.add(SpectrumBlocks.PYRITE_TILES_SLAB);
+		entries.add(SpectrumBlocks.PYRITE_TILES_STAIRS);
+		entries.add(SpectrumBlocks.PYRITE_TILES_WALL);
 		entries.add(SpectrumBlocks.PYRITE_PLATING);
 		entries.add(SpectrumBlocks.PYRITE_TUBING);
 		entries.add(SpectrumBlocks.PYRITE_RELIEF);
 		entries.add(SpectrumBlocks.PYRITE_STACK);
-		entries.add(SpectrumBlocks.PYRITE_PANNELING);
+		entries.add(SpectrumBlocks.PYRITE_PANELING);
 		entries.add(SpectrumBlocks.PYRITE_VENT);
 		entries.add(SpectrumBlocks.PYRITE_RIPPER);
 		entries.add(SpectrumBlocks.PYRITE_PROJECTOR);

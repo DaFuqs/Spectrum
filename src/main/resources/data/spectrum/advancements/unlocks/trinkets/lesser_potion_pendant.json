@@ -29,6 +29,12 @@
       "conditions": {
         "advancement_identifier": "spectrum:hidden/collect_stratine_gem"
       }
+    },
+    "unlocked_ink": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:milestones/unlock_ink_use"
+      }
     }
   },
   "requirements": [
@@ -42,6 +48,9 @@
     ],
     [
       "collected_stratine_gem"
+    ],
+    [
+      "unlocked_ink"
     ]
   ]
 }

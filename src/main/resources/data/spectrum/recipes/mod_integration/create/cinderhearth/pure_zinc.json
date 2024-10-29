@@ -1,0 +1,23 @@
+{
+  "type": "spectrum:cinderhearth",
+  "ingredient": {
+    "item": "spectrum:pure_zinc"
+  },
+  "results": [
+    {
+      "item": "create:zinc_ingot",
+      "count": 2
+    }
+  ],
+  "experience": 0.5,
+  "time": 200,
+  "required_advancement": "spectrum:lategame/collect_pure_resource",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "create"
+      ]
+    }
+  ]
+}

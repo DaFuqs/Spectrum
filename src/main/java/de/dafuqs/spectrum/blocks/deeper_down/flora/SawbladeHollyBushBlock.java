@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.deeper_down.flora;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.jade_vines.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.tag.convention.v1.*;
@@ -30,9 +29,6 @@ public class SawbladeHollyBushBlock extends PlantBlock implements Fertilizable {
     public static final IntProperty AGE = Properties.AGE_7;
     private static final VoxelShape SMALL_SHAPE = Block.createCuboidShape(3.0, 0.0, 3.0, 13.0, 8.0, 13.0);
     private static final VoxelShape LARGE_SHAPE = Block.createCuboidShape(1.0, 0.0, 1.0, 15.0, 16.0, 15.0);
-    
-    public static final Identifier HARVESTING_LOOT_TABLE_ID = SpectrumCommon.locate("gameplay/sawblade_holly_harvesting");
-    public static final Identifier SHEARING_LOOT_TABLE_ID = SpectrumCommon.locate("gameplay/sawblade_holly_shearing");
     
     public SawbladeHollyBushBlock(Settings settings) {
         super(settings);
@@ -105,7 +101,7 @@ public class SawbladeHollyBushBlock extends PlantBlock implements Fertilizable {
         ItemStack handStack = player.getStackInHand(hand);
         if (canBeSheared(age) && handStack.isIn(ConventionalItemTags.SHEARS)) {
             if (!world.isClient) {
-                for (ItemStack stack : JadeVinePlantBlock.getHarvestedStacks(state, (ServerWorld) world, pos, world.getBlockEntity(pos), player, player.getMainHandStack(), SHEARING_LOOT_TABLE_ID)) {
+				for (ItemStack stack : JadeVinePlantBlock.getHarvestedStacks(state, (ServerWorld) world, pos, world.getBlockEntity(pos), player, player.getMainHandStack(), SpectrumLootTables.SAWBLADE_HOLLY_SHEARING)) {
                     dropStack(world, pos, stack);
                 }
                 handStack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
@@ -119,7 +115,7 @@ public class SawbladeHollyBushBlock extends PlantBlock implements Fertilizable {
             return ActionResult.success(world.isClient);
         } else if (age == MAX_AGE) {
             if (!world.isClient) {
-                for (ItemStack stack : JadeVinePlantBlock.getHarvestedStacks(state, (ServerWorld) world, pos, world.getBlockEntity(pos), player, player.getMainHandStack(), HARVESTING_LOOT_TABLE_ID)) {
+				for (ItemStack stack : JadeVinePlantBlock.getHarvestedStacks(state, (ServerWorld) world, pos, world.getBlockEntity(pos), player, player.getMainHandStack(), SpectrumLootTables.SAWBLADE_HOLLY_HARVESTING)) {
                     dropStack(world, pos, stack);
                 }
             }

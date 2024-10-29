@@ -1,0 +1,22 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": {
+    "item": "malum:soulstone_ore"
+  },
+  "crushedItemsPerPointOfDamage": 0.75,
+  "experience": 0.5,
+  "result": {
+    "item": "malum:crushed_soulstone"
+  },
+  "particleEffectIdentifier": "enchanted_hit",
+  "soundEventIdentifier": "block.metal.break",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "create",
+        "malum"
+      ]
+    }
+  ]
+}

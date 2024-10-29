@@ -35,7 +35,7 @@
       },
       "growth_acceleration_mod": 1.25,
       "ink_consumption_mod": 1.0,
-      "consume_chance_per_second": 0.0
+      "consume_chance_per_second": 0.0002
     }
   ],
   "additional_recipe_manager_outputs": [

@@ -6,14 +6,14 @@
   "overrides": [
     {
       "predicate": {
-        "in_world": 1.0,
+        "oversized": 1.0,
         "bident_throwing": 0.0
       },
       "model": "spectrum:item/malachite_bident_oversized"
     },
     {
       "predicate": {
-        "in_world": 1.0,
+        "oversized": 1.0,
         "bident_throwing": 0.5
       },
       "model": "spectrum:item/malachite_bident_oversized_throwing"

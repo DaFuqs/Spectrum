@@ -1,0 +1,29 @@
+{
+  "type": "spectrum:spirit_instiller",
+  "time": 150,
+  "experience": 0.75,
+  "ingredient1": {
+    "item": "malum:blighted_gunk"
+  },
+  "ingredient2": {
+    "item": "spectrum:light_gray_pigment",
+    "count": 4
+  },
+  "center_ingredient": {
+    "item": "malum:null_slate",
+    "count": 2
+  },
+  "result": {
+    "item": "malum:arcane_spirit",
+    "count": 2
+  },
+  "required_advancement": "spectrum:mod_integration/malum/understand_color_and_spirit",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "malum"
+      ]
+    }
+  ]
+}

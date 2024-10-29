@@ -129,7 +129,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 		return original;
 	}
 
-	@ModifyVariable(method = "attack", at = @At(value = "STORE:LAST"), index = 8, require = 1, allow = 1)
+	@ModifyVariable(method = "attack", at = @At(value = "STORE"), index = 8, require = 1)
 	private boolean spectrum$binglebongle(boolean value, Entity target) {
 		if (hasForcedCrits(target)) {
 			return true;

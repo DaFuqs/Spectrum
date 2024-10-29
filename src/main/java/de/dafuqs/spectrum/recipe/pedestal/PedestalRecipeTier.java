@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.recipe.pedestal;
 
 import de.dafuqs.revelationary.api.advancements.*;
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.entity.player.*;
@@ -12,10 +11,10 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 public enum PedestalRecipeTier {
-	BASIC(SpectrumCommon.locate("place_pedestal"), new GemstoneColor[]{BuiltinGemstoneColor.CYAN, BuiltinGemstoneColor.MAGENTA, BuiltinGemstoneColor.YELLOW}),
-	SIMPLE(SpectrumCommon.locate("build_basic_pedestal_structure"), new GemstoneColor[]{BuiltinGemstoneColor.CYAN, BuiltinGemstoneColor.MAGENTA, BuiltinGemstoneColor.YELLOW}),
-	ADVANCED(SpectrumCommon.locate("midgame/build_advanced_pedestal_structure"), new GemstoneColor[]{BuiltinGemstoneColor.CYAN, BuiltinGemstoneColor.MAGENTA, BuiltinGemstoneColor.YELLOW, BuiltinGemstoneColor.BLACK}),
-	COMPLEX(SpectrumCommon.locate("lategame/build_complex_pedestal_structure"), BuiltinGemstoneColor.values());
+	BASIC(SpectrumAdvancements.PLACED_PEDESTAL, new GemstoneColor[]{BuiltinGemstoneColor.CYAN, BuiltinGemstoneColor.MAGENTA, BuiltinGemstoneColor.YELLOW}),
+	SIMPLE(SpectrumAdvancements.BUILD_BASIC_PEDESTAL_STRUCTURE, new GemstoneColor[]{BuiltinGemstoneColor.CYAN, BuiltinGemstoneColor.MAGENTA, BuiltinGemstoneColor.YELLOW}),
+	ADVANCED(SpectrumAdvancements.BUILD_ADVANCED_PEDESTAL_STRUCTURE, new GemstoneColor[]{BuiltinGemstoneColor.CYAN, BuiltinGemstoneColor.MAGENTA, BuiltinGemstoneColor.YELLOW, BuiltinGemstoneColor.BLACK}),
+	COMPLEX(SpectrumAdvancements.BUILD_COMPLEX_PEDESTAL_STRUCTURE, BuiltinGemstoneColor.values());
 	
 	private final Identifier unlockAdvancementId;
 	private final GemstoneColor[] gemstoneColors;
@@ -71,7 +70,7 @@ public enum PedestalRecipeTier {
 	public @Nullable Identifier getStructureID(PlayerEntity player) {
 		switch (this) {
 			case COMPLEX -> {
-				if (AdvancementHelper.hasAdvancement(player, SpectrumCommon.locate("lategame/build_complex_pedestal_structure_without_moonstone"))) {
+				if (AdvancementHelper.hasAdvancement(player, SpectrumAdvancements.BUILD_COMPLEX_PEDESTAL_STRUCTURE_WITHOUT_MOONSTONE)) {
 					return SpectrumMultiblocks.PEDESTAL_COMPLEX;
 				} else {
 					return SpectrumMultiblocks.PEDESTAL_COMPLEX_WITHOUT_MOONSTONE;

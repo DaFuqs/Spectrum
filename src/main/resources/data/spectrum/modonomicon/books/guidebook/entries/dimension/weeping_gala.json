@@ -2,7 +2,7 @@
   "name": "book.spectrum.guidebook.weeping_gala.name",
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:hidden/collect_weeping_gala"
+    "advancement_id": "spectrum:hidden/discover_weeping_gala"
   },
   "icon": "spectrum:weeping_gala_sprig",
   "category": "spectrum:dimension",

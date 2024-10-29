@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.compat.REI.plugins;
 
 import de.dafuqs.revelationary.api.advancements.*;
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.REI.*;
+import de.dafuqs.spectrum.registries.*;
 import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.display.basic.*;
 import me.shedaniel.rei.api.common.entry.*;
@@ -15,7 +15,6 @@ import java.util.*;
 
 public class NaturesStaffConversionsDisplay extends BasicDisplay implements GatedRecipeDisplay {
 	
-	public static final Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("unlocks/items/natures_staff");
 	private final @Nullable Identifier requiredAdvancementIdentifier;
 	
 	public NaturesStaffConversionsDisplay(EntryStack<?> in, EntryStack<?> out, @Nullable Identifier requiredAdvancementIdentifier) {
@@ -32,7 +31,7 @@ public class NaturesStaffConversionsDisplay extends BasicDisplay implements Gate
     public boolean isUnlocked() {
 		MinecraftClient client = MinecraftClient.getInstance();
 		return AdvancementHelper.hasAdvancement(client.player, this.requiredAdvancementIdentifier)
-				&& AdvancementHelper.hasAdvancement(client.player, UNLOCK_ADVANCEMENT_IDENTIFIER);
+				&& AdvancementHelper.hasAdvancement(client.player, SpectrumAdvancements.UNLOCK_NATURES_STAFF);
 	}
 	
 	@Override

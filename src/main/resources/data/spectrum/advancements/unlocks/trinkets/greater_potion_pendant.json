@@ -41,6 +41,12 @@
       "conditions": {
         "advancement_identifier": "spectrum:hidden/collect_pigment/white"
       }
+    },
+    "unlocked_ink": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:milestones/unlock_ink_use"
+      }
     }
   },
   "requirements": [
@@ -60,6 +66,9 @@
     ],
     [
       "collected_white_pigment"
+    ],
+    [
+      "unlocked_ink"
     ]
   ]
 }

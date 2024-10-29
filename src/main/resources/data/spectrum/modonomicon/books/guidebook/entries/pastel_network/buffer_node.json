@@ -9,8 +9,7 @@
   "hide_while_locked": true,
   "parents": [
     {
-      "entry": "spectrum:pastel_network/pastel_network",
-      "line_reversed": true
+      "entry": "spectrum:pastel_network/gather_node"
     }
   ],
   "background_u_index": 0,

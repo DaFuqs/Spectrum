@@ -85,15 +85,6 @@
           }
         }
       ]
-    },
-    {
-      "rolls": 1,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:sniffer_egg"
-        }
-      ]
     }
   ]
 }

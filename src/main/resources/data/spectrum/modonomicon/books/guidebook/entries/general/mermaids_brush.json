@@ -20,7 +20,7 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.mermaids_brush.name",
+      "title": "book.spectrum.guidebook.mermaids_brush.page1.title",
       "item": {
         "item": "spectrum:mermaids_gem"
       },

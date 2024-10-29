@@ -15,14 +15,6 @@
   "catalysts": [
     {
       "ingredient": {
-        "item": "spectrum:pure_copper"
-      },
-      "growth_acceleration_mod": 1.708,
-      "ink_consumption_mod": 0.707,
-      "consume_chance_per_second": 0.01
-    },
-    {
-      "ingredient": {
         "item": "minecraft:raw_copper"
       },
       "growth_acceleration_mod": 7.5,
@@ -36,6 +28,14 @@
       "growth_acceleration_mod": 1.0,
       "ink_consumption_mod": 0.5,
       "consume_chance_per_second": 0.15
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:pure_copper"
+      },
+      "growth_acceleration_mod": 1.708,
+      "ink_consumption_mod": 0.707,
+      "consume_chance_per_second": 0.01
     }
   ],
   "additional_recipe_manager_outputs": [

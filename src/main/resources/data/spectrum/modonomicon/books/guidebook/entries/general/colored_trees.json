@@ -36,29 +36,6 @@
       "text": "book.spectrum.guidebook.colored_trees.page1.text"
     },
     {
-      "type": "modonomicon:image",
-      "title": "book.spectrum.guidebook.colored_trees.page2.title",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:craft_colored_sapling"
-      },
-      "images": [
-        "spectrum:textures/gui/guidebook/colored_trees.png"
-      ],
-      "text": "book.spectrum.guidebook.colored_trees.page2.text"
-    },
-    {
-      "type": "modonomicon:crafting_recipe",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:craft_colored_sapling"
-      },
-      "anchor": "colored_wood",
-      "title": "",
-      "recipe_id_1": "spectrum:crafting_table/colored_wood/light_blue_planks",
-      "text": "book.spectrum.guidebook.colored_trees.page3.text"
-    },
-    {
       "type": "spectrum:pedestal_crafting",
       "recipe_id": "spectrum:pedestal/tier1/saplings/black"
     },
@@ -121,6 +98,39 @@
     {
       "type": "spectrum:pedestal_crafting",
       "recipe_id": "spectrum:pedestal/tier1/saplings/yellow"
+    },
+    {
+      "type": "modonomicon:image",
+      "title": "book.spectrum.guidebook.colored_trees.natural_generation.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:craft_colored_sapling"
+      },
+      "images": [
+        "spectrum:textures/gui/guidebook/colored_trees.png"
+      ],
+      "text": "book.spectrum.guidebook.colored_trees.natural_generation.text"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:collect_pigment"
+      },
+      "anchor": "colored_wood",
+      "title": "book.spectrum.guidebook.colored_trees.colored_wood.title",
+      "recipe_id_1": "spectrum:crafting_table/colored_wood/light_blue_planks",
+      "text": "book.spectrum.guidebook.colored_trees.colored_wood.text"
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:collect_pigment"
+      },
+      "title": "book.spectrum.guidebook.colored_trees.leaf_crushing.title",
+      "recipe_id": "spectrum:anvil_crushing/colored_leaves/light_blue",
+      "text": "book.spectrum.guidebook.colored_trees.leaf_crushing.text"
     }
   ]
 }

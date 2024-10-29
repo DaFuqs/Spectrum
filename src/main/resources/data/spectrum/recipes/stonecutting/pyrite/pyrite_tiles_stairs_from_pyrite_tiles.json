@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "spectrum:pyrite_tiles"
+  },
+  "result": "spectrum:pyrite_tiles_stairs",
+  "count": 1
+}

@@ -26,11 +26,11 @@ import java.util.*;
 
 public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<Inventory> {
 	
-	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("midgame/build_spirit_instiller_structure");
-	
 	public static final int CENTER_INGREDIENT = 0;
 	public static final int FIRST_INGREDIENT = 1;
 	public static final int SECOND_INGREDIENT = 2;
+	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("midgame/build_spirit_instiller_structure");
+	;
 	
 	protected final IngredientStack centerIngredient;
 	protected final IngredientStack bowlIngredient1;

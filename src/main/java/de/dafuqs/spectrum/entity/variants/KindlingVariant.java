@@ -9,8 +9,7 @@ public record KindlingVariant(Identifier defaultTexture, Identifier blinkingText
 							  Identifier clippedTexture, Identifier blinkingClippedTexture,
 							  Identifier angryClippedTexture, Identifier clippingLootTable) {
 	
-	public static final Identifier DEFAULT_CLIPPING_LOOT_TABLE = SpectrumCommon.locate("gameplay/kindling_clipping");
-	public static final KindlingVariant DEFAULT = register("default", "textures/entity/kindling/kindling.png", "textures/entity/kindling/kindling_blink.png", "textures/entity/kindling/kindling_angry.png", "textures/entity/kindling/kindling_clipped.png", "textures/entity/kindling/kindling_blink_clipped.png", "textures/entity/kindling/kindling_angry_clipped.png", DEFAULT_CLIPPING_LOOT_TABLE);
+	public static final KindlingVariant DEFAULT = register("default", "textures/entity/kindling/kindling.png", "textures/entity/kindling/kindling_blink.png", "textures/entity/kindling/kindling_angry.png", "textures/entity/kindling/kindling_clipped.png", "textures/entity/kindling/kindling_blink_clipped.png", "textures/entity/kindling/kindling_angry_clipped.png", SpectrumLootTables.KINDLING_CLIPPING);
 	
 	private static KindlingVariant register(String name, String defaultTexture, String blinkingTexture, String angryTexture, String clippedTexture, String blinkingClippedTexture, String angryClippedTexture, Identifier clippingLootTable) {
 		return Registry.register(SpectrumRegistries.KINDLING_VARIANT, SpectrumCommon.locate(name), new KindlingVariant(SpectrumCommon.locate(defaultTexture), SpectrumCommon.locate(blinkingTexture), SpectrumCommon.locate(angryTexture), SpectrumCommon.locate(clippedTexture), SpectrumCommon.locate(blinkingClippedTexture), SpectrumCommon.locate(angryClippedTexture), clippingLootTable));

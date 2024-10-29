@@ -9,11 +9,12 @@ import net.minecraft.util.*;
 public class FDCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	
 	private static final Identifier AMARANTH_LOOT_TABLE_ID = SpectrumCommon.locate("blocks/amaranth");
+	private static final Identifier FD_AMARANTH_LOOT_TABLE_ID = SpectrumCommon.locate("mod_integration/farmers_delight/amaranth");
 	
 	public void register() {
 		LootTableEvents.REPLACE.register((resourceManager, lootManager, id, original, source) -> {
 			if (AMARANTH_LOOT_TABLE_ID.equals(id)) {
-				return lootManager.getLootTable(SpectrumCommon.locate("mod_integration/farmers_delight/amaranth"));
+				return lootManager.getLootTable(FD_AMARANTH_LOOT_TABLE_ID);
 			}
 			return original;
 		});

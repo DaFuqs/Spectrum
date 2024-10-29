@@ -6,10 +6,10 @@
         "advancement_identifier": "spectrum:unlocks/blocks/liquid_crystal"
       }
     },
-    "filled_ink_container": {
+    "unlocked_ink": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:midgame/fill_ink_container"
+        "advancement_identifier": "spectrum:milestones/unlock_ink_use"
       }
     },
     "collected_stratine_gem": {

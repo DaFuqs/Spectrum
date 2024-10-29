@@ -7,6 +7,7 @@
     "spectrum:basalt_tile_wall",
 
     "spectrum:calcite_wall",
+    "spectrum:planed_calcite_wall",
     "spectrum:polished_calcite_wall",
     "spectrum:calcite_brick_wall",
     "spectrum:calcite_tile_wall",
@@ -30,6 +31,9 @@
     "spectrum:polished_bone_ash_wall",
     "spectrum:bone_ash_brick_wall",
     "spectrum:bone_ash_tile_wall",
-    "spectrum:preservation_wall"
+    "spectrum:preservation_wall",
+
+    "spectrum:pyrite_wall",
+    "spectrum:pyrite_tiles_wall"
   ]
 }

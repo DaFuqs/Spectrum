@@ -94,8 +94,8 @@ public class BlockBreakerBlock extends RedstoneInteractionBlock implements Block
 		world.playSound(null, pos, blockState.getSoundGroup().getBreakSound(), SoundCategory.BLOCKS, 0.2f, (1.0f + world.random.nextFloat()) * 2f);
 		
 		BlockEntity blockEntity = blockState.hasBlockEntity() ? world.getBlockEntity(pos) : null;
-		if (BREAK_STACK == null) { // we do it here instead of it being final because of load order shenanigans
-			BREAK_STACK = SpectrumItems.MULTITOOL.getDefaultStack();
+		if (BREAK_STACK == null) { // we initialize the item here instead of it being final because of load order shenanigans
+			BREAK_STACK = new ItemStack(SpectrumItems.MALACHITE_WORKSTAFF);
 		}
 		Block.dropStacks(blockState, world, pos, blockEntity, breaker, BREAK_STACK);
 		

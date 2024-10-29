@@ -189,19 +189,19 @@ public class SpectrumLootPoolModifiers {
 				tableBuilder.pool(getFrogLootPool(FrogVariant.WARM, SpectrumSkullBlock.getBlock(SpectrumSkullType.FROG_WARM).get().asItem(), 0.02F));
 			} else if (GoFishCompat.isLoaded()) {
 				//Go-Fish compat: fishing of crates & go-fish fishies
-				if (id.equals(SpectrumCommon.locate("gameplay/fishing/lava/fishing"))) {
+				if (id.equals(SpectrumLootTables.LAVA_FISHING)) {
 					tableBuilder.modifyPools(builder -> builder.with(LootTableEntry.builder(GoFishCompat.NETHER_FISH_LOOT_TABLE_ID).weight(80).quality(-1).build()));
 					tableBuilder.modifyPools(builder -> builder.with(LootTableEntry.builder(GoFishCompat.NETHER_CRATES_LOOT_TABLE_ID).weight(5).quality(2).conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, new EntityPredicate.Builder().typeSpecific(FishingHookPredicate.of(true)).build()))));
-				} else if (id.equals(SpectrumCommon.locate("gameplay/fishing/end/fishing"))) {
+				} else if (id.equals(SpectrumLootTables.END_FISHING)) {
 					tableBuilder.modifyPools(builder -> builder.with(LootTableEntry.builder(GoFishCompat.END_FISH_LOOT_TABLE_ID).weight(90).quality(-1).build()));
 					tableBuilder.modifyPools(builder -> builder.with(LootTableEntry.builder(GoFishCompat.END_CRATES_LOOT_TABLE_ID).weight(5).quality(2).conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, new EntityPredicate.Builder().typeSpecific(FishingHookPredicate.of(true)).build()))));
-				} else if (id.equals(SpectrumCommon.locate("gameplay/fishing/deeper_down/fishing"))) {
+				} else if (id.equals(SpectrumLootTables.DEEPER_DOWN_FISHING)) {
 					tableBuilder.modifyPools(builder -> builder.with(LootTableEntry.builder(GoFishCompat.DEFAULT_CRATES_LOOT_TABLE_ID).weight(5).quality(2).conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, new EntityPredicate.Builder().typeSpecific(FishingHookPredicate.of(true)).build()))));
-				} else if (id.equals(SpectrumCommon.locate("gameplay/fishing/mud/fishing"))) {
+				} else if (id.equals(SpectrumLootTables.MUD_FISHING)) {
 					tableBuilder.modifyPools(builder -> builder.with(LootTableEntry.builder(GoFishCompat.DEFAULT_CRATES_LOOT_TABLE_ID).weight(5).quality(2).conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, new EntityPredicate.Builder().typeSpecific(FishingHookPredicate.of(true)).build()))));
-				} else if (id.equals(SpectrumCommon.locate("gameplay/fishing/liquid_crystal/fishing"))) {
+				} else if (id.equals(SpectrumLootTables.LIQUID_CRYSTAL_FISHING)) {
 					tableBuilder.modifyPools(builder -> builder.with(LootTableEntry.builder(GoFishCompat.DEFAULT_CRATES_LOOT_TABLE_ID).weight(5).quality(2).conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, new EntityPredicate.Builder().typeSpecific(FishingHookPredicate.of(true)).build()))));
-				} else if (id.equals(SpectrumCommon.locate("gameplay/fishing/midnight_solution/fishing"))) {
+				} else if (id.equals(SpectrumLootTables.MIDNIGHT_SOLUTION_FISHING)) {
 					tableBuilder.modifyPools(builder -> builder.with(LootTableEntry.builder(GoFishCompat.DEFAULT_CRATES_LOOT_TABLE_ID).weight(5).quality(2).conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, new EntityPredicate.Builder().typeSpecific(FishingHookPredicate.of(true)).build()))));
 				}
 			}

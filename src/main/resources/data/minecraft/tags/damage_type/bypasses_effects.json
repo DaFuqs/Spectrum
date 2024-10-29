@@ -1,6 +1,6 @@
 {
   "replace": false,
   "values": [
-    "spectrum:set_health_damage"
+    "spectrum:set_health"
   ]
 }

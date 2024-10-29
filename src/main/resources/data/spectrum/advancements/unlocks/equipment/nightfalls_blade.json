@@ -29,6 +29,12 @@
       "conditions": {
         "advancement_identifier": "spectrum:lategame/collect_pure_resource"
       }
+    },
+    "unlocked_ink": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:milestones/unlock_ink_use"
+      }
     }
   }
 }

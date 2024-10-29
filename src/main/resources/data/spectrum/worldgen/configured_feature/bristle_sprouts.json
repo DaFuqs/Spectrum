@@ -21,19 +21,19 @@
           "type": "minecraft:block_predicate_filter",
           "predicate": {
             "type": "minecraft:matching_blocks",
-            "offset": [
-              0,
-              -1,
-              0
-            ],
-            "blocks": "spectrum:sawblade_grass"
+            "blocks": "minecraft:air"
           }
         },
         {
           "type": "minecraft:block_predicate_filter",
           "predicate": {
             "type": "minecraft:matching_blocks",
-            "blocks": "minecraft:air"
+            "offset": [
+              0,
+              -1,
+              0
+            ],
+            "blocks": "spectrum:sawblade_grass"
           }
         }
       ]

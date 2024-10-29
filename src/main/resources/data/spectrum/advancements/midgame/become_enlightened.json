@@ -1,0 +1,20 @@
+{
+  "parent": "spectrum:midgame/collect_stratine",
+  "display": {
+    "icon": {
+      "item": "minecraft:cat_spawn_egg"
+    },
+    "title": {
+      "translate": "advancements.spectrum.post_cats_every_day"
+    },
+    "description": {
+      "translate": "advancements.spectrum.become_enlightened"
+    }
+  },
+  "hidden": true,
+  "criteria": {
+    "confirmed": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

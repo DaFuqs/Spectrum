@@ -55,8 +55,6 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 	private static final int[] ACCESSIBLE_SLOTS_SIDE_WITH_UNLOCK = {5, 6, 7, 8};
 	private static final int[] ACCESSIBLE_SLOTS_DOWN = {9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
 	
-	public static final Identifier FOURTH_BREWING_SLOT_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("milestones/unlock_fourth_potion_workshop_reagent_slot");
-	
 	protected final PropertyDelegate propertyDelegate;
 	protected DefaultedList<ItemStack> inventory;
 	protected boolean inventoryChanged;
@@ -146,11 +144,11 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		}
 	}
 	
-	public static boolean hasRoomInOutputInventoryFor(@NotNull PotionWorkshopBlockEntity potionWorkshopBlockEntity, int outputStacks) {
+	public static boolean hasRoomInOutputInventoryFor(@NotNull PotionWorkshopBlockEntity potionWorkshopBlockEntity, int count) {
 		for (int slotID : potionWorkshopBlockEntity.getAvailableSlots(Direction.DOWN)) {
 			if (potionWorkshopBlockEntity.getStack(slotID).isEmpty()) {
-				outputStacks--;
-				if (outputStacks == 0) {
+				count--;
+				if (count == 0) {
 					return true;
 				}
 			}
@@ -177,7 +175,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 			PotionWorkshopBrewingRecipe newPotionWorkshopBrewingRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.POTION_WORKSHOP_BREWING, potionWorkshopBlockEntity, world).orElse(null);
 			if (newPotionWorkshopBrewingRecipe != null) {
 				if (newPotionWorkshopBrewingRecipe.canPlayerCraft(potionWorkshopBlockEntity.getOwnerIfOnline())) {
-					// we check for reagents here instead of the recipe itself because of performance
+					// we check for reagents here instead of the recipe itself for performance reasons
 					if (isBrewingRecipeApplicable(newPotionWorkshopBrewingRecipe, potionWorkshopBlockEntity.getStack(BASE_INPUT_SLOT_ID), potionWorkshopBlockEntity)) {
 						return newPotionWorkshopBrewingRecipe;
 					}
@@ -298,16 +296,25 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 			// process reagents
 			PotionMod potionMod = getPotionModFromReagents(potionWorkshopBlockEntity);
 			
-			brewingRecipe.fillPotionFillable(potionFillableStack, potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, potionWorkshopBlockEntity.world.random);
-			
 			// consume ingredients
 			decrementIngredientSlots(potionWorkshopBlockEntity);
 			decrementReagentSlots(potionWorkshopBlockEntity);
+			
+			int maxBrewedPotionsAmount = Support.getIntFromDecimalWithChance(brewingRecipe.getModifiedYield(potionMod), potionWorkshopBlockEntity.world.random);
+			if (maxBrewedPotionsAmount < 1) {
+				ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) potionWorkshopBlockEntity.getOwnerIfOnline();
+				if (serverPlayerEntity != null) {
+					SpectrumAdvancementCriteria.POTION_WORKSHOP_BREWING.trigger(serverPlayerEntity, potionFillableStack, 0);
+				}
+				return;
+			}
+			
+			brewingRecipe.fillPotionFillable(potionFillableStack, potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, potionWorkshopBlockEntity.world.random);
 			potionWorkshopBlockEntity.inventory.set(BASE_INPUT_SLOT_ID, ItemStack.EMPTY);
+			InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, potionFillableStack, FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + INVENTORY_SLOT_COUNT);
 			
 			// trigger advancements for all brewed potions
 			ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) potionWorkshopBlockEntity.getOwnerIfOnline();
-			InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, potionFillableStack, FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + INVENTORY_SLOT_COUNT);
 			if (serverPlayerEntity != null) {
 				SpectrumAdvancementCriteria.POTION_WORKSHOP_BREWING.trigger(serverPlayerEntity, potionFillableStack, 1);
 			}
@@ -544,7 +551,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		if (playerEntity == null) {
 			return false;
 		} else {
-			return AdvancementHelper.hasAdvancement(playerEntity, FOURTH_BREWING_SLOT_ADVANCEMENT_IDENTIFIER);
+			return AdvancementHelper.hasAdvancement(playerEntity, SpectrumAdvancements.FOURTH_BREWING_SLOT);
 		}
 	}
 	

@@ -16,6 +16,7 @@
     "BlockMixin",
     "BrainMixin",
     "BrewingRecipeRegistryMixin",
+    "CatEntityMixin",
     "ChunkNoiseSamplerMixin",
     "CropAndStemBlockMixin",
     "CropBlockMixin",
@@ -47,7 +48,6 @@
     "KilledByPlayerLootConditionMixin",
     "LightningEntityMixin",
     "LivingEntityMixin",
-    "compat.quilt_status_effect.absent.LivingEntityPreventStatusClearMixin",
     "LoomContainerPatternSlotMixin",
     "LoomScreenHandlerMixin",
     "MapStateMixin",
@@ -104,6 +104,7 @@
     "compat.connectormod.absent.PlayerEntityMixin",
     "compat.connectormod.present.ExplosionMixin",
     "compat.connectormod.present.PlayerEntityMixin",
+    "compat.quilt_status_effect.absent.LivingEntityPreventStatusClearMixin",
     "compat.quilt_status_effect.present.SpectrumEventListenersMixin"
   ],
   "client": [

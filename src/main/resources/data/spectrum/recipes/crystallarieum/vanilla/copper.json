@@ -10,9 +10,25 @@
   ],
   "seconds_per_growth_stage": 60,
   "ink_color": "spectrum:brown",
-  "ink_cost_tier": 1,
+  "ink_cost_tier": 2,
   "grows_without_catalyst": false,
   "catalysts": [
+    {
+      "ingredient": {
+        "item": "spectrum:raw_malachite"
+      },
+      "growth_acceleration_mod": 4.0,
+      "ink_consumption_mod": 0.5,
+      "consume_chance_per_second": 0.2
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:honeycomb"
+      },
+      "growth_acceleration_mod": 8.0,
+      "ink_consumption_mod": 2.0,
+      "consume_chance_per_second": 0.05
+    },
     {
       "ingredient": {
         "item": "spectrum:neolith"

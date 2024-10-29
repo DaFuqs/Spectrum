@@ -78,7 +78,11 @@ public class BottomlessBundleBlockEntity extends BlockEntity {
 
 	// Trivial sync methods. Call whenever bundle/storage contents need to be synced with each other [(de)serialization, bundle stack set, bundle block break loot]
 	private void syncBundleWithStorage() {
-		BottomlessBundleItem.setBundledStack(this.bottomlessBundleStack, this.storage.variant.toStack(), (int) this.storage.amount);
+		if (this.storage.variant == null || this.storage.amount == 0) {
+			BottomlessBundleItem.setBundledStack(this.bottomlessBundleStack, ItemStack.EMPTY, 0);
+		} else {
+			BottomlessBundleItem.setBundledStack(this.bottomlessBundleStack, this.storage.variant.toStack(), (int) this.storage.amount);
+		}
 	}
 
 	private void syncStorageWithBundle() {

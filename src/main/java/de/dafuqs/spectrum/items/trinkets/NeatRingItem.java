@@ -1,13 +1,8 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import com.google.common.collect.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.registries.*;
-import dev.emi.trinkets.api.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.item.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.attribute.*;
 import net.minecraft.item.*;
 import net.minecraft.text.*;
 import net.minecraft.world.*;
@@ -32,13 +27,6 @@ public class NeatRingItem extends SpectrumTrinketItem {
 	@Override
 	public boolean hasGlint(ItemStack stack) {
 		return true;
-	}
-	
-	@Override
-	public Multimap<EntityAttribute, EntityAttributeModifier> getModifiers(ItemStack stack, SlotReference slot, LivingEntity entity, UUID uuid) {
-		Multimap<EntityAttribute, EntityAttributeModifier> modifiers = super.getModifiers(stack, slot, entity, uuid);
-		modifiers.put(SpectrumEntityAttributes.MENTAL_PRESENCE, new EntityAttributeModifier(uuid, "spectrum:neat_ring", 0.69, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
-		return modifiers;
 	}
 	
 }

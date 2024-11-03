@@ -4066,8 +4066,6 @@
   "book.spectrum.guidebook.preservation_ruins.page4.text": "It was all so clear in the end! I had it [all figured out already](entry://general/color_mixing).",
   "book.spectrum.guidebook.preservation_ruins.page4.title": "Color Combinations",
   "book.spectrum.guidebook.preservation_ruins.page5.text": "A really weird one. Having some colors on hand helped a lot.",
-  "book.spectrum.guidebook.primordial_lighter.page0.text": "[Primordial Fire](entry://dimension/primordial_fire)[#]() is the devil's stuff. No wonder it eats away at your soul.\\\n\\\nWithout this glove, I would be very uncomfortable. - *I actually quite like my soul*.",
-  "book.spectrum.guidebook.primordial_lighter.page1.text": "*not a single soul in sight*",
   "book.spectrum.guidebook.provider_node.name": "Provider Node",
   "book.spectrum.guidebook.provider_node.page0.text": "Make the items in the connected inventory available in their [Pastel Network](entry://pastel_network/pastel_network).\\\n\\\nItems are not pushed, but can be requested from [Gather Nodes](entry://pastel_network/gather_node).",
   "book.spectrum.guidebook.puff_circlet.page0.text": "This glistening hoop creates a protective film of air around you.\\\n\\\nGrants you [#](495b24)4[#]() points of [#](2c2e8e)Azure Dike[#](). Using those charges, it not only protects you from enemy projectiles, but can even cushion a long fall.\\\nThe Puff Circlet also prevents [#](bb00bb)Farmland[#]() from being trampled.",

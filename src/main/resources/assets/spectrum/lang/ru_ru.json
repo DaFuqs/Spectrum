@@ -4580,8 +4580,6 @@
   "book.spectrum.guidebook.primordial_fire.page0.text": "Гораздо более агрессивный, чем обычный [#](bb00bb)Огонь[#](), зажженный [#](bb00bb)Угольком и Сталью[#](), [#](bb00bb)Первобытный Огонь[#]() высвобожденный Ужасными Цветами кажется горит с ненасытным, жгучим теплом. Почти как будто поглощает материю и душу одновременно. Ужасно.",
   "book.spectrum.guidebook.primordial_fire.page1.text": "Первобытный Огонь, похоже, не черпает свою энергию в первую очередь из материи, а скорее сжигает душу.",
   "book.spectrum.guidebook.primordial_fire.primordial_torch.text": "*Фиолетовый свет в темноте.*",
-  "book.spectrum.guidebook.primordial_lighter.page0.text": "[Первобытный Огонь](entry://dimension/primordial_fire) - это дьявольская вещь. Неудивительно, что он поглощает твою душу.\\\n\\\nБез этой перчатки я бы чувствовал себя очень некомфортно - *мне на самом деле довольно нравится моя душа*.",
-  "book.spectrum.guidebook.primordial_lighter.page1.text": "*ни одной души на горизонте*",
   "book.spectrum.guidebook.projectile_rebound.page0.text": "Каждый уровень давал мне небольшой шанс [#](449900)отразить incoming projectiles[#]().",
   "book.spectrum.guidebook.provider_node.name": "Узел Поставщика",
   "book.spectrum.guidebook.provider_node.page0.text": "Сделайте предметы в подключенном инвентаре доступными в их [Пастельной Сети](entry://pastel_network/pastel_network).\\\n\\\nПредметы не отправляются автоматически, но могут быть запрошены от [Узлов Сбора](entry://pastel_network/gather_node) и [Буферных Узлов](entry://pastel_network/buffer_node).",

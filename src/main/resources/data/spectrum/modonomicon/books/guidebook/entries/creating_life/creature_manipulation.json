@@ -40,23 +40,11 @@
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "recipe_id": "spectrum:spirit_instiller/head_fusion/zombie_horse"
-    },
-    {
-      "type": "spectrum:spirit_instiller_crafting",
       "recipe_id": "spectrum:spirit_instiller/head_fusion/skeleton_horse"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "recipe_id": "spectrum:spirit_instiller/head_fusion/witch"
-    },
-    {
-      "type": "spectrum:spirit_instiller_crafting",
-      "recipe_id": "spectrum:spirit_instiller/head_fusion/ghast"
-    },
-    {
-      "type": "spectrum:spirit_instiller_crafting",
-      "recipe_id": "spectrum:spirit_instiller/head_fusion/wither_skeleton"
+      "recipe_id": "spectrum:spirit_instiller/head_fusion/zombie_horse"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
@@ -69,6 +57,30 @@
     {
       "type": "spectrum:spirit_instiller_crafting",
       "recipe_id": "spectrum:spirit_instiller/head_fusion/zombified_piglin"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "recipe_id": "spectrum:spirit_instiller/head_fusion/witch"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "recipe_id": "spectrum:spirit_instiller/head_fusion/ghast"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "recipe_id": "spectrum:spirit_instiller/head_fusion/stray"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "recipe_id": "spectrum:spirit_instiller/head_fusion/husk"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "recipe_id": "spectrum:spirit_instiller/head_fusion/magma_cube"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "recipe_id": "spectrum:spirit_instiller/head_fusion/wither_skeleton"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",

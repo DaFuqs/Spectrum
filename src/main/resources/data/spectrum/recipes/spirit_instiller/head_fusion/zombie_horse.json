@@ -7,8 +7,7 @@
     "item": "spectrum:horse_head"
   },
   "ingredient2": {
-    "item": "spectrum:dragonrot_bucket",
-    "count": 1
+    "item": "minecraft:zombie_head"
   },
   "center_ingredient": {
     "item": "spectrum:vegetal",
@@ -17,5 +16,5 @@
   "result": {
     "item": "spectrum:zombie_horse_head"
   },
-  "required_advancement": "spectrum:unlocks/head_fusion"
+  "required_advancement": "spectrum:unlocks/head_fusion/basic_recipes"
 }

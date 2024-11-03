@@ -16,5 +16,5 @@
   "result": {
     "item": "spectrum:zombified_piglin_head"
   },
-  "required_advancement": "spectrum:unlocks/head_fusion"
+  "required_advancement": "spectrum:unlocks/head_fusion/basic_recipes"
 }

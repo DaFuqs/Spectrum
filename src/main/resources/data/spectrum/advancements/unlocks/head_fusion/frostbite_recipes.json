@@ -1,0 +1,16 @@
+{
+    "criteria": {
+      "unlocked_head_fusion": {
+        "trigger": "revelationary:advancement_gotten",
+        "conditions": {
+          "advancement_identifier": "spectrum:unlocks/head_fusion/basic_recipes"
+        }
+      },
+      "collected_frostbite_crystal": {
+        "trigger": "revelationary:advancement_gotten",
+        "conditions": {
+          "advancement_identifier": "spectrum:hidden/collect_frostbite_crystal"
+        }
+      }
+    }
+  }

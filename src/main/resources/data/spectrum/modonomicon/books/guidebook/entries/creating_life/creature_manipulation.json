@@ -3,7 +3,7 @@
   "icon": "spectrum:shulker_red_head",
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:unlocks/head_fusion"
+    "advancement_id": "spectrum:unlocks/head_fusion/basic_recipes"
   },
   "category": "spectrum:creating_life",
   "hide_while_locked": true,

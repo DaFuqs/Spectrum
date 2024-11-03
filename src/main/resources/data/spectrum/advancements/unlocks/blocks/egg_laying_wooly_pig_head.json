@@ -9,7 +9,7 @@
     "unlocked_head_fusion": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:unlocks/head_fusion"
+        "advancement_identifier": "spectrum:unlocks/head_fusion/basic_recipes"
       }
     }
   }

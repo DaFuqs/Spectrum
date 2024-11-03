@@ -17,5 +17,5 @@
   "result": {
     "item": "minecraft:wither_skeleton_skull"
   },
-  "required_advancement": "spectrum:unlocks/head_fusion"
+  "required_advancement": "spectrum:unlocks/head_fusion/basic_recipes"
 }

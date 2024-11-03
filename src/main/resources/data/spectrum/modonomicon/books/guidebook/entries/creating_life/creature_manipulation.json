@@ -64,6 +64,10 @@
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
+      "recipe_id": "spectrum:spirit_instiller/head_fusion/phantom"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
       "recipe_id": "spectrum:spirit_instiller/head_fusion/ghast"
     },
     {

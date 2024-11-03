@@ -1,0 +1,22 @@
+{
+    "type": "spectrum:spirit_instiller",
+    "group": "head_fusion",
+    "time": 800,
+    "experience": 4.0,
+    "ingredient1": {
+      "item": "spectrum:bat_head"
+    },
+    "ingredient2": {
+      "item": "spectrum:nightdew_sprout",
+      "count": 2
+    },
+    "center_ingredient": {
+      "item": "spectrum:vegetal",
+      "count": 4
+    },
+    "result": {
+      "item": "spectrum:phantom_head"
+    },
+    "required_advancement": "spectrum:unlocks/head_fusion/nightdew_recipes"
+  }
+  

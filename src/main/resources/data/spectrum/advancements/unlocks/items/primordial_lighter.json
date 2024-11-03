@@ -1,7 +1,0 @@
-{
-  "criteria": {
-    "free_real_estate": {
-      "trigger": "minecraft:impossible"
-    }
-  }
-}

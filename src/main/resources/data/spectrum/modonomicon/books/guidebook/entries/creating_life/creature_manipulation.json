@@ -24,67 +24,53 @@
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "recipe_id": "spectrum:spirit_instiller/head_fusion/glow_squid"
+      "recipe_id": "spectrum:spirit_instiller/head_fusion/glow_squid",
+      "recipe_id2": "spectrum:spirit_instiller/head_fusion/mule"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "recipe_id": "spectrum:spirit_instiller/head_fusion/mooshroom_brown"
+      "recipe_id": "spectrum:spirit_instiller/head_fusion/mooshroom_brown",
+      "recipe_id2": "spectrum:spirit_instiller/head_fusion/mooshroom_red"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "recipe_id": "spectrum:spirit_instiller/head_fusion/mooshroom_red"
+      "recipe_id": "spectrum:spirit_instiller/head_fusion/witch",
+      "recipe_id2": "spectrum:spirit_instiller/head_fusion/skeleton_horse"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "recipe_id": "spectrum:spirit_instiller/head_fusion/mule"
+      "recipe_id": "spectrum:spirit_instiller/head_fusion/zombie_horse",
+      "recipe_id2": "spectrum:spirit_instiller/head_fusion/zombie_villager"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "recipe_id": "spectrum:spirit_instiller/head_fusion/skeleton_horse"
+      "recipe_id": "spectrum:spirit_instiller/head_fusion/zombified_piglin",
+      "recipe_id2": "spectrum:spirit_instiller/head_fusion/zoglin"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "recipe_id": "spectrum:spirit_instiller/head_fusion/zombie_horse"
+      "recipe_id": "spectrum:spirit_instiller/head_fusion/stray",
+      "recipe_id2": "spectrum:spirit_instiller/head_fusion/variant_changing/fox_arctic"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "recipe_id": "spectrum:spirit_instiller/head_fusion/zoglin"
+      "recipe_id": "spectrum:spirit_instiller/head_fusion/husk",
+      "recipe_id2": "spectrum:spirit_instiller/head_fusion/variant_changing/fox_red"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "recipe_id": "spectrum:spirit_instiller/head_fusion/zombie_villager"
+      "recipe_id": "spectrum:spirit_instiller/head_fusion/magma_cube",
+      "recipe_id2": "spectrum:spirit_instiller/head_fusion/strider"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "recipe_id": "spectrum:spirit_instiller/head_fusion/zombified_piglin"
+      "recipe_id": "spectrum:spirit_instiller/head_fusion/piglin",
+      "recipe_id2": "spectrum:spirit_instiller/head_fusion/wither_skeleton"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "recipe_id": "spectrum:spirit_instiller/head_fusion/witch"
-    },
-    {
-      "type": "spectrum:spirit_instiller_crafting",
-      "recipe_id": "spectrum:spirit_instiller/head_fusion/phantom"
-    },
-    {
-      "type": "spectrum:spirit_instiller_crafting",
-      "recipe_id": "spectrum:spirit_instiller/head_fusion/ghast"
-    },
-    {
-      "type": "spectrum:spirit_instiller_crafting",
-      "recipe_id": "spectrum:spirit_instiller/head_fusion/stray"
-    },
-    {
-      "type": "spectrum:spirit_instiller_crafting",
-      "recipe_id": "spectrum:spirit_instiller/head_fusion/husk"
-    },
-    {
-      "type": "spectrum:spirit_instiller_crafting",
-      "recipe_id": "spectrum:spirit_instiller/head_fusion/magma_cube"
-    },
-    {
-      "type": "spectrum:spirit_instiller_crafting",
-      "recipe_id": "spectrum:spirit_instiller/head_fusion/wither_skeleton"
+      "recipe_id": "spectrum:spirit_instiller/head_fusion/phantom",
+      "recipe_id2": "spectrum:spirit_instiller/head_fusion/ghast"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
@@ -100,11 +86,6 @@
       "type": "spectrum:spirit_instiller_crafting",
       "recipe_id": "spectrum:spirit_instiller/head_fusion/variant_changing/shulker_pink",
       "text": "book.spectrum.guidebook.creature_manipulation.shulkers.text"
-    },
-    {
-      "type": "spectrum:spirit_instiller_crafting",
-      "recipe_id": "spectrum:spirit_instiller/head_fusion/variant_changing/fox_arctic",
-      "text": "book.spectrum.guidebook.creature_manipulation.foxes.text"
     }
   ]
 }

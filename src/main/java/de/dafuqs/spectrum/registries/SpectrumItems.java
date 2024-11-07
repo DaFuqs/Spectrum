@@ -995,15 +995,14 @@ public class SpectrumItems {
 
 		FuelRegistry.INSTANCE.add(SpectrumItems.PURE_COAL, 3200);
 		FuelRegistry.INSTANCE.add(SpectrumBlocks.PURE_COAL_BLOCK, 32000);
-
+		
 		FuelRegistry.INSTANCE.add(SpectrumItems.VEGETAL, 800);
 		FuelRegistry.INSTANCE.add(SpectrumBlocks.VEGETAL_BLOCK, 8000);
-
-		FuelRegistry.INSTANCE.add(SpectrumItems.PURE_ALCOHOL,50000);
-		FuelRegistry.INSTANCE.add(SpectrumItems.CHRYSOCOLLA,50000);
+		
+		FuelRegistry.INSTANCE.add(SpectrumItems.PURE_ALCOHOL, 16000);
+		FuelRegistry.INSTANCE.add(SpectrumItems.CHRYSOCOLLA, 16000);
 
 		FuelRegistry.INSTANCE.add(SpectrumItems.INCANDESCENT_ESSENCE, 2400);
-		FuelRegistry.INSTANCE.add(SpectrumItems.ORANGE_PIGMENT, 2400);
 
 		FuelRegistry.INSTANCE.add(SpectrumItemTags.COLORED_FENCES, 300);
 		FuelRegistry.INSTANCE.add(SpectrumItemTags.COLORED_FENCE_GATES, 300);

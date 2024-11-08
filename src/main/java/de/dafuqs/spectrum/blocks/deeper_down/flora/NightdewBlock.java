@@ -15,8 +15,8 @@ import java.util.*;
 
 public class NightdewBlock extends TriStateVineBlock {
 
-    public static final float BASE_BURGEON_CHANCE = 2000;
-    public static final float MAX_BURGEON_CHANCE = 250;
+    public static final float BASE_BURGEON_CHANCE = 10000;
+    public static final float MAX_BURGEON_CHANCE = 1000;
 
 
     public NightdewBlock(Settings settings) {

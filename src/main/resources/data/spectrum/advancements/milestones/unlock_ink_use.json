@@ -5,6 +5,24 @@
       "conditions": {
         "advancement_identifier": "spectrum:midgame/spectrum_midgame"
       }
+    },
+    "has_flask": {
+  	  "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:ink_flask"
+            ]
+          }
+        ]
+      }
     }
-  }
+  },
+  "requirements": [
+    [
+      "reached_midgame",
+      "has_flask"
+    ]
+  ]
 }

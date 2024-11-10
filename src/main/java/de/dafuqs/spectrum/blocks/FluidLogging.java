@@ -20,7 +20,8 @@ public class FluidLogging {
 	public enum State implements StringIdentifiable {
 		NOT_LOGGED("none", 0),
 		WATER("water", 0),
-		LIQUID_CRYSTAL("liquid_crystal", LiquidCrystalFluidBlock.LUMINANCE);
+		LIQUID_CRYSTAL("liquid_crystal", LiquidCrystalFluidBlock.LUMINANCE),
+		MUD("mud",0);
 		
 		private final String name;
 		private final int luminance;
@@ -43,19 +44,25 @@ public class FluidLogging {
 				case WATER -> {
 					return Fluids.WATER.getStill(false);
 				}
+				case MUD -> {
+					return SpectrumFluids.MUD.getStill(false);
+				}
 				default -> {
 					return Fluids.EMPTY.getDefaultState();
 				}
 			}
 		}
-		
+
 		public static State getForFluidState(FluidState fluidState) {
 			if (fluidState.getFluid() == SpectrumFluids.LIQUID_CRYSTAL) {
 				return LIQUID_CRYSTAL;
+			} else if (fluidState.getFluid() == SpectrumFluids.MUD)
+			{
+				return MUD;
 			} else if (fluidState.isIn(FluidTags.WATER)) {
 				return WATER;
 			}
-			
+
 			return NOT_LOGGED;
 		}
 		
@@ -80,13 +87,20 @@ public class FluidLogging {
 			if (this == State.LIQUID_CRYSTAL) {
 				SpectrumFluids.LIQUID_CRYSTAL.onEntityCollision(state, world, pos, entity);
 			}
+			else if (this == State.MUD) {
+				SpectrumFluids.MUD.onEntityCollision(state, world, pos, entity);
+			}
 		}
 	}
 	
 	public static final EnumProperty<State> ANY_INCLUDING_NONE = EnumProperty.of("fluid_logged", State.class);
-	public static final EnumProperty<State> ANY_EXCLUDING_NONE = EnumProperty.of("fluid_logged", State.class, State.WATER, State.LIQUID_CRYSTAL);
+	public static final EnumProperty<State> ANY_EXCLUDING_NONE = EnumProperty.of("fluid_logged", State.class, State.WATER, State.LIQUID_CRYSTAL, State.MUD);
+	public static final EnumProperty<State> WATER_AND_CRYSTAL = EnumProperty.of("fluid_logged", State.class, State.WATER, State.LIQUID_CRYSTAL);
 	public static final EnumProperty<State> NONE_AND_CRYSTAL = EnumProperty.of("fluid_logged", State.class, State.NOT_LOGGED, State.LIQUID_CRYSTAL);
-	
+	public static final EnumProperty<State> NONE_WATER_AND_CRYSTAL = EnumProperty.of("fluid_logged", State.class, State.NOT_LOGGED,  State.WATER, State.LIQUID_CRYSTAL);
+	public static final EnumProperty<State> NONE_WATER_AND_MUD = EnumProperty.of("fluid_logged", State.class, State.NOT_LOGGED,  State.WATER, State.MUD);
+
+
 	public interface SpectrumFluidLoggable extends SpectrumFluidDrainable, SpectrumFluidFillable {
 	
 	}
@@ -95,7 +109,7 @@ public class FluidLogging {
 		
 		@Override
 		default boolean canFillWithFluid(BlockView world, BlockPos pos, BlockState state, Fluid fluid) {
-			return state.get(ANY_INCLUDING_NONE) == State.NOT_LOGGED && (fluid == Fluids.WATER || fluid == SpectrumFluids.LIQUID_CRYSTAL);
+			return state.get(ANY_INCLUDING_NONE) == State.NOT_LOGGED && (fluid == Fluids.WATER || fluid == SpectrumFluids.LIQUID_CRYSTAL || fluid == SpectrumFluids.MUD);
 		}
 		
 		@Override
@@ -107,6 +121,9 @@ public class FluidLogging {
 						world.scheduleFluidTick(pos, fluidState.getFluid(), fluidState.getFluid().getTickRate(world));
 					} else if (fluidState.getFluid() == SpectrumFluids.LIQUID_CRYSTAL) {
 						world.setBlockState(pos, state.with(ANY_INCLUDING_NONE, State.LIQUID_CRYSTAL), Block.NOTIFY_ALL);
+						world.scheduleFluidTick(pos, fluidState.getFluid(), fluidState.getFluid().getTickRate(world));
+					} else if (fluidState.getFluid() == SpectrumFluids.MUD) {
+						world.setBlockState(pos, state.with(ANY_INCLUDING_NONE, State.MUD), Block.NOTIFY_ALL);
 						world.scheduleFluidTick(pos, fluidState.getFluid(), fluidState.getFluid().getTickRate(world));
 					}
 				}
@@ -137,8 +154,13 @@ public class FluidLogging {
 					world.breakBlock(pos, true);
 				}
 				return new ItemStack(SpectrumItems.LIQUID_CRYSTAL_BUCKET);
+			} else if (fluidLog == State.MUD) {
+				world.setBlockState(pos, state.with(ANY_INCLUDING_NONE, State.NOT_LOGGED), Block.NOTIFY_ALL);
+				if (!state.canPlaceAt(world, pos)) {
+					world.breakBlock(pos, true);
+				}
+				return new ItemStack(SpectrumItems.MUD_BUCKET);
 			}
-			
 			return ItemStack.EMPTY;
 		}
 		

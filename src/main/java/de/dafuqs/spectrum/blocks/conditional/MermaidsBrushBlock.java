@@ -25,7 +25,7 @@ public class MermaidsBrushBlock extends PlantBlock implements Fertilizable, Reve
 
 	private static final VoxelShape SHAPE = Block.createCuboidShape(1.0, 0.0, 1.0, 15.0, 16.0, 15.0);
 	
-	public static final EnumProperty<FluidLogging.State> LOGGED = FluidLogging.ANY_EXCLUDING_NONE;
+	public static final EnumProperty<FluidLogging.State> LOGGED = FluidLogging.WATER_AND_CRYSTAL;
 	public static final IntProperty AGE = Properties.AGE_7;
 	
 	public MermaidsBrushBlock(Settings settings) {

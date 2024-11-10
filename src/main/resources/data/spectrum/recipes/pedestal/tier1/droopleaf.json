@@ -1,0 +1,32 @@
+{
+  "type": "spectrum:pedestal",
+  "time":100,
+  "tier": "basic",
+  "magenta": 0,
+  "yellow": 4,
+  "cyan": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 1,
+  "pattern": [
+    "VGV",
+    "GMG",
+    "VGV"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:big_dripleaf"
+    },
+    "M": {
+      "item": "minecraft:redstone_block"
+    },
+    "V": {
+      "item": "spectrum:vegetal"
+    }
+  },
+  "result": {
+    "item": "spectrum:droopleaf",
+    "count": 4
+  },
+  "required_advancement": "spectrum:collect_vegetal"
+}

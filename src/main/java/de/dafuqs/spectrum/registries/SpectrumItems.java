@@ -362,6 +362,7 @@ public class SpectrumItems {
 	
 	public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM, IS.of());
 	public static final Item AMARANTH_GRAINS = new AliasedBlockItem(SpectrumBlocks.AMARANTH, IS.of());
+	public static final Item DROOPLEAF = new DroopleafItem(SpectrumBlocks.DROOPLEAF, IS.of());
 	
 	public static final Item MELOCHITES_COOKBOOK_VOL_1 = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/cookbooks/melochites_cookbook_vol_1");
 	public static final Item MELOCHITES_COOKBOOK_VOL_2 = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/cookbooks/melochites_cookbook_vol_2");
@@ -678,6 +679,7 @@ public class SpectrumItems {
 		
 		register("glistering_melon_seeds", GLISTERING_MELON_SEEDS, DyeColor.LIME);
 		register("amaranth_grains", AMARANTH_GRAINS, DyeColor.LIME);
+		register("droopleaf", DROOPLEAF, DyeColor.LIME);
 		
 		register("vegetal", VEGETAL, DyeColor.LIME);
 		register("neolith", NEOLITH, DyeColor.PINK);

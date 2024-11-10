@@ -1,0 +1,124 @@
+{
+  "variants": {
+    "facing=east,unstable=false,short=false,muddy=false": {
+      "model": "spectrum:block/droopleaf",
+      "y": 90
+    },
+    "facing=east,unstable=false,short=true,muddy=false": {
+      "model": "spectrum:block/droopleaf_short",
+      "y": 90
+    },
+    "facing=east,unstable=true,short=false,muddy=false": {
+      "model": "spectrum:block/droopleaf",
+      "y": 90
+    },
+    "facing=east,unstable=true,short=true,muddy=false": {
+      "model": "spectrum:block/droopleaf_short",
+      "y": 90
+    },
+    "facing=north,unstable=false,short=false,muddy=false": {
+      "model": "spectrum:block/droopleaf"
+    },
+    "facing=north,unstable=false,short=true,muddy=false": {
+      "model": "spectrum:block/droopleaf_short"
+    },
+    "facing=north,unstable=true,short=false,muddy=false": {
+      "model": "spectrum:block/droopleaf"
+    },
+    "facing=north,unstable=true,short=true,muddy=false": {
+      "model": "spectrum:block/droopleaf_short"
+    },
+    "facing=south,unstable=false,short=false,muddy=false": {
+      "model": "spectrum:block/droopleaf",
+      "y": 180
+    },
+    "facing=south,unstable=false,short=true,muddy=false": {
+      "model": "spectrum:block/droopleaf_short",
+      "y": 180
+    },
+    "facing=south,unstable=true,short=false,muddy=false": {
+      "model": "spectrum:block/droopleaf",
+      "y": 180
+    },
+    "facing=south,unstable=true,short=true,muddy=false": {
+      "model": "spectrum:block/droopleaf_short",
+      "y": 180
+    },
+    "facing=west,unstable=false,short=false,muddy=false": {
+      "model": "spectrum:block/droopleaf",
+      "y": 270
+    },
+    "facing=west,unstable=false,short=true,muddy=false": {
+      "model": "spectrum:block/droopleaf_short",
+      "y": 270
+    },
+    "facing=west,unstable=true,short=false,muddy=false": {
+      "model": "spectrum:block/droopleaf",
+      "y": 270
+    },
+    "facing=west,unstable=true,short=true,muddy=false": {
+      "model": "spectrum:block/droopleaf_short",
+      "y": 270
+    },
+    "facing=east,unstable=false,short=false,muddy=true": {
+      "model": "spectrum:block/droopleaf",
+      "y": 90
+    },
+    "facing=east,unstable=false,short=true,muddy=true": {
+      "model": "spectrum:block/droopleaf_short",
+      "y": 90
+    },
+    "facing=east,unstable=true,short=false,muddy=true": {
+      "model": "spectrum:block/droopleaf",
+      "y": 90
+    },
+    "facing=east,unstable=true,short=true,muddy=true": {
+      "model": "spectrum:block/droopleaf_short",
+      "y": 90
+    },
+    "facing=north,unstable=false,short=false,muddy=true": {
+      "model": "spectrum:block/droopleaf"
+    },
+    "facing=north,unstable=false,short=true,muddy=true": {
+      "model": "spectrum:block/droopleaf_short"
+    },
+    "facing=north,unstable=true,short=false,muddy=true": {
+      "model": "spectrum:block/droopleaf"
+    },
+    "facing=north,unstable=true,short=true,muddy=true": {
+      "model": "spectrum:block/droopleaf_short"
+    },
+    "facing=south,unstable=false,short=false,muddy=true": {
+      "model": "spectrum:block/droopleaf",
+      "y": 180
+    },
+    "facing=south,unstable=false,short=true,muddy=true": {
+      "model": "spectrum:block/droopleaf_short",
+      "y": 180
+    },
+    "facing=south,unstable=true,short=false,muddy=true": {
+      "model": "spectrum:block/droopleaf",
+      "y": 180
+    },
+    "facing=south,unstable=true,short=true,muddy=true": {
+      "model": "spectrum:block/droopleaf_short",
+      "y": 180
+    },
+    "facing=west,unstable=false,short=false,muddy=true": {
+      "model": "spectrum:block/droopleaf",
+      "y": 270
+    },
+    "facing=west,unstable=false,short=true,muddy=true": {
+      "model": "spectrum:block/droopleaf_short",
+      "y": 270
+    },
+    "facing=west,unstable=true,short=false,muddy=true": {
+      "model": "spectrum:block/droopleaf",
+      "y": 270
+    },
+    "facing=west,unstable=true,short=true,muddy=true": {
+      "model": "spectrum:block/droopleaf_short",
+      "y": 270
+    }
+  }
+}

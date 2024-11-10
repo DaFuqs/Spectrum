@@ -441,6 +441,8 @@ public class SpectrumBlocks {
 	public static final Block GLISTERING_MELON_STEM = new GlisteringStemBlock((GourdBlock) GLISTERING_MELON, () -> SpectrumItems.GLISTERING_MELON_SEEDS, FabricBlockSettings.copyOf(Blocks.MELON_STEM));
 	public static final Block ATTACHED_GLISTERING_MELON_STEM = new AttachedGlisteringStemBlock((GourdBlock) GLISTERING_MELON, () -> SpectrumItems.GLISTERING_MELON_SEEDS, FabricBlockSettings.copyOf(Blocks.ATTACHED_MELON_STEM));
 
+	public static final Block DROOPLEAF = new DroopleafBlock(FabricBlockSettings.copyOf(BIG_DRIPLEAF));
+	public static final Block DROOPLEAF_STEM = new DroopleafStemBlock(FabricBlockSettings.copyOf(BIG_DRIPLEAF_STEM));
 	public static final Block OMINOUS_SAPLING = new OminousSaplingBlock(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING));
 	public static final Block PRESENT = new PresentBlock(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL));
 	public static final Block TITRATION_BARREL = new TitrationBarrelBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS).mapColor(MapColor.RED));
@@ -1642,6 +1644,8 @@ public class SpectrumBlocks {
 		registerBlock("deeper_down_portal", DEEPER_DOWN_PORTAL);
 		registerBlock("glistering_melon_stem", GLISTERING_MELON_STEM);
 		registerBlock("attached_glistering_melon_stem", ATTACHED_GLISTERING_MELON_STEM);
+		registerBlock("droopleaf", DROOPLEAF);
+		registerBlock("droopleaf_stem", DROOPLEAF_STEM);
 		registerBlock("stuck_storm_stone", STUCK_STORM_STONE);
 		registerBlock("wand_light", WAND_LIGHT_BLOCK);
 		registerBlock("decaying_light", DECAYING_LIGHT_BLOCK);
@@ -3025,6 +3029,8 @@ public class SpectrumBlocks {
 
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.GLISTERING_MELON_STEM, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ATTACHED_GLISTERING_MELON_STEM, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.DROOPLEAF, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.DROOPLEAF_STEM, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.OMINOUS_SAPLING, RenderLayer.getCutout());
 
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ITEM_BOWL_BASALT, RenderLayer.getCutout());

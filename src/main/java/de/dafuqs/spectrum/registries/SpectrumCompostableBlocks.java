@@ -24,6 +24,7 @@ public class SpectrumCompostableBlocks {
 		CompostingChanceRegistry.INSTANCE.add(SpectrumBlocks.FOUR_LEAF_CLOVER, MEDIUM);
 		CompostingChanceRegistry.INSTANCE.add(SpectrumBlocks.BRISTLE_SPROUTS, MEDIUM);
 		CompostingChanceRegistry.INSTANCE.add(SpectrumBlocks.SNAPPING_IVY, HIGHER);
+		CompostingChanceRegistry.INSTANCE.add(SpectrumItems.DROOPLEAF, HIGHER);
 		
 		CompostingChanceRegistry.INSTANCE.add(SpectrumItems.HIBERNATING_JADE_VINE_BULB, HIGH);
 		CompostingChanceRegistry.INSTANCE.add(SpectrumItems.GERMINATED_JADE_VINE_BULB, HIGH);

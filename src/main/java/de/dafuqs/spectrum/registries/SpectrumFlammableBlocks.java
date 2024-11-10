@@ -29,6 +29,9 @@ public class SpectrumFlammableBlocks {
 
 		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.VEGETAL_BLOCK,30,60);
 
+		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.DROOPLEAF, 60, 100);
+		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.DROOPLEAF_STEM, 60, 100);
+
 		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.SWEET_PEA, 60, 100);
 		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.APRICOTTI, 60, 100);
 		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.HUMMING_BELL, 60, 100);

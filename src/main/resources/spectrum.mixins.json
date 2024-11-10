@@ -85,6 +85,7 @@
     "WitherEntityMixin",
     "WorldMixin",
     "accessors.BiomeAccessor",
+    "accessors.BucketItemAccessor",
     "accessors.DensityCapAccessor",
     "accessors.ExplosionAccessor",
     "accessors.FluidBlockAccessor",

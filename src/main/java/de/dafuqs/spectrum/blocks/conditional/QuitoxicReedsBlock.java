@@ -25,7 +25,7 @@ import java.util.*;
 
 public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidLogging.SpectrumFluidLoggable {
 	
-	public static final EnumProperty<FluidLogging.State> LOGGED = FluidLogging.ANY_INCLUDING_NONE;
+	public static final EnumProperty<FluidLogging.State> LOGGED = FluidLogging.NONE_WATER_AND_CRYSTAL;
 	public static final IntProperty AGE = Properties.AGE_7;
 	
 	// 'always drop' has no cloak and therefore drops normally even when broken 'via the world'
@@ -70,7 +70,47 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 			world.breakBlock(pos, true);
 		}
 	}
-	
+
+	@Override
+	public boolean canFillWithFluid(BlockView world, BlockPos pos, BlockState state, Fluid fluid) {
+		return state.get(LOGGED) == FluidLogging.State.NOT_LOGGED && (fluid == Fluids.WATER || fluid == SpectrumFluids.LIQUID_CRYSTAL);
+	}
+	@Override
+	public boolean tryFillWithFluid(WorldAccess world, BlockPos pos, BlockState state, FluidState fluidState) {
+		if (state.get(LOGGED) == FluidLogging.State.NOT_LOGGED) {
+			if (!world.isClient()) {
+				if (fluidState.getFluid() == Fluids.WATER) {
+					world.setBlockState(pos, state.with(LOGGED, FluidLogging.State.WATER), Block.NOTIFY_ALL);
+					world.scheduleFluidTick(pos, fluidState.getFluid(), fluidState.getFluid().getTickRate(world));
+				} else if (fluidState.getFluid() == SpectrumFluids.LIQUID_CRYSTAL) {
+					world.setBlockState(pos, state.with(LOGGED, FluidLogging.State.LIQUID_CRYSTAL), Block.NOTIFY_ALL);
+					world.scheduleFluidTick(pos, fluidState.getFluid(), fluidState.getFluid().getTickRate(world));
+				}
+			}
+			return true;
+		} else {
+			return false;
+		}
+	}
+	@Override
+	public ItemStack tryDrainFluid(WorldAccess world, BlockPos pos, BlockState state) {
+		FluidLogging.State fluidLog = state.get(LOGGED);
+
+		if (fluidLog == FluidLogging.State.WATER) {
+			world.setBlockState(pos, state.with(LOGGED, FluidLogging.State.NOT_LOGGED), Block.NOTIFY_ALL);
+			if (!state.canPlaceAt(world, pos)) {
+				world.breakBlock(pos, true);
+			}
+			return new ItemStack(Items.WATER_BUCKET);
+		} else if (fluidLog == FluidLogging.State.LIQUID_CRYSTAL) {
+			world.setBlockState(pos, state.with(LOGGED, FluidLogging.State.NOT_LOGGED), Block.NOTIFY_ALL);
+			if (!state.canPlaceAt(world, pos)) {
+				world.breakBlock(pos, true);
+			}
+			return new ItemStack(SpectrumItems.LIQUID_CRYSTAL_BUCKET);
+		}
+		return ItemStack.EMPTY;
+	}
 	@Nullable
 	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx) {

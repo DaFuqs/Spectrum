@@ -59,6 +59,7 @@
     "MobEntityMixin",
     "NbtPredicateMixin",
     "NoteBlockMixin",
+    "PassiveEntityMixin",
     "PiglinBrainMixin",
     "PistonBlockMixin",
     "PlantOnCustomFarmlandMixin",

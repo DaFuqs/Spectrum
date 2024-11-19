@@ -180,7 +180,6 @@ public class SpectrumItems {
 	public static final Item AZURITE_GLASS_AMPOULE = new GlassAmpouleItem(IS.of(Rarity.UNCOMMON));
 	public static final Item MALACHITE_GLASS_AMPOULE = new MalachiteGlassAmpouleItem(IS.of(Rarity.UNCOMMON));
 	public static final Item BLOODSTONE_GLASS_AMPOULE = new BloodstoneGlassAmpouleItem(IS.of(Rarity.UNCOMMON));
-	//public static final Item CRYSTALLIZED_DRAGON_FANG = new CrystallizedDragonFangItem(IS.of(Rarity.UNCOMMON));
 	
 	// Special tools
 	public static final Item DREAMFLAYER = new DreamflayerItem(SpectrumToolMaterials.ToolMaterial.DREAMFLAYER, 3, -1.8F, IS.of(1, Rarity.UNCOMMON));

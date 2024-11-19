@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.6-SNAPSHOT'
+	id 'fabric-loom' version '1.8-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -45,7 +45,7 @@ dependencies {
 	modImplementation ("net.fabricmc:fabric-loader:${project.loader_version}")
 	modImplementation ("net.fabricmc.fabric-api:fabric-api:${project.fabric_version}")
 
-	// mine
+	// ours
 	modImplementation ("maven.modrinth:exclusions-lib:${project.exclusionslib_version}")
 	modImplementation ("maven.modrinth:Revelationary:${project.revelationary_version}")
 	modImplementation include("maven.modrinth:AdditionalEntityAttributes:${project.additional_entity_attributes_version}")
@@ -64,7 +64,9 @@ dependencies {
 	// https://github.com/shedaniel/RoughlyEnoughItems
 	modCompileOnly("dev.emi:emi-fabric:${emi_version}") // https://github.com/emilyploszaj/emi
 	// https://github.com/klikli-dev/modonomicon
-	modImplementation("com.klikli_dev:modonomicon-${project.minecraft_version}-fabric:${project.modonomicon_version}") { exclude(group: "com.klikli_dev") }
+	modImplementation("com.klikli_dev:modonomicon-${project.minecraft_version}-fabric:${project.modonomicon_version}") { exclude(group: "com.klikli_dev") exclude(group: "mezz.jei") }
+	modCompileOnly("mezz.jei:jei-1.20.1-fabric:15.20.0.105")
+	// required by modonomicon, though in a very outdated version, so we include our up to date version here
 
 	switch (recipe_viewer.toLowerCase(Locale.ROOT)) {
 		case "rei": modLocalRuntime("me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"); break

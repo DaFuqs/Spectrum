@@ -159,7 +159,7 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 	 */
 	@Override
 	protected float getDragInWater() {
-		return 0.1F;
+		return 0.85F;
 	}
 	
 	@Override

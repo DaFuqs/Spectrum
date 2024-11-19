@@ -1,44 +1,48 @@
 {
-  "replace": false,
-  "values": [
-    "spectrum:malachite_cluster",
-    "spectrum:bismuth_cluster",
-    "spectrum:azurite_cluster",
-    "spectrum:bloodstone_cluster",
+	"replace": false,
+	"values": [
+		"spectrum:malachite_cluster",
+		"spectrum:bismuth_cluster",
+		"spectrum:azurite_cluster",
+		"spectrum:bloodstone_cluster",
 
-    "spectrum:coal_cluster",
-    "spectrum:copper_cluster",
-    "spectrum:diamond_cluster",
-    "spectrum:emerald_cluster",
-    "spectrum:glowstone_cluster",
-    "spectrum:gold_cluster",
-    "spectrum:iron_cluster",
-    "spectrum:lapis_cluster",
-    "spectrum:netherite_scrap_cluster",
-    "spectrum:echo_cluster",
-    "spectrum:prismarine_cluster",
-    "spectrum:quartz_cluster",
-    "spectrum:redstone_cluster",
+		"spectrum:coal_cluster",
+		"spectrum:copper_cluster",
+		"spectrum:diamond_cluster",
+		"spectrum:emerald_cluster",
+		"spectrum:glowstone_cluster",
+		"spectrum:gold_cluster",
+		"spectrum:iron_cluster",
+		"spectrum:lapis_cluster",
+		"spectrum:netherite_scrap_cluster",
+		"spectrum:echo_cluster",
+		"spectrum:prismarine_cluster",
+		"spectrum:quartz_cluster",
+		"spectrum:redstone_cluster",
 
-    {
-      "id": "spectrum:certus_quartz_cluster",
-      "required": false
-    },
-    {
-      "id": "spectrum:fluix_cluster",
-      "required": false
-    },
-    {
-      "id": "spectrum:globette_cluster",
-      "required": false
-    },
-    {
-      "id": "spectrum:globette_end_cluster",
-      "required": false
-    },
-    {
-      "id": "spectrum:globette_nether_cluster",
-      "required": false
-    }
-  ]
+		{
+			"id": "spectrum:zinc_cluster",
+			"required": false
+		},
+		{
+			"id": "spectrum:certus_quartz_cluster",
+			"required": false
+		},
+		{
+			"id": "spectrum:fluix_cluster",
+			"required": false
+		},
+		{
+			"id": "spectrum:globette_cluster",
+			"required": false
+		},
+		{
+			"id": "spectrum:globette_end_cluster",
+			"required": false
+		},
+		{
+			"id": "spectrum:globette_nether_cluster",
+			"required": false
+		}
+	]
 }

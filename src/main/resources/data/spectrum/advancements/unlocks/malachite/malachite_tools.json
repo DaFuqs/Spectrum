@@ -11,6 +11,12 @@
       "conditions": {
         "advancement_identifier": "spectrum:unlocks/blocks/crystallarieum"
       }
-    }
+    },
+	  "collected_paltaeria": {
+		  "trigger": "revelationary:advancement_gotten",
+		  "conditions": {
+			  "advancement_identifier": "spectrum:lategame/collect_paltaeria"
+		  }
+	  }
   }
 }

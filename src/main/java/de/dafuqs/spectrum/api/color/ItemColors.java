@@ -108,9 +108,11 @@ public class ItemColors extends ColorRegistry<Item> {
 		put(Items.PHANTOM_MEMBRANE, DyeColor.LIGHT_GRAY);
 		put(Items.PRISMARINE_SHARD, DyeColor.LIGHT_BLUE);
 		put(Items.RABBIT_FOOT, DyeColor.BROWN);
+		put(Items.RABBIT_HIDE, DyeColor.BROWN);
 		put(Items.TOTEM_OF_UNDYING, DyeColor.PINK);
 		put(Items.APPLE, DyeColor.PINK);
 		put(Items.CARROT, DyeColor.PINK);
+		put(Items.BAKED_POTATO, DyeColor.PINK);
 		put(Items.CACTUS, DyeColor.LIME);
 		put(Items.TORCHFLOWER_SEEDS, DyeColor.LIME);
 		put(Items.QUARTZ, DyeColor.LIGHT_GRAY);

@@ -13,7 +13,7 @@
       "item": "spectrum:purple_pigment"
     },
     {
-      "item": "malum:malignant_lead"
+      "item": "malum:mass_of_blighted_gunk"
     },
     {
       "item": "spectrum:storm_stone"
@@ -25,7 +25,7 @@
       "item": "spectrum:purple_pigment"
     },
     {
-      "item": "malum:malignant_lead"
+      "item": "malum:mass_of_blighted_gunk"
     },
     {
       "item": "spectrum:storm_stone"
@@ -42,7 +42,7 @@
       ]
     }
   },
-  "required_advancement": "spectrum:mod_integration/malum/haunted",
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_damage",
   "fabric:load_conditions": [
     {
       "condition": "fabric:all_mods_loaded",

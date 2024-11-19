@@ -12,10 +12,10 @@
         "advancement_identifier": "spectrum:lategame/collect_nectardew"
       }
     },
-    "unlocked_crystallarieum": {
+    "collected_pure_resource": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:unlocks/blocks/crystallarieum"
+        "advancement_identifier": "spectrum:lategame/collect_pure_resource"
       }
     },
     "apply_eternal_slumber": {

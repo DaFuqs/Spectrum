@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.compat.botania;
 
+import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.registries.*;
@@ -20,6 +21,10 @@ public class BotaniaCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	public void register() {
 		SpectrumItems.register("least_black_lotus", LEAST_BLACK_LOTUS, DyeColor.BLACK);
 		SpectrumItems.register("blackest_lotus", BLACKEST_LOTUS, DyeColor.BLACK);
+		ItemColors.ITEM_COLORS.registerColorMapping(BotaniaItems.overgrowthSeed, DyeColor.LIME);
+		ItemColors.ITEM_COLORS.registerColorMapping(BotaniaItems.blackLotus, DyeColor.BLACK);
+		ItemColors.ITEM_COLORS.registerColorMapping(BotaniaItems.blackerLotus, DyeColor.BLACK);
+		ItemColors.ITEM_COLORS.registerColorMapping(BotaniaItems.terrasteel, DyeColor.LIME);
 		
 		// registering it late, since Botania might not have been initialized yet
 		ServerLifecycleEvents.SERVER_STARTED.register(server -> ItemProviderRegistry.register(BotaniaItems.blackHoleTalisman, new ItemProvider() {

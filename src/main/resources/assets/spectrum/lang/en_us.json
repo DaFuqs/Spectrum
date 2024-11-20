@@ -3565,7 +3565,7 @@
   "book.spectrum.guidebook.potion_workshop_brewing.page4.text": "Adding a Fermented Spider Eye will change the effect to **Mining Fatigue** instead.",
   "book.spectrum.guidebook.potion_workshop_brewing.page5.text": "Adding a Fermented Spider Eye will change the effect to **Hunger** instead.",
   "book.spectrum.guidebook.potion_workshop_brewing.page7.text": "Adding a Fermented Spider Eye will change the effect to **Bad Luck** instead.",
-  "book.spectrum.guidebook.potion_workshop_brewing.page19.text": "*Taken from the notes in the [Poisoner's Handbook](entry://dimension/lore/poisoners_handbook).*",
+  "book.spectrum.guidebook.potion_workshop_brewing.page19.text": "*Taken from the notes in the [Poisoner's Handbook](entry://dimension/lore/poisoners_handbook).\\\n\\\nThis brew also has a naturally low yield.*",
   "book.spectrum.guidebook.potion_workshop_crafting": "Workshop Crafting",
   "book.spectrum.guidebook.potion_workshop_crafting.page0.text": "As the name implies, I designed the [Potion Workshop](entry://brewing/potion_workshop) around the creation of powerful potions.\\\nBut with the help of all of the filigree and granular adjustable switches and valves I found great utility in it for creating other things with it, as well!\\\n\\\nAll of those recipes do not require [Reagents](entry://brewing/potion_workshop_reagents).",
   "book.spectrum.guidebook.potion_workshop_crafting.page1.title": "Water",

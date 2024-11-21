@@ -51,8 +51,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
       },
-      "recipe_id": "spectrum:potion_workshop_brewing/absorption",
-      "text": "book.spectrum.guidebook.potion_workshop_brewing.low_potency_mod"
+      "recipe_id": "spectrum:potion_workshop_brewing/absorption"
     },
     {
       "type": "spectrum:potion_workshop_brewing",

@@ -3559,7 +3559,7 @@
   "book.spectrum.guidebook.potion_workshop_brewing.fillable_only": "*This brew is too concentrated to function as a potion or tipped arrow, and will only be useful for more complex items that can be filled with a potion effect.*",
   "book.spectrum.guidebook.potion_workshop_brewing.name": "Brewing Potions",
   "book.spectrum.guidebook.potion_workshop_brewing.page0.text": "I was able to replicate all the potions I could do with the Brewing Stand and more! (though some of them are easier or harder to get enhanced effects from)\\\n\\\nI can use [Reagents](entry://brewing/potion_workshop_reagents) to tinker with their effects.",
-  "book.spectrum.guidebook.potion_workshop_brewing.page1.text": "I can make those using the same ingredients as I would in the [#](bb00bb)Brewing Stand[#]().",
+  "book.spectrum.guidebook.potion_workshop_brewing.page1.text": "I can make any vanilla potion using the same ingredients as I would in the [#](bb00bb)Brewing Stand[#]().",
   "book.spectrum.guidebook.potion_workshop_brewing.page1.title": "Previously Known Potions",
   "book.spectrum.guidebook.potion_workshop_brewing.page2.strong.text": "Using Milky Resin yields a stronger blend at the cost of duration.",
   "book.spectrum.guidebook.potion_workshop_brewing.page4.text": "Adding a Fermented Spider Eye will change the effect to **Mining Fatigue** instead.",

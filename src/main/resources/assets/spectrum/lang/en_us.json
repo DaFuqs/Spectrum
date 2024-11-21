@@ -3557,6 +3557,7 @@
   "book.spectrum.guidebook.potion_workshop.page0.text": "The Potion Workshop is so much more than a [#](bb00bb)Brewing Stand[#](): my biggest change was to use the liquid I found in [Mermaid's Gems](entry://general/mermaids_brush) instead of [#](bb00bb)Blaze Powder[#](), which enabled me to [use magic items as additional reagents](entry://brewing/potion_workshop_reagents).\\\n\\\nAnother great side effect is that I do not have to fill the bottles with water beforehand.",
   "book.spectrum.guidebook.potion_workshop.page1.text": "",
   "book.spectrum.guidebook.potion_workshop_brewing.low_yield": "*In spite of everything I've tried, this brew has a naturally low yield.*",
+  "book.spectrum.guidebook.potion_workshop_brewing.low_potency_mod": "*This brew doesn't take well to potency reagents, and requires more than the usual amount to achieve the same increase in strength.*",
   "book.spectrum.guidebook.potion_workshop_brewing.fillable_only": "*This brew is too concentrated to function as a potion or tipped arrow, and will only be useful for more complex items that can be filled with a potion effect.*",
   "book.spectrum.guidebook.potion_workshop_brewing.name": "Brewing Potions",
   "book.spectrum.guidebook.potion_workshop_brewing.page0.text": "I was able to replicate all the potions I could do with the Brewing Stand and more! (though some of them are easier or harder to get enhanced effects from)\\\n\\\nI can use [Reagents](entry://brewing/potion_workshop_reagents) to tinker with their effects.",

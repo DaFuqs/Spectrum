@@ -11,8 +11,10 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.server.world.*;
+import org.jetbrains.annotations.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.*;
 
@@ -21,7 +23,27 @@ public abstract class LivingEntityPreventStatusClearMixin {
 	
 	@Shadow
 	public abstract void remove(Entity.RemovalReason reason);
+
+	@Shadow
+	public abstract boolean addStatusEffect(StatusEffectInstance effect);
+
+	@Shadow
+	public abstract Map<StatusEffect,StatusEffectInstance> getActiveStatusEffects();
 	
+	private boolean hasFatalSlumber = false;
+
+	@Inject(method = "clearStatusEffects", at = @At("HEAD"))
+	private void spectrum$detectFatalSlumber(CallbackInfoReturnable<Boolean> cir) {
+		hasFatalSlumber = getActiveStatusEffects().containsKey(SpectrumStatusEffects.FATAL_SLUMBER);
+	}
+
+	@Inject(method = "clearStatusEffects", at = @At("TAIL"))
+	private void spectrum$applyEternalSlumberIfFatalSlumberRemoved(CallbackInfoReturnable<Boolean> cir) {
+		if (hasFatalSlumber) {
+  			addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.ETERNAL_SLUMBER, 6000));
+		}
+	}
+
 	@WrapWithCondition(method = "clearStatusEffects", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;onStatusEffectRemoved(Lnet/minecraft/entity/effect/StatusEffectInstance;)V"))
 	private boolean spectrum$preventStatusClear(LivingEntity instance, StatusEffectInstance effect, @Share("blockRemoval") LocalBooleanRef blockRemoval) {
 		if (Incurable.isIncurable(effect)) {

@@ -227,21 +227,48 @@ public abstract class LivingEntityMixin {
 	private boolean spectrum$canHaveStatusEffect(boolean original, @Local(argsOnly = true) StatusEffectInstance statusEffectInstance) {
 		var instance = (LivingEntity) (Object) this;
 
+		// if fatal slumber is applied, incoming immunity converts fatal->eternal and doesn't apply immunity
+		if (original && this.hasStatusEffect(SpectrumStatusEffects.FATAL_SLUMBER) && statusEffectInstance.getEffectType() == SpectrumStatusEffects.IMMUNITY) {
+			ImmunityStatusEffect.removeNegativeStatusEffects(instance);
+			addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.ETERNAL_SLUMBER, 6000));
+			return false;
+		}
+
+		// if eternal slumber is applied, incoming immunity loses 30s of duration but does still apply
+		if (original && this.hasStatusEffect(SpectrumStatusEffects.ETERNAL_SLUMBER) && statusEffectInstance.getEffectType() == SpectrumStatusEffects.IMMUNITY) {
+			ImmunityStatusEffect.removeNegativeStatusEffects(instance);
+			((StatusEffectInstanceAccessor) statusEffectInstance).setDuration(Math.max(0, statusEffectInstance.getDuration() - 600));
+			if (!instance.getWorld().isClient()) {
+				((ServerWorld) instance.getWorld()).getChunkManager().sendToNearbyPlayers(instance, new EntityStatusEffectS2CPacket(instance.getId(), statusEffectInstance));
+			}
+			return true;
+		}
+
+		// normal immunity handling (block incoming negative effects)
 		if (original && this.hasStatusEffect(SpectrumStatusEffects.IMMUNITY) && statusEffectInstance.getEffectType().getCategory() == StatusEffectCategory.HARMFUL && !SpectrumStatusEffectTags.bypassesImmunity(statusEffectInstance.getEffectType())) {
-			if (Incurable.isIncurable(statusEffectInstance)) {
+			// incurable effects (and eternal slumber) cost chunks of immunity duration to block
+			if (Incurable.isIncurable(statusEffectInstance) || statusEffectInstance.getEffectType() == SpectrumStatusEffects.ETERNAL_SLUMBER) {
 				var immunity = getStatusEffect(SpectrumStatusEffects.IMMUNITY);
 				var cost = 600 * (statusEffectInstance.getAmplifier() + 1);
+				var immDuration = immunity.getDuration();
 
-				if (immunity.getDuration() >= cost) {
-					((StatusEffectInstanceAccessor) immunity).setDuration(Math.max(5, immunity.getDuration() - cost));
+				if (immDuration >= cost) {
+					((StatusEffectInstanceAccessor) immunity).setDuration(immDuration - cost);
 					if (!instance.getWorld().isClient()) {
 						((ServerWorld) instance.getWorld()).getChunkManager().sendToNearbyPlayers(instance, new EntityStatusEffectS2CPacket(instance.getId(), immunity));
 					}
 					return false;
-				}
-				else {
+				} else {
+					removeStatusEffect(SpectrumStatusEffects.IMMUNITY);
 					return true;
 				}
+			}
+
+			// fatal slumber removes the immunity and then turns into eternal slumber
+			if (statusEffectInstance.getEffectType() == SpectrumStatusEffects.FATAL_SLUMBER) {
+				removeStatusEffect(SpectrumStatusEffects.IMMUNITY);
+				addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.ETERNAL_SLUMBER, 6000));
+				return false;
 			}
 
 			return false;

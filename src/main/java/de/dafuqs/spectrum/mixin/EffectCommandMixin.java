@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.mixin;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import de.dafuqs.spectrum.api.status_effect.Incurable;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
@@ -25,6 +26,9 @@ public class EffectCommandMixin {
             for (StatusEffectInstance effect : living.getStatusEffects()) {
                 if (((Incurable) effect).spectrum$isIncurable())
                     ((Incurable) effect).spectrum$setIncurable(false);
+                // manually remove fatal slumber to bypass turning it into eternal slumber
+                if (effect.getEffectType() == SpectrumStatusEffects.FATAL_SLUMBER)
+                    living.removeStatusEffect(SpectrumStatusEffects.FATAL_SLUMBER);
             }
         }
     }

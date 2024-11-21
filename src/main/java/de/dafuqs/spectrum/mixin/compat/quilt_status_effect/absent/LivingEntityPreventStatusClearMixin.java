@@ -28,15 +28,15 @@ public abstract class LivingEntityPreventStatusClearMixin {
 			if (affectedByImmunity(instance, effect.getAmplifier()))
 				return true;
 			
-			if (effect.getDuration() > 1200) {
-				((StatusEffectInstanceAccessor) effect).setDuration(effect.getDuration() - 1200);
-				if (!instance.getWorld().isClient()) {
-					((ServerWorld) instance.getWorld()).getChunkManager().sendToNearbyPlayers(instance, new EntityStatusEffectS2CPacket(instance.getId(), effect));
-				}
-				
-				blockRemoval.set(true);
-				return false;
+			// new duration = duration - 1min OR duration * 0.4, whichever is the smaller reduction
+			int duration = effect.getDuration();
+			((StatusEffectInstanceAccessor) effect).setDuration(Math.max(duration - 1200, (int)(duration * 0.4)));
+			if (!instance.getWorld().isClient()) {
+				((ServerWorld) instance.getWorld()).getChunkManager().sendToNearbyPlayers(instance, new EntityStatusEffectS2CPacket(instance.getId(), effect));
 			}
+
+			blockRemoval.set(true);
+			return false;
 		}
 		return true;
 	}

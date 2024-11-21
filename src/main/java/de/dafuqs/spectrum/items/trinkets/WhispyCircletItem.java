@@ -36,7 +36,7 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 		List<StatusEffectInstance> negativeEffects = new ArrayList<>();
 		for (StatusEffectInstance statusEffectInstance : currentEffects) {
 			StatusEffect effect = statusEffectInstance.getEffectType();
-			if (effect.getCategory() == category && !SpectrumStatusEffectTags.isIn(SpectrumStatusEffectTags.SOPORIFIC, effect) && !SpectrumStatusEffectTags.isUnclearable(effect)) {
+			if (effect.getCategory() == category && !SpectrumStatusEffectTags.isIn(SpectrumStatusEffectTags.SOPORIFIC, effect) && !SpectrumStatusEffectTags.bypassesWhispyCirclet(effect)) {
 				negativeEffects.add(statusEffectInstance);
 			}
 		}
@@ -90,7 +90,7 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 	}
 	
 	public static boolean affects(StatusEffect statusEffect) {
-		return statusEffect.getCategory() == StatusEffectCategory.HARMFUL && !SpectrumStatusEffectTags.isIn(SpectrumStatusEffectTags.SOPORIFIC, statusEffect) && !SpectrumStatusEffectTags.isUnclearable(statusEffect);
+		return statusEffect.getCategory() == StatusEffectCategory.HARMFUL && !SpectrumStatusEffectTags.bypassesWhispyCirclet(statusEffect);
 	}
 	
 	public static void preventPhantomSpawns(@NotNull ServerPlayerEntity serverPlayerEntity) {

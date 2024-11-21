@@ -8,15 +8,15 @@ import net.minecraft.registry.tag.*;
 
 public class SpectrumStatusEffectTags {
 	
-	public static TagKey<StatusEffect> NO_EFFECT_CLEAR;
-	public static TagKey<StatusEffect> IMMUNITY_IMMUNE;
+	public static TagKey<StatusEffect> BYPASSES_WHISPY_CIRCLET;
+	public static TagKey<StatusEffect> BYPASSES_IMMUNITY;
 	public static TagKey<StatusEffect> NO_DURATION_EXTENSION;
 	public static TagKey<StatusEffect> SOPORIFIC;
 	public static TagKey<StatusEffect> NIGHT_ALCHEMY;
 
 	public static void register() {
-		NO_EFFECT_CLEAR = of("unclearable");
-		IMMUNITY_IMMUNE = of("immunity_immune");
+		BYPASSES_WHISPY_CIRCLET = of("bypasses_whispy_circlet");
+		BYPASSES_IMMUNITY = of("bypasses_immunity");
 		NO_DURATION_EXTENSION = of("no_duration_extension");
 		SOPORIFIC = of("soporific");
 		NIGHT_ALCHEMY = of("night_alchemy");
@@ -30,12 +30,12 @@ public class SpectrumStatusEffectTags {
 		return Registries.STATUS_EFFECT.getEntry(effect).isIn(tag);
 	}
 	
-	public static boolean isImmunityImmune(StatusEffect statusEffect) {
-		return isIn(SpectrumStatusEffectTags.IMMUNITY_IMMUNE, statusEffect);
+	public static boolean bypassesImmunity(StatusEffect statusEffect) {
+		return isIn(SpectrumStatusEffectTags.BYPASSES_IMMUNITY, statusEffect);
 	}
 	
-	public static boolean isUnclearable(StatusEffect statusEffect) {
-		return isIn(SpectrumStatusEffectTags.NO_EFFECT_CLEAR, statusEffect);
+	public static boolean bypassesWhispyCirclet(StatusEffect statusEffect) {
+		return isIn(SpectrumStatusEffectTags.BYPASSES_WHISPY_CIRCLET, statusEffect);
 	}
 	
 	public static boolean hasEffectWithTag(LivingEntity livingEntity, TagKey<StatusEffect> tag) {

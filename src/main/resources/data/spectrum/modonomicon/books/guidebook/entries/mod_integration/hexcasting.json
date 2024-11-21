@@ -64,6 +64,16 @@
         "item": "hexcasting:charged_amethyst"
       },
       "text": "book.spectrum.guidebook.mod_integration.hexcasting.page4.text"
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.hexcasting.page5.text",
+      "title": "effect.hexcasting.enlarge_grid",
+      "recipe_id": "spectrum:mod_integration/hexcasting/potion_workshop_brewing/hexcasting_enlarge_grid"
     }
   ]
 }

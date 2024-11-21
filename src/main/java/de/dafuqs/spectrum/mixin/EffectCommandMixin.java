@@ -26,10 +26,9 @@ public class EffectCommandMixin {
             for (StatusEffectInstance effect : living.getStatusEffects()) {
                 if (((Incurable) effect).spectrum$isIncurable())
                     ((Incurable) effect).spectrum$setIncurable(false);
-                // manually remove fatal slumber to bypass turning it into eternal slumber
-                if (effect.getEffectType() == SpectrumStatusEffects.FATAL_SLUMBER)
-                    living.removeStatusEffect(SpectrumStatusEffects.FATAL_SLUMBER);
             }
+            // manually remove fatal slumber to bypass turning it into eternal slumber
+            living.removeStatusEffect(SpectrumStatusEffects.FATAL_SLUMBER);
         }
     }
 

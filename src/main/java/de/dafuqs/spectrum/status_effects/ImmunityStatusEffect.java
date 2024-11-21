@@ -37,7 +37,7 @@ public class ImmunityStatusEffect extends StatusEffect {
 		for (StatusEffectInstance instance : currentEffects) {
 			StatusEffect effectType = instance.getEffectType();
 			if (effectType.getCategory() == StatusEffectCategory.HARMFUL && !SpectrumStatusEffectTags.bypassesImmunity(effectType)) {
-				effectsToRemove.add(instance.getEffectType());
+				effectsToRemove.add(effectType);
 			}
 		}
 		

@@ -29,17 +29,15 @@ public abstract class LivingEntityPreventStatusClearMixin {
 
 	@Shadow
 	public abstract Map<StatusEffect,StatusEffectInstance> getActiveStatusEffects();
-	
-	private boolean hasFatalSlumber = false;
 
 	@Inject(method = "clearStatusEffects", at = @At("HEAD"))
-	private void spectrum$detectFatalSlumber(CallbackInfoReturnable<Boolean> cir) {
-		hasFatalSlumber = getActiveStatusEffects().containsKey(SpectrumStatusEffects.FATAL_SLUMBER);
+	private void spectrum$detectFatalSlumber(CallbackInfoReturnable<Boolean> cir, @Share("hasFatalSlumber") LocalBooleanRef hasFatalSlumber) {
+		hasFatalSlumber.set(getActiveStatusEffects().containsKey(SpectrumStatusEffects.FATAL_SLUMBER));
 	}
 
 	@Inject(method = "clearStatusEffects", at = @At("TAIL"))
-	private void spectrum$applyEternalSlumberIfFatalSlumberRemoved(CallbackInfoReturnable<Boolean> cir) {
-		if (hasFatalSlumber) {
+	private void spectrum$applyEternalSlumberIfFatalSlumberRemoved(CallbackInfoReturnable<Boolean> cir, @Share("hasFatalSlumber") LocalBooleanRef hasFatalSlumber) {
+		if (hasFatalSlumber.get()) {
   			addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.ETERNAL_SLUMBER, 6000));
 		}
 	}

@@ -260,7 +260,7 @@ public abstract class LivingEntityMixin {
 					return false;
 				} else {
 					removeStatusEffect(SpectrumStatusEffects.IMMUNITY);
-					return true;
+					return false;
 				}
 			}
 

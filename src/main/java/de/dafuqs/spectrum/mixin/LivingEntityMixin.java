@@ -523,8 +523,10 @@ public abstract class LivingEntityMixin {
 	@Inject(method = "addStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;Lnet/minecraft/entity/Entity;)Z", at = @At("HEAD"), cancellable = true)
 	private void spectrum$modifyOrCancelEffects(StatusEffectInstance effect, Entity source, CallbackInfoReturnable<Boolean> cir) {
 		var entity = (LivingEntity) (Object) this;
+		var effectType = effect.getEffectType();
 
-		if (AetherGracedNectarGlovesItem.testEffectFor(entity, effect.getEffectType())) {
+		// trigger gloves only if you don't have immunity, or if you do have immunity but the incoming effect bypasses it
+		if ((!entity.hasStatusEffect(SpectrumStatusEffects.IMMUNITY) || SpectrumStatusEffectTags.isIn(SpectrumStatusEffectTags.BYPASSES_IMMUNITY, effectType)) && AetherGracedNectarGlovesItem.testEffectFor(entity, effectType)) {
 			var cost = (effect.getAmplifier() + 1) * AetherGracedNectarGlovesItem.HARMFUL_EFFECT_COST;
 
 			if (Incurable.isIncurable(effect))
@@ -537,13 +539,13 @@ public abstract class LivingEntityMixin {
 		}
 
 		var resistanceModifier = MathHelper.clamp(SleepStatusEffect.getSleepResistance(effect, entity), 0.1F, 10F);
-		if (effect.getEffectType() == SpectrumStatusEffects.ETERNAL_SLUMBER) {
+		if (effectType == SpectrumStatusEffects.ETERNAL_SLUMBER) {
 			if (SleepStatusEffect.isImmuneish(entity)) {
 				((StatusEffectInstanceAccessor) effect).setDuration(Math.round(effect.getDuration() / resistanceModifier));
 			} else if (!entity.getType().isIn(SpectrumEntityTypeTags.SLEEP_RESISTANT)) {
 				((StatusEffectInstanceAccessor) effect).setDuration(StatusEffectInstance.INFINITE);
 			}
-		} else if (effect.getEffectType() == SpectrumStatusEffects.FATAL_SLUMBER) {
+		} else if (effectType == SpectrumStatusEffects.FATAL_SLUMBER) {
 			if (SleepStatusEffect.isImmuneish(entity) && entity.getType().isIn(ConventionalEntityTypeTags.BOSSES)) {
 				((StatusEffectInstanceAccessor) effect).setDuration(20 * 60);
 			}

@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.compat.emi;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.blocks.fluid.*;
 import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.compat.emi.handlers.*;
 import de.dafuqs.spectrum.compat.emi.recipes.*;
@@ -12,8 +13,11 @@ import de.dafuqs.spectrum.registries.*;
 import dev.emi.emi.api.*;
 import dev.emi.emi.api.recipe.*;
 import dev.emi.emi.api.stack.*;
+import dev.emi.emi.config.*;
+import dev.emi.emi.runtime.*;
 import net.minecraft.block.*;
 import net.minecraft.client.gui.screen.ingame.*;
+import net.minecraft.fluid.*;
 import net.minecraft.inventory.*;
 import net.minecraft.recipe.*;
 import net.minecraft.registry.*;
@@ -178,6 +182,98 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 			Identifier id = syntheticId("natures_staff", key);
 			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.NATURES_STAFF, id, in, out, SpectrumAdvancements.UNLOCK_NATURES_STAFF));
 		});
+		
+		//WorldInteractionRecipe
+		EmiStack water = EmiStack.of(Fluids.WATER, FluidUnit.BUCKET);
+		EmiStack lava = EmiStack.of(Fluids.LAVA, FluidUnit.BUCKET);
+		EmiStack dragonrot = EmiStack.of(SpectrumFluids.DRAGONROT, FluidUnit.BUCKET);
+		EmiStack liquidCrystal = EmiStack.of(SpectrumFluids.LIQUID_CRYSTAL, FluidUnit.BUCKET);
+		EmiStack midnightSolution = EmiStack.of(SpectrumFluids.MIDNIGHT_SOLUTION, FluidUnit.BUCKET);
+		EmiStack mud = EmiStack.of(SpectrumFluids.MUD, FluidUnit.BUCKET);
+		EmiStack waterCatalyst = water.copy().setRemainder(water);
+		EmiStack lavaCatalyst = lava.copy().setRemainder(lava);
+		EmiStack dragonrotCatalyst = dragonrot.copy().setRemainder(dragonrot);
+		EmiStack liquidCrystalCatalyst = liquidCrystal.copy().setRemainder(liquidCrystal);
+		EmiStack midnightSolutionCatalyst = midnightSolution.copy().setRemainder(midnightSolution);
+		EmiStack mudCatalyst = mud.copy().setRemainder(mud);
+		addRecipeSafe(registry, () -> EmiWorldInteractionRecipe.builder()
+				.id(syntheticId("world/fluid_interaction", SpectrumBlocks.SLUSH))
+				.leftInput(dragonrotCatalyst)
+				.rightInput(waterCatalyst, false)
+				.output(EmiStack.of(SpectrumBlocks.SLUSH))
+				.build());
+		addRecipeSafe(registry, () -> EmiWorldInteractionRecipe.builder()
+				.id(syntheticId("world/fluid_interaction", Blocks.BLACKSTONE))
+				.leftInput(dragonrotCatalyst)
+				.rightInput(lavaCatalyst, false)
+				.output(EmiStack.of(Blocks.BLACKSTONE))
+				.build());
+		addRecipeSafe(registry, () -> EmiWorldInteractionRecipe.builder()
+				.id(syntheticId("world/fluid_interaction", Blocks.COARSE_DIRT))
+				.leftInput(dragonrotCatalyst)
+				.rightInput(mudCatalyst, false)
+				.output(EmiStack.of(Blocks.COARSE_DIRT))
+				.build());
+		addRecipeSafe(registry, () -> EmiWorldInteractionRecipe.builder()
+				.id(syntheticId("world/fluid_interaction", SpectrumBlocks.ROTTEN_GROUND))
+				.leftInput(dragonrotCatalyst)
+				.rightInput(liquidCrystalCatalyst, false)
+				.output(EmiStack.of(SpectrumBlocks.ROTTEN_GROUND))
+				.build());
+		addRecipeSafe(registry, () -> EmiWorldInteractionRecipe.builder()
+				.id(syntheticId("world/fluid_interaction", SpectrumBlocks.BLACK_SLUDGE))
+				.leftInput(dragonrotCatalyst)
+				.rightInput(midnightSolutionCatalyst, false)
+				.output(EmiStack.of(SpectrumBlocks.BLACK_SLUDGE))
+				.build());
+		addRecipeSafe(registry, () -> EmiWorldInteractionRecipe.builder()
+				.id(syntheticId("world/fluid_interaction", SpectrumBlocks.FROSTBITE_CRYSTAL))
+				.leftInput(liquidCrystal)
+				.rightInput(waterCatalyst, false)
+				.output(EmiStack.of(SpectrumBlocks.FROSTBITE_CRYSTAL))
+				.build());
+		addRecipeSafe(registry, () -> EmiWorldInteractionRecipe.builder()
+				.id(syntheticId("world/fluid_interaction", Blocks.CALCITE))
+				.leftInput(liquidCrystalCatalyst)
+				.rightInput(waterCatalyst, false)
+				.output(EmiStack.of(Blocks.CALCITE))
+				.build());
+		addRecipeSafe(registry, () -> EmiWorldInteractionRecipe.builder()
+				.id(syntheticId("world/fluid_interaction", SpectrumBlocks.BLAZING_CRYSTAL))
+				.leftInput(liquidCrystal)
+				.rightInput(lavaCatalyst, false)
+				.output(EmiStack.of(SpectrumBlocks.BLAZING_CRYSTAL))
+				.build());
+		addRecipeSafe(registry, () -> EmiWorldInteractionRecipe.builder()
+				.id(syntheticId("world/fluid_interaction", Blocks.COBBLED_DEEPSLATE))
+				.leftInput(liquidCrystalCatalyst)
+				.rightInput(lavaCatalyst, false)
+				.output(EmiStack.of(Blocks.COBBLED_DEEPSLATE))
+				.build());
+		addRecipeSafe(registry, () -> EmiWorldInteractionRecipe.builder()
+				.id(syntheticId("world/fluid_interaction", Blocks.CLAY))
+				.leftInput(liquidCrystalCatalyst)
+				.rightInput(mudCatalyst, false)
+				.output(EmiStack.of(Blocks.CLAY))
+				.build());
+		addRecipeSafe(registry, () -> EmiWorldInteractionRecipe.builder()
+				.id(syntheticId("world/fluid_interaction", Blocks.TERRACOTTA))
+				.leftInput(midnightSolutionCatalyst)
+				.rightInput(lavaCatalyst, false)
+				.output(EmiStack.of(Blocks.TERRACOTTA))
+				.build());
+		addRecipeSafe(registry, () -> EmiWorldInteractionRecipe.builder()
+				.id(syntheticId("world/fluid_interaction", Blocks.DIRT))
+				.leftInput(mudCatalyst)
+				.rightInput(waterCatalyst, false)
+				.output(EmiStack.of(Blocks.DIRT))
+				.build());
+		addRecipeSafe(registry, () -> EmiWorldInteractionRecipe.builder()
+				.id(syntheticId("world/fluid_interaction", Blocks.MUD))
+				.leftInput(mudCatalyst)
+				.rightInput(lavaCatalyst, false)
+				.output(EmiStack.of(Blocks.MUD))
+				.build());
 	}
 
 	public void registerRecipeHandlers(EmiRegistry registry) {
@@ -196,6 +292,15 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 	public <C extends Inventory, T extends Recipe<C>> void addAll(EmiRegistry registry, RecipeType<T> type, Function<T, EmiRecipe> constructor) {
 		for (T recipe : registry.getRecipeManager().listAllOfType(type)) {
 			registry.addRecipe(constructor.apply(recipe));
+		}
+	}
+	
+	private static void addRecipeSafe(EmiRegistry registry, Supplier<EmiRecipe> supplier) {
+		try {
+			registry.addRecipe(supplier.get());
+		} catch (Throwable e) {
+			EmiReloadLog.warn("Exception thrown when parsing EMI recipe (no ID available)");
+			EmiReloadLog.error(e);
 		}
 	}
 	

@@ -58,8 +58,7 @@ public class IncandescentAmalgamItem extends BlockItem implements DamageAwareIte
 		
 		float explosionPower = getExplosionPower(stack, true);
 		var world = itemEntity.getWorld();
-		world.createExplosion(itemEntity, SpectrumDamageTypes.incandescence(world, itemEntity), new EntityExplosionBehavior(itemEntity), itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), explosionPower / 8F, false, World.ExplosionSourceType.BLOCK);
-		world.createExplosion(itemEntity, SpectrumDamageTypes.incandescence(world, itemEntity), new EntityExplosionBehavior(itemEntity), itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), explosionPower, true, World.ExplosionSourceType.NONE);
+		world.createExplosion(itemEntity, SpectrumDamageTypes.incandescence(world, itemEntity), new EntityExplosionBehavior(itemEntity), itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), explosionPower, true, World.ExplosionSourceType.BLOCK);
 	}
 
 	@Override
@@ -72,7 +71,7 @@ public class IncandescentAmalgamItem extends BlockItem implements DamageAwareIte
 		if (alcPercent <= 0) {
 			return 6;
 		} else {
-			return alcPercent + (useCount ? stack.getCount() / 8F : 0);
+			return alcPercent * (useCount ? 0.875F + (stack.getCount() / 8F) : 1);
 		}
 	}
 	

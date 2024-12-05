@@ -101,10 +101,6 @@
     {
       "type": "modonomicon:spotlight",
       "title": "book.spectrum.guidebook.potion_reagent",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
-      },
       "item": {
         "item": "botania:black_lotus"
       },
@@ -113,10 +109,6 @@
     {
       "type": "modonomicon:spotlight",
       "title": "book.spectrum.guidebook.potion_reagent",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
-      },
       "item": {
         "item": "botania:blacker_lotus"
       },
@@ -125,10 +117,6 @@
     {
       "type": "modonomicon:spotlight",
       "title": "book.spectrum.guidebook.potion_reagent",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
-      },
       "item": {
         "item": "spectrum:blackest_lotus"
       },
@@ -137,10 +125,6 @@
     {
       "type": "modonomicon:spotlight",
       "title": "book.spectrum.guidebook.potion_reagent",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
-      },
       "item": {
         "item": "spectrum:least_black_lotus"
       },
@@ -149,10 +133,6 @@
     {
       "type": "modonomicon:spotlight",
       "title": "book.spectrum.guidebook.potion_reagent",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
-      },
       "item": {
         "item": "botania:life_essence"
       },
@@ -161,10 +141,6 @@
     {
       "type": "modonomicon:spotlight",
       "title": "book.spectrum.guidebook.potion_reagent",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
-      },
       "item": {
         "item": "botania:mana_powder"
       },
@@ -173,10 +149,6 @@
     {
       "type": "modonomicon:spotlight",
       "title": "book.spectrum.guidebook.potion_reagent",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
-      },
       "item": {
         "item": "botania:pixie_dust"
       },

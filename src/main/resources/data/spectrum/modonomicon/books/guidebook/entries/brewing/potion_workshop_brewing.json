@@ -47,38 +47,22 @@
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "effect.minecraft.absorption",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
-      },
       "recipe_id": "spectrum:potion_workshop_brewing/absorption"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "effect.minecraft.glowing",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
-      },
       "recipe_id": "spectrum:potion_workshop_brewing/glowing"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "effect.minecraft.haste",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
-      },
       "recipe_id": "spectrum:potion_workshop_brewing/haste",
       "text": "book.spectrum.guidebook.potion_workshop_brewing.page4.text"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "effect.minecraft.saturation",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
-      },
       "recipe_id": "spectrum:potion_workshop_brewing/saturation",
       "text": "book.spectrum.guidebook.potion_workshop_brewing.page5.text"
     },
@@ -87,7 +71,7 @@
       "title": "effect.minecraft.levitation",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:unlocks/potions/levitation"
+        "advancement_id": "spectrum:lategame/collect_paltaeria"
       },
       "recipe_id": "spectrum:potion_workshop_brewing/levitation"
     },
@@ -96,7 +80,7 @@
       "title": "effect.minecraft.luck",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:unlocks/potions/luck"
+        "advancement_id": "spectrum:collect_four_leaf_clover"
       },
       "recipe_id": "spectrum:potion_workshop_brewing/luck",
       "text": "book.spectrum.guidebook.potion_workshop_brewing.page7.text"
@@ -106,7 +90,7 @@
       "title": "effect.minecraft.resistance",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:unlocks/potions/resistance"
+        "advancement_id": "spectrum:lategame/collect_moonstone"
       },
       "recipe_id": "spectrum:potion_workshop_brewing/resistance",
       "text": "book.spectrum.guidebook.potion_workshop_brewing.low_potency_mod"
@@ -116,7 +100,7 @@
       "title": "effect.minecraft.wither",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:unlocks/potions/wither"
+        "advancement_id": "spectrum:midgame/collect_midnight_chip"
       },
       "recipe_id": "spectrum:potion_workshop_brewing/wither",
       "text": "book.spectrum.guidebook.potion_workshop_brewing.low_potency_mod"
@@ -126,7 +110,7 @@
       "title": "effect.minecraft.darkness",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:unlocks/potions/darkness"
+        "advancement_id": "spectrum:hidden/collect_vanilla/echo_shard"
       },
       "recipe_id": "spectrum:potion_workshop_brewing/darkness"
     },
@@ -135,7 +119,7 @@
       "title": "effect.spectrum.toughness",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:unlocks/potions/toughness"
+        "advancement_id": "spectrum:hidden/collect_glass_peach"
       },
       "recipe_id": "spectrum:potion_workshop_brewing/toughness",
       "text": "book.spectrum.guidebook.potion_workshop_brewing.low_potency_mod"
@@ -145,7 +129,7 @@
       "title": "effect.spectrum.deadly_poison",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:unlocks/potions/deadly_poison"
+        "advancement_id": "spectrum:break_cracked_dragonbone"
       },
       "recipe_id": "spectrum:potion_workshop_brewing/deadly_poison"
     },
@@ -154,7 +138,7 @@
       "title": "effect.spectrum.life_drain",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:unlocks/potions/life_drain"
+        "advancement_id": "spectrum:collect_downstone_fragments"
       },
       "recipe_id": "spectrum:potion_workshop_brewing/life_drain"
     },
@@ -163,7 +147,7 @@
       "title": "effect.spectrum.scarred",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:unlocks/potions/scarred"
+        "advancement_id": "spectrum:break_cracked_dragonbone"
       },
       "recipe_id": "spectrum:potion_workshop_brewing/scarred"
     },

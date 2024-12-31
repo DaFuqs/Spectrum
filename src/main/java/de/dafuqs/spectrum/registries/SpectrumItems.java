@@ -278,7 +278,7 @@ public class SpectrumItems {
 	
 	public static final Item JADEITE_PETALS = new Item(IS.of(Rarity.UNCOMMON));
 	
-	public static final Item BLOOD_ORCHID_PETAL = new CloakedItem(IS.of(), SpectrumAdvancements.SOLVE_WIRELESS_REDSTONE_PRESERVATION_RUIN, Items.RED_DYE);
+	public static final Item BLOOD_ORCHID_PETAL = new CloakedItem(IS.of(), SpectrumAdvancements.REVEAL_BLOOD_ORCHID_PETALS, Items.RED_DYE);
 
 	public static final Item ROCK_CANDY = new RockCandyItem(IS.of().food(SpectrumFoodComponents.ROCK_CANDY), RockCandy.RockCandyVariant.SUGAR);
 	public static final Item TOPAZ_ROCK_CANDY = new RockCandyItem(IS.of().food(SpectrumFoodComponents.TOPAZ_ROCK_CANDY), RockCandy.RockCandyVariant.TOPAZ);

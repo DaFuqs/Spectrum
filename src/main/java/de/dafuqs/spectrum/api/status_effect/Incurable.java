@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.api.status_effect;
 
 
 import de.dafuqs.spectrum.mixin.accessors.*;
-import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
+import de.dafuqs.spectrum.registries.SpectrumStatusEffectTags;
 import net.minecraft.entity.*;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.network.packet.s2c.play.*;
@@ -16,7 +16,7 @@ public interface Incurable {
 
     static boolean isIncurable(StatusEffectInstance instance) {
         var type = instance.getEffectType();
-        if (type == SpectrumStatusEffects.ETERNAL_SLUMBER || type == SpectrumStatusEffects.FATAL_SLUMBER)
+        if (SpectrumStatusEffectTags.cannotBeIncurable(type))
             return false;
 
         return ((Incurable) instance).spectrum$isIncurable();

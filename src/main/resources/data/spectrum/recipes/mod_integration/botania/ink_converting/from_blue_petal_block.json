@@ -1,0 +1,17 @@
+{
+    "type": "spectrum:ink_converting",
+    "ingredient": {
+      "item": "botania:blue_petal_block"
+    },
+    "ink_color": "spectrum:blue",
+    "amount": 225,
+    "required_advancement": "spectrum:hidden/collect_pigment/blue",
+    "fabric:load_conditions": [
+      {
+        "condition": "fabric:all_mods_loaded",
+        "values": [
+          "botania"
+        ]
+      }
+    ]
+  }

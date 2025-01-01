@@ -1005,6 +1005,18 @@ public class SpectrumItems {
 
 		FuelRegistry.INSTANCE.add(SpectrumItemTags.COLORED_FENCES, 300);
 		FuelRegistry.INSTANCE.add(SpectrumItemTags.COLORED_FENCE_GATES, 300);
+
+		// gala wood burns twice as long as normal
+		FuelRegistry.INSTANCE.add(SpectrumItemTags.WEEPING_GALA_LOGS, 600);
+		FuelRegistry.INSTANCE.add(SpectrumBlocks.WEEPING_GALA_PLANKS, 600);
+		FuelRegistry.INSTANCE.add(SpectrumBlocks.WEEPING_GALA_STAIRS, 600);
+		FuelRegistry.INSTANCE.add(SpectrumBlocks.WEEPING_GALA_DOOR, 400);
+		FuelRegistry.INSTANCE.add(SpectrumBlocks.WEEPING_GALA_FENCE, 600);
+		FuelRegistry.INSTANCE.add(SpectrumBlocks.WEEPING_GALA_PRESSURE_PLATE, 600);
+		FuelRegistry.INSTANCE.add(SpectrumBlocks.WEEPING_GALA_TRAPDOOR, 600);
+		FuelRegistry.INSTANCE.add(SpectrumBlocks.WEEPING_GALA_FENCE_GATE, 600);
+		FuelRegistry.INSTANCE.add(SpectrumBlocks.WEEPING_GALA_BUTTON, 200);
+		FuelRegistry.INSTANCE.add(SpectrumBlocks.WEEPING_GALA_SLAB, 300);
 	}
 	
 }

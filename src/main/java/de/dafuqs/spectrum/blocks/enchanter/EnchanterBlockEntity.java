@@ -421,7 +421,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 				default -> rarityCost = 80;
 			}
 			
-			float levelCost = level * ((float) level / enchantment.getMaxLevel()); // the higher the level, the pricier. But not as bad for enchantments with high max levels
+			float levelCost = level * Math.min(1, (float) level / enchantment.getMaxLevel()); // the higher the level, the pricier. But not as bad for enchantments with high max levels
 			float specialMulti = enchantment.isTreasure() ? 2.0F : enchantment.isCursed() ? 1.5F : 1.0F;
 			float selectionAvailabilityMod = 1.0F;
 			if (!(enchantment instanceof SpectrumEnchantment)) {

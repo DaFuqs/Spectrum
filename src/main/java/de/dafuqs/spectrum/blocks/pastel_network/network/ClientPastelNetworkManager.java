@@ -97,7 +97,7 @@ public class ClientPastelNetworkManager implements PastelNetworkManager {
 		PastelNetwork network = node.getParentNetwork();
 		if (network != null) {
 			network.removeNode(node, reason);
-			if (network.nodes.size() == 0) {
+			if (network.loadedNodes.size() == 0) {
 				this.networks.remove(network);
 			}
 		}

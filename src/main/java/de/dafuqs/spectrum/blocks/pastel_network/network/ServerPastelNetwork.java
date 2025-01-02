@@ -32,12 +32,6 @@ public class ServerPastelNetwork extends PastelNetwork {
 	}
 	
 	@Override
-	public void addNodeAndLoadMemory(PastelNodeBlockEntity node) {
-		super.addNodeAndLoadMemory(node);
-		this.transmissionLogic.invalidateCache();
-	}
-	
-	@Override
 	public boolean removeNode(PastelNodeBlockEntity node, NodeRemovalReason reason) {
 		boolean result = super.removeNode(node, reason);
 		this.transmissionLogic.invalidateCache();
@@ -45,14 +39,8 @@ public class ServerPastelNetwork extends PastelNetwork {
 	}
 
 	@Override
-	public void addAndRememberEdge(PastelNodeBlockEntity newNode, PastelNodeBlockEntity parent) {
-		super.addAndRememberEdge(newNode, parent);
-		this.transmissionLogic.invalidateCache();
-	}
-
-	@Override
-	public void removeAndForgetEdge(PastelNodeBlockEntity node, PastelNodeBlockEntity parent) {
-		super.removeAndForgetEdge(node, parent);
+	public void removeEdge(PastelNodeBlockEntity node, PastelNodeBlockEntity parent) {
+		super.removeEdge(node, parent);
 		this.transmissionLogic.invalidateCache();
 	}
 
@@ -120,25 +108,14 @@ public class ServerPastelNetwork extends PastelNetwork {
 		this.transmissions.put(transmission, travelTime);
 	}
 	
+	@Override
 	public NbtCompound toNbt() {
-		NbtCompound compound = new NbtCompound();
-		compound.putUuid("UUID", this.uuid);
-		compound.putString("World", this.getWorld().getRegistryKey().getValue().toString());
+		NbtCompound compound =  super.toNbt();
 		compound.put("Looper", this.transferLooper.toNbt());
-		
-		NbtList transmissionList = new NbtList();
-        for (Map.Entry<PastelTransmission, Integer> transmission : this.transmissions) {
-            NbtCompound transmissionCompound = new NbtCompound();
-            transmissionCompound.putInt("Delay", transmission.getValue());
-            transmissionCompound.put("Transmission", transmission.getKey().toNbt());
-            transmissionList.add(transmissionCompound);
-        }
-        compound.put("Transmissions", transmissionList);
-
         return compound;
     }
 
-    public static ServerPastelNetwork fromNbt(NbtCompound compound) {
+    public static ServerPastelNetwork fromNbtServer(NbtCompound compound) {
 		World world = SpectrumCommon.minecraftServer.getWorld(RegistryKey.of(RegistryKeys.WORLD, Identifier.tryParse(compound.getString("World"))));
 		UUID uuid = compound.getUuid("UUID");
 

@@ -1,9 +1,13 @@
 package de.dafuqs.spectrum.blocks.pastel_network.network;
 
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.block.entity.*;
+import net.minecraft.nbt.*;
+import net.minecraft.registry.*;
+import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
@@ -15,11 +19,11 @@ import java.util.concurrent.*;
 import java.util.stream.*;
 
 public class PastelNetwork {
-    
-    protected final Map<PastelNodeType, Set<PastelNodeBlockEntity>> nodes = new ConcurrentHashMap<>();
+	
+	protected final Map<PastelNodeType, Set<PastelNodeBlockEntity>> loadedNodes = new ConcurrentHashMap<>();
     protected final Set<PastelNodeBlockEntity> priorityNodes = new HashSet<>();
     protected final Set<PastelNodeBlockEntity> highPriorityNodes = new HashSet<>();
-    protected @Nullable Graph<PastelNodeBlockEntity, DefaultEdge> graph;
+    protected @NotNull Graph<BlockPos, DefaultEdge> graph = new SimpleGraph<>(DefaultEdge.class);
 	protected final World world;
 	protected final UUID uuid;
 	protected final SchedulerMap<PastelTransmission> transmissions = new SchedulerMap<>();
@@ -34,90 +38,38 @@ public class PastelNetwork {
 		this.world = world;
 		this.uuid = uuid == null ? UUID.randomUUID() : uuid;
 		for (PastelNodeType type : PastelNodeType.values()) {
-			this.nodes.put(type, new HashSet<>());
+			this.loadedNodes.put(type, new HashSet<>());
 		}
 	}
 
     public void incorporate(PastelNetwork networkToIncorporate, PastelNodeBlockEntity node, PastelNodeBlockEntity otherNode) {
-        for (Map.Entry<PastelNodeType, Set<PastelNodeBlockEntity>> nodesToIncorporate : networkToIncorporate.getNodes().entrySet()) {
+        for (Map.Entry<PastelNodeType, Set<PastelNodeBlockEntity>> nodesToIncorporate : networkToIncorporate.getLoadedNodes().entrySet()) {
             PastelNodeType type = nodesToIncorporate.getKey();
             for (PastelNodeBlockEntity nodeToIncorporate : nodesToIncorporate.getValue()) {
-                this.nodes.get(type).add(nodeToIncorporate);
+                this.loadedNodes.get(type).add(nodeToIncorporate);
                 nodeToIncorporate.setParentNetwork(this);
                 updateNodePriority(nodeToIncorporate, nodeToIncorporate.getPriority());
             }
         }
-
-        node.remember(otherNode);
-        otherNode.remember(node);
-        this.graph = buildGraph(this);
+		networkToIncorporate.graph.vertexSet().forEach(graph::addVertex);
+		networkToIncorporate.graph.edgeSet().forEach(edge -> {
+			graph.addEdge(networkToIncorporate.getGraph().getEdgeSource(edge), networkToIncorporate.getGraph().getEdgeTarget(edge));
+		});
     }
 
     public World getWorld() {
         return this.world;
     }
 
-    public Graph<PastelNodeBlockEntity, DefaultEdge> getGraph() {
-        if (this.graph == null) {
-            this.graph = buildGraph(this);
-        }
+    public @NotNull Graph<BlockPos, DefaultEdge> getGraph() {
         return this.graph;
-    }
-
-    private static @NotNull SimpleGraph<PastelNodeBlockEntity, DefaultEdge> buildGraph(@NotNull PastelNetwork network) {
-        SimpleGraph<PastelNodeBlockEntity, DefaultEdge> g = new SimpleGraph<>(DefaultEdge.class);
-        var world = network.world;
-
-        for (PastelNodeBlockEntity node : network.getAllNodes()) {
-            g.addVertex(node);
-        }
-
-        for (PastelNodeBlockEntity node : network.getAllNodes()) {
-            var memory = node.getRememberedConnections();
-
-            for (BlockPos pos : memory) {
-                if (!world.isPosLoaded(pos.getX(), pos.getZ()))
-                    continue;
-
-                var rememberedNode = network.getNodeAt(pos);
-
-                if (rememberedNode == null || !network.getAllNodes().contains(rememberedNode))
-                    continue;
-
-                g.addEdge(node, rememberedNode);
-            }
-        }
-
-        return g;
     }
 
     public void addNode(PastelNodeBlockEntity node) {
         if (addNodeOrReturn(node))
             return;
 
-        this.graph.addVertex(node);
-        addPriorityNode(node);
-    }
-
-    public void addNodeAndLoadMemory(PastelNodeBlockEntity node) {
-        if (addNodeOrReturn(node))
-            return;
-
-        // calculate connections for new node
-        this.graph.addVertex(node);
-        for (BlockPos memory : node.getRememberedConnections()) {
-            if (!world.isPosLoaded(memory.getX(), memory.getZ()))
-                continue;
-
-            var rememberedNode = getNodeAt(memory);
-
-            if (rememberedNode == null || !getAllNodes().contains(rememberedNode))
-                continue;
-
-            this.graph.addEdge(node, rememberedNode);
-        }
-
-        // check for priority
+        this.graph.addVertex(node.getPos());
         addPriorityNode(node);
     }
 
@@ -125,56 +77,33 @@ public class PastelNetwork {
      * Note: this does not check if the nodes can connect, that should be done before calling this method.
      */
     public void addNodeAndConnect(PastelNodeBlockEntity newNode, PastelNodeBlockEntity parent) {
-        if (addNodeOrReturn(newNode, true))
+        if (addNodeOrReturn(newNode))
             return;
 
-        this.graph.addVertex(newNode);
-        addAndRememberEdge(newNode, parent);
+        this.graph.addVertex(newNode.getPos());
+		getGraph().addEdge(newNode.getPos(), parent.getPos());
 
         // check for priority
         addPriorityNode(newNode);
     }
 
-    public void addAndRememberEdge(PastelNodeBlockEntity newNode, PastelNodeBlockEntity parent) {
-        getGraph().addEdge(newNode, parent);
-        newNode.remember(parent);
-        parent.remember(newNode);
-    }
-
-    public void removeAndForgetEdge(PastelNodeBlockEntity node, PastelNodeBlockEntity parent) {
-        if (graph != null) {
-            graph.removeEdge(node, parent);
-        }
-
-        node.forget(parent);
-        parent.forget(node);
+    public void removeEdge(PastelNodeBlockEntity node, PastelNodeBlockEntity parent) {
+		graph.removeEdge(node.getPos(), parent.getPos());
     }
 
     public boolean hasEdge(PastelNodeBlockEntity node, PastelNodeBlockEntity otherNode) {
-        if (this.graph == null)
+        if (!graph.containsVertex(node.getPos()) || !graph.containsVertex(otherNode.getPos()))
             return false;
 
-        if (!graph.containsVertex(node) || !graph.containsVertex(otherNode))
-            return false;
-
-        return graph.containsEdge(node, otherNode);
+        return graph.containsEdge(node.getPos(), otherNode.getPos());
     }
-
-    private boolean addNodeOrReturn(PastelNodeBlockEntity node, boolean allowGraphCreation) {
-        if (!this.nodes.get(node.getNodeType()).add(node)) {
-            return true;
-        }
-
-        if (graph == null && allowGraphCreation) {
-            this.graph = buildGraph(this);
-            return false;
-        }
-
-        return this.graph == null;
-    }
-
+	
+	/**
+	 * @return True = return
+	 */
+	
     private boolean addNodeOrReturn(PastelNodeBlockEntity node) {
-        return addNodeOrReturn(node, false);
+		return !this.loadedNodes.get(node.getNodeType()).add(node);
     }
 
     private void addPriorityNode(PastelNodeBlockEntity node) {
@@ -190,33 +119,17 @@ public class PastelNetwork {
     }
 
     protected boolean removeNode(PastelNodeBlockEntity node, NodeRemovalReason reason) {
-        boolean hadNode = this.nodes.get(node.getNodeType()).remove(node);
+        boolean hadNode = this.loadedNodes.get(node.getNodeType()).remove(node);
         if (!hadNode) {
             return false;
         }
 
-        if (this.graph != null) {
-            // delete the now removed node from this networks graph
-            removeAndForget(node);
-        }
+		// delete the now removed node from this networks graph
+		graph.removeVertex(node.getPos());
 
-        node.forgetAll();
         removePriorityNode(node, node.getPriority());
 
         return true;
-    }
-
-    private void removeAndForget(PastelNodeBlockEntity node) {
-        assert graph != null;
-        for (DefaultEdge edge : this.graph.edgesOf(node)) {
-            var target = graph.getEdgeSource(edge);
-
-            if (target == node)
-                target = graph.getEdgeTarget(edge);
-
-            target.forget(node);
-        }
-        this.graph.removeVertex(node);
     }
 
     private void removePriorityNode(PastelNodeBlockEntity node, Priority priority) {
@@ -227,7 +140,7 @@ public class PastelNetwork {
     }
 
     public boolean hasNodes() {
-        for (Set<PastelNodeBlockEntity> nodeList : this.nodes.values()) {
+        for (Set<PastelNodeBlockEntity> nodeList : this.loadedNodes.values()) {
             if (!nodeList.isEmpty()) {
                 return true;
             }
@@ -240,7 +153,7 @@ public class PastelNetwork {
     }
 
     public Set<PastelNodeBlockEntity> getNodes(PastelNodeType type, Priority priority) {
-        var nodeType = this.nodes.get(type);
+        var nodeType = this.loadedNodes.get(type);
 
         if (priority == Priority.MODERATE) {
             return nodeType.stream().filter(priorityNodes::contains).collect(Collectors.toSet());
@@ -253,13 +166,13 @@ public class PastelNetwork {
         return nodeType;
     }
 
-    public Map<PastelNodeType, Set<PastelNodeBlockEntity>> getNodes() {
-        return this.nodes;
+    public Map<PastelNodeType, Set<PastelNodeBlockEntity>> getLoadedNodes() {
+        return this.loadedNodes;
     }
 
     public int getNodeCount() {
         int nodes = 0;
-        for (Set<PastelNodeBlockEntity> nodeList : this.nodes.values()) {
+        for (Set<PastelNodeBlockEntity> nodeList : this.loadedNodes.values()) {
             nodes += nodeList.size();
         }
         return nodes;
@@ -267,8 +180,8 @@ public class PastelNetwork {
 
     public List<PastelNodeBlockEntity> getAllNodes() {
         List<PastelNodeBlockEntity> nodes = new ArrayList<>();
-        for (Map.Entry<PastelNodeType, Set<PastelNodeBlockEntity>> nodeList : this.nodes.entrySet()) {
-            nodes.addAll(this.nodes.get(nodeList.getKey()));
+        for (Map.Entry<PastelNodeType, Set<PastelNodeBlockEntity>> nodeList : this.loadedNodes.entrySet()) {
+            nodes.addAll(this.loadedNodes.get(nodeList.getKey()));
         }
         return nodes;
     }
@@ -278,7 +191,7 @@ public class PastelNetwork {
             return false;
         }
 
-        for (Set<PastelNodeBlockEntity> nodeList : this.nodes.values()) {
+        for (Set<PastelNodeBlockEntity> nodeList : this.loadedNodes.values()) {
             for (PastelNodeBlockEntity currentNode : nodeList) {
                 if (currentNode.canConnect(newNode)) {
                     return true;
@@ -338,6 +251,82 @@ public class PastelNetwork {
                 " - Conn: " +
                 getNodes(PastelNodeType.CONNECTION).size();
     }
+	
+	public NbtCompound toNbt() {
+		NbtCompound compound = new NbtCompound();
+		
+		var vertices = new ArrayList<>(graph.vertexSet());
+		var graphStorage = new NbtCompound();
+		graphStorage.putInt("Size", vertices.size());
+		for (int i = 0; i < vertices.size(); i++) {
+			var vertex = vertices.get(i);
+			
+			// Store the Vertex
+			graphStorage.putLong("Vertex" + i, vertex.asLong());
+			
+			// Save the edges
+			var edgeIndexes = graph.edgesOf(vertex)
+					.stream()
+					.map((edge) -> {
+						var target = graph.getEdgeTarget(edge);
+						var source = graph.getEdgeSource(edge);
+						return target.equals(vertex) ? source : target;
+					})
+					.mapToInt(vertices::indexOf)
+					.boxed()
+					.collect(Collectors.toList());
+			edgeIndexes.add(0, vertices.indexOf(vertex));
+			
+			graphStorage.putIntArray("EdgeIndexes" + i, edgeIndexes);
+		}
+		
+		compound.put("Graph", graphStorage);
+		
+		NbtList transmissionList = new NbtList();
+		for (Map.Entry<PastelTransmission, Integer> transmission : this.transmissions) {
+			NbtCompound transmissionCompound = new NbtCompound();
+			transmissionCompound.putInt("Delay", transmission.getValue());
+			transmissionCompound.put("Transmission", transmission.getKey().toNbt());
+			transmissionList.add(transmissionCompound);
+		}
+		compound.put("Transmissions", transmissionList);
+		
+		return compound;
+	}
+	
+	public static PastelNetwork fromNbt(NbtCompound compound) {
+		World world = SpectrumCommon.minecraftServer.getWorld(RegistryKey.of(RegistryKeys.WORLD, Identifier.tryParse(compound.getString("World"))));
+		UUID uuid = compound.getUuid("UUID");
+		
+		PastelNetwork network = new PastelNetwork(world, uuid);
+		if (compound.contains("Graph")) {
+			var graphStorage = compound.getCompound("Graph");
+			var size = graphStorage.getInt("Size");
+			var vertices = IntStream.of(size)
+					.mapToObj(i -> BlockPos.fromLong(graphStorage.getLong("Vertex" + i)))
+					.toList();
+			
+			vertices.forEach(network.graph::addVertex);
+			
+			for (int i = 0; i < size; i++) {
+				var edgeIndexes = graphStorage.getIntArray("EdgeIndexes" + i);
+				var source = vertices.get(edgeIndexes[0]);
+				for (int targetIndex = 1; targetIndex < edgeIndexes.length; targetIndex++) {
+					var target = vertices.get(targetIndex);
+					if (!network.graph.containsEdge(source, target))
+						network.graph.addEdge(source, target);
+				}
+			}
+		}
+		
+		for (NbtElement e : compound.getList("Transmissions", NbtElement.COMPOUND_TYPE)) {
+			NbtCompound t = (NbtCompound) e;
+			int delay = t.getInt("Delay");
+			PastelTransmission transmission = PastelTransmission.fromNbt(t.getCompound("Transmission"));
+			network.addTransmission(transmission, delay);
+		}
+		return network;
+	}
 
     public PastelNodeBlockEntity getNodeAt(BlockPos blockPos) {
 		if (!this.getWorld().isChunkLoaded(blockPos)) {

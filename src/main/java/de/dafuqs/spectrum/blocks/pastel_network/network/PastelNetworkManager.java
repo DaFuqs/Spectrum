@@ -48,7 +48,7 @@ public interface PastelNetworkManager {
         if (!network.hasEdge(node, otherNode))
             return false;
 
-        node.getParentNetwork().removeAndForgetEdge(node, otherNode);
+        node.getParentNetwork().removeEdge(node, otherNode);
         return true;
     }
 }

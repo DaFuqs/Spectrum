@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.pastel_network.network;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.world.*;
+import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 import org.jgrapht.alg.connectivity.*;
@@ -50,7 +51,7 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 	public static ServerPastelNetworkManager fromNbt(NbtCompound nbt) {
 		ServerPastelNetworkManager manager = new ServerPastelNetworkManager();
 		for (NbtElement element : nbt.getList("Networks", NbtElement.COMPOUND_TYPE)) {
-			manager.networks.add(ServerPastelNetwork.fromNbt((NbtCompound) element));
+			manager.networks.add(ServerPastelNetwork.fromNbtServer((NbtCompound) element));
 		}
 		return manager;
 	}
@@ -78,7 +79,7 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 			for (int i = 0; i < this.networks.size(); i++) {
 				PastelNetwork network = this.networks.get(i);
 				if (network.getUUID().equals(uuid)) {
-					network.addNodeAndLoadMemory(node);
+					network.addNode(node);
 					return network;
 				}
 			}
@@ -155,14 +156,14 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 	}
 	
 	private void checkForNetworkSplit(ServerPastelNetwork network) {
-		ConnectivityInspector<PastelNodeBlockEntity, DefaultEdge> connectivityInspector = new ConnectivityInspector<>(network.getGraph());
-		List<Set<PastelNodeBlockEntity>> connectedSets = connectivityInspector.connectedSets();
+		ConnectivityInspector<BlockPos, DefaultEdge> connectivityInspector = new ConnectivityInspector<>(network.getGraph());
+		List<Set<BlockPos>> connectedSets = connectivityInspector.connectedSets();
 		if (connectedSets.size() != 1) {
 			for (int i = 1; i < connectedSets.size(); i++) {
-				Set<PastelNodeBlockEntity> disconnectedNodes = connectedSets.get(i);
+				Set<BlockPos> disconnectedNodes = connectedSets.get(i);
 				PastelNetwork newNetwork = createNetwork(network.world, null);
-				for (PastelNodeBlockEntity disconnectedNode : disconnectedNodes) {
-					network.nodes.get(disconnectedNode.getNodeType()).remove(disconnectedNode);
+				for (BlockPos disconnectedNode : disconnectedNodes) {
+					network.loadedNodes.get(disconnectedNode.getNodeType()).remove(disconnectedNode);
 					network.getGraph().removeVertex(disconnectedNode);
 					newNetwork.addNodeAndLoadMemory(disconnectedNode);
 					disconnectedNode.setParentNetwork(newNetwork);

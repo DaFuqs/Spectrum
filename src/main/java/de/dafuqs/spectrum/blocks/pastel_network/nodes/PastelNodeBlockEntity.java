@@ -57,7 +57,6 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	protected PastelNetwork parentNetwork;
 	protected Optional<UUID> parentID = Optional.empty();
 	protected Optional<PastelUpgradeSignature> outerRing, innerRing, redstoneRing;
-	protected Set<BlockPos> connectionMemory = new HashSet<>();
 	protected long lastTransferTick = 0;
 	protected final long cachedRedstonePowerTick = 0;
 	protected boolean cachedUnpowered = true;
@@ -252,28 +251,6 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		markDirty();
 	}
 
-	public Set<BlockPos> getRememberedConnections() {
-		return connectionMemory;
-	}
-
-	public void remember(PastelNodeBlockEntity otherNode) {
-		if (this == otherNode) {
-			throw new IllegalArgumentException("Tried to make a pastel node remember itself");
-		}
-		connectionMemory.add(otherNode.pos);
-		markDirty();
-	}
-
-	public void forget(PastelNodeBlockEntity otherNode) {
-		connectionMemory.remove(otherNode.pos);
-		markDirty();
-	}
-
-	public void forgetAll() {
-		connectionMemory.clear();
-		markDirty();
-	}
-
 	@Override
 	public void notifySensor() {
 		if (world != null) {
@@ -390,9 +367,6 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		if (nbt.contains("RedstoneRing")) {
 			redstoneRing = Optional.ofNullable(SpectrumRegistries.PASTEL_UPGRADE.get(Identifier.tryParse(nbt.getString("RedstoneRing"))));
 		}
-		if (nbt.contains("ConnectionMemory")) {
-			connectionMemory = Arrays.stream(nbt.getLongArray("ConnectionMemory")).mapToObj(BlockPos::fromLong).collect(Collectors.toSet());
-		}
 		if (this.getNodeType().usesFilters()) {
 			FilterConfigurable.readFilterNbt(nbt, this.filterItems);
 		}
@@ -418,7 +392,6 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		outerRing.ifPresent(r -> nbt.putString("OuterRing", SpectrumPastelUpgrades.toString(r)));
 		innerRing.ifPresent(r -> nbt.putString("InnerRing", SpectrumPastelUpgrades.toString(r)));
 		redstoneRing.ifPresent(r -> nbt.putString("RedstoneRing", SpectrumPastelUpgrades.toString(r)));
-		nbt.putLongArray("ConnectionMemory", connectionMemory.stream().map(BlockPos::asLong).toList());
 	}
 
 	@Nullable

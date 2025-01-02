@@ -1,8 +1,11 @@
 package de.dafuqs.spectrum.blocks.pastel_network.network;
 
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import net.minecraft.nbt.*;
+import net.minecraft.registry.*;
 import net.minecraft.server.world.*;
+import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
@@ -51,7 +54,12 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 	public static ServerPastelNetworkManager fromNbt(NbtCompound nbt) {
 		ServerPastelNetworkManager manager = new ServerPastelNetworkManager();
 		for (NbtElement element : nbt.getList("Networks", NbtElement.COMPOUND_TYPE)) {
-			manager.networks.add(ServerPastelNetwork.fromNbtServer((NbtCompound) element));
+			var compound = (NbtCompound) element;
+			World world = SpectrumCommon.minecraftServer.getWorld(RegistryKey.of(RegistryKeys.WORLD, Identifier.tryParse(compound.getString("World"))));
+			UUID uuid = compound.getUuid("UUID");
+			var network = new ServerPastelNetwork(world, uuid);
+			network.fromNbt(compound);
+			manager.networks.add(network);
 		}
 		return manager;
 	}
@@ -146,6 +154,9 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 		if (network != null) {
 			network.removeNode(node, reason);
 			
+			if (reason == NodeRemovalReason.UNLOADED)
+				return;
+			
 			if (network.hasNodes()) {
 				// check if the removed node split the network into subnetworks
 				checkForNetworkSplit(network);
@@ -163,10 +174,13 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 				Set<BlockPos> disconnectedNodes = connectedSets.get(i);
 				PastelNetwork newNetwork = createNetwork(network.world, null);
 				for (BlockPos disconnectedNode : disconnectedNodes) {
-					network.loadedNodes.get(disconnectedNode.getNodeType()).remove(disconnectedNode);
+					var switchedNode = network.getWorld().getBlockEntity(disconnectedNode);
 					network.getGraph().removeVertex(disconnectedNode);
-					newNetwork.addNodeAndLoadMemory(disconnectedNode);
-					disconnectedNode.setParentNetwork(newNetwork);
+					if (switchedNode instanceof PastelNodeBlockEntity pastelNode) {
+						network.loadedNodes.get(pastelNode.getNodeType()).remove(pastelNode);
+						newNetwork.addNode(pastelNode);
+						pastelNode.setParentNetwork(newNetwork);
+					}
 				}
 			}
 		}

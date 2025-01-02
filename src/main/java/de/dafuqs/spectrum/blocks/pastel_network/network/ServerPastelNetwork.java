@@ -114,22 +114,19 @@ public class ServerPastelNetwork extends PastelNetwork {
 		compound.put("Looper", this.transferLooper.toNbt());
         return compound;
     }
-
-    public static ServerPastelNetwork fromNbtServer(NbtCompound compound) {
-		World world = SpectrumCommon.minecraftServer.getWorld(RegistryKey.of(RegistryKeys.WORLD, Identifier.tryParse(compound.getString("World"))));
-		UUID uuid = compound.getUuid("UUID");
-
-		ServerPastelNetwork network = new ServerPastelNetwork(world, uuid);
+	
+	@Override
+	public void fromNbt(NbtCompound compound) {
+		super.fromNbt(compound);
 		if (compound.contains("Looper", NbtElement.COMPOUND_TYPE)) {
-			network.transferLooper.readNbt(compound.getCompound("Looper"));
+			transferLooper.readNbt(compound.getCompound("Looper"));
 		}
-
+		
 		for (NbtElement e : compound.getList("Transmissions", NbtElement.COMPOUND_TYPE)) {
 			NbtCompound t = (NbtCompound) e;
 			int delay = t.getInt("Delay");
 			PastelTransmission transmission = PastelTransmission.fromNbt(t.getCompound("Transmission"));
-			network.addTransmission(transmission, delay);
+			addTransmission(transmission, delay);
 		}
-		return network;
 	}
 }

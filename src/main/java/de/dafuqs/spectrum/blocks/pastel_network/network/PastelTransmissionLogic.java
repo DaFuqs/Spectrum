@@ -28,8 +28,8 @@ public class PastelTransmissionLogic {
 	public static final int DEFAULT_TRANSFER_TICKS_PER_NODE = 30;
 	private final ServerPastelNetwork network;
 	
-	private DijkstraShortestPath<PastelNodeBlockEntity, DefaultEdge> dijkstra;
-	private Map<PastelNodeBlockEntity, Map<PastelNodeBlockEntity, GraphPath<PastelNodeBlockEntity, DefaultEdge>>> pathCache = new HashMap<>();
+	private DijkstraShortestPath<BlockPos, DefaultEdge> dijkstra;
+	private Map<BlockPos, Map<BlockPos, GraphPath<BlockPos, DefaultEdge>>> pathCache = new HashMap<>();
 	
 	
 	public PastelTransmissionLogic(ServerPastelNetwork network) {
@@ -41,28 +41,28 @@ public class PastelTransmissionLogic {
 		this.pathCache = new HashMap<>();
 	}
 	
-	public @Nullable GraphPath<PastelNodeBlockEntity, DefaultEdge> getPath(Graph<PastelNodeBlockEntity, DefaultEdge> graph, PastelNodeBlockEntity source, PastelNodeBlockEntity destination) {
+	public @Nullable GraphPath<BlockPos, DefaultEdge> getPath(Graph<BlockPos, DefaultEdge> graph, PastelNodeBlockEntity source, PastelNodeBlockEntity destination) {
 		if (this.dijkstra == null) {
 			this.dijkstra = new DijkstraShortestPath<>(graph);
 		}
 		
 		// cache hit?
-		Map<PastelNodeBlockEntity, GraphPath<PastelNodeBlockEntity, DefaultEdge>> e = this.pathCache.getOrDefault(source, null);
+		Map<BlockPos, GraphPath<BlockPos, DefaultEdge>> e = this.pathCache.getOrDefault(source.getPos(), null);
 		if (e != null) {
-			if (e.containsKey(destination)) {
-				return e.get(destination);
+			if (e.containsKey(destination.getPos())) {
+				return e.get(destination.getPos());
 			}
 		}
 		
 		// calculate and cache
-		ShortestPathAlgorithm.SingleSourcePaths<PastelNodeBlockEntity, DefaultEdge> paths = this.dijkstra.getPaths(source);
-		GraphPath<PastelNodeBlockEntity, DefaultEdge> path = paths.getPath(destination);
-		if (this.pathCache.containsKey(source)) {
-			this.pathCache.get(source).put(destination, path);
+		ShortestPathAlgorithm.SingleSourcePaths<BlockPos, DefaultEdge> paths = this.dijkstra.getPaths(source.getPos());
+		GraphPath<BlockPos, DefaultEdge> path = paths.getPath(destination.getPos());
+		if (this.pathCache.containsKey(source.getPos())) {
+			this.pathCache.get(source.getPos()).put(destination.getPos(), path);
 		} else {
-			Map<PastelNodeBlockEntity, GraphPath<PastelNodeBlockEntity, DefaultEdge>> newMap = new HashMap<>();
-			newMap.put(destination, path);
-			this.pathCache.put(source, newMap);
+			Map<BlockPos, GraphPath<BlockPos, DefaultEdge>> newMap = new HashMap<>();
+			newMap.put(destination.getPos(), path);
+			this.pathCache.put(source.getPos(), newMap);
 		}
 		
 		return path;
@@ -173,12 +173,9 @@ public class PastelTransmissionLogic {
 	}
 	
 	public Optional<PastelTransmission> createTransmissionOnValidPath(PastelNodeBlockEntity source, PastelNodeBlockEntity destination, ItemVariant variant, long amount, int vertexTime) {
-		GraphPath<PastelNodeBlockEntity, DefaultEdge> graphPath = getPath(this.network.getGraph(), source, destination);
+		GraphPath<BlockPos, DefaultEdge> graphPath = getPath(this.network.getGraph(), source, destination);
 		if (graphPath != null) {
-			List<BlockPos> vertexPositions = new ArrayList<>();
-			for (PastelNodeBlockEntity vertex : graphPath.getVertexList()) {
-				vertexPositions.add(vertex.getPos());
-			}
+			List<BlockPos> vertexPositions = new ArrayList<>(graphPath.getVertexList());
 
 			SpectrumS2CPacketSender.sendPastelNodeStatusUpdate(List.of(source), true);
 			return Optional.of(new PastelTransmission(vertexPositions, variant, amount, vertexTime));

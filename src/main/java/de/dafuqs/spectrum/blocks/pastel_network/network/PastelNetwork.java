@@ -66,10 +66,17 @@ public class PastelNetwork {
     }
 
     public void addNode(PastelNodeBlockEntity node) {
-        if (addNodeOrReturn(node))
-            return;
-
-        this.graph.addVertex(node.getPos());
+		//If this node already has a vertex, then all we are doing it is loading it
+		if (graph.containsVertex(node.getPos())) {
+			loadedNodes.get(node.getNodeType()).add(node);
+			
+		}
+		else {
+			if (addNodeOrReturn(node))
+				return;
+			
+			this.graph.addVertex(node.getPos());
+		}
         addPriorityNode(node);
     }
 
@@ -86,6 +93,11 @@ public class PastelNetwork {
         // check for priority
         addPriorityNode(newNode);
     }
+	
+	public void addEdge(PastelNodeBlockEntity node, PastelNodeBlockEntity parent) {
+		if (!hasEdge(node, parent))
+			graph.addEdge(node.getPos(), parent.getPos());
+	}
 
     public void removeEdge(PastelNodeBlockEntity node, PastelNodeBlockEntity parent) {
 		graph.removeEdge(node.getPos(), parent.getPos());
@@ -124,8 +136,9 @@ public class PastelNetwork {
             return false;
         }
 
-		// delete the now removed node from this networks graph
-		graph.removeVertex(node.getPos());
+		// delete the now removed node from this networks graph - IF IT WASN'T UNLOADED
+		if (reason != NodeRemovalReason.UNLOADED)
+			graph.removeVertex(node.getPos());
 
         removePriorityNode(node, node.getPriority());
 
@@ -254,6 +267,8 @@ public class PastelNetwork {
 	
 	public NbtCompound toNbt() {
 		NbtCompound compound = new NbtCompound();
+		compound.putUuid("UUID", this.uuid);
+		compound.putString("World", this.getWorld().getRegistryKey().getValue().toString());
 		
 		var vertices = new ArrayList<>(graph.vertexSet());
 		var graphStorage = new NbtCompound();
@@ -294,38 +309,27 @@ public class PastelNetwork {
 		return compound;
 	}
 	
-	public static PastelNetwork fromNbt(NbtCompound compound) {
-		World world = SpectrumCommon.minecraftServer.getWorld(RegistryKey.of(RegistryKeys.WORLD, Identifier.tryParse(compound.getString("World"))));
-		UUID uuid = compound.getUuid("UUID");
-		
-		PastelNetwork network = new PastelNetwork(world, uuid);
+	public void fromNbt(NbtCompound compound) {
 		if (compound.contains("Graph")) {
 			var graphStorage = compound.getCompound("Graph");
 			var size = graphStorage.getInt("Size");
-			var vertices = IntStream.of(size)
-					.mapToObj(i -> BlockPos.fromLong(graphStorage.getLong("Vertex" + i)))
-					.toList();
-			
-			vertices.forEach(network.graph::addVertex);
+			var vertices = new ArrayList<BlockPos>();
+			for (int i = 0; i < size; i++) {
+				var vertex = BlockPos.fromLong(graphStorage.getLong("Vertex" + i));
+				vertices.add(vertex);
+				graph.addVertex(vertex);
+			}
 			
 			for (int i = 0; i < size; i++) {
 				var edgeIndexes = graphStorage.getIntArray("EdgeIndexes" + i);
 				var source = vertices.get(edgeIndexes[0]);
 				for (int targetIndex = 1; targetIndex < edgeIndexes.length; targetIndex++) {
 					var target = vertices.get(targetIndex);
-					if (!network.graph.containsEdge(source, target))
-						network.graph.addEdge(source, target);
+					if (!graph.containsEdge(source, target) && !source.equals(target))
+						graph.addEdge(source, target);
 				}
 			}
 		}
-		
-		for (NbtElement e : compound.getList("Transmissions", NbtElement.COMPOUND_TYPE)) {
-			NbtCompound t = (NbtCompound) e;
-			int delay = t.getInt("Delay");
-			PastelTransmission transmission = PastelTransmission.fromNbt(t.getCompound("Transmission"));
-			network.addTransmission(transmission, delay);
-		}
-		return network;
 	}
 
     public PastelNodeBlockEntity getNodeAt(BlockPos blockPos) {

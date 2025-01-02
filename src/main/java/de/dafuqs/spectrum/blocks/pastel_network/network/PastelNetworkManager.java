@@ -32,7 +32,7 @@ public interface PastelNetworkManager {
         if (node == otherNode || node.getParentNetwork().hasEdge(node, otherNode))
             return false;
 
-        node.getParentNetwork().addAndRememberEdge(node, otherNode);
+        node.getParentNetwork().addEdge(node, otherNode);
         return true;
     }
 

@@ -25,7 +25,7 @@ public class ClientPastelNetworkManager implements PastelNetworkManager {
 		for (int i = 0; i < this.networks.size(); i++) {
 			PastelNetwork network = this.networks.get(i);
 			if (network.getUUID().equals(uuid)) {
-				network.addNodeAndLoadMemory(node);
+				network.addNode(node);
 				foundNetwork = network;
 			} else {
 				if (network.removeNode(node, NodeRemovalReason.MOVED)) {
@@ -42,7 +42,7 @@ public class ClientPastelNetworkManager implements PastelNetworkManager {
 		}
 		
 		PastelNetwork network = createNetwork(node.getWorld(), uuid);
-		network.addNodeAndLoadMemory(node);
+		network.addNode(node);
 		return network;
 	}
 
@@ -97,7 +97,7 @@ public class ClientPastelNetworkManager implements PastelNetworkManager {
 		PastelNetwork network = node.getParentNetwork();
 		if (network != null) {
 			network.removeNode(node, reason);
-			if (network.loadedNodes.size() == 0) {
+			if (network.loadedNodes.isEmpty()) {
 				this.networks.remove(network);
 			}
 		}
@@ -113,23 +113,23 @@ public class ClientPastelNetworkManager implements PastelNetworkManager {
 		MinecraftClient client = MinecraftClient.getInstance();
 		for (PastelNetwork network : this.networks) {
 			if (network.getWorld().getDimension() != context.world().getDimension()) continue;
-			Graph<PastelNodeBlockEntity, DefaultEdge> graph = network.getGraph();
+			Graph<BlockPos, DefaultEdge> graph = network.getGraph();
 			int color = network.getColor();
 			float[] colors = PastelRenderHelper.unpackNormalizedColor(color);
 			
 			for (DefaultEdge edge : graph.edgeSet()) {
-				PastelNodeBlockEntity source = graph.getEdgeSource(edge);
-				PastelNodeBlockEntity target = graph.getEdgeTarget(edge);
+				BlockPos source = graph.getEdgeSource(edge);
+				BlockPos target = graph.getEdgeTarget(edge);
 				
 				final MatrixStack matrices = context.matrixStack();
 				final Vec3d pos = context.camera().getPos();
 				matrices.push();
 				matrices.translate(-pos.x, -pos.y, -pos.z);
-				PastelRenderHelper.renderLineTo(context.matrixStack(), context.consumers(), colors, source.getPos(), target.getPos());
+				PastelRenderHelper.renderLineTo(context.matrixStack(), context.consumers(), colors, source, target);
 				// PastelRenderHelper.renderLineTo(context.matrixStack(), context.consumers(), colors, target.getPos(), source.getPos());
 				
 				if (client.options.debugEnabled) {
-					Vec3d offset = Vec3d.ofCenter(target.getPos()).subtract(Vec3d.of(source.getPos()));
+					Vec3d offset = Vec3d.ofCenter(target).subtract(Vec3d.of(source));
 					Vec3d normalized = offset.normalize();
 					Matrix4f positionMatrix = context.matrixStack().peek().getPositionMatrix();
 					PastelRenderHelper.renderDebugLine(context.consumers(), color, offset, normalized, positionMatrix);

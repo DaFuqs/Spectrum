@@ -43,7 +43,13 @@ public class ServerPastelNetwork extends PastelNetwork {
 		super.removeEdge(node, parent);
 		this.transmissionLogic.invalidateCache();
 	}
-
+	
+	@Override
+	public void addEdge(PastelNodeBlockEntity node, PastelNodeBlockEntity parent) {
+		super.addEdge(node, parent);
+		this.transmissionLogic.invalidateCache();
+	}
+	
 	@Override
 	public void tick() {
 		this.transmissions.tick();

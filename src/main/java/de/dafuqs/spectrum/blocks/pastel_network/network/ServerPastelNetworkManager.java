@@ -175,9 +175,8 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 				PastelNetwork newNetwork = createNetwork(network.world, null);
 				for (BlockPos disconnectedNode : disconnectedNodes) {
 					var switchedNode = network.getWorld().getBlockEntity(disconnectedNode);
-					network.getGraph().removeVertex(disconnectedNode);
 					if (switchedNode instanceof PastelNodeBlockEntity pastelNode) {
-						network.loadedNodes.get(pastelNode.getNodeType()).remove(pastelNode);
+						network.removeNode(pastelNode, NodeRemovalReason.DISCONNECT);
 						newNetwork.addNode(pastelNode);
 						pastelNode.setParentNetwork(newNetwork);
 					}

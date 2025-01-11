@@ -47,14 +47,18 @@ public class PastelNetwork {
             PastelNodeType type = nodesToIncorporate.getKey();
             for (PastelNodeBlockEntity nodeToIncorporate : nodesToIncorporate.getValue()) {
                 this.loadedNodes.get(type).add(nodeToIncorporate);
-                nodeToIncorporate.setParentNetwork(this);
                 updateNodePriority(nodeToIncorporate, nodeToIncorporate.getPriority());
             }
         }
-		networkToIncorporate.graph.vertexSet().forEach(graph::addVertex);
+		networkToIncorporate.graph.vertexSet().forEach(pos -> {
+			if (this.world.getBlockEntity(pos) instanceof PastelNodeBlockEntity switchNode)
+				switchNode.setParentNetwork(this);
+			graph.addVertex(pos);
+		});
 		networkToIncorporate.graph.edgeSet().forEach(edge -> {
 			graph.addEdge(networkToIncorporate.getGraph().getEdgeSource(edge), networkToIncorporate.getGraph().getEdgeTarget(edge));
 		});
+		addEdge(node, otherNode);
     }
 
     public World getWorld() {

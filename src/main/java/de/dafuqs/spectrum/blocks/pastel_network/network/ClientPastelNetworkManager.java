@@ -8,6 +8,7 @@ import net.minecraft.client.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 import org.jgrapht.*;
 import org.jgrapht.graph.*;
 import org.joml.*;
@@ -52,44 +53,44 @@ public class ClientPastelNetworkManager implements PastelNetworkManager {
 	}
 
 	@Override
-	public void connectNodes(PastelNodeBlockEntity node, PastelNodeBlockEntity parent) {
-		PastelNetwork parentNetwork, otherNetwork;
+	public void connectNodes(PastelNodeBlockEntity node, PastelNodeBlockEntity parent, @NotNull UUID id) {
+		PastelNetwork mainNetwork, yieldingNetwork;
 
 		if (parent.getParentNetwork() != null) {
-			parentNetwork = parent.getParentNetwork();
-			otherNetwork = node.getParentNetwork();
+			mainNetwork = parent.getParentNetwork();
+			yieldingNetwork = node.getParentNetwork();
 
-			if (otherNetwork == null) {
-				parentNetwork.addNodeAndConnect(node, parent);
-				node.setParentNetwork(parentNetwork);
+			if (yieldingNetwork == null) {
+				mainNetwork.addNodeAndConnect(node, parent);
+				node.setParentNetwork(mainNetwork);
 				return;
 			}
 		}
 		else if (node.getParentNetwork() != null) {
-			parentNetwork = node.getParentNetwork();
-			otherNetwork = parent.getParentNetwork();
+			mainNetwork = node.getParentNetwork();
+			yieldingNetwork = parent.getParentNetwork();
 
-			if (otherNetwork == null) {
-				parentNetwork.addNodeAndConnect(parent, node);
-				parent.setParentNetwork(parentNetwork);
+			if (yieldingNetwork == null) {
+				mainNetwork.addNodeAndConnect(parent, node);
+				parent.setParentNetwork(mainNetwork);
 				return;
 			}
 		}
 		else {
-			parentNetwork = createNetwork(node.getWorld(), null);
-			parentNetwork.addNode(parent);
-			parent.setParentNetwork(parentNetwork);
-			parentNetwork.addNodeAndConnect(node, parent);
-			node.setParentNetwork(parentNetwork);
+			mainNetwork = createNetwork(node.getWorld(), id);
+			mainNetwork.addNode(parent);
+			parent.setParentNetwork(mainNetwork);
+			mainNetwork.addNodeAndConnect(node, parent);
+			node.setParentNetwork(mainNetwork);
 			return;
 		}
 
-		if (parentNetwork == otherNetwork) {
+		if (mainNetwork == yieldingNetwork) {
 			return;
 		}
 
-		parentNetwork.incorporate(otherNetwork, node, parent);
-		this.networks.remove(otherNetwork);
+		mainNetwork.incorporate(yieldingNetwork, node, parent);
+		this.networks.remove(yieldingNetwork);
 	}
 
 	@Override
@@ -97,13 +98,17 @@ public class ClientPastelNetworkManager implements PastelNetworkManager {
 		PastelNetwork network = node.getParentNetwork();
 		if (network != null) {
 			network.removeNode(node, reason);
-			if (network.loadedNodes.isEmpty()) {
+			if (network.graph.vertexSet().isEmpty()) {
 				this.networks.remove(network);
+			}
+			else {
+				checkForNetworkSplit(network);
 			}
 		}
 	}
 	
-	private PastelNetwork createNetwork(World world, UUID uuid) {
+	@Override
+	public PastelNetwork createNetwork(World world, UUID uuid) {
 		PastelNetwork network = new PastelNetwork(world, uuid);
 		this.networks.add(network);
 		return network;

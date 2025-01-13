@@ -55,6 +55,8 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 
 	@Nullable
 	protected PastelNetwork parentNetwork;
+	@NotNull
+	protected UUID initialID = UUID.randomUUID();
 	protected Optional<UUID> parentID = Optional.empty();
 	protected Optional<PastelUpgradeSignature> outerRing, innerRing, redstoneRing;
 	protected long lastTransferTick = 0;
@@ -352,6 +354,9 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		if (nbt.contains("creationStamp")) {
 			this.creationStamp = nbt.getLong("creationStamp");
 		}
+		if (nbt.contains("InitialID")) {
+			this.initialID = nbt.getUuid("InitialID");
+		}
 		if (nbt.contains("LastTransferTick", NbtElement.LONG_TYPE)) {
 			this.lastTransferTick = nbt.getLong("LastTransferTick");
 		}
@@ -382,6 +387,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		if (creationStamp != -1) {
 			nbt.putLong("creationStamp", creationStamp);
 		}
+		nbt.putUuid("InitialID", this.initialID);
 		nbt.putBoolean("Triggered", this.triggered);
 		nbt.putBoolean("Waiting", this.waiting);
 		nbt.putLong("LastTransferTick", this.lastTransferTick);
@@ -411,9 +417,13 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	@Override
 	public void markRemoved() {
 		super.markRemoved();
-		Pastel.getInstance(world.isClient).removeNode(this, NodeRemovalReason.UNLOADED);
+		Pastel.getInstance(world.isClient).removeNode(this, world.getBlockState(pos).getBlock() instanceof PastelNodeBlock ? NodeRemovalReason.UNLOADED : NodeRemovalReason.BROKEN);
 	}
-
+	
+	public @NotNull UUID getInitialID() {
+		return initialID;
+	}
+	
 	public void onBroken() {
 		Pastel.getInstance(world.isClient).removeNode(this, NodeRemovalReason.BROKEN);
 	}
@@ -749,7 +759,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 			return false;
 		}
 
-		manager.connectNodes(this, sourceNode);
+		manager.connectNodes(this, sourceNode, initialID);
 
 		if (this.parentNetwork != null) {
 			user.filter(u -> u instanceof ServerPlayerEntity).ifPresent(p -> {
@@ -766,6 +776,11 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 			Pastel.getInstance(world.isClient()).removeNode(this, NodeRemovalReason.DISCONNECT);
 			parentNetwork = null;
 			parentID = Optional.empty();
+			initialID = UUID.randomUUID();
+			if (!this.world.isClient()) {
+				updateInClientWorld();
+				markDirty();
+			}
 		}
 	}
 

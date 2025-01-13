@@ -64,7 +64,8 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 		return manager;
 	}
 	
-	private ServerPastelNetwork createNetwork(World world, @Nullable UUID uuid) {
+	@Override
+	public ServerPastelNetwork createNetwork(World world, @Nullable UUID uuid) {
 		ServerPastelNetwork network = new ServerPastelNetwork(world, uuid);
 		this.networks.add(network);
 		return network;
@@ -99,7 +100,7 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 	}
 
 	@Override
-	public void connectNodes(PastelNodeBlockEntity node, PastelNodeBlockEntity parent) {
+	public void connectNodes(PastelNodeBlockEntity node, PastelNodeBlockEntity parent, @NotNull UUID id) {
 		PastelNetwork mainNetwork, yieldingNetwork;
 
 		if (parent.getParentNetwork() != null) {
@@ -123,7 +124,7 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 			}
 		}
 		else {
-			mainNetwork = createNetwork(node.getWorld(), null);
+			mainNetwork = createNetwork(node.getWorld(), id);
 			mainNetwork.addNode(parent);
 			parent.setParentNetwork(mainNetwork);
 			mainNetwork.addNodeAndConnect(node, parent);
@@ -137,15 +138,6 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 
 		mainNetwork.incorporate(yieldingNetwork, node, parent);
 		this.networks.remove(yieldingNetwork);
-	}
-
-	@Override
-	public boolean tryRemoveEdge(PastelNodeBlockEntity node, PastelNodeBlockEntity otherNode) {
-		if (PastelNetworkManager.super.tryRemoveEdge(node, otherNode)) {
-			checkForNetworkSplit((ServerPastelNetwork) node.getParentNetwork());
-			return true;
-		}
-		return false;
 	}
 
 	@Override
@@ -163,56 +155,6 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 			} else if (reason.destructive) {
 				this.networks.remove(network);
 			}
-		}
-	}
-	
-	private void checkForNetworkSplit(ServerPastelNetwork network) {
-		ConnectivityInspector<BlockPos, DefaultEdge> connectivityInspector = new ConnectivityInspector<>(network.getGraph());
-		List<Set<BlockPos>> connectedSets = connectivityInspector.connectedSets();
-		if (connectedSets.size() != 1) {
-			for (int i = 1; i < connectedSets.size(); i++) {
-				Set<BlockPos> disconnectedNodes = connectedSets.get(i);
-				PastelNetwork newNetwork = createNetwork(network.world, null);
-				for (BlockPos disconnectedNode : disconnectedNodes) {
-					var switchedNode = network.getWorld().getBlockEntity(disconnectedNode);
-					if (switchedNode instanceof PastelNodeBlockEntity pastelNode) {
-						network.removeNode(pastelNode, NodeRemovalReason.DISCONNECT);
-						newNetwork.addNode(pastelNode);
-						pastelNode.setParentNetwork(newNetwork);
-					}
-				}
-			}
-		}
-	}
-	
-	private void checkNetworkMergesForNewNode(ServerPastelNetwork network, PastelNodeBlockEntity newNode) {
-		int biggestNetworkNodeCount = network.getNodeCount();
-		
-		ServerPastelNetwork biggestNetwork = network;
-		List<ServerPastelNetwork> smallerNetworks = new ArrayList<>();
-		
-		for (ServerPastelNetwork currentNetwork : this.networks) {
-			if (currentNetwork == network) {
-				continue;
-			}
-			if (currentNetwork.canConnect(newNode)) {
-				if (currentNetwork.getNodeCount() > biggestNetworkNodeCount) {
-					smallerNetworks.add(biggestNetwork);
-					biggestNetwork = currentNetwork;
-				} else {
-					smallerNetworks.add(currentNetwork);
-				}
-				break;
-			}
-		}
-		
-		if (smallerNetworks.isEmpty()) {
-			return;
-		}
-		
-		for (ServerPastelNetwork smallerNetwork : smallerNetworks) {
-			//biggestNetwork.incorporate(smallerNetwork);
-			this.networks.remove(smallerNetwork);
 		}
 	}
 	

@@ -135,15 +135,15 @@ public class PastelNetwork {
     }
 
     protected boolean removeNode(PastelNodeBlockEntity node, NodeRemovalReason reason) {
-        boolean hadNode = this.loadedNodes.get(node.getNodeType()).remove(node);
-        if (!hadNode) {
+        if (!graph.containsVertex(node.getPos())) {
             return false;
         }
-
+		
 		// delete the now removed node from this networks graph - IF IT WASN'T UNLOADED
 		if (reason != NodeRemovalReason.UNLOADED)
 			graph.removeVertex(node.getPos());
-
+		
+		this.loadedNodes.get(node.getNodeType()).remove(node);
         removePriorityNode(node, node.getPriority());
 
         return true;
@@ -284,16 +284,18 @@ public class PastelNetwork {
 			graphStorage.putLong("Vertex" + i, vertex.asLong());
 			
 			// Save the edges
+			int currentVertex = i;
 			var edgeIndexes = graph.edgesOf(vertex)
 					.stream()
-					.map((edge) -> {
-						var target = graph.getEdgeTarget(edge);
-						var source = graph.getEdgeSource(edge);
-						return target.equals(vertex) ? source : target;
-					})
+					.map(graph::getEdgeTarget)
 					.mapToInt(vertices::indexOf)
+					.filter(v -> v != currentVertex)
 					.boxed()
 					.collect(Collectors.toList());
+			
+			if (edgeIndexes.isEmpty())
+				continue;
+			
 			edgeIndexes.add(0, vertices.indexOf(vertex));
 			
 			graphStorage.putIntArray("EdgeIndexes" + i, edgeIndexes);
@@ -325,11 +327,13 @@ public class PastelNetwork {
 			}
 			
 			for (int i = 0; i < size; i++) {
+				if (!graphStorage.contains("EdgeIndexes" + i))
+					continue;
 				var edgeIndexes = graphStorage.getIntArray("EdgeIndexes" + i);
 				var source = vertices.get(edgeIndexes[0]);
 				for (int targetIndex = 1; targetIndex < edgeIndexes.length; targetIndex++) {
-					var target = vertices.get(targetIndex);
-					if (!graph.containsEdge(source, target) && !source.equals(target))
+					var target = vertices.get(edgeIndexes[targetIndex]);
+					if (!graph.containsEdge(source, target))
 						graph.addEdge(source, target);
 				}
 			}

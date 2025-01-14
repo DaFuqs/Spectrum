@@ -1,14 +1,12 @@
 package de.dafuqs.spectrum.blocks.pastel_network.network;
 
 import de.dafuqs.spectrum.blocks.pastel_network.*;
-import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
 import net.minecraft.client.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
-import org.jetbrains.annotations.*;
 import org.jgrapht.*;
 import org.jgrapht.graph.*;
 import org.joml.*;
@@ -21,90 +19,8 @@ public class ClientPastelNetworkManager implements PastelNetworkManager {
 	private final List<PastelNetwork> networks = new ArrayList<>();
 	
 	@Override
-	public PastelNetwork joinOrCreateNetwork(PastelNodeBlockEntity node, UUID uuid) {
-		PastelNetwork foundNetwork = null;
-		for (int i = 0; i < this.networks.size(); i++) {
-			PastelNetwork network = this.networks.get(i);
-			if (network.getUUID().equals(uuid)) {
-				network.addNode(node);
-				foundNetwork = network;
-			} else {
-				if (network.removeNode(node, NodeRemovalReason.MOVED)) {
-					i--;
-				}
-				// network empty => delete
-				if (!network.hasNodes()) {
-					this.networks.remove(network);
-				}
-			}
-		}
-		if (foundNetwork != null) {
-			return foundNetwork;
-		}
-		
-		PastelNetwork network = createNetwork(node.getWorld(), uuid);
-		network.addNode(node);
-		return network;
-	}
-
-	@Override
 	public Optional<? extends PastelNetwork> getNetwork(UUID uuid) {
 		return networks.stream().filter(n -> n.uuid.equals(uuid)).findFirst();
-	}
-
-	@Override
-	public void connectNodes(PastelNodeBlockEntity node, PastelNodeBlockEntity parent, @NotNull UUID id) {
-		PastelNetwork mainNetwork, yieldingNetwork;
-
-		if (parent.getParentNetwork() != null) {
-			mainNetwork = parent.getParentNetwork();
-			yieldingNetwork = node.getParentNetwork();
-
-			if (yieldingNetwork == null) {
-				mainNetwork.addNodeAndConnect(node, parent);
-				node.setParentNetwork(mainNetwork);
-				return;
-			}
-		}
-		else if (node.getParentNetwork() != null) {
-			mainNetwork = node.getParentNetwork();
-			yieldingNetwork = parent.getParentNetwork();
-
-			if (yieldingNetwork == null) {
-				mainNetwork.addNodeAndConnect(parent, node);
-				parent.setParentNetwork(mainNetwork);
-				return;
-			}
-		}
-		else {
-			mainNetwork = createNetwork(node.getWorld(), id);
-			mainNetwork.addNode(parent);
-			parent.setParentNetwork(mainNetwork);
-			mainNetwork.addNodeAndConnect(node, parent);
-			node.setParentNetwork(mainNetwork);
-			return;
-		}
-
-		if (mainNetwork == yieldingNetwork) {
-			return;
-		}
-
-		mainNetwork.incorporate(yieldingNetwork, node, parent);
-		this.networks.remove(yieldingNetwork);
-	}
-
-	@Override
-	public void removeNode(PastelNodeBlockEntity node, NodeRemovalReason reason) {
-		PastelNetwork network = node.getParentNetwork();
-		if (network != null) {
-			network.removeNode(node, reason);
-			if (network.graph.vertexSet().isEmpty()) {
-				this.networks.remove(network);
-			}
-			else {
-				checkForNetworkSplit(network);
-			}
-		}
 	}
 	
 	@Override
@@ -131,7 +47,6 @@ public class ClientPastelNetworkManager implements PastelNetworkManager {
 				matrices.push();
 				matrices.translate(-pos.x, -pos.y, -pos.z);
 				PastelRenderHelper.renderLineTo(context.matrixStack(), context.consumers(), colors, source, target);
-				// PastelRenderHelper.renderLineTo(context.matrixStack(), context.consumers(), colors, target.getPos(), source.getPos());
 				
 				if (client.options.debugEnabled) {
 					Vec3d offset = Vec3d.ofCenter(target).subtract(Vec3d.of(source));

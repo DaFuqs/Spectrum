@@ -68,7 +68,7 @@ public class PastelTransmissionLogic {
 		return path;
 	}
 	
-	public void tick(PastelNetwork.Priority priority) {
+	public void tick(PastelNetwork.NodePriority priority) {
 		transferBetween(PastelNodeType.BUFFER, PastelNodeType.GATHER, TransferMode.PULL, priority);
 		transferBetween(PastelNodeType.SENDER, PastelNodeType.GATHER, TransferMode.PUSH_PULL, priority);
 		transferBetween(PastelNodeType.PROVIDER, PastelNodeType.GATHER, TransferMode.PULL, priority);
@@ -81,7 +81,7 @@ public class PastelTransmissionLogic {
 		transferBetween(PastelNodeType.SENDER, PastelNodeType.STORAGE, TransferMode.PUSH, priority);
 	}
 	
-	private void transferBetween(PastelNodeType sourceType, PastelNodeType destinationType, TransferMode transferMode, PastelNetwork.Priority priority) {
+	private void transferBetween(PastelNodeType sourceType, PastelNodeType destinationType, TransferMode transferMode, PastelNetwork.NodePriority priority) {
 		for (PastelNodeBlockEntity sourceNode : this.network.getNodes(sourceType, priority)) {
 			if (!sourceNode.canTransfer()) {
 				continue;
@@ -95,7 +95,7 @@ public class PastelTransmissionLogic {
 	}
 	
 	private void tryTransferToType(PastelNodeBlockEntity sourceNode, Storage<ItemVariant> sourceStorage, PastelNodeType type, TransferMode transferMode) {
-		for (PastelNodeBlockEntity destinationNode : this.network.getNodes(type, PastelNetwork.Priority.GENERIC)) {
+		for (PastelNodeBlockEntity destinationNode : this.network.getNodes(type, PastelNetwork.NodePriority.GENERIC)) {
 			if (!destinationNode.canTransfer()) {
 				continue;
 			}

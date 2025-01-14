@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.networking;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.energy.*;
@@ -19,7 +18,6 @@ import net.fabricmc.fabric.api.networking.v1.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
-import net.minecraft.nbt.*;
 import net.minecraft.network.*;
 import net.minecraft.particle.*;
 import net.minecraft.registry.*;
@@ -489,14 +487,14 @@ public class SpectrumS2CPacketSender {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.PASTEL_NODE_STATUS_UPDATE, buf);
 		}
 	}
-
-	public static void syncPastelNetworkEdges(ServerPastelNetwork serverPastelNetwork, NbtCompound graphStorage) {
+	
+	public static void syncPastelNetworkEdges(ServerPastelNetwork serverPastelNetwork, BlockPos pos) {
 		PacketByteBuf buf = PacketByteBufs.create();
 		buf.writeUuid(serverPastelNetwork.getUUID());
-		buf.writeNbt(graphStorage);
+		buf.writeNbt(serverPastelNetwork.graphToNbt());
 		
-		assert SpectrumCommon.minecraftServer != null; //shhhh
-		for (ServerPlayerEntity player : PlayerLookup.all(SpectrumCommon.minecraftServer))
+		for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) serverPastelNetwork.getWorld(), pos)) {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.PASTEL_NETWORK_EDGE_SYNC, buf);
+		}
 	}
 }

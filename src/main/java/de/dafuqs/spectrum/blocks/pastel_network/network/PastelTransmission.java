@@ -14,8 +14,8 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 public class PastelTransmission implements SchedulerMap.Callback {
-
-    private @Nullable PastelNetwork network;
+	
+	private @Nullable ServerPastelNetwork network;
     private final List<BlockPos> nodePositions;
     private final ItemVariant variant;
     private final long amount;
@@ -27,8 +27,8 @@ public class PastelTransmission implements SchedulerMap.Callback {
         this.amount = amount;
         this.vertexTime = vertexTime;
     }
-
-    public void setNetwork(@NotNull PastelNetwork network) {
+	
+	public void setNetwork(@NotNull ServerPastelNetwork network) {
         this.network = network;
     }
 

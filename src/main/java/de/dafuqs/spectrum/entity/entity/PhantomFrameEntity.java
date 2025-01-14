@@ -41,7 +41,7 @@ public class PhantomFrameEntity extends ItemFrameEntity {
 		super.setHeldItemStack(value, update);
 		if (update && this.isAlive() && !this.getWorld().isClient()) {
 			SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) this.getWorld(), getPos(), ParticleTypes.END_ROD, 10, new Vec3d(0, 0, 0), new Vec3d(0.1, 0.1, 0.1));
-			this.getWorld().playSoundFromEntity(null, this, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, 0.5F, 1.0F);
+			this.getWorld().playSoundFromEntity(null, this, SpectrumSoundEvents.CRAFTING_DING, SoundCategory.BLOCKS, 0.5F, 1.0F);
 		}
 	}
 
@@ -50,7 +50,7 @@ public class PhantomFrameEntity extends ItemFrameEntity {
 		boolean success = super.damage(source, amount);
 		if (success && this.isAlive() && !this.getWorld().isClient()) {
 			SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) this.getWorld(), getPos(), ParticleTypes.END_ROD, 10, new Vec3d(0, 0, 0), new Vec3d(0.1, 0.1, 0.1));
-			this.getWorld().playSoundFromEntity(null, this, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, 0.5F, 1.0F);
+			this.getWorld().playSoundFromEntity(null, this, SpectrumSoundEvents.CRAFTING_DING, SoundCategory.BLOCKS, 0.5F, 1.0F);
 		}
 		return success;
 	}

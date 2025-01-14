@@ -41,6 +41,26 @@
       },
       "title": "book.spectrum.guidebook.pastel_network.page2.title",
       "text": "book.spectrum.guidebook.pastel_network.page2.text"
-    }
+		},
+		{
+			"type": "spectrum:nbt_spotlight",
+			"condition": {
+				"type": "modonomicon:advancement",
+				"advancement_id": "spectrum:unlocks/equipment/bedrock_tools"
+			},
+			"item": {
+				"item": "spectrum:bedrock_anvil",
+				"nbt": {
+					"display": {
+						"Name": "{\"text\":\"c:pickaxes\"}",
+						"Lore": [
+							"{\"text\":\"enchantment with fortune above 2\"}"
+						]
+					}
+				}
+			},
+			"title": "book.spectrum.guidebook.pastel_network.page3.title",
+			"text": "book.spectrum.guidebook.pastel_network.page3.text"
+		}
   ]
 }

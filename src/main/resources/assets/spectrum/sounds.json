@@ -17,6 +17,33 @@
       "spectrum:use_fail"
     ]
   },
+	"block.redstone_mechanism.trigger": {
+		"subtitle": "spectrum.subtitles.block.redstone_mechanism.trigger",
+		"sounds": [
+			"minecraft:random/click"
+		]
+	},
+	"block.redstone_mechanism.break_block": {
+		"subtitle": "spectrum.subtitles.block.redstone_mechanism.break_block",
+		"sounds": [
+			{
+				"name": "minecraft:block/iron_trapdoor/open1",
+				"volume": 0.9
+			},
+			{
+				"name": "minecraft:block/iron_trapdoor/open2",
+				"volume": 0.9
+			},
+			{
+				"name": "minecraft:block/iron_trapdoor/open3",
+				"volume": 0.9
+			},
+			{
+				"name": "minecraft:block/iron_trapdoor/open4",
+				"volume": 0.9
+			}
+		]
+	},
   "paintbrush_trigger": {
     "subtitle": "spectrum.subtitles.paintbrush_trigger",
     "sounds": [
@@ -291,7 +318,13 @@
       "spectrum:deeper_down_portal_open"
     ]
   },
-  "enchanter_ding": {
+	"enchanter_finish": {
+		"subtitle": "spectrum.subtitles.enchanter_finish",
+		"sounds": [
+			"minecraft:random/levelup"
+		]
+	},
+	"crafting_ding": {
     "sounds": [
       "spectrum:enchanter_ding"
     ]

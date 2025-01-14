@@ -1055,7 +1055,6 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.SMALL_PURPLE_DRAGONJAG);
 		entries.add(SpectrumBlocks.SMALL_BLACK_DRAGONJAG);
 		entries.add(SpectrumBlocks.BRISTLE_SPROUTS);
-		entries.add(SpectrumBlocks.DOOMBLOOM);
 		entries.add(SpectrumBlocks.SNAPPING_IVY);
 		entries.add(SpectrumBlocks.SWEET_PEA);
 		entries.add(SpectrumBlocks.APRICOTTI);

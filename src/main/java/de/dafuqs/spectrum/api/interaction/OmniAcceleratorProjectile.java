@@ -21,7 +21,7 @@ public interface OmniAcceleratorProjectile {
 	OmniAcceleratorProjectile DEFAULT = (stack, shooter, world) -> {
 		ItemProjectileEntity itemProjectileEntity = new ItemProjectileEntity(world, shooter);
 		itemProjectileEntity.setItem(stack);
-		itemProjectileEntity.setVelocity(shooter, shooter.getPitch(), shooter.getYaw(), 0.0F, 2.0F, 0.5F);
+		itemProjectileEntity.setVelocity(shooter, shooter.getPitch(), shooter.getYaw(), 0.0F, 2.5F, 0.5F);
 		world.spawnEntity(itemProjectileEntity);
 		return itemProjectileEntity;
 	};

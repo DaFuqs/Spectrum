@@ -33,6 +33,17 @@ public class ItemColors extends ColorRegistry<Item> {
 		put(Items.GOLDEN_HORSE_ARMOR, DyeColor.YELLOW);
 		put(Items.LEATHER_HORSE_ARMOR, DyeColor.BROWN);
 		
+		put(Items.BEEF, DyeColor.PINK);
+		put(Items.CHICKEN, DyeColor.PINK);
+		put(Items.MUTTON, DyeColor.PINK);
+		put(Items.PORKCHOP, DyeColor.PINK);
+		put(Items.RABBIT, DyeColor.PINK);
+		put(Items.COOKED_BEEF, DyeColor.PINK);
+		put(Items.COOKED_CHICKEN, DyeColor.PINK);
+		put(Items.COOKED_MUTTON, DyeColor.PINK);
+		put(Items.COOKED_PORKCHOP, DyeColor.PINK);
+		put(Items.COOKED_RABBIT, DyeColor.PINK);
+		
 		put(Items.ANVIL, DyeColor.BROWN);
 		put(Items.BLACKSTONE, DyeColor.BLACK);
 		put(Items.GILDED_BLACKSTONE, DyeColor.BLACK);

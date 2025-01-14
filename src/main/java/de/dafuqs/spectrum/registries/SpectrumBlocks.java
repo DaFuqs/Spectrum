@@ -1627,8 +1627,8 @@ public class SpectrumBlocks {
 
 		registerBlockWithItem("bedrock_anvil", BEDROCK_ANVIL, IS.of(), DyeColor.BLACK);
 		registerBlockWithItem("cracked_end_portal_frame", CRACKED_END_PORTAL_FRAME, IS.of().fireproof(), DyeColor.PURPLE);
-
-		registerBlockWithItem("memory", MEMORY, new MemoryItem(MEMORY, IS.of(Rarity.UNCOMMON)), DyeColor.LIGHT_GRAY);
+		
+		registerBlockWithItem("memory", MEMORY, new MemoryItem(MEMORY, IS.of(1, Rarity.UNCOMMON)), DyeColor.LIGHT_GRAY);
 
 		// Technical Blocks without items
 		registerBlock("mermaids_brush", MERMAIDS_BRUSH);

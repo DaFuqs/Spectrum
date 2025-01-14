@@ -336,7 +336,7 @@ public class SpectrumEventListeners {
 						entity.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 900, 1));
 						entity.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 100, 1));
 						entity.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 800, 0));
-						entity.getWorld().sendEntityStatus(entity, (byte) 35);
+						entity.getWorld().sendEntityStatus(entity, EntityStatuses.USE_TOTEM_OF_UNDYING);
 						
 						return false;
 					}

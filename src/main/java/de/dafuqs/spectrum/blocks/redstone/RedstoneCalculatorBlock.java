@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.player.*;
@@ -49,7 +50,7 @@ public class RedstoneCalculatorBlock extends AbstractRedstoneGateBlock implement
 			BlockState newModeState = state.cycle(CALCULATION_MODE);
 			world.setBlockState(pos, newModeState, Block.NOTIFY_ALL);
 			float pitch = 0.5F + state.get(CALCULATION_MODE).ordinal() * 0.05F;
-			world.playSound(player, pos, SoundEvents.BLOCK_COMPARATOR_CLICK, SoundCategory.BLOCKS, 0.3F, pitch);
+			world.playSound(player, pos, SpectrumSoundEvents.REDSTONE_MECHANISM_TRIGGER, SoundCategory.BLOCKS, 0.3F, pitch);
 			if (player instanceof ServerPlayerEntity serverPlayerEntity) {
 				// since this triggers both on server and client side: just send the
 				// message once, client side is enough, since it is pretty irrelevant on the server

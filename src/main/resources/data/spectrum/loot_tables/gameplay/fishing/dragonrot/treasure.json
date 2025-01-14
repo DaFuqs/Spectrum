@@ -105,11 +105,11 @@
 		},
 		{
 		  "type": "minecraft:item",
-		  "name": "spectrum:gilded_book",
+			"name": "minecraft:book",
 		  "functions": [
 			{
 			  "function": "minecraft:enchant_with_levels",
-			  "levels": 60,
+				"levels": 45,
 			  "treasure": true
 			}
 		  ]

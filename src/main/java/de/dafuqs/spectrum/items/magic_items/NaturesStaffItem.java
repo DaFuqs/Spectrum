@@ -97,7 +97,6 @@ public class NaturesStaffItem extends Item implements ExtendedEnchantable, InkPo
 		if (remainingUseTicks % 10 != 0) {
 			return;
 		}
-
 		if (!(user instanceof PlayerEntity player)) {
 			user.stopUsingItem();
 			return;
@@ -106,26 +105,11 @@ public class NaturesStaffItem extends Item implements ExtendedEnchantable, InkPo
 			user.stopUsingItem();
 		}
 		
-		if (world.isClient) {
-			usageTickClient(user);
-		}
-	}
-	
-	@Environment(EnvType.CLIENT)
-	@SuppressWarnings("resource")
-	public void usageTickClient(LivingEntity user) {
-		// Simple equality check to make sure this method doesn't execute on other clients.
-		// Always true if the current player is the one wielding the staff under normal circumstances.
-		MinecraftClient client = MinecraftClient.getInstance();
-		if (client.player != user) {
-			return;
-		}
-		if (client.crosshairTarget.getType() == HitResult.Type.BLOCK) {
-			client.interactionManager.interactBlock(
-					client.player,
-					client.player.getActiveHand(),
-					(BlockHitResult) client.crosshairTarget
-			);
+		if (!world.isClient) {
+			HitResult hitResult = Support.playerInteractionRaycast(world, user, player);
+			if (hitResult.getType() == HitResult.Type.BLOCK) {
+				useOnBlock(new ItemUsageContext(world, player, player.getActiveHand(), player.getStackInHand(player.getActiveHand()), (BlockHitResult) hitResult));
+			}
 		}
 	}
 	

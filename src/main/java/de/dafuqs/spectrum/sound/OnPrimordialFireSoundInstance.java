@@ -32,6 +32,6 @@ public class OnPrimordialFireSoundInstance extends AbstractSoundInstance impleme
 	
 	@Override
 	public boolean isDone() {
-		return player == null || !OnPrimordialFireComponent.isOnPrimordialFire(player);
+		return player == null || player.isRemoved() || !OnPrimordialFireComponent.isOnPrimordialFire(player);
 	}
 }

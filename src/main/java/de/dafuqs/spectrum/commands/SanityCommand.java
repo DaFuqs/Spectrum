@@ -32,6 +32,9 @@ import net.minecraft.advancement.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.attribute.*;
+import net.minecraft.entity.effect.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.loot.*;
@@ -172,7 +175,7 @@ public class SanityCommand {
 			}
 		}
 		
-		// Items / Blocks without a translation
+		// Checking for missing translation strings
 		for (Map.Entry<RegistryKey<Item>, Item> item : Registries.ITEM.getEntrySet()) {
 			if (!item.getKey().getValue().getNamespace().equals(modId)) {
 				continue;
@@ -190,6 +193,53 @@ public class SanityCommand {
 				SpectrumCommon.logWarning("[SANITY: Block Lang] Missing translation string " + block.getValue().getTranslationKey());
 			}
 		}
+		for (Map.Entry<RegistryKey<EntityType<?>>, EntityType<?>> entityType : Registries.ENTITY_TYPE.getEntrySet()) {
+			if (!entityType.getKey().getValue().getNamespace().equals(modId)) {
+				continue;
+			}
+			if (!Language.getInstance().hasTranslation(entityType.getValue().getTranslationKey())) {
+				SpectrumCommon.logWarning("[SANITY: EntityType Lang] Missing translation string " + entityType.getValue().getTranslationKey());
+			}
+		}
+		for (Map.Entry<RegistryKey<Enchantment>, Enchantment> entityType : Registries.ENCHANTMENT.getEntrySet()) {
+			if (!entityType.getKey().getValue().getNamespace().equals(modId)) {
+				continue;
+			}
+			if (!Language.getInstance().hasTranslation(entityType.getValue().getTranslationKey())) {
+				SpectrumCommon.logWarning("[SANITY: Enchantment Lang] Missing translation string " + entityType.getValue().getTranslationKey());
+			}
+			if (!Language.getInstance().hasTranslation(entityType.getValue().getTranslationKey() + ".desc")) {
+				SpectrumCommon.logWarning("[SANITY: Enchantment Lang] Missing description string " + entityType.getValue().getTranslationKey() + ".desc");
+			}
+		}
+		for (Map.Entry<RegistryKey<StatusEffect>, StatusEffect> entityType : Registries.STATUS_EFFECT.getEntrySet()) {
+			if (!entityType.getKey().getValue().getNamespace().equals(modId)) {
+				continue;
+			}
+			if (!Language.getInstance().hasTranslation(entityType.getValue().getTranslationKey())) {
+				SpectrumCommon.logWarning("[SANITY: Status Effect Lang] Missing translation string " + entityType.getValue().getTranslationKey());
+			}
+		}
+		for (Map.Entry<RegistryKey<EntityAttribute>, EntityAttribute> entityType : Registries.ATTRIBUTE.getEntrySet()) {
+			if (!entityType.getKey().getValue().getNamespace().equals(modId)) {
+				continue;
+			}
+			if (!Language.getInstance().hasTranslation(entityType.getValue().getTranslationKey())) {
+				SpectrumCommon.logWarning("[SANITY: Attribute Lang] Missing translation string " + entityType.getValue().getTranslationKey());
+			}
+		}
+		for (Map.Entry<RegistryKey<EntityAttribute>, EntityAttribute> entityType : Registries.ATTRIBUTE.getEntrySet()) {
+			if (!entityType.getKey().getValue().getNamespace().equals(modId)) {
+				continue;
+			}
+			if (!Language.getInstance().hasTranslation(entityType.getValue().getTranslationKey())) {
+				SpectrumCommon.logWarning("[SANITY: Attribute Lang] Missing translation string " + entityType.getValue().getTranslationKey());
+			}
+			if (!Language.getInstance().hasTranslation(entityType.getValue().getTranslationKey() + ".desc")) {
+				SpectrumCommon.logWarning("[SANITY: Attribute Lang] Missing description string " + entityType.getValue().getTranslationKey() + ".desc");
+			}
+		}
+		
 		
 		// recipe groups without localization
 		Set<String> recipeGroups = new HashSet<>();

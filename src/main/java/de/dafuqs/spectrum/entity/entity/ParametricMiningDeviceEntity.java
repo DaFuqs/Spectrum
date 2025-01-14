@@ -35,7 +35,7 @@ public class ParametricMiningDeviceEntity extends ThrownItemEntity {
 			PlayerEntity playerOwner = owner instanceof PlayerEntity player ? player : null;
 			ModularExplosionDefinition.explode((ServerWorld) world, entityHitResult.getEntity().getBlockPos(), playerOwner, getStack());
 		}
-		world.sendEntityStatus(this, (byte) 1);
+		world.sendEntityStatus(this, EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES);
 		
 		remove(Entity.RemovalReason.DISCARDED);
 	}
@@ -48,7 +48,7 @@ public class ParametricMiningDeviceEntity extends ThrownItemEntity {
 			PlayerEntity playerOwner = owner instanceof PlayerEntity player ? player : null;
 			ModularExplosionDefinition.explode((ServerWorld) world, blockHitResult.getBlockPos(), blockHitResult.getSide().getOpposite(), playerOwner, getStack());
 		}
-		world.sendEntityStatus(this, (byte) 2);
+		world.sendEntityStatus(this, EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES);
 		
 		remove(Entity.RemovalReason.DISCARDED);
 	}

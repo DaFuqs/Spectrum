@@ -486,7 +486,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 			if (this.hookedEntity != null) {
 				this.pullHookedEntity(this.hookedEntity);
 				SpectrumAdvancementCriteria.FISHING_ROD_HOOKED.trigger((ServerPlayerEntity) playerEntity, usedItem, this, null, Collections.emptyList());
-				this.getWorld().sendEntityStatus(this, (byte) 31);
+				this.getWorld().sendEntityStatus(this, EntityStatuses.PULL_HOOKED_ENTITY);
 				i = this.hookedEntity instanceof ItemEntity ? 3 : 5;
 			} else if (this.hookCountdown > 0) {
 				if (!tryCatchEntity(usedItem, playerEntity, (ServerWorld) this.getWorld(), this.getBlockPos())) {

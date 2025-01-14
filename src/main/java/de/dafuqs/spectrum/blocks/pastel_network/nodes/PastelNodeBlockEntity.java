@@ -549,7 +549,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 
 	public boolean testNBTPredicates(String description, ItemStack stack, ItemVariant variant) {
 		var tested = variant.getNbt();
-		var cleanString = StringUtils.trim(description);
+		var cleanString = StringUtils.trim(description).toLowerCase();
 		var pieces = StringUtils.splitByWholeSeparator(cleanString, null);
 		var target = pieces[0];
 		var predicateString = StringUtils.remove(cleanString, target); // We don't want ambiguity when checking for keywords
@@ -558,10 +558,10 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 
 		// A few corrections for ease of use
 		if (StringUtils.equalsAnyIgnoreCase(target, "durability", "uses"))
-			target = "Damage";
+			target = ItemStack.DAMAGE_KEY;
 
 		if (StringUtils.equalsAnyIgnoreCase(target, "enchs", "enchants", "enchantment")) {
-			target = "Enchantments";
+			target = ItemStack.ENCHANTMENTS_KEY;
 		}
 
 		// Exit early if it just is not there
@@ -589,7 +589,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		boolean moreThan = StringUtils.containsIgnoreCase(predicateString, GREATER_THAN_KEYWORD);
 
 		// Enchantments are so fucking cursed
-		if (target.equals("Enchantments") || target.equals("StoredEnchantments")) {
+		if (target.equals(ItemStack.ENCHANTMENTS_KEY) || target.equals(EnchantedBookItem.STORED_ENCHANTMENTS_KEY)) {
 			if (testedData.getType() != NbtElement.LIST_TYPE)
 				return false;
 
@@ -638,7 +638,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 				var testedNum = ((AbstractNbtNumber) testedData).doubleValue();
 
 				// Special damage keywords - durability is weird and counts up as it decreases
-				if (target.equals("Damage")) {
+				if (target.equals(ItemStack.DAMAGE_KEY)) {
 					if (StringUtils.containsIgnoreCase(predicateString, DAMAGED_KEYWORD)) {
 						return testedNum > 0;
 					}
@@ -686,8 +686,8 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 			default: {
 				if (nullSourceFilter)
 					return true;
-
-				// Last resort that will work 50% of the time maybe not realy
+				
+				// Last resort that will work 50% of the time maybe not really
 				return sourceData.asString().equals(testedData.asString());
 			}
 		}

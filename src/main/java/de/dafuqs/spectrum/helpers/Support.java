@@ -1,13 +1,17 @@
 package de.dafuqs.spectrum.helpers;
 
+import com.jamieswhiteshirt.reachentityattributes.*;
 import de.dafuqs.spectrum.*;
 import net.minecraft.advancement.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
 import net.minecraft.registry.tag.*;
 import net.minecraft.server.*;
 import net.minecraft.server.network.*;
 import net.minecraft.util.*;
+import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
@@ -18,6 +22,18 @@ import java.text.*;
 import java.util.*;
 
 public class Support {
+	
+	public static HitResult playerInteractionRaycast(World world, LivingEntity user, PlayerEntity player) {
+		double maxDistance = getReachDistance(player);
+		Vec3d eyePos = user.getEyePos();
+		Vec3d rotationVec = user.getRotationVec(0F);
+		Vec3d vec3d3 = eyePos.add(rotationVec.x * maxDistance, rotationVec.y * maxDistance, rotationVec.z * maxDistance);
+		return world.raycast(new RaycastContext(eyePos, vec3d3, RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, player));
+	}
+	
+	public static float getReachDistance(PlayerEntity player) {
+		return (player.isCreative() ? 5.0F : 4.5F) + (float) player.getAttributeValue(ReachEntityAttributes.REACH);
+	}
 	
 	public static final DecimalFormat DF = new DecimalFormat("0");
 	public static final DecimalFormat DF1 = new DecimalFormat("0.0");

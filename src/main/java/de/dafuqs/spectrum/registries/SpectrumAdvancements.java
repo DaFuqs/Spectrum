@@ -9,7 +9,8 @@ public class SpectrumAdvancements {
 	
 	// Revelations
 	public static final Identifier REVEAL_AMARANTH = SpectrumCommon.locate("milestones/reveal_amaranth");
-	public static final Identifier REVEAL_AZURITE = locate("milestones/reveal_azurite");
+	public static final Identifier REVEAL_AZURITE = SpectrumCommon.locate("milestones/reveal_azurite");
+	public static final Identifier REVEAL_BLOOD_ORCHID_PETALS = SpectrumCommon.locate("milestones/reveal_blood_orchid_petals");
 	public static final Identifier REVEAL_COLORED_SAPLINGS_CMY = SpectrumCommon.locate("milestones/reveal_colored_saplings_cmy");
 	public static final Identifier REVEAL_COLORED_TREES_BLACK = SpectrumCommon.locate("milestones/reveal_colored_trees_k");
 	public static final Identifier REVEAL_COLORED_TREES_CMY = SpectrumCommon.locate("milestones/reveal_colored_trees_cmy");

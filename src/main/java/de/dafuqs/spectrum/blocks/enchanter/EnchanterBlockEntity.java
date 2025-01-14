@@ -263,7 +263,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	}
 	
 	public static void playCraftingFinishedEffects(@NotNull EnchanterBlockEntity enchanterBlockEntity) {
-		enchanterBlockEntity.getWorld().playSound(null, enchanterBlockEntity.pos, SoundEvents.ENTITY_PLAYER_LEVELUP, SoundCategory.BLOCKS, 1.0F, 1.0F);
+		enchanterBlockEntity.getWorld().playSound(null, enchanterBlockEntity.pos, SpectrumSoundEvents.ENCHANTER_FINISH, SoundCategory.BLOCKS, 1.0F, 1.0F);
 		
 		SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) enchanterBlockEntity.getWorld(),
 				new Vec3d(enchanterBlockEntity.pos.getX() + 0.5D, enchanterBlockEntity.pos.getY() + 0.5, enchanterBlockEntity.pos.getZ() + 0.5D),
@@ -421,7 +421,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 				default -> rarityCost = 80;
 			}
 			
-			float levelCost = level + ((float) level / enchantment.getMaxLevel()); // the higher the level, the pricier. But not as bad for enchantments with high max levels
+			float levelCost = level * Math.min(1, (float) level / enchantment.getMaxLevel()); // the higher the level, the pricier. But not as bad for enchantments with high max levels
 			float specialMulti = enchantment.isTreasure() ? 2.0F : enchantment.isCursed() ? 1.5F : 1.0F;
 			float selectionAvailabilityMod = 1.0F;
 			if (!(enchantment instanceof SpectrumEnchantment)) {

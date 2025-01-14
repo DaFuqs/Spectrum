@@ -42,7 +42,7 @@ public class ItemProjectileEntity extends ThrownItemEntity {
 				}
 			}
 			
-			this.getWorld().sendEntityStatus(this, (byte) 3);
+			this.getWorld().sendEntityStatus(this, EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES);
 			
 			if (!stack.isEmpty()) {
 				Entity owner = this.getOwner();
@@ -57,7 +57,7 @@ public class ItemProjectileEntity extends ThrownItemEntity {
 
 	@Override
 	public void handleStatus(byte status) {
-		if (status == 3) {
+		if (status == EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES) {
 			ItemStack itemStack = this.getItem();
 			ParticleEffect particleEffect = (itemStack.isEmpty() ? ParticleTypes.ITEM_SNOWBALL : new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack));
 

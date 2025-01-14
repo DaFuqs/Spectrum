@@ -611,9 +611,9 @@ public abstract class LivingEntityMixin {
 				
 				boolean damaged = false;
 				for (Pair<DamageSource, Float> entry : composition.get()) {
-					int invincibilityFrameStore = target.timeUntilRegen;
+					int invincibilityFrameStore = target.hurtTime;
 					damaged |= damage(entry.getLeft(), entry.getRight());
-					target.timeUntilRegen = invincibilityFrameStore;
+					target.hurtTime = invincibilityFrameStore;
 				}
 				
 				SpectrumDamageTypes.recursiveDamageFlag = false;
@@ -719,11 +719,5 @@ public abstract class LivingEntityMixin {
 	private boolean spectrum$isWet(LivingEntity livingEntity) {
 		return livingEntity.isTouchingWater() ? ((TouchingWaterAware) livingEntity).spectrum$isActuallyTouchingWater() : livingEntity.isWet();
 	}
-
-
-	@com.llamalad7.mixinextras.injector.v2.WrapWithCondition(method = "damage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;tiltScreen(DD)V"))
-	private boolean shouldTiltScreen(LivingEntity entity, double deltaX, double deltaZ, DamageSource source,
-			float amount) {
-		return !source.isIn(SpectrumDamageTypeTags.USES_SET_HEALTH);
-	}
+	
 }

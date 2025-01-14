@@ -41,12 +41,6 @@ public class StuckStormStoneBlock extends HorizontalFacingBlock implements Revel
 	
 	@Override
 	@SuppressWarnings("deprecation")
-	public VoxelShape getCameraCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		return VoxelShapes.empty();
-	}
-	
-	@Override
-	@SuppressWarnings("deprecation")
 	public float getAmbientOcclusionLightLevel(BlockState state, BlockView world, BlockPos pos) {
 		return 1.0F;
 	}
@@ -94,7 +88,7 @@ public class StuckStormStoneBlock extends HorizontalFacingBlock implements Revel
 		if (this.isVisibleTo(context)) {
 			return SHAPE;
 		}
-		return VoxelShapes.fullCube();
+		return VoxelShapes.empty();
 	}
 
 	@Override
@@ -106,7 +100,7 @@ public class StuckStormStoneBlock extends HorizontalFacingBlock implements Revel
 				return this.isVisibleTo(player) ? SHAPE : VoxelShapes.empty();
 			}
 		}
-		return VoxelShapes.fullCube();
+		return VoxelShapes.empty();
 	}
 	
 	@Override

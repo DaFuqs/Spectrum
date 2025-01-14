@@ -1,16 +1,16 @@
 {
-  "criteria": {
-    "crafted_potion_in_potion_brewery": {
-      "trigger": "revelationary:advancement_gotten",
-      "conditions": {
-        "advancement_identifier": "spectrum:midgame/brew_potion_in_potion_workshop"
-      }
-    },
+	"criteria": {
+		"crafted_potion_in_potion_brewery": {
+			"trigger": "revelationary:advancement_gotten",
+			"conditions": {
+				"advancement_identifier": "spectrum:midgame/brew_potion_in_potion_workshop"
+			}
+		},
 		"collected_downstone_fragments": {
-      "trigger": "revelationary:advancement_gotten",
-      "conditions": {
-				"advancement_identifier": "spectrum:collect_downstone_fragments"
-      }
-    }
-  }
+			"trigger": "revelationary:advancement_gotten",
+			"conditions": {
+				"advancement_identifier": "spectrum:lategame/collect_downstone_fragments"
+			}
+		}
+	}
 }

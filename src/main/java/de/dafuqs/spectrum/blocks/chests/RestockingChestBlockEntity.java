@@ -30,7 +30,7 @@ public class RestockingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	private List<ItemStack> cachedOutputs = new ArrayList<>(4);
 	private int coolDownTicks = 0;
 	private boolean isOpen, isFull, hasValidRecipes;
-	private State state;
+	private State state = State.CLOSED;
 	float rimTarget, rimPos, lastRimTarget, tabletTarget, tabletPos, lastTabletTarget,assemblyTarget, assemblyPos, lastAssemblyTarget, ringTarget, ringPos, lastRingTarget, itemTarget, itemPos, lastItemTarget, alphaTarget, alphaValue, lastAlphaTarget, yawModTarget, yawMod, lastYawModTarget, yaw, lastYaw;
 	long interpTicks, interpLength = 1, age;
 	
@@ -40,7 +40,7 @@ public class RestockingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	
 	public static void tick(World world, BlockPos pos, BlockState state, RestockingChestBlockEntity chest) {
 		chest.age++;
-
+		// TODO: that should run in `clientTick() instead` (same for other chests)
 		if (world.isClient) {
 
 			chest.lastYaw = chest.yaw;

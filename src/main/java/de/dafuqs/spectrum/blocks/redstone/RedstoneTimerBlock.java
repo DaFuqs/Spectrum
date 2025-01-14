@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.particle.*;
@@ -70,7 +71,7 @@ public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
 	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		BlockState newState = state.with(POWERED, !state.get(POWERED));
 		world.setBlockState(pos, newState, 3);
-		world.playSound(null, pos, SoundEvents.BLOCK_COMPARATOR_CLICK, SoundCategory.BLOCKS, 0.3F, 1.0F);
+		world.playSound(null, pos, SpectrumSoundEvents.REDSTONE_MECHANISM_TRIGGER, SoundCategory.BLOCKS, 0.3F, 1.0F);
 		world.scheduleBlockTick(pos, this, this.getUpdateDelayInternal(state), TickPriority.NORMAL);
 	}
 	
@@ -101,14 +102,14 @@ public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
 				TimingStep newStep = blockState.get(INACTIVE_TIME).next();
 				serverPlayerEntity.sendMessage(Text.translatable("block.spectrum.redstone_timer.setting.inactive").append(Text.translatable(newStep.localizationString)), true);
 				float pitch = 0.5F + newStep.ordinal() * 0.05F;
-				world.playSound(null, pos, SoundEvents.BLOCK_COMPARATOR_CLICK, SoundCategory.BLOCKS, 0.3F, pitch);
+				world.playSound(null, pos, SpectrumSoundEvents.REDSTONE_MECHANISM_TRIGGER, SoundCategory.BLOCKS, 0.3F, pitch);
 				world.setBlockState(pos, world.getBlockState(pos).with(INACTIVE_TIME, newStep));
 			} else {
 				// toggle active time
 				TimingStep newStep = blockState.get(ACTIVE_TIME).next();
 				serverPlayerEntity.sendMessage(Text.translatable("block.spectrum.redstone_timer.setting.active").append(Text.translatable(newStep.localizationString)), true);
 				float pitch = 0.5F + newStep.ordinal() * 0.05F;
-				world.playSound(null, pos, SoundEvents.BLOCK_COMPARATOR_CLICK, SoundCategory.BLOCKS, 0.3F, pitch);
+				world.playSound(null, pos, SpectrumSoundEvents.REDSTONE_MECHANISM_TRIGGER, SoundCategory.BLOCKS, 0.3F, pitch);
 				world.setBlockState(pos, world.getBlockState(pos).with(ACTIVE_TIME, newStep));
 			}
 			

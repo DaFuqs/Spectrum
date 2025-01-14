@@ -88,8 +88,8 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 			if (entity instanceof LivingEntity livingEntity) {
 				// we're resetting hurtTime here for once so onEntityHit() can deal damage
 				// and also resetting after that again so the target is damageable again after this
-				invincibilityFrameStore = livingEntity.timeUntilRegen;
-				livingEntity.timeUntilRegen = 0;
+				invincibilityFrameStore = livingEntity.hurtTime;
+				livingEntity.hurtTime = 0;
 				livingEntityToResetHurtTime = livingEntity;
 				livingEntity.damageShield(20);
 				livingEntity.damageArmor(world.getDamageSources().magic(), 20);
@@ -101,7 +101,7 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 		super.onEntityHit(entityHitResult);
 		
 		if (livingEntityToResetHurtTime != null) {
-			livingEntityToResetHurtTime.timeUntilRegen = invincibilityFrameStore;
+			livingEntityToResetHurtTime.hurtTime = invincibilityFrameStore;
 		}
 		
 		this.playSound(SoundEvents.BLOCK_GLASS_BREAK, 0.75F, 0.9F + world.random.nextFloat() * 0.2F);

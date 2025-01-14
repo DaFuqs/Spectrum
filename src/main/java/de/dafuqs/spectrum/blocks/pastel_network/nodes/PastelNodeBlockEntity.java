@@ -9,6 +9,7 @@ import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
+import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.lookup.v1.block.*;
@@ -396,6 +397,11 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 
 	@Override
 	public NbtCompound toInitialChunkDataNbt() {
+		Optional<ServerPastelNetwork> network = getServerNetwork();
+		if (network.isPresent()) {
+			SpectrumS2CPacketSender.syncPastelNetworkEdges(network.get(), pos);
+		}
+		
 		NbtCompound nbtCompound = new NbtCompound();
 		this.writeNbt(nbtCompound);
 		return nbtCompound;
@@ -405,7 +411,6 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	@Override
 	public void markRemoved() {
 		super.markRemoved();
-		// Hanky jacks
 		if (!world.isClient()) {
 			Pastel.getServerInstance().removeNode(this, NodeRemovalReason.UNLOADED);
 		}

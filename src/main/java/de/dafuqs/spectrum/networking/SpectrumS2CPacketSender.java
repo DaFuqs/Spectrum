@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.networking;
 
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.energy.*;
@@ -18,6 +19,7 @@ import net.fabricmc.fabric.api.networking.v1.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
+import net.minecraft.nbt.*;
 import net.minecraft.network.*;
 import net.minecraft.particle.*;
 import net.minecraft.registry.*;
@@ -488,4 +490,13 @@ public class SpectrumS2CPacketSender {
 		}
 	}
 
+	public static void syncPastelNetworkEdges(ServerPastelNetwork serverPastelNetwork, NbtCompound graphStorage) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeUuid(serverPastelNetwork.getUUID());
+		buf.writeNbt(graphStorage);
+		
+		assert SpectrumCommon.minecraftServer != null; //shhhh
+		for (ServerPlayerEntity player : PlayerLookup.all(SpectrumCommon.minecraftServer))
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.PASTEL_NETWORK_EDGE_SYNC, buf);
+	}
 }

@@ -417,7 +417,13 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	@Override
 	public void markRemoved() {
 		super.markRemoved();
-		Pastel.getInstance(world.isClient).removeNode(this, world.getBlockState(pos).getBlock() instanceof PastelNodeBlock ? NodeRemovalReason.UNLOADED : NodeRemovalReason.BROKEN);
+		// Hanky jacks
+		if (world.isClient()) {
+			Pastel.getInstance(true).removeNode(this, world.getBlockState(pos).getBlock() instanceof PastelNodeBlock ? NodeRemovalReason.UNLOADED : NodeRemovalReason.BROKEN);
+		}
+		else {
+			Pastel.getInstance(false).removeNode(this, NodeRemovalReason.UNLOADED);
+		}
 	}
 	
 	public @NotNull UUID getInitialID() {

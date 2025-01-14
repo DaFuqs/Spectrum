@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.fusion_shrine.*;
 import de.dafuqs.spectrum.blocks.particle_spawner.*;
+import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
@@ -543,7 +544,19 @@ public class SpectrumS2CPacketReceiver {
 				}
 			});
 		}))));
-
+		
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PASTEL_NETWORK_EDGE_SYNC, (client, handler, buf, responseSender) -> {
+			var uuid = buf.readUuid();
+			var nbt = buf.readNbt();
+			
+			client.execute(() -> {
+				Pastel.getInstance(true).getNetwork(uuid).ifPresentOrElse(
+						n -> n.fromNbt(nbt),
+						() -> {
+						
+						});
+			});
+		});
     }
 	
 }

@@ -49,5 +49,6 @@ public class SpectrumS2CPackets {
 	public static final Identifier BLACK_HOLE_CHEST_STATUS_UPDATE = SpectrumCommon.locate("black_hole_chest_status");
 	public static final Identifier RESTOCKING_CHEST_STATUS_UPDATE = SpectrumCommon.locate("restocking_chest_status");
 	public static final Identifier PASTEL_NODE_STATUS_UPDATE = SpectrumCommon.locate("pastel_node_status");
+	public static final Identifier PASTEL_NETWORK_EDGE_SYNC = SpectrumCommon.locate("pastel_edge_sync");
 
 }

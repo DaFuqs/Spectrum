@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.networking.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.nbt.*;
 import net.minecraft.registry.*;

@@ -67,6 +67,8 @@ public class ServerPastelNetwork extends PastelNetwork {
 		if (cap || priority != Priority.GENERIC) {
 			if (cap) {
 				this.transferLooper.reset();
+				// If someone complains about network usage I am going to fucking kill myself
+				SpectrumS2CPacketSender.syncPastelNetworkEdges(this, toNbt());
 			}
 			try {
 				this.transmissionLogic.tick(priority);

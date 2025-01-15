@@ -245,8 +245,6 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 				filterItems.set(i, ItemVariant.blank());
 			}
 		}
-
-		markDirty();
 	}
 
 	@Override
@@ -354,12 +352,18 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		}
 		if (nbt.contains("OuterRing")) {
 			outerRing = Optional.ofNullable(SpectrumRegistries.PASTEL_UPGRADE.get(Identifier.tryParse(nbt.getString("OuterRing"))));
+		} else {
+			outerRing = Optional.empty();
 		}
 		if (nbt.contains("InnerRing")) {
 			innerRing = Optional.ofNullable(SpectrumRegistries.PASTEL_UPGRADE.get(Identifier.tryParse(nbt.getString("InnerRing"))));
+		} else {
+			innerRing = Optional.empty();
 		}
 		if (nbt.contains("RedstoneRing")) {
 			redstoneRing = Optional.ofNullable(SpectrumRegistries.PASTEL_UPGRADE.get(Identifier.tryParse(nbt.getString("RedstoneRing"))));
+		} else {
+			redstoneRing = Optional.empty();
 		}
 		if (this.getNodeType().usesFilters()) {
 			FilterConfigurable.readFilterNbt(nbt, this.filterItems);

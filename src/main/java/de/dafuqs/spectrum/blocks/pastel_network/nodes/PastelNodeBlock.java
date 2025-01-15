@@ -134,6 +134,8 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements BlockEntityP
 							player.getInventory().offerOrDrop(removed);
 						
 						blockEntity.updateUpgrades();
+						blockEntity.markDirty();
+						blockEntity.updateInClientWorld();
 					}
 				}
 				return ActionResult.success(world.isClient());
@@ -143,12 +145,14 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements BlockEntityP
 			return ActionResult.PASS;
 		} else if (stack.isOf(SpectrumItems.PAINTBRUSH)) {
 			return sendDebugMessage(world, player, blockEntity);
-		} else if (AdvancementHelper.hasAdvancement(player, SpectrumAdvancements.PASTEL_NODE_UPGRADING) && stack.isIn(SpectrumItemTags.PASTEL_NODE_UPGRADES) && blockEntity.tryInteractRings(stack, pastelNodeType)) {
-			if (!world.isClient()) {
+		} else if (AdvancementHelper.hasAdvancement(player, SpectrumAdvancements.PASTEL_NODE_UPGRADING) && stack.isIn(SpectrumItemTags.PASTEL_NODE_UPGRADES)) {
+			if (!world.isClient() && blockEntity.tryInteractRings(stack, pastelNodeType)) {
 				SpectrumAdvancementCriteria.PASTEL_NODE_UPGRADING.trigger((ServerPlayerEntity) player, stack);
 				if (!player.getAbilities().creativeMode)
 					stack.decrement(1);
 				blockEntity.updateUpgrades();
+				blockEntity.markDirty();
+				blockEntity.updateInClientWorld();
 			}
 			
 			world.playSoundAtBlockCenter(pos, SpectrumSoundEvents.MEDIUM_CRYSTAL_RING, SoundCategory.BLOCKS, 0.25F, 0.9F + world.getRandom().nextFloat() * 0.2F, true);

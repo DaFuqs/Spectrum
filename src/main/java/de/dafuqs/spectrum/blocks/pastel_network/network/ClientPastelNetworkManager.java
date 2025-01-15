@@ -10,6 +10,7 @@ import net.minecraft.world.*;
 import org.jgrapht.*;
 import org.jgrapht.graph.*;
 import org.joml.*;
+import org.joml.Math;
 
 import java.util.*;
 
@@ -46,6 +47,10 @@ public class ClientPastelNetworkManager implements PastelNetworkManager {
 				final Vec3d pos = context.camera().getPos();
 				matrices.push();
 				matrices.translate(-pos.x, -pos.y, -pos.z);
+				var cross = source.crossProduct(target);
+				var interval = (cross.getX() + cross.getY() + cross.getZ() + network.world.getTime()) % 1000000F;
+				var alpha = 1 - (Math.max(Math.sin((interval / 17F)) * 2.5 - 2, 0));
+				colors[0] = (float) alpha;
 				PastelRenderHelper.renderLineTo(context.matrixStack(), context.consumers(), colors, source, target);
 				
 				if (client.options.debugEnabled) {

@@ -76,6 +76,17 @@ public class RenderHelper {
 		matrices.translate(size / 2F, -height, size / 2F);
 	}
 	
+	public static void renderFlatTransWithZYOffsetAndColor(MatrixStack matrices, VertexConsumer vertices, boolean altAxis, float height, float scale, float alpha, float uvOffset, int overlay, float r, float g, float b) {
+		height /= 16F;
+		var size = scale / 16F;
+		matrices.translate(-size / 2F, height, -size / 2F);
+		
+		var peek = matrices.peek();
+		var model = peek.getPositionMatrix();
+		renderSide(model, vertices, altAxis, alpha, uvOffset, scale, scale, 0, size, 0, size, r, g, b, overlay);
+		matrices.translate(size / 2F, -height, size / 2F);
+	}
+	
 	public static void renderSide(Matrix4f model, VertexConsumer vertices, boolean altAxis, float alpha, float uvOffset, float u, float v, float x1, float x2, float y1, float y2, float r, float g, float b, int overlay) {
 		float u1 = uvOffset / 16F, v1 = uvOffset / 16F;
 		float u2 = u1 + u / 16F, v2 = v1 + v / 16F;

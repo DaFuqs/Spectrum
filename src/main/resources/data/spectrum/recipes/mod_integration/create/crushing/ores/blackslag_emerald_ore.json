@@ -1,0 +1,35 @@
+{
+    "type": "create:crushing",
+    "ingredients": [
+      {
+        "item": "spectrum:blackslag_emerald_ore"
+      }
+    ],
+    "processingTime": 525,
+    "results": [
+      {
+        "count": 2,
+        "item": "minecraft:emerald"
+      },
+      {
+        "chance": 0.25,
+        "item": "minecraft:emerald"
+      },
+      {
+        "chance": 0.75,
+        "item": "create:experience_nugget"
+      },
+      {
+        "chance": 0.125,
+        "item": "spectrum:cobbled_blackslag"
+      }
+    ],
+    "fabric:load_conditions": [
+      {
+        "condition": "fabric:all_mods_loaded",
+        "values": [
+          "create"
+        ]
+      }
+    ]
+  }

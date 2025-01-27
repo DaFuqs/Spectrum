@@ -1,0 +1,35 @@
+{
+    "type": "create:crushing",
+    "ingredients": [
+      {
+        "item": "spectrum:stratine_ore"
+      }
+    ],
+    "processingTime": 350,
+    "results": [
+      {
+        "count": 2,
+        "item": "spectrum:stratine_fragments"
+      },
+      {
+        "chance": 0.5,
+        "item": "spectrum:stratine_fragments"
+      },
+      {
+        "chance": 0.75,
+        "item": "create:experience_nugget"
+      },
+      {
+        "chance": 0.125,
+        "item": "minecraft:netherrack"
+      }
+    ],
+    "fabric:load_conditions": [
+      {
+        "condition": "fabric:all_mods_loaded",
+        "values": [
+          "create"
+        ]
+      }
+    ]
+  }

@@ -25,6 +25,10 @@
     },
     {
       "type": "modonomicon:text",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
+      },
       "title": "book.spectrum.guidebook.potion_workshop_reagents.page1.title",
       "text": "book.spectrum.guidebook.potion_workshop_reagents.page1.text"
     },
@@ -203,7 +207,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:unlocks/reagents/quitoxic_powder"
+        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.quitoxic_powder.text"
     },
@@ -214,7 +218,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:unlocks/reagents/stratine_fragments"
+        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.stratine_fragments.text"
     },
@@ -291,7 +295,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:unlocks/reagents/vegetal"
+        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.vegetal.text"
     },

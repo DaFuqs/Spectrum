@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.recipe.potion_workshop;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.blocks.potion_workshop.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
@@ -35,6 +36,12 @@ public class PotionWorkshopReactingRecipe extends GatedSpectrumRecipe<Inventory>
 	
 	@Override
 	public boolean matches(@NotNull Inventory inv, World world) {
+		for (int i : PotionWorkshopBlockEntity.REAGENT_SLOTS) {
+			ItemStack itemStack = inv.getStack(i);
+			if (!itemStack.isEmpty() && itemStack.getItem() == item) {
+				return true;
+			}
+		}
 		return false;
 	}
 	

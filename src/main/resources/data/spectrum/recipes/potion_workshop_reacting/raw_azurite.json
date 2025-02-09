@@ -4,5 +4,5 @@
   "modifiers": {
     "negate_decreasing_duration": true
   },
-  "required_advancement": "spectrum:midgame/collect_azurite"
+  "required_advancement": "spectrum:unlocks/reagents/raw_azurite"
 }

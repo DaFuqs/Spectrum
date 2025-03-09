@@ -3,16 +3,15 @@
     "player"
   ],
   "slots": [
-    "feet/shoes",
-    "hand/ring",
-    "offhand/ring",
+    "head/face",
+    "head/crown",
     "chest/necklace",
+    "chest/pin",
     "legs/belt",
     "legs/pigment_palette",
-    "head/face",
-    "hand/glove",
-
-    "chest/pin",
-    "head/crown"
+    "feet/shoes",
+    "hand/ring",
+    "hand/gloves",
+    "offhand/ring"
   ]
 }

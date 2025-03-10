@@ -1,19 +1,16 @@
 package de.dafuqs.spectrum.blocks.chests;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
+import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ChestBlock;
+import net.minecraft.block.*;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.block.entity.*;
 import net.minecraft.client.util.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.screen.*;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RotationAxis;
+import net.minecraft.util.math.*;
 import org.jetbrains.annotations.*;
 
 @Environment(EnvType.CLIENT)
@@ -62,7 +59,7 @@ public class BlackHoleChestBlockEntityRenderer implements BlockEntityRenderer<Bl
 
 		boolean bl = chest.getWorld() != null;
 		BlockState blockState = bl ? chest.getCachedState() : SpectrumBlocks.BLACK_HOLE_CHEST.getDefaultState().with(ChestBlock.FACING, Direction.SOUTH);
-		float f = (blockState.get(ChestBlock.FACING)).asRotation();
+		float f = blockState.contains(ChestBlock.FACING) ? blockState.get(ChestBlock.FACING).asRotation() : 0;
 		matrixStack.translate(0.5D, 1.5D, 0.5D);
 		matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-f));
 		matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(180));

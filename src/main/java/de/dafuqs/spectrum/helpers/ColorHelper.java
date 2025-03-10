@@ -20,6 +20,7 @@ public class ColorHelper {
 	 * In case a mod extends the DyeColor enum
 	 */
 	public static List<DyeColor> VANILLA_DYE_COLORS = Arrays.stream(DyeColor.values()).filter(dyeColor -> dyeColor.getId() < 16).toList();
+	public static final Vector3f WASH = new Vector3f(1F, 1F, 1F);
 	
 	public static Vector3f getRGBVec(DyeColor dyeColor) {
 		return InkColor.ofDyeColor(dyeColor).getColorVec();

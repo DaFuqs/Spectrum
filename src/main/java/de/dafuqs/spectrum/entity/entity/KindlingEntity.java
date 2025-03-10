@@ -136,7 +136,7 @@ public class KindlingEntity extends AbstractHorseEntity implements RangedAttackM
 			
 			switch (this.getPose()) {
 				case STANDING -> this.standingAnimationState.start(this.age);
-				case DIGGING -> this.walkingAnimationState.start(this.age);
+				case SNIFFING -> this.walkingAnimationState.start(this.age);
 				case ROARING -> this.standingAngryAnimationState.start(this.age);
 				case EMERGING -> this.walkingAngryAnimationState.start(this.age);
 				case FALL_FLYING -> this.glidingAnimationState.start(this.age);
@@ -394,7 +394,7 @@ public class KindlingEntity extends AbstractHorseEntity implements RangedAttackM
 				var candidate = world.getBlockState(transmutePos);
 				
 				// Do not the bedrock nor the claims
-				if (candidate.getHardness(world, transmutePos) < 0 || !CommonProtectionApiCompat.canBreak(world, transmutePos, this))
+				if (candidate.getHardness(world, transmutePos) < 0 || !GenericClaimModsCompat.canBreak(world, transmutePos, this))
 					continue;
 
 				if (candidate.isAir()) {
@@ -469,11 +469,12 @@ public class KindlingEntity extends AbstractHorseEntity implements RangedAttackM
 	public void tickMovement() {
 		super.tickMovement();
 		
-		Vec3d vec3d = this.getVelocity();
-		if (!this.isOnGround() && vec3d.y < 0.0) {
-			this.setVelocity(vec3d.multiply(1.0, 0.6, 1.0));
+		Vec3d velocity = this.getVelocity();
+		boolean onGround = this.isOnGround();
+		if (!onGround && velocity.y < 0.0) {
+			this.setVelocity(velocity.multiply(1.0, 0.6, 1.0));
 		}
-		if (this.fallDistance < 0.2) {
+		if (onGround || this.fallDistance < 0.2) {
 			boolean isMoving = this.getX() - this.prevX != 0 || this.getZ() - this.prevZ != 0; // pretty ugly, but also triggers when being ridden
 			if (getAngerTime() > 0) {
 				this.setPose(isMoving ? EntityPose.EMERGING : EntityPose.ROARING);

@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.items.*;
 import net.minecraft.*;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.*;
@@ -135,11 +136,17 @@ public class BedrockAnvilScreenHandler extends ForgingScreenHandler {
 			Map<Enchantment, Integer> enchantmentLevelMap = EnchantmentHelper.get(outputStack);
 			repairLevelCost += inputStack.getRepairCost() + (repairSlotStack.isEmpty() ? 0 : repairSlotStack.getRepairCost());
 			this.repairItemCount = 0;
+			boolean pigmentInRepairSlot = repairSlotStack.getItem()  instanceof PigmentItem;
+			if(pigmentInRepairSlot)
+			{
+				repairItemCount = 1;
+			}
 			if (!repairSlotStack.isEmpty()) {
 				combined = true;
 				
 				boolean enchantedBookInInputSlot = inputStack.isOf(Items.ENCHANTED_BOOK) && !EnchantedBookItem.getEnchantmentNbt(inputStack).isEmpty();
 				boolean enchantedBookInRepairSlot = repairSlotStack.isOf(Items.ENCHANTED_BOOK) && !EnchantedBookItem.getEnchantmentNbt(repairSlotStack).isEmpty();
+				
 
 				int o;
 				int repairItemCount;
@@ -161,13 +168,13 @@ public class BedrockAnvilScreenHandler extends ForgingScreenHandler {
 					
 					this.repairItemCount = repairItemCount;
 				} else {
-					if (!enchantedBookInRepairSlot && (!outputStack.isOf(repairSlotStack.getItem()) || !outputStack.isDamageable())) {
+					if (!pigmentInRepairSlot && !enchantedBookInRepairSlot && (!outputStack.isOf(repairSlotStack.getItem()) || !outputStack.isDamageable())) {
 						this.output.setStack(0, ItemStack.EMPTY);
 						this.levelCost.set(0);
 						return;
 					}
 					
-					if (outputStack.isDamageable() && !enchantedBookInRepairSlot) {
+					if (outputStack.isDamageable() && !enchantedBookInRepairSlot && !pigmentInRepairSlot) {
 						o = inputStack.getMaxDamage() - inputStack.getDamage();
 						repairItemCount = repairSlotStack.getMaxDamage() - repairSlotStack.getDamage();
 						newOutputStackDamage = repairItemCount + outputStack.getMaxDamage() * 12 / 100;
@@ -250,10 +257,26 @@ public class BedrockAnvilScreenHandler extends ForgingScreenHandler {
 			
 			if (this.newItemName != null && !Util.isBlank(this.newItemName)) {
 				if (!this.newItemName.equals(inputStack.getName().getString())) {
-					outputStack.setCustomName(Text.literal(this.newItemName));
+					if(inputStack.getName() instanceof MutableText inputText && inputText.getStyle().getColor()!= null)
+					{
+						outputStack.setCustomName(Text.literal(this.newItemName).setStyle(Style.EMPTY.withColor(inputText.getStyle().getColor())));
+					}
+					else{
+						outputStack.setCustomName(Text.literal(this.newItemName));
+					}
 				}
 			} else if (inputStack.hasCustomName()) {
 				outputStack.removeCustomName();
+			}
+			Text text = outputStack.getName();
+			if(pigmentInRepairSlot && text instanceof MutableText mutableText)
+			{
+				TextColor newColor = TextColor.fromRgb(ColorHelper.getInt(((PigmentItem)repairSlotStack.getItem()).getColor()));
+				Text newName = mutableText.setStyle(mutableText.getStyle().withColor(newColor));
+				if(!newName.equals(inputStack.getName()))
+				{
+					outputStack.setCustomName(newName);
+				}
 			}
 			
 			if (this.newLoreString != null && !Util.isBlank(this.newLoreString)) {
@@ -270,7 +293,7 @@ public class BedrockAnvilScreenHandler extends ForgingScreenHandler {
 				outputStack = ItemStack.EMPTY;
 			}
 			
-			if (!combined) {
+			if (!combined || pigmentInRepairSlot) {
 				// renaming and lore is free
 				this.levelCost.set(0);
 			} else if (!outputStack.isEmpty()) {

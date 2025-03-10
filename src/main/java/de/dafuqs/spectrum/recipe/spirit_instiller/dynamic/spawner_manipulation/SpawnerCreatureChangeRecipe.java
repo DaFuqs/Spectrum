@@ -26,12 +26,15 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 	public boolean canCraftWithBlockEntityTag(NbtCompound spawnerBlockEntityNbt, ItemStack firstBowlStack, ItemStack secondBowlStack) {
 		Optional<EntityType<?>> entityType = SpectrumSkullBlock.getEntityTypeOfSkullStack(firstBowlStack);
 		entityType = entityType.isEmpty() ? SpectrumSkullBlock.getEntityTypeOfSkullStack(secondBowlStack) : entityType;
-
+		
 		if (entityType.isEmpty()) {
 			return false;
 		}
 		if (entityType.get().isIn(SpectrumEntityTypeTags.SPAWNER_MANIPULATION_BLACKLISTED)) {
 			return false;
+		}
+		if (spawnerBlockEntityNbt == null) {
+			return true;
 		}
 		
 		if (spawnerBlockEntityNbt.contains("SpawnData")) {

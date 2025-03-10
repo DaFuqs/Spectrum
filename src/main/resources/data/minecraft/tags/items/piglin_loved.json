@@ -2,6 +2,16 @@
   "replace": false,
   "values": [
     "spectrum:axolotl_gold_head",
-    "spectrum:gilded_book"
+		"spectrum:gilded_book",
+		"spectrum:small_gold_bud",
+		"spectrum:large_gold_bud",
+		"spectrum:gold_cluster",
+		"spectrum:pure_gold",
+		"spectrum:pure_gold_block",
+		"spectrum:enchanted_golden_carrot",
+		"spectrum:glistering_melon",
+		"spectrum:glistering_melon_seeds",
+		"spectrum:glistering_shooting_star",
+		"spectrum:golden_bristle_tea"
   ]
 }

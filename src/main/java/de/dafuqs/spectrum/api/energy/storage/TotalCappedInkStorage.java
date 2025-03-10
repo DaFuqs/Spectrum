@@ -116,7 +116,7 @@ public class TotalCappedInkStorage implements InkStorage {
 	
 	public static TotalCappedInkStorage fromNbt(@NotNull NbtCompound compound) {
 		long maxEnergyTotal = compound.getLong("MaxEnergyTotal");
-		Map<InkColor, Long> colors = InkStorage.readEnergy(compound.getCompound("Energy"));
+		Map<InkColor, Long> colors = InkStorage.readEnergy(compound.contains("Energy") ? compound.getCompound("Energy") : compound);
 		return new TotalCappedInkStorage(maxEnergyTotal, colors);
 	}
 	

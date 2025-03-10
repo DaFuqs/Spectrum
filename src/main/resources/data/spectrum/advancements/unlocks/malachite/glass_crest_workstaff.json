@@ -6,10 +6,10 @@
         "advancement_identifier": "spectrum:unlocks/malachite/glass_crest_tools"
       }
     },
-    "broken_budding_block_with_resonance_tool": {
+		"unlocked_resonance_crafting": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/break_budding_block_with_resonance_tool"
+				"advancement_identifier": "spectrum:unlocks/enchantments/resonance_crafting"
       }
     }
   }

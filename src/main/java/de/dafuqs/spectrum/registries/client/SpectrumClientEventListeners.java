@@ -113,7 +113,7 @@ public class SpectrumClientEventListeners {
 			RegistryEntry<Biome> biome = world.getBiome(client.getCameraEntity().getBlockPos());
 
 			HowlingSpireEffects.clientTick(world, cameraEntity, biome);
-			DarknessEffects.clientTick(world, (LivingEntity) cameraEntity, biome);
+			DarknessEffects.clientTick(world, cameraEntity, biome);
 		});
 	}
 	

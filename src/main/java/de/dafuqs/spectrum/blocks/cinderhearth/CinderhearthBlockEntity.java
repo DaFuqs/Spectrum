@@ -104,7 +104,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		return slot >= FIRST_OUTPUT_SLOT_ID;
 	}
 	
-	enum CinderHearthStructureType {
+	public enum CinderHearthStructureType {
 		NONE,
 		WITH_LAVA,
 		WITHOUT_LAVA

@@ -11,6 +11,7 @@ import net.minecraft.registry.*;
 import net.minecraft.registry.entry.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.biome.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -31,13 +32,19 @@ public class DarknessEffects {
 	private static final MinecraftClient client = MinecraftClient.getInstance();
 	private static boolean shouldUpdate, forceBiomeUpdate;
 	
-	public static void clientTick(ClientWorld world, LivingEntity camera, RegistryEntry<Biome> biome) {
+	// TODO: this should probably also invalidate the values when the world or spectated entity changed
+	public static void clientTick(ClientWorld world, Entity entity, RegistryEntry<Biome> biome) {
 		if (client.isPaused())
 			return;
 		
 		lastDarkenTicks = darkenTicks;
-		var sleepPotency = SleepStatusEffect.getSleepScaling(camera);
-		var sleepEffect = SleepStatusEffect.getStrongestSleepEffect(camera);
+		float sleepPotency = -1;
+		@Nullable StatusEffect sleepEffect = null;
+		if (entity instanceof LivingEntity livingEntity) {
+			sleepPotency = SleepStatusEffect.getSleepScaling(livingEntity);
+			sleepEffect = SleepStatusEffect.getStrongestSleepEffect(livingEntity);
+		}
+		
 		
 		if (shouldUpdate) {
 			var targets = MathHelper.clamp(sleepPotency / 2F, 0, 1);

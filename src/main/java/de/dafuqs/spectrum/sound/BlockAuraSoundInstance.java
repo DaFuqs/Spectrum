@@ -68,9 +68,10 @@ public class BlockAuraSoundInstance extends AbstractSoundInstance implements Tic
 		
 		if (volume > 0.25) {
 			Vec3d pos = new Vec3d(this.x, this.y, this.z);
-			ParticleHelper.playTriangulatedParticle(world, SpectrumParticleTypes.AZURE_AURA, Support.getIntFromDecimalWithChance(volume, random), true, new Vec3d(24, 8, 24), -8, true, pos, new Vec3d(0, 0.04D + random.nextDouble() * 0.06, 0));
-			ParticleHelper.playTriangulatedParticle(world, SpectrumParticleTypes.AZURE_MOTE_SMALL, Support.getIntFromDecimalWithChance(volume, random), false, new Vec3d(16, 8, 16), -6, false, pos, Vec3d.ZERO);
-			ParticleHelper.playTriangulatedParticle(world, SpectrumParticleTypes.AZURE_MOTE, Support.getIntFromDecimalWithChance(volume, random), true, new Vec3d(16, 6, 16), -4, false, pos, Vec3d.ZERO);
+			float chance = volume / 2F;
+			ParticleHelper.playTriangulatedParticle(world, SpectrumParticleTypes.AZURE_AURA, Support.getIntFromDecimalWithChance(chance, random), true, new Vec3d(24, 8, 24), -8, true, pos, new Vec3d(0, 0.04D + random.nextDouble() * 0.06, 0));
+			ParticleHelper.playTriangulatedParticle(world, SpectrumParticleTypes.AZURE_MOTE_SMALL, Support.getIntFromDecimalWithChance(chance, random), false, new Vec3d(16, 8, 16), -6, false, pos, Vec3d.ZERO);
+			ParticleHelper.playTriangulatedParticle(world, SpectrumParticleTypes.AZURE_MOTE, Support.getIntFromDecimalWithChance(chance, random), true, new Vec3d(16, 6, 16), -4, false, pos, Vec3d.ZERO);
 		}
 	}
 	
@@ -79,7 +80,7 @@ public class BlockAuraSoundInstance extends AbstractSoundInstance implements Tic
 		int y = 0;
 		int z = 0;
 		for (BlockPos source : sources) {
-			if (!world.isChunkLoaded(source) || !world.getBlockState(source).isIn(SpectrumBlockTags.AZURITE_ORES)) {
+			if (!world.isChunkLoaded(source) || !world.getBlockState(source).isIn(SpectrumBlockTags.AZURITE_ORES)) { // tag is hardcoded for now. But should we have more blocks like that, we can easily split it
 				toRemove.add(source);
 			} else {
 				x += source.getX();
@@ -93,9 +94,11 @@ public class BlockAuraSoundInstance extends AbstractSoundInstance implements Tic
 		toRemove.clear();
 		
 		int count = sources.size();
-		this.x = (double) x / count;
-		this.y = (double) y / count;
-		this.z = (double) z / count;
+		if (count > 0) {
+			this.x = (double) x / count;
+			this.y = (double) y / count;
+			this.z = (double) z / count;
+		}
 	}
 	
 	@Override

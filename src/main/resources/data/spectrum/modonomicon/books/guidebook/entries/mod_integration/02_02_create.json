@@ -1,0 +1,211 @@
+{
+  "name": "book.spectrum.guidebook.mod_integration.create.name",
+  "icon": "create:crushing_wheel",
+  "condition": {
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:mod_loaded",
+        "mod_id": "create"
+      },
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:place_pedestal"
+      }
+    ]
+  },
+  "category": "spectrum:mod_integration",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 2,
+  "y": 2,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.mod_integration.create.page0.text",
+      "title": "book.spectrum.guidebook.mod_integration.create.name"
+    },
+    {
+      "type": "spectrum:collection",
+      "title": "book.spectrum.guidebook.mod_integration.create.pure_zinc.title",
+      "items": [
+        "spectrum:small_zinc_bud",
+        "spectrum:large_zinc_bud",
+        "spectrum:zinc_cluster",
+        "spectrum:pure_zinc_block",
+        "spectrum:pure_zinc"
+      ],
+      "text": "book.spectrum.guidebook.mod_integration.create.pure_zinc.text"
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "book.spectrum.guidebook.mod_integration.create.pure_zinc_growing.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/crystallarieum"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.create.pure_zinc_growing.text",
+      "recipe_id": "spectrum:mod_integration/create/crystallarieum/zinc"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "book.spectrum.guidebook.mod_integration.create.pure_brass_fusion.title",
+      "recipe_id": "spectrum:mod_integration/create/fusion_shrine/pure_brass_ingot",
+      "text": "book.spectrum.guidebook.mod_integration.create.pure_brass_fusion.text"
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "enchantment.create.potato_recovery",
+      "recipe_id": "spectrum:mod_integration/create/enchanter/book_potato_recovery"
+    },
+    {
+      "type": "spectrum:enchanter_upgrading",
+      "title": "container.spectrum.rei.enchantment_upgrading.title",
+      "recipe_id": "spectrum:mod_integration/create/enchantment_upgrade/potato_recovery"
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "enchantment.create.capacity",
+      "recipe_id": "spectrum:mod_integration/create/enchanter/book_capacity"
+    },
+    {
+      "type": "spectrum:enchanter_upgrading",
+      "title": "container.spectrum.rei.enchantment_upgrading.title",
+      "recipe_id": "spectrum:mod_integration/create/enchantment_upgrade/capacity"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "container.spectrum.rei.anvil_crushing.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:collect_any_basic_shard"
+      },
+      "item": {
+        "item": "minecraft:amethyst_shard"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.create.page1.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.mod_integration.create.page2.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:collect_pigment"
+      },
+      "item": {
+        "item": "spectrum:magenta_leaves"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.create.page2.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "container.spectrum.rei.anvil_crushing.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:collect_pigment"
+      },
+      "item": {
+        "item": "spectrum:magenta_log"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.create.page3.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.mod_integration.create.page4.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:collect_quitoxic_reeds"
+      },
+      "item": {
+        "item": "spectrum:quitoxic_reeds"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.create.page4.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.mod_integration.create.page5.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:collect_amaranth_bushel"
+      },
+      "item": {
+        "item": "spectrum:amaranth_bushel"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.create.page5.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.mod_integration.create.page6.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_frostbite_crystal"
+      },
+      "item": {
+        "item": "spectrum:frostbite_crystal"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.create.page6.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.mod_integration.create.page7.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_blazing_crystal"
+      },
+      "item": {
+        "item": "spectrum:blazing_crystal"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.create.page7.text"
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "recipe_id": "spectrum:mod_integration/create/anvil_crushing/cinder_flour"
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "recipe_id": "spectrum:mod_integration/create/anvil_crushing/copper_ore_crushing"
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "recipe_id": "spectrum:mod_integration/create/anvil_crushing/gold_ore_crushing"
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "recipe_id": "spectrum:mod_integration/create/anvil_crushing/iron_ore_crushing"
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "recipe_id": "spectrum:mod_integration/create/anvil_crushing/powdered_obsidian"
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "recipe_id": "spectrum:mod_integration/create/anvil_crushing/zinc_ore_crushing"
+    },
+    {
+      "type": "spectrum:liquid_crystal_converting",
+      "recipe_id": "spectrum:mod_integration/create/liquid_crystal_converting/purify_crushed_copper"
+    },
+    {
+      "type": "spectrum:liquid_crystal_converting",
+      "recipe_id": "spectrum:mod_integration/create/liquid_crystal_converting/purify_crushed_gold"
+    },
+    {
+      "type": "spectrum:liquid_crystal_converting",
+      "recipe_id": "spectrum:mod_integration/create/liquid_crystal_converting/purify_crushed_iron"
+    },
+    {
+      "type": "spectrum:liquid_crystal_converting",
+      "recipe_id": "spectrum:mod_integration/create/liquid_crystal_converting/purify_crushed_zinc"
+    },
+    {
+      "type": "spectrum:liquid_crystal_converting",
+      "recipe_id": "spectrum:mod_integration/create/liquid_crystal_converting/purify_rose_quartz"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "recipe_id": "spectrum:mod_integration/create/spirit_instiller/blaze_burner"
+    }
+  ]
+}

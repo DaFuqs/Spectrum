@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.compat.ae2;
 
+import de.dafuqs.fractal.api.*;
+import de.dafuqs.spectrum.api.item_group.*;
 import de.dafuqs.spectrum.blocks.crystallarieum.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.registries.*;
@@ -61,6 +63,20 @@ public class AE2Compat extends SpectrumIntegrationPacks.ModIntegrationPack {
 		PURE_FLUIX = new Item(SpectrumItems.IS.of());
 		SpectrumItems.register("pure_certus_quartz", PURE_CERTUS_QUARTZ, DyeColor.YELLOW);
 		SpectrumItems.register("pure_fluix", PURE_FLUIX, DyeColor.YELLOW);
+		
+		ItemSubGroupEvents.modifyEntriesEvent(ItemGroupIDs.SUBTAB_PURE_RESOURCES).register(entries -> {
+			entries.add(PURE_CERTUS_QUARTZ);
+			entries.add(SMALL_CERTUS_QUARTZ_BUD);
+			entries.add(LARGE_CERTUS_QUARTZ_BUD);
+			entries.add(CERTUS_QUARTZ_CLUSTER);
+			entries.add(PURE_CERTUS_QUARTZ_BLOCK);
+			
+			entries.add(PURE_FLUIX);
+			entries.add(SMALL_FLUIX_BUD);
+			entries.add(LARGE_FLUIX_BUD);
+			entries.add(FLUIX_CLUSTER);
+			entries.add(PURE_FLUIX_BLOCK);
+		});
 	}
 	
 	@Environment(EnvType.CLIENT)

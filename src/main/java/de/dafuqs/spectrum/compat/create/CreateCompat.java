@@ -1,6 +1,8 @@
 package de.dafuqs.spectrum.compat.create;
 
 import com.simibubi.create.api.event.*;
+import de.dafuqs.fractal.api.*;
+import de.dafuqs.spectrum.api.item_group.*;
 import de.dafuqs.spectrum.blocks.crystallarieum.*;
 import de.dafuqs.spectrum.blocks.fluid.*;
 import de.dafuqs.spectrum.compat.*;
@@ -41,7 +43,15 @@ public class CreateCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
         registerBlockWithItem("zinc_cluster", ZINC_CLUSTER, settings, DyeColor.BROWN);
         registerBlockWithItem("pure_zinc_block", PURE_ZINC_BLOCK, settings, DyeColor.BROWN);
         SpectrumItems.register("pure_zinc", PURE_ZINC, DyeColor.BROWN);
-        
+		
+		ItemSubGroupEvents.modifyEntriesEvent(ItemGroupIDs.SUBTAB_PURE_RESOURCES).register(entries -> {
+			entries.add(PURE_ZINC);
+			entries.add(SMALL_ZINC_BUD);
+			entries.add(LARGE_ZINC_BUD);
+			entries.add(ZINC_CLUSTER);
+			entries.add(PURE_ZINC_BLOCK);
+		});
+		
         PipeCollisionEvent.FLOW.register(event -> {
             final BlockState result = handleBidirectionalCollision(event.getLevel(), event.getFirstFluid(), event.getSecondFluid());
             if (result != null) event.setState(result);
@@ -51,7 +61,8 @@ public class CreateCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
             final BlockState result = handleBidirectionalCollision(event.getLevel(), event.getPipeFluid(), event.getWorldFluid());
             if (result != null) event.setState(result);
         });
-    }
+		
+	}
 
     // NOTE: firstFluid and secondFluid are assumed to be not null without checking,
     // since the default Create event handlers for pipe collisions would throw a NullPointerException otherwise.

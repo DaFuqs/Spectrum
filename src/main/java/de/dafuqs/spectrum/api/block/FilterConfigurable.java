@@ -39,7 +39,9 @@ public interface FilterConfigurable {
 
     static void writeFilterNbt(NbtCompound tag, List<ItemVariant> filterItems) {
         for (int i = 0; i < filterItems.size(); i++) {
-			tag.put("FilterStack" + i, filterItems.get(i).toNbt());
+			if (!filterItems.get(i).isBlank()) {
+				tag.put("FilterStack" + i, filterItems.get(i).toNbt());
+			}
         }
     }
 

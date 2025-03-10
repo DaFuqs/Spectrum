@@ -33,6 +33,24 @@
       "text": "book.spectrum.guidebook.intro.page3.text",
       "link_text": "book.spectrum.guidebook.intro.page3.link_text",
       "url": "https://discord.com/invite/EXU9XFXT8a"
-    }
-  ]
+		},
+		{
+			"type": "modonomicon:text",
+			"title": "book.spectrum.guidebook.intro.stuck.title",
+			"text": "book.spectrum.guidebook.intro.stuck.text"
+		},
+		{
+			"type": "spectrum:snippet",
+			"resource_path": "spectrum:textures/gui/guidebook/icons/idea.png",
+			"resource_width": 16,
+			"resource_height": 16,
+			"texture_x": 0,
+			"texture_y": 0,
+			"texture_width": 16,
+			"texture_height": 16,
+			"border": true,
+			"title": "book.spectrum.guidebook.intro.hints.title",
+			"text": "book.spectrum.guidebook.intro.hints.text"
+		}
+	]
 }

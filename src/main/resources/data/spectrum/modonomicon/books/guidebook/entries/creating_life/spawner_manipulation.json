@@ -26,31 +26,31 @@
       "item": {
         "item": "spectrum:resonant_pickaxe"
       },
-      "text": "book.spectrum.guidebook.spawner_manipulation.page0.text"
+			"text": "book.spectrum.guidebook.spawner_manipulation.intro.text"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title": "book.spectrum.guidebook.spawner_manipulation.page3.title",
+			"title": "book.spectrum.guidebook.spawner_manipulation.spawn_count_change.title",
       "recipe_id": "spectrum:spirit_instiller/spawner/spawner_spawn_count_change",
-      "text": "book.spectrum.guidebook.spawner_manipulation.page2.text"
+			"text": "book.spectrum.guidebook.spawner_manipulation.spawn_count_change.text"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title": "book.spectrum.guidebook.spawner_manipulation.page2.title",
+			"title": "book.spectrum.guidebook.spawner_manipulation.spawn_delay_change.title",
       "recipe_id": "spectrum:spirit_instiller/spawner/spawner_spawn_delay_change",
-      "text": "book.spectrum.guidebook.spawner_manipulation.page3.text"
+			"text": "book.spectrum.guidebook.spawner_manipulation.spawn_delay_change.text"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title": "book.spectrum.guidebook.spawner_manipulation.page4.title",
+			"title": "book.spectrum.guidebook.spawner_manipulation.max_nearby_entities_change.title",
       "recipe_id": "spectrum:spirit_instiller/spawner/spawner_max_nearby_entities_change",
-      "text": "book.spectrum.guidebook.spawner_manipulation.page4.text"
+			"text": "book.spectrum.guidebook.spawner_manipulation.max_nearby_entities_change.text"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title": "book.spectrum.guidebook.spawner_manipulation.page5.title",
+			"title": "book.spectrum.guidebook.spawner_manipulation.required_player_range_change.title",
       "recipe_id": "spectrum:spirit_instiller/spawner/spawner_required_player_range_change",
-      "text": "book.spectrum.guidebook.spawner_manipulation.page5.text"
+			"text": "book.spectrum.guidebook.spawner_manipulation.required_player_range_change.text"
     }
   ]
 }

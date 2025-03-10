@@ -1,24 +1,22 @@
 package de.dafuqs.spectrum.items;
 
 import com.mojang.datafixers.util.Pair;
-import de.dafuqs.spectrum.api.energy.InkPowered;
-import de.dafuqs.spectrum.api.item.InkPoweredPotionFillable;
-import de.dafuqs.spectrum.items.food.DrinkItem;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.screen.slot.Slot;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
-import net.minecraft.util.ClickType;
-import net.minecraft.util.Formatting;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.items.food.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.screen.slot.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class ConcealingOilsItem extends DrinkItem implements InkPoweredPotionFillable {
 
@@ -32,7 +30,7 @@ public class ConcealingOilsItem extends DrinkItem implements InkPoweredPotionFil
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        if (!getEffects(stack).isEmpty())
+		if (!InkPoweredPotionFillable.getEffects(stack).isEmpty())
             tooltip.add(Text.translatable("item.spectrum.concealing_oils.tooltip").styled(s -> s.withFormatting(Formatting.GRAY).withItalic(true)));
         appendPotionFillableTooltip(stack, tooltip, Text.translatable("item.spectrum.concealing_oils.when_poisoned"), true);
     }
@@ -63,8 +61,8 @@ public class ConcealingOilsItem extends DrinkItem implements InkPoweredPotionFil
     private boolean tryApplyOil(ItemStack oil, ItemStack food, PlayerEntity user) {
         if (food.getItem() instanceof DrinkItem || food.hasNbt() && food.getNbt().contains(OIL_EFFECT_ID))
             return false;
-
-        var effect = getEffects(oil).get(0);
+		
+		var effect = InkPoweredPotionFillable.getEffects(oil).get(0);
         if (!InkPowered.tryDrainEnergy(user, effect.getInkCost().getColor(), effect.getInkCost().getCost()))
             return false;
 

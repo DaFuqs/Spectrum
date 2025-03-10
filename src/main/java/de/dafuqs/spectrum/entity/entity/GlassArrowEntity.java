@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.spells.*;
-import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.data.*;
@@ -55,11 +54,6 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 		}
 	}
 	
-	@Override
-	public boolean hasNoGravity() {
-		return this.getVelocity().lengthSquared() > 0.1F;
-	}
-	
 	private void spawnParticles(int amount) {
 		ParticleEffect particleType = this.getVariant().getParticleEffect();
 		if (particleType != null) {
@@ -73,6 +67,8 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 	protected void onEntityHit(EntityHitResult entityHitResult) {
 		LivingEntity livingEntityToResetHurtTime = null;
 		World world = this.getWorld();
+		
+		int invincibilityFrameStore = 0;
 		
 		// additional effects depending on arrow type
 		// mundane glass arrows do not have additional effects
@@ -92,6 +88,7 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 			if (entity instanceof LivingEntity livingEntity) {
 				// we're resetting hurtTime here for once so onEntityHit() can deal damage
 				// and also resetting after that again so the target is damageable again after this
+				invincibilityFrameStore = livingEntity.hurtTime;
 				livingEntity.hurtTime = 0;
 				livingEntityToResetHurtTime = livingEntity;
 				livingEntity.damageShield(20);
@@ -104,7 +101,7 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 		super.onEntityHit(entityHitResult);
 		
 		if (livingEntityToResetHurtTime != null) {
-			livingEntityToResetHurtTime.hurtTime = 0;
+			livingEntityToResetHurtTime.hurtTime = invincibilityFrameStore;
 		}
 		
 		this.playSound(SoundEvents.BLOCK_GLASS_BREAK, 0.75F, 0.9F + world.random.nextFloat() * 0.2F);
@@ -139,27 +136,11 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 	}
 	
 	/**
-	 * Glass Arrows pass through translucent blocks as if it were air
-	 */
-	@Override
-	protected void onCollision(HitResult hitResult) {
-		HitResult.Type type = hitResult.getType();
-		if (type == HitResult.Type.BLOCK) {
-			BlockPos hitPos = ((BlockHitResult) hitResult).getBlockPos();
-			BlockState state = this.getWorld().getBlockState(hitPos);
-			if (!state.isSolidBlock(this.getWorld(), hitPos)) {
-				return;
-			}
-		}
-		super.onCollision(hitResult);
-	}
-	
-	/**
 	 * Glass Arrows pass through water almost effortlessly
 	 */
 	@Override
 	protected float getDragInWater() {
-		return 0.1F;
+		return 0.85F;
 	}
 	
 	@Override

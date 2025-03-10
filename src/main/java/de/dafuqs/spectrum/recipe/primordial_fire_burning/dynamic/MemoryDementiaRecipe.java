@@ -30,7 +30,11 @@ public class MemoryDementiaRecipe extends PrimordialFireBurningRecipe {
 	@Override
 	public ItemStack craft(Inventory inv, DynamicRegistryManager drm) {
 		ItemStack stack = inv.getStack(0);
-		stack.setNbt(null);
+		stack.removeSubNbt("EntityTag");
+		stack.removeSubNbt("TicksToManifest");
+		stack.removeSubNbt("BrokenPromise");
+		stack.removeSubNbt("SpawnAsAdult");
+		stack.removeSubNbt("Unrecognizable");
 		return stack;
 	}
 	

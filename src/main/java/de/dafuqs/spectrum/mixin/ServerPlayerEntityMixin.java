@@ -16,6 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 
 import java.util.*;
 
+// TODO: Migrate these mixins to FAPI ServerEntityCombatEvents
 @Mixin(ServerPlayerEntity.class)
 public abstract class ServerPlayerEntityMixin {
 
@@ -48,11 +49,6 @@ public abstract class ServerPlayerEntityMixin {
 				}
 			}
 		}
-	}
-	
-	@Inject(at = @At("RETURN"), method = "updateKilledAdvancementCriterion(Lnet/minecraft/entity/Entity;ILnet/minecraft/entity/damage/DamageSource;)V")
-	public void spectrum$triggerJeopardantKillAdvancementCriterion(Entity killed, int score, DamageSource damageSource, CallbackInfo ci) {
-	
 	}
 	
 }

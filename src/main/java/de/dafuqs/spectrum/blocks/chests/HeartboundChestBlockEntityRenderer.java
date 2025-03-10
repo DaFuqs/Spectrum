@@ -1,19 +1,16 @@
 package de.dafuqs.spectrum.blocks.chests;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ChestBlock;
+import net.minecraft.block.*;
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.client.render.*;
 import net.minecraft.client.render.block.entity.*;
-import net.minecraft.client.util.SpriteIdentifier;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.screen.PlayerScreenHandler;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.RotationAxis;
+import net.minecraft.client.util.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.screen.*;
+import net.minecraft.util.math.*;
 
 @Environment(EnvType.CLIENT)
 public class HeartboundChestBlockEntityRenderer implements BlockEntityRenderer<HeartboundChestBlockEntity> {
@@ -54,7 +51,7 @@ public class HeartboundChestBlockEntityRenderer implements BlockEntityRenderer<H
 
 		boolean bl = chest.getWorld() != null;
 		BlockState blockState = bl ? chest.getCachedState() : SpectrumBlocks.HEARTBOUND_CHEST.getDefaultState().with(ChestBlock.FACING, Direction.SOUTH);
-		float f = (blockState.get(ChestBlock.FACING)).asRotation();
+		float f = blockState.contains(ChestBlock.FACING) ? blockState.get(ChestBlock.FACING).asRotation() : 0;
 		matrices.translate(0.5D, 1.5D, 0.5D);
 		matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-f));
 		matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(180));

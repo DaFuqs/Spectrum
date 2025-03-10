@@ -39,26 +39,26 @@
     },
     "collected_draconic_twinsword": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "conditions": { "items": [{ "items": [ "spectrum:draconic_twinsword" ]}] }
+      "conditions": { 
+        "items": [{ "items": [ "spectrum:draconic_twinsword" ]}]
       }
     },
     "collected_nectar_lance": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "conditions": { "items": [{ "items": [ "spectrum:nectar_lance" ]}] }
+      "conditions": { 
+        "items": [{ "items": [ "spectrum:nectar_lance" ]}]
       }
     },
     "collected_nightfalls_blade": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
-        "conditions": { "items": [{ "items": [ "spectrum:nightfalls_blade" ]}] }
+        "items": [{ "items": [ "spectrum:nightfalls_blade" ]}]
       }
     },
     "collected_dreamflayer": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
-        "conditions": { "items": [{ "items": [ "spectrum:dreamflayer" ]}] }
+        "items": [{ "items": [ "spectrum:dreamflayer" ]}]
       }
     },
     "gotten_previous": {

@@ -21,7 +21,7 @@
       "item": "spectrum:shimmerstone_gem"
     },
     "B": {
-      "item": "spectrum:blue_pigment"
+			"item": "spectrum:yellow_pigment"
     }
   },
   "result": {

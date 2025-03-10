@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.particle.client;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.particle.render.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.render.*;
@@ -22,13 +23,15 @@ public class PastelTransmissionParticle extends TransmissionParticle implements 
     private final ItemRenderer itemRenderer;
     private final List<Vec3d> travelPositions;
     private final ItemStack itemStack;
-
-    public PastelTransmissionParticle(ItemRenderer itemRenderer, ClientWorld world, double x, double y, double z, List<BlockPos> travelPositions, ItemStack stack, int travelTime) {
+	private final ParticleEffect particleEffect;
+	
+	public PastelTransmissionParticle(ItemRenderer itemRenderer, ClientWorld world, double x, double y, double z, List<BlockPos> travelPositions, ItemStack stack, int travelTime, int networkColor) {
         super(world, x, y, z, new BlockPositionSource(travelPositions.get(travelPositions.size()-1)), travelTime);
 
         this.itemRenderer = itemRenderer;
         this.itemStack = stack;
         this.scale = 0.25F;
+		this.particleEffect = new DustParticleEffect(ColorHelper.colorIntToVec(networkColor), 1.0F);
 
         this.travelPositions = new ArrayList<>();
         for (BlockPos p : travelPositions) {
@@ -37,8 +40,7 @@ public class PastelTransmissionParticle extends TransmissionParticle implements 
 
         // spawning sound & particles
         Vec3d startPos = this.travelPositions.get(0);
-        world.playSound(startPos.getX(), startPos.getY() + 0.25, startPos.getZ(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS,
-                0.25F * SpectrumCommon.CONFIG.BlockSoundVolume, 0.9F + world.random.nextFloat() * 0.2F, true);
+		world.playSound(startPos.getX(), startPos.getY() + 0.25, startPos.getZ(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.25F * SpectrumCommon.CONFIG.BlockSoundVolume, 0.9F + world.random.nextFloat() * 0.2F, true);
         world.addParticle(ParticleTypes.BUBBLE_POP, startPos.getX(), startPos.getY() + 0.25, startPos.getZ(), 0, 0, 0);
     }
 
@@ -70,6 +72,10 @@ public class PastelTransmissionParticle extends TransmissionParticle implements 
         this.x = MathHelper.lerp(nodeProgress, source.x, destination.x);
         this.y = MathHelper.lerp(nodeProgress, source.y, destination.y);
         this.z = MathHelper.lerp(nodeProgress, source.z, destination.z);
+		
+		if (SpectrumCommon.CONFIG.PastelNetworkParticles && this.age % 2 == 0) {
+			world.addParticle(particleEffect, x + random.nextDouble() * 0.4 - 0.2, y + random.nextDouble() * 0.4 - 0.2, z + random.nextDouble() * 0.4 - 0.2, random.nextDouble() * 0.4 - 0.2, random.nextDouble() * 0.4 - 0.2, random.nextDouble() * 0.4 - 0.2);
+		}
     }
 
     @Override

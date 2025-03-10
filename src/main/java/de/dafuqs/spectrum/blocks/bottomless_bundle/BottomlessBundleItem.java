@@ -397,37 +397,36 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	 */
 	@Override
 	public boolean onStackClicked(ItemStack stack, Slot slot, ClickType clickType, PlayerEntity player) {
-		if (clickType != ClickType.RIGHT) {
+		if (stack.getCount() != 1 || clickType != ClickType.RIGHT) {
 			return false;
-		} else {
-			ItemStack itemStack = slot.getStack();
-			if (itemStack.isEmpty()) {
-				playRemoveOneSound(player);
-				removeFirstBundledStack(stack)
-						.ifPresent((removedStack) -> addToBundle(stack, slot.insertStack(removedStack)));
-			} else if (itemStack.getItem().canBeNested()) {
-				ItemStack firstStack = getFirstBundledStack(stack);
-				if (firstStack.isEmpty() || ItemStack.canCombine(firstStack, itemStack)) {
-					boolean hasVoiding = EnchantmentHelper.getLevel(SpectrumEnchantments.VOIDING, stack) > 0;
-					int amountAbleToStore = hasVoiding ? itemStack.getCount() : Math.min(itemStack.getCount(), (getMaxStoredAmount(stack) - getStoredAmount(stack)));
-					if (amountAbleToStore > 0) {
-						addToBundle(stack, slot.takeStackRange(itemStack.getCount(), amountAbleToStore, player));
-						this.playInsertSound(player);
-					}
+		}
+		
+		ItemStack itemStack = slot.getStack();
+		if (itemStack.isEmpty()) {
+			playRemoveOneSound(player);
+			removeFirstBundledStack(stack)
+					.ifPresent((removedStack) -> addToBundle(stack, slot.insertStack(removedStack)));
+		} else if (itemStack.getItem().canBeNested()) {
+			ItemStack firstStack = getFirstBundledStack(stack);
+			if (firstStack.isEmpty() || ItemStack.canCombine(firstStack, itemStack)) {
+				boolean hasVoiding = EnchantmentHelper.getLevel(SpectrumEnchantments.VOIDING, stack) > 0;
+				int amountAbleToStore = hasVoiding ? itemStack.getCount() : Math.min(itemStack.getCount(), (getMaxStoredAmount(stack) - getStoredAmount(stack)));
+				if (amountAbleToStore > 0) {
+					addToBundle(stack, slot.takeStackRange(itemStack.getCount(), amountAbleToStore, player));
+					this.playInsertSound(player);
 				}
 			}
-			
-			return true;
 		}
+		
+		return true;
 	}
 	
 	/**
 	 * When an itemStack is right-clicked onto the bundle
 	 */
 	@Override
-	public boolean onClicked(ItemStack stack, ItemStack otherStack, Slot slot, ClickType clickType, PlayerEntity player,
-							 StackReference cursorStackReference) {
-		if (clickType == ClickType.RIGHT && slot.canTakePartial(player)) {
+	public boolean onClicked(ItemStack stack, ItemStack otherStack, Slot slot, ClickType clickType, PlayerEntity player, StackReference cursorStackReference) {
+		if (stack.getCount() == 1 && clickType == ClickType.RIGHT && slot.canTakePartial(player)) {
 			if (otherStack.isEmpty()) {
 				removeFirstBundledStack(stack).ifPresent((itemStack) -> {
 					this.playRemoveOneSound(player);
@@ -442,9 +441,9 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 			}
 			
 			return true;
-		} else {
-			return false;
 		}
+		
+		return false;
 	}
 	
 	@Override

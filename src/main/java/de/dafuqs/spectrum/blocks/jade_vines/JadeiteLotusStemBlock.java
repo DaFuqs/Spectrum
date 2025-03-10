@@ -32,11 +32,6 @@ public class JadeiteLotusStemBlock extends PlantBlock {
 	}
 	
 	@Override
-	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
-		return SpectrumBlocks.JADEITE_LOTUS_BULB.asItem().getDefaultStack();
-	}
-	
-	@Override
     @SuppressWarnings("deprecation")
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		var handStack = player.getStackInHand(hand);

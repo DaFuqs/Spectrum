@@ -56,7 +56,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/collect_jade_jelly"
+        "advancement_id": "spectrum:midgame/collect_jade_jelly"
       },
       "text": "book.spectrum.guidebook.jade_vines.page3.text"
     },
@@ -93,7 +93,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/instilled_germinated_jade_vine_bulb"
+        "advancement_id": "spectrum:midgame/harvest_moonstruck_nectar"
       },
       "text": "book.spectrum.guidebook.jade_vines.page6.text"
     }

@@ -76,7 +76,7 @@ public class NectarLanceItem extends LightGreatswordItem implements SlotBackgrou
 			var scaling = SleepStatusEffect.getSleepScaling(target);
 			if (scaling > 0) {
 				target.damage(SpectrumDamageTypes.sleep(target.getWorld(),target), scaling);
-				target.playSound(SpectrumSoundEvents.LIGHT_CRYSTAL_RING, 0.275F, 0.8F + target.getRandom().nextFloat() * 0.4F);
+				target.playSound(SpectrumSoundEvents.DEEP_CRYSTAL_RING, 0.5F, 0.8F + target.getRandom().nextFloat() * 0.4F);
 			}
 		}
 		else {

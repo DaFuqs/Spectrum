@@ -2,9 +2,10 @@
   "replace": false,
   "values": [
     "spectrum:smooth_basalt_wall",
-    "spectrum:polished_basalt_wall",
-    "spectrum:basalt_brick_wall",
-    "spectrum:basalt_tile_wall",
+		"spectrum:planed_basalt_wall",
+		"spectrum:polished_basalt_wall",
+		"spectrum:basalt_brick_wall",
+		"spectrum:basalt_tile_wall",
 
     "spectrum:calcite_wall",
     "spectrum:planed_calcite_wall",
@@ -12,21 +13,16 @@
     "spectrum:calcite_brick_wall",
     "spectrum:calcite_tile_wall",
 
-    "spectrum:cobbled_blackslag_wall",
-    "spectrum:polished_blackslag_wall",
+		"spectrum:blackslag_wall",
+		"spectrum:cobbled_blackslag_wall",
+		"spectrum:polished_blackslag_wall",
+		"spectrum:blackslag_tile_wall",
     "spectrum:blackslag_brick_wall",
-    "spectrum:blackslag_tile_wall",
 
     "spectrum:basal_marble_wall",
     "spectrum:polished_basal_marble_wall",
     "spectrum:basal_marble_brick_wall",
     "spectrum:basal_marble_tile_wall",
-
-    "spectrum:blackslag_wall",
-    "spectrum:cobbled_blackslag_wall",
-    "spectrum:polished_blackslag_wall",
-    "spectrum:blackslag_tile_wall",
-    "spectrum:blackslag_brick_wall",
 
     "spectrum:polished_bone_ash_wall",
     "spectrum:bone_ash_brick_wall",

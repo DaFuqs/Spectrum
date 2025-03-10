@@ -8,7 +8,7 @@
   "background_v_index": 5,
   "x": -6,
   "y": 5,
-  "icon": "spectrum:textures/gui/guidebook/icons/idea.png",
+	"icon": "spectrum:textures/gui/guidebook/icons/idea_deep.png",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:lategame/build_complex_pedestal_structure"

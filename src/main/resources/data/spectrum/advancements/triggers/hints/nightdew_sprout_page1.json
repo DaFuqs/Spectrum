@@ -1,0 +1,19 @@
+{
+	"criteria": {
+		"hint_purchased": {
+			"trigger": "minecraft:impossible"
+		},
+		"advancement_gotten": {
+			"trigger": "revelationary:advancement_gotten",
+			"conditions": {
+				"advancement_identifier": "spectrum:collect_nightdew"
+			}
+		}
+	},
+	"requirements": [
+		[
+			"hint_purchased",
+			"advancement_gotten"
+		]
+	]
+}

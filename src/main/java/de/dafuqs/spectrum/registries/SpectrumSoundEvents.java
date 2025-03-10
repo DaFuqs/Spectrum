@@ -42,11 +42,14 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent MOONSTONE_STRIKE = register("moonstone_strike");
 	public static final SoundEvent ENTITY_BLOCK_FLOODER_THROW = register("entity.block_flooder.throw");
 	public static final SoundEvent OMNI_ACCELERATOR_SHOOT = register("item.omni_accelerator.shoot");
+	public static final SoundEvent REDSTONE_MECHANISM_TRIGGER = register("block.redstone_mechanism.trigger");
+	public static final SoundEvent REDSTONE_MECHANISM_BREAK_BLOCK = register("block.redstone_mechanism.break_block");
 
 	public static final SoundEvent GUIDEBOOK_PAGES = register("item.guidebook.pages");
 
 	public static final SoundEvent ENCHANTER_WORKING = register("enchanter_working");
-	public static final SoundEvent ENCHANTER_DING = register("enchanter_ding");
+	public static final SoundEvent ENCHANTER_FINISH = register("enchanter_finish");
+	public static final SoundEvent CRAFTING_DING = register("crafting_ding");
 	
 	public static final SoundEvent SPIRIT_INSTILLER_CRAFTING = register("spirit_instiller_crafting");
 	public static final SoundEvent SPIRIT_INSTILLER_CRAFTING_FINISHED = register("spirit_instiller_crafting_finished");
@@ -97,6 +100,7 @@ public class SpectrumSoundEvents {
 
 	public static final SoundEvent SHOOTING_STAR_CRACKER = register("shooting_star_cracker");
 	public static final SoundEvent PRIMORDIAL_FIRE_CRACKLE = register("primordial_fire_crackle");
+	public static final SoundEvent PRIMORDIAL_FIRE_DOT = register("primordial_fire_dot");
 	public static final SoundEvent TEXT_REVEALED = register("spectrum.ui.text_revealed");
 	public static final SoundEvent USE_FAIL = register("use_fail");
 	public static final SoundEvent NEW_REVELATION = register("spectrum.ui.new_revelation");

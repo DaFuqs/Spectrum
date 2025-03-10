@@ -10,7 +10,7 @@ import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.screenhandler.v1.*;
-import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
+import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
@@ -18,13 +18,11 @@ import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.*;
-import net.minecraft.registry.*;
 import net.minecraft.screen.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
-import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
@@ -44,7 +42,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	private static final int RANGE = 12;
 	private final ItemAndExperienceEventQueue itemAndExperienceEventQueue;
 	private final List<ItemVariant> filterItems;
-	private State state;
+	private State state = State.CLOSED_INACTIVE;
 	private boolean isOpen, isFull, hasXPStorage;
 	float storageTarget, storagePos, lastStorageTarget, capTarget, capPos, lastCapTarget, orbTarget, orbPos, lastOrbTarget, yawTarget, orbYaw, lastYawTarget;
 	long interpTicks, interpLength = 1, age, storedXP, maxStoredXP;
@@ -57,7 +55,6 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	}
 
 	public static void tick(@NotNull World world, BlockPos pos, BlockState state, BlackHoleChestBlockEntity chest) {
-		chest.updateFullState();
 		chest.age++;
 
 		if (chest.isOpen) {
@@ -114,10 +111,13 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 		}
 	}
 
-	public void updateFullState() {
+	public void updateFullState(boolean force) {
 		if (!world.isClient()) {
+			var wasFull = isFull;
 			isFull = isFull();
-			SpectrumS2CPacketSender.sendBlackHoleChestUpdate(this);
+			if (force || wasFull != isFull) {
+				SpectrumS2CPacketSender.sendBlackHoleChestUpdate(this);
+			}
 		}
 	}
 
@@ -208,6 +208,12 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	@Override
 	protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
 		return new BlackHoleChestScreenHandler(syncId, playerInventory, this);
+	}
+	
+	@Override
+	protected void onInvOpenOrClose(World world, BlockPos pos, BlockState state, int oldViewerCount, int newViewerCount) {
+		super.onInvOpenOrClose(world, pos, state, oldViewerCount, newViewerCount);
+		updateFullState(true);
 	}
 	
 	@Override
@@ -354,7 +360,29 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	public boolean canExtract(int slot, ItemStack stack, Direction dir) {
 		return true;
 	}
-
+	
+	@Override
+	public void setStack(int slot, ItemStack stack) {
+		super.setStack(slot, stack);
+		updateFullState(false);
+	}
+	
+	@Override
+	public ItemStack removeStack(int slot, int amount) {
+		var stack = super.removeStack(slot, amount);
+		if (!stack.isEmpty())
+			updateFullState(false);
+		return stack;
+	}
+	
+	@Override
+	public ItemStack removeStack(int slot) {
+		var stack = super.removeStack(slot);
+		if (!stack.isEmpty())
+			updateFullState(false);
+		return stack;
+	}
+	
 	public enum State {
 		OPEN_INACTIVE,
 		OPEN_ACTIVE,

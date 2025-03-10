@@ -16,7 +16,7 @@ public class EntityDetectorBlock extends DetectorBlock {
 	
 	@Override
 	protected void updateState(BlockState state, World world, BlockPos pos) {
-		List<LivingEntity> entities = world.getEntitiesByType(TypeFilter.instanceOf(LivingEntity.class), getBoxWithRadius(pos, 10), LivingEntity::isAlive);
+		List<LivingEntity> entities = world.getEntitiesByType(TypeFilter.instanceOf(LivingEntity.class), getDetectionBox(pos), LivingEntity::isAlive);
 		
 		int power = Math.min(entities.size(), 15);
 		

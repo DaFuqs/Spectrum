@@ -1,0 +1,9 @@
+{
+	"type": "minecraft:smelting",
+	"ingredient": {
+		"tag": "spectrum:malachite_ores"
+	},
+	"result": "spectrum:raw_malachite",
+	"experience": 2,
+	"cookingtime": 200
+}

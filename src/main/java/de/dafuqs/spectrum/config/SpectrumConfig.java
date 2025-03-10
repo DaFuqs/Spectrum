@@ -27,11 +27,14 @@ public class SpectrumConfig implements ConfigData {
 
 	@Comment("Story accurate dimension lighting. Deepens the dimension's darkness and prevents night vision from cutting through it. WARNING - This makes traversal significantly harder")
 	public boolean ExtraDarkDimension = false;
-
+	
+	@Comment("Items transported by a Pastel Network spawn particles")
+	public boolean PastelNetworkParticles = true;
+	
 	@Comment("Adjusts the general brightness of the dimension (an increase of 1 is a lot, for reference)")
 	public float DimensionBrightnessMod = 1.0F;
-
-	@Comment("Mod Integration Packs to not load (in case of mod compat errors)")
+	
+	@Comment("Mod Integration Packs to not load (in case of mod compat errors). Put the mod id of the mod with integration pack conflict here")
 	public List<String> IntegrationPacksToSkipLoading = new ArrayList<>();
 	
 	@Comment("Add some advanced tooltips to items, like if Sculk Shriekers are able to summon the Warden")

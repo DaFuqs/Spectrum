@@ -45,7 +45,7 @@ public interface InkPoweredPotionFillable {
 		}
 	}
 	
-	default List<InkPoweredStatusEffectInstance> getEffects(ItemStack stack) {
+	static List<InkPoweredStatusEffectInstance> getEffects(ItemStack stack) {
 		return InkPoweredStatusEffectInstance.getEffects(stack);
 	}
 	

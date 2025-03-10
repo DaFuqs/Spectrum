@@ -3,6 +3,10 @@
     "spectrum:preservation_controller",
     "spectrum:preservation_stone",
     "spectrum:preservation_bricks",
+		"spectrum:preservation_stairs",
+		"spectrum:preservation_wall",
+		"spectrum:preservation_slab",
+
     "spectrum:shimmering_preservation_bricks",
     "spectrum:powder_chiseled_preservation_stone",
     "spectrum:dike_chiseled_preservation_stone",

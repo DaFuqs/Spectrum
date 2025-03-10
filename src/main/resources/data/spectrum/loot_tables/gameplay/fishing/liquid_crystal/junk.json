@@ -2,52 +2,83 @@
   "pools": [
     {
       "rolls": 1,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "weight": 1,
-          "name": "minecraft:stick"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 1,
-          "name": "minecraft:bowl"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 1,
-          "name": "minecraft:glow_berries"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 1,
-          "name": "minecraft:lead"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 1,
-          "name": "minecraft:redstone"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 1,
-          "name": "minecraft:glowstone"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 1,
-          "name": "minecraft:glow_ink_sac",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 2,
-                "max": 4
-              }
-            }
-          ]
-        }
-      ]
+	  "entries": [
+		{
+		  "type": "minecraft:item",
+		  "weight": 1,
+		  "name": "minecraft:stick"
+		},
+		{
+		  "type": "minecraft:item",
+		  "weight": 1,
+		  "name": "minecraft:sea_pickle"
+		},
+		{
+		  "type": "minecraft:item",
+		  "weight": 1,
+		  "name": "minecraft:brain_coral"
+		},
+		{
+		  "type": "minecraft:item",
+		  "weight": 1,
+		  "name": "minecraft:tube_coral"
+		},
+		{
+		  "type": "minecraft:item",
+		  "weight": 1,
+		  "name": "minecraft:bubble_coral"
+		},
+		{
+		  "type": "minecraft:item",
+		  "weight": 1,
+		  "name": "minecraft:fire_coral"
+		},
+		{
+		  "type": "minecraft:item",
+		  "weight": 1,
+		  "name": "minecraft:horn_coral"
+		},
+		{
+		  "type": "minecraft:item",
+		  "weight": 1,
+		  "name": "minecraft:bowl"
+		},
+		{
+		  "type": "minecraft:item",
+		  "weight": 1,
+		  "name": "minecraft:torchflower_seeds"
+		},
+		{
+		  "type": "minecraft:item",
+		  "weight": 1,
+		  "name": "minecraft:glow_lichen"
+		},
+		{
+		  "type": "minecraft:item",
+		  "weight": 1,
+		  "name": "minecraft:glow_berries"
+		},
+		{
+		  "type": "minecraft:item",
+		  "weight": 1,
+		  "name": "minecraft:lead"
+		},
+		{
+		  "type": "minecraft:item",
+		  "weight": 2,
+		  "name": "minecraft:redstone"
+		},
+		{
+		  "type": "minecraft:item",
+		  "weight": 2,
+		  "name": "minecraft:glowstone"
+		},
+		{
+		  "type": "minecraft:item",
+		  "weight": 1,
+		  "name": "spectrum:mermaids_gem"
+		}
+	  ]
     }
   ]
 }

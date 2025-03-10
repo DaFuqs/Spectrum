@@ -3,117 +3,239 @@
   "pools": [
     {
       "rolls": 1,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:name_tag"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:nautilus_shell"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:small_amethyst_bud",
-          "conditions": [
-            {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
-              "predicate": {
-                "type_specific": {
-                  "type": "player",
-                  "advancements": {
-                    "spectrum:hidden/collect_shards/amethyst": true
-                  }
-                }
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:small_topaz_bud",
-          "conditions": [
-            {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
-              "predicate": {
-                "type_specific": {
-                  "type": "player",
-                  "advancements": {
-                    "spectrum:hidden/collect_shards/topaz": true
-                  }
-                }
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:small_citrine_bud",
-          "conditions": [
-            {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
-              "predicate": {
-                "type_specific": {
-                  "type": "player",
-                  "advancements": {
-                    "spectrum:hidden/collect_shards/citrine": true
-                  }
-                }
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:small_onyx_bud",
-          "conditions": [
-            {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
-              "predicate": {
-                "type_specific": {
-                  "type": "player",
-                  "advancements": {
-                    "spectrum:create_onyx_shard": true
-                  }
-                }
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:small_moonstone_bud",
-          "conditions": [
-            {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
-              "predicate": {
-                "type_specific": {
-                  "type": "player",
-                  "advancements": {
-                    "spectrum:lategame/collect_moonstone": true
-                  }
-                }
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:book",
-          "functions": [
-            {
-              "function": "minecraft:enchant_with_levels",
-              "levels": 35,
-              "treasure": true
-            }
-          ]
-        }
-      ]
+	  "entries": [
+		{
+		  "type": "minecraft:item",
+		  "name": "minecraft:name_tag",
+		  "weight": 3
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "minecraft:nautilus_shell",
+		  "weight": 3
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "minecraft:wheat",
+		  "weight": 3
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "minecraft:emerald",
+		  "weight": 1,
+		  "quality": 1
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "minecraft:lapis_lazuli",
+		  "weight": 2
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "minecraft:diamond",
+		  "weight": 1,
+		  "quality": 1
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "minecraft:prismarine_shard",
+		  "weight": 3
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "minecraft:pink_petals",
+		  "weight": 3,
+		  "functions": [
+			{
+			  "function": "minecraft:set_count",
+			  "count": {
+				"min": 2,
+				"max": 4
+			  }
+			}
+		  ]
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "minecraft:glow_ink_sac",
+		  "weight": 3,
+		  "functions": [
+			{
+			  "function": "minecraft:set_count",
+			  "count": {
+				"min": 2,
+				"max": 4
+			  }
+			}
+		  ]
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "spectrum:shimmerstone_gem",
+		  "weight": 1,
+		  "quality": 1,
+		  "conditions": [
+			{
+			  "condition": "minecraft:entity_properties",
+			  "entity": "this",
+			  "predicate": {
+				"type_specific": {
+				  "type": "player",
+				  "advancements": {
+					"spectrum:collect_shimmerstone": true
+				  }
+				}
+			  }
+			}
+		  ]
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "spectrum:small_bismuth_bud",
+		  "weight": 3,
+		  "conditions": [
+			{
+			  "condition": "minecraft:entity_properties",
+			  "entity": "this",
+			  "predicate": {
+				"type_specific": {
+				  "type": "player",
+				  "advancements": {
+					"spectrum:lategame/collect_bismuth": true
+				  }
+				}
+			  }
+			}
+		  ]
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "minecraft:small_amethyst_bud",
+		  "weight": 3,
+		  "conditions": [
+			{
+			  "condition": "minecraft:entity_properties",
+			  "entity": "this",
+			  "predicate": {
+				"type_specific": {
+				  "type": "player",
+				  "advancements": {
+					"spectrum:hidden/collect_shards/amethyst": true
+				  }
+				}
+			  }
+			}
+		  ]
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "spectrum:small_topaz_bud",
+		  "weight": 3,
+		  "conditions": [
+			{
+			  "condition": "minecraft:entity_properties",
+			  "entity": "this",
+			  "predicate": {
+				"type_specific": {
+				  "type": "player",
+				  "advancements": {
+					"spectrum:hidden/collect_shards/topaz": true
+				  }
+				}
+			  }
+			}
+		  ]
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "spectrum:small_citrine_bud",
+		  "weight": 3,
+		  "conditions": [
+			{
+			  "condition": "minecraft:entity_properties",
+			  "entity": "this",
+			  "predicate": {
+				"type_specific": {
+				  "type": "player",
+				  "advancements": {
+					"spectrum:hidden/collect_shards/citrine": true
+				  }
+				}
+			  }
+			}
+		  ]
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "spectrum:small_onyx_bud",
+		  "weight": 3,
+		  "conditions": [
+			{
+			  "condition": "minecraft:entity_properties",
+			  "entity": "this",
+			  "predicate": {
+				"type_specific": {
+				  "type": "player",
+				  "advancements": {
+					"spectrum:create_onyx_shard": true
+				  }
+				}
+			  }
+			}
+		  ]
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "spectrum:small_moonstone_bud",
+		  "weight": 3,
+		  "conditions": [
+			{
+			  "condition": "minecraft:entity_properties",
+			  "entity": "this",
+			  "predicate": {
+				"type_specific": {
+				  "type": "player",
+				  "advancements": {
+					"spectrum:lategame/collect_moonstone": true
+				  }
+				}
+			  }
+			}
+		  ]
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "minecraft:book",
+		  "weight": 3,
+		  "functions": [
+			{
+			  "function": "minecraft:enchant_with_levels",
+			  "levels": 40,
+			  "treasure": true
+			}
+		  ]
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "spectrum:gilded_book",
+		  "weight": 1,
+		  "quality": 1,
+		  "conditions": [
+			{
+			  "condition": "minecraft:entity_properties",
+			  "entity": "this",
+			  "predicate": {
+				"type_specific": {
+				  "type": "player",
+				  "advancements": {
+					"spectrum:hidden/collect_gilded_book": true
+				  }
+				}
+			  }
+			}
+		  ]
+		}
+	  ]
     }
   ]
 }

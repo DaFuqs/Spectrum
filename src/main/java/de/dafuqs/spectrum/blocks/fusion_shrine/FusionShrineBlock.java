@@ -54,7 +54,7 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 	}
 	
 	public static boolean verifySkyAccess(ServerWorld world, BlockPos shrinePos) {
-		if (!world.getBlockState(shrinePos.up()).isAir()) {
+		if (!world.getBlockState(shrinePos.up()).isSolidBlock(world, shrinePos.up())) {
 			world.playSound(null, shrinePos, SpectrumSoundEvents.USE_FAIL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 			SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity(world, shrinePos.up().toCenterPos(), SpectrumParticleTypes.RED_SPARKLE_RISING, 8, Vec3d.ZERO, new Vec3d(0.1, 0.1, 0.1));
 			return false;

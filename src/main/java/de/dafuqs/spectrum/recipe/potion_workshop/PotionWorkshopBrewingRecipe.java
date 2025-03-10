@@ -22,7 +22,7 @@ import java.util.*;
 public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	
 	public static final int BASE_POTION_COUNT_ON_BREWING = 3;
-	public static final int ARROW_COUNT_MULTIPLIER = 4;
+	public static final int ARROW_COUNT_MULTIPLIER = 8;
 	
 	/**
 	 * When potionMod.potentDecreasingEffect is set each status effect is split into separate

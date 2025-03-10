@@ -45,11 +45,6 @@ public class NephriteBlossomLeavesBlock extends LeavesBlock implements Fertiliza
 	}
 	
 	@Override
-	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
-		return SpectrumBlocks.NEPHRITE_BLOSSOM_BULB.asItem().getDefaultStack();
-	}
-	
-	@Override
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		int age = state.get(AGE);
 		int leafSum = 0;

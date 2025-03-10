@@ -1,6 +1,21 @@
 {
   "values": [
     "spectrum:polished_basalt",
-    "spectrum:polished_calcite"
+		"spectrum:polished_calcite",
+
+		"spectrum:planed_basalt",
+		"spectrum:planed_calcite",
+
+		"spectrum:basalt_bricks",
+		"spectrum:calcite_bricks",
+
+		"spectrum:basalt_tiles",
+		"spectrum:calcite_tiles",
+
+		"spectrum:cracked_basalt_bricks",
+		"spectrum:cracked_calcite_bricks",
+
+		"spectrum:cracked_basalt_tiles",
+		"spectrum:cracked_calcite_tiles"
   ]
 }

@@ -1,0 +1,43 @@
+{
+    "type": "create:crushing",
+    "ingredients": [
+      {
+        "item": "spectrum:moonstone_ore"
+      }
+    ],
+    "processingTime": 250,
+    "results": [
+      {
+        "count": 3,
+        "item": "spectrum:moonstone_shard"
+      },
+      {
+        "chance": 0.5,
+        "item": "spectrum:moonstone_shard"
+      },
+      {
+        "count": 2,
+        "item": "spectrum:moonstone_powder"
+      },
+      {
+        "chance": 0.6,
+        "item": "spectrum:moonstone_powder"
+      },
+      {
+        "chance": 0.75,
+        "item": "create:experience_nugget"
+      },
+      {
+        "chance": 0.125,
+        "item": "minecraft:cobblestone"
+      }
+    ],
+    "fabric:load_conditions": [
+      {
+        "condition": "fabric:all_mods_loaded",
+        "values": [
+          "create"
+        ]
+      }
+    ]
+  }

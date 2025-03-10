@@ -27,14 +27,23 @@
         "advancement_identifier": "spectrum:hidden/entity_interact/kindling"
       }
     },
-    "gotten_previous": {
+		"unlocked_kindling_memories": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
         "advancement_identifier": "spectrum:unlocks/blocks/kindling_memory"
       }
+		},
+		"gotten_previous": {
+			"trigger": "revelationary:advancement_gotten",
+			"conditions": {
+				"advancement_identifier": "spectrum:break_cracked_dragonbone"
+			}
     }
   },
   "requirements": [
+		[
+			"unlocked_kindling_memories"
+		],
     [
       "remembered_kindling",
       "interacted_with_kindling"

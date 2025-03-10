@@ -70,7 +70,7 @@ public class PotionPendantItem extends SpectrumTrinketItem implements InkPowered
 	}
 	
 	private void grantEffects(ItemStack stack, PlayerEntity player) {
-		for (InkPoweredStatusEffectInstance inkPoweredEffect : getEffects(stack)) {
+		for (InkPoweredStatusEffectInstance inkPoweredEffect : InkPoweredPotionFillable.getEffects(stack)) {
 			if (InkPowered.tryDrainEnergy(player, inkPoweredEffect.getInkCost())) {
 				StatusEffectInstance effect = inkPoweredEffect.getStatusEffectInstance();
 				player.addStatusEffect(new StatusEffectInstance(effect.getEffectType(), EFFECT_DURATION, effect.getAmplifier(), effect.isAmbient(), effect.shouldShowParticles(), true));

@@ -9,7 +9,7 @@
     "collected_dragonbone": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:unlocks/blocks/titration_barrel"
+        "advancement_identifier": "spectrum:break_cracked_dragonbone"
       }
     }
   }

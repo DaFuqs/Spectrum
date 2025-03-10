@@ -4,14 +4,14 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.block.*;
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.*;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.block.entity.*;
-import net.minecraft.client.render.model.json.ModelTransformationMode;
+import net.minecraft.client.render.model.json.*;
 import net.minecraft.client.util.*;
 import net.minecraft.client.util.math.*;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.screen.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
@@ -62,7 +62,7 @@ public class RestockingChestBlockEntityRenderer implements BlockEntityRenderer<R
 		BlockState blockState = bl ? chest.getCachedState() : SpectrumBlocks.RESTOCKING_CHEST.getDefaultState().with(ChestBlock.FACING, Direction.SOUTH);
 
 		matrices.push();
-		float f = (blockState.get(ChestBlock.FACING)).asRotation();
+		float f = blockState.contains(ChestBlock.FACING) ? blockState.get(ChestBlock.FACING).asRotation() : 0;
 		matrices.translate(0.5D, 1.5D, 0.5D);
 		matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-f));
 		matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(180));

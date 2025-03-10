@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.compat.gobber;
 
+import de.dafuqs.fractal.api.*;
+import de.dafuqs.spectrum.api.item_group.*;
 import de.dafuqs.spectrum.blocks.crystallarieum.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.registries.*;
@@ -77,6 +79,26 @@ public class GobberCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 		SpectrumItems.register("pure_globette", PURE_GLOBETTE, DyeColor.BLUE);
 		SpectrumItems.register("pure_globette_nether", PURE_GLOBETTE_NETHER, DyeColor.RED);
 		SpectrumItems.register("pure_globette_end", PURE_GLOBETTE_END, DyeColor.GREEN);
+		
+		ItemSubGroupEvents.modifyEntriesEvent(ItemGroupIDs.SUBTAB_PURE_RESOURCES).register(entries -> {
+			entries.add(PURE_GLOBETTE);
+			entries.add(SMALL_GLOBETTE_BUD);
+			entries.add(LARGE_GLOBETTE_BUD);
+			entries.add(GLOBETTE_CLUSTER);
+			entries.add(PURE_GLOBETTE_BLOCK);
+			
+			entries.add(PURE_GLOBETTE_NETHER);
+			entries.add(SMALL_GLOBETTE_NETHER_BUD);
+			entries.add(LARGE_GLOBETTE_NETHER_BUD);
+			entries.add(GLOBETTE_NETHER_CLUSTER);
+			entries.add(PURE_GLOBETTE_NETHER_BLOCK);
+			
+			entries.add(PURE_GLOBETTE_END);
+			entries.add(SMALL_GLOBETTE_END_BUD);
+			entries.add(LARGE_GLOBETTE_END_BUD);
+			entries.add(GLOBETTE_END_CLUSTER);
+			entries.add(PURE_GLOBETTE_END_BLOCK);
+		});
 	}
 	
 	@Environment(EnvType.CLIENT)

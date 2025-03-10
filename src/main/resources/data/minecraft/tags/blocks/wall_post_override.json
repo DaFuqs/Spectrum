@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "#spectrum:colored_pressure_plates",
-    "spectrum:primordial_torch"
+		"spectrum:primordial_torch",
+		"spectrum:weeping_gala_lantern"
   ]
 }

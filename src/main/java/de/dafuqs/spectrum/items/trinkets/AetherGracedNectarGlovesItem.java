@@ -48,7 +48,7 @@ public class AetherGracedNectarGlovesItem extends AzureDikeTrinketItem implement
 		if (effect.isBeneficial())
 			return false;
 
-		if (SpectrumStatusEffectTags.isIn(SpectrumStatusEffectTags.SOPORIFIC, effect))
+		if (SpectrumStatusEffectTags.bypassesNectarGloves(effect))
 			return false;
 
 		var trinkets = TrinketsApi.getTrinketComponent(entity);

@@ -21,11 +21,11 @@ public class SpectrumEventListenersMixin {
 	@Unique
 	private static TriState _shouldRemove(LivingEntity entity, StatusEffectInstance effect, Object reason) {
 		if (Incurable.isIncurable(effect) && !affectedByImmunity(entity, effect.getAmplifier())) {
-			if (effect.getDuration() > 1200) {
-				((StatusEffectInstanceAccessor) effect).setDuration(effect.getDuration() - 1200);
-				if (!entity.getWorld().isClient()) {
-					((ServerWorld) entity.getWorld()).getChunkManager().sendToNearbyPlayers(entity, new EntityStatusEffectS2CPacket(entity.getId(), effect));
-				}
+			// new duration = duration - 1min OR duration * 0.4, whichever is the smaller reduction
+			int duration = effect.getDuration();
+			((StatusEffectInstanceAccessor) effect).setDuration(Math.max(duration - 1200, (int)(duration * 0.4)));
+			if (!entity.getWorld().isClient()) {
+				((ServerWorld) entity.getWorld()).getChunkManager().sendToNearbyPlayers(entity, new EntityStatusEffectS2CPacket(entity.getId(), effect));
 			}
 			return TriState.FALSE;
 		}

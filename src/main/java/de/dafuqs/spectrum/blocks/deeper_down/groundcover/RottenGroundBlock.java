@@ -6,8 +6,8 @@ import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 
 public class RottenGroundBlock extends MudBlock {
-    
-    public static final VoxelShape SHAPE = Block.createCuboidShape(0, 0, 0, 16, 11, 16);
+	
+	public static final VoxelShape SHAPE = Block.createCuboidShape(0, 0, 0, 16, 13, 16);
     
     public RottenGroundBlock(Settings settings) {
         super(settings);

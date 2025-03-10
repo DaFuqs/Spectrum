@@ -232,19 +232,21 @@ public class InventoryHelper {
 		return false;
 	}
 	
-	public static void addToInventory(List<ItemStack> inventory, ItemStack itemStack, int rangeStart, int rangeEnd) {
+	public static ItemStack addToInventory(List<ItemStack> inventory, ItemStack itemStack, int rangeStart, int rangeEnd) {
 		for (int i = rangeStart; i < rangeEnd; i++) {
 			ItemStack currentStack = inventory.get(i);
 			if (currentStack.isEmpty()) {
 				inventory.set(i, itemStack);
-				return;
+				return ItemStack.EMPTY;
 			} else if (itemStack.isStackable()) {
 				combineStacks(currentStack, itemStack);
 				if (itemStack.isEmpty()) {
-					return;
+					return itemStack;
 				}
 			}
 		}
+		
+		return itemStack;
 	}
 	
 	public static boolean hasInInventory(List<Ingredient> ingredients, Inventory inventory) {

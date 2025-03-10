@@ -26,20 +26,26 @@ public class NephriteBlossomFeature extends Feature<NephriteBlossomFeatureConfig
         var world = context.getWorld();
         var origin = context.getOrigin();
         var random = context.getRandom();
-        var chunkGen = context.getGenerator();
         var floor = world.getBlockState(origin.down());
         var flowering = context.getConfig().flowering();
 
         if (!floor.isIn(BlockTags.DIRT))
             return false;
-
-        var stemHeight = Math.round(MathHelper.nextGaussian(random, 2, 1F) + 1);
-
-        if (stemHeight + origin.getY() > chunkGen.getWorldHeight() || !isReplaceable(world, origin, true))
-            return false;
+		
+		int stemHeight = Math.round(MathHelper.nextGaussian(random, 2, 1F) + 1);
+		int leafHeight = Math.round(MathHelper.nextGaussian(random, 2.5F, 0.9F) + 1.85F);
+		int maxY = origin.getY() + stemHeight + leafHeight;
+		
+		BlockPos.Mutable pos = new BlockPos.Mutable();
+		for (int i = origin.getY(); i < maxY; i++) {
+			pos.set(origin.getX(), i, origin.getZ());
+			if (!isReplaceable(world, pos)) {
+				return false;
+			}
+		}
 
         generateStem(world, origin, stemHeight);
-        genereateLeaves(world, origin, random, stemHeight, flowering);
+		genereateLeaves(world, origin, random, stemHeight, leafHeight, flowering);
 
         return true;
     }
@@ -53,19 +59,17 @@ public class NephriteBlossomFeature extends Feature<NephriteBlossomFeatureConfig
             if (height == 0) {
                 this.setBlockState(world, stemPointer, SpectrumBlocks.NEPHRITE_BLOSSOM_STEM.getDefaultState());
                 topStem = true;
-            }
-            else if (isReplaceable(world, stemPointer, true)) {
+            } else if (isReplaceable(world, stemPointer)) {
                 this.setBlockState(world, stemPointer, NephriteBlossomStemBlock.getStemVariant(topStem));
                 topStem = !topStem;
             }
             stemPointer.move(0, 1, 0);
         }
     }
-
-    private void genereateLeaves(WorldAccess world, BlockPos origin, Random random, int stemHeight, boolean flowering) {
-        var leafHeight = Math.round(MathHelper.nextGaussian(random, 2.5F, 0.9F) + 1.85F);
+	
+	private void genereateLeaves(WorldAccess world, BlockPos origin, Random random, int stemHeight, int leafHeight, boolean flowering) {
         var leafPointer = origin.mutableCopy().move(0, stemHeight, 0);
-        var leafDirection = VALID_DIRS.get(random.nextInt(4));
+		var leafDirection = Direction.Type.HORIZONTAL.random(random);
 
         for (int i = 0; i < leafHeight; i++) {
             for(int leaf = 0; leaf < 4; leaf++) {
@@ -91,7 +95,7 @@ public class NephriteBlossomFeature extends Feature<NephriteBlossomFeatureConfig
     }
     
     private static void setBlockStateWithoutUpdatingNeighbors(WorldAccess world, BlockPos pos, BlockState state) {
-        if (isReplaceable(world, pos, false)) {
+		if (isReplaceable(world, pos)) {
             world.setBlockState(pos, state, Block.FORCE_STATE | Block.NOTIFY_ALL);
         }
     }
@@ -121,9 +125,9 @@ public class NephriteBlossomFeature extends Feature<NephriteBlossomFeatureConfig
     private int getDirectionOridinal(Direction direction) {
         return VALID_DIRS.indexOf(direction);
     }
-
-    private static boolean isReplaceable(WorldAccess world, BlockPos pos, boolean replacePlants) {
-        return world.testBlockState(pos, (state) -> state.isReplaceable() || replacePlants);
+	
+	private static boolean isReplaceable(TestableWorld world, BlockPos pos) {
+		return world.testBlockState(pos, (state) -> state.isAir() || state.isIn(BlockTags.REPLACEABLE_BY_TREES));
     }
 
 }

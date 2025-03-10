@@ -9,7 +9,7 @@ import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.effect.*;
-import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.*;
@@ -72,7 +72,7 @@ public class NightfallsBladeItem extends ToolItem implements Vanishable, InkPowe
 	public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
 		if(target.isAlive() && attacker instanceof PlayerEntity player) {
 			if (AdvancementHelper.hasAdvancement(player, UNLOCK_IDENTIFIER)) {
-				List<InkPoweredStatusEffectInstance> effects = getEffects(stack);
+				List<InkPoweredStatusEffectInstance> effects = InkPoweredPotionFillable.getEffects(stack);
 				for(InkPoweredStatusEffectInstance instance : effects) {
 					if(InkPowered.tryDrainEnergy(player, instance.getInkCost().getColor(), instance.getInkCost().getCost())) {
 						World world = attacker.getWorld();
@@ -104,29 +104,31 @@ public class NightfallsBladeItem extends ToolItem implements Vanishable, InkPowe
 	
 	@Override
 	public SlotBackgroundEffectProvider.SlotEffect backgroundType(@Nullable PlayerEntity player, ItemStack stack) {
-		if (getEffects(stack).isEmpty()) {
+		if (InkPoweredPotionFillable.getEffects(stack).isEmpty()) {
 			return SlotBackgroundEffectProvider.SlotEffect.NONE;
 		}
 		
-		var effect = getEffects(stack).get(0);
+		var effect = InkPoweredPotionFillable.getEffects(stack).get(0);
 		var usable = InkPowered.hasAvailableInk(player, new InkCost(effect.getInkCost().getColor(), adjustFinalCostFor(effect)));
 		return usable ? SlotBackgroundEffectProvider.SlotEffect.BORDER_FADE : SlotEffect.BORDER;
 	}
 	
 	@Override
 	public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
-		if (getEffects(stack).isEmpty())
+		List<InkPoweredStatusEffectInstance> effects = InkPoweredPotionFillable.getEffects(stack);
+		if (effects.isEmpty())
 			return 0x000000;
 		
-		return getEffects(stack).get(0).getColor();
+		return effects.get(0).getColor();
 	}
 	
 	@Override
 	public float getEffectOpacity(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
-		if (getEffects(stack).isEmpty())
+		List<InkPoweredStatusEffectInstance> effects = InkPoweredPotionFillable.getEffects(stack);
+		if (effects.isEmpty())
 			return 0F;
 		
-		var effect = getEffects(stack).get(0);
+		var effect = effects.get(0);
 		if (InkPowered.hasAvailableInk(player, new InkCost(effect.getInkCost().getColor(), adjustFinalCostFor(effect))))
 			return 1F;
 		

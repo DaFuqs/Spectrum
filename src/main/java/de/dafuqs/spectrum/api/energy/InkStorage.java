@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.api.energy;
 
 import de.dafuqs.spectrum.api.energy.color.*;
-import de.dafuqs.spectrum.registries.*;
 import net.minecraft.nbt.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
@@ -165,9 +164,11 @@ public interface InkStorage extends Clearable {
 		Map<InkColor, Long> energy = new HashMap<>();
 		if (compound != null) {
 			for (String key : compound.getKeys()) {
-				InkColor inkColor = SpectrumRegistries.INK_COLORS.get(new Identifier(key));
-				long amount = compound.getLong(key);
-				energy.put(inkColor, amount);
+				Optional<InkColor> color = InkColor.ofIdString(key);
+				if (color.isPresent()) {
+					long amount = compound.getLong(key);
+					energy.put(color.get(), amount);
+				}
 			}
 		}
 		return energy;

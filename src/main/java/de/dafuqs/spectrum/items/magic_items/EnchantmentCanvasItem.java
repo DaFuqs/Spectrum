@@ -114,6 +114,13 @@ public class EnchantmentCanvasItem extends Item {
 		return !EnchantedBookItem.getEnchantmentNbt(stack).isEmpty();
 	}
 	
+	public static void unbind(ItemStack stack) {
+		NbtCompound nbt = stack.getOrCreateNbt();
+		nbt.remove("BoundItem");
+		nbt.remove("StoredEnchantments");
+		stack.setNbt(nbt);
+	}
+	
 	private static void bindTo(ItemStack enchantmentExchangerStack, ItemStack targetStack) {
 		NbtCompound nbt = enchantmentExchangerStack.getOrCreateNbt();
 		nbt.putString("BoundItem", Registries.ITEM.getId(targetStack.getItem()).toString());

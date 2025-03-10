@@ -18,11 +18,23 @@
       "text": "book.spectrum.guidebook.enchantment_canvas.page0.text",
       "title": "item.spectrum.enchantment_canvas"
     },
-    {
-      "type": "spectrum:pedestal_crafting",
-      "text": "book.spectrum.guidebook.enchantment_canvas.page1.text",
-      "title": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id": "spectrum:pedestal/tier2/enchantment_canvas"
-    }
+	{
+	  "type": "spectrum:pedestal_crafting",
+	  "text": "book.spectrum.guidebook.enchantment_canvas.page1.text",
+	  "title": "container.spectrum.rei.pedestal_recipe",
+	  "recipe_id": "spectrum:pedestal/tier2/enchantment_canvas"
+	},
+	{
+	  "type": "modonomicon:spotlight",
+	  "title": "book.spectrum.guidebook.enchantment_canvas.page2.title",
+	  "item": {
+		"item": "spectrum:midnight_solution_bucket"
+	  },
+	  "text": "book.spectrum.guidebook.enchantment_canvas.page2.text",
+	  "condition": {
+		"type": "modonomicon:advancement",
+		"advancement_id": "spectrum:midgame/create_midnight_aberration"
+	  }
+	}
   ]
 }

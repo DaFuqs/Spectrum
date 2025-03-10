@@ -1,0 +1,17 @@
+{
+    "type": "spectrum:ink_converting",
+    "ingredient": {
+      "item": "botania:light_gray_petal_block"
+    },
+    "ink_color": "spectrum:light_gray",
+    "amount": 225,
+    "required_advancement": "spectrum:hidden/collect_pigment/light_gray",
+    "fabric:load_conditions": [
+      {
+        "condition": "fabric:all_mods_loaded",
+        "values": [
+          "botania"
+        ]
+      }
+    ]
+  }

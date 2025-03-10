@@ -266,18 +266,13 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	public void attack(LivingEntity target, float pullProgress) {
 		var world = target.getWorld();
 		if (world.random.nextBoolean()) {
-			LightShardBaseEntity.summonBarrageInternal(world, this, () -> {
-				LightSpearEntity entity = new LightSpearEntity(world, MonstrosityEntity.this, Optional.of(target), 6.0F, 800);
-				entity.setTargetPredicate(ENTITY_TARGETS);
-				return entity;
-			}, this.getEyePos(), UniformIntProvider.create(5, 7));
+			LightShardBaseEntity.summonBarrageInternal(world, this, () -> new LightSpearEntity(world, this, 6.0F, 800), target, ENTITY_TARGETS, this.getEyePos(), UniformIntProvider.create(5, 7));
 		} else {
 			LightShardBaseEntity.summonBarrageInternal(world, this, () -> {
-				LightMineEntity entity = new LightMineEntity(world, MonstrosityEntity.this, Optional.empty(), 4, 8.0F, 800);
+				LightMineEntity entity = new LightMineEntity(world, MonstrosityEntity.this, 4, 8.0F, 800);
 				entity.setEffects(List.of(getRandomMineStatusEffect(random)));
-				entity.setTargetPredicate(ENTITY_TARGETS);
 				return entity;
-			}, this.getEyePos(), UniformIntProvider.create(7, 11));
+			}, target, ENTITY_TARGETS, this.getEyePos(), UniformIntProvider.create(7, 11));
 		}
 
 		this.playSound(SpectrumSoundEvents.ENTITY_MONSTROSITY_SHOOT, 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
@@ -538,7 +533,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		public void stop() {
 			LivingEntity target = MonstrosityEntity.this.getTarget();
 			if (target != null && MonstrosityEntity.this.isTarget(target, TARGET_PREDICATE)) {
-				LightShardEntity.summonBarrage(MonstrosityEntity.this.getWorld(), MonstrosityEntity.this, target);
+				LightShardEntity.summonBarrage(MonstrosityEntity.this.getWorld(), MonstrosityEntity.this, target, ENTITY_TARGETS, getEyePos(), LightShardBaseEntity.DEFAULT_COUNT_PROVIDER);
 			}
 			MonstrosityEntity.this.movementType = MovementType.START_SWOOPING;
 			super.stop();

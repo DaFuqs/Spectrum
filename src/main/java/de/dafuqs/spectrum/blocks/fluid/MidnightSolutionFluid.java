@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.fluid;
 import de.dafuqs.spectrum.blocks.decay.*;
 import de.dafuqs.spectrum.blocks.enchanter.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.recipe.fluid_converting.*;
@@ -16,6 +17,7 @@ import net.minecraft.fluid.*;
 import net.minecraft.item.*;
 import net.minecraft.particle.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.state.*;
@@ -163,6 +165,30 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 				
 				itemEntity.setStack(result.getLeft());
 				itemEntity.setToDefaultPickupDelay();
+			}
+		}
+		else if(itemStack.isOf(SpectrumItems.ENCHANTMENT_CANVAS))
+		{
+			if(itemStack.getNbt()!= null && itemStack.getNbt().getString("BoundItem")!=null)
+			{
+				String targetItemString = itemStack.getNbt().getString("BoundItem");
+				Item boundItem = Registries.ITEM.get(Identifier.tryParse(targetItemString));
+				Map<Enchantment, Integer> canvasEnchantments = EnchantmentHelper.fromNbt(EnchantedBookItem.getEnchantmentNbt(itemStack));
+				if(!canvasEnchantments.isEmpty())
+				{
+					for(Map.Entry<Enchantment, Integer> entry : canvasEnchantments.entrySet())
+					{
+						int exp = EnchanterBlockEntity.getEnchantingPrice(boundItem.getDefaultStack(), entry.getKey(), entry.getValue());
+						exp /= EXPERIENCE_DISENCHANT_RETURN_DIV;
+						if (exp > 0) {
+							ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), exp);
+							world.spawnEntity(experienceOrbEntity);
+						}
+					}
+				}
+				world.playSound(null, itemEntity.getBlockPos(), SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.NEUTRAL, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
+				SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, itemEntity.getPos(), SpectrumParticleTypes.GRAY_SPARKLE_RISING, 10, Vec3d.ZERO, new Vec3d(0.2, 0.4, 0.2));
+				EnchantmentCanvasItem.unbind(itemStack);
 			}
 		}
 	}

@@ -1,0 +1,35 @@
+{
+    "type": "create:crushing",
+    "ingredients": [
+      {
+        "item": "spectrum:paltaeria_ore"
+      }
+    ],
+    "processingTime": 350,
+    "results": [
+      {
+        "count": 2,
+        "item": "spectrum:paltaeria_fragments"
+      },
+      {
+        "chance": 0.5,
+        "item": "spectrum:paltaeria_fragments"
+      },
+      {
+        "chance": 0.75,
+        "item": "create:experience_nugget"
+      },
+      {
+        "chance": 0.125,
+        "item": "minecraft:end_stone"
+      }
+    ],
+    "fabric:load_conditions": [
+      {
+        "condition": "fabric:all_mods_loaded",
+        "values": [
+          "create"
+        ]
+      }
+    ]
+  }

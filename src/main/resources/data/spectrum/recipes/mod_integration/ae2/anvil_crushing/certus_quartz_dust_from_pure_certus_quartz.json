@@ -14,10 +14,8 @@
   "soundEventIdentifier": "block.glass.break",
   "fabric:load_conditions": [
     {
-      "condition": "fabric:all_mods_loaded",
-      "values": [
-        "ae2"
-      ]
+			"condition": "spectrum:integration_pack_active",
+			"integration_pack": "ae2"
     }
   ]
 }

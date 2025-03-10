@@ -31,7 +31,7 @@ fine!
 - new unique ores, plants and geodes
 - custom structures with intriguing puzzles
 
-![Item Showcase](/images/readme/item_showcase.png)
+![Item Showcase](/images/readme/showcase.png)
 
 ## Revelations
 

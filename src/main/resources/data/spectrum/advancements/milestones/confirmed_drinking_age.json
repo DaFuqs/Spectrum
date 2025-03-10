@@ -1,0 +1,10 @@
+{
+	"criteria": {
+		"todo_delete_this_procy_advancement_in_1_21_again_referenced_by_mythic_metals": {
+			"trigger": "revelationary:advancement_gotten",
+			"conditions": {
+				"advancement_identifier": "spectrum:triggers/confirmed_drinking_age"
+			}
+		}
+	}
+}

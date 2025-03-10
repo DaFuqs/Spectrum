@@ -16,7 +16,7 @@ public abstract class CropBlockMixin {
 	@ModifyExpressionValue(method = "getAvailableMoisture", at = @At(value = "INVOKE", ordinal = 0, target = "Lnet/minecraft/world/BlockView;getBlockState(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/block/BlockState;"))
 	private static BlockState spectrum$getAvailableMoisture(BlockState original) {
 		Block originalBlock = original.getBlock();
-		if (originalBlock instanceof SpectrumFarmlandBlock spectrumFarmlandBlock) {
+		if (originalBlock instanceof SpectrumFarmlandBlock) {
 			return Blocks.FARMLAND.getDefaultState().with(FarmlandBlock.MOISTURE, original.get(FarmlandBlock.MOISTURE));
 		}
 		return original;

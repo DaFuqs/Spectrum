@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.blocks.boom.*;
 import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.items.magic_items.*;
+import de.dafuqs.spectrum.items.magic_items.ampoules.*;
 import de.dafuqs.spectrum.items.tools.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.*;
@@ -203,6 +204,24 @@ public class SpectrumItemProjectileBehaviors {
 			}
 			
 		}, SpectrumItems.PIPE_BOMB);
+		
+		ItemProjectileBehavior.register(new ItemProjectileBehavior.Default() {
+			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {
+				if (projectile.getOwner() instanceof LivingEntity livingOwner && hitResult.getEntity() instanceof LivingEntity livingTarget && ((BaseGlassAmpouleItem) stack.getItem()).trigger(projectile.getWorld(), stack, livingOwner, livingTarget, hitResult.getPos())) {
+					stack.decrement(1);
+				}
+				return stack;
+			}
+			
+			@Override
+			public ItemStack onBlockHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, BlockHitResult hitResult) {
+				if (projectile.getOwner() instanceof LivingEntity livingOwner && ((BaseGlassAmpouleItem) stack.getItem()).trigger(projectile.getWorld(), stack, livingOwner, null, hitResult.getPos())) {
+					stack.decrement(1);
+				}
+				return stack;
+			}
+			
+		}, SpectrumItems.AZURITE_GLASS_AMPOULE, SpectrumItems.MALACHITE_GLASS_AMPOULE, SpectrumItems.BLOODSTONE_GLASS_AMPOULE);
 	}
 	
 	protected static void registerPvP() {

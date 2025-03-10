@@ -9,9 +9,9 @@
     },
     "description": {
       "translate": "advancements.spectrum.become_enlightened.description"
-    }
+    },
+    "hidden": true
   },
-  "hidden": true,
   "criteria": {
     "confirmed": {
       "trigger": "minecraft:impossible"

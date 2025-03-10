@@ -112,7 +112,7 @@ public class DreamflayerItem extends SwordItem implements InkPowered, Activatabl
 		if (ActivatableItem.isActivated(stack)) {
 			tooltip.add(Text.translatable("item.spectrum.dreamflayer.tooltip.activated").formatted(Formatting.GRAY));
 		} else {
-			tooltip.add(Text.translatable("item.spectrum.dreamflayer.tooltip.deactivated").formatted(Formatting.GRAY));
+			tooltip.add(Text.translatable("item.spectrum.dreamflayer.tooltip.deactivated", USED_COLOR.getColoredInkName()).formatted(Formatting.GRAY));
 		}
 	}
 	

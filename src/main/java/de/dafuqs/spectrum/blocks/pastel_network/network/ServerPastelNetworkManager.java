@@ -1,18 +1,17 @@
 package de.dafuqs.spectrum.blocks.pastel_network.network;
 
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
+import de.dafuqs.spectrum.networking.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.world.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
-import org.jgrapht.alg.connectivity.*;
-import org.jgrapht.graph.*;
 
 import java.util.*;
 
 // Persisted together with the overworld
 // resetting the overworld will also reset all networks
-public class ServerPastelNetworkManager extends PersistentState implements PastelNetworkManager {
+public class ServerPastelNetworkManager extends PersistentState implements PastelNetworkManager<ServerWorld, ServerPastelNetwork> {
 	
 	private static final String PERSISTENT_STATE_ID = "spectrum_pastel_network_manager";
 	
@@ -30,9 +29,16 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 	public static ServerPastelNetworkManager get(ServerWorld world) {
 		return world.getPersistentStateManager().getOrCreate(ServerPastelNetworkManager::fromNbt, ServerPastelNetworkManager::new, PERSISTENT_STATE_ID);
 	}
-
+	
 	@Override
-	public Optional<? extends PastelNetwork> getNetwork(UUID uuid) {
+	public ServerPastelNetwork createNetwork(ServerWorld world, UUID uuid) {
+		ServerPastelNetwork network = new ServerPastelNetwork(world, uuid);
+		this.networks.add(network);
+		return network;
+	}
+	
+	@Override
+	public Optional<ServerPastelNetwork> getNetwork(UUID uuid) {
 		return networks.stream().filter(n -> n.uuid.equals(uuid)).findFirst();
 	}
 
@@ -40,8 +46,7 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 	public NbtCompound writeNbt(NbtCompound nbt) {
 		NbtList networkList = new NbtList();
 		for (ServerPastelNetwork network : this.networks) {
-			NbtCompound compound = network.toNbt();
-			networkList.add(compound);
+			networkList.add(network.toNbt());
 		}
 		nbt.put("Networks", networkList);
 		return nbt;
@@ -50,15 +55,10 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 	public static ServerPastelNetworkManager fromNbt(NbtCompound nbt) {
 		ServerPastelNetworkManager manager = new ServerPastelNetworkManager();
 		for (NbtElement element : nbt.getList("Networks", NbtElement.COMPOUND_TYPE)) {
-			manager.networks.add(ServerPastelNetwork.fromNbt((NbtCompound) element));
+			Optional<ServerPastelNetwork> network = ServerPastelNetwork.fromNbt((NbtCompound) element);
+			network.ifPresent(manager.networks::add);
 		}
 		return manager;
-	}
-	
-	private ServerPastelNetwork createNetwork(World world, @Nullable UUID uuid) {
-		ServerPastelNetwork network = new ServerPastelNetwork(world, uuid);
-		this.networks.add(network);
-		return network;
 	}
 	
 	public void tick() {
@@ -70,135 +70,101 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 		}
 	}
 
-	@Override
 	@Contract("_, null -> new")
-	public PastelNetwork JoinOrCreateNetwork(PastelNodeBlockEntity node, @Nullable UUID uuid) {
+	public PastelNetwork<ServerWorld> joinOrCreateNetwork(PastelNodeBlockEntity node, @Nullable UUID uuid) {
 		if (uuid != null) {
 			//noinspection ForLoopReplaceableByForEach
 			for (int i = 0; i < this.networks.size(); i++) {
-				PastelNetwork network = this.networks.get(i);
+				ServerPastelNetwork network = this.networks.get(i);
 				if (network.getUUID().equals(uuid)) {
-					network.addNodeAndLoadMemory(node);
+					network.addNode(node);
 					return network;
 				}
 			}
 		}
 		
-		ServerPastelNetwork network = createNetwork(node.getWorld(), uuid);
+		ServerPastelNetwork network = createNetwork((ServerWorld) node.getWorld(), uuid);
 		network.addNode(node);
 		return network;
 	}
-
-	@Override
-	public void connectNodes(PastelNodeBlockEntity node, PastelNodeBlockEntity parent) {
-		PastelNetwork mainNetwork, yieldingNetwork;
-
-		if (parent.getParentNetwork() != null) {
-			mainNetwork = parent.getParentNetwork();
-			yieldingNetwork = node.getParentNetwork();
-
-			if (yieldingNetwork == null) {
-				mainNetwork.addNodeAndConnect(node, parent);
-				node.setParentNetwork(mainNetwork);
-				return;
-			}
+	
+	/**
+	 * Connect a set of Pastel Nodes - or disconnect them, if they already were connected
+	 *
+	 * @return true if they successfully connected / disconnected
+	 */
+	public boolean toggleNodeConnection(PastelNodeBlockEntity firstNode, PastelNodeBlockEntity secondNode) {
+		Optional<ServerPastelNetwork> firstNetwork = firstNode.getServerNetwork();
+		Optional<ServerPastelNetwork> secondNetwork = secondNode.getServerNetwork();
+		
+		if (secondNetwork.isPresent() && secondNetwork.equals(firstNetwork)) {
+			return firstNetwork.get().removeEdge(firstNode, secondNode) || firstNetwork.get().addEdge(firstNode, secondNode);
 		}
-		else if (node.getParentNetwork() != null) {
-			mainNetwork = node.getParentNetwork();
-			yieldingNetwork = parent.getParentNetwork();
-
-			if (yieldingNetwork == null) {
-				mainNetwork.addNodeAndConnect(parent, node);
-				parent.setParentNetwork(mainNetwork);
-				return;
-			}
-		}
-		else {
-			mainNetwork = createNetwork(node.getWorld(), null);
-			mainNetwork.addNode(parent);
-			parent.setParentNetwork(mainNetwork);
-			mainNetwork.addNodeAndConnect(node, parent);
-			node.setParentNetwork(mainNetwork);
-			return;
-		}
-
-		if (mainNetwork == yieldingNetwork) {
-			return;
-		}
-
-		mainNetwork.incorporate(yieldingNetwork, node, parent);
-		this.networks.remove(yieldingNetwork);
-	}
-
-	@Override
-	public boolean tryRemoveEdge(PastelNodeBlockEntity node, PastelNodeBlockEntity otherNode) {
-		if (PastelNetworkManager.super.tryRemoveEdge(node, otherNode)) {
-			checkForNetworkSplit((ServerPastelNetwork) node.getParentNetwork());
+		
+		ServerPastelNetwork biggerNetwork, smallerNetwork;
+		
+		// we have no network yet
+		// => Create one
+		if (firstNetwork.isEmpty() && secondNetwork.isEmpty()) {
+			ServerPastelNetwork newNetwork = createNetwork((ServerWorld) firstNode.getWorld(), firstNode.getNodeId());
+			newNetwork.addNode(secondNode);
+			secondNode.setNetworkUUID(newNetwork.getUUID());
+			newNetwork.addNodeAndConnect(firstNode, secondNode);
 			return true;
 		}
-		return false;
-	}
-
-	@Override
-	public void removeNode(PastelNodeBlockEntity node, NodeRemovalReason reason) {
-		ServerPastelNetwork network = (ServerPastelNetwork) node.getParentNetwork();
-		if (network != null) {
-			network.removeNode(node, reason);
+		
+		// Both nodes have an existing network
+		// => merge the smaller into the bigger one
+		if (firstNetwork.isPresent() && secondNetwork.isPresent()) {
+			boolean firstIsBigger = firstNetwork.get().graph.vertexSet().size() > secondNetwork.get().graph.vertexSet().size();
+			if (firstIsBigger) {
+				biggerNetwork = firstNode.getServerNetwork().get();
+				smallerNetwork = secondNode.getServerNetwork().get();
+			} else {
+				smallerNetwork = firstNode.getServerNetwork().get();
+				biggerNetwork = secondNode.getServerNetwork().get();
+			}
 			
-			if (network.hasNodes()) {
-				// check if the removed node split the network into subnetworks
-				checkForNetworkSplit(network);
-			} else if (reason.destructive) {
-				this.networks.remove(network);
-			}
+			biggerNetwork.incorporate(smallerNetwork, firstIsBigger ? firstNode.getPos() : secondNode.getPos());
+			biggerNetwork.addEdge(firstNode, secondNode);
+			this.networks.remove(smallerNetwork);
+			SpectrumS2CPacketSender.syncPastelNetworkEdges(biggerNetwork, firstNode.getPos());
+			return true;
 		}
+		
+		// Only one of the nodes has an existing network
+		// => add the single node to that one
+		if (firstNetwork.isPresent()) {
+			ServerPastelNetwork n = firstNetwork.get();
+			n.addNodeAndConnect(secondNode, firstNode);
+		} else {
+			ServerPastelNetwork n = secondNetwork.get();
+			n.addNodeAndConnect(firstNode, secondNode);
+		}
+		
+		return true;
 	}
 	
-	private void checkForNetworkSplit(ServerPastelNetwork network) {
-		ConnectivityInspector<PastelNodeBlockEntity, DefaultEdge> connectivityInspector = new ConnectivityInspector<>(network.getGraph());
-		List<Set<PastelNodeBlockEntity>> connectedSets = connectivityInspector.connectedSets();
-		if (connectedSets.size() != 1) {
-			for (int i = 1; i < connectedSets.size(); i++) {
-				Set<PastelNodeBlockEntity> disconnectedNodes = connectedSets.get(i);
-				PastelNetwork newNetwork = createNetwork(network.world, null);
-				for (PastelNodeBlockEntity disconnectedNode : disconnectedNodes) {
-					network.nodes.get(disconnectedNode.getNodeType()).remove(disconnectedNode);
-					network.getGraph().removeVertex(disconnectedNode);
-					newNetwork.addNodeAndLoadMemory(disconnectedNode);
-					disconnectedNode.setParentNetwork(newNetwork);
-				}
-			}
-		}
-	}
-	
-	private void checkNetworkMergesForNewNode(ServerPastelNetwork network, PastelNodeBlockEntity newNode) {
-		int biggestNetworkNodeCount = network.getNodeCount();
-		
-		ServerPastelNetwork biggestNetwork = network;
-		List<ServerPastelNetwork> smallerNetworks = new ArrayList<>();
-		
-		for (ServerPastelNetwork currentNetwork : this.networks) {
-			if (currentNetwork == network) {
-				continue;
-			}
-			if (currentNetwork.canConnect(newNode)) {
-				if (currentNetwork.getNodeCount() > biggestNetworkNodeCount) {
-					smallerNetworks.add(biggestNetwork);
-					biggestNetwork = currentNetwork;
-				} else {
-					smallerNetworks.add(currentNetwork);
-				}
+	@Override
+	public void removeNetwork(UUID uuid) {
+		ServerPastelNetwork foundNetwork = null;
+		for (ServerPastelNetwork network : this.networks) {
+			if (network.uuid.equals(uuid)) {
+				foundNetwork = network;
 				break;
 			}
 		}
-		
-		if (smallerNetworks.isEmpty()) {
-			return;
+		if (foundNetwork != null) {
+			this.networks.remove(foundNetwork);
+			SpectrumS2CPacketSender.syncPastelNetworkRemoved(foundNetwork);
 		}
-		
-		for (ServerPastelNetwork smallerNetwork : smallerNetworks) {
-			//biggestNetwork.incorporate(smallerNetwork);
-			this.networks.remove(smallerNetwork);
+	}
+
+	public void removeNode(PastelNodeBlockEntity node, NodeRemovalReason reason) {
+		Optional<ServerPastelNetwork> optional = node.getServerNetwork();
+		if (optional.isPresent()) {
+			ServerPastelNetwork network = optional.get();
+			network.removeNode(node, reason);
 		}
 	}
 	

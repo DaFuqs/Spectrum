@@ -1,11 +1,11 @@
 package de.dafuqs.spectrum.mixin.client;
 
+import de.dafuqs.spectrum.compat.vanityslots.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.render.armor.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.network.*;
 import net.minecraft.client.render.*;
-import net.minecraft.client.render.entity.*;
 import net.minecraft.client.render.entity.feature.*;
 import net.minecraft.client.render.entity.model.*;
 import net.minecraft.client.util.math.*;
@@ -29,7 +29,7 @@ public abstract class CapeFeatureRendererMixin extends FeatureRenderer<AbstractC
 	@Inject(method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/client/network/AbstractClientPlayerEntity;FFFFFF)V", at = @At("HEAD"), cancellable = true)
 	public void spectrum$renderBedrockCape(MatrixStack ms, VertexConsumerProvider vertices, int light, AbstractClientPlayerEntity player, float f, float g, float h, float j, float k, float l, CallbackInfo ci) {
 		// Check for the chestplate, and begin rendering the cape if equipped
-		ItemStack chestStack = player.getEquippedStack(EquipmentSlot.CHEST);
+		ItemStack chestStack = VanitySlotsCompat.getEquippedStack(player, EquipmentSlot.CHEST);
 		if (chestStack.getItem() == SpectrumItems.BEDROCK_CHESTPLATE) {
 			BedrockCapeRenderer.renderBedrockCapeAndCloth(ms, vertices, light, player, h, chestStack);
 			// TODO - Cancel for now, as the new armor tailoring system is not implemented yet

@@ -1,9 +1,9 @@
 {
   "criteria": {
-    "collected_stratine_gem": {
+    "collected_stratine": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_stratine_gem"
+        "advancement_identifier": "spectrum:midgame/collect_stratine"
       }
     },
     "collected_midnight_chip": {

@@ -39,6 +39,7 @@ public class BedrockAnvilBlock extends AnvilBlock {
 		super.appendTooltip(stack, world, tooltip, options);
 		tooltip.add(Text.translatable("container.spectrum.bedrock_anvil.tooltip").formatted(Formatting.GRAY));
 		tooltip.add(Text.translatable("container.spectrum.bedrock_anvil.tooltip2").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("container.spectrum.bedrock_anvil.tooltip3").formatted(Formatting.GRAY));
 	}
 	
 }

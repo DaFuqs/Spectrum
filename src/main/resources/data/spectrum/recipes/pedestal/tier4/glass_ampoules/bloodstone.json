@@ -29,5 +29,5 @@
     "item": "spectrum:bloodstone_glass_ampoule",
     "count": 4
   },
-  "required_advancement": "spectrum:unlocks/items/glass_ampoules"
+  "required_advancement": "spectrum:unlocks/ampoules/raw_bloodstone_ampoule"
 }

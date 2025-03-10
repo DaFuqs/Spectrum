@@ -20,6 +20,7 @@
     },
     {
       "type": "modonomicon:spotlight",
+			"title": "item.spectrum.shimmerstone_gem",
       "item": {
         "item": "spectrum:shimmerstone_gem"
       },

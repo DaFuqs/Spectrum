@@ -56,7 +56,7 @@ public class CompactingChestBlockEntityRenderer implements BlockEntityRenderer<C
 		boolean bl = world != null;
 		BlockState blockState = bl ? chest.getCachedState() : SpectrumBlocks.COMPACTING_CHEST.getDefaultState().with(ChestBlock.FACING, Direction.SOUTH);
 		matrixStack.push();
-		float f = (blockState.get(ChestBlock.FACING)).asRotation();
+		float f = blockState.contains(ChestBlock.FACING) ? blockState.get(ChestBlock.FACING).asRotation() : 0;
 		matrixStack.translate(0.5D, 1.5D, 0.5D);
 		matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-f));
 		matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(180));

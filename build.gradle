@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.6-SNAPSHOT'
+	id 'fabric-loom' version '1.8-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -30,11 +30,11 @@ repositories {
 
 dependencies {
 	// jetbrains annotations
-	implementation ("org.jetbrains:annotations:24.0.1")
+	implementation ("org.jetbrains:annotations:26.0.1")
 
 	// graph api and its dependencies
-	implementation include("org.jgrapht:jgrapht-core:1.5.1")
-	implementation include("org.jheaps:jheaps:0.13")
+	implementation include("org.jgrapht:jgrapht-core:1.5.2")
+	implementation include("org.jheaps:jheaps:0.14")
 
 	// Some other dependency is adding annotations, and it throws an error without this
 	compileOnly ("com.demonwav.mcdev:annotations:1.0")
@@ -45,9 +45,9 @@ dependencies {
 	modImplementation ("net.fabricmc:fabric-loader:${project.loader_version}")
 	modImplementation ("net.fabricmc.fabric-api:fabric-api:${project.fabric_version}")
 
-	// mine
-	modImplementation ("maven.modrinth:exclusions-lib:${project.exclusionslib_version}")
-	modImplementation ("maven.modrinth:Revelationary:${project.revelationary_version}")
+	// ours
+	modImplementation("maven.modrinth:exclusions-lib:${project.exclusionslib_version}") // soft impl via json
+	modImplementation("maven.modrinth:Revelationary:${project.revelationary_version}")
 	modImplementation include("maven.modrinth:AdditionalEntityAttributes:${project.additional_entity_attributes_version}")
 	modImplementation include("com.github.DaFuqs:Arrowhead:${project.arrowhead_version}")
 	modImplementation include("com.github.DaFuqs:DimensionalReverb:${project.dimensional_reverb_version}")
@@ -64,7 +64,9 @@ dependencies {
 	// https://github.com/shedaniel/RoughlyEnoughItems
 	modCompileOnly("dev.emi:emi-fabric:${emi_version}") // https://github.com/emilyploszaj/emi
 	// https://github.com/klikli-dev/modonomicon
-	modImplementation("com.klikli_dev:modonomicon-${project.minecraft_version}-fabric:${project.modonomicon_version}") { exclude(group: "com.klikli_dev") }
+	modImplementation("com.klikli_dev:modonomicon-${project.minecraft_version}-fabric:${project.modonomicon_version}") { exclude(group: "com.klikli_dev") exclude(group: "mezz.jei") }
+	modCompileOnly("mezz.jei:jei-1.20.1-fabric:15.20.0.105")
+	// required by modonomicon, though in a very outdated version, so we include our up to date version here
 
 	switch (recipe_viewer.toLowerCase(Locale.ROOT)) {
 		case "rei": modLocalRuntime("me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"); break
@@ -99,6 +101,7 @@ dependencies {
 	// modCompileOnly("maven.modrinth:enchantment-descriptions:${project.enchantment_descriptions_version}")
 	modCompileOnly("maven.modrinth:travelersbackpack:${project.travelers_backpack_version}")
 	modCompileOnly("maven.modrinth:botania:${project.botania_version}")
+	modCompileOnly("maven.modrinth:vanity:${project.vanityslots_version}")
 	modImplementation("maven.modrinth:idwtialsimmoedm:${project.idwtialsimmoedm_version}")
 
 	//Porting Lib

@@ -3,14 +3,18 @@ package de.dafuqs.spectrum.cca;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.cca.azure_dike.*;
 import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.sound.*;
 import dev.onyxstudios.cca.api.v3.component.*;
 import dev.onyxstudios.cca.api.v3.component.sync.*;
 import dev.onyxstudios.cca.api.v3.component.tick.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.tag.convention.v1.*;
+import net.fabricmc.loader.api.*;
+import net.minecraft.client.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.effect.*;
+import net.minecraft.entity.player.*;
 import net.minecraft.nbt.*;
 import net.minecraft.particle.*;
 import net.minecraft.registry.tag.*;
@@ -31,6 +35,13 @@ public class OnPrimordialFireComponent implements AutoSyncedComponent, ServerTic
 	public static final float FIRE_RESISTANCE_DAMAGE_RESISTANCE = 0.25F;
 	// Per-level damage reduction added by fire prot. Caps at 50%
 	public static final float FIRE_PROT_DAMAGE_RESISTANCE = 0.05F;
+	
+	@Environment(EnvType.CLIENT)
+	private static Optional<OnPrimordialFireSoundInstance> soundInstance;
+	/* prevent the static initializer from attempting to write to the client-only field in common code */
+	static {
+		if (EnvType.CLIENT == FabricLoader.getInstance().getEnvironmentType()) soundInstance = Optional.empty();
+	}
 
 	public static final ComponentKey<OnPrimordialFireComponent> ON_PRIMORDIAL_FIRE_COMPONENT = ComponentRegistry.getOrCreate(SpectrumCommon.locate("on_primordial_fire"), OnPrimordialFireComponent.class);
 	
@@ -175,9 +186,13 @@ public class OnPrimordialFireComponent implements AutoSyncedComponent, ServerTic
 	@Environment(EnvType.CLIENT)
 	public void clientTick() {
 		if (this.primordialFireTicks > 0) {
+			if (provider.equals(MinecraftClient.getInstance().player) && primordialFireTicks > 2 && soundInstance.isEmpty()) {
+				soundInstance = Optional.of(new OnPrimordialFireSoundInstance((PlayerEntity) provider));
+				MinecraftClient.getInstance().getSoundManager().play(soundInstance.get());
+			}
+			
 			double fluidHeight = this.provider.getFluidHeight(FluidTags.WATER);
 			if (fluidHeight > 0) {
-
 				World world = this.provider.getWorld();
 				Random random = world.random;
 				Vec3d pos = this.provider.getPos();
@@ -190,6 +205,9 @@ public class OnPrimordialFireComponent implements AutoSyncedComponent, ServerTic
 					provider.playSound(SoundEvents.BLOCK_FIRE_EXTINGUISH, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F);
 				}
 			}
+		}
+		else if(provider.equals(MinecraftClient.getInstance().player) && soundInstance.isPresent()) {
+			soundInstance = Optional.empty();
 		}
 	}
 

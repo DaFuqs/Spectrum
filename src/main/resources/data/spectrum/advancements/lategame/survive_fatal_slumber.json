@@ -14,7 +14,7 @@
     "hidden": true
   },
   "criteria": {
-    "get_slumbered_idiot": {
+    "survived_fatal_slumber": {
       "trigger": "minecraft:impossible"
     },
     "gotten_previous": {

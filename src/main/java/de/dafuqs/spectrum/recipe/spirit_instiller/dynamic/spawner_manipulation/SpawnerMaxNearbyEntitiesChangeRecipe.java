@@ -20,6 +20,9 @@ public class SpawnerMaxNearbyEntitiesChangeRecipe extends SpawnerChangeRecipe {
 	
 	@Override
 	public boolean canCraftWithBlockEntityTag(NbtCompound spawnerBlockEntityNbt, ItemStack leftBowlStack, ItemStack rightBowlStack) {
+		if (spawnerBlockEntityNbt == null) {
+			return true;
+		}
 		if (spawnerBlockEntityNbt.contains("MaxNearbyEntities")) {
 			return spawnerBlockEntityNbt.getShort("MaxNearbyEntities") < MAX_MAX_ENTITIES;
 		}

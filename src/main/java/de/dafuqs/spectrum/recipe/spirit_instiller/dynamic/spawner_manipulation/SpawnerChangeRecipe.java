@@ -69,9 +69,6 @@ public abstract class SpawnerChangeRecipe extends SpiritInstillerRecipe {
 	@Override
 	public boolean canCraftWithStacks(Inventory inventory) {
 		NbtCompound blockEntityTag = inventory.getStack(0).getSubNbt("BlockEntityTag");
-		if (blockEntityTag == null) {
-			return true;
-		}
 		return canCraftWithBlockEntityTag(blockEntityTag, inventory.getStack(1), inventory.getStack(2));
 	}
 	

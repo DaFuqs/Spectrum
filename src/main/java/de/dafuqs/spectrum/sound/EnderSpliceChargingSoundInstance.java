@@ -8,7 +8,7 @@ import net.minecraft.particle.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 
 @Environment(EnvType.CLIENT)
 public class EnderSpliceChargingSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
@@ -39,7 +39,7 @@ public class EnderSpliceChargingSoundInstance extends AbstractSoundInstance impl
 	
 	@Override
 	public void tick() {
-		if (player == null || player.getItemUseTimeLeft() <= 0 || player.getItemUseTime() > 47) {
+		if (player == null || player.getItemUseTimeLeft() <= 0 || player.getItemUseTime() > 47 || !player.getActiveItem().isOf(SpectrumItems.ENDER_SPLICE)) {
 			this.setDone();
 		} else {
 			this.x = this.player.getX();

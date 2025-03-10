@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/enter_liquid_crystal",
+  "parent": "spectrum:midgame/build_advanced_pedestal_structure",
   "display": {
     "icon": {
       "item": "spectrum:knowledge_gem",
@@ -39,7 +39,7 @@
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/enter_liquid_crystal" }
+      "conditions": { "advancement_identifier": "spectrum:midgame/build_advanced_pedestal_structure" }
     }
   },
   "rewards": {

@@ -1,32 +1,54 @@
 {
-  "display": {
-    "icon": {
-      "item": "spectrum:chiseled_polished_basalt"
-    },
-    "frame": "challenge",
-    "title": {
-      "translate": "advancements.spectrum.build_basic_pedestal_structure.title"
-    },
-    "description": {
-      "translate": "advancements.spectrum.build_basic_pedestal_structure.description"
-    }
-  },
-  "parent": "spectrum:craft_cmy_pedestal",
-  "criteria": {
-    "built_structure": {
-      "trigger": "spectrum:completed_multiblock",
-      "conditions": {
-        "multiblock_identifier": "spectrum:pedestal_simple"
-      }
-    },
-    "gotten_previous": {
-      "trigger": "revelationary:advancement_gotten",
-      "conditions": {
-        "advancement_identifier": "spectrum:craft_cmy_pedestal"
-      }
-    }
-  },
-  "rewards": {
-    "experience": 100
-  }
+	"display": {
+		"icon": {
+			"item": "spectrum:chiseled_polished_basalt"
+		},
+		"frame": "challenge",
+		"title": {
+			"translate": "advancements.spectrum.build_basic_pedestal_structure.title"
+		},
+		"description": {
+			"translate": "advancements.spectrum.build_basic_pedestal_structure.description"
+		}
+	},
+	"parent": "spectrum:craft_cmy_pedestal",
+	"criteria": {
+		"built_structure": {
+			"trigger": "spectrum:completed_multiblock",
+			"conditions": {
+				"multiblock_identifier": "spectrum:pedestal_simple"
+			}
+		},
+		"built_advanced_structure": {
+			"trigger": "spectrum:completed_multiblock",
+			"conditions": {
+				"multiblock_identifier": "spectrum:pedestal_advanced"
+			}
+		},
+		"built_complex_structure": {
+			"trigger": "spectrum:completed_multiblock",
+			"conditions": {
+				"multiblock_identifier": "spectrum:pedestal_complex"
+			}
+		},
+		"gotten_previous": {
+			"trigger": "revelationary:advancement_gotten",
+			"conditions": {
+				"advancement_identifier": "spectrum:craft_cmy_pedestal"
+			}
+		}
+	},
+	"rewards": {
+		"experience": 100
+	},
+	"requirements": [
+		[
+			"built_structure",
+			"built_advanced_structure",
+			"built_complex_structure"
+		],
+		[
+			"gotten_previous"
+		]
+	]
 }

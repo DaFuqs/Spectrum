@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.api.energy.color;
 
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.registry.tag.*;
@@ -46,7 +47,12 @@ public class InkColor {
 	}
 	
 	public static Optional<InkColor> ofIdString(String idString) {
-		return SpectrumRegistries.INK_COLORS.getOrEmpty(new Identifier(idString));
+		try {
+			Identifier id = new Identifier(idString);
+			return SpectrumRegistries.INK_COLORS.getOrEmpty(id).or(() -> SpectrumRegistries.INK_COLORS.getOrEmpty(SpectrumCommon.locate(idString)));
+		} catch (InvalidIdentifierException ignored) {
+			return Optional.empty();
+		}
 	}
 	
 	public DyeColor getDyeColor() {

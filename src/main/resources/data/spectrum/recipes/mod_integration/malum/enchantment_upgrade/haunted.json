@@ -18,7 +18,7 @@
       "item_count": 128
     }
   ],
-  "required_advancement": "spectrum:mod_integration/malum/haunted",
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_damage",
   "fabric:load_conditions": [
     {
       "condition": "fabric:all_mods_loaded",

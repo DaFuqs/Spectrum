@@ -59,9 +59,9 @@ public class RedstoneTransceiverBlock extends AbstractRedstoneGateBlock implemen
 		world.setBlockState(blockPos, newState, Block.NOTIFY_LISTENERS);
 		
 		if (newState.get(SENDER)) {
-			world.playSound(null, blockPos, SoundEvents.BLOCK_COMPARATOR_CLICK, SoundCategory.BLOCKS, 0.3F, 0.9F);
+			world.playSound(null, blockPos, SpectrumSoundEvents.REDSTONE_MECHANISM_TRIGGER, SoundCategory.BLOCKS, 0.3F, 0.9F);
 		} else {
-			world.playSound(null, blockPos, SoundEvents.BLOCK_COMPARATOR_CLICK, SoundCategory.BLOCKS, 0.3F, 1.1F);
+			world.playSound(null, blockPos, SpectrumSoundEvents.REDSTONE_MECHANISM_TRIGGER, SoundCategory.BLOCKS, 0.3F, 1.1F);
 		}
 		updatePowered(world, blockPos, newState);
 	}

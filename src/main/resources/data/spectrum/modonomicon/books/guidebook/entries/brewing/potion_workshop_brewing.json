@@ -108,7 +108,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/potions/resistance"
       },
-      "recipe_id": "spectrum:potion_workshop_brewing/resistance"
+      "recipe_id": "spectrum:potion_workshop_brewing/resistance",
+      "text": "book.spectrum.guidebook.potion_workshop_brewing.low_potency_mod"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
@@ -117,7 +118,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/potions/wither"
       },
-      "recipe_id": "spectrum:potion_workshop_brewing/wither"
+      "recipe_id": "spectrum:potion_workshop_brewing/wither",
+      "text": "book.spectrum.guidebook.potion_workshop_brewing.low_potency_mod"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
@@ -135,7 +137,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/potions/toughness"
       },
-      "recipe_id": "spectrum:potion_workshop_brewing/toughness"
+      "recipe_id": "spectrum:potion_workshop_brewing/toughness",
+      "text": "book.spectrum.guidebook.potion_workshop_brewing.low_potency_mod"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
@@ -180,7 +183,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/potions/weak_sleep_effects"
       },
-      "recipe_id": "spectrum:potion_workshop_brewing/somnolence"
+      "recipe_id": "spectrum:potion_workshop_brewing/somnolence",
+      "text": "book.spectrum.guidebook.potion_workshop_brewing.low_potency_mod"
     },
     {
       "type": "spectrum:potion_workshop_brewing",

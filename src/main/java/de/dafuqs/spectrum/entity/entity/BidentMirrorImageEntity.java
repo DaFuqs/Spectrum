@@ -13,8 +13,6 @@ import net.minecraft.util.math.intprovider.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
-import java.util.*;
-
 public class BidentMirrorImageEntity extends BidentBaseEntity {
     public BidentMirrorImageEntity(World world) {
         this(SpectrumEntityTypes.BIDENT_MIRROR_IMAGE, world);
@@ -64,10 +62,9 @@ public class BidentMirrorImageEntity extends BidentBaseEntity {
         var efficiency = EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, stack);
         var world = this.getWorld();
         var user = getOwner() instanceof LivingEntity livingOwner ? livingOwner : null;
-        Optional<LivingEntity> optionalTarget = target instanceof LivingEntity livingEntity ? Optional.of(livingEntity) : Optional.empty();
-        LightShardEntity.summonBarrage(world, user, this.getPos(), UniformIntProvider.create(5, 8 + 2 * efficiency),
-                () -> new LightShardEntity(world, user, optionalTarget, effectMult * power, 200 + 40 * efficiency / effectMult)
-        );
+		
+		LightShardEntity.summonBarrage(world, user, this.getPos(), target instanceof LivingEntity livingEntity ? livingEntity : null, livingEntity -> livingEntity != user, UniformIntProvider.create(5, 8 + 2 * efficiency),
+				() -> new LightShardEntity(world, user, effectMult * power, 200 + 40 * efficiency / effectMult));
     }
 
 }

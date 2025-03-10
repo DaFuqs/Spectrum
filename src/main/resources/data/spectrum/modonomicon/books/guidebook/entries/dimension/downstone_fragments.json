@@ -23,6 +23,7 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
+			"title": "item.spectrum.downstone_fragments",
       "item": {
         "item": "spectrum:downstone_fragments"
       },

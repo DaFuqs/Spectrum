@@ -10,7 +10,7 @@
     "spectrum:notched_polished_basalt",
     "spectrum:basalt_bricks"
   ],
-  "tier": 2,
+	"tier": 1,
   "speed_multiplier": 1.0,
   "fuel_capacity": 192000
 }

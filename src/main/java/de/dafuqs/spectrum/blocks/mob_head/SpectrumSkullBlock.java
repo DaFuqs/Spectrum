@@ -20,7 +20,7 @@ import java.util.*;
 public class SpectrumSkullBlock extends SkullBlock {
 	
 	public static BiMap<SpectrumSkullType, Block> MOB_HEADS = EnumHashBiMap.create(SpectrumSkullType.class);
-	public static Map<EntityType<?>, SpectrumSkullType> ENTITY_TYPE_TO_SKULL_TYPE = new Object2ObjectOpenHashMap<>();
+	private static Map<EntityType<?>, SpectrumSkullType> ENTITY_TYPE_TO_SKULL_TYPE = new Object2ObjectOpenHashMap<>();
 	
 	@Nullable
 	private static BlockPattern witherBossPattern;
@@ -107,6 +107,20 @@ public class SpectrumSkullBlock extends SkullBlock {
 	}
 	
 	public static Optional<SkullBlock.SkullType> getSkullType(EntityType<?> entityType) {
+		if (EntityType.CREEPER == entityType) {
+			return Optional.of(SkullBlock.Type.CREEPER);
+		} else if (EntityType.ENDER_DRAGON == entityType) {
+			return Optional.of(SkullBlock.Type.DRAGON);
+		} else if (EntityType.ZOMBIE == entityType) {
+			return Optional.of(SkullBlock.Type.ZOMBIE);
+		} else if (EntityType.SKELETON == entityType) {
+			return Optional.of(SkullBlock.Type.SKELETON);
+		} else if (EntityType.WITHER_SKELETON == entityType) {
+			return Optional.of(SkullBlock.Type.WITHER_SKELETON);
+		} else if (EntityType.PIGLIN == entityType) {
+			return Optional.of(SkullBlock.Type.PIGLIN);
+		}
+		
 		return Optional.ofNullable(ENTITY_TYPE_TO_SKULL_TYPE.get(entityType));
 	}
 	

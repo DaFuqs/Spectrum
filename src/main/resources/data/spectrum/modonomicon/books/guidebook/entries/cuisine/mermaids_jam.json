@@ -18,14 +18,14 @@
   "y": -3,
   "pages": [
     {
-      "type": "modonomicon:text",
-      "title": "item.spectrum.mermaids_jam",
+			"type": "modonomicon:spotlight",
+			"item": {
+				"item": "spectrum:mermaids_jam"
+			},
       "text": "book.spectrum.guidebook.mermaids_jam.page0.text"
     },
     {
-      "type": "spectrum:titration_barrel_fermenting",
-      "title": "book.spectrum.guidebook.titration_recipe",
-      "recipe_id": "spectrum:titration_barrel/special/cheong",
+			"type": "modonomicon:text",
       "text": "book.spectrum.guidebook.mermaids_jam.page1.text"
     }
   ]

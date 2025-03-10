@@ -13,17 +13,8 @@
   },
   "parent": "spectrum:lategame/spectrum_lategame",
   "criteria": {
-    "created_germinated_jade_vine_bulb": {
-      "trigger": "spectrum:crafted_with_spirit_instiller",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "spectrum:germinated_jade_vine_bulb"
-            ]
-          }
-        ]
-      }
+    "crossbred_jade_vine_bulb": {
+      "trigger": "minecraft:impossible"
     },
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",

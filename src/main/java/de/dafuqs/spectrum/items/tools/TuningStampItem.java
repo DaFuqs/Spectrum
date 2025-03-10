@@ -1,29 +1,22 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.api.item.ExpandedStatTooltip;
-import de.dafuqs.spectrum.api.item.Stampable;
-import de.dafuqs.spectrum.helpers.BlockReference;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import net.minecraft.block.BlockState;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.client.gui.screen.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class TuningStampItem extends Item implements ExpandedStatTooltip {
 
@@ -56,39 +49,40 @@ public class TuningStampItem extends Item implements ExpandedStatTooltip {
         }
 
         if (potentialData.isPresent()) {
-            var potentialTarget = getData(player, reference, world);
-
-            if (potentialTarget.isEmpty())
-                return ActionResult.PASS;
-
-            var source = potentialData.get();
-            var target = potentialTarget.get();
-
-            if (!source.verifyStampData(target) || !target.canUserStamp(player)) {
-                tryPlaySound(player, SpectrumSoundEvents.SHATTER_LIGHT, 0.75F);
-                return ActionResult.FAIL;
-            }
-            var interactable = target.source();
-
-            var targetChanged = interactable.handleImpression(source.stamper(), player, source.reference(), world);
-            source.notifySourceOfChange(target, targetChanged);
-
-            if (!targetChanged) {
-                tryPlaySound(player, SpectrumSoundEvents.SHATTER_HEAVY, 0.45F);
-                return ActionResult.FAIL;
-            }
-
-            //Allow for 'rolling' linking for flow.
-            player.ifPresent(user -> {
-                if (!user.isSneaking()) {
-                    var newSource = target.source().recordStampData(player, reference, world);
-                    saveToNbt(stack, newSource);
-                    tryPlaySound(player, SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME, 0.825F);
-                }
-                else {
-                    tryPlaySound(player, SpectrumSoundEvents.BLOCK_ONYX_BLOCK_CHIME, 0.825F);
-                }
-            });
+			if (!world.isClient) {
+				var potentialTarget = getData(player, reference, world);
+				
+				if (potentialTarget.isEmpty())
+					return ActionResult.PASS;
+				
+				var source = potentialData.get();
+				var target = potentialTarget.get();
+				
+				if (!source.verifyStampData(target) || !target.canUserStamp(player)) {
+					tryPlaySound(player, SpectrumSoundEvents.SHATTER_LIGHT, 0.75F);
+					return ActionResult.FAIL;
+				}
+				var interactable = target.source();
+				
+				var targetChanged = interactable.handleImpression(source.stamper(), player, source.reference(), world);
+				source.notifySourceOfChange(target, targetChanged);
+				
+				if (!targetChanged) {
+					tryPlaySound(player, SpectrumSoundEvents.SHATTER_HEAVY, 0.45F);
+					return ActionResult.FAIL;
+				}
+				
+				//Allow for 'rolling' linking for flow.
+				player.ifPresent(user -> {
+					if (!user.isSneaking()) {
+						var newSource = target.source().recordStampData(player, reference, world);
+						saveToNbt(stack, newSource);
+						tryPlaySound(player, SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME, 0.825F);
+					} else {
+						tryPlaySound(player, SpectrumSoundEvents.BLOCK_ONYX_BLOCK_CHIME, 0.825F);
+					}
+				});
+			}
 
             return ActionResult.success(world.isClient());
         }
@@ -98,7 +92,9 @@ public class TuningStampItem extends Item implements ExpandedStatTooltip {
             //Blank an interactable if shift clicking without a saved reference
             if (player.map(Entity::isSneaking).orElse(false)) {
                 if (candidate.map(d -> d.canUserStamp(player)).orElse(false)) {
-                    candidate.get().source().clearImpression();
+					if (!world.isClient) {
+						candidate.get().source().clearImpression();
+					}
                     tryPlaySound(player, SoundEvents.BLOCK_AMETHYST_BLOCK_BREAK, 0.825F);
                 }
                 return ActionResult.success(world.isClient());

@@ -13,7 +13,7 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "block": "minecraft:dark_oak_door",
+							"block": "spectrum:weeping_gala_door",
               "condition": "minecraft:block_state_property",
               "properties": {
                 "half": "lower"

@@ -1,0 +1,35 @@
+{
+    "type": "create:crushing",
+    "ingredients": [
+      {
+        "item": "spectrum:deepslate_shimmerstone_ore"
+      }
+    ],
+    "processingTime": 350,
+    "results": [
+      {
+        "count": 4,
+        "item": "spectrum:shimmerstone_gem"
+      },
+      {
+        "chance": 0.25,
+        "item": "spectrum:shimmerstone_gem"
+      },
+      {
+        "chance": 0.75,
+        "item": "create:experience_nugget"
+      },
+      {
+        "chance": 0.125,
+        "item": "minecraft:cobbled_deepslate"
+      }
+    ],
+    "fabric:load_conditions": [
+      {
+        "condition": "fabric:all_mods_loaded",
+        "values": [
+          "create"
+        ]
+      }
+    ]
+  }

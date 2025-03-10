@@ -53,7 +53,7 @@ public class BlockFlooderProjectile extends ThrownItemEntity {
 		super.onCollision(hitResult);
 		World world = this.getWorld();
 		if (!world.isClient()) {
-			world.sendEntityStatus(this, (byte) 3);
+			world.sendEntityStatus(this, EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES);
 
 			if (hitResult.getType() == HitResult.Type.BLOCK) {
 				BlockPos landingPos = getCorrectedBlockPos(hitResult.getPos());

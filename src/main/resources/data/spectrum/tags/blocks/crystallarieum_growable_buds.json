@@ -1,82 +1,90 @@
 {
-  "replace": false,
-  "values": [
-    "spectrum:small_malachite_bud",
-    "spectrum:large_malachite_bud",
-    "spectrum:small_bismuth_bud",
-    "spectrum:large_bismuth_bud",
-    "spectrum:small_azurite_bud",
-    "spectrum:large_azurite_bud",
-    "spectrum:small_bloodstone_bud",
-    "spectrum:large_bloodstone_bud",
+	"replace": false,
+	"values": [
+		"spectrum:small_malachite_bud",
+		"spectrum:large_malachite_bud",
+		"spectrum:small_bismuth_bud",
+		"spectrum:large_bismuth_bud",
+		"spectrum:small_azurite_bud",
+		"spectrum:large_azurite_bud",
+		"spectrum:small_bloodstone_bud",
+		"spectrum:large_bloodstone_bud",
 
-    "spectrum:small_coal_bud",
-    "spectrum:large_coal_bud",
-    "spectrum:small_copper_bud",
-    "spectrum:large_copper_bud",
-    "spectrum:small_diamond_bud",
-    "spectrum:large_diamond_bud",
-    "spectrum:small_emerald_bud",
-    "spectrum:large_emerald_bud",
-    "spectrum:small_glowstone_bud",
-    "spectrum:large_glowstone_bud",
-    "spectrum:small_gold_bud",
-    "spectrum:large_gold_bud",
-    "spectrum:small_iron_bud",
-    "spectrum:large_iron_bud",
-    "spectrum:small_lapis_bud",
-    "spectrum:large_lapis_bud",
-    "spectrum:small_netherite_scrap_bud",
-    "spectrum:large_netherite_scrap_bud",
-    "spectrum:small_echo_bud",
-    "spectrum:large_echo_bud",
-    "spectrum:small_prismarine_bud",
-    "spectrum:large_prismarine_bud",
-    "spectrum:small_quartz_bud",
-    "spectrum:large_quartz_bud",
-    "spectrum:small_redstone_bud",
-    "spectrum:large_redstone_bud",
+		"spectrum:small_coal_bud",
+		"spectrum:large_coal_bud",
+		"spectrum:small_copper_bud",
+		"spectrum:large_copper_bud",
+		"spectrum:small_diamond_bud",
+		"spectrum:large_diamond_bud",
+		"spectrum:small_emerald_bud",
+		"spectrum:large_emerald_bud",
+		"spectrum:small_glowstone_bud",
+		"spectrum:large_glowstone_bud",
+		"spectrum:small_gold_bud",
+		"spectrum:large_gold_bud",
+		"spectrum:small_iron_bud",
+		"spectrum:large_iron_bud",
+		"spectrum:small_lapis_bud",
+		"spectrum:large_lapis_bud",
+		"spectrum:small_netherite_scrap_bud",
+		"spectrum:large_netherite_scrap_bud",
+		"spectrum:small_echo_bud",
+		"spectrum:large_echo_bud",
+		"spectrum:small_prismarine_bud",
+		"spectrum:large_prismarine_bud",
+		"spectrum:small_quartz_bud",
+		"spectrum:large_quartz_bud",
+		"spectrum:small_redstone_bud",
+		"spectrum:large_redstone_bud",
 
-    {
-      "id": "spectrum:small_certus_quartz_bud",
-      "required": false
-    },
-    {
-      "id": "spectrum:large_certus_quartz_bud",
-      "required": false
-    },
-    {
-      "id": "spectrum:small_fluix_bud",
-      "required": false
-    },
-    {
-      "id": "spectrum:large_fluix_bud",
-      "required": false
-    },
+		{
+			"id": "spectrum:small_zinc_bud",
+			"required": false
+		},
+		{
+			"id": "spectrum:large_zinc_bud",
+			"required": false
+		},
+		{
+			"id": "spectrum:small_certus_quartz_bud",
+			"required": false
+		},
+		{
+			"id": "spectrum:large_certus_quartz_bud",
+			"required": false
+		},
+		{
+			"id": "spectrum:small_fluix_bud",
+			"required": false
+		},
+		{
+			"id": "spectrum:large_fluix_bud",
+			"required": false
+		},
 
-    {
-      "id": "spectrum:small_globette_bud",
-      "required": false
-    },
-    {
-      "id": "spectrum:large_globette_bud",
-      "required": false
-    },
-    {
-      "id": "spectrum:small_globette_end_bud",
-      "required": false
-    },
-    {
-      "id": "spectrum:large_globette_end_bud",
-      "required": false
-    },
-    {
-      "id": "spectrum:small_globette_nether_bud",
-      "required": false
-    },
-    {
-      "id": "spectrum:large_globette_nether_bud",
-      "required": false
-    }
-  ]
+		{
+			"id": "spectrum:small_globette_bud",
+			"required": false
+		},
+		{
+			"id": "spectrum:large_globette_bud",
+			"required": false
+		},
+		{
+			"id": "spectrum:small_globette_end_bud",
+			"required": false
+		},
+		{
+			"id": "spectrum:large_globette_end_bud",
+			"required": false
+		},
+		{
+			"id": "spectrum:small_globette_nether_bud",
+			"required": false
+		},
+		{
+			"id": "spectrum:large_globette_nether_bud",
+			"required": false
+		}
+	]
 }

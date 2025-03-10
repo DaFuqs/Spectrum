@@ -1,0 +1,34 @@
+{
+	"criteria": {
+		"built_complex_pedestal_structure": {
+			"trigger": "revelationary:advancement_gotten",
+			"conditions": {
+				"advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure"
+			}
+		},
+		"collected_malachite": {
+			"trigger": "revelationary:advancement_gotten",
+			"conditions": {
+				"advancement_identifier": "spectrum:lategame/collect_malachite"
+			}
+		},
+		"unlocked_crystallarieum": {
+			"trigger": "revelationary:advancement_gotten",
+			"conditions": {
+				"advancement_identifier": "spectrum:unlocks/blocks/crystallarieum"
+			}
+		},
+		"collected_paltaeria_gem": {
+			"trigger": "revelationary:advancement_gotten",
+			"conditions": {
+				"advancement_identifier": "spectrum:hidden/collect_paltaeria_gem"
+			}
+		},
+		"struck_up_hummingstone_hymn": {
+			"trigger": "revelationary:advancement_gotten",
+			"conditions": {
+				"advancement_identifier": "spectrum:lategame/strike_up_hummingstone_hymn"
+			}
+		}
+	}
+}

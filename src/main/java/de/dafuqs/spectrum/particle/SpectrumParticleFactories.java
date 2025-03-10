@@ -44,7 +44,7 @@ public class SpectrumParticleFactories {
 		});
 		
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.PASTEL_TRANSMISSION, provider -> (pastelTransmissionParticleEffect, world, x, y, z, velocityX, velocityY, velocityZ) -> {
-			PastelTransmissionParticle particle = new PastelTransmissionParticle(MinecraftClient.getInstance().getItemRenderer(), world, x, y, z, pastelTransmissionParticleEffect.getNodePositions(), pastelTransmissionParticleEffect.getStack(), pastelTransmissionParticleEffect.getTravelTime());
+			PastelTransmissionParticle particle = new PastelTransmissionParticle(MinecraftClient.getInstance().getItemRenderer(), world, x, y, z, pastelTransmissionParticleEffect.getNodePositions(), pastelTransmissionParticleEffect.getStack(), pastelTransmissionParticleEffect.getTravelTime(), pastelTransmissionParticleEffect.getColor());
 			particle.setSprite(provider);
 			float[] color = PastelRenderHelper.unpackNormalizedColor(pastelTransmissionParticleEffect.getColor());
 			particle.setColor(color[1], color[2], color[3]);

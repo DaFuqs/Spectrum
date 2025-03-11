@@ -16,7 +16,7 @@ public class FDCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 			if (AMARANTH_LOOT_TABLE_ID.equals(id)) {
 				return lootManager.getLootTable(FD_AMARANTH_LOOT_TABLE_ID);
 			}
-			return original;
+			return null;
 		});
 	}
 	

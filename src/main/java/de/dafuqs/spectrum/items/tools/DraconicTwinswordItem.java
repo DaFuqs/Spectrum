@@ -132,7 +132,7 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
 	
 	@Override
 	public boolean acceptsEnchantment(Enchantment enchantment) {
-		return enchantment == Enchantments.CHANNELING || enchantment == Enchantments.LOYALTY || enchantment == Enchantments.PIERCING || enchantment == SpectrumEnchantments.INERTIA;
+		return enchantment == Enchantments.CHANNELING || enchantment == Enchantments.PIERCING || enchantment == SpectrumEnchantments.INERTIA;
 	}
 
 	@Override

@@ -427,7 +427,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 			if (!(enchantment instanceof SpectrumEnchantment)) {
 				selectionAvailabilityMod = (enchantment.isAvailableForRandomSelection() ? 0.5F : 0.75F) + (enchantment.isAvailableForEnchantedBookOffer() ? 0.5F : 0.75F);
 			}
-			float enchantabilityMod = (4.0F / (2 + enchantability)) * 4.0F;
+			float enchantabilityMod = 16.0F / (2 + enchantability);
 			return (int) Math.floor(rarityCost * levelCost * specialMulti * selectionAvailabilityMod * enchantabilityMod);
 		}
 		return -1;

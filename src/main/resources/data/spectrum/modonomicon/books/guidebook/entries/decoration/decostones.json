@@ -1,0 +1,46 @@
+{
+  "name": "book.spectrum.guidebook.decostones.name",
+  "icon": "spectrum:amethyst_decostone",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/decostones/any_decostone"
+  },
+  "category": "spectrum:decoration",
+  "hide_while_locked": true,
+  "parents": [
+    {
+      "entry": "spectrum:decoration/shards"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": -1,
+  "y": -1,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.decostones.name",
+      "text": "book.spectrum.guidebook.decostones.page0.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/decostones/topaz"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/decostones/amethyst"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/decostones/citrine"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/decostones/onyx"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/decostones/moonstone"
+    }
+  ]
+}

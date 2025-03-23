@@ -16,8 +16,8 @@
               "function": "spectrum:ferment_randomly",
               "fermentation_recipe_id": "spectrum:titration_barrel/infused_beverages/gin",
               "days_fermented": {
-                "min": 6000,
-                "max": 8000
+                "min": 180000,
+                "max": 216000
               },
               "thickness": 1.0
             }
@@ -35,8 +35,8 @@
               "function": "spectrum:ferment_randomly",
               "fermentation_recipe_id": "spectrum:titration_barrel/infused_beverages/beer",
               "days_fermented": {
-                "min": 6000,
-                "max": 8000
+                "min": 180000,
+                "max": 216000
               },
               "thickness": 1.0
             }
@@ -54,8 +54,8 @@
               "function": "spectrum:ferment_randomly",
               "fermentation_recipe_id": "spectrum:titration_barrel/infused_beverages/glow_berry_cider",
               "days_fermented": {
-                "min": 6000,
-                "max": 8000
+                "min": 180000,
+                "max": 216000
               },
               "thickness": 1.0
             }
@@ -73,8 +73,8 @@
               "function": "spectrum:ferment_randomly",
               "fermentation_recipe_id": "spectrum:titration_barrel/infused_beverages/glow_berry_liquor",
               "days_fermented": {
-                "min": 6000,
-                "max": 8000
+                "min": 180000,
+                "max": 216000
               },
               "thickness": 1.0
             }
@@ -92,8 +92,8 @@
               "function": "spectrum:ferment_randomly",
               "fermentation_recipe_id": "spectrum:titration_barrel/infused_beverages/myceylon_liquor",
               "days_fermented": {
-                "min": 6000,
-                "max": 8000
+                "min": 180000,
+                "max": 216000
               },
               "thickness": 1.0
             }
@@ -111,8 +111,8 @@
               "function": "spectrum:ferment_randomly",
               "fermentation_recipe_id": "spectrum:titration_barrel/infused_beverages/rum",
               "days_fermented": {
-                "min": 6000,
-                "max": 8000
+                "min": 180000,
+                "max": 216000
               },
               "thickness": 1.0
             }
@@ -156,8 +156,8 @@
                 ]
               },
               "days_fermented": {
-                "min": 6000,
-                "max": 8000
+                "min": 180000,
+                "max": 216000
               },
               "thickness": 1.0
             }
@@ -166,6 +166,7 @@
         {
           "type": "minecraft:item",
           "name": "spectrum:infused_beverage",
+					"quality": 1,
           "functions": [
             {
               "function": "minecraft:set_nbt",
@@ -216,8 +217,8 @@
                 ]
               },
               "days_fermented": {
-                "min": 6000,
-                "max": 8000
+                "min": 180000,
+                "max": 216000
               },
               "thickness": 1.0
             }
@@ -226,6 +227,7 @@
         {
           "type": "minecraft:item",
           "name": "spectrum:infused_beverage",
+					"quality": 1,
           "functions": [
             {
               "function": "minecraft:set_nbt",
@@ -282,8 +284,8 @@
                 ]
               },
               "days_fermented": {
-                "min": 6000,
-                "max": 8000
+                "min": 180000,
+                "max": 216000
               },
               "thickness": 1.0
             }

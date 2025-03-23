@@ -4,6 +4,8 @@
     "#minecraft:bypasses_invulnerability",
     "#minecraft:is_drowning",
     "#minecraft:no_impact",
+    "#minecraft:bypasses_effects",
+
     "minecraft:out_of_world",
     "minecraft:generic_kill"
   ]

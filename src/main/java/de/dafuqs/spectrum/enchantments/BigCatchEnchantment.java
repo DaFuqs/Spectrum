@@ -30,7 +30,7 @@ public class BigCatchEnchantment extends SpectrumEnchantment {
 	
 	@Override
 	public boolean isAcceptableItem(ItemStack stack) {
-		return super.isAcceptableItem(stack) || stack.getItem() instanceof SpectrumFishingRodItem;
+		return stack.getItem() instanceof SpectrumFishingRodItem;
 	}
 	
 	

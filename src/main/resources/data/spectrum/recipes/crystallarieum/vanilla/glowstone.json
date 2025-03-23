@@ -4,12 +4,12 @@
     "item": "minecraft:glowstone_dust"
   },
   "growth_stage_states": [
-    "spectrum:small_glowstone_bud",
-    "spectrum:large_glowstone_bud",
-    "spectrum:glowstone_cluster"
+    "spectrum:small_glowstone_bud[facing=up]",
+    "spectrum:large_glowstone_bud[facing=up]",
+    "spectrum:glowstone_cluster[facing=up]"
   ],
   "seconds_per_growth_stage": 120,
-  "ink_color": "yellow",
+  "ink_color": "spectrum:yellow",
   "ink_cost_tier": 2,
   "grows_without_catalyst": false,
   "catalysts": [

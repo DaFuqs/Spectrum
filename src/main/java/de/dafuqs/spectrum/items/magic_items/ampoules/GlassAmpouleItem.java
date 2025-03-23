@@ -8,6 +8,7 @@ import net.minecraft.item.*;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
+import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
@@ -20,12 +21,9 @@ public class GlassAmpouleItem extends BaseGlassAmpouleItem {
     }
     
     @Override
-    public boolean trigger(ItemStack stack, LivingEntity attacker, @Nullable LivingEntity target) {
-		World world = attacker.getWorld();
-        if (!world.isClient) {
-            world.playSound(null, attacker.getBlockPos(), SpectrumSoundEvents.LIGHT_CRYSTAL_RING, SoundCategory.PLAYERS, 0.35F, 0.9F + attacker.getRandom().nextFloat() * 0.334F);
-            LightShardEntity.summonBarrage(attacker.getWorld(), attacker, target);
-        }
+	public boolean trigger(World world, ItemStack stack, LivingEntity attacker, @Nullable LivingEntity target, Vec3d position) {
+		world.playSoundAtBlockCenter(BlockPos.ofFloored(position), SpectrumSoundEvents.LIGHT_CRYSTAL_RING, SoundCategory.PLAYERS, 0.35F, 0.9F + world.getRandom().nextFloat() * 0.334F, true);
+		LightShardEntity.summonBarrage(world, attacker, target, LightShardBaseEntity.MONSTER_TARGET, position, LightShardBaseEntity.DEFAULT_COUNT_PROVIDER);
         return true;
     }
     

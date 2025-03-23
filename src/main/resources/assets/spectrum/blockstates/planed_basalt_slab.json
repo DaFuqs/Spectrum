@@ -1,0 +1,13 @@
+{
+	"variants": {
+		"type=bottom": {
+			"model": "spectrum:block/planed_basalt_slab"
+		},
+		"type=double": {
+			"model": "spectrum:block/planed_basalt"
+		},
+		"type=top": {
+			"model": "spectrum:block/planed_basalt_slab_top"
+		}
+	}
+}

@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
 import de.dafuqs.revelationary.api.revelations.*;
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
@@ -28,7 +27,10 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 	
 	public static final EnumProperty<FluidLogging.State> LOGGED = FluidLogging.ANY_INCLUDING_NONE;
 	public static final IntProperty AGE = Properties.AGE_7;
-	public static final BooleanProperty ALWAYS_DROP = BooleanProperty.of("always_drop"); // I have no idea why this works anymore and at this point I am too afraid to ask
+	
+	// 'always drop' has no cloak and therefore drops normally even when broken 'via the world'
+	// without player context (the reeds dropping one after one on scheduledTick())
+	public static final BooleanProperty ALWAYS_DROP = BooleanProperty.of("always_drop");
 	
 	public static final int MAX_GROWTH_HEIGHT_WATER = 5;
 	public static final int MAX_GROWTH_HEIGHT_CRYSTAL = 7;
@@ -43,7 +45,7 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 	
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
-		return SpectrumCommon.locate("milestones/reveal_quitoxic_reeds");
+		return SpectrumAdvancements.REVEAL_QUITOXIC_REEDS;
 	}
 	
 	@Override
@@ -127,40 +129,48 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
+	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+		super.onEntityCollision(state, world, pos, entity);
+		state.get(LOGGED).onEntityCollision(state, world, pos, entity);
+	}
+	
+	@Override
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		if (world.isAir(pos.up()) || (world.isWater(pos.up()) && world.isAir(pos.up(2)))) {
-			
-			int i;
-			for (i = 1; world.getBlockState(pos.down(i)).isOf(this); ++i);
-			
-			boolean bottomLiquidCrystalLogged = world.getBlockState(pos.down(i - 1)).get(LOGGED) == FluidLogging.State.LIQUID_CRYSTAL;
-			
-			// grows taller on liquid crystal
-			if (i < MAX_GROWTH_HEIGHT_WATER || (bottomLiquidCrystalLogged && i < MAX_GROWTH_HEIGHT_CRYSTAL)) {
-				int j = state.get(AGE);
-				if (j == 7) {
-					// consume 1 block close to the reed when growing.
-					// if the quitoxic reeds are growing in liquid crystal: 1/4 chance to consume
-					// search for block it could be planted on. 1 block => 1 quitoxic reed
-					Optional<BlockPos> plantablePos = searchPlantablePos(world, pos.down(i), SpectrumBlockTags.QUITOXIC_REEDS_PLANTABLE, random);
-					if (plantablePos.isEmpty() || world.getBlockState(plantablePos.get().up()).getBlock() instanceof QuitoxicReedsBlock) {
-						return;
-					}
-					
-					if (!bottomLiquidCrystalLogged || random.nextInt(4) == 0) {
-						world.setBlockState(plantablePos.get(), Blocks.DIRT.getDefaultState(), 3);
-						world.playSound(null, plantablePos.get(), SoundEvents.BLOCK_GRAVEL_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
-					}
-					
-					world.setBlockState(pos.up(), getStateForPos(world, pos.up()));
-					world.setBlockState(pos, state.with(AGE, 0), 4);
+		if (world.getBlockState(pos.up()).isOf(this) || !canGrow(world, pos.up())) {
+			return;
+		}
+		
+		int height;
+		for (height = 1; world.getBlockState(pos.down(height)).isOf(this); ++height) ;
+		
+		boolean bottomLiquidCrystalLogged = world.getBlockState(pos.down(height - 1)).get(LOGGED) == FluidLogging.State.LIQUID_CRYSTAL;
+		
+		// grows taller on liquid crystal
+		if (height < MAX_GROWTH_HEIGHT_WATER || (bottomLiquidCrystalLogged && height < MAX_GROWTH_HEIGHT_CRYSTAL)) {
+			int age = state.get(AGE);
+			if (age == 7) {
+				// consume 1 block close to the reed when growing.
+				// if the quitoxic reeds are growing in liquid crystal: 1/4 chance to consume
+				// search for block it could be planted on. 1 block => 1 quitoxic reed
+				Optional<BlockPos> posToConsumeBlock = searchPlantablePos(world, pos.down(height), SpectrumBlockTags.QUITOXIC_REEDS_PLANTABLE, random);
+				if (posToConsumeBlock.isEmpty() || world.getBlockState(posToConsumeBlock.get().up()).getBlock() instanceof QuitoxicReedsBlock) {
+					return;
+				}
+				
+				if (!bottomLiquidCrystalLogged || random.nextInt(4) == 0) {
+					world.setBlockState(posToConsumeBlock.get(), Blocks.DIRT.getDefaultState(), 3);
+					world.playSound(null, posToConsumeBlock.get(), SoundEvents.BLOCK_GRAVEL_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				}
+				
+				world.setBlockState(pos.up(), getStateForPos(world, pos.up()));
+				world.setBlockState(pos, state.with(AGE, 0), 4);
+			} else {
+				// grow twice as fast, if liquid crystal logged
+				if (bottomLiquidCrystalLogged) {
+					world.setBlockState(pos, state.with(AGE, Math.min(7, age + 2)), 4);
 				} else {
-					// grow twice as fast, if liquid crystal logged
-					if (bottomLiquidCrystalLogged) {
-						world.setBlockState(pos, state.with(AGE, Math.min(7, j + 2)), 4);
-					} else {
-						world.setBlockState(pos, state.with(AGE, j + 1), 4);
-					}
+					world.setBlockState(pos, state.with(AGE, age + 1), 4);
 				}
 			}
 		}
@@ -202,36 +212,60 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		if (context instanceof EntityShapeContext entityShapeContext) {
-			Entity var4 = entityShapeContext.getEntity();
-			if (var4 instanceof PlayerEntity player) {
-				return this.isVisibleTo(player) ? SHAPE : VoxelShapes.empty();
+			Entity contextEntity = entityShapeContext.getEntity();
+			if (contextEntity instanceof PlayerEntity player) {
+				if (this.isVisibleTo(player)) {
+					Vec3d vec3d = state.getModelOffset(world, pos);
+					return SHAPE.offset(vec3d.x, vec3d.y, vec3d.z);
+				} else {
+					return VoxelShapes.empty();
+				}
 			}
 		}
-		return VoxelShapes.fullCube();
+		return VoxelShapes.fullCube(); // like breaking particles
+	}
+	
+	@Override
+	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
+		return isValidBlock(world, pos);
 	}
 	
 	/**
 	 * Can be placed in up to 2 blocks deep water / liquid crystal
 	 * growing on SpectrumBlockTags.QUITOXIC_REEDS_PLANTABLE only
 	 */
-	@Override
-	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-		BlockState bottomBlockState = world.getBlockState(pos.down());
-		if (bottomBlockState.isOf(this)) {
+	private boolean isValidBlock(WorldView world, BlockPos pos) {
+		BlockState downState = world.getBlockState(pos.down());
+		if (downState.isOf(this)) {
 			return true;
-		} else {
-			BlockState topBlockState = world.getBlockState(pos.up());
-			BlockState topBlockState2 = world.getBlockState(pos.up(2));
-			if (bottomBlockState.isIn(SpectrumBlockTags.QUITOXIC_REEDS_PLANTABLE) && isValidTopBlock(topBlockState) && isValidTopBlock(topBlockState2)) {
-				FluidState fluidState = world.getFluidState(pos);
-				return fluidState.getLevel() == 8 && (fluidState.isIn(FluidTags.WATER) || fluidState.isIn(SpectrumFluidTags.LIQUID_CRYSTAL));
-			}
+		}
+		if (!downState.isIn(SpectrumBlockTags.QUITOXIC_REEDS_PLANTABLE)) {
 			return false;
 		}
+		BlockState upState = world.getBlockState(pos.up());
+		BlockState upState2 = world.getBlockState(pos.up(2));
+		if (!upState.isOf(this)) {
+			if (!upState.isAir() && !upState2.isAir()) {
+				return false;
+			}
+		}
+		
+		BlockState state = world.getBlockState(pos);
+		if (state.isOf(this)) {
+			return true;
+		}
+		
+		FluidState fluidState = world.getFluidState(pos);
+		return fluidState.getLevel() == 8 && (fluidState.isIn(FluidTags.WATER) || state.isOf(SpectrumBlocks.LIQUID_CRYSTAL));
 	}
 	
-	public boolean isValidTopBlock(BlockState blockState) {
-		return blockState.isAir() || blockState.isOf(this) || blockState.isOf(Blocks.WATER) || blockState.isOf(SpectrumBlocks.LIQUID_CRYSTAL);
+	private boolean canGrow(WorldView world, BlockPos pos) {
+		BlockState state = world.getBlockState(pos);
+		if (state.isAir()) {
+			return true;
+		}
+		FluidState fluidState = world.getFluidState(pos);
+		return fluidState.getLevel() == 8 && (fluidState.isIn(FluidTags.WATER) || state.isOf(SpectrumBlocks.LIQUID_CRYSTAL));
 	}
 	
 	@Override

@@ -30,7 +30,7 @@
       "tag": "spectrum:lean_meats"
     },
     "E": {
-      "item": "minecraft:egg"
+      "tag": "c:eggs"
     },
     "W": {
       "tag": "spectrum:drinkable_spirits"

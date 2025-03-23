@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.entity.entity.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
@@ -22,7 +23,7 @@ public class BlockFlooderItem extends Item {
 	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 		ItemStack itemStack = user.getStackInHand(hand);
-		world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
+		world.playSound(null, user.getX(), user.getY(), user.getZ(), SpectrumSoundEvents.ENTITY_BLOCK_FLOODER_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
 		if (!world.isClient) {
 			BlockFlooderProjectile blockFlooderProjectile = new BlockFlooderProjectile(world, user);
 			blockFlooderProjectile.setItem(itemStack);

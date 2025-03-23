@@ -3,15 +3,18 @@
     "#spectrum:shooting_stars",
     "#spectrum:unbreakable",
     "#spectrum:crystallarieum_growable_buds",
+
     "spectrum:fading",
     "spectrum:failing",
     "spectrum:ruin",
     "spectrum:decay_away",
+
     "spectrum:mud",
     "spectrum:dragonrot",
     "spectrum:midnight_solution",
-    "spectrum:memory",
     "spectrum:liquid_crystal",
+
+    "spectrum:memory",
     "spectrum:deeper_down_portal",
     "spectrum:wand_light",
     "spectrum:block_flooder",
@@ -25,7 +28,6 @@
     "spectrum:primordial_fire",
     "spectrum:sag_leaf",
     "spectrum:sag_bubble",
-    "spectrum:small_sag_bubble",
-    "spectrum:nephrite_blossom_stem"
+    "spectrum:small_sag_bubble"
   ]
 }

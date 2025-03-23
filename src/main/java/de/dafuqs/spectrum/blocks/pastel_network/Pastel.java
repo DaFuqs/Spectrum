@@ -25,8 +25,8 @@ public class Pastel {
         }
         return serverManager;
     }
-
-    public static PastelNetworkManager getInstance(boolean client) {
+	
+	public static PastelNetworkManager<?, ?> getInstance(boolean client) {
         if (client) {
             return getClientInstance();
         } else {
@@ -36,7 +36,7 @@ public class Pastel {
     
     @Environment(EnvType.CLIENT)
     public static void clearClientInstance() {
-        clientManager = null;
+		getClientInstance().clear();
         EarlyRenderingParticleContainer.clear();
     }
 

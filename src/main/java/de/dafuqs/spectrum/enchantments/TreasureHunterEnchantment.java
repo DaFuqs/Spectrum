@@ -1,6 +1,9 @@
 package de.dafuqs.spectrum.enchantments;
 
+import com.sammy.malum.common.item.curiosities.weapons.scythe.MalumScytheItem;
+import com.sammy.malum.registry.common.item.EnchantmentRegistry;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.compat.SpectrumIntegrationPacks;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
@@ -56,12 +59,14 @@ public class TreasureHunterEnchantment extends SpectrumEnchantment {
 	
 	@Override
 	public boolean canAccept(Enchantment other) {
-		return super.canAccept(other) && other != Enchantments.LOOTING;
+		return super.canAccept(other) && other != Enchantments.LOOTING &&
+				!(SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.MALUM_ID) && other == EnchantmentRegistry.SPIRIT_PLUNDER.get());
 	}
 	
 	@Override
 	public boolean isAcceptableItem(ItemStack stack) {
-		return super.isAcceptableItem(stack) || stack.getItem() instanceof AxeItem || stack.isIn(ItemTags.AXES);
+		return super.isAcceptableItem(stack) || stack.getItem() instanceof AxeItem || stack.isIn(ItemTags.AXES) ||
+				(SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.MALUM_ID) && stack.getItem() instanceof MalumScytheItem);
 	}
 	
 }

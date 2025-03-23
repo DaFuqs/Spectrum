@@ -12,7 +12,11 @@
     "frame": "paginatedadvancements:heart"
   },
   {
-    "advancement": "spectrum:midgame/potion_mastery",
+    "advancement": "spectrum:lategame/create_jade_vine",
+    "frame": "paginatedadvancements:heart"
+  },
+  {
+    "advancement": "spectrum:tap_mermaids_jam",
     "frame": "paginatedadvancements:heart"
   },
 
@@ -38,6 +42,10 @@
   },
   {
     "advancement": "spectrum:midgame/enter_dimension",
+    "frame": "spectrum:amethyst_shard"
+  },
+  {
+    "advancement": "spectrum:lategame/collect_enough_hints",
     "frame": "spectrum:amethyst_shard"
   },
 
@@ -112,9 +120,41 @@
     "advancement": "spectrum:midgame/build_cinderhearth_structure_without_lava",
     "frame": "spectrum:pile_of_poo"
   },
+  {
+    "advancement": "spectrum:lategame/get_killed_while_out_of_deeper_down_bounds",
+    "frame": "spectrum:pile_of_poo"
+  },
+  {
+    "advancement": "spectrum:lategame/wear_both_gravity_trinkets",
+    "frame": "spectrum:pile_of_poo"
+  },
+  {
+    "advancement": "spectrum:ascend_kindling",
+    "frame": "spectrum:pile_of_poo"
+  },
+  {
+    "advancement": "spectrum:midgame/become_enlightened",
+    "frame": "spectrum:pile_of_poo"
+  },
 
   {
     "advancement": "spectrum:lategame/collect_one_cookbook",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:collect_nightdew",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:lategame/collect_poisoners_handbook",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:lategame/collect_varia_cookbook",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:lategame/collect_nectardew",
     "frame": "paginatedadvancements:squircle"
   },
   {
@@ -346,7 +386,7 @@
     "frame": "paginatedadvancements:squircle"
   },
   {
-    "advancement": "spectrum:lategame/break_cracked_dragonbone",
+    "advancement": "spectrum:break_cracked_dragonbone",
     "frame": "paginatedadvancements:squircle"
   },
   {
@@ -366,7 +406,7 @@
     "frame": "paginatedadvancements:squircle"
   },
   {
-    "advancement": "spectrum:lategame/collect_moonstone_shard",
+    "advancement": "spectrum:lategame/collect_moonstone",
     "frame": "paginatedadvancements:squircle"
   },
   {
@@ -410,11 +450,11 @@
     "frame": "paginatedadvancements:squircle"
   },
   {
-    "advancement": "spectrum:lategame/pluck_effulgent_feather",
+    "advancement": "spectrum:pluck_effulgent_feather",
     "frame": "paginatedadvancements:squircle"
   },
   {
-    "advancement": "spectrum:lategame/grow_bloodstone_in_crystallarieum",
+    "advancement": "spectrum:grow_bloodstone_in_crystallarieum",
     "frame": "paginatedadvancements:squircle"
   },
   {

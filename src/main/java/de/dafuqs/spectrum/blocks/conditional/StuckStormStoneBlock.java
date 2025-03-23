@@ -1,12 +1,13 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
 import de.dafuqs.revelationary.api.revelations.*;
-import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.server.world.*;
+import net.minecraft.state.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
@@ -17,7 +18,7 @@ import net.minecraft.world.explosion.*;
 
 import java.util.*;
 
-public class StuckStormStoneBlock extends Block implements RevelationAware {
+public class StuckStormStoneBlock extends HorizontalFacingBlock implements RevelationAware {
 	
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(4.0D, 0.0D, 4.0D, 11.0D, 2.0D, 11.0D);
 	
@@ -27,16 +28,19 @@ public class StuckStormStoneBlock extends Block implements RevelationAware {
 	}
 	
 	@Override
+	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+		super.appendProperties(builder);
+		builder.add(FACING);
+	}
+	
+	@Override
+	@SuppressWarnings("deprecation")
 	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
 		return world.getBlockState(pos.down()).isSolidBlock(world, pos);
 	}
 	
 	@Override
-	public VoxelShape getCameraCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		return VoxelShapes.empty();
-	}
-	
-	@Override
+	@SuppressWarnings("deprecation")
 	public float getAmbientOcclusionLightLevel(BlockState state, BlockView world, BlockPos pos) {
 		return 1.0F;
 	}
@@ -75,32 +79,30 @@ public class StuckStormStoneBlock extends Block implements RevelationAware {
 	
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
-		return SpectrumCommon.locate("milestones/reveal_storm_stones");
+		return SpectrumAdvancements.REVEAL_STORM_STONES;
 	}
-
+	
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		if (this.isVisibleTo(context)) {
-			return SHAPE;
-		}
-		return VoxelShapes.fullCube();
-	}
-
-	@Override
-	public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		if (context instanceof EntityShapeContext entityShapeContext) {
-			Entity var4 = entityShapeContext.getEntity();
-			if (var4 instanceof PlayerEntity player) {
-				return this.isVisibleTo(player) ? SHAPE : VoxelShapes.empty();
+			Entity contextEntity = entityShapeContext.getEntity();
+			if (contextEntity instanceof PlayerEntity player) {
+				if (this.isVisibleTo(player)) {
+					return SHAPE;
+				} else {
+					return VoxelShapes.empty();
+				}
 			}
 		}
-		return VoxelShapes.fullCube();
+		return VoxelShapes.fullCube(); // like breaking particles
 	}
 	
 	@Override
 	public Map<BlockState, BlockState> getBlockStateCloaks() {
 		Map<BlockState, BlockState> map = new Hashtable<>();
-		map.put(this.getDefaultState(), Blocks.AIR.getDefaultState());
+		for (Direction direction : Direction.Type.HORIZONTAL) {
+			map.put(this.getDefaultState().with(FACING, direction), Blocks.AIR.getDefaultState());
+		}
 		return map;
 	}
 	
@@ -110,13 +112,19 @@ public class StuckStormStoneBlock extends Block implements RevelationAware {
 	}
 	
 	/**
-	 * If it gets ticked there is a chance to vanish
+	 * If it gets ticked, there is a chance to vanish
 	 */
 	@Override
+	@SuppressWarnings("deprecation")
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		if (random.nextFloat() < 0.1) {
 			world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
 		}
+	}
+	
+	@Override
+	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
+		return new ItemStack(SpectrumItems.STORM_STONE);
 	}
 	
 }

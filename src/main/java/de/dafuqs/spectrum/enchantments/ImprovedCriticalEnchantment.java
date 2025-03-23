@@ -1,6 +1,9 @@
 package de.dafuqs.spectrum.enchantments;
 
+import com.sammy.malum.common.item.curiosities.weapons.scythe.MalumScytheItem;
+import com.sammy.malum.registry.common.item.EnchantmentRegistry;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.compat.SpectrumIntegrationPacks;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
@@ -38,12 +41,14 @@ public class ImprovedCriticalEnchantment extends SpectrumEnchantment {
 	
 	@Override
 	public boolean canAccept(Enchantment other) {
-		return other != Enchantments.SHARPNESS && super.canAccept(other);
+		return other != Enchantments.SHARPNESS && !(SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.MALUM_ID) && other == EnchantmentRegistry.HAUNTED.get())
+		&& super.canAccept(other);
 	}
 	
 	@Override
 	public boolean isAcceptableItem(ItemStack stack) {
-		return super.isAcceptableItem(stack) || stack.getItem() instanceof AxeItem;
+		return super.isAcceptableItem(stack) || stack.getItem() instanceof AxeItem ||
+				(SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.MALUM_ID) && stack.getItem() instanceof MalumScytheItem);
 	}
 	
 }

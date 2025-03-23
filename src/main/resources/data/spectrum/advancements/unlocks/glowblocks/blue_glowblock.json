@@ -8,7 +8,9 @@
     },
     "has_blue_pigment": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_blue_pigment" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_pigment/blue"
+      }
     }
   }
 }

@@ -6,19 +6,40 @@
       "bonus_rolls": 0,
       "entries": [
         {
-          "type": "minecraft:item",
-          "name": "spectrum:bismuth_crystal",
-          "functions": [
+          "type": "minecraft:alternatives",
+          "children": [
             {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 3,
-                "max": 5
-              },
-              "add": false
+              "type": "minecraft:item",
+              "name": "spectrum:bismuth_cluster",
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "enchantments": [
+                      {
+                        "enchantment": "minecraft:silk_touch",
+                        "levels": {
+                          "min": 1
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
             },
             {
-              "function": "minecraft:explosion_decay"
+              "type": "minecraft:item",
+              "name": "spectrum:bismuth_crystal",
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": {
+                    "min": 3,
+                    "max": 5
+                  },
+                  "add": false
+                }
+              ]
             }
           ]
         }

@@ -24,7 +24,7 @@
       "item": "minecraft:bone_meal"
     },
     "E": {
-      "item": "minecraft:egg"
+      "tag": "c:eggs"
     },
     "Q": {
       "item": "spectrum:quitoxic_powder"

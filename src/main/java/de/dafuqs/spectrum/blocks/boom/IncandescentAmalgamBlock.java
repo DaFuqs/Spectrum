@@ -126,15 +126,15 @@ public class IncandescentAmalgamBlock extends PlacedItemBlock implements Waterlo
 	@Override
 	public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
 		if (!state.get(WATERLOGGED)
-				|| player.isCreative()
-				|| EnchantmentHelper.getLevel(SpectrumEnchantments.RESONANCE, player.getStackInHand(player.getActiveHand())) == 0) {
+				&& !player.isCreative()
+				&& EnchantmentHelper.getLevel(SpectrumEnchantments.RESONANCE, player.getStackInHand(player.getActiveHand())) == 0) {
 
 			explode(world, pos);
 		}
-
+		
 		super.onBreak(world, pos, state, player);
 	}
-
+	
 	protected static void explode(World world, BlockPos pos) {
 		if (!world.isClient) {
 			if (world.getBlockEntity(pos) instanceof PlacedItemBlockEntity placedItemBlockEntity) {
@@ -146,7 +146,7 @@ public class IncandescentAmalgamBlock extends PlacedItemBlock implements Waterlo
 			}
 		}
 	}
-
+	
 	public static void explode(World world, BlockPos pos, Entity owner, ItemStack stack) {
 		float power = 8.0F;
 		if (stack.getItem() instanceof IncandescentAmalgamItem item) {

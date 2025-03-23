@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "spectrum:weeping_gala_logs"
+    }
+  ],
+  "result": {
+    "item": "spectrum:weeping_gala_planks",
+    "count": 4
+  }
+}

@@ -1,13 +1,14 @@
 package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.additionalentityattributes.*;
-import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.variants.*;
+import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.tag.convention.v1.*;
-import net.minecraft.advancement.criterion.*;
+import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.ai.goal.*;
@@ -19,36 +20,39 @@ import net.minecraft.entity.effect.*;
 import net.minecraft.entity.mob.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.loot.*;
 import net.minecraft.loot.context.*;
 import net.minecraft.nbt.*;
 import net.minecraft.particle.*;
 import net.minecraft.recipe.*;
-import net.minecraft.server.network.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
+import net.minecraft.util.TimeHelper;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.intprovider.*;
-import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
 import net.minecraft.world.event.*;
+import net.minecraft.world.explosion.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class KindlingEntity extends HorseEntity implements RangedAttackMob, Angerable {
-
+public class KindlingEntity extends AbstractHorseEntity implements RangedAttackMob, Angerable, Shearable {
+	
+	private static final UUID HORSE_ARMOR_BONUS_ID = UUID.fromString("f55b70e7-db42-4384-8843-6e9c843336af");
+	
 	protected static final TrackedData<KindlingVariant> VARIANT = DataTracker.registerData(KindlingEntity.class, SpectrumTrackedDataHandlerRegistry.KINDLING_VARIANT);
-
-	protected static final Identifier CLIPPING_LOOT_TABLE = SpectrumCommon.locate("gameplay/kindling_clipping");
 	protected static final Ingredient FOOD = Ingredient.fromTag(SpectrumItemTags.KINDLING_FOOD);
 	
 	private static final UniformIntProvider ANGER_TIME_RANGE = TimeHelper.betweenSeconds(30, 59);
 	private static final TrackedData<Integer> ANGER = DataTracker.registerData(KindlingEntity.class, TrackedDataHandlerRegistry.INTEGER);
 	private static final TrackedData<Integer> CLIPPED = DataTracker.registerData(KindlingEntity.class, TrackedDataHandlerRegistry.INTEGER);
 	private static final TrackedData<Integer> CHILL = DataTracker.registerData(KindlingEntity.class, TrackedDataHandlerRegistry.INTEGER);
+	private static final TrackedData<Integer> EEPY_SNEEZE = DataTracker.registerData(KindlingEntity.class, TrackedDataHandlerRegistry.INTEGER);
 	private static final TrackedData<Boolean> PLAYING = DataTracker.registerData(KindlingEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 	private static final TrackedData<Boolean> INCITED = DataTracker.registerData(KindlingEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 	
@@ -80,10 +84,6 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 				.add(EntityAttributes.HORSE_JUMP_STRENGTH, 12.0D);
 	}
 	
-	@Override
-	protected void initAttributes(Random random) {
-	}
-	
 	@Nullable
 	@Override
 	public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
@@ -95,9 +95,9 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	protected void initGoals() {
 		this.goalSelector.add(0, new SwimGoal(this));
 		this.goalSelector.add(1, new HorseBondWithPlayerGoal(this, 1.4));
-		this.goalSelector.add(2, new PounceAtTargetGoal(this, 0.2F));
+		this.goalSelector.add(2, new PounceAtTargetGoal(this, 0.5F));
+		this.goalSelector.add(3, new CancellableProjectileAttackGoal(this, 1.25, 30, 20.0F));
 		this.goalSelector.add(3, new MeleeChaseGoal(this));
-		this.goalSelector.add(4, new CancellableProjectileAttackGoal(this, 1.25, 40, 20.0F));
 		this.goalSelector.add(5, new AnimalMateGoal(this, 1.0D));
 		this.goalSelector.add(6, new PlayRoughGoal(this));
 		this.goalSelector.add(7, new TemptGoal(this, 1.25, FOOD, false));
@@ -119,6 +119,7 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 		this.dataTracker.startTracking(VARIANT, KindlingVariant.DEFAULT);
 		this.dataTracker.startTracking(ANGER, 0);
 		this.dataTracker.startTracking(CHILL, 40);
+		this.dataTracker.startTracking(EEPY_SNEEZE, 0);
 		this.dataTracker.startTracking(CLIPPED, 0);
 		this.dataTracker.startTracking(PLAYING, false);
 		this.dataTracker.startTracking(INCITED, false);
@@ -135,9 +136,9 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 			
 			switch (this.getPose()) {
 				case STANDING -> this.standingAnimationState.start(this.age);
-				case DIGGING -> this.walkingAnimationState.start(this.age);
+				case SNIFFING -> this.walkingAnimationState.start(this.age);
 				case ROARING -> this.standingAngryAnimationState.start(this.age);
-				case SNIFFING -> this.walkingAngryAnimationState.start(this.age);
+				case EMERGING -> this.walkingAngryAnimationState.start(this.age);
 				case FALL_FLYING -> this.glidingAnimationState.start(this.age);
 				default -> {
 				}
@@ -145,39 +146,54 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 		}
 		super.onTrackedDataSet(data);
 	}
-
+	
 	public KindlingVariant getKindlingVariant() {
 		return this.dataTracker.get(VARIANT);
 	}
-
+	
 	public void setKindlingVariant(KindlingVariant variant) {
 		this.dataTracker.set(VARIANT, variant);
 	}
-
+	
 	@Override
 	public double getMountedHeightOffset() {
-		return this.getHeight() - (this.isBaby() ? 0.2 : 0.15);
+		return super.getMountedHeightOffset() - 0.25;
 	}
 	
 	@Override
 	public void writeCustomDataToNbt(NbtCompound nbt) {
 		super.writeCustomDataToNbt(nbt);
 		this.writeAngerToNbt(nbt);
-		nbt.putString("kindling_variant", SpectrumRegistries.KINDLING_VARIANT.getId(this.getKindlingVariant()).toString());
+		nbt.putString("variant", SpectrumRegistries.KINDLING_VARIANT.getId(this.getKindlingVariant()).toString());
 		nbt.putInt("chillTime", getChillTime());
+		nbt.putInt("eepyTime", getEepyTime());
 		nbt.putBoolean("playing", isPlaying());
+		
+		if (!this.items.getStack(1).isEmpty()) {
+			nbt.put("ArmorItem", this.items.getStack(1).writeNbt(new NbtCompound()));
+		}
 	}
 	
 	@Override
 	public void readCustomDataFromNbt(NbtCompound nbt) {
 		super.readCustomDataFromNbt(nbt);
 		this.readAngerFromNbt(this.getWorld(), nbt);
-
-		KindlingVariant variant = SpectrumRegistries.KINDLING_VARIANT.get(Identifier.tryParse(nbt.getString("kindling_variant")));
+		
+		KindlingVariant variant = SpectrumRegistries.KINDLING_VARIANT.get(Identifier.tryParse(nbt.getString("variant")));
 		this.setKindlingVariant(variant == null ? KindlingVariant.DEFAULT : variant);
 
 		setChillTime(nbt.getInt("chillTime"));
+		setEepyTime(nbt.getInt("eepyTime"));
 		setPlaying(nbt.getBoolean("playing"));
+
+		if (nbt.contains("ArmorItem", 10)) {
+			ItemStack itemStack = ItemStack.fromNbt(nbt.getCompound("ArmorItem"));
+			if (!itemStack.isEmpty() && this.isHorseArmor(itemStack)) {
+				this.items.setStack(1, itemStack);
+			}
+		}
+		
+		this.updateSaddle();
 	}
 	
 	@Override
@@ -188,9 +204,58 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	@Nullable
 	@Override
 	public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
-		HorseEntity baby = SpectrumEntityTypes.KINDLING.create(world);
-		this.setChildAttributes(entity, baby);
+		KindlingEntity baby = SpectrumEntityTypes.KINDLING.create(world);
+		if (baby != null) {
+			baby.setKindlingVariant(this.random.nextBoolean() ? this.getKindlingVariant() : ((KindlingEntity) entity).getKindlingVariant());
+		}
 		return baby;
+	}
+	
+	public ItemStack getArmorType() {
+		return this.getEquippedStack(EquipmentSlot.CHEST);
+	}
+	
+	private void equipArmor(ItemStack stack) {
+		this.equipStack(EquipmentSlot.CHEST, stack);
+		this.setEquipmentDropChance(EquipmentSlot.CHEST, 0.0F);
+	}
+	
+	protected void updateSaddle() {
+		if (!this.getWorld().isClient) {
+			super.updateSaddle();
+			this.setArmorTypeFromStack(this.items.getStack(1));
+			this.setEquipmentDropChance(EquipmentSlot.CHEST, 0.0F);
+		}
+	}
+	
+	private void setArmorTypeFromStack(ItemStack stack) {
+		this.equipArmor(stack);
+		if (!this.getWorld().isClient) {
+			this.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).removeModifier(HORSE_ARMOR_BONUS_ID);
+			if (this.isHorseArmor(stack)) {
+				int armorBonus = ((HorseArmorItem) stack.getItem()).getBonus();
+				if (armorBonus != 0) {
+					this.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).addTemporaryModifier(new EntityAttributeModifier(HORSE_ARMOR_BONUS_ID, "Horse armor bonus", armorBonus, EntityAttributeModifier.Operation.ADDITION));
+				}
+			}
+		}
+	}
+	
+	public void onInventoryChanged(Inventory sender) {
+		ItemStack itemStack = this.getArmorType();
+		super.onInventoryChanged(sender);
+		ItemStack itemStack2 = this.getArmorType();
+		if (this.age > 20 && this.isHorseArmor(itemStack2) && itemStack != itemStack2) {
+			this.playSound(SoundEvents.ENTITY_HORSE_ARMOR, 0.5F, 1.0F);
+		}
+	}
+	
+	public boolean hasArmorSlot() {
+		return true;
+	}
+	
+	public boolean isHorseArmor(ItemStack item) {
+		return item.getItem() instanceof HorseArmorItem;
 	}
 	
 	@Override
@@ -272,21 +337,144 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 			this.tickAngerLogic((ServerWorld) this.getWorld(), false);
 			this.setClipped(this.getClipTime() - 1);
 			this.setChillTime(this.getChillTime() - 1);
+
+			if (hasStatusEffect(SpectrumStatusEffects.ETERNAL_SLUMBER)) {
+				ascend(2);
+			}
+
+			if (hasStatusEffect(SpectrumStatusEffects.FATAL_SLUMBER)) {
+				ascend(3);
+			}
+
+			if (hasStatusEffect(SpectrumStatusEffects.SOMNOLENCE) && getEepyTime() == 0) {
+				setEepyTime(100);
+			}
+
+			var eepy = getEepyTime();
+
+			if (eepy > 1) {
+				setEepyTime(eepy - 1);
+			}
+			else if (eepy == 1){
+				setEepyTime(0);
+				ascend(1);
+			}
 		}
 		if (this.age % 600 == 0) {
 			this.heal(1.0F);
 		}
 	}
-	
+
+	@Override
+	public boolean canExplosionDestroyBlock(Explosion explosion, BlockView world, BlockPos pos, BlockState state, float explosionPower) {
+		return super.canExplosionDestroyBlock(explosion, world, pos, state, explosionPower);
+	}
+
+	private void ascend(int blastMod) {
+		var world = getWorld();
+
+		world.addParticle(ParticleTypes.EXPLOSION_EMITTER, getX(), getY(), getZ(), 1.0, 0.0, 0.0);
+		world.createExplosion(this, SpectrumDamageTypes.incandescence(world), null, getX(), getY(), getZ(), 10F * blastMod, true, World.ExplosionSourceType.MOB);
+		playSound(SoundEvents.ENTITY_DRAGON_FIREBALL_EXPLODE, 2F, 0.5F);
+		playSound(SpectrumSoundEvents.DEEP_CRYSTAL_RING, 2F, 0.334F);
+		playSound(SoundEvents.ENTITY_ENDER_DRAGON_AMBIENT, 1F, 2F);
+
+		((ServerWorld) world).getPlayers(p -> p.distanceTo(this) < 64).forEach( p -> {
+			Support.grantAdvancementCriterion(p, "ascend_kindling", "he_explarded");
+		});
+
+		for (int i = 0; i < 5; i++) {
+			((ServerWorld) world).spawnParticles(ParticleTypes.DRAGON_BREATH, getParticleX(1.5), getY() + random.nextDouble(), getParticleZ(1.5), random.nextInt(6) + 1, 0, random.nextFloat() / 3, 0, 0);
+			((ServerWorld) world).spawnParticles(ParticleTypes.END_ROD, getParticleX(1.5), getY() + random.nextDouble(), getParticleZ(1.5), random.nextInt(6) + 1, 0, random.nextFloat() / 3, 0, 0);
+		}
+
+		for (BlockPos transmutePos : BlockPos.iterateOutwards(getBlockPos(), 12 * blastMod, 6 * blastMod, 12 * blastMod)) {
+			var distance = Math.sqrt(transmutePos.getSquaredDistance(getBlockPos()));
+			if (distance <= 6 * blastMod || random.nextFloat() < 1 / ((distance - 6) / 3)) {
+				var candidate = world.getBlockState(transmutePos);
+				
+				// Do not the bedrock nor the claims
+				if (candidate.getHardness(world, transmutePos) < 0 || !GenericClaimModsCompat.canBreak(world, transmutePos, this))
+					continue;
+
+				if (candidate.isAir()) {
+					if (random.nextFloat() < 0.125F) {
+						((ServerWorld) world).spawnParticles(ParticleTypes.DRAGON_BREATH, transmutePos.getX() + random.nextDouble(), transmutePos.getY() + random.nextDouble(), transmutePos.getZ() + random.nextDouble(), random.nextInt(3) + 1, random.nextFloat() / 5 - 0.1, random.nextFloat() / 5 - 0.1, random.nextFloat() / 5 - 0.1, 0);
+					}
+					continue;
+				}
+
+				if (!GenericClaimModsCompat.canModify(world, transmutePos, this)) {
+					continue;
+				}
+
+				if (candidate.getFluidState().isIn(FluidTags.WATER)) {
+					continue;
+				}
+
+				if (random.nextFloat() < 0.025F) {
+					world.setBlockState(transmutePos, Blocks.MAGMA_BLOCK.getDefaultState());
+					continue;
+				}
+
+				if (candidate.isIn(BlockTags.BASE_STONE_OVERWORLD) || candidate.isIn(BlockTags.BASE_STONE_NETHER)) {
+
+					if (random.nextFloat() < 0.05F) {
+						world.setBlockState(transmutePos, Blocks.CRYING_OBSIDIAN.getDefaultState());
+					}
+					else {
+						world.setBlockState(transmutePos, Blocks.END_STONE.getDefaultState());
+					}
+
+					continue;
+				}
+
+				if (candidate.isIn(SpectrumBlockTags.BASE_STONE_DEEPER_DOWN)) {
+					world.setBlockState(transmutePos, SpectrumBlocks.BLACK_MATERIA.getDefaultState());
+					continue;
+				}
+
+				if (candidate.isIn(BlockTags.LOGS)) {
+					world.setBlockState(transmutePos, Blocks.COAL_BLOCK.getDefaultState());
+					continue;
+				}
+
+				if (candidate.isIn(BlockTags.DIRT)) {
+					world.setBlockState(transmutePos, Blocks.BROWN_STAINED_GLASS.getDefaultState());
+					continue;
+				}
+
+				if (candidate.isOf(Blocks.CLAY)) {
+					world.setBlockState(transmutePos, Blocks.TERRACOTTA.getDefaultState());
+					continue;
+				}
+
+				if (candidate.isIn(BlockTags.SAND)) {
+					world.setBlockState(transmutePos, Blocks.WHITE_STAINED_GLASS.getDefaultState());
+					continue;
+				}
+
+				if (candidate.isOf(Blocks.OBSIDIAN)) {
+					world.setBlockState(transmutePos, Blocks.CRYING_OBSIDIAN.getDefaultState());
+				}
+			}
+		}
+		remove(RemovalReason.DISCARDED);
+		var lightning = new LightningEntity(EntityType.LIGHTNING_BOLT, world);
+		lightning.setPos(getX(), getY(), getZ());
+		world.spawnEntity(lightning);
+	}
+
 	@Override
 	public void tickMovement() {
 		super.tickMovement();
 		
-		Vec3d vec3d = this.getVelocity();
-		if (!this.isOnGround() && vec3d.y < 0.0) {
-			this.setVelocity(vec3d.multiply(1.0, 0.6, 1.0));
+		Vec3d velocity = this.getVelocity();
+		boolean onGround = this.isOnGround();
+		if (!onGround && velocity.y < 0.0) {
+			this.setVelocity(velocity.multiply(1.0, 0.6, 1.0));
 		}
-		if (this.fallDistance < 0.2) {
+		if (onGround || this.fallDistance < 0.2) {
 			boolean isMoving = this.getX() - this.prevX != 0 || this.getZ() - this.prevZ != 0; // pretty ugly, but also triggers when being ridden
 			if (getAngerTime() > 0) {
 				this.setPose(isMoving ? EntityPose.EMERGING : EntityPose.ROARING);
@@ -310,49 +498,44 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	
 	@Override
 	public ActionResult interactMob(PlayerEntity player, Hand hand) {
-		if(player.shouldCancelInteraction()) {
-			return super.interactMob(player, hand);
+		if (this.getAngerTime() > 0) {
+			return ActionResult.FAIL;
 		}
 		
-		if (this.getAngerTime() > 0) {
+		// clipping using shears
+		ItemStack handStack = player.getMainHandStack();
+		if (this.isShearable() && handStack.isIn(ConventionalItemTags.SHEARS)) {
+			
+			if (!this.getWorld().isClient()) {
+				setTarget(player);
+				takeRevenge(player.getUuid());
+				this.playAngrySound();
+				
+				this.sheared(SoundCategory.PLAYERS);
+				this.emitGameEvent(GameEvent.SHEAR, player);
+				if (!this.getWorld().isClient) {
+					handStack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
+				}
+			}
+			
 			return ActionResult.success(this.getWorld().isClient());
 		}
 		
-		ItemStack handStack = player.getMainHandStack();
-		if(!this.isBaby()) {
-			if (!this.isClipped() && handStack.isIn(ConventionalItemTags.SHEARS)) {
-				handStack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
+		boolean bl = !this.isBaby() && this.isTame() && player.shouldCancelInteraction();
+		if (!this.hasPassengers() && !bl) {
+			if (!handStack.isEmpty()) {
+				if (this.isBreedingItem(handStack)) {
+					return this.interactHorse(player, handStack);
+				}
 				
-				if (!this.getWorld().isClient()) {
-					setTarget(player);
-					takeRevenge(player.getUuid());
+				if (!this.isTame()) {
 					this.playAngrySound();
-					clipAndDrop();
+					return ActionResult.success(this.getWorld().isClient);
 				}
-				
-				return ActionResult.success(this.getWorld().isClient());
-				
-			} else if (handStack.isIn(SpectrumItemTags.PEACHES) || handStack.isIn(SpectrumItemTags.EGGPLANTS)) {
-				// 🍆 / 🍑 = 💘
-				
-				if (!this.getWorld().isClient()) {
-					handStack.decrement(1);
-					
-					this.setTame(true);
-					if (getOwnerUuid() == null && player instanceof ServerPlayerEntity serverPlayerEntity) {
-						this.setOwnerUuid(player.getUuid());
-						Criteria.TAME_ANIMAL.trigger(serverPlayerEntity, this);
-					}
-					
-					this.lovePlayer(player);
-					
-					this.getWorld().sendEntityStatus(this, (byte) 7); // heart particles
-					this.playSoundIfNotSilent(SpectrumSoundEvents.ENTITY_KINDLING_LOVE);
-					
-					clipAndDrop();
-				}
-				
-				return ActionResult.success(this.getWorld().isClient());
+			}
+			
+			if (player.shouldCancelInteraction()) {
+				return super.interactMob(player, hand);
 			}
 		}
 		
@@ -360,10 +543,23 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	}
 	
 	@Override
+	public void sheared(SoundCategory shearedSoundCategory) {
+		this.getWorld().playSoundFromEntity(null, this, SoundEvents.ENTITY_SHEEP_SHEAR, shearedSoundCategory, 1.0f, 1.0f);
+		
+		setClipped(4800); // 4 minutes
+		for (ItemStack clippedStack : getClippedStacks((ServerWorld) this.getWorld())) {
+			dropStack(clippedStack, 0.3F);
+		}
+	}
+	
+	@Override
+	public boolean isShearable() {
+		return this.isAlive() && !this.isBaby() && !this.isClipped();
+	}
+	
+	@Override
 	protected boolean receiveFood(PlayerEntity player, ItemStack item) {
 		boolean canEat = false;
-
-		this.lovePlayer(player);
 		
 		if (this.getHealth() < this.getMaxHealth()) {
 			this.heal(2.0F);
@@ -375,7 +571,9 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 			if (!this.getWorld().isClient) {
 				this.growUp(20);
 			}
-			
+			canEat = true;
+		} else if (!this.getWorld().isClient && !this.isInLove()) {
+			this.lovePlayer(player);
 			canEat = true;
 		}
 		
@@ -411,15 +609,8 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 		}
 	}
 	
-	private void clipAndDrop() {
-		setClipped(4800); // 4 minutes
-		for (ItemStack clippedStack : getClippedStacks((ServerWorld) this.getWorld())) {
-			dropStack(clippedStack, 0.3F);
-		}
-	}
-	
 	public List<ItemStack> getClippedStacks(ServerWorld world) {
-		LootTable lootTable = world.getServer().getLootManager().getLootTable(CLIPPING_LOOT_TABLE);
+		LootTable lootTable = world.getServer().getLootManager().getLootTable(this.getKindlingVariant().clippingLootTable());
 		return lootTable.generateLoot(
 				new LootContextParameterSet.Builder(world)
 						.add(LootContextParameters.THIS_ENTITY, KindlingEntity.this)
@@ -461,7 +652,15 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	public void setChillTime(int chillTime) {
 		this.dataTracker.set(CHILL, chillTime);
 	}
-	
+
+	public void setEepyTime(int eepySneeze) {
+		this.dataTracker.set(EEPY_SNEEZE, eepySneeze);
+	}
+
+	public int getEepyTime() {
+		return this.dataTracker.get(EEPY_SNEEZE);
+	}
+
 	public void setPlaying(boolean playing) {
 		this.dataTracker.set(PLAYING, playing);
 	}
@@ -476,11 +675,6 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	
 	public boolean isIncited() {
 		return dataTracker.get(INCITED);
-	}
-	
-	@Override
-	public boolean isAngry() {
-		return super.isAngry() || this.getAngerTime() > 0;
 	}
 	
 	@Override
@@ -535,7 +729,7 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	public EntityView method_48926() {
 		return this.getWorld();
 	}
-	
+
 	protected class CoughRevengeGoal extends RevengeGoal {
 		
 		public CoughRevengeGoal(KindlingEntity kindling) {
@@ -568,7 +762,7 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	protected class MeleeChaseGoal extends MeleeAttackGoal {
 		
 		public MeleeChaseGoal(KindlingEntity kindling) {
-			super(kindling, 0.5F, true);
+			super(kindling, 0.6F, true);
 		}
 		
 		@Override
@@ -646,7 +840,7 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 		
 		@Override
 		public boolean canStart() {
-			if (hasAngerTime() || hasPassengers())
+			if (hasAngerTime() || hasPassengers() || isInLove())
 				return false;
 			
 			if (!isIncited()) {
@@ -682,12 +876,12 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 		
 		@Override
 		public boolean shouldContinue() {
-			return KindlingEntity.this.hasAngerTime() && super.shouldContinue() && distanceTo(getProjectileTarget()) > 5F;
+			return KindlingEntity.this.hasAngerTime() && super.shouldContinue() && distanceTo(getProjectileTarget()) > 3F;
 		}
 		
 		@Override
 		public boolean canStart() {
-			return super.canStart() && !isPlaying() && distanceTo(getProjectileTarget()) > 6F;
+			return super.canStart() && !isPlaying() && distanceTo(getProjectileTarget()) > 4F;
 		}
 		
 		protected LivingEntity getProjectileTarget() {

@@ -4,12 +4,12 @@
     "item": "gobber2:gobber2_globette_nether"
   },
   "growth_stage_states": [
-    "spectrum:small_globette_nether_bud",
-    "spectrum:large_globette_nether_bud",
-    "spectrum:globette_nether_cluster"
+    "spectrum:small_globette_nether_bud[facing=up]",
+    "spectrum:large_globette_nether_bud[facing=up]",
+    "spectrum:globette_nether_cluster[facing=up]"
   ],
   "seconds_per_growth_stage": 120,
-  "ink_color": "red",
+  "ink_color": "spectrum:red",
   "ink_cost_tier": 3,
   "grows_without_catalyst": false,
   "catalysts": [
@@ -38,12 +38,13 @@
       "consume_chance_per_second": 0.1
     }
   ],
+  "additional_recipe_manager_outputs": [
+    "spectrum:pure_globette_nether"
+  ],
   "fabric:load_conditions": [
     {
-      "condition": "fabric:all_mods_loaded",
-      "values": [
-        "gobber2"
-      ]
+			"condition": "spectrum:integration_pack_active",
+			"integration_pack": "gobber2"
     }
   ]
 }

@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "lightweight": {
+      "trigger": "minecraft:effects_changed",
+      "conditions": {
+        "effects": {
+          "spectrum:lightweight": {}
+        }
+      }
+    }
+  }
+}

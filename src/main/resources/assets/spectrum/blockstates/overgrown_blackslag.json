@@ -1,10 +1,38 @@
 {
   "variants": {
-    "snowy=true": {
-      "model": "spectrum:block/overgrown_blackslag_snow"
-    },
-    "snowy=false": {
-      "model": "spectrum:block/overgrown_blackslag"
-    }
+    "snowy=true": [
+      {
+        "model": "spectrum:block/overgrown_blackslag_snow"
+      },
+      {
+        "model": "spectrum:block/overgrown_blackslag_snow",
+        "y": 90
+      },
+      {
+        "model": "spectrum:block/overgrown_blackslag_snow",
+        "y": 180
+      },
+      {
+        "model": "spectrum:block/overgrown_blackslag_snow",
+        "y": 270
+      }
+    ],
+    "snowy=false": [
+      {
+        "model": "spectrum:block/overgrown_blackslag"
+      },
+      {
+        "model": "spectrum:block/overgrown_blackslag",
+        "y": 90
+      },
+      {
+        "model": "spectrum:block/overgrown_blackslag",
+        "y": 180
+      },
+      {
+        "model": "spectrum:block/overgrown_blackslag",
+        "y": 270
+      }
+    ]
   }
 }

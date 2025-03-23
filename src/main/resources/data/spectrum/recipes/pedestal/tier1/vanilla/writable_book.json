@@ -1,0 +1,26 @@
+{
+  "type": "spectrum:pedestal_shapeless",
+  "time": 40,
+  "tier": "basic",
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 0.1,
+  "ingredients": [
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "tag": "spectrum:pigments"
+    },
+    {
+      "item": "minecraft:feather"
+    }
+  ],
+  "result": {
+    "item": "minecraft:writable_book"
+  },
+  "required_advancement": "spectrum:collect_pigment"
+}

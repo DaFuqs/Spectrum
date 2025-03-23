@@ -1,0 +1,6 @@
+{
+  "parent": "spectrum:templates/noxwood_lamp_hanging_tall",
+  "textures": {
+    "all": "spectrum:block/ivory_noxwood_lamp"
+  }
+}

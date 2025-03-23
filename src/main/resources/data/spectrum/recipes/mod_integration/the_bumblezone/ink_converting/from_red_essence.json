@@ -1,0 +1,17 @@
+{
+  "type": "spectrum:ink_converting",
+  "ingredient": {
+    "item": "the_bumblezone:essence_raging"
+  },
+  "ink_color": "spectrum:red",
+  "amount": 25000,
+  "required_advancement": "spectrum:mod_integration/the_bumblezone/red_raging",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "the_bumblezone"
+      ]
+    }
+  ]
+}

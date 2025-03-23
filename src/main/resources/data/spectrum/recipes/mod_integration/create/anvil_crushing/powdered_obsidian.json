@@ -1,0 +1,21 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": {
+    "item": "minecraft:obsidian"
+  },
+  "crushedItemsPerPointOfDamage": 0.05,
+  "experience": 0.0,
+  "result": {
+    "item": "create:powdered_obsidian"
+  },
+  "particleEffectIdentifier": "enchanted_hit",
+  "soundEventIdentifier": "block.metal.break",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "create"
+      ]
+    }
+  ]
+}

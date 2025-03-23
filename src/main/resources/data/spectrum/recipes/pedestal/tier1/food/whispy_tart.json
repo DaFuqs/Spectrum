@@ -21,13 +21,13 @@
       "item": "spectrum:jaramel"
     },
     "E": {
-      "item": "minecraft:egg"
+      "tag": "c:eggs"
     },
     "M": {
       "tag": "c:milk"
     },
     "G": {
-      "item": "minecraft:glow_berries"
+      "item": "spectrum:nightdew_sprout"
     }
   },
   "result": {

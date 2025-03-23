@@ -4,7 +4,7 @@
     "top": "spectrum:block/block_detector_top",
     "front": "spectrum:block/block_detector_front",
     "side": "spectrum:block/block_detector_side",
-    "bottom": "spectrum:block/notched_polished_basalt",
+    "bottom": "spectrum:block/notched_polished_basalt_top",
     "back": "spectrum:block/block_detector_back_active",
     "particle": "spectrum:block/block_detector_side"
   }

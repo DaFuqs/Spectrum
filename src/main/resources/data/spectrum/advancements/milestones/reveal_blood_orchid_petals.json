@@ -1,0 +1,22 @@
+{
+    "criteria": {
+      "solved_wireless_redstone_ruin": {
+        "trigger": "revelationary:advancement_gotten",
+        "conditions": {
+          "advancement_identifier": "spectrum:solve_wireless_redstone_preservation_ruin"
+        }
+      },
+      "entered_undergrowth_manor": {
+        "trigger": "revelationary:advancement_gotten",
+        "conditions": {
+          "advancement_identifier": "spectrum:lategame/find_undergrowth_manor"
+        }
+      }
+    },
+    "requirements": [
+      [
+        "solved_wireless_redstone_ruin",
+        "entered_undergrowth_manor"
+      ]
+    ]
+  }

@@ -1,15 +1,12 @@
 package de.dafuqs.spectrum.sound;
 
 import de.dafuqs.spectrum.entity.entity.*;
-import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
 import net.minecraft.client.sound.*;
 import net.minecraft.registry.*;
 import net.minecraft.sound.*;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 
 import java.util.*;
@@ -42,9 +39,9 @@ public class MagicProjectileSoundInstance extends AbstractSoundInstance implemen
     }
 
     @Environment(EnvType.CLIENT)
-    public static void startSoundInstance(MagicProjectileEntity inkProjectile) {
+	public static void startSoundInstance(MagicProjectileEntity projectile) {
 		MinecraftClient client = MinecraftClient.getInstance();
-        MagicProjectileSoundInstance newInstance = new MagicProjectileSoundInstance(client.world.getRegistryKey(), inkProjectile);
+		MagicProjectileSoundInstance newInstance = new MagicProjectileSoundInstance(client.world.getRegistryKey(), projectile);
         MinecraftClient.getInstance().getSoundManager().play(newInstance);
     }
 	
@@ -85,21 +82,9 @@ public class MagicProjectileSoundInstance extends AbstractSoundInstance implemen
 
 		if (projectile.isRemoved() && !playedExplosion) {
 			client.player.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.NEUTRAL, Math.max(0.1F, this.volume / 4), 1.1F + client.world.random.nextFloat() * 0.2F);
-            spawnImpactParticles(this.projectile);
+			projectile.spawnImpactParticles();
 			playedExplosion = true;
 		}
 	}
-
-    private void spawnImpactParticles(MagicProjectileEntity projectile) {
-        DyeColor dyeColor = projectile.getDyeColor();
-        World world = projectile.getWorld();
-        Vec3d targetPos = projectile.getPos();
-        Vec3d velocity = projectile.getVelocity();
-
-        world.addParticle(SpectrumParticleTypes.getExplosionParticle(dyeColor), targetPos.x, targetPos.y, targetPos.z, 0, 0, 0);
-        for (int i = 0; i < 10; i++) {
-            world.addParticle(SpectrumParticleTypes.getCraftingParticle(dyeColor), targetPos.x, targetPos.y, targetPos.z, -velocity.x * 3, -velocity.y * 3, -velocity.z * 3);
-        }
-    }
 
 }

@@ -1,10 +1,244 @@
 {
-	"variants": {
-		"half=lower": {
-			"model": "spectrum:block/moonstone_decostone_bottom"
+	"multipart": [
+		{"when": {
+				"AND": [
+					{"facing": "up"},
+					{"section": "head"}
+				]
+			},
+			"apply": {"model": "spectrum:block/moonstone_pylon_head"}
 		},
-		"half=upper": {
-			"model": "spectrum:block/moonstone_decostone_top"
+		{"when": {
+			"AND": [
+				{"facing": "up"},
+				{"section": "body"}
+			]
+		},
+			"apply": {"model": "spectrum:block/moonstone_pylon_body"}
+		},
+		{"when": {
+			"AND": [
+				{"facing": "up"},
+				{"section": "waist"}
+			]
+		},
+			"apply": {"model": "spectrum:block/moonstone_pylon_waist"}
+		},
+		{"when": {
+			"AND": [
+				{"facing": "up"},
+				{"section": "foot"}
+			]
+		},
+			"apply": {"model": "spectrum:block/moonstone_pylon_foot"}
+		},
+		{"when": {
+			"AND": [
+				{"facing": "up"},
+				{"pedestal": "true"}
+			]
+		},
+			"apply": {"model": "spectrum:block/balcite_pylon_pedestal"}
+		},
+		{"when": {
+			"AND": [
+				{"facing": "down"},
+				{"section": "head"}
+			]
+		},
+			"apply": {"x": 180, "model": "spectrum:block/moonstone_pylon_head"}
+		},
+		{"when": {
+			"AND": [
+				{"facing": "down"},
+				{"section": "body"}
+			]
+		},
+			"apply": {"x": 180, "model": "spectrum:block/moonstone_pylon_body"}
+		},
+		{"when": {
+			"AND": [
+				{"facing": "down"},
+				{"section": "waist"}
+			]
+		},
+			"apply": {"x": 180, "model": "spectrum:block/moonstone_pylon_waist"}
+		},
+		{"when": {
+			"AND": [
+				{"facing": "down"},
+				{"section": "foot"}
+			]
+		},
+			"apply": {"x": 180, "model": "spectrum:block/moonstone_pylon_foot"}
+		},
+		{"when": {
+			"AND": [
+				{"facing": "down"},
+				{"pedestal": "true"}
+			]
+		},
+			"apply": {"x": 180, "model": "spectrum:block/balcite_pylon_pedestal"}
+		},
+		{"when": {
+			"AND": [
+				{"facing": "north"},
+				{"section": "head"}
+			]
+		},
+			"apply": {"x": 90, "model": "spectrum:block/moonstone_pylon_head"}
+		},
+		{"when": {
+			"AND": [
+				{"facing": "north"},
+				{"section": "body"}
+			]
+		},
+			"apply": {"x": 90, "model": "spectrum:block/moonstone_pylon_body"}
+		},
+		{"when": {
+			"AND": [
+				{"facing": "north"},
+				{"section": "waist"}
+			]
+		},
+			"apply": {"x": 90, "model": "spectrum:block/moonstone_pylon_waist"}
+		},
+		{"when": {
+			"AND": [
+				{"facing": "north"},
+				{"section": "foot"}
+			]
+		},
+			"apply": {"x": 90, "model": "spectrum:block/moonstone_pylon_foot"}
+		},
+		{"when": {
+			"AND": [
+				{"facing": "north"},
+				{"pedestal": "true"}
+			]
+		},
+			"apply": {"x": 90, "model": "spectrum:block/balcite_pylon_pedestal"}
+		},
+		{"when": {
+			"AND": [
+				{"facing": "east"},
+				{"section": "head"}
+			]
+		},
+			"apply": {"x": 90, "y": 90, "model": "spectrum:block/moonstone_pylon_head"}
+		},
+		{"when": {
+			"AND": [
+				{"facing": "east"},
+				{"section": "body"}
+			]
+		},
+			"apply": {"x": 90, "y": 90, "model": "spectrum:block/moonstone_pylon_body"}
+		},
+		{"when": {
+			"AND": [
+				{"facing": "east"},
+				{"section": "waist"}
+			]
+		},
+			"apply": {"x": 90, "y": 90, "model": "spectrum:block/moonstone_pylon_waist"}
+		},
+		{"when": {
+			"AND": [
+				{"facing": "east"},
+				{"section": "foot"}
+			]
+		},
+			"apply": {"x": 90, "y": 90, "model": "spectrum:block/moonstone_pylon_foot"}
+		},
+		{"when": {
+			"AND": [
+				{"facing": "east"},
+				{"pedestal": "true"}
+			]
+		},
+			"apply": {"x": 90, "y": 90, "model": "spectrum:block/balcite_pylon_pedestal"}
+		},
+		{"when": {
+			"AND": [
+				{"facing": "south"},
+				{"section": "head"}
+			]
+		},
+			"apply": {"x": 270, "model": "spectrum:block/moonstone_pylon_head"}
+		},
+		{"when": {
+			"AND": [
+				{"facing": "south"},
+				{"section": "body"}
+			]
+		},
+			"apply": {"x": 270, "model": "spectrum:block/moonstone_pylon_body"}
+		},
+		{"when": {
+			"AND": [
+				{"facing": "south"},
+				{"section": "waist"}
+			]
+		},
+			"apply": {"x": 270, "model": "spectrum:block/moonstone_pylon_waist"}
+		},
+		{"when": {
+			"AND": [
+				{"facing": "south"},
+				{"section": "foot"}
+			]
+		},
+			"apply": {"x": 270, "model": "spectrum:block/moonstone_pylon_foot"}
+		},
+		{"when": {
+			"AND": [
+				{"facing": "south"},
+				{"pedestal": "true"}
+			]
+		},
+			"apply": {"x": 270, "model": "spectrum:block/balcite_pylon_pedestal"}
+		},
+		{"when": {
+			"AND": [
+				{"facing": "west"},
+				{"section": "head"}
+			]
+		},
+			"apply": {"x": 90, "y": 270, "model": "spectrum:block/moonstone_pylon_head"}
+		},
+		{"when": {
+			"AND": [
+				{"facing": "west"},
+				{"section": "body"}
+			]
+		},
+			"apply": {"x": 90, "y": 270, "model": "spectrum:block/moonstone_pylon_body"}
+		},
+		{"when": {
+			"AND": [
+				{"facing": "west"},
+				{"section": "waist"}
+			]
+		},
+			"apply": {"x": 90, "y": 270, "model": "spectrum:block/moonstone_pylon_waist"}
+		},
+		{"when": {
+			"AND": [
+				{"facing": "west"},
+				{"section": "foot"}
+			]
+		},
+			"apply": {"x": 90, "y": 270, "model": "spectrum:block/moonstone_pylon_foot"}
+		},
+		{"when": {
+			"AND": [
+				{"facing": "west"},
+				{"pedestal": "true"}
+			]
+		},
+			"apply": {"x": 90, "y": 270, "model": "spectrum:block/balcite_pylon_pedestal"}
 		}
-	}
+	]
 }

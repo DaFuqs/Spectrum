@@ -1,0 +1,170 @@
+{
+    "type": "minecraft:chest",
+    "pools": [
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "spectrum:infused_beverage",
+                    "weight": 3,
+                    "functions": [
+                        {
+                            "function": "minecraft:set_nbt",
+                            "tag": "{Variant: \"camomillesque\", Color: 15517767 }"
+                        },
+                        {
+                            "function": "spectrum:ferment_randomly",
+                            "fermentation_recipe_id": "spectrum:titration_barrel/infused_beverages/camomillesque",
+                            "days_fermented": {
+                                "min": 180000,
+                                "max": 216000
+                            },
+                            "thickness": 1.5
+                        }
+                    ]
+                },
+                {
+                    "type": "minecraft:item",
+                    "name": "spectrum:infused_beverage",
+                    "weight": 3,
+                    "functions": [
+                        {
+                            "function": "minecraft:set_nbt",
+                            "tag": "{Variant: \"verdigris_wine\", Color: 4237444 }"
+                        },
+                        {
+                            "function": "spectrum:ferment_randomly",
+                            "fermentation_recipe_id": "spectrum:titration_barrel/infused_beverages/verdigris_wine",
+                            "days_fermented": {
+                                "min": 180000,
+                                "max": 216000
+                            },
+                            "thickness": 1.5
+                        }
+                    ]
+                },
+                {
+                    "type": "minecraft:item",
+                    "name": "spectrum:infused_beverage",
+                    "quality": 1.5,
+                    "functions": [
+                        {
+                            "function": "minecraft:set_nbt",
+                            "tag": "{Variant: \"velvet_brandy\", Color: 15383295 }"
+                        },
+                        {
+                            "function": "spectrum:ferment_randomly",
+                            "fermentation_recipe_id": "spectrum:titration_barrel/infused_beverages/velvet_brandy",
+                            "days_fermented": {
+                                "min": 180000,
+                                "max": 216000
+                            },
+                            "thickness": 1.5
+                        }
+                    ]
+                },
+                {
+                    "type": "minecraft:item",
+                    "name": "spectrum:infused_beverage",
+                    "quality": 1.2,
+                    "functions": [
+                        {
+                            "function": "minecraft:set_nbt",
+                            "tag": "{Variant: \"night_cream\", Color: 12982783 }"
+                        },
+                        {
+                        "function": "spectrum:ferment_randomly",
+                        "fermentation_data": {
+                            "fermentation_speed_mod": 0.15,
+                            "effects": [
+                            {
+                                "id": "spectrum:eternal_slumber",
+                                "base_duration": 6000,
+                                "potency": [
+                                    {
+                                        "potency": 0
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "spectrum:effect_prolonging",
+                                "base_duration": 1200,
+                                "potency": [
+                                    {
+                                        "min_alc": 10
+                                    },
+                                    {
+                                        "min_alc": 20,
+                                        "potency": 1
+                                    },
+                                    {
+                                        "min_alc": 30,
+                                        "potency": 2
+                                    },
+                                    {
+                                        "min_alc": 40,
+                                        "potency": 3
+                                    },
+                                    {
+                                        "min_alc": 50,
+                                        "potency": 4
+                                    },
+                                    {
+                                        "min_alc": 60,
+                                        "potency": 5
+                                    },
+                                    {
+                                        "min_alc": 70,
+                                        "potency": 6
+                                    },
+                                    {
+                                        "min_alc": 80,
+                                        "potency": 7
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "spectrum:deadly_poison",
+                                "base_duration": 1200,
+                                "potency": [
+                                    {
+                                        "min_alc": 10
+                                    },
+                                    {
+                                        "min_alc": 30,
+                                        "potency": 1
+                                    },
+                                    {
+                                        "min_alc": 50,
+                                        "potency": 2
+                                    },
+                                    {
+                                        "min_alc": 70,
+                                        "potency": 3
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "spectrum:immunity",
+                                "base_duration": 1200,
+                                "potency": [
+                                    {
+                                        "min_alc": 80
+                                    }
+                                ]
+                            }
+                            ]
+                        },
+                        "days_fermented": {
+                            "min": 180000,
+                            "max": 216000
+                        },
+                        "thickness": 1.0
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

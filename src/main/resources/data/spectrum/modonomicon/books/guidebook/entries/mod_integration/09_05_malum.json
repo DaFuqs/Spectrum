@@ -1,0 +1,174 @@
+{
+  "name": "book.spectrum.guidebook.mod_integration.malum.name",
+  "icon": "malum:soul_stained_steel_scythe",
+  "condition": {
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:mod_loaded",
+        "mod_id": "malum"
+      },
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:place_pedestal"
+      }
+    ]
+  },
+  "category": "spectrum:mod_integration",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 9,
+  "y": 5,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.mod_integration.malum.page0.text",
+      "title": "book.spectrum.guidebook.mod_integration.malum.name"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:mod_integration/malum/pedestal/malum_alt_enchantment_canvas"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:mod_integration/malum/pedestal/alt_bag_of_holding"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:mod_integration/malum/pedestal/alt_glow_phantom_frame"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:mod_integration/malum/pedestal/alt_phantom_frame"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:mod_integration/malum/pedestal/chorusless_ender_splice"
+    },
+    {
+      "type": "spectrum:nbt_spotlight",
+      "title": "book.spectrum.guidebook.mod_integration.malum.scythe_enchants.title",
+      "item": {
+        "item": "malum:crude_scythe",
+        "nbt": {
+          "Enchantments": [
+            {
+              "id": "spectrum:clovers_favor",
+              "lvl": "1s"
+            },
+            {
+              "id": "spectrum:exuberance",
+              "lvl": "1s"
+            },
+            {
+              "id": "spectrum:first_strike",
+              "lvl": "1s"
+            },
+            {
+              "id": "spectrum:improved_critical",
+              "lvl": "1s"
+            },
+            {
+              "id": "spectrum:inventory_insertion",
+              "lvl": "1s"
+            },
+            {
+              "id": "spectrum:treasure_hunter",
+              "lvl": "1s"
+            },
+            {
+              "id": "spectrum:tight_grip",
+              "lvl": "1s"
+            },
+            {
+              "id": "spectrum:steadfast",
+              "lvl": "1s"
+            },
+            {
+              "id": "spectrum:indestructible",
+              "lvl": "1s"
+            },
+            {
+              "id": "spectrum:inexorable",
+              "lvl": "1s"
+            }
+          ]
+        }
+      },
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/build_enchanting_structure"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.malum.scythe_enchants.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.mod_integration.malum.scythe_incompats.text",
+      "title": "book.spectrum.guidebook.mod_integration.malum.scythe_enchants.title"
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "recipe_id": "spectrum:mod_integration/malum/enchanter/book_haunted"
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "recipe_id": "spectrum:mod_integration/malum/enchanter/book_rebound"
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "recipe_id": "spectrum:mod_integration/malum/enchanter/book_spirit_plunder"
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "recipe_id": "spectrum:mod_integration/malum/enchanter/book_replenishing"
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "effect.minecraft.invisibility",
+      "recipe_id": "spectrum:mod_integration/malum/potion_workshop_brewing/alt_invisibility"
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "effect.minecraft.poison",
+      "recipe_id": "spectrum:mod_integration/malum/potion_workshop_brewing/alt_poison"
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "recipe_id": "spectrum:mod_integration/malum/potion_workshop_crafting/concentrated_gluttony"
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "recipe_id": "spectrum:mod_integration/malum/potion_workshop_crafting/splash_of_gluttony"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.potion_reagent",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:mod_integration/malum/visited_well"
+      },
+      "item": {
+        "item": "malum:void_salts"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.malum.void_salts_reagent.text"
+    },
+    {
+      "type": "spectrum:primordial_fire_burning",
+      "title": "container.spectrum.rei.primordial_fire_burning.title",
+      "text": "book.spectrum.guidebook.mod_integration.malum.crystal_burning.text",
+      "recipe_id": "spectrum:mod_integration/malum/primordial_fire_burning/crystal_burning"
+    },
+    {
+      "type": "spectrum:status_effect",
+      "title": "effect.malum.silenced",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:mod_integration/malum/visited_well"
+      },
+      "status_effect_id": "malum:silenced",
+      "text": "book.spectrum.guidebook.mod_integration.malum.silenced.text"
+    }
+  ]
+}

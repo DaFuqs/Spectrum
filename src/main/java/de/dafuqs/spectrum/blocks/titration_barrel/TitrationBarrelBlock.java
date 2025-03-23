@@ -65,18 +65,18 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 			if (blockEntity instanceof TitrationBarrelBlockEntity barrelEntity) {
 				
 				BarrelState barrelState = state.get(BARREL_STATE);
+				ItemStack handStack = player.getStackInHand(hand);
 				switch (barrelState) {
 					case EMPTY, FILLED -> {
-						if (player.isSneaking()) {
+						if (player.isSneaking() && handStack.isEmpty()) {
 							if (barrelState == BarrelState.FILLED) {
 								tryExtractLastStack(state, world, pos, player, barrelEntity);
 							}
 						} else {
 							// player is able to put items in
 							// or seal it with a piece of colored wood
-							ItemStack handStack = player.getStackInHand(hand);
 							if (handStack.isEmpty()) {
-								int itemCount = InventoryHelper.countItemsInInventory(barrelEntity.inventory);
+								int itemCount = InventoryHelper.countItemsInInventory(barrelEntity);
 								Fluid fluid = barrelEntity.fluidStorage.variant.getFluid();
 								if (fluid == Fluids.EMPTY) {
 									if (itemCount == TitrationBarrelBlockEntity.MAX_ITEM_COUNT) {
@@ -105,10 +105,10 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 									return ActionResult.CONSUME;
 								}
 								
-								if (ContainerItemContext.forPlayerInteraction(player, hand).find(FluidStorage.ITEM) != null) {
+								if (ContainerItemContext.forPlayerInteraction(player, hand).find(FluidStorage.ITEM) != null ) {
 									if (FluidStorageUtil.interactWithFluidStorage(barrelEntity.fluidStorage, player, hand)) {
 										if (barrelEntity.getFluidVariant().isBlank()) {
-											if (state.get(BARREL_STATE) == TitrationBarrelBlock.BarrelState.FILLED && barrelEntity.inventory.isEmpty()) {
+											if (state.get(BARREL_STATE) == TitrationBarrelBlock.BarrelState.FILLED && barrelEntity.isEmpty()) {
 												world.setBlockState(pos, state.with(BARREL_STATE, TitrationBarrelBlock.BarrelState.EMPTY));
 											}
 										} else {
@@ -116,12 +116,12 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 												world.setBlockState(pos, state.with(BARREL_STATE, TitrationBarrelBlock.BarrelState.FILLED));
 											}
 										}
+										return ActionResult.CONSUME;
 									}
-									return ActionResult.CONSUME;
 								}
 								
 								int countBefore = handStack.getCount();
-								ItemStack leftoverStack = InventoryHelper.addToInventoryUpToSingleStackWithMaxTotalCount(handStack, barrelEntity.getInventory(), TitrationBarrelBlockEntity.MAX_ITEM_COUNT);
+								ItemStack leftoverStack = InventoryHelper.addToInventoryUpToSingleStackWithMaxTotalCount(handStack, barrelEntity, TitrationBarrelBlockEntity.MAX_ITEM_COUNT);
 								player.setStackInHand(hand, leftoverStack);
 								if (countBefore != leftoverStack.getCount()) {
 									world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
@@ -138,14 +138,25 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 					case SEALED -> {
 						// player is able to query the days the barrel already ferments
 						// or open it with a shift-click
+						Optional<ITitrationBarrelRecipe> recipe = barrelEntity.getRecipeForInventory(world);
+						if (recipe.isPresent()) {
+							if (player.isCreative() && player.getMainHandStack().isOf(SpectrumItems.PAINTBRUSH)) {
+								player.sendMessage(Text.translatable("block.spectrum.titration_barrel.debug_added_day"), true);
+								barrelEntity.addOneDayOfSealTime();
+								world.playSound(null, pos, SpectrumSoundEvents.NEW_RECIPE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+							}
+							
+							// funky check to allow shenanigans when sealing it when changing the computer's clock to the past
+							long sealSeconds = barrelEntity.getSealSeconds();
+							if (sealSeconds >= 0 && !recipe.get().isFermentingLongEnoughToTap(barrelEntity.getSealSeconds())) {
+								player.sendMessage(Text.translatable("block.spectrum.titration_barrel.not_yet_ready", barrelEntity.getSealMinecraftDays(), barrelEntity.getSealRealDays()), true);
+								break;
+							}
+						}
+						
 						if (player.isSneaking()) {
 							unsealBarrel(world, pos, state, barrelEntity);
 						} else {
-							if (player.isCreative() && player.getMainHandStack().isOf(SpectrumItems.PAINTBRUSH)) {
-								player.sendMessage(Text.translatable("block.spectrum.titration_barrel.debug_added_day"), true);
-								barrelEntity.addDayOfSealTime();
-								world.playSound(null, pos, SpectrumSoundEvents.NEW_RECIPE, SoundCategory.BLOCKS, 1.0F, 1.0F);
-							}
 							player.sendMessage(Text.translatable("block.spectrum.titration_barrel.days_of_sealing_before_opened", barrelEntity.getSealMinecraftDays(), barrelEntity.getSealRealDays()), true);
 						}
 					}
@@ -153,11 +164,11 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 						// player is able to extract content until it is empty
 						// reverting it to the empty state again
 						if (player.isSneaking()) {
-							Optional<ITitrationBarrelRecipe> recipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.TITRATION_BARREL, barrelEntity.inventory, world);
+							Optional<ITitrationBarrelRecipe> recipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.TITRATION_BARREL, barrelEntity, world);
 							if (recipe.isPresent()) {
-								player.sendMessage(Text.translatable("block.spectrum.titration_barrel.days_of_sealing_after_opened_with_extractable_amount", recipe.get().getOutput(world.getRegistryManager()).getName().getString(), barrelEntity.getSealMinecraftDays(), barrelEntity.getSealRealDays()), true);
+								player.sendMessage(Text.translatable("block.spectrum.titration_barrel.days_of_sealing_after_opened_with_extractable_amount", recipe.get().craft(barrelEntity, world.getRegistryManager()).getName().getString(), barrelEntity.getSealMinecraftDays(), barrelEntity.getSealRealDays()), true);
 							} else {
-								player.sendMessage(Text.translatable("block.spectrum.titration_barrel.invalid_recipe_after_opened", barrelEntity.getSealMinecraftDays(), barrelEntity.getSealRealDays()), true);
+								player.sendMessage(Text.translatable("block.spectrum.titration_barrel.invalid_recipe_when_tapping"), true);
 							}
 						} else {
 							ItemStack harvestedStack = barrelEntity.tryHarvest(world, pos, state, player.getStackInHand(hand), player);
@@ -175,11 +186,11 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 	}
 	
 	private void tryExtractLastStack(BlockState state, World world, BlockPos pos, PlayerEntity player, TitrationBarrelBlockEntity barrelEntity) {
-		Optional<ItemStack> stack = InventoryHelper.extractLastStack(barrelEntity.inventory);
+		Optional<ItemStack> stack = InventoryHelper.extractLastStack(barrelEntity);
 		if (stack.isPresent()) {
 			player.getInventory().offerOrDrop(stack.get());
 			barrelEntity.markDirty();
-			if (barrelEntity.inventory.isEmpty() && barrelEntity.getFluidVariant().isBlank()) {
+			if (barrelEntity.isEmpty() && barrelEntity.getFluidVariant().isBlank()) {
 				world.setBlockState(pos, state.with(BARREL_STATE, BarrelState.EMPTY));
 			} else {
 				// They'll get updated if the block state changes anyway
@@ -245,9 +256,9 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 					return 0;
 				}
 				case FILLED -> {
-					int isNotEmpty = blockEntity.inventory.isEmpty() ? 0 : 1;
+					int isNotEmpty = blockEntity.isEmpty() ? 0 : 1;
 					
-					float icurr = InventoryHelper.countItemsInInventory(blockEntity.inventory);
+					float icurr = InventoryHelper.countItemsInInventory(blockEntity);
 					float imax = TitrationBarrelBlockEntity.MAX_ITEM_COUNT;
 					
 					float fcurr = blockEntity.fluidStorage.amount;
@@ -291,7 +302,7 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 	public static void scatterContents(@NotNull World world, BlockPos pos) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof TitrationBarrelBlockEntity titrationBarrelBlockEntity) {
-			ItemScatterer.spawn(world, pos, titrationBarrelBlockEntity.getInventory());
+			ItemScatterer.spawn(world, pos, titrationBarrelBlockEntity);
 		}
 	}
 	

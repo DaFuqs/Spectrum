@@ -2,8 +2,8 @@
   "parent": "minecraft:block/block",
   "textures": {
     "2": "spectrum:block/moonstone_chiseled_calcite",
-    "3": "spectrum:block/polished_calcite",
-    "particle": "spectrum:block/moonstone_chiseled_calcite"
+    "3": "spectrum:block/calcite_cap",
+    "particle": "spectrum:block/calcite_cap"
   },
   "elements": [
     {

@@ -1,10 +1,10 @@
 package de.dafuqs.spectrum.recipe.potion_workshop;
 
+import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.potion_workshop.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.matchbooks.recipe.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
@@ -15,7 +15,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public abstract class PotionWorkshopRecipe extends GatedStackSpectrumRecipe {
+public abstract class PotionWorkshopRecipe extends GatedStackSpectrumRecipe<Inventory> {
 	
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/potion_workshop");
 	public static final int[] INGREDIENT_SLOTS = new int[]{2, 3, 4};
@@ -48,12 +48,6 @@ public abstract class PotionWorkshopRecipe extends GatedStackSpectrumRecipe {
 			}
 		}
 		return ingredients;
-	}
-	
-	protected void addIngredients(DefaultedList<Ingredient> ingredients) {
-		ingredients.add(this.ingredient1.getIngredient());
-		ingredients.add(this.ingredient2.getIngredient());
-		ingredients.add(this.ingredient3.getIngredient());
 	}
 	
 	protected void addIngredientStacks(DefaultedList<IngredientStack> ingredients) {

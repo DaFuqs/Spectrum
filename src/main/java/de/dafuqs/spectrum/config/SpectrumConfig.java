@@ -18,12 +18,31 @@ public class SpectrumConfig implements ConfigData {
 	@Comment("The reverb density for sound effects in Spectrum's dimension")
 	public float DimensionReverbDensity = 0.5F;
 	
-	@Comment("Mod Integration Packs to not load (in case of mod compat errors)")
+	@Comment("Graphical options for spectrum's dimension")
+	public boolean WindSim = true;
+	public boolean ReducedParticles = false;
+	
+	@Comment("Affects how often the wind simulation updates - A lower number makes the simulation smoother, but increases the performance impact significantly")
+	public int WindSimInterval = 3;
+
+	@Comment("Story accurate dimension lighting. Deepens the dimension's darkness and prevents night vision from cutting through it. WARNING - This makes traversal significantly harder")
+	public boolean ExtraDarkDimension = false;
+	
+	@Comment("Items transported by a Pastel Network spawn particles")
+	public boolean PastelNetworkParticles = true;
+	
+	@Comment("Adjusts the general brightness of the dimension (an increase of 1 is a lot, for reference)")
+	public float DimensionBrightnessMod = 1.0F;
+	
+	@Comment("Mod Integration Packs to not load (in case of mod compat errors). Put the mod id of the mod with integration pack conflict here")
 	public List<String> IntegrationPacksToSkipLoading = new ArrayList<>();
 	
 	@Comment("Add some advanced tooltips to items, like if Sculk Shriekers are able to summon the Warden")
 	public boolean AddItemTooltips = true;
-	
+
+	@Comment("Replaces the ornate models of spectrum's transfer system with something simpler for increased visibility. Great for technical players!")
+	public boolean MinimalNodes = false;
+
 	@Comment("""
 			The vanilla anvil caps enchantment levels at the max level for the enchantment
 			So enchanted books that exceed the enchantments natural max level get capped
@@ -44,9 +63,17 @@ public class SpectrumConfig implements ConfigData {
 	@Comment("Worlds where lightning strikes can spawn Storm Stones")
 	public List<String> StormStonesWorlds = new ArrayList<>();
 	
-	@Comment("chance for a lightning strike to spawn a Storm Stone")
+	@Comment("Chance for a lightning strike to spawn a Storm Stone")
 	public float StormStonesChance = 0.4F;
-	
+
+	@Comment("""
+			Enables quitoxic reed tag-based spawning.
+			By default, the reeds spawn in any biome that is
+			wet, hot, and not an ocean.
+			This can be swapped to using a tag, for more delicate filtering.
+			""")
+	public boolean QuitoxicSpawnTag = false;
+
 	@Comment("""
 			Shooting star spawns are checked every night between time 13000 and 22000, every 100 ticks (so 100 chances per night).
 			By default, there is a 0.0075 ^= 0.75 % chance at each of those check times. Making it ~1 shooting star spawn
@@ -94,6 +121,10 @@ public class SpectrumConfig implements ConfigData {
 	@Comment("The audio volume for Spectrums crafting blocks. Set to 0.0 to turn those sounds off completely.")
 	public float BlockSoundVolume = 0.5F;
 	
+	@ConfigEntry.Gui.Tooltip
+	@Comment("When empty, enchantments that the player has not unlocked show up with a scattered name. You can use a different name here")
+	public String NameForUnrevealedEnchantments = "";
+	
 	@Comment("""
 			Enable or disable specific enchantments. Resonance and Voiding can not be disabled.
 			This does only disable the registration of said Enchantments, not all recipes based on them (except for Enchantment Upgrade Recipes)
@@ -113,6 +144,7 @@ public class SpectrumConfig implements ConfigData {
 	public boolean SteadfastEnchantmentEnabled = true;
 	public boolean IndestructibleEnchantmentEnabled = true;
 	public boolean BigCatchEnchantmentEnabled = true;
+	public boolean SerendipityReelEnchantmentEnabled = true;
 	public boolean RazingEnchantmentEnabled = true;
 	public boolean InexorableEnchantmentEnabled = true;
 	
@@ -125,7 +157,8 @@ public class SpectrumConfig implements ConfigData {
 	public int CloversFavorMaxLevel = 3;
 	public int TightGripMaxLevel = 2;
 	public int BigCatchMaxLevel = 3;
-	
+	public int SerendipityReelMaxLevel = 2;
+
 	@Comment("Exuberance increases experience gained when killing mobs. With 25% bonus XP and 5 levels this would mean 2,25x XP on max level")
 	public int ExuberanceMaxLevel = 5;
 	public float ExuberanceBonusExperiencePercentPerLevel = 0.25F;
@@ -144,8 +177,8 @@ public class SpectrumConfig implements ConfigData {
 	public float TightGripAttackSpeedBonusPercentPerLevel = 0.0625F;
 	@Comment("The duration a glow ink sac gives night vision when wearing a glow vision helmet in seconds")
 	public int GlowVisionGogglesDuration = 240;
-	@Comment("If the Omni Accelerator should be able to have interactions in PvP that can drain the targets XP, modify their equipment, ...")
-	public boolean OmniAcceleratorPvP = true;
+	@Comment("If the Omni Accelerator should be able to have interactions in PvP that can drain the targets XP, modify their equipment, ... (configured via the requires_omni_accelerator_pvp_enabled item tag)")
+	public boolean OmniAcceleratorPvP = false;
 	
 	public int GemstoneArmorHelmetProtection = 3;
 	public int GemstoneArmorChestplateProtection = 7;
@@ -157,9 +190,9 @@ public class SpectrumConfig implements ConfigData {
 	public int GemstoneArmorWeaknessAmplifier = 1;
 	public int GemstoneArmorSlownessAmplifier = 1;
 	public int GemstoneArmorAbsorptionAmplifier = 0;
-	public int GemstoneArmorResistanceAmplifier = 1;
-	public int GemstoneArmorRegenerationAmplifier = 1;
-	public int GemstoneArmorSpeedAmplifier = 2;
+	public int GemstoneArmorResistanceAmplifier = 0;
+	public int GemstoneArmorRegenerationAmplifier = 0;
+	public int GemstoneArmorSpeedAmplifier = 1;
 	
 	public int BedrockArmorHelmetProtection = 5;
 	public int BedrockArmorLeggingsProtection = 9;
@@ -174,8 +207,8 @@ public class SpectrumConfig implements ConfigData {
 	@Comment("""
 			True will prevent the spread of Decay blocks in claims.
 			Only enable when necessary and communicate to your players that those blocks will not work in their claims.
-			If any player comes to the Spectrum devs claiming that decay does not spread for them and therefore they could not progress
-			without them gotten told that, your will get put on the 'bad pack devs' list and this config setting removed again
+			If any player comes to the Spectrum devs claiming that decay does not spread for them, and therefore they could not progress
+			You will get put on the 'bad pack devs' list and this config setting removed again
 			""")
 	public boolean DecayIsStoppedByClaimMods = false;
 	
@@ -193,7 +226,7 @@ public class SpectrumConfig implements ConfigData {
 	public int AzureDikeHudOffsetY = 0;
 	public int AzureDikeHudOffsetYWithArmor = -10;
 	public int AzureDikeHudOffsetYForEachRowOfExtraHearts = -10;
-	
+
 	@Override
 	public void validatePostLoad() {
 		if (VanillaRecipeCraftingTimeTicks <= 0) {
@@ -235,6 +268,9 @@ public class SpectrumConfig implements ConfigData {
 		if (BigCatchMaxLevel <= 0) {
 			BigCatchMaxLevel = 3;
 		}
+		if (SerendipityReelMaxLevel <= 0) {
+			SerendipityReelMaxLevel = 2;
+		}
 		
 		if (ShootingStarWorlds.isEmpty()) {
 			ShootingStarWorlds.add("minecraft:overworld");
@@ -245,6 +281,12 @@ public class SpectrumConfig implements ConfigData {
 			StormStonesWorlds.add("minecraft:overworld");
 			StormStonesWorlds.add("starry_skies:overworld");
 			StormStonesWorlds.add("paradise_lost:paradise_lost");
+		}
+		
+		if (WindSimInterval <= 0) {
+			WindSimInterval = 1;
+		} else if (WindSimInterval > 10) {
+			WindSimInterval = 10;
 		}
 	}
 	

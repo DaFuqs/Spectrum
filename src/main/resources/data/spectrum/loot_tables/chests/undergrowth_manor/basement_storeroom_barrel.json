@@ -1,0 +1,221 @@
+{
+    "type": "minecraft:chest",
+    "pools": [
+        {
+            "rolls": 1,
+            "bonus_rolls": 0.3,
+            "entries": [
+              {
+                "type": "minecraft:item",
+                "name": "minecraft:blaze_powder",
+                "functions": [
+                  {
+                    "function": "minecraft:set_count",
+                    "count": {
+                      "min": 0,
+                      "max": 6
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "minecraft:item",
+                "name": "minecraft:diamond",
+                "functions": [
+                  {
+                    "function": "minecraft:set_count",
+                    "count": {
+                      "min": 0,
+                      "max": 3
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "minecraft:item",
+                "name": "minecraft:emerald",
+                "functions": [
+                  {
+                    "function": "minecraft:set_count",
+                    "count": {
+                      "min": 0,
+                      "max": 3
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "minecraft:item",
+                "name": "spectrum:raw_malachite",
+                "functions": [
+                  {
+                    "function": "minecraft:set_count",
+                    "count": {
+                      "min": 0,
+                      "max": 2
+                    }
+                  }
+                ]
+              }
+            ]
+        },
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:loot_table",
+                    "name": "spectrum:chests/sub_tables/sleep_infused_beverages",
+                    "conditions": [
+                        {
+                            "condition": "minecraft:random_chance",
+                            "chance": 0.4
+                        }
+                    ]
+                }
+            ],
+          "conditions": [
+            {
+              "condition": "minecraft:entity_properties",
+              "entity": "this",
+              "predicate": {
+                "type_specific": {
+                  "type": "player",
+                  "advancements": {
+                    "spectrum:triggers/confirmed_drinking_age": true
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+            "rolls": 2,
+            "entries": [
+              {
+                "type": "minecraft:item",
+                "name": "minecraft:copper_ingot"
+              },
+              {
+                "type": "minecraft:item",
+                "name": "minecraft:iron_ingot"
+              },
+              {
+                "type": "minecraft:item",
+                "name": "minecraft:gold_ingot"
+              },
+              {
+                "type": "minecraft:item",
+                "name": "spectrum:pyrite_chunk"
+              }
+            ],
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": {
+                  "min": 2,
+                  "max": 6
+                }
+              }
+            ]
+        },
+        {
+            "rolls": 3,
+            "entries": [
+              {
+                "type": "minecraft:item",
+                "name": "minecraft:string",
+                "weight": 2,
+                "functions": [
+                  {
+                    "function": "minecraft:set_count",
+                    "count": {
+                      "min": 2,
+                      "max": 6
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "minecraft:item",
+                "name": "minecraft:stick",
+                "weight": 2,
+                "functions": [
+                  {
+                    "function": "minecraft:set_count",
+                    "count": {
+                      "min": 2,
+                      "max": 6
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "minecraft:item",
+                "name": "minecraft:coal",
+                "functions": [
+                  {
+                    "function": "minecraft:set_count",
+                    "count": {
+                      "min": 2,
+                      "max": 6
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "minecraft:item",
+                "name": "minecraft:glass_bottle",
+                "weight": 2,
+                "functions": [
+                  {
+                    "function": "minecraft:set_count",
+                    "count": {
+                      "min": 4,
+                      "max": 8
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "minecraft:item",
+                "name": "minecraft:bread",
+                "functions": [
+                  {
+                    "function": "minecraft:set_count",
+                    "count": {
+                      "min": 4,
+                      "max": 8
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "minecraft:item",
+                "name": "minecraft:gold_nugget",
+                "functions": [
+                  {
+                    "function": "minecraft:set_count",
+                    "count": {
+                      "min": 0,
+                      "max": 4
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "minecraft:item",
+                "name": "minecraft:iron_nugget",
+                "functions": [
+                  {
+                    "function": "minecraft:set_count",
+                    "count": {
+                      "min": 0,
+                      "max": 4
+                    }
+                  }
+                ]
+              }
+            ]
+        }
+    ]
+}

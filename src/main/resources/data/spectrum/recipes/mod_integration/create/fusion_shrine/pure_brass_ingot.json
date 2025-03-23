@@ -1,0 +1,34 @@
+{
+  "type": "spectrum:fusion_shrine",
+  "time": 1200,
+  "experience": 1.0,
+  "fluid": {
+    "fluid": "spectrum:dragonrot"
+  },
+  "ingredients": [
+    {
+      "item": "spectrum:pure_copper"
+    },
+    {
+      "item": "spectrum:pure_zinc"
+    }
+  ],
+  "result": {
+    "item": "create:brass_ingot",
+    "count": 4
+  },
+  "required_advancement": "spectrum:lategame/collect_pure_resource",
+  "world_conditions": [],
+  "start_crafting_effect": "nothing",
+  "during_crafting_effects": [
+    "nothing",
+    "visual_explosions_on_shrine"
+  ],
+  "finish_crafting_effect": "single_visual_explosion_on_shrine",
+  "fabric:load_conditions": [
+		{
+			"condition": "spectrum:integration_pack_active",
+			"integration_pack": "create"
+		}
+  ]
+}

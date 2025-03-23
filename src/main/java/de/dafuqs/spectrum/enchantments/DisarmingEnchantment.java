@@ -1,16 +1,16 @@
 package de.dafuqs.spectrum.enchantments;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.mixin.accessors.*;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.mob.*;
-import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.*;
-import net.minecraft.util.collection.*;
-import net.minecraft.world.World;
+
+import java.util.*;
 
 public class DisarmingEnchantment extends SpectrumEnchantment {
 	
@@ -18,31 +18,7 @@ public class DisarmingEnchantment extends SpectrumEnchantment {
 		super(weight, EnchantmentTarget.WEAPON, slotTypes, unlockAdvancementIdentifier);
 	}
 	
-	public static void disarmPlayer(PlayerEntity player) {
-		int equipmentSlotCount = EquipmentSlot.values().length;
-		int randomSlot = (int) (Math.random() * equipmentSlotCount);
-		int slotsChecked = 0;
-		World world = player.getWorld();
-		while (slotsChecked < equipmentSlotCount) {
-			EquipmentSlot slot = EquipmentSlot.values()[randomSlot];
-			ItemStack equippedStack = player.getEquippedStack(slot);
-			if (!equippedStack.isEmpty()) {
-				ItemEntity itemEntity = new ItemEntity(world, player.getX(), player.getY(), player.getZ(), equippedStack);
-				itemEntity.setVelocity(world.random.nextTriangular(0.0, 0.11485000171139836), world.random.nextTriangular(0.2, 0.11485000171139836), world.random.nextTriangular(0.0, 0.11485000171139836));
-				itemEntity.setPickupDelay(120);
-				world.spawnEntity(itemEntity);
-				
-				player.equipStack(slot, ItemStack.EMPTY);
-				world.playSound(null, player.getBlockPos(), SoundEvents.ITEM_BUNDLE_DROP_CONTENTS, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-				break;
-			}
-			
-			randomSlot = (randomSlot + 1) % equipmentSlotCount;
-			slotsChecked++;
-		}
-	}
-	
-	public static void disarmEntity(LivingEntity livingEntity, DefaultedList<ItemStack> syncedArmorStacks) {
+	public static void disarmEntity(LivingEntity livingEntity) {
 		// since endermen save their carried block as blockState, not in hand
 		// we have to use custom logic for them
 		if (livingEntity instanceof EndermanEntity endermanEntity) {
@@ -57,34 +33,24 @@ public class DisarmingEnchantment extends SpectrumEnchantment {
 			return;
 		}
 		
-		int randomSlot = (int) (Math.random() * 6);
-		int slotsChecked = 0;
-		while (slotsChecked < 6) {
-			if (randomSlot == 5) {
-				if (livingEntity.getMainHandStack() != null && !livingEntity.getMainHandStack().isEmpty()) {
-					livingEntity.dropStack(livingEntity.getMainHandStack());
-					livingEntity.setStackInHand(Hand.MAIN_HAND, ItemStack.EMPTY);
-					livingEntity.getWorld().playSound(null, livingEntity.getBlockPos(), SoundEvents.ITEM_BUNDLE_DROP_CONTENTS, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-					break;
-				}
-			} else if (randomSlot == 4) {
-				if (livingEntity.getOffHandStack() != null && !livingEntity.getOffHandStack().isEmpty()) {
-					livingEntity.dropStack(livingEntity.getOffHandStack());
-					livingEntity.setStackInHand(Hand.OFF_HAND, ItemStack.EMPTY);
-					livingEntity.getWorld().playSound(null, livingEntity.getBlockPos(), SoundEvents.ITEM_BUNDLE_DROP_CONTENTS, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-					break;
-				}
-			} else {
-				if (syncedArmorStacks != null && !syncedArmorStacks.get(randomSlot).isEmpty()) {
-					livingEntity.dropStack(syncedArmorStacks.get(randomSlot));
-					syncedArmorStacks.set(randomSlot, ItemStack.EMPTY);
-					livingEntity.getWorld().playSound(null, livingEntity.getBlockPos(), SoundEvents.ITEM_BUNDLE_DROP_CONTENTS, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-					break;
-				}
+		// choose a random slot and drop its content
+		List<EquipmentSlot> slots = new ArrayList<>(List.of(EquipmentSlot.values()));
+		Collections.shuffle(slots);
+		for (EquipmentSlot slot : slots) {
+			ItemStack slotStack = livingEntity.getEquippedStack(slot);
+			if (slotStack.isEmpty()) {
+				continue;
 			}
 			
-			randomSlot = (randomSlot + 1) % 6;
-			slotsChecked++;
+			// set to cannot drop? Skip that slot
+			if (livingEntity instanceof MobEntity mobEntity && ((MobEntityAccessor) mobEntity).invokeGetDropChance(slot) <= 0) {
+				continue;
+			}
+			
+			livingEntity.dropStack(slotStack);
+			livingEntity.equipStack(slot, ItemStack.EMPTY);
+			livingEntity.getWorld().playSound(null, livingEntity.getBlockPos(), SoundEvents.ITEM_BUNDLE_DROP_CONTENTS, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+			break;
 		}
 	}
 	

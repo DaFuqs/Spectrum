@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "compacting",
+  "ingredients": [
+    {
+      "item": "spectrum:ash"
+    }
+  ],
+  "result": {
+    "item": "spectrum:ash_flakes",
+    "count": 4
+  }
+}

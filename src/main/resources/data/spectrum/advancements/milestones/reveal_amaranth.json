@@ -5,6 +5,18 @@
       "conditions": {
         "advancement_identifier": "spectrum:solve_color_mixing_preservation_ruin"
       }
+    },
+    "collected_amaranth": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:collect_amaranth"
+      }
     }
-  }
+  },
+  "requirements": [
+    [
+      "solved_color_mixing_preservation_ruin",
+      "collected_amaranth"
+    ]
+  ]
 }

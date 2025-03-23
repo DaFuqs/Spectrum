@@ -5,21 +5,25 @@ import de.dafuqs.spectrum.items.tools.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.fabricmc.fabric.api.networking.v1.*;
+import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
 import net.minecraft.network.*;
 import net.minecraft.recipe.*;
+import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
 
 @Environment(EnvType.CLIENT)
 public class SpectrumC2SPacketSender {
 	
-	public static void sendGuidebookHintBoughtPaket(Ingredient ingredient) {
+	public static void sendGuidebookHintBoughtPacket(Identifier completionAdvancement, Ingredient ingredient) {
 		PacketByteBuf packetByteBuf = PacketByteBufs.create();
+		packetByteBuf.writeIdentifier(completionAdvancement);
 		ingredient.write(packetByteBuf);
 		ClientPlayNetworking.send(SpectrumC2SPackets.GUIDEBOOK_HINT_BOUGHT, packetByteBuf);
 	}
 	
-	public static void sendConfirmationButtonPressedPaket(String queryToTrigger) {
+	public static void sendConfirmationButtonPressedPacket(String queryToTrigger) {
 		PacketByteBuf packetByteBuf = PacketByteBufs.create();
 		packetByteBuf.writeString(queryToTrigger);
 		ClientPlayNetworking.send(SpectrumC2SPackets.CONFIRMATION_BUTTON_PRESSED, packetByteBuf);
@@ -37,7 +41,7 @@ public class SpectrumC2SPacketSender {
 			packetByteBuf.writeBoolean(false);
 		} else {
 			packetByteBuf.writeBoolean(true);
-			packetByteBuf.writeString(color.toString());
+			packetByteBuf.writeIdentifier(color.getID());
 		}
 		ClientPlayNetworking.send(SpectrumC2SPackets.INK_COLOR_SELECTED, packetByteBuf);
 	}
@@ -47,5 +51,15 @@ public class SpectrumC2SPacketSender {
         packetByteBuf.writeInt(toggle.ordinal());
         ClientPlayNetworking.send(SpectrumC2SPackets.WORKSTAFF_TOGGLE_SELECTED, packetByteBuf);
     }
+
+	@SuppressWarnings("UnstableApiUsage")
+    public static void sendShadowSlot(int syncId, int id, ItemStack shadowStack) {
+		PacketByteBuf packetByteBuf = PacketByteBufs.create();
+		packetByteBuf.writeInt(syncId);
+		packetByteBuf.writeInt(id);
+		ItemVariant.of(shadowStack).toPacket(packetByteBuf);
+		packetByteBuf.writeInt(shadowStack.getCount());
+		ClientPlayNetworking.send(SpectrumC2SPackets.SET_SHADOW_SLOT, packetByteBuf);
+	}
 	
 }

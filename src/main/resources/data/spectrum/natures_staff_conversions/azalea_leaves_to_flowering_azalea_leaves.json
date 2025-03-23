@@ -1,4 +1,4 @@
 {
   "input_block": "minecraft:azalea_leaves",
-  "output_state": "minecraft:azalea_leaves[persistent=true]"
+  "output_state": "minecraft:flowering_azalea_leaves[persistent=true]"
 }

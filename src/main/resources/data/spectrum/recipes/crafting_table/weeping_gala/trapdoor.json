@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_trapdoor",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "spectrum:weeping_gala_planks"
+    }
+  },
+  "result": {
+    "item": "spectrum:weeping_gala_trapdoor",
+    "count": 2
+  }
+}

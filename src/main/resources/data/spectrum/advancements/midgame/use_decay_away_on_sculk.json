@@ -1,0 +1,52 @@
+{
+  "parent": "spectrum:midgame/craft_bottle_of_decay_away",
+  "display": {
+    "icon": {
+      "item": "minecraft:sculk_sensor"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.use_decay_away_on_sculk.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.use_decay_away_on_sculk.description"
+    }
+  },
+  "criteria": {
+    "used_decay_away_on_sculk": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": [
+                  "minecraft:sculk",
+                  "minecraft:sculk_vein",
+                  "minecraft:sculk_catalyst",
+                  "minecraft:sculk_shrieker",
+                  "minecraft:sculk_sensor"
+                ]
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "items": [
+                "spectrum:bottle_of_decay_away"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/craft_bottle_of_decay_away"
+      }
+    }
+  }
+}

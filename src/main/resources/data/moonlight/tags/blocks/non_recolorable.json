@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "#spectrum:pigment_blocks",
+    "#spectrum:colored_buttons",
+    "#spectrum:colored_fence_gates",
+    "#spectrum:colored_fences",
+    "#spectrum:colored_leaves",
+    "#spectrum:colored_logs",
+    "#spectrum:colored_planks",
+    "#spectrum:colored_pressure_plates",
+    "#spectrum:colored_saplings",
+    "#spectrum:colored_slabs",
+    "#spectrum:colored_stairs",
+    "#spectrum:colored_wood"
+  ]
+}

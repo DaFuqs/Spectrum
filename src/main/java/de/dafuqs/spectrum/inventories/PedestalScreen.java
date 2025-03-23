@@ -1,6 +1,9 @@
 package de.dafuqs.spectrum.inventories;
 
+import com.klikli_dev.modonomicon.api.multiblock.*;
+import com.klikli_dev.modonomicon.client.render.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.compat.modonomicon.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.*;
@@ -11,7 +14,6 @@ import net.minecraft.entity.player.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
-import vazkii.patchouli.api.*;
 
 public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
 	
@@ -97,12 +99,12 @@ public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
 		MinecraftClient client = MinecraftClient.getInstance();
 		if (mouseOverInformationIcon((int) mouseX, (int) mouseY)) {
-			IMultiblock currentMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
-			IMultiblock multiblockToDisplay = PatchouliAPI.get().getMultiblock(SpectrumMultiblocks.getDisplayStructureIdentifierForTier(maxPedestalRecipeTierForVariant, client.player));
+			Multiblock currentMultiBlock = MultiblockPreviewRenderer.getMultiblock();
+			Multiblock multiblockToDisplay = SpectrumMultiblocks.get(maxPedestalRecipeTierForVariant.getStructureID(client.player));
 			if (currentMultiBlock == multiblockToDisplay) {
-				PatchouliAPI.get().clearMultiblock();
+				ModonomiconHelper.clearRenderedMultiblock(currentMultiBlock);
 			} else {
-				PatchouliAPI.get().showMultiblock(multiblockToDisplay, SpectrumMultiblocks.getPedestalStructureText(maxPedestalRecipeTierForVariant), this.handler.getPedestalPos().down(2), BlockRotation.NONE);
+				ModonomiconHelper.renderMultiblock(multiblockToDisplay, maxPedestalRecipeTierForVariant.getStructureText(), this.handler.getPedestalPos().down(2), BlockRotation.NONE);
 			}
 			return true;
 		} else {

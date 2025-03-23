@@ -40,6 +40,7 @@ public class FloatBlock extends FallingBlock {
 		if (!world.isClient) {
 			if (gravityMod == 0) {
 				launch(world, pos);
+				return;
 			}
 
 			BlockPos collisionBlockPos;
@@ -48,8 +49,8 @@ public class FloatBlock extends FallingBlock {
 			} else {
 				collisionBlockPos = pos.down();
 			}
-
-			if ((world.isAir(collisionBlockPos) || canFallThrough(world.getBlockState(collisionBlockPos)))) {
+			
+			if (world.isAir(collisionBlockPos) || canFallThrough(world.getBlockState(collisionBlockPos))) {
 				launch(world, pos);
 			}
 		}

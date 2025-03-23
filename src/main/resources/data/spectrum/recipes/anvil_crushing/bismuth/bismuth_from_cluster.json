@@ -4,10 +4,10 @@
     "item": "spectrum:bismuth_cluster"
   },
   "crushedItemsPerPointOfDamage": 0.75,
-  "experience": 0.5,
+  "experience": 1.0,
   "result": {
     "item": "spectrum:bismuth_crystal",
-    "count": 5
+    "count": 4
   },
   "particleEffectIdentifier": "enchanted_hit",
   "particleCount": 10,

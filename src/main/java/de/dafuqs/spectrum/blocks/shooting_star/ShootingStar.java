@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.shooting_star;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
@@ -11,21 +10,19 @@ import org.joml.*;
 
 public interface ShootingStar {
 
-	ShootingStar.Type getShootingStarType();
-
 	enum Type {
-		GLISTERING("glistering"),
-		FIERY("fiery"),
-		COLORFUL("colorful"),
-		PRISTINE("pristine"),
-		GEMSTONE("gemstone");
-
-		public static final Identifier BOUNCE_LOOT_TABLE = SpectrumCommon.locate("entity/shooting_star/shooting_star_bounce");
+		GLISTERING("glistering", SpectrumLootTables.GLISTERING_SHOOTING_STAR),
+		FIERY("fiery", SpectrumLootTables.FIERY_SHOOTING_STAR),
+		COLORFUL("colorful", SpectrumLootTables.COLORFUL_SHOOTING_STAR),
+		PRISTINE("pristine", SpectrumLootTables.PRISTINE_SHOOTING_STAR),
+		GEMSTONE("gemstone", SpectrumLootTables.GEMSTONE_SHOOTING_STAR);
 
 		private final String name;
-
-		Type(String name) {
+		private final Identifier lootTable;
+		
+		Type(String name, Identifier lootTable) {
 			this.name = name;
+			this.lootTable = lootTable;
 		}
 
 		public static Type getWeightedRandomType(@NotNull Random random) {
@@ -66,28 +63,11 @@ public interface ShootingStar {
 
 		@Contract("_ -> new")
 		public static @NotNull Identifier getLootTableIdentifier(int index) {
-			return getLootTableIdentifier(values()[index]);
+			return values()[index].getLootTableIdentifier();
 		}
-
-		@Contract("_ -> new")
-		public static @NotNull Identifier getLootTableIdentifier(@NotNull ShootingStar.Type type) {
-			switch (type) {
-				case FIERY -> {
-					return SpectrumCommon.locate("entity/shooting_star/fiery_shooting_star");
-				}
-				case COLORFUL -> {
-					return SpectrumCommon.locate("entity/shooting_star/colorful_shooting_star");
-				}
-				case GEMSTONE -> {
-					return SpectrumCommon.locate("entity/shooting_star/gemstone_shooting_star");
-				}
-				case PRISTINE -> {
-					return SpectrumCommon.locate("entity/shooting_star/pristine_shooting_star");
-				}
-				default -> {
-					return SpectrumCommon.locate("entity/shooting_star/glistering_shooting_star");
-				}
-			}
+		
+		public @NotNull Identifier getLootTableIdentifier() {
+			return this.lootTable;
 		}
 
 		public String getName() {
@@ -131,7 +111,7 @@ public interface ShootingStar {
 					}
 				}
 				case COLORFUL -> {
-					return ColorHelper.getRGBVec(DyeColor.values()[random.nextInt(DyeColor.values().length)]);
+					return ColorHelper.getRGBVec(ColorHelper.VANILLA_DYE_COLORS.get(random.nextInt(ColorHelper.VANILLA_DYE_COLORS.size())));
 				}
 				case FIERY -> {
 					int r = random.nextInt(2);

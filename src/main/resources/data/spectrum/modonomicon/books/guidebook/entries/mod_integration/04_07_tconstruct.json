@@ -1,0 +1,55 @@
+{
+  "name": "book.spectrum.guidebook.mod_integration.tconstruct.name",
+  "icon": "tconstruct:smeltery_controller",
+  "condition": {
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:mod_loaded",
+        "mod_id": "tconstruct"
+      },
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:place_pedestal"
+      }
+    ]
+  },
+  "category": "spectrum:mod_integration",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 4,
+  "y": 7,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.mod_integration.tconstruct.name",
+      "text": "book.spectrum.guidebook.mod_integration.tconstruct.page0.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.auto_harvesting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/crystal_apothecary"
+      },
+      "item": {
+        "item": "spectrum:crystal_apothecary"
+      },
+      "text": "book.spectrum.guidebook.crystal_apothecary_harvesting"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.moving_budding_blocks",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/enchantments/resonance_usage"
+      },
+      "item": {
+        "item": "spectrum:resonant_pickaxe"
+      },
+      "text": "book.spectrum.guidebook.resonance_harvesting"
+    }
+  ]
+}

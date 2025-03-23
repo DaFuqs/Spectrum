@@ -1,9 +1,0 @@
-{
-  "type": "spectrum:ink_converting",
-  "ingredient": {
-    "item": "minecraft:black_dye"
-  },
-  "color": "black",
-  "amount": 5,
-  "required_advancement": "spectrum:hidden/collect_pigment/collect_black_pigment"
-}

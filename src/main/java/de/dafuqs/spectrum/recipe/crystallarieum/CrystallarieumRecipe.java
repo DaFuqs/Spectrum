@@ -16,7 +16,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class CrystallarieumRecipe extends GatedSpectrumRecipe {
+public class CrystallarieumRecipe extends GatedSpectrumRecipe<Inventory> {
 
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/crystallarieum");
 
@@ -78,6 +78,7 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe {
 	}
 	
 	@Override
+	@Deprecated
 	public ItemStack craft(Inventory inv, DynamicRegistryManager drm) {
 		return ItemStack.EMPTY;
 	}
@@ -164,6 +165,18 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe {
 	
 	public List<ItemStack> getAdditionalOutputs(DynamicRegistryManager registryManager) {
 		return additionalOutputs;
+	}
+	
+	public Optional<BlockState> getNextState(CrystallarieumRecipe recipe, BlockState currentState) {
+		for (Iterator<BlockState> it = recipe.getGrowthStages().iterator(); it.hasNext(); ) {
+			BlockState state = it.next();
+			if (state.equals(currentState)) {
+				if (it.hasNext()) {
+					return Optional.of(it.next());
+				}
+			}
+		}
+		return Optional.empty();
 	}
 
 }

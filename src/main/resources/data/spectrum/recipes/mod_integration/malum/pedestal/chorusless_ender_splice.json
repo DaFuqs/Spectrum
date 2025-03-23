@@ -1,0 +1,43 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 240,
+  "tier": "advanced",
+  "magenta": 4,
+  "yellow": 0,
+  "cyan": 4,
+  "black": 0,
+  "white": 0,
+  "experience": 2.0,
+  "pattern": [
+    "PCP",
+    "ETE",
+    "PCP"
+  ],
+  "key": {
+    "T": {
+      "item": "spectrum:radiating_ender"
+    },
+    "C": {
+      "item": "malum:warp_flux"
+    },
+    "E": {
+      "item": "spectrum:neolith"
+    },
+    "P": {
+      "item": "spectrum:cyan_pigment"
+    }
+  },
+  "result": {
+    "item": "spectrum:ender_splice",
+    "count": 4
+  },
+  "required_advancement": "spectrum:unlocks/items/ender_splice",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "malum"
+      ]
+    }
+  ]
+}

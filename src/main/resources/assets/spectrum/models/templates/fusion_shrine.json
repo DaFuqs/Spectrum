@@ -1,5 +1,4 @@
 {
-  "credit": "Made with Blockbench",
   "parent": "block/block",
   "textures": {
     "0": "spectrum:block/polished_basalt",

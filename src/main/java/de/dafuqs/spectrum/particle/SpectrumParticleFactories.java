@@ -44,7 +44,7 @@ public class SpectrumParticleFactories {
 		});
 		
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.PASTEL_TRANSMISSION, provider -> (pastelTransmissionParticleEffect, world, x, y, z, velocityX, velocityY, velocityZ) -> {
-			PastelTransmissionParticle particle = new PastelTransmissionParticle(MinecraftClient.getInstance().getItemRenderer(), world, x, y, z, pastelTransmissionParticleEffect.getNodePositions(), pastelTransmissionParticleEffect.getStack(), pastelTransmissionParticleEffect.getTravelTime());
+			PastelTransmissionParticle particle = new PastelTransmissionParticle(MinecraftClient.getInstance().getItemRenderer(), world, x, y, z, pastelTransmissionParticleEffect.getNodePositions(), pastelTransmissionParticleEffect.getStack(), pastelTransmissionParticleEffect.getTravelTime(), pastelTransmissionParticleEffect.getColor());
 			particle.setSprite(provider);
 			float[] color = PastelRenderHelper.unpackNormalizedColor(pastelTransmissionParticleEffect.getColor());
 			particle.setColor(color[1], color[2], color[3]);
@@ -93,7 +93,11 @@ public class SpectrumParticleFactories {
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.DRAKEBLOOD_DIKE_RUNES_MAJOR, LitParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.MALACHITE_DIKE_RUNES, LitParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.MALACHITE_DIKE_RUNES_MAJOR, LitParticle.Factory::new);
-		
+
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.AZURE_AURA, AzureAuraParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.AZURE_MOTE, AzureMoteParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.AZURE_MOTE_SMALL, AzureMoteParticle.Factory::new);
+
 		// Fluid Splash
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.MUD_SPLASH, WaterSplashParticle.SplashFactory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.LIQUID_CRYSTAL_SPLASH, WaterSplashParticle.SplashFactory::new);
@@ -214,6 +218,15 @@ public class SpectrumParticleFactories {
 		//Azzyy sucked cock here
 		//Can confirm this sucks ~Daf
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.LIGHT_TRAIL, LightTrailparticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.FALLING_ASH, FallingAshParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.FIREFLY, FireflyParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.BLOODFLY, BloodflyParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.QUARTZ_FLUFF, QuartzFluffParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.LIGHT_RAIN, RaindropParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.HEAVY_RAIN, RaindropParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.RAIN_SPLASH, TranslucentSplashParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.RAIN_RIPPLE, RainRippleParticle.Factory::new);
+
 		
 		// Since these can reference other particle types, they should always come last
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.DYNAMIC, DynamicParticle.Factory::new);

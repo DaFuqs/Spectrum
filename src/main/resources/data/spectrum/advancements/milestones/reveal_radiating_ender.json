@@ -1,9 +1,15 @@
 {
   "criteria": {
+    "crafted_using_pedestal": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:craft_using_pedestal"
+      }
+    },
     "collected_radiating_ender": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:get_radiating_ender"
+        "advancement_identifier": "spectrum:collect_radiating_ender"
       }
     }
   }

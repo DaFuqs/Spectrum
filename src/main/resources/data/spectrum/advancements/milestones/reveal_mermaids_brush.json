@@ -1,8 +1,10 @@
 {
   "criteria": {
     "collected_mermaids_gem": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:collect_mermaids_gem" }
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:collect_mermaids_gem"
+      }
     }
   }
 }

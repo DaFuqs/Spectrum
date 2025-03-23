@@ -59,6 +59,11 @@ public class FrenzyStatusEffect extends SpectrumStatusEffect implements Stackabl
 		if (!scoredKillInTime && lastKillTickDifference % REQUIRE_KILL_EVERY_X_TICKS == 0) {
 			updateAttributes(entity, amplifier, -1);
 		}
+		
+		var potency = (SleepStatusEffect.getSleepScaling(entity) * (amplifier + 1) / 3) / 20;
+		if (potency > 0 && entity.getHealth() > potency) {
+			entity.damage(SpectrumDamageTypes.sleep(entity.getWorld(), null), potency);
+		}
 	}
 	
 	public void onKill(LivingEntity livingEntity, int amplifier) {

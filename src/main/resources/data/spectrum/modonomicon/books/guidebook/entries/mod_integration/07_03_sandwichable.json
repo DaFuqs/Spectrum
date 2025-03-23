@@ -1,0 +1,49 @@
+{
+  "name": "book.spectrum.guidebook.mod_integration.sandwichable.name",
+  "icon": "minecraft:bread",
+  "condition": {
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:mod_loaded",
+        "mod_id": "sandwichable"
+      },
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:place_pedestal"
+      }
+    ]
+  },
+  "category": "spectrum:mod_integration",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 7,
+  "y": 3,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.mod_integration.sandwichable.page0.text",
+      "title": "book.spectrum.guidebook.mod_integration.sandwichable.name"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:mod_integration/sandwichable/pedestal/ancient_meatloaf_sandwich"
+    },
+    {
+      "type": "spectrum:collection",
+      "title": "book.spectrum.guidebook.mod_integration.sandwichable.salty_resonance.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/enchantments/resonance_usage"
+      },
+      "items": [
+        "sandwichable:salty_rocks",
+        "sandwichable:salty_stone"
+      ],
+      "text": "book.spectrum.guidebook.mod_integration.sandwichable.salty_resonance.text"
+    }
+
+  ]
+}

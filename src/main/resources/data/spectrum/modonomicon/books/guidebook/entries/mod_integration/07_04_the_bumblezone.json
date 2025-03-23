@@ -1,0 +1,65 @@
+{
+  "name": "book.spectrum.guidebook.mod_integration.the_bumblezone.name",
+  "icon": "minecraft:honeycomb",
+  "condition": {
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:mod_loaded",
+        "mod_id": "the_bumblezone"
+      },
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:place_pedestal"
+      }
+    ]
+  },
+  "category": "spectrum:mod_integration",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 7,
+  "y": 4,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.mod_integration.the_bumblezone.page0.text",
+      "title": "book.spectrum.guidebook.mod_integration.the_bumblezone.name"
+    },
+    {
+      "type": "spectrum:collection",
+      "title": "book.spectrum.guidebook.mod_integration.the_bumblezone.essence_ink.title",
+      "items": [
+        "the_bumblezone:essence_raging",
+        "the_bumblezone:essence_knowing",
+        "the_bumblezone:essence_calming",
+        "the_bumblezone:essence_life",
+        "the_bumblezone:essence_radiance",
+        "the_bumblezone:essence_continuity"
+      ],
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:mod_integration/the_bumblezone/any_essence"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.the_bumblezone.essence_ink.text"
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "recipe_id": "spectrum:mod_integration/the_bumblezone/potion_workshop_brewing/alt_luck"
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "recipe_id": "spectrum:mod_integration/the_bumblezone/potion_workshop_brewing/long_poison"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "recipe_id": "spectrum:mod_integration/the_bumblezone/titration_barrel/crown_jewel",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:triggers/confirmed_drinking_age"
+      }
+    }
+
+  ]
+}

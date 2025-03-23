@@ -13,7 +13,7 @@ public interface NaturesStaffTriggered {
 	 * @return if the staff can be used on the state
 	 */
 	boolean canUseNaturesStaff(World world, BlockPos pos, BlockState state);
-
+	
 	/**
 	 * @return if effects should play on that pos
 	 */

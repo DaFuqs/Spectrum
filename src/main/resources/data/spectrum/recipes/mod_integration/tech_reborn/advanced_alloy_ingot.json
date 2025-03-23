@@ -1,0 +1,22 @@
+{
+  "type": "spectrum:cinderhearth",
+  "ingredient": {
+    "item": "techreborn:mixed_metal_ingot"
+  },
+  "results": [
+    {
+      "item": "techreborn:advanced_alloy_ingot",
+      "count": 2
+    }
+  ],
+  "experience": 0.2,
+  "time": 100,
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "techreborn"
+      ]
+    }
+  ]
+}

@@ -1,5 +1,4 @@
 {
-  "name": "spectrum:city_below/streets",
   "fallback": "minecraft:empty",
   "elements": [
     {

@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.commands;
 
-import com.mojang.brigadier.*;
+import com.mojang.brigadier.tree.*;
 import de.dafuqs.spectrum.*;
 import net.minecraft.server.command.*;
 import net.minecraft.text.*;
@@ -8,8 +8,9 @@ import net.minecraft.text.*;
 
 public class PrintConfigCommand {
 	
-	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
-		dispatcher.register(CommandManager.literal("spectrum_config").executes((context) -> execute(context.getSource())));
+	public static void register(LiteralCommandNode<ServerCommandSource> root) {
+		LiteralCommandNode<ServerCommandSource> config = CommandManager.literal("config").executes((context) -> execute(context.getSource())).build();
+		root.addChild(config);
 	}
 	
 	private static int execute(ServerCommandSource source) {
@@ -123,6 +124,10 @@ public class PrintConfigCommand {
 		if (SpectrumCommon.CONFIG.BigCatchMaxLevel != 3) {
 			anyEnchantmentSettingsChanged = true;
 			send(source, "Enchantment settings changed: BigCatchMaxLevel " + SpectrumCommon.CONFIG.BigCatchMaxLevel);
+		}
+		if (SpectrumCommon.CONFIG.SerendipityReelMaxLevel != 2) {
+			anyEnchantmentSettingsChanged = true;
+			send(source, "Enchantment settings changed: SerendipityReelMaxLevel " + SpectrumCommon.CONFIG.SerendipityReelMaxLevel);
 		}
 		if (!anyEnchantmentSettingsChanged) {
 			send(source, "Enchantment settings changed: none");

@@ -7,15 +7,6 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "conditions": [
-            {
-              "condition": "minecraft:block_state_property",
-              "block": "spectrum:amethyst_decostone",
-              "properties": {
-                "half": "lower"
-              }
-            }
-          ],
           "name": "spectrum:amethyst_decostone"
         }
       ],

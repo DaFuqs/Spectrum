@@ -103,9 +103,8 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 		protected final Text text;
 		protected final @Nullable GridEntryCallback onClickCallback;
 		
-		protected GridEntry(String text, @Nullable GridEntry.GridEntryCallback onClickCallback) {
-			MinecraftClient client = MinecraftClient.getInstance();
-			this.text = Text.translatable(text);
+		protected GridEntry(Text text, @Nullable GridEntry.GridEntryCallback onClickCallback) {
+			this.text = text;
 			this.onClickCallback = onClickCallback;
 		}
 		
@@ -113,19 +112,19 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 			return new EmptyGridEntry(callback);
 		}
 		
-		public static GridEntry textured(int textureStartX, int textureStartY, String text, @Nullable GridEntryCallback callback) {
+		public static GridEntry textured(int textureStartX, int textureStartY, Text text, @Nullable GridEntryCallback callback) {
 			return new TexturedGridEntry(textureStartX, textureStartY, text, callback);
 		}
 		
-		public static GridEntry text(Text innerText, String text, @Nullable GridEntryCallback callback) {
+		public static GridEntry text(Text innerText, Text text, @Nullable GridEntryCallback callback) {
 			return new TextGridEntry(innerText, text, callback);
 		}
 		
-		public static GridEntry colored(Vector3f color, String text, @Nullable GridEntryCallback callback) {
+		public static GridEntry colored(Vector3f color, Text text, @Nullable GridEntryCallback callback) {
 			return new ColoredGridEntry(color, text, callback);
 		}
 		
-		public static GridEntry item(Item item, String text, @Nullable GridEntryCallback callback) {
+		public static GridEntry item(Item item, Text text, @Nullable GridEntryCallback callback) {
 			return new ItemGridEntry(item, text, callback);
 		}
 		
@@ -157,7 +156,7 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 	
 	public static class EmptyGridEntry extends GridEntry {
 		protected EmptyGridEntry(@Nullable GridEntry.GridEntryCallback onClickCallback) {
-			super("", onClickCallback);
+			super(Text.empty(), onClickCallback);
 		}
 		
 		@Override
@@ -181,7 +180,7 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 	public static class ColoredGridEntry extends GridEntry {
 		protected final Vector3f color;
 		
-		private ColoredGridEntry(Vector3f color, String text, GridEntry.GridEntryCallback callback) {
+		private ColoredGridEntry(Vector3f color, Text text, GridEntry.GridEntryCallback callback) {
 			super(text, callback);
 			this.color = color;
 		}
@@ -205,7 +204,7 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 		protected final int textureStartX;
 		protected final int textureStartY;
 		
-		private TexturedGridEntry(int textureStartX, int textureStartY, @Nullable String text, GridEntry.GridEntryCallback callback) {
+		private TexturedGridEntry(int textureStartX, int textureStartY, @Nullable Text text, GridEntry.GridEntryCallback callback) {
 			super(text, callback);
 			this.textureStartX = textureStartX;
 			this.textureStartY = textureStartY;
@@ -230,7 +229,7 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 		protected final Text innerText;
 		protected final int innerHalfTextWidth;
 		
-		private TextGridEntry(Text innerText, @Nullable String text, GridEntry.GridEntryCallback callback) {
+		private TextGridEntry(Text innerText, @Nullable Text text, GridEntry.GridEntryCallback callback) {
 			super(text, callback);
 			MinecraftClient client = MinecraftClient.getInstance();
 			this.innerText = innerText;
@@ -254,7 +253,7 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 		
 		protected final ItemStack stack;
 		
-		private ItemGridEntry(Item item, String text, GridEntry.GridEntryCallback callback) {
+		private ItemGridEntry(Item item, Text text, GridEntry.GridEntryCallback callback) {
 			super(text, callback);
 			this.stack = item.getDefaultStack();
 		}

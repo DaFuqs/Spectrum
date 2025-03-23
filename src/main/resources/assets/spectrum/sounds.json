@@ -1,10 +1,49 @@
 {
+  "item.primordial_lighter.use": {
+    "subtitle": "spectrum.subtitles.primordial_lighter.use",
+    "sounds": [
+      "minecraft:fire/ignite"
+    ]
+  },
+  "item.guidebook.pages": {
+    "subtitle": "spectrum.subtitles.item.guidebook.pages",
+    "sounds": [
+      "spectrum:guidebook_pages"
+    ]
+  },
   "use_fail": {
     "subtitle": "spectrum.subtitles.use_fail",
     "sounds": [
       "spectrum:use_fail"
     ]
   },
+	"block.redstone_mechanism.trigger": {
+		"subtitle": "spectrum.subtitles.block.redstone_mechanism.trigger",
+		"sounds": [
+			"minecraft:random/click"
+		]
+	},
+	"block.redstone_mechanism.break_block": {
+		"subtitle": "spectrum.subtitles.block.redstone_mechanism.break_block",
+		"sounds": [
+			{
+				"name": "minecraft:block/iron_trapdoor/open1",
+				"volume": 0.9
+			},
+			{
+				"name": "minecraft:block/iron_trapdoor/open2",
+				"volume": 0.9
+			},
+			{
+				"name": "minecraft:block/iron_trapdoor/open3",
+				"volume": 0.9
+			},
+			{
+				"name": "minecraft:block/iron_trapdoor/open4",
+				"volume": 0.9
+			}
+		]
+	},
   "paintbrush_trigger": {
     "subtitle": "spectrum.subtitles.paintbrush_trigger",
     "sounds": [
@@ -59,6 +98,26 @@
   "discharge": {
     "sounds": [
       "spectrum:discharge"
+    ]
+  },
+  "lunge_crit": {
+    "sounds": [
+      "spectrum:lunge_crit"
+    ]
+  },
+  "lunge": {
+    "sounds": [
+      "spectrum:lunge"
+    ]
+  },
+  "perfect_parry": {
+    "sounds": [
+      "spectrum:perfect_parry"
+    ]
+  },
+  "sword_block": {
+    "sounds": [
+      "spectrum:sword_block"
     ]
   },
   "paintbrush_paint": {
@@ -116,6 +175,18 @@
   },
   "block.parametric_mining_device.throw": {
     "subtitle": "spectrum.subtitles.block.parametric_mining_device.throw",
+    "sounds": [
+      "minecraft:random/bow"
+    ]
+  },
+  "entity.block_flooder.throw": {
+    "subtitle": "spectrum.subtitles.entity.block_flooder.throw",
+    "sounds": [
+      "minecraft:random/bow"
+    ]
+  },
+  "item.omni_accelerator.shoot": {
+    "subtitle": "spectrum.subtitles.item.omni_accelerator.shoot",
     "sounds": [
       "minecraft:random/bow"
     ]
@@ -247,7 +318,13 @@
       "spectrum:deeper_down_portal_open"
     ]
   },
-  "enchanter_ding": {
+	"enchanter_finish": {
+		"subtitle": "spectrum.subtitles.enchanter_finish",
+		"sounds": [
+			"minecraft:random/levelup"
+		]
+	},
+	"crafting_ding": {
     "sounds": [
       "spectrum:enchanter_ding"
     ]
@@ -349,16 +426,19 @@
   "primordial_fire_crackle": {
     "subtitle": "spectrum.subtitles.primordial_fire_crackle",
     "sounds": [
-      "spectrum:cracker1",
-      "spectrum:cracker2",
-      "spectrum:cracker3",
-      "spectrum:cracker4",
-      "spectrum:cracker5",
-      "spectrum:cracker6",
-      "spectrum:cracker7",
-      "spectrum:cracker8"
+			"spectrum:primfire0",
+			"spectrum:primfire1",
+			"spectrum:primfire2",
+			"spectrum:primfire3",
+			"spectrum:primfire4"
     ]
   },
+	"primordial_fire_dot": {
+		"subtitle": "spectrum.subtitles.primordial_fire_dot",
+		"sounds": [
+			"spectrum:primfire_dot"
+		]
+	},
   "radiance_staff_charging": {
     "subtitle": "spectrum.subtitles.radiance_staff_charging",
     "sounds": [
@@ -419,29 +499,199 @@
       "spectrum:block.ruin.place"
     ]
   },
-  "music.spectrum_theme": {
-    "subtitle": "spectrum.subtitles.spectrum_theme_plays",
+  "forfeiture_placed": {
+    "subtitle": "spectrum.subtitles.block.forfeiture.place",
     "sounds": [
-      "spectrum:spectrum_theme"
+      "spectrum:block.ruin.place"
     ]
   },
-  "music.boss_theme": {
-    "subtitle": "spectrum.subtitles.boss_theme_plays",
+
+  "music.discovery": {
     "sounds": [
-      "spectrum:radiarc_irrelevance_fading"
+      {
+        "name": "spectrum:music/davejf_the_mist",
+        "stream": true
+      }
     ]
   },
-  "music.deeper_down_theme": {
-    "subtitle": "spectrum.subtitles.deeper_down_theme_plays",
+  "music.credits": {
     "sounds": [
-      "spectrum:sunsette_darker_than_hell"
+      {
+        "name": "spectrum:music/radiarc_irrelevance_fading",
+        "stream": true
+      }
     ]
   },
   "music.divinity": {
     "sounds": [
-      "spectrum:proper_motions_everreflective"
+      {
+        "name": "spectrum:music/proper_motions_everreflective",
+        "stream": true
+      }
     ]
   },
+
+  "music.deeper_down.black_langast": {
+    "sounds": [
+      {
+        "name": "spectrum:music/sunsette_darker_than_hell",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_home",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_finality",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_submerged",
+        "stream": true
+      }
+    ]
+  },
+  "music.deeper_down.crystal_gardens": {
+    "sounds": [
+      {
+        "name": "spectrum:music/sunsette_darker_than_hell",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_circumstance",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_uncertainty",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_submerged",
+        "stream": true
+      }
+    ]
+  },
+  "music.deeper_down.deep_barrens": {
+    "sounds": [
+      {
+        "name": "spectrum:music/sunsette_darker_than_hell",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_despite",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_home",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_amnion",
+        "stream": true
+      }
+    ]
+  },
+  "music.deeper_down.deep_dripstone_caves": {
+    "sounds": [
+      {
+        "name": "spectrum:music/radiarc_circumstance",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_uncertainty",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_amnion",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_amble",
+        "stream": true
+      }
+    ]
+  },
+  "music.deeper_down.dragonrot_swamp": {
+    "sounds": [
+      {
+        "name": "spectrum:music/sunsette_darker_than_hell",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_home",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_finality",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_amnion",
+        "stream": true
+      }
+    ]
+  },
+  "music.deeper_down.howling_spires": {
+    "sounds": [
+      {
+        "name": "spectrum:music/radiarc_finality",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_despite",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_uncertainty",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_submerged",
+        "stream": true
+      }
+    ]
+  },
+  "music.deeper_down.noxshroom_forest": {
+    "sounds": [
+      {
+        "name": "spectrum:music/sunsette_darker_than_hell",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_despite",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_amble",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_amnion",
+        "stream": true
+      }
+    ]
+  },
+  "music.deeper_down.razor_edge": {
+    "sounds": [
+      {
+        "name": "spectrum:music/sunsette_darker_than_hell",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_despite",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_submerged",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_amble",
+        "stream": true
+      }
+    ]
+  },
+
   "spectrum.ui.new_revelation": {
     "sounds": [
       "spectrum:new_revelation"
@@ -515,6 +765,36 @@
       "spectrum:dimension_ambient7",
       "spectrum:dimension_ambient8",
       "spectrum:dimension_ambient9"
+    ]
+  },
+  "ambient.howling_wind_high": {
+    "subtitle": "spectrum.subtitles.howling_wind_high",
+    "sounds": [
+      "spectrum:howling_wind_high"
+    ]
+  },
+  "ambient.howling_wind_low": {
+    "subtitle": "spectrum.subtitles.howling_wind_low",
+    "sounds": [
+      "spectrum:howling_wind_low"
+    ]
+  },
+  "ambient.rain_shower": {
+    "subtitle": "spectrum.subtitles.rain_shower",
+    "sounds": [
+      "spectrum:shower"
+    ]
+  },
+  "ambient.laments": {
+    "subtitle": "spectrum.subtitles.laments",
+    "sounds": [
+      "spectrum:laments"
+    ]
+  },
+  "ambient.crystal_aura": {
+    "subtitle": "spectrum.subtitles.crystal_aura",
+    "sounds": [
+      "spectrum:crystal_aura"
     ]
   },
   "pedestal_crafting": {
@@ -1703,16 +1983,77 @@
       "spectrum:entity.kindling.angy"
     ]
   },
-  "entity.kindling.love": {
-    "subtitle": "spectrum.subtitles.entity.kindling.love",
-    "sounds": [
-      "spectrum:entity.kindling.love"
-    ]
-  },
   "entity.kindling.jump": {
     "subtitle": "spectrum.subtitles.entity.kindling.jump",
     "sounds": [
       "spectrum:entity.kindling.jump"
+    ]
+  },
+
+  "entity.egg_laying_wooly_pig.ambient": {
+    "subtitle": "spectrum.subtitles.entity.egg_laying_wooly_pig.ambient",
+    "sounds": [
+      "minecraft:mob/pig/say1",
+      "minecraft:mob/pig/say2",
+      "minecraft:mob/pig/say3"
+    ]
+  },
+  "entity.egg_laying_wooly_pig.hurt": {
+    "subtitle": "spectrum.subtitles.entity.egg_laying_wooly_pig.hurt",
+    "sounds": [
+      "minecraft:mob/pig/say1",
+      "minecraft:mob/pig/say2",
+      "minecraft:mob/pig/say3"
+    ]
+  },
+  "entity.egg_laying_wooly_pig.death": {
+    "subtitle": "spectrum.subtitles.entity.egg_laying_wooly_pig.death",
+    "sounds": [
+      "minecraft:mob/pig/death"
+    ]
+  },
+  "entity.egg_laying_wooly_pig.step": {
+    "subtitle": "spectrum.subtitles.entity.egg_laying_wooly_pig.step",
+    "sounds": [
+      "minecraft:mob/pig/step1",
+      "minecraft:mob/pig/step2",
+      "minecraft:mob/pig/step3",
+      "minecraft:mob/pig/step4",
+      "minecraft:mob/pig/step5"
+    ]
+  },
+
+  "entity.eraser.ambient": {
+    "subtitle": "spectrum.subtitles.entity.eraser.ambient",
+    "sounds": [
+      "minecraft:mob/spider/say1",
+      "minecraft:mob/spider/say2",
+      "minecraft:mob/spider/say3",
+      "minecraft:mob/spider/say4"
+    ]
+  },
+  "entity.eraser.hurt": {
+    "subtitle": "spectrum.subtitles.entity.eraser.hurt",
+    "sounds": [
+      "minecraft:mob/spider/say1",
+      "minecraft:mob/spider/say2",
+      "minecraft:mob/spider/say3",
+      "minecraft:mob/spider/say4"
+    ]
+  },
+  "entity.eraser.death": {
+    "subtitle": "spectrum.subtitles.entity.eraser.death",
+    "sounds": [
+      "minecraft:mob/spider/death"
+    ]
+  },
+  "entity.eraser.step": {
+    "subtitle": "spectrum.subtitles.entity.eraser.step",
+    "sounds": [
+      "minecraft:mob/spider/step1",
+      "minecraft:mob/spider/step2",
+      "minecraft:mob/spider/step3",
+      "minecraft:mob/spider/step4"
     ]
   },
 

@@ -1,24 +1,26 @@
 package de.dafuqs.spectrum.blocks.conditional.amaranth;
 
 import de.dafuqs.revelationary.api.revelations.*;
+import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.minecraft.block.*;
+import net.minecraft.entity.effect.*;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class AmaranthBushelBlock extends PlantBlock implements RevelationAware {
+public class AmaranthBushelBlock extends FlowerBlock implements RevelationAware {
 	
-	public AmaranthBushelBlock(Settings settings) {
-		super(settings);
+	public AmaranthBushelBlock(StatusEffect suspiciousStewEffect, int effectDuration, Settings settings) {
+		super(suspiciousStewEffect, effectDuration, settings);
 		RevelationAware.register(this);
 	}
 	
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
-		return AmaranthCropBlock.ADVANCEMENT_IDENTIFIER;
+		return SpectrumAdvancements.REVEAL_AMARANTH;
 	}
 	
 	@Override

@@ -6,7 +6,9 @@
     },
     "collected_ghast_tear": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_vanilla/collect_ghast_tear" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_vanilla/ghast_tear"
+      }
     }
   }
 }

@@ -1,0 +1,113 @@
+{
+    "type": "minecraft:chest",
+    "pools": [
+      {
+        "rolls": 1,
+        "entries": [
+          {
+            "type": "minecraft:item",
+            "name": "minecraft:purple_candle",
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": {
+                  "min": 5,
+                  "max": 10
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "rolls": 1,
+        "entries": [
+          {
+            "type": "minecraft:item",
+            "name": "minecraft:magenta_candle",
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": {
+                  "min": 5,
+                  "max": 10
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "rolls": 1,
+        "entries": [
+          {
+            "type": "minecraft:item",
+            "name": "spectrum:nightdew_sprout",
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": {
+                  "min": 4,
+                  "max": 12
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "rolls": 1,
+        "entries": [
+          {
+            "type": "minecraft:item",
+            "name": "spectrum:night_salts",
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": {
+                  "min": 6,
+                  "max": 10
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "rolls": 1,
+        "entries": [
+          {
+            "type": "minecraft:item",
+            "name": "spectrum:azalea_tea",
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": {
+                  "min": 2,
+                  "max": 5
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "rolls": 1,
+        "entries": [
+          {
+            "type": "minecraft:item",
+            "name": "spectrum:whispy_tart",
+            "functions": [
+              {
+                "function": "minecraft:set_count",
+                "count": {
+                  "min": 2,
+                  "max": 5
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }

@@ -64,7 +64,7 @@ public class PotionWorkshopCraftingRecipe extends PotionWorkshopRecipe {
 	
 	@Override
 	public ItemStack craft(Inventory inventory, DynamicRegistryManager drm) {
-		return null;
+		return output.copy();
 	}
 	
 	@Override

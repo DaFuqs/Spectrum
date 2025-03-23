@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.recipe.titration_barrel.dynamic;
 
 import de.dafuqs.matchbooks.recipe.*;
-import de.dafuqs.matchbooks.recipe.matchbook.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.recipe.*;
+import de.dafuqs.spectrum.blocks.titration_barrel.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
@@ -27,8 +27,8 @@ public class JadeWineRecipe extends SweetenableTitrationBarrelRecipe {
 	public static final ItemStack OUTPUT_STACK = getDefaultStackWithCount(SpectrumItems.JADE_WINE, 4);
 	public static final Item TAPPING_ITEM = Items.GLASS_BOTTLE;
 	public static final List<IngredientStack> INGREDIENT_STACKS = new ArrayList<>() {{
-		add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.GERMINATED_JADE_VINE_BULB)));
-		add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.JADE_VINE_PETALS), Matchbook.empty(), null, 3));
+		add(IngredientStack.ofItems(SpectrumItems.GERMINATED_JADE_VINE_BULB));
+		add(IngredientStack.ofItems(3, SpectrumItems.JADE_VINE_PETALS));
 	}};
 	
 	public JadeWineRecipe(Identifier identifier) {
@@ -96,7 +96,7 @@ public class JadeWineRecipe extends SweetenableTitrationBarrelRecipe {
 	}
 	
 	@Override
-	public boolean matches(Inventory inventory, World world) {
+	public boolean matches(TitrationBarrelBlockEntity inventory, World world) {
 		boolean bulbsFound = false;
 		
 		for (int i = 0; i < inventory.size(); i++) {

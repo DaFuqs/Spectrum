@@ -3,7 +3,7 @@
   "placement": [
     {
       "type": "minecraft:rarity_filter",
-      "chance": 16
+      "chance": 24
     },
     {
       "type": "minecraft:in_square"
@@ -22,6 +22,16 @@
     },
     {
       "type": "minecraft:biome"
+    },
+    {
+      "type": "minecraft:block_predicate_filter",
+      "predicate": {
+        "type": "minecraft:not",
+        "predicate": {
+          "type": "exclusions_lib:overlaps_structure",
+          "range": 7
+        }
+      }
     }
   ]
 }

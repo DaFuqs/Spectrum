@@ -6,6 +6,8 @@ import me.shedaniel.rei.api.common.display.basic.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.block.*;
+import net.minecraft.text.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -34,6 +36,11 @@ public abstract class BlockToBlockWithChanceDisplay extends BasicDisplay impleme
 	@Override
 	public boolean isSecret() {
 		return false;
+	}
+	
+	@Override
+	public @Nullable Text getSecretHintText() {
+		return null;
 	}
 	
 }

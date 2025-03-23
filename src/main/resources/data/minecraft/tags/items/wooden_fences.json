@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "#spectrum:colored_fences"
+    "#spectrum:colored_fences",
+    "#spectrum:noxwood_fences",
+    "spectrum:weeping_gala_fence"
   ]
 }

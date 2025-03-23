@@ -1,7 +1,11 @@
 package de.dafuqs.spectrum.mixin;
 
 import com.llamalad7.mixinextras.injector.*;
+import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
+import de.dafuqs.spectrum.items.trinkets.*;
 import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.effect.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.text.*;

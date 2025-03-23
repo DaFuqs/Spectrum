@@ -1,69 +1,39 @@
 package de.dafuqs.spectrum;
 
-import com.google.common.collect.*;
-import de.dafuqs.arrowhead.api.*;
-import de.dafuqs.fractal.api.*;
 import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.energy.color.*;
-import de.dafuqs.spectrum.api.item.*;
-import de.dafuqs.spectrum.api.item_group.*;
-import de.dafuqs.spectrum.blocks.chests.*;
-import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.compat.reverb.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.entity.*;
-import de.dafuqs.spectrum.entity.spawners.*;
 import de.dafuqs.spectrum.events.*;
 import de.dafuqs.spectrum.explosion.*;
-import de.dafuqs.spectrum.helpers.TimeHelper;
-import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
-import de.dafuqs.spectrum.items.magic_items.*;
-import de.dafuqs.spectrum.items.tools.*;
-import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.loot.*;
-import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.progression.*;
-import de.dafuqs.spectrum.recipe.enchantment_upgrade.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.spectrum.registries.client.*;
-import de.dafuqs.spectrum.spells.*;
 import me.shedaniel.autoconfig.*;
 import me.shedaniel.autoconfig.serializer.*;
 import net.fabricmc.api.*;
-import net.fabricmc.fabric.api.entity.event.v1.*;
 import net.fabricmc.fabric.api.event.lifecycle.v1.*;
-import net.fabricmc.fabric.api.event.player.*;
-import net.fabricmc.fabric.api.item.v1.*;
-import net.fabricmc.fabric.api.itemgroup.v1.*;
 import net.fabricmc.fabric.api.resource.*;
 import net.fabricmc.fabric.api.transfer.v1.fluid.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
+import net.fabricmc.fabric.api.transfer.v1.storage.*;
 import net.fabricmc.loader.api.*;
-import net.minecraft.block.*;
-import net.minecraft.enchantment.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.attribute.*;
-import net.minecraft.entity.projectile.*;
-import net.minecraft.fluid.*;
 import net.minecraft.item.*;
-import net.minecraft.particle.*;
 import net.minecraft.recipe.*;
-import net.minecraft.registry.*;
-import net.minecraft.registry.entry.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.resource.*;
 import net.minecraft.server.*;
-import net.minecraft.server.network.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 import org.slf4j.*;
 
 import java.util.*;
@@ -73,16 +43,9 @@ public class SpectrumCommon implements ModInitializer {
 	public static final String MOD_ID = "spectrum";
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("Spectrum");
+	public static final Map<Identifier, TagKey<Item>> CACHED_ITEM_TAG_MAP = new HashMap<>();
 	public static SpectrumConfig CONFIG;
-	
-	public static MinecraftServer minecraftServer;
-	/**
-	 * Caches the luminance states from fluids as int
-	 * for blocks that react to the light level of fluids
-	 * like the fusion shrine lighting up with lava or liquid crystal
-	 */
-	public static final HashMap<Fluid, Integer> fluidLuminance = new HashMap<>();
-	
+
 	public static void logInfo(String message) {
 		LOGGER.info("[Spectrum] " + message);
 	}
@@ -99,6 +62,10 @@ public class SpectrumCommon implements ModInitializer {
 		return new Identifier(MOD_ID, name);
 	}
 	
+	// Will be null when playing on a dedicated server!
+	@Nullable
+	public static MinecraftServer minecraftServer;
+	
 	static {
 		//Set up config
 		logInfo("Loading config file...");
@@ -114,6 +81,8 @@ public class SpectrumCommon implements ModInitializer {
 		// Register internals
 		SpectrumRegistries.register();
 		InkColors.register();
+		InkColorMixes.register();
+		SpectrumEntityAttributes.register();
 		
 		logInfo("Registering Banner Patterns...");
 		SpectrumBannerPatterns.register();
@@ -131,8 +100,6 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumParticleTypes.register();
 		logInfo("Registering Sound Events...");
 		SpectrumSoundEvents.register();
-		logInfo("Registering Music...");
-		SpectrumMusicType.register();
 		logInfo("Registering BlockSound Groups...");
 		SpectrumBlockSoundGroups.register();
 		logInfo("Registering Fluids...");
@@ -145,10 +112,14 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumPotions.register();
 		SpectrumItems.register();
 		SpectrumItemGroups.register();
-		logInfo("Setting up server side Mod Compat...");
-		SpectrumIntegrationPacks.register();
 		logInfo("Registering Block Entities...");
 		SpectrumBlockEntities.register();
+
+		// Pastel
+		logInfo("Registering Pastel Upgrades...");
+		SpectrumPastelUpgrades.register();
+		logInfo("Registering Stamp Categories...");
+		SpectrumStampDataCategories.register();
 		
 		// Worldgen
 		logInfo("Registering Features...");
@@ -176,6 +147,9 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumLootConditionTypes.register();
 		SpectrumLootFunctionTypes.register();
 		
+		logInfo("Setting up server side Mod Compat...");
+		SpectrumIntegrationPacks.register();
+		
 		// GUI
 		logInfo("Registering Screen Handler Types...");
 		SpectrumScreenHandlerTypes.register();
@@ -186,9 +160,6 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumLootPoolModifiers.setup();
 		logInfo("Registering Type Specific Predicates...");
 		SpectrumTypeSpecificPredicates.register();
-		logInfo("Registering Omni Accelerator Projectiles & Behaviors...");
-		SpectrumOmniAcceleratorProjectiles.register();
-		SpectrumItemProjectileBehaviors.register();
 		
 		logInfo("Registering Items to Fuel Registry...");
 		SpectrumItems.registerFuelRegistry();
@@ -196,6 +167,13 @@ public class SpectrumCommon implements ModInitializer {
 		logInfo("Registering Entities...");
 		SpectrumTrackedDataHandlerRegistry.register();
 		SpectrumEntityTypes.register();
+		
+		logInfo("Registering Omni Accelerator Projectiles & Behaviors...");
+		SpectrumOmniAcceleratorProjectiles.register();
+		SpectrumItemProjectileBehaviors.register();
+		
+		SpectrumEntityColorProcessors.register();
+		SpectrumItemProviders.register();
 		
 		logInfo("Registering Commands...");
 		SpectrumCommands.register();
@@ -209,18 +187,26 @@ public class SpectrumCommon implements ModInitializer {
 		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(CrystalApothecarySimulationsDataLoader.INSTANCE);
 		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(ResonanceDropsDataLoader.INSTANCE);
 		
+		ServerLifecycleEvents.SERVER_STARTING.register(server -> {
+			SpectrumCommon.logInfo("Fetching server instance...");
+			minecraftServer = server;
+		});
+		
+		ServerLifecycleEvents.SERVER_STOPPED.register(server -> {
+			Pastel.clearServerInstance();
+			minecraftServer = null;
+		});
+		
 		logInfo("Adding to Fabric's Registries...");
 		SpectrumFlammableBlocks.register();
 		SpectrumStrippableBlocks.register();
+		SpectrumWaxableBlocks.register();
 		SpectrumTillableBlocks.register();
 		SpectrumCompostableBlocks.register();
 		
 		logInfo("Registering Game Events...");
 		SpectrumGameEvents.register();
 		SpectrumPositionSources.register();
-		
-		logInfo("Registering Spell Effects...");
-		InkSpellEffects.register();
 		
 		logInfo("Registering Explosion Effects & Providers...");
 		ExplosionModifiers.register();
@@ -235,272 +221,44 @@ public class SpectrumCommon implements ModInitializer {
 		
 		logInfo("Registering Resource Conditions...");
 		SpectrumResourceConditions.register();
-		logInfo("Registering Structure Pool Element Types...");
+		logInfo("Registering Structure WeightedPool Element Types...");
 		SpectrumStructurePoolElementTypes.register();
-
-		AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
-			if (!world.isClient && !player.isSpectator()) {
-				
-				ItemStack mainHandStack = player.getMainHandStack();
-				if (mainHandStack.getItem() instanceof ExchangeStaffItem exchangeStaffItem) {
-					BlockState targetBlockState = world.getBlockState(pos);
-					if (exchangeStaffItem.canInteractWith(targetBlockState, world, pos, player)) {
-						Optional<Block> storedBlock = ExchangeStaffItem.getStoredBlock(player.getMainHandStack());
-						
-						if (storedBlock.isPresent()
-								&& storedBlock.get() != targetBlockState.getBlock()
-								&& storedBlock.get().asItem() != Items.AIR
-								&& ExchangeStaffItem.exchange(world, pos, player, storedBlock.get(), player.getMainHandStack(), true, direction)) {
-							
-							return ActionResult.SUCCESS;
-						}
-					}
-					world.playSound(null, player.getBlockPos(), SoundEvents.BLOCK_DISPENSER_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
-					return ActionResult.FAIL;
-				}
-			}
-			return ActionResult.PASS;
-		});
+		logInfo("Registering Event Listeners...");
+		SpectrumEventListeners.register();
+		logInfo("Registering Path Node Types...");
+		SpectrumPathNodeTypes.register();
+		logInfo("Registering Tree Decorator Types...");
+		SpectrumTreeDecoratorTypes.register();
 		
-		CommonLifecycleEvents.TAGS_LOADED.register((registries, client) -> {
-			if (client) {
-				SpectrumColorProviders.resetToggleableProviders();
-				SpectrumMultiblocks.register();
-			}
-		});
-		
-		PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, blockEntity) -> {
-			if (player instanceof ServerPlayerEntity serverPlayerEntity) {
-				SpectrumAdvancementCriteria.BLOCK_BROKEN.trigger(serverPlayerEntity, state);
-			}
-		});
-		
-		UseEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
-			ItemStack handStack = player.getStackInHand(hand);
-			if (handStack.getItem() instanceof PrioritizedEntityInteraction && entity instanceof LivingEntity livingEntity) {
-				return handStack.useOnEntity(player, livingEntity, hand);
-			}
-			return ActionResult.PASS;
-		});
-		
-		UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
-			ItemStack handStack = player.getStackInHand(hand);
-			if (handStack.getItem() instanceof PrioritizedBlockInteraction) {
-				return handStack.useOnBlock(new ItemUsageContext(player, hand, hitResult));
-			}
-			return ActionResult.PASS;
-		});
-		
-		ServerLifecycleEvents.SERVER_STARTING.register(server -> {
-			SpectrumCommon.logInfo("Fetching server instance...");
-			SpectrumCommon.minecraftServer = server;
-			
-			logInfo("Registering MultiBlocks...");
-			SpectrumMultiblocks.register();
-		});
-		
-		ServerLifecycleEvents.SERVER_STOPPED.register(server -> {
-			Pastel.clearServerInstance();
-			SpectrumCommon.minecraftServer = null;
-		});
-		
-		ServerTickEvents.END_SERVER_TICK.register(server -> Pastel.getServerInstance().tick());
-		
-		ServerTickEvents.START_WORLD_TICK.register(world -> {
-			// these would actually be nicer to have as Spawners in ServerWorld
-			// to have them run in tickSpawners()
-			// but getting them in there would require some ugly mixins
-			
-			if (world.getTime() % 100 == 0) {
-				if (TimeHelper.getTimeOfDay(world).isNight()) { // 90 chances in a night
-					if (SpectrumCommon.CONFIG.ShootingStarWorlds.contains(world.getRegistryKey().getValue().toString())) {
-						ShootingStarSpawner.INSTANCE.spawn(world, true, true);
-					}
-				}
-				
-				/* TODO: Monstrosity
-				if (world.getRegistryKey().equals(SpectrumDimensions.DIMENSION_KEY)) {
-					MonstrositySpawner.INSTANCE.spawn(world, true, true);
-				}*/
-			}
-		});
-		
-		ServerLifecycleEvents.SERVER_STARTED.register((server) -> {
-			SpectrumCommon.logInfo("Querying fluid luminance...");
-			for (Iterator<Block> it = Registries.BLOCK.stream().iterator(); it.hasNext(); ) {
-				Block block = it.next();
-				if (block instanceof FluidBlock fluidBlock) {
-					fluidLuminance.put(fluidBlock.getFluidState(fluidBlock.getDefaultState()).getFluid(), fluidBlock.getDefaultState().getLuminance());
-				}
-			}
-			
-			SpectrumCommon.logInfo("Injecting additional recipes...");
-			FirestarterIdolBlock.addBlockSmeltingRecipes(server);
-			injectEnchantmentUpgradeRecipes(server);
-		});
-		
-		EntitySleepEvents.STOP_SLEEPING.register((entity, sleepingPos) -> {
-			// If the player wears a Whispy Cirlcet and sleeps
-			// they get fully healed and all negative status effects removed
-			// When the sleep timer reached 100 the player is fully asleep
-			if (entity instanceof ServerPlayerEntity serverPlayerEntity
-					&& serverPlayerEntity.getSleepTimer() == 100
-					&& SpectrumTrinketItem.hasEquipped(entity, SpectrumItems.WHISPY_CIRCLET)) {
-				
-				entity.setHealth(entity.getMaxHealth());
-				WhispyCircletItem.removeNegativeStatusEffects(entity);
-			}
-		});
-		
-		ServerEntityEvents.EQUIPMENT_CHANGE.register((livingEntity, equipmentSlot, previousStack, currentStack) -> {
-			var oldInexorable = EnchantmentHelper.getLevel(SpectrumEnchantments.INEXORABLE, previousStack);
-			var newInexorable = EnchantmentHelper.getLevel(SpectrumEnchantments.INEXORABLE, currentStack);
-			
-			var effectType = equipmentSlot == EquipmentSlot.CHEST ? SpectrumAttributeTags.INEXORABLE_ARMOR_EFFECTIVE : SpectrumAttributeTags.INEXORABLE_HANDHELD_EFFECTIVE;
-			
-			if (oldInexorable > 0 && newInexorable <= 0) {
-				livingEntity.getStatusEffects()
-						.stream()
-						.filter(instance -> {
-							var statusEffect = instance.getEffectType();
-							var attributes = statusEffect.getAttributeModifiers().keySet();
-							return attributes.stream()
-									.anyMatch(attribute -> {
-										var attributeRegistryOptional = Registries.ATTRIBUTE.getEntryList(effectType);
-										
-										return attributeRegistryOptional.map(registryEntries -> registryEntries
-												.stream()
-												.map(RegistryEntry::value)
-												.anyMatch(entityAttribute -> {
-													
-													if (!statusEffect.getAttributeModifiers().containsKey(entityAttribute))
-														return false;
-													
-													var value = statusEffect.getAttributeModifiers().get(entityAttribute).getValue();
-													return value < 0;
-													
-												})).orElse(false);
-										
-									});
-						})
-						.forEach(instance -> instance.getEffectType().onApplied(livingEntity, livingEntity.getAttributes(), instance.getAmplifier()));
-			}
-			
-		});
-		
-		ModifyItemAttributeModifiersCallback.EVENT.register((stack, slot, attributeModifiers) -> {
-			if (slot == EquipmentSlot.MAINHAND) {
-				int tightGripLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.TIGHT_GRIP, stack);
-				if (tightGripLevel > 0) {
-					float attackSpeedBonus = tightGripLevel * SpectrumCommon.CONFIG.TightGripAttackSpeedBonusPercentPerLevel;
-					EntityAttributeModifier mod = new EntityAttributeModifier(UUID.fromString("b09d9b57-eefb-4499-9150-5d8d3e644a40"), "Tight Grip modifier", attackSpeedBonus, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
-					attributeModifiers.put(EntityAttributes.GENERIC_ATTACK_SPEED, mod);
-				}
-			}
-		});
-		
-		CrossbowShootingCallback.register((world, shooter, hand, crossbow, projectile, projectileEntity) -> {
-			if (crossbow.getItem() instanceof GlassCrestCrossbowItem && GlassCrestCrossbowItem.isOvercharged(crossbow)) {
-				if (!world.isClient) { // only fired on the client, but making sure mods aren't doing anything weird
-					Vec3d particleVelocity = projectileEntity.getVelocity().multiply(0.05);
-					
-					if (GlassCrestCrossbowItem.getOvercharge(crossbow) > 0.99F) {
-						SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world,
-								projectileEntity.getPos(), ParticleTypes.SCRAPE, 5,
-								Vec3d.ZERO, particleVelocity);
-						SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world,
-								projectileEntity.getPos(), ParticleTypes.WAX_OFF, 5,
-								Vec3d.ZERO, particleVelocity);
-						SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world,
-								projectileEntity.getPos(), ParticleTypes.WAX_ON, 5,
-								Vec3d.ZERO, particleVelocity);
-						SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world,
-								projectileEntity.getPos(), ParticleTypes.GLOW, 5,
-								Vec3d.ZERO, particleVelocity);
-						
-						if (shooter instanceof ServerPlayerEntity serverPlayerEntity) {
-							Support.grantAdvancementCriterion(serverPlayerEntity,
-									SpectrumCommon.locate("lategame/shoot_fully_overcharged_crossbow"),
-									"shot_fully_overcharged_crossbow");
-						}
-						if (projectileEntity instanceof PersistentProjectileEntity persistentProjectileEntity) {
-							persistentProjectileEntity.setDamage(persistentProjectileEntity.getDamage() * 1.5);
-						}
-					}
-					
-					SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world,
-							projectileEntity.getPos(), ParticleTypes.FIREWORK, 10,
-							Vec3d.ZERO, particleVelocity);
-					
-					GlassCrestCrossbowItem.unOvercharge(crossbow);
-				}
-			}
-		});
-		
-		logInfo("Registering RecipeCache reload listener");
-		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
-			private final Identifier id = SpectrumCommon.locate("compacting_cache_clearer");
-			
-			@Override
-			public void reload(ResourceManager manager) {
-				CompactingChestBlockEntity.clearCache();
-				
-				if (minecraftServer != null) {
-					injectEnchantmentUpgradeRecipes(minecraftServer);
-					FirestarterIdolBlock.addBlockSmeltingRecipes(minecraftServer);
-				}
-			}
-			
-			@Override
-			public Identifier getFabricId() {
-				return id;
-			}
-		});
-		
-		ItemSubGroupEvents.modifyEntriesEvent(ItemGroupIDs.SUBTAB_BLOCKS).register(new ItemSubGroupEvents.ModifyEntries() {
-			@Override
-			public void modifyEntries(FabricItemGroupEntries entries) {
-				entries.add(new ItemStack(Items.APPLE));
-			}
-		});
-		
+		//noinspection UnstableApiUsage
+		ItemStorage.SIDED.registerForBlockEntity((be, d) -> Storage.empty(), SpectrumBlockEntities.HEARTBOUND_CHEST);
 		//noinspection UnstableApiUsage
 		ItemStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.storage, SpectrumBlockEntities.BOTTOMLESS_BUNDLE);
 		//noinspection UnstableApiUsage
 		FluidStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.fluidStorage, SpectrumBlockEntities.FUSION_SHRINE);
 		//noinspection UnstableApiUsage
-		FluidStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.fluidStorage, SpectrumBlockEntities.TITRATION_BARREL);
+		FluidStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.getFluidStorage(), SpectrumBlockEntities.TITRATION_BARREL);
 		
 		// Builtin Resource Packs
+		logInfo("Registering Builtin Resource Packs...");
 		Optional<ModContainer> modContainer = FabricLoader.getInstance().getModContainer(SpectrumCommon.MOD_ID);
 		if (modContainer.isPresent()) {
-			// ResourceManagerHelper.registerBuiltinResourcePack(locate("spectrum_style_amethyst"), modContainer.get(), Text.of("Spectrum Style Amethyst"), ResourcePackActivationType.NORMAL); // TODO: retexture
+			ResourceManagerHelper.registerBuiltinResourcePack(locate("spectrum_style_amethyst"), modContainer.get(), Text.of("Spectrum Style Amethyst"), ResourcePackActivationType.NORMAL);
+			ResourceManagerHelper.registerBuiltinResourcePack(locate("spectrum_generation_1"), modContainer.get(), Text.of("Generation 1 Spectrum textures"), ResourcePackActivationType.NORMAL);
 			ResourceManagerHelper.registerBuiltinResourcePack(locate("spectrum_programmer_art"), modContainer.get(), Text.of("Spectrum's Programmer Art"), ResourcePackActivationType.NORMAL);
-			ResourceManagerHelper.registerBuiltinResourcePack(locate("jinc"), modContainer.get(), Text.of("Alternate Spectrum textures"), ResourcePackActivationType.NORMAL);
 		}
 		
 		logInfo("Common startup completed!");
 	}
 	
-	// It could have been so much easier and performant, but KubeJS overrides the ENTIRE recipe manager
-	// and cancels all sorts of functions at HEAD unconditionally, so Spectrum can not mixin into it
-	public void injectEnchantmentUpgradeRecipes(MinecraftServer minecraftServer) {
-		if (!EnchantmentUpgradeRecipeSerializer.enchantmentUpgradeRecipesToInject.isEmpty()) {
-			ImmutableMap<Identifier, Recipe<?>> collectedRecipes = EnchantmentUpgradeRecipeSerializer.enchantmentUpgradeRecipesToInject.stream().collect(ImmutableMap.toImmutableMap(EnchantmentUpgradeRecipe::getId, enchantmentUpgradeRecipe -> enchantmentUpgradeRecipe));
-			Map<RecipeType<?>, Map<Identifier, Recipe<?>>> recipes = ((RecipeManagerAccessor) minecraftServer.getRecipeManager()).getRecipes();
-			
-			ArrayList<Recipe<?>> newList = new ArrayList<>();
-			for (Map<Identifier, Recipe<?>> r : recipes.values()) {
-				newList.addAll(r.values());
-			}
-			for (Recipe<?> recipe : collectedRecipes.values()) {
-				if (!newList.contains(recipe)) {
-					newList.add(recipe);
-				}
-			}
-			
-			minecraftServer.getRecipeManager().setRecipes(newList);
-		}
+	/**
+	 * When initializing a block entity, world can still be null
+	 * Therefore we use the RecipeManager reference from MinecraftServer
+	 * This in turn does not work on clients connected to dedicated servers, though
+	 * since SpectrumCommon.minecraftServer is null
+	 */
+	public static Optional<RecipeManager> getRecipeManager(@Nullable World world) {
+		return world == null ? minecraftServer == null ? Optional.empty() : Optional.of(minecraftServer.getRecipeManager()) : Optional.of(world.getRecipeManager());
 	}
 	
 }

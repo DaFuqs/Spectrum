@@ -1,0 +1,22 @@
+{
+  "type": "spectrum:columns",
+  "config": {
+    "state": {
+      "Name": "spectrum:shale_clay"
+    },
+    "reach": {
+      "type": "minecraft:uniform",
+      "value": {
+        "min_inclusive": 2,
+        "max_inclusive": 7
+      }
+    },
+    "height": {
+      "type": "minecraft:uniform",
+      "value": {
+        "min_inclusive": 2,
+        "max_inclusive": 7
+      }
+    }
+  }
+}

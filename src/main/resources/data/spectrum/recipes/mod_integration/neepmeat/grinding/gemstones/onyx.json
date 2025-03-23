@@ -1,0 +1,21 @@
+{
+  "type": "neepmeat:grinding",
+  "input": {
+    "resource": "spectrum:onyx_shard",
+    "amount": 1
+  },
+  "output": {
+    "resource": "spectrum:onyx_powder",
+    "amount": 2
+  },
+  "experience": 0.7,
+  "processtime": 45,
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "neepmeat"
+      ]
+    }
+  ]
+}

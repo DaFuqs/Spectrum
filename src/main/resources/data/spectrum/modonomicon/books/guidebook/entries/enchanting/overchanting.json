@@ -1,0 +1,53 @@
+{
+  "name": "book.spectrum.guidebook.overchanting.name",
+  "icon": "minecraft:enchanted_book",
+  "hide_while_locked": true,
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:milestones/unlock_overenchanting_with_enchanter"
+  },
+  "category": "spectrum:enchanting",
+  "hide_while_locked": true,
+  "parents": [
+    {
+      "entry": "spectrum:enchanting/enchanter",
+      "line_enabled": false
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 4,
+  "x": -1,
+  "y": -2,
+  "pages": [
+    {
+      "type": "spectrum:nbt_spotlight",
+      "title": "book.spectrum.guidebook.overchanting.name",
+      "item": {
+        "item": "minecraft:enchanted_book",
+        "nbt": {
+          "StoredEnchantments": [
+            {
+              "id": "minecraft:fortune",
+              "lvl": "5s"
+            }
+          ]
+        }
+      },
+      "text": "book.spectrum.guidebook.overchanting.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.overchanting.page1.title",
+      "text": "book.spectrum.guidebook.overchanting.page1.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.vanilla_enchantments.name",
+      "text": "book.spectrum.guidebook.overchanting.page2.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.overchanting.page3.text"
+    }
+  ]
+}

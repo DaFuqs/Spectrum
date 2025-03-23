@@ -1,0 +1,170 @@
+{
+  "type": "modonomicon:dense",
+  "pattern": [
+    [
+      "_____________",
+      "____XtStX____",
+      "_____________",
+      "_____________",
+      "_X__OtttO__X_",
+      "_T__T___T__T_",
+      "_S__T___T__S_",
+      "_T__T___T__T_",
+      "_X__OtttO__X_",
+      "_____________",
+      "_____________",
+      "____XtStX____",
+      "_____________"
+    ],
+    [
+      "_____________",
+      "_Sttr___rttS_",
+      "_T__T___T__T_",
+      "_T__T___T__T_",
+      "_rttX___Xttr_",
+      "_____________",
+      "_____________",
+      "_____________",
+      "_rttX___Xttr_",
+      "_T__T___T__T_",
+      "_T__T___T__T_",
+      "_Sttr___rttS_",
+      "_____________"
+    ],
+    [
+      "_____________",
+      "_Q__Q___Q__Q_",
+      "_____________",
+      "_____________",
+      "_Q_________Q_",
+      "_____________",
+      "_____________",
+      "_____________",
+      "_Q_________Q_",
+      "_____________",
+      "_____________",
+      "_Q__Q___Q__Q_",
+      "_____________"
+    ],
+    [
+      "_____________",
+      "_C__Q___Q__C_",
+      "_____________",
+      "_____________",
+      "_Q_________Q_",
+      "_____________",
+      "_____________",
+      "_____________",
+      "_Q_________Q_",
+      "_____________",
+      "_____________",
+      "_C__Q___Q__C_",
+      "_____________"
+    ],
+    [
+      "_____________",
+      "_Q__L___L__Q_",
+      "_____________",
+      "___S_____S___",
+      "_L_________L_",
+      "_____________",
+      "_____________",
+      "_____________",
+      "_L_________L_",
+      "___S_____S___",
+      "_____________",
+      "_Q__L___L__Q_",
+      "_____________"
+    ],
+    [
+      "_____________",
+      "_K__Q___Q__K_",
+      "_____________",
+      "___Q_____Q___",
+      "_Q_________Q_",
+      "_____________",
+      "______P______",
+      "_____________",
+      "_Q_________Q_",
+      "___Q_____Q___",
+      "_____________",
+      "_K__Q___Q__K_",
+      "_____________"
+    ],
+    [
+      "XXXXXXXXXXXXX",
+      "XX__X___X__XX",
+      "X_XXXXXXXXX_X",
+      "X_XXXXXXXXX_X",
+      "XXXXXrXrXXXXX",
+      "X_XXrXXXrXX_X",
+      "X_XXXX0XXXX_X",
+      "X_XXrXXXrXX_X",
+      "XXXXXrXrXXXXX",
+      "X_XXXXXXXXX_X",
+      "X_XXXXXXXXX_X",
+      "XX__X___X__XX",
+      "XXXXXXXXXXXXX"
+    ]
+  ],
+  "mapping": {
+    "X": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:polished_basalt",
+      "tag": "#spectrum:structure/bases"
+    },
+    "T": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:polished_basalt_crest[cardinal_facing=true]",
+      "tag": "#spectrum:structure/crests"
+    },
+    "t": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:polished_basalt_crest[cardinal_facing=false]",
+      "tag": "#spectrum:structure/crests"
+    },
+    "Q": {
+      "type": "modonomicon:tag",
+      "display" : "spectrum:polished_basalt_pillar[axis=y]",
+      "tag": "#spectrum:structure/pillars"
+    },
+    "L": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:amethyst_basalt_lamp",
+      "tag": "#spectrum:structure/lights"
+    },
+    "S": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:amethyst_storage_block",
+      "tag": "#spectrum:structure/gemstones"
+    },
+    "C": {
+      "type": "modonomicon:tag",
+      "display" : "spectrum:chiseled_polished_basalt",
+      "tag": "#spectrum:structure/chiseled"
+    },
+    "K": {
+      "type": "modonomicon:tag",
+      "display" : "spectrum:notched_polished_basalt",
+      "tag": "#spectrum:structure/notched"
+    },
+    "r": {
+      "type": "modonomicon:tag",
+      "display" : "spectrum:amethyst_chiseled_basalt",
+      "tag": "#spectrum:structure/earlygame_runes"
+    },
+    "O": {
+      "type": "modonomicon:tag",
+      "display" : "spectrum:onyx_chiseled_basalt",
+      "tag": "#spectrum:structure/midgame_runes"
+    },
+    "P": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:pedestal_moonstone",
+      "tag": "#spectrum:pedestals"
+    },
+    "0": {
+      "type": "modonomicon:any"
+    }
+  }
+}

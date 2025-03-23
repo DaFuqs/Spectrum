@@ -1,0 +1,6 @@
+{
+  "particle_type": "spectrum:primordial_cosy_smoke",
+  "gui_texture": "spectrum:large_primordial_smoke_0",
+  "unlock_identifier": "spectrum:hidden/interact_with_doombloom",
+  "supports_coloring": false
+}

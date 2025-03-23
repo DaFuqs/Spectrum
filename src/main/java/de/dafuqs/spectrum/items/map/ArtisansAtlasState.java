@@ -21,7 +21,7 @@ import java.util.*;
 public class ArtisansAtlasState extends MapState {
 
     private final MapStateAccessor accessor;
-    private final Set<StructureStart> targets;
+    private final Set<ChunkPos> targets;
     private BlockPos displayedCenter;
     private Identifier targetId;
     @Nullable
@@ -109,8 +109,8 @@ public class ArtisansAtlasState extends MapState {
         this.accessor.getIcons().clear();
 
         super.update(player, stack);
-
-        for (StructureStart target : this.targets) {
+        
+        for (ChunkPos target : this.targets) {
             addTargetIcon(player.getWorld(), target);
         }
     }
@@ -219,15 +219,15 @@ public class ArtisansAtlasState extends MapState {
 
         return false;
     }
-
-    private void addTargetIcon(WorldAccess world, StructureStart target) {
+    
+    private void addTargetIcon(WorldAccess world, ChunkPos target) {
         if (target != null) {
-            addIcon(MapIcon.Type.TARGET_POINT, world, getTargetKey(target), target.getPos().getCenterX(), target.getPos().getCenterZ(), 180, null);
+            addIcon(MapIcon.Type.TARGET_POINT, world, getTargetKey(target), target.getCenterX(), target.getCenterZ(), 180, null);
         }
     }
-
-    private String getTargetKey(StructureStart start) {
-        return String.format("target-%d-%d", start.getPos().x, start.getPos().z);
+    
+    private String getTargetKey(ChunkPos start) {
+        return String.format("target-%d-%d", start.x, start.z);
     }
 
     public void startLocator(ServerWorld world) {
@@ -244,10 +244,10 @@ public class ArtisansAtlasState extends MapState {
     public BlockPos getDisplayedCenter() {
         return this.displayedCenter;
     }
-
-    public void addTarget(WorldAccess world, StructureStart target) {
-        this.targets.add(target);
-        addTargetIcon(world, target);
+    
+    public void addTarget(WorldAccess world, ChunkPos chunkPos) {
+        this.targets.add(chunkPos);
+        addTargetIcon(world, chunkPos);
     }
     
     public void setTargetId(@Nullable Identifier targetId) {

@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "has_milky_resin": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:milky_resin"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

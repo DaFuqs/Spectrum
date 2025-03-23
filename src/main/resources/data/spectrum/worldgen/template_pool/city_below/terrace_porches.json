@@ -1,5 +1,4 @@
 {
-  "name": "spectrum:city_below/terrace_porches",
   "fallback": "minecraft:empty",
   "elements": [
     {

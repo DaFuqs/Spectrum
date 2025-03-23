@@ -1,0 +1,115 @@
+{
+  "type": "modonomicon:dense",
+  "pattern": [
+    [
+      "__I_____I__",
+      "___________",
+      "I_________I",
+      "___________",
+      "___________",
+      "_____F_____",
+      "___________",
+      "___________",
+      "I_________I",
+      "___________",
+      "__I_____I__"
+    ],
+    [
+      "__L_____L__",
+      "___________",
+      "L_G_____G_L",
+      "____BBB____",
+      "___BXXXB___",
+      "___BXXXB___",
+      "___BXXXB___",
+      "____BBB____",
+      "L_G_____G_L",
+      "___________",
+      "__L_____L__"
+    ],
+    [
+      "__P_____P__",
+      "____BBB____",
+      "P_P_XXX_P_P",
+      "____XXX____",
+      "_BXXXXXXXB_",
+      "_BXXXXXXXB_",
+      "_BXXXXXXXB_",
+      "____XXX____",
+      "P_P_XXX_P_P",
+      "____BBB____",
+      "__P_____P__"
+    ],
+    [
+      "_XXXXXXXXX_",
+      "XCCCXXXCCCX",
+      "XCXCXXXCXCX",
+      "XCCCXXXCCCX",
+      "XXXXXXXXXXX",
+      "XXXXX0XXXXX",
+      "XXXXXXXXXXX",
+      "XCCCXXXCCCX",
+      "XCXCXXXCXCX",
+      "XCCCXXXCCCX",
+      "_XXXXXXXXX_"
+    ],
+    [
+      "___________",
+      "_XXX___XXX_",
+      "_X_X___X_X_",
+      "_XXX___XXX_",
+      "___________",
+      "___________",
+      "___________",
+      "_XXX___XXX_",
+      "_X_X___X_X_",
+      "_XXX___XXX_",
+      "___________"
+    ]
+  ],
+  "mapping": {
+    "X": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:polished_basalt",
+      "tag": "#spectrum:structure/bases"
+    },
+    "P": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:polished_basalt_pillar[axis=y]",
+      "tag": "#spectrum:structure/pillars"
+    },
+    "B": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:polished_basalt_slab",
+      "tag": "#spectrum:structure/base_slabs"
+    },
+    "L": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:amethyst_basalt_lamp",
+      "tag": "#spectrum:structure/lights"
+    },
+    "G": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:amethyst_storage_block",
+      "tag": "#spectrum:structure/gemstones"
+    },
+    "F": {
+      "type": "modonomicon:block",
+      "block": "spectrum:enchanter"
+    },
+    "C": {
+      "type": "modonomicon:block",
+      "block": "spectrum:liquid_crystal"
+    },
+    "I": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:item_bowl_basalt",
+      "tag": "#spectrum:item_bowls"
+    },
+    "0": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:polished_basalt",
+      "tag": "#spectrum:structure/bases"
+    }
+  }
+}

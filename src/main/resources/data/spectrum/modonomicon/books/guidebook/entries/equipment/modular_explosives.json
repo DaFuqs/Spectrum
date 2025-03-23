@@ -1,0 +1,17 @@
+{
+	"type": "spectrum:entry_link",
+  "entry_to_open": "spectrum:magical_blocks/modular_explosives",
+
+	"name": "book.spectrum.guidebook.modular_explosives.name",
+	"condition": {
+		"type": "modonomicon:advancement",
+		"advancement_id": "spectrum:unlocks/blocks/modular_explosives"
+	},
+	"icon": "spectrum:parametric_mining_device",
+	"category": "spectrum:equipment",
+	"hide_while_locked": true,
+	"background_u_index": 0,
+	"background_v_index": 0,
+	"x": 3,
+	"y": 6
+}

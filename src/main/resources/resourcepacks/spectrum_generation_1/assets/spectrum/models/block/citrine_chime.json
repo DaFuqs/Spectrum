@@ -1,0 +1,6 @@
+{
+  "parent": "spectrum:templates/chime",
+  "textures": {
+    "gemstone": "spectrum:block/citrine_glass"
+  }
+}

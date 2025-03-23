@@ -47,7 +47,7 @@ public class RandomTeleportingIdolBlock extends IdolBlock {
 			double boundingBoxY = entity.getBoundingBox().getYLength(); // bouncy
 			if (entity instanceof ServerPlayerEntity serverPlayerEntity) {
 				serverPlayerEntity.teleport((ServerWorld) serverPlayerEntity.getWorld(), mutable.getX() + 0.5, mutable.getY() + boundingBoxY, mutable.getZ() + 0.5, serverPlayerEntity.getYaw(), serverPlayerEntity.getPitch());
-				world.sendEntityStatus(serverPlayerEntity, (byte) 46); // particles
+				world.sendEntityStatus(serverPlayerEntity, EntityStatuses.ADD_BREEDING_PARTICLES);
 				return true;
 			} else if (entity instanceof LivingEntity livingEntity) {
 				boolean success = livingEntity.teleport(mutable.getX() + 0.5, mutable.getY() + boundingBoxY, mutable.getZ() + 0.5, true);

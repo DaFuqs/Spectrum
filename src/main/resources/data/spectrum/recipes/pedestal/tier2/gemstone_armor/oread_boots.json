@@ -20,12 +20,12 @@
       "item": "minecraft:amethyst_shard"
     },
     "G": {
-      "item": "minecraft:ghast_tear"
+      "item": "minecraft:phantom_membrane"
     }
   },
   "result": {
     "item": "spectrum:oread_boots",
     "count": 1
   },
-  "required_advancement": "spectrum:hidden/collect_vanilla/collect_ghast_tear"
+  "required_advancement": "spectrum:hidden/collect_vanilla/phantom_membrane"
 }

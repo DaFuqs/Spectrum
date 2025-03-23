@@ -1,0 +1,92 @@
+{
+  "type": "modonomicon:dense",
+  "pattern": [
+    [
+      "C_________C",
+      "___________",
+      "___________",
+      "___________",
+      "___________",
+      "___________",
+      "___________",
+      "___________",
+      "___________",
+      "___________",
+      "C_________C"
+    ],
+    [
+      "Q_________Q",
+      "___________",
+      "__S_____S__",
+      "___________",
+      "___________",
+      "___________",
+      "___________",
+      "___________",
+      "__S_____S__",
+      "___________",
+      "Q_________Q"
+    ],
+    [
+      "K_________K",
+      "___________",
+      "__Q_____Q__",
+      "___________",
+      "___________",
+      "_____P_____",
+      "___________",
+      "___________",
+      "__Q_____Q__",
+      "___________",
+      "K_________K"
+    ],
+    [
+      "___________",
+      "___XXXXX___",
+      "__XXXXXXX__",
+      "_XXXXXXXXX_",
+      "_XXXXXXXXX_",
+      "_XXXX0XXXX_",
+      "_XXXXXXXXX_",
+      "_XXXXXXXXX_",
+      "__XXXXXXX__",
+      "___XXXXX___",
+      "___________"
+    ]
+  ],
+  "mapping": {
+    "X": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:polished_basalt",
+      "tag": "#spectrum:structure/bases"
+    },
+    "Q": {
+      "type": "modonomicon:tag",
+      "display" : "spectrum:polished_basalt_pillar[axis=y]",
+      "tag": "#spectrum:structure/pillars"
+    },
+    "S": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:amethyst_storage_block",
+      "tag": "#spectrum:structure/gemstones"
+    },
+    "C": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:chiseled_polished_basalt",
+      "tag": "#spectrum:structure/chiseled"
+    },
+    "K": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:notched_polished_basalt",
+      "tag": "#spectrum:structure/notched"
+    },
+    "P": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:pedestal_all_basic",
+      "tag": "#spectrum:pedestals"
+    },
+    "0": {
+      "type": "modonomicon:any"
+    }
+  }
+}

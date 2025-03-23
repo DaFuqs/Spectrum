@@ -1,5 +1,4 @@
 {
-  "name": "spectrum:city_below/graveyards",
   "fallback": "minecraft:empty",
   "elements": [
     {

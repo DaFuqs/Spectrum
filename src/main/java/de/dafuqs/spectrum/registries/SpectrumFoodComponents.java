@@ -20,7 +20,24 @@ public class SpectrumFoodComponents {
 			.hunger(3).saturationModifier(0.6F)
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.TOUGHNESS, 300, 0), 0.05F)
 			.build();
-	
+
+	public static final FoodComponent FISSURE_PLUM = new FoodComponent.Builder()
+			.hunger(3).saturationModifier(1.5F).snack()
+			.statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 400, 0), 0.1F)
+			.build();
+
+	public static final FoodComponent NIGHTDEW_SPROUT = new FoodComponent.Builder()
+			.hunger(-1).saturationModifier(0).alwaysEdible()
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.CALMING, 200, 0), 0.5F)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.SOMNOLENCE, 200, 0), 0.5F)
+			.build();
+
+	public static final FoodComponent NECTARDEW_BURGEON = new FoodComponent.Builder()
+			.hunger(-1).saturationModifier(0).alwaysEdible()
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.ETERNAL_SLUMBER, 6000, 0), 0.95F)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.FATAL_SLUMBER, 100, 0), 0.05F)
+			.build();
+
 	public static final FoodComponent STAR_CANDY = new FoodComponent.Builder()
 			.hunger(3).saturationModifier(0.2F).snack()
 			.build();
@@ -64,7 +81,7 @@ public class SpectrumFoodComponents {
 			.build();
 	
 	public static final FoodComponent RESTORATION_TEA = new FoodComponent.Builder()
-			.hunger(2).saturationModifier(0.2F).alwaysEdible()
+			.hunger(2).saturationModifier(2F).alwaysEdible()
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.IMMUNITY, 1200), 1.0F)
 			.build();
 	
@@ -73,13 +90,13 @@ public class SpectrumFoodComponents {
 			.build();
 	
 	public static final FoodComponent BODACIOUS_BERRY_BAR = new FoodComponent.Builder()
-			.hunger(8).saturationModifier(0.6F)
-			.statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 600, 2), 1.0F)
-			.statusEffect(new StatusEffectInstance(StatusEffects.HEALTH_BOOST, 1800, 4), 1.0F)
+			.hunger(8).saturationModifier(1.0F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 2), 1.0F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.HEALTH_BOOST, 1200, 4), 1.0F)
 			.build();
 	
 	public static final FoodComponent DEMON_TEA = new FoodComponent.Builder()
-			.snack().hunger(2).saturationModifier(0.2F)
+			.snack().hunger(2).saturationModifier(0.2F).alwaysEdible()
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.FRENZY, 800, 1), 2.0F / 3.0F)
 			.build();
 	
@@ -89,6 +106,7 @@ public class SpectrumFoodComponents {
 	
 	public static final FoodComponent BEVERAGE = new FoodComponent.Builder()
 			.hunger(2).saturationModifier(0.2F)
+			.alwaysEdible()
 			.build();
 	
 	public static final FoodComponent PURE_ALCOHOL = new FoodComponent.Builder()
@@ -96,6 +114,12 @@ public class SpectrumFoodComponents {
 			.statusEffect(new StatusEffectInstance(StatusEffects.POISON, 20 * 15, 4), 1.0F)
 			.statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 20 * 30, 2), 1.0F)
 			.statusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 20 * 60, 2), 1.0F)
+			.alwaysEdible()
+			.build();
+
+	public static final FoodComponent EVERNECTAR = new FoodComponent.Builder()
+			.hunger(2).saturationModifier(0.2F).alwaysEdible()
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.FATAL_SLUMBER, 20 * 10), 1.0F)
 			.build();
 	
 	public static final FoodComponent KIMCHI = new FoodComponent.Builder()
@@ -109,14 +133,35 @@ public class SpectrumFoodComponents {
 	public static final FoodComponent FRESH_CHOCOLATE = new FoodComponent.Builder()
 			.snack().hunger(4).saturationModifier(0.6F)
 			.build();
-	
+
 	public static final FoodComponent HOT_CHOCOLATE = new FoodComponent.Builder()
-			.hunger(6).saturationModifier(0.2F)
+			.hunger(6).saturationModifier(0.2F).alwaysEdible()
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.NOURISHING, 1200), 1.0F)
 			.build();
 	
 	public static final FoodComponent HOT_CHOCOLATE_SCONE_BONUS = new FoodComponent.Builder()
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.NOURISHING, 1200), 1.0F)
+			.build();
+
+	public static final FoodComponent KARAK_CHAI = new FoodComponent.Builder()
+			.hunger(5).saturationModifier(1F).alwaysEdible()
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.CALMING, 2400, 1), 1.0F)
+			.build();
+
+	public static final FoodComponent KARAK_CHAI_SCONE_BONUS = new FoodComponent.Builder()
+			.hunger(5).saturationModifier(1F)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.CALMING, 6000, 2), 1.0F)
+			.build();
+
+	public static final FoodComponent AZALEA_TEA = new FoodComponent.Builder()
+			.hunger(2).saturationModifier(0.1F).alwaysEdible()
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.SOMNOLENCE, 1200), 1.0F)
+			.build();
+
+	public static final FoodComponent AZALEA_TEA_SCONE_BONUS = new FoodComponent.Builder()
+			.hunger(2).saturationModifier(0.1F)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.SOMNOLENCE, 1200), 1.0F)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.CALMING, 1200), 1.0F)
 			.build();
 	
 	public static final FoodComponent SCONE = new FoodComponent.Builder()
@@ -135,6 +180,11 @@ public class SpectrumFoodComponents {
 	public static final FoodComponent DIVINATION_HEART = new FoodComponent.Builder()
 			.hunger(2).saturationModifier(0.2F).alwaysEdible()
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.DIVINITY, 600, DivinityStatusEffect.ASCENSION_AMPLIFIER), 1.0F)
+			.build();
+
+	public static final FoodComponent BITTER_OILS = new FoodComponent.Builder()
+			.hunger(0).saturationModifier(0).alwaysEdible()
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.DEADLY_POISON, 200), 1.0F)
 			.build();
 	
 	public static final FoodComponent ROCK_CANDY = new FoodComponent.Builder()
@@ -313,11 +363,15 @@ public class SpectrumFoodComponents {
 	public static final FoodComponent LIZARD_MEAT = new FoodComponent.Builder()
 			.hunger(2).saturationModifier(0.6F).meat()
 			.build();
+	
+	public static final FoodComponent COOKED_LIZARD_MEAT = new FoodComponent.Builder()
+			.hunger(4).saturationModifier(1.6F).meat()
+			.build();
 
 	public static final FoodComponent GOLDEN_BRISTLE_TEA = new FoodComponent.Builder()
-			.hunger(1).saturationModifier(1F)
+			.hunger(6).saturationModifier(1F).alwaysEdible()
 			.statusEffect(new StatusEffectInstance(StatusEffects.INSTANT_HEALTH), 0.5F)
-			.statusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 600, 4), 1)
+			.statusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 600, 3), 1)
 			.statusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 600, 0), 0.5F)
 			.build();
 
@@ -374,7 +428,7 @@ public class SpectrumFoodComponents {
 			.build();
 
 	public static final FoodComponent PEACH_CREAM = new FoodComponent.Builder()
-			.hunger(8).saturationModifier(1F)
+			.hunger(8).saturationModifier(1F).alwaysEdible()
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.TOUGHNESS, 3000, 1), 1.0F)
 			.build();
 
@@ -401,7 +455,7 @@ public class SpectrumFoodComponents {
 			.build();
 
 	public static final FoodComponent SLUSHSLIDE = new FoodComponent.Builder()
-			.hunger(9).saturationModifier(0.6F)
+			.hunger(9).saturationModifier(0.6F).alwaysEdible()
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.SWIFTNESS, 2400, 1), 1.0F)
 			.statusEffect(new StatusEffectInstance(StatusEffects.HASTE, 2400, 1), 1.0F)
 			.build();
@@ -409,6 +463,43 @@ public class SpectrumFoodComponents {
 	public static final FoodComponent SURSTROMMING = new FoodComponent.Builder()
 			.hunger(5).saturationModifier(0.6F)
 			.statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 6000, 10), 1.0F)
+			.build();
+
+	public static final FoodComponent CHEONG = new FoodComponent.Builder()
+			.hunger(6).saturationModifier(0.6F)
+			.build();
+
+	public static final FoodComponent MERMAIDS_JAM = new FoodComponent.Builder()
+			.hunger(6).saturationModifier(0.6F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.WATER_BREATHING, 400, 0), 1.0F)
+			.build();
+
+	public static final FoodComponent MERMAIDS_POPCORN = new FoodComponent.Builder()
+			.hunger(6).saturationModifier(0.6F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.DOLPHINS_GRACE, 400, 0), 1.0F)
+			.build();
+
+	public static final FoodComponent LE_FISHE_AU_CHOCOLAT = new FoodComponent.Builder()
+			.hunger(10).saturationModifier(1.2F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 100, 0), 0.5F)
+			.build();
+	
+	public static final FoodComponent STUFFED_PETALS = new FoodComponent.Builder()
+			.hunger(10).saturationModifier(1.2F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.DOLPHINS_GRACE, 400, 0), 1.0F)
+			.build();
+	
+	public static final FoodComponent PASTICHE = new FoodComponent.Builder()
+			.hunger(16).saturationModifier(1.6F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.HEALTH_BOOST, 3300, 1), 1.0F)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.NOURISHING, 3300, 1), 1.0F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 1800, 0), 1.0F)
+			.build();
+	
+	public static final FoodComponent VITTORIAS_ROAST = new FoodComponent.Builder()
+			.hunger(16).saturationModifier(1.6F)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.NOURISHING, 3600, 1), 1.0F)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.TOUGHNESS, 1800, 1), 1.0F)
 			.build();
 	
 }

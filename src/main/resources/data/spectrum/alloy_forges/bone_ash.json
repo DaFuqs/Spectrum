@@ -6,6 +6,6 @@
     "spectrum:polished_bone_ash_pillar"
   ],
   "tier": 4,
-  "speed_multiplier": 3.0,
+	"speed_multiplier": 1.5,
   "fuel_capacity": 192000
 }

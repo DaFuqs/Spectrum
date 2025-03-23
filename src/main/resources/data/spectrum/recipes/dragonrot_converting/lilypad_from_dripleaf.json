@@ -1,0 +1,10 @@
+{
+  "type": "spectrum:dragonrot_converting",
+  "ingredient": {
+    "item": "minecraft:big_dripleaf"
+  },
+  "result": {
+    "item": "minecraft:lily_pad",
+    "count": 1
+  }
+}

@@ -1,7 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "item/filled_map",
-    "layer1": "item/filled_map_markings"
+    "layer0": "spectrum:item/artisans_atlas"
   }
 }

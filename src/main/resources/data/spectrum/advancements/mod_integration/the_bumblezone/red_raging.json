@@ -1,0 +1,24 @@
+{
+  "criteria": {
+    "collected_pigment": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_pigment/red"
+      }
+    },
+    "collected_essence": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "the_bumblezone:essence/essence_raging"
+      }
+    }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "the_bumblezone"
+      ]
+    }
+  ]
+}

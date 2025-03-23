@@ -44,4 +44,8 @@ public class ColoredWoodBlock extends PillarBlock implements RevelationAware, Co
 		return WOOD.get(color);
 	}
 	
+	public static Collection<ColoredWoodBlock> all() {
+		return WOOD.values();
+	}
+	
 }

@@ -26,7 +26,7 @@ public class FreezingIdolBlock extends IdolBlock {
 		put(Blocks.WATER, new Pair<>(Blocks.ICE.getDefaultState(), 1.0F));
 		put(Blocks.ICE, new Pair<>(Blocks.PACKED_ICE.getDefaultState(), 0.25F));
 		put(Blocks.PACKED_ICE, new Pair<>(Blocks.BLUE_ICE.getDefaultState(), 0.1F));
-		put(Blocks.GRASS, new Pair<>(Blocks.PODZOL.getDefaultState(), 0.1F));
+		put(Blocks.GRASS_BLOCK, new Pair<>(Blocks.PODZOL.getDefaultState(), 0.1F));
 		put(Blocks.BASALT, new Pair<>(Blocks.CALCITE.getDefaultState(), 0.5F));
 		put(SpectrumBlocks.BLAZING_CRYSTAL, new Pair<>(SpectrumBlocks.FROSTBITE_CRYSTAL.getDefaultState(), 0.5F));
 	}};

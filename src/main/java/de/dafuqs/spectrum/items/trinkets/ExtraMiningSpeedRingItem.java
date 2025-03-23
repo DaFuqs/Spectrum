@@ -22,7 +22,7 @@ public class ExtraMiningSpeedRingItem extends InkDrainTrinketItem {
 	public ExtraMiningSpeedRingItem(Settings settings) {
 		super(settings, SpectrumCommon.locate("unlocks/trinkets/ring_of_pursuit"), InkColors.MAGENTA);
 	}
-	
+
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		tooltip.add(Text.translatable("item.spectrum.ring_of_pursuit.tooltip").formatted(Formatting.GRAY));

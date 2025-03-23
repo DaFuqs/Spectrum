@@ -1,0 +1,22 @@
+{
+  "type": "spectrum:tristate_vine",
+  "config": {
+    "vine_block": "spectrum:abyssal_vines",
+    "minimum_height": {
+      "type": "minecraft:uniform",
+      "value": {
+        "min_inclusive": 2,
+        "max_inclusive": 7
+      }
+    },
+    "overgrowth": {
+      "type": "minecraft:uniform",
+      "value": {
+        "min_inclusive": 0.1,
+        "max_exclusive": 0.275
+      }
+    },
+    "berry_chance": 0.195,
+    "cutoff": 2
+  }
+}

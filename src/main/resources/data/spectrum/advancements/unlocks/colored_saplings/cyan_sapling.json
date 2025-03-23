@@ -6,7 +6,9 @@
     },
     "collected_topaz_shard": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_shards/collect_topaz_shard" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_shards/topaz"
+      }
     }
   }
 }

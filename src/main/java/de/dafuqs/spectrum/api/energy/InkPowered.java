@@ -3,13 +3,17 @@ package de.dafuqs.spectrum.api.energy;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.progression.*;
 import dev.emi.trinkets.api.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
+import net.minecraft.registry.*;
+import net.minecraft.server.network.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
@@ -49,23 +53,27 @@ public interface InkPowered {
 			if (getUsedColors().size() > 1) {
 				tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.prefix").formatted(Formatting.GRAY));
 				for (InkColor color : getUsedColors()) {
-					tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet." + color.toString()));
+					tooltip.add(color.getColoredInkName().formatted(Formatting.GRAY));
 				}
 			} else {
-				tooltip.add(Text.translatable("spectrum.tooltip.ink_powered." + getUsedColors().get(0).toString()).formatted(Formatting.GRAY));
+				tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.consume", getUsedColors().get(0).getColoredInkName()).formatted(Formatting.GRAY));
 			}
 		}
 	}
 	
-	private static long tryDrainEnergy(@NotNull ItemStack stack, InkColor color, long amount, boolean viaPlayer) {
+	private static long tryDrainEnergy(@NotNull ItemStack stack, InkColor color, long amount, @Nullable PlayerEntity player) {
 		if (stack.getItem() instanceof InkStorageItem<?> inkStorageItem) {
-			if (!inkStorageItem.getDrainability().canDrain(viaPlayer)) {
+			if (!inkStorageItem.getDrainability().canDrain(player != null)) {
 				return 0;
 			}
 			
 			InkStorage inkStorage = inkStorageItem.getEnergyStorage(stack);
 			long drained = inkStorage.drainEnergy(color, amount);
 			if (drained > 0) {
+				if (player instanceof ServerPlayerEntity serverPlayerEntity) {
+					SpectrumAdvancementCriteria.INK_CONTAINER_INTERACTION.trigger(serverPlayerEntity, stack, inkStorage, color, -amount);
+				}
+				
 				inkStorageItem.setEnergyStorage(stack, inkStorage);
 			}
 			return drained;
@@ -93,7 +101,7 @@ public interface InkPowered {
 		for (int i = 0; i < inventory.size(); i++) {
 			ItemStack currentStack = inventory.getStack(i);
 			if (!currentStack.isEmpty()) { // fast fail
-				amount -= tryDrainEnergy(currentStack, color, amount, false);
+				amount -= tryDrainEnergy(currentStack, color, amount, null);
 				if (amount <= 0) {
 					return true;
 				}
@@ -129,10 +137,14 @@ public interface InkPowered {
 		if (!canUse(player)) {
 			return false;
 		}
+		if(SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.MALUM_ID) && player.hasStatusEffect(Registries.STATUS_EFFECT.get(new Identifier("malum:silenced"))))
+		{
+			return false;
+		}
 		
 		// hands (main hand, too, if someone uses the staff from the offhand)
 		for (ItemStack itemStack : player.getHandItems()) {
-			amount -= tryDrainEnergy(itemStack, color, amount, true);
+			amount -= tryDrainEnergy(itemStack, color, amount, player);
 			if (amount <= 0) {
 				return true;
 			}
@@ -143,7 +155,7 @@ public interface InkPowered {
 		if (optionalTrinketComponent.isPresent()) {
 			List<Pair<SlotReference, ItemStack>> trinketInkStorages = optionalTrinketComponent.get().getEquipped(itemStack -> itemStack.getItem() instanceof InkStorageItem<?>);
 			for (Pair<SlotReference, ItemStack> trinketEnergyStorageStack : trinketInkStorages) {
-				amount -= tryDrainEnergy(trinketEnergyStorageStack.getRight(), color, amount, true);
+				amount -= tryDrainEnergy(trinketEnergyStorageStack.getRight(), color, amount, player);
 				if (amount <= 0) {
 					return true;
 				}
@@ -152,7 +164,7 @@ public interface InkPowered {
 		
 		// inventory
 		for (ItemStack itemStack : player.getInventory().main) {
-			amount -= tryDrainEnergy(itemStack, color, amount, true);
+			amount -= tryDrainEnergy(itemStack, color, amount, player);
 			if (amount <= 0) {
 				return true;
 			}
@@ -170,12 +182,13 @@ public interface InkPowered {
 		}
 		
 		long available = 0;
-		// offhand
+		
+		// hands
 		for (ItemStack itemStack : player.getHandItems()) {
 			available += tryGetEnergy(itemStack, color);
 		}
 		
-		// trinket slot
+		// trinket slots
 		Optional<TrinketComponent> optionalTrinketComponent = TrinketsApi.getTrinketComponent(player);
 		if (optionalTrinketComponent.isPresent()) {
 			List<Pair<SlotReference, ItemStack>> trinketInkStorages = optionalTrinketComponent.get().getEquipped(itemStack -> itemStack.getItem() instanceof InkStorageItem<?>);
@@ -199,9 +212,18 @@ public interface InkPowered {
 		if (!canUse(player)) {
 			return false;
 		}
+
+		if(SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.MALUM_ID) && player.hasStatusEffect(Registries.STATUS_EFFECT.get(new Identifier("malum:silenced"))))
+		{
+			return false;
+		}
 		
-		// offhand
-		for (ItemStack itemStack : player.getInventory().offHand) {
+		if (player.isCreative()) {
+			return true;
+		}
+		
+		// hands
+		for (ItemStack itemStack : player.getHandItems()) {
 			amount -= tryGetEnergy(itemStack, color);
 			if (amount <= 0) {
 				return true;

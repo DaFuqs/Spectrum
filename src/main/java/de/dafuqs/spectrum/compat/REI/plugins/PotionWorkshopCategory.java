@@ -45,7 +45,7 @@ public abstract class PotionWorkshopCategory<T extends PotionWorkshopRecipeDispl
 		widgets.add(Widgets.createSlot(new Point(startPoint.x + 95, startPoint.y + 1 + 19)).entries(result).markOutput());
 		
 		// description text
-		Text text = Text.translatable("container.spectrum.rei.potion_workshop.crafting_time", (display.craftingTime / 20));
+		Text text = getCraftingTimeText(display.craftingTime);
 		widgets.add(Widgets.createLabel(new Point(startPoint.x + 40, startPoint.y + 1 + 54), text).leftAligned().color(0x3f3f3f).noShadow());
 	}
 	

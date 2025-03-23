@@ -1,0 +1,30 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "glowblocks",
+  "time": 200,
+  "tier": "advanced",
+  "cyan": 3,
+  "magenta": 2,
+  "yellow": 1,
+  "white": 0,
+  "black": 0,
+  "experience": 1.0,
+  "pattern": [
+    "PQP",
+    "QPQ",
+    "PQP"
+  ],
+  "key": {
+    "P": {
+      "item": "spectrum:blue_pigment"
+    },
+    "Q": {
+      "item": "spectrum:quitoxic_powder"
+    }
+  },
+  "result": {
+    "item": "spectrum:blue_glowblock",
+    "count": 4
+  },
+  "required_advancement": "spectrum:unlocks/glowblocks/blue_glowblock"
+}

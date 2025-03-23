@@ -1,0 +1,150 @@
+{
+    "type": "minecraft:chest",
+    "pools": [
+        {
+            "rolls": 4,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "minecraft:spruce_planks"
+                },
+                {
+                    "type": "minecraft:item",
+                    "name": "minecraft:dark_oak_planks"
+                },
+                {
+                    "type": "minecraft:item",
+                    "name": "spectrum:weeping_gala_planks"
+                }
+            ],
+            "functions": [
+                {
+                    "function": "minecraft:set_count",
+                    "count": {
+                        "min": 5,
+                        "max": 10
+                    }
+                }
+            ]
+        },
+        {
+            "rolls": 4,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "minecraft:spruce_stairs"
+                },
+                {
+                    "type": "minecraft:item",
+                    "name": "minecraft:dark_oak_stairs"
+                },
+                {
+                    "type": "minecraft:item",
+                    "name": "spectrum:weeping_gala_stairs"
+                }
+            ],
+            "functions": [
+                {
+                    "function": "minecraft:set_count",
+                    "count": {
+                        "min": 2,
+                        "max": 4
+                    }
+                }
+            ]
+        },
+        {
+            "rolls": 4,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "minecraft:spruce_log"
+                },
+                {
+                    "type": "minecraft:item",
+                    "name": "minecraft:dark_oak_log"
+                },
+                {
+                    "type": "minecraft:item",
+                    "name": "spectrum:weeping_gala_log"
+                }
+            ],
+            "functions": [
+                {
+                    "function": "minecraft:set_count",
+                    "count": {
+                        "min": 2,
+                        "max": 4
+                    }
+                }
+            ]
+        },
+        {
+            "rolls": 3,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "spectrum:weeping_gala_door",
+                    "functions": [
+                        {
+                            "function": "minecraft:set_count",
+                            "count": {
+                                "min": 0,
+                                "max": 2
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "minecraft:item",
+                    "name": "spectrum:weeping_gala_trapdoor",
+                    "functions": [
+                        {
+                            "function": "minecraft:set_count",
+                            "count": {
+                                "min": 0,
+                                "max": 1
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "minecraft:scaffolding",
+                    "functions": [
+                        {
+                            "function": "minecraft:set_count",
+                            "count": {
+                                "min": 8,
+                                "max": 16
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "minecraft:stick",
+                    "functions": [
+                        {
+                            "function": "minecraft:set_count",
+                            "count": {
+                                "min": 6,
+                                "max": 10
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,33 @@
+{
+  "name": "item.spectrum.azuresque_dike_core",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/trinkets/azuresque_dike_core"
+  },
+  "icon": "spectrum:azuresque_dike_core",
+  "category": "spectrum:equipment",
+  "hide_while_locked": true,
+  "parents": [
+    {
+      "entry": "spectrum:equipment/trinkets/base_trinkets",
+      "line_enabled": false
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 1,
+  "x": 10,
+  "y": -3,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.azuresque_dike_core.page0.text",
+      "title": "item.spectrum.azuresque_dike_core"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "text": "book.spectrum.guidebook.azuresque_dike_core.page1.text",
+      "title": "container.spectrum.rei.fusion_recipe",
+      "recipe_id": "spectrum:fusion_shrine/trinkets/azuresque_dike_core"
+    }
+  ]
+}

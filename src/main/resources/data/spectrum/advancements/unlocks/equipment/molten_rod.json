@@ -3,7 +3,7 @@
     "collected_orange_pigment": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_pigment/collect_orange_pigment"
+        "advancement_identifier": "spectrum:hidden/collect_pigment/orange"
       }
     },
     "collected_blaze_rod": {

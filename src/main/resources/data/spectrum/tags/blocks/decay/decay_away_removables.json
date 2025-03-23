@@ -2,6 +2,10 @@
   "values": [
     "minecraft:sculk_vein",
     "minecraft:sculk_shrieker",
-    "minecraft:sculk_sensor"
+    "minecraft:sculk_sensor",
+    {
+      "id": "#malum:blighted_plants",
+      "required": false
+    }
   ]
 }

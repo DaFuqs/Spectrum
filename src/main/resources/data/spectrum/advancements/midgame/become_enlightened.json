@@ -1,0 +1,26 @@
+{
+  "parent": "spectrum:midgame/collect_stratine",
+  "display": {
+    "icon": {
+      "item": "spectrum:cat_head"
+    },
+    "title": {
+      "translate": "advancements.spectrum.become_enlightened.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.become_enlightened.description"
+    },
+    "hidden": true
+  },
+  "criteria": {
+    "confirmed": {
+      "trigger": "minecraft:impossible"
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/collect_stratine"
+      }
+    }
+  }
+}

@@ -7,7 +7,7 @@
     },
     {
       "item": "spectrum:incandescent_essence",
-      "fuel": 2000
+			"fuel": 1000
     },
     {
       "item": "spectrum:pure_coal",

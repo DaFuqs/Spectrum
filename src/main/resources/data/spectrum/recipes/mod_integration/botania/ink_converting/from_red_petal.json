@@ -3,9 +3,9 @@
   "ingredient": {
     "item": "botania:red_petal"
   },
-  "color": "red",
+  "ink_color": "spectrum:red",
   "amount": 25,
-  "required_advancement": "spectrum:hidden/collect_pigment/collect_red_pigment",
+  "required_advancement": "spectrum:hidden/collect_pigment/red",
   "fabric:load_conditions": [
     {
       "condition": "fabric:all_mods_loaded",

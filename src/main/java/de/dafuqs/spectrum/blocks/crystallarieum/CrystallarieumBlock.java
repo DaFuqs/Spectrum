@@ -63,12 +63,10 @@ public class CrystallarieumBlock extends InWorldInteractionBlock {
 	@Override
 	public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
 		if (!world.isClient && entity instanceof ItemEntity itemEntity) {
-			if (itemEntity.getPos().x % 0.5 != 0 && itemEntity.getPos().z % 0.5 != 0) {
-				BlockEntity blockEntity = world.getBlockEntity(pos);
-				if (blockEntity instanceof CrystallarieumBlockEntity crystallarieumBlockEntity) {
-					ItemStack stack = itemEntity.getStack();
-					crystallarieumBlockEntity.acceptStack(stack, false, itemEntity.getOwner() != null ? itemEntity.getOwner().getUuid() : null);
-				}
+			BlockEntity blockEntity = world.getBlockEntity(pos);
+			if (blockEntity instanceof CrystallarieumBlockEntity crystallarieumBlockEntity) {
+				ItemStack stack = itemEntity.getStack();
+				crystallarieumBlockEntity.acceptStack(stack, false, itemEntity.getOwner() != null ? itemEntity.getOwner().getUuid() : null);
 			}
 		} else {
 			super.onLandedUpon(world, state, pos, entity, fallDistance);

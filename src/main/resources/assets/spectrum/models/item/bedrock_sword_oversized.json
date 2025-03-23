@@ -1,0 +1,6 @@
+{
+  "parent": "spectrum:item/handheld_oversized_high_grip",
+  "textures": {
+    "layer0": "spectrum:item/bedrock_sword_oversized"
+  }
+}

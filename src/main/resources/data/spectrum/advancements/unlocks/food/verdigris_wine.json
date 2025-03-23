@@ -1,0 +1,34 @@
+{
+    "criteria": {
+      "unlocked_titration_barrel": {
+        "trigger": "revelationary:advancement_gotten",
+        "conditions": {
+          "advancement_identifier": "spectrum:unlocks/blocks/titration_barrel"
+        }
+      },
+      "confirmed_drinking_age": {
+        "trigger": "revelationary:advancement_gotten",
+        "conditions": {
+          "advancement_identifier": "spectrum:triggers/confirmed_drinking_age"
+        }
+      },
+      "collected_nightdew": {
+        "trigger": "revelationary:advancement_gotten",
+        "conditions": {
+          "advancement_identifier": "spectrum:collect_nightdew"
+        }
+      },
+      "collected_quitoxic_reeds": {
+        "trigger": "revelationary:advancement_gotten",
+        "conditions": {
+          "advancement_identifier": "spectrum:collect_quitoxic_reeds"
+        }
+      },
+      "created_onyx": {
+        "trigger": "revelationary:advancement_gotten",
+        "conditions": {
+          "advancement_identifier": "spectrum:create_onyx_shard"
+        }
+      }
+    }
+  }

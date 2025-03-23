@@ -1,7 +1,12 @@
 {
 	"variants": {
-		"": {
-			"model": "spectrum:block/azurite_ore"
-		}
+		"": [
+			{
+				"model": "spectrum:block/azurite_ore"
+			},
+			{
+				"model": "spectrum:block/azurite_ore_mirrored"
+			}
+		]
 	}
 }

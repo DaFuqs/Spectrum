@@ -18,7 +18,7 @@ public class EnchanterRecipeSerializer implements GatedRecipeSerializer<Enchante
 	}
 	
 	public interface RecipeFactory {
-		EnchanterRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, DefaultedList<Ingredient> inputs, ItemStack output, int craftingTime, int requiredExperience, boolean noBenefitsFromYieldAndEfficiencyUpgrades);
+		EnchanterRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, DefaultedList<Ingredient> inputs, ItemStack output, int craftingTime, int requiredExperience, boolean noBenefitsFromYieldAndEfficiencyUpgrades, boolean copyNbt);
 	}
 	
 	@Override
@@ -38,12 +38,10 @@ public class EnchanterRecipeSerializer implements GatedRecipeSerializer<Enchante
 		int requiredExperience = JsonHelper.getInt(jsonObject, "required_experience", 0);
 		int craftingTime = JsonHelper.getInt(jsonObject, "time", 200);
 		
-		boolean noBenefitsFromYieldAndEfficiencyUpgrades = false;
-		if (JsonHelper.hasPrimitive(jsonObject, "disable_yield_and_efficiency_upgrades")) {
-			noBenefitsFromYieldAndEfficiencyUpgrades = JsonHelper.getBoolean(jsonObject, "disable_yield_and_efficiency_upgrades", false);
-		}
+		boolean noBenefitsFromYieldAndEfficiencyUpgrades = JsonHelper.getBoolean(jsonObject, "disable_yield_and_efficiency_upgrades", false);
+		boolean copyNbt = JsonHelper.getBoolean(jsonObject, "copy_nbt", false);
 		
-		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, craftingInputs, output, craftingTime, requiredExperience, noBenefitsFromYieldAndEfficiencyUpgrades);
+		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, craftingInputs, output, craftingTime, requiredExperience, noBenefitsFromYieldAndEfficiencyUpgrades, copyNbt);
 	}
 	
 	@Override
@@ -61,6 +59,7 @@ public class EnchanterRecipeSerializer implements GatedRecipeSerializer<Enchante
 		packetByteBuf.writeInt(recipe.craftingTime);
 		packetByteBuf.writeInt(recipe.requiredExperience);
 		packetByteBuf.writeBoolean(recipe.noBenefitsFromYieldAndEfficiencyUpgrades);
+		packetByteBuf.writeBoolean(recipe.copyNbt);
 	}
 	
 	@Override
@@ -79,8 +78,9 @@ public class EnchanterRecipeSerializer implements GatedRecipeSerializer<Enchante
 		int craftingTime = packetByteBuf.readInt();
 		int requiredExperience = packetByteBuf.readInt();
 		boolean noBenefitsFromYieldAndEfficiencyUpgrades = packetByteBuf.readBoolean();
+		boolean copyNbt = packetByteBuf.readBoolean();
 		
-		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, ingredients, output, craftingTime, requiredExperience, noBenefitsFromYieldAndEfficiencyUpgrades);
+		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, ingredients, output, craftingTime, requiredExperience, noBenefitsFromYieldAndEfficiencyUpgrades, copyNbt);
 	}
 	
 }

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "item": "spectrum:ash"
+    }
+  },
+  "result": {
+    "item": "spectrum:ash_pile",
+    "count": 6
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "name": "book.spectrum.guidebook.mod_integration.tech_reborn.name",
+  "icon": "techreborn:grinder",
+  "condition": {
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:mod_loaded",
+        "mod_id": "techreborn"
+      },
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:place_pedestal"
+      }
+    ]
+  },
+  "category": "spectrum:mod_integration",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 2,
+  "y": 6,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.mod_integration.tech_reborn.name",
+      "text": "book.spectrum.guidebook.mod_integration.tech_reborn.page0.text"
+    },
+    {
+      "type": "spectrum:cinderhearth_smelting",
+      "title": "book.spectrum.guidebook.mod_integration.tech_reborn.refined_iron_ingot.title",
+      "recipe_id": "spectrum:mod_integration/tech_reborn/refined_iron_ingot",
+      "text": "book.spectrum.guidebook.mod_integration.tech_reborn.refined_iron_ingot.text"
+    },
+    {
+      "type": "spectrum:cinderhearth_smelting",
+      "title": "book.spectrum.guidebook.mod_integration.tech_reborn.advanced_alloy_ingot.title",
+      "recipe_id": "spectrum:mod_integration/tech_reborn/advanced_alloy_ingot",
+      "text": "book.spectrum.guidebook.mod_integration.tech_reborn.advanced_alloy_ingot.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.mod_integration.tech_reborn.page2.title",
+      "item": {
+        "item": "spectrum:amethyst_ore"
+      },
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:break_gemstone_ore"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.tech_reborn.page2.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.mod_integration.tech_reborn.page3.title",
+      "item": {
+        "item": "minecraft:amethyst_shard"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.tech_reborn.page3.text"
+    }
+  ]
+}

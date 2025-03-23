@@ -9,20 +9,20 @@
      },
      {
        "index": 1,
-       "time": 15
-     },
-     {
-       "index": 2,
        "time": 140
      },
      {
-       "index": 2,
-       "time": 80
+       "index": 1,
+       "time": 300
      },
      {
        "index": 0,
        "time": 50
-     }
+     },
+      {
+        "index": 0,
+        "time": 400
+      }
     ]
   }
 }

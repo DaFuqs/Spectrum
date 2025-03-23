@@ -1,0 +1,21 @@
+{
+  "type": "neepmeat:grinding",
+  "input": {
+    "resource": "spectrum:quitoxic_reeds",
+    "amount": 1
+  },
+  "output": {
+    "resource": "spectrum:quitoxic_powder",
+    "amount": 2
+  },
+  "experience": 0.4,
+  "processtime": 45,
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "neepmeat"
+      ]
+    }
+  ]
+}

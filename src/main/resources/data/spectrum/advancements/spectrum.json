@@ -20,19 +20,61 @@
     "has_amethyst_shard": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_shards/collect_amethyst_shard"
+        "advancement_identifier": "spectrum:hidden/collect_shards/amethyst"
       }
     },
     "has_citrine_shard": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_shards/collect_citrine_shard"
+        "advancement_identifier": "spectrum:hidden/collect_shards/citrine"
       }
     },
     "has_topaz_shard": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_shards/collect_topaz_shard"
+        "advancement_identifier": "spectrum:hidden/collect_shards/topaz"
+      }
+    },
+    "has_nightdew": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:nightdew_sprout"
+            ]
+          }
+        ]
+      }
+    },
+    "has_mermaids_gem": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:mermaids_gem"
+            ]
+          }
+        ]
+      }
+    },
+    "has_radiating_ender": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:radiating_ender"
+            ]
+          }
+        ]
+      }
+    },
+    "found_preservation_ruin": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:find_preservation_ruins"
       }
     }
   },
@@ -40,7 +82,11 @@
     [
       "has_amethyst_shard",
       "has_citrine_shard",
-      "has_topaz_shard"
+      "has_topaz_shard",
+      "has_nightdew",
+      "has_mermaids_gem",
+      "has_radiating_ender",
+      "found_preservation_ruin"
     ]
   ]
 }

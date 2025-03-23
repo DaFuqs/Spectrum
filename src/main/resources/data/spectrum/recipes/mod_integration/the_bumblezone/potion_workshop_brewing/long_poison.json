@@ -1,0 +1,26 @@
+{
+  "type": "spectrum:potion_workshop_brewing",
+  "group": "the_bumblezone",
+  "ingredient1": {
+    "item": "minecraft:nether_wart"
+  },
+  "ingredient2": {
+    "item": "the_bumblezone:bee_stinger"
+  },
+  "effect": "minecraft:poison",
+  "base_duration_ticks": 1800,
+  "potency_modifier": 1.0,
+  "applicable_to_potions": true,
+  "applicable_to_tipped_arrows": true,
+  "applicable_to_potion_fillables": true,
+  "ink_color": "spectrum:pink",
+  "ink_cost": 4,
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "the_bumblezone"
+      ]
+    }
+  ]
+}

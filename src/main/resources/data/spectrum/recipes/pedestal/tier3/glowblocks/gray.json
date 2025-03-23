@@ -1,0 +1,30 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "glowblocks",
+  "time": 200,
+  "tier": "complex",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 2,
+  "black": 4,
+  "experience": 1.0,
+  "pattern": [
+    "PQP",
+    "QPQ",
+    "PQP"
+  ],
+  "key": {
+    "P": {
+      "item": "spectrum:gray_pigment"
+    },
+    "Q": {
+      "item": "spectrum:quitoxic_powder"
+    }
+  },
+  "result": {
+    "item": "spectrum:gray_glowblock",
+    "count": 4
+  },
+  "required_advancement": "spectrum:unlocks/glowblocks/gray_glowblock"
+}

@@ -1,0 +1,22 @@
+{
+  "type": "spectrum:tristate_vine",
+  "config": {
+    "vine_block": "spectrum:nightdew",
+    "minimum_height": {
+      "type": "minecraft:uniform",
+      "value": {
+        "min_inclusive": 3,
+        "max_inclusive": 8
+      }
+    },
+    "overgrowth": {
+      "type": "minecraft:uniform",
+      "value": {
+        "min_inclusive": 0.05,
+        "max_exclusive": 0.155
+      }
+    },
+    "berry_chance": 0,
+    "cutoff": 3
+  }
+}

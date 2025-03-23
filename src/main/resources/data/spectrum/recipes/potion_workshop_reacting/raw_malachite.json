@@ -3,7 +3,8 @@
   "item": "spectrum:raw_malachite",
   "modifiers": {
     "duration_multiplier": 2.0,
-    "additional_drink_duration_ticks": 54
+    "additional_drink_duration_ticks": 54,
+    "flat_yield_bonus": -1.0
   },
   "required_advancement": "spectrum:lategame/collect_malachite"
 }

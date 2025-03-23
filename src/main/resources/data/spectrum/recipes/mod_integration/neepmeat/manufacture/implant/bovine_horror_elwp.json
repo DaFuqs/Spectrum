@@ -1,0 +1,23 @@
+{
+  "type": "neepmeat:entity_manufacture",
+  "base": {
+    "id": "spectrum:egg_laying_wooly_pig"
+  },
+  "steps": [
+    {
+      "id": "neepmeat:implant",
+      "resource": "neepmeat:chrysalis"
+    }
+  ],
+  "implant_installer": {
+    "id": "neepmeat:chrysalis"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "neepmeat"
+      ]
+    }
+  ]
+}

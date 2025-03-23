@@ -1,0 +1,29 @@
+{
+  "type": "spectrum:pedestal_shapeless",
+  "group": "compacting",
+  "time": 20,
+  "tier": "basic",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 0.0,
+  "ingredients": [
+    {
+      "item": "spectrum:pure_zinc_block"
+    }
+  ],
+  "result": {
+    "item": "spectrum:pure_zinc",
+    "count": 9
+  },
+  "required_advancement": "spectrum:lategame/collect_pure_resource",
+  "disable_yield_upgrades": true,
+  "fabric:load_conditions": [
+    {
+      "condition": "spectrum:integration_pack_active",
+      "integration_pack": "create"
+    }
+  ]
+}

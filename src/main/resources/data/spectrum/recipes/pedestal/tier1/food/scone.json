@@ -13,7 +13,7 @@
       "item": "spectrum:amaranth_grains"
     },
     {
-      "item": "minecraft:egg"
+      "tag": "c:eggs"
     },
     {
       "item": "minecraft:sweet_berries"

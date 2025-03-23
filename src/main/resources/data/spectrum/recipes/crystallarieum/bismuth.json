@@ -4,12 +4,12 @@
     "item": "spectrum:bismuth_flake"
   },
   "growth_stage_states": [
-    "spectrum:small_bismuth_bud",
-    "spectrum:large_bismuth_bud",
-    "spectrum:bismuth_cluster"
+    "spectrum:small_bismuth_bud[facing=up]",
+    "spectrum:large_bismuth_bud[facing=up]",
+    "spectrum:bismuth_cluster[facing=up]"
   ],
   "seconds_per_growth_stage": 120,
-  "ink_color": "cyan",
+  "ink_color": "spectrum:cyan",
   "ink_cost_tier": 4,
   "grows_without_catalyst": false,
   "catalysts": [
@@ -35,7 +35,7 @@
       },
       "growth_acceleration_mod": 1.25,
       "ink_consumption_mod": 1.0,
-      "consume_chance_per_second": 0.0
+      "consume_chance_per_second": 0.0002
     }
   ],
   "additional_recipe_manager_outputs": [

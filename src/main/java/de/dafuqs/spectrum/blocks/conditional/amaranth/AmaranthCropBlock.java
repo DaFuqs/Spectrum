@@ -1,10 +1,9 @@
 package de.dafuqs.spectrum.blocks.conditional.amaranth;
 
 import de.dafuqs.revelationary.api.revelations.*;
-import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.*;
-import de.dafuqs.spectrum.blocks.*;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.*;
 import net.minecraft.item.*;
@@ -18,10 +17,9 @@ import java.util.*;
 
 public class AmaranthCropBlock extends TallCropBlock implements RevelationAware {
 	
-	public static final Identifier ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("milestones/reveal_amaranth");
 	protected static final int LAST_SINGLE_BLOCK_AGE = 2;
 	protected static final int MAX_AGE = 7;
-	
+
 	private static final VoxelShape[] AGE_TO_SHAPE = new VoxelShape[]{
 			Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D),
 			Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 10.0D, 16.0D),
@@ -50,7 +48,7 @@ public class AmaranthCropBlock extends TallCropBlock implements RevelationAware 
 	
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
-		return ADVANCEMENT_IDENTIFIER;
+		return SpectrumAdvancements.REVEAL_AMARANTH;
 	}
 	
 	@Override
@@ -61,7 +59,8 @@ public class AmaranthCropBlock extends TallCropBlock implements RevelationAware 
 		
 		Map<BlockState, BlockState> map = new Hashtable<>();
 		for (int age = 0; age <= LAST_SINGLE_BLOCK_AGE; age++) {
-			map.put(this.withAge(age), smallFern);
+			map.put(this.withAgeAndHalf(age, DoubleBlockHalf.LOWER), smallFern);
+			map.put(this.withAgeAndHalf(age, DoubleBlockHalf.UPPER), smallFern);
 		}
 		for (int age = LAST_SINGLE_BLOCK_AGE + 1; age <= MAX_AGE; age++) {
 			map.put(this.withAgeAndHalf(age, DoubleBlockHalf.LOWER), largeFernLower);

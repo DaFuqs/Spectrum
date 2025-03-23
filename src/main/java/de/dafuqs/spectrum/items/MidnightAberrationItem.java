@@ -4,8 +4,10 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.conditional.*;
 import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.fabric.api.item.v1.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.network.*;
@@ -17,10 +19,15 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class MidnightAberrationItem extends CloakedItem {
+public class MidnightAberrationItem extends CloakedItem implements FabricItem {
 	
 	private static final Identifier MIDNIGHT_ABERRATION_CRUMBLING_ADVANCEMENT_ID = SpectrumCommon.locate("midgame/crumble_midnight_aberration");
 	private static final String MIDNIGHT_ABERRATION_CRUMBLING_ADVANCEMENT_CRITERION = "have_midnight_aberration_crumble";
+	
+	// Aberrations crumble in the player's inventory (or any inventory that ticks)
+	// but only after a short grace period, to give them a chance to actually look at it / use it
+	private static final int CRUMBLING_GRACE_PERIOD_TICKS = 40;
+	private static final String FIRST_INVENTORY_TICK_NBT = "first_inventory_tick";
 	
 	public MidnightAberrationItem(Settings settings, Identifier cloakAdvancementIdentifier, Item cloakItem) {
 		super(settings, cloakAdvancementIdentifier, cloakItem);
@@ -33,6 +40,16 @@ public class MidnightAberrationItem extends CloakedItem {
 		if (!world.isClient && world.getTime() % 20 == 0 && entity instanceof ServerPlayerEntity player) {
 			NbtCompound compound = stack.getNbt();
 			if (compound != null && compound.getBoolean("Stable")) {
+				return;
+			}
+			
+			NbtCompound nbtCompound = stack.getOrCreateNbt();
+			if (!nbtCompound.contains(FIRST_INVENTORY_TICK_NBT)) {
+				nbtCompound.putLong(FIRST_INVENTORY_TICK_NBT, world.getTime());
+				return;
+			}
+			long firstInventoryTick = nbtCompound.getLong(FIRST_INVENTORY_TICK_NBT);
+			if (world.getTime() < firstInventoryTick + CRUMBLING_GRACE_PERIOD_TICKS) {
 				return;
 			}
 			
@@ -55,6 +72,25 @@ public class MidnightAberrationItem extends CloakedItem {
 		if (compound != null && compound.getBoolean("Stable")) {
 			tooltip.add(Text.translatable("item.spectrum.midnight_aberration.tooltip.stable"));
 		}
+	}
+	
+	@Override
+	public boolean allowNbtUpdateAnimation(PlayerEntity player, Hand hand, ItemStack oldStack, ItemStack newStack) {
+		// do not play the hand update animation when it starts crumbling
+		NbtCompound oldNbt = oldStack.getNbt();
+		NbtCompound newNbt = newStack.getNbt();
+		
+		if (newNbt == null) {
+			return super.allowNbtUpdateAnimation(player, hand, oldStack, newStack);
+		}
+		if (oldNbt != null && oldNbt.contains(FIRST_INVENTORY_TICK_NBT)) {
+			return super.allowNbtUpdateAnimation(player, hand, oldStack, newStack);
+		}
+		if (!newNbt.contains(FIRST_INVENTORY_TICK_NBT)) {
+			return super.allowNbtUpdateAnimation(player, hand, oldStack, newStack);
+		}
+		
+		return false;
 	}
 	
 	public ItemStack getStableStack() {

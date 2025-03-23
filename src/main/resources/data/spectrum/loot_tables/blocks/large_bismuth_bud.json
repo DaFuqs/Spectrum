@@ -16,25 +16,6 @@
                   "predicate": {
                     "enchantments": [
                       {
-                        "enchantment": "spectrum:resonance",
-                        "levels": {
-                          "min": 1
-                        }
-                      }
-                    ]
-                  }
-                }
-              ],
-              "name": "spectrum:large_bismuth_bud"
-            },
-            {
-              "type": "minecraft:item",
-              "conditions": [
-                {
-                  "condition": "minecraft:match_tool",
-                  "predicate": {
-                    "enchantments": [
-                      {
                         "enchantment": "minecraft:silk_touch",
                         "levels": {
                           "min": 1

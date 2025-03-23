@@ -1,8 +1,10 @@
 {
   "criteria": {
-    "broken_dragonbone": {
+    "collected_raw_bloodstone": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:lategame/break_cracked_dragonbone" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_raw_bloodstone"
+      }
     },
     "unlocked_knowledge_gem": {
       "trigger":"revelationary:advancement_gotten",

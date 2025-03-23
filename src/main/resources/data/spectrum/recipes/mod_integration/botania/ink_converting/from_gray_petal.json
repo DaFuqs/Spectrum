@@ -3,9 +3,9 @@
   "ingredient": {
     "item": "botania:gray_petal"
   },
-  "color": "gray",
+  "ink_color": "spectrum:gray",
   "amount": 25,
-  "required_advancement": "spectrum:hidden/collect_pigment/collect_gray_pigment",
+  "required_advancement": "spectrum:hidden/collect_pigment/gray",
   "fabric:load_conditions": [
     {
       "condition": "fabric:all_mods_loaded",

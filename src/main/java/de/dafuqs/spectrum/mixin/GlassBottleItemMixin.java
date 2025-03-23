@@ -33,7 +33,7 @@ public abstract class GlassBottleItemMixin {
 		
 		if (blockState.isOf(SpectrumBlocks.FADING)
 				&& SpectrumCommon.CONFIG.CanBottleUpFading
-				&& AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("unlocks/items/bottle_of_fading"))) {
+				&& AdvancementHelper.hasAdvancement(user, SpectrumAdvancements.UNLOCK_BOTTLE_OF_FADING)) {
 			
 			world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
 			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_BOTTLE_FILL_DRAGONBREATH, SoundCategory.NEUTRAL, 1.0F, 1.0F);
@@ -41,7 +41,7 @@ public abstract class GlassBottleItemMixin {
 			
 		} else if (blockState.isOf(SpectrumBlocks.FAILING)
 				&& SpectrumCommon.CONFIG.CanBottleUpFailing
-				&& AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("unlocks/items/bottle_of_failing"))) {
+				&& AdvancementHelper.hasAdvancement(user, SpectrumAdvancements.UNLOCK_BOTTLE_OF_FAILING)) {
 			
 			world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
 			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_BOTTLE_FILL_DRAGONBREATH, SoundCategory.NEUTRAL, 1.0F, 1.0F);
@@ -49,7 +49,7 @@ public abstract class GlassBottleItemMixin {
 			
 		} else if (blockState.isOf(SpectrumBlocks.RUIN)
 				&& SpectrumCommon.CONFIG.CanBottleUpRuin
-				&& AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("unlocks/items/bottle_of_ruin"))) {
+				&& AdvancementHelper.hasAdvancement(user, SpectrumAdvancements.UNLOCK_BOTTLE_OF_RUIN)) {
 			
 			world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
 			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_BOTTLE_FILL_DRAGONBREATH, SoundCategory.NEUTRAL, 1.0F, 1.0F);
@@ -57,7 +57,7 @@ public abstract class GlassBottleItemMixin {
 			
 		} else if (blockState.isOf(SpectrumBlocks.FORFEITURE)
 				&& SpectrumCommon.CONFIG.CanBottleUpForfeiture
-				&& AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("unlocks/items/bottle_of_forfeiture"))) {
+				&& AdvancementHelper.hasAdvancement(user, SpectrumAdvancements.UNLOCK_BOTTLE_OF_FORFEITURE)) {
 			
 			world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
 			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_BOTTLE_FILL_DRAGONBREATH, SoundCategory.NEUTRAL, 1.0F, 1.0F);

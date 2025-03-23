@@ -1,0 +1,16 @@
+{
+    "criteria": {
+      "remembered_kindling": {
+        "trigger": "revelationary:advancement_gotten",
+        "conditions": {
+          "advancement_identifier": "spectrum:remember_kindling"
+        }
+      },
+      "experienced_somnolence": {
+        "trigger": "revelationary:advancement_gotten",
+        "conditions": {
+          "advancement_identifier": "spectrum:hidden/status_effects/somnolence"
+        }
+      }
+    }
+  }

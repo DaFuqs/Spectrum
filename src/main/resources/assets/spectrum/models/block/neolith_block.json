@@ -1,6 +1,12 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "spectrum:block/neolith_block"
+    "particle": "spectrum:block/neolith_block_side",
+    "north": "spectrum:block/neolith_block_side",
+    "south": "spectrum:block/neolith_block_side",
+    "east": "spectrum:block/neolith_block_side",
+    "west": "spectrum:block/neolith_block_side",
+    "up": "spectrum:block/neolith_block_top",
+    "down": "spectrum:block/neolith_block_bottom"
   }
 }

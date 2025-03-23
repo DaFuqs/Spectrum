@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.api.energy;
 
 import com.google.common.collect.*;
+import de.dafuqs.spectrum.api.status_effect.*;
 import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.effect.*;
@@ -16,18 +17,24 @@ public class InkPoweredStatusEffectInstance {
 	
 	public static final String NBT_KEY = "InkPoweredStatusEffects";
 	public static final String UNIDENTIFIABLE_NBT_KEY = "Unidentifiable";
+	public static final String INCURABLE_NBT_KEY = "Incurable";
 	public static final String CUSTOM_COLOR_NBT_KEY = "CustomColor";
 
 	private final StatusEffectInstance statusEffectInstance;
 	private final InkCost cost;
 	private final boolean unidentifiable;
+	private final boolean incurable;
 	private final int customColor; // -1: use effect default
 	
-	public InkPoweredStatusEffectInstance(StatusEffectInstance statusEffectInstance, InkCost cost, int customColor, boolean unidentifiable) {
+	public InkPoweredStatusEffectInstance(StatusEffectInstance statusEffectInstance, InkCost cost, int customColor, boolean unidentifiable, boolean incurable) {
 		this.statusEffectInstance = statusEffectInstance;
 		this.cost = cost;
 		this.customColor = customColor;
 		this.unidentifiable = unidentifiable;
+		this.incurable = incurable;
+
+		if (incurable)
+			((Incurable) statusEffectInstance).spectrum$setIncurable(true);
 	}
 	
 	public StatusEffectInstance getStatusEffectInstance() {
@@ -48,6 +55,9 @@ public class InkPoweredStatusEffectInstance {
 		if (unidentifiable) {
 			nbt.putBoolean(UNIDENTIFIABLE_NBT_KEY, true);
 		}
+		if (incurable) {
+			nbt.putBoolean(INCURABLE_NBT_KEY, true);
+		}
 		return nbt;
 	}
 	
@@ -62,7 +72,11 @@ public class InkPoweredStatusEffectInstance {
 		if (nbt.contains(UNIDENTIFIABLE_NBT_KEY)) {
 			unidentifiable = nbt.getBoolean(UNIDENTIFIABLE_NBT_KEY);
 		}
-		return new InkPoweredStatusEffectInstance(statusEffectInstance, cost, customColor, unidentifiable);
+		boolean incurable = false;
+		if (nbt.contains(INCURABLE_NBT_KEY)) {
+			incurable = nbt.getBoolean(INCURABLE_NBT_KEY);
+		}
+		return new InkPoweredStatusEffectInstance(statusEffectInstance, cost, customColor, unidentifiable, incurable);
 	}
 	
 	public static List<InkPoweredStatusEffectInstance> getEffects(ItemStack stack) {
@@ -97,7 +111,7 @@ public class InkPoweredStatusEffectInstance {
 	}
 	
 	public static void buildTooltip(List<Text> tooltip, List<InkPoweredStatusEffectInstance> effects, MutableText attributeModifierText, boolean showDuration) {
-		if (effects.size() > 0) {
+		if (!effects.isEmpty()) {
 			List<Pair<EntityAttribute, EntityAttributeModifier>> attributeModifiers = Lists.newArrayList();
 			for (InkPoweredStatusEffectInstance entry : effects) {
 				if (entry.isUnidentifiable()) {
@@ -106,8 +120,16 @@ public class InkPoweredStatusEffectInstance {
 				}
 
 				StatusEffectInstance effect = entry.getStatusEffectInstance();
-				InkCost cost = entry.getInkCost();
+				if (effect == null) { // serialization error or removed effect
+					continue;
+				}
 				
+				InkCost cost = entry.getInkCost();
+
+				if (effect == null) {
+					tooltip.add(Text.translatable("item.spectrum.potion.tooltip.invalid"));
+					continue;
+				}
 				MutableText mutableText = Text.translatable(effect.getTranslationKey());
 				if (effect.getAmplifier() > 0) {
 					mutableText = Text.translatable("potion.withAmplifier", mutableText, Text.translatable("potion.potency." + effect.getAmplifier()));
@@ -116,7 +138,10 @@ public class InkPoweredStatusEffectInstance {
 					mutableText = Text.translatable("potion.withDuration", mutableText, StatusEffectUtil.getDurationText(effect, 1.0F));
 				}
 				mutableText.formatted(effect.getEffectType().getCategory().getFormatting());
-				mutableText.append(Text.translatable("spectrum.tooltip.ink_cost." + cost.getColor().toString().toLowerCase(Locale.ROOT), Support.getShortenedNumberString(cost.getCost())).formatted(Formatting.GRAY));
+				mutableText.append(Text.translatable("spectrum.tooltip.ink_cost", Support.getShortenedNumberString(cost.getCost()), cost.getColor().getColoredInkName()).formatted(Formatting.GRAY));
+				if (entry.isIncurable()) {
+					mutableText.append(Text.translatable("item.spectrum.potion.tooltip.incurable"));
+				}
 				tooltip.add(mutableText);
 				
 				Map<EntityAttribute, EntityAttributeModifier> map = effect.getEffectType().getAttributeModifiers();
@@ -163,4 +188,7 @@ public class InkPoweredStatusEffectInstance {
 		return this.unidentifiable;
 	}
 
+	public boolean isIncurable() {
+		return this.incurable;
+	}
 }

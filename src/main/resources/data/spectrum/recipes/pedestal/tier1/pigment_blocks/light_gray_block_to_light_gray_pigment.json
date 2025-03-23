@@ -17,6 +17,6 @@
     "item": "spectrum:light_gray_pigment",
     "count": 9
   },
-  "required_advancement": "spectrum:hidden/collect_pigment/collect_light_gray_pigment",
+  "required_advancement": "spectrum:hidden/collect_pigment/light_gray",
   "disable_yield_upgrades": true
 }

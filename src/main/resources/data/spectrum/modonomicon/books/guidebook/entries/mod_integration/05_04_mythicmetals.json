@@ -1,0 +1,43 @@
+{
+  "name": "book.spectrum.guidebook.mod_integration.mythicmetals.name",
+  "icon": "mythicmetals:stormyx_ingot",
+  "condition": {
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:mod_loaded",
+        "mod_id": "mythicmetals"
+      },
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:place_pedestal"
+      }
+    ]
+  },
+  "category": "spectrum:mod_integration",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 5,
+  "y": 4,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.mod_integration.mythicmetals.page0.text",
+      "title": "book.spectrum.guidebook.mod_integration.mythicmetals.name"
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "recipe_id": "spectrum:mod_integration/mythicmetals/enchanter/enchanted_midas_gold_block"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:mod_integration/mythicmetals/pedestal/aquarium_pearl"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:mod_integration/mythicmetals/pedestal/banglum_chunk"
+    }
+  ]
+}

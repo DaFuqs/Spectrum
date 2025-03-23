@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "#spectrum:colored_pressure_plates",
-    "#spectrum:noxwood_pressure_plates"
+    "#spectrum:noxwood_pressure_plates",
+    "spectrum:weeping_gala_pressure_plate"
   ]
 }

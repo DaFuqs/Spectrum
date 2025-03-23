@@ -8,7 +8,6 @@ import net.minecraft.block.*;
 import net.minecraft.predicate.entity.*;
 import net.minecraft.server.network.*;
 import net.minecraft.util.*;
-import org.jetbrains.annotations.*;
 
 public class BlockBrokenCriterion extends AbstractCriterion<BlockBrokenCriterion.Conditions> {
 	
@@ -33,7 +32,7 @@ public class BlockBrokenCriterion extends AbstractCriterion<BlockBrokenCriterion
 		
 		private final BrokenBlockPredicate brokenBlockPredicate;
 		
-		public Conditions(LootContextPredicate player, @Nullable BrokenBlockPredicate brokenBlockPredicate) {
+		public Conditions(LootContextPredicate player, BrokenBlockPredicate brokenBlockPredicate) {
 			super(ID, player);
 			this.brokenBlockPredicate = brokenBlockPredicate;
 		}

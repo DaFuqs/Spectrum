@@ -1,0 +1,24 @@
+{
+  "type": "spectrum:fusion_shrine",
+  "time": 160,
+  "experience": 0.0,
+  "fluid": {
+    "fluid": "minecraft:water"
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:sunflower"
+    }
+  ],
+  "required_advancement": "spectrum:unlocks/weather/clear",
+  "world_conditions": [
+    {
+      "type": "weather",
+      "weather_condition": "rain"
+    }
+  ],
+  "start_crafting_effect": "single_visual_explosion_on_shrine",
+  "during_crafting_effects": [],
+  "finish_crafting_effect": "weather_clear",
+  "description": "spectrum.recipe.fusion_shrine.explanation.weather_clear"
+}

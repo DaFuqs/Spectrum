@@ -41,12 +41,8 @@ public class TitrationBarrelRecipeSerializer implements GatedRecipeSerializer<Ti
 			if (result.malformed()) {
 				// Currently handling malformed input leniently. May throw an error in the future.
 				SpectrumCommon.logError("Titration Recipe " + identifier + "contains a malformed fluid input tag! This recipe will not be craftable.");
-			} else if (result.result() == FluidIngredient.EMPTY) {
-				if (result.isTag()) {
-					SpectrumCommon.logError("Titration Recipe " + identifier + " specifies fluid tag " + result.id() + " that does not exist! This recipe will not be craftable.");
-				} else {
-					SpectrumCommon.logError("Titration Recipe " + identifier + " specifies fluid " + result.id() + " that does not exist! This recipe will not be craftable.");
-				}
+			} else if (result.result() == FluidIngredient.EMPTY && !result.isTag()) { // tags get populated after recipes are
+				SpectrumCommon.logError("Titration Recipe " + identifier + " specifies fluid " + result.id() + " that does not exist! This recipe will not be craftable.");
 			}
 		}
 
@@ -73,7 +69,7 @@ public class TitrationBarrelRecipeSerializer implements GatedRecipeSerializer<Ti
 		writeNullableIdentifier(packetByteBuf, recipe.requiredAdvancementIdentifier);
 		
 		packetByteBuf.writeShort(recipe.inputStacks.size());
-		for (IngredientStack ingredientStack : recipe.inputStacks) {
+		for (IngredientStack ingredientStack : recipe.getIngredientStacks()) {
 			ingredientStack.write(packetByteBuf);
 		}
 		writeFluidIngredient(packetByteBuf, recipe.fluid);

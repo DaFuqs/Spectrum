@@ -1,0 +1,52 @@
+{
+  "name": "book.spectrum.guidebook.mod_integration.vein_mining.name",
+  "icon": "spectrum:multitool",
+  "condition": {
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:mod_loaded",
+        "mod_id": "veinmining"
+      },
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/build_enchanting_structure"
+      }
+    ]
+  },
+  "category": "spectrum:mod_integration",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 4,
+  "y": 6,
+  "pages": [
+    {
+      "type": "spectrum:nbt_spotlight",
+      "title": "book.spectrum.guidebook.mod_integration.vein_mining.name",
+      "item": {
+        "item": "spectrum:multitool",
+        "nbt": {
+          "Enchantments": [
+            {
+              "id": "veinmining:vein_mining",
+              "lvl": "1s"
+            }
+          ]
+        }
+      },
+      "text": "book.spectrum.guidebook.mod_integration.vein_mining.page0.text"
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_stratine_gem"
+      },
+      "text": "book.spectrum.guidebook.crafting",
+      "title": "container.spectrum.rei.enchanter_recipe",
+      "recipe_id": "spectrum:mod_integration/vein_mining/enchanter/book_vein_mining"
+    }
+  ]
+}

@@ -3,13 +3,13 @@
     "collected_topaz_shard": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_shards/collect_topaz_shard"
+        "advancement_identifier": "spectrum:hidden/collect_shards/topaz"
       }
     },
     "collected_citrine_shard": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_shards/collect_citrine_shard"
+        "advancement_identifier": "spectrum:hidden/collect_shards/citrine"
       }
     },
     "collected_blaze_rod": {

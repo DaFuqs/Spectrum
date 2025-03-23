@@ -49,4 +49,8 @@ public class ColoredLogBlock extends PillarBlock implements RevelationAware, Col
 		return LOGS.get(color);
 	}
 	
+	public static Collection<ColoredLogBlock> all() {
+		return LOGS.values();
+	}
+	
 }

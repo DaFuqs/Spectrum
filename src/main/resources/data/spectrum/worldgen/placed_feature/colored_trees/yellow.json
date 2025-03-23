@@ -1,5 +1,5 @@
 {
-  "feature": "spectrum:colored_trees/yellow_tree",
+  "feature": "spectrum:colored_trees/yellow",
   "placement": [
     {
       "type": "minecraft:block_predicate_filter",

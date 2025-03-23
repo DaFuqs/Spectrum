@@ -1,0 +1,21 @@
+{
+  "type": "neepmeat:grinding",
+  "input": {
+    "resource": "spectrum:frostbite_crystal",
+    "amount": 1
+  },
+  "output": {
+    "resource": "spectrum:frostbite_essence",
+    "amount": 14
+  },
+  "experience": 0.7,
+  "processtime": 45,
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "neepmeat"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "type": "spectrum:drop_self",
+  "block": {
+    "blocks": [
+      "immersive_weathering:charred_log",
+      "immersive_weathering:charred_planks",
+      "immersive_weathering:charred_stairs",
+      "immersive_weathering:charred_slab",
+      "immersive_weathering:charred_fence",
+      "immersive_weathering:charred_fence_gate"
+    ]
+  },
+  "state_properties_to_copy": [
+    "smoldering"
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "immersive_weathering"
+      ]
+    }
+  ]
+}

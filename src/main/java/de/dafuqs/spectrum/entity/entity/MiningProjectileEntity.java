@@ -1,15 +1,15 @@
 package de.dafuqs.spectrum.entity.entity;
 
+import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.*;
-import de.dafuqs.spectrum.spells.MoonstoneStrike;
+import de.dafuqs.spectrum.spells.*;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
-import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.world.*;
 
@@ -85,10 +85,14 @@ public class MiningProjectileEntity extends MagicProjectileEntity {
 
 		this.discard();
 	}
+	
+	@Override
+	public void spawnImpactParticles() {
+	}
 
 	@Override
-	public DyeColor getDyeColor() {
-		return DyeColor.WHITE;
+	public InkColor getInkColor() {
+		return InkColors.WHITE;
 	}
 
 }

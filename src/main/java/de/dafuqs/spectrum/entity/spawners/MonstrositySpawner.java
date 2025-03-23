@@ -32,7 +32,7 @@ public class MonstrositySpawner implements Spawner {
 		
 		// Iterate all players in the dimension and test if any of them
 		// are able to lure the monstrosity to them
-		for (PlayerEntity playerEntity : world.getEntitiesByType(EntityType.PLAYER, player -> player.isAlive() && MonstrosityEntity.ENTITY_TARGETS.test(player))) {
+		for (PlayerEntity playerEntity : world.getEntitiesByType(EntityType.PLAYER, player -> player.isAlive() && player.getY() < player.getWorld().getTopY() - 64 && MonstrosityEntity.ENTITY_TARGETS.test(player))) {
 			// a monstrosity should spawn for the player
 			// do we already have one? If no create one
 			if (MonstrosityEntity.theOneAndOnly == null) {

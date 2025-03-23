@@ -2,10 +2,10 @@
   "type": "minecraft:delta_feature",
   "config": {
     "contents": {
-      "Name": "spectrum:sawblade_grass"
+      "Name": "spectrum:shale_clay"
     },
     "rim": {
-      "Name": "spectrum:shale_clay"
+      "Name": "spectrum:sawblade_grass"
     },
     "size": {
       "type": "minecraft:uniform",
@@ -18,7 +18,7 @@
       "type": "minecraft:uniform",
       "value": {
         "min_inclusive": 1,
-        "max_inclusive": 3
+        "max_inclusive": 4
       }
     }
   }

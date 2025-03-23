@@ -1,8 +1,10 @@
 {
   "criteria": {
-    "filled_ink_container": {
+    "unlocked_ink": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/fill_ink_container" }
+      "conditions": {
+        "advancement_identifier": "spectrum:milestones/unlock_ink_use"
+      }
     },
     "collected_stratine_gem": {
       "trigger":"revelationary:advancement_gotten",

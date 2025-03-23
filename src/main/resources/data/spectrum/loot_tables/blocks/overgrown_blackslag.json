@@ -33,7 +33,7 @@
                   "condition": "minecraft:survives_explosion"
                 }
               ],
-              "name": "spectrum:blackslag"
+              "name": "spectrum:cobbled_blackslag"
             }
           ]
         }

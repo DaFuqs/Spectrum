@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "calming": {
+      "trigger": "minecraft:effects_changed",
+      "conditions": {
+        "effects": {
+          "spectrum:calming": {}
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.conditional.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
@@ -47,7 +48,8 @@ public abstract class LightningEntityMixin {
 		}
 		
 		if (world.isAir(aboveGroundBlockPos)) {
-			BlockState placementBlockState = SpectrumBlocks.STUCK_STORM_STONE.getDefaultState();
+			Direction randomDirection = Direction.fromHorizontal(world.random.nextInt(4));
+			BlockState placementBlockState = SpectrumBlocks.STUCK_STORM_STONE.getDefaultState().with(StuckStormStoneBlock.FACING, randomDirection);
 			if (placementBlockState.canPlaceAt(world, aboveGroundBlockPos)) {
 				world.setBlockState(aboveGroundBlockPos, placementBlockState);
 			}

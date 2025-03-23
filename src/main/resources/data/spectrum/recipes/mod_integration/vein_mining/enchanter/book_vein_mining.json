@@ -1,7 +1,7 @@
 {
   "type": "spectrum:enchanter",
-  "time": 400,
-  "required_experience": 800,
+  "time": 300,
+  "required_experience": 100,
   "ingredients": [
     {
       "item": "minecraft:book"
@@ -13,7 +13,7 @@
       "item": "spectrum:blue_pigment"
     },
     {
-      "item": "spectrum:paltaeria_gem"
+      "item": "minecraft:chain"
     },
     {
       "item": "spectrum:stratine_gem"
@@ -25,7 +25,7 @@
       "item": "spectrum:blue_pigment"
     },
     {
-      "item": "spectrum:paltaeria_gem"
+      "item": "minecraft:chain"
     },
     {
       "item": "spectrum:stratine_gem"
@@ -42,7 +42,7 @@
       ]
     }
   },
-  "required_advancement": "spectrum:lategame/collect_paltaeria",
+  "required_advancement": "spectrum:hidden/collect_stratine_gem",
   "fabric:load_conditions": [
     {
       "condition": "fabric:all_mods_loaded",

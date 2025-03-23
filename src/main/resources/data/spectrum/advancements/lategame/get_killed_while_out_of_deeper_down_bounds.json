@@ -1,0 +1,26 @@
+{
+  "parent": "spectrum:lategame/spectrum_lategame",
+  "display": {
+    "icon": {
+      "item": "minecraft:bedrock"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.get_killed_while_out_of_deeper_down_bounds.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.get_killed_while_out_of_deeper_down_bounds.description"
+    }
+  },
+  "criteria": {
+    "get_rekt": {
+      "trigger": "minecraft:impossible"
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/spectrum_lategame"
+      }
+    }
+  }
+}

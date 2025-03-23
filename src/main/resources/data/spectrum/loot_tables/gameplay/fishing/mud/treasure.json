@@ -3,31 +3,92 @@
   "pools": [
     {
       "rolls": 1,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:name_tag"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:nautilus_shell"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:clay_ball"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:book",
-          "functions": [
-            {
-              "function": "minecraft:enchant_with_levels",
-              "levels": 10,
-              "treasure": true
-            }
-          ]
-        }
-      ]
+	  "entries": [
+		{
+		  "type": "minecraft:item",
+		  "name": "minecraft:name_tag"
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "minecraft:nautilus_shell"
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "minecraft:slime_ball"
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "minecraft:clay_ball",
+		  "functions": [
+			{
+			  "function": "minecraft:set_count",
+			  "count": {
+				"min": 2,
+				"max": 4
+			  }
+			}
+		  ]
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "minecraft:frogspawn"
+		},
+		{
+		  "type": "minecraft:item",
+		  "weight": 1,
+		  "name": "minecraft:egg"
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "minecraft:dirt",
+		  "functions": [
+			{
+			  "function": "minecraft:set_count",
+			  "count": {
+				"min": 1,
+				"max": 7
+			  }
+			}
+		  ]
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "minecraft:mud",
+		  "functions": [
+			{
+			  "function": "minecraft:set_count",
+			  "count": {
+				"min": 1,
+				"max": 7
+			  }
+			}
+		  ]
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "minecraft:pointed_dripstone",
+		  "functions": [
+			{
+			  "function": "minecraft:set_count",
+			  "count": {
+				"min": 2,
+				"max": 4
+			  }
+			}
+		  ]
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "minecraft:book",
+		  "functions": [
+			{
+			  "function": "minecraft:enchant_with_levels",
+			  "levels": 15,
+			  "treasure": true
+			}
+		  ]
+		}
+	  ]
     }
   ]
 }

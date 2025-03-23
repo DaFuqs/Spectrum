@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "spectrum:block/weeping_gala_amphora_bottom",
+    "side": "spectrum:block/weeping_gala_amphora_side",
+    "top": "spectrum:block/weeping_gala_amphora_top_open"
+  }
+}

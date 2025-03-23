@@ -4,8 +4,11 @@ import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
+import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.particle.*;
@@ -27,6 +30,7 @@ import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
+import java.util.function.*;
 
 public class SpectrumS2CPacketSender {
 
@@ -116,6 +120,56 @@ public class SpectrumS2CPacketSender {
 		}
 	}
 
+	public static void playParticleAroundBlockSides(ServerWorld world, int quantity, @NotNull Vec3d position, @NotNull Vec3d velocity, @NotNull ParticleEffect particleEffect, Predicate<ServerPlayerEntity> sendCheck, @NotNull Direction ... sides) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeInt(quantity);
+		buf.writeDouble(position.x);
+		buf.writeDouble(position.y);
+		buf.writeDouble(position.z);
+		buf.writeDouble(velocity.x);
+		buf.writeDouble(velocity.y);
+		buf.writeDouble(velocity.z);
+		buf.writeIdentifier(Registries.PARTICLE_TYPE.getId(particleEffect.getType()));
+		buf.writeInt(sides.length);
+		for (Direction side : sides) {
+			buf.writeInt(side.ordinal());
+		}
+
+		// Iterate over all players tracking a position in the world and send the packet to each player
+		for (ServerPlayerEntity player : PlayerLookup.tracking(world, BlockPos.ofFloored(position))) {
+			if (!sendCheck.test(player))
+				continue;
+
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PARTICLE_AROUND_BLOCK_SIDES, buf);
+		}
+	}
+
+	public static void playParticleAroundArea(ServerWorld world, int quantity, double yOffset, boolean triangular, boolean solidSpawns, @NotNull Vec3d scale, @NotNull Vec3d position, @NotNull Vec3d velocity, @NotNull ParticleEffect particleEffect, Predicate<ServerPlayerEntity> sendCheck) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeInt(quantity);
+		buf.writeDouble(yOffset);
+		buf.writeBoolean(triangular);
+		buf.writeBoolean(solidSpawns);
+		buf.writeDouble(scale.x);
+		buf.writeDouble(scale.y);
+		buf.writeDouble(scale.z);
+		buf.writeDouble(position.x);
+		buf.writeDouble(position.y);
+		buf.writeDouble(position.z);
+		buf.writeDouble(velocity.x);
+		buf.writeDouble(velocity.y);
+		buf.writeDouble(velocity.z);
+		buf.writeIdentifier(Registries.PARTICLE_TYPE.getId(particleEffect.getType()));
+
+		// Iterate over all players tracking a position in the world and send the packet to each player
+		for (ServerPlayerEntity player : PlayerLookup.tracking(world, BlockPos.ofFloored(position))) {
+			if (!sendCheck.test(player))
+				continue;
+
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PARTICLE_AROUND_AREA, buf);
+		}
+	}
+
 	/**
 	 * @param world     the world
 	 * @param blockPos  the blockpos of the pedestal
@@ -164,8 +218,8 @@ public class SpectrumS2CPacketSender {
 		buf.writeUuid(network.getUUID());
 		buf.writeInt(travelTime);
 		PastelTransmission.writeToBuf(buf, transmission);
-	
-		for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) network.getWorld(), transmission.getStartPos())) {
+		
+		for (ServerPlayerEntity player : PlayerLookup.tracking(network.getWorld(), transmission.getStartPos())) {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.PASTEL_TRANSMISSION, buf);
 		}
 	}
@@ -299,7 +353,7 @@ public class SpectrumS2CPacketSender {
 		Map<InkColor, Long> colors = inkStorage.getEnergy();
 		buf.writeInt(colors.size());
 		for (Map.Entry<InkColor, Long> color : colors.entrySet()) {
-			buf.writeString(color.getKey().toString());
+			buf.writeIdentifier(color.getKey().getID());
 			buf.writeLong(color.getValue());
 		}
 		
@@ -312,23 +366,9 @@ public class SpectrumS2CPacketSender {
 			packetByteBuf.writeBoolean(false);
 		} else {
 			packetByteBuf.writeBoolean(true);
-			packetByteBuf.writeString(color.toString());
+			packetByteBuf.writeIdentifier(color.getID());
 		}
 		ServerPlayNetworking.send(player, SpectrumS2CPackets.INK_COLOR_SELECTED, packetByteBuf);
-	}
-	
-	public static void playInkEffectParticles(ServerWorld serverWorld, InkColor inkColor, Vec3d effectPos, float potency) {
-		PacketByteBuf packetByteBuf = PacketByteBufs.create();
-		packetByteBuf.writeString(inkColor.toString());
-		packetByteBuf.writeDouble(effectPos.x);
-		packetByteBuf.writeDouble(effectPos.y);
-		packetByteBuf.writeDouble(effectPos.z);
-		packetByteBuf.writeFloat(potency);
-		
-		// Iterate over all players tracking a position in the world and send the packet to each player
-		for (ServerPlayerEntity player : PlayerLookup.tracking(serverWorld, BlockPos.ofFloored(effectPos))) {
-			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_INK_EFFECT_PARTICLES, packetByteBuf);
-		}
 	}
 	
 	public static void playPresentOpeningParticles(ServerWorld serverWorld, BlockPos pos, Map<DyeColor, Integer> colors) {
@@ -372,6 +412,101 @@ public class SpectrumS2CPacketSender {
 			buf.writeDouble(playerVelocity.z);
 
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.MOONSTONE_BLAST, buf);
+		}
+	}
+
+	public static void sendMentalPresenceSync(ServerPlayerEntity player, double value) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeDouble(value);
+		ServerPlayNetworking.send(player, SpectrumS2CPackets.SYNC_MENTAL_PRESENCE, buf);
+	}
+	
+	// TODO: this kills the TPS, since it runs every tick
+	public static void sendCompactingChestStatusUpdate(CompactingChestBlockEntity chest) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeBlockPos(chest.getPos());
+		buf.writeBoolean(chest.hasToCraft());
+
+		for (ServerPlayerEntity player : PlayerLookup.tracking(chest)) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.COMPACTING_CHEST_STATUS_UPDATE, buf);
+		}
+	}
+	
+	// TODO: this kills the TPS, since it runs every tick
+	public static void sendRestockingChestStatusUpdate(RestockingChestBlockEntity chest) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeBlockPos(chest.getPos());
+		buf.writeBoolean(chest.isFullServer());
+		buf.writeBoolean(chest.hasValidRecipes());
+		buf.writeInt(chest.getRecipeOutputs().size());
+		for (ItemStack recipeOutput : chest.getRecipeOutputs()) {
+			buf.writeItemStack(recipeOutput);
+		}
+
+		for (ServerPlayerEntity player : PlayerLookup.tracking(chest)) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.RESTOCKING_CHEST_STATUS_UPDATE, buf);
+		}
+	}
+	
+	// TODO: this kills the TPS, since it runs every tick
+	public static void sendBlackHoleChestUpdate(BlackHoleChestBlockEntity chest) {
+		var xpStack = chest.getStack(BlackHoleChestBlockEntity.EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT);
+
+
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeBlockPos(chest.getPos());
+		buf.writeBoolean(chest.isFullServer());
+		buf.writeBoolean(chest.canStoreExperience());
+		if (xpStack.getItem() instanceof ExperienceStorageItem experienceStorageItem) {
+			buf.writeLong(ExperienceStorageItem.getStoredExperience(xpStack));
+			buf.writeLong(experienceStorageItem.getMaxStoredExperience(xpStack));
+		}
+		else {
+			buf.writeLong(0);
+			buf.writeLong(0);
+		}
+
+		for (ServerPlayerEntity player : PlayerLookup.tracking(chest)) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.BLACK_HOLE_CHEST_STATUS_UPDATE, buf);
+		}
+	}
+
+	public static void sendPastelNodeStatusUpdate(List<PastelNodeBlockEntity> nodes, boolean longSpin) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeBoolean(longSpin);
+		buf.writeInt(nodes.size());
+		for (PastelNodeBlockEntity node : nodes) {
+			var world = node.getWorld();
+
+			if (world == null)
+				continue;
+
+			var time = longSpin ? 24 + world.getRandom().nextInt(11) : 10 + world.getRandom().nextInt(11);
+			buf.writeBlockPos(node.getPos());
+			buf.writeInt(time);
+		}
+
+		for (ServerPlayerEntity player : PlayerLookup.tracking(nodes.get(0))) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.PASTEL_NODE_STATUS_UPDATE, buf);
+		}
+	}
+	
+	public static void syncPastelNetworkEdges(ServerPastelNetwork serverPastelNetwork, BlockPos pos) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeUuid(serverPastelNetwork.getUUID());
+		buf.writeNbt(serverPastelNetwork.graphToNbt());
+		
+		for (ServerPlayerEntity player : PlayerLookup.tracking(serverPastelNetwork.getWorld(), pos)) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.PASTEL_NETWORK_EDGE_SYNC, buf);
+		}
+	}
+	
+	public static void syncPastelNetworkRemoved(ServerPastelNetwork network) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeUuid(network.getUUID());
+		
+		for (ServerPlayerEntity player : PlayerLookup.all(network.getWorld().getServer())) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.PASTEL_NETWORK_REMOVED, buf);
 		}
 	}
 	

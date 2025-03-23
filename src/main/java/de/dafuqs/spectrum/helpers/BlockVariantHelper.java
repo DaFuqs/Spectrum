@@ -25,7 +25,7 @@ public class BlockVariantHelper {
 		
 		BlockState blockState = world.getBlockState(blockPos);
 		
-		if (blockState.isIn(SpectrumBlockTags.INK_EFFECT_BLACKLISTED)) {
+		if (blockState.isIn(SpectrumBlockTags.INK_EFFECT_BLACKLISTED) || blockState.getHardness(world,blockPos) == -1) {
 			return Blocks.AIR.getDefaultState();
 		}
 		

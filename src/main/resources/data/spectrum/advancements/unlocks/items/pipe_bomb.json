@@ -12,10 +12,10 @@
         "advancement_identifier": "spectrum:lategame/collect_doombloom_seed"
       }
     },
-    "opened_seed_vault_upper": {
+    "opened_seed_vault_treasure2": {
       "trigger": "minecraft:player_generates_container_loot",
       "conditions": {
-        "loot_table": "spectrum:chests/city_below/seed_vault_upper"
+        "loot_table": "spectrum:chests/city_below/seed_vault_treasure2"
       }
     }
   }

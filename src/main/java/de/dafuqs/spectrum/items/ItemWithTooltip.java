@@ -8,9 +8,10 @@ import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
+import java.util.function.UnaryOperator;
 
 public class ItemWithTooltip extends Item {
-	
+
 	private final List<MutableText> tooltipTexts = new ArrayList<>();
 	
 	public ItemWithTooltip(Settings settings, String tooltip) {
@@ -32,5 +33,4 @@ public class ItemWithTooltip extends Item {
 			tooltip.add(text.formatted(Formatting.GRAY));
 		}
 	}
-	
 }

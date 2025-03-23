@@ -1,0 +1,133 @@
+{
+  "name": "book.spectrum.guidebook.mod_integration.neepmeat.name",
+  "icon": "neepmeat:raw_meat_brick",
+  "condition": {
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:mod_loaded",
+        "mod_id": "neepmeat"
+      },
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:place_pedestal"
+      }
+    ]
+  },
+  "category": "spectrum:mod_integration",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 8,
+  "y": 5,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.mod_integration.neepmeat.page0.text",
+      "title": "book.spectrum.guidebook.mod_integration.neepmeat.name"
+    },
+    {
+      "type": "modonomicon:spotlight",
+			"title": "category.neepmeat.grinding",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:collect_amaranth"
+      },
+      "item": {
+        "item": "spectrum:amaranth_bushel"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.neepmeat.amaranth_crushing.text"
+    },
+    {
+			"type": "spectrum:collection",
+			"title": "category.neepmeat.grinding",
+			"items": [
+				"minecraft:amethyst_shard",
+				"spectrum:quitoxic_reeds",
+				"spectrum:frostbite_crystal",
+				"spectrum:blazing_crystal"
+			],
+			"text": "book.spectrum.guidebook.mod_integration.neepmeat.grinding.text"
+    },
+		{
+			"type": "modonomicon:spotlight",
+			"title": "category.neepmeat.advanced_crushing",
+			"condition": {
+				"type": "modonomicon:advancement",
+				"advancement_id": "spectrum:collect_pigment"
+			},
+			"item": {
+				"item": "spectrum:magenta_leaves"
+			},
+			"text": "book.spectrum.guidebook.mod_integration.neepmeat.leaf_crushing.text"
+		},
+    {
+			"type": "spectrum:collection",
+			"title": "category.neepmeat.enlightening",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/collect_mob_head_using_treasure_hunter"
+      },
+			"items": [
+				"spectrum:guardian_head",
+				"spectrum:elder_guardian_head",
+				"minecraft:air",
+				"spectrum:silverfish_head",
+				"spectrum:endermite_head"
+			],
+			"text": "book.spectrum.guidebook.mod_integration.neepmeat.enlightening.text"
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "recipe_id": "spectrum:mod_integration/neepmeat/anvil_crushing/meat_scrap"
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "recipe_id": "spectrum:mod_integration/neepmeat/anvil_crushing/whisper_flour"
+    },
+    {
+      "type": "spectrum:midnight_solution_converting",
+      "recipe_id": "spectrum:mod_integration/neepmeat/midnight_solution_converting/rusted_bars"
+    },
+    {
+      "type": "spectrum:midnight_solution_converting",
+      "recipe_id": "spectrum:mod_integration/neepmeat/midnight_solution_converting/rusty_metal"
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+			"title": "effect.neepmeat.ash_preparation",
+      "recipe_id": "spectrum:mod_integration/neepmeat/potion_workshop_brewing/neepmeat_ash_preparation"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "recipe_id": "spectrum:mod_integration/neepmeat/spirit_instiller/whisper_brass",
+      "text": "book.spectrum.guidebook.mod_integration.neepmeat.whisper_brass_instilling.text"
+    },
+    {
+      "type": "spectrum:collection",
+      "title": "book.spectrum.guidebook.mod_integration.neepmeat.kindling_vivisection.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:pluck_effulgent_feather"
+      },
+      "items": [
+        "spectrum:kindling_head",
+        "neepmeat:sacrificial_dagger"
+      ],
+      "text": "book.spectrum.guidebook.mod_integration.neepmeat.kindling_vivisection.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.mod_integration.neepmeat.sedatives.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_cookbooks/brewers_handbook"
+      },
+      "item": {
+        "item": "spectrum:sedatives"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.neepmeat.sedatives.text"
+    }
+  ]
+}

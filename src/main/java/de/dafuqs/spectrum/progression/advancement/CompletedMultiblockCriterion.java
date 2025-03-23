@@ -1,12 +1,12 @@
 package de.dafuqs.spectrum.progression.advancement;
 
 import com.google.gson.*;
+import com.klikli_dev.modonomicon.api.multiblock.*;
 import de.dafuqs.spectrum.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.predicate.entity.*;
 import net.minecraft.server.network.*;
 import net.minecraft.util.*;
-import vazkii.patchouli.api.*;
 
 public class CompletedMultiblockCriterion extends AbstractCriterion<CompletedMultiblockCriterion.Conditions> {
 	
@@ -27,7 +27,7 @@ public class CompletedMultiblockCriterion extends AbstractCriterion<CompletedMul
 		return new CompletedMultiblockCriterion.Conditions(extended, identifier);
 	}
 	
-	public void trigger(ServerPlayerEntity player, IMultiblock iMultiblock) {
+	public void trigger(ServerPlayerEntity player, Multiblock iMultiblock) {
 		this.trigger(player, (conditions) -> conditions.matches(iMultiblock));
 	}
 	
@@ -46,8 +46,8 @@ public class CompletedMultiblockCriterion extends AbstractCriterion<CompletedMul
 			return jsonObject;
 		}
 		
-		public boolean matches(IMultiblock iMultiblock) {
-			return iMultiblock.getID().equals(identifier);
+		public boolean matches(Multiblock multiblock) {
+			return multiblock.getId().equals(identifier);
 		}
 	}
 	

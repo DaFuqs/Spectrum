@@ -1,5 +1,5 @@
 {
-  "feature": "spectrum:colored_trees/magenta_tree",
+  "feature": "spectrum:colored_trees/magenta",
   "placement": [
     {
       "type": "minecraft:block_predicate_filter",

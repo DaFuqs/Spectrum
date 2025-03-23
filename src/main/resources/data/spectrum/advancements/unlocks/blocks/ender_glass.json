@@ -2,11 +2,15 @@
   "criteria": {
     "gotten_radiating_ender": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:get_radiating_ender" }
+      "conditions": {
+        "advancement_identifier": "spectrum:collect_radiating_ender"
+      }
     },
     "amethyst_shard": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_shards/collect_amethyst_shard" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_shards/amethyst"
+      }
     }
   }
 }

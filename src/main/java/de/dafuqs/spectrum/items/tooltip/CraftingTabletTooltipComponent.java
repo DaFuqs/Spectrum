@@ -39,7 +39,7 @@ public class CraftingTabletTooltipComponent extends SpectrumTooltipComponent {
 	
 	@Override
 	public void drawText(TextRenderer textRenderer, int x, int y, Matrix4f matrix4f, VertexConsumerProvider.Immediate immediate) {
-		textRenderer.draw(this.description, (float) x + 26, (float) y + 6, 11053224, true, matrix4f, immediate, TextRenderer.TextLayerType.NORMAL, 15728880, 0);
+		textRenderer.draw(this.description, (float) x + 26, (float) y + 6, 11053224, true, matrix4f, immediate, TextRenderer.TextLayerType.NORMAL, 0, 15728880);
 	}
 	
 }

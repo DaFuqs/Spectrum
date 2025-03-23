@@ -1,0 +1,28 @@
+{
+    "criteria": {
+      "unlocked_titration_barrel": {
+        "trigger": "revelationary:advancement_gotten",
+        "conditions": {
+          "advancement_identifier": "spectrum:unlocks/blocks/titration_barrel"
+        }
+      },
+      "confirmed_drinking_age": {
+        "trigger": "revelationary:advancement_gotten",
+        "conditions": {
+          "advancement_identifier": "spectrum:triggers/confirmed_drinking_age"
+        }
+      },
+      "collected_fissure_plum": {
+        "trigger": "revelationary:advancement_gotten",
+        "conditions": {
+          "advancement_identifier": "spectrum:hidden/collect_fissure_plum"
+        }
+      },
+      "collected_storm_stone": {
+        "trigger": "revelationary:advancement_gotten",
+        "conditions": {
+          "advancement_identifier": "spectrum:midgame/collect_storm_stone"
+        }
+      }
+    }
+  }

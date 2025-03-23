@@ -1,0 +1,30 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "colored_spore_blossoms",
+  "time": 80,
+  "tier": "advanced",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 6,
+  "experience": 0.5,
+  "pattern": [
+    "PPP",
+    "PSP",
+    "PPP"
+  ],
+  "key": {
+    "P": {
+      "item": "spectrum:black_pigment"
+    },
+    "S": {
+      "item": "minecraft:spore_blossom"
+    }
+  },
+  "result": {
+    "item": "spectrum:black_spore_blossom",
+    "count": 1
+  },
+  "required_advancement": "spectrum:hidden/collect_pigment/black"
+}

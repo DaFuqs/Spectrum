@@ -1,12 +1,12 @@
 {
-  "credit": "Made with Blockbench",
+  "parent": "block/block",
   "texture_size": [
     32,
     32
   ],
   "textures": {
     "0": "spectrum:block/bottomless_bundle",
-    "particle": "spectrum:block/bottomless_bundle"
+    "particle": "spectrum:block/bottomless_bundle_particles"
   },
   "elements": [
     {

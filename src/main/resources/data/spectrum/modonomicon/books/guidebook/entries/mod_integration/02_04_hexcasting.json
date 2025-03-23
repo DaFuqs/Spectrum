@@ -1,0 +1,79 @@
+{
+  "name": "book.spectrum.guidebook.mod_integration.hexcasting.name",
+  "icon": "hexcasting:charged_amethyst",
+  "condition": {
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:mod_loaded",
+        "mod_id": "hexcasting"
+      },
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:place_pedestal"
+      }
+    ]
+  },
+  "category": "spectrum:mod_integration",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 2,
+  "y": 4,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.mod_integration.hexcasting.page0.text",
+      "title": "book.spectrum.guidebook.mod_integration.hexcasting.name"
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "title": "container.spectrum.rei.anvil_crushing.title",
+      "recipe_id": "spectrum:mod_integration/hexcasting/anvil_crushing/aventurine_edified_leaves",
+      "text": "book.spectrum.guidebook.mod_integration.hexcasting.page1.text"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/spirit_instiller"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.hexcasting.page2.text",
+      "title": "book.spectrum.guidebook.mod_integration.hexcasting.page2.title",
+      "recipe_id": "spectrum:mod_integration/hexcasting/spirit_instiller/citrine_edified_leaves"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.hexcasting.page3.text",
+      "title": "book.spectrum.guidebook.mod_integration.hexcasting.page3.title",
+      "recipe_id": "spectrum:mod_integration/hexcasting/fusion_shrine/charged_amethyst_from_amethyst_shard_fusion"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.potion_reagent",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
+      },
+      "item": {
+        "item": "hexcasting:charged_amethyst"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.hexcasting.page4.text"
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.hexcasting.page5.text",
+      "title": "effect.hexcasting.enlarge_grid",
+      "recipe_id": "spectrum:mod_integration/hexcasting/potion_workshop_brewing/hexcasting_enlarge_grid"
+    }
+  ]
+}

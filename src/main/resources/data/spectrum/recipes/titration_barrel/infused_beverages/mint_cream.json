@@ -3,7 +3,7 @@
   "group": "infused_beverages",
   "ingredients": [
     {
-      "item": "minecraft:potato",
+      "item": "minecraft:sugar",
       "count": 6
     },
     {
@@ -13,10 +13,6 @@
     {
       "item": "spectrum:four_leaf_clover",
       "count": 1
-    },
-    {
-      "item": "minecraft:sugar",
-      "count": 4
     },
     {
       "item": "minecraft:snowball",

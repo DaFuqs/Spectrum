@@ -17,6 +17,6 @@
     "item": "spectrum:green_pigment",
     "count": 9
   },
-  "required_advancement": "spectrum:hidden/collect_pigment/collect_green_pigment",
+  "required_advancement": "spectrum:hidden/collect_pigment/green",
   "disable_yield_upgrades": true
 }

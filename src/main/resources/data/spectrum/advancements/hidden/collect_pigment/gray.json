@@ -1,0 +1,22 @@
+{
+  "criteria": {
+    "collected_moonstone": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_moonstone"
+      }
+    },
+    "has_pigment": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:gray_pigment"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

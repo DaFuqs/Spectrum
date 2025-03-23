@@ -1,0 +1,36 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "spectrum:nectardew_burgeon",
+  "modifiers": {
+    "potency_multiplier": 2.0,
+    "duration_multiplier": 2.0,
+    "flat_yield_bonus": -3.0,
+    "additional_effects": [
+      {
+        "effect": "spectrum:somnolence",
+        "base_duration_ticks": 800,
+        "potency_modifier": 0.0,
+        "ink_color": "spectrum:purple",
+        "ink_cost": 8,
+        "chance": 0.334
+      },
+      {
+        "effect": "spectrum:eternal_slumber",
+        "base_duration_ticks": 1600,
+        "potency_modifier": 0.0,
+        "ink_color": "spectrum:purple",
+        "ink_cost": 32,
+        "chance": 0.125
+      },
+      {
+        "effect": "spectrum:fatal_slumber",
+        "base_duration_ticks": 100,
+        "potency_modifier": 0.0,
+        "ink_color": "spectrum:purple",
+        "ink_cost": 256,
+        "chance": 0.01
+      }
+    ]
+  },
+  "required_advancement": "spectrum:lategame/collect_nectardew"
+}

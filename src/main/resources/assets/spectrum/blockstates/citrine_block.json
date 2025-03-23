@@ -1,7 +1,12 @@
 {
 	"variants": {
-		"": {
-			"model": "spectrum:block/citrine_block"
-		}
+		"": [
+			{
+				"model": "spectrum:block/citrine_block"
+			},
+			{
+				"model": "spectrum:block/citrine_block_mirrored"
+			}
+		]
 	}
 }

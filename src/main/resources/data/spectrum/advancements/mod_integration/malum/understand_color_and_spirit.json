@@ -1,0 +1,30 @@
+{
+  "criteria": {
+    "understand_color": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_grayscale_pigments"
+      }
+    },
+    "understand_spirit": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "malum:umbral_spirit"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "malum"
+      ]
+    }
+  ]
+}

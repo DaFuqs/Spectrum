@@ -1,17 +1,14 @@
 package de.dafuqs.spectrum.sound;
 
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.sound.AbstractSoundInstance;
-import net.minecraft.client.sound.SoundInstance;
-import net.minecraft.client.sound.TickableSoundInstance;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.api.*;
+import net.minecraft.client.sound.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.sound.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
+import net.minecraft.world.*;
 
 @Environment(EnvType.CLIENT)
 public class PipeBombChargingSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
@@ -42,7 +39,7 @@ public class PipeBombChargingSoundInstance extends AbstractSoundInstance impleme
 	
 	@Override
 	public void tick() {
-		if (player == null || player.getItemUseTimeLeft() <= 0 || player.getItemUseTime() > 54) {
+		if (player == null || player.getItemUseTimeLeft() <= 0 || player.getItemUseTime() > 54 || !player.getActiveItem().isOf(SpectrumItems.PIPE_BOMB)) {
 			this.setDone();
 		} else {
 			this.x = this.player.getX();

@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:item/handheld_oversized",
+  "parent": "spectrum:templates_item/polearm",
   "textures": {
     "layer0": "spectrum:item/fractal_glass_crest_bident_oversized"
   }

@@ -6,7 +6,7 @@
   "overrides": [
     {
       "predicate": {
-        "in_world": 1.0
+        "oversized": 1.0
       },
       "model": "spectrum:item/malachite_crossbow_standby_oversized"
     },
@@ -18,7 +18,7 @@
     },
     {
       "predicate": {
-        "in_world": 1.0,
+        "oversized": 1.0,
         "pulling": 1
       },
       "model": "spectrum:item/malachite_crossbow_pulling_0_oversized"
@@ -32,7 +32,7 @@
     },
     {
       "predicate": {
-        "in_world": 1.0,
+        "oversized": 1.0,
         "pulling": 1,
         "pull": 0.58
       },
@@ -47,7 +47,7 @@
     },
     {
       "predicate": {
-        "in_world": 1.0,
+        "oversized": 1.0,
         "pulling": 1,
         "pull": 1.0
       },
@@ -61,7 +61,7 @@
     },
     {
       "predicate": {
-        "in_world": 1.0,
+        "oversized": 1.0,
         "charged": 1
       },
       "model": "spectrum:item/malachite_crossbow_arrow_oversized"
@@ -75,7 +75,7 @@
     },
     {
       "predicate": {
-        "in_world": 1.0,
+        "oversized": 1.0,
         "charged": 1,
         "projectile": 0.1
       },
@@ -90,7 +90,7 @@
     },
     {
       "predicate": {
-        "in_world": 1.0,
+        "oversized": 1.0,
         "charged": 1,
         "projectile": 0.2
       },
@@ -105,7 +105,7 @@
     },
     {
       "predicate": {
-        "in_world": 1.0,
+        "oversized": 1.0,
         "charged": 1,
         "projectile": 0.3
       },
@@ -120,7 +120,7 @@
     },
     {
       "predicate": {
-        "in_world": 1.0,
+        "oversized": 1.0,
         "charged": 1,
         "projectile": 0.4
       },
@@ -135,7 +135,7 @@
     },
     {
       "predicate": {
-        "in_world": 1.0,
+        "oversized": 1.0,
         "charged": 1,
         "projectile": 0.5
       },
@@ -150,7 +150,7 @@
     },
     {
       "predicate": {
-        "in_world": 1.0,
+        "oversized": 1.0,
         "charged": 1,
         "projectile": 0.6
       },
@@ -165,7 +165,7 @@
     },
     {
       "predicate": {
-        "in_world": 1.0,
+        "oversized": 1.0,
         "charged": 1,
         "projectile": 0.7
       },

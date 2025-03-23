@@ -1,0 +1,29 @@
+{
+	"variants": {
+		"facing=down": {
+			"model": "spectrum:block/moonstone_chiseled_calcite_down"
+		},
+		"facing=east": {
+			"model": "spectrum:block/moonstone_chiseled_calcite",
+			"x": 90,
+			"y": 90
+		},
+		"facing=north": {
+			"model": "spectrum:block/moonstone_chiseled_calcite",
+			"x": 90
+		},
+		"facing=south": {
+			"model": "spectrum:block/moonstone_chiseled_calcite",
+			"x": 90,
+			"y": 180
+		},
+		"facing=up": {
+          "model": "spectrum:block/moonstone_chiseled_calcite_up"
+		},
+		"facing=west": {
+			"model": "spectrum:block/moonstone_chiseled_calcite",
+			"x": 90,
+			"y": 270
+		}
+	}
+}

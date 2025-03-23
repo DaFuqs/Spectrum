@@ -1,9 +1,12 @@
 {
   "values": [
+    "#spectrum:greatswords",
+    "#spectrum:light_greatswords",
+
+    "spectrum:draconic_twinsword",
+    "spectrum:dragon_talon",
     "spectrum:razor_falchion",
     "spectrum:bedrock_sword",
-    "spectrum:malachite_ultra_greatsword",
-    "spectrum:glass_crest_ultra_greatsword",
     "spectrum:dreamflayer",
     "spectrum:nightfalls_blade"
   ]

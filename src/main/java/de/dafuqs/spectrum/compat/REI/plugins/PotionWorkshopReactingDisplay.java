@@ -20,7 +20,7 @@ public class PotionWorkshopReactingDisplay extends GatedItemInformationDisplay {
 	@Override
     public boolean isUnlocked() {
 		MinecraftClient client = MinecraftClient.getInstance();
-		return AdvancementHelper.hasAdvancement(client.player, PotionWorkshopRecipe.UNLOCK_IDENTIFIER) && super.isUnlocked();
+		return AdvancementHelper.hasAdvancement(client.player, PotionWorkshopRecipe.UNLOCK_IDENTIFIER) && AdvancementHelper.hasAdvancement(client.player, PotionWorkshopRecipe.UNLOCK_IDENTIFIER) && super.isUnlocked();
 	}
 	
 }

@@ -1,0 +1,7 @@
+{
+  "texture": "spectrum:textures/armor/bedrock_armor_main.png",
+  "uv": [40, 25],
+  "left_uv": [37, 41],
+  "right_uv": [43, 41],
+  "size": [128.0, 128.0]
+}

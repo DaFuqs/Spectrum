@@ -11,16 +11,12 @@ import java.util.*;
 public class CreativeInkStorage implements InkStorage {
 	
 	private static final Map<InkColor, Long> STORAGE = new HashMap<>() {{
-		for (InkColor inkColor : InkColor.all()) {
+		for (InkColor inkColor : InkColors.all()) {
 			put(inkColor, Long.MAX_VALUE);
 		}
 	}};
 	
 	public CreativeInkStorage() {
-		super();
-	}
-	
-	public CreativeInkStorage(long maxEnergy, InkColor color, long amount) {
 		super();
 	}
 	
@@ -96,10 +92,8 @@ public class CreativeInkStorage implements InkStorage {
 	}
 	
 	@Override
-	public void addTooltip(List<Text> tooltip, boolean includeHeader) {
-		if (includeHeader) {
-			tooltip.add(Text.translatable("item.spectrum.creative_ink_assortment.tooltip"));
-		}
+	public void addTooltip(List<Text> tooltip) {
+		tooltip.add(Text.translatable("item.spectrum.creative_ink_assortment.tooltip"));
 	}
 	
 	@Override

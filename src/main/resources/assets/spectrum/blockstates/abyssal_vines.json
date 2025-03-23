@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "life_stage=stalk,berries=false": {
+      "model": "spectrum:block/abyssal_vines"
+    },
+    "life_stage=growing,berries=false": {
+      "model": "spectrum:block/abyssal_vines_tip"
+    },
+    "life_stage=mature,berries=false": {
+      "model": "spectrum:block/abyssal_vines_tip"
+    },
+    "life_stage=stalk,berries=true": {
+      "model": "spectrum:block/abyssal_vines_fruiting"
+    },
+    "life_stage=growing,berries=true": {
+      "model": "spectrum:block/abyssal_vines_tip_fruiting"
+    },
+    "life_stage=mature,berries=true": {
+      "model": "spectrum:block/abyssal_vines_tip_fruiting"
+    }
+  }
+}

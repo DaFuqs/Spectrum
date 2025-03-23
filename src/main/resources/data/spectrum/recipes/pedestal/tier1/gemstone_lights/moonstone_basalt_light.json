@@ -1,0 +1,33 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "moonstone_lights",
+  "time": 40,
+  "tier": "complex",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 4,
+  "black": 0,
+  "experience": 0.3,
+  "pattern": [
+    "TTT",
+    "BSB",
+    "TTT"
+  ],
+  "key": {
+    "B": {
+      "item": "spectrum:moonstone_block"
+    },
+    "T": {
+      "item": "spectrum:polished_basalt"
+    },
+    "S": {
+      "item": "spectrum:shimmerstone_block"
+    }
+  },
+  "result": {
+    "item": "spectrum:moonstone_basalt_lamp",
+    "count": 4
+  },
+  "required_advancement": "spectrum:unlocks/gemstone_lights/moonstone"
+}

@@ -1,8 +1,10 @@
 package de.dafuqs.spectrum.items.magic_items;
 
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.mob.*;
@@ -16,7 +18,7 @@ import net.minecraft.world.*;
 
 import java.util.*;
 
-public class EverpromiseRibbonItem extends Item {
+public class EverpromiseRibbonItem extends Item implements PrioritizedEntityInteraction {
 	
 	public EverpromiseRibbonItem(Settings settings) {
 		super(settings);
@@ -26,6 +28,9 @@ public class EverpromiseRibbonItem extends Item {
 	public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
 		World world = user.getWorld();
 		if (!GenericClaimModsCompat.canInteract(world, entity, user)) {
+			return ActionResult.FAIL;
+		}
+		if (entity.getType().isIn(SpectrumEntityTypeTags.EVERPROMISE_RIBBON_BLACKLISTED)) {
 			return ActionResult.FAIL;
 		}
 		
@@ -52,7 +57,9 @@ public class EverpromiseRibbonItem extends Item {
 					}
 				}
 				
-				stack.decrement(1);
+				if (!user.isCreative()) {
+					stack.decrement(1);
+				}
 			}
 			
 			return ActionResult.success(world.isClient);

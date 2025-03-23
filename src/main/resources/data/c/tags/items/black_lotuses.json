@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "botania:black_lotus",
+      "required": false
+    },
+    {
+      "id": "botania:blacker_lotus",
+      "required": false
+    },
+    {
+      "id": "spectrum:blackest_lotus",
+      "required": false
+    },
+    {
+      "id": "spectrum:least_black_lotus",
+      "required": false
+    }
+  ]
+}

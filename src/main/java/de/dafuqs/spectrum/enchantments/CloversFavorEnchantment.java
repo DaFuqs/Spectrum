@@ -1,10 +1,17 @@
 package de.dafuqs.spectrum.enchantments;
 
+import com.sammy.malum.common.item.curiosities.weapons.scythe.MalumScytheItem;
+import com.sammy.malum.registry.common.item.EnchantmentRegistry;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.compat.SpectrumIntegrationPacks;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
+import net.minecraft.item.ArmorItem;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ToolItem;
+import net.minecraft.item.TridentItem;
 import net.minecraft.util.*;
 
 public class CloversFavorEnchantment extends SpectrumEnchantment {
@@ -37,10 +44,23 @@ public class CloversFavorEnchantment extends SpectrumEnchantment {
 	public int getMaxLevel() {
 		return SpectrumCommon.CONFIG.CloversFavorMaxLevel;
 	}
+
+	@Override
+	public boolean isAcceptableItem(ItemStack stack) {
+		var item = stack.getItem();
+		if(SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.MALUM_ID) &&
+				item instanceof MalumScytheItem)
+		{
+			return true;
+		}
+
+		return super.isAcceptableItem(stack);
+	}
 	
 	@Override
 	public boolean canAccept(Enchantment other) {
-		return super.canAccept(other) && other != Enchantments.LOOTING;
+		return super.canAccept(other) && other != Enchantments.LOOTING &&
+				!(SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.MALUM_ID) && other == EnchantmentRegistry.SPIRIT_PLUNDER.get());
 	}
 	
 }

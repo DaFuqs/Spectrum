@@ -1,14 +1,9 @@
 package de.dafuqs.spectrum.blocks.conditional.colored_tree;
 
-import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.util.*;
 
 public interface ColoredTree {
-	
-	Identifier SAPLING_CMY_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("milestones/reveal_colored_saplings_cmy");
-	Identifier TREES_CMY_IDENTIFIER = SpectrumCommon.locate("milestones/reveal_colored_trees_cmy");
-	Identifier TREES_B_IDENTIFIER = SpectrumCommon.locate("milestones/reveal_colored_trees_k");
-	Identifier TREES_W_IDENTIFIER = SpectrumCommon.locate("milestones/reveal_colored_trees_w");
 	
 	enum TreePart {
 		SAPLING,
@@ -22,13 +17,13 @@ public interface ColoredTree {
 	static Identifier getTreeCloakAdvancementIdentifier(TreePart treePart, DyeColor color) {
 		switch (color) {
 			case WHITE, LIGHT_GRAY, GRAY -> {
-				return TREES_W_IDENTIFIER;
+				return SpectrumAdvancements.REVEAL_COLORED_TREES_WHITE;
 			}
 			case BLACK, BROWN -> {
-				return TREES_B_IDENTIFIER;
+				return SpectrumAdvancements.REVEAL_COLORED_TREES_BLACK;
 			}
 			default -> {
-				return treePart == TreePart.SAPLING ? SAPLING_CMY_ADVANCEMENT_IDENTIFIER : TREES_CMY_IDENTIFIER;
+				return treePart == TreePart.SAPLING ? SpectrumAdvancements.REVEAL_COLORED_SAPLINGS_CMY : SpectrumAdvancements.REVEAL_COLORED_TREES_CMY;
 			}
 		}
 	}

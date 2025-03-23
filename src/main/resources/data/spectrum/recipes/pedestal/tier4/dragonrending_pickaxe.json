@@ -21,7 +21,7 @@
       "item": "spectrum:dragonbone_chunk"
     },
     "P": {
-      "item": "spectrum:effulgent_feather"
+      "tag": "spectrum:effulgent_feathers"
     }
   },
   "result": {
@@ -30,7 +30,7 @@
       "Enchantments": [
         {
           "id": "spectrum:razing",
-          "lvl": "1s"
+          "lvl": "3s"
         }
       ]
     },

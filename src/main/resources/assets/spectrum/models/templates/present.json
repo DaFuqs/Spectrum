@@ -1,5 +1,4 @@
 {
-  "credit": "Made with Blockbench",
   "parent": "minecraft:block/block",
   "texture_size": [
     32,

@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "spectrum:amethyst_glass_pane",
+    "spectrum:citrine_glass_pane",
+    "spectrum:topaz_glass_pane",
+    "spectrum:moonstone_glass_pane",
+    "spectrum:onyx_glass_pane"
+  ]
+}

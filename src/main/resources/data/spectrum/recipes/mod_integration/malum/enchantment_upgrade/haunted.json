@@ -1,0 +1,30 @@
+{
+  "type": "spectrum:enchantment_upgrade",
+  "enchantment": "malum:haunted",
+  "levels": [
+    {
+      "experience": 400,
+      "item": "spectrum:purple_pigment",
+      "item_count": 8
+    },
+    {
+      "experience": 1600,
+      "item": "spectrum:purple_pigment",
+      "item_count": 32
+    },
+    {
+      "experience": 3200,
+      "item": "spectrum:purple_pigment",
+      "item_count": 128
+    }
+  ],
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_damage",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "malum"
+      ]
+    }
+  ]
+}

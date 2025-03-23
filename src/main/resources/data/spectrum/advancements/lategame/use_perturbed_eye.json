@@ -26,13 +26,16 @@
                 ]
               }
             }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "items": [
+                "spectrum:perturbed_eye"
+              ]
+            }
           }
-        ],
-        "item": {
-          "items": [
-            "spectrum:perturbed_eye"
-          ]
-        }
+        ]
       }
     },
     "gotten_previous": {

@@ -128,7 +128,7 @@ public class SpectrumPresentUnpackBehaviors {
 		});
 		
 		PresentBlock.registerBehavior(SpectrumBlocks.MEMORY, (stack, presentBlockEntity, world, pos, random) -> {
-			MemoryBlockEntity.manifest(world, pos, stack, presentBlockEntity.getOwnerUUID());
+			MemoryBlockEntity.manifest(world, pos, stack, presentBlockEntity.getOpenerUUID());
 			return ItemStack.EMPTY;
 		});
 		

@@ -1,0 +1,35 @@
+{
+  "parent": "spectrum:tap_titration_barrel",
+  "display": {
+    "icon": {
+      "item": "spectrum:mermaids_jam"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.tap_mermaids_jam.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.tap_mermaids_jam.description"
+    }
+  },
+  "criteria": {
+    "tapped_mermaids_jam": {
+      "trigger": "spectrum:titration_barrel_tapping",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:mermaids_jam"
+            ]
+          }
+        ]
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:tap_titration_barrel"
+      }
+    }
+  }
+}

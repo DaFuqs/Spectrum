@@ -12,6 +12,7 @@ import java.util.*;
 
 public class NeatRingItem extends SpectrumTrinketItem {
 
+
 	public NeatRingItem(Settings settings) {
 		super(settings, SpectrumCommon.locate("unlocks/trinkets/neat_ring"));
 	}
@@ -27,5 +28,5 @@ public class NeatRingItem extends SpectrumTrinketItem {
 	public boolean hasGlint(ItemStack stack) {
 		return true;
 	}
-
+	
 }

@@ -1,8 +1,10 @@
 {
   "criteria": {
-    "reached_midgame": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/spectrum_midgame" }
+    "unlocked_ink": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:milestones/unlock_ink_use"
+      }
     }
   }
 }

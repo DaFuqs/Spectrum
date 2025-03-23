@@ -1,0 +1,6 @@
+{
+  "particle_type": "spectrum:jade_vines",
+  "gui_texture": "spectrum:jade_vines1",
+  "unlock_identifier": "spectrum:collect_shimmerstone",
+  "supports_coloring": false
+}

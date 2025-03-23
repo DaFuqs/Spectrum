@@ -1,0 +1,19 @@
+{
+  "type": "spectrum:titration_barrel",
+  "ingredients": [
+    {
+      "item": "spectrum:milky_resin",
+      "count": 1
+    },
+    {
+      "item": "minecraft:sugar",
+      "count": 4
+    }
+  ],
+  "min_fermentation_time_hours": 1,
+  "required_advancement": "spectrum:hidden/collect_milky_resin",
+  "result": {
+    "item": "spectrum:clotted_cream",
+    "count": 16
+  }
+}

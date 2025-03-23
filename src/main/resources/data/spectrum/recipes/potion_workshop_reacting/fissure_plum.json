@@ -1,0 +1,12 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "spectrum:fissure_plum",
+  "modifiers": {
+    "flat_potency_bonus_positive_effects": 0.5,
+    "flat_duration_bonus_positive_effects": 0.5,
+    "flat_potency_bonus_negative_effects": -0.5,
+    "flat_duration_bonus_negative_effects": -0.5,
+    "flat_yield_bonus": 0.5
+  },
+  "required_advancement": "spectrum:hidden/collect_fissure_plum"
+}

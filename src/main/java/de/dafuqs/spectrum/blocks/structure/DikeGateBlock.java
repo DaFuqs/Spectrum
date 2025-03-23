@@ -36,7 +36,7 @@ public class DikeGateBlock extends AbstractGlassBlock {
 					return VoxelShapes.empty();
 				}
 				
-				int charges = AzureDikeProvider.getAzureDikeCharges(livingEntity);
+				var charges = AzureDikeProvider.getAzureDikeCharges(livingEntity);
 				if (charges > 0) {
 					return VoxelShapes.empty();
 				}
@@ -93,7 +93,7 @@ public class DikeGateBlock extends AbstractGlassBlock {
 	
 	public void punishEntityWithoutAzureDike(BlockView world, BlockPos pos, Entity entity, boolean decreasedSounds) {
 		if (world instanceof ServerWorld serverWorld && entity instanceof LivingEntity livingEntity) {
-			int charges = AzureDikeProvider.getAzureDikeCharges(livingEntity);
+			int charges = (int) Math.ceil(AzureDikeProvider.getAzureDikeCharges(livingEntity));
 			if (charges == 0) {
 				entity.damage(SpectrumDamageTypes.dike(serverWorld), 1);
 				SpectrumS2CPacketSender.playParticles(serverWorld, pos, SpectrumParticleTypes.AZURE_DIKE_RUNES, 10);

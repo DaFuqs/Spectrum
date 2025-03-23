@@ -1,0 +1,35 @@
+{
+    "type": "create:crushing",
+    "ingredients": [
+      {
+        "item": "spectrum:malachite_ore"
+      }
+    ],
+    "processingTime": 350,
+    "results": [
+      {
+        "count": 2,
+        "item": "spectrum:raw_malachite"
+      },
+      {
+        "chance": 0.5,
+        "item": "spectrum:raw_malachite"
+      },
+      {
+        "chance": 0.75,
+        "item": "create:experience_nugget"
+      },
+      {
+        "chance": 0.125,
+        "item": "minecraft:cobblestone"
+      }
+    ],
+    "fabric:load_conditions": [
+      {
+        "condition": "fabric:all_mods_loaded",
+        "values": [
+          "create"
+        ]
+      }
+    ]
+  }

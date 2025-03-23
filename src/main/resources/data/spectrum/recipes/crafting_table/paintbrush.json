@@ -1,19 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    " RR",
-    " FR",
+    "  R",
+    " F ",
     "E  "
   ],
   "key": {
     "E": {
-      "item": "spectrum:polished_calcite"
+      "item": "minecraft:stick"
     },
     "F": {
-      "item": "spectrum:polished_basalt"
+      "item": "minecraft:copper_ingot"
     },
     "R": {
-      "item": "minecraft:string"
+      "tag": "minecraft:wool"
     }
   },
   "result": {

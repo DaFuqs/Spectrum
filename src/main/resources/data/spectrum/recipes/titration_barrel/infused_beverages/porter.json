@@ -4,11 +4,11 @@
   "ingredients": [
     {
       "item": "minecraft:wheat",
-      "count": 6
+      "count": 3
     },
     {
       "item": "minecraft:wheat_seeds",
-      "count": 3
+      "count": 2
     },
     {
       "item": "minecraft:beetroot",
@@ -110,5 +110,5 @@
       "Color": 4857125
     }
   },
-  "required_advancement": "spectrum:milestones/confirmed_drinking_age"
+  "required_advancement": "spectrum:triggers/confirmed_drinking_age"
 }

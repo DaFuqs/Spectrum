@@ -1,0 +1,36 @@
+{
+  "parent": "spectrum:lategame/build_complex_pedestal_structure",
+  "display": {
+    "icon": {
+      "item": "spectrum:aether_vestiges"
+    },
+    "hidden": true,
+    "frame": "goal",
+    "title": {
+      "translate": "advancements.spectrum.collect_aether_vestiges.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.collect_aether_vestiges.description"
+    }
+  },
+  "criteria": {
+    "has_aether_vestiges": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:aether_vestiges"
+            ]
+          }
+        ]
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure"
+      }
+    }
+  }
+}

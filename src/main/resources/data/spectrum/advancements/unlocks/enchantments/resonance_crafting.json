@@ -12,10 +12,10 @@
         "advancement_identifier": "spectrum:midgame/build_enchanting_structure"
       }
     },
-    "broken_budding_block_with_resonance_tool": {
+		"collected_paltaeria_gem": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/break_budding_block_with_resonance_tool"
+				"advancement_identifier": "spectrum:hidden/collect_paltaeria_gem"
       }
     },
     "struck_up_hummingstone_hymn": {

@@ -26,23 +26,23 @@ public class ItemProjectileEntity extends ThrownItemEntity {
 	@Override
 	protected void onCollision(HitResult hitResult) {
 		ItemStack stack = getStack();
-		ItemProjectileBehavior behavior = ItemProjectileBehavior.get(stack);
-
-		if(behavior != null) {
-			HitResult.Type type = hitResult.getType();
-			if (type == HitResult.Type.ENTITY) {
-				this.getWorld().emitGameEvent(GameEvent.PROJECTILE_LAND, hitResult.getPos(), GameEvent.Emitter.of(this, null));
-				behavior.onEntityHit(this, stack, getOwner(), (EntityHitResult) hitResult);
-			} else if (type == HitResult.Type.BLOCK) {
-				BlockHitResult blockHitResult = (BlockHitResult)hitResult;
-				BlockPos blockPos = blockHitResult.getBlockPos();
-				this.getWorld().emitGameEvent(GameEvent.PROJECTILE_LAND, blockPos, GameEvent.Emitter.of(this, this.getWorld().getBlockState(blockPos)));
-				behavior.onBlockHit(this, stack, getOwner(), (BlockHitResult) hitResult);
-			}
-		}
 
 		if (!this.getWorld().isClient) {
-			this.getWorld().sendEntityStatus(this, (byte) 3);
+			ItemProjectileBehavior behavior = ItemProjectileBehavior.get(stack);
+			if (behavior != null) {
+				HitResult.Type type = hitResult.getType();
+				if (type == HitResult.Type.ENTITY) {
+					this.getWorld().emitGameEvent(GameEvent.PROJECTILE_LAND, hitResult.getPos(), GameEvent.Emitter.of(this, null));
+					behavior.onEntityHit(this, stack, getOwner(), (EntityHitResult) hitResult);
+				} else if (type == HitResult.Type.BLOCK) {
+					BlockHitResult blockHitResult = (BlockHitResult) hitResult;
+					BlockPos blockPos = blockHitResult.getBlockPos();
+					this.getWorld().emitGameEvent(GameEvent.PROJECTILE_LAND, blockPos, GameEvent.Emitter.of(this, this.getWorld().getBlockState(blockPos)));
+					behavior.onBlockHit(this, stack, getOwner(), (BlockHitResult) hitResult);
+				}
+			}
+			
+			this.getWorld().sendEntityStatus(this, EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES);
 			
 			if (!stack.isEmpty()) {
 				Entity owner = this.getOwner();
@@ -57,7 +57,7 @@ public class ItemProjectileEntity extends ThrownItemEntity {
 
 	@Override
 	public void handleStatus(byte status) {
-		if (status == 3) {
+		if (status == EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES) {
 			ItemStack itemStack = this.getItem();
 			ParticleEffect particleEffect = (itemStack.isEmpty() ? ParticleTypes.ITEM_SNOWBALL : new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack));
 

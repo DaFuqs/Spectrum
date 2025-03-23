@@ -3,8 +3,8 @@
   "values": [
     "spectrum:black_materia",
     "spectrum:shale_clay",
-    "spectrum:slush",
     "spectrum:black_sludge",
+    "#spectrum:slushes",
     "#spectrum:ash"
   ]
 }

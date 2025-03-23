@@ -3,16 +3,25 @@
     "spectrum:preservation_controller",
     "spectrum:preservation_stone",
     "spectrum:preservation_bricks",
+		"spectrum:preservation_stairs",
+		"spectrum:preservation_wall",
+		"spectrum:preservation_slab",
+
     "spectrum:shimmering_preservation_bricks",
     "spectrum:powder_chiseled_preservation_stone",
     "spectrum:dike_chiseled_preservation_stone",
+    "spectrum:dream_chiseled_preservation_stone",
+    "spectrum:deep_light_chiseled_preservation_stone",
     "spectrum:preservation_glass",
+    "spectrum:tinted_preservation_glass",
     "spectrum:dike_gate",
+    "spectrum:dream_gate",
     "spectrum:courier_statue",
     "spectrum:preservation_chest",
     "spectrum:dike_gate_fountain",
     "spectrum:preservation_roundel",
     "spectrum:preservation_block_detector",
+    "spectrum:item_bowl_enlightenment",
 
     "spectrum:black_chiseled_preservation_stone",
     "spectrum:blue_chiseled_preservation_stone",
@@ -29,6 +38,8 @@
     "spectrum:purple_chiseled_preservation_stone",
     "spectrum:red_chiseled_preservation_stone",
     "spectrum:white_chiseled_preservation_stone",
-    "spectrum:yellow_chiseled_preservation_stone"
+    "spectrum:yellow_chiseled_preservation_stone",
+
+    "spectrum:manxi"
   ]
 }

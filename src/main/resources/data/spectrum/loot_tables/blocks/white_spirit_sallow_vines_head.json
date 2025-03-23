@@ -4,12 +4,7 @@
     {
       "rolls": 1,
       "bonus_rolls": 0.0,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:vibrant_white_catkin"
-        }
-      ],
+      "entries": [],
       "conditions": [
         {
           "condition": "minecraft:survives_explosion"

@@ -2,24 +2,45 @@
   "type": "minecraft:chest",
   "pools": [
     {
-      "rolls": 1,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:moonstone_core"
-        }
-      ]
-    },
-    {
       "rolls": {
-        "min": 2,
-        "max": 3
+        "min": 1,
+        "max": 2
       },
       "bonus_rolls": 0,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:wheat_seeds"
+          "name": "spectrum:pipe_bomb"
+        }
+      ],
+      "functions": []
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:moonstone_core",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:nectardew_burgeon",
+          "weight": 0,
+          "quality": 1
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 1,
+        "max": 2
+      },
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:amaranth_grains"
         },
         {
           "type": "minecraft:item",
@@ -27,7 +48,8 @@
         },
         {
           "type": "minecraft:item",
-          "name": "spectrum:nephrite_blossom_bulb"
+          "name": "spectrum:nephrite_blossom_bulb",
+          "weight": 2
         },
         {
           "type": "minecraft:item",
@@ -35,11 +57,11 @@
         },
         {
           "type": "minecraft:item",
-          "name": "spectrum:four_leaf_clover"
+          "name": "spectrum:doombloom_seed"
         },
         {
           "type": "minecraft:item",
-          "name": "spectrum:aloe_leaf"
+          "name": "spectrum:nightdew_sprout"
         }
       ],
       "functions": [

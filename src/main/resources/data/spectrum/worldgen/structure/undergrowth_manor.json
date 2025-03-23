@@ -1,0 +1,48 @@
+{
+  "type": "spectrum:underground_jigsaw",
+  "biomes": "#spectrum:has_structure/undergrowth_manor",
+  "step": "underground_structures",
+  "start_pool": "spectrum:undergrowth_manor/main",
+  "size": 7,
+  "start_height": {
+    "absolute": -280
+  },
+  "max_distance_from_center": 80,
+  "bury_depth": 11,
+  "placement_check_width": 32,
+  "placement_check_height": 20,
+  "spawn_overrides": {
+    "ambient": {
+      "bounding_box": "full",
+      "spawns": []
+    },
+    "axolotls": {
+      "bounding_box": "full",
+      "spawns": []
+    },
+    "creature": {
+      "bounding_box": "full",
+      "spawns": []
+    },
+    "misc": {
+      "bounding_box": "full",
+      "spawns": []
+    },
+    "monster": {
+      "bounding_box": "full",
+      "spawns": []
+    },
+    "underground_water_creature": {
+      "bounding_box": "full",
+      "spawns": []
+    },
+    "water_ambient": {
+      "bounding_box": "full",
+      "spawns": []
+    },
+    "water_creature": {
+      "bounding_box": "full",
+      "spawns": []
+    }
+  }
+}

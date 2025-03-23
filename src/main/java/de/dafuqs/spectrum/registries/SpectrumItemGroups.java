@@ -7,8 +7,10 @@ import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.item_group.*;
 import de.dafuqs.spectrum.blocks.memory.*;
+import de.dafuqs.spectrum.blocks.mob_head.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.compat.ae2.*;
+import de.dafuqs.spectrum.compat.create.*;
 import de.dafuqs.spectrum.compat.gobber.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.food.beverages.*;
@@ -45,6 +47,7 @@ public class SpectrumItemGroups {
 			.entries((displayContext, entries) -> {
 				addEquipmentEntry(SpectrumItems.GUIDEBOOK, entries);
 				addEquipmentEntry(SpectrumItems.PAINTBRUSH, entries);
+				addEquipmentEntry(SpectrumItems.TUNING_STAMP, entries);
 				addEquipmentEntry(SpectrumItems.BOTTLE_OF_FADING, entries);
 				addEquipmentEntry(SpectrumItems.BOTTLE_OF_FAILING, entries);
 				addEquipmentEntry(SpectrumItems.BOTTLE_OF_RUIN, entries);
@@ -98,6 +101,8 @@ public class SpectrumItemGroups {
 				addEquipmentEntry(SpectrumItems.NIGHTFALLS_BLADE, entries);
 				addEquipmentEntry(SpectrumItems.DRACONIC_TWINSWORD, entries);
 				addEquipmentEntry(SpectrumItems.DRAGON_TALON, entries);
+				addEquipmentEntry(SpectrumItems.KNOTTED_SWORD, entries);
+				addEquipmentEntry(SpectrumItems.NECTAR_LANCE, entries);
 				addEquipmentEntry(SpectrumItems.OMNI_ACCELERATOR, entries);
 				addEquipmentEntry(SpectrumItems.FANCIFUL_STONE_RING, entries);
 				addEquipmentEntry(SpectrumItems.FANCIFUL_BELT, entries);
@@ -124,6 +129,12 @@ public class SpectrumItemGroups {
 				entries.add(SpectrumItems.GLOVES_OF_DAWNS_GRASP.getFullStack());
 				entries.add(SpectrumItems.RING_OF_PURSUIT);
 				entries.add(SpectrumItems.RING_OF_PURSUIT.getFullStack());
+				entries.add(SpectrumItems.RING_OF_DENSER_STEPS);
+				entries.add(SpectrumItems.RING_OF_DENSER_STEPS.getFullStack());
+				entries.add(SpectrumItems.RING_OF_AERIAL_GRACE);
+				entries.add(SpectrumItems.RING_OF_AERIAL_GRACE.getFullStack());
+				entries.add(SpectrumItems.LAURELS_OF_SERENITY);
+				entries.add(SpectrumItems.LAURELS_OF_SERENITY.getFullStack());
 				entries.add(SpectrumItems.GLEAMING_PIN);
 				entries.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(SpectrumItems.GLEAMING_PIN));
 				entries.add(SpectrumItems.LESSER_POTION_PENDANT);
@@ -132,7 +143,9 @@ public class SpectrumItemGroups {
 				entries.add(SpectrumItems.WEEPING_CIRCLET);
 				entries.add(SpectrumItems.PUFF_CIRCLET);
 				entries.add(SpectrumItems.WHISPY_CIRCLET);
+				entries.add(SpectrumItems.AZURESQUE_DIKE_CORE);
 				entries.add(SpectrumItems.CIRCLET_OF_ARROGANCE);
+				entries.add(SpectrumItems.AETHER_GRACED_NECTAR_GLOVES);
 				entries.add(SpectrumItems.NEAT_RING);
 				entries.add(SpectrumItems.CRAFTING_TABLET);
 				entries.add(SpectrumItems.BOTTOMLESS_BUNDLE);
@@ -152,6 +165,10 @@ public class SpectrumItemGroups {
 				entries.add(SpectrumItems.CELESTIAL_POCKETWATCH);
 				entries.add(SpectrumItems.GILDED_BOOK);
 				entries.add(SpectrumItems.ENCHANTMENT_CANVAS);
+				entries.add(SpectrumItems.NIGHT_SALTS);
+				entries.add(SpectrumItems.SOOTHING_BOUQUET);
+				entries.add(SpectrumItems.CONCEALING_OILS);
+				entries.add(SpectrumItems.BITTER_OILS);
 				entries.add(SpectrumItems.EVERPROMISE_RIBBON);
 				entries.add(SpectrumItems.BAG_OF_HOLDING);
 				entries.add(SpectrumItems.RADIANCE_STAFF);
@@ -171,6 +188,8 @@ public class SpectrumItemGroups {
 				entries.add(SpectrumBlocks.THREAT_CONFLUX);
 				entries.add(SpectrumItems.PIPE_BOMB);
 				entries.add(SpectrumItems.CRESCENT_CLOCK);
+				entries.add(SpectrumItems.ARTISANS_ATLAS);
+				entries.add(SpectrumBlocks.PRIMORDIAL_TORCH);
 				entries.add(SpectrumItems.MYSTERIOUS_LOCKET);
 				entries.add(SpectrumItems.MYSTERIOUS_COMPASS);
 			}).build();
@@ -208,8 +227,9 @@ public class SpectrumItemGroups {
 				
 				entries.add(SpectrumBlocks.CONNECTION_NODE);
 				entries.add(SpectrumBlocks.PROVIDER_NODE);
-				entries.add(SpectrumBlocks.STORAGE_NODE);
 				entries.add(SpectrumBlocks.SENDER_NODE);
+				entries.add(SpectrumBlocks.STORAGE_NODE);
+				entries.add(SpectrumBlocks.BUFFER_NODE);
 				entries.add(SpectrumBlocks.GATHER_NODE);
 				
 				entries.add(SpectrumBlocks.LIGHT_LEVEL_DETECTOR);
@@ -308,7 +328,9 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.MELOCHITES_COOKBOOK_VOL_1);
 		entries.add(SpectrumItems.MELOCHITES_COOKBOOK_VOL_2);
 		entries.add(SpectrumItems.BREWERS_HANDBOOK);
-		
+		//entries.add(SpectrumItems.VARIA_COOKBOOK);
+		entries.add(SpectrumItems.POISONERS_HANDBOOK);
+
 		entries.add(SpectrumBlocks.SUGAR_STICK);
 		entries.add(SpectrumBlocks.TOPAZ_SUGAR_STICK);
 		entries.add(SpectrumBlocks.AMETHYST_SUGAR_STICK);
@@ -328,18 +350,31 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.FRESH_CHOCOLATE);
 		entries.add(SpectrumItems.BODACIOUS_BERRY_BAR);
 		entries.add(SpectrumItems.HOT_CHOCOLATE);
+		entries.add(SpectrumItems.KARAK_CHAI);
 		entries.add(SpectrumItems.RESTORATION_TEA);
 		entries.add(SpectrumItems.GLISTERING_JELLY_TEA);
+		entries.add(SpectrumItems.AZALEA_TEA);
 		entries.add(SpectrumItems.DEMON_TEA);
 		entries.add(SpectrumItems.ENCHANTED_GOLDEN_CARROT);
 		entries.add(SpectrumItems.JADE_JELLY);
 		entries.add(SpectrumItems.JARAMEL);
 		entries.add(SpectrumItems.MOONSTRUCK_NECTAR);
 		entries.add(SpectrumItems.GLASS_PEACH);
+		entries.add(SpectrumItems.FISSURE_PLUM);
+		entries.add(SpectrumItems.NIGHTDEW_SPROUT);
+		entries.add(SpectrumItems.NECTARDEW_BURGEON);
 		entries.add(SpectrumItems.BLOODBOIL_SYRUP);
+		entries.add(SpectrumItems.MILKY_RESIN);
 		entries.add(SpectrumItems.SCONE);
 		entries.add(SpectrumItems.STAR_CANDY);
 		entries.add(SpectrumItems.PURPLE_STAR_CANDY);
+		entries.add(SpectrumItems.CHEONG);
+		entries.add(SpectrumItems.MERMAIDS_JAM);
+		entries.add(SpectrumItems.MERMAIDS_POPCORN);
+		entries.add(SpectrumItems.LE_FISHE_AU_CHOCOLAT);
+		//entries.add(SpectrumItems.STUFFED_PETALS);
+		//entries.add(SpectrumItems.PASTICHE);
+		//entries.add(SpectrumItems.VITTORIAS_ROAST);
 		entries.add(SpectrumItems.LUCKY_ROLL);
 		entries.add(SpectrumItems.HONEY_PASTRY);
 		entries.add(SpectrumItems.JARAMEL_TART);
@@ -372,6 +407,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.FADED_KOI);
 		entries.add(SpectrumItems.FISHCAKE);
 		entries.add(SpectrumItems.LIZARD_MEAT);
+		entries.add(SpectrumItems.COOKED_LIZARD_MEAT);
 		entries.add(SpectrumItems.GOLDEN_BRISTLE_TEA);
 		entries.add(SpectrumItems.HARE_ROAST);
 		entries.add(SpectrumItems.JUNKET);
@@ -407,6 +443,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.JADE_WINE);
 		entries.add(SpectrumItems.CHRYSOCOLLA);
 		entries.add(SpectrumItems.AQUA_REGIA);
+		entries.add(SpectrumItems.EVERNECTAR);
 	}).build();
 	
 	public static final ItemSubGroup RESOURCES = new ItemSubGroup.Builder(MAIN, ItemGroupIDs.SUBTAB_RESOURCES, Text.translatable("itemGroup.spectrum.resources")).backgroundTexture(ItemGroupIDs.BACKGROUND_TEXTURE).entries((displayContext, entries) -> {
@@ -549,8 +586,6 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.STARDUST);
 		entries.add(SpectrumBlocks.STARDUST_BLOCK);
 		entries.add(SpectrumItems.STAR_FRAGMENT);
-
-		entries.add(SpectrumItems.VARIA_OPAL);
 		entries.add(SpectrumBlocks.RADIATING_ENDER);
 		
 		entries.add(SpectrumItems.WHITE_PIGMENT);
@@ -586,8 +621,8 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.HIBERNATING_JADE_VINE_BULB);
 		entries.add(SpectrumItems.GERMINATED_JADE_VINE_BULB);
 		entries.add(SpectrumItems.JADE_VINE_PETALS);
-		entries.add(SpectrumItems.NEPHRITE_BLOSSOM_BULB);
-		entries.add(SpectrumItems.JADEITE_LOTUS_BULB);
+		entries.add(SpectrumBlocks.NEPHRITE_BLOSSOM_BULB);
+		entries.add(SpectrumBlocks.JADEITE_LOTUS_BULB);
 		entries.add(SpectrumItems.JADEITE_PETALS);
 
 		entries.add(SpectrumItems.MERMAIDS_GEM);
@@ -598,6 +633,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.BONE_ASH);
 		entries.add(SpectrumItems.DOWNSTONE_FRAGMENTS);
 		entries.add(SpectrumItems.RESONANCE_SHARD);
+		entries.add(SpectrumItems.AETHER_VESTIGES);
 		entries.add(SpectrumItems.MOONSTONE_CORE);
 		
 		entries.add(SpectrumItems.LIQUID_CRYSTAL_BUCKET);
@@ -689,6 +725,15 @@ public class SpectrumItemGroups {
 			entries.add(AE2Compat.FLUIX_CLUSTER);
 			entries.add(AE2Compat.PURE_FLUIX_BLOCK);
 		}
+
+		if (SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.CREATE_ID))
+		{
+			entries.add(CreateCompat.PURE_ZINC);
+			entries.add(CreateCompat.SMALL_ZINC_BUD);
+			entries.add(CreateCompat.LARGE_ZINC_BUD);
+			entries.add(CreateCompat.ZINC_CLUSTER);
+			entries.add(CreateCompat.PURE_ZINC_BLOCK);
+		}
 		
 		if (SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.GOBBER_ID)) {
 			entries.add(GobberCompat.PURE_GLOBETTE);
@@ -734,6 +779,9 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.BASALT_TILE_SLAB);
 		entries.add(SpectrumBlocks.BASALT_TILE_WALL);
 		entries.add(SpectrumBlocks.PLANED_BASALT);
+		entries.add(SpectrumBlocks.PLANED_BASALT_SLAB);
+		entries.add(SpectrumBlocks.PLANED_BASALT_STAIRS);
+		entries.add(SpectrumBlocks.PLANED_BASALT_WALL);
 		entries.add(SpectrumBlocks.CRACKED_BASALT_TILES);
 		entries.add(SpectrumBlocks.POLISHED_BASALT_BUTTON);
 		entries.add(SpectrumBlocks.POLISHED_BASALT_PRESSURE_PLATE);
@@ -759,6 +807,9 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.CALCITE_TILE_SLAB);
 		entries.add(SpectrumBlocks.CALCITE_TILE_WALL);
 		entries.add(SpectrumBlocks.PLANED_CALCITE);
+		entries.add(SpectrumBlocks.PLANED_CALCITE_SLAB);
+		entries.add(SpectrumBlocks.PLANED_CALCITE_STAIRS);
+		entries.add(SpectrumBlocks.PLANED_CALCITE_WALL);
 		entries.add(SpectrumBlocks.CRACKED_CALCITE_TILES);
 		entries.add(SpectrumBlocks.POLISHED_CALCITE_BUTTON);
 		entries.add(SpectrumBlocks.POLISHED_CALCITE_PRESSURE_PLATE);
@@ -836,23 +887,53 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.BONE_ASH_SHINGLES);
 		entries.add(SpectrumBlocks.BLACK_MATERIA);
 		entries.add(SpectrumBlocks.SLUSH);
+		entries.add(SpectrumBlocks.OVERGROWN_SLUSH);
 		entries.add(SpectrumBlocks.TILLED_SLUSH);
 		entries.add(SpectrumBlocks.BLACK_SLUDGE);
 
+		entries.add(SpectrumItems.ASH_FLAKES);
 		entries.add(SpectrumBlocks.ASH);
 		entries.add(SpectrumBlocks.ASH_PILE);
 
+		entries.add(SpectrumBlocks.ROCK_CRYSTAL);
+
 		entries.add(SpectrumItems.PYRITE_CHUNK);
 		entries.add(SpectrumBlocks.PYRITE);
+		entries.add(SpectrumBlocks.PYRITE_SLAB);
+		entries.add(SpectrumBlocks.PYRITE_STAIRS);
+		entries.add(SpectrumBlocks.PYRITE_WALL);
 		entries.add(SpectrumBlocks.PYRITE_PILE);
-		entries.add(SpectrumBlocks.PYRITE_TILE);
+		entries.add(SpectrumBlocks.PYRITE_TILES);
+		entries.add(SpectrumBlocks.PYRITE_TILES_SLAB);
+		entries.add(SpectrumBlocks.PYRITE_TILES_STAIRS);
+		entries.add(SpectrumBlocks.PYRITE_TILES_WALL);
 		entries.add(SpectrumBlocks.PYRITE_PLATING);
 		entries.add(SpectrumBlocks.PYRITE_TUBING);
 		entries.add(SpectrumBlocks.PYRITE_RELIEF);
 		entries.add(SpectrumBlocks.PYRITE_STACK);
-		entries.add(SpectrumBlocks.PYRITE_PANNELING);
+		entries.add(SpectrumBlocks.PYRITE_PANELING);
 		entries.add(SpectrumBlocks.PYRITE_VENT);
 		entries.add(SpectrumBlocks.PYRITE_RIPPER);
+		entries.add(SpectrumBlocks.PYRITE_PROJECTOR);
+
+		entries.add(SpectrumBlocks.BASAL_MARBLE);
+		entries.add(SpectrumBlocks.BASAL_MARBLE_STAIRS);
+		entries.add(SpectrumBlocks.BASAL_MARBLE_SLAB);
+		entries.add(SpectrumBlocks.BASAL_MARBLE_WALL);
+		entries.add(SpectrumBlocks.POLISHED_BASAL_MARBLE);
+		entries.add(SpectrumBlocks.POLISHED_BASAL_MARBLE_STAIRS);
+		entries.add(SpectrumBlocks.POLISHED_BASAL_MARBLE_SLAB);
+		entries.add(SpectrumBlocks.POLISHED_BASAL_MARBLE_WALL);
+		entries.add(SpectrumBlocks.BASAL_MARBLE_PILLAR);
+		entries.add(SpectrumBlocks.BASAL_MARBLE_TILES);
+		entries.add(SpectrumBlocks.BASAL_MARBLE_TILE_STAIRS);
+		entries.add(SpectrumBlocks.BASAL_MARBLE_TILE_SLAB);
+		entries.add(SpectrumBlocks.BASAL_MARBLE_TILE_WALL);
+		entries.add(SpectrumBlocks.BASAL_MARBLE_BRICKS);
+		entries.add(SpectrumBlocks.BASAL_MARBLE_BRICK_STAIRS);
+		entries.add(SpectrumBlocks.BASAL_MARBLE_BRICK_SLAB);
+		entries.add(SpectrumBlocks.BASAL_MARBLE_BRICK_WALL);
+		entries.add(SpectrumBlocks.LONGING_CHIMERA);
 
 		entries.add(SpectrumBlocks.DRAGONBONE);
 		entries.add(SpectrumBlocks.CRACKED_DRAGONBONE);
@@ -945,20 +1026,48 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.CHESTNUT_NOXWOOD_LANTERN);
 		entries.add(SpectrumBlocks.CHESTNUT_NOXWOOD_LIGHT);
 		entries.add(SpectrumBlocks.CHESTNUT_NOXWOOD_LAMP);
+		
+		entries.add(SpectrumBlocks.WEEPING_GALA_SPRIG);
+		entries.add(SpectrumBlocks.WEEPING_GALA_LEAVES);
+		entries.add(SpectrumBlocks.WEEPING_GALA_LOG);
+		entries.add(SpectrumBlocks.STRIPPED_WEEPING_GALA_LOG);
+		entries.add(SpectrumBlocks.WEEPING_GALA_WOOD);
+		entries.add(SpectrumBlocks.STRIPPED_WEEPING_GALA_WOOD);
+		entries.add(SpectrumBlocks.WEEPING_GALA_PLANKS);
+		entries.add(SpectrumBlocks.WEEPING_GALA_STAIRS);
+		entries.add(SpectrumBlocks.WEEPING_GALA_DOOR);
+		entries.add(SpectrumBlocks.WEEPING_GALA_PRESSURE_PLATE);
+		entries.add(SpectrumBlocks.WEEPING_GALA_FENCE);
+		entries.add(SpectrumBlocks.WEEPING_GALA_TRAPDOOR);
+		entries.add(SpectrumBlocks.WEEPING_GALA_FENCE_GATE);
+		entries.add(SpectrumBlocks.WEEPING_GALA_BUTTON);
+		entries.add(SpectrumBlocks.WEEPING_GALA_SLAB);
+		entries.add(SpectrumBlocks.WEEPING_GALA_PILLAR);
+		entries.add(SpectrumBlocks.WEEPING_GALA_BARREL);
+		entries.add(SpectrumBlocks.WEEPING_GALA_AMPHORA);
+		entries.add(SpectrumBlocks.WEEPING_GALA_LANTERN);
+		entries.add(SpectrumBlocks.WEEPING_GALA_LAMP);
+		entries.add(SpectrumBlocks.WEEPING_GALA_LIGHT);
+		
 		entries.add(SpectrumBlocks.SMALL_RED_DRAGONJAG);
 		entries.add(SpectrumBlocks.SMALL_YELLOW_DRAGONJAG);
 		entries.add(SpectrumBlocks.SMALL_PINK_DRAGONJAG);
 		entries.add(SpectrumBlocks.SMALL_PURPLE_DRAGONJAG);
 		entries.add(SpectrumBlocks.SMALL_BLACK_DRAGONJAG);
 		entries.add(SpectrumBlocks.BRISTLE_SPROUTS);
-		entries.add(SpectrumBlocks.VARIA_SPROUT);
-		entries.add(SpectrumBlocks.DOOMBLOOM);
 		entries.add(SpectrumBlocks.SNAPPING_IVY);
+		entries.add(SpectrumBlocks.SWEET_PEA);
+		entries.add(SpectrumBlocks.APRICOTTI);
+		entries.add(SpectrumBlocks.HUMMING_BELL);
 		entries.add(SpectrumBlocks.HUMMINGSTONE);
+		entries.add(SpectrumBlocks.WAXED_HUMMINGSTONE);
 		entries.add(SpectrumBlocks.HUMMINGSTONE_GLASS);
-		entries.add(SpectrumBlocks.CLEAR_HUMMINGSTONE_GLASS);
+		entries.add(SpectrumBlocks.HUMMINGSTONE_GLASS_PANE);
+		entries.add(SpectrumBlocks.MOSS_BALL);
+		entries.add(SpectrumBlocks.GIANT_MOSS_BALL);
 		entries.add(SpectrumBlocks.NEPHRITE_BLOSSOM_STEM);
 		entries.add(SpectrumBlocks.NEPHRITE_BLOSSOM_LEAVES);
+		entries.add(SpectrumBlocks.VARIA_SPROUT);
 		entries.add(SpectrumBlocks.JADEITE_LOTUS_STEM);
 		entries.add(SpectrumBlocks.JADEITE_LOTUS_FLOWER);
 	}).build();
@@ -984,16 +1093,16 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.PALTAERIA_FRAGMENT_BLOCK);
 		entries.add(SpectrumBlocks.HOVER_BLOCK);
 		
-		entries.add(SpectrumBlocks.TOPAZ_CALCITE_LAMP);
-		entries.add(SpectrumBlocks.AMETHYST_CALCITE_LAMP);
-		entries.add(SpectrumBlocks.CITRINE_CALCITE_LAMP);
-		entries.add(SpectrumBlocks.ONYX_CALCITE_LAMP);
+		entries.add(SpectrumBlocks.TOPAZ_CALCITE_LIGHT);
+		entries.add(SpectrumBlocks.AMETHYST_CALCITE_LIGHT);
+		entries.add(SpectrumBlocks.CITRINE_CALCITE_LIGHT);
+		entries.add(SpectrumBlocks.ONYX_CALCITE_LIGHT);
 		entries.add(SpectrumBlocks.MOONSTONE_CALCITE_LAMP);
-		entries.add(SpectrumBlocks.TOPAZ_BASALT_LAMP);
-		entries.add(SpectrumBlocks.AMETHYST_BASALT_LAMP);
-		entries.add(SpectrumBlocks.CITRINE_BASALT_LAMP);
-		entries.add(SpectrumBlocks.ONYX_BASALT_LAMP);
-		entries.add(SpectrumBlocks.MOONSTONE_BASALT_LAMP);
+		entries.add(SpectrumBlocks.TOPAZ_BASALT_LIGHT);
+		entries.add(SpectrumBlocks.AMETHYST_BASALT_LIGHT);
+		entries.add(SpectrumBlocks.CITRINE_BASALT_LIGHT);
+		entries.add(SpectrumBlocks.ONYX_BASALT_LIGHT);
+		entries.add(SpectrumBlocks.MOONSTONE_BASALT_LIGHT);
 		
 		entries.add(SpectrumBlocks.BASALT_SHIMMERSTONE_LIGHT);
 		entries.add(SpectrumBlocks.CALCITE_SHIMMERSTONE_LIGHT);
@@ -1021,7 +1130,14 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.ONYX_GLASS);
 		entries.add(SpectrumBlocks.MOONSTONE_GLASS);
 		entries.add(SpectrumBlocks.RADIANT_GLASS);
-		
+
+		entries.add(SpectrumBlocks.TOPAZ_GLASS_PANE);
+		entries.add(SpectrumBlocks.AMETHYST_GLASS_PANE);
+		entries.add(SpectrumBlocks.CITRINE_GLASS_PANE);
+		entries.add(SpectrumBlocks.ONYX_GLASS_PANE);
+		entries.add(SpectrumBlocks.MOONSTONE_GLASS_PANE);
+		entries.add(SpectrumBlocks.RADIANT_GLASS_PANE);
+
 		entries.add(SpectrumBlocks.TOPAZ_CHIME);
 		entries.add(SpectrumBlocks.AMETHYST_CHIME);
 		entries.add(SpectrumBlocks.CITRINE_CHIME);
@@ -1043,7 +1159,8 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.EFFULGENT_BLOCK);
 		entries.add(SpectrumBlocks.EFFULGENT_CUSHION);
 		entries.add(SpectrumBlocks.EFFULGENT_CARPET);
-		
+		entries.add(SpectrumBlocks.EFFULGENT_BED);
+
 		entries.add(SpectrumBlocks.WHITE_BLOCK);
 		entries.add(SpectrumBlocks.ORANGE_BLOCK);
 		entries.add(SpectrumBlocks.MAGENTA_BLOCK);
@@ -1114,9 +1231,13 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.LOGO_BANNER_PATTERN);
 		entries.add(SpectrumItems.AMETHYST_SHARD_BANNER_PATTERN);
 		entries.add(SpectrumItems.AMETHYST_CLUSTER_BANNER_PATTERN);
-		entries.add(SpectrumItems.MUSIC_DISC_SPECTRUM_THEME);
-		entries.add(SpectrumItems.MUSIC_DISC_DIMENSION_THEME);
-		entries.add(SpectrumItems.MUSIC_DISC_EVERREFLECTIVE);
+		entries.add(SpectrumItems.ASTROLOGER_BANNER_PATTERN);
+		entries.add(SpectrumItems.VELVET_ASTROLOGER_BANNER_PATTERN);
+		entries.add(SpectrumItems.POISONBLOOM_BANNER_PATTERN);
+		entries.add(SpectrumItems.DEEP_LIGHT_BANNER_PATTERN);
+		entries.add(SpectrumItems.MUSIC_DISC_DISCOVERY);
+		entries.add(SpectrumItems.MUSIC_DISC_CREDITS);
+		entries.add(SpectrumItems.MUSIC_DISC_DIVINITY);
 	}).build();
 	
 	public static final ItemSubGroup COLORED_WOOD = new ItemSubGroup.Builder(MAIN, ItemGroupIDs.SUBTAB_COLORED_WOOD, Text.translatable("itemGroup.spectrum.colored_wood")).backgroundTexture(ItemGroupIDs.BACKGROUND_TEXTURE).entries((displayContext, entries) -> {
@@ -1331,7 +1452,7 @@ public class SpectrumItemGroups {
 	}).build();
 	
 	public static final ItemSubGroup MOB_HEADS = new ItemSubGroup.Builder(MAIN, ItemGroupIDs.SUBTAB_MOB_HEADS, Text.translatable("itemGroup.spectrum.mob_heads")).backgroundTexture(ItemGroupIDs.BACKGROUND_TEXTURE).entries((displayContext, entries) -> {
-		for (Block skullBlock : SpectrumBlocks.MOB_HEADS.values()) {
+		for (Block skullBlock : SpectrumSkullBlock.MOB_HEADS.values()) {
 			entries.add(skullBlock.asItem());
 		}
 	}).build();
@@ -1348,7 +1469,7 @@ public class SpectrumItemGroups {
 	
 	public static final ItemSubGroup ENERGY = new ItemSubGroup.Builder(MAIN, ItemGroupIDs.SUBTAB_ENERGY, Text.translatable("itemGroup.spectrum.energy")).backgroundTexture(ItemGroupIDs.BACKGROUND_TEXTURE).entries((displayContext, entries) -> {
 		entries.add(SpectrumItems.INK_FLASK);
-		for (InkColor color : InkColor.all()) {
+		for (InkColor color : InkColors.all()) {
 			entries.add(SpectrumItems.INK_FLASK.getFullStack(color));
 		}
 		entries.add(SpectrumItems.INK_ASSORTMENT);
@@ -1370,22 +1491,36 @@ public class SpectrumItemGroups {
 
 		entries.add(SpectrumBlocks.CREATIVE_PARTICLE_SPAWNER);
 		entries.add(SpectrumItems.CREATIVE_INK_ASSORTMENT);
+		entries.add(SpectrumItems.PRIMORDIAL_LIGHTER);
+
+		entries.add(SpectrumItems.CONNECTION_NODE_CRYSTAL);
+		entries.add(SpectrumItems.PROVIDER_NODE_CRYSTAL);
+		entries.add(SpectrumItems.SENDER_NODE_CRYSTAL);
+		entries.add(SpectrumItems.STORAGE_NODE_CRYSTAL);
+		entries.add(SpectrumItems.BUFFER_NODE_CRYSTAL);
+		entries.add(SpectrumItems.GATHER_NODE_CRYSTAL);
 
 		entries.add(SpectrumBlocks.DOWNSTONE);
 		entries.add(SpectrumBlocks.PRESERVATION_STONE);
 		entries.add(SpectrumBlocks.PRESERVATION_STAIRS);
 		entries.add(SpectrumBlocks.PRESERVATION_SLAB);
+		entries.add(SpectrumBlocks.PRESERVATION_WALL);
 		entries.add(SpectrumBlocks.PRESERVATION_BRICKS);
 		entries.add(SpectrumBlocks.SHIMMERING_PRESERVATION_BRICKS);
 		entries.add(SpectrumBlocks.POWDER_CHISELED_PRESERVATION_STONE);
 		entries.add(SpectrumBlocks.DIKE_CHISELED_PRESERVATION_STONE);
+		entries.add(SpectrumBlocks.DREAM_CHISELED_PRESERVATION_STONE);
+		entries.add(SpectrumBlocks.DEEP_LIGHT_CHISELED_PRESERVATION_STONE);
+		entries.add(SpectrumBlocks.TREASURE_ITEM_BOWL);
 		entries.add(SpectrumBlocks.PRESERVATION_GLASS);
 		entries.add(SpectrumBlocks.TINTED_PRESERVATION_GLASS);
 		entries.add(SpectrumBlocks.PRESERVATION_ROUNDEL);
 		entries.add(SpectrumBlocks.PRESERVATION_BLOCK_DETECTOR);
 		entries.add(SpectrumBlocks.DIKE_GATE_FOUNTAIN);
 		entries.add(SpectrumBlocks.DIKE_GATE);
+		entries.add(SpectrumBlocks.DREAM_GATE);
 		entries.add(SpectrumBlocks.PRESERVATION_CONTROLLER);
+		
 		entries.add(SpectrumBlocks.BLACK_CHISELED_PRESERVATION_STONE);
 		entries.add(SpectrumBlocks.BLUE_CHISELED_PRESERVATION_STONE);
 		entries.add(SpectrumBlocks.BROWN_CHISELED_PRESERVATION_STONE);
@@ -1402,15 +1537,13 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.RED_CHISELED_PRESERVATION_STONE);
 		entries.add(SpectrumBlocks.WHITE_CHISELED_PRESERVATION_STONE);
 		entries.add(SpectrumBlocks.YELLOW_CHISELED_PRESERVATION_STONE);
+		
 		entries.add(SpectrumBlocks.INVISIBLE_WALL);
 		entries.add(SpectrumBlocks.COURIER_STATUE);
 		entries.add(SpectrumBlocks.PRESERVATION_CHEST);
 		
 		entries.add(SpectrumItems.DIVINATION_HEART);
 		
-		entries.add(SpectrumItems.ARTISANS_ATLAS);
-		
-		//entries.add(SpectrumItems.FRIGID_STARDUST);
 		//entries.add(SpectrumItems.SPECTRAL_SHARD);
 		//entries.add(SpectrumBlocks.SPECTRAL_SHARD_BLOCK);
 		//entries.add(SpectrumBlocks.SPECTRAL_SHARD_STORAGE_BLOCK);

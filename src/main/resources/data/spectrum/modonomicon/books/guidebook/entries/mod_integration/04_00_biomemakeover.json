@@ -1,0 +1,61 @@
+{
+  "name": "book.spectrum.guidebook.mod_integration.biomemakeover.name",
+	"icon": "biomemakeover:cladded_chestplate",
+  "condition": {
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:mod_loaded",
+        "mod_id": "biomemakeover"
+      },
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:place_pedestal"
+      }
+    ]
+  },
+  "category": "spectrum:mod_integration",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 4,
+  "y": 0,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.mod_integration.biomemakeover.page0.text",
+      "title": "book.spectrum.guidebook.mod_integration.biomemakeover.name"
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
+      },
+      "title": "book.spectrum.guidebook.mod_integration.biomemakeover.page1.title",
+      "recipe_id": "spectrum:mod_integration/biomemakeover/potion_workshop_brewing/antidote"
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
+      },
+      "title": "book.spectrum.guidebook.mod_integration.biomemakeover.page2.title",
+      "recipe_id": "spectrum:mod_integration/biomemakeover/potion_workshop_brewing/nocturnal"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.mod_integration.biomemakeover.page3.title",
+      "item": {
+        "item": "biomemakeover:illunite_shard"
+      },
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/crystal_apothecary"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.biomemakeover.page3.text"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+	"criteria": {
+		"unlocked_treasure_hunter": {
+			"trigger": "revelationary:advancement_gotten",
+			"conditions": {
+				"advancement_identifier": "spectrum:unlocks/enchantments/treasure_hunter"
+			}
+		},
+		"unlocked_memory_to_head_recipe": {
+			"trigger": "revelationary:advancement_gotten",
+			"conditions": {
+				"advancement_identifier": "spectrum:unlocks/memory_to_head"
+			}
+		}
+	},
+	"requirements": [
+		[
+			"unlocked_treasure_hunter",
+			"unlocked_memory_to_head_recipe"
+		]
+	]
+}

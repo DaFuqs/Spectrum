@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "spectrum:item/cooked_lizard_meat"
+  }
+}

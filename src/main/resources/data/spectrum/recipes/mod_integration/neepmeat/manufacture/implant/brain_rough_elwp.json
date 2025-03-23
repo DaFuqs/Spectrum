@@ -1,0 +1,24 @@
+{
+  "type": "neepmeat:entity_to_item",
+  "base": {
+    "id": "spectrum:egg_laying_wooly_pig"
+  },
+  "steps": [
+    {
+      "id": "neepmeat:implant",
+      "resource": "neepmeat:enlightened_brain"
+    }
+  ],
+  "result": {
+    "resource": "neepmeat:brain_rough",
+    "amount": 3
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "neepmeat"
+      ]
+    }
+  ]
+}

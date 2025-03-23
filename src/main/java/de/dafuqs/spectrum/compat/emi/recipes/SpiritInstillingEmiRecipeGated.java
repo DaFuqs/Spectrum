@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.compat.emi.recipes;
 import de.dafuqs.spectrum.compat.emi.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.spirit_instiller.*;
-import de.dafuqs.spectrum.recipe.spirit_instiller.spawner.*;
+import de.dafuqs.spectrum.recipe.spirit_instiller.dynamic.spawner_manipulation.*;
 import de.dafuqs.spectrum.registries.*;
 import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.*;

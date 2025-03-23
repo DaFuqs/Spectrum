@@ -1,37 +1,40 @@
 plugins {
-	id 'fabric-loom' version '1.5-SNAPSHOT'
+	id 'fabric-loom' version '1.8-SNAPSHOT'
 	id 'maven-publish'
 }
 
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
-
-archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
+base {
+	archivesName = project.archives_base_name
+}
+
 repositories {
 	mavenLocal()
-	maven { url = "https://jitpack.io" } // Arrowhead, Dimensional Reverb, Step Height Entity Attribute
 	maven { url = "https://maven.shedaniel.me/" } // Cloth Config, REI
 	maven { url = "https://maven.terraformersmc.com/" } // Modmenu, EMI
 	maven { url = "https://maven.nucleoid.xyz/" } // Common Protection API
-	maven { url = "https://maven.blamejared.com" } // Patchouli
+	maven { url = "https://maven.blamejared.com" } // JEI
 	maven { url = "https://maven.ladysnake.org/releases" } // Cardinal Components API
 	maven { url = "https://maven.jamieswhiteshirt.com/libs-release/" } // Entity Reach Attribute
 	maven { url = "https://api.modrinth.com/maven" } // Revelationary, Additional Entity Attributes, Fractal Lib, Colorful Hearts, idwtialsimmoedm
 	maven { url = "https://cfa2.cursemaven.com" }
+	maven { url = "https://mvn.devos.one/releases/" } // Porting Lib
 	maven { url = "https://repo.unascribed.com" } // Ears API
+	maven { url = "https://dl.cloudsmith.io/public/klikli-dev/mods/maven/" } // Modonomicon
+	maven { url = "https://maven.is-immensely.gay/releases" } // Matchbooks
+	maven { url = "https://jitpack.io" } // Arrowhead, Dimensional Reverb, Step Height Entity Attribute
 	mavenCentral()
 }
 
 dependencies {
 	// jetbrains annotations
-	implementation ("org.jetbrains:annotations:24.0.1")
+	implementation ("org.jetbrains:annotations:26.0.1")
 
 	// graph api and its dependencies
-	implementation include("org.jgrapht:jgrapht-core:1.5.1")
-	implementation include("org.jheaps:jheaps:0.13")
+	implementation include("org.jgrapht:jgrapht-core:1.5.2")
+	implementation include("org.jheaps:jheaps:0.14")
 
 	// Some other dependency is adding annotations, and it throws an error without this
 	compileOnly ("com.demonwav.mcdev:annotations:1.0")
@@ -42,25 +45,28 @@ dependencies {
 	modImplementation ("net.fabricmc:fabric-loader:${project.loader_version}")
 	modImplementation ("net.fabricmc.fabric-api:fabric-api:${project.fabric_version}")
 
-	// mine
-	modImplementation ("maven.modrinth:Revelationary:${project.revelationary_version}")
+	// ours
+	modImplementation("maven.modrinth:exclusions-lib:${project.exclusionslib_version}") // soft impl via json
+	modImplementation("maven.modrinth:Revelationary:${project.revelationary_version}")
 	modImplementation include("maven.modrinth:AdditionalEntityAttributes:${project.additional_entity_attributes_version}")
 	modImplementation include("com.github.DaFuqs:Arrowhead:${project.arrowhead_version}")
 	modImplementation include("com.github.DaFuqs:DimensionalReverb:${project.dimensional_reverb_version}")
 	modImplementation include("maven.modrinth:fractal-lib:${project.fractal_version}")
-	modImplementation include("com.github.Noaaan:Matchbooks:${project.matchbooks_version}")
+	modImplementation include("de.dafuqs:Matchbooks:${project.matchbooks_version}")
 
 	// external and compat
 	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") { exclude(group: "net.fabricmc.fabric-api") }
 	modApi("dev.architectury:architectury-fabric:${project.architectury_version}") { exclude(group: "net.fabricmc.fabric-api") }
 	modApi("com.terraformersmc:modmenu:${project.modmenu_version}")
 	modImplementation("eu.pb4:common-protection-api:${project.cpa_version}")
-	modImplementation("vazkii.patchouli:Patchouli:${project.patchouli_version}")
-	// https://maven.blamejared.com/vazkii/patchouli/Patchouli/
 	modImplementation("dev.emi:trinkets:${project.trinkets_version}") // https://github.com/emilyploszaj/trinkets
 	modCompileOnly("me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}")
 	// https://github.com/shedaniel/RoughlyEnoughItems
 	modCompileOnly("dev.emi:emi-fabric:${emi_version}") // https://github.com/emilyploszaj/emi
+	// https://github.com/klikli-dev/modonomicon
+	modImplementation("com.klikli_dev:modonomicon-${project.minecraft_version}-fabric:${project.modonomicon_version}") { exclude(group: "com.klikli_dev") exclude(group: "mezz.jei") }
+	modCompileOnly("mezz.jei:jei-1.20.1-fabric:15.20.0.105")
+	// required by modonomicon, though in a very outdated version, so we include our up to date version here
 
 	switch (recipe_viewer.toLowerCase(Locale.ROOT)) {
 		case "rei": modLocalRuntime("me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"); break
@@ -78,24 +84,30 @@ dependencies {
 	modImplementation include("com.github.emilyploszaj:step-height-entity-attribute:${project.step_height_attribute_version}")
 	modImplementation include("com.jamieswhiteshirt:reach-entity-attributes:${project.reach_entity_attributes_version}")
 
-	implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:${project.mixin_extras_version}"))
 	// shipped with FAPI
-
-	// https://github.com/Terrails/HealthOverlay
-	// Thanks to yurisuika for the head-up (https://github.com/yurisuika/Raised/blob/Fabric-1.19/build.gradle)
-	modCompileOnly("maven.modrinth:colorful-hearts:${project.colorful_hearts_version}") { transitive = false }
+	implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:${project.mixin_extras_version}"))
 
 	// Connect to local dev servers
-	modLocalRuntime("curse.maven:authme-356643:4629826")
+	modLocalRuntime("maven.modrinth:auth-me:${project.auth_me_version}")
 
-	// Ears compat by Maya!
+	// Mod Compat
+	modCompileOnly("maven.modrinth:colorful-hearts:${project.colorful_hearts_version}") { transitive = false }
+	modCompileOnly("maven.modrinth:sodium:${project.sodium_version}") { transitive = false }
 	modCompileOnly("com.unascribed:ears-api:${project.ears_version}")
-
-	// Enchantment Descriptions compat
-	modCompileOnly("maven.modrinth:enchantment-descriptions:${project.enchantment_descriptions_version}")
-
-	// idwtialsimmoedm compat
+	modCompileOnly("maven.modrinth:create-fabric:${project.create_version}") { transitive = false }
+	modCompileOnly("maven.modrinth:neepmeat:${project.neepmeat_version}") { transitive = false }
+	modCompileOnly("maven.modrinth:lodestonelib:${project.lodestone_version}") { transitive = false}
+	modCompileOnly("maven.modrinth:malum:${project.malum_version}") { transitive = false}
+	// modCompileOnly("maven.modrinth:enchantment-descriptions:${project.enchantment_descriptions_version}")
+	modCompileOnly("maven.modrinth:travelersbackpack:${project.travelers_backpack_version}")
+	modCompileOnly("maven.modrinth:botania:${project.botania_version}")
+	modCompileOnly("maven.modrinth:vanity:${project.vanityslots_version}")
 	modImplementation("maven.modrinth:idwtialsimmoedm:${project.idwtialsimmoedm_version}")
+
+	//Porting Lib
+	for (String module in port_lib_modules.split(",")) {
+		modCompileOnly("io.github.fabricators_of_create.Porting-Lib:$module:${project.port_lib_version}") { transitive = false }
+	}
 }
 
 loom {
@@ -114,16 +126,6 @@ loom {
 	}
 }
 
-sourceSets {
-	main {
-		resources {
-			srcDirs += [
-					'src/main/generated'
-			]
-		}
-	}
-}
-
 processResources {
 	inputs.property "version", project.version
 
@@ -132,47 +134,43 @@ processResources {
 	}
 }
 
-// ensure that the encoding is set to UTF-8, no matter what the system default is
-// this fixes some edge cases with special characters not displaying correctly
-// see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
 tasks.withType(JavaCompile).configureEach {
-    options.encoding = "UTF-8"
-    it.options.release = 17 // Minecraft 1.18 (1.18-pre2) upwards uses Java 17.
+	it.options.release = 17
 }
 
 java {
-	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
-	// if it is present.
+	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task if it is present.
 	// If you remove this line, sources will not be generated.
 	withSourcesJar()
+
+	sourceCompatibility = JavaVersion.VERSION_17
+	targetCompatibility = JavaVersion.VERSION_17
 }
 
 jar {
 	from("LICENSE.md") {
-		rename { "${it}_${project.archivesBaseName}"}
+		rename { "${it}_${project.base.archivesName.get()}" }
 	}
 }
 
 // configure the maven publication
 publishing {
 	publications {
-		mavenJava(MavenPublication) {
-			// add all the jars that should be included when publishing to maven
-			artifact(remapJar) {
-				builtBy remapJar
-			}
-			artifact(sourcesJar) {
-				builtBy remapSourcesJar
-			}
+		create("mavenJava", MavenPublication) {
+			artifactId = project.archives_base_name
+			from components.java
 		}
 	}
 
 	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
 	repositories {
-		// Add repositories to publish to here.
-		// Notice: This block does NOT have the same function as the block in the top level.
-		// The repositories here will be used for publishing your artifact, not for
-		// retrieving dependencies.
-		mavenLocal()
+		maven {
+			name "sapphoCompany"
+			url = "https://maven.is-immensely.gay/releases"
+			credentials {
+				username = "dafuqs"
+				password = System.getenv("MAVEN_PASS")
+			}
+		}
 	}
 }

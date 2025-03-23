@@ -1,0 +1,43 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 600,
+          "name": "minecraft:air"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 300,
+          "name": "spectrum:eraser_spawn_egg"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 80,
+          "name": "spelunkery:dust"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 19,
+          "name": "spectrum:onyx_powder"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "spectrum:midnight_chip"
+        }
+      ]
+    }
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "spelunkery"
+      ]
+    }
+  ]
+}

@@ -1,5 +1,4 @@
 {
-  "name": "spectrum:deco/random_colored_tree_cmy",
   "fallback": "minecraft:empty",
   "elements": [
     {

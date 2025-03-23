@@ -47,6 +47,11 @@ public class RuinBlock extends DecayBlock {
 		if (stateToSpreadTo.isIn(SpectrumBlockTags.RUIN_SPECIAL_CONVERSIONS)) {
 			return this.getDefaultState().with(CONVERSION, Conversion.SPECIAL);
 		} else if (stateToSpreadTo.isIn(SpectrumBlockTags.RUIN_CONVERSIONS)) {
+			// Protect the end portal to not lock players in the dim
+			if (world.getRegistryKey().equals(World.END) && Math.abs(stateToSpreadToPos.getX()) < 8 && Math.abs(stateToSpreadToPos.getZ()) < 8) {
+				return null;
+			}
+			
 			return this.getDefaultState().with(CONVERSION, Conversion.DEFAULT);
 		}
 		return stateToSpreadFrom.with(CONVERSION, Conversion.NONE);
@@ -58,7 +63,13 @@ public class RuinBlock extends DecayBlock {
 		super.onStateReplaced(state, world, pos, newState, moved);
 		
 		if (state.get(RuinBlock.CONVERSION) != Conversion.NONE && newState.isAir()) {
-			if (world.getRegistryKey() == World.OVERWORLD && pos.getY() == world.getBottomY()) {
+			if (world.getRegistryKey() == World.NETHER) {
+				if (pos.getY() == world.getBottomY() + world.getDimension().logicalHeight() - 1) { // Attempt to match the nether ceiling. Tricky...
+					world.setBlockState(pos, SpectrumBlocks.DEEPER_DOWN_PORTAL.getDefaultState().with(DeeperDownPortalBlock.FACING_UP, true), 3);
+				} else if (pos.getY() == world.getBottomY()) {
+					world.setBlockState(pos, SpectrumBlocks.DEEPER_DOWN_PORTAL.getDefaultState().with(DeeperDownPortalBlock.FACING_UP, false), 3);
+				}
+			} else if (world.getRegistryKey() == World.OVERWORLD && pos.getY() == world.getBottomY()) {
 				world.setBlockState(pos, SpectrumBlocks.DEEPER_DOWN_PORTAL.getDefaultState().with(DeeperDownPortalBlock.FACING_UP, false), 3);
 			} else if (world.getRegistryKey() == SpectrumDimensions.DIMENSION_KEY && pos.getY() == world.getTopY() - 1) { // highest layer cannot be built on
 				world.setBlockState(pos, SpectrumBlocks.DEEPER_DOWN_PORTAL.getDefaultState().with(DeeperDownPortalBlock.FACING_UP, true), 3);

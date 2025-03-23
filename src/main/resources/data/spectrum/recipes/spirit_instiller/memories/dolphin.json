@@ -1,0 +1,26 @@
+﻿{
+  "type": "spectrum:spirit_instiller",
+  "group": "memories",
+  "time": 800,
+  "experience": 4.0,
+  "ingredient1": {
+    "item": "spectrum:dolphin_head"
+  },
+  "ingredient2": {
+    "tag": "minecraft:fishes"
+  },
+  "center_ingredient": {
+    "tag": "spectrum:memory_bonding_agents",
+    "count": 4
+  },
+  "result": {
+    "item": "spectrum:memory",
+    "nbt": {
+      "EntityTag": {
+        "id": "minecraft:dolphin"
+      },
+      "TicksToManifest": 4
+    }
+  },
+  "required_advancement": "spectrum:unlocks/blocks/memories"
+}

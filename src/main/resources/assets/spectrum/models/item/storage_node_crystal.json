@@ -1,0 +1,107 @@
+{
+	"credit": "~ XOXO Azzyypaaras ~",
+	"textures": {
+		"2": "spectrum:block/storage_node_crystal"
+	},
+	"elements": [
+		{
+			"name": "lower crystal",
+			"from": [5.5, 7.5, 5.5],
+			"to": [10.5, 10.5, 10.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 9.5, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 5, 3], "texture": "#2"},
+				"east": {"uv": [0, 0, 5, 3], "texture": "#2"},
+				"south": {"uv": [0, 0, 5, 3], "texture": "#2"},
+				"west": {"uv": [0, 0, 5, 3], "texture": "#2"},
+				"up": {"uv": [5, 0, 10, 5], "rotation": 270, "texture": "#2"},
+				"down": {"uv": [10, 0, 15, 5], "rotation": 90, "texture": "#2"}
+			}
+		},
+		{
+			"name": "upper crystal",
+			"from": [5.5, 11.5, 5.5],
+			"to": [10.5, 14.5, 10.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 9.5, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 5, 3], "texture": "#2"},
+				"east": {"uv": [0, 0, 5, 3], "texture": "#2"},
+				"south": {"uv": [0, 0, 5, 3], "texture": "#2"},
+				"west": {"uv": [0, 0, 5, 3], "texture": "#2"},
+				"up": {"uv": [5, 0, 10, 5], "rotation": 270, "texture": "#2"},
+				"down": {"uv": [10, 0, 15, 5], "rotation": 90, "texture": "#2"}
+			}
+		},
+		{
+			"name": "lower crystal inner",
+			"from": [10.64264, 10.65, 10.65736],
+			"to": [5.34264, 7.35, 5.35736],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 9.5, 8]},
+			"faces": {
+				"north": {"uv": [0, 3, 2, 5], "texture": "#2"},
+				"east": {"uv": [0, 3, 2, 5], "texture": "#2"},
+				"south": {"uv": [0, 3, 2, 5], "texture": "#2"},
+				"west": {"uv": [0, 3, 2, 5], "texture": "#2"},
+				"up": {"uv": [0, 3, 2, 5], "texture": "#2"},
+				"down": {"uv": [0, 3, 2, 5], "texture": "#2"}
+			}
+		},
+		{
+			"name": "upper crystal inner",
+			"from": [10.64264, 14.65, 10.65736],
+			"to": [5.34264, 11.35, 5.35736],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 9.5, 8]},
+			"faces": {
+				"north": {"uv": [0, 3, 2, 5], "texture": "#2"},
+				"east": {"uv": [0, 3, 2, 5], "texture": "#2"},
+				"south": {"uv": [0, 3, 2, 5], "texture": "#2"},
+				"west": {"uv": [0, 3, 2, 5], "texture": "#2"},
+				"up": {"uv": [0, 3, 2, 5], "texture": "#2"},
+				"down": {"uv": [0, 3, 2, 5], "texture": "#2"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 3],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 3],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 45, 0],
+			"translation": [0.25, 1.5, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 225, 0],
+			"translation": [0.25, 1.5, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"translation": [0, 1, 0],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"gui": {
+			"rotation": [30, 225, 0],
+			"translation": [0, 1.75, 0],
+			"scale": [0.75, 0.75, 0.75]
+		},
+		"fixed": {
+			"scale": [0.5, 0.5, 0.5]
+		}
+	},
+	"groups": [
+		{
+			"name": "crystal",
+			"origin": [8, 3.5, 8],
+			"color": 0,
+			"nbt": "{}",
+			"children": [0, 1, 2, 3]
+		}
+	]
+}

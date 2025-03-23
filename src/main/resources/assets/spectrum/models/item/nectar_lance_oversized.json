@@ -1,0 +1,6 @@
+{
+  "parent": "spectrum:item/handheld_oversized_xl",
+  "textures": {
+    "layer0": "spectrum:item/nectar_lance_oversized"
+  }
+}

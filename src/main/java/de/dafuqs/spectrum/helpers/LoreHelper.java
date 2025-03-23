@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.helpers;
 
 import com.google.gson.*;
+import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.text.*;
@@ -8,6 +9,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
+@SuppressWarnings("UnstableApiUsage")
 public class LoreHelper {
 	
 	public static @NotNull List<Text> getLoreTextArrayFromString(@NotNull String string) {
@@ -21,7 +23,7 @@ public class LoreHelper {
 	}
 	
 	public static @NotNull String getStringFromLoreTextArray(@NotNull List<Text> lore) {
-		if (lore.size() == 0) {
+		if (lore.isEmpty()) {
 			return "";
 		} else {
 			StringBuilder loreString = new StringBuilder();
@@ -67,16 +69,16 @@ public class LoreHelper {
 	
 	public static boolean hasLore(@NotNull ItemStack itemStack) {
 		NbtCompound nbtCompound = itemStack.getSubNbt(ItemStack.DISPLAY_KEY);
-		return nbtCompound != null && nbtCompound.contains(ItemStack.LORE_KEY, 8);
+		return nbtCompound != null && nbtCompound.contains(ItemStack.LORE_KEY, NbtElement.LIST_TYPE);
 	}
 	
 	public static @NotNull List<Text> getLoreList(@NotNull ItemStack itemStack) {
 		List<Text> lore = new ArrayList<>();
 		
 		NbtCompound nbtCompound = itemStack.getSubNbt(ItemStack.DISPLAY_KEY);
-		if (nbtCompound != null && nbtCompound.contains(ItemStack.LORE_KEY, 8)) {
+		if (nbtCompound != null && nbtCompound.contains(ItemStack.LORE_KEY, NbtElement.LIST_TYPE)) {
 			try {
-				NbtList nbtList = nbtCompound.getList(ItemStack.LORE_KEY, 8);
+				NbtList nbtList = nbtCompound.getList(ItemStack.LORE_KEY, NbtElement.STRING_TYPE);
 				for (int i = 0; i < nbtList.size(); i++) {
 					String s = nbtList.getString(i);
 					Text text = Text.Serializer.fromJson(s);

@@ -10,6 +10,7 @@ import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.registry.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.server.network.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
@@ -22,7 +23,11 @@ import static de.dafuqs.spectrum.enchantments.InertiaEnchantment.*;
 
 @Mixin(MiningToolItem.class)
 public abstract class MiningToolItemMixin {
-
+	
+	@Shadow
+	@Final
+	private TagKey<Block> effectiveBlocks;
+	
 	@Inject(at = @At("HEAD"), method = "postMine(Lnet/minecraft/item/ItemStack;Lnet/minecraft/world/World;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/LivingEntity;)Z")
 	public void countInertiaBlocks(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner, CallbackInfoReturnable<Boolean> cir) {
 		if (stack != null) { // thank you, gobber
@@ -50,31 +55,33 @@ public abstract class MiningToolItemMixin {
 	
 	@ModifyReturnValue(method = "getMiningSpeedMultiplier(Lnet/minecraft/item/ItemStack;Lnet/minecraft/block/BlockState;)F", at = @At("RETURN"))
 	public float applyMiningSpeedMultipliers(float original, ItemStack stack, BlockState state) {
-		if (stack != null) { // thank you, gobber
-			
-			// INERTIA GAMING
-			int inertiaLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.INERTIA, stack);
-			inertiaLevel = Math.min(4, inertiaLevel); // inertia is capped at 5 levels. Higher and the formula would do weird stuff
-			if (inertiaLevel > 0) {
-				NbtCompound compound = stack.getOrCreateNbt();
-				Identifier brokenBlockIdentifier = Registries.BLOCK.getId(state.getBlock());
-				if (compound.getString(INERTIA_BLOCK).equals(brokenBlockIdentifier.toString())) {
-					long lastMinedBlockCount = compound.getLong(INERTIA_COUNT);
-					double additionalSpeedPercent = 2.0 * Math.log(lastMinedBlockCount) / Math.log((6 - inertiaLevel) * (6 - inertiaLevel) + 1);
-					
-					original = original * (0.5F + (float) additionalSpeedPercent);
-				} else {
-					original = original / 4;
-				}
+		if (stack == null) {
+			return original; // thank you, gobber
+		}
+		
+		// RAZING GAMING
+		int razingLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.RAZING, stack);
+		if (razingLevel > 0 && state.isIn(this.effectiveBlocks)) {
+			float hardness = state.getBlock().getHardness();
+			original = (float) Math.max(1 + hardness, Math.pow(2, 1 + razingLevel / 8F));
+		}
+		
+		// INERTIA GAMING
+		// inertia mining speed calculation logic is capped at 5 levels.
+		// Higher and the formula would do weird stuff
+		int inertiaLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.INERTIA, stack);
+		inertiaLevel = Math.min(4, inertiaLevel);
+		if (inertiaLevel > 0) {
+			NbtCompound compound = stack.getOrCreateNbt();
+			Identifier brokenBlockIdentifier = Registries.BLOCK.getId(state.getBlock());
+			if (compound.getString(INERTIA_BLOCK).equals(brokenBlockIdentifier.toString())) {
+				long lastMinedBlockCount = compound.getLong(INERTIA_COUNT);
+				double additionalSpeedPercent = 2.0 * Math.log(lastMinedBlockCount) / Math.log((6 - inertiaLevel) * (6 - inertiaLevel) + 1);
+				
+				original = original * (0.5F + (float) additionalSpeedPercent);
+			} else {
+				original = original / 4;
 			}
-			
-			// RAZING GAMING
-			int razingLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.RAZING, stack);
-			if (razingLevel > 0) {
-				float hardness = state.getBlock().getHardness();
-				original = (float) Math.max(1 + hardness, Math.pow(2, 1 + razingLevel / 8F));
-			}
-			
 		}
 		
 		return original;

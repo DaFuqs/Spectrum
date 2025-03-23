@@ -1,0 +1,354 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:stardust",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 8,
+                "max": 13
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+          "rolls": 2,
+          "bonus_rolls": 0.2,
+          "entries": [
+            {
+              "type": "minecraft:item",
+              "name": "spectrum:infused_beverage",
+              "functions": [
+                {
+                  "function": "minecraft:set_nbt",
+                  "tag": "{Variant: \"camomillesque\", Color: 15517767 }"
+                },
+                {
+                  "function": "spectrum:ferment_randomly",
+                  "fermentation_recipe_id": "spectrum:titration_barrel/infused_beverages/camomillesque",
+                  "days_fermented": {
+                    "min": 180000,
+                    "max": 216000
+                  },
+                  "thickness": 1.5
+                }
+              ],
+              "conditions": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "entity": "this",
+                  "predicate": {
+                    "type_specific": {
+                      "type": "player",
+                      "advancements": {
+                        "spectrum:triggers/confirmed_drinking_age": true
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "spectrum:morchella",
+              "functions": [
+                {
+                  "function": "spectrum:ferment_randomly",
+                  "fermentation_recipe_id": "spectrum:titration_barrel/morchella",
+                  "days_fermented": {
+                    "min": 180000,
+                    "max": 216000
+                  },
+                  "thickness": 1.5
+                }
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "spectrum:infused_beverage",
+              "functions": [
+                {
+                  "function": "minecraft:set_nbt",
+                  "tag": "{Variant: \"plum_liquor\", Color: 13255032 }"
+                },
+                {
+                  "function": "spectrum:ferment_randomly",
+                  "fermentation_recipe_id": "spectrum:titration_barrel/infused_beverages/plum_liquor",
+                  "days_fermented": {
+                    "min": 180000,
+                    "max": 216000
+                  },
+                  "thickness": 1.5
+                }
+              ],
+              "conditions": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "entity": "this",
+                  "predicate": {
+                    "type_specific": {
+                      "type": "player",
+                      "advancements": {
+                        "spectrum:triggers/confirmed_drinking_age": true
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "spectrum:infused_beverage",
+              "functions": [
+                {
+                  "function": "minecraft:set_nbt",
+                  "tag": "{Variant: \"myceylon_liquor\", Color: 16040760 }"
+                },
+                {
+                  "function": "spectrum:ferment_randomly",
+                  "fermentation_recipe_id": "spectrum:titration_barrel/infused_beverages/myceylon_liquor",
+                  "days_fermented": {
+                    "min": 180000,
+                    "max": 216000
+                  },
+                  "thickness": 1.5
+                }
+              ],
+              "conditions": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "entity": "this",
+                  "predicate": {
+                    "type_specific": {
+                      "type": "player",
+                      "advancements": {
+                        "spectrum:triggers/confirmed_drinking_age": true
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "spectrum:infused_beverage",
+              "functions": [
+                {
+                  "function": "minecraft:set_nbt",
+                  "tag": "{Variant: \"moonshine\", Color: 14151663 }"
+                },
+                {
+                  "function": "spectrum:ferment_randomly",
+                  "fermentation_recipe_id": "spectrum:titration_barrel/infused_beverages/moonshine",
+                  "days_fermented": {
+                    "min": 180000,
+                    "max": 216000
+                  },
+                  "thickness": 1.5
+                }
+              ],
+              "conditions": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "entity": "this",
+                  "predicate": {
+                    "type_specific": {
+                      "type": "player",
+                      "advancements": {
+                        "spectrum:triggers/confirmed_drinking_age": true
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "spectrum:infused_beverage",
+              "functions": [
+                {
+                  "function": "minecraft:set_nbt",
+                  "tag": "{Variant: \"gilded_bloom_liquor\", Color: 14858306 }"
+                },
+                {
+                  "function": "spectrum:ferment_randomly",
+                  "fermentation_data": {
+                    "fermentation_speed_mod": 0.25,
+                    "effects": [
+                      {
+                        "id": "spectrum:effect_prolonging",
+                        "base_duration": 9600,
+                        "potency": [
+                          {},
+                          {
+                            "min_alc": 40
+                          },
+                          {
+                            "min_alc": 60
+                          }
+                        ]
+                      },
+                      {
+                        "id": "spectrum:immunity",
+                        "base_duration": 2400,
+                        "potency": [
+                          {
+                            "min_alc": 22
+                          }
+                        ]
+                      },
+                      {
+                        "id": "spectrum:magic_annulation",
+                        "base_duration": 2400,
+                        "potency": [
+                          {
+                            "min_alc": 25
+                          },
+                          {
+                            "min_alc": 50
+                          }
+                        ]
+                      },
+                      {
+                        "id": "minecraft:slowness",
+                        "base_duration": 9600,
+                        "potency": [
+                          {
+                            "min_thickness": 2
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "days_fermented": {
+                    "min": 180000,
+                    "max": 216000
+                  },
+                  "thickness": 1.5
+                }
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "spectrum:pure_alcohol"
+            }
+          ],
+          "functions":
+          [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 3
+              }
+            }
+          ]
+        },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:glass_bottle",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2,
+                "max": 3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 2,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:azalea_tea",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2,
+                "max": 4
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:jade_jelly",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 6,
+                "max": 8
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:refined_azurite",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 16,
+                "max": 21
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 5,
+        "max": 8
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:star_candy",
+          "weight": 25,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:binomial",
+                "n": 2,
+                "p": 0.3
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:purple_star_candy",
+          "weight": 0,
+          "quality": 1
+        }
+      ]
+    }
+  ]
+}

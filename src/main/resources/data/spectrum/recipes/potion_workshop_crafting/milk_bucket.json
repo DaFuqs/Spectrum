@@ -1,0 +1,15 @@
+{
+  "type": "spectrum:potion_workshop_crafting",
+  "base_ingredient": {
+    "item": "minecraft:bucket"
+  },
+  "use_up_base_ingredient": true,
+  "color": 16774110,
+  "ingredient1": {
+    "item": "spectrum:milky_resin"
+  },
+  "result": {
+    "item": "minecraft:milk_bucket"
+  },
+  "required_advancement": "spectrum:hidden/collect_milky_resin"
+}

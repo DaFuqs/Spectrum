@@ -38,7 +38,7 @@ public class ExtraReachGlovesItem extends InkDrainTrinketItem {
 		double extraReach = getExtraReach(storedInk);
 		if (extraReach != 0) {
 			modifiers.put(ReachEntityAttributes.REACH, new EntityAttributeModifier(uuid, "spectrum:gloves_of_dawns_grasp", extraReach, EntityAttributeModifier.Operation.ADDITION));
-			modifiers.put(ReachEntityAttributes.ATTACK_RANGE, new EntityAttributeModifier(uuid, "spectrum:gloves_of_dawns_grasp", extraReach, EntityAttributeModifier.Operation.ADDITION));
+			modifiers.put(ReachEntityAttributes.ATTACK_RANGE, new EntityAttributeModifier(uuid, "spectrum:gloves_of_dawns_grasp", extraReach / 6, EntityAttributeModifier.Operation.ADDITION));
 		}
 		
 		return modifiers;

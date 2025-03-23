@@ -1,0 +1,22 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": {
+    "item": "spelunkery:rough_cinnabar"
+  },
+  "crushedItemsPerPointOfDamage": 0.75,
+  "experience": 0.5,
+  "result": {
+    "item": "minecraft:redstone",
+    "count": 4
+  },
+  "particleEffectIdentifier": "enchanted_hit",
+  "soundEventIdentifier": "block.metal.break",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "spelunkery"
+      ]
+    }
+  ]
+}

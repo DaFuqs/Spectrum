@@ -10,7 +10,7 @@ import net.minecraft.world.*;
 
 import java.util.*;
 
-public abstract class BeverageItem extends DrinkItem implements FermentedItem {
+public abstract class BeverageItem extends StatusEffectDrinkItem implements FermentedItem {
 	
 	public BeverageItem(Settings settings) {
 		super(settings);

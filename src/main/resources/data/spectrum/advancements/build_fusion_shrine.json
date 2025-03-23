@@ -14,7 +14,7 @@
   "criteria": {
     "built_structure": {
       "trigger": "spectrum:completed_multiblock",
-      "conditions": { "multiblock_identifier": "spectrum:fusion_shrine_structure" }
+      "conditions": { "multiblock_identifier": "spectrum:fusion_shrine" }
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",

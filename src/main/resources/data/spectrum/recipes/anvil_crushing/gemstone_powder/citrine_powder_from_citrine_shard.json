@@ -12,5 +12,5 @@
   "particleEffectIdentifier": "explosion",
   "soundEventIdentifier": "spectrum:block.small_citrine_bud.break",
   "group": "gemstone_crushing",
-  "required_advancement": "spectrum:hidden/collect_shards/collect_citrine_shard"
+  "required_advancement": "spectrum:hidden/collect_shards/citrine"
 }

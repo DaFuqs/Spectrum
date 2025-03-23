@@ -1,19 +1,19 @@
 package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.revelationary.api.advancements.*;
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.entity.entity.*;
-import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
@@ -30,14 +30,11 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class PaintbrushItem extends Item {
-	
-	public static final Identifier UNLOCK_COLORING_ADVANCEMENT_ID = SpectrumCommon.locate("collect_pigment");
-	public static final Identifier UNLOCK_INK_SLINGING_ADVANCEMENT_ID = SpectrumCommon.locate("midgame/fill_ink_container");
+public class PaintbrushItem extends Item implements SignChangingItem {
 	
 	public static final int COOLDOWN_DURATION_TICKS = 10;
 	public static final int BLOCK_COLOR_COST = 25;
-	public static final int INK_FLING_COST = 100;
+	public static final int INK_SLING_COST = 100;
 	
 	public static final String COLOR_NBT_STRING = "Color";
 	
@@ -45,19 +42,22 @@ public class PaintbrushItem extends Item {
 		super(settings);
 	}
 	
-	@Environment(EnvType.CLIENT)
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		
-		Optional<InkColor> color = getColor(stack);
-		boolean unlockedColoring = AdvancementHelper.hasAdvancementClient(UNLOCK_COLORING_ADVANCEMENT_ID);
-		boolean unlockedSlinging = AdvancementHelper.hasAdvancementClient(UNLOCK_INK_SLINGING_ADVANCEMENT_ID);
-		
+		if (world != null && world.isClient) {
+			appendClientTooltips(stack, tooltip);
+		}
+	}
+	
+	@Environment(EnvType.CLIENT)
+	private static void appendClientTooltips(ItemStack stack, List<Text> tooltip) {
+		boolean unlockedColoring = AdvancementHelper.hasAdvancementClient(SpectrumAdvancements.PAINTBRUSH_COLORING);
+		boolean unlockedSlinging = AdvancementHelper.hasAdvancementClient(SpectrumAdvancements.PAINTBRUSH_INK_SLINGING);
 		if (unlockedColoring || unlockedSlinging) {
-			if (color.isPresent()) {
-				tooltip.add(Text.translatable("spectrum.ink.color." + color.get()));
-			} else {
+			Optional<InkColor> color = getColor(stack);
+			if (color.isEmpty()) {
 				tooltip.add(Text.translatable("item.spectrum.paintbrush.tooltip.select_color"));
 			}
 		}
@@ -73,11 +73,11 @@ public class PaintbrushItem extends Item {
 	}
 	
 	public static boolean canColor(PlayerEntity player) {
-		return AdvancementHelper.hasAdvancement(player, UNLOCK_COLORING_ADVANCEMENT_ID);
+		return AdvancementHelper.hasAdvancement(player, SpectrumAdvancements.PAINTBRUSH_COLORING);
 	}
 	
 	public static boolean canInkSling(PlayerEntity player) {
-		return AdvancementHelper.hasAdvancement(player, UNLOCK_INK_SLINGING_ADVANCEMENT_ID);
+		return AdvancementHelper.hasAdvancement(player, SpectrumAdvancements.PAINTBRUSH_INK_SLINGING);
 	}
 	
 	public NamedScreenHandlerFactory createScreenHandlerFactory(ItemStack itemStack) {
@@ -87,12 +87,25 @@ public class PaintbrushItem extends Item {
 		);
 	}
 	
+	@Override
+	public Text getName(ItemStack stack) {
+		Text name = Text.translatable(this.getTranslationKey(stack));
+		
+		Optional<InkColor> color = getColor(stack);
+		if (color.isPresent()) {
+			InkColor inkColor = color.get();
+			name = inkColor.getColoredName().append(" ").append(name);
+		}
+		
+		return name;
+	}
+	
 	public static void setColor(ItemStack stack, @Nullable InkColor color) {
 		NbtCompound compound = stack.getOrCreateNbt();
 		if (color == null) {
 			compound.remove(COLOR_NBT_STRING);
 		} else {
-			compound.putString(COLOR_NBT_STRING, color.toString());
+			compound.putString(COLOR_NBT_STRING, color.getID().toString());
 		}
 		stack.setNbt(compound);
 	}
@@ -100,27 +113,27 @@ public class PaintbrushItem extends Item {
 	public static Optional<InkColor> getColor(ItemStack stack) {
 		NbtCompound compound = stack.getNbt();
 		if (compound != null && compound.contains(COLOR_NBT_STRING)) {
-			return Optional.of(InkColor.of(compound.getString(COLOR_NBT_STRING)));
+			return InkColor.ofIdString(compound.getString(COLOR_NBT_STRING));
 		}
 		return Optional.empty();
 	}
-
+	
 	@Override
-    public ActionResult useOnBlock(ItemUsageContext context) {
+	public ActionResult useOnBlock(ItemUsageContext context) {
 		World world = context.getWorld();
 		if (canColor(context.getPlayer()) && tryColorBlock(context)) {
 			return ActionResult.success(world.isClient);
 		}
 		return super.useOnBlock(context);
 	}
-
+	
 	private boolean tryColorBlock(ItemUsageContext context) {
 		Optional<InkColor> inkColor = getColor(context.getStack());
 		if (inkColor.isEmpty()) {
 			return false;
 		}
 		DyeColor dyeColor = inkColor.get().getDyeColor();
-
+		
 		World world = context.getWorld();
 		BlockPos pos = context.getBlockPos();
 		BlockState state = world.getBlockState(pos);
@@ -134,7 +147,7 @@ public class PaintbrushItem extends Item {
 			}
 			return false;
 		}
-
+		
 		return cursedColor(context);
 	}
 	
@@ -156,7 +169,7 @@ public class PaintbrushItem extends Item {
 		if (newBlockState.isAir()) {
 			return false;
 		}
-		
+
 		if (payBlockColorCost(context.getPlayer(), inkColor)) {
 			if (!world.isClient) {
 				world.setBlockState(context.getBlockPos(), newBlockState);
@@ -194,15 +207,21 @@ public class PaintbrushItem extends Item {
 			if (optionalInkColor.isPresent()) {
 				
 				InkColor inkColor = optionalInkColor.get();
-				if (user.isCreative() || InkPowered.tryDrainEnergy(user, inkColor, INK_FLING_COST)) {
+				if (user.isCreative() || InkPowered.tryDrainEnergy(user, inkColor, INK_SLING_COST)) {
 					user.getItemCooldownManager().set(this, COOLDOWN_DURATION_TICKS);
 					
 					if (!world.isClient) {
 						InkProjectileEntity.shoot(world, user, inkColor);
 					}
-					// cause the slightest bit of knockback
+					// cause the slightest bit of knockback (more if Red)
 					if (!user.isCreative()) {
-						causeKnockback(user, user.getYaw(), user.getPitch(), 0, 0.3F);
+						if(inkColor == InkColors.RED)
+						{
+							causeKnockback(user, user.getYaw(), user.getPitch(), 0.1F, 0.5F);
+						}
+						else{
+							causeKnockback(user, user.getYaw(), user.getPitch(), 0, 0.3F);
+						}
 					}
 				} else {
 					if (world.isClient) {
@@ -228,14 +247,44 @@ public class PaintbrushItem extends Item {
 		World world = user.getWorld();
 		if (canColor(user) && GenericClaimModsCompat.canInteract(entity.getWorld(), entity, user)) {
 			Optional<InkColor> color = getColor(stack);
-			if (color.isPresent() && payBlockColorCost(user, color.get())) {
-				boolean colored = ColorHelper.tryColorEntity(user, entity, color.get().getDyeColor());
-				if (colored) {
-					return ActionResult.success(world.isClient);
-				}
+			
+			if (color.isPresent()
+					&& payBlockColorCost(user, color.get())
+					&& EntityColorProcessorRegistry.colorEntity(entity, color.get().getDyeColor())) {
+				
+				entity.getWorld().playSoundFromEntity(null, entity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
+				return ActionResult.success(world.isClient);
 			}
+			
 		}
 		return super.useOnEntity(stack, user, entity, hand);
 	}
-	
+
+	@Override
+	public boolean useOnSign(World world, SignBlockEntity signBlockEntity, boolean front, PlayerEntity player) {
+		if (tryUseOnSign(world, signBlockEntity, front, player, player.getStackInHand(Hand.MAIN_HAND))) return true;
+		if (tryUseOnSign(world, signBlockEntity, front, player, player.getStackInHand(Hand.OFF_HAND))) return true;
+
+		player.playSound(SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
+		return false;
+	}
+
+	private boolean tryUseOnSign(World world, SignBlockEntity signBlockEntity, boolean front, PlayerEntity player, ItemStack stack) {
+		if (stack.isOf(SpectrumItems.PAINTBRUSH)) {
+			Optional<InkColor> color = getColor(stack);
+			if (color.isPresent()) {
+				InkColor inkColor = color.get();
+				DyeColor dyeColor = inkColor.getDyeColor();
+
+				if (canColor(player) && payBlockColorCost(player, inkColor)) {
+					if (signBlockEntity.changeText((text) -> text.withColor(dyeColor), front)) {
+						world.playSound(null, signBlockEntity.getPos(), SpectrumSoundEvents.PAINTBRUSH_PAINT, SoundCategory.BLOCKS, 1.0F, 1.0F);
+						return true;
+					}
+				}
+			}
+		}
+
+		return false;
+	}
 }

@@ -1,0 +1,23 @@
+{
+  "type": "spectrum:pedestal_shapeless",
+  "time": 40,
+  "tier": "basic",
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 0.1,
+  "ingredients": [
+    {
+      "item": "minecraft:mud"
+    },
+    {
+      "item": "spectrum:amaranth_bushel"
+    }
+  ],
+  "result": {
+    "item": "minecraft:packed_mud"
+  },
+  "required_advancement": "spectrum:collect_amaranth_bushel"
+}

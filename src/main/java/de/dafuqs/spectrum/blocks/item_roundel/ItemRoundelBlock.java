@@ -13,7 +13,7 @@ import net.minecraft.world.*;
 
 public class ItemRoundelBlock extends InWorldInteractionBlock {
 	
-	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
+	protected static final VoxelShape SHAPE = Block.createCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 14.0D, 12.0D);
 	
 	public ItemRoundelBlock(Settings settings) {
 		super(settings);

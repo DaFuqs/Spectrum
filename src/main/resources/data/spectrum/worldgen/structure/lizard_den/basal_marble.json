@@ -1,0 +1,34 @@
+{
+  "type": "spectrum:underground_jigsaw",
+  "biomes": "#spectrum:has_structure/lizard_den_basal_marble",
+  "step": "underground_structures",
+  "terrain_adaptation": "beard_thin",
+  "start_pool": "spectrum:lizard_den/centers_basal_marble",
+  "size": 1,
+  "start_height": {
+    "type": "minecraft:biased_to_bottom",
+    "min_inclusive": {
+      "above_bottom": 32
+    },
+    "max_inclusive": {
+      "below_top": 64
+    }
+  },
+  "max_distance_from_center": 40,
+  "bury_depth": 0,
+  "placement_check_width": 16,
+  "placement_check_height": 10,
+  "spawn_overrides": {
+    "creature": {
+      "bounding_box": "piece",
+      "spawns": [
+        {
+          "type": "spectrum:lizard",
+          "weight": 1,
+          "minCount": 1,
+          "maxCount": 2
+        }
+      ]
+    }
+  }
+}

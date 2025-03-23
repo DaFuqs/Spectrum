@@ -9,7 +9,7 @@
   },
   "color": "$_",
   "amount": 100,
-  "required_advancement": "spectrum:hidden/collect_pigment/collect_$_`_pigment"
+  "required_advancement": "spectrum:hidden/collect_pigment/$_"
 }
 "@
 
@@ -22,7 +22,7 @@
   },
   "color": "$_",
   "amount": 25,
-  "required_advancement": "spectrum:hidden/collect_pigment/collect_$_`_pigment",
+  "required_advancement": "spectrum:hidden/collect_pigment/$_",
   "fabric:load_conditions": [
     {
       "condition": "fabric:all_mods_loaded",
@@ -43,7 +43,7 @@
   },
   "color": "$_",
   "amount": 5,
-  "required_advancement": "spectrum:hidden/collect_pigment/collect_$_`_pigment"
+  "required_advancement": "spectrum:hidden/collect_pigment/$_"
 }
 "@
 

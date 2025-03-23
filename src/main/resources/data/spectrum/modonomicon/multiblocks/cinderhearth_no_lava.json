@@ -1,0 +1,65 @@
+{
+  "type": "modonomicon:dense",
+  "pattern": [
+    [
+      "C___",
+      "____",
+      "_H__",
+      "____",
+      "C___"
+    ],
+    [
+      "Xcc_",
+      "cGGX",
+      "__GX",
+      "cGGX",
+      "Xcc_"
+    ],
+    [
+      "_XX_",
+      "X__X",
+      "X__X",
+      "X__X",
+      "_XX_"
+    ],
+    [
+      "____",
+      "_XX_",
+      "_0X_",
+      "_XX_",
+      "____"
+    ]
+  ],
+  "mapping": {
+    "X": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:polished_basalt",
+      "tag": "#spectrum:structure/bases"
+    },
+    "C": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:chiseled_polished_basalt",
+      "tag": "#spectrum:structure/chiseled"
+    },
+    "c": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:polished_basalt_crest[cardinal_facing=true]",
+      "tag": "#spectrum:structure/crests"
+    },
+    "G": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:amethyst_glass",
+      "tag": "spectrum:structure/transparent"
+    },
+    "H": {
+      "type": "modonomicon:block",
+      "display": "spectrum:cinderhearth[facing=south]",
+      "block": "spectrum:cinderhearth"
+    },
+    "0": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:polished_basalt",
+      "tag": "#spectrum:structure/bases"
+    }
+  }
+}

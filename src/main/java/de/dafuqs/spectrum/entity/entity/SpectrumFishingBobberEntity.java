@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.entity.entity;
 
 import com.mojang.logging.*;
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.entity.*;
 import de.dafuqs.spectrum.blocks.fluid.*;
 import de.dafuqs.spectrum.data_loaders.*;
@@ -10,6 +9,7 @@ import de.dafuqs.spectrum.enchantments.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.progression.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.data.*;
@@ -59,15 +59,17 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 	private boolean inTheOpen;
 	private @Nullable Entity hookedEntity;
 	private SpectrumFishingBobberEntity.State state;
+
 	protected final int luckOfTheSeaLevel;
 	protected final int lureLevel;
 	protected final int exuberanceLevel;
 	protected final int bigCatchLevel;
+	protected final int serendipityReelLevel;
 	protected final boolean inventoryInsertion;
-	
-	public static final Identifier LOOT_IDENTIFIER = SpectrumCommon.locate("gameplay/universal_fishing");
-	
-	public SpectrumFishingBobberEntity(EntityType<? extends SpectrumFishingBobberEntity> type, World world, int luckOfTheSeaLevel, int lureLevel, int exuberanceLevel, int bigCatchLevel, boolean inventoryInsertion, boolean ablaze) {
+
+	public SpectrumFishingBobberEntity(EntityType<? extends SpectrumFishingBobberEntity> type, World world,
+									   int luckOfTheSeaLevel, int lureLevel, int exuberanceLevel, int bigCatchLevel,
+									   int serendipityReelLevel, boolean inventoryInsertion, boolean ablaze) {
 		super(type, world);
 		this.velocityRandom = Random.create();
 		this.inTheOpen = true;
@@ -77,16 +79,19 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 		this.lureLevel = Math.max(0, lureLevel);
 		this.exuberanceLevel = Math.max(0, exuberanceLevel);
 		this.bigCatchLevel = Math.max(0, bigCatchLevel);
+		this.serendipityReelLevel = Math.max(0, serendipityReelLevel);
 		this.inventoryInsertion = inventoryInsertion;
 		this.getDataTracker().set(ABLAZE, ablaze);
 	}
 	
 	public SpectrumFishingBobberEntity(EntityType<? extends SpectrumFishingBobberEntity> entityType, World world) {
-		this(entityType, world, 0, 0, 0, 0, false, false);
+		this(entityType, world, 0, 0, 0, 0, 0, false, false);
 	}
-	
-	public SpectrumFishingBobberEntity(EntityType<? extends SpectrumFishingBobberEntity> entityType, PlayerEntity thrower, World world, int luckOfTheSeaLevel, int lureLevel, int exuberanceLevel, int bigCatchLevel, boolean inventoryInsertion, boolean ablaze) {
-		this(entityType, world, luckOfTheSeaLevel, lureLevel, exuberanceLevel, bigCatchLevel, inventoryInsertion, ablaze);
+
+	public SpectrumFishingBobberEntity(EntityType<? extends SpectrumFishingBobberEntity> entityType, PlayerEntity thrower, World world,
+									   int luckOfTheSeaLevel, int lureLevel, int exuberanceLevel, int bigCatchLevel,
+									   int serendipityReelLevel, boolean inventoryInsertion, boolean ablaze) {
+		this(entityType, world, luckOfTheSeaLevel, lureLevel, exuberanceLevel, bigCatchLevel, serendipityReelLevel, inventoryInsertion, ablaze);
 		this.setOwner(thrower);
 		float f = thrower.getPitch();
 		float g = thrower.getYaw();
@@ -481,11 +486,14 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 			if (this.hookedEntity != null) {
 				this.pullHookedEntity(this.hookedEntity);
 				SpectrumAdvancementCriteria.FISHING_ROD_HOOKED.trigger((ServerPlayerEntity) playerEntity, usedItem, this, null, Collections.emptyList());
-				this.getWorld().sendEntityStatus(this, (byte) 31);
+				this.getWorld().sendEntityStatus(this, EntityStatuses.PULL_HOOKED_ENTITY);
 				i = this.hookedEntity instanceof ItemEntity ? 3 : 5;
 			} else if (this.hookCountdown > 0) {
 				if (!tryCatchEntity(usedItem, playerEntity, (ServerWorld) this.getWorld(), this.getBlockPos())) {
-					catchLoot(usedItem, playerEntity);
+					int lootAmount = random.nextBetween(1, (int) Math.pow(2, 1 + serendipityReelLevel) - 1);
+					for (int j = 0; j < lootAmount; j++) {
+						catchLoot(usedItem, playerEntity);
+					}
 				}
 				
 				i = 1;
@@ -547,7 +555,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 				.luck((float) this.luckOfTheSeaLevel + playerEntity.getLuck())
 				.build(LootContextTypes.FISHING);
 		
-		LootTable lootTable = this.getWorld().getServer().getLootManager().getLootTable(LOOT_IDENTIFIER);
+		LootTable lootTable = this.getWorld().getServer().getLootManager().getLootTable(SpectrumLootTables.UNIVERSAL_FISHING);
 		List<ItemStack> list = lootTable.generateLoot(lootContextParameterSet);
 		SpectrumAdvancementCriteria.FISHING_ROD_HOOKED.trigger((ServerPlayerEntity) playerEntity, usedItem, this, null, list);
 		

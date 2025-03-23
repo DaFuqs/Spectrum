@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "unlocked_spawner_manipulation": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:milestones/unlock_spawner_manipulation"
+      }
+    },
+    "collected_downstone_fragments": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_downstone_fragments"
+      }
+    }
+  }
+}

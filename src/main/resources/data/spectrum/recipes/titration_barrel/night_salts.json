@@ -1,0 +1,29 @@
+{
+  "type": "spectrum:titration_barrel",
+  "ingredients": [
+    {
+      "item": "spectrum:nightdew_sprout",
+      "count": 1
+    },
+    {
+      "item": "minecraft:quartz",
+      "count": 6
+    },
+    {
+      "item": "minecraft:honeycomb",
+      "count": 2
+    },
+    {
+      "item": "spectrum:onyx_shard"
+    }
+  ],
+  "fluid": {
+    "fluid": "minecraft:water"
+  },
+  "required_advancement": "spectrum:unlocks/items/night_salts",
+  "min_fermentation_time_hours": 1,
+  "result": {
+    "item": "spectrum:night_salts",
+    "count": 6
+  }
+}

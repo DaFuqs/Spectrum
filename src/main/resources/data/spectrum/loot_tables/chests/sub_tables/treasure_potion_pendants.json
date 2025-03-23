@@ -22,7 +22,7 @@
                   "color": -1,
                   "amplifier": 0,
                   "ink_color": [
-                    "white"
+                    "spectrum:white"
                   ],
                   "ink_cost": 64
                 }
@@ -49,7 +49,7 @@
                   "color": -1,
                   "amplifier": 0,
                   "ink_color": [
-                    "red"
+                    "spectrum:red"
                   ],
                   "ink_cost": 16
                 }
@@ -79,7 +79,7 @@
                     "max": 2
                   },
                   "ink_color": [
-                    "light_blue"
+                    "spectrum:light_blue"
                   ],
                   "ink_cost": 8
                 }
@@ -108,9 +108,9 @@
                   "color": -1,
                   "amplifier": 2,
                   "ink_color": [
-                    "red",
-                    "green",
-                    "blue"
+                    "spectrum:red",
+                    "spectrum:green",
+                    "spectrum:blue"
                   ],
                   "ink_cost": 4
                 }

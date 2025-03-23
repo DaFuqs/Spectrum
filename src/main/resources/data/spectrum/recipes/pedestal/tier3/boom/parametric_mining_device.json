@@ -9,9 +9,9 @@
   "black": 1,
   "experience": 1.0,
   "pattern": [
-    "MGM",
-    "GSG",
-    "MGM"
+    "SGS",
+    "GMG",
+    "SGS"
   ],
   "key": {
     "M": {
@@ -21,7 +21,7 @@
       "item": "minecraft:gunpowder"
     },
     "S": {
-      "item": "spectrum:stratine_gem"
+      "item": "spectrum:stratine_fragments"
     }
   },
   "result": {

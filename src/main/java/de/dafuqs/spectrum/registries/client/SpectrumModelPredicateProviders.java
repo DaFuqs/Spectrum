@@ -41,12 +41,18 @@ public class SpectrumModelPredicateProviders {
 		registerAnimatedWandPredicates(SpectrumItems.STAFF_OF_REMEMBRANCE);
 		registerKnowledgeDropPredicates(SpectrumItems.KNOWLEDGE_GEM);
 		registerAshenCircletPredicates(SpectrumItems.ASHEN_CIRCLET);
-		registerColorPredicate(SpectrumItems.PAINTBRUSH);
+		registerStampingItemPredicate(SpectrumItems.TUNING_STAMP);
 		registerInkColorPredicate(SpectrumItems.INK_FLASK);
 		registerInkFillStateItemPredicate(SpectrumItems.INK_FLASK);
 		registerMoonPhasePredicates(SpectrumItems.CRESCENT_CLOCK);
 		registerActivatableItemPredicate(SpectrumItems.DREAMFLAYER);
 		registerOversizedItemPredicate(SpectrumItems.DREAMFLAYER);
+		registerOversizedItemPredicate(SpectrumItems.KNOTTED_SWORD);
+		registerOversizedItemPredicate(SpectrumItems.NECTAR_LANCE);
+		registerOversizedItemPredicate(SpectrumItems.BEDROCK_SWORD);
+		registerOversizedItemPredicate(SpectrumItems.BEDROCK_AXE);
+
+		registerOversizedItemPredicate(SpectrumItems.PAINTBRUSH);
 
 		registerOversizedItemPredicate(SpectrumItems.DRACONIC_TWINSWORD);
 		registerOversizedItemPredicate(SpectrumItems.DRAGON_TALON);
@@ -145,9 +151,13 @@ public class SpectrumModelPredicateProviders {
 	 */
 	private static void registerBidentThrowingItemPredicate(Item item) {
 		ModelPredicateProviderRegistry.register(item, new Identifier("bident_throwing"), (itemStack, clientWorld, livingEntity, i) -> {
+			/* I believe this is unused now... nothing noticeable seems to have happened, but I would prefer to be safe than sorry.
 			if (currentItemRenderMode == ModelTransformationMode.NONE) {
+				if (itemStack.getItem() instanceof FractalBidentItem fractal) {
+					return fractal.isDisabled(itemStack) ? 0.5F : 1F;
+				}
 				return 1.0F;
-			}
+			}*/
 			return livingEntity != null && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 0.5F : 0.0F;
 		});
 	}
@@ -217,6 +227,16 @@ public class SpectrumModelPredicateProviders {
 		});
 	}
 
+	private static void registerStampingItemPredicate(Item item) {
+		ModelPredicateProviderRegistry.register(item, new Identifier("stamped"), ((stack, world, entity, seed) -> {
+			var nbt = stack.getOrCreateNbt();
+			if (nbt.contains(Stampable.STAMPING_DATA_TAG))
+				return 1F;
+
+			return 0F;
+		}));
+	}
+	
 	private static void registerSlotReservingItem(Item item) {
 		ModelPredicateProviderRegistry.register(item, new Identifier(SlotReservingItem.NBT_STRING), (itemStack, clientWorld, livingEntity, i) -> {
 			if (itemStack.getItem() instanceof SlotReservingItem reserver && reserver.isReservingSlot(itemStack)) {
@@ -228,12 +248,7 @@ public class SpectrumModelPredicateProviders {
 	}
 	
 	private static void registerOversizedItemPredicate(Item item) {
-		ModelPredicateProviderRegistry.register(item, new Identifier("in_world"), (itemStack, world, livingEntity, i) -> {
-			if (world == null && livingEntity == null && i == 0) { // REIs 'fast batch' render mode. Without mixin' into REI there is no better way to catch this, I am afraid
-				return 0.0F;
-			}
-			return currentItemRenderMode == ModelTransformationMode.GUI || currentItemRenderMode == ModelTransformationMode.GROUND || currentItemRenderMode == ModelTransformationMode.FIXED ? 0.0F : 1.0F;
-		});
+		ModelPredicateProviderRegistry.register(item, new Identifier("oversized"), (itemStack, world, livingEntity, seed) -> seed == 817210941 ? 1.0F : 0.0F);
 	}
 	
 	private static void registerBowPredicates(Item bowItem) {
@@ -270,7 +285,7 @@ public class SpectrumModelPredicateProviders {
 	}
 
 	private static void registerPipeBombPredicates(Item pipeBombItem) {
-		ModelPredicateProviderRegistry.register(pipeBombItem, new Identifier("armed"), PipeBombItem::isArmed);
+		ModelPredicateProviderRegistry.register(pipeBombItem, new Identifier("armed"), (stack, world, entity, seed) -> PipeBombItem.isArmed(stack) ? 1.0F : 0.0F);
 	}
 	
 	private static void registerSpectrumFishingRodItemPredicates(Item fishingRodItem) {
@@ -329,6 +344,10 @@ public class SpectrumModelPredicateProviders {
 		ModelPredicateProviderRegistry.register(SpectrumItems.INK_FLASK, new Identifier("color"), (itemStack, clientWorld, livingEntity, i) -> {
 			SingleInkStorage storage = SpectrumItems.INK_FLASK.getEnergyStorage(itemStack);
 			InkColor color = storage.getStoredColor();
+			
+			if (color == null) {
+				return 0F;
+			}
 			return (1F + color.getDyeColor().getId()) / 100F;
 		});
 	}

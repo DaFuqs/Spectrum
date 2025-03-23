@@ -49,4 +49,8 @@ public class ColoredSaplingBlock extends SaplingBlock implements RevelationAware
 		return SAPLINGS.get(color);
 	}
 	
+	public static Collection<ColoredSaplingBlock> all() {
+		return SAPLINGS.values();
+	}
+	
 }

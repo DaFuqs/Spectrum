@@ -1,10 +1,13 @@
 package de.dafuqs.spectrum.items.trinkets;
 
+import com.google.common.collect.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.status_effect.*;
 import de.dafuqs.spectrum.registries.*;
 import dev.emi.trinkets.api.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
+import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.item.*;
 import net.minecraft.server.network.*;
@@ -27,25 +30,25 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 	
 	public static void removeSingleStatusEffect(@NotNull LivingEntity entity, StatusEffectCategory category) {
 		Collection<StatusEffectInstance> currentEffects = entity.getStatusEffects();
-		if (currentEffects.size() == 0) {
+		if (currentEffects.isEmpty()) {
 			return;
 		}
 
 		List<StatusEffectInstance> negativeEffects = new ArrayList<>();
 		for (StatusEffectInstance statusEffectInstance : currentEffects) {
 			StatusEffect effect = statusEffectInstance.getEffectType();
-			if (effect.getCategory() == category && !SpectrumStatusEffectTags.isUncurable(effect)) {
+			if (effect.getCategory() == category && !SpectrumStatusEffectTags.isIn(SpectrumStatusEffectTags.SOPORIFIC, effect) && !SpectrumStatusEffectTags.bypassesWhispyCirclet(effect)) {
 				negativeEffects.add(statusEffectInstance);
 			}
 		}
 		
-		if (negativeEffects.size() == 0) {
+		if (negativeEffects.isEmpty()) {
 			return;
 		}
 		
 		World world = entity.getWorld();
 		int randomIndex = world.random.nextInt(negativeEffects.size());
-		entity.removeStatusEffect(negativeEffects.get(randomIndex).getEffectType());
+		removeOrReduceNegativeStatusEffect(entity, negativeEffects.get(randomIndex).getEffectType());
 	}
 	
 	public static void removeNegativeStatusEffects(@NotNull LivingEntity entity) {
@@ -58,6 +61,17 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 		}
 		
 		for (StatusEffect effect : effectsToRemove) {
+			removeOrReduceNegativeStatusEffect(entity, effect);
+		}
+	}
+	
+	private static void removeOrReduceNegativeStatusEffect(@NotNull LivingEntity entity, StatusEffect effect) {
+		var instance = entity.getStatusEffect(effect);
+		assert instance != null;
+		if (Incurable.isIncurable(instance)) {
+			Incurable.cutDuration(entity, instance);
+		}
+		else {
 			entity.removeStatusEffect(effect);
 		}
 	}
@@ -71,7 +85,7 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 			if (affects(instance.getEffectType())) {
 				int newDurationTicks = instance.getDuration() - duration;
 				if (newDurationTicks > 0) {
-					newEffects.add(new StatusEffectInstance(instance.getEffectType(), newDurationTicks, instance.getAmplifier(), instance.isAmbient(), instance.shouldShowParticles(), true));
+					newEffects.add(new StatusEffectInstance(instance.getEffectType(), newDurationTicks, instance.getAmplifier(), instance.isAmbient(), instance.shouldShowParticles(), instance.shouldShowIcon()));
 				}
 				if (!effectTypesToClear.contains(instance.getEffectType())) {
 					effectTypesToClear.add(instance.getEffectType());
@@ -88,7 +102,7 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 	}
 	
 	public static boolean affects(StatusEffect statusEffect) {
-		return statusEffect.getCategory() == StatusEffectCategory.HARMFUL && !SpectrumStatusEffectTags.isUncurable(statusEffect);
+		return statusEffect.getCategory() == StatusEffectCategory.HARMFUL && !SpectrumStatusEffectTags.bypassesWhispyCirclet(statusEffect);
 	}
 	
 	public static void preventPhantomSpawns(@NotNull ServerPlayerEntity serverPlayerEntity) {
@@ -119,4 +133,11 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 		}
 	}
 	
+	@Override
+	public Multimap<EntityAttribute, EntityAttributeModifier> getModifiers(ItemStack stack, SlotReference slot, LivingEntity entity, UUID uuid) {
+		Multimap<EntityAttribute, EntityAttributeModifier> modifiers = super.getModifiers(stack, slot, entity, uuid);
+		modifiers.put(SpectrumEntityAttributes.MENTAL_PRESENCE, new EntityAttributeModifier(uuid, "spectrum:neat_ring", 0.3, EntityAttributeModifier.Operation.ADDITION));
+		return modifiers;
+	}
+
 }

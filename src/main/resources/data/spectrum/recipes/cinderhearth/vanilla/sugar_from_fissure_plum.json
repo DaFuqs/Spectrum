@@ -1,0 +1,16 @@
+{
+  "type": "spectrum:cinderhearth",
+  "ingredient": {
+    "item": "spectrum:fissure_plum",
+    "count": 2
+  },
+  "results": [
+    {
+      "item": "minecraft:sugar",
+      "count": 3
+    }
+  ],
+  "experience": 1.0,
+  "time": 50,
+  "required_advancement": "spectrum:hidden/collect_fissure_plum"
+}

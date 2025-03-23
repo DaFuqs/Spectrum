@@ -1,29 +1,54 @@
 {
 	"variants": {
-		"facing=east": {
+      "facing=east,inverted=false": {
 			"model": "spectrum:block/granite_shimmerstone_light",
-			"x": 90,
 			"y": 90
 		},
-		"facing=north": {
+      "facing=north,inverted=false": {
+        "model": "spectrum:block/granite_shimmerstone_light"
+      },
+      "facing=south,inverted=false": {
 			"model": "spectrum:block/granite_shimmerstone_light",
-			"x": 90
+        "x": 180
 		},
-		"facing=south": {
+      "facing=west,inverted=false": {
 			"model": "spectrum:block/granite_shimmerstone_light",
-			"x": 270
+        "x": 180,
+        "y": 90
 		},
-		"facing=west": {
+      "facing=up,inverted=false": {
 			"model": "spectrum:block/granite_shimmerstone_light",
-			"x": 90,
-			"y": 270
+        "x": 270,
+        "y": 180
 		},
-		"facing=up": {
-			"model": "spectrum:block/granite_shimmerstone_light"
-		},
-		"facing=down": {
+      "facing=down,inverted=false": {
 			"model": "spectrum:block/granite_shimmerstone_light",
+        "x": 90
+      },
+      "facing=east,inverted=true": {
+        "model": "spectrum:block/granite_shimmerstone_light_mirrored",
+        "y": 90
+      },
+      "facing=north,inverted=true": {
+        "model": "spectrum:block/granite_shimmerstone_light_mirrored"
+      },
+      "facing=south,inverted=true": {
+        "model": "spectrum:block/granite_shimmerstone_light_mirrored",
 			"x": 180
+      },
+      "facing=west,inverted=true": {
+        "model": "spectrum:block/granite_shimmerstone_light_mirrored",
+        "x": 180,
+        "y": 90
+      },
+      "facing=up,inverted=true": {
+        "model": "spectrum:block/granite_shimmerstone_light_mirrored",
+        "x": 270,
+        "y": 180
+      },
+      "facing=down,inverted=true": {
+        "model": "spectrum:block/granite_shimmerstone_light_mirrored",
+        "x": 90
 		}
 	}
 }

@@ -8,13 +8,13 @@
   "results": [
     {
       "item": "spectrum:brown_pigment",
-      "count": 2,
+      "count": 1,
       "chance": 1.0
     },
     {
       "item": "spectrum:brown_sapling",
       "count": 1,
-      "chance": 0.04
+      "chance": 0.02
     }
   ],
   "processingTime": 450,

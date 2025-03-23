@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.blocks.cinderhearth;
 
+import com.klikli_dev.modonomicon.api.multiblock.*;
+import de.dafuqs.spectrum.compat.modonomicon.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.progression.*;
@@ -17,14 +19,12 @@ import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.state.*;
 import net.minecraft.state.property.*;
-import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
-import vazkii.patchouli.api.*;
 
 public class CinderhearthBlock extends BlockWithEntity {
 	
@@ -178,44 +178,35 @@ public class CinderhearthBlock extends BlockWithEntity {
 	public static CinderhearthBlockEntity.CinderHearthStructureType verifyStructure(World world, @NotNull BlockPos blockPos, @Nullable ServerPlayerEntity serverPlayerEntity) {
 		BlockRotation rotation = Support.rotationFromDirection(world.getBlockState(blockPos).get(FACING).getOpposite());
 		
-		IMultiblock multiblockWithLava = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.CINDERHEARTH_IDENTIFIER);
-		IMultiblock multiblockWithoutLava = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.CINDERHEARTH_WITHOUT_LAVA_IDENTIFIER);
-		if (world.isClient) {
-			if (multiblockWithoutLava.validate(world, blockPos.down(3), rotation)) {
-				return CinderhearthBlockEntity.CinderHearthStructureType.WITH_LAVA;
-			} else {
-				PatchouliAPI.get().showMultiblock(multiblockWithLava, Text.translatable("multiblock.spectrum.cinderhearth.structure"), blockPos.down(4), rotation);
-				return CinderhearthBlockEntity.CinderHearthStructureType.NONE;
-			}
+		Multiblock multiblock = SpectrumMultiblocks.get(SpectrumMultiblocks.CINDERHEARTH);
+		CinderhearthBlockEntity.CinderHearthStructureType completedStructure = CinderhearthBlockEntity.CinderHearthStructureType.NONE;
+		
+		if (multiblock.validate(world, blockPos.down(3), rotation)) {
+			completedStructure = CinderhearthBlockEntity.CinderHearthStructureType.WITH_LAVA;
 		} else {
-			if (multiblockWithLava.validate(world, blockPos.down(3), rotation)) {
-				if (serverPlayerEntity != null) {
-					SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblockWithLava);
-				}
-				return CinderhearthBlockEntity.CinderHearthStructureType.WITH_LAVA;
-			} else {
-				if (multiblockWithoutLava.validate(world, blockPos.down(3), rotation)) {
-					if (serverPlayerEntity != null) {
-						SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblockWithoutLava);
-					}
-					return CinderhearthBlockEntity.CinderHearthStructureType.WITHOUT_LAVA;
-				}
-				return CinderhearthBlockEntity.CinderHearthStructureType.NONE;
+			multiblock = SpectrumMultiblocks.get(SpectrumMultiblocks.CINDERHEARTH_WITHOUT_LAVA);
+			if (multiblock.validate(world, blockPos.down(3), rotation)) {
+				completedStructure = CinderhearthBlockEntity.CinderHearthStructureType.WITHOUT_LAVA;
 			}
 		}
+		
+		boolean structureValid = completedStructure != CinderhearthBlockEntity.CinderHearthStructureType.NONE;
+		
+		if (world.isClient) {
+			if (!structureValid) {
+				ModonomiconHelper.renderMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.CINDERHEARTH), SpectrumMultiblocks.CINDERHEARTH_TEXT, blockPos.down(4), rotation);
+			}
+		} else if (structureValid && serverPlayerEntity != null) {
+			SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblock);
+		}
+		
+		return completedStructure;
 	}
 	
 	@Override
 	public void onBroken(WorldAccess world, BlockPos pos, BlockState state) {
 		if (world.isClient()) {
-			clearCurrentlyRenderedMultiBlock();
-		}
-	}
-	
-	public static void clearCurrentlyRenderedMultiBlock() {
-		IMultiblock currentlyRenderedMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
-		if (currentlyRenderedMultiBlock != null && currentlyRenderedMultiBlock.getID().equals(SpectrumMultiblocks.CINDERHEARTH_IDENTIFIER)) {
-			PatchouliAPI.get().clearMultiblock();
+			ModonomiconHelper.clearRenderedMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.CINDERHEARTH));
 		}
 	}
 	

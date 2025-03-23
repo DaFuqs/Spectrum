@@ -1,0 +1,115 @@
+{
+  "name": "book.spectrum.guidebook.mod_integration.spelunkery.name",
+  "icon": "spelunkery:tangle_roots",
+  "condition": {
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:mod_loaded",
+        "mod_id": "spelunkery"
+      },
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:place_pedestal"
+      }
+    ]
+  },
+  "category": "spectrum:mod_integration",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 8,
+  "y": 4,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.mod_integration.spelunkery.page0.text",
+      "title": "book.spectrum.guidebook.mod_integration.spelunkery.name"
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "recipe_id": "spectrum:mod_integration/spelunkery/anvil_crushing/lazurite"
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "recipe_id": "spectrum:mod_integration/spelunkery/anvil_crushing/cinnabar"
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "recipe_id": "spectrum:mod_integration/spelunkery/anvil_crushing/salt"
+    },
+    {
+      "type": "spectrum:liquid_crystal_converting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/liquid_crystal"
+      },
+      "recipe_id": "spectrum:mod_integration/spelunkery/liquid_crystal_converting/crystallize_salt"
+    },
+    {
+      "type": "spectrum:liquid_crystal_converting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/liquid_crystal"
+      },
+      "recipe_id": "spectrum:mod_integration/spelunkery/liquid_crystal_converting/purify_cinnabar"
+    },
+    {
+      "type": "spectrum:liquid_crystal_converting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/liquid_crystal"
+      },
+      "recipe_id": "spectrum:mod_integration/spelunkery/liquid_crystal_converting/purify_diamond"
+    },
+    {
+      "type": "spectrum:liquid_crystal_converting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/liquid_crystal"
+      },
+      "recipe_id": "spectrum:mod_integration/spelunkery/liquid_crystal_converting/purify_emerald"
+    },
+    {
+      "type": "spectrum:liquid_crystal_converting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/liquid_crystal"
+      },
+      "recipe_id": "spectrum:mod_integration/spelunkery/liquid_crystal_converting/purify_lazurite"
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/items/ender_splice"
+      },
+      "recipe_id": "spectrum:mod_integration/spelunkery/potion_workshop_crafting/portal_fluid_bottle_crafting"
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/items/ender_splice"
+      },
+      "recipe_id": "spectrum:mod_integration/spelunkery/potion_workshop_crafting/portal_fluid_bucket_crafting"
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "recipe_id": "spectrum:mod_integration/spelunkery/potion_workshop_crafting/spring_water_bucket_crafting"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.mod_integration.spelunkery.black_materia_sluice.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/break_black_materia"
+      },
+      "item": {
+        "item": "spectrum:midnight_solution_bucket"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.spelunkery.black_materia_sluice.text"
+    }
+  ]
+}

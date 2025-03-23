@@ -24,12 +24,12 @@ public class AzureDikeBeltItem extends AzureDikeTrinketItem {
 	
 	@Override
 	public int maxAzureDike(ItemStack stack) {
-		return 6;
+		return 8;
 	}
 	
 	@Override
-	public float rechargeBonusAfterDamageTicks(ItemStack stack) {
-		return 100;
+	public float rechargeDelayAfterDamageModifier(ItemStack stack) {
+		return 2.5F;
 	}
 	
 }

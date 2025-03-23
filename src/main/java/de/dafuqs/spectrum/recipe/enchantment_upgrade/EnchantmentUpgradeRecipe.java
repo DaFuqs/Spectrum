@@ -15,7 +15,7 @@ import net.minecraft.world.*;
 
 import java.util.*;
 
-public class EnchantmentUpgradeRecipe extends GatedSpectrumRecipe {
+public class EnchantmentUpgradeRecipe extends GatedSpectrumRecipe<Inventory> {
 	
 	protected final Enchantment enchantment;
 	protected final int enchantmentDestinationLevel;
@@ -86,7 +86,7 @@ public class EnchantmentUpgradeRecipe extends GatedSpectrumRecipe {
 	
 	@Override
 	public ItemStack craft(Inventory inv, DynamicRegistryManager drm) {
-		return null;
+		return output.copy();
 	}
 	
 	@Override

@@ -1,0 +1,17 @@
+{
+  "type": "spectrum:ink_converting",
+  "ingredient": {
+    "item": "the_bumblezone:essence_calming"
+  },
+  "ink_color": "spectrum:light_blue",
+  "amount": 25000,
+  "required_advancement": "spectrum:mod_integration/the_bumblezone/light_blue_calming",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "the_bumblezone"
+      ]
+    }
+  ]
+}

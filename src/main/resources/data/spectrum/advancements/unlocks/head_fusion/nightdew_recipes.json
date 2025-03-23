@@ -1,0 +1,16 @@
+{
+    "criteria": {
+      "unlocked_head_fusion": {
+        "trigger": "revelationary:advancement_gotten",
+        "conditions": {
+          "advancement_identifier": "spectrum:unlocks/head_fusion/basic_recipes"
+        }
+      },
+      "collected_nightdew": {
+        "trigger": "revelationary:advancement_gotten",
+        "conditions": {
+          "advancement_identifier": "spectrum:collect_nightdew"
+        }
+      }
+    }
+  }

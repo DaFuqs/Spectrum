@@ -1,7 +1,12 @@
 {
   "variants": {
-    "": {
-      "model": "spectrum:block/blackslag_azurite_ore"
-    }
+    "": [
+      {
+        "model": "spectrum:block/blackslag_azurite_ore"
+      },
+      {
+        "model": "spectrum:block/blackslag_azurite_ore_mirrored"
+      }
+    ]
   }
 }

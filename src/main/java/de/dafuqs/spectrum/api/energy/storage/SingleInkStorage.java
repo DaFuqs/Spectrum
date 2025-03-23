@@ -32,14 +32,22 @@ public class SingleInkStorage implements InkStorage {
 		this.storedEnergy = amount;
 	}
 	
-	public static @Nullable SingleInkStorage fromNbt(@NotNull NbtCompound compound) {
-		if (compound.contains("MaxEnergyTotal", NbtElement.LONG_TYPE)) {
-			long maxEnergyTotal = compound.getLong("MaxEnergyTotal");
-			InkColor color = InkColor.of(compound.getString("Color"));
+	public NbtCompound toNbt() {
+		NbtCompound compound = new NbtCompound();
+		compound.putLong("MaxEnergyTotal", this.maxEnergy);
+		compound.putString("Color", this.storedColor.getID().toString());
+		compound.putLong("Amount", this.storedEnergy);
+		return compound;
+	}
+	
+	public static SingleInkStorage fromNbt(@NotNull NbtCompound compound) {
+		long maxEnergyTotal = compound.getLong("MaxEnergyTotal");
+		Optional<InkColor> color = InkColor.ofIdString(compound.getString("Color"));
+		if (color.isPresent()) {
 			long amount = compound.getLong("Amount");
-			return new SingleInkStorage(maxEnergyTotal, color, amount);
+			return new SingleInkStorage(maxEnergyTotal, color.get(), amount);
 		}
-		return null;
+		return new SingleInkStorage(maxEnergyTotal, InkColors.CYAN, 0);
 	}
 	
 	public InkColor getStoredColor() {
@@ -142,21 +150,11 @@ public class SingleInkStorage implements InkStorage {
 		return this.storedEnergy >= this.maxEnergy;
 	}
 	
-	public NbtCompound toNbt() {
-		NbtCompound compound = new NbtCompound();
-		compound.putLong("MaxEnergyTotal", this.maxEnergy);
-		compound.putString("Color", this.storedColor.toString());
-		compound.putLong("Amount", this.storedEnergy);
-		return compound;
-	}
-	
 	@Override
-	public void addTooltip(List<Text> tooltip, boolean includeHeader) {
-		if (includeHeader) {
-			tooltip.add(Text.translatable("item.spectrum.ink_flask.tooltip", getShortenedNumberString(this.maxEnergy)));
-		}
+	public void addTooltip(List<Text> tooltip) {
+		tooltip.add(Text.translatable("item.spectrum.ink_storage.stores_up_to_ink_per_type", getShortenedNumberString(this.maxEnergy)));
 		if (this.storedEnergy > 0) {
-			tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet." + this.storedColor.toString().toLowerCase(Locale.ROOT), getShortenedNumberString(this.storedEnergy)));
+			InkStorage.addInkStoreBulletTooltip(tooltip, this.storedColor, this.storedEnergy);
 		}
 	}
 	

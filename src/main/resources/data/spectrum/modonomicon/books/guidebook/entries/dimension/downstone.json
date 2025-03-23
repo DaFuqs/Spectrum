@@ -1,0 +1,29 @@
+{
+  "name": "block.spectrum.downstone",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:lategame/reached_dd_floor"
+  },
+  "icon": "spectrum:downstone",
+  "category": "spectrum:dimension",
+  "hide_while_locked": true,
+  "parents": [
+    {
+      "entry": "spectrum:dimension/blackslag"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": -3,
+  "y": 3,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:downstone"
+      },
+      "text": "book.spectrum.guidebook.downstone.page0.text",
+      "title": "block.spectrum.downstone"
+    }
+  ]
+}

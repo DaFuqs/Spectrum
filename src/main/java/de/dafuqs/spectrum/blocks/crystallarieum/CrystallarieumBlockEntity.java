@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.crystallarieum;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.storage.*;
@@ -16,11 +15,9 @@ import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.particle.*;
-import net.minecraft.recipe.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
-import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
@@ -75,10 +72,11 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		if (crystallarieum.canWork) {
 			transferInk(crystallarieum);
 			
-			if (crystallarieum.currentRecipe != null) {
+			CrystallarieumRecipe recipe = crystallarieum.currentRecipe;
+			if (recipe != null) {
 				crystallarieum.tickLooper.tick();
 				if (crystallarieum.tickLooper.reachedCap()) {
-					tickRecipe(world, blockPos, crystallarieum);
+					tickRecipe(world, blockPos, crystallarieum, recipe);
 					crystallarieum.tickLooper.reset();
 				}
 			}
@@ -89,14 +87,19 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	 * Progress the recipe
 	 * gets called 1/second
 	 */
-	private static void tickRecipe(@NotNull World world, BlockPos blockPos, CrystallarieumBlockEntity crystallarieum) {
-		if (crystallarieum.currentCatalyst == CrystallarieumCatalyst.EMPTY && !crystallarieum.currentRecipe.growsWithoutCatalyst()) {
+	private static void tickRecipe(@NotNull World world, BlockPos blockPos, CrystallarieumBlockEntity crystallarieum, @NotNull CrystallarieumRecipe recipe) {
+		if (crystallarieum.currentCatalyst == CrystallarieumCatalyst.EMPTY && !recipe.growsWithoutCatalyst()) {
+			return;
+		}
+		
+		if (crystallarieum.inkStorage.getEnergy(recipe.getInkColor()) == 0) {
 			return;
 		}
 		
 		// advance growing
-		int consumedInk = (int) (crystallarieum.currentRecipe.getInkPerSecond() * crystallarieum.currentCatalyst.growthAccelerationMod * crystallarieum.currentCatalyst.inkConsumptionMod);
-		if (crystallarieum.inkStorage.drainEnergy(crystallarieum.currentRecipe.getInkColor(), consumedInk) < consumedInk) {
+		float consumedInkFloat = (recipe.getInkPerSecond() * crystallarieum.currentCatalyst.growthAccelerationMod * crystallarieum.currentCatalyst.inkConsumptionMod);
+		int consumedInt = Support.getIntFromDecimalWithChance(consumedInkFloat, world.random);
+		if (crystallarieum.inkStorage.drainEnergy(recipe.getInkColor(), consumedInt) < consumedInt) {
 			crystallarieum.canWork = false;
 			crystallarieum.setInkDirty();
 			crystallarieum.updateInClientWorld();
@@ -113,34 +116,25 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 			crystallarieum.updateInClientWorld();
 			if (catalystStack.isEmpty()) {
 				crystallarieum.currentCatalyst = CrystallarieumCatalyst.EMPTY;
-				if (!crystallarieum.currentRecipe.growsWithoutCatalyst()) {
+				if (!recipe.growsWithoutCatalyst()) {
 					crystallarieum.canWork = false;
 				}
 			}
 		}
 		
 		// advanced enough? grow!
-		if (crystallarieum.currentGrowthStageTicks >= crystallarieum.currentRecipe.getSecondsPerGrowthStage() * SECOND) {
+		if (crystallarieum.currentGrowthStageTicks >= recipe.getSecondsPerGrowthStage() * SECOND) {
 			BlockPos topPos = blockPos.up();
 			BlockState topState = world.getBlockState(topPos);
-			for (Iterator<BlockState> it = crystallarieum.currentRecipe.getGrowthStages().iterator(); it.hasNext(); ) {
-				BlockState state = it.next();
-				if (state.equals(topState)) {
-					if (it.hasNext()) {
-						BlockState targetState = it.next();
-						world.setBlockState(topPos, targetState);
-						
-						// if the stone on top can not grow any further: pause
-						if (!it.hasNext()) {
-							crystallarieum.canWork = false;
-						}
-						
-						ServerPlayerEntity owner = (ServerPlayerEntity) crystallarieum.getOwnerIfOnline();
-						if (owner != null) {
-							SpectrumAdvancementCriteria.CRYSTALLARIEUM_GROWING.trigger(owner, (ServerWorld) world, topPos, crystallarieum.getStack(CATALYST_SLOT_ID));
-						}
-					}
+			Optional<BlockState> nextState = recipe.getNextState(recipe, topState);
+			if (nextState.isPresent()) {
+				world.setBlockState(topPos, nextState.get());
+				ServerPlayerEntity owner = (ServerPlayerEntity) crystallarieum.getOwnerIfOnline();
+				if (owner != null) {
+					SpectrumAdvancementCriteria.CRYSTALLARIEUM_GROWING.trigger(owner, (ServerWorld) world, topPos, crystallarieum.getStack(CATALYST_SLOT_ID));
 				}
+			} else {
+				crystallarieum.canWork = false;
 			}
 			crystallarieum.currentGrowthStageTicks = 0;
 		}
@@ -159,8 +153,15 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	
 	@Override
 	public void inventoryChanged() {
-		this.currentCatalyst = this.currentRecipe == null ? CrystallarieumCatalyst.EMPTY : this.currentRecipe.getCatalyst(getStack(CATALYST_SLOT_ID));
-		this.canWork = true;
+		if (this.currentRecipe == null) {
+			this.currentCatalyst = CrystallarieumCatalyst.EMPTY;
+			this.canWork = false;
+		} else {
+			this.currentCatalyst = this.currentRecipe.getCatalyst(getStack(CATALYST_SLOT_ID));
+			BlockState topState = this.world.getBlockState(this.pos.up());
+			this.canWork = this.currentRecipe.getNextState(this.currentRecipe, topState).isPresent()
+					&& (this.currentRecipe.growsWithoutCatalyst() || this.currentCatalyst != CrystallarieumCatalyst.EMPTY);
+		}
 		super.inventoryChanged();
 	}
 	
@@ -174,38 +175,29 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		if (nbt.contains("Looper", NbtElement.COMPOUND_TYPE)) {
 			this.tickLooper.readNbt(nbt.getCompound("Looper"));
 		}
+
 		this.canWork = nbt.getBoolean("CanWork");
-		
 		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
-		
-		this.currentRecipe = null;
 		this.currentCatalyst = CrystallarieumCatalyst.EMPTY;
-		if (nbt.contains("CurrentRecipe")) {
-			this.currentGrowthStageTicks = nbt.getInt("CurrentGrowthStageDuration");
-			String recipeString = nbt.getString("CurrentRecipe");
-			if (!recipeString.isEmpty() && SpectrumCommon.minecraftServer != null) {
-				Optional<? extends Recipe<?>> optionalRecipe = SpectrumCommon.minecraftServer.getRecipeManager().get(new Identifier(recipeString));
-				if (optionalRecipe.isPresent() && (optionalRecipe.get() instanceof CrystallarieumRecipe crystallarieumRecipe)) {
-					this.currentRecipe = crystallarieumRecipe;
-					this.currentCatalyst = this.currentRecipe.getCatalyst(getStack(CATALYST_SLOT_ID));
-				}
-			}
-		} else {
-			this.currentGrowthStageTicks = 0;
+		this.currentRecipe = MultiblockCrafter.getRecipeFromNbt(world, nbt, CrystallarieumRecipe.class);
+		this.currentGrowthStageTicks = nbt.getInt("CurrentGrowthStageDuration");
+		if (this.currentRecipe != null) {
+			this.currentCatalyst = this.currentRecipe.getCatalyst(getStack(CATALYST_SLOT_ID));
 		}
 	}
 	
 	@Override
 	public void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
+		
 		nbt.put("InkStorage", this.inkStorage.toNbt());
 		nbt.put("Looper", this.tickLooper.toNbt());
 		
 		nbt.putBoolean("CanWork", this.canWork);
+		nbt.putInt("CurrentGrowthStageDuration", this.currentGrowthStageTicks);
 		PlayerOwned.writeOwnerUUID(nbt, this.ownerUUID);
 		if (this.currentRecipe != null) {
 			nbt.putString("CurrentRecipe", this.currentRecipe.getId().toString());
-			nbt.putInt("CurrentGrowthStageDuration", this.currentGrowthStageTicks);
 		}
 	}
 	

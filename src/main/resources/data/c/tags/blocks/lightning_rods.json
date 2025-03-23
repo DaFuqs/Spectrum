@@ -3,7 +3,7 @@
   "values": [
     "minecraft:lightning_rod",
     {
-      "id": "friendsandfoes:lightning_rods",
+      "id": "#friendsandfoes:lightning_rods",
       "required": false
     }
   ]

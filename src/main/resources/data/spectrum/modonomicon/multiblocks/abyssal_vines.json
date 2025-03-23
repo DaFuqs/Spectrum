@@ -1,0 +1,102 @@
+{
+  "type": "modonomicon:dense",
+  "pattern": [
+    [
+      "     ",
+      "     ",
+      "     ",
+      "     ",
+      "     "
+    ],
+    [
+      "EBEEB",
+      "BBEEB",
+      "BB0BB",
+      "BBBB ",
+      "GF   "
+    ],
+    [
+      "BBEEB",
+      "BBBEA",
+      "B A  ",
+      "T    ",
+      " A   "
+    ],
+    [
+      "A    ",
+      "F   F",
+      "  F  ",
+      "     ",
+      " A   "
+    ],
+    [
+      "F    ",
+      "T   A",
+      "  F  ",
+      "     ",
+      " T   "
+    ],
+    [
+      "A    ",
+      "    F",
+      "  F  ",
+      "     ",
+      "     "
+    ],
+    [
+      "A    ",
+      "    T",
+      "  F  ",
+      "     ",
+      "     "
+    ],
+    [
+      "T    ",
+      "     ",
+      "  F  ",
+      "     ",
+      "     "
+    ],
+    [
+      "     ",
+      "     ",
+      "  M  ",
+      "     ",
+      "     "
+    ]
+  ],
+  "mapping": {
+    "B": {
+      "type": "modonomicon:block",
+      "block": "spectrum:blackslag"
+    },
+    "E": {
+      "type": "modonomicon:block",
+      "block": "spectrum:blackslag_emerald_ore"
+    },
+    "G": {
+      "type": "modonomicon:block",
+      "block": "spectrum:blackslag_gold_ore"
+    },
+    "0": {
+      "type": "modonomicon:block",
+      "block": "spectrum:blackslag"
+    },
+    "A": {
+      "type": "modonomicon:blockstate",
+      "block": "spectrum:abyssal_vines[life_stage=stalk]"
+    },
+    "F": {
+      "type": "modonomicon:blockstate",
+      "block": "spectrum:abyssal_vines[life_stage=stalk,berries=true]"
+    },
+    "T": {
+      "type": "modonomicon:blockstate",
+      "block": "spectrum:abyssal_vines[life_stage=mature]"
+    },
+    "M": {
+      "type": "modonomicon:blockstate",
+      "block": "spectrum:abyssal_vines[life_stage=mature,berries=true]"
+    }
+  }
+}

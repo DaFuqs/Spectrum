@@ -1,0 +1,36 @@
+{
+  "name": "item.spectrum.effulgent_feather",
+  "icon": "spectrum:effulgent_feather",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:pluck_effulgent_feather"
+  },
+  "category": "spectrum:creating_life",
+  "hide_while_locked": true,
+  "parents": [
+    {
+      "entry": "spectrum:creating_life/kindlings",
+      "line_reversed": true
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 6,
+  "y": 3,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "title": "item.spectrum.effulgent_feather",
+      "item": {
+        "item": "spectrum:effulgent_feather"
+      },
+      "text": "book.spectrum.guidebook.effulgent_feathers.page0.text"
+    },
+    {
+      "type": "spectrum:liquid_crystal_converting",
+      "title": "book.spectrum.guidebook.effulgent_feathers.page1.title",
+      "recipe_id": "spectrum:liquid_crystal_converting/raw_bloodstone",
+      "text": "book.spectrum.guidebook.effulgent_feathers.page1.text"
+    }
+  ]
+}

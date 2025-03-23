@@ -2,9 +2,10 @@ package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.interaction.*;
+import de.dafuqs.spectrum.blocks.idols.FirestarterIdolBlock;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.entity.*;
-import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.progression.*;
@@ -18,6 +19,8 @@ import net.minecraft.entity.player.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.server.network.*;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
@@ -46,7 +49,7 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 	}
 
 	public InkProjectileEntity(World world, LivingEntity owner) {
-		this(owner.getX(), owner.getEyeY() - 0.10000000149011612D, owner.getZ(), world);
+		this(owner.getX(), owner.getEyeY() - 0.1, owner.getZ(), world);
 		this.setOwner(owner);
 		this.setRotation(owner.getYaw(), owner.getPitch());
 	}
@@ -68,8 +71,8 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 	}
 	
 	@Override
-	public DyeColor getDyeColor() {
-		return DyeColor.byId(this.dataTracker.get(COLOR));
+	public InkColor getInkColor() {
+		return InkColor.ofDyeColor(DyeColor.byId(this.dataTracker.get(COLOR)));
 	}
 	
 	public void setColor(InkColor inkColor) {
@@ -121,7 +124,9 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 		
 		Entity entity = entityHitResult.getEntity();
 		
-		ColorHelper.tryColorEntity(null, entity, getDyeColor());
+		if (EntityColorProcessorRegistry.colorEntity(entity, getInkColor().getDyeColor())) {
+			entity.getWorld().playSoundFromEntity(null, entity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
+		}
 		
 		float velocity = (float) this.getVelocity().length();
 		int damage = MathHelper.ceil(MathHelper.clamp((double) velocity * DAMAGE_PER_POTENCY * SPELL_POTENCY, 0.0D, 2.147483647E9D));
@@ -176,7 +181,7 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 		
 		Vec3d vec3d = blockHitResult.getPos().subtract(this.getX(), this.getY(), this.getZ());
 		this.setVelocity(vec3d);
-		Vec3d vec3d2 = vec3d.normalize().multiply(0.05000000074505806D);
+		Vec3d vec3d2 = vec3d.normalize().multiply(0.05);
 		this.setPos(this.getX() - vec3d2.x, this.getY() - vec3d2.y, this.getZ() - vec3d2.z);
 		this.playSound(this.getHitSound(), 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
 		
@@ -196,12 +201,16 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 				if (!coloredBlockState.isAir()) {
 					this.getWorld().setBlockState(blockPos, coloredBlockState);
 				}
+				if(this.getInkColor() == InkColors.ORANGE && this.getWorld().getBlockState(blockPos).getBlock() == Blocks.SNOW)
+				{
+					this.getWorld().setBlockState(blockPos, Blocks.AIR.getDefaultState());
+				}
 			}
-			
+			if(this.getInkColor() == InkColors.ORANGE)
+			{
+				FirestarterIdolBlock.causeFire((ServerWorld) this.getWorld(), blockHitResult.getBlockPos(), blockHitResult.getSide());
+			}
 			affectEntitiesInRange(this.getOwner());
-			
-			// TODO: uncomment this when all 16 ink effects are finished
-			// InkSpellEffect.trigger(InkColor.of(dyeColor), this.getWorld(), blockHitResult.getPos(), SPELL_POTENCY);
 		}
 		
 		this.discard();
@@ -214,12 +223,21 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 			
 			
 			Entity entity = target; //this.getEffectCause();
-			
-			// TODO: this is a dummy effect
-			Vec3d vec3d = this.getVelocity().multiply(1.0D, 0.0D, 1.0D).normalize().multiply((double) 3 * 0.6D);
-			if (vec3d.lengthSquared() > 0.0D) {
-				entity.addVelocity(vec3d.x, 0.1D, vec3d.z);
+
+			if(this.getInkColor() == InkColors.ORANGE)
+			{
+				entity.setOnFireFor(2);
 			}
+			else
+			{
+				// TODO: this is a dummy effect
+				Vec3d vec3d = this.getVelocity().multiply(1.0D, 0.0D, 1.0D).normalize().multiply((double) 3 * 0.6D);
+				if (vec3d.lengthSquared() > 0.0D) {
+					entity.addVelocity(vec3d.x, 0.1D, vec3d.z);
+				}
+			}
+
+
 			
 			affectEntitiesInRange(this.getOwner());
 			
@@ -266,7 +284,9 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 				continue;
 			}
 			
-			ColorHelper.tryColorEntity(null, entity, getDyeColor());
+			if (EntityColorProcessorRegistry.colorEntity(entity, getInkColor().getDyeColor())) {
+				entity.getWorld().playSoundFromEntity(null, entity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			}
 			
 			if (!entity.isImmuneToExplosion()) {
 				double w = Math.sqrt(entity.squaredDistanceTo(vec3d)) / (double) q;
@@ -294,6 +314,19 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 					}
 				}
 			}
+		}
+	}
+	
+	@Override
+	public void spawnImpactParticles() {
+		DyeColor dyeColor = getInkColor().getDyeColor();
+		World world = getWorld();
+		Vec3d targetPos = getPos();
+		Vec3d velocity = getVelocity();
+		
+		world.addParticle(SpectrumParticleTypes.getExplosionParticle(dyeColor), targetPos.x, targetPos.y, targetPos.z, 0, 0, 0);
+		for (int i = 0; i < 10; i++) {
+			world.addParticle(SpectrumParticleTypes.getCraftingParticle(dyeColor), targetPos.x, targetPos.y, targetPos.z, -velocity.x * 3, -velocity.y * 3, -velocity.z * 3);
 		}
 	}
 	

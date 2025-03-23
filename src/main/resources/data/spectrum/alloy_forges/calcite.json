@@ -10,7 +10,7 @@
     "spectrum:notched_polished_calcite",
     "spectrum:calcite_bricks"
   ],
-  "tier": 2,
+	"tier": 1,
   "speed_multiplier": 2.0,
   "fuel_capacity": 48000
 }

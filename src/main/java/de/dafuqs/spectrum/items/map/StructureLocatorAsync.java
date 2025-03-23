@@ -1,31 +1,24 @@
 package de.dafuqs.spectrum.items.map;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.ServerTask;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.structure.StructureStart;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.logging.UncaughtExceptionLogger;
-import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.math.ChunkSectionPos;
-import net.minecraft.world.StructurePresence;
-import net.minecraft.world.WorldAccess;
-import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.chunk.ChunkStatus;
-import net.minecraft.world.gen.StructureAccessor;
-import net.minecraft.world.gen.chunk.placement.ConcentricRingsStructurePlacement;
-import net.minecraft.world.gen.chunk.placement.StructurePlacement;
-import net.minecraft.world.gen.chunk.placement.StructurePlacementCalculator;
-import net.minecraft.world.gen.structure.Structure;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.*;
+import net.minecraft.registry.*;
+import net.minecraft.registry.entry.*;
+import net.minecraft.server.*;
+import net.minecraft.server.world.*;
+import net.minecraft.structure.*;
+import net.minecraft.util.*;
+import net.minecraft.util.logging.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import net.minecraft.world.chunk.*;
+import net.minecraft.world.gen.*;
+import net.minecraft.world.gen.chunk.placement.*;
+import net.minecraft.world.gen.structure.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
-import java.util.concurrent.Semaphore;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.*;
 
 public class StructureLocatorAsync {
 
@@ -149,7 +142,7 @@ public class StructureLocatorAsync {
             StructurePlacementCalculator calculator = world.getChunkManager().getStructurePlacementCalculator();
 
             double minDistance = Double.MAX_VALUE;
-            StructureStart concentricStart = null;
+            ChunkPos concentricStart = null;
 
             for (StructurePlacement placement : calculator.getPlacements(registryEntry)) {
                 if (placement instanceof ConcentricRingsStructurePlacement concentricRingsStructurePlacement) {
@@ -161,7 +154,7 @@ public class StructureLocatorAsync {
                             double distance = dx * dx + dz * dz;
                             if (distance < minDistance) {
                                 minDistance = distance;
-                                concentricStart = locateStructureAtChunk(pos);
+                                concentricStart = pos;
                             }
                         }
                     }
@@ -182,11 +175,11 @@ public class StructureLocatorAsync {
                 }
 
                 server.send(new ServerTask(server.getTicks(), () -> {
-                    StructureStart target = locateStructureAtChunk(new ChunkPos(x, z));
+                    ChunkPos chunkPos = new ChunkPos(x, z);
+                    StructureStart target = locateStructureAtChunk(chunkPos);
                     if (target != null) {
-                        acceptTarget(target);
+                        acceptTarget(chunkPos);
                     }
-
                     semaphore.release();
                 }));
 
@@ -205,8 +198,8 @@ public class StructureLocatorAsync {
             Chunk chunk = world.getChunk(pos.x, pos.z, ChunkStatus.STRUCTURE_STARTS);
             return accessor.getStructureStart(ChunkSectionPos.from(chunk), structure, chunk);
         }
-
-        private void acceptTarget(StructureStart target) {
+        
+        private void acceptTarget(ChunkPos target) {
             synchronized (this) {
                 if (running) {
                     ringHadTargets = true;
@@ -218,7 +211,7 @@ public class StructureLocatorAsync {
     }
 
     public interface Acceptor {
-        void accept(WorldAccess world, StructureStart target);
+        void accept(WorldAccess world, ChunkPos target);
     }
 
 }

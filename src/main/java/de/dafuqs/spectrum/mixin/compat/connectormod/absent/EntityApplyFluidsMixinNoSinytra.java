@@ -11,6 +11,7 @@ import net.minecraft.util.math.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
+import com.llamalad7.mixinextras.injector.wrapoperation.*;
 
 @Mixin(Entity.class)
 public class EntityApplyFluidsMixinNoSinytra {
@@ -19,13 +20,18 @@ public class EntityApplyFluidsMixinNoSinytra {
     // https://github.com/CaffeineMC/lithium-fabric/blob/300f430d7b8618ac3b0862892b36696dcfab5a85/src/main/java/me/jellysquid/mods/lithium/mixin/entity/collisions/fluid/EntityMixin.java#L46
     // we therefore disable that mixin in our fabric.mod.json like documented in
     // https://github.com/CaffeineMC/lithium-fabric/wiki/Disabling-Lithium's-Mixins-using-your-mod's-fabric-mod.json
-    @Redirect(method = "updateMovementInFluid", at = @At(value = "INVOKE", target = "Lnet/minecraft/fluid/FluidState;isIn(Lnet/minecraft/registry/tag/TagKey;)Z"))
-    public boolean spectrum$updateMovementInFluid(FluidState fluidState, TagKey<Fluid> tag) {
-        if (tag == FluidTags.WATER) {
-            return (fluidState.isIn(FluidTags.WATER) || fluidState.isIn(SpectrumFluidTags.SWIMMABLE_FLUID));
-        } else {
-            return fluidState.isIn(tag);
-        }
+    @WrapOperation(method = {"updateMovementInFluid", "updateSwimming"}, at = @At(value = "INVOKE", target = "Lnet/minecraft/fluid/FluidState;isIn(Lnet/minecraft/registry/tag/TagKey;)Z"))
+    public boolean spectrum$updateMovementInFluid(FluidState instance, TagKey<Fluid> tag, Operation<Boolean> original) {
+        if (original.call(instance, tag)) return true;
+        return tag == FluidTags.WATER ? original.call(instance, SpectrumFluidTags.SWIMMABLE_FLUID) : false;
+    }
+
+    // Used to cache the state being submerged in water, which is used for initiating swimming.
+    // Expanded by including Spectrum's swimmable fluids in the check.
+    @WrapOperation(method = "updateSubmergedInWaterState", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;isSubmergedIn(Lnet/minecraft/registry/tag/TagKey;)Z"))
+    public boolean spectrum$updateSubmergedInWaterState(Entity instance, TagKey<Fluid> tag, Operation<Boolean> original) {
+        if (original.call(instance, tag)) return true;
+        return tag == FluidTags.WATER ? original.call(instance, SpectrumFluidTags.SWIMMABLE_FLUID) : false;
     }
 
     @ModifyArg(method = "onSwimmingStart()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;addParticle(Lnet/minecraft/particle/ParticleEffect;DDDDDD)V"), index = 0)

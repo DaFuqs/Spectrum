@@ -31,7 +31,7 @@ public class EnchantmentCanvasItem extends Item {
 	public boolean onStackClicked(ItemStack stack, Slot slot, ClickType clickType, PlayerEntity player) {
 		if (clickType == ClickType.RIGHT) {
 			ItemStack otherStack = slot.getStack();
-			if (!otherStack.isEmpty() && tryExchangeEnchantments(stack, otherStack, player)) {
+			if (otherStack.getCount() == 1 && tryExchangeEnchantments(stack, otherStack, player)) {
 				if (player != null) {
 					playExchangeSound(player);
 				}
@@ -46,7 +46,7 @@ public class EnchantmentCanvasItem extends Item {
 	 */
 	@Override
 	public boolean onClicked(ItemStack stack, ItemStack otherStack, Slot slot, ClickType clickType, PlayerEntity player, StackReference cursorStackReference) {
-		if (clickType == ClickType.RIGHT && !otherStack.isEmpty() && slot.canTakePartial(player)) {
+		if (clickType == ClickType.RIGHT && otherStack.getCount() == 1 && slot.canTakePartial(player)) {
 			if (tryExchangeEnchantments(stack, otherStack, player)) {
 				if (player != null) {
 					playExchangeSound(player);
@@ -83,7 +83,7 @@ public class EnchantmentCanvasItem extends Item {
 		EnchantmentHelper.set(canvasEnchantments, targetStack);
 		
 		if (drop && receiver != null) {
-			if(receiver instanceof PlayerEntity player) {
+			if (receiver instanceof PlayerEntity player) {
 				player.getInventory().offerOrDrop(canvasStack);
 			} else {
 				receiver.dropStack(canvasStack);
@@ -112,6 +112,13 @@ public class EnchantmentCanvasItem extends Item {
 	@Override
 	public boolean hasGlint(ItemStack stack) {
 		return !EnchantedBookItem.getEnchantmentNbt(stack).isEmpty();
+	}
+	
+	public static void unbind(ItemStack stack) {
+		NbtCompound nbt = stack.getOrCreateNbt();
+		nbt.remove("BoundItem");
+		nbt.remove("StoredEnchantments");
+		stack.setNbt(nbt);
 	}
 	
 	private static void bindTo(ItemStack enchantmentExchangerStack, ItemStack targetStack) {

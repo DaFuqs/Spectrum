@@ -1,34 +1,8 @@
 {
   "type": "spectrum:cinderhearth",
-  "ingredient": [
-    {
-      "item": "spectrum:bone_ash_brick_stairs"
-    },
-    {
-      "item": "spectrum:bone_ash_brick_wall"
-    },
-    {
-      "item": "spectrum:bone_ash_bricks"
-    },
-    {
-      "item": "spectrum:bone_ash_tile_stairs"
-    },
-    {
-      "item": "spectrum:bone_ash_tile_wall"
-    },
-    {
-      "item": "spectrum:bone_ash_tiles"
-    },
-    {
-      "item": "spectrum:polished_bone_ash_pillar"
-    },
-    {
-      "item": "spectrum:polished_bone_ash_stairs"
-    },
-    {
-      "item": "spectrum:polished_bone_ash_wall"
-    }
-  ],
+  "ingredient": {
+    "tag": "spectrum:smelts_to_bone_ash"
+  },
   "results": [
     {
       "item": "spectrum:polished_bone_ash",
@@ -37,5 +11,5 @@
   ],
   "experience": 0.0,
   "time": 600,
-  "required_advancement": "spectrum:lategame/break_cracked_dragonbone"
+  "required_advancement": "spectrum:break_cracked_dragonbone"
 }

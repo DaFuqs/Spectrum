@@ -1,0 +1,21 @@
+{
+    "type": "spectrum:spirit_instiller",
+    "group": "head_fusion",
+    "time": 800,
+    "experience": 4.0,
+    "ingredient1": {
+      "item": "spectrum:pig_head"
+    },
+    "ingredient2": {
+      "item": "spectrum:pillager_head"
+    },
+    "center_ingredient": {
+      "item": "spectrum:vegetal",
+      "count": 4
+    },
+    "result": {
+      "item": "minecraft:piglin_head"
+    },
+    "required_advancement": "spectrum:unlocks/head_fusion/basic_recipes"
+  }
+  

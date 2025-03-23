@@ -1,0 +1,38 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "mythicmetals_resources",
+  "time": 400,
+  "tier": "basic",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 4,
+  "white": 0,
+  "black": 0,
+  "experience": 0.5,
+  "pattern": [
+    "AAA",
+    "AHA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "mythicmetals:banglum_block"
+    },
+    "H": {
+      "item": "spectrum:incandescent_amalgam"
+    }
+  },
+  "result": {
+    "item": "mythicmetals:banglum_chunk",
+    "count": 1
+  },
+  "required_advancement": "spectrum:mod_integration/mythicmetals/unlock_banglum",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "mythicmetals"
+      ]
+    }
+  ]
+}

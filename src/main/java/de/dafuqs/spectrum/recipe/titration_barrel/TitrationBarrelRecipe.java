@@ -3,11 +3,14 @@ package de.dafuqs.spectrum.recipe.titration_barrel;
 import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.recipe.*;
+import de.dafuqs.spectrum.blocks.titration_barrel.*;
 import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.food.beverages.properties.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.fabric.api.transfer.v1.fluid.*;
+import net.fabricmc.fabric.api.transfer.v1.storage.base.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
@@ -20,9 +23,8 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements ITitrationBarrelRecipe {
+public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<TitrationBarrelBlockEntity> implements ITitrationBarrelRecipe {
 	
-	public static final ItemStack NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK = Items.POTION.getDefaultStack();
 	public static final List<Integer> FERMENTATION_DURATION_DISPLAY_TIME_MULTIPLIERS = new ArrayList<>() {{
 		add(1);
 		add(10);
@@ -51,7 +53,16 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements I
 	}
 	
 	@Override
-	public boolean matches(Inventory inventory, World world) {
+	public boolean matches(TitrationBarrelBlockEntity inventory, World world) {
+		SingleVariantStorage<FluidVariant> fluidStorage = inventory.getFluidStorage();
+		if (!this.fluid.test(fluidStorage.variant)) {
+			return false;
+		}
+		if (this.fluid != FluidIngredient.EMPTY) {
+			if (fluidStorage.getAmount() != fluidStorage.getCapacity()) {
+				return false;
+			}
+		}
 		return matchIngredientStacksExclusively(inventory, getIngredientStacks());
 	}
 	
@@ -76,8 +87,9 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements I
 	}
 	
 	@Override
-	public ItemStack craft(Inventory inventory, DynamicRegistryManager drm) {
-		return ItemStack.EMPTY;
+	@Deprecated
+	public ItemStack craft(TitrationBarrelBlockEntity inventory, DynamicRegistryManager drm) {
+		return getDefaultTap(1).copy();
 	}
 	
 	public ItemStack getPreviewTap(int timeMultiplier) {
@@ -96,7 +108,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements I
 		return getDefaultTap(1);
 	}
 	
-	// used for display mods like REI to show recipe outputs with a few example fermentation times
+	// used for recipe viewers to show recipe outputs with a few example fermentation times
 	public Collection<ItemStack> getOutputVariations(List<Integer> timeMultipliers) {
 		List<ItemStack> list = new ArrayList<>();
 		for (int timeMultiplier : timeMultipliers) {
@@ -126,10 +138,6 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements I
 	}
 	
 	private ItemStack tapWith(float thickness, long secondsFermented, float downfall) {
-		if (secondsFermented / 60 / 60 < this.minFermentationTimeHours) {
-			return NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK.copy();
-		}
-		
 		ItemStack stack = this.outputItemStack.copy();
 		stack.setCount(1);
 		
@@ -203,7 +211,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements I
 		return SpectrumRecipeTypes.TITRATION_BARREL_RECIPE_SERIALIZER;
 	}
 	
-	// sadly we cannot use text.append() here, since patchouli does not support it
+	// sadly we cannot use text.append() here, since the guidebook does not support it
 	// but this way it might be easier for translations either way
 	public static MutableText getDurationText(int minFermentationTimeHours, FermentationData fermentationData) {
 		MutableText text;

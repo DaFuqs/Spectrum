@@ -4,9 +4,10 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.blocks.boom.*;
+import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.entity.entity.*;
-import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.magic_items.*;
+import de.dafuqs.spectrum.items.magic_items.ampoules.*;
 import de.dafuqs.spectrum.items.tools.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.*;
@@ -17,6 +18,7 @@ import net.minecraft.item.*;
 import net.minecraft.recipe.*;
 import net.minecraft.registry.tag.*;
 import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
@@ -70,7 +72,7 @@ public class SpectrumItemProjectileBehaviors {
 		ItemProjectileBehavior.register(ItemProjectileBehavior.damaging(6F, true), Items.END_ROD);
 		ItemProjectileBehavior.register(ItemProjectileBehavior.damaging(6F, true), Items.BLAZE_ROD);
 		ItemProjectileBehavior.register(ItemProjectileBehavior.damaging(8F, true), SpectrumItems.STAR_FRAGMENT);
-
+		
 		ItemProjectileBehavior.register(new ItemProjectileBehavior.Damaging() {
 			
 			@Override
@@ -157,7 +159,7 @@ public class SpectrumItemProjectileBehaviors {
 				return accelerator;
 			}
 		}, SpectrumItems.OMNI_ACCELERATOR);
-
+		
 		ItemProjectileBehavior.register(new ItemProjectileBehavior.Default() {
 			@Override
 			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {
@@ -170,6 +172,56 @@ public class SpectrumItemProjectileBehaviors {
 				return stack;
 			}
 		}, Items.CAKE);
+		
+		ItemProjectileBehavior.register(new ItemProjectileBehavior.Default() {
+			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {
+				if (MemoryBlockEntity.manifest((ServerWorld) projectile.getWorld(), hitResult.getEntity().getBlockPos(), stack, owner == null ? null : owner.getUuid())) {
+					stack.decrement(1);
+				}
+				return stack;
+			}
+			
+			@Override
+			public ItemStack onBlockHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, BlockHitResult hitResult) {
+				if (MemoryBlockEntity.manifest((ServerWorld) projectile.getWorld(), hitResult.getBlockPos().offset(hitResult.getSide()), stack, owner == null ? null : owner.getUuid())) {
+					stack.decrement(1);
+				}
+				return stack;
+			}
+			
+		}, SpectrumBlocks.MEMORY.asItem());
+		
+		ItemProjectileBehavior.register(new ItemProjectileBehavior.Default() {
+			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {
+				PipeBombItem.arm(stack, projectile.getWorld(), projectile.getPos(), owner);
+				return stack;
+			}
+			
+			@Override
+			public ItemStack onBlockHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, BlockHitResult hitResult) {
+				PipeBombItem.arm(stack, projectile.getWorld(), projectile.getPos(), owner);
+				return stack;
+			}
+			
+		}, SpectrumItems.PIPE_BOMB);
+		
+		ItemProjectileBehavior.register(new ItemProjectileBehavior.Default() {
+			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {
+				if (projectile.getOwner() instanceof LivingEntity livingOwner && hitResult.getEntity() instanceof LivingEntity livingTarget && ((BaseGlassAmpouleItem) stack.getItem()).trigger(projectile.getWorld(), stack, livingOwner, livingTarget, hitResult.getPos())) {
+					stack.decrement(1);
+				}
+				return stack;
+			}
+			
+			@Override
+			public ItemStack onBlockHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, BlockHitResult hitResult) {
+				if (projectile.getOwner() instanceof LivingEntity livingOwner && ((BaseGlassAmpouleItem) stack.getItem()).trigger(projectile.getWorld(), stack, livingOwner, null, hitResult.getPos())) {
+					stack.decrement(1);
+				}
+				return stack;
+			}
+			
+		}, SpectrumItems.AZURITE_GLASS_AMPOULE, SpectrumItems.MALACHITE_GLASS_AMPOULE, SpectrumItems.BLOODSTONE_GLASS_AMPOULE);
 	}
 	
 	protected static void registerPvP() {
@@ -215,7 +267,7 @@ public class SpectrumItemProjectileBehaviors {
 			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {
 				Recipe<?> recipe = CraftingTabletItem.getStoredRecipe(projectile.getWorld(), stack);
 				if (recipe instanceof CraftingRecipe craftingRecipe && hitResult.getEntity() instanceof ServerPlayerEntity target) {
-					CraftingTabletItem.tryCraftRecipe(target, craftingRecipe);
+					CraftingTabletItem.tryCraftRecipe(target, craftingRecipe, projectile.getWorld());
 				}
 				return stack;
 			}

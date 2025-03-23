@@ -1,8 +1,7 @@
 {
-  "parent": "spectrum:templates/shimmerstone_light",
+  "parent": "spectrum:templates/base_flat_light",
   "textures": {
-    "outer": "minecraft:block/polished_deepslate",
-    "inner": "spectrum:block/shimmerstone_light",
-    "particle": "minecraft:block/polished_deepslate"
+    "outer": "spectrum:block/deepslate_flat_light",
+    "inner": "spectrum:block/shimmerstone_light"
   }
 }

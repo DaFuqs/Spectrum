@@ -20,7 +20,7 @@ public class CinderhearthDisplay extends GatedSpectrumDisplay {
 	protected final List<Pair<ItemStack, Float>> outputsWithChance;
 	
 	public CinderhearthDisplay(@NotNull CinderhearthRecipe recipe) {
-		super(recipe, Collections.singletonList(EntryIngredients.ofIngredient(recipe.getIngredients().get(0))), List.of(EntryIngredients.ofItemStacks(recipe.getPossibleOutputs())));
+		super(recipe, REIHelper.toEntryIngredients(recipe.getIngredientStacks()), List.of(EntryIngredients.ofItemStacks(recipe.getPossibleOutputs())));
 		this.outputsWithChance = recipe.getOutputsWithChance(BasicDisplay.registryAccess());
 		this.experience = recipe.getExperience();
 		this.craftingTime = recipe.getCraftingTime();

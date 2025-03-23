@@ -1,0 +1,7 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "minecraft:lapis_lazuli",
+  "modifiers": {
+    "flat_yield_bonus": 0.5
+  }
+}

@@ -1,8 +1,10 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
+import de.dafuqs.spectrum.blocks.mob_head.*;
 import de.dafuqs.spectrum.blocks.shooting_star.*;
 import de.dafuqs.spectrum.entity.entity.*;
+import de.dafuqs.spectrum.items.magic_items.ampoules.*;
 import de.dafuqs.spectrum.items.tools.*;
 import net.minecraft.block.*;
 import net.minecraft.block.dispenser.*;
@@ -54,7 +56,7 @@ public class SpectrumDispenserBehaviors {
 		
 		// Equipping Mob Heads
 		DispenserBehavior armorEquipBehavior = SpectrumBlocks.ENDER_DROPPER.getDefaultBehaviorForItem(Items.PLAYER_HEAD.getDefaultStack());
-		for (Block skullBlock : SpectrumBlocks.MOB_HEADS.values()) {
+		for (Block skullBlock : SpectrumSkullBlock.MOB_HEADS.values()) {
 			DispenserBlock.registerBehavior(skullBlock, armorEquipBehavior);
 		}
 		
@@ -66,6 +68,19 @@ public class SpectrumDispenserBehaviors {
 		DispenserBlock.registerBehavior(SpectrumItems.BOTTLE_OF_RUIN, blockPlacementDispenserBehavior);
 		DispenserBlock.registerBehavior(SpectrumItems.BOTTLE_OF_FORFEITURE, blockPlacementDispenserBehavior);
 		DispenserBlock.registerBehavior(SpectrumItems.BOTTLE_OF_DECAY_AWAY, blockPlacementDispenserBehavior);
+		
+		DispenserBlock.registerBehavior(SpectrumItems.PRIMORDIAL_LIGHTER, PrimordialLighterItem.DISPENSER_BEHAVIOR);
+		
+		// Glass Ampoules
+		DispenserBehavior ampouleBehavior = (pointer, stack) -> {
+			if (((BaseGlassAmpouleItem) stack.getItem()).trigger(pointer.getWorld(), stack, null, null, pointer.getPos().toCenterPos())) {
+				stack.decrement(1);
+			}
+			return stack;
+		};
+		DispenserBlock.registerBehavior(SpectrumItems.AZURITE_GLASS_AMPOULE, ampouleBehavior);
+		DispenserBlock.registerBehavior(SpectrumItems.MALACHITE_GLASS_AMPOULE, ampouleBehavior);
+		DispenserBlock.registerBehavior(SpectrumItems.BLOODSTONE_GLASS_AMPOULE, ampouleBehavior);
 	}
 	
 }

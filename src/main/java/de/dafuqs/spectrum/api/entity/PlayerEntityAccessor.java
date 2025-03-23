@@ -7,5 +7,6 @@ public interface PlayerEntityAccessor {
 	void setSpectrumBobber(SpectrumFishingBobberEntity bobber);
 	
 	SpectrumFishingBobberEntity getSpectrumBobber();
-	
+
+	void setSleepTimer(int ticks);
 }

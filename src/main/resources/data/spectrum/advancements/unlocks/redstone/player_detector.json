@@ -6,7 +6,9 @@
     },
     "has_quartz": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_vanilla/collect_quartz" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_vanilla/quartz"
+      }
     },
     "collected_corresponding_shard": {
       "trigger":"revelationary:advancement_gotten",

@@ -50,7 +50,7 @@ public class FeedingIdolBlock extends IdolBlock {
 						InWorldInteractionHelper.decrementAndSpawnRemainder(itemEntity, 1);
 						
 						animalEntity.setLoveTicks(LOVE_TICKS);
-						world.sendEntityStatus(animalEntity, (byte) 18);
+						world.sendEntityStatus(animalEntity, EntityStatuses.ADD_BREEDING_PARTICLES);
 					}
 				}
 			}

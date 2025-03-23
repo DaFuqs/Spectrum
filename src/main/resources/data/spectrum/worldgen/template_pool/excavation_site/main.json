@@ -1,5 +1,4 @@
 {
-  "name": "spectrum:excavation_site",
   "fallback": "minecraft:empty",
   "elements": [
     {

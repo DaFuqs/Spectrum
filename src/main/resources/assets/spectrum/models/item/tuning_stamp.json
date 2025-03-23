@@ -1,0 +1,14 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "spectrum:item/tuning_stamp"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "stamped": 1.0
+      },
+      "model": "spectrum:item/tuning_stamp_linked"
+    }
+  ]
+}

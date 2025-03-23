@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.recipe.titration_barrel.dynamic;
 
 import de.dafuqs.matchbooks.recipe.*;
-import de.dafuqs.matchbooks.recipe.matchbook.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.recipe.*;
+import de.dafuqs.spectrum.blocks.titration_barrel.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
@@ -27,8 +27,8 @@ public class AquaRegiaRecipe extends SweetenableTitrationBarrelRecipe {
 	public static final ItemStack OUTPUT_STACK = getDefaultStackWithCount(SpectrumItems.AQUA_REGIA, 4);
 	public static final Item TAPPING_ITEM = Items.GLASS_BOTTLE;
 	public static final List<IngredientStack> INGREDIENT_STACKS = new ArrayList<>() {{
-		add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.JADEITE_LOTUS_BULB)));
-		add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.JADEITE_PETALS), Matchbook.empty(), null, 3));
+		add(IngredientStack.ofItems(1, SpectrumBlocks.JADEITE_LOTUS_BULB));
+		add(IngredientStack.ofItems(3, SpectrumItems.JADEITE_PETALS));
 	}};
 
 	public AquaRegiaRecipe(Identifier identifier) {
@@ -37,7 +37,7 @@ public class AquaRegiaRecipe extends SweetenableTitrationBarrelRecipe {
 	
 	@Override
 	public ItemStack tap(Inventory inventory, long secondsFermented, float downfall) {
-		int bulbCount = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.JADEITE_LOTUS_BULB);
+		int bulbCount = InventoryHelper.getItemCountInInventory(inventory, SpectrumBlocks.JADEITE_LOTUS_BULB.asItem());
 		int petalCount = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.JADEITE_PETALS);
 		boolean nectar = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.MOONSTRUCK_NECTAR) > 0;
 		
@@ -56,7 +56,7 @@ public class AquaRegiaRecipe extends SweetenableTitrationBarrelRecipe {
 			effectDuration *= 1.5;
 		}
 		if (alcPercent >= 35) {
-			effects.add(new StatusEffectInstance(SpectrumStatusEffects.SWIFTNESS, effectDuration, (int) (alcPercent / 15)));
+			effects.add(new StatusEffectInstance(SpectrumStatusEffects.EFFECT_PROLONGING, effectDuration, (int) (alcPercent / 12)));
 			effectDuration *= 2;
 		}
 		if (alcPercent >= 30) {
@@ -97,7 +97,7 @@ public class AquaRegiaRecipe extends SweetenableTitrationBarrelRecipe {
 	}
 	
 	@Override
-	public boolean matches(Inventory inventory, World world) {
+	public boolean matches(TitrationBarrelBlockEntity inventory, World world) {
 		boolean bulbsFound = false;
 		
 		for (int i = 0; i < inventory.size(); i++) {
@@ -105,7 +105,7 @@ public class AquaRegiaRecipe extends SweetenableTitrationBarrelRecipe {
 			if (stack.isEmpty()) {
 				continue;
 			}
-			if (stack.isOf(SpectrumItems.JADEITE_LOTUS_BULB)) {
+			if (stack.isOf(SpectrumBlocks.JADEITE_LOTUS_BULB.asItem())) {
 				bulbsFound = true;
 			} else if (!stack.isOf(SpectrumItems.JADEITE_PETALS) && !stack.isOf(SpectrumItems.MOONSTRUCK_NECTAR)) {
 				return false;

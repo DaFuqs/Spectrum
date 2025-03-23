@@ -1,0 +1,29 @@
+{
+  "type": "spectrum:potion_workshop_brewing",
+  "ingredient1": {
+    "item": "minecraft:nether_wart"
+  },
+  "ingredient2": {
+    "item": "neepmeat:enlightened_brain"
+  },
+  "ingredient3": {
+    "item": "spectrum:ash_flakes"
+  },
+  "effect": "neepmeat:ash_preparation",
+  "base_duration_ticks": 3600,
+  "potency_modifier": 0.0,
+  "applicable_to_potions": true,
+  "applicable_to_tipped_arrows": true,
+  "applicable_to_potion_fillables": true,
+  "ink_color": "spectrum:light_gray",
+  "ink_cost": 4,
+  "required_advancement": "spectrum:hidden/collect_ash",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "neepmeat"
+      ]
+    }
+  ]
+}

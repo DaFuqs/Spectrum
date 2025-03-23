@@ -6,10 +6,14 @@ import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.fusion_shrine.*;
 import de.dafuqs.spectrum.blocks.particle_spawner.*;
+import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
+import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.blocks.present.*;
 import de.dafuqs.spectrum.blocks.shooting_star.*;
+import de.dafuqs.spectrum.cca.*;
+import de.dafuqs.spectrum.deeper_down.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.helpers.*;
@@ -24,10 +28,12 @@ import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
-import net.minecraft.client.network.*;
 import net.minecraft.client.render.*;
+import net.minecraft.client.world.*;
+import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.item.map.*;
+import net.minecraft.nbt.*;
 import net.minecraft.network.*;
 import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.particle.*;
@@ -105,6 +111,41 @@ public class SpectrumS2CPacketReceiver {
 				client.execute(() -> {
 					// Everything in this lambda is running on the render thread
 					ParticleHelper.playParticleWithPatternAndVelocityClient(client.world, position, particleEffect, pattern, velocity);
+				});
+			}
+		});
+
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_PARTICLE_AROUND_BLOCK_SIDES, (client, handler, buf, responseSender) -> {
+			int quantity = buf.readInt();
+			Vec3d position = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
+			Vec3d velocity = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
+			ParticleType<?> particleType = Registries.PARTICLE_TYPE.get(buf.readIdentifier());
+			var sideCount = buf.readInt();
+			var sides = new Direction[sideCount];
+			for (int i = 0; i < sideCount; i++) {
+				sides[i] = Direction.values()[buf.readInt()];
+			}
+			
+			if (particleType instanceof ParticleEffect particleEffect && client.world != null) {
+				client.execute(() -> {
+					ParticleHelper.playParticleAroundBlockSides(client.world, particleEffect, position, sides, quantity, velocity);
+				});
+			}
+		});
+
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_PARTICLE_AROUND_AREA, (client, handler, buf, responseSender) -> {
+			int quantity = buf.readInt();
+			double bonusYOffset = buf.readDouble();
+			boolean triangular = buf.readBoolean();
+			boolean solidSpawns = buf.readBoolean();
+			Vec3d scale = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
+			Vec3d position = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
+			Vec3d velocity = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
+			ParticleType<?> particleType = Registries.PARTICLE_TYPE.get(buf.readIdentifier());
+			
+			if (particleType instanceof ParticleEffect particleEffect && client.world != null) {
+				client.execute(() -> {
+					ParticleHelper.playTriangulatedParticle(client.world, particleEffect, quantity, triangular, scale, bonusYOffset, solidSpawns, position, velocity);
 				});
 			}
 		});
@@ -231,7 +272,7 @@ public class SpectrumS2CPacketReceiver {
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.CHANGE_PARTICLE_SPAWNER_SETTINGS_CLIENT_PACKET_ID, (client, handler, buf, responseSender) -> {
 			BlockPos pos = buf.readBlockPos();
 			ParticleSpawnerConfiguration configuration = ParticleSpawnerConfiguration.fromBuf(buf);
-
+			
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
 				if (client.world.getBlockEntity(pos) instanceof ParticleSpawnerBlockEntity particleSpawnerBlockEntity) {
@@ -305,7 +346,10 @@ public class SpectrumS2CPacketReceiver {
 			int colorEntries = buf.readInt();
 			Map<InkColor, Long> colors = new HashMap<>();
 			for (int i = 0; i < colorEntries; i++) {
-				colors.put(InkColor.of(buf.readString()), buf.readLong());
+				Optional<InkColor> optionalInkColor = InkColor.ofId(buf.readIdentifier());
+				if (optionalInkColor.isPresent()) {
+					colors.put(optionalInkColor.get(), buf.readLong());
+				}
 			}
 			
 			client.execute(() -> {
@@ -322,28 +366,15 @@ public class SpectrumS2CPacketReceiver {
 			if (screenHandler instanceof InkColorSelectedPacketReceiver inkColorSelectedPacketReceiver) {
 				boolean isSelection = buf.readBoolean();
 				
-				InkColor color;
+				InkColor color = null;
 				if (isSelection) {
-					String inkColorString = buf.readString();
-					color = InkColor.of(inkColorString);
-				} else {
-					color = null;
+					Optional<InkColor> optionalInkColor = InkColor.ofId(buf.readIdentifier());
+					if (optionalInkColor.isPresent()) {
+						color = optionalInkColor.get();
+					}
 				}
 				inkColorSelectedPacketReceiver.onInkColorSelectedPacket(color);
 			}
-		});
-		
-		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_INK_EFFECT_PARTICLES, (client, handler, buf, responseSender) -> {
-			InkColor inkColor = InkColor.of(buf.readString());
-			double posX = buf.readDouble();
-			double posY = buf.readDouble();
-			double posZ = buf.readDouble();
-			float potency = buf.readFloat();
-			
-			client.execute(() -> {
-				// Everything in this lambda is running on the render thread
-				InkSpellEffects.getEffect(inkColor).playEffects(client.world, new Vec3d(posX, posY, posZ), potency);
-			});
 		});
 		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_PRESENT_OPENING_PARTICLES, (client, handler, buf, responseSender) -> {
@@ -371,7 +402,7 @@ public class SpectrumS2CPacketReceiver {
 		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_DIVINITY_APPLIED_EFFECTS, (client, handler, buf, responseSender) -> client.execute(() -> {
 			// Everything in this lambda is running on the render thread
-			ClientPlayerEntity player = client.player;
+			PlayerEntity player = client.player;
 			client.particleManager.addEmitter(player, SpectrumParticleTypes.DIVINITY, 30);
 			client.gameRenderer.showFloatingItem(SpectrumItems.DIVINATION_HEART.getDefaultStack());
 			client.world.playSound(null, player.getBlockPos(), SpectrumSoundEvents.FAILING_PLACED, SoundCategory.PLAYERS, 1.0F, 1.0F);
@@ -381,7 +412,7 @@ public class SpectrumS2CPacketReceiver {
 		}));
 		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.MOONSTONE_BLAST, (client, handler, buf, responseSender) -> {
-			ClientPlayerEntity player = client.player;
+			PlayerEntity player = client.player;
 			
 			double x = buf.readDouble();
 			double y = buf.readDouble();
@@ -426,6 +457,118 @@ public class SpectrumS2CPacketReceiver {
 				}
 			});
 		});
-	}
+
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.SYNC_MENTAL_PRESENCE, ((client, handler, buf, responseSender) -> {
+			double value = buf.readDouble();
+
+			client.execute(() -> {
+				if (client.player != null) {
+					MiscPlayerDataComponent.get(client.player).setLastSyncedSleepPotency(value);
+					DarknessEffects.markForEffectUpdate();
+				}
+			});
+		}));
+
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.COMPACTING_CHEST_STATUS_UPDATE, (((client, handler, buf, responseSender) -> {
+			var pos = buf.readBlockPos();
+			var hasToCraft = buf.readBoolean();
+
+			client.execute(() -> {
+				var entity = client.world.getBlockEntity(pos, SpectrumBlockEntities.COMPACTING_CHEST);
+
+				if (entity.isEmpty())
+					return;
+
+				entity.get().shouldCraft(hasToCraft);
+			});
+		})));
+
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.RESTOCKING_CHEST_STATUS_UPDATE, (((client, handler, buf, responseSender) -> {
+			var pos = buf.readBlockPos();
+			var isFull = buf.readBoolean();
+			var hasValidRecipes = buf.readBoolean();
+			var outputCount = buf.readInt();
+			final var cachedOutputs = new ArrayList<ItemStack>(4);
+			for (int i = 0; i < outputCount; i++) {
+				cachedOutputs.add(buf.readItemStack());
+			}
+
+			client.execute(() -> {
+				var entity = client.world.getBlockEntity(pos, SpectrumBlockEntities.RESTOCKING_CHEST);
+
+				if (entity.isEmpty())
+					return;
+
+				entity.get().updateState(isFull, hasValidRecipes, cachedOutputs);
+			});
+		})));
+
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.BLACK_HOLE_CHEST_STATUS_UPDATE, (((client, handler, buf, responseSender) -> {
+			var pos = buf.readBlockPos();
+			var isFull = buf.readBoolean();
+			var canStoreXP = buf.readBoolean();
+			var xp = buf.readLong();
+			var max = buf.readLong();
+
+			client.execute(() -> {
+				var entity = client.world.getBlockEntity(pos, SpectrumBlockEntities.BLACK_HOLE_CHEST);
+
+				entity.ifPresent(chest -> {
+					chest.setFull(isFull);
+					chest.setHasXPStorage(canStoreXP);
+					chest.setXPData(xp, max);
+				});
+			});
+		})));
+
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PASTEL_NODE_STATUS_UPDATE, ((((client, handler, buf, responseSender) -> {
+			var trigger = buf.readBoolean();
+			var nodeCount = buf.readInt();
+			var positions = new ArrayList<BlockPos>(nodeCount);
+			var times = new ArrayList<Integer>(nodeCount);
+
+			for (int n = 0; n < nodeCount; n++) {
+				positions.add(buf.readBlockPos());
+				times.add(buf.readInt());
+			}
+
+			client.execute(() -> {
+				for (int index = 0; index < positions.size(); index++) {
+					var entity = client.world.getBlockEntity(positions.get(index));
+
+					if (!(entity instanceof PastelNodeBlockEntity node))
+						continue;
+
+					node.setSpinTicks(times.get(index));
+
+					if (trigger && node.isTriggerTransfer())
+						node.markTriggered();
+				}
+			});
+		}))));
+		
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PASTEL_NETWORK_EDGE_SYNC, (client, handler, buf, responseSender) -> {
+			UUID uuid = buf.readUuid();
+			NbtCompound nbt = buf.readNbt();
+			
+			client.execute(() -> {
+				Optional<? extends PastelNetwork<ClientWorld>> network = Pastel.getClientInstance().getNetwork(uuid);
+				if (network.isPresent()) {
+					network.get().setGraph(PastelNetwork.graphFromNbt(nbt));
+				} else {
+					PastelNetwork<ClientWorld> pn = Pastel.getClientInstance().createNetwork(client.world, uuid);
+					pn.setGraph(PastelNetwork.graphFromNbt(nbt));
+				}
+			});
+		});
+		
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PASTEL_NETWORK_REMOVED, (client, handler, buf, responseSender) -> {
+			UUID uuid = buf.readUuid();
+			
+			client.execute(() -> {
+				Pastel.getClientInstance().removeNetwork(uuid);
+			});
+		});
+    }
 	
 }

@@ -4,70 +4,80 @@
     {
       "rolls": 1,
       "bonus_rolls": 0,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "weight": 10,
-          "name": "minecraft:leather"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 10,
-          "name": "minecraft:bone"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 5,
-          "name": "minecraft:string"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 2,
-          "name": "minecraft:fishing_rod",
-          "functions": [
-            {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "type": "minecraft:uniform",
-                "min": 0,
-                "max": 0.9
-              },
-              "add": false
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 10,
-          "name": "minecraft:bowl"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 5,
-          "name": "minecraft:stick"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:ink_sac",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 10,
-              "add": false
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 10,
-          "name": "minecraft:tripwire_hook"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 10,
-          "name": "minecraft:rotten_flesh"
-        }
-      ]
+	  "entries": [
+		{
+		  "type": "minecraft:item",
+		  "weight": 10,
+		  "name": "minecraft:rotten_flesh",
+		  "functions": [
+			{
+			  "function": "minecraft:set_count",
+			  "count": 6,
+			  "add": false
+			}
+		  ]
+		},
+		{
+		  "type": "minecraft:item",
+		  "weight": 10,
+		  "name": "minecraft:bone_meal",
+		  "functions": [
+			{
+			  "function": "minecraft:set_count",
+			  "count": 12,
+			  "add": false
+			}
+		  ]
+		},
+		{
+		  "type": "minecraft:item",
+		  "weight": 5,
+		  "name": "minecraft:feather"
+		},
+		{
+		  "type": "minecraft:item",
+		  "weight": 5,
+		  "name": "minecraft:rabbit_hide"
+		},
+		{
+		  "type": "minecraft:item",
+		  "weight": 2,
+		  "name": "minecraft:fishing_rod",
+		  "functions": [
+			{
+			  "function": "minecraft:set_damage",
+			  "damage": {
+				"type": "minecraft:uniform",
+				"min": 0,
+				"max": 0.9
+			  },
+			  "add": false
+			}
+		  ]
+		},
+		{
+		  "type": "minecraft:item",
+		  "weight": 5,
+		  "name": "minecraft:stick"
+		},
+		{
+		  "type": "minecraft:item",
+		  "weight": 10,
+		  "name": "spectrum:ash_flakes",
+		  "functions": [
+			{
+			  "function": "minecraft:set_count",
+			  "count": 10,
+			  "add": false
+			}
+		  ]
+		},
+		{
+		  "type": "minecraft:item",
+		  "weight": 10,
+		  "name": "minecraft:tripwire_hook"
+		}
+	  ]
     }
   ]
 }

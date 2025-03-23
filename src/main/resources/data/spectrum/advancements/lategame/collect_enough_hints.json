@@ -3,6 +3,7 @@
     "icon": {
       "item": "spectrum:pedestal_moonstone"
     },
+    "frame": "challenge",
     "title": {
       "translate": "advancements.spectrum.collect_enough_hints.title"
     },
@@ -21,12 +22,12 @@
         "advancement_identifiers": [
           "spectrum:lategame/visit_all_deeper_down_biomes",
           "spectrum:lategame/revive_black_sludge_plant",
-          "spectrum:lategame/break_cracked_dragonbone",
+          "spectrum:break_cracked_dragonbone",
           "spectrum:lategame/find_excavation_site",
           "spectrum:lategame/find_forgotten_city",
           "spectrum:lategame/reached_dd_floor",
           "spectrum:lategame/strike_up_hummingstone_hymn",
-          "spectrum:lategame/collect_moonstone_shard"
+          "spectrum:lategame/collect_moonstone"
         ]
       }
     },

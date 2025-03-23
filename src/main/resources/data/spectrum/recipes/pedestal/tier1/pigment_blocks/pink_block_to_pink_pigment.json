@@ -17,6 +17,6 @@
     "item": "spectrum:pink_pigment",
     "count": 9
   },
-  "required_advancement": "spectrum:hidden/collect_pigment/collect_pink_pigment",
+  "required_advancement": "spectrum:hidden/collect_pigment/pink",
   "disable_yield_upgrades": true
 }

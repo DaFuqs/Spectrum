@@ -2,82 +2,77 @@
   "pools": [
     {
       "rolls": 1,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:nether_sprouts",
-          "weight": 1
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:bone",
-          "weight": 1
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:netherrack",
-          "weight": 1
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:nether_brick",
-          "weight": 1
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 1,
-          "name": "minecraft:nether_brick",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 3,
-                "max": 8
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:nether_wart",
-          "weight": 1
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:gravel",
-          "weight": 1
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:crimson_fungus",
-          "weight": 1
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:crimson_roots",
-          "weight": 1
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:warped_fungus",
-          "weight": 1
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:warped_roots",
-          "weight": 1
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:twisting_vines",
-          "weight": 1
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:weeping_vines",
-          "weight": 1
-        }
-      ]
+	  "entries": [
+		{
+		  "type": "minecraft:item",
+		  "name": "minecraft:nether_sprouts",
+		  "weight": 1
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "minecraft:coal",
+		  "weight": 1
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "minecraft:netherrack",
+		  "weight": 1
+		},
+		{
+		  "type": "minecraft:item",
+		  "weight": 1,
+		  "name": "minecraft:nether_brick",
+		  "functions": [
+			{
+			  "function": "minecraft:set_count",
+			  "count": {
+				"min": 3,
+				"max": 8
+			  }
+			}
+		  ]
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "minecraft:gravel",
+		  "weight": 1
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "minecraft:magma_cream",
+		  "weight": 1
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "minecraft:crimson_fungus",
+		  "weight": 1
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "minecraft:crimson_roots",
+		  "weight": 1
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "minecraft:warped_fungus",
+		  "weight": 1
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "minecraft:warped_roots",
+		  "weight": 1
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "minecraft:twisting_vines",
+		  "weight": 1
+		},
+		{
+		  "type": "minecraft:item",
+		  "name": "minecraft:weeping_vines",
+		  "weight": 1
+		}
+	  ]
     }
   ]
 }

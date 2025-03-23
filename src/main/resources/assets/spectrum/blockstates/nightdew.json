@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "life_stage=stalk": {
+      "model": "spectrum:block/nightdew"
+    },
+    "life_stage=growing": {
+      "model": "spectrum:block/nightdew_tip"
+    },
+    "life_stage=mature": {
+      "model": "spectrum:block/nightdew_tip"
+    }
+  }
+}

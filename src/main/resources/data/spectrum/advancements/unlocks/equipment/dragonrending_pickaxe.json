@@ -6,16 +6,16 @@
         "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure"
       }
     },
-    "broken_cracked_dragonbone": {
+    "collected_dragonbone": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/break_cracked_dragonbone"
+        "advancement_identifier": "spectrum:break_cracked_dragonbone"
       }
     },
     "plucked_effulgent_feather": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/pluck_effulgent_feather"
+        "advancement_identifier": "spectrum:pluck_effulgent_feather"
       }
     }
   }

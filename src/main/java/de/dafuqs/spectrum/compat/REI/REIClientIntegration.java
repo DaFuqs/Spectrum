@@ -66,8 +66,7 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.add(new CinderhearthCategory());
 		registry.add(new TitrationBarrelCategory());
 		registry.add(new PrimordialFireBurningCategory());
-		
-		
+
 		EntryIngredient pedestals = EntryIngredient.of(
 				EntryStacks.of(SpectrumBlocks.PEDESTAL_BASIC_TOPAZ),
 				EntryStacks.of(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST),
@@ -82,6 +81,7 @@ public class REIClientIntegration implements REIClientPlugin {
 		}
 		
 		registry.addWorkstations(BuiltinPlugin.CRAFTING, EntryStacks.of(SpectrumItems.CRAFTING_TABLET));
+		registry.addWorkstations(BuiltinPlugin.CRAFTING, EntryStacks.of(SpectrumBlocks.RESTOCKING_CHEST));
 		registry.addWorkstations(BuiltinPlugin.BLASTING, EntryStacks.of(SpectrumBlocks.CINDERHEARTH));
 		
 		registry.addWorkstations(SpectrumPlugins.ANVIL_CRUSHING, EntryStacks.of(Blocks.ANVIL), EntryStacks.of(SpectrumBlocks.BEDROCK_ANVIL), EntryStacks.of(SpectrumBlocks.STRATINE_FRAGMENT_BLOCK), EntryStacks.of(SpectrumBlocks.PALTAERIA_FRAGMENT_BLOCK));
@@ -103,7 +103,7 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.addWorkstations(SpectrumPlugins.POTION_WORKSHOP_REACTING, EntryStacks.of(SpectrumBlocks.POTION_WORKSHOP));
 		registry.addWorkstations(SpectrumPlugins.CINDERHEARTH, EntryStacks.of(SpectrumBlocks.CINDERHEARTH));
 		registry.addWorkstations(SpectrumPlugins.TITRATION_BARREL, EntryStacks.of(SpectrumBlocks.TITRATION_BARREL));
-		registry.addWorkstations(SpectrumPlugins.PRIMORDIAL_FIRE_BURNING, EntryStacks.of(SpectrumItems.DOOMBLOOM_SEED), EntryStacks.of(SpectrumBlocks.INCANDESCENT_AMALGAM), EntryStacks.of(SpectrumItems.PIPE_BOMB));
+		registry.addWorkstations(SpectrumPlugins.PRIMORDIAL_FIRE_BURNING, EntryStacks.of(SpectrumItems.DOOMBLOOM_SEED), EntryStacks.of(SpectrumItems.PRIMORDIAL_LIGHTER), EntryStacks.of(SpectrumBlocks.INCANDESCENT_AMALGAM), EntryStacks.of(SpectrumItems.PIPE_BOMB));
 	}
 	
 	@Override
@@ -137,10 +137,7 @@ public class REIClientIntegration implements REIClientPlugin {
 			// do not list recipes in REI at all, until they are unlocked
 			// secret recipes are never shown
 			if (display instanceof GatedRecipeDisplay gatedRecipeDisplay) {
-				if (gatedRecipeDisplay.isSecret()) {
-					return EventResult.interruptFalse();
-				}
-				if (!SpectrumCommon.CONFIG.REIListsRecipesAsNotUnlocked && !gatedRecipeDisplay.isUnlocked()) {
+				if (!gatedRecipeDisplay.isUnlocked() && (SpectrumCommon.CONFIG.REIListsRecipesAsNotUnlocked || gatedRecipeDisplay.isSecret())) {
 					return EventResult.interruptFalse();
 				}
 			}

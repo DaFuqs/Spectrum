@@ -2,7 +2,8 @@
   "type": "spectrum:potion_workshop_reacting",
   "item": "spectrum:stardust",
   "modifiers": {
-    "chance_to_add_last_effect": 0.75
+    "last_effect_duration_modifier": 1.5,
+    "last_effect_potency_modifier": 1.5
   },
   "required_advancement": "spectrum:hidden/collect_stardust"
 }

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "spectrum:block/basal_marble_slab"
+    },
+    "type=double": {
+      "model": "spectrum:block/basal_marble"
+    },
+    "type=top": {
+      "model": "spectrum:block/basal_marble_slab_top"
+    }
+  }
+}

@@ -10,11 +10,6 @@
       "item": "spectrum:citrine_powder",
       "count": 2,
       "chance": 1.0
-    },
-    {
-      "item": "spectrum:citrine_powder",
-      "count": 1,
-      "chance": 0.5
     }
   ],
   "processingTime": 450,

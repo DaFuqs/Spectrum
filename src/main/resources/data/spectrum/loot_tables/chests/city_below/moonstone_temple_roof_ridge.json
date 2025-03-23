@@ -20,14 +20,26 @@
       },
       "entries": [
         {
-          "type": "minecraft:tag",
-          "name": "spectrum:gemstone_chiseled_base_blocks",
-          "expand": true
+          "type": "minecraft:item",
+          "name": "spectrum:topaz_chiseled_basalt"
         },
         {
-          "type": "minecraft:tag",
-          "name": "spectrum:chiseled_base_blocks",
-          "expand": true
+          "type": "minecraft:item",
+          "name": "spectrum:citrine_chiseled_basalt"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:amethyst_chiseled_basalt"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:chiseled_polished_basalt",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:chiseled_polished_calcite",
+          "weight": 5
         }
       ],
       "functions": [
@@ -47,20 +59,30 @@
       },
       "entries": [
         {
-          "type": "minecraft:tag",
-          "name": "spectrum:pillar_base_blocks",
-          "expand": true
+          "type": "minecraft:item",
+          "name": "spectrum:polished_basalt",
+          "weight": 5
         },
         {
-          "type": "minecraft:tag",
-          "weight": 5,
-          "name": "spectrum:polished_base_blocks",
-          "expand": true
+          "type": "minecraft:item",
+          "name": "spectrum:polished_calcite",
+          "weight": 5
         },
         {
-          "type": "minecraft:tag",
-          "name": "spectrum:crest_base_blocks",
-          "expand": true
+          "type": "minecraft:item",
+          "name": "spectrum:polished_basalt_pillar"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:polished_calcite_pillar"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:polished_calcite_crest"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:polished_calcite_crest"
         }
       ],
       "functions": [

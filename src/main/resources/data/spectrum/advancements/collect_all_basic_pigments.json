@@ -15,51 +15,75 @@
   "criteria": {
     "collected_blue_pigment": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_blue_pigment" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_pigment/blue"
+      }
     },
     "collected_cyan_pigment": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_cyan_pigment" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_pigment/cyan"
+      }
     },
     "collected_green_pigment": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_green_pigment" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_pigment/green"
+      }
     },
     "collected_light_blue_pigment": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_light_blue_pigment" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_pigment/light_blue"
+      }
     },
     "collected_lime_pigment": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_lime_pigment" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_pigment/lime"
+      }
     },
     "collected_magenta_pigment": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_magenta_pigment" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_pigment/magenta"
+      }
     },
     "collected_orange_pigment": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_orange_pigment" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_pigment/orange"
+      }
     },
     "collected_pink_pigment": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_pink_pigment" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_pigment/pink"
+      }
     },
     "collected_purple_pigment": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_purple_pigment" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_pigment/purple"
+      }
     },
     "collected_red_pigment": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_red_pigment" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_pigment/red"
+      }
     },
     "collected_yellow_pigment": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_yellow_pigment" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_pigment/yellow"
+      }
     },
     "collected_brown_pigment": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_brown_pigment" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_pigment/brown"
+      }
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",

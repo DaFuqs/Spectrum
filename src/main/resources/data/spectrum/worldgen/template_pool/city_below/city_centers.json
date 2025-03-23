@@ -1,5 +1,4 @@
 {
-  "name": "spectrum:city_below/city_centers",
   "fallback": "minecraft:empty",
   "elements": [
     {

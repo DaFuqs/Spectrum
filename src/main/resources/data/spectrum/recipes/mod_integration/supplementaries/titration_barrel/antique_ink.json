@@ -1,0 +1,26 @@
+{
+  "type": "spectrum:titration_barrel",
+  "ingredients": [
+    {
+      "item": "spectrum:black_pigment",
+      "count": 4
+    },
+    {
+      "item": "spectrum:amethyst_powder"
+    }
+  ],
+  "min_fermentation_time_hours": 168,
+  "result": {
+    "item": "supplementaries:antique_ink",
+    "count": 4
+  },
+  "required_advancement": "spectrum:hidden/collect_pigment/black",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "supplementaries"
+      ]
+    }
+  ]
+}

@@ -1,10 +1,38 @@
 {
   "variants": {
-    "snowy=true": {
-      "model": "spectrum:block/sawblade_grass_snow"
-    },
-    "snowy=false": {
-      "model": "spectrum:block/sawblade_grass"
-    }
+    "snowy=true": [
+      {
+        "model": "spectrum:block/sawblade_grass_snow"
+      },
+      {
+        "model": "spectrum:block/sawblade_grass_snow",
+        "y": 90
+      },
+      {
+        "model": "spectrum:block/sawblade_grass_snow",
+        "y": 180
+      },
+      {
+        "model": "spectrum:block/sawblade_grass_snow",
+        "y": 270
+      }
+    ],
+    "snowy=false": [
+      {
+        "model": "spectrum:block/sawblade_grass"
+      },
+      {
+        "model": "spectrum:block/sawblade_grass",
+        "y": 90
+      },
+      {
+        "model": "spectrum:block/sawblade_grass",
+        "y": 180
+      },
+      {
+        "model": "spectrum:block/sawblade_grass",
+        "y": 270
+      }
+    ]
   }
 }

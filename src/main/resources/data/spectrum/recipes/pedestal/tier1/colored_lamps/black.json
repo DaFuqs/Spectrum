@@ -1,0 +1,33 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "colored_lamps",
+  "time": 40,
+  "tier": "advanced",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 6,
+  "experience": 0.5,
+  "pattern": [
+    "SPS",
+    "PRP",
+    "SPS"
+  ],
+  "key": {
+    "P": {
+      "item": "spectrum:black_pigment"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "S": {
+      "item": "spectrum:shimmerstone_gem"
+    }
+  },
+  "result": {
+    "item": "spectrum:black_lamp",
+    "count": 2
+  },
+  "required_advancement": "spectrum:unlocks/colored_lamps/black_lamp"
+}

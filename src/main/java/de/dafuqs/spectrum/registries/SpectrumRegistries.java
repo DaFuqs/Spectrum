@@ -2,6 +2,8 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.api.pastel.*;
 import de.dafuqs.spectrum.entity.variants.*;
 import de.dafuqs.spectrum.explosion.*;
 import de.dafuqs.spectrum.items.tools.*;
@@ -27,7 +29,7 @@ public class SpectrumRegistries {
 	private static final Identifier LIZARD_HORN_VARIANT_ID = SpectrumCommon.locate("lizard_horn_variant");
 	public static final RegistryKey<Registry<LizardHornVariant>> LIZARD_HORN_VARIANT_KEY = RegistryKey.ofRegistry(LIZARD_HORN_VARIANT_ID);
 	public static final Registry<LizardHornVariant> LIZARD_HORN_VARIANT = FabricRegistryBuilder.createSimple(LIZARD_HORN_VARIANT_KEY).attribute(RegistryAttribute.SYNCED).buildAndRegister();
-
+	
 	private static final Identifier KINDLING_VARIANT_ID = SpectrumCommon.locate("kindling_variant");
 	public static final RegistryKey<Registry<KindlingVariant>> KINDLING_VARIANT_KEY = RegistryKey.ofRegistry(KINDLING_VARIANT_ID);
 	public static final Registry<KindlingVariant> KINDLING_VARIANT = FabricRegistryBuilder.createSimple(KINDLING_VARIANT_KEY).attribute(RegistryAttribute.SYNCED).buildAndRegister();
@@ -44,6 +46,14 @@ public class SpectrumRegistries {
 	public static final RegistryKey<Registry<ExplosionModifier>> EXPLOSION_MODIFIERS_KEY = RegistryKey.ofRegistry(EXPLOSION_MODIFIERS_ID);
 	public static final Registry<ExplosionModifier> EXPLOSION_MODIFIERS = FabricRegistryBuilder.createSimple(EXPLOSION_MODIFIERS_KEY).attribute(RegistryAttribute.SYNCED).buildAndRegister();
 
+	private static final Identifier PASTEL_UPGRADE_ID = SpectrumCommon.locate("pastel_upgrade");
+	public static final RegistryKey<Registry<PastelUpgradeSignature>> PASTEL_UPGRADE_KEY = RegistryKey.ofRegistry(PASTEL_UPGRADE_ID);
+	public static final Registry<PastelUpgradeSignature> PASTEL_UPGRADE = FabricRegistryBuilder.createSimple(PASTEL_UPGRADE_KEY).attribute(RegistryAttribute.SYNCED).buildAndRegister();
+
+	private static final Identifier STAMP_DATA_CATEGORY_ID = SpectrumCommon.locate("stamp_data_category");
+	public static final RegistryKey<Registry<StampDataCategory>> STAMP_DATA_CATEGORY_KEY = RegistryKey.ofRegistry(STAMP_DATA_CATEGORY_ID);
+	public static final Registry<StampDataCategory> STAMP_DATA_CATEGORY = FabricRegistryBuilder.createSimple(STAMP_DATA_CATEGORY_KEY).attribute(RegistryAttribute.SYNCED).buildAndRegister();
+
 	public static <T> T getRandomTagEntry(Registry<T> registry, TagKey<T> tag, Random random, T fallback) {
 		Optional<RegistryEntryList.Named<T>> tagEntries = registry.getEntryList(tag);
 		if (tagEntries.isPresent()) {
@@ -51,11 +61,6 @@ public class SpectrumRegistries {
 		} else {
 			return fallback;
 		}
-	}
-	
-	public static <T> List<RegistryEntry<T>> getEntries(Registry<T> registry, TagKey<T> tag) {
-		Optional<RegistryEntryList.Named<T>> tagEntries = registry.getEntryList(tag);
-		return tagEntries.map(registryEntries -> registryEntries.stream().toList()).orElseGet(List::of);
 	}
 
 	public static void register() {

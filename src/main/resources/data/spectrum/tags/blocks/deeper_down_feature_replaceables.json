@@ -1,0 +1,19 @@
+{
+  "replace": false,
+  "values": [
+    "spectrum:aloe",
+    "spectrum:bristle_sprouts",
+    "spectrum:sawblade_holly_bush",
+    "spectrum:pyrite_ripper",
+    "minecraft:fern",
+    "minecraft:large_fern",
+    "#spectrum:dragonjags",
+    "spectrum:sag_bubble",
+    "spectrum:sag_leaf",
+    "#spectrum:noxshrooms",
+    "spectrum:varia_sprout",
+    "#spectrum:bismuth_buds",
+    "#minecraft:small_flowers",
+    "minecraft:grass"
+  ]
+}

@@ -53,9 +53,7 @@ public class ResonanceDropsDataLoader extends JsonDataLoader implements Identifi
 	
 	public static void applyResonance(BlockState minedState, BlockEntity blockEntity, List<ItemStack> droppedStacks) {
 		for (ResonanceDropProcessor entry : RESONANCE_DROPS) {
-			if (entry.process(minedState, blockEntity, droppedStacks)) {
-				return;
-			}
+		entry.process(minedState, blockEntity, droppedStacks);
 		}
 	}
 	

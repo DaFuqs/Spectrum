@@ -77,7 +77,7 @@ public class PreservationBlockDetectorBlockEntity extends BlockEntity implements
 	
 	public void execute(ServerWorld serverWorld) {
 		MinecraftServer minecraftServer = serverWorld.getServer();
-		if (minecraftServer.areCommandBlocksEnabled() && !this.commands.isEmpty()) {
+		if (!this.commands.isEmpty()) {
 			ServerCommandSource serverCommandSource = new ServerCommandSource(this, Vec3d.ofCenter(PreservationBlockDetectorBlockEntity.this.pos), Vec2f.ZERO, serverWorld, 2, "PreservationBlockDetector", this.getWorld().getBlockState(this.pos).getBlock().getName(), minecraftServer, null);
 			for (String command : this.commands) {
 				int success = minecraftServer.getCommandManager().executeWithPrefix(serverCommandSource, command);

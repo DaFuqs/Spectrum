@@ -1,0 +1,31 @@
+{
+  "name": "item.spectrum.nectar_lance",
+  "icon": "spectrum:nectar_lance",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/equipment/nectar_lance"
+  },
+  "category": "spectrum:dimension",
+  "hide_while_locked": true,
+  "parents": [
+    {
+      "entry": "spectrum:dimension/lore/poisoners_handbook"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": -6,
+  "y": -4,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "item.spectrum.nectar_lance",
+      "text": "book.spectrum.guidebook.nectar_lance.page0.text"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "recipe_id": "spectrum:spirit_instiller/nectar_lance",
+      "text": "book.spectrum.guidebook.nectar_lance.page1.text"
+    }
+  ]
+}

@@ -29,12 +29,12 @@ public class AzureDikeRingItem extends AzureDikeTrinketItem {
 	
 	@Override
 	public int maxAzureDike(ItemStack stack) {
-		return 4;
+		return 6;
 	}
 	
 	@Override
-	public float azureDikeRechargeBonusTicks(ItemStack stack) {
-		return 5;
+	public float azureDikeRechargeSpeedModifier(ItemStack stack) {
+		return 2.0F;
 	}
 	
 }

@@ -32,7 +32,7 @@
     }
   },
   "result": {
-    "item": "spectrum:ebony_noxwood_lantern",
+    "item": "spectrum:ebony_noxwood_lamp",
     "count": 1
   },
   "required_advancement": "spectrum:lategame/collect_noxwood"

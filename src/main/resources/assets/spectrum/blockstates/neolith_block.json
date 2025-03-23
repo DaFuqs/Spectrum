@@ -1,7 +1,30 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/neolith_block"
-    }
-  }
+	"variants": {
+		"facing=down": {
+			"model": "spectrum:block/neolith_block",
+			"x": 180
+		},
+		"facing=east": {
+			"model": "spectrum:block/neolith_block",
+			"x": 90,
+			"y": 90
+		},
+		"facing=north": {
+			"model": "spectrum:block/neolith_block",
+			"x": 90
+		},
+		"facing=south": {
+			"model": "spectrum:block/neolith_block",
+			"x": 90,
+			"y": 180
+		},
+		"facing=up": {
+			"model": "spectrum:block/neolith_block"
+		},
+		"facing=west": {
+			"model": "spectrum:block/neolith_block",
+			"x": 90,
+			"y": 270
+		}
+	}
 }

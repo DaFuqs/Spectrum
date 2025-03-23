@@ -1,0 +1,16 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": {
+    "item": "spectrum:topaz_block"
+  },
+  "crushedItemsPerPointOfDamage": 0.4,
+  "experience": 0.2,
+  "result": {
+    "item": "spectrum:topaz_powder",
+    "count": 1
+  },
+  "particleEffectIdentifier": "explosion",
+  "soundEventIdentifier": "spectrum:block.topaz_cluster.break",
+  "group": "gemstone_crushing",
+  "required_advancement": "spectrum:hidden/collect_shards/topaz"
+}

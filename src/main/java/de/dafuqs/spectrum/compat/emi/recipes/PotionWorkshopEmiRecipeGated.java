@@ -33,7 +33,7 @@ public class PotionWorkshopEmiRecipeGated extends GatedSpectrumEmiRecipe<PotionW
 		widgets.addFillingArrow(62, 25, recipe.getCraftingTime() * 50);
 		
 		// description text
-		Text text = Text.translatable("container.spectrum.rei.potion_workshop.crafting_time", (recipe.getCraftingTime() / 20));
+		Text text = Text.translatable("container.spectrum.rei.crafting_time", (recipe.getCraftingTime() / 20));
 		widgets.addText(text, 40, 53, 0x3f3f3f, false);
 	}
 }

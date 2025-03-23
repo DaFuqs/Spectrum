@@ -3,17 +3,16 @@ package de.dafuqs.spectrum.recipe.fusion_shrine;
 import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.api.predicate.world.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.fusion_shrine.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.api.predicate.world.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.fluid.*;
-import net.minecraft.inventory.*;
+import net.fabricmc.fabric.api.transfer.v1.fluid.*;
+import net.fabricmc.fabric.api.transfer.v1.storage.base.*;
 import net.minecraft.item.*;
-import net.minecraft.nbt.*;
 import net.minecraft.recipe.*;
 import net.minecraft.registry.*;
 import net.minecraft.server.world.*;
@@ -25,12 +24,12 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
+public class FusionShrineRecipe extends GatedStackSpectrumRecipe<FusionShrineBlockEntity> {
 	
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("build_fusion_shrine");
 	
 	protected final List<IngredientStack> craftingInputs;
-	protected final Fluid fluidInput;
+	protected final FluidIngredient fluid;
 	protected final ItemStack output;
 	protected final float experience;
 	protected final int craftingTime;
@@ -55,12 +54,12 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 	protected final boolean copyNbt;
 	
 	public FusionShrineRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier,
-							  List<IngredientStack> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, boolean yieldUpgradesDisabled, boolean playCraftingFinishedEffects, boolean copyNbt,
+							  List<IngredientStack> craftingInputs, FluidIngredient fluid, ItemStack output, float experience, int craftingTime, boolean yieldUpgradesDisabled, boolean playCraftingFinishedEffects, boolean copyNbt,
 							  List<WorldConditionPredicate> worldConditions, @NotNull FusionShrineRecipeWorldEffect startWorldEffect, @NotNull List<FusionShrineRecipeWorldEffect> duringWorldEffects, @NotNull FusionShrineRecipeWorldEffect finishWorldEffect, @Nullable Text description) {
 		super(id, group, secret, requiredAdvancementIdentifier);
 		
 		this.craftingInputs = craftingInputs;
-		this.fluidInput = fluidInput;
+		this.fluid = fluid;
 		this.output = output;
 		this.experience = experience;
 		this.craftingTime = craftingTime;
@@ -78,21 +77,31 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 	}
 	
 	/**
-	 * Only tests the items. The required fluid has to be tested manually by the crafting block
+	 * Only tests the items.
+	 * The required fluid has to be tested manually by the crafting block.
 	 */
 	@Override
-	public boolean matches(Inventory inv, World world) {
+	public boolean matches(FusionShrineBlockEntity inv, World world) {
+		SingleVariantStorage<FluidVariant> fluidStorage = inv.getFluidStorage();
+		if (!this.fluid.test(fluidStorage.variant)) {
+			return false;
+		}
+		if (this.fluid != FluidIngredient.EMPTY) {
+			if (fluidStorage.getAmount() != fluidStorage.getCapacity()) {
+				return false;
+			}
+		}
 		return matchIngredientStacksExclusively(inv, getIngredientStacks());
 	}
 	
 	@Override
-	public ItemStack craft(Inventory inv, DynamicRegistryManager drm) {
-		return ItemStack.EMPTY;
+	public ItemStack craft(FusionShrineBlockEntity inv, DynamicRegistryManager drm) {
+		return output.copy();
 	}
 	
 	@Override
 	public boolean fits(int width, int height) {
-		return true;
+		return craftingInputs.size() <= width * height;
 	}
 	
 	@Override
@@ -125,8 +134,8 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 	}
 	
 	/**
-	 * Returns a boolean depending on if the recipes condition is set
-	 * This can be always true, a specific day or moon phase, or weather.
+	 * Returns a boolean depending on if the recipe condition is met.
+	 * This can always be true, a specific day or moon phase, or weather.
 	 */
 	public boolean areConditionMetCurrently(ServerWorld world, BlockPos pos) {
 		for (WorldConditionPredicate worldCondition : this.worldConditions) {
@@ -137,8 +146,8 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 		return true;
 	}
 	
-	public Fluid getFluidInput() {
-		return this.fluidInput;
+	public FluidIngredient getFluid() {
+		return this.fluid;
 	}
 	
 	public int getCraftingTime() {
@@ -152,34 +161,33 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 	public FusionShrineRecipeWorldEffect getWorldEffectForTick(int tick, int totalTicks) {
 		if (tick == 1) {
 			return this.startWorldEffect;
-		} else if (tick == totalTicks) {
-			return this.finishWorldEffect;
-		} else {
-			if (this.duringWorldEffects.size() == 0) {
-				return null;
-			} else if (this.duringWorldEffects.size() == 1) {
-				return this.duringWorldEffects.get(0);
-			} else {
-				// we really have to calculate the current effect, huh?
-				float parts = (float) totalTicks / this.duringWorldEffects.size();
-				int index = (int) (tick / (parts));
-				FusionShrineRecipeWorldEffect effect = this.duringWorldEffects.get(index);
-				if (effect.isOneTimeEffect()) {
-					if (index != (int) parts) {
-						return null;
-					}
-				}
-				return effect;
-			}
 		}
+		if (tick == totalTicks) {
+			return this.finishWorldEffect;
+		}
+		if (this.duringWorldEffects.isEmpty()) {
+			return null;
+		}
+		if (this.duringWorldEffects.size() == 1) {
+			return this.duringWorldEffects.get(0);
+		}
+		
+		// we really have to calculate the current effect, huh?
+		float parts = (float) totalTicks / this.duringWorldEffects.size();
+		int index = (int) (tick / (parts));
+		FusionShrineRecipeWorldEffect effect = this.duringWorldEffects.get(index);
+		if (effect.isOneTimeEffect() && index != (int) parts) {
+			return null;
+		}
+		
+		return effect;
 	}
 	
 	public Optional<Text> getDescription() {
 		if (this.description == null) {
 			return Optional.empty();
-		} else {
-			return Optional.of(this.description);
 		}
+		return Optional.of(this.description);
 	}
 
 	@Override
@@ -192,12 +200,17 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 		return SpectrumRecipeTypes.FUSION_SHRINE_ID;
 	}
 	
+	// calculate the max number of items that will be crafted.
+	// note that we only check each ingredient once if a match was found.
+	// custom recipes therefore should not use items / tags that match multiple items
+	// at once, since we cannot rely on positions in a grid like vanilla does in its crafting table.
 	public void craft(World world, FusionShrineBlockEntity fusionShrineBlockEntity) {
 		ItemStack firstStack = ItemStack.EMPTY;
 		
 		int maxAmount = 1;
-		if (!getOutput(world.getRegistryManager()).isEmpty()) {
-			maxAmount = getOutput(world.getRegistryManager()).getMaxCount();
+		ItemStack output = craft(fusionShrineBlockEntity, world.getRegistryManager());
+		if (!output.isEmpty()) {
+			maxAmount = output.getMaxCount();
 			for (IngredientStack ingredientStack : getIngredientStacks()) {
 				for (int i = 0; i < fusionShrineBlockEntity.size(); i++) {
 					ItemStack currentStack = fusionShrineBlockEntity.getStack(i);
@@ -230,18 +243,9 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 				}
 			}
 		}
-		
-		ItemStack output = getOutput(world.getRegistryManager()).copy();
+
 		if (this.copyNbt) {
-			// this overrides all nbt data, that are not nested compounds (like lists)
-			NbtCompound sourceNbt = firstStack.getNbt();
-			if (sourceNbt != null) {
-				sourceNbt = sourceNbt.copy();
-				sourceNbt.remove(ItemStack.DAMAGE_KEY);
-				output.setNbt(sourceNbt);
-				// so we need to restore all previous enchantments that the original item had and are still applicable to the new item
-				output = SpectrumEnchantmentHelper.clearAndCombineEnchantments(output, false, false, getOutput(world.getRegistryManager()), firstStack);
-			}
+			output = copyNbt(firstStack, output);
 		}
 		
 		spawnCraftingResultAndXP(world, fusionShrineBlockEntity, output, maxAmount); // spawn results
@@ -283,7 +287,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 		}
 		
 		//only triggered on server side. Therefore, has to be sent to client via S2C packet
-		fusionShrineBlockEntity.grantPlayerFusionCraftingAdvancement(this, intExperience);
+		fusionShrineBlockEntity.grantPlayerFusionCraftingAdvancement(stack, intExperience);
 	}
 	
 	public boolean shouldPlayCraftingFinishedEffects() {

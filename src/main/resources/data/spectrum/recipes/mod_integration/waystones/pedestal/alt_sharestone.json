@@ -1,0 +1,40 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 180,
+  "tier": "basic",
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 4,
+  "black": 0,
+  "white": 0,
+  "experience": 0.2,
+  "pattern": [
+    "SSS",
+    " E ",
+    "OOO"
+  ],
+  "key": {
+    "O": {
+      "item": "minecraft:obsidian"
+    },
+    "S": {
+      "item": "minecraft:stone_bricks"
+    },
+    "E": {
+      "item": "spectrum:radiating_ender"
+    }
+  },
+  "result": {
+    "item": "waystones:sharestone",
+    "count": 2
+  },
+  "required_advancement": "spectrum:collect_radiating_ender",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "waystones"
+      ]
+    }
+  ]
+}

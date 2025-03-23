@@ -1,0 +1,44 @@
+{
+  "type": "spectrum:pedestal_shapeless",
+  "time": 50,
+  "tier": "basic",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 0.25,
+  "ingredients": [
+    {
+      "item": "minecraft:water_bucket"
+    },
+    {
+      "item": "spectrum:ash_flakes"
+    },
+    {
+      "item": "spectrum:ash_flakes"
+    },
+    {
+      "item": "spectrum:ash_flakes"
+    },
+    {
+      "item": "spectrum:ash_flakes"
+    },
+    {
+      "item": "minecraft:porkchop"
+    }
+  ],
+  "result": {
+    "item": "supplementaries:soap",
+    "count": 6
+  },
+  "required_advancement": "spectrum:hidden/collect_ash",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "supplementaries"
+      ]
+    }
+  ]
+}

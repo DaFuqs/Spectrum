@@ -24,7 +24,7 @@ public class ShootingStarHardeningRecipe extends FusionShrineRecipe {
 	public static final RecipeSerializer<ShootingStarHardeningRecipe> SERIALIZER = new EmptyRecipeSerializer<>(ShootingStarHardeningRecipe::new);
 	
 	public ShootingStarHardeningRecipe(Identifier identifier) {
-		super(identifier, "", false, UNLOCK_IDENTIFIER, List.of(IngredientStack.of(Ingredient.fromTag(SpectrumItemTags.SHOOTING_STARS)), IngredientStack.of(Ingredient.ofItems(Items.DIAMOND))), Fluids.WATER, getHardenedShootingStar(),
+		super(identifier, "", false, UNLOCK_IDENTIFIER, List.of(IngredientStack.of(Ingredient.fromTag(SpectrumItemTags.SHOOTING_STARS)), IngredientStack.of(Ingredient.ofItems(Items.DIAMOND))), FluidIngredient.of(Fluids.WATER), getHardenedShootingStar(),
 				5, 100, true, true, true, new ArrayList<>(), FusionShrineRecipeWorldEffect.NOTHING, new ArrayList<>(), FusionShrineRecipeWorldEffect.NOTHING, DESCRIPTION);
 	}
 	

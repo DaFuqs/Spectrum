@@ -2,6 +2,10 @@
   "replace": false,
   "values": [
     "minecraft:suspicious_sand",
-    "minecraft:suspicious_gravel"
+    "minecraft:suspicious_gravel",
+    {
+      "id": "the_bumblezone:pile_of_pollen_suspicious",
+      "required": false
+    }
   ]
 }

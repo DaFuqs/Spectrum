@@ -1,15 +1,30 @@
 {
   "pools": [
     {
-      "rolls": 1,
+      "rolls": 2,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:bow"
+          "name": "minecraft:crossbow",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": 20,
+              "treasure": true,
+              "conditions": [
+                {
+                  "condition": "minecraft:random_chance",
+                  "chance": 0.8
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "minecraft:item",
           "name": "spectrum:multitool",
+          "weight": 3,
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
@@ -18,7 +33,7 @@
               "conditions": [
                 {
                   "condition": "minecraft:random_chance",
-                  "chance": 0.3
+                  "chance": 0.4
                 }
               ]
             }
@@ -26,11 +41,40 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:bundle"
+          "name": "spectrum:bottomless_bundle",
+          "quality": 1,
+          "functions": [
+            {
+              "function": "spectrum:merge_nbt_randomly",
+              "tags": [
+                "{StoredStack: {ID: \"minecraft:tipped_arrow\", Count: 185, Tag: {Potion: \"spectrum:pigment_potion\", CustomPotionEffects: [{Duration: 1, Amplifier: 1b, Ambient: 1b, Id: 6, ShowIcon: 1b, ShowParticles: 1b}], CustomPotionColor: -12196282}}}",
+                "{StoredStack: {ID: \"minecraft:tipped_arrow\", Count: 39, Tag: {Potion: \"spectrum:pigment_potion\", CustomPotionEffects: [{Duration: 1, Amplifier: 1b, Ambient: 1b, Id: 6, ShowIcon: 1b, ShowParticles: 1b}], CustomPotionColor: -1677499}}}",
+                "{StoredStack: {ID: \"minecraft:tipped_arrow\", Count: 241, Tag: {Potion: \"spectrum:pigment_potion\", CustomPotionEffects: [{Duration: 1, Amplifier: 1b, Ambient: 1b, Id: 6, ShowIcon: 1b, ShowParticles: 1b}], CustomPotionColor: -4766234}}}",
+                "{StoredStack: {ID: \"minecraft:tipped_arrow\", Count: 72, Tag: {Potion: \"spectrum:pigment_potion\", CustomPotionEffects: [{Duration: 1, Amplifier: 1b, Ambient: 1b, Id: 6, ShowIcon: 1b, ShowParticles: 1b}], CustomPotionColor: -1686190}}}",
+                "{StoredStack: {ID: \"minecraft:tipped_arrow\", Count: 106, Tag: {Potion: \"spectrum:pigment_potion\", CustomPotionEffects: [{Duration: 1, Amplifier: 1b, Ambient: 1b, Id: 6, ShowIcon: 1b, ShowParticles: 1b}], CustomPotionColor: -9484826}}}",
+                "{StoredStack: {ID: \"minecraft:tipped_arrow\", Count: 17, Tag: {Potion: \"spectrum:pigment_potion\", CustomPotionEffects: [{Duration: 1, Amplifier: 1b, Ambient: 1b, Id: 6, ShowIcon: 1b, ShowParticles: 1b}], CustomPotionColor: -1650363}}}"
+              ]
+            }
+          ]
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:shears"
+          "name": "spectrum:fanciful_pendant",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:glistering_melon_slice",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2,
+                "max": 5
+              }
+            }
+          ]
         }
       ]
     }

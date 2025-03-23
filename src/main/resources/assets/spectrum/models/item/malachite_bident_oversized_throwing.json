@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:item/handheld_oversized_throwing",
+  "parent": "spectrum:templates_item/polearm_throwing",
   "textures": {
     "layer0": "spectrum:item/malachite_bident_oversized"
   }

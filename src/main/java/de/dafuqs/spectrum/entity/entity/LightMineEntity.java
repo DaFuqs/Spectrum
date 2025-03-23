@@ -17,6 +17,7 @@ import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
+import java.util.function.*;
 
 public class LightMineEntity extends LightShardBaseEntity {
 
@@ -29,21 +30,17 @@ public class LightMineEntity extends LightShardBaseEntity {
 	public LightMineEntity(EntityType<? extends ProjectileEntity> entityType, World world) {
 		super(entityType, world);
 	}
-
-    public LightMineEntity(World world, LivingEntity owner, Optional<LivingEntity> target, float detectionRange, float damage, float lifeSpanTicks) {
-        super(SpectrumEntityTypes.LIGHT_MINE, world, owner, target, detectionRange, damage, lifeSpanTicks);
+	
+	public LightMineEntity(World world, LivingEntity owner, float detectionRange, float damage, float lifeSpanTicks) {
+		super(SpectrumEntityTypes.LIGHT_MINE, world, owner, detectionRange, damage, lifeSpanTicks);
     }
-
-    public static void summonBarrage(World world, @NotNull LivingEntity user, @Nullable LivingEntity target, List<StatusEffectInstance> effects) {
-        summonBarrage(world, user, target, effects, user.getEyePos(), DEFAULT_COUNT_PROVIDER);
-    }
-
-    public static void summonBarrage(World world, @Nullable LivingEntity user, @Nullable LivingEntity target, List<StatusEffectInstance> effects, Vec3d position, IntProvider count) {
+	
+	public static void summonBarrage(World world, @Nullable LivingEntity user, @Nullable LivingEntity target, Predicate<LivingEntity> targetPredicate, List<StatusEffectInstance> effects, Vec3d position, IntProvider count) {
         summonBarrageInternal(world, user, () -> {
-            LightMineEntity entity = new LightMineEntity(world, user, Optional.ofNullable(target), 8, 1.0F, 800);
-            entity.setEffects(effects);
-            return entity;
-        }, position, count);
+			LightMineEntity mine = new LightMineEntity(world, user, 8, 1.0F, 800);
+			mine.setEffects(effects);
+			return mine;
+		}, target, targetPredicate, position, count);
     }
 
     public void setEffects(List<StatusEffectInstance> effects) {

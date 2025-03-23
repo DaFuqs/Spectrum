@@ -46,9 +46,10 @@ public abstract class SpectrumFishingRodItem extends FishingRodItem {
 				int lureLevel = EnchantmentHelper.getLure(itemStack);
 				int exuberanceLevel = SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.EXUBERANCE, itemStack, user);
 				int bigCatchLevel = SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.BIG_CATCH, itemStack, user);
+				int serendipityReelLevel = SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.SERENDIPITY_REEL, itemStack, user);
 				boolean inventoryInsertion = SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.INVENTORY_INSERTION, itemStack, user) > 0;
 				boolean foundry = shouldAutosmelt(itemStack, user);
-				spawnBobber(user, world, luckOfTheSeaLevel, lureLevel, exuberanceLevel, bigCatchLevel, inventoryInsertion, foundry);
+				spawnBobber(user, world, luckOfTheSeaLevel, lureLevel, exuberanceLevel, bigCatchLevel, serendipityReelLevel, inventoryInsertion, foundry);
 			}
 			
 			user.incrementStat(Stats.USED.getOrCreateStat(this));
@@ -57,8 +58,8 @@ public abstract class SpectrumFishingRodItem extends FishingRodItem {
 		
 		return TypedActionResult.success(itemStack, world.isClient());
 	}
-	
-	public abstract void spawnBobber(PlayerEntity user, World world, int luckOfTheSeaLevel, int lureLevel, int exuberanceLevel, int bigCatchLevel, boolean inventoryInsertion, boolean foundry);
+
+	public abstract void spawnBobber(PlayerEntity user, World world, int luckOfTheSeaLevel, int lureLevel, int exuberanceLevel, int bigCatchLevel, int serendipityReelLevel, boolean inventoryInsertion, boolean foundry);
 	
 	public boolean canFishIn(FluidState fluidState) {
 		return fluidState.isIn(FluidTags.WATER);

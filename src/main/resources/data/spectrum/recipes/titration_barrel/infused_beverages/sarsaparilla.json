@@ -1,0 +1,58 @@
+{
+	"type": "spectrum:titration_barrel",
+	"group": "infused_beverages",
+	"ingredients": [
+		{
+			"item": "spectrum:clover",
+			"count": 2
+		},
+		{
+			"item": "minecraft:birch_log",
+			"count": 2
+		},
+		{
+			"item": "minecraft:sugar",
+			"count": 4
+		}
+	],
+	"min_fermentation_time_hours": 6,
+	"fluid": {
+		"fluid": "minecraft:water"
+	},
+	"tapping_item": "minecraft:glass_bottle",
+	"fermentation_data": {
+		"fermentation_speed_mod": 0.0,
+		"effects": [
+			{
+				"id": "minecraft:instant_health",
+				"base_duration": 1
+			},
+			{
+				"id": "spectrum:nourishing",
+				"base_duration": 4800,
+				"potency": [
+					{
+						"potency": 1
+					}
+				]
+			},
+			{
+				"id": "minecraft:unluck",
+				"base_duration": 9600,
+				"potency": [
+					{
+						"potency": 1
+					}
+				]
+			}
+		]
+	},
+	"result": {
+		"item": "spectrum:infused_beverage",
+		"count": 4,
+		"nbt": {
+			"Variant": "sarsaparilla",
+			"Color": 45289259
+		}
+	}
+}

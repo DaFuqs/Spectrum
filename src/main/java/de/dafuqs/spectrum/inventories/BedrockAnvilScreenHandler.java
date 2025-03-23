@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.items.*;
 import net.minecraft.*;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.*;
@@ -15,31 +16,17 @@ import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import org.apache.commons.lang3.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class BedrockAnvilScreenHandler extends ScreenHandler {
+public class BedrockAnvilScreenHandler extends ForgingScreenHandler {
 	
-	public static final int MAX_NAME_LENGTH = 50;
 	public static final int MAX_LORE_LENGTH = 200;
 	
 	public static final int FIRST_INPUT_SLOT_INDEX = 0;
 	public static final int SECOND_INPUT_SLOT_INDEX = 1;
 	public static final int OUTPUT_SLOT_INDEX = 2;
-	private static final int PLAYER_INVENTORY_START_INDEX = 3;
-	private static final int PLAYER_INVENTORY_END_INDEX = 39;
 	
-	protected final CraftingResultInventory output = new CraftingResultInventory();
-	protected final ScreenHandlerContext context;
-	protected final Inventory input = new SimpleInventory(2) {
-		@Override
-		public void markDirty() {
-			super.markDirty();
-			onContentChanged(this);
-		}
-	};
-	protected final PlayerEntity player;
 	private final Property levelCost;
 	private int repairItemCount;
 	private String newItemName;
@@ -49,42 +36,38 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 		this(syncId, inventory, ScreenHandlerContext.EMPTY);
 	}
 	
-	public BedrockAnvilScreenHandler(int syncId, PlayerInventory playerInventory, ScreenHandlerContext context) {
-		super(SpectrumScreenHandlerTypes.BEDROCK_ANVIL, syncId);
+	public BedrockAnvilScreenHandler(int syncId, PlayerInventory inventory, ScreenHandlerContext context) {
+		super(SpectrumScreenHandlerTypes.BEDROCK_ANVIL, syncId, inventory, context);
 		this.levelCost = Property.create();
 		this.addProperty(this.levelCost);
-		
-		this.context = context;
-		this.player = playerInventory.player;
-		this.addSlot(new Slot(this.input, FIRST_INPUT_SLOT_INDEX, 27, 47));
-		this.addSlot(new Slot(this.input, SECOND_INPUT_SLOT_INDEX, 76, 47));
-		this.addSlot(new Slot(this.output, OUTPUT_SLOT_INDEX, 134, 47) {
-			@Override
-			public boolean canInsert(ItemStack stack) {
-				return false;
-			}
-			
-			@Override
-			public boolean canTakeItems(PlayerEntity playerEntity) {
-				return canTakeOutput(playerEntity, this.hasStack());
-			}
-			
-			@Override
-			public void onTakeItem(PlayerEntity player, ItemStack stack) {
-				onTakeOutput(player, stack);
-			}
-		});
-		
-		int k;
-		for (k = 0; k < 3; ++k) {
+	}
+	
+	@Override
+	protected ForgingSlotsManager getForgingSlotsManager() {
+		return ForgingSlotsManager.create()
+				.input(0, 27, 47, (stack) -> true)
+				.input(1, 76, 47, (stack) -> true)
+				.output(2, 134, 47)
+				.build();
+	}
+	
+	@Override
+	public void addPlayerInventorySlots(PlayerInventory playerInventory) {
+		int i;
+		for (i = 0; i < 3; ++i) {
 			for (int j = 0; j < 9; ++j) {
-				this.addSlot(new Slot(playerInventory, j + k * 9 + 9, 8 + j * 18, 24 + 84 + k * 18));
+				this.addSlot(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 24 + 84 + i * 18));
 			}
 		}
 		
-		for (k = 0; k < 9; ++k) {
-			this.addSlot(new Slot(playerInventory, k, 8 + k * 18, 24 + 142));
+		for (i = 0; i < 9; ++i) {
+			this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 24 + 142));
 		}
+		
+	}
+	
+	protected boolean canUse(BlockState state) {
+		return state.isIn(BlockTags.ANVIL);
 	}
 	
 	public static int getNextCost(int cost) {
@@ -108,50 +91,6 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 	@Override
 	public boolean canUse(PlayerEntity player) {
 		return this.context.get((world, pos) -> this.canUse(world.getBlockState(pos)) && player.squaredDistanceTo((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D) <= 64.0D, true);
-	}
-	
-	@Override
-	public ItemStack quickMove(PlayerEntity player, int index) {
-		ItemStack itemStack = ItemStack.EMPTY;
-		Slot slot = this.slots.get(index);
-		if (slot.hasStack()) {
-			ItemStack itemStack2 = slot.getStack();
-			itemStack = itemStack2.copy();
-			if (index == 2) {
-				if (!this.insertItem(itemStack2, PLAYER_INVENTORY_START_INDEX, PLAYER_INVENTORY_END_INDEX, true)) {
-					return ItemStack.EMPTY;
-				}
-				
-				slot.onQuickTransfer(itemStack2, itemStack);
-			} else if (index != 0 && index != 1) {
-				if (index >= PLAYER_INVENTORY_START_INDEX && index < PLAYER_INVENTORY_END_INDEX) {
-					int i = 0;
-					if (!this.insertItem(itemStack2, i, 2, false)) {
-						return ItemStack.EMPTY;
-					}
-				}
-			} else if (!this.insertItem(itemStack2, PLAYER_INVENTORY_START_INDEX, PLAYER_INVENTORY_END_INDEX, false)) {
-				return ItemStack.EMPTY;
-			}
-			
-			if (itemStack2.isEmpty()) {
-				slot.setStack(ItemStack.EMPTY);
-			} else {
-				slot.markDirty();
-			}
-			
-			if (itemStack2.getCount() == itemStack.getCount()) {
-				return ItemStack.EMPTY;
-			}
-			
-			slot.onTakeItem(player, itemStack2);
-		}
-		
-		return itemStack;
-	}
-	
-	protected boolean canUse(BlockState state) {
-		return state.isIn(BlockTags.ANVIL);
 	}
 	
 	protected boolean canTakeOutput(PlayerEntity player, boolean present) {
@@ -197,11 +136,17 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 			Map<Enchantment, Integer> enchantmentLevelMap = EnchantmentHelper.get(outputStack);
 			repairLevelCost += inputStack.getRepairCost() + (repairSlotStack.isEmpty() ? 0 : repairSlotStack.getRepairCost());
 			this.repairItemCount = 0;
+			boolean pigmentInRepairSlot = repairSlotStack.getItem()  instanceof PigmentItem;
+			if(pigmentInRepairSlot)
+			{
+				repairItemCount = 1;
+			}
 			if (!repairSlotStack.isEmpty()) {
 				combined = true;
 				
 				boolean enchantedBookInInputSlot = inputStack.isOf(Items.ENCHANTED_BOOK) && !EnchantedBookItem.getEnchantmentNbt(inputStack).isEmpty();
 				boolean enchantedBookInRepairSlot = repairSlotStack.isOf(Items.ENCHANTED_BOOK) && !EnchantedBookItem.getEnchantmentNbt(repairSlotStack).isEmpty();
+				
 
 				int o;
 				int repairItemCount;
@@ -223,13 +168,13 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 					
 					this.repairItemCount = repairItemCount;
 				} else {
-					if (!enchantedBookInRepairSlot && (!outputStack.isOf(repairSlotStack.getItem()) || !outputStack.isDamageable())) {
+					if (!pigmentInRepairSlot && !enchantedBookInRepairSlot && (!outputStack.isOf(repairSlotStack.getItem()) || !outputStack.isDamageable())) {
 						this.output.setStack(0, ItemStack.EMPTY);
 						this.levelCost.set(0);
 						return;
 					}
 					
-					if (outputStack.isDamageable() && !enchantedBookInRepairSlot) {
+					if (outputStack.isDamageable() && !enchantedBookInRepairSlot && !pigmentInRepairSlot) {
 						o = inputStack.getMaxDamage() - inputStack.getDamage();
 						repairItemCount = repairSlotStack.getMaxDamage() - repairSlotStack.getDamage();
 						newOutputStackDamage = repairItemCount + outputStack.getMaxDamage() * 12 / 100;
@@ -310,23 +255,37 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 				}
 			}
 			
-			if (StringUtils.isBlank(this.newItemName)) {
-				if (inputStack.hasCustomName()) {
-					outputStack.removeCustomName();
+			if (this.newItemName != null && !Util.isBlank(this.newItemName)) {
+				if (!this.newItemName.equals(inputStack.getName().getString())) {
+					if(inputStack.getName() instanceof MutableText inputText && inputText.getStyle().getColor()!= null)
+					{
+						outputStack.setCustomName(Text.literal(this.newItemName).setStyle(Style.EMPTY.withColor(inputText.getStyle().getColor())));
+					}
+					else{
+						outputStack.setCustomName(Text.literal(this.newItemName));
+					}
 				}
-			} else if (!this.newItemName.equals(inputStack.getName().getString())) {
-				outputStack.setCustomName(Text.literal(this.newItemName));
+			} else if (inputStack.hasCustomName()) {
+				outputStack.removeCustomName();
+			}
+			Text text = outputStack.getName();
+			if(pigmentInRepairSlot && text instanceof MutableText mutableText)
+			{
+				TextColor newColor = TextColor.fromRgb(ColorHelper.getInt(((PigmentItem)repairSlotStack.getItem()).getColor()));
+				Text newName = mutableText.setStyle(mutableText.getStyle().withColor(newColor));
+				if(!newName.equals(inputStack.getName()))
+				{
+					outputStack.setCustomName(newName);
+				}
 			}
 			
-			if (StringUtils.isBlank(this.newLoreString)) {
-				if (LoreHelper.hasLore(inputStack)) {
-					LoreHelper.removeLore(outputStack);
-				}
-			} else {
+			if (this.newLoreString != null && !Util.isBlank(this.newLoreString)) {
 				List<Text> lore = LoreHelper.getLoreTextArrayFromString(this.newLoreString);
 				if (!LoreHelper.equalsLore(lore, inputStack)) {
 					LoreHelper.setLore(outputStack, lore);
 				}
+			} else if (inputStack.hasCustomName()) {
+				LoreHelper.removeLore(outputStack);
 			}
 			
 			this.levelCost.set(repairLevelCost + enchantmentLevelCost);
@@ -334,7 +293,7 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 				outputStack = ItemStack.EMPTY;
 			}
 			
-			if (!combined) {
+			if (!combined || pigmentInRepairSlot) {
 				// renaming and lore is free
 				this.levelCost.set(0);
 			} else if (!outputStack.isEmpty()) {
@@ -355,7 +314,7 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 	}
 	
 	public boolean setNewItemName(String newItemName) {
-		String string = sanitize(newItemName, MAX_NAME_LENGTH);
+		String string = sanitize(newItemName, AnvilScreenHandler.MAX_NAME_LENGTH);
 		if (!string.equals(this.newItemName)) {
 			this.newItemName = string;
 			if (this.getSlot(2).hasStack()) {
@@ -379,18 +338,23 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 		return s.length() > maxLength ? s.substring(0, maxLength) : s;
 	}
 	
-	public void setNewItemLore(String newLoreString) {
-		this.newLoreString = sanitize(newLoreString, MAX_LORE_LENGTH);
-		
-		if (this.getSlot(2).hasStack()) {
-			ItemStack itemStack = this.getSlot(2).getStack();
-			if (StringUtils.isBlank(newLoreString)) {
-				LoreHelper.removeLore(itemStack);
-			} else {
-				LoreHelper.setLore(itemStack, LoreHelper.getLoreTextArrayFromString(this.newLoreString));
+	public boolean setNewItemLore(String newLoreString) {
+		String string = sanitize(newLoreString, MAX_LORE_LENGTH);
+		if (!string.equals(this.newLoreString)) {
+			this.newLoreString = string;
+			
+			if (this.getSlot(2).hasStack()) {
+				ItemStack itemStack = this.getSlot(2).getStack();
+				if (StringUtils.isBlank(newLoreString)) {
+					LoreHelper.removeLore(itemStack);
+				} else {
+					LoreHelper.setLore(itemStack, LoreHelper.getLoreTextArrayFromString(this.newLoreString));
+				}
 			}
+			this.updateResult();
+			return true;
 		}
-		this.updateResult();
+		return false;
 	}
 	
 	public int getLevelCost() {

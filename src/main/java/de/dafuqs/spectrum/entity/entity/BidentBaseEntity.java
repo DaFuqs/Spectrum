@@ -9,7 +9,7 @@ import net.minecraft.entity.projectile.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.sound.*;
-import net.minecraft.util.math.Box;
+import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 
 public abstract class BidentBaseEntity extends TridentEntity {
@@ -41,7 +41,7 @@ public abstract class BidentBaseEntity extends TridentEntity {
 	public ItemStack getTrackedStack() {
 		return this.dataTracker.get(STACK);
 	}
-
+	
 	public void setTrackedStack(ItemStack stack) {
 		dataTracker.set(STACK, stack);
 	}
@@ -51,7 +51,7 @@ public abstract class BidentBaseEntity extends TridentEntity {
 		super.readCustomDataFromNbt(nbt);
 		this.dataTracker.set(STACK, ItemStack.fromNbt(nbt.getCompound("Trident")));
 	}
-
+	
 	@Override
 	public Box calculateBoundingBox() {
 		return super.calculateBoundingBox();

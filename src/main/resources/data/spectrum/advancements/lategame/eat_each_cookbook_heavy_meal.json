@@ -73,16 +73,6 @@
         }
       }
     },
-    "crawfish": {
-      "trigger": "minecraft:consume_item",
-      "conditions": {
-        "item": {
-          "items": [
-            "spectrum:crawfish"
-          ]
-        }
-      }
-    },
     "crawfish_cocktail": {
       "trigger": "minecraft:consume_item",
       "conditions": {
@@ -123,16 +113,6 @@
         }
       }
     },
-    "lizard_meat": {
-      "trigger": "minecraft:consume_item",
-      "conditions": {
-        "item": {
-          "items": [
-            "spectrum:lizard_meat"
-          ]
-        }
-      }
-    },
     "golden_bristle_tea": {
       "trigger": "minecraft:consume_item",
       "conditions": {
@@ -159,16 +139,6 @@
         "item": {
           "items": [
             "spectrum:junket"
-          ]
-        }
-      }
-    },
-    "koi": {
-      "trigger": "minecraft:consume_item",
-      "conditions": {
-        "item": {
-          "items": [
-            "spectrum:koi"
           ]
         }
       }

@@ -26,13 +26,7 @@ public class EnchanterEnchantingCategory extends EnchanterCategory<EnchanterEnch
 	
 	@Override
 	public Text getDescriptionText(@NotNull EnchanterEnchantingDisplay display) {
-		// duration and XP requirements
-		// special handling for "1 second". Looks nicer
-		if (display.craftingTime == 20) {
-			return Text.translatable("container.spectrum.rei.enchanting.crafting_time_one_second", 1);
-		} else {
-			return Text.translatable("container.spectrum.rei.enchanting.crafting_time", (display.craftingTime / 20));
-		}
+		return getCraftingTimeText(display.craftingTime);
 	}
 	
 }

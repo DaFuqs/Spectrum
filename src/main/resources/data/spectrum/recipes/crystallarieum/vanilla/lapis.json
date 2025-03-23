@@ -4,12 +4,12 @@
     "item": "minecraft:lapis_lazuli"
   },
   "growth_stage_states": [
-    "spectrum:small_lapis_bud",
-    "spectrum:large_lapis_bud",
-    "spectrum:lapis_cluster"
+    "spectrum:small_lapis_bud[facing=up]",
+    "spectrum:large_lapis_bud[facing=up]",
+    "spectrum:lapis_cluster[facing=up]"
   ],
   "seconds_per_growth_stage": 60,
-  "ink_color": "purple",
+  "ink_color": "spectrum:purple",
   "ink_cost_tier": 2,
   "grows_without_catalyst": false,
   "catalysts": [
@@ -28,6 +28,14 @@
       "growth_acceleration_mod": 0.5,
       "ink_consumption_mod": 0.1,
       "consume_chance_per_second": 0.004
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:midnight_chip"
+      },
+      "growth_acceleration_mod": 1.2,
+      "ink_consumption_mod": 1.5,
+      "consume_chance_per_second": 0.2
     }
   ],
   "additional_recipe_manager_outputs": [

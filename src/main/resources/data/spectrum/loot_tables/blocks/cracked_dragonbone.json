@@ -1,37 +1,53 @@
 {
-  "type": "minecraft:block",
-  "pools": [
-    {
-      "rolls": 1,
-      "entries": [
-        {
-          "type": "minecraft:sequence",
-          "children": [
-            {
-              "type": "minecraft:item",
-              "name": "spectrum:cracked_dragonbone"
-            },
-            {
-              "type": "minecraft:item",
-              "name": "spectrum:dragonbone_chunk",
-              "functions": [
-                {
-                  "function": "minecraft:set_count",
-                  "count": {
-                    "min": 1,
-                    "max": 2
-                  }
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
-        }
-      ]
-    }
-  ]
+	"type": "minecraft:block",
+	"pools": [
+		{
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "minecraft:alternatives",
+					"children": [
+						{
+							"type": "minecraft:item",
+							"name": "spectrum:cracked_dragonbone",
+							"functions": [],
+							"conditions": [
+								{
+									"condition": "minecraft:match_tool",
+									"predicate": {
+										"enchantments": [
+											{
+												"enchantment": "minecraft:silk_touch",
+												"levels": {
+													"min": 1
+												}
+											}
+										]
+									}
+								}
+							]
+						},
+						{
+							"type": "minecraft:item",
+							"name": "spectrum:dragonbone_chunk",
+							"functions": [
+								{
+									"function": "minecraft:set_count",
+									"count": {
+										"min": 1,
+										"max": 2
+									}
+								}
+							]
+						}
+					]
+				}
+			],
+			"conditions": [
+				{
+					"condition": "minecraft:survives_explosion"
+				}
+			]
+		}
+	]
 }

@@ -1,8 +1,11 @@
 {
   "type": "spectrum:fusion_shrine",
-  "time": 2400,
+  "time": 1200,
   "experience": 16.0,
-  "fluid": "minecraft:water",
+  "fluid": {
+    "fluid": "spectrum:liquid_crystal"
+  },
+  "copy_nbt": true,
   "ingredients": [
     {
       "item": "minecraft:netherite_sword"
@@ -11,15 +14,15 @@
       "item": "minecraft:netherite_sword"
     },
     {
-      "item": "spectrum:refined_bloodstone",
+      "item": "spectrum:raw_bloodstone",
       "count": 4
     },
     {
-      "item": "spectrum:pure_gold",
+      "item": "minecraft:gold_ingot",
       "count": 8
     },
     {
-      "item": "spectrum:pure_quartz",
+      "item": "spectrum:blood_orchid_petal",
       "count": 8
     },
     {
@@ -44,7 +47,7 @@
     }
   ],
   "result": {
-    "item": "spectrum:dragon_talon"
+    "item": "spectrum:draconic_twinsword"
   },
   "required_advancement": "spectrum:unlocks/equipment/draconic_twinsword",
   "world_conditions": [],

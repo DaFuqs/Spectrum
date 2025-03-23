@@ -1,0 +1,28 @@
+{
+	"criteria": {
+		"built_complex_pedestal_structure": {
+			"trigger": "revelationary:advancement_gotten",
+			"conditions": {
+				"advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure"
+			}
+		},
+		"collected_malachite": {
+			"trigger": "revelationary:advancement_gotten",
+			"conditions": {
+				"advancement_identifier": "spectrum:lategame/collect_malachite"
+			}
+		},
+		"collected_paltaeria": {
+			"trigger": "revelationary:advancement_gotten",
+			"conditions": {
+				"advancement_identifier": "spectrum:lategame/collect_paltaeria"
+			}
+		},
+		"struck_up_hummingstone_hymn": {
+			"trigger": "revelationary:advancement_gotten",
+			"conditions": {
+				"advancement_identifier": "spectrum:lategame/strike_up_hummingstone_hymn"
+			}
+		}
+	}
+}

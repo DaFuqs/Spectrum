@@ -1,0 +1,55 @@
+{
+    "type": "minecraft:chest",
+    "pools": [
+        {
+            "rolls": 52,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "spectrum:gather_node_crystal"
+                }
+            ]
+        },
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "spectrum:courier_statue"
+                }
+            ]
+        },
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "spectrum:spectral_shard",
+                    "functions": [
+                        {
+                            "function": "minecraft:set_name",
+                            "name": {
+                                "text":"You shouldn't be seeing this in Survival"
+                            }
+                        },
+                        {
+                            "function": "minecraft:set_lore",
+                            "mode": "replace_all",
+                            "lore": [
+                                {
+                                    "text":"If you aren't in creative right now"
+                                },
+                                {
+                                    "text":"Then that's a bug - you should not be able to get this"
+                                },
+                                {
+                                    "text":"Please report it!"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

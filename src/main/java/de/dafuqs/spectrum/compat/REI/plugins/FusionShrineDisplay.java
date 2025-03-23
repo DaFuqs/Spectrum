@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.recipe.fusion_shrine.*;
 import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.display.basic.*;
 import me.shedaniel.rei.api.common.entry.*;
-import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.client.*;
 import net.minecraft.text.*;
 import org.jetbrains.annotations.*;
@@ -28,7 +27,7 @@ public class FusionShrineDisplay extends GatedSpectrumDisplay {
 	
 	private static List<EntryIngredient> buildIngredients(FusionShrineRecipe recipe) {
 		List<EntryIngredient> inputs = REIHelper.toEntryIngredients(recipe.getIngredientStacks());
-		inputs.add(0, EntryIngredients.of(recipe.getFluidInput()));
+		inputs.add(0, REIHelper.ofFluidIngredient(recipe.getFluid()));
 		return inputs;
 	}
 	

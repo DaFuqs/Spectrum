@@ -1,0 +1,14 @@
+{
+  "parent": "spectrum:item/handheld_oversized",
+  "textures": {
+    "layer0": "spectrum:item/nectar_lance"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "oversized": 1.0
+      },
+      "model": "spectrum:item/nectar_lance_oversized"
+    }
+  ]
+}

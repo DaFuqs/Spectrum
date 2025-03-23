@@ -2,11 +2,13 @@ package de.dafuqs.spectrum.registries.client;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.energy.color.InkColor;
 import de.dafuqs.spectrum.api.energy.storage.*;
 import de.dafuqs.spectrum.blocks.conditional.colored_tree.*;
 import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.energy.*;
+import de.dafuqs.spectrum.items.magic_items.PaintbrushItem;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
@@ -42,8 +44,9 @@ public class SpectrumColorProviders {
 		registerClovers(SpectrumBlocks.CLOVER, SpectrumBlocks.FOUR_LEAF_CLOVER);
 		registerMemory(SpectrumBlocks.MEMORY);
 		registerPotionFillables(SpectrumItems.LESSER_POTION_PENDANT, SpectrumItems.GREATER_POTION_PENDANT, SpectrumItems.MALACHITE_GLASS_AMPOULE);
-		registerPickyPotionFillables(SpectrumItems.NIGHTFALLS_BLADE);
+		registerPickyPotionFillables(SpectrumItems.NIGHTFALLS_BLADE, SpectrumItems.CONCEALING_OILS);
 		registerSingleInkStorages(SpectrumItems.INK_FLASK);
+		registerPaintbrush(SpectrumItems.PAINTBRUSH);
 		registerBrewColors(SpectrumItems.INFUSED_BEVERAGE);
 	}
 	
@@ -55,7 +58,7 @@ public class SpectrumColorProviders {
 			coloredLeavesBlockColorProvider = new ToggleableBlockColorProvider(leavesBlockColorProvider);
 			coloredLeavesItemColorProvider = new ToggleableItemColorProvider(leavesItemColorProvider);
 			
-			for (DyeColor dyeColor : DyeColor.values()) {
+			for (DyeColor dyeColor : ColorHelper.VANILLA_DYE_COLORS) {
 				Block block = ColoredLeavesBlock.byColor(dyeColor);
 				ColorProviderRegistry.BLOCK.register(coloredLeavesBlockColorProvider, block);
 				ColorProviderRegistry.ITEM.register(coloredLeavesItemColorProvider, block);
@@ -104,11 +107,21 @@ public class SpectrumColorProviders {
 		}, items);
 	}
 
+	private static void registerPaintbrush(Item... items) {
+		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> {
+			if (tintIndex == 1) {
+				var potentialColor = PaintbrushItem.getColor(stack);
+				return potentialColor.map(InkColor::getColorInt).orElse(-1);
+			}
+			return -1;
+		}, items);
+	}
+
 	private static void registerPickyPotionFillables(Item... items) {
 		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> {
 			if (tintIndex == 1) {
 				List<InkPoweredStatusEffectInstance> effects = InkPoweredStatusEffectInstance.getEffects(stack);
-				if (effects.size() > 0) {
+				if (!effects.isEmpty()) {
 					return effects.get(0).getColor();
 				}
 			}

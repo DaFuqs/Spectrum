@@ -1,11 +1,11 @@
 package de.dafuqs.spectrum.recipe.cinderhearth;
 
 import com.google.gson.*;
+import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.recipe.*;
 import net.minecraft.item.*;
 import net.minecraft.network.*;
-import net.minecraft.recipe.*;
 import net.minecraft.util.*;
 
 import java.util.*;
@@ -19,7 +19,7 @@ public class CinderhearthRecipeSerializer implements GatedRecipeSerializer<Cinde
 	}
 	
 	public interface RecipeFactory {
-		CinderhearthRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, Ingredient inputIngredient, int time, float experience, List<Pair<ItemStack, Float>> outputsWithChance);
+		CinderhearthRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, IngredientStack inputIngredient, int time, float experience, List<Pair<ItemStack, Float>> outputsWithChance);
 	}
 	
 	@Override
@@ -27,8 +27,8 @@ public class CinderhearthRecipeSerializer implements GatedRecipeSerializer<Cinde
 		String group = readGroup(jsonObject);
 		boolean secret = readSecret(jsonObject);
 		Identifier requiredAdvancementIdentifier = readRequiredAdvancementIdentifier(jsonObject);
-		
-		Ingredient inputIngredient = Ingredient.fromJson(JsonHelper.hasArray(jsonObject, "ingredient") ? JsonHelper.getArray(jsonObject, "ingredient") : JsonHelper.getObject(jsonObject, "ingredient"));
+
+		IngredientStack inputIngredient = RecipeParser.ingredientStackFromJson(JsonHelper.getObject(jsonObject, "ingredient"));
 		int time = JsonHelper.getInt(jsonObject, "time");
 		float experience = JsonHelper.getFloat(jsonObject, "experience");
 		
@@ -68,8 +68,8 @@ public class CinderhearthRecipeSerializer implements GatedRecipeSerializer<Cinde
 		String group = packetByteBuf.readString();
 		boolean secret = packetByteBuf.readBoolean();
 		Identifier requiredAdvancementIdentifier = readNullableIdentifier(packetByteBuf);
-		
-		Ingredient inputIngredient = Ingredient.fromPacket(packetByteBuf);
+
+		IngredientStack inputIngredient = IngredientStack.fromByteBuf(packetByteBuf);
 		int time = packetByteBuf.readInt();
 		float experience = packetByteBuf.readFloat();
 		

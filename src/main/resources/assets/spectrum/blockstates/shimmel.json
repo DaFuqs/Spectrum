@@ -1,10 +1,38 @@
 {
   "variants": {
-    "snowy=true": {
-      "model": "spectrum:block/shimmel_snow"
-    },
-    "snowy=false": {
-      "model": "spectrum:block/shimmel"
-    }
+    "snowy=true": [
+      {
+        "model": "spectrum:block/shimmel_snow"
+      },
+      {
+        "model": "spectrum:block/shimmel_snow",
+        "y": 90
+      },
+      {
+        "model": "spectrum:block/shimmel_snow",
+        "y": 180
+      },
+      {
+        "model": "spectrum:block/shimmel_snow",
+        "y": 270
+      }
+    ],
+    "snowy=false": [
+      {
+        "model": "spectrum:block/shimmel"
+      },
+      {
+        "model": "spectrum:block/shimmel",
+        "y": 90
+      },
+      {
+        "model": "spectrum:block/shimmel",
+        "y": 180
+      },
+      {
+        "model": "spectrum:block/shimmel",
+        "y": 270
+      }
+    ]
   }
 }

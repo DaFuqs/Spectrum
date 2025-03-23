@@ -1,7 +1,9 @@
 package de.dafuqs.spectrum.mixin;
 
+import com.llamalad7.mixinextras.injector.*;
 import de.dafuqs.spectrum.cca.*;
-import de.dafuqs.spectrum.enchantments.InexorableEnchantment;
+import de.dafuqs.spectrum.enchantments.*;
+import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.status_effects.*;
 import net.minecraft.enchantment.*;
@@ -12,14 +14,14 @@ import net.minecraft.item.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.stat.*;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
 @Mixin(Entity.class)
 public abstract class EntityMixin {
-	
+
 	@Inject(method = "onKilledOther", at = @At("HEAD"))
 	private void spectrum$rememberKillOther(ServerWorld world, LivingEntity other, CallbackInfoReturnable<Boolean> cir) {
 		Entity entity = (Entity) (Object) this;
@@ -71,5 +73,27 @@ public abstract class EntityMixin {
 			}
 		}
 	}
+
+	@ModifyReturnValue(method = "getPose", at = @At("RETURN"))
+	public EntityPose spectrum$forceSleepPose(EntityPose original) {
+		var entity = (Entity) (Object) this;
+		
+		if (!(entity instanceof LivingEntity living) || ((LivingEntityAccessor) living).getActiveStatusEffects() == null)
+			return original;
+
+		if (!(entity instanceof PlayerEntity) && (living.hasStatusEffect(SpectrumStatusEffects.ETERNAL_SLUMBER) || living.hasStatusEffect(SpectrumStatusEffects.FATAL_SLUMBER)))
+			return EntityPose.SLEEPING;
+
+		return original;
+	}
 	
+	@ModifyReturnValue(method = "isOnFire", at = @At("RETURN"))
+	public boolean spectrum$considerPrimfireAsFire(boolean original) {
+		var entity = (Entity) (Object) this;
+		
+		if (entity instanceof LivingEntity living && OnPrimordialFireComponent.isOnPrimordialFire(living))
+			return true;
+
+		return original;
+	}
 }

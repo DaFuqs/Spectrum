@@ -1,0 +1,41 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "phantom_frames",
+  "time": 80,
+  "tier": "basic",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 2,
+  "white": 0,
+  "black": 0,
+  "experience": 0.5,
+  "pattern": [
+    "SSS",
+    "CLC",
+    "SSS"
+  ],
+  "key": {
+    "L": {
+      "item": "malum:astral_weave"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "C": {
+      "item": "spectrum:shimmerstone_gem"
+    }
+  },
+  "result": {
+    "item": "spectrum:phantom_frame",
+    "count": 2
+  },
+  "required_advancement": "spectrum:unlocks/items/phantom_frames",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "malum"
+      ]
+    }
+  ]
+}

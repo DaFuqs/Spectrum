@@ -1,0 +1,21 @@
+{
+  "type": "spectrum:spirit_instiller",
+  "group": "head_fusion",
+  "time": 800,
+  "experience": 4.0,
+  "ingredient1": {
+    "tag": "spectrum:mob_heads/shulker_heads"
+  },
+  "ingredient2": {
+    "item": "spectrum:pink_pigment",
+    "count": 1
+  },
+  "center_ingredient": {
+    "item": "spectrum:vegetal",
+    "count": 1
+  },
+  "result": {
+    "item": "spectrum:shulker_pink_head"
+  },
+  "required_advancement": "spectrum:unlocks/head_fusion/basic_recipes"
+}

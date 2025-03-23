@@ -17,7 +17,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class CelestialPocketWatchItem extends Item {
+public class CelestialPocketWatchItem extends Item implements InkPowered {
 
 	// Since the watch can be triggered from an item frame, too
 	// and item frames can turn items in 8 directions this fits real fine
@@ -33,7 +33,12 @@ public class CelestialPocketWatchItem extends Item {
 	public CelestialPocketWatchItem(Settings settings) {
 		super(settings);
 	}
-
+	
+	@Override
+	public List<InkColor> getUsedColors() {
+		return List.of(COST.getColor());
+	}
+	
 	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 		ItemStack itemStack = user.getStackInHand(hand);
@@ -88,7 +93,6 @@ public class CelestialPocketWatchItem extends Item {
 	@Override
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
-		tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.magenta"));
 
 		if (world != null) {
 			switch (canAdvanceTime(world)) {
@@ -100,6 +104,8 @@ public class CelestialPocketWatchItem extends Item {
 						tooltip.add(Text.translatable("item.spectrum.celestial_pocketwatch.tooltip.working").formatted(Formatting.GRAY));
 			}
 		}
+		
+		addInkPoweredTooltip(tooltip);
 	}
 	
 }

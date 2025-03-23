@@ -1,13 +1,10 @@
 {
 	"variants": {
-		"yield=none": {
+      "crystals=false": {
 			"model": "spectrum:block/cyan_spirit_sallow_vines_body_none"
 		},
-		"yield=normal": {
-			"model": "spectrum:block/cyan_spirit_sallow_vines_body_normal"
-		},
-		"yield=lucid": {
-			"model": "spectrum:block/cyan_spirit_sallow_vines_body_lucid"
+      "crystals=true": {
+		  "model": "spectrum:block/cyan_spirit_sallow_vines_body_crystals"
 		}
 	}
 }

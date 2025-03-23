@@ -1,0 +1,31 @@
+{
+    "name": "item.spectrum.bitter_oils",
+    "condition": {
+      "type": "modonomicon:advancement",
+      "advancement_id": "spectrum:hidden/collect_cookbooks/poisoners_handbook"
+    },
+    "icon": "spectrum:bitter_oils",
+    "category": "spectrum:brewing",
+    "hide_while_locked": true,
+    "parents": [],
+    "background_u_index": 0,
+    "background_v_index": 0,
+  "x": -1,
+    "y": -3,
+    "pages": [
+      {
+        "type": "modonomicon:spotlight",
+        "item": {
+          "item": "spectrum:bitter_oils"
+        },
+        "text": "book.spectrum.guidebook.bitter_oils.page0.text"
+      },
+      {
+        "type": "spectrum:titration_barrel_fermenting",
+        "title": "book.spectrum.guidebook.titration_recipe",
+        "recipe_id": "spectrum:titration_barrel/bitter_oils",
+        "text": "book.spectrum.guidebook.bitter_oils.page1.text"
+      }
+    ]
+  }
+  

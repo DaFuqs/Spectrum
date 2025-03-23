@@ -10,7 +10,7 @@ public class JadeVinePetalBlock extends Block {
 	public JadeVinePetalBlock(Settings settings) {
 		super(settings);
 	}
-
+	
 	@Override
 	public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return VoxelShapes.fullCube();
@@ -26,5 +26,5 @@ public class JadeVinePetalBlock extends Block {
 	public int getOpacity(BlockState state, BlockView world, BlockPos pos) {
 		return 2;
 	}
-
+	
 }

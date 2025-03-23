@@ -76,6 +76,10 @@
     {
       "id": "spectrum:razing",
       "required": false
+    },
+    {
+      "id": "spectrum:serendipity_reel",
+      "required": false
     }
   ]
 }

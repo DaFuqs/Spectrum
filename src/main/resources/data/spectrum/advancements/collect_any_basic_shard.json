@@ -1,0 +1,50 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "title": {
+      "translate": "advancements.spectrum.collect_any_basic_shard.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.collect_any_basic_shard.description"
+    }
+  },
+  "parent": "spectrum:spectrum",
+  "criteria": {
+    "has_amethyst_shard": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_shards/amethyst"
+      }
+    },
+    "has_citrine_shard": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_shards/citrine"
+      }
+    },
+    "has_topaz_shard": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_shards/topaz"
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:spectrum"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_amethyst_shard",
+      "has_citrine_shard",
+      "has_topaz_shard"
+    ],
+    [
+      "gotten_previous"
+    ]
+  ]
+}

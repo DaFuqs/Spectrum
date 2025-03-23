@@ -4,12 +4,12 @@
     "item": "minecraft:redstone"
   },
   "growth_stage_states": [
-    "spectrum:small_redstone_bud",
-    "spectrum:large_redstone_bud",
-    "spectrum:redstone_cluster"
+    "spectrum:small_redstone_bud[facing=up]",
+    "spectrum:large_redstone_bud[facing=up]",
+    "spectrum:redstone_cluster[facing=up]"
   ],
   "seconds_per_growth_stage": 60,
-  "ink_color": "yellow",
+  "ink_color": "spectrum:yellow",
   "ink_cost_tier": 2,
   "grows_without_catalyst": false,
   "catalysts": [

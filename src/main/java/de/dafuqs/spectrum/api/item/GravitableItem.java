@@ -8,8 +8,8 @@ import net.minecraft.server.network.*;
 import net.minecraft.world.*;
 
 public interface GravitableItem {
-	
-	float getGravityMod();
+
+	float getGravityMod(ItemStack stack);
 	
 	/**
 	 * This one is for LivingEntities, like players
@@ -24,8 +24,8 @@ public interface GravitableItem {
 				if (entity instanceof PlayerEntity player && player.isCreative()) {
 					return 0;
 				}
-				
-				double additionalYVelocity = getGravityMod() * stack.getCount();
+
+				double additionalYVelocity = getGravityMod(stack) * stack.getCount();
 				entity.addVelocity(0, additionalYVelocity, 0);
 				
 				// if falling very slowly => reset fall distance / damage
@@ -57,7 +57,7 @@ public interface GravitableItem {
 		} else {
 			// since an ItemEntity is much lighter than a player, we can x10 the gravity effect
 			// this is not affected by item entity stack count to make it more predictable
-			itemEntity.addVelocity(0, getGravityMod() * 10, 0);
+			itemEntity.addVelocity(0, getGravityMod(stack) * 10, 0);
 		}
 	}
 	

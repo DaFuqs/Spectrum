@@ -1,0 +1,64 @@
+{
+  "name": "book.spectrum.guidebook.mod_integration.supplementaries.name",
+  "icon": "supplementaries:globe",
+  "condition": {
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:mod_loaded",
+        "mod_id": "supplementaries"
+      },
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:place_pedestal"
+      }
+    ]
+  },
+  "category": "spectrum:mod_integration",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 9,
+  "y": 4,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+
+      "text": "book.spectrum.guidebook.mod_integration.supplementaries.page0.text",
+      "title": "book.spectrum.guidebook.mod_integration.supplementaries.name"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/titration_barrel"
+      },
+      "recipe_id": "spectrum:mod_integration/supplementaries/titration_barrel/antique_ink",
+      "text": "book.spectrum.guidebook.mod_integration.supplementaries.page1.text"
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/enchantments/vanilla_treasure"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.supplementaries.page2.text",
+      "title": "container.spectrum.rei.enchanter_recipe",
+      "recipe_id": "spectrum:mod_integration/supplementaries/enchanter/book_stasis"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.mod_integration.supplementaries.page3.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_ash"
+      },
+      "item": {
+        "item": "spectrum:ash_flakes"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.supplementaries.page3.text"
+    }
+
+  ]
+}

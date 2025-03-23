@@ -1,0 +1,38 @@
+{
+  "type": "modonomicon:dense",
+  "pattern": [
+    [
+      "_P_",
+      "P P",
+      "_P_"
+    ],
+    [
+      "_P_",
+      "X P",
+      "_P_"
+    ],
+    [
+      "BBB",
+      "B0B",
+      "BBB"
+    ]
+  ],
+  "mapping": {
+    "X": {
+      "type": "modonomicon:block",
+      "block": "alloy_forgery:pyrite_forge_controller"
+    },
+    "P": {
+      "type": "modonomicon:block",
+      "block": "spectrum:pyrite"
+    },
+    "B": {
+      "type": "modonomicon:block",
+      "block": "spectrum:pyrite_plating"
+    },
+    "0": {
+      "type": "modonomicon:block",
+      "block": "spectrum:pyrite_plating"
+    }
+  }
+}

@@ -55,13 +55,7 @@ public class CinderhearthCategory extends GatedDisplayCategory<CinderhearthDispl
 		}
 		
 		// description text
-		// special handling for "1 second". Looks nicer
-		Text text;
-		if (display.craftingTime == 20) {
-			text = Text.translatable("container.spectrum.rei.pedestal_crafting.crafting_time_one_second_and_xp", 1, display.experience);
-		} else {
-			text = Text.translatable("container.spectrum.rei.pedestal_crafting.crafting_time_and_xp", (display.craftingTime / 20), display.experience);
-		}
+		Text text = getCraftingTimeText(display.craftingTime, display.experience);
 		widgets.add(Widgets.createLabel(new Point(startPoint.x - 6, startPoint.y + 1 + 43), text).leftAligned().color(0x3f3f3f).noShadow());
 	}
 	

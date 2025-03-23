@@ -16,6 +16,11 @@ public class GildedBookItem extends BookItem {
 	}
 	
 	@Override
+	public boolean isEnchantable(ItemStack stack) {
+		return false;
+	}
+	
+	@Override
 	public int getEnchantability() {
 		return Items.GOLDEN_PICKAXE.getEnchantability();
 	}

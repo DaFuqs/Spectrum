@@ -114,11 +114,11 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 		}
 	}
 	
-	public void manifest(@NotNull ServerWorld world, BlockPos blockPos) {
+	protected void manifest(@NotNull ServerWorld world, BlockPos blockPos) {
 		manifest(world, blockPos, this.memoryItemStack, this.ownerUUID);
 	}
 	
-	public static void manifest(@NotNull ServerWorld world, BlockPos blockPos, ItemStack memoryItemStack, @Nullable UUID ownerUUID) {
+	public static boolean manifest(@NotNull ServerWorld world, BlockPos blockPos, ItemStack memoryItemStack, @Nullable UUID ownerUUID) {
 		BlockState blockState = world.getBlockState(blockPos);
 		if (blockState.getBlock() instanceof Waterloggable && blockState.get(Properties.WATERLOGGED)) {
 			world.setBlockState(blockPos, Blocks.WATER.getDefaultState());
@@ -146,7 +146,11 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 			if (owner instanceof ServerPlayerEntity serverPlayerEntity) {
 				SpectrumAdvancementCriteria.MEMORY_MANIFESTING.trigger(serverPlayerEntity, hatchedEntity);
 			}
+			
+			return true;
 		}
+		
+		return false;
 	}
 	
 	public int getEggColor(int tintIndex) {
@@ -179,7 +183,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 		return nbtCompound;
 	}
 	
-	protected static Optional<Entity> hatchEntity(ServerWorld world, BlockPos blockPos, ItemStack memoryItemStack) {
+	public static Optional<Entity> hatchEntity(ServerWorld world, BlockPos blockPos, ItemStack memoryItemStack) {
 		NbtCompound nbt = memoryItemStack.getNbt();
 		if (nbt == null) {
 			return Optional.empty();
@@ -190,12 +194,12 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 			// alignPosition: center the mob in the center of the blockPos
 			Entity entity = entityType.get().spawnFromItemStack(world, memoryItemStack, null, blockPos, SpawnReason.SPAWN_EGG, true, false);
 			if (entity != null) {
+				if (memoryItemStack.hasCustomName()) {
+					entity.setCustomName(memoryItemStack.getName());
+				}
 				if (entity instanceof MobEntity mobEntity) {
 					if (!nbt.getBoolean("SpawnAsAdult")) {
 						mobEntity.setBaby(true);
-					}
-					if (memoryItemStack.hasCustomName()) {
-						mobEntity.setCustomName(memoryItemStack.getName());
 					}
 				}
 				return Optional.of(entity);

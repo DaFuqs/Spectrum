@@ -22,6 +22,135 @@
     },
     {
       "type": "minecraft:biome"
+    },
+    {
+      "type": "minecraft:block_predicate_filter",
+      "predicate": {
+        "type": "minecraft:not",
+        "predicate": {
+          "type": "minecraft:any_of",
+          "predicates": [
+            {
+              "type": "exclusions_lib:overlaps_structure",
+              "range": 8
+            },
+            {
+              "type": "minecraft:matching_blocks",
+              "blocks": [
+                "spectrum:moonstone_block",
+                "spectrum:budding_moonstone",
+                "spectrum:small_moonstone_bud",
+                "spectrum:medium_moonstone_bud",
+                "spectrum:large_moonstone_bud",
+                "minecraft:smooth_basalt",
+                "minecraft:calcite"
+              ]
+            },
+            {
+              "type": "minecraft:matching_blocks",
+              "offset": [
+                -4,
+                0,
+                0
+              ],
+              "blocks": [
+                "spectrum:moonstone_block",
+                "spectrum:budding_moonstone",
+                "spectrum:small_moonstone_bud",
+                "spectrum:medium_moonstone_bud",
+                "spectrum:large_moonstone_bud",
+                "minecraft:smooth_basalt",
+                "minecraft:calcite"
+              ]
+            },
+            {
+              "type": "minecraft:matching_blocks",
+              "offset": [
+                4,
+                0,
+                0
+              ],
+              "blocks": [
+                "spectrum:moonstone_block",
+                "spectrum:budding_moonstone",
+                "spectrum:small_moonstone_bud",
+                "spectrum:medium_moonstone_bud",
+                "spectrum:large_moonstone_bud",
+                "minecraft:smooth_basalt",
+                "minecraft:calcite"
+              ]
+            },
+            {
+              "type": "minecraft:matching_blocks",
+              "offset": [
+                0,
+                0,
+                -4
+              ],
+              "blocks": [
+                "spectrum:moonstone_block",
+                "spectrum:budding_moonstone",
+                "spectrum:small_moonstone_bud",
+                "spectrum:medium_moonstone_bud",
+                "spectrum:large_moonstone_bud",
+                "minecraft:smooth_basalt",
+                "minecraft:calcite"
+              ]
+            },
+            {
+              "type": "minecraft:matching_blocks",
+              "offset": [
+                0,
+                0,
+                4
+              ],
+              "blocks": [
+                "spectrum:moonstone_block",
+                "spectrum:budding_moonstone",
+                "spectrum:small_moonstone_bud",
+                "spectrum:medium_moonstone_bud",
+                "spectrum:large_moonstone_bud",
+                "minecraft:smooth_basalt",
+                "minecraft:calcite"
+              ]
+            },
+            {
+              "type": "minecraft:matching_blocks",
+              "offset": [
+                0,
+                -4,
+                0
+              ],
+              "blocks": [
+                "spectrum:moonstone_block",
+                "spectrum:budding_moonstone",
+                "spectrum:small_moonstone_bud",
+                "spectrum:medium_moonstone_bud",
+                "spectrum:large_moonstone_bud",
+                "minecraft:smooth_basalt",
+                "minecraft:calcite"
+              ]
+            },
+            {
+              "type": "minecraft:matching_blocks",
+              "offset": [
+                0,
+                4,
+                0
+              ],
+              "blocks": [
+                "spectrum:moonstone_block",
+                "spectrum:budding_moonstone",
+                "spectrum:small_moonstone_bud",
+                "spectrum:medium_moonstone_bud",
+                "spectrum:large_moonstone_bud",
+                "minecraft:smooth_basalt",
+                "minecraft:calcite"
+              ]
+            }
+          ]
+        }
+      }
     }
   ]
 }

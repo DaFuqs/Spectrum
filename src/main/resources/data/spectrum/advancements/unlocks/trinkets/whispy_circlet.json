@@ -15,13 +15,13 @@
     "collected_phantom_membrane": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_vanilla/collect_phantom_membrane"
+        "advancement_identifier": "spectrum:hidden/collect_vanilla/phantom_membrane"
       }
     },
     "collected_mermaids_gem": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:collect_mermaids_gem"
+        "advancement_identifier": "spectrum:collect_nightdew"
       }
     },
     "collected_all_basic_pigments": {

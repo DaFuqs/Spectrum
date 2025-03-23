@@ -1,0 +1,26 @@
+{
+  "parent": "spectrum:lategame/find_undergrowth_manor",
+  "display": {
+    "icon": {
+      "item": "minecraft:purple_banner"
+    },
+    "title": {
+      "translate": "advancements.spectrum.enter_strange_preservation_ruin.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.enter_strange_preservation_ruin.description"
+    },
+    "hidden": true
+  },
+  "criteria": {
+    "enter_dream_gate": {
+      "trigger": "minecraft:impossible"
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/find_undergrowth_manor"
+      }
+    }
+  }
+}

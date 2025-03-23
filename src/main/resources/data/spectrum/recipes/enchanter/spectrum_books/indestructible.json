@@ -1,0 +1,54 @@
+{
+  "type": "spectrum:enchanter",
+  "time": 1000,
+  "required_experience": 1000,
+  "ingredients": [
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "spectrum:blue_pigment"
+    },
+    {
+      "item": "spectrum:blue_pigment"
+    },
+    {
+      "item": "spectrum:downstone_fragments"
+    },
+    {
+      "item": "spectrum:pure_netherite_scrap"
+    },
+    {
+      "item": "spectrum:blue_pigment"
+    },
+    {
+      "item": "spectrum:blue_pigment"
+    },
+    {
+      "item": "spectrum:downstone_fragments"
+    },
+    {
+      "item": "spectrum:pure_netherite_scrap"
+    }
+  ],
+  "result": {
+    "item": "minecraft:enchanted_book",
+    "nbt": {
+      "StoredEnchantments": [
+        {
+          "id": "spectrum:indestructible",
+          "lvl": "1s"
+        }
+      ]
+    }
+  },
+  "required_advancement": "spectrum:unlocks/enchantments/indestructible",
+  "fabric:load_conditions": [
+    {
+      "condition": "spectrum:enchantments_exist",
+      "values": [
+        "spectrum:indestructible"
+      ]
+    }
+  ]
+}

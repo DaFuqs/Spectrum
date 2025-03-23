@@ -1,0 +1,21 @@
+{
+  "type": "spectrum:spirit_instiller",
+  "group": "head_fusion",
+  "time": 800,
+  "experience": 4.0,
+  "ingredient1": {
+    "item": "spectrum:slime_head"
+  },
+  "ingredient2": {
+    "item": "spectrum:incandescent_essence",
+    "count": 4
+  },
+  "center_ingredient": {
+    "item": "spectrum:vegetal",
+    "count": 4
+  },
+  "result": {
+    "item": "spectrum:magma_cube_head"
+  },
+  "required_advancement": "spectrum:unlocks/head_fusion/incandescent_recipes"
+}

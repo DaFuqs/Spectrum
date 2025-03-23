@@ -1,6 +1,6 @@
 {
   "type": "spectrum:pedestal",
-  "group": "amethyst_runes",
+  "group": "gemstone_chiseled_blocks",
   "time": 80,
   "tier": "basic",
   "magenta": 4,
@@ -24,7 +24,7 @@
   },
   "result": {
     "item": "spectrum:amethyst_chiseled_calcite",
-    "count": 4
+    "count": 8
   },
   "required_advancement": "spectrum:create_onyx_shard"
 }

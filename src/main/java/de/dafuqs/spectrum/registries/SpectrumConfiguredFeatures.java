@@ -1,14 +1,14 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.blocks.dd_deco.*;
+import de.dafuqs.spectrum.blocks.deeper_down.flora.Dragonjag;
 import net.minecraft.registry.*;
 import net.minecraft.world.gen.feature.*;
 
 import java.util.*;
 
 public class SpectrumConfiguredFeatures {
-
+	
 	public static final RegistryKey<ConfiguredFeature<?, ?>> CLOVER_PATCH = of("clover_patch");
 	public static final RegistryKey<ConfiguredFeature<?,?>> SNAPPING_IVY_PATCH = of("snapping_ivy_patch");
 	public static final RegistryKey<ConfiguredFeature<?,?>> JADEITE_LOTUS = of("jadeite_lotus");
@@ -19,7 +19,7 @@ public class SpectrumConfiguredFeatures {
 	public static final RegistryKey<ConfiguredFeature<?,?>> EBONY_NOXFUNGUS = of("noxfungi/ebony");
 	public static final RegistryKey<ConfiguredFeature<?,?>> IVORY_NOXFUNGUS = of("noxfungi/ivory");
 	public static final RegistryKey<ConfiguredFeature<?,?>> CHESTNUT_NOXFUNGUS = of("noxfungi/chestnut");
-
+	
 	public static final Map<Dragonjag.Variant, RegistryKey<ConfiguredFeature<?, ?>>> DRAGONJAGS = new HashMap<>() {{
 		put(Dragonjag.Variant.PINK, of("dragonjags/pink"));
 		put(Dragonjag.Variant.RED, of("dragonjags/red"));

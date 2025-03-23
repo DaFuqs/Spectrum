@@ -8,7 +8,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.server.network.*;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 
 public class AscensionStatusEffect extends SpectrumStatusEffect {
 	
@@ -43,7 +43,14 @@ public class AscensionStatusEffect extends SpectrumStatusEffect {
 	@Override
 	public void onRemoved(LivingEntity entity, AttributeContainer attributes, int amplifier) {
 		super.onRemoved(entity, attributes, amplifier);
-		entity.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.DIVINITY, MUSIC_DURATION_TICKS - MUSIC_INTRO_TICKS, DivinityStatusEffect.ASCENSION_AMPLIFIER));
+		
+		// only apply divinity if ascension ran out
+		// does not apply when curing the effect by other means, such as drinking milk
+		// which would trigger a ConcurrentModificationException
+		StatusEffectInstance instance = entity.getStatusEffect(this);
+		if (instance == null) { // null if the effect ran out; non-null for milk and stuff
+			entity.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.DIVINITY, MUSIC_DURATION_TICKS - MUSIC_INTRO_TICKS, DivinityStatusEffect.ASCENSION_AMPLIFIER));
+		}
 	}
 	
 }

@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.recipe.titration_barrel.dynamic;
 
 import de.dafuqs.matchbooks.recipe.*;
-import de.dafuqs.matchbooks.recipe.matchbook.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.recipe.*;
+import de.dafuqs.spectrum.blocks.titration_barrel.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
@@ -28,8 +28,8 @@ public class NecteredViognierRecipe extends SweetenableTitrationBarrelRecipe {
 	public static final ItemStack OUTPUT_STACK = getDefaultStackWithCount(SpectrumItems.NECTERED_VIOGNIER, 4);
 	public static final Item TAPPING_ITEM = Items.GLASS_BOTTLE;
 	public static final List<IngredientStack> INGREDIENT_STACKS = new ArrayList<>() {{
-		add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.NEPHRITE_BLOSSOM_BULB)));
-		add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.GLASS_PEACH), Matchbook.empty(), null, 4));
+		add(IngredientStack.ofItems(SpectrumBlocks.NEPHRITE_BLOSSOM_BULB));
+		add(IngredientStack.ofItems(4, SpectrumItems.GLASS_PEACH));
 	}};
 
 	public NecteredViognierRecipe(Identifier identifier) {
@@ -38,7 +38,7 @@ public class NecteredViognierRecipe extends SweetenableTitrationBarrelRecipe {
 	
 	@Override
 	public ItemStack tap(Inventory inventory, long secondsFermented, float downfall) {
-		int bulbCount = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.NEPHRITE_BLOSSOM_BULB);
+		int bulbCount = InventoryHelper.getItemCountInInventory(inventory, SpectrumBlocks.NEPHRITE_BLOSSOM_BULB.asItem());
 		int petalCount = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.GLASS_PEACH);
 		boolean nectar = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.MOONSTRUCK_NECTAR) > 0;
 		
@@ -96,7 +96,7 @@ public class NecteredViognierRecipe extends SweetenableTitrationBarrelRecipe {
 	}
 	
 	@Override
-	public boolean matches(Inventory inventory, World world) {
+	public boolean matches(TitrationBarrelBlockEntity inventory, World world) {
 		boolean bulbsFound = false;
 		
 		for (int i = 0; i < inventory.size(); i++) {
@@ -104,7 +104,7 @@ public class NecteredViognierRecipe extends SweetenableTitrationBarrelRecipe {
 			if (stack.isEmpty()) {
 				continue;
 			}
-			if (stack.isOf(SpectrumItems.NEPHRITE_BLOSSOM_BULB)) {
+			if (stack.isOf(SpectrumBlocks.NEPHRITE_BLOSSOM_BULB.asItem())) {
 				bulbsFound = true;
 			} else if (!stack.isOf(SpectrumItems.GLASS_PEACH) && !stack.isOf(SpectrumItems.MOONSTRUCK_NECTAR)) {
 				return false;

@@ -1,0 +1,21 @@
+{
+  "advancement": "spectrum:milestones/reveal_colored_trees_w",
+  "block_states": {
+    "immersive_weathering:spectrum/white_leaf_pile": "immersive_weathering:oak_leaf_pile",
+    "immersive_weathering:spectrum/gray_leaf_pile": "immersive_weathering:oak_leaf_pile",
+    "immersive_weathering:spectrum/light_gray_leaf_pile": "immersive_weathering:oak_leaf_pile"
+  },
+  "items": {
+    "immersive_weathering:spectrum/white_bark": "immersive_weathering:oak_bark",
+    "immersive_weathering:spectrum/gray_bark": "immersive_weathering:oak_bark",
+    "immersive_weathering:spectrum/light_gray_bark": "immersive_weathering:oak_bark"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "immersive_weathering"
+      ]
+    }
+  ]
+}

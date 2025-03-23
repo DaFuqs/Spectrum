@@ -10,7 +10,9 @@
     },
 	"collected_any_shard": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:spectrum" }
+      "conditions": {
+        "advancement_identifier": "spectrum:collect_any_basic_shard"
+      }
     }
   }
 }

@@ -1,27 +1,29 @@
 package de.dafuqs.spectrum.helpers;
 
 import de.dafuqs.spectrum.api.energy.color.*;
-import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.items.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.mob.*;
-import net.minecraft.entity.passive.*;
-import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
-import net.minecraft.sound.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.*;
 import org.jetbrains.annotations.*;
 import org.joml.*;
 
 import java.awt.*;
 import java.lang.Math;
+import java.util.List;
 import java.util.*;
 
 public class ColorHelper {
 	
+	/**
+	 * A list of the first 16 dye colors
+	 * In case a mod extends the DyeColor enum
+	 */
+	public static List<DyeColor> VANILLA_DYE_COLORS = Arrays.stream(DyeColor.values()).filter(dyeColor -> dyeColor.getId() < 16).toList();
+	public static final Vector3f WASH = new Vector3f(1F, 1F, 1F);
+	
 	public static Vector3f getRGBVec(DyeColor dyeColor) {
-		return InkColor.of(dyeColor).getColor();
+		return InkColor.ofDyeColor(dyeColor).getColorVec();
 	}
 	
 	public static int getInt(DyeColor dyeColor) {
@@ -46,7 +48,7 @@ public class ColorHelper {
 		colorObj.getColorComponents(argb);
 		return new Vector3f(argb[0], argb[1], argb[2]);
 	}
-
+	
 	public static int colorVecToRGB(Vector3f color) {
 		Color colorObj = new Color(color.x, color.y, color.z);
 		return colorObj.getRGB();
@@ -63,35 +65,12 @@ public class ColorHelper {
 		}
 		return Optional.empty();
 	}
-
-	public static int interpolate(Vector3f start, Vector3f end, float delta) {
-		var blendedRed =  Math.round(MathHelper.lerp(delta, start.x, end.x) * 255F);
-		var blendedGreen =  Math.round(MathHelper.lerp(delta, start.y, end.y) * 255F);
-		var blendedBlue =  Math.round(MathHelper.lerp(delta, start.z, end.z) * 255F);
-		return (blendedRed & 255) << 16 | (blendedGreen & 255) << 8 | (blendedBlue & 255) | 0xFF000000;
-	}
 	
-	public static boolean tryColorEntity(PlayerEntity user, Entity entity, DyeColor dyeColor) {
-		if (entity instanceof SheepEntity sheepEntity && sheepEntity.isAlive() && !sheepEntity.isSheared()) {
-			if (sheepEntity.getColor() != dyeColor) {
-				sheepEntity.getWorld().playSoundFromEntity(user, sheepEntity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
-				sheepEntity.setColor(dyeColor);
-				return true;
-			}
-		} else if (entity instanceof EggLayingWoolyPigEntity woolyPig && woolyPig.isAlive()) {
-			if (woolyPig.getColor() != dyeColor) {
-				woolyPig.getWorld().playSoundFromEntity(user, woolyPig, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
-				woolyPig.setColor(dyeColor);
-				return true;
-			}
-		} else if (entity instanceof ShulkerEntity shulkerEntity && shulkerEntity.isAlive()) {
-			if (shulkerEntity.getColor() != dyeColor) {
-				shulkerEntity.getWorld().playSoundFromEntity(user, shulkerEntity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
-				shulkerEntity.setVariant(Optional.of(dyeColor));
-				return true;
-			}
-		}
-		return false;
+	public static int interpolate(Vector3f start, Vector3f end, float delta) {
+		var blendedRed = Math.round(MathHelper.lerp(delta, start.x, end.x) * 255F);
+		var blendedGreen = Math.round(MathHelper.lerp(delta, start.y, end.y) * 255F);
+		var blendedBlue = Math.round(MathHelper.lerp(delta, start.z, end.z) * 255F);
+		return (blendedRed & 255) << 16 | (blendedGreen & 255) << 8 | (blendedBlue & 255) | 0xFF000000;
 	}
 	
 }

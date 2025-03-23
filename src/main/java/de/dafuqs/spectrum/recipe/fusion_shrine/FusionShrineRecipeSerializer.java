@@ -2,13 +2,12 @@ package de.dafuqs.spectrum.recipe.fusion_shrine;
 
 import com.google.gson.*;
 import de.dafuqs.matchbooks.recipe.*;
-import de.dafuqs.spectrum.api.recipe.*;
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.predicate.world.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.recipe.*;
-import net.minecraft.fluid.*;
 import net.minecraft.item.*;
 import net.minecraft.network.*;
-import net.minecraft.registry.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 
@@ -24,7 +23,7 @@ public class FusionShrineRecipeSerializer implements GatedRecipeSerializer<Fusio
 
 	public interface RecipeFactory {
 		FusionShrineRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier,
-								  List<IngredientStack> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, boolean noBenefitsFromYieldUpgrades, boolean playCraftingFinishedEffects, boolean copyNbt,
+								  List<IngredientStack> craftingInputs, FluidIngredient fluid, ItemStack output, float experience, int craftingTime, boolean noBenefitsFromYieldUpgrades, boolean playCraftingFinishedEffects, boolean copyNbt,
 								  List<WorldConditionPredicate> worldConditions, FusionShrineRecipeWorldEffect startWorldEffect, List<FusionShrineRecipeWorldEffect> duringWorldEffects, FusionShrineRecipeWorldEffect finishWorldEffect, Text description);
 	}
 	
@@ -39,13 +38,17 @@ public class FusionShrineRecipeSerializer implements GatedRecipeSerializer<Fusio
 		if (craftingInputs.size() > 7) {
 			throw new JsonParseException("Recipe cannot have more than 7 ingredients. Has " + craftingInputs.size());
 		}
-
-		Fluid fluid = Fluids.EMPTY;
-		if (JsonHelper.hasString(jsonObject, "fluid")) {
-			Identifier fluidIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "fluid"));
-			fluid = Registries.FLUID.get(fluidIdentifier);
-			if (fluid.getDefaultState().isEmpty()) {
-				throw new JsonParseException("Recipe specifies fluid " + fluidIdentifier + " that does not exist! This recipe will not be craftable.");
+		
+		FluidIngredient fluid = FluidIngredient.EMPTY;
+		if (JsonHelper.hasJsonObject(jsonObject, "fluid")) {
+			JsonObject fluidObject = JsonHelper.getObject(jsonObject, "fluid");
+			FluidIngredient.JsonParseResult result = FluidIngredient.fromJson(fluidObject);
+			fluid = result.result();
+			if (result.malformed()) {
+				// Currently handling malformed input leniently. May throw an error in the future.
+				SpectrumCommon.logError("Fusion Recipe " + identifier + "contains a malformed fluid input tag! This recipe will not be craftable.");
+			} else if (result.result() == FluidIngredient.EMPTY && !result.isTag()) { // tags get populated after recipes are
+				SpectrumCommon.logError("Fusion Recipe " + identifier + " specifies fluid " + result.id() + " that does not exist! This recipe will not be craftable.");
 			}
 		}
 		
@@ -105,7 +108,7 @@ public class FusionShrineRecipeSerializer implements GatedRecipeSerializer<Fusio
 			ingredientStack.write(packetByteBuf);
 		}
 		
-		packetByteBuf.writeIdentifier(Registries.FLUID.getId(recipe.fluidInput));
+		writeFluidIngredient(packetByteBuf, recipe.fluid);
 		packetByteBuf.writeItemStack(recipe.output);
 		packetByteBuf.writeFloat(recipe.experience);
 		packetByteBuf.writeInt(recipe.craftingTime);
@@ -130,7 +133,7 @@ public class FusionShrineRecipeSerializer implements GatedRecipeSerializer<Fusio
 		short craftingInputCount = packetByteBuf.readShort();
 		List<IngredientStack> ingredients = IngredientStack.decodeByteBuf(packetByteBuf, craftingInputCount);
 		
-		Fluid fluid = Registries.FLUID.get(packetByteBuf.readIdentifier());
+		FluidIngredient fluid = readFluidIngredient(packetByteBuf);
 		ItemStack output = packetByteBuf.readItemStack();
 		float experience = packetByteBuf.readFloat();
 		int craftingTime = packetByteBuf.readInt();

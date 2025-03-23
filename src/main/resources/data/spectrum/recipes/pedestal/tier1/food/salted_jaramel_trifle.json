@@ -25,7 +25,7 @@
       "item": "minecraft:bone_meal"
     },
     "E": {
-      "item": "minecraft:egg"
+      "tag": "c:eggs"
     },
     "G": {
       "item": "minecraft:ghast_tear"

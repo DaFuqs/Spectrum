@@ -6,11 +6,15 @@
     },
     "collected_amethyst_shard": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_shards/collect_amethyst_shard" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_shards/amethyst"
+      }
     },
     "collected_citrine_shard": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_shards/collect_citrine_shard" }
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_shards/citrine"
+      }
     },
     "collected_onyx_shard": {
       "trigger":"revelationary:advancement_gotten",

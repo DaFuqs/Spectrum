@@ -18,6 +18,6 @@
     "item": "spectrum:effulgent_feather",
     "count": 4
   },
-  "required_advancement": "spectrum:lategame/pluck_effulgent_feather",
+  "required_advancement": "spectrum:pluck_effulgent_feather",
   "disable_yield_upgrades": true
 }

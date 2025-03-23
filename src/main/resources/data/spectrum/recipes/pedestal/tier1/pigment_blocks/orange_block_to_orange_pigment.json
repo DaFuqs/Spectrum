@@ -17,6 +17,6 @@
     "item": "spectrum:orange_pigment",
     "count": 9
   },
-  "required_advancement": "spectrum:hidden/collect_pigment/collect_orange_pigment",
+  "required_advancement": "spectrum:hidden/collect_pigment/orange",
   "disable_yield_upgrades": true
 }

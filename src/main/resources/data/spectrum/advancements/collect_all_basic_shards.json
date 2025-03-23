@@ -11,30 +11,30 @@
       "translate": "advancements.spectrum.collect_all_basic_shards.description"
     }
   },
-  "parent": "spectrum:spectrum",
+  "parent": "spectrum:collect_any_basic_shard",
   "criteria": {
     "has_amethyst_shard": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_shards/collect_amethyst_shard"
+        "advancement_identifier": "spectrum:hidden/collect_shards/amethyst"
       }
     },
     "has_citrine_shard": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_shards/collect_citrine_shard"
+        "advancement_identifier": "spectrum:hidden/collect_shards/citrine"
       }
     },
     "has_topaz_shard": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_shards/collect_topaz_shard"
+        "advancement_identifier": "spectrum:hidden/collect_shards/topaz"
       }
     },
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:spectrum"
+        "advancement_identifier": "spectrum:collect_any_basic_shard"
       }
     }
   }

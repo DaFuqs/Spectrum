@@ -16,7 +16,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class PotionWorkshopReactingRecipe extends GatedSpectrumRecipe implements DescriptiveGatedRecipe {
+public class PotionWorkshopReactingRecipe extends GatedSpectrumRecipe<Inventory> implements DescriptiveGatedRecipe<Inventory> {
 	
 	protected static final HashMap<Item, List<PotionMod>> reagents = new HashMap<>();
 	

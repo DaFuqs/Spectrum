@@ -1,7 +1,30 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/azurite_cluster"
-    }
-  }
+	"variants": {
+		"facing=down": {
+			"model": "spectrum:block/azurite_cluster",
+			"x": 180
+		},
+		"facing=east": {
+			"model": "spectrum:block/azurite_cluster",
+			"x": 90,
+			"y": 90
+		},
+		"facing=north": {
+			"model": "spectrum:block/azurite_cluster",
+			"x": 90
+		},
+		"facing=south": {
+			"model": "spectrum:block/azurite_cluster",
+			"x": 90,
+			"y": 180
+		},
+		"facing=up": {
+			"model": "spectrum:block/azurite_cluster"
+		},
+		"facing=west": {
+			"model": "spectrum:block/azurite_cluster",
+			"x": 90,
+			"y": 270
+		}
+	}
 }

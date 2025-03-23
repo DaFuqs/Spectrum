@@ -1,6 +1,18 @@
 {
 	"variants": {
-		"": {
+		"facing=north": {
+			"model": "spectrum:block/stuck_storm_stone",
+			"y": 90
+		},
+		"facing=east": {
+			"model": "spectrum:block/stuck_storm_stone",
+			"y": 180
+		},
+		"facing=south": {
+			"model": "spectrum:block/stuck_storm_stone",
+			"y": 270
+		},
+		"facing=west": {
 			"model": "spectrum:block/stuck_storm_stone"
 		}
 	}

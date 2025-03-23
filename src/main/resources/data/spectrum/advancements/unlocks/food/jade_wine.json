@@ -8,7 +8,9 @@
     },
     "confirmed_drinking_age": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:milestones/confirmed_drinking_age" }
+      "conditions": {
+        "advancement_identifier": "spectrum:triggers/confirmed_drinking_age"
+      }
     },
     "collected_jade_vine_petals": {
       "trigger":"revelationary:advancement_gotten",

@@ -1,0 +1,7 @@
+{
+  "parent": "spectrum:templates/base_pylon_body",
+  "textures": {
+    "side": "spectrum:block/citrine_pylon_waist",
+    "end": "spectrum:block/citrine_pylon_end"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "book.spectrum.guidebook.mod_integration.waystones.name",
+  "icon": "waystones:waystone",
+  "condition": {
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:mod_loaded",
+        "mod_id": "waystones"
+      },
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:collect_radiating_ender"
+      }
+    ]
+  },
+  "category": "spectrum:mod_integration",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 4,
+  "y": 8,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.mod_integration.waystones.page0.text",
+      "title": "book.spectrum.guidebook.mod_integration.waystones.name"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:mod_integration/waystones/pedestal/alt_sharestone"
+    }
+
+  ]
+}

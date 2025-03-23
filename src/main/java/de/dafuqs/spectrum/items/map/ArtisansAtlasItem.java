@@ -48,7 +48,7 @@ public class ArtisansAtlasItem extends FilledMapItem {
         if (targetId != null) {
             state.startLocator(world);
             if (target != null) {
-                state.addTarget(world, target);
+                state.addTarget(world, target.getPos());
             }
         } else {
             state.cancelLocator();

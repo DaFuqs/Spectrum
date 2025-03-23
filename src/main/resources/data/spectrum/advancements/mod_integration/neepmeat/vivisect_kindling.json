@@ -1,0 +1,18 @@
+{
+  "criteria": {
+    "animal_cruelty": {
+      "trigger": "neepmeat:vivisection",
+      "conditions": {
+        "entity_type": "spectrum:kindling"
+      }
+    }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "neepmeat"
+      ]
+    }
+  ]
+}

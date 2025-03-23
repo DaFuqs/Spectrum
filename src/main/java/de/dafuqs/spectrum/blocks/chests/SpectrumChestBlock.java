@@ -125,7 +125,12 @@ public abstract class SpectrumChestBlock extends BlockWithEntity {
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return CHEST_SHAPE;
 	}
-	
+
+	@Override
+	public float getAmbientOcclusionLightLevel(BlockState state, BlockView world, BlockPos pos) {
+		return 1F;
+	}
+
 	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
 		Direction direction = ctx.getHorizontalPlayerFacing().getOpposite();

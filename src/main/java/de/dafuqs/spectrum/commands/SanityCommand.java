@@ -1,6 +1,13 @@
 package de.dafuqs.spectrum.commands;
 
-import com.mojang.brigadier.*;
+import com.klikli_dev.modonomicon.book.*;
+import com.klikli_dev.modonomicon.book.conditions.*;
+import com.klikli_dev.modonomicon.book.conditions.context.*;
+import com.klikli_dev.modonomicon.book.entries.*;
+import com.klikli_dev.modonomicon.book.page.*;
+import com.klikli_dev.modonomicon.data.*;
+import com.mojang.brigadier.arguments.*;
+import com.mojang.brigadier.tree.*;
 import de.dafuqs.revelationary.*;
 import de.dafuqs.revelationary.advancement_criteria.*;
 import de.dafuqs.spectrum.*;
@@ -8,7 +15,9 @@ import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.blocks.deeper_down.flora.*;
 import de.dafuqs.spectrum.blocks.gemstone.*;
+import de.dafuqs.spectrum.compat.modonomicon.pages.*;
 import de.dafuqs.spectrum.enchantments.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.trinkets.*;
@@ -23,6 +32,10 @@ import net.minecraft.advancement.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.attribute.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.loot.*;
 import net.minecraft.recipe.*;
@@ -39,28 +52,39 @@ import org.apache.commons.lang3.*;
 import java.util.*;
 
 public class SanityCommand {
-
+	
+	private static final Identifier WIP_ADVANCEMENT_ID = SpectrumCommon.locate("__wip");
+	
 	private static final List<Identifier> ADVANCEMENT_GATING_WARNING_WHITELIST = List.of(
-			SpectrumCommon.locate("find_preservation_ruins"),                    // does not have a prerequisite
-			SpectrumCommon.locate("fail_to_glitch_into_preservation_ruin"),        // does not have a prerequisite
+			SpectrumCommon.locate("find_preservation_ruins"),                     // does not have a prerequisite
+			SpectrumCommon.locate("fail_to_glitch_into_preservation_ruin"),       // does not have a prerequisite
 			SpectrumCommon.locate("midgame/craft_blacklisted_memory_success"),    // its parent is 2 parents in
-			SpectrumCommon.locate("lategame/collect_myceylon")                    // its parent is 2 parents in
+			SpectrumCommon.locate("lategame/collect_myceylon"),                   // its parent is 2 parents in
+			SpectrumCommon.locate("lategame/strike_up_hummingstone_hymn")         // its parent is 2 parents in
 	);
-
-	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
-		dispatcher.register(CommandManager.literal("spectrum_sanity")
-			.requires((source) -> source.hasPermissionLevel(2))
-				.executes((context) -> execute(context.getSource()))
-		);
+	
+	private static final List<Identifier> GUIDEBOOK_WARNING_WHITELIST = List.of(
+			SpectrumCommon.locate("cuisine/cookbooks/brewers_handbook")           // "*_fluid" mod compat recipe page
+	);
+	
+	public static void register(LiteralCommandNode<ServerCommandSource> root) {
+		LiteralCommandNode<ServerCommandSource> sanity = CommandManager.literal("sanity")
+				.requires((source) -> source.hasPermissionLevel(2))
+				.executes((context) -> execute(context.getSource(), SpectrumCommon.MOD_ID)).build();
+		ArgumentCommandNode<ServerCommandSource, String> modId = CommandManager.argument("mod_id", StringArgumentType.word())
+				.executes((context) -> execute(context.getSource(), StringArgumentType.getString(context, "mod_id"))).build();
+		
+		sanity.addChild(modId);
+		root.addChild(sanity);
 	}
-
-	private static int execute(ServerCommandSource source) {
+	
+	private static int execute(ServerCommandSource source, String modId) {
 		SpectrumCommon.logInfo("##### SANITY CHECK START ######");
 
 		// All blocks that do not have a mineable tag
 		for (Map.Entry<RegistryKey<Block>, Block> entry : Registries.BLOCK.getEntrySet()) {
 			RegistryKey<Block> registryKey = entry.getKey();
-			if (registryKey.getValue().getNamespace().equals(SpectrumCommon.MOD_ID)) {
+			if (registryKey.getValue().getNamespace().equals(modId)) {
 				BlockState blockState = entry.getValue().getDefaultState();
 
 				// unbreakable or instabreak blocks do not need to have an entry
@@ -74,6 +98,7 @@ public class SanityCommand {
 						&& !blockState.isIn(BlockTags.HOE_MINEABLE)
 						&& !blockState.isIn(FabricMineableTags.SHEARS_MINEABLE)
 						&& !blockState.isIn(FabricMineableTags.SWORD_MINEABLE)
+						&& !blockState.isIn(BlockTags.SWORD_EFFICIENT)
 						&& !blockState.isIn(SpectrumBlockTags.EXEMPT_FROM_MINEABLE_DEBUG_CHECK)) {
 					SpectrumCommon.logWarning("[SANITY: Mineable Tags] Block " + registryKey.getValue() + " is not contained in a any vanilla mineable tag.");
 				}
@@ -83,7 +108,7 @@ public class SanityCommand {
 		// All blocks without a loot table
 		for (Map.Entry<RegistryKey<Block>, Block> entry : Registries.BLOCK.getEntrySet()) {
 			RegistryKey<Block> registryKey = entry.getKey();
-			if (registryKey.getValue().getNamespace().equals(SpectrumCommon.MOD_ID)) {
+			if (registryKey.getValue().getNamespace().equals(modId)) {
 				Block block = entry.getValue();
 				
 				if (block instanceof PlacedItemBlock) {
@@ -91,6 +116,9 @@ public class SanityCommand {
 				}
 				if (block instanceof SpectrumBuddingBlock) {
 					continue; // does not have any drop by default
+				}
+				if (block instanceof WeepingGalaFrondsBlock) {
+					continue; // Fronds do not drop anything by default
 				}
 				
 				BlockState blockState = entry.getValue().getDefaultState();
@@ -103,7 +131,7 @@ public class SanityCommand {
 				
 				if (!blockState.isIn(SpectrumBlockTags.EXEMPT_FROM_LOOT_TABLE_DEBUG_CHECK)) {
 					if (lootTableID.equals(LootTables.EMPTY) || lootTableID.getPath().equals("blocks/air")) {
-						SpectrumCommon.logWarning("[SANITY: Loot Tables] Block " + registryKey.getValue() + " has a non-existent loot table");
+						SpectrumCommon.logWarning("[SANITY: Loot Tables] Block " + registryKey.getValue() + " has a non-existent loot table (" + lootTableID + ")");
 					} else {
 						LootTable lootTable = source.getWorld().getServer().getLootManager().getLootTable(lootTableID);
 						LootPool[] lootPools = lootTable.pools;
@@ -114,12 +142,12 @@ public class SanityCommand {
 				}
 			}
 		}
-
-		// Statistic: Build an empty hashmap of hashmaps for counting used gem colors for each tier
+		
+		// Statistic: Build an empty map of maps for counting used gem colors for each tier
 		// This info can be used to balance usage a bit
-		HashMap<PedestalRecipeTier, HashMap<GemstoneColor, Integer>> usedColorsForEachTier = new HashMap<>();
+		Map<PedestalRecipeTier, Map<GemstoneColor, Integer>> usedColorsForEachTier = new HashMap<>();
 		for (PedestalRecipeTier pedestalRecipeTier : PedestalRecipeTier.values()) {
-			HashMap<GemstoneColor, Integer> colorMap = new HashMap<>();
+			Map<GemstoneColor, Integer> colorMap = new HashMap<>();
 			for (GemstoneColor gemstoneColor : BuiltinGemstoneColor.values()) {
 				colorMap.put(gemstoneColor, 0);
 			}
@@ -132,11 +160,6 @@ public class SanityCommand {
 
 		// Pedestal recipes that use gemstone powder not available at that tier yet
 		for (PedestalRecipe pedestalRecipe : recipeManager.listAllOfType(SpectrumRecipeTypes.PEDESTAL)) {
-			/* There are some recipes that use advanced ingredients by design
-			   despite being of a low tier, like black colored lamps.
-			   While the player does not have access to that yet it is no problem at all
-			   To exclude those recipes in these warnings there is a boolean flag in the recipe jsons
-			*/
 			if (pedestalRecipe.getTier() == PedestalRecipeTier.BASIC || pedestalRecipe.getTier() == PedestalRecipeTier.SIMPLE) {
 				if (pedestalRecipe.getPowderInputs().getOrDefault(BuiltinGemstoneColor.BLACK, 0) > 0) {
 					SpectrumCommon.logWarning("[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() + "' is using onyx powder as input! Players will not have access to Onyx at that tier");
@@ -151,12 +174,79 @@ public class SanityCommand {
 				usedColorsForEachTier.get(pedestalRecipe.getTier()).put(powderInput.getKey(), usedColorsForEachTier.get(pedestalRecipe.getTier()).get(powderInput.getKey()) + powderInput.getValue());
 			}
 		}
-		// recipe groups without localisation
+		
+		// Checking for missing translation strings
+		for (Map.Entry<RegistryKey<Item>, Item> item : Registries.ITEM.getEntrySet()) {
+			if (!item.getKey().getValue().getNamespace().equals(modId)) {
+				continue;
+			}
+			
+			if (!Language.getInstance().hasTranslation(item.getValue().getTranslationKey())) {
+				SpectrumCommon.logWarning("[SANITY: Item Lang] Missing translation string " + item.getValue().getTranslationKey());
+			}
+		}
+		for (Map.Entry<RegistryKey<Block>, Block> block : Registries.BLOCK.getEntrySet()) {
+			if (!block.getKey().getValue().getNamespace().equals(modId)) {
+				continue;
+			}
+			if (!Language.getInstance().hasTranslation(block.getValue().getTranslationKey())) {
+				SpectrumCommon.logWarning("[SANITY: Block Lang] Missing translation string " + block.getValue().getTranslationKey());
+			}
+		}
+		for (Map.Entry<RegistryKey<EntityType<?>>, EntityType<?>> entityType : Registries.ENTITY_TYPE.getEntrySet()) {
+			if (!entityType.getKey().getValue().getNamespace().equals(modId)) {
+				continue;
+			}
+			if (!Language.getInstance().hasTranslation(entityType.getValue().getTranslationKey())) {
+				SpectrumCommon.logWarning("[SANITY: EntityType Lang] Missing translation string " + entityType.getValue().getTranslationKey());
+			}
+		}
+		for (Map.Entry<RegistryKey<Enchantment>, Enchantment> entityType : Registries.ENCHANTMENT.getEntrySet()) {
+			if (!entityType.getKey().getValue().getNamespace().equals(modId)) {
+				continue;
+			}
+			if (!Language.getInstance().hasTranslation(entityType.getValue().getTranslationKey())) {
+				SpectrumCommon.logWarning("[SANITY: Enchantment Lang] Missing translation string " + entityType.getValue().getTranslationKey());
+			}
+			if (!Language.getInstance().hasTranslation(entityType.getValue().getTranslationKey() + ".desc")) {
+				SpectrumCommon.logWarning("[SANITY: Enchantment Lang] Missing description string " + entityType.getValue().getTranslationKey() + ".desc");
+			}
+		}
+		for (Map.Entry<RegistryKey<StatusEffect>, StatusEffect> entityType : Registries.STATUS_EFFECT.getEntrySet()) {
+			if (!entityType.getKey().getValue().getNamespace().equals(modId)) {
+				continue;
+			}
+			if (!Language.getInstance().hasTranslation(entityType.getValue().getTranslationKey())) {
+				SpectrumCommon.logWarning("[SANITY: Status Effect Lang] Missing translation string " + entityType.getValue().getTranslationKey());
+			}
+		}
+		for (Map.Entry<RegistryKey<EntityAttribute>, EntityAttribute> entityType : Registries.ATTRIBUTE.getEntrySet()) {
+			if (!entityType.getKey().getValue().getNamespace().equals(modId)) {
+				continue;
+			}
+			if (!Language.getInstance().hasTranslation(entityType.getValue().getTranslationKey())) {
+				SpectrumCommon.logWarning("[SANITY: Attribute Lang] Missing translation string " + entityType.getValue().getTranslationKey());
+			}
+		}
+		for (Map.Entry<RegistryKey<EntityAttribute>, EntityAttribute> entityType : Registries.ATTRIBUTE.getEntrySet()) {
+			if (!entityType.getKey().getValue().getNamespace().equals(modId)) {
+				continue;
+			}
+			if (!Language.getInstance().hasTranslation(entityType.getValue().getTranslationKey())) {
+				SpectrumCommon.logWarning("[SANITY: Attribute Lang] Missing translation string " + entityType.getValue().getTranslationKey());
+			}
+			if (!Language.getInstance().hasTranslation(entityType.getValue().getTranslationKey() + ".desc")) {
+				SpectrumCommon.logWarning("[SANITY: Attribute Lang] Missing description string " + entityType.getValue().getTranslationKey() + ".desc");
+			}
+		}
+		
+		
+		// recipe groups without localization
 		Set<String> recipeGroups = new HashSet<>();
 		recipeManager.keys().forEach(identifier -> {
 			Optional<? extends Recipe<?>> recipe = recipeManager.get(identifier);
 			if (recipe.isPresent()) {
-				if (recipe.get() instanceof GatedSpectrumRecipe gatedSpectrumRecipe) {
+				if (recipe.get() instanceof GatedSpectrumRecipe<?> gatedSpectrumRecipe) {
 					String group = gatedSpectrumRecipe.getGroup();
 					if (group == null) {
 						SpectrumCommon.logWarning("Recipe with null group found! :" + gatedSpectrumRecipe.getId());
@@ -171,23 +261,19 @@ public class SanityCommand {
 				SpectrumCommon.logWarning("[SANITY: Recipe Group Lang] Recipe group " + recipeGroup + " is not localized.");
 			}
 		}
-
-		// Impossible to unlock recipes
-		testRecipeUnlocks(SpectrumRecipeTypes.PEDESTAL, "Pedestal", recipeManager, advancementLoader);
-		testRecipeUnlocks(SpectrumRecipeTypes.ANVIL_CRUSHING, "Anvil Crushing", recipeManager, advancementLoader);
-		testRecipeUnlocks(SpectrumRecipeTypes.FUSION_SHRINE, "Fusion Shrine", recipeManager, advancementLoader);
-		testRecipeUnlocks(SpectrumRecipeTypes.ENCHANTER, "Enchanting", recipeManager, advancementLoader);
-		testRecipeUnlocks(SpectrumRecipeTypes.ENCHANTMENT_UPGRADE, "Enchantment Upgrade", recipeManager, advancementLoader);
-		testRecipeUnlocks(SpectrumRecipeTypes.POTION_WORKSHOP_BREWING, "Potion Workshop Brewing", recipeManager, advancementLoader);
-		testRecipeUnlocks(SpectrumRecipeTypes.POTION_WORKSHOP_CRAFTING, "Potion Workshop Reagent", recipeManager, advancementLoader);
-		testRecipeUnlocks(SpectrumRecipeTypes.POTION_WORKSHOP_REACTING, "Potion Workshop Crafting", recipeManager, advancementLoader);
-		testRecipeUnlocks(SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING, "Midnight Solution Converting", recipeManager, advancementLoader);
-		testRecipeUnlocks(SpectrumRecipeTypes.SPIRIT_INSTILLING, "Spirit Instilling", recipeManager, advancementLoader);
-		testRecipeUnlocks(SpectrumRecipeTypes.INK_CONVERTING, "Ink Converting", recipeManager, advancementLoader);
-		testRecipeUnlocks(SpectrumRecipeTypes.CRYSTALLARIEUM, "Crystallarieum", recipeManager, advancementLoader);
-		testRecipeUnlocks(SpectrumRecipeTypes.CINDERHEARTH, "Cinderhearth", recipeManager, advancementLoader);
-		testRecipeUnlocks(SpectrumRecipeTypes.TITRATION_BARREL, "Titration Barrel", recipeManager, advancementLoader);
 		
+		// Impossible to unlock recipes
+		for (Recipe<?> recipe : recipeManager.values()) {
+			if (recipe instanceof GatedRecipe<?> gatedRecipe) {
+				Identifier advancementIdentifier = gatedRecipe.getRequiredAdvancementIdentifier();
+				if (advancementIdentifier != null && advancementLoader.get(advancementIdentifier) == null) {
+					SpectrumCommon.logWarning("[SANITY: " + gatedRecipe.getRecipeTypeShortID() + " Recipe Unlocks] Advancement '" + gatedRecipe.getRequiredAdvancementIdentifier() + "' in recipe '" + recipe.getId() + "' does not exist");
+				}
+			}
+		}
+		
+		// Recipes that spawn effects based on item color,
+		// but input / output items do not have a color registered
 		DynamicRegistryManager registryManager = source.getRegistryManager();
 		testIngredientsAndOutputInColorRegistry(SpectrumRecipeTypes.FUSION_SHRINE, "Fusion Shrine", recipeManager, registryManager);
 		testIngredientsAndOutputInColorRegistry(SpectrumRecipeTypes.ENCHANTER, "Enchanting", recipeManager, registryManager);
@@ -198,7 +284,12 @@ public class SanityCommand {
 		// Impossible to unlock block cloaks
 		for (Map.Entry<Identifier, List<BlockState>> cloaks : RevelationRegistry.getBlockStateEntries().entrySet()) {
 			if (advancementLoader.get(cloaks.getKey()) == null) {
-				SpectrumCommon.logWarning("[SANITY: Block Cloaks] Advancement '" + cloaks.getKey().toString() + "' for block / item cloaking does not exist. Registered cloaks: " + cloaks.getValue().size());
+				SpectrumCommon.logWarning("[SANITY: Block Cloaks] Advancement '" + cloaks.getKey().toString() + "' for block cloaking does not exist. Registered cloaks: " + cloaks.getValue().size());
+			}
+		}
+		for (Map.Entry<Identifier, List<Item>> cloaks : RevelationRegistry.getItemEntries().entrySet()) {
+			if (advancementLoader.get(cloaks.getKey()) == null) {
+				SpectrumCommon.logWarning("[SANITY: Item Cloaks] Advancement '" + cloaks.getKey().toString() + "' for item cloaking does not exist. Registered cloaks: " + cloaks.getValue().size());
 			}
 		}
 		
@@ -209,6 +300,9 @@ public class SanityCommand {
 				// "has advancement" criteria with nonexistent advancements
 				if (conditions instanceof AdvancementGottenCriterion.Conditions hasAdvancementConditions) {
 					Identifier advancementIdentifier = hasAdvancementConditions.getAdvancementIdentifier();
+					if (advancementIdentifier.equals(WIP_ADVANCEMENT_ID)) {
+						continue;
+					}
 					Advancement advancementCriterionAdvancement = advancementLoader.get(advancementIdentifier);
 					if (advancementCriterionAdvancement == null) {
 						SpectrumCommon.logWarning("[SANITY: Has_Advancement Criteria] Advancement '" + advancement.getId() + "' references advancement '" + advancementIdentifier + "' that does not exist");
@@ -216,6 +310,9 @@ public class SanityCommand {
 					// "advancement count" criteria with nonexistent advancements
 				} else if (conditions instanceof AdvancementCountCriterion.Conditions hasAdvancementConditions) {
 					for (Identifier advancementIdentifier : hasAdvancementConditions.getAdvancementIdentifiers()) {
+						if (advancementIdentifier.equals(WIP_ADVANCEMENT_ID)) {
+							continue;
+						}
 						Advancement advancementCriterionAdvancement = advancementLoader.get(advancementIdentifier);
 						if (advancementCriterionAdvancement == null) {
 							SpectrumCommon.logWarning("[SANITY: Advancement_Count Criteria] Advancement '" + advancement.getId() + "' references advancement '" + advancementIdentifier + "' that does not exist");
@@ -224,11 +321,11 @@ public class SanityCommand {
 				}
 			}
 		}
-
-		// advancements that dont require parent
+		
+		// advancements that don't require their parent (or parents of their parents, for 'collecting' type advancements)
 		for (Advancement advancement : advancementLoader.getAdvancements()) {
 			String path = advancement.getId().getPath();
-			if (advancement.getId().getNamespace().equals(SpectrumCommon.MOD_ID) && !path.startsWith("hidden") && !path.startsWith("progression") && !path.startsWith("milestones") && advancement.getParent() != null) {
+			if (advancement.getId().getNamespace().equals(modId) && !path.startsWith("hidden") && !path.startsWith("progression") && !path.startsWith("milestones") && advancement.getParent() != null) {
 				Identifier previousAdvancementIdentifier = null;
 				for (String[] requirement : advancement.getRequirements()) {
 					if (requirement.length > 0 && requirement[0].equals("gotten_previous")) {
@@ -261,8 +358,9 @@ public class SanityCommand {
 		// Pedestal Recipes in wrong data folder
 		for (PedestalRecipe recipe : recipeManager.listAllOfType(SpectrumRecipeTypes.PEDESTAL)) {
 			Identifier id = recipe.getId();
-			if (id.getPath().startsWith("mod_integration/") || id.getPath().contains("/glass/") || id.getPath().contains("/saplings/") || id.getPath().contains("/detectors/") || id.getPath().contains("/gem_lamps/") || id.getPath().contains("/decostones/")
-					|| id.getPath().contains("/runes/") || id.getPath().contains("/pastel_network/") || id.getPath().contains("/gemstone_chimes/") || id.getPath().contains("/pastel_network/") || id.getPath().contains("/player_only_glass/")) {
+			if (id.getPath().startsWith("mod_integration/") || id.getPath().contains("/glass/") || id.getPath().contains("/saplings/") || id.getPath().contains("/detectors/") || id.getPath().contains("/gemstone_lights/") || id.getPath().contains("/decostones/")
+					|| id.getPath().contains("/runes/") || id.getPath().contains("/pastel_network/") || id.getPath().contains("/gemstone_chimes/") || id.getPath().contains("/pastel_network/") || id.getPath().contains("/semi_permeable_glass/")
+					|| id.getPath().contains("/colored_lamps/") || id.getPath().contains("/colored_spore_blossoms/") || id.getPath().contains("/glowblocks/")) {
 				continue;
 			}
 
@@ -308,15 +406,15 @@ public class SanityCommand {
 				}
 			}
 		}
-
-		// Enchantments without recipe
+		
+		// Enchantments without a recipe
 		Map<Enchantment, DyeColor> craftingColors = new HashMap<>();
 		Map<Enchantment, DyeColor> upgradeColors = new HashMap<>();
 		for (EnchanterRecipe recipe : recipeManager.listAllOfType(SpectrumRecipeTypes.ENCHANTER)) {
 			ItemStack output = recipe.getOutput(source.getRegistryManager());
 			if (output.getItem() == Items.ENCHANTED_BOOK) {
 				Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(output);
-				if (enchantments.size() > 0) {
+				if (!enchantments.isEmpty()) {
 					for (Ingredient ingredient : recipe.getIngredients()) {
 						for (ItemStack matchingStack : ingredient.getMatchingStacks()) {
 							if (matchingStack.getItem() instanceof PigmentItem pigmentItem) {
@@ -331,7 +429,7 @@ public class SanityCommand {
 			ItemStack output = recipe.getOutput(source.getRegistryManager());
 			if (output.getItem() == Items.ENCHANTED_BOOK) {
 				Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(output);
-				if (enchantments.size() > 0 && recipe.getRequiredItem() instanceof PigmentItem pigmentItem) {
+				if (!enchantments.isEmpty() && recipe.getRequiredItem() instanceof PigmentItem pigmentItem) {
 					upgradeColors.put(enchantments.keySet().stream().toList().get(0), pigmentItem.getColor());
 				}
 			}
@@ -350,12 +448,12 @@ public class SanityCommand {
 		}
 		for (Map.Entry<RegistryKey<Enchantment>, Enchantment> entry : Registries.ENCHANTMENT.getEntrySet()) {
 			Enchantment enchantment = entry.getValue();
-			if (entry.getKey().getValue().getNamespace().equals(SpectrumCommon.MOD_ID) && !SpectrumEnchantmentTags.isIn(SpectrumEnchantmentTags.SPECTRUM_ENCHANTMENT, enchantment)) {
+			if (entry.getKey().getValue().getNamespace().equals(modId) && !SpectrumEnchantmentTags.isIn(SpectrumEnchantmentTags.SPECTRUM_ENCHANTMENT, enchantment)) {
 				SpectrumCommon.logWarning("[SANITY: Enchantment Tags] Enchantment '" + entry.getKey().getValue() + "' is missing in the spectrum:enchantments tag");
 			}
 		}
-
-		// Trinkets that have an invalid equip advancement and thus can't be equipped
+		
+		// Trinkets that have invalid equip advancement and thus can't be equipped
 		for (Map.Entry<RegistryKey<Item>, Item> item : Registries.ITEM.getEntrySet()) {
 			if (item.getValue() instanceof SpectrumTrinketItem trinketItem) {
 				Identifier advancementIdentifier = trinketItem.getUnlockIdentifier();
@@ -366,11 +464,10 @@ public class SanityCommand {
 			}
 		}
 		
-		// items / blocks missing in the creative tab (will also omit them from most recipe viewers)
+		// items / blocks missing in the creative tab (this will also omit them from most recipe viewers)
 		Collection<ItemStack> itemGroupStacks = SpectrumItemGroups.MAIN.getSearchTabStacks();
 		for (Map.Entry<RegistryKey<Item>, Item> item : Registries.ITEM.getEntrySet()) {
-			
-			if (item.getKey().getValue().getNamespace().equals(SpectrumCommon.MOD_ID) && !item.getValue().getRegistryEntry().isIn(SpectrumItemTags.COMING_SOON_TOOLTIP)) {
+			if (item.getKey().getValue().getNamespace().equals(modId) && !item.getValue().getRegistryEntry().isIn(SpectrumItemTags.COMING_SOON_TOOLTIP)) {
 				boolean found = false;
 				for(ItemStack stack : itemGroupStacks) {
 					if(stack.isOf(item.getValue())) {
@@ -385,18 +482,43 @@ public class SanityCommand {
 			}
 		}
 		
-
+		// Guidebook entries/pages that may be un-unlockable
+		Book book = BookDataManager.get().getBook(GuidebookItem.GUIDEBOOK_ID);
+		for (Map.Entry<Identifier, BookEntry> entry : book.getEntries().entrySet()) {
+			if (GUIDEBOOK_WARNING_WHITELIST.contains(entry.getKey())) {
+				continue;
+			}
+			
+			BookCondition condition = entry.getValue().getCondition();
+			BookConditionContext context = new BookConditionCategoryContext(book, entry.getValue().getCategory());
+			if (!condition.test(context, source.getPlayer())) {
+				SpectrumCommon.logWarning("[SANITY: Guidebook] Entry '" + entry.getKey() + "' is still locked for the executing player. Does the player have the required advancements? Can it be unlocked?");
+			}
+			for (BookPage page : entry.getValue().getPages()) {
+				if (!page.getCondition().test(context, source.getPlayer())) {
+					SpectrumCommon.logWarning("[SANITY: Guidebook] Entry '" + entry.getKey() + "' page " + page.getPageNumber() + " of type '" + page.getType() + "' is still locked for the executing player. Does the player have the required advancements? Can it be unlocked? Or is it only a missing mod compat recipe page?");
+				}
+				if (page instanceof BookHintPage bookHintPage) {
+					Identifier completionAdvancement = bookHintPage.getCompletionAdvancement();
+					Advancement advancement = advancementLoader.get(completionAdvancement);
+					if (advancement == null) {
+						SpectrumCommon.logWarning("[SANITY: Guidebook] Hint Page '" + entry.getKey() + "' page " + page.getPageNumber() + " is missing it's completion advancement '" + completionAdvancement + "'");
+					}
+				}
+			}
+		}
+		
 		SpectrumCommon.logInfo("##### SANITY CHECK FINISHED ######");
 
 		SpectrumCommon.logInfo("##### SANITY CHECK PEDESTAL RECIPE STATISTICS ######");
 		for (PedestalRecipeTier pedestalRecipeTier : PedestalRecipeTier.values()) {
-			HashMap<GemstoneColor, Integer> entry = usedColorsForEachTier.get(pedestalRecipeTier);
+			Map<GemstoneColor, Integer> entry = usedColorsForEachTier.get(pedestalRecipeTier);
 			SpectrumCommon.logInfo("[SANITY: Pedestal Recipe Gemstone Usages] Gemstone Powder for tier " + StringUtils.leftPad(pedestalRecipeTier.toString(), 8) +
-					": C:" + StringUtils.leftPad(entry.get(BuiltinGemstoneColor.CYAN).toString(), 3) +
-					" M:" + StringUtils.leftPad(entry.get(BuiltinGemstoneColor.MAGENTA).toString(), 3) +
-					" Y:" + StringUtils.leftPad(entry.get(BuiltinGemstoneColor.YELLOW).toString(), 3) +
-					" K:" + StringUtils.leftPad(entry.get(BuiltinGemstoneColor.BLACK).toString(), 3) +
-					" W:" + StringUtils.leftPad(entry.get(BuiltinGemstoneColor.WHITE).toString(), 3));
+					": C:" + StringUtils.leftPad(entry.get(BuiltinGemstoneColor.CYAN).toString(), 4) +
+					" M:" + StringUtils.leftPad(entry.get(BuiltinGemstoneColor.MAGENTA).toString(), 4) +
+					" Y:" + StringUtils.leftPad(entry.get(BuiltinGemstoneColor.YELLOW).toString(), 4) +
+					" K:" + StringUtils.leftPad(entry.get(BuiltinGemstoneColor.BLACK).toString(), 4) +
+					" W:" + StringUtils.leftPad(entry.get(BuiltinGemstoneColor.WHITE).toString(), 4));
 		}
 
 		if (source.getEntity() instanceof ServerPlayerEntity serverPlayerEntity) {
@@ -405,18 +527,9 @@ public class SanityCommand {
 
 		return 0;
 	}
-
-	private static <R extends GatedRecipe> void testRecipeUnlocks(RecipeType<R> recipeType, String name, RecipeManager recipeManager, ServerAdvancementLoader advancementLoader) {
-		for (GatedRecipe recipe : recipeManager.listAllOfType(recipeType)) {
-			Identifier advancementIdentifier = recipe.getRequiredAdvancementIdentifier();
-			if (advancementIdentifier != null && advancementLoader.get(advancementIdentifier) == null) {
-				SpectrumCommon.logWarning("[SANITY: " + name + " Recipe Unlocks] Advancement '" + recipe.getRequiredAdvancementIdentifier() + "' in recipe '" + recipe.getId() + "' does not exist");
-			}
-		}
-	}
 	
-	private static <R extends GatedRecipe> void testIngredientsAndOutputInColorRegistry(RecipeType<R> recipeType, String name, RecipeManager recipeManager, DynamicRegistryManager registryManager) {
-		for (GatedRecipe recipe : recipeManager.listAllOfType(recipeType)) {
+	private static <R extends GatedRecipe<C>, C extends Inventory> void testIngredientsAndOutputInColorRegistry(RecipeType<R> recipeType, String name, RecipeManager recipeManager, DynamicRegistryManager registryManager) {
+		for (GatedRecipe<C> recipe : recipeManager.listAllOfType(recipeType)) {
 			for (Ingredient inputIngredient : recipe.getIngredients()) {
 				for (ItemStack matchingItemStack : inputIngredient.getMatchingStacks()) {
 					if (ColorRegistry.ITEM_COLORS.getMapping(matchingItemStack.getItem()).isEmpty()) {

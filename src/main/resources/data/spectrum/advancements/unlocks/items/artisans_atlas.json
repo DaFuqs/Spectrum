@@ -1,9 +1,15 @@
 {
   "criteria": {
-    "wip": {
+    "collected_stardust": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:__wip"
+        "advancement_identifier": "spectrum:hidden/collect_stardust"
+      }
+    },
+    "collected_four_leaf_clover": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:collect_four_leaf_clover"
       }
     }
   }

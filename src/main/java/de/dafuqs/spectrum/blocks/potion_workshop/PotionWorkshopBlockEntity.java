@@ -216,6 +216,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 	private static boolean isBrewingRecipeApplicable(PotionWorkshopBrewingRecipe recipe, ItemStack baseIngredient, PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
 		PotionMod potionMod = getPotionModFromReagents(potionWorkshopBlockEntity);
 		return hasUniqueReagents(potionWorkshopBlockEntity)
+				&& canPlayerUseReagents(potionWorkshopBlockEntity)
 				&& recipe.recipeData.isApplicableTo(baseIngredient, potionMod)
 				&& !(potionMod.flags().incurable() && recipe.recipeData.statusEffect().isIn(SpectrumStatusEffectTags.CANNOT_BE_INCURABLE));
 	}
@@ -334,6 +335,17 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 			
 			potionWorkshopBlockEntity.lastBrewedRecipe = brewingRecipe;
 		}
+	}
+
+	private static boolean canPlayerUseReagents(PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
+		World world = potionWorkshopBlockEntity.getWorld();
+		List<PotionWorkshopReactingRecipe> reagentRecipes = world.getRecipeManager().getAllMatches(SpectrumRecipeTypes.POTION_WORKSHOP_REACTING, potionWorkshopBlockEntity, world);
+		for (PotionWorkshopReactingRecipe recipe : reagentRecipes) {
+			if (!recipe.canPlayerCraft(potionWorkshopBlockEntity.getOwnerIfOnline())) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	private static PotionMod getPotionModFromReagents(PotionWorkshopBlockEntity potionWorkshopBlockEntity) {

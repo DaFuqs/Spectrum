@@ -25,5 +25,5 @@
     "id": "spectrum:light_blue_lamp",
     "count": 2
   },
-  "required_advancement": "spectrum:unlocks/colored_lamps/light_gray_lamp"
+  "required_advancement": "spectrum:unlocks/colored_lamps/light_blue_lamp"
 }

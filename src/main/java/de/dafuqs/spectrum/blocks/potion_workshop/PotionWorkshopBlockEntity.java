@@ -210,8 +210,10 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 	
 	private static boolean isBrewingRecipeApplicable(PotionWorkshopBrewingRecipe recipe, ItemStack baseIngredient, PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
 		PotionMod potionMod = getPotionModFromReagents(potionWorkshopBlockEntity);
-		return hasUniqueReagents(potionWorkshopBlockEntity) && recipe.recipeData.isApplicableTo(baseIngredient, potionMod)
-		       && !(potionMod.incurable && SpectrumStatusEffectTags.cannotBeIncurable(recipe.recipeData.statusEffect()));
+		return hasUniqueReagents(potionWorkshopBlockEntity) 
+		    && canPlayerUseReagents(potionWorkshopBlockEntity)
+		    && recipe.recipeData.isApplicableTo(baseIngredient, potionMod)
+			&& !(potionMod.incurable && SpectrumStatusEffectTags.cannotBeIncurable(recipe.recipeData.statusEffect()));
 	}
 	
 	private static void craftRecipe(PotionWorkshopBlockEntity potionWorkshopBlockEntity, PotionWorkshopCraftingRecipe recipe) {
@@ -324,6 +326,18 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 			
 			potionWorkshopBlockEntity.lastBrewedRecipe = brewingRecipe;
 		}
+	}
+
+	private static boolean canPlayerUseReagents(PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
+		World world = potionWorkshopBlockEntity.getWorld();
+		List<PotionWorkshopReactingRecipe> reagentRecipes = world.getRecipeManager().getAllMatches(SpectrumRecipeTypes.POTION_WORKSHOP_REACTING, potionWorkshopBlockEntity, world);
+		SpectrumCommon.logError("Found "+reagentRecipes.size()+" matching reagent recipes");
+		for (PotionWorkshopReactingRecipe recipe : reagentRecipes) {
+			if (!recipe.canPlayerCraft(potionWorkshopBlockEntity.getOwnerIfOnline())) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	private static PotionMod getPotionModFromReagents(PotionWorkshopBlockEntity potionWorkshopBlockEntity) {

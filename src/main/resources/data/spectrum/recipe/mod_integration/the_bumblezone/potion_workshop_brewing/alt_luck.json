@@ -11,7 +11,7 @@
   "applicable_to_potions": true,
   "applicable_to_tipped_arrows": true,
   "applicable_to_potion_fillables": true,
-  "required_advancement": "spectrum:unlocks/potions/luck",
+  "required_advancement": "spectrum:collect_four_leaf_clover",
   "ink_color": "spectrum:light_blue",
   "ink_cost": 2,
   "fabric:load_conditions": [

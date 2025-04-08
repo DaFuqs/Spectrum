@@ -32,19 +32,11 @@
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "book.spectrum.guidebook.mod_integration.victus.page1.title",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
-      },
       "recipe_id": "spectrum:mod_integration/victus/potion_workshop_brewing/resurgence"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "book.spectrum.guidebook.mod_integration.victus.page2.title",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
-      },
       "recipe_id": "spectrum:mod_integration/victus/potion_workshop_brewing/heartbleed"
     }
   ]

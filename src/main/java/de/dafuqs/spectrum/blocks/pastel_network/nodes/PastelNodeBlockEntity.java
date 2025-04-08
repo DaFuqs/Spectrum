@@ -469,43 +469,51 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	}
 
 	private boolean filter(ItemVariant variant) {
-		return filterItems
-				.stream()
-				.anyMatch(filterItem -> {
-					ItemStack filterStack = filterItem.toStack();
-					if (LoreHelper.hasLore(filterStack)) {
-						if (variant.getNbt() == null)
-							return false;
-
-						for (Text text : LoreHelper.getLoreList(filterStack)) {
-							if (!testNBTPredicates(text.getString(), filterStack, variant))
-								return false;
-						}
-					}
-
-					if (!filterStack.hasCustomName() || !filterStack.isIn(SpectrumItemTags.TAG_FILTERING_ITEMS))
-						return filterStack.getItem() == variant.getItem();
-
-					var name = StringUtils.trim(filterStack.getName().getString());
-
-					// This is to allow nbt filtering without item / tag filtering.
-					if (StringUtils.equalsAnyIgnoreCase(name, "*", "any", "all", "everything", "c:*", "c:any", "c:all", "c:everything"))
-						return true;
-
-					var id = Identifier.tryParse(StringUtils.remove(name, '#')); // let's be nice and remove any pound signs for the dumb idiots
-					if (id == null)
-						return false;
-
-					var tag = SpectrumCommon.CACHED_ITEM_TAG_MAP.computeIfAbsent(id, tagId -> Registries.ITEM.streamTags()
-							.filter(t -> t.id().equals(tagId))
-							.findFirst()
-							.orElse(null));
-
-					if (tag == null)
-						return false;
-
-					return variant.getItem().getRegistryEntry().isIn(tag);
-				});
+		filter: for (ItemVariant filterItem : filterItems) {
+			if (filterItem.isBlank()) {
+				continue;
+			}
+			ItemStack filterStack = new ItemStack(filterItem.getItem(), 1);
+			filterStack.setNbt(filterItem.getNbt());
+			if (LoreHelper.hasLore(filterStack)) {
+				if (variant.getNbt() == null)
+					continue;
+				
+				for (Text text : LoreHelper.getLoreList(filterStack)) {
+					if (!testNBTPredicates(text.getString(), filterStack, variant))
+						continue filter;
+				}
+			}
+			
+			if (!filterStack.hasCustomName() || !filterStack.isIn(SpectrumItemTags.TAG_FILTERING_ITEMS)) {
+				if (filterStack.getItem() == variant.getItem()) {
+					return true;
+				} else {
+					continue;
+				}
+			}
+			var name = StringUtils.trim(filterStack.getName().getString());
+			
+			// This is to allow nbt filtering without item / tag filtering.
+			if (StringUtils.equalsAnyIgnoreCase(name, "*", "any", "all", "everything", "c:*", "c:any", "c:all", "c:everything"))
+				return true;
+			
+			var id = Identifier.tryParse(StringUtils.remove(name, '#')); // let's be nice and remove any pound signs for the dumb idiots
+			if (id == null)
+				continue;
+			
+			var tag = SpectrumCommon.CACHED_ITEM_TAG_MAP.computeIfAbsent(id, tagId -> Registries.ITEM.streamTags()
+					.filter(t -> t.id().equals(tagId))
+					.findFirst()
+					.orElse(null));
+			
+			if (tag == null)
+				continue;
+			
+			if (variant.getItem().getRegistryEntry().isIn(tag))
+				return true;
+		}
+		return false;
 	}
 
 	public static final String GREATER_THAN_KEYWORD = "above";

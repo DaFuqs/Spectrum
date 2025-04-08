@@ -68,17 +68,6 @@ public class NephriteBlossomLeavesBlock extends LeavesBlock implements Fertiliza
             return;
         }
 
-        if (age == 2) {
-            BlockPos.Mutable dropPos = pos.mutableCopy();
-            while (world.getBlockState(dropPos).isOf(this) && pos.getY() - dropPos.getY() < 32) {
-                dropPos.move(0, -1, 0);
-            }
-            ItemStack drop = new ItemStack(SpectrumItems.GLASS_PEACH);
-            world.spawnEntity(new ItemEntity(world, dropPos.getX() + 0.5, dropPos.getY() + 0.15, dropPos.getZ() + 0.5, drop));
-            BlockState newState = state.with(AGE, 0);
-            world.setBlockState(pos, newState);
-            world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(newState));
-        }
         else {
             world.setBlockState(pos, state.with(AGE, age + 1));
         }

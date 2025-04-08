@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.blocks.jade_vines;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.*;
-import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.server.world.*;
@@ -15,7 +14,6 @@ import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
-import net.minecraft.world.event.*;
 
 public class NephriteBlossomLeavesBlock extends LeavesBlock implements Fertilizable {
     
@@ -62,17 +60,12 @@ public class NephriteBlossomLeavesBlock extends LeavesBlock implements Fertiliza
         }
 
         leafSum = Math.max(leafSum, 0) + 1;
-
-        if (random.nextInt(leafSum) != 0) {
-            super.randomTick(state, world, pos, random);
-            return;
-        }
-
-        else {
-            world.setBlockState(pos, state.with(AGE, age + 1));
-        }
-
-        super.randomTick(state, world, pos, random);
+		
+		if (random.nextInt(leafSum) != 0) {
+			super.randomTick(state, world, pos, random);
+		} else {
+			world.setBlockState(pos, state.with(AGE, age + 1));
+		}
     }
 
     @Override

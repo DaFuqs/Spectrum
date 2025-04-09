@@ -5,5 +5,5 @@
     "last_effect_duration_modifier": 1.5,
     "last_effect_potency_modifier": 1.5
   },
-  "required_advancement": "spectrum:hidden/collect_stardust"
+  "required_advancement": "spectrum:unlocks/reagents/stardust"
 }

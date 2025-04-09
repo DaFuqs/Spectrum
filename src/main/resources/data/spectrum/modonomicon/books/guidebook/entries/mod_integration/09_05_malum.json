@@ -119,7 +119,7 @@
       "title": "book.spectrum.guidebook.potion_reagent",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:mod_integration/malum/visited_well"
+        "advancement_id": "spectrum:mod_integration/malum/unlocked_void_salts_reagent"
       },
       "item": {
         "item": "malum:void_salts"

@@ -4,5 +4,5 @@
   "modifiers": {
     "chance_to_add_last_effect": 1.0
   },
-  "required_advancement": "spectrum:lategame/collect_pure_resource"
+  "required_advancement": "spectrum:unlocks/reagents/pure_resources"
 }

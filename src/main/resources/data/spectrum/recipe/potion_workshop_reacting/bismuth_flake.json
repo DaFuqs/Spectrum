@@ -5,5 +5,5 @@
     "flat_potency_bonus_positive_effects": 1.0,
     "random_color": true
   },
-  "required_advancement": "spectrum:lategame/collect_bismuth"
+  "required_advancement": "spectrum:unlocks/reagents/bismuth_flake"
 }

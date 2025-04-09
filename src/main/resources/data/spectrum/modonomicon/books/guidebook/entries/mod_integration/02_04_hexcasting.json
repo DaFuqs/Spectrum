@@ -60,7 +60,7 @@
       "title": "book.spectrum.guidebook.potion_reagent",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
+        "advancement_id": "spectrum:midgame/brew_potion_in_potion_worksho"
       },
       "item": {
         "item": "hexcasting:charged_amethyst"

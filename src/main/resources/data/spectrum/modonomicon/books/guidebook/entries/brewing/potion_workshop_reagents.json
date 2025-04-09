@@ -27,6 +27,10 @@
     },
     {
       "type": "modonomicon:text",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
+      },
       "title": "book.spectrum.guidebook.potion_workshop_reagents.page1.title",
       "text": "book.spectrum.guidebook.potion_workshop_reagents.page1.text"
     },
@@ -45,7 +49,7 @@
       "anchor": "pure_redstone",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/collect_pure_resource"
+        "advancement_id": "spectrum:unlocks/reagents/pure_resources"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.pure_redstone.text"
     },
@@ -64,7 +68,7 @@
       "anchor": "pure_glowstone",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/collect_pure_resource"
+        "advancement_id": "spectrum:unlocks/reagents/pure_resources"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.pure_glowstone.text"
     },
@@ -72,6 +76,10 @@
       "type": "modonomicon:spotlight",
       "item": {
         "item": "minecraft:lapis_lazuli"
+      },
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.lapis_lazuli.text"
     },
@@ -83,7 +91,7 @@
       "anchor": "pure_lapis",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/collect_pure_resource"
+        "advancement_id": "spectrum:unlocks/reagents/pure_resources"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.pure_lapis.text"
     },
@@ -112,7 +120,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/collect_vanilla/echo_shard"
+        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.echo_shard.text"
     },
@@ -124,7 +132,7 @@
       "anchor": "pure_echo",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/collect_pure_resource"
+        "advancement_id": "spectrum:unlocks/reagents/pure_resources"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.pure_echo.text"
     },
@@ -133,12 +141,20 @@
       "item": {
         "item": "spectrum:topaz_powder"
       },
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
+      },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.topaz_powder.text"
     },
     {
       "type": "modonomicon:spotlight",
       "item": {
         "item": "spectrum:amethyst_powder"
+      },
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.amethyst_powder.text"
     },
@@ -147,12 +163,20 @@
       "item": {
         "item": "spectrum:citrine_powder"
       },
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
+      },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.citrine_powder.text"
     },
     {
       "type": "modonomicon:spotlight",
       "item": {
         "item": "spectrum:onyx_powder"
+      },
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.onyx_powder.text"
     },
@@ -163,7 +187,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/collect_moonstone"
+        "advancement_id": "spectrum:unlocks/reagents/moonstone_powder"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.moonstone_powder.text"
     },
@@ -171,6 +195,10 @@
       "type": "modonomicon:spotlight",
       "item": {
         "item": "spectrum:shimmerstone_gem"
+      },
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.shimmerstone_gem.text"
     },
@@ -181,7 +209,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:collect_quitoxic_reeds"
+        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.quitoxic_powder.text"
     },
@@ -192,7 +220,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/collect_stratine"
+        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.stratine_fragments.text"
     },
@@ -203,7 +231,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/collect_paltaeria"
+        "advancement_id": "spectrum:unlocks/reagents/paltaeria_fragments"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.paltaeria_fragments.text"
     },
@@ -214,7 +242,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/collect_stardust"
+        "advancement_id": "spectrum:unlocks/reagents/stardust"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.stardust.text"
     },
@@ -225,7 +253,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:collect_star_fragment"
+        "advancement_id": "spectrum:unlocks/reagents/star_fragment"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.star_fragment.text"
     },
@@ -236,7 +264,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/collect_storm_stone"
+        "advancement_id": "spectrum:unlocks/reagents/storm_stone"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.storm_stone.text"
     },
@@ -247,7 +275,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/collect_azurite"
+        "advancement_id": "spectrum:unlocks/reagents/raw_azurite"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.raw_azurite.text"
     },
@@ -258,7 +286,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:collect_four_leaf_clover"
+        "advancement_id": "spectrum:unlocks/reagents/four_leaf_clover"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.four_leaf_clover.text"
     },
@@ -269,7 +297,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:collect_vegetal"
+        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.vegetal.text"
     },
@@ -280,7 +308,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/collect_neolith"
+        "advancement_id": "spectrum:unlocks/reagents/neolith"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.neolith.text"
     },
@@ -291,7 +319,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/collect_midnight_chip"
+        "advancement_id": "spectrum:unlocks/reagents/midnight_chip"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.midnight_chip.text"
     },
@@ -302,7 +330,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/harvest_moonstruck_nectar"
+        "advancement_id": "spectrum:unlocks/reagents/moonstruck_nectar"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.moonstruck_nectar.text"
     },
@@ -313,7 +341,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/break_decayed_bedrock"
+        "advancement_id": "spectrum:unlocks/reagents/bedrock_dust"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.bedrock_dust.text"
     },
@@ -324,7 +352,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/collect_bismuth"
+        "advancement_id": "spectrum:unlocks/reagents/bismuth_flake"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.bismuth_flake.text"
     },
@@ -335,7 +363,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/collect_malachite"
+        "advancement_id": "spectrum:unlocks/reagents/raw_malachite"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.raw_malachite.text"
     },
@@ -346,7 +374,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/collect_raw_bloodstone"
+        "advancement_id": "spectrum:unlocks/reagents/raw_bloodstone"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.raw_bloodstone.text"
     },
@@ -358,7 +386,7 @@
       "anchor": "prickly_bayleaf",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/collect_prickly_bayleaf"
+        "advancement_id": "spectrum:unlocks/reagents/prickly_bayleaf"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.prickly_bayleaf.text"
     },
@@ -370,7 +398,7 @@
       "anchor": "jadeite_petals",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/collect_jadeite"
+        "advancement_id": "spectrum:unlocks/reagents/jadeite_petals"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.jadeite_petals.text"
     },
@@ -382,7 +410,7 @@
       "anchor": "fissure_plum",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/collect_fissure_plum"
+        "advancement_id": "spectrum:unlocks/reagents/fissure_plum"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.fissure_plum.text"
     },
@@ -394,7 +422,7 @@
       "anchor": "bone_ash",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:break_cracked_dragonbone"
+        "advancement_id": "spectrum:unlocks/reagents/bone_ash"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.bone_ash.text"
     },
@@ -406,7 +434,7 @@
       "anchor": "ash_flakes",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/collect_ash"
+        "advancement_id": "spectrum:unlocks/reagents/ash_flakes"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.ash_flakes.text"
     },
@@ -430,7 +458,7 @@
       "anchor": "nightdew_sprout",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:collect_nightdew"
+        "advancement_id": "spectrum:unlocks/reagents/nightdew_sprout"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.nightdew_sprout.text"
     },
@@ -442,7 +470,7 @@
       "anchor": "nectardew_burgeon",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/collect_nectardew"
+        "advancement_id": "spectrum:unlocks/reagents/nectardew_burgeon"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.nectardew_burgeon.text"
     }

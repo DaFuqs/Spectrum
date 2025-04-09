@@ -32,5 +32,5 @@
       }
     ]
   },
-  "required_advancement": "spectrum:lategame/collect_nectardew"
+  "required_advancement": "spectrum:unlocks/reagents/nectardew_burgeon"
 }

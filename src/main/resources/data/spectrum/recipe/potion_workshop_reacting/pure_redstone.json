@@ -6,5 +6,5 @@
     "potency_multiplier": 0.5,
     "flat_yield_bonus": -1.0
   },
-  "required_advancement": "spectrum:lategame/collect_pure_resource"
+  "required_advancement": "spectrum:unlocks/reagents/pure_resources"
 }

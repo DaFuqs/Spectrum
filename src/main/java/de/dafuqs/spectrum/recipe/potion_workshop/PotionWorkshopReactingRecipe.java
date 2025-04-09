@@ -42,7 +42,7 @@ public class PotionWorkshopReactingRecipe extends GatedSpectrumRecipe<RecipeInpu
 	@Override
 	public boolean matches(@NotNull RecipeInput inv, World world) {
 		for (int i : PotionWorkshopBlockEntity.REAGENT_SLOTS) {
-			ItemStack itemStack = inv.getStack(i);
+			ItemStack itemStack = inv.getStackInSlot(i);
 			if (!itemStack.isEmpty() && itemStack.getItem() == item) {
 				return true;
 			}

@@ -339,9 +339,9 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 
 	private static boolean canPlayerUseReagents(PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
 		World world = potionWorkshopBlockEntity.getWorld();
-		List<PotionWorkshopReactingRecipe> reagentRecipes = world.getRecipeManager().getAllMatches(SpectrumRecipeTypes.POTION_WORKSHOP_REACTING, potionWorkshopBlockEntity, world);
-		for (PotionWorkshopReactingRecipe recipe : reagentRecipes) {
-			if (!recipe.canPlayerCraft(potionWorkshopBlockEntity.getOwnerIfOnline())) {
+		List<RecipeEntry<PotionWorkshopReactingRecipe>> reagentRecipes = world.getRecipeManager().getAllMatches(SpectrumRecipeTypes.POTION_WORKSHOP_REACTING, potionWorkshopBlockEntity.getRecipeInput(), world);
+		for (RecipeEntry<PotionWorkshopReactingRecipe> recipe : reagentRecipes) {
+			if (!recipe.value().canPlayerCraft(potionWorkshopBlockEntity.getOwnerIfOnline())) {
 				return false;
 			}
 		}

@@ -1,5 +1,5 @@
 {
-	"parent": "spectrum:templates/base_flat_light",
+	"parent": "spectrum:templates/base_flat_light_mirrored",
 	"textures": {
 		"outer": "minecraft:block/stone",
 		"inner": "spectrum:block/shimmerstone_light",

@@ -26,3 +26,4 @@ extendable method net/minecraft/item/map/MapState <init> (IIBZZZLnet/minecraft/r
 extendable method net/minecraft/item/map/MapState addIcon (Lnet/minecraft/item/map/MapIcon$Type;Lnet/minecraft/world/WorldAccess;Ljava/lang/String;DDDLnet/minecraft/text/Text;)V
 
 mutable field net/minecraft/item/map/MapState dimension Lnet/minecraft/registry/RegistryKey;
+accessible field net/minecraft/loot/context/LootContextTypes MAP Lcom/google/common/collect/BiMap;

@@ -174,7 +174,7 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 	
 	@Override
 	public void setStack(int slot, ItemStack stack) {
-		if (stack.isEmpty() && this.listenerPaused) {
+		if (stack.isEmpty()) {
 			this.listenerPaused = false;
 			harvestExistingClusters();
 		}

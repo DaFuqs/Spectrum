@@ -70,6 +70,7 @@ public abstract class ProjectileEntityMixin {
 								new Vec3d(thisEntity.getX() - livingEntity.getPos().x, thisEntity.getY() - livingEntity.getPos().y, thisEntity.getZ() - livingEntity.getPos().z));
 						
 						world.playSound(null, thisEntity.getBlockPos(), SpectrumSoundEvents.PUFF_CIRCLET_PFFT, SoundCategory.PLAYERS, 1.0F, 1.0F);
+						livingEntity.hurtTime = Math.max(livingEntity.hurtTime, 1);
 						ci.cancel();
 					}
 					

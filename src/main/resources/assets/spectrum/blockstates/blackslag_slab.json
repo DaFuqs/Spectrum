@@ -4,7 +4,7 @@
       "model": "spectrum:block/blackslag_slab"
     },
     "type=double": {
-      "model": "spectrum:block/blackslag_slab"
+			"model": "spectrum:block/blackslag"
     },
     "type=top": {
       "model": "spectrum:block/blackslag_slab_top"

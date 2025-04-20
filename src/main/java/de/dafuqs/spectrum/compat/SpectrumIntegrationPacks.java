@@ -58,7 +58,7 @@ public class SpectrumIntegrationPacks {
 		
 		if (!FabricLoader.getInstance().isModLoaded(CONNECTOR_ID)) {
 			// Connector on forge causes a lot of issues since most
-			// code bases of force mods differ quite a lot from their fabric counterparts
+			// code bases of forge mods differ quite a lot from their fabric counterparts
 			registerIntegrationPack(AE2_ID, () -> new AE2Compat());
 			registerIntegrationPack(GOBBER_ID, () -> new GobberCompat());
 			registerIntegrationPack(ALLOY_FORGERY_ID, () -> new AlloyForgeryCompat());

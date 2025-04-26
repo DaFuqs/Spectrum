@@ -59,8 +59,7 @@ dependencies {
 	modImplementation include("maven.modrinth:exclusions-lib:${project.exclusionslib_version}")
 	modImplementation("de.dafuqs:revelationary:${project.revelationary_version}")
 	modImplementation include("de.dafuqs:additionalentityattributes:${project.additional_entity_attributes_version}")
-	//modImplementation include("de.dafuqs:arrowhead:${project.arrowhead_version}")
-	modImplementation include("com.github.Azzyypaaras:Arrowhead:1.3.0")
+	modImplementation include("de.dafuqs:arrowhead:${project.arrowhead_version}")
 	modImplementation include("de.dafuqs:reverb:${project.dimensional_reverb_version}")
 	modImplementation include("de.dafuqs:fractal:${project.fractal_version}")
 

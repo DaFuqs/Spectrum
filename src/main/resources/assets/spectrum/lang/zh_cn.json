@@ -189,6 +189,7 @@
   "container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2": "这个配方",
   "container.spectrum.rei.enchanting.title": "附魔物品",
   "container.spectrum.rei.enchantment_upgrading.title": "附魔升级",
+  "container.spectrum.rei.enchantment_upgrade.required_item_count": "(%fx)",
   "container.spectrum.rei.goo_converting.title": "泥浆:侵染",
   "container.spectrum.rei.liquid_crystal_converting.title": "液态水晶:侵染",
   "container.spectrum.rei.midnight_solution_converting.title": "午夜溶液:侵染",
@@ -232,8 +233,8 @@
   "container.spectrum.rei.primordial_fire_burning.title": "原初火焰燃烧",
   "container.spectrum.rei.crafting_time": "%f 秒",
   "container.spectrum.rei.crafting_time_one_second": "%f 秒",
-  "container.spectrum.rei.crafting_time_and_xp": "%f 秒 | 获得 %f XP",
-  "container.spectrum.rei.crafting_time_one_second_and_xp": "%f 秒 | 获得 %f 经验",
+  "container.spectrum.rei.crafting_time_and_xp": "%f 秒 +%f XP",
+  "container.spectrum.rei.crafting_time_one_second_and_xp": "%f 秒 +%f 经验",
   "container.spectrum.rei.pedestal_crafting.secret_recipe": "秘方!",
   "container.spectrum.rei.pedestal_crafting.secret_recipe.hint": "秘方!给你个暗示:",
   "container.spectrum.rei.enchanter_recipe": "附魔基座配方",
@@ -5140,7 +5141,7 @@
   "book.spectrum.guidebook.potion_workshop_reagents.nectardew_burgeon.text": " +100%% 效果强度\n +100%% 持续时间\n -3 产量\n 使药水具有催眠功效",
   "book.spectrum.guidebook.potion_workshop_reagents.nightdew_sprout.text": " +1 效果等级\n +50%% 持续时间\n -1 产量",
   "book.spectrum.guidebook.potion_workshop_reagents.fissure_plum.text": " 50%%的几率 +1 持续时间\n 50%%的几率 +1 效果等级\n 50%%的几率 +1 产量\n 对负面效果的属性修正会被反转",
- 
+
   "book.spectrum.guidebook.preenchanted_tools.name": "预附魔工具",
   "book.spectrum.guidebook.preenchanted_tools.page0.text": "那个愚钝的黑曜石台子真是死活吐不出我想要的好附魔. *是的,我很生气.*\\\n\\\n此外,我还要养牛宰牛获取皮革,或者把村庄的书架洗劫一空才有书够用（难怪那里的居民蠢到被僵尸给吃掉呢）.",
   "book.spectrum.guidebook.preenchanted_tools.page1.text": "既然知道自己想要什么,那么只需借助色彩魔法,就能让我打造出具有特定性质的工具来.\\\n\\\n可惜的是,这样制作而成的工具大多都不耐用.",
@@ -5661,7 +5662,7 @@
   "book.spectrum.guidebook.mod_integration.botania.page20.text": "建造法杖和替换法杖能够从我的黑洞护符中提取方块.",
 
   "book.spectrum.guidebook.mod_integration.byg.name": "你将去的生物群系",
-	
+
   "book.spectrum.guidebook.mod_integration.chalk.name": "粉笔",
   "book.spectrum.guidebook.mod_integration.chalk.page0.text": "一次次的在地底深处迷路,转的我头都快晕了.于是我随身携带了一些[#](bb00bb)粉笔[#](),以便标记回去的路.不幸的是,这些小小的方解石碎片用不了太久就碎了.",
   "book.spectrum.guidebook.mod_integration.chalk.page1.title": "坚不可摧的粉笔",
@@ -5746,7 +5747,7 @@
   "book.spectrum.guidebook.mod_integration.immersive_weathering.charred_wood_resonance.text": "使用共振附魔挖掘这些在火中剩下来的木制品可以让它们在我的背包里保持阴燃的状态。\\\n\\\n*火 狗: 我我没事 火.jpg*",
   "book.spectrum.guidebook.mod_integration.immersive_weathering.sandy_stone_resonance.title": "积沙的石头",
   "book.spectrum.guidebook.mod_integration.immersive_weathering.sandy_stone_resonance.text": "和焦木一样，这些多余的沙子似乎也会被保留下来，小众，但很方便！\\\n\\\n*精准采集：那我走？*",
-	
+
   "book.spectrum.guidebook.mod_integration.little_ants.name": "小蚂蚁",
   "book.spectrum.guidebook.mod_integration.little_ants.page0.text": "这些勤劳的小家伙不断从树上收集叶子.他们的劳动成果体现在他们的产品中.虽然他们主要生产[#](449900)黏土[#](),但可能还有其他的惊喜……\\\n\\\n感谢MastroCaleb的这个伟大模组!",
   "book.spectrum.guidebook.mod_integration.little_ants.page1.text": "蚂蚁从[#](bb00bb)翡翠花瓣[#]()中生产出了一种几乎像丝绸一样的材料.",
@@ -5761,7 +5762,7 @@
   "book.spectrum.guidebook.mod_integration.malum.void_salts_reagent.text": "- +200%% 持续时间\n- -2 产量",
   "book.spectrum.guidebook.mod_integration.malum.crystal_burning.text": "灼烧灵魂的火焰...结晶碎片也一样，能量在余烬中消耗殆尽。",
   "book.spectrum.guidebook.mod_integration.malum.silenced.text": "一种强大的反魔法效果，似乎还会阻止我使用墨水",
-	
+
   "book.spectrum.guidebook.mod_integration.more_geodes.name": "更多晶洞",
   "book.spectrum.guidebook.mod_integration.mythicupgrades.name": "晶洞 Plus",
 
@@ -6394,7 +6395,7 @@
 
   "signtext.spectrum.biohazard_ruin.1": "☣",
   "signtext.spectrum.biohazard_ruin.2": "生物危害",
-  "signtext.spectrum.biohazard_ruin.3": "毁蚀微生物",
+  "signtext.spectrum.biohazard_ruin.3": "坏灭微生物",
   "signtext.spectrum.biohazard_ruin.4": "8 格",
 
   "______done_until_here": "待办事项:",

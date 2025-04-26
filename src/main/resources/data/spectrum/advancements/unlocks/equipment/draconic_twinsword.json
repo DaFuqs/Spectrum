@@ -9,7 +9,7 @@
     "solved_wireless_redstone_preservation_ruin": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:solve_wireless_redstone_preservation_ruin"
+        "advancement_identifier": "spectrum:milestones/reveal_blood_orchid_petals"
       }
     }
   }

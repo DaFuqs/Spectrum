@@ -1170,7 +1170,11 @@ public class SpectrumBlocks {
 	public static final Block POTTED_AMARANTH_BUSHEL = new PottedAmaranthBushelBlock(AMARANTH_BUSHEL, pottedPlant());
 	public static final Block POTTED_BLOOD_ORCHID = new PottedBloodOrchidBlock(BLOOD_ORCHID, pottedPlant());
 	public static final Block POTTED_RESONANT_LILY = new PottedResonantLilyBlock(RESONANT_LILY, pottedPlant());
-
+	public static final Block POTTED_SWEET_PEA = new FlowerPotBlock(SWEET_PEA, pottedPlant().luminance(s -> 11).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always));
+	public static final Block POTTED_APRICOTTI = new FlowerPotBlock(APRICOTTI, pottedPlant().luminance(s -> 11).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always));
+	public static final Block POTTED_VARIA_SPROUT = new FlowerPotBlock(VARIA_SPROUT, pottedPlant().luminance(s -> 11).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always));
+	public static final Block POTTED_HUMMING_BELL = new FlowerPotBlock(HUMMING_BELL, pottedPlant().luminance(s -> 9).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always));
+	
 	private static Settings glowBlock(MapColor color) {
 		return settings(color, BlockSoundGroup.BASALT, 2.5F).requiresTool().luminance(state -> 1).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always);
 	}
@@ -1616,6 +1620,10 @@ public class SpectrumBlocks {
 		registerBlockWithItem("blood_orchid", BLOOD_ORCHID, IS.of(), DyeColor.RED);
 		registerBlock("potted_blood_orchid", POTTED_BLOOD_ORCHID);
 		registerBlock("potted_resonant_lily", POTTED_RESONANT_LILY);
+		registerBlock("potted_sweet_pea", POTTED_SWEET_PEA);
+		registerBlock("potted_apricotti", POTTED_APRICOTTI);
+		registerBlock("potted_varia_sprout", POTTED_VARIA_SPROUT);
+		registerBlock("potted_humming_bell", POTTED_HUMMING_BELL);
 
 		// Worldgen
 		registerBlockWithItem("quitoxic_reeds", QUITOXIC_REEDS, IS.of(), DyeColor.PURPLE);
@@ -3057,6 +3065,10 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.BLOOD_ORCHID, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_BLOOD_ORCHID, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_RESONANT_LILY, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_SWEET_PEA, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_APRICOTTI, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_VARIA_SPROUT, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_HUMMING_BELL, RenderLayer.getCutout());
 
 		BlockRenderLayerMap.INSTANCE.putBlock(VARIA_SPROUT, RenderLayer.getCutout());
 

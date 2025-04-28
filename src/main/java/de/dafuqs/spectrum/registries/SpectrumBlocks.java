@@ -1,12 +1,5 @@
 package de.dafuqs.spectrum.registries;
 
-import java.util.*;
-import java.util.function.*;
-
-import static de.dafuqs.spectrum.SpectrumCommon.*;
-import static de.dafuqs.spectrum.registries.SpectrumItems.*;
-import static net.minecraft.block.Blocks.*;
-
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.energy.color.*;
@@ -96,6 +89,13 @@ import net.minecraft.world.*;
 import net.minecraft.world.explosion.*;
 import net.minecraft.world.gen.feature.*;
 import org.jetbrains.annotations.*;
+
+import java.util.*;
+import java.util.function.*;
+
+import static de.dafuqs.spectrum.SpectrumCommon.*;
+import static de.dafuqs.spectrum.registries.SpectrumItems.*;
+import static net.minecraft.block.Blocks.*;
 
 @SuppressWarnings({"unused"})
 public class SpectrumBlocks {
@@ -1422,6 +1422,11 @@ public class SpectrumBlocks {
 	
 	public static final BloodOrchidBlock BLOOD_ORCHID = register(cutout(blockWithItem("blood_orchid", new BloodOrchidBlock(SpectrumStatusEffects.FRENZY, 10, AbstractBlock.Settings.copy(POPPY).offset(AbstractBlock.OffsetType.NONE).ticksRandomly()), InkColors.RED)).withBlockItemModel((ctx, block) -> SpectrumModelHelper.registerBlockTexturedItemModel(ctx, block, "5")).withBlockModel((ctx, block) -> VariantsBlockStateSupplier.create(block).coordinate(BlockStateVariantMap.create(BloodOrchidBlock.AGE).register(stage -> SpectrumModelHelper.createModelVariant(SpectrumTexturedModels.cross(b -> b, stage.toString()).upload(block, stage.toString(), ctx.modelCollector))))));
 	public static final PottedBloodOrchidBlock POTTED_BLOOD_ORCHID = register(cutout(singleton(block("potted_blood_orchid", new PottedBloodOrchidBlock(BLOOD_ORCHID, pottedPlant())), SpectrumTexturedModels.flowerPotCross(b -> BLOOD_ORCHID, "5", false))));
+	
+	public static final Block POTTED_SWEET_PEA = register(pottedPlant(block("potted_sweet_pea", new FlowerPotBlock(SWEET_PEA, pottedPlant().luminance(s -> 11).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always))), false));
+	public static final Block POTTED_APRICOTTI = register(pottedPlant(block("potted_apricotti", new FlowerPotBlock(APRICOTTI, pottedPlant().luminance(s -> 11).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always))), false));
+	public static final Block POTTED_VARIA_SPROUT = register(pottedPlant(block("potted_varia_sprout", new FlowerPotBlock(VARIA_SPROUT, pottedPlant().luminance(s -> 11).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always))), false));
+	public static final Block POTTED_HUMMING_BELL = register(pottedPlant(block("potted_humming_bell", new FlowerPotBlock(HUMMING_BELL, pottedPlant().luminance(s -> 9).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always))), false));
 	
 	public static ColoredSaplingBlock registerColoredSapling(String name, InkColor color, SaplingGenerator generator) {
 		return register(simplePlant(blockWithItem(name, new ColoredSaplingBlock(copyWithMapColor(OAK_SAPLING, color.getDyeColor().orElse(DyeColor.LIME).getMapColor()), color, generator), color)));

@@ -2514,8 +2514,8 @@
   "recipe.spectrum.spawner.lore.changed_creature": "将刷怪笼生物改为头颅对应的生物",
   "recipe.spectrum.spawner.lore.increased_max_nearby_entities": "增大刷怪笼的刷怪生物上限",
   "recipe.spectrum.spawner.lore.increased_required_player_range": "提升刷怪笼激活半径",
-  "recipe.spectrum.spawner.lore.increased_spawn_count": "生成数量已增加",
-  "recipe.spectrum.spawner.lore.decreased_spawn_delay": "生成延迟已降低",
+  "recipe.spectrum.spawner.lore.increased_spawn_count": "增加生成数量",
+  "recipe.spectrum.spawner.lore.decreased_spawn_delay": "降低生成延迟",
 
   "item.spectrum.citrine_shard": "黄水晶碎片",
   "item.spectrum.topaz_shard": "托帕石碎片",
@@ -5392,17 +5392,15 @@
   "book.spectrum.guidebook.spawner_creature_change.page1.text": "我是什么样的人?这取决于我的道德观.",
 
   "book.spectrum.guidebook.spawner_manipulation.name": "刷怪笼操控",
-  "book.spectrum.guidebook.spawner_manipulation.page0.text": "有了[共振](entry://enchanting/enchantments/resonance)附魔之后终于让我能完整的把刷怪笼采集下来了!\\\n虽然我还没有弄清楚怎么自己制作这些刷怪笼,但利用[灵魂灌注台](entry://creating_life/spirit_instiller)依然可以随心所欲地操纵刷怪笼的性质以符合我的利益.\\\n*棒极了.*",
-  "book.spectrum.guidebook.spawner_manipulation.page1.title": "改变生物",
-  "book.spectrum.guidebook.spawner_manipulation.page1.text": "基于类似[回忆](entry://creating_life/memories)的方式,我可以更改刷怪笼生成的生物类型.",
-  "book.spectrum.guidebook.spawner_manipulation.page2.title": "生物生成数量",
-  "book.spectrum.guidebook.spawner_manipulation.page2.text": "增加每一周期生成的生物数量.",
-  "book.spectrum.guidebook.spawner_manipulation.page3.title": "生物生成延迟",
-  "book.spectrum.guidebook.spawner_manipulation.page3.text": "缩短生物生成周期的最小和最大延迟.",
-  "book.spectrum.guidebook.spawner_manipulation.page4.title": "生物生成条件",
-  "book.spectrum.guidebook.spawner_manipulation.page4.text": "刷怪笼周围生物太多的时候就会停止刷怪.难道是在放我一马不成? *搞得好像我没有能耐似的,无趣.*\\\n这种修改提高了刷怪笼周围所能容纳的生物容量上限.",
-  "book.spectrum.guidebook.spawner_manipulation.page5.title": "激活范围",
-  "book.spectrum.guidebook.spawner_manipulation.page5.text": "增加我可以离开刷怪笼的距离,它仍然有效.",
+  "book.spectrum.guidebook.spawner_manipulation.intro.text": "有了[共振](entry://enchanting/enchantments/resonance)附魔之后终于让我能完整的把刷怪笼采集下来了!\\\n虽然我还没有弄清楚怎么自己制作这些刷怪笼,但利用[灵魂灌注台](entry://creating_life/spirit_instiller)依然可以随心所欲地操纵刷怪笼的性质以符合我的利益.\\\n*泰裤辣！*",
+  "book.spectrum.guidebook.spawner_manipulation.spawn_count_change.title":"生物生成数量",
+  "book.spectrum.guidebook.spawner_manipulation.spawn_count_change.text": "增加每一周期生成的生物数量.",
+  "book.spectrum.guidebook.spawner_manipulation.spawn_delay_change.title": "生物生成延迟",
+  "book.spectrum.guidebook.spawner_manipulation.spawn_delay_change.text": "缩短生物生成周期的最小和最大延迟。",
+  "book.spectrum.guidebook.spawner_manipulation.max_nearby_entities_change.title": "生物生成条件",
+  "book.spectrum.guidebook.spawner_manipulation.max_nearby_entities_change.text": "刷怪笼周围生物太多的时候就会停止刷怪，难道是在放我一马不成? *搞得好像我没有能耐似的,无趣。*\\\n这种修改提高了刷怪笼周围所能容纳的生物容量上限。",
+  "book.spectrum.guidebook.spawner_manipulation.equired_player_range_change.title": "激活范围",
+  "book.spectrum.guidebook.spawner_manipulation.equired_player_range_change.text": "增加我可以离开刷怪笼的距离,它仍然有效。",
 
   "book.spectrum.guidebook.spirit_instiller.page0.text": "凭借我所掌握的所有知识,我创造了**灵魂灌注台**.我专门设计它来结合两件物品的能量,并借助第三个物品将它们结合在一起.\\\n与其他物品一样,灵魂灌注台也需要基座结构才能正常运作.对着已放置的灵魂灌注台右击来旋转投影.",
   "book.spectrum.guidebook.spirit_instiller.page1.text": "这是一个近乎灵魂层次的过程,因此得名.",
@@ -5431,7 +5429,7 @@
   "book.spectrum.guidebook.stargazing.page3.text": "流星产生了宝贵的资源:包括这个稀有的流星碎片、星尘和一大堆其他的稀有材料.\\\n\\\n通过蹲下捡起流星并通过[铁砧将其压碎](entry://general/item_crushing)可以获得双倍的流星碎片,但代价是其他材料会消失.",
   "book.spectrum.guidebook.stargazing.page4.text": "一种来历不明的粉末,被赋予了星星的灵魂.\\\n\\\n*具有潜在的力量.*",
 
-  "book.spectrum.guidebook.steadfast.page0.text": "想想我的日常:手握高精尖附魔装备,结果一不小心释放剑气导致工具掉进了熔岩.在末影人的维度中就更是恐怖,一不小心就连人带工具掉进虚空中.\\\n\\\n有了这种新附魔就可以防止我脑子抽筋时保护我最喜欢的工具（包括被扔到仙人掌上）.",
+  "book.spectrum.guidebook.steadfast.page0.text": "想想我的日常:手握高精尖附魔装备,结果一不小心释放剑弃导致工具掉进了熔岩.在末影人的维度中就更是恐怖,一不小心就连人带工具掉进虚空中.\\\n\\\n有了这种新附魔就可以在我脑子抽筋时保护我最喜欢的工具（包括被扔到仙人掌上）.",
   "book.spectrum.guidebook.steadfast.page1.text": "保护工具处于掉落物时不受破坏,即使是掉进熔岩或掉入虚空.\\\n\\\n最大等级:1\\\n适用于所有工具.",
 
   "book.spectrum.guidebook.swiftness.page0.text": "每一级效果[#](449900)都会增加我的攻击速度[#]().",
@@ -5576,7 +5574,7 @@
   "book.spectrum.guidebook.biomes.page0.text": "我想不到那片区域会是多么荒芜.我的意思是……如果阳光照射不到这些地方,那里面能长出什么呢?阳光和水是生命的基本需求,水可能存在,但至少阳光怎么看都不存在……",
   "book.spectrum.guidebook.biomes.page1.text": "如果我能反驳自己的说法,我还是挺开心的.",
 
-  "book.spectrum.guidebook.chrysocolla.page0.text": "我最近刚发酵好的葡萄酒后劲*有点*太强了.\\\n味道极其苦涩,还略带酸味.\\\n虽然保留了一些曾经类似的特性,但在我看来,这瓶酒更适合用于药物而不是饮用.",
+  "book.spectrum.guidebook.chrysocolla.page0.text": "我最近刚发酵好的花酒后劲*有点*太强了.\\\n味道极其苦涩,还略带酸味.\\\n虽然保留了一些曾经类似的特性,但在我看来,这瓶酒更适合用于药物而不是饮用.",
 
   "book.spectrum.guidebook.creatures.name": "渊深之域中的生物",
   "book.spectrum.guidebook.creatures.page0.text": "我未曾料到原来在这无尽的黑暗中也有这么多的生物...亦或者说生命的存在.\\\n\\\n我很好奇想看看那里有什么东西在乱窜.",

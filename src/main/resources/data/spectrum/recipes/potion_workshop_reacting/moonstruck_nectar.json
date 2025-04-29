@@ -4,5 +4,5 @@
   "modifiers": {
     "additional_drink_duration_ticks": -28
   },
-  "required_advancement": "spectrum:midgame/harvest_moonstruck_nectar"
+  "required_advancement": "spectrum:unlocks/reagents/moonstruck_nectar"
 }

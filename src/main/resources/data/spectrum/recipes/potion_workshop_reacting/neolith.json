@@ -4,5 +4,5 @@
   "modifiers": {
     "unidentifiable": true
   },
-  "required_advancement": "spectrum:midgame/collect_neolith"
+  "required_advancement": "spectrum:unlocks/reagents/neolith"
 }

@@ -78,7 +78,7 @@ public class SpectrumAdvancements {
 	public static final Identifier UNLOCK_BOTTLE_OF_FORFEITURE = SpectrumCommon.locate("unlocks/items/bottle_of_forfeiture");
 	public static final Identifier UNLOCK_BOTTLE_OF_RUIN = SpectrumCommon.locate("unlocks/items/bottle_of_ruin");
 	public static final Identifier UNLOCK_GREATER_POTION_PENDANT = SpectrumCommon.locate("unlocks/trinkets/greater_potion_pendant");
-	public static final Identifier UNLOCK_IDOLS = SpectrumCommon.locate("unlocks/items/idols");
+	public static final Identifier UNLOCK_IDOLS = SpectrumCommon.locate("unlocks/blocks/idols");
 	public static final Identifier UNLOCK_LESSER_POTION_PENDANT = SpectrumCommon.locate("unlocks/trinkets/lesser_potion_pendant");
 	public static final Identifier UNLOCK_NATURES_STAFF = SpectrumCommon.locate("unlocks/items/natures_staff");
 	

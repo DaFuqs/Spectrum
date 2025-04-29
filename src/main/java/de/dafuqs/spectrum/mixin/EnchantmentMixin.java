@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.item.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.item.*;
@@ -22,11 +23,11 @@ public abstract class EnchantmentMixin {
 			accepted = this.target == spoofer.getRealTarget();
 		}
 		
-		if (!accepted) {
-			if ((stack.getItem() instanceof ExtendedEnchantable extendedEnchantable && extendedEnchantable.acceptsEnchantment((Enchantment) (Object) this))) {
-				cir.setReturnValue(true);
-			}
+		if ((stack.getItem() instanceof ExtendedEnchantable extendedEnchantable && extendedEnchantable.acceptsEnchantment((Enchantment) (Object) this))) {
+			accepted = true;
 		}
+		
+		cir.setReturnValue(accepted);
 	}
 	
 }

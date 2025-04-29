@@ -28,7 +28,7 @@ public class StaffOfRemembranceItem extends Item implements InkPowered, Prioriti
 	
 	public static final InkColor USED_COLOR = InkColors.LIGHT_GRAY;
 	public static final InkCost TURN_NEUTRAL_TO_MEMORY_COST = new InkCost(USED_COLOR, 1000);
-	public static final InkCost TURN_HOSTILE_TO_MEMORY_COST = new InkCost(USED_COLOR, 10000);
+	public static final InkCost TURN_HOSTILE_TO_MEMORY_COST = new InkCost(USED_COLOR, 5000);
 	
 	public StaffOfRemembranceItem(Settings settings) {
 		super(settings);
@@ -73,12 +73,17 @@ public class StaffOfRemembranceItem extends Item implements InkPowered, Prioriti
 		}
 		
 		SpawnGroup spawnGroup = entity.getType().getSpawnGroup();
-		if (spawnGroup == SpawnGroup.MONSTER && (user.isCreative() || AdvancementHelper.hasAdvancement(user, SpectrumAdvancements.HOSTILE_MEMORIZING))) {
+		if (spawnGroup == SpawnGroup.MONSTER) {
+			if (!user.isCreative() && !AdvancementHelper.hasAdvancement(user, SpectrumAdvancements.HOSTILE_MEMORIZING)) {
+				return false;
+			}
 			if (!InkPowered.tryDrainEnergy(user, TURN_HOSTILE_TO_MEMORY_COST)) {
 				return false;
 			}
-		} else if (!InkPowered.tryDrainEnergy(user, TURN_NEUTRAL_TO_MEMORY_COST)) {
-			return false;
+		} else {
+			if (!InkPowered.tryDrainEnergy(user, TURN_NEUTRAL_TO_MEMORY_COST)) {
+				return false;
+			}
 		}
 		
 		entity.detachLeash(true, true);

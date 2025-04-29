@@ -28,7 +28,7 @@ public class TranslationStorageMixin {
         builder.put("item.spectrum.dragon_talon", "Sellsword Winblades");
         builder.put("effect.spectrum.fatal_slumber", "Fat Slumber");
 		builder.put("item.spectrum.fissure_plum", "Queerscaped Sponsored Fruit");
-		builder.put("item.spectrum.whispy_circlet", "Whiskey Circlet");
+		builder.put("item.spectrum.whispy_circlet", "Whisky Circlet");
 		builder.put("item.spectrum.shimmerstone_gem", "Stimmerstone Gem");
 		builder.put("block.spectrum.shimmerstone_block", "Block of Stimmerstone");
 

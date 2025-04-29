@@ -8,5 +8,5 @@
     "flat_duration_bonus_negative_effects": -0.5,
     "flat_yield_bonus": 0.5
   },
-  "required_advancement": "spectrum:hidden/collect_fissure_plum"
+  "required_advancement": "spectrum:unlocks/reagents/fissure_plum"
 }

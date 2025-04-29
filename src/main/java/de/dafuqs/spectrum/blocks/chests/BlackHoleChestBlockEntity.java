@@ -268,7 +268,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 			}
 		} else if (entry instanceof ItemEntityEventQueue.EventEntry itemEntry) {
 			ItemEntity itemEntity = itemEntry.itemEntity;
-			if (itemEntity != null && itemEntity.isAlive() && acceptsItemStack(itemEntity.getStack())) {
+			if (itemEntity != null && itemEntity.isAlive() && !itemEntity.cannotPickup() && acceptsItemStack(itemEntity.getStack())) {
 				int previousAmount = itemEntity.getStack().getCount();
 				ItemStack remainingStack = InventoryHelper.smartAddToInventory(itemEntity.getStack(), this, Direction.UP);
 				

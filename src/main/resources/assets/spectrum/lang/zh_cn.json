@@ -673,7 +673,7 @@
   "spectrum.toast.message.ascend_kindling.title": "哦不!",
   "spectrum.toast.message.ascend_kindling.text": "§lLorian 会记住这一点.",
   "spectrum.toast.message.vivisect_kindling.title": "§l你这个怪物……",
-  "spectrum.toast.message.vivisect_kindling.text": "你怎么了?",
+  "spectrum.toast.message.vivisect_kindling.text": "你在干什么！？",
 
   "text.autoconfig.Spectrum.title": "光谱世界",
   "text.autoconfig.Spectrum.option.ToastTimeMilliseconds": "游戏内配方/解锁弹窗在屏幕上停留的时间（毫秒）",
@@ -4645,6 +4645,7 @@
   "book.spectrum.guidebook.intro.page2.text": "随着你对光谱世界的探索越发深入,你所达成的进度越多,解锁的新事物也就越多.\\\n随着你的进度,你原本熟知的世界会逐渐显露全新样貌,向你展现出前所未见的各色新事物——这些变化只对*你*展现.\\\n\\\n最终,你要汇集你的所学所识,完成最后的目标:深入基岩下方.",
   "book.spectrum.guidebook.intro.page3.link_text": "光谱世界的Discord",
   "book.spectrum.guidebook.intro.page3.text": "没有头绪吗?看看这本书或你的进度吧,它们会指引你前去探索.\\\n\\\n光谱世界仍在开发中,如果您发现Bug或者有什么建议,请加入光谱世界的Discord频道,或在GitHub上报告!\\\n祝你玩的开心!-DaFuqs",
+	"book.spectrum.guidebook.intro.stuck.title": "感到毫无头绪吗？",
 	"book.spectrum.guidebook.intro.stuck.text": "看一眼这本任务书或者你的光谱世界进度吧. 在这两个地方你都能找到下一步要做什么的提示.\\\n\\\n您的旅程中会有多棵进度树,每当你进入新的章节都会解锁一棵.",
 	"book.spectrum.guidebook.intro.hints.title": "可选提示系统",
 	"book.spectrum.guidebook.intro.hints.text": "你的七彩世界任务书带有提示系统. 如果你感到盲目,请随时查阅这些条目以获得一些小提示,或是完整的解决办法.\\\n\\\n这些是完全可选的 - 你使用后不会有任何损失. 当然,你也可以为自己独自走完了这个模组而感到自豪！",
@@ -5680,6 +5681,7 @@
   "book.spectrum.guidebook.mod_integration.botania.page20.text": "建造法杖和替换法杖能够从我的黑洞护符中提取方块.",
 
   "book.spectrum.guidebook.mod_integration.byg.name": "你将去的生物群系",
+	
   "book.spectrum.guidebook.mod_integration.chalk.name": "粉笔",
   "book.spectrum.guidebook.mod_integration.chalk.page0.text": "一次次的在地底深处迷路,转的我头都快晕了.于是我随身携带了一些[#](bb00bb)粉笔[#](),以便标记回去的路.不幸的是,这些小小的方解石碎片用不了太久就碎了.",
   "book.spectrum.guidebook.mod_integration.chalk.page1.title": "坚不可摧的粉笔",
@@ -5757,14 +5759,43 @@
   "book.spectrum.guidebook.mod_integration.hexcasting.page3.text": "我可以使用[融合圣坛](entry://general/fusion_shrine)为[#](bb00bb)紫水晶碎片[#]()充能.",
   "book.spectrum.guidebook.mod_integration.hexcasting.page4.text": "-+15-120秒持续时间.忽长忽短.\\\n\\\n正如我所料,[#](bb00bb)使用充能紫水晶[#]()作为延长持续时间的试剂,效果要比[#](bb00bb)紫水晶[#]()更强大,但也更不稳定.",
 
+	"book.spectrum.guidebook.mod_integration.immersive_weathering.name": "沉浸式风化",
+  "book.spectrum.guidebook.mod_integration.immersive_weathering.page0.text": "这真的让我沉浸在风化的过程中。",
+  "book.spectrum.guidebook.mod_integration.immersive_weathering.enchanted_golden_moss.text": "*对苔藓来说既不混沌也不合规*",
+  "book.spectrum.guidebook.mod_integration.immersive_weathering.charred_wood_resonance.title": "烧焦的木头",
+  "book.spectrum.guidebook.mod_integration.immersive_weathering.charred_wood_resonance.text": "使用共振附魔挖掘这些在火中剩下来的木制品可以让它们在我的背包里保持阴燃的状态。\\\n\\\n*火 狗: 我我没事 火.jpg*",
+  "book.spectrum.guidebook.mod_integration.immersive_weathering.sandy_stone_resonance.title": "积沙的石头",
+  "book.spectrum.guidebook.mod_integration.immersive_weathering.sandy_stone_resonance.text": "和焦木一样，这些多余的沙子似乎也会被保留下来，小众，但很方便！\\\n\\\n*精准采集：那我走？*",
+	
   "book.spectrum.guidebook.mod_integration.little_ants.name": "小蚂蚁",
   "book.spectrum.guidebook.mod_integration.little_ants.page0.text": "这些勤劳的小家伙不断从树上收集叶子.他们的劳动成果体现在他们的产品中.虽然他们主要生产[#](449900)黏土[#](),但可能还有其他的惊喜……\\\n\\\n感谢MastroCaleb的这个伟大模组!",
   "book.spectrum.guidebook.mod_integration.little_ants.page1.text": "蚂蚁从[#](bb00bb)翡翠花瓣[#]()中生产出了一种几乎像丝绸一样的材料.",
   "book.spectrum.guidebook.mod_integration.little_ants.page2.text": "我铲起了一个收集过彩色树叶的完整蚁丘,在里面发现了很多[#](bb00bb)染料[#]().",
   "book.spectrum.guidebook.mod_integration.little_ants.page3.text": "更棒的是,如果我用[#](449900)植本质[#]()贿赂它们,我可以得到纯净的[#](449900)颜料[#]().",
 
+	"book.spectrum.guidebook.mod_integration.malum.name": "灵灾",
+  "book.spectrum.guidebook.mod_integration.malum.page0.text": "我没想到奥术是一个如此......诡秘的研究领域。\\\n\\\n那我们开始吧，希望我能保持理智。",
+  "book.spectrum.guidebook.mod_integration.malum.scythe_enchants.title": "附魔镰刀",
+  "book.spectrum.guidebook.mod_integration.malum.scythe_enchants.text": "和其他武器一样，我设计的新魔法也可以加持在镰刀上。不过......有些附魔与镰刀*不兼容*，挺恼火的。\\\n\\\n*手里的镰刀突然开始取消*",
+  "book.spectrum.guidebook.mod_integration.malum.scythe_incompats.text": "- 即使我为其注入了魔法，紧握镰刀时也很难扔出去\n- 精魂劫掠和想象中一样， 与任何和抢夺冲突的的附魔都不兼容\n- 同样，任何与锋利冲突的东西，也不会喜欢缚灵。",
+  "book.spectrum.guidebook.mod_integration.malum.void_salts_reagent.text": "- +200%% 持续时间\n- -2 产量",
+  "book.spectrum.guidebook.mod_integration.malum.crystal_burning.text": "灼烧灵魂的火焰...结晶碎片也一样，能量在余烬中消耗殆尽。",
+  "book.spectrum.guidebook.mod_integration.malum.silenced.text": "一种强大的反魔法效果，似乎还会阻止我使用墨水",
+	
   "book.spectrum.guidebook.mod_integration.more_geodes.name": "更多晶洞",
   "book.spectrum.guidebook.mod_integration.mythicupgrades.name": "晶洞 Plus",
+
+	"book.spectrum.guidebook.mod_integration.neepmeat.name": "NEEPMeat",
+  "book.spectrum.guidebook.mod_integration.neepmeat.page0.text": "我可不知道要成为屠夫还需要接受机械师培训咧。",
+	"book.spectrum.guidebook.mod_integration.neepmeat.leaf_crushing.text": "尽管[](item://neepmeat:large_crusher)并不会产出太多颜料，我还是能得到不少树苗的！",
+	"book.spectrum.guidebook.mod_integration.neepmeat.amaranth_crushing.text": "使用[](item://neepmeat:grinder)或者[](item://neepmeat:large_crusher)，我可以从苋菜里轧出更多种子。",
+	"book.spectrum.guidebook.mod_integration.neepmeat.grinding.text": "部分物品也很适合被研磨。\\\n肯定比用铁砧砸要好。",
+	"book.spectrum.guidebook.mod_integration.neepmeat.enlightening.text": "你知道蠹虫和末影螨是亲戚关系吗？\\\n我当然不知道.",
+  "book.spectrum.guidebook.mod_integration.neepmeat.kindling_vivisection.title": "获得更多龙翎",
+  "book.spectrum.guidebook.mod_integration.neepmeat.kindling_vivisection.text": "...\\\n\\\n\\\n\\\n*但代价是什么呢？*",
+  "book.spectrum.guidebook.mod_integration.neepmeat.whisper_brass_instilling.text": "我在为材料注入生命这方面积累了很多经验......看来我终于可以更有效地开展这项工作了",
+  "book.spectrum.guidebook.mod_integration.neepmeat.sedatives.title": "思维解药",
+  "book.spectrum.guidebook.mod_integration.neepmeat.sedatives.text": "我的学习让我接触到了......对我很不利的恐怖。\\\n\\\n 当我服用这些药物时，幻觉就会消失，我感觉自己至少还是个人。",
 
   "book.spectrum.guidebook.mod_integration.paginatedadvancements.name": "分页进度",
   "book.spectrum.guidebook.mod_integration.paginatedadvancements.page0.text": "我是一个有风格的进度猎人!\\\n\\\n有了分页进度,光谱世界的进度将使用新的独特的框架.",

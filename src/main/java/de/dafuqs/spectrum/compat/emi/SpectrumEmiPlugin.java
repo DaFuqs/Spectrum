@@ -13,8 +13,7 @@ import de.dafuqs.spectrum.registries.*;
 import dev.emi.emi.api.*;
 import dev.emi.emi.api.recipe.*;
 import dev.emi.emi.api.stack.*;
-import dev.emi.emi.config.*;
-import dev.emi.emi.runtime.*;
+import net.fabricmc.loader.api.*;
 import net.minecraft.block.*;
 import net.minecraft.client.gui.screen.ingame.*;
 import net.minecraft.fluid.*;
@@ -131,16 +130,16 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 		addAll(registry, SpectrumRecipeTypes.ANVIL_CRUSHING, AnvilCrushingEmiRecipeGated::new);
 		addAll(registry, SpectrumRecipeTypes.PEDESTAL, PedestalCraftingEmiRecipeGated::new);
 		addAll(registry, SpectrumRecipeTypes.FUSION_SHRINE, FusionShrineEmiRecipeGated::new);
-		addAll(registry, SpectrumRecipeTypes.ENCHANTER, r -> new EnchanterEmiRecipeGated(SpectrumEmiRecipeCategories.ENCHANTER, r));
-		addAll(registry, SpectrumRecipeTypes.ENCHANTMENT_UPGRADE, r -> new EnchantmentUpgradeEmiRecipeGated(SpectrumEmiRecipeCategories.ENCHANTMENT_UPGRADE, r));
-		addAll(registry, SpectrumRecipeTypes.POTION_WORKSHOP_BREWING, r -> new PotionWorkshopEmiRecipeGated(SpectrumEmiRecipeCategories.POTION_WORKSHOP_BREWING, r));
-		addAll(registry, SpectrumRecipeTypes.POTION_WORKSHOP_CRAFTING, r -> new PotionWorkshopEmiRecipeGated(SpectrumEmiRecipeCategories.POTION_WORKSHOP_CRAFTING, r));
+		addAll(registry, SpectrumRecipeTypes.ENCHANTER, (i, r) -> new EnchanterEmiRecipeGated(SpectrumEmiRecipeCategories.ENCHANTER, i, r));
+		addAll(registry, SpectrumRecipeTypes.ENCHANTMENT_UPGRADE, (i, r) -> new EnchantmentUpgradeEmiRecipeGated(SpectrumEmiRecipeCategories.ENCHANTMENT_UPGRADE, i, r));
+		addAll(registry, SpectrumRecipeTypes.POTION_WORKSHOP_BREWING, (i, r) -> new PotionWorkshopEmiRecipeGated(SpectrumEmiRecipeCategories.POTION_WORKSHOP_BREWING, i, r));
+		addAll(registry, SpectrumRecipeTypes.POTION_WORKSHOP_CRAFTING, (i, r) -> new PotionWorkshopEmiRecipeGated(SpectrumEmiRecipeCategories.POTION_WORKSHOP_CRAFTING, i, r));
 		addAll(registry, SpectrumRecipeTypes.POTION_WORKSHOP_REACTING, PotionWorkshopReactingEmiRecipe::new);
 		addAll(registry, SpectrumRecipeTypes.SPIRIT_INSTILLING, SpiritInstillingEmiRecipeGated::new);
-		addAll(registry, SpectrumRecipeTypes.GOO_CONVERTING, r -> new FluidConvertingEmiRecipeGated(SpectrumEmiRecipeCategories.GOO_CONVERTING, r));
-		addAll(registry, SpectrumRecipeTypes.LIQUID_CRYSTAL_CONVERTING, r -> new FluidConvertingEmiRecipeGated(SpectrumEmiRecipeCategories.LIQUID_CRYSTAL_CONVERTING, r));
-		addAll(registry, SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING, r -> new FluidConvertingEmiRecipeGated(SpectrumEmiRecipeCategories.MIDNIGHT_SOLUTION_CONVERTING, r));
-		addAll(registry, SpectrumRecipeTypes.DRAGONROT_CONVERTING, r -> new FluidConvertingEmiRecipeGated(SpectrumEmiRecipeCategories.DRAGONROT_CONVERTING, r));
+		addAll(registry, SpectrumRecipeTypes.GOO_CONVERTING, (i, r) -> new FluidConvertingEmiRecipeGated(SpectrumEmiRecipeCategories.GOO_CONVERTING, i, r));
+		addAll(registry, SpectrumRecipeTypes.LIQUID_CRYSTAL_CONVERTING, (i, r) -> new FluidConvertingEmiRecipeGated(SpectrumEmiRecipeCategories.LIQUID_CRYSTAL_CONVERTING, i, r));
+		addAll(registry, SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING, (i, r) -> new FluidConvertingEmiRecipeGated(SpectrumEmiRecipeCategories.MIDNIGHT_SOLUTION_CONVERTING, i, r));
+		addAll(registry, SpectrumRecipeTypes.DRAGONROT_CONVERTING, (i, r) -> new FluidConvertingEmiRecipeGated(SpectrumEmiRecipeCategories.DRAGONROT_CONVERTING, i, r));
 		addAll(registry, SpectrumRecipeTypes.INK_CONVERTING, InkConvertingEmiRecipeGated::new);
 		addAll(registry, SpectrumRecipeTypes.CRYSTALLARIEUM, CrystallarieumEmiRecipeGated::new);
 		addAll(registry, SpectrumRecipeTypes.CINDERHEARTH, CinderhearthEmiRecipeGated::new);
@@ -185,12 +184,13 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 		});
 		
 		//WorldInteractionRecipe
-		EmiStack water = EmiStack.of(Fluids.WATER, FluidUnit.BUCKET);
-		EmiStack lava = EmiStack.of(Fluids.LAVA, FluidUnit.BUCKET);
-		EmiStack dragonrot = EmiStack.of(SpectrumFluids.DRAGONROT, FluidUnit.BUCKET);
-		EmiStack liquidCrystal = EmiStack.of(SpectrumFluids.LIQUID_CRYSTAL, FluidUnit.BUCKET);
-		EmiStack midnightSolution = EmiStack.of(SpectrumFluids.MIDNIGHT_SOLUTION, FluidUnit.BUCKET);
-		EmiStack mud = EmiStack.of(SpectrumFluids.GOO, FluidUnit.BUCKET);
+		long amount = FabricLoader.getInstance().isModLoaded("connector") ? 1000 : 81_000;
+		EmiStack water = EmiStack.of(Fluids.WATER, amount);
+		EmiStack lava = EmiStack.of(Fluids.LAVA, amount);
+		EmiStack dragonrot = EmiStack.of(SpectrumFluids.DRAGONROT, amount);
+		EmiStack liquidCrystal = EmiStack.of(SpectrumFluids.LIQUID_CRYSTAL, amount);
+		EmiStack midnightSolution = EmiStack.of(SpectrumFluids.MIDNIGHT_SOLUTION, amount);
+		EmiStack mud = EmiStack.of(SpectrumFluids.GOO, amount);
 		EmiStack waterCatalyst = water.copy().setRemainder(water);
 		EmiStack lavaCatalyst = lava.copy().setRemainder(lava);
 		EmiStack dragonrotCatalyst = dragonrot.copy().setRemainder(dragonrot);
@@ -307,10 +307,11 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 		return Identifier.of("spectrum:/" + type + "/" + blockId.getNamespace() + "/" + blockId.getPath());
 	}
 	
-	public <C extends RecipeInput, T extends Recipe<C>> void addAll(EmiRegistry registry, RecipeType<T> type, Function<T, EmiRecipe> constructor) {
+	public <C extends RecipeInput, T extends Recipe<C>> void addAll(EmiRegistry registry, RecipeType<T> type, BiFunction<Identifier, T, EmiRecipe> constructor) {
 		for (RecipeEntry<T> entry : registry.getRecipeManager().listAllOfType(type)) {
+			Identifier id = entry.id();
 			T recipe = entry.value();
-			registry.addRecipe(constructor.apply(recipe));
+			registry.addRecipe(constructor.apply(id, recipe));
 		}
 	}
 	
@@ -318,8 +319,7 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 		try {
 			registry.addRecipe(supplier.get());
 		} catch (Throwable e) {
-			EmiReloadLog.warn("Exception thrown when parsing EMI recipe (no ID available)");
-			EmiReloadLog.error(e);
+			SpectrumCommon.LOGGER.error("Exception thrown when parsing EMI recipe (no ID available)", e);
 		}
 	}
 	

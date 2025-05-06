@@ -6,11 +6,12 @@ import dev.emi.emi.api.recipe.*;
 import dev.emi.emi.api.render.*;
 import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.*;
+import net.minecraft.util.*;
 
 public class FluidConvertingEmiRecipeGated extends GatedSpectrumEmiRecipe<FluidConvertingRecipe> {
 	
-	public FluidConvertingEmiRecipeGated(EmiRecipeCategory category, FluidConvertingRecipe recipe) {
-		super(category, recipe, 78, 26);
+	public FluidConvertingEmiRecipeGated(EmiRecipeCategory category, Identifier id, FluidConvertingRecipe recipe) {
+		super(category, id, recipe, 78, 26);
 		this.inputs = recipe.getIngredients().stream().map(EmiIngredient::of).toList();
 	}
 	

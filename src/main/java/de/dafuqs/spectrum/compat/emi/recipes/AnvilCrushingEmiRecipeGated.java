@@ -14,8 +14,8 @@ import net.minecraft.util.*;
 public class AnvilCrushingEmiRecipeGated extends GatedSpectrumEmiRecipe<AnvilCrushingRecipe> {
 	private final static Identifier WALL_TEXTURE = SpectrumCommon.locate("textures/gui/container/anvil_crushing.png");
 	
-	public AnvilCrushingEmiRecipeGated(AnvilCrushingRecipe recipe) {
-		super(SpectrumEmiRecipeCategories.ANVIL_CRUSHING, recipe, 116, 64);
+	public AnvilCrushingEmiRecipeGated(Identifier id, AnvilCrushingRecipe recipe) {
+		super(SpectrumEmiRecipeCategories.ANVIL_CRUSHING, id, recipe, 116, 64);
 		this.inputs = recipe.getIngredients().stream().map(EmiIngredient::of).toList();
 	}
 	

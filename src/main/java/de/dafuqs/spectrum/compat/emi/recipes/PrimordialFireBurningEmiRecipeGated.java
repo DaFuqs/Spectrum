@@ -13,8 +13,8 @@ public class PrimordialFireBurningEmiRecipeGated extends GatedSpectrumEmiRecipe<
 	
 	private final static Identifier FIRE_TEXTURE = SpectrumCommon.locate("textures/block/primordial_fire_0.png");
 	
-	public PrimordialFireBurningEmiRecipeGated(PrimordialFireBurningRecipe recipe) {
-		super(SpectrumEmiRecipeCategories.PRIMORDIAL_FIRE_BURNING, recipe, 80, 35);
+	public PrimordialFireBurningEmiRecipeGated(Identifier id, PrimordialFireBurningRecipe recipe) {
+		super(SpectrumEmiRecipeCategories.PRIMORDIAL_FIRE_BURNING, id, recipe, 80, 35);
 		this.inputs = recipe.getIngredients().stream().map(EmiIngredient::of).toList();
 	}
 	

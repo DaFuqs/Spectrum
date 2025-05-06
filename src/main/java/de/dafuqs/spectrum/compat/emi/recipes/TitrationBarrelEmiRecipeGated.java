@@ -9,6 +9,7 @@ import dev.emi.emi.api.widget.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
 import net.minecraft.text.*;
+import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -17,8 +18,8 @@ public class TitrationBarrelEmiRecipeGated extends GatedSpectrumEmiRecipe<ITitra
 	
 	protected final @Nullable List<EmiStack> displayedStacks;
 	
-	public TitrationBarrelEmiRecipeGated(ITitrationBarrelRecipe recipe) {
-		super(SpectrumEmiRecipeCategories.TITRATION_BARREL, recipe, 136, 50);
+	public TitrationBarrelEmiRecipeGated(Identifier id, ITitrationBarrelRecipe recipe) {
+		super(SpectrumEmiRecipeCategories.TITRATION_BARREL, id, recipe, 136, 50);
 		inputs = new ArrayList<>();
 		if (recipe.getFluidInput() != FluidIngredient.EMPTY) {
 			inputs.add(FluidIngredientEmi.into(recipe.getFluidInput()));

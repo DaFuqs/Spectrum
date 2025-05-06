@@ -1,11 +1,11 @@
 package de.dafuqs.spectrum.compat.emi;
 
 import de.dafuqs.spectrum.api.recipe.*;
-import dev.emi.emi.*;
 import dev.emi.emi.api.recipe.*;
 import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.*;
 import net.minecraft.text.*;
+import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -19,8 +19,8 @@ public abstract class GatedSpectrumEmiRecipe<T extends GatedRecipe<?>> extends S
 	
 	public final T recipe;
 	
-	public GatedSpectrumEmiRecipe(EmiRecipeCategory category, T recipe, int width, int height) {
-		super(category, recipe.getRecipeTypeUnlockIdentifier(), EmiPort.getId(recipe), width, height);
+	public GatedSpectrumEmiRecipe(EmiRecipeCategory category, Identifier id, T recipe, int width, int height) {
+		super(category, recipe.getRecipeTypeUnlockIdentifier(), id, width, height);
 		this.recipe = recipe;
 		this.outputs = List.of(EmiStack.of(recipe.getResult(getRegistryManager())));
 		this.secretHintText = recipe.getSecretHintText(getId());

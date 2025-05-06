@@ -40,8 +40,8 @@ public class EnchantmentUpgradeEmiRecipeGated extends GatedSpectrumEmiRecipe<Gat
 	private final RecipeScaling.ScalingData xpScaling;
 	private int indexer = 1;
 	
-	public EnchantmentUpgradeEmiRecipeGated(EmiRecipeCategory category, EnchantmentUpgradeRecipe recipe) {
-		super(category, recipe, 132, 90);
+	public EnchantmentUpgradeEmiRecipeGated(EmiRecipeCategory category, Identifier id, EnchantmentUpgradeRecipe recipe) {
+		super(category, id, recipe, 132, 90);
 		this.itemScaling = recipe.getItemScaling();
 		this.xpScaling = recipe.getXPScaling();
 		

@@ -16,8 +16,8 @@ import java.util.stream.*;
 public class CrystallarieumEmiRecipeGated extends GatedSpectrumEmiRecipe<CrystallarieumRecipe> {
 	private final static Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/modonomicon/crystallarieum.png");
 	
-	public CrystallarieumEmiRecipeGated(CrystallarieumRecipe recipe) {
-		super(SpectrumEmiRecipeCategories.CRYSTALLARIEUM, recipe, 124, 100);
+	public CrystallarieumEmiRecipeGated(Identifier id, CrystallarieumRecipe recipe) {
+		super(SpectrumEmiRecipeCategories.CRYSTALLARIEUM, id, recipe, 124, 100);
 		inputs = List.of(
 				EmiIngredient.of(recipe.getIngredientStack()),
 				EmiStack.of(recipe.getGrowthStages().getFirst().getBlock())

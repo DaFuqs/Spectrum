@@ -10,7 +10,7 @@ public class VanitySlotsCompat {
 	
 	public static ItemStack getEquippedStack(LivingEntity entity, EquipmentSlot slot) {
 		if (VanitySlotsCompat.IS_VANITY_SLOTS_PRESENT) {
-			return VanitySlots.getEquippedStack(entity, slot);
+			return CommonClass.getEquippedStack(entity, slot);
 		} else {
 			return entity.getEquippedStack(slot);
 		}

@@ -6,16 +6,17 @@ import de.dafuqs.spectrum.recipe.potion_workshop.*;
 import dev.emi.emi.api.recipe.*;
 import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.*;
+import net.minecraft.recipe.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 
-public class PotionWorkshopEmiRecipeGated extends GatedSpectrumEmiRecipe<PotionWorkshopRecipe> {
+public class PotionWorkshopEmiRecipeGated<T extends PotionWorkshopRecipe> extends GatedSpectrumEmiRecipe<T> {
 	private final static Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/container/potion_workshop_3_slots.png");
 	
-	public PotionWorkshopEmiRecipeGated(EmiRecipeCategory category, Identifier id, PotionWorkshopRecipe recipe) {
-		super(category, id, recipe, 112, 66);
+	public PotionWorkshopEmiRecipeGated(EmiRecipeCategory category, RecipeEntry<T> entry) {
+		super(category, entry, 112, 66);
 		
-		this.inputs = recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getMatchingStacks().stream().map(EmiStack::of).toList())).toList();
+		this.inputs = entry.value().getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getMatchingStacks().stream().map(EmiStack::of).toList())).toList();
 	}
 	
 	@Override

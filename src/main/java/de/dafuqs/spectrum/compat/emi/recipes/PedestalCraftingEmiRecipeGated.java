@@ -11,6 +11,7 @@ import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.TextWidget.*;
 import dev.emi.emi.api.widget.*;
 import net.minecraft.client.*;
+import net.minecraft.recipe.*;
 import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
 
@@ -18,8 +19,8 @@ import java.util.*;
 
 public class PedestalCraftingEmiRecipeGated extends GatedSpectrumEmiRecipe<PedestalRecipe> {
 	
-	public PedestalCraftingEmiRecipeGated(Identifier id, PedestalRecipe recipe) {
-		super(SpectrumEmiRecipeCategories.PEDESTAL_CRAFTING, id, recipe, 124, 90);
+	public PedestalCraftingEmiRecipeGated(RecipeEntry<PedestalRecipe> entry) {
+		super(SpectrumEmiRecipeCategories.PEDESTAL_CRAFTING, entry, 124, 90);
 		this.inputs = getIngredients(recipe);
 	}
 	

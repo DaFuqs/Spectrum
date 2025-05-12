@@ -18,12 +18,13 @@ import net.minecraft.client.*;
 import net.minecraft.component.*;
 import net.minecraft.component.type.*;
 import net.minecraft.item.*;
+import net.minecraft.recipe.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 
 import java.util.*;
 
-public class EnchantmentUpgradeEmiRecipeGated extends GatedSpectrumEmiRecipe<GatedSpectrumRecipe<?>> {
+public class EnchantmentUpgradeEmiRecipeGated extends GatedSpectrumEmiRecipe<EnchantmentUpgradeRecipe> {
 	
 	private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/container/enchanter.png");
 	private static final int NORMAL_COLOR = 0x4d3655;
@@ -40,8 +41,8 @@ public class EnchantmentUpgradeEmiRecipeGated extends GatedSpectrumEmiRecipe<Gat
 	private final RecipeScaling.ScalingData xpScaling;
 	private int indexer = 1;
 	
-	public EnchantmentUpgradeEmiRecipeGated(EmiRecipeCategory category, Identifier id, EnchantmentUpgradeRecipe recipe) {
-		super(category, id, recipe, 132, 90);
+	public EnchantmentUpgradeEmiRecipeGated(EmiRecipeCategory category, RecipeEntry<EnchantmentUpgradeRecipe> entry) {
+		super(category, entry, 132, 90);
 		this.itemScaling = recipe.getItemScaling();
 		this.xpScaling = recipe.getXPScaling();
 		

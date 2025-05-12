@@ -130,16 +130,16 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 		addAll(registry, SpectrumRecipeTypes.ANVIL_CRUSHING, AnvilCrushingEmiRecipeGated::new);
 		addAll(registry, SpectrumRecipeTypes.PEDESTAL, PedestalCraftingEmiRecipeGated::new);
 		addAll(registry, SpectrumRecipeTypes.FUSION_SHRINE, FusionShrineEmiRecipeGated::new);
-		addAll(registry, SpectrumRecipeTypes.ENCHANTER, (i, r) -> new EnchanterEmiRecipeGated(SpectrumEmiRecipeCategories.ENCHANTER, i, r));
-		addAll(registry, SpectrumRecipeTypes.ENCHANTMENT_UPGRADE, (i, r) -> new EnchantmentUpgradeEmiRecipeGated(SpectrumEmiRecipeCategories.ENCHANTMENT_UPGRADE, i, r));
-		addAll(registry, SpectrumRecipeTypes.POTION_WORKSHOP_BREWING, (i, r) -> new PotionWorkshopEmiRecipeGated(SpectrumEmiRecipeCategories.POTION_WORKSHOP_BREWING, i, r));
-		addAll(registry, SpectrumRecipeTypes.POTION_WORKSHOP_CRAFTING, (i, r) -> new PotionWorkshopEmiRecipeGated(SpectrumEmiRecipeCategories.POTION_WORKSHOP_CRAFTING, i, r));
+		addAll(registry, SpectrumRecipeTypes.ENCHANTER, (r) -> new EnchanterEmiRecipeGated(SpectrumEmiRecipeCategories.ENCHANTER, r));
+		addAll(registry, SpectrumRecipeTypes.ENCHANTMENT_UPGRADE, (r) -> new EnchantmentUpgradeEmiRecipeGated(SpectrumEmiRecipeCategories.ENCHANTMENT_UPGRADE, r));
+		addAll(registry, SpectrumRecipeTypes.POTION_WORKSHOP_BREWING, (r) -> new PotionWorkshopEmiRecipeGated<>(SpectrumEmiRecipeCategories.POTION_WORKSHOP_BREWING, r));
+		addAll(registry, SpectrumRecipeTypes.POTION_WORKSHOP_CRAFTING, (r) -> new PotionWorkshopEmiRecipeGated<>(SpectrumEmiRecipeCategories.POTION_WORKSHOP_CRAFTING, r));
 		addAll(registry, SpectrumRecipeTypes.POTION_WORKSHOP_REACTING, PotionWorkshopReactingEmiRecipe::new);
 		addAll(registry, SpectrumRecipeTypes.SPIRIT_INSTILLING, SpiritInstillingEmiRecipeGated::new);
-		addAll(registry, SpectrumRecipeTypes.GOO_CONVERTING, (i, r) -> new FluidConvertingEmiRecipeGated(SpectrumEmiRecipeCategories.GOO_CONVERTING, i, r));
-		addAll(registry, SpectrumRecipeTypes.LIQUID_CRYSTAL_CONVERTING, (i, r) -> new FluidConvertingEmiRecipeGated(SpectrumEmiRecipeCategories.LIQUID_CRYSTAL_CONVERTING, i, r));
-		addAll(registry, SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING, (i, r) -> new FluidConvertingEmiRecipeGated(SpectrumEmiRecipeCategories.MIDNIGHT_SOLUTION_CONVERTING, i, r));
-		addAll(registry, SpectrumRecipeTypes.DRAGONROT_CONVERTING, (i, r) -> new FluidConvertingEmiRecipeGated(SpectrumEmiRecipeCategories.DRAGONROT_CONVERTING, i, r));
+		addAll(registry, SpectrumRecipeTypes.GOO_CONVERTING, (r) -> new FluidConvertingEmiRecipeGated<>(SpectrumEmiRecipeCategories.GOO_CONVERTING, r));
+		addAll(registry, SpectrumRecipeTypes.LIQUID_CRYSTAL_CONVERTING, (r) -> new FluidConvertingEmiRecipeGated<>(SpectrumEmiRecipeCategories.LIQUID_CRYSTAL_CONVERTING, r));
+		addAll(registry, SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING, (r) -> new FluidConvertingEmiRecipeGated<>(SpectrumEmiRecipeCategories.MIDNIGHT_SOLUTION_CONVERTING, r));
+		addAll(registry, SpectrumRecipeTypes.DRAGONROT_CONVERTING, (r) -> new FluidConvertingEmiRecipeGated<>(SpectrumEmiRecipeCategories.DRAGONROT_CONVERTING, r));
 		addAll(registry, SpectrumRecipeTypes.INK_CONVERTING, InkConvertingEmiRecipeGated::new);
 		addAll(registry, SpectrumRecipeTypes.CRYSTALLARIEUM, CrystallarieumEmiRecipeGated::new);
 		addAll(registry, SpectrumRecipeTypes.CINDERHEARTH, CinderhearthEmiRecipeGated::new);
@@ -307,11 +307,9 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 		return Identifier.of("spectrum:/" + type + "/" + blockId.getNamespace() + "/" + blockId.getPath());
 	}
 	
-	public <C extends RecipeInput, T extends Recipe<C>> void addAll(EmiRegistry registry, RecipeType<T> type, BiFunction<Identifier, T, EmiRecipe> constructor) {
+	public <C extends RecipeInput, T extends Recipe<C>> void addAll(EmiRegistry registry, RecipeType<T> type, Function<RecipeEntry<T>, EmiRecipe> constructor) {
 		for (RecipeEntry<T> entry : registry.getRecipeManager().listAllOfType(type)) {
-			Identifier id = entry.id();
-			T recipe = entry.value();
-			registry.addRecipe(constructor.apply(id, recipe));
+			registry.addRecipe(constructor.apply(entry));
 		}
 	}
 	

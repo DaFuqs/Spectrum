@@ -6,12 +6,12 @@ import dev.emi.emi.api.render.*;
 import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.TextWidget.*;
 import dev.emi.emi.api.widget.*;
-import net.minecraft.util.*;
+import net.minecraft.recipe.*;
 
 public class CinderhearthEmiRecipeGated extends GatedSpectrumEmiRecipe<CinderhearthRecipe> {
 	
-	public CinderhearthEmiRecipeGated(Identifier id, CinderhearthRecipe recipe) {
-		super(SpectrumEmiRecipeCategories.CINDERHEARTH, id, recipe, 136, 48);
+	public CinderhearthEmiRecipeGated(RecipeEntry<CinderhearthRecipe> entry) {
+		super(SpectrumEmiRecipeCategories.CINDERHEARTH, entry, 136, 48);
 		this.inputs = recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getMatchingStacks().stream().map(EmiStack::of).toList())).toList();
 		this.outputs = recipe.getResultsWithChance().stream().map(p -> EmiStack.of(p.getLeft()).setChance(p.getRight())).toList();
 	}

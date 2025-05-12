@@ -9,16 +9,16 @@ import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.TextWidget.*;
 import dev.emi.emi.api.widget.*;
 import net.minecraft.client.*;
-import net.minecraft.util.*;
+import net.minecraft.recipe.*;
 
 import java.util.*;
 
 public class PotionWorkshopReactingEmiRecipe extends EmiInfoRecipe {
 	private final DescriptiveGatedRecipe<?> recipe;
 	
-	public PotionWorkshopReactingEmiRecipe(Identifier id, DescriptiveGatedRecipe<?> recipe) {
-		super(List.of(EmiStack.of(recipe.getItem())), List.of(recipe.getDescription()), id);
-		this.recipe = recipe;
+	public <T extends DescriptiveGatedRecipe<?>> PotionWorkshopReactingEmiRecipe(RecipeEntry<T> entry) {
+		super(List.of(EmiStack.of(entry.value().getItem())), List.of(entry.value().getDescription()), entry.id());
+		this.recipe = entry.value();
 	}
 	
 	public boolean isUnlocked() {

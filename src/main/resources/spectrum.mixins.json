@@ -55,6 +55,7 @@
     "LoomScreenHandlerMixin",
     "MapStateMixin",
     "MapStatePlayerUpdateTrackerMixin",
+    "MC237017Mixin",
     "MC252934Mixin",
     "MiningToolItemMixin",
     "MobEntityMixin",

@@ -125,7 +125,7 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 			var result = PastelTransmission.CODEC.encodeStart(NbtOps.INSTANCE, transmissionEntry.getKey()).result();
 			if (result.isPresent()) {
 				transmissions.add(result.get());
-				timers[transmissions.indexOf(result.get())] = transmissionEntry.getValue();
+				timers[transmissions.size() - 1] = transmissionEntry.getValue();
 			}
 		}
 		

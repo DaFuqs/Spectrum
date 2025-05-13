@@ -4,25 +4,25 @@ import com.google.common.collect.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.emi.*;
 import de.dafuqs.spectrum.items.magic_items.*;
-import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.enchanter.*;
 import de.dafuqs.spectrum.registries.*;
 import dev.emi.emi.api.recipe.*;
 import dev.emi.emi.api.render.*;
 import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.*;
+import net.minecraft.recipe.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 
 import java.util.stream.*;
 
-public class EnchanterEmiRecipeGated extends GatedSpectrumEmiRecipe<GatedSpectrumRecipe<?>> {
+public class EnchanterEmiRecipeGated extends GatedSpectrumEmiRecipe<EnchanterRecipe> {
 	private final static Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/container/enchanter.png");
 	private final Text description;
 	private final int craftingTime;
 	
-	public EnchanterEmiRecipeGated(EmiRecipeCategory category, EnchanterRecipe recipe) {
-		super(category, recipe, 132, 80);
+	public EnchanterEmiRecipeGated(EmiRecipeCategory category, RecipeEntry<EnchanterRecipe> entry) {
+		super(category, entry, 132, 80);
 		this.craftingTime = recipe.getCraftingTime();
 		this.description = getCraftingTimeText(craftingTime);
 		

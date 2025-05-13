@@ -1,9 +1,10 @@
 package de.dafuqs.spectrum.compat.emi.widgets;
 
+import com.mojang.blaze3d.systems.*;
 import dev.emi.emi.api.widget.*;
-import dev.emi.emi.runtime.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.tooltip.*;
+import net.minecraft.client.render.*;
 import net.minecraft.util.*;
 
 import java.util.*;
@@ -19,8 +20,8 @@ public class SaneButtonWidget extends ButtonWidget implements WidgetTooltipHolde
 	
 	@Override
 	public void render(DrawContext draw, int mouseX, int mouseY, float delta) {
-		EmiDrawContext context = EmiDrawContext.wrap(draw);
-		context.drawTexture(texture, this.x, this.y, this.u, this.v, this.width, this.height);
+		RenderSystem.setShader(GameRenderer::getPositionTexProgram);
+		draw.drawTexture(texture, this.x, this.y, this.u, this.v, this.width, this.height);
 	}
 	
 	@Override

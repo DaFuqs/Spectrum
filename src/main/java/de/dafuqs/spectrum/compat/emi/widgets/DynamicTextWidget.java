@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.compat.emi.widgets;
 
 import dev.emi.emi.api.widget.*;
-import dev.emi.emi.runtime.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.text.*;
@@ -21,19 +20,18 @@ public class DynamicTextWidget extends TextWidget {
 	
 	@Override
 	public void render(DrawContext draw, int mouseX, int mouseY, float delta) {
-		EmiDrawContext context = EmiDrawContext.wrap(draw);
-		context.push();
+		draw.getMatrices().push();
 		int xOff = horizontalAlignment.offset(CLIENT.textRenderer.getWidth(text));
 		int yOff = verticalAlignment.offset(CLIENT.textRenderer.fontHeight);
-		context.matrices().translate(xOff, yOff, 300);
+		draw.getMatrices().translate(xOff, yOff, 300);
 		
 		var pair = textSupplier.apply(CLIENT);
 		
 		if (shadow) {
-			context.drawTextWithShadow(pair.getLeft(), x, y, pair.getRight());
+			draw.drawTextWithShadow(MinecraftClient.getInstance().textRenderer, pair.getLeft(), x, y, pair.getRight());
 		} else {
-			context.drawText(pair.getLeft(), x, y, pair.getRight());
+			draw.drawText(MinecraftClient.getInstance().textRenderer, pair.getLeft(), x, y, pair.getRight(), false);
 		}
-		context.pop();
+		draw.getMatrices().pop();
 	}
 }

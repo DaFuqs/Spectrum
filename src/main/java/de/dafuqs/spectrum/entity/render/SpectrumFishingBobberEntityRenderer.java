@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.entity.render;
 
 import de.dafuqs.spectrum.entity.entity.*;
+import de.dafuqs.spectrum.items.tools.*;
 import net.minecraft.client.*;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.entity.*;
@@ -44,7 +45,7 @@ public abstract class SpectrumFishingBobberEntityRenderer extends EntityRenderer
 			MatrixStack.Entry entry2 = matrixStack.peek();
 			
 			for (int o = 0; o <= 16; ++o) {
-				renderFishingLine(k, l, m, vertexConsumer2, entry2, percentage(o, 16), percentage(o + 1, 16));
+				renderFishingLine(fishingBobberEntity, k, l, m, vertexConsumer2, entry2, percentage(o, 16), percentage(o + 1, 16));
 			}
 			
 			matrixStack.pop();
@@ -55,7 +56,7 @@ public abstract class SpectrumFishingBobberEntityRenderer extends EntityRenderer
 	private Vec3d getHandPos(PlayerEntity player, float f, float tickDelta) {
 		int i = player.getMainArm() == Arm.RIGHT ? 1 : -1;
 		ItemStack itemStack = player.getMainHandStack();
-		if (!itemStack.isOf(Items.FISHING_ROD)) {
+		if (!(itemStack.getItem() instanceof SpectrumFishingRodItem)) {
 			i = -i;
 		}
 		
@@ -83,7 +84,7 @@ public abstract class SpectrumFishingBobberEntityRenderer extends EntityRenderer
 		buffer.vertex(matrix, x - 0.5F, (float) y - 0.5F, 0.0F).color(-1).texture((float) u, (float) v).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(matrix, 0.0F, 1.0F, 0.0F);
 	}
 	
-	private static void renderFishingLine(float x, float y, float z, VertexConsumer buffer, MatrixStack.Entry matrices, float segmentStart, float segmentEnd) {
+	private static void renderFishingLine(SpectrumFishingBobberEntity bobber, float x, float y, float z, VertexConsumer buffer, MatrixStack.Entry matrices, float segmentStart, float segmentEnd) {
 		float f = x * segmentStart;
 		float g = y * (segmentStart * segmentStart + segmentStart) * 0.5F + 0.25F;
 		float h = z * segmentStart;
@@ -94,7 +95,7 @@ public abstract class SpectrumFishingBobberEntityRenderer extends EntityRenderer
 		i /= l;
 		j /= l;
 		k /= l;
-		buffer.vertex(matrices, f, g, h).color(-16777216).normal(matrices, i, j, k);
+		buffer.vertex(matrices, f, g, h).color(bobber.getLineColor()).normal(matrices, i, j, k);
 	}
 	
 }

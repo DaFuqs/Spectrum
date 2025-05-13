@@ -129,9 +129,6 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent SHOWER = register("ambient.rain_shower");
 	public static final SoundEvent LAMENTS = register("ambient.laments");
 
-
-	public static final SoundEvent CRYSTAL_AURA = register("ambient.crystal_aura");
-
 	public static final SoundEvent BLACK_HOLE_CHEST_OPEN = register("black_hole_chest_open");
 	public static final SoundEvent BLACK_HOLE_CHEST_CLOSE = register("black_hole_chest_close");
 	public static final SoundEvent COMPACTING_CHEST_OPEN = register("compacting_chest_open");
@@ -279,6 +276,10 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent ENTITY_ERASER_HURT = register("entity.eraser.hurt");
 	public static final SoundEvent ENTITY_ERASER_DEATH = register("entity.eraser.death");
 	public static final SoundEvent ENTITY_ERASER_STEP = register("entity.eraser.step");
+	
+	
+	// OST - AMBIENT
+	public static final SoundEvent OST_AZURE = register("ost.azure");
 	
 	private static SoundEvent register(String id) {
 		Identifier identifier = SpectrumCommon.locate(id);

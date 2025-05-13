@@ -1234,6 +1234,46 @@
         ]
       }
     },
+    "has_armadillo_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "spectrum:armadillo_head"
+          }
+        ]
+      }
+    },
+    "has_breeze_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "spectrum:breeze_head"
+          }
+        ]
+      }
+    },
+    "has_bogged_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "spectrum:bogged_head"
+          }
+        ]
+      }
+    },
+    "has_piglin_brute_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "spectrum:piglin_brute_head"
+          }
+        ]
+      }
+    },
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {

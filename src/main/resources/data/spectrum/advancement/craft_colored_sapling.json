@@ -15,11 +15,9 @@
     "craft": {
       "trigger": "spectrum:crafted_with_pedestal",
       "conditions": {
-        "items": [
-          {
-            "items": "#spectrum:colored_saplings"
-          }
-        ]
+        "item": {
+          "items": "#spectrum:colored_saplings"
+        }
       }
     },
     "gotten_previous": {

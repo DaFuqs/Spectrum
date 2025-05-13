@@ -1,0 +1,34 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "spectrum:enchantments_exist",
+      "values": [
+        "minecraft:piercing"
+      ]
+    }
+  ],
+  "type": "spectrum:enchantment_upgrade",
+  "bulk_item": {
+    "item": "spectrum:red_pigment"
+  },
+  "enchantment": "minecraft:piercing",
+  "group": "minecraft",
+  "item_scaling": {
+    "type": "spectrum:doubling",
+    "scaling_value": 8
+  },
+  "level_cap": 8,
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_projectile",
+  "xp_scaling": {
+    "type": "spectrum:indexed",
+    "indexes": [
+      100,
+      200,
+      300,
+      400,
+      800,
+      1300,
+      2000
+    ]
+  }
+}

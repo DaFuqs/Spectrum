@@ -99,6 +99,7 @@ public class SpectrumCommon implements ModInitializer {
 		InkColors.register();
 		InkColorMixes.register();
 		SpectrumEntityAttributes.register();
+		SpectrumLoadConditions.register();
 		
 		logInfo("Registering Component Types...");
 		SpectrumDataComponentTypes.register();
@@ -152,12 +153,14 @@ public class SpectrumCommon implements ModInitializer {
 		
 		// Recipes
 		logInfo("Registering Recipe Types...");
+		SpectrumRecipeScalings.init();
 		SpectrumFusionShrineWorldEffects.register();
 		SpectrumRecipeTypes.register();
 		SpectrumRecipeSerializers.register();
 		
 		// Loot
 		logInfo("Registering Loot Conditions & Functions...");
+		SpectrumLootContextTypes.register();
 		SpectrumLootFunctionTypes.register();
 		
 		logInfo("Setting up server side Mod Compat...");

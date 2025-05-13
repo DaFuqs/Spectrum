@@ -2,7 +2,6 @@
   "values": [
     "#minecraft:enchantable/mining",
     "#minecraft:enchantable/weapon",
-    "#minecraft:enchantable/trident",
     "#minecraft:enchantable/bow",
     "#minecraft:enchantable/crossbow",
     "#spectrum:fishing_rods",

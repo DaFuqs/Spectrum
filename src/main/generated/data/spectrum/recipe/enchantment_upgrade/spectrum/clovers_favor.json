@@ -1,0 +1,37 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "spectrum:enchantments_exist",
+      "values": [
+        "spectrum:clovers_favor"
+      ]
+    }
+  ],
+  "type": "spectrum:enchantment_upgrade",
+  "bulk_item": {
+    "item": "spectrum:light_blue_pigment"
+  },
+  "enchantment": "spectrum:clovers_favor",
+  "item_scaling": {
+    "type": "spectrum:indexed",
+    "indexes": [
+      8,
+      32,
+      128,
+      512,
+      512
+    ]
+  },
+  "level_cap": 6,
+  "required_advancement": "spectrum:unlocks/enchantments/clovers_favor",
+  "xp_scaling": {
+    "type": "spectrum:indexed",
+    "indexes": [
+      200,
+      400,
+      2000,
+      10000,
+      40000
+    ]
+  }
+}

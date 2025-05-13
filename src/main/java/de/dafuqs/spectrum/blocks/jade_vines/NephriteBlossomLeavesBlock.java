@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.*;
-import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.server.world.*;
@@ -17,7 +16,6 @@ import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
-import net.minecraft.world.event.*;
 
 public class NephriteBlossomLeavesBlock extends LeavesBlock implements Fertilizable {
 
@@ -69,28 +67,12 @@ public class NephriteBlossomLeavesBlock extends LeavesBlock implements Fertiliza
         }
 
         leafSum = Math.max(leafSum, 0) + 1;
-
-        if (random.nextInt(leafSum) != 0) {
-            super.randomTick(state, world, pos, random);
-            return;
-        }
-
-        if (age == 2) {
-            BlockPos.Mutable dropPos = pos.mutableCopy();
-            while (world.getBlockState(dropPos).isOf(this) && pos.getY() - dropPos.getY() < 32) {
-                dropPos.move(0, -1, 0);
-            }
-            ItemStack drop = new ItemStack(SpectrumItems.GLASS_PEACH);
-            world.spawnEntity(new ItemEntity(world, dropPos.getX() + 0.5, dropPos.getY() + 0.15, dropPos.getZ() + 0.5, drop));
-            BlockState newState = state.with(AGE, 0);
-            world.setBlockState(pos, newState);
-            world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(newState));
-        }
-        else {
-            world.setBlockState(pos, state.with(AGE, age + 1));
-        }
-
-        super.randomTick(state, world, pos, random);
+		
+		if (random.nextInt(leafSum) != 0) {
+			super.randomTick(state, world, pos, random);
+		} else {
+			world.setBlockState(pos, state.with(AGE, age + 1));
+		}
     }
 
     @Override

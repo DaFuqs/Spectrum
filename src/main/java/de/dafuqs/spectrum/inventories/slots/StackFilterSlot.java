@@ -15,7 +15,7 @@ public class StackFilterSlot extends Slot {
 	
 	@Override
 	public boolean canInsert(ItemStack stack) {
-		return stack.getItem().equals(acceptedItem);
+		return stack.isOf(acceptedItem);
 	}
 	
 }

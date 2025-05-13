@@ -10,7 +10,7 @@ public class SpectrumItemTags {
 	
 	// "c" namespace
 	public static final TagKey<Item> SKULLS = common("skulls");
-	public static final TagKey<Item> FRUITS = common("foods/fruits");
+	public static final TagKey<Item> FRUITS = common("foods/fruit");
 	
 	// "spectrum" namespace
 	public static final TagKey<Item> COOKBOOKS = of("cookbooks");

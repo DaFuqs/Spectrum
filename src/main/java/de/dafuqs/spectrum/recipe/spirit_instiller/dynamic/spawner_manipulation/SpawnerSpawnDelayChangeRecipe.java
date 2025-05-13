@@ -12,7 +12,11 @@ public class SpawnerSpawnDelayChangeRecipe extends SpawnerChangeRecipe {
 	
 	protected static final int DEFAULT_MIN_DELAY = 200;
 	protected static final int DEFAULT_MAX_DELAY = 800;
-	protected static final int MIN_DELAY = 20;
+	
+	protected static final int MIN_MIN_DELAY = 20;
+	protected static final int MIN_MAX_DELAY = 40;
+	
+	protected static final float EXPONENT = 0.98F;
 	
 	public SpawnerSpawnDelayChangeRecipe() {
 		super(IngredientStack.ofItems(SpectrumItems.MIDNIGHT_CHIP, 4));
@@ -23,11 +27,9 @@ public class SpawnerSpawnDelayChangeRecipe extends SpawnerChangeRecipe {
 		if (spawnerBlockEntityNbt == null) {
 			return true;
 		}
-		if (spawnerBlockEntityNbt.contains("MinSpawnDelay") && spawnerBlockEntityNbt.contains("MaxSpawnDelay")) {
-			return spawnerBlockEntityNbt.copyNbt().getShort("MinSpawnDelay") > MIN_DELAY
-					&& spawnerBlockEntityNbt.copyNbt().getShort("MaxSpawnDelay") > MIN_DELAY;
-		}
-		return true;
+		NbtCompound nbt = spawnerBlockEntityNbt.getNbt();
+		return (!nbt.contains("MinSpawnDelay") || nbt.getShort("MinSpawnDelay") > MIN_MIN_DELAY)
+				&& (!nbt.contains("MaxSpawnDelay") || nbt.getShort("MaxSpawnDelay") > MIN_MAX_DELAY);
 	}
 	
 	@Override
@@ -55,8 +57,7 @@ public class SpawnerSpawnDelayChangeRecipe extends SpawnerChangeRecipe {
 		   }
 		 */
 		
-		// 800 => 700 => 614 => 540 => 476 => 421 => 373 => 331 => ... (down to a min of 1 each)
-		// makes 40 recipes to match the min count for MaxSpawnDelay of 20 ticks
+		// 800 => 700 => 614 => 540 => 476 => 421 => 373 => 331 => ... => MIN_DELAY
 		short minSpawnDelay = DEFAULT_MIN_DELAY;
 		if (spawnerBlockEntityNbt.contains("MinSpawnDelay", NbtElement.SHORT_TYPE)) {
 			minSpawnDelay = spawnerBlockEntityNbt.getShort("MinSpawnDelay");
@@ -66,18 +67,18 @@ public class SpawnerSpawnDelayChangeRecipe extends SpawnerChangeRecipe {
 			maxSpawnDelay = spawnerBlockEntityNbt.getShort("MaxSpawnDelay");
 		}
 		
-		short newMinSpawnDelay = (short) Math.pow(minSpawnDelay, 0.98);
+		short newMinSpawnDelay = (short) Math.pow(minSpawnDelay, EXPONENT);
 		if (newMinSpawnDelay == minSpawnDelay) {
 			newMinSpawnDelay = (short) (minSpawnDelay - 1);
 		}
 		
-		short newMaxSpawnDelay = (short) Math.pow(maxSpawnDelay, 0.98);
+		short newMaxSpawnDelay = (short) Math.pow(maxSpawnDelay, EXPONENT);
 		if (newMaxSpawnDelay == maxSpawnDelay) {
 			newMaxSpawnDelay = (short) (maxSpawnDelay - 1);
 		}
 		
-		spawnerBlockEntityNbt.putShort("MinSpawnDelay", (short) Math.max(MIN_DELAY, newMinSpawnDelay));
-		spawnerBlockEntityNbt.putShort("MaxSpawnDelay", (short) Math.max(MIN_DELAY, newMaxSpawnDelay));
+		spawnerBlockEntityNbt.putShort("MinSpawnDelay", (short) Math.max(MIN_MIN_DELAY, newMinSpawnDelay));
+		spawnerBlockEntityNbt.putShort("MaxSpawnDelay", (short) Math.max(MIN_MAX_DELAY, newMaxSpawnDelay));
 		
 		return spawnerBlockEntityNbt;
 	}

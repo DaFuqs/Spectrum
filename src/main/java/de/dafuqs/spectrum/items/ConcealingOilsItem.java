@@ -32,21 +32,21 @@ public class ConcealingOilsItem extends DrinkItem implements InkPoweredPotionFil
 	}
 	
 	@Override
-	public boolean onStackClicked(ItemStack stack, Slot slot, ClickType clickType, PlayerEntity player) {
+	public boolean onStackClicked(ItemStack oilsStack, Slot slot, ClickType clickType, PlayerEntity player) {
 		if (clickType != ClickType.RIGHT)
 			return false;
 		
-		var appliedStack = slot.getStack();
+		var stackToApplyTo = slot.getStack();
 		
-		if (!appliedStack.contains(DataComponentTypes.FOOD))
+		if (!stackToApplyTo.contains(DataComponentTypes.FOOD))
 			return false;
 		
-		if (!isFull(stack))
+		if (!isFull(oilsStack))
 			return false;
 		
-		if (tryApplyOil(stack, appliedStack, player)) {
+		if (tryApplyOil(oilsStack, stackToApplyTo, player)) {
 			if (!player.getAbilities().creativeMode)
-				stack.decrement(1);
+				oilsStack.decrement(1);
 			player.playSound(SoundEvents.ITEM_BOTTLE_EMPTY, 1, 1);
 			return true;
 		}
@@ -54,17 +54,17 @@ public class ConcealingOilsItem extends DrinkItem implements InkPoweredPotionFil
 		return false;
 	}
 	
-	private boolean tryApplyOil(ItemStack oil, ItemStack food, PlayerEntity user) {
-		if (food.getItem() instanceof DrinkItem)
+	private boolean tryApplyOil(ItemStack oilsStack, ItemStack foodStack, PlayerEntity user) {
+		if (foodStack.getItem() instanceof DrinkItem)
 			return false;
-		if (food.contains(SpectrumDataComponentTypes.OIL_EFFECT))
+		if (foodStack.contains(SpectrumDataComponentTypes.CONCEALED_EFFECT))
 			return false;
 		
-		var effect = InkPoweredPotionFillable.getEffects(oil).getFirst();
+		var effect = InkPoweredPotionFillable.getEffects(oilsStack).getFirst();
 		if (!InkPowered.tryDrainEnergy(user, effect.getInkCost().color(), effect.getInkCost().cost()))
 			return false;
 		
-		var foodComponent = food.get(DataComponentTypes.FOOD);
+		var foodComponent = foodStack.get(DataComponentTypes.FOOD);
 		if (foodComponent != null &&
 				foodComponent
 						.effects()
@@ -73,8 +73,8 @@ public class ConcealingOilsItem extends DrinkItem implements InkPoweredPotionFil
 						.anyMatch(e -> e.equals(effect.getStatusEffectInstance().getEffectType())))
 			return false;
 		
-		food.set(DataComponentTypes.PROFILE, new ProfileComponent(user.getGameProfile()));
-		food.set(SpectrumDataComponentTypes.OIL_EFFECT, effect.getStatusEffectInstance());
+		foodStack.set(DataComponentTypes.PROFILE, new ProfileComponent(user.getGameProfile()));
+		foodStack.set(SpectrumDataComponentTypes.CONCEALED_EFFECT, effect.getStatusEffectInstance());
 		return true;
 	}
 	

@@ -37,6 +37,7 @@ extendable method net/minecraft/item/map/MapState addDecoration (Lnet/minecraft/
 accessible field net/minecraft/loot/LootTable pools Ljava/util/List;
 accessible field net/minecraft/block/FluidBlock fluid Lnet/minecraft/fluid/FlowableFluid;
 accessible field net/minecraft/data/client/BlockStateModelGenerator$BlockTexturePool baseModelId Lnet/minecraft/util/Identifier;
+accessible field net/minecraft/loot/context/LootContextTypes MAP Lcom/google/common/collect/BiMap;
 
 mutable field net/minecraft/item/map/MapState dimension Lnet/minecraft/registry/RegistryKey;
 

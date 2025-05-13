@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.compat.alloy_forgery.*;
 import de.dafuqs.spectrum.compat.botania.*;
 import de.dafuqs.spectrum.compat.create.*;
 import de.dafuqs.spectrum.compat.exclusions_lib.*;
-import de.dafuqs.spectrum.compat.farmersdelight.*;
 import de.dafuqs.spectrum.compat.gobber.*;
 import de.dafuqs.spectrum.compat.malum.*;
 import de.dafuqs.spectrum.compat.modonomicon.*;
@@ -35,7 +34,7 @@ public class SpectrumIntegrationPacks {
 		}
 	}
 	
-	public static final String CONNECTOR_ID = "connectormod";
+	public static final String CONNECTOR_ID = "connector";
 	public static final String AE2_ID = "ae2";
 	public static final String GOBBER_ID = "gobber2";
 	public static final String ALLOY_FORGERY_ID = "alloy_forgery";
@@ -65,7 +64,7 @@ public class SpectrumIntegrationPacks {
 			registerIntegrationPack(TRAVELERS_BACKPACK_ID, () -> new TravelersBackpackCompat());
 			registerIntegrationPack(BOTANIA_ID, () -> new BotaniaCompat());
 			registerIntegrationPack(NEEPMEAT_ID, () -> new NEEPMeatCompat());
-			registerIntegrationPack(FARMERSDELIGHT_ID, () -> new FDCompat());
+			//registerIntegrationPack(FARMERSDELIGHT_ID, () -> new FDCompat());
 		registerIntegrationPack(MALUM_ID, () -> new MalumCompat());
 			registerIntegrationPack(CREATE_ID, () -> new CreateCompat());
 		}

@@ -31,7 +31,7 @@ public record SyncMentalPresencePayload(double value) implements CustomPayload {
 	public static void execute(SyncMentalPresencePayload payload, ClientPlayNetworking.Context context) {
 		ClientPlayerEntity player = context.player();
 		MiscPlayerDataComponent.get(player).setLastSyncedSleepPotency(payload.value);
-		DarknessEffects.markForEffectUpdate();
+		DimensionRenderEffects.markForEffectUpdate();
 	}
 	
 	@Override

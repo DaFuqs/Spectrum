@@ -74,7 +74,10 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 			// add up all stew effects with their durations from the input stacks
 			var stewEffects = new HashMap<RegistryEntry<StatusEffect>, Double>();
 			for (var stack : stacks) {
-				var stewEffectsComponent = stack.getOrDefault(DataComponentTypes.SUSPICIOUS_STEW_EFFECTS, SuspiciousStewEffectsComponent.DEFAULT);
+				var stewEffectsComponent = SuspiciousStewEffectsComponent.DEFAULT;
+				if (stack.getItem() instanceof SuspiciousStewIngredient sussyBakka) // IN THIS WORL YOU ARE EITHER A SUSSY BAKKA OR A BUSSY SUKKA
+					stewEffectsComponent = sussyBakka.getStewEffects();
+				
 				for (var effect : stewEffectsComponent.effects()) {
 					var key = effect.effect();
 					var duration = effect.duration() * (Support.logBase(2, 1 + stack.getCount()));

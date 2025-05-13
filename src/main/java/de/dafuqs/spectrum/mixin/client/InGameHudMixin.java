@@ -26,14 +26,14 @@ public abstract class InGameHudMixin {
 
     @Shadow public abstract void render(DrawContext context, RenderTickCounter tickerCounter);
 
-    @Inject(method = "renderStatusBars(Lnet/minecraft/client/gui/DrawContext;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/profiler/Profiler;swap(Ljava/lang/String;)V"))
+    @Inject(method = "renderStatusBars(Lnet/minecraft/client/gui/DrawContext;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/InGameHud;renderHealthBar(Lnet/minecraft/client/gui/DrawContext;Lnet/minecraft/entity/player/PlayerEntity;IIIIFIIIZ)V", shift = At.Shift.AFTER))
     private void spectrum$renderAzureDikeBar(DrawContext context, CallbackInfo ci, @Local PlayerEntity cameraPlayer, @Local(ordinal = 2) int x, @Local(ordinal = 4) int y, @Local(ordinal = 6) int heartRows, @Local(ordinal = 7) int rowHeight) {
 		client.getProfiler().swap("spectrum:azure");
         HudRenderers.renderAzureDike(context, cameraPlayer, x, y - (heartRows - 1) * rowHeight - 10);
     }
 
     @ModifyExpressionValue(method = "renderMiscOverlays", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/MinecraftClient;isFancyGraphicsOrBetter()Z"))
-    private boolean spectrum$disableVignietteInDimension(boolean original) {
+    private boolean spectrum$disableVignetteInDimension(boolean original) {
 		var player = MinecraftClient.getInstance().player;
 		var isInDim = player != null && SpectrumDimensions.DIMENSION_KEY.equals(player.getWorld().getRegistryKey());
         return !isInDim && original;

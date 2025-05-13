@@ -113,7 +113,7 @@
     {
       "condition": "fabric:not",
       "value": {
-        "condition": "fabric:tags_populated",
+        "condition": "spectrum:tags_populated",
         "registry": "minecraft:fluid",
         "values": [
           "c:honey"

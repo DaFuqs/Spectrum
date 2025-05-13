@@ -1,0 +1,38 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "spectrum:enchantments_exist",
+      "values": [
+        "minecraft:respiration"
+      ]
+    }
+  ],
+  "type": "spectrum:enchantment_upgrade",
+  "bulk_item": {
+    "item": "spectrum:blue_pigment"
+  },
+  "enchantment": "minecraft:respiration",
+  "group": "minecraft",
+  "item_scaling": {
+    "type": "spectrum:indexed",
+    "indexes": [
+      8,
+      32,
+      128,
+      256,
+      512
+    ]
+  },
+  "level_cap": 6,
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_water",
+  "xp_scaling": {
+    "type": "spectrum:indexed",
+    "indexes": [
+      100,
+      200,
+      1600,
+      4800,
+      10000
+    ]
+  }
+}

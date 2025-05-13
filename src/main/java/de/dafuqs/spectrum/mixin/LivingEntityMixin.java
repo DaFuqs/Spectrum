@@ -220,7 +220,7 @@ public abstract class LivingEntityMixin {
 	
 	@Inject(method = "eatFood(Lnet/minecraft/world/World;Lnet/minecraft/item/ItemStack;Lnet/minecraft/component/type/FoodComponent;)Lnet/minecraft/item/ItemStack;", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;applyFoodEffects(Lnet/minecraft/component/type/FoodComponent;)V"))
 	private void spectrum$applyConcealedEffects(World world, ItemStack stack, FoodComponent foodComponent, CallbackInfoReturnable<ItemStack> cir) {
-		var oilEffect = stack.get(SpectrumDataComponentTypes.OIL_EFFECT);
+		var oilEffect = stack.get(SpectrumDataComponentTypes.CONCEALED_EFFECT);
 		if (!world.isClient() && oilEffect != null)
 			((LivingEntity) (Object) this).addStatusEffect(oilEffect);
 	}

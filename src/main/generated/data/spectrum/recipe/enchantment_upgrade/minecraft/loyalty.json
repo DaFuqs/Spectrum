@@ -1,0 +1,28 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "spectrum:enchantments_exist",
+      "values": [
+        "minecraft:loyalty"
+      ]
+    }
+  ],
+  "type": "spectrum:enchantment_upgrade",
+  "bulk_item": {
+    "item": "spectrum:brown_pigment"
+  },
+  "enchantment": "minecraft:loyalty",
+  "group": "minecraft",
+  "item_scaling": {
+    "type": "spectrum:doubling",
+    "scaling_factor": 2.0,
+    "scaling_value": 8
+  },
+  "level_cap": 4,
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_trident",
+  "xp_scaling": {
+    "type": "spectrum:doubling",
+    "scaling_factor": 2.0,
+    "scaling_value": 200
+  }
+}

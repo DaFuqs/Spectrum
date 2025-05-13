@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.registries;
 
-import static de.dafuqs.spectrum.SpectrumCommon.*;
-
 import de.dafuqs.spectrum.*;
 import net.minecraft.util.*;
+
+import static de.dafuqs.spectrum.SpectrumCommon.*;
 
 @SuppressWarnings("unused")
 public class SpectrumAdvancements {
@@ -75,6 +75,9 @@ public class SpectrumAdvancements {
 	public static final Identifier ENCHANTMENTS_VANILLA_UNBREAKING = SpectrumCommon.locate("unlocks/enchantments/vanilla_unbreaking");
 	public static final Identifier ENCHANTMENTS_VANILLA_WATER = SpectrumCommon.locate("unlocks/enchantments/vanilla_water");
 	public static final Identifier ENCHANTMENTS_VANILLA_WATER_LUCK = SpectrumCommon.locate("unlocks/enchantments/vanilla_water_luck");
+	public static final Identifier ENCHANTMENTS_VANILLA_TRIAL_TREASURE = SpectrumCommon.locate("unlocks/enchantments/vanilla_trial_treasure");
+	public static final Identifier ENCHANTMENTS_VANILLA_TRIAL = SpectrumCommon.locate("unlocks/enchantments/vanilla_trial");
+	public static final Identifier ENCHANTMENTS_VANILLA_BREACHING = SpectrumCommon.locate("unlocks/enchantments/vanilla_trial_breaching");
 	
 	// Pedestal
 	public static final Identifier PLACED_PEDESTAL = SpectrumCommon.locate("place_pedestal");
@@ -92,10 +95,17 @@ public class SpectrumAdvancements {
 	public static final Identifier UNLOCK_BOTTLE_OF_FORFEITURE = SpectrumCommon.locate("unlocks/items/bottle_of_forfeiture");
 	public static final Identifier UNLOCK_BOTTLE_OF_RUIN = SpectrumCommon.locate("unlocks/items/bottle_of_ruin");
 	public static final Identifier UNLOCK_GREATER_POTION_PENDANT = SpectrumCommon.locate("unlocks/trinkets/greater_potion_pendant");
-	public static final Identifier UNLOCK_IDOLS = SpectrumCommon.locate("unlocks/items/idols");
+	public static final Identifier UNLOCK_IDOLS = SpectrumCommon.locate("unlocks/blocks/idols");
 	public static final Identifier UNLOCK_LESSER_POTION_PENDANT = SpectrumCommon.locate("unlocks/trinkets/lesser_potion_pendant");
 	public static final Identifier UNLOCK_NATURES_STAFF = SpectrumCommon.locate("unlocks/items/natures_staff");
 	public static final Identifier UNLOCK_BLOODSTONE = SpectrumCommon.locate("unlocks/resources/bloodstone");
+	
+	public static final Identifier UNLOCK_AZURE_DIKE_BELT = SpectrumCommon.locate("unlocks/trinkets/azure_dike_belt");
+	public static final Identifier UNLOCK_AZURE_DIKE_RING = SpectrumCommon.locate("unlocks/trinkets/azure_dike_ring");
+	public static final Identifier UNLOCK_AZURESQUE_DIKE_CORE = SpectrumCommon.locate("unlocks/trinkets/azuresque_dike_core");
+	public static final Identifier UNLOCK_SHIELDGRASP_AMULET = SpectrumCommon.locate("unlocks/trinkets/shieldgrasp_amulet");
+	public static final Identifier UNLOCK_PUFF_CIRCLET = SpectrumCommon.locate("unlocks/trinkets/puff_circlet");
+	public static final Identifier UNLOCK_AETHER_GRACED_NECTAR_GLOVES = SpectrumCommon.locate("lategame/collect_aether_graced_nectar_gloves");
 	
 	// Misc
 	public static final Identifier ASCEND_KINDLING = SpectrumCommon.locate("ascend_kindling");

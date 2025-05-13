@@ -1,0 +1,26 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "spectrum:enchantments_exist",
+      "values": [
+        "minecraft:breach"
+      ]
+    }
+  ],
+  "type": "spectrum:enchantment_upgrade",
+  "bulk_item": {
+    "item": "spectrum:red_pigment"
+  },
+  "enchantment": "minecraft:breach",
+  "group": "minecraft",
+  "item_scaling": {
+    "type": "spectrum:doubling",
+    "scaling_value": 8
+  },
+  "level_cap": 5,
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_trial_breaching",
+  "xp_scaling": {
+    "type": "spectrum:doubling",
+    "scaling_value": 200
+  }
+}

@@ -27,11 +27,9 @@
     "crafted_moonstone_pedestal": {
       "trigger": "spectrum:crafted_with_pedestal",
       "conditions": {
-        "items": [
-          {
-            "items": "spectrum:pedestal_moonstone"
-          }
-        ]
+        "item": {
+          "items": "spectrum:pedestal_moonstone"
+        }
       }
     },
     "gotten_previous": {

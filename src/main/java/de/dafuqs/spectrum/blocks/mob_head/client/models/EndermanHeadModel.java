@@ -3,20 +3,14 @@ package de.dafuqs.spectrum.blocks.mob_head.client.models;
 import de.dafuqs.spectrum.blocks.mob_head.client.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.*;
 import net.minecraft.client.render.entity.model.*;
-import net.minecraft.client.util.math.*;
-import net.minecraft.util.*;
 
 @Environment(EnvType.CLIENT)
 public class EndermanHeadModel extends SpectrumSkullModel {
 	
-	private static final Identifier EYES_TEXTURE = Identifier.of("textures/entity/enderman/enderman_eyes.png");
-	protected final ModelPart eyes;
 	
-	public EndermanHeadModel(ModelPart root, ModelPart eyes) {
+	public EndermanHeadModel(ModelPart root) {
 		super(root);
-		this.eyes = eyes;
 	}
 	
 	public static TexturedModelData getTexturedModelData() {
@@ -27,20 +21,6 @@ public class EndermanHeadModel extends SpectrumSkullModel {
 		head.addChild(EntityModelPartNames.JAW, ModelPartBuilder.create().uv(0, 16).cuboid(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new Dilation(-0.5F)), ModelTransform.NONE);
 		
 		return TexturedModelData.of(modelData, 64, 32);
-	}
-	
-	@Override
-	public void setHeadRotation(float animationProgress, float yaw, float pitch) {
-		super.setHeadRotation(animationProgress, yaw, pitch);
-		this.eyes.yaw = yaw * ROTATION_VEC;
-		this.eyes.pitch = pitch * ROTATION_VEC;
-	}
-	
-	public void render(MatrixStack matrices, VertexConsumer vertices, VertexConsumerProvider vertexConsumerProvider, int light, int overlay, int argb) {
-		super.render(matrices, vertices, vertexConsumerProvider, light, overlay, argb);
-		
-		VertexConsumer eyesVertexConsumer = vertexConsumerProvider.getBuffer(RenderLayer.getEyes(EYES_TEXTURE));
-		this.eyes.render(matrices, eyesVertexConsumer, 15728640, OverlayTexture.DEFAULT_UV, -1);
 	}
 	
 }

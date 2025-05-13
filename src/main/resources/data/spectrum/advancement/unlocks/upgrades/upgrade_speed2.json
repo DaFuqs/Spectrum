@@ -3,13 +3,11 @@
     "crafted_previous_upgrade": {
       "trigger": "spectrum:crafted_with_pedestal",
       "conditions": {
-        "items": [
-          {
-            "items": [
-              "spectrum:upgrade_speed"
-            ]
-          }
-        ]
+        "item": {
+          "items": [
+            "spectrum:upgrade_speed"
+          ]
+        }
       }
     },
     "collected_storm_stone": {

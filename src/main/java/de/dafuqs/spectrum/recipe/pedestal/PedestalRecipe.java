@@ -88,7 +88,7 @@ public abstract class PedestalRecipe extends GatedStackSpectrumRecipe<PedestalRe
 	}
 	
 	private boolean isStackAtLeast(ItemStack sourceItemStack, Item item, int amount) {
-		return sourceItemStack.getItem().equals(item) && sourceItemStack.getCount() >= amount;
+		return sourceItemStack.isOf(item) && sourceItemStack.getCount() >= amount;
 	}
 	
 	@Override

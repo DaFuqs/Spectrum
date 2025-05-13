@@ -8,14 +8,15 @@ import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.TextWidget.*;
 import dev.emi.emi.api.widget.*;
 import net.minecraft.item.*;
+import net.minecraft.recipe.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 
 public class AnvilCrushingEmiRecipeGated extends GatedSpectrumEmiRecipe<AnvilCrushingRecipe> {
 	private final static Identifier WALL_TEXTURE = SpectrumCommon.locate("textures/gui/container/anvil_crushing.png");
 	
-	public AnvilCrushingEmiRecipeGated(AnvilCrushingRecipe recipe) {
-		super(SpectrumEmiRecipeCategories.ANVIL_CRUSHING, recipe, 116, 64);
+	public AnvilCrushingEmiRecipeGated(RecipeEntry<AnvilCrushingRecipe> entry) {
+		super(SpectrumEmiRecipeCategories.ANVIL_CRUSHING, entry, 116, 64);
 		this.inputs = recipe.getIngredients().stream().map(EmiIngredient::of).toList();
 	}
 	

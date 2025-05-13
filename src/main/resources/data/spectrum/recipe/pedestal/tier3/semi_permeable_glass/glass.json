@@ -1,6 +1,6 @@
 {
   "type": "spectrum:pedestal",
-  "group": "player_only_glass",
+  "group": "semi_permeable_glass",
   "time": 80,
   "tier": "advanced",
   "colors": {

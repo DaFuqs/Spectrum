@@ -9,6 +9,10 @@
     "spectrum:fanciful_circlet",
     "spectrum:paltaeria_gem",
     {
+      "item": "minecraft:wind_charge",
+      "count": 8
+    },
+    {
       "item": "spectrum:pure_azurite",
       "count": 8
     },

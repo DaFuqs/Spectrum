@@ -52,7 +52,8 @@ public abstract class ItemStackMixin {
 	@ModifyReturnValue(method = "isDamageable()Z", at = @At(value = "RETURN"))
 	public boolean spectrum$applyIndestructibleEnchantment(boolean original) {
 		var stack = (ItemStack) (Object) this;
-		return original || EnchantmentHelper.hasAnyEnchantmentsIn(stack, SpectrumEnchantmentTags.INDESTRUCTIBLE_EFFECT);
+		
+		return original && !EnchantmentHelper.hasAnyEnchantmentsIn(stack, SpectrumEnchantmentTags.INDESTRUCTIBLE_EFFECT);
 	}
 	
 	// thank you so, so much @williewillus / @Botania for this snippet of code
@@ -79,7 +80,7 @@ public abstract class ItemStackMixin {
 	@Inject(method = "getTooltip", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/tooltip/TooltipType;isAdvanced()Z", shift = At.Shift.BEFORE, ordinal = 1))
 	public void spectrum$expandTooltipPostDamage(Item.TooltipContext context, PlayerEntity player, TooltipType type, CallbackInfoReturnable<List<Text>> cir, @Local List<Text> tooltip) {
 		var stack = (ItemStack) (Object) this;
-		var oilEffect = stack.get(SpectrumDataComponentTypes.OIL_EFFECT);
+		var oilEffect = stack.get(SpectrumDataComponentTypes.CONCEALED_EFFECT);
 		var profile = stack.get(DataComponentTypes.PROFILE);
 		if (oilEffect != null && profile != null && player.getUuid().equals(profile.id().orElse(null))) {
 			var subText = new ArrayList<Text>();

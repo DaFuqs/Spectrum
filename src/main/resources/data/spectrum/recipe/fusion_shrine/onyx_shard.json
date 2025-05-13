@@ -25,5 +25,8 @@
     "visual_explosions_on_shrine"
   ],
   "finish_crafting_effect": "lightning_on_shrine",
-  "description": "spectrum.recipe.fusion_shrine.explanation.onyx_shard"
+  "description": {
+    "type": "translatable",
+    "translate": "spectrum.recipe.fusion_shrine.explanation.onyx_shard"
+  }
 }

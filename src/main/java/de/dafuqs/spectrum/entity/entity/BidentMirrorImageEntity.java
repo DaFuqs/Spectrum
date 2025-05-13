@@ -58,7 +58,7 @@ public class BidentMirrorImageEntity extends BidentBaseEntity {
     }
     
     private void processHit(@Nullable Entity target, float effectMult) {
-		var drm = target.getWorld().getRegistryManager();
+		var drm = getWorld().getRegistryManager();
 		var stack = getTrackedStack();
         var power = SpectrumEnchantmentHelper.getLevel(drm, Enchantments.POWER, stack) * 0.3F + 1;
         var efficiency = SpectrumEnchantmentHelper.getLevel(drm, Enchantments.EFFICIENCY, stack);

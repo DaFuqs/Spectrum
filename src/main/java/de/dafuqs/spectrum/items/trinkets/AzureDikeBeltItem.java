@@ -2,15 +2,16 @@ package de.dafuqs.spectrum.items.trinkets;
 
 import net.fabricmc.api.*;
 import net.minecraft.item.*;
-import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.item.tooltip.*;
 import net.minecraft.text.*;
+import net.minecraft.util.*;
 
 import java.util.*;
 
 public class AzureDikeBeltItem extends AzureDikeTrinketItem {
 	
-	public AzureDikeBeltItem(Settings settings) {
-		super(settings);
+	public AzureDikeBeltItem(Settings settings, Identifier unlockIdentifier) {
+		super(settings, unlockIdentifier);
 	}
 	
 	@Override

@@ -391,19 +391,6 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 	
 	
 	// Called when the chunk is first loaded to initialize this on the clients
-	@Override
-	public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
-		NbtCompound nbtCompound = new NbtCompound();
-		Inventories.writeNbt(nbtCompound, this.getItems(), registryLookup);
-		nbtCompound.putShort("CraftingTime", (short) this.craftingTime);
-		nbtCompound.putShort("CraftingTimeTotal", (short) this.craftingTimeTotal);
-		nbtCompound.putString("MultiblockRotation", this.multiblockRotation.toString());
-		nbtCompound.putBoolean("validStructure", this.validStructure);
-		if (this.currentRecipe != null && checkRecipeRequirements(world, this.pos, this)) {
-			nbtCompound.putString("CurrentRecipe", this.currentRecipe.id().toString());
-		}
-		return nbtCompound;
-	}
 	
 	private void doChimeParticles(@NotNull World world) {
 		doChimeInstillingParticles(world, pos.add(getItemBowlHorizontalPositionOffset(false).up(3)));

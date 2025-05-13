@@ -1,0 +1,38 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "spectrum:enchantments_exist",
+      "values": [
+        "minecraft:unbreaking"
+      ]
+    }
+  ],
+  "type": "spectrum:enchantment_upgrade",
+  "bulk_item": {
+    "item": "spectrum:cyan_pigment"
+  },
+  "enchantment": "minecraft:unbreaking",
+  "group": "minecraft",
+  "item_scaling": {
+    "type": "spectrum:indexed",
+    "indexes": [
+      8,
+      32,
+      256,
+      512,
+      512
+    ]
+  },
+  "level_cap": 6,
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_unbreaking",
+  "xp_scaling": {
+    "type": "spectrum:indexed",
+    "indexes": [
+      100,
+      400,
+      2000,
+      4000,
+      10000
+    ]
+  }
+}

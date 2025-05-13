@@ -44,7 +44,7 @@
       "type": "spectrum:enchanter_upgrading",
       "text": "book.spectrum.guidebook.upgrading.text",
       "title1": "container.spectrum.rei.enchantment_upgrading.title",
-      "recipe_id": "spectrum:enchantment_upgrade/spectrum/improved_critical/1_to_2"
+      "recipe_id": "spectrum:enchantment_upgrade/spectrum/improved_critical"
     }
   ]
 }

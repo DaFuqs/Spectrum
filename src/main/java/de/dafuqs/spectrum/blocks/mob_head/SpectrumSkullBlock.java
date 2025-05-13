@@ -25,9 +25,9 @@ public class SpectrumSkullBlock extends SkullBlock {
 			SpectrumSkullType.CODEC.fieldOf("kind").forGetter(b -> b.skullType),
 			createSettingsCodec()
 	).apply(i, SpectrumSkullBlock::new));
-
-	public static BiMap<SpectrumSkullType, Block> MOB_HEADS = EnumHashBiMap.create(SpectrumSkullType.class);
-	private static Map<EntityType<?>, SpectrumSkullType> ENTITY_TYPE_TO_SKULL_TYPE = new Object2ObjectOpenHashMap<>();
+	
+	public static final BiMap<SpectrumSkullType, Block> MOB_HEADS = EnumHashBiMap.create(SpectrumSkullType.class);
+	private static final Map<EntityType<?>, SpectrumSkullType> ENTITY_TYPE_TO_SKULL_TYPE = new Object2ObjectOpenHashMap<>();
 	private final SpectrumSkullType skullType;
 	
 	@Nullable

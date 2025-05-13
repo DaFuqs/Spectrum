@@ -12,8 +12,8 @@ import java.util.*;
 public abstract class EnchanterDisplay extends GatedSpectrumDisplay {
 	
 	// first input is the center, all others around clockwise
-	public EnchanterDisplay(@NotNull RecipeEntry<? extends GatedSpectrumRecipe<?>> recipe, List<EntryIngredient> inputs, ItemStack output) {
-		super(recipe, inputs, output);
+	public EnchanterDisplay(@NotNull RecipeEntry<? extends GatedSpectrumRecipe<?>> recipe, List<EntryIngredient> inputs, List<EntryIngredient> outputs) {
+		super(recipe, inputs, outputs);
 	}
 	
 }

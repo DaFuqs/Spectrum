@@ -417,7 +417,7 @@ public class SanityCommand {
 			ItemStack output = recipe.getResult(source.getRegistryManager());
 			if (output.getItem() == Items.ENCHANTED_BOOK) {
 				ItemEnchantmentsComponent enchantments = EnchantmentHelper.getEnchantments(output);
-				if (!enchantments.isEmpty() && recipe.getRequiredItem() instanceof PigmentItem pigmentItem) {
+				if (!enchantments.isEmpty() && recipe.getBulkItem() instanceof PigmentItem pigmentItem) {
 					upgradeColors.put(enchantments.getEnchantments().stream().toList().getFirst(), pigmentItem.getInkColor());
 				}
 			}

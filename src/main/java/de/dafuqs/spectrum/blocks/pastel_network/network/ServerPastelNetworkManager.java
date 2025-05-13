@@ -57,7 +57,14 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 	public NbtCompound writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
 		NbtList networkList = new NbtList();
 		for (ServerPastelNetwork network : this.networks) {
-			CodecHelper.toNbt(ServerPastelNetwork.CODEC, network, networkList::add);
+			var opt = ServerPastelNetwork.CODEC.encodeStart(NbtOps.INSTANCE, network).result();
+			if (opt.isPresent()) {
+				var wrapper = new NbtCompound();
+				wrapper.put("network", opt.get());
+				wrapper.put("scheduler", transgender(network.getTransmissions()));
+				// Trans missions?... do... do they really?
+				networkList.add(wrapper);
+			}
 		}
 		nbt.put("Networks", networkList);
 		return nbt;
@@ -66,12 +73,39 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 	public static ServerPastelNetworkManager fromNbt(NbtCompound nbt) {
 		ServerPastelNetworkManager manager = new ServerPastelNetworkManager();
 		for (NbtElement element : nbt.getList("Networks", NbtElement.COMPOUND_TYPE)) {
-			Optional<ServerPastelNetwork> network = CodecHelper.fromNbt(ServerPastelNetwork.CODEC, element);
+			var comp = (NbtCompound) element;
+			var netNbt = comp.get("network");
+			var schedulerNbt = comp.getCompound("scheduler");
+			
+			Optional<ServerPastelNetwork> network = CodecHelper.fromNbt(ServerPastelNetwork.CODEC, netNbt);
 			if (network.isPresent()) {
+				// I truly, really did try to make the transmission codec work. And I failed ~ Azzyypaaras
+				network.get().getTransmissions().putAll(transDecode(schedulerNbt, network.get()));
 				manager.networks.add(network.get());
 			}
 		}
 		return manager;
+	}
+	
+	private static @NotNull HashMap<PastelTransmission, Integer> transDecode(NbtCompound schedulerNbt, ServerPastelNetwork network) {
+		var transmissions = schedulerNbt.getList("transmissions", NbtElement.COMPOUND_TYPE);
+		var timers = schedulerNbt.getIntArray("timers");
+		var map = new HashMap<PastelTransmission, Integer>();
+		
+		for (int i = 0; i < transmissions.size(); i++) {
+			var result = PastelTransmission.CODEC.decode(NbtOps.INSTANCE, transmissions.get(i)).result();
+			
+			if (result.isEmpty())
+				continue;
+			
+			var trans = result.get().getFirst();
+			trans.setNetwork(network);
+			map.put(
+					trans,
+					timers[i]
+			);
+		}
+		return map;
 	}
 	
 	public void tick() {
@@ -83,22 +117,21 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 		}
 	}
 	
-	@Contract("_, null -> new")
-	public PastelNetwork<ServerWorld> joinOrCreateNetwork(PastelNodeBlockEntity node, @Nullable UUID uuid) {
-		if (uuid != null) {
-			//noinspection ForLoopReplaceableByForEach
-			for (int i = 0; i < this.networks.size(); i++) {
-				ServerPastelNetwork network = this.networks.get(i);
-				if (network.getUUID().equals(uuid)) {
-					network.addNode(node);
-					return network;
-				}
+	private static NbtCompound transgender(Map<PastelTransmission, Integer> trans) {
+		var transNbt = new NbtCompound();
+		var transmissions = new NbtList();
+		var timers = new int[trans.size()];
+		for (Map.Entry<PastelTransmission, Integer> transmissionEntry : trans.entrySet()) {
+			var result = PastelTransmission.CODEC.encodeStart(NbtOps.INSTANCE, transmissionEntry.getKey()).result();
+			if (result.isPresent()) {
+				transmissions.add(result.get());
+				timers[transmissions.indexOf(result.get())] = transmissionEntry.getValue();
 			}
 		}
 		
-		ServerPastelNetwork network = createNetwork((ServerWorld) node.getWorld(), uuid, node.getPastelNetworkColor());
-		network.addNode(node);
-		return network;
+		transNbt.put("transmissions", transmissions);
+		transNbt.putIntArray("timers", timers);
+		return transNbt;
 	}
 	
 	@Override

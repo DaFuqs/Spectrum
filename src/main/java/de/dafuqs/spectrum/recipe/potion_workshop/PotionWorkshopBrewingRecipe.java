@@ -232,7 +232,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		}
 		OptionalInt potionColor = PotionContentsComponent.mixColors(instances);
 		
-		PotionContentsComponent potionComponent = new PotionContentsComponent(Optional.empty(), Optional.of(potionColor.orElse(0)), instances);
+		PotionContentsComponent potionComponent = new PotionContentsComponent(Optional.of(SpectrumPotions.PIGMENT_POTION), Optional.of(potionColor.orElse(0)), instances);
 		stack.set(DataComponentTypes.POTION_CONTENTS, potionComponent);
 		
 		if (potionMod.flags().unidentifiable() || potionMod.additionalDrinkDurationTicks() != 0) {

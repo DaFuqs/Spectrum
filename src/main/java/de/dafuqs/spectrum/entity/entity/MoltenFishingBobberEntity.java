@@ -32,4 +32,8 @@ public class MoltenFishingBobberEntity extends SpectrumFishingBobberEntity {
 		hookedEntity.setOnFireFor(2);
 	}
 	
+	@Override
+	public int getLineColor() {
+		return 0xFFff8e24;
+	}
 }

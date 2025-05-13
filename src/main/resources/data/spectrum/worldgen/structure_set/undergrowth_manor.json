@@ -9,8 +9,9 @@
     "type": "minecraft:random_spread",
     "salt": 7831267,
     "spread_type": "triangular",
-    "spacing": 120,
-    "separation": 80
+    "frequency": 0.9,
+    "spacing": 80,
+    "separation": 60
   },
   "exclusion_zone": {
     "chunk_count": 16,

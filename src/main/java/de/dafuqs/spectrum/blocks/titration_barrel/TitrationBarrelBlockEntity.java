@@ -150,7 +150,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity implements FluidStac
 	}
 	
 	private boolean isEmpty(float temperature, int extractedBottles, ITitrationBarrelRecipe recipe) {
-		if (world == null || recipe.isEmpty() || !recipe.getFluidInput().test(getFluidVariant())) {
+		if (world == null || !recipe.getFluidInput().test(getFluidVariant())) {
 			return true;
 		}
 		return extractedBottles >= recipe.getOutputCountAfterAngelsShare(this.world, temperature, getSealSeconds());
@@ -181,24 +181,29 @@ public class TitrationBarrelBlockEntity extends BlockEntity implements FluidStac
 			shouldReset = true;
 		} else {
 			ITitrationBarrelRecipe recipe = optionalRecipe.get().value();
+			
+			long secondsFermented = (this.tapTime - this.sealTime) / 1000;
+			var output = recipe.getOutputCountAfterAngelsShare(world, biome.getTemperature(), secondsFermented);
+			
 			if (recipe.getFluidInput().test(this.getFluidVariant())) {
 				if (recipe.canPlayerCraft(player)) {
 					boolean canTap = true;
 					Item tappingItem = recipe.getTappingItem();
 					if (tappingItem != Items.AIR) {
 						if (handStack.isOf(tappingItem)) {
-							handStack.decrement(1);
+							output = Math.min(output, handStack.getCount());
+							handStack.decrement(output);
 						} else {
 							message = Text.translatable("block.spectrum.titration_barrel.tapping_item_required").append(tappingItem.getName());
 							canTap = false;
 						}
 					}
 					if (canTap) {
-						long secondsFermented = (this.tapTime - this.sealTime) / 1000;
 						float downfall = ((BiomeAccessor) (Object) biome).getWeather().downfall();
-						harvestedStack = recipe.getResult(this, secondsFermented, downfall);
+						harvestedStack = recipe.getTitrationResult(this, secondsFermented, downfall);
+						harvestedStack.setCount(output);
 						
-						this.extractedBottles += 1;
+						this.extractedBottles += output;
 						shouldReset = isEmpty(biome.getTemperature(), this.extractedBottles, recipe);
 					}
 				} else {

@@ -28,8 +28,7 @@ public class ServerPastelNetwork extends PastelNetwork<ServerWorld> {
 			World.CODEC.xmap(k -> SpectrumCommon.minecraftServer.getWorld(k), World::getRegistryKey).fieldOf("world").forGetter(b -> b.world),
 			Uuids.CODEC.fieldOf("uuid").forGetter(ServerPastelNetwork::getUUID),
 			Codec.INT.fieldOf("color").forGetter(ServerPastelNetwork::getColor),
-			TickLooper.CODEC.fieldOf("looper").forGetter(b -> b.transferLooper),
-			SchedulerMap.getCodec(PastelTransmission.CODEC).fieldOf("transmissions").forGetter(b -> b.transmissions)
+			TickLooper.CODEC.fieldOf("looper").forGetter(b -> b.transferLooper)
 	).apply(i, ServerPastelNetwork::new));
 	
 	protected final Map<PastelNodeType, Set<PastelNodeBlockEntity>> loadedNodes = new ConcurrentHashMap<>();
@@ -42,18 +41,18 @@ public class ServerPastelNetwork extends PastelNetwork<ServerWorld> {
 	protected final PastelTransmissionLogic transmissionLogic;
 	
 	public ServerPastelNetwork(ServerWorld world, UUID uuid, int color) {
-		this(world, uuid, color, new TickLooper(10), new SchedulerMap<>());
+		this(world, uuid, color, new TickLooper(10));
 	}
 	
 	public ServerPastelNetwork(ServerWorld world, PastelNodeBlockEntity initialNode) {
-		this(world, initialNode.getNodeId(), initialNode.getPastelNetworkColor(), new TickLooper(10), new SchedulerMap<>());
+		this(world, initialNode.getNodeId(), initialNode.getPastelNetworkColor(), new TickLooper(10));
 		addNode(initialNode);
 	}
 	
-	public ServerPastelNetwork(ServerWorld world, UUID uuid, int color, TickLooper transferLoop, SchedulerMap<PastelTransmission> transmissions) {
+	public ServerPastelNetwork(ServerWorld world, UUID uuid, int color, TickLooper transferLoop) {
 		super(world, uuid, color);
 		this.transferLooper = transferLoop;
-		this.transmissions = transmissions;
+		this.transmissions = new SchedulerMap<>();
 		this.transmissionLogic = new PastelTransmissionLogic(this);
 		
 		for (PastelNodeType type : PastelNodeType.values()) {
@@ -66,6 +65,14 @@ public class ServerPastelNetwork extends PastelNetwork<ServerWorld> {
 	
 	private boolean addLoadedNode(PastelNodeBlockEntity node) {
 		return !this.loadedNodes.get(node.getNodeType()).add(node);
+	}
+	
+	public void initializeNode(PastelNodeBlockEntity node) {
+		var type = this.loadedNodes.get(node.getNodeType());
+		if (!type.contains(node)) {
+			type.add(node);
+			addPriorityNode(node);
+		}
 	}
 	
 	private void addPriorityNode(PastelNodeBlockEntity node) {
@@ -327,7 +334,8 @@ public class ServerPastelNetwork extends PastelNetwork<ServerWorld> {
 			checkForNetworkSplit(node.getPos());
 			PastelNetworkEdgeSyncPayload.send(this, node.getPos());
 		}
-		node.setNetworkUUID(null);
+		if (reason != NodeRemovalReason.REMOVED)
+			node.setNetworkUUID(null);
 	}
 	
 	@Override
@@ -388,7 +396,11 @@ public class ServerPastelNetwork extends PastelNetwork<ServerWorld> {
 		}
 		tickNodeEffects();
 	}
-
+	
+	public Map<PastelTransmission, Integer> getTransmissions() {
+		return transmissions.getMap();
+	}
+	
 	private void tickNodeEffects() {
 		List<PastelNodeBlockEntity> nodeSync = new ArrayList<>();
 

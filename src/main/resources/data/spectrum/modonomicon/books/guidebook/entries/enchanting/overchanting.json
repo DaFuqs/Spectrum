@@ -1,8 +1,6 @@
 {
   "name": "book.spectrum.guidebook.overchanting.name",
-  "icon": {
-    "item": "minecraft:enchanted_book"
-  },
+  "icon": "spectrum:textures/gui/guidebook/icons/overenchanting_star.png",
   "hide_while_locked": true,
   "condition": {
     "type": "modonomicon:advancement",

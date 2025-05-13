@@ -127,7 +127,7 @@ public class PreservationRoundelBlockEntity extends ItemRoundelBlockEntity imple
 			if (!slotStack.isEmpty()) {
 				int usedCount = 0;
 				for (int j = 0; j < requirements.size(); j++) {
-					if (slotStack.getItem().equals(requirements.get(j))) {
+					if (slotStack.isOf(requirements.get(j))) {
 						requirements.remove(j);
 						j--;
 						usedCount++;

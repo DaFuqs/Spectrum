@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:templates/shimmerstone_light",
+  "parent": "spectrum:templates/base_flat_light",
   "textures": {
     "outer": "spectrum:block/polished_basalt",
     "inner": "spectrum:block/shimmerstone_light",

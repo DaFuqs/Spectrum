@@ -22,7 +22,7 @@ public class EnchanterEnchantingDisplay extends EnchanterDisplay {
 	
 	// first input is the center, all others around clockwise
 	public EnchanterEnchantingDisplay(@NotNull RecipeEntry<EnchanterRecipe> recipe) {
-		super(recipe, buildIngredients(recipe.value()), recipe.value().getResult(BasicDisplay.registryAccess()));
+		super(recipe, buildIngredients(recipe.value()), Collections.singletonList(EntryIngredients.of(recipe.value().getResult(BasicDisplay.registryAccess()))));
 		this.requiredExperience = recipe.value().getRequiredExperience();
 		this.craftingTime = recipe.value().getCraftingTime();
 	}

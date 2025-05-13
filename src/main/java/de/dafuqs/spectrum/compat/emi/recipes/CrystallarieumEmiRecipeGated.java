@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.registries.*;
 import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.*;
 import net.fabricmc.fabric.api.transfer.v1.fluid.*;
+import net.minecraft.recipe.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 
@@ -16,8 +17,8 @@ import java.util.stream.*;
 public class CrystallarieumEmiRecipeGated extends GatedSpectrumEmiRecipe<CrystallarieumRecipe> {
 	private final static Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/modonomicon/crystallarieum.png");
 	
-	public CrystallarieumEmiRecipeGated(CrystallarieumRecipe recipe) {
-		super(SpectrumEmiRecipeCategories.CRYSTALLARIEUM, recipe, 124, 100);
+	public CrystallarieumEmiRecipeGated(RecipeEntry<CrystallarieumRecipe> entry) {
+		super(SpectrumEmiRecipeCategories.CRYSTALLARIEUM, entry, 124, 100);
 		inputs = List.of(
 				EmiIngredient.of(recipe.getIngredientStack()),
 				EmiStack.of(recipe.getGrowthStages().getFirst().getBlock())

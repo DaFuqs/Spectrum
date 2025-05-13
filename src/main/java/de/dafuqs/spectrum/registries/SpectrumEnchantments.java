@@ -1,9 +1,5 @@
 package de.dafuqs.spectrum.registries;
 
-import java.util.*;
-
-import static de.dafuqs.spectrum.SpectrumCommon.*;
-
 import de.dafuqs.spectrum.data.*;
 import net.fabricmc.fabric.api.datagen.v1.provider.*;
 import net.minecraft.component.*;
@@ -16,6 +12,10 @@ import net.minecraft.registry.*;
 import net.minecraft.registry.entry.*;
 import net.minecraft.registry.tag.*;
 import net.minecraft.util.*;
+
+import java.util.*;
+
+import static de.dafuqs.spectrum.SpectrumCommon.*;
 
 @SuppressWarnings("unused")
 public class SpectrumEnchantments {
@@ -36,7 +36,6 @@ public class SpectrumEnchantments {
 			Optional.of(ItemTags.FISHING_ENCHANTABLE)
 	).withEnchantable(provider -> provider
 			.forceAddTag(ItemTags.FISHING_ENCHANTABLE)
-			.forceAddTag(SpectrumItemTags.FISHING_RODS)
 	).register();
 	
 	// Increases drop chance of <1 loot drops
@@ -151,8 +150,6 @@ public class SpectrumEnchantments {
 			Optional.empty()
 	).withEnchantable(provider -> provider
 					.forceAddTag(ItemTags.DURABILITY_ENCHANTABLE)
-					.add(SpectrumItems.ENDER_SPLICE)
-//			.excludeOptional(Identifier.of("biomemakeover:small_illunite_bud")) //TODO
 	).withExclusiveSet((key, provider) -> provider
 			.add(Enchantments.INFINITY)
 			.add(Enchantments.UNBREAKING)
@@ -207,7 +204,6 @@ public class SpectrumEnchantments {
 	).withEnchantable(provider -> provider
 			.forceAddTag(ItemTags.MINING_ENCHANTABLE)
 			.forceAddTag(ItemTags.WEAPON_ENCHANTABLE)
-			.forceAddTag(ItemTags.TRIDENT_ENCHANTABLE)
 			.forceAddTag(ItemTags.BOW_ENCHANTABLE)
 			.forceAddTag(ItemTags.CROSSBOW_ENCHANTABLE)
 			.forceAddTag(SpectrumItemTags.FISHING_RODS)

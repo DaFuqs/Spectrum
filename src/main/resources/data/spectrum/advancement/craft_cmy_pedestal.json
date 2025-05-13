@@ -46,11 +46,9 @@
     "craft_pedestal": {
       "trigger": "spectrum:crafted_with_pedestal",
       "conditions": {
-        "items": [
-          {
-            "items": "spectrum:pedestal_all_basic"
-          }
-        ]
+        "item": {
+          "items": "spectrum:pedestal_all_basic"
+        }
       }
     },
     "gotten_previous": {

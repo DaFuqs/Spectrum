@@ -35,6 +35,9 @@ public class SpiritInstillerBlockEntityRenderer implements BlockEntityRenderer<S
 	
 	@Override
 	public void render(SpiritInstillerBlockEntity instiller, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
+		if (instiller.animator == null)
+			return;
+		
 		var time = instiller.getWorld().getTime() % 1000000;
 		instiller.animator.animate(tickDelta, time);
 		

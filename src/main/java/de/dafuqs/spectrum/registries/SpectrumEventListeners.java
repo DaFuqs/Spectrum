@@ -376,7 +376,6 @@ public class SpectrumEventListeners {
 			
 			@Override
 			public void reload(ResourceManager manager) {
-				UnlockToastManager.clear();
 				CompactingChestBlockEntity.clearCache();
 				SpectrumCommon.CACHED_ITEM_TAG_MAP.clear();
 				
@@ -384,6 +383,20 @@ public class SpectrumEventListeners {
 					//injectEnchantmentUpgradeRecipes(SpectrumCommon.minecraftServer);
 					FirestarterIdolBlock.addBlockSmeltingRecipes(SpectrumCommon.minecraftServer);
 				}
+			}
+			
+			@Override
+			public Identifier getFabricId() {
+				return id;
+			}
+		});
+		
+		ResourceManagerHelper.get(ResourceType.CLIENT_RESOURCES).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
+			private final Identifier id = SpectrumCommon.locate("cache_clearer_client");
+			
+			@Override
+			public void reload(ResourceManager manager) {
+				UnlockToastManager.clear();
 			}
 			
 			@Override

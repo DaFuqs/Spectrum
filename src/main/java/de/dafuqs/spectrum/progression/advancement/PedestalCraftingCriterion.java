@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.progression.advancement;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.*;
-import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.item.*;
 import net.minecraft.predicate.*;
@@ -18,8 +17,8 @@ public class PedestalCraftingCriterion extends AbstractCriterion<PedestalCraftin
 	
 	public static final Identifier ID = SpectrumCommon.locate("crafted_with_pedestal");
 	
-	public void trigger(ServerPlayerEntity player, ItemStack itemStack, int experience, int durationTicks) {
-		this.trigger(player, (conditions) -> conditions.matches(itemStack, experience, durationTicks));
+	public void trigger(ServerPlayerEntity player, ItemStack craftedStack, int experience, int durationTicks) {
+		this.trigger(player, (conditions) -> conditions.matches(craftedStack, experience, durationTicks));
 	}
 	
 	@Override
@@ -30,7 +29,7 @@ public class PedestalCraftingCriterion extends AbstractCriterion<PedestalCraftin
 	public record Conditions(
 			Optional<LootContextPredicate> player,
 			Optional<LootContextPredicate> location,
-			List<ItemPredicate> itemPredicates,
+			Optional<ItemPredicate> craftedItemPredicate,
 			NumberRange.IntRange experienceRange,
 			NumberRange.IntRange craftingDurationTicksRange
 	) implements AbstractCriterion.Conditions {
@@ -39,7 +38,7 @@ public class PedestalCraftingCriterion extends AbstractCriterion<PedestalCraftin
 				instance -> instance.group(
 						EntityPredicate.LOOT_CONTEXT_PREDICATE_CODEC.optionalFieldOf("player").forGetter(PedestalCraftingCriterion.Conditions::player),
 						LootContextPredicate.CODEC.optionalFieldOf("location").forGetter(PedestalCraftingCriterion.Conditions::location),
-						ItemPredicate.CODEC.listOf().optionalFieldOf("items", List.of()).forGetter(PedestalCraftingCriterion.Conditions::itemPredicates),
+						ItemPredicate.CODEC.optionalFieldOf("item").forGetter(PedestalCraftingCriterion.Conditions::craftedItemPredicate),
 						NumberRange.IntRange.CODEC.optionalFieldOf("gained_experience", NumberRange.IntRange.ANY).forGetter(PedestalCraftingCriterion.Conditions::experienceRange),
 						NumberRange.IntRange.CODEC.optionalFieldOf("crafting_duration_ticks", NumberRange.IntRange.ANY).forGetter(PedestalCraftingCriterion.Conditions::craftingDurationTicksRange)
 				).apply(instance, PedestalCraftingCriterion.Conditions::new)
@@ -50,20 +49,14 @@ public class PedestalCraftingCriterion extends AbstractCriterion<PedestalCraftin
 			AbstractCriterion.Conditions.super.validate(validator);
 		}
 		
-		public boolean matches(ItemStack itemStack, int experience, int durationTicks) {
-			if (this.experienceRange.test(experience) && this.craftingDurationTicksRange.test(durationTicks)) {
-				List<ItemPredicate> list = new ObjectArrayList<>(this.itemPredicates);
-				if (list.isEmpty()) {
-					return true;
-				} else {
-					if (!itemStack.isEmpty()) {
-						list.removeIf((itemPredicate) -> itemPredicate.test(itemStack));
-					}
-					return list.isEmpty();
-				}
-			} else {
+		public boolean matches(ItemStack craftedStack, int experience, int durationTicks) {
+			if (this.craftedItemPredicate.isPresent() && !this.craftedItemPredicate.get().test(craftedStack)) {
 				return false;
 			}
+			if (!this.experienceRange.test(experience)) {
+				return false;
+			}
+			return this.craftingDurationTicksRange.test(durationTicks);
 		}
 	}
 	

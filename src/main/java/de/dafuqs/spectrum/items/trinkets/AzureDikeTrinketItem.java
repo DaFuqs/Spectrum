@@ -5,15 +5,16 @@ import dev.emi.trinkets.api.*;
 import net.fabricmc.api.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
-import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.item.tooltip.*;
 import net.minecraft.text.*;
+import net.minecraft.util.*;
 
 import java.util.*;
 
 public abstract class AzureDikeTrinketItem extends SpectrumTrinketItem implements AzureDikeItem {
 	
-	public AzureDikeTrinketItem(Settings settings) {
-		super(settings, UNLOCK_IDENTIFIER);
+	public AzureDikeTrinketItem(Settings settings, Identifier unlockIdentifier) {
+		super(settings, unlockIdentifier);
 	}
 	
 	@Override

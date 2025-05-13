@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.mixin.client;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import de.dafuqs.spectrum.deeper_down.DarknessEffects;
+import de.dafuqs.spectrum.deeper_down.DimensionRenderEffects;
 import net.minecraft.util.math.MathHelper;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -17,11 +17,11 @@ public class RenderSystemMixin {
 
     @Inject(method = "getShaderFogColor", at = @At("RETURN"), cancellable = true)
     private static void alterFogColor(CallbackInfoReturnable<float[]> cir) {
-        var darkening = DarknessEffects.fogDarkness;
-        var blend = DarknessEffects.blend;
-        var r = MathHelper.lerp(blend, shaderFogColor[0], DarknessEffects.red);
-        var g = MathHelper.lerp(blend, shaderFogColor[1], DarknessEffects.green);
-        var b = MathHelper.lerp(blend, shaderFogColor[2], DarknessEffects.blue);
+        var darkening = DimensionRenderEffects.fogDarkness;
+        var blend = DimensionRenderEffects.blend;
+        var r = MathHelper.lerp(blend, shaderFogColor[0], DimensionRenderEffects.red);
+        var g = MathHelper.lerp(blend, shaderFogColor[1], DimensionRenderEffects.green);
+        var b = MathHelper.lerp(blend, shaderFogColor[2], DimensionRenderEffects.blue);
         r = r * darkening;
         g = g * darkening;
         b = b * darkening;

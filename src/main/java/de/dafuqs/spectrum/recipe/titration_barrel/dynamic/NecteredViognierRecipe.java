@@ -50,7 +50,7 @@ public class NecteredViognierRecipe extends SweetenableTitrationBarrelRecipe {
 		List<StatusEffectInstance> effects = new ArrayList<>();
 		
 		//TODO should this be a float, and only casted to int at the end?
-		int effectDuration = (int) (150 * Math.round(alcPercent % 10));
+		int effectDuration = (int) (150 * Math.round(alcPercent / 10));
 		if (alcPercent >= 35) {
 			effects.add(new StatusEffectInstance(SpectrumStatusEffects.MAGIC_ANNULATION, effectDuration, (int) (alcPercent / 10)));
 		}

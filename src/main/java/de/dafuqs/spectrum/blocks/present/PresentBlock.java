@@ -6,34 +6,35 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import it.unimi.dsi.fastutil.objects.*;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.client.world.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.pathing.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.loot.context.*;
-import net.minecraft.particle.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
-import net.minecraft.state.*;
-import net.minecraft.state.property.*;
-import net.minecraft.text.*;
+import net.minecraft.client.multiplayer.*;
+import net.minecraft.core.*;
+import net.minecraft.core.particles.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
 import net.minecraft.util.*;
-import net.minecraft.util.hit.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.pathfinder.*;
+import net.minecraft.world.level.storage.loot.*;
+import net.minecraft.world.level.storage.loot.parameters.*;
+import net.minecraft.world.phys.*;
+import net.minecraft.world.phys.shapes.*;
 import org.jetbrains.annotations.*;
 import org.joml.*;
 
 import java.util.*;
 
-public class PresentBlock extends BlockWithEntity {
+public class PresentBlock extends BaseEntityBlock {
 	
-	public static final MapCodec<PresentBlock> CODEC = createCodec(PresentBlock::new);
+	public static final MapCodec<PresentBlock> CODEC = simpleCodec(PresentBlock::new);
 	
 	protected static Map<Item, PresentUnpackBehavior> BEHAVIORS = new Object2ObjectOpenHashMap<>();
 	
@@ -41,11 +42,11 @@ public class PresentBlock extends BlockWithEntity {
 		return BEHAVIORS.getOrDefault(stack.getItem(), null);
 	}
 	
-	public static void registerBehavior(ItemConvertible provider, PresentUnpackBehavior behavior) {
+	public static void registerBehavior(ItemLike provider, PresentUnpackBehavior behavior) {
 		BEHAVIORS.put(provider.asItem(), behavior);
 	}
 	
-	public enum WrappingPaper implements StringIdentifiable {
+	public enum WrappingPaper implements StringRepresentable {
 		RED(Blocks.RED_WOOL),
 		BLUE(Blocks.BLUE_WOOL),
 		CYAN(Blocks.CYAN_WOOL),
@@ -64,7 +65,7 @@ public class PresentBlock extends BlockWithEntity {
 		}
 		
 		@Override
-		public String asString() {
+		public String getSerializedName() {
 			return this.toString().toLowerCase(Locale.ROOT);
 		}
 	}
@@ -72,99 +73,99 @@ public class PresentBlock extends BlockWithEntity {
 	public static final int TICKS_PER_OPENING_STEP = 20;
 	public static final int OPENING_STEPS = 6;
 	
-	public static final BooleanProperty OPENING = BooleanProperty.of("opening");
-	public static final EnumProperty<WrappingPaper> VARIANT = EnumProperty.of("variant", WrappingPaper.class);
-	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 10.0D, 14.0D);
+	public static final BooleanProperty OPENING = BooleanProperty.create("opening");
+	public static final EnumProperty<WrappingPaper> VARIANT = EnumProperty.create("variant", WrappingPaper.class);
+	protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 10.0D, 14.0D);
 	
-	public PresentBlock(Settings settings) {
+	public PresentBlock(Properties settings) {
 		super(settings);
-		this.setDefaultState(this.stateManager.getDefaultState().with(OPENING, false).with(VARIANT, WrappingPaper.RED));
+		this.registerDefaultState(this.stateDefinition.any().setValue(OPENING, false).setValue(VARIANT, WrappingPaper.RED));
 	}
 	
 	@Override
-	public MapCodec<? extends PresentBlock> getCodec() {
+	public MapCodec<? extends PresentBlock> codec() {
 		return CODEC;
 	}
 	
 	@Override
-	protected void appendProperties(StateManager.@NotNull Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
 		builder.add(OPENING, VARIANT);
 	}
 	
 	@Override
-	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		return SHAPE;
 	}
 	
 	@Override
-	public boolean canPlaceAt(@NotNull BlockState state, WorldView world, BlockPos pos) {
-		BlockState downState = world.getBlockState(pos.down());
-		return downState.isSideSolidFullSquare(world, pos, Direction.UP);
+	public boolean canSurvive(@NotNull BlockState state, LevelReader world, BlockPos pos) {
+		BlockState downState = world.getBlockState(pos.below());
+		return downState.isFaceSturdy(world, pos, Direction.UP);
 	}
 	
 	@Override
-	public void onPlaced(@NotNull World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+	public void setPlacedBy(@NotNull Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		world.setBlockState(pos, state.with(PresentBlock.VARIANT, PresentBlockItem.getWrapData(itemStack).variant()));
+		world.setBlockAndUpdate(pos, state.setValue(PresentBlock.VARIANT, PresentBlockItem.getWrapData(itemStack).variant()));
 		if (blockEntity instanceof PresentBlockEntity presentBlockEntity) {
 			presentBlockEntity.setPresent(itemStack);
 		}
 	}
 	
 	@Override
-	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-		if (!player.getAbilities().allowModifyWorld) {
-			return ActionResult.PASS;
+	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
+		if (!player.getAbilities().mayBuild) {
+			return InteractionResult.PASS;
 		} else {
-			if (world.isClient) {
-				return ActionResult.SUCCESS;
+			if (world.isClientSide) {
+				return InteractionResult.SUCCESS;
 			} else {
 				BlockEntity blockEntity = world.getBlockEntity(pos);
 				if (blockEntity instanceof PresentBlockEntity presentBlockEntity) {
-					if (player.isSneaking()) {
+					if (player.isShiftKeyDown()) {
 						presentBlockEntity.setOpenerUUID(player);
-						state = state.with(OPENING, true);
-						world.setBlockState(pos, state, 3);
-						world.scheduleBlockTick(pos, state.getBlock(), TICKS_PER_OPENING_STEP);
+						state = state.setValue(OPENING, true);
+						world.setBlock(pos, state, 3);
+						world.scheduleTick(pos, state.getBlock(), TICKS_PER_OPENING_STEP);
 					} else {
 						if (presentBlockEntity.getOwnerName() != null) {
-							player.sendMessage(Text.translatable("block.spectrum.present.tooltip.wrapped_placed.giver", presentBlockEntity.getOwnerName()), true);
+							player.displayClientMessage(Component.translatable("block.spectrum.present.tooltip.wrapped_placed.giver", presentBlockEntity.getOwnerName()), true);
 						} else {
-							player.sendMessage(Text.translatable("block.spectrum.present.tooltip.wrapped_placed"), true);
+							player.displayClientMessage(Component.translatable("block.spectrum.present.tooltip.wrapped_placed"), true);
 						}
 						
 					}
 				}
-				return ActionResult.CONSUME;
+				return InteractionResult.CONSUME;
 			}
 		}
 	}
 	
 	@Override
-	public List<ItemStack> getDroppedStacks(BlockState state, LootContextParameterSet.Builder builder) {
-		BlockEntity blockEntity = builder.get(LootContextParameters.BLOCK_ENTITY);
+	public List<ItemStack> getDrops(BlockState state, LootParams.Builder builder) {
+		BlockEntity blockEntity = builder.getParameter(LootContextParams.BLOCK_ENTITY);
 		if (blockEntity instanceof PresentBlockEntity presentBlockEntity) {
 			return List.of(presentBlockEntity.retrievePresent());
 		} else {
-			return super.getDroppedStacks(state, builder);
+			return super.getDrops(state, builder);
 		}
 	}
 	
 	@Override
-	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		if (state.get(OPENING) && !world.isClient) {
+	public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+		if (state.getValue(OPENING) && !world.isClientSide) {
 			if (world.getBlockEntity(pos) instanceof PresentBlockEntity presentBlockEntity) {
 				int openingTick = presentBlockEntity.openingTick();
-				Vec3d posVec = new Vec3d(pos.getX() + 0.5, pos.getY() + 0.25, pos.getZ() + 0.5);
+				Vec3 posVec = new Vec3(pos.getX() + 0.5, pos.getY() + 0.25, pos.getZ() + 0.5);
 				if (openingTick >= OPENING_STEPS) {
 					spawnParticles(world, pos, presentBlockEntity.getColors());
 					presentBlockEntity.triggerAdvancement();
 					if (presentBlockEntity.isEmpty()) {
-						world.playSound(null, posVec.x, posVec.y, posVec.z, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 0.5F, 0.8F);
-						PlayParticleWithExactVelocityPayload.playParticleWithExactVelocity(world, posVec, ParticleTypes.SMOKE, 5, Vec3d.ZERO);
+						world.playSound(null, posVec.x, posVec.y, posVec.z, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 0.5F, 0.8F);
+						PlayParticleWithExactVelocityPayload.playParticleWithExactVelocity(world, posVec, ParticleTypes.SMOKE, 5, Vec3.ZERO);
 					} else {
-						world.playSound(null, posVec.x, posVec.y, posVec.z, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 0.5F, 4.0F);
-						PlayParticleWithExactVelocityPayload.playParticleWithExactVelocity(world, posVec, ParticleTypes.EXPLOSION, 1, Vec3d.ZERO);
+						world.playSound(null, posVec.x, posVec.y, posVec.z, SoundEvents.GENERIC_EXPLODE, SoundSource.BLOCKS, 0.5F, 4.0F);
+						PlayParticleWithExactVelocityPayload.playParticleWithExactVelocity(world, posVec, ParticleTypes.EXPLOSION, 1, Vec3.ZERO);
 						for (ItemStack stack : presentBlockEntity.getStacks()) {
 							@Nullable PresentUnpackBehavior behavior = getBehaviorFor(stack);
 							if (behavior != null) {
@@ -173,26 +174,26 @@ public class PresentBlock extends BlockWithEntity {
 									continue;
 								}
 							}
-							ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), stack);
+							Containers.dropItemStack(world, pos.getX(), pos.getY(), pos.getZ(), stack);
 						}
 					}
-					world.setBlockState(pos, Blocks.AIR.getDefaultState());
+					world.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
 				} else {
-					world.playSound(null, posVec.x, posVec.y, posVec.z, SoundEvents.BLOCK_SAND_PLACE, SoundCategory.BLOCKS, 0.8F + openingTick * 0.1F, 1.0F);
+					world.playSound(null, posVec.x, posVec.y, posVec.z, SoundEvents.SAND_PLACE, SoundSource.BLOCKS, 0.8F + openingTick * 0.1F, 1.0F);
 					spawnParticles(world, pos, presentBlockEntity.getColors());
 				}
 			}
-			world.scheduleBlockTick(pos, state.getBlock(), TICKS_PER_OPENING_STEP);
+			world.scheduleTick(pos, state.getBlock(), TICKS_PER_OPENING_STEP);
 		}
 	}
 	
-	public static void spawnParticles(ServerWorld world, BlockPos pos, Map<Integer, Integer> colors) {
+	public static void spawnParticles(ServerLevel world, BlockPos pos, Map<Integer, Integer> colors) {
 		PlayPresentOpeningParticlesPayload.playPresentOpeningParticles(world, pos, colors);
 	}
 	
-	public static void spawnParticles(ClientWorld world, BlockPos pos, Map<Integer, Integer> colors) {
+	public static void spawnParticles(ClientLevel world, BlockPos pos, Map<Integer, Integer> colors) {
 		if (colors.isEmpty()) {
-			int randomColor = DyeColor.byId(world.random.nextInt(DyeColor.values().length)).getEntityColor();
+			int randomColor = DyeColor.byId(world.random.nextInt(DyeColor.values().length)).getTextureDiffuseColor();
 			spawnParticles(world, pos, randomColor, 15);
 		} else {
 			for (Map.Entry<Integer, Integer> color : colors.entrySet()) {
@@ -201,11 +202,11 @@ public class PresentBlock extends BlockWithEntity {
 		}
 	}
 	
-	private static void spawnParticles(ClientWorld world, BlockPos pos, int color, int amount) {
+	private static void spawnParticles(ClientLevel world, BlockPos pos, int color, int amount) {
 		double posX = pos.getX() + 0.5;
 		double posY = pos.getY() + 0.25;
 		double posZ = pos.getZ() + 0.5;
-		Random random = world.random;
+		RandomSource random = world.random;
 		Vector3f colorVec = SpectrumColorHelper.colorIntToVec(color);
 		for (int i = 0; i < amount; i++) {
 			double randX = 0.35 - random.nextFloat() * 0.7;
@@ -214,24 +215,24 @@ public class PresentBlock extends BlockWithEntity {
 			float randomScale = 0.5F + random.nextFloat();
 			int randomLifetime = 20 + random.nextInt(20);
 			
-			ParticleEffect particleEffect = new DynamicParticleEffect(0.98F, colorVec, randomScale, randomLifetime, true, false);
+			ParticleOptions particleEffect = new DynamicParticleEffect(0.98F, colorVec, randomScale, randomLifetime, true, false);
 			world.addParticle(particleEffect, posX, posY, posZ, randX, randY, randZ);
 		}
 	}
 	
 	@Nullable
 	@Override
-	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new PresentBlockEntity(pos, state);
 	}
 	
 	@Override
-	public BlockRenderType getRenderType(BlockState state) {
-		return BlockRenderType.MODEL;
+	public RenderShape getRenderShape(BlockState state) {
+		return RenderShape.MODEL;
 	}
 	
 	@Override
-	public boolean canPathfindThrough(BlockState state, NavigationType type) {
+	public boolean isPathfindable(BlockState state, PathComputationType type) {
 		return false;
 	}
 	

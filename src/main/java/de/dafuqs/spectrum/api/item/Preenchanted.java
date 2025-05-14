@@ -1,29 +1,30 @@
 package de.dafuqs.spectrum.api.item;
 
-import net.minecraft.component.*;
-import net.minecraft.component.type.*;
-import net.minecraft.enchantment.*;
-import net.minecraft.item.*;
-import net.minecraft.registry.*;
+import net.minecraft.core.*;
+import net.minecraft.core.component.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public interface Preenchanted {
 	
-	Map<RegistryKey<Enchantment>, Integer> getDefaultEnchantments();
+	Map<ResourceKey<Enchantment>, Integer> getDefaultEnchantments();
 	
-	static ItemEnchantmentsComponent buildDefaultEnchantments(RegistryWrapper.WrapperLookup lookup, Preenchanted item) {
-		ItemEnchantmentsComponent.Builder builder = new ItemEnchantmentsComponent.Builder(ItemEnchantmentsComponent.DEFAULT);
-		for (Map.Entry<RegistryKey<Enchantment>, Integer> entry : item.getDefaultEnchantments().entrySet()) {
-			builder.set(lookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT).getOrThrow(entry.getKey()), entry.getValue());
+	static ItemEnchantments buildDefaultEnchantments(HolderLookup.Provider lookup, Preenchanted item) {
+		ItemEnchantments.Mutable builder = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
+		for (Map.Entry<ResourceKey<Enchantment>, Integer> entry : item.getDefaultEnchantments().entrySet()) {
+			builder.set(lookup.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(entry.getKey()), entry.getValue());
 		}
-		return builder.build();
+		return builder.toImmutable();
 	}
 	
-	static @NotNull <T extends Item & Preenchanted> ItemStack getDefaultEnchantedStack(RegistryWrapper.WrapperLookup lookup, T item) {
+	static @NotNull <T extends Item & Preenchanted> ItemStack getDefaultEnchantedStack(HolderLookup.Provider lookup, T item) {
 		ItemStack stack = new ItemStack(item);
-		stack.set(DataComponentTypes.ENCHANTMENTS, buildDefaultEnchantments(lookup, item));
+		stack.set(DataComponents.ENCHANTMENTS, buildDefaultEnchantments(lookup, item));
 		return stack;
 	}
 	
@@ -32,7 +33,7 @@ public interface Preenchanted {
 	 * meaning enchantments had been added on top of the original ones.
 	 */
 	default boolean onlyHasPreEnchantments(ItemStack stack) {
-		var currentEnchants = stack.getOrDefault(DataComponentTypes.ENCHANTMENTS, ItemEnchantmentsComponent.DEFAULT);
+		var currentEnchants = stack.getOrDefault(DataComponents.ENCHANTMENTS, ItemEnchantments.EMPTY);
 		var defaultEnchants = getDefaultEnchantments();
 		return currentEnchants.equals(defaultEnchants);
 	}

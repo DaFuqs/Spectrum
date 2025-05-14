@@ -1,15 +1,15 @@
 package de.dafuqs.spectrum.items;
 
-import net.minecraft.item.*;
+import net.minecraft.world.item.*;
 
 public class ItemWithGlint extends Item {
 	
-	public ItemWithGlint(Settings settings) {
+	public ItemWithGlint(Properties settings) {
 		super(settings);
 	}
 	
 	@Override
-	public boolean hasGlint(ItemStack stack) {
+	public boolean isFoil(ItemStack stack) {
 		return true;
 	}
 	

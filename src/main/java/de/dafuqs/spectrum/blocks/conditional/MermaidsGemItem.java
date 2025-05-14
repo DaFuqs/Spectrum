@@ -2,23 +2,25 @@ package de.dafuqs.spectrum.blocks.conditional;
 
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.*;
-import net.minecraft.block.*;
-import net.minecraft.item.*;
+import net.minecraft.resources.*;
 import net.minecraft.util.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 
 import java.util.*;
 
-public class MermaidsGemItem extends AliasedBlockItem implements RevelationAware {
+public class MermaidsGemItem extends ItemNameBlockItem implements RevelationAware {
 	
-	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("place_pedestal");
+	public static final ResourceLocation UNLOCK_IDENTIFIER = SpectrumCommon.locate("place_pedestal");
 	
-	public MermaidsGemItem(Block block, Settings settings) {
+	public MermaidsGemItem(Block block, Properties settings) {
 		super(block, settings);
 		RevelationAware.register(this);
 	}
 	
 	@Override
-	public Identifier getCloakAdvancementIdentifier() {
+	public ResourceLocation getCloakAdvancementIdentifier() {
 		return UNLOCK_IDENTIFIER;
 	}
 	
@@ -28,8 +30,8 @@ public class MermaidsGemItem extends AliasedBlockItem implements RevelationAware
 	}
 	
 	@Override
-	public Pair<Item, Item> getItemCloak() {
-		return new Pair<>(this, Items.KELP);
+	public Tuple<Item, Item> getItemCloak() {
+		return new Tuple<>(this, Items.KELP);
 	}
 	
 }

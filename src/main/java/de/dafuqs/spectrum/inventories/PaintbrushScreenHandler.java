@@ -4,24 +4,24 @@ import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.items.magic_items.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.registry.entry.*;
+import net.minecraft.core.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.entity.*;
 
 import java.util.*;
 
 public class PaintbrushScreenHandler extends QuickNavigationGridScreenHandler implements InkColorSelectedPacketReceiver {
 	
-	private final PlayerEntity player;
+	private final Player player;
 	private final ItemStack paintBrushStack;
 	private final boolean hasAccessToWhites;
 	
-	public PaintbrushScreenHandler(int syncId, PlayerInventory playerInventory) {
+	public PaintbrushScreenHandler(int syncId, Inventory playerInventory) {
 		this(syncId, playerInventory, ItemStack.EMPTY);
 	}
 	
-	public PaintbrushScreenHandler(int syncId, PlayerInventory playerInventory, ItemStack paintBrushStack) {
+	public PaintbrushScreenHandler(int syncId, Inventory playerInventory, ItemStack paintBrushStack) {
 		super(SpectrumScreenHandlerTypes.PAINTBRUSH, syncId);
 		this.player = playerInventory.player;
 		this.paintBrushStack = paintBrushStack;
@@ -29,8 +29,8 @@ public class PaintbrushScreenHandler extends QuickNavigationGridScreenHandler im
 	}
 	
 	@Override
-	public boolean canUse(PlayerEntity player) {
-		for (ItemStack itemStack : player.getHandItems()) {
+	public boolean stillValid(Player player) {
+		for (ItemStack itemStack : player.getHandSlots()) {
 			if (itemStack == paintBrushStack) {
 				return true;
 			}
@@ -43,9 +43,9 @@ public class PaintbrushScreenHandler extends QuickNavigationGridScreenHandler im
 	}
 	
 	@Override
-	public void onInkColorSelectedPacket(Optional<RegistryEntry<InkColor>> inkColor) {
-		PaintbrushItem.setColor(paintBrushStack, inkColor.map(RegistryEntry::value).orElse(null));
-		onClosed(player);
+	public void onInkColorSelectedPacket(Optional<Holder<InkColor>> inkColor) {
+		PaintbrushItem.setColor(paintBrushStack, inkColor.map(Holder::value).orElse(null));
+		removed(player);
 	}
 	
 	@Override

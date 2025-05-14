@@ -17,10 +17,10 @@ public record ExtendedBundleComponent(Fraction maxOccupancy, int maxStacks, bool
 			Codec.BOOL.fieldOf("ignore_stacks").forGetter(c -> c.ignoreStacks)
 	).apply(i, ExtendedBundleComponent::new));
 	
-	public static final PacketCodec<ByteBuf, ExtendedBundleComponent> PACKET_CODEC = PacketCodec.tuple(
+	public static final StreamCodec<ByteBuf, ExtendedBundleComponent> PACKET_CODEC = StreamCodec.composite(
 			PacketCodecHelper.FRACTION, c -> c.maxOccupancy,
-			PacketCodecs.VAR_INT, c -> c.maxStacks,
-			PacketCodecs.BOOL, c -> c.ignoreStacks,
+			ByteBufCodecs.VAR_INT, c -> c.maxStacks,
+			ByteBufCodecs.BOOL, c -> c.ignoreStacks,
 			ExtendedBundleComponent::new
 	);
 	

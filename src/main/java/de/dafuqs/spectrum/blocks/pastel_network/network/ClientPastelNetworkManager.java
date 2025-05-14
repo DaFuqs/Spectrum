@@ -1,21 +1,22 @@
 package de.dafuqs.spectrum.blocks.pastel_network.network;
 
+import com.mojang.blaze3d.vertex.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
-import net.minecraft.client.util.math.*;
-import net.minecraft.client.world.*;
-import net.minecraft.entity.*;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
-import org.jgrapht.*;
+import net.minecraft.client.multiplayer.*;
+import net.minecraft.core.*;
+import net.minecraft.world.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.phys.*;
+import org.jgrapht.Graph;
 import org.jgrapht.graph.*;
 import org.joml.Math;
 
 import java.util.*;
 
 @Environment(EnvType.CLIENT)
-public class ClientPastelNetworkManager implements PastelNetworkManager<ClientWorld, ClientPastelNetwork>, Clearable {
+public class ClientPastelNetworkManager implements PastelNetworkManager<ClientLevel, ClientPastelNetwork>, Clearable {
 	
 	protected static final int MAX_RENDER_DISTANCE_SQUARED = 48 * 48;
 	
@@ -27,19 +28,19 @@ public class ClientPastelNetworkManager implements PastelNetworkManager<ClientWo
 	}
 	
 	@Override
-	public ClientPastelNetwork createNetwork(ClientWorld world, UUID uuid, int color) {
+	public ClientPastelNetwork createNetwork(ClientLevel world, UUID uuid, int color) {
 		ClientPastelNetwork network = new ClientPastelNetwork(world, uuid, color);
 		this.networks.add(network);
 		return network;
 	}
 	
 	public void renderLines(WorldRenderContext context, LivingEntity cameraEntity, boolean paintbrushInHand) {
-		BlockPos cameraEntityPos = cameraEntity.getBlockPos();
+		BlockPos cameraEntityPos = cameraEntity.blockPosition();
 		
-		ClientWorld world = context.world();
-		long worldTime = world.getTime();
+		ClientLevel world = context.world();
+		long worldTime = world.getGameTime();
 		for (ClientPastelNetwork network : this.networks) {
-			if (network.getWorld().getDimension() != world.getDimension()) continue;
+			if (network.getWorld().dimensionType() != world.dimensionType()) continue;
 			
 			float alphaMod = paintbrushInHand ? 1.0F : (network.lastChangeTick - worldTime + 20) * 0.05F;
 			if (alphaMod <= 0.0F) continue;
@@ -53,27 +54,27 @@ public class ClientPastelNetworkManager implements PastelNetworkManager<ClientWo
 				BlockPos target = graph.getEdgeTarget(edge);
 				
 				// do not render lines that are far away to save a lot of fps
-				if (cameraEntityPos.getSquaredDistance(source) > MAX_RENDER_DISTANCE_SQUARED && cameraEntityPos.getSquaredDistance(target) > MAX_RENDER_DISTANCE_SQUARED) {
+				if (cameraEntityPos.distSqr(source) > MAX_RENDER_DISTANCE_SQUARED && cameraEntityPos.distSqr(target) > MAX_RENDER_DISTANCE_SQUARED) {
 					continue;
 				}
 				
-				final MatrixStack matrices = context.matrixStack();
-				final Vec3d pos = context.camera().getPos();
-				matrices.push();
+				final PoseStack matrices = context.matrixStack();
+				final Vec3 pos = context.camera().getPosition();
+				matrices.pushPose();
 				matrices.translate(-pos.x, -pos.y, -pos.z);
-				var cross = source.crossProduct(target);
-				var interval = (cross.getX() + cross.getY() + cross.getZ() + network.world.getTime()) % 1000000F;
+				var cross = source.cross(target);
+				var interval = (cross.getX() + cross.getY() + cross.getZ() + network.world.getGameTime()) % 1000000F;
 				var alpha = alphaMod * (1.0 - (Math.max(Math.sin((interval / 17F)) * 2.5 - 2, 0)));
 				colors[0] = (float) alpha;
 				PastelRenderHelper.renderLineTo(context.matrixStack(), context.consumers(), colors, source, target);
 				
-				matrices.pop();
+				matrices.popPose();
 			}
 		}
 	}
 	
 	@Override
-	public void clear() {
+	public void clearContent() {
 		this.networks.clear();
 	}
 	

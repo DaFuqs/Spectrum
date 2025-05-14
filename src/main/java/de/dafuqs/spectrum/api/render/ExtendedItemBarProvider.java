@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.api.render;
 
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
 import org.jetbrains.annotations.*;
 
 public interface ExtendedItemBarProvider {
@@ -12,11 +12,11 @@ public interface ExtendedItemBarProvider {
 	
 	int barCount(ItemStack stack);
 	
-	default boolean allowVanillaDurabilityBarRendering(@Nullable PlayerEntity player, ItemStack stack) {
+	default boolean allowVanillaDurabilityBarRendering(@Nullable Player player, ItemStack stack) {
 		return true;
 	}
 	
-	BarSignature getSignature(@Nullable PlayerEntity player, @NotNull ItemStack stack, int index);
+	BarSignature getSignature(@Nullable Player player, @NotNull ItemStack stack, int index);
 	
 	record BarSignature(int xPos, int yPos, int length, int fill, int fillHeight, int fillColor, boolean drawBackground,
 						int backgroundHeight, int backgroundColor) {

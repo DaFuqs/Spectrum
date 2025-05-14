@@ -1,25 +1,22 @@
 package de.dafuqs.spectrum.items.food;
 
-import net.minecraft.client.item.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
+import net.minecraft.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.world.item.*;
 
 import java.util.*;
 
 public class MoonstruckNectarItem extends DrinkItem {
 	
-	public MoonstruckNectarItem(Settings settings) {
+	public MoonstruckNectarItem(Properties settings) {
 		super(settings);
 	}
 
 	@Override
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
-		tooltip.add(Text.translatable("item.spectrum.moonstruck_nectar.tooltip").formatted(Formatting.GRAY));
-		tooltip.add(Text.translatable("item.spectrum.moonstruck_nectar.tooltip2").formatted(Formatting.GRAY));
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
+		tooltip.add(Component.translatable("item.spectrum.moonstruck_nectar.tooltip").withStyle(ChatFormatting.GRAY));
+		tooltip.add(Component.translatable("item.spectrum.moonstruck_nectar.tooltip2").withStyle(ChatFormatting.GRAY));
 	}
 	
 }

@@ -12,7 +12,6 @@
     "AnimalEntityMixin",
     "AnvilBlockMixin",
     "ApplyBonusLootFunctionMixin",
-    "BannerPatternFormatFixMixin",
     "BlockMixin",
     "BrainMixin",
     "BrewingRecipeRegistryMixin",
@@ -79,7 +78,6 @@
     "SpawnDensityCapperMixin",
     "StatusEffectInstanceMixin",
     "StatusEffectUtilMixin",
-    "SugarCaneBlockMixin",
     "TemptGoalMixin",
     "TridentEntityMixin",
     "WitherEntityMixin",
@@ -112,7 +110,6 @@
   "client": [
     "accessors.DimensionEffectsAccessor",
     "accessors.WorldRendererAccessor",
-    "client.AbstractClientEntityMixin",
     "client.AbstractInventoryScreenMixin",
     "client.BackgroundRendererMixin",
     "client.BipedEntityModelMixin",

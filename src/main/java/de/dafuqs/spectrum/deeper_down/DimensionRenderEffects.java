@@ -4,18 +4,18 @@ import com.google.common.collect.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.status_effects.*;
 import net.minecraft.client.*;
-import net.minecraft.client.world.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.registry.*;
-import net.minecraft.registry.entry.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.biome.*;
+import net.minecraft.client.multiplayer.*;
+import net.minecraft.core.*;
+import net.minecraft.resources.*;
+import net.minecraft.util.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.level.biome.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-import static net.minecraft.util.math.MathHelper.lerp;
+import static net.minecraft.util.Mth.*;
 
 /**
  * I admit that this class is a mess
@@ -27,10 +27,10 @@ public class DimensionRenderEffects {
 	public static final float INTERP_TICKS = 80;
 	public static final float[] FOG_DISTANCE_DEFAULT = new float[]{-2.25F, 1.5F};
 	
-	private static final Map<RegistryKey<Biome>, Float> DARKENING_MULTIPLIERS, FOG_DARKENING_MULTIPLIERS;
-	private static final Map<RegistryKey<Biome>, float[]> FOG_DISTANCE_MULTIPLIERS;
+	private static final Map<ResourceKey<Biome>, Float> DARKENING_MULTIPLIERS, FOG_DARKENING_MULTIPLIERS;
+	private static final Map<ResourceKey<Biome>, float[]> FOG_DISTANCE_MULTIPLIERS;
 	
-	private static final Map<RegistryKey<Biome>, ColorGrading> COLOR_GRADING_DATA;
+	private static final Map<ResourceKey<Biome>, ColorGrading> COLOR_GRADING_DATA;
 	private static final ColorGrading DEFAULT = new ColorGrading(1.0F, 0.0F, 65, 0.85F, 0.35F);
 	private static final InterpolationQueue<float[]> GRADING_QUEUE = new InterpolationQueue<>();
 	
@@ -41,18 +41,18 @@ public class DimensionRenderEffects {
 			lastFogTarget = 1F, nearTarget = 1F, near = 1F, lastNearTarget = 1F, farTarget = 1F, far = 1F, lastFarTarget = 1F,
 			redTarget, red, lastRedTarget, greenTarget, green, lastGreenTarget, blueTarget, blue, lastBlueTarget, blendTarget, blend, lastBlendTarget;
 	
-	private static RegistryEntry<Biome> currentBiome;
-	private static final MinecraftClient client = MinecraftClient.getInstance();
+	private static Holder<Biome> currentBiome;
+	private static final Minecraft client = Minecraft.getInstance();
 	private static boolean shouldUpdate, forceBiomeUpdate;
 	
 	// TODO: this should also invalidate the values when the world or spectated entity changed
-	public static void clientTick(ClientWorld world, Entity entity, RegistryEntry<Biome> biome) {
+	public static void clientTick(ClientLevel world, Entity entity, Holder<Biome> biome) {
 		if (client.isPaused())
 			return;
 		
 		lastDarkenTicks = darkenTicks;
 		float sleepPotency = -1;
-		@Nullable RegistryEntry<StatusEffect> sleepEffect = null;
+		@Nullable Holder<MobEffect> sleepEffect = null;
 		if (entity instanceof LivingEntity livingEntity) {
 			sleepPotency = SleepStatusEffect.getSleepScaling(livingEntity);
 			sleepEffect = SleepStatusEffect.getStrongestSleepEffect(livingEntity);
@@ -60,7 +60,7 @@ public class DimensionRenderEffects {
 		
 		
 		if (shouldUpdate) {
-			var targets = MathHelper.clamp(sleepPotency / 2F, 0, 1);
+			var targets = Mth.clamp(sleepPotency / 2F, 0, 1);
 			interpInterpTicks = 0;
 			shouldUpdate = false;
 			updateTargets();
@@ -108,11 +108,11 @@ public class DimensionRenderEffects {
 				forceFogEffects = false;
 				forceBiomeUpdate = true;
 			}
-		} else if (currentBiome == null || !currentBiome.getKey().equals(biome.getKey())) {
+		} else if (currentBiome == null || !currentBiome.unwrapKey().equals(biome.unwrapKey())) {
 			if (forceBiomeUpdate)
 				forceBiomeUpdate = false;
-
-			var biomeKey = biome.getKey().orElse(null);
+			
+			var biomeKey = biome.unwrapKey().orElse(null);
 			currentBiome = biome;
 			updateTargets();
 			
@@ -148,7 +148,7 @@ public class DimensionRenderEffects {
 			ColorGrading.update(GRADING_QUEUE.last, GRADING_QUEUE.current, delta);
 		}
 		
-		isInDarkenedBiome = DARKENING_MULTIPLIERS.containsKey(biome.getKey().orElse(null));
+		isInDarkenedBiome = DARKENING_MULTIPLIERS.containsKey(biome.unwrapKey().orElse(null));
 		if (isInDarkenedBiome || sleepAfflicted) {
 			if (darkenTicks < INTERP_TICKS) {
 				darkenTicks++;
@@ -179,12 +179,12 @@ public class DimensionRenderEffects {
 		if (client.cameraEntity == null)
 			return interp;
 		
-		double y = lerp(client.getRenderTickCounter().getTickDelta(false), client.cameraEntity.lastRenderY, client.cameraEntity.getY());
+		double y = lerp(client.getTimer().getGameTimeDeltaPartialTick(false), client.cameraEntity.yOld, client.cameraEntity.getY());
 		float adjustedInterp;
 		
 		//entrance darkening
 		if (y > -116) {
-			adjustedInterp = (float) MathHelper.clampedLerp(0.175F, interp, (y + 64) / -52F);
+			adjustedInterp = (float) Mth.clampedLerp(0.175F, interp, (y + 64) / -52F);
 		}
 		//depth darkening
 		else if (y < -256) {
@@ -200,11 +200,11 @@ public class DimensionRenderEffects {
 		if (client.cameraEntity == null)
 			return near;
 		
-		var y = lerp(client.getRenderTickCounter().getTickDelta(false), client.cameraEntity.lastRenderY, client.cameraEntity.getY());
+		var y = lerp(client.getTimer().getGameTimeDeltaPartialTick(false), client.cameraEntity.yOld, client.cameraEntity.getY());
 		float distance;
 		
 		if (y < -270) {
-			distance = (float) MathHelper.clampedLerp(1F, 0.667F, (y + 270) / -12) * near;
+			distance = (float) Mth.clampedLerp(1F, 0.667F, (y + 270) / -12) * near;
 		} else {
 			distance = near;
 		}
@@ -220,12 +220,12 @@ public class DimensionRenderEffects {
 	}
 	
 	public static float getDarknessInterpolation() {
-		return lerp(MinecraftClient.getInstance().getRenderTickCounter().getTickDelta(false), (float) DimensionRenderEffects.darkenTicks, DimensionRenderEffects.lastDarkenTicks) / INTERP_TICKS * getInterp();
+		return lerp(Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false), (float) DimensionRenderEffects.darkenTicks, DimensionRenderEffects.lastDarkenTicks) / INTERP_TICKS * getInterp();
 	}
 	
 	// this should really be a data loader
 	static {
-		var builder = ImmutableMap.<RegistryKey<Biome>, Float>builder();
+		var builder = ImmutableMap.<ResourceKey<Biome>, Float>builder();
 		builder.put(SpectrumBiomes.BLACK_LANGAST, 0.7F);
 		builder.put(SpectrumBiomes.DEEP_BARRENS, 0.325F);
 		builder.put(SpectrumBiomes.DEEP_DRIPSTONE_CAVES, 0.1F);
@@ -233,7 +233,7 @@ public class DimensionRenderEffects {
 		DARKENING_MULTIPLIERS = builder.build();
 		
 		// Fog darkening,
-		var fogBuilder = ImmutableMap.<RegistryKey<Biome>, Float>builder();
+		var fogBuilder = ImmutableMap.<ResourceKey<Biome>, Float>builder();
 		fogBuilder.put(SpectrumBiomes.NOXSHROOM_FOREST, 0.125F);
 		fogBuilder.put(SpectrumBiomes.RAZOR_EDGE, 0.65F);
 		fogBuilder.put(SpectrumBiomes.DEEP_DRIPSTONE_CAVES, 0.25F);
@@ -243,7 +243,7 @@ public class DimensionRenderEffects {
 		
 		// These are percents of view distance (capped to 192 blocks for far)
 		// Format is [near, far]. ...
-		var transMultiplier = ImmutableMap.<RegistryKey<Biome>, float[]>builder();
+		var transMultiplier = ImmutableMap.<ResourceKey<Biome>, float[]>builder();
 		transMultiplier.put(SpectrumBiomes.NOXSHROOM_FOREST, new float[]{-3F, 1.5F});
 		transMultiplier.put(SpectrumBiomes.HOWLING_SPIRES, new float[]{-5.25F, 1.25F});
 		transMultiplier.put(SpectrumBiomes.DEEP_DRIPSTONE_CAVES, new float[]{-4F, 1.5F});
@@ -252,7 +252,7 @@ public class DimensionRenderEffects {
 		transMultiplier.put(SpectrumBiomes.DRAGONROT_SWAMP, new float[]{-4F, 1F});
 		FOG_DISTANCE_MULTIPLIERS = transMultiplier.build();
 		
-		var colorGradingBuilder = ImmutableMap.<RegistryKey<Biome>, ColorGrading>builder();
+		var colorGradingBuilder = ImmutableMap.<ResourceKey<Biome>, ColorGrading>builder();
 		colorGradingBuilder.put(SpectrumBiomes.NOXSHROOM_FOREST, new ColorGrading(1.05F, 0.015F, 80, 0.7F, 0.3125F));
 		colorGradingBuilder.put(SpectrumBiomes.HOWLING_SPIRES, new ColorGrading(1.0F, 0.0F, 60, 0.9F, 0.425F));
 		colorGradingBuilder.put(SpectrumBiomes.DEEP_DRIPSTONE_CAVES, new ColorGrading(1.0F, 0.02F, 60, 0.8F, 0.3F));

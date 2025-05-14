@@ -1,78 +1,71 @@
 package de.dafuqs.spectrum.blocks.deeper_down.flora;
 
-import com.mojang.serialization.MapCodec;
-import de.dafuqs.spectrum.helpers.BlockReference;
-import de.dafuqs.spectrum.registries.SpectrumBlockTags;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.Properties;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldView;
-import net.minecraft.world.event.GameEvent;
+import com.mojang.serialization.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.core.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.gameevent.*;
+import net.minecraft.world.phys.*;
 
 public class AbyssalVineBlock extends TriStateVineBlock {
-
-    public static final MapCodec<AbyssalVineBlock> CODEC = createCodec(AbyssalVineBlock::new);
-
-    public static final BooleanProperty BERRIES = Properties.BERRIES;
-
-    public AbyssalVineBlock(Settings settings) {
+	
+	public static final MapCodec<AbyssalVineBlock> CODEC = simpleCodec(AbyssalVineBlock::new);
+	
+	public static final BooleanProperty BERRIES = BlockStateProperties.BERRIES;
+	
+	public AbyssalVineBlock(Properties settings) {
         super(settings, 5, 0.3F, 0.4F, 0.667F);
-        setDefaultState(getDefaultState().with(BERRIES, false));
+		registerDefaultState(defaultBlockState().setValue(BERRIES, false));
     }
 
     @Override
-    public MapCodec<? extends AbyssalVineBlock> getCodec() {
+	public MapCodec<? extends AbyssalVineBlock> codec() {
         return CODEC;
     }
 
     @Override
-    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
-        return !state.get(BERRIES);
+	public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
+		return !state.getValue(BERRIES);
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
         var reference = BlockReference.of(state, pos);
-        var superSucc = super.onUse(state, world, pos, player, hit);
-
-        if (superSucc.shouldIncrementStat()) {
+		var superSucc = super.useWithoutItem(state, world, pos, player, hit);
+		
+		if (superSucc.indicateItemUse()) {
             return superSucc;
         }
 
         if (!reference.getProperty(BERRIES))
-            return ActionResult.FAIL;
+			return InteractionResult.FAIL;
 
         reference.setProperty(BERRIES, false);
         reference.update(world);
-        world.playSound(null, pos, SoundEvents.BLOCK_CAVE_VINES_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, MathHelper.nextBetween(world.random, 0.8F, 1.2F));
-        player.getInventory().offerOrDrop(SpectrumItems.FISSURE_PLUM.getDefaultStack());
-
-        world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(player, reference.getState()));
-        return ActionResult.SUCCESS;
+		world.playSound(null, pos, SoundEvents.CAVE_VINES_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, Mth.randomBetween(world.random, 0.8F, 1.2F));
+		player.getInventory().placeItemBackInInventory(SpectrumItems.FISSURE_PLUM.getDefaultInstance());
+		
+		world.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, reference.getState()));
+		return InteractionResult.SUCCESS;
     }
 
     @Override
-    public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
+	public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
         var reference = BlockReference.of(state, pos);
         var growthChance = 0.8F;
 
         for (int offset = 0; true; offset++) {
-            var ref = BlockReference.of(world, pos.add(0, offset, 0));
+			var ref = BlockReference.of(world, pos.offset(0, offset, 0));
 
             if (ref.isOf(SpectrumBlocks.SHALE_CLAY))
                 return;
@@ -94,26 +87,26 @@ public class AbyssalVineBlock extends TriStateVineBlock {
     }
 
     @Override
-    public boolean hasRandomTicks(BlockState state) {
-        return super.hasRandomTicks(state) || !state.get(BERRIES);
+	public boolean isRandomlyTicking(BlockState state) {
+		return super.isRandomlyTicking(state) || !state.getValue(BERRIES);
     }
 
     @Override
-    public ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state) {
-        return SpectrumItems.FISSURE_PLUM.getDefaultStack();
+	public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state) {
+		return SpectrumItems.FISSURE_PLUM.getDefaultInstance();
     }
 
     @Override
     boolean hasGrowthActions() {
         return true;
     }
-
-    public void tryGrowBerries(BlockReference reference, World world) {
+	
+	public void tryGrowBerries(BlockReference reference, Level world) {
         int berryCount = 0;
 
         for (int i = 0; i < 3; i++) {
-            var uRef = BlockReference.of(world, reference.pos.add(0, i, 0));
-            var dRef = BlockReference.of(world, reference.pos.add(0, -i, 0));
+			var uRef = BlockReference.of(world, reference.pos.offset(0, i, 0));
+			var dRef = BlockReference.of(world, reference.pos.offset(0, -i, 0));
 
             berryCount += checkForBerries(uRef);
             berryCount += checkForBerries(dRef);
@@ -136,8 +129,8 @@ public class AbyssalVineBlock extends TriStateVineBlock {
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        super.appendProperties(builder);
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
         builder.add(BERRIES);
     }
 }

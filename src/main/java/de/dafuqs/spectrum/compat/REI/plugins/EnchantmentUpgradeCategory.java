@@ -11,9 +11,7 @@ import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.entry.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
-import net.minecraft.component.*;
-import net.minecraft.item.*;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -30,8 +28,8 @@ public class EnchantmentUpgradeCategory extends EnchanterCategory<EnchantmentUpg
 	}
 	
 	@Override
-	public Text getTitle() {
-		return Text.translatable("container.spectrum.rei.enchantment_upgrading.title");
+	public Component getTitle() {
+		return Component.translatable("container.spectrum.rei.enchantment_upgrading.title");
 	}
 	
 	@Override
@@ -40,13 +38,13 @@ public class EnchantmentUpgradeCategory extends EnchanterCategory<EnchantmentUpg
 	}
 	
 	@Override
-	public Text getDescriptionText(@NotNull EnchantmentUpgradeDisplay display) {
-		return Text.translatable("container.spectrum.rei.enchantment_upgrade.required_item_count", 0);
+	public Component getDescriptionText(@NotNull EnchantmentUpgradeDisplay display) {
+		return Component.translatable("container.spectrum.rei.enchantment_upgrade.required_item_count", 0);
 	}
 	
 	@Override
 	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, @NotNull EnchantmentUpgradeDisplay display) {
-		boolean overUnlocked = AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, SpectrumAdvancements.OVERENCHANTING);
+		boolean overUnlocked = AdvancementHelper.hasAdvancement(Minecraft.getInstance().player, SpectrumAdvancements.OVERENCHANTING);
 		List<EntryIngredient> inputs = display.getInputEntries();
 		
 		// enchanter structure background					            destinationX	 destinationY   sourceX, sourceY, width, height
@@ -56,12 +54,12 @@ public class EnchantmentUpgradeCategory extends EnchanterCategory<EnchantmentUpg
 		if (overUnlocked && display.levelCap > display.maxNormal)
 			widgets.add(Widgets.withTooltip(
 					Widgets.withBounds(Widgets.createTexturedWidget(BACKGROUND_TEXTURE, startPoint.x - 10, startPoint.y + 2, 64, 0, 16, 16), new Rectangle(startPoint.x - 10, startPoint.y + 2, 16, 16)),
-					Text.translatable(EnchanterBlockEntity.OVERCHANTING_TOOLTIP).styled(s -> s.withColor(OVERCHANT_COLOR))));
+					Component.translatable(EnchanterBlockEntity.OVERCHANTING_TOOLTIP).withStyle(s -> s.withColor(OVERCHANT_COLOR))));
 		
 		var max = overUnlocked ? display.levelCap : display.maxNormal;
-		widgets.add(Widgets.createButton(new Rectangle(startPoint.x - 8 + 84, startPoint.y + 20, 8, 8), Text.literal("-"))
+		widgets.add(Widgets.createButton(new Rectangle(startPoint.x - 8 + 84, startPoint.y + 20, 8, 8), Component.literal("-"))
 				.onClick(b -> display.index = Math.clamp(display.index - 1, 1, max - 1))); // decrement
-		widgets.add(Widgets.createButton(new Rectangle(startPoint.x - 8 + 94, startPoint.y + 20, 8, 8), Text.literal("+"))
+		widgets.add(Widgets.createButton(new Rectangle(startPoint.x - 8 + 94, startPoint.y + 20, 8, 8), Component.literal("+"))
 				.onClick(b -> display.index = Math.clamp(display.index + 1, 1, max - 1))); // increment
 		
 		// surrounding input slots
@@ -103,14 +101,14 @@ public class EnchantmentUpgradeCategory extends EnchanterCategory<EnchantmentUpg
 			else
 				label.setColor(NORMAL_COLOR);
 			
-			label.setMessage(Text.translatable(EnchanterBlockEntity.LEVEL_TRANS, level, level + 1));
+			label.setMessage(Component.translatable(EnchanterBlockEntity.LEVEL_TRANS, level, level + 1));
 		});
 		
 		var costLabel = Widgets.createLabel(new Point(startPoint.x - 11 + 70, startPoint.y - 11 + 85), getDescriptionText(display)).leftAligned().color(NORMAL_COLOR).noShadow();
 		costLabel.setOnRender((drawContext, label) -> {
 			var level = display.index;
 			
-			label.setMessage(Text.translatable(EnchanterBlockEntity.ITEM_TRANS, display.itemScaling.apply(level)));
+			label.setMessage(Component.translatable(EnchanterBlockEntity.ITEM_TRANS, display.itemScaling.apply(level)));
 		});
 		
 		widgets.add(levelLabel);

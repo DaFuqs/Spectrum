@@ -6,32 +6,32 @@ import me.shedaniel.rei.api.common.display.basic.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.client.*;
-import net.minecraft.item.*;
-import net.minecraft.recipe.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public abstract class GatedSpectrumDisplay extends BasicDisplay implements GatedRecipeDisplay {
 	
-	private final Identifier requiredAdvancementIdentifier;
+	private final ResourceLocation requiredAdvancementIdentifier;
 	private final boolean secret;
-	private final @Nullable Text secretHintText;
+	private final @Nullable Component secretHintText;
 	
 	// 1 input => 1 output
-	public GatedSpectrumDisplay(RecipeEntry<? extends GatedRecipe<?>> recipe, Ingredient input, ItemStack output) {
+	public GatedSpectrumDisplay(RecipeHolder<? extends GatedRecipe<?>> recipe, Ingredient input, ItemStack output) {
 		this(recipe, Collections.singletonList(EntryIngredients.ofIngredient(input)), Collections.singletonList(EntryIngredients.of(output)));
 	}
 	
 	// n inputs => 1 output
-	public GatedSpectrumDisplay(RecipeEntry<? extends GatedRecipe<?>> recipe, List<EntryIngredient> inputs, ItemStack output) {
+	public GatedSpectrumDisplay(RecipeHolder<? extends GatedRecipe<?>> recipe, List<EntryIngredient> inputs, ItemStack output) {
 		this(recipe, inputs, Collections.singletonList(EntryIngredients.of(output)));
 	}
 	
 	// n inputs => m outputs
-	public GatedSpectrumDisplay(RecipeEntry<? extends GatedRecipe<?>> recipe, List<EntryIngredient> inputs, List<EntryIngredient> outputs) {
+	public GatedSpectrumDisplay(RecipeHolder<? extends GatedRecipe<?>> recipe, List<EntryIngredient> inputs, List<EntryIngredient> outputs) {
 		super(inputs, outputs);
 		this.secret = recipe.value().isSecret();
 		this.requiredAdvancementIdentifier = recipe.value().getRequiredAdvancementIdentifier().orElse(null);
@@ -42,7 +42,7 @@ public abstract class GatedSpectrumDisplay extends BasicDisplay implements Gated
 	
 	@Override
 	public boolean isUnlocked() {
-		MinecraftClient client = MinecraftClient.getInstance();
+		Minecraft client = Minecraft.getInstance();
 		return AdvancementHelper.hasAdvancement(client.player, this.requiredAdvancementIdentifier);
 	}
 	
@@ -51,7 +51,7 @@ public abstract class GatedSpectrumDisplay extends BasicDisplay implements Gated
 		return this.secret;
 	}
 	
-	public @Nullable Text getSecretHintText() {
+	public @Nullable Component getSecretHintText() {
 		return this.secretHintText;
 	}
 	

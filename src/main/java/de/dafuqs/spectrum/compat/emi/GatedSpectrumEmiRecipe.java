@@ -4,25 +4,25 @@ import de.dafuqs.spectrum.api.recipe.*;
 import dev.emi.emi.api.recipe.*;
 import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.*;
-import net.minecraft.recipe.*;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.world.item.crafting.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public abstract class GatedSpectrumEmiRecipe<T extends GatedRecipe<?>> extends SpectrumEmiRecipe {
 	
-	public static final Text SECRET = Text.translatable("container.spectrum.rei.pedestal_crafting.secret_recipe");
-	public static final Text SECRET_HINT = Text.translatable("container.spectrum.rei.pedestal_crafting.secret_recipe.hint");
+	public static final Component SECRET = Component.translatable("container.spectrum.rei.pedestal_crafting.secret_recipe");
+	public static final Component SECRET_HINT = Component.translatable("container.spectrum.rei.pedestal_crafting.secret_recipe.hint");
 	
-	public final @Nullable Text secretHintText;
+	public final @Nullable Component secretHintText;
 	
 	public final T recipe;
 	
-	public GatedSpectrumEmiRecipe(EmiRecipeCategory category, RecipeEntry<T> entry, int width, int height) {
+	public GatedSpectrumEmiRecipe(EmiRecipeCategory category, RecipeHolder<T> entry, int width, int height) {
 		super(category, entry.value().getRecipeTypeUnlockIdentifier(), entry.id(), width, height);
 		this.recipe = entry.value();
-		this.outputs = List.of(EmiStack.of(entry.value().getResult(getRegistryManager())));
+		this.outputs = List.of(EmiStack.of(entry.value().getResultItem(getRegistryManager())));
 		this.secretHintText = entry.value().getSecretHintText(getId());
 	}
 	

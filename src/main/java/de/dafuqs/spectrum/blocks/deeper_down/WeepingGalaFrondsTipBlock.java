@@ -4,46 +4,46 @@ import com.mojang.serialization.*;
 import de.dafuqs.spectrum.blocks.deeper_down.flora.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.loot.*;
-import net.minecraft.loot.context.*;
-import net.minecraft.registry.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
-import net.minecraft.state.*;
-import net.minecraft.state.property.*;
+import net.minecraft.core.*;
+import net.minecraft.resources.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
 import net.minecraft.util.*;
-import net.minecraft.util.hit.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.storage.loot.*;
+import net.minecraft.world.level.storage.loot.parameters.*;
+import net.minecraft.world.phys.*;
 
 import java.util.*;
 
 public class WeepingGalaFrondsTipBlock extends WeepingGalaFrondsBlock {
 	
-	public static final MapCodec<WeepingGalaFrondsTipBlock> CODEC = createCodec(WeepingGalaFrondsTipBlock::new);
-	public static final EnumProperty<Form> FORM = EnumProperty.of("form", Form.class);
+	public static final MapCodec<WeepingGalaFrondsTipBlock> CODEC = simpleCodec(WeepingGalaFrondsTipBlock::new);
+	public static final EnumProperty<Form> FORM = EnumProperty.create("form", Form.class);
 	
-	public WeepingGalaFrondsTipBlock(Settings settings) {
+	public WeepingGalaFrondsTipBlock(Properties settings) {
 		super(settings);
-		setDefaultState(getDefaultState().with(FORM, Form.TIP));
+		registerDefaultState(defaultBlockState().setValue(FORM, Form.TIP));
 	}
 	
 	@Override
-	public MapCodec<? extends WeepingGalaFrondsTipBlock> getCodec() {
+	public MapCodec<? extends WeepingGalaFrondsTipBlock> codec() {
 		return CODEC;
 	}
 	
 	@Override
-	public boolean hasRandomTicks(BlockState state) {
-		return state.get(FORM) != Form.TIP;
+	public boolean isRandomlyTicking(BlockState state) {
+		return state.getValue(FORM) != Form.TIP;
 	}
 	
 	@Override
-	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		if (random.nextFloat() < 0.1F) {
 			var reference = BlockReference.of(state, pos);
 			var form = reference.getProperty(FORM);
@@ -53,9 +53,9 @@ public class WeepingGalaFrondsTipBlock extends WeepingGalaFrondsBlock {
 				reference.update(world);
 			} else {
 				for (ItemStack rareStack : getResinStacks(state, world, pos, ItemStack.EMPTY, SpectrumLootTables.WEEPING_GALA_SPRIG_RESIN)) {
-					dropStack(world, pos, rareStack);
+					popResource(world, pos, rareStack);
 				}
-				world.playSound(null, pos, SoundEvents.BLOCK_BEEHIVE_DRIP, SoundCategory.BLOCKS, 1, 0.9F + random.nextFloat() * 0.2F);
+				world.playSound(null, pos, SoundEvents.BEEHIVE_DRIP, SoundSource.BLOCKS, 1, 0.9F + random.nextFloat() * 0.2F);
 				reference.setProperty(FORM, Form.SPRIG);
 				reference.update(world);
 			}
@@ -63,40 +63,40 @@ public class WeepingGalaFrondsTipBlock extends WeepingGalaFrondsBlock {
 	}
 	
 	@Override
-	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
 		var reference = BlockReference.of(state, pos);
 		if (reference.getProperty(FORM) == Form.RESIN) {
-			if (!world.isClient()) {
-				for (ItemStack rareStack : getResinStacks(state, (ServerWorld) world, pos, player.getMainHandStack(), SpectrumLootTables.WEEPING_GALA_SPRIG_RESIN)) {
-					dropStack(world, pos, rareStack);
+			if (!world.isClientSide()) {
+				for (ItemStack rareStack : getResinStacks(state, (ServerLevel) world, pos, player.getMainHandItem(), SpectrumLootTables.WEEPING_GALA_SPRIG_RESIN)) {
+					popResource(world, pos, rareStack);
 				}
 			}
-			world.playSound(null, pos, SoundEvents.BLOCK_BEEHIVE_SHEAR, SoundCategory.BLOCKS, 1, 0.9F + world.getRandom().nextFloat() * 0.2F);
+			world.playSound(null, pos, SoundEvents.BEEHIVE_SHEAR, SoundSource.BLOCKS, 1, 0.9F + world.getRandom().nextFloat() * 0.2F);
 			reference.setProperty(FORM, Form.SPRIG);
 			reference.update(world);
 			
-			return ActionResult.success(world.isClient());
+			return InteractionResult.sidedSuccess(world.isClientSide());
 		}
 		
-		return ActionResult.PASS;
+		return InteractionResult.PASS;
 	}
 	
-	public static List<ItemStack> getResinStacks(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack, RegistryKey<LootTable> lootTableKey) {
-		var builder = (new LootContextParameterSet.Builder(world))
-				.add(LootContextParameters.BLOCK_STATE, state)
-				.add(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
-				.add(LootContextParameters.TOOL, stack);
+	public static List<ItemStack> getResinStacks(BlockState state, ServerLevel world, BlockPos pos, ItemStack stack, ResourceKey<LootTable> lootTableKey) {
+		var builder = (new LootParams.Builder(world))
+				.withParameter(LootContextParams.BLOCK_STATE, state)
+				.withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(pos))
+				.withParameter(LootContextParams.TOOL, stack);
 		
-		LootTable lootTable = world.getServer().getReloadableRegistries().getLootTable(lootTableKey);
-		return lootTable.generateLoot(builder.build(LootContextTypes.BLOCK));
+		LootTable lootTable = world.getServer().reloadableRegistries().getLootTable(lootTableKey);
+		return lootTable.getRandomItems(builder.create(LootContextParamSets.BLOCK));
 	}
 	
 	@Override
-	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(FORM);
 	}
 	
-	public enum Form implements StringIdentifiable {
+	public enum Form implements StringRepresentable {
 		TIP("tip", 0),
 		SPRIG("sprig", 11),
 		RESIN("resin", 12);
@@ -114,7 +114,7 @@ public class WeepingGalaFrondsTipBlock extends WeepingGalaFrondsBlock {
 		}
 		
 		@Override
-		public String asString() {
+		public String getSerializedName() {
 			return name;
 		}
 	}

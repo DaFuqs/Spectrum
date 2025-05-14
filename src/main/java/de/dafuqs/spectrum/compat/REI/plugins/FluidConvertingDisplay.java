@@ -6,13 +6,13 @@ import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import me.shedaniel.rei.api.common.display.basic.*;
 import me.shedaniel.rei.api.common.entry.*;
 import net.minecraft.client.*;
-import net.minecraft.recipe.*;
-import net.minecraft.util.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.item.crafting.*;
 
 public abstract class FluidConvertingDisplay extends GatedSpectrumDisplay {
 	
-	public <T extends FluidConvertingRecipe> FluidConvertingDisplay(RecipeEntry<T> recipe) {
-		super(recipe, recipe.value().getIngredients().getFirst(), recipe.value().getResult(BasicDisplay.registryAccess()));
+	public <T extends FluidConvertingRecipe> FluidConvertingDisplay(RecipeHolder<T> recipe) {
+		super(recipe, recipe.value().getIngredients().getFirst(), recipe.value().getResultItem(BasicDisplay.registryAccess()));
 	}
 	
 	public final EntryIngredient getIn() {
@@ -25,10 +25,10 @@ public abstract class FluidConvertingDisplay extends GatedSpectrumDisplay {
 	
 	@Override
     public boolean isUnlocked() {
-		MinecraftClient client = MinecraftClient.getInstance();
+		Minecraft client = Minecraft.getInstance();
 		return AdvancementHelper.hasAdvancement(client.player, getUnlockIdentifier()) && super.isUnlocked();
 	}
 	
-	public abstract Identifier getUnlockIdentifier();
+	public abstract ResourceLocation getUnlockIdentifier();
 	
 }

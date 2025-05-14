@@ -2,146 +2,146 @@ package de.dafuqs.spectrum.blocks.redstone;
 
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.particle.*;
-import net.minecraft.server.network.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
-import net.minecraft.state.*;
-import net.minecraft.state.property.*;
-import net.minecraft.text.*;
+import net.minecraft.core.*;
+import net.minecraft.core.particles.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
 import net.minecraft.util.*;
-import net.minecraft.util.hit.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
-import net.minecraft.world.tick.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.levelgen.structure.*;
+import net.minecraft.world.phys.*;
+import net.minecraft.world.ticks.*;
 import org.jetbrains.annotations.*;
 
-public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
+public class RedstoneTimerBlock extends DiodeBlock {
 	
-	public static final MapCodec<RedstoneTimerBlock> CODEC = createCodec(RedstoneTimerBlock::new);
+	public static final MapCodec<RedstoneTimerBlock> CODEC = simpleCodec(RedstoneTimerBlock::new);
 	
-	public static final EnumProperty<TimingStep> ACTIVE_TIME = EnumProperty.of("active_time", TimingStep.class);
-	public static final EnumProperty<TimingStep> INACTIVE_TIME = EnumProperty.of("inactive_time", TimingStep.class);
+	public static final EnumProperty<TimingStep> ACTIVE_TIME = EnumProperty.create("active_time", TimingStep.class);
+	public static final EnumProperty<TimingStep> INACTIVE_TIME = EnumProperty.create("inactive_time", TimingStep.class);
 	
-	public RedstoneTimerBlock(AbstractBlock.Settings settings) {
+	public RedstoneTimerBlock(BlockBehaviour.Properties settings) {
 		super(settings);
-		this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(POWERED, false).with(ACTIVE_TIME, TimingStep.ONE_SECOND).with(INACTIVE_TIME, TimingStep.ONE_SECOND));
+		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(POWERED, false).setValue(ACTIVE_TIME, TimingStep.ONE_SECOND).setValue(INACTIVE_TIME, TimingStep.ONE_SECOND));
 	}
 	
 	@Override
-	public MapCodec<? extends RedstoneTimerBlock> getCodec() {
+	public MapCodec<? extends RedstoneTimerBlock> codec() {
 		return CODEC;
 	}
 	
 	@Override
-	protected int getUpdateDelayInternal(BlockState state) {
-		if (state.get(POWERED)) {
-			return state.get(ACTIVE_TIME).ticks;
+	protected int getDelay(BlockState state) {
+		if (state.getValue(POWERED)) {
+			return state.getValue(ACTIVE_TIME).ticks;
 		} else {
-			return state.get(INACTIVE_TIME).ticks;
+			return state.getValue(INACTIVE_TIME).ticks;
 		}
 	}
 	
 	@Override
-	public ActionResult onUse(BlockState state, @NotNull World world, BlockPos pos, @NotNull PlayerEntity player, BlockHitResult hit) {
-		if (!player.getAbilities().allowModifyWorld) {
-			return ActionResult.PASS;
+	public InteractionResult useWithoutItem(BlockState state, @NotNull Level world, BlockPos pos, @NotNull Player player, BlockHitResult hit) {
+		if (!player.getAbilities().mayBuild) {
+			return InteractionResult.PASS;
 		} else {
-			if (world.isClient) {
-				return ActionResult.SUCCESS;
+			if (world.isClientSide) {
+				return InteractionResult.SUCCESS;
 			} else {
-				stepTiming((ServerWorld) world, pos, (ServerPlayerEntity) player);
-				return ActionResult.CONSUME;
+				stepTiming((ServerLevel) world, pos, (ServerPlayer) player);
+				return InteractionResult.CONSUME;
 			}
 		}
 	}
 	
 	@Override
-	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(FACING, POWERED, ACTIVE_TIME, INACTIVE_TIME);
 	}
 	
 	@Override
-	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-		super.onBlockAdded(state, world, pos, oldState, notify);
-		if (world instanceof ServerWorld serverWorld) {
+	public void onPlace(BlockState state, Level world, BlockPos pos, BlockState oldState, boolean notify) {
+		super.onPlace(state, world, pos, oldState, notify);
+		if (world instanceof ServerLevel serverWorld) {
 			// remove currently scheduled ticks at the blocks position
 			// and schedule new ticks
-			serverWorld.getBlockTickScheduler().clearNextTicks(new BlockBox(pos));
-			serverWorld.scheduleBlockTick(pos, state.getBlock(), getUpdateDelayInternal(state));
+			serverWorld.getBlockTicks().clearArea(new BoundingBox(pos));
+			serverWorld.scheduleTick(pos, state.getBlock(), getDelay(state));
 		}
 	}
 	
 	@Override
-	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		BlockState newState = state.with(POWERED, !state.get(POWERED));
-		world.setBlockState(pos, newState, 3);
-		world.playSound(null, pos, SpectrumSoundEvents.REDSTONE_MECHANISM_TRIGGER, SoundCategory.BLOCKS, 0.3F, 1.0F);
-		world.scheduleBlockTick(pos, this, this.getUpdateDelayInternal(state), TickPriority.NORMAL);
+	public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+		BlockState newState = state.setValue(POWERED, !state.getValue(POWERED));
+		world.setBlock(pos, newState, 3);
+		world.playSound(null, pos, SpectrumSoundEvents.REDSTONE_MECHANISM_TRIGGER, SoundSource.BLOCKS, 0.3F, 1.0F);
+		world.scheduleTick(pos, this, this.getDelay(state), TickPriority.NORMAL);
 	}
 	
 	@Override
-	protected int getPower(World world, BlockPos pos, BlockState state) {
-		return world.getBlockState(pos).get(POWERED) ? 15 : 0;
+	protected int getInputSignal(Level world, BlockPos pos, BlockState state) {
+		return world.getBlockState(pos).getValue(POWERED) ? 15 : 0;
 	}
 	
 	@Override
-	protected void updatePowered(World world, BlockPos pos, BlockState state) {
-		boolean bl = state.get(POWERED);
-		if (!world.getBlockTickScheduler().isTicking(pos, this)) {
+	protected void checkTickOnNeighbor(Level world, BlockPos pos, BlockState state) {
+		boolean bl = state.getValue(POWERED);
+		if (!world.getBlockTicks().willTickThisTick(pos, this)) {
 			TickPriority tickPriority = TickPriority.HIGH;
-			if (this.isTargetNotAligned(world, pos, state)) {
+			if (this.shouldPrioritize(world, pos, state)) {
 				tickPriority = TickPriority.EXTREMELY_HIGH;
 			} else if (bl) {
 				tickPriority = TickPriority.VERY_HIGH;
 			}
-			world.scheduleBlockTick(pos, this, this.getUpdateDelayInternal(state), tickPriority);
+			world.scheduleTick(pos, this, this.getDelay(state), tickPriority);
 		}
 	}
 	
-	public void stepTiming(ServerWorld world, BlockPos pos, ServerPlayerEntity serverPlayerEntity) {
+	public void stepTiming(ServerLevel world, BlockPos pos, ServerPlayer serverPlayerEntity) {
 		if (serverPlayerEntity != null) {
 			BlockState blockState = world.getBlockState(pos);
-			if (serverPlayerEntity.isSneaking()) {
+			if (serverPlayerEntity.isShiftKeyDown()) {
 				// toggle inactive time
-				TimingStep newStep = blockState.get(INACTIVE_TIME).next();
-				serverPlayerEntity.sendMessage(Text.translatable("block.spectrum.redstone_timer.setting.inactive").append(Text.translatable(newStep.localizationString)), true);
+				TimingStep newStep = blockState.getValue(INACTIVE_TIME).next();
+				serverPlayerEntity.displayClientMessage(Component.translatable("block.spectrum.redstone_timer.setting.inactive").append(Component.translatable(newStep.localizationString)), true);
 				float pitch = 0.5F + newStep.ordinal() * 0.05F;
-				world.playSound(null, pos, SpectrumSoundEvents.REDSTONE_MECHANISM_TRIGGER, SoundCategory.BLOCKS, 0.3F, pitch);
-				world.setBlockState(pos, world.getBlockState(pos).with(INACTIVE_TIME, newStep));
+				world.playSound(null, pos, SpectrumSoundEvents.REDSTONE_MECHANISM_TRIGGER, SoundSource.BLOCKS, 0.3F, pitch);
+				world.setBlockAndUpdate(pos, world.getBlockState(pos).setValue(INACTIVE_TIME, newStep));
 			} else {
 				// toggle active time
-				TimingStep newStep = blockState.get(ACTIVE_TIME).next();
-				serverPlayerEntity.sendMessage(Text.translatable("block.spectrum.redstone_timer.setting.active").append(Text.translatable(newStep.localizationString)), true);
+				TimingStep newStep = blockState.getValue(ACTIVE_TIME).next();
+				serverPlayerEntity.displayClientMessage(Component.translatable("block.spectrum.redstone_timer.setting.active").append(Component.translatable(newStep.localizationString)), true);
 				float pitch = 0.5F + newStep.ordinal() * 0.05F;
-				world.playSound(null, pos, SpectrumSoundEvents.REDSTONE_MECHANISM_TRIGGER, SoundCategory.BLOCKS, 0.3F, pitch);
-				world.setBlockState(pos, world.getBlockState(pos).with(ACTIVE_TIME, newStep));
+				world.playSound(null, pos, SpectrumSoundEvents.REDSTONE_MECHANISM_TRIGGER, SoundSource.BLOCKS, 0.3F, pitch);
+				world.setBlockAndUpdate(pos, world.getBlockState(pos).setValue(ACTIVE_TIME, newStep));
 			}
 			
-			world.getBlockTickScheduler().clearNextTicks(new BlockBox(pos)); // remove currently scheduled ticks at the blocks position
+			world.getBlockTicks().clearArea(new BoundingBox(pos)); // remove currently scheduled ticks at the blocks position
 			BlockState state = world.getBlockState(pos);
-			updatePowered(world, pos, state);
+			checkTickOnNeighbor(world, pos, state);
 		}
 	}
 	
 	@Override
-	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-		if (state.get(POWERED)) {
-			Direction direction = state.get(FACING);
+	public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
+		if (state.getValue(POWERED)) {
+			Direction direction = state.getValue(FACING);
 			double x = (double) pos.getX() + 0.5D + (random.nextDouble() - 0.5D) * 0.2D;
 			double y = (double) pos.getY() + 0.4D + (random.nextDouble() - 0.5D) * 0.2D;
 			double z = (double) pos.getZ() + 0.5D + (random.nextDouble() - 0.5D) * 0.2D;
 			float g = -0.3F;
-			double xOffset = (g * (float) direction.getOffsetX());
-			double zOffset = (g * (float) direction.getOffsetZ());
-			world.addParticle(DustParticleEffect.DEFAULT, x + xOffset, y, z + zOffset, 0.0D, 0.0D, 0.0D);
+			double xOffset = (g * (float) direction.getStepX());
+			double zOffset = (g * (float) direction.getStepZ());
+			world.addParticle(DustParticleOptions.REDSTONE, x + xOffset, y, z + zOffset, 0.0D, 0.0D, 0.0D);
 		}
 	}
 	
-	public enum TimingStep implements StringIdentifiable {
+	public enum TimingStep implements StringRepresentable {
 		FOUR_TICKS("four_ticks", 4, "block.spectrum.redstone_timer.setting.four_ticks"),
 		ONE_SECOND("one_second", 20, "block.spectrum.redstone_timer.setting.one_second"),
 		TEN_SECONDS("ten_seconds", 10 * 20, "block.spectrum.redstone_timer.setting.ten_seconds"),
@@ -163,7 +163,7 @@ public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
 		}
 		
 		@Override
-		public String asString() {
+		public String getSerializedName() {
 			return name;
 		}
 	}

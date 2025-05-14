@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.api.color;
 
 import de.dafuqs.spectrum.api.energy.color.*;
-import net.minecraft.fluid.*;
+import net.minecraft.world.level.material.*;
 
 import java.util.*;
 

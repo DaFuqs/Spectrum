@@ -3,45 +3,46 @@ package de.dafuqs.spectrum.blocks.redstone;
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.fluid.*;
-import net.minecraft.item.*;
-import net.minecraft.particle.*;
-import net.minecraft.server.network.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
-import net.minecraft.world.event.*;
+import net.minecraft.core.*;
+import net.minecraft.core.particles.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.gameevent.*;
+import net.minecraft.world.level.material.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
-public class BlockBreakerBlock extends RedstoneInteractionBlock implements BlockEntityProvider {
-
-	public static final MapCodec<BlockBreakerBlock> CODEC = createCodec(BlockBreakerBlock::new);
+public class BlockBreakerBlock extends RedstoneInteractionBlock implements EntityBlock {
+	
+	public static final MapCodec<BlockBreakerBlock> CODEC = simpleCodec(BlockBreakerBlock::new);
 
 	private static ItemStack BREAK_STACK;
-
-	public BlockBreakerBlock(Settings settings) {
+	
+	public BlockBreakerBlock(Properties settings) {
 		super(settings);
 	}
 
 	@Override
-	public MapCodec<? extends BlockBreakerBlock> getCodec() {
+	public MapCodec<? extends BlockBreakerBlock> codec() {
 		return CODEC;
 	}
 	
 	@Nullable
 	@Override
-	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new BlockBreakerBlockEntity(pos, state);
 	}
 	
 	@Override
-	public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
-		if (placer instanceof ServerPlayerEntity serverPlayerEntity) {
+	public void setPlacedBy(Level world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
+		if (placer instanceof ServerPlayer serverPlayerEntity) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof BlockBreakerBlockEntity blockBreakerBlockEntity) {
 				blockBreakerBlockEntity.setOwner(serverPlayerEntity);
@@ -50,31 +51,31 @@ public class BlockBreakerBlock extends RedstoneInteractionBlock implements Block
 	}
 	
 	@Override
-	public void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
-		var isTriggered = world.isReceivingRedstonePower(pos) || world.isReceivingRedstonePower(pos.up());
-		boolean wasTriggered = state.get(TRIGGERED);
+	public void neighborChanged(BlockState state, Level world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
+		var isTriggered = world.hasNeighborSignal(pos) || world.hasNeighborSignal(pos.above());
+		boolean wasTriggered = state.getValue(TRIGGERED);
 		
 		if (isTriggered && !wasTriggered) {
-			if (!world.isClient) {
-				this.destroy(world, pos, state.get(ORIENTATION).getFacing());
+			if (!world.isClientSide) {
+				this.destroy(world, pos, state.getValue(ORIENTATION).front());
 			}
-			world.setBlockState(pos, state.with(TRIGGERED, true), Block.NO_REDRAW);
+			world.setBlock(pos, state.setValue(TRIGGERED, true), Block.UPDATE_INVISIBLE);
 		} else if (!isTriggered && wasTriggered) {
-			world.setBlockState(pos, state.with(TRIGGERED, false), Block.NO_REDRAW);
+			world.setBlock(pos, state.setValue(TRIGGERED, false), Block.UPDATE_INVISIBLE);
 		}
 	}
 	
-	protected void destroy(World world, BlockPos breakerPos, Direction direction) {
-		BlockPos breakingPos = breakerPos.offset(direction);
+	protected void destroy(Level world, BlockPos breakerPos, Direction direction) {
+		BlockPos breakingPos = breakerPos.relative(direction);
 		BlockState blockState = world.getBlockState(breakingPos);
 		
-		if (blockState.isAir() || blockState.getBlock() instanceof AbstractFireBlock) {
+		if (blockState.isAir() || blockState.getBlock() instanceof BaseFireBlock) {
 			return;
 		}
 		
-		float hardness = blockState.getHardness(world, breakingPos);
+		float hardness = blockState.getDestroySpeed(world, breakingPos);
 		if (hardness < 0 || hardness > 50) {
-			world.playSound(null, breakerPos, SpectrumSoundEvents.REDSTONE_MECHANISM_BREAK_BLOCK, SoundCategory.BLOCKS, 0.15f, (2.0f + world.random.nextFloat()));
+			world.playSound(null, breakerPos, SpectrumSoundEvents.REDSTONE_MECHANISM_BREAK_BLOCK, SoundSource.BLOCKS, 0.15f, (2.0f + world.random.nextFloat()));
 			return;
 		}
 		
@@ -82,7 +83,7 @@ public class BlockBreakerBlock extends RedstoneInteractionBlock implements Block
 		if (!(blockEntity instanceof BlockBreakerBlockEntity blockBreakerBlockEntity)) {
 			return;
 		}
-		PlayerEntity owner = blockBreakerBlockEntity.getOwnerIfOnline();
+		Player owner = blockBreakerBlockEntity.getOwnerIfOnline();
 		
 		if (!GenericClaimModsCompat.canBreak(world, breakingPos, owner)) {
 			return;
@@ -90,25 +91,25 @@ public class BlockBreakerBlock extends RedstoneInteractionBlock implements Block
 		
 		this.breakBlock(world, breakingPos, owner);
 		
-		Vec3d centerPos = Vec3d.ofCenter(breakingPos);
-		((ServerWorld) world).spawnParticles(ParticleTypes.EXPLOSION, centerPos.getX(), centerPos.getY(), centerPos.getZ(), 1, 0.0, 0.0, 0.0, 1.0);
+		Vec3 centerPos = Vec3.atCenterOf(breakingPos);
+		((ServerLevel) world).sendParticles(ParticleTypes.EXPLOSION, centerPos.x(), centerPos.y(), centerPos.z(), 1, 0.0, 0.0, 0.0, 1.0);
 	}
 	
-	public void breakBlock(World world, BlockPos pos, PlayerEntity breaker) {
+	public void breakBlock(Level world, BlockPos pos, Player breaker) {
 		BlockState blockState = world.getBlockState(pos);
 		FluidState fluidState = world.getFluidState(pos);
 		
-		world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, pos, Block.getRawIdFromState(blockState));
-		world.playSound(null, pos, blockState.getSoundGroup().getBreakSound(), SoundCategory.BLOCKS, 0.2f, (1.0f + world.random.nextFloat()) * 2f);
+		world.levelEvent(LevelEvent.PARTICLES_DESTROY_BLOCK, pos, Block.getId(blockState));
+		world.playSound(null, pos, blockState.getSoundType().getBreakSound(), SoundSource.BLOCKS, 0.2f, (1.0f + world.random.nextFloat()) * 2f);
 		
 		BlockEntity blockEntity = blockState.hasBlockEntity() ? world.getBlockEntity(pos) : null;
 		if (BREAK_STACK == null) { // we initialize the item here instead of it being final because of load order shenanigans
 			BREAK_STACK = new ItemStack(SpectrumItems.MALACHITE_WORKSTAFF);
 		}
-		Block.dropStacks(blockState, world, pos, blockEntity, breaker, BREAK_STACK);
+		Block.dropResources(blockState, world, pos, blockEntity, breaker, BREAK_STACK);
 		
-		if (world.setBlockState(pos, fluidState.getBlockState(), Block.NOTIFY_ALL, 512)) {
-			world.emitGameEvent(GameEvent.BLOCK_DESTROY, pos, GameEvent.Emitter.of(breaker, blockState));
+		if (world.setBlock(pos, fluidState.createLegacyBlock(), Block.UPDATE_ALL, 512)) {
+			world.gameEvent(GameEvent.BLOCK_DESTROY, pos, GameEvent.Context.of(breaker, blockState));
 		}
 	}
 	

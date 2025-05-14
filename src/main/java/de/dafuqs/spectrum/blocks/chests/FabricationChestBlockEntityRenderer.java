@@ -1,27 +1,30 @@
 package de.dafuqs.spectrum.blocks.chests;
 
+import com.mojang.blaze3d.vertex.*;
+import com.mojang.math.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
-import net.minecraft.block.*;
 import net.minecraft.client.*;
-import net.minecraft.client.model.*;
-import net.minecraft.client.render.*;
-import net.minecraft.client.render.block.entity.*;
-import net.minecraft.client.render.model.json.*;
-import net.minecraft.client.util.*;
-import net.minecraft.client.util.math.*;
-import net.minecraft.item.*;
-import net.minecraft.screen.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.client.model.geom.*;
+import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.blockentity.*;
+import net.minecraft.client.resources.model.*;
+import net.minecraft.core.*;
+import net.minecraft.util.*;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 import org.jetbrains.annotations.*;
 
 @Environment(EnvType.CLIENT)
 @SuppressWarnings({"unused", "FieldCanBeLocal"})
 public class FabricationChestBlockEntityRenderer implements BlockEntityRenderer<FabricationChestBlockEntity> {
 	
-	private static final SpriteIdentifier spriteIdentifier = new SpriteIdentifier(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("block/fabrication_chest"));
+	private static final Material spriteIdentifier = new Material(InventoryMenu.BLOCK_ATLAS, SpectrumCommon.locate("block/fabrication_chest"));
 	private final ModelPart rootNode;
 	private final ModelPart root;
 	private final ModelPart rim;
@@ -29,9 +32,9 @@ public class FabricationChestBlockEntityRenderer implements BlockEntityRenderer<
 	private final ModelPart assembly;
 	private final ModelPart rings;
 	
-	public FabricationChestBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
-		TexturedModelData texturedModelData = getTexturedModelData();
-		this.rootNode = texturedModelData.createModel();
+	public FabricationChestBlockEntityRenderer(BlockEntityRendererProvider.Context ctx) {
+		LayerDefinition texturedModelData = getTexturedModelData();
+		this.rootNode = texturedModelData.bakeRoot();
 		this.root = rootNode.getChild("root");
 		this.rim = root.getChild("rim");
 		this.crafting_tablet = root.getChild("crafting_tablet");
@@ -39,34 +42,34 @@ public class FabricationChestBlockEntityRenderer implements BlockEntityRenderer<
 		this.rings = root.getChild("rings");
 	}
 	
-	public static @NotNull TexturedModelData getTexturedModelData() {
-		ModelData modelData = new ModelData();
-		ModelPartData modelPartData = modelData.getRoot();
-		ModelPartData root = modelPartData.addChild("root", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, 24.0F, 0.0F));
-
-		root.addChild("rim", ModelPartBuilder.create().uv(0, 0).cuboid(-8.0F, -3.0F, -8.0F, 16.0F, 4.0F, 16.0F, new Dilation(0.0F))
-				.uv(52, 49).cuboid(-6.0F, -3.0F, -6.0F, 12.0F, 4.0F, 12.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, -9.0F, 0.0F));
-
-		root.addChild("crafting_tablet", ModelPartBuilder.create().uv(48, 0).cuboid(-6.5F, 2.0F, -8.5F, 13.0F, 3.0F, 13.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, -15.0F, 2.0F));
-
-		root.addChild("assembly", ModelPartBuilder.create().uv(0, 0).cuboid(-1.5F, -4.0F, -1.5F, 3.0F, 8.0F, 3.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, -6.0F, 0.0F));
-
-		root.addChild("rings", ModelPartBuilder.create().uv(-13, 60).cuboid(-6.5F, 1.25F, -6.5F, 13.0F, 0.0F, 13.0F, new Dilation(0.0F))
-				.uv(41, 65).cuboid(-5.5F, -1.25F, -5.5F, 11.0F, 0.0F, 11.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, -17.25F, 0.0F));
-		return TexturedModelData.of(modelData, 128, 128);
+	public static @NotNull LayerDefinition getTexturedModelData() {
+		MeshDefinition modelData = new MeshDefinition();
+		PartDefinition modelPartData = modelData.getRoot();
+		PartDefinition root = modelPartData.addOrReplaceChild("root", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
+		
+		root.addOrReplaceChild("rim", CubeListBuilder.create().texOffs(0, 0).addBox(-8.0F, -3.0F, -8.0F, 16.0F, 4.0F, 16.0F, new CubeDeformation(0.0F))
+				.texOffs(52, 49).addBox(-6.0F, -3.0F, -6.0F, 12.0F, 4.0F, 12.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -9.0F, 0.0F));
+		
+		root.addOrReplaceChild("crafting_tablet", CubeListBuilder.create().texOffs(48, 0).addBox(-6.5F, 2.0F, -8.5F, 13.0F, 3.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -15.0F, 2.0F));
+		
+		root.addOrReplaceChild("assembly", CubeListBuilder.create().texOffs(0, 0).addBox(-1.5F, -4.0F, -1.5F, 3.0F, 8.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -6.0F, 0.0F));
+		
+		root.addOrReplaceChild("rings", CubeListBuilder.create().texOffs(-13, 60).addBox(-6.5F, 1.25F, -6.5F, 13.0F, 0.0F, 13.0F, new CubeDeformation(0.0F))
+				.texOffs(41, 65).addBox(-5.5F, -1.25F, -5.5F, 11.0F, 0.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -17.25F, 0.0F));
+		return LayerDefinition.create(modelData, 128, 128);
 	}
 	
 	@Override
-	public void render(FabricationChestBlockEntity chest, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
-		World world = chest.getWorld();
+	public void render(FabricationChestBlockEntity chest, float tickDelta, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay) {
+		Level world = chest.getLevel();
 		boolean bl = world != null;
-		BlockState blockState = bl ? chest.getCachedState() : SpectrumBlocks.FABRICATION_CHEST.getDefaultState().with(ChestBlock.FACING, Direction.SOUTH);
-
-		matrices.push();
-		float f = blockState.contains(ChestBlock.FACING) ? blockState.get(ChestBlock.FACING).asRotation() : 0;
+		BlockState blockState = bl ? chest.getBlockState() : SpectrumBlocks.FABRICATION_CHEST.defaultBlockState().setValue(ChestBlock.FACING, Direction.SOUTH);
+		
+		matrices.pushPose();
+		float f = blockState.hasProperty(ChestBlock.FACING) ? blockState.getValue(ChestBlock.FACING).toYRot() : 0;
 		matrices.translate(0.5D, 1.5D, 0.5D);
-		matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-f));
-		matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(180));
+		matrices.mulPose(Axis.YP.rotationDegrees(-f));
+		matrices.mulPose(Axis.XP.rotationDegrees(180));
 
 		var time = chest.getRenderTime();
 
@@ -117,23 +120,23 @@ public class FabricationChestBlockEntityRenderer implements BlockEntityRenderer<
 				chest.yawModTarget = 0.05F;
 			}
 		}
-
-		var interp = MathHelper.clamp((chest.interpTicks + tickDelta) / chest.interpLength, 0F, 1F);
-		chest.tabletPos = MathHelper.lerp(interp, chest.lastTabletTarget, chest.tabletTarget);
-		chest.rimPos = MathHelper.lerp(interp, chest.lastRimTarget, chest.rimTarget);
-		chest.assemblyPos = MathHelper.lerp(interp, chest.lastAssemblyTarget, chest.assemblyTarget);
-		chest.ringPos = MathHelper.lerp(interp, chest.lastRingTarget, chest.ringTarget);
-		chest.itemPos = MathHelper.lerp(interp, chest.lastItemTarget, chest.itemTarget);
-		chest.alphaValue = MathHelper.lerp(interp, chest.lastAlphaTarget, chest.alphaTarget);
-		chest.yawMod = MathHelper.lerp(interp, chest.lastYawModTarget, chest.yawModTarget);
-
-		rim.pivotY = 15 - chest.rimPos;
-		crafting_tablet.pivotY = 9 - chest.tabletPos;
-		assembly.pivotY = 18 - chest.assemblyPos;
-		rings.pivotY = 6.75F - chest.ringPos;
-		rings.yaw = MathHelper.lerp(tickDelta, chest.lastYaw, chest.yaw);
-
-		VertexConsumer vertexConsumer = spriteIdentifier.getVertexConsumer(vertexConsumers, RenderLayer::getEntityTranslucent);
+		
+		var interp = Mth.clamp((chest.interpTicks + tickDelta) / chest.interpLength, 0F, 1F);
+		chest.tabletPos = Mth.lerp(interp, chest.lastTabletTarget, chest.tabletTarget);
+		chest.rimPos = Mth.lerp(interp, chest.lastRimTarget, chest.rimTarget);
+		chest.assemblyPos = Mth.lerp(interp, chest.lastAssemblyTarget, chest.assemblyTarget);
+		chest.ringPos = Mth.lerp(interp, chest.lastRingTarget, chest.ringTarget);
+		chest.itemPos = Mth.lerp(interp, chest.lastItemTarget, chest.itemTarget);
+		chest.alphaValue = Mth.lerp(interp, chest.lastAlphaTarget, chest.alphaTarget);
+		chest.yawMod = Mth.lerp(interp, chest.lastYawModTarget, chest.yawModTarget);
+		
+		rim.y = 15 - chest.rimPos;
+		crafting_tablet.y = 9 - chest.tabletPos;
+		assembly.y = 18 - chest.assemblyPos;
+		rings.y = 6.75F - chest.ringPos;
+		rings.yRot = Mth.lerp(tickDelta, chest.lastYaw, chest.yaw);
+		
+		VertexConsumer vertexConsumer = spriteIdentifier.buffer(vertexConsumers, RenderType::entityTranslucent);
 		rim.render(matrices, vertexConsumer, light, overlay);
 		crafting_tablet.render(matrices, vertexConsumer, light, overlay);
 
@@ -142,37 +145,37 @@ public class FabricationChestBlockEntityRenderer implements BlockEntityRenderer<
 		}
 
 		if (chest.alphaValue > 0.01F) {
-			rings.render(matrices, vertexConsumer, LightmapTextureManager.MAX_LIGHT_COORDINATE, overlay, ColorHelper.Argb.fromFloats(chest.alphaValue, 1, 1, 1));
+			rings.render(matrices, vertexConsumer, LightTexture.FULL_BRIGHT, overlay, FastColor.ARGB32.colorFromFloat(chest.alphaValue, 1, 1, 1));
 		}
 
 		var outputs = chest.getRecipeOutputs();
 
 		if (outputs.isEmpty()) {
-			matrices.pop();
+			matrices.popPose();
 			return;
 		}
-
-		matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(180));
-		matrices.multiply(RotationAxis.POSITIVE_Y.rotation(-rings.yaw));
+		
+		matrices.mulPose(Axis.XP.rotationDegrees(180));
+		matrices.mulPose(Axis.YP.rotation(-rings.yRot));
 		matrices.translate(0,  -1.5F + ((12.5 + chest.itemPos) / 16F), 0);
 		matrices.scale(0.8F, 0.8F, 0.8F);
 
 		if (outputs.size() == 1) {
-			MinecraftClient.getInstance().getItemRenderer().renderItem(null, outputs.getFirst(), ModelTransformationMode.GROUND, false, matrices, vertexConsumers, world, light, overlay, 0);
+			Minecraft.getInstance().getItemRenderer().renderStatic(null, outputs.getFirst(), ItemDisplayContext.GROUND, false, matrices, vertexConsumers, world, light, overlay, 0);
 		}
 		else {
 			var rotation = 360F / outputs.size();
 			for (ItemStack output : outputs) {
-				matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(rotation));
+				matrices.mulPose(Axis.YP.rotationDegrees(rotation));
 				matrices.translate(0.4F, 0, 0);
-				matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(rings.yaw * 0.8F));
-				MinecraftClient.getInstance().getItemRenderer().renderItem(null, output, ModelTransformationMode.GROUND, false, matrices, vertexConsumers, world, light, overlay, 0);
-				matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-rings.yaw * 0.8F));
+				matrices.mulPose(Axis.YP.rotationDegrees(rings.yRot * 0.8F));
+				Minecraft.getInstance().getItemRenderer().renderStatic(null, output, ItemDisplayContext.GROUND, false, matrices, vertexConsumers, world, light, overlay, 0);
+				matrices.mulPose(Axis.YP.rotationDegrees(-rings.yRot * 0.8F));
 				matrices.translate(-0.4F, 0, 0);
 			}
 		}
-
-
-		matrices.pop();
+		
+		
+		matrices.popPose();
 	}
 }

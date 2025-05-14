@@ -3,7 +3,8 @@ package de.dafuqs.spectrum.data;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.datagen.v1.*;
-import net.minecraft.registry.*;
+import net.minecraft.core.*;
+import net.minecraft.core.registries.*;
 import org.jetbrains.annotations.*;
 
 public class SpectrumDataGenerator implements DataGeneratorEntrypoint {
@@ -24,9 +25,9 @@ public class SpectrumDataGenerator implements DataGeneratorEntrypoint {
 	}
 	
 	@Override
-	public void buildRegistry(RegistryBuilder registryBuilder) {
-		registryBuilder.addRegistry(RegistryKeys.ENCHANTMENT, registerable -> SpectrumEnchantments.provideEnchantments(new DatagenProxy.BootstrapContext<>(registerable)));
-		registryBuilder.addRegistry(SpectrumRegistryKeys.RESONANCE_PROCESSOR, registerable -> SpectrumResonanceProcessors.provideResonanceProcessors(new DatagenProxy.BootstrapContext<>(registerable)));
+	public void buildRegistry(RegistrySetBuilder registryBuilder) {
+		registryBuilder.add(Registries.ENCHANTMENT, registerable -> SpectrumEnchantments.provideEnchantments(new DatagenProxy.BootstrapContext<>(registerable)));
+		registryBuilder.add(SpectrumRegistryKeys.RESONANCE_PROCESSOR, registerable -> SpectrumResonanceProcessors.provideResonanceProcessors(new DatagenProxy.BootstrapContext<>(registerable)));
 	}
 	
 }

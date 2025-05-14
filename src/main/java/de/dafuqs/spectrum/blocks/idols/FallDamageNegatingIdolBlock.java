@@ -1,37 +1,36 @@
 package de.dafuqs.spectrum.blocks.idols;
 
-import com.mojang.serialization.MapCodec;
-import net.minecraft.block.*;
-import net.minecraft.entity.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.particle.*;
-import net.minecraft.server.world.*;
-import net.minecraft.text.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import com.mojang.serialization.*;
+import net.minecraft.core.*;
+import net.minecraft.core.particles.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.state.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public class FallDamageNegatingIdolBlock extends IdolBlock {
 	
-	public FallDamageNegatingIdolBlock(Settings settings, ParticleEffect particleEffect) {
+	public FallDamageNegatingIdolBlock(Properties settings, ParticleOptions particleEffect) {
 		super(settings, particleEffect);
 	}
 
 	@Override
-	public MapCodec<? extends FallDamageNegatingIdolBlock> getCodec() {
+	public MapCodec<? extends FallDamageNegatingIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}
 	
 	@Override
-	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
-		if (entity != null && entity.getVelocity().getY() < -0.01) {
-			entity.setVelocity(0, 0.5, 0); // makes it feel bouncy
-			entity.velocityModified = true;
-			entity.velocityDirty = true;
+	public boolean trigger(ServerLevel world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+		if (entity != null && entity.getDeltaMovement().y() < -0.01) {
+			entity.setDeltaMovement(0, 0.5, 0); // makes it feel bouncy
+			entity.hurtMarked = true;
+			entity.hasImpulse = true;
 			entity.fallDistance = 0;
 			return true;
 		}
@@ -39,18 +38,18 @@ public class FallDamageNegatingIdolBlock extends IdolBlock {
 	}
 
 	@Override
-	public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
-		tooltip.add(Text.translatable("block.spectrum.fall_damage_negating_idol.tooltip"));
-		tooltip.add(Text.translatable("block.spectrum.fall_damage_negating_idol.tooltip2"));
+	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
+		tooltip.add(Component.translatable("block.spectrum.fall_damage_negating_idol.tooltip"));
+		tooltip.add(Component.translatable("block.spectrum.fall_damage_negating_idol.tooltip2"));
 	}
 	
 	@Override
-	public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
+	public void fallOn(Level world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
 		if (!hasCooldown(state) && fallDistance > 3F) {
-			entity.handleFallDamage(fallDistance, 0.0F, world.getDamageSources().fall());
-			if (!world.isClient) {
-				playTriggerParticles((ServerWorld) world, pos);
+			entity.causeFallDamage(fallDistance, 0.0F, world.damageSources().fall());
+			if (!world.isClientSide) {
+				playTriggerParticles((ServerLevel) world, pos);
 				playTriggerSound(world, pos);
 				triggerCooldown(world, pos);
 			}

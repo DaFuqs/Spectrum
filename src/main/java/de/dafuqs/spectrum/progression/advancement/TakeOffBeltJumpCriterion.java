@@ -6,31 +6,29 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.registries.*;
 import dev.emi.trinkets.api.*;
-import net.minecraft.advancement.criterion.*;
-import net.minecraft.item.*;
-import net.minecraft.predicate.*;
-import net.minecraft.predicate.entity.*;
-import net.minecraft.predicate.item.*;
-import net.minecraft.server.network.*;
+import net.minecraft.advancements.critereon.*;
+import net.minecraft.resources.*;
+import net.minecraft.server.level.*;
 import net.minecraft.util.*;
+import net.minecraft.world.item.*;
 
 import java.util.*;
 
-public class TakeOffBeltJumpCriterion extends AbstractCriterion<TakeOffBeltJumpCriterion.Conditions> {
+public class TakeOffBeltJumpCriterion extends SimpleCriterionTrigger<TakeOffBeltJumpCriterion.Conditions> {
 	
-	public static final Identifier ID = SpectrumCommon.locate("take_off_belt_jump");
+	public static final ResourceLocation ID = SpectrumCommon.locate("take_off_belt_jump");
 	
-	public static TakeOffBeltJumpCriterion.Conditions create(ItemPredicate itemPredicate, NumberRange.IntRange chargesRange) {
+	public static TakeOffBeltJumpCriterion.Conditions create(ItemPredicate itemPredicate, MinMaxBounds.Ints chargesRange) {
 		return new TakeOffBeltJumpCriterion.Conditions(Optional.empty(), itemPredicate, chargesRange);
 	}
 	
-	public void trigger(ServerPlayerEntity player) {
+	public void trigger(ServerPlayer player) {
 		this.trigger(player, (conditions) -> {
 			Optional<TrinketComponent> component = TrinketsApi.getTrinketComponent(player);
 			if (component.isPresent()) {
-				List<Pair<SlotReference, ItemStack>> equipped = component.get().getEquipped(SpectrumItems.TAKE_OFF_BELT);
+				List<Tuple<SlotReference, ItemStack>> equipped = component.get().getEquipped(SpectrumItems.TAKE_OFF_BELT);
 				if (!equipped.isEmpty()) {
-					ItemStack firstBelt = equipped.getFirst().getRight();
+					ItemStack firstBelt = equipped.getFirst().getB();
 					if (firstBelt != null) {
 						int charge = TakeOffBeltItem.getCurrentCharge(player);
 						if (charge > 0) {
@@ -44,24 +42,24 @@ public class TakeOffBeltJumpCriterion extends AbstractCriterion<TakeOffBeltJumpC
 	}
 	
 	@Override
-	public Codec<Conditions> getConditionsCodec() {
+	public Codec<Conditions> codec() {
 		return Conditions.CODEC;
 	}
 	
 	public record Conditions(
-			Optional<LootContextPredicate> player,
+			Optional<ContextAwarePredicate> player,
 			ItemPredicate itemPredicate,
-			NumberRange.IntRange chargesRange
-	) implements AbstractCriterion.Conditions {
+			MinMaxBounds.Ints chargesRange
+	) implements SimpleCriterionTrigger.SimpleInstance {
 		
 		public static final Codec<Conditions> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-				LootContextPredicate.CODEC.optionalFieldOf("player").forGetter(Conditions::player),
-				ItemPredicate.CODEC.optionalFieldOf("item", ItemPredicate.Builder.create().build()).forGetter(Conditions::itemPredicate),
-				NumberRange.IntRange.CODEC.optionalFieldOf("charges", NumberRange.IntRange.ANY).forGetter(Conditions::chargesRange)
+				ContextAwarePredicate.CODEC.optionalFieldOf("player").forGetter(Conditions::player),
+				ItemPredicate.CODEC.optionalFieldOf("item", ItemPredicate.Builder.item().build()).forGetter(Conditions::itemPredicate),
+				MinMaxBounds.Ints.CODEC.optionalFieldOf("charges", MinMaxBounds.Ints.ANY).forGetter(Conditions::chargesRange)
 		).apply(instance, Conditions::new));
 		
 		public boolean matches(ItemStack beltStack, int charge) {
-			return itemPredicate.test(beltStack) && this.chargesRange.test(charge);
+			return itemPredicate.test(beltStack) && this.chargesRange.matches(charge);
 		}
 	}
 	

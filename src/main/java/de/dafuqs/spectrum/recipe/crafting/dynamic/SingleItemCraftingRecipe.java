@@ -1,24 +1,22 @@
 package de.dafuqs.spectrum.recipe.crafting.dynamic;
 
-import net.minecraft.item.*;
-import net.minecraft.recipe.*;
-import net.minecraft.recipe.book.*;
-import net.minecraft.recipe.input.*;
-import net.minecraft.registry.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.*;
 
-public abstract class SingleItemCraftingRecipe extends SpecialCraftingRecipe {
+public abstract class SingleItemCraftingRecipe extends CustomRecipe {
 	
 	public SingleItemCraftingRecipe() {
-		super(CraftingRecipeCategory.MISC);
+		super(CraftingBookCategory.MISC);
 	}
 	
 	@Override
-	public boolean matches(CraftingRecipeInput input, World world) {
+	public boolean matches(CraftingInput input, Level world) {
 		boolean matchingItemFound = false;
 		
-		for (int slot = 0; slot < input.getSize(); ++slot) {
-			ItemStack itemStack = input.getStackInSlot(slot);
+		for (int slot = 0; slot < input.size(); ++slot) {
+			ItemStack itemStack = input.getItem(slot);
 			if (itemStack.isEmpty()) {
 				continue;
 			}
@@ -34,12 +32,12 @@ public abstract class SingleItemCraftingRecipe extends SpecialCraftingRecipe {
 	}
 	
 	@Override
-	public ItemStack craft(CraftingRecipeInput input, RegistryWrapper.WrapperLookup registryLookup) {
+	public ItemStack assemble(CraftingInput input, HolderLookup.Provider registryLookup) {
 		ItemStack stack;
-		for (int slot = 0; slot < input.getSize(); ++slot) {
-			stack = input.getStackInSlot(slot);
+		for (int slot = 0; slot < input.size(); ++slot) {
+			stack = input.getItem(slot);
 			if (!stack.isEmpty()) {
-				return craft(stack.copy());
+				return assemble(stack.copy());
 			}
 		}
 		
@@ -47,12 +45,12 @@ public abstract class SingleItemCraftingRecipe extends SpecialCraftingRecipe {
 	}
 	
 	@Override
-	public boolean fits(int width, int height) {
+	public boolean canCraftInDimensions(int width, int height) {
 		return width * height > 0;
 	}
 	
-	public abstract boolean matches(World world, ItemStack stack);
+	public abstract boolean matches(Level world, ItemStack stack);
 	
-	public abstract ItemStack craft(ItemStack stack);
+	public abstract ItemStack assemble(ItemStack stack);
 	
 }

@@ -3,15 +3,15 @@ package de.dafuqs.spectrum.mixin.client;
 import de.dafuqs.spectrum.registries.*;
 import dev.emi.trinkets.api.*;
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.entity.model.*;
-import net.minecraft.entity.*;
+import net.minecraft.client.model.geom.*;
+import net.minecraft.world.entity.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
 import java.util.*;
 
-@Mixin(BipedEntityModel.class)
+@Mixin(HumanoidModel.class)
 public class BipedEntityModelMixin {
 
 	@Shadow
@@ -26,20 +26,20 @@ public class BipedEntityModelMixin {
 	@Shadow
 	@Final
 	public ModelPart leftLeg;
-
-	@Inject(method = {"setAngles(Lnet/minecraft/entity/LivingEntity;FFFFF)V"}, at = @At("TAIL"), cancellable = true)
+	
+	@Inject(method = {"setupAnim(Lnet/minecraft/world/entity/LivingEntity;FFFFF)V"}, at = @At("TAIL"), cancellable = true)
 	public void poseArms(LivingEntity livingEntity, float f, float g, float h, float i, float j, CallbackInfo ci) {
 		Optional<TrinketComponent> trinketComponent = TrinketsApi.getTrinketComponent(livingEntity);
 		if (trinketComponent.isPresent() && trinketComponent.get().isEquipped(SpectrumItems.NEAT_RING)) {
-			this.rightLeg.pitch = 0;
-			this.rightLeg.yaw = 0;
-			this.leftLeg.pitch = 0;
-			this.leftLeg.yaw = 0;
-
-			this.rightArm.pitch = (float) Math.PI / 2;
-			this.rightArm.yaw = -1.5F;
-			this.leftArm.pitch = (float) Math.PI / 2;
-			this.leftArm.yaw = 1.5F;
+			this.rightLeg.xRot = 0;
+			this.rightLeg.yRot = 0;
+			this.leftLeg.xRot = 0;
+			this.leftLeg.yRot = 0;
+			
+			this.rightArm.xRot = (float) Math.PI / 2;
+			this.rightArm.yRot = -1.5F;
+			this.leftArm.xRot = (float) Math.PI / 2;
+			this.leftArm.yRot = 1.5F;
 
 			ci.cancel();
 		}

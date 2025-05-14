@@ -2,15 +2,15 @@ package de.dafuqs.spectrum.recipe;
 
 import de.dafuqs.spectrum.api.recipe.*;
 import it.unimi.dsi.fastutil.objects.*;
-import net.minecraft.item.*;
-import net.minecraft.recipe.input.*;
-import net.minecraft.util.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
 
 import java.util.*;
 
 public abstract class GatedStackSpectrumRecipe<C extends RecipeInput> extends GatedSpectrumRecipe<C> {
 	
-	protected GatedStackSpectrumRecipe(String group, boolean secret, Optional<Identifier> requiredAdvancementIdentifier) {
+	protected GatedStackSpectrumRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier) {
 		super(group, secret, requiredAdvancementIdentifier);
 	}
 	
@@ -18,14 +18,14 @@ public abstract class GatedStackSpectrumRecipe<C extends RecipeInput> extends Ga
 	
 	protected boolean matchIngredientStacksExclusively(RecipeInput recipeInput, List<IngredientStack> ingredientStacks) {
 		// does the recipe fit into that inventory in the first place?
-		if (recipeInput.getSize() < ingredientStacks.size()) {
+		if (recipeInput.size() < ingredientStacks.size()) {
 			return false;
 		}
 		
 		// collect all non-empty stacks
 		List<ItemStack> nonEmptyStacks = new ArrayList<>();
-		for (int i = 0; i < recipeInput.getSize(); i++) {
-			ItemStack stack = recipeInput.getStackInSlot(i);
+		for (int i = 0; i < recipeInput.size(); i++) {
+			ItemStack stack = recipeInput.getItem(i);
 			if (!stack.isEmpty()) {
 				nonEmptyStacks.add(stack);
 			}
@@ -60,7 +60,7 @@ public abstract class GatedStackSpectrumRecipe<C extends RecipeInput> extends Ga
 	protected boolean matchIngredientStacksExclusively(RecipeInput recipeInput, List<IngredientStack> ingredients, int[] slots) {
 		int inputStackCount = 0;
 		for (int slot : slots) {
-			if (!recipeInput.getStackInSlot(slot).isEmpty()) {
+			if (!recipeInput.getItem(slot).isEmpty()) {
 				inputStackCount++;
 			}
 		}
@@ -71,7 +71,7 @@ public abstract class GatedStackSpectrumRecipe<C extends RecipeInput> extends Ga
 		for (IngredientStack ingredient : ingredients) {
 			boolean found = false;
 			for (int slot : slots) {
-				if (ingredient.test(recipeInput.getStackInSlot(slot))) {
+				if (ingredient.test(recipeInput.getItem(slot))) {
 					found = true;
 					break;
 				}

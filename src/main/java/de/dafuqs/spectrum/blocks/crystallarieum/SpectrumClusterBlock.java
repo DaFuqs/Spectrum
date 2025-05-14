@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.crystallarieum;
 
-import net.minecraft.block.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 
 public class SpectrumClusterBlock extends AmethystClusterBlock {
 	
@@ -22,7 +23,7 @@ public class SpectrumClusterBlock extends AmethystClusterBlock {
 	
 	protected final GrowthStage growthStage;
 	
-	public SpectrumClusterBlock(AbstractBlock.Settings settings, GrowthStage growthStage) {
+	public SpectrumClusterBlock(BlockBehaviour.Properties settings, GrowthStage growthStage) {
 		super(growthStage.height, growthStage.xzOffset, settings);
 		this.growthStage = growthStage;
 	}

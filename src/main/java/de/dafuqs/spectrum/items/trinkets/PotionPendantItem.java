@@ -3,16 +3,15 @@ package de.dafuqs.spectrum.items.trinkets;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.item.*;
 import dev.emi.trinkets.api.*;
-import net.minecraft.component.*;
-import net.minecraft.component.type.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
+import net.minecraft.core.component.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.alchemy.*;
+import net.minecraft.world.level.*;
 
 import java.util.*;
 
@@ -24,21 +23,21 @@ public class PotionPendantItem extends SpectrumTrinketItem implements InkPowered
 	private final int maxEffectCount;
 	private final int maxAmplifier;
 	
-	public PotionPendantItem(Settings settings, int maxEffectCount, int maxAmplifier, Identifier unlockIdentifier) {
+	public PotionPendantItem(Properties settings, int maxEffectCount, int maxAmplifier, ResourceLocation unlockIdentifier) {
 		super(settings, unlockIdentifier);
 		this.maxEffectCount = maxEffectCount;
 		this.maxAmplifier = maxAmplifier;
 	}
 
 	@Override
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
-		appendPotionFillableTooltip(stack, tooltip, Text.translatable("item.spectrum.potion_pendant.when_worn"), false, context.getUpdateTickRate());
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
+		appendPotionFillableTooltip(stack, tooltip, Component.translatable("item.spectrum.potion_pendant.when_worn"), false, context.tickRate());
 	}
 	
 	@Override
-	public boolean hasGlint(ItemStack stack) {
-		return super.hasGlint(stack) || stack.getOrDefault(DataComponentTypes.POTION_CONTENTS, PotionContentsComponent.DEFAULT).hasEffects();
+	public boolean isFoil(ItemStack stack) {
+		return super.isFoil(stack) || stack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY).hasEffects();
 	}
 	
 	@Override
@@ -53,27 +52,27 @@ public class PotionPendantItem extends SpectrumTrinketItem implements InkPowered
 	
 	@Override
     public void onEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
-		World world = entity.getWorld();
+		Level world = entity.level();
 		super.onEquip(stack, slot, entity);
-		if (!world.isClient && entity instanceof PlayerEntity player) {
+		if (!world.isClientSide && entity instanceof Player player) {
 			grantEffects(stack, player);
 		}
 	}
 	
 	@Override
     public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
-		World world = entity.getWorld();
+		Level world = entity.level();
 		super.tick(stack, slot, entity);
-		if (!world.isClient && entity.getWorld().getTime() % TRIGGER_EVERY_X_TICKS == 0 && entity instanceof PlayerEntity player) {
+		if (!world.isClientSide && entity.level().getGameTime() % TRIGGER_EVERY_X_TICKS == 0 && entity instanceof Player player) {
 			grantEffects(stack, player);
 		}
 	}
 	
-	private void grantEffects(ItemStack stack, PlayerEntity player) {
+	private void grantEffects(ItemStack stack, Player player) {
 		for (InkPoweredStatusEffectInstance inkPoweredEffect : InkPoweredPotionFillable.getEffects(stack)) {
 			if (InkPowered.tryDrainEnergy(player, inkPoweredEffect.getInkCost())) {
-				StatusEffectInstance effect = inkPoweredEffect.getStatusEffectInstance();
-				player.addStatusEffect(new StatusEffectInstance(effect.getEffectType(), EFFECT_DURATION, effect.getAmplifier(), effect.isAmbient(), effect.shouldShowParticles(), true));
+				MobEffectInstance effect = inkPoweredEffect.getStatusEffectInstance();
+				player.addEffect(new MobEffectInstance(effect.getEffect(), EFFECT_DURATION, effect.getAmplifier(), effect.isAmbient(), effect.isVisible(), true));
 			}
 		}
 	}

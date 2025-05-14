@@ -1,36 +1,37 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
-import net.minecraft.block.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 
 public class RadiantGlassBlock extends TransparentBlock {
-
-	public static final MapCodec<RadiantGlassBlock> CODEC = createCodec(RadiantGlassBlock::new);
-
-	public RadiantGlassBlock(Settings settings) {
+	
+	public static final MapCodec<RadiantGlassBlock> CODEC = simpleCodec(RadiantGlassBlock::new);
+	
+	public RadiantGlassBlock(Properties settings) {
 		super(settings);
 	}
 
 	@Override
-	public MapCodec<? extends RadiantGlassBlock> getCodec() {
+	public MapCodec<? extends RadiantGlassBlock> codec() {
 		return CODEC;
 	}
 
 	@Override
 	@Environment(EnvType.CLIENT)
-	public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
-		if (stateFrom.isOf(this) || stateFrom.isOf(SpectrumBlocks.RADIANT_SEMI_PERMEABLE_GLASS)) {
+	public boolean skipRendering(BlockState state, BlockState stateFrom, Direction direction) {
+		if (stateFrom.is(this) || stateFrom.is(SpectrumBlocks.RADIANT_SEMI_PERMEABLE_GLASS)) {
 			return true;
 		}
-		return super.isSideInvisible(state, stateFrom, direction);
+		return super.skipRendering(state, stateFrom, direction);
 	}
 	
 	@Override
-	public boolean isTransparent(BlockState state, BlockView world, BlockPos pos) {
+	public boolean propagatesSkylightDown(BlockState state, BlockGetter world, BlockPos pos) {
 		return true;
 	}
 	

@@ -3,75 +3,77 @@ package de.dafuqs.spectrum.registries;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.blocks.shooting_star.*;
 import de.dafuqs.spectrum.entity.entity.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.entity.projectile.*;
-import net.minecraft.entity.projectile.thrown.*;
-import net.minecraft.item.*;
-import net.minecraft.registry.tag.*;
-import net.minecraft.sound.*;
-import net.minecraft.util.math.*;
+import net.minecraft.sounds.*;
+import net.minecraft.tags.*;
 import net.minecraft.world.*;
-import net.minecraft.world.event.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.item.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.entity.projectile.*;
+import net.minecraft.world.entity.projectile.windcharge.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.gameevent.*;
+import net.minecraft.world.phys.*;
 
 public class SpectrumOmniAcceleratorProjectiles {
 	
 	public static void register() {
 		OmniAcceleratorProjectile.register(new OmniAcceleratorProjectile() {
 			@Override
-			public Entity createProjectile(ItemStack stack, LivingEntity shooter, World world, ItemStack shotFrom) {
-				PotionEntity potionEntity = new PotionEntity(world, shooter);
+			public Entity createProjectile(ItemStack stack, LivingEntity shooter, Level world, ItemStack shotFrom) {
+				ThrownPotion potionEntity = new ThrownPotion(world, shooter);
 				potionEntity.setItem(stack);
-				potionEntity.setVelocity(shooter, shooter.getPitch(), shooter.getYaw(), 0.0F, 2.5F, 1.0F);
-				world.spawnEntity(potionEntity);
+				potionEntity.shootFromRotation(shooter, shooter.getXRot(), shooter.getYRot(), 0.0F, 2.5F, 1.0F);
+				world.addFreshEntity(potionEntity);
 				return potionEntity;
 			}
 			
 			@Override
 			public SoundEvent getSoundEffect() {
-				return SoundEvents.ENTITY_SPLASH_POTION_THROW;
+				return SoundEvents.SPLASH_POTION_THROW;
 			}
 		}, Items.SPLASH_POTION);
 		
 		OmniAcceleratorProjectile.register(new OmniAcceleratorProjectile() {
 			@Override
-			public Entity createProjectile(ItemStack stack, LivingEntity shooter, World world, ItemStack shotFrom) {
-				PotionEntity potionEntity = new PotionEntity(world, shooter);
+			public Entity createProjectile(ItemStack stack, LivingEntity shooter, Level world, ItemStack shotFrom) {
+				ThrownPotion potionEntity = new ThrownPotion(world, shooter);
 				potionEntity.setItem(stack);
-				potionEntity.setVelocity(shooter, shooter.getPitch(), shooter.getYaw(), 0.0F, 2.5F, 1.0F);
-				world.spawnEntity(potionEntity);
+				potionEntity.shootFromRotation(shooter, shooter.getXRot(), shooter.getYRot(), 0.0F, 2.5F, 1.0F);
+				world.addFreshEntity(potionEntity);
 				return potionEntity;
 			}
 			
 			@Override
 			public SoundEvent getSoundEffect() {
-				return SoundEvents.ENTITY_LINGERING_POTION_THROW;
+				return SoundEvents.LINGERING_POTION_THROW;
 			}
 		}, Items.LINGERING_POTION);
 		
 		OmniAcceleratorProjectile.register(new OmniAcceleratorProjectile() {
 			@Override
-			public Entity createProjectile(ItemStack stack, LivingEntity shooter, World world, ItemStack shotFrom) {
-				EnderPearlEntity enderPearlEntity = new EnderPearlEntity(world, shooter);
+			public Entity createProjectile(ItemStack stack, LivingEntity shooter, Level world, ItemStack shotFrom) {
+				ThrownEnderpearl enderPearlEntity = new ThrownEnderpearl(world, shooter);
 				enderPearlEntity.setItem(stack);
-				enderPearlEntity.setVelocity(shooter, shooter.getPitch(), shooter.getYaw(), 0.0F, 2.5F, 1.0F);
-				world.spawnEntity(enderPearlEntity);
+				enderPearlEntity.shootFromRotation(shooter, shooter.getXRot(), shooter.getYRot(), 0.0F, 2.5F, 1.0F);
+				world.addFreshEntity(enderPearlEntity);
 				return enderPearlEntity;
 			}
 			
 			@Override
 			public SoundEvent getSoundEffect() {
-				return SoundEvents.ENTITY_ENDER_PEARL_THROW;
+				return SoundEvents.ENDER_PEARL_THROW;
 			}
 		}, Items.ENDER_PEARL);
 		
 		OmniAcceleratorProjectile.register(new OmniAcceleratorProjectile() {
 			@Override
-			public Entity createProjectile(ItemStack stack, LivingEntity shooter, World world, ItemStack shotFrom) {
+			public Entity createProjectile(ItemStack stack, LivingEntity shooter, Level world, ItemStack shotFrom) {
 				if (stack.getItem() instanceof ArrowItem arrowItem) {
-					PersistentProjectileEntity arrowEntity = arrowItem.createArrow(world, stack, shooter, shotFrom);
-					arrowEntity.setVelocity(shooter, shooter.getPitch(), shooter.getYaw(), 0.0F, 2.5F, 1.0F);
-					world.spawnEntity(arrowEntity);
+					AbstractArrow arrowEntity = arrowItem.createArrow(world, stack, shooter, shotFrom);
+					arrowEntity.shootFromRotation(shooter, shooter.getXRot(), shooter.getYRot(), 0.0F, 2.5F, 1.0F);
+					world.addFreshEntity(arrowEntity);
 					return arrowEntity;
 				}
 				return null;
@@ -79,50 +81,50 @@ public class SpectrumOmniAcceleratorProjectiles {
 			
 			@Override
 			public SoundEvent getSoundEffect() {
-				return SoundEvents.ENTITY_ARROW_SHOOT;
+				return SoundEvents.ARROW_SHOOT;
 			}
 		}, ItemTags.ARROWS);
 		
 		OmniAcceleratorProjectile.register(new OmniAcceleratorProjectile() {
 			@Override
-			public Entity createProjectile(ItemStack stack, LivingEntity shooter, World world, ItemStack shotFrom) {
-				SnowballEntity snowballEntity = new SnowballEntity(world, shooter);
+			public Entity createProjectile(ItemStack stack, LivingEntity shooter, Level world, ItemStack shotFrom) {
+				Snowball snowballEntity = new Snowball(world, shooter);
 				snowballEntity.setItem(stack);
-				snowballEntity.setVelocity(shooter, shooter.getPitch(), shooter.getYaw(), 0.0F, 2.5F, 1.0F);
-				world.spawnEntity(snowballEntity);
+				snowballEntity.shootFromRotation(shooter, shooter.getXRot(), shooter.getYRot(), 0.0F, 2.5F, 1.0F);
+				world.addFreshEntity(snowballEntity);
 				return snowballEntity;
 			}
 			
 			@Override
 			public SoundEvent getSoundEffect() {
-				return SoundEvents.ENTITY_SNOWBALL_THROW;
+				return SoundEvents.SNOWBALL_THROW;
 			}
 		}, Items.SNOWBALL);
 		
 		OmniAcceleratorProjectile.register(new OmniAcceleratorProjectile() {
 			@Override
-			public Entity createProjectile(ItemStack stack, LivingEntity shooter, World world, ItemStack shotFrom) {
-				EggEntity eggEntity = new EggEntity(world, shooter);
+			public Entity createProjectile(ItemStack stack, LivingEntity shooter, Level world, ItemStack shotFrom) {
+				ThrownEgg eggEntity = new ThrownEgg(world, shooter);
 				eggEntity.setItem(stack);
-				eggEntity.setVelocity(shooter, shooter.getPitch(), shooter.getYaw(), 0.0F, 2.5F, 1.0F);
-				world.spawnEntity(eggEntity);
+				eggEntity.shootFromRotation(shooter, shooter.getXRot(), shooter.getYRot(), 0.0F, 2.5F, 1.0F);
+				world.addFreshEntity(eggEntity);
 				return eggEntity;
 			}
 			
 			@Override
 			public SoundEvent getSoundEffect() {
-				return SoundEvents.ENTITY_EGG_THROW;
+				return SoundEvents.EGG_THROW;
 			}
 		}, Items.EGG);
 		
 		OmniAcceleratorProjectile.register(new OmniAcceleratorProjectile() {
 			@Override
-			public Entity createProjectile(ItemStack stack, LivingEntity shooter, World world, ItemStack shotFrom) {
-				Vec3d pos = shooter.getEyePos();
-				TntEntity tntEntity = new TntEntity(world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, shooter);
-				OmniAcceleratorProjectile.setVelocity(tntEntity, shooter, shooter.getPitch(), shooter.getYaw(), 0.0F, 2.5F, 1.0F);
-				if (world.spawnEntity(tntEntity)) {
-					world.emitGameEvent(shooter, GameEvent.PRIME_FUSE, pos);
+			public Entity createProjectile(ItemStack stack, LivingEntity shooter, Level world, ItemStack shotFrom) {
+				Vec3 pos = shooter.getEyePosition();
+				PrimedTnt tntEntity = new PrimedTnt(world, pos.x() + 0.5, pos.y(), pos.z() + 0.5, shooter);
+				OmniAcceleratorProjectile.setVelocity(tntEntity, shooter, shooter.getXRot(), shooter.getYRot(), 0.0F, 2.5F, 1.0F);
+				if (world.addFreshEntity(tntEntity)) {
+					world.gameEvent(shooter, GameEvent.PRIME_FUSE, pos);
 					return tntEntity;
 				}
 				return null;
@@ -130,17 +132,17 @@ public class SpectrumOmniAcceleratorProjectiles {
 			
 			@Override
 			public SoundEvent getSoundEffect() {
-				return SoundEvents.ENTITY_TNT_PRIMED;
+				return SoundEvents.TNT_PRIMED;
 			}
 		}, Items.TNT);
 		
 		OmniAcceleratorProjectile.register(new OmniAcceleratorProjectile() {
 			@Override
-			public Entity createProjectile(ItemStack stack, LivingEntity shooter, World world, ItemStack shotFrom) {
+			public Entity createProjectile(ItemStack stack, LivingEntity shooter, Level world, ItemStack shotFrom) {
 				BlockFlooderProjectile blockFlooderProjectile = new BlockFlooderProjectile(world, shooter);
 				blockFlooderProjectile.setItem(stack);
-				blockFlooderProjectile.setVelocity(shooter, shooter.getPitch(), shooter.getYaw(), 0.0F, 2.5F, 1.0F);
-				world.spawnEntity(blockFlooderProjectile);
+				blockFlooderProjectile.shootFromRotation(shooter, shooter.getXRot(), shooter.getYRot(), 0.0F, 2.5F, 1.0F);
+				world.addFreshEntity(blockFlooderProjectile);
 				return blockFlooderProjectile;
 			}
 			
@@ -152,11 +154,11 @@ public class SpectrumOmniAcceleratorProjectiles {
 		
 		OmniAcceleratorProjectile.register(new OmniAcceleratorProjectile() {
 			@Override
-			public Entity createProjectile(ItemStack stack, LivingEntity shooter, World world, ItemStack shotFrom) {
+			public Entity createProjectile(ItemStack stack, LivingEntity shooter, Level world, ItemStack shotFrom) {
 				ParametricMiningDeviceEntity entity = new ParametricMiningDeviceEntity(world, shooter);
 				entity.setItem(stack);
-				entity.setVelocity(shooter, shooter.getPitch(), shooter.getYaw(), 0, 2.5F, 0F);
-				world.spawnEntity(entity);
+				entity.shootFromRotation(shooter, shooter.getXRot(), shooter.getYRot(), 0, 2.5F, 0F);
+				world.addFreshEntity(entity);
 				return entity;
 			}
 			
@@ -168,30 +170,30 @@ public class SpectrumOmniAcceleratorProjectiles {
 		
 		OmniAcceleratorProjectile.register(new OmniAcceleratorProjectile() {
 			@Override
-			public Entity createProjectile(ItemStack stack, LivingEntity shooter, World world, ItemStack shotFrom) {
+			public Entity createProjectile(ItemStack stack, LivingEntity shooter, Level world, ItemStack shotFrom) {
 				FireworkRocketEntity fireworkRocketEntity = new FireworkRocketEntity(world, stack, shooter);
-				fireworkRocketEntity.setVelocity(shooter, shooter.getPitch(), shooter.getYaw(), 0, 2.5F, 0F);
-				world.spawnEntity(fireworkRocketEntity);
+				fireworkRocketEntity.shootFromRotation(shooter, shooter.getXRot(), shooter.getYRot(), 0, 2.5F, 0F);
+				world.addFreshEntity(fireworkRocketEntity);
 				return fireworkRocketEntity;
 			}
 			
 			@Override
 			public SoundEvent getSoundEffect() {
-				return SoundEvents.ENTITY_FIREWORK_ROCKET_LAUNCH;
+				return SoundEvents.FIREWORK_ROCKET_LAUNCH;
 			}
 		}, Items.FIREWORK_ROCKET);
 		
 		OmniAcceleratorProjectile.register(new OmniAcceleratorProjectile() {
 			@Override
-			public Entity createProjectile(ItemStack stack, LivingEntity shooter, World world, ItemStack shotFrom) {
-				ShootingStarEntity shootingStarEntity = ((ShootingStarItem) stack.getItem()).getEntityForStack(world, shooter.getEyePos(), stack);
-				OmniAcceleratorProjectile.setVelocity(shootingStarEntity, shooter, shooter.getPitch(), shooter.getYaw(), 0, 2.5F, 0F);
-				world.spawnEntity(shootingStarEntity);
+			public Entity createProjectile(ItemStack stack, LivingEntity shooter, Level world, ItemStack shotFrom) {
+				ShootingStarEntity shootingStarEntity = ((ShootingStarItem) stack.getItem()).getEntityForStack(world, shooter.getEyePosition(), stack);
+				OmniAcceleratorProjectile.setVelocity(shootingStarEntity, shooter, shooter.getXRot(), shooter.getYRot(), 0, 2.5F, 0F);
+				world.addFreshEntity(shootingStarEntity);
 				
-				shootingStarEntity.noClip = true;
-				shootingStarEntity.move(MovementType.SELF, shootingStarEntity.getVelocity()); // leave the owner
-				shootingStarEntity.move(MovementType.SELF, shootingStarEntity.getVelocity()); // leave the owner
-				shootingStarEntity.noClip = false;
+				shootingStarEntity.noPhysics = true;
+				shootingStarEntity.move(MoverType.SELF, shootingStarEntity.getDeltaMovement()); // leave the owner
+				shootingStarEntity.move(MoverType.SELF, shootingStarEntity.getDeltaMovement()); // leave the owner
+				shootingStarEntity.noPhysics = false;
 				
 				return shootingStarEntity;
 			}
@@ -204,14 +206,14 @@ public class SpectrumOmniAcceleratorProjectiles {
 		
 		OmniAcceleratorProjectile.register(new OmniAcceleratorProjectile() {
 			@Override
-			public Entity createProjectile(ItemStack stack, LivingEntity shooter, World world, ItemStack shotFrom) {
-				Vec3d pos = shooter.getEyePos();
+			public Entity createProjectile(ItemStack stack, LivingEntity shooter, Level world, ItemStack shotFrom) {
+				Vec3 pos = shooter.getEyePosition();
 				
 				if (stack.getItem() instanceof BlockItem blockItem) {
-					FallingBlockEntity fallingBlockEntity = new FallingBlockEntity(world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, blockItem.getBlock().getDefaultState());
-					OmniAcceleratorProjectile.setVelocity(fallingBlockEntity, shooter, shooter.getPitch(), shooter.getYaw(), 0, 2.5F, 0F);
-					world.spawnEntity(fallingBlockEntity);
-					world.spawnEntity(fallingBlockEntity);
+					FallingBlockEntity fallingBlockEntity = new FallingBlockEntity(world, pos.x() + 0.5, pos.y(), pos.z() + 0.5, blockItem.getBlock().defaultBlockState());
+					OmniAcceleratorProjectile.setVelocity(fallingBlockEntity, shooter, shooter.getXRot(), shooter.getYRot(), 0, 2.5F, 0F);
+					world.addFreshEntity(fallingBlockEntity);
+					world.addFreshEntity(fallingBlockEntity);
 					return fallingBlockEntity;
 				}
 				
@@ -220,24 +222,24 @@ public class SpectrumOmniAcceleratorProjectiles {
 			
 			@Override
 			public SoundEvent getSoundEffect() {
-				return SoundEvents.BLOCK_ANVIL_PLACE;
+				return SoundEvents.ANVIL_PLACE;
 			}
 		}, ItemTags.ANVIL);
 		
 		OmniAcceleratorProjectile.register(new OmniAcceleratorProjectile() {
 			@Override
-			public Entity createProjectile(ItemStack stack, LivingEntity shooter, World world, ItemStack shotFrom) {
-				if (shooter instanceof PlayerEntity player) {
-					WindChargeEntity windChargeEntity = new WindChargeEntity(player, world, shooter.getPos().getX(), shooter.getEyePos().getY(), shooter.getPos().getZ());
-					windChargeEntity.setVelocity(shooter, shooter.getPitch(), shooter.getYaw(), 0, 2.5F, 0F);
-					world.spawnEntity(windChargeEntity);
+			public Entity createProjectile(ItemStack stack, LivingEntity shooter, Level world, ItemStack shotFrom) {
+				if (shooter instanceof Player player) {
+					WindCharge windChargeEntity = new WindCharge(player, world, shooter.position().x(), shooter.getEyePosition().y(), shooter.position().z());
+					windChargeEntity.shootFromRotation(shooter, shooter.getXRot(), shooter.getYRot(), 0, 2.5F, 0F);
+					world.addFreshEntity(windChargeEntity);
 				}
 				return null;
 			}
 			
 			@Override
 			public SoundEvent getSoundEffect() {
-				return SoundEvents.ENTITY_WIND_CHARGE_THROW;
+				return SoundEvents.WIND_CHARGE_THROW;
 			}
 		}, Items.WIND_CHARGE);
 	}

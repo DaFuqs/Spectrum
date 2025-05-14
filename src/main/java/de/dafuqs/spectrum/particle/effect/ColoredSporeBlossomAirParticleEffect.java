@@ -5,13 +5,13 @@ import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.*;
+import net.minecraft.core.particles.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.particle.*;
-import net.minecraft.util.dynamic.*;
+import net.minecraft.util.*;
 import org.joml.*;
 
-public class ColoredSporeBlossomAirParticleEffect implements ParticleEffect {
+public class ColoredSporeBlossomAirParticleEffect implements ParticleOptions {
 	
 	public static final ColoredSporeBlossomAirParticleEffect BLACK = new ColoredSporeBlossomAirParticleEffect(InkColors.BLACK_COLOR);
 	public static final ColoredSporeBlossomAirParticleEffect BLUE = new ColoredSporeBlossomAirParticleEffect(InkColors.BLUE_COLOR);
@@ -31,10 +31,10 @@ public class ColoredSporeBlossomAirParticleEffect implements ParticleEffect {
 	public static final ColoredSporeBlossomAirParticleEffect YELLOW = new ColoredSporeBlossomAirParticleEffect(InkColors.YELLOW_COLOR);
 	
 	public static final MapCodec<ColoredSporeBlossomAirParticleEffect> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
-			Codecs.VECTOR_3F.fieldOf("color").forGetter((effect) -> effect.color)
+			ExtraCodecs.VECTOR3F.fieldOf("color").forGetter((effect) -> effect.color)
 	).apply(instance, ColoredSporeBlossomAirParticleEffect::new));
-	public static final PacketCodec<RegistryByteBuf, ColoredSporeBlossomAirParticleEffect> PACKET_CODEC = PacketCodec.tuple(
-			PacketCodecs.VECTOR3F, (effect) -> effect.color,
+	public static final StreamCodec<RegistryFriendlyByteBuf, ColoredSporeBlossomAirParticleEffect> PACKET_CODEC = StreamCodec.composite(
+			ByteBufCodecs.VECTOR3F, (effect) -> effect.color,
 			ColoredSporeBlossomAirParticleEffect::new
 	);
 	

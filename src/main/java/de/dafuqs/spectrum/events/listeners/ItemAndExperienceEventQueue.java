@@ -1,13 +1,13 @@
 package de.dafuqs.spectrum.events.listeners;
 
 import de.dafuqs.spectrum.events.*;
-import net.minecraft.entity.*;
-import net.minecraft.registry.entry.*;
-import net.minecraft.server.world.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
-import net.minecraft.world.event.*;
-import net.minecraft.world.event.listener.*;
+import net.minecraft.core.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.gameevent.*;
+import net.minecraft.world.phys.*;
 
 /**
  * Since Sucking chests can react to both spawned items and experience
@@ -25,28 +25,28 @@ public class ItemAndExperienceEventQueue implements GameEventListener {
 	}
 	
 	@Override
-	public PositionSource getPositionSource() {
-		return this.itemListener.eventQueue.getPositionSource();
+	public PositionSource getListenerSource() {
+		return this.itemListener.eventQueue.getListenerSource();
 	}
 	
 	@Override
-	public int getRange() {
-		return this.itemListener.eventQueue.getRange();
+	public int getListenerRadius() {
+		return this.itemListener.eventQueue.getListenerRadius();
 	}
 	
 	@Override
-	public boolean listen(ServerWorld world, RegistryEntry<GameEvent> event, GameEvent.Emitter emitter, Vec3d emitterPos) {
+	public boolean handleGameEvent(ServerLevel world, Holder<GameEvent> event, GameEvent.Context emitter, Vec3 emitterPos) {
 		if (event != SpectrumGameEvents.ENTITY_SPAWNED) {
 			return false;
 		}
 
 		Entity entity = emitter.sourceEntity();
 		
-		return (entity instanceof ItemEntity && itemListener.eventQueue.listen(world, event, emitter, emitterPos)
-				|| entity instanceof ExperienceOrbEntity && experienceListener.eventQueue.listen(world, event, emitter, emitterPos));
+		return (entity instanceof ItemEntity && itemListener.eventQueue.handleGameEvent(world, event, emitter, emitterPos)
+				|| entity instanceof ExperienceOrb && experienceListener.eventQueue.handleGameEvent(world, event, emitter, emitterPos));
 	}
 	
-	public void tick(World world) {
+	public void tick(Level world) {
 		this.itemListener.eventQueue.tick(world);
 		this.experienceListener.eventQueue.tick(world);
 	}
@@ -61,12 +61,12 @@ public class ItemAndExperienceEventQueue implements GameEventListener {
 		}
 
 		@Override
-		public boolean canAcceptEvent(World world, GameEventListener listener, GameEvent.Message event, Vec3d sourcePos) {
+		public boolean canAcceptEvent(Level world, GameEventListener listener, GameEvent.ListenerInfo event, Vec3 sourcePos) {
 			return this.parentListener.canAcceptEvent(world, listener, event, sourcePos);
 		}
 
 		@Override
-		public void triggerEvent(World world, GameEventListener listener, ItemEntityEventQueue.EventEntry entry) {
+		public void triggerEvent(Level world, GameEventListener listener, ItemEntityEventQueue.EventEntry entry) {
 			this.parentListener.triggerEvent(world, listener, entry);
 		}
 	}
@@ -81,12 +81,12 @@ public class ItemAndExperienceEventQueue implements GameEventListener {
 		}
 
 		@Override
-		public boolean canAcceptEvent(World world, GameEventListener listener, GameEvent.Message event, Vec3d sourcePos) {
+		public boolean canAcceptEvent(Level world, GameEventListener listener, GameEvent.ListenerInfo event, Vec3 sourcePos) {
 			return this.parentListener.canAcceptEvent(world, listener, event, sourcePos);
 		}
 
 		@Override
-		public void triggerEvent(World world, GameEventListener listener, ExperienceOrbEventQueue.EventEntry entry) {
+		public void triggerEvent(Level world, GameEventListener listener, ExperienceOrbEventQueue.EventEntry entry) {
 			this.parentListener.triggerEvent(world, listener, entry);
 		}
 	}

@@ -7,14 +7,13 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import dev.emi.trinkets.api.*;
 import net.fabricmc.api.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.server.network.*;
-import net.minecraft.sound.*;
-import net.minecraft.text.*;
-import net.minecraft.world.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
 
 import java.util.*;
 
@@ -23,7 +22,7 @@ public class GlowVisionGogglesItem extends SpectrumTrinketItem implements InkPow
 	public static final InkCost INK_COST = new InkCost(InkColors.LIGHT_BLUE, 20);
 	public static final ItemStack ITEM_COST = new ItemStack(Items.GLOW_INK_SAC, 1);
 	
-	public GlowVisionGogglesItem(Settings settings) {
+	public GlowVisionGogglesItem(Properties settings) {
 		super(settings, SpectrumCommon.locate("unlocks/trinkets/glow_vision_goggles"));
 	}
 	
@@ -31,9 +30,9 @@ public class GlowVisionGogglesItem extends SpectrumTrinketItem implements InkPow
 	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		super.tick(stack, slot, entity);
 		
-		World world = entity.getWorld();
-		if (world != null && !world.isClient && world.getTime() % 20 == 0) {
-			if (entity instanceof ServerPlayerEntity serverPlayerEntity) {
+		Level world = entity.level();
+		if (world != null && !world.isClientSide && world.getGameTime() % 20 == 0) {
+			if (entity instanceof ServerPlayer serverPlayerEntity) {
 				giveEffect(world, serverPlayerEntity);
 			}
 		}
@@ -42,17 +41,17 @@ public class GlowVisionGogglesItem extends SpectrumTrinketItem implements InkPow
 	@Override
 	public void onEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		super.onEquip(stack, slot, entity);
-		World world = entity.getWorld();
-		if (world != null && !world.isClient && entity instanceof ServerPlayerEntity serverPlayerEntity) {
+		Level world = entity.level();
+		if (world != null && !world.isClientSide && entity instanceof ServerPlayer serverPlayerEntity) {
 			giveEffect(world, serverPlayerEntity);
 		}
 	}
 	
-	private static void giveEffect(World world, ServerPlayerEntity serverPlayerEntity) {
-		int lightLevelAtPlayerPos = world.getLightLevel(serverPlayerEntity.getBlockPos());
+	private static void giveEffect(Level world, ServerPlayer serverPlayerEntity) {
+		int lightLevelAtPlayerPos = world.getMaxLocalRawBrightness(serverPlayerEntity.blockPosition());
 		
 		if (lightLevelAtPlayerPos < 7) {
-			StatusEffectInstance nightVisionInstance = serverPlayerEntity.getStatusEffect(StatusEffects.NIGHT_VISION);
+			MobEffectInstance nightVisionInstance = serverPlayerEntity.getEffect(MobEffects.NIGHT_VISION);
 			if (nightVisionInstance == null || nightVisionInstance.getDuration() < 220) { // prevent "night vision running out" flashing
 				// no / short night vision => search for glow ink sac and add night vision if found
 				
@@ -65,9 +64,9 @@ public class GlowVisionGogglesItem extends SpectrumTrinketItem implements InkPow
 				}
 				
 				if (paid) {
-					StatusEffectInstance newNightVisionInstance = new StatusEffectInstance(StatusEffects.NIGHT_VISION, 20 * SpectrumCommon.CONFIG.GlowVisionGogglesDuration, 0, true, true);
-					serverPlayerEntity.addStatusEffect(newNightVisionInstance);
-					world.playSoundFromEntity(null, serverPlayerEntity, SpectrumSoundEvents.ITEM_ARMOR_EQUIP_GLOW_VISION, SoundCategory.PLAYERS, 0.2F, 1.0F);
+					MobEffectInstance newNightVisionInstance = new MobEffectInstance(MobEffects.NIGHT_VISION, 20 * SpectrumCommon.CONFIG.GlowVisionGogglesDuration, 0, true, true);
+					serverPlayerEntity.addEffect(newNightVisionInstance);
+					world.playSound(null, serverPlayerEntity, SpectrumSoundEvents.ITEM_ARMOR_EQUIP_GLOW_VISION, SoundSource.PLAYERS, 0.2F, 1.0F);
 				}
 			}
 		}
@@ -75,12 +74,12 @@ public class GlowVisionGogglesItem extends SpectrumTrinketItem implements InkPow
 	
 	@Override
 	@Environment(EnvType.CLIENT)
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
 		if (InkPowered.canUseClient()) {
-			tooltip.add(Text.translatable("item.spectrum.glow_vision_goggles.tooltip_with_ink", INK_COST.color().getColoredInkName()));
+			tooltip.add(Component.translatable("item.spectrum.glow_vision_goggles.tooltip_with_ink", INK_COST.color().getColoredInkName()));
 		} else {
-			tooltip.add(Text.translatable("item.spectrum.glow_vision_goggles.tooltip"));
+			tooltip.add(Component.translatable("item.spectrum.glow_vision_goggles.tooltip"));
 		}
 	}
 	

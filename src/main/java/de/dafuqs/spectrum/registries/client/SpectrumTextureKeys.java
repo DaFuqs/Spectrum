@@ -1,29 +1,29 @@
 package de.dafuqs.spectrum.registries.client;
 
-import net.minecraft.data.client.*;
+import net.minecraft.data.models.model.*;
 
 public class SpectrumTextureKeys {
 	
-	public static final TextureKey KEY0 = TextureKey.of("0");
-	public static final TextureKey KEY1 = TextureKey.of("1");
-
-	public static final TextureKey LAYER3 = TextureKey.of("layer3");
+	public static final TextureSlot KEY0 = TextureSlot.create("0");
+	public static final TextureSlot KEY1 = TextureSlot.create("1");
 	
-	public static final TextureKey BASE = TextureKey.of("base");
-	public static final TextureKey CASE = TextureKey.of("case");
-	public static final TextureKey CORE = TextureKey.of("core");
-	public static final TextureKey ENDS = TextureKey.of("ends");
-	public static final TextureKey FILAMENT = TextureKey.of("filament");
-	public static final TextureKey FLOWER = TextureKey.of("flower");
-	public static final TextureKey FRONDS = TextureKey.of("fronds");
-	public static final TextureKey GEMSTONE = TextureKey.of("gemstone");
-	public static final TextureKey GLASS = TextureKey.of("glass");
-	public static final TextureKey INNER = TextureKey.of("inner");
-	public static final TextureKey LIGHT = TextureKey.of("light");
-	public static final TextureKey LINE = TextureKey.of("line");
-	public static final TextureKey OUTER = TextureKey.of("outer");
-	public static final TextureKey PEDESTAL = TextureKey.of("pedestal");
-	public static final TextureKey SHELL = TextureKey.of("shell");
-	public static final TextureKey SHRINE = TextureKey.of("shrine");
+	public static final TextureSlot LAYER3 = TextureSlot.create("layer3");
+	
+	public static final TextureSlot BASE = TextureSlot.create("base");
+	public static final TextureSlot CASE = TextureSlot.create("case");
+	public static final TextureSlot CORE = TextureSlot.create("core");
+	public static final TextureSlot ENDS = TextureSlot.create("ends");
+	public static final TextureSlot FILAMENT = TextureSlot.create("filament");
+	public static final TextureSlot FLOWER = TextureSlot.create("flower");
+	public static final TextureSlot FRONDS = TextureSlot.create("fronds");
+	public static final TextureSlot GEMSTONE = TextureSlot.create("gemstone");
+	public static final TextureSlot GLASS = TextureSlot.create("glass");
+	public static final TextureSlot INNER = TextureSlot.create("inner");
+	public static final TextureSlot LIGHT = TextureSlot.create("light");
+	public static final TextureSlot LINE = TextureSlot.create("line");
+	public static final TextureSlot OUTER = TextureSlot.create("outer");
+	public static final TextureSlot PEDESTAL = TextureSlot.create("pedestal");
+	public static final TextureSlot SHELL = TextureSlot.create("shell");
+	public static final TextureSlot SHRINE = TextureSlot.create("shrine");
 	
 }

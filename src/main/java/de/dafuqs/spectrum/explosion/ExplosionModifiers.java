@@ -5,11 +5,11 @@ import de.dafuqs.spectrum.explosion.modifier.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.enchantment.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.damage.*;
-import net.minecraft.particle.*;
-import net.minecraft.registry.*;
+import net.minecraft.core.*;
+import net.minecraft.core.particles.*;
+import net.minecraft.world.damagesource.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.item.enchantment.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -25,7 +25,7 @@ public class ExplosionModifiers {
 	
 	public static final ExplosionModifierType DESTRUCTION_SHAPE = registerModifierType("destruction_shape", new ExplosionModifierType(ExplosionArchetype.DESTROY_BLOCKS, 1)); // explosion shape
 	public static final ExplosionModifierType DESTRUCTION_MODIFICATION = registerModifierType("destruction_modification", new ExplosionModifierType(ExplosionArchetype.DESTROY_BLOCKS, Integer.MAX_VALUE)); // all sorts of stuff, like damage improvements
-
+	
 	// MODIFIERS
 	// A modifier changes the effect of the modular explosion in some way
 	// General boosts
@@ -40,27 +40,27 @@ public class ExplosionModifiers {
 			if (owner == null) {
 				return Optional.empty();
 			}
-			return Optional.of(owner.getDamageSources().lightningBolt());
+			return Optional.of(owner.damageSources().lightningBolt());
 		}
 	});
 	public static final ExplosionModifier MAGIC = registerModifier(
 			"magic_damage",
 			new DamageChangingModifier(DAMAGE_TYPE, ColoredCraftingParticleEffect.PURPLE, 0x5433a5) {
-		@Override
-		public Optional<DamageSource> getDamageSource(@Nullable LivingEntity owner) {
-			if (owner == null) {
-				return Optional.empty();
-			}
-			return Optional.of(owner.getDamageSources().magic());
-		}
-	});
+				@Override
+				public Optional<DamageSource> getDamageSource(@Nullable LivingEntity owner) {
+					if (owner == null) {
+						return Optional.empty();
+					}
+					return Optional.of(owner.damageSources().magic());
+				}
+			});
 	public static final ExplosionModifier INCANDESCENCE = registerModifier("incandescence", new DamageChangingModifier(DAMAGE_TYPE, ParticleTypes.ENCHANT, 0xff59ff) {
 		@Override
 		public Optional<DamageSource> getDamageSource(@Nullable LivingEntity owner) {
 			if (owner == null) {
 				return Optional.empty();
 			}
-			return Optional.of(SpectrumDamageTypes.incandescence(owner.getWorld()));
+			return Optional.of(SpectrumDamageTypes.incandescence(owner.level()));
 		}
 	});
 	

@@ -2,111 +2,113 @@ package de.dafuqs.spectrum.blocks.boom;
 
 import com.mojang.serialization.MapCodec;
 import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.blocks.energy.*;
 import de.dafuqs.spectrum.explosion.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.server.world.*;
-import net.minecraft.state.*;
-import net.minecraft.state.property.Properties;
-import net.minecraft.state.property.*;
+import net.minecraft.core.*;
+import net.minecraft.server.level.*;
 import net.minecraft.util.*;
-import net.minecraft.util.hit.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.context.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.phys.*;
+import net.minecraft.world.phys.shapes.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public class ParametricMiningDeviceBlock extends PlacedItemBlock {
-
-	public static final MapCodec<ParametricMiningDeviceBlock> CODEC = createCodec(ParametricMiningDeviceBlock::new);
 	
-	public static final DirectionProperty FACING = Properties.FACING;
+	public static final DirectionProperty FACING = BlockStateProperties.FACING;
+	public static final MapCodec<ParametricMiningDeviceBlock> CODEC = simpleCodec(ParametricMiningDeviceBlock::new);
 	
 	public static final Map<Direction, VoxelShape> SHAPES = new HashMap<>() {{
-		put(Direction.UP, Block.createCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 4.0D, 12.0D));
-		put(Direction.DOWN, Block.createCuboidShape(4.0D, 12.0D, 4.0D, 12.0D, 16.0D, 12.0D));
-		put(Direction.NORTH, Block.createCuboidShape(4.0D, 4.0D, 12.0D, 12.0D, 12.0D, 16.0D));
-		put(Direction.SOUTH, Block.createCuboidShape(4.0D, 4.0D, 0.0D, 12.0D, 12.0D, 4.0D));
-		put(Direction.EAST, Block.createCuboidShape(0.0D, 4.0D, 4.0D, 4.0D, 12.0D, 12.0D));
-		put(Direction.WEST, Block.createCuboidShape(12.0D, 4.0D, 4.0D, 16.0D, 12.0D, 12.0D));
+		put(Direction.UP, Block.box(4.0D, 0.0D, 4.0D, 12.0D, 4.0D, 12.0D));
+		put(Direction.DOWN, Block.box(4.0D, 12.0D, 4.0D, 12.0D, 16.0D, 12.0D));
+		put(Direction.NORTH, Block.box(4.0D, 4.0D, 12.0D, 12.0D, 12.0D, 16.0D));
+		put(Direction.SOUTH, Block.box(4.0D, 4.0D, 0.0D, 12.0D, 12.0D, 4.0D));
+		put(Direction.EAST, Block.box(0.0D, 4.0D, 4.0D, 4.0D, 12.0D, 12.0D));
+		put(Direction.WEST, Block.box(12.0D, 4.0D, 4.0D, 16.0D, 12.0D, 12.0D));
 	}};
 	
-	public ParametricMiningDeviceBlock(Settings settings) {
-		super(settings);
-		this.setDefaultState((this.stateManager.getDefaultState()).with(FacingBlock.FACING, Direction.UP));
+	public ParametricMiningDeviceBlock(BlockBehaviour.Properties properties) {
+		super(properties);
+		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.UP));
 	}
 
 	@Override
-	protected MapCodec<? extends BlockWithEntity> getCodec() {
+	public MapCodec<? extends ParametricMiningDeviceBlock> codec() {
 		return CODEC;
 	}
 
 	// Wall mounting stuffs
 	@Override
-	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-		Direction direction = state.get(FACING);
-		BlockPos blockPos = pos.offset(direction.getOpposite());
-		return world.getBlockState(blockPos).isSideSolidFullSquare(world, blockPos, direction);
+	protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+		Direction direction = state.getValue(FACING);
+		BlockPos blockPos = pos.relative(direction.getOpposite());
+		return level.getBlockState(blockPos).isFaceSturdy(level, blockPos, direction);
 	}
 	
 	@Override
-	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-		return direction == state.get(FACING).getOpposite() && !state.canPlaceAt(world, pos) ? Blocks.AIR.getDefaultState() : super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+	protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+		return direction == state.getValue(FACING).getOpposite() && !state.canSurvive(world, pos) ? Blocks.AIR.defaultBlockState() : super.updateShape(state, direction, neighborState, world, pos, neighborPos);
 	}
 	
 	@Override
-	public @Nullable BlockState getPlacementState(ItemPlacementContext ctx) {
-		return this.getDefaultState().with(FACING, ctx.getSide());
+	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+		return this.defaultBlockState().setValue(FACING, ctx.getClickedFace());
 	}
 	
 	@Override
-	public BlockState rotate(BlockState state, BlockRotation rotation) {
-		return state.with(FACING, rotation.rotate(state.get(FACING)));
+	protected BlockState rotate(BlockState state, Rotation rotation) {
+		return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
 	}
 	
 	@Override
-	public BlockState mirror(BlockState state, BlockMirror mirror) {
-		return state.rotate(mirror.getRotation(state.get(FACING)));
+	protected BlockState mirror(BlockState state, Mirror mirror) {
+		return state.rotate(mirror.getRotation(state.getValue(FACING)));
 	}
 	
+	
 	@Override
-	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-		super.appendProperties(builder);
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
 		builder.add(FACING);
 	}
 	
 	@Override
-	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		return SHAPES.get(state.get(FACING));
+	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+		return SHAPES.get(state.getValue(FACING));
 	}
 	
 	// misc
 	@Override
-	public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		return VoxelShapes.empty();
+	public VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+		return Shapes.empty();
 	}
 	
 	// actual logic
 	// press to boom
 	@Override
-	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-		if (world.isClient) {
-			return ActionResult.SUCCESS;
+	protected InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hitResult) {
+		if (world.isClientSide()) {
+			return InteractionResult.SUCCESS;
 		}
 		
 		if ((world.getBlockEntity(pos) instanceof PlacedItemBlockEntity blockEntity)) {
 			ItemStack stack = blockEntity.getStack();
-			PlayerEntity owner = blockEntity.getOwnerIfOnline();
+			Player owner = blockEntity.getOwnerIfOnline();
 			
 			world.removeBlock(pos, false);
 			
-			ModularExplosionDefinition.explode((ServerWorld) world, pos, state.get(FACING).getOpposite(), owner, stack);
+			ModularExplosionDefinition.explode((ServerLevel) world, pos, state.getValue(FACING).getOpposite(), owner, stack);
 		}
 		
-		return ActionResult.CONSUME;
+		return InteractionResult.CONSUME;
 	}
 	
 }

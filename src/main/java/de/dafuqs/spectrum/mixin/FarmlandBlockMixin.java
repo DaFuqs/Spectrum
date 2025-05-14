@@ -2,25 +2,26 @@ package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.registries.*;
 import dev.emi.trinkets.api.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
 import java.util.*;
 
-@Mixin(FarmlandBlock.class)
+@Mixin(FarmBlock.class)
 public abstract class FarmlandBlockMixin extends Block {
-	public FarmlandBlockMixin(Settings settings) {
+	public FarmlandBlockMixin(Properties settings) {
 		super(settings);
 	}
 	
-	@Inject(method = {"onLandedUpon(Lnet/minecraft/world/World;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;F)V"}, at = {@At("HEAD")}, cancellable = true)
-	private void spectrum$onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance, CallbackInfo info) {
-		super.onLandedUpon(world, state, pos, entity, fallDistance); // fall damage
+	@Inject(method = {"fallOn"}, at = {@At("HEAD")}, cancellable = true)
+	private void spectrum$onLandedUpon(Level world, BlockState state, BlockPos pos, Entity entity, float fallDistance, CallbackInfo info) {
+		super.fallOn(world, state, pos, entity, fallDistance); // fall damage
 		
 		// if carrying puff circlet: no trampling
 		if (entity instanceof LivingEntity livingEntity) {

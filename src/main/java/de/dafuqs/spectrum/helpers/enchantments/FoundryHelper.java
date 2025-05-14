@@ -1,9 +1,8 @@
 package de.dafuqs.spectrum.helpers.enchantments;
 
-import net.minecraft.item.*;
-import net.minecraft.recipe.*;
-import net.minecraft.recipe.input.*;
-import net.minecraft.world.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -11,12 +10,12 @@ import java.util.*;
 public class FoundryHelper {
 	
 	@Nullable
-	public static ItemStack getSmeltedItemStack(ItemStack inputItemStack, World world) {
-		var drm = world.getRegistryManager();
-		var input = new SingleStackRecipeInput(inputItemStack);
-		return world.getRecipeManager().getFirstMatch(RecipeType.SMELTING, input, world)
+	public static ItemStack getSmeltedItemStack(ItemStack inputItemStack, Level world) {
+		var drm = world.registryAccess();
+		var input = new SingleRecipeInput(inputItemStack);
+		return world.getRecipeManager().getRecipeFor(RecipeType.SMELTING, input, world)
 				.map(recipe -> {
-					var recipeOutputStack = recipe.value().getResult(drm).copy();
+					var recipeOutputStack = recipe.value().getResultItem(drm).copy();
 					recipeOutputStack.setCount(recipeOutputStack.getCount() * inputItemStack.getCount());
 					return recipeOutputStack;
 				})
@@ -24,7 +23,7 @@ public class FoundryHelper {
 	}
 	
 	@NotNull
-	public static List<ItemStack> applyFoundry(World world, List<ItemStack> originalStacks) {
+	public static List<ItemStack> applyFoundry(Level world, List<ItemStack> originalStacks) {
 		List<ItemStack> returnItemStacks = new ArrayList<>();
 		
 		for (ItemStack is : originalStacks) {
@@ -33,7 +32,7 @@ public class FoundryHelper {
 				returnItemStacks.add(is);
 			} else {
 				while (!smeltedStack.isEmpty()) {
-					int currentAmount = Math.min(smeltedStack.getCount(), smeltedStack.getItem().getMaxCount());
+					int currentAmount = Math.min(smeltedStack.getCount(), smeltedStack.getItem().getDefaultMaxStackSize());
 					ItemStack currentStack = smeltedStack.copyWithCount(currentAmount);
 					returnItemStacks.add(currentStack);
 					smeltedStack.setCount(smeltedStack.getCount() - currentAmount);

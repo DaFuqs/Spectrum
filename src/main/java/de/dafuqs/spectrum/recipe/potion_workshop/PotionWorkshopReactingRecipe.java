@@ -6,17 +6,16 @@ import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.item.*;
+import net.minecraft.core.*;
+import net.minecraft.core.registries.*;
 import net.minecraft.network.*;
+import net.minecraft.network.chat.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.recipe.*;
-import net.minecraft.recipe.input.*;
-import net.minecraft.registry.*;
-import net.minecraft.text.*;
+import net.minecraft.resources.*;
 import net.minecraft.util.*;
-import net.minecraft.util.collection.*;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -28,7 +27,7 @@ public class PotionWorkshopReactingRecipe extends GatedSpectrumRecipe<RecipeInpu
 	protected final Item item;
 	protected final List<PotionMod> modifiers;
 	
-	public PotionWorkshopReactingRecipe(String group, boolean secret, Optional<Identifier> requiredAdvancementIdentifier, Item item, List<PotionMod> modifiers) {
+	public PotionWorkshopReactingRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier, Item item, List<PotionMod> modifiers) {
 		super(group, secret, requiredAdvancementIdentifier);
 		this.item = item;
 		this.modifiers = modifiers;
@@ -39,28 +38,28 @@ public class PotionWorkshopReactingRecipe extends GatedSpectrumRecipe<RecipeInpu
 	}
 	
 	@Override
-	public boolean matches(@NotNull RecipeInput inv, World world) {
+	public boolean matches(@NotNull RecipeInput inv, Level world) {
 		return false;
 	}
 	
 	@Override
-	public ItemStack craft(RecipeInput inventory, RegistryWrapper.WrapperLookup registryManager) {
+	public ItemStack assemble(RecipeInput inventory, HolderLookup.Provider registryManager) {
 		return ItemStack.EMPTY;
 	}
 	
 	@Override
-	public boolean fits(int width, int height) {
+	public boolean canCraftInDimensions(int width, int height) {
 		return false;
 	}
 	
 	@Override
-	public ItemStack getResult(RegistryWrapper.WrapperLookup registryManager) {
-		return item.getDefaultStack();
+	public ItemStack getResultItem(HolderLookup.Provider registryManager) {
+		return item.getDefaultInstance();
 	}
 	
 	@Override
-	public ItemStack createIcon() {
-		return SpectrumBlocks.POTION_WORKSHOP.asItem().getDefaultStack();
+	public ItemStack getToastSymbol() {
+		return SpectrumBlocks.POTION_WORKSHOP.asItem().getDefaultInstance();
 	}
 	
 	@Override
@@ -74,14 +73,14 @@ public class PotionWorkshopReactingRecipe extends GatedSpectrumRecipe<RecipeInpu
 	}
 	
 	@Override
-	public DefaultedList<Ingredient> getIngredients() {
-		DefaultedList<Ingredient> defaultedList = DefaultedList.of();
-		defaultedList.add(Ingredient.ofItems(this.item));
+	public NonNullList<Ingredient> getIngredients() {
+		NonNullList<Ingredient> defaultedList = NonNullList.create();
+		defaultedList.add(Ingredient.of(this.item));
 		return defaultedList;
 	}
 	
 	@Override
-	public Identifier getRecipeTypeUnlockIdentifier() {
+	public ResourceLocation getRecipeTypeUnlockIdentifier() {
 		return PotionWorkshopRecipe.UNLOCK_IDENTIFIER;
 	}
 	
@@ -91,9 +90,9 @@ public class PotionWorkshopReactingRecipe extends GatedSpectrumRecipe<RecipeInpu
 	}
 	
 	@Override
-	public Text getDescription() {
-		Identifier identifier = Registries.ITEM.getId(this.item);
-		return Text.translatable("spectrum.rei.potion_workshop_reacting." + identifier.getNamespace() + "." + identifier.getPath());
+	public Component getDescription() {
+		ResourceLocation identifier = BuiltInRegistries.ITEM.getKey(this.item);
+		return Component.translatable("spectrum.rei.potion_workshop_reacting." + identifier.getNamespace() + "." + identifier.getPath());
 	}
 	
 	@Override
@@ -105,7 +104,7 @@ public class PotionWorkshopReactingRecipe extends GatedSpectrumRecipe<RecipeInpu
 		return reagents.containsKey(item);
 	}
 	
-	public static PotionMod.Builder combine(PotionMod.Builder builder, ItemStack reagentStack, Random random) {
+	public static PotionMod.Builder combine(PotionMod.Builder builder, ItemStack reagentStack, RandomSource random) {
 		Item reagent = reagentStack.getItem();
 		List<PotionMod> reagentMods = reagents.getOrDefault(reagent, null);
 		if (reagentMods != null)
@@ -118,17 +117,17 @@ public class PotionWorkshopReactingRecipe extends GatedSpectrumRecipe<RecipeInpu
 		public static final MapCodec<PotionWorkshopReactingRecipe> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
 				Codec.STRING.optionalFieldOf("group", "").forGetter(c -> c.group),
 				Codec.BOOL.optionalFieldOf("secret", false).forGetter(c -> c.secret),
-				Identifier.CODEC.optionalFieldOf("required_advancement").forGetter(c -> c.requiredAdvancementIdentifier),
-				Registries.ITEM.getCodec().fieldOf("item").forGetter(c -> c.item),
+				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(c -> c.requiredAdvancementIdentifier),
+				BuiltInRegistries.ITEM.byNameCodec().fieldOf("item").forGetter(c -> c.item),
 				CodecHelper.singleOrList(PotionMod.CODEC).fieldOf("modifiers").forGetter(c -> c.modifiers)
 		).apply(i, PotionWorkshopReactingRecipe::new));
 		
-		public static final PacketCodec<RegistryByteBuf, PotionWorkshopReactingRecipe> PACKET_CODEC = PacketCodec.tuple(
-				PacketCodecs.STRING, c -> c.group,
-				PacketCodecs.BOOL, c -> c.secret,
-				PacketCodecs.optional(Identifier.PACKET_CODEC), c -> c.requiredAdvancementIdentifier,
-				PacketCodecs.registryValue(RegistryKeys.ITEM), c -> c.item,
-				PotionMod.PACKET_CODEC.collect(PacketCodecs.toList()), c -> c.modifiers,
+		public static final StreamCodec<RegistryFriendlyByteBuf, PotionWorkshopReactingRecipe> PACKET_CODEC = StreamCodec.composite(
+				ByteBufCodecs.STRING_UTF8, c -> c.group,
+				ByteBufCodecs.BOOL, c -> c.secret,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), c -> c.requiredAdvancementIdentifier,
+				ByteBufCodecs.registry(Registries.ITEM), c -> c.item,
+				PotionMod.PACKET_CODEC.apply(ByteBufCodecs.list()), c -> c.modifiers,
 				PotionWorkshopReactingRecipe::new
 		);
 		
@@ -138,7 +137,7 @@ public class PotionWorkshopReactingRecipe extends GatedSpectrumRecipe<RecipeInpu
 		}
 		
 		@Override
-		public PacketCodec<RegistryByteBuf, PotionWorkshopReactingRecipe> packetCodec() {
+		public StreamCodec<RegistryFriendlyByteBuf, PotionWorkshopReactingRecipe> streamCodec() {
 			return PACKET_CODEC;
 		}
 		

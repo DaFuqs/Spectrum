@@ -4,13 +4,13 @@ import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import it.unimi.dsi.fastutil.chars.*;
-import net.minecraft.item.*;
+import net.minecraft.*;
+import net.minecraft.core.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.recipe.input.*;
 import net.minecraft.util.*;
-import net.minecraft.util.collection.*;
-import net.minecraft.util.dynamic.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -20,16 +20,16 @@ public class RawShapedPedestalRecipe {
 			RawShapedPedestalRecipe::fromData,
 			(recipe) -> recipe.data.map(DataResult::success).orElseGet(() -> DataResult.error(() -> "Cannot encode unpacked recipe")));
 	
-	public static final PacketCodec<RegistryByteBuf, RawShapedPedestalRecipe> PACKET_CODEC = PacketCodec.of(RawShapedPedestalRecipe::writeToBuf, RawShapedPedestalRecipe::readFromBuf);
+	public static final StreamCodec<RegistryFriendlyByteBuf, RawShapedPedestalRecipe> PACKET_CODEC = StreamCodec.ofMember(RawShapedPedestalRecipe::writeToBuf, RawShapedPedestalRecipe::readFromBuf);
 	
 	private final int width;
 	private final int height;
-	private final DefaultedList<IngredientStack> ingredients;
+	private final NonNullList<IngredientStack> ingredients;
 	private final Optional<Data> data;
 	private final int ingredientCount;
 	private final boolean symmetrical;
 	
-	public RawShapedPedestalRecipe(int width, int height, DefaultedList<IngredientStack> ingredients, Optional<Data> data) {
+	public RawShapedPedestalRecipe(int width, int height, NonNullList<IngredientStack> ingredients, Optional<Data> data) {
 		this.width = width;
 		this.height = height;
 		this.ingredients = ingredients;
@@ -59,7 +59,7 @@ public class RawShapedPedestalRecipe {
 		String[] strings = removePadding(data.pattern);
 		int i = strings[0].length();
 		int j = strings.length;
-		DefaultedList<IngredientStack> defaultedList = DefaultedList.ofSize(i * j, IngredientStack.EMPTY);
+		NonNullList<IngredientStack> defaultedList = NonNullList.withSize(i * j, IngredientStack.EMPTY);
 		CharSet charSet = new CharArraySet(data.key.keySet());
 		
 		for (int k = 0; k < strings.length; ++k) {
@@ -131,11 +131,11 @@ public class RawShapedPedestalRecipe {
 		return i;
 	}
 	
-	public boolean matches(CraftingRecipeInput input) {
-		if (input.getStackCount() != this.ingredientCount)
+	public boolean matches(CraftingInput input) {
+		if (input.ingredientCount() != this.ingredientCount)
 			return false;
 		
-		if (input.getWidth() == this.width && input.getHeight() == this.height) {
+		if (input.width() == this.width && input.height() == this.height) {
 			if (!this.symmetrical && this.matches(input, true)) {
 				return true;
 			}
@@ -146,7 +146,7 @@ public class RawShapedPedestalRecipe {
 		return false;
 	}
 	
-	public boolean matches(CraftingRecipeInput input, boolean mirrored) {
+	public boolean matches(CraftingInput input, boolean mirrored) {
 		for (int i = 0; i < this.height; ++i) {
 			for (int j = 0; j < this.width; ++j) {
 				IngredientStack ingredient;
@@ -156,7 +156,7 @@ public class RawShapedPedestalRecipe {
 					ingredient = this.ingredients.get(j + i * this.width);
 				}
 				
-				ItemStack itemStack = input.getStackInSlot(j, i);
+				ItemStack itemStack = input.getItem(j, i);
 				if (!ingredient.test(itemStack)) {
 					return false;
 				}
@@ -166,7 +166,7 @@ public class RawShapedPedestalRecipe {
 		return true;
 	}
 	
-	private void writeToBuf(RegistryByteBuf buf) {
+	private void writeToBuf(RegistryFriendlyByteBuf buf) {
 		buf.writeVarInt(this.width);
 		buf.writeVarInt(this.height);
 		
@@ -176,10 +176,10 @@ public class RawShapedPedestalRecipe {
 		
 	}
 	
-	private static RawShapedPedestalRecipe readFromBuf(RegistryByteBuf buf) {
+	private static RawShapedPedestalRecipe readFromBuf(RegistryFriendlyByteBuf buf) {
 		int i = buf.readVarInt();
 		int j = buf.readVarInt();
-		DefaultedList<IngredientStack> defaultedList = DefaultedList.ofSize(i * j, IngredientStack.EMPTY);
+		NonNullList<IngredientStack> defaultedList = NonNullList.withSize(i * j, IngredientStack.EMPTY);
 		defaultedList.replaceAll((ingredient) -> IngredientStack.Serializer.PACKET_CODEC.decode(buf));
 		return new RawShapedPedestalRecipe(i, j, defaultedList, Optional.empty());
 	}
@@ -192,7 +192,7 @@ public class RawShapedPedestalRecipe {
 		return this.height;
 	}
 	
-	public DefaultedList<IngredientStack> getIngredients() {
+	public NonNullList<IngredientStack> getIngredients() {
 		return this.ingredients;
 	}
 	
@@ -215,7 +215,7 @@ public class RawShapedPedestalRecipe {
 		}, String::valueOf);
 		
 		public static final MapCodec<Data> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-				Codecs.strictUnboundedMap(KEY_ENTRY_CODEC, IngredientStack.Serializer.CODEC).fieldOf("key").forGetter((data) -> data.key),
+				ExtraCodecs.strictUnboundedMap(KEY_ENTRY_CODEC, IngredientStack.Serializer.CODEC).fieldOf("key").forGetter((data) -> data.key),
 				PATTERN_CODEC.fieldOf("pattern").forGetter((data) -> data.pattern)
 		).apply(i, Data::new));
 		

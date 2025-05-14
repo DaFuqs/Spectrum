@@ -6,8 +6,8 @@ import com.klikli_dev.modonomicon.client.render.page.*;
 import com.klikli_dev.modonomicon.data.*;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.compat.modonomicon.pages.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
 
 import java.util.*;
 
@@ -23,18 +23,18 @@ public class BookChecklistPageRenderer extends BookTextPageRenderer {
         if (!(page.getText() instanceof RenderedBookTextHolder renderedText)) return;
 
         super.onBeginDisplayPage(parentScreen, left, top);
-
-        List<MutableText> renderedTexts = renderedText.getRenderedText();
-        
-        Identifier font = BookDataManager.Client.get().safeFont(this.page.getBook().getFont());
+		
+		List<MutableComponent> renderedTexts = renderedText.getRenderedText();
+		
+		ResourceLocation font = BookDataManager.Client.get().safeFont(this.page.getBook().getFont());
         
         int i = 0;
-        for (Map.Entry<Identifier, BookTextHolder> entry : checklistPage.getChecklist().entrySet()) {
+		for (Map.Entry<ResourceLocation, BookTextHolder> entry : checklistPage.getChecklist().entrySet()) {
             boolean hasAchievement = AdvancementHelper.hasAdvancementClient(entry.getKey());
-            renderedTexts.get(i).fillStyle(Style.EMPTY.withStrikethrough(hasAchievement).withFont(font));
-            List<Text> siblings = renderedTexts.get(i).getSiblings();
+			renderedTexts.get(i).withStyle(Style.EMPTY.withStrikethrough(hasAchievement).withFont(font));
+			List<Component> siblings = renderedTexts.get(i).getSiblings();
             siblings.removeLast();
-            siblings.add(Text.literal(hasAchievement ? " ✔" : ""));
+			siblings.add(Component.literal(hasAchievement ? " ✔" : ""));
             i++;
         }
     }

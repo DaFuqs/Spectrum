@@ -2,71 +2,69 @@ package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.advancement.criterion.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.boss.*;
-import net.minecraft.entity.damage.*;
-import net.minecraft.entity.data.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.entity.mob.*;
-import net.minecraft.entity.player.*;
+import net.minecraft.advancements.*;
 import net.minecraft.nbt.*;
-import net.minecraft.server.network.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
-import net.minecraft.text.*;
-import net.minecraft.util.math.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.network.syncher.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
 import net.minecraft.world.*;
-import net.minecraft.world.event.*;
+import net.minecraft.world.damagesource.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.gameevent.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
-public class SpectrumBossEntity extends PathAwareEntity {
+public class SpectrumBossEntity extends PathfinderMob {
 	
-	private static final TrackedData<Integer> INVINCIBILITY_TICKS = DataTracker.registerData(SpectrumBossEntity.class, TrackedDataHandlerRegistry.INTEGER);
-	private final ServerBossBar bossBar;
+	private static final EntityDataAccessor<Integer> INVINCIBILITY_TICKS = SynchedEntityData.defineId(SpectrumBossEntity.class, EntityDataSerializers.INT);
+	private final ServerBossEvent bossBar;
 	
-	protected SpectrumBossEntity(EntityType<? extends SpectrumBossEntity> entityType, World world) {
+	protected SpectrumBossEntity(EntityType<? extends SpectrumBossEntity> entityType, Level world) {
 		super(entityType, world);
-		this.bossBar = (ServerBossBar) (new ServerBossBar(this.getDisplayName(), BossBar.Color.PURPLE, BossBar.Style.PROGRESS)).setDarkenSky(true);
+		this.bossBar = (ServerBossEvent) (new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.PURPLE, BossEvent.BossBarOverlay.PROGRESS)).setDarkenScreen(true);
 		this.setHealth(this.getMaxHealth());
 	}
 	
 	public boolean hasInvincibilityTicks() {
-		return this.dataTracker.get(INVINCIBILITY_TICKS) > 0;
+		return this.entityData.get(INVINCIBILITY_TICKS) > 0;
 	}
 	
 	public void setInvincibilityTicks(int ticks) {
-		this.dataTracker.set(INVINCIBILITY_TICKS, ticks);
+		this.entityData.set(INVINCIBILITY_TICKS, ticks);
 	}
 	
 	public void tickInvincibility() {
-		dataTracker.set(INVINCIBILITY_TICKS, Math.max(0, this.dataTracker.get(INVINCIBILITY_TICKS) - 1));
+		entityData.set(INVINCIBILITY_TICKS, Math.max(0, this.entityData.get(INVINCIBILITY_TICKS) - 1));
 	}
 	
 	@Override
-	public boolean canHit() {
-		return super.canHit() && !hasInvincibilityTicks();
+	public boolean isPickable() {
+		return super.isPickable() && !hasInvincibilityTicks();
 	}
 	
 	@Override
-	protected void initDataTracker(DataTracker.Builder builder) {
-		super.initDataTracker(builder);
-		builder.add(INVINCIBILITY_TICKS, 0);
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(INVINCIBILITY_TICKS, 0);
 	}
 	
 	@Override
-	public boolean shouldRender(double distance) {
+	public boolean shouldRenderAtSqrDistance(double distance) {
 		return true;
 	}
 	
 	@Override
-	public boolean canTarget(EntityType<?> type) {
+	public boolean canAttackType(EntityType<?> type) {
 		return true;
 	}
 	
 	protected boolean isNonVanillaKillCommandDamage(DamageSource source, float amount) {
-		if (source.isOf(DamageTypes.OUT_OF_WORLD) || amount != Float.MAX_VALUE) {
+		if (source.is(DamageTypes.FELL_OUT_OF_WORLD) || amount != Float.MAX_VALUE) {
 			return false;
 		}
 		
@@ -78,7 +76,7 @@ public class SpectrumBossEntity extends PathAwareEntity {
 			if (element.getClassName().contains("net.minecraft")) {
 				// this is a vanilla or admin /kill
 				this.remove(RemovalReason.KILLED);
-				this.emitGameEvent(GameEvent.ENTITY_DIE);
+				this.gameEvent(GameEvent.ENTITY_DIE);
 				return false;
 			}
 			if (i > 3) {
@@ -91,102 +89,102 @@ public class SpectrumBossEntity extends PathAwareEntity {
 	}
 	
 	@Override
-	public void applyDamage(DamageSource source, float amount) {
+	public void actuallyHurt(DamageSource source, float amount) {
 		// called when damage was dealt
-		Entity dealer = source.getAttacker();
-		if (!hasInvincibilityTicks() && dealer instanceof PlayerEntity && EntityHelper.isRealPlayerProjectileOrPet(dealer)) {
-			super.applyDamage(source, amount);
+		Entity dealer = source.getEntity();
+		if (!hasInvincibilityTicks() && dealer instanceof Player && EntityHelper.isRealPlayerProjectileOrPet(dealer)) {
+			super.actuallyHurt(source, amount);
 			this.setInvincibilityTicks(20);
 		}
 	}
 	
 	@Override
-	public void writeCustomDataToNbt(NbtCompound nbt) {
-		super.writeCustomDataToNbt(nbt);
+	public void addAdditionalSaveData(CompoundTag nbt) {
+		super.addAdditionalSaveData(nbt);
 	}
 	
 	@Override
-	public void readCustomDataFromNbt(NbtCompound nbt) {
-		super.readCustomDataFromNbt(nbt);
+	public void readAdditionalSaveData(CompoundTag nbt) {
+		super.readAdditionalSaveData(nbt);
 		if (this.hasCustomName()) {
 			this.bossBar.setName(this.getDisplayName());
 		}
 	}
 	
 	@Override
-	public void onDeath(DamageSource damageSource) {
-		super.onDeath(damageSource);
+	public void die(DamageSource damageSource) {
+		super.die(damageSource);
 
 		// grant the kill to all players close by players
 		// => should they battle in a team the kill counts for all players
 		// instead of just the one that did the killing blow like in vanilla
-		World world = this.getWorld();
-		if (!world.isClient) {
-			for (PlayerEntity closeByPlayer : this.getWorld().getEntitiesByType(EntityType.PLAYER, getBoundingBox().expand(24), Entity::isAlive)) {
-				Criteria.ENTITY_KILLED_PLAYER.trigger((ServerPlayerEntity) closeByPlayer, this, damageSource);
+		Level world = this.level();
+		if (!world.isClientSide) {
+			for (Player closeByPlayer : this.level().getEntities(EntityType.PLAYER, getBoundingBox().inflate(24), Entity::isAlive)) {
+				CriteriaTriggers.ENTITY_KILLED_PLAYER.trigger((ServerPlayer) closeByPlayer, this, damageSource);
 			}
 		}
 	}
 	
 	@Override
-	protected void drop(ServerWorld world, DamageSource source) {
-		Entity entity = source.getAttacker();
+	protected void dropAllDeathLoot(ServerLevel world, DamageSource source) {
+		Entity entity = source.getEntity();
 		if (EntityHelper.isRealPlayerProjectileOrPet(entity)) {
-			super.drop(world, source);
+			super.dropAllDeathLoot(world, source);
 		}
 	}
 	
 	@Override
-	public boolean canSpawn(WorldAccess world, SpawnReason spawnReason) {
+	public boolean checkSpawnRules(LevelAccessor world, MobSpawnType spawnReason) {
 		return true;
 	}
 	
 	@Override
-	public boolean cannotDespawn() {
+	public boolean requiresCustomPersistence() {
 		return true;
 	}
 	
 	@Override
-	protected boolean isDisallowedInPeaceful() {
+	protected boolean shouldDespawnInPeaceful() {
 		return false;
 	}
 	
 	@Override
-	public void setCustomName(@Nullable Text name) {
+	public void setCustomName(@Nullable Component name) {
 		super.setCustomName(name);
 		this.bossBar.setName(this.getDisplayName());
 	}
 	
 	@Override
-	public void onStartedTrackingBy(ServerPlayerEntity player) {
-		super.onStartedTrackingBy(player);
+	public void startSeenByPlayer(ServerPlayer player) {
+		super.startSeenByPlayer(player);
 		this.bossBar.addPlayer(player);
 	}
 	
 	@Override
-	public void onStoppedTrackingBy(ServerPlayerEntity player) {
-		super.onStoppedTrackingBy(player);
+	public void stopSeenByPlayer(ServerPlayer player) {
+		super.stopSeenByPlayer(player);
 		this.bossBar.removePlayer(player);
 	}
 	
 	@Override
-	public boolean handleFallDamage(float fallDistance, float damageMultiplier, DamageSource damageSource) {
+	public boolean causeFallDamage(float fallDistance, float damageMultiplier, DamageSource damageSource) {
 		return false;
 	}
 	
 	@Override
 	public void checkDespawn() {
-		if (this.getWorld().getDifficulty() == Difficulty.PEACEFUL && this.isDisallowedInPeaceful()) {
+		if (this.level().getDifficulty() == Difficulty.PEACEFUL && this.shouldDespawnInPeaceful()) {
 			this.discard();
 		} else {
-			this.despawnCounter = 0;
+			this.noActionTime = 0;
 		}
 	}
 	
 	@Override
-	protected void mobTick() {
-		super.mobTick();
-		this.bossBar.setPercent(this.getHealth() / this.getMaxHealth());
+	protected void customServerAiStep() {
+		super.customServerAiStep();
+		this.bossBar.setProgress(this.getHealth() / this.getMaxHealth());
 	}
 	
 	@Override
@@ -195,28 +193,28 @@ public class SpectrumBossEntity extends PathAwareEntity {
 	}
 	
 	@Override
-	public boolean addStatusEffect(StatusEffectInstance effect, @Nullable Entity source) {
+	public boolean addEffect(MobEffectInstance effect, @Nullable Entity source) {
 		return false;
 	}
 	
 	@Override
-	protected boolean canStartRiding(Entity entity) {
+	protected boolean canRide(Entity entity) {
 		return false;
 	}
 	
 	@Override
-	public boolean canUsePortals(boolean allowVehicles) {
+	public boolean canUsePortal(boolean allowVehicles) {
 		return false;
 	}
 	
 	@Override
-	public boolean canTarget(LivingEntity target) {
-		return target.canTakeDamage();
+	public boolean canAttack(LivingEntity target) {
+		return target.canBeSeenAsEnemy();
 	}
 	
 	@Override
-	public SoundCategory getSoundCategory() {
-		return SoundCategory.HOSTILE;
+	public SoundSource getSoundSource() {
+		return SoundSource.HOSTILE;
 	}
 	
 	@Override
@@ -231,22 +229,22 @@ public class SpectrumBossEntity extends PathAwareEntity {
 	
 	@Override
 	protected SoundEvent getSwimSound() {
-		return SoundEvents.ENTITY_HOSTILE_SWIM;
+		return SoundEvents.HOSTILE_SWIM;
 	}
 	
 	@Override
-	protected SoundEvent getSplashSound() {
-		return SoundEvents.ENTITY_HOSTILE_SPLASH;
+	protected SoundEvent getSwimSplashSound() {
+		return SoundEvents.HOSTILE_SPLASH;
 	}
 	
 	@Override
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.ENTITY_HOSTILE_DEATH;
+		return SoundEvents.HOSTILE_DEATH;
 	}
 	
 	@Override
-	public LivingEntity.FallSounds getFallSounds() {
-		return new LivingEntity.FallSounds(SoundEvents.ENTITY_HOSTILE_SMALL_FALL, SoundEvents.ENTITY_HOSTILE_BIG_FALL);
+	public LivingEntity.Fallsounds getFallSounds() {
+		return new LivingEntity.Fallsounds(SoundEvents.HOSTILE_SMALL_FALL, SoundEvents.HOSTILE_BIG_FALL);
 	}
 	
 	@Override
@@ -255,11 +253,11 @@ public class SpectrumBossEntity extends PathAwareEntity {
 	}
 	
 	@Override
-	public void slowMovement(BlockState state, Vec3d multiplier) {
+	public void makeStuckInBlock(BlockState state, Vec3 multiplier) {
 	}
 	
 	@Override
-	public boolean shouldDropXp() {
+	public boolean shouldDropExperience() {
 		return true;
 	}
 	

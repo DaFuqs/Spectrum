@@ -8,7 +8,7 @@ import me.shedaniel.rei.api.client.gui.widgets.*;
 import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.fabricmc.api.*;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -27,8 +27,8 @@ public class InkConvertingCategory extends GatedDisplayCategory<InkConvertingDis
 	}
 	
 	@Override
-	public Text getTitle() {
-		return Text.translatable("container.spectrum.rei.ink_converting.title");
+	public Component getTitle() {
+		return Component.translatable("container.spectrum.rei.ink_converting.title");
 	}
 	
 	@Override
@@ -40,8 +40,8 @@ public class InkConvertingCategory extends GatedDisplayCategory<InkConvertingDis
 		widgets.add(Widgets.createArrow(new Point(startPoint.x - 8 + 30, startPoint.y + 2)));
 		
 		// output amount & required time
-		Text colorText = Text.translatable("container.spectrum.rei.ink_converting.color", display.color.getName());
-		Text amountText = Text.translatable("container.spectrum.rei.ink_converting.amount", display.amount);
+		Component colorText = Component.translatable("container.spectrum.rei.ink_converting.color", display.color.getName());
+		Component amountText = Component.translatable("container.spectrum.rei.ink_converting.amount", display.amount);
 		widgets.add(Widgets.createLabel(new Point(startPoint.x - 8 + 58, startPoint.y + 1), colorText).leftAligned().color(0x3f3f3f).noShadow());
 		widgets.add(Widgets.createLabel(new Point(startPoint.x - 8 + 58, startPoint.y + 14), amountText).leftAligned().color(0x3f3f3f).noShadow());
 	}

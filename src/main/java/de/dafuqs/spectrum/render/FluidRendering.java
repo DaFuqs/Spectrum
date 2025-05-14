@@ -1,33 +1,33 @@
 package de.dafuqs.spectrum.render;
 
+import com.mojang.blaze3d.vertex.*;
 import net.fabricmc.fabric.api.transfer.v1.client.fluid.*;
 import net.fabricmc.fabric.api.transfer.v1.fluid.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.client.render.*;
-import net.minecraft.client.texture.*;
+import net.minecraft.client.renderer.texture.*;
+import net.minecraft.world.level.block.entity.*;
 import org.jetbrains.annotations.*;
 import org.joml.*;
 
 public class FluidRendering {
 	
-	public static void renderFluid(VertexConsumer builder, Matrix4f pos, Sprite sprite, int light, int overlay, float x1, float x2, float y, float z1, float z2, int[] color) {
+	public static void renderFluid(VertexConsumer builder, Matrix4f pos, TextureAtlasSprite sprite, int light, int overlay, float x1, float x2, float y, float z1, float z2, int[] color) {
 		x1 /= 16;
 		x2 /= 16;
 		z1 /= 16;
 		z2 /= 16;
 		
-		final float u1 = sprite.getMinU();
-		final float u2 = sprite.getMaxU();
-		final float v1 = sprite.getMinV();
-		final float v2 = sprite.getMaxV();
-		builder.vertex(pos, x1, y, z2).color(color[1], color[2], color[3], color[0]).texture(u1, v2).overlay(overlay).light(light).normal(0f, 1f, 0f);
-		builder.vertex(pos, x2, y, z2).color(color[1], color[2], color[3], color[0]).texture(u2, v2).overlay(overlay).light(light).normal(0f, 1f, 0f);
-		builder.vertex(pos, x2, y, z1).color(color[1], color[2], color[3], color[0]).texture(u2, v1).overlay(overlay).light(light).normal(0f, 1f, 0f);
-		builder.vertex(pos, x1, y, z1).color(color[1], color[2], color[3], color[0]).texture(u1, v1).overlay(overlay).light(light).normal(0f, 1f, 0f);
+		final float u1 = sprite.getU0();
+		final float u2 = sprite.getU1();
+		final float v1 = sprite.getV0();
+		final float v2 = sprite.getV1();
+		builder.addVertex(pos, x1, y, z2).setColor(color[1], color[2], color[3], color[0]).setUv(u1, v2).setOverlay(overlay).setLight(light).setNormal(0f, 1f, 0f);
+		builder.addVertex(pos, x2, y, z2).setColor(color[1], color[2], color[3], color[0]).setUv(u2, v2).setOverlay(overlay).setLight(light).setNormal(0f, 1f, 0f);
+		builder.addVertex(pos, x2, y, z1).setColor(color[1], color[2], color[3], color[0]).setUv(u2, v1).setOverlay(overlay).setLight(light).setNormal(0f, 1f, 0f);
+		builder.addVertex(pos, x1, y, z1).setColor(color[1], color[2], color[3], color[0]).setUv(u1, v1).setOverlay(overlay).setLight(light).setNormal(0f, 1f, 0f);
 	}
 	
 	public static int colorOf(FluidVariant fluid, @Nullable BlockEntity entity) {
-		return entity == null ? FluidVariantRendering.getColor(fluid, null, null) : FluidVariantRendering.getColor(fluid, entity.getWorld(), entity.getPos());
+		return entity == null ? FluidVariantRendering.getColor(fluid, null, null) : FluidVariantRendering.getColor(fluid, entity.getLevel(), entity.getBlockPos());
 	}
 	
 	public static int[] unpackColorOf(FluidVariant fluid, @Nullable BlockEntity entity) {

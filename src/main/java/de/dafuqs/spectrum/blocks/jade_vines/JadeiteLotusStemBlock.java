@@ -3,87 +3,88 @@ package de.dafuqs.spectrum.blocks.jade_vines;
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.tag.convention.v2.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
-import net.minecraft.state.*;
-import net.minecraft.state.property.*;
+import net.minecraft.core.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
 import net.minecraft.util.*;
-import net.minecraft.util.hit.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
-import net.minecraft.world.event.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.context.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.gameevent.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
-public class JadeiteLotusStemBlock extends PlantBlock {
+public class JadeiteLotusStemBlock extends BushBlock {
 	
-	public static final MapCodec<JadeiteLotusStemBlock> CODEC = createCodec(JadeiteLotusStemBlock::new);
+	public static final MapCodec<JadeiteLotusStemBlock> CODEC = simpleCodec(JadeiteLotusStemBlock::new);
 	
 	public static final EnumProperty<StemComponent> STEM_PART = StemComponent.PROPERTY;
-	public static final BooleanProperty INVERTED = Properties.INVERTED;
+	public static final BooleanProperty INVERTED = BlockStateProperties.INVERTED;
 	
-	public JadeiteLotusStemBlock(Settings settings) {
+	public JadeiteLotusStemBlock(Properties settings) {
 		super(settings);
-		setDefaultState(getDefaultState().with(STEM_PART, StemComponent.BASE).with(INVERTED, false));
+		registerDefaultState(defaultBlockState().setValue(STEM_PART, StemComponent.BASE).setValue(INVERTED, false));
 	}
 	
 	@Override
-	public MapCodec<? extends JadeiteLotusStemBlock> getCodec() {
+	public MapCodec<? extends JadeiteLotusStemBlock> codec() {
 		return CODEC;
 	}
 	
 	public static BlockState getStemVariant(boolean top, boolean inverted) {
-		return SpectrumBlocks.JADEITE_LOTUS_STEM.getDefaultState().with(STEM_PART, top ? StemComponent.STEMALT : StemComponent.STEM).with(INVERTED, inverted);
+		return SpectrumBlocks.JADEITE_LOTUS_STEM.defaultBlockState().setValue(STEM_PART, top ? StemComponent.STEMALT : StemComponent.STEM).setValue(INVERTED, inverted);
 	}
 	
 	@Override
-	public ItemActionResult onUseWithItem(ItemStack handStack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-		if (handStack.isIn(ConventionalItemTags.SHEAR_TOOLS) && state.get(STEM_PART) == StemComponent.BASE) {
-			BlockState newState = state.with(STEM_PART, StemComponent.STEM);
-			world.setBlockState(pos, newState);
-			player.playSoundToPlayer(SoundEvents.ENTITY_MOOSHROOM_SHEAR, SoundCategory.BLOCKS, 1, 0.9F + player.getRandom().nextFloat() * 0.2F);
-			handStack.damage(1, player, LivingEntity.getSlotForHand(hand));
-			world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(newState));
+	public ItemInteractionResult useItemOn(ItemStack handStack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+		if (handStack.is(ConventionalItemTags.SHEAR_TOOLS) && state.getValue(STEM_PART) == StemComponent.BASE) {
+			BlockState newState = state.setValue(STEM_PART, StemComponent.STEM);
+			world.setBlockAndUpdate(pos, newState);
+			player.playNotifySound(SoundEvents.MOOSHROOM_SHEAR, SoundSource.BLOCKS, 1, 0.9F + player.getRandom().nextFloat() * 0.2F);
+			handStack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
+			world.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(newState));
 			
-			return ItemActionResult.success(world.isClient());
+			return ItemInteractionResult.sidedSuccess(world.isClientSide());
 		}
 		
-		return super.onUseWithItem(handStack, state, world, pos, player, hand, hit);
+		return super.useItemOn(handStack, state, world, pos, player, hand, hit);
 	}
 	
 	@Nullable
 	@Override
-	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		var world = ctx.getWorld();
-		var pos = ctx.getBlockPos();
-		var floor = world.getBlockState(pos.up());
-		var side = ctx.getSide();
+	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+		var world = ctx.getLevel();
+		var pos = ctx.getClickedPos();
+		var floor = world.getBlockState(pos.above());
+		var side = ctx.getClickedFace();
 		
 		if (!side.getAxis().isVertical())
 			return null;
 		
 		var inverted = side == Direction.UP;
 		
-		var state = super.getPlacementState(ctx);
+		var state = super.getStateForPlacement(ctx);
 		
 		if (state == null)
 			return null;
 		
 		if (inverted) {
-			state = state.with(INVERTED, true);
-			floor = world.getBlockState(pos.down());
+			state = state.setValue(INVERTED, true);
+			floor = world.getBlockState(pos.below());
 		}
 		
-		if (floor.isOf(this)) {
+		if (floor.is(this)) {
 			
-			if (floor.get(STEM_PART) != StemComponent.STEMALT) {
-				state = state.with(STEM_PART, StemComponent.STEMALT);
-			} else if (floor.get(STEM_PART) != StemComponent.STEM) {
-				state = state.with(STEM_PART, StemComponent.STEM);
+			if (floor.getValue(STEM_PART) != StemComponent.STEMALT) {
+				state = state.setValue(STEM_PART, StemComponent.STEMALT);
+			} else if (floor.getValue(STEM_PART) != StemComponent.STEM) {
+				state = state.setValue(STEM_PART, StemComponent.STEM);
 			}
 		}
 		
@@ -91,36 +92,36 @@ public class JadeiteLotusStemBlock extends PlantBlock {
 	}
 	
 	@Override
-	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-		var floor = state.get(INVERTED) ? pos.down() : pos.up();
-		return this.canPlantOnTop(world.getBlockState(floor), world, floor);
+	public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+		var floor = state.getValue(INVERTED) ? pos.below() : pos.above();
+		return this.mayPlaceOn(world.getBlockState(floor), world, floor);
 	}
 	
 	@Override
-	protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-		return floor.isSideSolid(world, pos, Direction.UP, SideShapeType.RIGID) || floor.isSideSolid(world, pos, Direction.DOWN, SideShapeType.RIGID) || floor.isOf(this);
+	protected boolean mayPlaceOn(BlockState floor, BlockGetter world, BlockPos pos) {
+		return floor.isFaceSturdy(world, pos, Direction.UP, SupportType.RIGID) || floor.isFaceSturdy(world, pos, Direction.DOWN, SupportType.RIGID) || floor.is(this);
 	}
 	
 	@Override
-	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-		if (!state.canPlaceAt(world, pos)) {
-			world.scheduleBlockTick(pos, this, 1);
+	public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+		if (!state.canSurvive(world, pos)) {
+			world.scheduleTick(pos, this, 1);
 		}
 		
-		return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+		return super.updateShape(state, direction, neighborState, world, pos, neighborPos);
 	}
 	
 	@Override
-	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		super.scheduledTick(state, world, pos, random);
-		if (!state.canPlaceAt(world, pos)) {
-			world.breakBlock(pos, true);
+	public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+		super.tick(state, world, pos, random);
+		if (!state.canSurvive(world, pos)) {
+			world.destroyBlock(pos, true);
 		}
 	}
 	
 	@Override
-	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-		super.appendProperties(builder);
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
 		builder.add(STEM_PART, INVERTED);
 	}
 }

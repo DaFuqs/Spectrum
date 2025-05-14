@@ -3,11 +3,12 @@ package de.dafuqs.spectrum.entity.variants;
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.registry.*;
-import net.minecraft.registry.tag.*;
+import net.minecraft.core.*;
+import net.minecraft.resources.*;
+import net.minecraft.tags.*;
 import net.minecraft.util.*;
 
-public enum LizardFrillVariant implements StringIdentifiable {
+public enum LizardFrillVariant implements StringRepresentable {
 	
 	SIMPLE("simple", "textures/entity/lizard/frills_simple.png"),
 	FANCY("fancy", "textures/entity/lizard/frills_fancy.png"),
@@ -15,11 +16,11 @@ public enum LizardFrillVariant implements StringIdentifiable {
 	MODEST("modest", "textures/entity/lizard/frills_modest.png"),
 	NONE("none", "textures/entity/lizard/frills_none.png");
 	
-	public static Codec<LizardFrillVariant> CODEC = StringIdentifiable.createCodec(LizardFrillVariant::values);
+	public static Codec<LizardFrillVariant> CODEC = StringRepresentable.fromEnum(LizardFrillVariant::values);
 	
 	private final String name;
-	private final Identifier id;
-	private final Identifier texture;
+	private final ResourceLocation id;
+	private final ResourceLocation texture;
 	
 	LizardFrillVariant(String name, String texture) {
 		this.name = name;
@@ -29,15 +30,15 @@ public enum LizardFrillVariant implements StringIdentifiable {
 	}
 	
 	public TagKey<LizardFrillVariant> getReference() {
-		return TagKey.of(SpectrumRegistries.LIZARD_FRILL_VARIANT.getKey(), id);
+		return TagKey.create(SpectrumRegistries.LIZARD_FRILL_VARIANT.key(), id);
 	}
 	
-	public Identifier getTexture() {
+	public ResourceLocation getTextureLocation() {
 		return texture;
 	}
 	
 	@Override
-	public String asString() {
+	public String getSerializedName() {
 		return name;
 	}
 	

@@ -6,24 +6,24 @@ import de.dafuqs.spectrum.particle.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.fabricmc.fabric.api.networking.v1.*;
-import net.minecraft.entity.player.*;
+import net.minecraft.core.*;
+import net.minecraft.core.particles.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.network.packet.*;
-import net.minecraft.particle.*;
-import net.minecraft.server.network.*;
-import net.minecraft.server.world.*;
-import net.minecraft.util.math.*;
+import net.minecraft.network.protocol.common.custom.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
-public record PlayParticleWithPatternAndVelocityPayload(Vec3d pos, ParticleEffect effect, VectorPattern pattern, double velocity) implements CustomPayload {
+public record PlayParticleWithPatternAndVelocityPayload(Vec3 pos, ParticleOptions effect, VectorPattern pattern, double velocity) implements CustomPacketPayload {
 	
-	public static final Id<PlayParticleWithPatternAndVelocityPayload> ID = SpectrumC2SPackets.makeId("play_particle_with_pattern_and_velocity");
-	public static final PacketCodec<RegistryByteBuf, PlayParticleWithPatternAndVelocityPayload> CODEC = PacketCodec.tuple(
+	public static final Type<PlayParticleWithPatternAndVelocityPayload> ID = SpectrumC2SPackets.makeId("play_particle_with_pattern_and_velocity");
+	public static final StreamCodec<RegistryFriendlyByteBuf, PlayParticleWithPatternAndVelocityPayload> CODEC = StreamCodec.composite(
 			PacketCodecHelper.VEC3D, PlayParticleWithPatternAndVelocityPayload::pos,
-			ParticleTypes.PACKET_CODEC, PlayParticleWithPatternAndVelocityPayload::effect,
+			ParticleTypes.STREAM_CODEC, PlayParticleWithPatternAndVelocityPayload::effect,
 			VectorPattern.PACKET_CODEC, PlayParticleWithPatternAndVelocityPayload::pattern,
-			PacketCodecs.DOUBLE, PlayParticleWithPatternAndVelocityPayload::velocity,
+			ByteBufCodecs.DOUBLE, PlayParticleWithPatternAndVelocityPayload::velocity,
 			PlayParticleWithPatternAndVelocityPayload::new
 	);
 	
@@ -34,8 +34,8 @@ public record PlayParticleWithPatternAndVelocityPayload(Vec3d pos, ParticleEffec
 	 * @param position       the pos of the particles
 	 * @param particleEffect The particle effect to play
 	 */
-	public static void playParticleWithPatternAndVelocity(@Nullable PlayerEntity notThisPlayerEntity, ServerWorld world, @NotNull Vec3d position, @NotNull ParticleEffect particleEffect, @NotNull VectorPattern pattern, double velocity) {
-		for (ServerPlayerEntity player : PlayerLookup.tracking(world, BlockPos.ofFloored(position))) {
+	public static void playParticleWithPatternAndVelocity(@Nullable Player notThisPlayerEntity, ServerLevel world, @NotNull Vec3 position, @NotNull ParticleOptions particleEffect, @NotNull VectorPattern pattern, double velocity) {
+		for (ServerPlayer player : PlayerLookup.tracking(world, BlockPos.containing(position))) {
 			if (!player.equals(notThisPlayerEntity)) {
 				ServerPlayNetworking.send(player, new PlayParticleWithPatternAndVelocityPayload(position, particleEffect, pattern, velocity));
 			}
@@ -43,13 +43,13 @@ public record PlayParticleWithPatternAndVelocityPayload(Vec3d pos, ParticleEffec
 	}
 	
 	@Override
-	public Id<? extends CustomPayload> getId() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 	
 	@SuppressWarnings("resource")
 	@Environment(EnvType.CLIENT)
 	public static void execute(PlayParticleWithPatternAndVelocityPayload payload, ClientPlayNetworking.Context context) {
-		ParticleHelper.playParticleWithPatternAndVelocityClient(context.client().world, payload.pos, payload.effect, payload.pattern, payload.velocity);
+		ParticleHelper.playParticleWithPatternAndVelocityClient(context.client().level, payload.pos, payload.effect, payload.pattern, payload.velocity);
 	}
 }

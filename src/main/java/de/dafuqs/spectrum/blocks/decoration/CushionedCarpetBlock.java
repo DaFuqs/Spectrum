@@ -1,24 +1,26 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
-import com.mojang.serialization.MapCodec;
-import net.minecraft.block.*;
-import net.minecraft.entity.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import com.mojang.serialization.*;
+import net.minecraft.core.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 
 public class CushionedCarpetBlock extends CarpetBlock {
-
-    public static final MapCodec<CushionedCarpetBlock> CODEC = createCodec(CushionedCarpetBlock::new);
-
-    public CushionedCarpetBlock(Settings settings) {
+	
+	public static final MapCodec<CushionedCarpetBlock> CODEC = simpleCodec(CushionedCarpetBlock::new);
+	
+	public CushionedCarpetBlock(Properties settings) {
         super(settings);
     }
 
 	@Override
-	public MapCodec<? extends CushionedCarpetBlock> getCodec() {
+	public MapCodec<? extends CushionedCarpetBlock> codec() {
 		return CODEC;
 	}
 
     @Override
-    public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {}
+	public void fallOn(Level world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
+	}
 }

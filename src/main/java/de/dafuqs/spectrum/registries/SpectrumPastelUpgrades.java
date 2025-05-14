@@ -2,9 +2,9 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.pastel.*;
-import net.minecraft.item.*;
-import net.minecraft.registry.*;
-import net.minecraft.util.*;
+import net.minecraft.core.*;
+import net.minecraft.world.*;
+import net.minecraft.world.item.*;
 
 import java.util.*;
 
@@ -47,14 +47,14 @@ public class SpectrumPastelUpgrades {
 
         RATE = register(PastelUpgradeSignature.builder(SpectrumItems.RESONANCE_SHARD, NON_COMPOUNDING, NAMESPACE).named("rate").priority(true).build());
         LIGHT = register(PastelUpgradeSignature.builder(SpectrumItems.SHIMMERSTONE_GEM, NON_COMPOUNDING, NAMESPACE).named("light").light(true).build());
-
-        ALWAYS_ON = register(PastelUpgradeSignature.builder(SpectrumItems.PURE_REDSTONE, REDSTONE, NAMESPACE).redstone("always_active").redstonePreProcess(context -> ActionResult.SUCCESS).buildRedstone());
-        ALWAYS_OFF = register(PastelUpgradeSignature.builder(SpectrumItems.PURE_LAPIS, REDSTONE, NAMESPACE).redstone("always_inactive").redstonePreProcess(context -> ActionResult.FAIL).buildRedstone());
+		
+		ALWAYS_ON = register(PastelUpgradeSignature.builder(SpectrumItems.PURE_REDSTONE, REDSTONE, NAMESPACE).redstone("always_active").redstonePreProcess(context -> InteractionResult.SUCCESS).buildRedstone());
+		ALWAYS_OFF = register(PastelUpgradeSignature.builder(SpectrumItems.PURE_LAPIS, REDSTONE, NAMESPACE).redstone("always_inactive").redstonePreProcess(context -> InteractionResult.FAIL).buildRedstone());
 
         INVERTED = register(PastelUpgradeSignature.builder(SpectrumItems.PURE_COAL, REDSTONE, NAMESPACE).redstone("inverted").redstonePostProcess(context -> {
             if (context.active())
-                return ActionResult.FAIL;
-            return ActionResult.SUCCESS;
+				return InteractionResult.FAIL;
+			return InteractionResult.SUCCESS;
         }).buildRedstone());
 
         LAMP = register(PastelUpgradeSignature.builder(SpectrumItems.PURE_GLOWSTONE, REDSTONE, NAMESPACE).redstone("lamp").lamp(true).buildRedstone());
@@ -75,7 +75,7 @@ public class SpectrumPastelUpgrades {
     }
 
     public static String toString(PastelUpgradeSignature upgrade) {
-        return SpectrumRegistries.PASTEL_UPGRADE.getId(upgrade).toString();
+		return SpectrumRegistries.PASTEL_UPGRADE.getKey(upgrade).toString();
     }
 
     public static PastelUpgradeSignature of(ItemStack stack) {

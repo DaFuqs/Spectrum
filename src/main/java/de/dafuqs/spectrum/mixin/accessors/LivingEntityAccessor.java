@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.mixin.accessors;
 
-import net.minecraft.entity.*;
-import net.minecraft.entity.damage.*;
+import net.minecraft.world.damagesource.*;
+import net.minecraft.world.entity.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.gen.*;
 

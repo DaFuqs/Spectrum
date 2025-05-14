@@ -1,35 +1,36 @@
 package de.dafuqs.spectrum.blocks;
 
-import net.minecraft.block.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 
-public class PureRedstoneBlock extends RedstoneBlock {
+public class PureRedstoneBlock extends PoweredBlock {
 	
-	public PureRedstoneBlock(Settings settings) {
+	public PureRedstoneBlock(Properties settings) {
 		super(settings);
 	}
 	
 	@Override
-	public int getStrongRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
+	public int getDirectSignal(BlockState state, BlockGetter world, BlockPos pos, Direction direction) {
 		return 15;
 	}
 	
 	@Override
-	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-		super.onBlockAdded(state, world, pos, oldState, notify);
+	public void onPlace(BlockState state, Level world, BlockPos pos, BlockState oldState, boolean notify) {
+		super.onPlace(state, world, pos, oldState, notify);
 		
 		for (Direction direction : Direction.values()) {
-			world.updateNeighborsAlways(pos.offset(direction), this);
+			world.updateNeighborsAt(pos.relative(direction), this);
 		}
 	}
 	
 	@Override
-	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-		super.onStateReplaced(state, world, pos, newState, moved);
+	public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean moved) {
+		super.onRemove(state, world, pos, newState, moved);
 		
 		for (Direction direction : Direction.values()) {
-			world.updateNeighborsAlways(pos.offset(direction), this);
+			world.updateNeighborsAt(pos.relative(direction), this);
 		}
 	}
 	

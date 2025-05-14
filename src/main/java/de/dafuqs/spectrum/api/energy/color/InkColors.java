@@ -2,17 +2,17 @@ package de.dafuqs.spectrum.api.energy.color;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.registry.*;
-import net.minecraft.registry.entry.*;
-import net.minecraft.util.*;
+import net.minecraft.core.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.item.*;
 
 import java.util.*;
 
 public class InkColors {
 	
-	public static final Identifier BASE_ADVANCEMENT_ID = SpectrumCommon.locate("midgame/spectrum_midgame");
-	public static final Identifier BLACK_ADVANCEMENT_ID = SpectrumCommon.locate("midgame/spectrum_midgame");
-	public static final Identifier WHITE_ADVANCEMENT_ID = SpectrumCommon.locate("lategame/collect_moonstone");
+	public static final ResourceLocation BASE_ADVANCEMENT_ID = SpectrumCommon.locate("midgame/spectrum_midgame");
+	public static final ResourceLocation BLACK_ADVANCEMENT_ID = SpectrumCommon.locate("midgame/spectrum_midgame");
+	public static final ResourceLocation WHITE_ADVANCEMENT_ID = SpectrumCommon.locate("lategame/collect_moonstone");
 	
 	/**
 	 * A lot of places where color is displayed have black backgrounds, which would make displaying normal black on them... daft.
@@ -77,11 +77,11 @@ public class InkColors {
 	}
 	
 	public static List<InkColor> elementals() {
-		return SpectrumRegistries.INK_COLOR.getEntryList(InkColorTags.ELEMENTAL_COLORS).map(entries -> entries.stream().map(RegistryEntry::value).toList()).orElseGet(() -> List.of(CYAN, MAGENTA, YELLOW, WHITE, BLACK));
+		return SpectrumRegistries.INK_COLOR.getTag(InkColorTags.ELEMENTAL_COLORS).map(entries -> entries.stream().map(Holder::value).toList()).orElseGet(() -> List.of(CYAN, MAGENTA, YELLOW, WHITE, BLACK));
 	}
 	
 	public static List<InkColor> compounds() {
-		return SpectrumRegistries.INK_COLOR.getEntryList(InkColorTags.COMPOUND_COLORS).map(entries -> entries.stream().map(RegistryEntry::value).toList()).orElseGet(() -> List.of(LIGHT_BLUE, BLUE, PURPLE, PINK, RED, ORANGE, LIME, GREEN, BROWN, GRAY, LIGHT_GRAY));
+		return SpectrumRegistries.INK_COLOR.getTag(InkColorTags.COMPOUND_COLORS).map(entries -> entries.stream().map(Holder::value).toList()).orElseGet(() -> List.of(LIGHT_BLUE, BLUE, PURPLE, PINK, RED, ORANGE, LIME, GREEN, BROWN, GRAY, LIGHT_GRAY));
 	}
 	
 }

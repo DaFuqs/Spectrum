@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.helpers;
 
-import net.minecraft.util.math.*;
+import net.minecraft.util.*;
+import net.minecraft.world.phys.*;
 
 /**
  * NOTE: Longitude is on the XZ plane. Latitude is on the radius-Y plane.
@@ -18,12 +19,12 @@ public class Orientation {
 		return new Orientation(longitude, latitude);
 	}
 	
-	public static Orientation fromVector(Vec3d vector) {
+	public static Orientation fromVector(Vec3 vector) {
 		return getVectorOrientation(vector);
 	}
-
-	public Vec3d toVector(double r) {
-		return new Vec3d(
+	
+	public Vec3 toVector(double r) {
+		return new Vec3(
 				r * Math.sin(latitude) * Math.cos(longitude),
 				r * Math.cos(latitude),
 				r * Math.sin(latitude) * Math.sin(longitude)
@@ -53,9 +54,9 @@ public class Orientation {
 	/**
 	 * <a href="http://www.vias.org/comp_geometry/math_coord_sphere.htm">Phi my phucking phnuts</a>
 	 */
-	public static Orientation getVectorOrientation(Vec3d vector) {
+	public static Orientation getVectorOrientation(Vec3 vector) {
 		var r = vector.length();
-		var longitude = MathHelper.atan2(vector.z, vector.x);
+		var longitude = Mth.atan2(vector.z, vector.x);
 		var latitude = Math.acos(vector.y / r) - (Math.PI / 2);
 		latitude *= -1;
 		

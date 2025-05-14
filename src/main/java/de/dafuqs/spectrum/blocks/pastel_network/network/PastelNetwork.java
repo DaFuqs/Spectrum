@@ -1,16 +1,16 @@
 package de.dafuqs.spectrum.blocks.pastel_network.network;
 
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
+import net.minecraft.core.*;
 import net.minecraft.nbt.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
-import org.jgrapht.*;
+import net.minecraft.world.level.*;
+import org.jgrapht.Graph;
 import org.jgrapht.graph.*;
 
 import java.util.*;
 import java.util.stream.*;
 
-public class PastelNetwork<W extends World> {
+public class PastelNetwork<W extends Level> {
 	
 	protected Graph<BlockPos, DefaultEdge> graph = new SimpleGraph<>(DefaultEdge.class);
 	protected final W world;
@@ -41,9 +41,8 @@ public class PastelNetwork<W extends World> {
         return this.graph;
     }
 	
-	
 	public boolean addEdge(PastelNodeBlockEntity node, PastelNodeBlockEntity parent) {
-		return addEdge(node.getPos(), parent.getPos());
+		return addEdge(node.getBlockPos(), parent.getBlockPos());
 	}
 	
 	public boolean addEdge(BlockPos pos1, BlockPos pos2) {
@@ -61,6 +60,9 @@ public class PastelNetwork<W extends World> {
 		return graph.containsEdge(pos1, pos2);
     }
 	
+	public boolean removeEdge(PastelNodeBlockEntity node, PastelNodeBlockEntity parent) {
+		return graph.removeEdge(node.getBlockPos(), parent.getBlockPos()) != null;
+	}
 	
 	public UUID getUUID() {
         return this.uuid;
@@ -85,9 +87,9 @@ public class PastelNetwork<W extends World> {
         return false;
     }
 	
-	public NbtCompound graphToNbt() {
+	public CompoundTag graphToNbt() {
 		var vertices = new ArrayList<>(graph.vertexSet());
-		var graphStorage = new NbtCompound();
+		var graphStorage = new CompoundTag();
 		graphStorage.putInt("Size", vertices.size());
 		for (int i = 0; i < vertices.size(); i++) {
 			var vertex = vertices.get(i);
@@ -116,13 +118,13 @@ public class PastelNetwork<W extends World> {
 		return graphStorage;
 	}
 	
-	public static Graph<BlockPos, DefaultEdge> graphFromNbt(NbtCompound nbt) {
+	public static Graph<BlockPos, DefaultEdge> graphFromNbt(CompoundTag nbt) {
 		Graph<BlockPos, DefaultEdge> graph = new SimpleGraph<>(DefaultEdge.class);
 		
 		var size = nbt.getInt("Size");
 		var vertices = new ArrayList<BlockPos>();
 		for (int i = 0; i < size; i++) {
-			var vertex = BlockPos.fromLong(nbt.getLong("Vertex" + i));
+			var vertex = BlockPos.of(nbt.getLong("Vertex" + i));
 			vertices.add(vertex);
 			graph.addVertex(vertex);
 		}

@@ -9,9 +9,9 @@ import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.event.lifecycle.v1.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.*;
 import vazkii.botania.common.item.*;
 
 import static de.dafuqs.spectrum.registries.SpectrumItems.*;
@@ -19,8 +19,8 @@ import static de.dafuqs.spectrum.registries.SpectrumItems.*;
 @SuppressWarnings("unused")
 public class BotaniaCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	
-	public static Item LEAST_BLACK_LOTUS = SpectrumItems.register(simple(item("least_black_lotus", new LeastBlackLotusItem(new Item.Settings()), InkColors.BLACK)));
-	public static Item BLACKEST_LOTUS = SpectrumItems.register(simple(item("blackest_lotus", new BlackestLotusItem(new Item.Settings()), InkColors.BLACK)));
+	public static Item LEAST_BLACK_LOTUS = SpectrumItems.register(simple(item("least_black_lotus", new LeastBlackLotusItem(new Item.Properties()), InkColors.BLACK)));
+	public static Item BLACKEST_LOTUS = SpectrumItems.register(simple(item("blackest_lotus", new BlackestLotusItem(new Item.Properties()), InkColors.BLACK)));
 	
 	@Override
 	public void register() {
@@ -35,7 +35,7 @@ public class BotaniaCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 			
 			ItemProviderRegistry.register(BotaniaItems.blackHoleTalisman, new ItemProvider() {
 				@Override
-				public int getItemCount(PlayerEntity player, ItemStack stack, Item requestedItem) {
+				public int getItemCount(Player player, ItemStack stack, Item requestedItem) {
 					if (requestedItem instanceof BlockItem blockItem) {
 						Block storedBlock = BlackHoleTalismanItem.getBlock(stack);
 						if (blockItem.getBlock() == storedBlock) {
@@ -46,7 +46,7 @@ public class BotaniaCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 				}
 				
 				@Override
-				public int provideItems(PlayerEntity player, ItemStack stack, Item requestedItem, int amount) {
+				public int provideItems(Player player, ItemStack stack, Item requestedItem, int amount) {
 					if (requestedItem instanceof BlockItem blockItem) {
 						Block storedBlock = BlackHoleTalismanItem.getBlock(stack);
 						if (blockItem.getBlock() == storedBlock) {
@@ -62,8 +62,8 @@ public class BotaniaCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 		});
 		
 		ItemSubGroupEvents.modifyEntriesEvent(ItemGroupIDs.SUBTAB_EQUIPMENT).register(entries -> {
-			entries.add(LEAST_BLACK_LOTUS);
-			entries.add(BLACKEST_LOTUS);
+			entries.accept(LEAST_BLACK_LOTUS);
+			entries.accept(BLACKEST_LOTUS);
 		});
 	}
 	

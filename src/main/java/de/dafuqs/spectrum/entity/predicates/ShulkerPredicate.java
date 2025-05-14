@@ -1,14 +1,14 @@
 package de.dafuqs.spectrum.entity.predicates;
 
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.mojang.serialization.*;
+import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.entity.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.mob.*;
-import net.minecraft.predicate.entity.EntitySubPredicate;
-import net.minecraft.server.world.*;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import net.minecraft.advancements.critereon.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.monster.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -20,8 +20,8 @@ public record ShulkerPredicate(Optional<DyeColor> color) implements EntitySubPre
 	).apply(instance, ShulkerPredicate::new));
 
 	@Override
-	public boolean test(Entity entity, ServerWorld world, @Nullable Vec3d pos) {
-		if (!(entity instanceof ShulkerEntity shulkerEntity)) {
+	public boolean matches(Entity entity, ServerLevel world, @Nullable Vec3 pos) {
+		if (!(entity instanceof Shulker shulkerEntity)) {
 			return false;
 		} else {
 			return (this.color.isEmpty() || this.color.get() == shulkerEntity.getColor());
@@ -29,7 +29,7 @@ public record ShulkerPredicate(Optional<DyeColor> color) implements EntitySubPre
 	}
 
 	@Override
-	public MapCodec<ShulkerPredicate> getCodec() {
+	public MapCodec<ShulkerPredicate> codec() {
 		return SpectrumEntitySubPredicateTypes.SHULKER;
 	}
 

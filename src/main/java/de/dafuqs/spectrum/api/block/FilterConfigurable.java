@@ -5,16 +5,14 @@ import de.dafuqs.spectrum.inventories.slots.*;
 import de.dafuqs.spectrum.networking.c2s_payloads.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.inventory.*;
-import net.minecraft.item.*;
+import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.screen.*;
-import net.minecraft.screen.slot.*;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.item.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -37,7 +35,7 @@ public interface FilterConfigurable {
 		return getItemFilters().size();
 	}
 	
-	static void writeFilterNbt(NbtCompound tag, List<ItemVariant> filterItems) {
+	static void writeFilterNbt(CompoundTag tag, List<ItemVariant> filterItems) {
 		for (int i = 0; i < filterItems.size(); i++) {
 			if (!filterItems.get(i).isBlank()) {
 				CodecHelper.writeNbt(tag, "FilterStack" + i, ItemVariant.CODEC, filterItems.get(i));
@@ -45,36 +43,36 @@ public interface FilterConfigurable {
 		}
 	}
 	
-	static void readFilterNbt(NbtCompound tag, List<ItemVariant> filterItems) {
+	static void readFilterNbt(CompoundTag tag, List<ItemVariant> filterItems) {
 		for (int i = 0; i < filterItems.size(); i++) {
 			if (tag.contains("FilterStack" + i))
 				filterItems.set(i, CodecHelper.fromNbt(ItemVariant.CODEC, tag.get("FilterStack" + i), null));
 		}
 	}
 	
-	static Inventory getFilterInventoryFromDataClicker(ExtendedData data, ShadowSlotClicker clicker) {
+	static Container getFilterInventoryFromDataClicker(ExtendedData data, ShadowSlotClicker clicker) {
 		var size = data.filterItems().size();
-		Inventory inventory = new FilterInventory(clicker, size);
+		Container inventory = new FilterInventory(clicker, size);
 		for (int i = 0; i < size; i++) {
-			inventory.setStack(i, data.filterItems().get(i).toStack());
+			inventory.setItem(i, data.filterItems().get(i).toStack());
 		}
 		return inventory;
 	}
 	
-	static Inventory getFilterInventoryFromExtendedData(int syncId, @NotNull PlayerInventory playerInventory, ExtendedData data, @NotNull ScreenHandler handler) {
+	static Container getFilterInventoryFromExtendedData(int syncId, @NotNull Inventory playerInventory, ExtendedData data, @NotNull AbstractContainerMenu handler) {
 		final var clicker = new ShadowSlotClicker.FromHandler(handler, playerInventory.player, syncId);
 		return getFilterInventoryFromDataClicker(data, clicker);
 	}
 	
-	static Inventory getFilterInventoryFromItemsClicker(List<ItemVariant> items, ShadowSlotClicker clicker) {
-		Inventory inventory = new FilterInventory(clicker, items.size());
+	static Container getFilterInventoryFromItemsClicker(List<ItemVariant> items, ShadowSlotClicker clicker) {
+		Container inventory = new FilterInventory(clicker, items.size());
 		for (int i = 0; i < items.size(); i++) {
-			inventory.setStack(i, items.get(i).toStack());
+			inventory.setItem(i, items.get(i).toStack());
 		}
 		return inventory;
 	}
 	
-	static Inventory getFilterInventoryFromItemsHandler(int syncId, @NotNull PlayerInventory playerInventory, List<ItemVariant> items, @NotNull ScreenHandler thisHandler) {
+	static Container getFilterInventoryFromItemsHandler(int syncId, @NotNull Inventory playerInventory, List<ItemVariant> items, @NotNull AbstractContainerMenu thisHandler) {
 		final var clicker = new ShadowSlotClicker.FromHandler(thisHandler, playerInventory.player, syncId);
 		return getFilterInventoryFromItemsClicker(items, clicker);
 	}
@@ -83,17 +81,17 @@ public interface FilterConfigurable {
 	// Do not use if not required.
 	interface ShadowSlotClicker {
 		default void clickShadowSlot(int syncId, Slot slot, ItemStack shadowStack) {
-			clickShadowSlot(syncId, slot.id, shadowStack);
+			clickShadowSlot(syncId, slot.index, shadowStack);
 		}
 		
 		void clickShadowSlot(int syncId, int id, ItemStack shadowStack);
 		
 		class FromHandler implements ShadowSlotClicker {
-			public final @NotNull ScreenHandler handler;
-			public final @NotNull PlayerEntity player;
+			public final @NotNull AbstractContainerMenu handler;
+			public final @NotNull Player player;
 			public final int syncId;
 			
-			public FromHandler(@NotNull ScreenHandler screenHandler, @NotNull PlayerEntity player, int syncId) {
+			public FromHandler(@NotNull AbstractContainerMenu screenHandler, @NotNull Player player, int syncId) {
 				this.handler = screenHandler;
 				this.player = player;
 				this.syncId = syncId;
@@ -102,11 +100,11 @@ public interface FilterConfigurable {
 			@Override
 			public void clickShadowSlot(int syncId, @Nullable Slot slot, ItemStack shadowStack) {
 				if (this.syncId != syncId || !(slot instanceof ShadowSlot shadowSlot)) return;
-				if (!shadowSlot.onClicked(shadowStack, ClickType.LEFT, player)) return;
+				if (!shadowSlot.onClicked(shadowStack, ClickAction.PRIMARY, player)) return;
 				
 				// Sync with server
-				if (player.getWorld().isClient()) {
-					ClientPlayNetworking.send(new SetShadowSlotPayload(syncId, slot.id, shadowStack));
+				if (player.level().isClientSide()) {
+					ClientPlayNetworking.send(new SetShadowSlotPayload(syncId, slot.index, shadowStack));
 				}
 			}
 			
@@ -118,7 +116,7 @@ public interface FilterConfigurable {
 	}
 	
 	// Contains the slot clicker.
-	class FilterInventory extends SimpleInventory {
+	class FilterInventory extends SimpleContainer {
 		private final @NotNull FilterConfigurable.ShadowSlotClicker clicker;
 		
 		public FilterInventory(@NotNull FilterConfigurable.ShadowSlotClicker slotClicker, int size) {
@@ -131,15 +129,15 @@ public interface FilterConfigurable {
 		}
 	}
 	
-	static void writeScreenOpeningData(RegistryByteBuf buf, FilterConfigurable configurable) {
+	static void writeScreenOpeningData(RegistryFriendlyByteBuf buf, FilterConfigurable configurable) {
 		writeScreenOpeningData(buf, configurable.getItemFilters(), configurable.getFilterRows(), configurable.getSlotsPerRow(), configurable.getDrawnSlots());
 	}
 	
-	static void writeScreenOpeningData(RegistryByteBuf buf, List<ItemVariant> filterItems, int rows, int slotsPerRow, int drawnSlots) {
+	static void writeScreenOpeningData(RegistryFriendlyByteBuf buf, List<ItemVariant> filterItems, int rows, int slotsPerRow, int drawnSlots) {
 		buf.writeInt(filterItems.size());
 		for (ItemVariant filterItem : filterItems) {
 			// The difference between just using filterItem.toNbt() is that ItemVariant nbt uses "item" while ItemStack uses "id"
-			ItemStack.PACKET_CODEC.encode(buf, filterItem.toStack());
+			ItemStack.STREAM_CODEC.encode(buf, filterItem.toStack());
 		}
 		buf.writeInt(rows);
 		buf.writeInt(slotsPerRow);
@@ -156,11 +154,11 @@ public interface FilterConfigurable {
 			this(configurable.getItemFilters(), configurable.getFilterRows(), configurable.getSlotsPerRow(), configurable.getDrawnSlots());
 		}
 		
-		public static final PacketCodec<RegistryByteBuf, ExtendedData> PACKET_CODEC = PacketCodec.tuple(
-				ItemVariant.PACKET_CODEC.collect(PacketCodecs.toList()), ExtendedData::filterItems,
-				PacketCodecs.VAR_INT, ExtendedData::rows,
-				PacketCodecs.VAR_INT, ExtendedData::slotsPerRow,
-				PacketCodecs.VAR_INT, ExtendedData::drawnSlots,
+		public static final StreamCodec<RegistryFriendlyByteBuf, ExtendedData> PACKET_CODEC = StreamCodec.composite(
+				ItemVariant.PACKET_CODEC.apply(ByteBufCodecs.list()), ExtendedData::filterItems,
+				ByteBufCodecs.VAR_INT, ExtendedData::rows,
+				ByteBufCodecs.VAR_INT, ExtendedData::slotsPerRow,
+				ByteBufCodecs.VAR_INT, ExtendedData::drawnSlots,
 				ExtendedData::new
 		);
 		
@@ -172,8 +170,8 @@ public interface FilterConfigurable {
 			this(pos, new ExtendedData(configurable.getItemFilters(), configurable.getFilterRows(), configurable.getSlotsPerRow(), configurable.getDrawnSlots()));
 		}
 		
-		public static final PacketCodec<RegistryByteBuf, ExtendedDataWithPos> PACKET_CODEC = PacketCodec.tuple(
-				BlockPos.PACKET_CODEC, c -> c.pos,
+		public static final StreamCodec<RegistryFriendlyByteBuf, ExtendedDataWithPos> PACKET_CODEC = StreamCodec.composite(
+				BlockPos.STREAM_CODEC, c -> c.pos,
 				ExtendedData.PACKET_CODEC, c -> c.data,
 				ExtendedDataWithPos::new
 		);

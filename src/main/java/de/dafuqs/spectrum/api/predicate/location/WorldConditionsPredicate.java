@@ -3,17 +3,16 @@ package de.dafuqs.spectrum.api.predicate.location;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.helpers.*;
+import net.minecraft.advancements.critereon.*;
+import net.minecraft.core.*;
+import net.minecraft.core.registries.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.predicate.*;
-import net.minecraft.predicate.entity.*;
-import net.minecraft.registry.*;
-import net.minecraft.registry.entry.*;
-import net.minecraft.server.world.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
-import net.minecraft.world.biome.*;
-import net.minecraft.world.gen.structure.*;
+import net.minecraft.resources.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.biome.*;
+import net.minecraft.world.level.levelgen.structure.*;
 
 import java.util.*;
 
@@ -31,9 +30,9 @@ public record WorldConditionsPredicate(
 			Optional<TimeOfDayPredicate> timeOfDay,
 			Optional<WeatherPredicate> weather,
 			Optional<CommandPredicate> command,
-			Optional<RegistryEntryList<Biome>> biomes,
-			Optional<RegistryEntryList<Structure>> structures,
-			Optional<RegistryKey<World>> dimension,
+			Optional<HolderSet<Biome>> biomes,
+			Optional<HolderSet<Structure>> structures,
+			Optional<ResourceKey<Level>> dimension,
 			Optional<LightPredicate> light,
 			Optional<BlockPredicate> block,
 			Optional<FluidPredicate> fluid,
@@ -48,9 +47,9 @@ public record WorldConditionsPredicate(
 			TimeOfDayPredicate.CODEC.optionalFieldOf("time_of_day").forGetter(p -> p.timeOfDay),
 			WeatherPredicate.CODEC.optionalFieldOf("weather").forGetter(p -> p.weather),
 			CommandPredicate.CODEC.optionalFieldOf("command").forGetter(p -> p.command),
-			RegistryCodecs.entryList(RegistryKeys.BIOME).optionalFieldOf("biomes").forGetter(p -> p.location.biomes()),
-			RegistryCodecs.entryList(RegistryKeys.STRUCTURE).optionalFieldOf("structures").forGetter(p -> p.location.structures()),
-			RegistryKey.createCodec(RegistryKeys.WORLD).optionalFieldOf("dimension").forGetter(p -> p.location.dimension()),
+			RegistryCodecs.homogeneousList(Registries.BIOME).optionalFieldOf("biomes").forGetter(p -> p.location.biomes()),
+			RegistryCodecs.homogeneousList(Registries.STRUCTURE).optionalFieldOf("structures").forGetter(p -> p.location.structures()),
+			ResourceKey.codec(Registries.DIMENSION).optionalFieldOf("dimension").forGetter(p -> p.location.dimension()),
 			LightPredicate.CODEC.optionalFieldOf("light").forGetter(p -> p.location.light()),
 			BlockPredicate.CODEC.optionalFieldOf("block").forGetter(p -> p.location.block()),
 			FluidPredicate.CODEC.optionalFieldOf("fluid").forGetter(p -> p.location.fluid()),
@@ -58,24 +57,24 @@ public record WorldConditionsPredicate(
 			Codec.BOOL.optionalFieldOf("can_see_sky").forGetter(p -> p.location.canSeeSky())
 	).apply(instance, WorldConditionsPredicate::new));
 	
-	public static final PacketCodec<RegistryByteBuf, WorldConditionsPredicate> PACKET_CODEC = PacketCodecHelper.tuple(
-			PacketCodecs.optional(MoonPhasePredicate.PACKET_CODEC), p -> p.moonPhase,
-			PacketCodecs.optional(TimeOfDayPredicate.PACKET_CODEC), p -> p.timeOfDay,
-			PacketCodecs.optional(WeatherPredicate.PACKET_CODEC), p -> p.weather,
-			PacketCodecs.optional(CommandPredicate.PACKET_CODEC), p -> p.command,
-			PacketCodecs.optional(PacketCodecs.registryEntryList(RegistryKeys.BIOME)), p -> p.location.biomes(),
-			PacketCodecs.optional(PacketCodecs.registryEntryList(RegistryKeys.STRUCTURE)), p -> p.location.structures(),
-			PacketCodecs.optional(RegistryKey.createPacketCodec(RegistryKeys.WORLD)), p -> p.location.dimension(),
-			PacketCodecs.optional(PacketCodecHelper.LIGHT_PREDICATE), p -> p.location.light(),
-			PacketCodecs.optional(BlockPredicate.PACKET_CODEC), p -> p.location.block(),
-			PacketCodecs.optional(PacketCodecHelper.FLUID_PREDICATE), p -> p.location.fluid(),
-			PacketCodecs.optional(PacketCodecs.BOOL), p -> p.location.smokey(),
-			PacketCodecs.optional(PacketCodecs.BOOL), p -> p.location.canSeeSky(),
+	public static final StreamCodec<RegistryFriendlyByteBuf, WorldConditionsPredicate> PACKET_CODEC = PacketCodecHelper.tuple(
+			ByteBufCodecs.optional(MoonPhasePredicate.PACKET_CODEC), p -> p.moonPhase,
+			ByteBufCodecs.optional(TimeOfDayPredicate.PACKET_CODEC), p -> p.timeOfDay,
+			ByteBufCodecs.optional(WeatherPredicate.PACKET_CODEC), p -> p.weather,
+			ByteBufCodecs.optional(CommandPredicate.PACKET_CODEC), p -> p.command,
+			ByteBufCodecs.optional(ByteBufCodecs.holderSet(Registries.BIOME)), p -> p.location.biomes(),
+			ByteBufCodecs.optional(ByteBufCodecs.holderSet(Registries.STRUCTURE)), p -> p.location.structures(),
+			ByteBufCodecs.optional(ResourceKey.streamCodec(Registries.DIMENSION)), p -> p.location.dimension(),
+			ByteBufCodecs.optional(PacketCodecHelper.LIGHT_PREDICATE), p -> p.location.light(),
+			ByteBufCodecs.optional(BlockPredicate.STREAM_CODEC), p -> p.location.block(),
+			ByteBufCodecs.optional(PacketCodecHelper.FLUID_PREDICATE), p -> p.location.fluid(),
+			ByteBufCodecs.optional(ByteBufCodecs.BOOL), p -> p.location.smokey(),
+			ByteBufCodecs.optional(ByteBufCodecs.BOOL), p -> p.location.canSeeSky(),
 			WorldConditionsPredicate::new
 	);
 	
-	public boolean test(ServerWorld world, BlockPos pos) {
-		return location.test(world, pos.getX(), pos.getY(), pos.getZ())
+	public boolean test(ServerLevel world, BlockPos pos) {
+		return location.matches(world, pos.getX(), pos.getY(), pos.getZ())
 				&& moonPhase.map(p -> p.test(world)).orElse(true)
 				&& timeOfDay.map(p -> p.test(world)).orElse(true)
 				&& weather.map(p -> p.test(world)).orElse(true)

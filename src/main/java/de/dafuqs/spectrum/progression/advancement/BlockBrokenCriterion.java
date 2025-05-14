@@ -4,31 +4,30 @@ import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.predicate.block.*;
-import net.minecraft.advancement.criterion.*;
-import net.minecraft.block.*;
-import net.minecraft.predicate.entity.*;
-import net.minecraft.server.network.*;
-import net.minecraft.util.*;
+import net.minecraft.advancements.critereon.*;
+import net.minecraft.resources.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.level.block.state.*;
 
 import java.util.*;
 
-public class BlockBrokenCriterion extends AbstractCriterion<BlockBrokenCriterion.Conditions> {
+public class BlockBrokenCriterion extends SimpleCriterionTrigger<BlockBrokenCriterion.Conditions> {
 	
-	public static final Identifier ID = SpectrumCommon.locate("block_broken");
+	public static final ResourceLocation ID = SpectrumCommon.locate("block_broken");
 	
-	public void trigger(ServerPlayerEntity player, BlockState minedBlock) {
+	public void trigger(ServerPlayer player, BlockState minedBlock) {
 		this.trigger(player, (conditions) -> conditions.matches(minedBlock));
 	}
 	
 	@Override
-	public Codec<Conditions> getConditionsCodec() {
+	public Codec<Conditions> codec() {
 		return Conditions.CODEC;
 	}
 	
-	public record Conditions(Optional<LootContextPredicate> player, Optional<BrokenBlockPredicate> blockPredicate) implements AbstractCriterion.Conditions {
+	public record Conditions(Optional<ContextAwarePredicate> player, Optional<BrokenBlockPredicate> blockPredicate) implements SimpleCriterionTrigger.SimpleInstance {
 		
 		public static final Codec<BlockBrokenCriterion.Conditions> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-				EntityPredicate.LOOT_CONTEXT_PREDICATE_CODEC.optionalFieldOf("player").forGetter(BlockBrokenCriterion.Conditions::player),
+				EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("player").forGetter(BlockBrokenCriterion.Conditions::player),
 				BrokenBlockPredicate.CODEC.optionalFieldOf("block").forGetter(BlockBrokenCriterion.Conditions::blockPredicate)
 		).apply(instance, Conditions::new));
 		

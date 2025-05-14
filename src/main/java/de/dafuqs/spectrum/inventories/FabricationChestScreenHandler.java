@@ -3,37 +3,36 @@ package de.dafuqs.spectrum.inventories;
 import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.inventories.slots.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.inventory.*;
-import net.minecraft.item.*;
-import net.minecraft.screen.*;
-import net.minecraft.screen.slot.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
 
-public class FabricationChestScreenHandler extends ScreenHandler {
+public class FabricationChestScreenHandler extends AbstractContainerMenu {
 	
-	protected final World world;
-	private final Inventory inventory;
+	protected final Level world;
+	private final Container inventory;
 	
-	public FabricationChestScreenHandler(int syncId, PlayerInventory playerInventory) {
+	public FabricationChestScreenHandler(int syncId, Inventory playerInventory) {
 		this(SpectrumScreenHandlerTypes.FABRICATION_CHEST, syncId, playerInventory);
 	}
 	
-	protected FabricationChestScreenHandler(ScreenHandlerType<?> type, int i, PlayerInventory playerInventory) {
-		this(type, i, playerInventory, new SimpleInventory(FabricationChestBlockEntity.INVENTORY_SIZE));
+	protected FabricationChestScreenHandler(MenuType<?> type, int i, Inventory playerInventory) {
+		this(type, i, playerInventory, new SimpleContainer(FabricationChestBlockEntity.INVENTORY_SIZE));
 	}
 	
-	public FabricationChestScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory) {
+	public FabricationChestScreenHandler(int syncId, Inventory playerInventory, Container inventory) {
 		this(SpectrumScreenHandlerTypes.FABRICATION_CHEST, syncId, playerInventory, inventory);
 	}
 	
-	protected FabricationChestScreenHandler(ScreenHandlerType<?> type, int syncId, PlayerInventory playerInventory, Inventory inventory) {
+	protected FabricationChestScreenHandler(MenuType<?> type, int syncId, Inventory playerInventory, Container inventory) {
 		super(type, syncId);
 		this.inventory = inventory;
-		this.world = playerInventory.player.getWorld();
+		this.world = playerInventory.player.level();
 		
-		checkSize(inventory, FabricationChestBlockEntity.INVENTORY_SIZE);
-		inventory.onOpen(playerInventory.player);
+		checkContainerSize(inventory, FabricationChestBlockEntity.INVENTORY_SIZE);
+		inventory.startOpen(playerInventory.player);
 		
 		// chest inventory
 		int l;
@@ -69,60 +68,60 @@ public class FabricationChestScreenHandler extends ScreenHandler {
 	}
 	
 	@Override
-	public boolean canUse(PlayerEntity player) {
-		return this.inventory.canPlayerUse(player);
+	public boolean stillValid(Player player) {
+		return this.inventory.stillValid(player);
 	}
 	
 	@Override
-	public ItemStack quickMove(PlayerEntity player, int index) {
+	public ItemStack quickMoveStack(Player player, int index) {
 		ItemStack clickedStackCopy = ItemStack.EMPTY;
 		Slot slot = this.slots.get(index);
 		
-		if (slot.hasStack()) {
-			ItemStack clickedStack = slot.getStack();
+		if (slot.hasItem()) {
+			ItemStack clickedStack = slot.getItem();
 			clickedStackCopy = clickedStack.copy();
 			
 			if (index < FabricationChestBlockEntity.INVENTORY_SIZE) {
 				// => player inv
-				if (!this.insertItem(clickedStack, 35, 71, false)) {
+				if (!this.moveItemStackTo(clickedStack, 35, 71, false)) {
 					return ItemStack.EMPTY;
 				}
-			} else if (index > FabricationChestBlockEntity.INVENTORY_SIZE && clickedStackCopy.isOf(SpectrumItems.CRAFTING_TABLET)) {
-				if (!this.insertItem(clickedStack, FabricationChestBlockEntity.RECIPE_SLOTS[0], FabricationChestBlockEntity.RECIPE_SLOTS[FabricationChestBlockEntity.RECIPE_SLOTS.length - 1] + 1, false)) {
+			} else if (index > FabricationChestBlockEntity.INVENTORY_SIZE && clickedStackCopy.is(SpectrumItems.CRAFTING_TABLET)) {
+				if (!this.moveItemStackTo(clickedStack, FabricationChestBlockEntity.RECIPE_SLOTS[0], FabricationChestBlockEntity.RECIPE_SLOTS[FabricationChestBlockEntity.RECIPE_SLOTS.length - 1] + 1, false)) {
 					return ItemStack.EMPTY;
 				}
 			}
 			
 			// chest => inventory
-			if (!this.insertItem(clickedStack, 0, FabricationChestBlockEntity.CHEST_SLOTS.length - 1, false)) {
+			if (!this.moveItemStackTo(clickedStack, 0, FabricationChestBlockEntity.CHEST_SLOTS.length - 1, false)) {
 				return ItemStack.EMPTY;
 			}
 			
 			if (clickedStack.isEmpty()) {
-				slot.setStack(ItemStack.EMPTY);
+				slot.setByPlayer(ItemStack.EMPTY);
 			} else {
-				slot.markDirty();
+				slot.setChanged();
 			}
 			
 			if (clickedStack.getCount() == clickedStackCopy.getCount()) {
 				return ItemStack.EMPTY;
 			}
 			
-			slot.onTakeItem(player, clickedStack);
+			slot.onTake(player, clickedStack);
 		}
 		
 		
 		return clickedStackCopy;
 	}
 	
-	public Inventory getInventory() {
+	public Container getInventory() {
 		return this.inventory;
 	}
 	
 	@Override
-	public void onClosed(PlayerEntity player) {
-		super.onClosed(player);
-		this.inventory.onClose(player);
+	public void removed(Player player) {
+		super.removed(player);
+		this.inventory.stopOpen(player);
 	}
 	
 }

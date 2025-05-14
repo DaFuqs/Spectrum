@@ -6,24 +6,25 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.client.gui.screen.ingame.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.client.gui.screens.inventory.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.*;
+import net.minecraft.world.entity.player.*;
 
 import java.awt.*;
 
-public class PotionWorkshopScreen extends HandledScreen<PotionWorkshopScreenHandler> {
+public class PotionWorkshopScreen extends AbstractContainerScreen<PotionWorkshopScreenHandler> {
 	
-	public static final Identifier BACKGROUND_3_SLOTS = SpectrumCommon.locate("textures/gui/container/potion_workshop_3_slots.png");
-	public static final Identifier BACKGROUND_4_SLOTS = SpectrumCommon.locate("textures/gui/container/potion_workshop_4_slots.png");
+	public static final ResourceLocation BACKGROUND_3_SLOTS = SpectrumCommon.locate("textures/gui/container/potion_workshop_3_slots.png");
+	public static final ResourceLocation BACKGROUND_4_SLOTS = SpectrumCommon.locate("textures/gui/container/potion_workshop_4_slots.png");
 	private static final int[] BUBBLE_PROGRESS = new int[]{0, 4, 8, 11, 13, 17, 20, 24, 26, 30, 33, 36, 41};
 	
-	private final Identifier background;
+	private final ResourceLocation background;
 	
-	public PotionWorkshopScreen(PotionWorkshopScreenHandler handler, PlayerInventory playerInventory, Text title) {
+	public PotionWorkshopScreen(PotionWorkshopScreenHandler handler, Inventory playerInventory, Component title) {
 		super(handler, playerInventory, title);
-		this.backgroundHeight = 202;
+		this.imageHeight = 202;
 		
 		if (AdvancementHelper.hasAdvancement(playerInventory.player, SpectrumAdvancements.FOURTH_BREWING_SLOT)) {
 			background = BACKGROUND_4_SLOTS;
@@ -33,51 +34,51 @@ public class PotionWorkshopScreen extends HandledScreen<PotionWorkshopScreenHand
 	}
 	
 	@Override
-	protected void drawForeground(DrawContext drawContext, int mouseX, int mouseY) {
+	protected void renderLabels(GuiGraphics drawContext, int mouseX, int mouseY) {
 		// draw "title" and "inventory" texts
-		int titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
+		int titleX = (imageWidth - font.width(title)) / 2;
 		int titleY = 6;
-		Text title = this.title;
+		Component title = this.title;
 		int playerInventoryX = 8;
 		int playerInventoryY = 109;
 		
-		drawContext.drawText(this.textRenderer, title, titleX, titleY, RenderHelper.GREEN_COLOR, false);
-		drawContext.drawText(this.textRenderer, this.playerInventoryTitle, playerInventoryX, playerInventoryY, RenderHelper.GREEN_COLOR, false);
+		drawContext.drawString(this.font, title, titleX, titleY, RenderHelper.GREEN_COLOR, false);
+		drawContext.drawString(this.font, this.playerInventoryTitle, playerInventoryX, playerInventoryY, RenderHelper.GREEN_COLOR, false);
 	}
 	
 	@Override
-	protected void drawBackground(DrawContext drawContext, float delta, int mouseX, int mouseY) {
-		int startX = (this.width - this.backgroundWidth) / 2;
-		int startY = (this.height - this.backgroundHeight) / 2;
+	protected void renderBg(GuiGraphics drawContext, float delta, int mouseX, int mouseY) {
+		int startX = (this.width - this.imageWidth) / 2;
+		int startY = (this.height - this.imageHeight) / 2;
 		
 		// main background
-		drawContext.drawTexture(background, startX, startY, 0, 0, backgroundWidth, backgroundHeight);
+		drawContext.blit(background, startX, startY, 0, 0, imageWidth, imageHeight);
 		
-		int brewTime = (this.handler).getBrewTime();
+		int brewTime = (this.menu).getBrewTime();
 		if (brewTime > 0) {
 			// the rising bubbles
 			int progress = BUBBLE_PROGRESS[brewTime / 2 % 13];
 			if (progress > 0) {
-				drawContext.drawTexture(background, startX + 29, startY + 39 + 43 - progress, 176, 40 - progress, 11, progress);
+				drawContext.blit(background, startX + 29, startY + 39 + 43 - progress, 176, 40 - progress, 11, progress);
 			}
 			
-			int maxBrewTime = (this.handler).getMaxBrewTime();
-			int potionColor = (this.handler).getPotionColor();
+			int maxBrewTime = (this.menu).getMaxBrewTime();
+			int potionColor = (this.menu).getPotionColor();
 			Color color = new Color(potionColor);
 			// the brew
 			progress = (int) (100.0F * ((float) brewTime / maxBrewTime));
 			RenderSystem.setShaderColor(color.getRed() / 255F, color.getGreen() / 255F, color.getBlue() / 255F, 1.0F);
-			drawContext.drawTexture(background, startX + 45, startY + 22, 0, 212, progress, 44);
+			drawContext.blit(background, startX + 45, startY + 22, 0, 212, progress, 44);
 			RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 			
 		}
 	}
 	
 	@Override
-	public void render(DrawContext drawContext, int mouseX, int mouseY, float delta) {
+	public void render(GuiGraphics drawContext, int mouseX, int mouseY, float delta) {
 		renderBackground(drawContext, mouseX, mouseY, delta);
 		super.render(drawContext, mouseX, mouseY, delta);
-		drawMouseoverTooltip(drawContext, mouseX, mouseY);
+		renderTooltip(drawContext, mouseX, mouseY);
 	}
 	
 }

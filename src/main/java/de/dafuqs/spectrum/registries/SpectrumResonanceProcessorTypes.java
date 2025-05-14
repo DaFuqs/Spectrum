@@ -4,7 +4,7 @@ import com.mojang.serialization.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.data_loaders.resonance_processors.*;
-import net.minecraft.registry.*;
+import net.minecraft.core.*;
 
 public class SpectrumResonanceProcessorTypes {
 	

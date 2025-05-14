@@ -8,65 +8,67 @@ import de.dafuqs.spectrum.render.*;
 import de.dafuqs.spectrum.status_effects.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.client.gui.hud.*;
-import net.minecraft.client.render.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.util.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.entity.player.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
-@Mixin(InGameHud.class)
+@Mixin(Gui.class)
 public abstract class InGameHudMixin {
-
-	@Shadow @Final private MinecraftClient client;
 	
-    @Shadow protected abstract PlayerEntity getCameraPlayer();
-
-    @Shadow public abstract void render(DrawContext context, RenderTickCounter tickerCounter);
-
-    @Inject(method = "renderStatusBars(Lnet/minecraft/client/gui/DrawContext;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/InGameHud;renderHealthBar(Lnet/minecraft/client/gui/DrawContext;Lnet/minecraft/entity/player/PlayerEntity;IIIIFIIIZ)V", shift = At.Shift.AFTER))
-    private void spectrum$renderAzureDikeBar(DrawContext context, CallbackInfo ci, @Local PlayerEntity cameraPlayer, @Local(ordinal = 2) int x, @Local(ordinal = 4) int y, @Local(ordinal = 6) int heartRows, @Local(ordinal = 7) int rowHeight) {
-		client.getProfiler().swap("spectrum:azure");
+	@Shadow
+	@Final
+	private Minecraft minecraft;
+	
+	@Shadow
+	protected abstract Player getCameraPlayer();
+	
+	@Shadow
+	public abstract void render(GuiGraphics context, DeltaTracker tickerCounter);
+	
+	@Inject(method = "renderPlayerHealth", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/profiling/ProfilerFiller;popPush(Ljava/lang/String;)V"))
+	private void spectrum$renderAzureDikeBar(GuiGraphics context, CallbackInfo ci, @Local Player cameraPlayer, @Local(ordinal = 2) int x, @Local(ordinal = 4) int y, @Local(ordinal = 6) int heartRows, @Local(ordinal = 7) int rowHeight) {
+		minecraft.getProfiler().popPush("spectrum:azure");
         HudRenderers.renderAzureDike(context, cameraPlayer, x, y - (heartRows - 1) * rowHeight - 10);
     }
-
-    @ModifyExpressionValue(method = "renderMiscOverlays", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/MinecraftClient;isFancyGraphicsOrBetter()Z"))
-    private boolean spectrum$disableVignetteInDimension(boolean original) {
-		var player = MinecraftClient.getInstance().player;
-		var isInDim = player != null && SpectrumDimensions.DIMENSION_KEY.equals(player.getWorld().getRegistryKey());
+	
+	@ModifyExpressionValue(method = "renderCameraOverlays", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;useFancyGraphics()Z"))
+	private boolean spectrum$disableVignietteInDimension(boolean original) {
+		var player = Minecraft.getInstance().player;
+		var isInDim = player != null && SpectrumDimensions.DIMENSION_KEY.equals(player.level().dimension());
         return !isInDim && original;
     }
 
     @Inject(method = "renderCrosshair", at = @At("HEAD"), cancellable = true)
-    private void spectrum$disableCrosshairSomnolence(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci) {
+	private void spectrum$disableCrosshairSomnolence(GuiGraphics context, DeltaTracker tickCounter, CallbackInfo ci) {
 		var potency = SleepStatusEffect.getSleepScaling(getCameraPlayer());
         if (potency > 0.25F)
 			ci.cancel();
     }
-
-    @Inject(method = "renderHotbar", at = @At("HEAD"), cancellable = true)
-    private void spectrum$disableHotbarSomnolence(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci) {
+	
+	@Inject(method = "renderItemHotbar", at = @At("HEAD"), cancellable = true)
+	private void spectrum$disableHotbarSomnolence(GuiGraphics context, DeltaTracker tickCounter, CallbackInfo ci) {
 		var potency = SleepStatusEffect.getSleepScaling(getCameraPlayer());
         if (potency > 0.4F)
 			ci.cancel();
     }
-
-    @Inject(method = "renderStatusBars", at = @At("HEAD"), cancellable = true)
-    private void spectrum$disableStatusSomnolence(DrawContext context, CallbackInfo ci) {
+	
+	@Inject(method = "renderPlayerHealth", at = @At("HEAD"), cancellable = true)
+	private void spectrum$disableStatusSomnolence(GuiGraphics context, CallbackInfo ci) {
 		var potency = SleepStatusEffect.getSleepScaling(getCameraPlayer());
 		if (potency > 0.4F)
 			ci.cancel();
     }
-
-    @ModifyArg(method = "renderStatusEffectOverlay", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawGuiTexture(Lnet/minecraft/util/Identifier;IIII)V", ordinal = 0))
-    private Identifier modifyAmbientEffectBackgrounds(Identifier texture, @Local StatusEffectInstance effect) {
-		return StatusEffectHelper.getTexture(texture, effect, StatusEffectHelper.RenderType.HUD_AMBIENT);
+	
+	@ModifyArg(method = "renderEffects", at = @At(value = "INVOKE", target = "net/minecraft/client/gui/GuiGraphics.blitSprite (Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 0))
+	private ResourceLocation modifyAmbientEffectBackgrounds(ResourceLocation texture, @Local MobEffectInstance effect) {
+		return StatusEffectHelper.getTextureLocation(texture, effect, StatusEffectHelper.RenderType.HUD_AMBIENT);
     }
-    
-    @ModifyArg(method = "renderStatusEffectOverlay", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawGuiTexture(Lnet/minecraft/util/Identifier;IIII)V", ordinal = 1))
-    private Identifier modifyEffectBackgrounds(Identifier texture, @Local StatusEffectInstance effect) {
-		return StatusEffectHelper.getTexture(texture, effect, StatusEffectHelper.RenderType.HUD_DEFAULT);
+	
+	@ModifyArg(method = "renderEffects", at = @At(value = "INVOKE", target = "net/minecraft/client/gui/GuiGraphics.blitSprite (Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 1))
+	private ResourceLocation modifyEffectBackgrounds(ResourceLocation texture, @Local MobEffectInstance effect) {
+		return StatusEffectHelper.getTextureLocation(texture, effect, StatusEffectHelper.RenderType.HUD_DEFAULT);
     }
 }

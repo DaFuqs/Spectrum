@@ -3,16 +3,15 @@ package de.dafuqs.spectrum.helpers;
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.items.*;
-import net.minecraft.item.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import net.minecraft.world.item.*;
 import org.jetbrains.annotations.*;
 import org.joml.*;
 
 import java.awt.*;
 import java.lang.Math;
-import java.util.List;
 import java.util.*;
+import java.util.List;
 import java.util.regex.*;
 
 public class SpectrumColorHelper {
@@ -63,15 +62,15 @@ public class SpectrumColorHelper {
 		int c3 = m.group(3) == null ? c1 : Integer.parseInt(m.group(3), 16);
 		int c4 = m.group(4) == null ? -1 : Integer.parseInt(m.group(4), 16);
 		
-		return net.minecraft.util.math.ColorHelper.Argb.getArgb(c4, c1, c2, c3);
+		return net.minecraft.util.FastColor.ARGB32.color(c4, c1, c2, c3);
 	}
 	
 	public static String toString(int color) {
 		return String.format("#%X%X%X%X",
-				net.minecraft.util.math.ColorHelper.Argb.getAlpha(color),
-				net.minecraft.util.math.ColorHelper.Argb.getRed(color),
-				net.minecraft.util.math.ColorHelper.Argb.getGreen(color),
-				net.minecraft.util.math.ColorHelper.Argb.getBlue(color)
+				net.minecraft.util.FastColor.ARGB32.alpha(color),
+				net.minecraft.util.FastColor.ARGB32.red(color),
+				net.minecraft.util.FastColor.ARGB32.green(color),
+				net.minecraft.util.FastColor.ARGB32.blue(color)
 		);
 	}
 	
@@ -102,7 +101,7 @@ public class SpectrumColorHelper {
 		if (!itemStack.isEmpty()) {
 			Item item = itemStack.getItem();
 			if (item instanceof DyeItem dyeItem) {
-				return Optional.of(dyeItem.getColor());
+				return Optional.of(dyeItem.getDyeColor());
 			} else if (item instanceof PigmentItem pigmentItem) {
 				return pigmentItem.getInkColor().getDyeColor();
 			}
@@ -111,9 +110,9 @@ public class SpectrumColorHelper {
 	}
 	
 	public static int interpolate(Vector3f start, Vector3f end, float delta) {
-		var blendedRed = Math.round(MathHelper.lerp(delta, start.x, end.x) * 255F);
-		var blendedGreen = Math.round(MathHelper.lerp(delta, start.y, end.y) * 255F);
-		var blendedBlue = Math.round(MathHelper.lerp(delta, start.z, end.z) * 255F);
+		var blendedRed = Math.round(Mth.lerp(delta, start.x, end.x) * 255F);
+		var blendedGreen = Math.round(Mth.lerp(delta, start.y, end.y) * 255F);
+		var blendedBlue = Math.round(Mth.lerp(delta, start.z, end.z) * 255F);
 		return (blendedRed & 255) << 16 | (blendedGreen & 255) << 8 | (blendedBlue & 255) | 0xFF000000;
 	}
 	

@@ -4,23 +4,24 @@ import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
-import net.minecraft.block.*;
 import net.minecraft.client.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.sound.*;
+import net.minecraft.core.*;
+import net.minecraft.sounds.*;
 import net.minecraft.util.*;
-import net.minecraft.util.hit.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
-import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.phys.*;
+import net.minecraft.world.phys.shapes.*;
 import org.jetbrains.annotations.*;
 
 public class WandLightBlock extends LightBlock {
-
-	public WandLightBlock(Settings settings) {
+	
+	public WandLightBlock(Properties settings) {
 		super(settings);
 	}
 
@@ -31,17 +32,17 @@ public class WandLightBlock extends LightBlock {
 //	}
 
 	@Override
-	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		if(context instanceof EntityShapeContext entityShapeContext && entityShapeContext.getEntity() != null && holdsRadianceStaff(entityShapeContext.getEntity())) {
-			return VoxelShapes.fullCube();
+	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+		if (context instanceof EntityCollisionContext entityShapeContext && entityShapeContext.getEntity() != null && holdsRadianceStaff(entityShapeContext.getEntity())) {
+			return Shapes.block();
 		}
-		return VoxelShapes.empty();
+		return Shapes.empty();
 	}
 	
 	private boolean holdsRadianceStaff(@NotNull Entity entity) {
 		if(entity instanceof LivingEntity livingEntity) {
 			// context.isHolding() only checks the main hand, so we use our own implementation
-			for(ItemStack stack : livingEntity.getHandItems()) {
+			for (ItemStack stack : livingEntity.getHandSlots()) {
 				if(stack.getItem() instanceof RadianceStaffItem) {
 					return true;
 				}
@@ -52,34 +53,34 @@ public class WandLightBlock extends LightBlock {
 	
 	@Environment(EnvType.CLIENT)
 	private boolean holdsRadianceStaffClient() {
-		return holdsRadianceStaff(MinecraftClient.getInstance().player);
+		return holdsRadianceStaff(Minecraft.getInstance().player);
 	}
 	
 	@Override
-	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-		super.randomDisplayTick(state, world, pos, random);
-		if (world.isClient && holdsRadianceStaffClient()) {
-			world.addImportantParticle(SpectrumParticleTypes.SHIMMERSTONE_SPARKLE_SMALL, (double) pos.getX() + 0.2 + random.nextFloat() * 0.6, (double) pos.getY() + 0.1 + random.nextFloat() * 0.6, (double) pos.getZ() + 0.2 + random.nextFloat() * 0.6, 0.0D, 0.03D, 0.0D);
+	public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
+		super.animateTick(state, world, pos, random);
+		if (world.isClientSide && holdsRadianceStaffClient()) {
+			world.addAlwaysVisibleParticle(SpectrumParticleTypes.SHIMMERSTONE_SPARKLE_SMALL, (double) pos.getX() + 0.2 + random.nextFloat() * 0.6, (double) pos.getY() + 0.1 + random.nextFloat() * 0.6, (double) pos.getZ() + 0.2 + random.nextFloat() * 0.6, 0.0D, 0.03D, 0.0D);
 		}
 	}
 	
 	@Override
-	public ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state) {
+	public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state) {
 		return new ItemStack(SpectrumItems.RADIANCE_STAFF);
 	}
 	
 	@Override
-	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-		if (!world.isClient) {
-			BlockState newState = state.cycle(LEVEL_15);
-			if (newState.get(LEVEL_15) == 0) { // lights with a level of 0 are absolutely
-				newState = newState.cycle(LEVEL_15);
+	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
+		if (!world.isClientSide) {
+			BlockState newState = state.cycle(LEVEL);
+			if (newState.getValue(LEVEL) == 0) { // lights with a level of 0 are absolutely
+				newState = newState.cycle(LEVEL);
 			}
-			world.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SpectrumSoundEvents.RADIANCE_STAFF_PLACE, SoundCategory.PLAYERS, 1.0F, (float) (0.75 + 0.05 * newState.get(LEVEL_15)));
-			world.setBlockState(pos, newState, Block.NOTIFY_LISTENERS);
-			return ActionResult.SUCCESS;
+			world.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SpectrumSoundEvents.RADIANCE_STAFF_PLACE, SoundSource.PLAYERS, 1.0F, (float) (0.75 + 0.05 * newState.getValue(LEVEL)));
+			world.setBlock(pos, newState, Block.UPDATE_CLIENTS);
+			return InteractionResult.SUCCESS;
 		} else {
-			return ActionResult.CONSUME;
+			return InteractionResult.CONSUME;
 		}
 	}
 	

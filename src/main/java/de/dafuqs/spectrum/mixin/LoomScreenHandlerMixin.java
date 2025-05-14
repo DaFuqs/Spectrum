@@ -1,21 +1,19 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.api.item.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.registry.RegistryEntryLookup;
-import net.minecraft.registry.entry.*;
-import net.minecraft.screen.*;
-import net.minecraft.screen.slot.*;
+import net.minecraft.core.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.entity.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
 import java.util.*;
 
-@Mixin(LoomScreenHandler.class)
-public abstract class LoomScreenHandlerMixin extends ScreenHandler {
+@Mixin(LoomMenu.class)
+public abstract class LoomScreenHandlerMixin extends AbstractContainerMenu {
 	
 	@Shadow
 	@Final
@@ -23,34 +21,34 @@ public abstract class LoomScreenHandlerMixin extends ScreenHandler {
 
 	@Shadow
 	@Final
-	private RegistryEntryLookup<BannerPattern> bannerPatternLookup;
+	private HolderGetter<BannerPattern> patternGetter;
 	
 	private LoomScreenHandlerMixin() {
 		super(null, 0);
 	}
 	
-	@Inject(method = "getPatternsFor(Lnet/minecraft/item/ItemStack;)Ljava/util/List;", at = @At("HEAD"), cancellable = true)
-	private void spectrum$getPatternsFor(ItemStack stack, CallbackInfoReturnable<List<RegistryEntry<BannerPattern>>> cir) {
+	@Inject(method = "getSelectablePatterns(Lnet/minecraft/world/item/ItemStack;)Ljava/util/List;", at = @At("HEAD"), cancellable = true)
+	private void spectrum$getPatternsFor(ItemStack stack, CallbackInfoReturnable<List<Holder<BannerPattern>>> cir) {
 		if (stack.getItem() instanceof LoomPatternProvider loomPatternProvider) {
-			cir.setReturnValue(LoomPatternProvider.getPatterns(bannerPatternLookup, loomPatternProvider));
+			cir.setReturnValue(LoomPatternProvider.getPatterns(patternGetter, loomPatternProvider));
 		}
 	}
 	
 	@Inject(
-			method = "quickMove",
+			method = "quickMoveStack",
 			at = @At(
 					value = "INVOKE",
-					target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;",
+					target = "Lnet/minecraft/world/item/ItemStack;getItem()Lnet/minecraft/world/item/Item;",
 					ordinal = 0,
 					shift = At.Shift.BEFORE
 			),
 			cancellable = true
 	)
-	private void attemptPatternItemTransfer(PlayerEntity player, int slotIdx, CallbackInfoReturnable<ItemStack> info) {
-		ItemStack stack = this.slots.get(slotIdx).getStack();
+	private void attemptPatternItemTransfer(Player player, int slotIdx, CallbackInfoReturnable<ItemStack> info) {
+		ItemStack stack = this.slots.get(slotIdx).getItem();
 		
 		if (stack.getItem() instanceof LoomPatternProvider) {
-			if (!this.insertItem(stack, this.patternSlot.id, this.patternSlot.id + 1, false)) {
+			if (!this.moveItemStackTo(stack, this.patternSlot.index, this.patternSlot.index + 1, false)) {
 				info.setReturnValue(ItemStack.EMPTY);
 			}
 		}

@@ -1,48 +1,41 @@
-accessWidener v2 named
-
-accessible class net/minecraft/client/render/RenderLayer$MultiPhase
-accessible class net/minecraft/client/render/RenderLayer$MultiPhaseParameters
-accessible class net/minecraft/client/render/model/json/ModelOverrideList$BakedOverride
-accessible class net/minecraft/client/render/BackgroundRenderer$FogData
-accessible class net/minecraft/enchantment/EnchantmentHelper$ContextAwareConsumer
-accessible class net/minecraft/loot/function/ApplyBonusLootFunction$Formula
-accessible class net/minecraft/structure/pool/StructurePoolBasedGenerator$StructurePoolGenerator
-accessible class net/minecraft/registry/RegistryOps$CachedRegistryInfoGetter
-accessible class net/minecraft/world/biome/Biome$Weather
-accessible class net/minecraft/world/SpawnDensityCapper$DensityCap
-accessible class net/minecraft/client/render/MapRenderer$MapTexture
-
-accessible method net/minecraft/client/particle/BlockLeakParticle$Dripping <init> (Lnet/minecraft/client/world/ClientWorld;DDDLnet/minecraft/fluid/Fluid;Lnet/minecraft/particle/ParticleEffect;)V
-accessible method net/minecraft/client/particle/BlockLeakParticle$ContinuousFalling  <init> (Lnet/minecraft/client/world/ClientWorld;DDDLnet/minecraft/fluid/Fluid;Lnet/minecraft/particle/ParticleEffect;)V
-accessible method net/minecraft/client/particle/BlockLeakParticle$Landing  <init> (Lnet/minecraft/client/world/ClientWorld;DDDLnet/minecraft/fluid/Fluid;)V
-accessible method net/minecraft/client/particle/VibrationParticle <init> (Lnet/minecraft/client/world/ClientWorld;DDDLnet/minecraft/world/event/PositionSource;I)V
-accessible method net/minecraft/block/FluidBlock getFluidState (Lnet/minecraft/block/BlockState;)Lnet/minecraft/fluid/FluidState;
-accessible method net/minecraft/client/render/entity/ItemFrameEntityRenderer getLight (Lnet/minecraft/entity/decoration/ItemFrameEntity;II)I
-accessible method net/minecraft/entity/LivingEntity applyDamage (Lnet/minecraft/entity/damage/DamageSource;F)V
-accessible method net/minecraft/entity/projectile/FishingBobberEntity <init> (Lnet/minecraft/entity/EntityType;Lnet/minecraft/world/World;II)V
-accessible method net/minecraft/registry/entry/RegistryEntryList$Direct <init> (Ljava/util/List;)V
-accessible method net/minecraft/advancement/criterion/AbstractCriterion trigger (Lnet/minecraft/server/network/ServerPlayerEntity;Ljava/util/function/Predicate;)V
-accessible method net/minecraft/screen/ForgingScreenHandler addPlayerInventorySlots (Lnet/minecraft/entity/player/PlayerInventory;)V
-accessible method net/minecraft/entity/FallingBlockEntity <init> (Lnet/minecraft/world/World;DDDLnet/minecraft/block/BlockState;)V
-accessible method net/minecraft/entity/passive/WolfEntity setCollarColor (Lnet/minecraft/util/DyeColor;)V
-accessible method net/minecraft/entity/passive/CatEntity setCollarColor (Lnet/minecraft/util/DyeColor;)V
-
-extendable method net/minecraft/component/type/BundleContentsComponent$Builder addInternal (Lnet/minecraft/item/ItemStack;)I
-extendable method net/minecraft/component/type/BundleContentsComponent$Builder getMaxAllowed (Lnet/minecraft/item/ItemStack;)I
-extendable method net/minecraft/screen/ForgingScreenHandler addPlayerInventorySlots (Lnet/minecraft/entity/player/PlayerInventory;)V
-extendable method net/minecraft/entity/projectile/ProjectileEntity <init> (Lnet/minecraft/entity/EntityType;Lnet/minecraft/world/World;)V
-extendable method net/minecraft/item/map/MapState <init> (IIBZZZLnet/minecraft/registry/RegistryKey;)V
-extendable method net/minecraft/item/map/MapState addDecoration (Lnet/minecraft/registry/entry/RegistryEntry;Lnet/minecraft/world/WorldAccess;Ljava/lang/String;DDDLnet/minecraft/text/Text;)V
-
-accessible field net/minecraft/loot/LootTable pools Ljava/util/List;
-accessible field net/minecraft/block/FluidBlock fluid Lnet/minecraft/fluid/FlowableFluid;
-accessible field net/minecraft/data/client/BlockStateModelGenerator$BlockTexturePool baseModelId Lnet/minecraft/util/Identifier;
-accessible field net/minecraft/loot/context/LootContextTypes MAP Lcom/google/common/collect/BiMap;
-
-mutable field net/minecraft/item/map/MapState dimension Lnet/minecraft/registry/RegistryKey;
-
-# particle shenanigans
-accessible method net/minecraft/client/particle/BlockLeakParticle$Falling <init> (Lnet/minecraft/client/world/ClientWorld;DDDLnet/minecraft/fluid/Fluid;I)V
-accessible method net/minecraft/client/particle/BlockLeakParticle <init> (Lnet/minecraft/client/world/ClientWorld;DDDLnet/minecraft/fluid/Fluid;)V
-accessible field net/minecraft/client/particle/Particle gravityStrength F
-accessible method net/minecraft/client/particle/WaterSuspendParticle <init> (Lnet/minecraft/client/world/ClientWorld;Lnet/minecraft/client/particle/SpriteProvider;DDDDDD)V
+accessWidener	v2	named
+accessible	class	net/minecraft/client/renderer/RenderType$CompositeRenderType
+accessible	class	net/minecraft/client/renderer/RenderType$CompositeState
+accessible	class	net/minecraft/client/renderer/block/model/ItemOverrides$BakedOverride
+accessible	class	net/minecraft/client/renderer/FogRenderer$FogData
+accessible	class	net/minecraft/world/item/enchantment/EnchantmentHelper$EnchantmentInSlotVisitor
+accessible	class	net/minecraft/world/level/storage/loot/functions/ApplyBonusCount$Formula
+accessible	class	net/minecraft/world/level/levelgen/structure/pools/JigsawPlacement$Placer
+accessible	class	net/minecraft/resources/RegistryOps$HolderLookupAdapter
+accessible	class	net/minecraft/world/level/biome/Biome$ClimateSettings
+accessible	class	net/minecraft/world/level/LocalMobCapCalculator$MobCounts
+accessible	class	net/minecraft/client/gui/MapRenderer$MapInstance
+accessible	method	net/minecraft/client/particle/DripParticle$DripHangParticle	<init>	(Lnet/minecraft/client/multiplayer/ClientLevel;DDDLnet/minecraft/world/level/material/Fluid;Lnet/minecraft/core/particles/ParticleOptions;)V
+accessible	method	net/minecraft/client/particle/DripParticle$FallAndLandParticle	<init>	(Lnet/minecraft/client/multiplayer/ClientLevel;DDDLnet/minecraft/world/level/material/Fluid;Lnet/minecraft/core/particles/ParticleOptions;)V
+accessible	method	net/minecraft/client/particle/DripParticle$DripLandParticle	<init>	(Lnet/minecraft/client/multiplayer/ClientLevel;DDDLnet/minecraft/world/level/material/Fluid;)V
+accessible	method	net/minecraft/client/particle/VibrationSignalParticle	<init>	(Lnet/minecraft/client/multiplayer/ClientLevel;DDDLnet/minecraft/world/level/gameevent/PositionSource;I)V
+accessible	method	net/minecraft/world/level/block/LiquidBlock	getFluidState	(Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/material/FluidState;
+accessible	method	net/minecraft/client/renderer/entity/ItemFrameRenderer	getLightVal	(Lnet/minecraft/world/entity/decoration/ItemFrame;II)I
+accessible	method	net/minecraft/world/entity/LivingEntity	actuallyHurt	(Lnet/minecraft/world/damagesource/DamageSource;F)V
+accessible	method	net/minecraft/world/entity/projectile/FishingHook	<init>	(Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;II)V
+accessible	method	net/minecraft/core/HolderSet$Direct	<init>	(Ljava/util/List;)V
+accessible	method	net/minecraft/advancements/critereon/SimpleCriterionTrigger	trigger	(Lnet/minecraft/server/level/ServerPlayer;Ljava/util/function/Predicate;)V
+accessible	method	net/minecraft/world/inventory/ItemCombinerMenu	createInventorySlots	(Lnet/minecraft/world/entity/player/Inventory;)V
+accessible	method	net/minecraft/world/entity/item/FallingBlockEntity	<init>	(Lnet/minecraft/world/level/Level;DDDLnet/minecraft/world/level/block/state/BlockState;)V
+accessible	method	net/minecraft/world/entity/animal/Wolf	setCollarColor	(Lnet/minecraft/world/item/DyeColor;)V
+accessible	method	net/minecraft/world/entity/animal/Cat	setCollarColor	(Lnet/minecraft/world/item/DyeColor;)V
+extendable	method	net/minecraft/world/item/component/BundleContents$Mutable	findStackIndex	(Lnet/minecraft/world/item/ItemStack;)I
+extendable	method	net/minecraft/world/item/component/BundleContents$Mutable	getMaxAmountToAdd	(Lnet/minecraft/world/item/ItemStack;)I
+extendable	method	net/minecraft/world/inventory/ItemCombinerMenu	createInventorySlots	(Lnet/minecraft/world/entity/player/Inventory;)V
+extendable	method	net/minecraft/world/entity/projectile/Projectile	<init>	(Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V
+extendable	method	net/minecraft/world/level/saveddata/maps/MapItemSavedData	<init>	(IIBZZZLnet/minecraft/resources/ResourceKey;)V
+extendable	method	net/minecraft/world/level/saveddata/maps/MapItemSavedData	addDecoration	(Lnet/minecraft/core/Holder;Lnet/minecraft/world/level/LevelAccessor;Ljava/lang/String;DDDLnet/minecraft/network/chat/Component;)V
+accessible	field	net/minecraft/world/level/storage/loot/LootTable	pools	Ljava/util/List;
+accessible	field	net/minecraft/world/level/block/LiquidBlock	fluid	Lnet/minecraft/world/level/material/FlowingFluid;
+accessible	field	net/minecraft/data/models/BlockModelGenerators$BlockFamilyProvider	fullBlock	Lnet/minecraft/resources/ResourceLocation;
+accessible	field	net/minecraft/world/level/storage/loot/parameters/LootContextParamSets	REGISTRY	Lcom/google/common/collect/BiMap;
+mutable	field	net/minecraft/world/level/saveddata/maps/MapItemSavedData	dimension	Lnet/minecraft/resources/ResourceKey;
+accessible	method	net/minecraft/client/particle/DripParticle$FallingParticle	<init>	(Lnet/minecraft/client/multiplayer/ClientLevel;DDDLnet/minecraft/world/level/material/Fluid;I)V
+accessible	method	net/minecraft/client/particle/DripParticle	<init>	(Lnet/minecraft/client/multiplayer/ClientLevel;DDDLnet/minecraft/world/level/material/Fluid;)V
+accessible	field	net/minecraft/client/particle/Particle	gravity	F
+accessible	method	net/minecraft/client/particle/SuspendedParticle	<init>	(Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/client/particle/SpriteSet;DDDDDD)V

@@ -3,13 +3,13 @@ package de.dafuqs.spectrum.compat.modonomicon.client.pages;
 import com.klikli_dev.modonomicon.client.gui.book.entry.*;
 import com.klikli_dev.modonomicon.client.render.page.*;
 import de.dafuqs.spectrum.compat.modonomicon.pages.*;
-import net.minecraft.client.gui.widget.*;
-import net.minecraft.text.*;
+import net.minecraft.client.gui.components.*;
+import net.minecraft.network.chat.*;
 import org.jetbrains.annotations.*;
 
 public class BookLinkPageRenderer extends BookTextPageRenderer {
 	
-	private static final int BUTTON_HEIGHT = ButtonWidget.DEFAULT_HEIGHT;
+	private static final int BUTTON_HEIGHT = Button.DEFAULT_HEIGHT;
 	private static final int BUTTON_WIDTH = BookEntryScreen.PAGE_WIDTH - 12;
 	private static final int BUTTON_X = 2;
 	private static final int BUTTON_Y = BookEntryScreen.PAGE_HEIGHT - BUTTON_HEIGHT - 3;
@@ -23,10 +23,11 @@ public class BookLinkPageRenderer extends BookTextPageRenderer {
         if (!(page instanceof BookLinkPage linkPage)) return;
 
         super.onBeginDisplayPage(parentScreen, left, top);
-
-        addButton(ButtonWidget.builder(linkPage.getLinkText().getComponent(), (b) -> {})
+		
+		addButton(Button.builder(linkPage.getLinkText().getComponent(), (b) -> {
+				})
                 .size(BUTTON_WIDTH, BUTTON_HEIGHT)
-                .position(BUTTON_X, BUTTON_Y)
+				.pos(BUTTON_X, BUTTON_Y)
                 .build());
     }
 

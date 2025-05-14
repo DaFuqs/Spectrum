@@ -1,15 +1,14 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.item.*;
 
 import java.util.*;
 
 public class AzureDikeCoreItem extends AzureDikeTrinketItem {
 	
-	public AzureDikeCoreItem(Settings settings, Identifier unlockIdentifier) {
+	public AzureDikeCoreItem(Properties settings, ResourceLocation unlockIdentifier) {
 		super(settings, unlockIdentifier);
 	}
 
@@ -34,9 +33,9 @@ public class AzureDikeCoreItem extends AzureDikeTrinketItem {
 	}
 
 	@Override
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		tooltip.add(Text.translatable("item.spectrum.azuresque_dike_core.tooltip"));
-		tooltip.add(Text.translatable("item.spectrum.azuresque_dike_core.tooltip2"));
-		tooltip.add(Text.translatable("item.spectrum.azuresque_dike_core.tooltip3"));
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		tooltip.add(Component.translatable("item.spectrum.azuresque_dike_core.tooltip"));
+		tooltip.add(Component.translatable("item.spectrum.azuresque_dike_core.tooltip2"));
+		tooltip.add(Component.translatable("item.spectrum.azuresque_dike_core.tooltip3"));
 	}
 }

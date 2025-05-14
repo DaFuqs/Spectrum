@@ -6,35 +6,35 @@ import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.attribute.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.server.network.*;
-import net.minecraft.world.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.level.*;
 
-public class DivinityStatusEffect extends StatusEffect {
+public class DivinityStatusEffect extends MobEffect {
 	
 	public static final int CIRCLET_AMPLIFIER = 0;
 	public static final int ASCENSION_AMPLIFIER = 1;
-
-	public DivinityStatusEffect(StatusEffectCategory statusEffectCategory, int color) {
+	
+	public DivinityStatusEffect(MobEffectCategory statusEffectCategory, int color) {
 		super(statusEffectCategory, color);
 	}
 	
 	@Override
-	public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
-		World world = entity.getWorld();
-		if (amplifier > CIRCLET_AMPLIFIER && world.isClient) { // the circlet gives divinity 0, not showing effects; the ascension one does
-			ParticleHelper.playParticleWithPatternAndVelocityClient(entity.getWorld(), entity.getPos(), ColoredCraftingParticleEffect.RED, VectorPattern.EIGHT, 0.2);
+	public boolean applyEffectTick(LivingEntity entity, int amplifier) {
+		Level world = entity.level();
+		if (amplifier > CIRCLET_AMPLIFIER && world.isClientSide) { // the circlet gives divinity 0, not showing effects; the ascension one does
+			ParticleHelper.playParticleWithPatternAndVelocityClient(entity.level(), entity.position(), ColoredCraftingParticleEffect.RED, VectorPattern.EIGHT, 0.2);
 		}
 		boolean doEffects = 40 >> amplifier == 0;
-		if (entity instanceof PlayerEntity player) {
-			if (!world.isClient) {
-				SpectrumAdvancementCriteria.DIVINITY_TICK.trigger((ServerPlayerEntity) player);
+		if (entity instanceof Player player) {
+			if (!world.isClientSide) {
+				SpectrumAdvancementCriteria.DIVINITY_TICK.trigger((ServerPlayer) player);
 			}
 			if (doEffects) {
-				player.getHungerManager().add(1 + amplifier, 0.25F);
+				player.getFoodData().eat(1 + amplifier, 0.25F);
 			}
 		}
 
@@ -43,21 +43,21 @@ public class DivinityStatusEffect extends StatusEffect {
 				entity.heal(amplifier / 2F);
 			}
 		}
-
-		return super.applyUpdateEffect(entity, amplifier);
+		
+		return super.applyEffectTick(entity, amplifier);
 	}
 	
 	@Override
-	public boolean canApplyUpdateEffect(int duration, int amplifier) {
+	public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
 		return true;
 	}
 
 	@Override
-	public void onApplied(LivingEntity entity, int amplifier) {
-		super.onApplied(entity, amplifier);
-		if (entity instanceof PlayerEntity) {
-			if (entity instanceof ServerPlayerEntity player) {
-				StatusEffectInstance instance = entity.getStatusEffect(SpectrumStatusEffects.DIVINITY);
+	public void onEffectStarted(LivingEntity entity, int amplifier) {
+		super.onEffectStarted(entity, amplifier);
+		if (entity instanceof Player) {
+			if (entity instanceof ServerPlayer player) {
+				MobEffectInstance instance = entity.getEffect(SpectrumStatusEffects.DIVINITY);
 				if (instance != null && !instance.isAmbient()) {
 					PlayDivinityAppliedEffectsPayload.playDivinityAppliedEffects(player);
 				}
@@ -66,8 +66,8 @@ public class DivinityStatusEffect extends StatusEffect {
 	}
 
 	@Override
-	public void onRemoved(AttributeContainer attributes) {
-		super.onRemoved(attributes);
+	public void removeAttributeModifiers(AttributeMap attributes) {
+		super.removeAttributeModifiers(attributes);
 	}
 
 }

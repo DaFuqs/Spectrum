@@ -6,11 +6,12 @@ import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.api.predicate.block.*;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.item.*;
-import net.minecraft.recipe.*;
-import net.minecraft.registry.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
 
 import java.util.*;
 
@@ -18,9 +19,9 @@ public class ModifyDropsResonanceProcessor extends ResonanceProcessor {
 	
 	public static final MapCodec<ModifyDropsResonanceProcessor> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
 			BrokenBlockPredicate.CODEC.fieldOf("block")
-					.validate(block -> block.test(Blocks.AIR.getDefaultState()) ? DataResult.error(() -> "Registering a Resonance Drop that matches on everything!") : DataResult.success(block))
+					.validate(block -> block.test(Blocks.AIR.defaultBlockState()) ? DataResult.error(() -> "Registering a Resonance Drop that matches on everything!") : DataResult.success(block))
 					.forGetter(c -> c.blockPredicate),
-			Codec.mapPair(Ingredient.DISALLOW_EMPTY_CODEC.fieldOf("input"), Registries.ITEM.getCodec().fieldOf("output")).codec().listOf().xmap(
+			Codec.mapPair(Ingredient.CODEC_NONEMPTY.fieldOf("input"), BuiltInRegistries.ITEM.byNameCodec().fieldOf("output")).codec().listOf().xmap(
 					pairs -> pairs.stream().collect(() -> (Map<Ingredient, Item>) new HashMap<Ingredient, Item>(), (map, pair) -> map.put(pair.getFirst(), pair.getSecond()), (map1, map2) -> map1.putAll(map2)),
 					map -> map.entrySet().stream().map(entry -> new Pair<>(entry.getKey(), entry.getValue())).toList()
 			).optionalFieldOf("modify_drops", Map.of()).forGetter(c -> c.modifiedDrops)
@@ -47,7 +48,7 @@ public class ModifyDropsResonanceProcessor extends ResonanceProcessor {
 			for (Map.Entry<Ingredient, Item> modifiedDrop : modifiedDrops.entrySet()) {
 				if (modifiedDrop.getKey().test(stack)) {
 					ItemStack convertedStack;
-					convertedStack = modifiedDrop.getValue().getDefaultStack();
+					convertedStack = modifiedDrop.getValue().getDefaultInstance();
 					convertedStack.setCount(stack.getCount());
 					
 					droppedStacks.remove(stack);

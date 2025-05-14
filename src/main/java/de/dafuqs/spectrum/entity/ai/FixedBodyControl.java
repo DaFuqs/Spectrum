@@ -1,15 +1,15 @@
 package de.dafuqs.spectrum.entity.ai;
 
-import net.minecraft.entity.ai.control.*;
-import net.minecraft.entity.mob.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.control.*;
 
-public class FixedBodyControl extends BodyControl {
-	public FixedBodyControl(MobEntity mobEntity) {
+public class FixedBodyControl extends BodyRotationControl {
+	public FixedBodyControl(Mob mobEntity) {
 		super(mobEntity);
 	}
 	
 	@Override
-	public void tick() {
+	public void clientTick() {
 	}
 	
 }

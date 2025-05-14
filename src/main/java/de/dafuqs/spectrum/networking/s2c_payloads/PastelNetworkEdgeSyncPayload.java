@@ -7,23 +7,22 @@ import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.fabricmc.fabric.api.networking.v1.*;
 import net.minecraft.client.*;
+import net.minecraft.core.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.network.packet.*;
-import net.minecraft.server.network.*;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import net.minecraft.network.protocol.common.custom.*;
+import net.minecraft.server.level.*;
 import org.jgrapht.*;
 import org.jgrapht.graph.*;
 
 import java.util.*;
 
-public record PastelNetworkEdgeSyncPayload(UUID networkUUID, int color, Graph<BlockPos, DefaultEdge> graph) implements CustomPayload {
+public record PastelNetworkEdgeSyncPayload(UUID networkUUID, int color, Graph<BlockPos, DefaultEdge> graph) implements CustomPacketPayload {
 	
-	public static final PacketCodec<RegistryByteBuf, Graph<BlockPos, DefaultEdge>> GRAPH_PACKET_CODEC = new PacketCodec<>() {
+	public static final StreamCodec<RegistryFriendlyByteBuf, Graph<BlockPos, DefaultEdge>> GRAPH_PACKET_CODEC = new StreamCodec<>() {
 		
 		@Override
-		public void encode(RegistryByteBuf buf, Graph<BlockPos, DefaultEdge> graph) {
+		public void encode(RegistryFriendlyByteBuf buf, Graph<BlockPos, DefaultEdge> graph) {
 			ArrayList<BlockPos> vertices = new ArrayList<>(graph.vertexSet());
 			
 			// Vertices
@@ -42,7 +41,7 @@ public record PastelNetworkEdgeSyncPayload(UUID networkUUID, int color, Graph<Bl
 		}
 		
 		@Override
-		public Graph<BlockPos, DefaultEdge> decode(RegistryByteBuf buf) {
+		public Graph<BlockPos, DefaultEdge> decode(RegistryFriendlyByteBuf buf) {
 			Graph<BlockPos, DefaultEdge> graph = new SimpleGraph<>(DefaultEdge.class);
 			
 			int vertexCount = buf.readInt();
@@ -64,36 +63,36 @@ public record PastelNetworkEdgeSyncPayload(UUID networkUUID, int color, Graph<Bl
 		}
 	};
 	
-	public static final Id<PastelNetworkEdgeSyncPayload> ID = SpectrumC2SPackets.makeId("pastel_network_edge_sync");
-	public static final PacketCodec<RegistryByteBuf, PastelNetworkEdgeSyncPayload> CODEC = PacketCodec.tuple(
-			Uuids.PACKET_CODEC, PastelNetworkEdgeSyncPayload::networkUUID,
-			PacketCodecs.INTEGER, PastelNetworkEdgeSyncPayload::color,
+	public static final Type<PastelNetworkEdgeSyncPayload> ID = SpectrumC2SPackets.makeId("pastel_network_edge_sync");
+	public static final StreamCodec<RegistryFriendlyByteBuf, PastelNetworkEdgeSyncPayload> CODEC = StreamCodec.composite(
+			UUIDUtil.STREAM_CODEC, PastelNetworkEdgeSyncPayload::networkUUID,
+			ByteBufCodecs.INT, PastelNetworkEdgeSyncPayload::color,
 			GRAPH_PACKET_CODEC, PastelNetworkEdgeSyncPayload::graph,
 			PastelNetworkEdgeSyncPayload::new
 	);
 	
 	public static void send(ServerPastelNetwork network, BlockPos pos) {
-		for (ServerPlayerEntity player : PlayerLookup.tracking(network.getWorld(), pos)) {
+		for (ServerPlayer player : PlayerLookup.tracking(network.getWorld(), pos)) {
 			ServerPlayNetworking.send(player, new PastelNetworkEdgeSyncPayload(network.getUUID(), network.getColor(), network.getGraph()));
 		}
 	}
 	
 	@Environment(EnvType.CLIENT)
 	public static void execute(PastelNetworkEdgeSyncPayload payload, ClientPlayNetworking.Context context) {
-		MinecraftClient client = context.client();
+		Minecraft client = context.client();
 		client.execute(() -> {
 			Optional<? extends ClientPastelNetwork> network = Pastel.getClientInstance().getNetwork(payload.networkUUID);
 			if (network.isPresent()) {
 				network.get().setGraph(payload.graph);
 			} else {
-				ClientPastelNetwork newNetwork = Pastel.getClientInstance().createNetwork(client.world, payload.networkUUID, payload.color);
+				ClientPastelNetwork newNetwork = Pastel.getClientInstance().createNetwork(client.level, payload.networkUUID, payload.color);
 				newNetwork.setGraph(payload.graph);
 			}
 		});
 	}
 	
 	@Override
-	public Id<? extends CustomPayload> getId() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

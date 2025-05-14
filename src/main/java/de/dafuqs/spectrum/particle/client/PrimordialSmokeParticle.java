@@ -1,28 +1,27 @@
 package de.dafuqs.spectrum.particle.client;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.fabricmc.api.*;
+import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.particle.*;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particle.SimpleParticleType;
+import net.minecraft.core.particles.*;
 
-public class PrimordialSmokeParticle extends AscendingParticle {
-    protected PrimordialSmokeParticle(ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, float scaleMultiplier, SpriteProvider spriteProvider) {
+public class PrimordialSmokeParticle extends BaseAshSmokeParticle {
+	protected PrimordialSmokeParticle(ClientLevel world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, float scaleMultiplier, SpriteSet spriteProvider) {
         super(world, x, y, z, 0.1F, 0.1F, 0.1F, velocityX, velocityY, velocityZ, scaleMultiplier, spriteProvider, 1F, 10, -0.1F, true);
-        red = 1;
-        green = 1;
-        blue = 1;
+		rCol = 1;
+		gCol = 1;
+		bCol = 1;
     }
 
     @Environment(EnvType.CLIENT)
-    public static class Factory implements ParticleFactory<SimpleParticleType> {
-        private final SpriteProvider spriteProvider;
-
-        public Factory(SpriteProvider spriteProvider) {
+	public static class Factory implements ParticleProvider<SimpleParticleType> {
+		private final SpriteSet spriteProvider;
+		
+		public Factory(SpriteSet spriteProvider) {
             this.spriteProvider = spriteProvider;
         }
-
-        public Particle createParticle(SimpleParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
+		
+		public Particle createParticle(SimpleParticleType defaultParticleType, ClientLevel clientWorld, double d, double e, double f, double g, double h, double i) {
             return new PrimordialSmokeParticle(clientWorld, d, e, f, g, h, i, 1.1F, this.spriteProvider);
         }
     }

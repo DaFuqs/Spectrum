@@ -6,24 +6,24 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.component.*;
-import net.minecraft.component.type.*;
-import net.minecraft.enchantment.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.attribute.*;
-import net.minecraft.entity.damage.*;
-import net.minecraft.entity.data.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.entity.projectile.*;
-import net.minecraft.item.*;
+import net.minecraft.core.component.*;
+import net.minecraft.core.particles.*;
 import net.minecraft.nbt.*;
-import net.minecraft.particle.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
-import net.minecraft.util.hit.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.network.syncher.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
+import net.minecraft.world.damagesource.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.*;
+import net.minecraft.world.entity.item.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.entity.projectile.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.*;
+import net.minecraft.world.item.enchantment.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.phys.*;
 import org.apache.commons.lang3.mutable.*;
 import org.jetbrains.annotations.*;
 
@@ -31,40 +31,40 @@ import java.util.*;
 
 public class DragonTalonEntity extends BidentBaseEntity {
 	
-	private static final TrackedData<Boolean> HIT = DataTracker.registerData(DragonTalonEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> HIT = SynchedEntityData.defineId(DragonTalonEntity.class, EntityDataSerializers.BOOLEAN);
 	
-	public DragonTalonEntity(World world) {
+	public DragonTalonEntity(Level world) {
 		this(SpectrumEntityTypes.DRAGON_TALON, world);
 	}
 	
-	public DragonTalonEntity(EntityType<? extends TridentEntity> entityType, World world) {
+	public DragonTalonEntity(EntityType<? extends ThrownTrident> entityType, Level world) {
 		super(entityType, world);
 	}
 	
 	@Override
-	protected void onBlockHit(BlockHitResult blockHitResult) {
+	protected void onHitBlock(BlockHitResult blockHitResult) {
 		var pos = blockHitResult.getBlockPos();
-		var state = getWorld().getBlockState(pos);
+		var state = level().getBlockState(pos);
 		
-		if (state.isOf(Blocks.SLIME_BLOCK) && getVelocity().lengthSquared() > 1) {
-			switch (blockHitResult.getSide().getAxis()) {
-				case X -> setVelocity(getVelocity().multiply(-1, 1, 1));
-				case Y -> setVelocity(getVelocity().multiply(1, -1, 1));
-				case Z -> setVelocity(getVelocity().multiply(1, 1, -1));
+		if (state.is(Blocks.SLIME_BLOCK) && getDeltaMovement().lengthSqr() > 1) {
+			switch (blockHitResult.getDirection().getAxis()) {
+				case X -> setDeltaMovement(getDeltaMovement().multiply(-1, 1, 1));
+				case Y -> setDeltaMovement(getDeltaMovement().multiply(1, -1, 1));
+				case Z -> setDeltaMovement(getDeltaMovement().multiply(1, 1, -1));
 			}
 			playSound(SpectrumSoundEvents.METAL_HIT, 1, 1.5F);
 			return;
 		}
 		
-		super.onBlockHit(blockHitResult);
-		if (dataTracker.get(HIT) || isNoClip())
+		super.onHitBlock(blockHitResult);
+		if (entityData.get(HIT) || isNoPhysics())
 			return;
 		
-		dataTracker.set(HIT, true);
+		entityData.set(HIT, true);
 	}
 	
 	@Override
-	protected void onEntityHit(EntityHitResult entityHitResult) {
+	protected void onHitEntity(EntityHitResult entityHitResult) {
 		// TODO: this is in big parts identical to DraconicTwinswordEntity.onEntityHit(). Dedup needed
 		ItemStack stack = getTrackedStack();
 		Entity attacked = entityHitResult.getEntity();
@@ -74,23 +74,23 @@ public class DragonTalonEntity extends BidentBaseEntity {
 		Entity owner = this.getOwner();
 		
 		float damage = 2.0F;
-		DamageSource damageSource = SpectrumDamageTypes.impaling(getWorld(), this, owner);
-		if (getWorld() instanceof ServerWorld serverWorld) {
-			damage *= EnchantmentHelper.getDamage(serverWorld, stack, attacked, damageSource, getDamage(stack));
+		DamageSource damageSource = SpectrumDamageTypes.impaling(level(), this, owner);
+		if (level() instanceof ServerLevel serverWorld) {
+			damage *= EnchantmentHelper.modifyDamage(serverWorld, stack, attacked, damageSource, getDamage(stack));
 		}
 		
-		if (attacked.damage(damageSource, damage)) {
-			if (getWorld() instanceof ServerWorld serverWorld) {
-				EnchantmentHelper.onTargetDamaged(serverWorld, attacked, damageSource, stack);
+		if (attacked.hurt(damageSource, damage)) {
+			if (level() instanceof ServerLevel serverWorld) {
+				EnchantmentHelper.doPostAttackEffectsWithItemSource(serverWorld, attacked, damageSource, stack);
 			}
 			if (attacked instanceof LivingEntity livingAttacked) {
-				this.onHit(livingAttacked);
+				this.doPostHurtEffects(livingAttacked);
 			}
 		}
 		
 		((TridentEntityAccessor) this).spectrum$setDealtDamage(true);
 		recall();
-		this.setVelocity(this.getVelocity().multiply(-0.01, -0.1, -0.01));
+		this.setDeltaMovement(this.getDeltaMovement().multiply(-0.01, -0.1, -0.01));
 		float g = 1.0F;
 		
 		this.playSound(SpectrumSoundEvents.IMPALING_HIT, g, 1.0F);
@@ -99,12 +99,12 @@ public class DragonTalonEntity extends BidentBaseEntity {
 	private float getDamage(ItemStack stack) {
 		//TODO can we use a built in function for this?
 		var damage = new MutableDouble(0);
-		var key = EntityAttributes.GENERIC_ATTACK_DAMAGE.getKey().orElse(null);
-		var base = EntityAttributes.GENERIC_ATTACK_DAMAGE.value().getDefaultValue();
-		var modifiers = stack.getOrDefault(DataComponentTypes.ATTRIBUTE_MODIFIERS, AttributeModifiersComponent.DEFAULT);
-		modifiers.applyModifiers(EquipmentSlot.MAINHAND, (attribute, modifier) -> {
-			if (attribute.matchesKey(key)) {
-				var value = modifier.value();
+		var key = Attributes.ATTACK_DAMAGE.unwrapKey().orElse(null);
+		var base = Attributes.ATTACK_DAMAGE.value().getDefaultValue();
+		var modifiers = stack.getOrDefault(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.EMPTY);
+		modifiers.forEach(EquipmentSlot.MAINHAND, (attribute, modifier) -> {
+			if (attribute.is(key)) {
+				var value = modifier.amount();
 				damage.addAndGet(switch (modifier.operation()) {
 					case ADD_VALUE -> value;
 					case ADD_MULTIPLIED_BASE -> value * base;
@@ -116,15 +116,15 @@ public class DragonTalonEntity extends BidentBaseEntity {
 	}
 	
 	@Override
-	protected void onHit(LivingEntity target) {
+	protected void doPostHurtEffects(LivingEntity target) {
 		if (getOwner() == null)
 			return;
 		
 		var owner = getOwner();
 		var difMod = 4F;
-		var airborne = !owner.isOnGround();
-		var sneaking = owner.isSneaking();
-		var inertia = SpectrumEnchantmentHelper.getLevel(owner.getWorld().getRegistryManager(), SpectrumEnchantments.INERTIA, getTrackedStack());
+		var airborne = !owner.onGround();
+		var sneaking = owner.isShiftKeyDown();
+		var inertia = SpectrumEnchantmentHelper.getLevel(owner.level().registryAccess(), SpectrumEnchantments.INERTIA, getTrackedStack());
 		
 		if (sneaking)
 			difMod *= 3;
@@ -137,66 +137,66 @@ public class DragonTalonEntity extends BidentBaseEntity {
 		}
 		
 		var sizeDif = getVolumeDif(target, difMod);
-		yoink(target, getOwner().getPos(), 0.25 * sizeDif, 0.175);
+		yoink(target, getOwner().position(), 0.25 * sizeDif, 0.175);
 		
 		if (airborne)
-			yoink(owner, target.getPos(), 0.125 / sizeDif, 0.16);
+			yoink(owner, target.position(), 0.125 / sizeDif, 0.16);
 	}
 	
 	private float getVolumeDif(LivingEntity target, float pullMod) {
 		if (getOwner() == null) return 0;
 		var ownerBox = getOwner().getBoundingBox();
 		var targetBox = target.getBoundingBox();
-		float ownerVolume = (float) (ownerBox.getLengthX() * ownerBox.getLengthY() * ownerBox.getLengthZ());
-		float targetVolume = (float) (targetBox.getLengthX() * targetBox.getLengthY() * targetBox.getLengthZ());
+		float ownerVolume = (float) (ownerBox.getXsize() * ownerBox.getYsize() * ownerBox.getZsize());
+		float targetVolume = (float) (targetBox.getXsize() * targetBox.getYsize() * targetBox.getZsize());
 		
 		return Math.max(Math.min(ownerVolume / (targetVolume / pullMod), 0.8F), 0.5F);
 	}
 	
 	public void recall() {
 		var owner = getOwner();
-		if (dataTracker.get(HIT) && !isNoClip()) {
-			yoink(owner, getPos(), 0.125, 0.165);
+		if (entityData.get(HIT) && !isNoPhysics()) {
+			yoink(owner, position(), 0.125, 0.165);
 		}
 		
-		if (SpectrumEnchantmentHelper.hasEnchantment(getWorld().getRegistryManager(), Enchantments.CHANNELING, getTrackedStack()) && owner != null) {
-			if (getWorld() instanceof ServerWorld world) {
+		if (SpectrumEnchantmentHelper.hasEnchantment(level().registryAccess(), Enchantments.CHANNELING, getTrackedStack()) && owner != null) {
+			if (level() instanceof ServerLevel world) {
 				for (int i = 0; i < 10; i++) {
-					world.spawnParticles(ParticleTypes.GLOW,
-							getParticleX(1),
-							getY() + getHeight() * random.nextFloat(),
-							getParticleZ(1),
+					world.sendParticles(ParticleTypes.GLOW,
+							getRandomX(1),
+							getY() + getBbHeight() * random.nextFloat(),
+							getRandomZ(1),
 							1 + random.nextInt(2), 0, random.nextFloat() + 0.25F, 0, 0);
 				}
 				
-				world.playSound(null, getPos().x, getPos().y, getPos().z, SpectrumSoundEvents.ELECTRIC_DISCHARGE, SoundCategory.AMBIENT, 1F, 0.6F + random.nextFloat() * 0.2F, 0);
+				world.playSeededSound(null, position().x, position().y, position().z, SpectrumSoundEvents.ELECTRIC_DISCHARGE, SoundSource.AMBIENT, 1F, 0.6F + random.nextFloat() * 0.2F, 0);
 			}
 			remove(RemovalReason.DISCARDED);
 			return;
 		}
 		
-		getDataTracker().set(TridentEntityAccessor.spectrum$getLoyalty(), (byte) 4);
-		setNoClip(true);
+		getEntityData().set(TridentEntityAccessor.spectrum$getLoyalty(), (byte) 4);
+		setNoPhysics(true);
 	}
 	
-	public void yoink(@Nullable Entity yoinked, Vec3d target, double xMod, double yMod) {
+	public void yoink(@Nullable Entity yoinked, Vec3 target, double xMod, double yMod) {
 		if (yoinked == null)
 			return;
 		
-		var yPos = yoinked.getPos();
+		var yPos = yoinked.position();
 		var heightDif = Math.abs(yPos.y - target.y);
 		var velocity = target.subtract(yPos);
-		var sneaking = yoinked.isSneaking();
+		var sneaking = yoinked.isShiftKeyDown();
 		var bonusMod = 1f;
 		
 		if (yoinked instanceof LivingEntity livingYoink) {
-			bonusMod /= Optional.ofNullable(livingYoink.getStatusEffect(SpectrumStatusEffects.DENSITY))
+			bonusMod /= Optional.ofNullable(livingYoink.getEffect(SpectrumStatusEffects.DENSITY))
 					.map(effect -> effect.getAmplifier() + 2).orElse(1);
-			bonusMod *= Optional.ofNullable(livingYoink.getStatusEffect(SpectrumStatusEffects.LIGHTWEIGHT))
+			bonusMod *= Optional.ofNullable(livingYoink.getEffect(SpectrumStatusEffects.LIGHTWEIGHT))
 					.map(effect -> (effect.getAmplifier() + 2) / 1.5F).orElse(1F);
 		}
 		
-		if (!yoinked.isOnGround()) {
+		if (!yoinked.onGround()) {
 			yMod += 0.05;
 			xMod -= 0.015;
 		}
@@ -209,14 +209,14 @@ public class DragonTalonEntity extends BidentBaseEntity {
 		if (yoinked == getOwner() && yPos.y > target.y && !sneaking)
 			yMod = 0;
 		
-		yoinked.setVelocity(velocity.multiply(xMod, yMod, xMod).add(0, sneaking ? 0 : 0.25, 0));
+		yoinked.setDeltaMovement(velocity.multiply(xMod, yMod, xMod).add(0, sneaking ? 0 : 0.25, 0));
 		yoinked.fallDistance = 0F;
-		yoinked.velocityModified = true;
-		yoinked.velocityDirty = true;
+		yoinked.hurtMarked = true;
+		yoinked.hasImpulse = true;
 	}
 	
 	@Override
-	public void age() {
+	public void tickDespawn() {
 		if (!getRootStack().isEmpty())
 			return;
 		
@@ -237,32 +237,32 @@ public class DragonTalonEntity extends BidentBaseEntity {
 	}
 	
 	@Override
-	protected void initDataTracker(DataTracker.Builder builder) {
-		super.initDataTracker(builder);
-		builder.add(HIT, false);
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(HIT, false);
 	}
 	
 	@Override
-	public void readCustomDataFromNbt(NbtCompound nbt) {
-		super.readCustomDataFromNbt(nbt);
-		this.dataTracker.set(HIT, nbt.getBoolean("hit"));
+	public void readAdditionalSaveData(CompoundTag nbt) {
+		super.readAdditionalSaveData(nbt);
+		this.entityData.set(HIT, nbt.getBoolean("hit"));
 	}
 	
 	@Override
-	public void writeCustomDataToNbt(NbtCompound nbt) {
-		super.writeCustomDataToNbt(nbt);
-		nbt.putBoolean("hit", this.dataTracker.get(HIT));
+	public void addAdditionalSaveData(CompoundTag nbt) {
+		super.addAdditionalSaveData(nbt);
+		nbt.putBoolean("hit", this.entityData.get(HIT));
 	}
 	
 	private ItemStack getRootStack() {
-		if (getOwner() instanceof PlayerEntity player) {
+		if (getOwner() instanceof Player player) {
 			return DragonTalonItem.findThrownStack(player, uuid);
 		}
 		return ItemStack.EMPTY;
 	}
 	
 	@Override
-	protected boolean tryPickup(PlayerEntity player) {
+	protected boolean tryPickup(Player player) {
 		var rootStack = DragonTalonItem.findThrownStack(player, uuid);
 		if (!rootStack.isEmpty()) {
 			SlotReservingItem.free(rootStack);
@@ -275,13 +275,13 @@ public class DragonTalonEntity extends BidentBaseEntity {
 	
 	@Nullable
 	@Override
-	public ItemEntity dropStack(ItemStack stack) {
+	public ItemEntity spawnAtLocation(ItemStack stack) {
 		return null;
 	}
 	
 	@Nullable
 	@Override
-	public ItemEntity dropStack(ItemStack stack, float yOffset) {
+	public ItemEntity spawnAtLocation(ItemStack stack, float yOffset) {
 		return null;
 	}
 }

@@ -1,17 +1,17 @@
 package de.dafuqs.spectrum.status_effects;
 
-import net.minecraft.entity.*;
-import net.minecraft.entity.effect.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.entity.*;
 
-public class ScarredStatusEffect extends StatusEffect {
+public class ScarredStatusEffect extends MobEffect {
 	
-	public ScarredStatusEffect(StatusEffectCategory category, int color) {
+	public ScarredStatusEffect(MobEffectCategory category, int color) {
 		super(category, color);
 	}
 	
 	@Override
-	public void onApplied(LivingEntity entity, int amplifier) {
-		super.onApplied(entity, amplifier);
+	public void onEffectStarted(LivingEntity entity, int amplifier) {
+		super.onEffectStarted(entity, amplifier);
 		if (entity.isSprinting()) {
 			entity.setSprinting(false);
 		}

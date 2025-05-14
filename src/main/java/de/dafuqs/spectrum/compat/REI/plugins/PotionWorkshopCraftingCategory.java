@@ -3,8 +3,8 @@ package de.dafuqs.spectrum.compat.REI.plugins;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.REI.*;
 import me.shedaniel.rei.api.common.category.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
 
 public class PotionWorkshopCraftingCategory extends PotionWorkshopCategory<PotionWorkshopCraftingDisplay> {
 	
@@ -14,13 +14,13 @@ public class PotionWorkshopCraftingCategory extends PotionWorkshopCategory<Potio
 	}
 	
 	@Override
-	public Identifier getIdentifier() {
+	public ResourceLocation getIdentifier() {
 		return SpectrumCommon.locate("potion_workshop_crafting");
 	}
 	
 	@Override
-	public Text getTitle() {
-		return Text.translatable("container.spectrum.rei.potion_workshop_crafting.title");
+	public Component getTitle() {
+		return Component.translatable("container.spectrum.rei.potion_workshop_crafting.title");
 	}
 	
 }

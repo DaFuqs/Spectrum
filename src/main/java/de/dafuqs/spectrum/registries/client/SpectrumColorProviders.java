@@ -11,11 +11,11 @@ import de.dafuqs.spectrum.items.energy.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
-import net.minecraft.block.*;
 import net.minecraft.client.color.block.*;
 import net.minecraft.client.color.item.*;
-import net.minecraft.item.*;
-import net.minecraft.util.math.*;
+import net.minecraft.util.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.*;
 
 import java.util.*;
 
@@ -51,8 +51,8 @@ public class SpectrumColorProviders {
 	}
 	
 	private static void registerColoredLeaves() {
-		BlockColorProvider leavesBlockColorProvider = ColorProviderRegistry.BLOCK.get(Blocks.OAK_LEAVES);
-		ItemColorProvider leavesItemColorProvider = ColorProviderRegistry.ITEM.get(Blocks.OAK_LEAVES);
+		BlockColor leavesBlockColorProvider = ColorProviderRegistry.BLOCK.get(Blocks.OAK_LEAVES);
+		ItemColor leavesItemColorProvider = ColorProviderRegistry.ITEM.get(Blocks.OAK_LEAVES);
 		
 		if (leavesBlockColorProvider != null && leavesItemColorProvider != null) {
 			coloredLeavesBlockColorProvider = new ToggleableBlockColorProvider(leavesBlockColorProvider);
@@ -67,8 +67,8 @@ public class SpectrumColorProviders {
 	}
 	
 	private static void registerAmaranth() {
-		BlockColorProvider fernBlockColorProvider = ColorProviderRegistry.BLOCK.get(Blocks.FERN);
-		ItemColorProvider fernItemColorProvider = ColorProviderRegistry.ITEM.get(Blocks.FERN);
+		BlockColor fernBlockColorProvider = ColorProviderRegistry.BLOCK.get(Blocks.FERN);
+		ItemColor fernItemColorProvider = ColorProviderRegistry.ITEM.get(Blocks.FERN);
 		if (fernBlockColorProvider != null && fernItemColorProvider != null) {
 			amaranthBushelBlockColorProvider = new ToggleableBlockColorProvider(fernBlockColorProvider);
 			amaranthBushelItemColorProvider = new ToggleableItemColorProvider(fernItemColorProvider);
@@ -77,8 +77,8 @@ public class SpectrumColorProviders {
 			ColorProviderRegistry.BLOCK.register(amaranthBushelBlockColorProvider, SpectrumBlocks.POTTED_AMARANTH_BUSHEL);
 		}
 		
-		BlockColorProvider largeFernBlockColorProvider = ColorProviderRegistry.BLOCK.get(Blocks.LARGE_FERN);
-		ItemColorProvider largeFernItemColorProvider = ColorProviderRegistry.ITEM.get(Blocks.LARGE_FERN);
+		BlockColor largeFernBlockColorProvider = ColorProviderRegistry.BLOCK.get(Blocks.LARGE_FERN);
+		ItemColor largeFernItemColorProvider = ColorProviderRegistry.ITEM.get(Blocks.LARGE_FERN);
 		if (largeFernBlockColorProvider != null && largeFernItemColorProvider != null) {
 			amaranthCropBlockColorProvider = new ToggleableBlockColorProvider(largeFernBlockColorProvider);
 			amaranthCropItemColorProvider = new ToggleableItemColorProvider(largeFernItemColorProvider);
@@ -88,8 +88,8 @@ public class SpectrumColorProviders {
 	}
 	
 	private static void registerClovers(Block... clovers) {
-		BlockColorProvider grassBlockColorProvider = ColorProviderRegistry.BLOCK.get(Blocks.SHORT_GRASS);
-		ItemColorProvider grassItemColorProvider = ColorProviderRegistry.ITEM.get(Blocks.SHORT_GRASS.asItem());
+		BlockColor grassBlockColorProvider = ColorProviderRegistry.BLOCK.get(Blocks.SHORT_GRASS);
+		ItemColor grassItemColorProvider = ColorProviderRegistry.ITEM.get(Blocks.SHORT_GRASS.asItem());
 		
 		if (grassBlockColorProvider != null && grassItemColorProvider != null) {
 			ColorProviderRegistry.BLOCK.register(grassBlockColorProvider, clovers);
@@ -101,7 +101,7 @@ public class SpectrumColorProviders {
 			if (tintIndex == 1) {
 				InkFlaskItem i = (InkFlaskItem) stack.getItem();
 				SingleInkStorage storage = i.getEnergyStorage(stack);
-				return ColorHelper.Argb.fullAlpha(storage.getStoredColor().getColorInt());
+				return FastColor.ARGB32.opaque(storage.getStoredColor().getColorInt());
 			}
 			return -1;
 		}, items);
@@ -112,7 +112,7 @@ public class SpectrumColorProviders {
 			if (tintIndex == 1) {
 				List<InkPoweredStatusEffectInstance> effects = InkPoweredStatusEffectInstance.getEffects(stack);
 				if (!effects.isEmpty()) {
-					return ColorHelper.Argb.fullAlpha(effects.getFirst().getColor());
+					return FastColor.ARGB32.opaque(effects.getFirst().getColor());
 				}
 			}
 			return -1;
@@ -124,7 +124,7 @@ public class SpectrumColorProviders {
 			if (tintIndex > 0) {
 				List<InkPoweredStatusEffectInstance> effects = InkPoweredStatusEffectInstance.getEffects(stack);
 				if (effects.size() > tintIndex - 1) {
-					return ColorHelper.Argb.fullAlpha(effects.get(tintIndex - 1).getColor());
+					return FastColor.ARGB32.opaque(effects.get(tintIndex - 1).getColor());
 				}
 			}
 			return -1;
@@ -145,14 +145,14 @@ public class SpectrumColorProviders {
 			if (tintIndex == 2)
 				return 0xFFFFFFFF;
 			
-			return ColorHelper.Argb.fullAlpha(MemoryItem.getEggColor(stack, tintIndex));
+			return FastColor.ARGB32.opaque(MemoryItem.getEggColor(stack, tintIndex));
 		}, memory.asItem());
 	}
 	
 	public static void registerBrewColors(Item brew) {
 		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> {
-			if (tintIndex != 0) return ColorHelper.Argb.fullAlpha(-1);
-			return ColorHelper.Argb.fullAlpha(stack.getOrDefault(SpectrumDataComponentTypes.INFUSED_BEVERAGE, InfusedBeverageComponent.DEFAULT).color());
+			if (tintIndex != 0) return FastColor.ARGB32.opaque(-1);
+			return FastColor.ARGB32.opaque(stack.getOrDefault(SpectrumDataComponentTypes.INFUSED_BEVERAGE, InfusedBeverageComponent.DEFAULT).color());
 		}, brew);
 	}
 	
@@ -160,7 +160,7 @@ public class SpectrumColorProviders {
 		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> {
 			if (tintIndex == 1) {
 				var color = stack.get(SpectrumDataComponentTypes.INK_COLOR);
-				return ColorHelper.Argb.fullAlpha(color == null ? -1 : color.getColorInt());
+				return FastColor.ARGB32.opaque(color == null ? -1 : color.getColorInt());
 			}
 			return -1;
 		}, item);

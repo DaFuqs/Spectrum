@@ -2,10 +2,10 @@ package de.dafuqs.spectrum.api.item;
 
 import de.dafuqs.spectrum.cca.azure_dike.*;
 import dev.emi.trinkets.api.*;
-import net.minecraft.entity.*;
-import net.minecraft.item.*;
 import net.minecraft.util.*;
-import net.minecraft.world.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
 
 import java.util.*;
 
@@ -26,8 +26,8 @@ public interface AzureDikeItem {
 	}
 	
 	default void recalculate(LivingEntity livingEntity) {
-		World world = livingEntity.getWorld();
-		if (!world.isClient) {
+		Level world = livingEntity.level();
+		if (!world.isClientSide) {
 			AzureDikeComponent azureDikeComponent = AzureDikeProvider.AZURE_DIKE_COMPONENT.get(livingEntity);
 			
 			Optional<TrinketComponent> trinketComponent = TrinketsApi.getTrinketComponent(livingEntity);
@@ -36,9 +36,9 @@ public interface AzureDikeItem {
 				float rechargeSpeedModifier = 1F;
 				float rechargeDelayAfterDamageModifier = 1F;
 				float maxAzureDikeMultiplier = 1F;
-				for (Pair<SlotReference, ItemStack> pair : trinketComponent.get().getAllEquipped()) {
-					ItemStack stack = pair.getRight();
-					if (pair.getRight().getItem() instanceof AzureDikeItem azureDikeItem) {
+				for (Tuple<SlotReference, ItemStack> pair : trinketComponent.get().getAllEquipped()) {
+					ItemStack stack = pair.getB();
+					if (pair.getB().getItem() instanceof AzureDikeItem azureDikeItem) {
 						maxAzureDike += azureDikeItem.maxAzureDike(stack);
 						rechargeSpeedModifier += azureDikeItem.azureDikeRechargeSpeedModifier(stack) - 1;
 						rechargeDelayAfterDamageModifier += azureDikeItem.rechargeDelayAfterDamageModifier(stack) - 1;

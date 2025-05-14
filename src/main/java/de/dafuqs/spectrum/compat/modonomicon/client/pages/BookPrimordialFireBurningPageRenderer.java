@@ -6,14 +6,14 @@ import de.dafuqs.spectrum.compat.modonomicon.pages.*;
 import de.dafuqs.spectrum.recipe.primordial_fire_burning.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.recipe.*;
-import net.minecraft.util.*;
-import net.minecraft.util.collection.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.*;
 
 public class BookPrimordialFireBurningPageRenderer<R extends PrimordialFireBurningRecipe, T extends BookGatedRecipePage<R>> extends BookGatedRecipePageRenderer<R, T> {
 	
-	private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/modonomicon/primordial_fire.png");
+	private static final ResourceLocation BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/modonomicon/primordial_fire.png");
 	
 	public BookPrimordialFireBurningPageRenderer(T page) {
 		super(page);
@@ -25,22 +25,22 @@ public class BookPrimordialFireBurningPageRenderer<R extends PrimordialFireBurni
 	}
 	
 	@Override
-	protected void drawRecipe(DrawContext drawContext, RecipeEntry<R> recipeEntry, int recipeX, int recipeY, int mouseX, int mouseY, boolean second) {
+	protected void drawRecipe(GuiGraphics drawContext, RecipeHolder<R> recipeEntry, int recipeX, int recipeY, int mouseX, int mouseY, boolean second) {
 		R recipe = recipeEntry.value();
-		World world = MinecraftClient.getInstance().world;
+		Level world = Minecraft.getInstance().level;
 		if (world == null) return;
 		
 		renderTitle(drawContext, recipeY, second);
 		
 		RenderSystem.enableBlend();
-		drawContext.drawTexture(BACKGROUND_TEXTURE, recipeX + 13, recipeY + 6, 0, 0, 57, 40, 64, 64);
+		drawContext.blit(BACKGROUND_TEXTURE, recipeX + 13, recipeY + 6, 0, 0, 57, 40, 64, 64);
 		
 		// the ingredient
-		DefaultedList<Ingredient> ingredients = recipe.getIngredients();
+		NonNullList<Ingredient> ingredients = recipe.getIngredients();
 		parentScreen.renderIngredient(drawContext, recipeX + 16, recipeY + 8, mouseX, mouseY, ingredients.getFirst());
 		
 		// the output
-		parentScreen.renderItemStack(drawContext, recipeX + 51, recipeY + 8, mouseX, mouseY, recipe.getResult(world.getRegistryManager()));
+		parentScreen.renderItemStack(drawContext, recipeX + 51, recipeY + 8, mouseX, mouseY, recipe.getResultItem(world.registryAccess()));
 	}
 	
 }

@@ -1,91 +1,90 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
 import com.google.common.collect.*;
-import com.mojang.serialization.MapCodec;
-import net.minecraft.block.*;
-import net.minecraft.fluid.*;
-import net.minecraft.item.*;
-import net.minecraft.state.*;
-import net.minecraft.state.property.Properties;
-import net.minecraft.state.property.*;
+import com.mojang.serialization.*;
+import net.minecraft.core.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.shape.*;
-import net.minecraft.world.*;
+import net.minecraft.world.item.context.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.material.*;
+import net.minecraft.world.phys.shapes.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class PylonBlock extends Block implements Waterloggable {
-
-    public static final MapCodec<PylonBlock> CODEC = createCodec(PylonBlock::new);
-
-    public static final EnumProperty<Section> SECTION = EnumProperty.of("section", Section.class);
-    public static final EnumProperty<Direction> FACING = Properties.FACING;
-    public static final BooleanProperty PEDESTAL = BooleanProperty.of("pedestal");
-    public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
+public class PylonBlock extends Block implements SimpleWaterloggedBlock {
+	
+	public static final MapCodec<PylonBlock> CODEC = simpleCodec(PylonBlock::new);
+	
+	public static final EnumProperty<Section> SECTION = EnumProperty.create("section", Section.class);
+	public static final EnumProperty<Direction> FACING = BlockStateProperties.FACING;
+	public static final BooleanProperty PEDESTAL = BooleanProperty.create("pedestal");
+	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public static final Map<Direction.Axis, VoxelShape> PYLON_SHAPES;
     public static final Map<Direction, VoxelShape> PEDESTAL_SHAPES;
-    
-    public PylonBlock(Settings settings) {
+	
+	public PylonBlock(Properties settings) {
         super(settings);
-
-        setDefaultState(getStateManager().getDefaultState()
-                .with(WATERLOGGED, false)
-                .with(SECTION, Section.FOOT)
-                .with(FACING, Direction.UP)
-                .with(PEDESTAL, false));
+		
+		registerDefaultState(getStateDefinition().any()
+				.setValue(WATERLOGGED, false)
+				.setValue(SECTION, Section.FOOT)
+				.setValue(FACING, Direction.UP)
+				.setValue(PEDESTAL, false));
     }
 
     @Override
-    public MapCodec<? extends PylonBlock> getCodec() {
+	public MapCodec<? extends PylonBlock> codec() {
         return CODEC;
     }
 
     @Nullable
     @Override
-    public BlockState getPlacementState(ItemPlacementContext ctx) {
-        var world = ctx.getWorld();
-        var pos = ctx.getBlockPos();
-        var state = getDefaultState();
+	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+		var world = ctx.getLevel();
+		var pos = ctx.getClickedPos();
+		var state = defaultBlockState();
         var player = ctx.getPlayer();
         boolean shifting = false;
 
         if (player != null)
-            shifting = player.isSneaking();
+			shifting = player.isShiftKeyDown();
 
         Section placedSection = shifting ? Section.BODY : Section.HEAD;
-
-        FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
-        state = state.with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
-
-        var placementDirection = ctx.getSide().getOpposite();
-        state = state.with(FACING, placementDirection.getOpposite());
-
-        var floorPos = pos.offset(placementDirection);
+		
+		FluidState fluidState = ctx.getLevel().getFluidState(ctx.getClickedPos());
+		state = state.setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER);
+		
+		var placementDirection = ctx.getClickedFace().getOpposite();
+		state = state.setValue(FACING, placementDirection.getOpposite());
+		
+		var floorPos = pos.relative(placementDirection);
         var floorState = world.getBlockState(floorPos);
 
         updateFloor: {
             if (floorState.getBlock() instanceof PylonBlock) {
-                var floorFacing = floorState.get(FACING);
+				var floorFacing = floorState.getValue(FACING);
 
                 if (floorFacing.getAxis() != placementDirection.getAxis())
                     break updateFloor;
 
                if (floorFacing == placementDirection.getOpposite()) {
-                   var floorSection = floorState.get(SECTION);
-                   var newFloor = updatePylonBelow(world.getBlockState(floorPos.offset(placementDirection)), floorState, floorSection);
-                   world.setBlockState(floorPos, newFloor);
+				   var floorSection = floorState.getValue(SECTION);
+				   var newFloor = updatePylonBelow(world.getBlockState(floorPos.relative(placementDirection)), floorState, floorSection);
+				   world.setBlockAndUpdate(floorPos, newFloor);
                }
-
-                state = state.with(SECTION, placedSection);
+				
+				state = state.setValue(SECTION, placedSection);
                 return state;
             }
         }
-
-        if (floorState.isSideSolid(world, floorPos, placementDirection.getOpposite(), SideShapeType.CENTER))
-            state = state.with(PEDESTAL, !shifting).with(SECTION, placedSection);
+		
+		if (floorState.isFaceSturdy(world, floorPos, placementDirection.getOpposite(), SupportType.CENTER))
+			state = state.setValue(PEDESTAL, !shifting).setValue(SECTION, placedSection);
 
         return state;
     }
@@ -100,55 +99,55 @@ public class PylonBlock extends Block implements Waterloggable {
 
     public BlockState updatePylonBelow(BlockState floor, BlockState pylon, Section oldSection) {
         boolean base = !(floor.getBlock() instanceof  PylonBlock);
-        var checkedSection = base ? oldSection : floor.get(SECTION);
+		var checkedSection = base ? oldSection : floor.getValue(SECTION);
 
         var newSection = switch (checkedSection) {
             case HEAD -> Section.FOOT;
             case BODY -> Section.BODY;
             default -> base ? oldSection : shiftSection(checkedSection);
         };
-
-        return pylon.with(SECTION, newSection);
+		
+		return pylon.setValue(SECTION, newSection);
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        super.appendProperties(builder);
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
         builder.add(FACING, SECTION, PEDESTAL, WATERLOGGED);
     }
 
     @Override
-    public BlockState rotate(BlockState state, BlockRotation rotation) {
-        return state.with(FACING, rotation.rotate(state.get(FACING)));
+	public BlockState rotate(BlockState state, Rotation rotation) {
+		return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
     }
 
     @Override
-    public BlockState mirror(BlockState state, BlockMirror mirror) {
-        return state.with(FACING, mirror.apply(state.get(FACING)));
+	public BlockState mirror(BlockState state, Mirror mirror) {
+		return state.setValue(FACING, mirror.mirror(state.getValue(FACING)));
     }
 
     @Override
     public FluidState getFluidState(BlockState state) {
-        return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
+		return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        var facing = state.get(FACING);
+	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+		var facing = state.getValue(FACING);
         var shape = PYLON_SHAPES.get(facing.getAxis());
-
-        if (state.get(PEDESTAL))
-            shape = VoxelShapes.union(shape, PEDESTAL_SHAPES.get(facing));
+		
+		if (state.getValue(PEDESTAL))
+			shape = Shapes.or(shape, PEDESTAL_SHAPES.get(facing));
 
         return shape;
     }
 
     @Override
-    public boolean isTransparent(BlockState state, BlockView world, BlockPos pos) {
+	public boolean propagatesSkylightDown(BlockState state, BlockGetter world, BlockPos pos) {
         return true;
     }
-
-    public enum Section implements StringIdentifiable {
+	
+	public enum Section implements StringRepresentable {
         HEAD("head"),
         BODY("body"),
         WAIST("waist"),
@@ -166,25 +165,25 @@ public class PylonBlock extends Block implements Waterloggable {
         }
 
         @Override
-        public String asString() {
+		public String getSerializedName() {
             return this.name;
         }
     }
 
     static {
         var pylonBuilder = ImmutableMap.<Direction.Axis, VoxelShape>builder();
-        pylonBuilder.put(Direction.Axis.X, Block.createCuboidShape(0, 3, 3, 16, 13, 13));
-        pylonBuilder.put(Direction.Axis.Y, Block.createCuboidShape(3, 0, 3, 13, 16, 13));
-        pylonBuilder.put(Direction.Axis.Z, Block.createCuboidShape(3, 3, 0, 13, 13, 16));
+		pylonBuilder.put(Direction.Axis.X, Block.box(0, 3, 3, 16, 13, 13));
+		pylonBuilder.put(Direction.Axis.Y, Block.box(3, 0, 3, 13, 16, 13));
+		pylonBuilder.put(Direction.Axis.Z, Block.box(3, 3, 0, 13, 13, 16));
         PYLON_SHAPES = pylonBuilder.build();
 
         var pedestalBuilder = ImmutableMap.<Direction, VoxelShape>builder();
-        pedestalBuilder.put(Direction.NORTH, Block.createCuboidShape(0, 0, 14, 16, 16, 16));
-        pedestalBuilder.put(Direction.SOUTH, Block.createCuboidShape(0, 0, 0, 16, 16, 2));
-        pedestalBuilder.put(Direction.WEST, Block.createCuboidShape(14, 0, 0, 16, 16, 16));
-        pedestalBuilder.put(Direction.EAST, Block.createCuboidShape(0, 0, 0, 2, 16, 16));
-        pedestalBuilder.put(Direction.UP, Block.createCuboidShape(0, 0, 0, 16, 2, 16));
-        pedestalBuilder.put(Direction.DOWN, Block.createCuboidShape(0, 14, 0, 16, 16, 16));
+		pedestalBuilder.put(Direction.NORTH, Block.box(0, 0, 14, 16, 16, 16));
+		pedestalBuilder.put(Direction.SOUTH, Block.box(0, 0, 0, 16, 16, 2));
+		pedestalBuilder.put(Direction.WEST, Block.box(14, 0, 0, 16, 16, 16));
+		pedestalBuilder.put(Direction.EAST, Block.box(0, 0, 0, 2, 16, 16));
+		pedestalBuilder.put(Direction.UP, Block.box(0, 0, 0, 16, 2, 16));
+		pedestalBuilder.put(Direction.DOWN, Block.box(0, 14, 0, 16, 16, 16));
         PEDESTAL_SHAPES = pedestalBuilder.build();
     }
 }

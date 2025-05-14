@@ -2,21 +2,22 @@ package de.dafuqs.spectrum.mixin;
 
 import com.llamalad7.mixinextras.injector.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.fluid.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.material.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 
-@Mixin(LilyPadBlock.class)
+@Mixin(WaterlilyBlock.class)
 public class LilyPadBlockMixin {
-    @ModifyReturnValue(method = "canPlantOnTop(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;)Z", at = @At("RETURN"))
-    public boolean spectrum$extendLilyPlaceables(boolean original, BlockState floor, BlockView world, BlockPos pos) {
+	@ModifyReturnValue(method = "mayPlaceOn", at = @At("RETURN"))
+	public boolean spectrum$extendLilyPlaceables(boolean original, BlockState floor, BlockGetter world, BlockPos pos) {
         if (original)
             return true;
         FluidState fluidState = world.getFluidState(pos);
-        FluidState fluidState2 = world.getFluidState(pos.up());
-		return (fluidState.getFluid() == SpectrumFluids.GOO || fluidState.getFluid() == SpectrumFluids.LIQUID_CRYSTAL) && fluidState2.getFluid() == Fluids.EMPTY;
+		FluidState fluidState2 = world.getFluidState(pos.above());
+		return (fluidState.getType() == SpectrumFluids.GOO || fluidState.getType() == SpectrumFluids.LIQUID_CRYSTAL) && fluidState2.getType() == Fluids.EMPTY;
     }
 }

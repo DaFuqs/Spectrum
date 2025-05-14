@@ -2,33 +2,33 @@ package de.dafuqs.spectrum.commands;
 
 import com.mojang.brigadier.tree.*;
 import net.fabricmc.loader.api.*;
-import net.minecraft.registry.entry.*;
-import net.minecraft.server.command.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.commands.*;
+import net.minecraft.core.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
 
 import java.io.*;
 
 
 public class DumpTagsCommand {
 	
-	public static void register(LiteralCommandNode<ServerCommandSource> root) {
-		LiteralCommandNode<ServerCommandSource> dumpRegistries = CommandManager.literal("dump_tags")
-				.requires((source) -> source.hasPermissionLevel(2))
+	public static void register(LiteralCommandNode<CommandSourceStack> root) {
+		LiteralCommandNode<CommandSourceStack> dumpRegistries = Commands.literal("dump_tags")
+				.requires((source) -> source.hasPermission(2))
 				.executes((context) -> execute(context.getSource()))
 				.build();
 		root.addChild(dumpRegistries);
 	}
 	
-	private static int execute(ServerCommandSource source) {
+	private static int execute(CommandSourceStack source) {
 		File baseDir = FabricLoader.getInstance().getGameDir().resolve("tag_dump").toFile();
 		baseDir.mkdirs();
 		
-		source.getRegistryManager().streamAllRegistries().forEach(registry -> {
+		source.registryAccess().registries().forEach(registry -> {
 			
-			registry.value().streamTagsAndEntries().forEach(pair -> {
-				Identifier registryId = pair.getSecond().getTag().registry().getValue();
-				Identifier tagId = pair.getSecond().getTag().id();
+			registry.value().getTags().forEach(pair -> {
+				ResourceLocation registryId = pair.getSecond().key().registry().location();
+				ResourceLocation tagId = pair.getSecond().key().location();
 				File tagFile = new File(baseDir, tagId.getNamespace() + "/" + registryId.getPath() + "/" + tagId.getPath() + ".txt");
 				
 				try {
@@ -36,8 +36,8 @@ public class DumpTagsCommand {
 					tagFile.createNewFile();
 					
 					FileWriter writer = new FileWriter(tagFile);
-					for (RegistryEntry<?> entry : pair.getSecond()) {
-						writer.write(entry.getKey().get().getValue().toString());
+					for (Holder<?> entry : pair.getSecond()) {
+						writer.write(entry.unwrapKey().get().location().toString());
 						writer.write(System.lineSeparator());
 					}
 					writer.close();
@@ -47,7 +47,7 @@ public class DumpTagsCommand {
 			});
 		});
 		
-		source.sendMessage(Text.literal("Tags exported to directory 'tag_dump'"));
+		source.sendSystemMessage(Component.literal("Tags exported to directory 'tag_dump'"));
 		
 		return 0;
 	}

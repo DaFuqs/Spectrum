@@ -1,103 +1,102 @@
 package de.dafuqs.spectrum.particle.client;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.fabricmc.api.*;
+import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.particle.*;
-import net.minecraft.client.render.LightmapTextureManager;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particle.SimpleParticleType;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.client.renderer.*;
+import net.minecraft.core.*;
+import net.minecraft.core.particles.*;
+import net.minecraft.util.*;
 
-public class BloodflyParticle extends SpriteBillboardParticle {
-    private final SpriteProvider spriteProvider;
+public class BloodflyParticle extends TextureSheetParticle {
+	private final SpriteSet spriteProvider;
 
     private double lastVelX, lastVelZ;
     private int switchTicks = 10;
     private float r, g, b;
-
-    protected BloodflyParticle(ClientWorld clientWorld, double d, double e, double f, double velocityX, double velocityY, double velocityZ, float scaleMultiplier, SpriteProvider spriteProvider) {
+	
+	protected BloodflyParticle(ClientLevel clientWorld, double d, double e, double f, double velocityX, double velocityY, double velocityZ, float scaleMultiplier, SpriteSet spriteProvider) {
         super(clientWorld, d, e, f, velocityX, velocityY, velocityZ);
         this.spriteProvider = spriteProvider;
-        this.setSpriteForAge(spriteProvider);
-        this.velocityX = random.nextFloat() * 0.05F - 0.025F;
-        this.velocityY = 0;
-        this.velocityZ = random.nextFloat() * 0.05F - 0.025F;
+		this.setSpriteFromAge(spriteProvider);
+		this.xd = random.nextFloat() * 0.05F - 0.025F;
+		this.yd = 0;
+		this.zd = random.nextFloat() * 0.05F - 0.025F;
         var random = clientWorld.getRandom();
-        this.gravityStrength = random.nextFloat() * 0.04F - 0.02F;
-
-        this.collidesWithWorld = true;
-        this.maxAge = 60 + random.nextInt(20);
+		this.gravity = random.nextFloat() * 0.04F - 0.02F;
+		
+		this.hasPhysics = true;
+		this.lifetime = 60 + random.nextInt(20);
 
         var dist = random.nextFloat();
         if (dist < 0.725F) {
             r = 255;
-            g = MathHelper.lerp(random.nextFloat(), 110, 175);
-            b = MathHelper.lerp(random.nextFloat(), 60, 100);
+			g = Mth.lerpInt(random.nextFloat(), 110, 175);
+			b = Mth.lerpInt(random.nextFloat(), 60, 100);
         }
         else if (dist < 0.95F) {
             r = 170;
-            g = MathHelper.lerp(random.nextFloat(), 200, 255);
-            b = MathHelper.lerp(random.nextFloat(), 235, 255);
+			g = Mth.lerpInt(random.nextFloat(), 200, 255);
+			b = Mth.lerpInt(random.nextFloat(), 235, 255);
         }
         else {
             r = 255;
             g = 245;
-            b = MathHelper.lerp(random.nextFloat(), 235, 250);
+			b = Mth.lerpInt(random.nextFloat(), 235, 250);
 
         }
 
         r /= 255F;
         g /= 255F;
         b /= 255F;
-        
-        this.scale = 0.01F + random.nextFloat() * 0.325F;
-        scale *= scaleMultiplier;
+		
+		this.quadSize = 0.01F + random.nextFloat() * 0.325F;
+		quadSize *= scaleMultiplier;
         setColor(r, g, b);
         setAlpha(0F);
     }
 
     @Override
     public void tick() {
-        this.prevPosX = this.x;
-        this.prevPosY = this.y;
-        this.prevPosZ = this.z;
-
-        if (this.age++ >= this.maxAge) {
-            this.markDead();
+		this.xo = this.x;
+		this.yo = this.y;
+		this.zo = this.z;
+		
+		if (this.age++ >= this.lifetime) {
+			this.remove();
             return;
         }
 
         if (switchTicks < 10)
             switchTicks++;
-
-        var water = !this.world.getFluidState(BlockPos.ofFloored(this.x, this.y, this.z)).isEmpty();
+		
+		var water = !this.level.getFluidState(BlockPos.containing(this.x, this.y, this.z)).isEmpty();
 
         if (age % 11 == 0 && random.nextBoolean()) {
             switchTicks = 0;
-            gravityStrength = random.nextFloat() * 0.04F - 0.02F;
-            lastVelX = velocityX;
-            lastVelZ = velocityZ;
-            velocityX = random.nextFloat()  * 0.05F - 0.025F;
-            velocityZ = random.nextFloat()  * 0.05F - 0.025F;
+			gravity = random.nextFloat() * 0.04F - 0.02F;
+			lastVelX = xd;
+			lastVelZ = zd;
+			xd = random.nextFloat() * 0.05F - 0.025F;
+			zd = random.nextFloat() * 0.05F - 0.025F;
         }
 
         var flutter = Math.sin(age / 8F) / 35F;
-
-        var curVelX = MathHelper.lerp(switchTicks / 10F, lastVelX, velocityX);
-        var curVelZ = MathHelper.lerp(switchTicks / 10F, lastVelZ, velocityZ);
+		
+		var curVelX = Mth.lerp(switchTicks / 10F, lastVelX, xd);
+		var curVelZ = Mth.lerp(switchTicks / 10F, lastVelZ, zd);
 
         if (this.onGround || water) {
             curVelX *= 0.7F;
             curVelZ *= 0.7F;
-            gravityStrength = random.nextFloat() * 0.03F;
+			gravity = random.nextFloat() * 0.03F;
         }
-
-        this.velocityY -= 0.04 * (double)this.gravityStrength;
-        this.move(curVelX, this.velocityY + flutter, curVelZ);
-        if (this.ascending && this.y == this.prevPosY) {
-            this.velocityX *= 1.1;
-            this.velocityZ *= 1.1;
+		
+		this.yd -= 0.04 * (double) this.gravity;
+		this.move(curVelX, this.yd + flutter, curVelZ);
+		if (this.speedUpWhenYMotionIsBlocked && this.y == this.yo) {
+			this.xd *= 1.1;
+			this.zd *= 1.1;
         }
 
         adjustAlpha(water);
@@ -105,46 +104,46 @@ public class BloodflyParticle extends SpriteBillboardParticle {
 
     private void adjustAlpha(boolean water) {
         if (age <= 15) {
-            alpha = MathHelper.clamp(age / 15F, 0, 1F);
+			alpha = Mth.clamp(age / 15F, 0, 1F);
             return;
         }
-
-        var ageFade = MathHelper.clamp(Math.min(maxAge - age, 20) / 20F, 0, 1F);
+		
+		var ageFade = Mth.clamp(Math.min(lifetime - age, 20) / 20F, 0, 1F);
 
         if (ageFade < 1) {
             alpha = Math.min(alpha, ageFade);
         } else if (onGround) {
-            alpha = MathHelper.clamp(alpha - 0.02F, 0, 1F);
+			alpha = Mth.clamp(alpha - 0.02F, 0, 1F);
         } else if (water) {
-            alpha = MathHelper.clamp(alpha - 0.02F, 0.5F, 1F);
+			alpha = Mth.clamp(alpha - 0.02F, 0.5F, 1F);
         } else {
-            alpha = MathHelper.clamp(alpha + 0.05F, 0F, 1F);
+			alpha = Mth.clamp(alpha + 0.05F, 0F, 1F);
         }
 
         if (alpha < 0.01F) {
-            markDead();
+			remove();
         }
     }
 
     @Override
-    public int getBrightness(float tint) {
-        return LightmapTextureManager.MAX_LIGHT_COORDINATE;
+	public int getLightColor(float tint) {
+		return LightTexture.FULL_BRIGHT;
     }
 
     @Override
-    public ParticleTextureSheet getType() {
-        return ParticleTextureSheet.PARTICLE_SHEET_TRANSLUCENT;
+	public ParticleRenderType getRenderType() {
+		return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
     }
 
     @Environment(EnvType.CLIENT)
-    public static class Factory implements ParticleFactory<SimpleParticleType> {
-        private final SpriteProvider spriteProvider;
-
-        public Factory(SpriteProvider spriteProvider) {
+	public static class Factory implements ParticleProvider<SimpleParticleType> {
+		private final SpriteSet spriteProvider;
+		
+		public Factory(SpriteSet spriteProvider) {
             this.spriteProvider = spriteProvider;
         }
-
-        public Particle createParticle(SimpleParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
+		
+		public Particle createParticle(SimpleParticleType defaultParticleType, ClientLevel clientWorld, double d, double e, double f, double g, double h, double i) {
             return new BloodflyParticle(clientWorld, d, e, f, 0.0, 0.0, 0.0, 1.0F, this.spriteProvider);
         }
     }

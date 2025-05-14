@@ -2,28 +2,27 @@ package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.*;
 import net.fabricmc.api.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.world.item.*;
 
 import java.util.*;
 
 public class NeatRingItem extends SpectrumTrinketItem {
-
-
-	public NeatRingItem(Settings settings) {
+	
+	
+	public NeatRingItem(Properties settings) {
 		super(settings, SpectrumCommon.locate("unlocks/trinkets/neat_ring"));
 	}
 
 	@Override
 	@Environment(EnvType.CLIENT)
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
-		tooltip.add(Text.translatable("item.spectrum.neat_ring.tooltip"));
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
+		tooltip.add(Component.translatable("item.spectrum.neat_ring.tooltip"));
 	}
 
 	@Override
-	public boolean hasGlint(ItemStack stack) {
+	public boolean isFoil(ItemStack stack) {
 		return true;
 	}
 	

@@ -1,59 +1,59 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
-import com.mojang.serialization.MapCodec;
-import net.minecraft.block.*;
-import net.minecraft.fluid.*;
-import net.minecraft.item.*;
-import net.minecraft.state.*;
-import net.minecraft.state.property.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.shape.*;
-import net.minecraft.world.*;
+import com.mojang.serialization.*;
+import net.minecraft.core.*;
+import net.minecraft.world.item.context.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.material.*;
+import net.minecraft.world.phys.shapes.*;
 import org.jetbrains.annotations.*;
 
-public class FlexLanternBlock extends DiagonalBlock implements Waterloggable {
-
-	public static final MapCodec<FlexLanternBlock> CODEC = createCodec(FlexLanternBlock::new);
+public class FlexLanternBlock extends DiagonalBlock implements SimpleWaterloggedBlock {
 	
-	public static final BooleanProperty HANGING = Properties.HANGING;
-	public static final BooleanProperty TALL = BooleanProperty.of("tall");
-	public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
+	public static final MapCodec<FlexLanternBlock> CODEC = simpleCodec(FlexLanternBlock::new);
+	
+	public static final BooleanProperty HANGING = BlockStateProperties.HANGING;
+	public static final BooleanProperty TALL = BooleanProperty.create("tall");
+	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	public static final VoxelShape SHAPE_STANDING_SMALL, SHAPE_STANDING_TALL, SHAPE_HANGING_SMALL, SHAPE_HANGING_TALL;
 	
-	public FlexLanternBlock(Settings settings) {
+	public FlexLanternBlock(Properties settings) {
 		super(settings);
-		setDefaultState(getDefaultState().with(HANGING, false).with(TALL, true).with(WATERLOGGED, false));
+		registerDefaultState(defaultBlockState().setValue(HANGING, false).setValue(TALL, true).setValue(WATERLOGGED, false));
 	}
 
 	@Override
-	public MapCodec<? extends FlexLanternBlock> getCodec() {
+	public MapCodec<? extends FlexLanternBlock> codec() {
 		return CODEC;
 	}
 	
 	@Override
-	public @Nullable BlockState getPlacementState(ItemPlacementContext ctx) {
+	public @Nullable BlockState getStateForPlacement(BlockPlaceContext ctx) {
 		var player = ctx.getPlayer();
-		var state = super.getPlacementState(ctx);
+		var state = super.getStateForPlacement(ctx);
 		
 		if (state != null) {
-			if (player != null && player.isSneaking()) {
-				state = state.with(TALL, false);
+			if (player != null && player.isShiftKeyDown()) {
+				state = state.setValue(TALL, false);
 			}
-			if (ctx.getWorld().getFluidState(ctx.getBlockPos()).getFluid() == Fluids.WATER) {
-				state = state.with(WATERLOGGED, true);
+			if (ctx.getLevel().getFluidState(ctx.getClickedPos()).getType() == Fluids.WATER) {
+				state = state.setValue(WATERLOGGED, true);
 			}
 			
-			state = state.with(HANGING, ctx.getSide() == Direction.DOWN);
+			state = state.setValue(HANGING, ctx.getClickedFace() == Direction.DOWN);
 		}
 		
 		return state;
 	}
 	
 	@Override
-	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		var tall = state.get(TALL);
+	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+		var tall = state.getValue(TALL);
 		
-		if (state.get(HANGING)) {
+		if (state.getValue(HANGING)) {
 			return tall ? SHAPE_HANGING_TALL : SHAPE_HANGING_SMALL;
 		} else {
 			return tall ? SHAPE_STANDING_TALL : SHAPE_STANDING_SMALL;
@@ -61,26 +61,26 @@ public class FlexLanternBlock extends DiagonalBlock implements Waterloggable {
 	}
 	
 	@Override
-	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-		Direction direction = state.get(HANGING) ? Direction.UP : Direction.DOWN;
-		return Block.sideCoversSmallSquare(world, pos.offset(direction), direction.getOpposite());
+	public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+		Direction direction = state.getValue(HANGING) ? Direction.UP : Direction.DOWN;
+		return Block.canSupportCenter(world, pos.relative(direction), direction.getOpposite());
 	}
 	
 	@Override
 	public FluidState getFluidState(BlockState state) {
-		return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
+		return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
 	}
 	
 	@Override
-	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-		super.appendProperties(builder);
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
 		builder.add(HANGING, TALL, WATERLOGGED);
 	}
 	
 	static {
-		SHAPE_STANDING_SMALL = Block.createCuboidShape(4, 0, 4, 12, 13, 12);
-		SHAPE_STANDING_TALL = Block.createCuboidShape(4, 0, 4, 12, 16, 12);
-		SHAPE_HANGING_SMALL = Block.createCuboidShape(4, 7, 4, 12, 16, 12);
-		SHAPE_HANGING_TALL = Block.createCuboidShape(4, 4, 4, 12, 16, 12);
+		SHAPE_STANDING_SMALL = Block.box(4, 0, 4, 12, 13, 12);
+		SHAPE_STANDING_TALL = Block.box(4, 0, 4, 12, 16, 12);
+		SHAPE_HANGING_SMALL = Block.box(4, 7, 4, 12, 16, 12);
+		SHAPE_HANGING_TALL = Block.box(4, 4, 4, 12, 16, 12);
 	}
 }

@@ -1,23 +1,22 @@
 package de.dafuqs.spectrum.items.food;
 
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.world.item.*;
 
 import java.util.*;
 
 public class RestorationTeaItem extends DrinkItem {
 	
-	public RestorationTeaItem(Settings settings) {
+	public RestorationTeaItem(Properties settings) {
 		super(settings);
 	}
 
 	@Override
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		tooltip.add(Text.translatable("item.spectrum.restoration_tea.tooltip").formatted(Formatting.GRAY));
-		tooltip.add(Text.translatable("item.spectrum.restoration_tea.tooltip2").formatted(Formatting.GRAY));
-		super.appendTooltip(stack, context, tooltip, type);
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		tooltip.add(Component.translatable("item.spectrum.restoration_tea.tooltip").withStyle(ChatFormatting.GRAY));
+		tooltip.add(Component.translatable("item.spectrum.restoration_tea.tooltip2").withStyle(ChatFormatting.GRAY));
+		super.appendHoverText(stack, context, tooltip, type);
 	}
 	
 }

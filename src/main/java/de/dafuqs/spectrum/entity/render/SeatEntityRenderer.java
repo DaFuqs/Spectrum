@@ -1,27 +1,26 @@
 package de.dafuqs.spectrum.entity.render;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.entity.entity.SeatEntity;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.entity.EntityRenderer;
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.Identifier;
+import com.mojang.blaze3d.vertex.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.entity.entity.*;
+import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.entity.*;
+import net.minecraft.resources.*;
 
 public class SeatEntityRenderer extends EntityRenderer<SeatEntity> {
-
-    private static final Identifier NOOP = SpectrumCommon.locate("noop");
-
-    public SeatEntityRenderer(EntityRendererFactory.Context ctx) {
+	
+	private static final ResourceLocation NOOP = SpectrumCommon.locate("noop");
+	
+	public SeatEntityRenderer(EntityRendererProvider.Context ctx) {
         super(ctx);
     }
 
     @Override
-    public void render(SeatEntity entity, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
+	public void render(SeatEntity entity, float yaw, float tickDelta, PoseStack matrices, MultiBufferSource vertexConsumers, int light) {
     }
 
     @Override
-    public Identifier getTexture(SeatEntity entity) {
+	public ResourceLocation getTextureLocation(SeatEntity entity) {
         return NOOP;
     }
 }

@@ -1,64 +1,65 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
 import com.mojang.serialization.*;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
-import net.minecraft.util.hit.*;
-import net.minecraft.util.math.*;
+import net.minecraft.core.*;
+import net.minecraft.network.chat.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class PlayerDetectorBlock extends DetectorBlock implements BlockEntityProvider {
-
-	public static final MapCodec<PlayerDetectorBlock> CODEC = createCodec(PlayerDetectorBlock::new);
-
-	public PlayerDetectorBlock(Settings settings) {
+public class PlayerDetectorBlock extends DetectorBlock implements EntityBlock {
+	
+	public static final MapCodec<PlayerDetectorBlock> CODEC = simpleCodec(PlayerDetectorBlock::new);
+	
+	public PlayerDetectorBlock(Properties settings) {
 		super(settings);
 	}
 
 	@Override
-	public MapCodec<? extends PlayerDetectorBlock> getCodec() {
+	public MapCodec<? extends PlayerDetectorBlock> codec() {
 		return CODEC;
 	}
 	
 	@Override
-	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-		if (!world.isClient && placer instanceof PlayerEntity) {
+	public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+		if (!world.isClientSide && placer instanceof Player) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof PlayerDetectorBlockEntity) {
-				((PlayerDetectorBlockEntity) blockEntity).setOwner((PlayerEntity) placer);
+				((PlayerDetectorBlockEntity) blockEntity).setOwner((Player) placer);
 			}
 		}
 	}
 	
 	@Override
-	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-		if (world.isClient) {
-			return ActionResult.SUCCESS;
+	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
+		if (world.isClientSide) {
+			return InteractionResult.SUCCESS;
 		} else {
-			if (player.isSneaking()) {
+			if (player.isShiftKeyDown()) {
 				
 				String ownerName = getOwnerName(world, pos);
 				if (ownerName != null && !ownerName.isBlank()) {
-					player.sendMessage(Text.translatable("block.spectrum.player_detector.owner", ownerName), true);
+					player.displayClientMessage(Component.translatable("block.spectrum.player_detector.owner", ownerName), true);
 				}
-				return ActionResult.CONSUME;
+				return InteractionResult.CONSUME;
 			} else {
-				return super.onUse(state, world, pos, player, hit);
+				return super.useWithoutItem(state, world, pos, player, hit);
 			}
 		}
 	}
 	
 	@Override
-	protected void updateState(BlockState state, World world, BlockPos pos) {
-		List<PlayerEntity> players = world.getEntitiesByType(EntityType.PLAYER, getDetectionBox(pos), player -> player.isAlive() && !player.isSpectator());
+	protected void updateState(BlockState state, Level world, BlockPos pos) {
+		List<Player> players = world.getEntities(EntityType.PLAYER, getDetectionBox(pos), player -> player.isAlive() && !player.isSpectator());
 		
 		int power = 0;
 		
@@ -66,8 +67,8 @@ public class PlayerDetectorBlock extends DetectorBlock implements BlockEntityPro
 			power = 8;
 			UUID ownerUUID = getOwnerUUID(world, pos);
 			if (ownerUUID != null) {
-				for (PlayerEntity playerEntity : players) {
-					if (playerEntity.getUuid().equals(ownerUUID)) {
+				for (Player playerEntity : players) {
+					if (playerEntity.getUUID().equals(ownerUUID)) {
 						power = 15;
 						break;
 					}
@@ -75,9 +76,9 @@ public class PlayerDetectorBlock extends DetectorBlock implements BlockEntityPro
 			}
 		}
 		
-		power = state.get(INVERTED) ? 15 - power : power;
-		if (state.get(POWER) != power) {
-			world.setBlockState(pos, state.with(POWER, power), 3);
+		power = state.getValue(INVERTED) ? 15 - power : power;
+		if (state.getValue(POWER) != power) {
+			world.setBlock(pos, state.setValue(POWER, power), 3);
 		}
 	}
 	
@@ -86,7 +87,7 @@ public class PlayerDetectorBlock extends DetectorBlock implements BlockEntityPro
 		return 20;
 	}
 	
-	private UUID getOwnerUUID(World world, BlockPos blockPos) {
+	private UUID getOwnerUUID(Level world, BlockPos blockPos) {
 		BlockEntity blockEntity = world.getBlockEntity(blockPos);
 		if (blockEntity instanceof PlayerDetectorBlockEntity) {
 			return ((PlayerDetectorBlockEntity) blockEntity).getOwnerUUID();
@@ -94,7 +95,7 @@ public class PlayerDetectorBlock extends DetectorBlock implements BlockEntityPro
 		return null;
 	}
 	
-	private String getOwnerName(World world, BlockPos blockPos) {
+	private String getOwnerName(Level world, BlockPos blockPos) {
 		BlockEntity blockEntity = world.getBlockEntity(blockPos);
 		if (blockEntity instanceof PlayerDetectorBlockEntity) {
 			return ((PlayerDetectorBlockEntity) blockEntity).getOwnerName();
@@ -104,7 +105,7 @@ public class PlayerDetectorBlock extends DetectorBlock implements BlockEntityPro
 	
 	@Nullable
 	@Override
-	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new PlayerDetectorBlockEntity(pos, state);
 	}
 }

@@ -1,71 +1,69 @@
 package de.dafuqs.spectrum.blocks.amphora;
 
-import com.mojang.serialization.MapCodec;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.entity.mob.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.server.world.*;
-import net.minecraft.stat.*;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.state.property.Properties;
+import com.mojang.serialization.*;
+import net.minecraft.core.*;
+import net.minecraft.server.level.*;
+import net.minecraft.stats.*;
 import net.minecraft.util.*;
-import net.minecraft.util.hit.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.monster.piglin.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.item.context.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
-public class AmphoraBlock extends BlockWithEntity {
-
-	public static final MapCodec<AmphoraBlock> CODEC = createCodec(AmphoraBlock::new);
-	public static final DirectionProperty FACING = Properties.FACING;
-	public static final BooleanProperty OPEN = Properties.OPEN;
-
-	public AmphoraBlock(Settings settings) {
+public class AmphoraBlock extends BaseEntityBlock {
+	
+	public static final MapCodec<AmphoraBlock> CODEC = simpleCodec(AmphoraBlock::new);
+	public static final DirectionProperty FACING = BlockStateProperties.FACING;
+	public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
+	
+	public AmphoraBlock(Properties settings) {
 		super(settings);
-		this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(OPEN, false));
+		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(OPEN, false));
 	}
 
 	@Override
-	public MapCodec<? extends BlockWithEntity> getCodec() {
+	public MapCodec<? extends BaseEntityBlock> codec() {
 		return CODEC;
 	}
 	
 	@Override
-	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-		if (world.isClient) {
-			return ActionResult.SUCCESS;
+	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
+		if (world.isClientSide) {
+			return InteractionResult.SUCCESS;
 		} else {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof AmphoraBlockEntity amphoraBlockEntity) {
-				player.openHandledScreen(amphoraBlockEntity);
-				player.incrementStat(Stats.OPEN_BARREL);
-				PiglinBrain.onGuardedBlockInteracted(player, true);
+				player.openMenu(amphoraBlockEntity);
+				player.awardStat(Stats.OPEN_BARREL);
+				PiglinAi.angerNearbyPiglins(player, true);
 			}
 			
-			return ActionResult.CONSUME;
+			return InteractionResult.CONSUME;
 		}
 	}
 
 	@Override
-	protected void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-		ItemScatterer.onStateReplaced(state, newState, world, pos);
-		super.onStateReplaced(state, world, pos, newState, moved);
+	protected void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean moved) {
+		Containers.dropContentsOnDestroy(state, newState, world, pos);
+		super.onRemove(state, world, pos, newState, moved);
 	}
 	
 	@Override
 	@Nullable
-	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new AmphoraBlockEntity(pos, state);
 	}
 	
 	@Override
-	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+	public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof AmphoraBlockEntity amphoraBlockEntity) {
 			amphoraBlockEntity.tick();
@@ -73,38 +71,38 @@ public class AmphoraBlock extends BlockWithEntity {
 	}
 
 	@Override
-	protected BlockRenderType getRenderType(BlockState state) {
-		return BlockRenderType.MODEL;
+	protected RenderShape getRenderShape(BlockState state) {
+		return RenderShape.MODEL;
 	}
 
 	@Override
-	protected boolean hasComparatorOutput(BlockState state) {
+	protected boolean hasAnalogOutputSignal(BlockState state) {
 		return true;
 	}
 
 	@Override
-	protected int getComparatorOutput(BlockState state, World world, BlockPos pos) {
-		return ScreenHandler.calculateComparatorOutput(world.getBlockEntity(pos));
+	protected int getAnalogOutputSignal(BlockState state, Level world, BlockPos pos) {
+		return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(world.getBlockEntity(pos));
 	}
 
 	@Override
-	protected BlockState rotate(BlockState state, BlockRotation rotation) {
-		return state.with(FACING, rotation.rotate(state.get(FACING)));
+	protected BlockState rotate(BlockState state, Rotation rotation) {
+		return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
 	}
 
 	@Override
-	protected BlockState mirror(BlockState state, BlockMirror mirror) {
-		return state.rotate(mirror.getRotation(state.get(FACING)));
+	protected BlockState mirror(BlockState state, Mirror mirror) {
+		return state.rotate(mirror.getRotation(state.getValue(FACING)));
 	}
 
 	@Override
-	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(FACING, OPEN);
 	}
 
 	@Override
-	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		return this.getDefaultState().with(FACING, ctx.getPlayerLookDirection().getOpposite());
+	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+		return this.defaultBlockState().setValue(FACING, ctx.getNearestLookingDirection().getOpposite());
 	}
 
 }

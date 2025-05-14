@@ -5,11 +5,11 @@ import de.dafuqs.spectrum.compat.REI.*;
 import de.dafuqs.spectrum.recipe.potion_workshop.*;
 import me.shedaniel.rei.api.common.category.*;
 import net.minecraft.client.*;
-import net.minecraft.recipe.*;
+import net.minecraft.world.item.crafting.*;
 
 public class PotionWorkshopReactingDisplay extends GatedItemInformationDisplay {
 	
-	public PotionWorkshopReactingDisplay(RecipeEntry<PotionWorkshopReactingRecipe> recipe) {
+	public PotionWorkshopReactingDisplay(RecipeHolder<PotionWorkshopReactingRecipe> recipe) {
 		super(recipe);
 	}
 	
@@ -20,7 +20,7 @@ public class PotionWorkshopReactingDisplay extends GatedItemInformationDisplay {
 	
 	@Override
     public boolean isUnlocked() {
-		MinecraftClient client = MinecraftClient.getInstance();
+		Minecraft client = Minecraft.getInstance();
 		return AdvancementHelper.hasAdvancement(client.player, PotionWorkshopRecipe.UNLOCK_IDENTIFIER) && AdvancementHelper.hasAdvancement(client.player, PotionWorkshopRecipe.UNLOCK_IDENTIFIER) && super.isUnlocked();
 	}
 	

@@ -1,21 +1,22 @@
 package de.dafuqs.spectrum.blocks.farming;
 
-import net.minecraft.block.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.registry.tag.*;
-import net.minecraft.server.world.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
-import net.minecraft.world.*;
-import net.minecraft.world.event.*;
+import net.minecraft.core.*;
+import net.minecraft.server.level.*;
+import net.minecraft.tags.*;
+import net.minecraft.util.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.gameevent.*;
 import org.jetbrains.annotations.*;
 
-public class SpectrumFarmlandBlock extends FarmlandBlock {
+public class SpectrumFarmlandBlock extends FarmBlock {
 	
 	protected final BlockState bareState;
 	
-	public SpectrumFarmlandBlock(Settings settings, BlockState bareState) {
+	public SpectrumFarmlandBlock(Properties settings, BlockState bareState) {
 		super(settings);
 		this.bareState = bareState;
 	}
@@ -27,53 +28,53 @@ public class SpectrumFarmlandBlock extends FarmlandBlock {
 //	}
 	
 	@Override
-	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		if (!state.canPlaceAt(world, pos)) {
+	public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+		if (!state.canSurvive(world, pos)) {
 			setBare(null, state, world, pos);
 		}
 	}
 
 	@Override
-	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		int i = state.get(MOISTURE);
-		if (!isWaterNearby(world, pos) && !world.hasRain(pos.up())) {
+	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+		int i = state.getValue(MOISTURE);
+		if (!isNearWater(world, pos) && !world.isRainingAt(pos.above())) {
 			if (i > 0) {
-				world.setBlockState(pos, state.with(MOISTURE, i - 1), 2);
-			} else if (!hasCrop(world, pos)) {
+				world.setBlock(pos, state.setValue(MOISTURE, i - 1), 2);
+			} else if (!shouldMaintainFarmland(world, pos)) {
 				setBare(null, state, world, pos);
 			}
 		} else if (i < 7) {
-			world.setBlockState(pos, state.with(MOISTURE, 7), 2);
+			world.setBlock(pos, state.setValue(MOISTURE, 7), 2);
 		}
 	}
 	
 	@Override
-	public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
-		if (!world.isClient && world.random.nextFloat() < fallDistance - 1F
+	public void fallOn(Level world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
+		if (!world.isClientSide && world.random.nextFloat() < fallDistance - 1F
 				&& entity instanceof LivingEntity
-				&& (entity instanceof PlayerEntity || world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING))
-				&& entity.getWidth() * entity.getWidth() * entity.getHeight() > 0.512F) {
+				&& (entity instanceof Player || world.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING))
+				&& entity.getBbWidth() * entity.getBbWidth() * entity.getBbHeight() > 0.512F) {
 			
 			setBare(entity, state, world, pos);
 		}
 		
-		entity.handleFallDamage(fallDistance, 1.0F, world.getDamageSources().fall());
+		entity.causeFallDamage(fallDistance, 1.0F, world.damageSources().fall());
 	}
 	
-	public void setBare(@Nullable Entity entity, BlockState state, World world, BlockPos pos) {
-		BlockState blockState = pushEntitiesUpBeforeBlockChange(state, bareState, world, pos);
-		world.setBlockState(pos, blockState);
-		world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(entity, blockState));
+	public void setBare(@Nullable Entity entity, BlockState state, Level world, BlockPos pos) {
+		BlockState blockState = pushEntitiesUp(state, bareState, world, pos);
+		world.setBlockAndUpdate(pos, blockState);
+		world.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(entity, blockState));
 	}
 	
-	public static boolean hasCrop(@NotNull BlockView world, @NotNull BlockPos pos) {
-		Block block = world.getBlockState(pos.up()).getBlock();
+	public static boolean shouldMaintainFarmland(@NotNull BlockGetter world, @NotNull BlockPos pos) {
+		Block block = world.getBlockState(pos.above()).getBlock();
 		return block instanceof CropBlock || block instanceof StemBlock || block instanceof AttachedStemBlock;
 	}
-
-	protected boolean isWaterNearby(WorldView world, BlockPos pos) {
-		for (BlockPos testPos : BlockPos.iterate(pos.add(-4, 0, -4), pos.add(4, 1, 4))) {
-			if (world.getFluidState(testPos).isIn(FluidTags.WATER)) {
+	
+	protected boolean isNearWater(LevelReader world, BlockPos pos) {
+		for (BlockPos testPos : BlockPos.betweenClosed(pos.offset(-4, 0, -4), pos.offset(4, 1, 4))) {
+			if (world.getFluidState(testPos).is(FluidTags.WATER)) {
 				return true;
 			}
 		}

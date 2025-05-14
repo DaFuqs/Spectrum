@@ -9,8 +9,8 @@ import me.shedaniel.rei.api.common.display.basic.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.client.*;
-import net.minecraft.recipe.*;
-import net.minecraft.util.collection.*;
+import net.minecraft.core.*;
+import net.minecraft.world.item.crafting.*;
 
 import java.util.*;
 
@@ -28,8 +28,8 @@ public class PedestalCraftingDisplay extends GatedSpectrumDisplay {
 	 *
 	 * @param recipe The recipe
 	 */
-	public PedestalCraftingDisplay(RecipeEntry<PedestalRecipe> recipe) {
-		super(recipe, mapIngredients(recipe.value()), Collections.singletonList(EntryIngredients.of(recipe.value().getResult(BasicDisplay.registryAccess()))));
+	public PedestalCraftingDisplay(RecipeHolder<PedestalRecipe> recipe) {
+		super(recipe, mapIngredients(recipe.value()), Collections.singletonList(EntryIngredients.of(recipe.value().getResultItem(BasicDisplay.registryAccess()))));
 		this.pedestalRecipeTier = recipe.value().getTier();
 		this.width = recipe.value().getWidth();
 		this.height = recipe.value().getHeight();
@@ -43,7 +43,7 @@ public class PedestalCraftingDisplay extends GatedSpectrumDisplay {
 		List<IngredientStack> ingredients = recipe.getIngredientStacks();
 		int ingredientCount = ingredients.size();
 		
-		List<EntryIngredient> list = DefaultedList.ofSize(9 + powderSlotCount, EntryIngredient.empty());
+		List<EntryIngredient> list = NonNullList.withSize(9 + powderSlotCount, EntryIngredient.empty());
 		
 		for (int i = 0; i < ingredientCount; i++) {
 			list.set(recipe.getGridSlotId(i), REIHelper.ofIngredientStack(recipe.getIngredientStacks().get(i)));
@@ -65,7 +65,7 @@ public class PedestalCraftingDisplay extends GatedSpectrumDisplay {
 	
 	@Override
     public boolean isUnlocked() {
-		MinecraftClient client = MinecraftClient.getInstance();
+		Minecraft client = Minecraft.getInstance();
 		return this.pedestalRecipeTier.hasUnlocked(client.player) && super.isUnlocked();
 	}
 	

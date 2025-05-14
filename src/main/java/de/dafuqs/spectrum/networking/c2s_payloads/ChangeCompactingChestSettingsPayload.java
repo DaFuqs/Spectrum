@@ -5,15 +5,15 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.networking.*;
 import net.fabricmc.fabric.api.networking.v1.*;
-import net.minecraft.block.entity.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.network.packet.*;
+import net.minecraft.network.protocol.common.custom.*;
+import net.minecraft.world.level.block.entity.*;
 
-public record ChangeCompactingChestSettingsPayload(AutoCraftingMode mode) implements CustomPayload {
+public record ChangeCompactingChestSettingsPayload(AutoCraftingMode mode) implements CustomPacketPayload {
 	
-	public static final CustomPayload.Id<ChangeCompactingChestSettingsPayload> ID = SpectrumC2SPackets.makeId("change_compacting_chest_settings");
-	public static final PacketCodec<PacketByteBuf, ChangeCompactingChestSettingsPayload> CODEC = PacketCodec.tuple(
+	public static final CustomPacketPayload.Type<ChangeCompactingChestSettingsPayload> ID = SpectrumC2SPackets.makeId("change_compacting_chest_settings");
+	public static final StreamCodec<FriendlyByteBuf, ChangeCompactingChestSettingsPayload> CODEC = StreamCodec.composite(
 			PacketCodecHelper.enumOf(AutoCraftingMode::values),
 			ChangeCompactingChestSettingsPayload::mode,
 			ChangeCompactingChestSettingsPayload::new
@@ -22,7 +22,7 @@ public record ChangeCompactingChestSettingsPayload(AutoCraftingMode mode) implem
 	public static ServerPlayNetworking.PlayPayloadHandler<ChangeCompactingChestSettingsPayload> getPayloadHandler() {
 		return (payload, context) -> {
 			// receive the client packet...
-			if (context.player().currentScreenHandler instanceof CompactingChestScreenHandler compactingChestScreenHandler) {
+			if (context.player().containerMenu instanceof CompactingChestScreenHandler compactingChestScreenHandler) {
 				BlockEntity blockEntity = compactingChestScreenHandler.getBlockEntity();
 				if (blockEntity instanceof CompactingChestBlockEntity compactingChestBlockEntity) {
 					// apply the new settings
@@ -33,7 +33,7 @@ public record ChangeCompactingChestSettingsPayload(AutoCraftingMode mode) implem
 	}
 	
 	@Override
-	public Id<? extends CustomPayload> getId() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 	

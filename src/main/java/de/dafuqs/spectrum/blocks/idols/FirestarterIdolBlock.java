@@ -1,24 +1,22 @@
 package de.dafuqs.spectrum.blocks.idols;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.particle.*;
-import net.minecraft.recipe.*;
-import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.registry.tag.*;
+import net.minecraft.core.*;
+import net.minecraft.core.particles.*;
+import net.minecraft.network.chat.*;
 import net.minecraft.server.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
-import net.minecraft.state.property.Properties;
-import net.minecraft.text.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
+import net.minecraft.tags.*;
 import net.minecraft.util.*;
-import net.minecraft.util.collection.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.event.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.gameevent.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -28,39 +26,39 @@ public class FirestarterIdolBlock extends IdolBlock {
 	// Block: The Block to burn
 	// BlockState: The BlockState when Block is getting burnt
 	// Float: The chance to burn
-	public static final Map<Block, Pair<BlockState, Float>> BURNING_MAP = new HashMap<>() {{
-		put(Blocks.RED_MUSHROOM, new Pair<>(Blocks.CRIMSON_FUNGUS.getDefaultState(), 0.2F));
-		put(Blocks.BROWN_MUSHROOM, new Pair<>(Blocks.WARPED_FUNGUS.getDefaultState(), 0.2F));
-		put(Blocks.SAND, new Pair<>(Blocks.RED_SAND.getDefaultState(), 1.0F));
-		put(Blocks.SNOW, new Pair<>(Blocks.AIR.getDefaultState(), 1.0F));
-		put(Blocks.GRASS_BLOCK, new Pair<>(Blocks.DIRT.getDefaultState(), 0.05F));
-		put(Blocks.CALCITE, new Pair<>(Blocks.BASALT.getDefaultState(), 0.5F));
-		put(Blocks.NETHERRACK, new Pair<>(Blocks.MAGMA_BLOCK.getDefaultState(), 0.25F));
-		put(Blocks.MAGMA_BLOCK, new Pair<>(Blocks.LAVA.getDefaultState(), 0.5F));
-		put(SpectrumBlocks.FROSTBITE_CRYSTAL, new Pair<>(SpectrumBlocks.BLAZING_CRYSTAL.getDefaultState(), 0.5F));
+	public static final Map<Block, Tuple<BlockState, Float>> BURNING_MAP = new HashMap<>() {{
+		put(Blocks.RED_MUSHROOM, new Tuple<>(Blocks.CRIMSON_FUNGUS.defaultBlockState(), 0.2F));
+		put(Blocks.BROWN_MUSHROOM, new Tuple<>(Blocks.WARPED_FUNGUS.defaultBlockState(), 0.2F));
+		put(Blocks.SAND, new Tuple<>(Blocks.RED_SAND.defaultBlockState(), 1.0F));
+		put(Blocks.SNOW, new Tuple<>(Blocks.AIR.defaultBlockState(), 1.0F));
+		put(Blocks.GRASS_BLOCK, new Tuple<>(Blocks.DIRT.defaultBlockState(), 0.05F));
+		put(Blocks.CALCITE, new Tuple<>(Blocks.BASALT.defaultBlockState(), 0.5F));
+		put(Blocks.NETHERRACK, new Tuple<>(Blocks.MAGMA_BLOCK.defaultBlockState(), 0.25F));
+		put(Blocks.MAGMA_BLOCK, new Tuple<>(Blocks.LAVA.defaultBlockState(), 0.5F));
+		put(SpectrumBlocks.FROSTBITE_CRYSTAL, new Tuple<>(SpectrumBlocks.BLAZING_CRYSTAL.defaultBlockState(), 0.5F));
 	}};
 	
-	public FirestarterIdolBlock(Settings settings, ParticleEffect particleEffect) {
+	public FirestarterIdolBlock(Properties settings, ParticleOptions particleEffect) {
 		super(settings, particleEffect);
 	}
 
 	@Override
-	public MapCodec<? extends FirestarterIdolBlock> getCodec() {
+	public MapCodec<? extends FirestarterIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}
 
 	public static void addBlockSmeltingRecipes(@NotNull MinecraftServer server) {
-		DynamicRegistryManager manager = server.getRegistryManager();
-		for (var recipe : server.getRecipeManager().listAllOfType(RecipeType.SMELTING)) {
-			ItemStack outputStack = recipe.value().getResult(manager);
+		RegistryAccess manager = server.registryAccess();
+		for (var recipe : server.getRecipeManager().getAllRecipesFor(RecipeType.SMELTING)) {
+			ItemStack outputStack = recipe.value().getResultItem(manager);
 			if (outputStack.getItem() instanceof BlockItem outputBlockItem && outputBlockItem.getBlock() != Blocks.AIR) {
-				DefaultedList<Ingredient> ingredients = recipe.value().getIngredients();
+				NonNullList<Ingredient> ingredients = recipe.value().getIngredients();
 				if (!ingredients.isEmpty()) {
-					ItemStack[] inputStacks = ingredients.get(0).getMatchingStacks();
+					ItemStack[] inputStacks = ingredients.get(0).getItems();
 					for (ItemStack inputStack : inputStacks) {
 						if (inputStack.getItem() instanceof BlockItem inputBlockItem && inputBlockItem.getBlock() != Blocks.AIR) {
-							BURNING_MAP.put(inputBlockItem.getBlock(), new Pair<>(outputBlockItem.getBlock().getDefaultState(), 1.0F));
+							BURNING_MAP.put(inputBlockItem.getBlock(), new Tuple<>(outputBlockItem.getBlock().defaultBlockState(), 1.0F));
 						}
 					}
 				}
@@ -68,31 +66,31 @@ public class FirestarterIdolBlock extends IdolBlock {
 		}
 	}
 	
-	public static boolean causeFire(@NotNull ServerWorld world, BlockPos blockPos, Direction side) {
+	public static boolean causeFire(@NotNull ServerLevel world, BlockPos blockPos, Direction side) {
 		BlockState blockState = world.getBlockState(blockPos);
-		if (CampfireBlock.canBeLit(blockState) || CandleBlock.canBeLit(blockState) || CandleCakeBlock.canBeLit(blockState)) {
+		if (CampfireBlock.canLight(blockState) || CandleBlock.canLight(blockState) || CandleCakeBlock.canLight(blockState)) {
 			// light lightable blocks
-			world.setBlockState(blockPos, blockState.with(Properties.LIT, true), 11);
-			world.emitGameEvent(null, GameEvent.BLOCK_PLACE, blockPos);
+			world.setBlock(blockPos, blockState.setValue(BlockStateProperties.LIT, true), 11);
+			world.gameEvent(null, GameEvent.BLOCK_PLACE, blockPos);
 			return true;
-		} else if (blockState.isIn(BlockTags.ICE)) {
+		} else if (blockState.is(BlockTags.ICE)) {
 			// smelt ice
-			world.setBlockState(blockPos, Blocks.WATER.getDefaultState());
+			world.setBlockAndUpdate(blockPos, Blocks.WATER.defaultBlockState());
 			return true;
 		} else if (BURNING_MAP.containsKey(blockState.getBlock())) {
-			Pair<BlockState, Float> dest = BURNING_MAP.get(blockState.getBlock());
-			if (dest.getRight() >= 1.0F || world.random.nextFloat() < dest.getRight()) {
+			Tuple<BlockState, Float> dest = BURNING_MAP.get(blockState.getBlock());
+			if (dest.getB() >= 1.0F || world.random.nextFloat() < dest.getB()) {
 				// convert netherrack to magma blocks
-				world.setBlockState(blockPos, dest.getLeft(), 11);
-				world.emitGameEvent(null, GameEvent.BLOCK_PLACE, blockPos);
+				world.setBlock(blockPos, dest.getA(), 11);
+				world.gameEvent(null, GameEvent.BLOCK_PLACE, blockPos);
 			}
 			return true;
 		} else {
 			// place fire
-			if (AbstractFireBlock.canPlaceAt(world, blockPos, side)) {
-				BlockState blockState2 = AbstractFireBlock.getState(world, blockPos);
-				world.setBlockState(blockPos, blockState2, 11);
-				world.emitGameEvent(null, GameEvent.BLOCK_PLACE, blockPos);
+			if (BaseFireBlock.canBePlacedAt(world, blockPos, side)) {
+				BlockState blockState2 = BaseFireBlock.getState(world, blockPos);
+				world.setBlock(blockPos, blockState2, 11);
+				world.gameEvent(null, GameEvent.BLOCK_PLACE, blockPos);
 				return true;
 			}
 		}
@@ -100,19 +98,19 @@ public class FirestarterIdolBlock extends IdolBlock {
 	}
 	
 	@Override
-	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+	public boolean trigger(ServerLevel world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		for (Direction direction : Direction.values()) {
-			if (causeFire(world, blockPos.offset(direction), direction)) {
-				world.playSound(null, blockPos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, world.getRandom().nextFloat() * 0.4F + 0.8F);
+			if (causeFire(world, blockPos.relative(direction), direction)) {
+				world.playSound(null, blockPos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, world.getRandom().nextFloat() * 0.4F + 0.8F);
 			}
 		}
 		return true;
 	}
 
 	@Override
-	public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
-		tooltip.add(Text.translatable("block.spectrum.firestarter_idol.tooltip"));
+	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
+		tooltip.add(Component.translatable("block.spectrum.firestarter_idol.tooltip"));
 	}
 	
 }

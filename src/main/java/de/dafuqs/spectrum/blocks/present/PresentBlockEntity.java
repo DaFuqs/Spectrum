@@ -3,15 +3,14 @@ package de.dafuqs.spectrum.blocks.present;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.component.type.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
+import net.minecraft.core.*;
 import net.minecraft.nbt.*;
-import net.minecraft.registry.*;
-import net.minecraft.server.network.*;
-import net.minecraft.util.math.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
 
 import java.util.*;
 
@@ -28,41 +27,41 @@ public class PresentBlockEntity extends BlockEntity implements PlayerOwnedWithNa
 	public void triggerAdvancement() {
 		UUID openerUUID = getOpenerUUID();
 		if (openerUUID != null) {
-			PlayerEntity opener = PlayerOwned.getPlayerEntityIfOnline(openerUUID);
+			Player opener = PlayerOwned.getPlayerEntityIfOnline(openerUUID);
 			if (opener != null) {
-				Support.grantAdvancementCriterion((ServerPlayerEntity) opener, "gift_or_open_present", "gifted_or_opened_present");
+				Support.grantAdvancementCriterion((ServerPlayer) opener, "gift_or_open_present", "gifted_or_opened_present");
 			}
 		}
 		
 		UUID ownerUUID = getOwnerUUID();
 		if (ownerUUID != null) {
-			PlayerEntity wrapper = PlayerOwned.getPlayerEntityIfOnline(ownerUUID);
+			Player wrapper = PlayerOwned.getPlayerEntityIfOnline(ownerUUID);
 			if (wrapper != null) {
-				Support.grantAdvancementCriterion((ServerPlayerEntity) wrapper, "gift_or_open_present", "gifted_or_opened_present");
+				Support.grantAdvancementCriterion((ServerPlayer) wrapper, "gift_or_open_present", "gifted_or_opened_present");
 			}
 		}
 	}
 	
 	@Override
-	public void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-		super.readNbt(nbt, registryLookup);
-		this.presentStack = ItemStack.fromNbtOrEmpty(registryLookup, nbt.getCompound("Present"));
+	public void loadAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
+		super.loadAdditional(nbt, registryLookup);
+		this.presentStack = ItemStack.parseOptional(registryLookup, nbt.getCompound("Present"));
 		if (nbt.contains("OpenerUUID")) {
-			this.openerUUID = nbt.getUuid("OpenerUUID");
+			this.openerUUID = nbt.getUUID("OpenerUUID");
 		} else {
 			this.openerUUID = null;
 		}
-		if (nbt.contains("OpeningTick", NbtElement.NUMBER_TYPE)) {
+		if (nbt.contains("OpeningTick", Tag.TAG_ANY_NUMERIC)) {
 			this.openingTicks = nbt.getInt("OpeningTick");
 		}
 	}
 	
 	@Override
-	protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-		super.writeNbt(nbt, registryLookup);
-		nbt.put("Present", this.presentStack.encodeAllowEmpty(registryLookup));
+	protected void saveAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
+		super.saveAdditional(nbt, registryLookup);
+		nbt.put("Present", this.presentStack.saveOptional(registryLookup));
 		if (this.openerUUID != null) {
-			nbt.putUuid("OpenerUUID", this.openerUUID);
+			nbt.putUUID("OpenerUUID", this.openerUUID);
 		}
 		if (this.openingTicks > 0) {
 			nbt.putInt("OpeningTick", this.openingTicks);
@@ -71,33 +70,33 @@ public class PresentBlockEntity extends BlockEntity implements PlayerOwnedWithNa
 	
 	public int openingTick() {
 		openingTicks++;
-		markDirty();
+		setChanged();
 		return this.openingTicks;
 	}
 	
 	@Override
 	public UUID getOwnerUUID() {
-		return PresentBlockItem.getOwner(this.presentStack).flatMap(ProfileComponent::id).orElse(null);
+		return PresentBlockItem.getOwner(this.presentStack).flatMap(ResolvableProfile::id).orElse(null);
 	}
 	
-	public ProfileComponent getOwner() {
+	public ResolvableProfile getOwner() {
 		return PresentBlockItem.getOwner(this.presentStack).orElse(null);
 	}
 
 	@Override
 	public String getOwnerName() {
-		return PresentBlockItem.getOwner(this.presentStack).flatMap(ProfileComponent::name).orElse("???");
+		return PresentBlockItem.getOwner(this.presentStack).flatMap(ResolvableProfile::name).orElse("???");
 	}
 
 	@Override
-	public void setOwner(PlayerEntity playerEntity) {
+	public void setOwner(Player playerEntity) {
 		PresentBlockItem.setOwner(this.presentStack, playerEntity);
-		markDirty();
+		setChanged();
 	}
 	
-	public void setOpenerUUID(PlayerEntity opener) {
-		this.openerUUID = opener.getUuid();
-		markDirty();
+	public void setOpenerUUID(Player opener) {
+		this.openerUUID = opener.getUUID();
+		setChanged();
 	}
 	
 	public UUID getOpenerUUID() {
@@ -118,7 +117,7 @@ public class PresentBlockEntity extends BlockEntity implements PlayerOwnedWithNa
 
 	public void setPresent(ItemStack present) {
 		this.presentStack = present;
-		markDirty();
+		setChanged();
 	}
 	
 	public boolean isEmpty() {

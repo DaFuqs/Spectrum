@@ -1,77 +1,77 @@
 package de.dafuqs.spectrum.blocks.structure;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.*;
 import de.dafuqs.spectrum.blocks.item_roundel.*;
 import de.dafuqs.spectrum.helpers.*;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.sound.*;
-import net.minecraft.state.*;
-import net.minecraft.state.property.*;
-import net.minecraft.util.*;
-import net.minecraft.util.hit.*;
-import net.minecraft.util.math.*;
+import net.minecraft.core.*;
+import net.minecraft.sounds.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.phys.*;
 
 public class PreservationRoundelBlock extends ItemRoundelBlock {
-
-	public static final MapCodec<PreservationRoundelBlock> CODEC = createCodec(PreservationRoundelBlock::new);
-
-	public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
-
-	public PreservationRoundelBlock(Settings settings) {
+	
+	public static final MapCodec<PreservationRoundelBlock> CODEC = simpleCodec(PreservationRoundelBlock::new);
+	
+	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+	
+	public PreservationRoundelBlock(Properties settings) {
 		super(settings);
-		this.setDefaultState((this.stateManager.getDefaultState()).with(FACING, Direction.NORTH));
+		this.registerDefaultState((this.stateDefinition.any()).setValue(FACING, Direction.NORTH));
 	}
 
 	@Override
-	public MapCodec<? extends PreservationRoundelBlock> getCodec() {
+	public MapCodec<? extends PreservationRoundelBlock> codec() {
 		return CODEC;
 	}
 	
 	@Override
-	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new PreservationRoundelBlockEntity(pos, state);
 	}
 	
 	@Override
-	public ItemActionResult onUseWithItem(ItemStack handStack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-		if (world.isClient) {
-			return ItemActionResult.SUCCESS;
+	public ItemInteractionResult useItemOn(ItemStack handStack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+		if (world.isClientSide) {
+			return ItemInteractionResult.SUCCESS;
 		} else {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof ItemRoundelBlockEntity itemRoundelBlockEntity) {
-				if (player.isSneaking() || handStack.isEmpty()) {
+				if (player.isShiftKeyDown() || handStack.isEmpty()) {
 					retrieveLastStack(world, pos, player, hand, handStack, itemRoundelBlockEntity);
 				} else {
 					int countBefore = handStack.getCount();
 					ItemStack leftoverStack = InventoryHelper.addToInventoryUpToSingleStackWithMaxTotalCount(handStack, itemRoundelBlockEntity, PreservationRoundelBlockEntity.INVENTORY_SIZE);
-					player.setStackInHand(hand, leftoverStack);
+					player.setItemInHand(hand, leftoverStack);
 					if (countBefore != leftoverStack.getCount()) {
-						world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
+						world.playSound(null, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
 						itemRoundelBlockEntity.inventoryChanged();
 					}
 				}
 			}
-			return ItemActionResult.CONSUME;
+			return ItemInteractionResult.CONSUME;
 		}
 	}
 	
 	
 	@Override
-	public BlockState rotate(BlockState state, BlockRotation rotation) {
-		return state.with(FACING, rotation.rotate(state.get(FACING)));
+	public BlockState rotate(BlockState state, Rotation rotation) {
+		return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
 	}
 	
 	@Override
-	public BlockState mirror(BlockState state, BlockMirror mirror) {
-		return state.rotate(mirror.getRotation(state.get(FACING)));
+	public BlockState mirror(BlockState state, Mirror mirror) {
+		return state.rotate(mirror.getRotation(state.getValue(FACING)));
 	}
 	
 	@Override
-	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(FACING);
 	}
 	

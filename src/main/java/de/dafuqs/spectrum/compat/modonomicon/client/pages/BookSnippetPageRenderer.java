@@ -7,7 +7,8 @@ import com.klikli_dev.modonomicon.client.render.page.*;
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.compat.modonomicon.pages.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
 
 public class BookSnippetPageRenderer extends BookPageRenderer<BookSnippetPage> implements PageWithTextRenderer {
@@ -17,26 +18,26 @@ public class BookSnippetPageRenderer extends BookPageRenderer<BookSnippetPage> i
     }
 
     @Override
-    public void render(DrawContext drawContext, int mouseX, int mouseY, float ticks) {
+	public void render(GuiGraphics drawContext, int mouseX, int mouseY, float ticks) {
         if (page.hasTitle()) {
             renderTitle(drawContext, page.getTitle(), page.showTitleSeparator(), BookEntryScreen.PAGE_WIDTH / 2, 0);
         }
 
         if (page.getText() instanceof RenderedBookTextHolder renderedText) {
             int y = getTextY();
-            for (MutableText component : renderedText.getRenderedText()) {
+			for (MutableComponent component : renderedText.getRenderedText()) {
                 var wrapped = MarkdownComponentRenderUtils.wrapComponents(component, BookEntryScreen.PAGE_WIDTH - 10, BookEntryScreen.PAGE_WIDTH - 10, font);
-                for (OrderedText orderedText : wrapped) {
+				for (FormattedCharSequence orderedText : wrapped) {
                     drawCenteredStringNoShadow(drawContext, orderedText, page.getBook().getBookTextOffsetWidth() + BookEntryScreen.PAGE_WIDTH / 2, y, 0, 1);
-                    y += font.fontHeight;
+					y += font.lineHeight;
                 }
             }
         } else {
-            drawCenteredStringNoShadow(drawContext, page.getText().getComponent().asOrderedText(), BookEntryScreen.PAGE_WIDTH / 2, getTextY(), 0, 1);
+			drawCenteredStringNoShadow(drawContext, page.getText().getComponent().getVisualOrderText(), BookEntryScreen.PAGE_WIDTH / 2, getTextY(), 0, 1);
         }
 
         RenderSystem.enableBlend();
-        drawContext.drawTexture(page.getResourcePath(), 58 - page.getTextureWidth() / 2, getImageY(),
+		drawContext.blit(page.getResourcePath(), 58 - page.getTextureWidth() / 2, getImageY(),
                 page.getTextureX(), page.getTextureY(),
                 page.getTextureWidth(), page.getTextureHeight(),
                 page.getResourceWidth(), page.getResourceHeight());
@@ -69,27 +70,27 @@ public class BookSnippetPageRenderer extends BookPageRenderer<BookSnippetPage> i
     @Override
     protected Style getClickedComponentStyleAtForTextHolder(BookTextHolder text, int x, int y, int width, int height, double pMouseX, double pMouseY) {
         if (text.hasComponent()) {
-            for (OrderedText formattedCharSequence : font.wrapLines(text.getComponent(), width)) {
-                if (pMouseY > y && pMouseY < y + font.fontHeight) {
-                    x -= font.getWidth(formattedCharSequence) / 2;
+			for (FormattedCharSequence formattedCharSequence : font.split(text.getComponent(), width)) {
+				if (pMouseY > y && pMouseY < y + font.lineHeight) {
+					x -= font.width(formattedCharSequence) / 2;
                     if (pMouseX < x)
                         return null;
-                    return font.getTextHandler().getStyleAt(formattedCharSequence, (int) pMouseX - x);
+					return font.getSplitter().componentStyleAtWidth(formattedCharSequence, (int) pMouseX - x);
                 }
-                y += font.fontHeight;
+				y += font.lineHeight;
             }
         } else if (text instanceof RenderedBookTextHolder renderedText) {
             var components = renderedText.getRenderedText();
             for (var component : components) {
                 var wrapped = MarkdownComponentRenderUtils.wrapComponents(component, width, width - 10, font);
-                for (OrderedText formattedCharSequence : wrapped) {
-                    if (pMouseY > y && pMouseY < y + font.fontHeight) {
-                        x -= font.getWidth(formattedCharSequence) / 2;
+				for (FormattedCharSequence formattedCharSequence : wrapped) {
+					if (pMouseY > y && pMouseY < y + font.lineHeight) {
+						x -= font.width(formattedCharSequence) / 2;
                         if (pMouseX < x)
                             return null;
-                        return font.getTextHandler().getStyleAt(formattedCharSequence, (int) pMouseX - x);
+						return font.getSplitter().componentStyleAtWidth(formattedCharSequence, (int) pMouseX - x);
                     }
-                    y += font.fontHeight;
+					y += font.lineHeight;
                 }
             }
         }

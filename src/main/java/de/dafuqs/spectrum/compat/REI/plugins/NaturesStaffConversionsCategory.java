@@ -8,7 +8,7 @@ import me.shedaniel.rei.api.client.gui.widgets.*;
 import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.fabricmc.api.*;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -27,8 +27,8 @@ public class NaturesStaffConversionsCategory extends GatedDisplayCategory<Nature
 	}
 	
 	@Override
-	public Text getTitle() {
-		return SpectrumItems.NATURES_STAFF.getName();
+	public Component getTitle() {
+		return SpectrumItems.NATURES_STAFF.getDescription();
 	}
 	
 	@Override

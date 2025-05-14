@@ -5,7 +5,7 @@ import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.registries.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.fabricmc.api.*;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
 
 import java.util.*;
 
@@ -123,19 +123,19 @@ public class TotalCappedInkStorage implements InkStorage {
 	}
 	
 	@Override
-	public void clear() {
+	public void clearContent() {
 		this.storedEnergy.clear();
 		this.currentTotal = 0;
 	}
 	
 	@Override
 	@Environment(EnvType.CLIENT)
-	public void addTooltip(List<Text> tooltip) {
-		tooltip.add(Text.translatable("item.spectrum.total_capped_simple_pigment_energy_storage.tooltip", getShortenedNumberString(maxEnergyTotal)));
+	public void addTooltip(List<Component> tooltip) {
+		tooltip.add(Component.translatable("item.spectrum.total_capped_simple_pigment_energy_storage.tooltip", getShortenedNumberString(maxEnergyTotal)));
 		addInkContentTooltip(tooltip);
 	}
 	
-	protected void addInkContentTooltip(List<Text> tooltip) {
+	protected void addInkContentTooltip(List<Component> tooltip) {
 		// we are iterating them this way to preserve the ordering in which they were registered
 		for (InkColor color : SpectrumRegistries.INK_COLOR) {
 			long amount = this.storedEnergy.getOrDefault(color, 0L);

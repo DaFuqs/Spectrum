@@ -5,17 +5,18 @@ import de.dafuqs.spectrum.blocks.item_roundel.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
+import net.minecraft.core.*;
+import net.minecraft.core.particles.*;
+import net.minecraft.core.registries.*;
 import net.minecraft.nbt.*;
-import net.minecraft.particle.*;
-import net.minecraft.registry.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import net.minecraft.resources.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.phys.*;
 
 import java.util.*;
 
@@ -33,38 +34,38 @@ public class PreservationRoundelBlockEntity extends ItemRoundelBlockEntity imple
 	}
 	
 	@Override
-	public void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-		super.readNbt(nbt, registryLookup);
+	public void loadAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
+		super.loadAdditional(nbt, registryLookup);
 		this.requiredItems = new ArrayList<>();
-		if (nbt.contains("RequiredItems", NbtElement.LIST_TYPE)) {
-			for (NbtElement e : nbt.getList("RequiredItems", NbtElement.STRING_TYPE)) {
-				Item item = Registries.ITEM.get(Identifier.tryParse(e.asString()));
+		if (nbt.contains("RequiredItems", Tag.TAG_LIST)) {
+			for (Tag e : nbt.getList("RequiredItems", Tag.TAG_STRING)) {
+				Item item = BuiltInRegistries.ITEM.get(ResourceLocation.tryParse(e.getAsString()));
 				if (item != Items.AIR) {
 					this.requiredItems.add(item);
 				}
 			}
 		}
 		this.controllerOffset = null;
-		if (nbt.contains("ControllerOffset", NbtElement.INT_ARRAY_TYPE)) {
+		if (nbt.contains("ControllerOffset", Tag.TAG_INT_ARRAY)) {
 			int[] offset = nbt.getIntArray("ControllerOffset");
 			this.controllerOffset = new Vec3i(offset[0], offset[1], offset[2]);
 		}
 		otherRoundelOffsets = new ArrayList<>();
-		if (nbt.contains("OtherRoundelOffsets", NbtElement.LIST_TYPE)) {
-			for (NbtElement e : nbt.getList("OtherRoundelOffsets", NbtElement.INT_ARRAY_TYPE)) {
-				int[] intArray = ((NbtIntArray) e).getIntArray();
+		if (nbt.contains("OtherRoundelOffsets", Tag.TAG_LIST)) {
+			for (Tag e : nbt.getList("OtherRoundelOffsets", Tag.TAG_INT_ARRAY)) {
+				int[] intArray = ((IntArrayTag) e).getAsIntArray();
 				otherRoundelOffsets.add(new Vec3i(intArray[0], intArray[1], intArray[2]));
 			}
 		}
 	}
 	
 	@Override
-	public void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-		super.writeNbt(nbt, registryLookup);
+	public void saveAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
+		super.saveAdditional(nbt, registryLookup);
 		if (!this.requiredItems.isEmpty()) {
-			NbtList itemList = new NbtList();
+			ListTag itemList = new ListTag();
 			for (Item requiredItem : this.requiredItems) {
-				itemList.add(NbtString.of(Registries.ITEM.getId(requiredItem).toString()));
+				itemList.add(StringTag.valueOf(BuiltInRegistries.ITEM.getKey(requiredItem).toString()));
 			}
 			nbt.put("RequiredItems", itemList);
 		}
@@ -72,24 +73,24 @@ public class PreservationRoundelBlockEntity extends ItemRoundelBlockEntity imple
 			nbt.putIntArray("ControllerOffset", new int[]{this.controllerOffset.getX(), this.controllerOffset.getY(), this.controllerOffset.getZ()});
 		}
 		if (!this.otherRoundelOffsets.isEmpty()) {
-			NbtList offsetList = new NbtList();
+			ListTag offsetList = new ListTag();
 			for (Vec3i offset : this.otherRoundelOffsets) {
-				offsetList.add(new NbtIntArray(new int[]{offset.getX(), offset.getY(), offset.getZ()}));
+				offsetList.add(new IntArrayTag(new int[]{offset.getX(), offset.getY(), offset.getZ()}));
 			}
 			nbt.put("OtherRoundelOffsets", offsetList);
 		}
 	}
 	
 	@Override
-	public boolean copyItemDataRequiresOperator() {
+	public boolean onlyOpCanSetNbt() {
 		return true;
 	}
 	
 	@Override
 	public void inventoryChanged() {
 		super.inventoryChanged();
-		if (world instanceof ServerWorld && controllerOffset != null && inventoryAndConnectedOnesMatchRequirement()) {
-			BlockEntity blockEntity = world.getBlockEntity(Support.directionalOffset(this.pos, this.controllerOffset, world.getBlockState(this.pos).get(PreservationControllerBlock.FACING)));
+		if (level instanceof ServerLevel && controllerOffset != null && inventoryAndConnectedOnesMatchRequirement()) {
+			BlockEntity blockEntity = level.getBlockEntity(Support.directionalOffset(this.worldPosition, this.controllerOffset, level.getBlockState(this.worldPosition).getValue(PreservationControllerBlock.FACING)));
 			if (blockEntity instanceof PreservationControllerBlockEntity controller) {
 				// grant advancement
 				controller.openExit();
@@ -98,14 +99,14 @@ public class PreservationRoundelBlockEntity extends ItemRoundelBlockEntity imple
 	}
 	
 	public boolean inventoryAndConnectedOnesMatchRequirement() {
-		if (!inventoryMatchesRequirement() || world == null) {
+		if (!inventoryMatchesRequirement() || level == null) {
 			return false;
 		}
 		
 		
 		for (Vec3i otherRoundelOffset : this.otherRoundelOffsets) {
-			BlockPos otherRoundelPos = Support.directionalOffset(this.pos, otherRoundelOffset, world.getBlockState(this.pos).get(PreservationControllerBlock.FACING));
-			if (world.getBlockEntity(otherRoundelPos) instanceof PreservationRoundelBlockEntity preservationRoundelBlockEntity) {
+			BlockPos otherRoundelPos = Support.directionalOffset(this.worldPosition, otherRoundelOffset, level.getBlockState(this.worldPosition).getValue(PreservationControllerBlock.FACING));
+			if (level.getBlockEntity(otherRoundelPos) instanceof PreservationRoundelBlockEntity preservationRoundelBlockEntity) {
 				if (!preservationRoundelBlockEntity.inventoryMatchesRequirement()) {
 					return false;
 				}
@@ -122,12 +123,12 @@ public class PreservationRoundelBlockEntity extends ItemRoundelBlockEntity imple
 		
 		List<Item> requirements = new ArrayList<>(this.requiredItems);
 		
-		for (int i = 0; i < size(); i++) {
-			ItemStack slotStack = getStack(i);
+		for (int i = 0; i < getContainerSize(); i++) {
+			ItemStack slotStack = getItem(i);
 			if (!slotStack.isEmpty()) {
 				int usedCount = 0;
 				for (int j = 0; j < requirements.size(); j++) {
-					if (slotStack.isOf(requirements.get(j))) {
+					if (slotStack.is(requirements.get(j))) {
 						requirements.remove(j);
 						j--;
 						usedCount++;
@@ -142,9 +143,9 @@ public class PreservationRoundelBlockEntity extends ItemRoundelBlockEntity imple
 			}
 		}
 		
-		if (requirements.isEmpty() && world != null) {
-			PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, Vec3d.ofCenter(pos), ParticleTypes.HAPPY_VILLAGER, 10, new Vec3d(0.25, 0.5, 0.25), new Vec3d(0.1, 0.1, 0.1));
-			world.playSound(null, pos, SpectrumSoundEvents.NEW_RECIPE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+		if (requirements.isEmpty() && level != null) {
+			PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerLevel) level, Vec3.atCenterOf(worldPosition), ParticleTypes.HAPPY_VILLAGER, 10, new Vec3(0.25, 0.5, 0.25), new Vec3(0.1, 0.1, 0.1));
+			level.playSound(null, worldPosition, SpectrumSoundEvents.NEW_RECIPE, SoundSource.BLOCKS, 1.0F, 1.0F);
 			return true;
 		}
 		return false;
@@ -161,9 +162,9 @@ public class PreservationRoundelBlockEntity extends ItemRoundelBlockEntity imple
 	}
 	
 	@Override
-	public void setOwner(PlayerEntity playerEntity) {
-		this.lastInteractedPlayer = playerEntity.getUuid();
-		markDirty();
+	public void setOwner(Player playerEntity) {
+		this.lastInteractedPlayer = playerEntity.getUUID();
+		setChanged();
 	}
 	
 }

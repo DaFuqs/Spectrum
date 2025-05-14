@@ -9,10 +9,11 @@ import it.unimi.dsi.fastutil.objects.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.*;
 import net.fabricmc.fabric.api.client.render.fluid.v1.*;
-import net.minecraft.client.render.*;
-import net.minecraft.fluid.*;
-import net.minecraft.registry.*;
-import net.minecraft.util.*;
+import net.minecraft.client.renderer.*;
+import net.minecraft.core.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.level.material.*;
 import org.joml.*;
 
 
@@ -26,7 +27,7 @@ public class SpectrumFluids {
 	public static final SpectrumFluid FLOWING_LIQUID_CRYSTAL = new LiquidCrystalFluid.Flowing();
 	public static final int LIQUID_CRYSTAL_TINT = 0xcbbbcb;
 	public static final Vector3f LIQUID_CRYSTAL_COLOR_VEC = SpectrumColorHelper.colorIntToVec(LIQUID_CRYSTAL_TINT);
-	public static final Identifier LIQUID_CRYSTAL_OVERLAY_TEXTURE = SpectrumCommon.locate("textures/misc/liquid_crystal_overlay.png");
+	public static final ResourceLocation LIQUID_CRYSTAL_OVERLAY_TEXTURE = SpectrumCommon.locate("textures/misc/liquid_crystal_overlay.png");
 	public static final float LIQUID_CRYSTAL_OVERLAY_ALPHA = 0.6F;
 	
 	// GOO
@@ -34,7 +35,7 @@ public class SpectrumFluids {
 	public static final SpectrumFluid FLOWING_GOO = new GooFluid.FlowingGoo();
 	public static final int GOO_TINT = 0x4e2e0a;
 	public static final Vector3f GOO_COLOR_VEC = SpectrumColorHelper.colorIntToVec(GOO_TINT);
-	public static final Identifier GOO_OVERLAY_TEXTURE = SpectrumCommon.locate("textures/misc/goo_overlay.png");
+	public static final ResourceLocation GOO_OVERLAY_TEXTURE = SpectrumCommon.locate("textures/misc/goo_overlay.png");
 	public static final float GOO_OVERLAY_ALPHA = 0.995F;
 	
 	// MIDNIGHT SOLUTION
@@ -42,7 +43,7 @@ public class SpectrumFluids {
 	public static final SpectrumFluid FLOWING_MIDNIGHT_SOLUTION = new MidnightSolutionFluid.Flowing();
 	public static final int MIDNIGHT_SOLUTION_TINT = 0x11183b;
 	public static final Vector3f MIDNIGHT_SOLUTION_COLOR_VEC = SpectrumColorHelper.colorIntToVec(MIDNIGHT_SOLUTION_TINT);
-	public static final Identifier MIDNIGHT_SOLUTION_OVERLAY_TEXTURE = SpectrumCommon.locate("textures/misc/midnight_solution_overlay.png");
+	public static final ResourceLocation MIDNIGHT_SOLUTION_OVERLAY_TEXTURE = SpectrumCommon.locate("textures/misc/midnight_solution_overlay.png");
 	public static final float MIDNIGHT_SOLUTION_OVERLAY_ALPHA = 0.995F;
 	
 	// DRAGONROT
@@ -50,7 +51,7 @@ public class SpectrumFluids {
 	public static final SpectrumFluid FLOWING_DRAGONROT = new DragonrotFluid.Flowing();
 	public static final int DRAGONROT_TINT = 0xe3772f;
 	public static final Vector3f DRAGONROT_COLOR_VEC = SpectrumColorHelper.colorIntToVec(DRAGONROT_TINT);
-	public static final Identifier DRAGONROT_OVERLAY_TEXTURE = SpectrumCommon.locate("textures/misc/dragonrot_overlay.png");
+	public static final ResourceLocation DRAGONROT_OVERLAY_TEXTURE = SpectrumCommon.locate("textures/misc/dragonrot_overlay.png");
 	public static final float DRAGONROT_OVERLAY_ALPHA = 0.98F;
 	
 	public static void register() {
@@ -61,8 +62,8 @@ public class SpectrumFluids {
 	}
 	
 	private static void registerFluid(String name, Fluid stillFluid, Fluid flowingFluid, InkColor color) {
-		Registry.register(Registries.FLUID, SpectrumCommon.locate(name), stillFluid);
-		Registry.register(Registries.FLUID, SpectrumCommon.locate("flowing_" + name), flowingFluid);
+		Registry.register(BuiltInRegistries.FLUID, SpectrumCommon.locate(name), stillFluid);
+		Registry.register(BuiltInRegistries.FLUID, SpectrumCommon.locate("flowing_" + name), flowingFluid);
 		ItemColors.FLUID_COLORS.registerColorMapping(stillFluid, color);
 		ItemColors.FLUID_COLORS.registerColorMapping(flowingFluid, color);
 	}
@@ -85,8 +86,8 @@ public class SpectrumFluids {
 		
 		HANDLER_MAP.put(handler, new Fluid[]{stillFluid, flowingFluid});
 		FluidRenderHandlerRegistry.INSTANCE.register(stillFluid, flowingFluid, handler);
-
-		BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), stillFluid, flowingFluid);
+		
+		BlockRenderLayerMap.INSTANCE.putFluids(RenderType.translucent(), stillFluid, flowingFluid);
 	}
 	
 }

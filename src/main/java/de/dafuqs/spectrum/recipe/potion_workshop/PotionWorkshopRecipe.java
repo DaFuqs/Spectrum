@@ -6,19 +6,18 @@ import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.potion_workshop.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.item.*;
-import net.minecraft.recipe.*;
-import net.minecraft.recipe.input.*;
-import net.minecraft.util.*;
-import net.minecraft.util.collection.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public abstract class PotionWorkshopRecipe extends GatedStackSpectrumRecipe<RecipeInput> {
 	
-	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/potion_workshop");
+	public static final ResourceLocation UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/potion_workshop");
 	public static final int[] INGREDIENT_SLOTS = new int[]{2, 3, 4};
 	
 	protected final int craftingTime;
@@ -29,7 +28,7 @@ public abstract class PotionWorkshopRecipe extends GatedStackSpectrumRecipe<Reci
 	protected final IngredientStack ingredient3;
 	
 	public PotionWorkshopRecipe(
-			String group, boolean secret, Optional<Identifier> requiredAdvancementIdentifier, int craftingTime, int color,
+			String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier, int craftingTime, int color,
 			IngredientStack ingredient1, IngredientStack ingredient2, IngredientStack ingredient3
 	) {
 		super(group, secret, requiredAdvancementIdentifier);
@@ -52,15 +51,15 @@ public abstract class PotionWorkshopRecipe extends GatedStackSpectrumRecipe<Reci
 		return ingredients;
 	}
 	
-	protected void addIngredientStacks(DefaultedList<IngredientStack> ingredients) {
+	protected void addIngredientStacks(NonNullList<IngredientStack> ingredients) {
 		ingredients.add(this.ingredient1);
 		ingredients.add(this.ingredient2);
 		ingredients.add(this.ingredient3);
 	}
 	
 	@Override
-	public boolean matches(@NotNull RecipeInput inv, World world) {
-		if (inv.getSize() > 4 && inv.getStackInSlot(0).isOf(SpectrumItems.MERMAIDS_GEM) && isValidBaseIngredient(inv.getStackInSlot(1))) {
+	public boolean matches(@NotNull RecipeInput inv, Level world) {
+		if (inv.size() > 4 && inv.getItem(0).is(SpectrumItems.MERMAIDS_GEM) && isValidBaseIngredient(inv.getItem(1))) {
 			
 			if (usesReagents()) {
 				if (!areStacksInReagentSlotsAllReagents(inv)) return false;
@@ -77,7 +76,7 @@ public abstract class PotionWorkshopRecipe extends GatedStackSpectrumRecipe<Reci
 	
 	private boolean areStacksInReagentSlotsAllReagents(@NotNull RecipeInput inv) {
 		for (int i : PotionWorkshopBlockEntity.REAGENT_SLOTS) {
-			ItemStack itemStack = inv.getStackInSlot(i);
+			ItemStack itemStack = inv.getItem(i);
 			if (!itemStack.isEmpty() && !PotionWorkshopReactingRecipe.isReagent(itemStack.getItem())) {
 				return false;
 			}
@@ -87,7 +86,7 @@ public abstract class PotionWorkshopRecipe extends GatedStackSpectrumRecipe<Reci
 	
 	private boolean areReagentSlotsEmpty(@NotNull RecipeInput inv) {
 		for (int i : PotionWorkshopBlockEntity.REAGENT_SLOTS) {
-			if (!inv.getStackInSlot(i).isEmpty()) {
+			if (!inv.getItem(i).isEmpty()) {
 				return false;
 			}
 		}
@@ -97,13 +96,13 @@ public abstract class PotionWorkshopRecipe extends GatedStackSpectrumRecipe<Reci
 	public abstract boolean isValidBaseIngredient(ItemStack itemStack);
 	
 	@Override
-	public boolean fits(int width, int height) {
+	public boolean canCraftInDimensions(int width, int height) {
 		return true;
 	}
 	
 	@Override
-	public ItemStack createIcon() {
-		return SpectrumBlocks.POTION_WORKSHOP.asItem().getDefaultStack();
+	public ItemStack getToastSymbol() {
+		return SpectrumBlocks.POTION_WORKSHOP.asItem().getDefaultInstance();
 	}
 	
 	public int getCraftingTime() {
@@ -129,7 +128,7 @@ public abstract class PotionWorkshopRecipe extends GatedStackSpectrumRecipe<Reci
 	}
 	
 	@Override
-	public @Nullable Identifier getRecipeTypeUnlockIdentifier() {
+	public @Nullable ResourceLocation getRecipeTypeUnlockIdentifier() {
 		return UNLOCK_IDENTIFIER;
 	}
 	

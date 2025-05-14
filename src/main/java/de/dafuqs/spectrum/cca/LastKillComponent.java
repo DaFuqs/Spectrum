@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.cca;
 
 import de.dafuqs.spectrum.*;
-import net.minecraft.entity.*;
+import net.minecraft.core.*;
 import net.minecraft.nbt.*;
-import net.minecraft.registry.*;
+import net.minecraft.world.entity.*;
 import org.jetbrains.annotations.*;
 import org.ladysnake.cca.api.v3.component.*;
 
@@ -24,15 +24,15 @@ public class LastKillComponent implements Component {
 	}
 	
 	@Override
-	public void writeToNbt(@NotNull NbtCompound tag, RegistryWrapper.WrapperLookup wrapperLookup) {
+	public void writeToNbt(@NotNull CompoundTag tag, HolderLookup.Provider wrapperLookup) {
 		if (this.lastKillTick >= 0) {
 			tag.putLong("last_kill_tick", this.lastKillTick);
 		}
 	}
 	
 	@Override
-	public void readFromNbt(NbtCompound tag, RegistryWrapper.WrapperLookup wrapperLookup) {
-		if (tag.contains("last_kill_tick", NbtElement.LONG_TYPE)) {
+	public void readFromNbt(CompoundTag tag, HolderLookup.Provider wrapperLookup) {
+		if (tag.contains("last_kill_tick", Tag.TAG_LONG)) {
 			this.lastKillTick = tag.getLong("last_kill_tick");
 		}
 	}

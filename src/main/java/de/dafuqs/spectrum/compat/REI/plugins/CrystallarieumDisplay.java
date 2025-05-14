@@ -8,10 +8,10 @@ import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.display.basic.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
-import net.minecraft.block.*;
 import net.minecraft.client.*;
-import net.minecraft.item.*;
-import net.minecraft.recipe.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.block.state.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -24,7 +24,7 @@ public class CrystallarieumDisplay extends GatedSpectrumDisplay {
 	protected final boolean growsWithoutCatalyst;
 	protected final int secondsPerStage;
 	
-	public CrystallarieumDisplay(@NotNull RecipeEntry<CrystallarieumRecipe> recipe) {
+	public CrystallarieumDisplay(@NotNull RecipeHolder<CrystallarieumRecipe> recipe) {
 		super(recipe, inputs(recipe.value()), outputs(recipe.value()));
 		
 		this.growthStages = new ArrayList<>();
@@ -50,7 +50,7 @@ public class CrystallarieumDisplay extends GatedSpectrumDisplay {
 	
 	public static List<EntryIngredient> outputs(CrystallarieumRecipe recipe) {
 		List<EntryIngredient> outputs = new ArrayList<>();
-		outputs.add(EntryIngredients.of(recipe.getResult(BasicDisplay.registryAccess())));
+		outputs.add(EntryIngredients.of(recipe.getResultItem(BasicDisplay.registryAccess())));
 		for (ItemStack additionalOutput : recipe.getAdditionalResults()) {
 			outputs.add(EntryIngredients.of(additionalOutput));
 		}
@@ -71,7 +71,7 @@ public class CrystallarieumDisplay extends GatedSpectrumDisplay {
 	
 	@Override
     public boolean isUnlocked() {
-		MinecraftClient client = MinecraftClient.getInstance();
+		Minecraft client = Minecraft.getInstance();
 		return AdvancementHelper.hasAdvancement(client.player, CrystallarieumRecipe.UNLOCK_IDENTIFIER) && super.isUnlocked();
 	}
 	

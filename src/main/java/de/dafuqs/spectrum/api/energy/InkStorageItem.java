@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.api.energy;
 
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.item.*;
+import net.minecraft.world.item.*;
 
 /**
  * Defines that an object holds a PigmentEnergyStorage
@@ -44,10 +44,10 @@ public interface InkStorageItem<PStorage extends InkStorage> {
 		itemStack.set(SpectrumDataComponentTypes.INK_STORAGE, new InkStorageComponent(storage));
 	}
 	
-	ItemStack getDefaultStack();
+	ItemStack getDefaultInstance();
 	
 	default ItemStack getFullStack() {
-		ItemStack stack = this.getDefaultStack();
+		ItemStack stack = this.getDefaultInstance();
 		PStorage storage = getEnergyStorage(stack);
 		storage.fillCompletely();
 		setEnergyStorage(stack, storage);
@@ -56,7 +56,7 @@ public interface InkStorageItem<PStorage extends InkStorage> {
 	
 	default void clearEnergyStorage(ItemStack stack) {
 		PStorage storage = getEnergyStorage(stack);
-		storage.clear();
+		storage.clearContent();
 		setEnergyStorage(stack, storage);
 	}
 	

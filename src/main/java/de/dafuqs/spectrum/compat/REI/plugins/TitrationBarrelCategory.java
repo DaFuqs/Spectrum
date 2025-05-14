@@ -10,7 +10,7 @@ import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.fabricmc.api.*;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -24,7 +24,7 @@ public class TitrationBarrelCategory extends GatedDisplayCategory<TitrationBarre
 	}
 	
 	@Override
-	public Text getTitle() {
+	public Component getTitle() {
 		return SpectrumBlocks.TITRATION_BARREL.getName();
 	}
 	
@@ -66,7 +66,7 @@ public class TitrationBarrelCategory extends GatedDisplayCategory<TitrationBarre
 		widgets.add(Widgets.createSlot(new Point(startPoint.x + 95, startPoint.y + 11)).markOutput().disableBackground().entries(display.getOutputEntries().get(0)));
 		
 		// duration text
-		MutableText text = TitrationBarrelRecipe.getDurationText(display.minFermentationTimeHours, display.fermentationData);
+		MutableComponent text = TitrationBarrelRecipe.getDurationText(display.minFermentationTimeHours, display.fermentationData);
 		widgets.add(Widgets.createLabel(new Point(startPoint.x - 10, startPoint.y + 42), text).leftAligned().color(0x3f3f3f).noShadow());
 	}
 	

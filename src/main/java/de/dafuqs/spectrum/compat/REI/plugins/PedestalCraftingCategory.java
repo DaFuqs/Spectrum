@@ -12,8 +12,8 @@ import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.fabricmc.api.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -27,13 +27,13 @@ public class PedestalCraftingCategory extends GatedDisplayCategory<PedestalCraft
 	}
 	
 	@Override
-	public Identifier getIdentifier() {
+	public ResourceLocation getIdentifier() {
 		return SpectrumCommon.locate("pedestal_crafting");
 	}
 	
 	@Override
-	public Text getTitle() {
-		return Text.translatable("container.spectrum.rei.pedestal_crafting.title");
+	public Component getTitle() {
+		return Component.translatable("container.spectrum.rei.pedestal_crafting.title");
 	}
 	
 	@Override
@@ -43,7 +43,7 @@ public class PedestalCraftingCategory extends GatedDisplayCategory<PedestalCraft
 	
 	@Override
 	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, @NotNull PedestalCraftingDisplay display) {
-		Identifier backgroundTexture = PedestalScreen.getBackgroundTextureForTier(display.getTier());
+		ResourceLocation backgroundTexture = PedestalScreen.getBackgroundTextureForTier(display.getTier());
 		widgets.add(Widgets.createArrow(new Point(startPoint.x + 60, startPoint.y + 1 + 18)).animationDurationTicks(display.craftingTime));
 		
 		int powderSlotCount = display.getTier().getPowderSlotCount();
@@ -77,7 +77,7 @@ public class PedestalCraftingCategory extends GatedDisplayCategory<PedestalCraft
 		widgets.add(Widgets.createTexturedWidget(backgroundTexture, startPoint.x + 82, startPoint.y + 39, 200, 0, 40, 16));
 		
 		// description text
-		Text text = getCraftingTimeText(display.craftingTime, display.experience);
+		Component text = getCraftingTimeText(display.craftingTime, display.experience);
 		widgets.add(Widgets.createLabel(new Point(bounds.getCenterX(), startPoint.y + 82), text).centered().color(0x3f3f3f).noShadow());
 		
 		if (display.shapeless) {

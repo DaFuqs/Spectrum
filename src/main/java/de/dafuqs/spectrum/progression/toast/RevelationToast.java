@@ -4,22 +4,21 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
-import net.minecraft.client.font.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.client.sound.*;
-import net.minecraft.client.toast.*;
-import net.minecraft.item.*;
-import net.minecraft.sound.*;
-import net.minecraft.text.*;
+import net.minecraft.client.gui.components.toasts.*;
+import net.minecraft.client.resources.sounds.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
+import net.minecraft.sounds.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import net.minecraft.world.item.*;
 
 import java.util.*;
 
 @Environment(EnvType.CLIENT)
 public class RevelationToast implements Toast {
 	
-	private final Identifier TEXTURE = SpectrumCommon.locate("textures/gui/toasts.png");
+	private final ResourceLocation TEXTURE = SpectrumCommon.locate("textures/gui/toasts.png");
 	private final ItemStack itemStack;
 	private final SoundEvent soundEvent;
 	private boolean soundPlayed;
@@ -30,53 +29,53 @@ public class RevelationToast implements Toast {
 		this.soundPlayed = false;
 	}
 	
-	public static void showRevelationToast(MinecraftClient client, ItemStack itemStack, SoundEvent soundEvent) {
-		client.getToastManager().add(new RevelationToast(itemStack, soundEvent));
+	public static void showRevelationToast(Minecraft client, ItemStack itemStack, SoundEvent soundEvent) {
+		client.getToasts().addToast(new RevelationToast(itemStack, soundEvent));
 	}
 	
 	@Override
-	public Toast.Visibility draw(DrawContext drawContext, ToastManager manager, long startTime) {
-		Text title = Text.translatable("spectrum.toast.revelation.title");
-		Text text = Text.translatable("spectrum.toast.revelation.text");
+	public Toast.Visibility render(GuiGraphics drawContext, ToastComponent manager, long startTime) {
+		Component title = Component.translatable("spectrum.toast.revelation.title");
+		Component text = Component.translatable("spectrum.toast.revelation.text");
 		
-		MinecraftClient client = manager.getClient();
-		TextRenderer textRenderer = client.textRenderer;
-		drawContext.drawTexture(TEXTURE, 0, 0, 0, 0, this.getWidth(), this.getHeight());
+		Minecraft client = manager.getMinecraft();
+		Font textRenderer = client.font;
+		drawContext.blit(TEXTURE, 0, 0, 0, 0, this.width(), this.height());
 		
-		List<OrderedText> wrappedText = textRenderer.wrapLines(text, 125);
-		List<OrderedText> wrappedTitle = textRenderer.wrapLines(title, 125);
+		List<FormattedCharSequence> wrappedText = textRenderer.split(text, 125);
+		List<FormattedCharSequence> wrappedTitle = textRenderer.split(title, 125);
 		int l;
 		long toastTimeMilliseconds = SpectrumCommon.CONFIG.ToastTimeMilliseconds;
 		if (startTime < toastTimeMilliseconds / 2) {
-			l = MathHelper.floor(MathHelper.clamp((float) (toastTimeMilliseconds / 2 - startTime) / 300.0F, 0.0F, 1.0F) * 255.0F) << 24 | 67108864;
-			int halfHeight = this.getHeight() / 2;
+			l = Mth.floor(Mth.clamp((float) (toastTimeMilliseconds / 2 - startTime) / 300.0F, 0.0F, 1.0F) * 255.0F) << 24 | 67108864;
+			int halfHeight = this.height() / 2;
 			int titleSize = wrappedTitle.size();
 			int m = halfHeight - titleSize * 9 / 2;
 			
-			for (Iterator<OrderedText> it = wrappedTitle.iterator(); it.hasNext(); m += 9) {
-				OrderedText orderedText = it.next();
-				drawContext.drawText(textRenderer, orderedText, 30, m, RenderHelper.GREEN_COLOR | l, false);
+			for (Iterator<FormattedCharSequence> it = wrappedTitle.iterator(); it.hasNext(); m += 9) {
+				FormattedCharSequence orderedText = it.next();
+				drawContext.drawString(textRenderer, orderedText, 30, m, RenderHelper.GREEN_COLOR | l, false);
 			}
 		} else {
-			l = MathHelper.floor(MathHelper.clamp((float) (startTime - toastTimeMilliseconds / 2) / 300.0F, 0.0F, 1.0F) * 252.0F) << 24 | 67108864;
-			int halfHeight = this.getHeight() / 2;
+			l = Mth.floor(Mth.clamp((float) (startTime - toastTimeMilliseconds / 2) / 300.0F, 0.0F, 1.0F) * 252.0F) << 24 | 67108864;
+			int halfHeight = this.height() / 2;
 			int textSize = wrappedText.size();
 			int m = halfHeight - textSize * 9 / 2;
 			
-			for (Iterator<OrderedText> var12 = wrappedText.iterator(); var12.hasNext(); m += 9) {
-				OrderedText orderedText = var12.next();
-				drawContext.drawText(textRenderer, orderedText, 30, m, l, false);
+			for (Iterator<FormattedCharSequence> var12 = wrappedText.iterator(); var12.hasNext(); m += 9) {
+				FormattedCharSequence orderedText = var12.next();
+				drawContext.drawString(textRenderer, orderedText, 30, m, l, false);
 			}
 		}
 		
 		if (!this.soundPlayed && startTime > 0L) {
 			this.soundPlayed = true;
 			if (this.soundEvent != null) {
-				manager.getClient().getSoundManager().play(PositionedSoundInstance.master(this.soundEvent, 1.0F, 0.6F));
+				manager.getMinecraft().getSoundManager().play(SimpleSoundInstance.forUI(this.soundEvent, 1.0F, 0.6F));
 			}
 		}
 		
-		drawContext.drawItem(itemStack, 8, 8);
+		drawContext.renderItem(itemStack, 8, 8);
 		return startTime >= toastTimeMilliseconds ? Visibility.HIDE : Visibility.SHOW;
 	}
 	

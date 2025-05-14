@@ -3,36 +3,36 @@ package de.dafuqs.spectrum.registries;
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.*;
-import net.minecraft.registry.*;
-import net.minecraft.registry.entry.*;
+import net.minecraft.core.*;
+import net.minecraft.resources.*;
 import org.jetbrains.annotations.*;
 
-public class SpectrumRegistry<T> extends SimpleRegistry<T> {
+public class SpectrumRegistry<T> extends MappedRegistry<T> {
 	
-	public SpectrumRegistry(RegistryKey<? extends Registry<T>> key, Lifecycle lifecycle) {
+	public SpectrumRegistry(ResourceKey<? extends Registry<T>> key, Lifecycle lifecycle) {
 		super(key, lifecycle);
 	}
 	
 	@Override
-	public Codec<T> getCodec() {
-		return this.getReferenceEntryCodec().flatComapMap(RegistryEntry.Reference::value, value -> this.validateReference(this.getEntry(value)));
+	public Codec<T> byNameCodec() {
+		return this.referenceHolderWithLifecycle().flatComapMap(Holder.Reference::value, value -> this.safeCastToReference(this.wrapAsHolder(value)));
 	}
 	
 	@Override
-	public Codec<RegistryEntry<T>> getEntryCodec() {
-		return this.getReferenceEntryCodec().flatComapMap(entry -> entry, this::validateReference);
+	public Codec<Holder<T>> holderByNameCodec() {
+		return this.referenceHolderWithLifecycle().flatComapMap(entry -> entry, this::safeCastToReference);
 	}
 	
-	protected Codec<RegistryEntry.Reference<T>> getReferenceEntryCodec() {
+	protected Codec<Holder.Reference<T>> referenceHolderWithLifecycle() {
 		return CodecHelper.SPECTRUM_DEFAULTED_IDENTIFIER.comapFlatMap(
-				id -> this.getEntry(id).map(DataResult::success).orElseGet(() -> DataResult.error(() -> "Unknown registry key in " + this.getKey() + ": " + id)),
-				entry -> entry.registryKey().getValue());
+				id -> this.getHolder(id).map(DataResult::success).orElseGet(() -> DataResult.error(() -> "Unknown registry key in " + this.key() + ": " + id)),
+				entry -> entry.key().location());
 	}
 	
-	protected DataResult<RegistryEntry.Reference<T>> validateReference(RegistryEntry<T> entry) {
-		return entry instanceof RegistryEntry.Reference<T> reference
+	protected DataResult<Holder.Reference<T>> safeCastToReference(Holder<T> entry) {
+		return entry instanceof Holder.Reference<T> reference
 				? DataResult.success(reference)
-				: DataResult.error(() -> "Unregistered holder in " + this.getKey() + ": " + entry);
+				: DataResult.error(() -> "Unregistered holder in " + this.key() + ": " + entry);
 	}
 	
 	@Nullable

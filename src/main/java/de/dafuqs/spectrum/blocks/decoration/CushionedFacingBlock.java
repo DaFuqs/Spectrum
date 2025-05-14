@@ -1,24 +1,25 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
-import com.mojang.serialization.MapCodec;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import com.mojang.serialization.*;
+import net.minecraft.core.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.state.*;
 
 public class CushionedFacingBlock extends SpectrumFacingBlock {
-
-    public static final MapCodec<CushionedFacingBlock> CODEC = createCodec(CushionedFacingBlock::new);
-
-    public CushionedFacingBlock(Settings settings) {
+	
+	public static final MapCodec<CushionedFacingBlock> CODEC = simpleCodec(CushionedFacingBlock::new);
+	
+	public CushionedFacingBlock(Properties settings) {
         super(settings);
     }
 
 	@Override
-	public MapCodec<? extends CushionedFacingBlock> getCodec() {
+	public MapCodec<? extends CushionedFacingBlock> codec() {
 		return CODEC;
 	}
 
     @Override
-    public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {}
+	public void fallOn(Level world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
+	}
 }

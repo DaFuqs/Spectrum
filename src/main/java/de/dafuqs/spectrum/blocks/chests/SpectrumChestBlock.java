@@ -1,40 +1,40 @@
 package de.dafuqs.spectrum.blocks.chests;
 
 import de.dafuqs.spectrum.*;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.client.util.*;
-import net.minecraft.entity.ai.pathing.*;
-import net.minecraft.entity.passive.CatEntity;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.screen.*;
-import net.minecraft.server.world.*;
-import net.minecraft.state.*;
-import net.minecraft.state.property.*;
+import net.minecraft.client.resources.model.*;
+import net.minecraft.core.*;
+import net.minecraft.server.level.*;
 import net.minecraft.util.*;
-import net.minecraft.util.hit.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
-import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.animal.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.item.context.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.pathfinder.*;
+import net.minecraft.world.phys.*;
+import net.minecraft.world.phys.shapes.*;
 
-public abstract class SpectrumChestBlock extends BlockWithEntity {
+public abstract class SpectrumChestBlock extends BaseEntityBlock {
 	
-	public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
-	protected static final VoxelShape CHEST_SHAPE = Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 14.0D, 15.0D);
+	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+	protected static final VoxelShape CHEST_SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 14.0D, 15.0D);
 	
-	protected SpectrumChestBlock(Settings settings) {
+	protected SpectrumChestBlock(Properties settings) {
 		super(settings);
-		this.setDefaultState((this.stateManager.getDefaultState()).with(FACING, Direction.NORTH));
+		this.registerDefaultState((this.stateDefinition.any()).setValue(FACING, Direction.NORTH));
 	}
-
-	public static boolean isChestBlocked(WorldAccess world, BlockPos pos) {
-		var up = pos.up();
-		if (world.getBlockState(up).isSolidBlock(world, up))
+	
+	public static boolean isChestBlocked(LevelAccessor world, BlockPos pos) {
+		var up = pos.above();
+		if (world.getBlockState(up).isRedstoneConductor(world, up))
 			return true;
-
-		for (var catEntity : world.getNonSpectatingEntities(CatEntity.class, new Box(pos.getX(), pos.getY() + 1, pos.getZ(), pos.getX() + 1, pos.getY() + 2, pos.getZ() + 1))) {
+		
+		for (var catEntity : world.getEntitiesOfClass(Cat.class, new AABB(pos.getX(), pos.getY() + 1, pos.getZ(), pos.getX() + 1, pos.getY() + 2, pos.getZ() + 1))) {
 			if (catEntity.isInSittingPose()) {
 				return true;
 			}
@@ -44,56 +44,56 @@ public abstract class SpectrumChestBlock extends BlockWithEntity {
 	}
 
 	@Override
-	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-		if (world.isClient) {
-			return ActionResult.SUCCESS;
+	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
+		if (world.isClientSide) {
+			return InteractionResult.SUCCESS;
 		} else {
 			this.openScreen(world, pos, player);
-			return ActionResult.CONSUME;
+			return InteractionResult.CONSUME;
 		}
 	}
 	
-	public abstract void openScreen(World world, BlockPos pos, PlayerEntity player);
+	public abstract void openScreen(Level world, BlockPos pos, Player player);
 	
 	@Override
-    public boolean hasComparatorOutput(BlockState state) {
+	public boolean hasAnalogOutputSignal(BlockState state) {
         return true;
     }
 	
 	@Override
-    public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
-		return ScreenHandler.calculateComparatorOutput(world.getBlockEntity(pos));
+	public int getAnalogOutputSignal(BlockState state, Level world, BlockPos pos) {
+		return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(world.getBlockEntity(pos));
     }
 	
 	@Override
-	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-		ItemScatterer.onStateReplaced(state, newState, world, pos);
-		super.onStateReplaced(state, world, pos, newState, moved);
+	public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean moved) {
+		Containers.dropContentsOnDestroy(state, newState, world, pos);
+		super.onRemove(state, world, pos, newState, moved);
 	}
 	
 	@Override
-	public BlockState rotate(BlockState state, BlockRotation rotation) {
-		return state.with(FACING, rotation.rotate(state.get(FACING)));
+	public BlockState rotate(BlockState state, Rotation rotation) {
+		return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
 	}
 	
 	@Override
-	public BlockState mirror(BlockState state, BlockMirror mirror) {
-		return state.rotate(mirror.getRotation(state.get(FACING)));
+	public BlockState mirror(BlockState state, Mirror mirror) {
+		return state.rotate(mirror.getRotation(state.getValue(FACING)));
 	}
 	
 	@Override
-	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(FACING);
 	}
 	
 	@Override
-	public boolean canPathfindThrough(BlockState state, NavigationType type) {
+	public boolean isPathfindable(BlockState state, PathComputationType type) {
 		return false;
 	}
 	
 	@Override
-	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		super.scheduledTick(state, world, pos, random);
+	public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+		super.tick(state, world, pos, random);
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof SpectrumChestBlockEntity) {
 			((SpectrumChestBlockEntity) blockEntity).onScheduledTick();
@@ -101,33 +101,33 @@ public abstract class SpectrumChestBlock extends BlockWithEntity {
 	}
 
 	@Override
-	public BlockRenderType getRenderType(BlockState state) {
-		return BlockRenderType.ENTITYBLOCK_ANIMATED;
+	public RenderShape getRenderShape(BlockState state) {
+		return RenderShape.ENTITYBLOCK_ANIMATED;
 	}
 	
 	@Override
-	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-		return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+	public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+		return super.updateShape(state, direction, neighborState, world, pos, neighborPos);
 	}
 	
 	@Override
-	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		return CHEST_SHAPE;
 	}
 
 	@Override
-	public float getAmbientOcclusionLightLevel(BlockState state, BlockView world, BlockPos pos) {
+	public float getShadeBrightness(BlockState state, BlockGetter world, BlockPos pos) {
 		return 1F;
 	}
 
 	@Override
-	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		Direction direction = ctx.getHorizontalPlayerFacing().getOpposite();
-		return this.getDefaultState().with(FACING, direction);
+	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+		Direction direction = ctx.getHorizontalDirection().getOpposite();
+		return this.defaultBlockState().setValue(FACING, direction);
 	}
 	
-	public SpriteIdentifier getTexture() {
-		return new SpriteIdentifier(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("block/heartbound_chest"));
+	public Material getTextureLocation() {
+		return new Material(InventoryMenu.BLOCK_ATLAS, SpectrumCommon.locate("block/heartbound_chest"));
 	}
 	
 }

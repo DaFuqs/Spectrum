@@ -6,23 +6,23 @@ import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.TextWidget.*;
 import dev.emi.emi.api.widget.*;
 import net.minecraft.client.*;
-import net.minecraft.registry.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.core.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public abstract class SpectrumEmiRecipe implements EmiRecipe {
-	public static final Text HIDDEN_LINE_1 = Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1");
-	public static final Text HIDDEN_LINE_2 = Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2");
+	public static final Component HIDDEN_LINE_1 = Component.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1");
+	public static final Component HIDDEN_LINE_2 = Component.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2");
 	public final EmiRecipeCategory category;
-	public final Identifier recipeTypeUnlockIdentifier, recipeIdentifier;
+	public final ResourceLocation recipeTypeUnlockIdentifier, recipeIdentifier;
 	public final int width, height;
 	public List<EmiIngredient> inputs = List.of();
 	public List<EmiStack> outputs = List.of();
 	
-	public SpectrumEmiRecipe(EmiRecipeCategory category, Identifier recipeTypeUnlockIdentifier, Identifier recipeIdentifier, int width, int height) {
+	public SpectrumEmiRecipe(EmiRecipeCategory category, ResourceLocation recipeTypeUnlockIdentifier, ResourceLocation recipeIdentifier, int width, int height) {
 		this.category = category;
 		this.recipeTypeUnlockIdentifier = recipeTypeUnlockIdentifier;
 		this.recipeIdentifier = recipeIdentifier;
@@ -30,33 +30,33 @@ public abstract class SpectrumEmiRecipe implements EmiRecipe {
 		this.height = height;
 	}
 	
-	public DynamicRegistryManager getRegistryManager() {
-		return MinecraftClient.getInstance().world.getRegistryManager();
+	public RegistryAccess getRegistryManager() {
+		return Minecraft.getInstance().level.registryAccess();
 	}
 
 	public boolean isUnlocked() {
 		return recipeTypeUnlockIdentifier == null || hasAdvancement(recipeTypeUnlockIdentifier);
 	}
 	
-	public boolean hasAdvancement(Identifier advancement) {
-		MinecraftClient client = MinecraftClient.getInstance();
+	public boolean hasAdvancement(ResourceLocation advancement) {
+		Minecraft client = Minecraft.getInstance();
 		return AdvancementHelper.hasAdvancement(client.player, advancement);
 	}
 	
-	protected static Text getCraftingTimeText(int time) {
+	protected static Component getCraftingTimeText(int time) {
 		if (time == 20) {
-			return Text.translatable("container.spectrum.rei.crafting_time_one_second", 1);
+			return Component.translatable("container.spectrum.rei.crafting_time_one_second", 1);
 		} else {
-			return Text.translatable("container.spectrum.rei.crafting_time", (time / 20));
+			return Component.translatable("container.spectrum.rei.crafting_time", (time / 20));
 		}
 	}
 	
-	protected static Text getCraftingTimeText(int time, float experience) {
+	protected static Component getCraftingTimeText(int time, float experience) {
 		// special handling for "1 second". Looks nicer
 		if (time == 20) {
-			return Text.translatable("container.spectrum.rei.crafting_time_one_second_and_xp", 1, experience);
+			return Component.translatable("container.spectrum.rei.crafting_time_one_second_and_xp", 1, experience);
 		} else {
-			return Text.translatable("container.spectrum.rei.crafting_time_and_xp", (time / 20), experience);
+			return Component.translatable("container.spectrum.rei.crafting_time_and_xp", (time / 20), experience);
 		}
 	}
 	
@@ -68,7 +68,7 @@ public abstract class SpectrumEmiRecipe implements EmiRecipe {
 	}
 	
 	@Override
-	public @Nullable Identifier getId() {
+	public @Nullable ResourceLocation getId() {
 		return recipeIdentifier;
 	}
 	
@@ -87,8 +87,8 @@ public abstract class SpectrumEmiRecipe implements EmiRecipe {
 		if (isUnlocked()) {
 			return width;
 		} else {
-			MinecraftClient client = MinecraftClient.getInstance();
-			return Math.max(client.textRenderer.getWidth(HIDDEN_LINE_1), client.textRenderer.getWidth(HIDDEN_LINE_2)) + 8;
+			Minecraft client = Minecraft.getInstance();
+			return Math.max(client.font.width(HIDDEN_LINE_1), client.font.width(HIDDEN_LINE_2)) + 8;
 		}
 	}
 	

@@ -1,29 +1,29 @@
 package de.dafuqs.spectrum.status_effects;
 
 import de.dafuqs.spectrum.items.trinkets.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.effect.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.entity.*;
 
-public class ImmunityStatusEffect extends StatusEffect {
+public class ImmunityStatusEffect extends MobEffect {
 	
-	public ImmunityStatusEffect(StatusEffectCategory statusEffectCategory, int color) {
+	public ImmunityStatusEffect(MobEffectCategory statusEffectCategory, int color) {
 		super(statusEffectCategory, color);
 	}
 
 	@Override
-	public boolean canApplyUpdateEffect(int duration, int amplifier) {
+	public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
 		return duration % 20 == 0;
 	}
 	
 	@Override
-	public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
+	public boolean applyEffectTick(LivingEntity entity, int amplifier) {
 		WhispyCircletItem.removeNegativeStatusEffects(entity);
-		return super.applyUpdateEffect(entity, amplifier);
+		return super.applyEffectTick(entity, amplifier);
 	}
 	
 	@Override
-	public void onApplied(LivingEntity entity, int amplifier) {
-		super.onApplied(entity, amplifier);
+	public void onEffectStarted(LivingEntity entity, int amplifier) {
+		super.onEffectStarted(entity, amplifier);
 		WhispyCircletItem.removeNegativeStatusEffects(entity);
 	}
 	

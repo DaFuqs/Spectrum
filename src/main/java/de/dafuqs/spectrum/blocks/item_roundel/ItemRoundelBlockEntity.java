@@ -2,11 +2,10 @@ package de.dafuqs.spectrum.blocks.item_roundel;
 
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
+import net.minecraft.core.*;
 import net.minecraft.nbt.*;
-import net.minecraft.registry.*;
-import net.minecraft.util.math.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
 
 public class ItemRoundelBlockEntity extends InWorldInteractionBlockEntity {
 	
@@ -25,8 +24,8 @@ public class ItemRoundelBlockEntity extends InWorldInteractionBlockEntity {
 	}
 
 	@Override
-	public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
-		this.generateLoot(null);
-		return super.toInitialChunkDataNbt(registryLookup);
+	public CompoundTag getUpdateTag(HolderLookup.Provider registryLookup) {
+		this.unpackLootTable(null);
+		return super.getUpdateTag(registryLookup);
 	}
 }

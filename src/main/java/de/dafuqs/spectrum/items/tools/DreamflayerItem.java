@@ -7,19 +7,19 @@ import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
-import net.minecraft.component.*;
-import net.minecraft.component.type.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.attribute.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.*;
-import net.minecraft.server.network.*;
-import net.minecraft.sound.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import net.minecraft.*;
+import net.minecraft.core.component.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -41,102 +41,102 @@ public class DreamflayerItem extends SwordItem implements InkPowered, Activatabl
 	private final float baseAttackDamage;
 	private final float baseAttackSpeed;
 	
-	public DreamflayerItem(ToolMaterial toolMaterial, int attackDamage, float attackSpeed, Settings settings) {
-		super(toolMaterial, settings.attributeModifiers(SwordItem.createAttributeModifiers(toolMaterial, attackDamage, attackSpeed)));
+	public DreamflayerItem(Tier toolMaterial, int attackDamage, float attackSpeed, Properties settings) {
+		super(toolMaterial, settings.attributes(SwordItem.createAttributes(toolMaterial, attackDamage, attackSpeed)));
 		this.baseAttackDamage = attackDamage;
 		this.baseAttackSpeed = attackSpeed;
 	}
 	
 	public static float getDamageAfterModifier(float amount, LivingEntity attacker, LivingEntity target) {
-		float damageMultiplier = (target.getArmor() + DreamflayerItem.ARMOR_DIFFERENCE_DAMAGE_MULTIPLIER) / (attacker.getArmor() + DreamflayerItem.ARMOR_DIFFERENCE_DAMAGE_MULTIPLIER);
+		float damageMultiplier = (target.getArmorValue() + DreamflayerItem.ARMOR_DIFFERENCE_DAMAGE_MULTIPLIER) / (attacker.getArmorValue() + DreamflayerItem.ARMOR_DIFFERENCE_DAMAGE_MULTIPLIER);
 		return amount * damageMultiplier;
 	}
 	
 	@Override
-	public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
-		super.usageTick(world, user, stack, remainingUseTicks);
+	public void onUseTick(Level world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
+		super.onUseTick(world, user, stack, remainingUseTicks);
 	}
 	
 	@Override
-	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-		ItemStack stack = user.getStackInHand(hand);
-		if (hand == Hand.MAIN_HAND && user.isSneaking()) {
+	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
+		ItemStack stack = user.getItemInHand(hand);
+		if (hand == InteractionHand.MAIN_HAND && user.isShiftKeyDown()) {
 			boolean isActivated = ActivatableItem.isActivated(stack);
 			if (isActivated) {
 				setActivated(stack, false);
-				if (!world.isClient) {
-					world.playSound(null, user.getX(), user.getY(), user.getZ(), SpectrumSoundEvents.DREAMFLAYER_DEACTIVATE, SoundCategory.PLAYERS, 1.0F, 1F);
+				if (!world.isClientSide) {
+					world.playSound(null, user.getX(), user.getY(), user.getZ(), SpectrumSoundEvents.DREAMFLAYER_DEACTIVATE, SoundSource.PLAYERS, 1.0F, 1F);
 				}
 			} else {
 				if (InkPowered.tryDrainEnergy(user, USED_COLOR, INK_COST_FOR_ACTIVATION)) {
 					setActivated(stack, true);
-					if (!world.isClient) {
-						world.playSound(null, user.getX(), user.getY(), user.getZ(), SpectrumSoundEvents.DREAMFLAYER_ACTIVATE, SoundCategory.PLAYERS, 1.0F, 1F);
+					if (!world.isClientSide) {
+						world.playSound(null, user.getX(), user.getY(), user.getZ(), SpectrumSoundEvents.DREAMFLAYER_ACTIVATE, SoundSource.PLAYERS, 1.0F, 1F);
 					}
-				} else if (!world.isClient) {
-					world.playSound(null, user.getX(), user.getY(), user.getZ(), SpectrumSoundEvents.DREAMFLAYER_DEACTIVATE, SoundCategory.PLAYERS, 1.0F, 1F);
+				} else if (!world.isClientSide) {
+					world.playSound(null, user.getX(), user.getY(), user.getZ(), SpectrumSoundEvents.DREAMFLAYER_DEACTIVATE, SoundSource.PLAYERS, 1.0F, 1F);
 				}
 			}
 			
-			return TypedActionResult.pass(stack);
+			return InteractionResultHolder.pass(stack);
 		}
 		
-		return TypedActionResult.success(stack);
+		return InteractionResultHolder.success(stack);
 	}
 	
 	@Override
-	public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
+	public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
 		super.inventoryTick(stack, world, entity, slot, selected);
 		
-		if (world.isClient) {
+		if (world.isClientSide) {
 			if (ActivatableItem.isActivated(stack)) {
-				Vec3d pos = entity.getPos();
+				Vec3 pos = entity.position();
 				world.addParticle(ColoredCraftingParticleEffect.RED,
-						entity.getParticleX(1.0), pos.getY() + 1.05D, entity.getParticleZ(1.0),
+						entity.getRandomX(1.0), pos.y() + 1.05D, entity.getRandomZ(1.0),
 						0.0D, 0.1D, 0.0D);
 			}
 		} else {
-			if (world.getTime() % 20 == 0 && ActivatableItem.isActivated(stack)) {
-				if (entity instanceof ServerPlayerEntity player && !InkPowered.tryDrainEnergy(player, USED_COLOR, INK_COST_PER_SECOND)) {
+			if (world.getGameTime() % 20 == 0 && ActivatableItem.isActivated(stack)) {
+				if (entity instanceof ServerPlayer player && !InkPowered.tryDrainEnergy(player, USED_COLOR, INK_COST_PER_SECOND)) {
 					setActivated(stack, false);
-					world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), SpectrumSoundEvents.DREAMFLAYER_DEACTIVATE, SoundCategory.PLAYERS, 0.8F, 1F);
+					world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), SpectrumSoundEvents.DREAMFLAYER_DEACTIVATE, SoundSource.PLAYERS, 0.8F, 1F);
 				}
 			}
 		}
 	}
 
 	@Override
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
-		tooltip.add(Text.translatable("item.spectrum.dreamflayer.tooltip").formatted(Formatting.GRAY));
-		tooltip.add(Text.translatable("item.spectrum.dreamflayer.tooltip2").formatted(Formatting.GRAY));
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
+		tooltip.add(Component.translatable("item.spectrum.dreamflayer.tooltip").withStyle(ChatFormatting.GRAY));
+		tooltip.add(Component.translatable("item.spectrum.dreamflayer.tooltip2").withStyle(ChatFormatting.GRAY));
 		if (ActivatableItem.isActivated(stack)) {
-			tooltip.add(Text.translatable("item.spectrum.dreamflayer.tooltip.activated").formatted(Formatting.GRAY));
+			tooltip.add(Component.translatable("item.spectrum.dreamflayer.tooltip.activated").withStyle(ChatFormatting.GRAY));
 		} else {
-			tooltip.add(Text.translatable("item.spectrum.dreamflayer.tooltip.deactivated", USED_COLOR.getColoredInkName()).formatted(Formatting.GRAY));
+			tooltip.add(Component.translatable("item.spectrum.dreamflayer.tooltip.deactivated", USED_COLOR.getColoredInkName()).withStyle(ChatFormatting.GRAY));
 		}
 	}
 	
 	@Override
-	public boolean allowComponentsUpdateAnimation(PlayerEntity player, Hand hand, ItemStack oldStack, ItemStack newStack) {
+	public boolean allowComponentsUpdateAnimation(Player player, InteractionHand hand, ItemStack oldStack, ItemStack newStack) {
 		return reequipAnimation(oldStack, newStack);
 	}
 	
 	private boolean reequipAnimation(ItemStack before, ItemStack after) {
-		return !after.isOf(this) || ActivatableItem.isActivated(before) != ActivatableItem.isActivated(after);
+		return !after.is(this) || ActivatableItem.isActivated(before) != ActivatableItem.isActivated(after);
 	}
 	
 	public void setActivated(ItemStack stack, boolean active) {
 		if (ActivatableItem.isActivated(stack) != active) {
 			float damage = baseAttackDamage * (active ? 1.5f : 1f);
 			float speed = baseAttackSpeed * (active ? 0.75f : 1f);
-			stack.apply(DataComponentTypes.ATTRIBUTE_MODIFIERS, AttributeModifiersComponent.DEFAULT, comp -> {
-				var builder = AttributeModifiersComponent.builder();
+			stack.update(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.EMPTY, comp -> {
+				var builder = ItemAttributeModifiers.builder();
 				for (var entry : comp.modifiers()) {
-					if (entry.modifier().idMatches(BASE_ATTACK_DAMAGE_MODIFIER_ID))
-						builder.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(BASE_ATTACK_DAMAGE_MODIFIER_ID, damage, EntityAttributeModifier.Operation.ADD_VALUE), AttributeModifierSlot.MAINHAND);
-					if (entry.modifier().idMatches(BASE_ATTACK_SPEED_MODIFIER_ID))
-						builder.add(EntityAttributes.GENERIC_ATTACK_SPEED, new EntityAttributeModifier(BASE_ATTACK_SPEED_MODIFIER_ID, speed, EntityAttributeModifier.Operation.ADD_VALUE), AttributeModifierSlot.MAINHAND);
+					if (entry.modifier().is(BASE_ATTACK_DAMAGE_ID))
+						builder.add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, damage, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND);
+					if (entry.modifier().is(BASE_ATTACK_SPEED_ID))
+						builder.add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID, speed, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND);
 					else
 						builder.add(entry.attribute(), entry.modifier(), entry.slot());
 				}
@@ -153,7 +153,7 @@ public class DreamflayerItem extends SwordItem implements InkPowered, Activatabl
 
 	@Environment(EnvType.CLIENT)
 	@Override
-	public void addInkPoweredTooltip(List<Text> tooltip) {
+	public void addInkPoweredTooltip(List<Component> tooltip) {
 		InkPowered.super.addInkPoweredTooltip(tooltip);
 	}
 
@@ -164,17 +164,17 @@ public class DreamflayerItem extends SwordItem implements InkPowered, Activatabl
 		DamageComposition composition = new DamageComposition();
 		if (ActivatableItem.isActivated(stack)) {
 			composition.addPlayerOrEntity(attacker, newDamage * 0.5F);
-			composition.add(attacker.getDamageSources().magic(), newDamage * 0.25F);
-			composition.add(SpectrumDamageTypes.setHealth(attacker.getWorld(), attacker), newDamage * 0.25F);
+			composition.add(attacker.damageSources().magic(), newDamage * 0.25F);
+			composition.add(SpectrumDamageTypes.setHealth(attacker.level(), attacker), newDamage * 0.25F);
 		} else {
 			composition.addPlayerOrEntity(attacker, newDamage * 0.75F);
-			composition.add(attacker.getDamageSources().magic(), newDamage * 0.25F);
+			composition.add(attacker.damageSources().magic(), newDamage * 0.25F);
 		}
 		return composition;
 	}
 	
 	@Override
-	public SlotEffect backgroundType(@Nullable PlayerEntity player, ItemStack stack) {
+	public SlotEffect backgroundType(@Nullable Player player, ItemStack stack) {
 		if (ActivatableItem.isActivated(stack))
 			return SlotEffect.FULL_PACKAGE;
 		
@@ -183,7 +183,7 @@ public class DreamflayerItem extends SwordItem implements InkPowered, Activatabl
 	}
 	
 	@Override
-	public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
+	public int getBackgroundColor(@Nullable Player player, ItemStack stack, float tickDelta) {
 		return InkColors.RED_COLOR;
 	}
 }

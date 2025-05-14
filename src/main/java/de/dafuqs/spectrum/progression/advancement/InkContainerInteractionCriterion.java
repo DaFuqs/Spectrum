@@ -7,39 +7,37 @@ import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.advancement.criterion.*;
-import net.minecraft.item.*;
-import net.minecraft.predicate.entity.*;
-import net.minecraft.predicate.item.*;
-import net.minecraft.server.network.*;
-import net.minecraft.util.*;
+import net.minecraft.advancements.critereon.*;
+import net.minecraft.resources.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.item.*;
 
 import java.util.*;
 
-public class InkContainerInteractionCriterion extends AbstractCriterion<InkContainerInteractionCriterion.Conditions> {
+public class InkContainerInteractionCriterion extends SimpleCriterionTrigger<InkContainerInteractionCriterion.Conditions> {
 	
-	public static final Identifier ID = SpectrumCommon.locate("ink_container_interaction");
+	public static final ResourceLocation ID = SpectrumCommon.locate("ink_container_interaction");
 	
-	public void trigger(ServerPlayerEntity player, ItemStack stack, InkStorage storage, InkColor changeColor, long changeAmount) {
+	public void trigger(ServerPlayer player, ItemStack stack, InkStorage storage, InkColor changeColor, long changeAmount) {
 		this.trigger(player, (conditions) -> conditions.matches(stack, storage.getEnergy(), changeColor, changeAmount));
 	}
 	
 	@Override
-	public Codec<Conditions> getConditionsCodec() {
+	public Codec<Conditions> codec() {
 		return Conditions.CODEC;
 	}
 	
 	public record Conditions(
-			Optional<LootContextPredicate> player,
+			Optional<ContextAwarePredicate> player,
 			ItemPredicate itemPredicate,
 			Map<InkColor, LongRange> colorRanges,
 			ColorPredicate changeColorPredicate,
 			LongRange changeRange
-	) implements AbstractCriterion.Conditions {
+	) implements SimpleCriterionTrigger.SimpleInstance {
 		
 		public static final Codec<Conditions> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-				LootContextPredicate.CODEC.optionalFieldOf("player").forGetter(Conditions::player),
-				ItemPredicate.CODEC.optionalFieldOf("item", ItemPredicate.Builder.create().build()).forGetter(Conditions::itemPredicate),
+				ContextAwarePredicate.CODEC.optionalFieldOf("player").forGetter(Conditions::player),
+				ItemPredicate.CODEC.optionalFieldOf("item", ItemPredicate.Builder.item().build()).forGetter(Conditions::itemPredicate),
 				CodecHelper.registryMap(SpectrumRegistries.INK_COLOR, LongRange.CODEC).forGetter(Conditions::colorRanges),
 				ColorPredicate.CODEC.optionalFieldOf("change_color", ColorPredicate.ANY).forGetter(Conditions::changeColorPredicate),
 				LongRange.CODEC.optionalFieldOf("change_amount", LongRange.ANY).forGetter(Conditions::changeRange)

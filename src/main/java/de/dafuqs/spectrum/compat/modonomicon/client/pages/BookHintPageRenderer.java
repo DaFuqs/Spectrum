@@ -12,9 +12,9 @@ import de.dafuqs.spectrum.sound.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.client.gui.widget.*;
-import net.minecraft.sound.*;
-import net.minecraft.text.*;
+import net.minecraft.client.gui.components.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.sounds.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -23,19 +23,19 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
     
     private Style OBFUSCATED_STYLE;
     private HintRevelationSoundInstance soundInstance;
-
-    public static class PaymentButtonWidget extends ButtonWidget {
+	
+	public static class PaymentButtonWidget extends Button {
 
         final BookHintPageRenderer pageRenderer;
-
-        public PaymentButtonWidget(int x, int y, int width, int height, Text message, PressAction onPress, BookHintPageRenderer pageRenderer) {
-            super(x, y, width, height, message, onPress, ButtonWidget.DEFAULT_NARRATION_SUPPLIER);
+		
+		public PaymentButtonWidget(int x, int y, int width, int height, Component message, OnPress onPress, BookHintPageRenderer pageRenderer) {
+			super(x, y, width, height, message, onPress, Button.DEFAULT_NARRATION);
             this.pageRenderer = pageRenderer;
-            setMessage(Text.translatable("spectrum.gui.guidebook.reveal_hint_button.text"));
+			setMessage(Component.translatable("spectrum.gui.guidebook.reveal_hint_button.text"));
         }
 
         @Override
-        protected void renderWidget(DrawContext drawContext, int mouseX, int mouseY, float delta) {
+		protected void renderWidget(GuiGraphics drawContext, int mouseX, int mouseY, float delta) {
             if (pageRenderer.revealProgress < 0) {
                 super.renderWidget(drawContext, mouseX, mouseY, delta);
             }
@@ -63,7 +63,7 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
                 .withColor(TextColor.fromRgb(0x000000))
                 .withBold(false)
                 .withItalic(false)
-                .withUnderline(false)
+				.withUnderlined(false)
                 .withStrikethrough(false)
                 .withObfuscated(true)
                 .withClickEvent(null)
@@ -72,15 +72,15 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
                 .withFont(page.getBook().getFont());
 
         obfuscatedText = null;
-        
-        boolean isDone = AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, page.getCompletionAdvancement());
+		
+		boolean isDone = AdvancementHelper.hasAdvancement(Minecraft.getInstance().player, page.getCompletionAdvancement());
         if (!isDone) {
             revealProgress = -1;
 			
 			addButton(new PaymentButtonWidget(
-					2, BookEntryScreen.PAGE_HEIGHT - ButtonWidget.DEFAULT_HEIGHT - 2,
-					BookEntryScreen.PAGE_WIDTH - 12, ButtonWidget.DEFAULT_HEIGHT,
-					Text.empty(), this::paymentButtonClicked, this));
+					2, BookEntryScreen.PAGE_HEIGHT - Button.DEFAULT_HEIGHT - 2,
+					BookEntryScreen.PAGE_WIDTH - 12, Button.DEFAULT_HEIGHT,
+					Component.empty(), this::paymentButtonClicked, this));
         } else {
             revealProgress = 0;
         }
@@ -88,41 +88,41 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
 
     private BookTextHolder splitObfuscateText(BookTextHolder text) {
         if (text.hasComponent()) {
-            List<MutableText> newText = new ArrayList<>(1);
+			List<MutableComponent> newText = new ArrayList<>(1);
             newText.add(splitObfuscateText(text.getComponent().copy()));
             return new RenderedBookTextHolder(text, newText);
         } else if (text instanceof RenderedBookTextHolder renderedText) {
-            List<MutableText> newRenderedText = new ArrayList<>(renderedText.getRenderedText().size());
-            for (MutableText mutableText : renderedText.getRenderedText()) {
+			List<MutableComponent> newRenderedText = new ArrayList<>(renderedText.getRenderedText().size());
+			for (MutableComponent mutableText : renderedText.getRenderedText()) {
                 newRenderedText.add(splitObfuscateText(mutableText));
             }
             return new RenderedBookTextHolder(text, newRenderedText);
         }
         return BookTextHolder.EMPTY;
     }
-
-    private MutableText splitObfuscateText(MutableText text) {
-        MutableText out = Text.empty();
-        text.asOrderedText().accept((index, style, codepoint) -> {
+	
+	private MutableComponent splitObfuscateText(MutableComponent text) {
+		MutableComponent out = Component.empty();
+		text.getVisualOrderText().accept((index, style, codepoint) -> {
             String charStr = String.valueOf((char) codepoint);
-            out.append(Text.empty()
-                    .append(Text.literal(charStr).setStyle(OBFUSCATED_STYLE))
+			out.append(Component.empty()
+					.append(Component.literal(charStr).setStyle(OBFUSCATED_STYLE))
                     .setStyle(style));
             return true;
         });
         return out;
     }
-
-    private MutableText floodStyle(Text text, Style style) {
-        MutableText out = MutableText.of(text.getContent()).setStyle(style);
-        for (Text sibling : text.getSiblings()) {
+	
+	private MutableComponent floodStyle(Component text, Style style) {
+		MutableComponent out = MutableComponent.create(text.getContents()).setStyle(style);
+		for (Component sibling : text.getSiblings()) {
             out.append(floodStyle(sibling, style));
         }
         return out;
     }
 
     private BookTextHolder obfuscateText(BookTextHolder text, @Nullable BookTextHolder splitText, int start) {
-        if (mc.world == null) return BookTextHolder.EMPTY;
+		if (mc.level == null) return BookTextHolder.EMPTY;
 
         if (revealProgress == 0) {
             return text;
@@ -131,8 +131,8 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
             if (text.hasComponent()) {
                 return new BookTextHolder(floodStyle(text.getComponent(), OBFUSCATED_STYLE));
             } else if (text instanceof RenderedBookTextHolder renderedText) {
-
-                List<MutableText> mutableTexts = renderedText.getRenderedText().stream()
+				
+				List<MutableComponent> mutableTexts = renderedText.getRenderedText().stream()
                         .map(mutableText -> floodStyle(mutableText, OBFUSCATED_STYLE))
                         .toList();
                 return new RenderedBookTextHolder(renderedText, mutableTexts);
@@ -147,14 +147,14 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
 
         if (splitText instanceof RenderedBookTextHolder renderedText) {
             int c = 0;
-            List<MutableText> mutableTexts = renderedText.getRenderedText();
+			List<MutableComponent> mutableTexts = renderedText.getRenderedText();
             for (int i = 0; i < mutableTexts.size(); i++) {
-                MutableText mutableText = mutableTexts.get(i);
+				MutableComponent mutableText = mutableTexts.get(i);
 
                 if (c + mutableText.getSiblings().size() > revealProgress - start) {
-                    MutableText newMutableText = Text.empty();
+					MutableComponent newMutableText = Component.empty();
                     for (int s = 0; s < mutableText.getSiblings().size(); s++) {
-                        Text sibling = mutableText.getSiblings().get(s);
+						Component sibling = mutableText.getSiblings().get(s);
                         newMutableText.append(c + s == revealProgress - start && sibling.getSiblings().size() == 1
                                 ? sibling.getSiblings().getFirst().copy().setStyle(sibling.getStyle())
                                 : sibling);
@@ -180,9 +180,9 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
         }
         return true;
     }
-
-    protected void paymentButtonClicked(ButtonWidget button) {
-        if (mc.player == null || mc.world == null) return;
+	
+	protected void paymentButtonClicked(Button button) {
+		if (mc.player == null || mc.level == null) return;
         if (revealProgress > -1) {
             // has already been paid
             return;
@@ -190,12 +190,12 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
 		
 		if (mc.player.isCreative() || InventoryHelper.hasIngredientStacksInInventory(List.of(page.getCost()), mc.player.getInventory())) {
             soundInstance = new HintRevelationSoundInstance(mc.player);
-            MinecraftClient.getInstance().getSoundManager().play(soundInstance);
+			Minecraft.getInstance().getSoundManager().play(soundInstance);
             
             ClientPlayNetworking.send(new GuidebookHintBoughtPayload(page.getCompletionAdvancement(), page.getCost()));
             revealProgress = 1;
-            lastRevealTime = mc.world.getTime();
-            mc.player.playSound(SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, 1.0F, 1.0F);
+			lastRevealTime = mc.level.getGameTime();
+			mc.player.playSound(SoundEvents.EXPERIENCE_ORB_PICKUP, 1.0F, 1.0F);
         }
     }
 
@@ -208,8 +208,8 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
     }
 
     @Override
-    public void render(DrawContext drawContext, int mouseX, int mouseY, float ticks) {
-        if (mc.world == null) return;
+	public void render(GuiGraphics drawContext, int mouseX, int mouseY, float ticks) {
+		if (mc.level == null) return;
         
         renderTitle(drawContext, this.page.getTitle(), page.showTitleSeparator(), BookEntryScreen.PAGE_WIDTH / 2, 0);
 
@@ -223,7 +223,7 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
             this.parentScreen.renderComponentHoverEffect(drawContext, style, mouseX, mouseY);
 
         if (revealProgress == -1) {
-			ModonomiconHelper.renderIngredientStack(drawContext, parentScreen, BookEntryScreen.PAGE_WIDTH / 2 + 29, BookEntryScreen.PAGE_HEIGHT - ButtonWidget.DEFAULT_HEIGHT - 1, mouseX, mouseY, page.getCost());
+			ModonomiconHelper.renderIngredientStack(drawContext, parentScreen, BookEntryScreen.PAGE_WIDTH / 2 + 29, BookEntryScreen.PAGE_HEIGHT - Button.DEFAULT_HEIGHT - 1, mouseX, mouseY, page.getCost());
         }
 
         if (revealProgress > 0) {

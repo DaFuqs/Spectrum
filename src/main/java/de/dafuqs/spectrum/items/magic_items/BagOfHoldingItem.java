@@ -1,31 +1,30 @@
 package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.inventories.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.inventory.*;
-import net.minecraft.item.*;
-import net.minecraft.screen.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.network.chat.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
 
 public class BagOfHoldingItem extends Item {
 	
-	public BagOfHoldingItem(Settings settings) {
+	public BagOfHoldingItem(Properties settings) {
 		super(settings);
 	}
 	
 	@Override
-	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-		ItemStack itemStack = user.getStackInHand(hand);
+	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
+		ItemStack itemStack = user.getItemInHand(hand);
 		
-		EnderChestInventory enderChestInventory = user.getEnderChestInventory();
+		PlayerEnderChestContainer enderChestInventory = user.getEnderChestInventory();
 		if (enderChestInventory != null) {
-			user.openHandledScreen(new SimpleNamedScreenHandlerFactory((syncId, inventory, playerx) -> new BagOfHoldingScreenHandler(syncId, playerx.getInventory(), playerx.getEnderChestInventory()), Text.translatable("container.enderchest")));
+			user.openMenu(new SimpleMenuProvider((syncId, inventory, playerx) -> new BagOfHoldingScreenHandler(syncId, playerx.getInventory(), playerx.getEnderChestInventory()), Component.translatable("container.enderchest")));
 			
-			return TypedActionResult.consume(itemStack);
+			return InteractionResultHolder.consume(itemStack);
 		} else {
-			return TypedActionResult.success(itemStack, world.isClient);
+			return InteractionResultHolder.sidedSuccess(itemStack, world.isClientSide);
 		}
 	}
 	

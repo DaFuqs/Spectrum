@@ -1,43 +1,43 @@
 package de.dafuqs.spectrum.entity.render;
 
+import com.mojang.blaze3d.vertex.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.entity.models.*;
 import de.dafuqs.spectrum.entity.variants.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.fabricmc.api.*;
-import net.minecraft.client.render.*;
-import net.minecraft.client.render.entity.*;
-import net.minecraft.client.render.entity.feature.*;
-import net.minecraft.client.util.math.*;
-import net.minecraft.util.*;
+import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.entity.*;
+import net.minecraft.client.renderer.entity.layers.*;
+import net.minecraft.resources.*;
 import org.jetbrains.annotations.*;
 
 @Environment(EnvType.CLIENT)
-public class KindlingEntityRenderer extends MobEntityRenderer<KindlingEntity, KindlingEntityModel> {
+public class KindlingEntityRenderer extends MobRenderer<KindlingEntity, KindlingEntityModel> {
 	
-	public static final Identifier SADDLE_TEXTURE = SpectrumCommon.locate("textures/entity/kindling/saddle.png");
+	public static final ResourceLocation SADDLE_TEXTURE = SpectrumCommon.locate("textures/entity/kindling/saddle.png");
 	
-	public KindlingEntityRenderer(EntityRendererFactory.Context context) {
-		super(context, new KindlingEntityModel(context.getPart(SpectrumModelLayers.KINDLING)), 0.7F);
-		this.addFeature(new SaddleFeatureRenderer<>(this, new KindlingEntityModel(context.getPart(SpectrumModelLayers.KINDLING_SADDLE)), SADDLE_TEXTURE));
-		this.addFeature(new KindlingEntityArmorFeatureRenderer(this, context.getModelLoader()));
+	public KindlingEntityRenderer(EntityRendererProvider.Context context) {
+		super(context, new KindlingEntityModel(context.bakeLayer(SpectrumModelLayers.KINDLING)), 0.7F);
+		this.addLayer(new SaddleLayer<>(this, new KindlingEntityModel(context.bakeLayer(SpectrumModelLayers.KINDLING_SADDLE)), SADDLE_TEXTURE));
+		this.addLayer(new KindlingEntityArmorFeatureRenderer(this, context.getModelSet()));
 	}
 	
 	@Override
-	public void render(KindlingEntity entity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
-		super.render(entity, yaw, tickDelta, matrixStack, vertexConsumerProvider, light);
+	public void render(KindlingEntity entity, float yaw, float tickDelta, PoseStack poseStack, MultiBufferSource vertexConsumerProvider, int light) {
+		super.render(entity, yaw, tickDelta, poseStack, vertexConsumerProvider, light);
 	}
 	
 	@Override
-	public Identifier getTexture(@NotNull KindlingEntity entity) {
+	public ResourceLocation getTextureLocation(@NotNull KindlingEntity entity) {
 		KindlingVariant variant = entity.getKindlingVariant();
 		boolean isClipped = entity.isClipped();
-		if (entity.getAngerTime() > 0) {
+		if (entity.getRemainingPersistentAngerTime() > 0) {
 			return isClipped ? variant.getAngryClippedTexture() : variant.getAngryTexture();
 		}
-
-		boolean isBlinking = (entity.getId() - entity.getWorld().getTime()) % 120 == 0; // based on the entities' id, so not all blink at the same time
+		
+		boolean isBlinking = (entity.getId() - entity.level().getGameTime()) % 120 == 0; // based on the entities' id, so not all blink at the same time
 		if (isClipped) {
 			return isBlinking ? variant.getBlinkingClippedTexture() : variant.getClippedTexture();
 		}

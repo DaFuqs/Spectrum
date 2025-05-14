@@ -14,13 +14,12 @@ import dev.emi.emi.api.*;
 import dev.emi.emi.api.recipe.*;
 import dev.emi.emi.api.stack.*;
 import net.fabricmc.loader.api.*;
-import net.minecraft.block.*;
-import net.minecraft.client.gui.screen.ingame.*;
-import net.minecraft.fluid.*;
-import net.minecraft.recipe.*;
-import net.minecraft.recipe.input.*;
-import net.minecraft.registry.*;
-import net.minecraft.util.*;
+import net.minecraft.client.gui.screens.inventory.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.material.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -38,20 +37,20 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 	@SuppressWarnings("UnstableApiUsage")
 	public void registerDragDropHandlers(EmiRegistry registry) {
 		// Registering here since this is a trivial solution.
-		var handlerOne = new EmiDragDropHandler.SlotBased<>((_ignored, slot) -> slot instanceof ShadowSlot && slot.inventory instanceof FilterConfigurable.FilterInventory,
+		var handlerOne = new EmiDragDropHandler.SlotBased<>((_ignored, slot) -> slot instanceof ShadowSlot && slot.container instanceof FilterConfigurable.FilterInventory,
 				(screen, slot, ingredient) -> {
 					if (ingredient instanceof ItemEmiStack stack)
-						((FilterConfigurable.FilterInventory) slot.inventory).getClicker().clickShadowSlot(screen.getScreenHandler().syncId, slot, stack.getItemStack());
+						((FilterConfigurable.FilterInventory) slot.container).getClicker().clickShadowSlot(screen.getMenu().containerId, slot, stack.getItemStack());
 				});
 		
 		registerDragDropHandler(registry, BlackHoleChestScreen.class, handlerOne);
 		registerDragDropHandler(registry, FilteringScreen.class, handlerOne);
 	}
 	
-	// Type erasure BS
+	// Variant erasure BS
 	@SuppressWarnings("unchecked")
-	private void registerDragDropHandler(EmiRegistry registry, Class<? extends HandledScreen<?>> clazz, EmiDragDropHandler<HandledScreen<?>> handler) {
-		registry.addDragDropHandler((Class<HandledScreen<?>>) clazz, handler);
+	private void registerDragDropHandler(EmiRegistry registry, Class<? extends AbstractContainerScreen<?>> clazz, EmiDragDropHandler<AbstractContainerScreen<?>> handler) {
+		registry.addDragDropHandler((Class<AbstractContainerScreen<?>>) clazz, handler);
 	}
 	
 	public void registerCategories(EmiRegistry registry) {
@@ -148,29 +147,29 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 		
 		FreezingIdolBlock.FREEZING_STATE_MAP.forEach((key, value) -> {
 			EmiStack in = EmiStack.of(key.getBlock());
-			EmiStack out = EmiStack.of(value.getLeft().getBlock()).setChance(value.getRight());
+			EmiStack out = EmiStack.of(value.getA().getBlock()).setChance(value.getB());
 			if (in.isEmpty() || out.isEmpty()) {
 				return;
 			}
-			Identifier id = syntheticId("freezing", key.getBlock()); // The synthetic IDs generated here assume there will never be multiple conversions of the same block with different states
+			ResourceLocation id = syntheticId("freezing", key.getBlock()); // The synthetic IDs generated here assume there will never be multiple conversions of the same block with different states
 			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.FREEZING, id, in, out, SpectrumAdvancements.UNLOCK_IDOLS));
 		});
 		FreezingIdolBlock.FREEZING_MAP.forEach((key, value) -> {
 			EmiStack in = EmiStack.of(key);
-			EmiStack out = EmiStack.of(value.getLeft().getBlock()).setChance(value.getRight());
+			EmiStack out = EmiStack.of(value.getA().getBlock()).setChance(value.getB());
 			if (in.isEmpty() || out.isEmpty()) {
 				return;
 			}
-			Identifier id = syntheticId("freezing", key);
+			ResourceLocation id = syntheticId("freezing", key);
 			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.FREEZING, id, in, out, SpectrumAdvancements.UNLOCK_IDOLS));
 		});
 		FirestarterIdolBlock.BURNING_MAP.forEach((key, value) -> {
 			EmiStack in = EmiStack.of(key);
-			EmiStack out = EmiStack.of(value.getLeft().getBlock()).setChance(value.getRight());
+			EmiStack out = EmiStack.of(value.getA().getBlock()).setChance(value.getB());
 			if (in.isEmpty() || out.isEmpty()) {
 				return;
 			}
-			Identifier id = syntheticId("heating", key);
+			ResourceLocation id = syntheticId("heating", key);
 			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.HEATING, id, in, out, SpectrumAdvancements.UNLOCK_IDOLS));
 		});
 		NaturesStaffConversionDataLoader.CONVERSIONS.forEach((key, value) -> {
@@ -179,7 +178,7 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 			if (in.isEmpty() || out.isEmpty()) {
 				return;
 			}
-			Identifier id = syntheticId("natures_staff", key);
+			ResourceLocation id = syntheticId("natures_staff", key);
 			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.NATURES_STAFF, id, in, out, SpectrumAdvancements.UNLOCK_NATURES_STAFF));
 		});
 		
@@ -301,14 +300,14 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 		registry.addRecipeHandler(SpectrumScreenHandlerTypes.POTION_WORKSHOP, new PotionWorkshopRecipeHandler());
 	}
 	
-	public static Identifier syntheticId(String type, Block block) {
-		Identifier blockId = Registries.BLOCK.getId(block);
+	public static ResourceLocation syntheticId(String type, Block block) {
+		ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(block);
 		// Note that all recipe ids here start with "spectrum:/" which is legal, but impossible to represent with real files
-		return Identifier.of("spectrum:/" + type + "/" + blockId.getNamespace() + "/" + blockId.getPath());
+		return ResourceLocation.parse("spectrum:/" + type + "/" + blockId.getNamespace() + "/" + blockId.getPath());
 	}
 	
-	public <C extends RecipeInput, T extends Recipe<C>> void addAll(EmiRegistry registry, RecipeType<T> type, Function<RecipeEntry<T>, EmiRecipe> constructor) {
-		for (RecipeEntry<T> entry : registry.getRecipeManager().listAllOfType(type)) {
+	public <C extends RecipeInput, T extends Recipe<C>> void addAll(EmiRegistry registry, RecipeType<T> type, Function<RecipeHolder<T>, EmiRecipe> constructor) {
+		for (RecipeHolder<T> entry : registry.getRecipeManager().getAllRecipesFor(type)) {
 			registry.addRecipe(constructor.apply(entry));
 		}
 	}

@@ -5,33 +5,35 @@ import com.mojang.brigadier.exceptions.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.recipe.*;
 import net.fabricmc.fabric.api.resource.*;
-import net.minecraft.block.*;
-import net.minecraft.registry.*;
-import net.minecraft.resource.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.resources.*;
+import net.minecraft.server.packs.resources.*;
 import net.minecraft.util.*;
-import net.minecraft.util.profiler.*;
+import net.minecraft.util.profiling.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class NaturesStaffConversionDataLoader extends JsonDataLoader implements IdentifiableResourceReloadListener {
+public class NaturesStaffConversionDataLoader extends SimpleJsonResourceReloadListener implements IdentifiableResourceReloadListener {
 	
 	public static final String ID = "natures_staff_conversion";
 	public static final NaturesStaffConversionDataLoader INSTANCE = new NaturesStaffConversionDataLoader();
 	
 	public static final HashMap<Block, BlockState> CONVERSIONS = new HashMap<>();
-	public static final HashMap<Block, Identifier> UNLOCK_IDENTIFIERS = new HashMap<>();
+	public static final HashMap<Block, ResourceLocation> UNLOCK_IDENTIFIERS = new HashMap<>();
 	
 	private NaturesStaffConversionDataLoader() {
 		super(new Gson(), ID);
 	}
 	
 	@Override
-	protected void apply(Map<Identifier, JsonElement> prepared, ResourceManager manager, Profiler profiler) {
+	protected void apply(Map<ResourceLocation, JsonElement> prepared, ResourceManager manager, ProfilerFiller profiler) {
 		CONVERSIONS.clear();
 		prepared.forEach((identifier, jsonElement) -> {
 			JsonObject jsonObject = jsonElement.getAsJsonObject();
-			Block input = Registries.BLOCK.get(Identifier.tryParse(JsonHelper.getString(jsonObject, "input_block")));
+			Block input = BuiltInRegistries.BLOCK.get(ResourceLocation.tryParse(GsonHelper.getAsString(jsonObject, "input_block")));
 			
 			BlockState output;
 			try {
@@ -42,15 +44,15 @@ public class NaturesStaffConversionDataLoader extends JsonDataLoader implements 
 			
 			if (input != Blocks.AIR && !output.isAir()) {
 				CONVERSIONS.put(input, output);
-				if (JsonHelper.hasString(jsonObject, "unlock_identifier")) {
-					UNLOCK_IDENTIFIERS.put(input, Identifier.tryParse(JsonHelper.getString(jsonObject, "unlock_identifier")));
+				if (GsonHelper.isStringValue(jsonObject, "unlock_identifier")) {
+					UNLOCK_IDENTIFIERS.put(input, ResourceLocation.tryParse(GsonHelper.getAsString(jsonObject, "unlock_identifier")));
 				}
 			}
 		});
 	}
 	
 	@Override
-	public Identifier getFabricId() {
+	public ResourceLocation getFabricId() {
 		return SpectrumCommon.locate(ID);
 	}
 	

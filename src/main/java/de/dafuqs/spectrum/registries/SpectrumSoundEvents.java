@@ -1,9 +1,10 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
-import net.minecraft.registry.*;
-import net.minecraft.sound.*;
-import net.minecraft.util.*;
+import net.minecraft.core.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.resources.*;
+import net.minecraft.sounds.*;
 
 @SuppressWarnings("unused")
 public class SpectrumSoundEvents {
@@ -282,8 +283,8 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent OST_AZURE = register("ost.azure");
 	
 	private static SoundEvent register(String id) {
-		Identifier identifier = SpectrumCommon.locate(id);
-		return Registry.register(Registries.SOUND_EVENT, identifier, SoundEvent.of(identifier));
+		ResourceLocation identifier = SpectrumCommon.locate(id);
+		return Registry.register(BuiltInRegistries.SOUND_EVENT, identifier, SoundEvent.createVariableRangeEvent(identifier));
 	}
 	
 	public static void register() {

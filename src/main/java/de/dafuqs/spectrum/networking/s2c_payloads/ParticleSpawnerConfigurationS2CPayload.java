@@ -5,16 +5,16 @@ import de.dafuqs.spectrum.networking.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.minecraft.client.*;
+import net.minecraft.core.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.network.packet.*;
-import net.minecraft.util.math.*;
+import net.minecraft.network.protocol.common.custom.*;
 
-public record ParticleSpawnerConfigurationS2CPayload(BlockPos pos, ParticleSpawnerConfiguration configuration) implements CustomPayload {
+public record ParticleSpawnerConfigurationS2CPayload(BlockPos pos, ParticleSpawnerConfiguration configuration) implements CustomPacketPayload {
 	
-	public static final Id<ParticleSpawnerConfigurationS2CPayload> ID = SpectrumC2SPackets.makeId("change_particle_spawner_settings_client");
-	public static final PacketCodec<PacketByteBuf, ParticleSpawnerConfigurationS2CPayload> CODEC = PacketCodec.tuple(
-			BlockPos.PACKET_CODEC, ParticleSpawnerConfigurationS2CPayload::pos,
+	public static final Type<ParticleSpawnerConfigurationS2CPayload> ID = SpectrumC2SPackets.makeId("change_particle_spawner_settings_client");
+	public static final StreamCodec<FriendlyByteBuf, ParticleSpawnerConfigurationS2CPayload> CODEC = StreamCodec.composite(
+			BlockPos.STREAM_CODEC, ParticleSpawnerConfigurationS2CPayload::pos,
 			ParticleSpawnerConfiguration.PACKET_CODEC, ParticleSpawnerConfigurationS2CPayload::configuration,
 			ParticleSpawnerConfigurationS2CPayload::new
 	);
@@ -22,14 +22,14 @@ public record ParticleSpawnerConfigurationS2CPayload(BlockPos pos, ParticleSpawn
 	@SuppressWarnings("resource")
 	@Environment(EnvType.CLIENT)
 	public static void execute(ParticleSpawnerConfigurationS2CPayload payload, ClientPlayNetworking.Context context) {
-		MinecraftClient client = context.client();
-		if (client.world.getBlockEntity(payload.pos()) instanceof ParticleSpawnerBlockEntity particleSpawnerBlockEntity) {
+		Minecraft client = context.client();
+		if (client.level.getBlockEntity(payload.pos()) instanceof ParticleSpawnerBlockEntity particleSpawnerBlockEntity) {
 			particleSpawnerBlockEntity.applySettings(payload.configuration());
 		}
 	}
 	
 	@Override
-	public Id<? extends CustomPayload> getId() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

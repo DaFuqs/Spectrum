@@ -33,8 +33,8 @@ import me.shedaniel.rei.api.common.transfer.info.stack.*;
 import me.shedaniel.rei.api.common.util.*;
 import me.shedaniel.rei.plugin.common.*;
 import net.fabricmc.api.*;
-import net.minecraft.block.*;
-import net.minecraft.screen.*;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.level.block.*;
 
 import java.util.*;
 import java.util.stream.*;
@@ -127,9 +127,9 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.registerRecipeFiller(PrimordialFireBurningRecipe.class, SpectrumRecipeTypes.PRIMORDIAL_FIRE_BURNING, PrimordialFireBurningDisplay::new);
 		
 		NaturesStaffConversionDataLoader.CONVERSIONS.forEach((key, value) -> registry.add(new NaturesStaffConversionsDisplay(EntryStacks.of(key), EntryStacks.of(value.getBlock()), NaturesStaffConversionDataLoader.UNLOCK_IDENTIFIERS.getOrDefault(key, null))));
-		FreezingIdolBlock.FREEZING_STATE_MAP.forEach((key, value) -> registry.add(new FreezingDisplay(BlockToBlockWithChanceDisplay.blockToEntryStack(key.getBlock()), BlockToBlockWithChanceDisplay.blockToEntryStack(value.getLeft().getBlock()), value.getRight())));
-		FreezingIdolBlock.FREEZING_MAP.forEach((key, value) -> registry.add(new FreezingDisplay(BlockToBlockWithChanceDisplay.blockToEntryStack(key), BlockToBlockWithChanceDisplay.blockToEntryStack(value.getLeft().getBlock()), value.getRight())));
-		FirestarterIdolBlock.BURNING_MAP.forEach((key, value) -> registry.add(new HeatingDisplay(BlockToBlockWithChanceDisplay.blockToEntryStack(key), BlockToBlockWithChanceDisplay.blockToEntryStack(value.getLeft().getBlock()), value.getRight())));
+		FreezingIdolBlock.FREEZING_STATE_MAP.forEach((key, value) -> registry.add(new FreezingDisplay(BlockToBlockWithChanceDisplay.blockToEntryStack(key.getBlock()), BlockToBlockWithChanceDisplay.blockToEntryStack(value.getA().getBlock()), value.getB())));
+		FreezingIdolBlock.FREEZING_MAP.forEach((key, value) -> registry.add(new FreezingDisplay(BlockToBlockWithChanceDisplay.blockToEntryStack(key), BlockToBlockWithChanceDisplay.blockToEntryStack(value.getA().getBlock()), value.getB())));
+		FirestarterIdolBlock.BURNING_MAP.forEach((key, value) -> registry.add(new HeatingDisplay(BlockToBlockWithChanceDisplay.blockToEntryStack(key), BlockToBlockWithChanceDisplay.blockToEntryStack(value.getA().getBlock()), value.getB())));
 		
 		
 		registry.registerVisibilityPredicate((category, display) -> {
@@ -191,7 +191,7 @@ public class REIClientIntegration implements REIClientPlugin {
 	interface SimpleTransferHandlerExtension extends SimpleTransferHandler {
 		// Because REI decided to give the create method with the inventory slots argument a different container class type.
 		// Pretty much identical to the original otherwise (except with slot handling changed to resemble the EMI counterpart)
-		static <C extends ScreenHandler, D extends Display> SimpleTransferHandler create(Class<? extends C> containerClass,
+		static <C extends AbstractContainerMenu, D extends Display> SimpleTransferHandler create(Class<? extends C> containerClass,
 																								 CategoryIdentifier<D> categoryIdentifier,
 																								 SimpleTransferHandler.IntRange inputSlots,
 																								 SimpleTransferHandler.IntRange inventorySlots) {
@@ -222,7 +222,8 @@ public class REIClientIntegration implements REIClientPlugin {
 				}
 			};
 		}
-		static <C extends ScreenHandler, D extends Display> SimpleTransferHandler create(Class<? extends C> containerClass,
+		
+		static <C extends AbstractContainerMenu, D extends Display> SimpleTransferHandler create(Class<? extends C> containerClass,
 																						 CategoryIdentifier<D> categoryIdentifier,
 																						 SimpleTransferHandler.IntRange inputSlots,
 																						 List<IntRange> inventorySlotsRanges) {

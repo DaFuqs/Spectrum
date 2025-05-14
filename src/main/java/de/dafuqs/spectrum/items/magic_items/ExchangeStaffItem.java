@@ -10,22 +10,24 @@ import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.item.v1.*;
-import net.minecraft.block.*;
+import net.minecraft.*;
 import net.minecraft.client.*;
-import net.minecraft.enchantment.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.*;
-import net.minecraft.registry.*;
-import net.minecraft.registry.entry.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
-import net.minecraft.util.hit.*;
-import net.minecraft.util.math.*;
+import net.minecraft.core.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.item.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.context.*;
+import net.minecraft.world.item.enchantment.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 import oshi.util.tuples.*;
 
@@ -36,7 +38,7 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 	public static final int INK_COST_PER_BLOCK = 5;
 	public static final int CREATIVE_RANGE = 5;
 	
-	public ExchangeStaffItem(Settings settings) {
+	public ExchangeStaffItem(Properties settings) {
 		super(settings);
 	}
 	
@@ -45,7 +47,7 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 	// but not useless at the end
 	// this way the player does not need to craft 5 tiers
 	// of staffs that each do basically feel the same
-	public static int getRange(PlayerEntity playerEntity) {
+	public static int getRange(Player playerEntity) {
 		if (playerEntity == null || playerEntity.isCreative()) {
 			return CREATIVE_RANGE;
 		} else {
@@ -69,15 +71,15 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 	}
 	
 	@Override
-	public boolean canInteractWith(BlockState state, BlockView world, BlockPos pos, PlayerEntity player) {
-		return super.canInteractWith(state, world, pos, player) && state.getHardness(world, pos) < 20;
+	public boolean canInteractWith(BlockState state, BlockGetter world, BlockPos pos, Player player) {
+		return super.canInteractWith(state, world, pos, player) && state.getDestroySpeed(world, pos) < 20;
 	}
 	
-	public static boolean exchange(World world, BlockPos pos, @NotNull PlayerEntity player, @NotNull Block targetBlock, ItemStack exchangeStaffItemStack, Direction side) {
+	public static boolean exchange(Level world, BlockPos pos, @NotNull Player player, @NotNull Block targetBlock, ItemStack exchangeStaffItemStack, Direction side) {
 		return exchange(world, pos, player, targetBlock, exchangeStaffItemStack, false, side);
 	}
 	
-	public static boolean exchange(World world, BlockPos pos, @NotNull PlayerEntity player, @NotNull Block targetBlock, ItemStack exchangeStaffItemStack, boolean single, Direction side) {
+	public static boolean exchange(Level world, BlockPos pos, @NotNull Player player, @NotNull Block targetBlock, ItemStack exchangeStaffItemStack, boolean single, Direction side) {
 		Triplet<Block, Item, Integer> replaceData = countSuitableReplacementItems(player, targetBlock, single,
 				INK_COST_PER_BLOCK);
 		
@@ -95,7 +97,7 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 		}
 		
 		int blocksReplaced = 0;
-		if (!world.isClient) {
+		if (!world.isClientSide) {
 			List<ItemStack> stacks = new ArrayList<>();
 			BlockState stateToPlace;
 			for (BlockPos targetPosition : targetPositions) {
@@ -106,26 +108,26 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 				
 				if (!player.isCreative()) {
 					BlockState droppedStacks = world.getBlockState(targetPosition);
-					stacks.addAll(Block.getDroppedStacks(droppedStacks, (ServerWorld) world, targetPosition,
+					stacks.addAll(Block.getDrops(droppedStacks, (ServerLevel) world, targetPosition,
 							world.getBlockEntity(targetPosition), player, exchangeStaffItemStack));
 				}
-				world.setBlockState(targetPosition, Blocks.AIR.getDefaultState());
+				world.setBlockAndUpdate(targetPosition, Blocks.AIR.defaultBlockState());
 				
-				stateToPlace = targetBlock.getPlacementState(new BuildingStaffPlacementContext(world, player,
-						new BlockHitResult(Vec3d.ofBottomCenter(targetPosition), side, targetPosition, false)));
-				if (stateToPlace != null && stateToPlace.canPlaceAt(world, targetPosition)) {
+				stateToPlace = targetBlock.getStateForPlacement(new BuildingStaffPlacementContext(world, player,
+						new BlockHitResult(Vec3.atBottomCenterOf(targetPosition), side, targetPosition, false)));
+				if (stateToPlace != null && stateToPlace.canSurvive(world, targetPosition)) {
 					if (blocksReplaced == 0) {
-						world.playSound(null, player.getBlockPos(), stateToPlace.getSoundGroup().getPlaceSound(),
-								SoundCategory.PLAYERS, stateToPlace.getSoundGroup().getVolume(),
-								stateToPlace.getSoundGroup().getPitch());
+						world.playSound(null, player.blockPosition(), stateToPlace.getSoundType().getPlaceSound(),
+								SoundSource.PLAYERS, stateToPlace.getSoundType().getVolume(),
+								stateToPlace.getSoundType().getPitch());
 					}
 					
-					if (!world.setBlockState(targetPosition, stateToPlace)) {
+					if (!world.setBlockAndUpdate(targetPosition, stateToPlace)) {
 						ItemEntity itemEntity = new ItemEntity(world, targetPosition.getX(), targetPosition.getY(),
 								targetPosition.getZ(), new ItemStack(consumedItem));
-						itemEntity.setOwner(player.getUuid());
-						itemEntity.resetPickupDelay();
-						world.spawnEntity(itemEntity);
+						itemEntity.setTarget(player.getUUID());
+						itemEntity.setNoPickUpDelay();
+						world.addFreshEntity(itemEntity);
 					}
 				}
 				
@@ -136,7 +138,7 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 				InventoryHelper.removeFromInventoryWithRemainders(player,
 						new ItemStack(consumedItem, targetPositions.size()));
 				for (ItemStack stack : stacks) {
-					player.getInventory().offerOrDrop(stack);
+					player.getInventory().placeItemBackInInventory(stack);
 				}
 				InkPowered.tryDrainEnergy(player, USED_COLOR, (long) targetPositions.size() * INK_COST_PER_BLOCK);
 			}
@@ -147,13 +149,13 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 	}
 	
 	public void storeBlockAsTarget(@NotNull ItemStack exchangeStaffItemStack, Block block) {
-		exchangeStaffItemStack.set(SpectrumDataComponentTypes.STORED_BLOCK, Registries.BLOCK.getId(block));
+		exchangeStaffItemStack.set(SpectrumDataComponentTypes.STORED_BLOCK, BuiltInRegistries.BLOCK.getKey(block));
 	}
 	
 	public static Optional<Block> getStoredBlock(@NotNull ItemStack exchangeStaffItemStack) {
-		Identifier blockId = exchangeStaffItemStack.get(SpectrumDataComponentTypes.STORED_BLOCK);
+		ResourceLocation blockId = exchangeStaffItemStack.get(SpectrumDataComponentTypes.STORED_BLOCK);
 		if (blockId != null) {
-			Block targetBlock = Registries.BLOCK.get(blockId);
+			Block targetBlock = BuiltInRegistries.BLOCK.get(blockId);
 			if (targetBlock != Blocks.AIR) {
 				return Optional.of(targetBlock);
 			}
@@ -163,64 +165,64 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 	
 	@Override
 	@Environment(EnvType.CLIENT)
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
-		tooltip.add(Text.translatable("item.spectrum.exchanging_staff.tooltip.range", getRange(MinecraftClient.getInstance().player)).formatted(Formatting.GRAY));
-		getStoredBlock(stack).ifPresent(block -> tooltip.add(Text.translatable("item.spectrum.exchanging_staff.tooltip.target", block.getName()).formatted(Formatting.GRAY)));
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
+		tooltip.add(Component.translatable("item.spectrum.exchanging_staff.tooltip.range", getRange(Minecraft.getInstance().player)).withStyle(ChatFormatting.GRAY));
+		getStoredBlock(stack).ifPresent(block -> tooltip.add(Component.translatable("item.spectrum.exchanging_staff.tooltip.target", block.getName()).withStyle(ChatFormatting.GRAY)));
 		addInkPoweredTooltip(tooltip);
 	}
 	
 	@Override
-	public ActionResult useOnBlock(ItemUsageContext context) {
-		PlayerEntity player = context.getPlayer();
+	public InteractionResult useOn(UseOnContext context) {
+		Player player = context.getPlayer();
 		
 		if (player == null) {
-			return ActionResult.FAIL;
+			return InteractionResult.FAIL;
 		}
 		
-		World world = context.getWorld();
-		BlockPos pos = context.getBlockPos();
+		Level world = context.getLevel();
+		BlockPos pos = context.getClickedPos();
 		BlockState targetBlockState = world.getBlockState(pos);
 		Block targetBlock = targetBlockState.getBlock();
 		
-		if (!canInteractWith(targetBlockState, context.getWorld(), context.getBlockPos(), context.getPlayer())) {
-			world.playSound(null, player.getBlockPos(), SoundEvents.BLOCK_DISPENSER_FAIL, SoundCategory.PLAYERS, 1.0F,
+		if (!canInteractWith(targetBlockState, context.getLevel(), context.getClickedPos(), context.getPlayer())) {
+			world.playSound(null, player.blockPosition(), SoundEvents.DISPENSER_FAIL, SoundSource.PLAYERS, 1.0F,
 					1.0F);
-			return ActionResult.FAIL;
+			return InteractionResult.FAIL;
 		}
 		
-		ItemStack staffStack = context.getStack();
+		ItemStack staffStack = context.getItemInHand();
 		
-		if (player.isSneaking()) {
+		if (player.isShiftKeyDown()) {
 			// storing that block as target
-			if (world instanceof ServerWorld serverWorld) {
+			if (world instanceof ServerLevel serverWorld) {
 				storeBlockAsTarget(staffStack, targetBlock);
 				
-				Direction side = context.getSide();
-				Vec3d sourcePos = new Vec3d(context.getHitPos().getX() + side.getOffsetX() * 0.1,
-						context.getHitPos().getY() + side.getOffsetY() * 0.1,
-						context.getHitPos().getZ() + side.getOffsetZ() * 0.1);
+				Direction side = context.getClickedFace();
+				Vec3 sourcePos = new Vec3(context.getClickLocation().x() + side.getStepX() * 0.1,
+						context.getClickLocation().y() + side.getStepY() * 0.1,
+						context.getClickLocation().z() + side.getStepZ() * 0.1);
 				PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity(serverWorld, sourcePos,
-						SpectrumParticleTypes.SHIMMERSTONE_SPARKLE_SMALL, 15, Vec3d.ZERO, new Vec3d(0.25, 0.25, 0.25));
-				world.playSound(null, player.getBlockPos(), SpectrumSoundEvents.EXCHANGING_STAFF_SELECT,
-						SoundCategory.PLAYERS, 1.0F, 1.0F);
+						SpectrumParticleTypes.SHIMMERSTONE_SPARKLE_SMALL, 15, Vec3.ZERO, new Vec3(0.25, 0.25, 0.25));
+				world.playSound(null, player.blockPosition(), SpectrumSoundEvents.EXCHANGING_STAFF_SELECT,
+						SoundSource.PLAYERS, 1.0F, 1.0F);
 			}
-			return ActionResult.success(world.isClient);
+			return InteractionResult.sidedSuccess(world.isClientSide);
 		} else {
 			// exchanging
 			Optional<Block> storedBlock = getStoredBlock(staffStack);
 			if (storedBlock.isPresent()
 					&& storedBlock.get() != targetBlock
 					&& storedBlock.get().asItem() != Items.AIR
-					&& exchange(world, pos, player, storedBlock.get(), staffStack, context.getSide())) {
+					&& exchange(world, pos, player, storedBlock.get(), staffStack, context.getClickedFace())) {
 				
-				return ActionResult.success(world.isClient);
+				return InteractionResult.sidedSuccess(world.isClientSide);
 			}
 		}
 		
-		world.playSound(null, player.getBlockPos(), SoundEvents.BLOCK_DISPENSER_FAIL, SoundCategory.PLAYERS, 1.0F,
+		world.playSound(null, player.blockPosition(), SoundEvents.DISPENSER_FAIL, SoundSource.PLAYERS, 1.0F,
 				1.0F);
-		return ActionResult.FAIL;
+		return InteractionResult.FAIL;
 	}
 	
 	@Override
@@ -229,7 +231,7 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 	}
 	
 	@Override
-	public int getEnchantability() {
+	public int getEnchantmentValue() {
 		return 3;
 	}
 	
@@ -239,8 +241,8 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 	}
 	
 	@Override
-	public boolean canBeEnchantedWith(ItemStack stack, RegistryEntry<Enchantment> enchantment, EnchantingContext context) {
-		return super.canBeEnchantedWith(stack, enchantment, context) || enchantment.matchesKey(Enchantments.FORTUNE) || enchantment.matchesKey(Enchantments.SILK_TOUCH) || enchantment.matchesKey(SpectrumEnchantments.RESONANCE);
+	public boolean canBeEnchantedWith(ItemStack stack, Holder<Enchantment> enchantment, EnchantingContext context) {
+		return super.canBeEnchantedWith(stack, enchantment, context) || enchantment.is(Enchantments.FORTUNE) || enchantment.is(Enchantments.SILK_TOUCH) || enchantment.is(SpectrumEnchantments.RESONANCE);
 	}
 	
 }

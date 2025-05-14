@@ -1,17 +1,17 @@
 package de.dafuqs.spectrum.mixin.accessors;
 
-import net.minecraft.component.type.*;
-import net.minecraft.entity.passive.*;
+import net.minecraft.world.entity.animal.*;
+import net.minecraft.world.item.component.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.gen.*;
 
-@Mixin(MooshroomEntity.class)
+@Mixin(MushroomCow.class)
 public interface MooshroomEntityAccessor {
 	
 	@Accessor
-	SuspiciousStewEffectsComponent getStewEffects();
+	SuspiciousStewEffects getStewEffects();
 	
 	@Accessor
-	void setStewEffects(SuspiciousStewEffectsComponent stewEffects);
+	void setStewEffects(SuspiciousStewEffects stewEffects);
 	
 }

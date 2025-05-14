@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.entity;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.*;
 import de.dafuqs.spectrum.entity.predicates.*;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
+import net.minecraft.core.*;
+import net.minecraft.core.registries.*;
 
 public class SpectrumEntitySubPredicateTypes {
 	
@@ -15,10 +15,10 @@ public class SpectrumEntitySubPredicateTypes {
 	public static void register() {
 		// EntitySubPredicateTypes are not handled via identifiers, but we'll add our mod id anyway,
 		// in case of collisions with future vanilla updates or other mods
-		Registry.register(Registries.ENTITY_SUB_PREDICATE_TYPE, "spectrum:egg_laying_wooly_pig", EGG_LAYING_WOOLY_PIG);
-		Registry.register(Registries.ENTITY_SUB_PREDICATE_TYPE, "spectrum:shulker", SHULKER);
-		Registry.register(Registries.ENTITY_SUB_PREDICATE_TYPE, "spectrum:kindling", KINDLING);
-		Registry.register(Registries.ENTITY_SUB_PREDICATE_TYPE, "spectrum:lizard", LIZARD);
+		Registry.register(BuiltInRegistries.ENTITY_SUB_PREDICATE_TYPE, "spectrum:egg_laying_wooly_pig", EGG_LAYING_WOOLY_PIG);
+		Registry.register(BuiltInRegistries.ENTITY_SUB_PREDICATE_TYPE, "spectrum:shulker", SHULKER);
+		Registry.register(BuiltInRegistries.ENTITY_SUB_PREDICATE_TYPE, "spectrum:kindling", KINDLING);
+		Registry.register(BuiltInRegistries.ENTITY_SUB_PREDICATE_TYPE, "spectrum:lizard", LIZARD);
 	}
 	
 }

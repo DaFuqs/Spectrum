@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.compat.REI.plugins;
 
-import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.REI.*;
 import de.dafuqs.spectrum.compat.REI.widgets.*;
@@ -9,15 +8,10 @@ import me.shedaniel.math.*;
 import me.shedaniel.rei.api.client.gui.*;
 import me.shedaniel.rei.api.client.gui.widgets.*;
 import me.shedaniel.rei.api.common.category.*;
-import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
-import me.shedaniel.rei.impl.*;
-import me.shedaniel.rei.impl.client.gui.widget.basewidgets.*;
 import net.fabricmc.api.*;
-import net.minecraft.block.*;
-import net.minecraft.item.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -25,7 +19,7 @@ import java.util.*;
 @Environment(EnvType.CLIENT)
 public class PrimordialFireBurningCategory extends GatedDisplayCategory<PrimordialFireBurningDisplay> {
 	
-	private final static Identifier FIRE_TEXTURE = SpectrumCommon.locate("textures/block/primordial_fire_0.png");
+	private final static ResourceLocation FIRE_TEXTURE = SpectrumCommon.locate("textures/block/primordial_fire_0.png");
 	
 	@Override
 	public CategoryIdentifier<PrimordialFireBurningDisplay> getCategoryIdentifier() {
@@ -33,8 +27,8 @@ public class PrimordialFireBurningCategory extends GatedDisplayCategory<Primordi
 	}
 	
 	@Override
-	public Text getTitle() {
-		return Text.translatable("container.spectrum.rei.primordial_fire_burning.title");
+	public Component getTitle() {
+		return Component.translatable("container.spectrum.rei.primordial_fire_burning.title");
 	}
 	
 	@Override

@@ -6,10 +6,10 @@ import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.entity.variants.*;
-import net.minecraft.entity.*;
-import net.minecraft.predicate.entity.*;
-import net.minecraft.server.world.*;
-import net.minecraft.util.math.*;
+import net.minecraft.advancements.critereon.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -23,7 +23,7 @@ public record LizardPredicate(Optional<InkColor> color, Optional<LizardFrillVari
 	).apply(instance, LizardPredicate::new));
 
 	@Override
-	public boolean test(Entity entity, ServerWorld world, @Nullable Vec3d pos) {
+	public boolean matches(Entity entity, ServerLevel world, @Nullable Vec3 pos) {
 		if (!(entity instanceof LizardEntity lizard)) {
 			return false;
 		} else {
@@ -34,7 +34,7 @@ public record LizardPredicate(Optional<InkColor> color, Optional<LizardFrillVari
 	}
 
 	@Override
-	public MapCodec<LizardPredicate> getCodec() {
+	public MapCodec<LizardPredicate> codec() {
 		return SpectrumEntitySubPredicateTypes.LIZARD;
 	}
 	

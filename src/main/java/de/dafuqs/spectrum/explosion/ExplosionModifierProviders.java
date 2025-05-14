@@ -2,7 +2,8 @@ package de.dafuqs.spectrum.explosion;
 
 import de.dafuqs.spectrum.registries.*;
 import it.unimi.dsi.fastutil.objects.*;
-import net.minecraft.item.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -10,23 +11,21 @@ import java.util.*;
 public class ExplosionModifierProviders {
 	
 	protected static Map<Item, ExplosionModifier> MODIFIERS = new Object2ObjectOpenHashMap<>();
+	protected static Map<Item, ExplosionArchetype> ARCHETYPES = new Object2ObjectOpenHashMap<>();
 	
 	public static @Nullable ExplosionModifier getModifier(ItemStack stack) {
 		return MODIFIERS.getOrDefault(stack.getItem(), null);
 	}
 	
-	public static void registerForModifier(ItemConvertible provider, ExplosionModifier modifier) {
+	public static void registerForModifier(ItemLike provider, ExplosionModifier modifier) {
 		MODIFIERS.put(provider.asItem(), modifier);
 	}
-	
-	
-	protected static Map<Item, ExplosionArchetype> ARCHETYPES = new Object2ObjectOpenHashMap<>();
 	
 	public static @Nullable ExplosionArchetype getArchetype(ItemStack stack) {
 		return ARCHETYPES.getOrDefault(stack.getItem(), null);
 	}
 	
-	public static void registerForArchetype(ItemConvertible provider, ExplosionArchetype modifier) {
+	public static void registerForArchetype(ItemLike provider, ExplosionArchetype modifier) {
 		ARCHETYPES.put(provider.asItem(), modifier);
 	}
 	

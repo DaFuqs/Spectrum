@@ -4,12 +4,12 @@ import com.mojang.brigadier.tree.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.fabricmc.api.*;
 import net.fabricmc.loader.api.*;
-import net.minecraft.server.command.*;
+import net.minecraft.commands.*;
 
 public class ResetShadersCommand {
 	
-	public static void register(LiteralCommandNode<ServerCommandSource> root) {
-		LiteralCommandNode<ServerCommandSource> config = CommandManager.literal("resetShaders").executes((context) -> {
+	public static void register(LiteralCommandNode<CommandSourceStack> root) {
+		LiteralCommandNode<CommandSourceStack> config = Commands.literal("resetShaders").executes((context) -> {
 			if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT)
 				execute();
 			return 0;

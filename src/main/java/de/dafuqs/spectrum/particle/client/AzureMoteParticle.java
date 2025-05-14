@@ -1,40 +1,40 @@
 package de.dafuqs.spectrum.particle.client;
 
 import net.fabricmc.api.*;
+import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.particle.*;
-import net.minecraft.client.render.*;
-import net.minecraft.client.world.*;
-import net.minecraft.particle.*;
+import net.minecraft.client.renderer.*;
+import net.minecraft.core.particles.*;
 
 public class AzureMoteParticle extends BloodflyParticle {
-
-    protected AzureMoteParticle(ClientWorld clientWorld, double d, double e, double f, double velocityX, double velocityY, double velocityZ, float scaleMultiplier, SpriteProvider spriteProvider) {
+	
+	protected AzureMoteParticle(ClientLevel clientWorld, double d, double e, double f, double velocityX, double velocityY, double velocityZ, float scaleMultiplier, SpriteSet spriteProvider) {
         super(clientWorld, d, e, f, velocityX, velocityY, velocityZ, scaleMultiplier, spriteProvider);
-        this.blue = 1F;
-        this.red = 0.15F * random.nextFloat();
-        this.green = 0.3F + random.nextFloat() * 0.55F;
-        this.maxAge = 40 + random.nextInt(61);
+		this.bCol = 1F;
+		this.rCol = 0.15F * random.nextFloat();
+		this.gCol = 0.3F + random.nextFloat() * 0.55F;
+		this.lifetime = 40 + random.nextInt(61);
     }
 
     @Override
-    public int getBrightness(float tint) {
-        return LightmapTextureManager.MAX_LIGHT_COORDINATE;
+	public int getLightColor(float tint) {
+		return LightTexture.FULL_BRIGHT;
     }
 
     @Override
-    public ParticleTextureSheet getType() {
-        return ParticleTextureSheet.PARTICLE_SHEET_TRANSLUCENT;
+	public ParticleRenderType getRenderType() {
+		return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
     }
 
     @Environment(EnvType.CLIENT)
-    public static class Factory implements ParticleFactory<SimpleParticleType> {
-        private final SpriteProvider spriteProvider;
-
-        public Factory(SpriteProvider spriteProvider) {
+	public static class Factory implements ParticleProvider<SimpleParticleType> {
+		private final SpriteSet spriteProvider;
+		
+		public Factory(SpriteSet spriteProvider) {
             this.spriteProvider = spriteProvider;
         }
-
-        public Particle createParticle(SimpleParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
+		
+		public Particle createParticle(SimpleParticleType defaultParticleType, ClientLevel clientWorld, double d, double e, double f, double g, double h, double i) {
             return new AzureMoteParticle(clientWorld, d, e, f, 0.0, 0.0, 0.0, 1.0F, this.spriteProvider);
         }
     }

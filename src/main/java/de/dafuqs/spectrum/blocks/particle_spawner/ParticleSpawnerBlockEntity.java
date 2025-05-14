@@ -4,19 +4,19 @@ import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.screenhandler.v1.*;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.entity.player.*;
+import net.minecraft.core.*;
 import net.minecraft.nbt.*;
-import net.minecraft.network.listener.*;
-import net.minecraft.network.packet.*;
-import net.minecraft.network.packet.s2c.play.*;
-import net.minecraft.registry.*;
-import net.minecraft.screen.*;
-import net.minecraft.server.network.*;
-import net.minecraft.text.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.network.protocol.*;
+import net.minecraft.network.protocol.game.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
 public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos> {
@@ -36,10 +36,10 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 				new Vec3i(80, 40, 0),
 				false,
 				10.0F,
-				new Vec3d(0.0, 1.0, 0.0),
-				new Vec3d(0.0, 0.0, 0.0),
-				new Vec3d(0.0, 0.1, 0.0),
-				new Vec3d(0.1, 0.1, 0.1),
+				new Vec3(0.0, 1.0, 0.0),
+				new Vec3(0.0, 0.0, 0.0),
+				new Vec3(0.0, 0.1, 0.0),
+				new Vec3(0.1, 0.1, 0.1),
 				1.0F,
 				0.2F,
 				20,
@@ -49,7 +49,7 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 	}
 	
 	@SuppressWarnings("unused")
-	public static void clientTick(World world, BlockPos pos, BlockState state, ParticleSpawnerBlockEntity blockEntity) {
+	public static void clientTick(Level world, BlockPos pos, BlockState state, ParticleSpawnerBlockEntity blockEntity) {
 		BlockState blockState = world.getBlockState(pos);
 		if (blockState.getBlock() instanceof AbstractParticleSpawnerBlock particleSpawnerBlock && particleSpawnerBlock.shouldSpawnParticles(world, pos)) {
 			blockEntity.configuration.spawnParticles(world, pos);
@@ -58,33 +58,33 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 	
 	// Called when the chunk is first loaded to initialize this be
 	@Override
-	public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
-		NbtCompound nbtCompound = new NbtCompound();
-		this.writeNbt(nbtCompound, registryLookup);
+	public CompoundTag getUpdateTag(HolderLookup.Provider registryLookup) {
+		CompoundTag nbtCompound = new CompoundTag();
+		this.saveAdditional(nbtCompound, registryLookup);
 		return nbtCompound;
 	}
 	
 	@Nullable
 	@Override
-	public Packet<ClientPlayPacketListener> toUpdatePacket() {
-		return BlockEntityUpdateS2CPacket.create(this);
+	public Packet<ClientGamePacketListener> getUpdatePacket() {
+		return ClientboundBlockEntityDataPacket.create(this);
 	}
 	
 	public void updateInClientWorld() {
-		if (world != null) {
-			world.updateListeners(pos, world.getBlockState(pos), world.getBlockState(pos), Block.NO_REDRAW);
+		if (level != null) {
+			level.sendBlockUpdated(worldPosition, level.getBlockState(worldPosition), level.getBlockState(worldPosition), Block.UPDATE_INVISIBLE);
 		}
 	}
 	
 	@Override
-	public void writeNbt(NbtCompound tag, RegistryWrapper.WrapperLookup registryLookup) {
-		super.writeNbt(tag, registryLookup);
-		tag.put("particle_config", ParticleSpawnerConfiguration.CODEC.encodeStart(NbtOps.INSTANCE, this.configuration).result().orElse(new NbtCompound()));
+	public void saveAdditional(CompoundTag tag, HolderLookup.Provider registryLookup) {
+		super.saveAdditional(tag, registryLookup);
+		tag.put("particle_config", ParticleSpawnerConfiguration.CODEC.encodeStart(NbtOps.INSTANCE, this.configuration).result().orElse(new CompoundTag()));
 	}
 	
 	@Override
-	public void readNbt(NbtCompound tag, RegistryWrapper.WrapperLookup registryLookup) {
-		super.readNbt(tag, registryLookup);
+	public void loadAdditional(CompoundTag tag, HolderLookup.Provider registryLookup) {
+		super.loadAdditional(tag, registryLookup);
 		this.initialized = false;
 		var config = ParticleSpawnerConfiguration.CODEC.decode(NbtOps.INSTANCE, tag.getCompound("particle_config")).result();
 		if (config.isPresent()) {
@@ -95,13 +95,13 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 	
 	@Nullable
 	@Override
-	public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
+	public AbstractContainerMenu createMenu(int syncId, Inventory inv, Player player) {
 		return new ParticleSpawnerScreenHandler(syncId, inv, this);
 	}
 	
 	@Override
-	public Text getDisplayName() {
-		return Text.translatable("block.spectrum.particle_spawner");
+	public Component getDisplayName() {
+		return Component.translatable("block.spectrum.particle_spawner");
 	}
 	
 	public void applySettings(ParticleSpawnerConfiguration configuration) {
@@ -109,7 +109,7 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 		this.initialized = true;
 		
 		this.updateInClientWorld();
-		this.markDirty();
+		this.setChanged();
 	}
 	
 	public ParticleSpawnerConfiguration getConfiguration() {
@@ -117,7 +117,7 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 	}
 	
 	@Override
-	public BlockPos getScreenOpeningData(ServerPlayerEntity serverPlayerEntity) {
-		return this.pos;
+	public BlockPos getScreenOpeningData(ServerPlayer serverPlayerEntity) {
+		return this.worldPosition;
 	}
 }

@@ -1,13 +1,12 @@
 package de.dafuqs.spectrum.blocks.item_roundel;
 
+import com.mojang.blaze3d.vertex.*;
+import com.mojang.math.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
-import net.minecraft.client.render.*;
-import net.minecraft.client.render.block.entity.*;
-import net.minecraft.client.render.model.json.*;
-import net.minecraft.client.util.math.*;
-import net.minecraft.item.*;
-import net.minecraft.util.math.*;
+import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.blockentity.*;
+import net.minecraft.world.item.*;
 
 import java.util.*;
 
@@ -17,16 +16,16 @@ public class ItemRoundelBlockEntityRenderer<T extends ItemRoundelBlockEntity> im
 	private static final float distance = 0.29F;
 	
 	@SuppressWarnings("unused")
-    public ItemRoundelBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
+	public ItemRoundelBlockEntityRenderer(BlockEntityRendererProvider.Context ctx) {
 	}
 	
 	@Override
-	public void render(ItemRoundelBlockEntity blockEntity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int overlay) {
+	public void render(ItemRoundelBlockEntity blockEntity, float tickDelta, PoseStack poseStack, MultiBufferSource vertexConsumerProvider, int light, int overlay) {
 		if (!blockEntity.isEmpty()) {
 			// the floating item stacks
 			List<ItemStack> inventoryStacks = new ArrayList<>();
-			for (int i = 0; i < blockEntity.size(); i++) {
-				ItemStack stack = blockEntity.getStack(i);
+			for (int i = 0; i < blockEntity.getContainerSize(); i++) {
+				ItemStack stack = blockEntity.getItem(i);
 				if (!stack.isEmpty()) {
 					if (blockEntity.renderStacksAsIndividualItems()) {
 						for (int j = 0; j < stack.getCount(); j++) {
@@ -38,20 +37,20 @@ public class ItemRoundelBlockEntityRenderer<T extends ItemRoundelBlockEntity> im
 				}
 			}
 			
-			float time = blockEntity.getWorld().getTime() % 24000 + tickDelta;
+			float time = blockEntity.getLevel().getGameTime() % 24000 + tickDelta;
 			double radiant = Math.toRadians(360.0F / inventoryStacks.size());
 
 			for (int i = 0; i < inventoryStacks.size(); i++) {
-				matrixStack.push();
+				poseStack.pushPose();
 
 				double bob = Math.sin((time / 19) + i) * 0.075;
 				
 				double currentRadiant = radiant * i + (radiant * (time / 16.0) / (8.0F / inventoryStacks.size()));
-				matrixStack.translate(distance * Math.sin(currentRadiant) + 0.5, 0.3 + bob, distance * Math.cos(currentRadiant) + 0.5); // position offset
-				matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees((float) (i * 360 / inventoryStacks.size()) + (time / 16 / 8 * 360))); // item stack rotation; takes 0..360
+				poseStack.translate(distance * Math.sin(currentRadiant) + 0.5, 0.3 + bob, distance * Math.cos(currentRadiant) + 0.5); // position offset
+				poseStack.mulPose(Axis.YP.rotationDegrees((float) (i * 360 / inventoryStacks.size()) + (time / 16 / 8 * 360))); // item stack rotation; takes 0..360
 				
-				MinecraftClient.getInstance().getItemRenderer().renderItem(inventoryStacks.get(i), ModelTransformationMode.GROUND, light, overlay, matrixStack, vertexConsumerProvider, blockEntity.getWorld(), 0);
-				matrixStack.pop();
+				Minecraft.getInstance().getItemRenderer().renderStatic(inventoryStacks.get(i), ItemDisplayContext.GROUND, light, overlay, poseStack, vertexConsumerProvider, blockEntity.getLevel(), 0);
+				poseStack.popPose();
 			}
 		}
 	}

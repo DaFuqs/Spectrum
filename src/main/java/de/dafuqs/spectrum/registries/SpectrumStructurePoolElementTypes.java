@@ -3,8 +3,9 @@ package de.dafuqs.spectrum.registries;
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.worldgen.structure_pool_elements.*;
-import net.minecraft.registry.*;
-import net.minecraft.structure.pool.*;
+import net.minecraft.core.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.world.level.levelgen.structure.pools.*;
 
 public class SpectrumStructurePoolElementTypes {
 	
@@ -15,7 +16,7 @@ public class SpectrumStructurePoolElementTypes {
 	public static final StructurePoolElementType<SingleBlockPoolElement> SINGLE_BLOCK_ELEMENT = registerType("single_block_element", SingleBlockPoolElement.CODEC);
 
 	static <P extends StructurePoolElement> StructurePoolElementType<P> registerType(String id, MapCodec<P> codec) {
-		return Registry.register(Registries.STRUCTURE_POOL_ELEMENT, SpectrumCommon.locate(id), () -> codec);
+		return Registry.register(BuiltInRegistries.STRUCTURE_POOL_ELEMENT, SpectrumCommon.locate(id), () -> codec);
 	}
 	
 	public static void register() {

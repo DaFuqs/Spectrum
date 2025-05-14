@@ -2,10 +2,9 @@ package de.dafuqs.spectrum.blocks.boom;
 
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.explosion.*;
-import net.minecraft.block.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.*;
 
 import java.util.*;
 
@@ -15,16 +14,16 @@ public class ModularExplosionBlockItem extends BlockItem implements ModularExplo
 	private final double baseBlastRadius;
 	private final float baseDamage;
 	
-	public ModularExplosionBlockItem(Block block, double baseBlastRadius, float baseDamage, int maxModifierCount, Settings settings) {
-		super(block, settings);
+	public ModularExplosionBlockItem(Block block, double baseBlastRadius, float baseDamage, int maxModifierCount, Item.Properties properties) {
+		super(block, properties);
 		this.maxModifierCount = maxModifierCount;
 		this.baseBlastRadius = baseBlastRadius;
 		this.baseDamage = baseDamage;
 	}
 
 	@Override
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
 		ModularExplosionDefinition.getFromStack(stack).appendTooltip(tooltip, this);
 	}
 	

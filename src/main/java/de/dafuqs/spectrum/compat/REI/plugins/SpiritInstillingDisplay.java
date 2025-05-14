@@ -10,8 +10,8 @@ import me.shedaniel.rei.api.common.display.basic.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.client.*;
-import net.minecraft.item.*;
-import net.minecraft.recipe.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -21,7 +21,7 @@ public class SpiritInstillingDisplay extends GatedSpectrumDisplay {
 	protected final float experience;
 	protected final int craftingTime;
 	
-	public SpiritInstillingDisplay(@NotNull RecipeEntry<SpiritInstillerRecipe> recipe) {
+	public SpiritInstillingDisplay(@NotNull RecipeHolder<SpiritInstillerRecipe> recipe) {
 		super(recipe, REIHelper.toEntryIngredients(recipe.value().getIngredientStacks()), Collections.singletonList(buildOutput(recipe.value())));
 		this.experience = recipe.value().getExperience();
 		this.craftingTime = recipe.value().getCraftingTime();
@@ -29,11 +29,11 @@ public class SpiritInstillingDisplay extends GatedSpectrumDisplay {
 	
 	public static EntryIngredient buildOutput(SpiritInstillerRecipe recipe) {
 		if (recipe instanceof SpawnerChangeRecipe spawnerChangeRecipe) {
-			ItemStack outputStack = recipe.getResult(BasicDisplay.registryAccess());
+			ItemStack outputStack = recipe.getResultItem(BasicDisplay.registryAccess());
 			LoreHelper.setLore(outputStack, spawnerChangeRecipe.getOutputLoreText());
 			return EntryIngredients.of(outputStack);
 		} else {
-			return EntryIngredients.of(recipe.getResult(BasicDisplay.registryAccess()));
+			return EntryIngredients.of(recipe.getResultItem(BasicDisplay.registryAccess()));
 		}
 	}
 	
@@ -44,7 +44,7 @@ public class SpiritInstillingDisplay extends GatedSpectrumDisplay {
 	
 	@Override
     public boolean isUnlocked() {
-		MinecraftClient client = MinecraftClient.getInstance();
+		Minecraft client = Minecraft.getInstance();
 		return AdvancementHelper.hasAdvancement(client.player, SpiritInstillerRecipe.UNLOCK_IDENTIFIER) && super.isUnlocked();
 	}
 	

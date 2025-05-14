@@ -8,8 +8,8 @@ import dev.emi.emi.api.widget.TextWidget.*;
 import dev.emi.emi.api.widget.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
-import net.minecraft.recipe.*;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.world.item.crafting.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -18,7 +18,7 @@ public class TitrationBarrelEmiRecipeGated extends GatedSpectrumEmiRecipe<ITitra
 	
 	protected final @Nullable List<EmiStack> displayedStacks;
 	
-	public TitrationBarrelEmiRecipeGated(RecipeEntry<ITitrationBarrelRecipe> entry) {
+	public TitrationBarrelEmiRecipeGated(RecipeHolder<ITitrationBarrelRecipe> entry) {
 		super(SpectrumEmiRecipeCategories.TITRATION_BARREL, entry, 136, 50);
 		inputs = new ArrayList<>();
 		if (recipe.getFluidInput() != FluidIngredient.EMPTY) {
@@ -58,11 +58,11 @@ public class TitrationBarrelEmiRecipeGated extends GatedSpectrumEmiRecipe<ITitra
 		
 		if (displayedStacks == null) {
 			widgets.addSlot(outputs.getFirst(), 100, 5).large(true).recipeContext(this);
-		} else if (MinecraftClient.getInstance().world != null) {
-			widgets.addGeneratedSlot(random -> displayedStacks.get((int) (MinecraftClient.getInstance().world.getTime() % displayedStacks.size())), 1, 100, 5).large(true).recipeContext(this);
+		} else if (Minecraft.getInstance().level != null) {
+			widgets.addGeneratedSlot(random -> displayedStacks.get((int) (Minecraft.getInstance().level.getGameTime() % displayedStacks.size())), 1, 100, 5).large(true).recipeContext(this);
 		}
 		
-		Text text = TitrationBarrelRecipe.getDurationText(recipe.getMinFermentationTimeHours(), recipe.getFermentationData());
+		Component text = TitrationBarrelRecipe.getDurationText(recipe.getMinFermentationTimeHours(), recipe.getFermentationData());
 		widgets.addText(text, width / 2, 40, 0x3f3f3f, false).horizontalAlign(Alignment.CENTER);
 	}
 }

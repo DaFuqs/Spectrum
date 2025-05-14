@@ -5,16 +5,15 @@ import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
+import net.minecraft.*;
 import net.minecraft.client.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.*;
-import net.minecraft.server.network.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -32,7 +31,7 @@ public class CelestialPocketWatchItem extends Item implements InkPowered {
 		FAILED_GAME_RULE
 	}
 	
-	public CelestialPocketWatchItem(Settings settings) {
+	public CelestialPocketWatchItem(Properties settings) {
 		super(settings);
 	}
 	
@@ -42,26 +41,26 @@ public class CelestialPocketWatchItem extends Item implements InkPowered {
 	}
 	
 	@Override
-	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-		ItemStack itemStack = user.getStackInHand(hand);
+	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
+		ItemStack itemStack = user.getItemInHand(hand);
 		
-		if (!world.isClient) {
-			if (!tryAdvanceTime((ServerWorld) world, (ServerPlayerEntity) user)) {
-				world.playSound(null, user.getBlockPos(), SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
+		if (!world.isClientSide) {
+			if (!tryAdvanceTime((ServerLevel) world, (ServerPlayer) user)) {
+				world.playSound(null, user.blockPosition(), SpectrumSoundEvents.USE_FAIL, SoundSource.PLAYERS, 1.0F, 1.0F);
 			}
 			
-			return TypedActionResult.consume(itemStack);
+			return InteractionResultHolder.consume(itemStack);
 		}
-		return TypedActionResult.success(itemStack, true);
+		return InteractionResultHolder.sidedSuccess(itemStack, true);
 	}
 	
-	public static boolean tryAdvanceTime(ServerWorld world, ServerPlayerEntity user) {
+	public static boolean tryAdvanceTime(ServerLevel world, ServerPlayer user) {
 		switch (canAdvanceTime(world)) {
-			case FAILED_GAME_RULE -> user.sendMessage(Text.translatable("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_gamerule"), true);
-			case FAILED_FIXED_TIME -> user.sendMessage(Text.translatable("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_fixed_time"), true);
+			case FAILED_GAME_RULE -> user.displayClientMessage(Component.translatable("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_gamerule"), true);
+			case FAILED_FIXED_TIME -> user.displayClientMessage(Component.translatable("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_fixed_time"), true);
 			case SUCCESS -> {
 				if (InkPowered.tryDrainEnergy(user, COST)) {
-					world.playSound(null, user.getBlockPos(), SpectrumSoundEvents.CELESTIAL_POCKET_WATCH_TICKING, SoundCategory.PLAYERS, 1.0F, 1.0F);
+					world.playSound(null, user.blockPosition(), SpectrumSoundEvents.CELESTIAL_POCKET_WATCH_TICKING, SoundSource.PLAYERS, 1.0F, 1.0F);
 					advanceTime(world, TIME_STEP_TICKS);
 				}
 				return true;
@@ -71,10 +70,10 @@ public class CelestialPocketWatchItem extends Item implements InkPowered {
 	}
 	
 	// the clocks use is blocked if the world has a fixed daylight cycle, or gamerule doDayLightCycle is set to false
-	private static TimeToggleResult canAdvanceTime(@NotNull World world) {
-		GameRules.BooleanRule doDaylightCycleRule = world.getGameRules().get(GameRules.DO_DAYLIGHT_CYCLE);
+	private static TimeToggleResult canAdvanceTime(@NotNull Level world) {
+		GameRules.BooleanValue doDaylightCycleRule = world.getGameRules().getRule(GameRules.RULE_DAYLIGHT);
 		if (doDaylightCycleRule.get()) {
-			if (world.getDimension().hasFixedTime()) {
+			if (world.dimensionType().hasFixedTime()) {
 				return TimeToggleResult.FAILED_FIXED_TIME;
 			} else {
 				return TimeToggleResult.SUCCESS;
@@ -84,23 +83,23 @@ public class CelestialPocketWatchItem extends Item implements InkPowered {
 		}
 	}
 	
-	private static void advanceTime(@NotNull ServerWorld world, int additionalTime) {
+	private static void advanceTime(@NotNull ServerLevel world, int additionalTime) {
 		StartSkyLerpingPayload.startSkyLerping(world, additionalTime);
-		long timeOfDay = world.getTimeOfDay();
-		world.setTimeOfDay(timeOfDay + additionalTime);
+		long timeOfDay = world.getDayTime();
+		world.setDayTime(timeOfDay + additionalTime);
 	}
 	
 	@Override
 	@Environment(EnvType.CLIENT)
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
 		
-		var world = MinecraftClient.getInstance().world;
+		var world = Minecraft.getInstance().level;
 		if (world != null) {
 			switch (canAdvanceTime(world)) {
-				case FAILED_GAME_RULE -> tooltip.add(Text.translatable("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_gamerule").formatted(Formatting.GRAY));
-				case FAILED_FIXED_TIME -> tooltip.add(Text.translatable("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_fixed_time").formatted(Formatting.GRAY));
-				case SUCCESS -> tooltip.add(Text.translatable("item.spectrum.celestial_pocketwatch.tooltip.working").formatted(Formatting.GRAY));
+				case FAILED_GAME_RULE -> tooltip.add(Component.translatable("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_gamerule").withStyle(ChatFormatting.GRAY));
+				case FAILED_FIXED_TIME -> tooltip.add(Component.translatable("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_fixed_time").withStyle(ChatFormatting.GRAY));
+				case SUCCESS -> tooltip.add(Component.translatable("item.spectrum.celestial_pocketwatch.tooltip.working").withStyle(ChatFormatting.GRAY));
 			}
 		}
 		

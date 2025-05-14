@@ -1,36 +1,36 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
 import com.mojang.serialization.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.*;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.entity.*;
 
 import java.util.*;
 
 public class EntityDetectorBlock extends DetectorBlock {
-
-	public static final MapCodec<EntityDetectorBlock> CODEC = createCodec(EntityDetectorBlock::new);
-
-	public EntityDetectorBlock(Settings settings) {
+	
+	public static final MapCodec<EntityDetectorBlock> CODEC = simpleCodec(EntityDetectorBlock::new);
+	
+	public EntityDetectorBlock(Properties settings) {
 		super(settings);
 	}
 
 	@Override
-	public MapCodec<? extends EntityDetectorBlock> getCodec() {
+	public MapCodec<? extends EntityDetectorBlock> codec() {
 		return CODEC;
 	}
 	
 	@Override
-	protected void updateState(BlockState state, World world, BlockPos pos) {
-		List<LivingEntity> entities = world.getEntitiesByType(TypeFilter.instanceOf(LivingEntity.class), getDetectionBox(pos), LivingEntity::isAlive);
+	protected void updateState(BlockState state, Level world, BlockPos pos) {
+		List<LivingEntity> entities = world.getEntities(EntityTypeTest.forClass(LivingEntity.class), getDetectionBox(pos), LivingEntity::isAlive);
 		
 		int power = Math.min(entities.size(), 15);
 		
-		power = state.get(INVERTED) ? 15 - power : power;
-		if (state.get(POWER) != power) {
-			world.setBlockState(pos, state.with(POWER, power), 3);
+		power = state.getValue(INVERTED) ? 15 - power : power;
+		if (state.getValue(POWER) != power) {
+			world.setBlock(pos, state.setValue(POWER, power), 3);
 		}
 	}
 	

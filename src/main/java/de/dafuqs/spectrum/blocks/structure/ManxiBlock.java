@@ -1,74 +1,74 @@
 package de.dafuqs.spectrum.blocks.structure;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.sound.*;
-import net.minecraft.state.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
-import net.minecraft.util.hit.*;
-import net.minecraft.util.math.*;
+import net.minecraft.core.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.sounds.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.context.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
-public class ManxiBlock extends HorizontalFacingBlock implements BlockEntityProvider {
-
-	public static final MapCodec<ManxiBlock> CODEC = createCodec(ManxiBlock::new);
-
-	public ManxiBlock(Settings settings) {
+public class ManxiBlock extends HorizontalDirectionalBlock implements EntityBlock {
+	
+	public static final MapCodec<ManxiBlock> CODEC = simpleCodec(ManxiBlock::new);
+	
+	public ManxiBlock(Properties settings) {
 		super(settings);
 	}
 
 	@Override
-	public MapCodec<? extends ManxiBlock> getCodec() {
+	public MapCodec<? extends ManxiBlock> codec() {
 		return CODEC;
 	}
 
 	@Nullable
 	@Override
-	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+		return this.defaultBlockState().setValue(FACING, ctx.getHorizontalDirection().getOpposite());
 	}
 
 	@Override
-	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(FACING);
 	}
 
 	@Override
-	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
 		var entity = world.getBlockEntity(pos);
 
 		if (!(entity instanceof PlayerTrackerBlockEntity manxi))
-			return ActionResult.PASS;
+			return InteractionResult.PASS;
 
 		if (manxi.hasTaken(player))
-			return ActionResult.FAIL;
-
-		world.playSoundAtBlockCenter(pos, SoundEvents.BLOCK_CHISELED_BOOKSHELF_PICKUP_ENCHANTED, SoundCategory.BLOCKS, 1F, 1F, true);
-		player.getInventory().offerOrDrop(SpectrumItems.POISONERS_HANDBOOK.getDefaultStack());
+			return InteractionResult.FAIL;
+		
+		world.playLocalSound(pos, SoundEvents.CHISELED_BOOKSHELF_PICKUP_ENCHANTED, SoundSource.BLOCKS, 1F, 1F, true);
+		player.getInventory().placeItemBackInInventory(SpectrumItems.POISONERS_HANDBOOK.getDefaultInstance());
 		manxi.markTaken(player);
-
-		return ActionResult.CONSUME;
+		
+		return InteractionResult.CONSUME;
 	}
 
 	@Override
-	public void onBlockBreakStart(BlockState state, World world, BlockPos pos, PlayerEntity player) {
-		if (!world.isClient() && !player.getAbilities().creativeMode) {
-			player.sendMessage(Text.translatable("block.spectrum.manxi.nope").styled(s -> s.withColor(SpectrumStatusEffects.ETERNAL_SLUMBER_COLOR)), true);
-			world.playSoundAtBlockCenter(pos, SpectrumSoundEvents.DEEP_CRYSTAL_RING, SoundCategory.BLOCKS, 1, 1.5F, true);
-			player.damage(SpectrumDamageTypes.sleep(world, null), 6);
-			player.takeKnockback(2, player.getX() - (pos.getX() + 0.5), player.getZ() - (pos.getZ() + 0.5));
+	public void attack(BlockState state, Level world, BlockPos pos, Player player) {
+		if (!world.isClientSide() && !player.getAbilities().instabuild) {
+			player.displayClientMessage(Component.translatable("block.spectrum.manxi.nope").withStyle(s -> s.withColor(SpectrumStatusEffects.ETERNAL_SLUMBER_COLOR)), true);
+			world.playLocalSound(pos, SpectrumSoundEvents.DEEP_CRYSTAL_RING, SoundSource.BLOCKS, 1, 1.5F, true);
+			player.hurt(SpectrumDamageTypes.sleep(world, null), 6);
+			player.knockback(2, player.getX() - (pos.getX() + 0.5), player.getZ() - (pos.getZ() + 0.5));
 		}
 	}
 
 	@Nullable
 	@Override
-	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new PlayerTrackerBlockEntity(pos, state);
 	}
 }

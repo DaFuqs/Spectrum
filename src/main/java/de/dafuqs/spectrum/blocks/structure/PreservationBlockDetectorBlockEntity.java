@@ -2,22 +2,23 @@ package de.dafuqs.spectrum.blocks.structure;
 
 import com.mojang.brigadier.exceptions.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.command.argument.*;
+import net.minecraft.commands.*;
+import net.minecraft.commands.arguments.blocks.*;
+import net.minecraft.core.*;
+import net.minecraft.core.registries.*;
 import net.minecraft.nbt.*;
-import net.minecraft.registry.*;
+import net.minecraft.network.chat.*;
 import net.minecraft.server.*;
-import net.minecraft.server.command.*;
-import net.minecraft.server.world.*;
-import net.minecraft.text.*;
-import net.minecraft.util.math.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
-import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.*;
 
-public class PreservationBlockDetectorBlockEntity extends BlockEntity implements CommandOutput {
+public class PreservationBlockDetectorBlockEntity extends BlockEntity implements CommandSource {
 	
 	protected @Nullable BlockState detectedState; // detect this block. Null: any block
 	protected @Nullable BlockState changeIntoState; // change into this once triggered. Null: stay as is (can be used again and again)
@@ -28,94 +29,96 @@ public class PreservationBlockDetectorBlockEntity extends BlockEntity implements
 	}
 	
 	@Override
-	public void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-		super.writeNbt(nbt, registryLookup);
+	public void saveAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
+		super.saveAdditional(nbt, registryLookup);
 		if (this.changeIntoState != null) {
-			nbt.putString("change_into_state", BlockArgumentParser.stringifyBlockState(this.changeIntoState));
+			nbt.putString("change_into_state", BlockStateParser.serialize(this.changeIntoState));
 		}
 		if (this.detectedState != null) {
-			nbt.putString("detected_state", BlockArgumentParser.stringifyBlockState(this.detectedState));
+			nbt.putString("detected_state", BlockStateParser.serialize(this.detectedState));
 		}
 		if (!this.commands.isEmpty()) {
-			NbtList commandList = new NbtList();
+			ListTag commandList = new ListTag();
 			for (String s : this.commands) {
-				commandList.add(NbtString.of(s));
+				commandList.add(StringTag.valueOf(s));
 			}
 			nbt.put("commands", commandList);
 		}
 	}
 	
 	@Override
-	public void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-		super.readNbt(nbt, registryLookup);
+	public void loadAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
+		super.loadAdditional(nbt, registryLookup);
 		this.commands = new ArrayList<>();
 		this.changeIntoState = null;
 		this.detectedState = null;
-		if (nbt.contains("commands", NbtElement.LIST_TYPE)) {
-			for (NbtElement e : nbt.getList("commands", NbtElement.STRING_TYPE)) {
-				this.commands.add(e.asString());
+		if (nbt.contains("commands", Tag.TAG_LIST)) {
+			for (Tag e : nbt.getList("commands", Tag.TAG_STRING)) {
+				this.commands.add(e.getAsString());
 			}
 		}
-		if (nbt.contains("change_into_state", NbtElement.STRING_TYPE)) {
+		if (nbt.contains("change_into_state", Tag.TAG_STRING)) {
 			try {
-				this.changeIntoState = BlockArgumentParser.block(Registries.BLOCK.getReadOnlyWrapper(), nbt.getString("change_into_state"), false).blockState();
+				this.changeIntoState = BlockStateParser.parseForBlock(BuiltInRegistries.BLOCK.asLookup(), nbt.getString("change_into_state"), false).blockState();
 			} catch (CommandSyntaxException ignored) {
 			}
 		}
-		if (nbt.contains("detected_state", NbtElement.STRING_TYPE)) {
+		if (nbt.contains("detected_state", Tag.TAG_STRING)) {
 			try {
-				this.detectedState = BlockArgumentParser.block(Registries.BLOCK.getReadOnlyWrapper(), nbt.getString("detected_state"), false).blockState();
+				this.detectedState = BlockStateParser.parseForBlock(BuiltInRegistries.BLOCK.asLookup(), nbt.getString("detected_state"), false).blockState();
 			} catch (CommandSyntaxException ignored) {
 			}
 		}
 	}
 	
 	public void triggerForNeighbor(BlockState state) {
-		if ((this.detectedState == null || state.equals(this.detectedState)) && this.getWorld() instanceof ServerWorld serverWorld) {
+		if ((this.detectedState == null || state.equals(this.detectedState)) && this.getLevel() instanceof ServerLevel serverWorld) {
 			this.execute(serverWorld);
 		}
 	}
 	
-	public void execute(ServerWorld serverWorld) {
+	public void execute(ServerLevel serverWorld) {
 		MinecraftServer minecraftServer = serverWorld.getServer();
 		AtomicBoolean failed = new AtomicBoolean(false);
 		if (!this.commands.isEmpty()) {
-			ServerCommandSource serverCommandSource = new ServerCommandSource(this, Vec3d.ofCenter(PreservationBlockDetectorBlockEntity.this.pos), Vec2f.ZERO, serverWorld, 2, "PreservationBlockDetector", this.getWorld().getBlockState(this.pos).getBlock().getName(), minecraftServer, null)
-					.withReturnValueConsumer((success, returnValue) -> { if (returnValue < 1) failed.set(true); });
+			CommandSourceStack serverCommandSource = new CommandSourceStack(this, Vec3.atCenterOf(PreservationBlockDetectorBlockEntity.this.worldPosition), Vec2.ZERO, serverWorld, 2, "PreservationBlockDetector", this.getLevel().getBlockState(this.worldPosition).getBlock().getName(), minecraftServer, null)
+					.withCallback((success, returnValue) -> {
+						if (returnValue < 1) failed.set(true);
+					});
 			for (String command : this.commands) {
-				minecraftServer.getCommandManager().executeWithPrefix(serverCommandSource, command);
+				minecraftServer.getCommands().performPrefixedCommand(serverCommandSource, command);
 				if (failed.get()) {
 					break;
 				}
 			}
 			if (this.changeIntoState != null) {
-				serverWorld.setBlockState(this.pos, this.changeIntoState);
+				serverWorld.setBlockAndUpdate(this.worldPosition, this.changeIntoState);
 			}
 		}
 	}
 	
 	@Override
-	public boolean copyItemDataRequiresOperator() {
+	public boolean onlyOpCanSetNbt() {
 		return true;
 	}
 	
 	@Override
-	public void sendMessage(Text message) {
+	public void sendSystemMessage(Component message) {
 	
 	}
 	
 	@Override
-	public boolean shouldReceiveFeedback() {
+	public boolean acceptsSuccess() {
 		return false;
 	}
 	
 	@Override
-	public boolean shouldTrackOutput() {
+	public boolean acceptsFailure() {
 		return false;
 	}
 	
 	@Override
-	public boolean shouldBroadcastConsoleToOps() {
+	public boolean shouldInformAdmins() {
 		return false;
 	}
 	

@@ -3,11 +3,11 @@ package de.dafuqs.spectrum.cca;
 import com.mojang.authlib.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.entity.player.*;
 import net.minecraft.nbt.*;
-import net.minecraft.registry.*;
-import net.minecraft.server.world.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.level.*;
 import org.jetbrains.annotations.*;
 import org.ladysnake.cca.api.v3.component.*;
 
@@ -20,28 +20,28 @@ public class HardcoreDeathComponent implements Component {
 	private final static List<UUID> playersThatDiedInHardcore = new ArrayList<>();
 	
 	@Override
-	public void writeToNbt(@NotNull NbtCompound tag, RegistryWrapper.@NotNull WrapperLookup wrapperLookup) {
-		NbtList uuidList = new NbtList();
+	public void writeToNbt(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider wrapperLookup) {
+		ListTag uuidList = new ListTag();
 		for (UUID playerThatDiedInHardcore : playersThatDiedInHardcore) {
-			uuidList.add(NbtHelper.fromUuid(playerThatDiedInHardcore));
+			uuidList.add(NbtUtils.createUUID(playerThatDiedInHardcore));
 		}
 		tag.put("HardcoreDeaths", uuidList);
 	}
 	
 	@Override
-	public void readFromNbt(NbtCompound tag, RegistryWrapper.@NotNull WrapperLookup wrapperLookup) {
+	public void readFromNbt(CompoundTag tag, HolderLookup.@NotNull Provider wrapperLookup) {
 		playersThatDiedInHardcore.clear();
-		NbtList uuidList = tag.getList("HardcoreDeaths", NbtElement.INT_ARRAY_TYPE);
-		for (NbtElement listEntry : uuidList) {
-			playersThatDiedInHardcore.add(NbtHelper.toUuid(listEntry));
+		ListTag uuidList = tag.getList("HardcoreDeaths", Tag.TAG_INT_ARRAY);
+		for (Tag listEntry : uuidList) {
+			playersThatDiedInHardcore.add(NbtUtils.loadUUID(listEntry));
 		}
 	}
 	
-	public static boolean isInHardcore(PlayerEntity player) {
-		return player.hasStatusEffect(SpectrumStatusEffects.DIVINITY);
+	public static boolean isInHardcore(Player player) {
+		return player.hasEffect(SpectrumStatusEffects.DIVINITY);
 	}
 	
-	public static void addHardcoreDeath(ServerWorld world, GameProfile profile) {
+	public static void addHardcoreDeath(ServerLevel world, GameProfile profile) {
 		addHardcoreDeath(world, profile.getId());
 	}
 	
@@ -53,11 +53,11 @@ public class HardcoreDeathComponent implements Component {
 		return hasHardcoreDeath(profile.getId());
 	}
 	
-	protected static void addHardcoreDeath(ServerWorld world, UUID uuid) {
+	protected static void addHardcoreDeath(ServerLevel world, UUID uuid) {
 		if (!playersThatDiedInHardcore.contains(uuid)) {
 			playersThatDiedInHardcore.add(uuid);
 		}
-		world.getServer().getPlayerManager().getPlayer(uuid).changeGameMode(GameMode.SPECTATOR);
+		world.getServer().getPlayerList().getPlayer(uuid).setGameMode(GameType.SPECTATOR);
 	}
 	
 	protected static boolean hasHardcoreDeath(UUID uuid) {

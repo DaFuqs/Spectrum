@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.explosion;
 
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.util.*;
+import net.minecraft.resources.*;
 
 public class ExplosionModifierType {
 	
@@ -25,8 +25,8 @@ public class ExplosionModifierType {
 		return maxModifiersForType;
 	}
 	
-	public Identifier getId() {
-		return SpectrumRegistries.EXPLOSION_MODIFIER_TYPE.getId(this);
+	public ResourceLocation getId() {
+		return SpectrumRegistries.EXPLOSION_MODIFIER_TYPE.getKey(this);
 	}
 	
 }

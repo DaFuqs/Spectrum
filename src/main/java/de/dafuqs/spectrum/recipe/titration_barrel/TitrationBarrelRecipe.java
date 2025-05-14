@@ -5,24 +5,24 @@ import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.components.*;
-import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.transfer.v1.fluid.*;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.*;
-import net.minecraft.component.*;
-import net.minecraft.component.type.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.inventory.*;
-import net.minecraft.item.*;
+import net.minecraft.core.*;
+import net.minecraft.core.component.*;
+import net.minecraft.core.registries.*;
 import net.minecraft.network.*;
+import net.minecraft.network.chat.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.recipe.*;
-import net.minecraft.registry.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.resources.*;
 import net.minecraft.world.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.alchemy.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -46,7 +46,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<StorageRecip
 	public TitrationBarrelRecipe(
 			String group,
 			boolean secret,
-			Optional<Identifier> requiredAdvancementIdentifier,
+			Optional<ResourceLocation> requiredAdvancementIdentifier,
 			List<IngredientStack> inputStacks,
 			FluidIngredient fluid,
 			ItemStack outputItemStack,
@@ -67,7 +67,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<StorageRecip
 	}
 	
 	@Override
-	public boolean matches(StorageRecipeInput<SingleVariantStorage<FluidVariant>> recipeInput, World world) {
+	public boolean matches(StorageRecipeInput<SingleVariantStorage<FluidVariant>> recipeInput, Level world) {
 		SingleVariantStorage<FluidVariant> fluidStorage = recipeInput.getFluidStorage();
 		if (!this.fluid.test(fluidStorage.variant)) {
 			return false;
@@ -102,7 +102,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<StorageRecip
 	
 	@Override
 	@Deprecated
-	public ItemStack craft(StorageRecipeInput<SingleVariantStorage<FluidVariant>> inventory, RegistryWrapper.WrapperLookup drm) {
+	public ItemStack assemble(StorageRecipeInput<SingleVariantStorage<FluidVariant>> inventory, HolderLookup.Provider drm) {
 		return getDefaultTap(1).copy();
 	}
 	
@@ -118,7 +118,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<StorageRecip
 	}
 	
 	@Override
-	public ItemStack getResult(RegistryWrapper.WrapperLookup registryManager) {
+	public ItemStack getResultItem(HolderLookup.Provider registryManager) {
 		return getDefaultTap(1);
 	}
 	
@@ -142,7 +142,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<StorageRecip
 	}
 	
 	@Override
-	public ItemStack tap(Inventory inventory, long secondsFermented, float downfall) {
+	public ItemStack tap(Container inventory, long secondsFermented, float downfall) {
 		int contentCount = InventoryHelper.countItemsInInventory(inventory);
 		float thickness = getThickness(contentCount);
 		return tapWith(thickness, secondsFermented, downfall);
@@ -162,18 +162,18 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<StorageRecip
 		}
 		
 		if (alcPercent >= 100 && inputStack.getItem() instanceof FermentedItem) {
-			return SpectrumItems.PURE_ALCOHOL.getDefaultStack();
+			return SpectrumItems.PURE_ALCOHOL.getDefaultInstance();
 		}
 		
 		// if it's not a set beverage (custom recipe) mark it as unknown
 		if (!(inputStack.getItem() instanceof FermentedItem))
 			inputStack.set(SpectrumDataComponentTypes.INFUSED_BEVERAGE, InfusedBeverageComponent.DEFAULT);
 		
-		var potionContents = inputStack.get(DataComponentTypes.POTION_CONTENTS);
+		var potionContents = inputStack.get(DataComponents.POTION_CONTENTS);
 		if (potionContents != null) {
 			float durationMultiplier = (float) (Support.logBase(1 + thickness, 2));
 			
-			List<StatusEffectInstance> effects = new ArrayList<>();
+			List<MobEffectInstance> effects = new ArrayList<>();
 			for (FermentationStatusEffectEntry entry : fermentationData.statusEffectEntries()) {
 				int potency = -1;
 				int durationTicks = entry.baseDuration();
@@ -183,10 +183,10 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<StorageRecip
 					}
 				}
 				if (potency > -1)
-					effects.add(new StatusEffectInstance(Registries.STATUS_EFFECT.entryOf(Registries.STATUS_EFFECT.getKey(entry.statusEffect()).get()), (int) (durationTicks * durationMultiplier), potency));
+					effects.add(new MobEffectInstance(BuiltInRegistries.MOB_EFFECT.getHolderOrThrow(BuiltInRegistries.MOB_EFFECT.getResourceKey(entry.statusEffect()).get()), (int) (durationTicks * durationMultiplier), potency));
 			}
 			
-			inputStack.set(DataComponentTypes.POTION_CONTENTS, new PotionContentsComponent(Optional.empty(), Optional.empty(), effects));
+			inputStack.set(DataComponents.POTION_CONTENTS, new PotionContents(Optional.empty(), Optional.empty(), effects));
 		}
 		
 		inputStack.set(SpectrumDataComponentTypes.BEVERAGE, new BeverageComponent((long) ageIngameDays, (int) alcPercent, thickness));
@@ -212,34 +212,34 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<StorageRecip
 	
 	// sadly we cannot use text.append() here, since the guidebook does not support it
 	// but this way it might be easier for translations either way
-	public static MutableText getDurationText(int minFermentationTimeHours, FermentationData fermentationData) {
-		MutableText text;
+	public static MutableComponent getDurationText(int minFermentationTimeHours, FermentationData fermentationData) {
+		MutableComponent text;
 		if (fermentationData.equals(FermentationData.DEFAULT)) {
 			if (minFermentationTimeHours == 1) {
-				text = Text.translatable("container.spectrum.rei.titration_barrel.time_hour");
+				text = Component.translatable("container.spectrum.rei.titration_barrel.time_hour");
 			} else if (minFermentationTimeHours == 24) {
-				text = Text.translatable("container.spectrum.rei.titration_barrel.time_day");
+				text = Component.translatable("container.spectrum.rei.titration_barrel.time_day");
 			} else if (minFermentationTimeHours >= 72) {
-				text = Text.translatable("container.spectrum.rei.titration_barrel.time_days", Support.getWithOneDecimalAfterComma(minFermentationTimeHours / 24F));
+				text = Component.translatable("container.spectrum.rei.titration_barrel.time_days", Support.getWithOneDecimalAfterComma(minFermentationTimeHours / 24F));
 			} else {
-				text = Text.translatable("container.spectrum.rei.titration_barrel.time_hours", minFermentationTimeHours);
+				text = Component.translatable("container.spectrum.rei.titration_barrel.time_hours", minFermentationTimeHours);
 			}
 		} else {
 			if (minFermentationTimeHours == 1) {
-				text = Text.translatable("container.spectrum.rei.titration_barrel.at_least_time_hour");
+				text = Component.translatable("container.spectrum.rei.titration_barrel.at_least_time_hour");
 			} else if (minFermentationTimeHours == 24) {
-				text = Text.translatable("container.spectrum.rei.titration_barrel.at_least_time_day");
+				text = Component.translatable("container.spectrum.rei.titration_barrel.at_least_time_day");
 			} else if (minFermentationTimeHours > 72) {
-				text = Text.translatable("container.spectrum.rei.titration_barrel.at_least_time_days", Support.getWithOneDecimalAfterComma(minFermentationTimeHours / 24F));
+				text = Component.translatable("container.spectrum.rei.titration_barrel.at_least_time_days", Support.getWithOneDecimalAfterComma(minFermentationTimeHours / 24F));
 			} else {
-				text = Text.translatable("container.spectrum.rei.titration_barrel.at_least_time_hours", minFermentationTimeHours);
+				text = Component.translatable("container.spectrum.rei.titration_barrel.at_least_time_hours", minFermentationTimeHours);
 			}
 		}
 		return text;
 	}
 	
 	@Override
-	public Identifier getRecipeTypeUnlockIdentifier() {
+	public ResourceLocation getRecipeTypeUnlockIdentifier() {
 		return ITitrationBarrelRecipe.UNLOCK_ADVANCEMENT_IDENTIFIER;
 	}
 	
@@ -253,24 +253,24 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<StorageRecip
 		public static final MapCodec<TitrationBarrelRecipe> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
 				Codec.STRING.optionalFieldOf("group", "").forGetter(recipe -> recipe.group),
 				Codec.BOOL.optionalFieldOf("secret", false).forGetter(recipe -> recipe.secret),
-				Identifier.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancementIdentifier),
+				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancementIdentifier),
 				IngredientStack.Serializer.CODEC.listOf().fieldOf("ingredients").forGetter(recipe -> recipe.inputStacks),
 				FluidIngredient.CODEC.optionalFieldOf("fluid", FluidIngredient.EMPTY).forGetter(recipe -> recipe.fluid),
-				ItemStack.VALIDATED_CODEC.fieldOf("result").forGetter(recipe -> recipe.outputItemStack),
-				Registries.ITEM.getCodec().optionalFieldOf("tapping_item", Items.AIR).forGetter(recipe -> recipe.tappingItem),
+				ItemStack.STRICT_CODEC.fieldOf("result").forGetter(recipe -> recipe.outputItemStack),
+				BuiltInRegistries.ITEM.byNameCodec().optionalFieldOf("tapping_item", Items.AIR).forGetter(recipe -> recipe.tappingItem),
 				Codec.INT.optionalFieldOf("min_fermentation_time_hours", 24).forGetter(recipe -> recipe.minFermentationTimeHours),
 				FermentationData.CODEC.optionalFieldOf("fermentation", FermentationData.DEFAULT).forGetter(recipe -> recipe.fermentationData)
 		).apply(i, TitrationBarrelRecipe::new));
 		
-		private static final PacketCodec<RegistryByteBuf, TitrationBarrelRecipe> PACKET_CODEC = PacketCodecHelper.tuple(
-				PacketCodecs.STRING, c -> c.group,
-				PacketCodecs.BOOL, c -> c.secret,
-				PacketCodecs.optional(Identifier.PACKET_CODEC), c -> c.requiredAdvancementIdentifier,
-				IngredientStack.Serializer.PACKET_CODEC.collect(PacketCodecs.toList()), c -> c.inputStacks,
+		private static final StreamCodec<RegistryFriendlyByteBuf, TitrationBarrelRecipe> PACKET_CODEC = PacketCodecHelper.tuple(
+				ByteBufCodecs.STRING_UTF8, c -> c.group,
+				ByteBufCodecs.BOOL, c -> c.secret,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), c -> c.requiredAdvancementIdentifier,
+				IngredientStack.Serializer.PACKET_CODEC.apply(ByteBufCodecs.list()), c -> c.inputStacks,
 				FluidIngredient.PACKET_CODEC, c -> c.fluid,
-				ItemStack.PACKET_CODEC, c -> c.outputItemStack,
-				PacketCodecs.registryValue(RegistryKeys.ITEM), recipe -> recipe.tappingItem,
-				PacketCodecs.VAR_INT, recipe -> recipe.minFermentationTimeHours,
+				ItemStack.STREAM_CODEC, c -> c.outputItemStack,
+				ByteBufCodecs.registry(Registries.ITEM), recipe -> recipe.tappingItem,
+				ByteBufCodecs.VAR_INT, recipe -> recipe.minFermentationTimeHours,
 				FermentationData.PACKET_CODEC, recipe -> recipe.fermentationData,
 				TitrationBarrelRecipe::new
 		);
@@ -281,7 +281,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<StorageRecip
 		}
 		
 		@Override
-		public PacketCodec<RegistryByteBuf, TitrationBarrelRecipe> packetCodec() {
+		public StreamCodec<RegistryFriendlyByteBuf, TitrationBarrelRecipe> streamCodec() {
 			return PACKET_CODEC;
 		}
 		

@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.api.item;
 
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
 
 public interface InventoryInsertionAcceptor {
 	
@@ -10,6 +10,6 @@ public interface InventoryInsertionAcceptor {
 	/**
 	 * @return The amount that could not be accepted
 	 */
-	int acceptItemStack(ItemStack inventoryInsertionAcceptorStack, ItemStack itemStackToAccept, PlayerEntity playerEntity);
+	int acceptItemStack(ItemStack inventoryInsertionAcceptorStack, ItemStack itemStackToAccept, Player playerEntity);
 	
 }

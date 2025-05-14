@@ -4,296 +4,297 @@ import com.google.gson.*;
 import de.dafuqs.spectrum.blocks.decoration.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.*;
-import net.minecraft.block.*;
-import net.minecraft.block.enums.*;
-import net.minecraft.data.client.*;
-import net.minecraft.data.family.*;
-import net.minecraft.item.*;
-import net.minecraft.state.property.*;
-import net.minecraft.state.property.Properties;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import net.minecraft.core.*;
+import net.minecraft.data.*;
+import net.minecraft.data.models.*;
+import net.minecraft.data.models.blockstates.*;
+import net.minecraft.data.models.model.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.properties.*;
 
 import java.util.*;
 import java.util.function.*;
 
 public class SpectrumModelHelper {
-	public static final DeferredRegistrar.Contextual<ItemModelGenerator> ITEM_MODEL_REGISTRAR = new DeferredRegistrar.Contextual<>(DatagenProxy.IS_DATAGEN);
-	public static final DeferredRegistrar.Contextual<BlockStateModelGenerator> BLOCK_STATE_MODEL_REGISTRAR = new DeferredRegistrar.Contextual<>(DatagenProxy.IS_DATAGEN);
+	public static final DeferredRegistrar.Contextual<ItemModelGenerators> ITEM_MODEL_REGISTRAR = new DeferredRegistrar.Contextual<>(DatagenProxy.IS_DATAGEN);
+	public static final DeferredRegistrar.Contextual<BlockModelGenerators> BLOCK_STATE_MODEL_REGISTRAR = new DeferredRegistrar.Contextual<>(DatagenProxy.IS_DATAGEN);
 	
 	// Item Models
 	
-	public static void registerItemModel(ItemModelGenerator ctx, Item item) {
+	public static void registerItemModel(ItemModelGenerators ctx, Item item) {
 		registerItemModel(ctx, item, "");
 	}
 	
-	public static void registerItemModel(ItemModelGenerator ctx, Item item, String suffix) {
-		Models.GENERATED.upload(ModelIds.getItemModelId(item), SpectrumTextureMaps.layer0(item, suffix), ctx.writer);
+	public static void registerItemModel(ItemModelGenerators ctx, Item item, String suffix) {
+		ModelTemplates.FLAT_ITEM.create(ModelLocationUtils.getModelLocation(item), SpectrumTextureMaps.layer0(item, suffix), ctx.output);
 	}
 	
-	public static void registerItemModel(ItemModelGenerator ctx, Item item, Model model) {
-		model.upload(ModelIds.getItemModelId(item), SpectrumTextureMaps.layer0(item, ""), ctx.writer);
+	public static void registerItemModel(ItemModelGenerators ctx, Item item, ModelTemplate model) {
+		model.create(ModelLocationUtils.getModelLocation(item), SpectrumTextureMaps.layer0(item, ""), ctx.output);
 	}
 	
-	public static void registerLayeredItemModel(ItemModelGenerator ctx, Item item, Model model, String suffix0, String suffix1) {
-		model.upload(ModelIds.getItemModelId(item), TextureMap.layered(TextureMap.getSubId(item, suffix0), TextureMap.getSubId(item, suffix1)), ctx.writer);
+	public static void registerLayeredItemModel(ItemModelGenerators ctx, Item item, ModelTemplate model, String suffix0, String suffix1) {
+		model.create(ModelLocationUtils.getModelLocation(item), TextureMapping.layered(TextureMapping.getItemTexture(item, suffix0), TextureMapping.getItemTexture(item, suffix1)), ctx.output);
 	}
 	
-	public static void registerLayeredItemModel(ItemModelGenerator ctx, Item item, Model model, String suffix0, String suffix1, String suffix2) {
-		model.upload(ModelIds.getItemModelId(item), TextureMap.layered(TextureMap.getSubId(item, suffix0), TextureMap.getSubId(item, suffix1), TextureMap.getSubId(item, suffix2)), ctx.writer);
+	public static void registerLayeredItemModel(ItemModelGenerators ctx, Item item, ModelTemplate model, String suffix0, String suffix1, String suffix2) {
+		model.create(ModelLocationUtils.getModelLocation(item), TextureMapping.layered(TextureMapping.getItemTexture(item, suffix0), TextureMapping.getItemTexture(item, suffix1), TextureMapping.getItemTexture(item, suffix2)), ctx.output);
 	}
 	
-	public static void registerLayeredItemModel(ItemModelGenerator ctx, Item item, Model model, String suffix0, String suffix1, String suffix2, String suffix3) {
-		model.upload(ModelIds.getItemModelId(item), TextureMap.layered(TextureMap.getSubId(item, suffix0), TextureMap.getSubId(item, suffix1), TextureMap.getSubId(item, suffix2)).put(SpectrumTextureKeys.LAYER3, TextureMap.getSubId(item, suffix3)), ctx.writer);
+	public static void registerLayeredItemModel(ItemModelGenerators ctx, Item item, ModelTemplate model, String suffix0, String suffix1, String suffix2, String suffix3) {
+		model.create(ModelLocationUtils.getModelLocation(item), TextureMapping.layered(TextureMapping.getItemTexture(item, suffix0), TextureMapping.getItemTexture(item, suffix1), TextureMapping.getItemTexture(item, suffix2)).put(SpectrumTextureKeys.LAYER3, TextureMapping.getItemTexture(item, suffix3)), ctx.output);
 	}
 	
-	public static void registerBlockTexturedItemModel(ItemModelGenerator ctx, Block block) {
+	public static void registerBlockTexturedItemModel(ItemModelGenerators ctx, Block block) {
 		registerBlockTexturedItemModel(ctx, block, "");
 	}
 	
-	public static void registerBlockTexturedItemModel(ItemModelGenerator ctx, Block block, String suffix) {
-		Models.GENERATED.upload(ModelIds.getItemModelId(block.asItem()), SpectrumTextureMaps.layer0(block, suffix), ctx.writer);
+	public static void registerBlockTexturedItemModel(ItemModelGenerators ctx, Block block, String suffix) {
+		ModelTemplates.FLAT_ITEM.create(ModelLocationUtils.getModelLocation(block.asItem()), SpectrumTextureMaps.layer0(block, suffix), ctx.output);
 	}
 	
-	public static void registerParentedItemModel(ItemModelGenerator ctx, ItemConvertible item, Item parent) {
+	public static void registerParentedItemModel(ItemModelGenerators ctx, ItemLike item, Item parent) {
 		registerParentedItemModel(ctx, item, parent, "");
 	}
 	
-	public static void registerParentedItemModel(ItemModelGenerator ctx, ItemConvertible item, Block parent) {
+	public static void registerParentedItemModel(ItemModelGenerators ctx, ItemLike item, Block parent) {
 		registerParentedItemModel(ctx, item, parent, "");
 	}
 	
-	public static void registerParentedItemModel(ItemModelGenerator ctx, ItemConvertible item, Item parent, String suffix) {
-		registerParentedItemModel(ctx, item, ModelIds.getItemSubModelId(parent, suffix));
+	public static void registerParentedItemModel(ItemModelGenerators ctx, ItemLike item, Item parent, String suffix) {
+		registerParentedItemModel(ctx, item, ModelLocationUtils.getModelLocation(parent, suffix));
 	}
 	
-	public static void registerParentedItemModel(ItemModelGenerator ctx, ItemConvertible item, Block parent, String suffix) {
-		registerParentedItemModel(ctx, item, ModelIds.getBlockSubModelId(parent, suffix));
+	public static void registerParentedItemModel(ItemModelGenerators ctx, ItemLike item, Block parent, String suffix) {
+		registerParentedItemModel(ctx, item, ModelLocationUtils.getModelLocation(parent, suffix));
 	}
 	
-	public static void registerParentedItemModel(ItemModelGenerator ctx, ItemConvertible item, Identifier parentModelId) {
-		ctx.writer.accept(ModelIds.getItemModelId(item.asItem()), new SimpleModelSupplier(parentModelId));
+	public static void registerParentedItemModel(ItemModelGenerators ctx, ItemLike item, ResourceLocation parentModelId) {
+		ctx.output.accept(ModelLocationUtils.getModelLocation(item.asItem()), new DelegatedModel(parentModelId));
 	}
 	
 	// Block Models
 	
-	public static BlockStateSupplier simpleMirroredBlockModel(BlockStateModelGenerator ctx, Block block) {
-		return createMirroredVariantsSupplier(block, TexturedModel.CUBE_ALL, TexturedModel.CUBE_MIRRORED_ALL, ctx.modelCollector);
+	public static BlockStateGenerator simpleMirroredBlockModel(BlockModelGenerators ctx, Block block) {
+		return createMirroredVariantsSupplier(block, TexturedModel.CUBE, TexturedModel.CUBE_MIRRORED, ctx.modelOutput);
 	}
 	
-	public static BlockStateSupplier logBlockModel(BlockStateModelGenerator ctx, Block logBlock) {
-		TextureMap textureMap = SpectrumTextureMaps.sideEnd(logBlock, "", logBlock, "_top");
-		Identifier vertical = Models.CUBE_COLUMN.upload(logBlock, textureMap, ctx.modelCollector);
-		Identifier horizonal = Models.CUBE_COLUMN_HORIZONTAL.upload(logBlock, textureMap, ctx.modelCollector);
-		return VariantsBlockStateSupplier.create(logBlock).coordinate(createAxisRotatedVariantMap(vertical, horizonal));
+	public static BlockStateGenerator logBlockModel(BlockModelGenerators ctx, Block logBlock) {
+		TextureMapping textureMap = SpectrumTextureMaps.sideEnd(logBlock, "", logBlock, "_top");
+		ResourceLocation vertical = ModelTemplates.CUBE_COLUMN.create(logBlock, textureMap, ctx.modelOutput);
+		ResourceLocation horizonal = ModelTemplates.CUBE_COLUMN_HORIZONTAL.create(logBlock, textureMap, ctx.modelOutput);
+		return MultiVariantGenerator.multiVariant(logBlock).with(createAxisRotatedVariantMap(vertical, horizonal));
 	}
 	
-	public static BlockStateSupplier woodBlockModel(BlockStateModelGenerator ctx, Block woodBlock, Block logBlock) {
-		TextureMap textureMap = SpectrumTextureMaps.sideEnd(logBlock, "", logBlock, "");
-		Identifier model = Models.CUBE_COLUMN.upload(woodBlock, textureMap, ctx.modelCollector);
-		return VariantsBlockStateSupplier.create(woodBlock, createModelVariant(model)).coordinate(createAxisRotatedVariantMap());
+	public static BlockStateGenerator woodBlockModel(BlockModelGenerators ctx, Block woodBlock, Block logBlock) {
+		TextureMapping textureMap = SpectrumTextureMaps.sideEnd(logBlock, "", logBlock, "");
+		ResourceLocation model = ModelTemplates.CUBE_COLUMN.create(woodBlock, textureMap, ctx.modelOutput);
+		return MultiVariantGenerator.multiVariant(woodBlock, createModelVariant(model)).with(createAxisRotatedVariantMap());
 	}
 	
-	public static BlockStateSupplier pottedPlantBlockModel(BlockStateModelGenerator ctx, FlowerPotBlock block, boolean tinted) {
-		BlockStateModelGenerator.TintType tintType = tinted ? BlockStateModelGenerator.TintType.TINTED : BlockStateModelGenerator.TintType.NOT_TINTED;
-		TextureMap textureMap = TextureMap.plant(block.getContent());
-		Identifier identifier = tintType.getFlowerPotCrossModel().upload(block, textureMap, ctx.modelCollector);
-		return BlockStateModelGenerator.createSingletonBlockState(block, identifier);
+	public static BlockStateGenerator pottedPlantBlockModel(BlockModelGenerators ctx, FlowerPotBlock block, boolean tinted) {
+		BlockModelGenerators.TintState tintType = tinted ? BlockModelGenerators.TintState.TINTED : BlockModelGenerators.TintState.NOT_TINTED;
+		TextureMapping textureMap = TextureMapping.plant(block.getPotted());
+		ResourceLocation identifier = tintType.getCrossPot().create(block, textureMap, ctx.modelOutput);
+		return BlockModelGenerators.createSimpleBlock(block, identifier);
 	}
 	
-	public static BlockStateSupplier glassPaneBlockModel(BlockStateModelGenerator ctx, Block glassPaneBlock, Block glassBlock) {
-		TextureMap textureMap = TextureMap.paneAndTopForEdge(glassBlock, glassPaneBlock);
-		Identifier post = Models.TEMPLATE_GLASS_PANE_POST.upload(glassPaneBlock, textureMap, ctx.modelCollector);
-		Identifier side = Models.TEMPLATE_GLASS_PANE_SIDE.upload(glassPaneBlock, textureMap, ctx.modelCollector);
-		Identifier sideAlt = Models.TEMPLATE_GLASS_PANE_SIDE_ALT.upload(glassPaneBlock, textureMap, ctx.modelCollector);
-		Identifier noside = Models.TEMPLATE_GLASS_PANE_NOSIDE.upload(glassPaneBlock, textureMap, ctx.modelCollector);
-		Identifier nosideAlt = Models.TEMPLATE_GLASS_PANE_NOSIDE_ALT.upload(glassPaneBlock, textureMap, ctx.modelCollector);
-		Models.GENERATED.upload(ModelIds.getItemModelId(glassPaneBlock.asItem()), TextureMap.layer0(glassBlock), ctx.modelCollector);
-		return MultipartBlockStateSupplier.create(glassPaneBlock)
-				.with(BlockStateVariant.create().put(VariantSettings.MODEL, post))
-				.with(When.create().set(Properties.NORTH, true), BlockStateVariant.create().put(VariantSettings.MODEL, side))
-				.with(When.create().set(Properties.EAST, true), BlockStateVariant.create().put(VariantSettings.MODEL, side).put(VariantSettings.Y, VariantSettings.Rotation.R90))
-				.with(When.create().set(Properties.SOUTH, true), BlockStateVariant.create().put(VariantSettings.MODEL, sideAlt))
-				.with(When.create().set(Properties.WEST, true), BlockStateVariant.create().put(VariantSettings.MODEL, sideAlt).put(VariantSettings.Y, VariantSettings.Rotation.R90))
-				.with(When.create().set(Properties.NORTH, false), BlockStateVariant.create().put(VariantSettings.MODEL, noside))
-				.with(When.create().set(Properties.EAST, false), BlockStateVariant.create().put(VariantSettings.MODEL, nosideAlt))
-				.with(When.create().set(Properties.SOUTH, false), BlockStateVariant.create().put(VariantSettings.MODEL, nosideAlt).put(VariantSettings.Y, VariantSettings.Rotation.R90))
-				.with(When.create().set(Properties.WEST, false), BlockStateVariant.create().put(VariantSettings.MODEL, noside).put(VariantSettings.Y, VariantSettings.Rotation.R270));
+	public static BlockStateGenerator glassPaneBlockModel(BlockModelGenerators ctx, Block glassPaneBlock, Block glassBlock) {
+		TextureMapping textureMap = TextureMapping.pane(glassBlock, glassPaneBlock);
+		ResourceLocation post = ModelTemplates.STAINED_GLASS_PANE_POST.create(glassPaneBlock, textureMap, ctx.modelOutput);
+		ResourceLocation side = ModelTemplates.STAINED_GLASS_PANE_SIDE.create(glassPaneBlock, textureMap, ctx.modelOutput);
+		ResourceLocation sideAlt = ModelTemplates.STAINED_GLASS_PANE_SIDE_ALT.create(glassPaneBlock, textureMap, ctx.modelOutput);
+		ResourceLocation noside = ModelTemplates.STAINED_GLASS_PANE_NOSIDE.create(glassPaneBlock, textureMap, ctx.modelOutput);
+		ResourceLocation nosideAlt = ModelTemplates.STAINED_GLASS_PANE_NOSIDE_ALT.create(glassPaneBlock, textureMap, ctx.modelOutput);
+		ModelTemplates.FLAT_ITEM.create(ModelLocationUtils.getModelLocation(glassPaneBlock.asItem()), TextureMapping.layer0(glassBlock), ctx.modelOutput);
+		return MultiPartGenerator.multiPart(glassPaneBlock)
+				.with(Variant.variant().with(VariantProperties.MODEL, post))
+				.with(Condition.condition().term(BlockStateProperties.NORTH, true), Variant.variant().with(VariantProperties.MODEL, side))
+				.with(Condition.condition().term(BlockStateProperties.EAST, true), Variant.variant().with(VariantProperties.MODEL, side).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+				.with(Condition.condition().term(BlockStateProperties.SOUTH, true), Variant.variant().with(VariantProperties.MODEL, sideAlt))
+				.with(Condition.condition().term(BlockStateProperties.WEST, true), Variant.variant().with(VariantProperties.MODEL, sideAlt).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+				.with(Condition.condition().term(BlockStateProperties.NORTH, false), Variant.variant().with(VariantProperties.MODEL, noside))
+				.with(Condition.condition().term(BlockStateProperties.EAST, false), Variant.variant().with(VariantProperties.MODEL, nosideAlt))
+				.with(Condition.condition().term(BlockStateProperties.SOUTH, false), Variant.variant().with(VariantProperties.MODEL, nosideAlt).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+				.with(Condition.condition().term(BlockStateProperties.WEST, false), Variant.variant().with(VariantProperties.MODEL, noside).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
 	}
 	
 	public static BlockFamily registerBlockFamily(BlockFamily family) {
-		BLOCK_STATE_MODEL_REGISTRAR.defer(ctx -> ctx.registerCubeAllModelTexturePool(family.getBaseBlock()).family(family));
+		BLOCK_STATE_MODEL_REGISTRAR.defer(ctx -> ctx.family(family.getBaseBlock()).generateFor(family));
 		return family;
 	}
 	
-	public static BlockFamily registerBlockFamilyExceptBase(BlockFamily family, TexturedModel.Factory variantFactory) {
+	public static BlockFamily registerBlockFamilyExceptBase(BlockFamily family, TexturedModel.Provider variantFactory) {
 		BLOCK_STATE_MODEL_REGISTRAR.defer(ctx -> {
 			TexturedModel texturedModel = variantFactory.get(family.getBaseBlock());
-			BlockStateModelGenerator.BlockTexturePool texturePool = ctx.new BlockTexturePool(texturedModel.getTextures());
-			texturePool.baseModelId = ModelIds.getBlockModelId(family.getBaseBlock());
-			texturePool.family(family);
+			BlockModelGenerators.BlockFamilyProvider texturePool = ctx.new BlockFamilyProvider(texturedModel.getMapping());
+			texturePool.fullBlock = ModelLocationUtils.getModelLocation(family.getBaseBlock());
+			texturePool.generateFor(family);
 		});
 		return family;
 	}
 	
 	// Variant Suppliers
 	
-	public static VariantsBlockStateSupplier createVariantsSupplier(Block block, Identifier... modelIds) {
-		return VariantsBlockStateSupplier.create(block, Arrays.stream(modelIds).map(modelId -> BlockStateVariant.create().put(VariantSettings.MODEL, modelId)).toArray(BlockStateVariant[]::new));
+	public static MultiVariantGenerator createVariantsSupplier(Block block, ResourceLocation... modelIds) {
+		return MultiVariantGenerator.multiVariant(block, Arrays.stream(modelIds).map(modelId -> Variant.variant().with(VariantProperties.MODEL, modelId)).toArray(Variant[]::new));
 	}
 	
-	public static VariantsBlockStateSupplier createVariantsSupplier(BlockStateModelGenerator ctx, Block block, TexturedModel.Factory factory) {
-		return createVariantsSupplier(block, factory.upload(block, ctx.modelCollector));
+	public static MultiVariantGenerator createVariantsSupplier(BlockModelGenerators ctx, Block block, TexturedModel.Provider factory) {
+		return createVariantsSupplier(block, factory.create(block, ctx.modelOutput));
 	}
 	
-	public static VariantsBlockStateSupplier createMirroredVariantsSupplier(Block block, TexturedModel.Factory factory, TexturedModel.Factory mirroredFactory, BiConsumer<Identifier, Supplier<JsonElement>> modelCollector) {
-		return VariantsBlockStateSupplier.create(block,
-				createModelVariant(factory.upload(block, modelCollector)),
-				createModelVariant(mirroredFactory.upload(block, modelCollector))
+	public static MultiVariantGenerator createMirroredVariantsSupplier(Block block, TexturedModel.Provider factory, TexturedModel.Provider mirroredFactory, BiConsumer<ResourceLocation, Supplier<JsonElement>> modelCollector) {
+		return MultiVariantGenerator.multiVariant(block,
+				createModelVariant(factory.create(block, modelCollector)),
+				createModelVariant(mirroredFactory.create(block, modelCollector))
 		);
 	}
 	
 	// Variant Lists
 	
-	public static List<BlockStateVariant> createHorizontalRotationVariantList(Identifier modelId) {
+	public static List<Variant> createHorizontalRotationVariantList(ResourceLocation modelId) {
 		return List.of(
 				createModelVariant(modelId),
-				createModelVariant(modelId).put(VariantSettings.Y, VariantSettings.Rotation.R90),
-				createModelVariant(modelId).put(VariantSettings.Y, VariantSettings.Rotation.R180),
-				createModelVariant(modelId).put(VariantSettings.Y, VariantSettings.Rotation.R270)
+				createModelVariant(modelId).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90),
+				createModelVariant(modelId).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180),
+				createModelVariant(modelId).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270)
 		);
 	}
 	
 	// Variant Maps
 	
-	public static BlockStateVariantMap createBooleanModelMap(BooleanProperty property, Identifier trueModel, Identifier falseModel) {
-		return BlockStateVariantMap.create(property)
-				.register(false, createModelVariant(falseModel))
-				.register(true, createModelVariant(trueModel));
+	public static PropertyDispatch createBooleanModelMap(BooleanProperty property, ResourceLocation trueModel, ResourceLocation falseModel) {
+		return PropertyDispatch.property(property)
+				.select(false, createModelVariant(falseModel))
+				.select(true, createModelVariant(trueModel));
 	}
 	
-	public static BlockStateVariantMap createCardinalFacingVariantMap() {
-		return BlockStateVariantMap.create(CardinalFacingBlock.CARDINAL_FACING)
-				.register(false, BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R90))
-				.register(true, BlockStateVariant.create());
+	public static PropertyDispatch createCardinalFacingVariantMap() {
+		return PropertyDispatch.property(CardinalFacingBlock.CARDINAL_FACING)
+				.select(false, Variant.variant().with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+				.select(true, Variant.variant());
 	}
 	
-	public static BlockStateVariantMap createAxisRotatedVariantMap() {
-		return BlockStateVariantMap.create(Properties.AXIS)
-				.register(Direction.Axis.X, BlockStateVariant.create().put(VariantSettings.X, VariantSettings.Rotation.R90).put(VariantSettings.Y, VariantSettings.Rotation.R90))
-				.register(Direction.Axis.Y, BlockStateVariant.create())
-				.register(Direction.Axis.Z, BlockStateVariant.create().put(VariantSettings.X, VariantSettings.Rotation.R90));
+	public static PropertyDispatch createAxisRotatedVariantMap() {
+		return PropertyDispatch.property(BlockStateProperties.AXIS)
+				.select(Direction.Axis.X, Variant.variant().with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+				.select(Direction.Axis.Y, Variant.variant())
+				.select(Direction.Axis.Z, Variant.variant().with(VariantProperties.X_ROT, VariantProperties.Rotation.R90));
 	}
 	
-	public static BlockStateVariantMap createAxisRotatedVariantMap(Identifier verticalModelId, Identifier horizontalModelId) {
-		return BlockStateVariantMap.create(Properties.AXIS)
-				.register(Direction.Axis.X, createModelVariant(horizontalModelId).put(VariantSettings.X, VariantSettings.Rotation.R90).put(VariantSettings.Y, VariantSettings.Rotation.R90))
-				.register(Direction.Axis.Y, createModelVariant(verticalModelId))
-				.register(Direction.Axis.Z, createModelVariant(horizontalModelId).put(VariantSettings.X, VariantSettings.Rotation.R90));
+	public static PropertyDispatch createAxisRotatedVariantMap(ResourceLocation verticalModelId, ResourceLocation horizontalModelId) {
+		return PropertyDispatch.property(BlockStateProperties.AXIS)
+				.select(Direction.Axis.X, createModelVariant(horizontalModelId).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+				.select(Direction.Axis.Y, createModelVariant(verticalModelId))
+				.select(Direction.Axis.Z, createModelVariant(horizontalModelId).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90));
 	}
 	
-	public static BlockStateVariantMap createUpDefaultFacingVariantMap() {
-		return BlockStateVariantMap.create(Properties.FACING)
-				.register(Direction.DOWN, BlockStateVariant.create().put(VariantSettings.X, VariantSettings.Rotation.R180))
-				.register(Direction.UP, BlockStateVariant.create())
-				.register(Direction.NORTH, BlockStateVariant.create().put(VariantSettings.X, VariantSettings.Rotation.R90))
-				.register(Direction.SOUTH, BlockStateVariant.create().put(VariantSettings.X, VariantSettings.Rotation.R90).put(VariantSettings.Y, VariantSettings.Rotation.R180))
-				.register(Direction.WEST, BlockStateVariant.create().put(VariantSettings.X, VariantSettings.Rotation.R90).put(VariantSettings.Y, VariantSettings.Rotation.R270))
-				.register(Direction.EAST, BlockStateVariant.create().put(VariantSettings.X, VariantSettings.Rotation.R90).put(VariantSettings.Y, VariantSettings.Rotation.R90));
+	public static PropertyDispatch createUpDefaultFacingVariantMap() {
+		return PropertyDispatch.property(BlockStateProperties.FACING)
+				.select(Direction.DOWN, Variant.variant().with(VariantProperties.X_ROT, VariantProperties.Rotation.R180))
+				.select(Direction.UP, Variant.variant())
+				.select(Direction.NORTH, Variant.variant().with(VariantProperties.X_ROT, VariantProperties.Rotation.R90))
+				.select(Direction.SOUTH, Variant.variant().with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+				.select(Direction.WEST, Variant.variant().with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+				.select(Direction.EAST, Variant.variant().with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
 	}
 	
-	public static BlockStateVariantMap createDownDefaultFacingVariantMap(Identifier horizontalModelId, Identifier verticalModelId) {
-		return BlockStateVariantMap.create(FacingBlock.FACING)
-				.register(Direction.DOWN, createModelVariant(verticalModelId))
-				.register(Direction.UP, createModelVariant(verticalModelId).put(VariantSettings.X, VariantSettings.Rotation.R180))
-				.register(Direction.NORTH, createModelVariant(horizontalModelId).put(VariantSettings.Y, VariantSettings.Rotation.R270))
-				.register(Direction.SOUTH, createModelVariant(horizontalModelId).put(VariantSettings.Y, VariantSettings.Rotation.R90))
-				.register(Direction.WEST, createModelVariant(horizontalModelId).put(VariantSettings.Y, VariantSettings.Rotation.R180))
-				.register(Direction.EAST, createModelVariant(horizontalModelId));
+	public static PropertyDispatch createDownDefaultFacingVariantMap(ResourceLocation horizontalModelId, ResourceLocation verticalModelId) {
+		return PropertyDispatch.property(DirectionalBlock.FACING)
+				.select(Direction.DOWN, createModelVariant(verticalModelId))
+				.select(Direction.UP, createModelVariant(verticalModelId).with(VariantProperties.X_ROT, VariantProperties.Rotation.R180))
+				.select(Direction.NORTH, createModelVariant(horizontalModelId).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+				.select(Direction.SOUTH, createModelVariant(horizontalModelId).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+				.select(Direction.WEST, createModelVariant(horizontalModelId).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+				.select(Direction.EAST, createModelVariant(horizontalModelId));
 	}
 	
-	public static BlockStateVariantMap createNorthDefaultFacingVariantMap() {
-		return BlockStateVariantMap.create(Properties.FACING)
-				.register(Direction.DOWN, BlockStateVariant.create().put(VariantSettings.X, VariantSettings.Rotation.R90))
-				.register(Direction.UP, BlockStateVariant.create().put(VariantSettings.X, VariantSettings.Rotation.R270))
-				.register(Direction.NORTH, BlockStateVariant.create())
-				.register(Direction.SOUTH, BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R180))
-				.register(Direction.WEST, BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R270))
-				.register(Direction.EAST, BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R90));
+	public static PropertyDispatch createNorthDefaultFacingVariantMap() {
+		return PropertyDispatch.property(BlockStateProperties.FACING)
+				.select(Direction.DOWN, Variant.variant().with(VariantProperties.X_ROT, VariantProperties.Rotation.R90))
+				.select(Direction.UP, Variant.variant().with(VariantProperties.X_ROT, VariantProperties.Rotation.R270))
+				.select(Direction.NORTH, Variant.variant())
+				.select(Direction.SOUTH, Variant.variant().with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+				.select(Direction.WEST, Variant.variant().with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+				.select(Direction.EAST, Variant.variant().with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
 	}
 	
-	public static BlockStateVariantMap createUpDefaultHorizontalFacingVariantMap() {
-		return BlockStateVariantMap.create(Properties.HORIZONTAL_FACING)
-				.register(Direction.NORTH, BlockStateVariant.create().put(VariantSettings.X, VariantSettings.Rotation.R90))
-				.register(Direction.SOUTH, BlockStateVariant.create().put(VariantSettings.X, VariantSettings.Rotation.R90).put(VariantSettings.Y, VariantSettings.Rotation.R180))
-				.register(Direction.WEST, BlockStateVariant.create().put(VariantSettings.X, VariantSettings.Rotation.R90).put(VariantSettings.Y, VariantSettings.Rotation.R270))
-				.register(Direction.EAST, BlockStateVariant.create().put(VariantSettings.X, VariantSettings.Rotation.R90).put(VariantSettings.Y, VariantSettings.Rotation.R90));
+	public static PropertyDispatch createUpDefaultHorizontalFacingVariantMap() {
+		return PropertyDispatch.property(BlockStateProperties.HORIZONTAL_FACING)
+				.select(Direction.NORTH, Variant.variant().with(VariantProperties.X_ROT, VariantProperties.Rotation.R90))
+				.select(Direction.SOUTH, Variant.variant().with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+				.select(Direction.WEST, Variant.variant().with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+				.select(Direction.EAST, Variant.variant().with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
 	}
 	
-	public static BlockStateVariantMap createNorthDefaultHorizontalFacingVariantMap() {
-		return BlockStateVariantMap.create(Properties.HORIZONTAL_FACING)
-				.register(Direction.NORTH, BlockStateVariant.create())
-				.register(Direction.SOUTH, BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R180))
-				.register(Direction.WEST, BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R270))
-				.register(Direction.EAST, BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R90));
+	public static PropertyDispatch createNorthDefaultHorizontalFacingVariantMap() {
+		return PropertyDispatch.property(BlockStateProperties.HORIZONTAL_FACING)
+				.select(Direction.NORTH, Variant.variant())
+				.select(Direction.SOUTH, Variant.variant().with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+				.select(Direction.WEST, Variant.variant().with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+				.select(Direction.EAST, Variant.variant().with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
 	}
 	
-	public static BlockStateVariantMap createSouthDefaultHorizontalFacingVariantMap() {
-		return BlockStateVariantMap.create(Properties.HORIZONTAL_FACING)
-				.register(Direction.NORTH, BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R180))
-				.register(Direction.SOUTH, BlockStateVariant.create())
-				.register(Direction.WEST, BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R90))
-				.register(Direction.EAST, BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R270));
+	public static PropertyDispatch createSouthDefaultHorizontalFacingVariantMap() {
+		return PropertyDispatch.property(BlockStateProperties.HORIZONTAL_FACING)
+				.select(Direction.NORTH, Variant.variant().with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+				.select(Direction.SOUTH, Variant.variant())
+				.select(Direction.WEST, Variant.variant().with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+				.select(Direction.EAST, Variant.variant().with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
 	}
 	
-	public static BlockStateVariantMap createWestDefaultHorizontalFacingVariantMap() {
-		return BlockStateVariantMap.create(Properties.HORIZONTAL_FACING)
-				.register(Direction.NORTH, BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R90))
-				.register(Direction.SOUTH, BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R270))
-				.register(Direction.WEST, BlockStateVariant.create())
-				.register(Direction.EAST, BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R180));
+	public static PropertyDispatch createWestDefaultHorizontalFacingVariantMap() {
+		return PropertyDispatch.property(BlockStateProperties.HORIZONTAL_FACING)
+				.select(Direction.NORTH, Variant.variant().with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+				.select(Direction.SOUTH, Variant.variant().with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+				.select(Direction.WEST, Variant.variant())
+				.select(Direction.EAST, Variant.variant().with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180));
 	}
 	
-	public static BlockStateVariantMap createEastDefaultHorizontalFacingVariantMap() {
-		return BlockStateVariantMap.create(Properties.HORIZONTAL_FACING)
-				.register(Direction.NORTH, BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R270))
-				.register(Direction.SOUTH, BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R90))
-				.register(Direction.WEST, BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R180))
-				.register(Direction.EAST, BlockStateVariant.create());
+	public static PropertyDispatch createEastDefaultHorizontalFacingVariantMap() {
+		return PropertyDispatch.property(BlockStateProperties.HORIZONTAL_FACING)
+				.select(Direction.NORTH, Variant.variant().with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+				.select(Direction.SOUTH, Variant.variant().with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+				.select(Direction.WEST, Variant.variant().with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+				.select(Direction.EAST, Variant.variant());
 	}
 	
-	public static BlockStateVariantMap createUpNorthDefaultOrientationVariantMap() {
-		return BlockStateVariantMap.create(Properties.ORIENTATION)
-				.register(Orientation.DOWN_NORTH, BlockStateVariant.create().put(VariantSettings.X, VariantSettings.Rotation.R90))
-				.register(Orientation.DOWN_SOUTH, BlockStateVariant.create().put(VariantSettings.X, VariantSettings.Rotation.R90).put(VariantSettings.Y, VariantSettings.Rotation.R180))
-				.register(Orientation.DOWN_WEST, BlockStateVariant.create().put(VariantSettings.X, VariantSettings.Rotation.R90).put(VariantSettings.Y, VariantSettings.Rotation.R270))
-				.register(Orientation.DOWN_EAST, BlockStateVariant.create().put(VariantSettings.X, VariantSettings.Rotation.R90).put(VariantSettings.Y, VariantSettings.Rotation.R90))
-				.register(Orientation.UP_NORTH, BlockStateVariant.create().put(VariantSettings.X, VariantSettings.Rotation.R270).put(VariantSettings.Y, VariantSettings.Rotation.R180))
-				.register(Orientation.UP_SOUTH, BlockStateVariant.create().put(VariantSettings.X, VariantSettings.Rotation.R270))
-				.register(Orientation.UP_WEST, BlockStateVariant.create().put(VariantSettings.X, VariantSettings.Rotation.R270).put(VariantSettings.Y, VariantSettings.Rotation.R90))
-				.register(Orientation.UP_EAST, BlockStateVariant.create().put(VariantSettings.X, VariantSettings.Rotation.R270).put(VariantSettings.Y, VariantSettings.Rotation.R270))
-				.register(Orientation.NORTH_UP, BlockStateVariant.create())
-				.register(Orientation.SOUTH_UP, BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R180))
-				.register(Orientation.WEST_UP, BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R270))
-				.register(Orientation.EAST_UP, BlockStateVariant.create().put(VariantSettings.Y, VariantSettings.Rotation.R90));
+	public static PropertyDispatch createUpNorthDefaultOrientationVariantMap() {
+		return PropertyDispatch.property(BlockStateProperties.ORIENTATION)
+				.select(FrontAndTop.DOWN_NORTH, Variant.variant().with(VariantProperties.X_ROT, VariantProperties.Rotation.R90))
+				.select(FrontAndTop.DOWN_SOUTH, Variant.variant().with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+				.select(FrontAndTop.DOWN_WEST, Variant.variant().with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+				.select(FrontAndTop.DOWN_EAST, Variant.variant().with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+				.select(FrontAndTop.UP_NORTH, Variant.variant().with(VariantProperties.X_ROT, VariantProperties.Rotation.R270).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+				.select(FrontAndTop.UP_SOUTH, Variant.variant().with(VariantProperties.X_ROT, VariantProperties.Rotation.R270))
+				.select(FrontAndTop.UP_WEST, Variant.variant().with(VariantProperties.X_ROT, VariantProperties.Rotation.R270).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+				.select(FrontAndTop.UP_EAST, Variant.variant().with(VariantProperties.X_ROT, VariantProperties.Rotation.R270).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+				.select(FrontAndTop.NORTH_UP, Variant.variant())
+				.select(FrontAndTop.SOUTH_UP, Variant.variant().with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+				.select(FrontAndTop.WEST_UP, Variant.variant().with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+				.select(FrontAndTop.EAST_UP, Variant.variant().with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
 	}
 	
 	// Variants
 	
-	public static BlockStateVariant createModelVariant(Identifier modelId) {
-		return BlockStateVariant.create().put(VariantSettings.MODEL, modelId);
+	public static Variant createModelVariant(ResourceLocation modelId) {
+		return Variant.variant().with(VariantProperties.MODEL, modelId);
 	}
 	
-	public static BlockStateVariant createModelVariant(Block block, String suffix) {
-		return createModelVariant(ModelIds.getBlockSubModelId(block, suffix));
+	public static Variant createModelVariant(Block block, String suffix) {
+		return createModelVariant(ModelLocationUtils.getModelLocation(block, suffix));
 	}
 	
-	public static VariantSettings.Rotation getSouthDefaultRotation(Direction direction) {
+	public static VariantProperties.Rotation getSouthDefaultRotation(Direction direction) {
 		return switch (direction) {
-			case Direction.WEST -> VariantSettings.Rotation.R90;
-			case Direction.NORTH -> VariantSettings.Rotation.R180;
-			case Direction.EAST -> VariantSettings.Rotation.R270;
-			default -> VariantSettings.Rotation.R0;
+			case Direction.WEST -> VariantProperties.Rotation.R90;
+			case Direction.NORTH -> VariantProperties.Rotation.R180;
+			case Direction.EAST -> VariantProperties.Rotation.R270;
+			default -> VariantProperties.Rotation.R0;
 		};
 	}
 }

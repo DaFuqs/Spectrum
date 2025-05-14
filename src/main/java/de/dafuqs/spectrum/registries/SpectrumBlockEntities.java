@@ -31,10 +31,11 @@ import de.dafuqs.spectrum.blocks.spirit_sallow.*;
 import de.dafuqs.spectrum.blocks.structure.*;
 import de.dafuqs.spectrum.blocks.titration_barrel.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.client.render.block.entity.*;
-import net.minecraft.registry.*;
+import net.minecraft.client.renderer.blockentity.*;
+import net.minecraft.core.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.*;
 
 import java.util.*;
 
@@ -90,8 +91,8 @@ public class SpectrumBlockEntities {
 	public static BlockEntityType<DeepLightBlockEntity> DEEP_LIGHT;
 	public static BlockEntityType<PlayerTrackerBlockEntity> PLAYER_TRACKING;
 	
-	private static <T extends BlockEntity> BlockEntityType<T> register(String id, BlockEntityType.BlockEntityFactory<T> factory, Block... blocks) {
-		return Registry.register(Registries.BLOCK_ENTITY_TYPE, SpectrumCommon.locate(id), BlockEntityType.Builder.create(factory, blocks).build());
+	private static <T extends BlockEntity> BlockEntityType<T> register(String id, BlockEntityType.BlockEntitySupplier<T> factory, Block... blocks) {
+		return Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, SpectrumCommon.locate(id), BlockEntityType.Builder.of(factory, blocks).build());
 	}
 	
 	public static void register() {
@@ -157,30 +158,30 @@ public class SpectrumBlockEntities {
 	}
 	
 	public static void registerClient() {
-		BlockEntityRendererFactories.register(SpectrumBlockEntities.PEDESTAL, PedestalBlockEntityRenderer::new);
-		BlockEntityRendererFactories.register(SpectrumBlockEntities.BOTTOMLESS_BUNDLE, BottomlessBundleBlockEntityRenderer::new);
-		BlockEntityRendererFactories.register(SpectrumBlockEntities.HEARTBOUND_CHEST, HeartboundChestBlockEntityRenderer::new);
-		BlockEntityRendererFactories.register(SpectrumBlockEntities.COMPACTING_CHEST, CompactingChestBlockEntityRenderer::new);
-		BlockEntityRendererFactories.register(SpectrumBlockEntities.FABRICATION_CHEST, FabricationChestBlockEntityRenderer::new);
-		BlockEntityRendererFactories.register(SpectrumBlockEntities.PRESERVATION_CHEST, SpectrumChestBlockEntityRenderer::new);
-		BlockEntityRendererFactories.register(SpectrumBlockEntities.BLACK_HOLE_CHEST, BlackHoleChestBlockEntityRenderer::new);
-		BlockEntityRendererFactories.register(SpectrumBlockEntities.UPGRADE_BLOCK, UpgradeBlockBlockEntityRenderer::new);
-		BlockEntityRendererFactories.register(SpectrumBlockEntities.FUSION_SHRINE, FusionShrineBlockEntityRenderer::new);
-		BlockEntityRendererFactories.register(SpectrumBlockEntities.ENCHANTER, EnchanterBlockEntityRenderer::new);
-		BlockEntityRendererFactories.register(SpectrumBlockEntities.ITEM_BOWL, ItemBowlBlockEntityRenderer::new);
-		BlockEntityRendererFactories.register(SpectrumBlockEntities.ITEM_ROUNDEL, ItemRoundelBlockEntityRenderer::new);
-		BlockEntityRendererFactories.register(SpectrumBlockEntities.PRESERVATION_ROUNDEL, ItemRoundelBlockEntityRenderer::new);
-		BlockEntityRendererFactories.register(SpectrumBlockEntities.SKULL, SpectrumSkullBlockEntityRenderer::new);
-		BlockEntityRendererFactories.register(SpectrumBlockEntities.SPIRIT_INSTILLER, SpiritInstillerBlockEntityRenderer::new);
-		BlockEntityRendererFactories.register(SpectrumBlockEntities.JADE_VINE_ROOTS, JadeVineRootsBlockEntityRenderer::new);
-		BlockEntityRendererFactories.register(SpectrumBlockEntities.CRYSTALLARIEUM, CrystallarieumBlockEntityRenderer::new);
-		BlockEntityRendererFactories.register(SpectrumBlockEntities.COLOR_PICKER, ColorPickerBlockEntityRenderer::new);
-		BlockEntityRendererFactories.register(SpectrumBlockEntities.PRESERVATION_CONTROLLER, PreservationControllerBlockEntityRenderer::new);
-		BlockEntityRendererFactories.register(SpectrumBlockEntities.PROJECTOR, ProjectorBlockEntityRenderer::new);
-		BlockEntityRendererFactories.register(SpectrumBlockEntities.DEEP_LIGHT, DeepLightBlockEntityRenderer::new);
-		BlockEntityRendererFactories.register(SpectrumBlockEntities.PLAYER_TRACKING, PlayerTrackingBlockEntityRenderer::new);
-
-		BlockEntityRendererFactories.register(SpectrumBlockEntities.PASTEL_NODE, PastelNodeBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.PEDESTAL, PedestalBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.BOTTOMLESS_BUNDLE, BottomlessBundleBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.HEARTBOUND_CHEST, HeartboundChestBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.COMPACTING_CHEST, CompactingChestBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.FABRICATION_CHEST, FabricationChestBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.PRESERVATION_CHEST, SpectrumChestBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.BLACK_HOLE_CHEST, BlackHoleChestBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.UPGRADE_BLOCK, UpgradeBlockBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.FUSION_SHRINE, FusionShrineBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.ENCHANTER, EnchanterBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.ITEM_BOWL, ItemBowlBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.ITEM_ROUNDEL, ItemRoundelBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.PRESERVATION_ROUNDEL, ItemRoundelBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.SKULL, SpectrumSkullBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.SPIRIT_INSTILLER, SpiritInstillerBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.JADE_VINE_ROOTS, JadeVineRootsBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.CRYSTALLARIEUM, CrystallarieumBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.COLOR_PICKER, ColorPickerBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.PRESERVATION_CONTROLLER, PreservationControllerBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.PROJECTOR, ProjectorBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.DEEP_LIGHT, DeepLightBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.PLAYER_TRACKING, PlayerTrackingBlockEntityRenderer::new);
+		
+		BlockEntityRenderers.register(SpectrumBlockEntities.PASTEL_NODE, PastelNodeBlockEntityRenderer::new);
 	}
 	
 }

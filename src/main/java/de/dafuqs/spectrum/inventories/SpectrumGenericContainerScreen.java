@@ -3,62 +3,62 @@ package de.dafuqs.spectrum.inventories;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.client.gui.screen.ingame.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.client.gui.screens.inventory.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.entity.player.*;
 import org.jetbrains.annotations.*;
 
-public class SpectrumGenericContainerScreen extends HandledScreen<GenericSpectrumContainerScreenHandler> {
+public class SpectrumGenericContainerScreen extends AbstractContainerScreen<GenericSpectrumContainerScreenHandler> {
 	
-	private static final Identifier TIER_1_TEXTURE_6x9 = SpectrumCommon.locate("textures/gui/container/generic_54_tier_1.png");
-	private static final Identifier TIER_2_TEXTURE_6x9 = SpectrumCommon.locate("textures/gui/container/generic_54_tier_2.png");
-	private static final Identifier TIER_3_TEXTURE_6x9 = SpectrumCommon.locate("textures/gui/container/generic_54_tier_3.png");
+	private static final ResourceLocation TIER_1_TEXTURE_6x9 = SpectrumCommon.locate("textures/gui/container/generic_54_tier_1.png");
+	private static final ResourceLocation TIER_2_TEXTURE_6x9 = SpectrumCommon.locate("textures/gui/container/generic_54_tier_2.png");
+	private static final ResourceLocation TIER_3_TEXTURE_6x9 = SpectrumCommon.locate("textures/gui/container/generic_54_tier_3.png");
 	
 	private final int rows;
-	private final Identifier backgroundTexture;
+	private final ResourceLocation backgroundTexture;
 	
-	public SpectrumGenericContainerScreen(GenericSpectrumContainerScreenHandler handler, PlayerInventory inventory, Text title) {
+	public SpectrumGenericContainerScreen(GenericSpectrumContainerScreenHandler handler, Inventory inventory, Component title) {
 		super(handler, inventory, title);
-		this.rows = handler.getRows();
+		this.rows = handler.getRowCount();
 		this.backgroundTexture = getBackground(rows, handler.getTier());
 		
-		this.backgroundHeight = 114 + this.rows * 18;
-		this.playerInventoryTitleY = this.backgroundHeight - 94;
+		this.imageHeight = 114 + this.rows * 18;
+		this.inventoryLabelY = this.imageHeight - 94;
 	}
 	
 	@Override
-	public void render(DrawContext drawContext, int mouseX, int mouseY, float delta) {
+	public void render(GuiGraphics drawContext, int mouseX, int mouseY, float delta) {
 		this.renderBackground(drawContext, mouseX, mouseY, delta);
 		super.render(drawContext, mouseX, mouseY, delta);
-		this.drawMouseoverTooltip(drawContext, mouseX, mouseY);
+		this.renderTooltip(drawContext, mouseX, mouseY);
 	}
 	
 	@Override
-	protected void drawForeground(DrawContext drawContext, int mouseX, int mouseY) {
+	protected void renderLabels(GuiGraphics drawContext, int mouseX, int mouseY) {
 		// draw "title" and "inventory" texts
-		int titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2; // 8;
+		int titleX = (imageWidth - font.width(title)) / 2; // 8;
 		int titleY = 7;
-		Text title = this.title;
+		Component title = this.title;
 		int inventoryX = 8;
-
-		var tr = this.textRenderer;
-
-		drawContext.drawText(tr, title, titleX, titleY, RenderHelper.GREEN_COLOR, false);
-		drawContext.drawText(tr, this.playerInventoryTitle, inventoryX, playerInventoryTitleY, RenderHelper.GREEN_COLOR, false);
+		
+		var tr = this.font;
+		
+		drawContext.drawString(tr, title, titleX, titleY, RenderHelper.GREEN_COLOR, false);
+		drawContext.drawString(tr, this.playerInventoryTitle, inventoryX, inventoryLabelY, RenderHelper.GREEN_COLOR, false);
 	}
 	
 	
 	@Override
-	protected void drawBackground(DrawContext drawContext, float delta, int mouseX, int mouseY) {
-		int i = (this.width - this.backgroundWidth) / 2;
-		int j = (this.height - this.backgroundHeight) / 2;
-		drawContext.drawTexture(backgroundTexture, i, j, 0, 0, this.backgroundWidth, this.rows * 18 + 17);
-		drawContext.drawTexture(backgroundTexture, i, j + this.rows * 18 + 17, 0, 126, this.backgroundWidth, 96);
+	protected void renderBg(GuiGraphics drawContext, float delta, int mouseX, int mouseY) {
+		int i = (this.width - this.imageWidth) / 2;
+		int j = (this.height - this.imageHeight) / 2;
+		drawContext.blit(backgroundTexture, i, j, 0, 0, this.imageWidth, this.rows * 18 + 17);
+		drawContext.blit(backgroundTexture, i, j + this.rows * 18 + 17, 0, 126, this.imageWidth, 96);
 	}
 	
 	@Contract(pure = true)
-	private Identifier getBackground(int rows, @NotNull ScreenBackgroundVariant tier) {
+	private ResourceLocation getBackground(int rows, @NotNull ScreenBackgroundVariant tier) {
 		switch (tier) {
 			case EARLYGAME -> {
 				return TIER_1_TEXTURE_6x9;

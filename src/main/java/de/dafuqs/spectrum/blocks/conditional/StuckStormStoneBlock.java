@@ -3,116 +3,116 @@ package de.dafuqs.spectrum.blocks.conditional;
 import com.mojang.serialization.*;
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.server.world.*;
-import net.minecraft.state.*;
+import net.minecraft.core.*;
+import net.minecraft.resources.*;
+import net.minecraft.server.level.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.util.shape.*;
-import net.minecraft.world.*;
-import net.minecraft.world.biome.*;
-import net.minecraft.world.explosion.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.biome.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.phys.*;
+import net.minecraft.world.phys.shapes.*;
 
 import java.util.*;
 
-public class StuckStormStoneBlock extends HorizontalFacingBlock implements RevelationAware {
-
-	public static final MapCodec<StuckStormStoneBlock> CODEC = createCodec(StuckStormStoneBlock::new);
-
-	protected static final VoxelShape SHAPE = Block.createCuboidShape(4.0D, 0.0D, 4.0D, 11.0D, 2.0D, 11.0D);
+public class StuckStormStoneBlock extends HorizontalDirectionalBlock implements RevelationAware {
 	
-	public StuckStormStoneBlock(Settings settings) {
+	public static final MapCodec<StuckStormStoneBlock> CODEC = simpleCodec(StuckStormStoneBlock::new);
+	
+	protected static final VoxelShape SHAPE = Block.box(4.0D, 0.0D, 4.0D, 11.0D, 2.0D, 11.0D);
+	
+	public StuckStormStoneBlock(Properties settings) {
 		super(settings);
 		RevelationAware.register(this);
 	}
 
 	@Override
-	public MapCodec<? extends StuckStormStoneBlock> getCodec() {
+	public MapCodec<? extends StuckStormStoneBlock> codec() {
 		return CODEC;
 	}
 	
 	@Override
-	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-		super.appendProperties(builder);
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
 		builder.add(FACING);
 	}
 	
 	@Override
-	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-		return world.getBlockState(pos.down()).isSolidBlock(world, pos);
+	public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+		return world.getBlockState(pos.below()).isRedstoneConductor(world, pos);
 	}
 	
 	@Override
-	public float getAmbientOcclusionLightLevel(BlockState state, BlockView world, BlockPos pos) {
+	public float getShadeBrightness(BlockState state, BlockGetter world, BlockPos pos) {
 		return 1.0F;
 	}
 	
 	@Override
-	public boolean isTransparent(BlockState state, BlockView world, BlockPos pos) {
+	public boolean propagatesSkylightDown(BlockState state, BlockGetter world, BlockPos pos) {
 		return true;
 	}
 	
 	@Override
-	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-		return !state.canPlaceAt(world, pos) ? Blocks.AIR.getDefaultState() : super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+	public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+		return !state.canSurvive(world, pos) ? Blocks.AIR.defaultBlockState() : super.updateShape(state, direction, neighborState, world, pos, neighborPos);
 	}
 	
 	@Override
-	public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion) {
-		super.onDestroyedByExplosion(world, pos, explosion);
+	public void wasExploded(Level world, BlockPos pos, Explosion explosion) {
+		super.wasExploded(world, pos, explosion);
 		
-		if (world.isSkyVisible(pos)) {
-			LightningEntity lightningEntity = EntityType.LIGHTNING_BOLT.create(world);
+		if (world.canSeeSky(pos)) {
+			LightningBolt lightningEntity = EntityType.LIGHTNING_BOLT.create(world);
 			if (lightningEntity != null) {
-				lightningEntity.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(pos));
-				world.spawnEntity(lightningEntity);
+				lightningEntity.moveTo(Vec3.atBottomCenterOf(pos));
+				world.addFreshEntity(lightningEntity);
 			}
 		}
 		
 		int power = 2;
 		Biome biomeAtPos = world.getBiome(pos).value();
-		if (!biomeAtPos.hasPrecipitation() && !biomeAtPos.isCold(pos)) {
+		if (!biomeAtPos.hasPrecipitation() && !biomeAtPos.coldEnoughToSnow(pos)) {
 			// there is no rain in deserts or snow
 			power = world.isThundering() ? 4 : world.isRaining() ? 3 : 2;
 		}
-		world.createExplosion(null, pos.getX(), pos.getY(), pos.getZ(), power, World.ExplosionSourceType.BLOCK);
+		world.explode(null, pos.getX(), pos.getY(), pos.getZ(), power, Level.ExplosionInteraction.BLOCK);
 	}
 	
 	@Override
-	public Identifier getCloakAdvancementIdentifier() {
+	public ResourceLocation getCloakAdvancementIdentifier() {
 		return SpectrumAdvancements.REVEAL_STORM_STONES;
 	}
 	
 	@Override
-	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		if (context instanceof EntityShapeContext entityShapeContext) {
+	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+		if (context instanceof EntityCollisionContext entityShapeContext) {
 			Entity contextEntity = entityShapeContext.getEntity();
-			if (contextEntity instanceof PlayerEntity player) {
+			if (contextEntity instanceof Player player) {
 				if (this.isVisibleTo(player)) {
 					return SHAPE;
 				} else {
-					return VoxelShapes.empty();
+					return Shapes.empty();
 				}
 			}
 		}
-		return VoxelShapes.fullCube(); // like breaking particles
+		return Shapes.block(); // like breaking particles
 	}
 	
 	@Override
 	public Map<BlockState, BlockState> getBlockStateCloaks() {
 		Map<BlockState, BlockState> map = new Hashtable<>();
-		for (Direction direction : Direction.Type.HORIZONTAL) {
-			map.put(this.getDefaultState().with(FACING, direction), Blocks.AIR.getDefaultState());
+		for (Direction direction : Direction.Plane.HORIZONTAL) {
+			map.put(this.defaultBlockState().setValue(FACING, direction), Blocks.AIR.defaultBlockState());
 		}
 		return map;
 	}
 	
 	@Override
-	public Pair<Item, Item> getItemCloak() {
+	public Tuple<Item, Item> getItemCloak() {
 		return null;
 	}
 	
@@ -120,14 +120,14 @@ public class StuckStormStoneBlock extends HorizontalFacingBlock implements Revel
 	 * If it gets ticked, there is a chance to vanish
 	 */
 	@Override
-	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		if (random.nextFloat() < 0.1) {
-			world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
+			world.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
 		}
 	}
 	
 	@Override
-	public ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state) {
+	public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state) {
 		return new ItemStack(SpectrumItems.STORM_STONE);
 	}
 	

@@ -1,44 +1,45 @@
 package de.dafuqs.spectrum.explosion.modifier;
 
 import de.dafuqs.spectrum.explosion.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.damage.*;
-import net.minecraft.particle.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.core.particles.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.damagesource.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public class FireModifier extends DamageChangingModifier {
 	
-	public FireModifier(ExplosionModifierType type, ParticleEffect effect, int displayColor) {
+	public FireModifier(ExplosionModifierType type, ParticleOptions effect, int displayColor) {
 		super(type, effect, displayColor);
 	}
 	
 	@Override
-	public void applyToBlocks(@NotNull World world, @NotNull Iterable<BlockPos> blocks) {
+	public void applyToBlocks(@NotNull ServerLevel world, @NotNull Iterable<BlockPos> blocks) {
 		for (BlockPos pos : blocks) {
-			if (world.getRandom().nextInt(3) == 0 && world.getBlockState(pos).isAir() && world.getBlockState(pos.down()).isOpaqueFullCube(world, pos.down())) {
-				world.setBlockState(pos, FireBlock.getState(world, pos));
+			if (world.getRandom().nextInt(3) == 0 && world.getBlockState(pos).isAir() && world.getBlockState(pos.below()).isCollisionShapeFullBlock(world, pos.below())) {
+				world.setBlockAndUpdate(pos, FireBlock.getState(world, pos));
 			}
 		}
 		super.applyToBlocks(world, blocks);
 	}
-
+	
 	@Override
 	public Optional<DamageSource> getDamageSource(@Nullable LivingEntity owner) {
 		if (owner == null) {
 			return Optional.empty();
 		} else {
-			return Optional.of(owner.getDamageSources().inFire());
+			return Optional.of(owner.damageSources().inFire());
 		}
 	}
-
+	
 	@Override
 	public void applyToEntity(@NotNull Entity entity, double distance) {
-		entity.setFireTicks(20);
+		entity.setRemainingFireTicks(20);
 	}
 	
 }

@@ -1,63 +1,61 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
-import com.mojang.serialization.MapCodec;
-import net.minecraft.block.*;
-import net.minecraft.block.enums.*;
-import net.minecraft.item.*;
-import net.minecraft.state.*;
-import net.minecraft.state.property.*;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import com.mojang.serialization.*;
+import net.minecraft.core.*;
+import net.minecraft.world.item.context.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
 
 public class RedstoneInteractionBlock extends Block {
-
-	public static final MapCodec<RedstoneInteractionBlock> CODEC = createCodec(RedstoneInteractionBlock::new);
-
-	public static final BooleanProperty TRIGGERED = Properties.TRIGGERED;
-	public static final EnumProperty<Orientation> ORIENTATION = Properties.ORIENTATION;
-
-	public RedstoneInteractionBlock(Settings settings) {
+	
+	public static final MapCodec<RedstoneInteractionBlock> CODEC = simpleCodec(RedstoneInteractionBlock::new);
+	
+	public static final BooleanProperty TRIGGERED = BlockStateProperties.TRIGGERED;
+	public static final EnumProperty<FrontAndTop> ORIENTATION = BlockStateProperties.ORIENTATION;
+	
+	public RedstoneInteractionBlock(Properties settings) {
 		super(settings);
-		this.setDefaultState(this.stateManager.getDefaultState().with(ORIENTATION, Orientation.EAST_UP).with(TRIGGERED, false));
+		this.registerDefaultState(this.stateDefinition.any().setValue(ORIENTATION, FrontAndTop.EAST_UP).setValue(TRIGGERED, false));
 	}
 
 	@Override
-	public MapCodec<? extends RedstoneInteractionBlock> getCodec() {
+	public MapCodec<? extends RedstoneInteractionBlock> codec() {
 		return CODEC;
 	}
 	
 	@Override
-	public BlockRenderType getRenderType(BlockState state) {
-		return BlockRenderType.MODEL;
+	public RenderShape getRenderShape(BlockState state) {
+		return RenderShape.MODEL;
 	}
 	
 	@Override
-	public BlockState rotate(BlockState state, BlockRotation rotation) {
-		return state.with(ORIENTATION, rotation.getDirectionTransformation().mapJigsawOrientation(state.get(ORIENTATION)));
+	public BlockState rotate(BlockState state, Rotation rotation) {
+		return state.setValue(ORIENTATION, rotation.rotation().rotate(state.getValue(ORIENTATION)));
 	}
 	
 	@Override
-	public BlockState mirror(BlockState state, BlockMirror mirror) {
-		return state.with(ORIENTATION, mirror.getDirectionTransformation().mapJigsawOrientation(state.get(ORIENTATION)));
+	public BlockState mirror(BlockState state, Mirror mirror) {
+		return state.setValue(ORIENTATION, mirror.rotation().rotate(state.getValue(ORIENTATION)));
 	}
 	
 	@Override
-	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(ORIENTATION, TRIGGERED);
 	}
 	
 	@Override
-	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		Direction direction = ctx.getPlayerLookDirection().getOpposite();
+	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+		Direction direction = ctx.getNearestLookingDirection().getOpposite();
 		Direction direction2 = switch (direction) {
-			case DOWN -> ctx.getPlayer().getHorizontalFacing().getOpposite();
-			case UP -> ctx.getPlayer().getHorizontalFacing();
+			case DOWN -> ctx.getPlayer().getDirection().getOpposite();
+			case UP -> ctx.getPlayer().getDirection();
 			case NORTH, SOUTH, WEST, EAST -> Direction.UP;
 		};
 		
-		return this.getDefaultState()
-				.with(ORIENTATION, Orientation.byDirections(direction, direction2))
-				.with(TRIGGERED, ctx.getWorld().isReceivingRedstonePower(ctx.getBlockPos()));
+		return this.defaultBlockState()
+				.setValue(ORIENTATION, FrontAndTop.fromFrontAndTop(direction, direction2))
+				.setValue(TRIGGERED, ctx.getLevel().hasNeighborSignal(ctx.getClickedPos()));
 	}
 	
 }

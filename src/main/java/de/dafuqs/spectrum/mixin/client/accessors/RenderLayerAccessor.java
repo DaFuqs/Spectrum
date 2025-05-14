@@ -1,14 +1,15 @@
 package de.dafuqs.spectrum.mixin.client.accessors;
 
-import net.minecraft.client.render.*;
+import com.mojang.blaze3d.vertex.*;
+import net.minecraft.client.renderer.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.gen.*;
 
-@Mixin(RenderLayer.class)
+@Mixin(RenderType.class)
 public interface RenderLayerAccessor {
 	
 	@Invoker
-	static RenderLayer.MultiPhase invokeOf(String name, VertexFormat vertexFormat, VertexFormat.DrawMode drawMode, int expectedBufferSize, boolean hasCrumbling, boolean translucent, RenderLayer.MultiPhaseParameters phases) {
+	static RenderType.CompositeRenderType invokeCreate(String name, VertexFormat vertexFormat, VertexFormat.Mode drawMode, int expectedBufferSize, boolean hasCrumbling, boolean translucent, RenderType.CompositeState phases) {
 		throw new IllegalStateException();
 	}
 	

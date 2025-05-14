@@ -4,30 +4,30 @@ import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.*;
-import net.minecraft.sound.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.*;
+import net.minecraft.core.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.sounds.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public class MalachiteGlassAmpouleItem extends GlassAmpouleItem implements InkPoweredPotionFillable {
 	
-	public MalachiteGlassAmpouleItem(Settings settings) {
+	public MalachiteGlassAmpouleItem(Properties settings) {
 		super(settings);
 	}
 	
 	@Override
-	public boolean trigger(World world, ItemStack stack, @Nullable LivingEntity attacker, @Nullable LivingEntity target, Vec3d position) {
-		List<StatusEffectInstance> e = new ArrayList<>();
-		if (attacker instanceof PlayerEntity player) {
+	public boolean trigger(Level world, ItemStack stack, @Nullable LivingEntity attacker, @Nullable LivingEntity target, Vec3 position) {
+		List<MobEffectInstance> e = new ArrayList<>();
+		if (attacker instanceof Player player) {
 			List<InkPoweredStatusEffectInstance> effects = InkPoweredPotionFillable.getEffects(stack);
 			for (InkPoweredStatusEffectInstance effect : effects) {
 				if (InkPowered.tryDrainEnergy(player, effect.getInkCost())) {
@@ -40,7 +40,7 @@ public class MalachiteGlassAmpouleItem extends GlassAmpouleItem implements InkPo
 			return false;
 		}
 		
-		world.playSoundAtBlockCenter(BlockPos.ofFloored(position), SpectrumSoundEvents.LIGHT_CRYSTAL_RING, SoundCategory.PLAYERS, 0.35F, 0.9F + world.getRandom().nextFloat() * 0.334F, true);
+		world.playLocalSound(BlockPos.containing(position), SpectrumSoundEvents.LIGHT_CRYSTAL_RING, SoundSource.PLAYERS, 0.35F, 0.9F + world.getRandom().nextFloat() * 0.334F, true);
 		LightMineEntity.summonBarrage(world, attacker, target, LightShardBaseEntity.MONSTER_TARGET, e, position, LightShardBaseEntity.DEFAULT_COUNT_PROVIDER);
 		return true;
 	}
@@ -56,10 +56,10 @@ public class MalachiteGlassAmpouleItem extends GlassAmpouleItem implements InkPo
 	}
 	
 	@Override
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
-		tooltip.add(Text.translatable("item.spectrum.malachite_glass_ampoule.tooltip").formatted(Formatting.GRAY));
-		appendPotionFillableTooltip(stack, tooltip, Text.translatable("item.spectrum.malachite_glass_ampoule.tooltip.when_hit"), false, context.getUpdateTickRate());
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
+		tooltip.add(Component.translatable("item.spectrum.malachite_glass_ampoule.tooltip").withStyle(ChatFormatting.GRAY));
+		appendPotionFillableTooltip(stack, tooltip, Component.translatable("item.spectrum.malachite_glass_ampoule.tooltip.when_hit"), false, context.tickRate());
 	}
 	
 }

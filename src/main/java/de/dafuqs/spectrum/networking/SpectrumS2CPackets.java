@@ -6,7 +6,7 @@ import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.fabricmc.fabric.api.networking.v1.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.network.packet.*;
+import net.minecraft.network.protocol.common.custom.*;
 
 public class SpectrumS2CPackets {
 	
@@ -81,12 +81,12 @@ public class SpectrumS2CPackets {
 		register(PastelNetworkRemovedPayload.ID, PastelNetworkRemovedPayload::execute);
 	}
 	
-	private static <T extends CustomPayload> void register(CustomPayload.Id<T> id, PacketCodec<? super RegistryByteBuf, T> codec) {
+	private static <T extends CustomPacketPayload> void register(CustomPacketPayload.Type<T> id, StreamCodec<? super RegistryFriendlyByteBuf, T> codec) {
 		PayloadTypeRegistry.playS2C().register(id, codec);
 	}
 	
 	@SuppressWarnings("resource")
-	private static <T extends CustomPayload> void register(CustomPayload.Id<T> id, ClientPlayNetworking.PlayPayloadHandler<T> receiver) {
+	private static <T extends CustomPacketPayload> void register(CustomPacketPayload.Type<T> id, ClientPlayNetworking.PlayPayloadHandler<T> receiver) {
 		ClientPlayNetworking.registerGlobalReceiver(id, (payload, context) -> context.client().execute(() -> receiver.receive(payload, context)));
 	}
 	

@@ -6,32 +6,32 @@ import dev.emi.emi.api.recipe.*;
 import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.*;
 import net.minecraft.client.*;
-import net.minecraft.util.*;
+import net.minecraft.resources.*;
 import org.apache.commons.compress.utils.*;
 
 import java.util.*;
 import java.util.function.*;
 
 public class SpectrumWorldInteractionRecipe extends EmiWorldInteractionRecipe {
-	private final List<Identifier> requiredAdvancementIdentifier = Lists.newArrayList();
+	private final List<ResourceLocation> requiredAdvancementIdentifier = Lists.newArrayList();
 	
-	protected SpectrumWorldInteractionRecipe(Builder builder) {
+	protected SpectrumWorldInteractionRecipe(de.dafuqs.spectrum.compat.emi.recipes.SpectrumWorldInteractionRecipe.Builder builder) {
 		super(builder.superbuilder);
 		requiredAdvancementIdentifier.addAll(builder.requiredAdvancementIdentifier);
 	}
 	
-	public static Builder customBuilder() {
-		return new Builder();
+	public static de.dafuqs.spectrum.compat.emi.recipes.SpectrumWorldInteractionRecipe.Builder customBuilder() {
+		return new de.dafuqs.spectrum.compat.emi.recipes.SpectrumWorldInteractionRecipe.Builder();
 	}
 	
-	public boolean hasAdvancement(Identifier advancement) {
-		MinecraftClient client = MinecraftClient.getInstance();
+	public boolean hasAdvancement(ResourceLocation advancement) {
+		Minecraft client = Minecraft.getInstance();
 		return AdvancementHelper.hasAdvancement(client.player, advancement);
 	}
 	
 	public boolean isUnlocked() {
 		if (requiredAdvancementIdentifier.isEmpty()) return true;
-		for (Identifier id : requiredAdvancementIdentifier) {
+		for (ResourceLocation id : requiredAdvancementIdentifier) {
 			if (!hasAdvancement(id)) return false;
 		}
 		return true;
@@ -68,7 +68,7 @@ public class SpectrumWorldInteractionRecipe extends EmiWorldInteractionRecipe {
 	public static class Builder {
 		//Use a combinatorial relationship to build the parent class builder because its constructor is private.
 		private final EmiWorldInteractionRecipe.Builder superbuilder;
-		private final List<Identifier> requiredAdvancementIdentifier = Lists.newArrayList();
+		private final List<ResourceLocation> requiredAdvancementIdentifier = Lists.newArrayList();
 		
 		private Builder() {
 			this.superbuilder = EmiWorldInteractionRecipe.builder();
@@ -78,47 +78,47 @@ public class SpectrumWorldInteractionRecipe extends EmiWorldInteractionRecipe {
 			return new SpectrumWorldInteractionRecipe(this);
 		}
 		
-		public Builder id(Identifier id) {
+		public de.dafuqs.spectrum.compat.emi.recipes.SpectrumWorldInteractionRecipe.Builder id(ResourceLocation id) {
 			superbuilder.id(id);
 			return this;
 		}
 		
-		public Builder leftInput(EmiIngredient stack) {
+		public de.dafuqs.spectrum.compat.emi.recipes.SpectrumWorldInteractionRecipe.Builder leftInput(EmiIngredient stack) {
 			superbuilder.leftInput(stack);
 			return this;
 		}
 		
-		public Builder leftInput(EmiIngredient stack, Function<SlotWidget, SlotWidget> mutator) {
+		public de.dafuqs.spectrum.compat.emi.recipes.SpectrumWorldInteractionRecipe.Builder leftInput(EmiIngredient stack, Function<SlotWidget, SlotWidget> mutator) {
 			superbuilder.leftInput(stack, mutator);
 			return this;
 		}
 		
-		public Builder rightInput(EmiIngredient stack, boolean catalyst) {
+		public de.dafuqs.spectrum.compat.emi.recipes.SpectrumWorldInteractionRecipe.Builder rightInput(EmiIngredient stack, boolean catalyst) {
 			superbuilder.rightInput(stack, catalyst);
 			return this;
 		}
 		
-		public Builder rightInput(EmiIngredient stack, boolean catalyst, Function<SlotWidget, SlotWidget> mutator) {
+		public de.dafuqs.spectrum.compat.emi.recipes.SpectrumWorldInteractionRecipe.Builder rightInput(EmiIngredient stack, boolean catalyst, Function<SlotWidget, SlotWidget> mutator) {
 			superbuilder.rightInput(stack, catalyst, mutator);
 			return this;
 		}
 		
-		public Builder output(EmiStack stack) {
+		public de.dafuqs.spectrum.compat.emi.recipes.SpectrumWorldInteractionRecipe.Builder output(EmiStack stack) {
 			superbuilder.output(stack);
 			return this;
 		}
 		
-		public Builder output(EmiStack stack, Function<SlotWidget, SlotWidget> mutator) {
+		public de.dafuqs.spectrum.compat.emi.recipes.SpectrumWorldInteractionRecipe.Builder output(EmiStack stack, Function<SlotWidget, SlotWidget> mutator) {
 			superbuilder.output(stack, mutator);
 			return this;
 		}
 		
-		public Builder supportsRecipeTree(boolean supportsRecipeTree) {
+		public de.dafuqs.spectrum.compat.emi.recipes.SpectrumWorldInteractionRecipe.Builder supportsRecipeTree(boolean supportsRecipeTree) {
 			superbuilder.supportsRecipeTree(supportsRecipeTree);
 			return this;
 		}
 		
-		public Builder requiredAdvancement(Identifier advId) {
+		public de.dafuqs.spectrum.compat.emi.recipes.SpectrumWorldInteractionRecipe.Builder requiredAdvancement(ResourceLocation advId) {
 			requiredAdvancementIdentifier.add(advId);
 			return this;
 		}

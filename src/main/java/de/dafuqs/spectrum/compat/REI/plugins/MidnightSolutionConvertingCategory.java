@@ -6,7 +6,7 @@ import me.shedaniel.rei.api.client.gui.*;
 import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.fabricmc.api.*;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
 
 @Environment(EnvType.CLIENT)
 public class MidnightSolutionConvertingCategory extends FluidConvertingCategory<MidnightSolutionConvertingDisplay> {
@@ -22,8 +22,8 @@ public class MidnightSolutionConvertingCategory extends FluidConvertingCategory<
 	}
 	
 	@Override
-	public Text getTitle() {
-		return Text.translatable("container.spectrum.rei.midnight_solution_converting.title");
+	public Component getTitle() {
+		return Component.translatable("container.spectrum.rei.midnight_solution_converting.title");
 	}
 	
 }

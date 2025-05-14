@@ -1,13 +1,13 @@
 package de.dafuqs.spectrum.worldgen.features;
 
 import com.mojang.serialization.*;
-import net.minecraft.block.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
-import net.minecraft.world.*;
-import net.minecraft.world.gen.chunk.*;
-import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.feature.util.*;
+import net.minecraft.core.*;
+import net.minecraft.util.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.chunk.*;
+import net.minecraft.world.level.levelgen.feature.*;
 
 public class GiantGilledFungusFeature extends Feature<GilledFungusFeatureConfig> {
 
@@ -16,23 +16,23 @@ public class GiantGilledFungusFeature extends Feature<GilledFungusFeatureConfig>
 	}
 	
 	@Override
-	public boolean generate(FeatureContext<GilledFungusFeatureConfig> context) {
-		StructureWorldAccess world = context.getWorld();
-		BlockPos blockPos = context.getOrigin();
-		GilledFungusFeatureConfig config = context.getConfig();
+	public boolean place(FeaturePlaceContext<GilledFungusFeatureConfig> context) {
+		WorldGenLevel world = context.level();
+		BlockPos blockPos = context.origin();
+		GilledFungusFeatureConfig config = context.config();
 		Block validBaseBlock = config.validBase();
-
-        BlockState baseBlock = world.getBlockState(blockPos.down());
-
-        if (!baseBlock.isOf(validBaseBlock)) {
+		
+		BlockState baseBlock = world.getBlockState(blockPos.below());
+		
+		if (!baseBlock.is(validBaseBlock)) {
             return false;
         }
-
-        Random random = context.getRandom();
-        ChunkGenerator chunkGenerator = context.getGenerator();
-
-        var maxHeight = config.baseStemHeight().get(random);
-        var mutable = blockPos.mutableCopy();
+		
+		RandomSource random = context.random();
+		ChunkGenerator chunkGenerator = context.chunkGenerator();
+		
+		var maxHeight = config.baseStemHeight().sample(random);
+		var mutable = blockPos.mutable();
         int stemHeight = 0;
         int stemGirth = 1;
 
@@ -47,14 +47,14 @@ public class GiantGilledFungusFeature extends Feature<GilledFungusFeatureConfig>
             return false;
 
         stemGirth += (int) Math.floor(stemHeight / 33F);
-
-        if (blockPos.getY() + stemHeight + 1 >= chunkGenerator.getWorldHeight()) {
+		
+		if (blockPos.getY() + stemHeight + 1 >= chunkGenerator.getGenDepth()) {
             return false;
         }
-
-        world.setBlockState(blockPos, Blocks.AIR.getDefaultState(), 4);
-
-        this.generateStemRing(blockPos.down(3), config, world, random, stemGirth, stemHeight + 3, true);
+		
+		world.setBlock(blockPos, Blocks.AIR.defaultBlockState(), 4);
+		
+		this.generateStemRing(blockPos.below(3), config, world, random, stemGirth, stemHeight + 3, true);
 
         if (stemHeight > 60 || (stemHeight > 30 && random.nextBoolean())) {
             this.generateHat(world, random, config, blockPos, stemHeight, 1F);
@@ -65,23 +65,23 @@ public class GiantGilledFungusFeature extends Feature<GilledFungusFeatureConfig>
         }
 
         for (int i = 0; i < stemHeight / 1.5F; i++) {
-            this.generateHat(world, random, config, blockPos.add(random.nextInt(stemGirth * 3), 0, random.nextInt(stemGirth * 3)), random.nextInt(stemHeight / 5) + 1, (random.nextFloat() / (i + 1) * 0.5F) + 0.5F);
+			this.generateHat(world, random, config, blockPos.offset(random.nextInt(stemGirth * 3), 0, random.nextInt(stemGirth * 3)), random.nextInt(stemHeight / 5) + 1, (random.nextFloat() / (i + 1) * 0.5F) + 0.5F);
         }
 
         return true;
     }
-
-    private static boolean isReplaceable(WorldAccess world, BlockPos pos, boolean replacePlants) {
-        return world.testBlockState(pos, (state) -> state.isReplaceable() || replacePlants);
+	
+	private static boolean isReplaceable(LevelAccessor world, BlockPos pos, boolean replacePlants) {
+		return world.isStateAtPosition(pos, (state) -> state.canBeReplaced() || replacePlants);
     }
-
-    private void generateStemRing(BlockPos blockPos, GilledFungusFeatureConfig config, WorldAccess world, Random random, int stemGirth, int stemHeight, boolean recursive) {
-        var stemPos = blockPos.mutableCopy();
+	
+	private void generateStemRing(BlockPos blockPos, GilledFungusFeatureConfig config, LevelAccessor world, RandomSource random, int stemGirth, int stemHeight, boolean recursive) {
+		var stemPos = blockPos.mutable();
 
         for (int x = -stemGirth; x <= stemGirth; x++) {
             for (int z = -stemGirth; z <= stemGirth; z++) {
-                stemPos.set(blockPos, x, 0, z);
-                if (Math.sqrt(stemPos.getSquaredDistance(blockPos)) > stemGirth)
+				stemPos.setWithOffset(blockPos, x, 0, z);
+				if (Math.sqrt(stemPos.distSqr(blockPos)) > stemGirth)
                     continue;
 
                 this.generateStem(world, config, stemPos, stemHeight);
@@ -89,38 +89,38 @@ public class GiantGilledFungusFeature extends Feature<GilledFungusFeatureConfig>
                     var height = Math.round((float) stemHeight * (random.nextFloat() * 0.667F));
                     var offsetX = (int) (x * (2 + random.nextFloat()));
                     var offsetZ = (int) (z * (2 + random.nextFloat()));
-
-                    generateStemRing(stemPos.add(offsetX, 0, offsetZ), config, world, random, stemGirth / 2, height, false);
-                    this.generateHat(world, random, config, stemPos.add((int) (offsetX * 1.5), 0, (int) (offsetZ * 1.5)), height, 0.333F + random.nextFloat() * 0.667F);
+					
+					generateStemRing(stemPos.offset(offsetX, 0, offsetZ), config, world, random, stemGirth / 2, height, false);
+					this.generateHat(world, random, config, stemPos.offset((int) (offsetX * 1.5), 0, (int) (offsetZ * 1.5)), height, 0.333F + random.nextFloat() * 0.667F);
                 }
 
             }
         }
     }
-
-    private void generateStem(WorldAccess world, GilledFungusFeatureConfig config, BlockPos pos, int stemHeight) {
-		BlockPos.Mutable mutable = new BlockPos.Mutable();
-		BlockState blockState = config.stem().getDefaultState();
+	
+	private void generateStem(LevelAccessor world, GilledFungusFeatureConfig config, BlockPos pos, int stemHeight) {
+		BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
+		BlockState blockState = config.stem().defaultBlockState();
 		int i = 0;
         for (int x = -i; x <= i; ++x) {
             for (int z = -i; z <= i; ++z) {
                 for (int y = 0; y < stemHeight; ++y) {
-                    mutable.set(pos, x, y, z);
+					mutable.setWithOffset(pos, x, y, z);
                     if (isReplaceable(world, mutable, true)) {
-                        this.setBlockState(world, mutable, blockState);
+						this.setBlock(world, mutable, blockState);
                     }
                 }
             }
         }
     }
-
-    private void generateHat(WorldAccess world, Random random, GilledFungusFeatureConfig config, BlockPos pos, int stemHeight, float sizeMod) {
-		BlockPos.Mutable mutable = new BlockPos.Mutable();
+	
+	private void generateHat(LevelAccessor world, RandomSource random, GilledFungusFeatureConfig config, BlockPos pos, int stemHeight, float sizeMod) {
+		BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
 		int hatRadius = Math.round(Math.min(Math.round(random.nextInt(Math.round(1 + stemHeight / 7F)) + (stemHeight / 7F) + 3)  * sizeMod, 17));
 		int currentRadius;
-
-		BlockState gillsState = config.gills().getDefaultState();
-		BlockState capState = config.cap().getDefaultState();
+		
+		BlockState gillsState = config.gills().defaultBlockState();
+		BlockState capState = config.cap().defaultBlockState();
         var start = hatRadius > 11 ? -3 : -2;
         var firstLoop = true;
 
@@ -137,14 +137,14 @@ public class GiantGilledFungusFeature extends Feature<GilledFungusFeatureConfig>
 					if (isCorner) {
 						continue;
 					}
-
-                    mutable.set(pos, x, stemHeight + y, z);
+					
+					mutable.setWithOffset(pos, x, stemHeight + y, z);
                     if (isReplaceable(world, mutable, false)) {
-                        var rad = Math.sqrt(mutable.getSquaredDistanceFromCenter(pos.getX(), mutable.getY(), pos.getZ()));
+						var rad = Math.sqrt(mutable.distToCenterSqr(pos.getX(), mutable.getY(), pos.getZ()));
 
                         if (underHang) {
                             if(!(random.nextInt(3) == 0 && firstLoop) && rad <= currentRadius && rad > currentRadius - 1) {
-                                this.setBlockState(world, mutable, capState);
+								this.setBlock(world, mutable, capState);
                             }
                         }
                         else if (isLowestLevel) {
@@ -152,14 +152,14 @@ public class GiantGilledFungusFeature extends Feature<GilledFungusFeatureConfig>
                                 continue;
 
                             if (rad <= currentRadius - 1) {
-                                this.setBlockState(world, mutable, gillsState.with(PillarBlock.AXIS, Math.abs(x) < Math.abs(z) ? Direction.Axis.X : Direction.Axis.Z));
+								this.setBlock(world, mutable, gillsState.setValue(RotatedPillarBlock.AXIS, Math.abs(x) < Math.abs(z) ? Direction.Axis.X : Direction.Axis.Z));
                             } else if(rad <= currentRadius) {
-                                this.setBlockState(world, mutable, capState);
+								this.setBlock(world, mutable, capState);
 
                             }
                         }
                         else if (rad <= currentRadius) {
-                            this.setBlockState(world, mutable, capState);
+							this.setBlock(world, mutable, capState);
 
                         }
                     }

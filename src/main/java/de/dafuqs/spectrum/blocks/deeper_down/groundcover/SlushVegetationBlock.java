@@ -1,47 +1,44 @@
 package de.dafuqs.spectrum.blocks.deeper_down.groundcover;
 
-import com.mojang.serialization.MapCodec;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.SnowBlock;
-import net.minecraft.block.SnowyBlock;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.chunk.light.ChunkLightProvider;
+import com.mojang.serialization.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.core.*;
+import net.minecraft.server.level.*;
+import net.minecraft.util.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.lighting.*;
 
-public class SlushVegetationBlock extends SnowyBlock {
-
-    public SlushVegetationBlock(Settings settings) {
+public class SlushVegetationBlock extends SnowyDirtBlock {
+	
+	public SlushVegetationBlock(Properties settings) {
         super(settings);
     }
-
-    public static final MapCodec<SlushVegetationBlock> CODEC = createCodec(SlushVegetationBlock::new);
+	
+	public static final MapCodec<SlushVegetationBlock> CODEC = simpleCodec(SlushVegetationBlock::new);
 
     @Override
-    public MapCodec<? extends SlushVegetationBlock> getCodec() {
+	public MapCodec<? extends SlushVegetationBlock> codec() {
         return CODEC;
     }
 
     @Override
-    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
         if (!canSurvive(state, world, pos)) {
-            world.setBlockState(pos, SpectrumBlocks.SLUSH.getDefaultState());
+			world.setBlockAndUpdate(pos, SpectrumBlocks.SLUSH.defaultBlockState());
         }
     }
-
-    private static boolean canSurvive(BlockState state, BlockView world, BlockPos pos) {
-        BlockPos blockPos = pos.up();
+	
+	private static boolean canSurvive(BlockState state, BlockGetter world, BlockPos pos) {
+		BlockPos blockPos = pos.above();
         BlockState blockState = world.getBlockState(blockPos);
-        if (blockState.isOf(Blocks.SNOW) && blockState.get(SnowBlock.LAYERS) == 1) {
+		if (blockState.is(Blocks.SNOW) && blockState.getValue(SnowLayerBlock.LAYERS) == 1) {
             return true;
-        } else if (blockState.getFluidState().getLevel() == 8) {
+		} else if (blockState.getFluidState().getAmount() == 8) {
             return false;
         } else {
-            int light = ChunkLightProvider.getRealisticOpacity(world, state, pos, blockState, blockPos, Direction.UP, blockState.getOpacity(world, blockPos));
+			int light = LightEngine.getLightBlockInto(world, state, pos, blockState, blockPos, Direction.UP, blockState.getLightBlock(world, blockPos));
             return light < world.getMaxLightLevel();
         }
     }

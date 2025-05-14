@@ -2,9 +2,9 @@ package de.dafuqs.spectrum.api.item;
 
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.item.*;
-import net.minecraft.registry.*;
-import net.minecraft.util.math.random.*;
+import net.minecraft.core.*;
+import net.minecraft.util.*;
+import net.minecraft.world.item.*;
 
 public interface ExperienceStorageItem {
 	
@@ -27,7 +27,7 @@ public interface ExperienceStorageItem {
 	 * @param random    A random
 	 * @return The overflow amount that could not be stored
 	 */
-	static int addStoredExperience(RegistryWrapper.WrapperLookup lookup, ItemStack itemStack, float amount, Random random) {
+	static int addStoredExperience(HolderLookup.Provider lookup, ItemStack itemStack, float amount, RandomSource random) {
 		if (amount > 0) {
 			int intAmount = Support.getIntFromDecimalWithChance(amount, random);
 			return addStoredExperience(lookup, itemStack, intAmount);
@@ -43,7 +43,7 @@ public interface ExperienceStorageItem {
 	 * @param amount    The amount of experience to store
 	 * @return The overflow amount that could not be stored
 	 */
-	static int addStoredExperience(RegistryWrapper.WrapperLookup lookup, ItemStack itemStack, int amount) {
+	static int addStoredExperience(HolderLookup.Provider lookup, ItemStack itemStack, int amount) {
 		if (amount <= 0 || itemStack.isEmpty())
 			return 0;
 		
@@ -56,7 +56,7 @@ public interface ExperienceStorageItem {
 			itemStack.set(SpectrumDataComponentTypes.STORED_EXPERIENCE, toAdd);
 			return overflow;
 		} else {
-			itemStack.apply(SpectrumDataComponentTypes.STORED_EXPERIENCE, 0, existing -> existing + amount);
+			itemStack.update(SpectrumDataComponentTypes.STORED_EXPERIENCE, 0, existing -> existing + amount);
 			return 0;
 		}
 		
@@ -71,7 +71,7 @@ public interface ExperienceStorageItem {
 	 * @return If there was enough experience that could be removed
 	 */
 	static boolean removeStoredExperience(ItemStack itemStack, int amount) {
-		if (itemStack.contains(SpectrumDataComponentTypes.STORED_EXPERIENCE)) {
+		if (itemStack.has(SpectrumDataComponentTypes.STORED_EXPERIENCE)) {
 			var existing = itemStack.getOrDefault(SpectrumDataComponentTypes.STORED_EXPERIENCE, 0);
 			var newAmount = existing - amount;
 			if (newAmount >= 0) {
@@ -82,6 +82,6 @@ public interface ExperienceStorageItem {
 		return false;
 	}
 	
-	int getMaxStoredExperience(RegistryWrapper.WrapperLookup lookup, ItemStack itemStack);
+	int getMaxStoredExperience(HolderLookup.Provider lookup, ItemStack itemStack);
 	
 }

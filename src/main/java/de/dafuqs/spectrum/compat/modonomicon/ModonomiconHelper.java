@@ -5,24 +5,24 @@ import com.klikli_dev.modonomicon.client.gui.book.entry.*;
 import com.klikli_dev.modonomicon.client.render.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.item.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import net.minecraft.core.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public class ModonomiconHelper {
 	
-	public static void renderIngredientStack(DrawContext drawContext, BookEntryScreen parentScreen, int x, int y, int mouseX, int mouseY, IngredientStack ingredientStack) {
+	public static void renderIngredientStack(GuiGraphics drawContext, BookEntryScreen parentScreen, int x, int y, int mouseX, int mouseY, IngredientStack ingredientStack) {
 		List<ItemStack> stacks = ingredientStack.getMatchingStacks();
 		if (!stacks.isEmpty()) {
 			parentScreen.renderItemStack(drawContext, x, y, mouseX, mouseY, stacks.get(parentScreen.getTicksInBook() / 20 % stacks.size()));
 		}
 	}
 	
-	public static void renderMultiblock(Multiblock multiblock, Text text, BlockPos pos, BlockRotation rotation) {
+	public static void renderMultiblock(Multiblock multiblock, Component text, BlockPos pos, Rotation rotation) {
 		MultiblockPreviewRenderer.setMultiblock(multiblock, text, false);
 		MultiblockPreviewRenderer.anchorTo(pos, rotation);
 	}
@@ -36,7 +36,7 @@ public class ModonomiconHelper {
 		if (currentlyRenderedMultiblock == null || currentlyRenderedMultiblock != multiblock) {
 			return;
 		}
-		MultiblockPreviewRenderer.setMultiblock(null, Text.empty(), false);
+		MultiblockPreviewRenderer.setMultiblock(null, Component.empty(), false);
 	}
 	
 }

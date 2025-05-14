@@ -5,8 +5,8 @@ import de.dafuqs.spectrum.mixin.accessors.*;
 import me.shedaniel.rei.api.common.display.basic.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
-import net.minecraft.block.*;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.world.level.block.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -21,7 +21,7 @@ public abstract class BlockToBlockWithChanceDisplay extends BasicDisplay impleme
 	}
 	
 	public static EntryStack<?> blockToEntryStack(Block block) {
-		if (block instanceof FluidBlock inFluidBlock) {
+		if (block instanceof LiquidBlock inFluidBlock) {
 			return EntryStacks.of(((FluidBlockAccessor) inFluidBlock).getFlowableFluid());
 		} else {
 			return EntryStacks.of(block);
@@ -39,7 +39,7 @@ public abstract class BlockToBlockWithChanceDisplay extends BasicDisplay impleme
 	}
 	
 	@Override
-	public @Nullable Text getSecretHintText() {
+	public @Nullable Component getSecretHintText() {
 		return null;
 	}
 	

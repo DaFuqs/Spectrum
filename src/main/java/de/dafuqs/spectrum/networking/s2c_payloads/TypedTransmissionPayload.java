@@ -7,24 +7,23 @@ import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.fabricmc.fabric.api.networking.v1.*;
 import net.minecraft.client.*;
+import net.minecraft.core.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.network.packet.*;
-import net.minecraft.server.network.*;
-import net.minecraft.server.world.*;
-import net.minecraft.util.math.*;
+import net.minecraft.network.protocol.common.custom.*;
+import net.minecraft.server.level.*;
 import org.jetbrains.annotations.*;
 
-public record TypedTransmissionPayload(TypedTransmission transmission) implements CustomPayload {
+public record TypedTransmissionPayload(TypedTransmission transmission) implements CustomPacketPayload {
 	
-	public static final Id<TypedTransmissionPayload> ID = SpectrumC2SPackets.makeId("typed_transmission");
-	public static final PacketCodec<RegistryByteBuf, TypedTransmissionPayload> CODEC = PacketCodec.tuple(
+	public static final Type<TypedTransmissionPayload> ID = SpectrumC2SPackets.makeId("typed_transmission");
+	public static final StreamCodec<RegistryFriendlyByteBuf, TypedTransmissionPayload> CODEC = StreamCodec.composite(
 			TypedTransmission.PACKET_CODEC, TypedTransmissionPayload::transmission,
 			TypedTransmissionPayload::new
 	);
 	
-	public static void playTransmissionParticle(ServerWorld world, @NotNull TypedTransmission transmission) {
-		for (ServerPlayerEntity player : PlayerLookup.tracking(world, BlockPos.ofFloored(transmission.getOrigin()))) {
+	public static void playTransmissionParticle(ServerLevel world, @NotNull TypedTransmission transmission) {
+		for (ServerPlayer player : PlayerLookup.tracking(world, BlockPos.containing(transmission.getOrigin()))) {
 			ServerPlayNetworking.send(player, new TypedTransmissionPayload(transmission));
 		}
 	}
@@ -32,20 +31,20 @@ public record TypedTransmissionPayload(TypedTransmission transmission) implement
 	@SuppressWarnings("resource")
 	@Environment(EnvType.CLIENT)
 	public static void execute(TypedTransmissionPayload payload, ClientPlayNetworking.Context context) {
-		MinecraftClient client = context.client();
-		if (client.world == null) return;
+		Minecraft client = context.client();
+		if (client.level == null) return;
 		TypedTransmission transmission = payload.transmission();
 		switch (transmission.getVariant()) {
-			case BLOCK_POS -> client.world.addImportantParticle(new TransmissionParticleEffect(SpectrumParticleTypes.BLOCK_POS_EVENT_TRANSMISSION, transmission.getDestination(), transmission.getArrivalInTicks()), true, transmission.getOrigin().getX(), transmission.getOrigin().getY(), transmission.getOrigin().getZ(), 0.0D, 0.0D, 0.0D);
-			case ITEM -> client.world.addImportantParticle(new TransmissionParticleEffect(SpectrumParticleTypes.ITEM_TRANSMISSION, transmission.getDestination(), transmission.getArrivalInTicks()), true, transmission.getOrigin().getX(), transmission.getOrigin().getY(), transmission.getOrigin().getZ(), 0.0D, 0.0D, 0.0D);
-			case EXPERIENCE -> client.world.addImportantParticle(new TransmissionParticleEffect(SpectrumParticleTypes.EXPERIENCE_TRANSMISSION, transmission.getDestination(), transmission.getArrivalInTicks()), true, transmission.getOrigin().getX(), transmission.getOrigin().getY(), transmission.getOrigin().getZ(), 0.0D, 0.0D, 0.0D);
-			case HUMMINGSTONE -> client.world.addImportantParticle(new TransmissionParticleEffect(SpectrumParticleTypes.HUMMINGSTONE_TRANSMISSION, transmission.getDestination(), transmission.getArrivalInTicks()), true, transmission.getOrigin().getX(), transmission.getOrigin().getY(), transmission.getOrigin().getZ(), 0.0D, 0.0D, 0.0D);
-			case REDSTONE -> client.world.addImportantParticle(new TransmissionParticleEffect(SpectrumParticleTypes.WIRELESS_REDSTONE_TRANSMISSION, transmission.getDestination(), transmission.getArrivalInTicks()), true, transmission.getOrigin().getX(), transmission.getOrigin().getY(), transmission.getOrigin().getZ(), 0.0D, 0.0D, 0.0D);
+			case BLOCK_POS -> client.level.addAlwaysVisibleParticle(new TransmissionParticleEffect(SpectrumParticleTypes.BLOCK_POS_EVENT_TRANSMISSION, transmission.getDestination(), transmission.getArrivalInTicks()), true, transmission.getOrigin().x(), transmission.getOrigin().y(), transmission.getOrigin().z(), 0.0D, 0.0D, 0.0D);
+			case ITEM -> client.level.addAlwaysVisibleParticle(new TransmissionParticleEffect(SpectrumParticleTypes.ITEM_TRANSMISSION, transmission.getDestination(), transmission.getArrivalInTicks()), true, transmission.getOrigin().x(), transmission.getOrigin().y(), transmission.getOrigin().z(), 0.0D, 0.0D, 0.0D);
+			case EXPERIENCE -> client.level.addAlwaysVisibleParticle(new TransmissionParticleEffect(SpectrumParticleTypes.EXPERIENCE_TRANSMISSION, transmission.getDestination(), transmission.getArrivalInTicks()), true, transmission.getOrigin().x(), transmission.getOrigin().y(), transmission.getOrigin().z(), 0.0D, 0.0D, 0.0D);
+			case HUMMINGSTONE -> client.level.addAlwaysVisibleParticle(new TransmissionParticleEffect(SpectrumParticleTypes.HUMMINGSTONE_TRANSMISSION, transmission.getDestination(), transmission.getArrivalInTicks()), true, transmission.getOrigin().x(), transmission.getOrigin().y(), transmission.getOrigin().z(), 0.0D, 0.0D, 0.0D);
+			case REDSTONE -> client.level.addAlwaysVisibleParticle(new TransmissionParticleEffect(SpectrumParticleTypes.WIRELESS_REDSTONE_TRANSMISSION, transmission.getDestination(), transmission.getArrivalInTicks()), true, transmission.getOrigin().x(), transmission.getOrigin().y(), transmission.getOrigin().z(), 0.0D, 0.0D, 0.0D);
 		}
 	}
 	
 	@Override
-	public Id<? extends CustomPayload> getId() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

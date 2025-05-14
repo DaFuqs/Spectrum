@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.mixin.accessors;
 
-import net.minecraft.world.explosion.*;
+
+import net.minecraft.world.level.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.gen.*;
 
@@ -8,6 +9,6 @@ import org.spongepowered.asm.mixin.gen.*;
 public interface ExplosionAccessor {
 	
 	@Accessor
-	float getPower();
+	float getRadius();
 	
 }

@@ -1,24 +1,21 @@
 package de.dafuqs.spectrum.blocks.pedestal;
 
 import de.dafuqs.spectrum.api.block.*;
-import net.minecraft.block.*;
-import net.minecraft.client.item.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.text.*;
-import net.minecraft.world.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.*;
 
 import java.util.*;
 
 public class PedestalBlockItem extends BlockItem {
 	
 	private final PedestalVariant pedestalVariant;
-	private final Text tooltipText;
+	private final Component tooltipText;
 	
-	public PedestalBlockItem(Block block, Settings settings, PedestalVariant pedestalVariant, String tooltipTextString) {
+	public PedestalBlockItem(Block block, Properties settings, PedestalVariant pedestalVariant, String tooltipTextString) {
 		super(block, settings);
 		this.pedestalVariant = pedestalVariant;
-		this.tooltipText = Text.translatable(tooltipTextString);
+		this.tooltipText = Component.translatable(tooltipTextString);
 	}
 	
 	public PedestalVariant getVariant() {
@@ -26,8 +23,8 @@ public class PedestalBlockItem extends BlockItem {
 	}
 
 	@Override
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
 		tooltip.add(tooltipText);
 	}
 	

@@ -1,19 +1,19 @@
 package de.dafuqs.spectrum.mixin.accessors;
 
-import net.minecraft.entity.mob.*;
-import net.minecraft.particle.*;
-import net.minecraft.sound.*;
+import net.minecraft.core.particles.*;
+import net.minecraft.sounds.*;
+import net.minecraft.world.entity.monster.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.gen.*;
 
-@Mixin(SlimeEntity.class)
+@Mixin(Slime.class)
 public interface SlimeEntityAccessor {
 	
 	@Invoker
 	void invokeSetSize(int newSize, boolean heal);
 	
 	@Invoker
-	ParticleEffect invokeGetParticles();
+	ParticleOptions invokeGetParticleType();
 	
 	@Invoker
 	SoundEvent invokeGetSquishSound();

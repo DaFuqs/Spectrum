@@ -5,7 +5,7 @@ import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.particle.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.world.event.*;
+import net.minecraft.world.level.gameevent.*;
 
 public class ColoredTransmissionParticleEffect extends TransmissionParticleEffect {
 	
@@ -15,10 +15,10 @@ public class ColoredTransmissionParticleEffect extends TransmissionParticleEffec
 			Codec.INT.fieldOf("color").forGetter((effect) -> effect.color)
 	).apply(i, ColoredTransmissionParticleEffect::new));
 	
-	public static final PacketCodec<RegistryByteBuf, ColoredTransmissionParticleEffect> PACKET_CODEC = PacketCodec.tuple(
-			PositionSource.PACKET_CODEC, c -> c.destination,
-			PacketCodecs.VAR_INT, c -> c.arrivalInTicks,
-			PacketCodecs.INTEGER, c -> c.color,
+	public static final StreamCodec<RegistryFriendlyByteBuf, ColoredTransmissionParticleEffect> PACKET_CODEC = StreamCodec.composite(
+			PositionSource.STREAM_CODEC, c -> c.destination,
+			ByteBufCodecs.VAR_INT, c -> c.arrivalInTicks,
+			ByteBufCodecs.INT, c -> c.color,
 			ColoredTransmissionParticleEffect::new
 	);
 	

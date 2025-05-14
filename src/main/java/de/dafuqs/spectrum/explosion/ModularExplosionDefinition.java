@@ -5,14 +5,15 @@ import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
+import net.minecraft.*;
+import net.minecraft.core.*;
 import net.minecraft.network.*;
+import net.minecraft.network.chat.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.server.world.*;
-import net.minecraft.text.*;
+import net.minecraft.server.level.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -25,13 +26,13 @@ import java.util.*;
 public class ModularExplosionDefinition {
 	
 	public static final Codec<ModularExplosionDefinition> CODEC = RecordCodecBuilder.create(i -> i.group(
-			StringIdentifiable.createCodec(ExplosionArchetype::values).fieldOf("archetype").forGetter(c -> c.archetype),
-			SpectrumRegistries.EXPLOSION_MODIFIER.getCodec().listOf().optionalFieldOf("modifiers", List.of()).forGetter(c -> c.modifiers)
+			StringRepresentable.fromEnum(ExplosionArchetype::values).fieldOf("archetype").forGetter(c -> c.archetype),
+			SpectrumRegistries.EXPLOSION_MODIFIER.byNameCodec().listOf().optionalFieldOf("modifiers", List.of()).forGetter(c -> c.modifiers)
 	).apply(i, ModularExplosionDefinition::new));
 	
-	public static final PacketCodec<RegistryByteBuf, ModularExplosionDefinition> PACKET_CODEC = PacketCodec.tuple(
-			PacketCodecHelper.enumOf(ExplosionArchetype::values), c -> c.archetype,
-			PacketCodecs.registryValue(SpectrumRegistries.EXPLOSION_MODIFIER.getKey()).collect(PacketCodecs.toList()), c -> c.modifiers,
+	public static final StreamCodec<RegistryFriendlyByteBuf, ModularExplosionDefinition> PACKET_CODEC = PacketCodecHelper.tuple(
+			ExplosionArchetype.PACKET_CODEC, c -> c.archetype,
+			ByteBufCodecs.registry(SpectrumRegistryKeys.EXPLOSION_MODIFIER).apply(ByteBufCodecs.list()), c -> c.modifiers,
 			ModularExplosionDefinition::new
 	);
 	
@@ -47,16 +48,40 @@ public class ModularExplosionDefinition {
 		this.modifiers = modifiers;
 	}
 	
+	public static ModularExplosionDefinition getFromStack(ItemStack stack) {
+		return stack.getOrDefault(SpectrumDataComponentTypes.MODULAR_EXPLOSION, new ModularExplosionDefinition());
+	}
+	
+	public static void removeFromStack(ItemStack stack) {
+		stack.remove(SpectrumDataComponentTypes.MODULAR_EXPLOSION);
+	}
+	
+	// Calls the explosion logic
+	public static void explode(@NotNull ServerLevel world, BlockPos pos, @Nullable Player owner, ItemStack stack) {
+		if (stack.getItem() instanceof ModularExplosionProvider provider) {
+			ModularExplosionDefinition definition = getFromStack(stack);
+			ModularExplosion.explode(world, pos, owner, provider.getBaseExplosionBlastRadius(), provider.getBaseExplosionDamage(), definition.archetype, definition.modifiers);
+		}
+	}
+	
+	public static void explode(@NotNull ServerLevel world, BlockPos pos, Direction direction, @Nullable Player owner, ItemStack stack) {
+		if (stack.getItem() instanceof ModularExplosionProvider provider) {
+			ModularExplosionDefinition definition = getFromStack(stack);
+			BlockPos finalPos = pos.relative(direction, (int) provider.getBaseExplosionBlastRadius() - 2); // TODO: Add distance added via blast range modification
+			ModularExplosion.explode(world, finalPos, owner, provider.getBaseExplosionBlastRadius(), provider.getBaseExplosionDamage(), definition.archetype, definition.modifiers);
+		}
+	}
+	
 	public void addModifiers(List<ExplosionModifier> modifiers) {
 		this.modifiers.addAll(modifiers);
 	}
 	
-	public void setArchetype(ExplosionArchetype archetype) {
-		this.archetype = archetype;
-	}
-	
 	public ExplosionArchetype getArchetype() {
 		return archetype;
+	}
+	
+	public void setArchetype(ExplosionArchetype archetype) {
+		this.archetype = archetype;
 	}
 	
 	public boolean isValid(ModularExplosionProvider provider) {
@@ -84,28 +109,20 @@ public class ModularExplosionDefinition {
 		return this.modifiers.size();
 	}
 	
-	public static ModularExplosionDefinition getFromStack(ItemStack stack) {
-		return stack.getOrDefault(SpectrumDataComponentTypes.MODULAR_EXPLOSION, new ModularExplosionDefinition());
-	}
-	
 	public void attachToStack(ItemStack stack) {
 		stack.set(SpectrumDataComponentTypes.MODULAR_EXPLOSION, this);
 	}
 	
-	public static void removeFromStack(ItemStack stack) {
-		stack.remove(SpectrumDataComponentTypes.MODULAR_EXPLOSION);
-	}
-	
 	// Tooltips
-	public void appendTooltip(List<Text> tooltip, ModularExplosionProvider provider) {
+	public void appendTooltip(List<Component> tooltip, ModularExplosionProvider provider) {
 		int modifierCount = this.modifiers.size();
 		int maxModifierCount = provider.getMaxExplosionModifiers();
 		
 		tooltip.add(archetype.getName());
-		tooltip.add(Text.translatable("item.spectrum.tooltip.explosives.remaining_slots", modifierCount, maxModifierCount).formatted(Formatting.GRAY));
+		tooltip.add(Component.translatable("item.spectrum.tooltip.explosives.remaining_slots", modifierCount, maxModifierCount).withStyle(ChatFormatting.GRAY));
 		
 		if (modifierCount == 0) {
-			tooltip.add(Text.translatable("item.spectrum.tooltip.explosives.modifiers").formatted(Formatting.GRAY));
+			tooltip.add(Component.translatable("item.spectrum.tooltip.explosives.modifiers").withStyle(ChatFormatting.GRAY));
 		} else {
 			for (ExplosionModifier explosionModifier : modifiers) {
 				tooltip.add(explosionModifier.getName());
@@ -114,24 +131,8 @@ public class ModularExplosionDefinition {
 	}
 	
 	// Calls the explosion logic
-	public void explode(@NotNull ServerWorld world, BlockPos pos, @Nullable PlayerEntity owner, double baseBlastRadius, float baseDamage) {
+	public void explode(@NotNull ServerLevel world, BlockPos pos, @Nullable Player owner, double baseBlastRadius, float baseDamage) {
 		ModularExplosion.explode(world, pos, owner, baseBlastRadius, baseDamage, this.archetype, this.modifiers);
-	}
-	
-	// Calls the explosion logic
-	public static void explode(@NotNull ServerWorld world, BlockPos pos, @Nullable PlayerEntity owner, ItemStack stack) {
-		if (stack.getItem() instanceof ModularExplosionProvider provider) {
-			ModularExplosionDefinition definition = getFromStack(stack);
-			ModularExplosion.explode(world, pos, owner, provider.getBaseExplosionBlastRadius(), provider.getBaseExplosionDamage(), definition.archetype, definition.modifiers);
-		}
-	}
-	
-	public static void explode(@NotNull ServerWorld world, BlockPos pos, Direction direction, @Nullable PlayerEntity owner, ItemStack stack) {
-		if (stack.getItem() instanceof ModularExplosionProvider provider) {
-			ModularExplosionDefinition definition = getFromStack(stack);
-			BlockPos finalPos = pos.offset(direction, (int) provider.getBaseExplosionBlastRadius() - 2); // TODO: Add distance added via blast range modification
-			ModularExplosion.explode(world, finalPos, owner, provider.getBaseExplosionBlastRadius(), provider.getBaseExplosionDamage(), definition.archetype, definition.modifiers);
-		}
 	}
 	
 }

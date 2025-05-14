@@ -8,12 +8,11 @@ import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.entity.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -22,7 +21,7 @@ public class InkFlaskItem extends Item implements InkStorageItem<SingleInkStorag
 	
 	private final long maxEnergy;
 	
-	public InkFlaskItem(Settings settings, long maxEnergy) {
+	public InkFlaskItem(Properties settings, long maxEnergy) {
 		super(settings);
 		this.maxEnergy = maxEnergy;
 	}
@@ -43,20 +42,20 @@ public class InkFlaskItem extends Item implements InkStorageItem<SingleInkStorag
 	
 	// Omitting this would crash outside the dev env o.O
 	@Override
-	public ItemStack getDefaultStack() {
-		return super.getDefaultStack();
+	public ItemStack getDefaultInstance() {
+		return super.getDefaultInstance();
 	}
 	
 	@Override
 	@Environment(EnvType.CLIENT)
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
 		getEnergyStorage(stack).addTooltip(tooltip);
 		addBannerPatternProviderTooltip(tooltip);
 	}
 	
 	public ItemStack getFullStack(InkColor color) {
-		ItemStack stack = this.getDefaultStack();
+		ItemStack stack = this.getDefaultInstance();
 		SingleInkStorage storage = getEnergyStorage(stack);
 		storage.fillCompletely();
 		storage.convertColor(color);
@@ -65,7 +64,7 @@ public class InkFlaskItem extends Item implements InkStorageItem<SingleInkStorag
 	}
 	
 	@Override
-	public RegistryKey<BannerPattern> getPattern() {
+	public ResourceKey<BannerPattern> getPattern() {
 		return SpectrumBannerPatterns.INK_FLASK;
 	}
 	
@@ -75,7 +74,7 @@ public class InkFlaskItem extends Item implements InkStorageItem<SingleInkStorag
 	}
 	
 	@Override
-	public BarSignature getSignature(@Nullable PlayerEntity player, @NotNull ItemStack stack, int index) {
+	public BarSignature getSignature(@Nullable Player player, @NotNull ItemStack stack, int index) {
 		var storage = getEnergyStorage(stack);
 		
 		if (storage.isEmpty())

@@ -1,26 +1,27 @@
 package de.dafuqs.spectrum.blocks.deeper_down;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.*;
 import de.dafuqs.spectrum.api.block.*;
-import net.minecraft.block.*;
-import net.minecraft.loot.LootTable;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.storage.loot.*;
 
 public class StrippingLootBlock extends Block implements StrippableDrop {
     
     private final Block sourceBlock;
-    private final RegistryKey<LootTable> strippingLootTableKey;
-    
-    public StrippingLootBlock(Settings settings, Block sourceBlock, RegistryKey<LootTable> strippingLootTableKey) {
+	private final ResourceKey<LootTable> strippingLootTableKey;
+	
+	public StrippingLootBlock(Properties settings, Block sourceBlock, ResourceKey<LootTable> strippingLootTableKey) {
         super(settings);
         this.sourceBlock = sourceBlock;
         this.strippingLootTableKey = strippingLootTableKey;
     }
 
     @Override
-    public MapCodec<? extends StrippingLootBlock> getCodec() {
+	public MapCodec<? extends StrippingLootBlock> codec() {
         //TODO: Make the codec
         return null;
     }
@@ -31,14 +32,14 @@ public class StrippingLootBlock extends Block implements StrippableDrop {
     }
     
     @Override
-    public RegistryKey<LootTable> getStrippingLootTableKey() {
+	public ResourceKey<LootTable> getStrippingLootTableKey() {
         return strippingLootTableKey;
     }
     
     @Override
-    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+	public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean moved) {
         checkAndDropStrippedLoot(state, world, pos, newState, moved);
-        super.onStateReplaced(state, world, pos, newState, moved);
+		super.onRemove(state, world, pos, newState, moved);
     }
     
 }

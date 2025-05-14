@@ -1,22 +1,21 @@
 package de.dafuqs.spectrum.items.food;
 
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.world.item.*;
 
 import java.util.*;
 
 public class AzaleaTeaItem extends DrinkItem {
 	
-	public AzaleaTeaItem(Settings settings) {
+	public AzaleaTeaItem(Properties settings) {
 		super(settings);
 	}
 	
 	@Override
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		tooltip.add(Text.translatable("item.spectrum.azalea_tea.tooltip").formatted(Formatting.GRAY));
-		super.appendTooltip(stack, context, tooltip, type);
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		tooltip.add(Component.translatable("item.spectrum.azalea_tea.tooltip").withStyle(ChatFormatting.GRAY));
+		super.appendHoverText(stack, context, tooltip, type);
 	}
 	
 }

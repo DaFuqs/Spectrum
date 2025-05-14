@@ -1,32 +1,32 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
-import com.mojang.serialization.MapCodec;
-import net.minecraft.block.*;
-import net.minecraft.item.*;
-import net.minecraft.state.*;
-import net.minecraft.util.math.*;
+import com.mojang.serialization.*;
+import net.minecraft.core.*;
+import net.minecraft.world.item.context.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 
-public class ShinglesBlock extends HorizontalFacingBlock {
-
-	public static final MapCodec<ShinglesBlock> CODEC = createCodec(ShinglesBlock::new);
-
-	public ShinglesBlock(Settings settings) {
+public class ShinglesBlock extends HorizontalDirectionalBlock {
+	
+	public static final MapCodec<ShinglesBlock> CODEC = simpleCodec(ShinglesBlock::new);
+	
+	public ShinglesBlock(Properties settings) {
 		super(settings);
-		this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH));
+		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
 	}
 
 	@Override
-	public MapCodec<? extends ShinglesBlock> getCodec() {
+	public MapCodec<? extends ShinglesBlock> codec() {
 		return CODEC;
 	}
 	
 	@Override
-	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing());
+	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+		return this.defaultBlockState().setValue(FACING, ctx.getHorizontalDirection());
 	}
 	
 	@Override
-	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(FACING);
 	}
 	

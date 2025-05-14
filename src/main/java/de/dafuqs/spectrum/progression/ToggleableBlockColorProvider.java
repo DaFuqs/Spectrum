@@ -1,17 +1,17 @@
 package de.dafuqs.spectrum.progression;
 
-import net.minecraft.block.*;
 import net.minecraft.client.color.block.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.state.*;
 import org.jetbrains.annotations.*;
 
-public class ToggleableBlockColorProvider implements BlockColorProvider {
+public class ToggleableBlockColorProvider implements BlockColor {
 	
-	final BlockColorProvider vanillaProvider;
+	final BlockColor vanillaProvider;
 	boolean shouldApply;
 	
-	public ToggleableBlockColorProvider(BlockColorProvider vanillaProvider) {
+	public ToggleableBlockColorProvider(BlockColor vanillaProvider) {
 		this.vanillaProvider = vanillaProvider;
 		this.shouldApply = true;
 	}
@@ -21,7 +21,7 @@ public class ToggleableBlockColorProvider implements BlockColorProvider {
 	}
 	
 	@Override
-	public int getColor(BlockState state, @Nullable BlockRenderView world, @Nullable BlockPos pos, int tintIndex) {
+	public int getColor(BlockState state, @Nullable BlockAndTintGetter world, @Nullable BlockPos pos, int tintIndex) {
 		if (shouldApply && vanillaProvider != null) {
 			return vanillaProvider.getColor(state, world, pos, tintIndex);
 		} else {

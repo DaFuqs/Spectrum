@@ -3,11 +3,11 @@ package de.dafuqs.spectrum.recipe.spirit_instiller.dynamic.spawner_manipulation;
 
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.component.type.*;
-import net.minecraft.item.*;
 import net.minecraft.nbt.*;
-import net.minecraft.recipe.*;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.*;
+import net.minecraft.world.item.crafting.*;
 
 public class SpawnerRequiredPlayerRangeChangeRecipe extends SpawnerChangeRecipe {
 	protected static final int DEFAULT_DETECTION_RANGE = 16;
@@ -18,12 +18,12 @@ public class SpawnerRequiredPlayerRangeChangeRecipe extends SpawnerChangeRecipe 
 	}
 	
 	@Override
-	public boolean canCraftWithBlockEntityTag(NbtComponent spawnerBlockEntityNbt, ItemStack leftBowlStack, ItemStack rightBowlStack) {
+	public boolean canCraftWithBlockEntityTag(CustomData spawnerBlockEntityNbt, ItemStack leftBowlStack, ItemStack rightBowlStack) {
 		if (spawnerBlockEntityNbt == null) {
 			return true;
 		}
 		if (spawnerBlockEntityNbt.contains("RequiredPlayerRange")) {
-			return spawnerBlockEntityNbt.copyNbt().getShort("RequiredPlayerRange") < MAX_DETECTION_RANGE;
+			return spawnerBlockEntityNbt.copyTag().getShort("RequiredPlayerRange") < MAX_DETECTION_RANGE;
 		}
 		return true;
 	}
@@ -34,12 +34,12 @@ public class SpawnerRequiredPlayerRangeChangeRecipe extends SpawnerChangeRecipe 
 	}
 	
 	@Override
-	public Text getOutputLoreText() {
-		return Text.translatable("recipe.spectrum.spawner.lore.increased_required_player_range");
+	public Component getOutputLoreText() {
+		return Component.translatable("recipe.spectrum.spawner.lore.increased_required_player_range");
 	}
 	
 	@Override
-	public NbtCompound getSpawnerResultNbt(NbtCompound spawnerBlockEntityNbt, ItemStack firstBowlStack, ItemStack secondBowlStack) {
+	public CompoundTag getSpawnerResultNbt(CompoundTag spawnerBlockEntityNbt, ItemStack firstBowlStack, ItemStack secondBowlStack) {
 		// Default spawner tag:
 		/* BlockEntityTag: {
 			MaxNearbyEntities: 6s,
@@ -54,7 +54,7 @@ public class SpawnerRequiredPlayerRangeChangeRecipe extends SpawnerChangeRecipe 
 		 */
 		
 		short requiredPlayerRange = DEFAULT_DETECTION_RANGE;
-		if (spawnerBlockEntityNbt.contains("RequiredPlayerRange", NbtElement.SHORT_TYPE)) {
+		if (spawnerBlockEntityNbt.contains("RequiredPlayerRange", Tag.TAG_SHORT)) {
 			requiredPlayerRange = spawnerBlockEntityNbt.getShort("RequiredPlayerRange");
 		}
 		

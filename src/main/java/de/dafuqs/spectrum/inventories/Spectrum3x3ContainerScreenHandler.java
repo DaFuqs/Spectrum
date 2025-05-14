@@ -1,28 +1,27 @@
 package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.blocks.redstone.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.inventory.*;
-import net.minecraft.item.*;
-import net.minecraft.screen.*;
-import net.minecraft.screen.slot.*;
+import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.item.*;
 import org.jetbrains.annotations.*;
 
-public class Spectrum3x3ContainerScreenHandler extends ScreenHandler {
+public class Spectrum3x3ContainerScreenHandler extends AbstractContainerMenu {
 	
 	private final ScreenBackgroundVariant tier;
-	private final Inventory inventory;
+	private final Container inventory;
 	
-	public Spectrum3x3ContainerScreenHandler(int syncId, PlayerInventory playerInventory, ScreenBackgroundVariant screenBackgroundVariant) {
-		this(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, new SimpleInventory(9), screenBackgroundVariant);
+	public Spectrum3x3ContainerScreenHandler(int syncId, Inventory playerInventory, ScreenBackgroundVariant screenBackgroundVariant) {
+		this(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, new SimpleContainer(9), screenBackgroundVariant);
 	}
 	
-	public Spectrum3x3ContainerScreenHandler(ScreenHandlerType<Spectrum3x3ContainerScreenHandler> screenHandlerType, int syncId, PlayerInventory playerInventory, Inventory inventory, ScreenBackgroundVariant screenBackgroundVariant) {
+	public Spectrum3x3ContainerScreenHandler(MenuType<Spectrum3x3ContainerScreenHandler> screenHandlerType, int syncId, Inventory playerInventory, Container inventory, ScreenBackgroundVariant screenBackgroundVariant) {
 		super(screenHandlerType, syncId);
-		checkSize(inventory, 9);
+		checkContainerSize(inventory, 9);
 		this.tier = screenBackgroundVariant;
 		this.inventory = inventory;
-		inventory.onOpen(playerInventory.player);
+		inventory.startOpen(playerInventory.player);
 		
 		int m;
 		int l;
@@ -44,75 +43,75 @@ public class Spectrum3x3ContainerScreenHandler extends ScreenHandler {
 	}
 	
 	@Contract("_, _ -> new")
-	public static @NotNull Spectrum3x3ContainerScreenHandler createTier1(int syncId, PlayerInventory playerInventory) {
+	public static @NotNull Spectrum3x3ContainerScreenHandler createTier1(int syncId, Inventory playerInventory) {
 		return new Spectrum3x3ContainerScreenHandler(syncId, playerInventory, ScreenBackgroundVariant.EARLYGAME);
 	}
 	
 	@Contract("_, _, _ -> new")
-	public static @NotNull ScreenHandler createTier1(int syncId, PlayerInventory playerInventory, BlockPlacerBlockEntity blockEntity) {
+	public static @NotNull AbstractContainerMenu createTier1(int syncId, Inventory playerInventory, BlockPlacerBlockEntity blockEntity) {
 		return new Spectrum3x3ContainerScreenHandler(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockEntity, ScreenBackgroundVariant.EARLYGAME);
 	}
 	
 	@Contract("_, _ -> new")
-	public static @NotNull Spectrum3x3ContainerScreenHandler createTier2(int syncId, PlayerInventory playerInventory) {
+	public static @NotNull Spectrum3x3ContainerScreenHandler createTier2(int syncId, Inventory playerInventory) {
 		return new Spectrum3x3ContainerScreenHandler(syncId, playerInventory, ScreenBackgroundVariant.MIDGAME);
 	}
 	
 	@Contract("_, _, _ -> new")
-	public static @NotNull ScreenHandler createTier2(int syncId, PlayerInventory playerInventory, BlockPlacerBlockEntity blockEntity) {
+	public static @NotNull AbstractContainerMenu createTier2(int syncId, Inventory playerInventory, BlockPlacerBlockEntity blockEntity) {
 		return new Spectrum3x3ContainerScreenHandler(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockEntity, ScreenBackgroundVariant.MIDGAME);
 	}
 	
 	@Contract("_, _ -> new")
-	public static @NotNull Spectrum3x3ContainerScreenHandler createTier3(int syncId, PlayerInventory playerInventory) {
+	public static @NotNull Spectrum3x3ContainerScreenHandler createTier3(int syncId, Inventory playerInventory) {
 		return new Spectrum3x3ContainerScreenHandler(syncId, playerInventory, ScreenBackgroundVariant.LATEGAME);
 	}
 	
 	@Contract("_, _, _ -> new")
-	public static @NotNull ScreenHandler createTier3(int syncId, PlayerInventory playerInventory, BlockPlacerBlockEntity blockEntity) {
+	public static @NotNull AbstractContainerMenu createTier3(int syncId, Inventory playerInventory, BlockPlacerBlockEntity blockEntity) {
 		return new Spectrum3x3ContainerScreenHandler(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockEntity, ScreenBackgroundVariant.LATEGAME);
 	}
 	
 	@Override
-	public boolean canUse(PlayerEntity player) {
-		return this.inventory.canPlayerUse(player);
+	public boolean stillValid(Player player) {
+		return this.inventory.stillValid(player);
 	}
 	
 	@Override
-	public ItemStack quickMove(PlayerEntity player, int index) {
+	public ItemStack quickMoveStack(Player player, int index) {
 		ItemStack itemStack = ItemStack.EMPTY;
 		Slot slot = this.slots.get(index);
-		if (slot.hasStack()) {
-			ItemStack itemStack2 = slot.getStack();
+		if (slot.hasItem()) {
+			ItemStack itemStack2 = slot.getItem();
 			itemStack = itemStack2.copy();
 			if (index < 9) {
-				if (!this.insertItem(itemStack2, 9, 45, true)) {
+				if (!this.moveItemStackTo(itemStack2, 9, 45, true)) {
 					return ItemStack.EMPTY;
 				}
-			} else if (!this.insertItem(itemStack2, 0, 9, false)) {
+			} else if (!this.moveItemStackTo(itemStack2, 0, 9, false)) {
 				return ItemStack.EMPTY;
 			}
 			
 			if (itemStack2.isEmpty()) {
-				slot.setStack(ItemStack.EMPTY);
+				slot.setByPlayer(ItemStack.EMPTY);
 			} else {
-				slot.markDirty();
+				slot.setChanged();
 			}
 			
 			if (itemStack2.getCount() == itemStack.getCount()) {
 				return ItemStack.EMPTY;
 			}
 			
-			slot.onTakeItem(player, itemStack2);
+			slot.onTake(player, itemStack2);
 		}
 		
 		return itemStack;
 	}
 	
 	@Override
-	public void onClosed(PlayerEntity player) {
-		super.onClosed(player);
-		this.inventory.onClose(player);
+	public void removed(Player player) {
+		super.removed(player);
+		this.inventory.stopOpen(player);
 	}
 	
 	public ScreenBackgroundVariant getTier() {

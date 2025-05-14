@@ -3,15 +3,15 @@ package de.dafuqs.spectrum.components;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import io.netty.buffer.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.*;
+import net.minecraft.*;
+import net.minecraft.network.chat.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.*;
 
 import java.util.function.*;
 
-public record JadeWineComponent(float bloominess, boolean sweetened) implements TooltipAppender {
+public record JadeWineComponent(float bloominess, boolean sweetened) implements TooltipProvider {
 	
 	public static final JadeWineComponent DEFAULT = new JadeWineComponent(0, false);
 	
@@ -20,18 +20,18 @@ public record JadeWineComponent(float bloominess, boolean sweetened) implements 
 			Codec.BOOL.optionalFieldOf("sweetened", false).forGetter(JadeWineComponent::sweetened)
 	).apply(i, JadeWineComponent::new));
 	
-	public static final PacketCodec<ByteBuf, JadeWineComponent> PACKET_CODEC = PacketCodec.tuple(
-			PacketCodecs.FLOAT, JadeWineComponent::bloominess,
-			PacketCodecs.BOOL, JadeWineComponent::sweetened,
+	public static final StreamCodec<ByteBuf, JadeWineComponent> PACKET_CODEC = StreamCodec.composite(
+			ByteBufCodecs.FLOAT, JadeWineComponent::bloominess,
+			ByteBufCodecs.BOOL, JadeWineComponent::sweetened,
 			JadeWineComponent::new
 	);
 	
 	@Override
-	public void appendTooltip(Item.TooltipContext context, Consumer<Text> tooltip, TooltipType type) {
+	public void addToTooltip(Item.TooltipContext context, Consumer<Component> tooltip, TooltipFlag type) {
 		if (sweetened)
-			tooltip.accept(Text.translatable("item.spectrum.jade_wine.tooltip.bloominess_sweetened", bloominess).formatted(Formatting.GRAY));
+			tooltip.accept(Component.translatable("item.spectrum.jade_wine.tooltip.bloominess_sweetened", bloominess).withStyle(ChatFormatting.GRAY));
 		else
-			tooltip.accept(Text.translatable("item.spectrum.jade_wine.tooltip.bloominess", bloominess).formatted(Formatting.GRAY));
+			tooltip.accept(Component.translatable("item.spectrum.jade_wine.tooltip.bloominess", bloominess).withStyle(ChatFormatting.GRAY));
 	}
 	
 }

@@ -1,31 +1,31 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
-import com.mojang.serialization.MapCodec;
-import net.minecraft.block.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import com.mojang.serialization.*;
+import net.minecraft.core.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.state.*;
 
 public class BlockLightDetectorBlock extends DetectorBlock {
-
-	public static final MapCodec<BlockLightDetectorBlock> CODEC = createCodec(BlockLightDetectorBlock::new);
-
-	public BlockLightDetectorBlock(Settings settings) {
+	
+	public static final MapCodec<BlockLightDetectorBlock> CODEC = simpleCodec(BlockLightDetectorBlock::new);
+	
+	public BlockLightDetectorBlock(Properties settings) {
 		super(settings);
 	}
 
 	@Override
-	public MapCodec<? extends BlockLightDetectorBlock> getCodec() {
+	public MapCodec<? extends BlockLightDetectorBlock> codec() {
 		//TODO: Make the codec
 		return CODEC;
 	}
 	
 	@Override
-	protected void updateState(BlockState state, World world, BlockPos pos) {
-		int power = world.getLightLevel(pos);
+	protected void updateState(BlockState state, Level world, BlockPos pos) {
+		int power = world.getMaxLocalRawBrightness(pos);
 		
-		power = state.get(INVERTED) ? 15 - power : power;
-		if (state.get(POWER) != power) {
-			world.setBlockState(pos, state.with(POWER, power), 3);
+		power = state.getValue(INVERTED) ? 15 - power : power;
+		if (state.getValue(POWER) != power) {
+			world.setBlock(pos, state.setValue(POWER, power), 3);
 		}
 	}
 	

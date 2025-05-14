@@ -1,19 +1,19 @@
 package de.dafuqs.spectrum.status_effects;
 
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.registry.entry.*;
+import net.minecraft.core.*;
+import net.minecraft.world.effect.*;
 
-public class EffectProlongingStatusEffect extends StatusEffect {
+public class EffectProlongingStatusEffect extends MobEffect {
 	
 	public static final float ADDITIONAL_EFFECT_DURATION_MODIFIER_PER_LEVEL = 0.25F;
 	
-	public EffectProlongingStatusEffect(StatusEffectCategory category, int color) {
+	public EffectProlongingStatusEffect(MobEffectCategory category, int color) {
 		super(category, color);
 	}
 	
-	public static boolean canBeExtended(RegistryEntry<StatusEffect> statusEffect) {
-		return !statusEffect.isIn(SpectrumStatusEffectTags.NO_DURATION_EXTENSION);
+	public static boolean canBeExtended(Holder<MobEffect> statusEffect) {
+		return !statusEffect.is(SpectrumStatusEffectTags.NO_DURATION_EXTENSION);
 	}
 	
 	public static int getExtendedDuration(int originalDuration, int prolongingAmplifier) {

@@ -1,17 +1,17 @@
 package de.dafuqs.spectrum.blocks.deeper_down.flora;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.state.*;
 
 public class AshFloraBlock extends SpreadableFloraBlock {
-
-	public static final MapCodec<AshFloraBlock> CODEC = createCodec(AshFloraBlock::new);
-
-	public AshFloraBlock(Settings settings) {
+	
+	public static final MapCodec<AshFloraBlock> CODEC = simpleCodec(AshFloraBlock::new);
+	
+	public AshFloraBlock(Properties settings) {
 		super(7, settings);
 	}
 
@@ -22,8 +22,8 @@ public class AshFloraBlock extends SpreadableFloraBlock {
 //	}
 
 	@Override
-	protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-		return (floor.isIn(SpectrumBlockTags.ASH) || floor.isOf(SpectrumBlocks.ASHEN_BLACKSLAG) || super.canPlantOnTop(floor, world, pos))
-				&& floor.isSideSolidFullSquare(world, pos, Direction.UP);
+	protected boolean mayPlaceOn(BlockState floor, BlockGetter world, BlockPos pos) {
+		return (floor.is(SpectrumBlockTags.ASH) || floor.is(SpectrumBlocks.ASHEN_BLACKSLAG) || super.mayPlaceOn(floor, world, pos))
+				&& floor.isFaceSturdy(world, pos, Direction.UP);
 	}
 }

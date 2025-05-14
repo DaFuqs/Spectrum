@@ -1,29 +1,29 @@
 package de.dafuqs.spectrum.deeper_down;
 
 import net.fabricmc.api.*;
-import net.minecraft.client.render.*;
-import net.minecraft.util.math.*;
+import net.minecraft.client.renderer.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
 @Environment(EnvType.CLIENT)
-public class DeeperDownDimensionEffects extends DimensionEffects {
+public class DeeperDownDimensionEffects extends DimensionSpecialEffects {
 	
 	public DeeperDownDimensionEffects() {
-		super(Float.NaN, false, DimensionEffects.SkyType.NONE, false, true);
+		super(Float.NaN, false, DimensionSpecialEffects.SkyType.NONE, false, true);
 	}
 	
 	@Override
-	public @Nullable float[] getFogColorOverride(float skyAngle, float tickDelta) {
+	public @Nullable float[] getSunriseColor(float skyAngle, float tickDelta) {
 		return null;
 	}
 	
 	@Override
-	public Vec3d adjustFogColor(Vec3d color, float sunHeight) {
+	public Vec3 getBrightnessDependentFogColor(Vec3 color, float sunHeight) {
 		return color;
 	}
 	
 	@Override
-	public boolean useThickFog(int camX, int camY) {
+	public boolean isFoggyAt(int camX, int camY) {
 		return true;
 	}
 	

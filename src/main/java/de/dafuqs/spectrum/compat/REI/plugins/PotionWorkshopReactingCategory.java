@@ -7,8 +7,8 @@ import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.fabricmc.api.*;
-import net.minecraft.item.*;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.world.item.*;
 
 @Environment(EnvType.CLIENT)
 public class PotionWorkshopReactingCategory extends GatedItemInformationPageCategory {
@@ -21,8 +21,8 @@ public class PotionWorkshopReactingCategory extends GatedItemInformationPageCate
 	}
 	
 	@Override
-	public Text getTitle() {
-		return Text.translatable("container.spectrum.rei.potion_workshop_reacting.title");
+	public Component getTitle() {
+		return Component.translatable("container.spectrum.rei.potion_workshop_reacting.title");
 	}
 	
 	@Override

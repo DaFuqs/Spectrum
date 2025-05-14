@@ -1,16 +1,16 @@
 package de.dafuqs.spectrum.mixin.accessors;
 
-import net.minecraft.component.type.*;
-import net.minecraft.item.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.gen.*;
 
 import java.util.*;
 
-@Mixin(BundleContentsComponent.Builder.class)
+@Mixin(BundleContents.Mutable.class)
 public interface BundleContentsComponentBuilderAccessor {
 	
 	@Accessor
-	List<ItemStack> getStacks();
+	List<ItemStack> getItems();
 	
 }

@@ -4,15 +4,15 @@ import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.helpers.*;
 import io.netty.buffer.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.*;
+import net.minecraft.*;
+import net.minecraft.network.chat.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.*;
 
 import java.util.function.*;
 
-public record InfusedBeverageComponent(String variant, int color) implements TooltipAppender {
+public record InfusedBeverageComponent(String variant, int color) implements TooltipProvider {
 	
 	public static final InfusedBeverageComponent DEFAULT = new InfusedBeverageComponent("unknown", 0xfff4c6cb);
 	
@@ -21,15 +21,15 @@ public record InfusedBeverageComponent(String variant, int color) implements Too
 			SpectrumColorHelper.CODEC.optionalFieldOf("color", 0xfff4c6cb).forGetter(InfusedBeverageComponent::color)
 	).apply(i, InfusedBeverageComponent::new));
 	
-	public static final PacketCodec<ByteBuf, InfusedBeverageComponent> PACKET_CODEC = PacketCodec.tuple(
-			PacketCodecs.STRING, InfusedBeverageComponent::variant,
-			PacketCodecs.VAR_INT, InfusedBeverageComponent::color,
+	public static final StreamCodec<ByteBuf, InfusedBeverageComponent> PACKET_CODEC = StreamCodec.composite(
+			ByteBufCodecs.STRING_UTF8, InfusedBeverageComponent::variant,
+			ByteBufCodecs.VAR_INT, InfusedBeverageComponent::color,
 			InfusedBeverageComponent::new
 	);
 	
 	@Override
-	public void appendTooltip(Item.TooltipContext context, Consumer<Text> tooltip, TooltipType type) {
-		tooltip.accept(Text.translatable("item.spectrum.infused_beverage.tooltip.variant." + variant).formatted(Formatting.YELLOW));
+	public void addToTooltip(Item.TooltipContext context, Consumer<Component> tooltip, TooltipFlag type) {
+		tooltip.accept(Component.translatable("item.spectrum.infused_beverage.tooltip.variant." + variant).withStyle(ChatFormatting.YELLOW));
 	}
 	
 }

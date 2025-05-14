@@ -10,22 +10,21 @@ import de.dafuqs.spectrum.sound.*;
 import de.dafuqs.spectrum.spells.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
-import net.minecraft.enchantment.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.*;
-import net.minecraft.particle.*;
-import net.minecraft.registry.*;
-import net.minecraft.server.network.*;
-import net.minecraft.sound.*;
-import net.minecraft.stat.*;
-import net.minecraft.text.*;
+import net.minecraft.core.*;
+import net.minecraft.core.particles.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
+import net.minecraft.stats.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
-import net.minecraft.world.event.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.gameevent.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -36,102 +35,102 @@ public class GlassCrestGreatswordItem extends GreatswordItem implements SplitDam
 	public static final float MAGIC_DAMAGE_SHARE = 0.25F;
 	public final int GROUND_SLAM_CHARGE_TICKS = 32;
 	
-	public GlassCrestGreatswordItem(ToolMaterial material, int attackDamage, float attackSpeed, float extraReach, Settings settings) {
+	public GlassCrestGreatswordItem(Tier material, int attackDamage, float attackSpeed, float extraReach, Properties settings) {
 		super(material, attackDamage, attackSpeed, extraReach, settings);
 	}
 
 	@Override
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
-		tooltip.add(Text.translatable("item.spectrum.glass_crest_ultra_greatsword.tooltip", (int) (MAGIC_DAMAGE_SHARE * 100)));
-		tooltip.add(Text.translatable("item.spectrum.glass_crest_ultra_greatsword.tooltip2"));
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
+		tooltip.add(Component.translatable("item.spectrum.glass_crest_ultra_greatsword.tooltip", (int) (MAGIC_DAMAGE_SHARE * 100)));
+		tooltip.add(Component.translatable("item.spectrum.glass_crest_ultra_greatsword.tooltip2"));
 		addInkPoweredTooltip(tooltip);
 	}
 	
 	@Override
-	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-		if (getGroundSlamStrength(world.getRegistryManager(), user.getStackInHand(hand)) > 0 && InkPowered.tryDrainEnergy(user, GROUND_SLAM_COST)) {
-			if (world.isClient) {
+	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
+		if (getGroundSlamStrength(world.registryAccess(), user.getItemInHand(hand)) > 0 && InkPowered.tryDrainEnergy(user, GROUND_SLAM_COST)) {
+			if (world.isClientSide) {
 				startSoundInstance(user);
 			}
-			return ItemUsage.consumeHeldItem(world, user, hand);
+			return ItemUtils.startUsingInstantly(world, user, hand);
 		}
-		return TypedActionResult.pass(user.getStackInHand(hand));
+		return InteractionResultHolder.pass(user.getItemInHand(hand));
 	}
 	
 	@Override
-	public int getMaxUseTime(ItemStack stack, LivingEntity user) {
+	public int getUseDuration(ItemStack stack, LivingEntity user) {
 		return GROUND_SLAM_CHARGE_TICKS;
 	}
 	
 	@Override
-	public UseAction getUseAction(ItemStack stack) {
-		return UseAction.SPEAR;
+	public UseAnim getUseAnimation(ItemStack stack) {
+		return UseAnim.SPEAR;
 	}
 
 	@Override
-	public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
-		super.usageTick(world, user, stack, remainingUseTicks);
-		if (world.isClient) {
-			Random random = world.random;
+	public void onUseTick(Level world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
+		super.onUseTick(world, user, stack, remainingUseTicks);
+		if (world.isClientSide) {
+			RandomSource random = world.random;
 			for (int i = 0; i < (GROUND_SLAM_CHARGE_TICKS - remainingUseTicks) / 8; i++) {
 				world.addParticle(ParticleTypes.INSTANT_EFFECT,
-						user.getParticleX(1.0), user.getY(), user.getParticleZ(1.0),
+						user.getRandomX(1.0), user.getY(), user.getRandomZ(1.0),
 						random.nextDouble() * 5.0D - 2.5D, random.nextDouble() * 1.2D, random.nextDouble() * 5.0D - 2.5D);
 			}
 		}
 	}
 
 	@Override
-	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-		if (!world.isClient) {
-			int groundSlamStrength = getGroundSlamStrength(world.getRegistryManager(), stack);
+	public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity user) {
+		if (!world.isClientSide) {
+			int groundSlamStrength = getGroundSlamStrength(world.registryAccess(), stack);
 			if (groundSlamStrength > 0) {
-				performGroundSlam(world, user.getPos(), user, groundSlamStrength);
-				stack.damage(1, user, LivingEntity.getSlotForHand(user.getActiveHand()));
+				performGroundSlam(world, user.position(), user, groundSlamStrength);
+				stack.hurtAndBreak(1, user, LivingEntity.getSlotForHand(user.getUsedItemHand()));
 			}
 		}
 		
 		return stack;
 	}
 	
-	public int getGroundSlamStrength(RegistryWrapper.WrapperLookup lookup, ItemStack stack) {
+	public int getGroundSlamStrength(HolderLookup.Provider lookup, ItemStack stack) {
 		return SpectrumEnchantmentHelper.getLevel(lookup, Enchantments.SWEEPING_EDGE, stack);
 	}
 	
-	public void performGroundSlam(World world, Vec3d pos, LivingEntity attacker, float strength) {
-		world.emitGameEvent(attacker, GameEvent.HIT_GROUND, BlockPos.ofFloored(pos.x, pos.y, pos.z));
+	public void performGroundSlam(Level world, Vec3 pos, LivingEntity attacker, float strength) {
+		world.gameEvent(attacker, GameEvent.HIT_GROUND, BlockPos.containing(pos.x, pos.y, pos.z));
 		MoonstoneStrike.create(world, attacker, null, attacker.getX(), attacker.getY(), attacker.getZ(), strength, 1.75F);
-		world.playSound(null, attacker.getBlockPos(), SpectrumSoundEvents.GROUND_SLAM, SoundCategory.PLAYERS, 0.7F, 1.0F);
-		world.playSound(null, attacker.getBlockPos(), SpectrumSoundEvents.DEEP_CRYSTAL_RING, SoundCategory.PLAYERS, 0.7F, 1.0F);
-		world.playSound(null, attacker.getBlockPos(), SpectrumSoundEvents.DEEP_CRYSTAL_RING, SoundCategory.PLAYERS, 0.4F, 0.334F);
-
-		if (attacker instanceof ServerPlayerEntity serverPlayer) {
-			serverPlayer.incrementStat(Stats.USED.getOrCreateStat(this));
+		world.playSound(null, attacker.blockPosition(), SpectrumSoundEvents.GROUND_SLAM, SoundSource.PLAYERS, 0.7F, 1.0F);
+		world.playSound(null, attacker.blockPosition(), SpectrumSoundEvents.DEEP_CRYSTAL_RING, SoundSource.PLAYERS, 0.7F, 1.0F);
+		world.playSound(null, attacker.blockPosition(), SpectrumSoundEvents.DEEP_CRYSTAL_RING, SoundSource.PLAYERS, 0.4F, 0.334F);
+		
+		if (attacker instanceof ServerPlayer serverPlayer) {
+			serverPlayer.awardStat(Stats.ITEM_USED.get(this));
 		}
 	}
 
 	@Environment(EnvType.CLIENT)
-	public void startSoundInstance(PlayerEntity user) {
-		MinecraftClient.getInstance().getSoundManager().play(new GreatswordChargingSoundInstance(user, this.GROUND_SLAM_CHARGE_TICKS));
+	public void startSoundInstance(Player user) {
+		Minecraft.getInstance().getSoundManager().play(new GreatswordChargingSoundInstance(user, this.GROUND_SLAM_CHARGE_TICKS));
 	}
 
 	@Override
 	public DamageComposition getDamageComposition(LivingEntity attacker, LivingEntity target, ItemStack stack, float damage) {
 		DamageComposition composition = new DamageComposition();
 		composition.addPlayerOrEntity(attacker, damage * (1 - MAGIC_DAMAGE_SHARE));
-		composition.add(attacker.getDamageSources().magic(), damage * MAGIC_DAMAGE_SHARE);
+		composition.add(attacker.damageSources().magic(), damage * MAGIC_DAMAGE_SHARE);
 		return composition;
 	}
 	
 	@Override
-	public SlotEffect backgroundType(@Nullable PlayerEntity player, ItemStack stack) {
+	public SlotEffect backgroundType(@Nullable Player player, ItemStack stack) {
 		var usable = InkPowered.hasAvailableInk(player, GROUND_SLAM_COST);
 		return usable ? SlotEffect.BORDER_FADE : SlotEffect.NONE;
 	}
 	
 	@Override
-	public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
+	public int getBackgroundColor(@Nullable Player player, ItemStack stack, float tickDelta) {
 		return 0xFFFFFF;
 	}
 	
@@ -141,24 +140,24 @@ public class GlassCrestGreatswordItem extends GreatswordItem implements SplitDam
 	}
 	
 	@Override
-	public boolean allowVanillaDurabilityBarRendering(@Nullable PlayerEntity player, ItemStack stack) {
-		if (player == null || player.getStackInHand(player.getActiveHand()) != stack)
+	public boolean allowVanillaDurabilityBarRendering(@Nullable Player player, ItemStack stack) {
+		if (player == null || player.getItemInHand(player.getUsedItemHand()) != stack)
 			return true;
 		
 		return !player.isUsingItem();
 	}
 	
 	@Override
-	public BarSignature getSignature(@Nullable PlayerEntity player, @NotNull ItemStack stack, int index) {
+	public BarSignature getSignature(@Nullable Player player, @NotNull ItemStack stack, int index) {
 		if (player == null || !player.isUsingItem())
 			return ExtendedItemBarProvider.PASS;
 		
-		var activeStack = player.getStackInHand(player.getActiveHand());
+		var activeStack = player.getItemInHand(player.getUsedItemHand());
 		if (activeStack != stack)
 			return ExtendedItemBarProvider.PASS;
 		
 		
-		var progress = Math.round(MathHelper.clampedLerp(0, 13, ((float) player.getItemUseTime() / GROUND_SLAM_CHARGE_TICKS)));
+		var progress = Math.round(Mth.clampedLerp(0, 13, ((float) player.getTicksUsingItem() / GROUND_SLAM_CHARGE_TICKS)));
 		return new BarSignature(2, 13, 13, progress, 1, 0xFFFFFFFF, 2, ExtendedItemBarProvider.DEFAULT_BACKGROUND_COLOR);
 	}
 	

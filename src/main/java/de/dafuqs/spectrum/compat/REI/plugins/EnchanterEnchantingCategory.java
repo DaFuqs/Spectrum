@@ -6,7 +6,7 @@ import me.shedaniel.rei.api.client.gui.widgets.*;
 import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.entry.*;
 import net.fabricmc.api.*;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -20,8 +20,8 @@ public class EnchanterEnchantingCategory extends EnchanterCategory<EnchanterEnch
 	}
 	
 	@Override
-	public Text getTitle() {
-		return Text.translatable("container.spectrum.rei.enchanting.title");
+	public Component getTitle() {
+		return Component.translatable("container.spectrum.rei.enchanting.title");
 	}
 	
 	@Override
@@ -30,7 +30,7 @@ public class EnchanterEnchantingCategory extends EnchanterCategory<EnchanterEnch
 	}
 	
 	@Override
-	public Text getDescriptionText(@NotNull EnchanterEnchantingDisplay display) {
+	public Component getDescriptionText(@NotNull EnchanterEnchantingDisplay display) {
 		return getCraftingTimeText(display.craftingTime);
 	}
 	

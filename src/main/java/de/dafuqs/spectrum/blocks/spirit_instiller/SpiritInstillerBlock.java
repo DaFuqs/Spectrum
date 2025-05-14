@@ -2,61 +2,62 @@ package de.dafuqs.spectrum.blocks.spirit_instiller;
 
 import com.klikli_dev.modonomicon.api.multiblock.*;
 import com.klikli_dev.modonomicon.client.render.*;
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.compat.modonomicon.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.server.network.*;
-import net.minecraft.util.*;
-import net.minecraft.util.hit.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.shape.*;
+import net.minecraft.core.*;
+import net.minecraft.server.level.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.phys.*;
+import net.minecraft.world.phys.shapes.*;
 import org.jetbrains.annotations.*;
 
 public class SpiritInstillerBlock extends InWorldInteractionBlock {
-
-	public static final MapCodec<SpiritInstillerBlock> CODEC = createCodec(SpiritInstillerBlock::new);
-
-	public SpiritInstillerBlock(Settings settings) {
+	
+	public static final MapCodec<SpiritInstillerBlock> CODEC = simpleCodec(SpiritInstillerBlock::new);
+	
+	public SpiritInstillerBlock(Properties settings) {
 		super(settings);
 	}
 
 	@Override
-	public MapCodec<? extends SpiritInstillerBlock> getCodec() {
+	public MapCodec<? extends SpiritInstillerBlock> codec() {
 		return CODEC;
 	}
 	
-	public static void clearCurrentlyRenderedMultiBlock(World world) {
-		if (world.isClient) {
+	public static void clearCurrentlyRenderedMultiBlock(Level world) {
+		if (world.isClientSide) {
 			ModonomiconHelper.clearRenderedMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.SPIRIT_INSTILLER));
 		}
 	}
 	
-	public static boolean verifyStructure(World world, @NotNull BlockPos blockPos, @Nullable ServerPlayerEntity serverPlayerEntity, @NotNull SpiritInstillerBlockEntity instiller) {
+	public static boolean verifyStructure(Level world, @NotNull BlockPos blockPos, @Nullable ServerPlayer serverPlayerEntity, @NotNull SpiritInstillerBlockEntity instiller) {
 		Multiblock multiblock = SpectrumMultiblocks.get(SpectrumMultiblocks.SPIRIT_INSTILLER);
 		
-		BlockRotation lastBlockRotation = instiller.getMultiblockRotation();
+		Rotation lastBlockRotation = instiller.getMultiblockRotation();
 		boolean valid = false;
 		
 		// try all 4 rotations
 		int offset = -4;
-		BlockRotation checkRotation = lastBlockRotation;
-		for (int i = 0; i < BlockRotation.values().length; i++) {
-			valid = multiblock.validate(world, blockPos.down(1).offset(Support.directionFromRotation(checkRotation), offset), checkRotation);
+		Rotation checkRotation = lastBlockRotation;
+		for (int i = 0; i < Rotation.values().length; i++) {
+			valid = multiblock.validate(world, blockPos.below(1).relative(Support.directionFromRotation(checkRotation), offset), checkRotation);
 			if (valid) {
 				if (i != 0) {
 					instiller.setMultiblockRotation(checkRotation);
 				}
 				break;
 			} else {
-				checkRotation = BlockRotation.values()[(checkRotation.ordinal() + 1) % BlockRotation.values().length];
+				checkRotation = Rotation.values()[(checkRotation.ordinal() + 1) % Rotation.values().length];
 			}
 		}
 		
@@ -67,13 +68,13 @@ public class SpiritInstillerBlock extends InWorldInteractionBlock {
 				SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblock);
 			}
 		} else {
-			if (world.isClient) {
+			if (world.isClientSide) {
 				Multiblock currentMultiBlock = MultiblockPreviewRenderer.getMultiblock();
 				if (currentMultiBlock == multiblock) {
-					lastBlockRotation = BlockRotation.values()[(MultiblockPreviewRenderer.getFacingRotation().ordinal() + 1) % BlockRotation.values().length]; // cycle rotation
+					lastBlockRotation = Rotation.values()[(MultiblockPreviewRenderer.getFacingRotation().ordinal() + 1) % Rotation.values().length]; // cycle rotation
 					instiller.setMultiblockRotation(lastBlockRotation);
 				}
-				ModonomiconHelper.renderMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.SPIRIT_INSTILLER), SpectrumMultiblocks.SPIRIT_INSTILLER_TEXT, blockPos.down(2).offset(Support.directionFromRotation(lastBlockRotation), offset), lastBlockRotation);
+				ModonomiconHelper.renderMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.SPIRIT_INSTILLER), SpectrumMultiblocks.SPIRIT_INSTILLER_TEXT, blockPos.below(2).relative(Support.directionFromRotation(lastBlockRotation), offset), lastBlockRotation);
 			} else {
 				scatterContents(world, blockPos);
 			}
@@ -84,46 +85,46 @@ public class SpiritInstillerBlock extends InWorldInteractionBlock {
 	
 	@Nullable
 	@Override
-	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new SpiritInstillerBlockEntity(pos, state);
 	}
 	
 	@Nullable
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		return validateTicker(type, SpectrumBlockEntities.SPIRIT_INSTILLER, world.isClient ? SpiritInstillerBlockEntity::clientTick : SpiritInstillerBlockEntity::serverTick);
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
+		return createTickerHelper(type, SpectrumBlockEntities.SPIRIT_INSTILLER, world.isClientSide ? SpiritInstillerBlockEntity::clientTick : SpiritInstillerBlockEntity::serverTick);
 	}
 	
 	@Override
-	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		return VoxelShapes.fullCube();
+	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+		return Shapes.block();
 	}
 	
 	@Override
-	public void onBroken(WorldAccess world, BlockPos pos, BlockState state) {
-		if (world.isClient()) {
-			clearCurrentlyRenderedMultiBlock((World) world);
+	public void destroy(LevelAccessor world, BlockPos pos, BlockState state) {
+		if (world.isClientSide()) {
+			clearCurrentlyRenderedMultiBlock((Level) world);
 		}
 	}
 	
 	@Override
-	public ItemActionResult onUseWithItem(ItemStack handStack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+	public ItemInteractionResult useItemOn(ItemStack handStack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (world.isClient) {
+		if (world.isClientSide) {
 			if (blockEntity instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
 				verifyStructure(world, pos, null, spiritInstillerBlockEntity);
 			}
-			return ItemActionResult.SUCCESS;
+			return ItemInteractionResult.SUCCESS;
 		} else {
 			if (blockEntity instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
-				if (verifyStructure(world, pos, (ServerPlayerEntity) player, spiritInstillerBlockEntity)) {
+				if (verifyStructure(world, pos, (ServerPlayer) player, spiritInstillerBlockEntity)) {
 					if (exchangeStack(world, pos, player, hand, handStack, spiritInstillerBlockEntity)) {
 						spiritInstillerBlockEntity.setOwner(player);
 						spiritInstillerBlockEntity.inventoryChanged();
 					}
 				}
 			}
-			return ItemActionResult.CONSUME;
+			return ItemInteractionResult.CONSUME;
 		}
 	}
 	

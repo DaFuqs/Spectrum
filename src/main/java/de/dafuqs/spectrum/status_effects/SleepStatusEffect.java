@@ -2,41 +2,41 @@ package de.dafuqs.spectrum.status_effects;
 
 import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.registry.entry.*;
+import net.minecraft.core.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
 import org.jetbrains.annotations.*;
 
-public class SleepStatusEffect extends StatusEffect {
+public class SleepStatusEffect extends MobEffect {
 
     private final boolean scales;
-
-    public SleepStatusEffect(StatusEffectCategory category, int color, boolean scales) {
+	
+	public SleepStatusEffect(MobEffectCategory category, int color, boolean scales) {
         super(category, color);
         this.scales = scales;
     }
 	
     // oh my god
     // TODO: can the tag check be implemented into the entities base attribute modifier somehow?
-    public static float getSleepResistance(@Nullable StatusEffectInstance sleepEffect, LivingEntity entity) {
+	public static float getSleepResistance(@Nullable MobEffectInstance sleepEffect, LivingEntity entity) {
 
         var type = entity.getType();
-        
-        if (sleepEffect == null || type.isIn(SpectrumEntityTypeTags.SOULLESS))
+		
+		if (sleepEffect == null || type.is(SpectrumEntityTypeTags.SOULLESS))
             return Float.MAX_VALUE;
 
         float scaling;
-        if (entity instanceof PlayerEntity player && player.getWorld().isClient()) {
+		if (entity instanceof Player player && player.level().isClientSide()) {
             scaling = (float) MiscPlayerDataComponent.get(player).getLastSyncedSleepPotency();
         }
         else {
             scaling = (float) entity.getAttributeValue(SpectrumEntityAttributes.MENTAL_PRESENCE);
         }
-
-        if (type.isIn(SpectrumEntityTypeTags.SLEEP_WEAK)) {
+		
+		if (type.is(SpectrumEntityTypeTags.SLEEP_WEAK)) {
             scaling /= 3F;
-        } else if (type.isIn(SpectrumEntityTypeTags.SLEEP_RESISTANT)) {
+		} else if (type.is(SpectrumEntityTypeTags.SLEEP_RESISTANT)) {
             scaling *= 2.0F;
         } else if (isImmuneish(entity)) {
             scaling *= 10F;
@@ -47,14 +47,14 @@ public class SleepStatusEffect extends StatusEffect {
     
     // TODO: can the tag check be implemented into the entities base attribute modifier somehow?
     public static boolean isImmuneish(LivingEntity entity) {
-        if (entity.hasStatusEffect(SpectrumStatusEffects.FRENZY))
+		if (entity.hasEffect(SpectrumStatusEffects.FRENZY))
             return true;
         
         var type = entity.getType();
-        if (type.isIn(SpectrumEntityTypeTags.SLEEP_WEAK))
+		if (type.is(SpectrumEntityTypeTags.SLEEP_WEAK))
             return false;
-        
-        return type.isIn(SpectrumEntityTypeTags.SLEEP_IMMUNEISH) || isConstruct(type);
+		
+		return type.is(SpectrumEntityTypeTags.SLEEP_IMMUNEISH) || isConstruct(type);
     }
 	
 	/**
@@ -62,7 +62,7 @@ public class SleepStatusEffect extends StatusEffect {
      */
     public static float getGeneralSleepResistanceIfEntityHasSoporificEffect(LivingEntity entity) {
         if (!isConstruct(entity.getType()) && SpectrumStatusEffectTags.hasEffectWithTag(entity, SpectrumStatusEffectTags.SOPORIFIC)) {
-            return getSleepResistance(entity.getStatusEffect(getStrongestSleepEffect(entity)), entity);
+			return getSleepResistance(entity.getEffect(getStrongestSleepEffect(entity)), entity);
         }
         return -1F;
     }
@@ -83,17 +83,15 @@ public class SleepStatusEffect extends StatusEffect {
     }
 	
 	private static boolean isConstruct(EntityType<?> type) {
-		return type.isIn(SpectrumEntityTypeTags.SOULLESS);
+		return type.is(SpectrumEntityTypeTags.SOULLESS);
 	}
-    
-    public static @Nullable RegistryEntry<StatusEffect> getStrongestSleepEffect(LivingEntity entity) {
-        if (entity.hasStatusEffect(SpectrumStatusEffects.FATAL_SLUMBER)) {
+	
+	public static @Nullable Holder<MobEffect> getStrongestSleepEffect(LivingEntity entity) {
+		if (entity.hasEffect(SpectrumStatusEffects.FATAL_SLUMBER)) {
             return SpectrumStatusEffects.FATAL_SLUMBER;
-        }
-        else if (entity.hasStatusEffect(SpectrumStatusEffects.ETERNAL_SLUMBER)) {
+        } else if (entity.hasEffect(SpectrumStatusEffects.ETERNAL_SLUMBER)) {
             return SpectrumStatusEffects.ETERNAL_SLUMBER;
-        }
-        else if (entity.hasStatusEffect(SpectrumStatusEffects.SOMNOLENCE)) {
+        } else if (entity.hasEffect(SpectrumStatusEffects.SOMNOLENCE)) {
             return SpectrumStatusEffects.SOMNOLENCE;
         }
         return null;

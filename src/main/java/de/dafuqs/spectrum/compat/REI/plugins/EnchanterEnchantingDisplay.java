@@ -9,7 +9,7 @@ import me.shedaniel.rei.api.common.display.basic.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.client.*;
-import net.minecraft.recipe.*;
+import net.minecraft.world.item.crafting.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -21,8 +21,8 @@ public class EnchanterEnchantingDisplay extends EnchanterDisplay {
 	protected final int craftingTime;
 	
 	// first input is the center, all others around clockwise
-	public EnchanterEnchantingDisplay(@NotNull RecipeEntry<EnchanterRecipe> recipe) {
-		super(recipe, buildIngredients(recipe.value()), Collections.singletonList(EntryIngredients.of(recipe.value().getResult(BasicDisplay.registryAccess()))));
+	public EnchanterEnchantingDisplay(@NotNull RecipeHolder<EnchanterRecipe> recipe) {
+		super(recipe, buildIngredients(recipe.value()), Collections.singletonList(EntryIngredients.of(recipe.value().getResultItem(BasicDisplay.registryAccess()))));
 		this.requiredExperience = recipe.value().getRequiredExperience();
 		this.craftingTime = recipe.value().getCraftingTime();
 	}
@@ -40,7 +40,7 @@ public class EnchanterEnchantingDisplay extends EnchanterDisplay {
 	
 	@Override
     public boolean isUnlocked() {
-		MinecraftClient client = MinecraftClient.getInstance();
+		Minecraft client = Minecraft.getInstance();
 		return AdvancementHelper.hasAdvancement(client.player, EnchanterRecipe.UNLOCK_IDENTIFIER) && super.isUnlocked();
 	}
 	

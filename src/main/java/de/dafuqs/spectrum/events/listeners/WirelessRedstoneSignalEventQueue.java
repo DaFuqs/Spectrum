@@ -3,10 +3,11 @@ package de.dafuqs.spectrum.events.listeners;
 import de.dafuqs.spectrum.events.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.effect.*;
-import net.minecraft.server.world.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
-import net.minecraft.world.event.*;
+import net.minecraft.server.level.*;
+import net.minecraft.util.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.gameevent.*;
+import net.minecraft.world.phys.*;
 
 public class WirelessRedstoneSignalEventQueue extends EventQueue<WirelessRedstoneSignalEventQueue.EventEntry> {
 	
@@ -15,17 +16,17 @@ public class WirelessRedstoneSignalEventQueue extends EventQueue<WirelessRedston
 	}
 	
 	@Override
-	public void acceptEvent(World world, GameEvent.Message event, Vec3d sourcePos) {
-		if (world instanceof ServerWorld && event.getEvent() == SpectrumGameEvents.WIRELESS_REDSTONE_SIGNAL) {
-			Vec3d pos = event.getEmitterPos();
-			var eventEntry = new WirelessRedstoneSignalEventQueue.EventEntry(event, MathHelper.floor(pos.distanceTo(sourcePos)));
+	public void acceptEvent(Level world, GameEvent.ListenerInfo event, Vec3 sourcePos) {
+		if (world instanceof ServerLevel && event.gameEvent() == SpectrumGameEvents.WIRELESS_REDSTONE_SIGNAL) {
+			Vec3 pos = event.source();
+			var eventEntry = new WirelessRedstoneSignalEventQueue.EventEntry(event, Mth.floor(pos.distanceTo(sourcePos)));
 			int delay = eventEntry.distance * 2;
 			this.schedule(eventEntry, delay);
-			TypedTransmissionPayload.playTransmissionParticle((ServerWorld) world, new TypedTransmission(pos, this.positionSource, delay, TypedTransmission.Variant.REDSTONE));
+			TypedTransmissionPayload.playTransmissionParticle((ServerLevel) world, new TypedTransmission(pos, this.positionSource, delay, TypedTransmission.Variant.REDSTONE));
 		}
 	}
-
-	public record EventEntry(GameEvent.Message gameEvent, int distance) {
+	
+	public record EventEntry(GameEvent.ListenerInfo gameEvent, int distance) {
 	}
 	
 }

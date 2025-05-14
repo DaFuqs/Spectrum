@@ -1,20 +1,19 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.component.*;
-import net.minecraft.component.type.*;
-import net.minecraft.item.*;
-import net.minecraft.recipe.*;
+import net.minecraft.core.component.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.alchemy.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
-@Mixin(BrewingRecipeRegistry.class)
+@Mixin(PotionBrewing.class)
 public abstract class BrewingRecipeRegistryMixin {
 	
-	@Inject(method = "isValidIngredient(Lnet/minecraft/item/ItemStack;)Z", at = @At("HEAD"), cancellable = true)
+	@Inject(method = "isIngredient", at = @At("HEAD"), cancellable = true)
 	private void spectrum$disallowPigmentPotionBrewing(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
-		PotionContentsComponent potionContentsComponent = stack.getOrDefault(DataComponentTypes.POTION_CONTENTS, PotionContentsComponent.DEFAULT);
+		PotionContents potionContentsComponent = stack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
 		if (potionContentsComponent.potion().isPresent() && potionContentsComponent.potion().get().equals(SpectrumPotions.PIGMENT_POTION)) {
 			cir.setReturnValue(false);
 		}

@@ -1,26 +1,27 @@
 package de.dafuqs.spectrum.registries;
 
 import com.google.common.base.*;
-import net.minecraft.block.*;
-import net.minecraft.item.*;
-import net.minecraft.recipe.*;
-import net.minecraft.registry.tag.*;
+import net.minecraft.tags.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.block.*;
 
+import java.util.function.*;
 import java.util.function.Supplier;
 
-public enum SpectrumToolMaterial implements ToolMaterial {
+public enum SpectrumToolMaterial implements Tier {
 	
-	LOW_HEALTH(BlockTags.INCORRECT_FOR_IRON_TOOL, 16, 4.0F, 2.0F, 10, Ingredient::empty),
-	LOW_HEALTH_MINING_LEVEL_4(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 16, 4.0F, 2.0F, 10, Ingredient::empty),
-	VOIDING(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 1143, 20.0F, 1.0F, 5, Ingredient::empty),
-	BEDROCK(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 0, 15.0F, 5.0F, 3, () -> Ingredient.ofItems(SpectrumItems.BEDROCK_DUST)),
-	DRACONIC(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 10000, 11.5F, 7.0F, 1, () -> Ingredient.ofItems(SpectrumItems.PURE_BLOODSTONE)),
-	MALACHITE(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 1536, 14.0F, 5.0F, 20, () -> Ingredient.ofItems(SpectrumItems.PURE_MALACHITE)),
-	GLASS_CREST(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 1536 * 4, 18.0F, 10.0F, 5, () -> Ingredient.ofItems(SpectrumItems.PURE_MALACHITE)),
-	VERDIGRIS(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 1536, 7.0F, 2.5F, 14, () -> Ingredient.ofItems(SpectrumItems.NIGHTDEW_SPROUT)),
-	NECTAR(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, GLASS_CREST.itemDurability, 9.5F, 9.0F, 30, () -> Ingredient.ofItems(SpectrumItems.AETHER_VESTIGES)),
-	DREAMFLAYER(BlockTags.INCORRECT_FOR_IRON_TOOL, 650, 5.0F, 2.0F, 20, () -> Ingredient.ofItems(SpectrumItems.BISMUTH_CRYSTAL)),
-	NIGHTFALL(BlockTags.INCORRECT_FOR_IRON_TOOL, 650, 2.0F, 1.0F, 0, () -> Ingredient.ofItems(SpectrumItems.MIDNIGHT_CHIP));
+	LOW_HEALTH(BlockTags.INCORRECT_FOR_IRON_TOOL, 16, 4.0F, 2.0F, 10, Ingredient::of),
+	LOW_HEALTH_MINING_LEVEL_4(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 16, 4.0F, 2.0F, 10, Ingredient::of),
+	VOIDING(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 1143, 20.0F, 1.0F, 5, Ingredient::of),
+	BEDROCK(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 0, 15.0F, 5.0F, 3, () -> Ingredient.of(SpectrumItems.BEDROCK_DUST)),
+	DRACONIC(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 10000, 11.5F, 7.0F, 1, () -> Ingredient.of(SpectrumItems.PURE_BLOODSTONE)),
+	MALACHITE(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 1536, 14.0F, 5.0F, 20, () -> Ingredient.of(SpectrumItems.PURE_MALACHITE)),
+	GLASS_CREST(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 1536 * 4, 18.0F, 10.0F, 5, () -> Ingredient.of(SpectrumItems.PURE_MALACHITE)),
+	VERDIGRIS(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 1536, 7.0F, 2.5F, 14, () -> Ingredient.of(SpectrumItems.NIGHTDEW_SPROUT)),
+	NECTAR(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, GLASS_CREST.itemDurability, 9.5F, 9.0F, 30, () -> Ingredient.of(SpectrumItems.AETHER_VESTIGES)),
+	DREAMFLAYER(BlockTags.INCORRECT_FOR_IRON_TOOL, 650, 5.0F, 2.0F, 20, () -> Ingredient.of(SpectrumItems.BISMUTH_CRYSTAL)),
+	NIGHTFALL(BlockTags.INCORRECT_FOR_IRON_TOOL, 650, 2.0F, 1.0F, 0, () -> Ingredient.of(SpectrumItems.MIDNIGHT_CHIP));
 	
 	private final TagKey<Block> inverseTag;
 	private final int itemDurability;
@@ -39,27 +40,27 @@ public enum SpectrumToolMaterial implements ToolMaterial {
 	}
 	
 	@Override
-	public int getDurability() {
+	public int getUses() {
 		return this.itemDurability;
 	}
 	
 	@Override
-	public float getMiningSpeedMultiplier() {
+	public float getSpeed() {
 		return this.miningSpeed;
 	}
 	
 	@Override
-	public float getAttackDamage() {
+	public float getAttackDamageBonus() {
 		return this.attackDamage;
 	}
 	
 	@Override
-	public TagKey<Block> getInverseTag() {
+	public TagKey<Block> getIncorrectBlocksForDrops() {
 		return this.inverseTag;
 	}
 	
 	@Override
-	public int getEnchantability() {
+	public int getEnchantmentValue() {
 		return this.enchantability;
 	}
 	

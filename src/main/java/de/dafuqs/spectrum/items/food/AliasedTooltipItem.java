@@ -1,34 +1,33 @@
 package de.dafuqs.spectrum.items.food;
 
-import net.minecraft.block.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.*;
 
 import java.util.*;
 
-public class AliasedTooltipItem extends AliasedBlockItem {
-
-	private final List<MutableText> tooltipTexts = new ArrayList<>();
-
-	public AliasedTooltipItem(Block block, Settings settings, String tooltip) {
+public class AliasedTooltipItem extends ItemNameBlockItem {
+	
+	private final List<MutableComponent> tooltipTexts = new ArrayList<>();
+	
+	public AliasedTooltipItem(Block block, Properties settings, String tooltip) {
 		super(block, settings);
-		this.tooltipTexts.add(Text.translatable(tooltip));
+		this.tooltipTexts.add(Component.translatable(tooltip));
 	}
-
-	public AliasedTooltipItem(Block block, Settings settings, String[] tooltips) {
+	
+	public AliasedTooltipItem(Block block, Properties settings, String[] tooltips) {
 		super(block, settings);
 		Arrays.stream(tooltips)
-				.map(Text::translatable)
+				.map(Component::translatable)
 				.forEach(tooltipTexts::add);
 	}
 
 	@Override
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
-		for (MutableText text : this.tooltipTexts) {
-			tooltip.add(text.formatted(Formatting.GRAY));
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
+		for (MutableComponent text : this.tooltipTexts) {
+			tooltip.add(text.withStyle(ChatFormatting.GRAY));
 		}
 	}
 

@@ -11,22 +11,22 @@ import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.TextWidget.*;
 import dev.emi.emi.api.widget.*;
 import net.minecraft.client.*;
-import net.minecraft.recipe.*;
-import net.minecraft.util.*;
-import net.minecraft.util.collection.*;
+import net.minecraft.core.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.item.crafting.*;
 
 import java.util.*;
 
 public class PedestalCraftingEmiRecipeGated extends GatedSpectrumEmiRecipe<PedestalRecipe> {
 	
-	public PedestalCraftingEmiRecipeGated(RecipeEntry<PedestalRecipe> entry) {
+	public PedestalCraftingEmiRecipeGated(RecipeHolder<PedestalRecipe> entry) {
 		super(SpectrumEmiRecipeCategories.PEDESTAL_CRAFTING, entry, 124, 90);
 		this.inputs = getIngredients(recipe);
 	}
 	
 	@Override
 	public boolean isUnlocked() {
-		MinecraftClient client = MinecraftClient.getInstance();
+		Minecraft client = Minecraft.getInstance();
 		return recipe.getTier().hasUnlocked(client.player) && super.isUnlocked();
 	}
 	
@@ -35,10 +35,10 @@ public class PedestalCraftingEmiRecipeGated extends GatedSpectrumEmiRecipe<Pedes
 		List<IngredientStack> ingredients = recipe.getIngredientStacks();
 		int ingredientCount = ingredients.size();
 		
-		List<EmiIngredient> list = DefaultedList.ofSize(9 + powderSlotCount, EmiStack.EMPTY);
+		List<EmiIngredient> list = NonNullList.withSize(9 + powderSlotCount, EmiStack.EMPTY);
 		
 		for (int i = 0; i < ingredientCount; i++) {
-			list.set(recipe.getGridSlotId(i), EmiIngredient.of(Arrays.stream(ingredients.get(i).getIngredient().getMatchingStacks()).map(EmiStack::of).toList()));
+			list.set(recipe.getGridSlotId(i), EmiIngredient.of(Arrays.stream(ingredients.get(i).getIngredient().getItems()).map(EmiStack::of).toList()));
 		}
 		for (int i = 0; i < powderSlotCount; i++) {
 			GemstoneColor color = BuiltinGemstoneColor.values()[i];
@@ -56,7 +56,7 @@ public class PedestalCraftingEmiRecipeGated extends GatedSpectrumEmiRecipe<Pedes
 		int gemstoneSlotStartX = 62 - powderSlotCount * 9;
 		int gemstoneSlotTextureStartU = 88 - powderSlotCount * 9;
 		
-		Identifier backgroundTexture = PedestalScreen.getBackgroundTextureForTier(recipe.getTier());
+		ResourceLocation backgroundTexture = PedestalScreen.getBackgroundTextureForTier(recipe.getTier());
 		// gemstone slot background
 		widgets.addTexture(backgroundTexture, gemstoneSlotStartX, 59, 18 * powderSlotCount, 18, gemstoneSlotTextureStartU, 76);
 		// crafting input

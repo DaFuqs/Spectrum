@@ -1,11 +1,13 @@
 package de.dafuqs.spectrum.data;
 
 import net.fabricmc.fabric.api.datagen.v1.provider.*;
-import net.minecraft.block.*;
-import net.minecraft.enchantment.*;
-import net.minecraft.item.*;
-import net.minecraft.registry.*;
-import net.minecraft.registry.tag.*;
+import net.minecraft.core.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.resources.*;
+import net.minecraft.tags.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.*;
+import net.minecraft.world.level.block.*;
 
 public class DatagenProxy {
 	
@@ -16,7 +18,7 @@ public class DatagenProxy {
 	}
 	
 	public interface KeyedTagBuilderCallback<T> {
-		FabricTagProvider<T>.FabricTagBuilder build(RegistryKey<T> key, FabricTagProvider<T>.FabricTagBuilder provider);
+		FabricTagProvider<T>.FabricTagBuilder build(ResourceKey<T> key, FabricTagProvider<T>.FabricTagBuilder provider);
 	}
 	
 	public interface ProvidedTagBuilderBuilder<T> {
@@ -24,17 +26,17 @@ public class DatagenProxy {
 	}
 	
 	public record BootstrapContext<T>(
-			Registerable<T> registerable,
-			RegistryEntryLookup<Item> items,
-			RegistryEntryLookup<Block> blocks,
-			RegistryEntryLookup<Enchantment> enchantments
+			net.minecraft.data.worldgen.BootstrapContext<T> registerable,
+			HolderGetter<Item> items,
+			HolderGetter<Block> blocks,
+			HolderGetter<Enchantment> enchantments
 	) {
-		public BootstrapContext(Registerable<T> registerable) {
+		public BootstrapContext(net.minecraft.data.worldgen.BootstrapContext<T> registerable) {
 			this(
 					registerable,
-					registerable.getRegistryLookup(RegistryKeys.ITEM),
-					registerable.getRegistryLookup(RegistryKeys.BLOCK),
-					registerable.getRegistryLookup(RegistryKeys.ENCHANTMENT)
+					registerable.lookup(Registries.ITEM),
+					registerable.lookup(Registries.BLOCK),
+					registerable.lookup(Registries.ENCHANTMENT)
 			);
 		}
 	}

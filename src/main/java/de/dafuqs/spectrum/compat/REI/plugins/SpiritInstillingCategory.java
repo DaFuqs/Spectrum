@@ -10,7 +10,7 @@ import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.fabricmc.api.*;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -27,7 +27,7 @@ public class SpiritInstillingCategory extends GatedDisplayCategory<SpiritInstill
 	}
 	
 	@Override
-	public Text getTitle() {
+	public Component getTitle() {
 		return SpectrumBlocks.SPIRIT_INSTILLER.getName();
 	}
 	
@@ -57,7 +57,7 @@ public class SpiritInstillingCategory extends GatedDisplayCategory<SpiritInstill
 		widgets.add(Widgets.createSlot(new Point(startPoint.x + 95, startPoint.y + 1 + 9)).markOutput().disableBackground().entries(display.getOutputEntries().get(0)));
 		
 		// description text
-		Text text = getCraftingTimeText(display.craftingTime, display.experience);
+		Component text = getCraftingTimeText(display.craftingTime, display.experience);
 		widgets.add(Widgets.createLabel(new Point(startPoint.x - 10, startPoint.y + 1 + 39), text).leftAligned().color(0x3f3f3f).noShadow());
 	}
 	

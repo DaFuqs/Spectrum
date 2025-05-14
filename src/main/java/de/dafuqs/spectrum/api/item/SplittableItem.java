@@ -2,19 +2,19 @@ package de.dafuqs.spectrum.api.item;
 
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.item.*;
-import net.minecraft.server.network.*;
-import net.minecraft.util.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.*;
+import net.minecraft.world.item.*;
 
 public interface SplittableItem {
 	
-	ItemStack getSplitResult(ServerPlayerEntity player, ItemStack parent);
+	ItemStack getSplitResult(ServerPlayer player, ItemStack parent);
 	
-	boolean canSplit(ServerPlayerEntity player, Hand activeHand, ItemStack stack);
+	boolean canSplit(ServerPlayer player, InteractionHand activeHand, ItemStack stack);
 	
-	default void sign(ServerPlayerEntity player, ItemStack stack) {
-		stack.set(SpectrumDataComponentTypes.PAIRED_ITEM, new PairedItemComponent(player.getWorld().getTime() + player.getUuid().getMostSignificantBits()));
+	default void sign(ServerPlayer player, ItemStack stack) {
+		stack.set(SpectrumDataComponentTypes.PAIRED_ITEM, new PairedItemComponent(player.level().getGameTime() + player.getUUID().getMostSignificantBits()));
 	}
 	
-	void playSound(ServerPlayerEntity player);
+	void playSound(ServerPlayer player);
 }

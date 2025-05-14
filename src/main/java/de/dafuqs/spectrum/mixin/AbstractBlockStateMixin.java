@@ -2,20 +2,20 @@ package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.enchantment.*;
-import net.minecraft.item.*;
-import net.minecraft.server.world.*;
-import net.minecraft.util.math.*;
+import net.minecraft.core.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.*;
+import net.minecraft.world.level.block.state.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 
-@Mixin(AbstractBlock.AbstractBlockState.class)
+@Mixin(BlockBehaviour.BlockStateBase.class)
 public abstract class AbstractBlockStateMixin {
 	
-	@ModifyVariable(method = "onStacksDropped", at = @At("HEAD"), ordinal = 0, argsOnly = true)
-	public boolean spectrum$preventXPDropsWhenUsingResonance(boolean dropExperience, ServerWorld world, BlockPos pos, ItemStack stack) {
-		if (ResonanceProcessor.preventNextXPDrop && EnchantmentHelper.hasAnyEnchantmentsIn(stack, SpectrumEnchantmentTags.RESONANT_BLOCK_DROPS)) {
+	@ModifyVariable(method = "spawnAfterBreak", at = @At("HEAD"), ordinal = 0, argsOnly = true)
+	public boolean spectrum$preventXPDropsWhenUsingResonance(boolean dropExperience, ServerLevel world, BlockPos pos, ItemStack stack) {
+		if (ResonanceProcessor.preventNextXPDrop && EnchantmentHelper.hasTag(stack, SpectrumEnchantmentTags.RESONANT_BLOCK_DROPS)) {
 			ResonanceProcessor.preventNextXPDrop = false;
 			return false;
 		}

@@ -3,10 +3,11 @@ package de.dafuqs.spectrum.api.energy;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.registries.*;
+import net.minecraft.*;
 import net.minecraft.nbt.*;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -146,26 +147,26 @@ public interface InkStorage extends Clearable {
 	void fillCompletely();
 	
 	// completely empty the storage
-	void clear();
+	void clearContent();
 	
 	// Returns how full the storage is, as a float
 	default float getFillPercent(InkColor color) {
-		return MathHelper.clamp((float) getEnergy(color) / getMaxPerColor(), 0, 1);
+		return Mth.clamp((float) getEnergy(color) / getMaxPerColor(), 0, 1);
 	}
 	
 	// Same as above, but in total.
 	default float getTotalFillPercent() {
-		return MathHelper.clamp((float) getCurrentTotal() / getMaxTotal(), 0, 1);
+		return Mth.clamp((float) getCurrentTotal() / getMaxTotal(), 0, 1);
 	}
 	
-	void addTooltip(List<Text> tooltip);
+	void addTooltip(List<Component> tooltip);
 	
 	long getRoom(InkColor color);
 	
-	static @NotNull Map<InkColor, Long> readEnergy(NbtCompound compound) {
+	static @NotNull Map<InkColor, Long> readEnergy(CompoundTag compound) {
 		Map<InkColor, Long> energy = new HashMap<>();
 		if (compound != null) {
-			for (String key : compound.getKeys()) {
+			for (String key : compound.getAllKeys()) {
 				InkColor inkColor = SpectrumRegistries.INK_COLOR.get(SpectrumCommon.locate(key));
 				if (inkColor == null) { // TODO: needed? Fallback to a default color?
 					continue;
@@ -177,17 +178,17 @@ public interface InkStorage extends Clearable {
 		return energy;
 	}
 	
-	static @NotNull NbtCompound writeEnergy(Map<InkColor, Long> storedEnergy) {
-		NbtCompound energy = new NbtCompound();
+	static @NotNull CompoundTag writeEnergy(Map<InkColor, Long> storedEnergy) {
+		CompoundTag energy = new CompoundTag();
 		for (Map.Entry<InkColor, Long> color : storedEnergy.entrySet()) {
 			energy.putLong(color.getKey().getID().toString(), color.getValue());
 		}
 		return energy;
 	}
 	
-	static void addInkStoreBulletTooltip(List<Text> tooltip, InkColor color, long amount) {
-		MutableText inkName = color.getColoredInkName();
-		tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet_amount", Text.literal(getShortenedNumberString(amount)).formatted(Formatting.WHITE), inkName).setStyle(inkName.getStyle()));
+	static void addInkStoreBulletTooltip(List<Component> tooltip, InkColor color, long amount) {
+		MutableComponent inkName = color.getColoredInkName();
+		tooltip.add(Component.translatable("spectrum.tooltip.ink_powered.bullet_amount", Component.literal(getShortenedNumberString(amount)).withStyle(ChatFormatting.WHITE), inkName).setStyle(inkName.getStyle()));
 	}
 	
 }

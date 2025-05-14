@@ -6,47 +6,48 @@ import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.component.type.*;
-import net.minecraft.entity.attribute.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.item.*;
+import net.minecraft.*;
+import net.minecraft.core.*;
 import net.minecraft.network.*;
+import net.minecraft.network.chat.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.registry.entry.*;
-import net.minecraft.text.*;
 import net.minecraft.util.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.entity.ai.attributes.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.*;
 
 import java.util.*;
 
 public class InkPoweredStatusEffectInstance {
 	
 	public static final Codec<InkPoweredStatusEffectInstance> CODEC = RecordCodecBuilder.create(i -> i.group(
-			StatusEffectInstance.CODEC.fieldOf("effect").forGetter(c -> c.statusEffectInstance),
+			MobEffectInstance.CODEC.fieldOf("effect").forGetter(c -> c.statusEffectInstance),
 			InkCost.CODEC.fieldOf("ink_cost").forGetter(c -> c.cost),
 			Codec.INT.optionalFieldOf("custom_color", -1).forGetter(c -> c.customColor),
 			Codec.BOOL.optionalFieldOf("unidentifiable", false).forGetter(c -> c.unidentifiable),
 			Codec.BOOL.optionalFieldOf("incurable", false).forGetter(c -> c.incurable)
 	).apply(i, InkPoweredStatusEffectInstance::new));
 	
-	public static final PacketCodec<RegistryByteBuf, InkPoweredStatusEffectInstance> PACKET_CODEC = PacketCodec.tuple(
-			StatusEffectInstance.PACKET_CODEC, c -> c.statusEffectInstance,
+	public static final StreamCodec<RegistryFriendlyByteBuf, InkPoweredStatusEffectInstance> PACKET_CODEC = StreamCodec.composite(
+			MobEffectInstance.STREAM_CODEC, c -> c.statusEffectInstance,
 			InkCost.PACKET_CODEC, c -> c.cost,
-			PacketCodecs.VAR_INT, c -> c.customColor,
-			PacketCodecs.BOOL, c -> c.unidentifiable,
-			PacketCodecs.BOOL, c -> c.incurable,
+			ByteBufCodecs.VAR_INT, c -> c.customColor,
+			ByteBufCodecs.BOOL, c -> c.unidentifiable,
+			ByteBufCodecs.BOOL, c -> c.incurable,
 			InkPoweredStatusEffectInstance::new
 	);
 	
 	public static final String NBT_KEY = "InkPoweredStatusEffects";
 	
-	private final StatusEffectInstance statusEffectInstance;
+	private final MobEffectInstance statusEffectInstance;
 	private final InkCost cost;
 	private final int customColor; // -1: use effect default
 	private final boolean unidentifiable;
 	//TODO why can't this use StatusEffectInstance's mixed-in incurable?
 	private final boolean incurable;
 	
-	public InkPoweredStatusEffectInstance(StatusEffectInstance statusEffectInstance, InkCost cost, int customColor, boolean unidentifiable, boolean incurable) {
+	public InkPoweredStatusEffectInstance(MobEffectInstance statusEffectInstance, InkCost cost, int customColor, boolean unidentifiable, boolean incurable) {
 		this.statusEffectInstance = statusEffectInstance;
 		this.cost = cost;
 		this.customColor = customColor;
@@ -55,7 +56,7 @@ public class InkPoweredStatusEffectInstance {
 		if (incurable) statusEffectInstance.spectrum$setIncurable(true);
 	}
 	
-	public StatusEffectInstance getStatusEffectInstance() {
+	public MobEffectInstance getStatusEffectInstance() {
 		return statusEffectInstance;
 	}
 	
@@ -71,16 +72,16 @@ public class InkPoweredStatusEffectInstance {
 		stack.set(SpectrumDataComponentTypes.INK_POWERED, new InkPoweredComponent(effects));
 	}
 	
-	public static void buildTooltip(List<Text> tooltip, List<InkPoweredStatusEffectInstance> effects, MutableText attributeModifierText, boolean showDuration, float tickRate) {
+	public static void buildTooltip(List<Component> tooltip, List<InkPoweredStatusEffectInstance> effects, MutableComponent attributeModifierText, boolean showDuration, float tickRate) {
 		if (!effects.isEmpty()) {
-			List<Pair<RegistryEntry<EntityAttribute>, EntityAttributeModifier>> attributeModifiers = Lists.newArrayList();
+			List<Tuple<Holder<Attribute>, AttributeModifier>> attributeModifiers = Lists.newArrayList();
 			for (InkPoweredStatusEffectInstance entry : effects) {
 				if (entry.isUnidentifiable()) {
-					tooltip.add(Text.translatable("item.spectrum.potion.tooltip.unidentifiable"));
+					tooltip.add(Component.translatable("item.spectrum.potion.tooltip.unidentifiable"));
 					continue;
 				}
 				
-				StatusEffectInstance effect = entry.getStatusEffectInstance();
+				MobEffectInstance effect = entry.getStatusEffectInstance();
 				if (effect == null) { // serialization error or removed effect
 					continue;
 				}
@@ -88,49 +89,49 @@ public class InkPoweredStatusEffectInstance {
 				InkCost cost = entry.getInkCost();
 				
 				if (effect == null) {
-					tooltip.add(Text.translatable("item.spectrum.potion.tooltip.invalid"));
+					tooltip.add(Component.translatable("item.spectrum.potion.tooltip.invalid"));
 					continue;
 				}
-				MutableText mutableText = Text.translatable(effect.getTranslationKey());
+				MutableComponent mutableText = Component.translatable(effect.getDescriptionId());
 				if (effect.getAmplifier() > 0) {
-					mutableText = Text.translatable("potion.withAmplifier", mutableText, Text.translatable("potion.potency." + effect.getAmplifier()));
+					mutableText = Component.translatable("potion.withAmplifier", mutableText, Component.translatable("potion.potency." + effect.getAmplifier()));
 				}
 				if (showDuration && effect.getDuration() > 20) {
-					mutableText = Text.translatable("potion.withDuration", mutableText, StatusEffectUtil.getDurationText(effect, 1.0F, tickRate));
+					mutableText = Component.translatable("potion.withDuration", mutableText, MobEffectUtil.formatDuration(effect, 1.0F, tickRate));
 				}
-				mutableText.formatted(effect.getEffectType().value().getCategory().getFormatting());
-				mutableText.append(Text.translatable("spectrum.tooltip.ink_cost", Support.getShortenedNumberString(cost.cost()), cost.color().getColoredInkName()).formatted(Formatting.GRAY));
+				mutableText.withStyle(effect.getEffect().value().getCategory().getTooltipFormatting());
+				mutableText.append(Component.translatable("spectrum.tooltip.ink_cost", Support.getShortenedNumberString(cost.cost()), cost.color().getColoredInkName()).withStyle(ChatFormatting.GRAY));
 				if (entry.isIncurable()) {
-					mutableText.append(Text.translatable("item.spectrum.potion.tooltip.incurable"));
+					mutableText.append(Component.translatable("item.spectrum.potion.tooltip.incurable"));
 				}
 				tooltip.add(mutableText);
 				
-				effect.getEffectType().value().forEachAttributeModifier(effect.getAmplifier(), (attribute, modifier) ->
-						attributeModifiers.add(new Pair<>(attribute, modifier))
+				effect.getEffect().value().createModifiers(effect.getAmplifier(), (attribute, modifier) ->
+						attributeModifiers.add(new Tuple<>(attribute, modifier))
 				);
 			}
 			
 			if (!attributeModifiers.isEmpty()) {
-				tooltip.add(Text.empty());
-				tooltip.add(attributeModifierText.formatted(Formatting.DARK_PURPLE));
+				tooltip.add(Component.empty());
+				tooltip.add(attributeModifierText.withStyle(ChatFormatting.DARK_PURPLE));
 				
 				for (var pair : attributeModifiers) {
-					var translatedAttribute = Text.translatable(pair.getLeft().value().getTranslationKey());
-					var mutableText = pair.getRight();
+					var translatedAttribute = Component.translatable(pair.getA().value().getDescriptionId());
+					var mutableText = pair.getB();
 					
-					double statusEffect = mutableText.value();
+					double statusEffect = mutableText.amount();
 					double d;
-					if (mutableText.operation() != EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE && mutableText.operation() != EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL) {
-						d = mutableText.value();
+					if (mutableText.operation() != AttributeModifier.Operation.ADD_MULTIPLIED_BASE && mutableText.operation() != AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL) {
+						d = mutableText.amount();
 					} else {
-						d = mutableText.value() * 100.0D;
+						d = mutableText.amount() * 100.0D;
 					}
 					
 					if (statusEffect > 0.0D) {
-						tooltip.add((Text.translatable("attribute.modifier.plus." + mutableText.operation().getId(), AttributeModifiersComponent.DECIMAL_FORMAT.format(d), translatedAttribute)).formatted(Formatting.BLUE));
+						tooltip.add((Component.translatable("attribute.modifier.plus." + mutableText.operation().id(), ItemAttributeModifiers.ATTRIBUTE_MODIFIER_FORMAT.format(d), translatedAttribute)).withStyle(ChatFormatting.BLUE));
 					} else if (statusEffect < 0.0D) {
 						d *= -1.0D;
-						tooltip.add((Text.translatable("attribute.modifier.take." + mutableText.operation().getId(), AttributeModifiersComponent.DECIMAL_FORMAT.format(d), translatedAttribute)).formatted(Formatting.RED));
+						tooltip.add((Component.translatable("attribute.modifier.take." + mutableText.operation().id(), ItemAttributeModifiers.ATTRIBUTE_MODIFIER_FORMAT.format(d), translatedAttribute)).withStyle(ChatFormatting.RED));
 					}
 				}
 			}
@@ -139,7 +140,7 @@ public class InkPoweredStatusEffectInstance {
 	
 	public int getColor() {
 		if (this.customColor == -1) {
-			return statusEffectInstance.getEffectType().value().getColor();
+			return statusEffectInstance.getEffect().value().getColor();
 		}
 		return this.customColor;
 	}

@@ -7,26 +7,25 @@ import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.fabricmc.fabric.api.networking.v1.*;
 import net.minecraft.client.*;
+import net.minecraft.core.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.network.packet.*;
-import net.minecraft.server.network.*;
-import net.minecraft.server.world.*;
-import net.minecraft.util.math.*;
+import net.minecraft.network.protocol.common.custom.*;
+import net.minecraft.server.level.*;
 
 import java.util.*;
 
-public record PlayPresentOpeningParticlesPayload(BlockPos presentPos, Map<Integer, Integer> colors) implements CustomPayload {
+public record PlayPresentOpeningParticlesPayload(BlockPos presentPos, Map<Integer, Integer> colors) implements CustomPacketPayload {
 	
-	public static final Id<PlayPresentOpeningParticlesPayload> ID = SpectrumC2SPackets.makeId("play_present_opening_particles");
-	public static final PacketCodec<PacketByteBuf, PlayPresentOpeningParticlesPayload> CODEC = PacketCodec.tuple(
-			BlockPos.PACKET_CODEC, PlayPresentOpeningParticlesPayload::presentPos,
-			PacketCodecs.map(Object2IntArrayMap::new, PacketCodecs.INTEGER, PacketCodecs.INTEGER), PlayPresentOpeningParticlesPayload::colors,
+	public static final Type<PlayPresentOpeningParticlesPayload> ID = SpectrumC2SPackets.makeId("play_present_opening_particles");
+	public static final StreamCodec<FriendlyByteBuf, PlayPresentOpeningParticlesPayload> CODEC = StreamCodec.composite(
+			BlockPos.STREAM_CODEC, PlayPresentOpeningParticlesPayload::presentPos,
+			ByteBufCodecs.map(Object2IntArrayMap::new, ByteBufCodecs.INT, ByteBufCodecs.INT), PlayPresentOpeningParticlesPayload::colors,
 			PlayPresentOpeningParticlesPayload::new
 	);
 	
-	public static void playPresentOpeningParticles(ServerWorld serverWorld, BlockPos presentPos, Map<Integer, Integer> colors) {
-		for (ServerPlayerEntity player : PlayerLookup.tracking(serverWorld, presentPos)) {
+	public static void playPresentOpeningParticles(ServerLevel serverWorld, BlockPos presentPos, Map<Integer, Integer> colors) {
+		for (ServerPlayer player : PlayerLookup.tracking(serverWorld, presentPos)) {
 			ServerPlayNetworking.send(player, new PlayPresentOpeningParticlesPayload(presentPos, colors));
 		}
 	}
@@ -34,12 +33,12 @@ public record PlayPresentOpeningParticlesPayload(BlockPos presentPos, Map<Intege
 	@SuppressWarnings("resource")
 	@Environment(EnvType.CLIENT)
 	public static void execute(PlayPresentOpeningParticlesPayload payload, ClientPlayNetworking.Context context) {
-		MinecraftClient client = context.client();
-		PresentBlock.spawnParticles(client.world, payload.presentPos, payload.colors);
+		Minecraft client = context.client();
+		PresentBlock.spawnParticles(client.level, payload.presentPos, payload.colors);
 	}
 	
 	@Override
-	public Id<? extends CustomPayload> getId() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

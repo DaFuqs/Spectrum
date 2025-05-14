@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.blocks.conditional.colored_tree;
 
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.util.*;
+import net.minecraft.resources.*;
 
 public interface ColoredTree {
 	
@@ -15,7 +15,7 @@ public interface ColoredTree {
 		STRIPPED_WOOD
 	}
 	
-	static Identifier getTreeCloakAdvancementIdentifier(TreePart treePart, InkColor color) {
+	static ResourceLocation getTreeCloakAdvancementIdentifier(TreePart treePart, InkColor color) {
 		if (color == InkColors.WHITE || color == InkColors.LIGHT_GRAY || color == InkColors.GRAY) {
 			return SpectrumAdvancements.REVEAL_COLORED_TREES_WHITE;
 		}

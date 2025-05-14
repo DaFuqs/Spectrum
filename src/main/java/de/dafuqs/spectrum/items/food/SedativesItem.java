@@ -2,30 +2,30 @@ package de.dafuqs.spectrum.items.food;
 
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.item.*;
-import net.minecraft.world.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
 
 public class SedativesItem extends ItemWithTooltip {
 	
-	public SedativesItem(Settings settings, String tooltip) {
+	public SedativesItem(Properties settings, String tooltip) {
 		super(settings, tooltip);
 	}
 	
 	@Override
-	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-		if (!world.isClient) { // TODO: do we need this? Frenzy is self-stacking; this also removed all hidden status effects that are not max potency! // Dafuqs: Mildly concerning indeed
-			var frenzy = user.getStatusEffect(SpectrumStatusEffects.FRENZY);
+	public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity user) {
+		if (!world.isClientSide) { // TODO: do we need this? Frenzy is self-stacking; this also removed all hidden status effects that are not max potency! // Dafuqs: Mildly concerning indeed
+			var frenzy = user.getEffect(SpectrumStatusEffects.FRENZY);
 			
 			if (frenzy != null) {
 				var level = frenzy.getAmplifier();
 				var duration = frenzy.getDuration();
 				
 				if (world.getRandom().nextInt((int) (frenzy.getAmplifier() + Math.round(duration / 30.0) + 1)) == 0) {
-					user.removeStatusEffect(SpectrumStatusEffects.FRENZY);
+					user.removeEffect(SpectrumStatusEffects.FRENZY);
 					if (frenzy.getAmplifier() > 0) {
-						user.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.FRENZY, duration, level - 1, frenzy.isAmbient(), frenzy.shouldShowParticles(), frenzy.shouldShowIcon()));
+						user.addEffect(new MobEffectInstance(SpectrumStatusEffects.FRENZY, duration, level - 1, frenzy.isAmbient(), frenzy.isVisible(), frenzy.showIcon()));
 					}
 				}
 			}
@@ -36,7 +36,7 @@ public class SedativesItem extends ItemWithTooltip {
 			//}
 		}
 		
-		return super.finishUsing(stack, world, user);
+		return super.finishUsingItem(stack, world, user);
 	}
 	
 }

@@ -1,15 +1,15 @@
 package de.dafuqs.spectrum.particle.effect;
 
-import net.minecraft.util.math.*;
-import net.minecraft.world.event.*;
+import net.minecraft.world.level.gameevent.*;
+import net.minecraft.world.phys.*;
 
 public abstract class SimpleTransmission {
 	
-	protected final Vec3d origin;
+	protected final Vec3 origin;
 	protected final PositionSource destination;
 	protected final int arrivalInTicks;
 	
-	public SimpleTransmission(Vec3d origin, PositionSource destination, int arrivalInTicks) {
+	public SimpleTransmission(Vec3 origin, PositionSource destination, int arrivalInTicks) {
 		this.origin = origin;
 		this.destination = destination;
 		this.arrivalInTicks = arrivalInTicks;
@@ -19,7 +19,7 @@ public abstract class SimpleTransmission {
 		return this.arrivalInTicks;
 	}
 	
-	public Vec3d getOrigin() {
+	public Vec3 getOrigin() {
 		return this.origin;
 	}
 	

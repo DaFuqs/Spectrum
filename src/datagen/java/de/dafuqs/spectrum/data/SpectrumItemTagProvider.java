@@ -5,17 +5,17 @@ import java.util.concurrent.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.datagen.v1.*;
 import net.fabricmc.fabric.api.datagen.v1.provider.*;
-import net.minecraft.registry.*;
-import net.minecraft.registry.tag.*;
+import net.minecraft.core.*;
+import net.minecraft.tags.*;
 
 public class SpectrumItemTagProvider extends FabricTagProvider.ItemTagProvider {
 	
-	public SpectrumItemTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> lookupFuture) {
+	public SpectrumItemTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> lookupFuture) {
 		super(output, lookupFuture);
 	}
 	
 	@Override
-	protected void configure(RegistryWrapper.WrapperLookup lookup) {
+	protected void addTags(HolderLookup.Provider lookup) {
 		SpectrumEnchantments.provideItemTags(this::getOrCreateTagBuilder);
 		
 		getOrCreateTagBuilder(SpectrumItemTags.COOKBOOKS).add(

@@ -5,9 +5,10 @@ import com.klikli_dev.modonomicon.book.entries.*;
 import com.klikli_dev.modonomicon.client.gui.book.*;
 import de.dafuqs.spectrum.compat.modonomicon.*;
 import net.minecraft.client.*;
-import net.minecraft.client.gui.screen.*;
+import net.minecraft.client.gui.screens.*;
+import net.minecraft.core.*;
 import net.minecraft.network.*;
-import net.minecraft.registry.*;
+import net.minecraft.resources.*;
 import net.minecraft.util.*;
 
 /**
@@ -19,19 +20,19 @@ public class WebLinkEntry extends BookEntry {
 	
 	private final String url;
 	
-	public WebLinkEntry(Identifier id, BookEntryData data, Identifier commandToRunOnFirstReadId, String url) {
+	public WebLinkEntry(ResourceLocation id, BookEntryData data, ResourceLocation commandToRunOnFirstReadId, String url) {
 		super(id, data, commandToRunOnFirstReadId);
 		this.url = url;
 	}
 	
 	@Override
-	public Identifier getType() {
+	public ResourceLocation getType() {
 		return ModonomiconCompat.WEB_LINK_ENTRY_TYPE;
 	}
 	
 	@Override
 	public void openEntry(BookAddress bookAddress) {
-		ConfirmLinkScreen.open(MinecraftClient.getInstance().currentScreen, url, false);
+		ConfirmLinkScreen.confirmLinkNow(Minecraft.getInstance().screen, url, false);
 	}
 	
 	@Override
@@ -40,29 +41,29 @@ public class WebLinkEntry extends BookEntry {
 	}
 	
 	@Override
-	public void toNetwork(RegistryByteBuf buffer) {
-		buffer.writeIdentifier(this.id);
+	public void toNetwork(RegistryFriendlyByteBuf buffer) {
+		buffer.writeResourceLocation(this.id);
 		this.data.toNetwork(buffer);
-		buffer.writeNullable(this.commandToRunOnFirstReadId, PacketByteBuf::writeIdentifier);
-		buffer.writeString(url);
+		buffer.writeNullable(this.commandToRunOnFirstReadId, FriendlyByteBuf::writeResourceLocation);
+		buffer.writeUtf(url);
 	}
 	
-	public static WebLinkEntry fromNetwork(RegistryByteBuf buffer) {
-		var id = buffer.readIdentifier();
+	public static WebLinkEntry fromNetwork(RegistryFriendlyByteBuf buffer) {
+		var id = buffer.readResourceLocation();
 		BookEntryData data = BookEntryData.fromNetwork(buffer);
-		Identifier commandToRunOnFirstReadId = buffer.readNullable(PacketByteBuf::readIdentifier);
-		var url = buffer.readString();
+		ResourceLocation commandToRunOnFirstReadId = buffer.readNullable(FriendlyByteBuf::readResourceLocation);
+		var url = buffer.readUtf();
 		
 		return new WebLinkEntry(id, data, commandToRunOnFirstReadId, url);
 	}
 	
-	public static WebLinkEntry fromJson(Identifier id, JsonObject json, boolean autoAddReadConditions, RegistryWrapper.WrapperLookup wrapperLookup) {
+	public static WebLinkEntry fromJson(ResourceLocation id, JsonObject json, boolean autoAddReadConditions, HolderLookup.Provider wrapperLookup) {
 		BookEntry.BookEntryData data = BookEntryData.fromJson(id, json, autoAddReadConditions, wrapperLookup);
-		Identifier commandToRunOnFirstReadId = null;
+		ResourceLocation commandToRunOnFirstReadId = null;
 		if (json.has("command_to_run_on_first_read")) {
-			commandToRunOnFirstReadId = Identifier.of(JsonHelper.getString(json, "command_to_run_on_first_read"));
+			commandToRunOnFirstReadId = ResourceLocation.parse(GsonHelper.getAsString(json, "command_to_run_on_first_read"));
 		}
-		String url = JsonHelper.getString(json, "url");
+		String url = GsonHelper.getAsString(json, "url");
 		return new WebLinkEntry(id, data, commandToRunOnFirstReadId, url);
 	}
 }

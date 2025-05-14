@@ -5,25 +5,24 @@ import de.dafuqs.spectrum.networking.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.fabricmc.fabric.api.networking.v1.*;
-import net.minecraft.block.entity.*;
 import net.minecraft.client.*;
+import net.minecraft.core.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.network.packet.*;
-import net.minecraft.server.network.*;
-import net.minecraft.server.world.*;
-import net.minecraft.util.math.*;
+import net.minecraft.network.protocol.common.custom.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.level.block.entity.*;
 
-public record PlayFusionCraftingInProgressParticlePayload(BlockPos pos) implements CustomPayload {
+public record PlayFusionCraftingInProgressParticlePayload(BlockPos pos) implements CustomPacketPayload {
 	
-	public static final Id<PlayFusionCraftingInProgressParticlePayload> ID = SpectrumC2SPackets.makeId("play_fusion_crafting_in_progress_particle");
-	public static final PacketCodec<PacketByteBuf, PlayFusionCraftingInProgressParticlePayload> CODEC = PacketCodec.tuple(
-			BlockPos.PACKET_CODEC, PlayFusionCraftingInProgressParticlePayload::pos,
+	public static final Type<PlayFusionCraftingInProgressParticlePayload> ID = SpectrumC2SPackets.makeId("play_fusion_crafting_in_progress_particle");
+	public static final StreamCodec<FriendlyByteBuf, PlayFusionCraftingInProgressParticlePayload> CODEC = StreamCodec.composite(
+			BlockPos.STREAM_CODEC, PlayFusionCraftingInProgressParticlePayload::pos,
 			PlayFusionCraftingInProgressParticlePayload::new
 	);
 	
-	public static void sendPlayFusionCraftingInProgressParticles(ServerWorld world, BlockPos pos) {
-		for (ServerPlayerEntity player : PlayerLookup.tracking(world, pos)) {
+	public static void sendPlayFusionCraftingInProgressParticles(ServerLevel world, BlockPos pos) {
+		for (ServerPlayer player : PlayerLookup.tracking(world, pos)) {
 			ServerPlayNetworking.send(player, new PlayFusionCraftingInProgressParticlePayload(pos));
 		}
 	}
@@ -31,15 +30,15 @@ public record PlayFusionCraftingInProgressParticlePayload(BlockPos pos) implemen
 	@SuppressWarnings("resource")
 	@Environment(EnvType.CLIENT)
 	public static void execute(PlayFusionCraftingInProgressParticlePayload payload, ClientPlayNetworking.Context context) {
-		MinecraftClient client = context.client();
-		BlockEntity blockEntity = client.world.getBlockEntity(payload.pos);
+		Minecraft client = context.client();
+		BlockEntity blockEntity = client.level.getBlockEntity(payload.pos);
 		if (blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
 			fusionShrineBlockEntity.spawnCraftingParticles();
 		}
 	}
 	
 	@Override
-	public Id<? extends CustomPayload> getId() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

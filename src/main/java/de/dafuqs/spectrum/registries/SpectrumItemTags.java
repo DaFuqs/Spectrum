@@ -1,10 +1,10 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
-import net.minecraft.item.*;
-import net.minecraft.registry.*;
-import net.minecraft.registry.tag.*;
-import net.minecraft.util.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.resources.*;
+import net.minecraft.tags.*;
+import net.minecraft.world.item.*;
 
 public class SpectrumItemTags {
 	
@@ -35,11 +35,11 @@ public class SpectrumItemTags {
 	public static final TagKey<Item> WEEPING_GALA_LOGS = of("weeping_gala_logs");
 
 	private static TagKey<Item> of(String id) {
-		return TagKey.of(RegistryKeys.ITEM, SpectrumCommon.locate(id));
+		return TagKey.create(Registries.ITEM, SpectrumCommon.locate(id));
 	}
 	
 	private static TagKey<Item> common(String id) {
-		return TagKey.of(RegistryKeys.ITEM, Identifier.of("c", id));
+		return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", id));
 	}
 	
 }

@@ -1,23 +1,23 @@
 package de.dafuqs.spectrum.compat.emi.recipes;
 
+import com.klikli_dev.modonomicon.datagen.book.demo.features.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.emi.*;
 import de.dafuqs.spectrum.recipe.crystallarieum.*;
 import de.dafuqs.spectrum.registries.*;
 import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.*;
-import net.fabricmc.fabric.api.transfer.v1.fluid.*;
-import net.minecraft.recipe.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.item.crafting.*;
 
 import java.util.*;
 import java.util.stream.*;
 
 public class CrystallarieumEmiRecipeGated extends GatedSpectrumEmiRecipe<CrystallarieumRecipe> {
-	private final static Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/modonomicon/crystallarieum.png");
+	private final static ResourceLocation BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/modonomicon/crystallarieum.png");
 	
-	public CrystallarieumEmiRecipeGated(RecipeEntry<CrystallarieumRecipe> entry) {
+	public CrystallarieumEmiRecipeGated(RecipeHolder<CrystallarieumRecipe> entry) {
 		super(SpectrumEmiRecipeCategories.CRYSTALLARIEUM, entry, 124, 100);
 		inputs = List.of(
 				EmiIngredient.of(recipe.getIngredientStack()),
@@ -25,7 +25,7 @@ public class CrystallarieumEmiRecipeGated extends GatedSpectrumEmiRecipe<Crystal
 		);
 		outputs = Stream.concat(
 				Stream.concat(
-								Stream.of(recipe.getResult(getRegistryManager())),
+								Stream.of(recipe.getResultItem(getRegistryManager())),
 								recipe.getAdditionalResults().stream())
 						.map(EmiStack::of),
 				recipe.getGrowthStages().stream().map(s -> EmiStack.of(s.getBlock())).filter(s -> !s.isEmpty())
@@ -51,10 +51,10 @@ public class CrystallarieumEmiRecipeGated extends GatedSpectrumEmiRecipe<Crystal
 		}
 		
 		// catalysts
-		widgets.addText(Text.translatable("container.spectrum.rei.crystallarieum.catalyst"), 0, 42, 0x3f3f3f, false);
-		widgets.addText(Text.translatable("container.spectrum.rei.crystallarieum.accelerator"), 0, 58, 0x3f3f3f, false);
-		widgets.addText(Text.translatable("container.spectrum.rei.crystallarieum.ink_consumption"), 0, 68, 0x3f3f3f, false);
-		widgets.addText(Text.translatable("container.spectrum.rei.crystallarieum.used_up"), 0, 78, 0x3f3f3f, false);
+		widgets.addText(Component.translatable("container.spectrum.rei.crystallarieum.catalyst"), 0, 42, 0x3f3f3f, false);
+		widgets.addText(Component.translatable("container.spectrum.rei.crystallarieum.accelerator"), 0, 58, 0x3f3f3f, false);
+		widgets.addText(Component.translatable("container.spectrum.rei.crystallarieum.ink_consumption"), 0, 68, 0x3f3f3f, false);
+		widgets.addText(Component.translatable("container.spectrum.rei.crystallarieum.used_up"), 0, 78, 0x3f3f3f, false);
 		
 		List<CrystallarieumCatalyst> catalysts = recipe.getCatalysts();
 		for (int i = 0; i < catalysts.size(); i++) {
@@ -108,9 +108,9 @@ public class CrystallarieumEmiRecipeGated extends GatedSpectrumEmiRecipe<Crystal
 		}
 		
 		if (recipe.growsWithoutCatalyst()) {
-			widgets.addText(Text.translatable("container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds_catalyst_optional", recipe.getSecondsPerGrowthStage()), 0, 90, 0x3f3f3f, false);
+			widgets.addText(Component.translatable("container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds_catalyst_optional", recipe.getSecondsPerGrowthStage()), 0, 90, 0x3f3f3f, false);
 		} else {
-			widgets.addText(Text.translatable("container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds", recipe.getSecondsPerGrowthStage()), 0, 90, 0x3f3f3f, false);
+			widgets.addText(Component.translatable("container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds", recipe.getSecondsPerGrowthStage()), 0, 90, 0x3f3f3f, false);
 		}
 	}
 	

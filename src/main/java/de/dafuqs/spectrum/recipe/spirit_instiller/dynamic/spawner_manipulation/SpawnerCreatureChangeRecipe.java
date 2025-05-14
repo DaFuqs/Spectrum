@@ -3,14 +3,14 @@ package de.dafuqs.spectrum.recipe.spirit_instiller.dynamic.spawner_manipulation;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.mob_head.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.component.type.*;
-import net.minecraft.entity.*;
-import net.minecraft.item.*;
+import net.minecraft.core.registries.*;
 import net.minecraft.nbt.*;
-import net.minecraft.recipe.*;
-import net.minecraft.registry.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.*;
+import net.minecraft.world.item.crafting.*;
 
 import java.util.*;
 
@@ -26,14 +26,14 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 	}
 	
 	@Override
-	public boolean canCraftWithBlockEntityTag(NbtComponent spawnerBlockEntityNbt, ItemStack firstBowlStack, ItemStack secondBowlStack) {
+	public boolean canCraftWithBlockEntityTag(CustomData spawnerBlockEntityNbt, ItemStack firstBowlStack, ItemStack secondBowlStack) {
 		Optional<EntityType<?>> entityType = SpectrumSkullBlock.getEntityTypeOfSkullStack(firstBowlStack);
 		entityType = entityType.isEmpty() ? SpectrumSkullBlock.getEntityTypeOfSkullStack(secondBowlStack) : entityType;
 		
 		if (entityType.isEmpty()) {
 			return false;
 		}
-		if (entityType.get().isIn(SpectrumEntityTypeTags.SPAWNER_MANIPULATION_BLACKLISTED)) {
+		if (entityType.get().is(SpectrumEntityTypeTags.SPAWNER_MANIPULATION_BLACKLISTED)) {
 			return false;
 		}
 		if (spawnerBlockEntityNbt == null) {
@@ -41,11 +41,11 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 		}
 		
 		if (spawnerBlockEntityNbt.contains("SpawnData")) {
-			NbtCompound spawnData = spawnerBlockEntityNbt.copyNbt().getCompound("SpawnData");
+			CompoundTag spawnData = spawnerBlockEntityNbt.copyTag().getCompound("SpawnData");
 			if (spawnData.contains("entity")) {
-				NbtCompound entity = spawnData.getCompound("entity");
+				CompoundTag entity = spawnData.getCompound("entity");
 				if (entity.contains("id")) {
-					Identifier entityTypeIdentifier = Registries.ENTITY_TYPE.getId(entityType.get());
+					ResourceLocation entityTypeIdentifier = BuiltInRegistries.ENTITY_TYPE.getKey(entityType.get());
 					return !entityTypeIdentifier.toString().equals(entity.getString("id"));
 				}
 			}
@@ -54,12 +54,12 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 	}
 	
 	@Override
-	public Text getOutputLoreText() {
-		return Text.translatable("recipe.spectrum.spawner.lore.changed_creature");
+	public Component getOutputLoreText() {
+		return Component.translatable("recipe.spectrum.spawner.lore.changed_creature");
 	}
 	
 	@Override
-	public NbtCompound getSpawnerResultNbt(NbtCompound spawnerBlockEntityNbt, ItemStack firstBowlStack, ItemStack secondBowlStack) {
+	public CompoundTag getSpawnerResultNbt(CompoundTag spawnerBlockEntityNbt, ItemStack firstBowlStack, ItemStack secondBowlStack) {
 		Optional<EntityType<?>> entityType = SpectrumSkullBlock.getEntityTypeOfSkullStack(firstBowlStack);
 		entityType = entityType.isEmpty() ? SpectrumSkullBlock.getEntityTypeOfSkullStack(secondBowlStack) : entityType;
 		
@@ -67,7 +67,7 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 			return spawnerBlockEntityNbt;
 		}
 		
-		Identifier entityTypeIdentifier = Registries.ENTITY_TYPE.getId(entityType.get());
+		ResourceLocation entityTypeIdentifier = BuiltInRegistries.ENTITY_TYPE.getKey(entityType.get());
 		
 		// Default spawner tag:
 		/* BlockEntityTag: {
@@ -82,9 +82,9 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 		   }
 		 */
 		
-		NbtCompound idCompound = new NbtCompound();
+		CompoundTag idCompound = new CompoundTag();
 		idCompound.putString("id", entityTypeIdentifier.toString());
-		NbtCompound entityCompound = new NbtCompound();
+		CompoundTag entityCompound = new CompoundTag();
 		entityCompound.put("entity", idCompound);
 		spawnerBlockEntityNbt.put("SpawnData", entityCompound);
 		

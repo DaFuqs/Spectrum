@@ -13,8 +13,8 @@ public abstract class HeartMixin {
 	
 	@ModifyVariable(method = "draw", at = @At("STORE"), ordinal = 0, argsOnly = true, remap = false)
 	private boolean heartRendererRenderPlayerHeartsGetHealthInjector(boolean hardcore) {
-		MinecraftClient client = MinecraftClient.getInstance();
-		if (!hardcore && client.player != null && client.player.hasStatusEffect(SpectrumStatusEffects.DIVINITY)) {
+		Minecraft client = Minecraft.getInstance();
+		if (!hardcore && client.player != null && client.player.hasEffect(SpectrumStatusEffects.DIVINITY)) {
 			return true;
 		}
 		return hardcore;

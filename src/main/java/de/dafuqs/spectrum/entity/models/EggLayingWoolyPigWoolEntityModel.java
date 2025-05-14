@@ -1,11 +1,11 @@
 package de.dafuqs.spectrum.entity.models;
 
+import com.mojang.blaze3d.vertex.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.*;
-import net.minecraft.client.render.entity.model.*;
-import net.minecraft.client.util.math.*;
+import net.minecraft.client.model.geom.*;
+import net.minecraft.client.model.geom.builders.*;
 
 @Environment(EnvType.CLIENT)
 public class EggLayingWoolyPigWoolEntityModel extends EntityModel<EggLayingWoolyPigEntity> {
@@ -17,24 +17,24 @@ public class EggLayingWoolyPigWoolEntityModel extends EntityModel<EggLayingWooly
 		this.torso = root.getChild("torso");
 	}
 	
-	public static TexturedModelData getTexturedModelData() {
-		ModelData modelData = new ModelData();
-		ModelPartData modelPartData = modelData.getRoot();
+	public static LayerDefinition getTexturedModelData() {
+		MeshDefinition modelData = new MeshDefinition();
+		PartDefinition modelPartData = modelData.getRoot();
 		
-		modelPartData.addChild("torso", ModelPartBuilder.create()
-				.uv(0, 0).cuboid(-6.5F, -15.5F, -9.5F, 13.0F, 13.0F, 19.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 24.0F, 0.0F));
+		modelPartData.addOrReplaceChild("torso", CubeListBuilder.create()
+				.texOffs(0, 0).addBox(-6.5F, -15.5F, -9.5F, 13.0F, 13.0F, 19.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
 		
-		return TexturedModelData.of(modelData, 128, 128);
+		return LayerDefinition.create(modelData, 128, 128);
 	}
 	
 	@Override
-	public void setAngles(EggLayingWoolyPigEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+	public void setupAnim(EggLayingWoolyPigEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 	
 	}
 	
 	@Override
-	public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, int color) {
-		if (child) {
+	public void renderToBuffer(PoseStack matrices, VertexConsumer vertices, int light, int overlay, int color) {
+		if (young) {
 			matrices.scale(0.6f, 0.6f, 0.6f);
 			matrices.translate(0, 1, 0);
 		}

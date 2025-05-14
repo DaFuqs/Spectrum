@@ -26,6 +26,10 @@ repositories {
 	maven { url = "https://maven.is-immensely.gay/releases" } // Revelationary, Fractal, AEA, ...
 	maven { url = "https://jitpack.io" } // Arrowhead, Dimensional Reverb
 	maven { url = "https://maven.wispforest.io/releases" }
+	maven {
+		name = 'ParchmentMC'
+		url = 'https://maven.parchmentmc.org'
+	}
 	mavenCentral()
 }
 
@@ -51,7 +55,10 @@ dependencies {
 
 	// minecraft, fabric & api
 	minecraft("com.mojang:minecraft:${project.minecraft_version}")
-	mappings("net.fabricmc:yarn:${project.yarn_mappings}:v2")
+	mappings loom.layered() {
+		officialMojangMappings()
+		parchment("org.parchmentmc.data:parchment-${project.parchment_mappings}@zip")
+	}
 	modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
 	modImplementation("net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}")
 

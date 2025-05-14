@@ -10,19 +10,18 @@ import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.magic_items.ampoules.*;
 import de.dafuqs.spectrum.items.tools.*;
 import net.fabricmc.fabric.api.tag.convention.v2.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.entity.projectile.thrown.*;
-import net.minecraft.item.*;
-import net.minecraft.recipe.*;
-import net.minecraft.server.network.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
-import net.minecraft.util.hit.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.entity.projectile.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -40,26 +39,26 @@ public class SpectrumItemProjectileBehaviors {
 		ItemProjectileBehavior.register(new ItemProjectileBehavior() {
 			@Override
 			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, Entity owner, EntityHitResult hitResult) {
-				if (strikeLightning(hitResult.getEntity().getWorld(), hitResult.getEntity().getBlockPos())) {
-					stack.decrement(1);
+				if (strikeLightning(hitResult.getEntity().level(), hitResult.getEntity().blockPosition())) {
+					stack.shrink(1);
 				}
 				return stack;
 			}
 			
 			@Override
 			public ItemStack onBlockHit(ItemProjectileEntity projectile, ItemStack stack, Entity owner, BlockHitResult hitResult) {
-				if (strikeLightning(projectile.getWorld(), hitResult.getBlockPos())) {
-					stack.decrement(1);
+				if (strikeLightning(projectile.level(), hitResult.getBlockPos())) {
+					stack.shrink(1);
 				}
 				return stack;
 			}
 			
-			private boolean strikeLightning(World world, BlockPos pos) {
-				if (world.isSkyVisible(pos.up())) {
-					LightningEntity lightningEntity = EntityType.LIGHTNING_BOLT.create(world);
+			private boolean strikeLightning(Level world, BlockPos pos) {
+				if (world.canSeeSky(pos.above())) {
+					LightningBolt lightningEntity = EntityType.LIGHTNING_BOLT.create(world);
 					if (lightningEntity != null) {
-						lightningEntity.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(pos));
-						world.spawnEntity(lightningEntity);
+						lightningEntity.moveTo(Vec3.atBottomCenterOf(pos));
+						world.addFreshEntity(lightningEntity);
 						return true;
 					}
 				}
@@ -81,21 +80,21 @@ public class SpectrumItemProjectileBehaviors {
 			}
 			
 			@Override
-			public boolean dealDamage(ThrownItemEntity projectile, Entity owner, Entity target) {
-				return target.damage(target.getDamageSources().thrown(projectile, owner), 6F);
+			public boolean dealDamage(ThrowableItemProjectile projectile, Entity owner, Entity target) {
+				return target.hurt(target.damageSources().thrown(projectile, owner), 6F);
 			}
 			
 			@Override
 			public ItemStack onBlockHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, BlockHitResult hitResult) {
-				World world = projectile.getWorld();
+				Level world = projectile.level();
 				BlockEntity blockEntity = world.getBlockEntity(hitResult.getBlockPos());
 				if (blockEntity instanceof JukeboxBlockEntity jukeboxBlockEntity && !blockEntity.isRemoved()) {
-					ItemStack currentStack = jukeboxBlockEntity.getStack(0);
+					ItemStack currentStack = jukeboxBlockEntity.getItem(0);
 					if (!currentStack.isEmpty()) {
-						jukeboxBlockEntity.dropRecord();
+						jukeboxBlockEntity.popOutTheItem();
 					}
-					jukeboxBlockEntity.setStack(stack.copy());
-					stack.decrement(1);
+					jukeboxBlockEntity.setTheItem(stack.copy());
+					stack.shrink(1);
 				}
 				return stack;
 			}
@@ -105,12 +104,12 @@ public class SpectrumItemProjectileBehaviors {
 			@Override
 			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {
 				Entity entity = hitResult.getEntity();
-				if (!entity.isFireImmune()) {
-					entity.setOnFireFor(15);
-					if (entity.damage(entity.getDamageSources().inFire(), 4.0F)) {
-						entity.playSound(SoundEvents.ENTITY_GENERIC_BURN, 0.4F, 2.0F + entity.getWorld().getRandom().nextFloat() * 0.4F);
+				if (!entity.fireImmune()) {
+					entity.igniteForSeconds(15);
+					if (entity.hurt(entity.damageSources().inFire(), 4.0F)) {
+						entity.playSound(SoundEvents.GENERIC_BURN, 0.4F, 2.0F + entity.level().getRandom().nextFloat() * 0.4F);
 					}
-					stack.decrement(1);
+					stack.shrink(1);
 				}
 				return stack;
 			}
@@ -119,15 +118,15 @@ public class SpectrumItemProjectileBehaviors {
 		ItemProjectileBehavior.register(new ItemProjectileBehavior() {
 			@Override
 			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {
-				IncandescentAmalgamBlock.explode(projectile.getWorld(), BlockPos.ofFloored(hitResult.getPos()), owner, stack);
-				stack.decrement(1);
+				IncandescentAmalgamBlock.explode(projectile.level(), BlockPos.containing(hitResult.getLocation()), owner, stack);
+				stack.shrink(1);
 				return stack;
 			}
 			
 			@Override
 			public ItemStack onBlockHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, BlockHitResult hitResult) {
-				IncandescentAmalgamBlock.explode(projectile.getWorld(), BlockPos.ofFloored(hitResult.getPos()), owner, stack);
-				stack.decrement(1);
+				IncandescentAmalgamBlock.explode(projectile.level(), BlockPos.containing(hitResult.getLocation()), owner, stack);
+				stack.shrink(1);
 				return stack;
 			}
 		}, SpectrumBlocks.INCANDESCENT_AMALGAM.asItem());
@@ -140,19 +139,19 @@ public class SpectrumItemProjectileBehaviors {
 			
 			@Override
 			public ItemStack onBlockHit(ItemProjectileEntity projectile, ItemStack accelerator, @Nullable Entity owner, BlockHitResult hitResult) {
-				Optional<ItemStack> optionalAcceleratorContentStack = OmniAcceleratorItem.getFirstStack(projectile.getWorld().getRegistryManager(), accelerator);
+				Optional<ItemStack> optionalAcceleratorContentStack = OmniAcceleratorItem.getFirstStack(projectile.level().registryAccess(), accelerator);
 				if (optionalAcceleratorContentStack.isPresent() && owner instanceof LivingEntity livingOwner) {
 					ItemStack acceleratorContentStack = optionalAcceleratorContentStack.get();
 					
-					World world = projectile.getWorld();
+					Level world = projectile.level();
 					OmniAcceleratorProjectile newProjectile = OmniAcceleratorProjectile.get(optionalAcceleratorContentStack.get());
 					Entity newEntity = newProjectile.createProjectile(acceleratorContentStack, livingOwner, world, accelerator);
 					
 					if (newEntity != null) {
-						Vec3d pos = hitResult.getPos();
-						newEntity.setPos(pos.getX(), pos.getY(), pos.getZ());
+						Vec3 pos = hitResult.getLocation();
+						newEntity.setPosRaw(pos.x(), pos.y(), pos.z());
 						OmniAcceleratorProjectile.setVelocity(newEntity, projectile, 20, world.getRandom().nextFloat() * 360, 0.0F, 2.0F, 1.0F);
-						world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), newProjectile.getSoundEffect(), SoundCategory.PLAYERS, 0.5F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
+						world.playSound(null, pos.x(), pos.y(), pos.z(), newProjectile.getSoundEffect(), SoundSource.PLAYERS, 0.5F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
 						OmniAcceleratorItem.decrementFirstItem(accelerator);
 					}
 				}
@@ -165,26 +164,26 @@ public class SpectrumItemProjectileBehaviors {
 			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {
 				Entity target = hitResult.getEntity();
 				if (target instanceof LivingEntity livingTarget) {
-					livingTarget.addStatusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 20, 0));
-					livingTarget.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 200, 0));
+					livingTarget.addEffect(new MobEffectInstance(MobEffects.SATURATION, 20, 0));
+					livingTarget.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 200, 0));
 				}
-				stack.decrement(1);
+				stack.shrink(1);
 				return stack;
 			}
 		}, Items.CAKE);
 		
 		ItemProjectileBehavior.register(new ItemProjectileBehavior.Default() {
 			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {
-				if (MemoryBlockEntity.manifest((ServerWorld) projectile.getWorld(), hitResult.getEntity().getBlockPos(), stack, owner == null ? null : owner.getUuid())) {
-					stack.decrement(1);
+				if (MemoryBlockEntity.manifest((ServerLevel) projectile.level(), hitResult.getEntity().blockPosition(), stack, owner == null ? null : owner.getUUID())) {
+					stack.shrink(1);
 				}
 				return stack;
 			}
 			
 			@Override
 			public ItemStack onBlockHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, BlockHitResult hitResult) {
-				if (MemoryBlockEntity.manifest((ServerWorld) projectile.getWorld(), hitResult.getBlockPos().offset(hitResult.getSide()), stack, owner == null ? null : owner.getUuid())) {
-					stack.decrement(1);
+				if (MemoryBlockEntity.manifest((ServerLevel) projectile.level(), hitResult.getBlockPos().relative(hitResult.getDirection()), stack, owner == null ? null : owner.getUUID())) {
+					stack.shrink(1);
 				}
 				return stack;
 			}
@@ -193,13 +192,13 @@ public class SpectrumItemProjectileBehaviors {
 		
 		ItemProjectileBehavior.register(new ItemProjectileBehavior.Default() {
 			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {
-				PipeBombItem.prime(stack, projectile.getWorld(), projectile.getPos(), owner);
+				PipeBombItem.prime(stack, projectile.level(), projectile.position(), owner);
 				return stack;
 			}
 			
 			@Override
 			public ItemStack onBlockHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, BlockHitResult hitResult) {
-				PipeBombItem.prime(stack, projectile.getWorld(), projectile.getPos(), owner);
+				PipeBombItem.prime(stack, projectile.level(), projectile.position(), owner);
 				return stack;
 			}
 			
@@ -207,16 +206,16 @@ public class SpectrumItemProjectileBehaviors {
 		
 		ItemProjectileBehavior.register(new ItemProjectileBehavior.Default() {
 			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {
-				if (projectile.getOwner() instanceof LivingEntity livingOwner && hitResult.getEntity() instanceof LivingEntity livingTarget && ((GlassAmpouleItem) stack.getItem()).trigger(projectile.getWorld(), stack, livingOwner, livingTarget, hitResult.getPos())) {
-					stack.decrement(1);
+				if (projectile.getOwner() instanceof LivingEntity livingOwner && hitResult.getEntity() instanceof LivingEntity livingTarget && ((GlassAmpouleItem) stack.getItem()).trigger(projectile.level(), stack, livingOwner, livingTarget, hitResult.getLocation())) {
+					stack.shrink(1);
 				}
 				return stack;
 			}
 			
 			@Override
 			public ItemStack onBlockHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, BlockHitResult hitResult) {
-				if (projectile.getOwner() instanceof LivingEntity livingOwner && ((GlassAmpouleItem) stack.getItem()).trigger(projectile.getWorld(), stack, livingOwner, null, hitResult.getPos())) {
-					stack.decrement(1);
+				if (projectile.getOwner() instanceof LivingEntity livingOwner && ((GlassAmpouleItem) stack.getItem()).trigger(projectile.level(), stack, livingOwner, null, hitResult.getLocation())) {
+					stack.shrink(1);
 				}
 				return stack;
 			}
@@ -230,7 +229,7 @@ public class SpectrumItemProjectileBehaviors {
 			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {
 				if (hitResult.getEntity() instanceof LivingEntity livingTarget) {
 					List<ItemStack> equipment = new ArrayList<>();
-					livingTarget.getEquippedItems().forEach(equipment::add);
+					livingTarget.getAllSlots().forEach(equipment::add);
 					Collections.shuffle(equipment);
 
 					for (ItemStack equip : equipment) {
@@ -246,16 +245,16 @@ public class SpectrumItemProjectileBehaviors {
 		ItemProjectileBehavior.register(new ItemProjectileBehavior.Default() {
 			@Override
 			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {
-				if (hitResult.getEntity() instanceof PlayerEntity target) {
+				if (hitResult.getEntity() instanceof Player target) {
 					int playerExperience = target.totalExperience;
 					if (playerExperience > 0) {
 						KnowledgeGemItem item = (KnowledgeGemItem) stack.getItem();
-						long transferableExperiencePerTick = item.getTransferableExperiencePerTick(target.getWorld().getRegistryManager(), stack);
+						long transferableExperiencePerTick = item.getTransferableExperiencePerTick(target.level().registryAccess(), stack);
 						int xpToTransfer = (int) Math.min(target.totalExperience, transferableExperiencePerTick * 100);
-						int experienceOverflow = ExperienceStorageItem.addStoredExperience(target.getWorld().getRegistryManager(), stack, xpToTransfer);
+						int experienceOverflow = ExperienceStorageItem.addStoredExperience(target.level().registryAccess(), stack, xpToTransfer);
 						
-						target.addExperience(-xpToTransfer + experienceOverflow);
-						target.playSound(SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, 0.3F, 0.8F + target.getWorld().getRandom().nextFloat() * 0.4F);
+						target.giveExperiencePoints(-xpToTransfer + experienceOverflow);
+						target.playSound(SoundEvents.EXPERIENCE_ORB_PICKUP, 0.3F, 0.8F + target.level().getRandom().nextFloat() * 0.4F);
 						return stack;
 					}
 				}
@@ -266,9 +265,9 @@ public class SpectrumItemProjectileBehaviors {
 		ItemProjectileBehavior.register(new ItemProjectileBehavior.Default() {
 			@Override
 			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {
-				var recipe = CraftingTabletItem.getStoredRecipe(projectile.getWorld(), stack).value();
-				if (recipe instanceof CraftingRecipe craftingRecipe && hitResult.getEntity() instanceof ServerPlayerEntity target) {
-					CraftingTabletItem.tryCraftRecipe(target, craftingRecipe, projectile.getWorld());
+				var recipe = CraftingTabletItem.getStoredRecipe(projectile.level(), stack).value();
+				if (recipe instanceof CraftingRecipe craftingRecipe && hitResult.getEntity() instanceof ServerPlayer target) {
+					CraftingTabletItem.tryCraftRecipe(target, craftingRecipe, projectile.level());
 				}
 				return stack;
 			}

@@ -6,87 +6,86 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.damage.*;
-import net.minecraft.entity.data.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.loot.*;
-import net.minecraft.loot.context.*;
+import net.minecraft.core.particles.*;
 import net.minecraft.nbt.*;
-import net.minecraft.particle.*;
-import net.minecraft.predicate.entity.*;
-import net.minecraft.registry.*;
-import net.minecraft.registry.tag.*;
-import net.minecraft.server.network.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
-import net.minecraft.stat.*;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.network.syncher.*;
+import net.minecraft.resources.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
+import net.minecraft.stats.*;
+import net.minecraft.tags.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
-import net.minecraft.world.event.*;
+import net.minecraft.world.damagesource.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.item.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.gameevent.*;
+import net.minecraft.world.level.storage.loot.*;
+import net.minecraft.world.level.storage.loot.parameters.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public class ShootingStarEntity extends Entity {
 	
-	private static final TrackedData<Integer> SHOOTING_STAR_TYPE = DataTracker.registerData(ShootingStarEntity.class, TrackedDataHandlerRegistry.INTEGER);
-	private static final TrackedData<Boolean> PLAYER_PLACED = DataTracker.registerData(ShootingStarEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-	private static final TrackedData<Boolean> HARDENED = DataTracker.registerData(ShootingStarEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+	private static final EntityDataAccessor<Integer> SHOOTING_STAR_TYPE = SynchedEntityData.defineId(ShootingStarEntity.class, EntityDataSerializers.INT);
+	private static final EntityDataAccessor<Boolean> PLAYER_PLACED = SynchedEntityData.defineId(ShootingStarEntity.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> HARDENED = SynchedEntityData.defineId(ShootingStarEntity.class, EntityDataSerializers.BOOLEAN);
 	
 	protected final float hoverHeight;
 	protected long age;
 	protected int availableHits;
 	protected int lastCollisionCount;
 	
-	public ShootingStarEntity(EntityType<? extends ShootingStarEntity> entityType, World world) {
+	public ShootingStarEntity(EntityType<? extends ShootingStarEntity> entityType, Level world) {
 		super(entityType, world);
 		this.hoverHeight = (float) (Math.random() * Math.PI * 2.0D);
 		this.availableHits = 5 + world.random.nextInt(3);
 		this.lastCollisionCount = 0;
 	}
 	
-	public ShootingStarEntity(World world, double x, double y, double z, ShootingStar.Type type, boolean playerPlaced, int availableHits, boolean hardened) {
+	public ShootingStarEntity(Level world, double x, double y, double z, ShootingStar.Variant type, boolean playerPlaced, int availableHits, boolean hardened) {
 		this(SpectrumEntityTypes.SHOOTING_STAR, world);
-		this.setPosition(x, y, z);
-		this.setYaw(this.random.nextFloat() * 360.0F);
+		this.setPos(x, y, z);
+		this.setYRot(this.random.nextFloat() * 360.0F);
 		this.setShootingStarType(type, playerPlaced, availableHits, hardened);
 		this.lastCollisionCount = 0;
 	}
 	
 	public static boolean canCollide(Entity entity, @NotNull Entity other) {
-		return (other.isCollidable() || other.isPushable()) && !entity.isConnectedThroughVehicle(other);
+		return (other.canBeCollidedWith() || other.isPushable()) && !entity.isPassengerOfSameVehicle(other);
 	}
 	
-	public static void playHitParticles(World world, double x, double y, double z, ShootingStar.Type type, int amount) {
-		Random random = world.random;
+	public static void playHitParticles(Level world, double x, double y, double z, ShootingStar.Variant type, int amount) {
+		RandomSource random = world.random;
 		// Everything in this lambda is running on the render thread
 		
 		for (int i = 0; i < amount; i++) {
 			float randomScale = 0.5F + random.nextFloat();
 			int randomLifetime = 10 + random.nextInt(20);
 			
-			ParticleEffect particleEffect = new DynamicParticleEffect(0.98F, type.getRandomParticleColor(random), randomScale, randomLifetime, false, true, true);
+			ParticleOptions particleEffect = new DynamicParticleEffect(0.98F, type.getRandomParticleColor(random), randomScale, randomLifetime, false, true, true);
 			world.addParticle(particleEffect, x, y, z, 0.35 - random.nextFloat() * 0.7, random.nextFloat() * 0.7, 0.35 - random.nextFloat() * 0.7);
 		}
 	}
 	
 	@Override
-	public boolean collidesWith(Entity other) {
+	public boolean canCollideWith(Entity other) {
 		return canCollide(this, other);
 	}
 	
 	@Override
-	public boolean isCollidable() {
+	public boolean canBeCollidedWith() {
 		return true;
 	}
 	
 	@Override
-	public boolean canHit() {
+	public boolean isPickable() {
 		return !this.isRemoved();
 	}
 	
@@ -96,60 +95,60 @@ public class ShootingStarEntity extends Entity {
 	}
 	
 	@Override
-	protected void initDataTracker(DataTracker.Builder builder) {
-		builder.add(SHOOTING_STAR_TYPE, ShootingStar.Type.COLORFUL.ordinal());
-		builder.add(PLAYER_PLACED, false);
-		builder.add(HARDENED, false);
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		builder.define(SHOOTING_STAR_TYPE, ShootingStar.Variant.COLORFUL.ordinal());
+		builder.define(PLAYER_PLACED, false);
+		builder.define(HARDENED, false);
 	}
 	
 	@Override
 	public void tick() {
 		super.tick();
 		
-		boolean wasOnGround = this.isOnGround();
-		double previousXVelocity = this.getVelocity().getX();
-		double previousYVelocity = this.getVelocity().getY();
-		double previousZVelocity = this.getVelocity().getZ();
+		boolean wasOnGround = this.onGround();
+		double previousXVelocity = this.getDeltaMovement().x();
+		double previousYVelocity = this.getDeltaMovement().y();
+		double previousZVelocity = this.getDeltaMovement().z();
 		
-		World world = this.getWorld();
-		if (world.isClient) {
-			this.noClip = false;
+		Level world = this.level();
+		if (world.isClientSide) {
+			this.noPhysics = false;
 		} else {
-			this.noClip = !this.getWorld().isSpaceEmpty(this, this.getBoundingBox().contract(1.0E-7D));
-			if (this.noClip) {
-				this.pushOutOfBlocks(this.getX(), (this.getBoundingBox().minY + this.getBoundingBox().maxY) / 2.0D, this.getZ());
+			this.noPhysics = !this.level().noCollision(this, this.getBoundingBox().deflate(1.0E-7D));
+			if (this.noPhysics) {
+				this.moveTowardsClosestSpace(this.getX(), (this.getBoundingBox().minY + this.getBoundingBox().maxY) / 2.0D, this.getZ());
 			}
 		}
 		
-		if (!this.hasNoGravity()) {
-			double d = this.isTouchingWater() ? -0.005D : -0.04D;
-			this.setVelocity(this.getVelocity().add(0.0D, d, 0.0D));
-			if (!this.isOnGround()) {
-				this.setVelocity(this.getVelocity().multiply(0.95D));
+		if (!this.isNoGravity()) {
+			double d = this.isInWater() ? -0.005D : -0.04D;
+			this.setDeltaMovement(this.getDeltaMovement().add(0.0D, d, 0.0D));
+			if (!this.onGround()) {
+				this.setDeltaMovement(this.getDeltaMovement().scale(0.95D));
 			}
 		}
 		
-		this.move(MovementType.SELF, this.getVelocity());
+		this.move(MoverType.SELF, this.getDeltaMovement());
 		
-		var collidingEntities = this.getWorld().getOtherEntities(this, getBoundingBox().expand(0.25, 0.334, 0.25));
+		var collidingEntities = this.level().getEntities(this, getBoundingBox().inflate(0.25, 0.334, 0.25));
 		collidingEntities = collidingEntities.stream().filter(entity -> !(entity instanceof ShootingStarEntity) && (entity.isPushable())).toList();
 		
 		// make it bounce back
 		boolean spawnLoot = false;
-		boolean playerPlaced = this.dataTracker.get(PLAYER_PLACED);
-		boolean hardened = this.dataTracker.get(HARDENED);
-		if (this.isOnGround() && !wasOnGround) {
-			this.addVelocity(0, -previousYVelocity * 0.9, 0);
-			collidingEntities.forEach(entity -> entity.move(MovementType.SHULKER_BOX, this.getVelocity().multiply(0, 1, 0)));
+		boolean playerPlaced = this.entityData.get(PLAYER_PLACED);
+		boolean hardened = this.entityData.get(HARDENED);
+		if (this.onGround() && !wasOnGround) {
+			this.push(0, -previousYVelocity * 0.9, 0);
+			collidingEntities.forEach(entity -> entity.move(MoverType.SHULKER_BOX, this.getDeltaMovement().multiply(0, 1, 0)));
 		}
-		if (Math.signum(this.getVelocity().x) != Math.signum(previousXVelocity)) {
-			this.addVelocity(-previousXVelocity * 0.6, 0, 0);
+		if (Math.signum(this.getDeltaMovement().x) != Math.signum(previousXVelocity)) {
+			this.push(-previousXVelocity * 0.6, 0, 0);
 			if (!hardened && Math.abs(previousXVelocity) > 0.5) {
 				spawnLoot = true;
 			}
 		}
-		if (Math.signum(this.getVelocity().z) != Math.signum(previousZVelocity)) {
-			this.addVelocity(0, 0, -previousZVelocity * 0.6);
+		if (Math.signum(this.getDeltaMovement().z) != Math.signum(previousZVelocity)) {
+			this.push(0, 0, -previousZVelocity * 0.6);
 			if (!hardened && !spawnLoot && Math.abs(previousZVelocity) > 0.5) {
 				spawnLoot = true;
 			}
@@ -158,17 +157,17 @@ public class ShootingStarEntity extends Entity {
 		collidingEntities.forEach(entity -> {
 			if (entity.getY() >= this.getBoundingBox().maxY) {
 				entity.fallDistance = 0F;
-				if (this.canHit()) {
-					entity.setPosition(entity.getPos().x, this.getBoundingBox().maxY, entity.getPos().z);
+				if (this.isPickable()) {
+					entity.setPos(entity.position().x, this.getBoundingBox().maxY, entity.position().z);
 				}
-				entity.move(MovementType.SHULKER_BOX, this.getVelocity());
+				entity.move(MoverType.SHULKER_BOX, this.getDeltaMovement());
 				entity.setOnGround(true);
 			}
 		});
 		
-		if (world.isClient) {
+		if (world.isClientSide) {
 			if (!playerPlaced && !hardened) {
-				if (this.isOnGround()) {
+				if (this.onGround()) {
 					if (world.random.nextInt(10) == 0) {
 						playGroundParticles();
 					}
@@ -186,7 +185,7 @@ public class ShootingStarEntity extends Entity {
 				return;
 			}
 			
-			this.checkBlockCollision();
+			this.checkInsideBlocks();
 			
 			if (spawnLoot && this.age > 1) {
 				this.lastCollisionCount++;
@@ -194,73 +193,73 @@ public class ShootingStarEntity extends Entity {
 					// if the block did collide a lot (maybe bugged or jammed?): break it and drop as item
 					this.availableHits--;
 					if (this.availableHits > 0) {
-						ItemStack shootingStarStack = ShootingStarItem.getWithRemainingHits((ShootingStarItem) this.asItem(), this.availableHits, this.dataTracker.get(HARDENED));
-						ItemEntity itemEntity = new ItemEntity(this.getWorld(), this.getX(), this.getY(), this.getZ(), shootingStarStack);
-						this.getWorld().spawnEntity(itemEntity);
+						ItemStack shootingStarStack = ShootingStarItem.getWithRemainingHits((ShootingStarItem) this.asItem(), this.availableHits, this.entityData.get(HARDENED));
+						ItemEntity itemEntity = new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), shootingStarStack);
+						this.level().addFreshEntity(itemEntity);
 					} else {
-						ItemStack starFragmentStack = SpectrumItems.STAR_FRAGMENT.getDefaultStack();
-						ItemEntity itemEntity = new ItemEntity(this.getWorld(), this.getX(), this.getY(), this.getZ(), starFragmentStack);
-						this.getWorld().spawnEntity(itemEntity);
+						ItemStack starFragmentStack = SpectrumItems.STAR_FRAGMENT.getDefaultInstance();
+						ItemEntity itemEntity = new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), starFragmentStack);
+						this.level().addFreshEntity(itemEntity);
 					}
 					this.discard();
 				} else {
 					// spawn loot
-					List<ItemStack> loot = getLoot((ServerWorld) this.getWorld(), SpectrumLootTables.SHOOTING_STAR_BOUNCE);
+					List<ItemStack> loot = getLoot((ServerLevel) this.level(), SpectrumLootTables.SHOOTING_STAR_BOUNCE);
 					for (ItemStack itemStack : loot) {
-						ItemEntity itemEntity = new ItemEntity(this.getWorld(), this.getX(), this.getY(), this.getZ(), itemStack);
-						this.getWorld().spawnEntity(itemEntity);
+						ItemEntity itemEntity = new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), itemStack);
+						this.level().addFreshEntity(itemEntity);
 					}
 					
 					// do effects
 					PlayShootingStarParticlesPayload.sendPlayShootingStarParticles(this);
-					this.getWorld().playSound(null, this.getBlockPos(), SpectrumSoundEvents.SHOOTING_STAR_CRACKER, SoundCategory.BLOCKS, 1.0F, 1.0F);
+					this.level().playSound(null, this.blockPosition(), SpectrumSoundEvents.SHOOTING_STAR_CRACKER, SoundSource.BLOCKS, 1.0F, 1.0F);
 				}
 			}
 			
-			if (!hardened && !wasOnGround && this.isOnGround() && previousYVelocity < -0.5) { // hitting the ground after a long fall
-				PlayParticleWithExactVelocityPayload.playParticleWithExactVelocity((ServerWorld) this.getWorld(), getPos(), ParticleTypes.EXPLOSION, 1, Vec3d.ZERO);
+			if (!hardened && !wasOnGround && this.onGround() && previousYVelocity < -0.5) { // hitting the ground after a long fall
+				PlayParticleWithExactVelocityPayload.playParticleWithExactVelocity((ServerLevel) this.level(), position(), ParticleTypes.EXPLOSION, 1, Vec3.ZERO);
 				if (!spawnLoot) {
 					PlayShootingStarParticlesPayload.sendPlayShootingStarParticles(this);
-					this.getWorld().playSound(null, this.getBlockPos(), SpectrumSoundEvents.SHOOTING_STAR_CRACKER, SoundCategory.BLOCKS, 1.0F, 1.0F);
+					this.level().playSound(null, this.blockPosition(), SpectrumSoundEvents.SHOOTING_STAR_CRACKER, SoundSource.BLOCKS, 1.0F, 1.0F);
 				}
 			}
 			
 			// push other entities away
-			List<Entity> otherEntities = this.getWorld().getOtherEntities(this, this.getBoundingBox().expand(0.2D, -0.01D, 0.2D), EntityPredicates.canBePushedBy(this));
+			List<Entity> otherEntities = this.level().getEntities(this, this.getBoundingBox().inflate(0.2D, -0.01D, 0.2D), EntitySelector.pushableBy(this));
 			if (!otherEntities.isEmpty()) {
 				for (Entity d : otherEntities) {
-					this.pushAwayFrom(d);
+					this.push(d);
 				}
 			}
 			
-			this.updateWaterState();
+			this.updateInWaterStateAndDoFluidPushing();
 		}
 	}
 	
 	@Override
-	public void onPlayerCollision(PlayerEntity player) {
+	public void playerTouch(Player player) {
 		// if the shooting star is still falling from the sky, and it hits a player:
 		// give the player the star, some damage and grant an advancement
-		if (!this.getWorld().isClient() && !this.dataTracker.get(HARDENED) && !this.isOnGround() && this.getVelocity().getY() < -0.5) {
-			this.getWorld().playSound(null, this.getBlockPos().getX(), this.getBlockPos().getY(), this.getBlockPos().getZ(), SpectrumSoundEvents.SHOOTING_STAR_CRACKER, SoundCategory.PLAYERS, 1.5F + random.nextFloat() * 0.4F, 0.8F + random.nextFloat() * 0.4F);
+		if (!this.level().isClientSide() && !this.entityData.get(HARDENED) && !this.onGround() && this.getDeltaMovement().y() < -0.5) {
+			this.level().playSound(null, this.blockPosition().getX(), this.blockPosition().getY(), this.blockPosition().getZ(), SpectrumSoundEvents.SHOOTING_STAR_CRACKER, SoundSource.PLAYERS, 1.5F + random.nextFloat() * 0.4F, 0.8F + random.nextFloat() * 0.4F);
 			PlayShootingStarParticlesPayload.sendPlayShootingStarParticles(this);
-			player.damage(SpectrumDamageTypes.shootingStar(this.getWorld()), 18);
+			player.hurt(SpectrumDamageTypes.shootingStar(this.level()), 18);
 			
-			ItemStack itemStack = this.getShootingStarType().getBlock().asItem().getDefaultStack();
+			ItemStack itemStack = this.getShootingStarType().getBlock().asItem().getDefaultInstance();
 			int i = itemStack.getCount();
-			player.getInventory().offerOrDrop(itemStack);
+			player.getInventory().placeItemBackInInventory(itemStack);
 			
-			Support.grantAdvancementCriterion((ServerPlayerEntity) player, "catch_shooting_star", "catch");
-			player.increaseStat(Stats.PICKED_UP.getOrCreateStat(itemStack.getItem()), i);
+			Support.grantAdvancementCriterion((ServerPlayer) player, "catch_shooting_star", "catch");
+			player.awardStat(Stats.ITEM_PICKED_UP.get(itemStack.getItem()), i);
 			
 			this.discard();
 		}
 	}
 	
 	@Override
-	public void pushAwayFrom(Entity entity) {
+	public void push(Entity entity) {
 		if (entity.getBoundingBox().minY <= this.getBoundingBox().minY) {
-			super.pushAwayFrom(entity);
+			super.push(entity);
 		}
 	}
 	
@@ -272,106 +271,106 @@ public class ShootingStarEntity extends Entity {
 		float randomScale = 0.5F + random.nextFloat();
 		int randomLifetime = 30 + random.nextInt(20);
 		
-		ParticleEffect particleEffect = new DynamicParticleEffect(0.05F, getShootingStarType().getRandomParticleColor(random), randomScale, randomLifetime, false, true, true);
-		this.getWorld().addParticle(particleEffect, this.getX(), this.getEyeY(), this.getZ(), 0.1 - random.nextFloat() * 0.2, 0.4 + random.nextFloat() * 0.2, 0.1 - random.nextFloat() * 0.2);
+		ParticleOptions particleEffect = new DynamicParticleEffect(0.05F, getShootingStarType().getRandomParticleColor(random), randomScale, randomLifetime, false, true, true);
+		this.level().addParticle(particleEffect, this.getX(), this.getEyeY(), this.getZ(), 0.1 - random.nextFloat() * 0.2, 0.4 + random.nextFloat() * 0.2, 0.1 - random.nextFloat() * 0.2);
 	}
 	
 	public void playFallingParticles() {
 		float randomScale = this.random.nextFloat() * 0.4F + 0.7F;
-		ParticleEffect particleEffect = new DynamicParticleEffect((float) ((random.nextDouble() - 0.5F) * 0.05F - 0.125F), getShootingStarType().getRandomParticleColor(random), randomScale, 120, false, true, true);
-		this.getWorld().addParticle(particleEffect, this.getX(), this.getEyeY(), this.getZ(), 0.2 - random.nextFloat() * 0.4, 0.1, 0.2 - random.nextFloat() * 0.4);
+		ParticleOptions particleEffect = new DynamicParticleEffect((float) ((random.nextDouble() - 0.5F) * 0.05F - 0.125F), getShootingStarType().getRandomParticleColor(random), randomScale, 120, false, true, true);
+		this.level().addParticle(particleEffect, this.getX(), this.getEyeY(), this.getZ(), 0.2 - random.nextFloat() * 0.4, 0.1, 0.2 - random.nextFloat() * 0.4);
 	}
 	
 	public void playHitParticles() {
-		playHitParticles(this.getWorld(), this.getX(), this.getEyeY(), this.getZ(), this.getShootingStarType(), 25);
+		playHitParticles(this.level(), this.getX(), this.getEyeY(), this.getZ(), this.getShootingStarType(), 25);
 	}
 	
-	public void doPlayerHitEffectsAndLoot(ServerWorld serverWorld, ServerPlayerEntity serverPlayerEntity) {
+	public void doPlayerHitEffectsAndLoot(ServerLevel serverWorld, ServerPlayer serverPlayerEntity) {
 		// Spawn loot
-		@NotNull RegistryKey<LootTable> lootTableKey = ShootingStar.Type.getLootTable(dataTracker.get(SHOOTING_STAR_TYPE));
+		@NotNull ResourceKey<LootTable> lootTableKey = ShootingStar.Variant.getLootTable(entityData.get(SHOOTING_STAR_TYPE));
 		List<ItemStack> loot = getLoot(serverWorld, serverPlayerEntity, lootTableKey);
 		
 		for (ItemStack itemStack : loot) {
-			ItemEntity itemEntity = new ItemEntity(this.getWorld(), this.getX(), this.getY(), this.getZ(), itemStack);
-			this.getWorld().spawnEntity(itemEntity);
+			ItemEntity itemEntity = new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), itemStack);
+			this.level().addFreshEntity(itemEntity);
 		}
 		
 		// spawn particles
 		PlayShootingStarParticlesPayload.sendPlayShootingStarParticles(this);
-		this.getWorld().playSound(null, this.getBlockPos().getX(), this.getBlockPos().getY(), this.getBlockPos().getZ(), SpectrumSoundEvents.SHOOTING_STAR_CRACKER, SoundCategory.PLAYERS, 1.5F + random.nextFloat() * 0.4F, 0.8F + random.nextFloat() * 0.4F);
+		this.level().playSound(null, this.blockPosition().getX(), this.blockPosition().getY(), this.blockPosition().getZ(), SpectrumSoundEvents.SHOOTING_STAR_CRACKER, SoundSource.PLAYERS, 1.5F + random.nextFloat() * 0.4F, 0.8F + random.nextFloat() * 0.4F);
 	}
 	
-	public List<ItemStack> getLoot(ServerWorld serverWorld, ServerPlayerEntity serverPlayerEntity, RegistryKey<LootTable> lootTableKey) {
-		LootTable lootTable = serverWorld.getServer().getReloadableRegistries().getLootTable(lootTableKey);
-		return lootTable.generateLoot(new LootContextParameterSet.Builder(serverWorld)
-				.add(LootContextParameters.THIS_ENTITY, this)
-				.add(LootContextParameters.ORIGIN, Vec3d.ofCenter(this.getBlockPos()))
-				.add(LootContextParameters.DAMAGE_SOURCE, serverPlayerEntity.getWorld().getDamageSources().playerAttack(serverPlayerEntity))
-				.addOptional(LootContextParameters.LAST_DAMAGE_PLAYER, serverPlayerEntity)
-				.build(LootContextTypes.ENTITY));
+	public List<ItemStack> getLoot(ServerLevel serverWorld, ServerPlayer serverPlayerEntity, ResourceKey<LootTable> lootTableKey) {
+		LootTable lootTable = serverWorld.getServer().reloadableRegistries().getLootTable(lootTableKey);
+		return lootTable.getRandomItems(new LootParams.Builder(serverWorld)
+				.withParameter(LootContextParams.THIS_ENTITY, this)
+				.withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(this.blockPosition()))
+				.withParameter(LootContextParams.DAMAGE_SOURCE, serverPlayerEntity.level().damageSources().playerAttack(serverPlayerEntity))
+				.withOptionalParameter(LootContextParams.LAST_DAMAGE_PLAYER, serverPlayerEntity)
+				.create(LootContextParamSets.ENTITY));
 	}
 	
-	public List<ItemStack> getLoot(ServerWorld serverWorld, RegistryKey<LootTable> lootTableKey) {
-		LootTable lootTable = serverWorld.getServer().getReloadableRegistries().getLootTable(lootTableKey);
-		return lootTable.generateLoot(new LootContextParameterSet.Builder(serverWorld)
-				.add(LootContextParameters.THIS_ENTITY, this)
-				.add(LootContextParameters.ORIGIN, Vec3d.ofCenter(this.getBlockPos()))
-				.add(LootContextParameters.DAMAGE_SOURCE, serverWorld.getDamageSources().generic())
-				.build(LootContextTypes.ENTITY));
-	}
-	
-	@Override
-	public Text getName() {
-		Text text = this.getCustomName();
-		return (text != null ? text : asItem().getName());
+	public List<ItemStack> getLoot(ServerLevel serverWorld, ResourceKey<LootTable> lootTableKey) {
+		LootTable lootTable = serverWorld.getServer().reloadableRegistries().getLootTable(lootTableKey);
+		return lootTable.getRandomItems(new LootParams.Builder(serverWorld)
+				.withParameter(LootContextParams.THIS_ENTITY, this)
+				.withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(this.blockPosition()))
+				.withParameter(LootContextParams.DAMAGE_SOURCE, serverWorld.damageSources().generic())
+				.create(LootContextParamSets.ENTITY));
 	}
 	
 	@Override
-	public boolean handleAttack(Entity attacker) {
+	public Component getName() {
+		Component text = this.getCustomName();
+		return (text != null ? text : asItem().getDescription());
+	}
+	
+	@Override
+	public boolean skipAttackInteraction(Entity attacker) {
 		if (!this.isRemoved()) {
-			if (!this.getWorld().isClient()) {
-				if (!this.dataTracker.get(HARDENED)) {
+			if (!this.level().isClientSide()) {
+				if (!this.entityData.get(HARDENED)) {
 					this.age = 1; // prevent it from despawning, once interacted
 					
 					this.availableHits--;
-					if (this.getWorld() instanceof ServerWorld serverWorld && attacker instanceof ServerPlayerEntity serverPlayerEntity) {
+					if (this.level() instanceof ServerLevel serverWorld && attacker instanceof ServerPlayer serverPlayerEntity) {
 						doPlayerHitEffectsAndLoot(serverWorld, serverPlayerEntity);
 						this.lastCollisionCount = 0;
 					}
 					
 					if (this.availableHits <= 0) {
-						PlayParticleWithExactVelocityPayload.playParticleWithExactVelocity((ServerWorld) this.getWorld(), this.getPos(), ParticleTypes.EXPLOSION, 1, Vec3d.ZERO);
+						PlayParticleWithExactVelocityPayload.playParticleWithExactVelocity((ServerLevel) this.level(), this.position(), ParticleTypes.EXPLOSION, 1, Vec3.ZERO);
 						
-						ItemEntity itemEntity = new ItemEntity(this.getWorld(), this.getX(), this.getY(), this.getZ(), SpectrumItems.STAR_FRAGMENT.getDefaultStack());
-						itemEntity.addVelocity(0, 0.15, 0);
-						this.getWorld().spawnEntity(itemEntity);
+						ItemEntity itemEntity = new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), SpectrumItems.STAR_FRAGMENT.getDefaultInstance());
+						itemEntity.push(0, 0.15, 0);
+						this.level().addFreshEntity(itemEntity);
 						this.discard();
 						
 						return true;
 					}
 				}
-				this.emitGameEvent(GameEvent.ENTITY_DAMAGE, attacker);
+				this.gameEvent(GameEvent.ENTITY_DAMAGE, attacker);
 			}
 			
 			double attackerOffsetX = this.getX() - attacker.getX();
 			double attackerOffsetZ = this.getZ() - attacker.getZ();
 			double mod = Math.max(attackerOffsetX, attackerOffsetZ);
-			this.addVelocity((attackerOffsetX / mod) * 0.75, 0.25, (attackerOffsetZ / mod) * 0.75);
+			this.push((attackerOffsetX / mod) * 0.75, 0.25, (attackerOffsetZ / mod) * 0.75);
 			
-			var collidingEntities = this.getWorld().getOtherEntities(this, getBoundingBox().expand(0.25, 0.334, 0.25));
+			var collidingEntities = this.level().getEntities(this, getBoundingBox().inflate(0.25, 0.334, 0.25));
 			collidingEntities = collidingEntities.stream().filter(entity -> !(entity instanceof ShootingStarEntity)).toList();
 			collidingEntities.forEach(entity -> {
 				if (entity.getY() >= this.getBoundingBox().maxY) {
 					entity.fallDistance = 0F;
-					if (this.canHit()) {
-						entity.setPosition(entity.getPos().x, this.getBoundingBox().maxY, entity.getPos().z);
+					if (this.isPickable()) {
+						entity.setPos(entity.position().x, this.getBoundingBox().maxY, entity.position().z);
 					}
-					entity.move(MovementType.SHULKER_BOX, this.getVelocity());
+					entity.move(MoverType.SHULKER_BOX, this.getDeltaMovement());
 					entity.setOnGround(true);
 				}
 			});
 			
-			this.scheduleVelocityUpdate();
+			this.markHurt();
 		}
 		
 		return false;
@@ -379,85 +378,85 @@ public class ShootingStarEntity extends Entity {
 	
 	@Override
 	public boolean isInvulnerableTo(@NotNull DamageSource damageSource) {
-		if (damageSource.isOf(DamageTypes.FALLING_ANVIL) || damageSource.isOf(SpectrumDamageTypes.FLOATBLOCK)) {
+		if (damageSource.is(DamageTypes.FALLING_ANVIL) || damageSource.is(SpectrumDamageTypes.FLOATBLOCK)) {
 			return false;
 		} else {
-			return damageSource.isIn(DamageTypeTags.IS_FIRE) || super.isInvulnerableTo(damageSource);
+			return damageSource.is(DamageTypeTags.IS_FIRE) || super.isInvulnerableTo(damageSource);
 		}
 	}
 	
 	@Override
-	public boolean damage(DamageSource damageSource, float amount) {
-		if (amount > 5 && (damageSource.isOf(DamageTypes.FALLING_ANVIL) || damageSource.isOf(SpectrumDamageTypes.FLOATBLOCK))) {
+	public boolean hurt(DamageSource damageSource, float amount) {
+		if (amount > 5 && (damageSource.is(DamageTypes.FALLING_ANVIL) || damageSource.is(SpectrumDamageTypes.FLOATBLOCK))) {
 			this.playHitParticles();
 			
-			ItemStack starFragmentStack = SpectrumItems.STAR_FRAGMENT.getDefaultStack();
+			ItemStack starFragmentStack = SpectrumItems.STAR_FRAGMENT.getDefaultInstance();
 			starFragmentStack.setCount(2);
-			ItemEntity itemEntity = new ItemEntity(this.getWorld(), this.getX(), this.getY(), this.getZ(), starFragmentStack);
-			this.getWorld().spawnEntity(itemEntity);
+			ItemEntity itemEntity = new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), starFragmentStack);
+			this.level().addFreshEntity(itemEntity);
 			this.discard();
 			return true;
 		}
-		this.scheduleVelocityUpdate();
+		this.markHurt();
 		return false;
 	}
 	
-	public ShootingStar.Type getShootingStarType() {
-		return ShootingStar.Type.getType(this.getDataTracker().get(SHOOTING_STAR_TYPE));
+	public ShootingStar.Variant getShootingStarType() {
+		return ShootingStar.Variant.getType(this.getEntityData().get(SHOOTING_STAR_TYPE));
 	}
 	
-	private void setShootingStarType(@NotNull ShootingStar.Type type, boolean playerPlaced, int availableHits, boolean hardened) {
-		this.getDataTracker().set(SHOOTING_STAR_TYPE, type.ordinal());
-		this.getDataTracker().set(PLAYER_PLACED, playerPlaced);
-		this.getDataTracker().set(HARDENED, hardened);
+	private void setShootingStarType(@NotNull ShootingStar.Variant type, boolean playerPlaced, int availableHits, boolean hardened) {
+		this.getEntityData().set(SHOOTING_STAR_TYPE, type.ordinal());
+		this.getEntityData().set(PLAYER_PLACED, playerPlaced);
+		this.getEntityData().set(HARDENED, hardened);
 		this.availableHits = availableHits;
 	}
 	
 	@Override
-	public void writeCustomDataToNbt(@NotNull NbtCompound tag) {
+	public void addAdditionalSaveData(@NotNull CompoundTag tag) {
 		tag.putLong("Age", (short) this.age);
-		tag.putString("Type", this.getShootingStarType().getName());
+		tag.putString("Variant", this.getShootingStarType().getName());
 		tag.putInt("LastCollisionCount", this.lastCollisionCount);
-		tag.putBoolean("PlayerPlaced", this.dataTracker.get(PLAYER_PLACED));
-		tag.putBoolean("Hardened", this.dataTracker.get(HARDENED));
+		tag.putBoolean("PlayerPlaced", this.entityData.get(PLAYER_PLACED));
+		tag.putBoolean("Hardened", this.entityData.get(HARDENED));
 		tag.putInt("AvailableHits", this.availableHits);
 	}
 	
 	@Override
-	public void readCustomDataFromNbt(@NotNull NbtCompound tag) {
+	public void readAdditionalSaveData(@NotNull CompoundTag tag) {
 		this.age = tag.getLong("Age");
-		if (tag.contains("LastCollisionCount", NbtElement.NUMBER_TYPE)) {
+		if (tag.contains("LastCollisionCount", Tag.TAG_ANY_NUMERIC)) {
 			this.lastCollisionCount = tag.getInt("LastCollisionCount");
 		}
 		
-		if (tag.contains("PlayerPlaced") && tag.contains("Hardened") && tag.contains("AvailableHits", NbtElement.NUMBER_TYPE) && tag.contains("Type", NbtElement.STRING_TYPE)) {
+		if (tag.contains("PlayerPlaced") && tag.contains("Hardened") && tag.contains("AvailableHits", Tag.TAG_ANY_NUMERIC) && tag.contains("Variant", Tag.TAG_STRING)) {
 			boolean playerPlaced = tag.getBoolean("PlayerPlaced");
 			int availableHits = tag.getInt("AvailableHits");
 			boolean hardened = tag.getBoolean("Hardened");
-			this.setShootingStarType(ShootingStar.Type.getType(tag.getString("Type")), playerPlaced, availableHits, hardened);
+			this.setShootingStarType(ShootingStar.Variant.getType(tag.getString("Variant")), playerPlaced, availableHits, hardened);
 		}
 	}
 	
 	@Override
-	public ActionResult interact(PlayerEntity player, Hand hand) {
-		if (!this.getWorld().isClient() && player.isSneaking()) {
-			this.getWorld().playSound(null, this.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 1.0F, 1.0F);
-			player.getInventory().offerOrDrop(ShootingStarItem.getWithRemainingHits((ShootingStarItem) this.asItem(), this.availableHits, this.dataTracker.get(HARDENED)));
+	public InteractionResult interact(Player player, InteractionHand hand) {
+		if (!this.level().isClientSide() && player.isShiftKeyDown()) {
+			this.level().playSound(null, this.blockPosition(), SoundEvents.ITEM_PICKUP, SoundSource.PLAYERS, 1.0F, 1.0F);
+			player.getInventory().placeItemBackInInventory(ShootingStarItem.getWithRemainingHits((ShootingStarItem) this.asItem(), this.availableHits, this.entityData.get(HARDENED)));
 			this.discard();
-			return ActionResult.CONSUME;
+			return InteractionResult.CONSUME;
 		} else {
-			return ActionResult.PASS;
+			return InteractionResult.PASS;
 		}
 	}
 	
 	@Override
-	public ItemStack getPickBlockStack() {
-		return ShootingStarItem.getWithRemainingHits((ShootingStarItem) this.asItem(), this.availableHits, this.dataTracker.get(HARDENED));
+	public ItemStack getPickResult() {
+		return ShootingStarItem.getWithRemainingHits((ShootingStarItem) this.asItem(), this.availableHits, this.entityData.get(HARDENED));
 	}
 	
 	@Override
-	public SoundCategory getSoundCategory() {
-		return SoundCategory.AMBIENT;
+	public SoundSource getSoundSource() {
+		return SoundSource.AMBIENT;
 	}
 	
 }

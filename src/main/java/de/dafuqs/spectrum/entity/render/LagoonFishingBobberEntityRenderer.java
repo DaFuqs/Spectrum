@@ -2,23 +2,23 @@ package de.dafuqs.spectrum.entity.render;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.entity.entity.*;
-import net.minecraft.client.render.*;
-import net.minecraft.client.render.entity.*;
-import net.minecraft.util.*;
+import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.entity.*;
+import net.minecraft.resources.*;
 
 public class LagoonFishingBobberEntityRenderer extends SpectrumFishingBobberEntityRenderer {
 	
-	protected final Identifier TEXTURE = SpectrumCommon.locate("textures/entity/fishing_hooks/lagoon_fishing_hook.png");
-	protected final Identifier TEXTURE_OPEN_WATERS = SpectrumCommon.locate("textures/entity/fishing_hooks/lagoon_fishing_hook_open_waters.png");
-	protected final RenderLayer LAYER = RenderLayer.getEntityCutout(TEXTURE);
-	protected final RenderLayer LAYER_OPEN_WATERS = RenderLayer.getEntityCutout(TEXTURE_OPEN_WATERS);
+	protected final ResourceLocation TEXTURE = SpectrumCommon.locate("textures/entity/fishing_hooks/lagoon_fishing_hook.png");
+	protected final ResourceLocation TEXTURE_OPEN_WATERS = SpectrumCommon.locate("textures/entity/fishing_hooks/lagoon_fishing_hook_open_waters.png");
+	protected final RenderType LAYER = RenderType.entityCutout(TEXTURE);
+	protected final RenderType LAYER_OPEN_WATERS = RenderType.entityCutout(TEXTURE_OPEN_WATERS);
 	
-	public LagoonFishingBobberEntityRenderer(EntityRendererFactory.Context context) {
+	public LagoonFishingBobberEntityRenderer(EntityRendererProvider.Context context) {
 		super(context);
 	}
 	
 	@Override
-	public Identifier getTexture(SpectrumFishingBobberEntity fishingBobberEntity) {
+	public ResourceLocation getTextureLocation(SpectrumFishingBobberEntity fishingBobberEntity) {
 		if (fishingBobberEntity.isInOpenWater()) {
 			return TEXTURE_OPEN_WATERS;
 		} else {
@@ -27,8 +27,8 @@ public class LagoonFishingBobberEntityRenderer extends SpectrumFishingBobberEnti
 	}
 	
 	@Override
-	public RenderLayer getLayer(SpectrumFishingBobberEntity bobber) {
-		if (bobber.isOpenOrWaterAround(bobber.getBlockPos())) {
+	public RenderType getLayer(SpectrumFishingBobberEntity bobber) {
+		if (bobber.isOpenOrWaterAround(bobber.blockPosition())) {
 			return LAYER_OPEN_WATERS;
 		} else {
 			return LAYER;

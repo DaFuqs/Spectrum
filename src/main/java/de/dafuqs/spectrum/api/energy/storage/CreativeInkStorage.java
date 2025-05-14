@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.api.energy.storage;
 
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
 
 import java.util.*;
 
@@ -82,12 +82,12 @@ public class CreativeInkStorage implements InkStorage {
 	}
 	
 	@Override
-	public void clear() {
+	public void clearContent() {
 	}
 	
 	@Override
-	public void addTooltip(List<Text> tooltip) {
-		tooltip.add(Text.translatable("item.spectrum.creative_ink_assortment.tooltip"));
+	public void addTooltip(List<Component> tooltip) {
+		tooltip.add(Component.translatable("item.spectrum.creative_ink_assortment.tooltip"));
 	}
 	
 	@Override

@@ -5,10 +5,11 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.particle.v1.*;
+import net.minecraft.core.*;
+import net.minecraft.core.particles.*;
+import net.minecraft.core.registries.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.particle.*;
-import net.minecraft.registry.*;
 
 import java.util.function.*;
 
@@ -112,27 +113,27 @@ public class SpectrumParticleTypes {
 	
 	// Simple particles
 	private static SimpleParticleType register(String name, boolean alwaysShow) {
-		return REGISTRAR.defer(FabricParticleTypes.simple(alwaysShow), type -> Registry.register(Registries.PARTICLE_TYPE, SpectrumCommon.locate(name), type));
+		return REGISTRAR.defer(FabricParticleTypes.simple(alwaysShow), type -> Registry.register(BuiltInRegistries.PARTICLE_TYPE, SpectrumCommon.locate(name), type));
 	}
 	
 	// complex particles
-	private static <T extends ParticleEffect> ParticleType<T> register(
+	private static <T extends ParticleOptions> ParticleType<T> register(
 			String name,
 			boolean alwaysShow,
 			Function<ParticleType<T>, MapCodec<T>> codecGetter,
-			Function<ParticleType<T>, PacketCodec<? super RegistryByteBuf, T>> packetCodecGetter
+			Function<ParticleType<T>, StreamCodec<? super RegistryFriendlyByteBuf, T>> packetCodecGetter
 	) {
 		return REGISTRAR.defer(new ParticleType<T>(alwaysShow) {
 			@Override
-			public MapCodec<T> getCodec() {
+			public MapCodec<T> codec() {
 				return codecGetter.apply(this);
 			}
 			
 			@Override
-			public PacketCodec<? super RegistryByteBuf, T> getPacketCodec() {
+			public StreamCodec<? super RegistryFriendlyByteBuf, T> streamCodec() {
 				return packetCodecGetter.apply(this);
 			}
-		}, type -> Registry.register(Registries.PARTICLE_TYPE, SpectrumCommon.locate(name), type));
+		}, type -> Registry.register(BuiltInRegistries.PARTICLE_TYPE, SpectrumCommon.locate(name), type));
 	}
 	
 	public static void register() {

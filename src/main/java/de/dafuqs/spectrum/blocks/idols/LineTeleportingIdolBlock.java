@@ -1,15 +1,14 @@
 package de.dafuqs.spectrum.blocks.idols;
 
-import com.mojang.serialization.MapCodec;
-import net.minecraft.block.*;
-import net.minecraft.entity.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.particle.*;
-import net.minecraft.server.world.*;
-import net.minecraft.text.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import com.mojang.serialization.*;
+import net.minecraft.core.*;
+import net.minecraft.core.particles.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.state.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -18,32 +17,32 @@ public class LineTeleportingIdolBlock extends IdolBlock {
 	
 	protected final int range;
 	
-	public LineTeleportingIdolBlock(Settings settings, ParticleEffect particleEffect, int range) {
+	public LineTeleportingIdolBlock(Properties settings, ParticleOptions particleEffect, int range) {
 		super(settings, particleEffect);
 		this.range = range;
 	}
 
 	@Override
-	public MapCodec<? extends LineTeleportingIdolBlock> getCodec() {
+	public MapCodec<? extends LineTeleportingIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}
 	
 	public static Direction getLookDirection(@NotNull Entity entity, boolean mirrorVertical, boolean mirrorHorizontal) {
-		double pitch = entity.getPitch();
+		double pitch = entity.getXRot();
 		if (pitch < -60) {
 			return mirrorVertical ? Direction.UP : Direction.DOWN;
 		} else if (pitch > 60) {
 			return mirrorVertical ? Direction.DOWN : Direction.UP;
 		} else {
-			return mirrorHorizontal ? entity.getMovementDirection().getOpposite() : entity.getMovementDirection();
+			return mirrorHorizontal ? entity.getMotionDirection().getOpposite() : entity.getMotionDirection();
 		}
 	}
 	
-	public static Optional<BlockPos> searchForBlock(World world, BlockPos pos, BlockState searchedState, Direction direction, int range) {
-		BlockPos.Mutable mutable = pos.mutableCopy();
+	public static Optional<BlockPos> searchForBlock(Level world, BlockPos pos, BlockState searchedState, Direction direction, int range) {
+		BlockPos.MutableBlockPos mutable = pos.mutable();
 		for (int i = 1; i < range; i++) {
-			BlockPos currPos = mutable.offset(direction, i);
+			BlockPos currPos = mutable.relative(direction, i);
 			if (world.getBlockState(currPos) == searchedState) {
 				return Optional.of(currPos);
 			}
@@ -52,17 +51,17 @@ public class LineTeleportingIdolBlock extends IdolBlock {
 	}
 
 	@Override
-	public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
-		tooltip.add(Text.translatable("block.spectrum.line_teleporting_idol.tooltip", range));
-		tooltip.add(Text.translatable("block.spectrum.line_teleporting_idol.tooltip2", range));
+	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
+		tooltip.add(Component.translatable("block.spectrum.line_teleporting_idol.tooltip", range));
+		tooltip.add(Component.translatable("block.spectrum.line_teleporting_idol.tooltip2", range));
 	}
 	
 	@Override
-	public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
-		if (!world.isClient && !hasCooldown(state)) {
-			if (trigger((ServerWorld) world, pos, state, entity, getLookDirection(entity, true, false).getOpposite())) { // we want the movement direction here, instead of only "top"
-				playTriggerParticles((ServerWorld) world, pos);
+	public void stepOn(Level world, BlockPos pos, BlockState state, Entity entity) {
+		if (!world.isClientSide && !hasCooldown(state)) {
+			if (trigger((ServerLevel) world, pos, state, entity, getLookDirection(entity, true, false).getOpposite())) { // we want the movement direction here, instead of only "top"
+				playTriggerParticles((ServerLevel) world, pos);
 				playTriggerSound(world, pos);
 				triggerCooldown(world, pos);
 			}
@@ -70,7 +69,7 @@ public class LineTeleportingIdolBlock extends IdolBlock {
 	}
 	
 	@Override
-	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+	public boolean trigger(ServerLevel world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		if (entity != null) {
 			Optional<BlockPos> foundBlockPos = searchForBlock(world, blockPos, state, side.getOpposite(), this.range);
 			if (foundBlockPos.isPresent()) {

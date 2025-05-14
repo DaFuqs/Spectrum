@@ -11,9 +11,9 @@ import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.fabricmc.api.*;
-import net.minecraft.item.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.item.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -21,7 +21,7 @@ import java.util.*;
 @Environment(EnvType.CLIENT)
 public class CrystallarieumCategory extends GatedDisplayCategory<CrystallarieumDisplay> {
 	
-	public final static Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/modonomicon/crystallarieum.png");
+	public final static ResourceLocation BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/modonomicon/crystallarieum.png");
 	
 	@Override
 	public CategoryIdentifier<CrystallarieumDisplay> getCategoryIdentifier() {
@@ -29,8 +29,8 @@ public class CrystallarieumCategory extends GatedDisplayCategory<CrystallarieumD
 	}
 	
 	@Override
-	public Text getTitle() {
-		return Text.translatable("block.spectrum.crystallarieum");
+	public Component getTitle() {
+		return Component.translatable("block.spectrum.crystallarieum");
 	}
 	
 	@Override
@@ -61,10 +61,10 @@ public class CrystallarieumCategory extends GatedDisplayCategory<CrystallarieumD
 		}
 		
 		// catalysts
-		widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 1 + 42), Text.translatable("container.spectrum.rei.crystallarieum.catalyst")).leftAligned().color(0x3f3f3f).noShadow());
-		widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 1 + 58), Text.translatable("container.spectrum.rei.crystallarieum.accelerator")).leftAligned().color(0x3f3f3f).noShadow());
-		widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 1 + 68), Text.translatable("container.spectrum.rei.crystallarieum.ink_consumption")).leftAligned().color(0x3f3f3f).noShadow());
-		widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 1 + 78), Text.translatable("container.spectrum.rei.crystallarieum.used_up")).leftAligned().color(0x3f3f3f).noShadow());
+		widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 1 + 42), Component.translatable("container.spectrum.rei.crystallarieum.catalyst")).leftAligned().color(0x3f3f3f).noShadow());
+		widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 1 + 58), Component.translatable("container.spectrum.rei.crystallarieum.accelerator")).leftAligned().color(0x3f3f3f).noShadow());
+		widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 1 + 68), Component.translatable("container.spectrum.rei.crystallarieum.ink_consumption")).leftAligned().color(0x3f3f3f).noShadow());
+		widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 1 + 78), Component.translatable("container.spectrum.rei.crystallarieum.used_up")).leftAligned().color(0x3f3f3f).noShadow());
 		
 		int i = 0;
 		int startX = 46;
@@ -90,9 +90,9 @@ public class CrystallarieumCategory extends GatedDisplayCategory<CrystallarieumD
 		
 		// description texts
 		if (display.growsWithoutCatalyst) {
-			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 1 + 90), Text.translatable("container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds_catalyst_optional", display.secondsPerStage)).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 1 + 90), Component.translatable("container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds_catalyst_optional", display.secondsPerStage)).leftAligned().color(0x3f3f3f).noShadow());
 		} else {
-			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 1 + 90), Text.translatable("container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds", display.secondsPerStage)).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 1 + 90), Component.translatable("container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds", display.secondsPerStage)).leftAligned().color(0x3f3f3f).noShadow());
 		}
 	}
 	

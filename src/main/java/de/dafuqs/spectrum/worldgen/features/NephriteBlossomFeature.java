@@ -3,13 +3,13 @@ package de.dafuqs.spectrum.worldgen.features;
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.blocks.jade_vines.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.registry.tag.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.*;
-import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.feature.util.*;
+import net.minecraft.core.*;
+import net.minecraft.tags.*;
+import net.minecraft.util.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.levelgen.feature.*;
 
 import java.util.*;
 
@@ -22,21 +22,21 @@ public class NephriteBlossomFeature extends Feature<NephriteBlossomFeatureConfig
     }
 
     @Override
-    public boolean generate(FeatureContext<NephriteBlossomFeatureConfig> context) {
-        var world = context.getWorld();
-        var origin = context.getOrigin();
-        var random = context.getRandom();
-        var floor = world.getBlockState(origin.down());
-        var flowering = context.getConfig().flowering();
-
-        if (!floor.isIn(BlockTags.DIRT))
+	public boolean place(FeaturePlaceContext<NephriteBlossomFeatureConfig> context) {
+		var world = context.level();
+		var origin = context.origin();
+		var random = context.random();
+		var floor = world.getBlockState(origin.below());
+		var flowering = context.config().flowering();
+		
+		if (!floor.is(BlockTags.DIRT))
             return false;
 		
-		int stemHeight = Math.round(MathHelper.nextGaussian(random, 2, 1F) + 1);
-		int leafHeight = Math.round(MathHelper.nextGaussian(random, 2.5F, 0.9F) + 1.85F);
+		int stemHeight = Math.round(Mth.normal(random, 2, 1F) + 1);
+		int leafHeight = Math.round(Mth.normal(random, 2.5F, 0.9F) + 1.85F);
 		int maxY = origin.getY() + stemHeight + leafHeight;
 		
-		BlockPos.Mutable pos = new BlockPos.Mutable();
+		BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
 		for (int i = origin.getY(); i < maxY; i++) {
 			pos.set(origin.getX(), i, origin.getZ());
 			if (!isReplaceable(world, pos)) {
@@ -49,27 +49,27 @@ public class NephriteBlossomFeature extends Feature<NephriteBlossomFeatureConfig
 
         return true;
     }
-
-    private void generateStem(WorldAccess world, BlockPos origin, int stemHeight) {
-        var stemPointer = origin.mutableCopy();
+	
+	private void generateStem(LevelAccessor world, BlockPos origin, int stemHeight) {
+		var stemPointer = origin.mutable();
         var topStem = false;
 
         for (int height = 0; height < stemHeight; height++) {
 
             if (height == 0) {
-                this.setBlockState(world, stemPointer, SpectrumBlocks.NEPHRITE_BLOSSOM_STEM.getDefaultState());
+				this.setBlock(world, stemPointer, SpectrumBlocks.NEPHRITE_BLOSSOM_STEM.defaultBlockState());
                 topStem = true;
 			} else if (isReplaceable(world, stemPointer)) {
-                this.setBlockState(world, stemPointer, NephriteBlossomStemBlock.getStemVariant(topStem));
+				this.setBlock(world, stemPointer, NephriteBlossomStemBlock.getStemVariant(topStem));
                 topStem = !topStem;
             }
             stemPointer.move(0, 1, 0);
         }
     }
 	
-	private void genereateLeaves(WorldAccess world, BlockPos origin, Random random, int stemHeight, int leafHeight, boolean flowering) {
-        var leafPointer = origin.mutableCopy().move(0, stemHeight, 0);
-		var leafDirection = Direction.Type.HORIZONTAL.random(random);
+	private void genereateLeaves(LevelAccessor world, BlockPos origin, RandomSource random, int stemHeight, int leafHeight, boolean flowering) {
+		var leafPointer = origin.mutable().move(0, stemHeight, 0);
+		var leafDirection = Direction.Plane.HORIZONTAL.getRandomDirection(random);
 
         for (int i = 0; i < leafHeight; i++) {
             for(int leaf = 0; leaf < 4; leaf++) {
@@ -93,23 +93,23 @@ public class NephriteBlossomFeature extends Feature<NephriteBlossomFeatureConfig
                 leafDirection = cycleDirections(leafDirection, random.nextInt(3) - 1);
         }
     }
-    
-    private static void setBlockStateWithoutUpdatingNeighbors(WorldAccess world, BlockPos pos, BlockState state) {
+	
+	private static void setBlockStateWithoutUpdatingNeighbors(LevelAccessor world, BlockPos pos, BlockState state) {
 		if (isReplaceable(world, pos)) {
-            world.setBlockState(pos, state, Block.FORCE_STATE | Block.NOTIFY_ALL);
+			world.setBlock(pos, state, Block.UPDATE_KNOWN_SHAPE | Block.UPDATE_ALL);
         }
     }
-    
-    private BlockState getLeafState(Random random, boolean allowFlowering) {
-        var state = SpectrumBlocks.NEPHRITE_BLOSSOM_LEAVES.getDefaultState().with(NephriteBlossomLeavesBlock.DISTANCE, 1);
+	
+	private BlockState getLeafState(RandomSource random, boolean allowFlowering) {
+		var state = SpectrumBlocks.NEPHRITE_BLOSSOM_LEAVES.defaultBlockState().setValue(NephriteBlossomLeavesBlock.DISTANCE, 1);
         if (!allowFlowering) {
             return state;
         }
         if (random.nextBoolean()) {
-            return state.with(NephriteBlossomLeavesBlock.AGE, 1);
+			return state.setValue(NephriteBlossomLeavesBlock.AGE, 1);
         }
         if (random.nextBoolean()) {
-            return state.with(NephriteBlossomLeavesBlock.AGE, 2);
+			return state.setValue(NephriteBlossomLeavesBlock.AGE, 2);
         }
         return state;
     }
@@ -126,8 +126,8 @@ public class NephriteBlossomFeature extends Feature<NephriteBlossomFeatureConfig
         return VALID_DIRS.indexOf(direction);
     }
 	
-	private static boolean isReplaceable(TestableWorld world, BlockPos pos) {
-		return world.testBlockState(pos, (state) -> state.isAir() || state.isIn(BlockTags.REPLACEABLE_BY_TREES));
+	private static boolean isReplaceable(LevelSimulatedReader world, BlockPos pos) {
+		return world.isStateAtPosition(pos, (state) -> state.isAir() || state.is(BlockTags.REPLACEABLE_BY_TREES));
     }
 
 }

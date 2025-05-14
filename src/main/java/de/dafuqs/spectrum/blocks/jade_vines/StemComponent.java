@@ -1,15 +1,15 @@
 package de.dafuqs.spectrum.blocks.jade_vines;
 
-import net.minecraft.state.property.*;
 import net.minecraft.util.*;
+import net.minecraft.world.level.block.state.properties.*;
 
-public enum StemComponent implements StringIdentifiable {
+public enum StemComponent implements StringRepresentable {
     BASE("base"),
     STEM("stem"),
     STEMALT("stemalt");
-
-
-    public static final EnumProperty<StemComponent> PROPERTY = EnumProperty.of("part", StemComponent.class);
+	
+	
+	public static final EnumProperty<StemComponent> PROPERTY = EnumProperty.create("part", StemComponent.class);
 
     public final String identifier;
 
@@ -18,7 +18,7 @@ public enum StemComponent implements StringIdentifiable {
     }
 
     @Override
-    public String asString() {
+	public String getSerializedName() {
         return identifier;
     }
 

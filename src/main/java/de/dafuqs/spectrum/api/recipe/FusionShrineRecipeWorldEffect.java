@@ -5,13 +5,13 @@ import com.mojang.serialization.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
 import io.netty.buffer.*;
+import net.minecraft.commands.*;
+import net.minecraft.core.*;
+import net.minecraft.network.chat.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.registry.*;
 import net.minecraft.server.*;
-import net.minecraft.server.command.*;
-import net.minecraft.server.world.*;
-import net.minecraft.text.*;
-import net.minecraft.util.math.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.phys.*;
 
 /**
  * Effects that are played when crafting with the fusion shrine
@@ -22,17 +22,17 @@ public interface FusionShrineRecipeWorldEffect {
 			FusionShrineRecipeWorldEffect::fromString,
 			effect -> effect instanceof CommandRecipeWorldEffect command
 					? command.command
-					: String.valueOf(SpectrumRegistries.WORLD_EFFECT.getId(effect)));
+					: String.valueOf(SpectrumRegistries.WORLD_EFFECT.getKey(effect)));
 	
-	PacketCodec<ByteBuf, FusionShrineRecipeWorldEffect> PACKET_CODEC = PacketCodecs.STRING.xmap(
+	StreamCodec<ByteBuf, FusionShrineRecipeWorldEffect> PACKET_CODEC = ByteBufCodecs.STRING_UTF8.map(
 			FusionShrineRecipeWorldEffect::fromString,
 			effect -> effect instanceof CommandRecipeWorldEffect command
 					? command.command
-					: String.valueOf(SpectrumRegistries.WORLD_EFFECT.getId(effect)));
+					: String.valueOf(SpectrumRegistries.WORLD_EFFECT.getKey(effect)));
 	
 	FusionShrineRecipeWorldEffect NOTHING = register("nothing", new FusionShrineRecipeWorldEffect.SingleTimeRecipeWorldEffect() {
 		@Override
-		public void trigger(ServerWorld world, BlockPos pos) {
+		public void trigger(ServerLevel world, BlockPos pos) {
 		}
 	});
 	
@@ -63,7 +63,7 @@ public interface FusionShrineRecipeWorldEffect {
 	 */
 	boolean isOneTimeEffect();
 	
-	void trigger(ServerWorld world, BlockPos pos);
+	void trigger(ServerLevel world, BlockPos pos);
 	
 	abstract class EveryTickRecipeWorldEffect implements FusionShrineRecipeWorldEffect {
 		
@@ -89,7 +89,7 @@ public interface FusionShrineRecipeWorldEffect {
 		
 	}
 	
-	class CommandRecipeWorldEffect implements FusionShrineRecipeWorldEffect, CommandOutput {
+	class CommandRecipeWorldEffect implements FusionShrineRecipeWorldEffect, CommandSource {
 		
 		protected final String command;
 		
@@ -107,28 +107,28 @@ public interface FusionShrineRecipeWorldEffect {
 		}
 		
 		@Override
-		public void trigger(ServerWorld world, BlockPos pos) {
+		public void trigger(ServerLevel world, BlockPos pos) {
 			MinecraftServer minecraftServer = world.getServer();
-			ServerCommandSource serverCommandSource = new ServerCommandSource(this, Vec3d.ofCenter(pos), Vec2f.ZERO, world, 2, "FusionShrine", world.getBlockState(pos).getBlock().getName(), minecraftServer, null);
-			minecraftServer.getCommandManager().executeWithPrefix(serverCommandSource, command);
+			CommandSourceStack serverCommandSource = new CommandSourceStack(this, Vec3.atCenterOf(pos), Vec2.ZERO, world, 2, "FusionShrine", world.getBlockState(pos).getBlock().getName(), minecraftServer, null);
+			minecraftServer.getCommands().performPrefixedCommand(serverCommandSource, command);
 		}
 		
 		@Override
-		public void sendMessage(Text message) {
+		public void sendSystemMessage(Component message) {
 		}
 		
 		@Override
-		public boolean shouldReceiveFeedback() {
+		public boolean acceptsSuccess() {
 			return false;
 		}
 		
 		@Override
-		public boolean shouldTrackOutput() {
+		public boolean acceptsFailure() {
 			return false;
 		}
 		
 		@Override
-		public boolean shouldBroadcastConsoleToOps() {
+		public boolean shouldInformAdmins() {
 			return false;
 		}
 	}

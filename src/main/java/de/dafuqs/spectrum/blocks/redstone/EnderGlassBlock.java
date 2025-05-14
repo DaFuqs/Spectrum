@@ -1,45 +1,45 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
-import com.mojang.serialization.MapCodec;
-import net.minecraft.block.*;
-import net.minecraft.entity.ai.pathing.*;
-import net.minecraft.item.*;
-import net.minecraft.state.*;
-import net.minecraft.state.property.*;
+import com.mojang.serialization.*;
+import net.minecraft.core.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.shape.*;
-import net.minecraft.world.*;
+import net.minecraft.world.item.context.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.pathfinder.*;
+import net.minecraft.world.phys.shapes.*;
 
 public class EnderGlassBlock extends Block {
-
-	public static final MapCodec<EnderGlassBlock> CODEC = createCodec(EnderGlassBlock::new);
-
-	public static final EnumProperty<TransparencyState> TRANSPARENCY_STATE = EnumProperty.of("transparency_state", TransparencyState.class);
-
-	public EnderGlassBlock(Settings settings) {
+	
+	public static final MapCodec<EnderGlassBlock> CODEC = simpleCodec(EnderGlassBlock::new);
+	
+	public static final EnumProperty<TransparencyState> TRANSPARENCY_STATE = EnumProperty.create("transparency_state", TransparencyState.class);
+	
+	public EnderGlassBlock(Properties settings) {
 		super(settings);
-		setDefaultState(getStateManager().getDefaultState().with(TRANSPARENCY_STATE, TransparencyState.SOLID));
+		registerDefaultState(getStateDefinition().any().setValue(TRANSPARENCY_STATE, TransparencyState.SOLID));
 	}
 
 	@Override
-	public MapCodec<? extends EnderGlassBlock> getCodec() {
+	public MapCodec<? extends EnderGlassBlock> codec() {
 		return CODEC;
 	}
 	
 	@Override
-	protected void appendProperties(StateManager.Builder<Block, BlockState> stateManager) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateManager) {
 		stateManager.add(TRANSPARENCY_STATE);
 	}
 	
 	@Override
-	public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
-		return (state.get(EnderGlassBlock.TRANSPARENCY_STATE) != TransparencyState.SOLID) && stateFrom.isOf(this) || super.isSideInvisible(state, stateFrom, direction);
+	public boolean skipRendering(BlockState state, BlockState stateFrom, Direction direction) {
+		return (state.getValue(EnderGlassBlock.TRANSPARENCY_STATE) != TransparencyState.SOLID) && stateFrom.is(this) || super.skipRendering(state, stateFrom, direction);
 	}
 	
 	@Override
-	public float getAmbientOcclusionLightLevel(BlockState state, BlockView world, BlockPos pos) {
-		switch (state.get(TRANSPARENCY_STATE)) {
+	public float getShadeBrightness(BlockState state, BlockGetter world, BlockPos pos) {
+		switch (state.getValue(TRANSPARENCY_STATE)) {
 			case SOLID -> {
 				return 0.0F;
 			}
@@ -53,74 +53,74 @@ public class EnderGlassBlock extends Block {
 	}
 	
 	@Override
-	public boolean canPathfindThrough(BlockState state, NavigationType type) {
-		return (state.get(TRANSPARENCY_STATE) == TransparencyState.NO_COLLISION);
+	public boolean isPathfindable(BlockState state, PathComputationType type) {
+		return (state.getValue(TRANSPARENCY_STATE) == TransparencyState.NO_COLLISION);
 	}
 	
 	@Override
 	@Deprecated
-	public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		if ((state.get(TRANSPARENCY_STATE) == TransparencyState.NO_COLLISION)) {
-			return VoxelShapes.empty();
+	public VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+		if ((state.getValue(TRANSPARENCY_STATE) == TransparencyState.NO_COLLISION)) {
+			return Shapes.empty();
 		} else {
-			return state.getOutlineShape(world, pos);
+			return state.getShape(world, pos);
 		}
 	}
 	
 	@Override
-	public boolean isTransparent(BlockState state, BlockView world, BlockPos pos) {
-		return !(state.get(TRANSPARENCY_STATE) == TransparencyState.SOLID);
+	public boolean propagatesSkylightDown(BlockState state, BlockGetter world, BlockPos pos) {
+		return !(state.getValue(TRANSPARENCY_STATE) == TransparencyState.SOLID);
 	}
 	
 	@Override
-	public int getOpacity(BlockState state, BlockView world, BlockPos pos) {
-		if ((state.get(TRANSPARENCY_STATE) == TransparencyState.SOLID)) {
+	public int getLightBlock(BlockState state, BlockGetter world, BlockPos pos) {
+		if ((state.getValue(TRANSPARENCY_STATE) == TransparencyState.SOLID)) {
 			return world.getMaxLightLevel();
 		} else {
-			return super.getOpacity(state, world, pos);
+			return super.getLightBlock(state, world, pos);
 		}
 	}
 	
 	@Override
-	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		if ((state.get(TRANSPARENCY_STATE) == TransparencyState.NO_COLLISION)) {
-			return VoxelShapes.fullCube();
+	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+		if ((state.getValue(TRANSPARENCY_STATE) == TransparencyState.NO_COLLISION)) {
+			return Shapes.block();
 		} else {
-			return super.getOutlineShape(state, world, pos, context);
+			return super.getShape(state, world, pos, context);
 		}
 	}
 	
 	@Override
-	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		int power = ctx.getWorld().getReceivedRedstonePower(ctx.getBlockPos());
-		return this.getDefaultState().with(TRANSPARENCY_STATE, getStateForRedstonePower(power));
+	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+		int power = ctx.getLevel().getBestNeighborSignal(ctx.getClickedPos());
+		return this.defaultBlockState().setValue(TRANSPARENCY_STATE, getStateForRedstonePower(power));
 	}
 	
 	@Override
-	public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
-		if (!world.isClient) {
+	public void neighborChanged(BlockState state, Level world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
+		if (!world.isClientSide) {
 			BlockState fromPosBlockState = world.getBlockState(fromPos);
 			if (fromPosBlockState.getBlock() instanceof EnderGlassBlock) {
-				TransparencyState sourceTransparencyState = fromPosBlockState.get(TRANSPARENCY_STATE);
+				TransparencyState sourceTransparencyState = fromPosBlockState.getValue(TRANSPARENCY_STATE);
 				
-				if (sourceTransparencyState != state.get(TRANSPARENCY_STATE)) {
-					world.setBlockState(pos, world.getBlockState(pos).with(TRANSPARENCY_STATE, sourceTransparencyState));
+				if (sourceTransparencyState != state.getValue(TRANSPARENCY_STATE)) {
+					world.setBlockAndUpdate(pos, world.getBlockState(pos).setValue(TRANSPARENCY_STATE, sourceTransparencyState));
 				}
 			} else {
-				if (fromPosBlockState.isAir() || fromPosBlockState.emitsRedstonePower()) {
+				if (fromPosBlockState.isAir() || fromPosBlockState.isSignalSource()) {
 					setTransparencyStateBasedOnRedstone(world, pos, state);
 				}
 			}
 		}
-		super.neighborUpdate(state, world, pos, block, fromPos, notify);
+		super.neighborChanged(state, world, pos, block, fromPos, notify);
 	}
 	
-	private void setTransparencyStateBasedOnRedstone(World world, BlockPos blockPos, BlockState currentState) {
-		int powerAtPos = world.getReceivedRedstonePower(blockPos);
+	private void setTransparencyStateBasedOnRedstone(Level world, BlockPos blockPos, BlockState currentState) {
+		int powerAtPos = world.getBestNeighborSignal(blockPos);
 		TransparencyState targetTransparencyState = getStateForRedstonePower(powerAtPos);
 		
-		if (currentState.get(TRANSPARENCY_STATE) != targetTransparencyState) {
-			world.setBlockState(blockPos, currentState.with(TRANSPARENCY_STATE, targetTransparencyState));
+		if (currentState.getValue(TRANSPARENCY_STATE) != targetTransparencyState) {
+			world.setBlockAndUpdate(blockPos, currentState.setValue(TRANSPARENCY_STATE, targetTransparencyState));
 		}
 		
 	}
@@ -135,7 +135,7 @@ public class EnderGlassBlock extends Block {
 		}
 	}
 	
-	public enum TransparencyState implements StringIdentifiable {
+	public enum TransparencyState implements StringRepresentable {
 		SOLID("solid"),
 		TRANSLUCENT("translucent"),
 		NO_COLLISION("no_collision");
@@ -151,7 +151,7 @@ public class EnderGlassBlock extends Block {
 		}
 		
 		@Override
-		public String asString() {
+		public String getSerializedName() {
 			return this.name;
 		}
 	}

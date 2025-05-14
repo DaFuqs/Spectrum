@@ -2,20 +2,20 @@ package de.dafuqs.spectrum.sound;
 
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
-import net.minecraft.client.sound.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.sound.*;
+import net.minecraft.client.resources.sounds.*;
+import net.minecraft.sounds.*;
+import net.minecraft.world.entity.player.*;
 
 @Environment(EnvType.CLIENT)
 public class HintRevelationSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
 	
-	private final PlayerEntity player;
+	private final Player player;
 	private boolean done;
 	
-	public HintRevelationSoundInstance(PlayerEntity player) {
-		super(SpectrumSoundEvents.TEXT_REVEALED, SoundCategory.PLAYERS, SoundInstance.createRandom());
-		this.repeat = true;
-		this.repeatDelay = 0;
+	public HintRevelationSoundInstance(Player player) {
+		super(SpectrumSoundEvents.TEXT_REVEALED, SoundSource.PLAYERS, SoundInstance.createUnseededRandom());
+		this.looping = true;
+		this.delay = 0;
 		this.volume = 1.0F;
 		this.player = player;
 		this.x = player.getX();
@@ -24,12 +24,12 @@ public class HintRevelationSoundInstance extends AbstractSoundInstance implement
 	}
 	
 	@Override
-	public boolean isDone() {
+	public boolean isStopped() {
 		return this.done;
 	}
 	
 	@Override
-	public boolean shouldAlwaysPlay() {
+	public boolean canStartSilent() {
 		return false;
 	}
 	
@@ -41,13 +41,13 @@ public class HintRevelationSoundInstance extends AbstractSoundInstance implement
 			this.z = player.getZ();
 		}
 		
-		if (player == null || !player.getMainHandStack().isOf(SpectrumItems.GUIDEBOOK)) {
+		if (player == null || !player.getMainHandItem().is(SpectrumItems.GUIDEBOOK)) {
 			this.setDone();
 		}
 	}
 	
 	public final void setDone() {
 		this.done = true;
-		this.repeat = false;
+		this.looping = false;
 	}
 }

@@ -2,32 +2,33 @@ package de.dafuqs.spectrum.blocks.jade_vines;
 
 import de.dafuqs.spectrum.blocks.decoration.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.particle.*;
-import net.minecraft.server.world.*;
-import net.minecraft.state.property.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
-import net.minecraft.util.shape.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.core.particles.*;
+import net.minecraft.server.level.*;
+import net.minecraft.util.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.phys.shapes.*;
 
 public class JadeiteLotusFlowerBlock extends SpectrumFacingBlock {
 	
-	protected static final VoxelShape SHAPE_UP = Block.createCuboidShape(0, 0, 0, 16, 8, 16);
-	protected static final VoxelShape SHAPE_DOWN = Block.createCuboidShape(0, 8, 0, 16, 16, 16);
-	protected static final VoxelShape SHAPE_NORTH = Block.createCuboidShape(0.0D, 0.0D, 8.0D, 16.0D, 16.0D, 16.0D);
-	protected static final VoxelShape SHAPE_SOUTH = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 8.0D);
-	protected static final VoxelShape SHAPE_EAST = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 8.0D, 16.0D, 16.0D);
-	protected static final VoxelShape SHAPE_WEST = Block.createCuboidShape(8.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
+	protected static final VoxelShape SHAPE_UP = Block.box(0, 0, 0, 16, 8, 16);
+	protected static final VoxelShape SHAPE_DOWN = Block.box(0, 8, 0, 16, 16, 16);
+	protected static final VoxelShape SHAPE_NORTH = Block.box(0.0D, 0.0D, 8.0D, 16.0D, 16.0D, 16.0D);
+	protected static final VoxelShape SHAPE_SOUTH = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 8.0D);
+	protected static final VoxelShape SHAPE_EAST = Block.box(0.0D, 0.0D, 0.0D, 8.0D, 16.0D, 16.0D);
+	protected static final VoxelShape SHAPE_WEST = Block.box(8.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
 	
-	public JadeiteLotusFlowerBlock(Settings settings) {
+	public JadeiteLotusFlowerBlock(Properties settings) {
 		super(settings);
-		setDefaultState(getDefaultState());
+		registerDefaultState(defaultBlockState());
 	}
 	
 	@Override
-	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		switch (state.get(Properties.FACING)) {
+	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+		switch (state.getValue(BlockStateProperties.FACING)) {
 			case UP -> {
 				return SHAPE_UP;
 			}
@@ -50,38 +51,38 @@ public class JadeiteLotusFlowerBlock extends SpectrumFacingBlock {
 	}
 	
 	@Override
-	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-		var facing = state.get(FACING);
-		var root = pos.offset(facing.getOpposite());
+	public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+		var facing = state.getValue(FACING);
+		var root = pos.relative(facing.getOpposite());
 		var supportBlock = world.getBlockState(root);
-		return (facing.getAxis().isVertical() && supportBlock.isOf(SpectrumBlocks.JADEITE_LOTUS_STEM)) || supportBlock.isSideSolid(world, root, facing, SideShapeType.CENTER);
+		return (facing.getAxis().isVertical() && supportBlock.is(SpectrumBlocks.JADEITE_LOTUS_STEM)) || supportBlock.isFaceSturdy(world, root, facing, SupportType.CENTER);
 	}
 	
 	@Override
-	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-		if (!state.canPlaceAt(world, pos)) {
-			world.scheduleBlockTick(pos, this, 1);
+	public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+		if (!state.canSurvive(world, pos)) {
+			world.scheduleTick(pos, this, 1);
 		}
 		
-		return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+		return super.updateShape(state, direction, neighborState, world, pos, neighborPos);
 	}
 	
 	@Override
-	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+	public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
 		var amount = random.nextInt(18) + 9;
 		for (int i = 0; i < amount; i++) {
-			var xOffset = MathHelper.clamp(MathHelper.nextGaussian(random, 0.5F, 5.85F), -9F, 9F) + 0.5F;
-			var yOffset = MathHelper.clamp(MathHelper.nextGaussian(random, 0.5F, 5.85F), -9F, 9F) + 0.5F;
-			var zOffset = MathHelper.clamp(MathHelper.nextGaussian(random, 0.5F, 5.85F), -9F, 9F) + 0.5F;
-			world.addImportantParticle(ParticleTypes.END_ROD, pos.getX() + xOffset, pos.getY() + yOffset, pos.getZ() + zOffset, random.nextFloat() * 0.05 - 0.025, random.nextFloat() * 0.05 - 0.025, random.nextFloat() * 0.05 - 0.025);
+			var xOffset = Mth.clamp(Mth.normal(random, 0.5F, 5.85F), -9F, 9F) + 0.5F;
+			var yOffset = Mth.clamp(Mth.normal(random, 0.5F, 5.85F), -9F, 9F) + 0.5F;
+			var zOffset = Mth.clamp(Mth.normal(random, 0.5F, 5.85F), -9F, 9F) + 0.5F;
+			world.addAlwaysVisibleParticle(ParticleTypes.END_ROD, pos.getX() + xOffset, pos.getY() + yOffset, pos.getZ() + zOffset, random.nextFloat() * 0.05 - 0.025, random.nextFloat() * 0.05 - 0.025, random.nextFloat() * 0.05 - 0.025);
 		}
 	}
 	
 	@Override
-	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		super.scheduledTick(state, world, pos, random);
-		if (!state.canPlaceAt(world, pos)) {
-			world.breakBlock(pos, true);
+	public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+		super.tick(state, world, pos, random);
+		if (!state.canSurvive(world, pos)) {
+			world.destroyBlock(pos, true);
 		}
 	}
 	

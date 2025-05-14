@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.api.item.*;
-import net.minecraft.item.*;
-import net.minecraft.registry.tag.*;
+import net.minecraft.tags.*;
+import net.minecraft.world.item.*;
 
 public class SpectrumItemDamageImmunities {
 	

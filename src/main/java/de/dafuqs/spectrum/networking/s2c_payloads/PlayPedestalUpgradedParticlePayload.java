@@ -7,26 +7,25 @@ import de.dafuqs.spectrum.recipe.pedestal.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.fabricmc.fabric.api.networking.v1.*;
+import net.minecraft.core.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.network.packet.*;
-import net.minecraft.server.network.*;
-import net.minecraft.server.world.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.network.protocol.common.custom.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.level.*;
 import org.jetbrains.annotations.*;
 
-public record PlayPedestalUpgradedParticlePayload(BlockPos pedestalPos, PedestalRecipeTier newTier) implements CustomPayload {
+public record PlayPedestalUpgradedParticlePayload(BlockPos pedestalPos, PedestalRecipeTier newTier) implements CustomPacketPayload {
 	
-	public static final Id<PlayPedestalUpgradedParticlePayload> ID = SpectrumC2SPackets.makeId("play_pedestal_upgraded_particle");
-	public static final PacketCodec<PacketByteBuf, PlayPedestalUpgradedParticlePayload> CODEC = PacketCodec.tuple(
-			BlockPos.PACKET_CODEC, PlayPedestalUpgradedParticlePayload::pedestalPos,
+	public static final Type<PlayPedestalUpgradedParticlePayload> ID = SpectrumC2SPackets.makeId("play_pedestal_upgraded_particle");
+	public static final StreamCodec<FriendlyByteBuf, PlayPedestalUpgradedParticlePayload> CODEC = StreamCodec.composite(
+			BlockPos.STREAM_CODEC, PlayPedestalUpgradedParticlePayload::pedestalPos,
 			PedestalRecipeTier.PACKET_CODEC, PlayPedestalUpgradedParticlePayload::newTier,
 			PlayPedestalUpgradedParticlePayload::new
 	);
 	
-	public static void spawnPedestalUpgradeParticles(World world, BlockPos pedestalPos, @NotNull PedestalVariant newPedestalVariant) {
-		for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, pedestalPos)) {
+	public static void spawnPedestalUpgradeParticles(Level world, BlockPos pedestalPos, @NotNull PedestalVariant newPedestalVariant) {
+		for (ServerPlayer player : PlayerLookup.tracking((ServerLevel) world, pedestalPos)) {
 			ServerPlayNetworking.send(player, new PlayPedestalUpgradedParticlePayload(pedestalPos, newPedestalVariant.getRecipeTier()));
 		}
 	}
@@ -37,7 +36,7 @@ public record PlayPedestalUpgradedParticlePayload(BlockPos pedestalPos, Pedestal
 	}
 	
 	@Override
-	public Id<? extends CustomPayload> getId() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

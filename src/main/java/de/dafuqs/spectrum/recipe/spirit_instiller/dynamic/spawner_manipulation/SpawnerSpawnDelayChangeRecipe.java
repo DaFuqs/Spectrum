@@ -2,11 +2,11 @@ package de.dafuqs.spectrum.recipe.spirit_instiller.dynamic.spawner_manipulation;
 
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.component.type.*;
-import net.minecraft.item.*;
 import net.minecraft.nbt.*;
-import net.minecraft.recipe.*;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.*;
+import net.minecraft.world.item.crafting.*;
 
 public class SpawnerSpawnDelayChangeRecipe extends SpawnerChangeRecipe {
 	
@@ -23,11 +23,11 @@ public class SpawnerSpawnDelayChangeRecipe extends SpawnerChangeRecipe {
 	}
 	
 	@Override
-	public boolean canCraftWithBlockEntityTag(NbtComponent spawnerBlockEntityNbt, ItemStack leftBowlStack, ItemStack rightBowlStack) {
+	public boolean canCraftWithBlockEntityTag(CustomData spawnerBlockEntityNbt, ItemStack leftBowlStack, ItemStack rightBowlStack) {
 		if (spawnerBlockEntityNbt == null) {
 			return true;
 		}
-		NbtCompound nbt = spawnerBlockEntityNbt.getNbt();
+		CompoundTag nbt = spawnerBlockEntityNbt.getUnsafe();
 		return (!nbt.contains("MinSpawnDelay") || nbt.getShort("MinSpawnDelay") > MIN_MIN_DELAY)
 				&& (!nbt.contains("MaxSpawnDelay") || nbt.getShort("MaxSpawnDelay") > MIN_MAX_DELAY);
 	}
@@ -38,12 +38,12 @@ public class SpawnerSpawnDelayChangeRecipe extends SpawnerChangeRecipe {
 	}
 	
 	@Override
-	public Text getOutputLoreText() {
-		return Text.translatable("recipe.spectrum.spawner.lore.decreased_spawn_delay");
+	public Component getOutputLoreText() {
+		return Component.translatable("recipe.spectrum.spawner.lore.decreased_spawn_delay");
 	}
 	
 	@Override
-	public NbtCompound getSpawnerResultNbt(NbtCompound spawnerBlockEntityNbt, ItemStack firstBowlStack, ItemStack secondBowlStack) {
+	public CompoundTag getSpawnerResultNbt(CompoundTag spawnerBlockEntityNbt, ItemStack firstBowlStack, ItemStack secondBowlStack) {
 		// Default spawner tag:
 		/* BlockEntityTag: {
 			MaxNearbyEntities: 6s,
@@ -59,11 +59,11 @@ public class SpawnerSpawnDelayChangeRecipe extends SpawnerChangeRecipe {
 		
 		// 800 => 700 => 614 => 540 => 476 => 421 => 373 => 331 => ... => MIN_DELAY
 		short minSpawnDelay = DEFAULT_MIN_DELAY;
-		if (spawnerBlockEntityNbt.contains("MinSpawnDelay", NbtElement.SHORT_TYPE)) {
+		if (spawnerBlockEntityNbt.contains("MinSpawnDelay", Tag.TAG_SHORT)) {
 			minSpawnDelay = spawnerBlockEntityNbt.getShort("MinSpawnDelay");
 		}
 		short maxSpawnDelay = DEFAULT_MAX_DELAY;
-		if (spawnerBlockEntityNbt.contains("MaxSpawnDelay", NbtElement.SHORT_TYPE)) {
+		if (spawnerBlockEntityNbt.contains("MaxSpawnDelay", Tag.TAG_SHORT)) {
 			maxSpawnDelay = spawnerBlockEntityNbt.getShort("MaxSpawnDelay");
 		}
 		

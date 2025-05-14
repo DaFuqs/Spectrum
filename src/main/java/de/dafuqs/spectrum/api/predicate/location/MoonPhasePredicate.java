@@ -4,10 +4,10 @@ import com.mojang.serialization.*;
 import de.dafuqs.spectrum.helpers.*;
 import io.netty.buffer.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.server.world.*;
+import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 
-public enum MoonPhasePredicate implements StringIdentifiable {
+public enum MoonPhasePredicate implements StringRepresentable {
 	FULL_MOON,
 	WANING_GIBBOUS,
 	THIRD_QUARTER,
@@ -17,15 +17,15 @@ public enum MoonPhasePredicate implements StringIdentifiable {
 	FIRST_QUARTER,
 	WAXING_GIBBOUS;
 	
-	public static final Codec<MoonPhasePredicate> CODEC = StringIdentifiable.createCodec(MoonPhasePredicate::values);
-	public static final PacketCodec<ByteBuf, MoonPhasePredicate> PACKET_CODEC = PacketCodecHelper.enumOf(MoonPhasePredicate::values);
+	public static final Codec<MoonPhasePredicate> CODEC = StringRepresentable.fromEnum(MoonPhasePredicate::values);
+	public static final StreamCodec<ByteBuf, MoonPhasePredicate> PACKET_CODEC = PacketCodecHelper.enumOf(MoonPhasePredicate::values);
 	
-	public boolean test(ServerWorld world) {
+	public boolean test(ServerLevel world) {
 		return ordinal() == world.getMoonPhase();
 	}
 	
 	@Override
-	public String asString() {
+	public String getSerializedName() {
 		return name().toLowerCase();
 	}
 	

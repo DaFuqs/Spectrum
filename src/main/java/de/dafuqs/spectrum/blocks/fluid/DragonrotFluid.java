@@ -4,27 +4,26 @@ import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.entity.mob.*;
-import net.minecraft.fluid.*;
-import net.minecraft.item.*;
-import net.minecraft.network.packet.s2c.play.*;
-import net.minecraft.particle.*;
-import net.minecraft.recipe.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
-import net.minecraft.state.*;
-import net.minecraft.state.property.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.core.particles.*;
+import net.minecraft.network.protocol.game.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
+import net.minecraft.util.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.monster.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.material.*;
 
 public abstract class DragonrotFluid extends SpectrumFluid {
 
 	@Override
-	public Fluid getStill() {
+	public Fluid getSource() {
 		return SpectrumFluids.DRAGONROT;
 	}
 	
@@ -34,119 +33,119 @@ public abstract class DragonrotFluid extends SpectrumFluid {
 	}
 	
 	@Override
-	public Item getBucketItem() {
+	public Item getBucket() {
 		return SpectrumItems.DRAGONROT_BUCKET;
 	}
 	
 	@Override
-	protected BlockState toBlockState(FluidState fluidState) {
-		return SpectrumBlocks.DRAGONROT.getDefaultState().with(Properties.LEVEL_15, getBlockStateLevel(fluidState));
+	protected BlockState createLegacyBlock(FluidState fluidState) {
+		return SpectrumBlocks.DRAGONROT.defaultBlockState().setValue(BlockStateProperties.LEVEL, getLegacyLevel(fluidState));
 	}
 	
 	@Override
-	public boolean matchesType(Fluid fluid) {
+	public boolean isSame(Fluid fluid) {
 		return fluid == SpectrumFluids.DRAGONROT || fluid == SpectrumFluids.FLOWING_DRAGONROT;
 	}
 	
 	@Override
 	@Environment(EnvType.CLIENT)
-	public void randomDisplayTick(World world, BlockPos pos, FluidState state, Random random) {
-		BlockPos topPos = pos.up();
+	public void animateTick(Level world, BlockPos pos, FluidState state, RandomSource random) {
+		BlockPos topPos = pos.above();
 		BlockState topState = world.getBlockState(topPos);
 		if (topState.isAir() && random.nextInt(3) == 0) {
 			float soundRandom = random.nextFloat();
 			if (soundRandom < 0.0003F) {
-				world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_HONEY_BOTTLE_DRINK, SoundCategory.AMBIENT, random.nextFloat() * 0.65F + 0.25F, random.nextFloat() * 0.2F, false);
+				world.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.HONEY_DRINK, SoundSource.AMBIENT, random.nextFloat() * 0.65F + 0.25F, random.nextFloat() * 0.2F, false);
 			}else if (soundRandom < 0.0006F) {
-				world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_HONEY_BLOCK_SLIDE, SoundCategory.AMBIENT, random.nextFloat() * 0.4F + 0.25F, random.nextFloat() * 0.5F + 0.1F, false);
+				world.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.HONEY_BLOCK_SLIDE, SoundSource.AMBIENT, random.nextFloat() * 0.4F + 0.25F, random.nextFloat() * 0.5F + 0.1F, false);
 			} else if (soundRandom < 0.0008F) {
-				world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_FROG_AMBIENT, SoundCategory.AMBIENT, random.nextFloat() + 0.25F, random.nextFloat() * 0.3F + 0.01F, false);
+				world.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.FROG_AMBIENT, SoundSource.AMBIENT, random.nextFloat() + 0.25F, random.nextFloat() * 0.3F + 0.01F, false);
 			} else if (soundRandom < 0.001F) {
-				world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_SCULK_PLACE, SoundCategory.AMBIENT, random.nextFloat() + 0.25F, random.nextFloat() * 0.4F + 0.2F, false);
+				world.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.SCULK_BLOCK_PLACE, SoundSource.AMBIENT, random.nextFloat() + 0.25F, random.nextFloat() * 0.4F + 0.2F, false);
 			}  else if (soundRandom < 0.00148F) {
-				world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_PARROT_DEATH, SoundCategory.AMBIENT, random.nextFloat() * 0.334F + 0.1F, 1F, false);
+				world.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.PARROT_DEATH, SoundSource.AMBIENT, random.nextFloat() * 0.334F + 0.1F, 1F, false);
 			} else if (soundRandom < 0.00152F) {
-				world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_CAT_DEATH, SoundCategory.AMBIENT, random.nextFloat() * 0.334F + 0.1F, 1F, false);
+				world.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.CAT_DEATH, SoundSource.AMBIENT, random.nextFloat() * 0.334F + 0.1F, 1F, false);
 			} else if (soundRandom < 0.00156F) {
-				world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_WOLF_DEATH, SoundCategory.AMBIENT, random.nextFloat() * 0.3F + 0.1F, 1F, false);
+				world.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.WOLF_DEATH, SoundSource.AMBIENT, random.nextFloat() * 0.3F + 0.1F, 1F, false);
 			} else if (soundRandom < 0.001564F) {
-				world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_SCULK_SHRIEKER_SHRIEK, SoundCategory.AMBIENT, 2F, 0.1F, false);
+				world.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.SCULK_SHRIEKER_SHRIEK, SoundSource.AMBIENT, 2F, 0.1F, false);
 			} else if (soundRandom < 0.001566F) {
-				world.playSound(pos.getX(), pos.getY(), pos.getZ(), SpectrumSoundEvents.ENTITY_MONSTROSITY_AMBIENT, SoundCategory.AMBIENT, random.nextFloat() * 0.65F + 0.25F, random.nextFloat(), false);
+				world.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SpectrumSoundEvents.ENTITY_MONSTROSITY_AMBIENT, SoundSource.AMBIENT, random.nextFloat() * 0.65F + 0.25F, random.nextFloat(), false);
 			}
 		}
 	}
 	
 	@Override
-	protected int getLevelDecreasePerBlock(WorldView worldView) {
+	protected int getDropOff(LevelReader worldView) {
 		return 3;
 	}
 	
 	@Override
-	public int getTickRate(WorldView worldView) {
+	public int getTickDelay(LevelReader worldView) {
 		return 40;
 	}
 	
 	@Override
-	public ParticleEffect getParticle() {
+	public ParticleOptions getDripParticle() {
 		return SpectrumParticleTypes.DRIPPING_DRAGONROT;
 	}
 	
 	@Override
-	public ParticleEffect getSplashParticle() {
+	public ParticleOptions getSplashParticle() {
 		return SpectrumParticleTypes.DRAGONROT_SPLASH;
 	}
 	
 	
 	@Override
-	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+	public void onEntityCollision(BlockState state, Level world, BlockPos pos, Entity entity) {
 		super.onEntityCollision(state, world, pos, entity);
 		
-		if (world instanceof ServerWorld serverWorld && entity instanceof LivingEntity livingEntity) {
+		if (world instanceof ServerLevel serverWorld && entity instanceof LivingEntity livingEntity) {
 			// just check every 20 ticks for performance
-			if (!livingEntity.isDead() && world.getTime() % 20 == 0 && !(livingEntity instanceof Monster)) {
-				var dragon = entity.getType().isIn(SpectrumEntityTypeTags.DRACONIC);
+			if (!livingEntity.isDeadOrDying() && world.getGameTime() % 20 == 0 && !(livingEntity instanceof Enemy)) {
+				var dragon = entity.getType().is(SpectrumEntityTypeTags.DRACONIC);
 				var damage = dragon ? 30 : 6;
 				var ticks = dragon ? 20 : 5;
 				var cut = dragon ? 100 : 40;
-
-				if (livingEntity.isSubmergedIn(SpectrumFluidTags.DRAGONROT)) {
-					livingEntity.damage(SpectrumDamageTypes.dragonrot(world), damage);
+				
+				if (livingEntity.isEyeInFluid(SpectrumFluidTags.DRAGONROT)) {
+					livingEntity.hurt(SpectrumDamageTypes.dragonrot(world), damage);
 				} else {
-					livingEntity.damage(SpectrumDamageTypes.dragonrot(world), damage / 2F);
+					livingEntity.hurt(SpectrumDamageTypes.dragonrot(world), damage / 2F);
 				}
-				if (!livingEntity.isDead()) {
-					StatusEffectInstance existingEffect = livingEntity.getStatusEffect(SpectrumStatusEffects.LIFE_DRAIN);
+				if (!livingEntity.isDeadOrDying()) {
+					MobEffectInstance existingEffect = livingEntity.getEffect(SpectrumStatusEffects.LIFE_DRAIN);
 					if (existingEffect == null) {
-						livingEntity.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.LIFE_DRAIN, 600, 0));
+						livingEntity.addEffect(new MobEffectInstance(SpectrumStatusEffects.LIFE_DRAIN, 600, 0));
 					}
 					else if(existingEffect.getDuration() < 500) {
 						existingEffect.spectrum$setDuration(300);
-
-						serverWorld.getChunkManager().sendToNearbyPlayers(livingEntity, new EntityStatusEffectS2CPacket(livingEntity.getId(), existingEffect, true));
+						
+						serverWorld.getChunkSource().broadcastAndSend(livingEntity, new ClientboundUpdateMobEffectPacket(livingEntity.getId(), existingEffect, true));
 					}
-
-					existingEffect = livingEntity.getStatusEffect(SpectrumStatusEffects.DEADLY_POISON);
+					
+					existingEffect = livingEntity.getEffect(SpectrumStatusEffects.DEADLY_POISON);
 					if (existingEffect == null || existingEffect.getDuration() < 80) {
-						livingEntity.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.DEADLY_POISON, 160, 0));
+						livingEntity.addEffect(new MobEffectInstance(SpectrumStatusEffects.DEADLY_POISON, 160, 0));
 					}
-
-					existingEffect = livingEntity.getStatusEffect(SpectrumStatusEffects.IMMUNITY);
+					
+					existingEffect = livingEntity.getEffect(SpectrumStatusEffects.IMMUNITY);
 					if (existingEffect != null) {
 						if (existingEffect.getDuration() <= cut) {
-							livingEntity.removeStatusEffect(SpectrumStatusEffects.IMMUNITY);
+							livingEntity.removeEffect(SpectrumStatusEffects.IMMUNITY);
 						} else {
 							existingEffect.spectrum$setDuration(existingEffect.getDuration() - cut);
-							serverWorld.getChunkManager().sendToNearbyPlayers(livingEntity, new EntityStatusEffectS2CPacket(livingEntity.getId(), existingEffect, true));
+							serverWorld.getChunkSource().broadcastAndSend(livingEntity, new ClientboundUpdateMobEffectPacket(livingEntity.getId(), existingEffect, true));
 						}
 					}
 
 					if (!dragon)
 						return;
-
-					existingEffect = livingEntity.getStatusEffect(SpectrumStatusEffects.DENSITY);
+					
+					existingEffect = livingEntity.getEffect(SpectrumStatusEffects.DENSITY);
 					if (existingEffect == null || existingEffect.getDuration() < 120) {
-						livingEntity.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.DENSITY, 2000, 1));
+						livingEntity.addEffect(new MobEffectInstance(SpectrumStatusEffects.DENSITY, 2000, 1));
 					}
 				}
 			}
@@ -161,18 +160,18 @@ public abstract class DragonrotFluid extends SpectrumFluid {
 	public static class Flowing extends DragonrotFluid {
 		
 		@Override
-		protected void appendProperties(StateManager.Builder<Fluid, FluidState> builder) {
-			super.appendProperties(builder);
+		protected void createFluidStateDefinition(StateDefinition.Builder<Fluid, FluidState> builder) {
+			super.createFluidStateDefinition(builder);
 			builder.add(LEVEL);
 		}
 		
 		@Override
-		public int getLevel(FluidState fluidState) {
-			return fluidState.get(LEVEL);
+		public int getAmount(FluidState fluidState) {
+			return fluidState.getValue(LEVEL);
 		}
 		
 		@Override
-		public boolean isStill(FluidState fluidState) {
+		public boolean isSource(FluidState fluidState) {
 			return false;
 		}
 		
@@ -181,12 +180,12 @@ public abstract class DragonrotFluid extends SpectrumFluid {
 	public static class Still extends DragonrotFluid {
 		
 		@Override
-		public int getLevel(FluidState fluidState) {
+		public int getAmount(FluidState fluidState) {
 			return 8;
 		}
 		
 		@Override
-		public boolean isStill(FluidState fluidState) {
+		public boolean isSource(FluidState fluidState) {
 			return true;
 		}
 		

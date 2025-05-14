@@ -4,18 +4,16 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.registries.*;
 import dev.emi.trinkets.api.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.entity.passive.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.particle.*;
-import net.minecraft.server.network.*;
-import net.minecraft.server.world.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.*;
+import net.minecraft.core.particles.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.animal.axolotl.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -29,16 +27,16 @@ public class WeepingCircletItem extends SpectrumTrinketItem {
 	private final static int MAX_AXOLOTL_DISTANCE = 12;
 	private final static int AXOLOTL_HEALING = 2;
 	
-	public WeepingCircletItem(Settings settings) {
+	public WeepingCircletItem(Properties settings) {
 		super(settings, SpectrumCommon.locate("unlocks/trinkets/weeping_circlet"));
 	}
 
 	@Override
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
-		tooltip.add(Text.translatable("item.spectrum.weeping_circlet.tooltip").formatted(Formatting.GRAY));
-		tooltip.add(Text.translatable("item.spectrum.weeping_circlet.tooltip2").formatted(Formatting.GRAY));
-		tooltip.add(Text.translatable("item.spectrum.weeping_circlet.tooltip3").formatted(Formatting.GRAY));
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
+		tooltip.add(Component.translatable("item.spectrum.weeping_circlet.tooltip").withStyle(ChatFormatting.GRAY));
+		tooltip.add(Component.translatable("item.spectrum.weeping_circlet.tooltip2").withStyle(ChatFormatting.GRAY));
+		tooltip.add(Component.translatable("item.spectrum.weeping_circlet.tooltip3").withStyle(ChatFormatting.GRAY));
 	}
 
 	@Override
@@ -54,30 +52,30 @@ public class WeepingCircletItem extends SpectrumTrinketItem {
 	}
 	
 	private void doEffects(LivingEntity entity, boolean always) {
-		World world = entity.getWorld();
-		if (!world.isClient) {
-			long time = entity.getWorld().getTime();
-			if (entity.isSubmergedIn(SpectrumFluidTags.ACTIVATES_WEEPING_CIRCLET)) {
+		Level world = entity.level();
+		if (!world.isClientSide) {
+			long time = entity.level().getGameTime();
+			if (entity.isEyeInFluid(SpectrumFluidTags.ACTIVATES_WEEPING_CIRCLET)) {
 				if (always || time % TRIGGER_EVERY_X_TICKS == 0) {
-					entity.setAir(entity.getMaxAir());
-					entity.addStatusEffect(new StatusEffectInstance(StatusEffects.DOLPHINS_GRACE, EFFECT_DURATION, 1, true, true));
-					entity.addStatusEffect(new StatusEffectInstance(StatusEffects.CONDUIT_POWER, EFFECT_DURATION, 0, true, true));
+					entity.setAirSupply(entity.getMaxAirSupply());
+					entity.addEffect(new MobEffectInstance(MobEffects.DOLPHINS_GRACE, EFFECT_DURATION, 1, true, true));
+					entity.addEffect(new MobEffectInstance(MobEffects.CONDUIT_POWER, EFFECT_DURATION, 0, true, true));
 				}
-				if ((always || time % HEAL_AXOLOTLS_EVERY_X_TICKS == 0) && entity instanceof ServerPlayerEntity serverPlayerEntity) {
+				if ((always || time % HEAL_AXOLOTLS_EVERY_X_TICKS == 0) && entity instanceof ServerPlayer serverPlayerEntity) {
 					healLovingAxolotls(serverPlayerEntity);
 				}
 			}
 		}
 	}
 	
-	private void healLovingAxolotls(@NotNull ServerPlayerEntity entity) {
-		World world = entity.getWorld();
-		List<AxolotlEntity> nearbyAxolotls = entity.getWorld().getEntitiesByType(EntityType.AXOLOTL, Box.of(entity.getPos(), MAX_AXOLOTL_DISTANCE, MAX_AXOLOTL_DISTANCE, MAX_AXOLOTL_DISTANCE), LivingEntity::isAlive);
-		for (AxolotlEntity axolotlEntity : nearbyAxolotls) {
-			if (axolotlEntity.getHealth() < axolotlEntity.getMaxHealth() && axolotlEntity.getLovingPlayer() != null && axolotlEntity.getLovingPlayer().equals(entity)) {
+	private void healLovingAxolotls(@NotNull ServerPlayer entity) {
+		Level world = entity.level();
+		List<Axolotl> nearbyAxolotls = entity.level().getEntities(EntityType.AXOLOTL, AABB.ofSize(entity.position(), MAX_AXOLOTL_DISTANCE, MAX_AXOLOTL_DISTANCE, MAX_AXOLOTL_DISTANCE), LivingEntity::isAlive);
+		for (Axolotl axolotlEntity : nearbyAxolotls) {
+			if (axolotlEntity.getHealth() < axolotlEntity.getMaxHealth() && axolotlEntity.getLoveCause() != null && axolotlEntity.getLoveCause().equals(entity)) {
 				axolotlEntity.heal(AXOLOTL_HEALING);
 				entity.playSound(SpectrumSoundEvents.BLOCK_CITRINE_BLOCK_CHIME, 1.0F, 0.9F + world.random.nextFloat() * 0.2F);
-				PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerWorld) axolotlEntity.getWorld(), axolotlEntity.getPos(), ParticleTypes.WAX_OFF, 10, new Vec3d(0.5, 0.5, 0.5), new Vec3d(0, 0, 0));
+				PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerLevel) axolotlEntity.level(), axolotlEntity.position(), ParticleTypes.WAX_OFF, 10, new Vec3(0.5, 0.5, 0.5), new Vec3(0, 0, 0));
 			}
 		}
 	}

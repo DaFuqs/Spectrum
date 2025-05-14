@@ -4,93 +4,96 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.ai.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.*;
-import net.minecraft.entity.ai.control.*;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.attribute.*;
-import net.minecraft.entity.damage.*;
-import net.minecraft.entity.data.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.entity.mob.*;
-import net.minecraft.entity.passive.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.entity.projectile.*;
+import net.minecraft.*;
+import net.minecraft.core.*;
 import net.minecraft.nbt.*;
-import net.minecraft.network.packet.s2c.play.*;
-import net.minecraft.predicate.entity.*;
-import net.minecraft.registry.entry.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
+import net.minecraft.network.protocol.game.*;
+import net.minecraft.network.syncher.*;
+import net.minecraft.resources.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
 import net.minecraft.world.*;
-import net.minecraft.world.event.*;
-import net.minecraft.world.event.listener.*;
+import net.minecraft.world.damagesource.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.*;
+import net.minecraft.world.entity.ai.control.*;
+import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.targeting.*;
+import net.minecraft.world.entity.animal.*;
+import net.minecraft.world.entity.monster.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.entity.projectile.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.gameevent.*;
+import net.minecraft.world.level.gameevent.vibrations.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
-import org.joml.Math;
 import org.joml.*;
 
+import java.lang.Math;
 import java.util.*;
 import java.util.function.*;
 
-public class PreservationTurretEntity extends GolemEntity implements Monster, Vibrations {
+public class PreservationTurretEntity extends AbstractGolem implements Enemy, VibrationSystem {
 	
 	protected static final int DETECTION_RANGE = 16;
 	protected static final float DAMAGE = 4.0F;
 	
-	private static final Identifier COVERED_ARMOR_BONUS_ID = SpectrumCommon.locate("covered_armor");
-	private static final Identifier COVERED_TOUGHNESS_BONUS_ID = SpectrumCommon.locate("covered_toughness");
-	protected static final EntityAttributeModifier COVERED_ARMOR_BONUS = new EntityAttributeModifier(COVERED_ARMOR_BONUS_ID, 20.0, EntityAttributeModifier.Operation.ADD_VALUE);
-	protected static final EntityAttributeModifier COVERED_TOUGHNESS_BONUS = new EntityAttributeModifier(COVERED_TOUGHNESS_BONUS_ID, 6.0, EntityAttributeModifier.Operation.ADD_VALUE);
+	private static final ResourceLocation COVERED_ARMOR_BONUS_ID = SpectrumCommon.locate("covered_armor");
+	private static final ResourceLocation COVERED_TOUGHNESS_BONUS_ID = SpectrumCommon.locate("covered_toughness");
+	protected static final AttributeModifier COVERED_ARMOR_BONUS = new AttributeModifier(COVERED_ARMOR_BONUS_ID, 20.0, AttributeModifier.Operation.ADD_VALUE);
+	protected static final AttributeModifier COVERED_TOUGHNESS_BONUS = new AttributeModifier(COVERED_TOUGHNESS_BONUS_ID, 6.0, AttributeModifier.Operation.ADD_VALUE);
 	
-	protected static final TrackedData<Direction> ATTACHED_FACE = DataTracker.registerData(PreservationTurretEntity.class, TrackedDataHandlerRegistry.FACING);
-	protected static final TrackedData<Byte> PEEK_AMOUNT = DataTracker.registerData(PreservationTurretEntity.class, TrackedDataHandlerRegistry.BYTE);
+	protected static final EntityDataAccessor<Direction> ATTACHED_FACE = SynchedEntityData.defineId(PreservationTurretEntity.class, EntityDataSerializers.DIRECTION);
+	protected static final EntityDataAccessor<Byte> PEEK_AMOUNT = SynchedEntityData.defineId(PreservationTurretEntity.class, EntityDataSerializers.BYTE);
 
 	protected static final Vector3f SOUTH_VECTOR = Util.make(() -> {
-		Vec3i vec3i = Direction.SOUTH.getVector();
+		Vec3i vec3i = Direction.SOUTH.getNormal();
 		return new Vector3f(vec3i.getX(), vec3i.getY(), vec3i.getZ());
 	});
-
-	protected final TargetPredicate TARGET_PREDICATE = TargetPredicate.createAttackable();
-
-	protected final EntityGameEventHandler<Vibrations.VibrationListener> gameEventHandler = new EntityGameEventHandler<>(new Vibrations.VibrationListener(this));
-	protected final Vibrations.Callback vibrationCallback = new VibrationsCallback(this);
-	protected Vibrations.ListenerData vibrationListenerData = new Vibrations.ListenerData();
+	
+	protected final TargetingConditions TARGET_PREDICATE = TargetingConditions.forCombat();
+	
+	protected final DynamicGameEventListener<VibrationSystem.Listener> gameEventHandler = new DynamicGameEventListener<>(new VibrationSystem.Listener(this));
+	protected final VibrationSystem.User vibrationCallback = new VibrationsCallback(this);
+	protected VibrationSystem.Data vibrationListenerData = new VibrationSystem.Data();
 
 	protected float prevOpenProgress;
 	protected float openProgress;
 	protected @Nullable BlockPos prevAttachedBlock;
 	
-	public PreservationTurretEntity(EntityType<? extends PreservationTurretEntity> entityType, World world) {
+	public PreservationTurretEntity(EntityType<? extends PreservationTurretEntity> entityType, Level world) {
 		super(entityType, world);
-		this.experiencePoints = 12;
+		this.xpReward = 12;
 		this.lookControl = new TurretLookControl(this);
 	}
 	
 	@Override
-	protected void initGoals() {
-		this.goalSelector.add(1, new RatatatataGoal());
-		this.goalSelector.add(2, new LookAtEntityGoal(this, PlayerEntity.class, 16.0F, 0.04F, true));
+	protected void registerGoals() {
+		this.goalSelector.addGoal(1, new RatatatataGoal());
+		this.goalSelector.addGoal(2, new LookAtPlayerGoal(this, Player.class, 16.0F, 0.04F, true));
 	}
 	
 	@Override
-	public boolean canHaveStatusEffect(StatusEffectInstance effect) {
-		if (effect.getEffectType().isIn(SpectrumStatusEffectTags.SOPORIFIC))
+	public boolean canBeAffected(MobEffectInstance effect) {
+		if (effect.getEffect().is(SpectrumStatusEffectTags.SOPORIFIC))
 			return false;
 		
-		return super.canHaveStatusEffect(effect);
+		return super.canBeAffected(effect);
 	}
 	
 	@Override
-	protected Entity.MoveEffect getMoveEffect() {
-		return Entity.MoveEffect.NONE;
+	protected Entity.MovementEmission getMovementEmission() {
+		return Entity.MovementEmission.NONE;
 	}
 	
 	@Override
-	public SoundCategory getSoundCategory() {
-		return SoundCategory.HOSTILE;
+	public SoundSource getSoundSource() {
+		return SoundSource.HOSTILE;
 	}
 	
 	@Override
@@ -109,37 +112,37 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 	}
 	
 	@Override
-	protected void initDataTracker(DataTracker.Builder builder) {
-		super.initDataTracker(builder);
-		builder.add(ATTACHED_FACE, Direction.DOWN);
-		builder.add(PEEK_AMOUNT, (byte) 0);
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(ATTACHED_FACE, Direction.DOWN);
+		builder.define(PEEK_AMOUNT, (byte) 0);
 	}
 	
-	public static DefaultAttributeContainer.Builder createGuardianTurretAttributes() {
-		return MobEntity.createMobAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 60.0);
+	public static AttributeSupplier.Builder createGuardianTurretAttributes() {
+		return Mob.createMobAttributes()
+				.add(Attributes.MAX_HEALTH, 60.0);
 	}
 	
 	@Override
-	protected BodyControl createBodyControl() {
+	protected BodyRotationControl createBodyControl() {
 		return new FixedBodyControl(this);
 	}
 
 	@Override
-	public void writeCustomDataToNbt(NbtCompound nbt) {
-		super.writeCustomDataToNbt(nbt);
-		nbt.putByte("AttachFace", (byte) this.getAttachedFace().getId());
-		nbt.putByte("Peek", this.dataTracker.get(PEEK_AMOUNT));
+	public void addAdditionalSaveData(CompoundTag nbt) {
+		super.addAdditionalSaveData(nbt);
+		nbt.putByte("AttachFace", (byte) this.getAttachedFace().get3DDataValue());
+		nbt.putByte("Peek", this.entityData.get(PEEK_AMOUNT));
 		
 		//DataResult<NbtElement> dataResult = Vibrations.ListenerData.CODEC.encodeStart(NbtOps.INSTANCE, this.getVibrationListenerData());
 		//dataResult.result().ifPresent((nbtElement) -> nbt.put("listener", nbtElement));
 	}
 
 	@Override
-	public void readCustomDataFromNbt(NbtCompound nbt) {
-		super.readCustomDataFromNbt(nbt);
-		this.setAttachedFace(Direction.byId(nbt.getByte("AttachFace")));
-		this.dataTracker.set(PEEK_AMOUNT, nbt.getByte("Peek"));
+	public void readAdditionalSaveData(CompoundTag nbt) {
+		super.readAdditionalSaveData(nbt);
+		this.setAttachedFace(Direction.from3DDataValue(nbt.getByte("AttachFace")));
+		this.entityData.set(PEEK_AMOUNT, nbt.getByte("Peek"));
 
 		/* If that is preserved the turrets do not target entities when loaded through structures (game event listener does not update chunk section?)
 		if (nbt.contains("listener", NbtElement.COMPOUND_TYPE)) {
@@ -149,12 +152,12 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 	}
 
 	@Override
-	public Vibrations.ListenerData getVibrationListenerData() {
+	public VibrationSystem.Data getVibrationData() {
 		return this.vibrationListenerData;
 	}
 
 	@Override
-	public Vibrations.Callback getVibrationCallback() {
+	public VibrationSystem.User getVibrationUser() {
 		return this.vibrationCallback;
 	}
 
@@ -168,13 +171,13 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 	@Override
 	public void tick() {
 		super.tick();
-
-		if (this.getWorld() instanceof ServerWorld serverWorld) {
-			Vibrations.Ticker.tick(serverWorld, this.getVibrationListenerData(), this.getVibrationCallback());
+		
+		if (this.level() instanceof ServerLevel serverWorld) {
+			VibrationSystem.Ticker.tick(serverWorld, this.getVibrationData(), this.getVibrationUser());
 		}
-
-		if (!this.getWorld().isClient() && !this.hasVehicle() && !this.canStay(this.getBlockPos(), this.getAttachedFace())) {
-			Direction direction = this.findAttachSide(this.getBlockPos());
+		
+		if (!this.level().isClientSide() && !this.isPassenger() && !this.canStay(this.blockPosition(), this.getAttachedFace())) {
+			Direction direction = this.findAttachSide(this.blockPosition());
 			if (direction != null) {
 				this.setAttachedFace(direction);
 			}
@@ -184,8 +187,8 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 	}
 	
 	@Override
-	public void updateEventHandler(BiConsumer<EntityGameEventHandler<?>, ServerWorld> callback) {
-		if (this.getWorld() instanceof ServerWorld serverWorld) {
+	public void updateDynamicGameEventListener(BiConsumer<DynamicGameEventListener<?>, ServerLevel> callback) {
+		if (this.level() instanceof ServerLevel serverWorld) {
 			callback.accept(this.gameEventHandler, serverWorld);
 		}
 	}
@@ -195,24 +198,24 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 		float peekAmount = (float) this.getPeekAmount() * 0.01F;
 		if (this.openProgress != peekAmount) {
 			if (this.openProgress > peekAmount) {
-				this.openProgress = MathHelper.clamp(this.openProgress - 0.05F, peekAmount, 1.0F);
+				this.openProgress = Mth.clamp(this.openProgress - 0.05F, peekAmount, 1.0F);
 			} else {
-				this.openProgress = MathHelper.clamp(this.openProgress + 0.05F, 0.0F, peekAmount);
+				this.openProgress = Mth.clamp(this.openProgress + 0.05F, 0.0F, peekAmount);
 			}
 		}
 	}
 	
 	@Override
-	public Vec3d getVehicleAttachmentPos(Entity vehicle) {
+	public Vec3 getVehicleAttachmentPoint(Entity vehicle) {
 		if (vehicle.getType() != EntityType.BOAT && vehicle.getType() != EntityType.MINECART)
-			return super.getVehicleAttachmentPos(vehicle);
-		var ridingPos = vehicle.getPassengerRidingPos(this);
-		return new Vec3d(ridingPos.x, 0.1875 - ridingPos.y, ridingPos.z);
+			return super.getVehicleAttachmentPoint(vehicle);
+		var ridingPos = vehicle.getPassengerRidingPosition(this);
+		return new Vec3(ridingPos.x, 0.1875 - ridingPos.y, ridingPos.z);
 	}
 	
 	@Override
 	public boolean startRiding(Entity entity, boolean force) {
-		if (this.getWorld().isClient()) {
+		if (this.level().isClientSide()) {
 			this.prevAttachedBlock = null;
 		}
 		
@@ -223,41 +226,41 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 	@Override
 	public void stopRiding() {
 		super.stopRiding();
-		if (this.getWorld().isClient()) {
-			this.prevAttachedBlock = this.getBlockPos();
+		if (this.level().isClientSide()) {
+			this.prevAttachedBlock = this.blockPosition();
 		}
 		
-		this.prevBodyYaw = 0.0F;
-		this.bodyYaw = 0.0F;
+		this.yBodyRotO = 0.0F;
+		this.yBodyRot = 0.0F;
 	}
 	
 	@Override
-	public @Nullable EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData) {
-		this.setYaw(0.0F);
-		this.headYaw = this.getYaw();
-		this.resetPosition();
-		return super.initialize(world, difficulty, spawnReason, entityData);
+	public @Nullable SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType spawnReason, @Nullable SpawnGroupData entityData) {
+		this.setYRot(0.0F);
+		this.yHeadRot = this.getYRot();
+		this.setOldPosAndRot();
+		return super.finalizeSpawn(world, difficulty, spawnReason, entityData);
 	}
 
 	@Override
-	public void setPosition(double x, double y, double z) {
-		BlockPos blockPos = this.getBlockPos();
-		if (this.hasVehicle()) {
-			super.setPosition(x, y, z);
+	public void setPos(double x, double y, double z) {
+		BlockPos blockPos = this.blockPosition();
+		if (this.isPassenger()) {
+			super.setPos(x, y, z);
 		} else {
-			super.setPosition(MathHelper.floor(x) + 0.5, MathHelper.floor(y + 0.5), MathHelper.floor(z) + 0.5);
+			super.setPos(Mth.floor(x) + 0.5, Mth.floor(y + 0.5), Mth.floor(z) + 0.5);
 		}
 		
-		if (this.age != 0) {
-			BlockPos blockPos2 = this.getBlockPos();
+		if (this.tickCount != 0) {
+			BlockPos blockPos2 = this.blockPosition();
 			if (!blockPos2.equals(blockPos)) {
-				this.dataTracker.set(PEEK_AMOUNT, (byte) 0);
-				this.velocityDirty = true;
-				if (this.getWorld().isClient() && !this.hasVehicle() && !blockPos2.equals(this.prevAttachedBlock)) {
+				this.entityData.set(PEEK_AMOUNT, (byte) 0);
+				this.hasImpulse = true;
+				if (this.level().isClientSide() && !this.isPassenger() && !blockPos2.equals(this.prevAttachedBlock)) {
 					this.prevAttachedBlock = blockPos;
-					this.lastRenderX = this.getX();
-					this.lastRenderY = this.getY();
-					this.lastRenderZ = this.getZ();
+					this.xOld = this.getX();
+					this.yOld = this.getY();
+					this.zOld = this.getZ();
 				}
 			}
 			
@@ -279,37 +282,37 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 			return false;
 		} else {
 			Direction direction2 = direction.getOpposite();
-			if (!this.getWorld().isDirectionSolid(pos.offset(direction), this, direction2)) {
+			if (!this.level().loadedAndEntityCanStandOnFace(pos.relative(direction), this, direction2)) {
 				return false;
 			} else {
-				return this.getWorld().isSpaceEmpty(this, getBoundingBox());
+				return this.level().noCollision(this, getBoundingBox());
 			}
 		}
 	}
 	
 	private boolean isInvalidPosition(BlockPos pos) {
-		BlockState blockState = this.getWorld().getBlockState(pos);
+		BlockState blockState = this.level().getBlockState(pos);
 		if (blockState.isAir()) {
 			return false;
 		} else {
-			boolean bl = blockState.isOf(Blocks.MOVING_PISTON) && pos.equals(this.getBlockPos());
+			boolean bl = blockState.is(Blocks.MOVING_PISTON) && pos.equals(this.blockPosition());
 			return !bl;
 		}
 	}
 	
 	@Override
-	public void updateTrackedPositionAndAngles(double x, double y, double z, float yaw, float pitch, int interpolationSteps) {
-		this.bodyTrackingIncrements = 0;
-		this.setPosition(x, y, z);
-		this.setRotation(yaw, pitch);
+	public void lerpTo(double x, double y, double z, float yaw, float pitch, int interpolationSteps) {
+		this.lerpSteps = 0;
+		this.setPos(x, y, z);
+		this.setRot(yaw, pitch);
 	}
 	
 	@Override
-	public boolean damage(DamageSource source, float amount) {
-		if (this.isClosed() && source.getSource() instanceof PersistentProjectileEntity) {
+	public boolean hurt(DamageSource source, float amount) {
+		if (this.isClosed() && source.getDirectEntity() instanceof AbstractArrow) {
 			return false;
 		}
-		return super.damage(source, amount);
+		return super.hurt(source, amount);
 	}
 	
 	private boolean isClosed() {
@@ -317,137 +320,137 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 	}
 	
 	@Override
-	public boolean isCollidable() {
+	public boolean canBeCollidedWith() {
 		return this.isAlive();
 	}
 	
 	public Direction getAttachedFace() {
-		return this.dataTracker.get(ATTACHED_FACE);
+		return this.entityData.get(ATTACHED_FACE);
 	}
 	
 	private void setAttachedFace(Direction face) {
-		this.dataTracker.set(ATTACHED_FACE, face);
+		this.entityData.set(ATTACHED_FACE, face);
 	}
 	
 	@Override
-	public void onTrackedDataSet(TrackedData<?> data) {
+	public void onSyncedDataUpdated(EntityDataAccessor<?> data) {
 		if (ATTACHED_FACE.equals(data)) {
-			this.setBoundingBox(this.calculateBoundingBox());
+			this.setBoundingBox(this.makeBoundingBox());
 		}
 		
-		super.onTrackedDataSet(data);
+		super.onSyncedDataUpdated(data);
 	}
 	
 	private int getPeekAmount() {
-		return this.dataTracker.get(PEEK_AMOUNT);
+		return this.entityData.get(PEEK_AMOUNT);
 	}
 	
 	void setPeekAmount(int peekAmount) {
-		if (!this.getWorld().isClient()) {
-			this.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).removeModifier(COVERED_ARMOR_BONUS);
-			this.getAttributeInstance(EntityAttributes.GENERIC_ARMOR_TOUGHNESS).removeModifier(COVERED_TOUGHNESS_BONUS);
+		if (!this.level().isClientSide()) {
+			this.getAttribute(Attributes.ARMOR).removeModifier(COVERED_ARMOR_BONUS);
+			this.getAttribute(Attributes.ARMOR_TOUGHNESS).removeModifier(COVERED_TOUGHNESS_BONUS);
 			if (peekAmount == 0) {
-				this.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).addPersistentModifier(COVERED_ARMOR_BONUS);
-				this.getAttributeInstance(EntityAttributes.GENERIC_ARMOR_TOUGHNESS).addPersistentModifier(COVERED_TOUGHNESS_BONUS);
+				this.getAttribute(Attributes.ARMOR).addPermanentModifier(COVERED_ARMOR_BONUS);
+				this.getAttribute(Attributes.ARMOR_TOUGHNESS).addPermanentModifier(COVERED_TOUGHNESS_BONUS);
 				this.playSound(SpectrumSoundEvents.ENTITY_PRESERVATION_TURRET_CLOSE, 1.0F, 1.0F);
-				this.emitGameEvent(GameEvent.CONTAINER_CLOSE);
+				this.gameEvent(GameEvent.CONTAINER_CLOSE);
 			} else {
 				this.playSound(SpectrumSoundEvents.ENTITY_PRESERVATION_TURRET_OPEN, 1.0F, 1.0F);
-				this.emitGameEvent(GameEvent.CONTAINER_OPEN);
+				this.gameEvent(GameEvent.CONTAINER_OPEN);
 			}
 		}
 		
-		this.dataTracker.set(PEEK_AMOUNT, (byte) peekAmount);
+		this.entityData.set(PEEK_AMOUNT, (byte) peekAmount);
 	}
 	
 	public float getOpenProgress(float delta) {
-		return MathHelper.lerp(delta, this.prevOpenProgress, this.openProgress);
+		return Mth.lerp(delta, this.prevOpenProgress, this.openProgress);
 	}
 
 	@Override
-	public void onSpawnPacket(EntitySpawnS2CPacket packet) {
-		super.onSpawnPacket(packet);
-		this.bodyYaw = 0.0F;
-		this.prevBodyYaw = 0.0F;
+	public void recreateFromPacket(ClientboundAddEntityPacket packet) {
+		super.recreateFromPacket(packet);
+		this.yBodyRot = 0.0F;
+		this.yBodyRotO = 0.0F;
 	}
 	
 	@Override
-	public int getMaxLookPitchChange() {
+	public int getMaxHeadXRot() {
 		return 180;
 	}
 	
 	@Override
-	public int getMaxHeadRotation() {
+	public int getMaxHeadYRot() {
 		return 180;
 	}
 	
 	@Override
-	public void pushAwayFrom(Entity entity) {
+	public void push(Entity entity) {
 	}
 	
 	@Override
-	public boolean canSee(Entity entity) {
-		if (entity.getWorld() != this.getWorld()) {
+	public boolean hasLineOfSight(Entity entity) {
+		if (entity.level() != this.level()) {
 			return false;
 		}
-
-		Vec3d thisEyePos = this.getEyePos();
-		Vec3d entityEyePos = entity.getEyePos();
+		
+		Vec3 thisEyePos = this.getEyePosition();
+		Vec3 entityEyePos = entity.getEyePosition();
 		double distance = entityEyePos.distanceTo(thisEyePos);
 
 		// they only have a very limited vertical field of sight
 		// a valid strategy would be to sneak to their top / bottom, since they can't shoot there
 		return distance < 26
 				&& (Math.abs(this.getEyeY() - entity.getEyeY()) < distance / 2 || Math.abs(this.getEyeY() - entity.getY()) < distance / 2)
-				&& this.getWorld().raycast(new RaycastContext(thisEyePos, entityEyePos, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, this)).getType() == net.minecraft.util.hit.HitResult.Type.MISS;
+				&& this.level().clip(new ClipContext(thisEyePos, entityEyePos, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this)).getType() == net.minecraft.world.phys.HitResult.Type.MISS;
 	}
 
 	@Override
-	public float getTargetingMargin() {
+	public float getPickRadius() {
 		return 0.0F;
 	}
 
 	@Contract("null->false")
 	public boolean isValidTarget(@Nullable Entity entity) {
 		return entity instanceof LivingEntity livingEntity
-				&& this.getWorld() == entity.getWorld()
-				&& EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR.test(entity)
-				&& !this.isTeammate(entity)
+				&& this.level() == entity.level()
+				&& EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(entity)
+				&& !this.isAlliedTo(entity)
 				&& livingEntity.getType() != EntityType.ARMOR_STAND
 				&& livingEntity.getType() != SpectrumEntityTypes.PRESERVATION_TURRET
 				&& !livingEntity.isInvulnerable()
-				&& !livingEntity.isDead()
-				&& this.getWorld().getWorldBorder().contains(livingEntity.getBoundingBox());
+				&& !livingEntity.isDeadOrDying()
+				&& this.level().getWorldBorder().isWithinBounds(livingEntity.getBoundingBox());
 	}
 
 	private class TurretLookControl extends LookControl {
-		public TurretLookControl(MobEntity entity) {
+		public TurretLookControl(Mob entity) {
 			super(entity);
 		}
 		
 		@Override
-		protected void clampHeadYaw() {
+		protected void clampHeadRotationToBody() {
 		}
 		
 		@Override
-		protected Optional<Float> getTargetYaw() {
+		protected Optional<Float> getYRotD() {
 			Direction attachedDirection = PreservationTurretEntity.this.getAttachedFace().getOpposite();
 			Vector3f southVectorCopy = new Vector3f(PreservationTurretEntity.SOUTH_VECTOR);
-			southVectorCopy.rotate(attachedDirection.getRotationQuaternion());
-			Vec3i vec3i = attachedDirection.getVector();
+			southVectorCopy.rotate(attachedDirection.getRotation());
+			Vec3i vec3i = attachedDirection.getNormal();
 			Vector3f vec3f2 = new Vector3f(vec3i.getX(), vec3i.getY(), vec3i.getZ());
 			vec3f2.cross(southVectorCopy);
-			double xOffset = this.x - this.entity.getX();
-			double yOffset = this.y - this.entity.getEyeY();
-			double zOffset = this.z - this.entity.getZ();
+			double xOffset = this.wantedX - this.mob.getX();
+			double yOffset = this.wantedY - this.mob.getEyeY();
+			double zOffset = this.wantedZ - this.mob.getZ();
 			Vector3f vec3f3 = new Vector3f((float) xOffset, (float) yOffset, (float) zOffset);
 			float g = vec3f2.dot(vec3f3);
 			float h = southVectorCopy.dot(vec3f3);
-			return !(Math.abs(g) > 1.0E-5F) && !(Math.abs(h) > 1.0E-5F) ? Optional.empty() : Optional.of((float) (MathHelper.atan2((-g), h) * 57.2957763671875));
+			return !(Math.abs(g) > 1.0E-5F) && !(Math.abs(h) > 1.0E-5F) ? Optional.empty() : Optional.of((float) (Mth.atan2((-g), h) * 57.2957763671875));
 		}
 		
 		@Override
-		protected Optional<Float> getTargetPitch() {
+		protected Optional<Float> getXRotD() {
 			return Optional.of(0.0F);
 		}
 	}
@@ -458,17 +461,17 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 	private class RatatatataGoal extends Goal {
 		
 		public RatatatataGoal() {
-			this.setControls(EnumSet.of(Control.MOVE, Control.TARGET));
+			this.setFlags(EnumSet.of(Flag.MOVE, Flag.TARGET));
 		}
 		
 		@Override
-		public boolean canStart() {
+		public boolean canUse() {
 			LivingEntity target = PreservationTurretEntity.this.getTarget();
 
 			if (target != null) {
-				PreservationTurretEntity.this.getLookControl().lookAt(target, 2.0F, 2.0F);
-
-				if (!PreservationTurretEntity.this.canSee(target)) {
+				PreservationTurretEntity.this.getLookControl().setLookAt(target, 2.0F, 2.0F);
+				
+				if (!PreservationTurretEntity.this.hasLineOfSight(target)) {
 					PreservationTurretEntity.this.setTarget(null);
 					return false;
 				}
@@ -480,8 +483,8 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 		}
 
 		@Override
-		public boolean shouldContinue() {
-			return super.shouldContinue() && TARGET_PREDICATE.test(PreservationTurretEntity.this, PreservationTurretEntity.this.getTarget());
+		public boolean canContinueToUse() {
+			return super.canContinueToUse() && TARGET_PREDICATE.test(PreservationTurretEntity.this, PreservationTurretEntity.this.getTarget());
 		}
 		
 		@Override
@@ -491,17 +494,17 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 		
 		@Override
 		public void tick() {
-			if (PreservationTurretEntity.this.getWorld().getDifficulty() != Difficulty.PEACEFUL) {
+			if (PreservationTurretEntity.this.level().getDifficulty() != Difficulty.PEACEFUL) {
 				LivingEntity target = PreservationTurretEntity.this.getTarget();
 				if (target == null) {
 					return;
 				}
-
-				if (!PreservationTurretEntity.this.canSee(target)) {
+				
+				if (!PreservationTurretEntity.this.hasLineOfSight(target)) {
 					return;
 				}
-
-				target.damage(getWorld().getDamageSources().mobAttack(PreservationTurretEntity.this), DAMAGE);
+				
+				target.hurt(level().damageSources().mobAttack(PreservationTurretEntity.this), DAMAGE);
 				PreservationTurretEntity.this.playSound(SpectrumSoundEvents.ENTITY_PRESERVATION_TURRET_SHOOT, 2.0F, 1.0F + 0.2F * (PreservationTurretEntity.this.random.nextFloat() - PreservationTurretEntity.this.random.nextFloat()));
 				target.playSound(SpectrumSoundEvents.ENTITY_PRESERVATION_TURRET_SHOOT, 1.0F, 0.5F + 0.2F * (PreservationTurretEntity.this.random.nextFloat() - PreservationTurretEntity.this.random.nextFloat()));
 
@@ -509,17 +512,17 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 			}
 		}
 	}
-
-	private class VibrationsCallback implements Vibrations.Callback {
+	
+	private class VibrationsCallback implements VibrationSystem.User {
 
 		private final EntityPositionSource positionSource;
 
 		VibrationsCallback(PreservationTurretEntity turretEntity) {
-			this.positionSource = new EntityPositionSource(turretEntity, turretEntity.getStandingEyeHeight());
+			this.positionSource = new EntityPositionSource(turretEntity, turretEntity.getEyeHeight());
 		}
 
 		@Override
-		public int getRange() {
+		public int getListenerRadius() {
 			return DETECTION_RANGE;
 		}
 
@@ -529,19 +532,19 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 		}
 
 		@Override
-		public boolean accepts(ServerWorld world, BlockPos pos, RegistryEntry<GameEvent> event, GameEvent.Emitter emitter) {
+		public boolean canReceiveVibration(ServerLevel world, BlockPos pos, Holder<GameEvent> event, GameEvent.Context emitter) {
 			return !PreservationTurretEntity.this.isRemoved()
-				&& !PreservationTurretEntity.this.isDead()
-				&& !PreservationTurretEntity.this.isAiDisabled()
-				&& world.getWorldBorder().contains(pos)
-				&& PreservationTurretEntity.this.getWorld() == world
+					&& !PreservationTurretEntity.this.isDeadOrDying()
+					&& !PreservationTurretEntity.this.isNoAi()
+					&& world.getWorldBorder().isWithinBounds(pos)
+					&& PreservationTurretEntity.this.level() == world
 				&& emitter.sourceEntity() instanceof LivingEntity livingEntity
 				&& PreservationTurretEntity.this.isValidTarget(livingEntity);
 		}
 
 		@Override
-		public void accept(ServerWorld world, BlockPos pos, RegistryEntry<GameEvent> event, @Nullable Entity sourceEntity, @Nullable Entity target, float distance) {
-			if (!PreservationTurretEntity.this.isDead()
+		public void onReceiveVibration(ServerLevel world, BlockPos pos, Holder<GameEvent> event, @Nullable Entity sourceEntity, @Nullable Entity target, float distance) {
+			if (!PreservationTurretEntity.this.isDeadOrDying()
 				&& sourceEntity instanceof LivingEntity livingEntity
 				&& TARGET_PREDICATE.test(PreservationTurretEntity.this, livingEntity)) {
 

@@ -1,13 +1,13 @@
 package de.dafuqs.spectrum.worldgen.features;
 
 import com.mojang.serialization.*;
-import net.minecraft.block.*;
-import net.minecraft.state.property.Properties;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.*;
-import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.feature.util.*;
+import net.minecraft.core.*;
+import net.minecraft.util.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.levelgen.feature.*;
 
 import java.util.*;
 
@@ -18,11 +18,11 @@ public class WallPatchFeature extends Feature<WallPatchFeatureConfig> {
 	}
 	
 	@Override
-	public boolean generate(FeatureContext<WallPatchFeatureConfig> context) {
-		StructureWorldAccess structureWorldAccess = context.getWorld();
-		BlockPos blockPos = context.getOrigin();
-		Random random = context.getRandom();
-		WallPatchFeatureConfig config = context.getConfig();
+	public boolean place(FeaturePlaceContext<WallPatchFeatureConfig> context) {
+		WorldGenLevel structureWorldAccess = context.level();
+		BlockPos blockPos = context.origin();
+		RandomSource random = context.random();
+		WallPatchFeatureConfig config = context.config();
 		if (!isAirOrWater(structureWorldAccess.getBlockState(blockPos))) {
 			return false;
 		} else {
@@ -30,14 +30,14 @@ public class WallPatchFeature extends Feature<WallPatchFeatureConfig> {
 			if (generate(structureWorldAccess, blockPos, config, random)) {
 				return true;
 			} else {
-				BlockPos.Mutable mutable = blockPos.mutableCopy();
+				BlockPos.MutableBlockPos mutable = blockPos.mutable();
 				
 				for (Direction direction : shuffledDirections) {
 					mutable.set(blockPos);
 					for (int i = 0; i < config.searchRange; ++i) {
-						mutable.set(blockPos, direction);
+						mutable.setWithOffset(blockPos, direction);
 						BlockState blockState = structureWorldAccess.getBlockState(mutable);
-						if (!isAirOrWater(blockState) && !blockState.isOf(config.block)) {
+						if (!isAirOrWater(blockState) && !blockState.is(config.block)) {
 							break;
 						}
 						if (generate(structureWorldAccess, mutable, config, random)) {
@@ -50,14 +50,14 @@ public class WallPatchFeature extends Feature<WallPatchFeatureConfig> {
 		}
 	}
 	
-	public static boolean generate(StructureWorldAccess world, BlockPos pos, WallPatchFeatureConfig config, Random random) {
-		BlockPos.Mutable mutable = pos.mutableCopy();
+	public static boolean generate(WorldGenLevel world, BlockPos pos, WallPatchFeatureConfig config, RandomSource random) {
+		BlockPos.MutableBlockPos mutable = pos.mutable();
 		
 		BlockState posState;
 		Direction direction;
 		boolean success = false;
 		
-		for (BlockPos currPos : BlockPos.iterateOutwards(pos, config.width.get(random), config.height.get(random), config.width.get(random))) {
+		for (BlockPos currPos : BlockPos.withinManhattan(pos, config.width.sample(random), config.height.sample(random), config.width.sample(random))) {
 			if (!isAirOrWater(world.getBlockState(currPos))) {
 				continue;
 			}
@@ -66,8 +66,8 @@ public class WallPatchFeature extends Feature<WallPatchFeatureConfig> {
 			boolean canBePlaced = false;
 			do {
 				direction = directionIterator.next();
-				posState = world.getBlockState(mutable.set(currPos, direction));
-				if (posState.isIn(config.canPlaceOn)) {
+				posState = world.getBlockState(mutable.setWithOffset(currPos, direction));
+				if (posState.is(config.canPlaceOn)) {
 					canBePlaced = true;
 				}
 			} while (!canBePlaced && directionIterator.hasNext());
@@ -76,13 +76,13 @@ public class WallPatchFeature extends Feature<WallPatchFeatureConfig> {
 				continue;
 			}
 			
-			BlockState stateToPlace = config.block.getDefaultState();
-			if (config.block instanceof FacingBlock) {
-				stateToPlace = stateToPlace.with(Properties.FACING, direction.getOpposite());
+			BlockState stateToPlace = config.block.defaultBlockState();
+			if (config.block instanceof DirectionalBlock) {
+				stateToPlace = stateToPlace.setValue(BlockStateProperties.FACING, direction.getOpposite());
 			}
 			
 			if (stateToPlace != null) {
-				world.setBlockState(currPos, stateToPlace, 3);
+				world.setBlock(currPos, stateToPlace, 3);
 				success = true;
 			}
 		}
@@ -91,7 +91,7 @@ public class WallPatchFeature extends Feature<WallPatchFeatureConfig> {
 	}
 	
 	private static boolean isAirOrWater(BlockState state) {
-		return state.isAir() || state.isOf(Blocks.WATER);
+		return state.isAir() || state.is(Blocks.WATER);
 	}
 	
 }

@@ -5,28 +5,28 @@ import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.helpers.*;
 import io.netty.buffer.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
-import net.minecraft.world.event.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.gameevent.*;
+import net.minecraft.world.phys.*;
 
 import java.util.*;
 
 public class ExactPositionSource implements PositionSource {
 	
 	public static final MapCodec<ExactPositionSource> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
-			Vec3d.CODEC.fieldOf("pos").forGetter((blockPositionSource) -> blockPositionSource.pos)
+			Vec3.CODEC.fieldOf("pos").forGetter((blockPositionSource) -> blockPositionSource.pos)
 	).apply(instance, ExactPositionSource::new));
 	
-	public static final PacketCodec<ByteBuf, ExactPositionSource> PACKET_CODEC = PacketCodec.tuple(PacketCodecHelper.VEC3D, (source) -> source.pos, ExactPositionSource::new);
+	public static final StreamCodec<ByteBuf, ExactPositionSource> PACKET_CODEC = StreamCodec.composite(PacketCodecHelper.VEC3D, (source) -> source.pos, ExactPositionSource::new);
 	
-	final Vec3d pos;
+	final Vec3 pos;
 	
-	public ExactPositionSource(Vec3d pos) {
+	public ExactPositionSource(Vec3 pos) {
 		this.pos = pos;
 	}
 	
 	@Override
-	public Optional<Vec3d> getPos(World world) {
+	public Optional<Vec3> getPosition(Level world) {
 		return Optional.of(this.pos);
 	}
 	
@@ -39,11 +39,11 @@ public class ExactPositionSource implements PositionSource {
 		public Type() {
 		}
 		
-		public MapCodec<ExactPositionSource> getCodec() {
+		public MapCodec<ExactPositionSource> codec() {
 			return ExactPositionSource.CODEC;
 		}
 		
-		public PacketCodec<ByteBuf, ExactPositionSource> getPacketCodec() {
+		public StreamCodec<ByteBuf, ExactPositionSource> streamCodec() {
 			return ExactPositionSource.PACKET_CODEC;
 		}
 	}

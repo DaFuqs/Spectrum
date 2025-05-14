@@ -1,14 +1,14 @@
 package de.dafuqs.spectrum.blocks.farming;
 
-import net.minecraft.block.*;
-import net.minecraft.server.world.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
+import net.minecraft.core.*;
+import net.minecraft.server.level.*;
+import net.minecraft.util.*;
+import net.minecraft.world.level.block.state.*;
 
 public class ExtraTickFarmlandBlock extends SpectrumFarmlandBlock {
 	
-	public ExtraTickFarmlandBlock(Settings settings, BlockState bareState) {
-		super(settings.ticksRandomly(), bareState);
+	public ExtraTickFarmlandBlock(Properties settings, BlockState bareState) {
+		super(settings.randomTicks(), bareState);
 	}
 
 //	@Override
@@ -22,10 +22,10 @@ public class ExtraTickFarmlandBlock extends SpectrumFarmlandBlock {
 	 * => the crop grows faster
 	 */
 	@Override
-	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		BlockPos topPos = pos.up();
+	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+		BlockPos topPos = pos.above();
 		BlockState topBlockState = world.getBlockState(topPos);
-		if (hasCrop(world, pos)) {
+		if (shouldMaintainFarmland(world, pos)) {
 			topBlockState.randomTick(world, topPos, random);
 		}
 		

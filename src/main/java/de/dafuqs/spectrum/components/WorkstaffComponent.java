@@ -15,12 +15,12 @@ public record WorkstaffComponent(boolean canTill, boolean canShoot, int fortuneL
 			Codec.INT.fieldOf("fortune_level").forGetter(c -> c.fortuneLevel)
 	).apply(i, WorkstaffComponent::new));
 	
-	public static final PacketCodec<ByteBuf, WorkstaffComponent> PACKET_CODEC = PacketCodec.tuple(
-			PacketCodecs.BOOL,
+	public static final StreamCodec<ByteBuf, WorkstaffComponent> PACKET_CODEC = StreamCodec.composite(
+			ByteBufCodecs.BOOL,
 			c -> c.canTill,
-			PacketCodecs.BOOL,
+			ByteBufCodecs.BOOL,
 			c -> c.canShoot,
-			PacketCodecs.VAR_INT,
+			ByteBufCodecs.VAR_INT,
 			c -> c.fortuneLevel,
 			WorkstaffComponent::new
 	);

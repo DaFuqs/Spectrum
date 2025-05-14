@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.api.item;
 
-import net.minecraft.entity.*;
-import net.minecraft.item.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.item.*;
 
 /**
  * Make sure to wrap your damage source with stack tracking or this won't work!

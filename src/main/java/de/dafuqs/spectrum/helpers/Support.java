@@ -1,20 +1,21 @@
 package de.dafuqs.spectrum.helpers;
 
 import de.dafuqs.spectrum.*;
-import net.minecraft.advancement.*;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.attribute.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.registry.tag.*;
+import net.minecraft.advancements.*;
+import net.minecraft.core.*;
+import net.minecraft.resources.*;
 import net.minecraft.server.*;
-import net.minecraft.server.network.*;
+import net.minecraft.server.level.*;
+import net.minecraft.tags.*;
 import net.minecraft.util.*;
-import net.minecraft.util.hit.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
 import java.math.*;
@@ -23,16 +24,16 @@ import java.util.*;
 
 public class Support {
 	
-	public static HitResult playerBlockInteractionRaycast(World world, LivingEntity user, PlayerEntity player) {
+	public static HitResult playerBlockInteractionRaycast(Level world, LivingEntity user, Player player) {
 		double maxDistance = getBlockReachDistance(player);
-		Vec3d eyePos = user.getEyePos();
-		Vec3d rotationVec = user.getRotationVec(0F);
-		Vec3d vec3d3 = eyePos.add(rotationVec.x * maxDistance, rotationVec.y * maxDistance, rotationVec.z * maxDistance);
-		return world.raycast(new RaycastContext(eyePos, vec3d3, RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, player));
+		Vec3 eyePos = user.getEyePosition();
+		Vec3 rotationVec = user.getViewVector(0F);
+		Vec3 vec3d3 = eyePos.add(rotationVec.x * maxDistance, rotationVec.y * maxDistance, rotationVec.z * maxDistance);
+		return world.clip(new ClipContext(eyePos, vec3d3, ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, player));
 	}
 	
-	public static float getBlockReachDistance(PlayerEntity player) {
-		return (player.isCreative() ? 5.0F : 4.5F) + (float) player.getAttributeValue(EntityAttributes.PLAYER_BLOCK_INTERACTION_RANGE);
+	public static float getBlockReachDistance(Player player) {
+		return (player.isCreative() ? 5.0F : 4.5F) + (float) player.getAttributeValue(Attributes.BLOCK_INTERACTION_RANGE);
 	}
 	
 	public static final DecimalFormat DF = new DecimalFormat("0");
@@ -52,7 +53,7 @@ public class Support {
 	}
 	
 	public static @NotNull Optional<TagKey<Block>> getFirstMatchingBlockTag(@NotNull BlockState blockState, @NotNull List<TagKey<Block>> tags) {
-		return blockState.streamTags().filter(tags::contains).findFirst();
+		return blockState.getTags().filter(tags::contains).findFirst();
 	}
 	
 	public static String getWithOneDecimalAfterComma(float number) {
@@ -108,7 +109,7 @@ public class Support {
 			return 0;
 		}
 		
-		int result = (int) MathHelper.clampedLerp(0, max, (double) x / y);
+		int result = (int) Mth.clampedLerp(0, max, (double) x / y);
 		if (result < 1 && x > 0) {
 			return 1;
 		} else if (result == max && x != y) {
@@ -118,7 +119,7 @@ public class Support {
 		}
 	}
 	
-	public static int getIntFromDecimalWithChance(double d, @NotNull Random random) {
+	public static int getIntFromDecimalWithChance(double d, @NotNull RandomSource random) {
 		boolean roundUp = (random.nextFloat() < d % 1);
 		if (roundUp) {
 			return ((int) d) + 1;
@@ -138,16 +139,16 @@ public class Support {
 	public static BlockPos directionalOffset(BlockPos origin, Vec3i forwardUpRight, @NotNull Direction horizontalFacing) {
 		switch (horizontalFacing) {
 			case NORTH -> {
-				return origin.add(forwardUpRight.getZ(), forwardUpRight.getY(), -forwardUpRight.getX());
+				return origin.offset(forwardUpRight.getZ(), forwardUpRight.getY(), -forwardUpRight.getX());
 			}
 			case EAST -> {
-				return origin.add(forwardUpRight.getX(), forwardUpRight.getY(), forwardUpRight.getZ());
+				return origin.offset(forwardUpRight.getX(), forwardUpRight.getY(), forwardUpRight.getZ());
 			}
 			case SOUTH -> {
-				return origin.add(-forwardUpRight.getZ(), forwardUpRight.getY(), forwardUpRight.getX());
+				return origin.offset(-forwardUpRight.getZ(), forwardUpRight.getY(), forwardUpRight.getX());
 			}
 			case WEST -> {
-				return origin.add(-forwardUpRight.getX(), forwardUpRight.getY(), -forwardUpRight.getZ());
+				return origin.offset(-forwardUpRight.getX(), forwardUpRight.getY(), -forwardUpRight.getZ());
 			}
 			default -> {
 				SpectrumCommon.logWarning("Called directionalOffset with facing" + horizontalFacing + " this is not supported.");
@@ -156,24 +157,24 @@ public class Support {
 		}
 	}
 	
-	public static void grantAdvancementCriterion(@NotNull ServerPlayerEntity serverPlayerEntity, Identifier advancementIdentifier, String criterion) {
+	public static void grantAdvancementCriterion(@NotNull ServerPlayer serverPlayerEntity, ResourceLocation advancementIdentifier, String criterion) {
 		if (serverPlayerEntity.getServer() == null) {
 			return;
 		}
-		ServerAdvancementLoader sal = serverPlayerEntity.getServer().getAdvancementLoader();
-		PlayerAdvancementTracker tracker = serverPlayerEntity.getAdvancementTracker();
+		ServerAdvancementManager sal = serverPlayerEntity.getServer().getAdvancements();
+		PlayerAdvancements tracker = serverPlayerEntity.getAdvancements();
 		
-		AdvancementEntry advancement = sal.get(advancementIdentifier);
+		AdvancementHolder advancement = sal.get(advancementIdentifier);
 		if (advancement == null) {
 			SpectrumCommon.logError("Trying to grant a criterion \"" + criterion + "\" for an advancement that does not exist: " + advancementIdentifier);
 		} else {
-			if (!tracker.getProgress(advancement).isDone()) {
-				tracker.grantCriterion(advancement, criterion);
+			if (!tracker.getOrStartProgress(advancement).isDone()) {
+				tracker.award(advancement, criterion);
 			}
 		}
 	}
 	
-	public static void grantAdvancementCriterion(@NotNull ServerPlayerEntity serverPlayerEntity, String advancementString, String criterion) {
+	public static void grantAdvancementCriterion(@NotNull ServerPlayer serverPlayerEntity, String advancementString, String criterion) {
 		grantAdvancementCriterion(serverPlayerEntity, SpectrumCommon.locate(advancementString), criterion);
 	}
 	
@@ -202,7 +203,7 @@ public class Support {
 	}
 	
 	@Contract(pure = true)
-	public static Direction directionFromRotation(@NotNull BlockRotation blockRotation) {
+	public static Direction directionFromRotation(@NotNull Rotation blockRotation) {
 		switch (blockRotation) {
 			case NONE -> {
 				return Direction.NORTH;
@@ -220,36 +221,36 @@ public class Support {
 	}
 	
 	@Contract(pure = true)
-	public static BlockRotation rotationFromDirection(@NotNull Direction direction) {
+	public static Rotation rotationFromDirection(@NotNull Direction direction) {
 		switch (direction) {
 			case EAST -> {
-				return BlockRotation.CLOCKWISE_90;
+				return Rotation.CLOCKWISE_90;
 			}
 			case SOUTH -> {
-				return BlockRotation.CLOCKWISE_180;
+				return Rotation.CLOCKWISE_180;
 			}
 			case WEST -> {
-				return BlockRotation.COUNTERCLOCKWISE_90;
+				return Rotation.COUNTERCLOCKWISE_90;
 			}
 			default -> {
-				return BlockRotation.NONE;
+				return Rotation.NONE;
 			}
 		}
 	}
 	
-	public static Optional<BlockPos> getNexReplaceableBlockPosUpDown(World world, BlockPos blockPos, int maxUpDown) {
-		if (world.getBlockState(blockPos).isReplaceable()) {
+	public static Optional<BlockPos> getNexReplaceableBlockPosUpDown(Level world, BlockPos blockPos, int maxUpDown) {
+		if (world.getBlockState(blockPos).canBeReplaced()) {
 			// search down
 			for (int i = 0; i < maxUpDown; i++) {
-				if (!world.getBlockState(blockPos.down(i + 1)).isReplaceable()) {
-					return Optional.of(blockPos.down(i));
+				if (!world.getBlockState(blockPos.below(i + 1)).canBeReplaced()) {
+					return Optional.of(blockPos.below(i));
 				}
 			}
 		} else {
 			// search up
 			for (int i = 1; i <= maxUpDown; i++) {
-				if (world.getBlockState(blockPos.up(i)).isReplaceable()) {
-					return Optional.of(blockPos.up(i));
+				if (world.getBlockState(blockPos.above(i)).canBeReplaced()) {
+					return Optional.of(blockPos.above(i));
 				}
 			}
 		}

@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.registry.*;
-import net.minecraft.registry.tag.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.tags.*;
+import net.minecraft.world.level.block.entity.*;
 
 public class SpectrumBannerPatternTags {
 
@@ -16,7 +16,7 @@ public class SpectrumBannerPatternTags {
 	public static final TagKey<BannerPattern> DEEP_LIGHT_TAG = of("pattern_item/deep_light");
 	
 	private static TagKey<BannerPattern> of(String id) {
-		return TagKey.of(RegistryKeys.BANNER_PATTERN, SpectrumCommon.locate(id));
+		return TagKey.create(Registries.BANNER_PATTERN, SpectrumCommon.locate(id));
 	}
 	
 }

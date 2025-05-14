@@ -8,10 +8,9 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.*;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -20,7 +19,7 @@ public class InkAssortmentItem extends Item implements InkStorageItem<Individual
 	
 	private final long maxEnergy;
 	
-	public InkAssortmentItem(Settings settings, long maxEnergy) {
+	public InkAssortmentItem(Properties settings, long maxEnergy) {
 		super(settings);
 		this.maxEnergy = maxEnergy;
 	}
@@ -40,14 +39,14 @@ public class InkAssortmentItem extends Item implements InkStorageItem<Individual
 	
 	// Omitting this would crash outside the dev env o.O
 	@Override
-	public ItemStack getDefaultStack() {
-		return super.getDefaultStack();
+	public ItemStack getDefaultInstance() {
+		return super.getDefaultInstance();
 	}
 	
 	@Override
 	@Environment(EnvType.CLIENT)
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
 		getEnergyStorage(stack).addTooltip(tooltip);
 	}
 	
@@ -57,14 +56,14 @@ public class InkAssortmentItem extends Item implements InkStorageItem<Individual
 	}
 	
 	@Override
-	public ExtendedItemBarProvider.BarSignature getSignature(@Nullable PlayerEntity player, @NotNull ItemStack stack, int index) {
+	public ExtendedItemBarProvider.BarSignature getSignature(@Nullable Player player, @NotNull ItemStack stack, int index) {
 		var storage = getEnergyStorage(stack);
 		var colors = new ArrayList<InkColor>();
 		
 		if (player == null || storage.isEmpty())
 			return ExtendedItemBarProvider.PASS;
 		
-		var time = player.getWorld().getTime() % 864000;
+		var time = player.level().getGameTime() % 864000;
 		
 		for (InkColor inkColor : SpectrumRegistries.INK_COLOR) {
 			if (storage.getEnergy(inkColor) > 0)
@@ -77,7 +76,7 @@ public class InkAssortmentItem extends Item implements InkStorageItem<Individual
 			return new ExtendedItemBarProvider.BarSignature(1, 13, 14, progress, 1, SpectrumColorHelper.colorVecToRGB(color.getColorVec()) | 0xFF000000, 2, DEFAULT_BACKGROUND_COLOR);
 		}
 		
-		var delta = MinecraftClient.getInstance().getRenderTickCounter().getTickDelta(false);
+		var delta = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false);
 		var curColor = colors.get((int) (time % (30L * colors.size()) / 30));
 		var nextColor = colors.get((int) ((time % (30L * colors.size()) / 30 + 1) % colors.size()));
 		

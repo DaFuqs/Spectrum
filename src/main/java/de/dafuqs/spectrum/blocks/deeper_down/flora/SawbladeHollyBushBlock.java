@@ -4,135 +4,135 @@ import com.mojang.serialization.*;
 import de.dafuqs.spectrum.blocks.jade_vines.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.tag.convention.v2.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
-import net.minecraft.state.*;
-import net.minecraft.state.property.*;
+import net.minecraft.core.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
 import net.minecraft.util.*;
-import net.minecraft.util.hit.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
-import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
-import net.minecraft.world.event.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.gameevent.*;
+import net.minecraft.world.phys.*;
+import net.minecraft.world.phys.shapes.*;
 
-public class SawbladeHollyBushBlock extends PlantBlock implements Fertilizable {
-
-    public static final MapCodec<SawbladeHollyBushBlock> CODEC = createCodec(SawbladeHollyBushBlock::new);
+public class SawbladeHollyBushBlock extends BushBlock implements BonemealableBlock {
+	
+	public static final MapCodec<SawbladeHollyBushBlock> CODEC = simpleCodec(SawbladeHollyBushBlock::new);
 
     public static final float DAMAGE = 2.0F;
 
     public static final int MAX_TINY_AGE = 0;
     public static final int MAX_SMALL_AGE = 2;
-    public static final int MAX_AGE = Properties.AGE_7_MAX;
-    public static final IntProperty AGE = Properties.AGE_7;
-    private static final VoxelShape SMALL_SHAPE = Block.createCuboidShape(3.0, 0.0, 3.0, 13.0, 8.0, 13.0);
-    private static final VoxelShape LARGE_SHAPE = Block.createCuboidShape(1.0, 0.0, 1.0, 15.0, 16.0, 15.0);
-
-    public SawbladeHollyBushBlock(Settings settings) {
+	public static final int MAX_AGE = BlockStateProperties.MAX_AGE_7;
+	public static final IntegerProperty AGE = BlockStateProperties.AGE_7;
+	private static final VoxelShape SMALL_SHAPE = Block.box(3.0, 0.0, 3.0, 13.0, 8.0, 13.0);
+	private static final VoxelShape LARGE_SHAPE = Block.box(1.0, 0.0, 1.0, 15.0, 16.0, 15.0);
+	
+	public SawbladeHollyBushBlock(Properties settings) {
         super(settings);
-        this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0));
+		this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0));
     }
 
     @Override
-    public MapCodec<? extends SawbladeHollyBushBlock> getCodec() {
+	public MapCodec<? extends SawbladeHollyBushBlock> codec() {
         return CODEC;
     }
     
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(AGE);
     }
     
     @Override
-    public boolean hasRandomTicks(BlockState state) {
-        return state.get(AGE) < MAX_AGE;
+	public boolean isRandomlyTicking(BlockState state) {
+		return state.getValue(AGE) < MAX_AGE;
     }
     
     @Override
-    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        int i = state.get(AGE);
-        if (i < MAX_AGE && random.nextInt(5) == 0 && world.getBaseLightLevel(pos.up(), 0) >= 9) {
-            BlockState blockState = state.with(AGE, i + 1);
-            world.setBlockState(pos, blockState, Block.NOTIFY_LISTENERS);
-            world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(blockState));
+	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+		int i = state.getValue(AGE);
+		if (i < MAX_AGE && random.nextInt(5) == 0 && world.getRawBrightness(pos.above(), 0) >= 9) {
+			BlockState blockState = state.setValue(AGE, i + 1);
+			world.setBlock(pos, blockState, Block.UPDATE_CLIENTS);
+			world.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(blockState));
         }
     }
 	
 	@Override
-	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-		if (state.get(AGE) == 0) {
+	public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
+		if (state.getValue(AGE) == 0) {
 			return;
 		}
 		
-		if (entity instanceof LivingEntity && !entity.getType().isIn(SpectrumEntityTypeTags.POKING_DAMAGE_IMMUNE)) {
-			entity.slowMovement(state, new Vec3d(0.8, 0.75, 0.8));
-			if (!world.isClient && (entity.lastRenderX != entity.getX() || entity.lastRenderZ != entity.getZ())) {
-				double difX = Math.abs(entity.getX() - entity.lastRenderX);
-				double difZ = Math.abs(entity.getZ() - entity.lastRenderZ);
+		if (entity instanceof LivingEntity && !entity.getType().is(SpectrumEntityTypeTags.POKING_DAMAGE_IMMUNE)) {
+			entity.makeStuckInBlock(state, new Vec3(0.8, 0.75, 0.8));
+			if (!world.isClientSide && (entity.xOld != entity.getX() || entity.zOld != entity.getZ())) {
+				double difX = Math.abs(entity.getX() - entity.xOld);
+				double difZ = Math.abs(entity.getZ() - entity.zOld);
 				if (difX >= 0.003 || difZ >= 0.003) {
-                    entity.damage(SpectrumDamageTypes.bristeSprouts(world), DAMAGE);
+					entity.hurt(SpectrumDamageTypes.bristeSprouts(world), DAMAGE);
 				}
 			}
 		}
 	}
     
     @Override
-    public ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state) {
+	public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state) {
         return new ItemStack(SpectrumItems.SAWBLADE_HOLLY_BERRY);
     }
     
     @Override
-    protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-        return floor.isIn(SpectrumBlockTags.SAWBLADE_HOLLY_PLANTABLE);
+	protected boolean mayPlaceOn(BlockState floor, BlockGetter world, BlockPos pos) {
+		return floor.is(SpectrumBlockTags.SAWBLADE_HOLLY_PLANTABLE);
     }
     
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        if (state.get(AGE) <= MAX_TINY_AGE) {
+	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+		if (state.getValue(AGE) <= MAX_TINY_AGE) {
             return SMALL_SHAPE;
         } else {
-            return state.get(AGE) <= MAX_SMALL_AGE ? LARGE_SHAPE : super.getOutlineShape(state, world, pos, context);
+			return state.getValue(AGE) <= MAX_SMALL_AGE ? LARGE_SHAPE : super.getShape(state, world, pos, context);
         }
     }
 	
 	@Override
-    public ItemActionResult onUseWithItem(ItemStack handStack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        int age = state.get(AGE);
-        
-        if (canBeSheared(age) && handStack.isIn(ConventionalItemTags.SHEAR_TOOLS)) {
-            if (!world.isClient) {
-				for (ItemStack stack : JadeVinePlantBlock.getHarvestedStacks(state, (ServerWorld) world, pos, world.getBlockEntity(pos), player, player.getMainHandStack(), SpectrumLootTables.SAWBLADE_HOLLY_SHEARING)) {
-                    dropStack(world, pos, stack);
+	public ItemInteractionResult useItemOn(ItemStack handStack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+		int age = state.getValue(AGE);
+		
+		if (canBeSheared(age) && handStack.is(ConventionalItemTags.SHEAR_TOOLS)) {
+			if (!world.isClientSide) {
+				for (ItemStack stack : JadeVinePlantBlock.getHarvestedStacks(state, (ServerLevel) world, pos, world.getBlockEntity(pos), player, player.getMainHandItem(), SpectrumLootTables.SAWBLADE_HOLLY_SHEARING)) {
+					popResource(world, pos, stack);
                 }
-                handStack.damage(1, player, LivingEntity.getSlotForHand(hand));
+				handStack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
             }
-            
-            BlockState newState = state.with(AGE, state.get(AGE) - 1);
-            world.setBlockState(pos, newState, Block.NOTIFY_LISTENERS);
-            world.emitGameEvent(GameEvent.SHEAR, pos, GameEvent.Emitter.of(player, newState));
-            world.playSound(null, pos, SoundEvents.BLOCK_BEEHIVE_SHEAR, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
-            
-            return ItemActionResult.success(world.isClient);
+			
+			BlockState newState = state.setValue(AGE, state.getValue(AGE) - 1);
+			world.setBlock(pos, newState, Block.UPDATE_CLIENTS);
+			world.gameEvent(GameEvent.SHEAR, pos, GameEvent.Context.of(player, newState));
+			world.playSound(null, pos, SoundEvents.BEEHIVE_SHEAR, SoundSource.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
+			
+			return ItemInteractionResult.sidedSuccess(world.isClientSide);
         } else if (age == MAX_AGE) {
-            if (!world.isClient) {
-				for (ItemStack stack : JadeVinePlantBlock.getHarvestedStacks(state, (ServerWorld) world, pos, world.getBlockEntity(pos), player, player.getMainHandStack(), SpectrumLootTables.SAWBLADE_HOLLY_HARVESTING)) {
-                    dropStack(world, pos, stack);
+			if (!world.isClientSide) {
+				for (ItemStack stack : JadeVinePlantBlock.getHarvestedStacks(state, (ServerLevel) world, pos, world.getBlockEntity(pos), player, player.getMainHandItem(), SpectrumLootTables.SAWBLADE_HOLLY_HARVESTING)) {
+					popResource(world, pos, stack);
                 }
             }
-            world.playSound(null, pos, SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
-            
-            BlockState newState = state.with(AGE, 4);
-            world.setBlockState(pos, newState, Block.NOTIFY_LISTENERS);
-            world.emitGameEvent(GameEvent.SHEAR, pos, GameEvent.Emitter.of(player, newState));
-            
-            return ItemActionResult.success(world.isClient);
+			world.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
+			
+			BlockState newState = state.setValue(AGE, 4);
+			world.setBlock(pos, newState, Block.UPDATE_CLIENTS);
+			world.gameEvent(GameEvent.SHEAR, pos, GameEvent.Context.of(player, newState));
+			
+			return ItemInteractionResult.sidedSuccess(world.isClientSide);
         } else {
-            return super.onUseWithItem(handStack, state, world, pos, player, hand, hit);
+			return super.useItemOn(handStack, state, world, pos, player, hand, hit);
         }
     }
     
@@ -141,19 +141,19 @@ public class SawbladeHollyBushBlock extends PlantBlock implements Fertilizable {
     }
     
     @Override
-	public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
-		return state.get(AGE) < MAX_AGE;
+	public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
+		return state.getValue(AGE) < MAX_AGE;
 	}
     
     @Override
-    public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
+	public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
         return true;
     }
     
     @Override
-    public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        int newAge = Math.min(MAX_AGE, state.get(AGE) + (random.nextBoolean() ? 1 : 2));
-        world.setBlockState(pos, state.with(AGE, newAge), Block.NOTIFY_LISTENERS);
+	public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
+		int newAge = Math.min(MAX_AGE, state.getValue(AGE) + (random.nextBoolean() ? 1 : 2));
+		world.setBlock(pos, state.setValue(AGE, newAge), Block.UPDATE_CLIENTS);
     }
     
 }

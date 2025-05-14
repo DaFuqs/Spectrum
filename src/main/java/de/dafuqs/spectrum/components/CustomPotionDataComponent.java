@@ -3,14 +3,14 @@ package de.dafuqs.spectrum.components;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import io.netty.buffer.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.*;
+import net.minecraft.network.chat.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.text.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.*;
 
 import java.util.function.*;
 
-public record CustomPotionDataComponent(boolean unidentifiable, int additionalDrinkDuration) implements TooltipAppender {
+public record CustomPotionDataComponent(boolean unidentifiable, int additionalDrinkDuration) implements TooltipProvider {
 	
 	public static final CustomPotionDataComponent DEFAULT = new CustomPotionDataComponent(false, 0);
 	
@@ -19,19 +19,19 @@ public record CustomPotionDataComponent(boolean unidentifiable, int additionalDr
 			Codec.INT.fieldOf("additional_drink_duration").forGetter(c -> c.additionalDrinkDuration)
 	).apply(i, CustomPotionDataComponent::new));
 	
-	public static final PacketCodec<ByteBuf, CustomPotionDataComponent> PACKET_CODEC = PacketCodec.tuple(
-			PacketCodecs.BOOL, c -> c.unidentifiable,
-			PacketCodecs.INTEGER, c -> c.additionalDrinkDuration,
+	public static final StreamCodec<ByteBuf, CustomPotionDataComponent> PACKET_CODEC = StreamCodec.composite(
+			ByteBufCodecs.BOOL, c -> c.unidentifiable,
+			ByteBufCodecs.INT, c -> c.additionalDrinkDuration,
 			CustomPotionDataComponent::new
 	);
 	
 	@Override
-	public void appendTooltip(Item.TooltipContext context, Consumer<Text> tooltip, TooltipType type) {
+	public void addToTooltip(Item.TooltipContext context, Consumer<Component> tooltip, TooltipFlag type) {
 		int additionalDrinkDuration = this.additionalDrinkDuration();
 		if (additionalDrinkDuration > 0) {
-			tooltip.accept(Text.translatable("item.spectrum.potion.slower_to_drink"));
+			tooltip.accept(Component.translatable("item.spectrum.potion.slower_to_drink"));
 		} else if (additionalDrinkDuration < 0) {
-			tooltip.accept(Text.translatable("item.spectrum.potion.faster_to_drink"));
+			tooltip.accept(Component.translatable("item.spectrum.potion.faster_to_drink"));
 		}
 	}
 	

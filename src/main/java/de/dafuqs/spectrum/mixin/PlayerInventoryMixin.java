@@ -1,21 +1,21 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.api.item.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
-@Mixin(PlayerInventory.class)
+@Mixin(Inventory.class)
 public abstract class PlayerInventoryMixin {
 	
-	@Inject(at = @At("HEAD"), method = "addStack(Lnet/minecraft/item/ItemStack;)I", cancellable = true)
+	@Inject(at = @At("HEAD"), method = "add(Lnet/minecraft/world/item/ItemStack;)Z", cancellable = true)
 	private void addStack(ItemStack stack, CallbackInfoReturnable<Integer> cir) {
-		PlayerInventory playerInventory = (PlayerInventory) (Object) this;
+		Inventory playerInventory = (Inventory) (Object) this;
 		
-		for (int i = 0; i < playerInventory.size(); i++) {
-			ItemStack inventoryStack = playerInventory.getStack(i);
+		for (int i = 0; i < playerInventory.getContainerSize(); i++) {
+			ItemStack inventoryStack = playerInventory.getItem(i);
 			if (inventoryStack.getItem() instanceof InventoryInsertionAcceptor inventoryInsertionAcceptor) {
 				if (inventoryInsertionAcceptor.acceptsItemStack(inventoryStack, stack)) {
 					int remainingCount = inventoryInsertionAcceptor.acceptItemStack(inventoryStack, stack, playerInventory.player);
@@ -29,12 +29,12 @@ public abstract class PlayerInventoryMixin {
 		}
 	}
 	
-	@Inject(at = @At("HEAD"), method = "offer(Lnet/minecraft/item/ItemStack;Z)V", cancellable = true)
+	@Inject(at = @At("HEAD"), method = "placeItemBackInInventory(Lnet/minecraft/world/item/ItemStack;Z)V", cancellable = true)
 	private void offer(ItemStack stack, boolean notifiesClient, CallbackInfo ci) {
-		PlayerInventory playerInventory = (PlayerInventory) (Object) this;
+		Inventory playerInventory = (Inventory) (Object) this;
 		
-		for (int i = 0; i < playerInventory.size(); i++) {
-			ItemStack inventoryStack = playerInventory.getStack(i);
+		for (int i = 0; i < playerInventory.getContainerSize(); i++) {
+			ItemStack inventoryStack = playerInventory.getItem(i);
 			if (inventoryStack.getItem() instanceof InventoryInsertionAcceptor inventoryInsertionAcceptor) {
 				if (inventoryInsertionAcceptor.acceptsItemStack(inventoryStack, stack)) {
 					int remainingCount = inventoryInsertionAcceptor.acceptItemStack(inventoryStack, stack, playerInventory.player);

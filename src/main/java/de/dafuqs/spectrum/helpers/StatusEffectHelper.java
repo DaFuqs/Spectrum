@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.helpers;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.util.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.effect.*;
 
 public class StatusEffectHelper {
 	
@@ -14,7 +14,7 @@ public class StatusEffectHelper {
 		HUD_AMBIENT
 	}
 	
-	public record StatusEffectBackground(Identifier guiLarge, Identifier guiSmall, Identifier hudDefault, Identifier hudAmbient) {
+	public record StatusEffectBackground(ResourceLocation guiLarge, ResourceLocation guiSmall, ResourceLocation hudDefault, ResourceLocation hudAmbient) {
 		
 		public StatusEffectBackground(String name) {
 			this(SpectrumCommon.locate("container/inventory/" + name + "_effect_background_gui_large"),
@@ -23,7 +23,7 @@ public class StatusEffectHelper {
 					SpectrumCommon.locate("hud/" + name + "_effect_background_hud_ambient"));
 		}
 		
-		public Identifier get(RenderType type) {
+		public ResourceLocation get(RenderType type) {
 			return switch (type) {
 				case GUI_LARGE -> guiLarge;
 				case GUI_SMALL -> guiSmall;
@@ -37,8 +37,8 @@ public class StatusEffectHelper {
 	private static final StatusEffectBackground INCURABLE = new StatusEffectBackground("incurable");
 	private static final StatusEffectBackground NIGHT_ALCHEMY = new StatusEffectBackground("night_alchemy");
 	
-	public static Identifier getTexture(Identifier original, StatusEffectInstance effect, RenderType renderType) {
-		var type = effect.getEffectType();
+	public static ResourceLocation getTextureLocation(ResourceLocation original, MobEffectInstance effect, RenderType renderType) {
+		var type = effect.getEffect();
 		
 		if (type == SpectrumStatusEffects.DIVINITY)
 			return DIVINITY.get(renderType);
@@ -47,7 +47,7 @@ public class StatusEffectHelper {
 			return INCURABLE.get(renderType);
 		}
 		
-		if (type.isIn(SpectrumStatusEffectTags.NIGHT_ALCHEMY))
+		if (type.is(SpectrumStatusEffectTags.NIGHT_ALCHEMY))
 			return NIGHT_ALCHEMY.get(renderType);
 		
 		return original;
@@ -55,8 +55,8 @@ public class StatusEffectHelper {
 	
 	//TODO this needs a better name. What even is this.
 	//Also why is that not a tag?
-	public static boolean isIncurable(StatusEffectInstance instance) {
-		var type = instance.getEffectType();
+	public static boolean isIncurable(MobEffectInstance instance) {
+		var type = instance.getEffect();
 		if (type == SpectrumStatusEffects.ETERNAL_SLUMBER || type == SpectrumStatusEffects.FATAL_SLUMBER)
 			return false;
 		

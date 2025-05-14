@@ -1,22 +1,21 @@
 package de.dafuqs.spectrum.items.tools;
 
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.ItemEnchantmentsComponent;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ToolMaterial;
+import net.minecraft.core.component.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.*;
 
 public class GlintlessPickaxe extends SpectrumPickaxeItem {
-
-    public GlintlessPickaxe(ToolMaterial material, Settings settings) {
+	
+	public GlintlessPickaxe(Tier material, Properties settings) {
         super(material, settings);
     }
 
     @Override
-    public boolean hasGlint(ItemStack stack) {
+	public boolean isFoil(ItemStack stack) {
         var defaults = getDefaultEnchantments();
-		var comp = stack.getOrDefault(DataComponentTypes.ENCHANTMENTS, ItemEnchantmentsComponent.DEFAULT);
-		for (var entry : comp.getEnchantmentEntries()) {
-			var key = entry.getKey().getKey();
+		var comp = stack.getOrDefault(DataComponents.ENCHANTMENTS, ItemEnchantments.EMPTY);
+		for (var entry : comp.entrySet()) {
+			var key = entry.getKey().unwrapKey();
 			if (key.isEmpty()) continue;
 			if (entry.getIntValue() > defaults.getOrDefault(key.get(), 0))
 				return true;

@@ -5,52 +5,52 @@ import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
-import net.minecraft.client.sound.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.sound.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
-import net.minecraft.world.*;
+import net.minecraft.client.resources.sounds.*;
+import net.minecraft.sounds.*;
+import net.minecraft.util.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.phys.*;
 
 @Environment(EnvType.CLIENT)
 public class OverchargingSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
-
-    private final PlayerEntity player;
+	
+	private final Player player;
     private final long lastParticleTick;
     private boolean done;
-
-    public OverchargingSoundInstance(PlayerEntity player) {
-        super(SpectrumSoundEvents.OVERCHARGING, SoundCategory.PLAYERS, SoundInstance.createRandom());
+	
+	public OverchargingSoundInstance(Player player) {
+		super(SpectrumSoundEvents.OVERCHARGING, SoundSource.PLAYERS, SoundInstance.createUnseededRandom());
         this.player = player;
-        this.repeat = false;
-        this.repeatDelay = 0;
+		this.looping = false;
+		this.delay = 0;
         this.volume = 0.4F;
-        this.lastParticleTick = player.getWorld().getTime() + TakeOffBeltItem.CHARGE_TIME_TICKS * TakeOffBeltItem.MAX_CHARGES;
+		this.lastParticleTick = player.level().getGameTime() + TakeOffBeltItem.CHARGE_TIME_TICKS * TakeOffBeltItem.MAX_CHARGES;
         this.x = player.getX();
         this.y = player.getY();
         this.z = player.getZ();
     }
 
     @Override
-    public boolean isDone() {
+	public boolean isStopped() {
         return this.done;
     }
 
     @Override
-    public boolean shouldAlwaysPlay() {
+	public boolean canStartSilent() {
         return true;
     }
 
     @Override
     public void tick() {
-        if (player == null || !player.isSneaking() || !player.isUsingItem() || !(player.getStackInHand(player.getActiveHand()).getItem() instanceof GlassCrestCrossbowItem)) {
+		if (player == null || !player.isShiftKeyDown() || !player.isUsingItem() || !(player.getItemInHand(player.getUsedItemHand()).getItem() instanceof GlassCrestCrossbowItem)) {
             this.setDone();
         } else {
             this.x = ((float) player.getX());
             this.y = ((float) player.getY());
             this.z = ((float) player.getZ());
-
-            if (player.getWorld() != null && player.getWorld().getTime() < lastParticleTick) {
+			
+			if (player.level() != null && player.level().getGameTime() < lastParticleTick) {
                 spawnParticles(player);
             } else {
                 this.volume = 0.0F;
@@ -58,18 +58,18 @@ public class OverchargingSoundInstance extends AbstractSoundInstance implements 
         }
     }
 	
-	private void spawnParticles(PlayerEntity player) {
-		World world = player.getEntityWorld();
-		Random random = world.random;
+	private void spawnParticles(Player player) {
+		Level world = player.getCommandSenderWorld();
+		RandomSource random = world.random;
 		
-		Vec3d pos = player.getPos();
-		player.getEntityWorld().addParticle(ColoredCraftingParticleEffect.WHITE,
+		Vec3 pos = player.position();
+		player.getCommandSenderWorld().addParticle(ColoredCraftingParticleEffect.WHITE,
 				pos.x + random.nextDouble() * 0.8 - 0.4, pos.y, pos.z + random.nextDouble() * 0.8 - 0.4,
 				0, random.nextDouble() * 0.5, 0);
 	}
 
     protected final void setDone() {
         this.done = true;
-        this.repeat = false;
+		this.looping = false;
     }
 }

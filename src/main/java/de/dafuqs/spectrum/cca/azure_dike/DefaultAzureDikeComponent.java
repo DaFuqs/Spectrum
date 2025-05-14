@@ -1,10 +1,10 @@
 package de.dafuqs.spectrum.cca.azure_dike;
 
 import de.dafuqs.spectrum.progression.*;
-import net.minecraft.entity.*;
 import net.minecraft.nbt.*;
-import net.minecraft.registry.*;
-import net.minecraft.server.network.*;
+import net.minecraft.core.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.entity.*;
 import org.jetbrains.annotations.*;
 import org.ladysnake.cca.api.v3.component.sync.*;
 
@@ -60,7 +60,7 @@ public class DefaultAzureDikeComponent implements AzureDikeComponent, AutoSynced
 			
 			if (absorbedDamage > 0) {
 				AzureDikeProvider.AZURE_DIKE_COMPONENT.sync(provider);
-				if (provider instanceof ServerPlayerEntity serverPlayerEntity) {
+				if (provider instanceof ServerPlayer serverPlayerEntity) {
 					SpectrumAdvancementCriteria.AZURE_DIKE_CHARGE.trigger(serverPlayerEntity, this.currentProtection, this.ticksPerPointOfRecharge, -absorbedDamage);
 				}
 			}
@@ -87,7 +87,7 @@ public class DefaultAzureDikeComponent implements AzureDikeComponent, AutoSynced
 	}
 	
 	@Override
-	public void readFromNbt(NbtCompound tag, RegistryWrapper.@NotNull WrapperLookup wrapperLookup) {
+	public void readFromNbt(CompoundTag tag, HolderLookup.@NotNull Provider wrapperLookup) {
 		this.currentProtection = tag.getInt("protection");
 		this.currentRechargeDelay = tag.getInt("current_recharge_delay");
 		
@@ -97,7 +97,7 @@ public class DefaultAzureDikeComponent implements AzureDikeComponent, AutoSynced
 	}
 	
 	@Override
-	public void writeToNbt(NbtCompound tag, RegistryWrapper.@NotNull WrapperLookup wrapperLookup) {
+	public void writeToNbt(CompoundTag tag, HolderLookup.@NotNull Provider wrapperLookup) {
 		tag.putFloat("protection", this.currentProtection);
 		tag.putInt("current_recharge_delay", this.currentRechargeDelay);
 		
@@ -114,7 +114,7 @@ public class DefaultAzureDikeComponent implements AzureDikeComponent, AutoSynced
 			currentProtection = Math.min(maxProtection, currentProtection + 1);
 			this.currentRechargeDelay = this.ticksPerPointOfRecharge;
 			AzureDikeProvider.AZURE_DIKE_COMPONENT.sync(provider);
-			if (provider instanceof ServerPlayerEntity serverPlayerEntity) {
+			if (provider instanceof ServerPlayer serverPlayerEntity) {
 				SpectrumAdvancementCriteria.AZURE_DIKE_CHARGE.trigger(serverPlayerEntity, this.currentProtection, this.ticksPerPointOfRecharge, 1);
 			}
 		}

@@ -1,45 +1,44 @@
 package de.dafuqs.spectrum.items.food;
 
 import de.dafuqs.spectrum.items.trinkets.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
+import net.minecraft.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
 
 import java.util.*;
 
 public class EnchantedStarCandyItem extends Item {
 	
-	public EnchantedStarCandyItem(Settings settings) {
+	public EnchantedStarCandyItem(Properties settings) {
 		super(settings);
 	}
 	
 	@Override
-	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-		ItemStack itemStack = super.finishUsing(stack, world, user);
+	public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity user) {
+		ItemStack itemStack = super.finishUsingItem(stack, world, user);
 		
 		user.heal(user.getMaxHealth());
-		if (!world.isClient) {
+		if (!world.isClientSide) {
 			WhispyCircletItem.removeNegativeStatusEffects(user);
 		}
-		if (user instanceof PlayerEntity player) {
-			player.getHungerManager().add(1000, 1.0F);
+		if (user instanceof Player player) {
+			player.getFoodData().eat(1000, 1.0F);
 		}
 		return itemStack;
 	}
 	
 	@Override
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
-		tooltip.add(Text.translatable("item.spectrum.enchanted_star_candy.tooltip").formatted(Formatting.GRAY));
-		tooltip.add(Text.translatable("item.spectrum.enchanted_star_candy.tooltip2").formatted(Formatting.GRAY));
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
+		tooltip.add(Component.translatable("item.spectrum.enchanted_star_candy.tooltip").withStyle(ChatFormatting.GRAY));
+		tooltip.add(Component.translatable("item.spectrum.enchanted_star_candy.tooltip2").withStyle(ChatFormatting.GRAY));
 	}
 	
 	@Override
-	public boolean hasGlint(ItemStack stack) {
+	public boolean isFoil(ItemStack stack) {
 		return true;
 	}
 	

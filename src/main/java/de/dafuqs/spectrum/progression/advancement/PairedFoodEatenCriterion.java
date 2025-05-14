@@ -3,38 +3,36 @@ package de.dafuqs.spectrum.progression.advancement;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.*;
-import net.minecraft.advancement.criterion.*;
-import net.minecraft.item.*;
-import net.minecraft.predicate.entity.*;
-import net.minecraft.predicate.item.*;
-import net.minecraft.server.network.*;
-import net.minecraft.util.*;
+import net.minecraft.advancements.critereon.*;
+import net.minecraft.resources.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.item.*;
 
 import java.util.*;
 
-public class PairedFoodEatenCriterion extends AbstractCriterion<PairedFoodEatenCriterion.Conditions> {
+public class PairedFoodEatenCriterion extends SimpleCriterionTrigger<PairedFoodEatenCriterion.Conditions> {
 	
-	public static final Identifier ID = SpectrumCommon.locate("consumed_paired_food");
+	public static final ResourceLocation ID = SpectrumCommon.locate("consumed_paired_food");
 	
-	public void trigger(ServerPlayerEntity player, ItemStack teaStack, ItemStack sconeStack) {
+	public void trigger(ServerPlayer player, ItemStack teaStack, ItemStack sconeStack) {
 		this.trigger(player, (conditions) -> conditions.matches(teaStack, sconeStack));
 	}
 	
 	@Override
-	public Codec<Conditions> getConditionsCodec() {
+	public Codec<Conditions> codec() {
 		return Conditions.CODEC;
 	}
 	
 	public record Conditions(
-			Optional<LootContextPredicate> player,
+			Optional<ContextAwarePredicate> player,
 			ItemPredicate teaItem,
 			ItemPredicate sconeItem
-	) implements AbstractCriterion.Conditions {
+	) implements SimpleCriterionTrigger.SimpleInstance {
 		
 		public static final Codec<PairedFoodEatenCriterion.Conditions> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-				LootContextPredicate.CODEC.optionalFieldOf("player").forGetter(PairedFoodEatenCriterion.Conditions::player),
-				ItemPredicate.CODEC.optionalFieldOf("eaten_item", ItemPredicate.Builder.create().build()).forGetter(PairedFoodEatenCriterion.Conditions::teaItem),
-				ItemPredicate.CODEC.optionalFieldOf("paired_item", ItemPredicate.Builder.create().build()).forGetter(PairedFoodEatenCriterion.Conditions::sconeItem)
+				ContextAwarePredicate.CODEC.optionalFieldOf("player").forGetter(PairedFoodEatenCriterion.Conditions::player),
+				ItemPredicate.CODEC.optionalFieldOf("eaten_item", ItemPredicate.Builder.item().build()).forGetter(PairedFoodEatenCriterion.Conditions::teaItem),
+				ItemPredicate.CODEC.optionalFieldOf("paired_item", ItemPredicate.Builder.item().build()).forGetter(PairedFoodEatenCriterion.Conditions::sconeItem)
 		).apply(instance, PairedFoodEatenCriterion.Conditions::new));
 		
 		public boolean matches(ItemStack teaStack, ItemStack sconeStack) {

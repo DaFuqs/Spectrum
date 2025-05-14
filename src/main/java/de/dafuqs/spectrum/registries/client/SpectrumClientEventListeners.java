@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.registries.client;
 
+import com.mojang.blaze3d.vertex.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.interaction.*;
@@ -24,25 +25,24 @@ import net.fabricmc.fabric.api.client.model.loading.v1.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
 import net.fabricmc.fabric.api.resource.*;
-import net.minecraft.block.*;
+import net.minecraft.*;
 import net.minecraft.client.*;
-import net.minecraft.client.render.*;
-import net.minecraft.client.util.*;
-import net.minecraft.client.util.math.*;
-import net.minecraft.client.world.*;
-import net.minecraft.component.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.registry.*;
-import net.minecraft.registry.entry.*;
-import net.minecraft.resource.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
-import net.minecraft.util.hit.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.shape.*;
-import net.minecraft.world.biome.*;
+import net.minecraft.client.multiplayer.*;
+import net.minecraft.client.renderer.*;
+import net.minecraft.client.resources.model.*;
+import net.minecraft.core.*;
+import net.minecraft.core.component.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.server.packs.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.biome.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.phys.*;
+import net.minecraft.world.phys.shapes.*;
 import org.jetbrains.annotations.*;
 import oshi.util.tuples.*;
 
@@ -53,28 +53,28 @@ import java.util.function.*;
 public class SpectrumClientEventListeners {
 	
 	// TODO: Move to API package
-	public static final ObjectOpenHashSet<ModelIdentifier> CUSTOM_ITEM_MODELS = new ObjectOpenHashSet<>();
+	public static final ObjectOpenHashSet<ModelResourceLocation> CUSTOM_ITEM_MODELS = new ObjectOpenHashSet<>();
 	private static boolean postProcessWasOn = SpectrumCommon.CONFIG.PostProcess;
 	
 	private static void registerCustomItemRenderer(String id, Item item, Supplier<DynamicItemRenderer> renderer) {
-		CUSTOM_ITEM_MODELS.add(new ModelIdentifier(SpectrumCommon.locate(id), "inventory"));
+		CUSTOM_ITEM_MODELS.add(new ModelResourceLocation(SpectrumCommon.locate(id), "inventory"));
 		DynamicItemRenderer.RENDERERS.put(item, renderer.get());
 	}
 	//
 	public static void register() {
-		ResourceManagerHelper.get(ResourceType.CLIENT_RESOURCES).registerReloadListener(ParticleSpawnerParticlesDataLoader.INSTANCE);
+		ResourceManagerHelper.get(PackType.CLIENT_RESOURCES).registerReloadListener(ParticleSpawnerParticlesDataLoader.INSTANCE);
 		
 		registerCustomItemRenderer("bottomless_bundle", SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem(), BottomlessBundleItem.Renderer::new);
 		registerCustomItemRenderer("omni_accelerator", SpectrumItems.OMNI_ACCELERATOR, OmniAcceleratorItem.Renderer::new);
 		
 		WorldRenderEvents.START.register(context -> HudRenderers.clearItemStackOverlay());
 		
-		WorldRenderEvents.AFTER_ENTITIES.register(context -> ((ExtendedParticleManager) MinecraftClient.getInstance().particleManager).render(context.matrixStack(), context.consumers(), context.camera(), context.tickCounter().getTickDelta(true)));
+		WorldRenderEvents.AFTER_ENTITIES.register(context -> ((ExtendedParticleManager) Minecraft.getInstance().particleEngine).render(context.matrixStack(), context.consumers(), context.camera(), context.tickCounter().getGameTimeDeltaPartialTick(true)));
 		WorldRenderEvents.AFTER_TRANSLUCENT.register(context -> {
-			Entity focusedEntity = context.camera().getFocusedEntity();
+			Entity focusedEntity = context.camera().getEntity();
 			
 			if (focusedEntity instanceof LivingEntity livingEntity) {
-				boolean paintbrushInHand = livingEntity.getMainHandStack().isOf(SpectrumItems.PAINTBRUSH) || livingEntity.getOffHandStack().isOf(SpectrumItems.PAINTBRUSH);
+				boolean paintbrushInHand = livingEntity.getMainHandItem().is(SpectrumItems.PAINTBRUSH) || livingEntity.getOffhandItem().is(SpectrumItems.PAINTBRUSH);
 				Pastel.getClientInstance().renderLines(context, livingEntity, paintbrushInHand);
 			}
 		});
@@ -83,8 +83,8 @@ public class SpectrumClientEventListeners {
 
 		ModelLoadingPlugin.register((ctx) -> {
 			ctx.modifyModelAfterBake().register((orig, c) -> {
-				ModelIdentifier id = c.topLevelId();
-				if (id instanceof ModelIdentifier mid && CUSTOM_ITEM_MODELS.contains(mid)) {
+				ModelResourceLocation id = c.topLevelId();
+				if (id instanceof ModelResourceLocation mid && CUSTOM_ITEM_MODELS.contains(mid)) {
 					return new DynamicRenderModel(orig);
 				}
 				return orig;
@@ -95,18 +95,18 @@ public class SpectrumClientEventListeners {
 		ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> Pastel.clearClientInstance());
 		
 		ItemTooltipCallback.EVENT.register((stack, tooltipContext, tooltipType, lines) -> {
-			if (stack.contains(DataComponentTypes.FOOD)) {
-				if (Registries.ITEM.getId(stack.getItem()).getNamespace().equals(SpectrumCommon.MOD_ID)) {
-					TooltipHelper.addFoodComponentEffectTooltip(stack, lines, tooltipContext.getUpdateTickRate());
+			if (stack.has(DataComponents.FOOD)) {
+				if (BuiltInRegistries.ITEM.getKey(stack.getItem()).getNamespace().equals(SpectrumCommon.MOD_ID)) {
+					TooltipHelper.addFoodComponentEffectTooltip(stack, lines, tooltipContext.tickRate());
 				}
 			}
-			if (stack.isIn(SpectrumItemTags.COMING_SOON_TOOLTIP)) {
-				lines.add(Text.translatable("spectrum.tooltip.coming_soon").formatted(Formatting.RED));
+			if (stack.is(SpectrumItemTags.COMING_SOON_TOOLTIP)) {
+				lines.add(Component.translatable("spectrum.tooltip.coming_soon").withStyle(ChatFormatting.RED));
 			}
 		});
 		
 		ClientWorldEvents.AFTER_CLIENT_WORLD_CHANGE.register((client, world) -> {
-			if (SpectrumCommon.CONFIG.PostProcess && world.getRegistryKey().equals(SpectrumDimensions.DIMENSION_KEY)) {
+			if (SpectrumCommon.CONFIG.PostProcess && world.dimension().equals(SpectrumDimensions.DIMENSION_KEY)) {
 				initializeColorGrading(client);
 			}
 			else  {
@@ -115,7 +115,7 @@ public class SpectrumClientEventListeners {
 		});
 		
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
-			var world = client.world;
+			var world = client.level;
 			Entity cameraEntity = client.getCameraEntity();
 			if (world == null || cameraEntity == null) {
 				BiomeAttenuatingSoundInstance.clear();
@@ -123,7 +123,7 @@ public class SpectrumClientEventListeners {
 				return;
 			}
 			
-			RegistryEntry<Biome> biome = world.getBiome(client.getCameraEntity().getBlockPos());
+			Holder<Biome> biome = world.getBiome(client.getCameraEntity().blockPosition());
 
 			HowlingSpireEffects.clientTick(world, cameraEntity, biome);
 			DimensionRenderEffects.clientTick(world, cameraEntity, biome);
@@ -143,7 +143,7 @@ public class SpectrumClientEventListeners {
 		});
 	}
 	
-	private static void initializeColorGrading(MinecraftClient client) {
+	private static void initializeColorGrading(Minecraft client) {
 		if (SpectrumShaders.colorGradingPostProcess.isEmpty()) {
 			SpectrumShaders.colorGradingPostProcess = SpectrumShaders.loadPostProcess(client, SpectrumShaders.COLOR_GRADING_ID);
 		}
@@ -151,12 +151,12 @@ public class SpectrumClientEventListeners {
 	
 	private static boolean renderExtendedBlockOutline(WorldRenderContext context, WorldRenderContext.BlockOutlineContext hitResult) {
 		boolean shouldCancel = false;
-		MinecraftClient client = MinecraftClient.getInstance();
+		Minecraft client = Minecraft.getInstance();
 		if (client.player != null && context.blockOutlines()) {
-			for (ItemStack handStack : client.player.getHandItems()) {
+			for (ItemStack handStack : client.player.getHandSlots()) {
 				Item handItem = handStack.getItem();
 				if (handItem instanceof ConstructorsStaffItem) {
-					if (hitResult != null && client.crosshairTarget instanceof BlockHitResult blockHitResult) {
+					if (hitResult != null && client.hitResult instanceof BlockHitResult blockHitResult) {
 						shouldCancel = renderPlacementStaffOutline(context.matrixStack(), context.camera(), hitResult.cameraX(), hitResult.cameraY(), hitResult.cameraZ(), context.consumers(), blockHitResult);
 					}
 					break;
@@ -172,20 +172,20 @@ public class SpectrumClientEventListeners {
 		return !shouldCancel;
 	}
 	
-	private static boolean renderPlacementStaffOutline(MatrixStack matrices, Camera camera, double d, double e, double f, VertexConsumerProvider consumers, @NotNull BlockHitResult hitResult) {
-		MinecraftClient client = MinecraftClient.getInstance();
-		ClientWorld world = client.world;
-		PlayerEntity player = client.player;
+	private static boolean renderPlacementStaffOutline(PoseStack matrices, Camera camera, double d, double e, double f, MultiBufferSource consumers, @NotNull BlockHitResult hitResult) {
+		Minecraft client = Minecraft.getInstance();
+		ClientLevel world = client.level;
+		Player player = client.player;
 		if (player == null || world == null)
 			return false;
 		
 		BlockPos lookingAtPos = hitResult.getBlockPos();
 		BlockState lookingAtState = world.getBlockState(lookingAtPos);
 		
-		if (player.getMainHandStack().getItem() instanceof BuildingStaffItem staff && (player.isCreative() || staff.canInteractWith(lookingAtState, world, lookingAtPos, player))) {
+		if (player.getMainHandItem().getItem() instanceof BuildingStaffItem staff && (player.isCreative() || staff.canInteractWith(lookingAtState, world, lookingAtPos, player))) {
 			Block lookingAtBlock = lookingAtState.getBlock();
 			Item item = lookingAtBlock.asItem();
-			VoxelShape shape = VoxelShapes.empty();
+			VoxelShape shape = Shapes.empty();
 			
 			if (item != Items.AIR) {
 				int itemCountInInventory = Integer.MAX_VALUE;
@@ -197,25 +197,25 @@ public class SpectrumClientEventListeners {
 					inkLimit = InkPowered.getAvailableInk(player, ConstructorsStaffItem.USED_COLOR) / ConstructorsStaffItem.INK_COST_PER_BLOCK;
 				}
 				
-				boolean sneaking = player.isSneaking();
+				boolean sneaking = player.isShiftKeyDown();
 				if (itemCountInInventory == 0) {
 					HudRenderers.setItemStackToRender(new ItemStack(item), 0, false);
 				} else if (inkLimit == 0) {
 					HudRenderers.setItemStackToRender(new ItemStack(item), 1, true);
 				} else {
 					long usableCount = Math.min(itemCountInInventory, inkLimit);
-					List<BlockPos> positions = BuildingHelper.calculateBuildingStaffSelection(world, lookingAtPos, hitResult.getSide(), usableCount, ConstructorsStaffItem.getRange(player), !sneaking);
+					List<BlockPos> positions = BuildingHelper.calculateBuildingStaffSelection(world, lookingAtPos, hitResult.getDirection(), usableCount, ConstructorsStaffItem.getRange(player), !sneaking);
 					if (!positions.isEmpty()) {
 						for (BlockPos newPosition : positions) {
-							if (world.getWorldBorder().contains(newPosition)) {
+							if (world.getWorldBorder().isWithinBounds(newPosition)) {
 								BlockPos testPos = lookingAtPos.subtract(newPosition);
-								shape = VoxelShapes.union(shape, lookingAtState.getOutlineShape(world, lookingAtPos, ShapeContext.of(camera.getFocusedEntity())).offset(-testPos.getX(), -testPos.getY(), -testPos.getZ()));
+								shape = Shapes.or(shape, lookingAtState.getShape(world, lookingAtPos, CollisionContext.of(camera.getEntity())).move(-testPos.getX(), -testPos.getY(), -testPos.getZ()));
 							}
 						}
 						
 						HudRenderers.setItemStackToRender(new ItemStack(item), positions.size(), false);
-						VertexConsumer linesBuffer = consumers.getBuffer(RenderLayer.getLines());
-						WorldRendererAccessor.invokeDrawCuboidShapeOutline(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
+						VertexConsumer linesBuffer = consumers.getBuffer(RenderType.lines());
+						WorldRendererAccessor.invokeRenderShape(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
 						return true;
 					}
 				}
@@ -225,32 +225,32 @@ public class SpectrumClientEventListeners {
 		return false;
 	}
 	
-	private static boolean renderExchangeStaffOutline(MatrixStack matrices, Camera camera, double d, double e, double f, VertexConsumerProvider consumers, ItemStack exchangeStaffItemStack, WorldRenderContext.BlockOutlineContext hitResult) {
-		MinecraftClient client = MinecraftClient.getInstance();
-		ClientWorld world = client.world;
+	private static boolean renderExchangeStaffOutline(PoseStack matrices, Camera camera, double d, double e, double f, MultiBufferSource consumers, ItemStack exchangeStaffItemStack, WorldRenderContext.BlockOutlineContext hitResult) {
+		Minecraft client = Minecraft.getInstance();
+		ClientLevel world = client.level;
 		BlockPos lookingAtPos = hitResult.blockPos();
 		BlockState lookingAtState = hitResult.blockState();
 		
-		PlayerEntity player = client.player;
+		Player player = client.player;
 		
 		if (player == null || world == null)
 			return false;
 		
-		if (player.getMainHandStack().getItem() instanceof BuildingStaffItem staff && (player.isCreative() || staff.canInteractWith(lookingAtState, world, lookingAtPos, player))) {
+		if (player.getMainHandItem().getItem() instanceof BuildingStaffItem staff && (player.isCreative() || staff.canInteractWith(lookingAtState, world, lookingAtPos, player))) {
 			Block lookingAtBlock = lookingAtState.getBlock();
 			Optional<Block> exchangeBlock = ExchangeStaffItem.getStoredBlock(exchangeStaffItemStack);
 			if (exchangeBlock.isPresent() && exchangeBlock.get() != lookingAtBlock) {
 				Item exchangeBlockItem = exchangeBlock.get().asItem();
-				VoxelShape shape = VoxelShapes.empty();
+				VoxelShape shape = Shapes.empty();
 				
 				if (exchangeBlockItem != Items.AIR) {
 					int itemCountInInventory = Integer.MAX_VALUE;
 					long inkLimit = Integer.MAX_VALUE;
 					if (!player.isCreative()) {
-						PlayerInventory playerInventory = player.getInventory();
-						itemCountInInventory = playerInventory.count(exchangeBlockItem);
-						for (int i = 0; i < player.getInventory().size(); i++) {
-							var currentStack = playerInventory.getStack(i);
+						Inventory playerInventory = player.getInventory();
+						itemCountInInventory = playerInventory.countItem(exchangeBlockItem);
+						for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+							var currentStack = playerInventory.getItem(i);
 							ItemProvider itemProvider = ItemProviderRegistry.getProvider(currentStack);
 							if (itemProvider != null) {
 								itemCountInInventory += itemProvider.getItemCount(player, currentStack, exchangeBlockItem);
@@ -267,15 +267,15 @@ public class SpectrumClientEventListeners {
 						long usableCount = Math.min(itemCountInInventory, inkLimit);
 						List<BlockPos> positions = BuildingHelper.getConnectedBlocks(world, lookingAtPos, usableCount, ExchangeStaffItem.getRange(player));
 						for (BlockPos newPosition : positions) {
-							if (world.getWorldBorder().contains(newPosition)) {
+							if (world.getWorldBorder().isWithinBounds(newPosition)) {
 								BlockPos testPos = lookingAtPos.subtract(newPosition);
-								shape = VoxelShapes.union(shape, lookingAtState.getOutlineShape(world, lookingAtPos, ShapeContext.of(camera.getFocusedEntity())).offset(-testPos.getX(), -testPos.getY(), -testPos.getZ()));
+								shape = Shapes.or(shape, lookingAtState.getShape(world, lookingAtPos, CollisionContext.of(camera.getEntity())).move(-testPos.getX(), -testPos.getY(), -testPos.getZ()));
 							}
 						}
 						
 						HudRenderers.setItemStackToRender(new ItemStack(exchangeBlockItem), positions.size(), false);
-						VertexConsumer linesBuffer = consumers.getBuffer(RenderLayer.getLines());
-						WorldRendererAccessor.invokeDrawCuboidShapeOutline(matrices, linesBuffer, shape,
+						VertexConsumer linesBuffer = consumers.getBuffer(RenderType.lines());
+						WorldRendererAccessor.invokeRenderShape(matrices, linesBuffer, shape,
 								(double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e,
 								(double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
 						return true;

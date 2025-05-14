@@ -1,104 +1,104 @@
 package de.dafuqs.spectrum.blocks.deeper_down;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.*;
 import de.dafuqs.spectrum.blocks.decoration.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.pathing.*;
-import net.minecraft.item.*;
-import net.minecraft.state.*;
-import net.minecraft.state.property.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.shape.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.item.context.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.pathfinder.*;
+import net.minecraft.world.phys.shapes.*;
 
 import java.util.*;
 
 public class PyriteRipperBlock extends SpectrumFacingBlock {
-
-	public static final MapCodec<PyriteRipperBlock> CODEC = createCodec(PyriteRipperBlock::new);
-
-	public static final BooleanProperty MIRRORED = BooleanProperty.of("mirrored");
+	
+	public static final MapCodec<PyriteRipperBlock> CODEC = simpleCodec(PyriteRipperBlock::new);
+	
+	public static final BooleanProperty MIRRORED = BooleanProperty.create("mirrored");
 
 	public static final Map<Direction, VoxelShape> SHAPES = new HashMap<>() {{
-		put(Direction.UP, Block.createCuboidShape(0.0D, 0.0D, 5.0D, 16.0D, 6.0D, 11.0D));
-		put(Direction.DOWN, Block.createCuboidShape(0.0D, 10.0D, 5.0D, 16.0D, 16.0D, 11.0D));
-		put(Direction.NORTH, Block.createCuboidShape(0.0D, 5.0D, 10.0D, 16.0D, 11.0D, 16.0D));
-		put(Direction.SOUTH, Block.createCuboidShape(0.0D, 5.0D, 0.0D, 16.0D, 11.0D, 6.0D));
-		put(Direction.EAST, Block.createCuboidShape(0.0D, 5.0D, 0.0D, 6.0D, 11.0D, 16.0));
-		put(Direction.WEST, Block.createCuboidShape(10.0D, 5.0D, 0.0D, 16.0D, 11.0D, 16.0));
+		put(Direction.UP, Block.box(0.0D, 0.0D, 5.0D, 16.0D, 6.0D, 11.0D));
+		put(Direction.DOWN, Block.box(0.0D, 10.0D, 5.0D, 16.0D, 16.0D, 11.0D));
+		put(Direction.NORTH, Block.box(0.0D, 5.0D, 10.0D, 16.0D, 11.0D, 16.0D));
+		put(Direction.SOUTH, Block.box(0.0D, 5.0D, 0.0D, 16.0D, 11.0D, 6.0D));
+		put(Direction.EAST, Block.box(0.0D, 5.0D, 0.0D, 6.0D, 11.0D, 16.0));
+		put(Direction.WEST, Block.box(10.0D, 5.0D, 0.0D, 16.0D, 11.0D, 16.0));
 	}};
 	public static final Map<Direction, VoxelShape> SHAPES_MIRRORED = new HashMap<>() {{
-		put(Direction.UP, Block.createCuboidShape(5.0D, 0.0D, 0.0D, 11.0D, 6.0D, 16.0));
-		put(Direction.DOWN, Block.createCuboidShape(5.0D, 10.0D, 0.0D, 11.0D, 16.0D, 16.0D));
-		put(Direction.NORTH, Block.createCuboidShape(5.0D, 0.0D, 10.0D, 11.0D, 16.0D, 16.0D));
-		put(Direction.SOUTH, Block.createCuboidShape(5.0D, 0.0D, 0.0D, 11.0D, 16.0D, 6.0D));
-		put(Direction.EAST, Block.createCuboidShape(0.0D, 0.0D, 5.0D, 6.0D, 16.0D, 11.0D));
-		put(Direction.WEST, Block.createCuboidShape(10.0D, 0.0D, 5.0D, 16.0D, 16.0D, 11.0D));
+		put(Direction.UP, Block.box(5.0D, 0.0D, 0.0D, 11.0D, 6.0D, 16.0));
+		put(Direction.DOWN, Block.box(5.0D, 10.0D, 0.0D, 11.0D, 16.0D, 16.0D));
+		put(Direction.NORTH, Block.box(5.0D, 0.0D, 10.0D, 11.0D, 16.0D, 16.0D));
+		put(Direction.SOUTH, Block.box(5.0D, 0.0D, 0.0D, 11.0D, 16.0D, 6.0D));
+		put(Direction.EAST, Block.box(0.0D, 0.0D, 5.0D, 6.0D, 16.0D, 11.0D));
+		put(Direction.WEST, Block.box(10.0D, 0.0D, 5.0D, 16.0D, 16.0D, 11.0D));
 	}};
-
-	public PyriteRipperBlock(Settings settings) {
+	
+	public PyriteRipperBlock(Properties settings) {
 		super(settings);
-		setDefaultState(getDefaultState().with(FACING, Direction.EAST).with(MIRRORED, false));
+		registerDefaultState(defaultBlockState().setValue(FACING, Direction.EAST).setValue(MIRRORED, false));
 	}
 
 	@Override
-	public MapCodec<? extends PyriteRipperBlock> getCodec() {
+	public MapCodec<? extends PyriteRipperBlock> codec() {
 		return CODEC;
 	}
 	
 	@Override
-	public boolean canPathfindThrough(BlockState state, NavigationType type) {
+	public boolean isPathfindable(BlockState state, PathComputationType type) {
 		return false;
 	}
 	
 	@Override
-	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(FACING, MIRRORED);
 	}
 	
 	@Override
-	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-		Direction targetDirection = state.get(FACING).getOpposite();
-		BlockPos targetPos = pos.offset(targetDirection);
-		return world.getBlockState(targetPos).isSideSolid(world, targetPos, targetDirection, SideShapeType.FULL);
+	public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+		Direction targetDirection = state.getValue(FACING).getOpposite();
+		BlockPos targetPos = pos.relative(targetDirection);
+		return world.getBlockState(targetPos).isFaceSturdy(world, targetPos, targetDirection, SupportType.FULL);
 	}
 	
 	@Override
-	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		Direction direction = ctx.getSide();
-		BlockState placedOnState = ctx.getWorld().getBlockState(ctx.getBlockPos().offset(direction.getOpposite()));
-		if (placedOnState.isOf(this)) {
+	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+		Direction direction = ctx.getClickedFace();
+		BlockState placedOnState = ctx.getLevel().getBlockState(ctx.getClickedPos().relative(direction.getOpposite()));
+		if (placedOnState.is(this)) {
 			return placedOnState;
 		}
 		
-		if (ctx.getHorizontalPlayerFacing().getAxis().isHorizontal()) {
-			return this.getDefaultState().with(FACING, direction).with(MIRRORED, ctx.getHorizontalPlayerFacing().getOffsetX() != 0);
+		if (ctx.getHorizontalDirection().getAxis().isHorizontal()) {
+			return this.defaultBlockState().setValue(FACING, direction).setValue(MIRRORED, ctx.getHorizontalDirection().getStepX() != 0);
 		}
 		
-		boolean mirrored = ctx.getPlayerLookDirection().getAxis().isVertical();
-		return this.getDefaultState().with(FACING, direction).with(MIRRORED, mirrored);
+		boolean mirrored = ctx.getNearestLookingDirection().getAxis().isVertical();
+		return this.defaultBlockState().setValue(FACING, direction).setValue(MIRRORED, mirrored);
 	}
 	
 	@Override
-	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-		return !state.canPlaceAt(world, pos) ? Blocks.AIR.getDefaultState() : state;
+	public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+		return !state.canSurvive(world, pos) ? Blocks.AIR.defaultBlockState() : state;
 	}
 	
 	@Override
-	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		return state.get(MIRRORED) ? SHAPES_MIRRORED.get(state.get(FACING)) : SHAPES.get(state.get(FACING));
+	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+		return state.getValue(MIRRORED) ? SHAPES_MIRRORED.get(state.getValue(FACING)) : SHAPES.get(state.getValue(FACING));
 	}
 	
 	@Override
-	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-		if (entity instanceof LivingEntity && !entity.getType().isIn(SpectrumEntityTypeTags.POKING_DAMAGE_IMMUNE)) {
-			if (!world.isClient && (entity.lastRenderX != entity.getX() || entity.lastRenderZ != entity.getZ())) {
-				double difX = Math.abs(entity.getX() - entity.lastRenderX);
-				double difZ = Math.abs(entity.getZ() - entity.lastRenderZ);
+	public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
+		if (entity instanceof LivingEntity && !entity.getType().is(SpectrumEntityTypeTags.POKING_DAMAGE_IMMUNE)) {
+			if (!world.isClientSide && (entity.xOld != entity.getX() || entity.zOld != entity.getZ())) {
+				double difX = Math.abs(entity.getX() - entity.xOld);
+				double difZ = Math.abs(entity.getZ() - entity.zOld);
 				if (difX >= 0.003 || difZ >= 0.003) {
-					entity.damage(SpectrumDamageTypes.ripping(world), 2.0F);
+					entity.hurt(SpectrumDamageTypes.ripping(world), 2.0F);
 				}
 			}
 		}

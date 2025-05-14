@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
-import net.minecraft.entity.*;
-import net.minecraft.registry.*;
-import net.minecraft.registry.tag.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.tags.*;
+import net.minecraft.world.entity.*;
 
 public class SpectrumEntityTypeTags {
 	
@@ -24,7 +24,7 @@ public class SpectrumEntityTypeTags {
 	
 	
 	private static TagKey<EntityType<?>> getReference(String id) {
-		return TagKey.of(RegistryKeys.ENTITY_TYPE, SpectrumCommon.locate(id));
+		return TagKey.create(Registries.ENTITY_TYPE, SpectrumCommon.locate(id));
 	}
 	
 }

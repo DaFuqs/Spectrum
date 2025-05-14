@@ -3,16 +3,16 @@ package de.dafuqs.spectrum.blocks.pastel_network.network;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
+import net.minecraft.core.*;
 import net.minecraft.nbt.*;
-import net.minecraft.registry.*;
-import net.minecraft.server.world.*;
-import net.minecraft.world.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.level.saveddata.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 // Persisted together with the overworld. Resetting the overworld will also reset all networks
-public class ServerPastelNetworkManager extends PersistentState implements PastelNetworkManager<ServerWorld, ServerPastelNetwork> {
+public class ServerPastelNetworkManager extends SavedData implements PastelNetworkManager<ServerLevel, ServerPastelNetwork> {
 	
 	private static final String PERSISTENT_STATE_ID = "spectrum_pastel_network_manager";
 	
@@ -27,13 +27,13 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 		return true;
 	}
 	
-	public static ServerPastelNetworkManager get(ServerWorld world) {
+	public static ServerPastelNetworkManager get(ServerLevel world) {
 		// TODO: We need to spoof a datafixer type, null will prevent data from being read
-		PersistentState.Type<ServerPastelNetworkManager> type = new PersistentState.Type<>(ServerPastelNetworkManager::new, (nbtCompound, lookup) -> ServerPastelNetworkManager.fromNbt(nbtCompound), null);
-		return world.getPersistentStateManager().getOrCreate(type, PERSISTENT_STATE_ID);
+		SavedData.Factory<ServerPastelNetworkManager> type = new SavedData.Factory<>(ServerPastelNetworkManager::new, (nbtCompound, lookup) -> ServerPastelNetworkManager.fromNbt(nbtCompound), null);
+		return world.getDataStorage().computeIfAbsent(type, PERSISTENT_STATE_ID);
 	}
 	
-	public ServerPastelNetwork createNetwork(ServerWorld world, PastelNodeBlockEntity initialNode) {
+	public ServerPastelNetwork createNetwork(ServerLevel world, PastelNodeBlockEntity initialNode) {
 		ServerPastelNetwork network = new ServerPastelNetwork(world, initialNode);
 		this.networks.add(network);
 		initialNode.setNetworkUUID(network.getUUID());
@@ -41,7 +41,7 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 	}
 	
 	@Override
-	public ServerPastelNetwork createNetwork(ServerWorld world, UUID uuid, int color) {
+	public ServerPastelNetwork createNetwork(ServerLevel world, UUID uuid, int color) {
 		ServerPastelNetwork network = new ServerPastelNetwork(world, uuid, color);
 		this.networks.add(network);
 		return network;
@@ -54,12 +54,12 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 	
 	
 	@Override
-	public NbtCompound writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-		NbtList networkList = new NbtList();
+	public CompoundTag save(CompoundTag nbt, HolderLookup.Provider registryLookup) {
+		ListTag networkList = new ListTag();
 		for (ServerPastelNetwork network : this.networks) {
 			var opt = ServerPastelNetwork.CODEC.encodeStart(NbtOps.INSTANCE, network).result();
 			if (opt.isPresent()) {
-				var wrapper = new NbtCompound();
+				var wrapper = new CompoundTag();
 				wrapper.put("network", opt.get());
 				wrapper.put("scheduler", transgender(network.getTransmissions()));
 				// Trans missions?... do... do they really?
@@ -70,16 +70,15 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 		return nbt;
 	}
 	
-	public static ServerPastelNetworkManager fromNbt(NbtCompound nbt) {
+	public static ServerPastelNetworkManager fromNbt(CompoundTag nbt) {
 		ServerPastelNetworkManager manager = new ServerPastelNetworkManager();
-		for (NbtElement element : nbt.getList("Networks", NbtElement.COMPOUND_TYPE)) {
-			var comp = (NbtCompound) element;
+		for (Tag element : nbt.getList("Networks", Tag.TAG_COMPOUND)) {
+			var comp = (CompoundTag) element;
 			var netNbt = comp.get("network");
 			var schedulerNbt = comp.getCompound("scheduler");
 			
 			Optional<ServerPastelNetwork> network = CodecHelper.fromNbt(ServerPastelNetwork.CODEC, netNbt);
 			if (network.isPresent()) {
-				// I truly, really did try to make the transmission codec work. And I failed ~ Azzyypaaras
 				network.get().getTransmissions().putAll(transDecode(schedulerNbt, network.get()));
 				manager.networks.add(network.get());
 			}
@@ -87,8 +86,8 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 		return manager;
 	}
 	
-	private static @NotNull HashMap<PastelTransmission, Integer> transDecode(NbtCompound schedulerNbt, ServerPastelNetwork network) {
-		var transmissions = schedulerNbt.getList("transmissions", NbtElement.COMPOUND_TYPE);
+	private static @NotNull HashMap<PastelTransmission, Integer> transDecode(CompoundTag schedulerNbt, ServerPastelNetwork network) {
+		var transmissions = schedulerNbt.getList("transmissions", Tag.TAG_COMPOUND);
 		var timers = schedulerNbt.getIntArray("timers");
 		var map = new HashMap<PastelTransmission, Integer>();
 		
@@ -117,9 +116,9 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 		}
 	}
 	
-	private static NbtCompound transgender(Map<PastelTransmission, Integer> trans) {
-		var transNbt = new NbtCompound();
-		var transmissions = new NbtList();
+	private static CompoundTag transgender(Map<PastelTransmission, Integer> trans) {
+		var transNbt = new CompoundTag();
+		var transmissions = new ListTag();
 		var timers = new int[trans.size()];
 		for (Map.Entry<PastelTransmission, Integer> transmissionEntry : trans.entrySet()) {
 			var result = PastelTransmission.CODEC.encodeStart(NbtOps.INSTANCE, transmissionEntry.getKey()).result();

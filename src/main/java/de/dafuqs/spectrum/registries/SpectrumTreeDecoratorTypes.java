@@ -2,8 +2,9 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.worldgen.tree_decorators.*;
-import net.minecraft.registry.*;
-import net.minecraft.world.gen.treedecorator.*;
+import net.minecraft.core.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.world.level.levelgen.feature.treedecorators.*;
 
 public class SpectrumTreeDecoratorTypes {
 	
@@ -14,7 +15,7 @@ public class SpectrumTreeDecoratorTypes {
 	}
 	
 	private static TreeDecoratorType<?> register(String id, TreeDecoratorType<?> treeDecoratorType) {
-		return Registry.register(Registries.TREE_DECORATOR_TYPE, SpectrumCommon.locate(id), treeDecoratorType);
+		return Registry.register(BuiltInRegistries.TREE_DECORATOR_TYPE, SpectrumCommon.locate(id), treeDecoratorType);
 	}
 	
 }

@@ -12,17 +12,14 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.item.*;
+import net.minecraft.core.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.recipe.*;
-import net.minecraft.recipe.input.*;
-import net.minecraft.registry.*;
-import net.minecraft.server.network.*;
-import net.minecraft.util.*;
-import net.minecraft.util.collection.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.resources.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.*;
 
 import java.util.*;
 
@@ -31,7 +28,7 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<InstanceReci
 	public static final int CENTER_INGREDIENT = 0;
 	public static final int FIRST_INGREDIENT = 1;
 	public static final int SECOND_INGREDIENT = 2;
-	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("midgame/build_spirit_instiller_structure");
+	public static final ResourceLocation UNLOCK_IDENTIFIER = SpectrumCommon.locate("midgame/build_spirit_instiller_structure");
 	
 	protected final IngredientStack centerIngredient;
 	protected final IngredientStack bowlIngredient1;
@@ -42,7 +39,7 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<InstanceReci
 	protected final float experience;
 	protected final boolean noBenefitsFromYieldAndEfficiencyUpgrades;
 	
-	public SpiritInstillerRecipe(String group, boolean secret, Optional<Identifier> requiredAdvancementIdentifier,
+	public SpiritInstillerRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier,
 								 IngredientStack centerIngredient, IngredientStack bowlIngredient1, IngredientStack bowlIngredient2, ItemStack output, int craftingTime, float experience, boolean noBenefitsFromYieldAndEfficiencyUpgrades) {
 		
 		super(group, secret, requiredAdvancementIdentifier);
@@ -59,14 +56,14 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<InstanceReci
 	}
 	
 	@Override
-	public boolean matches(InstanceRecipeInput recipeInput, World world) {
+	public boolean matches(InstanceRecipeInput recipeInput, Level world) {
 		List<IngredientStack> ingredientStacks = getIngredientStacks();
-		if (recipeInput.getSize() > 2) {
-			if (ingredientStacks.get(CENTER_INGREDIENT).test(recipeInput.getStackInSlot(CENTER_INGREDIENT))) {
-				if (ingredientStacks.get(FIRST_INGREDIENT).test(recipeInput.getStackInSlot(FIRST_INGREDIENT))) {
-					return ingredientStacks.get(SECOND_INGREDIENT).test(recipeInput.getStackInSlot(SECOND_INGREDIENT));
-				} else if (ingredientStacks.get(FIRST_INGREDIENT).test(recipeInput.getStackInSlot(SECOND_INGREDIENT))) {
-					return ingredientStacks.get(SECOND_INGREDIENT).test(recipeInput.getStackInSlot(FIRST_INGREDIENT));
+		if (recipeInput.size() > 2) {
+			if (ingredientStacks.get(CENTER_INGREDIENT).test(recipeInput.getItem(CENTER_INGREDIENT))) {
+				if (ingredientStacks.get(FIRST_INGREDIENT).test(recipeInput.getItem(FIRST_INGREDIENT))) {
+					return ingredientStacks.get(SECOND_INGREDIENT).test(recipeInput.getItem(SECOND_INGREDIENT));
+				} else if (ingredientStacks.get(FIRST_INGREDIENT).test(recipeInput.getItem(SECOND_INGREDIENT))) {
+					return ingredientStacks.get(SECOND_INGREDIENT).test(recipeInput.getItem(FIRST_INGREDIENT));
 				}
 			}
 		}
@@ -74,7 +71,7 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<InstanceReci
 	}
 	
 	@Override
-	public ItemStack getResult(RegistryWrapper.WrapperLookup registryManager) {
+	public ItemStack getResultItem(HolderLookup.Provider registryManager) {
 		return output;
 	}
 	
@@ -85,7 +82,7 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<InstanceReci
 	
 	@Override
 	public List<IngredientStack> getIngredientStacks() {
-		DefaultedList<IngredientStack> defaultedList = DefaultedList.of();
+		NonNullList<IngredientStack> defaultedList = NonNullList.create();
 		defaultedList.add(this.centerIngredient);
 		defaultedList.add(this.bowlIngredient1);
 		defaultedList.add(this.bowlIngredient2);
@@ -93,15 +90,15 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<InstanceReci
 	}
 	
 	@Override
-	public ItemStack craft(InstanceRecipeInput<SpiritInstillerBlockEntity> recipeInput, RegistryWrapper.WrapperLookup drm) {
+	public ItemStack assemble(InstanceRecipeInput<SpiritInstillerBlockEntity> recipeInput, HolderLookup.Provider drm) {
 		ItemStack resultStack = ItemStack.EMPTY;
 		SpiritInstillerBlockEntity spiritInstillerBlockEntity = recipeInput.getInstance();
 		Upgradeable.UpgradeHolder upgradeHolder = spiritInstillerBlockEntity.getUpgradeHolder();
-		World world = spiritInstillerBlockEntity.getWorld();
+		Level world = spiritInstillerBlockEntity.getLevel();
 		if (world == null) return ItemStack.EMPTY;
-		BlockPos pos = spiritInstillerBlockEntity.getPos();
+		BlockPos pos = spiritInstillerBlockEntity.getBlockPos();
 		
-		resultStack = getResult(drm).copy();
+		resultStack = getResultItem(drm).copy();
 		
 		// Yield upgrade
 		if (!areYieldAndEfficiencyUpgradesDisabled() && upgradeHolder.getEffectiveValue(Upgradeable.UpgradeType.YIELD) != 1.0) {
@@ -109,8 +106,8 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<InstanceReci
 			resultStack.setCount(resultCountMod);
 		}
 		
-		if (resultStack.isOf(SpectrumBlocks.MEMORY.asItem())) {
-			boolean makeUnrecognizable = spiritInstillerBlockEntity.getStack(0).isIn(SpectrumItemTags.MEMORY_BONDING_AGENTS_CONCEALABLE);
+		if (resultStack.is(SpectrumBlocks.MEMORY.asItem())) {
+			boolean makeUnrecognizable = spiritInstillerBlockEntity.getItem(0).is(SpectrumItemTags.MEMORY_BONDING_AGENTS_CONCEALABLE);
 			if (makeUnrecognizable) {
 				MemoryItem.makeUnrecognizable(resultStack);
 			}
@@ -122,13 +119,13 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<InstanceReci
 	}
 	
 	// Calculate and spawn experience
-	protected void spawnXPAndGrantAdvancements(ItemStack resultStack, SpiritInstillerBlockEntity spiritInstillerBlockEntity, Upgradeable.UpgradeHolder upgradeHolder, World world, BlockPos pos) {
+	protected void spawnXPAndGrantAdvancements(ItemStack resultStack, SpiritInstillerBlockEntity spiritInstillerBlockEntity, Upgradeable.UpgradeHolder upgradeHolder, Level world, BlockPos pos) {
 		int awardedExperience = 0;
 		if (getExperience() > 0) {
 			double experienceModifier = upgradeHolder.getEffectiveValue(Upgradeable.UpgradeType.EXPERIENCE);
 			float recipeExperienceBeforeMod = getExperience();
 			awardedExperience = Support.getIntFromDecimalWithChance(recipeExperienceBeforeMod * experienceModifier, world.random);
-			MultiblockCrafter.spawnExperience(world, pos.up(), awardedExperience);
+			MultiblockCrafter.spawnExperience(world, pos.above(), awardedExperience);
 		}
 		
 		// Run Advancement trigger
@@ -136,7 +133,7 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<InstanceReci
 	}
 	
 	protected static void grantPlayerSpiritInstillingAdvancementCriterion(UUID playerUUID, ItemStack resultStack, int experience) {
-		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) PlayerOwned.getPlayerEntityIfOnline(playerUUID);
+		ServerPlayer serverPlayerEntity = (ServerPlayer) PlayerOwned.getPlayerEntityIfOnline(playerUUID);
 		if (serverPlayerEntity != null) {
 			SpectrumAdvancementCriteria.SPIRIT_INSTILLER_CRAFTING.trigger(serverPlayerEntity, resultStack, experience);
 		}
@@ -155,7 +152,7 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<InstanceReci
 	}
 	
 	@Override
-	public Identifier getRecipeTypeUnlockIdentifier() {
+	public ResourceLocation getRecipeTypeUnlockIdentifier() {
 		return UNLOCK_IDENTIFIER;
 	}
 	
@@ -169,7 +166,7 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<InstanceReci
 	}
 	
 	@Override
-	public ItemStack createIcon() {
+	public ItemStack getToastSymbol() {
 		return new ItemStack(SpectrumBlocks.SPIRIT_INSTILLER);
 	}
 	
@@ -179,7 +176,7 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<InstanceReci
 	}
 	
 	@Override
-	public boolean fits(int width, int height) {
+	public boolean canCraftInDimensions(int width, int height) {
 		return width * height >= 3;
 	}
 	
@@ -188,27 +185,27 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<InstanceReci
 		public static final MapCodec<SpiritInstillerRecipe> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
 				Codec.STRING.optionalFieldOf("group", "").forGetter(recipe -> recipe.group),
 				Codec.BOOL.optionalFieldOf("secret", false).forGetter(recipe -> recipe.secret),
-				Identifier.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancementIdentifier),
+				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancementIdentifier),
 				IngredientStack.Serializer.CODEC.fieldOf("center_ingredient").forGetter(recipe -> recipe.centerIngredient),
 				IngredientStack.Serializer.CODEC.fieldOf("ingredient1").forGetter(recipe -> recipe.bowlIngredient1),
 				IngredientStack.Serializer.CODEC.fieldOf("ingredient2").forGetter(recipe -> recipe.bowlIngredient2),
-				ItemStack.VALIDATED_CODEC.fieldOf("result").forGetter(recipe -> recipe.output),
+				ItemStack.STRICT_CODEC.fieldOf("result").forGetter(recipe -> recipe.output),
 				Codec.INT.optionalFieldOf("time", 200).forGetter(recipe -> recipe.craftingTime),
 				Codec.FLOAT.optionalFieldOf("experience", 1.0f).forGetter(recipe -> recipe.experience),
 				Codec.BOOL.optionalFieldOf("disable_yield_and_efficiency_upgrades", false).forGetter(recipe -> recipe.noBenefitsFromYieldAndEfficiencyUpgrades)
 		).apply(i, SpiritInstillerRecipe::new));
 		
-		private static final PacketCodec<RegistryByteBuf, SpiritInstillerRecipe> PACKET_CODEC = PacketCodecHelper.tuple(
-				PacketCodecs.STRING, c -> c.group,
-				PacketCodecs.BOOL, c -> c.secret,
-				PacketCodecs.optional(Identifier.PACKET_CODEC), c -> c.requiredAdvancementIdentifier,
+		private static final StreamCodec<RegistryFriendlyByteBuf, SpiritInstillerRecipe> PACKET_CODEC = PacketCodecHelper.tuple(
+				ByteBufCodecs.STRING_UTF8, c -> c.group,
+				ByteBufCodecs.BOOL, c -> c.secret,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), c -> c.requiredAdvancementIdentifier,
 				IngredientStack.Serializer.PACKET_CODEC, c -> c.centerIngredient,
 				IngredientStack.Serializer.PACKET_CODEC, c -> c.bowlIngredient1,
 				IngredientStack.Serializer.PACKET_CODEC, c -> c.bowlIngredient2,
-				ItemStack.PACKET_CODEC, c -> c.output,
-				PacketCodecs.VAR_INT, recipe -> recipe.craftingTime,
-				PacketCodecs.FLOAT, recipe -> recipe.experience,
-				PacketCodecs.BOOL, recipe -> recipe.noBenefitsFromYieldAndEfficiencyUpgrades,
+				ItemStack.STREAM_CODEC, c -> c.output,
+				ByteBufCodecs.VAR_INT, recipe -> recipe.craftingTime,
+				ByteBufCodecs.FLOAT, recipe -> recipe.experience,
+				ByteBufCodecs.BOOL, recipe -> recipe.noBenefitsFromYieldAndEfficiencyUpgrades,
 				SpiritInstillerRecipe::new
 		);
 		
@@ -218,7 +215,7 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<InstanceReci
 		}
 		
 		@Override
-		public PacketCodec<RegistryByteBuf, SpiritInstillerRecipe> packetCodec() {
+		public StreamCodec<RegistryFriendlyByteBuf, SpiritInstillerRecipe> streamCodec() {
 			return PACKET_CODEC;
 		}
 	}

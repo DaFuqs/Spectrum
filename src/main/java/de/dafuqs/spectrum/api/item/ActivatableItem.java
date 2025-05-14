@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.api.item;
 
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.item.*;
+import net.minecraft.world.item.*;
 
 public interface ActivatableItem {
 	
@@ -11,7 +11,7 @@ public interface ActivatableItem {
 	}
 	
 	static boolean isActivated(ItemStack stack) {
-		return stack.contains(SpectrumDataComponentTypes.ACTIVATED);
+		return stack.has(SpectrumDataComponentTypes.ACTIVATED);
 	}
 	
 }

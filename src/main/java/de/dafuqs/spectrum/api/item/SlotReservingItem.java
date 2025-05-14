@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.api.item;
 
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.item.*;
+import net.minecraft.world.item.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -9,7 +9,7 @@ import java.util.*;
 public interface SlotReservingItem {
 	
 	static boolean isReservingSlot(ItemStack stack) {
-		return stack.contains(SpectrumDataComponentTypes.SLOT_RESERVER);
+		return stack.has(SpectrumDataComponentTypes.SLOT_RESERVER);
 	}
 	
 	static UUID getReserver(ItemStack stack) {

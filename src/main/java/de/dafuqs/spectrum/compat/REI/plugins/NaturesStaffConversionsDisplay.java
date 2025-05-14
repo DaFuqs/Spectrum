@@ -7,17 +7,17 @@ import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.display.basic.*;
 import me.shedaniel.rei.api.common.entry.*;
 import net.minecraft.client.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public class NaturesStaffConversionsDisplay extends BasicDisplay implements GatedRecipeDisplay {
 	
-	private final @Nullable Identifier requiredAdvancementIdentifier;
+	private final @Nullable ResourceLocation requiredAdvancementIdentifier;
 	
-	public NaturesStaffConversionsDisplay(EntryStack<?> in, EntryStack<?> out, @Nullable Identifier requiredAdvancementIdentifier) {
+	public NaturesStaffConversionsDisplay(EntryStack<?> in, EntryStack<?> out, @Nullable ResourceLocation requiredAdvancementIdentifier) {
 		super(Collections.singletonList(EntryIngredient.of(in)), Collections.singletonList(EntryIngredient.of(out)));
 		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
 	}
@@ -29,7 +29,7 @@ public class NaturesStaffConversionsDisplay extends BasicDisplay implements Gate
 	
 	@Override
     public boolean isUnlocked() {
-		MinecraftClient client = MinecraftClient.getInstance();
+		Minecraft client = Minecraft.getInstance();
 		return AdvancementHelper.hasAdvancement(client.player, this.requiredAdvancementIdentifier)
 				&& AdvancementHelper.hasAdvancement(client.player, SpectrumAdvancements.UNLOCK_NATURES_STAFF);
 	}
@@ -40,7 +40,7 @@ public class NaturesStaffConversionsDisplay extends BasicDisplay implements Gate
 	}
 	
 	@Override
-	public @Nullable Text getSecretHintText() {
+	public @Nullable Component getSecretHintText() {
 		return null;
 	}
 	

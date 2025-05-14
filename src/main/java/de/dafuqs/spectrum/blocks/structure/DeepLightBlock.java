@@ -1,40 +1,40 @@
 package de.dafuqs.spectrum.blocks.structure;
 
-import com.mojang.serialization.MapCodec;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.item.*;
-import net.minecraft.state.*;
-import net.minecraft.util.math.*;
+import com.mojang.serialization.*;
+import net.minecraft.core.*;
+import net.minecraft.world.item.context.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
 import org.jetbrains.annotations.*;
 
-public class DeepLightBlock extends HorizontalFacingBlock implements BlockEntityProvider {
-
-    public static final MapCodec<DeepLightBlock> CODEC = createCodec(DeepLightBlock::new);
-
-	public DeepLightBlock(Settings settings) {
+public class DeepLightBlock extends HorizontalDirectionalBlock implements EntityBlock {
+	
+	public static final MapCodec<DeepLightBlock> CODEC = simpleCodec(DeepLightBlock::new);
+	
+	public DeepLightBlock(Properties settings) {
 		super(settings);
 	}
 
     @Override
-    public MapCodec<? extends DeepLightBlock> getCodec() {
+	public MapCodec<? extends DeepLightBlock> codec() {
         return CODEC;
     }
 
 	@Nullable
 	@Override
-	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing());
+	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+		return this.defaultBlockState().setValue(FACING, ctx.getHorizontalDirection());
 	}
 
 	@Override
-	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(FACING);
 	}
 
 	@Nullable
 	@Override
-	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new DeepLightBlockEntity(pos, state);
 	}
 }

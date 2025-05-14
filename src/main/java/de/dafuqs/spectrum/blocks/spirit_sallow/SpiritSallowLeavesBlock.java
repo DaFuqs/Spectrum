@@ -1,28 +1,29 @@
 package de.dafuqs.spectrum.blocks.spirit_sallow;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.*;
 import de.dafuqs.spectrum.particle.*;
-import net.minecraft.block.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.util.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 
 public class SpiritSallowLeavesBlock extends LeavesBlock {
-
-	public static final MapCodec<SpiritSallowLeavesBlock> CODEC = createCodec(SpiritSallowLeavesBlock::new);
-
-	public SpiritSallowLeavesBlock(Settings settings) {
+	
+	public static final MapCodec<SpiritSallowLeavesBlock> CODEC = simpleCodec(SpiritSallowLeavesBlock::new);
+	
+	public SpiritSallowLeavesBlock(Properties settings) {
 		super(settings);
 	}
 
 	@Override
-	public MapCodec<? extends SpiritSallowLeavesBlock> getCodec() {
+	public MapCodec<? extends SpiritSallowLeavesBlock> codec() {
 		return CODEC;
 	}
 	
 	@Override
-	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-		super.randomDisplayTick(state, world, pos, random);
+	public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
+		super.animateTick(state, world, pos, random);
 		
 		if (random.nextBoolean() /*!state.get(LeavesBlock.PERSISTENT) && state.get(LeavesBlock.DISTANCE) > 1 && world.getBlockState(pos.up()).isAir()*/) {
 			double startX = pos.getX() + random.nextFloat();

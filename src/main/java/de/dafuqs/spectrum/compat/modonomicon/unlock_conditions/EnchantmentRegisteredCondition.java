@@ -6,61 +6,63 @@ import com.klikli_dev.modonomicon.book.conditions.context.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.modonomicon.*;
 import de.dafuqs.spectrum.helpers.*;
-import net.minecraft.enchantment.*;
-import net.minecraft.entity.player.*;
+import net.minecraft.core.*;
+import net.minecraft.core.registries.*;
 import net.minecraft.network.*;
-import net.minecraft.registry.*;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
 import net.minecraft.util.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.enchantment.*;
 
 import java.util.*;
 
 public class EnchantmentRegisteredCondition extends BookCondition {
     
     protected static final String TOOLTIP = "book.condition.tooltip." + SpectrumCommon.MOD_ID + ".enchantment_registered";
-    
-    protected RegistryKey<Enchantment> enchantmentKey;
-    
-    public EnchantmentRegisteredCondition(Text tooltip, RegistryKey<Enchantment> enchantmentKey) {
+	
+	protected ResourceKey<Enchantment> enchantmentKey;
+	
+	public EnchantmentRegisteredCondition(Component tooltip, ResourceKey<Enchantment> enchantmentKey) {
         super(tooltip);
         this.enchantmentKey = enchantmentKey;
     }
-    
-    public static EnchantmentRegisteredCondition fromJson(Identifier conditionParentId, JsonObject json, RegistryWrapper.WrapperLookup provider) {
-        Identifier enchantmentID = Identifier.of(JsonHelper.getString(json, "enchantment_id"));
-        Text tooltip = tooltipFromJson(json, provider);
-        return new EnchantmentRegisteredCondition(tooltip, RegistryKey.of(RegistryKeys.ENCHANTMENT, enchantmentID));
+	
+	public static EnchantmentRegisteredCondition fromJson(ResourceLocation conditionParentId, JsonObject json, HolderLookup.Provider provider) {
+		ResourceLocation enchantmentID = ResourceLocation.parse(GsonHelper.getAsString(json, "enchantment_id"));
+		Component tooltip = tooltipFromJson(json, provider);
+		return new EnchantmentRegisteredCondition(tooltip, ResourceKey.create(Registries.ENCHANTMENT, enchantmentID));
     }
-    
-    public static EnchantmentRegisteredCondition fromNetwork(RegistryByteBuf buffer) {
-        var tooltip = buffer.readBoolean() ? TextCodecs.REGISTRY_PACKET_CODEC.decode(buffer) : null;
-        var entryId = buffer.readIdentifier();
-        return new EnchantmentRegisteredCondition(tooltip, RegistryKey.of(RegistryKeys.ENCHANTMENT, entryId));
+	
+	public static EnchantmentRegisteredCondition fromNetwork(RegistryFriendlyByteBuf buffer) {
+		var tooltip = buffer.readBoolean() ? ComponentSerialization.STREAM_CODEC.decode(buffer) : null;
+		var entryId = buffer.readResourceLocation();
+		return new EnchantmentRegisteredCondition(tooltip, ResourceKey.create(Registries.ENCHANTMENT, entryId));
     }
     
     @Override
-    public Identifier getType() {
+	public ResourceLocation getType() {
         return ModonomiconCompat.ENCHANTMENT_REGISTERED;
     }
     
     @Override
-    public void toNetwork(RegistryByteBuf buffer) {
+	public void toNetwork(RegistryFriendlyByteBuf buffer) {
         buffer.writeBoolean(this.tooltip != null);
         if (this.tooltip != null) {
-            TextCodecs.REGISTRY_PACKET_CODEC.encode(buffer, this.tooltip);
+			ComponentSerialization.STREAM_CODEC.encode(buffer, this.tooltip);
         }
-        buffer.writeIdentifier(this.enchantmentKey.getValue());
+		buffer.writeResourceLocation(this.enchantmentKey.location());
     }
     
     @Override
-    public boolean test(BookConditionContext context, PlayerEntity player) {
-		return SpectrumEnchantmentHelper.getEntry(player.getWorld().getRegistryManager(), this.enchantmentKey).isPresent();
+	public boolean test(BookConditionContext context, Player player) {
+		return SpectrumEnchantmentHelper.getEntry(player.level().registryAccess(), this.enchantmentKey).isPresent();
     }
     
     @Override
-    public List<Text> getTooltip(PlayerEntity player, BookConditionContext context) {
+	public List<Component> getTooltip(Player player, BookConditionContext context) {
         if (this.tooltip == null && context instanceof BookConditionEntryContext entryContext) {
-            this.tooltip = Text.translatable(TOOLTIP, Text.translatable(entryContext.getBook().getEntry(this.enchantmentKey.getValue()).getName()));
+			this.tooltip = Component.translatable(TOOLTIP, Component.translatable(entryContext.getBook().getEntry(this.enchantmentKey.location()).getName()));
         }
         return super.getTooltip(player, context);
     }

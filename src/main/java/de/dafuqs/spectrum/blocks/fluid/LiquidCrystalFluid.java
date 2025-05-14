@@ -4,25 +4,25 @@ import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.fluid.*;
-import net.minecraft.item.*;
-import net.minecraft.particle.*;
-import net.minecraft.recipe.*;
-import net.minecraft.registry.tag.*;
-import net.minecraft.sound.*;
-import net.minecraft.state.*;
-import net.minecraft.state.property.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.core.particles.*;
+import net.minecraft.sounds.*;
+import net.minecraft.tags.*;
+import net.minecraft.util.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.material.*;
 
 public abstract class LiquidCrystalFluid extends SpectrumFluid {
 	
 	@Override
-	public Fluid getStill() {
+	public Fluid getSource() {
 		return SpectrumFluids.LIQUID_CRYSTAL;
 	}
 	
@@ -32,48 +32,48 @@ public abstract class LiquidCrystalFluid extends SpectrumFluid {
 	}
 	
 	@Override
-	public Item getBucketItem() {
+	public Item getBucket() {
 		return SpectrumItems.LIQUID_CRYSTAL_BUCKET;
 	}
 	
 	@Override
-	protected BlockState toBlockState(FluidState fluidState) {
-		return SpectrumBlocks.LIQUID_CRYSTAL.getDefaultState().with(Properties.LEVEL_15, getBlockStateLevel(fluidState));
+	protected BlockState createLegacyBlock(FluidState fluidState) {
+		return SpectrumBlocks.LIQUID_CRYSTAL.defaultBlockState().setValue(BlockStateProperties.LEVEL, getLegacyLevel(fluidState));
 	}
 	
 	@Override
-	public boolean matchesType(Fluid fluid) {
+	public boolean isSame(Fluid fluid) {
 		return fluid == SpectrumFluids.LIQUID_CRYSTAL || fluid == SpectrumFluids.FLOWING_LIQUID_CRYSTAL;
 	}
 	
 	@Override
 	@Environment(EnvType.CLIENT)
-	public void randomDisplayTick(World world, BlockPos pos, FluidState state, Random random) {
-		BlockPos topPos = pos.up();
+	public void animateTick(Level world, BlockPos pos, FluidState state, RandomSource random) {
+		BlockPos topPos = pos.above();
 		BlockState topState = world.getBlockState(topPos);
-		if (topState.isAir() && !topState.isOpaqueFullCube(world, topPos) && random.nextInt(1000) == 0) {
-			world.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SpectrumSoundEvents.LIQUID_CRYSTAL_AMBIENT, SoundCategory.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F, false);
+		if (topState.isAir() && !topState.isSolidRender(world, topPos) && random.nextInt(1000) == 0) {
+			world.playLocalSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SpectrumSoundEvents.LIQUID_CRYSTAL_AMBIENT, SoundSource.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F, false);
 		}
 	}
 	
 	@Override
-	protected void beforeBreakingBlock(WorldAccess world, BlockPos pos, BlockState state) {
+	protected void beforeDestroyingBlock(LevelAccessor world, BlockPos pos, BlockState state) {
 		// if liquid crystal collides with a flower of any kind:
 		// drop a resonant lily instead
-		if (state.isIn(BlockTags.FLOWERS)) {
-			Block.dropStacks(SpectrumBlocks.RESONANT_LILY.getDefaultState(), world, pos, null);
+		if (state.is(BlockTags.FLOWERS)) {
+			Block.dropResources(SpectrumBlocks.RESONANT_LILY.defaultBlockState(), world, pos, null);
 		} else {
-			super.beforeBreakingBlock(world, pos, state);
+			super.beforeDestroyingBlock(world, pos, state);
 		}
 	}
 	
 	@Override
-	public ParticleEffect getParticle() {
+	public ParticleOptions getDripParticle() {
 		return SpectrumParticleTypes.DRIPPING_LIQUID_CRYSTAL;
 	}
 	
 	@Override
-	public ParticleEffect getSplashParticle() {
+	public ParticleOptions getSplashParticle() {
 		return SpectrumParticleTypes.LIQUID_CRYSTAL_SPLASH;
 	}
 	
@@ -81,16 +81,16 @@ public abstract class LiquidCrystalFluid extends SpectrumFluid {
 	 * Entities colliding with liquid crystal will get a slight regeneration effect
 	 */
 	@Override
-	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+	public void onEntityCollision(BlockState state, Level world, BlockPos pos, Entity entity) {
 		super.onEntityCollision(state, world, pos, entity);
 		
-		if (!world.isClient && entity instanceof LivingEntity livingEntity) {
+		if (!world.isClientSide && entity instanceof LivingEntity livingEntity) {
 			// just check every x ticks for performance and slow healing
-			if (world.getTime() % 200 == 0) {
-				StatusEffectInstance regenerationInstance = livingEntity.getStatusEffect(StatusEffects.REGENERATION);
+			if (world.getGameTime() % 200 == 0) {
+				MobEffectInstance regenerationInstance = livingEntity.getEffect(MobEffects.REGENERATION);
 				if (regenerationInstance == null) {
-					StatusEffectInstance newRegenerationInstance = new StatusEffectInstance(StatusEffects.REGENERATION, 80);
-					livingEntity.addStatusEffect(newRegenerationInstance);
+					MobEffectInstance newRegenerationInstance = new MobEffectInstance(MobEffects.REGENERATION, 80);
+					livingEntity.addEffect(newRegenerationInstance);
 				}
 			}
 		}
@@ -104,18 +104,18 @@ public abstract class LiquidCrystalFluid extends SpectrumFluid {
 	public static class Flowing extends LiquidCrystalFluid {
 		
 		@Override
-		protected void appendProperties(StateManager.Builder<Fluid, FluidState> builder) {
-			super.appendProperties(builder);
+		protected void createFluidStateDefinition(StateDefinition.Builder<Fluid, FluidState> builder) {
+			super.createFluidStateDefinition(builder);
 			builder.add(LEVEL);
 		}
 		
 		@Override
-		public int getLevel(FluidState fluidState) {
-			return fluidState.get(LEVEL);
+		public int getAmount(FluidState fluidState) {
+			return fluidState.getValue(LEVEL);
 		}
 		
 		@Override
-		public boolean isStill(FluidState fluidState) {
+		public boolean isSource(FluidState fluidState) {
 			return false;
 		}
 	}
@@ -123,12 +123,12 @@ public abstract class LiquidCrystalFluid extends SpectrumFluid {
 	public static class Still extends LiquidCrystalFluid {
 		
 		@Override
-		public int getLevel(FluidState fluidState) {
+		public int getAmount(FluidState fluidState) {
 			return 8;
 		}
 		
 		@Override
-		public boolean isStill(FluidState fluidState) {
+		public boolean isSource(FluidState fluidState) {
 			return true;
 		}
 		

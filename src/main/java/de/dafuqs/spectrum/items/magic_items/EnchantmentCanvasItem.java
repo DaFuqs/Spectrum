@@ -1,25 +1,21 @@
 package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.component.type.*;
-import net.minecraft.enchantment.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.inventory.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.*;
-import net.minecraft.registry.*;
-import net.minecraft.screen.slot.*;
-import net.minecraft.sound.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.sounds.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public class EnchantmentCanvasItem extends Item {
 	
-	public EnchantmentCanvasItem(Settings settings) {
+	public EnchantmentCanvasItem(Properties settings) {
 		super(settings);
 	}
 	
@@ -27,9 +23,9 @@ public class EnchantmentCanvasItem extends Item {
 	 * clicked onto another stack
 	 */
 	@Override
-	public boolean onStackClicked(ItemStack stack, Slot slot, ClickType clickType, PlayerEntity player) {
-		if (clickType == ClickType.RIGHT) {
-			ItemStack otherStack = slot.getStack();
+	public boolean overrideStackedOnOther(ItemStack stack, Slot slot, ClickAction clickType, Player player) {
+		if (clickType == ClickAction.SECONDARY) {
+			ItemStack otherStack = slot.getItem();
 			if (otherStack.getCount() == 1 && tryExchangeEnchantments(stack, otherStack, player)) {
 				if (player != null) {
 					playExchangeSound(player);
@@ -44,8 +40,8 @@ public class EnchantmentCanvasItem extends Item {
 	 * itemStack is right-clicked onto this
 	 */
 	@Override
-	public boolean onClicked(ItemStack stack, ItemStack otherStack, Slot slot, ClickType clickType, PlayerEntity player, StackReference cursorStackReference) {
-		if (clickType == ClickType.RIGHT && otherStack.getCount() == 1 && slot.canTakePartial(player)) {
+	public boolean overrideOtherStackedOnMe(ItemStack stack, ItemStack otherStack, Slot slot, ClickAction clickType, Player player, SlotAccess cursorStackReference) {
+		if (clickType == ClickAction.SECONDARY && otherStack.getCount() == 1 && slot.allowModification(player)) {
 			if (tryExchangeEnchantments(stack, otherStack, player)) {
 				if (player != null) {
 					playExchangeSound(player);
@@ -58,12 +54,12 @@ public class EnchantmentCanvasItem extends Item {
 	
 	public static boolean tryExchangeEnchantments(ItemStack canvasStack, ItemStack targetStack, @Nullable Entity receiver) {
 		Optional<Item> itemLock = getItemBoundTo(canvasStack);
-		if (itemLock.isPresent() && !targetStack.isOf(itemLock.get())) {
+		if (itemLock.isPresent() && !targetStack.is(itemLock.get())) {
 			return false;
 		}
 		
-		var canvasEnchantments = canvasStack.getOrDefault(SpectrumDataComponentTypes.CANVAS_ENCHANTMENTS, ItemEnchantmentsComponent.DEFAULT);
-		var targetEnchantments = EnchantmentHelper.getEnchantments(targetStack);
+		var canvasEnchantments = canvasStack.getOrDefault(SpectrumDataComponentTypes.CANVAS_ENCHANTMENTS, ItemEnchantments.EMPTY);
+		var targetEnchantments = EnchantmentHelper.getEnchantmentsForCrafting(targetStack);
 		if (canvasEnchantments.isEmpty() && targetEnchantments.isEmpty()) {
 			return false;
 		}
@@ -79,13 +75,13 @@ public class EnchantmentCanvasItem extends Item {
 			bindTo(canvasStack, targetStack);
 		}
 		canvasStack.set(SpectrumDataComponentTypes.CANVAS_ENCHANTMENTS, targetEnchantments);
-		EnchantmentHelper.set(targetStack, canvasEnchantments);
+		EnchantmentHelper.setEnchantments(targetStack, canvasEnchantments);
 		
 		if (drop && receiver != null) {
-			if (receiver instanceof PlayerEntity player) {
-				player.getInventory().offerOrDrop(canvasStack);
+			if (receiver instanceof Player player) {
+				player.getInventory().placeItemBackInInventory(canvasStack);
 			} else {
-				receiver.dropStack(canvasStack);
+				receiver.spawnAtLocation(canvasStack);
 			}
 		}
 		
@@ -93,29 +89,29 @@ public class EnchantmentCanvasItem extends Item {
 	}
 	
 	private void playExchangeSound(Entity entity) {
-		entity.playSound(SoundEvents.BLOCK_GRINDSTONE_USE, 0.8F, 0.8F + entity.getWorld().getRandom().nextFloat() * 0.4F);
+		entity.playSound(SoundEvents.GRINDSTONE_USE, 0.8F, 0.8F + entity.level().getRandom().nextFloat() * 0.4F);
 	}
 
 	@Override
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		Optional<Item> boundItem = getItemBoundTo(stack);
 		if (boundItem.isPresent()) {
-			tooltip.add(Text.translatable("item.spectrum.enchantment_canvas.tooltip.bound_to").append(boundItem.get().getName()));
+			tooltip.add(Component.translatable("item.spectrum.enchantment_canvas.tooltip.bound_to").append(boundItem.get().getDescription()));
 		} else {
-			tooltip.add(Text.translatable("item.spectrum.enchantment_canvas.tooltip.not_bound"));
-			tooltip.add(Text.translatable("item.spectrum.enchantment_canvas.tooltip.not_bound2"));
+			tooltip.add(Component.translatable("item.spectrum.enchantment_canvas.tooltip.not_bound"));
+			tooltip.add(Component.translatable("item.spectrum.enchantment_canvas.tooltip.not_bound2"));
 		}
 	}
 	
 	private static void bindTo(ItemStack enchantmentExchangerStack, ItemStack targetStack) {
-		enchantmentExchangerStack.set(SpectrumDataComponentTypes.BOUND_ITEM, Registries.ITEM.getId(targetStack.getItem()));
+		enchantmentExchangerStack.set(SpectrumDataComponentTypes.BOUND_ITEM, BuiltInRegistries.ITEM.getKey(targetStack.getItem()));
 	}
 	
 	private static Optional<Item> getItemBoundTo(ItemStack enchantmentExchangerStack) {
 		var boundId = enchantmentExchangerStack.get(SpectrumDataComponentTypes.BOUND_ITEM);
 		if (boundId == null)
 			return Optional.empty();
-		return Optional.of(Registries.ITEM.get(boundId));
+		return Optional.of(BuiltInRegistries.ITEM.get(boundId));
 	}
 	
 }

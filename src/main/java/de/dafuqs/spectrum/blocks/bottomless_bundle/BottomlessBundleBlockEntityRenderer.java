@@ -1,83 +1,84 @@
 package de.dafuqs.spectrum.blocks.bottomless_bundle;
 
+import com.mojang.blaze3d.vertex.*;
+import com.mojang.math.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.client.model.*;
-import net.minecraft.client.render.*;
-import net.minecraft.client.render.block.entity.*;
-import net.minecraft.client.util.*;
-import net.minecraft.client.util.math.*;
-import net.minecraft.screen.*;
-import net.minecraft.state.property.*;
-import net.minecraft.util.math.*;
+import net.minecraft.client.model.geom.*;
+import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.blockentity.*;
+import net.minecraft.client.resources.model.*;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 
 public class BottomlessBundleBlockEntityRenderer implements BlockEntityRenderer<BottomlessBundleBlockEntity> {
 	
-	private static final SpriteIdentifier SPRITE = new SpriteIdentifier(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("block/bottomless_bundle"));
+	private static final Material SPRITE = new Material(InventoryMenu.BLOCK_ATLAS, SpectrumCommon.locate("block/bottomless_bundle"));
 	private final ModelPart root, locked, unlocked;
 	
 	
-	public BottomlessBundleBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
-		root = getTexturedModelData().createModel();
+	public BottomlessBundleBlockEntityRenderer(BlockEntityRendererProvider.Context ctx) {
+		root = getTexturedModelData().bakeRoot();
 		this.locked = root.getChild("locked");
 		this.unlocked = root.getChild("unlocked");
 	}
 	
 	@Override
-	public void render(BottomlessBundleBlockEntity bundle, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
-		matrices.push();
+	public void render(BottomlessBundleBlockEntity bundle, float tickDelta, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay) {
+		matrices.pushPose();
 		
-		boolean bl = bundle.getWorld() != null;
-		BlockState blockState = bl ? bundle.getCachedState() : SpectrumBlocks.BOTTOMLESS_BUNDLE.getDefaultState();
+		boolean bl = bundle.getLevel() != null;
+		BlockState blockState = bl ? bundle.getBlockState() : SpectrumBlocks.BOTTOMLESS_BUNDLE.defaultBlockState();
 		var yaw = 22.5F;
-		yaw *= blockState.get(SkullBlock.ROTATION);
+		yaw *= blockState.getValue(SkullBlock.ROTATION);
 		matrices.translate(0.5D, 1.5D, 0.5D);
-		matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-yaw + 180));
-		matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(180));
+		matrices.mulPose(Axis.YP.rotationDegrees(-yaw + 180));
+		matrices.mulPose(Axis.XP.rotationDegrees(180));
 		
-		var vertices = SPRITE.getVertexConsumer(vertexConsumers, RenderLayer::getEntityCutout);
+		var vertices = SPRITE.buffer(vertexConsumers, RenderType::entityCutout);
 		root.render(matrices, vertices, light, overlay);
-		if (blockState.get(BottomlessBundleBlock.LOCKED)) {
+		if (blockState.getValue(BottomlessBundleBlock.LOCKED)) {
 			locked.render(matrices, vertices, light, overlay);
 		}
 		else {
 			unlocked.render(matrices, vertices, light, overlay);
 		}
 		
-		matrices.pop();
+		matrices.popPose();
 	}
 	
-	public static TexturedModelData getTexturedModelData() {
-		ModelData modelData = new ModelData();
-		ModelPartData modelPartData = modelData.getRoot();
-		ModelPartData main = modelPartData.addChild("main", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, 19.0F, 0.0F));
+	public static LayerDefinition getTexturedModelData() {
+		MeshDefinition modelData = new MeshDefinition();
+		PartDefinition modelPartData = modelData.getRoot();
+		PartDefinition main = modelPartData.addOrReplaceChild("main", CubeListBuilder.create(), PartPose.offset(0.0F, 19.0F, 0.0F));
 		
-		ModelPartData foot_r1 = main.addChild("foot_r1", ModelPartBuilder.create().uv(13, 13).cuboid(-3.5F, 0.0F, -3.5F, 7.0F, 5.0F, 7.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, 0.0F, 0.7854F, 0.0F));
+		PartDefinition foot_r1 = main.addOrReplaceChild("foot_r1", CubeListBuilder.create().texOffs(13, 13).addBox(-3.5F, 0.0F, -3.5F, 7.0F, 5.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.0F, 0.7854F, 0.0F));
 		
-		ModelPartData pyramid = main.addChild("pyramid", ModelPartBuilder.create(), ModelTransform.pivot(-5.0F, 0.0F, 5.0F));
+		PartDefinition pyramid = main.addOrReplaceChild("pyramid", CubeListBuilder.create(), PartPose.offset(-5.0F, 0.0F, 5.0F));
 		
-		ModelPartData side_r1 = pyramid.addChild("side_r1", ModelPartBuilder.create().uv(0, 0).cuboid(-0.4423F, -4.7187F, -4.716F, 0.0F, 10.0F, 10.0F, new Dilation(0.0F)), ModelTransform.of(7.1358F, -0.0429F, -2.8923F, 1.9221F, 0.6819F, 2.5046F));
+		PartDefinition side_r1 = pyramid.addOrReplaceChild("side_r1", CubeListBuilder.create().texOffs(0, 0).addBox(-0.4423F, -4.7187F, -4.716F, 0.0F, 10.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(7.1358F, -0.0429F, -2.8923F, 1.9221F, 0.6819F, 2.5046F));
 		
-		ModelPartData side_r2 = pyramid.addChild("side_r2", ModelPartBuilder.create().uv(0, 0).cuboid(-0.4423F, -4.7187F, -4.716F, 0.0F, 10.0F, 10.0F, new Dilation(0.0F)), ModelTransform.of(7.0828F, -0.0429F, -7.188F, 2.7873F, -0.674F, 2.5093F));
+		PartDefinition side_r2 = pyramid.addOrReplaceChild("side_r2", CubeListBuilder.create().texOffs(0, 0).addBox(-0.4423F, -4.7187F, -4.716F, 0.0F, 10.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(7.0828F, -0.0429F, -7.188F, 2.7873F, -0.674F, 2.5093F));
 		
-		ModelPartData side_r3 = pyramid.addChild("side_r3", ModelPartBuilder.create().uv(0, 0).cuboid(-0.4423F, -4.7187F, -4.716F, 0.0F, 10.0F, 10.0F, new Dilation(0.0F)), ModelTransform.of(2.9172F, -0.0429F, -2.812F, -0.3543F, 0.674F, 0.6323F));
+		PartDefinition side_r3 = pyramid.addOrReplaceChild("side_r3", CubeListBuilder.create().texOffs(0, 0).addBox(-0.4423F, -4.7187F, -4.716F, 0.0F, 10.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.9172F, -0.0429F, -2.812F, -0.3543F, 0.674F, 0.6323F));
 		
-		ModelPartData head = main.addChild("head", ModelPartBuilder.create().uv(0, 0).cuboid(-1.0F, -16.0F, 0.0F, 1.0F, 2.0F, 1.0F, new Dilation(0.0F)), ModelTransform.pivot(0.5F, 9.5F, -0.5F));
+		PartDefinition head = main.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -16.0F, 0.0F, 1.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(0.5F, 9.5F, -0.5F));
 		
-		ModelPartData knot_r1 = head.addChild("knot_r1", ModelPartBuilder.create().uv(9, 5).cuboid(-1.5F, -0.5F, -1.5F, 3.0F, 1.0F, 3.0F, new Dilation(0.0F)), ModelTransform.of(-0.5F, -15.0F, 0.5F, 0.0873F, 0.0F, -0.0873F));
+		PartDefinition knot_r1 = head.addOrReplaceChild("knot_r1", CubeListBuilder.create().texOffs(9, 5).addBox(-1.5F, -0.5F, -1.5F, 3.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.5F, -15.0F, 0.5F, 0.0873F, 0.0F, -0.0873F));
 		
-		ModelPartData cord_r1 = head.addChild("cord_r1", ModelPartBuilder.create().uv(0, 0).cuboid(-4.25F, 0.05F, -2.825F, 5.0F, 0.0F, 4.0F, new Dilation(0.0F)), ModelTransform.of(-2.0F, -14.5F, 0.25F, 0.6658F, -0.1245F, -0.8232F));
+		PartDefinition cord_r1 = head.addOrReplaceChild("cord_r1", CubeListBuilder.create().texOffs(0, 0).addBox(-4.25F, 0.05F, -2.825F, 5.0F, 0.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-2.0F, -14.5F, 0.25F, 0.6658F, -0.1245F, -0.8232F));
 		
-		ModelPartData top_r1 = head.addChild("top_r1", ModelPartBuilder.create().uv(0, 4).cuboid(-1.5F, 0.0F, -1.5F, 3.0F, 1.0F, 3.0F, new Dilation(0.0F)), ModelTransform.of(-0.75F, -16.5F, 0.25F, 0.2618F, 0.7854F, 0.0F));
+		PartDefinition top_r1 = head.addOrReplaceChild("top_r1", CubeListBuilder.create().texOffs(0, 4).addBox(-1.5F, 0.0F, -1.5F, 3.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.75F, -16.5F, 0.25F, 0.2618F, 0.7854F, 0.0F));
 		
-		ModelPartData locked = modelPartData.addChild("locked", ModelPartBuilder.create(), ModelTransform.pivot(-2.1358F, 18.9571F, -2.1077F));
+		PartDefinition locked = modelPartData.addOrReplaceChild("locked", CubeListBuilder.create(), PartPose.offset(-2.1358F, 18.9571F, -2.1077F));
 		
-		ModelPartData s_locked_r1 = locked.addChild("s_locked_r1", ModelPartBuilder.create().uv(0, 25).cuboid(-0.4423F, -4.7187F, -4.716F, 0.0F, 10.0F, 10.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, -1.2195F, -0.6819F, 0.637F));
+		PartDefinition s_locked_r1 = locked.addOrReplaceChild("s_locked_r1", CubeListBuilder.create().texOffs(0, 25).addBox(-0.4423F, -4.7187F, -4.716F, 0.0F, 10.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, -1.2195F, -0.6819F, 0.637F));
 		
-		ModelPartData unlocked = modelPartData.addChild("unlocked", ModelPartBuilder.create(), ModelTransform.pivot(-2.1358F, 18.9571F, -2.1077F));
+		PartDefinition unlocked = modelPartData.addOrReplaceChild("unlocked", CubeListBuilder.create(), PartPose.offset(-2.1358F, 18.9571F, -2.1077F));
 		
-		ModelPartData s_unlocked_r1 = unlocked.addChild("s_unlocked_r1", ModelPartBuilder.create().uv(0, 15).cuboid(-0.4423F, -4.7187F, -4.716F, 0.0F, 10.0F, 10.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, -1.2195F, -0.6819F, 0.637F));
-		return TexturedModelData.of(modelData, 64, 64);
+		PartDefinition s_unlocked_r1 = unlocked.addOrReplaceChild("s_unlocked_r1", CubeListBuilder.create().texOffs(0, 15).addBox(-0.4423F, -4.7187F, -4.716F, 0.0F, 10.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, -1.2195F, -0.6819F, 0.637F));
+		return LayerDefinition.create(modelData, 64, 64);
 	}
 }

@@ -7,14 +7,13 @@ import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
-import net.minecraft.component.type.*;
-import net.minecraft.enchantment.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.fluid.*;
-import net.minecraft.item.*;
-import net.minecraft.world.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.material.*;
 
 import java.util.*;
 
@@ -26,7 +25,7 @@ public class TravelersBackpackCompat extends SpectrumIntegrationPacks.ModIntegra
 			super(id, fluid, 81000);
 		}
 		
-		public boolean canExecuteEffect(FluidVariantWrapper stack, World world, Entity entity) {
+		public boolean canExecuteEffect(FluidVariantWrapper stack, Level world, Entity entity) {
 			return stack.getAmount() >= this.amountRequired;
 		}
 		
@@ -34,42 +33,42 @@ public class TravelersBackpackCompat extends SpectrumIntegrationPacks.ModIntegra
 	
 	@Override
 	public void register() {
-		EffectFluidRegistry.registerFluidEffect(new SpectrumEffectFluid("spectrum:goo", SpectrumFluids.GOO.getStill()) {
+		EffectFluidRegistry.registerFluidEffect(new SpectrumEffectFluid("spectrum:goo", SpectrumFluids.GOO.getSource()) {
 			@Override
-			public void affectDrinker(FluidVariantWrapper fluidVariantWrapper, World world, Entity entity) {
+			public void affectDrinker(FluidVariantWrapper fluidVariantWrapper, Level world, Entity entity) {
 				if (entity instanceof LivingEntity livingEntity) {
-					livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200));
-					livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 400, 2));
-					livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 600, 3));
+					livingEntity.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 200));
+					livingEntity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 400, 2));
+					livingEntity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 600, 3));
 				}
 			}
 			
 		});
 		
-		EffectFluidRegistry.registerFluidEffect(new SpectrumEffectFluid("spectrum:liquid_crystal", SpectrumFluids.LIQUID_CRYSTAL.getStill()) {
+		EffectFluidRegistry.registerFluidEffect(new SpectrumEffectFluid("spectrum:liquid_crystal", SpectrumFluids.LIQUID_CRYSTAL.getSource()) {
 			@Override
-			public void affectDrinker(FluidVariantWrapper fluidStack, World world, Entity entity) {
-				if (entity instanceof PlayerEntity player) {
-					player.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 400, 1));
+			public void affectDrinker(FluidVariantWrapper fluidStack, Level world, Entity entity) {
+				if (entity instanceof Player player) {
+					player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 400, 1));
 				}
 			}
 		});
 		
-		EffectFluidRegistry.registerFluidEffect(new SpectrumEffectFluid("spectrum:midnight_solution", SpectrumFluids.MIDNIGHT_SOLUTION.getStill()) {
+		EffectFluidRegistry.registerFluidEffect(new SpectrumEffectFluid("spectrum:midnight_solution", SpectrumFluids.MIDNIGHT_SOLUTION.getSource()) {
 			@Override
-			public void affectDrinker(FluidVariantWrapper fluidStack, World world, Entity entity) {
-				if (entity instanceof PlayerEntity player) {
-					player.addExperience(-20);
+			public void affectDrinker(FluidVariantWrapper fluidStack, Level world, Entity entity) {
+				if (entity instanceof Player player) {
+					player.giveExperiencePoints(-20);
 					
 					// disenchant random enchanted item
 					List<ItemStack> equipment = new ArrayList<>();
-					player.getEquippedItems().forEach(equipment::add);
+					player.getAllSlots().forEach(equipment::add);
 					Collections.shuffle(equipment);
 					
 					for (ItemStack equip : equipment) {
-						ItemEnchantmentsComponent enchants = EnchantmentHelper.getEnchantments(equip);
+						ItemEnchantments enchants = EnchantmentHelper.getEnchantmentsForCrafting(equip);
 						if (!enchants.isEmpty()) {
-							var enchantments = enchants.getEnchantments();
+							var enchantments = enchants.keySet();
 							var enchantment = enchantments.stream().toList().get(new Random().nextInt(enchantments.size()));
 							SpectrumEnchantmentHelper.removeEnchantments(equip, enchantment);
 						}
@@ -78,12 +77,12 @@ public class TravelersBackpackCompat extends SpectrumIntegrationPacks.ModIntegra
 			}
 		});
 		
-		EffectFluidRegistry.registerFluidEffect(new SpectrumEffectFluid("spectrum:dragonrot", SpectrumFluids.DRAGONROT.getStill()) {
+		EffectFluidRegistry.registerFluidEffect(new SpectrumEffectFluid("spectrum:dragonrot", SpectrumFluids.DRAGONROT.getSource()) {
 			@Override
-			public void affectDrinker(FluidVariantWrapper fluidStack, World world, Entity entity) {
+			public void affectDrinker(FluidVariantWrapper fluidStack, Level world, Entity entity) {
 				if (entity instanceof LivingEntity livingEntity) {
-					livingEntity.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.LIFE_DRAIN, 600, 3));
-					livingEntity.damage(SpectrumDamageTypes.dragonrot(world), 1000); // 💀
+					livingEntity.addEffect(new MobEffectInstance(SpectrumStatusEffects.LIFE_DRAIN, 600, 3));
+					livingEntity.hurt(SpectrumDamageTypes.dragonrot(world), 1000); // 💀
 				}
 			}
 		});

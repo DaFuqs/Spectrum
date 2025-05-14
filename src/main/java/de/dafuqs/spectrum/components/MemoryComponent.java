@@ -18,11 +18,11 @@ public record MemoryComponent(int ticksToManifest, boolean spawnAsAdult, boolean
 			Codec.BOOL.optionalFieldOf("unrecognizable", false).forGetter(MemoryComponent::unrecognizable)
 	).apply(i, MemoryComponent::new));
 	
-	public static final PacketCodec<ByteBuf, MemoryComponent> PACKET_CODEC = PacketCodec.tuple(
-			PacketCodecs.VAR_INT, MemoryComponent::ticksToManifest,
-			PacketCodecs.BOOL, MemoryComponent::spawnAsAdult,
-			PacketCodecs.BOOL, MemoryComponent::brokenPromise,
-			PacketCodecs.BOOL, MemoryComponent::unrecognizable,
+	public static final StreamCodec<ByteBuf, MemoryComponent> PACKET_CODEC = StreamCodec.composite(
+			ByteBufCodecs.VAR_INT, MemoryComponent::ticksToManifest,
+			ByteBufCodecs.BOOL, MemoryComponent::spawnAsAdult,
+			ByteBufCodecs.BOOL, MemoryComponent::brokenPromise,
+			ByteBufCodecs.BOOL, MemoryComponent::unrecognizable,
 			MemoryComponent::new
 	);
 	

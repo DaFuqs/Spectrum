@@ -1,40 +1,41 @@
 package de.dafuqs.spectrum.blocks.weathering;
 
-import com.mojang.serialization.MapCodec;
-import net.minecraft.block.*;
-import net.minecraft.server.world.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
+import com.mojang.serialization.*;
+import net.minecraft.core.*;
+import net.minecraft.server.level.*;
+import net.minecraft.util.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 
 public class WeatheringSlabBlock extends SlabBlock implements Weathering {
 	
 	private final Weathering.WeatheringLevel weatheringLevel;
 	
-	public WeatheringSlabBlock(Weathering.WeatheringLevel weatheringLevel, AbstractBlock.Settings settings) {
+	public WeatheringSlabBlock(Weathering.WeatheringLevel weatheringLevel, BlockBehaviour.Properties settings) {
 		super(settings);
 		this.weatheringLevel = weatheringLevel;
 	}
 
 	@Override
-	public MapCodec<? extends WeatheringSlabBlock> getCodec() {
+	public MapCodec<? extends WeatheringSlabBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}
 	
 	@Override
-	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		if (shouldTryWeather(world, pos)) {
-			this.tickDegradation(state, world, pos, random);
+			this.changeOverTime(state, world, pos, random);
 		}
 	}
 	
 	@Override
-	public boolean hasRandomTicks(BlockState state) {
+	public boolean isRandomlyTicking(BlockState state) {
 		return Weathering.getIncreasedWeatheredBlock(state.getBlock()).isPresent();
 	}
 	
 	@Override
-	public Weathering.WeatheringLevel getDegradationLevel() {
+	public Weathering.WeatheringLevel getAge() {
 		return this.weatheringLevel;
 	}
 	

@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.compat.vanityslots;
 
 import gay.nyako.vanityslots.*;
 import net.fabricmc.loader.api.*;
-import net.minecraft.entity.*;
-import net.minecraft.item.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.item.*;
 
 public class VanitySlotsCompat {
 	public static final boolean IS_VANITY_SLOTS_PRESENT = FabricLoader.getInstance().isModLoaded("vanityslots");
@@ -12,7 +12,7 @@ public class VanitySlotsCompat {
 		if (VanitySlotsCompat.IS_VANITY_SLOTS_PRESENT) {
 			return CommonClass.getEquippedStack(entity, slot);
 		} else {
-			return entity.getEquippedStack(slot);
+			return entity.getItemBySlot(slot);
 		}
 	}
 }

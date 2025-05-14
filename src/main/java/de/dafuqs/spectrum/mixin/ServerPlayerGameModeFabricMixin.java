@@ -1,24 +1,24 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.api.item.*;
-import net.minecraft.item.*;
-import net.minecraft.server.network.*;
-import net.minecraft.util.math.*;
+import net.minecraft.core.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.item.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
-@Mixin(ServerPlayerInteractionManager.class)
+@Mixin(ServerPlayerGameMode.class)
 public class ServerPlayerGameModeFabricMixin {
 	
 	@Shadow
 	@Final
-	protected ServerPlayerEntity player;
+	protected ServerPlayer player;
 	
-	@Inject(method = "tryBreakBlock", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/Block;onBreak(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Lnet/minecraft/entity/player/PlayerEntity;)Lnet/minecraft/block/BlockState;"))
+	@Inject(method = "destroyBlock", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/Block;playerDestroy(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/world/item/ItemStack;)V"))
 	private void spectrum$tryBreakBlock(BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
-		ServerPlayerEntity player = this.player;
-		ItemStack stack = player.getMainHandStack();
+		ServerPlayer player = this.player;
+		ItemStack stack = player.getMainHandItem();
 		if(stack.getItem() instanceof AoEBreakingTool tool) {
 			tool.onTryBreakBlock(stack, pos, player);
 		}

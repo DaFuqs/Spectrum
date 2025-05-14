@@ -1,92 +1,93 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
-import com.mojang.serialization.MapCodec;
-import net.minecraft.block.*;
-import net.minecraft.server.world.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
-import net.minecraft.world.*;
+import com.mojang.serialization.*;
+import net.minecraft.core.*;
+import net.minecraft.server.level.*;
+import net.minecraft.util.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 
 public class BlockDetectorBlock extends RedstoneInteractionBlock {
-
-	public static final MapCodec<BlockDetectorBlock> CODEC = createCodec(BlockDetectorBlock::new);
-
-	public BlockDetectorBlock(AbstractBlock.Settings settings) {
+	
+	public static final MapCodec<BlockDetectorBlock> CODEC = simpleCodec(BlockDetectorBlock::new);
+	
+	public BlockDetectorBlock(BlockBehaviour.Properties settings) {
 		super(settings);
 	}
 
 	@Override
-	public MapCodec<? extends BlockDetectorBlock> getCodec() {
+	public MapCodec<? extends BlockDetectorBlock> codec() {
 		return CODEC;
 	}
 	
 	@Override
-	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+	public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
 		if (direction != Direction.DOWN
-				&& state.get(ORIENTATION).getFacing() == direction
-				&& !state.get(TRIGGERED)
+				&& state.getValue(ORIENTATION).front() == direction
+				&& !state.getValue(TRIGGERED)
 				&& neighborState.equals(getTargetBlockState(world, state, pos))) {
 
 			this.scheduleTick(world, pos);
 		}
-
-		return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+		
+		return super.updateShape(state, direction, neighborState, world, pos, neighborPos);
 	}
 	
-	protected BlockState getTargetBlockState(WorldAccess world, BlockState state, BlockPos pos) {
-		if (state.get(ORIENTATION).getFacing() == Direction.DOWN) {
-			return world.getBlockState(pos.offset(Direction.UP));
+	protected BlockState getTargetBlockState(LevelAccessor world, BlockState state, BlockPos pos) {
+		if (state.getValue(ORIENTATION).front() == Direction.DOWN) {
+			return world.getBlockState(pos.relative(Direction.UP));
 		} else {
-			return world.getBlockState(pos.offset(Direction.DOWN));
+			return world.getBlockState(pos.relative(Direction.DOWN));
 		}
 	}
 	
-	private void scheduleTick(WorldAccess world, BlockPos pos) {
-		if (!world.isClient() && !world.getBlockTickScheduler().isQueued(pos, this)) {
-			world.scheduleBlockTick(pos, this, 2);
+	private void scheduleTick(LevelAccessor world, BlockPos pos) {
+		if (!world.isClientSide() && !world.getBlockTicks().hasScheduledTick(pos, this)) {
+			world.scheduleTick(pos, this, 2);
 		}
 	}
 
 	@Override
-	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		if (state.get(TRIGGERED)) {
-			world.setBlockState(pos, state.with(TRIGGERED, false), Block.NOTIFY_LISTENERS);
+	public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+		if (state.getValue(TRIGGERED)) {
+			world.setBlock(pos, state.setValue(TRIGGERED, false), Block.UPDATE_CLIENTS);
 		} else {
-			world.setBlockState(pos, state.with(TRIGGERED, true), Block.NOTIFY_LISTENERS);
-			world.scheduleBlockTick(pos, this, 2);
+			world.setBlock(pos, state.setValue(TRIGGERED, true), Block.UPDATE_CLIENTS);
+			world.scheduleTick(pos, this, 2);
 		}
 
 		this.updateNeighbors(world, pos, state);
 	}
-
-	protected void updateNeighbors(World world, BlockPos pos, BlockState state) {
-		Direction direction = state.get(ORIENTATION).getFacing();
-		BlockPos blockPos = pos.offset(direction.getOpposite());
-		world.updateNeighbor(blockPos, this, pos);
-		world.updateNeighborsExcept(blockPos, this, direction);
+	
+	protected void updateNeighbors(Level world, BlockPos pos, BlockState state) {
+		Direction direction = state.getValue(ORIENTATION).front();
+		BlockPos blockPos = pos.relative(direction.getOpposite());
+		world.neighborChanged(blockPos, this, pos);
+		world.updateNeighborsAtExceptFromFacing(blockPos, this, direction);
 	}
 	
 	@Override
-	public boolean emitsRedstonePower(BlockState state) {
+	public boolean isSignalSource(BlockState state) {
 		return true;
 	}
 	
 	@Override
-	public int getStrongRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
-		return state.getWeakRedstonePower(world, pos, direction);
+	public int getDirectSignal(BlockState state, BlockGetter world, BlockPos pos, Direction direction) {
+		return state.getSignal(world, pos, direction);
 	}
 	
 	@Override
-	public int getWeakRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
-		return state.get(TRIGGERED) && state.get(ORIENTATION).getFacing() == direction ? 15 : 0;
+	public int getSignal(BlockState state, BlockGetter world, BlockPos pos, Direction direction) {
+		return state.getValue(TRIGGERED) && state.getValue(ORIENTATION).front() == direction ? 15 : 0;
 	}
 	
 	@Override
-	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-		if (!state.isOf(oldState.getBlock())) {
-			if (!world.isClient() && state.get(TRIGGERED) && !world.getBlockTickScheduler().isQueued(pos, this)) {
-				BlockState blockState = state.with(TRIGGERED, false);
-				world.setBlockState(pos, blockState, Block.NOTIFY_LISTENERS | Block.FORCE_STATE);
+	public void onPlace(BlockState state, Level world, BlockPos pos, BlockState oldState, boolean notify) {
+		if (!state.is(oldState.getBlock())) {
+			if (!world.isClientSide() && state.getValue(TRIGGERED) && !world.getBlockTicks().hasScheduledTick(pos, this)) {
+				BlockState blockState = state.setValue(TRIGGERED, false);
+				world.setBlock(pos, blockState, Block.UPDATE_CLIENTS | Block.UPDATE_KNOWN_SHAPE);
 				this.updateNeighbors(world, pos, blockState);
 			}
 			
@@ -94,10 +95,10 @@ public class BlockDetectorBlock extends RedstoneInteractionBlock {
 	}
 	
 	@Override
-	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-		if (!state.isOf(newState.getBlock())) {
-			if (!world.isClient && state.get(TRIGGERED) && world.getBlockTickScheduler().isQueued(pos, this)) {
-				this.updateNeighbors(world, pos, state.with(TRIGGERED, false));
+	public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean moved) {
+		if (!state.is(newState.getBlock())) {
+			if (!world.isClientSide && state.getValue(TRIGGERED) && world.getBlockTicks().hasScheduledTick(pos, this)) {
+				this.updateNeighbors(world, pos, state.setValue(TRIGGERED, false));
 			}
 		}
 	}

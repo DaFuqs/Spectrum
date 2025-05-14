@@ -2,13 +2,14 @@ package de.dafuqs.spectrum.sound;
 
 import de.dafuqs.spectrum.*;
 import net.fabricmc.api.*;
-import net.minecraft.block.*;
 import net.minecraft.client.*;
-import net.minecraft.client.sound.*;
-import net.minecraft.registry.*;
-import net.minecraft.sound.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.client.resources.sounds.*;
+import net.minecraft.core.*;
+import net.minecraft.resources.*;
+import net.minecraft.sounds.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 
 import java.util.*;
 
@@ -17,7 +18,7 @@ public class CraftingBlockSoundInstance extends AbstractSoundInstance implements
 	
 	private static List<CraftingBlockSoundInstance> playingSoundInstances = new ArrayList<>();
 	
-	final RegistryKey<World> worldKey;
+	final ResourceKey<Level> worldKey;
 	final BlockPos sourceBlockPos;
 	final Block sourceBlock;
 	final int maxDurationTicks;
@@ -25,16 +26,16 @@ public class CraftingBlockSoundInstance extends AbstractSoundInstance implements
 	private int ticksPlayed = 0;
 	private boolean done;
 	
-	protected CraftingBlockSoundInstance(SoundEvent soundEvent, RegistryKey<World> worldKey, BlockPos sourceBlockPos, Block sourceBlock, int maxDurationTicks) {
-		super(soundEvent, SoundCategory.BLOCKS, SoundInstance.createRandom());
+	protected CraftingBlockSoundInstance(SoundEvent soundEvent, ResourceKey<Level> worldKey, BlockPos sourceBlockPos, Block sourceBlock, int maxDurationTicks) {
+		super(soundEvent, SoundSource.BLOCKS, SoundInstance.createUnseededRandom());
 		
 		this.worldKey = worldKey;
 		this.sourceBlockPos = sourceBlockPos;
 		this.sourceBlock = sourceBlock;
 		this.maxDurationTicks = maxDurationTicks;
 		
-		this.repeat = true;
-		this.repeatDelay = 0;
+		this.looping = true;
+		this.delay = 0;
 		
 		this.x = sourceBlockPos.getX() + 0.5;
 		this.y = sourceBlockPos.getY() + 0.5;
@@ -45,12 +46,12 @@ public class CraftingBlockSoundInstance extends AbstractSoundInstance implements
 	
 	@Environment(EnvType.CLIENT)
     public static void startSoundInstance(SoundEvent soundEvent, BlockPos sourceBlockPos, Block sourceBlock, int maxDurationTicks) {
-		MinecraftClient client = MinecraftClient.getInstance();
+		Minecraft client = Minecraft.getInstance();
 		stopPlayingOnPos(sourceBlockPos);
 		
-		CraftingBlockSoundInstance newInstance = new CraftingBlockSoundInstance(soundEvent, client.world.getRegistryKey(), sourceBlockPos, sourceBlock, maxDurationTicks);
+		CraftingBlockSoundInstance newInstance = new CraftingBlockSoundInstance(soundEvent, client.level.dimension(), sourceBlockPos, sourceBlock, maxDurationTicks);
 		playingSoundInstances.add(newInstance);
-		MinecraftClient.getInstance().getSoundManager().play(newInstance);
+		Minecraft.getInstance().getSoundManager().play(newInstance);
 	}
 	
 	// if there is already a sound instance playing at given pos: cancel it
@@ -67,18 +68,18 @@ public class CraftingBlockSoundInstance extends AbstractSoundInstance implements
 	}
 	
 	@Override
-	public boolean isDone() {
+	public boolean isStopped() {
 		return this.done;
 	}
 	
 	@Override
-	public boolean shouldAlwaysPlay() {
+	public boolean canStartSilent() {
 		return true;
 	}
 	
 	private void updateVolume() {
-		MinecraftClient client = MinecraftClient.getInstance();
-		this.volume = Math.max(0, 0.75F * (SpectrumCommon.CONFIG.BlockSoundVolume - sourceBlockPos.getManhattanDistance(client.player.getBlockPos()) / 64F));
+		Minecraft client = Minecraft.getInstance();
+		this.volume = Math.max(0, 0.75F * (SpectrumCommon.CONFIG.BlockSoundVolume - sourceBlockPos.distManhattan(client.player.blockPosition()) / 64F));
 	}
 	
 	@Override
@@ -90,7 +91,7 @@ public class CraftingBlockSoundInstance extends AbstractSoundInstance implements
 		}
 		
 		if (ticksPlayed > maxDurationTicks
-				|| !Objects.equals(this.worldKey, MinecraftClient.getInstance().world.getRegistryKey())
+				|| !Objects.equals(this.worldKey, Minecraft.getInstance().level.dimension())
 				|| shouldStopPlaying()) {
 			
 			playingSoundInstances.remove(this);
@@ -99,15 +100,15 @@ public class CraftingBlockSoundInstance extends AbstractSoundInstance implements
 	}
 	
 	private boolean shouldStopPlaying() {
-		MinecraftClient client = MinecraftClient.getInstance();
-		BlockState blockState = client.world.getBlockState(sourceBlockPos);
+		Minecraft client = Minecraft.getInstance();
+		BlockState blockState = client.level.getBlockState(sourceBlockPos);
 		return !blockState.getBlock().equals(sourceBlock);
 	}
 	
 	protected final void setDone() {
 		this.ticksPlayed = this.maxDurationTicks;
 		this.done = true;
-		this.repeat = false;
+		this.looping = false;
 	}
 	
 }

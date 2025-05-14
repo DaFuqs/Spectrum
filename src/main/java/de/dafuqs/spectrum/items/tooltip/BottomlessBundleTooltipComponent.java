@@ -2,10 +2,9 @@ package de.dafuqs.spectrum.items.tooltip;
 
 import de.dafuqs.spectrum.api.gui.*;
 import net.fabricmc.api.*;
-import net.minecraft.client.font.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.item.*;
-import net.minecraft.util.collection.*;
+import net.minecraft.core.*;
+import net.minecraft.world.item.*;
 
 import java.util.*;
 
@@ -21,11 +20,11 @@ public class BottomlessBundleTooltipComponent implements SpectrumTooltipComponen
 	public BottomlessBundleTooltipComponent(BottomlessBundleTooltipData data) {
 		long amount = data.amount();
 		
-		long maxCount = data.variant().getItem().getMaxCount();
+		long maxCount = data.variant().getItem().getDefaultMaxStackSize();
 		double totalStacks = (float) amount / (float) maxCount;
 		this.displayedSlotCount = Math.max(2, Math.min(MAX_DISPLAYED_SLOTS + 1, (int) Math.ceil(totalStacks) + 1));
 		
-		this.itemStacks = DefaultedList.ofSize(5, ItemStack.EMPTY);
+		this.itemStacks = NonNullList.withSize(5, ItemStack.EMPTY);
 		for (int i = 0; i < Math.min(5, displayedSlotCount + 1); i++) {
 			ItemStack slotStack = data.variant().toStack();
 			var stackAmount = Math.min(Math.min(maxCount, amount - i * maxCount), Integer.MAX_VALUE);
@@ -41,12 +40,12 @@ public class BottomlessBundleTooltipComponent implements SpectrumTooltipComponen
 	}
 	
 	@Override
-	public int getWidth(TextRenderer textRenderer) {
+	public int getWidth(Font textRenderer) {
 		return displayedSlotCount * 20 + 2 + 4;
 	}
 	
 	@Override
-	public void drawItems(TextRenderer textRenderer, int x, int y, DrawContext context) {
+	public void renderImage(Font textRenderer, int x, int y, GuiGraphics context) {
 		int n = x + 1;
 		int o = y + 1;
 		

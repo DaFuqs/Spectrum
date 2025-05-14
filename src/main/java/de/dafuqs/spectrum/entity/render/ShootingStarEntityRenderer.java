@@ -1,51 +1,53 @@
 package de.dafuqs.spectrum.entity.render;
 
+import com.mojang.blaze3d.vertex.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import net.fabricmc.api.*;
-import net.minecraft.block.*;
 import net.minecraft.client.*;
-import net.minecraft.client.render.*;
-import net.minecraft.client.render.block.*;
-import net.minecraft.client.render.entity.*;
-import net.minecraft.client.util.math.*;
-import net.minecraft.screen.*;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.block.*;
+import net.minecraft.client.renderer.entity.*;
+import net.minecraft.client.renderer.texture.*;
+import net.minecraft.core.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 
 @Environment(EnvType.CLIENT)
 public class ShootingStarEntityRenderer extends EntityRenderer<ShootingStarEntity> {
 	
-	public ShootingStarEntityRenderer(EntityRendererFactory.Context context) {
+	public ShootingStarEntityRenderer(EntityRendererProvider.Context context) {
 		super(context);
 		this.shadowRadius = 0.15F;
-		this.shadowOpacity = 0.75F;
+		this.shadowStrength = 0.75F;
 	}
 	
 	@Override
-	public void render(ShootingStarEntity shootingStarEntity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
-		BlockState blockState = shootingStarEntity.getShootingStarType().getBlock().getDefaultState();
+	public void render(ShootingStarEntity shootingStarEntity, float yaw, float tickDelta, PoseStack poseStack, MultiBufferSource vertexConsumerProvider, int light) {
+		BlockState blockState = shootingStarEntity.getShootingStarType().getBlock().defaultBlockState();
 		
-		if (blockState.getRenderType() == BlockRenderType.MODEL) {
-			World world = shootingStarEntity.getWorld();
+		if (blockState.getRenderShape() == RenderShape.MODEL) {
+			Level world = shootingStarEntity.level();
 			
-			if (blockState != world.getBlockState(BlockPos.ofFloored(shootingStarEntity.getPos())) && blockState.getRenderType() != BlockRenderType.INVISIBLE) {
-				matrixStack.push();
+			if (blockState != world.getBlockState(BlockPos.containing(shootingStarEntity.position())) && blockState.getRenderShape() != RenderShape.INVISIBLE) {
+				poseStack.pushPose();
 				
-				BlockPos blockpos = BlockPos.ofFloored(shootingStarEntity.getX(), shootingStarEntity.getBoundingBox().maxY, shootingStarEntity.getZ());
-				matrixStack.translate(-0.5, 0.0, -0.5);
-				BlockRenderManager blockRenderManager = MinecraftClient.getInstance().getBlockRenderManager();
-				blockRenderManager.getModelRenderer().render(world, blockRenderManager.getModel(blockState), blockState, blockpos, matrixStack, vertexConsumerProvider.getBuffer(RenderLayers.getMovingBlockLayer(blockState)), false, world.random, blockState.getRenderingSeed(shootingStarEntity.getBlockPos()), OverlayTexture.DEFAULT_UV);
-				matrixStack.pop();
-				super.render(shootingStarEntity, yaw, tickDelta, matrixStack, vertexConsumerProvider, light);
+				BlockPos blockpos = BlockPos.containing(shootingStarEntity.getX(), shootingStarEntity.getBoundingBox().maxY, shootingStarEntity.getZ());
+				poseStack.translate(-0.5, 0.0, -0.5);
+				BlockRenderDispatcher blockRenderManager = Minecraft.getInstance().getBlockRenderer();
+				blockRenderManager.getModelRenderer().tesselateBlock(world, blockRenderManager.getBlockModel(blockState), blockState, blockpos, poseStack, vertexConsumerProvider.getBuffer(ItemBlockRenderTypes.getMovingBlockRenderType(blockState)), false, world.random, blockState.getSeed(shootingStarEntity.blockPosition()), OverlayTexture.NO_OVERLAY);
+				poseStack.popPose();
+				super.render(shootingStarEntity, yaw, tickDelta, poseStack, vertexConsumerProvider, light);
 			}
 		}
 		
-		super.render(shootingStarEntity, yaw, tickDelta, matrixStack, vertexConsumerProvider, light);
+		super.render(shootingStarEntity, yaw, tickDelta, poseStack, vertexConsumerProvider, light);
 	}
 	
 	@Override
-	public Identifier getTexture(ShootingStarEntity entityIn) {
-		return PlayerScreenHandler.BLOCK_ATLAS_TEXTURE;
+	public ResourceLocation getTextureLocation(ShootingStarEntity entityIn) {
+		return InventoryMenu.BLOCK_ATLAS;
 	}
 }

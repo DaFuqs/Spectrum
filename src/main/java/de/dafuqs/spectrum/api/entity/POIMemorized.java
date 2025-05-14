@@ -1,12 +1,11 @@
 package de.dafuqs.spectrum.api.entity;
 
 import de.dafuqs.spectrum.registries.*;
+import net.minecraft.core.*;
 import net.minecraft.nbt.*;
-import net.minecraft.registry.entry.*;
-import net.minecraft.registry.tag.*;
-import net.minecraft.server.world.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.poi.*;
+import net.minecraft.server.level.*;
+import net.minecraft.tags.*;
+import net.minecraft.world.entity.ai.village.poi.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -15,40 +14,40 @@ public interface POIMemorized {
 	
 	String POI_POS_KEY = "POIPos";
 	
-	TagKey<PointOfInterestType> getPOITag();
+	TagKey<PoiType> getPOITag();
 	
 	@Nullable BlockPos getPOIPos();
 	
 	void setPOIPos(@Nullable BlockPos blockPos);
 	
-	default void writePOIPosToNbt(NbtCompound nbt) {
+	default void writePOIPosToNbt(CompoundTag nbt) {
 		@Nullable BlockPos poiPos = getPOIPos();
 		if (poiPos != null) {
-			nbt.put(POI_POS_KEY, NbtHelper.fromBlockPos(poiPos));
+			nbt.put(POI_POS_KEY, NbtUtils.writeBlockPos(poiPos));
 		}
 	}
 	
-	default void readPOIPosFromNbt(NbtCompound nbt) {
+	default void readPOIPosFromNbt(CompoundTag nbt) {
 		if (nbt.contains(POI_POS_KEY)) {
-			setPOIPos(NbtHelper.toBlockPos(nbt, POI_POS_KEY).orElse(null));
+			setPOIPos(NbtUtils.readBlockPos(nbt, POI_POS_KEY).orElse(null));
 		}
 	}
 	
-	default boolean isPOIValid(ServerWorld world) {
+	default boolean isPOIValid(ServerLevel world) {
 		@Nullable BlockPos poiPos = getPOIPos();
 		if (poiPos == null) {
 			return false;
 		}
-		Optional<RegistryEntry<PointOfInterestType>> type = world.getPointOfInterestStorage().getType(poiPos);
-		return type.map(pointOfInterestTypeRegistryEntry -> pointOfInterestTypeRegistryEntry.isIn(SpectrumPointOfInterestTypeTags.LIZARD_DENS)).orElse(false);
+		Optional<Holder<PoiType>> type = world.getPoiManager().getType(poiPos);
+		return type.map(pointOfInterestTypeRegistryEntry -> pointOfInterestTypeRegistryEntry.is(SpectrumPointOfInterestTypeTags.LIZARD_DENS)).orElse(false);
 	}
 	
-	default @Nullable BlockPos findNearestPOI(ServerWorld world, BlockPos pos, int maxDistance) {
-		PointOfInterestStorage pointOfInterestStorage = world.getPointOfInterestStorage();
+	default @Nullable BlockPos findNearestPOI(ServerLevel world, BlockPos pos, int maxDistance) {
+		PoiManager pointOfInterestStorage = world.getPoiManager();
 		
-		return pointOfInterestStorage.getNearestPosition(
-				(poiType) -> poiType.isIn(getPOITag()),
-				pos, maxDistance, PointOfInterestStorage.OccupationStatus.ANY).orElse(null);
+		return pointOfInterestStorage.findClosest(
+				(poiType) -> poiType.is(getPOITag()),
+				pos, maxDistance, PoiManager.Occupancy.ANY).orElse(null);
 	}
 	
 }

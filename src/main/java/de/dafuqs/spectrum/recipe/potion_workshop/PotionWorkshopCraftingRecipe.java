@@ -7,15 +7,13 @@ import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.potion_workshop.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.item.*;
+import net.minecraft.core.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.recipe.*;
-import net.minecraft.recipe.input.*;
-import net.minecraft.registry.*;
-import net.minecraft.util.*;
-import net.minecraft.util.collection.*;
-import net.minecraft.world.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -28,7 +26,7 @@ public class PotionWorkshopCraftingRecipe extends PotionWorkshopRecipe {
 	protected final ItemStack output;
 	
 	public PotionWorkshopCraftingRecipe(
-			String group, boolean secret, Optional<Identifier> requiredAdvancementIdentifier, int craftingTime, int color,
+			String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier, int craftingTime, int color,
 			IngredientStack ingredient1, IngredientStack ingredient2, IngredientStack ingredient3,
 			IngredientStack baseIngredient, boolean consumeBaseIngredient, int requiredExperience, ItemStack output
 	) {
@@ -70,7 +68,7 @@ public class PotionWorkshopCraftingRecipe extends PotionWorkshopRecipe {
 	}
 	
 	@Override
-	public ItemStack craft(RecipeInput inventory, RegistryWrapper.WrapperLookup drm) {
+	public ItemStack assemble(RecipeInput inventory, HolderLookup.Provider drm) {
 		return output.copy();
 	}
 	
@@ -81,7 +79,7 @@ public class PotionWorkshopCraftingRecipe extends PotionWorkshopRecipe {
 	
 	@Override
 	public List<IngredientStack> getIngredientStacks() {
-		DefaultedList<IngredientStack> defaultedList = DefaultedList.of();
+		NonNullList<IngredientStack> defaultedList = NonNullList.create();
 		defaultedList.add(IngredientStack.ofItems(SpectrumItems.MERMAIDS_GEM));
 		defaultedList.add(this.baseIngredient);
 		addIngredientStacks(defaultedList);
@@ -89,7 +87,7 @@ public class PotionWorkshopCraftingRecipe extends PotionWorkshopRecipe {
 	}
 	
 	@Override
-	public boolean matches(@NotNull RecipeInput inv, World world) {
+	public boolean matches(@NotNull RecipeInput inv, Level world) {
 		if (enoughExperienceSupplied(inv)) {
 			return super.matches(inv, world);
 		}
@@ -105,8 +103,8 @@ public class PotionWorkshopCraftingRecipe extends PotionWorkshopRecipe {
 			for (int i : new int[]{PotionWorkshopBlockEntity.BASE_INPUT_SLOT_ID, PotionWorkshopBlockEntity.FIRST_INGREDIENT_SLOT,
 					PotionWorkshopBlockEntity.FIRST_INGREDIENT_SLOT + 1, PotionWorkshopBlockEntity.FIRST_INGREDIENT_SLOT + 2}) {
 				
-				if ((inv.getStackInSlot(i).getItem() instanceof ExperienceStorageItem)) {
-					return ExperienceStorageItem.getStoredExperience(inv.getStackInSlot(i)) >= requiredExperience;
+				if ((inv.getItem(i).getItem() instanceof ExperienceStorageItem)) {
+					return ExperienceStorageItem.getStoredExperience(inv.getItem(i)) >= requiredExperience;
 				}
 			}
 		}
@@ -114,7 +112,7 @@ public class PotionWorkshopCraftingRecipe extends PotionWorkshopRecipe {
 	}
 	
 	@Override
-	public ItemStack getResult(RegistryWrapper.WrapperLookup registryManager) {
+	public ItemStack getResultItem(HolderLookup.Provider registryManager) {
 		return output;
 	}
 	
@@ -133,7 +131,7 @@ public class PotionWorkshopCraftingRecipe extends PotionWorkshopRecipe {
 		public static final MapCodec<PotionWorkshopCraftingRecipe> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
 				Codec.STRING.optionalFieldOf("group", "").forGetter(c -> c.group),
 				Codec.BOOL.optionalFieldOf("secret", false).forGetter(c -> c.secret),
-				Identifier.CODEC.optionalFieldOf("required_advancement").forGetter(c -> c.requiredAdvancementIdentifier),
+				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(c -> c.requiredAdvancementIdentifier),
 				Codec.INT.optionalFieldOf("time", 200).forGetter(c -> c.craftingTime),
 				Codec.INT.optionalFieldOf("color", 0xc03058).forGetter(c -> c.color),
 				IngredientStack.Serializer.CODEC.fieldOf("ingredient1").forGetter(c -> c.ingredient1),
@@ -145,19 +143,19 @@ public class PotionWorkshopCraftingRecipe extends PotionWorkshopRecipe {
 				ItemStack.CODEC.fieldOf("result").forGetter(c -> c.output)
 		).apply(i, PotionWorkshopCraftingRecipe::new));
 		
-		public static final PacketCodec<RegistryByteBuf, PotionWorkshopCraftingRecipe> PACKET_CODEC = PacketCodecHelper.tuple(
-				PacketCodecs.STRING, c -> c.group,
-				PacketCodecs.BOOL, c -> c.secret,
-				PacketCodecs.optional(Identifier.PACKET_CODEC), c -> c.requiredAdvancementIdentifier,
-				PacketCodecs.VAR_INT, c -> c.craftingTime,
-				PacketCodecs.VAR_INT, c -> c.color,
+		public static final StreamCodec<RegistryFriendlyByteBuf, PotionWorkshopCraftingRecipe> PACKET_CODEC = PacketCodecHelper.tuple(
+				ByteBufCodecs.STRING_UTF8, c -> c.group,
+				ByteBufCodecs.BOOL, c -> c.secret,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), c -> c.requiredAdvancementIdentifier,
+				ByteBufCodecs.VAR_INT, c -> c.craftingTime,
+				ByteBufCodecs.VAR_INT, c -> c.color,
 				IngredientStack.Serializer.PACKET_CODEC, c -> c.ingredient1,
 				IngredientStack.Serializer.PACKET_CODEC, c -> c.ingredient2,
 				IngredientStack.Serializer.PACKET_CODEC, c -> c.ingredient3,
 				IngredientStack.Serializer.PACKET_CODEC, c -> c.baseIngredient,
-				PacketCodecs.BOOL, c -> c.consumeBaseIngredient,
-				PacketCodecs.VAR_INT, c -> c.requiredExperience,
-				ItemStack.PACKET_CODEC, c -> c.output,
+				ByteBufCodecs.BOOL, c -> c.consumeBaseIngredient,
+				ByteBufCodecs.VAR_INT, c -> c.requiredExperience,
+				ItemStack.STREAM_CODEC, c -> c.output,
 				PotionWorkshopCraftingRecipe::new
 		);
 		
@@ -167,7 +165,7 @@ public class PotionWorkshopCraftingRecipe extends PotionWorkshopRecipe {
 		}
 		
 		@Override
-		public PacketCodec<RegistryByteBuf, PotionWorkshopCraftingRecipe> packetCodec() {
+		public StreamCodec<RegistryFriendlyByteBuf, PotionWorkshopCraftingRecipe> streamCodec() {
 			return PACKET_CODEC;
 		}
 	}

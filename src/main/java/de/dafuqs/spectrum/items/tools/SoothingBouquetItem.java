@@ -4,86 +4,86 @@ import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.sound.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.sounds.*;
 import net.minecraft.world.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public class SoothingBouquetItem extends Item implements SleepAlteringItem, SlotBackgroundEffectProvider {
-
-    private static final MutableText TOOLTIP = Text.translatable("item.spectrum.soothing_bouquet.tooltip");
-
-    public SoothingBouquetItem(Settings settings) {
+	
+	private static final MutableComponent TOOLTIP = Component.translatable("item.spectrum.soothing_bouquet.tooltip");
+	
+	public SoothingBouquetItem(Properties settings) {
         super(settings);
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-        tooltip.add(TOOLTIP.formatted(Formatting.GRAY));
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		tooltip.add(TOOLTIP.withStyle(ChatFormatting.GRAY));
     }
 
     @Override
-    public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        if (user instanceof PlayerEntity player) {
+	public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity user) {
+		if (user instanceof Player player) {
             var component = MiscPlayerDataComponent.get(player);
 
             component.setSleepTimers(50, 20 * 6, 0);
             component.setLastSleepItem(this);
 			
-			player.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.CALMING, 20 * 10, 4)); // TODO: this should probably be a food component, so it shows up as tooltip
-            player.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.SOMNOLENCE, 20 * 10, 4));
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 50, 3));
+			player.addEffect(new MobEffectInstance(SpectrumStatusEffects.CALMING, 20 * 10, 4)); // TODO: this should probably be a food component, so it shows up as tooltip
+			player.addEffect(new MobEffectInstance(SpectrumStatusEffects.SOMNOLENCE, 20 * 10, 4));
+			player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 50, 3));
         }
         else {
-            user.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.SOMNOLENCE, 20 * 15, 2));
-            user.sleep(user.getBlockPos());
+			user.addEffect(new MobEffectInstance(SpectrumStatusEffects.SOMNOLENCE, 20 * 15, 2));
+			user.startSleeping(user.blockPosition());
         }
-
-        world.playSoundFromEntity(null, user, SpectrumSoundEvents.LIGHT_CRYSTAL_RING, SoundCategory.PLAYERS, 1F, 1.2F);
+		
+		world.playSound(null, user, SpectrumSoundEvents.LIGHT_CRYSTAL_RING, SoundSource.PLAYERS, 1F, 1.2F);
         return stack;
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        user.setCurrentHand(hand);
-        return TypedActionResult.consume(user.getStackInHand(hand));
+	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
+		user.startUsingItem(hand);
+		return InteractionResultHolder.consume(user.getItemInHand(hand));
     }
 
     @Override
-    public int getMaxUseTime(ItemStack stack, LivingEntity user) {
+	public int getUseDuration(ItemStack stack, LivingEntity user) {
         return 40;
     }
 
     @Override
-    public UseAction getUseAction(ItemStack stack) {
-        return UseAction.DRINK;
+	public UseAnim getUseAnimation(ItemStack stack) {
+		return UseAnim.DRINK;
     }
 
     @Override
-    public SoundEvent getDrinkSound() {
-        return SoundEvents.ENTITY_SNIFFER_SCENTING;
+	public SoundEvent getDrinkingSound() {
+		return SoundEvents.SNIFFER_SCENTING;
     }
 
     @Override
-    public void applyPenalties(PlayerEntity player) {
-        player.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 20 * 15));
+	public void applyPenalties(Player player) {
+		player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 20 * 15));
     }
 
     @Override
-    public SlotEffect backgroundType(@Nullable PlayerEntity player, ItemStack stack) {
+	public SlotEffect backgroundType(@Nullable Player player, ItemStack stack) {
         return SlotEffect.BORDER_FADE;
     }
 
     @Override
-    public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
+	public int getBackgroundColor(@Nullable Player player, ItemStack stack, float tickDelta) {
         return SpectrumStatusEffects.ETERNAL_SLUMBER_COLOR;
     }
 }

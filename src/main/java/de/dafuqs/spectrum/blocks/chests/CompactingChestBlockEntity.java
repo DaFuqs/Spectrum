@@ -1,7 +1,5 @@
 package de.dafuqs.spectrum.blocks.chests;
 
-import java.util.*;
-
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.networking.c2s_payloads.*;
@@ -9,36 +7,34 @@ import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.screenhandler.v1.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
+import net.minecraft.core.*;
+import net.minecraft.core.particles.*;
 import net.minecraft.nbt.*;
-import net.minecraft.particle.*;
-import net.minecraft.recipe.*;
-import net.minecraft.recipe.input.*;
-import net.minecraft.registry.*;
-import net.minecraft.screen.*;
-import net.minecraft.server.network.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
 import net.minecraft.util.*;
-import net.minecraft.util.collection.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.state.*;
+
+import java.util.*;
 
 public class CompactingChestBlockEntity extends SpectrumChestBlockEntity implements ExtendedScreenHandlerFactory<BlockPos> {
 	
-	private static final Map<AutoCraftingMode, Map<ItemVariant, Optional<RecipeEntry<CraftingRecipe>>>> cache = new EnumMap<>(AutoCraftingMode.class);
+	private static final Map<AutoCraftingMode, Map<ItemVariant, Optional<RecipeHolder<CraftingRecipe>>>> cache = new EnumMap<>(AutoCraftingMode.class);
 	private AutoCraftingMode autoCraftingMode;
-	private RecipeEntry<CraftingRecipe> lastCraftingRecipe; // cache
+	private RecipeHolder<CraftingRecipe> lastCraftingRecipe; // cache
 	private ItemVariant lastItemVariant; // cache
 	private boolean hasToCraft, isOpen;
 	private State state = State.CLOSED;
 	float pistonPos, pistonTarget, lastPistonTarget, driverPos, driverTarget, lastDriverTarget, capPos, capTarget, lastCapTarget;
 	long interpTicks, interpLength = 1, activeTicks, craftingTicks;
 	
-	private final PropertyDelegate propertyDelegate = new PropertyDelegate() {
+	private final ContainerData propertyDelegate = new ContainerData() {
 		@Override
 		public int get(int index) {
 			if (index == 0) return autoCraftingMode.ordinal();
@@ -51,7 +47,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 		}
 		
 		@Override
-		public int size() {
+		public int getCount() {
 			return 1;
 		}
 	};
@@ -65,12 +61,12 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	}
 	
 	@SuppressWarnings("unused")
-	public static void tick(World world, BlockPos pos, BlockState state, CompactingChestBlockEntity chest) {
-		if (!world.isClient()) {
+	public static void tick(Level world, BlockPos pos, BlockState state, CompactingChestBlockEntity chest) {
+		if (!world.isClientSide()) {
 			CompactingChestStatusUpdatePayload.sendCompactingChestStatusUpdate(chest);
 		}
 		
-		if (world.isClient()) {
+		if (world.isClientSide()) {
 			if (chest.hasToCraft()) {
 				chest.craftingTicks = 20;
 			} else {
@@ -102,7 +98,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 				if (!couldCraft) {
 					chest.shouldCraft(false);
 				}
-				if (world.getTime() % 6 == 0) {
+				if (world.getGameTime() % 6 == 0) {
 					chest.produceRunningEffects();
 				}
 			}
@@ -110,12 +106,12 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	}
 	
 	public void produceRunningEffects() {
-		if (world instanceof ServerWorld server) {
-			var random = world.getRandom();
+		if (level instanceof ServerLevel server) {
+			var random = level.getRandom();
 			if (random.nextFloat() < 0.125F) {
-				server.playSound(null, pos, SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, SoundCategory.BLOCKS, 0.05F + random.nextFloat() * 0.1F, 0.334F + random.nextFloat() / 2F);
+				server.playSound(null, worldPosition, SoundEvents.REDSTONE_TORCH_BURNOUT, SoundSource.BLOCKS, 0.05F + random.nextFloat() * 0.1F, 0.334F + random.nextFloat() / 2F);
 				for (int i = 0; i < 4 + random.nextInt(5); i++) {
-					server.spawnParticles(ParticleTypes.CLOUD, pos.getX() + random.nextFloat(), pos.getY() + 0.975 + random.nextFloat() * 0.667F, pos.getZ() + random.nextFloat(), 0, 0, random.nextFloat() / 20F + 0.02F, 0, 1);
+					server.sendParticles(ParticleTypes.CLOUD, worldPosition.getX() + random.nextFloat(), worldPosition.getY() + 0.975 + random.nextFloat() * 0.667F, worldPosition.getZ() + random.nextFloat(), 0, 0, random.nextFloat() / 20F + 0.02F, 0, 1);
 				}
 			}
 		}
@@ -148,7 +144,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 				boolean doneStuff = false;
 				if (additionStack.getCount() > 0) {
 					if (currentStack.isEmpty() && (test || !tryStackExisting)) {
-						int maxStackCount = currentStack.getMaxCount();
+						int maxStackCount = currentStack.getMaxStackSize();
 						int maxAcceptCount = Math.min(additionStack.getCount(), maxStackCount);
 						
 						if (!test) {
@@ -158,14 +154,14 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 						}
 						additionStack.setCount(additionStack.getCount() - maxAcceptCount);
 						doneStuff = true;
-					} else if (ItemStack.areItemsAndComponentsEqual(currentStack, additionStack)) {
+					} else if (ItemStack.isSameItemSameComponents(currentStack, additionStack)) {
 						// add to stack;
-						int maxStackCount = currentStack.getMaxCount();
+						int maxStackCount = currentStack.getMaxStackSize();
 						int canAcceptCount = maxStackCount - currentStack.getCount();
 						
 						if (canAcceptCount > 0) {
 							if (!test) {
-								inventory.get(i).increment(Math.min(additionStack.getCount(), canAcceptCount));
+								inventory.get(i).grow(Math.min(additionStack.getCount(), canAcceptCount));
 							}
 							if (canAcceptCount >= additionStack.getCount()) {
 								additionStack.setCount(0);
@@ -205,33 +201,33 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	}
 	
 	@Override
-	protected Text getContainerName() {
-		return Text.translatable("block.spectrum.compacting_chest");
+	protected Component getDefaultName() {
+		return Component.translatable("block.spectrum.compacting_chest");
 	}
 	
 	@Override
-	public void readNbt(NbtCompound tag, RegistryWrapper.WrapperLookup registryLookup) {
-		super.readNbt(tag, registryLookup);
-		if (tag.contains("AutoCraftingMode", NbtElement.NUMBER_TYPE)) {
+	public void loadAdditional(CompoundTag tag, HolderLookup.Provider registryLookup) {
+		super.loadAdditional(tag, registryLookup);
+		if (tag.contains("AutoCraftingMode", Tag.TAG_ANY_NUMERIC)) {
 			int autoCraftingModeInt = tag.getInt("AutoCraftingMode");
 			this.autoCraftingMode = AutoCraftingMode.values()[autoCraftingModeInt];
 		}
 	}
 	
 	@Override
-	public void writeNbt(NbtCompound tag, RegistryWrapper.WrapperLookup registryLookup) {
-		super.writeNbt(tag, registryLookup);
+	public void saveAdditional(CompoundTag tag, HolderLookup.Provider registryLookup) {
+		super.saveAdditional(tag, registryLookup);
 		tag.putInt("AutoCraftingMode", this.autoCraftingMode.ordinal());
 	}
 	
 	@Override
-	public int size() {
+	public int getContainerSize() {
 		return 27;
 	}
 	
 	@Override
-	public void setStack(int slot, ItemStack stack) {
-		super.setStack(slot, stack);
+	public void setItem(int slot, ItemStack stack) {
+		super.setItem(slot, stack);
 		shouldCraft(true);
 	}
 	
@@ -240,8 +236,8 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	}
 	
 	private boolean tryCraftOnce() {
-		Optional<RecipeEntry<CraftingRecipe>> optionalCraftingRecipe = Optional.empty();
-		DefaultedList<ItemStack> inventory = this.getHeldStacks();
+		Optional<RecipeHolder<CraftingRecipe>> optionalCraftingRecipe = Optional.empty();
+		NonNullList<ItemStack> inventory = this.getItems();
 		
 		// try last recipe
 		if (lastCraftingRecipe != null) {
@@ -276,19 +272,19 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	}
 	
 	@Override
-	public boolean onSyncedBlockEvent(int type, int data) {
+	public boolean triggerEvent(int type, int data) {
 		if (type == 1) {
 			isOpen = data > 0;
 		}
-		return super.onSyncedBlockEvent(type, data);
+		return super.triggerEvent(type, data);
 	}
 	
 	public boolean hasToCraft() {
 		return hasToCraft;
 	}
 	
-	public Optional<RecipeEntry<CraftingRecipe>> searchRecipeToCraft() {
-		if (world == null)
+	public Optional<RecipeHolder<CraftingRecipe>> searchRecipeToCraft() {
+		if (level == null)
 			return Optional.empty();
 		
 		for (ItemStack itemStack : inventory) {
@@ -297,8 +293,8 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 			}
 			
 			int requiredItemCount = this.autoCraftingMode.getSize();
-			Pair<Integer, List<ItemStack>> stackPair = InventoryHelper.getStackCountInInventory(itemStack, inventory, requiredItemCount);
-			if (stackPair.getLeft() >= requiredItemCount) {
+			Tuple<Integer, List<ItemStack>> stackPair = InventoryHelper.getStackCountInInventory(itemStack, inventory, requiredItemCount);
+			if (stackPair.getA() >= requiredItemCount) {
 				var currentCache = cache.computeIfAbsent(autoCraftingMode, mode -> new HashMap<>());
 				ItemVariant itemVariant = ItemVariant.of(itemStack);
 				
@@ -311,9 +307,9 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 					return recipe;
 				}
 				
-				CraftingRecipeInput input = this.autoCraftingMode.createRecipeInput(itemVariant).input();
-				var optionalCraftingRecipe = world.getRecipeManager().getFirstMatch(RecipeType.CRAFTING, input, world);
-				if (optionalCraftingRecipe.isEmpty() || optionalCraftingRecipe.get().value().craft(input, world.getRegistryManager()).isEmpty()) {
+				CraftingInput input = this.autoCraftingMode.createRecipeInput(itemVariant).input();
+				var optionalCraftingRecipe = level.getRecipeManager().getRecipeFor(RecipeType.CRAFTING, input, level);
+				if (optionalCraftingRecipe.isEmpty() || optionalCraftingRecipe.get().value().assemble(input, level.registryAccess()).isEmpty()) {
 					optionalCraftingRecipe = Optional.empty();
 					currentCache.put(itemVariant, optionalCraftingRecipe);
 				} else {
@@ -328,8 +324,8 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 		return Optional.empty();
 	}
 	
-	public boolean tryCraftInInventory(DefaultedList<ItemStack> inventory, RecipeEntry<CraftingRecipe> craftingRecipe, ItemVariant itemVariant) {
-		if (world == null)
+	public boolean tryCraftInInventory(NonNullList<ItemStack> inventory, RecipeHolder<CraftingRecipe> craftingRecipe, ItemVariant itemVariant) {
+		if (level == null)
 			return false;
 		
 		ItemStack inputStack = itemVariant.toStack(this.autoCraftingMode.getSize());
@@ -338,14 +334,14 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 		boolean spaceInInventory;
 		
 		List<ItemStack> additionItemStacks = new ArrayList<>();
-		additionItemStacks.add(craftingRecipe.value().getResult(world.getRegistryManager()));
+		additionItemStacks.add(craftingRecipe.value().getResultItem(level.registryAccess()));
 		additionItemStacks.addAll(remainders);
 		
 		spaceInInventory = smartAddToInventory(additionItemStacks, inventory, true);
 		if (spaceInInventory) {
 			// craft
 			smartAddToInventory(additionItemStacks, inventory, false);
-			this.setHeldStacks(inventory);
+			this.setItems(inventory);
 			
 			// cache
 			return true;
@@ -371,13 +367,13 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	}
 	
 	@Override
-	protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
+	protected AbstractContainerMenu createMenu(int syncId, Inventory playerInventory) {
 		return new CompactingChestScreenHandler(syncId, playerInventory, this, this.propertyDelegate);
 	}
 	
 	@Override
-	public BlockPos getScreenOpeningData(ServerPlayerEntity serverPlayerEntity) {
-		return pos;
+	public BlockPos getScreenOpeningData(ServerPlayer serverPlayerEntity) {
+		return worldPosition;
 	}
 	
 	public enum State {

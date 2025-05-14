@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.explosion;
 
 import com.mojang.datafixers.util.*;
+import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
@@ -8,19 +9,22 @@ import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.fabricmc.fabric.api.tag.convention.v2.*;
-import net.minecraft.block.*;
-import net.minecraft.enchantment.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.damage.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.loot.context.*;
-import net.minecraft.particle.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.explosion.*;
+import net.minecraft.core.*;
+import net.minecraft.core.particles.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
+import net.minecraft.util.*;
+import net.minecraft.world.damagesource.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.item.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.storage.loot.*;
+import net.minecraft.world.level.storage.loot.parameters.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -28,8 +32,8 @@ import java.util.*;
 public class ModularExplosion {
 	
 	// Call to boom
-	public static void explode(@NotNull ServerWorld world, BlockPos pos, @Nullable PlayerEntity owner, double baseBlastRadius, float baseDamage, ExplosionArchetype archetype, List<ExplosionModifier> modifiers) {
-		DamageSource damageSource = world.getDamageSources().explosion(null);
+	public static void explode(@NotNull ServerLevel world, BlockPos pos, @Nullable Player owner, double baseBlastRadius, float baseDamage, ExplosionArchetype archetype, List<ExplosionModifier> modifiers) {
+		DamageSource damageSource = world.damageSources().explosion(null);
 		
 		float damageMod = 1F;
 		float killzoneDamageMod = 1F;
@@ -60,24 +64,24 @@ public class ModularExplosion {
 		float blastDamage = baseDamage * damageMod;
 		float killZoneDamage = baseDamage * killzoneDamageMod;
 		
-		Vec3d center = Vec3d.ofCenter(pos);
-		world.playSound(null, center.getX(), center.getY(), center.getZ(), SpectrumSoundEvents.BLOCK_MODULAR_EXPLOSIVE_EXPLODE, SoundCategory.BLOCKS, 1.0F, 0.8F + world.getRandom().nextFloat() * 0.3F);
+		Vec3 center = Vec3.atCenterOf(pos);
+		world.playSound(null, center.x(), center.y(), center.z(), SpectrumSoundEvents.BLOCK_MODULAR_EXPLOSIVE_EXPLODE, SoundSource.BLOCKS, 1.0F, 0.8F + world.getRandom().nextFloat() * 0.3F);
 		playVisualEffects(world, center, modifiers, blastRadius);
 		
-		Box blastBox = Box.of(center, blastRadius * 2, blastRadius * 2, blastRadius * 2);
 		
 		if (archetype.affectsEntities) {
+			AABB blastBox = AABB.ofSize(center, blastRadius * 2, blastRadius * 2, blastRadius * 2);
 			final double finalBlastRadius = blastRadius;
-			List<Entity> affectedEntities = world.getOtherEntities(null, blastBox).stream().filter(entity -> entity.getPos().distanceTo(center) < finalBlastRadius).toList();
+			List<Entity> affectedEntities = world.getEntities(null, blastBox).stream().filter(entity -> entity.position().distanceTo(center) < finalBlastRadius).toList();
 			
 			for (Entity entity : affectedEntities) {
 				// damage entity
-				double distance = Math.max(entity.getPos().distanceTo(center) - entity.getWidth() / 2, 0);
+				double distance = Math.max(entity.position().distanceTo(center) - entity.getBbWidth() / 2, 0);
 				if (distance <= killZoneRadius) {
-					entity.damage(damageSource, entity.getType().isIn(ConventionalEntityTypeTags.BOSSES) ? killZoneDamage / 25F : killZoneDamage);
+					entity.hurt(damageSource, entity.getType().is(ConventionalEntityTypeTags.BOSSES) ? killZoneDamage / 25F : killZoneDamage);
 				} else {
-					double finalDamage = MathHelper.lerp(distance / blastRadius, blastDamage, blastDamage / 2);
-					entity.damage(damageSource, (float) finalDamage);
+					double finalDamage = Mth.lerp(distance / blastRadius, blastDamage, blastDamage / 2);
+					entity.hurt(damageSource, (float) finalDamage);
 				}
 				// additional effects
 				if (entity.isAlive()) {
@@ -98,33 +102,33 @@ public class ModularExplosion {
 	
 	// the client does not know about the block entities data
 	// we have to send it from server => client
-	private static void playVisualEffects(ServerWorld world, Vec3d pos, List<ExplosionModifier> effectModifiers, double blastRadius) {
-		world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_DRAGON_FIREBALL_EXPLODE, SoundCategory.NEUTRAL, 1, 0.8F + world.random.nextFloat() * 0.4F);
+	private static void playVisualEffects(ServerLevel world, Vec3 pos, List<ExplosionModifier> effectModifiers, double blastRadius) {
+		world.playSound(null, pos.x(), pos.y(), pos.z(), SoundEvents.DRAGON_FIREBALL_EXPLODE, SoundSource.NEUTRAL, 1, 0.8F + world.random.nextFloat() * 0.4F);
 		
-		Random random = world.getRandom();
-		ArrayList<ParticleEffect> types = new ArrayList<>(effectModifiers.stream().map(ExplosionModifier::getParticleEffects).filter(Optional::isPresent).map(Optional::get).toList());
+		RandomSource random = world.getRandom();
+		ArrayList<ParticleOptions> types = new ArrayList<>(effectModifiers.stream().map(ExplosionModifier::getParticleEffects).filter(Optional::isPresent).map(Optional::get).toList());
 		types.add(SpectrumParticleTypes.PRIMORDIAL_SMOKE);
 		
-		world.spawnParticles(SpectrumParticleTypes.PRIMORDIAL_FLAME, pos.getX(), pos.getY(), pos.getZ(), 30, random.nextFloat() * 0.5 - 0.25, random.nextFloat() * 0.5 - 0.25, random.nextFloat() * 0.5 - 0.25, 0.0);
+		world.sendParticles(SpectrumParticleTypes.PRIMORDIAL_FLAME, pos.x(), pos.y(), pos.z(), 30, random.nextFloat() * 0.5 - 0.25, random.nextFloat() * 0.5 - 0.25, random.nextFloat() * 0.5 - 0.25, 0.0);
 		
 		double particleCount = blastRadius * blastRadius + random.nextInt((int) (blastRadius * 2)) * (types.size() / 2F + 0.5);
 		for (int i = 0; i < particleCount; i++) {
 			double r = random.nextDouble() * blastRadius;
 			Orientation orientation = Orientation.create(random.nextDouble() * Math.PI * 2, random.nextDouble() * Math.PI * 2);
-			Vec3d particle = orientation.toVector(r).add(pos);
+			Vec3 particle = orientation.toVector(r).add(pos);
 			Collections.shuffle(types);
 			
-			world.spawnParticles(types.getFirst(), particle.getX(), particle.getY(), particle.getZ(), 1, 0, 0, 0, 0);
+			world.sendParticles(types.getFirst(), particle.x(), particle.y(), particle.z(), 1, 0, 0, 0, 0);
 		}
 	}
 	
-	private static List<BlockPos> processExplosion(@NotNull ServerWorld world, @Nullable PlayerEntity owner, BlockPos center, ExplosionShape shape, double blastRadius, ItemStack miningStack) {
-		Explosion explosion = new Explosion(world, owner, center.getX(), center.getY(), center.getZ(), (float) blastRadius, false, Explosion.DestructionType.DESTROY);
+	private static List<BlockPos> processExplosion(@NotNull ServerLevel world, @Nullable Player owner, BlockPos center, ExplosionShape shape, double blastRadius, ItemStack miningStack) {
+		Explosion explosion = new Explosion(world, owner, center.getX(), center.getY(), center.getZ(), (float) blastRadius, false, Explosion.BlockInteraction.DESTROY);
 		
 		ObjectArrayList<Pair<ItemStack, BlockPos>> drops = new ObjectArrayList<>();
 		List<BlockPos> affectedBlocks = new ArrayList<>();
 		int radius = (int) blastRadius / 2;
-		for (BlockPos p : BlockPos.iterateOutwards(center, radius, radius, radius)) {
+		for (BlockPos p : BlockPos.withinManhattan(center, radius, radius, radius)) {
 			if (!GenericClaimModsCompat.canBreak(world, p, owner)) {
 				continue;
 			}
@@ -133,41 +137,42 @@ public class ModularExplosion {
 			}
 		}
 		
-		boolean hasInventoryInsertion = EnchantmentHelper.hasAnyEnchantmentsIn(miningStack, SpectrumEnchantmentTags.INVENTORY_INSERTION_EFFECT);
+		boolean hasInventoryInsertion = EnchantmentHelper.hasTag(miningStack, SpectrumEnchantmentTags.INVENTORY_INSERTION_EFFECT);
 		for (Pair<ItemStack, BlockPos> stackPosPair : drops) {
 			if (owner != null && hasInventoryInsertion) {
-				owner.getInventory().offerOrDrop(stackPosPair.getFirst());
+				owner.getInventory().placeItemBackInInventory(stackPosPair.getFirst());
 			} else {
-				Block.dropStack(world, stackPosPair.getSecond(), stackPosPair.getFirst());
+				Block.popResource(world, stackPosPair.getSecond(), stackPosPair.getFirst());
 			}
 		}
 		
 		return affectedBlocks;
 	}
 	
-	private static boolean processBlock(@NotNull ServerWorld world, @Nullable Entity owner, Random random, BlockPos center, BlockPos pos, ObjectArrayList<Pair<ItemStack, BlockPos>> drops, ItemStack miningStack, Explosion explosion) {
+	private static boolean processBlock(@NotNull ServerLevel world, @Nullable Entity owner, RandomSource random, BlockPos center, BlockPos pos, ObjectArrayList<Pair<ItemStack, BlockPos>> drops, ItemStack miningStack, Explosion explosion) {
 		var state = world.getBlockState(pos);
 		var block = state.getBlock();
 		var blockEntity = state.hasBlockEntity() ? world.getBlockEntity(pos) : null;
-
-		if (state.getBlock().getBlastResistance() <= 9) {
+		
+		if (state.getBlock().getExplosionResistance() <= 9) {
 			if (random.nextFloat() < 0.15F) {
-				world.playSound(null, center.getX(), center.getY(), center.getZ(), state.getSoundGroup().getBreakSound(), SoundCategory.BLOCKS, 2F, 0.8F + random.nextFloat() * 0.5F);
+				world.playSound(null, center.getX(), center.getY(), center.getZ(), state.getSoundType().getBreakSound(), SoundSource.BLOCKS, 2F, 0.8F + random.nextFloat() * 0.5F);
 			}
-
-			if (block.shouldDropItemsOnExplosion(explosion)) {
-				LootContextParameterSet.Builder builder = (new LootContextParameterSet.Builder(world)
-						.add(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
-						.add(LootContextParameters.TOOL, miningStack)
-						.addOptional(LootContextParameters.BLOCK_ENTITY, blockEntity)
-						.addOptional(LootContextParameters.THIS_ENTITY, owner));
-				builder.add(LootContextParameters.EXPLOSION_RADIUS, ((ExplosionAccessor) explosion).getPower());
-				state.onStacksDropped(world, pos, miningStack, true);
-				state.getDroppedStacks(builder).forEach((stack) -> tryMergeStack(drops, stack, pos.toImmutable()));
+			
+			if (block.dropFromExplosion(explosion)) {
+				LootParams.Builder builder = new LootParams.Builder(world)
+						.withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(pos))
+						.withParameter(LootContextParams.TOOL, miningStack)
+						.withParameter(LootContextParams.EXPLOSION_RADIUS, ((ExplosionAccessor) explosion).getRadius())
+						.withOptionalParameter(LootContextParams.BLOCK_ENTITY, blockEntity)
+						.withOptionalParameter(LootContextParams.THIS_ENTITY, owner);
+				
+				state.spawnAfterBreak(world, pos, miningStack, true);
+				state.getDrops(builder).forEach((stack) -> tryMergeStack(drops, stack, pos.immutable()));
 			}
 			
 			world.removeBlock(pos, false);
-			block.onDestroyedByExplosion(world, pos, explosion);
+			block.wasExploded(world, pos, explosion);
 			
 			return true;
 		}
@@ -180,7 +185,7 @@ public class ModularExplosion {
 		for (int j = 0; j < i; ++j) {
 			Pair<ItemStack, BlockPos> pair = stacks.get(j);
 			ItemStack itemStack = pair.getFirst();
-			if (ItemEntity.canMerge(itemStack, stack)) {
+			if (ItemEntity.areMergable(itemStack, stack)) {
 				ItemStack itemStack2 = ItemEntity.merge(itemStack, stack, 16);
 				stacks.set(j, Pair.of(itemStack2, pair.getSecond()));
 				if (stack.isEmpty()) {

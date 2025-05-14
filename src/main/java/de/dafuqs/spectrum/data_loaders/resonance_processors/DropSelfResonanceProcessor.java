@@ -1,24 +1,25 @@
 package de.dafuqs.spectrum.data_loaders.resonance_processors;
 
-import java.util.*;
-
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.api.predicate.block.*;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.component.*;
-import net.minecraft.component.type.*;
-import net.minecraft.item.*;
+import net.minecraft.core.component.*;
 import net.minecraft.nbt.*;
-import net.minecraft.state.property.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
+
+import java.util.*;
 
 public class DropSelfResonanceProcessor extends ResonanceProcessor {
 	
 	public static final MapCodec<DropSelfResonanceProcessor> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
 			BrokenBlockPredicate.CODEC.fieldOf("block")
-					.validate(block -> block.test(Blocks.AIR.getDefaultState()) ? DataResult.error(() -> "Registering a Resonance Drop that matches on everything!") : DataResult.success(block))
+					.validate(block -> block.test(Blocks.AIR.defaultBlockState()) ? DataResult.error(() -> "Registering a Resonance Drop that matches on everything!") : DataResult.success(block))
 					.forGetter(c -> c.blockPredicate),
 			Codec.STRING.listOf().optionalFieldOf("state_properties_to_copy", List.of()).forGetter(c -> c.statePropertiesToCopy),
 			Codec.STRING.listOf().optionalFieldOf("nbt_to_copy", List.of()).forGetter(c -> c.nbtToCopy),
@@ -47,10 +48,10 @@ public class DropSelfResonanceProcessor extends ResonanceProcessor {
 	}
 	
 	public void copyBlockStateTags(BlockState minedState, ItemStack convertedStack) {
-		BlockStateComponent component = BlockStateComponent.DEFAULT;
+		BlockItemStateProperties component = BlockItemStateProperties.EMPTY;
 		for (Property<?> blockProperty : minedState.getProperties()) {
 			if (statePropertiesToCopy.contains(blockProperty.getName())) {
-				if (!includeDefaultStateProperties && minedState.getBlock().getDefaultState().get(blockProperty) == minedState.get(blockProperty)) {
+				if (!includeDefaultStateProperties && minedState.getBlock().defaultBlockState().getValue(blockProperty) == minedState.getValue(blockProperty)) {
 					// do not copy if the value matches the default to make it stack with others
 					continue;
 				}
@@ -58,13 +59,13 @@ public class DropSelfResonanceProcessor extends ResonanceProcessor {
 				component = component.with(blockProperty, minedState);
 			}
 		}
-		convertedStack.set(DataComponentTypes.BLOCK_STATE, component);
+		convertedStack.set(DataComponents.BLOCK_STATE, component);
 	}
 	
 	public void copyNbt(BlockEntity blockEntity, ItemStack convertedStack) {
-		NbtCompound newNbt = new NbtCompound();
+		CompoundTag newNbt = new CompoundTag();
 		
-		NbtCompound BlockEntityNbt = blockEntity.createComponentlessNbtWithIdentifyingData(blockEntity.getWorld().getRegistryManager());
+		CompoundTag BlockEntityNbt = blockEntity.saveCustomAndMetadata(blockEntity.getLevel().registryAccess());
 		for (String s : nbtToCopy) {
 			if (BlockEntityNbt.contains(s)) {
 				newNbt.put(s, BlockEntityNbt.get(s));
@@ -77,7 +78,7 @@ public class DropSelfResonanceProcessor extends ResonanceProcessor {
 	}
 	
 	private void dropSelf(BlockState minedState, BlockEntity blockEntity, List<ItemStack> droppedStacks) {
-		ItemStack selfStack = minedState.getBlock().asItem().getDefaultStack();
+		ItemStack selfStack = minedState.getBlock().asItem().getDefaultInstance();
 		
 		if (!statePropertiesToCopy.isEmpty()) {
 			copyBlockStateTags(minedState, selfStack);

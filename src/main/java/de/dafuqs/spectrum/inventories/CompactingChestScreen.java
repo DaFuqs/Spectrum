@@ -3,19 +3,19 @@ package de.dafuqs.spectrum.inventories;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.client.gui.screen.ingame.*;
-import net.minecraft.client.gui.widget.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.client.gui.components.*;
+import net.minecraft.client.gui.screens.inventory.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.entity.player.*;
 
-public class CompactingChestScreen extends HandledScreen<CompactingChestScreenHandler> {
+public class CompactingChestScreen extends AbstractContainerScreen<CompactingChestScreenHandler> {
 	
-	public static final Identifier BACKGROUND = SpectrumCommon.locate("textures/gui/container/compacting_chest.png");
-
-	public CompactingChestScreen(CompactingChestScreenHandler handler, PlayerInventory playerInventory, Text title) {
+	public static final ResourceLocation BACKGROUND = SpectrumCommon.locate("textures/gui/container/compacting_chest.png");
+	
+	public CompactingChestScreen(CompactingChestScreenHandler handler, Inventory playerInventory, Component title) {
 		super(handler, playerInventory, title);
-		this.backgroundHeight = 178;
+		this.imageHeight = 178;
 	}
 	
 	@Override
@@ -27,53 +27,53 @@ public class CompactingChestScreen extends HandledScreen<CompactingChestScreenHa
 	}
 	
 	protected void setupInputFields() {
-		int x = (this.width - this.backgroundWidth) / 2 + 3;
-		int y = (this.height - this.backgroundHeight) / 2 + 3;
+		int x = (this.width - this.imageWidth) / 2 + 3;
+		int y = (this.height - this.imageHeight) / 2 + 3;
 		
-		ButtonWidget craftingModeButton = ButtonWidget.builder(Text.literal("Mode"), this::craftingModeButtonPressed)
+		Button craftingModeButton = Button.builder(Component.literal("Mode"), this::craftingModeButtonPressed)
 				.size(16, 16)
-				.position(x + 154, y + 6)
+				.pos(x + 154, y + 6)
 				.build();
 		//new ButtonWidget(x + 154, y + 6, 16, 16, Text.literal("Mode"), this::craftingModeButtonPressed);
-		addSelectableChild(craftingModeButton);
+		addWidget(craftingModeButton);
 	}
 	
-	private void craftingModeButtonPressed(ButtonWidget buttonWidget) {
-		handler.toggleMode();
+	private void craftingModeButtonPressed(Button buttonWidget) {
+		menu.toggleMode();
 	}
 	
 	@Override
-	protected void drawForeground(DrawContext drawContext, int mouseX, int mouseY) {
+	protected void renderLabels(GuiGraphics drawContext, int mouseX, int mouseY) {
 		// draw "title" and "inventory" texts
-		int titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2; // 8;
+		int titleX = (imageWidth - font.width(title)) / 2; // 8;
 		int titleY = 6;
-		Text title = this.title;
+		Component title = this.title;
 		int inventoryX = 8;
 		int intInventoryY = 83;
-
-		drawContext.drawText(this.textRenderer, title, titleX, titleY, RenderHelper.GREEN_COLOR, false);
-		drawContext.drawText(this.textRenderer, this.playerInventoryTitle, inventoryX, intInventoryY, RenderHelper.GREEN_COLOR, false);
+		
+		drawContext.drawString(this.font, title, titleX, titleY, RenderHelper.GREEN_COLOR, false);
+		drawContext.drawString(this.font, this.playerInventoryTitle, inventoryX, intInventoryY, RenderHelper.GREEN_COLOR, false);
 	}
 	
 	@Override
-	protected void drawBackground(DrawContext drawContext, float delta, int mouseX, int mouseY) {
-		int x = (width - backgroundWidth) / 2;
-		int y = (height - backgroundHeight) / 2;
-		drawContext.drawTexture(BACKGROUND, x, y, 0 ,0, backgroundWidth, backgroundHeight);
+	protected void renderBg(GuiGraphics drawContext, float delta, int mouseX, int mouseY) {
+		int x = (width - imageWidth) / 2;
+		int y = (height - imageHeight) / 2;
+		drawContext.blit(BACKGROUND, x, y, 0, 0, imageWidth, imageHeight);
 
 		// the selected crafting mode
-		drawContext.drawTexture(BACKGROUND, x + 154, y + 6, 176, 16 * handler.getCraftingMode().ordinal(), 16, 16);
+		drawContext.blit(BACKGROUND, x + 154, y + 6, 176, 16 * menu.getCraftingMode().ordinal(), 16, 16);
 	}
 	
 	@Override
-	public void render(DrawContext drawContext, int mouseX, int mouseY, float delta) {
+	public void render(GuiGraphics drawContext, int mouseX, int mouseY, float delta) {
 		renderBackground(drawContext, mouseX, mouseY, delta);
 		super.render(drawContext, mouseX, mouseY, delta);
 		
-		if (mouseX > x + 153 && mouseX < x + 153 + 16 && mouseY > y + 5 && mouseY < y + 5 + 16) {
-			drawContext.drawTooltip(this.textRenderer, Text.translatable("block.spectrum.compacting_chest.toggle_crafting_mode"), mouseX, mouseY);
+		if (mouseX > leftPos + 153 && mouseX < leftPos + 153 + 16 && mouseY > topPos + 5 && mouseY < topPos + 5 + 16) {
+			drawContext.renderTooltip(this.font, Component.translatable("block.spectrum.compacting_chest.toggle_crafting_mode"), mouseX, mouseY);
 		} else {
-			drawMouseoverTooltip(drawContext, mouseX, mouseY);
+			renderTooltip(drawContext, mouseX, mouseY);
 		}
 	}
 	

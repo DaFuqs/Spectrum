@@ -1,15 +1,14 @@
 package de.dafuqs.spectrum.entity.predicates;
 
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.mojang.serialization.*;
+import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.entity.variants.*;
-import net.minecraft.entity.*;
-import net.minecraft.predicate.entity.EntitySubPredicate;
-import net.minecraft.server.world.*;
-import net.minecraft.util.math.*;
+import net.minecraft.advancements.critereon.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -23,18 +22,18 @@ public record KindlingPredicate(Optional<Boolean> clipped, Optional<Boolean> ang
 	).apply(instance, KindlingPredicate::new));
 
 	@Override
-	public boolean test(Entity entity, ServerWorld world, @Nullable Vec3d pos) {
+	public boolean matches(Entity entity, ServerLevel world, @Nullable Vec3 pos) {
 		if (!(entity instanceof KindlingEntity kindling)) {
 			return false;
 		} else {
 			return (this.clipped.isEmpty() || this.clipped.get() == kindling.isClipped())
-					&& (this.angry.isEmpty() || this.angry.get() == (kindling.getAngerTime() == 0)
+					&& (this.angry.isEmpty() || this.angry.get() == (kindling.getRemainingPersistentAngerTime() == 0)
 					&& (this.variant.isEmpty() || this.variant.get() == kindling.getKindlingVariant()));
 		}
 	}
 
 	@Override
-	public MapCodec<KindlingPredicate> getCodec() {
+	public MapCodec<KindlingPredicate> codec() {
 		return SpectrumEntitySubPredicateTypes.KINDLING;
 	}
 

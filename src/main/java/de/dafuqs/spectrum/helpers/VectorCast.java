@@ -1,28 +1,29 @@
 package de.dafuqs.spectrum.helpers;
 
-import net.minecraft.entity.*;
-import net.minecraft.server.world.*;
-import net.minecraft.util.math.*;
+import net.minecraft.core.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.phys.*;
 
 import java.util.*;
 import java.util.function.*;
 
 public class VectorCast {
-
-    protected final Vec3d start, end;
+	
+	protected final Vec3 start, end;
     protected float radius;
-
-    public VectorCast(Vec3d start, Vec3d end, float radius) {
+	
+	public VectorCast(Vec3 start, Vec3 end, float radius) {
         this.start = start;
         this.end = end;
         this.radius = radius;
     }
-
-    public List<CollisionResult<Entity>> castForEntities(ServerWorld world, Predicate<Entity> preCollisionTestFiltering, Entity ... except) {
+	
+	public List<CollisionResult<Entity>> castForEntities(ServerLevel world, Predicate<Entity> preCollisionTestFiltering, Entity... except) {
         var ray = getRelativeToOrigin(end);
-        var casterBox = new Box(start, end).expand(ray.length() / 2);
-
-        var entities = world.getEntitiesByClass(Entity.class, casterBox, preCollisionTestFiltering);
+		var casterBox = new AABB(start, end).inflate(ray.length() / 2);
+		
+		var entities = world.getEntitiesOfClass(Entity.class, casterBox, preCollisionTestFiltering);
 
         var exceptSet = Arrays.asList(except);
 
@@ -33,13 +34,13 @@ public class VectorCast {
                 .map(Optional::get)
                 .toList();
     }
-
-    public List<CollisionResult<BlockPos>> castForBlocks(ServerWorld world, Entity except, BiPredicate<ServerWorld, BlockPos> preCollisionTestFiltering) {
-		var blockStart = BlockPos.ofFloored(start);
-		var blockEnd = BlockPos.ofFloored(end);
-		var ray = getRelativeToOrigin(end);
 	
-		var iterableBlocks = BlockPos.iterate(blockStart, blockEnd);
+	public List<CollisionResult<BlockPos>> castForBlocks(ServerLevel world, Entity except, BiPredicate<ServerLevel, BlockPos> preCollisionTestFiltering) {
+		var blockStart = BlockPos.containing(start);
+		var blockEnd = BlockPos.containing(end);
+		var ray = getRelativeToOrigin(end);
+		
+		var iterableBlocks = BlockPos.betweenClosed(blockStart, blockEnd);
 		var collisions = new ArrayList<CollisionResult<BlockPos>>();
 	
 		iterableBlocks.forEach(blockPos -> {
@@ -53,13 +54,13 @@ public class VectorCast {
 
         return collisions;
     }
-
-    private Optional<CollisionResult<Entity>> processEntity(Vec3d ray, Entity entity, ServerWorld world) {
+	
+	private Optional<CollisionResult<Entity>> processEntity(Vec3 ray, Entity entity, ServerLevel world) {
         var hit = false;
-        Vec3d closestPointToIntercept;
+		Vec3 closestPointToIntercept;
 
         collider: {
-            var hitbox = entity.getBoundingBox().expand(radius);
+			var hitbox = entity.getBoundingBox().inflate(radius);
 
             if (hitbox.contains(end)) {
                 closestPointToIntercept = end;
@@ -75,13 +76,13 @@ public class VectorCast {
 
             var orientation = getOrientation();
             var entityOrigin = getRelativeToOrigin(hitbox.getCenter());
-
-            var product = ray.dotProduct(entityOrigin);
+			
+			var product = ray.dot(entityOrigin);
 
             var vectorAngle = Math.acos(product / (ray.length() * entityOrigin.length()));
             var entityOffset = Math.abs(Math.cos(vectorAngle) * entityOrigin.length());
-	
-			closestPointToIntercept = new Vec3d(
+			
+			closestPointToIntercept = new Vec3(
 					entityOffset * Math.sin(orientation.getLongitude()) * Math.cos(orientation.getLatitude()) + start.x,
 					entityOffset * Math.sin(orientation.getLongitude()) * Math.sin(orientation.getLatitude()) + start.y,
 					entityOffset * Math.cos(orientation.getLongitude()) + start.z
@@ -96,10 +97,10 @@ public class VectorCast {
 
         return Optional.empty();
     }
-
-    private Optional<CollisionResult<BlockPos>> processBlock(Vec3d ray, BlockPos pos, ServerWorld world) {
+	
+	private Optional<CollisionResult<BlockPos>> processBlock(Vec3 ray, BlockPos pos, ServerLevel world) {
         var hit = false;
-        Vec3d closestPointToIntercept;
+		Vec3 closestPointToIntercept;
 
         collider: {
 
@@ -116,14 +117,14 @@ public class VectorCast {
             }
 
             var orientation = getOrientation();
-            var blockCenter = getRelativeToOrigin(Vec3d.ofCenter(pos));
-
-            var product = ray.dotProduct(blockCenter);
+			var blockCenter = getRelativeToOrigin(Vec3.atCenterOf(pos));
+			
+			var product = ray.dot(blockCenter);
 
             var vectorAngle = Math.acos(product / (ray.length() * blockCenter.length()));
             var entityOffset = Math.cos(vectorAngle) * blockCenter.length();
-	
-			closestPointToIntercept = new Vec3d(
+			
+			closestPointToIntercept = new Vec3(
 					entityOffset * Math.sin(orientation.getLatitude()) * Math.cos(orientation.getLongitude()) + start.x,
 					entityOffset * Math.sin(orientation.getLatitude()) * Math.sin(orientation.getLongitude()) + start.y,
 					entityOffset * Math.cos(orientation.getLatitude()) + start.z
@@ -142,19 +143,19 @@ public class VectorCast {
     public void setRadius(float radius) {
         this.radius = radius;
     }
-
-    public boolean blockContains(BlockPos pos, Vec3d point) {
-        return pos.getX() - radius <= point.getX() && point.getX() <= pos.getX() + 1 + radius &&
-                pos.getY() - radius <= point.getY() && point.getY() <= pos.getY() + 1 + radius &&
-                pos.getZ() - radius <= point.getZ() && point.getZ() <= pos.getZ() + 1 + radius;
+	
+	public boolean blockContains(BlockPos pos, Vec3 point) {
+		return pos.getX() - radius <= point.x() && point.x() <= pos.getX() + 1 + radius &&
+				pos.getY() - radius <= point.y() && point.y() <= pos.getY() + 1 + radius &&
+				pos.getZ() - radius <= point.z() && point.z() <= pos.getZ() + 1 + radius;
     }
 
     public Orientation getOrientation() {
         var vector = getRelativeToOrigin(end);
         return Orientation.fromVector(vector);
     }
-
-    public Vec3d getRelativeToOrigin(Vec3d vector) {
+	
+	public Vec3 getRelativeToOrigin(Vec3 vector) {
         return vector.subtract(start);
     }
 }

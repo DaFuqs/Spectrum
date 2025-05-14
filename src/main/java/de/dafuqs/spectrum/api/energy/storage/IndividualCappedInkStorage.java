@@ -5,7 +5,7 @@ import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.registries.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.fabricmc.api.*;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
 
 import java.util.*;
 
@@ -128,8 +128,8 @@ public class IndividualCappedInkStorage implements InkStorage {
 	
 	@Override
 	@Environment(EnvType.CLIENT)
-	public void addTooltip(List<Text> tooltip) {
-		tooltip.add(Text.translatable("item.spectrum.ink_storage.stores_ink_per_type", getShortenedNumberString(maxEnergyPerColor)));
+	public void addTooltip(List<Component> tooltip) {
+		tooltip.add(Component.translatable("item.spectrum.ink_storage.stores_ink_per_type", getShortenedNumberString(maxEnergyPerColor)));
 		
 		// we are iterating them this way to preserve the ordering
 		for (InkColor color : SpectrumRegistries.INK_COLOR) {
@@ -155,7 +155,7 @@ public class IndividualCappedInkStorage implements InkStorage {
 	}
 	
 	@Override
-	public void clear() {
+	public void clearContent() {
 		this.storedEnergy.clear();
 	}
 	

@@ -1,11 +1,11 @@
 package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.recipe.*;
-import net.minecraft.inventory.*;
-import net.minecraft.item.*;
-import net.minecraft.recipe.input.*;
+import net.minecraft.world.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
 
-public class EnchanterInventory extends SimpleInventory {
+public class EnchanterInventory extends SimpleContainer {
 	
 	public EnchanterInventory() {
 		super(10);
@@ -16,38 +16,38 @@ public class EnchanterInventory extends SimpleInventory {
 	}
 	
 	public RecipeInput createInput() {
-		return new SimpleRecipeInput(this.heldStacks);
+		return new SimpleRecipeInput(this.items);
 	}
 	
 	public void rotate() {
-		ItemStack stack2 = getStack(2);
-		ItemStack stack3 = getStack(3);
-
-		setStack(2, getStack(4));
-		setStack(3, getStack(5));
-		setStack(4, getStack(6));
-		setStack(5, getStack(7));
-		setStack(6, getStack(8));
-		setStack(7, getStack(9));
-		setStack(8, stack2);
-		setStack(9, stack3);
+		ItemStack stack2 = getItem(2);
+		ItemStack stack3 = getItem(3);
+		
+		setItem(2, getItem(4));
+		setItem(3, getItem(5));
+		setItem(4, getItem(6));
+		setItem(5, getItem(7));
+		setItem(6, getItem(8));
+		setItem(7, getItem(9));
+		setItem(8, stack2);
+		setItem(9, stack3);
 	}
 	
 	public void mirror() {
-		ItemStack stack2 = getStack(2);
-		ItemStack stack4 = getStack(4);
-		ItemStack stack6 = getStack(6);
-		ItemStack stack8 = getStack(8);
-
-		setStack(2, getStack(3));
-		setStack(4, getStack(5));
-		setStack(6, getStack(7));
-		setStack(8, getStack(9));
-
-		setStack(3, stack2);
-		setStack(5, stack4);
-		setStack(7, stack6);
-		setStack(9, stack8);
+		ItemStack stack2 = getItem(2);
+		ItemStack stack4 = getItem(4);
+		ItemStack stack6 = getItem(6);
+		ItemStack stack8 = getItem(8);
+		
+		setItem(2, getItem(3));
+		setItem(4, getItem(5));
+		setItem(6, getItem(7));
+		setItem(8, getItem(9));
+		
+		setItem(3, stack2);
+		setItem(5, stack4);
+		setItem(7, stack6);
+		setItem(9, stack8);
 	}
 	
 }

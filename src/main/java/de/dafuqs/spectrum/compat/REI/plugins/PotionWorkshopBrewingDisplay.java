@@ -5,19 +5,19 @@ import de.dafuqs.spectrum.compat.REI.*;
 import de.dafuqs.spectrum.recipe.potion_workshop.*;
 import me.shedaniel.rei.api.common.category.*;
 import net.minecraft.client.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.recipe.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.item.crafting.*;
 
 public class PotionWorkshopBrewingDisplay extends PotionWorkshopRecipeDisplay {
 	
-	protected final StatusEffect statusEffect;
+	protected final MobEffect statusEffect;
 	
 	/**
 	 * When using the REI recipe functionality
 	 *
 	 * @param recipe The recipe
 	 */
-	public PotionWorkshopBrewingDisplay(RecipeEntry<PotionWorkshopBrewingRecipe> recipe) {
+	public PotionWorkshopBrewingDisplay(RecipeHolder<PotionWorkshopBrewingRecipe> recipe) {
 		super(recipe);
 		this.statusEffect = recipe.value().getStatusEffect();
 	}
@@ -29,7 +29,7 @@ public class PotionWorkshopBrewingDisplay extends PotionWorkshopRecipeDisplay {
 	
 	@Override
     public boolean isUnlocked() {
-		MinecraftClient client = MinecraftClient.getInstance();
+		Minecraft client = Minecraft.getInstance();
 		return AdvancementHelper.hasAdvancement(client.player, PotionWorkshopRecipe.UNLOCK_IDENTIFIER) && super.isUnlocked();
 	}
 	

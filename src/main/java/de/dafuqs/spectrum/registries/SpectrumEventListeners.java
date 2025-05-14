@@ -24,29 +24,36 @@ import net.fabricmc.fabric.api.event.player.*;
 import net.fabricmc.fabric.api.item.v1.*;
 import net.fabricmc.fabric.api.resource.*;
 import net.fabricmc.fabric.api.util.*;
-import net.minecraft.advancement.criterion.*;
-import net.minecraft.block.*;
-import net.minecraft.component.*;
-import net.minecraft.component.type.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.damage.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.entity.projectile.*;
-import net.minecraft.fluid.*;
-import net.minecraft.item.*;
-import net.minecraft.particle.*;
-import net.minecraft.registry.*;
-import net.minecraft.registry.tag.*;
-import net.minecraft.resource.*;
+import net.minecraft.advancements.*;
+import net.minecraft.core.component.*;
+import net.minecraft.core.particles.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.resources.*;
 import net.minecraft.server.*;
+import net.minecraft.server.level.*;
 import net.minecraft.server.network.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
-import net.minecraft.stat.*;
+import net.minecraft.server.packs.*;
+import net.minecraft.server.packs.resources.*;
+import net.minecraft.server.players.*;
+import net.minecraft.sounds.*;
+import net.minecraft.stats.*;
+import net.minecraft.tags.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
 import net.minecraft.world.*;
+import net.minecraft.world.damagesource.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.item.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.entity.projectile.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.*;
+import net.minecraft.world.item.context.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.material.*;
+import net.minecraft.world.phys.*;
 
 import java.util.*;
 import java.util.concurrent.atomic.*;
@@ -62,27 +69,27 @@ public class SpectrumEventListeners {
 	
 	public static void register() {
 		AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
-			if (!world.isClient && !player.isSpectator()) {
+			if (!world.isClientSide && !player.isSpectator()) {
 				
-				ItemStack mainHandStack = player.getMainHandStack();
+				ItemStack mainHandStack = player.getMainHandItem();
 				if (mainHandStack.getItem() instanceof ExchangeStaffItem exchangeStaffItem) {
 					BlockState targetBlockState = world.getBlockState(pos);
 					if (exchangeStaffItem.canInteractWith(targetBlockState, world, pos, player)) {
-						Optional<Block> storedBlock = ExchangeStaffItem.getStoredBlock(player.getMainHandStack());
+						Optional<Block> storedBlock = ExchangeStaffItem.getStoredBlock(player.getMainHandItem());
 						
 						if (storedBlock.isPresent()
 								&& storedBlock.get() != targetBlockState.getBlock()
 								&& storedBlock.get().asItem() != Items.AIR
-								&& ExchangeStaffItem.exchange(world, pos, player, storedBlock.get(), player.getMainHandStack(), true, direction)) {
+								&& ExchangeStaffItem.exchange(world, pos, player, storedBlock.get(), player.getMainHandItem(), true, direction)) {
 							
-							return ActionResult.SUCCESS;
+							return InteractionResult.SUCCESS;
 						}
 					}
-					world.playSound(null, player.getBlockPos(), SoundEvents.BLOCK_DISPENSER_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
-					return ActionResult.FAIL;
+					world.playSound(null, player.blockPosition(), SoundEvents.DISPENSER_FAIL, SoundSource.PLAYERS, 1.0F, 1.0F);
+					return InteractionResult.FAIL;
 				}
 			}
-			return ActionResult.PASS;
+			return InteractionResult.PASS;
 		});
 		
 		CommonLifecycleEvents.TAGS_LOADED.register((registries, client) -> {
@@ -92,11 +99,11 @@ public class SpectrumEventListeners {
 		});
 		
 		PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, blockEntity) -> {
-			if (player instanceof ServerPlayerEntity serverPlayerEntity) {
-				ItemStack stack = player.getStackInHand(serverPlayerEntity.getActiveHand());
-				if (SpectrumEnchantmentHelper.hasEnchantment(player.getWorld().getRegistryManager(), SpectrumEnchantments.INERTIA, stack)) {
+			if (player instanceof ServerPlayer serverPlayerEntity) {
+				ItemStack stack = player.getItemInHand(serverPlayerEntity.getUsedItemHand());
+				if (SpectrumEnchantmentHelper.hasEnchantment(player.level().registryAccess(), SpectrumEnchantments.INERTIA, stack)) {
 					InertiaComponent inertia = stack.getOrDefault(SpectrumDataComponentTypes.INERTIA, InertiaComponent.DEFAULT);
-					long inertiaAmount = state.isOf(inertia.lastMined()) ? inertia.count() + 1 : 1;
+					long inertiaAmount = state.is(inertia.lastMined()) ? inertia.count() + 1 : 1;
 					stack.set(SpectrumDataComponentTypes.INERTIA, new InertiaComponent(state.getBlock(), inertiaAmount));
 					
 					SpectrumAdvancementCriteria.INERTIA_USED.trigger(serverPlayerEntity, state, inertiaAmount);
@@ -107,30 +114,30 @@ public class SpectrumEventListeners {
 		});
 		
 		EnchantmentEvents.ALLOW_ENCHANTING.register((registryEntry, itemStack, enchantingContext) -> {
-			if (registryEntry.matchesKey(SpectrumEnchantments.INDESTRUCTIBLE) && itemStack.isIn(SpectrumItemTags.INDESTRUCTIBLE_BLACKLISTED)) {
+			if (registryEntry.is(SpectrumEnchantments.INDESTRUCTIBLE) && itemStack.is(SpectrumItemTags.INDESTRUCTIBLE_BLACKLISTED)) {
 				return TriState.FALSE;
 			}
 			return TriState.DEFAULT;
 		});
 		
 		UseEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
-			ItemStack handStack = player.getStackInHand(hand);
+			ItemStack handStack = player.getItemInHand(hand);
 			if (handStack.getItem() instanceof PrioritizedEntityInteraction && entity instanceof LivingEntity livingEntity) {
-				return handStack.useOnEntity(player, livingEntity, hand);
+				return handStack.interactLivingEntity(player, livingEntity, hand);
 			}
-			return ActionResult.PASS;
+			return InteractionResult.PASS;
 		});
 		
 		UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
-			ItemStack handStack = player.getStackInHand(hand);
+			ItemStack handStack = player.getItemInHand(hand);
 			if (handStack.getItem() instanceof PrioritizedBlockInteraction) {
-				return handStack.useOnBlock(new ItemUsageContext(player, hand, hitResult));
+				return handStack.useOn(new UseOnContext(player, hand, hitResult));
 			}
-			return ActionResult.PASS;
+			return InteractionResult.PASS;
 		});
 		
 		ServerTickEvents.END_SERVER_TICK.register(server -> {
-			if (!server.getTickManager().shouldTick()) {
+			if (!server.tickRateManager().runsNormally()) {
 				return;
 			}
 
@@ -141,12 +148,12 @@ public class SpectrumEventListeners {
 				e.printStackTrace();
 			}
 			
-			PlayerManager playerManager = server.getPlayerManager();
-			for (ServerPlayerEntity player : playerManager.getPlayerList()) {
-				World world = player.getWorld();
-				if (!player.isCreative() && !player.isSpectator() && world.getRegistryKey() == SpectrumDimensions.DIMENSION_KEY && player.getY() > world.getTopY()) {
-					player.damage(player.getDamageSources().outOfWorld(), 10.0F);
-					if (player.isDead()) {
+			PlayerList playerManager = server.getPlayerList();
+			for (ServerPlayer player : playerManager.getPlayers()) {
+				Level world = player.level();
+				if (!player.isCreative() && !player.isSpectator() && world.dimension() == SpectrumDimensions.DIMENSION_KEY && player.getY() > world.getMaxBuildHeight()) {
+					player.hurt(player.damageSources().fellOutOfWorld(), 10.0F);
+					if (player.isDeadOrDying()) {
 						Support.grantAdvancementCriterion(player, "lategame/get_killed_while_out_of_deeper_down_bounds", "get_rekt");
 					}
 				}
@@ -154,7 +161,7 @@ public class SpectrumEventListeners {
 		});
 		
 		ServerTickEvents.START_WORLD_TICK.register(world -> {
-			if (!world.getTickManager().shouldTick()) {
+			if (!world.tickRateManager().runsNormally()) {
 				return;
 			}
 
@@ -162,10 +169,10 @@ public class SpectrumEventListeners {
 			// to have them run in tickSpawners()
 			// but getting them in there would require some ugly mixins
 			
-			if (world.getTime() % 100 == 0) {
+			if (world.getGameTime() % 100 == 0) {
 				if (TimeHelper.getTimeOfDay(world).isNight()) { // 90 chances in a night
-					if (SpectrumCommon.CONFIG.ShootingStarWorlds.contains(world.getRegistryKey().getValue().toString())) {
-						ShootingStarSpawner.INSTANCE.spawn(world, true, true);
+					if (SpectrumCommon.CONFIG.ShootingStarWorlds.contains(world.dimension().location().toString())) {
+						ShootingStarSpawner.INSTANCE.tick(world, true, true);
 					}
 				}
 				
@@ -178,10 +185,10 @@ public class SpectrumEventListeners {
 		
 		ServerLifecycleEvents.SERVER_STARTED.register((server) -> {
 			SpectrumCommon.logInfo("Querying fluid luminance...");
-			for (Iterator<Block> it = Registries.BLOCK.stream().iterator(); it.hasNext(); ) {
+			for (Iterator<Block> it = BuiltInRegistries.BLOCK.stream().iterator(); it.hasNext(); ) {
 				Block block = it.next();
-				if (block instanceof FluidBlock fluidBlock) {
-					fluidLuminance.put(fluidBlock.fluid, fluidBlock.getDefaultState().getLuminance());
+				if (block instanceof LiquidBlock fluidBlock) {
+					fluidLuminance.put(fluidBlock.fluid, fluidBlock.defaultBlockState().getLightEmission());
 				}
 			}
 			
@@ -194,7 +201,7 @@ public class SpectrumEventListeners {
 			// If the player wears a Whispy Cirlcet and sleeps
 			// they get fully healed and all negative status effects removed
 			// When the sleep timer reached 100 the player is fully asleep
-			if (entity instanceof ServerPlayerEntity serverPlayerEntity
+			if (entity instanceof ServerPlayer serverPlayerEntity
 					&& serverPlayerEntity.getSleepTimer() == 100
 					&& SpectrumTrinketItem.hasEquipped(entity, SpectrumItems.WHISPY_CIRCLET)) {
 				
@@ -204,7 +211,7 @@ public class SpectrumEventListeners {
 		});
 		
 		ServerEntityCombatEvents.AFTER_KILLED_OTHER_ENTITY.register((world, entity, killedEntity) -> {
-			if (entity instanceof ServerPlayerEntity serverPlayerEntity && SpectrumTrinketItem.hasEquipped(serverPlayerEntity, SpectrumItems.JEOPARDANT)) {
+			if (entity instanceof ServerPlayer serverPlayerEntity && SpectrumTrinketItem.hasEquipped(serverPlayerEntity, SpectrumItems.JEOPARDANT)) {
 				SpectrumAdvancementCriteria.JEOPARDANT_KILL.trigger(serverPlayerEntity, killedEntity);
 			}
 		});
@@ -218,124 +225,124 @@ public class SpectrumEventListeners {
 		});
 		
 		ServerEntityEvents.EQUIPMENT_CHANGE.register((livingEntity, equipmentSlot, previousStack, currentStack) -> {
-			var oldInexorable = SpectrumEnchantmentHelper.getLevel(livingEntity.getWorld().getRegistryManager(), SpectrumEnchantments.INEXORABLE, previousStack);
-			var newInexorable = SpectrumEnchantmentHelper.getLevel(livingEntity.getWorld().getRegistryManager(), SpectrumEnchantments.INEXORABLE, currentStack);
+			var oldInexorable = SpectrumEnchantmentHelper.getLevel(livingEntity.level().registryAccess(), SpectrumEnchantments.INEXORABLE, previousStack);
+			var newInexorable = SpectrumEnchantmentHelper.getLevel(livingEntity.level().registryAccess(), SpectrumEnchantments.INEXORABLE, currentStack);
 			
 			var effectType = equipmentSlot == EquipmentSlot.CHEST ? SpectrumAttributeTags.INEXORABLE_ARMOR_EFFECTIVE : SpectrumAttributeTags.INEXORABLE_HANDHELD_EFFECTIVE;
 			
 			//TODO make inexorable use enchantment effects or something
 			//TODO also move the enchantment cloaking logic from LivingEntityMixin into here
 			if (oldInexorable > 0 && newInexorable <= 0) {
-				livingEntity.getStatusEffects()
+				livingEntity.getActiveEffects()
 						.stream()
 						.filter(instance -> {
 							AtomicBoolean result = new AtomicBoolean(false);
-							instance.getEffectType().value().forEachAttributeModifier(instance.amplifier, (attribute, modifier) -> {
-								if (attribute.isIn(effectType))
+							instance.getEffect().value().createModifiers(instance.amplifier, (attribute, modifier) -> {
+								if (attribute.is(effectType))
 									result.set(true);
 							});
 							return result.get();
 						})
-						.forEach(instance -> instance.getEffectType().value().onApplied(livingEntity, instance.getAmplifier()));
+						.forEach(instance -> instance.getEffect().value().onEffectStarted(livingEntity, instance.getAmplifier()));
 			}
 			
 		});
 
 		EntitySleepEvents.ALLOW_BED.register((entity, sleepingPos, state, vanillaResult) -> {
-			if (entity instanceof PlayerEntity player && MiscPlayerDataComponent.get(player).isSleeping())
-				return ActionResult.SUCCESS;
-
-			return ActionResult.PASS;
+			if (entity instanceof Player player && MiscPlayerDataComponent.get(player).isSleeping())
+				return InteractionResult.SUCCESS;
+			
+			return InteractionResult.PASS;
 		});
 
 		EntitySleepEvents.MODIFY_SLEEPING_DIRECTION.register((entity, sleepingPos, sleepingDirection) -> {
-			if (entity instanceof PlayerEntity player && MiscPlayerDataComponent.get(player).isSleeping())
-				return player.getHorizontalFacing();
+			if (entity instanceof Player player && MiscPlayerDataComponent.get(player).isSleeping())
+				return player.getDirection();
 			return sleepingDirection;
 		});
 
 		EntitySleepEvents.ALLOW_NEARBY_MONSTERS.register((player, sleepingPos, vanillaResult) -> {
-			if (MiscPlayerDataComponent.get(player).isSleeping() || player.hasStatusEffect(SpectrumStatusEffects.SOMNOLENCE))
-				return ActionResult.SUCCESS;
-
-			return ActionResult.PASS;
+			if (MiscPlayerDataComponent.get(player).isSleeping() || player.hasEffect(SpectrumStatusEffects.SOMNOLENCE))
+				return InteractionResult.SUCCESS;
+			
+			return InteractionResult.PASS;
 		});
 
 		EntitySleepEvents.ALLOW_SLEEP_TIME.register((player, sleepingPos, vanillaResult) -> {
-			if (player.hasStatusEffect(SpectrumStatusEffects.SOMNOLENCE))
-				return ActionResult.SUCCESS;
-
-			return ActionResult.PASS;
+			if (player.hasEffect(SpectrumStatusEffects.SOMNOLENCE))
+				return InteractionResult.SUCCESS;
+			
+			return InteractionResult.PASS;
 		});
 		
 		CrossbowShootingCallback.register((world, shooter, crossbow, projectile) -> {
-			int snipingLevel = SpectrumEnchantmentHelper.getLevel(world.getRegistryManager(), SpectrumEnchantments.SNIPING, crossbow);
+			int snipingLevel = SpectrumEnchantmentHelper.getLevel(world.registryAccess(), SpectrumEnchantments.SNIPING, crossbow);
 			if (snipingLevel > 0) {
-				projectile.setVelocity(projectile.getVelocity().multiply(1.25F * snipingLevel)); // TODO: is this a sensible value?
+				projectile.setDeltaMovement(projectile.getDeltaMovement().scale(1.25F * snipingLevel)); // TODO: is this a sensible value?
 			}
 			
 			if (crossbow.getItem() instanceof GlassCrestCrossbowItem && GlassCrestCrossbowItem.isOvercharged(crossbow)) {
-				Vec3d particleVelocity = projectile.getVelocity().multiply(0.05);
+				Vec3 particleVelocity = projectile.getDeltaMovement().scale(0.05);
 				
 				if (GlassCrestCrossbowItem.getOvercharge(crossbow) > 0.99F) {
-					PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerWorld) world,
-							projectile.getPos(), ParticleTypes.SCRAPE, 5,
-							Vec3d.ZERO, particleVelocity);
-					PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerWorld) world,
-							projectile.getPos(), ParticleTypes.WAX_OFF, 5,
-							Vec3d.ZERO, particleVelocity);
-					PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerWorld) world,
-							projectile.getPos(), ParticleTypes.WAX_ON, 5,
-							Vec3d.ZERO, particleVelocity);
-					PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerWorld) world,
-							projectile.getPos(), ParticleTypes.GLOW, 5,
-							Vec3d.ZERO, particleVelocity);
+					PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerLevel) world,
+							projectile.position(), ParticleTypes.SCRAPE, 5,
+							Vec3.ZERO, particleVelocity);
+					PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerLevel) world,
+							projectile.position(), ParticleTypes.WAX_OFF, 5,
+							Vec3.ZERO, particleVelocity);
+					PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerLevel) world,
+							projectile.position(), ParticleTypes.WAX_ON, 5,
+							Vec3.ZERO, particleVelocity);
+					PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerLevel) world,
+							projectile.position(), ParticleTypes.GLOW, 5,
+							Vec3.ZERO, particleVelocity);
 					
-					if (shooter instanceof ServerPlayerEntity serverPlayerEntity) {
+					if (shooter instanceof ServerPlayer serverPlayerEntity) {
 						Support.grantAdvancementCriterion(serverPlayerEntity,
 								SpectrumCommon.locate("lategame/shoot_fully_overcharged_crossbow"),
 								"shot_fully_overcharged_crossbow");
 					}
-					if (projectile instanceof PersistentProjectileEntity persistentProjectileEntity) {
-						persistentProjectileEntity.setDamage(persistentProjectileEntity.getDamage() * 1.5);
+					if (projectile instanceof AbstractArrow persistentProjectileEntity) {
+						persistentProjectileEntity.setBaseDamage(persistentProjectileEntity.getBaseDamage() * 1.5);
 					}
 				}
 				
-				PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerWorld) world,
-						projectile.getPos(), ParticleTypes.FIREWORK, 10,
-						Vec3d.ZERO, particleVelocity);
+				PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerLevel) world,
+						projectile.position(), ParticleTypes.FIREWORK, 10,
+						Vec3.ZERO, particleVelocity);
 				
 				GlassCrestCrossbowItem.unOvercharge(crossbow);
 			}
 		});
 		
 		ServerLivingEntityEvents.ALLOW_DEATH.register((entity, damageSource, damageAmount) -> {
-			if (damageSource.isIn(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+			if (damageSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
 				return true;
 			}
 			Optional<TrinketComponent> optionalTrinketComponent = TrinketsApi.getTrinketComponent(entity);
 			if (optionalTrinketComponent.isPresent()) {
-				List<Pair<SlotReference, ItemStack>> totems = optionalTrinketComponent.get().getEquipped(SpectrumItems.TOTEM_PENDANT);
-				for (Pair<SlotReference, ItemStack> pair : totems) {
-					ItemStack totemStack = pair.getRight();
+				List<Tuple<SlotReference, ItemStack>> totems = optionalTrinketComponent.get().getEquipped(SpectrumItems.TOTEM_PENDANT);
+				for (Tuple<SlotReference, ItemStack> pair : totems) {
+					ItemStack totemStack = pair.getB();
 					
 					if (totemStack.getCount() > 0) {
 						// increase stat
-						if (entity instanceof ServerPlayerEntity serverPlayerEntity) {
-							serverPlayerEntity.incrementStat(Stats.USED.getOrCreateStat(Items.TOTEM_OF_UNDYING));
-							Criteria.USED_TOTEM.trigger(serverPlayerEntity, totemStack);
+						if (entity instanceof ServerPlayer serverPlayerEntity) {
+							serverPlayerEntity.awardStat(Stats.ITEM_USED.get(SpectrumItems.TOTEM_PENDANT));
+							CriteriaTriggers.USED_TOTEM.trigger(serverPlayerEntity, totemStack);
 						}
 						
 						// consume pendant
-						totemStack.decrement(1);
+						totemStack.shrink(1);
 						
 						// Heal and add effects
 						entity.setHealth(1.0F);
-						entity.clearStatusEffects();
-						entity.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 900, 1));
-						entity.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 100, 1));
-						entity.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 800, 0));
-						entity.getWorld().sendEntityStatus(entity, EntityStatuses.USE_TOTEM_OF_UNDYING);
+						entity.removeAllEffects();
+						entity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 900, 1));
+						entity.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 100, 1));
+						entity.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 800, 0));
+						entity.level().broadcastEntityEvent(entity, EntityEvent.TALISMAN_ACTIVATE);
 						
 						return false;
 					}
@@ -345,9 +352,9 @@ public class SpectrumEventListeners {
 		});
 		
 		ServerLivingEntityEvents.AFTER_DEATH.register((entity, damageSource) -> {
-			if (entity instanceof ServerPlayerEntity player) {
-				if (entity.getWorld().getLevelProperties().isHardcore() || HardcoreDeathComponent.isInHardcore(player)) {
-					HardcoreDeathComponent.addHardcoreDeath(player.getServerWorld(), player.getGameProfile());
+			if (entity instanceof ServerPlayer player) {
+				if (entity.level().getLevelData().isHardcore() || HardcoreDeathComponent.isInHardcore(player)) {
+					HardcoreDeathComponent.addHardcoreDeath(player.serverLevel(), player.getGameProfile());
 				}
 				evaluateAndDropPlayerHead(player, damageSource);
 			}
@@ -356,26 +363,26 @@ public class SpectrumEventListeners {
 		ServerLivingEntityEvents.ALLOW_DAMAGE.register((entity, source, amount) -> {
 			// If the player is damaged by lava and wears an ashen circlet:
 			// prevent damage and grant fire resistance
-			if (source.isOf(DamageTypes.LAVA)) {
+			if (source.is(DamageTypes.LAVA)) {
 				Optional<ItemStack> ashenCircletStack = SpectrumTrinketItem.getFirstEquipped(entity, SpectrumItems.ASHEN_CIRCLET);
 				if (ashenCircletStack.isPresent()) {
-					if (AshenCircletItem.getCooldownTicks(ashenCircletStack.get(), entity.getWorld()) == 0) {
+					if (AshenCircletItem.getCooldownTicks(ashenCircletStack.get(), entity.level()) == 0) {
 						AshenCircletItem.grantFireResistance(ashenCircletStack.get(), entity);
 						return false;
 					}
 				}
-			} else if (source.isIn(DamageTypeTags.IS_FIRE) && SpectrumTrinketItem.hasEquipped(entity, SpectrumItems.ASHEN_CIRCLET)) {
+			} else if (source.is(DamageTypeTags.IS_FIRE) && SpectrumTrinketItem.hasEquipped(entity, SpectrumItems.ASHEN_CIRCLET)) {
 				return false;
 			}
 			
 			return true;
 		});
 		
-		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
-			private final Identifier id = SpectrumCommon.locate("cache_clearer");
+		ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
+			private final ResourceLocation id = SpectrumCommon.locate("cache_clearer");
 			
 			@Override
-			public void reload(ResourceManager manager) {
+			public void onResourceManagerReload(ResourceManager manager) {
 				CompactingChestBlockEntity.clearCache();
 				SpectrumCommon.CACHED_ITEM_TAG_MAP.clear();
 				
@@ -386,36 +393,36 @@ public class SpectrumEventListeners {
 			}
 			
 			@Override
-			public Identifier getFabricId() {
+			public ResourceLocation getFabricId() {
 				return id;
 			}
 		});
 		
-		ResourceManagerHelper.get(ResourceType.CLIENT_RESOURCES).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
-			private final Identifier id = SpectrumCommon.locate("cache_clearer_client");
+		ResourceManagerHelper.get(PackType.CLIENT_RESOURCES).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
+			private final ResourceLocation id = SpectrumCommon.locate("cache_clearer_client");
 			
 			@Override
-			public void reload(ResourceManager manager) {
+			public void onResourceManagerReload(ResourceManager manager) {
 				UnlockToastManager.clear();
 			}
 			
 			@Override
-			public Identifier getFabricId() {
+			public ResourceLocation getFabricId() {
 				return id;
 			}
 		});
 	}
 	
-	private static void evaluateAndDropPlayerHead(ServerPlayerEntity player, DamageSource source) {
+	private static void evaluateAndDropPlayerHead(ServerPlayer player, DamageSource source) {
 		if (!player.isSpectator()) {
 			// TODO: Can we evaluate a SpectrumLootPoolModifiers.treasureHunter() here instead?
 			// code reuse is always nice
-			ServerWorld serverWorld = player.getServerWorld();
+			ServerLevel serverWorld = player.serverLevel();
 			
-			boolean shouldDropHead = source.isIn(SpectrumDamageTypeTags.ALWAYS_DROPS_MOB_HEAD);
-			if (!shouldDropHead && source.getAttacker() instanceof LivingEntity livingAttacker) {
+			boolean shouldDropHead = source.is(SpectrumDamageTypeTags.ALWAYS_DROPS_MOB_HEAD);
+			if (!shouldDropHead && source.getEntity() instanceof LivingEntity livingAttacker) {
 				int damageSourceTreasureHunt = SpectrumEnchantmentHelper.getEquipmentLevel(
-						serverWorld.getRegistryManager(),
+						serverWorld.registryAccess(),
 						SpectrumEnchantments.TREASURE_HUNTER,
 						livingAttacker);
 				
@@ -424,10 +431,10 @@ public class SpectrumEventListeners {
 			
 			if (shouldDropHead) {
 				ItemStack headItemStack = new ItemStack(Items.PLAYER_HEAD);
-				headItemStack.set(DataComponentTypes.PROFILE, new ProfileComponent(player.getGameProfile()));
+				headItemStack.set(DataComponents.PROFILE, new ResolvableProfile(player.getGameProfile()));
 				
 				ItemEntity headEntity = new ItemEntity(serverWorld, player.getX(), player.getY(), player.getZ(), headItemStack);
-				serverWorld.spawnEntity(headEntity);
+				serverWorld.addFreshEntity(headEntity);
 			}
 		}
 	}

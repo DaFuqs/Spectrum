@@ -4,28 +4,28 @@ import com.mojang.serialization.MapCodec;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.explosion.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.particle.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
-import net.minecraft.state.*;
-import net.minecraft.state.property.*;
+import net.minecraft.core.*;
+import net.minecraft.core.particles.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
 import net.minecraft.util.*;
-import net.minecraft.util.hit.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
-import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.phys.*;
+import net.minecraft.world.phys.shapes.*;
 import org.jetbrains.annotations.*;
 
 public class ThreatConfluxBlock extends PlacedItemBlock implements FluidLogging.SpectrumFluidLoggable {
-
-	public static final MapCodec<ThreatConfluxBlock> CODEC = createCodec(ThreatConfluxBlock::new);
-
-	public enum ArmedState implements StringIdentifiable {
+	
+	public static final MapCodec<ThreatConfluxBlock> CODEC = simpleCodec(ThreatConfluxBlock::new);
+	
+	public enum ArmedState implements StringRepresentable {
 		NOT_ARMED("not_armed", false),
 		ARMED("armed", true),
 		FUSED("fused", true);
@@ -39,7 +39,7 @@ public class ThreatConfluxBlock extends PlacedItemBlock implements FluidLogging.
 		}
 		
 		@Override
-		public String asString() {
+		public String getSerializedName() {
 			return this.name;
 		}
 		
@@ -51,107 +51,107 @@ public class ThreatConfluxBlock extends PlacedItemBlock implements FluidLogging.
 	private static final int TICKS_TO_ARM = 50;
 	private static final int TICKS_TO_DETONATE = 20;
 	
-	public static final VoxelShape UNARMED_SHAPE = Block.createCuboidShape(0, 0, 0, 16, 3, 16);
-	public static final VoxelShape ARMED_SHAPE = Block.createCuboidShape(0, 0, 0, 16, 0.125, 16);
+	public static final VoxelShape UNARMED_SHAPE = Block.box(0, 0, 0, 16, 3, 16);
+	public static final VoxelShape ARMED_SHAPE = Block.box(0, 0, 0, 16, 0.125, 16);
 	
-	public static final EnumProperty<ArmedState> ARMED = EnumProperty.of("armed", ArmedState.class);
+	public static final EnumProperty<ArmedState> ARMED = EnumProperty.create("armed", ArmedState.class);
 	public static final EnumProperty<FluidLogging.State> LOGGED = FluidLogging.ANY_INCLUDING_NONE;
 	
-	public ThreatConfluxBlock(Settings settings) {
-		super(settings);
-		setDefaultState(getDefaultState().with(ARMED, ArmedState.NOT_ARMED).with(LOGGED, FluidLogging.State.NOT_LOGGED));
+	public ThreatConfluxBlock(BlockBehaviour.Properties properties) {
+		super(properties);
+		registerDefaultState(this.stateDefinition.any().setValue(ARMED, ArmedState.NOT_ARMED).setValue(LOGGED, FluidLogging.State.NOT_LOGGED));
 	}
 
 	@Override
-	protected MapCodec<? extends BlockWithEntity> getCodec() {
+	public MapCodec<? extends ThreatConfluxBlock> codec() {
 		return CODEC;
-	}
-
-	@Override
-	public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-		if (!world.isClient && state.get(ARMED).explodesWhenBroken()) {
-			explode((ServerWorld) world, pos);
-		}
-		return super.onBreak(world, pos, state, player);
 	}
 	
 	@Override
-	public ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-		if (state.get(ARMED).explodesWhenBroken() && stack.isOf(SpectrumItems.MIDNIGHT_CHIP)) {
-			world.setBlockState(pos, state.with(ARMED, ArmedState.NOT_ARMED));
-			world.playSound(null, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, SpectrumSoundEvents.BLOCK_THREAT_CONFLUX_DISARM, SoundCategory.BLOCKS, 1.0F, 1.0F);
+	public BlockState playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
+		if (!world.isClientSide() && state.getValue(ARMED).explodesWhenBroken()) {
+			explode((ServerLevel) world, pos);
+		}
+		return super.playerWillDestroy(world, pos, state, player);
+	}
+	
+	@Override
+	protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+		if (state.getValue(ARMED).explodesWhenBroken() && stack.is(SpectrumItems.MIDNIGHT_CHIP)) {
+			world.setBlockAndUpdate(pos, state.setValue(ARMED, ArmedState.NOT_ARMED));
+			world.playSound(null, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, SpectrumSoundEvents.BLOCK_THREAT_CONFLUX_DISARM, SoundSource.BLOCKS, 1.0F, 1.0F);
 			
-			if (!world.isClient) {
-				ServerWorld serverWorld = ((ServerWorld) world);
+			if (!world.isClientSide()) {
+				ServerLevel serverWorld = ((ServerLevel) world);
 				for (int i = 0; i < 5; ++i) {
-					serverWorld.spawnParticles(ParticleTypes.SMOKE,
+					serverWorld.sendParticles(ParticleTypes.SMOKE,
 							pos.getX() + serverWorld.random.nextDouble(), pos.getY() + serverWorld.random.nextDouble(), pos.getZ() + serverWorld.random.nextDouble(),
 							5, 0.0, 0.0, 0.0, 0.05);
 				}
 			}
 			
 			if (!player.isCreative()) {
-				stack.decrement(1);
+				stack.shrink(1);
 			}
 			
-			return ItemActionResult.success(world.isClient());
+			return ItemInteractionResult.sidedSuccess(world.isClientSide());
 		}
 		
-		return super.onUseWithItem(stack, state, world, pos, player, hand, hit);
+		return super.useItemOn(stack, state, world, pos, player, hand, hit);
 	}
 	
 	@Override
-	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-		super.onPlaced(world, pos, state, placer, itemStack);
+	public void setPlacedBy(@NotNull Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+		super.setPlacedBy(world, pos, state, placer, itemStack);
 		
-		if (!world.isClient) {
-			world.scheduleBlockTick(pos, this, TICKS_TO_ARM);
+		if (!world.isClientSide()) {
+			world.scheduleTick(pos, this, TICKS_TO_ARM);
 		}
 	}
 	
 	@Override
-	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-		if (state.get(ARMED) == ArmedState.ARMED) {
-			world.playSound(null, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, SpectrumSoundEvents.BLOCK_THREAT_CONFLUX_PRIME, SoundCategory.BLOCKS, 1, 2F);
-			world.setBlockState(pos, state.with(ARMED, ArmedState.FUSED));
-			world.scheduleBlockTick(pos, this, TICKS_TO_DETONATE);
+	public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
+		if (state.getValue(ARMED) == ArmedState.ARMED) {
+			world.playSound(null, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, SpectrumSoundEvents.BLOCK_THREAT_CONFLUX_PRIME, SoundSource.BLOCKS, 1, 2F);
+			world.setBlockAndUpdate(pos, state.setValue(ARMED, ArmedState.FUSED));
+			world.scheduleTick(pos, this, TICKS_TO_DETONATE);
 		}
 		
-		state.get(LOGGED).onEntityCollision(state, world, pos, entity);
+		state.getValue(LOGGED).onEntityCollision(state, world, pos, entity);
 		
-		super.onEntityCollision(state, world, pos, entity);
+		super.entityInside(state, world, pos, entity);
 	}
 	
 	@Override
-	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		return state.get(ARMED).explodesWhenBroken() ? ARMED_SHAPE : UNARMED_SHAPE;
+	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+		return state.getValue(ARMED).explodesWhenBroken() ? ARMED_SHAPE : UNARMED_SHAPE;
 	}
 	
 	@Override
-	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		super.scheduledTick(state, world, pos, random);
+	public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+		super.tick(state, world, pos, random);
 		
-		ArmedState s = state.get(ARMED);
+		ArmedState s = state.getValue(ARMED);
 		if (s == ArmedState.NOT_ARMED) {
-			world.setBlockState(pos, state.with(ARMED, ArmedState.ARMED));
-			world.playSound(null, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, SpectrumSoundEvents.BLOCK_THREAT_CONFLUX_ARM, SoundCategory.BLOCKS, 2F, 0.1F + world.getRandom().nextFloat() * 0.3F);
+			world.setBlockAndUpdate(pos, state.setValue(ARMED, ArmedState.ARMED));
+			world.playSound(null, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, SpectrumSoundEvents.BLOCK_THREAT_CONFLUX_ARM, SoundSource.BLOCKS, 2F, 0.1F + world.getRandom().nextFloat() * 0.3F);
 		} else if (s == ArmedState.FUSED) {
 			explode(world, pos);
 		}
 	}
 	
 	@Override
-	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-		super.appendProperties(builder);
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
 		builder.add(ARMED, LOGGED);
 	}
 	
-	public void explode(@NotNull ServerWorld world, BlockPos pos) {
+	public void explode(@NotNull ServerLevel world, BlockPos pos) {
 		if (!(world.getBlockEntity(pos) instanceof PlacedItemBlockEntity blockEntity)) {
 			return;
 		}
 		ItemStack stack = blockEntity.getStack();
-		PlayerEntity owner = blockEntity.getOwnerIfOnline();
+		Player owner = blockEntity.getOwnerIfOnline();
 		
 		world.removeBlock(pos, false);
 		

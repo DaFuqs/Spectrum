@@ -5,29 +5,29 @@ import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.event.*;
+import net.minecraft.world.level.gameevent.*;
+import net.minecraft.world.phys.*;
 
 public class ColoredTransmission extends SimpleTransmission {
 	
 	public static final Codec<ColoredTransmission> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
-			Vec3d.CODEC.fieldOf("origin").forGetter(c -> c.origin),
+			Vec3.CODEC.fieldOf("origin").forGetter(c -> c.origin),
 			PositionSource.CODEC.fieldOf("destination").forGetter(c -> c.destination),
 			Codec.INT.fieldOf("arrival_in_ticks").forGetter(c -> c.arrivalInTicks),
 			Codec.INT.fieldOf("color").forGetter(c -> c.color)
 	).apply(instance, ColoredTransmission::new));
 	
-	public static final PacketCodec<RegistryByteBuf, ColoredTransmission> PACKET_CODEC = PacketCodec.tuple(
+	public static final StreamCodec<RegistryFriendlyByteBuf, ColoredTransmission> PACKET_CODEC = StreamCodec.composite(
 			PacketCodecHelper.VEC3D, c -> c.origin,
-			PositionSource.PACKET_CODEC, c -> c.destination,
-			PacketCodecs.INTEGER, c -> c.arrivalInTicks,
-			PacketCodecs.INTEGER, c -> c.color,
+			PositionSource.STREAM_CODEC, c -> c.destination,
+			ByteBufCodecs.INT, c -> c.arrivalInTicks,
+			ByteBufCodecs.INT, c -> c.color,
 			ColoredTransmission::new
 	);
 	
 	protected final int color;
 	
-	public ColoredTransmission(Vec3d origin, PositionSource destination, int arrivalInTicks, int color) {
+	public ColoredTransmission(Vec3 origin, PositionSource destination, int arrivalInTicks, int color) {
 		super(origin, destination, arrivalInTicks);
 		this.color = color;
 	}

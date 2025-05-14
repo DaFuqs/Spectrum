@@ -3,8 +3,8 @@ package de.dafuqs.spectrum.blocks.mob_head.client.models;
 
 import de.dafuqs.spectrum.blocks.mob_head.client.*;
 import net.fabricmc.api.*;
-import net.minecraft.client.model.*;
-import net.minecraft.client.render.entity.model.*;
+import net.minecraft.client.model.geom.*;
+import net.minecraft.client.model.geom.builders.*;
 
 @Environment(EnvType.CLIENT)
 public class ChickenHeadModel extends SpectrumSkullModel {
@@ -12,29 +12,29 @@ public class ChickenHeadModel extends SpectrumSkullModel {
     public ChickenHeadModel(ModelPart root) {
         super(root);
     }
-
-    public static TexturedModelData getTexturedModelData() {
-        ModelData modelData = new ModelData();
-        ModelPartData modelPartData = modelData.getRoot();
-    
-        ModelPartData head = modelPartData.addChild(
-                EntityModelPartNames.HEAD,
-                ModelPartBuilder.create().uv(0, 0).cuboid(-2.0F, -6.0F, -1.5F, 4.0F, 6.0F, 3.0F),
-                ModelTransform.NONE
+	
+	public static LayerDefinition getTexturedModelData() {
+		MeshDefinition modelData = new MeshDefinition();
+		PartDefinition modelPartData = modelData.getRoot();
+		
+		PartDefinition head = modelPartData.addOrReplaceChild(
+				PartNames.HEAD,
+				CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, -6.0F, -1.5F, 4.0F, 6.0F, 3.0F),
+				PartPose.ZERO
         );
-        
-        head.addChild(
-                EntityModelPartNames.BEAK,
-                ModelPartBuilder.create().uv(14, 0).cuboid(-2.0F, -4.0F, -3.5F, 4.0F, 2.0F, 2.0F),
-                ModelTransform.NONE
+		
+		head.addOrReplaceChild(
+				PartNames.BEAK,
+				CubeListBuilder.create().texOffs(14, 0).addBox(-2.0F, -4.0F, -3.5F, 4.0F, 2.0F, 2.0F),
+				PartPose.ZERO
         );
-        head.addChild(
+		head.addOrReplaceChild(
                 "red_thing",
-                ModelPartBuilder.create().uv(14, 4).cuboid(-1.0F, -2.0F, -2.5F, 2.0F, 2.0F, 2.0F),
-                ModelTransform.NONE
+				CubeListBuilder.create().texOffs(14, 4).addBox(-1.0F, -2.0F, -2.5F, 2.0F, 2.0F, 2.0F),
+				PartPose.ZERO
         );
-
-        return TexturedModelData.of(modelData, 64, 32);
+		
+		return LayerDefinition.create(modelData, 64, 32);
     }
 
 }

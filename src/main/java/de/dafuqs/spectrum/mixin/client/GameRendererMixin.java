@@ -5,18 +5,19 @@ import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.deeper_down.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.*;
-import net.minecraft.client.render.*;
-import net.minecraft.entity.*;
+import net.minecraft.client.*;
+import net.minecraft.client.renderer.*;
+import net.minecraft.world.entity.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
 @Mixin(value = GameRenderer.class, priority = 9999)
 public abstract class GameRendererMixin {
-
-    @ModifyReturnValue(method = "getNightVisionStrength(Lnet/minecraft/entity/LivingEntity;F)F", at = @At("RETURN"))
+	
+	@ModifyReturnValue(method = "getNightVisionScale", at = @At("RETURN"))
     private static float spectrum$nerfNightVisionInDimension(float original, LivingEntity entity, float tickDelta) {
-		if (SpectrumDimensions.DIMENSION_KEY == entity.getWorld().getRegistryKey()) {
+		if (SpectrumDimensions.DIMENSION_KEY == entity.level().dimension()) {
 			original /= 6F;
 		}
 
@@ -27,12 +28,12 @@ public abstract class GameRendererMixin {
         return original;
     }
 	
-	@Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/MinecraftClient;getFramebuffer()Lnet/minecraft/client/gl/Framebuffer;", shift = At.Shift.BEFORE))
-	private void applyPostProcessShaders(RenderTickCounter tickCounter, boolean tick, CallbackInfo ci) {
+	@Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;getMainRenderTarget()Lcom/mojang/blaze3d/pipeline/RenderTarget;", shift = At.Shift.BEFORE))
+	private void applyPostProcessShaders(DeltaTracker tickCounter, boolean tick, CallbackInfo ci) {
 		RenderSystem.disableBlend();
 		RenderSystem.disableDepthTest();
 		RenderSystem.resetTextureMatrix();
-		SpectrumShaders.colorGradingPostProcess.ifPresent(pps -> pps.render(tickCounter.getLastFrameDuration()));
+		SpectrumShaders.colorGradingPostProcess.ifPresent(pps -> pps.process(tickCounter.getGameTimeDeltaTicks()));
 	}
 	
 	@Inject(method = "close", at = @At("TAIL"))
@@ -40,7 +41,7 @@ public abstract class GameRendererMixin {
 		SpectrumShaders.clearDimensionShaders();
 	}
 	
-	@Inject(method = "onResized", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/WorldRenderer;onResized(II)V"))
+	@Inject(method = "resize", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/LevelRenderer;resize(II)V"))
 	private void resizeShaders(int width, int height, CallbackInfo ci) {
 		SpectrumShaders.resizeShaders(width, height);
 	}

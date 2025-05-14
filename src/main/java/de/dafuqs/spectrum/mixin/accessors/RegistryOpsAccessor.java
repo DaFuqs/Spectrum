@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.mixin.accessors;
 
-import net.minecraft.registry.*;
+import net.minecraft.resources.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.gen.*;
 
@@ -8,6 +8,6 @@ import org.spongepowered.asm.mixin.gen.*;
 public interface RegistryOpsAccessor {
 	
 	@Accessor
-	RegistryOps.RegistryInfoGetter getRegistryInfoGetter();
+	RegistryOps.RegistryInfoLookup getLookupProvider();
 	
 }

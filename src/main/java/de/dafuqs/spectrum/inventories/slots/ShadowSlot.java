@@ -1,14 +1,14 @@
 package de.dafuqs.spectrum.inventories.slots;
 
 import de.dafuqs.spectrum.api.gui.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.inventory.*;
-import net.minecraft.item.*;
-import net.minecraft.util.*;
+import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.item.*;
 
 public class ShadowSlot extends ReadOnlySlot implements SlotWithOnClickAction {
 	
-	public ShadowSlot(Inventory inventory, int index, int x, int y) {
+	public ShadowSlot(Container inventory, int index, int x, int y) {
 		super(inventory, index, x, y);
 	}
 	
@@ -22,10 +22,10 @@ public class ShadowSlot extends ReadOnlySlot implements SlotWithOnClickAction {
 	 * @return whether to consume the click event or not, returning false will have the event processed by items, and if left unconsumed will be processed by the screen handler
 	 */
 	@Override
-	public boolean onClicked(ItemStack heldStack, ClickType type, PlayerEntity player) {
+	public boolean onClicked(ItemStack heldStack, ClickAction type, Player player) {
 		ItemStack newStack = heldStack.copy();
 		newStack.setCount(1);
-		this.setStack(newStack);
+		this.setByPlayer(newStack);
 		
 		return true;
 	}

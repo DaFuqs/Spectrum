@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.recipe.pedestal.dynamic;
 
-
+import com.mojang.datafixers.util.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.recipe.*;
@@ -8,11 +8,12 @@ import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.explosion.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.item.*;
-import net.minecraft.recipe.*;
-import net.minecraft.registry.*;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -20,25 +21,25 @@ import java.util.*;
 // this hurt to write
 public class ExplosionModificationRecipe extends ShapelessPedestalRecipe {
 	
-	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/modular_explosives");
+	public static final ResourceLocation UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/modular_explosives");
 	
 	public ExplosionModificationRecipe() {
 		super("", false, Optional.of(UNLOCK_IDENTIFIER), PedestalRecipeTier.BASIC, collectIngredients(), Map.of(), ItemStack.EMPTY, 0.0F, 40, false, true);
 	}
 	
 	private static List<IngredientStack> collectIngredients() {
-		List<ItemConvertible> providers = new ArrayList<>();
-		Registries.ITEM.stream().filter(item -> item instanceof ModularExplosionProvider).forEach(providers::add);
-		IngredientStack providerIngredient = IngredientStack.of(Ingredient.ofItems(providers.toArray(new ItemConvertible[]{})));
+		List<ItemLike> providers = new ArrayList<>();
+		BuiltInRegistries.ITEM.stream().filter(item -> item instanceof ModularExplosionProvider).forEach(providers::add);
+		IngredientStack providerIngredient = IngredientStack.of(Ingredient.of(providers.toArray(new ItemLike[]{})));
 		
 		Set<Item> modifiers = ExplosionModifierProviders.getProviders();
-		IngredientStack modifierIngredient = IngredientStack.of(Ingredient.ofItems(modifiers.toArray(new ItemConvertible[]{})));
+		IngredientStack modifierIngredient = IngredientStack.of(Ingredient.of(modifiers.toArray(new ItemLike[]{})));
 		
 		return List.of(providerIngredient, modifierIngredient);
 	}
 	
 	@Override
-	public boolean matches(PedestalRecipeInput inventory, World world) {
+	public boolean matches(PedestalRecipeInput inventory, Level world) {
 		ItemStack nonModStack = validateGridAndFindModularExplosiveStack(inventory);
 		if (!(nonModStack.getItem() instanceof ModularExplosionProvider modularExplosionProvider)) {
 			return false;
@@ -46,8 +47,8 @@ public class ExplosionModificationRecipe extends ShapelessPedestalRecipe {
 		
 		Pair<List<ExplosionArchetype>, List<ExplosionModifier>> pair = findArchetypeAndModifiers(inventory);
 		ModularExplosionDefinition currentSet = ModularExplosionDefinition.getFromStack(nonModStack);
-		List<ExplosionArchetype> archetypes = pair.getLeft();
-		List<ExplosionModifier> mods = pair.getRight();
+		List<ExplosionArchetype> archetypes = pair.getFirst();
+		List<ExplosionModifier> mods = pair.getSecond();
 		
 		// if there are no new modifiers to add present, treat it
 		// as a recipe to clear existing archetype and / or modifiers
@@ -90,12 +91,12 @@ public class ExplosionModificationRecipe extends ShapelessPedestalRecipe {
 	}
 	
 	@Override
-	public ItemStack craft(PedestalRecipeInput input, RegistryWrapper.WrapperLookup drm) {
+	public ItemStack assemble(PedestalRecipeInput input, HolderLookup.Provider drm) {
 		ItemStack output = validateGridAndFindModularExplosiveStack(input).copy();
 		
 		Pair<List<ExplosionArchetype>, List<ExplosionModifier>> pair = findArchetypeAndModifiers(input);
-		List<ExplosionArchetype> archetypes = pair.getLeft();
-		List<ExplosionModifier> mods = pair.getRight();
+		List<ExplosionArchetype> archetypes = pair.getFirst();
+		List<ExplosionModifier> mods = pair.getSecond();
 		
 		if (archetypes.isEmpty() && mods.isEmpty()) { // clearing existing modifiers
 			ModularExplosionDefinition.removeFromStack(output);
@@ -106,7 +107,7 @@ public class ExplosionModificationRecipe extends ShapelessPedestalRecipe {
 		
 		// adding new modifiers
 		if (!archetypes.isEmpty()) {
-			ExplosionArchetype newArchetype = calculateExplosionArchetype(set.getArchetype(), pair.getLeft());
+			ExplosionArchetype newArchetype = calculateExplosionArchetype(set.getArchetype(), pair.getFirst());
 			if (newArchetype != null) { // should never happen, but better safe than sorry
 				set.setArchetype(newArchetype);
 			}
@@ -121,11 +122,11 @@ public class ExplosionModificationRecipe extends ShapelessPedestalRecipe {
 	@Override
 	public void consumeIngredients(PedestalBlockEntity pedestal) {
 		for (int slot : CRAFTING_GRID_SLOTS) {
-			ItemStack slotStack = pedestal.getStack(slot);
+			ItemStack slotStack = pedestal.getItem(slot);
 			if (slotStack.getItem() instanceof ModularExplosionProvider) {
-				pedestal.setStack(slot, ItemStack.EMPTY);
+				pedestal.setItem(slot, ItemStack.EMPTY);
 			} else {
-				slotStack.decrement(1);
+				slotStack.shrink(1);
 			}
 		}
 	}
@@ -137,7 +138,7 @@ public class ExplosionModificationRecipe extends ShapelessPedestalRecipe {
 	public ItemStack validateGridAndFindModularExplosiveStack(PedestalRecipeInput recipeInput) {
 		ItemStack foundStack = ItemStack.EMPTY;
 		for (int slot : recipeInput.getCraftingGridSlots()) {
-			ItemStack stack = recipeInput.getStackInSlot(slot);
+			ItemStack stack = recipeInput.getItem(slot);
 			if (!stack.isEmpty()
 					&& stack.getItem() instanceof ModularExplosionProvider
 					&& ExplosionModifierProviders.getModifier(stack) == null
@@ -158,7 +159,7 @@ public class ExplosionModificationRecipe extends ShapelessPedestalRecipe {
 		List<ExplosionModifier> modifiers = new ArrayList<>();
 		List<ExplosionArchetype> archetypes = new ArrayList<>();
 		for (int slot : recipeInput.getCraftingGridSlots()) {
-			ItemStack stack = recipeInput.getStackInSlot(slot);
+			ItemStack stack = recipeInput.getItem(slot);
 			if (!stack.isEmpty()) {
 				ExplosionModifier modifier = ExplosionModifierProviders.getModifier(stack);
 				if (modifier != null) {

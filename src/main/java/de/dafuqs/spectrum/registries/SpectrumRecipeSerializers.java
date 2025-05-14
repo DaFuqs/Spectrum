@@ -21,8 +21,9 @@ import de.dafuqs.spectrum.recipe.spirit_instiller.dynamic.*;
 import de.dafuqs.spectrum.recipe.spirit_instiller.dynamic.spawner_manipulation.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.dynamic.*;
-import net.minecraft.recipe.*;
-import net.minecraft.registry.*;
+import net.minecraft.core.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.world.item.crafting.*;
 
 public class SpectrumRecipeSerializers {
 	
@@ -100,7 +101,7 @@ public class SpectrumRecipeSerializers {
 	
 	
 	static <S extends RecipeSerializer<T>, T extends Recipe<?>> S register(String id, S serializer) {
-		return REGISTRAR.defer(serializer, v -> Registry.register(Registries.RECIPE_SERIALIZER, SpectrumCommon.locate(id), v));
+		return REGISTRAR.defer(serializer, v -> Registry.register(BuiltInRegistries.RECIPE_SERIALIZER, SpectrumCommon.locate(id), v));
 	}
 	
 	public static void register() {

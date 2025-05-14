@@ -4,107 +4,107 @@ import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.*;
 import net.fabricmc.api.*;
+import net.minecraft.*;
 import net.minecraft.client.*;
-import net.minecraft.component.*;
-import net.minecraft.component.type.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.damage.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.*;
-import net.minecraft.registry.tag.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import net.minecraft.core.component.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
+import net.minecraft.tags.*;
 import net.minecraft.world.*;
-import net.minecraft.world.explosion.*;
+import net.minecraft.world.damagesource.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.item.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public class PipeBombItem extends Item implements DamageAwareItem, TickAwareItem {
 	
-	public PipeBombItem(Settings settings) {
+	public PipeBombItem(Properties settings) {
 		super(settings);
 	}
 	
 	@Override
-	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-		if (isPrimed(user.getStackInHand(hand))) {
+	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
+		if (isPrimed(user.getItemInHand(hand))) {
 			return super.use(world, user, hand);
 		}
-        
-        if (world.isClient) {
+		
+		if (world.isClientSide) {
 			startSoundInstance(user);
 		}
-		return ItemUsage.consumeHeldItem(world, user, hand);
+		return ItemUtils.startUsingInstantly(world, user, hand);
 	}
 	
 	@Environment(EnvType.CLIENT)
-	public void startSoundInstance(PlayerEntity user) {
-		MinecraftClient.getInstance().getSoundManager().play(new PipeBombChargingSoundInstance(user));
+	public void startSoundInstance(Player user) {
+		Minecraft.getInstance().getSoundManager().play(new PipeBombChargingSoundInstance(user));
 	}
 	
 	@Override
-	public int getMaxUseTime(ItemStack stack, LivingEntity user) {
+	public int getUseDuration(ItemStack stack, LivingEntity user) {
 		return 55;
 	}
 	
 	@Override
-	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-		prime(stack, world, user.getPos(), user);
+	public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity user) {
+		prime(stack, world, user.position(), user);
 		return stack;
 	}
 	
 	@Override
-	public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-		if (world instanceof ServerWorld serverWorld) {
+	public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
+		if (world instanceof ServerLevel serverWorld) {
 			if (isPrimeTimeElapsed(world, stack)) {
-				explode(stack, serverWorld, entity.getPos(), entity);
+				explode(stack, serverWorld, entity.position(), entity);
 			}
 		}
 	}
 	
 	@Override
 	public void onItemEntityTicked(ItemEntity itemEntity) {
-		var stack = itemEntity.getStack();
-		if (itemEntity.getWorld() instanceof ServerWorld world) {
+		var stack = itemEntity.getItem();
+		if (itemEntity.level() instanceof ServerLevel world) {
 			if (isPrimeTimeElapsed(world, stack))
-				explode(stack, world, itemEntity.getEyePos(), null);
+				explode(stack, world, itemEntity.getEyePosition(), null);
 		}
 	}
 	
 	@Override
 	public void onItemEntityDamaged(DamageSource source, float amount, ItemEntity itemEntity) {
-		if (itemEntity.getWorld() instanceof ServerWorld world) {
-			if (source.isIn(DamageTypeTags.IS_FIRE) || source.isIn(DamageTypeTags.IS_EXPLOSION))
-				explode(itemEntity.getStack(), world, itemEntity.getPos(), null);
+		if (itemEntity.level() instanceof ServerLevel world) {
+			if (source.is(DamageTypeTags.IS_FIRE) || source.is(DamageTypeTags.IS_EXPLOSION))
+				explode(itemEntity.getItem(), world, itemEntity.position(), null);
 		}
 	}
 	
-	private void explode(ItemStack stack, ServerWorld world, Vec3d pos, @Nullable Entity target) {
-		stack.decrement(1);
+	private void explode(ItemStack stack, ServerLevel world, Vec3 pos, @Nullable Entity target) {
+		stack.shrink(1);
 		Entity owner = tryGetOwner(stack, world);
 		
 		if (target != null)
-			target.damage(SpectrumDamageTypes.incandescence(world, owner instanceof LivingEntity living ? living : null), 200F);
-		world.createExplosion(null, SpectrumDamageTypes.incandescence(world), new ExplosionBehavior(), pos.getX(), pos.getY(), pos.getZ(), 7.5F, true, World.ExplosionSourceType.NONE);
+			target.hurt(SpectrumDamageTypes.incandescence(world, owner instanceof LivingEntity living ? living : null), 200F);
+		world.explode(null, SpectrumDamageTypes.incandescence(world), new ExplosionDamageCalculator(), pos.x(), pos.y(), pos.z(), 7.5F, true, Level.ExplosionInteraction.NONE);
 	}
 	
-	public Entity tryGetOwner(ItemStack stack, ServerWorld world) {
-		var profile = stack.get(DataComponentTypes.PROFILE);
+	public Entity tryGetOwner(ItemStack stack, ServerLevel world) {
+		var profile = stack.get(DataComponents.PROFILE);
 		if (profile == null || profile.id().isEmpty())
 			return null;
 		return world.getEntity(profile.id().get());
 	}
 	
-	public static void prime(ItemStack stack, World world, Vec3d pos, @Nullable Entity user) {
-		world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SpectrumSoundEvents.INCANDESCENT_ARM, SoundCategory.PLAYERS, 2F, 0.9F);
-		stack.set(SpectrumDataComponentTypes.TIMESTAMP, world.getTime());
-		if (user instanceof PlayerEntity player) {
-			stack.set(DataComponentTypes.PROFILE, new ProfileComponent(player.getGameProfile()));
+	public static void prime(ItemStack stack, Level world, Vec3 pos, @Nullable Entity user) {
+		world.playSound(null, pos.x(), pos.y(), pos.z(), SpectrumSoundEvents.INCANDESCENT_ARM, SoundSource.PLAYERS, 2F, 0.9F);
+		stack.set(SpectrumDataComponentTypes.TIMESTAMP, world.getGameTime());
+		if (user instanceof Player player) {
+			stack.set(DataComponents.PROFILE, new ResolvableProfile(player.getGameProfile()));
 		}
 	}
 	
@@ -112,32 +112,32 @@ public class PipeBombItem extends Item implements DamageAwareItem, TickAwareItem
 		return stack.get(SpectrumDataComponentTypes.TIMESTAMP) != null;
 	}
 	
-	public static boolean isPrimeTimeElapsed(World world, ItemStack stack) {
+	public static boolean isPrimeTimeElapsed(Level world, ItemStack stack) {
 		Optional<Long> timestamp = getPrimeTime(stack);
 		if (timestamp.isEmpty()) {
 			return false;
 		}
-		return world.getTime() - timestamp.get() >= 100;
+		return world.getGameTime() - timestamp.get() >= 100;
 	}
 	
 	private static Optional<Long> getPrimeTime(ItemStack stack) {
-		if (stack.contains(SpectrumDataComponentTypes.TIMESTAMP)) {
+		if (stack.has(SpectrumDataComponentTypes.TIMESTAMP)) {
 			return Optional.of(stack.get(SpectrumDataComponentTypes.TIMESTAMP));
 		}
 		return Optional.empty();
 	}
 	
 	@Override
-	public UseAction getUseAction(ItemStack stack) {
-		return UseAction.BOW;
+	public UseAnim getUseAnimation(ItemStack stack) {
+		return UseAnim.BOW;
 	}
 
 	@Override
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
-		tooltip.add(Text.translatable("item.spectrum.pipe_bomb.tooltip").formatted(Formatting.GRAY));
-		tooltip.add(Text.translatable("item.spectrum.pipe_bomb.tooltip2").formatted(Formatting.GRAY));
-		tooltip.add(Text.translatable("item.spectrum.pipe_bomb.tooltip3").formatted(Formatting.GRAY));
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
+		tooltip.add(Component.translatable("item.spectrum.pipe_bomb.tooltip").withStyle(ChatFormatting.GRAY));
+		tooltip.add(Component.translatable("item.spectrum.pipe_bomb.tooltip2").withStyle(ChatFormatting.GRAY));
+		tooltip.add(Component.translatable("item.spectrum.pipe_bomb.tooltip3").withStyle(ChatFormatting.GRAY));
 	}
 	
 }

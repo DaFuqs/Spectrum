@@ -3,12 +3,12 @@ package de.dafuqs.spectrum.compat.REI.plugins;
 import de.dafuqs.spectrum.compat.REI.*;
 import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import me.shedaniel.rei.api.common.category.*;
-import net.minecraft.recipe.*;
-import net.minecraft.util.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.item.crafting.*;
 
 public class GooConvertingDisplay extends FluidConvertingDisplay {
 	
-	public GooConvertingDisplay(RecipeEntry<GooConvertingRecipe> recipe) {
+	public GooConvertingDisplay(RecipeHolder<GooConvertingRecipe> recipe) {
 		super(recipe);
 	}
 	
@@ -18,7 +18,7 @@ public class GooConvertingDisplay extends FluidConvertingDisplay {
 	}
 	
 	@Override
-	public Identifier getUnlockIdentifier() {
+	public ResourceLocation getUnlockIdentifier() {
 		return GooConvertingRecipe.UNLOCK_IDENTIFIER;
 	}
 	

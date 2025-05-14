@@ -1,24 +1,33 @@
 package de.dafuqs.spectrum.explosion;
 
-import net.minecraft.text.*;
+import com.mojang.serialization.*;
+import de.dafuqs.spectrum.blocks.shooting_star.*;
+import de.dafuqs.spectrum.helpers.*;
+import io.netty.buffer.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.network.codec.*;
 import net.minecraft.util.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public enum ExplosionArchetype implements StringIdentifiable {
+public enum ExplosionArchetype implements StringRepresentable {
 	COSMETIC("cosmetic", false, false),
 	DESTROY_BLOCKS("destroy_blocks", true, false),
 	DAMAGE_ENTITIES("damage_entities", false, true),
 	ALL("all", true, true);
 	
-	private final Text name;
 	public final boolean affectsBlocks;
 	public final boolean affectsEntities;
+	private final Component name;
+	
+	public static Codec<ExplosionArchetype> CODEC = StringRepresentable.fromEnum(ExplosionArchetype::values);
+	public static final StreamCodec<ByteBuf, ExplosionArchetype> PACKET_CODEC = PacketCodecHelper.enumOf(ExplosionArchetype::values);
 	
 	ExplosionArchetype(String id, boolean affectsBlocks, boolean affectsEntities) {
 		this.affectsBlocks = affectsBlocks;
 		this.affectsEntities = affectsEntities;
-		this.name = Text.translatable("explosion_archetype.spectrum." + id);
+		this.name = Component.translatable("explosion_archetype.spectrum." + id);
 	}
 	
 	public static ExplosionArchetype tryParse(String name) {
@@ -36,12 +45,12 @@ public enum ExplosionArchetype implements StringIdentifiable {
 		return affectsEntities ? DAMAGE_ENTITIES : COSMETIC;
 	}
 	
-	public Text getName() {
+	public Component getName() {
 		return name;
 	}
 	
 	@Override
-	public String asString() {
+	public @NotNull String getSerializedName() {
 		return name().toLowerCase();
 	}
 	

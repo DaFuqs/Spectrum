@@ -5,7 +5,7 @@ import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.fabricmc.fabric.api.transfer.v1.storage.*;
 import net.fabricmc.fabric.api.transfer.v1.transaction.*;
-import net.minecraft.util.math.*;
+import net.minecraft.core.*;
 import org.jetbrains.annotations.*;
 import org.jgrapht.*;
 import org.jgrapht.alg.interfaces.*;
@@ -47,22 +47,22 @@ public class PastelTransmissionLogic {
 		}
 		
 		// cache hit?
-		Map<BlockPos, GraphPath<BlockPos, DefaultEdge>> e = this.pathCache.getOrDefault(source.getPos(), null);
+		Map<BlockPos, GraphPath<BlockPos, DefaultEdge>> e = this.pathCache.getOrDefault(source.getBlockPos(), null);
 		if (e != null) {
-			if (e.containsKey(destination.getPos())) {
-				return e.get(destination.getPos());
+			if (e.containsKey(destination.getBlockPos())) {
+				return e.get(destination.getBlockPos());
 			}
 		}
 		
 		// calculate and cache
-		ShortestPathAlgorithm.SingleSourcePaths<BlockPos, DefaultEdge> paths = this.dijkstra.getPaths(source.getPos());
-		GraphPath<BlockPos, DefaultEdge> path = paths.getPath(destination.getPos());
-		if (this.pathCache.containsKey(source.getPos())) {
-			this.pathCache.get(source.getPos()).put(destination.getPos(), path);
+		ShortestPathAlgorithm.SingleSourcePaths<BlockPos, DefaultEdge> paths = this.dijkstra.getPaths(source.getBlockPos());
+		GraphPath<BlockPos, DefaultEdge> path = paths.getPath(destination.getBlockPos());
+		if (this.pathCache.containsKey(source.getBlockPos())) {
+			this.pathCache.get(source.getBlockPos()).put(destination.getBlockPos(), path);
 		} else {
 			Map<BlockPos, GraphPath<BlockPos, DefaultEdge>> newMap = new HashMap<>();
-			newMap.put(destination.getPos(), path);
-			this.pathCache.put(source.getPos(), newMap);
+			newMap.put(destination.getBlockPos(), path);
+			this.pathCache.put(source.getBlockPos(), newMap);
 		}
 		
 		return path;

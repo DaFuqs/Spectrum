@@ -4,36 +4,36 @@ import com.mojang.serialization.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import io.netty.buffer.*;
-import net.minecraft.block.*;
-import net.minecraft.loot.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.registry.*;
+import net.minecraft.resources.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.random.Random;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.storage.loot.*;
 import org.jetbrains.annotations.*;
 import org.joml.*;
 
 public interface ShootingStar {
 	
-	enum Type implements StringIdentifiable {
+	enum Variant implements StringRepresentable {
 		GLISTERING("glistering", SpectrumLootTables.GLISTERING_SHOOTING_STAR),
 		FIERY("fiery", SpectrumLootTables.FIERY_SHOOTING_STAR),
 		COLORFUL("colorful", SpectrumLootTables.COLORFUL_SHOOTING_STAR),
 		PRISTINE("pristine", SpectrumLootTables.PRISTINE_SHOOTING_STAR),
 		GEMSTONE("gemstone", SpectrumLootTables.GEMSTONE_SHOOTING_STAR);
 		
-		public static Codec<Type> CODEC = StringIdentifiable.createCodec(Type::values);
-		public static final PacketCodec<ByteBuf, ShootingStar.Type> PACKET_CODEC = PacketCodecHelper.enumOf(Type::values);
+		public static Codec<Variant> CODEC = StringRepresentable.fromEnum(Variant::values);
+		public static final StreamCodec<ByteBuf, Variant> PACKET_CODEC = PacketCodecHelper.enumOf(Variant::values);
 		
 		private final String name;
-		private final RegistryKey<LootTable> lootTable;
+		private final ResourceKey<LootTable> lootTable;
 		
-		Type(String name, RegistryKey<LootTable> lootTable) {
+		Variant(String name, ResourceKey<LootTable> lootTable) {
 			this.name = name;
 			this.lootTable = lootTable;
 		}
 		
-		public static Type getWeightedRandomType(@NotNull Random random) {
+		public static Variant getWeightedRandomType(@NotNull RandomSource random) {
 			int r = random.nextInt(8);
 			if (r == 0) {
 				return FIERY;
@@ -48,8 +48,8 @@ public interface ShootingStar {
 			}
 		}
 		
-		public static Type getType(int type) {
-			Type[] types = values();
+		public static Variant getType(int type) {
+			Variant[] types = values();
 			if (type < 0 || type >= types.length) {
 				type = 0;
 			}
@@ -57,10 +57,10 @@ public interface ShootingStar {
 			return types[type];
 		}
 		
-		public static Type getType(String name) {
-			Type[] types = values();
+		public static Variant getType(String name) {
+			Variant[] types = values();
 			
-			for (Type type : types) {
+			for (Variant type : types) {
 				if (type.getName().equals(name)) {
 					return type;
 				}
@@ -70,11 +70,11 @@ public interface ShootingStar {
 		}
 		
 		@Contract("_ -> new")
-		public static @NotNull RegistryKey<LootTable> getLootTable(int index) {
+		public static @NotNull ResourceKey<LootTable> getLootTable(int index) {
 			return values()[index].getLootTable();
 		}
 		
-		public @NotNull RegistryKey<LootTable> getLootTable() {
+		public @NotNull ResourceKey<LootTable> getLootTable() {
 			return this.lootTable;
 		}
 		
@@ -102,7 +102,7 @@ public interface ShootingStar {
 			}
 		}
 		
-		public @NotNull Vector3f getRandomParticleColor(Random random) {
+		public @NotNull Vector3f getRandomParticleColor(RandomSource random) {
 			switch (this) {
 				case GLISTERING -> {
 					int r = random.nextInt(5);
@@ -155,7 +155,7 @@ public interface ShootingStar {
 		}
 		
 		@Override
-		public String asString() {
+		public String getSerializedName() {
 			return this.name;
 		}
 		

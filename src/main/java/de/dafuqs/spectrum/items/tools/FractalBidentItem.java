@@ -4,15 +4,14 @@ import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.render.*;
 import net.fabricmc.fabric.api.item.v1.*;
-import net.minecraft.enchantment.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.*;
-import net.minecraft.registry.entry.*;
-import net.minecraft.server.world.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.*;
+import net.minecraft.core.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -22,12 +21,12 @@ public class FractalBidentItem extends MalachiteBidentItem implements SlotBackgr
 	
 	public static final InkCost MIRROR_IMAGE_COST = new InkCost(InkColors.WHITE, 25);
 	
-	public FractalBidentItem(Item.Settings settings, double attackSpeed, double damage, float armorPierce, float protPierce) {
+	public FractalBidentItem(Item.Properties settings, double attackSpeed, double damage, float armorPierce, float protPierce) {
 		super(settings, attackSpeed, damage, armorPierce, protPierce);
 	}
 	
 	@Override
-	public boolean isThrownAsMirrorImage(ItemStack stack, ServerWorld world, PlayerEntity player) {
+	public boolean isThrownAsMirrorImage(ItemStack stack, ServerLevel world, Player player) {
 		return !isDisabled(stack) && InkPowered.tryDrainEnergy(player, MIRROR_IMAGE_COST);
 	}
 	
@@ -42,11 +41,11 @@ public class FractalBidentItem extends MalachiteBidentItem implements SlotBackgr
 	}
 
 	@Override
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
-		tooltip.add(Text.translatable("item.spectrum.fractal_glass_crest_bident.tooltip").formatted(Formatting.GRAY));
-		tooltip.add(Text.translatable("item.spectrum.fractal_glass_crest_bident.tooltip2").formatted(Formatting.GRAY));
-		tooltip.add(Text.translatable("item.spectrum.fractal_glass_crest_bident.tooltip3").formatted(Formatting.GRAY));
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
+		tooltip.add(Component.translatable("item.spectrum.fractal_glass_crest_bident.tooltip").withStyle(ChatFormatting.GRAY));
+		tooltip.add(Component.translatable("item.spectrum.fractal_glass_crest_bident.tooltip2").withStyle(ChatFormatting.GRAY));
+		tooltip.add(Component.translatable("item.spectrum.fractal_glass_crest_bident.tooltip3").withStyle(ChatFormatting.GRAY));
 		addInkPoweredTooltip(tooltip);
 	}
 	
@@ -56,7 +55,7 @@ public class FractalBidentItem extends MalachiteBidentItem implements SlotBackgr
 	}
 	
 	@Override
-	public SlotBackgroundEffectProvider.SlotEffect backgroundType(@Nullable PlayerEntity player, ItemStack stack) {
+	public SlotBackgroundEffectProvider.SlotEffect backgroundType(@Nullable Player player, ItemStack stack) {
 		var usable = InkPowered.hasAvailableInk(player, MIRROR_IMAGE_COST);
 		return usable ? SlotBackgroundEffectProvider.SlotEffect.BORDER_FADE : SlotBackgroundEffectProvider.SlotEffect.NONE;
 	}
@@ -67,13 +66,13 @@ public class FractalBidentItem extends MalachiteBidentItem implements SlotBackgr
 	}
 	
 	@Override
-	public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
+	public int getBackgroundColor(@Nullable Player player, ItemStack stack, float tickDelta) {
 		return InkColors.PURPLE_COLOR;
 	}
 	
 	@Override
-	public boolean canBeEnchantedWith(ItemStack stack, RegistryEntry<Enchantment> enchantment, EnchantingContext context) {
-		return super.canBeEnchantedWith(stack, enchantment, context) || enchantment.matchesKey(Enchantments.EFFICIENCY) || enchantment.matchesKey(Enchantments.POWER);
+	public boolean canBeEnchantedWith(ItemStack stack, Holder<Enchantment> enchantment, EnchantingContext context) {
+		return super.canBeEnchantedWith(stack, enchantment, context) || enchantment.is(Enchantments.EFFICIENCY) || enchantment.is(Enchantments.POWER);
 	}
 	
 }

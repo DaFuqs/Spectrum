@@ -6,23 +6,23 @@ import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.fabricmc.fabric.api.networking.v1.*;
 import net.minecraft.client.*;
-import net.minecraft.client.world.*;
+import net.minecraft.client.multiplayer.*;
+import net.minecraft.core.*;
+import net.minecraft.core.particles.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.network.packet.*;
-import net.minecraft.particle.*;
-import net.minecraft.server.network.*;
-import net.minecraft.server.world.*;
-import net.minecraft.util.math.*;
+import net.minecraft.network.protocol.common.custom.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
-public record PlayParticleWithExactVelocityPayload(Vec3d pos, ParticleEffect particle, int amount, Vec3d velocity) implements CustomPayload {
+public record PlayParticleWithExactVelocityPayload(Vec3 pos, ParticleOptions particle, int amount, Vec3 velocity) implements CustomPacketPayload {
 	
-	public static final Id<PlayParticleWithExactVelocityPayload> ID = SpectrumC2SPackets.makeId("play_particle_with_exact_velocity");
-	public static final PacketCodec<RegistryByteBuf, PlayParticleWithExactVelocityPayload> CODEC = PacketCodec.tuple(
+	public static final Type<PlayParticleWithExactVelocityPayload> ID = SpectrumC2SPackets.makeId("play_particle_with_exact_velocity");
+	public static final StreamCodec<RegistryFriendlyByteBuf, PlayParticleWithExactVelocityPayload> CODEC = StreamCodec.composite(
 			PacketCodecHelper.VEC3D, PlayParticleWithExactVelocityPayload::pos,
-			ParticleTypes.PACKET_CODEC, PlayParticleWithExactVelocityPayload::particle,
-			PacketCodecs.INTEGER, PlayParticleWithExactVelocityPayload::amount,
+			ParticleTypes.STREAM_CODEC, PlayParticleWithExactVelocityPayload::particle,
+			ByteBufCodecs.INT, PlayParticleWithExactVelocityPayload::amount,
 			PacketCodecHelper.VEC3D, PlayParticleWithExactVelocityPayload::velocity,
 			PlayParticleWithExactVelocityPayload::new
 	);
@@ -34,8 +34,8 @@ public record PlayParticleWithExactVelocityPayload(Vec3d pos, ParticleEffect par
 	 * @param position       the pos of the particles
 	 * @param particleEffect The particle effect to play
 	 */
-	public static void playParticles(ServerWorld world, BlockPos position, ParticleEffect particleEffect, int amount) {
-		playParticleWithExactVelocity(world, Vec3d.ofCenter(position), particleEffect, amount, Vec3d.ZERO);
+	public static void playParticles(ServerLevel world, BlockPos position, ParticleOptions particleEffect, int amount) {
+		playParticleWithExactVelocity(world, Vec3.atCenterOf(position), particleEffect, amount, Vec3.ZERO);
 	}
 	
 	/**
@@ -45,8 +45,8 @@ public record PlayParticleWithExactVelocityPayload(Vec3d pos, ParticleEffect par
 	 * @param position       the pos of the particles
 	 * @param particleEffect The particle effect to play
 	 */
-	public static void playParticleWithExactVelocity(ServerWorld world, @NotNull Vec3d position, @NotNull ParticleEffect particleEffect, int amount, @NotNull Vec3d velocity) {
-		for (ServerPlayerEntity player : PlayerLookup.tracking(world, BlockPos.ofFloored(position))) {
+	public static void playParticleWithExactVelocity(ServerLevel world, @NotNull Vec3 position, @NotNull ParticleOptions particleEffect, int amount, @NotNull Vec3 velocity) {
+		for (ServerPlayer player : PlayerLookup.tracking(world, BlockPos.containing(position))) {
 			ServerPlayNetworking.send(player, new PlayParticleWithExactVelocityPayload(position, particleEffect, amount, velocity));
 		}
 	}
@@ -54,16 +54,16 @@ public record PlayParticleWithExactVelocityPayload(Vec3d pos, ParticleEffect par
 	@SuppressWarnings("resource")
 	@Environment(EnvType.CLIENT)
 	public static void execute(PlayParticleWithExactVelocityPayload payload, ClientPlayNetworking.Context context) {
-		MinecraftClient client = context.client();
-		ClientWorld world = client.world;
+		Minecraft client = context.client();
+		ClientLevel world = client.level;
 		
 		for (int i = 0; i < payload.amount; i++) {
-			world.addParticle(payload.particle, payload.pos.getX(), payload.pos.getY(), payload.pos.getZ(), payload.velocity.getX(), payload.velocity.getY(), payload.velocity.getZ());
+			world.addParticle(payload.particle, payload.pos.x(), payload.pos.y(), payload.pos.z(), payload.velocity.x(), payload.velocity.y(), payload.velocity.z());
 		}
 	}
 	
 	@Override
-	public Id<? extends CustomPayload> getId() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 	

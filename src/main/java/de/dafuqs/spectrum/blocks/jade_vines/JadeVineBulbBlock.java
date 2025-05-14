@@ -1,111 +1,111 @@
 package de.dafuqs.spectrum.blocks.jade_vines;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.*;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.server.world.*;
-import net.minecraft.state.*;
-import net.minecraft.state.property.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
-import net.minecraft.util.shape.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.server.level.*;
+import net.minecraft.util.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.phys.shapes.*;
 import org.jetbrains.annotations.*;
 
 public class JadeVineBulbBlock extends Block implements JadeVine, NaturesStaffTriggered {
-
-	public static final MapCodec<JadeVineBulbBlock> CODEC = createCodec(JadeVineBulbBlock::new);
+	
+	public static final MapCodec<JadeVineBulbBlock> CODEC = simpleCodec(JadeVineBulbBlock::new);
 
 	public static final BooleanProperty DEAD = JadeVine.DEAD;
-
-	public JadeVineBulbBlock(Settings settings) {
+	
+	public JadeVineBulbBlock(Properties settings) {
 		super(settings);
-		this.setDefaultState((this.stateManager.getDefaultState()).with(DEAD, false));
+		this.registerDefaultState((this.stateDefinition.any()).setValue(DEAD, false));
 	}
 
 	@Override
-	public MapCodec<? extends JadeVineBulbBlock> getCodec() {
+	public MapCodec<? extends JadeVineBulbBlock> codec() {
 		return CODEC;
 	}
 	
 	@Override
-	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-		super.randomDisplayTick(state, world, pos, random);
-		if (!state.get(DEAD)) {
+	public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
+		super.animateTick(state, world, pos, random);
+		if (!state.getValue(DEAD)) {
 			JadeVine.spawnParticlesClient(world, pos);
 		}
 	}
 	
 	@Override
-	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-		if (!state.canPlaceAt(world, pos)) {
-			world.scheduleBlockTick(pos, this, 1);
+	public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+		if (!state.canSurvive(world, pos)) {
+			world.scheduleTick(pos, this, 1);
 		}
-		return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+		return super.updateShape(state, direction, neighborState, world, pos, neighborPos);
 	}
 	
 	@Override
-	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		if (!state.canPlaceAt(world, pos)) {
-			world.breakBlock(pos, true);
+	public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+		if (!state.canSurvive(world, pos)) {
+			world.destroyBlock(pos, true);
 		}
 	}
 	
 	@Override
-	public BlockRenderType getRenderType(BlockState state) {
-		return BlockRenderType.MODEL;
+	public RenderShape getRenderShape(BlockState state) {
+		return RenderShape.MODEL;
 	}
 	
 	@Override
-	public ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state) {
-		return SpectrumItems.GERMINATED_JADE_VINE_BULB.getDefaultStack();
+	public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state) {
+		return SpectrumItems.GERMINATED_JADE_VINE_BULB.getDefaultInstance();
 	}
 	
 	@Override
-	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		return BULB_SHAPE;
 	}
 	
 	@Override
-	public boolean canPlaceAt(@NotNull BlockState state, WorldView world, BlockPos pos) {
-		return world.getBlockState(pos.up()).getBlock() instanceof JadeVineRootsBlock;
+	public boolean canSurvive(@NotNull BlockState state, LevelReader world, BlockPos pos) {
+		return world.getBlockState(pos.above()).getBlock() instanceof JadeVineRootsBlock;
 	}
 	
 	@Override
-	protected void appendProperties(StateManager.@NotNull Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
 		builder.add(DEAD);
 	}
 	
 	@Override
-	public boolean setToAge(World world, BlockPos blockPos, int age) {
+	public boolean setToAge(Level world, BlockPos blockPos, int age) {
 		BlockState currentState = world.getBlockState(blockPos);
-		boolean dead = currentState.get(DEAD);
+		boolean dead = currentState.getValue(DEAD);
 		if (age == 0 && !dead) {
-			world.setBlockState(blockPos, currentState.with(DEAD, true));
+			world.setBlockAndUpdate(blockPos, currentState.setValue(DEAD, true));
 			return true;
 		} else if (age > 0 && dead) {
-			world.setBlockState(blockPos, currentState.with(DEAD, false));
+			world.setBlockAndUpdate(blockPos, currentState.setValue(DEAD, false));
 			return true;
 		}
 		return false;
 	}
 	
 	@Override
-	public boolean canUseNaturesStaff(World world, BlockPos pos, BlockState state) {
-		return state.get(DEAD);
+	public boolean canUseNaturesStaff(Level world, BlockPos pos, BlockState state) {
+		return state.getValue(DEAD);
 	}
 	
 	@Override
-	public boolean onNaturesStaffUse(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-		BlockPos rootsPos = pos.up();
+	public boolean onNaturesStaffUse(Level world, BlockPos pos, BlockState state, Player player) {
+		BlockPos rootsPos = pos.above();
 		BlockState rootsState = world.getBlockState(rootsPos);
 		if (rootsState.getBlock() instanceof JadeVineRootsBlock jadeVineRootsBlock) {
 			jadeVineRootsBlock.onNaturesStaffUse(world, rootsPos, rootsState, player);
 		}
-		JadeVine.spawnParticlesServer((ServerWorld) world, pos, 16);
+		JadeVine.spawnParticlesServer((ServerLevel) world, pos, 16);
 		return false;
 	}
 	

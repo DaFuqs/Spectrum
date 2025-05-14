@@ -7,28 +7,27 @@ import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.item.*;
+import net.minecraft.core.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.recipe.*;
-import net.minecraft.recipe.input.*;
-import net.minecraft.registry.*;
+import net.minecraft.resources.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.*;
 
 import java.util.*;
 
-public class CinderhearthRecipe extends GatedStackSpectrumRecipe<SingleStackRecipeInput> {
+public class CinderhearthRecipe extends GatedStackSpectrumRecipe<SingleRecipeInput> {
 	
-	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/cinderhearth");
+	public static final ResourceLocation UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/cinderhearth");
 	
 	protected final IngredientStack ingredient;
 	protected final int time;
 	protected final float experience;
-	protected final List<Pair<ItemStack, Float>> resultsWithChance;
+	protected final List<Tuple<ItemStack, Float>> resultsWithChance;
 	
-	public CinderhearthRecipe(String group, boolean secret, Optional<Identifier> requiredAdvancementIdentifier, IngredientStack ingredient, int time, float experience, List<Pair<ItemStack, Float>> resultsWithChance) {
+	public CinderhearthRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier, IngredientStack ingredient, int time, float experience, List<Tuple<ItemStack, Float>> resultsWithChance) {
 		super(group, secret, requiredAdvancementIdentifier);
 		
 		this.ingredient = ingredient;
@@ -40,28 +39,28 @@ public class CinderhearthRecipe extends GatedStackSpectrumRecipe<SingleStackReci
 	}
 	
 	@Override
-	public boolean matches(SingleStackRecipeInput input, World world) {
-		return ingredient.test(input.getStackInSlot(0));
+	public boolean matches(SingleRecipeInput input, Level world) {
+		return ingredient.test(input.getItem(0));
 	}
 	
 	@Override
 	@Deprecated
-	public ItemStack craft(SingleStackRecipeInput input, RegistryWrapper.WrapperLookup registryLookup) {
+	public ItemStack assemble(SingleRecipeInput input, HolderLookup.Provider registryLookup) {
 		return ItemStack.EMPTY;
 	}
 	
 	@Override
-	public boolean fits(int width, int height) {
+	public boolean canCraftInDimensions(int width, int height) {
 		return true;
 	}
 	
 	@Override
-	public ItemStack getResult(RegistryWrapper.WrapperLookup registryLookup) {
-		return resultsWithChance.getFirst().getLeft();
+	public ItemStack getResultItem(HolderLookup.Provider registryLookup) {
+		return resultsWithChance.getFirst().getA();
 	}
 	
 	@Override
-	public ItemStack createIcon() {
+	public ItemStack getToastSymbol() {
 		return new ItemStack(SpectrumBlocks.CINDERHEARTH);
 	}
 	
@@ -76,7 +75,7 @@ public class CinderhearthRecipe extends GatedStackSpectrumRecipe<SingleStackReci
 	}
 	
 	@Override
-	public Identifier getRecipeTypeUnlockIdentifier() {
+	public ResourceLocation getRecipeTypeUnlockIdentifier() {
 		return UNLOCK_IDENTIFIER;
 	}
 	
@@ -98,16 +97,16 @@ public class CinderhearthRecipe extends GatedStackSpectrumRecipe<SingleStackReci
 		return time;
 	}
 	
-	public List<ItemStack> getRolledOutputs(Random random, float yieldMod) {
+	public List<ItemStack> getRolledOutputs(RandomSource random, float yieldMod) {
 		List<ItemStack> output = new ArrayList<>();
-		for (Pair<ItemStack, Float> possibleOutput : resultsWithChance) {
-			float chance = possibleOutput.getRight();
+		for (Tuple<ItemStack, Float> possibleOutput : resultsWithChance) {
+			float chance = possibleOutput.getB();
 			if (chance >= 1.0 || random.nextFloat() < chance * yieldMod) {
-				ItemStack currentOutputStack = possibleOutput.getLeft();
+				ItemStack currentOutputStack = possibleOutput.getA();
 				if (yieldMod > 1) {
 					int totalCount = Support.getIntFromDecimalWithChance(currentOutputStack.getCount() * yieldMod, random);
 					while (totalCount > 0) { // if the rolled count exceeds the max stack size we need to split them (unstackable items, counts > 64, ...)
-						int count = Math.min(totalCount, currentOutputStack.getMaxCount());
+						int count = Math.min(totalCount, currentOutputStack.getMaxStackSize());
 						ItemStack outputStack = currentOutputStack.copy();
 						outputStack.setCount(count);
 						output.add(outputStack);
@@ -123,13 +122,13 @@ public class CinderhearthRecipe extends GatedStackSpectrumRecipe<SingleStackReci
 	
 	public List<ItemStack> getPossibleOutputs() {
 		List<ItemStack> outputs = new ArrayList<>();
-		for (Pair<ItemStack, Float> pair : resultsWithChance) {
-			outputs.add(pair.getLeft());
+		for (Tuple<ItemStack, Float> pair : resultsWithChance) {
+			outputs.add(pair.getA());
 		}
 		return outputs;
 	}
 	
-	public List<Pair<ItemStack, Float>> getResultsWithChance() {
+	public List<Tuple<ItemStack, Float>> getResultsWithChance() {
 		return resultsWithChance;
 	}
 	
@@ -138,12 +137,12 @@ public class CinderhearthRecipe extends GatedStackSpectrumRecipe<SingleStackReci
 		public static final MapCodec<CinderhearthRecipe> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
 				Codec.STRING.optionalFieldOf("group", "").forGetter(recipe -> recipe.group),
 				Codec.BOOL.optionalFieldOf("secret", false).forGetter(recipe -> recipe.secret),
-				Identifier.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancementIdentifier),
+				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancementIdentifier),
 				IngredientStack.Serializer.CODEC.fieldOf("ingredient").forGetter(recipe -> recipe.ingredient),
 				Codec.INT.fieldOf("time").forGetter(recipe -> recipe.time),
 				Codec.FLOAT.optionalFieldOf("experience", 0f).forGetter(recipe -> recipe.experience),
 				Codec.withAlternative(
-						ItemStack.CODEC.xmap(stack -> new Pair<>(stack, 1.0f), Pair::getLeft),
+						ItemStack.CODEC.xmap(stack -> new Tuple<>(stack, 1.0f), Tuple::getA),
 						CodecHelper.mapPair(
 								ItemStack.CODEC.fieldOf("result"),
 								Codec.FLOAT.optionalFieldOf("chance", 1.0f)
@@ -151,14 +150,14 @@ public class CinderhearthRecipe extends GatedStackSpectrumRecipe<SingleStackReci
 				).listOf().fieldOf("results").forGetter(recipe -> recipe.resultsWithChance)
 		).apply(i, CinderhearthRecipe::new));
 		
-		public static final PacketCodec<RegistryByteBuf, CinderhearthRecipe> PACKET_CODEC = PacketCodecHelper.tuple(
-				PacketCodecs.STRING, recipe -> recipe.group,
-				PacketCodecs.BOOL, recipe -> recipe.secret,
-				PacketCodecs.optional(Identifier.PACKET_CODEC), recipe -> recipe.requiredAdvancementIdentifier,
+		public static final StreamCodec<RegistryFriendlyByteBuf, CinderhearthRecipe> PACKET_CODEC = PacketCodecHelper.tuple(
+				ByteBufCodecs.STRING_UTF8, recipe -> recipe.group,
+				ByteBufCodecs.BOOL, recipe -> recipe.secret,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.requiredAdvancementIdentifier,
 				IngredientStack.Serializer.PACKET_CODEC, recipe -> recipe.ingredient,
-				PacketCodecs.VAR_INT, recipe -> recipe.time,
-				PacketCodecs.FLOAT, recipe -> recipe.experience,
-				PacketCodecHelper.pair(ItemStack.PACKET_CODEC, PacketCodecs.FLOAT).collect(PacketCodecs.toList()), recipe -> recipe.resultsWithChance,
+				ByteBufCodecs.VAR_INT, recipe -> recipe.time,
+				ByteBufCodecs.FLOAT, recipe -> recipe.experience,
+				PacketCodecHelper.pair(ItemStack.STREAM_CODEC, ByteBufCodecs.FLOAT).apply(ByteBufCodecs.list()), recipe -> recipe.resultsWithChance,
 				CinderhearthRecipe::new
 		);
 		
@@ -168,7 +167,7 @@ public class CinderhearthRecipe extends GatedStackSpectrumRecipe<SingleStackReci
 		}
 		
 		@Override
-		public PacketCodec<RegistryByteBuf, CinderhearthRecipe> packetCodec() {
+		public StreamCodec<RegistryFriendlyByteBuf, CinderhearthRecipe> streamCodec() {
 			return PACKET_CODEC;
 		}
 	}

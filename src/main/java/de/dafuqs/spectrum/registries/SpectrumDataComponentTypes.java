@@ -6,13 +6,14 @@ import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.explosion.*;
-import net.minecraft.component.*;
-import net.minecraft.component.type.*;
-import net.minecraft.entity.effect.*;
+import net.minecraft.core.*;
+import net.minecraft.core.component.*;
+import net.minecraft.core.registries.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.registry.*;
+import net.minecraft.resources.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.item.enchantment.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -23,46 +24,46 @@ public class SpectrumDataComponentTypes {
 	private static final DeferredRegistrar REGISTRAR = new DeferredRegistrar();
 	
 	// It seems like vanilla caches all components with collections (lists, maps, etc.), so we will too
-	public static final ComponentType<Unit> ACTIVATED = register("activated", builder -> builder.codec(Codec.unit(Unit.INSTANCE)).packetCodec(PacketCodec.unit(Unit.INSTANCE)));
-	public static final ComponentType<Integer> AOE = register("aoe", builder -> builder.codec(Codec.INT).packetCodec(PacketCodecs.VAR_INT));
-	public static final ComponentType<BeverageComponent> BEVERAGE = register("beverage", builder -> builder.codec(BeverageComponent.CODEC).packetCodec(BeverageComponent.PACKET_CODEC));
-	public static final ComponentType<BottomlessBundleItem.BottomlessStack> BOTTOMLESS_STACK = register("bottomless_stack", builder -> builder.codec(BottomlessBundleItem.BottomlessStack.CODEC).packetCodec(BottomlessBundleItem.BottomlessStack.PACKET_CODEC));
-	public static final ComponentType<Identifier> BOUND_ITEM = register("bound_item", builder -> builder.codec(Identifier.CODEC).packetCodec(Identifier.PACKET_CODEC));
-	public static final ComponentType<ItemEnchantmentsComponent> CANVAS_ENCHANTMENTS = register("canvas_enchantments", (builder) -> builder.codec(ItemEnchantmentsComponent.CODEC).packetCodec(ItemEnchantmentsComponent.PACKET_CODEC).cache());
-	public static final ComponentType<PairedFoodComponent> PAIRED_FOOD_COMPONENT = register("paired_food_component", builder -> builder.codec(PairedFoodComponent.CODEC).packetCodec(PairedFoodComponent.PACKET_CODEC));
-	public static final ComponentType<CustomPotionDataComponent> CUSTOM_POTION_DATA = register("custom_potion_data", builder -> builder.codec(CustomPotionDataComponent.CODEC).packetCodec(CustomPotionDataComponent.PACKET_CODEC));
-	public static final ComponentType<EnderSpliceComponent> ENDER_SPLICE = register("ender_splice", builder -> builder.codec(EnderSpliceComponent.CODEC).packetCodec(EnderSpliceComponent.PACKET_CODEC));
-	public static final ComponentType<ExtendedBundleComponent> EXTENDED_BUNDLE = register("extended_bundle", builder -> builder.codec(ExtendedBundleComponent.CODEC).packetCodec(ExtendedBundleComponent.PACKET_CODEC));
-	public static final ComponentType<Unit> HIDE_USAGE_TOOLTIP = register("hide_usage_tooltip", builder -> builder.codec(Codec.unit(Unit.INSTANCE)).packetCodec(PacketCodec.unit(Unit.INSTANCE)));
-	public static final ComponentType<InertiaComponent> INERTIA = register("inertia", builder -> builder.codec(InertiaComponent.CODEC).packetCodec(InertiaComponent.PACKET_CODEC));
-	public static final ComponentType<InfusedBeverageComponent> INFUSED_BEVERAGE = register("infused_beverage", builder -> builder.codec(InfusedBeverageComponent.CODEC).packetCodec(InfusedBeverageComponent.PACKET_CODEC));
-	public static final ComponentType<InkColor> INK_COLOR = register("ink_color", builder -> builder.codec(InkColor.CODEC).packetCodec(InkColor.PACKET_CODEC));
-	public static final ComponentType<InkPoweredComponent> INK_POWERED = register("ink_powered", builder -> builder.codec(InkPoweredComponent.CODEC).packetCodec(InkPoweredComponent.PACKET_CODEC).cache());
-	public static final ComponentType<InkStorageComponent> INK_STORAGE = register("ink_storage", builder -> builder.codec(InkStorageComponent.CODEC).packetCodec(InkStorageComponent.PACKET_CODEC).cache());
-	public static final ComponentType<Unit> IS_PREVIEW_ITEM = register("is_preview_item", builder -> builder.codec(Codec.unit(Unit.INSTANCE)).packetCodec(PacketCodec.unit(Unit.INSTANCE)));
-	public static final ComponentType<JadeWineComponent> JADE_WINE = register("jade_wine", builder -> builder.codec(JadeWineComponent.CODEC).packetCodec(JadeWineComponent.PACKET_CODEC));
-	public static final ComponentType<Long> LAST_COOLDOWN_START = register("last_cooldown_start", builder -> builder.codec(Codec.LONG).packetCodec(PacketCodecs.VAR_LONG));
-	public static final ComponentType<MemoryComponent> MEMORY = register("memory", builder -> builder.codec(MemoryComponent.CODEC).packetCodec(MemoryComponent.PACKET_CODEC).cache());
-	public static final ComponentType<ModularExplosionDefinition> MODULAR_EXPLOSION = register("modular_explosion", builder -> builder.codec(ModularExplosionDefinition.CODEC).packetCodec(ModularExplosionDefinition.PACKET_CODEC));
-	public static final ComponentType<StatusEffectInstance> CONCEALED_EFFECT = register("concealed_effect", builder -> builder.codec(StatusEffectInstance.CODEC).packetCodec(StatusEffectInstance.PACKET_CODEC));
-	public static final ComponentType<Float> OVERCHARGED = register("overcharged", builder -> builder.codec(Codec.FLOAT).packetCodec(PacketCodecs.FLOAT));
-	public static final ComponentType<PairedItemComponent> PAIRED_ITEM = register("paired_item", builder -> builder.codec(PairedItemComponent.CODEC).packetCodec(PairedItemComponent.PACKET_CODEC));
-	public static final ComponentType<Long> TIMESTAMP = register("timestamp", builder -> builder.codec(Codec.LONG).packetCodec(PacketCodecs.VAR_LONG));
-	public static final ComponentType<ShootingStarComponent> SHOOTING_STAR = register("shooting_star", builder -> builder.codec(ShootingStarComponent.CODEC).packetCodec(ShootingStarComponent.PACKET_CODEC));
-	public static final ComponentType<UUID> SLOT_RESERVER = register("slot_eserver", builder -> builder.codec(Uuids.CODEC).packetCodec(Uuids.PACKET_CODEC));
-	public static final ComponentType<Unit> SOCKETED = register("socketed", builder -> builder.codec(Codec.unit(Unit.INSTANCE)).packetCodec(PacketCodec.unit(Unit.INSTANCE)));
-	public static final ComponentType<Unit> STABLE = register("stable", builder -> builder.codec(Codec.unit(Unit.INSTANCE)).packetCodec(PacketCodec.unit(Unit.INSTANCE)));
-	public static final ComponentType<Identifier> STORED_BLOCK = register("stored_block", builder -> builder.codec(Identifier.CODEC).packetCodec(Identifier.PACKET_CODEC));
-	public static final ComponentType<Integer> STORED_EXPERIENCE = register("stored_experience", builder -> builder.codec(Codec.INT).packetCodec(PacketCodecs.VAR_INT));
-	public static final ComponentType<Identifier> STORED_RECIPE = register("stored_recipe", builder -> builder.codec(Identifier.CODEC).packetCodec(Identifier.PACKET_CODEC));
-	public static final ComponentType<GlobalPos> TARGETED_STRUCTURE = register("targeted_structure", builder -> builder.codec(GlobalPos.CODEC).packetCodec(GlobalPos.PACKET_CODEC));
-	public static final ComponentType<WrappedPresentComponent> WRAPPED_PRESENT = register("wrapped_present", builder -> builder.codec(WrappedPresentComponent.CODEC).packetCodec(WrappedPresentComponent.PACKET_CODEC).cache());
-	public static final ComponentType<WithMilkComponent> WITH_MILK = register("with_milk", builder -> builder.codec(WithMilkComponent.CODEC).packetCodec(WithMilkComponent.PACKET_CODEC));
-	public static final ComponentType<WorkstaffComponent> WORKSTAFF = register("workstaff", builder -> builder.codec(WorkstaffComponent.CODEC).packetCodec(WorkstaffComponent.PACKET_CODEC));
+	public static final DataComponentType<Unit> ACTIVATED = register("activated", builder -> builder.persistent(Codec.unit(Unit.INSTANCE)).networkSynchronized(StreamCodec.unit(Unit.INSTANCE)));
+	public static final DataComponentType<Integer> AOE = register("aoe", builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT));
+	public static final DataComponentType<BeverageComponent> BEVERAGE = register("beverage", builder -> builder.persistent(BeverageComponent.CODEC).networkSynchronized(BeverageComponent.PACKET_CODEC));
+	public static final DataComponentType<BottomlessBundleItem.BottomlessStack> BOTTOMLESS_STACK = register("bottomless_stack", builder -> builder.persistent(BottomlessBundleItem.BottomlessStack.CODEC).networkSynchronized(BottomlessBundleItem.BottomlessStack.PACKET_CODEC));
+	public static final DataComponentType<ResourceLocation> BOUND_ITEM = register("bound_item", builder -> builder.persistent(ResourceLocation.CODEC).networkSynchronized(ResourceLocation.STREAM_CODEC));
+	public static final DataComponentType<ItemEnchantments> CANVAS_ENCHANTMENTS = register("canvas_enchantments", (builder) -> builder.persistent(ItemEnchantments.CODEC).networkSynchronized(ItemEnchantments.STREAM_CODEC).cacheEncoding());
+	public static final DataComponentType<PairedFoodComponent> PAIRED_FOOD_COMPONENT = register("paired_food_component", builder -> builder.persistent(PairedFoodComponent.CODEC).networkSynchronized(PairedFoodComponent.PACKET_CODEC));
+	public static final DataComponentType<CustomPotionDataComponent> CUSTOM_POTION_DATA = register("custom_potion_data", builder -> builder.persistent(CustomPotionDataComponent.CODEC).networkSynchronized(CustomPotionDataComponent.PACKET_CODEC));
+	public static final DataComponentType<EnderSpliceComponent> ENDER_SPLICE = register("ender_splice", builder -> builder.persistent(EnderSpliceComponent.CODEC).networkSynchronized(EnderSpliceComponent.PACKET_CODEC));
+	public static final DataComponentType<ExtendedBundleComponent> EXTENDED_BUNDLE = register("extended_bundle", builder -> builder.persistent(ExtendedBundleComponent.CODEC).networkSynchronized(ExtendedBundleComponent.PACKET_CODEC));
+	public static final DataComponentType<Unit> HIDE_USAGE_TOOLTIP = register("hide_usage_tooltip", builder -> builder.persistent(Codec.unit(Unit.INSTANCE)).networkSynchronized(StreamCodec.unit(Unit.INSTANCE)));
+	public static final DataComponentType<InertiaComponent> INERTIA = register("inertia", builder -> builder.persistent(InertiaComponent.CODEC).networkSynchronized(InertiaComponent.PACKET_CODEC));
+	public static final DataComponentType<InfusedBeverageComponent> INFUSED_BEVERAGE = register("infused_beverage", builder -> builder.persistent(InfusedBeverageComponent.CODEC).networkSynchronized(InfusedBeverageComponent.PACKET_CODEC));
+	public static final DataComponentType<InkColor> INK_COLOR = register("ink_color", builder -> builder.persistent(InkColor.CODEC).networkSynchronized(InkColor.PACKET_CODEC));
+	public static final DataComponentType<InkPoweredComponent> INK_POWERED = register("ink_powered", builder -> builder.persistent(InkPoweredComponent.CODEC).networkSynchronized(InkPoweredComponent.PACKET_CODEC).cacheEncoding());
+	public static final DataComponentType<InkStorageComponent> INK_STORAGE = register("ink_storage", builder -> builder.persistent(InkStorageComponent.CODEC).networkSynchronized(InkStorageComponent.PACKET_CODEC).cacheEncoding());
+	public static final DataComponentType<Unit> IS_PREVIEW_ITEM = register("is_preview_item", builder -> builder.persistent(Codec.unit(Unit.INSTANCE)).networkSynchronized(StreamCodec.unit(Unit.INSTANCE)));
+	public static final DataComponentType<JadeWineComponent> JADE_WINE = register("jade_wine", builder -> builder.persistent(JadeWineComponent.CODEC).networkSynchronized(JadeWineComponent.PACKET_CODEC));
+	public static final DataComponentType<Long> LAST_COOLDOWN_START = register("last_cooldown_start", builder -> builder.persistent(Codec.LONG).networkSynchronized(ByteBufCodecs.VAR_LONG));
+	public static final DataComponentType<MemoryComponent> MEMORY = register("memory", builder -> builder.persistent(MemoryComponent.CODEC).networkSynchronized(MemoryComponent.PACKET_CODEC).cacheEncoding());
+	public static final DataComponentType<ModularExplosionDefinition> MODULAR_EXPLOSION = register("modular_explosion", builder -> builder.persistent(ModularExplosionDefinition.CODEC).networkSynchronized(ModularExplosionDefinition.PACKET_CODEC));
+	public static final DataComponentType<MobEffectInstance> CONCEALED_EFFECT = register("concealed_effect", builder -> builder.persistent(MobEffectInstance.CODEC).networkSynchronized(MobEffectInstance.STREAM_CODEC));
+	public static final DataComponentType<Float> OVERCHARGED = register("overcharged", builder -> builder.persistent(Codec.FLOAT).networkSynchronized(ByteBufCodecs.FLOAT));
+	public static final DataComponentType<PairedItemComponent> PAIRED_ITEM = register("paired_item", builder -> builder.persistent(PairedItemComponent.CODEC).networkSynchronized(PairedItemComponent.PACKET_CODEC));
+	public static final DataComponentType<Long> TIMESTAMP = register("timestamp", builder -> builder.persistent(Codec.LONG).networkSynchronized(ByteBufCodecs.VAR_LONG));
+	public static final DataComponentType<ShootingStarComponent> SHOOTING_STAR = register("shooting_star", builder -> builder.persistent(ShootingStarComponent.CODEC).networkSynchronized(ShootingStarComponent.PACKET_CODEC));
+	public static final DataComponentType<UUID> SLOT_RESERVER = register("slot_eserver", builder -> builder.persistent(UUIDUtil.AUTHLIB_CODEC).networkSynchronized(UUIDUtil.STREAM_CODEC));
+	public static final DataComponentType<Unit> SOCKETED = register("socketed", builder -> builder.persistent(Codec.unit(Unit.INSTANCE)).networkSynchronized(StreamCodec.unit(Unit.INSTANCE)));
+	public static final DataComponentType<Unit> STABLE = register("stable", builder -> builder.persistent(Codec.unit(Unit.INSTANCE)).networkSynchronized(StreamCodec.unit(Unit.INSTANCE)));
+	public static final DataComponentType<ResourceLocation> STORED_BLOCK = register("stored_block", builder -> builder.persistent(ResourceLocation.CODEC).networkSynchronized(ResourceLocation.STREAM_CODEC));
+	public static final DataComponentType<Integer> STORED_EXPERIENCE = register("stored_experience", builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT));
+	public static final DataComponentType<ResourceLocation> STORED_RECIPE = register("stored_recipe", builder -> builder.persistent(ResourceLocation.CODEC).networkSynchronized(ResourceLocation.STREAM_CODEC));
+	public static final DataComponentType<GlobalPos> TARGETED_STRUCTURE = register("targeted_structure", builder -> builder.persistent(GlobalPos.CODEC).networkSynchronized(GlobalPos.STREAM_CODEC));
+	public static final DataComponentType<WrappedPresentComponent> WRAPPED_PRESENT = register("wrapped_present", builder -> builder.persistent(WrappedPresentComponent.CODEC).networkSynchronized(WrappedPresentComponent.PACKET_CODEC).cacheEncoding());
+	public static final DataComponentType<WithMilkComponent> WITH_MILK = register("with_milk", builder -> builder.persistent(WithMilkComponent.CODEC).networkSynchronized(WithMilkComponent.PACKET_CODEC));
+	public static final DataComponentType<WorkstaffComponent> WORKSTAFF = register("workstaff", builder -> builder.persistent(WorkstaffComponent.CODEC).networkSynchronized(WorkstaffComponent.PACKET_CODEC));
 	
-	public static <T> ComponentType<T> register(String id, UnaryOperator<ComponentType.Builder<T>> builderOperator) {
-		return REGISTRAR.defer(builderOperator.apply(ComponentType.builder()).build(),
-				type -> Registry.register(Registries.DATA_COMPONENT_TYPE, SpectrumCommon.locate(id), type));
+	public static <T> DataComponentType<T> register(String id, UnaryOperator<DataComponentType.Builder<T>> builderOperator) {
+		return REGISTRAR.defer(builderOperator.apply(DataComponentType.builder()).build(),
+				type -> Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, SpectrumCommon.locate(id), type));
 	}
 	
 	public static void register() {

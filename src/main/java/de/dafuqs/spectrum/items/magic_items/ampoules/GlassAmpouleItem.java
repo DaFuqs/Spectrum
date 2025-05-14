@@ -1,47 +1,47 @@
 package de.dafuqs.spectrum.items.magic_items.ampoules;
 
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
 public abstract class GlassAmpouleItem extends Item {
-    
-    public GlassAmpouleItem(Settings settings) {
+	
+	public GlassAmpouleItem(Properties settings) {
         super(settings);
     }
     
     @Override
-	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-		ItemStack stack = user.getStackInHand(hand);
-		if (trigger(user.getWorld(), stack, user, null, user.getEyePos())) {
+	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
+		ItemStack stack = user.getItemInHand(hand);
+		if (trigger(user.level(), stack, user, null, user.getEyePosition())) {
 			if (!user.isCreative()) {
-				stack.decrement(1);
+				stack.shrink(1);
 			}
-			return TypedActionResult.success(stack);
+			return InteractionResultHolder.success(stack);
 		}
 		
-		return world.isClient() ? TypedActionResult.fail(stack) : TypedActionResult.pass(stack);
+		return world.isClientSide() ? InteractionResultHolder.fail(stack) : InteractionResultHolder.pass(stack);
     }
 	
 	@Override
-	public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-		World world = user.getWorld();
-		if (trigger(user.getWorld(), stack, user, entity, user.getEyePos())) {
-			if (!user.getWorld().isClient) {
+	public InteractionResult interactLivingEntity(ItemStack stack, Player user, LivingEntity entity, InteractionHand hand) {
+		Level world = user.level();
+		if (trigger(user.level(), stack, user, entity, user.getEyePosition())) {
+			if (!user.level().isClientSide) {
 				if (!(user.isCreative())) {
-					stack.decrement(1);
+					stack.shrink(1);
 				}
 			}
-			return ActionResult.success(world.isClient);
+			return InteractionResult.sidedSuccess(world.isClientSide);
 		}
 		
-		return world.isClient() ? ActionResult.FAIL : ActionResult.PASS;
+		return world.isClientSide() ? InteractionResult.FAIL : InteractionResult.PASS;
 	}
 	
-	public abstract boolean trigger(World world, ItemStack stack, LivingEntity attacker, @Nullable LivingEntity target, Vec3d position);
+	public abstract boolean trigger(Level world, ItemStack stack, LivingEntity attacker, @Nullable LivingEntity target, Vec3 position);
     
 }

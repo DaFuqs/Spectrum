@@ -1,13 +1,13 @@
 package de.dafuqs.spectrum.registries;
 
 import net.fabricmc.fabric.api.client.item.v1.*;
-import net.minecraft.block.*;
-import net.minecraft.component.*;
-import net.minecraft.component.type.*;
-import net.minecraft.item.*;
-import net.minecraft.registry.tag.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.*;
+import net.minecraft.core.component.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.tags.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.*;
+import net.minecraft.world.level.block.*;
 
 import java.util.*;
 
@@ -15,24 +15,24 @@ public class SpectrumTooltips {
 	
 	public static void register() {
 		ItemTooltipCallback.EVENT.register((stack, tooltipContext, tooltipType, lines) -> {
-			ComponentMap components = stack.getComponents();
+			DataComponentMap components = stack.getComponents();
 			if (!components.isEmpty()) {
-				if (stack.isOf(Blocks.SCULK_SHRIEKER.asItem())) {
+				if (stack.is(Blocks.SCULK_SHRIEKER.asItem())) {
 					addSculkShriekerTooltips(lines, components);
-				} else if (stack.isIn(ItemTags.SIGNS)) {
+				} else if (stack.is(ItemTags.SIGNS)) {
 					//addSignTooltips(lines, components);
-				} else if (stack.isOf(Items.SPAWNER)) {
+				} else if (stack.is(Items.SPAWNER)) {
 					//addSpawnerTooltips(lines, components);
 				}
 			}
 		});
 	}
 	
-	private static void addSculkShriekerTooltips(List<Text> lines, ComponentMap components) {
-		BlockStateComponent stateComponent = components.get(DataComponentTypes.BLOCK_STATE);
+	private static void addSculkShriekerTooltips(List<Component> lines, DataComponentMap components) {
+		BlockItemStateProperties stateComponent = components.get(DataComponents.BLOCK_STATE);
 		if (stateComponent != null && !stateComponent.isEmpty()) {
-			if (Boolean.TRUE.equals(stateComponent.getValue(SculkShriekerBlock.CAN_SUMMON))) {
-				lines.add(Text.translatable("spectrum.tooltip.able_to_summon_warden").formatted(Formatting.GRAY));
+			if (Boolean.TRUE.equals(stateComponent.get(SculkShriekerBlock.CAN_SUMMON))) {
+				lines.add(Component.translatable("spectrum.tooltip.able_to_summon_warden").withStyle(ChatFormatting.GRAY));
 			}
 		}
 	}

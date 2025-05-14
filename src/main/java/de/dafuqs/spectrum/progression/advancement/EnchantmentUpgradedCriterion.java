@@ -3,44 +3,41 @@ package de.dafuqs.spectrum.progression.advancement;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.*;
-import net.minecraft.advancement.criterion.*;
-import net.minecraft.component.type.*;
-import net.minecraft.predicate.*;
-import net.minecraft.predicate.entity.*;
-import net.minecraft.predicate.item.*;
-import net.minecraft.server.network.*;
-import net.minecraft.util.*;
+import net.minecraft.advancements.critereon.*;
+import net.minecraft.resources.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.item.enchantment.*;
 
 import java.util.*;
 
-public class EnchantmentUpgradedCriterion extends AbstractCriterion<EnchantmentUpgradedCriterion.Conditions> {
+public class EnchantmentUpgradedCriterion extends SimpleCriterionTrigger<EnchantmentUpgradedCriterion.Conditions> {
 	
-	public static final Identifier ID = SpectrumCommon.locate("enchantment_upgraded");
+	public static final ResourceLocation ID = SpectrumCommon.locate("enchantment_upgraded");
 	
-	public void trigger(ServerPlayerEntity player, ItemEnchantmentsComponent enchantmentsComponent, int spentExperience) {
+	public void trigger(ServerPlayer player, ItemEnchantments enchantmentsComponent, int spentExperience) {
 		this.trigger(player, (conditions) -> conditions.matches(enchantmentsComponent, spentExperience));
 	}
 	
 	@Override
-	public Codec<Conditions> getConditionsCodec() {
+	public Codec<Conditions> codec() {
 		return Conditions.CODEC;
 	}
 	
 	public record Conditions(
-			Optional<LootContextPredicate> player,
+			Optional<ContextAwarePredicate> player,
 			EnchantmentPredicate enchantmentPredicate,
-			NumberRange.IntRange spentExperience
-	) implements AbstractCriterion.Conditions {
+			MinMaxBounds.Ints spentExperience
+	) implements SimpleCriterionTrigger.SimpleInstance {
 		
 		public static final Codec<Conditions> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-				LootContextPredicate.CODEC.optionalFieldOf("player").forGetter(Conditions::player),
-				EnchantmentPredicate.CODEC.optionalFieldOf("enchantments", new EnchantmentPredicate(Optional.empty(), NumberRange.IntRange.ANY)).forGetter(Conditions::enchantmentPredicate),
-				NumberRange.IntRange.CODEC.optionalFieldOf("spentExperience", NumberRange.IntRange.ANY).forGetter(Conditions::spentExperience)
+				ContextAwarePredicate.CODEC.optionalFieldOf("player").forGetter(Conditions::player),
+				EnchantmentPredicate.CODEC.optionalFieldOf("enchantments", new EnchantmentPredicate(Optional.empty(), MinMaxBounds.Ints.ANY)).forGetter(Conditions::enchantmentPredicate),
+				MinMaxBounds.Ints.CODEC.optionalFieldOf("spentExperience", MinMaxBounds.Ints.ANY).forGetter(Conditions::spentExperience)
 		).apply(instance, Conditions::new));
 		
-		public boolean matches(ItemEnchantmentsComponent itemEnchantmentsComponent, int spentExperience) {
-			if (this.enchantmentPredicate.test(itemEnchantmentsComponent)) {
-				return this.spentExperience.test(spentExperience);
+		public boolean matches(ItemEnchantments itemEnchantmentsComponent, int spentExperience) {
+			if (this.enchantmentPredicate.containedIn(itemEnchantmentsComponent)) {
+				return this.spentExperience.matches(spentExperience);
 			}
 			return false;
 		}

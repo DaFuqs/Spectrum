@@ -1,11 +1,11 @@
 package de.dafuqs.spectrum.helpers.enchantments;
 
 import de.dafuqs.spectrum.mixin.accessors.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.mob.*;
-import net.minecraft.item.*;
-import net.minecraft.sound.*;
+import net.minecraft.sounds.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.monster.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.state.*;
 
 import java.util.*;
 
@@ -14,12 +14,12 @@ public class DisarmingHelper {
 	public static void disarmEntity(LivingEntity livingEntity) {
 		// since endermen save their carried block as blockState, not in hand
 		// we have to use custom logic for them
-		if (livingEntity instanceof EndermanEntity endermanEntity) {
+		if (livingEntity instanceof EnderMan endermanEntity) {
 			BlockState carriedBlockState = endermanEntity.getCarriedBlock();
 			if (carriedBlockState != null) {
 				Item item = carriedBlockState.getBlock().asItem();
 				if (item != null) {
-					endermanEntity.dropStack(item.getDefaultStack());
+					endermanEntity.spawnAtLocation(item.getDefaultInstance());
 					endermanEntity.setCarriedBlock(null);
 				}
 			}
@@ -30,19 +30,19 @@ public class DisarmingHelper {
 		List<EquipmentSlot> slots = new ArrayList<>(List.of(EquipmentSlot.values()));
 		Collections.shuffle(slots);
 		for (EquipmentSlot slot : slots) {
-			ItemStack slotStack = livingEntity.getEquippedStack(slot);
+			ItemStack slotStack = livingEntity.getItemBySlot(slot);
 			if (slotStack.isEmpty()) {
 				continue;
 			}
 			
 			// set to cannot drop? Skip that slot
-			if (livingEntity instanceof MobEntity mobEntity && ((MobEntityAccessor) mobEntity).invokeGetDropChance(slot) <= 0) {
+			if (livingEntity instanceof Mob mobEntity && ((MobEntityAccessor) mobEntity).invokeGetEquipmentDropChance(slot) <= 0) {
 				continue;
 			}
 			
-			livingEntity.dropStack(slotStack);
-			livingEntity.equipStack(slot, ItemStack.EMPTY);
-			livingEntity.getWorld().playSound(null, livingEntity.getBlockPos(), SoundEvents.ITEM_BUNDLE_DROP_CONTENTS, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+			livingEntity.spawnAtLocation(slotStack);
+			livingEntity.setItemSlot(slot, ItemStack.EMPTY);
+			livingEntity.level().playSound(null, livingEntity.blockPosition(), SoundEvents.BUNDLE_DROP_CONTENTS, SoundSource.NEUTRAL, 1.0F, 1.0F);
 			break;
 		}
 	}

@@ -7,25 +7,26 @@ import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.item.v1.*;
-import net.minecraft.client.gui.screen.*;
-import net.minecraft.component.type.*;
-import net.minecraft.enchantment.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.attribute.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.entity.projectile.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.*;
-import net.minecraft.registry.*;
-import net.minecraft.registry.entry.*;
-import net.minecraft.screen.slot.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
-import net.minecraft.stat.*;
-import net.minecraft.text.*;
+import net.minecraft.*;
+import net.minecraft.client.gui.screens.*;
+import net.minecraft.core.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
+import net.minecraft.stats.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.entity.projectile.*;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.*;
+import net.minecraft.world.item.enchantment.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -34,114 +35,114 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 	
 	private final float armorPierce, protPierce;
 	
-	public MalachiteBidentItem(Item.Settings settings, double attackSpeed, double damage, float armorPierce, float protPierce) {
-		super(settings.attributeModifiers(AttributeModifiersComponent.builder()
-				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(BASE_ATTACK_DAMAGE_MODIFIER_ID, damage, EntityAttributeModifier.Operation.ADD_VALUE), AttributeModifierSlot.MAINHAND)
-				.add(EntityAttributes.GENERIC_ATTACK_SPEED, new EntityAttributeModifier(BASE_ATTACK_SPEED_MODIFIER_ID, attackSpeed, EntityAttributeModifier.Operation.ADD_VALUE), AttributeModifierSlot.MAINHAND)
+	public MalachiteBidentItem(Item.Properties settings, double attackSpeed, double damage, float armorPierce, float protPierce) {
+		super(settings.attributes(ItemAttributeModifiers.builder()
+				.add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, damage, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+				.add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID, attackSpeed, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
 				.build()));
 		this.armorPierce = armorPierce;
 		this.protPierce = protPierce;
 	}
 	
 	@Override
-	public Map<RegistryKey<Enchantment>, Integer> getDefaultEnchantments() {
+	public Map<ResourceKey<Enchantment>, Integer> getDefaultEnchantments() {
 		return Map.of(Enchantments.IMPALING, 6);
 	}
 	
 	@Override
-	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-		ItemStack handStack = user.getStackInHand(hand);
-		if (handStack.getDamage() >= handStack.getMaxDamage() - 1) {
-			return TypedActionResult.fail(handStack);
+	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
+		ItemStack handStack = user.getItemInHand(hand);
+		if (handStack.getDamageValue() >= handStack.getMaxDamage() - 1) {
+			return InteractionResultHolder.fail(handStack);
 		}
-		user.setCurrentHand(hand);
-		return TypedActionResult.consume(handStack);
+		user.startUsingItem(hand);
+		return InteractionResultHolder.consume(handStack);
 	}
 	
 	@Override
-	public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
-		if (user instanceof PlayerEntity player) {
-			int useTime = this.getMaxUseTime(stack, user) - remainingUseTicks;
+	public void releaseUsing(ItemStack stack, Level world, LivingEntity user, int remainingUseTicks) {
+		if (user instanceof Player player) {
+			int useTime = this.getUseDuration(stack, user) - remainingUseTicks;
 			if (useTime >= 10) {
-				player.incrementStat(Stats.USED.getOrCreateStat(this));
+				player.awardStat(Stats.ITEM_USED.get(this));
 				
 				if (canStartRiptide(player, stack)) {
-					riptide(world, player, stack, getRiptideLevel(world.getRegistryManager(), stack));
-				} else if (!world.isClient) {
-					stack.damage(1, player, LivingEntity.getSlotForHand(user.getActiveHand()));
-					throwBident(stack, (ServerWorld) world, player);
+					riptide(world, player, stack, getRiptideLevel(world.registryAccess(), stack));
+				} else if (!world.isClientSide) {
+					stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(user.getUsedItemHand()));
+					throwBident(stack, (ServerLevel) world, player);
 				}
 			}
 		}
 	}
 	
 	@Override
-	public boolean canRepair(ItemStack stack, ItemStack ingredient) {
-		return SpectrumToolMaterial.MALACHITE.getRepairIngredient().test(ingredient) || super.canRepair(stack, ingredient);
+	public boolean isValidRepairItem(ItemStack stack, ItemStack ingredient) {
+		return SpectrumToolMaterial.MALACHITE.getRepairIngredient().test(ingredient) || super.isValidRepairItem(stack, ingredient);
 	}
 	
-	public int getRiptideLevel(RegistryWrapper.WrapperLookup lookup, ItemStack stack) {
+	public int getRiptideLevel(HolderLookup.Provider lookup, ItemStack stack) {
 		return SpectrumEnchantmentHelper.getLevel(lookup, Enchantments.RIPTIDE, stack);
 	}
 	
-	protected void riptide(World world, PlayerEntity playerEntity, ItemStack stack, int riptideLevel) {
+	protected void riptide(Level world, Player playerEntity, ItemStack stack, int riptideLevel) {
 		yeetPlayer(playerEntity, (float) riptideLevel);
-		playerEntity.useRiptide(20, (float) playerEntity.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE), stack);
-		if (playerEntity.isOnGround()) {
-			playerEntity.move(MovementType.SELF, new Vec3d(0.0, 1.2, 0.0));
+		playerEntity.startAutoSpinAttack(20, (float) playerEntity.getAttributeValue(Attributes.ATTACK_DAMAGE), stack);
+		if (playerEntity.onGround()) {
+			playerEntity.move(MoverType.SELF, new Vec3(0.0, 1.2, 0.0));
 		}
 		
 		SoundEvent soundEvent;
 		if (riptideLevel >= 3) {
-			soundEvent = SoundEvents.ITEM_TRIDENT_RIPTIDE_3.value();
+			soundEvent = SoundEvents.TRIDENT_RIPTIDE_3.value();
 		} else if (riptideLevel == 2) {
-			soundEvent = SoundEvents.ITEM_TRIDENT_RIPTIDE_2.value();
+			soundEvent = SoundEvents.TRIDENT_RIPTIDE_2.value();
 		} else {
-			soundEvent = SoundEvents.ITEM_TRIDENT_RIPTIDE_1.value();
+			soundEvent = SoundEvents.TRIDENT_RIPTIDE_1.value();
 		}
 		
-		world.playSoundFromEntity(null, playerEntity, soundEvent, SoundCategory.PLAYERS, 1.0F, 1.0F);
+		world.playSound(null, playerEntity, soundEvent, SoundSource.PLAYERS, 1.0F, 1.0F);
 	}
 	
-	protected void yeetPlayer(PlayerEntity playerEntity, float riptideLevel) {
-		float f = playerEntity.getYaw();
-		float g = playerEntity.getPitch();
-		float h = -MathHelper.sin(f * 0.017453292F) * MathHelper.cos(g * 0.017453292F);
-		float k = -MathHelper.sin(g * 0.017453292F);
-		float l = MathHelper.cos(f * 0.017453292F) * MathHelper.cos(g * 0.017453292F);
-		float m = MathHelper.sqrt(h * h + k * k + l * l);
+	protected void yeetPlayer(Player playerEntity, float riptideLevel) {
+		float f = playerEntity.getYRot();
+		float g = playerEntity.getXRot();
+		float h = -Mth.sin(f * 0.017453292F) * Mth.cos(g * 0.017453292F);
+		float k = -Mth.sin(g * 0.017453292F);
+		float l = Mth.cos(f * 0.017453292F) * Mth.cos(g * 0.017453292F);
+		float m = Mth.sqrt(h * h + k * k + l * l);
 		float n = 3.0F * ((1.0F + riptideLevel) / 4.0F);
 		h *= n / m;
 		k *= n / m;
 		l *= n / m;
-		playerEntity.addVelocity(h, k, l);
+		playerEntity.push(h, k, l);
 	}
 	
-	protected void throwBident(ItemStack stack, ServerWorld world, PlayerEntity playerEntity) {
+	protected void throwBident(ItemStack stack, ServerLevel world, Player playerEntity) {
 		boolean mirrorImage = isThrownAsMirrorImage(stack, world, playerEntity);
 		
 		BidentBaseEntity bidentBaseEntity = mirrorImage ? new BidentMirrorImageEntity(world) : new BidentEntity(world);
-		bidentBaseEntity.setStack(stack);
+		bidentBaseEntity.setPickupItemStack(stack);
 		bidentBaseEntity.setOwner(playerEntity);
-		bidentBaseEntity.updatePosition(playerEntity.getX(), playerEntity.getEyeY() - 0.1, playerEntity.getZ());
-		bidentBaseEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0F, getThrowSpeed(stack), 1.0F);
-		if (!mirrorImage && playerEntity.getAbilities().creativeMode) {
-			bidentBaseEntity.pickupType = PersistentProjectileEntity.PickupPermission.CREATIVE_ONLY;
+		bidentBaseEntity.absMoveTo(playerEntity.getX(), playerEntity.getEyeY() - 0.1, playerEntity.getZ());
+		bidentBaseEntity.shootFromRotation(playerEntity, playerEntity.getXRot(), playerEntity.getYRot(), 0.0F, getThrowSpeed(stack), 1.0F);
+		if (!mirrorImage && playerEntity.getAbilities().instabuild) {
+			bidentBaseEntity.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
 		}
 		
-		world.spawnEntity(bidentBaseEntity);
-		var soundEvent = SoundEvents.ITEM_TRIDENT_THROW.value();
+		world.addFreshEntity(bidentBaseEntity);
+		var soundEvent = SoundEvents.TRIDENT_THROW.value();
 		if (mirrorImage) {
-			PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity(world, bidentBaseEntity.getPos(), SpectrumParticleTypes.MIRROR_IMAGE, 8, Vec3d.ZERO, new Vec3d(0.2, 0.2, 0.2));
-			bidentBaseEntity.pickupType = PersistentProjectileEntity.PickupPermission.DISALLOWED;
+			PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity(world, bidentBaseEntity.position(), SpectrumParticleTypes.MIRROR_IMAGE, 8, Vec3.ZERO, new Vec3(0.2, 0.2, 0.2));
+			bidentBaseEntity.pickup = AbstractArrow.Pickup.DISALLOWED;
 			soundEvent = SpectrumSoundEvents.BIDENT_MIRROR_IMAGE_THROWN;
-		} else if (playerEntity.getAbilities().creativeMode) {
-			bidentBaseEntity.pickupType = PersistentProjectileEntity.PickupPermission.CREATIVE_ONLY;
+		} else if (playerEntity.getAbilities().instabuild) {
+			bidentBaseEntity.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
 		}
 		
-		world.playSoundFromEntity(null, bidentBaseEntity, soundEvent, SoundCategory.PLAYERS, 1.0F, 1.0F);
-		if (!playerEntity.getAbilities().creativeMode && !mirrorImage) {
-			playerEntity.getInventory().removeOne(stack);
+		world.playSound(null, bidentBaseEntity, soundEvent, SoundSource.PLAYERS, 1.0F, 1.0F);
+		if (!playerEntity.getAbilities().instabuild && !mirrorImage) {
+			playerEntity.getInventory().removeItem(stack);
 		}
 	}
 	
@@ -158,14 +159,14 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 	}
 	
 	@Override
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		if (isDisabled(stack))
-			tooltip.add(Text.translatable("item.spectrum.bident.toolTip.disabled").formatted(Formatting.RED, Formatting.ITALIC));
+			tooltip.add(Component.translatable("item.spectrum.bident.toolTip.disabled").withStyle(ChatFormatting.RED, ChatFormatting.ITALIC));
 	}
 	
 	@Override
-	public boolean onStackClicked(ItemStack stack, Slot slot, ClickType clickType, PlayerEntity player) {
-		if (canBeDisabled() && clickType == ClickType.RIGHT) {
+	public boolean overrideStackedOnOther(ItemStack stack, Slot slot, ClickAction clickType, Player player) {
+		if (canBeDisabled() && clickType == ClickAction.SECONDARY) {
 			markDisabled(stack, !isDisabled(stack));
 			return true;
 		}
@@ -176,11 +177,11 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 		return 3F;
 	}
 	
-	public boolean canStartRiptide(PlayerEntity player, ItemStack stack) {
-		return getRiptideLevel(player.getWorld().getRegistryManager(), stack) > 0 && player.isTouchingWaterOrRain();
+	public boolean canStartRiptide(Player player, ItemStack stack) {
+		return getRiptideLevel(player.level().registryAccess(), stack) > 0 && player.isInWaterOrRain();
 	}
 	
-	public boolean isThrownAsMirrorImage(ItemStack stack, ServerWorld world, PlayerEntity player) {
+	public boolean isThrownAsMirrorImage(ItemStack stack, ServerLevel world, Player player) {
 		return false;
 	}
 	
@@ -209,24 +210,24 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 	}
 	
 	@Override
-	public void expandTooltip(ItemStack stack, @Nullable PlayerEntity player, List<Text> tooltip, TooltipContext context) {
+	public void expandTooltip(ItemStack stack, @Nullable Player player, List<Component> tooltip, TooltipContext context) {
 		if (Screen.hasShiftDown()) {
-			tooltip.add(Text.translatable("item.spectrum.bident.postToolTip.ap", armorPierce * 100).formatted(Formatting.DARK_GREEN));
+			tooltip.add(Component.translatable("item.spectrum.bident.postToolTip.ap", armorPierce * 100).withStyle(ChatFormatting.DARK_GREEN));
 			
 			if (protPierce > 0) {
-				tooltip.add(Text.translatable("item.spectrum.bident.postToolTip.pp", protPierce * 100).formatted(Formatting.DARK_GREEN));
+				tooltip.add(Component.translatable("item.spectrum.bident.postToolTip.pp", protPierce * 100).withStyle(ChatFormatting.DARK_GREEN));
 			}
 			if (canBeDisabled()) {
-				tooltip.add(Text.translatable("item.spectrum.bident.postToolTip.disable").formatted(Formatting.DARK_GRAY, Formatting.ITALIC));
+				tooltip.add(Component.translatable("item.spectrum.bident.postToolTip.disable").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
 			}
 		} else {
-			tooltip.add(Text.translatable("spectrum.tooltip.press_shift_for_more").formatted(Formatting.DARK_GRAY, Formatting.ITALIC));
+			tooltip.add(Component.translatable("spectrum.tooltip.press_shift_for_more").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
 		}
 	}
 	
 	@Override
-	public boolean canBeEnchantedWith(ItemStack stack, RegistryEntry<Enchantment> enchantment, EnchantingContext context) {
-		return super.canBeEnchantedWith(stack, enchantment, context) || enchantment.matchesKey(Enchantments.SHARPNESS) || enchantment.matchesKey(Enchantments.SMITE) || enchantment.matchesKey(Enchantments.BANE_OF_ARTHROPODS) || enchantment.matchesKey(Enchantments.LOOTING) || enchantment.matchesKey(SpectrumEnchantments.CLOVERS_FAVOR);
+	public boolean canBeEnchantedWith(ItemStack stack, Holder<Enchantment> enchantment, EnchantingContext context) {
+		return super.canBeEnchantedWith(stack, enchantment, context) || enchantment.is(Enchantments.SHARPNESS) || enchantment.is(Enchantments.SMITE) || enchantment.is(Enchantments.BANE_OF_ARTHROPODS) || enchantment.is(Enchantments.LOOTING) || enchantment.is(SpectrumEnchantments.CLOVERS_FAVOR);
 	}
 	
 }

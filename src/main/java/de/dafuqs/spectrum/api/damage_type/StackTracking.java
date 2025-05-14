@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.api.damage_type;
 
-import net.minecraft.item.*;
+import net.minecraft.world.item.*;
 
 import java.util.*;
 

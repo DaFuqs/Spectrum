@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.blocks.mob_head.client.models;
 
 import de.dafuqs.spectrum.blocks.mob_head.client.*;
 import net.fabricmc.api.*;
-import net.minecraft.client.model.*;
-import net.minecraft.client.render.entity.model.*;
+import net.minecraft.client.model.geom.*;
+import net.minecraft.client.model.geom.builders.*;
 
 @Environment(EnvType.CLIENT)
 public class IllagerHeadModel extends SpectrumSkullModel {
@@ -11,20 +11,20 @@ public class IllagerHeadModel extends SpectrumSkullModel {
     public IllagerHeadModel(ModelPart root) {
         super(root);
     }
-
-    public static TexturedModelData getTexturedModelData() {
-        ModelData modelData = new ModelData();
-        ModelPartData modelPartData = modelData.getRoot();
-        
-        ModelPartData head = modelPartData.addChild(
-                EntityModelPartNames.HEAD,
-                ModelPartBuilder.create().uv(0, 0).cuboid(-4.0F, -10.0F, -4.0F, 8.0F, 10.0F, 8.0F),
-                ModelTransform.NONE
+	
+	public static LayerDefinition getTexturedModelData() {
+		MeshDefinition modelData = new MeshDefinition();
+		PartDefinition modelPartData = modelData.getRoot();
+		
+		PartDefinition head = modelPartData.addOrReplaceChild(
+				PartNames.HEAD,
+				CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -10.0F, -4.0F, 8.0F, 10.0F, 8.0F),
+				PartPose.ZERO
         );
-        head.addChild("hat", ModelPartBuilder.create().uv(32, 0).cuboid(-4.0F, -10.0F, -4.0F, 8.0F, 12.0F, 8.0F, new Dilation(0.45F)), ModelTransform.NONE);
-        head.addChild("nose", ModelPartBuilder.create().uv(24, 0).cuboid(-1.0F, -1.0F, -6.0F, 2.0F, 4.0F, 2.0F), ModelTransform.pivot(0.0F, -2.0F, 0.0F));
-        
-        return TexturedModelData.of(modelData, 64, 64);
+		head.addOrReplaceChild("hat", CubeListBuilder.create().texOffs(32, 0).addBox(-4.0F, -10.0F, -4.0F, 8.0F, 12.0F, 8.0F, new CubeDeformation(0.45F)), PartPose.ZERO);
+		head.addOrReplaceChild("nose", CubeListBuilder.create().texOffs(24, 0).addBox(-1.0F, -1.0F, -6.0F, 2.0F, 4.0F, 2.0F), PartPose.offset(0.0F, -2.0F, 0.0F));
+		
+		return LayerDefinition.create(modelData, 64, 64);
     }
 
 }

@@ -5,27 +5,23 @@ import de.dafuqs.spectrum.compat.REI.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.enchanter.*;
-import de.dafuqs.spectrum.registries.*;
 import me.shedaniel.rei.api.common.category.*;
-import me.shedaniel.rei.api.common.display.basic.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.client.*;
-import net.minecraft.component.*;
-import net.minecraft.component.type.*;
-import net.minecraft.enchantment.*;
-import net.minecraft.item.*;
-import net.minecraft.recipe.*;
-import net.minecraft.registry.entry.*;
-import net.minecraft.text.*;
+import net.minecraft.core.*;
+import net.minecraft.core.component.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.item.enchantment.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
-import java.util.function.*;
 
 public class EnchantmentUpgradeDisplay extends EnchanterDisplay {
 	
-	protected final RegistryEntry<Enchantment> enchantment;
+	protected final Holder<Enchantment> enchantment;
 	
 	static final int XP_INDEX = 8;
 	static final int OVERXP_INDEX = 9;
@@ -34,13 +30,13 @@ public class EnchantmentUpgradeDisplay extends EnchanterDisplay {
 	
 	final int levelCap;
 	final int maxNormal;
-	final Text transKey;
+	final Component transKey;
 	final RecipeScaling.ScalingData itemScaling;
 	final RecipeScaling.ScalingData xpScaling;
 	EntryIngredient normalOutputs, overchantOutputs; // this fucking sucks lmao
 	int index = 1; // THIS IS EVEN WORSE
 	
-	public EnchantmentUpgradeDisplay(@NotNull RecipeEntry<EnchantmentUpgradeRecipe> recipeEntry) {
+	public EnchantmentUpgradeDisplay(@NotNull RecipeHolder<EnchantmentUpgradeRecipe> recipeEntry) {
 		super(recipeEntry, buildIngredients(recipeEntry.value()), buildOutputs(recipeEntry.value()));
 		
 		var recipe = recipeEntry.value();
@@ -50,7 +46,7 @@ public class EnchantmentUpgradeDisplay extends EnchanterDisplay {
 		
 		itemScaling = recipe.getItemScaling();
 		xpScaling = recipe.getXPScaling();
-		transKey = enchantment.value().description().copy().styled(s -> {
+		transKey = enchantment.value().description().copy().withStyle(s -> {
 			s.withItalic(true);
 			s.withColor(EnchantmentUpgradeCategory.NORMAL_COLOR);
 			return s;
@@ -121,11 +117,11 @@ public class EnchantmentUpgradeDisplay extends EnchanterDisplay {
 		overchantOutputs = EntryIngredients.ofItemStacks(enchOver);
 	}
 	
-	private static void appendBookStack(RegistryEntry<Enchantment> enchant, int i, ArrayList<ItemStack> enchIn) {
+	private static void appendBookStack(Holder<Enchantment> enchant, int i, ArrayList<ItemStack> enchIn) {
 		var enchStack = new ItemStack(Items.ENCHANTED_BOOK);
-		var builder = new ItemEnchantmentsComponent.Builder(ItemEnchantmentsComponent.DEFAULT);
+		var builder = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
 		builder.set(enchant, i);
-		enchStack.set(DataComponentTypes.STORED_ENCHANTMENTS, builder.build());
+		enchStack.set(DataComponents.STORED_ENCHANTMENTS, builder.toImmutable());
 		enchIn.add(enchStack);
 	}
 	
@@ -136,7 +132,7 @@ public class EnchantmentUpgradeDisplay extends EnchanterDisplay {
 	
 	@Override
 	public boolean isUnlocked() {
-		MinecraftClient client = MinecraftClient.getInstance();
+		Minecraft client = Minecraft.getInstance();
 		return AdvancementHelper.hasAdvancement(client.player, EnchanterRecipe.UNLOCK_IDENTIFIER) && super.isUnlocked();
 	}
 }

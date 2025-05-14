@@ -5,24 +5,22 @@ import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.inventory.*;
-import net.minecraft.item.*;
+import net.minecraft.core.*;
 import net.minecraft.nbt.*;
-import net.minecraft.recipe.*;
-import net.minecraft.registry.*;
-import net.minecraft.screen.*;
-import net.minecraft.text.*;
-import net.minecraft.util.collection.*;
-import net.minecraft.util.math.*;
+import net.minecraft.network.chat.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.state.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.stream.*;
 
-public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implements SidedInventory {
+public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implements WorldlyContainer {
 	
 	public static final int INVENTORY_SIZE = 27 + 4 + 4; // 27 items, 4 crafting tablets, 4 result slots
 	public static final int[] CHEST_SLOTS = IntStream.rangeClosed(0, 26).toArray();
@@ -40,10 +38,10 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
 	}
 	
 	@SuppressWarnings("unused")
-    public static void tick(World world, BlockPos pos, BlockState state, FabricationChestBlockEntity chest) {
+	public static void tick(Level world, BlockPos pos, BlockState state, FabricationChestBlockEntity chest) {
 		chest.age++;
 		// TODO: that should run in `clientTick() instead` (same for other chests)
-		if (world.isClient) {
+		if (world.isClientSide) {
 
 			chest.lastYaw = chest.yaw;
 			chest.yaw += chest.yawMod;
@@ -76,18 +74,18 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
 			if (chest.interpTicks < chest.interpLength) {
 				chest.interpTicks++;
 			}
-
-			chest.lidAnimator.step();
+			
+			chest.lidAnimator.tickLid();
 		} else {
 			if (tickCooldown(chest)) {
 				for (int i = 0; i < 4; i++) {
 					ItemStack outputItemStack = chest.inventory.get(RESULT_SLOTS[i]);
 					ItemStack craftingTabletItemStack = chest.inventory.get(RECIPE_SLOTS[i]);
-					if (!craftingTabletItemStack.isEmpty() && (outputItemStack.isEmpty() || outputItemStack.getCount() < outputItemStack.getMaxCount())) {
+					if (!craftingTabletItemStack.isEmpty() && (outputItemStack.isEmpty() || outputItemStack.getCount() < outputItemStack.getMaxStackSize())) {
 						boolean couldCraft = chest.tryCraft(chest, i);
 						if (couldCraft) {
 							chest.setCooldown(chest, 20);
-							chest.markDirty();
+							chest.setChanged();
 							chest.updateFullState(false);
 							return;
 						}
@@ -112,11 +110,11 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
 	}
 
 	@Override
-	public boolean onSyncedBlockEvent(int type, int data) {
+	public boolean triggerEvent(int type, int data) {
 		if (type == 1) {
 			isOpen = data > 0;
 		}
-		return super.onSyncedBlockEvent(type, data);
+		return super.triggerEvent(type, data);
 	}
 	
 	private static boolean tickCooldown(FabricationChestBlockEntity fabricationChestBlockEntity) {
@@ -130,7 +128,7 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
 	}
 	
 	public List<ItemStack> getRecipeOutputs() {
-		if (world == null || world.isClient()) {
+		if (level == null || level.isClientSide()) {
 			return cachedOutputs;
 		}
 
@@ -138,17 +136,17 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
 
 		for (int slot : RECIPE_SLOTS) {
 			var tablet = inventory.get(slot);
-
-			if (!tablet.isOf(SpectrumItems.CRAFTING_TABLET))
+			
+			if (!tablet.is(SpectrumItems.CRAFTING_TABLET))
 				continue;
-
-			var recipe = CraftingTabletItem.getStoredRecipe(world, tablet).value();
+			
+			var recipe = CraftingTabletItem.getStoredRecipe(level, tablet).value();
 
 
 			if (!isRecipeValid(recipe))
 				continue;
-
-			var output = recipe.getResult(world.getRegistryManager());
+			
+			var output = recipe.getResultItem(level.registryAccess());
 
 			if (!output.isEmpty())
 				list.add(output);
@@ -162,16 +160,16 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
 	}
 
 	public boolean hasValidRecipes() {
-		if (world == null || world.isClient()) {
+		if (level == null || level.isClientSide()) {
 			return hasValidRecipes;
 		}
 
 		for (int i = 0; i < 4; i++) {
 			ItemStack tablet = inventory.get(RECIPE_SLOTS[i]);
-			if (!tablet.isOf(SpectrumItems.CRAFTING_TABLET))
+			if (!tablet.is(SpectrumItems.CRAFTING_TABLET))
 				continue;
-
-			var recipe = CraftingTabletItem.getStoredRecipe(world, tablet).value();
+			
+			var recipe = CraftingTabletItem.getStoredRecipe(level, tablet).value();
 			if (isRecipeValid(recipe) && isRecipeCraftable(recipe) && canSlotFitCraftingOutput(inventory.get(RESULT_SLOTS[i]), recipe))
 				return true;
 		}
@@ -179,12 +177,12 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
 	}
 	
 	@Override
-	protected Text getContainerName() {
-		return Text.translatable("block.spectrum.fabrication_chest");
+	protected Component getDefaultName() {
+		return Component.translatable("block.spectrum.fabrication_chest");
 	}
 	
 	@Override
-	protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
+	protected AbstractContainerMenu createMenu(int syncId, Inventory playerInventory) {
 		return new FabricationChestScreenHandler(syncId, playerInventory, this);
 	}
 	
@@ -194,11 +192,11 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
 	
 	private boolean tryCraft(FabricationChestBlockEntity chest, int index) {
 		ItemStack craftingTabletItemStack = chest.inventory.get(RECIPE_SLOTS[index]);
-		if (craftingTabletItemStack.isOf(SpectrumItems.CRAFTING_TABLET)) {
-			var recipe = CraftingTabletItem.getStoredRecipe(world, craftingTabletItemStack);
+		if (craftingTabletItemStack.is(SpectrumItems.CRAFTING_TABLET)) {
+			var recipe = CraftingTabletItem.getStoredRecipe(level, craftingTabletItemStack);
 			if (recipe != null && isRecipeValid(recipe.value())) {
-				DefaultedList<Ingredient> ingredients = recipe.value().getIngredients();
-				ItemStack outputItemStack = recipe.value().getResult(world.getRegistryManager());
+				NonNullList<Ingredient> ingredients = recipe.value().getIngredients();
+				ItemStack outputItemStack = recipe.value().getResultItem(level.registryAccess());
 				ItemStack currentItemStack = chest.inventory.get(RESULT_SLOTS[index]);
 				if (InventoryHelper.canCombineItemStacks(currentItemStack, outputItemStack) && InventoryHelper.hasInInventory(ingredients, chest)) {
 					List<ItemStack> remainders = InventoryHelper.removeFromInventoryWithRemainders(ingredients, chest);
@@ -206,7 +204,7 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
 					if (currentItemStack.isEmpty()) {
 						chest.inventory.set(RESULT_SLOTS[index], outputItemStack.copy());
 					} else {
-						currentItemStack.increment(outputItemStack.getCount());
+						currentItemStack.grow(outputItemStack.getCount());
 					}
 					
 					for (ItemStack remainder : remainders) {
@@ -236,24 +234,24 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
 	}
 	
 	@Override
-	public int size() {
+	public int getContainerSize() {
 		return INVENTORY_SIZE;
 	}
 	
 	@Override
-	public void writeNbt(NbtCompound tag, RegistryWrapper.WrapperLookup registryLookup) {
-		super.writeNbt(tag, registryLookup);
+	public void saveAdditional(CompoundTag tag, HolderLookup.Provider registryLookup) {
+		super.saveAdditional(tag, registryLookup);
 		tag.putInt("cooldown", coolDownTicks);
 		tag.putLong("age", age);
-		if (world != null && world.isClient()) {
+		if (level != null && level.isClientSide()) {
 			tag.putFloat("yaw", yaw);
 			tag.putFloat("lastYaw", lastYaw);
 		}
 	}
 	
 	@Override
-	public void readNbt(NbtCompound tag, RegistryWrapper.WrapperLookup registryLookup) {
-		super.readNbt(tag, registryLookup);
+	public void loadAdditional(CompoundTag tag, HolderLookup.Provider registryLookup) {
+		super.loadAdditional(tag, registryLookup);
 		if (tag.contains("cooldown")) {
 			coolDownTicks = tag.getInt("cooldown");
 		}
@@ -269,7 +267,7 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
 	}
 	
 	@Override
-	public int[] getAvailableSlots(Direction side) {
+	public int[] getSlotsForFace(Direction side) {
 		if (side == Direction.DOWN) {
 			return RESULT_SLOTS;
 		} else {
@@ -278,12 +276,12 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
 	}
 	
 	@Override
-	public boolean canInsert(int slot, ItemStack stack, @Nullable Direction dir) {
+	public boolean canPlaceItemThroughFace(int slot, ItemStack stack, @Nullable Direction dir) {
 		return slot <= CHEST_SLOTS[CHEST_SLOTS.length - 1];
 	}
 	
 	@Override
-	public boolean canExtract(int slot, ItemStack stack, Direction dir) {
+	public boolean canTakeItemThroughFace(int slot, ItemStack stack, Direction dir) {
 		return true;
 	}
 
@@ -292,7 +290,7 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
 	}
 	
 	public void updateFullState(boolean force) {
-		if (world != null && !world.isClient()) {
+		if (level != null && !level.isClientSide()) {
 			var wasFull = isFull;
 			isFull = isFull();
 			var hadValidRecipes = hasValidRecipes;
@@ -312,11 +310,11 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
 
 		for (int i = 0; i < 4; i++) {
 			ItemStack tablet = inventory.get(RECIPE_SLOTS[i]);
-
-			if (!tablet.isOf(SpectrumItems.CRAFTING_TABLET))
+			
+			if (!tablet.is(SpectrumItems.CRAFTING_TABLET))
 				continue;
-
-			var recipe = CraftingTabletItem.getStoredRecipe(world, tablet);
+			
+			var recipe = CraftingTabletItem.getStoredRecipe(level, tablet);
 
 			if (recipe == null || !isRecipeValid(recipe.value())) {
 				invalids++;
@@ -333,34 +331,34 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
     }
 
 	public boolean canSlotFitCraftingOutput(ItemStack slot, Recipe<?> recipe) {
-		if (world == null)
+		if (level == null)
 			return false;
-        return slot.isEmpty() || slot.getCount() + recipe.getResult(world.getRegistryManager()).getCount() < slot.getMaxCount();
+		return slot.isEmpty() || slot.getCount() + recipe.getResultItem(level.registryAccess()).getCount() < slot.getMaxStackSize();
     }
 	
 	@Override
-	protected void onInvOpenOrClose(World world, BlockPos pos, BlockState state, int oldViewerCount, int newViewerCount) {
+	protected void onInvOpenOrClose(Level world, BlockPos pos, BlockState state, int oldViewerCount, int newViewerCount) {
 		super.onInvOpenOrClose(world, pos, state, oldViewerCount, newViewerCount);
 		updateFullState(true);
 	}
 	
 	@Override
-	public void setStack(int slot, ItemStack stack) {
-		super.setStack(slot, stack);
+	public void setItem(int slot, ItemStack stack) {
+		super.setItem(slot, stack);
 		updateFullState(false);
 	}
 	
 	@Override
-	public ItemStack removeStack(int slot, int amount) {
-		var stack = super.removeStack(slot, amount);
+	public ItemStack removeItem(int slot, int amount) {
+		var stack = super.removeItem(slot, amount);
 		if (!stack.isEmpty())
 			updateFullState(false);
 		return stack;
 	}
 	
 	@Override
-	public ItemStack removeStack(int slot) {
-		var stack = super.removeStack(slot);
+	public ItemStack removeItemNoUpdate(int slot) {
+		var stack = super.removeItemNoUpdate(slot);
 		if (!stack.isEmpty())
 			updateFullState(false);
 		return stack;

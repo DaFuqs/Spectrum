@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.spectrum.api.item.*;
-import net.minecraft.enchantment.*;
-import net.minecraft.item.*;
-import net.minecraft.registry.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.*;
 
 import java.util.*;
 
@@ -11,12 +11,12 @@ import java.util.*;
 // Who's still waiting this with me in 2025??
 public class BedrockShearsItem extends ShearsItem implements Preenchanted {
 	
-	public BedrockShearsItem(Settings settings) {
+	public BedrockShearsItem(Properties settings) {
 		super(settings);
 	}
 	
 	@Override
-	public Map<RegistryKey<Enchantment>, Integer> getDefaultEnchantments() {
+	public Map<ResourceKey<Enchantment>, Integer> getDefaultEnchantments() {
 		return Map.of(Enchantments.EFFICIENCY, 6);
 	}
 	

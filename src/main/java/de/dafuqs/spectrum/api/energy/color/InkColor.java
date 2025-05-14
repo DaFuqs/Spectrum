@@ -4,10 +4,11 @@ import com.mojang.serialization.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import io.netty.buffer.*;
+import net.minecraft.network.chat.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.registry.tag.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.resources.*;
+import net.minecraft.tags.*;
+import net.minecraft.world.item.*;
 import org.jetbrains.annotations.*;
 import org.joml.*;
 
@@ -19,8 +20,8 @@ public class InkColor {
 			id -> ofId(id).map(DataResult::success).orElse(DataResult.error(() -> "Not a valid ink color: " + id)),
 			InkColor::getID
 	);
-
-	public static final PacketCodec<ByteBuf, InkColor> PACKET_CODEC = Identifier.PACKET_CODEC.xmap(
+	
+	public static final StreamCodec<ByteBuf, InkColor> PACKET_CODEC = ResourceLocation.STREAM_CODEC.map(
 			id -> ofId(id).orElseThrow(),
 			InkColor::getID
 	);
@@ -33,17 +34,17 @@ public class InkColor {
 	protected final int textColor;
 	protected final Vector3f textColorVec;
 	
-	protected final Identifier requiredAdvancement;
+	protected final ResourceLocation requiredAdvancement;
 	
-	public InkColor(DyeColor dyeColor, int color, Identifier requiredAdvancement) {
+	public InkColor(DyeColor dyeColor, int color, ResourceLocation requiredAdvancement) {
 		this(Optional.of(dyeColor), color, color, requiredAdvancement);
 	}
 	
-	public InkColor(DyeColor dyeColor, int color, int textColor, Identifier requiredAdvancement) {
+	public InkColor(DyeColor dyeColor, int color, int textColor, ResourceLocation requiredAdvancement) {
 		this(Optional.of(dyeColor), color, textColor, requiredAdvancement);
 	}
 	
-	public InkColor(Optional<DyeColor> dyeColor, int color, int textColor, Identifier requiredAdvancement) {
+	public InkColor(Optional<DyeColor> dyeColor, int color, int textColor, ResourceLocation requiredAdvancement) {
 		this.dyeColor = dyeColor;
 		this.colorInt = color;
 		this.colorVec = SpectrumColorHelper.colorIntToVec(color);
@@ -58,12 +59,12 @@ public class InkColor {
 		return DYE_TO_COLOR.get(dyeColor);
 	}
 	
-	public static Optional<InkColor> ofId(Identifier id) {
-		return SpectrumRegistries.INK_COLOR.getOrEmpty(id);
+	public static Optional<InkColor> ofId(ResourceLocation id) {
+		return SpectrumRegistries.INK_COLOR.getOptional(id);
 	}
 	
 	public static Optional<InkColor> ofIdString(String idString) {
-		return SpectrumRegistries.INK_COLOR.getOrEmpty(Identifier.of(idString));
+		return SpectrumRegistries.INK_COLOR.getOptional(ResourceLocation.parse(idString));
 	}
 	
 	public Optional<DyeColor> getDyeColor() {
@@ -89,16 +90,16 @@ public class InkColor {
 		return colorInt;
 	}
 	
-	public MutableText getName() {
-		return Text.translatable(this.getID().toTranslationKey("ink", "name"));
+	public MutableComponent getName() {
+		return Component.translatable(this.getID().toLanguageKey("ink", "name"));
 	}
 	
-	public MutableText getColoredName() {
+	public MutableComponent getColoredName() {
 		return getName().setStyle(Style.EMPTY.withColor(textColor));
 	}
 	
-	public MutableText getColoredInkName() {
-		return Text.translatable("ink.suffix", getName()).setStyle(Style.EMPTY.withColor(textColor));
+	public MutableComponent getColoredInkName() {
+		return Component.translatable("ink.suffix", getName()).setStyle(Style.EMPTY.withColor(textColor));
 	}
 	
 	public Vector3f getColorVec() {
@@ -117,16 +118,16 @@ public class InkColor {
 		return this.textColorVec;
 	}
 	
-	public Identifier getRequiredAdvancement() {
+	public ResourceLocation getRequiredAdvancement() {
 		return requiredAdvancement;
 	}
 	
-	public Identifier getID() {
-		return SpectrumRegistries.INK_COLOR.getId(this);
+	public ResourceLocation getID() {
+		return SpectrumRegistries.INK_COLOR.getKey(this);
 	}
 	
 	public boolean isIn(TagKey<InkColor> tag) {
-		return SpectrumRegistries.INK_COLOR.getEntry(this).isIn(tag);
+		return SpectrumRegistries.INK_COLOR.wrapAsHolder(this).is(tag);
 	}
 	
 }

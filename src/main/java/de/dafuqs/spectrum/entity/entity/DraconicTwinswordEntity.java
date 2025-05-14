@@ -8,26 +8,27 @@ import de.dafuqs.spectrum.helpers.enchantments.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.component.*;
-import net.minecraft.component.type.*;
-import net.minecraft.enchantment.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.attribute.*;
-import net.minecraft.entity.damage.*;
-import net.minecraft.entity.data.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.entity.projectile.*;
-import net.minecraft.item.*;
+import net.minecraft.core.component.*;
+import net.minecraft.core.particles.*;
 import net.minecraft.nbt.*;
-import net.minecraft.particle.*;
-import net.minecraft.registry.tag.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
+import net.minecraft.network.syncher.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
+import net.minecraft.tags.*;
 import net.minecraft.util.*;
-import net.minecraft.util.hit.*;
-import net.minecraft.util.math.*;
 import net.minecraft.world.*;
+import net.minecraft.world.damagesource.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.*;
+import net.minecraft.world.entity.item.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.entity.projectile.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.*;
+import net.minecraft.world.item.enchantment.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.phys.*;
 import org.apache.commons.lang3.mutable.*;
 import org.jetbrains.annotations.*;
 
@@ -35,27 +36,27 @@ import java.util.*;
 
 public class DraconicTwinswordEntity extends BidentBaseEntity implements NonLivingAttackable {
 	
-	private static final TrackedData<Boolean> HIT = DataTracker.registerData(DraconicTwinswordEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-	private static final TrackedData<Boolean> PROPELLED = DataTracker.registerData(DraconicTwinswordEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-	private static final TrackedData<Boolean> REBOUND = DataTracker.registerData(DraconicTwinswordEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-	private static final TrackedData<Integer> MAX_PIERCE = DataTracker.registerData(DraconicTwinswordEntity.class, TrackedDataHandlerRegistry.INTEGER);
-	private static final EntityDimensions initialSize = EntityDimensions.changing(1.5F, 1.5F);
-	private static final EntityDimensions shortSize = EntityDimensions.changing(1F, 1F);
-	private static final EntityDimensions tallSize = EntityDimensions.changing(1F, 1.8F);
+	private static final EntityDataAccessor<Boolean> HIT = SynchedEntityData.defineId(DraconicTwinswordEntity.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> PROPELLED = SynchedEntityData.defineId(DraconicTwinswordEntity.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> REBOUND = SynchedEntityData.defineId(DraconicTwinswordEntity.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Integer> MAX_PIERCE = SynchedEntityData.defineId(DraconicTwinswordEntity.class, EntityDataSerializers.INT);
+	private static final EntityDimensions initialSize = EntityDimensions.scalable(1.5F, 1.5F);
+	private static final EntityDimensions shortSize = EntityDimensions.scalable(1F, 1F);
+	private static final EntityDimensions tallSize = EntityDimensions.scalable(1F, 1.8F);
 	private final Set<Entity> piercedEntities = new HashSet<>();
 	private int travelingTicks = 0, jiggleTicks = 20, jiggleIntensity = 8;
 	private float damageMult = 1, velMult = 1;
 	
-	public DraconicTwinswordEntity(World world) {
+	public DraconicTwinswordEntity(Level world) {
 		this(SpectrumEntityTypes.DRACONIC_TWINSWORD, world);
 	}
 	
-	public DraconicTwinswordEntity(EntityType<? extends TridentEntity> entityType, World world) {
+	public DraconicTwinswordEntity(EntityType<? extends ThrownTrident> entityType, Level world) {
 		super(entityType, world);
 	}
 	
 	@Override
-	public boolean canHit() {
+	public boolean isPickable() {
 		return true;
 	}
 	
@@ -65,10 +66,10 @@ public class DraconicTwinswordEntity extends BidentBaseEntity implements NonLivi
 			if (travelingTicks < 12) {
 				travelingTicks++;
 				
-				if (travelingTicks > 6 && getVelocity().lengthSquared() > 2) {
-					setVelocity(getVelocity().multiply(0.5));
-					velocityDirty = true;
-					velocityModified = true;
+				if (travelingTicks > 6 && getDeltaMovement().lengthSqr() > 2) {
+					setDeltaMovement(getDeltaMovement().scale(0.5));
+					hasImpulse = true;
+					hurtMarked = true;
 				}
 			}
 		} else if (inGround) {
@@ -81,16 +82,16 @@ public class DraconicTwinswordEntity extends BidentBaseEntity implements NonLivi
 				
 				var intensity = 1 - (jiggleTicks / 15F);
 				
-				prevPitch = getPitch();
-				setPitch(prevPitch + jiggleIntensity * intensity / 2 * (random.nextInt(3) - 1));
-				prevYaw = getYaw();
-				setYaw(prevYaw + jiggleIntensity * intensity * (random.nextInt(3) - 1));
+				xRotO = getXRot();
+				setXRot(xRotO + jiggleIntensity * intensity / 2 * (random.nextInt(3) - 1));
+				yRotO = getYRot();
+				setYRot(yRotO + jiggleIntensity * intensity * (random.nextInt(3) - 1));
 			}
 			
-			for (Entity thornCandidate : getWorld().getOtherEntities(this, calculateBoundingBox(), this::canHit)) {
-				if (dataTracker.get(HIT)) {
-					if (!(thornCandidate instanceof ItemEntity) && thornCandidate.damage(getDamageSources().thorns(this), 4))
-						playSound(SoundEvents.ENCHANT_THORNS_HIT, 1, 0.9F + random.nextFloat() * 0.2F);
+			for (Entity thornCandidate : level().getEntities(this, makeBoundingBox(), this::canHitEntity)) {
+				if (entityData.get(HIT)) {
+					if (!(thornCandidate instanceof ItemEntity) && thornCandidate.hurt(damageSources().thorns(this), 4))
+						playSound(SoundEvents.THORNS_HIT, 1, 0.9F + random.nextFloat() * 0.2F);
 				}
 			}
 		}
@@ -99,29 +100,29 @@ public class DraconicTwinswordEntity extends BidentBaseEntity implements NonLivi
 	}
 	
 	@Override
-	protected SoundEvent getHitSound() {
-		return SoundEvents.ITEM_TRIDENT_HIT_GROUND;
+	protected SoundEvent getDefaultHitGroundSoundEvent() {
+		return SoundEvents.TRIDENT_HIT_GROUND;
 	}
 	
 	@Override
-	public boolean damage(DamageSource source, float amount) {
-		var striker = source.getAttacker();
+	public boolean hurt(DamageSource source, float amount) {
+		var striker = source.getEntity();
 		
 		if (striker == null)
 			return false;
 		
-		if (!dataTracker.get(HIT)) {
+		if (!entityData.get(HIT)) {
 			
 			if (isPropelled()) {
 				applyInertiaEffects(getTrackedStack());
 			}
 			
 			travelingTicks = 0;
-			this.setVelocity(striker.getPitch(), striker.getYaw(), 0.0F, 3F * velMult);
-			setPitch(striker.getPitch());
-			setYaw(striker.getYaw());
-			prevPitch = getPitch();
-			prevYaw = getYaw();
+			this.setVelocity(striker.getXRot(), striker.getYRot(), 0.0F, 3F * velMult);
+			setXRot(striker.getXRot());
+			setYRot(striker.getYRot());
+			xRotO = getXRot();
+			yRotO = getYRot();
 			setPropelled(true);
 			setRebounding(false);
 			((TridentEntityAccessor) this).spectrum$setDealtDamage(false);
@@ -129,7 +130,7 @@ public class DraconicTwinswordEntity extends BidentBaseEntity implements NonLivi
 		} else {
 			jiggleTicks = 0;
 			jiggleIntensity = 8;
-			playSound(SoundEvents.ITEM_TRIDENT_HIT_GROUND, 1, 1);
+			playSound(SoundEvents.TRIDENT_HIT_GROUND, 1, 1);
 		}
 		
 		return false;
@@ -141,34 +142,34 @@ public class DraconicTwinswordEntity extends BidentBaseEntity implements NonLivi
 	}
 	
 	@Override
-	public Box calculateBoundingBox() {
+	public AABB makeBoundingBox() {
 		if (isPropelled()) {
-			return super.calculateBoundingBox();
+			return super.makeBoundingBox();
 		} else if (isRebounding()) {
-			return shortSize.getBoxAt(getPos());
+			return shortSize.makeBoundingBox(position());
 		}
 		
 		if (inGround) {
-			var absPitch = Math.abs(getPitch());
+			var absPitch = Math.abs(getXRot());
 			if (absPitch > 55)
-				return tallSize.getBoxAt(getPos());
-			return shortSize.getBoxAt(getPos());
+				return tallSize.makeBoundingBox(position());
+			return shortSize.makeBoundingBox(position());
 		}
 		
-		return initialSize.getBoxAt(getPos());
+		return initialSize.makeBoundingBox(position());
 	}
 	
 	public void setVelocity(float pitch, float yaw, float roll, float speed) {
-		float f = -MathHelper.sin(yaw * (float) (Math.PI / 180.0)) * MathHelper.cos(pitch * (float) (Math.PI / 180.0));
-		float g = -MathHelper.sin((pitch + roll) * (float) (Math.PI / 180.0));
-		float h = MathHelper.cos(yaw * (float) (Math.PI / 180.0)) * MathHelper.cos(pitch * (float) (Math.PI / 180.0));
-		setVelocity(new Vec3d(f, g, h).multiply(speed));
-		velocityDirty = true;
-		velocityModified = true;
+		float f = -Mth.sin(yaw * (float) (Math.PI / 180.0)) * Mth.cos(pitch * (float) (Math.PI / 180.0));
+		float g = -Mth.sin((pitch + roll) * (float) (Math.PI / 180.0));
+		float h = Mth.cos(yaw * (float) (Math.PI / 180.0)) * Mth.cos(pitch * (float) (Math.PI / 180.0));
+		setDeltaMovement(new Vec3(f, g, h).scale(speed));
+		hasImpulse = true;
+		hurtMarked = true;
 	}
 	
 	@Override
-	protected void onEntityHit(EntityHitResult entityHitResult) {
+	protected void onHitEntity(EntityHitResult entityHitResult) {
 		Entity attacked = entityHitResult.getEntity();
 		if (attacked.getType() == EntityType.ENDERMAN) {
 			return;
@@ -176,7 +177,7 @@ public class DraconicTwinswordEntity extends BidentBaseEntity implements NonLivi
 		
 		var propelled = isPropelled();
 		ItemStack stack = getTrackedStack();
-		var channeling = SpectrumEnchantmentHelper.getLevel(getWorld().getRegistryManager(), Enchantments.CHANNELING, stack);
+		var channeling = SpectrumEnchantmentHelper.getLevel(level().registryAccess(), Enchantments.CHANNELING, stack);
 		Entity owner = this.getOwner();
 		
 		if (piercedEntities.contains(attacked))
@@ -186,28 +187,28 @@ public class DraconicTwinswordEntity extends BidentBaseEntity implements NonLivi
 		damage = adjustDamage(damage, channeling);
 		boolean crit = false;
 		
-		DamageSource damageSource = SpectrumDamageTypes.impaling(getWorld(), this, owner);
-		if (getWorld() instanceof ServerWorld serverWorld) {
-			damage *= EnchantmentHelper.getDamage(serverWorld, stack, attacked, damageSource, getDamage(stack));
+		DamageSource damageSource = SpectrumDamageTypes.impaling(level(), this, owner);
+		if (level() instanceof ServerLevel serverWorld) {
+			damage *= EnchantmentHelper.modifyDamage(serverWorld, stack, attacked, damageSource, getDamage(stack));
 		}
 		
-		if (!attacked.isOnGround() && propelled) {
-			damage *= 3 + ImprovedCriticalHelper.getAddtionalCritDamageMultiplier(getWorld().getRegistryManager(), stack);
+		if (!attacked.onGround() && propelled) {
+			damage *= 3 + ImprovedCriticalHelper.getAddtionalCritDamageMultiplier(level().registryAccess(), stack);
 			crit = true;
 		}
 		
-		if (attacked.damage(damageSource, damage)) {
+		if (attacked.hurt(damageSource, damage)) {
 			if (attacked.getType() == EntityType.ENDERMAN) {
 				return;
 			}
 			
-			if (getWorld() instanceof ServerWorld serverWorld) {
-				EnchantmentHelper.onTargetDamaged(serverWorld, attacked, damageSource, stack);
+			if (level() instanceof ServerLevel serverWorld) {
+				EnchantmentHelper.doPostAttackEffectsWithItemSource(serverWorld, attacked, damageSource, stack);
 			}
 			
 			if (attacked instanceof LivingEntity livingAttacked) {
-				this.knockback(livingAttacked, damageSource);
-				this.onHit(livingAttacked);
+				this.doKnockback(livingAttacked, damageSource);
+				this.doPostHurtEffects(livingAttacked);
 			}
 		}
 		
@@ -231,17 +232,17 @@ public class DraconicTwinswordEntity extends BidentBaseEntity implements NonLivi
 		applyChannelingAOE(channeling, damage, attacked, damageSource);
 		applyInertiaEffects(stack);
 		
-		this.setVelocity(this.getVelocity().multiply(-1, -1, -1));
+		this.setDeltaMovement(this.getDeltaMovement().multiply(-1, -1, -1));
 		travelingTicks = 0;
 		
 		setPropelled(false);
 		if (owner != null) {
-			rebound(owner.getPos(), 0.105, 0.15);
+			rebound(owner.position(), 0.105, 0.15);
 		}
 	}
 	
 	private void applyInertiaEffects(ItemStack stack) {
-		var inertia = SpectrumEnchantmentHelper.getLevel(getWorld().getRegistryManager(), SpectrumEnchantments.INERTIA, stack);
+		var inertia = SpectrumEnchantmentHelper.getLevel(level().registryAccess(), SpectrumEnchantments.INERTIA, stack);
 		if (inertia > 0) {
 			damageMult += inertia * 0.1675F;
 			if (velMult < 2) {
@@ -251,23 +252,23 @@ public class DraconicTwinswordEntity extends BidentBaseEntity implements NonLivi
 	}
 	
 	@Override
-	protected void onBlockHit(BlockHitResult blockHitResult) {
+	protected void onHitBlock(BlockHitResult blockHitResult) {
 		var pos = blockHitResult.getBlockPos();
-		var state = getWorld().getBlockState(pos);
+		var state = level().getBlockState(pos);
 		var stack = getTrackedStack();
-		var channeling = SpectrumEnchantmentHelper.getLevel(getWorld().getRegistryManager(), Enchantments.CHANNELING, stack);
+		var channeling = SpectrumEnchantmentHelper.getLevel(level().registryAccess(), Enchantments.CHANNELING, stack);
 		var damage = adjustDamage(getDamage(stack), channeling);
-		var damageSource = SpectrumDamageTypes.impaling(getWorld(), this, getOwner());
+		var damageSource = SpectrumDamageTypes.impaling(level(), this, getOwner());
 		
-		var slime = state.isOf(Blocks.SLIME_BLOCK);
-		var bounce = (state.isOf(Blocks.SLIME_BLOCK) || state.getHardness(getWorld(), pos) >= 25F) && !state.isIn(BlockTags.PLANKS) && !state.isIn(BlockTags.DIRT);
-		var boost = getVelocity().length() < 1 || slime ? 1.4 : 0.9;
+		var slime = state.is(Blocks.SLIME_BLOCK);
+		var bounce = (state.is(Blocks.SLIME_BLOCK) || state.getDestroySpeed(level(), pos) >= 25F) && !state.is(BlockTags.PLANKS) && !state.is(BlockTags.DIRT);
+		var boost = getDeltaMovement().length() < 1 || slime ? 1.4 : 0.9;
 		
-		if (isPropelled() && bounce && getVelocity().lengthSquared() > 1) {
-			switch (blockHitResult.getSide().getAxis()) {
-				case X -> setVelocity(getVelocity().multiply(-boost, boost, boost));
-				case Y -> setVelocity(getVelocity().multiply(boost, -boost, boost));
-				case Z -> setVelocity(getVelocity().multiply(boost, boost, -boost));
+		if (isPropelled() && bounce && getDeltaMovement().lengthSqr() > 1) {
+			switch (blockHitResult.getDirection().getAxis()) {
+				case X -> setDeltaMovement(getDeltaMovement().multiply(-boost, boost, boost));
+				case Y -> setDeltaMovement(getDeltaMovement().multiply(boost, -boost, boost));
+				case Z -> setDeltaMovement(getDeltaMovement().multiply(boost, boost, -boost));
 			}
 			playSound(SpectrumSoundEvents.METAL_TAP, 1, 1.5F);
 			applyChannelingAOE(channeling, damage, null, damageSource);
@@ -277,13 +278,13 @@ public class DraconicTwinswordEntity extends BidentBaseEntity implements NonLivi
 		
 		if (!isRebounding() && !isPropelled() && bounce && getOwner() != null) {
 			travelingTicks = 0;
-			rebound(getOwner().getPos(), 0.105, 0.15);
+			rebound(getOwner().position(), 0.105, 0.15);
 			playSound(SpectrumSoundEvents.METAL_TAP, 1, 1.5F);
 			return;
 		}
 		
-		super.onBlockHit(blockHitResult);
-		if (dataTracker.get(HIT) || isNoClip())
+		super.onHitBlock(blockHitResult);
+		if (entityData.get(HIT) || isNoPhysics())
 			return;
 		
 		if (isPropelled()) {
@@ -291,7 +292,7 @@ public class DraconicTwinswordEntity extends BidentBaseEntity implements NonLivi
 		}
 		setRebounding(false);
 		setPropelled(false);
-		dataTracker.set(HIT, true);
+		entityData.set(HIT, true);
 		jiggleTicks = 0;
 		jiggleIntensity = 4;
 	}
@@ -302,20 +303,20 @@ public class DraconicTwinswordEntity extends BidentBaseEntity implements NonLivi
 	}
 	
 	private void applyChannelingAOE(int channeling, float damage, @Nullable Entity except, DamageSource damageSource) {
-		if (channeling > 0 && !getWorld().isClient()) {
-			var world = (ServerWorld) getWorld();
-			var hitbox = calculateBoundingBox().expand(2.5 + channeling * 1.5);
-			var entities = getWorld().getOtherEntities(this, hitbox);
+		if (channeling > 0 && !level().isClientSide()) {
+			var world = (ServerLevel) level();
+			var hitbox = makeBoundingBox().inflate(2.5 + channeling * 1.5);
+			var entities = level().getEntities(this, hitbox);
 			float spreadingDamage = damage * (1 - 1F / (channeling + 2F));
 			var anyHit = false;
 			for (Entity entity : entities) {
 				if (entity instanceof LivingEntity living && living != except && living != getOwner()) {
-					if (living.damage(damageSource, spreadingDamage / (Math.max(entity.distanceTo(this) / 2F, 1)))) {
+					if (living.hurt(damageSource, spreadingDamage / (Math.max(entity.distanceTo(this) / 2F, 1)))) {
 						for (int i = 0; i < 8; i++) {
-							world.spawnParticles(ParticleTypes.ENCHANTED_HIT,
-									living.getParticleX(1.25),
-									living.getY() + living.getHeight() * random.nextFloat(),
-									living.getParticleZ(1.25),
+							world.sendParticles(ParticleTypes.ENCHANTED_HIT,
+									living.getRandomX(1.25),
+									living.getY() + living.getBbHeight() * random.nextFloat(),
+									living.getRandomZ(1.25),
 									1 + random.nextInt(2), 0, random.nextFloat() / 6F, 0, 0);
 						}
 						anyHit = true;
@@ -325,35 +326,35 @@ public class DraconicTwinswordEntity extends BidentBaseEntity implements NonLivi
 			
 			if (anyHit) {
 				for (int i = 0; i < 10 * channeling; i++) {
-					world.spawnParticles(ParticleTypes.GLOW,
-							getParticleX(1),
-							getY() + getHeight() * random.nextFloat(),
-							getParticleZ(1),
+					world.sendParticles(ParticleTypes.GLOW,
+							getRandomX(1),
+							getY() + getBbHeight() * random.nextFloat(),
+							getRandomZ(1),
 							1 + random.nextInt(2), 0, random.nextFloat() + 0.25F, 0, 0);
 				}
 				
-				world.playSound(null, getPos().x, getPos().y, getPos().z, SpectrumSoundEvents.ELECTRIC_DISCHARGE, SoundCategory.PLAYERS, 1F, 0.6F + random.nextFloat() * 0.2F, 0);
+				world.playSeededSound(null, position().x, position().y, position().z, SpectrumSoundEvents.ELECTRIC_DISCHARGE, SoundSource.PLAYERS, 1F, 0.6F + random.nextFloat() * 0.2F, 0);
 			}
 		}
 	}
 	
 	@Nullable
 	@Override
-	protected EntityHitResult getEntityCollision(Vec3d currentPosition, Vec3d nextPosition) {
-		return ProjectileUtil.getEntityCollision(
-				this.getWorld(), this, currentPosition, nextPosition, this.getBoundingBox().stretch(this.getVelocity()).expand(1.0), this::canHit
+	protected EntityHitResult findHitEntity(Vec3 currentPosition, Vec3 nextPosition) {
+		return ProjectileUtil.getEntityHitResult(
+				this.level(), this, currentPosition, nextPosition, this.getBoundingBox().expandTowards(this.getDeltaMovement()).inflate(1.0), this::canHitEntity
 		);
 	}
 	
 	private float getDamage(ItemStack stack) {
 		//TODO can we use a built in function for this?
 		var damage = new MutableDouble(0);
-		var key = EntityAttributes.GENERIC_ATTACK_DAMAGE.getKey().orElse(null);
-		var base = EntityAttributes.GENERIC_ATTACK_DAMAGE.value().getDefaultValue();
-		var modifiers = stack.getOrDefault(DataComponentTypes.ATTRIBUTE_MODIFIERS, AttributeModifiersComponent.DEFAULT);
-		modifiers.applyModifiers(EquipmentSlot.MAINHAND, (attribute, modifier) -> {
-			if (attribute.matchesKey(key)) {
-				var value = modifier.value();
+		var key = Attributes.ATTACK_DAMAGE.unwrapKey().orElse(null);
+		var base = Attributes.ATTACK_DAMAGE.value().getDefaultValue();
+		var modifiers = stack.getOrDefault(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.EMPTY);
+		modifiers.forEach(EquipmentSlot.MAINHAND, (attribute, modifier) -> {
+			if (attribute.is(key)) {
+				var value = modifier.amount();
 				damage.addAndGet(switch (modifier.operation()) {
 					case ADD_VALUE -> value;
 					case ADD_MULTIPLIED_BASE -> value * base;
@@ -365,40 +366,40 @@ public class DraconicTwinswordEntity extends BidentBaseEntity implements NonLivi
 	}
 	
 	@Override
-	public void age() {
+	public void tickDespawn() {
 	}
 	
 	public boolean isPropelled() {
-		return dataTracker.get(PROPELLED);
+		return entityData.get(PROPELLED);
 	}
 	
 	public boolean isRebounding() {
-		return dataTracker.get(REBOUND);
+		return entityData.get(REBOUND);
 	}
 	
 	public void setPropelled(boolean propelled) {
-		dataTracker.set(PROPELLED, propelled);
+		entityData.set(PROPELLED, propelled);
 	}
 	
 	public void setRebounding(boolean rebounding) {
-		dataTracker.set(REBOUND, rebounding);
+		entityData.set(REBOUND, rebounding);
 	}
 	
-	public void rebound(Vec3d target, double xMod, double yMod) {
+	public void rebound(Vec3 target, double xMod, double yMod) {
 		setRebounding(true);
 		
-		var yPos = this.getPos();
+		var yPos = this.position();
 		var heightDif = Math.abs(yPos.y - target.y);
 		var velocity = target.subtract(yPos);
 		var finalMult = (velMult - 1) / 2 + 1;
 		
 		yMod = Math.max(0.0725, yMod * (1 - (heightDif * 0.024)));
 		
-		this.setVelocity(velocity.multiply(xMod, yMod, xMod).multiply(finalMult).add(0, 0.3, 0));
-		this.setYaw(-getYaw());
-		this.setPitch(-getPitch());
-		this.velocityModified = true;
-		this.velocityDirty = true;
+		this.setDeltaMovement(velocity.multiply(xMod, yMod, xMod).scale(finalMult).add(0, 0.3, 0));
+		this.setYRot(-getYRot());
+		this.setXRot(-getXRot());
+		this.hurtMarked = true;
+		this.hasImpulse = true;
 	}
 	
 	@Override
@@ -411,70 +412,70 @@ public class DraconicTwinswordEntity extends BidentBaseEntity implements NonLivi
 	}
 	
 	@Override
-	protected void initDataTracker(DataTracker.Builder builder) {
-		super.initDataTracker(builder);
-		builder.add(HIT, false);
-		builder.add(PROPELLED, false);
-		builder.add(REBOUND, false);
-		builder.add(MAX_PIERCE, 0);
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(HIT, false);
+		builder.define(PROPELLED, false);
+		builder.define(REBOUND, false);
+		builder.define(MAX_PIERCE, 0);
 	}
 	
 	@Override
-	public void readCustomDataFromNbt(NbtCompound nbt) {
-		super.readCustomDataFromNbt(nbt);
-		this.dataTracker.set(HIT, nbt.getBoolean("hit"));
+	public void readAdditionalSaveData(CompoundTag nbt) {
+		super.readAdditionalSaveData(nbt);
+		this.entityData.set(HIT, nbt.getBoolean("hit"));
 		setPropelled(nbt.getBoolean("propelled"));
 		setRebounding(nbt.getBoolean("rebounding"));
 	}
 	
 	@Override
-	public void writeCustomDataToNbt(NbtCompound nbt) {
-		super.writeCustomDataToNbt(nbt);
-		nbt.putBoolean("hit", this.dataTracker.get(HIT));
+	public void addAdditionalSaveData(CompoundTag nbt) {
+		super.addAdditionalSaveData(nbt);
+		nbt.putBoolean("hit", this.entityData.get(HIT));
 		nbt.putBoolean("propelled", isPropelled());
 		nbt.putBoolean("rebounding", isRebounding());
 	}
 	
 	public void setMaxPierce(int pierce) {
-		this.dataTracker.set(MAX_PIERCE, pierce);
+		this.entityData.set(MAX_PIERCE, pierce);
 	}
 	
 	public int getMaxPierce() {
-		return this.dataTracker.get(MAX_PIERCE);
+		return this.entityData.get(MAX_PIERCE);
 	}
 	
 	private ItemStack getRootStack() {
-		if (getOwner() instanceof PlayerEntity player) {
+		if (getOwner() instanceof Player player) {
 			return DraconicTwinswordItem.findThrownStack(player, uuid);
 		}
 		return ItemStack.EMPTY;
 	}
 	
 	@Override
-	public void onPlayerCollision(PlayerEntity player) {
+	public void playerTouch(Player player) {
 	}
 	
 	@Override
-	public ActionResult interact(PlayerEntity player, Hand hand) {
-		return tryPickup(player) ? ActionResult.SUCCESS : ActionResult.FAIL;
+	public InteractionResult interact(Player player, InteractionHand hand) {
+		return tryPickup(player) ? InteractionResult.SUCCESS : InteractionResult.FAIL;
 	}
 	
 	@Override
-	protected boolean tryPickup(PlayerEntity player) {
+	protected boolean tryPickup(Player player) {
 		if (player != getOwner()) {
-			player.damage(getDamageSources().thorns(this), 20);
-			playSound(SoundEvents.ENCHANT_THORNS_HIT, 1, 0.9F + random.nextFloat() * 0.2F);
+			player.hurt(damageSources().thorns(this), 20);
+			playSound(SoundEvents.THORNS_HIT, 1, 0.9F + random.nextFloat() * 0.2F);
 			return false;
 		}
 		
 		var rootStack = DraconicTwinswordItem.findThrownStack(player, uuid);
 		if (!rootStack.isEmpty()) {
-			if (this.getWorld().isClient())
+			if (this.level().isClientSide())
 				return true;
 			
 			SlotReservingItem.free(rootStack);
-			player.sendPickup(this, 1);
-			player.playSound(SoundEvents.ENTITY_ITEM_PICKUP, 1, 1);
+			player.take(this, 1);
+			player.playSound(SoundEvents.ITEM_PICKUP, 1, 1);
 			discard();
 			return true;
 		} else {
@@ -485,13 +486,13 @@ public class DraconicTwinswordEntity extends BidentBaseEntity implements NonLivi
 	
 	@Nullable
 	@Override
-	public ItemEntity dropStack(ItemStack stack) {
+	public ItemEntity spawnAtLocation(ItemStack stack) {
 		return null;
 	}
 	
 	@Nullable
 	@Override
-	public ItemEntity dropStack(ItemStack stack, float yOffset) {
+	public ItemEntity spawnAtLocation(ItemStack stack, float yOffset) {
 		return null;
 	}
 }

@@ -3,29 +3,29 @@ package de.dafuqs.spectrum.mixin.client;
 import com.llamalad7.mixinextras.sugar.*;
 import com.llamalad7.mixinextras.sugar.ref.*;
 import de.dafuqs.spectrum.helpers.*;
-import net.minecraft.client.gui.screen.ingame.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.util.*;
+import net.minecraft.client.gui.screens.inventory.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.effect.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 
-@Mixin(AbstractInventoryScreen.class)
+@Mixin(EffectRenderingInventoryScreen.class)
 public class AbstractInventoryScreenMixin {
 	
-	@ModifyVariable(method = "drawStatusEffectBackgrounds(Lnet/minecraft/client/gui/DrawContext;IILjava/lang/Iterable;Z)V", at = @At("STORE"))
-	private StatusEffectInstance spectrum$saveEffect(StatusEffectInstance value, @Share("effect") LocalRef<StatusEffectInstance> effect) {
+	@ModifyVariable(method = "renderBackgrounds", at = @At("STORE"))
+	private MobEffectInstance spectrum$saveEffect(MobEffectInstance value, @Share("effect") LocalRef<MobEffectInstance> effect) {
 		effect.set(value);
 		return value;
 	}
 	
-	@ModifyArg(method = "drawStatusEffectBackgrounds(Lnet/minecraft/client/gui/DrawContext;IILjava/lang/Iterable;Z)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawGuiTexture(Lnet/minecraft/util/Identifier;IIII)V", ordinal = 0))
-	private Identifier spectrum$modifyWideBackground(Identifier texture, @Local StatusEffectInstance effect) {
-		return StatusEffectHelper.getTexture(texture, effect, StatusEffectHelper.RenderType.GUI_LARGE);
+	@ModifyArg(method = "renderBackgrounds", at = @At(value = "INVOKE", target = "net/minecraft/client/gui/GuiGraphics.blitSprite (Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 0))
+	private ResourceLocation spectrum$modifyWideBackground(ResourceLocation texture, @Local MobEffectInstance effect) {
+		return StatusEffectHelper.getTextureLocation(texture, effect, StatusEffectHelper.RenderType.GUI_LARGE);
 	}
 	
-	@ModifyArg(method = "drawStatusEffectBackgrounds(Lnet/minecraft/client/gui/DrawContext;IILjava/lang/Iterable;Z)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawGuiTexture(Lnet/minecraft/util/Identifier;IIII)V", ordinal = 1))
-	private Identifier spectrum$modifyBackground(Identifier texture, @Share("effect") LocalRef<StatusEffectInstance> effect) {
-		return StatusEffectHelper.getTexture(texture, effect.get(), StatusEffectHelper.RenderType.GUI_SMALL);
+	@ModifyArg(method = "renderBackgrounds", at = @At(value = "INVOKE", target = "net/minecraft/client/gui/GuiGraphics.blitSprite (Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 1))
+	private ResourceLocation spectrum$modifyBackground(ResourceLocation texture, @Share("effect") LocalRef<MobEffectInstance> effect) {
+		return StatusEffectHelper.getTextureLocation(texture, effect.get(), StatusEffectHelper.RenderType.GUI_SMALL);
 	}
 	
 }

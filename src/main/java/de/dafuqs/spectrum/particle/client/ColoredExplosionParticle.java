@@ -2,38 +2,38 @@ package de.dafuqs.spectrum.particle.client;
 
 import de.dafuqs.spectrum.particle.effect.*;
 import net.fabricmc.api.*;
+import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.particle.*;
-import net.minecraft.client.world.*;
 import org.jetbrains.annotations.*;
 import org.joml.*;
 
 @Environment(EnvType.CLIENT)
-public class ColoredExplosionParticle extends ExplosionLargeParticle {
+public class ColoredExplosionParticle extends HugeExplosionParticle {
 	
-	protected ColoredExplosionParticle(ClientWorld world, double x, double y, double z, double d, SpriteProvider spriteProvider, float red, float green, float blue) {
+	protected ColoredExplosionParticle(ClientLevel world, double x, double y, double z, double d, SpriteSet spriteProvider, float red, float green, float blue) {
 		super(world, x, y, z, d, spriteProvider);
 		
-		this.red = red;
-		this.green = green;
-		this.blue = blue;
+		this.rCol = red;
+		this.gCol = green;
+		this.bCol = blue;
 	}
 	
 	@Override
-	public ParticleTextureSheet getType() {
-		return ParticleTextureSheet.PARTICLE_SHEET_TRANSLUCENT;
+	public ParticleRenderType getRenderType() {
+		return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
 	}
 	
 	@Environment(EnvType.CLIENT)
-	public static class Factory implements ParticleFactory<ColoredExplosionParticleEffect> {
+	public static class Factory implements ParticleProvider<ColoredExplosionParticleEffect> {
 		
-		private final SpriteProvider spriteProvider;
+		private final SpriteSet spriteProvider;
 		
-		public Factory(SpriteProvider spriteProvider) {
+		public Factory(SpriteSet spriteProvider) {
 			this.spriteProvider = spriteProvider;
 		}
 		
 		@Override
-		public @Nullable Particle createParticle(ColoredExplosionParticleEffect parameters, ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
+		public @Nullable Particle createParticle(ColoredExplosionParticleEffect parameters, ClientLevel world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
 			Vector3f color = parameters.getColor();
 			return new ColoredExplosionParticle(world, x, y, z, velocityX, this.spriteProvider, color.x, color.y, color.z);
 		}

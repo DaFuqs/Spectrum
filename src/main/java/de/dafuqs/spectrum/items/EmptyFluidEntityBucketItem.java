@@ -1,49 +1,49 @@
 package de.dafuqs.spectrum.items;
 
-import net.minecraft.advancement.criterion.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.fluid.*;
-import net.minecraft.item.*;
-import net.minecraft.server.network.*;
-import net.minecraft.sound.*;
-import net.minecraft.stat.*;
-import net.minecraft.util.*;
-import net.minecraft.util.hit.*;
-import net.minecraft.util.math.*;
+import net.minecraft.advancements.*;
+import net.minecraft.core.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
+import net.minecraft.stats.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.material.*;
+import net.minecraft.world.phys.*;
 
 /**
  * An EntityBucketItem for entities with Fluids.EMPTY.
  */
-public class EmptyFluidEntityBucketItem extends EntityBucketItem {
+public class EmptyFluidEntityBucketItem extends MobBucketItem {
 	
-	public EmptyFluidEntityBucketItem(EntityType<?> type, Fluid fluid, SoundEvent emptyingSound, Settings settings) {
+	public EmptyFluidEntityBucketItem(EntityType<?> type, Fluid fluid, SoundEvent emptyingSound, Properties settings) {
 		super(type, fluid, emptyingSound, settings);
 	}
 	
 	@Override
-	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-		ItemStack itemStack = user.getStackInHand(hand);
-		BlockHitResult blockHitResult = raycast(world, user, RaycastContext.FluidHandling.SOURCE_ONLY);
+	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
+		ItemStack itemStack = user.getItemInHand(hand);
+		BlockHitResult blockHitResult = getPlayerPOVHitResult(world, user, ClipContext.Fluid.SOURCE_ONLY);
 		if (blockHitResult.getType() == HitResult.Type.MISS) {
-			return TypedActionResult.pass(itemStack);
+			return InteractionResultHolder.pass(itemStack);
 		} else if (blockHitResult.getType() != HitResult.Type.BLOCK) {
-			return TypedActionResult.pass(itemStack);
+			return InteractionResultHolder.pass(itemStack);
 		} else {
 			BlockPos blockPos = blockHitResult.getBlockPos();
-			Direction direction = blockHitResult.getSide();
-			BlockPos blockPos2 = blockPos.offset(direction);
-			if (world.canPlayerModifyAt(user, blockPos) && user.canPlaceOn(blockPos2, direction, itemStack)) {
-				this.onEmptied(user, world, itemStack, blockPos2);
-				if (user instanceof ServerPlayerEntity) {
-					Criteria.PLACED_BLOCK.trigger((ServerPlayerEntity) user, blockPos2, itemStack);
+			Direction direction = blockHitResult.getDirection();
+			BlockPos blockPos2 = blockPos.relative(direction);
+			if (world.mayInteract(user, blockPos) && user.mayUseItemAt(blockPos2, direction, itemStack)) {
+				this.checkExtraContent(user, world, itemStack, blockPos2);
+				if (user instanceof ServerPlayer) {
+					CriteriaTriggers.PLACED_BLOCK.trigger((ServerPlayer) user, blockPos2, itemStack);
 				}
 				
-				user.incrementStat(Stats.USED.getOrCreateStat(this));
-				return TypedActionResult.success(getEmptiedStack(itemStack, user), world.isClient());
+				user.awardStat(Stats.ITEM_USED.get(this));
+				return InteractionResultHolder.sidedSuccess(getEmptySuccessItem(itemStack, user), world.isClientSide());
 			} else {
-				return TypedActionResult.fail(itemStack);
+				return InteractionResultHolder.fail(itemStack);
 			}
 		}
 	}

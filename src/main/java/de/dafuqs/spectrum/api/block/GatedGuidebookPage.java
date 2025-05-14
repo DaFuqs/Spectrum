@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.api.block;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import net.fabricmc.loader.api.*;
-import net.minecraft.util.*;
+import net.minecraft.resources.*;
 
 import java.util.*;
 
@@ -12,7 +12,7 @@ public interface GatedGuidebookPage {
 	// unlocks that would be reported in the sanity check,
 	// but are manually proven to be ok (since the entry advancement + page advancement match all required criteria already)
 	// format: <page identifier> : <page unlock>
-	Map<Identifier, Identifier> SANITY_WHITELIST = Map.of(
+	Map<ResourceLocation, ResourceLocation> SANITY_WHITELIST = Map.of(
 			SpectrumCommon.locate("resources/jade_vines"), SpectrumCommon.locate("midgame/build_spirit_instiller_structure"), // covered by entry adv + page adv
 			SpectrumCommon.locate("cuisine/tarts"), SpectrumCommon.locate("craft_salted_jaramel_trifle_or_tart"), // secret recipe showing up once crafted
 			SpectrumCommon.locate("cuisine/trifles"), SpectrumCommon.locate("craft_salted_jaramel_trifle_or_tart"), // secret recipe showing up once crafted
@@ -21,7 +21,7 @@ public interface GatedGuidebookPage {
 			SpectrumCommon.locate("creating_life/egg_laying_wooly_pig"), SpectrumCommon.locate("midgame/remember_egg_laying_wooly_pig") // recipe should only be revealed after remembering it
 	);
 	
-	static void runSanityCheck(Identifier entryId, int pageNr, String pageAdvancement, GatedRecipe<?>... recipes) {
+	static void runSanityCheck(ResourceLocation entryId, int pageNr, String pageAdvancement, GatedRecipe<?>... recipes) {
 		if (FabricLoader.getInstance().isDevelopmentEnvironment()) {
 			if (pageAdvancement != null && !pageAdvancement.isEmpty()) {
 				for (GatedRecipe<?> recipe : recipes) {
@@ -29,13 +29,13 @@ public interface GatedGuidebookPage {
 						SpectrumCommon.logWarning("Guidebook page " + entryId + " page " + pageNr + " is missing its recipe");
 						continue;
 					}
-					Optional<Identifier> recipeAdvId = recipe.getRequiredAdvancementIdentifier();
-					Identifier combinedAdvId = recipeAdvId.orElse(recipe.getRecipeTypeUnlockIdentifier());
+					Optional<ResourceLocation> recipeAdvId = recipe.getRequiredAdvancementIdentifier();
+					ResourceLocation combinedAdvId = recipeAdvId.orElse(recipe.getRecipeTypeUnlockIdentifier());
 					if (combinedAdvId == null) {
 						SpectrumCommon.logWarning("Guidebook page " + entryId + "[" + pageNr + "] references advancement " + pageAdvancement + " for a recipe that does not have an unlock: " + recipeAdvId);
 						continue;
 					}
-					if (SANITY_WHITELIST.containsKey(entryId) && SANITY_WHITELIST.get(entryId).equals(Identifier.of(pageAdvancement))) {
+					if (SANITY_WHITELIST.containsKey(entryId) && SANITY_WHITELIST.get(entryId).equals(ResourceLocation.parse(pageAdvancement))) {
 						continue;
 					}
 					if (!combinedAdvId.toString().equals(pageAdvancement)) {

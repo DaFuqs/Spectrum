@@ -5,20 +5,19 @@ import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.advancement.criterion.*;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.loot.*;
-import net.minecraft.loot.context.*;
+import net.minecraft.advancements.*;
+import net.minecraft.core.*;
 import net.minecraft.nbt.*;
-import net.minecraft.registry.*;
-import net.minecraft.screen.*;
-import net.minecraft.server.network.*;
-import net.minecraft.server.world.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.storage.loot.*;
+import net.minecraft.world.level.storage.loot.parameters.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -26,7 +25,7 @@ import java.util.*;
 public class TreasureChestBlockEntity extends SpectrumChestBlockEntity {
 	
 	private final List<UUID> playersThatOpenedAlready = new ArrayList<>();
-	private Identifier requiredAdvancementIdentifierToOpen;
+	private ResourceLocation requiredAdvancementIdentifierToOpen;
 	private Vec3i controllerOffset;
 	
 	public TreasureChestBlockEntity(BlockPos pos, BlockState state) {
@@ -34,8 +33,8 @@ public class TreasureChestBlockEntity extends SpectrumChestBlockEntity {
 	}
 	
 	@Override
-	public void writeNbt(NbtCompound tag, RegistryWrapper.WrapperLookup registryLookup) {
-		super.writeNbt(tag, registryLookup);
+	public void saveAdditional(CompoundTag tag, HolderLookup.Provider registryLookup) {
+		super.saveAdditional(tag, registryLookup);
 		
 		if (this.requiredAdvancementIdentifierToOpen != null) {
 			tag.putString("RequiredAdvancement", this.requiredAdvancementIdentifierToOpen.toString());
@@ -48,10 +47,10 @@ public class TreasureChestBlockEntity extends SpectrumChestBlockEntity {
 		}
 		
 		if (!playersThatOpenedAlready.isEmpty()) {
-			NbtList uuidList = new NbtList();
+			ListTag uuidList = new ListTag();
 			for (UUID uuid : playersThatOpenedAlready) {
-				NbtCompound nbtCompound = new NbtCompound();
-				nbtCompound.putUuid("UUID", uuid);
+				CompoundTag nbtCompound = new CompoundTag();
+				nbtCompound.putUUID("UUID", uuid);
 				uuidList.add(nbtCompound);
 			}
 			tag.put("OpenedPlayers", uuidList);
@@ -59,21 +58,21 @@ public class TreasureChestBlockEntity extends SpectrumChestBlockEntity {
 	}
 	
 	@Override
-	protected Text getContainerName() {
-		return Text.translatable("block.spectrum.preservation_chest");
+	protected Component getDefaultName() {
+		return Component.translatable("block.spectrum.preservation_chest");
 	}
 	
 	@Override
-	protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
+	protected AbstractContainerMenu createMenu(int syncId, Inventory playerInventory) {
 		return GenericSpectrumContainerScreenHandler.createGeneric9x3(syncId, playerInventory, this, ScreenBackgroundVariant.LATEGAME);
 	}
 	
 	@Override
-	public void readNbt(NbtCompound tag, RegistryWrapper.WrapperLookup registryLookup) {
-		super.readNbt(tag, registryLookup);
+	public void loadAdditional(CompoundTag tag, HolderLookup.Provider registryLookup) {
+		super.loadAdditional(tag, registryLookup);
 		
-		if (tag.contains("RequiredAdvancement", NbtElement.STRING_TYPE)) {
-			this.requiredAdvancementIdentifierToOpen = Identifier.tryParse(tag.getString("RequiredAdvancement"));
+		if (tag.contains("RequiredAdvancement", Tag.TAG_STRING)) {
+			this.requiredAdvancementIdentifierToOpen = ResourceLocation.tryParse(tag.getString("RequiredAdvancement"));
 		}
 		
 		if (tag.contains("ControllerOffsetX")) {
@@ -81,20 +80,20 @@ public class TreasureChestBlockEntity extends SpectrumChestBlockEntity {
 		}
 		
 		this.playersThatOpenedAlready.clear();
-		if (tag.contains("OpenedPlayers", NbtElement.LIST_TYPE)) {
-			NbtList list = tag.getList("OpenedPlayers", NbtElement.COMPOUND_TYPE);
+		if (tag.contains("OpenedPlayers", Tag.TAG_LIST)) {
+			ListTag list = tag.getList("OpenedPlayers", Tag.TAG_COMPOUND);
 			for (int i = 0; i < list.size(); i++) {
-				NbtCompound compound = list.getCompound(i);
-				UUID uuid = compound.getUuid("UUID");
+				CompoundTag compound = list.getCompound(i);
+				UUID uuid = compound.getUUID("UUID");
 				this.playersThatOpenedAlready.add(uuid);
 			}
 		}
 	}
 	
 	@Override
-	public void onClose() {
-		if (world instanceof ServerWorld serverWorld && controllerOffset != null) {
-			BlockEntity blockEntity = serverWorld.getBlockEntity(Support.directionalOffset(this.pos, this.controllerOffset, serverWorld.getBlockState(this.pos).get(PreservationControllerBlock.FACING)));
+	public void onCloseSpectrum() {
+		if (level instanceof ServerLevel serverWorld && controllerOffset != null) {
+			BlockEntity blockEntity = serverWorld.getBlockEntity(Support.directionalOffset(this.worldPosition, this.controllerOffset, serverWorld.getBlockState(this.worldPosition).getValue(PreservationControllerBlock.FACING)));
 			if (blockEntity instanceof PreservationControllerBlockEntity controller) {
 				controller.openExit();
 			}
@@ -103,35 +102,35 @@ public class TreasureChestBlockEntity extends SpectrumChestBlockEntity {
 	
 	// Generate new loot for each player that has never opened this chest before
 	@Override
-	public void generateLoot(@Nullable PlayerEntity player) {
-		if (player != null && this.lootTable != null && this.getWorld() != null && !hasOpenedThisChestBefore(player)) {
+	public void unpackLootTable(@Nullable Player player) {
+		if (player != null && this.lootTable != null && this.getLevel() != null && !hasOpenedThisChestBefore(player)) {
 			supplyInventory(player);
 			rememberPlayer(player);
 		}
 	}
 	
-	public boolean hasOpenedThisChestBefore(@NotNull PlayerEntity player) {
-		return this.playersThatOpenedAlready.contains(player.getUuid());
+	public boolean hasOpenedThisChestBefore(@NotNull Player player) {
+		return this.playersThatOpenedAlready.contains(player.getUUID());
 	}
 	
-	public void rememberPlayer(@NotNull PlayerEntity player) {
-		this.playersThatOpenedAlready.add(player.getUuid());
-		this.markDirty();
+	public void rememberPlayer(@NotNull Player player) {
+		this.playersThatOpenedAlready.add(player.getUUID());
+		this.setChanged();
 	}
 	
-	public void supplyInventory(@NotNull PlayerEntity player) {
-		if (player instanceof ServerPlayerEntity serverPlayer) {
-			LootTable lootTable = serverPlayer.getServerWorld().getServer().getReloadableRegistries().getLootTable(this.lootTable);
-			var builder = new LootContextParameterSet.Builder(serverPlayer.getServerWorld()).add(LootContextParameters.ORIGIN, Vec3d.ofCenter(this.pos));
-			builder.luck(player.getLuck()).add(LootContextParameters.THIS_ENTITY, player);
-			lootTable.supplyInventory(this, builder.build(LootContextTypes.CHEST), lootTableSeed);
-			if (player instanceof ServerPlayerEntity) {
-				Criteria.PLAYER_GENERATES_CONTAINER_LOOT.trigger(serverPlayer, this.lootTable);
+	public void supplyInventory(@NotNull Player player) {
+		if (player instanceof ServerPlayer serverPlayer) {
+			LootTable lootTable = serverPlayer.serverLevel().getServer().reloadableRegistries().getLootTable(this.lootTable);
+			var builder = new LootParams.Builder(serverPlayer.serverLevel()).withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(this.worldPosition));
+			builder.withLuck(player.getLuck()).withParameter(LootContextParams.THIS_ENTITY, player);
+			lootTable.fill(this, builder.create(LootContextParamSets.CHEST), lootTableSeed);
+			if (player instanceof ServerPlayer) {
+				CriteriaTriggers.GENERATE_LOOT.trigger(serverPlayer, this.lootTable);
 			}
 		}
 	}
 	
-	public boolean canOpen(PlayerEntity player) {
+	public boolean canOpen(Player player) {
 		if (this.requiredAdvancementIdentifierToOpen == null) {
 			return true;
 		} else {
@@ -140,7 +139,7 @@ public class TreasureChestBlockEntity extends SpectrumChestBlockEntity {
 	}
 	
 	@Override
-	public int size() {
+	public int getContainerSize() {
 		return 27;
 	}
 	

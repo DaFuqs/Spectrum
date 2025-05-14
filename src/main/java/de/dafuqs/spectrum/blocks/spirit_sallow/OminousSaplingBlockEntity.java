@@ -2,12 +2,11 @@ package de.dafuqs.spectrum.blocks.spirit_sallow;
 
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.entity.player.*;
+import net.minecraft.core.*;
 import net.minecraft.nbt.*;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.util.math.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
 
 import java.util.*;
 
@@ -29,28 +28,28 @@ public class OminousSaplingBlockEntity extends BlockEntity implements PlayerOwne
 	}
 	
 	@Override
-	public void setOwner(PlayerEntity playerEntity) {
-		this.ownerUUID = playerEntity.getUuid();
-		markDirty();
+	public void setOwner(Player playerEntity) {
+		this.ownerUUID = playerEntity.getUUID();
+		setChanged();
 	}
 	
 	// Serialize the BlockEntity
 	@Override
-	public void writeNbt(NbtCompound tag, RegistryWrapper.WrapperLookup registryLookup) {
-		super.writeNbt(tag, registryLookup);
+	public void saveAdditional(CompoundTag tag, HolderLookup.Provider registryLookup) {
+		super.saveAdditional(tag, registryLookup);
 		
 		if (this.ownerUUID != null) {
-			tag.putUuid("OwnerUUID", this.ownerUUID);
+			tag.putUUID("OwnerUUID", this.ownerUUID);
 		}
 	}
 	
 	// Deserialize the BlockEntity
 	@Override
-	public void readNbt(NbtCompound tag, RegistryWrapper.WrapperLookup registryLookup) {
-		super.readNbt(tag, registryLookup);
+	public void loadAdditional(CompoundTag tag, HolderLookup.Provider registryLookup) {
+		super.loadAdditional(tag, registryLookup);
 		
 		if (tag.contains("OwnerUUID")) {
-			this.ownerUUID = tag.getUuid("OwnerUUID");
+			this.ownerUUID = tag.getUUID("OwnerUUID");
 		} else {
 			this.ownerUUID = null;
 		}

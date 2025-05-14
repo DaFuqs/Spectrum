@@ -2,61 +2,62 @@ package de.dafuqs.spectrum.blocks.chests;
 
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.server.world.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.shape.*;
-import net.minecraft.world.*;
-import net.minecraft.world.event.listener.*;
+import net.minecraft.core.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.gameevent.*;
+import net.minecraft.world.phys.shapes.*;
 import org.jetbrains.annotations.*;
 
 public class BlackHoleChestBlock extends SpectrumChestBlock {
-
-	public static final MapCodec<BlackHoleChestBlock> CODEC = createCodec(BlackHoleChestBlock::new);
-
-	protected static final VoxelShape SHAPE = Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 9.0D, 15.0D);
-
-	public BlackHoleChestBlock(Settings settings) {
+	
+	public static final MapCodec<BlackHoleChestBlock> CODEC = simpleCodec(BlackHoleChestBlock::new);
+	
+	protected static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 9.0D, 15.0D);
+	
+	public BlackHoleChestBlock(Properties settings) {
 		super(settings);
 	}
 
 	@Override
-	protected MapCodec<? extends BlockWithEntity> getCodec() {
+	protected MapCodec<? extends BaseEntityBlock> codec() {
 		return CODEC;
 	}
 
 	@Override
 	@Nullable
-	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new BlackHoleChestBlockEntity(pos, state);
 	}
 	
 	@Override
 	@Nullable
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		return validateTicker(type, SpectrumBlockEntities.BLACK_HOLE_CHEST, BlackHoleChestBlockEntity::tick);
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
+		return createTickerHelper(type, SpectrumBlockEntities.BLACK_HOLE_CHEST, BlackHoleChestBlockEntity::tick);
 	}
 	
 	@Override
-	public void openScreen(World world, BlockPos pos, PlayerEntity player) {
+	public void openScreen(Level world, BlockPos pos, Player player) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof BlackHoleChestBlockEntity blackHoleChestBlockEntity) {
 			if (!isChestBlocked(world, pos)) {
-				player.openHandledScreen(blackHoleChestBlockEntity);
+				player.openMenu(blackHoleChestBlockEntity);
 			}
 		}
 	}
 	
 	@Override
 	@Nullable
-	public <T extends BlockEntity> GameEventListener getGameEventListener(ServerWorld world, T blockEntity) {
+	public <T extends BlockEntity> GameEventListener getListener(ServerLevel world, T blockEntity) {
 		return blockEntity instanceof BlackHoleChestBlockEntity blackHoleChestBlockEntity ? blackHoleChestBlockEntity.getEventListener() : null;
 	}
 	
 	@Override
-	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		return SHAPE;
 	}
 }

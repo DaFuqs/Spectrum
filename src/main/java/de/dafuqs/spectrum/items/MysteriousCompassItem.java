@@ -4,21 +4,21 @@ import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.world.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
 import org.jetbrains.annotations.*;
 
 public class MysteriousCompassItem extends StructureCompassItem implements SlotBackgroundEffectProvider {
-
-	public MysteriousCompassItem(Settings settings) {
+	
+	public MysteriousCompassItem(Properties settings) {
 		super(settings, SpectrumStructureTags.MYSTERIOUS_COMPASS_LOCATED);
 	}
 	
 	@Override
-	public void inventoryTick(@NotNull ItemStack stack, @NotNull World world, Entity entity, int slot, boolean selected) {
-		if (!world.isClient && world.getTime() % 200 == 0 && entity instanceof PlayerEntity player)
+	public void inventoryTick(@NotNull ItemStack stack, @NotNull Level world, Entity entity, int slot, boolean selected) {
+		if (!world.isClientSide && world.getGameTime() % 200 == 0 && entity instanceof Player player)
 			if (AdvancementHelper.hasAdvancement(player, SpectrumAdvancements.MYSTERIOUS_LOCKET_SOCKETING)) {
 				locateStructure(stack, world, entity);
 			} else {
@@ -27,12 +27,12 @@ public class MysteriousCompassItem extends StructureCompassItem implements SlotB
 	}
 	
 	@Override
-	public SlotEffect backgroundType(@Nullable PlayerEntity player, ItemStack stack) {
+	public SlotEffect backgroundType(@Nullable Player player, ItemStack stack) {
 		return SlotEffect.FULL_PACKAGE;
 	}
 	
 	@Override
-	public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
+	public int getBackgroundColor(@Nullable Player player, ItemStack stack, float tickDelta) {
 		return 0xFFFFFF;
 	}
 }

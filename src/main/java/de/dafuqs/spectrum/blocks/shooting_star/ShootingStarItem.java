@@ -3,30 +3,31 @@ package de.dafuqs.spectrum.blocks.shooting_star;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.*;
-import net.minecraft.stat.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import net.minecraft.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.stats.*;
 import net.minecraft.world.*;
-import net.minecraft.world.event.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.context.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.gameevent.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public class ShootingStarItem extends BlockItem implements ShootingStar {
 	
-	private final Type shootingStarType;
+	private final Variant shootingStarType;
 	
-	public ShootingStarItem(ShootingStarBlock block, Settings settings) {
+	public ShootingStarItem(ShootingStarBlock block, Properties settings) {
 		super(block, settings);
 		this.shootingStarType = block.shootingStarType;
 	}
 	
 	public static @NotNull ItemStack getWithRemainingHits(@NotNull ShootingStarItem shootingStarItem, int remainingHits, boolean hardened) {
-		return getWithRemainingHits(shootingStarItem.getDefaultStack(), remainingHits, hardened);
+		return getWithRemainingHits(shootingStarItem.getDefaultInstance(), remainingHits, hardened);
 	}
 	
 	public static @NotNull ItemStack getWithRemainingHits(@NotNull ItemStack stack, int remainingHits, boolean hardened) {
@@ -36,52 +37,52 @@ public class ShootingStarItem extends BlockItem implements ShootingStar {
 	}
 	
 	@Override
-	public ActionResult useOnBlock(@NotNull ItemUsageContext context) {
-		if (context.getPlayer().isSneaking()) {
+	public InteractionResult useOn(@NotNull UseOnContext context) {
+		if (context.getPlayer().isShiftKeyDown()) {
 			// place as block
-			return super.useOnBlock(context);
+			return super.useOn(context);
 		} else {
 			// place as entity
-			World world = context.getWorld();
+			Level world = context.getLevel();
 			
-			if (!world.isClient) {
-				ItemStack itemStack = context.getStack();
-				Vec3d hitPos = context.getHitPos();
-				PlayerEntity user = context.getPlayer();
-
-				ShootingStarEntity shootingStarEntity = getEntityForStack(context.getWorld(), hitPos, itemStack);
-				shootingStarEntity.setYaw(user.getYaw());
-				if (!world.isSpaceEmpty(shootingStarEntity, shootingStarEntity.getBoundingBox())) {
-					return ActionResult.FAIL;
+			if (!world.isClientSide) {
+				ItemStack itemStack = context.getItemInHand();
+				Vec3 hitPos = context.getClickLocation();
+				Player user = context.getPlayer();
+				
+				ShootingStarEntity shootingStarEntity = getEntityForStack(context.getLevel(), hitPos, itemStack);
+				shootingStarEntity.setYRot(user.getYRot());
+				if (!world.noCollision(shootingStarEntity, shootingStarEntity.getBoundingBox())) {
+					return InteractionResult.FAIL;
 				} else {
-					world.spawnEntity(shootingStarEntity);
-					world.emitGameEvent(user, GameEvent.ENTITY_PLACE, context.getBlockPos());
-					if (!user.getAbilities().creativeMode) {
-						itemStack.decrement(1);
+					world.addFreshEntity(shootingStarEntity);
+					world.gameEvent(user, GameEvent.ENTITY_PLACE, context.getClickedPos());
+					if (!user.getAbilities().instabuild) {
+						itemStack.shrink(1);
 					}
 					
-					user.incrementStat(Stats.USED.getOrCreateStat(this));
+					user.awardStat(Stats.ITEM_USED.get(this));
 				}
 			}
 			
-			return ActionResult.success(world.isClient);
+			return InteractionResult.sidedSuccess(world.isClientSide);
 		}
 	}
 
 	@NotNull
-	public ShootingStarEntity getEntityForStack(@NotNull World world, Vec3d pos, ItemStack stack) {
+	public ShootingStarEntity getEntityForStack(@NotNull Level world, Vec3 pos, ItemStack stack) {
 		return new ShootingStarEntity(world, pos.x, pos.y, pos.z, this.shootingStarType, true, getRemainingHits(stack), isHardened(stack));
 	}
 
 	@Override
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
 		if (isHardened(stack)) {
-			tooltip.add(Text.translatable("item.spectrum.shooting_star.tooltip.hardened").formatted(Formatting.GRAY));
+			tooltip.add(Component.translatable("item.spectrum.shooting_star.tooltip.hardened").withStyle(ChatFormatting.GRAY));
 		}
 	}
 	
-	public ShootingStar.Type getShootingStarType() {
+	public Variant getShootingStarType() {
 		return this.shootingStarType;
 	}
 	

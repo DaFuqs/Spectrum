@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
-import net.minecraft.registry.*;
-import net.minecraft.registry.tag.*;
-import net.minecraft.world.biome.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.tags.*;
+import net.minecraft.world.level.biome.*;
 
 @SuppressWarnings("unused")
 public class SpectrumBiomeTags {
@@ -17,7 +17,7 @@ public class SpectrumBiomeTags {
 	public static final TagKey<Biome> DRAGONBONE_FOSSILS_GENERATING_IN = getReference("dragonbone_fossils_generating_in");
 	
 	private static TagKey<Biome> getReference(String id) {
-		return TagKey.of(RegistryKeys.BIOME, SpectrumCommon.locate(id));
+		return TagKey.create(Registries.BIOME, SpectrumCommon.locate(id));
 	}
 	
 }

@@ -1,25 +1,25 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
-import com.mojang.serialization.MapCodec;
-import net.minecraft.block.*;
-import net.minecraft.item.*;
+import com.mojang.serialization.*;
+import net.minecraft.world.item.context.*;
+import net.minecraft.world.level.block.state.*;
 
 public class SpectrumLineFacingBlock extends SpectrumFacingBlock {
-
-	public static final MapCodec<SpectrumLineFacingBlock> CODEC = createCodec(SpectrumLineFacingBlock::new);
-
-	public SpectrumLineFacingBlock(Settings settings) {
+	
+	public static final MapCodec<SpectrumLineFacingBlock> CODEC = simpleCodec(SpectrumLineFacingBlock::new);
+	
+	public SpectrumLineFacingBlock(Properties settings) {
 		super(settings);
 	}
 
 	@Override
-	public MapCodec<? extends SpectrumLineFacingBlock> getCodec() {
+	public MapCodec<? extends SpectrumLineFacingBlock> codec() {
 		return CODEC;
 	}
 
 	@Override
-	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		return this.getDefaultState().with(FACING, ctx.getPlayerLookDirection());
+	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+		return this.defaultBlockState().setValue(FACING, ctx.getNearestLookingDirection());
 	}
 	
 }

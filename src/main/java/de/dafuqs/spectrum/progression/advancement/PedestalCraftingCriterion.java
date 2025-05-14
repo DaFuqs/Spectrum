@@ -3,60 +3,57 @@ package de.dafuqs.spectrum.progression.advancement;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.*;
-import net.minecraft.advancement.criterion.*;
-import net.minecraft.item.*;
-import net.minecraft.predicate.*;
-import net.minecraft.predicate.entity.*;
-import net.minecraft.predicate.item.*;
-import net.minecraft.server.network.*;
-import net.minecraft.util.*;
+import net.minecraft.advancements.critereon.*;
+import net.minecraft.resources.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.item.*;
 
 import java.util.*;
 
-public class PedestalCraftingCriterion extends AbstractCriterion<PedestalCraftingCriterion.Conditions> {
+public class PedestalCraftingCriterion extends SimpleCriterionTrigger<PedestalCraftingCriterion.Conditions> {
 	
-	public static final Identifier ID = SpectrumCommon.locate("crafted_with_pedestal");
+	public static final ResourceLocation ID = SpectrumCommon.locate("crafted_with_pedestal");
 	
-	public void trigger(ServerPlayerEntity player, ItemStack craftedStack, int experience, int durationTicks) {
+	public void trigger(ServerPlayer player, ItemStack craftedStack, int experience, int durationTicks) {
 		this.trigger(player, (conditions) -> conditions.matches(craftedStack, experience, durationTicks));
 	}
 	
 	@Override
-	public Codec<Conditions> getConditionsCodec() {
+	public Codec<Conditions> codec() {
 		return PedestalCraftingCriterion.Conditions.CODEC;
 	}
 	
 	public record Conditions(
-			Optional<LootContextPredicate> player,
-			Optional<LootContextPredicate> location,
+			Optional<ContextAwarePredicate> player,
+			Optional<ContextAwarePredicate> location,
 			Optional<ItemPredicate> craftedItemPredicate,
-			NumberRange.IntRange experienceRange,
-			NumberRange.IntRange craftingDurationTicksRange
-	) implements AbstractCriterion.Conditions {
+			MinMaxBounds.Ints experienceRange,
+			MinMaxBounds.Ints craftingDurationTicksRange
+	) implements SimpleCriterionTrigger.SimpleInstance {
 		
 		public static final Codec<PedestalCraftingCriterion.Conditions> CODEC = RecordCodecBuilder.create(
 				instance -> instance.group(
-						EntityPredicate.LOOT_CONTEXT_PREDICATE_CODEC.optionalFieldOf("player").forGetter(PedestalCraftingCriterion.Conditions::player),
-						LootContextPredicate.CODEC.optionalFieldOf("location").forGetter(PedestalCraftingCriterion.Conditions::location),
+						EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("player").forGetter(PedestalCraftingCriterion.Conditions::player),
+						ContextAwarePredicate.CODEC.optionalFieldOf("location").forGetter(PedestalCraftingCriterion.Conditions::location),
 						ItemPredicate.CODEC.optionalFieldOf("item").forGetter(PedestalCraftingCriterion.Conditions::craftedItemPredicate),
-						NumberRange.IntRange.CODEC.optionalFieldOf("gained_experience", NumberRange.IntRange.ANY).forGetter(PedestalCraftingCriterion.Conditions::experienceRange),
-						NumberRange.IntRange.CODEC.optionalFieldOf("crafting_duration_ticks", NumberRange.IntRange.ANY).forGetter(PedestalCraftingCriterion.Conditions::craftingDurationTicksRange)
+						MinMaxBounds.Ints.CODEC.optionalFieldOf("gained_experience", MinMaxBounds.Ints.ANY).forGetter(PedestalCraftingCriterion.Conditions::experienceRange),
+						MinMaxBounds.Ints.CODEC.optionalFieldOf("crafting_duration_ticks", MinMaxBounds.Ints.ANY).forGetter(PedestalCraftingCriterion.Conditions::craftingDurationTicksRange)
 				).apply(instance, PedestalCraftingCriterion.Conditions::new)
 		);
 		
 		@Override
-		public void validate(LootContextPredicateValidator validator) {
-			AbstractCriterion.Conditions.super.validate(validator);
+		public void validate(CriterionValidator validator) {
+			SimpleCriterionTrigger.SimpleInstance.super.validate(validator);
 		}
 		
 		public boolean matches(ItemStack craftedStack, int experience, int durationTicks) {
 			if (this.craftedItemPredicate.isPresent() && !this.craftedItemPredicate.get().test(craftedStack)) {
 				return false;
 			}
-			if (!this.experienceRange.test(experience)) {
+			if (!this.experienceRange.matches(experience)) {
 				return false;
 			}
-			return this.craftingDurationTicksRange.test(durationTicks);
+			return this.craftingDurationTicksRange.matches(durationTicks);
 		}
 	}
 	

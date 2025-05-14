@@ -16,32 +16,28 @@ import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.recipe.cinderhearth.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.screenhandler.v1.*;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.inventory.*;
-import net.minecraft.item.*;
+import net.minecraft.core.*;
+import net.minecraft.core.particles.*;
 import net.minecraft.nbt.*;
-import net.minecraft.network.listener.*;
-import net.minecraft.network.packet.*;
-import net.minecraft.network.packet.s2c.play.*;
-import net.minecraft.particle.*;
-import net.minecraft.recipe.*;
-import net.minecraft.recipe.input.*;
-import net.minecraft.registry.*;
-import net.minecraft.screen.*;
-import net.minecraft.server.network.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
-import net.minecraft.text.*;
-import net.minecraft.util.collection.*;
-import net.minecraft.util.math.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.network.protocol.*;
+import net.minecraft.network.protocol.game.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class CinderhearthBlockEntity extends LockableContainerBlockEntity implements MultiblockCrafter, SidedInventory, ExtendedScreenHandlerFactory<BlockPos>, InkStorageBlockEntity<IndividualCappedInkStorage>, RecipeInputProvider {
+public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements MultiblockCrafter, WorldlyContainer, ExtendedScreenHandlerFactory<BlockPos>, InkStorageBlockEntity<IndividualCappedInkStorage>, StackedContentsCompatible {
 	
 	public static final int INVENTORY_SIZE = 11;
 	public static final int INPUT_SLOT_ID = 0;
@@ -51,7 +47,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	public static final int LAST_OUTPUT_SLOT_ID = 10;
 	public static final int[] OUTPUT_SLOT_IDS = new int[]{3, 4, 5, 6, 7, 8, 9, 10};
 	
-	protected DefaultedList<ItemStack> inventory;
+	protected NonNullList<ItemStack> inventory;
 	protected boolean inventoryChanged;
 	
 	public static final List<InkColor> USED_INK_COLORS = List.of(InkColors.ORANGE, InkColors.MAGENTA, InkColors.LIGHT_BLUE, InkColors.PURPLE, InkColors.BLACK);
@@ -61,7 +57,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	
 	private UUID ownerUUID;
 	private UpgradeHolder upgrades;
-	private RecipeEntry<?> currentRecipe; // blasting & cinderhearth
+	private RecipeHolder<?> currentRecipe; // blasting & cinderhearth
 	private boolean usesEfficiency;
 	protected boolean canTransferInk;
 	protected boolean inkDirty;
@@ -71,7 +67,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	protected final CraftingDelegate propertyDelegate = new CraftingDelegate();
 	
 	@Override
-	public int[] getAvailableSlots(Direction side) {
+	public int[] getSlotsForFace(Direction side) {
 		switch (side) {
 			case UP -> {
 				return new int[]{INPUT_SLOT_ID};
@@ -86,7 +82,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	}
 	
 	@Override
-	public boolean canInsert(int slot, ItemStack stack, @Nullable Direction dir) {
+	public boolean canPlaceItemThroughFace(int slot, ItemStack stack, @Nullable Direction dir) {
 		switch (slot) {
 			case INK_PROVIDER_SLOT_ID -> {
 				return stack.getItem() instanceof InkStorageItem<?> inkStorageItem && (inkStorageItem.getDrainability().canDrain(false));
@@ -101,7 +97,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	}
 	
 	@Override
-	public boolean canExtract(int slot, ItemStack stack, Direction dir) {
+	public boolean canTakeItemThroughFace(int slot, ItemStack stack, Direction dir) {
 		return slot >= FIRST_OUTPUT_SLOT_ID;
 	}
 	
@@ -113,40 +109,40 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	
 	public CinderhearthBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntities.CINDERHEARTH, pos, state);
-		this.inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
+		this.inventory = NonNullList.withSize(INVENTORY_SIZE, ItemStack.EMPTY);
 		this.inkStorage = new IndividualCappedInkStorage(INK_STORAGE_SIZE, USED_INK_COLORS);
 	}
 	
 	@Override
 	public void resetUpgrades() {
 		this.upgrades = null;
-		this.markDirty();
+		this.setChanged();
 	}
 	
 	@Override
 	public void calculateUpgrades() {
-		if (world == null) return;
-		this.upgrades = Upgradeable.calculateUpgradeMods2(world, pos, Support.rotationFromDirection(world.getBlockState(pos).get(CinderhearthBlock.FACING)), 2, 1, 1, this.ownerUUID);
+		if (level == null) return;
+		this.upgrades = Upgradeable.calculateUpgradeMods2(level, worldPosition, Support.rotationFromDirection(level.getBlockState(worldPosition).getValue(CinderhearthBlock.FACING)), 2, 1, 1, this.ownerUUID);
 		this.updateInClientWorld();
-		this.markDirty();
+		this.setChanged();
 	}
 	
 	public void updateInClientWorld() {
-		if (world instanceof ServerWorld serverWorld)
-			serverWorld.getChunkManager().markForUpdate(pos);
+		if (level instanceof ServerLevel serverWorld)
+			serverWorld.getChunkSource().blockChanged(worldPosition);
 	}
 	
 	@Nullable
 	@Override
-	public Packet<ClientPlayPacketListener> toUpdatePacket() {
-		return BlockEntityUpdateS2CPacket.create(this);
+	public Packet<ClientGamePacketListener> getUpdatePacket() {
+		return ClientboundBlockEntityDataPacket.create(this);
 	}
 	
 	// Called when the chunk is first loaded to initialize this be
 	@Override
-	public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
-		NbtCompound nbtCompound = new NbtCompound();
-		this.writeNbt(nbtCompound, registryLookup);
+	public CompoundTag getUpdateTag(HolderLookup.Provider registryLookup) {
+		CompoundTag nbtCompound = new CompoundTag();
+		this.saveAdditional(nbtCompound, registryLookup);
 		return nbtCompound;
 	}
 	
@@ -156,41 +152,41 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	}
 	
 	@Override
-	public void setOwner(PlayerEntity playerEntity) {
-		this.ownerUUID = playerEntity.getUuid();
-		this.markDirty();
+	public void setOwner(Player playerEntity) {
+		this.ownerUUID = playerEntity.getUUID();
+		this.setChanged();
 	}
 	
 	@Override
-	protected Text getContainerName() {
-		return Text.translatable("block.spectrum.cinderhearth");
+	protected Component getDefaultName() {
+		return Component.translatable("block.spectrum.cinderhearth");
 	}
 	
 	@Override
-	protected DefaultedList<ItemStack> getHeldStacks() {
+	protected NonNullList<ItemStack> getItems() {
 		return inventory;
 	}
 	
 	@Override
-	protected void setHeldStacks(DefaultedList<ItemStack> inventory) {
+	protected void setItems(NonNullList<ItemStack> inventory) {
 		this.inventory = inventory;
 	}
 	
 	@Override
-	protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
+	protected AbstractContainerMenu createMenu(int syncId, Inventory playerInventory) {
 		return new CinderhearthScreenHandler(syncId, playerInventory, this, this.propertyDelegate);
 	}
 	
 	@Override
-	public BlockPos getScreenOpeningData(ServerPlayerEntity serverPlayerEntity) {
-		return pos;
+	public BlockPos getScreenOpeningData(ServerPlayer serverPlayerEntity) {
+		return worldPosition;
 	}
 	
 	@Override
-	public void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-		super.readNbt(nbt, registryLookup);
+	public void loadAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
+		super.loadAdditional(nbt, registryLookup);
 		
-		Inventories.readNbt(nbt, this.inventory, registryLookup);
+		ContainerHelper.loadAllItems(nbt, this.inventory, registryLookup);
 		
 		CodecHelper.fromNbt(InkStorageComponent.CODEC, nbt.get("InkStorage")).ifPresent(storage ->
 				this.inkStorage = new IndividualCappedInkStorage(storage.maxPerColor(), storage.storedEnergy()));
@@ -199,24 +195,24 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		this.usesEfficiency = nbt.getBoolean("UsesEfficiency");
 		this.canTransferInk = nbt.getBoolean("Paused");
 		this.inventoryChanged = nbt.getBoolean("InventoryChanged");
-		if (nbt.contains("Structure", NbtElement.NUMBER_TYPE)) {
+		if (nbt.contains("Structure", Tag.TAG_ANY_NUMERIC)) {
 			this.structure = CinderHearthStructureType.values()[nbt.getInt("Structure")];
 		} else {
 			this.structure = CinderHearthStructureType.NONE;
 		}
 		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
-		this.currentRecipe = MultiblockCrafter.getRecipeEntryFromNbt(world, nbt);
-		if (nbt.contains("Upgrades", NbtElement.LIST_TYPE)) {
-			this.upgrades = UpgradeHolder.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));
+		this.currentRecipe = MultiblockCrafter.getRecipeHolderFromNbt(level, nbt);
+		if (nbt.contains("Upgrades", Tag.TAG_LIST)) {
+			this.upgrades = UpgradeHolder.fromNbt(nbt.getList("Upgrades", Tag.TAG_COMPOUND));
 		} else {
 			this.upgrades = new UpgradeHolder();
 		}
 	}
 	
 	@Override
-	public void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-		super.writeNbt(nbt, registryLookup);
-		Inventories.writeNbt(nbt, this.inventory, registryLookup);
+	public void saveAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
+		super.saveAdditional(nbt, registryLookup);
+		ContainerHelper.saveAllItems(nbt, this.inventory, registryLookup);
 		CodecHelper.writeNbt(nbt, "InkStorage", InkStorageComponent.CODEC, new InkStorageComponent(this.inkStorage));
 		nbt.putShort("CraftingTime", (short) this.propertyDelegate.craftingTime);
 		nbt.putShort("CraftingTimeTotal", (short) this.propertyDelegate.craftingTimeTotal);
@@ -235,7 +231,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	}
 	
 	@SuppressWarnings("unused")
-	public static void serverTick(World world, BlockPos blockPos, BlockState blockState, CinderhearthBlockEntity cinderhearthBlockEntity) {
+	public static void serverTick(Level world, BlockPos blockPos, BlockState blockState, CinderhearthBlockEntity cinderhearthBlockEntity) {
 		if (cinderhearthBlockEntity.upgrades == null) {
 			cinderhearthBlockEntity.calculateUpgrades();
 		}
@@ -243,7 +239,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		
 		if (cinderhearthBlockEntity.canTransferInk) {
 			boolean didSomething = false;
-			ItemStack stack = cinderhearthBlockEntity.getStack(INK_PROVIDER_SLOT_ID);
+			ItemStack stack = cinderhearthBlockEntity.getItem(INK_PROVIDER_SLOT_ID);
 			if (stack.getItem() instanceof InkStorageItem<?> inkStorageItem) {
 				InkStorage itemStorage = inkStorageItem.getEnergyStorage(stack);
 				didSomething = InkStorage.transferInk(itemStorage, cinderhearthBlockEntity.inkStorage) != 0;
@@ -252,7 +248,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 				}
 			}
 			if (didSomething) {
-				cinderhearthBlockEntity.markDirty();
+				cinderhearthBlockEntity.setChanged();
 				cinderhearthBlockEntity.setInkDirty();
 			} else {
 				cinderhearthBlockEntity.canTransferInk = false;
@@ -270,7 +266,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 				cinderhearthBlockEntity.currentRecipe = null;
 				cinderhearthBlockEntity.propertyDelegate.craftingTime = 0;
 				cinderhearthBlockEntity.propertyDelegate.craftingTimeTotal = 0;
-				cinderhearthBlockEntity.markDirty();
+				cinderhearthBlockEntity.setChanged();
 				return;
 			}
 			
@@ -298,11 +294,11 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 				}
 			}
 			
-			cinderhearthBlockEntity.markDirty();
+			cinderhearthBlockEntity.setChanged();
 		}
 	}
 	
-	private static boolean canContinue(World world, BlockPos blockPos, CinderhearthBlockEntity cinderhearthBlockEntity) {
+	private static boolean canContinue(Level world, BlockPos blockPos, CinderhearthBlockEntity cinderhearthBlockEntity) {
 		if (!canAcceptRecipeOutput(world, cinderhearthBlockEntity.currentRecipe, cinderhearthBlockEntity)) {
 			return false;
 		}
@@ -318,19 +314,19 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		return true;
 	}
 	
-	protected static boolean canAcceptRecipeOutput(World world, RecipeEntry<?> recipe, Inventory inventory) {
+	protected static boolean canAcceptRecipeOutput(Level world, RecipeHolder<?> recipe, Container inventory) {
 		if (recipe != null) {
-			ItemStack outputStack = recipe.value().getResult(world.getRegistryManager());
+			ItemStack outputStack = recipe.value().getResultItem(world.registryAccess());
 			if (outputStack.isEmpty()) {
 				return true;
 			} else {
 				int outputSpaceFound = 0;
 				for (int slot : OUTPUT_SLOT_IDS) {
-					ItemStack slotStack = inventory.getStack(slot);
+					ItemStack slotStack = inventory.getItem(slot);
 					if (slotStack.isEmpty()) {
 						return true;
-					} else if (ItemStack.areItemsAndComponentsEqual(slotStack, outputStack)) {
-						outputSpaceFound += outputStack.getMaxCount() - slotStack.getCount();
+					} else if (ItemStack.isSameItemSameComponents(slotStack, outputStack)) {
+						outputSpaceFound += outputStack.getMaxStackSize() - slotStack.getCount();
 						if (outputSpaceFound >= outputStack.getCount()) {
 							return true;
 						}
@@ -341,8 +337,8 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		return false;
 	}
 	
-	private static void calculateRecipe(@NotNull World world, @NotNull CinderhearthBlockEntity cinderhearthBlockEntity) {
-		var input = new SingleStackRecipeInput(cinderhearthBlockEntity.getStack(0));
+	private static void calculateRecipe(@NotNull Level world, @NotNull CinderhearthBlockEntity cinderhearthBlockEntity) {
+		var input = new SingleRecipeInput(cinderhearthBlockEntity.getItem(0));
 		
 		// test the cached recipe => faster
 		if (cinderhearthBlockEntity.getCurrentRecipe() instanceof CinderhearthRecipe recipe) {
@@ -358,24 +354,24 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		cinderhearthBlockEntity.propertyDelegate.craftingTimeTotal = -1;
 		
 		// cached recipe did not match => calculate new
-		ItemStack inputStack = cinderhearthBlockEntity.getStack(0);
+		ItemStack inputStack = cinderhearthBlockEntity.getItem(0);
 		if (!inputStack.isEmpty()) {
-			world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.CINDERHEARTH, input, world).ifPresentOrElse(
+			world.getRecipeManager().getRecipeFor(SpectrumRecipeTypes.CINDERHEARTH, input, world).ifPresentOrElse(
 					r -> cinderhearthBlockEntity.currentRecipe = r,
-					() -> world.getRecipeManager().getFirstMatch(RecipeType.BLASTING, input, world).ifPresent(
+					() -> world.getRecipeManager().getRecipeFor(RecipeType.BLASTING, input, world).ifPresent(
 							r -> cinderhearthBlockEntity.currentRecipe = r));
 		}
 	}
 	
-	private static boolean checkRecipeRequirements(World world, BlockPos blockPos, @NotNull CinderhearthBlockEntity cinderhearthBlockEntity) {
-		PlayerEntity lastInteractedPlayer = PlayerOwned.getPlayerEntityIfOnline(cinderhearthBlockEntity.ownerUUID);
+	private static boolean checkRecipeRequirements(Level world, BlockPos blockPos, @NotNull CinderhearthBlockEntity cinderhearthBlockEntity) {
+		Player lastInteractedPlayer = PlayerOwned.getPlayerEntityIfOnline(cinderhearthBlockEntity.ownerUUID);
 		if (lastInteractedPlayer == null) {
 			return false;
 		}
 		
 		cinderhearthBlockEntity.structure = CinderhearthBlock.verifyStructure(world, blockPos, null);
 		if (cinderhearthBlockEntity.structure == CinderHearthStructureType.NONE) {
-			world.playSound(null, cinderhearthBlockEntity.getPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundCategory.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.9F + world.random.nextFloat() * 0.2F);
+			world.playSound(null, cinderhearthBlockEntity.getBlockPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundSource.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.9F + world.random.nextFloat() * 0.2F);
 			return false;
 		}
 		
@@ -385,16 +381,16 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		return true;
 	}
 	
-	public static void craftBlastingRecipe(World world, @NotNull CinderhearthBlockEntity cinderhearth, @NotNull BlastingRecipe blastingRecipe) {
+	public static void craftBlastingRecipe(Level world, @NotNull CinderhearthBlockEntity cinderhearth, @NotNull BlastingRecipe blastingRecipe) {
 		// calculate outputs
-		ItemStack inputStack = cinderhearth.getStack(INPUT_SLOT_ID);
-		float yieldMod = inputStack.isIn(SpectrumItemTags.NO_CINDERHEARTH_DOUBLING) ? 1.0F : cinderhearth.drainInkForUpgrades(cinderhearth, UpgradeType.YIELD, InkColors.LIGHT_BLUE, cinderhearth.usesEfficiency);
-		ItemStack output = blastingRecipe.getResult(world.getRegistryManager()).copy();
+		ItemStack inputStack = cinderhearth.getItem(INPUT_SLOT_ID);
+		float yieldMod = inputStack.is(SpectrumItemTags.NO_CINDERHEARTH_DOUBLING) ? 1.0F : cinderhearth.drainInkForUpgrades(cinderhearth, UpgradeType.YIELD, InkColors.LIGHT_BLUE, cinderhearth.usesEfficiency);
+		ItemStack output = blastingRecipe.getResultItem(world.registryAccess()).copy();
 		List<ItemStack> outputs = new ArrayList<>();
 		if (yieldMod > 1) {
 			int outputCount = Support.getIntFromDecimalWithChance(output.getCount() * yieldMod, world.random);
 			while (outputCount > 0) { // if the rolled count exceeds the max stack size we need to split them (unstackable items, counts > 64, ...)
-				int count = Math.min(outputCount, output.getMaxCount());
+				int count = Math.min(outputCount, output.getMaxStackSize());
 				ItemStack outputStack = output.copy();
 				outputStack.setCount(count);
 				outputs.add(outputStack);
@@ -408,10 +404,10 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		craftRecipe(cinderhearth, inputStack, outputs, blastingRecipe.getExperience());
 	}
 	
-	public static void craftCinderhearthRecipe(World world, @NotNull CinderhearthBlockEntity cinderhearth, @NotNull CinderhearthRecipe cinderhearthRecipe) {
+	public static void craftCinderhearthRecipe(Level world, @NotNull CinderhearthBlockEntity cinderhearth, @NotNull CinderhearthRecipe cinderhearthRecipe) {
 		// calculate outputs
-		ItemStack inputStack = cinderhearth.getStack(INPUT_SLOT_ID);
-		float yieldMod = inputStack.isIn(SpectrumItemTags.NO_CINDERHEARTH_DOUBLING) ? 1.0F : cinderhearth.drainInkForUpgrades(cinderhearth, UpgradeType.YIELD, InkColors.LIGHT_BLUE, cinderhearth.usesEfficiency);
+		ItemStack inputStack = cinderhearth.getItem(INPUT_SLOT_ID);
+		float yieldMod = inputStack.is(SpectrumItemTags.NO_CINDERHEARTH_DOUBLING) ? 1.0F : cinderhearth.drainInkForUpgrades(cinderhearth, UpgradeType.YIELD, InkColors.LIGHT_BLUE, cinderhearth.usesEfficiency);
 		List<ItemStack> outputs = cinderhearthRecipe.getRolledOutputs(world.random, yieldMod);
 		
 		// craft
@@ -419,10 +415,10 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	}
 	
 	private static void craftRecipe(@NotNull CinderhearthBlockEntity cinderhearth, ItemStack inputStack, List<ItemStack> outputs, float experience) {
-		var world = cinderhearth.world;
+		var world = cinderhearth.level;
 		if (world == null) return;
 		
-		DefaultedList<ItemStack> backupInventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
+		NonNullList<ItemStack> backupInventory = NonNullList.withSize(INVENTORY_SIZE, ItemStack.EMPTY);
 		for (int i = 0; i < cinderhearth.inventory.size(); i++) {
 			backupInventory.set(i, cinderhearth.inventory.get(i));
 		}
@@ -434,12 +430,12 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 			// use up input ingredient
 			ItemStack inputStackCopy = inputStack.copy();
 			int amountToDecrementInput = cinderhearth.getCurrentRecipe() instanceof CinderhearthRecipe cinderhearthRecipe ? cinderhearthRecipe.getIngredientStacks().getFirst().getCount() : 1;
-			inputStack.decrement(amountToDecrementInput);
+			inputStack.shrink(amountToDecrementInput);
 			
 			if (remainder.isEmpty()) {
 				boolean remainderAdded = InventoryHelper.addToInventory(cinderhearth, remainder, FIRST_OUTPUT_SLOT_ID, LAST_OUTPUT_SLOT_ID + 1);
 				if (!remainderAdded) {
-					cinderhearth.setStack(CinderhearthBlockEntity.INPUT_SLOT_ID, remainder);
+					cinderhearth.setItem(CinderhearthBlockEntity.INPUT_SLOT_ID, remainder);
 				}
 			}
 			
@@ -453,7 +449,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 			// grant experience & advancements
 			float experienceMod = cinderhearth.drainInkForUpgrades(cinderhearth, UpgradeType.EXPERIENCE, InkColors.PURPLE, cinderhearth.usesEfficiency);
 			int finalExperience = Support.getIntFromDecimalWithChance(experience * experienceMod, world.random);
-			ExperienceStorageItem.addStoredExperience(world.getRegistryManager(), cinderhearth.getStack(EXPERIENCE_STORAGE_ITEM_SLOT_ID), finalExperience);
+			ExperienceStorageItem.addStoredExperience(world.registryAccess(), cinderhearth.getItem(EXPERIENCE_STORAGE_ITEM_SLOT_ID), finalExperience);
 			cinderhearth.grantPlayerCinderhearthSmeltingAdvancement(inputStackCopy, outputs, finalExperience);
 		} else {
 			cinderhearth.inventory = backupInventory;
@@ -466,7 +462,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	}
 	
 	public void grantPlayerCinderhearthSmeltingAdvancement(ItemStack input, List<ItemStack> outputs, int experience) {
-		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) getOwnerIfOnline();
+		ServerPlayer serverPlayerEntity = (ServerPlayer) getOwnerIfOnline();
 		if (serverPlayerEntity != null) {
 			SpectrumAdvancementCriteria.CINDERHEARTH_SMELTING.trigger(serverPlayerEntity, input, outputs, experience, this.upgrades);
 		}
@@ -475,34 +471,34 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	public static void playCraftingFinishedEffects(@NotNull CinderhearthBlockEntity cinderhearthBlockEntity) {
 		Direction.Axis axis = null;
 		Direction direction = Direction.UP;
-		if (!(cinderhearthBlockEntity.world instanceof ServerWorld world)) return;
+		if (!(cinderhearthBlockEntity.level instanceof ServerLevel world)) return;
 		
 		for (Map.Entry<UpgradeType, Integer> entry : cinderhearthBlockEntity.upgrades.entrySet()) {
 			if (entry.getValue() > 1) {
 				if (axis == null) {
-					BlockState state = world.getBlockState(cinderhearthBlockEntity.pos);
-					direction = state.get(CinderhearthBlock.FACING);
+					BlockState state = world.getBlockState(cinderhearthBlockEntity.worldPosition);
+					direction = state.getValue(CinderhearthBlock.FACING);
 					axis = direction.getAxis();
 				}
 				
-				double d = (double) cinderhearthBlockEntity.pos.getX() + 0.5D;
-				double f = (double) cinderhearthBlockEntity.pos.getZ() + 0.5D;
+				double d = (double) cinderhearthBlockEntity.worldPosition.getX() + 0.5D;
+				double f = (double) cinderhearthBlockEntity.worldPosition.getZ() + 0.5D;
 				double g2 = -3D / 16D;
 				double h2 = 4D / 16D;
-				double i2 = axis == Direction.Axis.X ? (double) direction.getOffsetX() * g2 : h2;
-				double k2 = axis == Direction.Axis.Z ? (double) direction.getOffsetZ() * g2 : h2;
+				double i2 = axis == Direction.Axis.X ? (double) direction.getStepX() * g2 : h2;
+				double k2 = axis == Direction.Axis.Z ? (double) direction.getStepZ() * g2 : h2;
 				PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity(world,
-						new Vec3d(d + i2, cinderhearthBlockEntity.pos.getY() + 1.1, f + k2),
+						new Vec3(d + i2, cinderhearthBlockEntity.worldPosition.getY() + 1.1, f + k2),
 						ParticleTypes.CAMPFIRE_COSY_SMOKE,
 						3,
-						new Vec3d(0.05D, 0.00D, 0.05D),
-						new Vec3d(0.0D, 0.3D, 0.0D));
+						new Vec3(0.05D, 0.00D, 0.05D),
+						new Vec3(0.0D, 0.3D, 0.0D));
 			}
 		}
 	}
 	
 	@Override
-	public int size() {
+	public int getContainerSize() {
 		return INVENTORY_SIZE;
 	}
 	
@@ -512,50 +508,50 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	}
 	
 	@Override
-	public ItemStack getStack(int slot) {
+	public ItemStack getItem(int slot) {
 		return inventory.get(slot);
 	}
 	
 	@Override
-	public ItemStack removeStack(int slot, int amount) {
-		ItemStack removedStack = Inventories.splitStack(this.inventory, slot, amount);
+	public ItemStack removeItem(int slot, int amount) {
+		ItemStack removedStack = ContainerHelper.removeItem(this.inventory, slot, amount);
 		this.inventoryChanged();
 		return removedStack;
 	}
 	
 	@Override
-	public ItemStack removeStack(int slot) {
-		ItemStack removedStack = Inventories.removeStack(this.inventory, slot);
+	public ItemStack removeItemNoUpdate(int slot) {
+		ItemStack removedStack = ContainerHelper.takeItem(this.inventory, slot);
 		this.inventoryChanged();
 		return removedStack;
 	}
 	
 	@Override
-	public void setStack(int slot, @NotNull ItemStack stack) {
+	public void setItem(int slot, @NotNull ItemStack stack) {
 		this.inventory.set(slot, stack);
-		if (stack.getCount() > this.getMaxCountPerStack()) {
-			stack.setCount(this.getMaxCountPerStack());
+		if (stack.getCount() > this.getMaxStackSize()) {
+			stack.setCount(this.getMaxStackSize());
 		}
 		this.inventoryChanged();
 	}
 	
 	@Override
-	public boolean canPlayerUse(PlayerEntity player) {
-		if (world == null || world.getBlockEntity(this.pos) != this) {
+	public boolean stillValid(Player player) {
+		if (level == null || level.getBlockEntity(this.worldPosition) != this) {
 			return false;
 		} else {
-			return player.squaredDistanceTo((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
+			return player.distanceToSqr((double) this.worldPosition.getX() + 0.5D, (double) this.worldPosition.getY() + 0.5D, (double) this.worldPosition.getZ() + 0.5D) <= 64.0D;
 		}
 	}
 	
 	public void inventoryChanged() {
 		this.inventoryChanged = true;
 		this.canTransferInk = true;
-		this.markDirty();
+		this.setChanged();
 	}
 	
 	@Override
-	public void clear() {
+	public void clearContent() {
 		this.inventory.clear();
 		this.inventoryChanged();
 	}
@@ -580,7 +576,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		return this.inkDirty;
 	}
 	
-	public RecipeEntry<?> getCurrentRecipeEntry() {
+	public RecipeHolder<?> getCurrentRecipeHolder() {
 		return currentRecipe;
 	}
 	
@@ -589,8 +585,8 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	}
 	
 	@Override
-	public void provideRecipeInputs(RecipeMatcher finder) {
-		this.inventory.forEach(finder::addInput);
+	public void fillStackedContents(StackedContents finder) {
+		this.inventory.forEach(finder::accountStack);
 	}
 	
 }

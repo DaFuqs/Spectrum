@@ -25,14 +25,14 @@ import net.fabricmc.fabric.api.transfer.v1.fluid.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.fabricmc.fabric.api.transfer.v1.storage.*;
 import net.fabricmc.loader.api.*;
-import net.minecraft.item.*;
-import net.minecraft.recipe.*;
-import net.minecraft.registry.tag.*;
-import net.minecraft.resource.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
 import net.minecraft.server.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
+import net.minecraft.server.packs.*;
+import net.minecraft.tags.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.*;
 import org.jetbrains.annotations.*;
 import org.slf4j.*;
 
@@ -43,7 +43,7 @@ public class SpectrumCommon implements ModInitializer {
 	public static final String MOD_ID = "spectrum";
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("Spectrum");
-	public static final Map<Identifier, TagKey<Item>> CACHED_ITEM_TAG_MAP = new HashMap<>();
+	public static final Map<ResourceLocation, TagKey<Item>> CACHED_ITEM_TAG_MAP = new HashMap<>();
 	public static SpectrumConfig CONFIG;
 	
 	public static void logInfo(String message) {
@@ -58,8 +58,8 @@ public class SpectrumCommon implements ModInitializer {
 		LOGGER.error("[Spectrum] {}", message);
 	}
 	
-	public static Identifier locate(String name) {
-		return Identifier.of(MOD_ID, name);
+	public static ResourceLocation locate(String name) {
+		return ResourceLocation.fromNamespaceAndPath(MOD_ID, name);
 	}
 	
 	/**
@@ -68,11 +68,11 @@ public class SpectrumCommon implements ModInitializer {
 	 * @param id The stringified identifier to parse
 	 * @return The parsed identifier
 	 */
-	public static Identifier ofSpectrumDefaulted(String id) {
+	public static ResourceLocation ofSpectrumDefaulted(String id) {
 		int i = id.indexOf(':');
 		String path = id.substring(i + 1);
 		String namespace = i > 0 ? id.substring(0, i) : SpectrumCommon.MOD_ID;
-		return Identifier.of(namespace, path);
+		return ResourceLocation.fromNamespaceAndPath(namespace, path);
 	}
 	
 	// Will be null when playing on a dedicated server!
@@ -174,7 +174,7 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumItemDamageImmunities.registerDefaultItemStackImmunities();
 		logInfo("Registering Enchantment Drops...");
 		SpectrumLootPoolModifiers.setup();
-		logInfo("Registering Type Specific Predicates...");
+		logInfo("Registering Variant Specific Predicates...");
 		SpectrumItemSubPredicateTypes.register();
 		SpectrumEntitySubPredicateTypes.register();
 		
@@ -200,9 +200,9 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumS2CPackets.register();
 		
 		logInfo("Registering Data Loaders...");
-		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(NaturesStaffConversionDataLoader.INSTANCE);
-		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(EntityFishingDataLoader.INSTANCE);
-		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(CrystalApothecarySimulationsDataLoader.INSTANCE);
+		ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener(NaturesStaffConversionDataLoader.INSTANCE);
+		ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener(EntityFishingDataLoader.INSTANCE);
+		ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener(CrystalApothecarySimulationsDataLoader.INSTANCE);
 		
 		ServerLifecycleEvents.SERVER_STARTING.register(server -> {
 			SpectrumCommon.logInfo("Fetching server instance...");
@@ -258,9 +258,9 @@ public class SpectrumCommon implements ModInitializer {
 		logInfo("Registering Builtin Resource Packs...");
 		Optional<ModContainer> modContainer = FabricLoader.getInstance().getModContainer(SpectrumCommon.MOD_ID);
 		if (modContainer.isPresent()) {
-			ResourceManagerHelper.registerBuiltinResourcePack(locate("spectrum_style_amethyst"), modContainer.get(), Text.of("Spectrum Style Amethyst"), ResourcePackActivationType.NORMAL);
-			ResourceManagerHelper.registerBuiltinResourcePack(locate("spectrum_generation_1"), modContainer.get(), Text.of("Generation 1 Spectrum textures"), ResourcePackActivationType.NORMAL);
-			ResourceManagerHelper.registerBuiltinResourcePack(locate("spectrum_programmer_art"), modContainer.get(), Text.of("Spectrum's Programmer Art"), ResourcePackActivationType.NORMAL);
+			ResourceManagerHelper.registerBuiltinResourcePack(locate("spectrum_style_amethyst"), modContainer.get(), Component.nullToEmpty("Spectrum Style Amethyst"), ResourcePackActivationType.NORMAL);
+			ResourceManagerHelper.registerBuiltinResourcePack(locate("spectrum_generation_1"), modContainer.get(), Component.nullToEmpty("Generation 1 Spectrum textures"), ResourcePackActivationType.NORMAL);
+			ResourceManagerHelper.registerBuiltinResourcePack(locate("spectrum_programmer_art"), modContainer.get(), Component.nullToEmpty("Spectrum's Programmer Art"), ResourcePackActivationType.NORMAL);
 		}
 		
 		logInfo("Common startup completed!");
@@ -272,7 +272,7 @@ public class SpectrumCommon implements ModInitializer {
 	 * This in turn does not work on clients connected to dedicated servers, though
 	 * since SpectrumCommon.minecraftServer is null
 	 */
-	public static Optional<RecipeManager> getRecipeManager(@Nullable World world) {
+	public static Optional<RecipeManager> getRecipeManager(@Nullable Level world) {
 		return world == null ? minecraftServer == null ? Optional.empty() : Optional.of(minecraftServer.getRecipeManager()) : Optional.of(world.getRecipeManager());
 	}
 	

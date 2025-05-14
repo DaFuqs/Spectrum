@@ -9,20 +9,20 @@ import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.TextWidget.*;
 import dev.emi.emi.api.widget.*;
 import net.minecraft.client.*;
-import net.minecraft.recipe.*;
+import net.minecraft.world.item.crafting.*;
 
 import java.util.*;
 
 public class PotionWorkshopReactingEmiRecipe extends EmiInfoRecipe {
 	private final DescriptiveGatedRecipe<?> recipe;
 	
-	public <T extends DescriptiveGatedRecipe<?>> PotionWorkshopReactingEmiRecipe(RecipeEntry<T> entry) {
+	public <T extends DescriptiveGatedRecipe<?>> PotionWorkshopReactingEmiRecipe(RecipeHolder<T> entry) {
 		super(List.of(EmiStack.of(entry.value().getItem())), List.of(entry.value().getDescription()), entry.id());
 		this.recipe = entry.value();
 	}
 	
 	public boolean isUnlocked() {
-		MinecraftClient client = MinecraftClient.getInstance();
+		Minecraft client = Minecraft.getInstance();
 		return AdvancementHelper.hasAdvancement(client.player, PotionWorkshopRecipe.UNLOCK_IDENTIFIER) && AdvancementHelper.hasAdvancement(client.player, recipe.getRequiredAdvancementIdentifier().orElse(null));
 	}
 	

@@ -2,13 +2,11 @@ package de.dafuqs.spectrum.blocks.upgrade;
 
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.progression.*;
-import net.minecraft.block.*;
+import net.minecraft.core.*;
 import net.minecraft.nbt.*;
-import net.minecraft.server.network.*;
-import net.minecraft.server.world.*;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -46,14 +44,14 @@ public interface Upgradeable {
 		public UpgradeHolder(Map<Upgradeable.UpgradeType, Integer> upgrades) {
 			this.upgrades = upgrades;
 		}
-
-		public NbtList toNbt() {
-			NbtList nbtList = new NbtList();
+		
+		public ListTag toNbt() {
+			ListTag nbtList = new ListTag();
 			if (!upgrades.isEmpty()) {
 				for (Map.Entry<UpgradeType, Integer> upgrade : upgrades.entrySet()) {
 					if (upgrade.getValue() > 0) {
-						NbtCompound upgradeCompound = new NbtCompound();
-						upgradeCompound.putString("Type", upgrade.getKey().toString());
+						CompoundTag upgradeCompound = new CompoundTag();
+						upgradeCompound.putString("Variant", upgrade.getKey().toString());
 						upgradeCompound.putFloat("Power", upgrade.getValue());
 						nbtList.add(upgradeCompound);
 					}
@@ -61,16 +59,16 @@ public interface Upgradeable {
 			}
 			return nbtList;
 		}
-
-		public static UpgradeHolder fromNbt(@NotNull NbtList nbtList) {
+		
+		public static UpgradeHolder fromNbt(@NotNull ListTag nbtList) {
 			Map<UpgradeType, Integer> map = new HashMap<>();
 			for (UpgradeType upgradeType : UpgradeType.values()) {
 				map.put(upgradeType, 0);
 			}
 
 			for (int i = 0; i < nbtList.size(); ++i) {
-				NbtCompound nbtCompound = nbtList.getCompound(i);
-				UpgradeType upgradeType = UpgradeType.valueOf(nbtCompound.getString("Type"));
+				CompoundTag nbtCompound = nbtList.getCompound(i);
+				UpgradeType upgradeType = UpgradeType.valueOf(nbtCompound.getString("Variant"));
 				int upgradeMod = nbtCompound.getInt("Power");
 				map.put(upgradeType, upgradeMod);
 			}
@@ -106,45 +104,45 @@ public interface Upgradeable {
 
 	}
 	
-	static @NotNull UpgradeHolder calculateUpgradeMods4(World world, @NotNull BlockPos blockPos, int offsetHorizontal, int offsetUp, @Nullable UUID advancementPlayerUUID) {
+	static @NotNull UpgradeHolder calculateUpgradeMods4(Level world, @NotNull BlockPos blockPos, int offsetHorizontal, int offsetUp, @Nullable UUID advancementPlayerUUID) {
 		List<BlockPos> posList = new ArrayList<>();
-		posList.add(blockPos.add(offsetHorizontal, offsetUp, offsetHorizontal));
-		posList.add(blockPos.add(offsetHorizontal, offsetUp, -offsetHorizontal));
-		posList.add(blockPos.add(-offsetHorizontal, offsetUp, offsetHorizontal));
-		posList.add(blockPos.add(-offsetHorizontal, offsetUp, -offsetHorizontal));
+		posList.add(blockPos.offset(offsetHorizontal, offsetUp, offsetHorizontal));
+		posList.add(blockPos.offset(offsetHorizontal, offsetUp, -offsetHorizontal));
+		posList.add(blockPos.offset(-offsetHorizontal, offsetUp, offsetHorizontal));
+		posList.add(blockPos.offset(-offsetHorizontal, offsetUp, -offsetHorizontal));
 		
 		return calculateUpgrades(world, blockPos, posList, advancementPlayerUUID);
 	}
 	
-	static @NotNull UpgradeHolder calculateUpgradeMods2(World world, BlockPos blockPos, @NotNull BlockRotation multiblockRotation, int offsetHorizontal, int offsetUp, @Nullable UUID advancementPlayerUUID) {
+	static @NotNull UpgradeHolder calculateUpgradeMods2(Level world, BlockPos blockPos, @NotNull Rotation multiblockRotation, int offsetHorizontal, int offsetUp, @Nullable UUID advancementPlayerUUID) {
 		return calculateUpgradeMods2(world, blockPos, multiblockRotation, offsetHorizontal, offsetHorizontal, offsetUp, advancementPlayerUUID);
 	}
 	
-	static @NotNull UpgradeHolder calculateUpgradeMods2(World world, BlockPos blockPos, @NotNull BlockRotation multiblockRotation, int offsetSide, int offsetBack, int offsetUp, @Nullable UUID advancementPlayerUUID) {
+	static @NotNull UpgradeHolder calculateUpgradeMods2(Level world, BlockPos blockPos, @NotNull Rotation multiblockRotation, int offsetSide, int offsetBack, int offsetUp, @Nullable UUID advancementPlayerUUID) {
 		List<BlockPos> positions = new ArrayList<>();
 		switch (multiblockRotation) {
 			case NONE -> {
-				positions.add(blockPos.add(-offsetSide, offsetUp, offsetBack));
-				positions.add(blockPos.add(offsetSide, offsetUp, offsetBack));
+				positions.add(blockPos.offset(-offsetSide, offsetUp, offsetBack));
+				positions.add(blockPos.offset(offsetSide, offsetUp, offsetBack));
 			}
 			case CLOCKWISE_90 -> {
-				positions.add(blockPos.add(-offsetBack, offsetUp, offsetSide));
-				positions.add(blockPos.add(-offsetBack, offsetUp, -offsetSide));
+				positions.add(blockPos.offset(-offsetBack, offsetUp, offsetSide));
+				positions.add(blockPos.offset(-offsetBack, offsetUp, -offsetSide));
 			}
 			case CLOCKWISE_180 -> {
-				positions.add(blockPos.add(-offsetSide, offsetUp, -offsetBack));
-				positions.add(blockPos.add(offsetSide, offsetUp, -offsetBack));
+				positions.add(blockPos.offset(-offsetSide, offsetUp, -offsetBack));
+				positions.add(blockPos.offset(offsetSide, offsetUp, -offsetBack));
 			}
 			default -> {
-				positions.add(blockPos.add(offsetBack, offsetUp, -offsetSide));
-				positions.add(blockPos.add(offsetBack, offsetUp, offsetSide));
+				positions.add(blockPos.offset(offsetBack, offsetUp, -offsetSide));
+				positions.add(blockPos.offset(offsetBack, offsetUp, offsetSide));
 			}
 		}
 		
 		return calculateUpgrades(world, blockPos, positions, advancementPlayerUUID);
 	}
-
-	private static @NotNull UpgradeHolder calculateUpgrades(World world, BlockPos blockPos, @NotNull List<BlockPos> positions, @Nullable UUID advancementPlayerUUID) {
+	
+	private static @NotNull UpgradeHolder calculateUpgrades(Level world, BlockPos blockPos, @NotNull List<BlockPos> positions, @Nullable UUID advancementPlayerUUID) {
 		// create a hash map of upgrade types and mods
 		HashMap<UpgradeType, Integer> upgradeMods = new HashMap<>();
 		for (UpgradeType upgradeType : UpgradeType.values()) {
@@ -162,10 +160,10 @@ public interface Upgradeable {
 			}
 		}
 		
-		if (advancementPlayerUUID != null && !world.isClient) {
-			ServerPlayerEntity player = (ServerPlayerEntity) PlayerOwned.getPlayerEntityIfOnline(advancementPlayerUUID);
+		if (advancementPlayerUUID != null && !world.isClientSide) {
+			ServerPlayer player = (ServerPlayer) PlayerOwned.getPlayerEntityIfOnline(advancementPlayerUUID);
 			if (player != null) {
-				SpectrumAdvancementCriteria.UPGRADE_PLACING.trigger(player, (ServerWorld) world, blockPos, upgradeCount, upgradeMods);
+				SpectrumAdvancementCriteria.UPGRADE_PLACING.trigger(player, (ServerLevel) world, blockPos, upgradeCount, upgradeMods);
 			}
 		}
 

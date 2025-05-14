@@ -5,24 +5,26 @@ import com.mojang.serialization.codecs.*;
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import it.unimi.dsi.fastutil.objects.*;
-import net.minecraft.block.*;
-import net.minecraft.item.*;
+import net.minecraft.core.*;
+import net.minecraft.resources.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 
 import java.util.*;
 
-public class ColoredLogBlock extends PillarBlock implements RevelationAware, ColoredTree {
+public class ColoredLogBlock extends RotatedPillarBlock implements RevelationAware, ColoredTree {
 
 	public static final MapCodec<ColoredLogBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-			createSettingsCodec(),
+			propertiesCodec(),
 			InkColor.CODEC.fieldOf("color").forGetter(ColoredLogBlock::getColor)
 	).apply(instance, ColoredLogBlock::new));
 	
 	private static final Map<InkColor, ColoredLogBlock> LOGS = new Object2ObjectArrayMap<>();
 	protected final InkColor color;
 	
-	public ColoredLogBlock(Settings settings, InkColor color) {
+	public ColoredLogBlock(Properties settings, InkColor color) {
 		super(settings);
 		this.color = color;
 		LOGS.put(color, this);
@@ -30,27 +32,27 @@ public class ColoredLogBlock extends PillarBlock implements RevelationAware, Col
 	}
 
 	@Override
-	public MapCodec<? extends ColoredLogBlock> getCodec() {
+	public MapCodec<? extends ColoredLogBlock> codec() {
 		return CODEC;
 	}
 	
 	@Override
-	public Identifier getCloakAdvancementIdentifier() {
+	public ResourceLocation getCloakAdvancementIdentifier() {
 		return ColoredTree.getTreeCloakAdvancementIdentifier(ColoredTree.TreePart.LOG, this.color);
 	}
 	
 	@Override
 	public Map<BlockState, BlockState> getBlockStateCloaks() {
 		Map<BlockState, BlockState> map = new Hashtable<>();
-		for (Direction.Axis axis : PillarBlock.AXIS.getValues()) {
-			map.put(this.getDefaultState().with(PillarBlock.AXIS, axis), Blocks.OAK_LOG.getDefaultState().with(PillarBlock.AXIS, axis));
+		for (Direction.Axis axis : RotatedPillarBlock.AXIS.getPossibleValues()) {
+			map.put(this.defaultBlockState().setValue(RotatedPillarBlock.AXIS, axis), Blocks.OAK_LOG.defaultBlockState().setValue(RotatedPillarBlock.AXIS, axis));
 		}
 		return map;
 	}
 	
 	@Override
-	public Pair<Item, Item> getItemCloak() {
-		return new Pair<>(this.asItem(), Blocks.OAK_LOG.asItem());
+	public Tuple<Item, Item> getItemCloak() {
+		return new Tuple<>(this.asItem(), Blocks.OAK_LOG.asItem());
 	}
 	
 	@Override

@@ -2,13 +2,14 @@ package de.dafuqs.spectrum.blocks.decoration;
 
 import com.mojang.serialization.*;
 import net.fabricmc.api.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.pathing.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.shape.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.pathfinder.*;
+import net.minecraft.world.phys.shapes.*;
 
 public class AlternatePlayerOnlyGlassBlock extends TransparentBlock {
 	
@@ -17,57 +18,57 @@ public class AlternatePlayerOnlyGlassBlock extends TransparentBlock {
 	// used for tinted glass to make light not shine through
 	private final boolean tinted;
 	
-	public AlternatePlayerOnlyGlassBlock(AbstractBlock.Settings settings, Block block, boolean tinted) {
+	public AlternatePlayerOnlyGlassBlock(BlockBehaviour.Properties settings, Block block, boolean tinted) {
 		super(settings);
 		this.alternateBlock = block;
 		this.tinted = tinted;
 	}
 	
 	@Override
-	public MapCodec<? extends AlternatePlayerOnlyGlassBlock> getCodec() {
+	public MapCodec<? extends AlternatePlayerOnlyGlassBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}
 	
 	@Override
-	public boolean canPathfindThrough(BlockState state, NavigationType type) {
+	public boolean isPathfindable(BlockState state, PathComputationType type) {
 		return false;
 	}
 	
 	@Override
 	@Deprecated
-	public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		if (context instanceof EntityShapeContext entityShapeContext) {
+	public VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+		if (context instanceof EntityCollisionContext entityShapeContext) {
 			Entity entity = entityShapeContext.getEntity();
-			if (entity instanceof PlayerEntity) {
-				return VoxelShapes.empty();
+			if (entity instanceof Player) {
+				return Shapes.empty();
 			}
 		}
-		return state.getOutlineShape(world, pos);
+		return state.getShape(world, pos);
 	}
 	
 	@Override
-	public boolean isTransparent(BlockState state, BlockView world, BlockPos pos) {
+	public boolean propagatesSkylightDown(BlockState state, BlockGetter world, BlockPos pos) {
 		return !tinted;
 	}
 	
 	@Override
-	public int getOpacity(BlockState state, BlockView world, BlockPos pos) {
+	public int getLightBlock(BlockState state, BlockGetter world, BlockPos pos) {
 		if (tinted) {
 			return world.getMaxLightLevel();
 		} else {
-			return super.getOpacity(state, world, pos);
+			return super.getLightBlock(state, world, pos);
 		}
 	}
 	
 	@Override
 	@Environment(EnvType.CLIENT)
-	public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
-		if (stateFrom.isOf(this) || stateFrom.getBlock() == alternateBlock) {
+	public boolean skipRendering(BlockState state, BlockState stateFrom, Direction direction) {
+		if (stateFrom.is(this) || stateFrom.getBlock() == alternateBlock) {
 			return true;
 		}
 		
-		return super.isSideInvisible(state, stateFrom, direction);
+		return super.skipRendering(state, stateFrom, direction);
 	}
 	
 	public Block getAlternateBlock() {

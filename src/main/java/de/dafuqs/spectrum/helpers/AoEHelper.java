@@ -1,13 +1,14 @@
 package de.dafuqs.spectrum.helpers;
 
-import net.minecraft.block.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.network.packet.s2c.play.*;
-import net.minecraft.server.network.*;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import net.minecraft.core.*;
+import net.minecraft.network.protocol.game.*;
+import net.minecraft.server.level.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 import org.jetbrains.annotations.*;
 
 import java.util.function.*;
@@ -18,19 +19,19 @@ import java.util.function.*;
 // Shoutout and thanks a bunch to Vazkii, Willie and artemisSystem!
 public class AoEHelper {
 	
-	public static void doAoEBlockBreaking(PlayerEntity player, ItemStack stack, BlockPos pos, Direction side, int radius) {
+	public static void doAoEBlockBreaking(Player player, ItemStack stack, BlockPos pos, Direction side, int radius) {
 		if (radius <= 0) {
 			return;
 		}
 		
-		World world = player.getWorld();
-		if (world.isAir(pos)) {
+		Level world = player.level();
+		if (world.isEmptyBlock(pos)) {
 			return;
 		}
 		
 		Predicate<BlockState> minableBlocksPredicate = state -> {
-			boolean suitableTool = !state.isToolRequired() || stack.isSuitableFor(state);
-			boolean suitableSpeed = stack.getMiningSpeedMultiplier(state) > 1;
+			boolean suitableTool = !state.requiresCorrectToolForDrops() || stack.isCorrectToolForDrops(state);
+			boolean suitableSpeed = stack.getDestroySpeed(state) > 1;
 			return suitableTool && suitableSpeed;
 		};
 
@@ -39,9 +40,9 @@ public class AoEHelper {
 			return;
 		}
 		
-		boolean doX = side.getOffsetX() == 0;
-		boolean doY = side.getOffsetY() == 0;
-		boolean doZ = side.getOffsetZ() == 0;
+		boolean doX = side.getStepX() == 0;
+		boolean doY = side.getStepY() == 0;
+		boolean doZ = side.getStepZ() == 0;
 
 		Vec3i beginDiff = new Vec3i(doX ? -radius : 0, doY ? -1 : 0, doZ ? -radius : 0);
 		Vec3i endDiff = new Vec3i(doX ? radius : 0, doY ? radius * 2 - 1 : 0, doZ ? radius : 0);
@@ -50,15 +51,15 @@ public class AoEHelper {
 	}
 
 	private static boolean recursive = false;
-
-	private static void removeBlocksInIteration(PlayerEntity player, ItemStack stack, World world, BlockPos centerPos, Vec3i startDelta, Vec3i endDelta, Predicate<BlockState> filter) {
+	
+	private static void removeBlocksInIteration(Player player, ItemStack stack, Level world, BlockPos centerPos, Vec3i startDelta, Vec3i endDelta, Predicate<BlockState> filter) {
 		if (recursive) {
 			return;
 		}
 
 		recursive = true;
 		try {
-			for (BlockPos blockPos : BlockPos.iterate(centerPos.add(startDelta), centerPos.add(endDelta))) {
+			for (BlockPos blockPos : BlockPos.betweenClosed(centerPos.offset(startDelta), centerPos.offset(endDelta))) {
 				if (!blockPos.equals(centerPos)) {
 					breakBlockWithDrops(player, stack, world, blockPos, filter);
 				}
@@ -67,17 +68,17 @@ public class AoEHelper {
 			recursive = false;
 		}
 	}
-
-	public static void breakBlocksAround(PlayerEntity player, ItemStack stack, BlockPos pos, int radius, @Nullable Predicate<BlockState> predicate) {
+	
+	public static void breakBlocksAround(Player player, ItemStack stack, BlockPos pos, int radius, @Nullable Predicate<BlockState> predicate) {
 		if (radius <= 0) {
 			return;
 		}
-
-		World world = player.getWorld();
+		
+		Level world = player.level();
 
 		Predicate<BlockState> minableBlocksPredicate = state -> {
-			boolean suitableTool = !state.isToolRequired() || stack.isSuitableFor(state);
-			boolean suitableSpeed = stack.getMiningSpeedMultiplier(state) > 1;
+			boolean suitableTool = !state.requiresCorrectToolForDrops() || stack.isCorrectToolForDrops(state);
+			boolean suitableSpeed = stack.getDestroySpeed(state) > 1;
 			return suitableTool && suitableSpeed;
 		};
 		if (predicate != null) {
@@ -88,22 +89,22 @@ public class AoEHelper {
 		if (!minableBlocksPredicate.test(targetState)) {
 			return;
 		}
-
-		for (BlockPos blockPos : BlockPos.iterateOutwards(pos, radius, radius, radius)) {
+		
+		for (BlockPos blockPos : BlockPos.withinManhattan(pos, radius, radius, radius)) {
 			breakBlockWithDrops(player, stack, world, blockPos, minableBlocksPredicate);
 		}
 	}
-
-	public static void breakBlockWithDrops(PlayerEntity player, ItemStack stack, World world, BlockPos pos, Predicate<BlockState> filter) {
+	
+	public static void breakBlockWithDrops(Player player, ItemStack stack, Level world, BlockPos pos, Predicate<BlockState> filter) {
 		ChunkPos chunkPos = world.getChunk(pos).getPos();
-		if (world.isChunkLoaded(chunkPos.x, chunkPos.z)) {
+		if (world.hasChunk(chunkPos.x, chunkPos.z)) {
 			BlockState blockstate = world.getBlockState(pos);
-			if (!world.isClient && !blockstate.isAir() && blockstate.calcBlockBreakingDelta(player, world, pos) > 0 && filter.test(blockstate)) {
-				ItemStack save = player.getMainHandStack();
-				player.setStackInHand(Hand.MAIN_HAND, stack);
-				((ServerPlayerEntity) player).networkHandler.sendPacket(new WorldEventS2CPacket(WorldEvents.BLOCK_BROKEN, pos, Block.getRawIdFromState(blockstate), false));
-				((ServerPlayerEntity) player).interactionManager.tryBreakBlock(pos);
-				player.setStackInHand(Hand.MAIN_HAND, save);
+			if (!world.isClientSide && !blockstate.isAir() && blockstate.getDestroyProgress(player, world, pos) > 0 && filter.test(blockstate)) {
+				ItemStack save = player.getMainHandItem();
+				player.setItemInHand(InteractionHand.MAIN_HAND, stack);
+				((ServerPlayer) player).connection.send(new ClientboundLevelEventPacket(LevelEvent.PARTICLES_DESTROY_BLOCK, pos, Block.getId(blockstate), false));
+				((ServerPlayer) player).gameMode.destroyBlock(pos);
+				player.setItemInHand(InteractionHand.MAIN_HAND, save);
 			}
 		}
 		

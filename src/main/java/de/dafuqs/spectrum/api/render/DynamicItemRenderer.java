@@ -1,13 +1,12 @@
 package de.dafuqs.spectrum.api.render;
 
+import com.mojang.blaze3d.vertex.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.fabricmc.api.*;
-import net.minecraft.client.render.*;
-import net.minecraft.client.render.item.*;
-import net.minecraft.client.render.model.*;
-import net.minecraft.client.render.model.json.*;
-import net.minecraft.client.util.math.*;
-import net.minecraft.item.*;
+import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.entity.*;
+import net.minecraft.client.resources.model.*;
+import net.minecraft.world.item.*;
 
 // Similar to FAPIs DynamicItemRenderer, except with a little more information.
 @Environment(EnvType.CLIENT)
@@ -26,9 +25,9 @@ public interface DynamicItemRenderer {
      * @param matrices        the matrix stack
      * @param vertexConsumers the vertex consumer provider
      * @param light           packed lightmap coordinates
-     * @param overlay         the overlay UV passed to {@link net.minecraft.client.render.VertexConsumer#overlay(int)}
+	 * @param overlay         the overlay UV passed to {@link com.mojang.blaze3d.vertex.VertexConsumer#setOverlay(int)}
      * @param model           the original model [use this to render the underlying item model]
      */
-    void render(ItemRenderer renderer, ItemStack stack, ModelTransformationMode mode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, BakedModel model);
+	void render(ItemRenderer renderer, ItemStack stack, ItemDisplayContext mode, boolean leftHanded, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay, BakedModel model);
     
 }

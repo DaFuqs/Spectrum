@@ -3,10 +3,10 @@ package de.dafuqs.spectrum.recipe.titration_barrel.dynamic;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.fluid.*;
-import net.minecraft.inventory.*;
-import net.minecraft.item.*;
-import net.minecraft.recipe.*;
+import net.minecraft.world.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.material.*;
 
 import java.util.*;
 
@@ -28,8 +28,8 @@ public class CheongRecipe extends TitrationBarrelRecipe {
 	}
 	
 	@Override
-	public ItemStack tap(Inventory inventory, long secondsFermented, float downfall) {
-		ItemStack result = inventory.containsAny(Collections.singleton(SpectrumItems.MERMAIDS_GEM))
+	public ItemStack tap(Container inventory, long secondsFermented, float downfall) {
+		ItemStack result = inventory.hasAnyOf(Collections.singleton(SpectrumItems.MERMAIDS_GEM))
 				? OUTPUT_STACK_MERMAIDS.copy()
 				: OUTPUT_STACK.copy();
 		result.setCount(1);

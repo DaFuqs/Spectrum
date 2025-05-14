@@ -2,9 +2,9 @@ package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.api.entity.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.entity.*;
-import net.minecraft.fluid.*;
-import net.minecraft.registry.tag.*;
+import net.minecraft.tags.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.level.material.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -16,7 +16,7 @@ public abstract class EntityApplyFluidsMixin implements TouchingWaterAware {
 	
 	@Final
 	@Shadow
-	private Set<TagKey<Fluid>> submergedFluidTag;
+	private Set<TagKey<Fluid>> fluidOnEyes;
 
 	@Unique
 	private boolean actuallyTouchingWater = false;
@@ -29,16 +29,16 @@ public abstract class EntityApplyFluidsMixin implements TouchingWaterAware {
 	@Override
 	public void spectrum$setActuallyTouchingWater(boolean actuallyTouchingWater) { this.actuallyTouchingWater = actuallyTouchingWater; }
 	
-	@Inject(method = "isSubmergedIn", at = @At("RETURN"), cancellable = true)
+	@Inject(method = "isEyeInFluid", at = @At("RETURN"), cancellable = true)
 	public void spectrum$isSubmergedIn(TagKey<Fluid> fluidTag, CallbackInfoReturnable<Boolean> cir) {
 		if (!cir.getReturnValue() && fluidTag == FluidTags.WATER) {
-			cir.setReturnValue(this.submergedFluidTag.contains(SpectrumFluidTags.SWIMMABLE_FLUID));
+			cir.setReturnValue(this.fluidOnEyes.contains(SpectrumFluidTags.SWIMMABLE_FLUID));
 		}
 	}
 	
-	@Inject(method = "isSubmergedInWater", at = @At("RETURN"), cancellable = true)
+	@Inject(method = "isUnderWater", at = @At("RETURN"), cancellable = true)
 	public void spectrum$isSubmergedInWater(CallbackInfoReturnable<Boolean> cir) {
-		if (!cir.getReturnValue() && this.submergedFluidTag.contains(SpectrumFluidTags.SWIMMABLE_FLUID)) {
+		if (!cir.getReturnValue() && this.fluidOnEyes.contains(SpectrumFluidTags.SWIMMABLE_FLUID)) {
 			//this.submergedFluidTag.add(FluidTags.WATER);
 			cir.setReturnValue(true);
 		}

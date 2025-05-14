@@ -1,34 +1,34 @@
 package de.dafuqs.spectrum.mixin.accessors;
 
-import net.minecraft.item.map.*;
+import net.minecraft.world.level.saveddata.maps.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.gen.*;
 
 import java.util.*;
 
-@Mixin(MapState.class)
+@Mixin(MapItemSavedData.class)
 public interface MapStateAccessor {
 	
 	@Accessor
-	boolean getShowDecorations();
+	boolean getTrackingPosition();
 	
 	@Accessor
 	boolean getUnlimitedTracking();
 	
 	@Accessor
-	Map<String, MapBannerMarker> getBanners();
+	Map<String, MapBanner> getBannerMarkers();
 	
 	@Accessor
 	Map<String, MapDecoration> getDecorations();
 	
 	@Accessor
-	int getDecorationCount();
+	int getTrackedDecorationCount();
 	
 	@Accessor
-	void setDecorationCount(int decorationCount);
+	void setTrackedDecorationCount(int decorationCount);
 	
 	@Invoker
-	void invokeMarkDecorationsDirty();
+	void invokeSetDecorationsDirty();
 	
 	@Invoker
 	void invokeRemoveDecoration(String id);

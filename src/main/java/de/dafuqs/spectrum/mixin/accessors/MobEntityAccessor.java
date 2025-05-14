@@ -1,14 +1,13 @@
 package de.dafuqs.spectrum.mixin.accessors;
 
-import net.minecraft.entity.*;
-import net.minecraft.entity.mob.*;
+import net.minecraft.world.entity.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.gen.*;
 
-@Mixin(MobEntity.class)
+@Mixin(Mob.class)
 public interface MobEntityAccessor {
 	
 	@Invoker
-	float invokeGetDropChance(EquipmentSlot slot);
+	float invokeGetEquipmentDropChance(EquipmentSlot slot);
 	
 }

@@ -2,18 +2,18 @@ package de.dafuqs.spectrum.commands;
 
 import com.mojang.brigadier.tree.*;
 import de.dafuqs.spectrum.*;
-import net.minecraft.server.command.*;
-import net.minecraft.text.*;
+import net.minecraft.commands.*;
+import net.minecraft.network.chat.*;
 
 
 public class PrintConfigCommand {
 	
-	public static void register(LiteralCommandNode<ServerCommandSource> root) {
-		LiteralCommandNode<ServerCommandSource> config = CommandManager.literal("config").executes((context) -> execute(context.getSource())).build();
+	public static void register(LiteralCommandNode<CommandSourceStack> root) {
+		LiteralCommandNode<CommandSourceStack> config = Commands.literal("config").executes((context) -> execute(context.getSource())).build();
 		root.addChild(config);
 	}
 	
-	private static int execute(ServerCommandSource source) {
+	private static int execute(CommandSourceStack source) {
 		send(source, "EndermanHoldingEnderTreasureChance: " + SpectrumCommon.CONFIG.EndermanHoldingEnderTreasureChance + " (" + SpectrumCommon.CONFIG.EndermanHoldingEnderTreasureInEndChance + " in the End)");
 		
 		send(source, "ShootingStarWorlds: " + SpectrumCommon.CONFIG.ShootingStarWorlds);
@@ -36,8 +36,8 @@ public class PrintConfigCommand {
 		return 0;
 	}
 	
-	private static void send(ServerCommandSource source, String s) {
-		source.sendFeedback(() -> Text.literal(s), false);
+	private static void send(CommandSourceStack source, String s) {
+		source.sendSuccess(() -> Component.literal(s), false);
 	}
 	
 	

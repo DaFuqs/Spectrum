@@ -3,21 +3,20 @@ package de.dafuqs.spectrum.recipe.titration_barrel;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.components.*;
-import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.transfer.v1.fluid.*;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.*;
-import net.minecraft.component.*;
-import net.minecraft.component.type.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.inventory.*;
-import net.minecraft.item.*;
-import net.minecraft.recipe.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.core.component.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
 import net.minecraft.world.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.alchemy.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.*;
 
 import java.util.*;
 
@@ -29,26 +28,26 @@ import java.util.*;
  */
 public interface ITitrationBarrelRecipe extends GatedRecipe<StorageRecipeInput<SingleVariantStorage<FluidVariant>>> {
 	
-	Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/titration_barrel");
+	ResourceLocation UNLOCK_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/titration_barrel");
 	
 	// Called by the titration barrel when tapped
-	default ItemStack getTitrationResult(Inventory inventory, long secondsFermented, float downfall) {
+	default ItemStack getTitrationResult(Container inventory, long secondsFermented, float downfall) {
 		// Dr. Who would be proud
 		if (secondsFermented < 0) {
 			float ageIngameDays = TimeHelper.minecraftDaysFromSeconds(secondsFermented);
-			List<StatusEffectInstance> statusEffects = List.of(new StatusEffectInstance(StatusEffects.INVISIBILITY, 3600, 0));
+			List<MobEffectInstance> statusEffects = List.of(new MobEffectInstance(MobEffects.INVISIBILITY, 3600, 0));
 			
-			var stack = SpectrumItems.SUSPICIOUS_BREW.getDefaultStack();
+			var stack = SpectrumItems.SUSPICIOUS_BREW.getDefaultInstance();
 			stack.set(SpectrumDataComponentTypes.BEVERAGE, new BeverageComponent((long) ageIngameDays, 0, 0));
-			stack.set(DataComponentTypes.POTION_CONTENTS, new PotionContentsComponent(Optional.empty(), Optional.empty(), statusEffects));
-			LoreHelper.setLore(stack, Text.translatable("lore.spectrum.time_travel_tap"));
+			stack.set(DataComponents.POTION_CONTENTS, new PotionContents(Optional.empty(), Optional.empty(), statusEffects));
+			LoreHelper.setLore(stack, Component.translatable("lore.spectrum.time_travel_tap"));
 			return stack;
 		}
 		
 		return tap(inventory, secondsFermented, downfall);
 	}
 	
-	ItemStack tap(Inventory inventory, long secondsFermented, float downfall);
+	ItemStack tap(Container inventory, long secondsFermented, float downfall);
 	
 	Item getTappingItem();
 	
@@ -57,8 +56,8 @@ public interface ITitrationBarrelRecipe extends GatedRecipe<StorageRecipeInput<S
 	float getAngelsSharePerMcDay();
 	
 	// the amount of bottles able to get out of a single barrel
-	default int getOutputCountAfterAngelsShare(World world, float temperature, long secondsFermented) {
-		int originalOutputCount = getResult(world.getRegistryManager()).getCount();
+	default int getOutputCountAfterAngelsShare(Level world, float temperature, long secondsFermented) {
+		int originalOutputCount = getResultItem(world.registryAccess()).getCount();
 		
 		if (getFermentationData() == null) {
 			return originalOutputCount;
@@ -81,13 +80,13 @@ public interface ITitrationBarrelRecipe extends GatedRecipe<StorageRecipeInput<S
 	}
 	
 	@Override
-	default boolean fits(int width, int height) {
+	default boolean canCraftInDimensions(int width, int height) {
 		return true;
 	}
 	
 	@Override
-	default ItemStack createIcon() {
-		return SpectrumBlocks.TITRATION_BARREL.asItem().getDefaultStack();
+	default ItemStack getToastSymbol() {
+		return SpectrumBlocks.TITRATION_BARREL.asItem().getDefaultInstance();
 	}
 	
 	@Override

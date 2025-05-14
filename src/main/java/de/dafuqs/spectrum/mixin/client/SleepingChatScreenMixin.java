@@ -4,24 +4,24 @@ import com.llamalad7.mixinextras.injector.v2.*;
 import de.dafuqs.spectrum.cca.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.client.gui.screen.*;
-import net.minecraft.client.gui.widget.*;
-import net.minecraft.entity.player.*;
+import net.minecraft.client.gui.components.*;
+import net.minecraft.client.gui.screens.*;
+import net.minecraft.world.entity.player.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
-@Mixin(SleepingChatScreen.class)
+@Mixin(InBedChatScreen.class)
 public class SleepingChatScreenMixin {
-
-    @Inject(method = "init", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widget/ButtonWidget;builder(Lnet/minecraft/text/Text;Lnet/minecraft/client/gui/widget/ButtonWidget$PressAction;)Lnet/minecraft/client/gui/widget/ButtonWidget$Builder;"), cancellable = true)
+	
+	@Inject(method = "init", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/components/Button;builder(Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/gui/components/Button$OnPress;)Lnet/minecraft/client/gui/components/Button$Builder;"), cancellable = true)
     private void spectrum$removeSleepButton(CallbackInfo ci) {
-        if (MinecraftClient.getInstance().cameraEntity instanceof PlayerEntity player && MiscPlayerDataComponent.get(player).isSleeping())
+		if (Minecraft.getInstance().cameraEntity instanceof Player player && MiscPlayerDataComponent.get(player).isSleeping())
 			ci.cancel();
     }
-
-    @WrapWithCondition(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widget/ButtonWidget;render(Lnet/minecraft/client/gui/DrawContext;IIF)V"))
-    private boolean spectrum$stopButtonRendering(ButtonWidget instance, DrawContext drawContext, int mouseX, int mouseY, float v) {
-        return !(MinecraftClient.getInstance().cameraEntity instanceof PlayerEntity player) || !MiscPlayerDataComponent.get(player).isSleeping();
+	
+	@WrapWithCondition(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/components/Button;render(Lnet/minecraft/client/gui/GuiGraphics;IIF)V"))
+	private boolean spectrum$stopButtonRendering(Button instance, GuiGraphics drawContext, int mouseX, int mouseY, float v) {
+		return !(Minecraft.getInstance().cameraEntity instanceof Player player) || !MiscPlayerDataComponent.get(player).isSleeping();
     }
 }

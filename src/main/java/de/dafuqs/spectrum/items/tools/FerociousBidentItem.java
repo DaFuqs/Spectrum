@@ -4,15 +4,15 @@ import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.helpers.*;
-import net.minecraft.enchantment.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.*;
-import net.minecraft.registry.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
+import net.minecraft.*;
+import net.minecraft.core.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.entity.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -23,7 +23,7 @@ public class FerociousBidentItem extends MalachiteBidentItem implements SlotBack
 	public static final InkCost RIPTIDE_COST = new InkCost(InkColors.WHITE, 10);
 	public static final int BUILTIN_RIPTIDE_LEVEL = 1;
 	
-	public FerociousBidentItem(Item.Settings settings, double attackSpeed, double damage, float armorPierce, float protPierce) {
+	public FerociousBidentItem(Item.Properties settings, double attackSpeed, double damage, float armorPierce, float protPierce) {
 		super(settings, attackSpeed, damage, armorPierce, protPierce);
 	}
 	
@@ -33,47 +33,47 @@ public class FerociousBidentItem extends MalachiteBidentItem implements SlotBack
 	}
 	
 	@Override
-	public int getRiptideLevel(RegistryWrapper.WrapperLookup lookup, ItemStack stack) {
+	public int getRiptideLevel(HolderLookup.Provider lookup, ItemStack stack) {
 		return Math.max(SpectrumEnchantmentHelper.getLevel(lookup, Enchantments.RIPTIDE, stack), BUILTIN_RIPTIDE_LEVEL);
 	}
 
 	@Override
-	public boolean canStartRiptide(PlayerEntity player, ItemStack stack) {
+	public boolean canStartRiptide(Player player, ItemStack stack) {
 		return !isDisabled(stack) && (super.canStartRiptide(player, stack) || InkPowered.tryDrainEnergy(player, RIPTIDE_COST));
 	}
 	
 	@Override
-	public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
-		super.usageTick(world, user, stack, remainingUseTicks);
-		if (user.isUsingRiptide() && user instanceof PlayerEntity player) {
+	public void onUseTick(Level world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
+		super.onUseTick(world, user, stack, remainingUseTicks);
+		if (user.isAutoSpinAttack() && user instanceof Player player) {
 			
-			int useTime = this.getMaxUseTime(stack, user) - remainingUseTicks;
+			int useTime = this.getUseDuration(stack, user) - remainingUseTicks;
 			if (useTime % 10 == 0) {
 				if (InkPowered.tryDrainEnergy(player, RIPTIDE_COST)) {
-					stack.damage(1, user, LivingEntity.getSlotForHand(user.getActiveHand()));
+					stack.hurtAndBreak(1, user, LivingEntity.getSlotForHand(user.getUsedItemHand()));
 				} else {
-					user.stopUsingItem();
+					user.releaseUsingItem();
 					return;
 				}
 			}
 			
-			yeetPlayer(player, getRiptideLevel(world.getRegistryManager(), stack) / 128F - 0.75F);
-			player.useRiptide(20, 12.0F, stack);
+			yeetPlayer(player, getRiptideLevel(world.registryAccess(), stack) / 128F - 0.75F);
+			player.startAutoSpinAttack(20, 12.0F, stack);
 			
-			for (LivingEntity entityAround : world.getEntitiesByType(TypeFilter.instanceOf(LivingEntity.class), player.getBoundingBox().expand(2), LivingEntity::isAlive)) {
+			for (LivingEntity entityAround : world.getEntities(EntityTypeTest.forClass(LivingEntity.class), player.getBoundingBox().inflate(2), LivingEntity::isAlive)) {
 				if (entityAround != player) {
-					entityAround.damage(world.getDamageSources().playerAttack(player), 2);
+					entityAround.hurt(world.damageSources().playerAttack(player), 2);
 				}
 			}
 		}
 	}
 
 	@Override
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
-		tooltip.add(Text.translatable("item.spectrum.ferocious_glass_crest_bident.tooltip").formatted(Formatting.GRAY));
-		tooltip.add(Text.translatable("item.spectrum.ferocious_glass_crest_bident.tooltip2").formatted(Formatting.GRAY));
-		tooltip.add(Text.translatable("item.spectrum.ferocious_glass_crest_bident.tooltip3").formatted(Formatting.GRAY));
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
+		tooltip.add(Component.translatable("item.spectrum.ferocious_glass_crest_bident.tooltip").withStyle(ChatFormatting.GRAY));
+		tooltip.add(Component.translatable("item.spectrum.ferocious_glass_crest_bident.tooltip2").withStyle(ChatFormatting.GRAY));
+		tooltip.add(Component.translatable("item.spectrum.ferocious_glass_crest_bident.tooltip3").withStyle(ChatFormatting.GRAY));
 		addInkPoweredTooltip(tooltip);
 	}
 	
@@ -83,13 +83,13 @@ public class FerociousBidentItem extends MalachiteBidentItem implements SlotBack
 	}
 	
 	@Override
-	public SlotBackgroundEffectProvider.SlotEffect backgroundType(@Nullable PlayerEntity player, ItemStack stack) {
+	public SlotBackgroundEffectProvider.SlotEffect backgroundType(@Nullable Player player, ItemStack stack) {
 		var usable = InkPowered.hasAvailableInk(player, RIPTIDE_COST);
 		return usable ? SlotBackgroundEffectProvider.SlotEffect.BORDER_FADE : SlotBackgroundEffectProvider.SlotEffect.NONE;
 	}
 	
 	@Override
-	public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
+	public int getBackgroundColor(@Nullable Player player, ItemStack stack, float tickDelta) {
 		return InkColors.ORANGE_COLOR;
 	}
 	

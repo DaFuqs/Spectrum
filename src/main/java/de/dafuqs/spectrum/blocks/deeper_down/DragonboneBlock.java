@@ -4,78 +4,79 @@ import com.mojang.serialization.*;
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.*;
-import net.minecraft.item.*;
-import net.minecraft.sound.*;
-import net.minecraft.state.property.Properties;
+import net.minecraft.core.*;
+import net.minecraft.resources.*;
+import net.minecraft.sounds.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
-import net.minecraft.world.explosion.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
 
-public class DragonboneBlock extends PillarBlock implements RevelationAware, MoonstoneStrikeableBlock {
-
-	public static final MapCodec<DragonboneBlock> CODEC = createCodec(DragonboneBlock::new);
-
-	public DragonboneBlock(Settings settings) {
+public class DragonboneBlock extends RotatedPillarBlock implements RevelationAware, MoonstoneStrikeableBlock {
+	
+	public static final MapCodec<DragonboneBlock> CODEC = simpleCodec(DragonboneBlock::new);
+	
+	public DragonboneBlock(Properties settings) {
 		super(settings);
 		RevelationAware.register(this);
 	}
 
 	@Override
-	public MapCodec<? extends DragonboneBlock> getCodec() {
+	public MapCodec<? extends DragonboneBlock> codec() {
 		return CODEC;
 	}
 	
 	@Override
-	public void onMoonstoneStrike(World world, BlockPos pos, @Nullable LivingEntity striker) {
+	public void onMoonstoneStrike(Level world, BlockPos pos, @Nullable LivingEntity striker) {
 		crack(world, pos);
 	}
 	
-	public void crack(World world, BlockPos pos) {
+	public void crack(Level world, BlockPos pos) {
 		BlockState state = world.getBlockState(pos);
 		if (state.getBlock() instanceof DragonboneBlock) {
-			world.setBlockState(pos, SpectrumBlocks.CRACKED_DRAGONBONE.getDefaultState().with(PillarBlock.AXIS, state.get(PillarBlock.AXIS)));
-			if (world.isClient) {
-				world.playSound(null, pos, SoundEvents.ENTITY_TURTLE_EGG_CRACK, SoundCategory.BLOCKS, 1.0F, MathHelper.nextBetween(world.random, 0.8F, 1.2F));
+			world.setBlockAndUpdate(pos, SpectrumBlocks.CRACKED_DRAGONBONE.defaultBlockState().setValue(RotatedPillarBlock.AXIS, state.getValue(RotatedPillarBlock.AXIS)));
+			if (world.isClientSide) {
+				world.playSound(null, pos, SoundEvents.TURTLE_EGG_CRACK, SoundSource.BLOCKS, 1.0F, Mth.randomBetween(world.random, 0.8F, 1.2F));
 			}
 		}
 	}
 	
 	@Override
-	public boolean shouldDropItemsOnExplosion(Explosion explosion) {
+	public boolean dropFromExplosion(Explosion explosion) {
 		return false;
 	}
 	
 	@Override
-	protected void onExploded(BlockState state, World world, BlockPos pos, Explosion explosion, BiConsumer<ItemStack, BlockPos> stackMerger) {
-		if (state.getBlock() instanceof PillarBlock) {
-			world.setBlockState(pos, SpectrumBlocks.CRACKED_DRAGONBONE.getDefaultState().with(PillarBlock.AXIS, state.get(PillarBlock.AXIS)));
+	protected void onExplosionHit(BlockState state, Level world, BlockPos pos, Explosion explosion, BiConsumer<ItemStack, BlockPos> stackMerger) {
+		if (state.getBlock() instanceof RotatedPillarBlock) {
+			world.setBlockAndUpdate(pos, SpectrumBlocks.CRACKED_DRAGONBONE.defaultBlockState().setValue(RotatedPillarBlock.AXIS, state.getValue(RotatedPillarBlock.AXIS)));
 		}
 	}
 	
 	@Override
-	public Identifier getCloakAdvancementIdentifier() {
+	public ResourceLocation getCloakAdvancementIdentifier() {
 		return SpectrumAdvancements.REVEAL_DRAGONBONE;
 	}
 	
 	@Override
 	public Map<BlockState, BlockState> getBlockStateCloaks() {
 		Map<BlockState, BlockState> map = new Hashtable<>();
-		for (Direction.Axis axis : Properties.AXIS.getValues()) {
-			map.put(this.getDefaultState().with(Properties.AXIS, axis), Blocks.BONE_BLOCK.getDefaultState().with(Properties.AXIS, axis));
+		for (Direction.Axis axis : BlockStateProperties.AXIS.getPossibleValues()) {
+			map.put(this.defaultBlockState().setValue(BlockStateProperties.AXIS, axis), Blocks.BONE_BLOCK.defaultBlockState().setValue(BlockStateProperties.AXIS, axis));
 		}
 		return map;
 	}
 	
 	@Override
-	public @Nullable Pair<Item, Item> getItemCloak() {
-		return new Pair<>(this.asItem(), Blocks.BONE_BLOCK.asItem());
+	public @Nullable Tuple<Item, Item> getItemCloak() {
+		return new Tuple<>(this.asItem(), Blocks.BONE_BLOCK.asItem());
 	}
 	
 }

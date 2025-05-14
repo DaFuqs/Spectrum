@@ -4,11 +4,12 @@ import com.google.gson.*;
 import com.klikli_dev.modonomicon.book.conditions.*;
 import com.klikli_dev.modonomicon.book.conditions.context.*;
 import de.dafuqs.spectrum.compat.modonomicon.*;
-import net.minecraft.entity.player.*;
+import net.minecraft.core.*;
 import net.minecraft.network.*;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
 import net.minecraft.util.*;
+import net.minecraft.world.entity.player.*;
 
 import java.util.*;
 
@@ -16,18 +17,18 @@ public class NotCondition extends BookCondition {
 	
 	protected BookCondition child;
 	
-	protected List<Text> tooltips;
+	protected List<Component> tooltips;
 	
-	public NotCondition(Text component, BookCondition child) {
+	public NotCondition(Component component, BookCondition child) {
 		super(component);
 		if (child == null)
 			throw new IllegalArgumentException("NotCondition must have exactly one child.");
 		this.child = child;
 	}
-
-	public static NotCondition fromJson(Identifier conditionParentId, JsonObject json, RegistryWrapper.WrapperLookup provider) {
+	
+	public static NotCondition fromJson(ResourceLocation conditionParentId, JsonObject json, HolderLookup.Provider provider) {
 		BookCondition child;
-		var j = JsonHelper.getObject(json, "child");
+		var j = GsonHelper.getAsJsonObject(json, "child");
 		if (!j.isJsonObject()) {
 			throw new JsonSyntaxException("Condition children must be an array of JsonObjects.");
 		}
@@ -36,13 +37,13 @@ public class NotCondition extends BookCondition {
 		return new NotCondition(tooltip, child);
 	}
 	
-	public static NotCondition fromNetwork(RegistryByteBuf buffer) {
-		var tooltip = buffer.readBoolean() ? TextCodecs.REGISTRY_PACKET_CODEC.decode(buffer) : null;
+	public static NotCondition fromNetwork(RegistryFriendlyByteBuf buffer) {
+		var tooltip = buffer.readBoolean() ? ComponentSerialization.STREAM_CODEC.decode(buffer) : null;
 		return new NotCondition(tooltip, BookCondition.fromNetwork(buffer));
 	}
 	
 	@Override
-	public Identifier getType() {
+	public ResourceLocation getType() {
 		return ModonomiconCompat.NOT;
 	}
 	
@@ -56,17 +57,17 @@ public class NotCondition extends BookCondition {
 	}
 	
 	@Override
-	public void toNetwork(RegistryByteBuf buffer) {
+	public void toNetwork(RegistryFriendlyByteBuf buffer) {
 		buffer.writeBoolean(this.tooltip != null);
 		if (this.tooltip != null) {
-			TextCodecs.REGISTRY_PACKET_CODEC.encode(buffer, this.tooltip);
+			ComponentSerialization.STREAM_CODEC.encode(buffer, this.tooltip);
 		}
 		
 		BookCondition.toNetwork(this.child, buffer);
 	}
 	
 	@Override
-	public boolean test(BookConditionContext context, PlayerEntity player) {
+	public boolean test(BookConditionContext context, Player player) {
 		return !this.child.test(context, player);
 	}
 	
@@ -76,7 +77,7 @@ public class NotCondition extends BookCondition {
 	}
 	
 	@Override
-	public List<Text> getTooltip(PlayerEntity player, BookConditionContext context) {
+	public List<Component> getTooltip(Player player, BookConditionContext context) {
 		if (this.tooltips == null) {
 			this.tooltips = new ArrayList<>();
 			if (this.tooltip != null)

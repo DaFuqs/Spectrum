@@ -6,30 +6,29 @@ import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.fabricmc.fabric.api.networking.v1.*;
 import net.minecraft.client.*;
+import net.minecraft.core.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.network.packet.*;
-import net.minecraft.server.network.*;
-import net.minecraft.server.world.*;
-import net.minecraft.util.math.*;
+import net.minecraft.network.protocol.common.custom.*;
+import net.minecraft.server.level.*;
 import org.jetbrains.annotations.*;
 
-public record ColorTransmissionPayload(BlockPos pos, ColoredTransmission transmission) implements CustomPayload {
+public record ColorTransmissionPayload(BlockPos pos, ColoredTransmission transmission) implements CustomPacketPayload {
 	
-	public static final Id<ColorTransmissionPayload> ID = SpectrumC2SPackets.makeId("color_transmission");
-	public static final PacketCodec<RegistryByteBuf, ColorTransmissionPayload> CODEC = PacketCodec.tuple(
-			BlockPos.PACKET_CODEC, ColorTransmissionPayload::pos,
+	public static final Type<ColorTransmissionPayload> ID = SpectrumC2SPackets.makeId("color_transmission");
+	public static final StreamCodec<RegistryFriendlyByteBuf, ColorTransmissionPayload> CODEC = StreamCodec.composite(
+			BlockPos.STREAM_CODEC, ColorTransmissionPayload::pos,
 			ColoredTransmission.PACKET_CODEC, ColorTransmissionPayload::transmission,
 			ColorTransmissionPayload::new
 	);
 	
-	public static void playColorTransmissionParticle(ServerWorld world, @NotNull ColoredTransmission transmission) {
-		BlockPos pos = BlockPos.ofFloored(transmission.getOrigin());
+	public static void playColorTransmissionParticle(ServerLevel world, @NotNull ColoredTransmission transmission) {
+		BlockPos pos = BlockPos.containing(transmission.getOrigin());
 		
-		var buf = new RegistryByteBuf(PacketByteBufs.create(), world.getRegistryManager());
+		var buf = new RegistryFriendlyByteBuf(PacketByteBufs.create(), world.registryAccess());
 		ColoredTransmission.PACKET_CODEC.encode(buf, transmission);
 		
-		for (ServerPlayerEntity player : PlayerLookup.tracking(world, pos)) {
+		for (ServerPlayer player : PlayerLookup.tracking(world, pos)) {
 			//TODO should we be creating a new payload object for each?
 			ServerPlayNetworking.send(player, new ColorTransmissionPayload(pos, transmission));
 		}
@@ -38,14 +37,14 @@ public record ColorTransmissionPayload(BlockPos pos, ColoredTransmission transmi
 	@SuppressWarnings("resource")
 	@Environment(EnvType.CLIENT)
 	public static void execute(ColorTransmissionPayload payload, ClientPlayNetworking.Context context) {
-		MinecraftClient client = context.client();
-		if (client.world == null) return;
+		Minecraft client = context.client();
+		if (client.level == null) return;
 		ColoredTransmission transmission = payload.transmission;
-		client.world.addImportantParticle(new ColoredTransmissionParticleEffect(transmission.getDestination(), transmission.getArrivalInTicks(), transmission.getDyeColor()), true, transmission.getOrigin().getX(), transmission.getOrigin().getY(), transmission.getOrigin().getZ(), 0.0D, 0.0D, 0.0D);
+		client.level.addAlwaysVisibleParticle(new ColoredTransmissionParticleEffect(transmission.getDestination(), transmission.getArrivalInTicks(), transmission.getDyeColor()), true, transmission.getOrigin().x(), transmission.getOrigin().y(), transmission.getOrigin().z(), 0.0D, 0.0D, 0.0D);
 	}
 	
 	@Override
-	public Id<? extends CustomPayload> getId() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

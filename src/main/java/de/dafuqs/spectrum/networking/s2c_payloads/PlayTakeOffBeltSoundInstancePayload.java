@@ -7,16 +7,16 @@ import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.fabricmc.fabric.api.networking.v1.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.network.packet.*;
-import net.minecraft.server.network.*;
+import net.minecraft.network.protocol.common.custom.*;
+import net.minecraft.server.level.*;
 
-public record PlayTakeOffBeltSoundInstancePayload() implements CustomPayload {
+public record PlayTakeOffBeltSoundInstancePayload() implements CustomPacketPayload {
 	
-	public static final Id<PlayTakeOffBeltSoundInstancePayload> ID = SpectrumC2SPackets.makeId("play_take_off_belt_sound_instance");
-	public static final PacketCodec<PacketByteBuf, PlayTakeOffBeltSoundInstancePayload> CODEC = PacketCodec.ofStatic((buf, value) -> {
+	public static final Type<PlayTakeOffBeltSoundInstancePayload> ID = SpectrumC2SPackets.makeId("play_take_off_belt_sound_instance");
+	public static final StreamCodec<FriendlyByteBuf, PlayTakeOffBeltSoundInstancePayload> CODEC = StreamCodec.of((buf, value) -> {
 	}, buf -> new PlayTakeOffBeltSoundInstancePayload());
 	
-	public static void sendPlayTakeOffBeltSoundInstance(ServerPlayerEntity playerEntity) {
+	public static void sendPlayTakeOffBeltSoundInstance(ServerPlayer playerEntity) {
 		ServerPlayNetworking.send(playerEntity, new PlayTakeOffBeltSoundInstancePayload());
 	}
 	
@@ -26,7 +26,7 @@ public record PlayTakeOffBeltSoundInstancePayload() implements CustomPayload {
 	}
 	
 	@Override
-	public Id<? extends CustomPayload> getId() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

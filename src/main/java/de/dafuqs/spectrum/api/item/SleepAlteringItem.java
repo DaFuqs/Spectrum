@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.api.item;
 
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.*;
 
 public interface SleepAlteringItem {
-
-    void applyPenalties(PlayerEntity player);
+	
+	void applyPenalties(Player player);
 }

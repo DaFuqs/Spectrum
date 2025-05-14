@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.blocks.mob_head.client.models;
 
 import de.dafuqs.spectrum.blocks.mob_head.client.*;
 import net.fabricmc.api.*;
-import net.minecraft.client.model.*;
-import net.minecraft.client.render.entity.model.*;
+import net.minecraft.client.model.geom.*;
+import net.minecraft.client.model.geom.builders.*;
 
 @Environment(EnvType.CLIENT)
 public class PreservationTurretHeadModel extends SpectrumSkullModel {
@@ -11,20 +11,20 @@ public class PreservationTurretHeadModel extends SpectrumSkullModel {
     public PreservationTurretHeadModel(ModelPart root) {
         super(root);
     }
-
-    public static TexturedModelData getTexturedModelData() {
-        ModelData modelData = new ModelData();
-
-        modelData.getRoot().addChild(
-                EntityModelPartNames.HEAD,
-                ModelPartBuilder.create()
-                        .uv(0, 0).cuboid(-8.0F, -8.0F, -8.0F, 16.0F, 8.0F, 16.0F)
-                        .uv(0, 24).cuboid(-8.0F, -16.0F, -8.0F, 16.0F, 2.0F, 16.0F)
-                        .uv(0, 42).cuboid(-7.0F, -14.0F, -7.0F, 14.0F, 6.0F, 14.0F),
-                ModelTransform.NONE
+	
+	public static LayerDefinition getTexturedModelData() {
+		MeshDefinition modelData = new MeshDefinition();
+		
+		modelData.getRoot().addOrReplaceChild(
+				PartNames.HEAD,
+				CubeListBuilder.create()
+						.texOffs(0, 0).addBox(-8.0F, -8.0F, -8.0F, 16.0F, 8.0F, 16.0F)
+						.texOffs(0, 24).addBox(-8.0F, -16.0F, -8.0F, 16.0F, 2.0F, 16.0F)
+						.texOffs(0, 42).addBox(-7.0F, -14.0F, -7.0F, 14.0F, 6.0F, 14.0F),
+				PartPose.ZERO
         );
-
-        return TexturedModelData.of(modelData, 128, 128);
+		
+		return LayerDefinition.create(modelData, 128, 128);
     }
 
     @Override

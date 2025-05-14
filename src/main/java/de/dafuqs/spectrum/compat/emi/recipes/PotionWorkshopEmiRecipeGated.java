@@ -6,14 +6,14 @@ import de.dafuqs.spectrum.recipe.potion_workshop.*;
 import dev.emi.emi.api.recipe.*;
 import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.*;
-import net.minecraft.recipe.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.item.crafting.*;
 
 public class PotionWorkshopEmiRecipeGated<T extends PotionWorkshopRecipe> extends GatedSpectrumEmiRecipe<T> {
-	private final static Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/container/potion_workshop_3_slots.png");
+	private final static ResourceLocation BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/container/potion_workshop_3_slots.png");
 	
-	public PotionWorkshopEmiRecipeGated(EmiRecipeCategory category, RecipeEntry<T> entry) {
+	public PotionWorkshopEmiRecipeGated(EmiRecipeCategory category, RecipeHolder<T> entry) {
 		super(category, entry, 112, 66);
 		
 		this.inputs = entry.value().getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getMatchingStacks().stream().map(EmiStack::of).toList())).toList();
@@ -34,7 +34,7 @@ public class PotionWorkshopEmiRecipeGated<T extends PotionWorkshopRecipe> extend
 		widgets.addFillingArrow(62, 25, recipe.getCraftingTime() * 50);
 		
 		// description text
-		Text text = Text.translatable("container.spectrum.rei.crafting_time", (recipe.getCraftingTime() / 20));
+		Component text = Component.translatable("container.spectrum.rei.crafting_time", (recipe.getCraftingTime() / 20));
 		widgets.addText(text, 40, 53, 0x3f3f3f, false);
 	}
 }

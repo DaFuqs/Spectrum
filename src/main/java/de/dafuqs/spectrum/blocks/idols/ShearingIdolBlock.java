@@ -1,15 +1,15 @@
 package de.dafuqs.spectrum.blocks.idols;
 
-import com.mojang.serialization.MapCodec;
-import net.minecraft.block.*;
-import net.minecraft.entity.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.particle.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
-import net.minecraft.text.*;
-import net.minecraft.util.math.*;
+import com.mojang.serialization.*;
+import net.minecraft.core.*;
+import net.minecraft.core.particles.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -18,31 +18,31 @@ public class ShearingIdolBlock extends IdolBlock {
 	
 	protected final int range;
 	
-	public ShearingIdolBlock(Settings settings, ParticleEffect particleEffect, int range) {
+	public ShearingIdolBlock(Properties settings, ParticleOptions particleEffect, int range) {
 		super(settings, particleEffect);
 		this.range = range;
 	}
 
 	@Override
-	public MapCodec<? extends ShearingIdolBlock> getCodec() {
+	public MapCodec<? extends ShearingIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}
 
 	@Override
-	public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
-		tooltip.add(Text.translatable("block.spectrum.shearing_idol.tooltip"));
+	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
+		tooltip.add(Component.translatable("block.spectrum.shearing_idol.tooltip"));
 	}
 	
 	@Override
-	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+	public boolean trigger(ServerLevel world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		int boxSize = range + range;
 		
-		List<LivingEntity> entities = world.getNonSpectatingEntities(LivingEntity.class, Box.of(Vec3d.ofCenter(blockPos), boxSize, boxSize, boxSize));
+		List<LivingEntity> entities = world.getEntitiesOfClass(LivingEntity.class, AABB.ofSize(Vec3.atCenterOf(blockPos), boxSize, boxSize, boxSize));
 		for (LivingEntity currentEntity : entities) {
-			if (currentEntity instanceof Shearable shearable && shearable.isShearable()) {
-				shearable.sheared(SoundCategory.BLOCKS);
+			if (currentEntity instanceof Shearable shearable && shearable.readyForShearing()) {
+				shearable.shear(SoundSource.BLOCKS);
 			}
 		}
 		return true;

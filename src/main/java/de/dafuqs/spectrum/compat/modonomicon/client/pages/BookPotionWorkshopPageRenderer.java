@@ -8,15 +8,15 @@ import de.dafuqs.spectrum.compat.modonomicon.pages.*;
 import de.dafuqs.spectrum.recipe.potion_workshop.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.recipe.*;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.*;
 
 import java.util.*;
 
 public class BookPotionWorkshopPageRenderer<T extends PotionWorkshopRecipe> extends BookGatedRecipePageRenderer<T, BookGatedRecipePage<T>> {
-
-    private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/modonomicon/potion_workshop.png");
+	
+	private static final ResourceLocation BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/modonomicon/potion_workshop.png");
 
     public BookPotionWorkshopPageRenderer(BookGatedRecipePage<T> page) {
         super(page);
@@ -28,13 +28,13 @@ public class BookPotionWorkshopPageRenderer<T extends PotionWorkshopRecipe> exte
     }
 
     @Override
-    protected void drawRecipe(DrawContext drawContext, RecipeEntry<T> recipeEntry, int recipeX, int recipeY, int mouseX, int mouseY, boolean second) {
+	protected void drawRecipe(GuiGraphics drawContext, RecipeHolder<T> recipeEntry, int recipeX, int recipeY, int mouseX, int mouseY, boolean second) {
         T recipe = recipeEntry.value();
-        World world = MinecraftClient.getInstance().world;
+		Level world = Minecraft.getInstance().level;
         if (world == null) return;
 
         RenderSystem.enableBlend();
-        drawContext.drawTexture(BACKGROUND_TEXTURE, recipeX - 2, recipeY - 2, 0, 0, 104, 97, 128, 256);
+		drawContext.blit(BACKGROUND_TEXTURE, recipeX - 2, recipeY - 2, 0, 0, 104, 97, 128, 256);
 
         renderTitle(drawContext, recipeY, second);
 
@@ -47,10 +47,10 @@ public class BookPotionWorkshopPageRenderer<T extends PotionWorkshopRecipe> exte
         ModonomiconHelper.renderIngredientStack(drawContext, parentScreen, recipeX + 37, recipeY + 32, mouseX, mouseY, ingredients.get(4));
 
         // the potion workshop
-        parentScreen.renderItemStack(drawContext, recipeX + 82, recipeY + 42, mouseX, mouseY, recipe.createIcon());
+		parentScreen.renderItemStack(drawContext, recipeX + 82, recipeY + 42, mouseX, mouseY, recipe.getToastSymbol());
 
         // the output
-        parentScreen.renderItemStack(drawContext, recipeX + 82, recipeY + 24, mouseX, mouseY, recipe.getResult(world.getRegistryManager()));
+		parentScreen.renderItemStack(drawContext, recipeX + 82, recipeY + 24, mouseX, mouseY, recipe.getResultItem(world.registryAccess()));
     }
 
 }

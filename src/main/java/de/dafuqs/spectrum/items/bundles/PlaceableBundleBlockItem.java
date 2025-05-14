@@ -2,15 +2,14 @@ package de.dafuqs.spectrum.items.bundles;
 
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.inventory.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.*;
-import net.minecraft.screen.slot.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.item.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.inventory.tooltip.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.*;
 
 import java.util.*;
 
@@ -18,58 +17,58 @@ public class PlaceableBundleBlockItem extends BlockItem {
 	
 	private final ExtendedBundleComponent component;
 	
-	public PlaceableBundleBlockItem(ExtendedBundleComponent component, Block block, Settings settings) {
+	public PlaceableBundleBlockItem(ExtendedBundleComponent component, Block block, Properties settings) {
 		super(block, settings);
 		this.component = component;
 	}
 	
 	@Override
-	public ItemStack getDefaultStack() {
-		ItemStack stack = super.getDefaultStack();
+	public ItemStack getDefaultInstance() {
+		ItemStack stack = super.getDefaultInstance();
 		stack.set(SpectrumDataComponentTypes.EXTENDED_BUNDLE, component);
 		return stack;
 	}
 	
 	@Override
-	public boolean onStackClicked(ItemStack stack, Slot slot, ClickType clickType, PlayerEntity player) {
-		return SpectrumItems.EXTENDED_BUNDLE_ITEM.onStackClicked(stack, slot, clickType, player);
+	public boolean overrideStackedOnOther(ItemStack stack, Slot slot, ClickAction clickType, Player player) {
+		return SpectrumItems.EXTENDED_BUNDLE_ITEM.overrideStackedOnOther(stack, slot, clickType, player);
 	}
 	
 	@Override
-	public boolean onClicked(ItemStack stack, ItemStack otherStack, Slot slot, ClickType clickType, PlayerEntity player, StackReference cursorStackReference) {
-		return SpectrumItems.EXTENDED_BUNDLE_ITEM.onClicked(stack, otherStack, slot, clickType, player, cursorStackReference);
+	public boolean overrideOtherStackedOnMe(ItemStack stack, ItemStack otherStack, Slot slot, ClickAction clickType, Player player, SlotAccess cursorStackReference) {
+		return SpectrumItems.EXTENDED_BUNDLE_ITEM.overrideOtherStackedOnMe(stack, otherStack, slot, clickType, player, cursorStackReference);
 	}
 	
 	@Override
-	public boolean isItemBarVisible(ItemStack stack) {
-		return SpectrumItems.EXTENDED_BUNDLE_ITEM.isItemBarVisible(stack);
+	public boolean isBarVisible(ItemStack stack) {
+		return SpectrumItems.EXTENDED_BUNDLE_ITEM.isBarVisible(stack);
 	}
 	
 	@Override
-	public int getItemBarStep(ItemStack stack) {
-		return SpectrumItems.EXTENDED_BUNDLE_ITEM.getItemBarStep(stack);
+	public int getBarWidth(ItemStack stack) {
+		return SpectrumItems.EXTENDED_BUNDLE_ITEM.getBarWidth(stack);
 	}
 	
 	@Override
-	public int getItemBarColor(ItemStack stack) {
-		return SpectrumItems.EXTENDED_BUNDLE_ITEM.getItemBarColor(stack);
+	public int getBarColor(ItemStack stack) {
+		return SpectrumItems.EXTENDED_BUNDLE_ITEM.getBarColor(stack);
 	}
 	
 	@Override
-	public Optional<TooltipData> getTooltipData(ItemStack stack) {
-		return SpectrumItems.EXTENDED_BUNDLE_ITEM.getTooltipData(stack);
+	public Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
+		return SpectrumItems.EXTENDED_BUNDLE_ITEM.getTooltipImage(stack);
 	}
 	
 	@Override
-	public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
-		SpectrumItems.EXTENDED_BUNDLE_ITEM.appendTooltip(stack, context, tooltip, type);
+	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
+		SpectrumItems.EXTENDED_BUNDLE_ITEM.appendHoverText(stack, context, tooltip, type);
 	}
 	
 	@Override
-	public void onItemEntityDestroyed(ItemEntity entity) {
-		SpectrumItems.EXTENDED_BUNDLE_ITEM.onItemEntityDestroyed(entity);
-		super.onItemEntityDestroyed(entity);
+	public void onDestroyed(ItemEntity entity) {
+		SpectrumItems.EXTENDED_BUNDLE_ITEM.onDestroyed(entity);
+		super.onDestroyed(entity);
 	}
 	
 }

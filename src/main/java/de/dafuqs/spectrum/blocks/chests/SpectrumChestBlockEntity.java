@@ -2,61 +2,60 @@ package de.dafuqs.spectrum.blocks.chests;
 
 import de.dafuqs.spectrum.inventories.*;
 import net.fabricmc.api.*;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.component.*;
-import net.minecraft.component.type.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.inventory.*;
-import net.minecraft.item.*;
+import net.minecraft.core.*;
+import net.minecraft.core.component.*;
 import net.minecraft.nbt.*;
-import net.minecraft.registry.*;
-import net.minecraft.screen.*;
-import net.minecraft.sound.*;
-import net.minecraft.util.collection.*;
-import net.minecraft.util.math.*;
+import net.minecraft.sounds.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
 
 @EnvironmentInterfaces({@EnvironmentInterface(
 		value = EnvType.CLIENT,
-		itf = LidOpenable.class
+		itf = LidBlockEntity.class
 )})
-public abstract class SpectrumChestBlockEntity extends LootableContainerBlockEntity implements LidOpenable {
+public abstract class SpectrumChestBlockEntity extends RandomizableContainerBlockEntity implements LidBlockEntity {
 	
-	public final ViewerCountManager stateManager;
-	protected final ChestLidAnimator lidAnimator;
-	protected DefaultedList<ItemStack> inventory;
+	public final ContainerOpenersCounter stateManager;
+	protected final ChestLidController lidAnimator;
+	protected NonNullList<ItemStack> inventory;
 	
 	protected SpectrumChestBlockEntity(BlockEntityType<?> blockEntityType, BlockPos blockPos, BlockState blockState) {
 		super(blockEntityType, blockPos, blockState);
-		this.inventory = DefaultedList.ofSize(size(), ItemStack.EMPTY);
-		this.lidAnimator = new ChestLidAnimator();
+		this.inventory = NonNullList.withSize(getContainerSize(), ItemStack.EMPTY);
+		this.lidAnimator = new ChestLidController();
 		
-		this.stateManager = new ViewerCountManager() {
+		this.stateManager = new ContainerOpenersCounter() {
 			@Override
-			protected void onContainerOpen(World world, BlockPos pos, BlockState state) {
+			protected void onOpen(Level world, BlockPos pos, BlockState state) {
 				playSound(world, pos, getOpenSound());
-				onOpen();
+				onOpenSpectrum();
 			}
 			
 			@Override
-			protected void onContainerClose(World world, BlockPos pos, BlockState state) {
+			protected void onClose(Level world, BlockPos pos, BlockState state) {
 				playSound(world, pos, getCloseSound());
-				onClose();
+				onCloseSpectrum();
 			}
 			
 			@Override
-			protected void onViewerCountUpdate(World world, BlockPos pos, BlockState state, int oldViewerCount, int newViewerCount) {
+			protected void openerCountChanged(Level world, BlockPos pos, BlockState state, int oldViewerCount, int newViewerCount) {
 				onInvOpenOrClose(world, pos, state, oldViewerCount, newViewerCount);
 			}
 			
 			@Override
-			protected boolean isPlayerViewing(PlayerEntity player) {
-				ScreenHandler screenHandler = player.currentScreenHandler;
+			protected boolean isOwnContainer(Player player) {
+				AbstractContainerMenu screenHandler = player.containerMenu;
 				
-				Inventory inventory = null;
-				if (screenHandler instanceof GenericContainerScreenHandler) {
-					inventory = ((GenericContainerScreenHandler) screenHandler).getInventory();
+				Container inventory = null;
+				if (screenHandler instanceof ChestMenu) {
+					inventory = ((ChestMenu) screenHandler).getContainer();
 				} else if (screenHandler instanceof FabricationChestScreenHandler fabricationChestScreenHandler) {
 					inventory = fabricationChestScreenHandler.getInventory();
 				} else if (screenHandler instanceof BlackHoleChestScreenHandler blackHoleChestScreenHandler) {
@@ -70,108 +69,108 @@ public abstract class SpectrumChestBlockEntity extends LootableContainerBlockEnt
 		};
 	}
 	
-	private static void playSound(World world, BlockPos pos, SoundEvent soundEvent) {
-		world.playSound(null, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, soundEvent, SoundCategory.BLOCKS, 0.5F, world.random.nextFloat() * 0.1F + 0.9F);
+	private static void playSound(Level world, BlockPos pos, SoundEvent soundEvent) {
+		world.playSound(null, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, soundEvent, SoundSource.BLOCKS, 0.5F, world.random.nextFloat() * 0.1F + 0.9F);
 	}
 	
 	@SuppressWarnings("unused")
-	public static void clientTick(World world, BlockPos pos, BlockState state, SpectrumChestBlockEntity blockEntity) {
-		blockEntity.lidAnimator.step();
+	public static void clientTick(Level world, BlockPos pos, BlockState state, SpectrumChestBlockEntity blockEntity) {
+		blockEntity.lidAnimator.tickLid();
 	}
 	
 	@Override
 	@Environment(EnvType.CLIENT)
-	public float getAnimationProgress(float tickDelta) {
-		return this.lidAnimator.getProgress(tickDelta);
+	public float getOpenNess(float tickDelta) {
+		return this.lidAnimator.getOpenness(tickDelta);
 	}
 	
-	public void onOpen() {
+	public void onOpenSpectrum() {
 	
 	}
 	
-	public void onClose() {
+	public void onCloseSpectrum() {
 	
 	}
 	
 	@Override
-	public boolean onSyncedBlockEvent(int type, int data) {
+	public boolean triggerEvent(int type, int data) {
 		if (type == 1) {
-			this.lidAnimator.setOpen(data > 0);
+			this.lidAnimator.shouldBeOpen(data > 0);
 			return true;
 		} else {
-			return super.onSyncedBlockEvent(type, data);
+			return super.triggerEvent(type, data);
 		}
 	}
 	
-	protected void onInvOpenOrClose(World world, BlockPos pos, BlockState state, int oldViewerCount, int newViewerCount) {
+	protected void onInvOpenOrClose(Level world, BlockPos pos, BlockState state, int oldViewerCount, int newViewerCount) {
 		Block block = state.getBlock();
-		world.addSyncedBlockEvent(pos, block, 1, newViewerCount);
+		world.blockEvent(pos, block, 1, newViewerCount);
 	}
 	
 	@Override
-	public void onOpen(PlayerEntity player) {
+	public void startOpen(Player player) {
 		if (!player.isSpectator()) {
-			this.stateManager.openContainer(player, this.getWorld(), this.getPos(), this.getCachedState());
+			this.stateManager.incrementOpeners(player, this.getLevel(), this.getBlockPos(), this.getBlockState());
 		}
 		
 	}
 	
 	@Override
-	public void onClose(PlayerEntity player) {
+	public void stopOpen(Player player) {
 		if (!player.isSpectator()) {
-			this.stateManager.closeContainer(player, this.getWorld(), this.getPos(), this.getCachedState());
+			this.stateManager.decrementOpeners(player, this.getLevel(), this.getBlockPos(), this.getBlockState());
 		}
 	}
 	
 	@Override
-	public void setStack(int slot, ItemStack stack) {
-		super.setStack(slot, stack);
+	public void setItem(int slot, ItemStack stack) {
+		super.setItem(slot, stack);
 	}
 	
 	@Override
-	protected DefaultedList<ItemStack> getHeldStacks() {
+	protected NonNullList<ItemStack> getItems() {
 		return this.inventory;
 	}
 	
 	@Override
-	protected void setHeldStacks(DefaultedList<ItemStack> list) {
+	protected void setItems(NonNullList<ItemStack> list) {
 		this.inventory = list;
 	}
 	
 	public void onScheduledTick() {
-		this.stateManager.updateViewerCount(this.getWorld(), this.getPos(), this.getCachedState());
+		this.stateManager.recheckOpeners(this.getLevel(), this.getBlockPos(), this.getBlockState());
 	}
 	
 	// TODO Should the loot table NBT only be maintained for TreasureChestBlockEntity?
 	@Override
-	public void readNbt(NbtCompound tag, RegistryWrapper.WrapperLookup registryLookup) {
-		super.readNbt(tag, registryLookup);
-		this.readLootTable(tag);
-		this.inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
-		Inventories.readNbt(tag, this.inventory, registryLookup);
+	public void loadAdditional(CompoundTag tag, HolderLookup.Provider registryLookup) {
+		super.loadAdditional(tag, registryLookup);
+		this.tryLoadLootTable(tag);
+		this.inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
+		ContainerHelper.loadAllItems(tag, this.inventory, registryLookup);
 	}
 	
 	@Override
-	public void writeNbt(NbtCompound tag, RegistryWrapper.WrapperLookup registryLookup) {
-		super.writeNbt(tag, registryLookup);
-		this.writeLootTable(tag);
+	public void saveAdditional(CompoundTag tag, HolderLookup.Provider registryLookup) {
+		super.saveAdditional(tag, registryLookup);
+		this.trySaveLootTable(tag);
 		if (!this.inventory.isEmpty()) {
-			Inventories.writeNbt(tag, this.inventory, registryLookup);
+			ContainerHelper.saveAllItems(tag, this.inventory, registryLookup);
 		}
 	}
 	
 	@Override
-	protected void addComponents(ComponentMap.Builder componentMapBuilder) {
-		super.addComponents(componentMapBuilder);
-		componentMapBuilder.add(DataComponentTypes.CONTAINER_LOOT, new ContainerLootComponent(this.lootTable, this.lootTableSeed));
+	protected void collectImplicitComponents(DataComponentMap.Builder componentMapBuilder) {
+		super.collectImplicitComponents(componentMapBuilder);
+		componentMapBuilder.set(DataComponents.CONTAINER_LOOT, new SeededContainerLoot(this.lootTable, this.lootTableSeed));
 	}
 	
 	public SoundEvent getOpenSound() {
-		return SoundEvents.BLOCK_CHEST_OPEN;
+		return SoundEvents.CHEST_OPEN;
 	}
 	
 	public SoundEvent getCloseSound() {
-		return SoundEvents.BLOCK_CHEST_CLOSE;
+		return SoundEvents.CHEST_CLOSE;
 	}
 	
 }

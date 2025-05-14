@@ -16,11 +16,11 @@ import de.dafuqs.spectrum.render.*;
 import de.dafuqs.spectrum.render.capes.*;
 import net.fabricmc.api.*;
 import net.fabricmc.loader.api.*;
-import net.minecraft.block.*;
 import net.minecraft.client.*;
-import net.minecraft.item.*;
-import net.minecraft.registry.*;
-import net.minecraft.util.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.*;
 
 import java.util.*;
 
@@ -96,11 +96,11 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 	}
 
 	@Override
-	public void trigger(Set<Identifier> advancements, Set<Block> blocks, Set<Item> items, boolean isJoinPacket) {
+	public void trigger(Set<ResourceLocation> advancements, Set<Block> blocks, Set<Item> items, boolean isJoinPacket) {
 		if (!isJoinPacket) {
 			for (Block block : blocks) {
-				if (Registries.BLOCK.getId(block).getNamespace().equals(SpectrumCommon.MOD_ID)) {
-					RevelationToast.showRevelationToast(MinecraftClient.getInstance(), new ItemStack(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST.asItem()), SpectrumSoundEvents.NEW_REVELATION);
+				if (BuiltInRegistries.BLOCK.getKey(block).getNamespace().equals(SpectrumCommon.MOD_ID)) {
+					RevelationToast.showRevelationToast(Minecraft.getInstance(), new ItemStack(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST.asItem()), SpectrumSoundEvents.NEW_REVELATION);
 					break;
 				}
 			}
@@ -108,7 +108,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 	}
 
 	@Override
-	public void onClientAdvancementPacket(Set<Identifier> gottenAdvancements, Set<Identifier> removedAdvancements, boolean isJoinPacket) {
+	public void onClientAdvancementPacket(Set<ResourceLocation> gottenAdvancements, Set<ResourceLocation> removedAdvancements, boolean isJoinPacket) {
 		if (!isJoinPacket) {
 			UnlockToastManager.processAdvancements(gottenAdvancements);
 		}

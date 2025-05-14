@@ -2,18 +2,19 @@ package de.dafuqs.spectrum.blocks.lava_sponge;
 
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.fluid.*;
-import net.minecraft.registry.tag.*;
-import net.minecraft.sound.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.sounds.*;
+import net.minecraft.tags.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.material.*;
 
 public class LavaSpongeBlock extends SpongeBlock {
-
-	public static final MapCodec<LavaSpongeBlock> CODEC = createCodec(LavaSpongeBlock::new);
-
-	public LavaSpongeBlock(Settings settings) {
+	
+	public static final MapCodec<LavaSpongeBlock> CODEC = simpleCodec(LavaSpongeBlock::new);
+	
+	public LavaSpongeBlock(Properties settings) {
 		super(settings);
 	}
 
@@ -24,17 +25,17 @@ public class LavaSpongeBlock extends SpongeBlock {
 //	}
 
 	@Override
-	protected void update(World world, BlockPos pos) {
+	protected void tryAbsorbWater(Level world, BlockPos pos) {
 		if (this.absorbLava(world, pos)) {
-			world.setBlockState(pos, SpectrumBlocks.WET_LAVA_SPONGE.getDefaultState(), 2);
-			world.playSound(null, pos, SoundEvents.BLOCK_SPONGE_ABSORB, SoundCategory.BLOCKS, 1.0F, 1.0F);
+			world.setBlock(pos, SpectrumBlocks.WET_LAVA_SPONGE.defaultBlockState(), 2);
+			world.playSound(null, pos, SoundEvents.SPONGE_ABSORB, SoundSource.BLOCKS, 1.0F, 1.0F);
 		}
 	}
 	
-	private boolean absorbLava(World world, BlockPos pos) {
-		return BlockPos.iterateRecursively(pos, 6, 65, (currentPos, queuer) -> {
+	private boolean absorbLava(Level world, BlockPos pos) {
+		return BlockPos.breadthFirstTraversal(pos, 6, 65, (currentPos, queuer) -> {
 			for (Direction direction : Direction.values()) {
-				queuer.accept(currentPos.offset(direction));
+				queuer.accept(currentPos.relative(direction));
 			}
 		}, (currentPos) -> {
 			if (currentPos.equals(pos)) {
@@ -42,17 +43,17 @@ public class LavaSpongeBlock extends SpongeBlock {
 			} else {
 				BlockState blockState = world.getBlockState(currentPos);
 				FluidState fluidState = world.getFluidState(currentPos);
-				if (!fluidState.isIn(FluidTags.LAVA)) {
+				if (!fluidState.is(FluidTags.LAVA)) {
 					return false;
 				} else {
 					Block block = blockState.getBlock();
-					if (block instanceof FluidDrainable fluidDrainable) {
-						if (!fluidDrainable.tryDrainFluid(null, world, currentPos, blockState).isEmpty()) {
+					if (block instanceof BucketPickup fluidDrainable) {
+						if (!fluidDrainable.pickupBlock(null, world, currentPos, blockState).isEmpty()) {
 							return true;
 						}
 					}
-					if (blockState.getBlock() instanceof FluidBlock) {
-						world.setBlockState(currentPos, Blocks.AIR.getDefaultState(), 3);
+					if (blockState.getBlock() instanceof LiquidBlock) {
+						world.setBlock(currentPos, Blocks.AIR.defaultBlockState(), 3);
 					}
 					return true;
 				}

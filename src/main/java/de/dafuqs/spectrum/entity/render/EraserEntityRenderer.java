@@ -5,21 +5,21 @@ import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.entity.models.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.fabricmc.api.*;
-import net.minecraft.client.render.entity.*;
-import net.minecraft.util.*;
+import net.minecraft.client.renderer.entity.*;
+import net.minecraft.resources.*;
 
 @Environment(EnvType.CLIENT)
-public class EraserEntityRenderer extends MobEntityRenderer<EraserEntity, EraserEntityModel> {
+public class EraserEntityRenderer extends MobRenderer<EraserEntity, EraserEntityModel> {
 	
-	public static final Identifier TEXTURE = SpectrumCommon.locate("textures/entity/eraser/eraser_base.png");
+	public static final ResourceLocation TEXTURE = SpectrumCommon.locate("textures/entity/eraser/eraser_base.png");
 	
-	public EraserEntityRenderer(EntityRendererFactory.Context context) {
-		super(context, new EraserEntityModel(context.getPart(SpectrumModelLayers.ERASER)), 0.175F);
-		this.addFeature(new EraserOverlayFeatureRenderer(this));
+	public EraserEntityRenderer(EntityRendererProvider.Context context) {
+		super(context, new EraserEntityModel(context.bakeLayer(SpectrumModelLayers.ERASER)), 0.175F);
+		this.addLayer(new EraserOverlayFeatureRenderer(this));
 	}
 	
 	@Override
-	public Identifier getTexture(EraserEntity entity) {
+	public ResourceLocation getTextureLocation(EraserEntity entity) {
 		return TEXTURE;
 	}
 	

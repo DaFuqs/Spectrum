@@ -9,30 +9,30 @@ import net.fabricmc.fabric.api.networking.v1.*;
 import net.minecraft.client.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.network.packet.*;
-import net.minecraft.server.network.*;
-import net.minecraft.sound.*;
+import net.minecraft.network.protocol.common.custom.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
 
-public record PlayAscensionAppliedEffectsPayload() implements CustomPayload {
+public record PlayAscensionAppliedEffectsPayload() implements CustomPacketPayload {
 	
-	public static final Id<PlayAscensionAppliedEffectsPayload> ID = SpectrumC2SPackets.makeId("play_ascension_applied_effects");
-	public static final PacketCodec<PacketByteBuf, PlayAscensionAppliedEffectsPayload> CODEC = PacketCodec.ofStatic((buf, value) -> {
+	public static final Type<PlayAscensionAppliedEffectsPayload> ID = SpectrumC2SPackets.makeId("play_ascension_applied_effects");
+	public static final StreamCodec<FriendlyByteBuf, PlayAscensionAppliedEffectsPayload> CODEC = StreamCodec.of((buf, value) -> {
 	}, buf -> new PlayAscensionAppliedEffectsPayload());
 	
-	public static void playAscensionAppliedEffects(ServerPlayerEntity player) {
+	public static void playAscensionAppliedEffects(ServerPlayer player) {
 		ServerPlayNetworking.send(player, new PlayAscensionAppliedEffectsPayload());
 	}
 	
 	@SuppressWarnings("resource")
 	@Environment(EnvType.CLIENT)
 	public static void execute(PlayAscensionAppliedEffectsPayload payload, ClientPlayNetworking.Context context) {
-		MinecraftClient client = context.client();
-		client.world.playSound(null, client.player.getBlockPos(), SpectrumSoundEvents.FADING_PLACED, SoundCategory.PLAYERS, 1.0F, 1.0F);
+		Minecraft client = context.client();
+		client.level.playSound(null, client.player.blockPosition(), SpectrumSoundEvents.FADING_PLACED, SoundSource.PLAYERS, 1.0F, 1.0F);
 		client.getSoundManager().play(new DivinitySoundInstance());
 	}
 	
 	@Override
-	public Id<? extends CustomPayload> getId() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

@@ -4,34 +4,35 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.*;
+import net.minecraft.client.Options;
 import net.minecraft.client.gui.*;
-import net.minecraft.client.gui.screen.*;
-import net.minecraft.client.gui.screen.ingame.*;
-import net.minecraft.client.option.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.screen.*;
-import net.minecraft.sound.*;
-import net.minecraft.text.*;
+import net.minecraft.client.gui.screens.*;
+import net.minecraft.client.gui.screens.inventory.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
+import net.minecraft.sounds.*;
 import net.minecraft.util.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.item.*;
 import org.jetbrains.annotations.*;
 import org.joml.*;
 
 import java.util.*;
 
-public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledScreen<T> {
+public class QuickNavigationGridScreen<T extends AbstractContainerMenu> extends AbstractContainerScreen<T> {
 	
 	public static final int TEXT_COLOR = 0xEEEEEE;
-	public static final Identifier BACKGROUND = Identifier.of(SpectrumCommon.MOD_ID, "textures/gui/quick_navigation.png");
+	public static final ResourceLocation BACKGROUND = ResourceLocation.fromNamespaceAndPath(SpectrumCommon.MOD_ID, "textures/gui/quick_navigation.png");
 	
-	protected static final Text CONTROLS_TEXT_1 = Text.translatable("gui.spectrum.quick_navigation.controls1");
-	protected static final Text CONTROLS_TEXT_2 = Text.translatable("gui.spectrum.quick_navigation.controls2");
+	protected static final Component CONTROLS_TEXT_1 = Component.translatable("gui.spectrum.quick_navigation.controls1");
+	protected static final Component CONTROLS_TEXT_2 = Component.translatable("gui.spectrum.quick_navigation.controls2");
 	
-	private static final List<Pair<Integer, Integer>> SQUARE_OFFSETS = List.of(
-			new Pair<>(-20, -80),
-			new Pair<>(40, -20),
-			new Pair<>(-20, 40),
-			new Pair<>(-80, -20)
+	private static final List<Tuple<Integer, Integer>> SQUARE_OFFSETS = List.of(
+			new Tuple<>(-20, -80),
+			new Tuple<>(40, -20),
+			new Tuple<>(-20, 40),
+			new Tuple<>(-80, -20)
 	);
 	
 	public enum GUISelection {
@@ -70,29 +71,29 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 			}
 		}
 		
-		void drawForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
+		void drawForeground(Screen screen, GuiGraphics drawContext, int startX, int startY) {
 			centerEntry.drawSmallForeground(screen, drawContext, startX - 15, startY - 15);
 			
-			topEntry.drawBigForeground(screen, drawContext, startX + SQUARE_OFFSETS.get(0).getLeft(), startY + SQUARE_OFFSETS.get(0).getRight());
-			rightEntry.drawBigForeground(screen, drawContext, startX + SQUARE_OFFSETS.get(1).getLeft(), startY + SQUARE_OFFSETS.get(1).getRight());
-			bottomEntry.drawBigForeground(screen, drawContext, startX + SQUARE_OFFSETS.get(2).getLeft(), startY + SQUARE_OFFSETS.get(2).getRight());
-			leftEntry.drawBigForeground(screen, drawContext, startX + SQUARE_OFFSETS.get(3).getLeft(), startY + SQUARE_OFFSETS.get(3).getRight());
+			topEntry.drawBigForeground(screen, drawContext, startX + SQUARE_OFFSETS.get(0).getA(), startY + SQUARE_OFFSETS.get(0).getB());
+			rightEntry.drawBigForeground(screen, drawContext, startX + SQUARE_OFFSETS.get(1).getA(), startY + SQUARE_OFFSETS.get(1).getB());
+			bottomEntry.drawBigForeground(screen, drawContext, startX + SQUARE_OFFSETS.get(2).getA(), startY + SQUARE_OFFSETS.get(2).getB());
+			leftEntry.drawBigForeground(screen, drawContext, startX + SQUARE_OFFSETS.get(3).getA(), startY + SQUARE_OFFSETS.get(3).getB());
 		}
 		
-		void drawBackground(Screen screen, DrawContext drawContext, int startX, int startY) {
+		void drawBackground(Screen screen, GuiGraphics drawContext, int startX, int startY) {
 			centerEntry.drawSmallBackground(screen, drawContext, startX - 15, startY - 15);
 			
-			topEntry.drawBigBackground(screen, drawContext, startX + SQUARE_OFFSETS.get(0).getLeft(), startY + SQUARE_OFFSETS.get(0).getRight());
-			rightEntry.drawBigBackground(screen, drawContext, startX + SQUARE_OFFSETS.get(1).getLeft(), startY + SQUARE_OFFSETS.get(1).getRight());
-			bottomEntry.drawBigBackground(screen, drawContext, startX + SQUARE_OFFSETS.get(2).getLeft(), startY + SQUARE_OFFSETS.get(2).getRight());
-			leftEntry.drawBigBackground(screen, drawContext, startX + SQUARE_OFFSETS.get(3).getLeft(), startY + SQUARE_OFFSETS.get(3).getRight());
+			topEntry.drawBigBackground(screen, drawContext, startX + SQUARE_OFFSETS.get(0).getA(), startY + SQUARE_OFFSETS.get(0).getB());
+			rightEntry.drawBigBackground(screen, drawContext, startX + SQUARE_OFFSETS.get(1).getA(), startY + SQUARE_OFFSETS.get(1).getB());
+			bottomEntry.drawBigBackground(screen, drawContext, startX + SQUARE_OFFSETS.get(2).getA(), startY + SQUARE_OFFSETS.get(2).getB());
+			leftEntry.drawBigBackground(screen, drawContext, startX + SQUARE_OFFSETS.get(3).getA(), startY + SQUARE_OFFSETS.get(3).getB());
 		}
 		
 	}
 	
 	public abstract static class GridEntry {
 		
-		public static final GridEntry CLOSE = GridEntry.empty(QuickNavigationGridScreen::close);
+		public static final GridEntry CLOSE = GridEntry.empty(QuickNavigationGridScreen::onClose);
 		public static final GridEntry BACK = GridEntry.empty(QuickNavigationGridScreen::back);
 		public static final GridEntry EMPTY = GridEntry.empty(null);
 		
@@ -100,10 +101,10 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 			void whenSelected(QuickNavigationGridScreen<?> screen);
 		}
 		
-		protected final Text text;
+		protected final Component text;
 		protected final @Nullable GridEntryCallback onClickCallback;
 		
-		protected GridEntry(Text text, @Nullable GridEntry.GridEntryCallback onClickCallback) {
+		protected GridEntry(Component text, @Nullable GridEntry.GridEntryCallback onClickCallback) {
 			this.text = text;
 			this.onClickCallback = onClickCallback;
 		}
@@ -112,19 +113,19 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 			return new EmptyGridEntry(callback);
 		}
 		
-		public static GridEntry textured(int textureStartX, int textureStartY, Text text, @Nullable GridEntryCallback callback) {
+		public static GridEntry textured(int textureStartX, int textureStartY, Component text, @Nullable GridEntryCallback callback) {
 			return new TexturedGridEntry(textureStartX, textureStartY, text, callback);
 		}
 		
-		public static GridEntry text(Text innerText, Text text, @Nullable GridEntryCallback callback) {
+		public static GridEntry text(Component innerText, Component text, @Nullable GridEntryCallback callback) {
 			return new TextGridEntry(innerText, text, callback);
 		}
 		
-		public static GridEntry colored(Vector3f color, Text text, @Nullable GridEntryCallback callback) {
+		public static GridEntry colored(Vector3f color, Component text, @Nullable GridEntryCallback callback) {
 			return new ColoredGridEntry(color, text, callback);
 		}
 		
-		public static GridEntry item(Item item, Text text, @Nullable GridEntryCallback callback) {
+		public static GridEntry item(Item item, Component text, @Nullable GridEntryCallback callback) {
 			return new ItemGridEntry(item, text, callback);
 		}
 		
@@ -134,67 +135,67 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 			}
 		}
 		
-		void drawBigBackground(Screen screen, DrawContext drawContext, int startX, int startY) {
-			drawContext.drawTexture(BACKGROUND, startX, startY, 10, 0, 38, 38);
+		void drawBigBackground(Screen screen, GuiGraphics drawContext, int startX, int startY) {
+			drawContext.blit(BACKGROUND, startX, startY, 10, 0, 38, 38);
 		}
 		
-		void drawSmallBackground(Screen screen, DrawContext drawContext, int startX, int startY) {
-			drawContext.drawTexture(BACKGROUND, startX, startY, 48, 0, 28, 28);
+		void drawSmallBackground(Screen screen, GuiGraphics drawContext, int startX, int startY) {
+			drawContext.blit(BACKGROUND, startX, startY, 48, 0, 28, 28);
 		}
 		
-		void drawBigForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
-			MinecraftClient client = MinecraftClient.getInstance();
-			drawContext.drawCenteredTextWithShadow(client.textRenderer, this.text, startX + 19, startY + 40, TEXT_COLOR);
+		void drawBigForeground(Screen screen, GuiGraphics drawContext, int startX, int startY) {
+			Minecraft client = Minecraft.getInstance();
+			drawContext.drawCenteredString(client.font, this.text, startX + 19, startY + 40, TEXT_COLOR);
 		}
 		
-		void drawSmallForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
-			MinecraftClient client = MinecraftClient.getInstance();
-			drawContext.drawCenteredTextWithShadow(client.textRenderer, this.text, startX + 14, startY + 34, TEXT_COLOR);
+		void drawSmallForeground(Screen screen, GuiGraphics drawContext, int startX, int startY) {
+			Minecraft client = Minecraft.getInstance();
+			drawContext.drawCenteredString(client.font, this.text, startX + 14, startY + 34, TEXT_COLOR);
 		}
 		
 	}
 	
 	public static class EmptyGridEntry extends GridEntry {
 		protected EmptyGridEntry(@Nullable GridEntry.GridEntryCallback onClickCallback) {
-			super(Text.empty(), onClickCallback);
+			super(Component.empty(), onClickCallback);
 		}
 		
 		@Override
-		void drawBigBackground(Screen screen, DrawContext drawContext, int startX, int startY) {
+		void drawBigBackground(Screen screen, GuiGraphics drawContext, int startX, int startY) {
 		}
 		
 		@Override
-		void drawSmallBackground(Screen screen, DrawContext drawContext, int startX, int startY) {
-			drawContext.drawTexture(BACKGROUND, startX + 9, startY + 9, 0, 0, 10, 10);
+		void drawSmallBackground(Screen screen, GuiGraphics drawContext, int startX, int startY) {
+			drawContext.blit(BACKGROUND, startX + 9, startY + 9, 0, 0, 10, 10);
 		}
 		
 		@Override
-		void drawBigForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
+		void drawBigForeground(Screen screen, GuiGraphics drawContext, int startX, int startY) {
 		}
 		
 		@Override
-		void drawSmallForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
+		void drawSmallForeground(Screen screen, GuiGraphics drawContext, int startX, int startY) {
 		}
 	}
 	
 	public static class ColoredGridEntry extends GridEntry {
 		protected final Vector3f color;
 		
-		private ColoredGridEntry(Vector3f color, Text text, GridEntry.GridEntryCallback callback) {
+		private ColoredGridEntry(Vector3f color, Component text, GridEntry.GridEntryCallback callback) {
 			super(text, callback);
 			this.color = color;
 		}
 		
 		@Override
-		void drawBigForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
+		void drawBigForeground(Screen screen, GuiGraphics drawContext, int startX, int startY) {
 			super.drawBigForeground(screen, drawContext, startX, startY);
-			RenderHelper.fillQuad(drawContext.getMatrices(), startX + 3, startY + 3, 32, 32, color);
+			RenderHelper.fillQuad(drawContext.pose(), startX + 3, startY + 3, 32, 32, color);
 		}
 		
 		@Override
-		void drawSmallForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
+		void drawSmallForeground(Screen screen, GuiGraphics drawContext, int startX, int startY) {
 			super.drawSmallForeground(screen, drawContext, startX, startY);
-			RenderHelper.fillQuad(drawContext.getMatrices(), startX + 2, startY + 2, 24, 24, color);
+			RenderHelper.fillQuad(drawContext.pose(), startX + 2, startY + 2, 24, 24, color);
 		}
 		
 	}
@@ -204,48 +205,48 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 		protected final int textureStartX;
 		protected final int textureStartY;
 		
-		private TexturedGridEntry(int textureStartX, int textureStartY, @Nullable Text text, GridEntry.GridEntryCallback callback) {
+		private TexturedGridEntry(int textureStartX, int textureStartY, @Nullable Component text, GridEntry.GridEntryCallback callback) {
 			super(text, callback);
 			this.textureStartX = textureStartX;
 			this.textureStartY = textureStartY;
 		}
 		
 		@Override
-		void drawBigBackground(Screen screen, DrawContext drawContext, int startX, int startY) {
+		void drawBigBackground(Screen screen, GuiGraphics drawContext, int startX, int startY) {
 			super.drawBigBackground(screen, drawContext, startX, startY);
-			drawContext.drawTexture(BACKGROUND, startX + 11, startY + 11, textureStartX, textureStartY, 20, 20);
+			drawContext.blit(BACKGROUND, startX + 11, startY + 11, textureStartX, textureStartY, 20, 20);
 		}
 		
 		@Override
-		void drawSmallBackground(Screen screen, DrawContext drawContext, int startX, int startY) {
+		void drawSmallBackground(Screen screen, GuiGraphics drawContext, int startX, int startY) {
 			super.drawSmallBackground(screen, drawContext, startX, startY);
-			drawContext.drawTexture(BACKGROUND, startX, startY, textureStartX, textureStartY, 20, 20);
+			drawContext.blit(BACKGROUND, startX, startY, textureStartX, textureStartY, 20, 20);
 		}
 		
 	}
 	
 	public static class TextGridEntry extends GridEntry {
 		
-		protected final Text innerText;
+		protected final Component innerText;
 		protected final int innerHalfTextWidth;
 		
-		private TextGridEntry(Text innerText, @Nullable Text text, GridEntry.GridEntryCallback callback) {
+		private TextGridEntry(Component innerText, @Nullable Component text, GridEntry.GridEntryCallback callback) {
 			super(text, callback);
-			MinecraftClient client = MinecraftClient.getInstance();
+			Minecraft client = Minecraft.getInstance();
 			this.innerText = innerText;
-			this.innerHalfTextWidth = client.textRenderer.getWidth(this.innerText) / 2;
+			this.innerHalfTextWidth = client.font.width(this.innerText) / 2;
 		}
 		
 		@Override
-        void drawBigForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
-			MinecraftClient client = MinecraftClient.getInstance();
-			drawContext.drawCenteredTextWithShadow(client.textRenderer, this.innerText, startX + 19, startY + 15, TEXT_COLOR);
+		void drawBigForeground(Screen screen, GuiGraphics drawContext, int startX, int startY) {
+			Minecraft client = Minecraft.getInstance();
+			drawContext.drawCenteredString(client.font, this.innerText, startX + 19, startY + 15, TEXT_COLOR);
 		}
 		
 		@Override
-        void drawSmallForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
-			MinecraftClient client = MinecraftClient.getInstance();
-			drawContext.drawCenteredTextWithShadow(client.textRenderer, this.innerText, startX + 14, startY + 10, TEXT_COLOR);
+		void drawSmallForeground(Screen screen, GuiGraphics drawContext, int startX, int startY) {
+			Minecraft client = Minecraft.getInstance();
+			drawContext.drawCenteredString(client.font, this.innerText, startX + 14, startY + 10, TEXT_COLOR);
 		}
 	}
 	
@@ -253,43 +254,43 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 		
 		protected final ItemStack stack;
 		
-		private ItemGridEntry(Item item, Text text, GridEntry.GridEntryCallback callback) {
+		private ItemGridEntry(Item item, Component text, GridEntry.GridEntryCallback callback) {
 			super(text, callback);
-			this.stack = item.getDefaultStack();
+			this.stack = item.getDefaultInstance();
 		}
 		
 		@Override
-		void drawBigForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
+		void drawBigForeground(Screen screen, GuiGraphics drawContext, int startX, int startY) {
 			super.drawBigForeground(screen, drawContext, startX, startY);
-			drawContext.drawItem(stack, startX + 10, startY + 10);
+			drawContext.renderItem(stack, startX + 10, startY + 10);
 		}
 		
 		@Override
-		void drawSmallForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
+		void drawSmallForeground(Screen screen, GuiGraphics drawContext, int startX, int startY) {
 			super.drawSmallForeground(screen, drawContext, startX, startY);
-			drawContext.drawItem(stack, startX + 5, startY + 5);
+			drawContext.renderItem(stack, startX + 5, startY + 5);
 		}
 		
 	}
 	
 	public final Stack<Grid> gridStack = new Stack<>();
 	
-	public QuickNavigationGridScreen(T handler, PlayerInventory playerInventory, Text title) {
+	public QuickNavigationGridScreen(T handler, Inventory playerInventory, Component title) {
 		super(handler, playerInventory, title);
-		this.backgroundHeight = 256;
+		this.imageHeight = 256;
 	}
 	
 	private void back() {
-		client.world.playSound(null, client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F);
+		minecraft.level.playSound(null, minecraft.player.blockPosition(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundSource.NEUTRAL, 0.5F, 1.0F);
 		if(gridStack.size() == 1) {
-			client.player.closeHandledScreen();
+			minecraft.player.closeContainer();
 		} else {
 			gridStack.pop();
 		}
 	}
 	
 	protected void selectGrid(Grid grid) {
-		client.world.playSound(null, client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F);
+		minecraft.level.playSound(null, minecraft.player.blockPosition(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundSource.NEUTRAL, 0.5F, 1.0F);
 		gridStack.push(grid);
 	}
 	
@@ -298,16 +299,16 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 	}
 	
 	@Override
-	protected void drawForeground(DrawContext drawContext, int mouseX, int mouseY) {
-		current().drawBackground(this, drawContext, backgroundWidth / 2, backgroundHeight / 2);
-		current().drawForeground(this, drawContext, backgroundWidth / 2, backgroundHeight / 2);
+	protected void renderLabels(GuiGraphics drawContext, int mouseX, int mouseY) {
+		current().drawBackground(this, drawContext, imageWidth / 2, imageHeight / 2);
+		current().drawForeground(this, drawContext, imageWidth / 2, imageHeight / 2);
 		
-		drawContext.drawCenteredTextWithShadow(this.textRenderer, CONTROLS_TEXT_1, backgroundWidth / 2, 228, TEXT_COLOR);
-		drawContext.drawCenteredTextWithShadow(this.textRenderer, CONTROLS_TEXT_2, backgroundWidth / 2, 238, TEXT_COLOR);
+		drawContext.drawCenteredString(this.font, CONTROLS_TEXT_1, imageWidth / 2, 228, TEXT_COLOR);
+		drawContext.drawCenteredString(this.font, CONTROLS_TEXT_2, imageWidth / 2, 238, TEXT_COLOR);
 	}
 	
 	@Override
-	protected void drawBackground(DrawContext drawContext, float delta, int mouseX, int mouseY) {
+	protected void renderBg(GuiGraphics drawContext, float delta, int mouseX, int mouseY) {
 
 	}
 	
@@ -316,11 +317,11 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 		if (button == 1) {
 			current().navigate(GUISelection.BACK, this);
 		} else {
-			int startX = backgroundWidth / 2;
-			int startY = backgroundHeight / 2;
+			int startX = imageWidth / 2;
+			int startY = imageHeight / 2;
 			
-			mouseX = mouseX - x;
-			mouseY = mouseY - y;
+			mouseX = mouseX - leftPos;
+			mouseY = mouseY - topPos;
 			
 			int centerElementSize = gridStack.size() == 1 ? 5 : 14;
 			if (mouseX >= startX - centerElementSize && mouseX <= startX + centerElementSize && mouseY >= startY - centerElementSize && mouseY <= startY + centerElementSize) {
@@ -329,8 +330,8 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 			}
 			
 			int offsetID = 0;
-			for (Pair<Integer, Integer> offset : SQUARE_OFFSETS) {
-				if (mouseX >= startX + offset.getLeft() && mouseX <= startX + offset.getLeft() + 32 && mouseY >= startY + offset.getRight() && mouseY <= startY + offset.getRight() + 32) {
+			for (Tuple<Integer, Integer> offset : SQUARE_OFFSETS) {
+				if (mouseX >= startX + offset.getA() && mouseX <= startX + offset.getA() + 32 && mouseY >= startY + offset.getB() && mouseY <= startY + offset.getB() + 32) {
 					switch (offsetID) {
 						case 0 -> {
 							current().navigate(GUISelection.UP, this);
@@ -359,21 +360,21 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 	
 	@Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-		MinecraftClient client = MinecraftClient.getInstance();
-		GameOptions options = client.options;
-		if (options.leftKey.matchesKey(keyCode, scanCode)) {
+		Minecraft client = Minecraft.getInstance();
+		Options options = client.options;
+		if (options.keyLeft.matches(keyCode, scanCode)) {
 			current().navigate(GUISelection.LEFT, this);
 			return true;
-		} else if (options.forwardKey.matchesKey(keyCode, scanCode)) {
+		} else if (options.keyUp.matches(keyCode, scanCode)) {
 			current().navigate(GUISelection.UP, this);
 			return true;
-		} else if (options.rightKey.matchesKey(keyCode, scanCode)) {
+		} else if (options.keyRight.matches(keyCode, scanCode)) {
 			current().navigate(GUISelection.RIGHT, this);
 			return true;
-		} else if (options.backKey.matchesKey(keyCode, scanCode)) {
+		} else if (options.keyDown.matches(keyCode, scanCode)) {
 			current().navigate(GUISelection.DOWN, this);
 			return true;
-		} else if (options.dropKey.matchesKey(keyCode, scanCode) || options.inventoryKey.matchesKey(keyCode, scanCode)) {
+		} else if (options.keyDrop.matches(keyCode, scanCode) || options.keyInventory.matches(keyCode, scanCode)) {
 			current().navigate(GUISelection.SELECT, this);
 			return true;
 		}

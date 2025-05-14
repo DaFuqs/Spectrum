@@ -8,6 +8,6 @@ public record PairedItemComponent(long signature) {
 	
 	public static final Codec<PairedItemComponent> CODEC = Codec.LONG.xmap(PairedItemComponent::new, PairedItemComponent::signature);
 	
-	public static final PacketCodec<ByteBuf, PairedItemComponent> PACKET_CODEC = PacketCodecs.VAR_LONG.xmap(PairedItemComponent::new, PairedItemComponent::signature);
+	public static final StreamCodec<ByteBuf, PairedItemComponent> PACKET_CODEC = ByteBufCodecs.VAR_LONG.map(PairedItemComponent::new, PairedItemComponent::signature);
 	
 }

@@ -4,22 +4,24 @@ import com.mojang.serialization.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.entity.ai.pathing.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.shape.*;
-import net.minecraft.world.*;
-import net.minecraft.world.event.*;
+import net.minecraft.core.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.gameevent.*;
+import net.minecraft.world.level.pathfinder.*;
+import net.minecraft.world.phys.*;
+import net.minecraft.world.phys.shapes.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class UpgradeBlock extends BlockWithEntity {
-
-	protected static final VoxelShape SHAPE_UP = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 10.0D, 14.0D);
+public class UpgradeBlock extends BaseEntityBlock {
+	
+	protected static final VoxelShape SHAPE_UP = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 10.0D, 14.0D);
 	private static final List<Block> upgradeBlocks = new ArrayList<>();
 	// Positions to check on place / destroy to upgrade those blocks upgrade counts
 	private final List<Vec3i> possibleUpgradeBlockOffsets = new ArrayList<>() {{
@@ -63,7 +65,7 @@ public class UpgradeBlock extends BlockWithEntity {
 	private final int upgradeMod;
 	private final int effectColor;
 	
-	public UpgradeBlock(Settings settings, Upgradeable.UpgradeType upgradeType, int upgradeMod, int effectColor) {
+	public UpgradeBlock(Properties settings, Upgradeable.UpgradeType upgradeType, int upgradeMod, int effectColor) {
 		super(settings);
 		this.upgradeType = upgradeType;
 		this.upgradeMod = upgradeMod;
@@ -73,7 +75,7 @@ public class UpgradeBlock extends BlockWithEntity {
 	}
 
 	@Override
-	public MapCodec<? extends UpgradeBlock> getCodec() {
+	public MapCodec<? extends UpgradeBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}
@@ -83,28 +85,28 @@ public class UpgradeBlock extends BlockWithEntity {
 	}
 	
 	@Override
-	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		return SHAPE_UP;
 	}
 	
 	@Override
-	public boolean canPathfindThrough(BlockState state, NavigationType type) {
+	public boolean isPathfindable(BlockState state, PathComputationType type) {
 		return false;
 	}
 	
 	@Override
-	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-		super.onBlockAdded(state, world, pos, oldState, notify);
-		if (!world.isClient) {
-			updateConnectedUpgradeBlock((ServerWorld) world, pos);
+	public void onPlace(BlockState state, Level world, BlockPos pos, BlockState oldState, boolean notify) {
+		super.onPlace(state, world, pos, oldState, notify);
+		if (!world.isClientSide) {
+			updateConnectedUpgradeBlock((ServerLevel) world, pos);
 		}
 	}
 	
 	@Override
-	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-		super.onStateReplaced(state, world, pos, newState, moved);
-		if (!world.isClient) {
-			updateConnectedUpgradeBlock((ServerWorld) world, pos);
+	public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean moved) {
+		super.onRemove(state, world, pos, newState, moved);
+		if (!world.isClientSide) {
+			updateConnectedUpgradeBlock((ServerLevel) world, pos);
 		}
 	}
 
@@ -112,9 +114,9 @@ public class UpgradeBlock extends BlockWithEntity {
 	 * When placed or removed the upgrade block searches for a valid Upgradeable block
 	 * and triggers it to update its upgrades
 	 */
-	private void updateConnectedUpgradeBlock(@NotNull ServerWorld world, @NotNull BlockPos pos) {
+	private void updateConnectedUpgradeBlock(@NotNull ServerLevel world, @NotNull BlockPos pos) {
 		for (Vec3i possibleUpgradeBlockOffset : possibleUpgradeBlockOffsets) {
-			BlockPos currentPos = pos.add(possibleUpgradeBlockOffset);
+			BlockPos currentPos = pos.offset(possibleUpgradeBlockOffset);
 			BlockEntity blockEntity = world.getBlockEntity(currentPos);
 			if (blockEntity instanceof Upgradeable upgradeable) {
 				upgradeable.resetUpgrades();
@@ -122,19 +124,19 @@ public class UpgradeBlock extends BlockWithEntity {
 			}
 		}
 	}
-
-	private void playConnectedParticles(@NotNull ServerWorld world, @NotNull BlockPos pos, BlockPos currentPos) {
+	
+	private void playConnectedParticles(@NotNull ServerLevel world, @NotNull BlockPos pos, BlockPos currentPos) {
 		int particleColor = getEffectColor();
-		world.playSound(null, pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D, SpectrumSoundEvents.CRAFTING_DING, SoundCategory.BLOCKS, 1.0F, 1.0F);
+		world.playSound(null, pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D, SpectrumSoundEvents.CRAFTING_DING, SoundSource.BLOCKS, 1.0F, 1.0F);
 		PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity(
-				world, Vec3d.ofCenter(pos),
+				world, Vec3.atCenterOf(pos),
 				ColoredSparkleRisingParticleEffect.of(particleColor),
-				10, new Vec3d(0.5, 0.5, 0.5),
-				new Vec3d(0.1, 0.1, 0.1));
+				10, new Vec3(0.5, 0.5, 0.5),
+				new Vec3(0.1, 0.1, 0.1));
 		ColorTransmissionPayload.playColorTransmissionParticle(
 				world,
 				new ColoredTransmission(
-						new Vec3d(pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D),
+						new Vec3(pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D),
 						new BlockPositionSource(currentPos), 6,
 						particleColor)
 		);
@@ -153,13 +155,13 @@ public class UpgradeBlock extends BlockWithEntity {
 	}
 	
 	@Override
-	public BlockRenderType getRenderType(BlockState state) {
-		return BlockRenderType.MODEL;
+	public RenderShape getRenderShape(BlockState state) {
+		return RenderShape.MODEL;
 	}
 	
 	@Nullable
 	@Override
-	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new UpgradeBlockEntity(pos, state);
 	}
 	

@@ -7,11 +7,11 @@ import de.dafuqs.spectrum.helpers.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.fabricmc.fabric.api.transfer.v1.storage.*;
 import net.fabricmc.fabric.api.transfer.v1.transaction.*;
+import net.minecraft.core.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.server.world.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.level.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -25,11 +25,11 @@ public class PastelTransmission implements SchedulerMap.Callback {
 			Codec.INT.fieldOf("vertex_time").forGetter(PastelTransmission::getVertexTime)
 	).apply(i, PastelTransmission::new));
 	
-	public static final PacketCodec<RegistryByteBuf, PastelTransmission> PACKET_CODEC = PacketCodec.tuple(
-			BlockPos.PACKET_CODEC.collect(PacketCodecs.toList()), PastelTransmission::getNodePositions,
+	public static final StreamCodec<RegistryFriendlyByteBuf, PastelTransmission> PACKET_CODEC = StreamCodec.composite(
+			BlockPos.STREAM_CODEC.apply(ByteBufCodecs.list()), PastelTransmission::getNodePositions,
 			ItemVariant.PACKET_CODEC, PastelTransmission::getVariant,
-			PacketCodecs.VAR_LONG, PastelTransmission::getAmount,
-			PacketCodecs.VAR_INT, PastelTransmission::getVertexTime,
+			ByteBufCodecs.VAR_LONG, PastelTransmission::getAmount,
+			ByteBufCodecs.VAR_INT, PastelTransmission::getVertexTime,
 			PastelTransmission::new
 	);
 	
@@ -50,7 +50,7 @@ public class PastelTransmission implements SchedulerMap.Callback {
         this.network = network;
     }
 	
-	public @Nullable PastelNetwork<ServerWorld> getNetwork() {
+	public @Nullable PastelNetwork<ServerLevel> getNetwork() {
         return this.network;
     }
 
@@ -90,7 +90,7 @@ public class PastelTransmission implements SchedulerMap.Callback {
 		
 		@NotNull BlockPos destinationPos = nodePositions.get(nodePositions.size() - 1);
 		@Nullable PastelNodeBlockEntity destinationNode = this.network.getLoadedNodeAt(destinationPos);
-        World world = this.network.getWorld();
+		Level world = this.network.getWorld();
 		
 		int inserted = 0;
 		if (destinationNode != null) {

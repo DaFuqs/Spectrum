@@ -1,48 +1,49 @@
 package de.dafuqs.spectrum.entity.render;
 
+import com.mojang.blaze3d.vertex.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import net.fabricmc.api.*;
-import net.minecraft.client.render.*;
-import net.minecraft.client.render.entity.*;
-import net.minecraft.client.util.math.*;
+import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.entity.*;
+import net.minecraft.client.renderer.texture.*;
+import net.minecraft.resources.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
 import org.joml.*;
 
 @Environment(EnvType.CLIENT)
 public class LightShardEntityRenderer extends EntityRenderer<LightShardEntity> {
-
-    public LightShardEntityRenderer(EntityRendererFactory.Context ctx) {
+	
+	public LightShardEntityRenderer(EntityRendererProvider.Context ctx) {
         super(ctx);
     }
     
     @Override
-    public void render(LightShardEntity shard, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
-        matrices.push();
-	
-		var age = shard.age;
-        var alpha = MathHelper.clamp(1 - MathHelper.lerp(tickDelta, shard.getVanishingProgress(age - 1), shard.getVanishingProgress(age)), 0F, 1F);
-		var scaleFactor = MathHelper.sin((age + tickDelta) / 16F) / 10F + shard.getScaleOffset();
+	public void render(LightShardEntity shard, float yaw, float tickDelta, PoseStack matrices, MultiBufferSource vertexConsumers, int light) {
+		matrices.pushPose();
 		
-		matrices.multiply(this.dispatcher.getRotation());
+		var age = shard.tickCount;
+		var alpha = Mth.clamp(1 - Mth.lerp(tickDelta, shard.getVanishingProgress(age - 1), shard.getVanishingProgress(age)), 0F, 1F);
+		var scaleFactor = Mth.sin((age + tickDelta) / 16F) / 10F + shard.getScaleOffset();
+		
+		matrices.mulPose(this.entityRenderDispatcher.cameraOrientation());
 		matrices.scale(scaleFactor, scaleFactor, scaleFactor);
 		
-		VertexConsumer consumer = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucentCull(getTexture(shard)));
-		MatrixStack.Entry matrix = matrices.peek();
-		Matrix4f positions = matrix.getPositionMatrix();
-        
-        consumer.vertex(positions, 0, 0, 0).color(1f, 1f, 1f, alpha).texture(0, 1).overlay(OverlayTexture.DEFAULT_UV).light(LightmapTextureManager.MAX_LIGHT_COORDINATE).normal(matrix, 0, 1, 0);
-        consumer.vertex(positions, 1, 0, 0).color(1f, 1f, 1f, alpha).texture(1, 1).overlay(OverlayTexture.DEFAULT_UV).light(LightmapTextureManager.MAX_LIGHT_COORDINATE).normal(matrix, 0, 1, 0);
-        consumer.vertex(positions, 1, 1, 0).color(1f, 1f, 1f, alpha).texture(1, 0).overlay(OverlayTexture.DEFAULT_UV).light(LightmapTextureManager.MAX_LIGHT_COORDINATE).normal(matrix, 0, 1, 0);
-        consumer.vertex(positions, 0, 1, 0).color(1f, 1f, 1f, alpha).texture(0, 0).overlay(OverlayTexture.DEFAULT_UV).light(LightmapTextureManager.MAX_LIGHT_COORDINATE).normal(matrix, 0, 1, 0);
-        
-        matrices.pop();
+		VertexConsumer consumer = vertexConsumers.getBuffer(RenderType.entityTranslucentCull(getTextureLocation(shard)));
+		PoseStack.Pose matrix = matrices.last();
+		Matrix4f positions = matrix.pose();
+		
+		consumer.addVertex(positions, 0, 0, 0).setColor(1f, 1f, 1f, alpha).setUv(0, 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(matrix, 0, 1, 0);
+		consumer.addVertex(positions, 1, 0, 0).setColor(1f, 1f, 1f, alpha).setUv(1, 1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(matrix, 0, 1, 0);
+		consumer.addVertex(positions, 1, 1, 0).setColor(1f, 1f, 1f, alpha).setUv(1, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(matrix, 0, 1, 0);
+		consumer.addVertex(positions, 0, 1, 0).setColor(1f, 1f, 1f, alpha).setUv(0, 0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(matrix, 0, 1, 0);
+		
+		matrices.popPose();
         
         super.render(shard, yaw, tickDelta, matrices, vertexConsumers, light);
     }
     
     @Override
-    public Identifier getTexture(LightShardEntity entity) {
-        return entity.getTexture();
+	public ResourceLocation getTextureLocation(LightShardEntity entity) {
+		return entity.getTextureLocation();
     }
 }

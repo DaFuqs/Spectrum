@@ -5,18 +5,21 @@ import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.items.bundles.*;
 import de.dafuqs.spectrum.items.tooltip.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.component.*;
-import net.minecraft.component.type.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.inventory.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.*;
-import net.minecraft.screen.slot.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
-import net.minecraft.util.collection.*;
+import net.minecraft.*;
+import net.minecraft.core.*;
+import net.minecraft.core.component.*;
+import net.minecraft.network.chat.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.inventory.tooltip.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.*;
+import net.minecraft.world.item.context.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 
 import java.util.*;
 import java.util.stream.*;
@@ -25,26 +28,26 @@ public class PresentBlockItem extends PlaceableBundleBlockItem {
 	
 	public static final int MAX_STORAGE_STACKS = 5;
 	
-	public PresentBlockItem(Block block, Settings settings) {
+	public PresentBlockItem(Block block, Properties settings) {
 		super(new ExtendedBundleComponent(MAX_STORAGE_STACKS), block, settings);
 	}
 	
 	@Override
-	protected boolean canPlace(ItemPlacementContext context, BlockState state) {
-		return isWrapped(context.getStack()) && super.canPlace(context, state);
+	protected boolean canPlace(BlockPlaceContext context, BlockState state) {
+		return isWrapped(context.getItemInHand()) && super.canPlace(context, state);
 	}
 	
-	public static void setOwner(ItemStack itemStack, PlayerEntity giver) {
-		var profile = new GameProfile(giver.getUuid(), giver.getName().getString());
-		itemStack.set(DataComponentTypes.PROFILE, new ProfileComponent(profile));
+	public static void setOwner(ItemStack itemStack, Player giver) {
+		var profile = new GameProfile(giver.getUUID(), giver.getName().getString());
+		itemStack.set(DataComponents.PROFILE, new ResolvableProfile(profile));
 	}
 	
-	public static Optional<ProfileComponent> getOwner(ItemStack itemStack) {
-		return Optional.ofNullable(itemStack.get(DataComponentTypes.PROFILE));
+	public static Optional<ResolvableProfile> getOwner(ItemStack itemStack) {
+		return Optional.ofNullable(itemStack.get(DataComponents.PROFILE));
 	}
 	
 	public static boolean isEmpty(ItemStack itemStack) {
-		return itemStack.getOrDefault(DataComponentTypes.BUNDLE_CONTENTS, BundleContentsComponent.DEFAULT).isEmpty();
+		return itemStack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).isEmpty();
 	}
 	
 	public static boolean isWrapped(ItemStack itemStack) {
@@ -60,51 +63,51 @@ public class PresentBlockItem extends PlaceableBundleBlockItem {
 	}
 	
 	@Override
-	public boolean onClicked(ItemStack stack, ItemStack otherStack, Slot slot, ClickType clickType, PlayerEntity player, StackReference cursorStackReference) {
-		return !isCraftingInventory(slot) && super.onClicked(stack, otherStack, slot, clickType, player, cursorStackReference);
+	public boolean overrideOtherStackedOnMe(ItemStack stack, ItemStack otherStack, Slot slot, ClickAction clickType, Player player, SlotAccess cursorStackReference) {
+		return !isCraftingInventory(slot) && super.overrideOtherStackedOnMe(stack, otherStack, slot, clickType, player, cursorStackReference);
 	}
 	
 	@Override
-	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-		ItemStack itemStack = user.getStackInHand(hand);
+	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
+		ItemStack itemStack = user.getItemInHand(hand);
 		if (isWrapped(itemStack)) {
 			super.use(world, user, hand);
 		}
-		return TypedActionResult.pass(itemStack);
+		return InteractionResultHolder.pass(itemStack);
 	}
 	
 	// CraftingInventory does not recalculate the recipe after inputting / retrieving stacks from the present.
 	// The recipes output will still hold the original present data from when it was put into the crafting grid
 	// If the player then puts / receives items from the present they are able to duplicate items
 	private boolean isCraftingInventory(Slot slot) {
-		return slot.inventory instanceof CraftingInventory;
+		return slot.container instanceof TransientCraftingContainer;
 	}
 	
 	@Override
-	public void onCraftByPlayer(ItemStack stack, World world, PlayerEntity player) {
-		super.onCraftByPlayer(stack, world, player);
+	public void onCraftedBy(ItemStack stack, Level world, Player player) {
+		super.onCraftedBy(stack, world, player);
 		if (player != null) {
 			setOwner(stack, player);
 		}
 	}
 	
 	@Override
-	public boolean isItemBarVisible(ItemStack stack) {
-		return !isWrapped(stack) && super.isItemBarVisible(stack);
+	public boolean isBarVisible(ItemStack stack) {
+		return !isWrapped(stack) && super.isBarVisible(stack);
 	}
 	
 	public static Stream<ItemStack> getBundledStacks(ItemStack stack) {
-		return stack.getOrDefault(DataComponentTypes.BUNDLE_CONTENTS, BundleContentsComponent.DEFAULT).stream();
+		return stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).itemCopyStream();
 	}
 	
 	@Override
-	public Optional<TooltipData> getTooltipData(ItemStack stack) {
+	public Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
 		if (isWrapped(stack)) {
 			return Optional.empty();
 		}
 		
 		// TODO: Use BundleTooltipComponent and such instead
-		var list = DefaultedList.ofSize(MAX_STORAGE_STACKS, ItemStack.EMPTY);
+		var list = NonNullList.withSize(MAX_STORAGE_STACKS, ItemStack.EMPTY);
 		var stacks = getBundledStacks(stack).toList();
 		for (int i = 0; i < stacks.size(); i++)
 			list.set(i, stacks.get(i));
@@ -112,27 +115,27 @@ public class PresentBlockItem extends PlaceableBundleBlockItem {
 	}
 	
 	@Override
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		boolean wrapped = isWrapped(stack);
 		if (wrapped) {
 			var gifter = getOwner(stack);
 			if (gifter.isPresent()) {
-				gifter.get().name().ifPresent(name -> tooltip.add((Text.translatable("block.spectrum.present.tooltip.wrapped.giver", name).formatted(Formatting.GRAY))));
+				gifter.get().name().ifPresent(name -> tooltip.add((Component.translatable("block.spectrum.present.tooltip.wrapped.giver", name).withStyle(ChatFormatting.GRAY))));
 				if (type.isAdvanced()) {
-					gifter.get().id().ifPresent(id -> tooltip.add((Text.literal("UUID: " + id).formatted(Formatting.GRAY))));
+					gifter.get().id().ifPresent(id -> tooltip.add((Component.literal("UUID: " + id).withStyle(ChatFormatting.GRAY))));
 				}
 			} else {
-				tooltip.add((Text.translatable("block.spectrum.present.tooltip.wrapped").formatted(Formatting.GRAY)));
+				tooltip.add((Component.translatable("block.spectrum.present.tooltip.wrapped").withStyle(ChatFormatting.GRAY)));
 			}
 		} else {
-			tooltip.add((Text.translatable("block.spectrum.present.tooltip.description").formatted(Formatting.GRAY)));
-			tooltip.add((Text.translatable("block.spectrum.present.tooltip.description2").formatted(Formatting.GRAY)));
-			tooltip.add((Text.translatable("item.minecraft.bundle.fullness", getBundledStacks(stack).count(), MAX_STORAGE_STACKS)).formatted(Formatting.GRAY));
+			tooltip.add((Component.translatable("block.spectrum.present.tooltip.description").withStyle(ChatFormatting.GRAY)));
+			tooltip.add((Component.translatable("block.spectrum.present.tooltip.description2").withStyle(ChatFormatting.GRAY)));
+			tooltip.add((Component.translatable("item.minecraft.bundle.fullness", getBundledStacks(stack).count(), MAX_STORAGE_STACKS)).withStyle(ChatFormatting.GRAY));
 		}
 	}
 	
 	@Override
-	public boolean canBeNested() {
+	public boolean canFitInsideContainerItems() {
 		return false;
 	}
 	

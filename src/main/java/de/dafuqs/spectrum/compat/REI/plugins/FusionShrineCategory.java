@@ -9,8 +9,8 @@ import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.fabricmc.api.*;
-import net.minecraft.fluid.*;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.world.level.material.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -26,8 +26,8 @@ public class FusionShrineCategory extends GatedDisplayCategory<FusionShrineDispl
 	}
 	
 	@Override
-	public Text getTitle() {
-		return Text.translatable("block.spectrum.fusion_shrine");
+	public Component getTitle() {
+		return Component.translatable("block.spectrum.fusion_shrine");
 	}
 	
 	@Override
@@ -61,12 +61,12 @@ public class FusionShrineCategory extends GatedDisplayCategory<FusionShrineDispl
 		widgets.add(Widgets.createSlot(new Point(startPoint.x + 95, startPoint.y - 7 + 35)).markOutput().disableBackground().entries(display.getOutputEntries().get(0)));
 		
 		if (display.getDescription().isPresent()) {
-			Text description = display.getDescription().get();
+			Component description = display.getDescription().get();
 			widgets.add(Widgets.createLabel(new Point(startPoint.x - 10, startPoint.y - 13 + 65), description).leftAligned().color(0x3f3f3f).noShadow());
 		}
 		
 		// description text
-		Text text = getCraftingTimeText(display.craftingTime, display.experience);
+		Component text = getCraftingTimeText(display.craftingTime, display.experience);
 		widgets.add(Widgets.createLabel(new Point(startPoint.x - 10, startPoint.y - 13 + 75), text).leftAligned().color(0x3f3f3f).noShadow());
 	}
 	

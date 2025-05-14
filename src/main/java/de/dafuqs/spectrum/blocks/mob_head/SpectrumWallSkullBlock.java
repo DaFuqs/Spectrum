@@ -1,12 +1,13 @@
 package de.dafuqs.spectrum.blocks.mob_head;
 
 import com.google.common.collect.*;
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import com.mojang.serialization.*;
+import com.mojang.serialization.codecs.*;
+import net.minecraft.core.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -15,20 +16,20 @@ public class SpectrumWallSkullBlock extends WallSkullBlock {
 
 	public static final MapCodec<SpectrumWallSkullBlock> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
 			SpectrumSkullType.CODEC.fieldOf("kind").forGetter(b -> b.skullType),
-			createSettingsCodec()
+			propertiesCodec()
 	).apply(i, SpectrumWallSkullBlock::new));
 
 	public static BiMap<SpectrumSkullType, Block> MOB_WALL_HEADS = EnumHashBiMap.create(SpectrumSkullType.class);
 	private final SpectrumSkullType skullType;
 	
-	public SpectrumWallSkullBlock(SpectrumSkullType skullType, Settings settings) {
+	public SpectrumWallSkullBlock(SpectrumSkullType skullType, Properties settings) {
 		super(skullType, settings);
 		this.skullType = skullType;
 		MOB_WALL_HEADS.put(skullType, this);
 	}
 
 	@Override
-	public MapCodec<? extends SpectrumWallSkullBlock> getCodec() {
+	public MapCodec<? extends SpectrumWallSkullBlock> codec() {
 		return CODEC;
 	}
 	
@@ -42,13 +43,13 @@ public class SpectrumWallSkullBlock extends WallSkullBlock {
 	}
 	
 	@Override
-	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new SpectrumSkullBlockEntity(pos, state);
 	}
 	
 	@Override
 	@Nullable
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
 		return null;
 	}
 	

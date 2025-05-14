@@ -1,16 +1,18 @@
 package de.dafuqs.spectrum.blocks.conditional.blood_orchid;
 
 import de.dafuqs.revelationary.api.revelations.*;
-import net.minecraft.block.*;
-import net.minecraft.item.*;
+import net.minecraft.resources.*;
 import net.minecraft.util.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public class PottedBloodOrchidBlock extends FlowerPotBlock implements RevelationAware {
 	
-	public PottedBloodOrchidBlock(Block content, Settings settings) {
+	public PottedBloodOrchidBlock(Block content, Properties settings) {
 		super(content, settings);
 		RevelationAware.register(this);
 	}
@@ -22,19 +24,19 @@ public class PottedBloodOrchidBlock extends FlowerPotBlock implements Revelation
 //	}
 	
 	@Override
-	public Identifier getCloakAdvancementIdentifier() {
+	public ResourceLocation getCloakAdvancementIdentifier() {
 		return BloodOrchidBlock.ADVANCEMENT_IDENTIFIER;
 	}
 	
 	@Override
 	public Map<BlockState, BlockState> getBlockStateCloaks() {
 		Map<BlockState, BlockState> map = new Hashtable<>();
-		map.put(this.getDefaultState(), Blocks.POTTED_RED_TULIP.getDefaultState());
+		map.put(this.defaultBlockState(), Blocks.POTTED_RED_TULIP.defaultBlockState());
 		return map;
 	}
 	
 	@Override
-	public @Nullable Pair<Item, Item> getItemCloak() {
+	public @Nullable Tuple<Item, Item> getItemCloak() {
 		return null; // does not exist in item form
 	}
 	

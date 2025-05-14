@@ -6,14 +6,16 @@ import de.dafuqs.spectrum.helpers.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.client.gui.screen.*;
-import net.minecraft.client.gui.screen.narration.*;
-import net.minecraft.text.*;
+import net.minecraft.client.gui.components.*;
+import net.minecraft.client.gui.components.events.*;
+import net.minecraft.client.gui.narration.*;
+import net.minecraft.client.gui.screens.*;
+import net.minecraft.network.chat.*;
 
 import java.util.*;
 
 @Environment(EnvType.CLIENT)
-public class StackedInkMeterWidget implements Drawable, Element, Selectable {
+public class StackedInkMeterWidget implements Renderable, GuiEventListener, NarratableEntry {
 	
 	public final int x;
 	public final int y;
@@ -51,31 +53,31 @@ public class StackedInkMeterWidget implements Drawable, Element, Selectable {
 	}
 	
 	@Override
-	public void render(DrawContext drawContext, int mouseX, int mouseY, float delta) {
+	public void render(GuiGraphics drawContext, int mouseX, int mouseY, float delta) {
 		this.hovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height;
 	}
 	
 	@Override
-	public SelectionType getType() {
-		return this.hovered ? SelectionType.HOVERED : SelectionType.NONE;
+	public NarrationPriority narrationPriority() {
+		return this.hovered ? NarrationPriority.HOVERED : NarrationPriority.NONE;
 	}
 	
 	@Override
-	public void appendNarrations(NarrationMessageBuilder builder) {
+	public void updateNarration(NarrationElementOutput builder) {
 	
 	}
 	
-	public void drawMouseoverTooltip(DrawContext drawContext, int x, int y) {
-		MinecraftClient client = MinecraftClient.getInstance();
+	public void drawMouseoverTooltip(GuiGraphics drawContext, int x, int y) {
+		Minecraft client = Minecraft.getInstance();
 		InkStorage inkStorage = this.blockEntity.getEnergyStorage();
 		long currentTotal = inkStorage.getCurrentTotal();
 		String readableCurrentTotalString = Support.getShortenedNumberString(currentTotal);
 		String percent = Support.getSensiblePercentString(inkStorage.getCurrentTotal(), (inkStorage.getMaxTotal()));
-		drawContext.drawTooltip(client.textRenderer,List.of(Text.translatable("spectrum.tooltip.ink_powered.percent_filled", readableCurrentTotalString, percent)),
+		drawContext.renderTooltip(client.font, List.of(Component.translatable("spectrum.tooltip.ink_powered.percent_filled", readableCurrentTotalString, percent)),
 			Optional.empty(), x, y);
 	}
 	
-	public void draw(DrawContext drawContext) {
+	public void draw(GuiGraphics drawContext) {
 		InkStorage inkStorage = this.blockEntity.getEnergyStorage();
 		long currentTotal = inkStorage.getCurrentTotal();
 		
@@ -88,7 +90,7 @@ public class StackedInkMeterWidget implements Drawable, Element, Selectable {
 				if (amount > 0) {
 					int height = Math.round(((float) amount / (float) maxTotal * this.height));
 					if (height > 0) {
-						RenderHelper.fillQuad(drawContext.getMatrices(), this.x, currentHeight - height, height, this.width, color.getColorVec());
+						RenderHelper.fillQuad(drawContext.pose(), this.x, currentHeight - height, height, this.width, color.getColorVec());
 					}
 					currentHeight -= height;
 				}

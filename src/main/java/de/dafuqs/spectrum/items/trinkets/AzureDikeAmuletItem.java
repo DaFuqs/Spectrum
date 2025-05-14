@@ -5,25 +5,24 @@ import de.dafuqs.spectrum.api.energy.storage.*;
 import de.dafuqs.spectrum.api.item.*;
 import dev.emi.trinkets.api.*;
 import net.fabricmc.api.*;
-import net.minecraft.entity.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.item.*;
 
 import java.util.*;
 
 public class AzureDikeAmuletItem extends InkDrainTrinketItem implements AzureDikeItem {
 	
-	public AzureDikeAmuletItem(Settings settings, Identifier unlockIdentifier) {
+	public AzureDikeAmuletItem(Properties settings, ResourceLocation unlockIdentifier) {
 		super(settings, unlockIdentifier, InkColors.BLUE);
 	}
 	
 	@Override
 	@Environment(EnvType.CLIENT)
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		tooltip.add(Text.translatable("item.spectrum.azure_dike_provider.tooltip", maxAzureDike(stack)));
-		super.appendTooltip(stack, context, tooltip, type);
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		tooltip.add(Component.translatable("item.spectrum.azure_dike_provider.tooltip", maxAzureDike(stack)));
+		super.appendHoverText(stack, context, tooltip, type);
 	}
 	
 	@Override

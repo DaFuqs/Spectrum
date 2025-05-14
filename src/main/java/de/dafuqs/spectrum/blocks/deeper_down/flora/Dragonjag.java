@@ -1,21 +1,22 @@
 package de.dafuqs.spectrum.blocks.deeper_down.flora;
 
 import com.mojang.serialization.*;
-import net.minecraft.block.*;
+import net.minecraft.core.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.material.*;
 
 public interface Dragonjag {
 	
-	enum Variant implements StringIdentifiable {
-		YELLOW(MapColor.PALE_YELLOW),
-		RED(MapColor.DARK_RED),
-		PINK(MapColor.DARK_DULL_PINK),
-		PURPLE(MapColor.PURPLE),
+	enum Variant implements StringRepresentable {
+		YELLOW(MapColor.SAND),
+		RED(MapColor.NETHER),
+		PINK(MapColor.WARPED_HYPHAE),
+		PURPLE(MapColor.COLOR_PURPLE),
 		BLACK(MapColor.TERRACOTTA_BLACK);
 		
-		public static final Codec<Variant> CODEC = StringIdentifiable.createCodec(Variant::values);
+		public static final Codec<Variant> CODEC = StringRepresentable.fromEnum(Variant::values);
 		
 		private final MapColor mapColor;
 		
@@ -28,15 +29,15 @@ public interface Dragonjag {
 		}
 		
 		@Override
-		public String asString() {
+		public String getSerializedName() {
 			return name();
 		}
 	}
 	
 	Dragonjag.Variant getVariant();
 	
-	static boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-		return floor.isOpaqueFullCube(world, pos);
+	static boolean canPlantOnTop(BlockState floor, BlockGetter world, BlockPos pos) {
+		return floor.isSolidRender(world, pos);
 	}
 	
 }

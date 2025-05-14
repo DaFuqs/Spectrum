@@ -4,17 +4,18 @@ import com.google.gson.*;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
 import net.fabricmc.fabric.api.resource.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.particle.*;
-import net.minecraft.registry.*;
-import net.minecraft.resource.*;
+import net.minecraft.core.particles.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.resources.*;
+import net.minecraft.server.packs.resources.*;
 import net.minecraft.util.*;
-import net.minecraft.util.profiler.*;
+import net.minecraft.util.profiling.*;
+import net.minecraft.world.entity.player.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class ParticleSpawnerParticlesDataLoader extends JsonDataLoader implements IdentifiableResourceReloadListener {
+public class ParticleSpawnerParticlesDataLoader extends SimpleJsonResourceReloadListener implements IdentifiableResourceReloadListener {
 	
 	public static final String ID = "particle_spawner_particle";
 	public static final ParticleSpawnerParticlesDataLoader INSTANCE = new ParticleSpawnerParticlesDataLoader();
@@ -29,7 +30,7 @@ public class ParticleSpawnerParticlesDataLoader extends JsonDataLoader implement
 	 * @param supportsColoring  Weather the Particle Spawner enables CMY coloring for this particle (should be true, if grayscale)
 	 * @param unlockIdentifier  The advancement identifier required to being able to select this entry
 	 */
-	public record ParticleSpawnerEntry(ParticleType<?> particleType, Identifier textureIdentifier, boolean supportsColoring, @Nullable Identifier unlockIdentifier) {
+	public record ParticleSpawnerEntry(ParticleType<?> particleType, ResourceLocation textureIdentifier, boolean supportsColoring, @Nullable ResourceLocation unlockIdentifier) {
 	}
 	
 	protected static final List<ParticleSpawnerEntry> PARTICLES = new ArrayList<>();
@@ -39,16 +40,16 @@ public class ParticleSpawnerParticlesDataLoader extends JsonDataLoader implement
 	}
 	
 	@Override
-	protected void apply(Map<Identifier, JsonElement> prepared, ResourceManager manager, Profiler profiler) {
+	protected void apply(Map<ResourceLocation, JsonElement> prepared, ResourceManager manager, ProfilerFiller profiler) {
 		PARTICLES.clear();
 		prepared.forEach((identifier, jsonElement) -> {
 			JsonObject jsonObject = jsonElement.getAsJsonObject();
 			
 			String particleTypeString = jsonObject.get("particle_type").getAsString();
-			ParticleType<?> particleType = Registries.PARTICLE_TYPE.get(Identifier.tryParse(particleTypeString));
-			Identifier guiTexture = Identifier.tryParse(jsonObject.get("gui_texture").getAsString());
-			@Nullable Identifier unlockIdentifier = jsonObject.has("unlock_identifier") ? Identifier.tryParse(jsonObject.get("unlock_identifier").getAsString()) : null;
-			boolean supportsColoring = JsonHelper.getBoolean(jsonObject, "supports_coloring", false);
+			ParticleType<?> particleType = BuiltInRegistries.PARTICLE_TYPE.get(ResourceLocation.tryParse(particleTypeString));
+			ResourceLocation guiTexture = ResourceLocation.tryParse(jsonObject.get("gui_texture").getAsString());
+			@Nullable ResourceLocation unlockIdentifier = jsonObject.has("unlock_identifier") ? ResourceLocation.tryParse(jsonObject.get("unlock_identifier").getAsString()) : null;
+			boolean supportsColoring = GsonHelper.getAsBoolean(jsonObject, "supports_coloring", false);
 			
 			if (particleType == null) {
 				SpectrumCommon.logError("Particle Spawner Particle '" + particleTypeString + "' not found. Will be ignored.");
@@ -60,11 +61,11 @@ public class ParticleSpawnerParticlesDataLoader extends JsonDataLoader implement
 	}
 	
 	@Override
-	public Identifier getFabricId() {
+	public ResourceLocation getFabricId() {
 		return SpectrumCommon.locate(ID);
 	}
 	
-	public static List<ParticleSpawnerEntry> getAllUnlocked(PlayerEntity player) {
+	public static List<ParticleSpawnerEntry> getAllUnlocked(Player player) {
 		List<ParticleSpawnerEntry> list = new ArrayList<>();
 		for (ParticleSpawnerParticlesDataLoader.ParticleSpawnerEntry entry : PARTICLES) {
 			if (AdvancementHelper.hasAdvancement(player, entry.unlockIdentifier())) {

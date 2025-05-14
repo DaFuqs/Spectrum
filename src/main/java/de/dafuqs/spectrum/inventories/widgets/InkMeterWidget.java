@@ -1,7 +1,5 @@
 package de.dafuqs.spectrum.inventories.widgets;
 
-import java.util.*;
-
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.energy.storage.*;
@@ -9,12 +7,16 @@ import de.dafuqs.spectrum.helpers.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.client.gui.screen.*;
-import net.minecraft.client.gui.screen.narration.*;
-import net.minecraft.text.*;
+import net.minecraft.client.gui.components.*;
+import net.minecraft.client.gui.components.events.*;
+import net.minecraft.client.gui.narration.*;
+import net.minecraft.client.gui.screens.*;
+import net.minecraft.network.chat.*;
+
+import java.util.*;
 
 @Environment(EnvType.CLIENT)
-public class InkMeterWidget implements Drawable, Element, Selectable {
+public class InkMeterWidget implements Renderable, GuiEventListener, NarratableEntry {
 	
 	public static final int WIDTH_PER_COLOR = 4;
 	public static final int SPACE_BETWEEN_COLORS = 2;
@@ -55,23 +57,23 @@ public class InkMeterWidget implements Drawable, Element, Selectable {
 	}
 	
 	@Override
-	public SelectionType getType() {
-		return this.hovered ? SelectionType.HOVERED : SelectionType.NONE;
+	public NarrationPriority narrationPriority() {
+		return this.hovered ? NarrationPriority.HOVERED : NarrationPriority.NONE;
 	}
 	
 	@Override
-	public void appendNarrations(NarrationMessageBuilder builder) {
+	public void updateNarration(NarrationElementOutput builder) {
 	
 	}
 	
-	public void drawMouseoverTooltip(DrawContext drawContext, int x, int y) {
-		MinecraftClient client = MinecraftClient.getInstance();
-		List<Text> tooltip = new ArrayList<>();
+	public void drawMouseoverTooltip(GuiGraphics drawContext, int x, int y) {
+		Minecraft client = Minecraft.getInstance();
+		List<Component> tooltip = new ArrayList<>();
 		inkStorageBlockEntity.getEnergyStorage().addTooltip(tooltip);
-		drawContext.drawTooltip(client.textRenderer, tooltip, Optional.empty(), x, y);
+		drawContext.renderTooltip(client.font, tooltip, Optional.empty(), x, y);
 	}
 	
-	public void draw(DrawContext drawContext, List<InkColor> colors) {
+	public void draw(GuiGraphics drawContext, List<InkColor> colors) {
 		int startHeight = this.y + this.height;
 		int currentXOffset = 0;
 		
@@ -81,14 +83,14 @@ public class InkMeterWidget implements Drawable, Element, Selectable {
 			long amount = inkStorage.getEnergy(color);
 			if (amount > 0) {
 				int height = Math.max(1, Math.round(((float) amount / ((float) total / this.height))));
-				RenderHelper.fillQuad(drawContext.getMatrices(), this.x + currentXOffset, startHeight - height, height, WIDTH_PER_COLOR, color.getColorVec());
+				RenderHelper.fillQuad(drawContext.pose(), this.x + currentXOffset, startHeight - height, height, WIDTH_PER_COLOR, color.getColorVec());
 			}
 			currentXOffset = currentXOffset + WIDTH_PER_COLOR + SPACE_BETWEEN_COLORS;
 		}
 	}
 	
 	@Override
-	public void render(DrawContext drawContext, int mouseX, int mouseY, float delta) {
+	public void render(GuiGraphics drawContext, int mouseX, int mouseY, float delta) {
 		this.hovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height;
 	}
 	

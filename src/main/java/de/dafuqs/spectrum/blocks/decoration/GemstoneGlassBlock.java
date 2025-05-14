@@ -5,9 +5,10 @@ import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
-import net.minecraft.block.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 import org.jetbrains.annotations.*;
 
 public class GemstoneGlassBlock extends TransparentBlock {
@@ -17,35 +18,35 @@ public class GemstoneGlassBlock extends TransparentBlock {
 	@Nullable
 	final GemstoneColor gemstoneColor;
 	
-	public GemstoneGlassBlock(Settings settings, @Nullable GemstoneColor gemstoneColor) {
+	public GemstoneGlassBlock(Properties settings, @Nullable GemstoneColor gemstoneColor) {
 		super(settings);
 		this.gemstoneColor = gemstoneColor;
 		this.codec = RecordCodecBuilder.mapCodec(i -> i.group(
-				createSettingsCodec(),
-				SpectrumRegistries.GEMSTONE_COLOR.getCodec().fieldOf("color").forGetter(b -> b.gemstoneColor)
+				propertiesCodec(),
+				SpectrumRegistries.GEMSTONE_COLOR.byNameCodec().fieldOf("color").forGetter(b -> b.gemstoneColor)
 		).apply(i, GemstoneGlassBlock::new));
 	}
 
 	@Override
-	public MapCodec<? extends GemstoneGlassBlock> getCodec() {
+	public MapCodec<? extends GemstoneGlassBlock> codec() {
 		return codec;
 	}
 	
 	@Override
 	@Environment(EnvType.CLIENT)
-	public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
-		if (stateFrom.isOf(this)) {
+	public boolean skipRendering(BlockState state, BlockState stateFrom, Direction direction) {
+		if (stateFrom.is(this)) {
 			return true;
 		}
 		
 		if (state.getBlock() instanceof GemstoneGlassBlock sourceGemstoneGlassBlock && stateFrom.getBlock() instanceof GemstoneGlassBlock targetGemstoneGlassBlock) {
 			return sourceGemstoneGlassBlock.gemstoneColor == targetGemstoneGlassBlock.gemstoneColor;
 		}
-		return super.isSideInvisible(state, stateFrom, direction);
+		return super.skipRendering(state, stateFrom, direction);
 	}
 	
 	@Override
-	public boolean isTransparent(BlockState state, BlockView world, BlockPos pos) {
+	public boolean propagatesSkylightDown(BlockState state, BlockGetter world, BlockPos pos) {
 		return true;
 	}
 	

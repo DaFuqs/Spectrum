@@ -21,7 +21,7 @@ public class Pastel {
 
     public static ServerPastelNetworkManager getServerInstance() {
         if (serverManager == null && SpectrumCommon.minecraftServer != null) {
-            serverManager = ServerPastelNetworkManager.get(SpectrumCommon.minecraftServer.getOverworld());
+			serverManager = ServerPastelNetworkManager.get(SpectrumCommon.minecraftServer.overworld());
         }
         return serverManager;
     }
@@ -36,7 +36,7 @@ public class Pastel {
     
     @Environment(EnvType.CLIENT)
     public static void clearClientInstance() {
-		getClientInstance().clear();
+		getClientInstance().clearContent();
         EarlyRenderingParticleContainer.clear();
     }
 

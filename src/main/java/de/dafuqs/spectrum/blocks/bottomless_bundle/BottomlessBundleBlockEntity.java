@@ -4,13 +4,13 @@ import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.*;
 import net.fabricmc.fabric.api.transfer.v1.transaction.*;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.enchantment.*;
-import net.minecraft.item.*;
+import net.minecraft.core.*;
+import net.minecraft.core.registries.*;
 import net.minecraft.nbt.*;
-import net.minecraft.registry.*;
-import net.minecraft.util.math.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
 import org.jetbrains.annotations.*;
 
 public class BottomlessBundleBlockEntity extends BlockEntity {
@@ -28,9 +28,9 @@ public class BottomlessBundleBlockEntity extends BlockEntity {
 		
 		@Override
 		protected boolean canInsert(ItemVariant variant) {
-			return variant.getItem().canBeNested()
+			return variant.getItem().canFitInsideContainerItems()
 					&& (this.variant.isBlank() || this.variant.isOf(variant.getItem())
-					&& ItemStack.areItemsAndComponentsEqual(this.variant.toStack(), variant.toStack()));
+					&& ItemStack.isSameItemSameComponents(this.variant.toStack(), variant.toStack()));
 		}
 
 		@Override
@@ -58,26 +58,26 @@ public class BottomlessBundleBlockEntity extends BlockEntity {
 		@Override
 		protected void onFinalCommit() {
 			super.onFinalCommit();
-			markDirty();
+			setChanged();
 		}
 	};
 
 	public BottomlessBundleBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntities.BOTTOMLESS_BUNDLE, pos, state);
-		this.bottomlessBundleStack = SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem().getDefaultStack();
+		this.bottomlessBundleStack = SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem().getDefaultInstance();
 	}
 
 	@Override
-	public void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-		super.readNbt(nbt, registryLookup);
-		this.setBundleUnsynced(ItemStack.fromNbt(registryLookup, nbt.getCompound("Bundle"))
-				.orElse(SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem().getDefaultStack()), registryLookup);
+	public void loadAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
+		super.loadAdditional(nbt, registryLookup);
+		this.setBundleUnsynced(ItemStack.parse(registryLookup, nbt.getCompound("Bundle"))
+				.orElse(SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem().getDefaultInstance()), registryLookup);
 		syncStorageWithBundle();
 	}
 
 	// Trivial sync methods. Call whenever bundle/storage contents need to be synced with each other [(de)serialization, bundle stack set, bundle block break loot]
 	private void syncBundleWithStorage() {
-		var builder = BottomlessBundleItem.BottomlessStack.Builder.of(this.world, this.bottomlessBundleStack);
+		var builder = BottomlessBundleItem.BottomlessStack.Builder.of(this.level, this.bottomlessBundleStack);
 		builder.set(this.storage);
 		builder.buildAndSet(this.bottomlessBundleStack);
 	}
@@ -88,30 +88,30 @@ public class BottomlessBundleBlockEntity extends BlockEntity {
 	}
 	
 	@Override
-	protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-		super.writeNbt(nbt, registryLookup);
+	protected void saveAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
+		super.saveAdditional(nbt, registryLookup);
 		syncBundleWithStorage();
-		nbt.put("Bundle", this.bottomlessBundleStack.encodeAllowEmpty(registryLookup));
+		nbt.put("Bundle", this.bottomlessBundleStack.saveOptional(registryLookup));
 	}
-
-	private boolean setBundleUnsynced(ItemStack itemStack, RegistryWrapper.WrapperLookup registryLookup) {
+	
+	private boolean setBundleUnsynced(ItemStack itemStack, HolderLookup.Provider registryLookup) {
 		if (itemStack.getItem() instanceof BottomlessBundleItem) {
 			this.bottomlessBundleStack = itemStack;
 			// cache once, use many times
-			this.isVoiding = EnchantmentHelper.hasAnyEnchantmentsIn(bottomlessBundleStack, SpectrumEnchantmentTags.DELETES_OVERFLOW);
-			this.powerLevel = EnchantmentHelper.getLevel(registryLookup.getOptionalWrapper(RegistryKeys.ENCHANTMENT).flatMap(impl -> impl.getOptional(Enchantments.POWER)).orElse(null), itemStack);
+			this.isVoiding = EnchantmentHelper.hasTag(bottomlessBundleStack, SpectrumEnchantmentTags.DELETES_OVERFLOW);
+			this.powerLevel = EnchantmentHelper.getItemEnchantmentLevel(registryLookup.lookup(Registries.ENCHANTMENT).flatMap(impl -> impl.get(Enchantments.POWER)).orElse(null), itemStack);
 			return true;
 		}
 		return false;
 	}
-
-	public void setBundle(@NotNull ItemStack itemStack, RegistryWrapper.WrapperLookup registryLookup) {
+	
+	public void setBundle(@NotNull ItemStack itemStack, HolderLookup.Provider registryLookup) {
 		if (setBundleUnsynced(itemStack, registryLookup)) syncStorageWithBundle();
 	}
 
 	public ItemStack retrieveBundle() {
 		if (this.bottomlessBundleStack.isEmpty()) {
-			return SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem().getDefaultStack();
+			return SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem().getDefaultInstance();
 		} else {
 			syncBundleWithStorage();
 			return this.bottomlessBundleStack;

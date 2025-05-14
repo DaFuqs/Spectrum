@@ -16,8 +16,8 @@ public record InkPoweredComponent(List<InkPoweredStatusEffectInstance> effects) 
 			InkPoweredStatusEffectInstance.CODEC.listOf().fieldOf("effects").forGetter(InkPoweredComponent::effects)
 	).apply(i, InkPoweredComponent::new));
 	
-	public static final PacketCodec<RegistryByteBuf, InkPoweredComponent> PACKET_CODEC = PacketCodec.tuple(
-			InkPoweredStatusEffectInstance.PACKET_CODEC.collect(PacketCodecs.toList()), InkPoweredComponent::effects,
+	public static final StreamCodec<RegistryFriendlyByteBuf, InkPoweredComponent> PACKET_CODEC = StreamCodec.composite(
+			InkPoweredStatusEffectInstance.PACKET_CODEC.apply(ByteBufCodecs.list()), InkPoweredComponent::effects,
 			InkPoweredComponent::new
 	);
 	

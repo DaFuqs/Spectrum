@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.render;
 
-import net.minecraft.util.math.*;
-import net.minecraft.world.dimension.*;
+import net.minecraft.util.*;
+import net.minecraft.world.level.dimension.*;
 
 public class SkyLerper {
 	
@@ -55,7 +55,7 @@ public class SkyLerper {
 	
 	private long getLerp(float tickDelta) {
 		float delta = (this.elapsedTicks + tickDelta) / (float) ANIMATION_TICKS;
-		return (long) MathHelper.lerp(easeQuart(delta), this.sourceDayTime + this.sourceTimeDelta, this.targetDayTime + tickDelta);
+		return (long) Mth.lerp(easeQuart(delta), this.sourceDayTime + this.sourceTimeDelta, this.targetDayTime + tickDelta);
 	}
 	
 }

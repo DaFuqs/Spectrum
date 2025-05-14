@@ -1,30 +1,29 @@
 package de.dafuqs.spectrum.compat.gofish;
 
 import net.fabricmc.loader.api.*;
-import net.minecraft.component.type.*;
-import net.minecraft.enchantment.*;
-import net.minecraft.item.*;
-import net.minecraft.loot.*;
-import net.minecraft.registry.*;
-import net.minecraft.registry.entry.*;
-import net.minecraft.util.*;
+import net.minecraft.core.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.*;
+import net.minecraft.world.level.storage.loot.*;
 
 public class GoFishCompat {
 	
 	public static final String MOD_ID = "go-fish";
 	public static final String NAMESPACE = "gofish";
 	
-	public static final RegistryKey<LootTable> DEFAULT_CRATES_LOOT_TABLE_ID = lootTableKey("gameplay/fishing/crates");
-	public static final RegistryKey<LootTable> NETHER_CRATES_LOOT_TABLE_ID = lootTableKey("gameplay/fishing/nether/crates");
-	public static final RegistryKey<LootTable> END_CRATES_LOOT_TABLE_ID = lootTableKey("gameplay/fishing/end/crates");
+	public static final ResourceKey<LootTable> DEFAULT_CRATES_LOOT_TABLE_ID = lootTableKey("gameplay/fishing/crates");
+	public static final ResourceKey<LootTable> NETHER_CRATES_LOOT_TABLE_ID = lootTableKey("gameplay/fishing/nether/crates");
+	public static final ResourceKey<LootTable> END_CRATES_LOOT_TABLE_ID = lootTableKey("gameplay/fishing/end/crates");
 	
-	public static final RegistryKey<LootTable> NETHER_FISH_LOOT_TABLE_ID = lootTableKey("gameplay/fishing/nether/fish");
-	public static final RegistryKey<LootTable> END_FISH_LOOT_TABLE_ID = lootTableKey("gameplay/fishing/end/fish");
+	public static final ResourceKey<LootTable> NETHER_FISH_LOOT_TABLE_ID = lootTableKey("gameplay/fishing/nether/fish");
+	public static final ResourceKey<LootTable> END_FISH_LOOT_TABLE_ID = lootTableKey("gameplay/fishing/end/fish");
 	
-	public static final RegistryKey<Enchantment> DEEPFRY_ENCHANTMENT_ID = RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(NAMESPACE, "deepfry"));
+	public static final ResourceKey<Enchantment> DEEPFRY_ENCHANTMENT_ID = ResourceKey.create(Registries.ENCHANTMENT, ResourceLocation.fromNamespaceAndPath(NAMESPACE, "deepfry"));
 	
-	public static RegistryKey<LootTable> lootTableKey(String id) {
-		return RegistryKey.of(RegistryKeys.LOOT_TABLE, Identifier.of(NAMESPACE, id));
+	public static ResourceKey<LootTable> lootTableKey(String id) {
+		return ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.fromNamespaceAndPath(NAMESPACE, id));
 	}
 	
 	public static boolean isLoaded() {
@@ -36,9 +35,9 @@ public class GoFishCompat {
 			return false;
 		}
 		
-		ItemEnchantmentsComponent enchantments = itemStack.getEnchantments();
-		for (RegistryEntry<Enchantment> enchantment : enchantments.getEnchantments()) {
-			if (enchantment.matchesKey(DEEPFRY_ENCHANTMENT_ID)) {
+		ItemEnchantments enchantments = itemStack.getEnchantments();
+		for (Holder<Enchantment> enchantment : enchantments.keySet()) {
+			if (enchantment.is(DEEPFRY_ENCHANTMENT_ID)) {
 				return true;
 			}
 		}

@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.api.item;
 
 import de.dafuqs.spectrum.api.energy.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.item.*;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.item.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -28,9 +28,9 @@ public interface InkPoweredPotionFillable {
 			int maxCount = maxEffectCount();
 			int maxAmplifier = maxEffectAmplifier();
 			for (InkPoweredStatusEffectInstance newEffect : newEffects) {
-				StatusEffectInstance statusEffectInstance = newEffect.getStatusEffectInstance();
+				MobEffectInstance statusEffectInstance = newEffect.getStatusEffectInstance();
 				if (statusEffectInstance.getAmplifier() > maxAmplifier) {
-					statusEffectInstance = new StatusEffectInstance(statusEffectInstance.getEffectType(), statusEffectInstance.getDuration(), maxAmplifier, statusEffectInstance.isAmbient(), statusEffectInstance.shouldShowParticles());
+					statusEffectInstance = new MobEffectInstance(statusEffectInstance.getEffect(), statusEffectInstance.getDuration(), maxAmplifier, statusEffectInstance.isAmbient(), statusEffectInstance.isVisible());
 				}
 				if (existingEffects.size() == maxCount) {
 					break;
@@ -51,7 +51,7 @@ public interface InkPoweredPotionFillable {
 	}
 	
 	@Deprecated
-	default List<StatusEffectInstance> getVanillaEffects(ItemStack stack) {
+	default List<MobEffectInstance> getVanillaEffects(ItemStack stack) {
 		return InkPoweredStatusEffectInstance.getEffects(stack).stream().map(InkPoweredStatusEffectInstance::getStatusEffectInstance).toList();
 	}
 	
@@ -67,18 +67,18 @@ public interface InkPoweredPotionFillable {
 		InkPoweredStatusEffectInstance.setEffects(itemStack, List.of());
 	}
 	
-	default void appendPotionFillableTooltip(ItemStack stack, List<Text> tooltip, MutableText attributeModifierText, boolean showDuration, float tickRate) {
+	default void appendPotionFillableTooltip(ItemStack stack, List<Component> tooltip, MutableComponent attributeModifierText, boolean showDuration, float tickRate) {
 		List<InkPoweredStatusEffectInstance> effects = InkPoweredStatusEffectInstance.getEffects(stack);
 		InkPoweredStatusEffectInstance.buildTooltip(tooltip, effects, attributeModifierText, showDuration, tickRate);
 		
 		int maxEffectCount = maxEffectCount();
 		if (effects.size() < maxEffectCount) {
 			if (maxEffectCount == 1) {
-				tooltip.add(Text.translatable("item.spectrum.potion_pendant.tooltip_not_full_one"));
+				tooltip.add(Component.translatable("item.spectrum.potion_pendant.tooltip_not_full_one"));
 			} else {
-				tooltip.add(Text.translatable("item.spectrum.potion_pendant.tooltip_not_full_count", maxEffectCount));
+				tooltip.add(Component.translatable("item.spectrum.potion_pendant.tooltip_not_full_count", maxEffectCount));
 			}
-			tooltip.add(Text.translatable("item.spectrum.potion_pendant.tooltip_max_level").append(Text.translatable("enchantment.level." + (maxEffectAmplifier() + 1))));
+			tooltip.add(Component.translatable("item.spectrum.potion_pendant.tooltip_max_level").append(Component.translatable("enchantment.level." + (maxEffectAmplifier() + 1))));
 		}
 	}
 

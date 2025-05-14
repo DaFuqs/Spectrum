@@ -5,7 +5,6 @@ import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
-import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.predicate.location.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.fusion_shrine.*;
@@ -15,25 +14,23 @@ import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.transfer.v1.fluid.*;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.*;
-import net.minecraft.enchantment.*;
-import net.minecraft.item.*;
+import net.minecraft.core.*;
 import net.minecraft.network.*;
+import net.minecraft.network.chat.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.recipe.*;
-import net.minecraft.registry.*;
-import net.minecraft.registry.entry.*;
-import net.minecraft.server.world.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.resources.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.item.enchantment.*;
+import net.minecraft.world.level.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeInput<SingleVariantStorage<FluidVariant>>> {
 	
-	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("build_fusion_shrine");
+	public static final ResourceLocation UNLOCK_IDENTIFIER = SpectrumCommon.locate("build_fusion_shrine");
 	
 	protected final List<IngredientStack> craftingInputs;
 	protected final FluidIngredient fluid;
@@ -56,14 +53,14 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 	@NotNull
 	protected final FusionShrineRecipeWorldEffect finishWorldEffect;
 	@Nullable
-	protected final Text description;
+	protected final Component description;
 	// copy all components from the first stack in the ingredients to the output stack
 	protected final boolean copyComponents;
 	
 	public FusionShrineRecipe(
 			String group,
 			boolean secret,
-			Optional<Identifier> requiredAdvancementIdentifier,
+			Optional<ResourceLocation> requiredAdvancementIdentifier,
 			List<IngredientStack> craftingInputs,
 			FluidIngredient fluid,
 			ItemStack output,
@@ -76,7 +73,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 			@NotNull FusionShrineRecipeWorldEffect startWorldEffect,
 			@NotNull List<FusionShrineRecipeWorldEffect> duringWorldEffects,
 			@NotNull FusionShrineRecipeWorldEffect finishWorldEffect,
-			@Nullable Text description
+			@Nullable Component description
 	) {
 		super(group, secret, requiredAdvancementIdentifier);
 		
@@ -103,7 +100,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 	 * The required fluid has to be tested manually by the crafting block.
 	 */
 	@Override
-	public boolean matches(StorageRecipeInput<SingleVariantStorage<FluidVariant>> recipeInput, World world) {
+	public boolean matches(StorageRecipeInput<SingleVariantStorage<FluidVariant>> recipeInput, Level world) {
 		SingleVariantStorage<FluidVariant> fluidStorage = recipeInput.getFluidStorage();
 		if (!this.fluid.test(fluidStorage.variant)) {
 			return false;
@@ -117,22 +114,22 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 	}
 	
 	@Override
-	public ItemStack craft(StorageRecipeInput<SingleVariantStorage<FluidVariant>> inv, RegistryWrapper.WrapperLookup drm) {
+	public ItemStack assemble(StorageRecipeInput<SingleVariantStorage<FluidVariant>> inv, HolderLookup.Provider drm) {
 		return output.copy();
 	}
 	
 	@Override
-	public boolean fits(int width, int height) {
+	public boolean canCraftInDimensions(int width, int height) {
 		return craftingInputs.size() <= width * height;
 	}
 	
 	@Override
-	public ItemStack getResult(RegistryWrapper.WrapperLookup registryManager) {
+	public ItemStack getResultItem(HolderLookup.Provider registryManager) {
 		return output;
 	}
 	
 	@Override
-	public ItemStack createIcon() {
+	public ItemStack getToastSymbol() {
 		return new ItemStack(SpectrumBlocks.FUSION_SHRINE_BASALT);
 	}
 	
@@ -161,7 +158,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 	 * <p></>
 	 * ME WHEN I CALL STREAM#ANYMATCH WHEN AN EMPTY SET SHOULD RETURN TRUE ~ Azzyypaaras
 	 */
-	public boolean areConditionMetCurrently(ServerWorld world, BlockPos pos) {
+	public boolean areConditionMetCurrently(ServerLevel world, BlockPos pos) {
 		if (worldConditionsPredicates.isEmpty())
 			return true;
 		return this.worldConditionsPredicates.stream().anyMatch(p -> p.test(world, pos));
@@ -204,7 +201,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 		return effect;
 	}
 	
-	public Optional<Text> getDescription() {
+	public Optional<Component> getDescription() {
 		if (this.description == null) {
 			return Optional.empty();
 		}
@@ -212,7 +209,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 	}
 	
 	@Override
-	public Identifier getRecipeTypeUnlockIdentifier() {
+	public ResourceLocation getRecipeTypeUnlockIdentifier() {
 		return UNLOCK_IDENTIFIER;
 	}
 	
@@ -225,17 +222,17 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 	// note that we only check each ingredient once if a match was found.
 	// custom recipes therefore should not use items / tags that match multiple items
 	// at once, since we cannot rely on positions in a grid like vanilla does in its crafting table.
-	public void craft(World world, FusionShrineBlockEntity fusionShrineBlockEntity) {
+	public void craft(Level world, FusionShrineBlockEntity fusionShrineBlockEntity) {
 		ItemStack firstStack = ItemStack.EMPTY;
 		var memory = ItemStack.EMPTY;
 		
 		int maxAmount = 1;
-		ItemStack output = craft(new StorageRecipeInput<>(fusionShrineBlockEntity.getItems(), fusionShrineBlockEntity.fluidStorage), world.getRegistryManager());
+		ItemStack output = assemble(new StorageRecipeInput<>(fusionShrineBlockEntity.getItems(), fusionShrineBlockEntity.fluidStorage), world.registryAccess());
 		if (!output.isEmpty()) {
-			maxAmount = output.getMaxCount();
+			maxAmount = output.getMaxStackSize();
 			for (IngredientStack ingredientStack : getIngredientStacks()) {
-				for (int i = 0; i < fusionShrineBlockEntity.size(); i++) {
-					ItemStack currentStack = fusionShrineBlockEntity.getStack(i);
+				for (int i = 0; i < fusionShrineBlockEntity.getContainerSize(); i++) {
+					ItemStack currentStack = fusionShrineBlockEntity.getItem(i);
 					if (ingredientStack.test(currentStack)) {
 						if (firstStack.isEmpty()) {
 							firstStack = currentStack;
@@ -256,11 +253,11 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 			for (IngredientStack ingredientStack : getIngredientStacks()) {
 				double efficiencyModifier = fusionShrineBlockEntity.getUpgradeHolder().getEffectiveValue(Upgradeable.UpgradeType.EFFICIENCY);
 				
-				for (int i = 0; i < fusionShrineBlockEntity.size(); i++) {
-					ItemStack currentStack = fusionShrineBlockEntity.getStack(i);
+				for (int i = 0; i < fusionShrineBlockEntity.getContainerSize(); i++) {
+					ItemStack currentStack = fusionShrineBlockEntity.getItem(i);
 					if (ingredientStack.test(currentStack)) {
 						int reducedAmountAfterMod = Support.getIntFromDecimalWithChance(ingredientStack.getCount() / efficiencyModifier, world.random);
-						currentStack.decrement(reducedAmountAfterMod);
+						currentStack.shrink(reducedAmountAfterMod);
 						break;
 					}
 				}
@@ -269,25 +266,25 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 		
 		if (this.copyComponents) {
 			var originalEnchantments = output.getEnchantments();
-			output = memory.copyComponentsToNewStack(output.getItem(), output.getCount());
-			for (RegistryEntry<Enchantment> enchantment : originalEnchantments.getEnchantments()) {
-				output.addEnchantment(enchantment, originalEnchantments.getLevel(enchantment));
+			output = memory.transmuteCopy(output.getItem(), output.getCount());
+			for (Holder<Enchantment> enchantment : originalEnchantments.keySet()) {
+				output.enchant(enchantment, originalEnchantments.getLevel(enchantment));
 			}
 		}
 		
 		spawnCraftingResultAndXP(world, fusionShrineBlockEntity, output, maxAmount); // spawn results
 	}
 	
-	private void decrementIngredients(World world, FusionShrineBlockEntity fusionShrineBlockEntity, int recipesCrafted, double efficiencyModifier) {
+	private void decrementIngredients(Level world, FusionShrineBlockEntity fusionShrineBlockEntity, int recipesCrafted, double efficiencyModifier) {
 		for (IngredientStack ingredientStack : getIngredientStacks()) {
-			for (int i = 0; i < fusionShrineBlockEntity.size(); i++) {
-				ItemStack currentStack = fusionShrineBlockEntity.getStack(i);
+			for (int i = 0; i < fusionShrineBlockEntity.getContainerSize(); i++) {
+				ItemStack currentStack = fusionShrineBlockEntity.getItem(i);
 				if (ingredientStack.test(currentStack)) {
 					int reducedAmount = recipesCrafted * ingredientStack.getCount();
 					int reducedAmountAfterMod = efficiencyModifier == 1 ? reducedAmount : Support.getIntFromDecimalWithChance(reducedAmount / efficiencyModifier, world.random);
 					
 					ItemStack currentRemainder = currentStack.getRecipeRemainder();
-					currentStack.decrement(reducedAmountAfterMod);
+					currentStack.shrink(reducedAmountAfterMod);
 					
 					if (!currentRemainder.isEmpty()) {
 						currentRemainder = currentRemainder.copy();
@@ -301,16 +298,16 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 		}
 	}
 	
-	protected void spawnCraftingResultAndXP(@NotNull World world, @NotNull FusionShrineBlockEntity fusionShrineBlockEntity, @NotNull ItemStack stack, int recipeCount) {
+	protected void spawnCraftingResultAndXP(@NotNull Level world, @NotNull FusionShrineBlockEntity fusionShrineBlockEntity, @NotNull ItemStack stack, int recipeCount) {
 		int resultAmountBeforeMod = recipeCount * stack.getCount();
 		double yieldModifier = yieldUpgradesDisabled ? 1.0 : fusionShrineBlockEntity.getUpgradeHolder().getEffectiveValue(Upgradeable.UpgradeType.YIELD);
 		int resultAmountAfterMod = Support.getIntFromDecimalWithChance(resultAmountBeforeMod * yieldModifier, world.random);
 		
 		int intExperience = Support.getIntFromDecimalWithChance(recipeCount * experience, world.random);
-		MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, fusionShrineBlockEntity.getPos().up(2), stack, resultAmountAfterMod, MultiblockCrafter.RECIPE_STACK_VELOCITY);
+		MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, fusionShrineBlockEntity.getBlockPos().above(2), stack, resultAmountAfterMod, MultiblockCrafter.RECIPE_STACK_VELOCITY);
 		
 		if (experience > 0) {
-			MultiblockCrafter.spawnExperience(world, fusionShrineBlockEntity.getPos(), intExperience);
+			MultiblockCrafter.spawnExperience(world, fusionShrineBlockEntity.getBlockPos(), intExperience);
 		}
 		
 		//only triggered on server side. Therefore, has to be sent to client via S2C packet
@@ -326,7 +323,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 		public static final MapCodec<FusionShrineRecipe> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
 				Codec.STRING.optionalFieldOf("group", "").forGetter(recipe -> recipe.group),
 				Codec.BOOL.optionalFieldOf("secret", false).forGetter(recipe -> recipe.secret),
-				Identifier.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancementIdentifier),
+				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancementIdentifier),
 				IngredientStack.Serializer.CODEC.listOf(0, 7).fieldOf("ingredients").forGetter(recipe -> recipe.craftingInputs),
 				FluidIngredient.CODEC.optionalFieldOf("fluid", FluidIngredient.EMPTY).forGetter(recipe -> recipe.fluid),
 				ItemStack.CODEC.optionalFieldOf("result", ItemStack.EMPTY).forGetter(recipe -> recipe.output),
@@ -339,26 +336,26 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 				FusionShrineRecipeWorldEffect.CODEC.fieldOf("start_crafting_effect").forGetter(recipe -> recipe.startWorldEffect),
 				FusionShrineRecipeWorldEffect.CODEC.listOf().optionalFieldOf("during_crafting_effects", List.of()).forGetter(recipe -> recipe.duringWorldEffects),
 				FusionShrineRecipeWorldEffect.CODEC.fieldOf("finish_crafting_effect").forGetter(recipe -> recipe.finishWorldEffect),
-				TextCodecs.CODEC.optionalFieldOf("description", Text.empty()).forGetter(recipe -> recipe.description)
+				ComponentSerialization.CODEC.optionalFieldOf("description", Component.empty()).forGetter(recipe -> recipe.description)
 		).apply(i, FusionShrineRecipe::new));
 		
-		public static final PacketCodec<RegistryByteBuf, FusionShrineRecipe> PACKET_CODEC = PacketCodecHelper.tuple(
-				PacketCodecs.STRING, recipe -> recipe.group,
-				PacketCodecs.BOOL, recipe -> recipe.secret,
-				PacketCodecs.optional(Identifier.PACKET_CODEC), recipe -> recipe.requiredAdvancementIdentifier,
-				IngredientStack.Serializer.PACKET_CODEC.collect(PacketCodecs.toList(7)), recipe -> recipe.craftingInputs,
+		public static final StreamCodec<RegistryFriendlyByteBuf, FusionShrineRecipe> PACKET_CODEC = PacketCodecHelper.tuple(
+				ByteBufCodecs.STRING_UTF8, recipe -> recipe.group,
+				ByteBufCodecs.BOOL, recipe -> recipe.secret,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.requiredAdvancementIdentifier,
+				IngredientStack.Serializer.PACKET_CODEC.apply(ByteBufCodecs.list(7)), recipe -> recipe.craftingInputs,
 				FluidIngredient.PACKET_CODEC, recipe -> recipe.fluid,
-				ItemStack.OPTIONAL_PACKET_CODEC, recipe -> recipe.output,
-				PacketCodecs.FLOAT, recipe -> recipe.experience,
-				PacketCodecs.VAR_INT, recipe -> recipe.craftingTime,
-				PacketCodecs.BOOL, recipe -> recipe.yieldUpgradesDisabled,
-				PacketCodecs.BOOL, recipe -> recipe.playCraftingFinishedEffects,
-				PacketCodecs.BOOL, recipe -> recipe.copyComponents,
-				WorldConditionsPredicate.PACKET_CODEC.collect(PacketCodecs.toList()), recipe -> recipe.worldConditionsPredicates,
+				ItemStack.OPTIONAL_STREAM_CODEC, recipe -> recipe.output,
+				ByteBufCodecs.FLOAT, recipe -> recipe.experience,
+				ByteBufCodecs.VAR_INT, recipe -> recipe.craftingTime,
+				ByteBufCodecs.BOOL, recipe -> recipe.yieldUpgradesDisabled,
+				ByteBufCodecs.BOOL, recipe -> recipe.playCraftingFinishedEffects,
+				ByteBufCodecs.BOOL, recipe -> recipe.copyComponents,
+				WorldConditionsPredicate.PACKET_CODEC.apply(ByteBufCodecs.list()), recipe -> recipe.worldConditionsPredicates,
 				FusionShrineRecipeWorldEffect.PACKET_CODEC, recipe -> recipe.startWorldEffect,
-				FusionShrineRecipeWorldEffect.PACKET_CODEC.collect(PacketCodecs.toList()), recipe -> recipe.duringWorldEffects,
+				FusionShrineRecipeWorldEffect.PACKET_CODEC.apply(ByteBufCodecs.list()), recipe -> recipe.duringWorldEffects,
 				FusionShrineRecipeWorldEffect.PACKET_CODEC, recipe -> recipe.finishWorldEffect,
-				TextCodecs.PACKET_CODEC, recipe -> recipe.description,
+				ComponentSerialization.TRUSTED_CONTEXT_FREE_STREAM_CODEC, recipe -> recipe.description,
 				FusionShrineRecipe::new
 		);
 		
@@ -368,7 +365,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 		}
 		
 		@Override
-		public PacketCodec<RegistryByteBuf, FusionShrineRecipe> packetCodec() {
+		public StreamCodec<RegistryFriendlyByteBuf, FusionShrineRecipe> streamCodec() {
 			return PACKET_CODEC;
 		}
 		

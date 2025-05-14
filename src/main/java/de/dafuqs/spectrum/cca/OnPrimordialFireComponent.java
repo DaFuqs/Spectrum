@@ -9,18 +9,18 @@ import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.tag.convention.v2.*;
 import net.fabricmc.loader.api.*;
 import net.minecraft.client.*;
-import net.minecraft.enchantment.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.entity.player.*;
+import net.minecraft.core.*;
+import net.minecraft.core.particles.*;
 import net.minecraft.nbt.*;
-import net.minecraft.particle.*;
-import net.minecraft.registry.*;
-import net.minecraft.registry.tag.*;
-import net.minecraft.sound.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.*;
+import net.minecraft.sounds.*;
+import net.minecraft.tags.*;
+import net.minecraft.util.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.enchantment.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 import org.ladysnake.cca.api.v3.component.*;
 import org.ladysnake.cca.api.v3.component.sync.*;
@@ -62,15 +62,15 @@ public class OnPrimordialFireComponent implements AutoSyncedComponent, ServerTic
 	}
 
 	@Override
-	public void writeToNbt(@NotNull NbtCompound tag, @NotNull RegistryWrapper.WrapperLookup wrapperLookup) {
+	public void writeToNbt(@NotNull CompoundTag tag, @NotNull HolderLookup.Provider wrapperLookup) {
 		if (this.primordialFireTicks > 0) {
 			tag.putLong("ticks", this.primordialFireTicks);
 		}
 	}
 	
 	@Override
-	public void readFromNbt(NbtCompound tag, @NotNull RegistryWrapper.WrapperLookup wrapperLookup) {
-		if (tag.contains("ticks", NbtElement.LONG_TYPE)) {
+	public void readFromNbt(CompoundTag tag, @NotNull HolderLookup.Provider wrapperLookup) {
+		if (tag.contains("ticks", Tag.TAG_LONG)) {
 			this.primordialFireTicks = tag.getLong("ticks");
 		} else {
 			this.primordialFireTicks = 0;
@@ -85,9 +85,9 @@ public class OnPrimordialFireComponent implements AutoSyncedComponent, ServerTic
 
 	public static void addPrimordialFireTicks(LivingEntity livingEntity, int ticks) {
 		OnPrimordialFireComponent component = ON_PRIMORDIAL_FIRE_COMPONENT.get(livingEntity);
-		int i = SpectrumEnchantmentHelper.getEquipmentLevel(livingEntity.getWorld().getRegistryManager(), Enchantments.FIRE_PROTECTION, livingEntity);
+		int i = SpectrumEnchantmentHelper.getEquipmentLevel(livingEntity.level().registryAccess(), Enchantments.FIRE_PROTECTION, livingEntity);
 		if (i > 0) {
-			ticks -= MathHelper.floor(ticks * i * 0.15F);
+			ticks -= Mth.floor(ticks * i * 0.15F);
 		}
 		component.primordialFireTicks += ticks;
 
@@ -114,7 +114,7 @@ public class OnPrimordialFireComponent implements AutoSyncedComponent, ServerTic
 	public void serverTick() {
 
 		//Immune creatures get spared. If we ever add any.
-		if (provider.getType().isIn(SpectrumEntityTypeTags.PRIMORDIAL_FIRE_IMMUNE)) {
+		if (provider.getType().is(SpectrumEntityTypeTags.PRIMORDIAL_FIRE_IMMUNE)) {
 			primordialFireTicks = 0;
 			ON_PRIMORDIAL_FIRE_COMPONENT.sync(this.provider);
 			return;
@@ -123,12 +123,12 @@ public class OnPrimordialFireComponent implements AutoSyncedComponent, ServerTic
 		if (this.primordialFireTicks > 0) {
 			if (!isAffectingConstruct()) {
 				var damageScaling = getDamageHealthScaling(provider);
-				provider.damage(SpectrumDamageTypes.primordialFire(this.provider.getWorld()), AzureDikeProvider.absorbDamage(provider, damageScaling * provider.getMaxHealth()));
+				provider.hurt(SpectrumDamageTypes.primordialFire(this.provider.level()), AzureDikeProvider.absorbDamage(provider, damageScaling * provider.getMaxHealth()));
 			}
 			//Primordial fire is so strong because it rends the soul. No soul = just slightly spicier fire
 			//Constructs have no soul, thus you get 2 dps and no more
-			else if (provider.age % 10 == 0) {
-				provider.damage(SpectrumDamageTypes.primordialFire(this.provider.getWorld()), 1);
+			else if (provider.tickCount % 10 == 0) {
+				provider.hurt(SpectrumDamageTypes.primordialFire(this.provider.level()), 1);
 			}
 
 			this.primordialFireTicks -= this.provider.getFluidHeight(FluidTags.WATER) > 0 ? 3 : 1;
@@ -140,7 +140,7 @@ public class OnPrimordialFireComponent implements AutoSyncedComponent, ServerTic
 	}
 
 	public boolean isAffectingConstruct() {
-		return provider.getType().isIn(SpectrumEntityTypeTags.SOULLESS);
+		return provider.getType().is(SpectrumEntityTypeTags.SOULLESS);
 	}
 
 	/**
@@ -151,7 +151,7 @@ public class OnPrimordialFireComponent implements AutoSyncedComponent, ServerTic
 
 		//Bosses have great and exceptional souls that can resist a lot more.
 		//95% less damage to them before reductions and caps
-		if (entity.getType().isIn(ConventionalEntityTypeTags.BOSSES))
+		if (entity.getType().is(ConventionalEntityTypeTags.BOSSES))
 			baseDamage /= 20F;
 
         return baseDamage * getDamagePenalties(entity) * getDamageBonuses(entity);
@@ -159,8 +159,8 @@ public class OnPrimordialFireComponent implements AutoSyncedComponent, ServerTic
 
 	public float getDamagePenalties(LivingEntity entity) {
 		//fire prot has a cap of 50% DR, requiring fire protection 10 on an armor piece
-		float fireProt = Math.min(FIRE_PROT_DAMAGE_RESISTANCE * SpectrumEnchantmentHelper.getEquipmentLevel(entity.getWorld().getRegistryManager(), Enchantments.FIRE_PROTECTION, provider), 0.5F);
-		int fireResLevel = Optional.ofNullable(provider.getStatusEffect(StatusEffects.FIRE_RESISTANCE)).map(StatusEffectInstance::getAmplifier).orElse(-1) + 1;
+		float fireProt = Math.min(FIRE_PROT_DAMAGE_RESISTANCE * SpectrumEnchantmentHelper.getEquipmentLevel(entity.level().registryAccess(), Enchantments.FIRE_PROTECTION, provider), 0.5F);
+		int fireResLevel = Optional.ofNullable(provider.getEffect(MobEffects.FIRE_RESISTANCE)).map(MobEffectInstance::getAmplifier).orElse(-1) + 1;
 		float fireRes = 0;
 
 		// flat 25% for a start on fire res
@@ -173,7 +173,7 @@ public class OnPrimordialFireComponent implements AutoSyncedComponent, ServerTic
 		}
 
 		//Fire immune entities can have a lil res, as a treat
-		float immunityReduction = entity.isFireImmune() ? 0.25F : 0;
+		float immunityReduction = entity.fireImmune() ? 0.25F : 0;
 
 		//Primordial fire has an overall cap of 90% DR
 		return Math.max(1 - (fireRes + fireProt + immunityReduction), 0.10F);
@@ -192,27 +192,27 @@ public class OnPrimordialFireComponent implements AutoSyncedComponent, ServerTic
 	@Environment(EnvType.CLIENT)
 	public void clientTick() {
 		if (this.primordialFireTicks > 0) {
-			if (provider.equals(MinecraftClient.getInstance().player) && primordialFireTicks > 2 && soundInstance.isEmpty()) {
-				soundInstance = Optional.of(new OnPrimordialFireSoundInstance((PlayerEntity) provider));
-				MinecraftClient.getInstance().getSoundManager().play(soundInstance.get());
+			if (provider.equals(Minecraft.getInstance().player) && primordialFireTicks > 2 && soundInstance.isEmpty()) {
+				soundInstance = Optional.of(new OnPrimordialFireSoundInstance((Player) provider));
+				Minecraft.getInstance().getSoundManager().play(soundInstance.get());
 			}
 			
 			double fluidHeight = this.provider.getFluidHeight(FluidTags.WATER);
 			if (fluidHeight > 0) {
-
-				World world = this.provider.getWorld();
-				Random random = world.random;
-				Vec3d pos = this.provider.getPos();
+				
+				Level world = this.provider.level();
+				RandomSource random = world.random;
+				Vec3 pos = this.provider.position();
 
 				for (int i = 0; i < 2; i++) {
-					world.addParticle(ParticleTypes.BUBBLE_POP, this.provider.getParticleX(1), pos.getY() + Math.min(fluidHeight, provider.getHeight()) * random.nextFloat(), this.provider.getParticleZ(1), 0.0, 0.04, 0.0);
-					world.addParticle(ParticleTypes.SMOKE, this.provider.getParticleX(1), pos.getY() + Math.min(fluidHeight, provider.getHeight()) * random.nextFloat(), this.provider.getParticleZ(1), 0.0, 0.04, 0.0);
+					world.addParticle(ParticleTypes.BUBBLE_POP, this.provider.getRandomX(1), pos.y() + Math.min(fluidHeight, provider.getBbHeight()) * random.nextFloat(), this.provider.getRandomZ(1), 0.0, 0.04, 0.0);
+					world.addParticle(ParticleTypes.SMOKE, this.provider.getRandomX(1), pos.y() + Math.min(fluidHeight, provider.getBbHeight()) * random.nextFloat(), this.provider.getRandomZ(1), 0.0, 0.04, 0.0);
 				}
 				if (world.random.nextInt(12) == 0) {
-					provider.playSound(SoundEvents.BLOCK_FIRE_EXTINGUISH, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F);
+					provider.playSound(SoundEvents.FIRE_EXTINGUISH, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F);
 				}
 			}
-		} else if (provider.equals(MinecraftClient.getInstance().player) && soundInstance.isPresent()) {
+		} else if (provider.equals(Minecraft.getInstance().player) && soundInstance.isPresent()) {
 			soundInstance = Optional.empty();
 		}
 	}

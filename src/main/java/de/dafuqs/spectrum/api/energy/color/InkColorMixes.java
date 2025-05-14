@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.api.energy.color;
 
-import net.minecraft.util.math.random.Random;
+import net.minecraft.util.*;
 
 import java.util.*;
 
@@ -40,7 +40,7 @@ public class InkColorMixes {
 		return mix.containsKey(ingredientColor1) && mix.containsKey(ingredientColor2);
 	}
 	
-	public static InkColor getRandomMixedColor(InkColor color1, InkColor color2, Random random) {
+	public static InkColor getRandomMixedColor(InkColor color1, InkColor color2, RandomSource random) {
 		boolean color1Elemental = color1.isIn(InkColorTags.ELEMENTAL_COLORS);
 		boolean color2Elemental = color2.isIn(InkColorTags.ELEMENTAL_COLORS);
 		

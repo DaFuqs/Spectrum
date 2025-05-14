@@ -1,20 +1,20 @@
 package de.dafuqs.spectrum.blocks.fluid;
 
 import de.dafuqs.spectrum.particle.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.ai.pathing.*;
-import net.minecraft.fluid.*;
-import net.minecraft.particle.*;
-import net.minecraft.registry.tag.*;
+import net.minecraft.core.*;
+import net.minecraft.core.particles.*;
+import net.minecraft.tags.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
-import net.minecraft.world.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.material.*;
+import net.minecraft.world.level.pathfinder.*;
 import org.jetbrains.annotations.*;
 
 public class GooFluidBlock extends SpectrumFluidBlock {
 	
-	public GooFluidBlock(SpectrumFluid fluid, BlockState ultrawarmReplacementBlockState, Settings settings) {
+	public GooFluidBlock(SpectrumFluid fluid, BlockState ultrawarmReplacementBlockState, Properties settings) {
 		super(fluid, ultrawarmReplacementBlockState, settings);
 	}
 
@@ -30,29 +30,29 @@ public class GooFluidBlock extends SpectrumFluidBlock {
 	}
 	
 	@Override
-	public Pair<SimpleParticleType, SimpleParticleType> getFishingParticles() {
-		return new Pair<>(SpectrumParticleTypes.GOO_POP, SpectrumParticleTypes.GOO_FISHING);
+	public Tuple<SimpleParticleType, SimpleParticleType> getFishingParticles() {
+		return new Tuple<>(SpectrumParticleTypes.GOO_POP, SpectrumParticleTypes.GOO_FISHING);
 	}
 
 	@Override
-	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-		super.randomDisplayTick(state, world, pos, random);
-		if (!world.getBlockState(pos.up()).isSolidBlock(world, pos.up()) && random.nextFloat() < 0.03F) {
+	public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
+		super.animateTick(state, world, pos, random);
+		if (!world.getBlockState(pos.above()).isRedstoneConductor(world, pos.above()) && random.nextFloat() < 0.03F) {
 			world.addParticle(SpectrumParticleTypes.GOO_POP, pos.getX() + random.nextDouble(), pos.getY() + 1, pos.getZ() + random.nextDouble(), 0, random.nextDouble() * 0.1, 0);
 		}
 	}
 	
 	@Override
-	public boolean canPathfindThrough(BlockState state, NavigationType type) {
+	public boolean isPathfindable(BlockState state, PathComputationType type) {
 		return true;
 	}
-
-	public @Nullable BlockState handleFluidCollision(World world, @NotNull FluidState state, @NotNull FluidState otherState) {
-		if (otherState.isIn(FluidTags.WATER)) {
-			return Blocks.DIRT.getDefaultState();
+	
+	public @Nullable BlockState handleFluidCollision(Level world, @NotNull FluidState state, @NotNull FluidState otherState) {
+		if (otherState.is(FluidTags.WATER)) {
+			return Blocks.DIRT.defaultBlockState();
 		}
-		if (otherState.isIn(FluidTags.LAVA)) {
-			return Blocks.MUD.getDefaultState();
+		if (otherState.is(FluidTags.LAVA)) {
+			return Blocks.MUD.defaultBlockState();
 		}
 		return null;
 	}

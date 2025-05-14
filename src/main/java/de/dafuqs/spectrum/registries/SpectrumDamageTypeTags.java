@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
-import net.minecraft.entity.damage.*;
-import net.minecraft.registry.*;
-import net.minecraft.registry.tag.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.tags.*;
+import net.minecraft.world.damagesource.*;
 
 public class SpectrumDamageTypeTags {
 	
@@ -18,6 +18,6 @@ public class SpectrumDamageTypeTags {
 	public static final TagKey<DamageType> ALWAYS_DROPS_MOB_HEAD = of("always_drops_mob_head");
 	
 	private static TagKey<DamageType> of(String id) {
-		return TagKey.of(RegistryKeys.DAMAGE_TYPE, SpectrumCommon.locate(id));
+		return TagKey.create(Registries.DAMAGE_TYPE, SpectrumCommon.locate(id));
 	}
 }

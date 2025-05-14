@@ -9,8 +9,8 @@ import me.shedaniel.rei.api.common.display.basic.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.client.*;
-import net.minecraft.item.*;
-import net.minecraft.recipe.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -21,12 +21,12 @@ public class TitrationBarrelDisplay extends GatedSpectrumDisplay {
 	protected final int minFermentationTimeHours;
 	protected final FermentationData fermentationData;
 	
-	public TitrationBarrelDisplay(@NotNull RecipeEntry<ITitrationBarrelRecipe> recipe) {
+	public TitrationBarrelDisplay(@NotNull RecipeHolder<ITitrationBarrelRecipe> recipe) {
 		super(recipe, buildInputs(recipe.value()), List.of(buildOutputs(recipe.value())));
 		if (recipe.value().getTappingItem() == Items.AIR) {
 			this.tappingIngredient = EntryIngredient.empty();
 		} else {
-			this.tappingIngredient = EntryIngredients.of(recipe.value().getTappingItem().getDefaultStack());
+			this.tappingIngredient = EntryIngredients.of(recipe.value().getTappingItem().getDefaultInstance());
 		}
 		this.minFermentationTimeHours = recipe.value().getMinFermentationTimeHours();
 		this.fermentationData = recipe.value().getFermentationData();
@@ -36,7 +36,7 @@ public class TitrationBarrelDisplay extends GatedSpectrumDisplay {
 		if (recipe instanceof TitrationBarrelRecipe titrationBarrelRecipe && titrationBarrelRecipe.getFermentationData() != null) {
 			return EntryIngredients.ofItemStacks(titrationBarrelRecipe.getOutputVariations(TitrationBarrelRecipe.FERMENTATION_DURATION_DISPLAY_TIME_MULTIPLIERS));
 		} else {
-			return EntryIngredients.of(recipe.getResult(BasicDisplay.registryAccess()));
+			return EntryIngredients.of(recipe.getResultItem(BasicDisplay.registryAccess()));
 		}
 	}
 	
@@ -55,7 +55,7 @@ public class TitrationBarrelDisplay extends GatedSpectrumDisplay {
 	
 	@Override
     public boolean isUnlocked() {
-		MinecraftClient client = MinecraftClient.getInstance();
+		Minecraft client = Minecraft.getInstance();
 		return AdvancementHelper.hasAdvancement(client.player, TitrationBarrelRecipe.UNLOCK_ADVANCEMENT_IDENTIFIER) && super.isUnlocked();
 	}
 	

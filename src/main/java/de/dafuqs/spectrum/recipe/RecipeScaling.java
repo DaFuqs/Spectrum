@@ -1,31 +1,31 @@
 package de.dafuqs.spectrum.recipe;
 
-import java.util.*;
-
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.util.*;
+import net.minecraft.resources.*;
+
+import java.util.*;
 
 public abstract class RecipeScaling {
 	
 	public static final Codec<ScalingData> CODEC = RecordCodecBuilder.<ScalingData>create(i -> i.group(
-			SpectrumRegistries.RECIPE_SCALING.getCodec().fieldOf("type").forGetter(d -> d.type),
+			SpectrumRegistries.RECIPE_SCALING.byNameCodec().fieldOf("type").forGetter(d -> d.type),
 			Codec.INT.optionalFieldOf("start", 0).forGetter(d -> d.start),
 			Codec.intRange(0, Integer.MAX_VALUE).optionalFieldOf("scaling_value", 0).forGetter(d -> d.scalingValue),
 			Codec.doubleRange(0.0, Double.MAX_VALUE).optionalFieldOf("scaling_factor", 1.0).forGetter(d -> d.scalingFactor),
 			Codec.INT.listOf(0, 255).optionalFieldOf("indexes", Collections.emptyList()).forGetter(d -> d.indexes)
 	).apply(i, ScalingData::new));
 	
-	public static final PacketCodec<RegistryByteBuf, ScalingData> PACKET_CODEC = PacketCodec.tuple(
-			PacketCodecs.registryValue(SpectrumRegistryKeys.RECIPE_SCALING), d -> d.type,
-			PacketCodecs.VAR_INT, d -> d.start,
-			PacketCodecs.VAR_INT, d -> d.scalingValue,
-			PacketCodecs.DOUBLE, d -> d.scalingFactor,
-			PacketCodecs.VAR_INT.collect(PacketCodecs.toList()), d -> d.indexes,
+	public static final StreamCodec<RegistryFriendlyByteBuf, ScalingData> PACKET_CODEC = StreamCodec.composite(
+			ByteBufCodecs.registry(SpectrumRegistryKeys.RECIPE_SCALING), d -> d.type,
+			ByteBufCodecs.VAR_INT, d -> d.start,
+			ByteBufCodecs.VAR_INT, d -> d.scalingValue,
+			ByteBufCodecs.DOUBLE, d -> d.scalingFactor,
+			ByteBufCodecs.VAR_INT.apply(ByteBufCodecs.list()), d -> d.indexes,
 			ScalingData::new
 	);
 	
@@ -58,15 +58,15 @@ public abstract class RecipeScaling {
 		}
 	};
 	
-	private final Identifier id;
+	private final ResourceLocation id;
 	
-	public RecipeScaling(Identifier id) {
+	public RecipeScaling(ResourceLocation id) {
 		this.id = id;
 	}
 	
 	abstract int getInputCount(double scaling, ScalingData data);
 	
-	public Identifier getId() {
+	public ResourceLocation getId() {
 		return id;
 	}
 	

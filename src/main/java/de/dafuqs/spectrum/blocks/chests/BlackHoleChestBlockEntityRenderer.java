@@ -1,24 +1,28 @@
 package de.dafuqs.spectrum.blocks.chests;
 
+import com.mojang.blaze3d.vertex.*;
+import com.mojang.math.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
-import net.minecraft.block.*;
-import net.minecraft.client.model.*;
-import net.minecraft.client.render.*;
-import net.minecraft.client.render.block.entity.*;
-import net.minecraft.client.util.*;
-import net.minecraft.client.util.math.*;
-import net.minecraft.screen.*;
-import net.minecraft.util.math.*;
+import net.minecraft.client.model.geom.*;
+import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.blockentity.*;
+import net.minecraft.client.resources.model.*;
+import net.minecraft.core.*;
+import net.minecraft.util.*;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 import org.jetbrains.annotations.*;
 
 @Environment(EnvType.CLIENT)
 @SuppressWarnings({"unused", "FieldCanBeLocal"})
 public class BlackHoleChestBlockEntityRenderer implements BlockEntityRenderer<BlackHoleChestBlockEntity> {
 	
-	private static final SpriteIdentifier defaultSprite = new SpriteIdentifier(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("block/black_hole_chest"));
-	private static final SpriteIdentifier experienceSprite = new SpriteIdentifier(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("block/black_hole_chest_experience"));
+	private static final Material defaultSprite = new Material(InventoryMenu.BLOCK_ATLAS, SpectrumCommon.locate("block/black_hole_chest"));
+	private static final Material experienceSprite = new Material(InventoryMenu.BLOCK_ATLAS, SpectrumCommon.locate("block/black_hole_chest_experience"));
 
 	private final ModelPart root;
 	private final ModelPart shell;
@@ -26,44 +30,44 @@ public class BlackHoleChestBlockEntityRenderer implements BlockEntityRenderer<Bl
 	private final ModelPart storage;
 	private final ModelPart orb;
 	
-	public BlackHoleChestBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
-		TexturedModelData texturedModelData = getTexturedModelData();
-		this.root = texturedModelData.createModel();
+	public BlackHoleChestBlockEntityRenderer(BlockEntityRendererProvider.Context ctx) {
+		LayerDefinition texturedModelData = getTexturedModelData();
+		this.root = texturedModelData.bakeRoot();
 		this.shell = root.getChild("shell");
 		this.cap = root.getChild("cap");
 		this.storage = root.getChild("storage");
 		this.orb = root.getChild("orb");
 	}
 	
-	public static @NotNull TexturedModelData getTexturedModelData() {
-		ModelData modelData = new ModelData();
-		ModelPartData modelPartData = modelData.getRoot();
-		ModelPartData shell = modelPartData.addChild("shell", ModelPartBuilder.create().uv(0, 0).cuboid(-7.0F, -9.0F, -7.0F, 14.0F, 9.0F, 14.0F, new Dilation(0.0F))
-				.uv(0, 39).cuboid(-5.0F, -9.0F, -5.0F, 10.0F, 9.0F, 10.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 24.0F, 0.0F));
-
-		ModelPartData cap = modelPartData.addChild("cap", ModelPartBuilder.create().uv(40, 39).cuboid(-5.0F, -6.0F, -5.0F, 10.0F, 4.0F, 10.0F, new Dilation(0.0F))
-				.uv(82, 2).cuboid(-4.0F, -5.0F, -4.0F, 8.0F, 3.0F, 8.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 24.0F, 0.0F));
-
-		ModelPartData storage = modelPartData.addChild("storage", ModelPartBuilder.create().uv(42, 0).cuboid(-5.0F, -2.0F, -5.0F, 10.0F, 2.0F, 10.0F, new Dilation(0.0F))
-				.uv(56, 13).cuboid(-4.0F, -2.0F, -4.0F, 8.0F, 2.0F, 8.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 24.0F, 0.0F));
-
-		ModelPartData orb = modelPartData.addChild("orb", ModelPartBuilder.create().uv(0, 0).cuboid(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new Dilation(0.0F))
-				.uv(30, 39).cuboid(-2.5F, -2.5F, -2.5F, 5.0F, 5.0F, 5.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 15.4F, 0.0F));
-		return TexturedModelData.of(modelData, 128, 128);
+	public static @NotNull LayerDefinition getTexturedModelData() {
+		MeshDefinition modelData = new MeshDefinition();
+		PartDefinition modelPartData = modelData.getRoot();
+		PartDefinition shell = modelPartData.addOrReplaceChild("shell", CubeListBuilder.create().texOffs(0, 0).addBox(-7.0F, -9.0F, -7.0F, 14.0F, 9.0F, 14.0F, new CubeDeformation(0.0F))
+				.texOffs(0, 39).addBox(-5.0F, -9.0F, -5.0F, 10.0F, 9.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
+		
+		PartDefinition cap = modelPartData.addOrReplaceChild("cap", CubeListBuilder.create().texOffs(40, 39).addBox(-5.0F, -6.0F, -5.0F, 10.0F, 4.0F, 10.0F, new CubeDeformation(0.0F))
+				.texOffs(82, 2).addBox(-4.0F, -5.0F, -4.0F, 8.0F, 3.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
+		
+		PartDefinition storage = modelPartData.addOrReplaceChild("storage", CubeListBuilder.create().texOffs(42, 0).addBox(-5.0F, -2.0F, -5.0F, 10.0F, 2.0F, 10.0F, new CubeDeformation(0.0F))
+				.texOffs(56, 13).addBox(-4.0F, -2.0F, -4.0F, 8.0F, 2.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
+		
+		PartDefinition orb = modelPartData.addOrReplaceChild("orb", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F))
+				.texOffs(30, 39).addBox(-2.5F, -2.5F, -2.5F, 5.0F, 5.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 15.4F, 0.0F));
+		return LayerDefinition.create(modelData, 128, 128);
 	}
 
 	@Override
-	public void render(BlackHoleChestBlockEntity chest, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumers, int light, int overlay) {
-		matrixStack.push();
+	public void render(BlackHoleChestBlockEntity chest, float tickDelta, PoseStack poseStack, MultiBufferSource vertexConsumers, int light, int overlay) {
+		poseStack.pushPose();
 
 		var sprite = chest.hasXPStorage() ? experienceSprite : defaultSprite;
-
-		boolean bl = chest.getWorld() != null;
-		BlockState blockState = bl ? chest.getCachedState() : SpectrumBlocks.BLACK_HOLE_CHEST.getDefaultState().with(ChestBlock.FACING, Direction.SOUTH);
-		float f = blockState.contains(ChestBlock.FACING) ? blockState.get(ChestBlock.FACING).asRotation() : 0;
-		matrixStack.translate(0.5D, 1.5D, 0.5D);
-		matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-f));
-		matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(180));
+		
+		boolean bl = chest.getLevel() != null;
+		BlockState blockState = bl ? chest.getBlockState() : SpectrumBlocks.BLACK_HOLE_CHEST.defaultBlockState().setValue(ChestBlock.FACING, Direction.SOUTH);
+		float f = blockState.hasProperty(ChestBlock.FACING) ? blockState.getValue(ChestBlock.FACING).toYRot() : 0;
+		poseStack.translate(0.5D, 1.5D, 0.5D);
+		poseStack.mulPose(Axis.YP.rotationDegrees(-f));
+		poseStack.mulPose(Axis.XP.rotationDegrees(180));
 		var time = chest.getRenderTime();
 
 		final double orbTransform = Math.sin((time + tickDelta) / 9F);
@@ -98,43 +102,43 @@ public class BlackHoleChestBlockEntityRenderer implements BlockEntityRenderer<Bl
 				chest.orbTarget = chest.capTarget;
 			}
 		}
-
-		var interp = MathHelper.clamp((chest.interpTicks + tickDelta) / chest.interpLength, 0F, 1F);
-		chest.capPos = MathHelper.lerp(interp, chest.lastCapTarget, chest.capTarget);
-		chest.storagePos = MathHelper.lerp(interp, chest.lastStorageTarget, chest.storageTarget);
-		chest.orbPos = MathHelper.lerp(interp, chest.lastOrbTarget, chest.orbTarget);
-		chest.orbYaw = MathHelper.lerp(interp, chest.lastYawTarget, chest.yawTarget);
-
-		cap.pivotY = 24 - chest.capPos;
-		storage.pivotY = 24 - chest.storagePos;
-		orb.pivotY = 15.4F - chest.orbPos;
-		orb.yaw = chest.yawTarget;
-
-		storage.hidden = storage.pivotY > 23.99F;
-		VertexConsumer vertexConsumer = sprite.getVertexConsumer(vertexConsumers, RenderLayer::getEntityTranslucent);
-		cap.render(matrixStack, vertexConsumer, light, overlay);
-		shell.render(matrixStack, vertexConsumer, light, overlay);
-		storage.render(matrixStack, vertexConsumer, light, overlay);
+		
+		var interp = Mth.clamp((chest.interpTicks + tickDelta) / chest.interpLength, 0F, 1F);
+		chest.capPos = Mth.lerp(interp, chest.lastCapTarget, chest.capTarget);
+		chest.storagePos = Mth.lerp(interp, chest.lastStorageTarget, chest.storageTarget);
+		chest.orbPos = Mth.lerp(interp, chest.lastOrbTarget, chest.orbTarget);
+		chest.orbYaw = Mth.lerp(interp, chest.lastYawTarget, chest.yawTarget);
+		
+		cap.y = 24 - chest.capPos;
+		storage.y = 24 - chest.storagePos;
+		orb.y = 15.4F - chest.orbPos;
+		orb.yRot = chest.yawTarget;
+		
+		storage.skipDraw = storage.y > 23.99F;
+		VertexConsumer vertexConsumer = sprite.buffer(vertexConsumers, RenderType::entityTranslucent);
+		cap.render(poseStack, vertexConsumer, light, overlay);
+		shell.render(poseStack, vertexConsumer, light, overlay);
+		storage.render(poseStack, vertexConsumer, light, overlay);
 
 		int orbLight;
 
 		if (chest.hasXPStorage()) {
 			var xpDelta = (float) chest.storedXP / chest.maxStoredXP;
-			var altLight = Math.round(MathHelper.clampedLerp(0, 15, xpDelta));
-			orbLight = LightmapTextureManager.pack(altLight, altLight);
+			var altLight = Math.round(Mth.clampedLerp(0, 15, xpDelta));
+			orbLight = LightTexture.pack(altLight, altLight);
 		} else {
             orbLight = light;
         }
-
-        orb.forEachCuboid(matrixStack, (matrix, path, index, cuboid) -> cuboid.renderCuboid(
-				matrixStack.peek(),
+		
+		orb.visit(poseStack, (matrix, path, index, cuboid) -> cuboid.compile(
+				poseStack.last(),
 				vertexConsumer,
 				index == 0 ? orbLight : light,
 				overlay,
 				-1
 		));
-
-		matrixStack.pop();
+		
+		poseStack.popPose();
 	}
 	
 }

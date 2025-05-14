@@ -9,11 +9,10 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.registries.*;
 import it.unimi.dsi.fastutil.objects.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.server.world.*;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.entity.*;
 import org.jetbrains.annotations.*;
 import org.jgrapht.alg.connectivity.*;
 import org.jgrapht.graph.*;
@@ -22,11 +21,11 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.stream.*;
 
-public class ServerPastelNetwork extends PastelNetwork<ServerWorld> {
+public class ServerPastelNetwork extends PastelNetwork<ServerLevel> {
 	
 	public static final Codec<ServerPastelNetwork> CODEC = RecordCodecBuilder.create(i -> i.group(
-			World.CODEC.xmap(k -> SpectrumCommon.minecraftServer.getWorld(k), World::getRegistryKey).fieldOf("world").forGetter(b -> b.world),
-			Uuids.CODEC.fieldOf("uuid").forGetter(ServerPastelNetwork::getUUID),
+			Level.RESOURCE_KEY_CODEC.xmap(k -> SpectrumCommon.minecraftServer.getLevel(k), Level::dimension).fieldOf("world").forGetter(b -> b.world),
+			UUIDUtil.AUTHLIB_CODEC.fieldOf("uuid").forGetter(ServerPastelNetwork::getUUID),
 			Codec.INT.fieldOf("color").forGetter(ServerPastelNetwork::getColor),
 			TickLooper.CODEC.fieldOf("looper").forGetter(b -> b.transferLooper)
 	).apply(i, ServerPastelNetwork::new));
@@ -40,16 +39,16 @@ public class ServerPastelNetwork extends PastelNetwork<ServerWorld> {
 	protected final SchedulerMap<PastelTransmission> transmissions;
 	protected final PastelTransmissionLogic transmissionLogic;
 	
-	public ServerPastelNetwork(ServerWorld world, UUID uuid, int color) {
+	public ServerPastelNetwork(ServerLevel world, UUID uuid, int color) {
 		this(world, uuid, color, new TickLooper(10));
 	}
 	
-	public ServerPastelNetwork(ServerWorld world, PastelNodeBlockEntity initialNode) {
+	public ServerPastelNetwork(ServerLevel world, PastelNodeBlockEntity initialNode) {
 		this(world, initialNode.getNodeId(), initialNode.getPastelNetworkColor(), new TickLooper(10));
 		addNode(initialNode);
 	}
 	
-	public ServerPastelNetwork(ServerWorld world, UUID uuid, int color, TickLooper transferLoop) {
+	public ServerPastelNetwork(ServerLevel world, UUID uuid, int color, TickLooper transferLoop) {
 		super(world, uuid, color);
 		this.transferLooper = transferLoop;
 		this.transmissions = new SchedulerMap<>();
@@ -117,7 +116,7 @@ public class ServerPastelNetwork extends PastelNetwork<ServerWorld> {
 		if (!this.graph.vertexSet().contains(blockPos)) {
 			return null; // the network might have been disconnected while the transfer was underway
 		}
-		if (!this.getWorld().isChunkLoaded(blockPos)) {
+		if (!this.getWorld().hasChunkAt(blockPos)) {
 			return null; // hmmmm
 		}
 		
@@ -155,14 +154,14 @@ public class ServerPastelNetwork extends PastelNetwork<ServerWorld> {
 	
 	protected void addNode(PastelNodeBlockEntity node) {
 		//If this node already has a vertex, then all we are doing it is loading it
-		if (graph.containsVertex(node.getPos())) {
+		if (graph.containsVertex(node.getBlockPos())) {
 			loadedNodes.get(node.getNodeType()).add(node);
 			
 		} else {
 			if (addLoadedNode(node))
 				return;
 			
-			this.graph.addVertex(node.getPos());
+			this.graph.addVertex(node.getBlockPos());
 		}
 		addPriorityNode(node);
 		node.setNetworkUUID(this.getUUID());
@@ -175,14 +174,14 @@ public class ServerPastelNetwork extends PastelNetwork<ServerWorld> {
 		if (addLoadedNode(newNode))
 			return;
 		
-		this.graph.addVertex(newNode.getPos());
-		getGraph().addEdge(newNode.getPos(), existing.getPos());
+		this.graph.addVertex(newNode.getBlockPos());
+		getGraph().addEdge(newNode.getBlockPos(), existing.getBlockPos());
 		
 		// check for priority
 		addPriorityNode(newNode);
 		
 		newNode.setNetworkUUID(this.getUUID());
-		PastelNetworkEdgeSyncPayload.send(this, newNode.getPos());
+		PastelNetworkEdgeSyncPayload.send(this, newNode.getBlockPos());
 	}
 	
 	// check if a recently removed node split the network into subnetworks
@@ -319,20 +318,20 @@ public class ServerPastelNetwork extends PastelNetwork<ServerWorld> {
 	}
 	
 	protected void removeNode(PastelNodeBlockEntity node, NodeRemovalReason reason) {
-		if (!graph.containsVertex(node.getPos())) {
+		if (!graph.containsVertex(node.getBlockPos())) {
 			return;
 		}
 		
 		// delete the now removed node from this network graph - IF IT WASN'T UNLOADED
 		if (reason != NodeRemovalReason.UNLOADED)
-			graph.removeVertex(node.getPos());
+			graph.removeVertex(node.getBlockPos());
 		
 		this.loadedNodes.get(node.getNodeType()).remove(node);
 		removePriorityNode(node, node.getPriority());
 		
 		if (reason.checksForNetworkSplit) {
-			checkForNetworkSplit(node.getPos());
-			PastelNetworkEdgeSyncPayload.send(this, node.getPos());
+			checkForNetworkSplit(node.getBlockPos());
+			PastelNetworkEdgeSyncPayload.send(this, node.getBlockPos());
 		}
 		if (reason != NodeRemovalReason.REMOVED)
 			node.setNetworkUUID(null);
@@ -357,7 +356,7 @@ public class ServerPastelNetwork extends PastelNetwork<ServerWorld> {
 			throw new IllegalStateException("Attempted to connect a node to itself");
 		}
 		
-		if (network.get().hasEdge(existingNode.getPos(), newNode.getPos())) {
+		if (network.get().hasEdge(existingNode.getBlockPos(), newNode.getBlockPos())) {
 			throw new IllegalStateException("Attempted to add an edge that already exists");
 		}
 		

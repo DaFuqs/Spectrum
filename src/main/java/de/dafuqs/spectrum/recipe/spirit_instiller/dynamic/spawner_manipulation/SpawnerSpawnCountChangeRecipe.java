@@ -3,11 +3,11 @@ package de.dafuqs.spectrum.recipe.spirit_instiller.dynamic.spawner_manipulation;
 
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.component.type.*;
-import net.minecraft.item.*;
 import net.minecraft.nbt.*;
-import net.minecraft.recipe.*;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.*;
+import net.minecraft.world.item.crafting.*;
 
 public class SpawnerSpawnCountChangeRecipe extends SpawnerChangeRecipe {
 	protected static final int DEFAULT_SPAWN_COUNT = 4;
@@ -17,12 +17,12 @@ public class SpawnerSpawnCountChangeRecipe extends SpawnerChangeRecipe {
 	}
 	
 	@Override
-	public boolean canCraftWithBlockEntityTag(NbtComponent spawnerBlockEntityNbt, ItemStack leftBowlStack, ItemStack rightBowlStack) {
+	public boolean canCraftWithBlockEntityTag(CustomData spawnerBlockEntityNbt, ItemStack leftBowlStack, ItemStack rightBowlStack) {
 		if (spawnerBlockEntityNbt == null) {
 			return true;
 		}
 		if (spawnerBlockEntityNbt.contains("SpawnCount")) {
-			return spawnerBlockEntityNbt.copyNbt().getShort("SpawnCount") < MAX_SPAWN_COUNT;
+			return spawnerBlockEntityNbt.copyTag().getShort("SpawnCount") < MAX_SPAWN_COUNT;
 		}
 		return true;
 	}
@@ -33,12 +33,12 @@ public class SpawnerSpawnCountChangeRecipe extends SpawnerChangeRecipe {
 	}
 	
 	@Override
-	public Text getOutputLoreText() {
-		return Text.translatable("recipe.spectrum.spawner.lore.increased_spawn_count");
+	public Component getOutputLoreText() {
+		return Component.translatable("recipe.spectrum.spawner.lore.increased_spawn_count");
 	}
 	
 	@Override
-	public NbtCompound getSpawnerResultNbt(NbtCompound spawnerBlockEntityNbt, ItemStack firstBowlStack, ItemStack secondBowlStack) {
+	public CompoundTag getSpawnerResultNbt(CompoundTag spawnerBlockEntityNbt, ItemStack firstBowlStack, ItemStack secondBowlStack) {
 		// Default spawner tag:
 		/* BlockEntityTag: {
 			MaxNearbyEntities: 6s,
@@ -53,7 +53,7 @@ public class SpawnerSpawnCountChangeRecipe extends SpawnerChangeRecipe {
 		 */
 		
 		short spawnCount = DEFAULT_SPAWN_COUNT;
-		if (spawnerBlockEntityNbt.contains("SpawnCount", NbtElement.SHORT_TYPE)) {
+		if (spawnerBlockEntityNbt.contains("SpawnCount", Tag.TAG_SHORT)) {
 			spawnCount = spawnerBlockEntityNbt.getShort("SpawnCount");
 		}
 		spawnerBlockEntityNbt.putShort("SpawnCount", (short) Math.min(MAX_SPAWN_COUNT, spawnCount + 1));

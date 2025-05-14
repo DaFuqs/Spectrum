@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.items.tools;
 
+import com.mojang.blaze3d.vertex.*;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.interaction.*;
@@ -7,24 +8,21 @@ import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
-import net.minecraft.client.render.*;
-import net.minecraft.client.render.item.*;
-import net.minecraft.client.render.model.*;
-import net.minecraft.client.render.model.json.*;
-import net.minecraft.client.util.math.*;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.server.network.*;
-import net.minecraft.sound.*;
-import net.minecraft.text.*;
+import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.entity.*;
+import net.minecraft.client.resources.model.*;
+import net.minecraft.core.*;
+import net.minecraft.core.component.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.*;
+import net.minecraft.world.level.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -34,44 +32,44 @@ public class OmniAcceleratorItem extends BundleItem implements InkPowered, Exten
 	protected static final InkCost COST = new InkCost(InkColors.YELLOW, 20);
 	protected static final int CHARGE_TIME = 10;
 	
-	public OmniAcceleratorItem(Settings settings) {
+	public OmniAcceleratorItem(Properties settings) {
 		super(settings);
 	}
 	
 	@Override
-	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-		return ItemUsage.consumeHeldItem(world, user, hand);
+	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
+		return ItemUtils.startUsingInstantly(world, user, hand);
 	}
 	
 	@Override
-	public UseAction getUseAction(ItemStack stack) {
-		return UseAction.BOW;
+	public UseAnim getUseAnimation(ItemStack stack) {
+		return UseAnim.BOW;
 	}
 	
 	@Override
-	public int getMaxUseTime(ItemStack stack, LivingEntity user) {
+	public int getUseDuration(ItemStack stack, LivingEntity user) {
 		return CHARGE_TIME;
 	}
 	
 	@Override
-	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-		if (!(user instanceof ServerPlayerEntity player)) return stack;
+	public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity user) {
+		if (!(user instanceof ServerPlayer player)) return stack;
 		
-		Optional<ItemStack> shootStackOptional = getFirstStack(world.getRegistryManager(), stack);
+		Optional<ItemStack> shootStackOptional = getFirstStack(world.registryAccess(), stack);
 		if (shootStackOptional.isEmpty()) {
-			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.BLOCK_DISPENSER_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.DISPENSER_FAIL, SoundSource.PLAYERS, 1.0F, 1.0F);
 			return stack;
 		}
 		
 		if (!InkPowered.tryDrainEnergy(player, COST)) {
-			world.playSound(null, user.getX(), user.getY(), user.getZ(), SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			world.playSound(null, user.getX(), user.getY(), user.getZ(), SpectrumSoundEvents.USE_FAIL, SoundSource.PLAYERS, 1.0F, 1.0F);
 			return stack;
 		}
 		
 		ItemStack shootStack = shootStackOptional.get();
 		OmniAcceleratorProjectile projectile = OmniAcceleratorProjectile.get(shootStack);
 		if (projectile.createProjectile(shootStack, user, world, stack) != null) {
-			world.playSound(null, user.getX(), user.getY(), user.getZ(), projectile.getSoundEffect(), SoundCategory.PLAYERS, 0.5F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
+			world.playSound(null, user.getX(), user.getY(), user.getZ(), projectile.getSoundEffect(), SoundSource.PLAYERS, 0.5F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
 			if (!player.isCreative()) {
 				decrementFirstItem(stack);
 			}
@@ -81,26 +79,26 @@ public class OmniAcceleratorItem extends BundleItem implements InkPowered, Exten
 	}
 	
 	public static void decrementFirstItem(ItemStack acceleratorStack) {
-		var comp = acceleratorStack.get(DataComponentTypes.BUNDLE_CONTENTS);
+		var comp = acceleratorStack.get(DataComponents.BUNDLE_CONTENTS);
 		if (comp == null) return;
 		
-		var builder = new BundleContentsComponent.Builder(BundleContentsComponent.DEFAULT);
+		var builder = new BundleContents.Mutable(BundleContents.EMPTY);
 		var first = true;
-		for (var stack : comp.iterateCopy()) {
+		for (var stack : comp.itemsCopy()) {
 			if (first) {
-				stack.decrement(1);
+				stack.shrink(1);
 				first = false;
 			}
 			if (!stack.isEmpty())
-				builder.add(stack);
+				builder.tryInsert(stack);
 		}
 		
-		acceleratorStack.set(DataComponentTypes.BUNDLE_CONTENTS, builder.build());
+		acceleratorStack.set(DataComponents.BUNDLE_CONTENTS, builder.toImmutable());
 	}
 	
-	public static Optional<ItemStack> getFirstStack(RegistryWrapper.WrapperLookup wrapperLookup, ItemStack stack) {
-		var contents = stack.getOrDefault(DataComponentTypes.BUNDLE_CONTENTS, BundleContentsComponent.DEFAULT);
-		return contents.isEmpty() ? Optional.empty() : Optional.of(contents.get(0).copy());
+	public static Optional<ItemStack> getFirstStack(HolderLookup.Provider wrapperLookup, ItemStack stack) {
+		var contents = stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
+		return contents.isEmpty() ? Optional.empty() : Optional.of(contents.getItemUnsafe(0).copy());
 	}
 	
 	@Override
@@ -109,8 +107,8 @@ public class OmniAcceleratorItem extends BundleItem implements InkPowered, Exten
 	}
 
 	@Override
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
 		addInkPoweredTooltip(tooltip);
 	}
 	
@@ -120,35 +118,35 @@ public class OmniAcceleratorItem extends BundleItem implements InkPowered, Exten
 		}
 		
 		@Override
-		public void render(ItemRenderer renderer, ItemStack stack, ModelTransformationMode mode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, BakedModel model) {
-			renderer.renderItem(stack, mode, leftHanded, matrices, vertexConsumers, light, overlay, model);
-			MinecraftClient client = MinecraftClient.getInstance();
-			if (mode != ModelTransformationMode.GUI || client.world == null) return;
-
-			Optional<ItemStack> optionalStack = getFirstStack(client.world.getRegistryManager(), stack);
+		public void render(ItemRenderer renderer, ItemStack stack, ItemDisplayContext mode, boolean leftHanded, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay, BakedModel model) {
+			renderer.render(stack, mode, leftHanded, matrices, vertexConsumers, light, overlay, model);
+			Minecraft client = Minecraft.getInstance();
+			if (mode != ItemDisplayContext.GUI || client.level == null) return;
+			
+			Optional<ItemStack> optionalStack = getFirstStack(client.level.registryAccess(), stack);
 			if (optionalStack.isEmpty()) {
 				return;
 			}
 			ItemStack bundledStack = optionalStack.get();
-
-			BakedModel bundledModel = renderer.getModel(bundledStack, client.world, client.player, 0);
 			
-			matrices.push();
+			BakedModel bundledModel = renderer.getModel(bundledStack, client.level, client.player, 0);
+			
+			matrices.pushPose();
 			matrices.scale(0.5F, 0.5F, 0.5F);
 			matrices.translate(0.5F, 0.5F, 0.5F);
-			renderer.renderItem(bundledStack, mode, leftHanded, matrices, vertexConsumers, light, overlay, bundledModel);
-			matrices.pop();
+			renderer.render(bundledStack, mode, leftHanded, matrices, vertexConsumers, light, overlay, bundledModel);
+			matrices.popPose();
 		}
 	}
 	
 	@Override
-	public SlotEffect backgroundType(@Nullable PlayerEntity player, ItemStack stack) {
+	public SlotEffect backgroundType(@Nullable Player player, ItemStack stack) {
 		var usable = InkPowered.hasAvailableInk(player, COST);
 		return usable ? SlotEffect.BORDER_FADE : SlotEffect.NONE;
 	}
 	
 	@Override
-	public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
+	public int getBackgroundColor(@Nullable Player player, ItemStack stack, float tickDelta) {
 		return 0xFFFFFF;
 	}
 	
@@ -158,23 +156,23 @@ public class OmniAcceleratorItem extends BundleItem implements InkPowered, Exten
 	}
 	
 	@Override
-	public boolean allowVanillaDurabilityBarRendering(@Nullable PlayerEntity player, ItemStack stack) {
-		if (player == null || player.getStackInHand(player.getActiveHand()) != stack)
+	public boolean allowVanillaDurabilityBarRendering(@Nullable Player player, ItemStack stack) {
+		if (player == null || player.getItemInHand(player.getUsedItemHand()) != stack)
 			return true;
 		
 		return !player.isUsingItem();
 	}
 	
 	@Override
-	public ExtendedItemBarProvider.BarSignature getSignature(@Nullable PlayerEntity player, @NotNull ItemStack stack, int index) {
+	public ExtendedItemBarProvider.BarSignature getSignature(@Nullable Player player, @NotNull ItemStack stack, int index) {
 		if (player == null || !player.isUsingItem())
 			return ExtendedItemBarProvider.PASS;
 		
-		var activeStack = player.getStackInHand(player.getActiveHand());
+		var activeStack = player.getItemInHand(player.getUsedItemHand());
 		if (activeStack != stack)
 			return ExtendedItemBarProvider.PASS;
 		
-		var progress = Math.round(MathHelper.clampedLerp(0, 13, ((float) player.getItemUseTime() / CHARGE_TIME)));
+		var progress = Math.round(Mth.clampedLerp(0, 13, ((float) player.getTicksUsingItem() / CHARGE_TIME)));
 		return new ExtendedItemBarProvider.BarSignature(2, 13, 13, progress, 1, 0xFFFFFFFF, 2, ExtendedItemBarProvider.DEFAULT_BACKGROUND_COLOR);
 	}
 }

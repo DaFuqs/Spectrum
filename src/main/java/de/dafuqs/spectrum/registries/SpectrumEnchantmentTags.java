@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
-import net.minecraft.enchantment.*;
-import net.minecraft.registry.*;
-import net.minecraft.registry.tag.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.tags.*;
+import net.minecraft.world.item.enchantment.*;
 
 @SuppressWarnings("unused")
 public class SpectrumEnchantmentTags {
@@ -23,7 +23,7 @@ public class SpectrumEnchantmentTags {
 	public static final TagKey<Enchantment> SMELTS_MORE_LOOT = of("effect/smelts_more_loot");
 	
 	private static TagKey<Enchantment> of(String id) {
-		return TagKey.of(RegistryKeys.ENCHANTMENT, SpectrumCommon.locate(id));
+		return TagKey.create(Registries.ENCHANTMENT, SpectrumCommon.locate(id));
 	}
 	
 }

@@ -1,25 +1,24 @@
 package de.dafuqs.spectrum.registries;
 
+import com.google.common.base.*;
 import de.dafuqs.spectrum.*;
-import net.minecraft.item.*;
-import net.minecraft.recipe.*;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.sound.*;
+import net.minecraft.*;
+import net.minecraft.core.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.sounds.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
 
 import java.util.*;
+import java.util.function.*;
 import java.util.function.Supplier;
 
-import com.google.common.base.Suppliers;
-import net.minecraft.util.Util;
-
-import static de.dafuqs.spectrum.SpectrumCommon.locate;
+import static de.dafuqs.spectrum.SpectrumCommon.*;
 
 public class SpectrumArmorMaterials {
-
-	public static RegistryEntry<ArmorMaterial> GEMSTONE;
-	public static RegistryEntry<ArmorMaterial> BEDROCK;
+	
+	public static Holder<ArmorMaterial> GEMSTONE;
+	public static Holder<ArmorMaterial> BEDROCK;
 
 	public static void register() {
 		GEMSTONE = register("gemstone",
@@ -30,10 +29,10 @@ public class SpectrumArmorMaterials {
 					map.put(ArmorItem.Type.HELMET, SpectrumCommon.CONFIG.GemstoneArmorHelmetProtection);
 				}),
 				15,
-				Registries.SOUND_EVENT.getEntry(SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME),
+				BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.AMETHYST_BLOCK_CHIME),
 				SpectrumCommon.CONFIG.GemstoneArmorToughness,
 				SpectrumCommon.CONFIG.GemstoneArmorKnockbackResistance,
-				() -> Ingredient.fromTag(SpectrumItemTags.GEMSTONE_SHARDS));
+				() -> Ingredient.of(SpectrumItemTags.GEMSTONE_SHARDS));
 
 		BEDROCK = register("bedrock",
 				Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
@@ -43,17 +42,17 @@ public class SpectrumArmorMaterials {
 					map.put(ArmorItem.Type.HELMET, SpectrumCommon.CONFIG.BedrockArmorHelmetProtection);
 				}),
 				5,
-				SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE,
+				SoundEvents.ARMOR_EQUIP_NETHERITE,
 				SpectrumCommon.CONFIG.BedrockArmorToughness,
 				SpectrumCommon.CONFIG.BedrockArmorKnockbackResistance,
-				() -> Ingredient.ofItems(SpectrumItems.BEDROCK_DUST));
+				() -> Ingredient.of(SpectrumItems.BEDROCK_DUST));
 	}
-
-	public static RegistryEntry<ArmorMaterial> register(
+	
+	public static Holder<ArmorMaterial> register(
 			String id,
 			EnumMap<ArmorItem.Type, Integer> defense,
 			int enchantability,
-			RegistryEntry<SoundEvent> equipSound,
+			Holder<SoundEvent> equipSound,
 			float toughness,
 			float knockbackResistance,
 			Supplier<Ingredient> repairIngredient
@@ -65,9 +64,9 @@ public class SpectrumArmorMaterials {
 		for (ArmorItem.Type type : ArmorItem.Type.values()) {
 			enumMap.put(type, defense.get(type));
 		}
-
-		return Registry.registerReference(
-				Registries.ARMOR_MATERIAL,
+		
+		return Registry.registerForHolder(
+				BuiltInRegistries.ARMOR_MATERIAL,
 				locate(id),
 				new ArmorMaterial(enumMap, enchantability, equipSound, Suppliers.memoize(repairIngredient::get), layers, toughness, knockbackResistance));
 	}

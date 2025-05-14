@@ -1,40 +1,42 @@
 package de.dafuqs.spectrum.render.armor;
 
+import com.mojang.blaze3d.vertex.*;
+import com.mojang.math.*;
 import de.dafuqs.spectrum.items.armor.*;
-import de.dafuqs.spectrum.render.RenderingContext;
-import net.fabricmc.fabric.api.client.rendering.v1.LivingEntityFeatureRenderEvents;
-import net.minecraft.client.network.*;
-import net.minecraft.client.render.*;
-import net.minecraft.client.util.math.*;
-import net.minecraft.item.*;
-import net.minecraft.util.math.*;
+import de.dafuqs.spectrum.render.*;
+import net.fabricmc.fabric.api.client.rendering.v1.*;
+import net.minecraft.client.player.*;
+import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.texture.*;
+import net.minecraft.util.*;
+import net.minecraft.world.item.*;
 
 public class BedrockCapeRenderer {
 	
 	/**
 	 * Renders the bedrock cloth and cape on the player
 	 */
-	public static void renderBedrockCapeAndCloth(MatrixStack ms, VertexConsumerProvider vertices, int light, AbstractClientPlayerEntity player, float h, ItemStack stack) {
+	public static void renderBedrockCapeAndCloth(PoseStack ms, MultiBufferSource vertices, int light, AbstractClientPlayer player, float h, ItemStack stack) {
 
 		// Transform and render front cloth
 		var capeRotations = BedrockArmorModel.computeFrontClothRotation(player, h);
-		float capeZOffset = capeRotations.getRight();
+		float capeZOffset = capeRotations.getB();
 
 		VertexConsumer vertexConsumer = vertices.getBuffer(((BedrockArmorItem) stack.getItem()).getRenderLayer(stack));
-		ms.push();
+		ms.pushPose();
 		ms.translate(0, 0.5, 0);
-		ms.multiply(RotationAxis.POSITIVE_X.rotationDegrees(MathHelper.clamp(capeRotations.getLeft(), -25, 0)));
-		if (!player.isInSneakingPose()) {
-			ms.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(capeZOffset / 2.0F));
+		ms.mulPose(Axis.XP.rotationDegrees(Mth.clamp(capeRotations.getA(), -25, 0)));
+		if (!player.isCrouching()) {
+			ms.mulPose(Axis.ZP.rotationDegrees(capeZOffset / 2.0F));
 		}
 
 		// Make some space for your legs if crouching
 		ms.translate(0, -0.5, -0.025);
-		if (player.isInSneakingPose()) {
+		if (player.isCrouching()) {
 			ms.translate(0, 0.05, 0.35);
 		}
-		BedrockArmorCapeModel.FRONT_CLOTH.render(ms, vertexConsumer, light, OverlayTexture.DEFAULT_UV);
-		ms.pop();
+		BedrockArmorCapeModel.FRONT_CLOTH.render(ms, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
+		ms.popPose();
 
 		// TODO - Respect player capes once armor tailoring is implemented
 		// Respect Elytras and Fabrics Render Event
@@ -43,21 +45,21 @@ public class BedrockCapeRenderer {
 		}
 
 		// The front and back cape are almost matching, but inverted
-		float backCapeRotation = MathHelper.clamp(-capeRotations.getLeft(), -30, 45);
+		float backCapeRotation = Mth.clamp(-capeRotations.getA(), -30, 45);
 
 		// Transform and render the custom cape
-		ms.push();
+		ms.pushPose();
 		ms.translate(0, -0.05, 0.0); // Push up and backwards, then rotate
-		ms.multiply(RotationAxis.POSITIVE_X.rotationDegrees(backCapeRotation));
-		ms.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(capeZOffset / 2.0F));
-		ms.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180.0F - capeZOffset / 3.5F));
+		ms.mulPose(Axis.XP.rotationDegrees(backCapeRotation));
+		ms.mulPose(Axis.ZP.rotationDegrees(capeZOffset / 2.0F));
+		ms.mulPose(Axis.YP.rotationDegrees(180.0F - capeZOffset / 3.5F));
 		ms.translate(0, 0.05, -0.325); // Move back down
-		if (player.isInSneakingPose()) {
+		if (player.isCrouching()) {
 			ms.translate(0, 0.15, 0.125);
 		}
-
-		BedrockArmorCapeModel.CAPE_MODEL.render(ms, vertexConsumer, light, OverlayTexture.DEFAULT_UV);
-		ms.pop();
+		
+		BedrockArmorCapeModel.CAPE_MODEL.render(ms, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
+		ms.popPose();
 	}
 	
 }

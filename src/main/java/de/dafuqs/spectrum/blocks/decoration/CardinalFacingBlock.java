@@ -1,44 +1,43 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
-import com.mojang.serialization.MapCodec;
-import net.minecraft.block.*;
-import net.minecraft.item.*;
-import net.minecraft.state.*;
-import net.minecraft.state.property.*;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.math.*;
+import com.mojang.serialization.*;
+import net.minecraft.core.*;
+import net.minecraft.world.item.context.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
 
 public class CardinalFacingBlock extends Block {
-
-	public static final MapCodec<CardinalFacingBlock> CODEC = createCodec(CardinalFacingBlock::new);
 	
-	public static final BooleanProperty CARDINAL_FACING = BooleanProperty.of("cardinal_facing");
+	public static final MapCodec<CardinalFacingBlock> CODEC = simpleCodec(CardinalFacingBlock::new);
 	
-	public CardinalFacingBlock(Settings settings) {
+	public static final BooleanProperty CARDINAL_FACING = BooleanProperty.create("cardinal_facing");
+	
+	public CardinalFacingBlock(Properties settings) {
 		super(settings);
-		this.setDefaultState(this.stateManager.getDefaultState().with(CARDINAL_FACING, false));
+		this.registerDefaultState(this.stateDefinition.any().setValue(CARDINAL_FACING, false));
 	}
 
 	@Override
-	public MapCodec<? extends CardinalFacingBlock> getCodec() {
+	public MapCodec<? extends CardinalFacingBlock> codec() {
 		return CODEC;
 	}
 	
 	@Override
-	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		Direction facing = ctx.getHorizontalPlayerFacing();
+	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+		Direction facing = ctx.getHorizontalDirection();
 		boolean facingVertical = facing.equals(Direction.EAST) || facing.equals(Direction.WEST);
-		return this.getDefaultState().with(CARDINAL_FACING, facingVertical);
+		return this.defaultBlockState().setValue(CARDINAL_FACING, facingVertical);
 	}
 	
 	@Override
-	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(CARDINAL_FACING);
 	}
 
 	@Override
-	public BlockState rotate(BlockState state, BlockRotation rotation) {
-		boolean cardinal = state.get(CARDINAL_FACING);
-		return state.with(CARDINAL_FACING, (rotation.ordinal() % 2 == 1) != cardinal);
+	public BlockState rotate(BlockState state, Rotation rotation) {
+		boolean cardinal = state.getValue(CARDINAL_FACING);
+		return state.setValue(CARDINAL_FACING, (rotation.ordinal() % 2 == 1) != cardinal);
 	}
 }

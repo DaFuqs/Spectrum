@@ -6,17 +6,19 @@ import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import net.fabricmc.api.*;
-import net.minecraft.block.*;
+import net.minecraft.*;
 import net.minecraft.client.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.sound.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
-import net.minecraft.util.hit.*;
-import net.minecraft.util.math.*;
+import net.minecraft.core.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.sounds.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.context.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.phys.*;
 import oshi.util.tuples.*;
 
 import java.util.*;
@@ -25,8 +27,8 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 
 	public static final int INK_COST_PER_BLOCK = 1;
 	public static final int CREATIVE_RANGE = 10;
-
-	public ConstructorsStaffItem(Settings settings) {
+	
+	public ConstructorsStaffItem(Properties settings) {
 		super(settings);
 	}
 
@@ -35,7 +37,7 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 	// but not useless at the end
 	// this way the player does not need to craft 5 tiers
 	// of staffs that each do basically feel the same
-	public static int getRange(PlayerEntity playerEntity) {
+	public static int getRange(Player playerEntity) {
 		if (playerEntity == null || playerEntity.isCreative()) {
 			return CREATIVE_RANGE;
 		} else {
@@ -60,21 +62,21 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 
 	@Override
 	@Environment(EnvType.CLIENT)
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
-		tooltip.add(Text.translatable("item.spectrum.constructors_staff.tooltip.range", getRange(MinecraftClient.getInstance().player)).formatted(Formatting.GRAY));
-		tooltip.add(Text.translatable("item.spectrum.constructors_staff.tooltip.crouch").formatted(Formatting.GRAY));
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
+		tooltip.add(Component.translatable("item.spectrum.constructors_staff.tooltip.range", getRange(Minecraft.getInstance().player)).withStyle(ChatFormatting.GRAY));
+		tooltip.add(Component.translatable("item.spectrum.constructors_staff.tooltip.crouch").withStyle(ChatFormatting.GRAY));
 		addInkPoweredTooltip(tooltip);
 	}
 	
 	@Override
-	public ActionResult useOnBlock(ItemUsageContext context) {
-		PlayerEntity player = context.getPlayer();
-		World world = context.getWorld();
-		BlockPos pos = context.getBlockPos();
+	public InteractionResult useOn(UseOnContext context) {
+		Player player = context.getPlayer();
+		Level world = context.getLevel();
+		BlockPos pos = context.getClickedPos();
 		BlockState targetBlockState = world.getBlockState(pos);
 		
-		if ((player != null && this.canInteractWith(targetBlockState, context.getWorld(), context.getBlockPos(), context.getPlayer()))) {
+		if ((player != null && this.canInteractWith(targetBlockState, context.getLevel(), context.getClickedPos(), context.getPlayer()))) {
 			Block blockToPlace = targetBlockState.getBlock();
 			Item itemToConsume;
 
@@ -90,32 +92,32 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 			}
 
 			if (count > 0) {
-				Direction side = context.getSide();
+				Direction side = context.getClickedFace();
 				int maxRange = getRange(player);
 				int range = (int) Math.min(maxRange, player.isCreative() ? maxRange : count);
-				boolean sneaking = player.isSneaking();
+				boolean sneaking = player.isShiftKeyDown();
 				List<BlockPos> targetPositions = BuildingHelper.calculateBuildingStaffSelection(world, pos, side, count, range, !sneaking);
 				if (targetPositions.isEmpty()) {
-					return ActionResult.FAIL;
+					return InteractionResult.FAIL;
 				}
-
-				if (!world.isClient) {
+				
+				if (!world.isClientSide) {
 					placeBlocksAndDecrementInventory(player, world, blockToPlace, itemToConsume, side, targetPositions);
 				}
-
-				return ActionResult.SUCCESS;
+				
+				return InteractionResult.SUCCESS;
 			}
 		} else {
 			if (player != null) {
-				world.playSound(null, player.getBlockPos(), SoundEvents.BLOCK_DISPENSER_FAIL, SoundCategory.PLAYERS,
+				world.playSound(null, player.blockPosition(), SoundEvents.DISPENSER_FAIL, SoundSource.PLAYERS,
 						1.0F, 1.0F);
 			}
 		}
 		
-		return ActionResult.FAIL;
+		return InteractionResult.FAIL;
 	}
 	
-	protected static void placeBlocksAndDecrementInventory(PlayerEntity player, World world, Block blockToPlace, Item itemToConsume, Direction side, List<BlockPos> targetPositions) {
+	protected static void placeBlocksAndDecrementInventory(Player player, Level world, Block blockToPlace, Item itemToConsume, Direction side, List<BlockPos> targetPositions) {
 		int placedBlocks = 0;
 		for (BlockPos position : targetPositions) {
 			// Only place blocks where you are allowed to do so
@@ -123,12 +125,12 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 				continue;
 			
 			BlockState originalState = world.getBlockState(position);
-			if (originalState.isAir() || originalState.getBlock() instanceof FluidBlock || (originalState.isReplaceable() && originalState.getCollisionShape(world, position).isEmpty())) {
-				BlockState stateToPlace = blockToPlace.getPlacementState(new BuildingStaffPlacementContext(world, player, new BlockHitResult(Vec3d.ofBottomCenter(position), side, position, false)));
-				if (stateToPlace != null && stateToPlace.canPlaceAt(world, position)) {
-					if (world.setBlockState(position, stateToPlace)) {
+			if (originalState.isAir() || originalState.getBlock() instanceof LiquidBlock || (originalState.canBeReplaced() && originalState.getCollisionShape(world, position).isEmpty())) {
+				BlockState stateToPlace = blockToPlace.getStateForPlacement(new BuildingStaffPlacementContext(world, player, new BlockHitResult(Vec3.atBottomCenterOf(position), side, position, false)));
+				if (stateToPlace != null && stateToPlace.canSurvive(world, position)) {
+					if (world.setBlockAndUpdate(position, stateToPlace)) {
 						if (placedBlocks == 0) {
-							world.playSound(null, player.getBlockPos(), stateToPlace.getSoundGroup().getPlaceSound(), SoundCategory.PLAYERS, stateToPlace.getSoundGroup().getVolume(), stateToPlace.getSoundGroup().getPitch());
+							world.playSound(null, player.blockPosition(), stateToPlace.getSoundType().getPlaceSound(), SoundSource.PLAYERS, stateToPlace.getSoundType().getVolume(), stateToPlace.getSoundType().getPitch());
 						}
 						placedBlocks++;
 					}

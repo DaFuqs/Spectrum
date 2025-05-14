@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.recipe;
 
 import net.fabricmc.fabric.api.transfer.v1.storage.*;
-import net.minecraft.item.*;
+import net.minecraft.world.item.*;
 
 import java.util.*;
 

@@ -1,105 +1,105 @@
 package de.dafuqs.spectrum.blocks.deeper_down.flora;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
-import net.minecraft.state.*;
-import net.minecraft.state.property.*;
+import net.minecraft.core.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
 import net.minecraft.util.*;
-import net.minecraft.util.hit.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
-import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.phys.*;
+import net.minecraft.world.phys.shapes.*;
 
-public class AloeBlock extends PlantBlock implements Fertilizable {
-
-    public static final MapCodec<AloeBlock> CODEC = createCodec(AloeBlock::new);
-
-    protected static final IntProperty AGE = Properties.AGE_4;
-    protected static final VoxelShape SHAPE = Block.createCuboidShape(4.0, 0.0, 4.0, 12.0, 9.0, 12.0);
+public class AloeBlock extends BushBlock implements BonemealableBlock {
+	
+	public static final MapCodec<AloeBlock> CODEC = simpleCodec(AloeBlock::new);
+	
+	protected static final IntegerProperty AGE = BlockStateProperties.AGE_4;
+	protected static final VoxelShape SHAPE = Block.box(4.0, 0.0, 4.0, 12.0, 9.0, 12.0);
     protected static final double GROW_CHANCE = 0.4;
     protected static final int MAX_LIGHT_LEVEL = 10;
-
-    public AloeBlock(Settings settings) {
+	
+	public AloeBlock(Properties settings) {
         super(settings);
     }
 
     @Override
-    public MapCodec<? extends AloeBlock> getCodec() {
+	public MapCodec<? extends AloeBlock> codec() {
         return CODEC;
     }
 
     @Override
-	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-		super.appendProperties(builder);
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
 		builder.add(AGE);
 	}
 
 	@Override
-	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		return SHAPE;
 	}
 	
 	@Override
-	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-		return world.getBaseLightLevel(pos, 0) <= MAX_LIGHT_LEVEL && super.canPlaceAt(state, world, pos);
+	public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+		return world.getRawBrightness(pos, 0) <= MAX_LIGHT_LEVEL && super.canSurvive(state, world, pos);
 	}
 	
 	@Override
-	protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-		return floor.isIn(SpectrumBlockTags.ALOE_PLANTABLE);
+	protected boolean mayPlaceOn(BlockState floor, BlockGetter world, BlockPos pos) {
+		return floor.is(SpectrumBlockTags.ALOE_PLANTABLE);
 	}
 	
 	@Override
-	public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
-		return state.get(AGE) < Properties.AGE_4_MAX;
+	public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
+		return state.getValue(AGE) < BlockStateProperties.MAX_AGE_4;
 	}
 
     @Override
-    public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
-        return world.getBaseLightLevel(pos, 0) <= MAX_LIGHT_LEVEL && random.nextFloat() > GROW_CHANCE;
+	public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
+		return world.getRawBrightness(pos, 0) <= MAX_LIGHT_LEVEL && random.nextFloat() > GROW_CHANCE;
     }
 
     @Override
-    public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        if (canPlaceAt(state, world, pos)) {
-            int age = state.get(AGE);
-            if (age < Properties.AGE_4_MAX) {
-                world.setBlockState(pos, state.with(AGE, age + 1));
-                world.playSound(null, pos, state.getSoundGroup().getPlaceSound(), SoundCategory.BLOCKS, 1.0F, 1.0F);
-
-                if (world.getBlockState(pos.down()).isIn(SpectrumBlockTags.ALOE_CONVERTED)) {
-                    world.setBlockState(pos.down(), Blocks.SAND.getDefaultState());
+	public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
+		if (canSurvive(state, world, pos)) {
+			int age = state.getValue(AGE);
+			if (age < BlockStateProperties.MAX_AGE_4) {
+				world.setBlockAndUpdate(pos, state.setValue(AGE, age + 1));
+				world.playSound(null, pos, state.getSoundType().getPlaceSound(), SoundSource.BLOCKS, 1.0F, 1.0F);
+				
+				if (world.getBlockState(pos.below()).is(SpectrumBlockTags.ALOE_CONVERTED)) {
+					world.setBlockAndUpdate(pos.below(), Blocks.SAND.defaultBlockState());
                 }
             }
         } else {
-            Block.replace(state, Blocks.AIR.getDefaultState(), world, pos, 10, 512);
+			Block.updateOrDestroy(state, Blocks.AIR.defaultBlockState(), world, pos, 10, 512);
         }
     }
 
     @Override
-    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        grow(world, random, pos, state);
+	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+		performBonemeal(world, random, pos, state);
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        int age = state.get(AGE);
+	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
+		int age = state.getValue(AGE);
         if (age > 1) {
-            if (world.isClient) {
-                return ActionResult.SUCCESS;
+			if (world.isClientSide) {
+				return InteractionResult.SUCCESS;
             } else {
-                world.setBlockState(pos, state.with(AGE, age - 1));
-                player.getInventory().offerOrDrop(this.asItem().getDefaultStack());
-                world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0F, 0.9F + world.random.nextFloat() * 0.2F);
-                return ActionResult.CONSUME;
+				world.setBlockAndUpdate(pos, state.setValue(AGE, age - 1));
+				player.getInventory().placeItemBackInInventory(this.asItem().getDefaultInstance());
+				world.playSound(null, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 1.0F, 0.9F + world.random.nextFloat() * 0.2F);
+				return InteractionResult.CONSUME;
             }
         }
-        return ActionResult.PASS;
+		return InteractionResult.PASS;
     }
 
 }

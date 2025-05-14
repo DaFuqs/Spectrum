@@ -2,22 +2,22 @@ package de.dafuqs.spectrum.blocks.fluid;
 
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.ai.pathing.*;
-import net.minecraft.fluid.*;
-import net.minecraft.particle.*;
-import net.minecraft.registry.tag.*;
+import net.minecraft.core.*;
+import net.minecraft.core.particles.*;
+import net.minecraft.tags.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
-import net.minecraft.world.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.material.*;
+import net.minecraft.world.level.pathfinder.*;
 import org.jetbrains.annotations.*;
 
 public class LiquidCrystalFluidBlock extends SpectrumFluidBlock {
 	
 	public static final int LUMINANCE = 11;
 	
-	public LiquidCrystalFluidBlock(SpectrumFluid fluid, BlockState ultrawarmReplacementBlockState, Settings settings) {
+	public LiquidCrystalFluidBlock(SpectrumFluid fluid, BlockState ultrawarmReplacementBlockState, Properties settings) {
 		super(fluid, ultrawarmReplacementBlockState, settings);
 	}
 
@@ -33,31 +33,30 @@ public class LiquidCrystalFluidBlock extends SpectrumFluidBlock {
 	}
 	
 	@Override
-	public Pair<SimpleParticleType, SimpleParticleType> getFishingParticles() {
-		return new Pair<>(SpectrumParticleTypes.LIQUID_CRYSTAL_SPARKLE, SpectrumParticleTypes.LIQUID_CRYSTAL_FISHING);
+	public Tuple<SimpleParticleType, SimpleParticleType> getFishingParticles() {
+		return new Tuple<>(SpectrumParticleTypes.LIQUID_CRYSTAL_SPARKLE, SpectrumParticleTypes.LIQUID_CRYSTAL_FISHING);
 	}
 	
 	@Override
-	public boolean canPathfindThrough(BlockState state, NavigationType type) {
+	public boolean isPathfindable(BlockState state, PathComputationType type) {
 		return true;
 	}
 	
 	@Override
-	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-		super.randomDisplayTick(state, world, pos, random);
+	public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
+		super.animateTick(state, world, pos, random);
 		if (random.nextFloat() < 0.10F) {
 			world.addParticle(SpectrumParticleTypes.LIQUID_CRYSTAL_SPARKLE, pos.getX() + random.nextDouble(), pos.getY() + random.nextDouble(), pos.getZ() + random.nextDouble(), 0, random.nextDouble() * 0.1, 0);
 		}
 	}
-
-	public @Nullable BlockState handleFluidCollision(World world, @NotNull FluidState state, @NotNull FluidState otherState) {
-		if (otherState.isIn(FluidTags.WATER)) {
-			return state.isStill() ? SpectrumBlocks.FROSTBITE_CRYSTAL.getDefaultState() : Blocks.CALCITE.getDefaultState();
-		}
-		else if (otherState.isIn(FluidTags.LAVA)) {
-			return state.isStill() ? SpectrumBlocks.BLAZING_CRYSTAL.getDefaultState() : Blocks.COBBLED_DEEPSLATE.getDefaultState();
-		} else if (otherState.isIn(SpectrumFluidTags.GOO)) {
-			return Blocks.CLAY.getDefaultState();
+	
+	public @Nullable BlockState handleFluidCollision(Level world, @NotNull FluidState state, @NotNull FluidState otherState) {
+		if (otherState.is(FluidTags.WATER)) {
+			return state.isSource() ? SpectrumBlocks.FROSTBITE_CRYSTAL.defaultBlockState() : Blocks.CALCITE.defaultBlockState();
+		} else if (otherState.is(FluidTags.LAVA)) {
+			return state.isSource() ? SpectrumBlocks.BLAZING_CRYSTAL.defaultBlockState() : Blocks.COBBLED_DEEPSLATE.defaultBlockState();
+		} else if (otherState.is(SpectrumFluidTags.GOO)) {
+			return Blocks.CLAY.defaultBlockState();
 		}
 		return null;
 	}

@@ -3,8 +3,8 @@ package de.dafuqs.spectrum.registries;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.entity.*;
-import net.minecraft.entity.*;
-import net.minecraft.util.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.item.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -29,7 +29,7 @@ public class SpectrumEntityColorProcessors {
 			if (dyeColor.isEmpty()) {
 				return false;
 			}
-			if (!entity.isTamed() || !entity.isOwner(player)) {
+			if (!entity.isTame() || !entity.isOwnedBy(player)) {
 				return false;
 			}
 			DyeColor color = dyeColor.get();
@@ -44,7 +44,7 @@ public class SpectrumEntityColorProcessors {
 			if (dyeColor.isEmpty()) {
 				return false;
 			}
-			if (!entity.isTamed() || !entity.isOwner(player)) {
+			if (!entity.isTame() || !entity.isOwnedBy(player)) {
 				return false;
 			}
 			DyeColor color = dyeColor.get();

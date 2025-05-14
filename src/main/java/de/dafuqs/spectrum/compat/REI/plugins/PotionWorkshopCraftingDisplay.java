@@ -6,7 +6,7 @@ import de.dafuqs.spectrum.compat.REI.*;
 import de.dafuqs.spectrum.recipe.potion_workshop.*;
 import me.shedaniel.rei.api.common.category.*;
 import net.minecraft.client.*;
-import net.minecraft.recipe.*;
+import net.minecraft.world.item.crafting.*;
 
 public class PotionWorkshopCraftingDisplay extends PotionWorkshopRecipeDisplay {
 	
@@ -18,7 +18,7 @@ public class PotionWorkshopCraftingDisplay extends PotionWorkshopRecipeDisplay {
 	 *
 	 * @param recipe The recipe
 	 */
-	public PotionWorkshopCraftingDisplay(RecipeEntry<PotionWorkshopCraftingRecipe> recipe) {
+	public PotionWorkshopCraftingDisplay(RecipeHolder<PotionWorkshopCraftingRecipe> recipe) {
 		super(recipe);
 		this.baseIngredient = recipe.value().getBaseIngredient();
 		this.consumeBaseIngredient = recipe.value().consumesBaseIngredient();
@@ -31,7 +31,7 @@ public class PotionWorkshopCraftingDisplay extends PotionWorkshopRecipeDisplay {
 	
 	@Override
     public boolean isUnlocked() {
-		MinecraftClient client = MinecraftClient.getInstance();
+		Minecraft client = Minecraft.getInstance();
 		return AdvancementHelper.hasAdvancement(client.player, PotionWorkshopRecipe.UNLOCK_IDENTIFIER) && super.isUnlocked();
 	}
 	

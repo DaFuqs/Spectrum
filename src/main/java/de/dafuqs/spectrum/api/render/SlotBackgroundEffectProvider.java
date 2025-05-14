@@ -1,16 +1,16 @@
 package de.dafuqs.spectrum.api.render;
 
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
 import org.jetbrains.annotations.*;
 
 public interface SlotBackgroundEffectProvider {
 	
-	SlotEffect backgroundType(@Nullable PlayerEntity player, ItemStack stack);
+	SlotEffect backgroundType(@Nullable Player player, ItemStack stack);
 	
-	int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta);
+	int getBackgroundColor(@Nullable Player player, ItemStack stack, float tickDelta);
 	
-	default float getEffectOpacity(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
+	default float getEffectOpacity(@Nullable Player player, ItemStack stack, float tickDelta) {
 		return 1F;
 	}
 	

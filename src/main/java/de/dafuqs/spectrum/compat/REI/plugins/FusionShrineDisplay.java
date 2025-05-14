@@ -7,8 +7,8 @@ import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.display.basic.*;
 import me.shedaniel.rei.api.common.entry.*;
 import net.minecraft.client.*;
-import net.minecraft.recipe.*;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.world.item.crafting.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -17,10 +17,10 @@ public class FusionShrineDisplay extends GatedSpectrumDisplay {
 	
 	protected final float experience;
 	protected final int craftingTime;
-	protected final Optional<Text> description;
+	protected final Optional<Component> description;
 	
-	public FusionShrineDisplay(@NotNull RecipeEntry<FusionShrineRecipe> recipe) {
-		super(recipe, buildIngredients(recipe.value()), recipe.value().getResult(BasicDisplay.registryAccess()));
+	public FusionShrineDisplay(@NotNull RecipeHolder<FusionShrineRecipe> recipe) {
+		super(recipe, buildIngredients(recipe.value()), recipe.value().getResultItem(BasicDisplay.registryAccess()));
 		this.experience = recipe.value().getExperience();
 		this.craftingTime = recipe.value().getCraftingTime();
 		this.description = recipe.value().getDescription();
@@ -39,11 +39,11 @@ public class FusionShrineDisplay extends GatedSpectrumDisplay {
 	
 	@Override
     public boolean isUnlocked() {
-		MinecraftClient client = MinecraftClient.getInstance();
+		Minecraft client = Minecraft.getInstance();
 		return AdvancementHelper.hasAdvancement(client.player, FusionShrineRecipe.UNLOCK_IDENTIFIER) && super.isUnlocked();
 	}
 	
-	public Optional<Text> getDescription() {
+	public Optional<Component> getDescription() {
 		return this.description;
 	}
 	

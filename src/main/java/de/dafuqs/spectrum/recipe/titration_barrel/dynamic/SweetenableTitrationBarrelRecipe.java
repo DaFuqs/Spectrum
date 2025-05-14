@@ -2,21 +2,20 @@ package de.dafuqs.spectrum.recipe.titration_barrel.dynamic;
 
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.components.*;
-import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.component.*;
-import net.minecraft.component.type.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.item.*;
-import net.minecraft.util.*;
+import net.minecraft.core.component.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.alchemy.*;
 
 import java.util.*;
 
 public abstract class SweetenableTitrationBarrelRecipe extends TitrationBarrelRecipe {
 	
-	public SweetenableTitrationBarrelRecipe(String group, boolean secret, Optional<Identifier> requiredAdvancementIdentifier, List<IngredientStack> inputStacks, FluidIngredient fluid, ItemStack outputItemStack, Item tappingItem, int minFermentationTimeHours, FermentationData fermentationData) {
+	public SweetenableTitrationBarrelRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier, List<IngredientStack> inputStacks, FluidIngredient fluid, ItemStack outputItemStack, Item tappingItem, int minFermentationTimeHours, FermentationData fermentationData) {
 		super(group, secret, requiredAdvancementIdentifier, inputStacks, fluid, outputItemStack, tappingItem, minFermentationTimeHours, fermentationData);
 	}
 	
@@ -25,7 +24,7 @@ public abstract class SweetenableTitrationBarrelRecipe extends TitrationBarrelRe
 		return tapWith(1, 3, false, 1.0F, this.minFermentationTimeHours * 60L * 60L * timeMultiplier, 0.4F);
 	}
 	
-	protected abstract List<StatusEffectInstance> getEffects(boolean nectar, double bloominess, double alcPercent);
+	protected abstract List<MobEffectInstance> getEffects(boolean nectar, double bloominess, double alcPercent);
 	
 	protected ItemStack tapWith(int bulbCount, int petalCount, boolean nectar, float thickness, long secondsFermented, float downfall) {
 		double bloominess = getBloominess(bulbCount, petalCount);
@@ -35,14 +34,14 @@ public abstract class SweetenableTitrationBarrelRecipe extends TitrationBarrelRe
 		}
 		double alcPercent = getAlcPercentWithBloominess(ageIngameDays, downfall, bloominess, thickness);
 		if (alcPercent >= 100) {
-			return SpectrumItems.CHRYSOCOLLA.getDefaultStack();
+			return SpectrumItems.CHRYSOCOLLA.getDefaultInstance();
 		} else {
-			List<StatusEffectInstance> effects = getEffects(nectar, bloominess, alcPercent);
+			List<MobEffectInstance> effects = getEffects(nectar, bloominess, alcPercent);
 			
 			ItemStack outputStack = outputItemStack.copy();
 			outputStack.setCount(1);
 			outputStack.set(SpectrumDataComponentTypes.BEVERAGE, new BeverageComponent((long) ageIngameDays, (int) alcPercent, thickness));
-			outputStack.set(DataComponentTypes.POTION_CONTENTS, new PotionContentsComponent(Optional.empty(), Optional.empty(), effects));
+			outputStack.set(DataComponents.POTION_CONTENTS, new PotionContents(Optional.empty(), Optional.empty(), effects));
 			outputStack.set(SpectrumDataComponentTypes.JADE_WINE, new JadeWineComponent((float) bloominess, nectar));
 			return outputStack;
 		}

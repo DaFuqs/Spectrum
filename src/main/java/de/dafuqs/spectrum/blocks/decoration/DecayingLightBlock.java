@@ -1,18 +1,19 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
-import com.mojang.serialization.MapCodec;
-import net.minecraft.block.*;
-import net.minecraft.item.*;
-import net.minecraft.server.world.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
-import net.minecraft.world.*;
+import com.mojang.serialization.*;
+import net.minecraft.core.*;
+import net.minecraft.server.level.*;
+import net.minecraft.util.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 
 public class DecayingLightBlock extends WandLightBlock {
-
-	public static final MapCodec<DecayingLightBlock> CODEC = createCodec(DecayingLightBlock::new);
-
-	public DecayingLightBlock(Settings settings) {
+	
+	public static final MapCodec<DecayingLightBlock> CODEC = simpleCodec(DecayingLightBlock::new);
+	
+	public DecayingLightBlock(Properties settings) {
 		super(settings);
 	}
 
@@ -23,22 +24,22 @@ public class DecayingLightBlock extends WandLightBlock {
 //	}
 
 	@Override
-	public ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state) {
+	public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state) {
 		return ItemStack.EMPTY;
 	}
 	
 	@Override
-	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		super.randomTick(state, world, pos, random);
-		int light = state.get(LightBlock.LEVEL_15);
+		int light = state.getValue(LightBlock.LEVEL);
 		if (light < 2) {
-			if (state.get(WATERLOGGED)) {
-				world.setBlockState(pos, Blocks.WATER.getDefaultState(), 3);
+			if (state.getValue(WATERLOGGED)) {
+				world.setBlock(pos, Blocks.WATER.defaultBlockState(), 3);
 			} else {
-				world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
+				world.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
 			}
 		} else {
-			world.setBlockState(pos, state.with(LightBlock.LEVEL_15, light - 1), 3);
+			world.setBlock(pos, state.setValue(LightBlock.LEVEL, light - 1), 3);
 		}
 	}
 	

@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.compat.REI;
 
 import me.shedaniel.rei.api.common.display.*;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
 import org.jetbrains.annotations.*;
 
 public interface GatedRecipeDisplay extends Display {
@@ -11,6 +11,6 @@ public interface GatedRecipeDisplay extends Display {
 	boolean isSecret();
 	
 	@Nullable
-	Text getSecretHintText();
+	Component getSecretHintText();
 	
 }

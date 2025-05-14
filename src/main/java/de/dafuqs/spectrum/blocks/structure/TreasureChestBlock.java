@@ -1,60 +1,60 @@
 package de.dafuqs.spectrum.blocks.structure;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.client.util.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.screen.PlayerScreenHandler;
-import net.minecraft.sound.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.client.resources.model.*;
+import net.minecraft.core.*;
+import net.minecraft.sounds.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
 import org.jetbrains.annotations.*;
 
 public class TreasureChestBlock extends SpectrumChestBlock {
-
-	public static final MapCodec<TreasureChestBlock> CODEC = createCodec(TreasureChestBlock::new);
-
-	public TreasureChestBlock(Settings settings) {
+	
+	public static final MapCodec<TreasureChestBlock> CODEC = simpleCodec(TreasureChestBlock::new);
+	
+	public TreasureChestBlock(Properties settings) {
 		super(settings);
 	}
 
 	@Override
-	public MapCodec<? extends TreasureChestBlock> getCodec() {
+	public MapCodec<? extends TreasureChestBlock> codec() {
 		return CODEC;
 	}
 	
 	@Override
-	public void openScreen(World world, BlockPos pos, PlayerEntity player) {
+	public void openScreen(Level world, BlockPos pos, Player player) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof TreasureChestBlockEntity treasureChestBlockEntity) {
 			if (!isChestBlocked(world, pos)) {
 				if (treasureChestBlockEntity.canOpen(player)) {
-					player.openHandledScreen(treasureChestBlockEntity);
+					player.openMenu(treasureChestBlockEntity);
 				} else {
-					world.playSound(null, pos, SoundEvents.BLOCK_CHEST_LOCKED, SoundCategory.PLAYERS, 1.0F, 1.0F);
+					world.playSound(null, pos, SoundEvents.CHEST_LOCKED, SoundSource.PLAYERS, 1.0F, 1.0F);
 				}
 			}
 		}
 	}
 	
 	@Override
-	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new TreasureChestBlockEntity(pos, state);
 	}
 	
 	@Override
 	@Nullable
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		return world.isClient ? validateTicker(type, SpectrumBlockEntities.PRESERVATION_CHEST, TreasureChestBlockEntity::clientTick) : null;
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
+		return world.isClientSide ? createTickerHelper(type, SpectrumBlockEntities.PRESERVATION_CHEST, TreasureChestBlockEntity::clientTick) : null;
 	}
 	
 	@Override
-	public SpriteIdentifier getTexture() {
-		return new SpriteIdentifier(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("block/preservation_chest"));
+	public Material getTextureLocation() {
+		return new Material(InventoryMenu.BLOCK_ATLAS, SpectrumCommon.locate("block/preservation_chest"));
 	}
 	
 }

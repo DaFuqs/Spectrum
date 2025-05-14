@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.api.energy.storage;
 
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
 
 import java.util.*;
 
@@ -131,8 +131,8 @@ public class SingleInkStorage implements InkStorage {
 	}
 	
 	@Override
-	public void addTooltip(List<Text> tooltip) {
-		tooltip.add(Text.translatable("item.spectrum.ink_storage.stores_up_to_ink_per_type", getShortenedNumberString(this.maxEnergy)));
+	public void addTooltip(List<Component> tooltip) {
+		tooltip.add(Component.translatable("item.spectrum.ink_storage.stores_up_to_ink_per_type", getShortenedNumberString(this.maxEnergy)));
 		if (this.storedEnergy > 0) {
 			InkStorage.addInkStoreBulletTooltip(tooltip, this.storedColor, this.storedEnergy);
 		}
@@ -153,7 +153,7 @@ public class SingleInkStorage implements InkStorage {
 	}
 	
 	@Override
-	public void clear() {
+	public void clearContent() {
 		this.storedEnergy = 0;
 	}
 	

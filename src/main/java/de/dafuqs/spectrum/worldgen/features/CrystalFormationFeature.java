@@ -1,12 +1,11 @@
 package de.dafuqs.spectrum.worldgen.features;
 
 import com.mojang.serialization.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
-import net.minecraft.world.*;
-import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.feature.util.*;
-import net.minecraft.world.gen.stateprovider.*;
+import net.minecraft.core.*;
+import net.minecraft.util.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.levelgen.feature.*;
+import net.minecraft.world.level.levelgen.feature.stateproviders.*;
 
 /**
  * A configurable GlowstoneBlobFeature that can grow both up- and downward
@@ -18,33 +17,33 @@ public class CrystalFormationFeature extends Feature<CrystalFormationFeatureFeat
 	}
 	
 	@Override
-	public boolean generate(FeatureContext<CrystalFormationFeatureFeatureConfig> context) {
-		StructureWorldAccess structureWorldAccess = context.getWorld();
-		BlockPos blockPos = context.getOrigin();
-		Random random = context.getRandom();
-		if (!structureWorldAccess.isAir(blockPos)) {
+	public boolean place(FeaturePlaceContext<CrystalFormationFeatureFeatureConfig> context) {
+		WorldGenLevel structureWorldAccess = context.level();
+		BlockPos blockPos = context.origin();
+		RandomSource random = context.random();
+		if (!structureWorldAccess.isEmptyBlock(blockPos)) {
 			return false;
 		} else {
-			CrystalFormationFeatureFeatureConfig config = context.getConfig();
+			CrystalFormationFeatureFeatureConfig config = context.config();
 			
 			boolean upwards = false;
-			if (config.canGrowUpwards() && structureWorldAccess.getBlockState(blockPos.down()).isIn(config.canStartOnBlocks())) {
+			if (config.canGrowUpwards() && structureWorldAccess.getBlockState(blockPos.below()).is(config.canStartOnBlocks())) {
                 upwards = true;
-            } else if (!config.canGrowDownwards() || !structureWorldAccess.getBlockState(blockPos.up()).isIn(config.canStartOnBlocks())) {
+			} else if (!config.canGrowDownwards() || !structureWorldAccess.getBlockState(blockPos.above()).is(config.canStartOnBlocks())) {
                 return false;
             }
             
             BlockStateProvider stateProvider = config.blockStateProvider();
-            int iterations = config.iterationCountProvider().get(random);
-            
-            structureWorldAccess.setBlockState(blockPos, stateProvider.get(random, blockPos), 2);
+			int iterations = config.iterationCountProvider().sample(random);
+			
+			structureWorldAccess.setBlock(blockPos, stateProvider.getState(random, blockPos), 2);
             
             for (int i = 0; i < iterations; ++i) {
-                BlockPos offsetPos = blockPos.add(random.nextInt(8) - random.nextInt(8), upwards ? random.nextInt(12) : -random.nextInt(12), random.nextInt(8) - random.nextInt(8));
+				BlockPos offsetPos = blockPos.offset(random.nextInt(8) - random.nextInt(8), upwards ? random.nextInt(12) : -random.nextInt(12), random.nextInt(8) - random.nextInt(8));
                 if (structureWorldAccess.getBlockState(offsetPos).isAir()) {
                     int directionTries = 0;
                     for (Direction direction : Direction.values()) {
-                        if (structureWorldAccess.getBlockState(offsetPos.offset(direction)).isIn(config.canExtendOnBlocks())) {
+						if (structureWorldAccess.getBlockState(offsetPos.relative(direction)).is(config.canExtendOnBlocks())) {
                             ++directionTries;
                         }
                         if (directionTries > 1) {
@@ -52,7 +51,7 @@ public class CrystalFormationFeature extends Feature<CrystalFormationFeatureFeat
                         }
                     }
                     if (directionTries == 1) {
-						structureWorldAccess.setBlockState(offsetPos, stateProvider.get(random, blockPos), 2);
+						structureWorldAccess.setBlock(offsetPos, stateProvider.getState(random, blockPos), 2);
                     }
                 }
             }

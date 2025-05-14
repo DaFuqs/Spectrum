@@ -9,20 +9,19 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.modonomicon.pages.*;
 import de.dafuqs.spectrum.recipe.crystallarieum.*;
 import de.dafuqs.spectrum.registries.*;
-import net.fabricmc.fabric.api.transfer.v1.fluid.*;
-import net.minecraft.block.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.recipe.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.state.*;
 
 import java.util.*;
 
 public class BookCrystallarieumGrowingPageRenderer extends BookGatedRecipePageRenderer<CrystallarieumRecipe, BookGatedRecipePage<CrystallarieumRecipe>> {
-
-    private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/modonomicon/crystallarieum.png");
+	
+	private static final ResourceLocation BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/modonomicon/crystallarieum.png");
 
     private static BookTextHolder catalystText;
     private BookTextHolder craftingTimeText1 = null;
@@ -31,22 +30,22 @@ public class BookCrystallarieumGrowingPageRenderer extends BookGatedRecipePageRe
     public BookCrystallarieumGrowingPageRenderer(BookGatedRecipePage<CrystallarieumRecipe> page) {
         super(page);
 		
-		Identifier font = BookDataManager.Client.get().safeFont(this.page.getBook().getFont());
+		ResourceLocation font = BookDataManager.Client.get().safeFont(this.page.getBook().getFont());
 
         if (catalystText == null) {
-			catalystText = new BookTextHolder(Text.translatable("container.spectrum.modonomicon.crystallarieum.catalyst").styled(s -> s.withFont(font)));
+			catalystText = new BookTextHolder(Component.translatable("container.spectrum.modonomicon.crystallarieum.catalyst").withStyle(s -> s.withFont(font)));
         }
 
         if (page.getRecipe1() != null) {
-            craftingTimeText1 = new BookTextHolder(Text.translatable(page.getRecipe1().value().growsWithoutCatalyst()
+			craftingTimeText1 = new BookTextHolder(Component.translatable(page.getRecipe1().value().growsWithoutCatalyst()
                     ? "container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds_catalyst_optional"
-					: "container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds", page.getRecipe1().value().getSecondsPerGrowthStage()).styled(s -> s.withFont(font)));
+					: "container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds", page.getRecipe1().value().getSecondsPerGrowthStage()).withStyle(s -> s.withFont(font)));
         }
 
         if (page.getRecipe2() != null) {
-            craftingTimeText2 = new BookTextHolder(Text.translatable(page.getRecipe2().value().growsWithoutCatalyst()
+			craftingTimeText2 = new BookTextHolder(Component.translatable(page.getRecipe2().value().growsWithoutCatalyst()
                     ? "container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds_catalyst_optional"
-					: "container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds", page.getRecipe2().value().getSecondsPerGrowthStage()).styled(s -> s.withFont(font)));
+					: "container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds", page.getRecipe2().value().getSecondsPerGrowthStage()).withStyle(s -> s.withFont(font)));
         }
     }
 	
@@ -56,9 +55,9 @@ public class BookCrystallarieumGrowingPageRenderer extends BookGatedRecipePageRe
     }
 
     @Override
-    protected void drawRecipe(DrawContext drawContext, RecipeEntry<CrystallarieumRecipe> recipeEntry, int recipeX, int recipeY, int mouseX, int mouseY, boolean second) {
+	protected void drawRecipe(GuiGraphics drawContext, RecipeHolder<CrystallarieumRecipe> recipeEntry, int recipeX, int recipeY, int mouseX, int mouseY, boolean second) {
         CrystallarieumRecipe recipe = recipeEntry.value();
-        World world = MinecraftClient.getInstance().world;
+		Level world = Minecraft.getInstance().level;
         if (world == null) return;
 		recipeY += 2;
 
@@ -72,16 +71,16 @@ public class BookCrystallarieumGrowingPageRenderer extends BookGatedRecipePageRe
         Ingredient ingredient = recipe.getIngredientStack();
 		parentScreen.renderIngredient(drawContext, recipeX + startX, recipeY + 5, mouseX, mouseY, ingredient);
 		parentScreen.renderFluidStack(drawContext, recipeX + startX - offsetPerReagent - 4, recipeY + 5, mouseX, mouseY, new FabricFluidHolder(recipe.getFluidMedium(), 1000));
-		drawContext.drawTexture(BACKGROUND_TEXTURE, recipeX + startX - offsetPerReagent - 7, recipeY + 1, 0, 0, 53, 25, 128, 128);
+		drawContext.blit(BACKGROUND_TEXTURE, recipeX + startX - offsetPerReagent - 7, recipeY + 1, 0, 0, 53, 25, 128, 128);
 		
 
         // growth stages
         Iterator<BlockState> it = recipe.getGrowthStages().iterator();
         BlockState growthState = it.next();
-        parentScreen.renderItemStack(drawContext, recipeX + startX + offsetPerReagent, recipeY - 1, mouseX, mouseY, growthState.getBlock().asItem().getDefaultStack());
+		parentScreen.renderItemStack(drawContext, recipeX + startX + offsetPerReagent, recipeY - 1, mouseX, mouseY, growthState.getBlock().asItem().getDefaultInstance());
         int x = 0;
         while (it.hasNext()) {
-            parentScreen.renderItemStack(drawContext, recipeX + 62 + offsetPerReagent * x, recipeY + 4, mouseX, mouseY, it.next().getBlock().asItem().getDefaultStack());
+			parentScreen.renderItemStack(drawContext, recipeX + 62 + offsetPerReagent * x, recipeY + 4, mouseX, mouseY, it.next().getBlock().asItem().getDefaultInstance());
             x++;
         }
 
@@ -113,7 +112,7 @@ public class BookCrystallarieumGrowingPageRenderer extends BookGatedRecipePageRe
 				else if (accel < 1)
 					offset = 7;
 			}
-			drawContext.drawTexture(BACKGROUND_TEXTURE, offsetX + 5, recipeY + 45, 7, 7, 70 + offset, 0, 7, 7, 128, 128);
+			drawContext.blit(BACKGROUND_TEXTURE, offsetX + 5, recipeY + 45, 7, 7, 70 + offset, 0, 7, 7, 128, 128);
 			
 			float drain = catalyst.inkConsumptionMod();
 			
@@ -128,7 +127,7 @@ public class BookCrystallarieumGrowingPageRenderer extends BookGatedRecipePageRe
 			else if (drain < 1)
 				offset = 7 * 3;
 			
-			drawContext.drawTexture(BACKGROUND_TEXTURE, offsetX + 5, recipeY + 54, 7, 7, 70 + offset, 7, 7, 7, 128, 128);
+			drawContext.blit(BACKGROUND_TEXTURE, offsetX + 5, recipeY + 54, 7, 7, 70 + offset, 7, 7, 7, 128, 128);
 			
 			float chance = catalyst.consumeChancePerSecond();
 			
@@ -143,7 +142,7 @@ public class BookCrystallarieumGrowingPageRenderer extends BookGatedRecipePageRe
 			else if (chance < 0.25)
 				offset = 7;
 			
-			drawContext.drawTexture(BACKGROUND_TEXTURE, offsetX + 5, recipeY + 63, 7, 7, 70 + offset, 14, 7, 7, 128, 128);
+			drawContext.blit(BACKGROUND_TEXTURE, offsetX + 5, recipeY + 63, 7, 7, 70 + offset, 14, 7, 7, 128, 128);
 
             x++;
         }

@@ -1,18 +1,19 @@
 package de.dafuqs.spectrum.items.conditional;
 
 import de.dafuqs.revelationary.api.revelations.*;
-import net.minecraft.block.*;
-import net.minecraft.item.*;
+import net.minecraft.resources.*;
 import net.minecraft.util.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.state.*;
 
 import java.util.*;
 
 public class CloakedItem extends Item implements RevelationAware {
 	
-	final Identifier cloakAdvancementIdentifier;
+	final ResourceLocation cloakAdvancementIdentifier;
 	final Item cloakItem;
 	
-	public CloakedItem(Settings settings, Identifier cloakAdvancementIdentifier, Item cloakItem) {
+	public CloakedItem(Properties settings, ResourceLocation cloakAdvancementIdentifier, Item cloakItem) {
 		super(settings);
 		this.cloakAdvancementIdentifier = cloakAdvancementIdentifier;
 		this.cloakItem = cloakItem;
@@ -20,7 +21,7 @@ public class CloakedItem extends Item implements RevelationAware {
 	}
 	
 	@Override
-	public Identifier getCloakAdvancementIdentifier() {
+	public ResourceLocation getCloakAdvancementIdentifier() {
 		return cloakAdvancementIdentifier;
 	}
 	
@@ -30,8 +31,8 @@ public class CloakedItem extends Item implements RevelationAware {
 	}
 	
 	@Override
-	public Pair<Item, Item> getItemCloak() {
-		return new Pair<>(this, cloakItem);
+	public Tuple<Item, Item> getItemCloak() {
+		return new Tuple<>(this, cloakItem);
 	}
 	
 }

@@ -4,20 +4,20 @@ import com.google.gson.*;
 import com.mojang.brigadier.*;
 import com.mojang.brigadier.exceptions.*;
 import com.mojang.serialization.*;
-import net.minecraft.block.*;
-import net.minecraft.command.argument.*;
-import net.minecraft.item.*;
-import net.minecraft.registry.*;
+import net.minecraft.commands.arguments.blocks.*;
+import net.minecraft.core.registries.*;
 import net.minecraft.util.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.state.*;
 
 public class RecipeUtils {
 	
 	public static ItemStack itemStackWithNbtFromJson(JsonObject json) {
-		Item item = Registries.ITEM.getCodec().parse(JsonOps.INSTANCE, json).getOrThrow();
+		Item item = BuiltInRegistries.ITEM.byNameCodec().parse(JsonOps.INSTANCE, json).getOrThrow();
 		if (json.has("data")) {
 			throw new JsonParseException("Disallowed data tag found");
 		} else {
-			int count = JsonHelper.getInt(json, "count", 1);
+			int count = GsonHelper.getAsInt(json, "count", 1);
 			
 			if (count < 1) {
 				throw new JsonSyntaxException("Invalid output count: " + count);
@@ -34,7 +34,7 @@ public class RecipeUtils {
 	}
 	
 	public static BlockState blockStateFromString(String string) throws CommandSyntaxException {
-		return BlockArgumentParser.block(Registries.BLOCK.getReadOnlyWrapper(), new StringReader(string), true).blockState();
+		return BlockStateParser.parseForBlock(BuiltInRegistries.BLOCK.asLookup(), new StringReader(string), true).blockState();
 	}
 	
 	public static DataResult<BlockState> blockStateDataFromString(String string) {
@@ -46,7 +46,7 @@ public class RecipeUtils {
 	}
 	
 	public static String blockStateToString(BlockState state) {
-		return BlockArgumentParser.stringifyBlockState(state);
+		return BlockStateParser.serialize(state);
 	}
 
 	/* TODO - Remove

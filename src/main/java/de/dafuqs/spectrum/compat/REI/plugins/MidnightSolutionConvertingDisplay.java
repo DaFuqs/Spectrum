@@ -3,12 +3,12 @@ package de.dafuqs.spectrum.compat.REI.plugins;
 import de.dafuqs.spectrum.compat.REI.*;
 import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import me.shedaniel.rei.api.common.category.*;
-import net.minecraft.recipe.*;
-import net.minecraft.util.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.item.crafting.*;
 
 public class MidnightSolutionConvertingDisplay extends FluidConvertingDisplay {
 	
-	public MidnightSolutionConvertingDisplay(RecipeEntry<MidnightSolutionConvertingRecipe> recipe) {
+	public MidnightSolutionConvertingDisplay(RecipeHolder<MidnightSolutionConvertingRecipe> recipe) {
 		super(recipe);
 	}
 	
@@ -18,7 +18,7 @@ public class MidnightSolutionConvertingDisplay extends FluidConvertingDisplay {
 	}
 	
 	@Override
-	public Identifier getUnlockIdentifier() {
+	public ResourceLocation getUnlockIdentifier() {
 		return MidnightSolutionConvertingRecipe.UNLOCK_IDENTIFIER;
 	}
 	

@@ -9,7 +9,7 @@ import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.compat.modonomicon.pages.*;
 import de.dafuqs.spectrum.networking.c2s_payloads.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
-import net.minecraft.client.gui.widget.*;
+import net.minecraft.client.gui.components.*;
 
 public class BookConfirmationButtonPageRenderer extends BookTextPageRenderer {
 
@@ -32,17 +32,17 @@ public class BookConfirmationButtonPageRenderer extends BookTextPageRenderer {
         BookTextHolder buttonText = completed
                 ? confirmationPage.getConfirmedButtonText()
                 : confirmationPage.getButtonText();
-
-        ButtonWidget button = ButtonWidget.builder(buttonText.getComponent(), this::confirmationButtonClicked)
-                .size(BookEntryScreen.PAGE_WIDTH - 12, ButtonWidget.DEFAULT_HEIGHT)
-                .position(2, BookEntryScreen.PAGE_HEIGHT - 3)
+		
+		Button button = Button.builder(buttonText.getComponent(), this::confirmationButtonClicked)
+				.size(BookEntryScreen.PAGE_WIDTH - 12, Button.DEFAULT_HEIGHT)
+				.pos(2, BookEntryScreen.PAGE_HEIGHT - 3)
                 .build();
 
         button.active = !completed;
         addButton(button);
     }
-
-    protected void confirmationButtonClicked(ButtonWidget button) {
+	
+	protected void confirmationButtonClicked(Button button) {
         if (!(page instanceof BookConfirmationButtonPage confirmationPage)) return;
         ClientPlayNetworking.send(new GuidebookConfirmationButtonPressedPayload(confirmationPage.getConfirmationString()));
         button.setMessage(confirmationPage.getConfirmedButtonText().getComponent());

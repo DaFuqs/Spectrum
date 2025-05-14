@@ -22,7 +22,7 @@ public class FreezingDisplay extends BlockToBlockWithChanceDisplay {
 	
 	@Override
     public boolean isUnlocked() {
-		MinecraftClient client = MinecraftClient.getInstance();
+		Minecraft client = Minecraft.getInstance();
 		return AdvancementHelper.hasAdvancement(client.player, SpectrumAdvancements.UNLOCK_IDOLS);
 	}
 	

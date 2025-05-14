@@ -5,13 +5,13 @@ import dev.emi.emi.api.recipe.*;
 import dev.emi.emi.api.render.*;
 import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.*;
-import net.minecraft.util.*;
+import net.minecraft.resources.*;
 
 import java.util.*;
 
 public class BlockToBlockWithChanceEmiRecipe extends SpectrumEmiRecipe {
 	
-	public BlockToBlockWithChanceEmiRecipe(EmiRecipeCategory category, Identifier id, EmiIngredient in, EmiStack out, Identifier unlock) {
+	public BlockToBlockWithChanceEmiRecipe(EmiRecipeCategory category, ResourceLocation id, EmiIngredient in, EmiStack out, ResourceLocation unlock) {
 		super(category, unlock, id, 78, 26);
 		this.inputs = List.of(in);
 		this.outputs = List.of(out);

@@ -5,80 +5,82 @@ import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.*;
 import net.fabricmc.fabric.api.transfer.v1.transaction.*;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.component.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.pathing.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.loot.context.*;
-import net.minecraft.sound.*;
-import net.minecraft.state.*;
-import net.minecraft.state.property.*;
-import net.minecraft.state.property.Properties;
-import net.minecraft.text.*;
+import net.minecraft.core.*;
+import net.minecraft.core.component.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.sounds.*;
 import net.minecraft.util.*;
-import net.minecraft.util.hit.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.context.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.pathfinder.*;
+import net.minecraft.world.level.storage.loot.*;
+import net.minecraft.world.level.storage.loot.parameters.*;
+import net.minecraft.world.phys.*;
+import net.minecraft.world.phys.shapes.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class BottomlessBundleBlock extends BlockWithEntity {
-
-	public static final MapCodec<BottomlessBundleBlock> CODEC = createCodec(BottomlessBundleBlock::new);
-	public static final IntProperty ROTATION = Properties.ROTATION;
-	public static final BooleanProperty LOCKED = Properties.LOCKED;
-	public static final int MAX_ROTATIONS = RotationPropertyHelper.getMax() + 1;
+public class BottomlessBundleBlock extends BaseEntityBlock {
 	
-	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 13.0D, 14.0D);
+	public static final MapCodec<BottomlessBundleBlock> CODEC = simpleCodec(BottomlessBundleBlock::new);
+	public static final IntegerProperty ROTATION = BlockStateProperties.ROTATION_16;
+	public static final BooleanProperty LOCKED = BlockStateProperties.LOCKED;
+	public static final int MAX_ROTATIONS = RotationSegment.getMaxSegmentIndex() + 1;
 	
-	public BottomlessBundleBlock(Settings settings) {
+	protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 13.0D, 14.0D);
+	
+	public BottomlessBundleBlock(Properties settings) {
 		super(settings);
-		setDefaultState(getDefaultState().with(LOCKED, false));
+		registerDefaultState(defaultBlockState().setValue(LOCKED, false));
 	}
 
 	@Override
-	protected MapCodec<? extends BlockWithEntity> getCodec() {
+	protected MapCodec<? extends BaseEntityBlock> codec() {
 		return CODEC;
 	}
 
 	@Override
-	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		return SHAPE;
 	}
 	
 	@Nullable
 	@Override
-	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new BottomlessBundleBlockEntity(pos, state);
 	}
 	
 	@Override
-	public BlockRenderType getRenderType(BlockState state) {
-		return BlockRenderType.INVISIBLE;
+	public RenderShape getRenderShape(BlockState state) {
+		return RenderShape.INVISIBLE;
 	}
 	
 	@Override
-	public boolean canPathfindThrough(BlockState state, NavigationType type) {
+	public boolean isPathfindable(BlockState state, PathComputationType type) {
 		return false;
 	}
 	
 	@Override
-	public ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-		if (!world.isClient) {
-			if (player.isSneaking()) {
+	public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+		if (!world.isClientSide) {
+			if (player.isShiftKeyDown()) {
 				world.getBlockEntity(pos, SpectrumBlockEntities.BOTTOMLESS_BUNDLE).ifPresent((bottomlessBundleBlockEntity) -> {
 					long amount = bottomlessBundleBlockEntity.storage.amount;
 					ItemVariant variant = bottomlessBundleBlockEntity.storage.getResource();
 					long maxStoredAmount = BottomlessBundleItem.getMaxStoredAmount(bottomlessBundleBlockEntity.powerLevel);
 					if (variant.isBlank()) {
-						player.sendMessage(Text.translatable("item.spectrum.bottomless_bundle.tooltip.empty"), true);
+						player.displayClientMessage(Component.translatable("item.spectrum.bottomless_bundle.tooltip.empty"), true);
 					} else {
-						player.sendMessage(Text.translatable("item.spectrum.bottomless_bundle.tooltip.count_of", amount, maxStoredAmount).append(variant.getItem().getName()), true);
+						player.displayClientMessage(Component.translatable("item.spectrum.bottomless_bundle.tooltip.count_of", amount, maxStoredAmount).append(variant.getItem().getDescription()), true);
 					}
 				});
 			} else {
@@ -89,104 +91,104 @@ public class BottomlessBundleBlock extends BlockWithEntity {
 					try (Transaction transaction = Transaction.openOuter()) {
 						if (storedVariant.matches(stack) || storedVariant.isBlank()) {
 							// insert
-							if (!stack.isEmpty() && stack.getItem().canBeNested()) {
+							if (!stack.isEmpty() && stack.getItem().canFitInsideContainerItems()) {
 								long inserted = storage.insert(ItemVariant.of(stack), stack.getCount(), transaction);
-								stack.decrement((int) inserted);
-								world.playSound(null, pos, SoundEvents.ITEM_BUNDLE_INSERT, SoundCategory.BLOCKS, 0.8F, 0.8F + world.getRandom().nextFloat() * 0.4F);
+								stack.shrink((int) inserted);
+								world.playSound(null, pos, SoundEvents.BUNDLE_INSERT, SoundSource.BLOCKS, 0.8F, 0.8F + world.getRandom().nextFloat() * 0.4F);
 							}
 						} else {
 							// extract
-							long extractedAmount = storage.extract(storedVariant, storedVariant.getItem().getMaxCount(), transaction);
-							player.getInventory().offerOrDrop(storedVariant.toStack((int) extractedAmount));
-							world.playSound(null, pos, SoundEvents.ITEM_BUNDLE_REMOVE_ONE, SoundCategory.BLOCKS, 0.8F, 0.8F + world.getRandom().nextFloat() * 0.4F);
+							long extractedAmount = storage.extract(storedVariant, storedVariant.getItem().getDefaultMaxStackSize(), transaction);
+							player.getInventory().placeItemBackInInventory(storedVariant.toStack((int) extractedAmount));
+							world.playSound(null, pos, SoundEvents.BUNDLE_REMOVE_ONE, SoundSource.BLOCKS, 0.8F, 0.8F + world.getRandom().nextFloat() * 0.4F);
 						}
 						transaction.commit();
 					}
 					
-					bottomlessBundleBlockEntity.markDirty();
+					bottomlessBundleBlockEntity.setChanged();
 				});
 			}
-			return ItemActionResult.CONSUME;
+			return ItemInteractionResult.CONSUME;
 		}
-		return ItemActionResult.SUCCESS;
+		return ItemInteractionResult.SUCCESS;
 	}
 	
 	@Override
-	public ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state) {
-		return SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem().getDefaultStack();
+	public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state) {
+		return SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem().getDefaultInstance();
 	}
 	
 	@Override
-	public List<ItemStack> getDroppedStacks(BlockState state, LootContextParameterSet.Builder builder) {
-		BlockEntity blockEntity = builder.get(LootContextParameters.BLOCK_ENTITY);
+	public List<ItemStack> getDrops(BlockState state, LootParams.Builder builder) {
+		BlockEntity blockEntity = builder.getParameter(LootContextParams.BLOCK_ENTITY);
 		if (blockEntity instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
 			return List.of(bottomlessBundleBlockEntity.retrieveBundle());
 		} else {
-			return super.getDroppedStacks(state, builder);
+			return super.getDrops(state, builder);
 		}
 	}
 	
 	@Override
-    public boolean hasComparatorOutput(BlockState state) {
+	public boolean hasAnalogOutputSignal(BlockState state) {
         return true;
     }
 	
 	@Override
-    public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
+	public int getAnalogOutputSignal(BlockState state, Level world, BlockPos pos) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
 			float curr = bottomlessBundleBlockEntity.storage.amount;
 			float max = bottomlessBundleBlockEntity.storage.getCapacity();
-			return MathHelper.floor(curr / max * 14.0f) + curr > 0 ? 1 : 0;
+			return Mth.floor(curr / max * 14.0f) + curr > 0 ? 1 : 0;
 		}
 		
 		return 0;
     }
 	
 	@Override
-	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-		if (!state.isOf(newState.getBlock())) {
+	public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean moved) {
+		if (!state.is(newState.getBlock())) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof BottomlessBundleBlockEntity) {
-				world.updateComparators(pos, this);
+				world.updateNeighbourForOutputSignal(pos, this);
 			}
-			super.onStateReplaced(state, world, pos, newState, moved);
+			super.onRemove(state, world, pos, newState, moved);
 		}
 	}
 	
-	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		return super.getPlacementState(ctx)
-				.with(ROTATION, RotationPropertyHelper.fromYaw(ctx.getPlayerYaw()))
-				.with(LOCKED, ctx.getStack().contains(DataComponentTypes.LOCK));
+	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+		return super.getStateForPlacement(ctx)
+				.setValue(ROTATION, RotationSegment.convertToSegment(ctx.getRotation()))
+				.setValue(LOCKED, ctx.getItemInHand().has(DataComponents.LOCK));
 	}
 	
-	protected BlockState rotate(BlockState state, BlockRotation rotation) {
-		return (BlockState)state.with(ROTATION, rotation.rotate((Integer)state.get(ROTATION), MAX_ROTATIONS));
+	protected BlockState rotate(BlockState state, Rotation rotation) {
+		return (BlockState) state.setValue(ROTATION, rotation.rotate((Integer) state.getValue(ROTATION), MAX_ROTATIONS));
 	}
 	
-	protected BlockState mirror(BlockState state, BlockMirror mirror) {
-		return (BlockState)state.with(ROTATION, mirror.mirror((Integer)state.get(ROTATION), MAX_ROTATIONS));
+	protected BlockState mirror(BlockState state, Mirror mirror) {
+		return (BlockState) state.setValue(ROTATION, mirror.mirror((Integer) state.getValue(ROTATION), MAX_ROTATIONS));
 	}
 	
 	@Override
-	public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
-		if (!world.isClient) {
+	public void setPlacedBy(Level world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
+		if (!world.isClientSide) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
-				bottomlessBundleBlockEntity.setBundle(itemStack.copy(), world.getRegistryManager());
-				world.updateComparators(pos, this);
+				bottomlessBundleBlockEntity.setBundle(itemStack.copy(), world.registryAccess());
+				world.updateNeighbourForOutputSignal(pos, this);
 			}
 		}
 	}
 	
 	@Override
-	public MutableText getName() {
-		return Text.translatable("item.spectrum.bottomless_bundle");
+	public MutableComponent getName() {
+		return Component.translatable("item.spectrum.bottomless_bundle");
 	}
 	
 	@Override
-	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-		super.appendProperties(builder);
-		builder.add(Properties.ROTATION, LOCKED);
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
+		builder.add(BlockStateProperties.ROTATION_16, LOCKED);
 	}
 }

@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.blocks.upgrade;
 
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.util.math.*;
+import net.minecraft.core.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
 
 public class UpgradeBlockEntity extends BlockEntity {
 	

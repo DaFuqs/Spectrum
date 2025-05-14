@@ -3,41 +3,41 @@ package de.dafuqs.spectrum.items.tools;
 import de.dafuqs.arrowhead.api.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.component.*;
-import net.minecraft.component.type.*;
-import net.minecraft.enchantment.*;
-import net.minecraft.item.*;
-import net.minecraft.registry.*;
-import net.minecraft.registry.tag.*;
+import net.minecraft.core.component.*;
+import net.minecraft.resources.*;
+import net.minecraft.tags.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.*;
+import net.minecraft.world.item.enchantment.*;
 
 import java.util.*;
 import java.util.function.*;
 
 public class MalachiteCrossbowItem extends CrossbowItem implements Preenchanted, ArrowheadCrossbow {
 	
-	public static final Predicate<ItemStack> PROJECTILES = (stack) -> stack.isIn(ItemTags.ARROWS) || stack.isIn(SpectrumItemTags.GLASS_ARROWS);
+	public static final Predicate<ItemStack> PROJECTILES = (stack) -> stack.is(ItemTags.ARROWS) || stack.is(SpectrumItemTags.GLASS_ARROWS);
 	
-	public MalachiteCrossbowItem(Settings settings) {
+	public MalachiteCrossbowItem(Properties settings) {
         super(settings);
     }
 	
 	@Override
-	public Map<RegistryKey<Enchantment>, Integer> getDefaultEnchantments() {
+	public Map<ResourceKey<Enchantment>, Integer> getDefaultEnchantments() {
 		return Map.of(Enchantments.PIERCING, 5);
 	}
 	
 	public static ItemStack getFirstProjectile(ItemStack crossbow) {
-		var projectiles = crossbow.getOrDefault(DataComponentTypes.CHARGED_PROJECTILES, ChargedProjectilesComponent.DEFAULT).getProjectiles();
+		var projectiles = crossbow.getOrDefault(DataComponents.CHARGED_PROJECTILES, ChargedProjectiles.EMPTY).getItems();
 		return projectiles.isEmpty() ? ItemStack.EMPTY : projectiles.getFirst();
 	}
 	
 	@Override
-	public boolean canRepair(ItemStack stack, ItemStack ingredient) {
-		return SpectrumToolMaterial.MALACHITE.getRepairIngredient().test(ingredient) || super.canRepair(stack, ingredient);
+	public boolean isValidRepairItem(ItemStack stack, ItemStack ingredient) {
+		return SpectrumToolMaterial.MALACHITE.getRepairIngredient().test(ingredient) || super.isValidRepairItem(stack, ingredient);
 	}
 	
 	@Override
-	public Predicate<ItemStack> getProjectiles() {
+	public Predicate<ItemStack> getAllSupportedProjectiles() {
 		return PROJECTILES;
 	}
 

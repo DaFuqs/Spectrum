@@ -1,33 +1,32 @@
 package de.dafuqs.spectrum.items;
 
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.world.item.*;
 
 import java.util.*;
 
 public class ItemWithTooltip extends Item {
-
-	private final List<MutableText> tooltipTexts = new ArrayList<>();
 	
-	public ItemWithTooltip(Settings settings, String tooltip) {
+	private final List<MutableComponent> tooltipTexts = new ArrayList<>();
+	
+	public ItemWithTooltip(Properties settings, String tooltip) {
 		super(settings);
-		this.tooltipTexts.add(Text.translatable(tooltip));
+		this.tooltipTexts.add(Component.translatable(tooltip));
 	}
 	
-	public ItemWithTooltip(Settings settings, String[] tooltips) {
+	public ItemWithTooltip(Properties settings, String[] tooltips) {
 		super(settings);
 		Arrays.stream(tooltips)
-				.map(Text::translatable)
+				.map(Component::translatable)
 				.forEach(tooltipTexts::add);
 	}
 
 	@Override
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
-		for (MutableText text : this.tooltipTexts) {
-			tooltip.add(text.formatted(Formatting.GRAY));
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
+		for (MutableComponent text : this.tooltipTexts) {
+			tooltip.add(text.withStyle(ChatFormatting.GRAY));
 		}
 	}
 }

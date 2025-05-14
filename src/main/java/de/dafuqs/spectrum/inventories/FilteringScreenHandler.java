@@ -3,44 +3,43 @@ package de.dafuqs.spectrum.inventories;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.inventories.slots.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.inventory.*;
-import net.minecraft.item.*;
-import net.minecraft.screen.*;
-import net.minecraft.screen.slot.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
 
 import java.util.function.*;
 
-public class FilteringScreenHandler extends ScreenHandler {
-
-	protected final World world;
+public class FilteringScreenHandler extends AbstractContainerMenu {
+	
+	protected final Level world;
 	protected FilterConfigurable.ExtendedData filterConfigurable;
-	protected final Inventory filterInventory;
+	protected final Container filterInventory;
 	protected final int rows, slotsPerRow, drawnSlots;
-
-	public FilteringScreenHandler(int syncId, PlayerInventory playerInventory, FilterConfigurable.ExtendedData data) {
+	
+	public FilteringScreenHandler(int syncId, Inventory playerInventory, FilterConfigurable.ExtendedData data) {
 		this(SpectrumScreenHandlerTypes.FILTERING, syncId, playerInventory,
-				(handler) -> new Pair<>(FilterConfigurable.getFilterInventoryFromItemsHandler(syncId, playerInventory, data.filterItems(), handler), new Integer[]{
+				(handler) -> new Tuple<>(FilterConfigurable.getFilterInventoryFromItemsHandler(syncId, playerInventory, data.filterItems(), handler), new Integer[]{
 						data.rows(),
 						data.slotsPerRow(),
 						data.drawnSlots()
 				}));
 		this.filterConfigurable = data;
 	}
-
-	protected FilteringScreenHandler(ScreenHandlerType<?> type, int syncId, PlayerInventory playerInventory, Function<ScreenHandler, Pair<Inventory, Integer[]>> filterInventoryFactory) {
+	
+	protected FilteringScreenHandler(MenuType<?> type, int syncId, Inventory playerInventory, Function<AbstractContainerMenu, Tuple<Container, Integer[]>> filterInventoryFactory) {
 		super(type, syncId);
-		this.world = playerInventory.player.getWorld();
+		this.world = playerInventory.player.level();
 		var pair = filterInventoryFactory.apply(this);
-		this.filterInventory = pair.getLeft();
-		var slotData = pair.getRight();
+		this.filterInventory = pair.getA();
+		var slotData = pair.getB();
 		rows = slotData[0];
 		slotsPerRow = slotData[1];
 		drawnSlots = slotData[2];
 		int nonObligatoryRows = rows - 1;
-		var slotCount = Math.min(filterInventory.size(), drawnSlots);
+		var slotCount = Math.min(filterInventory.getContainerSize(), drawnSlots);
 
 		// filter slots
 		slotDraw: {
@@ -75,34 +74,34 @@ public class FilteringScreenHandler extends ScreenHandler {
 	}
 
 	@Override
-	public boolean canUse(PlayerEntity player) {
+	public boolean stillValid(Player player) {
 		return true;
 	}
 
 	@Override
-	public ItemStack quickMove(PlayerEntity player, int index) {
+	public ItemStack quickMoveStack(Player player, int index) {
 		return ItemStack.EMPTY;
 	}
-
-	public Inventory getInventory() {
+	
+	public Container getInventory() {
 		return null;
 	}
 	
 	@Override
-	public void onClosed(PlayerEntity player) {
-		super.onClosed(player);
+	public void removed(Player player) {
+		super.removed(player);
 	}
 
 	protected class FilterSlot extends ShadowSlot {
-
-		public FilterSlot(Inventory inventory, int index, int x, int y) {
+		
+		public FilterSlot(Container inventory, int index, int x, int y) {
 			super(inventory, index, x, y);
 		}
 
 		@Override
-		public boolean onClicked(ItemStack heldStack, ClickType type, PlayerEntity player) {
-			if (!world.isClient && filterConfigurable != null) {
-				filterConfigurable.filterItems().set(getIndex(), ItemVariant.of(heldStack));
+		public boolean onClicked(ItemStack heldStack, ClickAction type, Player player) {
+			if (!world.isClientSide && filterConfigurable != null) {
+				filterConfigurable.filterItems().set(getContainerSlot(), ItemVariant.of(heldStack));
 			}
 			return super.onClicked(heldStack, type, player);
 		}

@@ -1,19 +1,20 @@
 package de.dafuqs.spectrum.blocks.lava_sponge;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.*;
 import net.fabricmc.api.*;
-import net.minecraft.block.*;
-import net.minecraft.particle.*;
-import net.minecraft.server.world.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.core.particles.*;
+import net.minecraft.server.level.*;
+import net.minecraft.util.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 
 public class WetLavaSpongeBlock extends WetSpongeBlock {
-
-	public static final MapCodec<WetLavaSpongeBlock> CODEC = createCodec(WetLavaSpongeBlock::new);
-
-	public WetLavaSpongeBlock(Settings settings) {
+	
+	public static final MapCodec<WetLavaSpongeBlock> CODEC = simpleCodec(WetLavaSpongeBlock::new);
+	
+	public WetLavaSpongeBlock(Properties settings) {
 		super(settings);
 	}
 
@@ -25,8 +26,8 @@ public class WetLavaSpongeBlock extends WetSpongeBlock {
 
 	// faster than fire (30+ 0-10)
 	// even more in the nether
-	private static int getRandomTickTime(World world) {
-		if (world.getDimension().ultrawarm()) {
+	private static int getRandomTickTime(Level world) {
+		if (world.dimensionType().ultraWarm()) {
 			return 10 + world.random.nextInt(5);
 		} else {
 			return 20 + world.random.nextInt(10);
@@ -34,34 +35,34 @@ public class WetLavaSpongeBlock extends WetSpongeBlock {
 	}
 	
 	@Override
-	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		world.scheduleBlockTick(pos, this, getRandomTickTime(world));
+	public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+		world.scheduleTick(pos, this, getRandomTickTime(world));
 		
-		if (world.getGameRules().getBoolean(GameRules.DO_FIRE_TICK)) {
+		if (world.getGameRules().getBoolean(GameRules.RULE_DOFIRETICK)) {
 			int xOffset = 2 - random.nextInt(5);
 			int yOffset = 1 - random.nextInt(3);
 			int zOffset = 2 - random.nextInt(5);
 			
-			BlockPos targetPos = pos.add(xOffset, yOffset, zOffset);
-			if (AbstractFireBlock.canPlaceAt(world, targetPos, Direction.UP)) {
-				world.setBlockState(targetPos, AbstractFireBlock.getState(world, targetPos));
+			BlockPos targetPos = pos.offset(xOffset, yOffset, zOffset);
+			if (BaseFireBlock.canBePlacedAt(world, targetPos, Direction.UP)) {
+				world.setBlockAndUpdate(targetPos, BaseFireBlock.getState(world, targetPos));
 			}
 		}
 	}
 	
 	@Override
-	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-		world.scheduleBlockTick(pos, this, getRandomTickTime(world));
+	public void onPlace(BlockState state, Level world, BlockPos pos, BlockState oldState, boolean notify) {
+		world.scheduleTick(pos, this, getRandomTickTime(world));
 	}
 	
 	@Override
 	@Environment(EnvType.CLIENT)
-	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-		Direction direction = Direction.random(random);
+	public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
+		Direction direction = Direction.getRandom(random);
 		if (direction != Direction.UP) {
-			BlockPos blockPos = pos.offset(direction);
+			BlockPos blockPos = pos.relative(direction);
 			BlockState blockState = world.getBlockState(blockPos);
-			if (!state.isOpaque() || !blockState.isSideSolidFullSquare(world, blockPos, direction.getOpposite())) {
+			if (!state.canOcclude() || !blockState.isFaceSturdy(world, blockPos, direction.getOpposite())) {
 				double d = pos.getX();
 				double e = pos.getY();
 				double f = pos.getZ();

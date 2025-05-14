@@ -7,18 +7,19 @@ import de.dafuqs.spectrum.recipe.spirit_instiller.dynamic.spawner_manipulation.*
 import de.dafuqs.spectrum.registries.*;
 import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.*;
-import net.minecraft.item.*;
-import net.minecraft.recipe.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
+
 import java.util.*;
 
 public class SpiritInstillingEmiRecipeGated extends GatedSpectrumEmiRecipe<SpiritInstillerRecipe> {
 	
-	public SpiritInstillingEmiRecipeGated(RecipeEntry<SpiritInstillerRecipe> entry) {
+	public SpiritInstillingEmiRecipeGated(RecipeHolder<SpiritInstillerRecipe> entry) {
 		super(SpectrumEmiRecipeCategories.SPIRIT_INSTILLER, entry, 116, 48);
 		inputs = recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getMatchingStacks().stream().map(EmiStack::of).toList())).toList();
 		
 		if (recipe instanceof SpawnerChangeRecipe spawnerChangeRecipe) {
-			ItemStack outputStack = recipe.getResult(getRegistryManager());
+			ItemStack outputStack = recipe.getResultItem(getRegistryManager());
 			LoreHelper.setLore(outputStack, spawnerChangeRecipe.getOutputLoreText());
 			outputs = List.of(EmiStack.of(outputStack));
 		}

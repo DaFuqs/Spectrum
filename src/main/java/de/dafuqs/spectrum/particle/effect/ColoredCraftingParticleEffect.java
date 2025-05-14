@@ -5,13 +5,13 @@ import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.*;
+import net.minecraft.core.particles.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.particle.*;
-import net.minecraft.util.dynamic.*;
+import net.minecraft.util.*;
 import org.joml.*;
 
-public class ColoredCraftingParticleEffect implements ParticleEffect {
+public class ColoredCraftingParticleEffect implements ParticleOptions {
 	
 	public static final ColoredCraftingParticleEffect BLACK = new ColoredCraftingParticleEffect(InkColors.BLACK_COLOR);
 	public static final ColoredCraftingParticleEffect BLUE = new ColoredCraftingParticleEffect(InkColors.BLUE_COLOR);
@@ -31,10 +31,10 @@ public class ColoredCraftingParticleEffect implements ParticleEffect {
 	public static final ColoredCraftingParticleEffect YELLOW = new ColoredCraftingParticleEffect(InkColors.YELLOW_COLOR);
 	
 	public static final MapCodec<ColoredCraftingParticleEffect> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
-			Codecs.VECTOR_3F.fieldOf("color").forGetter((effect) -> effect.color)
+			ExtraCodecs.VECTOR3F.fieldOf("color").forGetter((effect) -> effect.color)
 	).apply(instance, ColoredCraftingParticleEffect::new));
-	public static final PacketCodec<RegistryByteBuf, ColoredCraftingParticleEffect> PACKET_CODEC = PacketCodec.tuple(
-			PacketCodecs.VECTOR3F, (effect) -> effect.color,
+	public static final StreamCodec<RegistryFriendlyByteBuf, ColoredCraftingParticleEffect> PACKET_CODEC = StreamCodec.composite(
+			ByteBufCodecs.VECTOR3F, (effect) -> effect.color,
 			ColoredCraftingParticleEffect::new
 	);
 	
@@ -56,7 +56,7 @@ public class ColoredCraftingParticleEffect implements ParticleEffect {
 		return this.color;
 	}
 	
-	public static ParticleEffect of(int color) {
+	public static ParticleOptions of(int color) {
 		return new ColoredCraftingParticleEffect(color);
 	}
 	

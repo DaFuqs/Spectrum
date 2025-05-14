@@ -1,20 +1,20 @@
 package de.dafuqs.spectrum.mixin.client;
 
 import net.minecraft.client.*;
-import net.minecraft.client.resource.language.*;
+import net.minecraft.client.resources.language.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
 import java.util.*;
 
-@Mixin(TranslationStorage.class)
+@Mixin(ClientLanguage.class)
 public class TranslationStorageMixin {
 
     @Mutable
     @Shadow
     @Final
-    private Map<String, String> translations;
+	private Map<String, String> storage;
 
     @Inject(method = "<init>", at = @At("TAIL"))
     private void addTranslations(Map<String, String> translations, boolean rightToLeft, CallbackInfo ci) {
@@ -35,7 +35,7 @@ public class TranslationStorageMixin {
 		builder.put("item.spectrum.mermaids_gem", translations.get("item.spectrum.storm_stone"));
 		builder.put("item.spectrum.storm_stone", translations.get("item.spectrum.mermaids_gem"));
 		
-        this.translations = builder;
+		this.storage = builder;
     }
 	
 	@Unique
@@ -51,7 +51,7 @@ public class TranslationStorageMixin {
             add("Crystallarieium");
             add("Christalerium");
         }};
-        char c = MinecraftClient.getInstance().getSession().getUsername().toCharArray()[0];
+		char c = Minecraft.getInstance().getUser().getName().toCharArray()[0];
         return possibilities.get((int) c % possibilities.size());
     }
 

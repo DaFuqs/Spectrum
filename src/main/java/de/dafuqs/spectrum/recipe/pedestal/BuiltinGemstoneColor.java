@@ -4,11 +4,11 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.item.*;
-import net.minecraft.registry.*;
+import net.minecraft.core.*;
 import net.minecraft.util.*;
+import net.minecraft.world.item.*;
 
-public enum BuiltinGemstoneColor implements GemstoneColor, StringIdentifiable {
+public enum BuiltinGemstoneColor implements GemstoneColor, StringRepresentable {
 	CYAN("cyan", InkColors.CYAN_COLOR),
 	MAGENTA("magenta", InkColors.MAGENTA_COLOR),
 	YELLOW("yellow", InkColors.YELLOW_COLOR),
@@ -50,7 +50,7 @@ public enum BuiltinGemstoneColor implements GemstoneColor, StringIdentifiable {
 	}
 
 	@Override
-	public String asString() {
+	public String getSerializedName() {
 		return name();
 	}
 }

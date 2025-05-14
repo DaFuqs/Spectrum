@@ -3,45 +3,42 @@ package de.dafuqs.spectrum.recipe.crafting.dynamic;
 import de.dafuqs.spectrum.blocks.present.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.item.*;
-import net.minecraft.recipe.*;
-import net.minecraft.recipe.book.*;
-import net.minecraft.recipe.input.*;
-import net.minecraft.registry.*;
-import net.minecraft.registry.tag.*;
-import net.minecraft.util.collection.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.tags.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class WrapPresentRecipe extends SpecialCraftingRecipe {
+public class WrapPresentRecipe extends CustomRecipe {
 	
 	public WrapPresentRecipe() {
-		super(CraftingRecipeCategory.MISC);
+		super(CraftingBookCategory.MISC);
 	}
 	
 	@Override
-	public DefaultedList<Ingredient> getIngredients() {
-		DefaultedList<Ingredient> list = DefaultedList.ofSize(1, Ingredient.EMPTY);
-		list.set(0, Ingredient.ofStacks(SpectrumBlocks.PRESENT.asItem().getDefaultStack()));
+	public NonNullList<Ingredient> getIngredients() {
+		NonNullList<Ingredient> list = NonNullList.withSize(1, Ingredient.EMPTY);
+		list.set(0, Ingredient.of(SpectrumBlocks.PRESENT.asItem().getDefaultInstance()));
 		return list;
 	}
 	
 	@Override
-	public ItemStack getResult(RegistryWrapper.WrapperLookup registryLookup) {
-		ItemStack stack = SpectrumBlocks.PRESENT.asItem().getDefaultStack();
+	public ItemStack getResultItem(HolderLookup.Provider registryLookup) {
+		ItemStack stack = SpectrumBlocks.PRESENT.asItem().getDefaultInstance();
 		PresentBlockItem.wrap(stack, PresentBlock.WrappingPaper.RED, Map.of());
 		return stack;
 	}
 	
 	@Override
-	public boolean matches(@NotNull CraftingRecipeInput input, World world) {
+	public boolean matches(@NotNull CraftingInput input, Level world) {
 		boolean presentItemFound = false;
 		boolean wrappingItemFound = false;
 		
-		for (int j = 0; j < input.getSize(); ++j) {
-			ItemStack itemStack = input.getStackInSlot(j);
+		for (int j = 0; j < input.size(); ++j) {
+			ItemStack itemStack = input.getItem(j);
 			if (!itemStack.isEmpty()) {
 				if (itemStack.getItem() instanceof PresentBlockItem) {
 					if (presentItemFound || PresentBlockItem.isWrapped(itemStack)) {
@@ -60,13 +57,13 @@ public class WrapPresentRecipe extends SpecialCraftingRecipe {
 	}
 	
 	@Override
-	public ItemStack craft(@NotNull CraftingRecipeInput input, RegistryWrapper.WrapperLookup registryLookup) {
+	public ItemStack assemble(@NotNull CraftingInput input, HolderLookup.Provider registryLookup) {
 		ItemStack presentStack = ItemStack.EMPTY;
 		PresentBlock.WrappingPaper wrappingPaper = PresentBlock.WrappingPaper.RED;
 		Map<Integer, Integer> colors = new HashMap<>();
 		
-		for (int j = 0; j < input.getSize(); ++j) {
-			ItemStack stack = input.getStackInSlot(j);
+		for (int j = 0; j < input.size(); ++j) {
+			ItemStack stack = input.getItem(j);
 			if (stack.getItem() instanceof PresentBlockItem) {
 				presentStack = stack.copy();
 			} else if (stack.getItem() instanceof PigmentItem pigmentItem) {
@@ -103,7 +100,7 @@ public class WrapPresentRecipe extends SpecialCraftingRecipe {
 			return PresentBlock.WrappingPaper.PURPLE;
 		} else if (item == Items.CAKE) {
 			return PresentBlock.WrappingPaper.CAKE;
-		} else if (stack.isIn(ItemTags.FLOWERS)) {
+		} else if (stack.is(ItemTags.FLOWERS)) {
 			return PresentBlock.WrappingPaper.STRIPED;
 		} else if (item == Items.FIREWORK_STAR) {
 			return PresentBlock.WrappingPaper.STARRY;
@@ -116,7 +113,7 @@ public class WrapPresentRecipe extends SpecialCraftingRecipe {
 	}
 	
 	@Override
-	public boolean fits(int width, int height) {
+	public boolean canCraftInDimensions(int width, int height) {
 		return width * height >= 1;
 	}
 	

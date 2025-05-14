@@ -5,35 +5,35 @@ import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.server.world.*;
-import net.minecraft.state.*;
+import net.minecraft.core.*;
+import net.minecraft.server.level.*;
 import net.minecraft.util.*;
-import net.minecraft.util.hit.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.phys.*;
 
-public class SpiritVinesPlantBlock extends AbstractPlantBlock implements SpiritVine {
+public class SpiritVinesPlantBlock extends GrowingPlantBodyBlock implements SpiritVine {
 	
 	private final GemstoneColor gemstoneColor;
 	
-	public SpiritVinesPlantBlock(Settings settings, GemstoneColor gemstoneColor) {
+	public SpiritVinesPlantBlock(Properties settings, GemstoneColor gemstoneColor) {
 		super(settings, Direction.DOWN, SHAPE, false);
-		this.setDefaultState((this.stateManager.getDefaultState()).with(CRYSTALS, false));
+		this.registerDefaultState((this.stateDefinition.any()).setValue(CRYSTALS, false));
 		this.gemstoneColor = gemstoneColor;
 	}
 
 	@Override
-	public MapCodec<? extends SpiritVinesPlantBlock> getCodec() {
+	public MapCodec<? extends SpiritVinesPlantBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}
 	
 	@Override
-	protected AbstractPlantStemBlock getStem() {
+	protected GrowingPlantHeadBlock getHeadBlock() {
 		switch (gemstoneColor) {
 			case BuiltinGemstoneColor.CYAN -> {
 				return SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES;
@@ -57,33 +57,33 @@ public class SpiritVinesPlantBlock extends AbstractPlantBlock implements SpiritV
 	}
 	
 	@Override
-	protected BlockState copyState(BlockState from, BlockState to) {
-		return to.with(CRYSTALS, from.get(CRYSTALS));
+	protected BlockState updateHeadAfterConvertedFromBody(BlockState from, BlockState to) {
+		return to.setValue(CRYSTALS, from.getValue(CRYSTALS));
 	}
 	
 	@Override
 	@Environment(EnvType.CLIENT)
-	public ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state) {
+	public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state) {
 		return new ItemStack(SpiritVine.getYieldItem(state));
 	}
 	
 	@Override
-	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
 		return SpiritVine.pick(state, world, pos);
 	}
 	
 	@Override
-	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(CRYSTALS);
 	}
 	
 	@Override
-	public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
+	public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
 		return false;
 	}
 	
 	@Override
-	public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-		world.setBlockState(pos, state.with(CRYSTALS, false), 2);
+	public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
+		world.setBlock(pos, state.setValue(CRYSTALS, false), 2);
 	}
 }

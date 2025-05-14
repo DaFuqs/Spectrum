@@ -6,23 +6,25 @@ import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.registries.client.*;
 import it.unimi.dsi.fastutil.objects.*;
-import net.minecraft.block.*;
-import net.minecraft.item.*;
+import net.minecraft.resources.*;
 import net.minecraft.util.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 
 import java.util.*;
 
 public class ColoredLeavesBlock extends LeavesBlock implements RevelationAware, ColoredTree {
 
 	public static final MapCodec<ColoredLeavesBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-			createSettingsCodec(),
+			propertiesCodec(),
 			InkColor.CODEC.fieldOf("color").forGetter(ColoredLeavesBlock::getColor)
 	).apply(instance, ColoredLeavesBlock::new));
 	
 	private static final Map<InkColor, ColoredLeavesBlock> LEAVES = new Object2ObjectArrayMap<>();
 	protected final InkColor color;
 	
-	public ColoredLeavesBlock(Settings settings, InkColor color) {
+	public ColoredLeavesBlock(Properties settings, InkColor color) {
 		super(settings);
 		this.color = color;
 		LEAVES.put(color, this);
@@ -30,12 +32,12 @@ public class ColoredLeavesBlock extends LeavesBlock implements RevelationAware, 
 	}
 
 	@Override
-	public MapCodec<? extends ColoredLeavesBlock> getCodec() {
+	public MapCodec<? extends ColoredLeavesBlock> codec() {
 		return CODEC;
 	}
 	
 	@Override
-	public Identifier getCloakAdvancementIdentifier() {
+	public ResourceLocation getCloakAdvancementIdentifier() {
 		return ColoredTree.getTreeCloakAdvancementIdentifier(TreePart.LEAVES, this.color);
 	}
 	
@@ -43,18 +45,18 @@ public class ColoredLeavesBlock extends LeavesBlock implements RevelationAware, 
 	public Map<BlockState, BlockState> getBlockStateCloaks() {
 		Map<BlockState, BlockState> map = new Hashtable<>();
 		for (int distance = 1; distance < 8; distance++) {
-			map.put(this.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, false).with(WATERLOGGED, false), Blocks.OAK_LEAVES.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, false).with(WATERLOGGED, false));
-			map.put(this.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, false).with(WATERLOGGED, true), Blocks.OAK_LEAVES.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, false).with(WATERLOGGED, true));
+			map.put(this.defaultBlockState().setValue(LeavesBlock.DISTANCE, distance).setValue(LeavesBlock.PERSISTENT, false).setValue(WATERLOGGED, false), Blocks.OAK_LEAVES.defaultBlockState().setValue(LeavesBlock.DISTANCE, distance).setValue(LeavesBlock.PERSISTENT, false).setValue(WATERLOGGED, false));
+			map.put(this.defaultBlockState().setValue(LeavesBlock.DISTANCE, distance).setValue(LeavesBlock.PERSISTENT, false).setValue(WATERLOGGED, true), Blocks.OAK_LEAVES.defaultBlockState().setValue(LeavesBlock.DISTANCE, distance).setValue(LeavesBlock.PERSISTENT, false).setValue(WATERLOGGED, true));
 			
-			map.put(this.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, true).with(WATERLOGGED, false), Blocks.OAK_LEAVES.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, true).with(WATERLOGGED, false));
-			map.put(this.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, true).with(WATERLOGGED, true), Blocks.OAK_LEAVES.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, true).with(WATERLOGGED, true));
+			map.put(this.defaultBlockState().setValue(LeavesBlock.DISTANCE, distance).setValue(LeavesBlock.PERSISTENT, true).setValue(WATERLOGGED, false), Blocks.OAK_LEAVES.defaultBlockState().setValue(LeavesBlock.DISTANCE, distance).setValue(LeavesBlock.PERSISTENT, true).setValue(WATERLOGGED, false));
+			map.put(this.defaultBlockState().setValue(LeavesBlock.DISTANCE, distance).setValue(LeavesBlock.PERSISTENT, true).setValue(WATERLOGGED, true), Blocks.OAK_LEAVES.defaultBlockState().setValue(LeavesBlock.DISTANCE, distance).setValue(LeavesBlock.PERSISTENT, true).setValue(WATERLOGGED, true));
 		}
 		return map;
 	}
 	
 	@Override
-	public Pair<Item, Item> getItemCloak() {
-		return new Pair<>(this.asItem(), Blocks.OAK_LEAVES.asItem());
+	public Tuple<Item, Item> getItemCloak() {
+		return new Tuple<>(this.asItem(), Blocks.OAK_LEAVES.asItem());
 	}
 	
 	@Override

@@ -3,15 +3,15 @@ package de.dafuqs.spectrum.api.recipe;
 import com.mojang.datafixers.util.*;
 import com.mojang.serialization.*;
 import net.fabricmc.fabric.api.transfer.v1.fluid.*;
-import net.minecraft.fluid.*;
-import net.minecraft.item.*;
+import net.minecraft.core.*;
+import net.minecraft.core.registries.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.recipe.*;
-import net.minecraft.registry.*;
-import net.minecraft.registry.entry.*;
-import net.minecraft.registry.tag.*;
-import net.minecraft.util.*;
+import net.minecraft.resources.*;
+import net.minecraft.tags.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.material.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -21,24 +21,24 @@ import java.util.stream.*;
 public class FluidIngredient {
 	
 	public static final MapCodec<FluidIngredient> MAP_CODEC = Codec.mapEither(
-			Registries.FLUID.getCodec().fieldOf("fluid"),
-			Identifier.CODEC.fieldOf("tag")
+			BuiltInRegistries.FLUID.byNameCodec().fieldOf("fluid"),
+			ResourceLocation.CODEC.fieldOf("tag")
 	).xmap(FluidIngredient::new, c -> c.ingredient);
 	
 	public static final Codec<FluidIngredient> CODEC = Codec.withAlternative(
 			Codec.withAlternative(
-					Registries.FLUID.getCodec().xmap(FluidIngredient::of, ingredient -> ingredient.fluid().get()),
-					TagKey.codec(RegistryKeys.FLUID).xmap(FluidIngredient::of, ingredient -> ingredient.tag().get())
+					BuiltInRegistries.FLUID.byNameCodec().xmap(FluidIngredient::of, ingredient -> ingredient.fluid().get()),
+					TagKey.hashedCodec(Registries.FLUID).xmap(FluidIngredient::of, ingredient -> ingredient.tag().get())
 			),
 			MAP_CODEC.codec()
 	);
 	
-	public static final PacketCodec<RegistryByteBuf, FluidIngredient> PACKET_CODEC = PacketCodec.tuple(
-			PacketCodecs.either(PacketCodecs.registryValue(RegistryKeys.FLUID), Identifier.PACKET_CODEC), o -> o.ingredient,
+	public static final StreamCodec<RegistryFriendlyByteBuf, FluidIngredient> PACKET_CODEC = StreamCodec.composite(
+			ByteBufCodecs.either(ByteBufCodecs.registry(Registries.FLUID), ResourceLocation.STREAM_CODEC), o -> o.ingredient,
 			FluidIngredient::new
 	);
 	
-	private final Either<Fluid, Identifier> ingredient;
+	private final Either<Fluid, ResourceLocation> ingredient;
 	// Compare against EMPTY to check if empty.
 	// In order to represent an empty value, specifically use this field.
 	public static FluidIngredient EMPTY = new FluidIngredient(Either.left(Fluids.EMPTY));
@@ -50,7 +50,7 @@ public class FluidIngredient {
 	// Violation of either of those results in either an AssertionError or
 	// undefined behavior. As such, don't even allow creation of invalid obj.
 	// FluidIngredient objects with unknown/invalid tags are considered valid.
-	private FluidIngredient(Either<Fluid, Identifier> ingredient) {
+	private FluidIngredient(Either<Fluid, ResourceLocation> ingredient) {
 		this.ingredient = ingredient;
 	}
 	
@@ -70,10 +70,10 @@ public class FluidIngredient {
 	}
 	
 	public static FluidIngredient of(@NotNull TagKey<Fluid> tag) {
-		return new FluidIngredient(Either.right(tag.id()));
+		return new FluidIngredient(Either.right(tag.location()));
 	}
 	
-	public static FluidIngredient of(@NotNull Identifier tag) {
+	public static FluidIngredient of(@NotNull ResourceLocation tag) {
 		return new FluidIngredient(Either.right(tag));
 	}
 	
@@ -83,37 +83,37 @@ public class FluidIngredient {
 	
 	public Optional<TagKey<Fluid>> tag() {
 		return this.ingredient.right().flatMap(tag ->
-				Registries.FLUID.streamTags().filter(tagKey -> tagKey.id().equals(tag)).findFirst());
+				BuiltInRegistries.FLUID.getTagNames().filter(tagKey -> tagKey.location().equals(tag)).findFirst());
 	}
 	
 	public boolean isTag() {
 		return this.ingredient.right().isPresent();
 	}
 	
-	public Identifier id() {
-		return ingredient.map(Registries.FLUID::getId, tag -> tag);
+	public ResourceLocation id() {
+		return ingredient.map(BuiltInRegistries.FLUID::getKey, tag -> tag);
 	}
 	
 	// Vanilla-friendly compatibility method.
 	// Represents this FluidIngredient as bucket stack(s).
 	public @NotNull Ingredient into() {
 		return this.ingredient.map(
-				fluid -> fluid == Fluids.EMPTY ? Ingredient.EMPTY : Ingredient.ofStacks(fluid.getBucketItem().getDefaultStack()),
+				fluid -> fluid == Fluids.EMPTY ? Ingredient.EMPTY : Ingredient.of(fluid.getBucket().getDefaultInstance()),
 				tag -> {
 					// Handle custom fluid registries
 					// in the case of FluidIngredient objects created by other mods.
-					Registry<Fluid> registry = Registries.FLUID;
-					if (registry == null) return Ingredient.empty();
-					Optional<RegistryEntryList.Named<Fluid>> optional = registry.getEntryList(tag().get());
-					if (optional.isEmpty()) return Ingredient.empty();
-					RegistryEntryList.Named<Fluid> list = optional.get();
-					Stream<ItemStack> stacks = list.stream().map((entry) -> entry.value().getBucketItem().getDefaultStack());
-					return Ingredient.ofStacks(stacks);
+					Registry<Fluid> registry = BuiltInRegistries.FLUID;
+					if (registry == null) return Ingredient.of();
+					Optional<HolderSet.Named<Fluid>> optional = registry.getTag(tag().get());
+					if (optional.isEmpty()) return Ingredient.of();
+					HolderSet.Named<Fluid> list = optional.get();
+					Stream<ItemStack> stacks = list.stream().map((entry) -> entry.value().getBucket().getDefaultInstance());
+					return Ingredient.of(stacks);
 				});
 	}
 	
 	public boolean test(@NotNull Fluid fluid) {
-		return this.ingredient.map(fl -> fl == fluid, tag -> fluid.getDefaultState().isIn(tag().get()));
+		return this.ingredient.map(fl -> fl == fluid, tag -> fluid.defaultFluidState().is(tag().get()));
 	}
 	
 	public boolean test(@NotNull FluidVariant variant) {

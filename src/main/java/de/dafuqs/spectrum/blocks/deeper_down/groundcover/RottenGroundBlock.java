@@ -1,18 +1,19 @@
 package de.dafuqs.spectrum.blocks.deeper_down.groundcover;
 
 import com.mojang.serialization.*;
-import net.minecraft.block.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.shape.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.phys.shapes.*;
 
 public class RottenGroundBlock extends MudBlock {
-
-    public static final MapCodec<RottenGroundBlock> CODEC = createCodec(RottenGroundBlock::new);
 	
-	public static final VoxelShape SHAPE = Block.createCuboidShape(0, 0, 0, 16, 13, 16);
-
-    public RottenGroundBlock(Settings settings) {
+	public static final MapCodec<RottenGroundBlock> CODEC = simpleCodec(RottenGroundBlock::new);
+	
+	public static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 13, 16);
+	
+	public RottenGroundBlock(Properties settings) {
         super(settings);
     }
 
@@ -23,7 +24,7 @@ public class RottenGroundBlock extends MudBlock {
 //    }
     
     @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
     

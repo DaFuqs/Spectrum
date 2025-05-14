@@ -1,20 +1,20 @@
 package de.dafuqs.spectrum.mixin.accessors;
 
-import net.minecraft.entity.data.*;
-import net.minecraft.entity.projectile.*;
+import net.minecraft.network.syncher.*;
+import net.minecraft.world.entity.projectile.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.gen.*;
 
-@Mixin(TridentEntity.class)
+@Mixin(ThrownTrident.class)
 public interface TridentEntityAccessor {
 	
-	@Accessor("LOYALTY")
-	static TrackedData<Byte> spectrum$getLoyalty() {
+	@Accessor("ID_LOYALTY")
+	static EntityDataAccessor<Byte> spectrum$getLoyalty() {
 		return null;
 	}
 	
-	@Accessor("ENCHANTED")
-	static TrackedData<Boolean> spectrum$getEnchanted() {
+	@Accessor("ID_FOIL")
+	static EntityDataAccessor<Boolean> spectrum$getEnchanted() {
 		return null;
 	}
 	

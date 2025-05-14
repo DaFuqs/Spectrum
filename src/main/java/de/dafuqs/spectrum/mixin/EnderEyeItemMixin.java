@@ -2,11 +2,13 @@ package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.item.*;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import net.minecraft.core.*;
 import net.minecraft.world.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.context.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -14,37 +16,37 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 @Mixin(EnderEyeItem.class)
 public abstract class EnderEyeItemMixin {
 	
-	@Inject(method = "useOnBlock(Lnet/minecraft/item/ItemUsageContext;)Lnet/minecraft/util/ActionResult;", at = @At("HEAD"), cancellable = true)
-	public void useOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> callbackInfoReturnable) {
-		World world = context.getWorld();
-		BlockPos blockPos = context.getBlockPos();
+	@Inject(method = "useOn", at = @At("HEAD"), cancellable = true)
+	public void useOnBlock(UseOnContext context, CallbackInfoReturnable<InteractionResult> callbackInfoReturnable) {
+		Level world = context.getLevel();
+		BlockPos blockPos = context.getClickedPos();
 		BlockState blockState = world.getBlockState(blockPos);
 		boolean eyeAdded = false;
-		if (blockState.isOf(SpectrumBlocks.CRACKED_END_PORTAL_FRAME) && blockState.get(CrackedEndPortalFrameBlock.EYE_TYPE).equals(CrackedEndPortalFrameBlock.EndPortalFrameEye.NONE)) {
-			BlockState targetBlockState = blockState.with(CrackedEndPortalFrameBlock.EYE_TYPE, CrackedEndPortalFrameBlock.EndPortalFrameEye.WITH_EYE_OF_ENDER);
-			Block.pushEntitiesUpBeforeBlockChange(blockState, targetBlockState, world, blockPos);
-			world.setBlockState(blockPos, targetBlockState, 2);
-			world.updateComparators(blockPos, SpectrumBlocks.CRACKED_END_PORTAL_FRAME);
+		if (blockState.is(SpectrumBlocks.CRACKED_END_PORTAL_FRAME) && blockState.getValue(CrackedEndPortalFrameBlock.EYE_TYPE).equals(CrackedEndPortalFrameBlock.EndPortalFrameEye.NONE)) {
+			BlockState targetBlockState = blockState.setValue(CrackedEndPortalFrameBlock.EYE_TYPE, CrackedEndPortalFrameBlock.EndPortalFrameEye.WITH_EYE_OF_ENDER);
+			Block.pushEntitiesUp(blockState, targetBlockState, world, blockPos);
+			world.setBlock(blockPos, targetBlockState, 2);
+			world.updateNeighbourForOutputSignal(blockPos, SpectrumBlocks.CRACKED_END_PORTAL_FRAME);
 			eyeAdded = true;
-		} else if (blockState.isOf(Blocks.END_PORTAL_FRAME) && blockState.get(EndPortalFrameBlock.EYE).equals(false)) {
-			BlockState targetBlockState = blockState.with(EndPortalFrameBlock.EYE, true);
-			Block.pushEntitiesUpBeforeBlockChange(blockState, targetBlockState, world, blockPos);
-			world.setBlockState(blockPos, targetBlockState, 2);
-			world.updateComparators(blockPos, Blocks.END_PORTAL_FRAME);
+		} else if (blockState.is(Blocks.END_PORTAL_FRAME) && blockState.getValue(EndPortalFrameBlock.HAS_EYE).equals(false)) {
+			BlockState targetBlockState = blockState.setValue(EndPortalFrameBlock.HAS_EYE, true);
+			Block.pushEntitiesUp(blockState, targetBlockState, world, blockPos);
+			world.setBlock(blockPos, targetBlockState, 2);
+			world.updateNeighbourForOutputSignal(blockPos, Blocks.END_PORTAL_FRAME);
 			eyeAdded = true;
 		}
 		
 		if (eyeAdded) {
-			if (world.isClient) {
-				callbackInfoReturnable.setReturnValue(ActionResult.SUCCESS);
+			if (world.isClientSide) {
+				callbackInfoReturnable.setReturnValue(InteractionResult.SUCCESS);
 			} else {
-				context.getStack().decrement(1);
-				world.syncWorldEvent(WorldEvents.END_PORTAL_FRAME_FILLED, blockPos, 0);
+				context.getItemInHand().shrink(1);
+				world.levelEvent(LevelEvent.END_PORTAL_FRAME_FILL, blockPos, 0);
 				
 				// Search for a valid end portal position. Found => create portal!
 				CrackedEndPortalFrameBlock.checkAndFillEndPortal(world, blockPos);
 				
-				callbackInfoReturnable.setReturnValue(ActionResult.CONSUME);
+				callbackInfoReturnable.setReturnValue(InteractionResult.CONSUME);
 			}
 		}
 	}

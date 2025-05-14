@@ -3,28 +3,28 @@ package de.dafuqs.spectrum.entity.entity;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.entity.projectile.*;
-import net.minecraft.particle.*;
-import net.minecraft.sound.*;
-import net.minecraft.util.hit.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.core.particles.*;
+import net.minecraft.sounds.*;
+import net.minecraft.util.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.entity.projectile.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
-public abstract class MagicProjectileEntity extends ProjectileEntity {
+public abstract class MagicProjectileEntity extends Projectile {
 	
 	private static final double RAD_TO_DEG_CONSTANT = 180F / Math.PI;
 	
-	public MagicProjectileEntity(EntityType<? extends MagicProjectileEntity> type, World world) {
+	public MagicProjectileEntity(EntityType<? extends MagicProjectileEntity> type, Level world) {
         super(type, world);
     }
-
-	public MagicProjectileEntity(EntityType<? extends MagicProjectileEntity> type, double x, double y, double z, World world) {
+	
+	public MagicProjectileEntity(EntityType<? extends MagicProjectileEntity> type, double x, double y, double z, Level world) {
 		this(type, world);
-		this.refreshPositionAndAngles(x, y, z, this.getYaw(), this.getPitch());
-		this.refreshPosition();
+		this.moveTo(x, y, z, this.getYRot(), this.getXRot());
+		this.reapplyPosition();
 	}
 	
 	public abstract void spawnImpactParticles();
@@ -33,28 +33,28 @@ public abstract class MagicProjectileEntity extends ProjectileEntity {
 	public void tick() {
 		super.tick();
 		
-		if (this.age == 1 && getWorld().isClient()) {
+		if (this.tickCount == 1 && level().isClientSide()) {
 			MagicProjectileSoundInstance.startSoundInstance(this);
 		}
 
 		boolean noClip = this.isNoClip();
-		Vec3d thisVelocity = this.getVelocity();
-		if (this.prevPitch == 0.0F && this.prevYaw == 0.0F) {
-			double d = thisVelocity.horizontalLength();
-			this.setYaw((float) (MathHelper.atan2(thisVelocity.x, thisVelocity.z) * RAD_TO_DEG_CONSTANT));
-			this.setPitch((float) (MathHelper.atan2(thisVelocity.y, d) * RAD_TO_DEG_CONSTANT));
-			this.prevYaw = this.getYaw();
-			this.prevPitch = this.getPitch();
+		Vec3 thisVelocity = this.getDeltaMovement();
+		if (this.xRotO == 0.0F && this.yRotO == 0.0F) {
+			double d = thisVelocity.horizontalDistance();
+			this.setYRot((float) (Mth.atan2(thisVelocity.x, thisVelocity.z) * RAD_TO_DEG_CONSTANT));
+			this.setXRot((float) (Mth.atan2(thisVelocity.y, d) * RAD_TO_DEG_CONSTANT));
+			this.yRotO = this.getYRot();
+			this.xRotO = this.getXRot();
 		}
 
 		this.age();
-
-		Vec3d vec3d2;
-		Vec3d thisPos = this.getPos();
+		
+		Vec3 vec3d2;
+		Vec3 thisPos = this.position();
 		vec3d2 = thisPos.add(thisVelocity);
-		HitResult hitResult = this.getWorld().raycast(new RaycastContext(thisPos, vec3d2, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, this));
+		HitResult hitResult = this.level().clip(new ClipContext(thisPos, vec3d2, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this));
 		if ((hitResult).getType() != HitResult.Type.MISS) {
-			vec3d2 = (hitResult).getPos();
+			vec3d2 = (hitResult).getLocation();
 		}
 
 		if (!this.isRemoved()) {
@@ -66,18 +66,18 @@ public abstract class MagicProjectileEntity extends ProjectileEntity {
 			if (hitResult.getType() == HitResult.Type.ENTITY) {
 				Entity entity = ((EntityHitResult) hitResult).getEntity();
 				Entity entity2 = this.getOwner();
-				if (entity instanceof PlayerEntity && entity2 instanceof PlayerEntity && !((PlayerEntity) entity2).shouldDamagePlayer((PlayerEntity) entity)) {
+				if (entity instanceof Player && entity2 instanceof Player && !((Player) entity2).canHarmPlayer((Player) entity)) {
 					hitResult = null;
 				}
 			}
 
 			if (hitResult != null && !noClip) {
-				this.onCollision(hitResult);
-				this.velocityDirty = true;
+				this.onHit(hitResult);
+				this.hasImpulse = true;
 			}
 		}
-
-		thisVelocity = this.getVelocity();
+		
+		thisVelocity = this.getDeltaMovement();
 		double velocityX = thisVelocity.x;
 		double velocityY = thisVelocity.y;
 		double velocityZ = thisVelocity.z;
@@ -85,38 +85,38 @@ public abstract class MagicProjectileEntity extends ProjectileEntity {
 		double h = this.getX() + velocityX;
 		double j = this.getY() + velocityY;
 		double k = this.getZ() + velocityZ;
-		double l = thisVelocity.horizontalLength();
+		double l = thisVelocity.horizontalDistance();
 		if (noClip) {
-			this.setYaw((float) (MathHelper.atan2(-velocityX, -velocityZ) * RAD_TO_DEG_CONSTANT));
+			this.setYRot((float) (Mth.atan2(-velocityX, -velocityZ) * RAD_TO_DEG_CONSTANT));
 		} else {
-			this.setYaw((float) (MathHelper.atan2(velocityX, velocityZ) * RAD_TO_DEG_CONSTANT));
+			this.setYRot((float) (Mth.atan2(velocityX, velocityZ) * RAD_TO_DEG_CONSTANT));
 		}
 		
-		this.setPitch((float) (MathHelper.atan2(velocityY, l) * RAD_TO_DEG_CONSTANT));
-		this.setPitch(updateRotation(this.prevPitch, this.getPitch()));
-		this.setYaw(updateRotation(this.prevYaw, this.getYaw()));
-
-		if (this.isTouchingWater()) {
+		this.setXRot((float) (Mth.atan2(velocityY, l) * RAD_TO_DEG_CONSTANT));
+		this.setXRot(lerpRotation(this.xRotO, this.getXRot()));
+		this.setYRot(lerpRotation(this.yRotO, this.getYRot()));
+		
+		if (this.isInWater()) {
 			for (int o = 0; o < 4; ++o) {
-				this.getWorld().addParticle(ParticleTypes.BUBBLE, h - velocityX * 0.25D, j - velocityY * 0.25D, k - velocityZ * 0.25D, velocityX, velocityY, velocityZ);
+				this.level().addParticle(ParticleTypes.BUBBLE, h - velocityX * 0.25D, j - velocityY * 0.25D, k - velocityZ * 0.25D, velocityX, velocityY, velocityZ);
 			}
 		}
-
-		this.setPosition(h, j, k);
-		this.checkBlockCollision();
+		
+		this.setPos(h, j, k);
+		this.checkInsideBlocks();
 	}
 
 	protected void age() {
-		++this.age;
-		if (this.age >= 200) {
+		++this.tickCount;
+		if (this.tickCount >= 200) {
 			this.discard();
 		}
 
 	}
 
 	public boolean isNoClip() {
-		if (!this.getWorld().isClient()) {
-			return this.noClip;
+		if (!this.level().isClientSide()) {
+			return this.noPhysics;
 		} else {
 			return true;
 		}
@@ -127,8 +127,8 @@ public abstract class MagicProjectileEntity extends ProjectileEntity {
 	}
 
 	@Nullable
-	protected EntityHitResult getEntityCollision(Vec3d currentPosition, Vec3d nextPosition) {
-		return ProjectileUtil.getEntityCollision(this.getWorld(), this, currentPosition, nextPosition, this.getBoundingBox().stretch(this.getVelocity()).expand(1.0D), this::canHit);
+	protected EntityHitResult getEntityCollision(Vec3 currentPosition, Vec3 nextPosition) {
+		return ProjectileUtil.getEntityHitResult(this.level(), this, currentPosition, nextPosition, this.getBoundingBox().expandTowards(this.getDeltaMovement()).inflate(1.0D), this::canHitEntity);
 	}
 	
 	public abstract InkColor getInkColor();

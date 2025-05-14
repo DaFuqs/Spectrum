@@ -1,44 +1,44 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
-import com.mojang.serialization.MapCodec;
-import net.minecraft.block.*;
-import net.minecraft.item.*;
-import net.minecraft.server.world.*;
-import net.minecraft.state.*;
-import net.minecraft.state.property.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
+import com.mojang.serialization.*;
+import net.minecraft.core.*;
+import net.minecraft.server.level.*;
+import net.minecraft.util.*;
+import net.minecraft.world.item.context.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
 import org.jetbrains.annotations.*;
 
 public class RedstoneGravityBlock extends FallingBlock {
-
-	public static final MapCodec<RedstoneGravityBlock> CODEC = createCodec(RedstoneGravityBlock::new);
-
-	public static final BooleanProperty UNSTABLE = BooleanProperty.of("unstable");
-
-	public RedstoneGravityBlock(Settings settings) {
+	
+	public static final MapCodec<RedstoneGravityBlock> CODEC = simpleCodec(RedstoneGravityBlock::new);
+	
+	public static final BooleanProperty UNSTABLE = BooleanProperty.create("unstable");
+	
+	public RedstoneGravityBlock(Properties settings) {
 		super(settings);
-		setDefaultState(getStateManager().getDefaultState().with(UNSTABLE, false));
+		registerDefaultState(getStateDefinition().any().setValue(UNSTABLE, false));
 	}
 
 	@Override
-	public MapCodec<? extends RedstoneGravityBlock> getCodec() {
+	public MapCodec<? extends RedstoneGravityBlock> codec() {
 		return CODEC;
 	}
 	
 	@Override
-	protected void appendProperties(StateManager.Builder<Block, BlockState> stateManager) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateManager) {
 		stateManager.add(UNSTABLE);
 	}
 	
 	@Nullable
 	@Override
-	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		BlockState state = super.getPlacementState(ctx);
-		if (ctx.getWorld().getReceivedRedstonePower(ctx.getBlockPos()) > 0 && canFallThrough(ctx.getWorld().getBlockState(ctx.getBlockPos().down()))) {
-			state.with(UNSTABLE, true);
+	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+		BlockState state = super.getStateForPlacement(ctx);
+		if (ctx.getLevel().getBestNeighborSignal(ctx.getClickedPos()) > 0 && isFree(ctx.getLevel().getBlockState(ctx.getClickedPos().below()))) {
+			state.setValue(UNSTABLE, true);
 		} else {
-			state.with(UNSTABLE, false);
+			state.setValue(UNSTABLE, false);
 		}
 		return state;
 	}
@@ -48,13 +48,13 @@ public class RedstoneGravityBlock extends FallingBlock {
 	 * if redstone: set neighboring block to unstable
 	 */
 	@Override
-	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		if (state.get(UNSTABLE)) {
+	public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+		if (state.getValue(UNSTABLE)) {
 			propagate(world, pos);
-			world.setBlockState(pos, world.getBlockState(pos).with(UNSTABLE, false));
-			super.scheduledTick(state, world, pos, random); // fall, if not supported
-		} else if (world.getReceivedRedstonePower(pos) > 0) {
-			world.setBlockState(pos, world.getBlockState(pos).with(UNSTABLE, true));
+			world.setBlockAndUpdate(pos, world.getBlockState(pos).setValue(UNSTABLE, false));
+			super.tick(state, world, pos, random); // fall, if not supported
+		} else if (world.getBestNeighborSignal(pos) > 0) {
+			world.setBlockAndUpdate(pos, world.getBlockState(pos).setValue(UNSTABLE, true));
 			propagate(world, pos);
 		}
 	}
@@ -62,13 +62,13 @@ public class RedstoneGravityBlock extends FallingBlock {
 	/**
 	 * Set all RedstoneGravityBlocks next to it to unstable
 	 */
-	protected void propagate(ServerWorld world, BlockPos pos) {
+	protected void propagate(ServerLevel world, BlockPos pos) {
 		for (Direction dir : Direction.values()) {
-			BlockPos offsetPos = pos.offset(dir);
+			BlockPos offsetPos = pos.relative(dir);
 			BlockState offsetBlockState = world.getBlockState(offsetPos);
-			if (offsetBlockState.isOf(this) && !offsetBlockState.get(UNSTABLE) && canFallThrough(world.getBlockState(offsetPos.down()))) {
-				world.setBlockState(offsetPos, world.getBlockState(offsetPos).with(UNSTABLE, true));
-				world.scheduleBlockTick(pos, this, this.getFallDelay());
+			if (offsetBlockState.is(this) && !offsetBlockState.getValue(UNSTABLE) && isFree(world.getBlockState(offsetPos.below()))) {
+				world.setBlockAndUpdate(offsetPos, world.getBlockState(offsetPos).setValue(UNSTABLE, true));
+				world.scheduleTick(pos, this, this.getDelayAfterPlace());
 			}
 		}
 	}

@@ -7,28 +7,28 @@ import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.TextWidget.*;
 import dev.emi.emi.api.widget.*;
 import net.minecraft.client.*;
-import net.minecraft.recipe.*;
-import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.world.item.crafting.*;
 
 import java.util.*;
 
 public class FusionShrineEmiRecipeGated extends GatedSpectrumEmiRecipe<FusionShrineRecipe> {
-	private final List<OrderedText> texts;
+	private final List<FormattedCharSequence> texts;
 	
-	public FusionShrineEmiRecipeGated(RecipeEntry<FusionShrineRecipe> entry) {
+	public FusionShrineEmiRecipeGated(RecipeHolder<FusionShrineRecipe> entry) {
 		super(SpectrumEmiRecipeCategories.FUSION_SHRINE, entry, 138, 60);
-		MinecraftClient client = MinecraftClient.getInstance();
+		Minecraft client = Minecraft.getInstance();
 		if (recipe.getDescription().isPresent()) {
-			texts = client.textRenderer.wrapLines(recipe.getDescription().get(), width);
+			texts = client.font.split(recipe.getDescription().get(), width);
 		} else {
 			texts = List.of();
 		}
 		inputs = new ArrayList<>();
 		inputs.add(FluidIngredientEmi.into(recipe.getFluid()));
 		inputs.addAll(recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getMatchingStacks().stream().map(EmiStack::of).toList())).toList());
-		outputs = List.of(EmiStack.of(recipe.getResult(getRegistryManager())));
+		outputs = List.of(EmiStack.of(recipe.getResultItem(getRegistryManager())));
 	}
-
+	
 	@Override
 	public int getDisplayHeight() {
 		if (isUnlocked()) {
@@ -37,7 +37,7 @@ public class FusionShrineEmiRecipeGated extends GatedSpectrumEmiRecipe<FusionShr
 			return super.getDisplayHeight();
 		}
 	}
-
+	
 	@Override
 	public void addUnlockedWidgets(WidgetHolder widgets) {
 		// shrine + fluid
@@ -47,7 +47,7 @@ public class FusionShrineEmiRecipeGated extends GatedSpectrumEmiRecipe<FusionShr
 		} else {
 			widgets.addSlot(EmiStack.of(SpectrumBlocks.FUSION_SHRINE_BASALT), 20, 25).drawBack(false);
 		}
-
+		
 		// input slots
 		int startX = Math.max(-20, 20 - inputs.size() * 10);
 		for (int i = 1; i < inputs.size(); i++) {
@@ -57,11 +57,11 @@ public class FusionShrineEmiRecipeGated extends GatedSpectrumEmiRecipe<FusionShr
 		widgets.addSlot(outputs.getFirst(), 90, 20).large(true).recipeContext(this);
 		
 		widgets.addFillingArrow(60, 25, recipe.getCraftingTime() * 50);
-
+		
 		for (int i = 0; i < texts.size(); i++) {
 			widgets.addText(texts.get(i), 0, 50 + i * 10, 0x3f3f3f, false);
 		}
-
+		
 		widgets.addText(getCraftingTimeText(recipe.getCraftingTime(), recipe.getExperience()), width / 2, 50 + texts.size() * 10, 0x3f3f3f, false).horizontalAlign(Alignment.CENTER);
 	}
 }

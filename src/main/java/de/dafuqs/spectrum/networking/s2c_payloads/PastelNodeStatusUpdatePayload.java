@@ -7,45 +7,45 @@ import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.fabricmc.fabric.api.networking.v1.*;
 import net.minecraft.client.*;
+import net.minecraft.core.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.network.packet.*;
-import net.minecraft.server.network.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.network.protocol.common.custom.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.level.*;
 
 import java.util.*;
 
-public record PastelNodeStatusUpdatePayload(boolean longSpin, Map<BlockPos, Integer> spinTimes) implements CustomPayload {
+public record PastelNodeStatusUpdatePayload(boolean longSpin, Map<BlockPos, Integer> spinTimes) implements CustomPacketPayload {
 	
-	public static final Id<PastelNodeStatusUpdatePayload> ID = SpectrumC2SPackets.makeId("pastel_node_status_update");
-	public static final PacketCodec<PacketByteBuf, PastelNodeStatusUpdatePayload> CODEC = PacketCodec.tuple(
-			PacketCodecs.BOOL, PastelNodeStatusUpdatePayload::longSpin,
-			PacketCodecs.map(Object2IntArrayMap::new, BlockPos.PACKET_CODEC, PacketCodecs.INTEGER), PastelNodeStatusUpdatePayload::spinTimes,
+	public static final Type<PastelNodeStatusUpdatePayload> ID = SpectrumC2SPackets.makeId("pastel_node_status_update");
+	public static final StreamCodec<FriendlyByteBuf, PastelNodeStatusUpdatePayload> CODEC = StreamCodec.composite(
+			ByteBufCodecs.BOOL, PastelNodeStatusUpdatePayload::longSpin,
+			ByteBufCodecs.map(Object2IntArrayMap::new, BlockPos.STREAM_CODEC, ByteBufCodecs.INT), PastelNodeStatusUpdatePayload::spinTimes,
 			PastelNodeStatusUpdatePayload::new
 	);
 	
 	public static void sendPastelNodeStatusUpdate(List<PastelNodeBlockEntity> nodes, boolean longSpin) {
 		Map<BlockPos, Integer> spinTimes = new Object2IntArrayMap<>();
 		for (PastelNodeBlockEntity node : nodes) {
-			World world = node.getWorld();
+			Level world = node.getLevel();
 			if (world == null)
 				continue;
 			
 			int time = longSpin ? 24 + world.getRandom().nextInt(11) : 10 + world.getRandom().nextInt(11);
-			spinTimes.put(node.getPos(), time);
+			spinTimes.put(node.getBlockPos(), time);
 		}
 		
-		for (ServerPlayerEntity player : PlayerLookup.tracking(nodes.getFirst())) {
+		for (ServerPlayer player : PlayerLookup.tracking(nodes.getFirst())) {
 			ServerPlayNetworking.send(player, new PastelNodeStatusUpdatePayload(longSpin, spinTimes));
 		}
 	}
 	
 	@Environment(EnvType.CLIENT)
 	public static void execute(PastelNodeStatusUpdatePayload payload, ClientPlayNetworking.Context context) {
-		MinecraftClient client = context.client();
+		Minecraft client = context.client();
 		for (Map.Entry<BlockPos, Integer> e : payload.spinTimes.entrySet()) {
-			var entity = client.world.getBlockEntity(e.getKey());
+			var entity = client.level.getBlockEntity(e.getKey());
 			if (!(entity instanceof PastelNodeBlockEntity node))
 				continue;
 			
@@ -58,7 +58,7 @@ public record PastelNodeStatusUpdatePayload(boolean longSpin, Map<BlockPos, Inte
 	}
 	
 	@Override
-	public Id<? extends CustomPayload> getId() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

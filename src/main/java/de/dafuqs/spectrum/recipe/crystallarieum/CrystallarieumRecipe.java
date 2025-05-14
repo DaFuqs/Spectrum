@@ -1,7 +1,5 @@
 package de.dafuqs.spectrum.recipe.crystallarieum;
 
-import java.util.*;
-
 import com.google.common.collect.*;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
@@ -11,23 +9,23 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.transfer.v1.fluid.*;
-import net.minecraft.block.*;
-import net.minecraft.item.*;
+import net.minecraft.core.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.recipe.*;
-import net.minecraft.recipe.input.*;
-import net.minecraft.registry.*;
-import net.minecraft.util.*;
-import net.minecraft.util.collection.*;
-import net.minecraft.world.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.state.*;
 import org.jetbrains.annotations.*;
 
-public class CrystallarieumRecipe extends GatedSpectrumRecipe<SingleStackRecipeInput> {
+import java.util.*;
+
+public class CrystallarieumRecipe extends GatedSpectrumRecipe<SingleRecipeInput> {
 	
-	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/crystallarieum");
+	public static final ResourceLocation UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/crystallarieum");
 	
-	protected final static Map<BlockState, RecipeEntry<CrystallarieumRecipe>> STATE_CACHE = new HashMap<>();
+	protected final static Map<BlockState, RecipeHolder<CrystallarieumRecipe>> STATE_CACHE = new HashMap<>();
 	protected static final FluidVariant LIQUID_CRYSTAL = FluidVariant.of(SpectrumFluids.LIQUID_CRYSTAL);
 	
 	protected final Ingredient ingredient;
@@ -40,7 +38,7 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe<SingleStackRecipeI
 	protected final FluidVariant medium;
 	protected final List<ItemStack> additionalResults; // these aren't actual results, but recipe managers will treat it as such, showing this recipe as a way to get them. Use for drops of the growth blocks, for example
 	
-	public CrystallarieumRecipe(String group, boolean secret, Optional<Identifier> requiredAdvancementIdentifier, Ingredient ingredient, List<BlockState> growthStages, int secondsPerGrowthStage, InkColor inkColor, int inkPerSecond, boolean growsWithoutCatalyst, List<CrystallarieumCatalyst> catalysts, FluidVariant medium, List<ItemStack> additionalResults) {
+	public CrystallarieumRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier, Ingredient ingredient, List<BlockState> growthStages, int secondsPerGrowthStage, InkColor inkColor, int inkPerSecond, boolean growsWithoutCatalyst, List<CrystallarieumCatalyst> catalysts, FluidVariant medium, List<ItemStack> additionalResults) {
 		super(group, secret, requiredAdvancementIdentifier);
 		
 		this.ingredient = ingredient;
@@ -57,9 +55,9 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe<SingleStackRecipeI
 	}
 	
 	@Nullable
-	public static RecipeEntry<CrystallarieumRecipe> getRecipeForState(World world, BlockState state) {
+	public static RecipeHolder<CrystallarieumRecipe> getRecipeForState(Level world, BlockState state) {
 		return STATE_CACHE.computeIfAbsent(state, s -> {
-			var recipes = world.getRecipeManager().listAllOfType(SpectrumRecipeTypes.CRYSTALLARIEUM);
+			var recipes = world.getRecipeManager().getAllRecipesFor(SpectrumRecipeTypes.CRYSTALLARIEUM);
 			for (var recipe : recipes) {
 				if (recipe.value().growthStages.contains(s))
 					return recipe;
@@ -69,29 +67,29 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe<SingleStackRecipeI
 	}
 	
 	@Override
-	public boolean matches(SingleStackRecipeInput input, World world) {
-		return ingredient.test(input.getStackInSlot(0));
+	public boolean matches(SingleRecipeInput input, Level world) {
+		return ingredient.test(input.getItem(0));
 	}
 	
 	@Override
 	@Deprecated
-	public ItemStack craft(SingleStackRecipeInput inv, RegistryWrapper.WrapperLookup registryLookup) {
+	public ItemStack assemble(SingleRecipeInput inv, HolderLookup.Provider registryLookup) {
 		return ItemStack.EMPTY;
 	}
 	
 	@Override
-	public boolean fits(int width, int height) {
+	public boolean canCraftInDimensions(int width, int height) {
 		return true;
 	}
 	
 	@Override
-	public ItemStack getResult(RegistryWrapper.WrapperLookup registryLookup) {
+	public ItemStack getResultItem(HolderLookup.Provider registryLookup) {
 		List<BlockState> states = getGrowthStages();
-		return states.getLast().getBlock().asItem().getDefaultStack();
+		return states.getLast().getBlock().asItem().getDefaultInstance();
 	}
 	
 	@Override
-	public ItemStack createIcon() {
+	public ItemStack getToastSymbol() {
 		return new ItemStack(SpectrumBlocks.CRYSTALLARIEUM);
 	}
 	
@@ -106,7 +104,7 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe<SingleStackRecipeI
 	}
 	
 	@Override
-	public Identifier getRecipeTypeUnlockIdentifier() {
+	public ResourceLocation getRecipeTypeUnlockIdentifier() {
 		return UNLOCK_IDENTIFIER;
 	}
 	
@@ -116,8 +114,8 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe<SingleStackRecipeI
 	}
 	
 	@Override
-	public DefaultedList<Ingredient> getIngredients() {
-		DefaultedList<Ingredient> defaultedList = DefaultedList.of();
+	public NonNullList<Ingredient> getIngredients() {
+		NonNullList<Ingredient> defaultedList = NonNullList.create();
 		defaultedList.add(ingredient);
 		return defaultedList;
 	}
@@ -167,7 +165,7 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe<SingleStackRecipeI
 		return additionalResults;
 	}
 	
-	public Optional<BlockState> getNextState(RecipeEntry<CrystallarieumRecipe> recipe, BlockState currentState) {
+	public Optional<BlockState> getNextState(RecipeHolder<CrystallarieumRecipe> recipe, BlockState currentState) {
 		for (Iterator<BlockState> it = recipe.value().getGrowthStages().iterator(); it.hasNext(); ) {
 			BlockState state = it.next();
 			if (state.equals(currentState)) {
@@ -184,8 +182,8 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe<SingleStackRecipeI
 		private static final MapCodec<CrystallarieumRecipe> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
 				Codec.STRING.optionalFieldOf("group", "").forGetter(recipe -> recipe.group),
 				Codec.BOOL.optionalFieldOf("secret", false).forGetter(recipe -> recipe.secret),
-				Identifier.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancementIdentifier),
-				Ingredient.DISALLOW_EMPTY_CODEC.fieldOf("ingredient").forGetter(recipe -> recipe.ingredient),
+				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancementIdentifier),
+				Ingredient.CODEC_NONEMPTY.fieldOf("ingredient").forGetter(recipe -> recipe.ingredient),
 				BlockState.CODEC.listOf().fieldOf("growth_stage_states").forGetter(recipe -> recipe.growthStages),
 				Codec.INT.fieldOf("seconds_per_growth_stage").forGetter(recipe -> recipe.secondsPerGrowthStage),
 				InkColor.CODEC.fieldOf("ink_color").forGetter(recipe -> recipe.inkColor),
@@ -199,19 +197,19 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe<SingleStackRecipeI
 				ItemStack.CODEC.listOf().optionalFieldOf("additional_recipe_manager_results", ImmutableList.of()).forGetter(recipe -> recipe.additionalResults)
 		).apply(i, CrystallarieumRecipe::new));
 		
-		private static final PacketCodec<RegistryByteBuf, CrystallarieumRecipe> PACKET_CODEC = PacketCodecHelper.tuple(
-				PacketCodecs.STRING, recipe -> recipe.group,
-				PacketCodecs.BOOL, recipe -> recipe.secret,
-				PacketCodecs.optional(Identifier.PACKET_CODEC), recipe -> recipe.requiredAdvancementIdentifier,
-				Ingredient.PACKET_CODEC, recipe -> recipe.ingredient,
-				PacketCodecHelper.BLOCK_STATE.collect(PacketCodecs.toList()), recipe -> recipe.growthStages,
-				PacketCodecs.VAR_INT, recipe -> recipe.secondsPerGrowthStage,
+		private static final StreamCodec<RegistryFriendlyByteBuf, CrystallarieumRecipe> PACKET_CODEC = PacketCodecHelper.tuple(
+				ByteBufCodecs.STRING_UTF8, recipe -> recipe.group,
+				ByteBufCodecs.BOOL, recipe -> recipe.secret,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.requiredAdvancementIdentifier,
+				Ingredient.CONTENTS_STREAM_CODEC, recipe -> recipe.ingredient,
+				PacketCodecHelper.BLOCK_STATE.apply(ByteBufCodecs.list()), recipe -> recipe.growthStages,
+				ByteBufCodecs.VAR_INT, recipe -> recipe.secondsPerGrowthStage,
 				InkColor.PACKET_CODEC, recipe -> recipe.inkColor,
-				PacketCodecs.VAR_INT, recipe -> recipe.inkPerSecond,
-				PacketCodecs.BOOL, recipe -> recipe.growsWithoutCatalyst,
-				CrystallarieumCatalyst.PACKET_CODEC.collect(PacketCodecs.toList()), recipe -> recipe.catalysts,
+				ByteBufCodecs.VAR_INT, recipe -> recipe.inkPerSecond,
+				ByteBufCodecs.BOOL, recipe -> recipe.growsWithoutCatalyst,
+				CrystallarieumCatalyst.PACKET_CODEC.apply(ByteBufCodecs.list()), recipe -> recipe.catalysts,
 				FluidVariant.PACKET_CODEC, recipe -> recipe.medium,
-				ItemStack.PACKET_CODEC.collect(PacketCodecs.toList()), recipe -> recipe.additionalResults,
+				ItemStack.STREAM_CODEC.apply(ByteBufCodecs.list()), recipe -> recipe.additionalResults,
 				CrystallarieumRecipe::new
 		);
 		
@@ -221,7 +219,7 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe<SingleStackRecipeI
 		}
 		
 		@Override
-		public PacketCodec<RegistryByteBuf, CrystallarieumRecipe> packetCodec() {
+		public StreamCodec<RegistryFriendlyByteBuf, CrystallarieumRecipe> streamCodec() {
 			return PACKET_CODEC;
 		}
 	}

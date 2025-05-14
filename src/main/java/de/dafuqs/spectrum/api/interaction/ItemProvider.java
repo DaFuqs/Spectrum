@@ -1,12 +1,12 @@
 package de.dafuqs.spectrum.api.interaction;
 
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
 
 public interface ItemProvider {
 	
-	int getItemCount(PlayerEntity player, ItemStack stack, Item requestedItem);
+	int getItemCount(Player player, ItemStack stack, Item requestedItem);
 	
-	int provideItems(PlayerEntity player, ItemStack stack, Item requestedItem, int amount);
+	int provideItems(Player player, ItemStack stack, Item requestedItem, int amount);
 	
 }

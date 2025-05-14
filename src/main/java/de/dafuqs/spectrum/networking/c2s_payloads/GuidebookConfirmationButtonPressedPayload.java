@@ -5,25 +5,25 @@ import de.dafuqs.spectrum.progression.*;
 import net.fabricmc.fabric.api.networking.v1.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.network.packet.*;
-import net.minecraft.server.network.*;
-import net.minecraft.sound.*;
+import net.minecraft.network.protocol.common.custom.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
 
-public record GuidebookConfirmationButtonPressedPayload(String confirmationString) implements CustomPayload {
+public record GuidebookConfirmationButtonPressedPayload(String confirmationString) implements CustomPacketPayload {
 	
-	public static final Id<GuidebookConfirmationButtonPressedPayload> ID = SpectrumC2SPackets.makeId("confirmation_button_pressed");
-	public static final PacketCodec<PacketByteBuf, GuidebookConfirmationButtonPressedPayload> CODEC = PacketCodec.tuple(PacketCodecs.STRING, GuidebookConfirmationButtonPressedPayload::confirmationString, GuidebookConfirmationButtonPressedPayload::new);
+	public static final Type<GuidebookConfirmationButtonPressedPayload> ID = SpectrumC2SPackets.makeId("confirmation_button_pressed");
+	public static final StreamCodec<FriendlyByteBuf, GuidebookConfirmationButtonPressedPayload> CODEC = StreamCodec.composite(ByteBufCodecs.STRING_UTF8, GuidebookConfirmationButtonPressedPayload::confirmationString, GuidebookConfirmationButtonPressedPayload::new);
 	
 	@Override
-	public Id<? extends CustomPayload> getId() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 	
 	public static ServerPlayNetworking.PlayPayloadHandler<GuidebookConfirmationButtonPressedPayload> getPayloadHandler() {
 		return (payload, context) -> {
-			ServerPlayerEntity player = context.player();
+			ServerPlayer player = context.player();
 			SpectrumAdvancementCriteria.CONFIRMATION_BUTTON_PRESSED.trigger(player, payload.confirmationString);
-			player.getWorld().playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.UI_BUTTON_CLICK.value(), SoundCategory.PLAYERS, 1.0F, 1.0F);
+			player.level().playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.UI_BUTTON_CLICK.value(), SoundSource.PLAYERS, 1.0F, 1.0F);
 		};
 		
 	}

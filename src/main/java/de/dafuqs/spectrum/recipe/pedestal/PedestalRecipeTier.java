@@ -6,27 +6,28 @@ import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import io.netty.buffer.*;
-import net.minecraft.entity.player.*;
+import net.minecraft.network.chat.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.text.*;
+import net.minecraft.resources.*;
 import net.minecraft.util.*;
+import net.minecraft.world.entity.player.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public enum PedestalRecipeTier implements StringIdentifiable {
+public enum PedestalRecipeTier implements StringRepresentable {
 	BASIC(SpectrumAdvancements.PLACED_PEDESTAL, new GemstoneColor[]{BuiltinGemstoneColor.CYAN, BuiltinGemstoneColor.MAGENTA, BuiltinGemstoneColor.YELLOW}),
 	SIMPLE(SpectrumAdvancements.BUILD_BASIC_PEDESTAL_STRUCTURE, new GemstoneColor[]{BuiltinGemstoneColor.CYAN, BuiltinGemstoneColor.MAGENTA, BuiltinGemstoneColor.YELLOW}),
 	ADVANCED(SpectrumAdvancements.BUILD_ADVANCED_PEDESTAL_STRUCTURE, new GemstoneColor[]{BuiltinGemstoneColor.CYAN, BuiltinGemstoneColor.MAGENTA, BuiltinGemstoneColor.YELLOW, BuiltinGemstoneColor.BLACK}),
 	COMPLEX(SpectrumAdvancements.BUILD_COMPLEX_PEDESTAL_STRUCTURE, BuiltinGemstoneColor.values());
 	
-	private final Identifier unlockAdvancementId;
+	private final ResourceLocation unlockAdvancementId;
 	private final GemstoneColor[] gemstoneColors;
 	
-	public static final Codec<PedestalRecipeTier> CODEC = StringIdentifiable.createCodec(PedestalRecipeTier::values);
-	public static final PacketCodec<ByteBuf, PedestalRecipeTier> PACKET_CODEC = PacketCodecHelper.enumOf(PedestalRecipeTier::values);
+	public static final Codec<PedestalRecipeTier> CODEC = StringRepresentable.fromEnum(PedestalRecipeTier::values);
+	public static final StreamCodec<ByteBuf, PedestalRecipeTier> PACKET_CODEC = PacketCodecHelper.enumOf(PedestalRecipeTier::values);
 	
-	PedestalRecipeTier(Identifier unlockAdvancementId, GemstoneColor[] gemstoneColors) {
+	PedestalRecipeTier(ResourceLocation unlockAdvancementId, GemstoneColor[] gemstoneColors) {
 		this.unlockAdvancementId = unlockAdvancementId;
 		this.gemstoneColors = gemstoneColors;
 	}
@@ -42,7 +43,7 @@ public enum PedestalRecipeTier implements StringIdentifiable {
 	}
 	
 	@Contract(pure = true)
-	public static Optional<PedestalRecipeTier> getHighestUnlockedRecipeTier(PlayerEntity playerEntity) {
+	public static Optional<PedestalRecipeTier> getHighestUnlockedRecipeTier(Player playerEntity) {
 		if (AdvancementHelper.hasAdvancement(playerEntity, COMPLEX.unlockAdvancementId)) {
 			return Optional.of(PedestalRecipeTier.COMPLEX);
 		} else if (AdvancementHelper.hasAdvancement(playerEntity, ADVANCED.unlockAdvancementId)) {
@@ -55,11 +56,11 @@ public enum PedestalRecipeTier implements StringIdentifiable {
 		return Optional.empty();
 	}
 	
-	public boolean hasUnlocked(PlayerEntity playerEntity) {
+	public boolean hasUnlocked(Player playerEntity) {
 		return AdvancementHelper.hasAdvancement(playerEntity, unlockAdvancementId);
 	}
 	
-	public static Optional<PedestalRecipeTier> hasJustUnlockedANewRecipeTier(@NotNull Identifier advancementIdentifier) {
+	public static Optional<PedestalRecipeTier> hasJustUnlockedANewRecipeTier(@NotNull ResourceLocation advancementIdentifier) {
 		if (advancementIdentifier.equals(BASIC.unlockAdvancementId)) {
 			return Optional.of(PedestalRecipeTier.BASIC);
 		} else if (advancementIdentifier.equals(SIMPLE.unlockAdvancementId)) {
@@ -74,7 +75,7 @@ public enum PedestalRecipeTier implements StringIdentifiable {
 	
 	
 	@Contract(pure = true)
-	public @Nullable Identifier getStructureID(PlayerEntity player) {
+	public @Nullable ResourceLocation getStructureID(Player player) {
 		switch (this) {
 			case COMPLEX -> {
 				if (AdvancementHelper.hasAdvancement(player, SpectrumAdvancements.BUILD_COMPLEX_PEDESTAL_STRUCTURE_WITHOUT_MOONSTONE)) {
@@ -95,7 +96,7 @@ public enum PedestalRecipeTier implements StringIdentifiable {
 		}
 	}
 	
-	public @Nullable Text getStructureText() {
+	public @Nullable Component getStructureText() {
 		switch (this) {
 			case COMPLEX -> {
 				return SpectrumMultiblocks.PEDESTAL_COMPLEX_TEXT;
@@ -113,7 +114,7 @@ public enum PedestalRecipeTier implements StringIdentifiable {
 	}
 	
 	@Override
-	public String asString() {
+	public String getSerializedName() {
 		return name().toLowerCase();
 	}
 }

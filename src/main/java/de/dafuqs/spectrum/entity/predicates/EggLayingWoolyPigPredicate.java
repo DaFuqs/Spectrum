@@ -1,15 +1,14 @@
 package de.dafuqs.spectrum.entity.predicates;
 
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.mojang.serialization.*;
+import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.entity.*;
-import net.minecraft.entity.*;
-import net.minecraft.predicate.entity.*;
-import net.minecraft.server.world.*;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import net.minecraft.advancements.critereon.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -23,7 +22,7 @@ public record EggLayingWoolyPigPredicate(Optional<DyeColor> color, Optional<Bool
 	).apply(instance, EggLayingWoolyPigPredicate::new));
 
 	@Override
-	public boolean test(Entity entity, ServerWorld world, @Nullable Vec3d pos) {
+	public boolean matches(Entity entity, ServerLevel world, @Nullable Vec3 pos) {
 		if (!(entity instanceof EggLayingWoolyPigEntity wooly)) {
 			return false;
 		} else {
@@ -34,7 +33,7 @@ public record EggLayingWoolyPigPredicate(Optional<DyeColor> color, Optional<Bool
 	}
 
 	@Override
-	public MapCodec<EggLayingWoolyPigPredicate> getCodec() {
+	public MapCodec<EggLayingWoolyPigPredicate> codec() {
 		return SpectrumEntitySubPredicateTypes.EGG_LAYING_WOOLY_PIG;
 	}
 

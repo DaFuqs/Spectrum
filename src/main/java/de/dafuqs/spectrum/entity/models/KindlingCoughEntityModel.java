@@ -3,10 +3,11 @@ package de.dafuqs.spectrum.entity.models;
 import de.dafuqs.spectrum.entity.entity.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.entity.model.*;
+import net.minecraft.client.model.geom.*;
+import net.minecraft.client.model.geom.builders.*;
 
 @Environment(EnvType.CLIENT)
-public class KindlingCoughEntityModel extends SinglePartEntityModel<KindlingCoughEntity> {
+public class KindlingCoughEntityModel extends HierarchicalModel<KindlingCoughEntity> {
 	
 	private final ModelPart root;
 	
@@ -14,25 +15,25 @@ public class KindlingCoughEntityModel extends SinglePartEntityModel<KindlingCoug
 		this.root = root;
 	}
 	
-	public static TexturedModelData getTexturedModelData() {
-		ModelData modelData = new ModelData();
+	public static LayerDefinition getTexturedModelData() {
+		MeshDefinition modelData = new MeshDefinition();
 		
-		modelData.getRoot().addChild("main", ModelPartBuilder.create().uv(0, 0)
-				.cuboid(-4.0F, 0.0F, 0.0F, 2.0F, 2.0F, 2.0F)
-				.cuboid(0.0F, -4.0F, 0.0F, 2.0F, 2.0F, 2.0F)
-				.cuboid(0.0F, 0.0F, -4.0F, 2.0F, 2.0F, 2.0F)
-				.cuboid(0.0F, 0.0F, 0.0F, 2.0F, 2.0F, 2.0F)
-				.cuboid(2.0F, 0.0F, 0.0F, 2.0F, 2.0F, 2.0F)
-				.cuboid(0.0F, 2.0F, 0.0F, 2.0F, 2.0F, 2.0F)
-				.cuboid(0.0F, 0.0F, 2.0F, 2.0F, 2.0F, 2.0F), ModelTransform.NONE);
+		modelData.getRoot().addOrReplaceChild("main", CubeListBuilder.create().texOffs(0, 0)
+				.addBox(-4.0F, 0.0F, 0.0F, 2.0F, 2.0F, 2.0F)
+				.addBox(0.0F, -4.0F, 0.0F, 2.0F, 2.0F, 2.0F)
+				.addBox(0.0F, 0.0F, -4.0F, 2.0F, 2.0F, 2.0F)
+				.addBox(0.0F, 0.0F, 0.0F, 2.0F, 2.0F, 2.0F)
+				.addBox(2.0F, 0.0F, 0.0F, 2.0F, 2.0F, 2.0F)
+				.addBox(0.0F, 2.0F, 0.0F, 2.0F, 2.0F, 2.0F)
+				.addBox(0.0F, 0.0F, 2.0F, 2.0F, 2.0F, 2.0F), PartPose.ZERO);
 		
-		return TexturedModelData.of(modelData, 64, 32);
+		return LayerDefinition.create(modelData, 64, 32);
 	}
 	
-	public void setAngles(KindlingCoughEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
+	public void setupAnim(KindlingCoughEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
 	}
 	
-	public ModelPart getPart() {
+	public ModelPart root() {
 		return this.root;
 	}
 }

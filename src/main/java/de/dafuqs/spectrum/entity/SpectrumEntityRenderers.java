@@ -3,8 +3,8 @@ package de.dafuqs.spectrum.entity;
 import de.dafuqs.spectrum.entity.render.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
-import net.minecraft.client.render.entity.*;
-import net.minecraft.entity.*;
+import net.minecraft.client.renderer.entity.*;
+import net.minecraft.world.entity.*;
 
 @Environment(EnvType.CLIENT)
 public class SpectrumEntityRenderers {
@@ -14,9 +14,9 @@ public class SpectrumEntityRenderers {
 		register(SpectrumEntityTypes.SEAT, SeatEntityRenderer::new);
 		register(SpectrumEntityTypes.SHOOTING_STAR, ShootingStarEntityRenderer::new);
 		register(SpectrumEntityTypes.PHANTOM_FRAME, PhantomFrameEntityRenderer::new);
-		register(SpectrumEntityTypes.PARAMETRIC_MINING_DEVICE_ENTITY, FlyingItemEntityRenderer::new);
+		register(SpectrumEntityTypes.PARAMETRIC_MINING_DEVICE_ENTITY, ThrownItemRenderer::new);
 		register(SpectrumEntityTypes.GLOW_PHANTOM_FRAME, PhantomFrameEntityRenderer::new);
-		register(SpectrumEntityTypes.BLOCK_FLOODER_PROJECTILE, FlyingItemEntityRenderer::new);
+		register(SpectrumEntityTypes.BLOCK_FLOODER_PROJECTILE, ThrownItemRenderer::new);
 		register(SpectrumEntityTypes.INK_PROJECTILE, MagicProjectileEntityRenderer::new);
 		register(SpectrumEntityTypes.LAGOON_FISHING_BOBBER, LagoonFishingBobberEntityRenderer::new);
 		register(SpectrumEntityTypes.MOLTEN_FISHING_BOBBER, MoltenFishingBobberEntityRenderer::new);
@@ -36,12 +36,12 @@ public class SpectrumEntityRenderers {
 		register(SpectrumEntityTypes.KINDLING, KindlingEntityRenderer::new);
 		register(SpectrumEntityTypes.KINDLING_COUGH, KindlingCoughEntityRenderer::new);
 		register(SpectrumEntityTypes.ERASER, EraserEntityRenderer::new);
-		register(SpectrumEntityTypes.ITEM_PROJECTILE, FlyingItemEntityRenderer::new);
+		register(SpectrumEntityTypes.ITEM_PROJECTILE, ThrownItemRenderer::new);
 		register(SpectrumEntityTypes.DRAGON_TALON, (context) -> new BidentEntityRenderer(context, 1.5F, 0));
 		register(SpectrumEntityTypes.DRACONIC_TWINSWORD, (context) -> new BidentEntityRenderer(context, 2.15F, 0));
 	}
 	
-	private static <T extends Entity> void register(EntityType<? extends T> type, EntityRendererFactory<T> factory) {
+	private static <T extends Entity> void register(EntityType<? extends T> type, EntityRendererProvider<T> factory) {
 		EntityRendererRegistry.register(type, factory);
 	}
 	

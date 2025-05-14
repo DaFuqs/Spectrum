@@ -2,12 +2,12 @@ package de.dafuqs.spectrum.blocks.deeper_down;
 
 import de.dafuqs.spectrum.events.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
-import net.minecraft.world.event.*;
-import net.minecraft.world.event.listener.*;
+import net.minecraft.core.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.gameevent.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
 public class HummingstoneBlockEntity extends BlockEntity implements HummingstoneEventQueue.Callback<HummingstoneEventQueue.EventEntry> {
@@ -17,27 +17,27 @@ public class HummingstoneBlockEntity extends BlockEntity implements Hummingstone
     
     public HummingstoneBlockEntity(BlockPos pos, BlockState state) {
         super(SpectrumBlockEntities.HUMMINGSTONE, pos, state);
-        this.listener = new HummingstoneEventQueue(new BlockPositionSource(this.pos), RANGE, this);
+		this.listener = new HummingstoneEventQueue(new BlockPositionSource(this.worldPosition), RANGE, this);
     }
     
     @SuppressWarnings("unused")
-    public static void serverTick(@NotNull World world, BlockPos pos, BlockState state, @NotNull HummingstoneBlockEntity blockEntity) {
+	public static void serverTick(@NotNull Level world, BlockPos pos, BlockState state, @NotNull HummingstoneBlockEntity blockEntity) {
         blockEntity.listener.tick(world);
     }
 
     @Override
-    public boolean canAcceptEvent(World world, GameEventListener listener, GameEvent.Message message, Vec3d sourcePos) {
-        return !this.isRemoved() && (message.getEvent() == SpectrumGameEvents.HUMMINGSTONE_HYMN || message.getEvent() == SpectrumGameEvents.HUMMINGSTONE_HUMMING);
+	public boolean canAcceptEvent(Level world, GameEventListener listener, GameEvent.ListenerInfo message, Vec3 sourcePos) {
+		return !this.isRemoved() && (message.gameEvent() == SpectrumGameEvents.HUMMINGSTONE_HYMN || message.gameEvent() == SpectrumGameEvents.HUMMINGSTONE_HUMMING);
     }
     
     @Override
-    public void triggerEvent(World world, GameEventListener listener, HummingstoneEventQueue.EventEntry entry) {
-        GameEvent.Message message = entry.message();
-
-        if (message.getEvent() == SpectrumGameEvents.HUMMINGSTONE_HUMMING) {
-            HummingstoneBlock.startHumming(world, this.pos, world.getBlockState(this.pos), message.getEmitter().sourceEntity(), true);
-        } else if (message.getEvent() == SpectrumGameEvents.HUMMINGSTONE_HYMN) {
-            HummingstoneBlock.onHymn(world, this.pos, message.getEmitter().sourceEntity());
+	public void triggerEvent(Level world, GameEventListener listener, HummingstoneEventQueue.EventEntry entry) {
+		GameEvent.ListenerInfo message = entry.message();
+		
+		if (message.gameEvent() == SpectrumGameEvents.HUMMINGSTONE_HUMMING) {
+			HummingstoneBlock.startHumming(world, this.worldPosition, world.getBlockState(this.worldPosition), message.context().sourceEntity(), true);
+		} else if (message.gameEvent() == SpectrumGameEvents.HUMMINGSTONE_HYMN) {
+			HummingstoneBlock.onHymn(world, this.worldPosition, message.context().sourceEntity());
         }
     }
 

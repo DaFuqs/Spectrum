@@ -1,40 +1,39 @@
 package de.dafuqs.spectrum.items.food;
 
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.*;
-import net.minecraft.sound.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
+import net.minecraft.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.sounds.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public class DrinkItem extends Item {
 	
-	protected @Nullable Text tooltip;
+	protected @Nullable Component tooltip;
 	
-	public DrinkItem(Settings settings) {
+	public DrinkItem(Properties settings) {
 		super(settings);
 	}
 	
-	public DrinkItem(Settings settings, String tooltip) {
+	public DrinkItem(Properties settings, String tooltip) {
 		super(settings);
-		this.tooltip = Text.translatable(tooltip).formatted(Formatting.GRAY);
+		this.tooltip = Component.translatable(tooltip).withStyle(ChatFormatting.GRAY);
 	}
 	
 	@Override
-	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-		ItemStack itemStack = super.finishUsing(stack, world, user);
+	public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity user) {
+		ItemStack itemStack = super.finishUsingItem(stack, world, user);
 		
-		if (user instanceof PlayerEntity player) {
-			if (!player.getAbilities().creativeMode) {
+		if (user instanceof Player player) {
+			if (!player.getAbilities().instabuild) {
 				if (stack.isEmpty()) {
 					return new ItemStack(Items.GLASS_BOTTLE);
 				}
-				player.getInventory().insertStack(new ItemStack(Items.GLASS_BOTTLE));
+				player.getInventory().add(new ItemStack(Items.GLASS_BOTTLE));
 			}
 		}
 		
@@ -42,17 +41,17 @@ public class DrinkItem extends Item {
 	}
 	
 	@Override
-	public UseAction getUseAction(ItemStack stack) {
-		return UseAction.DRINK;
+	public UseAnim getUseAnimation(ItemStack stack) {
+		return UseAnim.DRINK;
 	}
 	
-	public SoundEvent getEatSound() {
-		return SoundEvents.ENTITY_GENERIC_DRINK;
+	public SoundEvent getEatingSound() {
+		return SoundEvents.GENERIC_DRINK;
 	}
 	
 	@Override
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
 		if (this.tooltip != null) {
 			tooltip.add(this.tooltip);
 		}

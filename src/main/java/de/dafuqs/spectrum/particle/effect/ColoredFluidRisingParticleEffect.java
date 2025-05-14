@@ -5,14 +5,14 @@ import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.*;
+import net.minecraft.core.particles.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.particle.*;
-import net.minecraft.util.dynamic.*;
+import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
 import org.joml.*;
 
-public class ColoredFluidRisingParticleEffect implements ParticleEffect {
+public class ColoredFluidRisingParticleEffect implements ParticleOptions {
 	
 	public static final ColoredFluidRisingParticleEffect BLACK = new ColoredFluidRisingParticleEffect(InkColors.BLACK_COLOR);
 	public static final ColoredFluidRisingParticleEffect BLUE = new ColoredFluidRisingParticleEffect(InkColors.BLUE_COLOR);
@@ -32,10 +32,10 @@ public class ColoredFluidRisingParticleEffect implements ParticleEffect {
 	public static final ColoredFluidRisingParticleEffect YELLOW = new ColoredFluidRisingParticleEffect(InkColors.YELLOW_COLOR);
 	
 	public static final MapCodec<ColoredFluidRisingParticleEffect> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
-			Codecs.VECTOR_3F.fieldOf("color").forGetter((effect) -> effect.color)
+			ExtraCodecs.VECTOR3F.fieldOf("color").forGetter((effect) -> effect.color)
 	).apply(instance, ColoredFluidRisingParticleEffect::new));
-	public static final PacketCodec<RegistryByteBuf, ColoredFluidRisingParticleEffect> PACKET_CODEC = PacketCodec.tuple(
-			PacketCodecs.VECTOR3F, (effect) -> effect.color,
+	public static final StreamCodec<RegistryFriendlyByteBuf, ColoredFluidRisingParticleEffect> PACKET_CODEC = StreamCodec.composite(
+			ByteBufCodecs.VECTOR3F, (effect) -> effect.color,
 			ColoredFluidRisingParticleEffect::new
 	);
 	
@@ -57,7 +57,7 @@ public class ColoredFluidRisingParticleEffect implements ParticleEffect {
 		return this.color;
 	}
 	
-	public static @NotNull ParticleEffect of(int color) {
+	public static @NotNull ParticleOptions of(int color) {
 		return new ColoredFluidRisingParticleEffect(color);
 	}
 	

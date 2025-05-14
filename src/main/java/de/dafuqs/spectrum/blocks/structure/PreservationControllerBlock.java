@@ -1,87 +1,87 @@
 package de.dafuqs.spectrum.blocks.structure;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.state.*;
-import net.minecraft.state.property.*;
-import net.minecraft.util.*;
-import net.minecraft.util.hit.*;
-import net.minecraft.util.math.*;
+import net.minecraft.core.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.context.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
-public class PreservationControllerBlock extends BlockWithEntity {
-
-	public static final MapCodec<PreservationControllerBlock> CODEC = createCodec(PreservationControllerBlock::new);
-
-	public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
-
-	public PreservationControllerBlock(Settings settings) {
+public class PreservationControllerBlock extends BaseEntityBlock {
+	
+	public static final MapCodec<PreservationControllerBlock> CODEC = simpleCodec(PreservationControllerBlock::new);
+	
+	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+	
+	public PreservationControllerBlock(Properties settings) {
 		super(settings);
 	}
 
 	@Override
-	public MapCodec<? extends PreservationControllerBlock> getCodec() {
+	public MapCodec<? extends PreservationControllerBlock> codec() {
 		return CODEC;
 	}
 	
 	@Override
-	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-		if (!world.isClient && player.isCreative()) { // for testing and building structures
+	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
+		if (!world.isClientSide && player.isCreative()) { // for testing and building structures
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof PreservationControllerBlockEntity preservationControllerBlockEntity) {
-				if (player.isSneaking()) {
+				if (player.isShiftKeyDown()) {
 					preservationControllerBlockEntity.openExit();
 				} else {
 					preservationControllerBlockEntity.toggleParticles();
 				}
 			}
 		}
-		return super.onUse(state, world, pos, player, hit);
+		return super.useWithoutItem(state, world, pos, player, hit);
 	}
 	
 	@Override
-	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		Direction direction = ctx.getSide().getOpposite();
+	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+		Direction direction = ctx.getClickedFace().getOpposite();
 		if (direction == Direction.UP || direction == Direction.DOWN) { // those do not exist in Properties.HORIZONTAL_FACING
 			direction = Direction.NORTH;
 		}
-		return this.getDefaultState().with(FACING, direction);
+		return this.defaultBlockState().setValue(FACING, direction);
 	}
 	
 	@Nullable
 	@Override
-	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new PreservationControllerBlockEntity(pos, state);
 	}
 	
 	@Nullable
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		return world.isClient ? null : validateTicker(type, SpectrumBlockEntities.PRESERVATION_CONTROLLER, PreservationControllerBlockEntity::serverTick);
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
+		return world.isClientSide ? null : createTickerHelper(type, SpectrumBlockEntities.PRESERVATION_CONTROLLER, PreservationControllerBlockEntity::serverTick);
 	}
 	
 	@Override
-	public BlockRenderType getRenderType(BlockState state) {
-		return BlockRenderType.MODEL;
+	public RenderShape getRenderShape(BlockState state) {
+		return RenderShape.MODEL;
 	}
 	
 	@Override
-	public BlockState rotate(BlockState state, BlockRotation rotation) {
-		return state.with(FACING, rotation.rotate(state.get(FACING)));
+	public BlockState rotate(BlockState state, Rotation rotation) {
+		return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
 	}
 	
 	@Override
-	public BlockState mirror(BlockState state, BlockMirror mirror) {
-		return state.rotate(mirror.getRotation(state.get(FACING)));
+	public BlockState mirror(BlockState state, Mirror mirror) {
+		return state.rotate(mirror.getRotation(state.getValue(FACING)));
 	}
 	
 	@Override
-	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(FACING);
 	}
 	

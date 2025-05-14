@@ -3,37 +3,37 @@ package de.dafuqs.spectrum.mixin;
 import com.llamalad7.mixinextras.injector.wrapoperation.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.component.*;
-import net.minecraft.component.type.*;
-import net.minecraft.enchantment.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.damage.*;
-import net.minecraft.entity.projectile.*;
-import net.minecraft.item.*;
-import net.minecraft.server.world.*;
-import net.minecraft.world.*;
+import net.minecraft.core.component.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.damagesource.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.projectile.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.*;
+import net.minecraft.world.item.enchantment.*;
+import net.minecraft.world.level.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 
-@Mixin(TridentEntity.class)
-public abstract class TridentEntityMixin extends PersistentProjectileEntity {
+@Mixin(ThrownTrident.class)
+public abstract class TridentEntityMixin extends AbstractArrow {
 	
-	protected TridentEntityMixin(EntityType<? extends PersistentProjectileEntity> entityType, World world) {
+	protected TridentEntityMixin(EntityType<? extends AbstractArrow> entityType, Level world) {
 		super(entityType, world);
 	}
 	
-	@WrapOperation(method = "onEntityHit", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z"))
+	@WrapOperation(method = "onHitEntity", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;hurt(Lnet/minecraft/world/damagesource/DamageSource;F)Z"))
 	private boolean makeBidentDamageReasonable(Entity instance, DamageSource source, float amount, Operation<Boolean> original) {
 		if (((Object) this) instanceof BidentBaseEntity bidentEntity) {
 			var stack = bidentEntity.getTrackedStack();
 			float damage = (float) getDamage(stack);
 			
-			DamageSource damageSource = SpectrumDamageTypes.impaling(getWorld(), bidentEntity, getOwner());
-			if (this.getWorld() instanceof ServerWorld serverWorld) {
-				damage += EnchantmentHelper.getDamage(serverWorld, this.getWeaponStack(), instance, damageSource, damage);
+			DamageSource damageSource = SpectrumDamageTypes.impaling(level(), bidentEntity, getOwner());
+			if (this.level() instanceof ServerLevel serverWorld) {
+				damage += EnchantmentHelper.modifyDamage(serverWorld, this.getWeaponItem(), instance, damageSource, damage);
 			}
 			
-			return instance.damage(damageSource, damage * 2);
+			return instance.hurt(damageSource, damage * 2);
 		}
 		return original.call(instance, source, amount);
 	}
@@ -41,8 +41,8 @@ public abstract class TridentEntityMixin extends PersistentProjectileEntity {
 	@Unique
 	private double getDamage(ItemStack stack) {
 		// TODO: is that correct?
-		AttributeModifiersComponent attributeModifiersComponent = stack.getOrDefault(DataComponentTypes.ATTRIBUTE_MODIFIERS, AttributeModifiersComponent.DEFAULT);
-		return attributeModifiersComponent.applyOperations(1.0D, EquipmentSlot.MAINHAND);
+		ItemAttributeModifiers attributeModifiersComponent = stack.getOrDefault(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.EMPTY);
+		return attributeModifiersComponent.compute(1.0D, EquipmentSlot.MAINHAND);
 	}
 	
 }

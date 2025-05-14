@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.blocks.mob_head.client.models;
 
 import de.dafuqs.spectrum.blocks.mob_head.client.*;
 import net.fabricmc.api.*;
-import net.minecraft.client.model.*;
-import net.minecraft.client.render.entity.model.*;
+import net.minecraft.client.model.geom.*;
+import net.minecraft.client.model.geom.builders.*;
 
 @Environment(EnvType.CLIENT)
 public class GuardianHeadModel extends SpectrumSkullModel {
@@ -11,41 +11,41 @@ public class GuardianHeadModel extends SpectrumSkullModel {
     public GuardianHeadModel(ModelPart root) {
         super(root);
     }
-
-    public static TexturedModelData getTexturedModelData() {
-        ModelData modelData = new ModelData();
-        ModelPartData modelPartData = modelData.getRoot();
-        
-        ModelPartData head = modelPartData.addChild(
-                EntityModelPartNames.HEAD,
-                ModelPartBuilder.create(),
-                ModelTransform.NONE
+	
+	public static LayerDefinition getTexturedModelData() {
+		MeshDefinition modelData = new MeshDefinition();
+		PartDefinition modelPartData = modelData.getRoot();
+		
+		PartDefinition head = modelPartData.addOrReplaceChild(
+				PartNames.HEAD,
+				CubeListBuilder.create(),
+				PartPose.ZERO
         );
-    
-        head.addChild(
-                EntityModelPartNames.HEAD,
-                ModelPartBuilder.create()
-                        .uv(0, 0).cuboid(-6.0F, -14.0F, -8.0F, 12.0F, 12.0F, 16.0F)
-                        .uv(0, 28).cuboid(-8.0F, -14.0F, -6.0F, 2.0F, 12.0F, 12.0F)
-                        .uv(0, 28).cuboid(6.0F, -14.0F, -6.0F, 2.0F, 12.0F, 12.0F, true)
-                        .uv(16, 40).cuboid(-6.0F, -16.0F, -6.0F, 12.0F, 2.0F, 12.0F)
-                        .uv(16, 40).cuboid(-6.0F, -2.0F, -6.0F, 12.0F, 2.0F, 12.0F),
-				ModelTransform.NONE
+		
+		head.addOrReplaceChild(
+				PartNames.HEAD,
+				CubeListBuilder.create()
+						.texOffs(0, 0).addBox(-6.0F, -14.0F, -8.0F, 12.0F, 12.0F, 16.0F)
+						.texOffs(0, 28).addBox(-8.0F, -14.0F, -6.0F, 2.0F, 12.0F, 12.0F)
+						.texOffs(0, 28).addBox(6.0F, -14.0F, -6.0F, 2.0F, 12.0F, 12.0F, true)
+						.texOffs(16, 40).addBox(-6.0F, -16.0F, -6.0F, 12.0F, 2.0F, 12.0F)
+						.texOffs(16, 40).addBox(-6.0F, -2.0F, -6.0F, 12.0F, 2.0F, 12.0F),
+				PartPose.ZERO
         );
-        
-        head.addChild(EntityModelPartNames.EYES, ModelPartBuilder.create().uv(8, 0).cuboid(-1.0F, 15.0F, 0.0F, 2.0F, 2.0F, 1.0F), ModelTransform.pivot(0.0F, -24.0F, -8.25F));
-    
-        ModelPartData spikes = head.addChild("spikes", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, -8.0F, 0.0F));
-		spikes.addChild("spike_r1", ModelPartBuilder.create().uv(0, 0).cuboid(-1.0F, -17.0F, -1.0F, 2.0F, 9.0F, 2.0F), ModelTransform.rotation(0.0F, 0.0F, -0.7854F));
-		spikes.addChild("spike_r2", ModelPartBuilder.create().uv(0, 0).cuboid(-1.0F, -17.0F, -1.0F, 2.0F, 9.0F, 2.0F), ModelTransform.rotation(0.7854F, 0.0F, 0.0F));
-		spikes.addChild("spike_r3", ModelPartBuilder.create().uv(0, 0).cuboid(-1.0F, -17.0F, -1.0F, 2.0F, 9.0F, 2.0F), ModelTransform.rotation(2.3562F, 0.0F, 0.0F));
-		spikes.addChild("spike_r4", ModelPartBuilder.create().uv(0, 0).cuboid(-1.0F, -17.0F, -1.0F, 2.0F, 9.0F, 2.0F), ModelTransform.rotation(0.0F, 0.0F, 2.3562F));
-		spikes.addChild("spike_r5", ModelPartBuilder.create().uv(0, 0).cuboid(-1.0F, -17.0F, -1.0F, 2.0F, 9.0F, 2.0F), ModelTransform.rotation(0.0F, 0.0F, -2.3562F));
-		spikes.addChild("spike_r6", ModelPartBuilder.create().uv(0, 0).cuboid(-1.0F, -17.0F, -1.0F, 2.0F, 9.0F, 2.0F), ModelTransform.rotation(-2.3562F, 0.0F, 0.0F));
-		spikes.addChild("spike_r7", ModelPartBuilder.create().uv(0, 0).cuboid(-1.0F, -17.0F, -1.0F, 2.0F, 9.0F, 2.0F), ModelTransform.rotation(-0.7854F, 0.0F, 0.0F));
-		spikes.addChild("spike_r8", ModelPartBuilder.create().uv(0, 0).cuboid(-1.0F, -17.0F, -1.0F, 2.0F, 9.0F, 2.0F), ModelTransform.rotation(0.0F, 0.0F, 0.7854F));
-    
-        return TexturedModelData.of(modelData, 64, 64);
+		
+		head.addOrReplaceChild(PartNames.EYES, CubeListBuilder.create().texOffs(8, 0).addBox(-1.0F, 15.0F, 0.0F, 2.0F, 2.0F, 1.0F), PartPose.offset(0.0F, -24.0F, -8.25F));
+		
+		PartDefinition spikes = head.addOrReplaceChild("spikes", CubeListBuilder.create(), PartPose.offset(0.0F, -8.0F, 0.0F));
+		spikes.addOrReplaceChild("spike_r1", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -17.0F, -1.0F, 2.0F, 9.0F, 2.0F), PartPose.rotation(0.0F, 0.0F, -0.7854F));
+		spikes.addOrReplaceChild("spike_r2", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -17.0F, -1.0F, 2.0F, 9.0F, 2.0F), PartPose.rotation(0.7854F, 0.0F, 0.0F));
+		spikes.addOrReplaceChild("spike_r3", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -17.0F, -1.0F, 2.0F, 9.0F, 2.0F), PartPose.rotation(2.3562F, 0.0F, 0.0F));
+		spikes.addOrReplaceChild("spike_r4", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -17.0F, -1.0F, 2.0F, 9.0F, 2.0F), PartPose.rotation(0.0F, 0.0F, 2.3562F));
+		spikes.addOrReplaceChild("spike_r5", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -17.0F, -1.0F, 2.0F, 9.0F, 2.0F), PartPose.rotation(0.0F, 0.0F, -2.3562F));
+		spikes.addOrReplaceChild("spike_r6", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -17.0F, -1.0F, 2.0F, 9.0F, 2.0F), PartPose.rotation(-2.3562F, 0.0F, 0.0F));
+		spikes.addOrReplaceChild("spike_r7", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -17.0F, -1.0F, 2.0F, 9.0F, 2.0F), PartPose.rotation(-0.7854F, 0.0F, 0.0F));
+		spikes.addOrReplaceChild("spike_r8", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -17.0F, -1.0F, 2.0F, 9.0F, 2.0F), PartPose.rotation(0.0F, 0.0F, 0.7854F));
+		
+		return LayerDefinition.create(modelData, 64, 64);
     }
     
     @Override

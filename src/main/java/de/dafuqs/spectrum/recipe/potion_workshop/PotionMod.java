@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.random.Random;
 
 import java.util.*;
 import java.util.stream.*;
@@ -49,22 +48,22 @@ public record PotionMod(
 			PotionFlags.CODEC.forGetter(PotionMod::flags)
 	).apply(i, PotionMod::new));
 	
-	public static final PacketCodec<RegistryByteBuf, PotionMod> PACKET_CODEC = PacketCodecHelper.tuple(
-			PacketCodecs.VAR_INT, PotionMod::flatDurationBonusTicks,
-			PacketCodecs.FLOAT, PotionMod::flatPotencyBonus,
-			PacketCodecs.FLOAT, PotionMod::durationMultiplier,
-			PacketCodecs.FLOAT, PotionMod::potencyMultiplier,
-			PacketCodecs.FLOAT, PotionMod::flatPotencyBonusPositiveEffects,
-			PacketCodecs.FLOAT, PotionMod::flatPotencyBonusNegativeEffects,
-			PacketCodecs.VAR_INT, PotionMod::flatDurationBonusPositiveEffects,
-			PacketCodecs.VAR_INT, PotionMod::flatDurationBonusNegativeEffects,
-			PacketCodecs.FLOAT, PotionMod::additionalRandomPositiveEffectCount,
-			PacketCodecs.FLOAT, PotionMod::additionalRandomNegativeEffectCount,
-			PacketCodecs.FLOAT, PotionMod::chanceToAddLastEffect,
-			PacketCodecs.FLOAT, PotionMod::lastEffectDurationMultiplier,
-			PacketCodecs.FLOAT, PotionMod::lastEffectPotencyMultiplier,
-			PacketCodecs.FLOAT, PotionMod::yield,
-			PacketCodecs.VAR_INT, PotionMod::additionalDrinkDurationTicks,
+	public static final StreamCodec<RegistryFriendlyByteBuf, PotionMod> PACKET_CODEC = PacketCodecHelper.tuple(
+			ByteBufCodecs.VAR_INT, PotionMod::flatDurationBonusTicks,
+			ByteBufCodecs.FLOAT, PotionMod::flatPotencyBonus,
+			ByteBufCodecs.FLOAT, PotionMod::durationMultiplier,
+			ByteBufCodecs.FLOAT, PotionMod::potencyMultiplier,
+			ByteBufCodecs.FLOAT, PotionMod::flatPotencyBonusPositiveEffects,
+			ByteBufCodecs.FLOAT, PotionMod::flatPotencyBonusNegativeEffects,
+			ByteBufCodecs.VAR_INT, PotionMod::flatDurationBonusPositiveEffects,
+			ByteBufCodecs.VAR_INT, PotionMod::flatDurationBonusNegativeEffects,
+			ByteBufCodecs.FLOAT, PotionMod::additionalRandomPositiveEffectCount,
+			ByteBufCodecs.FLOAT, PotionMod::additionalRandomNegativeEffectCount,
+			ByteBufCodecs.FLOAT, PotionMod::chanceToAddLastEffect,
+			ByteBufCodecs.FLOAT, PotionMod::lastEffectDurationMultiplier,
+			ByteBufCodecs.FLOAT, PotionMod::lastEffectPotencyMultiplier,
+			ByteBufCodecs.FLOAT, PotionMod::yield,
+			ByteBufCodecs.VAR_INT, PotionMod::additionalDrinkDurationTicks,
 			PotionFlags.PACKET_CODEC, PotionMod::flags,
 			PotionMod::new
 	);
@@ -79,16 +78,16 @@ public record PotionMod(
 			boolean negateDecreasingDuration,
 			boolean randomColor,
 			boolean incurable,
-			List<Pair<PotionRecipeEffect, Float>> additionalEffects
+			List<Tuple<PotionRecipeEffect, Float>> additionalEffects
 	) {
-		private static final Codec<Pair<PotionRecipeEffect, Float>> ENTRY_CODEC = RecordCodecBuilder.create(i -> i.group(
-				PotionRecipeEffect.CODEC.forGetter(Pair::getLeft),
-				Codec.FLOAT.optionalFieldOf("chance", 1f).forGetter(Pair::getRight)
-		).apply(i, Pair::new));
+		private static final Codec<Tuple<PotionRecipeEffect, Float>> ENTRY_CODEC = RecordCodecBuilder.create(i -> i.group(
+				PotionRecipeEffect.CODEC.forGetter(Tuple::getA),
+				Codec.FLOAT.optionalFieldOf("chance", 1f).forGetter(Tuple::getB)
+		).apply(i, Tuple::new));
 		
-		private static final PacketCodec<RegistryByteBuf, Pair<PotionRecipeEffect, Float>> ENTRY_PACKET_CODEC = PacketCodecHelper.pair(
+		private static final StreamCodec<RegistryFriendlyByteBuf, Tuple<PotionRecipeEffect, Float>> ENTRY_PACKET_CODEC = PacketCodecHelper.pair(
 				PotionRecipeEffect.PACKET_CODEC,
-				PacketCodecs.FLOAT
+				ByteBufCodecs.FLOAT
 		);
 		
 		public static final MapCodec<PotionFlags> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
@@ -104,22 +103,22 @@ public record PotionMod(
 				ENTRY_CODEC.listOf().optionalFieldOf("additional_effects", List.of()).forGetter(PotionFlags::additionalEffects)
 		).apply(i, PotionFlags::new));
 		
-		public static final PacketCodec<RegistryByteBuf, PotionFlags> PACKET_CODEC = PacketCodecHelper.tuple(
-				PacketCodecs.BOOL, PotionFlags::makeSplashing,
-				PacketCodecs.BOOL, PotionFlags::makeLingering,
-				PacketCodecs.BOOL, PotionFlags::noParticles,
-				PacketCodecs.BOOL, PotionFlags::unidentifiable,
-				PacketCodecs.BOOL, PotionFlags::makeEffectsPositive,
-				PacketCodecs.BOOL, PotionFlags::potentDecreasingEffect,
-				PacketCodecs.BOOL, PotionFlags::negateDecreasingDuration,
-				PacketCodecs.BOOL, PotionFlags::randomColor,
-				PacketCodecs.BOOL, PotionFlags::incurable,
-				ENTRY_PACKET_CODEC.collect(PacketCodecs.toList()), PotionFlags::additionalEffects,
+		public static final StreamCodec<RegistryFriendlyByteBuf, PotionFlags> PACKET_CODEC = PacketCodecHelper.tuple(
+				ByteBufCodecs.BOOL, PotionFlags::makeSplashing,
+				ByteBufCodecs.BOOL, PotionFlags::makeLingering,
+				ByteBufCodecs.BOOL, PotionFlags::noParticles,
+				ByteBufCodecs.BOOL, PotionFlags::unidentifiable,
+				ByteBufCodecs.BOOL, PotionFlags::makeEffectsPositive,
+				ByteBufCodecs.BOOL, PotionFlags::potentDecreasingEffect,
+				ByteBufCodecs.BOOL, PotionFlags::negateDecreasingDuration,
+				ByteBufCodecs.BOOL, PotionFlags::randomColor,
+				ByteBufCodecs.BOOL, PotionFlags::incurable,
+				ENTRY_PACKET_CODEC.apply(ByteBufCodecs.list()), PotionFlags::additionalEffects,
 				PotionFlags::new
 		);
 	}
 	
-	public int getColor(Random random) {
+	public int getColor(RandomSource random) {
 		return flags.randomColor ? java.awt.Color.getHSBColor(random.nextFloat(), 0.7F, 0.9F).getRGB() : flags.unidentifiable ? 0x2f2f2f : -1; // dark gray
 	}
 	

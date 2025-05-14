@@ -6,14 +6,16 @@ import de.dafuqs.spectrum.helpers.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.client.gui.screen.*;
-import net.minecraft.client.gui.screen.narration.*;
-import net.minecraft.text.*;
+import net.minecraft.client.gui.components.*;
+import net.minecraft.client.gui.components.events.*;
+import net.minecraft.client.gui.narration.*;
+import net.minecraft.client.gui.screens.*;
+import net.minecraft.network.chat.*;
 
 import java.util.*;
 
 @Environment(EnvType.CLIENT)
-public class InkGaugeWidget implements Drawable, Element, Selectable {
+public class InkGaugeWidget implements Renderable, GuiEventListener, NarratableEntry {
 	
 	public final int x;
 	public final int y;
@@ -51,23 +53,23 @@ public class InkGaugeWidget implements Drawable, Element, Selectable {
 	}
 	
 	@Override
-	public void render(DrawContext drawContext, int mouseX, int mouseY, float delta) {
+	public void render(GuiGraphics drawContext, int mouseX, int mouseY, float delta) {
 		this.hovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height;
 	}
 	
 	@Override
-	public SelectionType getType() {
-		return this.hovered ? SelectionType.HOVERED : SelectionType.NONE;
+	public NarrationPriority narrationPriority() {
+		return this.hovered ? NarrationPriority.HOVERED : NarrationPriority.NONE;
 	}
 	
 	@Override
-	public void appendNarrations(NarrationMessageBuilder builder) {
+	public void updateNarration(NarrationElementOutput builder) {
 	
 	}
 	
-	public void drawMouseoverTooltip(DrawContext drawContext, int x, int y) {
-		MinecraftClient client = MinecraftClient.getInstance();
-		List<Text> tooltip = new ArrayList<>();
+	public void drawMouseoverTooltip(GuiGraphics drawContext, int x, int y) {
+		Minecraft client = Minecraft.getInstance();
+		List<Component> tooltip = new ArrayList<>();
 		for (InkColor color : InkColors.all()) {
 			long amount = blockEntity.getEnergyStorage().getEnergy(color);
 			if (amount > 0) {
@@ -75,14 +77,14 @@ public class InkGaugeWidget implements Drawable, Element, Selectable {
 			}
 		}
 		if (tooltip.isEmpty()) {
-			tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.empty"));
+			tooltip.add(Component.translatable("spectrum.tooltip.ink_powered.empty"));
 		} else {
-			tooltip.add(0, Text.translatable("spectrum.tooltip.ink_powered.stored"));
+			tooltip.add(0, Component.translatable("spectrum.tooltip.ink_powered.stored"));
 		}
-		drawContext.drawTooltip(client.textRenderer, tooltip, Optional.empty(), x, y);
+		drawContext.renderTooltip(client.font, tooltip, Optional.empty(), x, y);
 	}
 	
-	public void draw(DrawContext drawContext) {
+	public void draw(GuiGraphics drawContext) {
 		long totalInk = blockEntity.getEnergyStorage().getCurrentTotal();
 		
 		if (totalInk > 0) {
@@ -106,7 +108,7 @@ public class InkGaugeWidget implements Drawable, Element, Selectable {
 						int p3x = (int) (radius * Math.cos(endRad));
 						int p3y = (int) (radius * Math.sin(endRad));
 						
-						RenderHelper.fillTriangle(drawContext.getMatrices(),
+						RenderHelper.fillTriangle(drawContext.pose(),
 								centerX, centerY, // center point
 								centerX + p3x, centerY + p3y, // end point
 								centerX + p2x, centerY + p2y, // start point
@@ -115,7 +117,7 @@ public class InkGaugeWidget implements Drawable, Element, Selectable {
 						double middleRad = startRad + curr * Math.PI;
 						int pmx = (int) (radius * Math.cos(middleRad));
 						int pmy = (int) (radius * Math.sin(middleRad));
-						RenderHelper.fillTriangle(drawContext.getMatrices(),
+						RenderHelper.fillTriangle(drawContext.pose(),
 								centerX + p3x, centerY + p3y,
 								centerX + pmx, centerY + pmy,
 								centerX + p2x, centerY + p2y,

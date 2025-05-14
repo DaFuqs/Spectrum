@@ -4,71 +4,68 @@ import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
-import net.minecraft.advancement.criterion.*;
-import net.minecraft.item.*;
-import net.minecraft.predicate.*;
-import net.minecraft.predicate.entity.*;
-import net.minecraft.predicate.item.*;
-import net.minecraft.server.network.*;
-import net.minecraft.util.*;
+import net.minecraft.advancements.critereon.*;
+import net.minecraft.resources.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.item.*;
 
 import java.util.*;
 
-public class CinderhearthSmeltingCriterion extends AbstractCriterion<CinderhearthSmeltingCriterion.Conditions> {
+public class CinderhearthSmeltingCriterion extends SimpleCriterionTrigger<CinderhearthSmeltingCriterion.Conditions> {
 	
-	public static final Identifier ID = SpectrumCommon.locate("cinderhearth_smelting");
+	public static final ResourceLocation ID = SpectrumCommon.locate("cinderhearth_smelting");
 	
-	public void trigger(ServerPlayerEntity player, ItemStack input, List<ItemStack> outputs, int experience, Upgradeable.UpgradeHolder upgrades) {
+	public void trigger(ServerPlayer player, ItemStack input, List<ItemStack> outputs, int experience, Upgradeable.UpgradeHolder upgrades) {
 		this.trigger(player, (conditions) -> conditions.matches(input, outputs, experience, upgrades));
 	}
 	
 	@Override
-	public Codec<Conditions> getConditionsCodec() {
+	public Codec<Conditions> codec() {
 		return Conditions.CODEC;
 	}
 	
 	public record Conditions(
-			Optional<LootContextPredicate> player,
+			Optional<ContextAwarePredicate> player,
 			ItemPredicate input,
 			ItemPredicate output,
-			NumberRange.IntRange gainedExperience,
-			NumberRange.IntRange speedMultiplier,
-			NumberRange.IntRange yieldMultiplier,
-			NumberRange.IntRange efficiencyMultiplier,
-			NumberRange.IntRange experienceMultiplier
-	) implements AbstractCriterion.Conditions {
+			MinMaxBounds.Ints gainedExperience,
+			MinMaxBounds.Ints speedMultiplier,
+			MinMaxBounds.Ints yieldMultiplier,
+			MinMaxBounds.Ints efficiencyMultiplier,
+			MinMaxBounds.Ints experienceMultiplier
+	) implements SimpleCriterionTrigger.SimpleInstance {
 		
 		public static final Codec<Conditions> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-				EntityPredicate.LOOT_CONTEXT_PREDICATE_CODEC.optionalFieldOf("player").forGetter(CinderhearthSmeltingCriterion.Conditions::player),
-				ItemPredicate.CODEC.optionalFieldOf("input", ItemPredicate.Builder.create().build()).forGetter(Conditions::input),
-				ItemPredicate.CODEC.optionalFieldOf("output", ItemPredicate.Builder.create().build()).forGetter(Conditions::output),
-				NumberRange.IntRange.CODEC.optionalFieldOf("gained_experience", NumberRange.IntRange.ANY).forGetter(Conditions::gainedExperience),
-				NumberRange.IntRange.CODEC.optionalFieldOf("speed_multiplier", NumberRange.IntRange.ANY).forGetter(Conditions::speedMultiplier),
-				NumberRange.IntRange.CODEC.optionalFieldOf("yield_multiplier", NumberRange.IntRange.ANY).forGetter(Conditions::yieldMultiplier),
-				NumberRange.IntRange.CODEC.optionalFieldOf("efficiency_multiplier", NumberRange.IntRange.ANY).forGetter(Conditions::efficiencyMultiplier),
-				NumberRange.IntRange.CODEC.optionalFieldOf("experience_multiplier", NumberRange.IntRange.ANY).forGetter(Conditions::experienceMultiplier)
+				EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("player").forGetter(CinderhearthSmeltingCriterion.Conditions::player),
+				ItemPredicate.CODEC.optionalFieldOf("input", ItemPredicate.Builder.item().build()).forGetter(Conditions::input),
+				ItemPredicate.CODEC.optionalFieldOf("output", ItemPredicate.Builder.item().build()).forGetter(Conditions::output),
+				MinMaxBounds.Ints.CODEC.optionalFieldOf("gained_experience", MinMaxBounds.Ints.ANY).forGetter(Conditions::gainedExperience),
+				MinMaxBounds.Ints.CODEC.optionalFieldOf("speed_multiplier", MinMaxBounds.Ints.ANY).forGetter(Conditions::speedMultiplier),
+				MinMaxBounds.Ints.CODEC.optionalFieldOf("yield_multiplier", MinMaxBounds.Ints.ANY).forGetter(Conditions::yieldMultiplier),
+				MinMaxBounds.Ints.CODEC.optionalFieldOf("efficiency_multiplier", MinMaxBounds.Ints.ANY).forGetter(Conditions::efficiencyMultiplier),
+				MinMaxBounds.Ints.CODEC.optionalFieldOf("experience_multiplier", MinMaxBounds.Ints.ANY).forGetter(Conditions::experienceMultiplier)
 		).apply(instance, CinderhearthSmeltingCriterion.Conditions::new));
 		
 		public boolean matches(ItemStack input, List<ItemStack> outputs, int experience, Upgradeable.UpgradeHolder upgrades) {
 			if (!this.input.test(input)) {
 				return false;
 			}
-			if (!this.gainedExperience.test(experience)) {
+			if (!this.gainedExperience.matches(experience)) {
 				return false;
 			}
-			if (!this.speedMultiplier.test(upgrades.getRawValue(Upgradeable.UpgradeType.SPEED))) {
+			if (!this.speedMultiplier.matches(upgrades.getRawValue(Upgradeable.UpgradeType.SPEED))) {
 				return false;
 			}
-			if (!this.yieldMultiplier.test(upgrades.getRawValue(Upgradeable.UpgradeType.YIELD))) {
+			if (!this.yieldMultiplier.matches(upgrades.getRawValue(Upgradeable.UpgradeType.YIELD))) {
 				return false;
 			}
-			if (!this.efficiencyMultiplier.test(upgrades.getRawValue(Upgradeable.UpgradeType.EFFICIENCY))) {
+			if (!this.efficiencyMultiplier.matches(upgrades.getRawValue(Upgradeable.UpgradeType.EFFICIENCY))) {
 				return false;
 			}
-			if (!this.experienceMultiplier.test(upgrades.getRawValue(Upgradeable.UpgradeType.EXPERIENCE))) {
+			if (!this.experienceMultiplier.matches(upgrades.getRawValue(Upgradeable.UpgradeType.EXPERIENCE))) {
 				return false;
 			}
-			if (this.output.equals(ItemPredicate.Builder.create().build())) {
+			if (this.output.equals(ItemPredicate.Builder.item().build())) {
 				return true; // empty output predicate
 			}
 			for (ItemStack output : outputs) {

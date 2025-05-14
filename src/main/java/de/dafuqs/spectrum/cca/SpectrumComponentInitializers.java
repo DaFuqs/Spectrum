@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.cca;
 
 import de.dafuqs.spectrum.cca.azure_dike.*;
-import net.minecraft.entity.*;
+import net.minecraft.world.entity.*;
 import org.ladysnake.cca.api.v3.entity.*;
 import org.ladysnake.cca.api.v3.level.*;
 

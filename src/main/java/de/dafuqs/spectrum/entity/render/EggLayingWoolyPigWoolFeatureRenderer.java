@@ -1,66 +1,66 @@
 package de.dafuqs.spectrum.entity.render;
 
+import com.mojang.blaze3d.vertex.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.entity.models.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
-import net.minecraft.client.render.*;
-import net.minecraft.client.render.entity.*;
-import net.minecraft.client.render.entity.feature.*;
-import net.minecraft.client.render.entity.model.*;
-import net.minecraft.client.util.math.*;
-import net.minecraft.util.*;
+import net.minecraft.client.model.geom.*;
+import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.entity.*;
+import net.minecraft.client.renderer.entity.layers.*;
+import net.minecraft.resources.*;
 
 @Environment(EnvType.CLIENT)
-public class EggLayingWoolyPigWoolFeatureRenderer extends FeatureRenderer<EggLayingWoolyPigEntity, EggLayingWoolyPigEntityModel> {
+public class EggLayingWoolyPigWoolFeatureRenderer extends RenderLayer<EggLayingWoolyPigEntity, EggLayingWoolyPigEntityModel> {
 	
 	private final EggLayingWoolyPigHatEntityModel hat;
 	private final EggLayingWoolyPigWoolEntityModel wool;
 	
-	public EggLayingWoolyPigWoolFeatureRenderer(EggLayingWoolyPigEntityRenderer context, EntityModelLoader loader) {
+	public EggLayingWoolyPigWoolFeatureRenderer(EggLayingWoolyPigEntityRenderer context, EntityModelSet loader) {
 		super(context);
-		this.hat = new EggLayingWoolyPigHatEntityModel(loader.getModelPart(SpectrumModelLayers.WOOLY_PIG_HAT));
-		this.wool = new EggLayingWoolyPigWoolEntityModel(loader.getModelPart(SpectrumModelLayers.WOOLY_PIG_WOOL));
+		this.hat = new EggLayingWoolyPigHatEntityModel(loader.bakeLayer(SpectrumModelLayers.WOOLY_PIG_HAT));
+		this.wool = new EggLayingWoolyPigWoolEntityModel(loader.bakeLayer(SpectrumModelLayers.WOOLY_PIG_WOOL));
 	}
 	
 	@Override
-	public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, EggLayingWoolyPigEntity entity, float f, float g, float h, float j, float k, float l) {
+	public void render(PoseStack poseStack, MultiBufferSource vertexConsumerProvider, int i, EggLayingWoolyPigEntity entity, float f, float g, float h, float j, float k, float l) {
 		if (entity.isInvisible()) {
-			MinecraftClient minecraftClient = MinecraftClient.getInstance();
-			boolean hasOutline = minecraftClient.hasOutline(entity);
+			Minecraft minecraftClient = Minecraft.getInstance();
+			boolean hasOutline = minecraftClient.shouldEntityAppearGlowing(entity);
 			if (hasOutline) {
 				int rgbColor = EggLayingWoolyPigEntity.getRgbColor(entity.getColor());
-				VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(RenderLayer.getOutline(EggLayingWoolyPigEntityRenderer.TEXTURE));
+				VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(RenderType.outline(EggLayingWoolyPigEntityRenderer.TEXTURE));
 				if (!entity.isHatless()) {
-					this.getContextModel().copyStateTo(this.hat);
-					this.hat.animateModel(entity, f, g, h);
-					this.hat.setAngles(entity, f, g, j, k, l);
-					this.hat.render(matrixStack, vertexConsumer, i, LivingEntityRenderer.getOverlay(entity, 0.0F), rgbColor);
+					this.getParentModel().copyPropertiesTo(this.hat);
+					this.hat.prepareMobModel(entity, f, g, h);
+					this.hat.setupAnim(entity, f, g, j, k, l);
+					this.hat.renderToBuffer(poseStack, vertexConsumer, i, LivingEntityRenderer.getOverlayCoords(entity, 0.0F), rgbColor);
 				}
 				if (!entity.isSheared()) {
-					this.getContextModel().copyStateTo(this.wool);
-					this.wool.animateModel(entity, f, g, h);
-					this.wool.setAngles(entity, f, g, j, k, l);
-					this.wool.render(matrixStack, vertexConsumer, i, LivingEntityRenderer.getOverlay(entity, 0.0F), rgbColor);
+					this.getParentModel().copyPropertiesTo(this.wool);
+					this.wool.prepareMobModel(entity, f, g, h);
+					this.wool.setupAnim(entity, f, g, j, k, l);
+					this.wool.renderToBuffer(poseStack, vertexConsumer, i, LivingEntityRenderer.getOverlayCoords(entity, 0.0F), rgbColor);
 				}
 			}
 		} else {
 			int rgbColor = EggLayingWoolyPigEntity.getRgbColor(entity.getColor());
 			if (!entity.isHatless()) {
-				this.getContextModel().copyStateTo(this.hat);
-				this.hat.animateModel(entity, f, g, h);
-				this.hat.setAngles(entity, f, g, j, k, l);
-				render(this.getContextModel(), this.hat, getTexture(entity), matrixStack, vertexConsumerProvider, i, entity, f, g, j, k, l, h, rgbColor);
+				this.getParentModel().copyPropertiesTo(this.hat);
+				this.hat.prepareMobModel(entity, f, g, h);
+				this.hat.setupAnim(entity, f, g, j, k, l);
+				coloredCutoutModelCopyLayerRender(this.getParentModel(), this.hat, getTextureLocation(entity), poseStack, vertexConsumerProvider, i, entity, f, g, j, k, l, h, rgbColor);
 			}
 			if (!entity.isSheared()) {
-				render(this.getContextModel(), this.wool, getTexture(entity), matrixStack, vertexConsumerProvider, i, entity, f, g, j, k, l, h, rgbColor);
+				coloredCutoutModelCopyLayerRender(this.getParentModel(), this.wool, getTextureLocation(entity), poseStack, vertexConsumerProvider, i, entity, f, g, j, k, l, h, rgbColor);
 			}
 		}
 	}
 	
 	@Override
-	public Identifier getTexture(EggLayingWoolyPigEntity entity) {
+	public ResourceLocation getTextureLocation(EggLayingWoolyPigEntity entity) {
 		return EggLayingWoolyPigEntityRenderer.TEXTURE;
 	}
 	

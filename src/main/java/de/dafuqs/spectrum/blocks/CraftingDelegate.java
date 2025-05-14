@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.blocks;
 
-import net.minecraft.screen.*;
+import net.minecraft.world.inventory.*;
 
-public class CraftingDelegate implements PropertyDelegate {
+public class CraftingDelegate implements ContainerData {
 	
 	public int craftingTime;
 	public int craftingTimeTotal;
@@ -25,7 +25,7 @@ public class CraftingDelegate implements PropertyDelegate {
 	}
 	
 	@Override
-	public int size() {
+	public int getCount() {
 		return 2;
 	}
 	

@@ -4,11 +4,11 @@ import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.progression.*;
 import net.fabricmc.api.*;
 import net.fabricmc.loader.api.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.recipe.*;
-import net.minecraft.recipe.input.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.locale.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.crafting.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -17,23 +17,23 @@ public interface GatedRecipe<C extends RecipeInput> extends Recipe<C> {
 	
 	boolean isSecret();
 	
-	Optional<Identifier> getRequiredAdvancementIdentifier();
+	Optional<ResourceLocation> getRequiredAdvancementIdentifier();
 	
-	Identifier getRecipeTypeUnlockIdentifier();
+	ResourceLocation getRecipeTypeUnlockIdentifier();
 	
 	String getRecipeTypeShortID();
 	
-	default boolean canPlayerCraft(PlayerEntity playerEntity) {
+	default boolean canPlayerCraft(Player playerEntity) {
 		return AdvancementHelper.hasAdvancement(playerEntity, getRecipeTypeUnlockIdentifier())
 				&& AdvancementHelper.hasAdvancement(playerEntity, getRequiredAdvancementIdentifier().orElse(null));
 	}
 	
-	default Text getSingleUnlockToastString() {
-		return Text.translatable("spectrum.toast." + getRecipeTypeShortID() + "_recipe_unlocked.title");
+	default Component getSingleUnlockToastString() {
+		return Component.translatable("spectrum.toast." + getRecipeTypeShortID() + "_recipe_unlocked.title");
 	}
 	
-	default Text getMultipleUnlockToastString() {
-		return Text.translatable("spectrum.toast." + getRecipeTypeShortID() + "_recipes_unlocked.title");
+	default Component getMultipleUnlockToastString() {
+		return Component.translatable("spectrum.toast." + getRecipeTypeShortID() + "_recipes_unlocked.title");
 	}
 	
 	default void registerInToastManager(RecipeType<?> recipeType, GatedRecipe<C> gatedRecipe) {
@@ -47,10 +47,10 @@ public interface GatedRecipe<C extends RecipeInput> extends Recipe<C> {
 		UnlockToastManager.registerGatedRecipe(recipeType, gatedRecipe);
 	}
 	
-	default @Nullable Text getSecretHintText(Identifier id) {
+	default @Nullable Component getSecretHintText(ResourceLocation id) {
 		if (isSecret()) {
-			String secretHintLangKey = id.toTranslationKey("recipe", "hint").replace("/", ".");
-			return Language.getInstance().hasTranslation(secretHintLangKey) ? Text.translatable(secretHintLangKey) : null;
+			String secretHintLangKey = id.toLanguageKey("recipe", "hint").replace("/", ".");
+			return Language.getInstance().has(secretHintLangKey) ? Component.translatable(secretHintLangKey) : null;
 		}
 		return null;
 	}

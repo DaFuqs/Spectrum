@@ -3,24 +3,24 @@ package de.dafuqs.spectrum.sound;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
-import net.minecraft.client.sound.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.sound.*;
+import net.minecraft.client.resources.sounds.*;
+import net.minecraft.sounds.*;
+import net.minecraft.world.entity.player.*;
 
 @Environment(EnvType.CLIENT)
 public class GreatswordChargingSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
 	
-	private final PlayerEntity player;
+	private final Player player;
 	private boolean done;
     private int ticks;
     private final int groundSlamChargeTicks;
-
-    public GreatswordChargingSoundInstance(PlayerEntity player, int groundSlamChargeTicks) {
-        super(SpectrumSoundEvents.GROUND_SLAM_CHARGE, SoundCategory.PLAYERS, SoundInstance.createRandom());
+	
+	public GreatswordChargingSoundInstance(Player player, int groundSlamChargeTicks) {
+		super(SpectrumSoundEvents.GROUND_SLAM_CHARGE, SoundSource.PLAYERS, SoundInstance.createUnseededRandom());
         this.groundSlamChargeTicks = groundSlamChargeTicks;
-        this.repeat = false;
+		this.looping = false;
         this.ticks = 0;
-        this.repeatDelay = 0;
+		this.delay = 0;
 		this.volume = 0.5F;
 		this.player = player;
         this.x = player.getX();
@@ -29,12 +29,12 @@ public class GreatswordChargingSoundInstance extends AbstractSoundInstance imple
 	}
 	
 	@Override
-	public boolean isDone() {
+	public boolean isStopped() {
 		return this.done;
 	}
 	
 	@Override
-	public boolean shouldAlwaysPlay() {
+	public boolean canStartSilent() {
 		return true;
 	}
 	
@@ -43,7 +43,7 @@ public class GreatswordChargingSoundInstance extends AbstractSoundInstance imple
 		this.ticks++;
 		// If ticks > groundSlamChargeTicks, the ground slam was handled already and the effect does not need get cancelled
         if (this.ticks <= this.groundSlamChargeTicks) {
-			if (player == null || !player.isUsingItem() || !(player.getMainHandStack().getItem() instanceof GreatswordItem)) {
+			if (player == null || !player.isUsingItem() || !(player.getMainHandItem().getItem() instanceof GreatswordItem)) {
 				this.setDone();
 			}
 		}
@@ -54,6 +54,6 @@ public class GreatswordChargingSoundInstance extends AbstractSoundInstance imple
 	
 	protected final void setDone() {
 		this.done = true;
-		this.repeat = false;
+		this.looping = false;
 	}
 }

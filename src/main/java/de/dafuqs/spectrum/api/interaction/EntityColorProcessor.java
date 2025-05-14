@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.api.interaction;
 
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.util.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -17,6 +17,6 @@ public interface EntityColorProcessor<E extends Entity> {
 	 * @param player   The player that dyed the entity
 	 * @return if the coloring was successful (true if colored, false when failed, like the entity already being that color)
 	 */
-	boolean colorEntity(E entity, Optional<DyeColor> dyeColor, @Nullable PlayerEntity player);
+	boolean colorEntity(E entity, Optional<DyeColor> dyeColor, @Nullable Player player);
 	
 }

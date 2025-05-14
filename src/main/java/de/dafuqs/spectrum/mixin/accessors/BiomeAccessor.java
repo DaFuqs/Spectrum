@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.mixin.accessors;
 
-import net.minecraft.world.biome.*;
+import net.minecraft.world.level.biome.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.gen.*;
 
@@ -8,6 +8,6 @@ import org.spongepowered.asm.mixin.gen.*;
 public interface BiomeAccessor {
 	
 	@Accessor
-	Biome.Weather getWeather();
+	Biome.ClimateSettings getClimateSettings();
 	
 }

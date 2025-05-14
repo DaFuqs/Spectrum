@@ -3,17 +3,17 @@ package de.dafuqs.spectrum.compat.REI.plugins;
 import de.dafuqs.spectrum.compat.REI.*;
 import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import me.shedaniel.rei.api.common.category.*;
-import net.minecraft.recipe.*;
-import net.minecraft.util.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.item.crafting.*;
 
 public class DragonrotConvertingDisplay extends FluidConvertingDisplay {
 	
-	public DragonrotConvertingDisplay(RecipeEntry<DragonrotConvertingRecipe> recipe) {
+	public DragonrotConvertingDisplay(RecipeHolder<DragonrotConvertingRecipe> recipe) {
 		super(recipe);
 	}
 	
 	@Override
-	public Identifier getUnlockIdentifier() {
+	public ResourceLocation getUnlockIdentifier() {
 		return DragonrotConvertingRecipe.UNLOCK_IDENTIFIER;
 	}
 	

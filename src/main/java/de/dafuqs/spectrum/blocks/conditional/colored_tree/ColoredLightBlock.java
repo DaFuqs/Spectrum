@@ -2,10 +2,11 @@ package de.dafuqs.spectrum.blocks.conditional.colored_tree;
 
 import de.dafuqs.spectrum.api.energy.color.*;
 import it.unimi.dsi.fastutil.objects.*;
-import net.minecraft.block.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.shape.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.phys.shapes.*;
 
 import java.util.*;
 
@@ -14,7 +15,7 @@ public class ColoredLightBlock extends RedstoneLampBlock {
 	private static final Map<InkColor, ColoredLightBlock> LIGHTS = new Object2ObjectArrayMap<>();
 	protected final InkColor color;
 	
-	public ColoredLightBlock(Settings settings, InkColor color) {
+	public ColoredLightBlock(Properties settings, InkColor color) {
 		super(settings);
 		this.color = color;
 		LIGHTS.put(color, this);
@@ -42,8 +43,8 @@ public class ColoredLightBlock extends RedstoneLampBlock {
 	 * but usually most sides will be visible either way)
 	 */
 	@Override
-	public VoxelShape getCullingShape(BlockState state, BlockView world, BlockPos pos) {
-		return VoxelShapes.empty();
+	public VoxelShape getOcclusionShape(BlockState state, BlockGetter world, BlockPos pos) {
+		return Shapes.empty();
 	}
 	
 }

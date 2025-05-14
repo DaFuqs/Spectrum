@@ -1,36 +1,37 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.*;
 import de.dafuqs.spectrum.particle.*;
-import net.minecraft.block.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.util.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 
 public class ShimmerstoneBlock extends Block {
-
-	public static final MapCodec<ShimmerstoneBlock> CODEC = createCodec(ShimmerstoneBlock::new);
-
-	public ShimmerstoneBlock(AbstractBlock.Settings settings) {
+	
+	public static final MapCodec<ShimmerstoneBlock> CODEC = simpleCodec(ShimmerstoneBlock::new);
+	
+	public ShimmerstoneBlock(BlockBehaviour.Properties settings) {
 		super(settings);
 	}
 
 	@Override
-	public MapCodec<? extends ShimmerstoneBlock> getCodec() {
+	public MapCodec<? extends ShimmerstoneBlock> codec() {
 		return CODEC;
 	}
 
 	@Override
-	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+	public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
 		if (random.nextBoolean()) {
 			for (Direction direction : Direction.values()) {
 				if (direction != Direction.DOWN) {
-					BlockPos blockPos = pos.offset(direction);
+					BlockPos blockPos = pos.relative(direction);
 					BlockState blockState = world.getBlockState(blockPos);
-					if (!state.isOpaque() || !blockState.isSideSolidFullSquare(world, blockPos, direction.getOpposite())) {
-						double d = direction.getOffsetX() == 0 ? random.nextDouble() : 0.5D + (double) direction.getOffsetX() * 0.6D;
-						double e = direction.getOffsetY() == 0 ? random.nextDouble() : 0.5D + (double) direction.getOffsetY() * 0.6D;
-						double f = direction.getOffsetZ() == 0 ? random.nextDouble() : 0.5D + (double) direction.getOffsetZ() * 0.6D;
+					if (!state.canOcclude() || !blockState.isFaceSturdy(world, blockPos, direction.getOpposite())) {
+						double d = direction.getStepX() == 0 ? random.nextDouble() : 0.5D + (double) direction.getStepX() * 0.6D;
+						double e = direction.getStepY() == 0 ? random.nextDouble() : 0.5D + (double) direction.getStepY() * 0.6D;
+						double f = direction.getStepZ() == 0 ? random.nextDouble() : 0.5D + (double) direction.getStepZ() * 0.6D;
 						world.addParticle(SpectrumParticleTypes.SHIMMERSTONE_SPARKLE, (double) pos.getX() + d, (double) pos.getY() + e, (double) pos.getZ() + f, 0.0D, 0.05D, 0.0D);
 					}
 				}

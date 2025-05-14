@@ -1,19 +1,20 @@
 package de.dafuqs.spectrum.blocks.deeper_down.groundcover;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.*;
-import net.minecraft.server.world.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.server.level.*;
+import net.minecraft.util.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 
-public class AshPileBlock extends SnowBlock {
-
-	public static final MapCodec<AshPileBlock> CODEC = createCodec(AshPileBlock::new);
-
-	public AshPileBlock(Settings settings) {
+public class AshPileBlock extends SnowLayerBlock {
+	
+	public static final MapCodec<AshPileBlock> CODEC = simpleCodec(AshPileBlock::new);
+	
+	public AshPileBlock(Properties settings) {
 		super(settings);
 	}
 
@@ -24,18 +25,18 @@ public class AshPileBlock extends SnowBlock {
 //	}
 
 	@Override
-	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-		BlockState blockState = world.getBlockState(pos.down());
-		if (blockState.isOf(SpectrumBlocks.ASH))
+	public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+		BlockState blockState = world.getBlockState(pos.below());
+		if (blockState.is(SpectrumBlocks.ASH))
 			return true;
-		return super.canPlaceAt(state, world, pos);
+		return super.canSurvive(state, world, pos);
 	}
 	
 	@Override
-	public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
+	public void fallOn(Level world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
 	}
 	
 	@Override
-	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 	}
 }

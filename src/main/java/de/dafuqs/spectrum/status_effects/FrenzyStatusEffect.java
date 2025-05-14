@@ -2,43 +2,43 @@ package de.dafuqs.spectrum.status_effects;
 
 import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.attribute.*;
-import net.minecraft.entity.effect.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.*;
 import org.jetbrains.annotations.*;
 
-public class FrenzyStatusEffect extends StatusEffect {
+public class FrenzyStatusEffect extends MobEffect {
 	
 	public static final long REQUIRE_KILL_EVERY_X_TICKS = 200;
 	
-	public FrenzyStatusEffect(StatusEffectCategory category, int color) {
+	public FrenzyStatusEffect(MobEffectCategory category, int color) {
 		super(category, color);
 	}
 	
 	// prevent the resetting of frenzy-granted attributes
 	@Override
-	public void onApplied(LivingEntity entity, int amplifier) {
-		if (!SpectrumStatusEffects.effectsAreGettingStacked && !entity.hasStatusEffect(SpectrumStatusEffects.FRENZY)) {
-			super.onApplied(entity, amplifier);
+	public void onEffectStarted(LivingEntity entity, int amplifier) {
+		if (!SpectrumStatusEffects.effectsAreGettingStacked && !entity.hasEffect(SpectrumStatusEffects.FRENZY)) {
+			super.onEffectStarted(entity, amplifier);
 		}
 	}
 	
 	@Override
-	public void onRemoved(AttributeContainer attributes) {
+	public void removeAttributeModifiers(AttributeMap attributes) {
 		if (!SpectrumStatusEffects.effectsAreGettingStacked) {
-			super.onRemoved(attributes);
+			super.removeAttributeModifiers(attributes);
 		}
 	}
 	
 	@Override
-	public boolean canApplyUpdateEffect(int duration, int amplifier) {
+	public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
 		return true;
 	}
 	
 	@Override
-	public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
+	public boolean applyEffectTick(LivingEntity entity, int amplifier) {
 		long lastKillTick = LastKillComponent.getLastKillTick(entity);
-		long worldTime = entity.getWorld().getTime();
+		long worldTime = entity.level().getGameTime();
 		long lastKillTickDifference = worldTime - lastKillTick;
 		boolean scoredKillInTime = lastKillTick >= 0 && lastKillTickDifference < REQUIRE_KILL_EVERY_X_TICKS;
 		
@@ -48,7 +48,7 @@ public class FrenzyStatusEffect extends StatusEffect {
 		
 		var potency = (SleepStatusEffect.getSleepScaling(entity) * (amplifier + 1) / 3) / 20;
 		if (potency > 0 && entity.getHealth() > potency) {
-			entity.damage(SpectrumDamageTypes.sleep(entity.getWorld(), null), potency);
+			entity.hurt(SpectrumDamageTypes.sleep(entity.level(), null), potency);
 		}
 
 		return true;
@@ -59,16 +59,16 @@ public class FrenzyStatusEffect extends StatusEffect {
 	}
 	
 	public void updateAttributes(@NotNull LivingEntity entity, int amplifier, int increase) {
-		AttributeContainer attributes = entity.getAttributes();
+		AttributeMap attributes = entity.getAttributes();
 		if (attributes != null) {
-			forEachAttributeModifier(amplifier, (entry, modifier) -> {
-				EntityAttributeInstance entityInstance = attributes.getCustomInstance(entry);
+			createModifiers(amplifier, (entry, modifier) -> {
+				AttributeInstance entityInstance = attributes.getInstance(entry);
 				if (entityInstance != null) {
-                    EntityAttributeModifier appliedModifier = entityInstance.getModifier(modifier.id());
-					double newBaseValue = appliedModifier == null ? modifier.value() : appliedModifier.value();
-					double newValue = this.adjustModifierAmount(newBaseValue, modifier.value(), amplifier, increase);
+					AttributeModifier appliedModifier = entityInstance.getModifier(modifier.id());
+					double newBaseValue = appliedModifier == null ? modifier.amount() : appliedModifier.amount();
+					double newValue = this.adjustModifierAmount(newBaseValue, modifier.amount(), amplifier, increase);
 					entityInstance.removeModifier(modifier);
-					entityInstance.addPersistentModifier(new EntityAttributeModifier(modifier.id(), newValue, modifier.operation()));
+					entityInstance.addPermanentModifier(new AttributeModifier(modifier.id(), newValue, modifier.operation()));
 					entityInstance.getValue();
 				}
 			});

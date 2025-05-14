@@ -1,44 +1,43 @@
 package de.dafuqs.spectrum.blocks.deeper_down.flora;
 
-import com.mojang.serialization.MapCodec;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.PlantBlock;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.WorldView;
+import com.mojang.serialization.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.core.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 
-public class WeepingGalaFrondsBlock extends PlantBlock {
-
-    public static final MapCodec<WeepingGalaFrondsBlock> CODEC = createCodec(WeepingGalaFrondsBlock::new);
-
-    public WeepingGalaFrondsBlock(Settings settings) {
+public class WeepingGalaFrondsBlock extends BushBlock {
+	
+	public static final MapCodec<WeepingGalaFrondsBlock> CODEC = simpleCodec(WeepingGalaFrondsBlock::new);
+	
+	public WeepingGalaFrondsBlock(Properties settings) {
         super(settings);
     }
 
     @Override
-    public MapCodec<? extends WeepingGalaFrondsBlock> getCodec() {
+	public MapCodec<? extends WeepingGalaFrondsBlock> codec() {
         return CODEC;
     }
 
     @Override
-    public float getMaxHorizontalModelOffset() {
+	public float getMaxHorizontalOffset() {
         return 0.1F;
     }
 
     @Override
-    public boolean canPlantOnTop(BlockState roof, BlockView world, BlockPos pos) {
-        return roof.isOf(SpectrumBlocks.WEEPING_GALA_LEAVES) || roof.isOf(SpectrumBlocks.WEEPING_GALA_FRONDS);
+	public boolean mayPlaceOn(BlockState roof, BlockGetter world, BlockPos pos) {
+		return roof.is(SpectrumBlocks.WEEPING_GALA_LEAVES) || roof.is(SpectrumBlocks.WEEPING_GALA_FRONDS);
     }
 
     @Override
-    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        var roof = pos.up();
+	public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+		var roof = pos.above();
         var roofState = world.getBlockState(roof);
-
-        if (roofState.isOf(this))
+		
+		if (roofState.is(this))
             return true;
-
-        return canPlantOnTop(roofState, world, roof);
+		
+		return mayPlaceOn(roofState, world, roof);
     }
 }

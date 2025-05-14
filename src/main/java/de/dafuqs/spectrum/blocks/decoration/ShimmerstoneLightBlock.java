@@ -1,43 +1,42 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.*;
 import de.dafuqs.spectrum.particle.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.state.*;
-import net.minecraft.state.property.*;
+import net.minecraft.core.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
-import net.minecraft.util.shape.*;
-import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.context.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.phys.shapes.*;
 import org.jetbrains.annotations.*;
 
-public class ShimmerstoneLightBlock extends FacingBlock {
-
-	public static final MapCodec<ShimmerstoneLightBlock> CODEC = createCodec(ShimmerstoneLightBlock::new);
-
-	protected static final VoxelShape SHAPE_UP = Block.createCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 2.0D, 12.0D);
-	protected static final VoxelShape SHAPE_DOWN = Block.createCuboidShape(4.0D, 14.0D, 4.0D, 12.0D, 16.0D, 12.0D);
-	protected static final VoxelShape SHAPE_NORTH = Block.createCuboidShape(4.0D, 4.0D, 14.0D, 12.0D, 12.0D, 16.0D);
-	protected static final VoxelShape SHAPE_SOUTH = Block.createCuboidShape(4.0D, 4.0D, 0.0D, 12.0D, 12.0D, 2.0D);
-	protected static final VoxelShape SHAPE_EAST = Block.createCuboidShape(0.0D, 4.0D, 4.0D, 2.0D, 12.0D, 12.0D);
-	protected static final VoxelShape SHAPE_WEST = Block.createCuboidShape(14.0D, 4.0D, 4.0D, 16.0D, 12.0D, 12.0D);
+public class ShimmerstoneLightBlock extends DirectionalBlock {
 	
-	public ShimmerstoneLightBlock(Settings settings) {
+	public static final MapCodec<ShimmerstoneLightBlock> CODEC = simpleCodec(ShimmerstoneLightBlock::new);
+	
+	protected static final VoxelShape SHAPE_UP = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 2.0D, 12.0D);
+	protected static final VoxelShape SHAPE_DOWN = Block.box(4.0D, 14.0D, 4.0D, 12.0D, 16.0D, 12.0D);
+	protected static final VoxelShape SHAPE_NORTH = Block.box(4.0D, 4.0D, 14.0D, 12.0D, 12.0D, 16.0D);
+	protected static final VoxelShape SHAPE_SOUTH = Block.box(4.0D, 4.0D, 0.0D, 12.0D, 12.0D, 2.0D);
+	protected static final VoxelShape SHAPE_EAST = Block.box(0.0D, 4.0D, 4.0D, 2.0D, 12.0D, 12.0D);
+	protected static final VoxelShape SHAPE_WEST = Block.box(14.0D, 4.0D, 4.0D, 16.0D, 12.0D, 12.0D);
+	
+	public ShimmerstoneLightBlock(Properties settings) {
 		super(settings);
-		this.setDefaultState(this.stateManager.getDefaultState().with(Properties.FACING, Direction.UP).with(Properties.INVERTED, false));
+		this.registerDefaultState(this.stateDefinition.any().setValue(BlockStateProperties.FACING, Direction.UP).setValue(BlockStateProperties.INVERTED, false));
 	}
 
 	@Override
-	public MapCodec<? extends ShimmerstoneLightBlock> getCodec() {
+	public MapCodec<? extends ShimmerstoneLightBlock> codec() {
 		return CODEC;
 	}
 	
 	@Override
-	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		switch (state.get(Properties.FACING)) {
+	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+		switch (state.getValue(BlockStateProperties.FACING)) {
 			case UP -> {
 				return SHAPE_UP;
 			}
@@ -60,58 +59,58 @@ public class ShimmerstoneLightBlock extends FacingBlock {
 	}
 	
 	@Override
-	public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		return VoxelShapes.empty();
+	public VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+		return Shapes.empty();
 	}
 	
 	@Override
-	public BlockState getPlacementState(@NotNull ItemPlacementContext ctx) {
+	public BlockState getStateForPlacement(@NotNull BlockPlaceContext ctx) {
 		boolean inverted;
-		if (ctx.getSide().getOffsetY() != 0) {
-			inverted = ctx.getHorizontalPlayerFacing().getOffsetX() != 0;
+		if (ctx.getClickedFace().getStepY() != 0) {
+			inverted = ctx.getHorizontalDirection().getStepX() != 0;
 		} else {
-			@Nullable PlayerEntity player = ctx.getPlayer();
-			inverted = player != null && player.isSneaking();
+			@Nullable Player player = ctx.getPlayer();
+			inverted = player != null && player.isShiftKeyDown();
 		}
-		return this.getDefaultState().with(Properties.FACING, ctx.getSide()).with(Properties.INVERTED, inverted);
+		return this.defaultBlockState().setValue(BlockStateProperties.FACING, ctx.getClickedFace()).setValue(BlockStateProperties.INVERTED, inverted);
 	}
 	
 	@Override
-	public BlockState rotate(BlockState state, BlockRotation rotation) {
-		return state.with(Properties.FACING, rotation.rotate(state.get(Properties.FACING)));
+	public BlockState rotate(BlockState state, Rotation rotation) {
+		return state.setValue(BlockStateProperties.FACING, rotation.rotate(state.getValue(BlockStateProperties.FACING)));
 	}
 	
 	@Override
-	public BlockState mirror(BlockState state, BlockMirror mirror) {
-		return state.rotate(mirror.getRotation(state.get(Properties.FACING)));
+	public BlockState mirror(BlockState state, Mirror mirror) {
+		return state.rotate(mirror.getRotation(state.getValue(BlockStateProperties.FACING)));
 	}
 	
 	@Override
-	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-		return direction.getOpposite() == state.get(Properties.FACING) && !state.canPlaceAt(world, pos) ? Blocks.AIR.getDefaultState() : state;
+	public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+		return direction.getOpposite() == state.getValue(BlockStateProperties.FACING) && !state.canSurvive(world, pos) ? Blocks.AIR.defaultBlockState() : state;
 	}
 	
 	@Override
-	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-		Direction direction = state.get(Properties.FACING);
-		BlockPos blockPos = pos.offset(direction.getOpposite());
-		return world.getBlockState(blockPos).isSideSolidFullSquare(world, blockPos, direction);
+	public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+		Direction direction = state.getValue(BlockStateProperties.FACING);
+		BlockPos blockPos = pos.relative(direction.getOpposite());
+		return world.getBlockState(blockPos).isFaceSturdy(world, blockPos, direction);
 	}
 	
 	@Override
-	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-		builder.add(Properties.FACING, Properties.INVERTED);
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+		builder.add(BlockStateProperties.FACING, BlockStateProperties.INVERTED);
 	}
 	
 	@Override
-	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-		super.randomDisplayTick(state, world, pos, random);
+	public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
+		super.animateTick(state, world, pos, random);
 		
 		if (random.nextFloat() < 0.3) {
-			Direction direction = state.get(Properties.FACING);
-			double d = direction.getOffsetX() == 0 ? 0.3D + random.nextFloat() * 0.4F : direction.getOffsetX() == 1 ? 0.15 : 0.85;
-			double e = direction.getOffsetY() == 0 ? 0.3D + random.nextFloat() * 0.4F : direction.getOffsetY() == 1 ? 0.15 : 0.85;
-			double f = direction.getOffsetZ() == 0 ? 0.3D + random.nextFloat() * 0.4F : direction.getOffsetZ() == 1 ? 0.15 : 0.85;
+			Direction direction = state.getValue(BlockStateProperties.FACING);
+			double d = direction.getStepX() == 0 ? 0.3D + random.nextFloat() * 0.4F : direction.getStepX() == 1 ? 0.15 : 0.85;
+			double e = direction.getStepY() == 0 ? 0.3D + random.nextFloat() * 0.4F : direction.getStepY() == 1 ? 0.15 : 0.85;
+			double f = direction.getStepZ() == 0 ? 0.3D + random.nextFloat() * 0.4F : direction.getStepZ() == 1 ? 0.15 : 0.85;
 			world.addParticle(SpectrumParticleTypes.SHIMMERSTONE_SPARKLE_SMALL, (double) pos.getX() + d, (double) pos.getY() + e, (double) pos.getZ() + f, 0.0D, 0.02D, 0.0D);
 		}
 	}

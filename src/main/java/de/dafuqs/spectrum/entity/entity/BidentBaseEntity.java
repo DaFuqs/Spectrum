@@ -3,64 +3,64 @@ package de.dafuqs.spectrum.entity.entity;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.enchantment.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.data.*;
-import net.minecraft.entity.projectile.*;
-import net.minecraft.item.*;
 import net.minecraft.nbt.*;
-import net.minecraft.sound.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.network.syncher.*;
+import net.minecraft.sounds.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.projectile.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.phys.*;
 
-public abstract class BidentBaseEntity extends TridentEntity {
+public abstract class BidentBaseEntity extends ThrownTrident {
 	
-	protected static final TrackedData<ItemStack> STACK = DataTracker.registerData(BidentBaseEntity.class, TrackedDataHandlerRegistry.ITEM_STACK);
+	protected static final EntityDataAccessor<ItemStack> STACK = SynchedEntityData.defineId(BidentBaseEntity.class, EntityDataSerializers.ITEM_STACK);
 	
-	public BidentBaseEntity(EntityType<? extends TridentEntity> entityType, World world) {
+	public BidentBaseEntity(EntityType<? extends ThrownTrident> entityType, Level world) {
 		super(entityType, world);
 	}
 	
 	@Override
-	protected void initDataTracker(DataTracker.Builder builder) {
-		super.initDataTracker(builder);
-		builder.add(STACK, Items.AIR.getDefaultStack());
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(STACK, Items.AIR.getDefaultInstance());
 	}
 	
 	@Override
-	public void setStack(ItemStack stack) {
+	public void setPickupItemStack(ItemStack stack) {
 		setTrackedStack(stack.copy());
-		super.setStack(stack);
-		this.dataTracker.set(TridentEntityAccessor.spectrum$getLoyalty(), (byte) SpectrumEnchantmentHelper.getLevel(getWorld().getRegistryManager(), Enchantments.LOYALTY, stack));
-		this.dataTracker.set(TridentEntityAccessor.spectrum$getEnchanted(), stack.hasGlint());
+		super.setPickupItemStack(stack);
+		this.entityData.set(TridentEntityAccessor.spectrum$getLoyalty(), (byte) SpectrumEnchantmentHelper.getLevel(level().registryAccess(), Enchantments.LOYALTY, stack));
+		this.entityData.set(TridentEntityAccessor.spectrum$getEnchanted(), stack.hasFoil());
 	}
 	
 	@Override
-	protected SoundEvent getHitSound() {
+	protected SoundEvent getDefaultHitGroundSoundEvent() {
 		return SpectrumSoundEvents.BIDENT_HIT_GROUND;
 	}
 	
 	public ItemStack getTrackedStack() {
-		return this.dataTracker.get(STACK);
+		return this.entityData.get(STACK);
 	}
 	
 	public void setTrackedStack(ItemStack stack) {
-		dataTracker.set(STACK, stack);
+		entityData.set(STACK, stack);
 	}
 	
 	@Override
-	public void readCustomDataFromNbt(NbtCompound nbt) {
-		super.readCustomDataFromNbt(nbt);
-		this.dataTracker.set(STACK, CodecHelper.fromNbt(ItemStack.CODEC, nbt.get("item"), ItemStack.EMPTY));
+	public void readAdditionalSaveData(CompoundTag nbt) {
+		super.readAdditionalSaveData(nbt);
+		this.entityData.set(STACK, CodecHelper.fromNbt(ItemStack.CODEC, nbt.get("item"), ItemStack.EMPTY));
 	}
 	
 	@Override
-	public void writeCustomDataToNbt(NbtCompound nbt) {
-		super.writeCustomDataToNbt(nbt);
+	public void addAdditionalSaveData(CompoundTag nbt) {
+		super.addAdditionalSaveData(nbt);
 	}
 	
 	@Override
-	public Box calculateBoundingBox() {
-		return super.calculateBoundingBox();
+	public AABB makeBoundingBox() {
+		return super.makeBoundingBox();
 	}
 }

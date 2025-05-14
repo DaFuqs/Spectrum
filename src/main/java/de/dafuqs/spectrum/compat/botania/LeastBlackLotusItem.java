@@ -1,11 +1,10 @@
 package de.dafuqs.spectrum.compat.botania;
 
-import net.minecraft.entity.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import net.minecraft.*;
+import net.minecraft.core.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.world.entity.item.*;
+import net.minecraft.world.item.*;
 import vazkii.botania.api.item.*;
 import vazkii.botania.api.mana.*;
 import vazkii.botania.common.handler.*;
@@ -18,7 +17,7 @@ import java.util.*;
 
 public class LeastBlackLotusItem extends Item implements ManaDissolvable {
 	
-	public LeastBlackLotusItem(Settings settings) {
+	public LeastBlackLotusItem(Properties settings) {
 		super(settings);
 	}
 	
@@ -29,7 +28,7 @@ public class LeastBlackLotusItem extends Item implements ManaDissolvable {
 		}
 		
 		BlockPos pos = manaPool.getManaReceiverPos();
-		if (!itemEntity.getWorld().isClient) {
+		if (!itemEntity.level().isClientSide) {
 			manaPool.receiveMana(1);
 			EntityHelper.shrinkItem(itemEntity);
 			XplatAbstractions.INSTANCE.sendToTracking(itemEntity, new BotaniaEffectPacket(EffectType.BLACK_LOTUS_DISSOLVE, pos.getX(), pos.getY() + 0.5, pos.getZ()));
@@ -39,15 +38,15 @@ public class LeastBlackLotusItem extends Item implements ManaDissolvable {
 	}
 	
 	@Override
-	public boolean hasGlint(ItemStack stack) {
+	public boolean isFoil(ItemStack stack) {
 		return true;
 	}
 
 	@Override
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
 		
-		tooltip.add(Text.translatable("item.spectrum.least_black_lotus.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(Component.translatable("item.spectrum.least_black_lotus.tooltip").withStyle(ChatFormatting.GRAY));
 	}
 	
 }

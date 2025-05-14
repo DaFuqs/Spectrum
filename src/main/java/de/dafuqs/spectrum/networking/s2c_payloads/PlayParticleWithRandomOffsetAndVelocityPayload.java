@@ -6,24 +6,24 @@ import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.fabricmc.fabric.api.networking.v1.*;
 import net.minecraft.client.*;
-import net.minecraft.client.world.*;
+import net.minecraft.client.multiplayer.*;
+import net.minecraft.core.*;
+import net.minecraft.core.particles.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.network.packet.*;
-import net.minecraft.particle.*;
-import net.minecraft.server.network.*;
-import net.minecraft.server.world.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
+import net.minecraft.network.protocol.common.custom.*;
+import net.minecraft.server.level.*;
+import net.minecraft.util.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
-public record PlayParticleWithRandomOffsetAndVelocityPayload(Vec3d pos, ParticleEffect effect, int amount, Vec3d randomOffset, Vec3d randomVelocity) implements CustomPayload {
+public record PlayParticleWithRandomOffsetAndVelocityPayload(Vec3 pos, ParticleOptions effect, int amount, Vec3 randomOffset, Vec3 randomVelocity) implements CustomPacketPayload {
 	
-	public static final Id<PlayParticleWithRandomOffsetAndVelocityPayload> ID = SpectrumC2SPackets.makeId("play_particle_with_random_offset_and_velocity");
-	public static final PacketCodec<RegistryByteBuf, PlayParticleWithRandomOffsetAndVelocityPayload> CODEC = PacketCodec.tuple(
+	public static final Type<PlayParticleWithRandomOffsetAndVelocityPayload> ID = SpectrumC2SPackets.makeId("play_particle_with_random_offset_and_velocity");
+	public static final StreamCodec<RegistryFriendlyByteBuf, PlayParticleWithRandomOffsetAndVelocityPayload> CODEC = StreamCodec.composite(
 			PacketCodecHelper.VEC3D, PlayParticleWithRandomOffsetAndVelocityPayload::pos,
-			ParticleTypes.PACKET_CODEC, PlayParticleWithRandomOffsetAndVelocityPayload::effect,
-			PacketCodecs.INTEGER, PlayParticleWithRandomOffsetAndVelocityPayload::amount,
+			ParticleTypes.STREAM_CODEC, PlayParticleWithRandomOffsetAndVelocityPayload::effect,
+			ByteBufCodecs.INT, PlayParticleWithRandomOffsetAndVelocityPayload::amount,
 			PacketCodecHelper.VEC3D, PlayParticleWithRandomOffsetAndVelocityPayload::randomOffset,
 			PacketCodecHelper.VEC3D, PlayParticleWithRandomOffsetAndVelocityPayload::randomVelocity,
 			PlayParticleWithRandomOffsetAndVelocityPayload::new
@@ -36,8 +36,8 @@ public record PlayParticleWithRandomOffsetAndVelocityPayload(Vec3d pos, Particle
 	 * @param position       the pos of the particles
 	 * @param particleEffect The particle effect to play
 	 */
-	public static void playParticleWithRandomOffsetAndVelocity(ServerWorld world, Vec3d position, @NotNull ParticleEffect particleEffect, int amount, Vec3d randomOffset, Vec3d randomVelocity) {
-		for (ServerPlayerEntity player : PlayerLookup.tracking(world, BlockPos.ofFloored(position))) {
+	public static void playParticleWithRandomOffsetAndVelocity(ServerLevel world, Vec3 position, @NotNull ParticleOptions particleEffect, int amount, Vec3 randomOffset, Vec3 randomVelocity) {
+		for (ServerPlayer player : PlayerLookup.tracking(world, BlockPos.containing(position))) {
 			ServerPlayNetworking.send(player, new PlayParticleWithRandomOffsetAndVelocityPayload(position, particleEffect, amount, randomOffset, randomVelocity));
 		}
 	}
@@ -45,13 +45,13 @@ public record PlayParticleWithRandomOffsetAndVelocityPayload(Vec3d pos, Particle
 	@SuppressWarnings("resource")
 	@Environment(EnvType.CLIENT)
 	public static void execute(PlayParticleWithRandomOffsetAndVelocityPayload payload, ClientPlayNetworking.Context context) {
-		MinecraftClient client = context.client();
-		ClientWorld world = client.world;
-		Random random = world.getRandom();
+		Minecraft client = context.client();
+		ClientLevel world = client.level;
+		RandomSource random = world.getRandom();
 		
-		Vec3d pos = payload.pos;
-		Vec3d randomOffset = payload.randomOffset;
-		Vec3d randomVelocity = payload.randomVelocity;
+		Vec3 pos = payload.pos;
+		Vec3 randomOffset = payload.randomOffset;
+		Vec3 randomVelocity = payload.randomVelocity;
 		
 		for (int i = 0; i < payload.amount; i++) {
 			double randomOffsetX = randomOffset.x - random.nextDouble() * randomOffset.x * 2;
@@ -62,13 +62,13 @@ public record PlayParticleWithRandomOffsetAndVelocityPayload(Vec3d pos, Particle
 			double randomVelocityZ = randomVelocity.z - random.nextDouble() * randomVelocity.z * 2;
 			
 			world.addParticle(payload.effect,
-					pos.getX() + randomOffsetX, pos.getY() + randomOffsetY, pos.getZ() + randomOffsetZ,
+					pos.x() + randomOffsetX, pos.y() + randomOffsetY, pos.z() + randomOffsetZ,
 					randomVelocityX, randomVelocityY, randomVelocityZ);
 		}
 	}
 	
 	@Override
-	public Id<? extends CustomPayload> getId() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 	

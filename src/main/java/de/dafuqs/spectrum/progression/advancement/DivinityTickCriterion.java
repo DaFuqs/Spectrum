@@ -3,41 +3,39 @@ package de.dafuqs.spectrum.progression.advancement;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.*;
-import net.minecraft.advancement.criterion.*;
-import net.minecraft.predicate.*;
-import net.minecraft.predicate.entity.*;
-import net.minecraft.server.network.*;
-import net.minecraft.util.*;
+import net.minecraft.advancements.critereon.*;
+import net.minecraft.resources.*;
+import net.minecraft.server.level.*;
 
 import java.util.*;
 
-public class DivinityTickCriterion extends AbstractCriterion<DivinityTickCriterion.Conditions> {
+public class DivinityTickCriterion extends SimpleCriterionTrigger<DivinityTickCriterion.Conditions> {
 	
-	public static final Identifier ID = SpectrumCommon.locate("divinity_tick");
+	public static final ResourceLocation ID = SpectrumCommon.locate("divinity_tick");
 	
-	public void trigger(ServerPlayerEntity player) {
+	public void trigger(ServerPlayer player) {
 		this.trigger(player, (conditions) -> conditions.matches(player.isAlive(), player.getHealth()));
 	}
 	
 	@Override
-	public Codec<Conditions> getConditionsCodec() {
+	public Codec<Conditions> codec() {
 		return Conditions.CODEC;
 	}
 	
 	public record Conditions(
-			Optional<LootContextPredicate> player,
+			Optional<ContextAwarePredicate> player,
 			Optional<Boolean> isAlive,
-			NumberRange.DoubleRange healthRange
-	) implements AbstractCriterion.Conditions {
+			MinMaxBounds.Doubles healthRange
+	) implements SimpleCriterionTrigger.SimpleInstance {
 		
 		public static final Codec<Conditions> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-				LootContextPredicate.CODEC.optionalFieldOf("player").forGetter(Conditions::player),
+				ContextAwarePredicate.CODEC.optionalFieldOf("player").forGetter(Conditions::player),
 				Codec.BOOL.optionalFieldOf("isAlive").forGetter(Conditions::isAlive),
-				NumberRange.DoubleRange.CODEC.optionalFieldOf("healthRange", NumberRange.DoubleRange.ANY).forGetter(Conditions::healthRange)
+				MinMaxBounds.Doubles.CODEC.optionalFieldOf("healthRange", MinMaxBounds.Doubles.ANY).forGetter(Conditions::healthRange)
 		).apply(instance, DivinityTickCriterion.Conditions::new));
 		
 		public boolean matches(boolean isPlayerAlive, float health) {
-			return this.isAlive.isPresent() && (isPlayerAlive == this.isAlive.get()) && this.healthRange.test(health);
+			return this.isAlive.isPresent() && (isPlayerAlive == this.isAlive.get()) && this.healthRange.matches(health);
 		}
 	}
 }

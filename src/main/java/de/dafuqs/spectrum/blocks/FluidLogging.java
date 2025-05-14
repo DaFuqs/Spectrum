@@ -2,24 +2,25 @@ package de.dafuqs.spectrum.blocks;
 
 import de.dafuqs.spectrum.blocks.fluid.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.*;
-import net.minecraft.item.*;
-import net.minecraft.registry.tag.*;
-import net.minecraft.sound.*;
-import net.minecraft.state.property.*;
+import net.minecraft.core.*;
+import net.minecraft.sounds.*;
+import net.minecraft.tags.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.material.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public class FluidLogging {
 	
-	public enum State implements StringIdentifiable {
+	public enum State implements StringRepresentable {
 		NOT_LOGGED("none", 0),
 		WATER("water", 0),
 		LIQUID_CRYSTAL("liquid_crystal", LiquidCrystalFluidBlock.LUMINANCE);
@@ -33,28 +34,28 @@ public class FluidLogging {
 		}
 		
 		@Override
-		public String asString() {
+		public String getSerializedName() {
 			return this.name;
 		}
 		
 		public FluidState getFluidState() {
 			switch (this) {
 				case LIQUID_CRYSTAL -> {
-					return SpectrumFluids.LIQUID_CRYSTAL.getStill(false);
+					return SpectrumFluids.LIQUID_CRYSTAL.getSource(false);
 				}
 				case WATER -> {
-					return Fluids.WATER.getStill(false);
+					return Fluids.WATER.getSource(false);
 				}
 				default -> {
-					return Fluids.EMPTY.getDefaultState();
+					return Fluids.EMPTY.defaultFluidState();
 				}
 			}
 		}
 		
 		public static State getForFluidState(FluidState fluidState) {
-			if (fluidState.getFluid() == SpectrumFluids.LIQUID_CRYSTAL) {
+			if (fluidState.getType() == SpectrumFluids.LIQUID_CRYSTAL) {
 				return LIQUID_CRYSTAL;
-			} else if (fluidState.isIn(FluidTags.WATER)) {
+			} else if (fluidState.is(FluidTags.WATER)) {
 				return WATER;
 			}
 			
@@ -66,11 +67,11 @@ public class FluidLogging {
 		}
 		
 		public boolean isOf(Fluid fluid) {
-			return this.getFluidState().isOf(fluid);
+			return this.getFluidState().is(fluid);
 		}
 		
 		public boolean isIn(TagKey<Fluid> fluidTag) {
-			return this.getFluidState().isIn(fluidTag);
+			return this.getFluidState().is(fluidTag);
 		}
 		
 		@Override
@@ -78,38 +79,38 @@ public class FluidLogging {
 			return this.name;
 		}
 		
-		public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+		public void onEntityCollision(BlockState state, Level world, BlockPos pos, Entity entity) {
 			if (this == State.LIQUID_CRYSTAL) {
 				SpectrumFluids.LIQUID_CRYSTAL.onEntityCollision(state, world, pos, entity);
 			}
 		}
 	}
 	
-	public static final EnumProperty<State> ANY_INCLUDING_NONE = EnumProperty.of("fluid_logged", State.class);
-	public static final EnumProperty<State> ANY_EXCLUDING_NONE = EnumProperty.of("fluid_logged", State.class, State.WATER, State.LIQUID_CRYSTAL);
-	public static final EnumProperty<State> NONE_AND_CRYSTAL = EnumProperty.of("fluid_logged", State.class, State.NOT_LOGGED, State.LIQUID_CRYSTAL);
+	public static final EnumProperty<State> ANY_INCLUDING_NONE = EnumProperty.create("fluid_logged", State.class);
+	public static final EnumProperty<State> ANY_EXCLUDING_NONE = EnumProperty.create("fluid_logged", State.class, State.WATER, State.LIQUID_CRYSTAL);
+	public static final EnumProperty<State> NONE_AND_CRYSTAL = EnumProperty.create("fluid_logged", State.class, State.NOT_LOGGED, State.LIQUID_CRYSTAL);
 	
 	public interface SpectrumFluidLoggable extends SpectrumFluidDrainable, SpectrumFluidFillable {
 	
 	}
 	
-	public interface SpectrumFluidFillable extends FluidFillable {
+	public interface SpectrumFluidFillable extends LiquidBlockContainer {
 		
 		@Override
-		default boolean canFillWithFluid(@Nullable PlayerEntity player, BlockView world, BlockPos pos, BlockState state, Fluid fluid) {
-			return state.get(ANY_INCLUDING_NONE) == State.NOT_LOGGED && (fluid == Fluids.WATER || fluid == SpectrumFluids.LIQUID_CRYSTAL);
+		default boolean canPlaceLiquid(@Nullable Player player, BlockGetter world, BlockPos pos, BlockState state, Fluid fluid) {
+			return state.getValue(ANY_INCLUDING_NONE) == State.NOT_LOGGED && (fluid == Fluids.WATER || fluid == SpectrumFluids.LIQUID_CRYSTAL);
 		}
 		
 		@Override
-		default boolean tryFillWithFluid(WorldAccess world, BlockPos pos, BlockState state, FluidState fluidState) {
-			if (state.get(ANY_INCLUDING_NONE) == State.NOT_LOGGED) {
-				if (!world.isClient()) {
-					if (fluidState.getFluid() == Fluids.WATER) {
-						world.setBlockState(pos, state.with(ANY_INCLUDING_NONE, State.WATER), Block.NOTIFY_ALL);
-						world.scheduleFluidTick(pos, fluidState.getFluid(), fluidState.getFluid().getTickRate(world));
-					} else if (fluidState.getFluid() == SpectrumFluids.LIQUID_CRYSTAL) {
-						world.setBlockState(pos, state.with(ANY_INCLUDING_NONE, State.LIQUID_CRYSTAL), Block.NOTIFY_ALL);
-						world.scheduleFluidTick(pos, fluidState.getFluid(), fluidState.getFluid().getTickRate(world));
+		default boolean placeLiquid(LevelAccessor world, BlockPos pos, BlockState state, FluidState fluidState) {
+			if (state.getValue(ANY_INCLUDING_NONE) == State.NOT_LOGGED) {
+				if (!world.isClientSide()) {
+					if (fluidState.getType() == Fluids.WATER) {
+						world.setBlock(pos, state.setValue(ANY_INCLUDING_NONE, State.WATER), Block.UPDATE_ALL);
+						world.scheduleTick(pos, fluidState.getType(), fluidState.getType().getTickDelay(world));
+					} else if (fluidState.getType() == SpectrumFluids.LIQUID_CRYSTAL) {
+						world.setBlock(pos, state.setValue(ANY_INCLUDING_NONE, State.LIQUID_CRYSTAL), Block.UPDATE_ALL);
+						world.scheduleTick(pos, fluidState.getType(), fluidState.getType().getTickDelay(world));
 					}
 				}
 				
@@ -121,22 +122,22 @@ public class FluidLogging {
 		
 	}
 	
-	public interface SpectrumFluidDrainable extends FluidDrainable {
+	public interface SpectrumFluidDrainable extends BucketPickup {
 		
 		@Override
-		default ItemStack tryDrainFluid(@Nullable PlayerEntity player, WorldAccess world, BlockPos pos, BlockState state) {
-			State fluidLog = state.get(ANY_INCLUDING_NONE);
+		default ItemStack pickupBlock(@Nullable Player player, LevelAccessor world, BlockPos pos, BlockState state) {
+			State fluidLog = state.getValue(ANY_INCLUDING_NONE);
 			
 			if (fluidLog == State.WATER) {
-				world.setBlockState(pos, state.with(ANY_INCLUDING_NONE, State.NOT_LOGGED), Block.NOTIFY_ALL);
-				if (!state.canPlaceAt(world, pos)) {
-					world.breakBlock(pos, true);
+				world.setBlock(pos, state.setValue(ANY_INCLUDING_NONE, State.NOT_LOGGED), Block.UPDATE_ALL);
+				if (!state.canSurvive(world, pos)) {
+					world.destroyBlock(pos, true);
 				}
 				return new ItemStack(Items.WATER_BUCKET);
 			} else if (fluidLog == State.LIQUID_CRYSTAL) {
-				world.setBlockState(pos, state.with(ANY_INCLUDING_NONE, State.NOT_LOGGED), Block.NOTIFY_ALL);
-				if (!state.canPlaceAt(world, pos)) {
-					world.breakBlock(pos, true);
+				world.setBlock(pos, state.setValue(ANY_INCLUDING_NONE, State.NOT_LOGGED), Block.UPDATE_ALL);
+				if (!state.canSurvive(world, pos)) {
+					world.destroyBlock(pos, true);
 				}
 				return new ItemStack(SpectrumItems.LIQUID_CRYSTAL_BUCKET);
 			}
@@ -145,8 +146,8 @@ public class FluidLogging {
 		}
 		
 		@Override
-		default Optional<SoundEvent> getBucketFillSound() {
-			return Fluids.WATER.getBucketFillSound();
+		default Optional<SoundEvent> getPickupSound() {
+			return Fluids.WATER.getPickupSound();
 		}
 		
 	}

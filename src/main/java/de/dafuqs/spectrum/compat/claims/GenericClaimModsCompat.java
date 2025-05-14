@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.compat.claims;
 
 import net.fabricmc.loader.api.*;
-import net.minecraft.entity.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.level.*;
 import org.jetbrains.annotations.*;
 
 public class GenericClaimModsCompat {
@@ -21,21 +21,21 @@ public class GenericClaimModsCompat {
 	 * @param pos   the pos that should get modified
 	 * @return if modification is allowed
 	 */
-	public static boolean canBreak(World world, BlockPos pos, @Nullable Entity cause) {
+	public static boolean canBreak(Level world, BlockPos pos, @Nullable Entity cause) {
 		if (IS_COMMON_PROTECTION_API_PRESENT) {
 			return CommonProtectionApiCompat.canBreak(world, pos, cause);
 		}
 		return true;
 	}
 	
-	public static boolean canInteract(World world, Entity entity, @Nullable Entity cause) {
+	public static boolean canInteract(Level world, Entity entity, @Nullable Entity cause) {
 		if (IS_COMMON_PROTECTION_API_PRESENT) {
 			return CommonProtectionApiCompat.canInteract(world, entity, cause);
 		}
 		return true;
 	}
-
-	public static boolean canInteract(World world, BlockPos pos, @Nullable Entity cause) {
+	
+	public static boolean canInteract(Level world, BlockPos pos, @Nullable Entity cause) {
 		if (IS_COMMON_PROTECTION_API_PRESENT) {
 			return CommonProtectionApiCompat.canInteract(world, pos, cause);
 		}
@@ -50,14 +50,14 @@ public class GenericClaimModsCompat {
 	 * @param pos   the pos that should get modified
 	 * @return if modification is allowed
 	 */
-	public static boolean canModify(World world, BlockPos pos, @Nullable Entity cause) {
+	public static boolean canModify(Level world, BlockPos pos, @Nullable Entity cause) {
 		if (IS_COMMON_PROTECTION_API_PRESENT) {
 			return CommonProtectionApiCompat.canModify(world, pos, cause);
 		}
 		return true;
 	}
-
-	public static boolean canPlaceBlock(World world, BlockPos pos, @Nullable Entity cause) {
+	
+	public static boolean canPlaceBlock(Level world, BlockPos pos, @Nullable Entity cause) {
 		if (IS_COMMON_PROTECTION_API_PRESENT) {
 			return CommonProtectionApiCompat.canPlaceBlock(world, pos, cause);
 		}

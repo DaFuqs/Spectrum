@@ -10,17 +10,17 @@ import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.mob.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import net.minecraft.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.item.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.phys.*;
 
 import java.util.*;
 
@@ -30,50 +30,50 @@ public class StaffOfRemembranceItem extends Item implements InkPowered, Prioriti
 	public static final InkCost TURN_NEUTRAL_TO_MEMORY_COST = new InkCost(USED_COLOR, 1000);
 	public static final InkCost TURN_HOSTILE_TO_MEMORY_COST = new InkCost(USED_COLOR, 5000);
 	
-	public StaffOfRemembranceItem(Settings settings) {
+	public StaffOfRemembranceItem(Properties settings) {
 		super(settings);
 	}
 	
 	@Override
 	@Environment(EnvType.CLIENT)
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
 		
-		tooltip.add(Text.translatable("item.spectrum.staff_of_remembrance.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(Component.translatable("item.spectrum.staff_of_remembrance.tooltip").withStyle(ChatFormatting.GRAY));
 		addInkPoweredTooltip(tooltip);
 	}
 	
 	@Override
-	public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-		World world = user.getWorld();
-		Vec3d pos = entity.getPos();
+	public InteractionResult interactLivingEntity(ItemStack stack, Player user, LivingEntity entity, InteractionHand hand) {
+		Level world = user.level();
+		Vec3 pos = entity.position();
 		
 		if (!GenericClaimModsCompat.canInteract(world, entity, user)) {
-			return ActionResult.FAIL;
+			return InteractionResult.FAIL;
 		}
 		
-		if (!world.isClient && entity instanceof MobEntity mobEntity) {
+		if (!world.isClientSide && entity instanceof Mob mobEntity) {
 			if (turnEntityToMemory(user, mobEntity)) {
-				PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, entity.getPos(), ColoredSparkleRisingParticleEffect.LIGHT_GRAY, 10, Vec3d.ZERO, new Vec3d(0.2, 0.2, 0.2));
-				PlayParticleWithExactVelocityPayload.playParticleWithExactVelocity((ServerWorld) world, entity.getPos(), ColoredExplosionParticleEffect.LIGHT_GRAY, 1, Vec3d.ZERO);
-				world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SpectrumSoundEvents.RADIANCE_STAFF_PLACE, SoundCategory.PLAYERS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
+				PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerLevel) world, entity.position(), ColoredSparkleRisingParticleEffect.LIGHT_GRAY, 10, Vec3.ZERO, new Vec3(0.2, 0.2, 0.2));
+				PlayParticleWithExactVelocityPayload.playParticleWithExactVelocity((ServerLevel) world, entity.position(), ColoredExplosionParticleEffect.LIGHT_GRAY, 1, Vec3.ZERO);
+				world.playSound(null, pos.x(), pos.y(), pos.z(), SpectrumSoundEvents.RADIANCE_STAFF_PLACE, SoundSource.PLAYERS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
 			} else {
-				world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
+				world.playSound(null, pos.x(), pos.y(), pos.z(), SpectrumSoundEvents.USE_FAIL, SoundSource.PLAYERS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
 			}
 		}
-		return ActionResult.success(world.isClient);
+		return InteractionResult.sidedSuccess(world.isClientSide);
 	}
 	
-	private boolean turnEntityToMemory(PlayerEntity user, MobEntity entity) {
-		if (!entity.isAlive() || entity.isRemoved() || entity.hasPassengers()) {
+	private boolean turnEntityToMemory(Player user, Mob entity) {
+		if (!entity.isAlive() || entity.isRemoved() || entity.isVehicle()) {
 			return false;
 		}
-		if (entity.getType().isIn(SpectrumEntityTypeTags.STAFF_OF_REMEMBRANCE_BLACKLISTED)) {
+		if (entity.getType().is(SpectrumEntityTypeTags.STAFF_OF_REMEMBRANCE_BLACKLISTED)) {
 			return false;
 		}
 		
-		SpawnGroup spawnGroup = entity.getType().getSpawnGroup();
-		if (spawnGroup == SpawnGroup.MONSTER) {
+		MobCategory spawnGroup = entity.getType().getCategory();
+		if (spawnGroup == MobCategory.MONSTER) {
 			if (!user.isCreative() && !AdvancementHelper.hasAdvancement(user, SpectrumAdvancements.HOSTILE_MEMORIZING)) {
 				return false;
 			}
@@ -86,26 +86,26 @@ public class StaffOfRemembranceItem extends Item implements InkPowered, Prioriti
 			}
 		}
 		
-		entity.detachLeash(true, true);
+		entity.dropLeash(true, true);
 		entity.playAmbientSound();
-		entity.playSpawnEffects();
+		entity.spawnAnim();
 		
 		ItemStack memoryStack = MemoryItem.getMemoryForEntity(entity);
 		MemoryItem.setTicksToManifest(memoryStack, 1);
 		MemoryItem.setSpawnAsAdult(memoryStack, true);
 		
-		Vec3d entityPos = entity.getPos();
-		ItemEntity itemEntity = new ItemEntity(entity.getWorld(), entityPos.getX(), entityPos.getY(), entityPos.getZ(), memoryStack);
-		itemEntity.setVelocity(new Vec3d(0.0, 0.15, 0.0));
-		entity.getWorld().spawnEntity(itemEntity);
+		Vec3 entityPos = entity.position();
+		ItemEntity itemEntity = new ItemEntity(entity.level(), entityPos.x(), entityPos.y(), entityPos.z(), memoryStack);
+		itemEntity.setDeltaMovement(new Vec3(0.0, 0.15, 0.0));
+		entity.level().addFreshEntity(itemEntity);
 		entity.remove(Entity.RemovalReason.DISCARDED);
 		
 		return true;
 	}
 	
 	@Override
-	public UseAction getUseAction(ItemStack stack) {
-		return UseAction.SPEAR;
+	public UseAnim getUseAnimation(ItemStack stack) {
+		return UseAnim.SPEAR;
 	}
 	
 	@Override

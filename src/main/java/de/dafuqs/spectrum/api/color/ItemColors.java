@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.api.color;
 
 import de.dafuqs.spectrum.api.energy.color.*;
-import net.minecraft.block.*;
-import net.minecraft.item.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.*;
 
 import java.util.*;
 

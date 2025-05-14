@@ -1,11 +1,11 @@
 package de.dafuqs.spectrum.compat.modonomicon.client.pages;
 
-import com.klikli_dev.modonomicon.client.render.page.BookTextPageRenderer;
-import de.dafuqs.spectrum.compat.modonomicon.pages.BookCollectionPage;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.item.ItemStack;
+import com.klikli_dev.modonomicon.client.render.page.*;
+import de.dafuqs.spectrum.compat.modonomicon.pages.*;
+import net.minecraft.client.gui.*;
+import net.minecraft.world.item.*;
 
-import java.util.List;
+import java.util.*;
 
 public class BookCollectionPageRenderer extends BookTextPageRenderer {
 
@@ -16,7 +16,7 @@ public class BookCollectionPageRenderer extends BookTextPageRenderer {
     }
 
     @Override
-    public void render(DrawContext drawContext, int mouseX, int mouseY, float ticks) {
+	public void render(GuiGraphics drawContext, int mouseX, int mouseY, float ticks) {
         if (!(page instanceof BookCollectionPage collectionPage)) return;
 
         super.render(drawContext, mouseX, mouseY, ticks);

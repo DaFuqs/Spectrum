@@ -2,10 +2,10 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.data.*;
-import net.minecraft.block.*;
-import net.minecraft.registry.*;
-import net.minecraft.registry.tag.*;
-import net.minecraft.util.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.resources.*;
+import net.minecraft.tags.*;
+import net.minecraft.world.level.block.*;
 
 @SuppressWarnings("unused")
 public class SpectrumBlockTags {
@@ -84,12 +84,12 @@ public class SpectrumBlockTags {
 	
 	public static final TagKey<Block> C_LIGHTNING_RODS = conventional("lightning_rods", provider -> provider
 			.add(Blocks.LIGHTNING_ROD)
-			.addOptionalTag(Identifier.of("friendsandfoes:lightning_rods")));
+			.addOptionalTag(ResourceLocation.parse("friendsandfoes:lightning_rods")));
 	
 	public static final TagKey<Block> C_BRUSHABLE_BLOCKS = conventional("brushable_blocks", provider -> provider
 			.add(Blocks.SUSPICIOUS_SAND)
 			.add(Blocks.SUSPICIOUS_GRAVEL)
-			.addOptional(Identifier.of("the_bumblezone:pile_of_pollen_suspicious")));
+			.addOptional(ResourceLocation.parse("the_bumblezone:pile_of_pollen_suspicious")));
 	
 	public static final TagKey<Block> C_INFESTED_BLOCKS = conventional("infested_blocks", provider -> provider
 			.add(Blocks.INFESTED_COBBLESTONE)
@@ -102,15 +102,15 @@ public class SpectrumBlockTags {
 			.add(SpectrumBlocks.INFESTED_BLACKSLAG));
 	
 	private static TagKey<Block> of(String id) {
-		return TagKey.of(RegistryKeys.BLOCK, SpectrumCommon.locate(id));
+		return TagKey.create(Registries.BLOCK, SpectrumCommon.locate(id));
 	}
 	
 	private static TagKey<Block> conventional(String id) {
-		return TagKey.of(RegistryKeys.BLOCK, Identifier.of("c", id));
+		return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", id));
 	}
 	
 	private static TagKey<Block> conventional(String id, DatagenProxy.TagBuilderCallback<Block> builder) {
-		TagKey<Block> tag = TagKey.of(RegistryKeys.BLOCK, Identifier.of("c", id));
+		TagKey<Block> tag = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", id));
 		REGISTRAR.defer(ctx -> builder.build(ctx.build(tag)));
 		return tag;
 	}

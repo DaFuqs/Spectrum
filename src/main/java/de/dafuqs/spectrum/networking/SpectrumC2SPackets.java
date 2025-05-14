@@ -3,12 +3,12 @@ package de.dafuqs.spectrum.networking;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.networking.c2s_payloads.*;
 import net.fabricmc.fabric.api.networking.v1.*;
-import net.minecraft.network.packet.*;
+import net.minecraft.network.protocol.common.custom.*;
 
 public class SpectrumC2SPackets {
-
-	public static <T extends CustomPayload> CustomPayload.Id<T> makeId(String id) {
-		return new CustomPayload.Id<>(SpectrumCommon.locate(id));
+	
+	public static <T extends CustomPacketPayload> CustomPacketPayload.Type<T> makeId(String id) {
+		return new CustomPacketPayload.Type<>(SpectrumCommon.locate(id));
 	}
 
 	public static void register() {

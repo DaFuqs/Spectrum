@@ -3,23 +3,23 @@ package de.dafuqs.spectrum.blocks.fluid;
 import de.dafuqs.spectrum.blocks.decay.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.ai.pathing.*;
-import net.minecraft.fluid.*;
-import net.minecraft.particle.*;
-import net.minecraft.registry.tag.*;
-import net.minecraft.server.world.*;
+import net.minecraft.core.*;
+import net.minecraft.core.particles.*;
+import net.minecraft.server.level.*;
+import net.minecraft.tags.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
-import net.minecraft.world.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.material.*;
+import net.minecraft.world.level.pathfinder.*;
 import org.jetbrains.annotations.*;
 
 public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
-
-	public static final BlockState SPREAD_BLOCKSTATE = SpectrumBlocks.BLACK_MATERIA.getDefaultState().with(BlackMateriaBlock.AGE, 0);
 	
-	public MidnightSolutionFluidBlock(SpectrumFluid fluid, BlockState ultrawarmReplacementBlockState, Settings settings) {
+	public static final BlockState SPREAD_BLOCKSTATE = SpectrumBlocks.BLACK_MATERIA.defaultBlockState().setValue(BlackMateriaBlock.AGE, 0);
+	
+	public MidnightSolutionFluidBlock(SpectrumFluid fluid, BlockState ultrawarmReplacementBlockState, Properties settings) {
 		super(fluid, ultrawarmReplacementBlockState, settings);
 	}
 
@@ -35,46 +35,46 @@ public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 	}
 
 	@Override
-	public Pair<SimpleParticleType, SimpleParticleType> getFishingParticles() {
-		return new Pair<>(SpectrumParticleTypes.MIDNIGHT_SOLUTION_SPLASH, SpectrumParticleTypes.MIDNIGHT_SOLUTION_FISHING);
+	public Tuple<SimpleParticleType, SimpleParticleType> getFishingParticles() {
+		return new Tuple<>(SpectrumParticleTypes.MIDNIGHT_SOLUTION_SPLASH, SpectrumParticleTypes.MIDNIGHT_SOLUTION_FISHING);
 	}
-
-	public static boolean tryConvertNeighbor(@NotNull World world, BlockPos fromPos) {
+	
+	public static boolean tryConvertNeighbor(@NotNull Level world, BlockPos fromPos) {
 		FluidState fluidState = world.getFluidState(fromPos);
-		if (!fluidState.isEmpty() && fluidState.isIn(SpectrumFluidTags.MIDNIGHT_SOLUTION_CONVERTED)) {
-			world.setBlockState(fromPos, SpectrumBlocks.MIDNIGHT_SOLUTION.getDefaultState());
-			playExtinguishSound(world, fromPos);
+		if (!fluidState.isEmpty() && fluidState.is(SpectrumFluidTags.MIDNIGHT_SOLUTION_CONVERTED)) {
+			world.setBlockAndUpdate(fromPos, SpectrumBlocks.MIDNIGHT_SOLUTION.defaultBlockState());
+			fizz(world, fromPos);
 			return true;
 		}
 		return false;
 	}
-
-	public static void playExtinguishSound(@NotNull WorldAccess world, BlockPos pos) {
-		world.syncWorldEvent(WorldEvents.LAVA_EXTINGUISHED, pos, 0);
+	
+	public static void fizz(@NotNull LevelAccessor world, BlockPos pos) {
+		world.levelEvent(LevelEvent.LAVA_FIZZ, pos, 0);
 	}
 
 	@Override
-	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-		super.randomDisplayTick(state, world, pos, random);
-		if (!world.getBlockState(pos.up()).isSolidBlock(world, pos.up()) && random.nextFloat() < 0.03F) {
+	public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
+		super.animateTick(state, world, pos, random);
+		if (!world.getBlockState(pos.above()).isRedstoneConductor(world, pos.above()) && random.nextFloat() < 0.03F) {
 			world.addParticle(SpectrumParticleTypes.VOID_FOG, pos.getX() + random.nextDouble(), pos.getY() + 1, pos.getZ() + random.nextDouble(), 0, random.nextDouble() * 0.1, 0);
 		}
 	}
 
 	@Override
-	public boolean canPathfindThrough(BlockState state, NavigationType type) {
+	public boolean isPathfindable(BlockState state, PathComputationType type) {
 		return false;
 	}
 
 	@Override
-	public boolean receiveNeighborFluids(World world, BlockPos pos, BlockState state) {
+	public boolean shouldSpreadLiquid(Level world, BlockPos pos, BlockState state) {
 		// Shouldn't happen but check anyway
 		// If it IS true then do nothing, since no interaction can take place at this position
 		final FluidState fluidState = state.getFluidState();
 		if (fluidState == null || fluidState.isEmpty()) return true;
 
 		for (Direction direction : Direction.values()) {
-			BlockPos neighborPos = pos.offset(direction);
+			BlockPos neighborPos = pos.relative(direction);
 			FluidState neighborFluidState = world.getFluidState(neighborPos);
 
 			// Do nothing if neighbor fluid state is empty. [matters for both collision and spread]
@@ -84,21 +84,21 @@ public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 			final BlockState setState = handleFluidCollision(world, fluidState, neighborFluidState);
 			if (setState != null) {
 				fireExtinguishEvent(world, pos);
-				world.setBlockState(pos, setState);
+				world.setBlockAndUpdate(pos, setState);
 				return false;
 			}
 
 			// World interaction
-			boolean isNeighborFluidBlock = world.getBlockState(neighborPos).getBlock() instanceof FluidBlock;
+			boolean isNeighborFluidBlock = world.getBlockState(neighborPos).getBlock() instanceof LiquidBlock;
 			// spread to the fluid
-			boolean doesTickEntities = world.getWorldChunk(pos).getLevelType().isAfter(ChunkLevelType.ENTITY_TICKING);
+			boolean doesTickEntities = world.getChunkAt(pos).getFullStatus().isOrAfter(FullChunkStatus.ENTITY_TICKING);
 			if (!neighborFluidState.isEmpty() && doesTickEntities) {
 				if (!isNeighborFluidBlock) {
-					world.setBlockState(pos, SPREAD_BLOCKSTATE);
+					world.setBlockAndUpdate(pos, SPREAD_BLOCKSTATE);
 					fireExtinguishEvent(world, pos);
 				} else {
-					if (!neighborFluidState.isOf(this.fluid) && !neighborFluidState.isIn(SpectrumFluidTags.MIDNIGHT_SOLUTION_CONVERTED) && !world.getBlockState(neighborPos).isOf(this)) {
-						world.setBlockState(pos, SPREAD_BLOCKSTATE);
+					if (!neighborFluidState.is(this.fluid) && !neighborFluidState.is(SpectrumFluidTags.MIDNIGHT_SOLUTION_CONVERTED) && !world.getBlockState(neighborPos).is(this)) {
+						world.setBlockAndUpdate(pos, SPREAD_BLOCKSTATE);
 						fireExtinguishEvent(world, neighborPos);
 					}
 				}
@@ -106,9 +106,9 @@ public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 		}
 		return true;
 	}
-
-	public @Nullable BlockState handleFluidCollision(World world, @NotNull FluidState state, @NotNull FluidState otherState) {
-		if (otherState.isIn(FluidTags.LAVA)) return Blocks.TERRACOTTA.getDefaultState();
+	
+	public @Nullable BlockState handleFluidCollision(Level world, @NotNull FluidState state, @NotNull FluidState otherState) {
+		if (otherState.is(FluidTags.LAVA)) return Blocks.TERRACOTTA.defaultBlockState();
 		return null;
 	}
 

@@ -4,9 +4,12 @@ import com.mojang.serialization.*;
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import it.unimi.dsi.fastutil.objects.*;
-import net.minecraft.block.*;
-import net.minecraft.item.*;
+import net.minecraft.resources.*;
 import net.minecraft.util.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.grower.*;
+import net.minecraft.world.level.block.state.*;
 import org.apache.commons.lang3.*;
 
 import java.util.*;
@@ -21,7 +24,7 @@ public class ColoredSaplingBlock extends SaplingBlock implements RevelationAware
 	private static final Map<InkColor, ColoredSaplingBlock> SAPLINGS = new Object2ObjectArrayMap<>();
 	protected final InkColor color;
 	
-	public ColoredSaplingBlock(Settings settings, InkColor color, SaplingGenerator saplingGenerator) {
+	public ColoredSaplingBlock(Properties settings, InkColor color, TreeGrower saplingGenerator) {
 		super(saplingGenerator, settings);
 		this.color = color;
 		SAPLINGS.put(color, this);
@@ -29,12 +32,12 @@ public class ColoredSaplingBlock extends SaplingBlock implements RevelationAware
 	}
 
 	@Override
-	public MapCodec<? extends ColoredSaplingBlock> getCodec() {
+	public MapCodec<? extends ColoredSaplingBlock> codec() {
 		throw new NotImplementedException();
 	}
 	
 	@Override
-	public Identifier getCloakAdvancementIdentifier() {
+	public ResourceLocation getCloakAdvancementIdentifier() {
 		return ColoredTree.getTreeCloakAdvancementIdentifier(ColoredTree.TreePart.SAPLING, this.color);
 	}
 	
@@ -43,14 +46,14 @@ public class ColoredSaplingBlock extends SaplingBlock implements RevelationAware
 		// Colored Logs => Oak logs
 		Map<BlockState, BlockState> map = new Hashtable<>();
 		for (int stage = 0; stage < 2; stage++) {
-			map.put(this.getDefaultState().with(SaplingBlock.STAGE, stage), Blocks.OAK_SAPLING.getDefaultState().with(SaplingBlock.STAGE, stage));
+			map.put(this.defaultBlockState().setValue(SaplingBlock.STAGE, stage), Blocks.OAK_SAPLING.defaultBlockState().setValue(SaplingBlock.STAGE, stage));
 		}
 		return map;
 	}
 	
 	@Override
-	public Pair<Item, Item> getItemCloak() {
-		return new Pair<>(this.asItem(), Blocks.OAK_SAPLING.asItem());
+	public Tuple<Item, Item> getItemCloak() {
+		return new Tuple<>(this.asItem(), Blocks.OAK_SAPLING.asItem());
 	}
 	
 	@Override

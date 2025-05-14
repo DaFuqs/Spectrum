@@ -2,19 +2,19 @@ package de.dafuqs.spectrum.recipe.crafting.dynamic;
 
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.item.*;
-import net.minecraft.recipe.*;
-import net.minecraft.world.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.*;
 
 public class ClearPotionFillableRecipe extends SingleItemCraftingRecipe {
 	
 	@Override
-	public boolean matches(World world, ItemStack stack) {
+	public boolean matches(Level world, ItemStack stack) {
 		return stack.getItem() instanceof InkPoweredPotionFillable inkPoweredPotionFillable && inkPoweredPotionFillable.isAtLeastPartiallyFilled(stack);
 	}
 	
 	@Override
-	public ItemStack craft(ItemStack stack) {
+	public ItemStack assemble(ItemStack stack) {
 		if (stack.getItem() instanceof InkPoweredPotionFillable inkPoweredPotionFillable) {
 			stack = stack.copy();
 			stack.setCount(1);

@@ -1,18 +1,18 @@
 package de.dafuqs.spectrum.mixin.client;
 
 import com.llamalad7.mixinextras.sugar.*;
-import net.minecraft.client.network.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.network.packet.s2c.play.*;
+import net.minecraft.client.multiplayer.*;
+import net.minecraft.network.protocol.game.*;
+import net.minecraft.world.effect.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
-@Mixin(ClientPlayNetworkHandler.class)
+@Mixin(ClientPacketListener.class)
 public class ClientPlayNetworkHandlerMixin {
-
-	@Inject(method = "onEntityStatusEffect", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;setStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;Lnet/minecraft/entity/Entity;)V"))
-	public void readAndApplyIncurableFlag(EntityStatusEffectS2CPacket packet, CallbackInfo ci, @Local StatusEffectInstance effect) {
+	
+	@Inject(method = "handleUpdateMobEffect", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;forceAddEffect(Lnet/minecraft/world/effect/MobEffectInstance;Lnet/minecraft/world/entity/Entity;)V"))
+	public void readAndApplyIncurableFlag(ClientboundUpdateMobEffectPacket packet, CallbackInfo ci, @Local MobEffectInstance effect) {
 		if (packet.spectrum$isIncurable())
 			effect.spectrum$setIncurable(true);
 	}

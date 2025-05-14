@@ -1,48 +1,47 @@
 package de.dafuqs.spectrum.blocks.idols;
 
-import com.mojang.serialization.MapCodec;
-import net.minecraft.block.*;
-import net.minecraft.entity.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.particle.*;
-import net.minecraft.server.world.*;
-import net.minecraft.text.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import com.mojang.serialization.*;
+import net.minecraft.core.*;
+import net.minecraft.core.particles.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public class SilverfishInsertingIdolBlock extends IdolBlock {
 	
-	public SilverfishInsertingIdolBlock(Settings settings, ParticleEffect particleEffect) {
+	public SilverfishInsertingIdolBlock(Properties settings, ParticleOptions particleEffect) {
 		super(settings, particleEffect);
 	}
 
 	@Override
-	public MapCodec<? extends SilverfishInsertingIdolBlock> getCodec() {
+	public MapCodec<? extends SilverfishInsertingIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}
 
 	@Override
-	public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
-		tooltip.add(Text.translatable("block.spectrum.silverfish_inserting_idol.tooltip"));
+	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
+		tooltip.add(Component.translatable("block.spectrum.silverfish_inserting_idol.tooltip"));
 	}
 	
 	@Override
-	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+	public boolean trigger(ServerLevel world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		int startDirection = world.random.nextInt(4);
 		for (int i = 0; i < 4; i++) {
-			Direction currentDirection = Direction.fromHorizontal(startDirection + i);
-			BlockPos offsetPos = blockPos.offset(currentDirection);
+			Direction currentDirection = Direction.from2DDataValue(startDirection + i);
+			BlockPos offsetPos = blockPos.relative(currentDirection);
 			BlockState offsetState = world.getBlockState(offsetPos);
-			if (InfestedBlock.isInfestable(offsetState)) {
-				BlockState infestedState = InfestedBlock.fromRegularState(offsetState);
-				world.setBlockState(offsetPos, infestedState);
-				world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, offsetPos, Block.getRawIdFromState(offsetState)); // processed in WorldRenderer processGlobalEvent()
+			if (InfestedBlock.isCompatibleHostBlock(offsetState)) {
+				BlockState infestedState = InfestedBlock.infestedStateByHost(offsetState);
+				world.setBlockAndUpdate(offsetPos, infestedState);
+				world.levelEvent(LevelEvent.PARTICLES_DESTROY_BLOCK, offsetPos, Block.getId(offsetState)); // processed in WorldRenderer processGlobalEvent()
 				return true;
 			}
 		}

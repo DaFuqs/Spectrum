@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.api.damage_type.*;
-import net.minecraft.entity.damage.*;
-import net.minecraft.item.*;
+import net.minecraft.world.damagesource.*;
+import net.minecraft.world.item.*;
 import org.jetbrains.annotations.*;
 import org.spongepowered.asm.mixin.*;
 

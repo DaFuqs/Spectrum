@@ -10,37 +10,36 @@ import net.fabricmc.fabric.api.networking.v1.*;
 import net.minecraft.client.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.network.packet.*;
-import net.minecraft.server.network.*;
-import net.minecraft.server.world.*;
-import net.minecraft.util.math.*;
+import net.minecraft.network.protocol.common.custom.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
-public record PlayShootingStarParticlesPayload(Vec3d shootingStarPos, ShootingStar.Type type) implements CustomPayload {
+public record PlayShootingStarParticlesPayload(Vec3 shootingStarPos, ShootingStar.Variant variant) implements CustomPacketPayload {
 	
-	public static final Id<PlayShootingStarParticlesPayload> ID = SpectrumC2SPackets.makeId("play_shooting_star_particles");
-	public static final PacketCodec<PacketByteBuf, PlayShootingStarParticlesPayload> CODEC = PacketCodec.tuple(
+	public static final Type<PlayShootingStarParticlesPayload> ID = SpectrumC2SPackets.makeId("play_shooting_star_particles");
+	public static final StreamCodec<FriendlyByteBuf, PlayShootingStarParticlesPayload> CODEC = StreamCodec.composite(
 			PacketCodecHelper.VEC3D, PlayShootingStarParticlesPayload::shootingStarPos,
-			ShootingStar.Type.PACKET_CODEC, PlayShootingStarParticlesPayload::type,
+			ShootingStar.Variant.PACKET_CODEC, PlayShootingStarParticlesPayload::variant,
 			PlayShootingStarParticlesPayload::new
 	);
 	
 	public static void sendPlayShootingStarParticles(@NotNull ShootingStarEntity shootingStarEntity) {
-		for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) shootingStarEntity.getWorld(), shootingStarEntity.getBlockPos())) {
-			ServerPlayNetworking.send(player, new PlayShootingStarParticlesPayload(shootingStarEntity.getPos(), shootingStarEntity.getShootingStarType()));
+		for (ServerPlayer player : PlayerLookup.tracking((ServerLevel) shootingStarEntity.level(), shootingStarEntity.blockPosition())) {
+			ServerPlayNetworking.send(player, new PlayShootingStarParticlesPayload(shootingStarEntity.position(), shootingStarEntity.getShootingStarType()));
 		}
 	}
 	
 	@SuppressWarnings("resource")
 	@Environment(EnvType.CLIENT)
 	public static void execute(PlayShootingStarParticlesPayload payload, ClientPlayNetworking.Context context) {
-		MinecraftClient client = context.client();
+		Minecraft client = context.client();
 		
-		ShootingStarEntity.playHitParticles(client.world, payload.shootingStarPos.x, payload.shootingStarPos.y, payload.shootingStarPos.z, payload.type, 25);
+		ShootingStarEntity.playHitParticles(client.level, payload.shootingStarPos.x, payload.shootingStarPos.y, payload.shootingStarPos.z, payload.variant, 25);
 	}
 	
 	@Override
-	public Id<? extends CustomPayload> getId() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

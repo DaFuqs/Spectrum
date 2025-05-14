@@ -1,93 +1,93 @@
 package de.dafuqs.spectrum.blocks.decay;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.*;
-import net.minecraft.item.*;
-import net.minecraft.server.world.*;
-import net.minecraft.state.*;
-import net.minecraft.state.property.*;
+import net.minecraft.core.*;
+import net.minecraft.resources.*;
+import net.minecraft.server.level.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
-import net.minecraft.world.*;
-import net.minecraft.world.dimension.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.dimension.*;
 import org.jetbrains.annotations.*;
 
 public class DecayAwayBlock extends Block {
-
-	public static final MapCodec<DecayAwayBlock> CODEC = createCodec(DecayAwayBlock::new);
-
-	private static final EnumProperty<TargetConversion> TARGET_CONVERSION = EnumProperty.of("target_conversion", TargetConversion.class);
 	
-	public DecayAwayBlock(Settings settings) {
+	public static final MapCodec<DecayAwayBlock> CODEC = simpleCodec(DecayAwayBlock::new);
+	
+	private static final EnumProperty<TargetConversion> TARGET_CONVERSION = EnumProperty.create("target_conversion", TargetConversion.class);
+	
+	public DecayAwayBlock(Properties settings) {
 		super(settings);
-		setDefaultState(getStateManager().getDefaultState().with(TARGET_CONVERSION, TargetConversion.DEFAULT));
+		registerDefaultState(getStateDefinition().any().setValue(TARGET_CONVERSION, TargetConversion.DEFAULT));
 	}
 
 	@Override
-	protected MapCodec<? extends DecayAwayBlock> getCodec() {
+	protected MapCodec<? extends DecayAwayBlock> codec() {
 		return CODEC;
 	}
 	
 	@Override
-	public void onPlaced(@NotNull World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-		if (!world.isClient) {
-			world.scheduleBlockTick(pos, state.getBlock(), 4);
+	public void setPlacedBy(@NotNull Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+		if (!world.isClientSide) {
+			world.scheduleTick(pos, state.getBlock(), 4);
 		}
 	}
 	
 	@Override
-	protected void appendProperties(StateManager.Builder<Block, BlockState> stateManager) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateManager) {
 		stateManager.add(TARGET_CONVERSION);
 	}
 	
 	@Override
-	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		super.scheduledTick(state, world, pos, random);
+	public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+		super.tick(state, world, pos, random);
 		
 		// convert all neighboring decay blocks to this
-		for (BlockPos targetBlockPos : BlockPos.iterateOutwards(pos, 1, 1, 1)) {
+		for (BlockPos targetBlockPos : BlockPos.withinManhattan(pos, 1, 1, 1)) {
 			BlockState currentBlockState = world.getBlockState(targetBlockPos);
-			if (currentBlockState.isIn(SpectrumBlockTags.DECAY_AWAY_CURABLES)) {
-				world.setBlockState(targetBlockPos, getTargetStateForCurable(currentBlockState));
-				world.scheduleBlockTick(targetBlockPos, state.getBlock(), 8);
-			} else if (currentBlockState.isIn(SpectrumBlockTags.DECAY_AWAY_REMOVABLES)) {
-				world.setBlockState(targetBlockPos, this.getDefaultState().with(TARGET_CONVERSION, TargetConversion.AIR));
-				world.scheduleBlockTick(targetBlockPos, state.getBlock(), 8);
+			if (currentBlockState.is(SpectrumBlockTags.DECAY_AWAY_CURABLES)) {
+				world.setBlockAndUpdate(targetBlockPos, getTargetStateForCurable(currentBlockState));
+				world.scheduleTick(targetBlockPos, state.getBlock(), 8);
+			} else if (currentBlockState.is(SpectrumBlockTags.DECAY_AWAY_REMOVABLES)) {
+				world.setBlockAndUpdate(targetBlockPos, this.defaultBlockState().setValue(TARGET_CONVERSION, TargetConversion.AIR));
+				world.scheduleTick(targetBlockPos, state.getBlock(), 8);
 			}
 		}
 		
 		// and turn this to the leftover block state
 		BlockState currentState = world.getBlockState(pos);
-		TargetConversion targetConversion = currentState.get(TARGET_CONVERSION);
-		world.setBlockState(pos, targetConversion.getTargetState(world), 3);
+		TargetConversion targetConversion = currentState.getValue(TARGET_CONVERSION);
+		world.setBlock(pos, targetConversion.getTargetState(world), 3);
 	}
 	
 	public BlockState getTargetStateForCurable(BlockState blockState) {
 		if (blockState.getBlock() instanceof DecayBlock) {
-			if (blockState.isOf(SpectrumBlocks.RUIN) || blockState.isOf(SpectrumBlocks.FORFEITURE)) {
-				if (blockState.get(ForfeitureBlock.CONVERSION) == DecayBlock.Conversion.DEFAULT) {
-					return this.getDefaultState().with(TARGET_CONVERSION, TargetConversion.BEDROCK);
+			if (blockState.is(SpectrumBlocks.RUIN) || blockState.is(SpectrumBlocks.FORFEITURE)) {
+				if (blockState.getValue(ForfeitureBlock.CONVERSION) == DecayBlock.Conversion.DEFAULT) {
+					return this.defaultBlockState().setValue(TARGET_CONVERSION, TargetConversion.BEDROCK);
 				}
-			} else if (blockState.isOf(SpectrumBlocks.FAILING)) {
-				if (blockState.get(FailingBlock.CONVERSION) == DecayBlock.Conversion.DEFAULT) {
-					return this.getDefaultState().with(TARGET_CONVERSION, TargetConversion.OBSIDIAN);
-				} else if (blockState.get(FailingBlock.CONVERSION) == DecayBlock.Conversion.SPECIAL) {
-					return this.getDefaultState().with(TARGET_CONVERSION, TargetConversion.CRYING_OBSIDIAN);
+			} else if (blockState.is(SpectrumBlocks.FAILING)) {
+				if (blockState.getValue(FailingBlock.CONVERSION) == DecayBlock.Conversion.DEFAULT) {
+					return this.defaultBlockState().setValue(TARGET_CONVERSION, TargetConversion.OBSIDIAN);
+				} else if (blockState.getValue(FailingBlock.CONVERSION) == DecayBlock.Conversion.SPECIAL) {
+					return this.defaultBlockState().setValue(TARGET_CONVERSION, TargetConversion.CRYING_OBSIDIAN);
 				}
 			}
 		}
-		return this.getDefaultState();
+		return this.defaultBlockState();
 	}
 	
-	public enum TargetConversion implements StringIdentifiable {
-		DEFAULT("default", Blocks.DIRT.getDefaultState()),
-		BEDROCK("bedrock", Blocks.BEDROCK.getDefaultState()),
-		OBSIDIAN("obsidian", Blocks.OBSIDIAN.getDefaultState()),
-		CRYING_OBSIDIAN("crying_obsidian", Blocks.CRYING_OBSIDIAN.getDefaultState()),
-		AIR("air", Blocks.AIR.getDefaultState());
+	public enum TargetConversion implements StringRepresentable {
+		DEFAULT("default", Blocks.DIRT.defaultBlockState()),
+		BEDROCK("bedrock", Blocks.BEDROCK.defaultBlockState()),
+		OBSIDIAN("obsidian", Blocks.OBSIDIAN.defaultBlockState()),
+		CRYING_OBSIDIAN("crying_obsidian", Blocks.CRYING_OBSIDIAN.defaultBlockState()),
+		AIR("air", Blocks.AIR.defaultBlockState());
 		
 		private final String name;
 		private final BlockState targetState;
@@ -103,21 +103,21 @@ public class DecayAwayBlock extends Block {
 		}
 		
 		@Override
-		public String asString() {
+		public String getSerializedName() {
 			return this.name;
 		}
 		
-		public BlockState getTargetState(World world) {
+		public BlockState getTargetState(Level world) {
 			if (this == DEFAULT) {
-				Identifier identifier = world.getDimension().effects();
-				if (DimensionTypes.THE_NETHER_ID.equals(identifier)) {
-					return Blocks.NETHERRACK.getDefaultState();
-				} else if (DimensionTypes.THE_END_ID.equals(identifier)) {
-					return Blocks.END_STONE.getDefaultState();
+				ResourceLocation identifier = world.dimensionType().effectsLocation();
+				if (BuiltinDimensionTypes.NETHER_EFFECTS.equals(identifier)) {
+					return Blocks.NETHERRACK.defaultBlockState();
+				} else if (BuiltinDimensionTypes.END_EFFECTS.equals(identifier)) {
+					return Blocks.END_STONE.defaultBlockState();
 				} else if (SpectrumDimensions.DIMENSION_ID.equals(identifier)) {
-					return SpectrumBlocks.BLACKSLAG.getDefaultState();
+					return SpectrumBlocks.BLACKSLAG.defaultBlockState();
 				}
-				return Blocks.DIRT.getDefaultState();
+				return Blocks.DIRT.defaultBlockState();
 			}
 			return this.targetState;
 		}

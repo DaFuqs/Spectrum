@@ -5,24 +5,24 @@ import de.dafuqs.spectrum.networking.*;
 import net.fabricmc.fabric.api.networking.v1.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.network.packet.*;
+import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
 
-public record RenameItemInBedrockAnvilPayload(String name) implements CustomPayload {
+public record RenameItemInBedrockAnvilPayload(String name) implements CustomPacketPayload {
 	
-	public static final Id<RenameItemInBedrockAnvilPayload> ID = SpectrumC2SPackets.makeId("rename_item_in_bedrock_anvil");
-	public static final PacketCodec<PacketByteBuf, RenameItemInBedrockAnvilPayload> CODEC = PacketCodec.tuple(PacketCodecs.STRING, RenameItemInBedrockAnvilPayload::name, RenameItemInBedrockAnvilPayload::new);
+	public static final Type<RenameItemInBedrockAnvilPayload> ID = SpectrumC2SPackets.makeId("rename_item_in_bedrock_anvil");
+	public static final StreamCodec<FriendlyByteBuf, RenameItemInBedrockAnvilPayload> CODEC = StreamCodec.composite(ByteBufCodecs.STRING_UTF8, RenameItemInBedrockAnvilPayload::name, RenameItemInBedrockAnvilPayload::new);
 	
 	@Override
-	public Id<? extends CustomPayload> getId() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 	
 	public static ServerPlayNetworking.@NotNull PlayPayloadHandler<RenameItemInBedrockAnvilPayload> getPayloadHandler() {
 		return (payload, context) -> {
-			if (context.player().currentScreenHandler instanceof BedrockAnvilScreenHandler bedrockAnvilScreenHandler) {
-				String string = StringHelper.stripInvalidChars(payload.name);
+			if (context.player().containerMenu instanceof BedrockAnvilScreenHandler bedrockAnvilScreenHandler) {
+				String string = StringUtil.filterText(payload.name);
 				if (string.length() <= 50) {
 					bedrockAnvilScreenHandler.setNewItemName(string);
 				}

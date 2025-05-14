@@ -1,31 +1,31 @@
 package de.dafuqs.spectrum.entity.render;
 
+import com.mojang.blaze3d.vertex.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.entity.models.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.fabricmc.api.*;
-import net.minecraft.client.render.*;
-import net.minecraft.client.render.entity.*;
-import net.minecraft.client.util.math.*;
-import net.minecraft.util.*;
+import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.entity.*;
+import net.minecraft.resources.*;
 
 @Environment(EnvType.CLIENT)
-public class MonstrosityEntityRenderer extends MobEntityRenderer<MonstrosityEntity, MonstrosityEntityModel> {
+public class MonstrosityEntityRenderer extends MobRenderer<MonstrosityEntity, MonstrosityEntityModel> {
 	
-	public static final Identifier TEXTURE = SpectrumCommon.locate("textures/entity/monstrosity.png");
+	public static final ResourceLocation TEXTURE = SpectrumCommon.locate("textures/entity/monstrosity.png");
 	
-	public MonstrosityEntityRenderer(EntityRendererFactory.Context context) {
-		super(context, new MonstrosityEntityModel(context.getPart(SpectrumModelLayers.MONSTROSITY)), 1.8F);
+	public MonstrosityEntityRenderer(EntityRendererProvider.Context context) {
+		super(context, new MonstrosityEntityModel(context.bakeLayer(SpectrumModelLayers.MONSTROSITY)), 1.8F);
 	}
 	
 	@Override
-	public void render(MonstrosityEntity entity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
-		super.render(entity, yaw, tickDelta, matrixStack, vertexConsumerProvider, light);
+	public void render(MonstrosityEntity entity, float yaw, float tickDelta, PoseStack poseStack, MultiBufferSource vertexConsumerProvider, int light) {
+		super.render(entity, yaw, tickDelta, poseStack, vertexConsumerProvider, light);
 	}
 	
 	@Override
-	public Identifier getTexture(MonstrosityEntity entity) {
+	public ResourceLocation getTextureLocation(MonstrosityEntity entity) {
 		return TEXTURE;
 	}
 	

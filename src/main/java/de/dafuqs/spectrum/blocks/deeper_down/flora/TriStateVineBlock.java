@@ -3,32 +3,33 @@ package de.dafuqs.spectrum.blocks.deeper_down.flora;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.tag.convention.v2.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
-import net.minecraft.state.*;
-import net.minecraft.state.property.*;
+import net.minecraft.core.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
 import net.minecraft.util.*;
-import net.minecraft.util.hit.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
-import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
-import net.minecraft.world.event.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.context.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.gameevent.*;
+import net.minecraft.world.phys.*;
+import net.minecraft.world.phys.shapes.*;
 import org.jetbrains.annotations.*;
 
-public abstract class TriStateVineBlock extends PlantBlock implements Fertilizable {
-
-    public static final EnumProperty<LifeStage> LIFE_STAGE = EnumProperty.of("life_stage", LifeStage.class);
+public abstract class TriStateVineBlock extends BushBlock implements BonemealableBlock {
+	
+	public static final EnumProperty<LifeStage> LIFE_STAGE = EnumProperty.create("life_stage", LifeStage.class);
     private final int minHeight;
     private final float growthTickChance, spreadChance, overgrowth;
-
-    public TriStateVineBlock(Settings settings, int minHeight, float growthChance, float spreadChance, float overgrowth) {
+	
+	public TriStateVineBlock(Properties settings, int minHeight, float growthChance, float spreadChance, float overgrowth) {
         super(settings);
-        setDefaultState(getDefaultState().with(LIFE_STAGE, LifeStage.GROWING));
+		registerDefaultState(defaultBlockState().setValue(LIFE_STAGE, LifeStage.GROWING));
         this.minHeight = minHeight;
         this.growthTickChance = growthChance;
         this.spreadChance = spreadChance;
@@ -36,56 +37,55 @@ public abstract class TriStateVineBlock extends PlantBlock implements Fertilizab
     }
 
     @Override
-    public ItemActionResult onUseWithItem(ItemStack handStack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+	public ItemInteractionResult useItemOn(ItemStack handStack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         var reference = BlockReference.of(state, pos);
-        var creative = player.getAbilities().creativeMode;
-        
-        if (handStack.isIn(ConventionalItemTags.SHEAR_TOOLS)) {
+		var creative = player.getAbilities().instabuild;
+		
+		if (handStack.is(ConventionalItemTags.SHEAR_TOOLS)) {
             if (reference.getProperty(LIFE_STAGE) != LifeStage.GROWING)
-                return ItemActionResult.FAIL;
+				return ItemInteractionResult.FAIL;
 
             if (!creative)
-                handStack.damage(1, player, LivingEntity.getSlotForHand(hand));
+				handStack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
 
             reference.setProperty(LIFE_STAGE, LifeStage.MATURE);
             reference.update(world);
-            
-            world.playSound(null, pos, SoundEvents.BLOCK_BEEHIVE_SHEAR, SoundCategory.BLOCKS, 1.0F, MathHelper.nextBetween(world.random, 0.6F, 1.0F)); // TODO: custom sound event because subtitles
-            world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(player, reference.getState()));
-            return ItemActionResult.success(world.isClient());
-        }
-        else if (handStack.isOf(SpectrumItems.MOONSTRUCK_NECTAR)) {
+			
+			world.playSound(null, pos, SoundEvents.BEEHIVE_SHEAR, SoundSource.BLOCKS, 1.0F, Mth.randomBetween(world.random, 0.6F, 1.0F)); // TODO: custom sound event because subtitles
+			world.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, reference.getState()));
+			return ItemInteractionResult.sidedSuccess(world.isClientSide());
+        } else if (handStack.is(SpectrumItems.MOONSTRUCK_NECTAR)) {
             if (reference.getProperty(LIFE_STAGE) != LifeStage.MATURE)
-                return ItemActionResult.FAIL;
+				return ItemInteractionResult.FAIL;
 
             if (!creative)
-                handStack.decrement(1);
+				handStack.shrink(1);
 
             reference.setProperty(LIFE_STAGE, LifeStage.GROWING);
             reference.update(world);
-            
-            world.playSound(null, pos, SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME, SoundCategory.BLOCKS, 1.0F, MathHelper.nextBetween(world.random, 0.6F, 1.0F)); // TODO: custom sound event because subtitles
-            world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(player, reference.getState()));
-            return ItemActionResult.success(world.isClient());
+			
+			world.playSound(null, pos, SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.BLOCKS, 1.0F, Mth.randomBetween(world.random, 0.6F, 1.0F)); // TODO: custom sound event because subtitles
+			world.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, reference.getState()));
+			return ItemInteractionResult.sidedSuccess(world.isClientSide());
         }
-
-        return ItemActionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+		
+		return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     @Nullable
     @Override
-    public BlockState getPlacementState(ItemPlacementContext ctx) {
-        var world = ctx.getWorld();
-        var pos = ctx.getBlockPos();
-
-        var state = getDefaultState();
-        var roof = BlockReference.of(world, pos.up());
-
-        if (!canPlaceAt(world.getBlockState(pos), world, pos) || !world.isAir(pos))
+	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+		var world = ctx.getLevel();
+		var pos = ctx.getClickedPos();
+		
+		var state = defaultBlockState();
+		var roof = BlockReference.of(world, pos.above());
+		
+		if (!canSurvive(world.getBlockState(pos), world, pos) || !world.isEmptyBlock(pos))
             return null;
 
         if (roof.isOf(this)) {
-            state = state.with(LIFE_STAGE, roof.getProperty(LIFE_STAGE));
+			state = state.setValue(LIFE_STAGE, roof.getProperty(LIFE_STAGE));
             roof.setProperty(LIFE_STAGE, LifeStage.STALK);
             roof.update(world);
         }
@@ -96,15 +96,16 @@ public abstract class TriStateVineBlock extends PlantBlock implements Fertilizab
     abstract boolean hasGrowthActions();
 
     @Override
-    public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {}
+	public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
+	}
 
     @Override
-    public boolean hasRandomTicks(BlockState state) {
-        return state.get(LIFE_STAGE) != LifeStage.MATURE;
+	public boolean isRandomlyTicking(BlockState state) {
+		return state.getValue(LIFE_STAGE) != LifeStage.MATURE;
     }
 
     @Override
-    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
         if (random.nextFloat() >= growthTickChance)
             return;
 
@@ -112,117 +113,117 @@ public abstract class TriStateVineBlock extends PlantBlock implements Fertilizab
         var stage = reference.getProperty(LIFE_STAGE);
 
         if (hasGrowthActions() && random.nextBoolean() || stage != LifeStage.GROWING) {
-            grow(world, random, pos, state);
+			performBonemeal(world, random, pos, state);
         }
         else {
-            if (!canGrow(world, random, pos, state) || random.nextFloat() >= spreadChance)
+			if (!isBonemealSuccess(world, random, pos, state) || random.nextFloat() >= spreadChance)
                 return;
 
             reference.setProperty(LIFE_STAGE, LifeStage.STALK);
             reference.update(world);
-
-            var sprigState = getDefaultState();
+			
+			var sprigState = defaultBlockState();
             var height = getCurrentHeight(world, reference.pos);
 
             if (height >= minHeight && random.nextFloat() >= overgrowth) {
-                sprigState = sprigState.with(LIFE_STAGE, LifeStage.MATURE);
+				sprigState = sprigState.setValue(LIFE_STAGE, LifeStage.MATURE);
             }
-
-            world.setBlockState(reference.pos.down(), sprigState);
+			
+			world.setBlockAndUpdate(reference.pos.below(), sprigState);
         }
     }
-
-    protected int getCurrentHeight(World world, BlockPos pos) {
+	
+	protected int getCurrentHeight(Level world, BlockPos pos) {
         var state = world.getBlockState(pos);
         var count = 0;
-
-        while (state.isOf(this)) {
+		
+		while (state.is(this)) {
             count++;
-            state = world.getBlockState(pos.up(count));
+			state = world.getBlockState(pos.above(count));
         }
 
         return count;
     }
 
     @Override
-    public void onBroken(WorldAccess world, BlockPos pos, BlockState state) {
-        var roof = BlockReference.of(world, pos.up());
+	public void destroy(LevelAccessor world, BlockPos pos, BlockState state) {
+		var roof = BlockReference.of(world, pos.above());
 
         if (roof.isOf(this)) {
-            roof.setProperty(LIFE_STAGE, getLowestLifeStage(world, pos.down(), state.get(LIFE_STAGE)));
+			roof.setProperty(LIFE_STAGE, getLowestLifeStage(world, pos.below(), state.getValue(LIFE_STAGE)));
             roof.update(world);
         }
 
         scheduleBreakCheck(world, pos);
     }
-
-    public LifeStage getLowestLifeStage(WorldAccess world, BlockPos pos, LifeStage stage) {
+	
+	public LifeStage getLowestLifeStage(LevelAccessor world, BlockPos pos, LifeStage stage) {
         var state = world.getBlockState(pos);
         var lastStage = stage;
-        while (state.isOf(this)) {
-            lastStage = state.get(LIFE_STAGE);
-            pos = pos.down();
+		while (state.is(this)) {
+			lastStage = state.getValue(LIFE_STAGE);
+			pos = pos.below();
             state = world.getBlockState(pos);
         }
         return lastStage;
     }
 
     @Override
-    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
+	public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
         return true;
     }
 
     @Override
-    public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
-        return world.isAir(pos.down());
+	public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
+		return world.isEmptyBlock(pos.below());
     }
 
     @Override
-    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if (canPlaceAt(state, world, pos))
+	public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+		if (canSurvive(state, world, pos))
             return;
 
         scheduleBreakCheck(world, pos);
-        world.breakBlock(pos, true);
+		world.destroyBlock(pos, true);
     }
-
-    private void scheduleBreakCheck(WorldAccess world, BlockPos pos) {
-        var underside = pos.down();
-        if (world.getBlockState(underside).isOf(this))
-            world.scheduleBlockTick(underside, this, 1);
+	
+	private void scheduleBreakCheck(LevelAccessor world, BlockPos pos) {
+		var underside = pos.below();
+		if (world.getBlockState(underside).is(this))
+			world.scheduleTick(underside, this, 1);
     }
 
     @Override
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        if (!canPlaceAt(state, world, pos)) {
-            world.scheduleBlockTick(pos, this, 1);
+	public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+		if (!canSurvive(state, world, pos)) {
+			world.scheduleTick(pos, this, 1);
         }
 
         return state;
     }
 
     @Override
-    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        var roof = pos.up();
+	public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+		var roof = pos.above();
         var roofState = world.getBlockState(roof);
-
-        if (roofState.isOf(this))
+		
+		if (roofState.is(this))
             return true;
-
-        return canPlantOnTop(roofState, world, roof);
+		
+		return mayPlaceOn(roofState, world, roof);
     }
 
     @Override
-    public boolean canPlantOnTop(BlockState roof, BlockView world, BlockPos pos) {
-        return roof.isSideSolidFullSquare(world, pos, Direction.DOWN);
+	public boolean mayPlaceOn(BlockState roof, BlockGetter world, BlockPos pos) {
+		return roof.isFaceSturdy(world, pos, Direction.DOWN);
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(LIFE_STAGE);
     }
-
-    public enum LifeStage implements StringIdentifiable {
+	
+	public enum LifeStage implements StringRepresentable {
         STALK("stalk"),
         GROWING("growing"),
         MATURE("mature");
@@ -234,24 +235,24 @@ public abstract class TriStateVineBlock extends PlantBlock implements Fertilizab
         }
 
         @Override
-        public String asString() {
+		public String getSerializedName() {
             return name;
         }
     }
 
     @Override
-    public float getMaxHorizontalModelOffset() {
+	public float getMaxHorizontalOffset() {
         return 0.1F;
     }
 
     @Override
-    public float getVerticalModelOffsetMultiplier() {
+	public float getMaxVerticalOffset() {
         return -0.15F;
     }
 
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        Vec3d vec3d = state.getModelOffset(world, pos);
-        return super.getOutlineShape(state, world, pos, context).offset(vec3d.x, vec3d.y, vec3d.z);
+	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+		Vec3 vec3d = state.getOffset(world, pos);
+		return super.getShape(state, world, pos, context).move(vec3d.x, vec3d.y, vec3d.z);
     }
 }

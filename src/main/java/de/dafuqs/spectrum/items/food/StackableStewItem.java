@@ -1,28 +1,28 @@
 package de.dafuqs.spectrum.items.food;
 
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.world.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
 
 public class StackableStewItem extends Item {
 	
-	public StackableStewItem(Item.Settings settings) {
+	public StackableStewItem(Item.Properties settings) {
 		super(settings);
 	}
 	
 	@Override
-	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-		ItemStack returnStack = super.finishUsing(stack, world, user);
+	public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity user) {
+		ItemStack returnStack = super.finishUsingItem(stack, world, user);
 		
-		PlayerEntity playerEntity = user instanceof PlayerEntity ? (PlayerEntity) user : null;
-		if (playerEntity == null || !playerEntity.getAbilities().creativeMode) {
+		Player playerEntity = user instanceof Player ? (Player) user : null;
+		if (playerEntity == null || !playerEntity.getAbilities().instabuild) {
 			if (returnStack.isEmpty()) {
 				return new ItemStack(Items.BOWL);
 			}
 			
 			if (playerEntity != null) {
-				playerEntity.getInventory().insertStack(new ItemStack(Items.BOWL));
+				playerEntity.getInventory().add(new ItemStack(Items.BOWL));
 			}
 		}
 		

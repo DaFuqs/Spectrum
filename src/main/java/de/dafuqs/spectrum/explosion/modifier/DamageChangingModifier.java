@@ -1,17 +1,17 @@
 package de.dafuqs.spectrum.explosion.modifier;
 
 import de.dafuqs.spectrum.explosion.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.damage.*;
-import net.minecraft.particle.*;
+import net.minecraft.core.particles.*;
+import net.minecraft.world.damagesource.*;
+import net.minecraft.world.entity.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public abstract class DamageChangingModifier extends ParticleAddingModifier {
 	
-
-	public DamageChangingModifier(ExplosionModifierType type, ParticleEffect effect, int color) {
+	
+	public DamageChangingModifier(ExplosionModifierType type, ParticleOptions effect, int color) {
 		super(type, effect, color);
 	}
 	
@@ -20,7 +20,7 @@ public abstract class DamageChangingModifier extends ParticleAddingModifier {
 		if (owner == null) {
 			return Optional.empty();
 		}
-		return Optional.ofNullable(owner.getDamageSources().generic());
+		return Optional.of(owner.damageSources().generic());
 	}
 	
 }

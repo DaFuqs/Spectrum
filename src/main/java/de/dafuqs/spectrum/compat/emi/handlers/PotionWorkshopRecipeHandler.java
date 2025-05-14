@@ -1,14 +1,12 @@
 package de.dafuqs.spectrum.compat.emi.handlers;
 
-import de.dafuqs.spectrum.compat.emi.SpectrumEmiRecipeCategories;
-import de.dafuqs.spectrum.inventories.PotionWorkshopScreenHandler;
-import dev.emi.emi.api.recipe.EmiRecipe;
-import dev.emi.emi.api.recipe.EmiRecipeCategory;
-import dev.emi.emi.api.recipe.handler.StandardRecipeHandler;
-import net.minecraft.screen.slot.Slot;
+import de.dafuqs.spectrum.compat.emi.*;
+import de.dafuqs.spectrum.inventories.*;
+import dev.emi.emi.api.recipe.*;
+import dev.emi.emi.api.recipe.handler.*;
+import net.minecraft.world.inventory.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class PotionWorkshopRecipeHandler implements StandardRecipeHandler<PotionWorkshopScreenHandler> {
     @Override

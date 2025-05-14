@@ -1,21 +1,20 @@
 package de.dafuqs.spectrum.helpers;
 
-import de.dafuqs.spectrum.blocks.redstone.RedstoneTransceiverBlock;
-import de.dafuqs.spectrum.blocks.redstone.RedstoneTransceiverBlockEntity;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
+import de.dafuqs.spectrum.blocks.redstone.*;
+import net.minecraft.core.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.gameevent.*;
 
 public class EventHelper {
-
-    public static DyeColor getRedstoneEventDyeColor(GameEvent.Message message) {
-        return message.getEmitter().affectedState().getOrEmpty(RedstoneTransceiverBlock.CHANNEL).orElse(null);
+	
+	public static DyeColor getRedstoneEventDyeColor(GameEvent.ListenerInfo message) {
+		return message.context().affectedState().getOptionalValue(RedstoneTransceiverBlock.CHANNEL).orElse(null);
     }
-
-    public static int getRedstoneEventPower(World world, GameEvent.Message message) {
-        var pos = message.getEmitterPos();
-        var blockEntity = world.getBlockEntity(BlockPos.ofFloored(pos.x, pos.y, pos.z));
+	
+	public static int getRedstoneEventPower(Level world, GameEvent.ListenerInfo message) {
+		var pos = message.source();
+		var blockEntity = world.getBlockEntity(BlockPos.containing(pos.x, pos.y, pos.z));
         if (blockEntity instanceof RedstoneTransceiverBlockEntity transceiver) {
             return transceiver.getCurrentSignalStrength();
         }

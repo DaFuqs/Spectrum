@@ -13,8 +13,9 @@ import de.dafuqs.spectrum.recipe.potion_workshop.*;
 import de.dafuqs.spectrum.recipe.primordial_fire_burning.*;
 import de.dafuqs.spectrum.recipe.spirit_instiller.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
-import net.minecraft.recipe.*;
-import net.minecraft.registry.*;
+import net.minecraft.core.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.world.item.crafting.*;
 
 public class SpectrumRecipeTypes {
 	
@@ -38,7 +39,7 @@ public class SpectrumRecipeTypes {
 	public static final RecipeType<PrimordialFireBurningRecipe> PRIMORDIAL_FIRE_BURNING = register("primordial_fire_burning");
 	
 	private static <T extends Recipe<?>> RecipeType<T> register(String id) {
-		return Registry.register(Registries.RECIPE_TYPE, SpectrumCommon.locate(id), new RecipeType<T>() {
+		return Registry.register(BuiltInRegistries.RECIPE_TYPE, SpectrumCommon.locate(id), new RecipeType<T>() {
 			@Override
 			public String toString() {
 				return "spectrum:" + id;

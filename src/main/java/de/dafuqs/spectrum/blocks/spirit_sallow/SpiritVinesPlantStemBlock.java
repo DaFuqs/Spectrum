@@ -5,45 +5,45 @@ import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.server.world.*;
-import net.minecraft.state.*;
+import net.minecraft.core.*;
+import net.minecraft.server.level.*;
 import net.minecraft.util.*;
-import net.minecraft.util.hit.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.phys.*;
 
-public class SpiritVinesPlantStemBlock extends AbstractPlantStemBlock implements SpiritVine {
+public class SpiritVinesPlantStemBlock extends GrowingPlantHeadBlock implements SpiritVine {
 	
 	private final GemstoneColor gemstoneColor;
 	
-	public SpiritVinesPlantStemBlock(Settings settings, GemstoneColor gemstoneColor) {
+	public SpiritVinesPlantStemBlock(Properties settings, GemstoneColor gemstoneColor) {
 		super(settings, Direction.DOWN, SHAPE, false, 0.0D);
-		this.setDefaultState((this.stateManager.getDefaultState()).with(CRYSTALS, false));
+		this.registerDefaultState((this.stateDefinition.any()).setValue(CRYSTALS, false));
 		this.gemstoneColor = gemstoneColor;
 	}
 
 	@Override
-	public MapCodec<? extends SpiritVinesPlantStemBlock> getCodec() {
+	public MapCodec<? extends SpiritVinesPlantStemBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}
 	
 	@Override
-	protected int getGrowthLength(Random random) {
+	protected int getBlocksToGrowWhenBonemealed(RandomSource random) {
 		return 1;
 	}
 	
 	@Override
-	protected boolean chooseStemState(BlockState state) {
+	protected boolean canGrowInto(BlockState state) {
 		return state.isAir();
 	}
 	
 	@Override
-	protected Block getPlant() {
+	protected Block getBodyBlock() {
 		switch (gemstoneColor) {
 			case BuiltinGemstoneColor.CYAN -> {
 				return SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_PLANT;
@@ -67,39 +67,39 @@ public class SpiritVinesPlantStemBlock extends AbstractPlantStemBlock implements
 	}
 	
 	@Override
-	protected BlockState copyState(BlockState from, BlockState to) {
-		return to.with(CRYSTALS, from.get(CRYSTALS));
+	protected BlockState updateBodyAfterConvertedFromHead(BlockState from, BlockState to) {
+		return to.setValue(CRYSTALS, from.getValue(CRYSTALS));
 	}
 	
 	@Override
-	protected BlockState age(BlockState state, Random random) {
-		return super.age(state, random).with(CRYSTALS, false);
+	protected BlockState getGrowIntoState(BlockState state, RandomSource random) {
+		return super.getGrowIntoState(state, random).setValue(CRYSTALS, false);
 	}
 	
 	@Override
 	@Environment(EnvType.CLIENT)
-	public ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state) {
+	public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state) {
 		return new ItemStack(SpiritVine.getYieldItem(state));
 	}
 	
 	@Override
-	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
 		return SpiritVine.pick(state, world, pos);
 	}
 	
 	@Override
-	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-		super.appendProperties(builder);
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
 		builder.add(CRYSTALS);
 	}
 	
 	@Override
-	public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
+	public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
 		return false;
 	}
 	
 	@Override
-	public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-		world.setBlockState(pos, state.with(CRYSTALS, false), 2);
+	public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
+		world.setBlock(pos, state.setValue(CRYSTALS, false), 2);
 	}
 }

@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.item.*;
-import net.minecraft.particle.*;
-import net.minecraft.registry.*;
+import net.minecraft.core.*;
+import net.minecraft.core.particles.*;
+import net.minecraft.world.item.*;
 
 public class GlassArrowVariant {
 	
@@ -19,13 +19,13 @@ public class GlassArrowVariant {
 	}
 	
 	protected ArrowItem arrow;
-	protected ParticleEffect particleEffect;
+	protected ParticleOptions particleEffect;
 	
 	public static void init() {
 	}
 	
 	// A bit of a load order hack because arrows are not registered at the time the variant registry is needed
-	void setData(ArrowItem arrowItem, ParticleEffect particleEffect) {
+	void setData(ArrowItem arrowItem, ParticleOptions particleEffect) {
 		this.arrow = arrowItem;
 		this.particleEffect = particleEffect;
 	}
@@ -34,7 +34,7 @@ public class GlassArrowVariant {
 		return arrow;
 	}
 	
-	public ParticleEffect getParticleEffect() {
+	public ParticleOptions getParticleEffect() {
 		return particleEffect;
 	}
 	

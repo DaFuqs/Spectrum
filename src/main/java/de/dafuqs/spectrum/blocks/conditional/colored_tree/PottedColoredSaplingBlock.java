@@ -2,9 +2,11 @@ package de.dafuqs.spectrum.blocks.conditional.colored_tree;
 
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.api.energy.color.*;
-import net.minecraft.block.*;
-import net.minecraft.item.*;
+import net.minecraft.resources.*;
 import net.minecraft.util.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -13,7 +15,7 @@ public class PottedColoredSaplingBlock extends FlowerPotBlock implements Revelat
 	
 	protected final InkColor color;
 	
-	public PottedColoredSaplingBlock(Block content, Settings settings, InkColor color) {
+	public PottedColoredSaplingBlock(Block content, Properties settings, InkColor color) {
 		super(content, settings);
 		this.color = color;
 		RevelationAware.register(this);
@@ -26,19 +28,19 @@ public class PottedColoredSaplingBlock extends FlowerPotBlock implements Revelat
 //	}
 	
 	@Override
-	public Identifier getCloakAdvancementIdentifier() {
+	public ResourceLocation getCloakAdvancementIdentifier() {
 		return ColoredTree.getTreeCloakAdvancementIdentifier(TreePart.SAPLING, this.color);
 	}
 	
 	@Override
 	public Map<BlockState, BlockState> getBlockStateCloaks() {
 		Map<BlockState, BlockState> map = new Hashtable<>();
-		map.put(this.getDefaultState(), Blocks.POTTED_OAK_SAPLING.getDefaultState());
+		map.put(this.defaultBlockState(), Blocks.POTTED_OAK_SAPLING.defaultBlockState());
 		return map;
 	}
 	
 	@Override
-	public @Nullable Pair<Item, Item> getItemCloak() {
+	public @Nullable Tuple<Item, Item> getItemCloak() {
 		return null; // does not exist in item form
 	}
 	

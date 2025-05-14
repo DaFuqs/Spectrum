@@ -4,46 +4,46 @@ import de.dafuqs.spectrum.api.entity.*;
 import de.dafuqs.spectrum.compat.gofish.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.enchantment.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.fluid.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.*;
-import net.minecraft.registry.tag.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
-import net.minecraft.stat.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
+import net.minecraft.stats.*;
+import net.minecraft.tags.*;
 import net.minecraft.world.*;
-import net.minecraft.world.event.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.gameevent.*;
+import net.minecraft.world.level.material.*;
 
 import java.util.*;
 
 public abstract class SpectrumFishingRodItem extends FishingRodItem {
 	
-	public SpectrumFishingRodItem(Settings settings) {
+	public SpectrumFishingRodItem(Properties settings) {
 		super(settings);
 	}
 	
 	@Override
-	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-		ItemStack itemStack = user.getStackInHand(hand);
+	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
+		ItemStack itemStack = user.getItemInHand(hand);
 		
 		PlayerEntityAccessor playerEntityAccessor = ((PlayerEntityAccessor) user);
 		if (playerEntityAccessor.getSpectrumBobber() != null) {
-			if (!world.isClient) {
+			if (!world.isClientSide) {
 				int damage = playerEntityAccessor.getSpectrumBobber().use(itemStack);
-				itemStack.damage(damage, user, LivingEntity.getSlotForHand(hand));
+				itemStack.hurtAndBreak(damage, user, LivingEntity.getSlotForHand(hand));
 			}
 			
-			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_FISHING_BOBBER_RETRIEVE, SoundCategory.NEUTRAL, 1.0F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
-			user.emitGameEvent(GameEvent.ITEM_INTERACT_FINISH);
+			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.FISHING_BOBBER_RETRIEVE, SoundSource.NEUTRAL, 1.0F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
+			user.gameEvent(GameEvent.ITEM_INTERACT_FINISH);
 		} else {
-			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_FISHING_BOBBER_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
-			if (world instanceof ServerWorld serverWorld) {
-				var drm = world.getRegistryManager();
+			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.FISHING_BOBBER_THROW, SoundSource.NEUTRAL, 0.5F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
+			if (world instanceof ServerLevel serverWorld) {
+				var drm = world.registryAccess();
 				int luckBonus = EnchantmentHelper.getFishingLuckBonus(serverWorld, itemStack, user);
 				int waitTimeReductionTicks = (int)(EnchantmentHelper.getFishingTimeReduction(serverWorld, itemStack, user) * 20.0F);
 				int exuberanceLevel = SpectrumEnchantmentHelper.getLevel(drm, SpectrumEnchantments.EXUBERANCE, itemStack);
@@ -54,27 +54,27 @@ public abstract class SpectrumFishingRodItem extends FishingRodItem {
 				spawnBobber(user, world, luckBonus, waitTimeReductionTicks, exuberanceLevel, bigCatchLevel, serendipityReelLevel, inventoryInsertion, shouldSmeltDrops);
 			}
 			
-			user.incrementStat(Stats.USED.getOrCreateStat(this));
-			user.emitGameEvent(GameEvent.ITEM_INTERACT_START);
+			user.awardStat(Stats.ITEM_USED.get(this));
+			user.gameEvent(GameEvent.ITEM_INTERACT_START);
 		}
 		
-		return TypedActionResult.success(itemStack, world.isClient());
+		return InteractionResultHolder.sidedSuccess(itemStack, world.isClientSide());
 	}
 	
-	public abstract void spawnBobber(PlayerEntity user, World world, int luckOfTheSeaLevel, int lureLevel, int exuberanceLevel, int bigCatchLevel, int serendipityReelLevel, boolean inventoryInsertion, boolean shouldSmeltDrops);
+	public abstract void spawnBobber(Player user, Level world, int luckOfTheSeaLevel, int lureLevel, int exuberanceLevel, int bigCatchLevel, int serendipityReelLevel, boolean inventoryInsertion, boolean shouldSmeltDrops);
 	
 	public boolean canFishIn(FluidState fluidState) {
-		return fluidState.isIn(FluidTags.WATER);
+		return fluidState.is(FluidTags.WATER);
 	}
 	
 	public boolean shouldSmeltDrops(ItemStack itemStack) {
-		return EnchantmentHelper.hasAnyEnchantmentsIn(itemStack, SpectrumEnchantmentTags.SMELTS_MORE_LOOT) || GoFishCompat.hasDeepfry(itemStack);
+		return EnchantmentHelper.hasTag(itemStack, SpectrumEnchantmentTags.SMELTS_MORE_LOOT) || GoFishCompat.hasDeepfry(itemStack);
 	}
 
 	@Override
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
-		tooltip.add(Text.translatable("item.spectrum.spectrum_fishing_rods.tooltip").formatted(Formatting.GRAY));
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
+		tooltip.add(Component.translatable("item.spectrum.spectrum_fishing_rods.tooltip").withStyle(ChatFormatting.GRAY));
 	}
 	
 }

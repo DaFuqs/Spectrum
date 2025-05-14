@@ -1,22 +1,21 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import net.minecraft.block.piston.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.attribute.*;
-import net.minecraft.item.*;
+import net.minecraft.core.*;
 import net.minecraft.nbt.*;
-import net.minecraft.network.listener.*;
-import net.minecraft.network.packet.*;
-import net.minecraft.registry.entry.*;
-import net.minecraft.server.network.*;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
+import net.minecraft.network.protocol.*;
+import net.minecraft.network.protocol.game.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.material.*;
 
 import java.util.*;
 
 public class LivingMarkerEntity extends LivingEntity {
 	
-	public LivingMarkerEntity(EntityType<? extends LivingEntity> entityType, World world) {
+	public LivingMarkerEntity(EntityType<? extends LivingEntity> entityType, Level world) {
 		super(entityType, world);
 	}
 	
@@ -26,22 +25,22 @@ public class LivingMarkerEntity extends LivingEntity {
 	}
 	
 	@Override
-	public void readCustomDataFromNbt(NbtCompound nbt) {
+	public void readAdditionalSaveData(CompoundTag nbt) {
 	
 	}
 	
 	@Override
-	public void writeCustomDataToNbt(NbtCompound nbt) {
+	public void addAdditionalSaveData(CompoundTag nbt) {
 	
 	}
 	
 	@Override
-	public double getAttributeValue(RegistryEntry<EntityAttribute> attribute) {
+	public double getAttributeValue(Holder<Attribute> attribute) {
 		return 0D;
 	}
 	
 	@Override
-	public double getAttributeBaseValue(RegistryEntry<EntityAttribute> attribute) {
+	public double getAttributeBaseValue(Holder<Attribute> attribute) {
 		return 0D;
 	}
 	
@@ -56,44 +55,44 @@ public class LivingMarkerEntity extends LivingEntity {
 	}
 	
 	@Override
-	public PistonBehavior getPistonBehavior() {
-		return PistonBehavior.IGNORE;
+	public PushReaction getPistonPushReaction() {
+		return PushReaction.IGNORE;
 	}
 	
-	public boolean canAvoidTraps() {
+	public boolean isIgnoringBlockTriggers() {
 		return true;
 	}
 	
 	@Override
-	public Iterable<ItemStack> getArmorItems() {
+	public Iterable<ItemStack> getArmorSlots() {
 		return new ArrayList<>();
 	}
 	
 	@Override
-	public ItemStack getEquippedStack(EquipmentSlot slot) {
+	public ItemStack getItemBySlot(EquipmentSlot slot) {
 		return ItemStack.EMPTY;
 	}
 	
 	@Override
-	public void equipStack(EquipmentSlot slot, ItemStack stack) {
+	public void setItemSlot(EquipmentSlot slot, ItemStack stack) {
 	
 	}
 	
-	public void setPose(EntityPose pose) {
+	public void setPose(Pose pose) {
 	
 	}
 	
-	public EntityPose getPose() {
-		return EntityPose.STANDING;
-	}
-	
-	@Override
-	public Arm getMainArm() {
-		return Arm.LEFT;
+	public Pose getPose() {
+		return Pose.STANDING;
 	}
 	
 	@Override
-	public Packet<ClientPlayPacketListener> createSpawnPacket(EntityTrackerEntry entityTrackerEntry) {
+	public HumanoidArm getMainArm() {
+		return HumanoidArm.LEFT;
+	}
+	
+	@Override
+	public Packet<ClientGamePacketListener> getAddEntityPacket(ServerEntity entityTrackerEntry) {
 		throw new IllegalStateException("Living Markers should never be sent");
 	}
 	

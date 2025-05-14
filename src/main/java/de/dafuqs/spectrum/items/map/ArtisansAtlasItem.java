@@ -1,41 +1,43 @@
 package de.dafuqs.spectrum.items.map;
 
-import com.mojang.datafixers.util.Pair;
+import com.mojang.datafixers.util.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
-import net.minecraft.block.*;
 import net.minecraft.client.*;
-import net.minecraft.component.*;
-import net.minecraft.component.type.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.fluid.*;
-import net.minecraft.item.*;
-import net.minecraft.item.map.*;
-import net.minecraft.item.tooltip.*;
-import net.minecraft.server.network.*;
-import net.minecraft.server.world.*;
-import net.minecraft.structure.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import net.minecraft.core.*;
+import net.minecraft.core.component.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
+import net.minecraft.server.level.*;
 import net.minecraft.world.*;
-import net.minecraft.world.chunk.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.context.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.chunk.*;
+import net.minecraft.world.level.levelgen.*;
+import net.minecraft.world.level.levelgen.structure.*;
+import net.minecraft.world.level.material.*;
+import net.minecraft.world.level.saveddata.maps.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class ArtisansAtlasItem extends FilledMapItem {
+public class ArtisansAtlasItem extends MapItem {
 	
 	public static final int COOLDOWN_DURATION_TICKS = 20;
 	
-	public ArtisansAtlasItem(Settings settings) {
+	public ArtisansAtlasItem(Properties settings) {
 		super(settings);
 	}
 	
-	private static void createAndSetState(ItemStack stack, ServerWorld world, int centerX, int centerZ, @Nullable StructureStart target, @Nullable Identifier targetId) {
-		ArtisansAtlasState state = new ArtisansAtlasState(centerX, centerZ, (byte) 1, true, true, false, world.getRegistryKey());
-		MapIdComponent id = world.increaseAndGetMapId();
+	private static void createAndSetState(ItemStack stack, ServerLevel world, int centerX, int centerZ, @Nullable StructureStart target, @Nullable ResourceLocation targetId) {
+		ArtisansAtlasState state = new ArtisansAtlasState(centerX, centerZ, (byte) 1, true, true, false, world.dimension());
+		MapId id = world.getFreeMapId();
 		
 		state.setTargetId(targetId);
 		if (targetId != null) {
@@ -47,24 +49,24 @@ public class ArtisansAtlasItem extends FilledMapItem {
 			state.cancelLocator();
 		}
 		
-		world.putMapState(id, state);
-		stack.set(DataComponentTypes.MAP_ID, id);
+		world.setMapData(id, state);
+		stack.set(DataComponents.MAP_ID, id);
 	}
 	
 	@Override
-	public void updateColors(World world, Entity entity, MapState state) {
-		if (world.getRegistryKey() != state.dimension || !(entity instanceof PlayerEntity playerEntity) || !(state instanceof ArtisansAtlasState atlasState)) {
+	public void update(Level world, Entity entity, MapItemSavedData state) {
+		if (world.dimension() != state.dimension || !(entity instanceof Player playerEntity) || !(state instanceof ArtisansAtlasState atlasState)) {
 			return;
 		}
 		
 		int sampleSize = 1 << state.scale;
-		MapState.PlayerUpdateTracker playerUpdateTracker = state.getPlayerSyncData(playerEntity);
-		playerUpdateTracker.field_131++;
+		MapItemSavedData.HoldingPlayer playerUpdateTracker = state.getHoldingPlayer(playerEntity);
+		playerUpdateTracker.step++;
 		
 		Vec3i delta = atlasState.getDisplayDelta();
 		if (delta == null) {
 			// Delta is null when the state is first created, so update the whole thing
-			delta = entity.getBlockPos().subtract(atlasState.getDisplayedCenter());
+			delta = entity.blockPosition().subtract(atlasState.getDisplayedCenter());
 			int deltaX = delta.getX() / sampleSize;
 			int deltaZ = delta.getZ() / sampleSize;
 			
@@ -82,14 +84,14 @@ public class ArtisansAtlasItem extends FilledMapItem {
 		
 		if (deltaX < 0) {
 			for (int x = 127; x >= -deltaX; x--) {
-				updateOrCopyVerticalStrip(world, atlasState, deltaX, deltaZ, x, playerUpdateTracker.field_131);
+				updateOrCopyVerticalStrip(world, atlasState, deltaX, deltaZ, x, playerUpdateTracker.step);
 			}
 			for (int x = 0; x <= Math.min(127, -deltaX - 1); x++) {
 				updateVerticalStrip(world, atlasState, deltaX, deltaZ, x, 0, 127);
 			}
 		} else {
 			for (int x = 0; x <= 127 - deltaX; x++) {
-				updateOrCopyVerticalStrip(world, atlasState, deltaX, deltaZ, x, playerUpdateTracker.field_131);
+				updateOrCopyVerticalStrip(world, atlasState, deltaX, deltaZ, x, playerUpdateTracker.step);
 			}
 			for (int x = Math.max(0, 127 - deltaX + 1); x <= 127; x++) {
 				updateVerticalStrip(world, atlasState, deltaX, deltaZ, x, 0, 127);
@@ -101,7 +103,7 @@ public class ArtisansAtlasItem extends FilledMapItem {
 		}
 	}
 	
-	private void updateOrCopyVerticalStrip(World world, ArtisansAtlasState state, int deltaX, int deltaZ, int x, int tick) {
+	private void updateOrCopyVerticalStrip(Level world, ArtisansAtlasState state, int deltaX, int deltaZ, int x, int tick) {
 		if (deltaX > 127 || deltaX < -127 || deltaZ > 127 || deltaZ < -127 || (x & 15) == (tick & 15)) {
 			updateVerticalStrip(world, state, deltaX, deltaZ, x, 0, 127);
 		} else if (deltaZ < 0) {
@@ -127,24 +129,24 @@ public class ArtisansAtlasItem extends FilledMapItem {
 		}
 	}
 	
-	private void updateVerticalStrip(World world, ArtisansAtlasState state, int deltaX, int deltaZ, int x, int startZ, int endZ) {
+	private void updateVerticalStrip(Level world, ArtisansAtlasState state, int deltaX, int deltaZ, int x, int startZ, int endZ) {
 		double previousHeight = getHeight(world, state, deltaX, deltaZ, x, startZ - 1);
 		for (int z = startZ; z <= endZ; z++) {
 			previousHeight = updateColor(world, state, deltaX, deltaZ, x, z, previousHeight);
 		}
 	}
 	
-	private double updateColor(World world, ArtisansAtlasState state, int deltaX, int deltaZ, int x, int z, double previousHeight) {
+	private double updateColor(Level world, ArtisansAtlasState state, int deltaX, int deltaZ, int x, int z, double previousHeight) {
 		int sampleSize = 1 << state.scale;
 		int sampleArea = sampleSize * sampleSize;
 		int sampleMask = sampleSize - 1;
 		
-		boolean hasCeiling = world.getDimension().hasCeiling();
+		boolean hasCeiling = world.dimensionType().hasCeiling();
 		
 		int blockX = ((state.getDisplayedCenter().getX() >> state.scale) + deltaX + x - 64) * sampleSize;
 		int blockZ = ((state.getDisplayedCenter().getZ() >> state.scale) + deltaZ + z - 64) * sampleSize;
 		
-		WorldChunk chunk = world.getChunk(ChunkSectionPos.getSectionCoord(blockX), ChunkSectionPos.getSectionCoord(blockZ));
+		LevelChunk chunk = world.getChunk(SectionPos.blockToSectionCoord(blockX), SectionPos.blockToSectionCoord(blockZ));
 		if (chunk.isEmpty()) {
 			return previousHeight;
 		}
@@ -158,16 +160,16 @@ public class ArtisansAtlasItem extends FilledMapItem {
 			int hash = blockX + blockZ * 231871;
 			hash = hash * hash * 31287121 + hash * 11;
 			if ((hash >> 20 & 1) == 0) {
-				multiset[Blocks.DIRT.getDefaultState().getMapColor(world, BlockPos.ORIGIN).id] += 10;
+				multiset[Blocks.DIRT.defaultBlockState().getMapColor(world, BlockPos.ZERO).id] += 10;
 			} else {
-				multiset[Blocks.STONE.getDefaultState().getMapColor(world, BlockPos.ORIGIN).id] += 100;
+				multiset[Blocks.STONE.defaultBlockState().getMapColor(world, BlockPos.ZERO).id] += 100;
 			}
 			
 			height = 100.0;
 		} else {
 			height = 0.0;
-			int bottomY = world.getBottomY();
-			BlockPos.Mutable samplePos = new BlockPos.Mutable(0, 0, 0);
+			int bottomY = world.getMinBuildHeight();
+			BlockPos.MutableBlockPos samplePos = new BlockPos.MutableBlockPos(0, 0, 0);
 			
 			for (int sample = 0; sample < sampleArea; sample++) {
 				
@@ -176,23 +178,23 @@ public class ArtisansAtlasItem extends FilledMapItem {
 				samplePos.setX(posX);
 				samplePos.setZ(posZ);
 				
-				int sampleY = chunk.sampleHeightmap(Heightmap.Type.WORLD_SURFACE, posX, posZ) + 1;
+				int sampleY = chunk.getHeight(Heightmap.Types.WORLD_SURFACE, posX, posZ) + 1;
 				
 				BlockState blockState;
 				MapColor mapColor;
 				if (sampleY <= bottomY + 1) {
-					blockState = Blocks.BEDROCK.getDefaultState();
+					blockState = Blocks.BEDROCK.defaultBlockState();
 					mapColor = blockState.getMapColor(world, samplePos);
 				} else {
 					do {
 						samplePos.setY(--sampleY);
 						blockState = chunk.getBlockState(samplePos);
 						mapColor = blockState.getMapColor(world, samplePos);
-					} while (mapColor == MapColor.CLEAR && sampleY > bottomY);
+					} while (mapColor == MapColor.NONE && sampleY > bottomY);
 					
 					if (sampleY > bottomY && !blockState.getFluidState().isEmpty()) {
 						int fluidY = sampleY - 1;
-						BlockPos.Mutable fluidPos = samplePos.mutableCopy();
+						BlockPos.MutableBlockPos fluidPos = samplePos.mutable();
 						
 						BlockState fluidBlockState;
 						do {
@@ -203,14 +205,14 @@ public class ArtisansAtlasItem extends FilledMapItem {
 						fluidDepth += sampleY - 1 - fluidY;
 						
 						FluidState fluidState = blockState.getFluidState();
-						blockState = !fluidState.isEmpty() && !blockState.isSideSolidFullSquare(world, samplePos, Direction.UP)
-								? fluidState.getBlockState() : blockState;
+						blockState = !fluidState.isEmpty() && !blockState.isFaceSturdy(world, samplePos, Direction.UP)
+								? fluidState.createLegacyBlock() : blockState;
 						
 						mapColor = blockState.getMapColor(world, samplePos);
 					}
 				}
 				
-				state.removeBanner(world, posX, posZ);
+				state.checkBanners(world, posX, posZ);
 				
 				height += sampleY;
 				multiset[mapColor.id]++;
@@ -221,17 +223,17 @@ public class ArtisansAtlasItem extends FilledMapItem {
 		}
 		
 		int maxCount = 0;
-		MapColor color = MapColor.CLEAR;
+		MapColor color = MapColor.NONE;
 		for (int i = 0; i < multiset.length; i++) {
 			if (multiset[i] > maxCount) {
 				maxCount = multiset[i];
-				color = MapColor.get(i);
+				color = MapColor.byId(i);
 			}
 		}
 		
 		MapColor.Brightness brightness;
 		int odd = ((blockX ^ blockZ) / sampleSize) & 1;
-		if (color == MapColor.WATER_BLUE) {
+		if (color == MapColor.WATER) {
 			double depth = (double) fluidDepth * 0.1 + (double) odd * 0.2;
 			if (depth < 0.5) {
 				brightness = MapColor.Brightness.HIGH;
@@ -251,12 +253,12 @@ public class ArtisansAtlasItem extends FilledMapItem {
 			}
 		}
 		
-		state.setColor(x, z, color.getRenderColorByte(brightness));
+		state.setColor(x, z, color.getPackedId(brightness));
 		
 		return height;
 	}
 	
-	private double getHeight(World world, ArtisansAtlasState state, int deltaX, int deltaZ, int x, int z) {
+	private double getHeight(Level world, ArtisansAtlasState state, int deltaX, int deltaZ, int x, int z) {
 		int sampleSize = 1 << state.scale;
 		int sampleArea = sampleSize * sampleSize;
 		int sampleMask = sampleSize - 1;
@@ -264,30 +266,30 @@ public class ArtisansAtlasItem extends FilledMapItem {
 		int blockX = ((state.getDisplayedCenter().getX() >> state.scale) + deltaX + x - 64) * sampleSize;
 		int blockZ = ((state.getDisplayedCenter().getZ() >> state.scale) + deltaZ + z - 64) * sampleSize;
 		
-		WorldChunk chunk = world.getChunk(ChunkSectionPos.getSectionCoord(blockX), ChunkSectionPos.getSectionCoord(blockZ));
+		LevelChunk chunk = world.getChunk(SectionPos.blockToSectionCoord(blockX), SectionPos.blockToSectionCoord(blockZ));
 		if (chunk.isEmpty())
 			return 0;
 		
 		double height;
-		if (world.getDimension().hasCeiling()) {
+		if (world.dimensionType().hasCeiling()) {
 			height = 100.0;
 		} else {
 			height = 0.0;
-			int bottomY = world.getBottomY();
+			int bottomY = world.getMinBuildHeight();
 			
 			for (int sample = 0; sample < sampleArea; sample++) {
 				int posX = blockX + (sample >> state.scale);
 				int posZ = blockZ + (sample & sampleMask);
 				
-				BlockPos.Mutable samplePos = new BlockPos.Mutable(posX, 0, posZ);
-				int sampleY = chunk.sampleHeightmap(Heightmap.Type.WORLD_SURFACE, posX, posZ) + 1;
+				BlockPos.MutableBlockPos samplePos = new BlockPos.MutableBlockPos(posX, 0, posZ);
+				int sampleY = chunk.getHeight(Heightmap.Types.WORLD_SURFACE, posX, posZ) + 1;
 				
 				if (sampleY > bottomY + 1) {
 					BlockState blockState;
 					do {
 						samplePos.setY(--sampleY);
 						blockState = chunk.getBlockState(samplePos);
-					} while (blockState.getMapColor(world, samplePos) == MapColor.CLEAR && sampleY > bottomY);
+					} while (blockState.getMapColor(world, samplePos) == MapColor.NONE && sampleY > bottomY);
 				}
 				
 				height += sampleY;
@@ -300,11 +302,11 @@ public class ArtisansAtlasItem extends FilledMapItem {
 	}
 	
 	@Override
-	public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-		if (!world.isClient) {
-			MapState state = getMapState(stack, world);
+	public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
+		if (!world.isClientSide) {
+			MapItemSavedData state = getSavedData(stack, world);
 			if (state instanceof ArtisansAtlasState atlasState) {
-				atlasState.updateDimension(world.getRegistryKey());
+				atlasState.updateDimension(world.dimension());
 			}
 		}
 		
@@ -312,56 +314,56 @@ public class ArtisansAtlasItem extends FilledMapItem {
 	}
 	
 	@Override
-	public ActionResult useOnBlock(ItemUsageContext context) {
-		if (!context.getWorld().isClient() && context.getWorld() instanceof ServerWorld serverWorld && context.getPlayer() instanceof ServerPlayerEntity serverPlayerEntity) {
-			ItemStack stack = serverPlayerEntity.getStackInHand(context.getHand());
-			if (serverPlayerEntity.isSneaking()) {
-				Vec3d hitPos = context.getHitPos();
-				BlockPos blockPos = BlockPos.ofFloored(hitPos.getX(), hitPos.getY(), hitPos.getZ());
-				Pair<Identifier, StructureStart> pair = ArtisansAtlasState.locateAnyStructureAtBlock(serverWorld, blockPos);
+	public InteractionResult useOn(UseOnContext context) {
+		if (!context.getLevel().isClientSide() && context.getLevel() instanceof ServerLevel serverWorld && context.getPlayer() instanceof ServerPlayer serverPlayerEntity) {
+			ItemStack stack = serverPlayerEntity.getItemInHand(context.getHand());
+			if (serverPlayerEntity.isShiftKeyDown()) {
+				Vec3 hitPos = context.getClickLocation();
+				BlockPos blockPos = BlockPos.containing(hitPos.x(), hitPos.y(), hitPos.z());
+				Pair<ResourceLocation, StructureStart> pair = ArtisansAtlasState.locateAnyStructureAtBlock(serverWorld, blockPos);
 				if (pair != null) {
-					Identifier structureId = pair.getFirst();
+					ResourceLocation structureId = pair.getFirst();
 					if (SpectrumStructureTags.isIn(serverWorld, structureId, SpectrumStructureTags.UNLOCATABLE)) { // TODO: use c: tag
-						serverPlayerEntity.sendMessage(Text.translatable("item.spectrum.artisans_atlas.unlocatable"), true);
+						serverPlayerEntity.displayClientMessage(Component.translatable("item.spectrum.artisans_atlas.unlocatable"), true);
 					} else {
-						serverPlayerEntity.sendMessage(Text.translatable("item.spectrum.artisans_atlas.set_structure").append(Text.translatable(structureId.toTranslationKey("structure"))), true);
+						serverPlayerEntity.displayClientMessage(Component.translatable("item.spectrum.artisans_atlas.set_structure").append(Component.translatable(structureId.toLanguageKey("structure"))), true);
 						createAndSetState(stack, serverWorld, (int) serverPlayerEntity.getX(), (int) serverPlayerEntity.getZ(), pair.getSecond(), pair.getFirst());
 					}
 				}
 				
-				serverPlayerEntity.getItemCooldownManager().set(stack.getItem(), COOLDOWN_DURATION_TICKS);
+				serverPlayerEntity.getCooldowns().addCooldown(stack.getItem(), COOLDOWN_DURATION_TICKS);
 			}
 		}
 		
-		return ActionResult.success(context.getWorld().isClient());
+		return InteractionResult.sidedSuccess(context.getLevel().isClientSide());
 	}
 	
 	@Override
-	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-		ItemStack stack = user.getStackInHand(hand);
+	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
+		ItemStack stack = user.getItemInHand(hand);
 		
-		if (!world.isClient() && world instanceof ServerWorld serverWorld && user instanceof ServerPlayerEntity serverPlayerEntity) {
-			if (user.isSneaking())
+		if (!world.isClientSide() && world instanceof ServerLevel serverWorld && user instanceof ServerPlayer serverPlayerEntity) {
+			if (user.isShiftKeyDown())
 				createAndSetState(stack, serverWorld, (int) serverPlayerEntity.getX(), (int) serverPlayerEntity.getZ(), null, null);
 		}
 		
-		return TypedActionResult.success(stack, world.isClient());
+		return InteractionResultHolder.sidedSuccess(stack, world.isClientSide());
 	}
 	
 	@Override
 	@Environment(EnvType.CLIENT)
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
 		
-		var world = MinecraftClient.getInstance().world;
+		var world = Minecraft.getInstance().level;
 		if (world == null) return;
 		
-		if (getMapState(stack, world) instanceof ArtisansAtlasState atlasState) {
-			Identifier structureId = atlasState.getTargetId();
+		if (getSavedData(stack, world) instanceof ArtisansAtlasState atlasState) {
+			ResourceLocation structureId = atlasState.getTargetId();
 			if (structureId == null)
-				tooltip.add(Text.translatable("item.spectrum.artisans_atlas.empty"));
+				tooltip.add(Component.translatable("item.spectrum.artisans_atlas.empty"));
 			else
-				tooltip.add(Text.translatable("item.spectrum.artisans_atlas.locates_structure").append(Text.translatable(structureId.toTranslationKey("structure"))));
+				tooltip.add(Component.translatable("item.spectrum.artisans_atlas.locates_structure").append(Component.translatable(structureId.toLanguageKey("structure"))));
 		}
 		
 	}

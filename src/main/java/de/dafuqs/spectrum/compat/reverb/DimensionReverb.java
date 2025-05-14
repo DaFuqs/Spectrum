@@ -5,7 +5,7 @@ import de.dafuqs.reverb.sound.*;
 import de.dafuqs.reverb.sound.reverb.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.registry.*;
+import net.minecraft.core.*;
 
 import java.util.*;
 

@@ -1,32 +1,32 @@
 package de.dafuqs.spectrum.status_effects;
 
-import net.minecraft.entity.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.world.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.level.*;
 
-public class NourishingStatusEffect extends StatusEffect {
+public class NourishingStatusEffect extends MobEffect {
 	
-	public NourishingStatusEffect(StatusEffectCategory statusEffectCategory, int color) {
+	public NourishingStatusEffect(MobEffectCategory statusEffectCategory, int color) {
 		super(statusEffectCategory, color);
 	}
 	
 	@Override
-	public String getTranslationKey() {
-		return StatusEffects.SATURATION.value().getTranslationKey();
+	public String getDescriptionId() {
+		return MobEffects.SATURATION.value().getDescriptionId();
 	}
 	
 	@Override
-	public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
-		World world = entity.getWorld();
-		if (!world.isClient && entity instanceof PlayerEntity playerEntity) {
-			playerEntity.getHungerManager().add(1, 0.25F);
+	public boolean applyEffectTick(LivingEntity entity, int amplifier) {
+		Level world = entity.level();
+		if (!world.isClientSide && entity instanceof Player playerEntity) {
+			playerEntity.getFoodData().eat(1, 0.25F);
 		}
-		return super.applyUpdateEffect(entity, amplifier);
+		return super.applyEffectTick(entity, amplifier);
 	}
 	
 	@Override
-	public boolean canApplyUpdateEffect(int duration, int amplifier) {
+	public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
 		int i = 200 >> amplifier;
 		if (i > 0) {
 			return duration % i == 0;

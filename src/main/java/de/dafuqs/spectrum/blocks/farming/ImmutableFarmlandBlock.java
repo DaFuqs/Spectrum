@@ -1,13 +1,13 @@
 package de.dafuqs.spectrum.blocks.farming;
 
-import net.minecraft.block.*;
-import net.minecraft.server.world.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
+import net.minecraft.core.*;
+import net.minecraft.server.level.*;
+import net.minecraft.util.*;
+import net.minecraft.world.level.block.state.*;
 
 public class ImmutableFarmlandBlock extends SpectrumFarmlandBlock {
-
-	public ImmutableFarmlandBlock(Settings settings, BlockState bareState) {
+	
+	public ImmutableFarmlandBlock(Properties settings, BlockState bareState) {
 		super(settings, bareState);
 	}
 
@@ -18,11 +18,11 @@ public class ImmutableFarmlandBlock extends SpectrumFarmlandBlock {
 //	}
 
 	@Override
-	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 	}
 
 	@Override
-	public boolean hasRandomTicks(BlockState state) {
+	public boolean isRandomlyTicking(BlockState state) {
 		return false;
 	}
 

@@ -4,28 +4,28 @@ import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.enchantment.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.damage.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.registry.tag.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.tags.*;
+import net.minecraft.world.damagesource.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.phys.*;
 
 public class LightGreatswordItem extends ParryingSwordItem implements SplitDamageItem {
 
 	private final int barColor;
-
-	public LightGreatswordItem(ToolMaterial material, int attackDamage, float attackSpeed, float crit, float reach, int barColor, Settings settings) {
+	
+	public LightGreatswordItem(Tier material, int attackDamage, float attackSpeed, float crit, float reach, int barColor, Properties settings) {
 		super(material, attackDamage, attackSpeed, crit, reach, settings);
 		this.barColor = barColor;
 	}
 
 	@Override
 	public float getBlockingMultiplier(DamageSource source, ItemStack stack, LivingEntity entity, int usedTime) {
-		if (source.isIn(DamageTypeTags.IS_PROJECTILE))
+		if (source.is(DamageTypeTags.IS_PROJECTILE))
 			return 0;
 
 		if (canPerfectParry(stack, entity, usedTime)) {
@@ -42,19 +42,19 @@ public class LightGreatswordItem extends ParryingSwordItem implements SplitDamag
 	}
 
 	@Override
-	public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
-		super.onStoppedUsing(stack, world, user, remainingUseTicks);
-
-		if (!(user instanceof PlayerEntity player))
+	public void releaseUsing(ItemStack stack, Level world, LivingEntity user, int remainingUseTicks) {
+		super.releaseUsing(stack, world, user, remainingUseTicks);
+		
+		if (!(user instanceof Player player))
 			return;
 
 		var maxShieldTime = getMaxShieldingTime(user, stack);
-		if (!player.isOnGround() && maxShieldTime - remainingUseTicks > 5) {
-
-			var chargeDir = Vec3d.fromPolar(player.getPitch(), player.getYaw());
+		if (!player.onGround() && maxShieldTime - remainingUseTicks > 5) {
+			
+			var chargeDir = Vec3.directionFromRotation(player.getXRot(), player.getYRot());
 			float chargeStrength = Math.min((float) (maxShieldTime - remainingUseTicks) / maxShieldTime + 0.2F, 1F);
-
-			player.addVelocity(chargeDir.normalize().multiply(getLungeSpeed() * chargeStrength));
+			
+			player.push(chargeDir.normalize().scale(getLungeSpeed() * chargeStrength));
 			player.playSound(SpectrumSoundEvents.LUNGE, 2F, 0.8F + player.getRandom().nextFloat() * 0.2F);
 			MiscPlayerDataComponent.get(player).initiateLungeState();
 		}
@@ -72,31 +72,31 @@ public class LightGreatswordItem extends ParryingSwordItem implements SplitDamag
 	protected void applyLungeHitEffects(ItemStack stack, LivingEntity target, LivingEntity attacker) {
 		if (target.getType() == EntityType.ENDERMAN)
 			return;
-
-		var effect = target.hasInvertedHealingAndHarm() ? StatusEffects.REGENERATION : StatusEffects.POISON;
-		int sharpness = SpectrumEnchantmentHelper.getLevel(target.getWorld().getRegistryManager(), Enchantments.SHARPNESS, stack);
-		target.addStatusEffect(new StatusEffectInstance(effect, 20 * (5 + sharpness), 1));
+		
+		var effect = target.isInvertedHealAndHarm() ? MobEffects.REGENERATION : MobEffects.POISON;
+		int sharpness = SpectrumEnchantmentHelper.getLevel(target.level().registryAccess(), Enchantments.SHARPNESS, stack);
+		target.addEffect(new MobEffectInstance(effect, 20 * (5 + sharpness), 1));
 	}
 
 	@Override
-	public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-		if (attacker instanceof PlayerEntity player) {
+	public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+		if (attacker instanceof Player player) {
 			if (MiscPlayerDataComponent.get(player).isLunging()) {
 				MiscPlayerDataComponent.get(player).endLunge();
 				target.playSound(SpectrumSoundEvents.LUNGE_CRIT, 1F, 0.9F + target.getRandom().nextFloat() * 0.2F);
 				applyLungeHitEffects(stack, target, attacker);
 			}
 		}
-		return super.postHit(stack, target, attacker);
+		return super.hurtEnemy(stack, target, attacker);
 	}
 
 	@Override
 	public DamageComposition getDamageComposition(LivingEntity attacker, LivingEntity target, ItemStack stack, float damage) {
 		var composition = new DamageComposition();
 		var source = composition.getPlayerOrEntity(attacker);
-
-		if (attacker instanceof PlayerEntity player && MiscPlayerDataComponent.get(player).isLunging()) {
-			source = SpectrumDamageTypes.impaling(player.getWorld(), player);
+		
+		if (attacker instanceof Player player && MiscPlayerDataComponent.get(player).isLunging()) {
+			source = SpectrumDamageTypes.impaling(player.level(), player);
 		}
 
 		composition.add(source, damage);

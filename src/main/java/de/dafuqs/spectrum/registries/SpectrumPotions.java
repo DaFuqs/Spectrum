@@ -1,16 +1,16 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
-import net.minecraft.potion.*;
-import net.minecraft.registry.*;
-import net.minecraft.registry.entry.*;
+import net.minecraft.core.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.world.item.alchemy.*;
 
 public class SpectrumPotions {
 	
-	public static RegistryEntry<Potion> PIGMENT_POTION;
+	public static Holder<Potion> PIGMENT_POTION;
 	
-	private static RegistryEntry<Potion> register(String name, Potion potion) {
-		return Registry.registerReference(Registries.POTION, SpectrumCommon.locate(name), potion);
+	private static Holder<Potion> register(String name, Potion potion) {
+		return Registry.registerForHolder(BuiltInRegistries.POTION, SpectrumCommon.locate(name), potion);
 	}
 	
 	public static void register() {

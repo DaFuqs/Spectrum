@@ -1,53 +1,56 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.*;
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.mob.*;
-import net.minecraft.item.*;
-import net.minecraft.loot.context.*;
+import net.minecraft.resources.*;
 import net.minecraft.util.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.monster.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.storage.loot.*;
+import net.minecraft.world.level.storage.loot.parameters.*;
 
 import java.util.*;
 
 public class RadiatingEnderBlock extends Block implements RevelationAware {
-
-	public static final MapCodec<RadiatingEnderBlock> CODEC = createCodec(RadiatingEnderBlock::new);
-
-	public RadiatingEnderBlock(Settings settings) {
+	
+	public static final MapCodec<RadiatingEnderBlock> CODEC = simpleCodec(RadiatingEnderBlock::new);
+	
+	public RadiatingEnderBlock(Properties settings) {
 		super(settings);
 		RevelationAware.register(this);
 	}
 
 	@Override
-	public MapCodec<? extends RadiatingEnderBlock> getCodec() {
+	public MapCodec<? extends RadiatingEnderBlock> codec() {
 		return CODEC;
 	}
 	
 	@Override
-	public Identifier getCloakAdvancementIdentifier() {
+	public ResourceLocation getCloakAdvancementIdentifier() {
 		return SpectrumAdvancements.REVEAL_RADIATING_ENDER;
 	}
 	
 	@Override
 	public Map<BlockState, BlockState> getBlockStateCloaks() {
-		return Map.of(this.getDefaultState(), Blocks.COBBLESTONE.getDefaultState());
+		return Map.of(this.defaultBlockState(), Blocks.COBBLESTONE.defaultBlockState());
 	}
 	
 	@Override
-	public Pair<Item, Item> getItemCloak() {
-		return new Pair<>(this.asItem(), Blocks.COBBLESTONE.asItem());
+	public Tuple<Item, Item> getItemCloak() {
+		return new Tuple<>(this.asItem(), Blocks.COBBLESTONE.asItem());
 	}
 
 	@Override
-	public List<ItemStack> getDroppedStacks(BlockState state, LootContextParameterSet.Builder builder) {
-		Entity entity = builder.getOptional(LootContextParameters.THIS_ENTITY);
-		if (entity instanceof EndermanEntity) {
-			return List.of(SpectrumBlocks.RADIATING_ENDER.asItem().getDefaultStack());
+	public List<ItemStack> getDrops(BlockState state, LootParams.Builder builder) {
+		Entity entity = builder.getOptionalParameter(LootContextParams.THIS_ENTITY);
+		if (entity instanceof EnderMan) {
+			return List.of(SpectrumBlocks.RADIATING_ENDER.asItem().getDefaultInstance());
 		}
-		return super.getDroppedStacks(state, builder);
+		return super.getDrops(state, builder);
 	}
 	
 }

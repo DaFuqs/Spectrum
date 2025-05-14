@@ -1,16 +1,15 @@
 package de.dafuqs.spectrum.items.trinkets;
 
 import net.fabricmc.api.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.item.*;
 
 import java.util.*;
 
 public class AzureDikeRingItem extends AzureDikeTrinketItem {
 	
-	public AzureDikeRingItem(Settings settings, Identifier unlockIdentifier) {
+	public AzureDikeRingItem(Properties settings, ResourceLocation unlockIdentifier) {
 		super(settings, unlockIdentifier);
 	}
 	
@@ -21,9 +20,9 @@ public class AzureDikeRingItem extends AzureDikeTrinketItem {
 	
 	@Override
 	@Environment(EnvType.CLIENT)
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
-		tooltip.add(Text.translatable("item.spectrum.azure_dike_ring.tooltip"));
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
+		tooltip.add(Component.translatable("item.spectrum.azure_dike_ring.tooltip"));
 	}
 	
 	@Override

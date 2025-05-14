@@ -1,87 +1,86 @@
 package de.dafuqs.spectrum.inventories;
 
-import net.minecraft.entity.player.*;
-import net.minecraft.inventory.*;
-import net.minecraft.item.*;
-import net.minecraft.recipe.*;
-import net.minecraft.screen.*;
-import net.minecraft.util.collection.*;
+import net.minecraft.core.*;
+import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.item.*;
 
-public class CraftingTabletInventory extends CraftingInventory {
+public class CraftingTabletInventory extends TransientCraftingContainer {
 	
-	private final DefaultedList<ItemStack> gemAndOutputStacks;
-	private final ScreenHandler handler;
+	private final NonNullList<ItemStack> gemAndOutputStacks;
+	private final AbstractContainerMenu handler;
 	
-	public CraftingTabletInventory(ScreenHandler handler) {
+	public CraftingTabletInventory(AbstractContainerMenu handler) {
 		super(handler, 3, 3);
-		this.gemAndOutputStacks = DefaultedList.ofSize(6, ItemStack.EMPTY);
+		this.gemAndOutputStacks = NonNullList.withSize(6, ItemStack.EMPTY);
 		this.handler = handler;
 	}
 	
 	@Override
-	public ItemStack getStack(int slot) {
+	public ItemStack getItem(int slot) {
 		if (slot > 8) {
 			return gemAndOutputStacks.get(slot - 9);
 		} else {
-			return super.getStack(slot);
+			return super.getItem(slot);
 		}
 	}
 	
 	@Override
-	public ItemStack removeStack(int slot) {
+	public ItemStack removeItemNoUpdate(int slot) {
 		if (slot > 8) {
-			return Inventories.removeStack(gemAndOutputStacks, slot - 9);
+			return ContainerHelper.takeItem(gemAndOutputStacks, slot - 9);
 		} else {
-			return super.getStack(slot);
+			return super.getItem(slot);
 		}
 	}
 	
 	@Override
-	public ItemStack removeStack(int slot, int amount) {
+	public ItemStack removeItem(int slot, int amount) {
 		if (slot > 8) {
-			ItemStack itemStack = Inventories.splitStack(this.gemAndOutputStacks, slot - 9, amount);
+			ItemStack itemStack = ContainerHelper.removeItem(this.gemAndOutputStacks, slot - 9, amount);
 			if (!itemStack.isEmpty()) {
-				this.handler.onContentChanged(this);
+				this.handler.slotsChanged(this);
 			}
 			return itemStack;
 		} else {
-			return super.removeStack(slot, amount);
+			return super.removeItem(slot, amount);
 		}
 	}
 	
 	@Override
-	public void setStack(int slot, ItemStack stack) {
+	public void setItem(int slot, ItemStack stack) {
 		if (slot > 8) {
 			this.gemAndOutputStacks.set(slot - 9, stack);
 		} else {
-			super.setStack(slot, stack);
+			super.setItem(slot, stack);
 		}
 	}
 	
 	@Override
-	public void markDirty() {
+	public void setChanged() {
 	
 	}
 	
 	@Override
-	public int size() {
-		return super.size() + gemAndOutputStacks.size();
+	public int getContainerSize() {
+		return super.getContainerSize() + gemAndOutputStacks.size();
 	}
 	
 	@Override
-	public boolean canPlayerUse(PlayerEntity player) {
+	public boolean stillValid(Player player) {
 		return true;
 	}
 	
 	@Override
-	public void clear() {
-		super.clear();
+	public void clearContent() {
+		super.clearContent();
 		this.gemAndOutputStacks.clear();
 	}
 	
 	@Override
-	public void provideRecipeInputs(RecipeMatcher recipeMatcher) {
-		super.provideRecipeInputs(recipeMatcher);
+	public void fillStackedContents(StackedContents recipeMatcher) {
+		super.fillStackedContents(recipeMatcher);
 	}
 	
 }

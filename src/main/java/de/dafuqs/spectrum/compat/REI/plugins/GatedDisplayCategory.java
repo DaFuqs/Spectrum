@@ -6,7 +6,7 @@ import me.shedaniel.math.*;
 import me.shedaniel.rei.api.client.gui.widgets.*;
 import me.shedaniel.rei.api.client.registry.display.*;
 import net.fabricmc.api.*;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -14,11 +14,11 @@ import java.util.*;
 @Environment(EnvType.CLIENT)
 public abstract class GatedDisplayCategory<T extends GatedRecipeDisplay> implements DisplayCategory<T> {
 	
-	public static final Text HIDDEN_LINE_1 = Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1");
-	public static final Text HIDDEN_LINE_2 = Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2");
+	public static final Component HIDDEN_LINE_1 = Component.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1");
+	public static final Component HIDDEN_LINE_2 = Component.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2");
 	
-	public static final Text SECRET = Text.translatable("container.spectrum.rei.pedestal_crafting.secret_recipe");
-	public static final Text SECRET_HINT = Text.translatable("container.spectrum.rei.pedestal_crafting.secret_recipe.hint");
+	public static final Component SECRET = Component.translatable("container.spectrum.rei.pedestal_crafting.secret_recipe");
+	public static final Component SECRET_HINT = Component.translatable("container.spectrum.rei.pedestal_crafting.secret_recipe.hint");
 	
 	@Override
 	public List<Widget> setupDisplay(@NotNull T display, @NotNull Rectangle bounds) {
@@ -50,21 +50,21 @@ public abstract class GatedDisplayCategory<T extends GatedRecipeDisplay> impleme
 	
 	// Special handling for "1 second"
 	// Looks nicer
-	protected static Text getCraftingTimeText(int time) {
+	protected static Component getCraftingTimeText(int time) {
 		if (time == 20) {
-			return Text.translatable("container.spectrum.rei.crafting_time_one_second", 1);
+			return Component.translatable("container.spectrum.rei.crafting_time_one_second", 1);
 		} else {
-			return Text.translatable("container.spectrum.rei.crafting_time", (time / 20));
+			return Component.translatable("container.spectrum.rei.crafting_time", (time / 20));
 		}
 	}
 	
 	// Special handling for "1 second"
 	// Looks nicer
-	protected static Text getCraftingTimeText(int time, float xp) {
+	protected static Component getCraftingTimeText(int time, float xp) {
 		if (time == 20) {
-			return Text.translatable("container.spectrum.rei.crafting_time_one_second_and_xp", 1, xp);
+			return Component.translatable("container.spectrum.rei.crafting_time_one_second_and_xp", 1, xp);
 		} else {
-			return Text.translatable("container.spectrum.rei.crafting_time_and_xp", (time / 20), xp);
+			return Component.translatable("container.spectrum.rei.crafting_time_and_xp", (time / 20), xp);
 		}
 	}
 	

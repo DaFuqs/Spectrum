@@ -1,16 +1,16 @@
 package de.dafuqs.spectrum.mixin.accessors;
 
-import net.minecraft.item.*;
-import net.minecraft.registry.entry.*;
+import net.minecraft.core.*;
+import net.minecraft.world.item.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.gen.*;
 
 import java.util.*;
 
-@Mixin(GoatHornItem.class)
+@Mixin(InstrumentItem.class)
 public interface GoatHornItemAccessor {
 	
 	@Invoker
-	Optional<RegistryEntry<Instrument>> invokeGetInstrument(ItemStack stack);
+	Optional<Holder<Instrument>> invokeGetInstrument(ItemStack stack);
 	
 }

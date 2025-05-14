@@ -1,18 +1,19 @@
 package de.dafuqs.spectrum.helpers;
 
-import java.util.*;
-import java.util.function.*;
-import java.util.stream.*;
-
 import com.google.gson.*;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
+import net.minecraft.core.*;
 import net.minecraft.nbt.*;
-import net.minecraft.registry.*;
+import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import org.apache.commons.lang3.math.*;
+
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
 public class CodecHelper {
 	
@@ -24,39 +25,39 @@ public class CodecHelper {
 			frac -> new com.mojang.datafixers.util.Pair<>(frac.getNumerator(), frac.getDenominator())
 	);
 	
-	public static Codec<Identifier> SPECTRUM_DEFAULTED_IDENTIFIER = Codec.STRING.xmap(SpectrumCommon::ofSpectrumDefaulted, Identifier::toString);
+	public static Codec<ResourceLocation> SPECTRUM_DEFAULTED_IDENTIFIER = Codec.STRING.xmap(SpectrumCommon::ofSpectrumDefaulted, ResourceLocation::toString);
 	
-	public static MapCodec<RegistryWrapper.WrapperLookup> LOOKUP = new MapCodec<>() {
+	public static MapCodec<HolderLookup.Provider> LOOKUP = new MapCodec<>() {
 		@Override
 		public <T> Stream<T> keys(DynamicOps<T> dynamicOps) {
 			return Stream.empty();
 		}
 		
 		@Override
-		public <T> DataResult<RegistryWrapper.WrapperLookup> decode(DynamicOps<T> dynamicOps, MapLike<T> mapLike) {
+		public <T> DataResult<HolderLookup.Provider> decode(DynamicOps<T> dynamicOps, MapLike<T> mapLike) {
 			if (dynamicOps instanceof RegistryOps<T> registryOps) {
-				var infoGetter = ((RegistryOpsAccessor) registryOps).getRegistryInfoGetter();
-				var lookup = ((CachedRegistryInfoGetterAccessor) infoGetter).getRegistriesLookup();
+				var infoGetter = ((RegistryOpsAccessor) registryOps).getLookupProvider();
+				var lookup = ((CachedRegistryInfoGetterAccessor) infoGetter).getLookupProvider();
 				return DataResult.success(lookup);
 			}
 			return DataResult.error(() -> "The LOOKUP codec requires RegistryOps.");
 		}
 		
 		@Override
-		public <T> RecordBuilder<T> encode(RegistryWrapper.WrapperLookup wrapperLookup, DynamicOps<T> dynamicOps, RecordBuilder<T> recordBuilder) {
+		public <T> RecordBuilder<T> encode(HolderLookup.Provider wrapperLookup, DynamicOps<T> dynamicOps, RecordBuilder<T> recordBuilder) {
 			return recordBuilder;
 		}
 	};
 	
-	public static <L, R> MapCodec<Pair<L, R>> mapPair(MapCodec<L> leftCodec, MapCodec<R> rightCodec) {
+	public static <L, R> MapCodec<Tuple<L, R>> mapPair(MapCodec<L> leftCodec, MapCodec<R> rightCodec) {
 		return RecordCodecBuilder.mapCodec(i -> i.group(
-				leftCodec.forGetter(Pair::getLeft),
-				rightCodec.forGetter(Pair::getRight)
-		).apply(i, Pair::new));
+				leftCodec.forGetter(Tuple::getA),
+				rightCodec.forGetter(Tuple::getB)
+		).apply(i, Tuple::new));
 	}
 	
 	public static <K, V> MapCodec<Map<K, V>> registryMap(Registry<K> registry, Codec<V> valueCodec) {
-		Codec<K> keyCodec = registry.getCodec();
+		Codec<K> keyCodec = registry.byNameCodec();
 		
 		return new MapCodec<>() {
 			@Override
@@ -72,10 +73,10 @@ public class CodecHelper {
 							V valueResult = valueCodec.decode(dynamicOps, entry.getSecond()).result().map(com.mojang.datafixers.util.Pair::getFirst).orElse(null);
 							if (keyResult == null || valueResult == null)
 								return null;
-							return new Pair<>(keyResult, valueResult);
+							return new Tuple<>(keyResult, valueResult);
 						})
 						.filter(Objects::nonNull)
-						.collect(HashMap::new, (map, pair) -> map.put(pair.getLeft(), pair.getRight()), HashMap::putAll));
+						.collect(HashMap::new, (map, pair) -> map.put(pair.getA(), pair.getB()), HashMap::putAll));
 			}
 			
 			@Override
@@ -113,11 +114,11 @@ public class CodecHelper {
 		return codec.decode(ops, elem).result().map(com.mojang.datafixers.util.Pair::getFirst);
 	}
 	
-	public static <T> Optional<T> fromNbt(Codec<T> codec, NbtElement nbt) {
+	public static <T> Optional<T> fromNbt(Codec<T> codec, Tag nbt) {
 		return from(NbtOps.INSTANCE, codec, nbt);
 	}
 	
-	public static <T> T fromNbt(Codec<T> codec, NbtElement nbt, T defaultValue) {
+	public static <T> T fromNbt(Codec<T> codec, Tag nbt, T defaultValue) {
 		return fromNbt(codec, nbt).orElse(defaultValue);
 	}
 	
@@ -129,11 +130,11 @@ public class CodecHelper {
 		return fromJson(codec, json).orElse(defaultValue);
 	}
 	
-	public static <T> void toNbt(Codec<T> codec, T value, Consumer<? super NbtElement> ifValid) {
+	public static <T> void toNbt(Codec<T> codec, T value, Consumer<? super Tag> ifValid) {
 		codec.encodeStart(NbtOps.INSTANCE, value).result().ifPresent(ifValid);
 	}
 	
-	public static <T> void writeNbt(NbtCompound nbt, String key, Codec<T> codec, T value) {
+	public static <T> void writeNbt(CompoundTag nbt, String key, Codec<T> codec, T value) {
 		toNbt(codec, value, elem -> nbt.put(key, elem));
 	}
 	

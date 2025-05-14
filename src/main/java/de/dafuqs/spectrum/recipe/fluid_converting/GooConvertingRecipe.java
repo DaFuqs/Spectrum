@@ -2,19 +2,19 @@ package de.dafuqs.spectrum.recipe.fluid_converting;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.item.*;
-import net.minecraft.recipe.*;
-import net.minecraft.util.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public class GooConvertingRecipe extends FluidConvertingRecipe {
 	
-	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/goo");
+	public static final ResourceLocation UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/goo");
 	private static final Set<Item> outputItems = new HashSet<>();
 	
-	public GooConvertingRecipe(String group, boolean secret, Optional<Identifier> requiredAdvancementIdentifier, @NotNull Ingredient inputIngredient, ItemStack outputItemStack) {
+	public GooConvertingRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier, @NotNull Ingredient inputIngredient, ItemStack outputItemStack) {
 		super(group, secret, requiredAdvancementIdentifier, inputIngredient, outputItemStack);
 		outputItems.add(outputItemStack.getItem());
 	}
@@ -24,7 +24,7 @@ public class GooConvertingRecipe extends FluidConvertingRecipe {
 	}
 	
 	@Override
-	public ItemStack createIcon() {
+	public ItemStack getToastSymbol() {
 		return new ItemStack(SpectrumItems.GOO_BUCKET);
 	}
 	
@@ -39,7 +39,7 @@ public class GooConvertingRecipe extends FluidConvertingRecipe {
 	}
 	
 	@Override
-	public Identifier getRecipeTypeUnlockIdentifier() {
+	public ResourceLocation getRecipeTypeUnlockIdentifier() {
 		return UNLOCK_IDENTIFIER;
 	}
 	

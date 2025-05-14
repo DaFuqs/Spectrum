@@ -4,38 +4,35 @@ import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.item.*;
-import net.minecraft.advancement.criterion.*;
-import net.minecraft.component.*;
-import net.minecraft.component.type.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.item.*;
-import net.minecraft.predicate.*;
-import net.minecraft.predicate.entity.*;
-import net.minecraft.predicate.item.*;
-import net.minecraft.registry.entry.*;
-import net.minecraft.server.network.*;
-import net.minecraft.util.*;
+import net.minecraft.advancements.critereon.*;
+import net.minecraft.core.*;
+import net.minecraft.core.component.*;
+import net.minecraft.resources.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.alchemy.*;
 
 import java.util.*;
 
-public class PotionWorkshopBrewingCriterion extends AbstractCriterion<PotionWorkshopBrewingCriterion.Conditions> {
+public class PotionWorkshopBrewingCriterion extends SimpleCriterionTrigger<PotionWorkshopBrewingCriterion.Conditions> {
 	
-	public static final Identifier ID = SpectrumCommon.locate("potion_workshop_brewing");
+	public static final ResourceLocation ID = SpectrumCommon.locate("potion_workshop_brewing");
 	
 	@SuppressWarnings("deprecation")
-	public void trigger(ServerPlayerEntity player, ItemStack itemStack, int brewedCount) {
+	public void trigger(ServerPlayer player, ItemStack itemStack, int brewedCount) {
 		this.trigger(player, conditions -> {
-			List<StatusEffectInstance> effects;
+			List<MobEffectInstance> effects;
 			if (itemStack.getItem() instanceof InkPoweredPotionFillable inkPoweredPotionFillable) {
 				effects = inkPoweredPotionFillable.getVanillaEffects(itemStack);
 			} else {
-				PotionContentsComponent potionComponent = itemStack.getOrDefault(DataComponentTypes.POTION_CONTENTS, PotionContentsComponent.DEFAULT);
+				PotionContents potionComponent = itemStack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
 				effects = potionComponent.customEffects();
 			}
 			
 			int highestAmplifier = 0;
 			int longestDuration = 0;
-			for (StatusEffectInstance instance : effects) {
+			for (MobEffectInstance instance : effects) {
 				if (instance.getAmplifier() > highestAmplifier) {
 					highestAmplifier = instance.getAmplifier();
 				}
@@ -44,10 +41,10 @@ public class PotionWorkshopBrewingCriterion extends AbstractCriterion<PotionWork
 				}
 			}
 			
-			List<StatusEffect> uniqueEffects = new ArrayList<>();
-			for (StatusEffectInstance instance : effects) {
-				if (!uniqueEffects.contains(instance.getEffectType().value())) {
-					uniqueEffects.add(instance.getEffectType().value());
+			List<MobEffect> uniqueEffects = new ArrayList<>();
+			for (MobEffectInstance instance : effects) {
+				if (!uniqueEffects.contains(instance.getEffect().value())) {
+					uniqueEffects.add(instance.getEffect().value());
 				}
 			}
 			
@@ -56,47 +53,47 @@ public class PotionWorkshopBrewingCriterion extends AbstractCriterion<PotionWork
 	}
 	
 	@Override
-	public Codec<Conditions> getConditionsCodec() {
+	public Codec<Conditions> codec() {
 		return Conditions.CODEC;
 	}
 	
 	public record Conditions(
-			Optional<LootContextPredicate> player,
+			Optional<ContextAwarePredicate> player,
 			ItemPredicate itemPredicate,
-			EntityEffectPredicate statusEffectsPredicate,
-			NumberRange.IntRange brewedCountRange,
-			NumberRange.IntRange maxAmplifierRange,
-			NumberRange.IntRange maxDurationRange,
-			NumberRange.IntRange effectCountRange,
-			NumberRange.IntRange uniqueEffectCountRange
-	) implements AbstractCriterion.Conditions {
+			MobEffectsPredicate statusEffectsPredicate,
+			MinMaxBounds.Ints brewedCountRange,
+			MinMaxBounds.Ints maxAmplifierRange,
+			MinMaxBounds.Ints maxDurationRange,
+			MinMaxBounds.Ints effectCountRange,
+			MinMaxBounds.Ints uniqueEffectCountRange
+	) implements SimpleCriterionTrigger.SimpleInstance {
 		
 		public static final Codec<Conditions> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-				LootContextPredicate.CODEC.optionalFieldOf("player").forGetter(Conditions::player),
-				ItemPredicate.CODEC.optionalFieldOf("item", ItemPredicate.Builder.create().build()).forGetter(Conditions::itemPredicate),
-				EntityEffectPredicate.CODEC.optionalFieldOf("effects", new EntityEffectPredicate(Map.of())).forGetter(Conditions::statusEffectsPredicate),
-				NumberRange.IntRange.CODEC.optionalFieldOf("brewed_count", NumberRange.IntRange.ANY).forGetter(Conditions::brewedCountRange),
-				NumberRange.IntRange.CODEC.optionalFieldOf("highest_amplifier", NumberRange.IntRange.ANY).forGetter(Conditions::maxAmplifierRange),
-				NumberRange.IntRange.CODEC.optionalFieldOf("longest_duration", NumberRange.IntRange.ANY).forGetter(Conditions::maxDurationRange),
-				NumberRange.IntRange.CODEC.optionalFieldOf("effect_count", NumberRange.IntRange.ANY).forGetter(Conditions::effectCountRange),
-				NumberRange.IntRange.CODEC.optionalFieldOf("unique_effect_count", NumberRange.IntRange.ANY).forGetter(Conditions::uniqueEffectCountRange)
+				ContextAwarePredicate.CODEC.optionalFieldOf("player").forGetter(Conditions::player),
+				ItemPredicate.CODEC.optionalFieldOf("item", ItemPredicate.Builder.item().build()).forGetter(Conditions::itemPredicate),
+				MobEffectsPredicate.CODEC.optionalFieldOf("effects", new MobEffectsPredicate(Map.of())).forGetter(Conditions::statusEffectsPredicate),
+				MinMaxBounds.Ints.CODEC.optionalFieldOf("brewed_count", MinMaxBounds.Ints.ANY).forGetter(Conditions::brewedCountRange),
+				MinMaxBounds.Ints.CODEC.optionalFieldOf("highest_amplifier", MinMaxBounds.Ints.ANY).forGetter(Conditions::maxAmplifierRange),
+				MinMaxBounds.Ints.CODEC.optionalFieldOf("longest_duration", MinMaxBounds.Ints.ANY).forGetter(Conditions::maxDurationRange),
+				MinMaxBounds.Ints.CODEC.optionalFieldOf("effect_count", MinMaxBounds.Ints.ANY).forGetter(Conditions::effectCountRange),
+				MinMaxBounds.Ints.CODEC.optionalFieldOf("unique_effect_count", MinMaxBounds.Ints.ANY).forGetter(Conditions::uniqueEffectCountRange)
 		).apply(instance, Conditions::new));
 		
-		public boolean matches(ItemStack stack, List<StatusEffectInstance> effects, int brewedCount, int maxAmplifier, int maxDuration, int effectCount, int uniqueEffectCount) {
-			if (this.brewedCountRange.test(brewedCount) &&
-					this.maxAmplifierRange.test(maxAmplifier) &&
-					this.maxDurationRange.test(maxDuration) &&
-					this.effectCountRange.test(effectCount) &&
-					this.uniqueEffectCountRange.test(uniqueEffectCount) &&
+		public boolean matches(ItemStack stack, List<MobEffectInstance> effects, int brewedCount, int maxAmplifier, int maxDuration, int effectCount, int uniqueEffectCount) {
+			if (this.brewedCountRange.matches(brewedCount) &&
+					this.maxAmplifierRange.matches(maxAmplifier) &&
+					this.maxDurationRange.matches(maxDuration) &&
+					this.effectCountRange.matches(effectCount) &&
+					this.uniqueEffectCountRange.matches(uniqueEffectCount) &&
 					this.itemPredicate.test(stack)) {
-				Map<RegistryEntry<StatusEffect>, StatusEffectInstance> effectMap = new HashMap<>();
-				for (StatusEffectInstance instance : effects) {
-					if (!effectMap.containsKey(instance.getEffectType())) {
-						effectMap.put(instance.getEffectType(), instance);
+				Map<Holder<MobEffect>, MobEffectInstance> effectMap = new HashMap<>();
+				for (MobEffectInstance instance : effects) {
+					if (!effectMap.containsKey(instance.getEffect())) {
+						effectMap.put(instance.getEffect(), instance);
 					}
 				}
 				
-				return this.statusEffectsPredicate.test(effectMap);
+				return this.statusEffectsPredicate.matches(effectMap);
 			}
 			
 			return false;

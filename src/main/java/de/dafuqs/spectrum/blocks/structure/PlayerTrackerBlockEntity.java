@@ -1,12 +1,11 @@
 package de.dafuqs.spectrum.blocks.structure;
 
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.entity.player.*;
+import net.minecraft.core.*;
 import net.minecraft.nbt.*;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.util.math.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
 
 import java.util.*;
 
@@ -17,23 +16,23 @@ public class PlayerTrackerBlockEntity extends BlockEntity {
 	public PlayerTrackerBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntities.PLAYER_TRACKING, pos, state);
 	}
-
-	public boolean hasTaken(PlayerEntity player) {
-		return this.playersThatOpenedAlready.contains(player.getUuid());
+	
+	public boolean hasTaken(Player player) {
+		return this.playersThatOpenedAlready.contains(player.getUUID());
 	}
-
-	public void markTaken(PlayerEntity player) {
-		this.playersThatOpenedAlready.add(player.getUuid());
-		markDirty();
+	
+	public void markTaken(Player player) {
+		this.playersThatOpenedAlready.add(player.getUUID());
+		setChanged();
 	}
 
 	@Override
-	protected void writeNbt(NbtCompound tag, RegistryWrapper.WrapperLookup registryLookup) {
+	protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registryLookup) {
 		if (!playersThatOpenedAlready.isEmpty()) {
-			NbtList uuidList = new NbtList();
+			ListTag uuidList = new ListTag();
 			for (UUID uuid : playersThatOpenedAlready) {
-				NbtCompound nbtCompound = new NbtCompound();
-				nbtCompound.putUuid("UUID", uuid);
+				CompoundTag nbtCompound = new CompoundTag();
+				nbtCompound.putUUID("UUID", uuid);
 				uuidList.add(nbtCompound);
 			}
 			tag.put("OpenedPlayers", uuidList);
@@ -41,13 +40,13 @@ public class PlayerTrackerBlockEntity extends BlockEntity {
 	}
 
 	@Override
-	public void readNbt(NbtCompound tag, RegistryWrapper.WrapperLookup registryLookup) {
+	public void loadAdditional(CompoundTag tag, HolderLookup.Provider registryLookup) {
 		this.playersThatOpenedAlready.clear();
-		if (tag.contains("OpenedPlayers", NbtElement.LIST_TYPE)) {
-			NbtList list = tag.getList("OpenedPlayers", NbtElement.COMPOUND_TYPE);
+		if (tag.contains("OpenedPlayers", Tag.TAG_LIST)) {
+			ListTag list = tag.getList("OpenedPlayers", Tag.TAG_COMPOUND);
 			for (int i = 0; i < list.size(); i++) {
-				NbtCompound compound = list.getCompound(i);
-				UUID uuid = compound.getUuid("UUID");
+				CompoundTag compound = list.getCompound(i);
+				UUID uuid = compound.getUUID("UUID");
 				this.playersThatOpenedAlready.add(uuid);
 			}
 		}

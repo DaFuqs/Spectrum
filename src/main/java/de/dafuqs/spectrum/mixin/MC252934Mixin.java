@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
-import net.minecraft.entity.decoration.*;
+import net.minecraft.world.entity.decoration.*;
 import org.slf4j.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.*;
 @Mixin(BlockAttachedEntity.class)
 public abstract class MC252934Mixin {
 	
-	@Redirect(method = "readCustomDataFromNbt", at = @At(value = "INVOKE", target = "Lorg/slf4j/Logger;error(Ljava/lang/String;Ljava/lang/Object;)V", remap = false))
+	@Redirect(method = "readAdditionalSaveData", at = @At(value = "INVOKE", target = "Lorg/slf4j/Logger;error(Ljava/lang/String;Ljava/lang/Object;)V", remap = false))
 	private void spectrum$fixMC252934(Logger thisLogger, String format, Object arg) {
 	}
 	

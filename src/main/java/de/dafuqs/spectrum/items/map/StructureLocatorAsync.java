@@ -1,14 +1,14 @@
 package de.dafuqs.spectrum.items.map;
 
-import com.mojang.datafixers.util.Pair;
-import net.minecraft.registry.*;
-import net.minecraft.registry.entry.*;
-import net.minecraft.server.world.*;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
-import net.minecraft.world.gen.chunk.*;
-import net.minecraft.world.gen.structure.*;
+import com.mojang.datafixers.util.*;
+import net.minecraft.*;
+import net.minecraft.core.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.resources.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.chunk.*;
+import net.minecraft.world.level.levelgen.structure.*;
 
 import java.util.*;
 import java.util.concurrent.*;
@@ -17,21 +17,21 @@ import java.util.function.*;
 
 public class StructureLocatorAsync {
 	
-	private final ServerWorld world;
-	private final Optional<RegistryEntryList<Structure>> structures;
+	private final ServerLevel world;
+	private final Optional<HolderSet<Structure>> structures;
 	private final AtomicBoolean pinging;
 	private final long delayMillis;
 	
 	private long nextTime = 0;
 	
-	public StructureLocatorAsync(ServerWorld world, Identifier targetId, long delayMillis) {
+	public StructureLocatorAsync(ServerLevel world, ResourceLocation targetId, long delayMillis) {
 		this.world = world;
-		this.structures = world.getRegistryManager().get(RegistryKeys.STRUCTURE).getEntry(targetId).map(RegistryEntryList::of);
+		this.structures = world.registryAccess().registryOrThrow(Registries.STRUCTURE).getHolder(targetId).map(HolderSet::direct);
 		this.pinging = new AtomicBoolean(false);
 		this.delayMillis = delayMillis;
 	}
 	
-	public void ping(BlockPos pos, BiConsumer<WorldAccess, BlockPos> acceptor) {
+	public void ping(BlockPos pos, BiConsumer<LevelAccessor, BlockPos> acceptor) {
 		if (structures.isEmpty() || pinging.get())
 			return;
 		
@@ -41,14 +41,14 @@ public class StructureLocatorAsync {
 		
 		CompletableFuture.runAsync(() -> {
 			pinging.set(true);
-			ChunkGenerator generator = world.getChunkManager().getChunkGenerator();
-			Pair<BlockPos, RegistryEntry<Structure>> pair = generator.locateStructure(world, structures.get(), pos, 100, false);
+			ChunkGenerator generator = world.getChunkSource().getGenerator();
+			Pair<BlockPos, Holder<Structure>> pair = generator.findNearestMapStructure(world, structures.get(), pos, 100, false);
 			// TODO Get the centerpoint of the structure region
 			if (pair != null) {
 				acceptor.accept(world, pair.getFirst());
 			}
 			pinging.set(false);
-		}, Util.getMainWorkerExecutor());
+		}, Util.backgroundExecutor());
 	}
 	
 }

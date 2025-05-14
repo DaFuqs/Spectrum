@@ -1,21 +1,21 @@
 package de.dafuqs.spectrum.entity.ai;
 
-import net.minecraft.entity.ai.control.*;
-import net.minecraft.entity.mob.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.control.*;
 
-public class EmptyBodyControl extends BodyControl {
+public class EmptyBodyControl extends BodyRotationControl {
 	
-	protected final MobEntity entity;
+	protected final Mob entity;
 	
-	public EmptyBodyControl(MobEntity entity) {
+	public EmptyBodyControl(Mob entity) {
 		super(entity);
 		this.entity = entity;
 	}
 	
 	@Override
-	public void tick() {
-		entity.headYaw = entity.bodyYaw;
-		entity.bodyYaw = entity.getYaw();
+	public void clientTick() {
+		entity.yHeadRot = entity.yBodyRot;
+		entity.yBodyRot = entity.getYRot();
 	}
 	
 }

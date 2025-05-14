@@ -1,13 +1,13 @@
 package de.dafuqs.spectrum.api.item;
 
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public interface ExpandedStatTooltip {
 	
-	void expandTooltip(ItemStack stack, @Nullable PlayerEntity player, List<Text> tooltip, Item.TooltipContext context);
+	void expandTooltip(ItemStack stack, @Nullable Player player, List<Component> tooltip, Item.TooltipContext context);
 }

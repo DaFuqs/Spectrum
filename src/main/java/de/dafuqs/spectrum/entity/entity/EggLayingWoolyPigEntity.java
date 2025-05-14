@@ -4,149 +4,148 @@ import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.tag.convention.v2.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.attribute.*;
-import net.minecraft.entity.damage.*;
-import net.minecraft.entity.data.*;
-import net.minecraft.entity.mob.*;
-import net.minecraft.entity.passive.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.inventory.*;
-import net.minecraft.item.*;
-import net.minecraft.loot.*;
-import net.minecraft.loot.context.*;
+import net.minecraft.core.*;
 import net.minecraft.nbt.*;
-import net.minecraft.recipe.*;
-import net.minecraft.recipe.input.*;
-import net.minecraft.screen.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
+import net.minecraft.network.syncher.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
 import net.minecraft.world.*;
-import net.minecraft.world.event.*;
+import net.minecraft.world.damagesource.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.*;
+import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.animal.*;
+import net.minecraft.world.entity.item.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.gameevent.*;
+import net.minecraft.world.level.storage.loot.*;
+import net.minecraft.world.level.storage.loot.parameters.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
 import java.util.stream.*;
 
-public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
+public class EggLayingWoolyPigEntity extends Animal implements Shearable {
 	
-	private static final Ingredient FOOD = Ingredient.ofItems(SpectrumBlocks.AMARANTH_BUSHEL);
+	private static final Ingredient FOOD = Ingredient.of(SpectrumBlocks.AMARANTH_BUSHEL);
 	
 	private static final int MAX_GRASS_TIMER = 40;
-	private static final TrackedData<Byte> COLOR_AND_SHEARED = DataTracker.registerData(EggLayingWoolyPigEntity.class, TrackedDataHandlerRegistry.BYTE);
-	private static final TrackedData<Boolean> HATLESS = DataTracker.registerData(EggLayingWoolyPigEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+	private static final EntityDataAccessor<Byte> COLOR_AND_SHEARED = SynchedEntityData.defineId(EggLayingWoolyPigEntity.class, EntityDataSerializers.BYTE);
+	private static final EntityDataAccessor<Boolean> HATLESS = SynchedEntityData.defineId(EggLayingWoolyPigEntity.class, EntityDataSerializers.BOOLEAN);
 	private static final Map<DyeColor, Integer> COLORS = new EnumMap<>(SpectrumColorHelper.VANILLA_DYE_COLORS.stream().collect(Collectors.toMap(Function.identity(), EggLayingWoolyPigEntity::getDyedColor)));
 	
 	private int eatGrassTimer;
-	private EatGrassGoal eatGrassGoal;
+	private EatBlockGoal eatGrassGoal;
 	public int eggLayTime;
 	
-	public EggLayingWoolyPigEntity(EntityType<? extends AnimalEntity> entityType, World world) {
+	public EggLayingWoolyPigEntity(EntityType<? extends Animal> entityType, Level world) {
 		super(entityType, world);
 		this.eggLayTime = this.random.nextInt(12000) + 12000;
 	}
 	
 	@Override
-	public ActionResult interactMob(PlayerEntity player, Hand hand) {
-		World world = this.getWorld();
-		ItemStack handStack = player.getStackInHand(hand);
-
-		if (handStack.getItem() instanceof DyeItem dyeItem && isAlive() && getColor() != dyeItem.getColor()) {
-			world.playSoundFromEntity(player, this, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
-			if (!world.isClient) {
-				setColor(dyeItem.getColor());
-				handStack.decrement(1);
+	public InteractionResult mobInteract(Player player, InteractionHand hand) {
+		Level world = this.level();
+		ItemStack handStack = player.getItemInHand(hand);
+		
+		if (handStack.getItem() instanceof DyeItem dyeItem && isAlive() && getColor() != dyeItem.getDyeColor()) {
+			world.playSound(player, this, SoundEvents.DYE_USE, SoundSource.PLAYERS, 1.0F, 1.0F);
+			if (!world.isClientSide) {
+				setColor(dyeItem.getDyeColor());
+				handStack.shrink(1);
 			}
-			return ActionResult.success(world.isClient);
-		} else if (handStack.isOf(Items.BUCKET) && !this.isBaby()) {
-			player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
-			ItemStack itemStack2 = ItemUsage.exchangeStack(handStack, player, Items.MILK_BUCKET.getDefaultStack());
-			player.setStackInHand(hand, itemStack2);
-			return ActionResult.success(world.isClient());
-		} else if (handStack.isIn(ConventionalItemTags.SHEAR_TOOLS)) {
-			if (!world.isClient() && this.isShearable()) {
-				this.sheared(SoundCategory.PLAYERS);
-				this.emitGameEvent(GameEvent.SHEAR, player);
-				handStack.damage(1, player, LivingEntity.getSlotForHand(hand));
-				return ActionResult.SUCCESS;
+			return InteractionResult.sidedSuccess(world.isClientSide);
+		} else if (handStack.is(Items.BUCKET) && !this.isBaby()) {
+			player.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
+			ItemStack itemStack2 = ItemUtils.createFilledResult(handStack, player, Items.MILK_BUCKET.getDefaultInstance());
+			player.setItemInHand(hand, itemStack2);
+			return InteractionResult.sidedSuccess(world.isClientSide());
+		} else if (handStack.is(ConventionalItemTags.SHEAR_TOOLS)) {
+			if (!world.isClientSide() && this.readyForShearing()) {
+				this.shear(SoundSource.PLAYERS);
+				this.gameEvent(GameEvent.SHEAR, player);
+				handStack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
+				return InteractionResult.SUCCESS;
 			} else {
-				return ActionResult.CONSUME;
+				return InteractionResult.CONSUME;
 			}
 		} else {
-			return super.interactMob(player, hand);
+			return super.mobInteract(player, hand);
 		}
 	}
 	
-	public static DefaultAttributeContainer.Builder createEggLayingWoolyPigAttributes() {
-		return MobEntity.createMobAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 12.0D)
-				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2D);
+	public static AttributeSupplier.Builder createEggLayingWoolyPigAttributes() {
+		return Mob.createMobAttributes()
+				.add(Attributes.MAX_HEALTH, 12.0D)
+				.add(Attributes.MOVEMENT_SPEED, 0.2D);
 	}
 	
 	@Override
-	public boolean isBreedingItem(ItemStack stack) {
+	public boolean isFood(ItemStack stack) {
 		return FOOD.test(stack);
 	}
 	
 	@Override
-	protected void initGoals() {
-		this.eatGrassGoal = new EatGrassGoal(this);
-		this.goalSelector.add(0, new SwimGoal(this));
-		this.goalSelector.add(1, new EscapeDangerGoal(this, 1.25D));
-		this.goalSelector.add(2, new AnimalMateGoal(this, 1.0D));
-		this.goalSelector.add(3, new TemptGoal(this, 1.1D, FOOD, false));
-		this.goalSelector.add(4, new FollowParentGoal(this, 1.1D));
-		this.goalSelector.add(5, this.eatGrassGoal);
-		this.goalSelector.add(6, new WanderAroundFarGoal(this, 1.0D));
-		this.goalSelector.add(7, new LookAtEntityGoal(this, PlayerEntity.class, 6.0F));
-		this.goalSelector.add(8, new LookAroundGoal(this));
+	protected void registerGoals() {
+		this.eatGrassGoal = new EatBlockGoal(this);
+		this.goalSelector.addGoal(0, new FloatGoal(this));
+		this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
+		this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
+		this.goalSelector.addGoal(3, new TemptGoal(this, 1.1D, FOOD, false));
+		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
+		this.goalSelector.addGoal(5, this.eatGrassGoal);
+		this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+		this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
+		this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
 	}
 	
 	@Override
-	public void handleStatus(byte status) {
+	public void handleEntityEvent(byte status) {
 		if (status == 10) {
 			this.eatGrassTimer = MAX_GRASS_TIMER;
 		} else {
-			super.handleStatus(status);
+			super.handleEntityEvent(status);
 		}
 	}
 	
 	@Override
-	protected void mobTick() {
-		this.eatGrassTimer = this.eatGrassGoal.getTimer();
-		super.mobTick();
+	protected void customServerAiStep() {
+		this.eatGrassTimer = this.eatGrassGoal.getEatAnimationTick();
+		super.customServerAiStep();
 	}
 	
 	@Override
-	public void tickMovement() {
-		if (this.getWorld().isClient()) {
+	public void aiStep() {
+		if (this.level().isClientSide()) {
 			this.eatGrassTimer = Math.max(0, this.eatGrassTimer - 1);
 		}
 		
-		if (!this.getWorld().isClient() && this.isAlive() && !this.isBaby() && --this.eggLayTime <= 0) {
-			this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
-			this.dropItem(Items.EGG);
+		if (!this.level().isClientSide() && this.isAlive() && !this.isBaby() && --this.eggLayTime <= 0) {
+			this.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+			this.spawnAtLocation(Items.EGG);
 			this.eggLayTime = this.random.nextInt(6000) + 6000;
 		}
 		
-		super.tickMovement();
+		super.aiStep();
 	}
 	
 	@Override
-	protected void initDataTracker(DataTracker.Builder builder) {
-		super.initDataTracker(builder);
-		builder.add(COLOR_AND_SHEARED, (byte) 0);
-		builder.add(HATLESS, false);
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(COLOR_AND_SHEARED, (byte) 0);
+		builder.define(HATLESS, false);
 	}
 	
 	@Nullable
 	@Override
-	public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
+	public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob entity) {
 		EggLayingWoolyPigEntity other = (EggLayingWoolyPigEntity) entity;
 		EggLayingWoolyPigEntity child = SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG.create(world);
 		if (child != null) {
@@ -159,8 +158,8 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 	}
 	
 	@Override
-	public void writeCustomDataToNbt(NbtCompound nbt) {
-		super.writeCustomDataToNbt(nbt);
+	public void addAdditionalSaveData(CompoundTag nbt) {
+		super.addAdditionalSaveData(nbt);
 		nbt.putBoolean("Sheared", this.isSheared());
 		nbt.putBoolean("Hatless", this.isHatless());
 		nbt.putByte("Color", (byte) this.getColor().getId());
@@ -168,8 +167,8 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 	}
 	
 	@Override
-	public void readCustomDataFromNbt(NbtCompound nbt) {
-		super.readCustomDataFromNbt(nbt);
+	public void readAdditionalSaveData(CompoundTag nbt) {
+		super.readAdditionalSaveData(nbt);
 		this.setSheared(nbt.getBoolean("Sheared"));
 		this.setHatless(nbt.getBoolean("Hatless"));
 		this.setColor(DyeColor.byId(nbt.getByte("Color")));
@@ -199,10 +198,10 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 	}
 	
 	@Override
-	public void onEatingGrass() {
+	public void ate() {
 		this.setSheared(false);
 		if (this.isBaby()) {
-			this.growUp(60);
+			this.ageUp(60);
 		}
 	}
 	
@@ -219,59 +218,59 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 	public float getHeadAngle(float delta) {
 		if (this.eatGrassTimer > 4 && this.eatGrassTimer <= 36) {
 			float f = ((float) (this.eatGrassTimer - 4) - delta) / 32.0F;
-			return 0.62831855F + 0.21991149F * MathHelper.sin(f * 28.7F);
+			return 0.62831855F + 0.21991149F * Mth.sin(f * 28.7F);
 		} else {
-			return this.eatGrassTimer > 0 ? 0.62831855F : this.getPitch() * 0.017453292F;
+			return this.eatGrassTimer > 0 ? 0.62831855F : this.getXRot() * 0.017453292F;
 		}
 	}
 	
 	@Override
-	public void sheared(SoundCategory shearedSoundCategory) {
-		var world = this.getWorld();
-		world.playSoundFromEntity(null, this, SoundEvents.ENTITY_SHEEP_SHEAR, shearedSoundCategory, 1.0F, 1.0F);
+	public void shear(SoundSource shearedSoundSource) {
+		var world = this.level();
+		world.playSound(null, this, SoundEvents.SHEEP_SHEAR, shearedSoundSource, 1.0F, 1.0F);
 		this.setSheared(true);
 		
-		for (ItemStack droppedStack : getShearedStacks((ServerWorld) world)) {
-			ItemEntity itemEntity = this.dropStack(droppedStack, 1);
+		for (ItemStack droppedStack : getShearedStacks((ServerLevel) world)) {
+			ItemEntity itemEntity = this.spawnAtLocation(droppedStack, 1);
 			if (itemEntity != null) {
-				itemEntity.setVelocity(itemEntity.getVelocity().add((this.random.nextFloat() - this.random.nextFloat()) * 0.1F, this.random.nextFloat() * 0.05F, (this.random.nextFloat() - this.random.nextFloat()) * 0.1F));
+				itemEntity.setDeltaMovement(itemEntity.getDeltaMovement().add((this.random.nextFloat() - this.random.nextFloat()) * 0.1F, this.random.nextFloat() * 0.05F, (this.random.nextFloat() - this.random.nextFloat()) * 0.1F));
 			}
 		}
 	}
 	
-	public List<ItemStack> getShearedStacks(ServerWorld world) {
-		var builder = (new LootContextParameterSet.Builder(world))
-				.add(LootContextParameters.THIS_ENTITY, this)
-				.add(LootContextParameters.ORIGIN, this.getPos());
+	public List<ItemStack> getShearedStacks(ServerLevel world) {
+		var builder = (new LootParams.Builder(world))
+				.withParameter(LootContextParams.THIS_ENTITY, this)
+				.withParameter(LootContextParams.ORIGIN, this.position());
 		
-		LootTable lootTable = world.getServer().getReloadableRegistries().getLootTable(SpectrumLootTables.EGG_LAYING_WOOLY_PIG_SHEARING);
-		return lootTable.generateLoot(builder.build(LootContextTypes.GIFT));
+		LootTable lootTable = world.getServer().reloadableRegistries().getLootTable(SpectrumLootTables.EGG_LAYING_WOOLY_PIG_SHEARING);
+		return lootTable.getRandomItems(builder.create(LootContextParamSets.GIFT));
 	}
 	
 	@Override
-	public boolean isShearable() {
+	public boolean readyForShearing() {
 		return this.isAlive() && !this.isSheared() && !this.isBaby();
 	}
 	
 	public boolean isSheared() {
-		return (this.dataTracker.get(COLOR_AND_SHEARED) & 16) != 0;
+		return (this.entityData.get(COLOR_AND_SHEARED) & 16) != 0;
 	}
 	
 	public void setSheared(boolean sheared) {
-		byte color = this.dataTracker.get(COLOR_AND_SHEARED);
+		byte color = this.entityData.get(COLOR_AND_SHEARED);
 		if (sheared) {
-			this.dataTracker.set(COLOR_AND_SHEARED, (byte) (color | 16));
+			this.entityData.set(COLOR_AND_SHEARED, (byte) (color | 16));
 		} else {
-			this.dataTracker.set(COLOR_AND_SHEARED, (byte) (color & -17));
+			this.entityData.set(COLOR_AND_SHEARED, (byte) (color & -17));
 		}
 	}
 	
 	public boolean isHatless() {
-		return this.dataTracker.get(HATLESS);
+		return this.entityData.get(HATLESS);
 	}
 	
 	public void setHatless(boolean hatless) {
-		this.dataTracker.set(HATLESS, hatless);
+		this.entityData.set(HATLESS, hatless);
 	}
 	
 	// COLORING
@@ -283,54 +282,54 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 		if (color == DyeColor.WHITE) {
 			return -1644826;
 		} else {
-			int i = color.getEntityColor();
-			return net.minecraft.util.math.ColorHelper.Argb.getArgb(255,
-					MathHelper.floor((float) net.minecraft.util.math.ColorHelper.Argb.getRed(i) * 0.75F),
-					MathHelper.floor((float) net.minecraft.util.math.ColorHelper.Argb.getGreen(i) * 0.75F),
-					MathHelper.floor((float) net.minecraft.util.math.ColorHelper.Argb.getBlue(i) * 0.75F));
+			int i = color.getTextureDiffuseColor();
+			return net.minecraft.util.FastColor.ARGB32.color(255,
+					Mth.floor((float) net.minecraft.util.FastColor.ARGB32.red(i) * 0.75F),
+					Mth.floor((float) net.minecraft.util.FastColor.ARGB32.green(i) * 0.75F),
+					Mth.floor((float) net.minecraft.util.FastColor.ARGB32.blue(i) * 0.75F));
 		}
 	}
 	
 	public DyeColor getColor() {
-		return DyeColor.byId(this.dataTracker.get(COLOR_AND_SHEARED) & 15);
+		return DyeColor.byId(this.entityData.get(COLOR_AND_SHEARED) & 15);
 	}
 	
 	public void setColor(DyeColor color) {
-		byte b = this.dataTracker.get(COLOR_AND_SHEARED);
-		this.dataTracker.set(COLOR_AND_SHEARED, (byte) (b & 240 | color.getId() & 15));
+		byte b = this.entityData.get(COLOR_AND_SHEARED);
+		this.entityData.set(COLOR_AND_SHEARED, (byte) (b & 240 | color.getId() & 15));
 	}
 	
-	private DyeColor getChildColor(AnimalEntity firstParent, AnimalEntity secondParent) {
-		World world = this.getWorld();
+	private DyeColor getChildColor(Animal firstParent, Animal secondParent) {
+		Level world = this.level();
 		DyeColor dyeColor = ((EggLayingWoolyPigEntity) firstParent).getColor();
 		DyeColor dyeColor2 = ((EggLayingWoolyPigEntity) secondParent).getColor();
-		CraftingRecipeInput craftingRecipeInput = createChildColorRecipeInput(dyeColor, dyeColor2);
-		Optional<Item> optionalItem = this.getWorld().getRecipeManager().getFirstMatch(RecipeType.CRAFTING, craftingRecipeInput, this.getWorld()).map((recipe) -> recipe.value().craft(craftingRecipeInput, this.getWorld().getRegistryManager())).map(ItemStack::getItem);
+		CraftingInput craftingRecipeInput = createChildColorRecipeInput(dyeColor, dyeColor2);
+		Optional<Item> optionalItem = this.level().getRecipeManager().getRecipeFor(RecipeType.CRAFTING, craftingRecipeInput, this.level()).map((recipe) -> recipe.value().assemble(craftingRecipeInput, this.level().registryAccess())).map(ItemStack::getItem);
 		
 		if (optionalItem.isPresent() && optionalItem.get() instanceof DyeItem dyeItem) {
-			return dyeItem.getColor();
+			return dyeItem.getDyeColor();
 		}
 		return world.random.nextBoolean() ? dyeColor : dyeColor2;
 	}
 	
-	private static CraftingRecipeInput createChildColorRecipeInput(DyeColor firstColor, DyeColor secondColor) {
-		return CraftingRecipeInput.create(2, 1, List.of(new ItemStack(DyeItem.byColor(firstColor)), new ItemStack(DyeItem.byColor(secondColor))));
+	private static CraftingInput createChildColorRecipeInput(DyeColor firstColor, DyeColor secondColor) {
+		return CraftingInput.of(2, 1, List.of(new ItemStack(DyeItem.byColor(firstColor)), new ItemStack(DyeItem.byColor(secondColor))));
 	}
 	
-	private static CraftingInventory createDyeMixingCraftingInventory(DyeColor firstColor, DyeColor secondColor) {
-		CraftingInventory craftingInventory = new CraftingInventory(new ScreenHandler(null, -1) {
+	private static TransientCraftingContainer createDyeMixingCraftingInventory(DyeColor firstColor, DyeColor secondColor) {
+		TransientCraftingContainer craftingInventory = new TransientCraftingContainer(new AbstractContainerMenu(null, -1) {
 			@Override
-			public ItemStack quickMove(PlayerEntity player, int index) {
+			public ItemStack quickMoveStack(Player player, int index) {
 				return ItemStack.EMPTY;
 			}
 			
 			@Override
-			public boolean canUse(PlayerEntity player) {
+			public boolean stillValid(Player player) {
 				return false;
 			}
 		}, 2, 1);
-		craftingInventory.setStack(0, new ItemStack(DyeItem.byColor(firstColor)));
-		craftingInventory.setStack(1, new ItemStack(DyeItem.byColor(secondColor)));
+		craftingInventory.setItem(0, new ItemStack(DyeItem.byColor(firstColor)));
+		craftingInventory.setItem(1, new ItemStack(DyeItem.byColor(secondColor)));
 		return craftingInventory;
 	}
 	

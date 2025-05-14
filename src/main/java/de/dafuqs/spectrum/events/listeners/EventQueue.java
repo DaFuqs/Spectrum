@@ -1,11 +1,10 @@
 package de.dafuqs.spectrum.events.listeners;
 
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.server.world.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
-import net.minecraft.world.event.*;
-import net.minecraft.world.event.listener.*;
+import net.minecraft.core.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.gameevent.*;
+import net.minecraft.world.phys.*;
 
 import java.util.*;
 
@@ -23,7 +22,7 @@ public abstract class EventQueue<D> implements GameEventListener {
 		this.eventQueue = new HashMap<>();
 	}
 	
-	public void tick(World world) {
+	public void tick(Level world) {
 		for (D key : new HashSet<>(eventQueue.keySet())) {
 			Integer tickCounter = eventQueue.get(key);
 			if (tickCounter >= 1) {
@@ -36,12 +35,12 @@ public abstract class EventQueue<D> implements GameEventListener {
 	}
 	
 	@Override
-	public PositionSource getPositionSource() {
+	public PositionSource getListenerSource() {
 		return this.positionSource;
 	}
 	
 	@Override
-	public int getRange() {
+	public int getListenerRadius() {
 		return this.range;
 	}
 
@@ -50,21 +49,21 @@ public abstract class EventQueue<D> implements GameEventListener {
 	}
 
 	@Override
-	public boolean listen(ServerWorld world, RegistryEntry<GameEvent> event, GameEvent.Emitter emitter, Vec3d emitterPos) {
-		Optional<Vec3d> positionSourcePosOptional = this.positionSource.getPos(world);
+	public boolean handleGameEvent(ServerLevel world, Holder<GameEvent> event, GameEvent.Context emitter, Vec3 emitterPos) {
+		Optional<Vec3> positionSourcePosOptional = this.positionSource.getPosition(world);
 		if (positionSourcePosOptional.isEmpty()) {
 			return false;
 		} else {
-			if (!this.callback.canAcceptEvent(world, this, new GameEvent.Message(event, emitterPos, emitter, this, positionSourcePosOptional.get()), positionSourcePosOptional.get())) {
+			if (!this.callback.canAcceptEvent(world, this, new GameEvent.ListenerInfo(event, emitterPos, emitter, this, positionSourcePosOptional.get()), positionSourcePosOptional.get())) {
 				return false;
 			} else {
-				this.acceptEvent(world, new GameEvent.Message(event, emitterPos, emitter, this, positionSourcePosOptional.get()), positionSourcePosOptional.get());
+				this.acceptEvent(world, new GameEvent.ListenerInfo(event, emitterPos, emitter, this, positionSourcePosOptional.get()), positionSourcePosOptional.get());
 				return true;
 			}
 		}
 	}
 	
-	protected abstract void acceptEvent(World world, GameEvent.Message event, Vec3d sourcePos);
+	protected abstract void acceptEvent(Level world, GameEvent.ListenerInfo event, Vec3 sourcePos);
 	
 	protected void schedule(D object, int delay) {
 		this.eventQueue.put(object, delay);
@@ -74,12 +73,12 @@ public abstract class EventQueue<D> implements GameEventListener {
 		/**
 		 * Returns whether the callback wants to accept this event.
 		 */
-		boolean canAcceptEvent(World world, GameEventListener listener, GameEvent.Message message, Vec3d sourcePos);
+		boolean canAcceptEvent(Level world, GameEventListener listener, GameEvent.ListenerInfo message, Vec3 sourcePos);
 		
 		/**
 		 * Accepts a game event after delay.
 		 */
-		void triggerEvent(World world, GameEventListener listener, D entry);
+		void triggerEvent(Level world, GameEventListener listener, D entry);
 	}
 	
 }

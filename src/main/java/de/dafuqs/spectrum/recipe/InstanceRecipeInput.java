@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.recipe;
 
-import net.minecraft.item.*;
+import net.minecraft.world.item.*;
 
 import java.util.*;
 

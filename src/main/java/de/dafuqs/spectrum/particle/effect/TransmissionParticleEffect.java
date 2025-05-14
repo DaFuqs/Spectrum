@@ -2,27 +2,27 @@ package de.dafuqs.spectrum.particle.effect;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
+import net.minecraft.core.particles.*;
+import net.minecraft.core.registries.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.particle.*;
-import net.minecraft.registry.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.event.*;
+import net.minecraft.world.level.gameevent.*;
+import net.minecraft.world.phys.*;
 
 import java.util.*;
 
-public class TransmissionParticleEffect implements ParticleEffect {
+public class TransmissionParticleEffect implements ParticleOptions {
 	
 	public static final MapCodec<TransmissionParticleEffect> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-			Registries.PARTICLE_TYPE.getCodec().fieldOf("particle_type").forGetter(c -> c.particleType),
+			BuiltInRegistries.PARTICLE_TYPE.byNameCodec().fieldOf("particle_type").forGetter(c -> c.particleType),
 			PositionSource.CODEC.fieldOf("destination").forGetter(c -> c.destination),
 			Codec.INT.fieldOf("arrival_in_ticks").forGetter(c -> c.arrivalInTicks)
 	).apply(i, TransmissionParticleEffect::new));
 	
-	public static final PacketCodec<RegistryByteBuf, TransmissionParticleEffect> PACKET_CODEC = PacketCodec.tuple(
-			PacketCodecs.registryValue(RegistryKeys.PARTICLE_TYPE), c -> c.particleType,
-			PositionSource.PACKET_CODEC, c -> c.destination,
-			PacketCodecs.VAR_INT, c -> c.arrivalInTicks,
+	public static final StreamCodec<RegistryFriendlyByteBuf, TransmissionParticleEffect> PACKET_CODEC = StreamCodec.composite(
+			ByteBufCodecs.registry(Registries.PARTICLE_TYPE), c -> c.particleType,
+			PositionSource.STREAM_CODEC, c -> c.destination,
+			ByteBufCodecs.VAR_INT, c -> c.arrivalInTicks,
 			TransmissionParticleEffect::new
 	);
 	
@@ -51,13 +51,13 @@ public class TransmissionParticleEffect implements ParticleEffect {
 	
 	@Override
 	public String toString() {
-		Optional<Vec3d> pos = this.destination.getPos(null);
+		Optional<Vec3> pos = this.destination.getPosition(null);
 		if (pos.isPresent()) {
-			double d = pos.get().getX();
-			double e = pos.get().getY();
-			double f = pos.get().getZ();
-			return String.format(Locale.ROOT, "%s %.2f %.2f %.2f %d", Registries.PARTICLE_TYPE.getId(this.getType()), d, e, f, this.arrivalInTicks);
+			double d = pos.get().x();
+			double e = pos.get().y();
+			double f = pos.get().z();
+			return String.format(Locale.ROOT, "%s %.2f %.2f %.2f %d", BuiltInRegistries.PARTICLE_TYPE.getKey(this.getType()), d, e, f, this.arrivalInTicks);
 		}
-		return String.format(Locale.ROOT, "%s <no destination> %d", Registries.PARTICLE_TYPE.getId(this.getType()), this.arrivalInTicks);
+		return String.format(Locale.ROOT, "%s <no destination> %d", BuiltInRegistries.PARTICLE_TYPE.getKey(this.getType()), this.arrivalInTicks);
 	}
 }

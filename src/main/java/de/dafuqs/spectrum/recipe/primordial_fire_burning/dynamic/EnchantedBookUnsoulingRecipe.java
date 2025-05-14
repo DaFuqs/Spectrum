@@ -5,44 +5,43 @@ import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.primordial_fire_burning.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.enchantment.*;
-import net.minecraft.item.*;
+import net.minecraft.core.*;
+import net.minecraft.core.registries.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.recipe.*;
-import net.minecraft.recipe.input.*;
-import net.minecraft.registry.*;
-import net.minecraft.registry.entry.*;
-import net.minecraft.world.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.item.enchantment.*;
+import net.minecraft.world.level.*;
 
 import java.util.*;
 
 public class EnchantedBookUnsoulingRecipe extends PrimordialFireBurningRecipe {
 	
-	public EnchantedBookUnsoulingRecipe(RegistryWrapper.WrapperLookup lookup) {
+	public EnchantedBookUnsoulingRecipe(HolderLookup.Provider lookup) {
 		super(
 				"", false, Optional.of(UNLOCK_IDENTIFIER),
-				Ingredient.ofStacks(SpectrumEnchantmentHelper.addOrUpgradeEnchantment(lookup, Items.ENCHANTED_BOOK.getDefaultStack(), Enchantments.SOUL_SPEED, 1, false, false).getRight()),
-				SpectrumEnchantmentHelper.addOrUpgradeEnchantment(lookup, Items.ENCHANTED_BOOK.getDefaultStack(), Enchantments.SWIFT_SNEAK, 1, false, false).getRight()
+				Ingredient.of(SpectrumEnchantmentHelper.addOrUpgradeEnchantment(lookup, Items.ENCHANTED_BOOK.getDefaultInstance(), Enchantments.SOUL_SPEED, 1, false, false).getB()),
+				SpectrumEnchantmentHelper.addOrUpgradeEnchantment(lookup, Items.ENCHANTED_BOOK.getDefaultInstance(), Enchantments.SWIFT_SNEAK, 1, false, false).getB()
 		);
 	}
 	
 	@Override
-	public boolean matches(RecipeInput inv, World world) {
-		ItemStack stack = inv.getStackInSlot(0);
-		RegistryEntry.Reference<Enchantment> soulSpeed = world.getRegistryManager().get(RegistryKeys.ENCHANTMENT).getEntry(Enchantments.SOUL_SPEED).orElseThrow();
-		return stack.getEnchantments().getEnchantments().contains(soulSpeed);
+	public boolean matches(RecipeInput inv, Level world) {
+		ItemStack stack = inv.getItem(0);
+		Holder.Reference<Enchantment> soulSpeed = world.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolder(Enchantments.SOUL_SPEED).orElseThrow();
+		return stack.getEnchantments().keySet().contains(soulSpeed);
 	}
 	
 	@Override
-	public ItemStack craft(RecipeInput inv, RegistryWrapper.WrapperLookup drm) {
-		ItemStack stack = inv.getStackInSlot(0);
+	public ItemStack assemble(RecipeInput inv, HolderLookup.Provider drm) {
+		ItemStack stack = inv.getItem(0);
 		
-		RegistryEntry.Reference<Enchantment> soulSpeed = drm.createRegistryLookup().getOptionalEntry(RegistryKeys.ENCHANTMENT, Enchantments.SOUL_SPEED).orElseThrow();
+		Holder.Reference<Enchantment> soulSpeed = drm.asGetterLookup().get(Registries.ENCHANTMENT, Enchantments.SOUL_SPEED).orElseThrow();
 		int level = stack.getEnchantments().getLevel(soulSpeed);
 		if (level > 0) {
-			stack = SpectrumEnchantmentHelper.removeEnchantments(drm, stack, Enchantments.SOUL_SPEED).getLeft();
-			stack = SpectrumEnchantmentHelper.addOrUpgradeEnchantment(drm, stack, Enchantments.SWIFT_SNEAK, level, false, false).getRight();
+			stack = SpectrumEnchantmentHelper.removeEnchantments(drm, stack, Enchantments.SOUL_SPEED).getA();
+			stack = SpectrumEnchantmentHelper.addOrUpgradeEnchantment(drm, stack, Enchantments.SWIFT_SNEAK, level, false, false).getB();
 		}
 		return stack;
 	}
@@ -58,7 +57,7 @@ public class EnchantedBookUnsoulingRecipe extends PrimordialFireBurningRecipe {
 				CodecHelper.LOOKUP.forGetter(c -> null)
 		).apply(i, EnchantedBookUnsoulingRecipe::new));
 		
-		public static final PacketCodec<RegistryByteBuf, EnchantedBookUnsoulingRecipe> PACKET_CODEC = PacketCodec.tuple(
+		public static final StreamCodec<RegistryFriendlyByteBuf, EnchantedBookUnsoulingRecipe> PACKET_CODEC = StreamCodec.composite(
 				PacketCodecHelper.LOOKUP, c -> null,
 				EnchantedBookUnsoulingRecipe::new
 		);
@@ -69,7 +68,7 @@ public class EnchantedBookUnsoulingRecipe extends PrimordialFireBurningRecipe {
 		}
 		
 		@Override
-		public PacketCodec<RegistryByteBuf, EnchantedBookUnsoulingRecipe> packetCodec() {
+		public StreamCodec<RegistryFriendlyByteBuf, EnchantedBookUnsoulingRecipe> streamCodec() {
 			return PACKET_CODEC;
 		}
 		

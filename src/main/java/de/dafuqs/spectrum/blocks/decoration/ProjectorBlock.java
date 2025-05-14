@@ -3,19 +3,20 @@ package de.dafuqs.spectrum.blocks.decoration;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.*;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.shape.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.phys.shapes.*;
 import org.jetbrains.annotations.*;
 
-public class ProjectorBlock extends Block implements BlockEntityProvider {
+public class ProjectorBlock extends Block implements EntityBlock {
 
 	public static final MapCodec<ProjectorBlock> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-			createSettingsCodec(),
-			Identifier.CODEC.fieldOf("texture").forGetter(b -> b.texture),
+			propertiesCodec(),
+			ResourceLocation.CODEC.fieldOf("texture").forGetter(b -> b.texture),
 			Codec.DOUBLE.fieldOf("width").forGetter(b -> b.width),
 			Codec.DOUBLE.fieldOf("height").forGetter(b -> b.height),
 			Codec.FLOAT.fieldOf("heightOffset").forGetter(b -> b.heightOffset),
@@ -26,13 +27,13 @@ public class ProjectorBlock extends Block implements BlockEntityProvider {
 	private final double width, height;
 	private final VoxelShape shape;
 	final float heightOffset, bobMultiplier, scaling;
-	final Identifier texture;
-
-	public ProjectorBlock(Settings settings, String path, double width, double height, float heightOffset, float bobMultiplier, float scaling) {
+	final ResourceLocation texture;
+	
+	public ProjectorBlock(Properties settings, String path, double width, double height, float heightOffset, float bobMultiplier, float scaling) {
 		this(settings, SpectrumCommon.locate("textures/block/" + path + ".png"), width, height, heightOffset, bobMultiplier, scaling);
 	}
 	
-	public ProjectorBlock(Settings settings, Identifier texture, double width, double height, float heightOffset, float bobMultiplier, float scaling) {
+	public ProjectorBlock(Properties settings, ResourceLocation texture, double width, double height, float heightOffset, float bobMultiplier, float scaling) {
 		super(settings);
 		this.heightOffset = heightOffset;
 		this.bobMultiplier = bobMultiplier;
@@ -41,23 +42,23 @@ public class ProjectorBlock extends Block implements BlockEntityProvider {
 		this.height = height;
 		var min = (16 - width) / 2;
 		var max = width + min;
-		shape = Block.createCuboidShape(min, 0, min, max, height, max);
+		shape = Block.box(min, 0, min, max, height, max);
 		this.texture = texture;
 	}
 
 	@Override
-	public MapCodec<? extends ProjectorBlock> getCodec() {
+	public MapCodec<? extends ProjectorBlock> codec() {
 		return CODEC;
 	}
 
 	@Override
-	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		return shape;
 	}
 
 	@Nullable
 	@Override
-	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new ProjectorBlockEntity(pos, state);
 	}
 }

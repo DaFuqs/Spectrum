@@ -8,18 +8,14 @@ import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.spirit_instiller.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.component.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.recipe.*;
-import net.minecraft.recipe.input.*;
-import net.minecraft.registry.*;
-import net.minecraft.server.*;
-import net.minecraft.server.network.*;
-import net.minecraft.server.world.*;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import net.minecraft.core.*;
+import net.minecraft.core.component.*;
+import net.minecraft.server.level.*;
+import net.minecraft.server.players.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.block.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -38,16 +34,16 @@ public class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe {
 	}
 	
 	@Override
-	public ItemStack craft(InstanceRecipeInput<SpiritInstillerBlockEntity> recipeInput, RegistryWrapper.WrapperLookup drm) {
+	public ItemStack assemble(InstanceRecipeInput<SpiritInstillerBlockEntity> recipeInput, HolderLookup.Provider drm) {
 		SpiritInstillerBlockEntity spiritInstillerBlockEntity = recipeInput.getInstance();
-		GameProfile gameProfile = getSkullOwner(recipeInput.getStackInSlot(SpiritInstillerRecipe.CENTER_INGREDIENT));
+		GameProfile gameProfile = getSkullOwner(recipeInput.getItem(SpiritInstillerRecipe.CENTER_INGREDIENT));
 		if (gameProfile != null && SpectrumCommon.minecraftServer != null) {
-			ServerPlayerEntity revivedPlayer = SpectrumCommon.minecraftServer.getPlayerManager().getPlayer(gameProfile.getName());
+			ServerPlayer revivedPlayer = SpectrumCommon.minecraftServer.getPlayerList().getPlayerByName(gameProfile.getName());
 			if (revivedPlayer != null) {
 				HardcoreDeathComponent.removeHardcoreDeath(gameProfile);
-				revivedPlayer.changeGameMode(SpectrumCommon.minecraftServer.getDefaultGameMode());
+				revivedPlayer.setGameMode(SpectrumCommon.minecraftServer.getDefaultGameType());
 				
-				BlockRotation blockRotation = spiritInstillerBlockEntity.getMultiblockRotation();
+				Rotation blockRotation = spiritInstillerBlockEntity.getMultiblockRotation();
 				float yaw = 0.0F;
 				switch (blockRotation) {
 					case NONE -> yaw = -90.0F;
@@ -56,8 +52,8 @@ public class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe {
 					case COUNTERCLOCKWISE_90 -> yaw = 180.0F;
 				}
 				
-				BlockPos pos = spiritInstillerBlockEntity.getPos();
-				revivedPlayer.teleport((ServerWorld) spiritInstillerBlockEntity.getWorld(), pos.getX(), pos.getY(), pos.getZ(), revivedPlayer.getYaw(), revivedPlayer.getPitch());
+				BlockPos pos = spiritInstillerBlockEntity.getBlockPos();
+				revivedPlayer.teleportTo((ServerLevel) spiritInstillerBlockEntity.getLevel(), pos.getX(), pos.getY(), pos.getZ(), revivedPlayer.getYRot(), revivedPlayer.getXRot());
 			}
 		}
 		return ItemStack.EMPTY;
@@ -65,28 +61,28 @@ public class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe {
 	
 	@Override
 	public boolean canCraftWithStacks(RecipeInput inventory) {
-		ItemStack instillerStack = inventory.getStackInSlot(0);
-		if (instillerStack.isOf(Blocks.PLAYER_HEAD.asItem())) {
+		ItemStack instillerStack = inventory.getItem(0);
+		if (instillerStack.is(Blocks.PLAYER_HEAD.asItem())) {
 			GameProfile gameProfile = getSkullOwner(instillerStack);
 			if (gameProfile == null || SpectrumCommon.minecraftServer == null) {
 				return false;
 			}
 			
-			PlayerManager playerManager = SpectrumCommon.minecraftServer.getPlayerManager();
-			ServerPlayerEntity playerToRevive = gameProfile.getId() == null ? playerManager.getPlayer(gameProfile.getName()) : playerManager.getPlayer(gameProfile.getId());
+			PlayerList playerManager = SpectrumCommon.minecraftServer.getPlayerList();
+			ServerPlayer playerToRevive = gameProfile.getId() == null ? playerManager.getPlayerByName(gameProfile.getName()) : playerManager.getPlayer(gameProfile.getId());
 			return playerToRevive != null && HardcoreDeathComponent.hasHardcoreDeath(gameProfile);
 		}
 		return false;
 	}
 	
 	@Override
-	public boolean canPlayerCraft(PlayerEntity playerEntity) {
+	public boolean canPlayerCraft(Player playerEntity) {
 		return true;
 	}
 	
 	@Nullable
 	private GameProfile getSkullOwner(ItemStack instillerStack) {
-		var profile = instillerStack.get(DataComponentTypes.PROFILE);
+		var profile = instillerStack.get(DataComponents.PROFILE);
 		return profile == null ? null : profile.gameProfile();
 	}
 	

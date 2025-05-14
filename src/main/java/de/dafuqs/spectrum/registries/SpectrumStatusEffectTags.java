@@ -1,29 +1,29 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.registry.*;
-import net.minecraft.registry.tag.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.tags.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.entity.*;
 
 public class SpectrumStatusEffectTags {
 	
-	public static TagKey<StatusEffect> BYPASSES_WHISPY_CIRCLET = of("bypasses_whispy_circlet");
-	public static TagKey<StatusEffect> BYPASSES_NECTAR_GLOVES = of("bypasses_nectar_gloves");
-	public static TagKey<StatusEffect> BYPASSES_IMMUNITY = of("bypasses_immunity");
-	public static TagKey<StatusEffect> CANNOT_BE_INCURABLE = of("cannot_be_incurable");
-	public static TagKey<StatusEffect> NO_DURATION_EXTENSION = of("no_duration_extension");
-	public static TagKey<StatusEffect> SOPORIFIC = of("soporific");
-	public static TagKey<StatusEffect> NIGHT_ALCHEMY = of("night_alchemy");
-	public static TagKey<StatusEffect> STACKING = of("stacking");
+	public static TagKey<MobEffect> BYPASSES_WHISPY_CIRCLET = of("bypasses_whispy_circlet");
+	public static TagKey<MobEffect> BYPASSES_NECTAR_GLOVES = of("bypasses_nectar_gloves");
+	public static TagKey<MobEffect> BYPASSES_IMMUNITY = of("bypasses_immunity");
+	public static TagKey<MobEffect> CANNOT_BE_INCURABLE = of("cannot_be_incurable");
+	public static TagKey<MobEffect> NO_DURATION_EXTENSION = of("no_duration_extension");
+	public static TagKey<MobEffect> SOPORIFIC = of("soporific");
+	public static TagKey<MobEffect> NIGHT_ALCHEMY = of("night_alchemy");
+	public static TagKey<MobEffect> STACKING = of("stacking");
 	
-	private static TagKey<StatusEffect> of(String id) {
-		return TagKey.of(RegistryKeys.STATUS_EFFECT, SpectrumCommon.locate(id));
+	private static TagKey<MobEffect> of(String id) {
+		return TagKey.create(Registries.MOB_EFFECT, SpectrumCommon.locate(id));
 	}
 	
-	public static boolean hasEffectWithTag(LivingEntity livingEntity, TagKey<StatusEffect> tag) {
-		for (var statusEffect : livingEntity.getActiveStatusEffects().keySet()) {
-			if (statusEffect.isIn(tag)) {
+	public static boolean hasEffectWithTag(LivingEntity livingEntity, TagKey<MobEffect> tag) {
+		for (var statusEffect : livingEntity.getActiveEffectsMap().keySet()) {
+			if (statusEffect.is(tag)) {
 				return true;
 			}
 		}

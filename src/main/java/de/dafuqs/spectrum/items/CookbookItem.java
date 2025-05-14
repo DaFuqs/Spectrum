@@ -3,13 +3,13 @@ package de.dafuqs.spectrum.items;
 import com.klikli_dev.modonomicon.client.gui.book.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.*;
-import net.minecraft.stat.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.stats.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
 
 import java.util.*;
 
@@ -18,22 +18,22 @@ public class CookbookItem extends Item {
 	public BookAddress bookAddress;
 	private final int toolTipColor;
 	
-	public CookbookItem(Settings settings, BookAddress bookAddress) {
+	public CookbookItem(Properties settings, BookAddress bookAddress) {
 		this(settings, bookAddress, -1);
 	}
 	
-	public CookbookItem(Settings settings, BookAddress bookAddress, int toolTipColor) {
+	public CookbookItem(Properties settings, BookAddress bookAddress, int toolTipColor) {
 		super(settings);
 		this.bookAddress = bookAddress;
 		this.toolTipColor = toolTipColor;
 	}
 	
 	@Override
-	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-		if (!world.isClient) {
-			user.incrementStat(Stats.USED.getOrCreateStat(this));
+	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
+		if (!world.isClientSide) {
+			user.awardStat(Stats.ITEM_USED.get(this));
 			
-			return TypedActionResult.success(user.getStackInHand(hand));
+			return InteractionResultHolder.success(user.getItemInHand(hand));
 		} else {
 			try {
 				openGuidebookPage(this.bookAddress);
@@ -42,7 +42,7 @@ public class CookbookItem extends Item {
 			}
 		}
 		
-		return TypedActionResult.consume(user.getStackInHand(hand));
+		return InteractionResultHolder.consume(user.getItemInHand(hand));
 	}
 	
 	private void openGuidebookPage(BookAddress address) {
@@ -52,14 +52,14 @@ public class CookbookItem extends Item {
 	}
 
 	@Override
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
 		if (toolTipColor == -1) {
-			tooltip.add(Text.translatable(this.getTranslationKey() + ".tooltip").formatted(Formatting.GRAY));
+			tooltip.add(Component.translatable(this.getDescriptionId() + ".tooltip").withStyle(ChatFormatting.GRAY));
 			return;
 		}
-
-		tooltip.add(Text.translatable(this.getTranslationKey() + ".tooltip").styled(s -> s.withColor(toolTipColor)));
+		
+		tooltip.add(Component.translatable(this.getDescriptionId() + ".tooltip").withStyle(s -> s.withColor(toolTipColor)));
 	}
 	
 }

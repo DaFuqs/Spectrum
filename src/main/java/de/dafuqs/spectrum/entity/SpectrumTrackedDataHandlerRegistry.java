@@ -4,25 +4,25 @@ import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.entity.variants.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.entity.data.*;
 import net.minecraft.network.codec.*;
+import net.minecraft.network.syncher.*;
 
 public class SpectrumTrackedDataHandlerRegistry {
 	
-	public static final TrackedDataHandler<InkColor> INK_COLOR = TrackedDataHandler.create(PacketCodecs.registryValue(SpectrumRegistries.INK_COLOR.getKey()));
-	public static final TrackedDataHandler<GlassArrowVariant> GLASS_ARROW_VARIANT = TrackedDataHandler.create(PacketCodecs.registryValue(SpectrumRegistries.GLASS_ARROW_VARIANT.getKey()));
+	public static final EntityDataSerializer<InkColor> INK_COLOR = EntityDataSerializer.forValueType(ByteBufCodecs.registry(SpectrumRegistries.INK_COLOR.key()));
+	public static final EntityDataSerializer<GlassArrowVariant> GLASS_ARROW_VARIANT = EntityDataSerializer.forValueType(ByteBufCodecs.registry(SpectrumRegistries.GLASS_ARROW_VARIANT.key()));
 	
-	public static final TrackedDataHandler<LizardFrillVariant> LIZARD_FRILL_VARIANT = TrackedDataHandler.create(PacketCodecs.registryValue(SpectrumRegistries.LIZARD_FRILL_VARIANT.getKey()));
-	public static final TrackedDataHandler<LizardHornVariant> LIZARD_HORN_VARIANT = TrackedDataHandler.create(PacketCodecs.registryValue(SpectrumRegistries.LIZARD_HORN_VARIANT.getKey()));
-	public static final TrackedDataHandler<KindlingVariant> KINDLING_VARIANT = TrackedDataHandler.create(PacketCodecs.registryValue(SpectrumRegistries.KINDLING_VARIANT.getKey()));
+	public static final EntityDataSerializer<LizardFrillVariant> LIZARD_FRILL_VARIANT = EntityDataSerializer.forValueType(ByteBufCodecs.registry(SpectrumRegistries.LIZARD_FRILL_VARIANT.key()));
+	public static final EntityDataSerializer<LizardHornVariant> LIZARD_HORN_VARIANT = EntityDataSerializer.forValueType(ByteBufCodecs.registry(SpectrumRegistries.LIZARD_HORN_VARIANT.key()));
+	public static final EntityDataSerializer<KindlingVariant> KINDLING_VARIANT = EntityDataSerializer.forValueType(ByteBufCodecs.registry(SpectrumRegistries.KINDLING_VARIANT.key()));
 
 	public static void register() {
-		TrackedDataHandlerRegistry.register(INK_COLOR);
-		TrackedDataHandlerRegistry.register(GLASS_ARROW_VARIANT);
+		EntityDataSerializers.registerSerializer(INK_COLOR);
+		EntityDataSerializers.registerSerializer(GLASS_ARROW_VARIANT);
 		
-		TrackedDataHandlerRegistry.register(LIZARD_FRILL_VARIANT);
-		TrackedDataHandlerRegistry.register(LIZARD_HORN_VARIANT);
-		TrackedDataHandlerRegistry.register(KINDLING_VARIANT);
+		EntityDataSerializers.registerSerializer(LIZARD_FRILL_VARIANT);
+		EntityDataSerializers.registerSerializer(LIZARD_HORN_VARIANT);
+		EntityDataSerializers.registerSerializer(KINDLING_VARIANT);
 	}
 	
 }

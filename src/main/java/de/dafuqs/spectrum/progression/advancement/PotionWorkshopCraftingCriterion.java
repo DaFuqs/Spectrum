@@ -4,35 +4,33 @@ import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.*;
 import it.unimi.dsi.fastutil.objects.*;
-import net.minecraft.advancement.criterion.*;
-import net.minecraft.item.*;
-import net.minecraft.predicate.entity.*;
-import net.minecraft.predicate.item.*;
-import net.minecraft.server.network.*;
-import net.minecraft.util.*;
+import net.minecraft.advancements.critereon.*;
+import net.minecraft.resources.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.item.*;
 
 import java.util.*;
 
-public class PotionWorkshopCraftingCriterion extends AbstractCriterion<PotionWorkshopCraftingCriterion.Conditions> {
+public class PotionWorkshopCraftingCriterion extends SimpleCriterionTrigger<PotionWorkshopCraftingCriterion.Conditions> {
 	
-	public static final Identifier ID = SpectrumCommon.locate("crafted_with_potion_workshop");
+	public static final ResourceLocation ID = SpectrumCommon.locate("crafted_with_potion_workshop");
 	
-	public void trigger(ServerPlayerEntity player, ItemStack itemStack) {
+	public void trigger(ServerPlayer player, ItemStack itemStack) {
 		this.trigger(player, (conditions) -> conditions.matches(itemStack));
 	}
 	
 	@Override
-	public Codec<Conditions> getConditionsCodec() {
+	public Codec<Conditions> codec() {
 		return Conditions.CODEC;
 	}
 	
 	public record Conditions(
-			Optional<LootContextPredicate> player,
+			Optional<ContextAwarePredicate> player,
 			List<ItemPredicate> itemPredicates
-	) implements AbstractCriterion.Conditions {
+	) implements SimpleCriterionTrigger.SimpleInstance {
 		
 		public static final Codec<Conditions> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-				LootContextPredicate.CODEC.optionalFieldOf("player").forGetter(Conditions::player),
+				ContextAwarePredicate.CODEC.optionalFieldOf("player").forGetter(Conditions::player),
 				ItemPredicate.CODEC.listOf().optionalFieldOf("items", List.of()).forGetter(Conditions::itemPredicates)
 		).apply(instance, Conditions::new));
 		

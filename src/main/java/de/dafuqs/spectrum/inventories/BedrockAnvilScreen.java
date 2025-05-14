@@ -8,59 +8,59 @@ import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.client.gui.screen.ingame.*;
-import net.minecraft.client.gui.widget.*;
-import net.minecraft.component.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.screen.*;
-import net.minecraft.screen.slot.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.client.gui.components.*;
+import net.minecraft.client.gui.components.events.*;
+import net.minecraft.client.gui.screens.inventory.*;
+import net.minecraft.core.component.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.item.*;
 import org.lwjgl.glfw.*;
 
 @Environment(EnvType.CLIENT)
-public class BedrockAnvilScreen extends ForgingScreen<BedrockAnvilScreenHandler> {
+public class BedrockAnvilScreen extends ItemCombinerScreen<BedrockAnvilScreenHandler> {
 	
-	private static final Identifier TEXTURE = SpectrumCommon.locate("textures/gui/container/bedrock_anvil.png");
-	private final PlayerEntity player;
-	private TextFieldWidget nameField;
-	private TextFieldWidget loreField;
+	private static final ResourceLocation TEXTURE = SpectrumCommon.locate("textures/gui/container/bedrock_anvil.png");
+	private final Player player;
+	private EditBox nameField;
+	private EditBox loreField;
 	
-	public BedrockAnvilScreen(BedrockAnvilScreenHandler handler, PlayerInventory inventory, Text title) {
+	public BedrockAnvilScreen(BedrockAnvilScreenHandler handler, Inventory inventory, Component title) {
 		super(handler, inventory, title, TEXTURE);
 		this.player = inventory.player;
 		
-		this.titleX = 60;
-		this.titleY = this.titleY + 2;
-		this.playerInventoryTitleY = 95;
-		this.backgroundHeight = 190;
+		this.titleLabelX = 60;
+		this.titleLabelY = this.titleLabelY + 2;
+		this.inventoryLabelY = 95;
+		this.imageHeight = 190;
 	}
 	
 	@Override
-	protected void setup() {
-		int i = (this.width - this.backgroundWidth) / 2;
-		int j = (this.height - this.backgroundHeight) / 2;
+	protected void subInit() {
+		int i = (this.width - this.imageWidth) / 2;
+		int j = (this.height - this.imageHeight) / 2;
 		
-		this.nameField = new TextFieldWidget(this.textRenderer, i + 62, j + 24, 98, 12, Text.translatable("container.spectrum.bedrock_anvil"));
-		this.nameField.setEditableColor(-1);
-		this.nameField.setUneditableColor(-1);
-		this.nameField.setDrawsBackground(false);
-		this.nameField.setMaxLength(AnvilScreenHandler.MAX_NAME_LENGTH);
-		this.nameField.setChangedListener(this::onRenamed);
-		this.nameField.setText("");
-		this.addSelectableChild(this.nameField);
-		this.nameField.setEditable((this.handler).getSlot(0).hasStack());
+		this.nameField = new EditBox(this.font, i + 62, j + 24, 98, 12, Component.translatable("container.spectrum.bedrock_anvil"));
+		this.nameField.setTextColor(-1);
+		this.nameField.setTextColorUneditable(-1);
+		this.nameField.setBordered(false);
+		this.nameField.setMaxLength(AnvilMenu.MAX_NAME_LENGTH);
+		this.nameField.setResponder(this::onRenamed);
+		this.nameField.setValue("");
+		this.addWidget(this.nameField);
+		this.nameField.setEditable((this.menu).getSlot(0).hasItem());
 		
-		this.loreField = new TextFieldWidget(this.textRenderer, i + 45, j + 76, 116, 12, Text.translatable("container.spectrum.bedrock_anvil.lore"));
-		this.loreField.setEditableColor(-1);
-		this.loreField.setUneditableColor(-1);
-		this.loreField.setDrawsBackground(false);
+		this.loreField = new EditBox(this.font, i + 45, j + 76, 116, 12, Component.translatable("container.spectrum.bedrock_anvil.lore"));
+		this.loreField.setTextColor(-1);
+		this.loreField.setTextColorUneditable(-1);
+		this.loreField.setBordered(false);
 		this.loreField.setMaxLength(BedrockAnvilScreenHandler.MAX_LORE_LENGTH);
-		this.loreField.setChangedListener(this::onLoreChanged);
-		this.loreField.setText("");
-		this.addSelectableChild(this.loreField);
-		this.loreField.setEditable((this.handler).getSlot(0).hasStack());
+		this.loreField.setResponder(this::onLoreChanged);
+		this.loreField.setValue("");
+		this.addWidget(this.loreField);
+		this.loreField.setEditable((this.menu).getSlot(0).hasItem());
 		
 		this.nameField.setEditable(false);
 		this.loreField.setEditable(false);
@@ -72,12 +72,12 @@ public class BedrockAnvilScreen extends ForgingScreen<BedrockAnvilScreenHandler>
 	}
 	
 	@Override
-	public void resize(MinecraftClient client, int width, int height) {
-		String name = this.nameField.getText();
-		String lore = this.loreField.getText();
+	public void resize(Minecraft client, int width, int height) {
+		String name = this.nameField.getValue();
+		String lore = this.loreField.getValue();
 		this.init(client, width, height);
-		this.nameField.setText(name);
-		this.loreField.setText(lore);
+		this.nameField.setValue(name);
+		this.loreField.setValue(lore);
 	}
 	
 	@Override
@@ -87,129 +87,129 @@ public class BedrockAnvilScreen extends ForgingScreen<BedrockAnvilScreenHandler>
 			return true;
 		}
 		
-		Element focused = this.getFocused();
-		return (focused == null || !focused.keyPressed(keyCode, scanCode, modifiers)) || focused instanceof TextFieldWidget textFieldWidget && textFieldWidget.isActive() || super.keyPressed(keyCode, scanCode, modifiers);
+		GuiEventListener focused = this.getFocused();
+		return (focused == null || !focused.keyPressed(keyCode, scanCode, modifiers)) || focused instanceof EditBox textFieldWidget && textFieldWidget.canConsumeInput() || super.keyPressed(keyCode, scanCode, modifiers);
 
 	}
 	
 	private void onRenamed(String name) {
-		Slot slot = this.handler.getSlot(0);
-		if (slot.hasStack()) {
+		Slot slot = this.menu.getSlot(0);
+		if (slot.hasItem()) {
 			String string = name;
-			if (!slot.getStack().contains(DataComponentTypes.CUSTOM_NAME) && string.equals(slot.getStack().getName().getString())) {
+			if (!slot.getItem().has(DataComponents.CUSTOM_NAME) && string.equals(slot.getItem().getHoverName().getString())) {
 				string = "";
 			}
 			
-			if ((this.handler).setNewItemName(string)) {
+			if ((this.menu).setNewItemName(string)) {
 				ClientPlayNetworking.send(new RenameItemInBedrockAnvilPayload(name));
 			}
 		}
 	}
 	
 	private void onLoreChanged(String lore) {
-		Slot slot = this.handler.getSlot(0);
-		if (slot.hasStack()) {
+		Slot slot = this.menu.getSlot(0);
+		if (slot.hasItem()) {
 			String string = lore;
-			if (!LoreHelper.hasLore(slot.getStack()) && string.equals(LoreHelper.getStringFromLoreTextArray(LoreHelper.getLoreList(slot.getStack())))) {
+			if (!LoreHelper.hasLore(slot.getItem()) && string.equals(LoreHelper.getStringFromLoreTextArray(LoreHelper.getLoreList(slot.getItem())))) {
 				string = "";
 			}
 			
-			if (this.handler.setNewItemLore(string)) {
+			if (this.menu.setNewItemLore(string)) {
 				ClientPlayNetworking.send(new AddLoreBedrockAnvilPayload(lore));
 			}
 		}
 	}
 	
 	@Override
-	protected void drawForeground(DrawContext context, int mouseX, int mouseY) {
-		super.drawForeground(context, mouseX, mouseY);
+	protected void renderLabels(GuiGraphics context, int mouseX, int mouseY) {
+		super.renderLabels(context, mouseX, mouseY);
 		
-		context.drawText(textRenderer, Text.translatable("container.spectrum.bedrock_anvil.lore"), playerInventoryTitleX, 76, 4210752, false);
+		context.drawString(font, Component.translatable("container.spectrum.bedrock_anvil.lore"), inventoryLabelX, 76, 4210752, false);
 		
-		int levelCost = (this.handler).getLevelCost();
-		if (levelCost > 0 || this.handler.getSlot(2).hasStack()) {
+		int levelCost = (this.menu).getLevelCost();
+		if (levelCost > 0 || this.menu.getSlot(2).hasItem()) {
 			int textColor = 8453920;
-			Text costText;
-			if (!handler.getSlot(2).hasStack()) {
+			Component costText;
+			if (!menu.getSlot(2).hasItem()) {
 				costText = null;
 			} else {
-				costText = Text.translatable("container.repair.cost", levelCost);
-				if (!handler.getSlot(2).canTakeItems(this.player)) {
+				costText = Component.translatable("container.repair.cost", levelCost);
+				if (!menu.getSlot(2).mayPickup(this.player)) {
 					textColor = 16736352;
 				}
 			}
 			
 			if (costText != null) {
-				int k = this.backgroundWidth - 8 - this.textRenderer.getWidth(costText) - 2;
-				context.fill(k - 2, 67 + 24, this.backgroundWidth - 8, 79 + 24, 1325400064);
-				context.drawText(textRenderer, costText, k, 93, textColor, true);
+				int k = this.imageWidth - 8 - this.font.width(costText) - 2;
+				context.fill(k - 2, 67 + 24, this.imageWidth - 8, 79 + 24, 1325400064);
+				context.drawString(font, costText, k, 93, textColor, true);
 			}
 		}
 	}
 	
 	@Override
-	protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
-		super.drawBackground(context, delta, mouseX, mouseY);
+	protected void renderBg(GuiGraphics context, float delta, int mouseX, int mouseY) {
+		super.renderBg(context, delta, mouseX, mouseY);
 		
 		// the text field backgrounds
-		boolean hasStack = handler.getSlot(0).hasStack();
-		context.drawTexture(TEXTURE, this.x + 59, this.y + 20, 0, this.backgroundHeight + (hasStack ? 0 : 16), 110, 16);
-		context.drawTexture(TEXTURE, this.x + 42, this.y + 72, 0, this.backgroundHeight + (hasStack ? 32 : 48), 127, 16);
+		boolean hasStack = menu.getSlot(0).hasItem();
+		context.blit(TEXTURE, this.leftPos + 59, this.topPos + 20, 0, this.imageHeight + (hasStack ? 0 : 16), 110, 16);
+		context.blit(TEXTURE, this.leftPos + 42, this.topPos + 72, 0, this.imageHeight + (hasStack ? 32 : 48), 127, 16);
 	}
 	
 	@Override
-	public void renderForeground(DrawContext drawContext, int mouseX, int mouseY, float delta) {
+	public void renderFg(GuiGraphics drawContext, int mouseX, int mouseY, float delta) {
 		this.nameField.render(drawContext, mouseX, mouseY, delta);
 		this.loreField.render(drawContext, mouseX, mouseY, delta);
 	}
 	
 	@Override
-	protected void drawInvalidRecipeArrow(DrawContext context, int x, int y) {
-		if ((this.handler.getSlot(0).hasStack() || this.handler.getSlot(1).hasStack()) && !this.handler.getSlot(this.handler.getResultSlotIndex()).hasStack()) {
-			context.drawTexture(TEXTURE, x + 99, y + 45, this.backgroundWidth, 0, 28, 21);
+	protected void renderErrorIcon(GuiGraphics context, int x, int y) {
+		if ((this.menu.getSlot(0).hasItem() || this.menu.getSlot(1).hasItem()) && !this.menu.getSlot(this.menu.getResultSlot()).hasItem()) {
+			context.blit(TEXTURE, x + 99, y + 45, this.imageWidth, 0, 28, 21);
 		}
 	}
 	
 	@Override
-	public void onSlotUpdate(ScreenHandler handler, int slotId, ItemStack stack) {
+	public void slotChanged(AbstractContainerMenu handler, int slotId, ItemStack stack) {
 		// TODO: test & cleanup pigment code
 		if (slotId == 0) {
 			boolean stackEmpty = stack.isEmpty();
 			
-			this.nameField.setText(stack.isEmpty() ? "" : stack.getName().getString());
-			if (!(this.handler.getSlot(1).getStack().getItem() instanceof PigmentItem)) {
-				if (stack.getName() instanceof MutableText mutableText) {
+			this.nameField.setValue(stack.isEmpty() ? "" : stack.getHoverName().getString());
+			if (!(this.menu.getSlot(1).getItem().getItem() instanceof PigmentItem)) {
+				if (stack.getHoverName() instanceof MutableComponent mutableText) {
 					if (mutableText.getStyle().getColor() == null) {
-						this.nameField.setEditableColor(-1);
+						this.nameField.setTextColor(-1);
 					} else {
-						this.nameField.setEditableColor(mutableText.getStyle().getColor().getRgb());
+						this.nameField.setTextColor(mutableText.getStyle().getColor().getValue());
 					}
 				} else {
-					this.nameField.setEditableColor(-1);
+					this.nameField.setTextColor(-1);
 				}
 			}
 			
 			this.nameField.setEditable(!stack.isEmpty());
-			this.nameField.setFocusUnlocked(!stackEmpty);
+			this.nameField.setCanLoseFocus(!stackEmpty);
 			
-			this.loreField.setText(stackEmpty ? "" : LoreHelper.getStringFromLoreTextArray(LoreHelper.getLoreList(stack)));
+			this.loreField.setValue(stackEmpty ? "" : LoreHelper.getStringFromLoreTextArray(LoreHelper.getLoreList(stack)));
 			this.loreField.setEditable(!stackEmpty);
-			this.nameField.setFocusUnlocked(!stackEmpty);
+			this.nameField.setCanLoseFocus(!stackEmpty);
 			
 			this.setFocused(this.nameField);
 		}
 		if (slotId == 1) {
 			if (stack.getItem() instanceof PigmentItem pigmentItem) {
-				this.nameField.setEditableColor(pigmentItem.getInkColor().getColorInt());
+				this.nameField.setTextColor(pigmentItem.getInkColor().getColorInt());
 			} else {
-				if (this.handler.getSlot(0).getStack().getName() instanceof MutableText mutableText) {
+				if (this.menu.getSlot(0).getItem().getHoverName() instanceof MutableComponent mutableText) {
 					if (mutableText.getStyle().getColor() == null) {
-						this.nameField.setEditableColor(-1);
+						this.nameField.setTextColor(-1);
 					} else {
-						this.nameField.setEditableColor(mutableText.getStyle().getColor().getRgb());
+						this.nameField.setTextColor(mutableText.getStyle().getColor().getValue());
 					}
 				} else {
-					this.nameField.setEditableColor(-1);
+					this.nameField.setTextColor(-1);
 				}
 			}
 		}

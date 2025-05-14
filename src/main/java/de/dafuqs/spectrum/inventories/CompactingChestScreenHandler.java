@@ -4,31 +4,30 @@ import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.networking.c2s_payloads.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.inventory.*;
-import net.minecraft.item.*;
-import net.minecraft.screen.*;
-import net.minecraft.screen.slot.*;
-import net.minecraft.util.math.*;
+import net.minecraft.core.*;
+import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.item.*;
 
-public class CompactingChestScreenHandler extends ScreenHandler {
+public class CompactingChestScreenHandler extends AbstractContainerMenu {
 	
-	private final PropertyDelegate propertyDelegate;
+	private final ContainerData propertyDelegate;
 	private final CompactingChestBlockEntity blockEntity;
 	protected final int ROWS = 3;
 	
-	public CompactingChestScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos pos) {
-		this(syncId, playerInventory, playerInventory.player.getWorld().getBlockEntity(pos, SpectrumBlockEntities.COMPACTING_CHEST).orElseThrow(), new ArrayPropertyDelegate(1));
+	public CompactingChestScreenHandler(int syncId, Inventory playerInventory, BlockPos pos) {
+		this(syncId, playerInventory, playerInventory.player.level().getBlockEntity(pos, SpectrumBlockEntities.COMPACTING_CHEST).orElseThrow(), new SimpleContainerData(1));
 	}
 	
-	public CompactingChestScreenHandler(int syncId, PlayerInventory playerInventory, CompactingChestBlockEntity blockEntity, PropertyDelegate propertyDelegate) {
+	public CompactingChestScreenHandler(int syncId, Inventory playerInventory, CompactingChestBlockEntity blockEntity, ContainerData propertyDelegate) {
 		super(SpectrumScreenHandlerTypes.COMPACTING_CHEST, syncId);
 		
 		this.blockEntity = blockEntity;
 		this.propertyDelegate = propertyDelegate;
 		
-		checkSize(blockEntity, 27);
-		blockEntity.onOpen(playerInventory.player);
+		checkContainerSize(blockEntity, 27);
+		blockEntity.startOpen(playerInventory.player);
 		
 		int i = (ROWS - 4) * 18;
 		
@@ -50,29 +49,29 @@ public class CompactingChestScreenHandler extends ScreenHandler {
 			this.addSlot(new Slot(playerInventory, j, 8 + j * 18, 170 + i));
 		}
 		
-		this.addProperties(propertyDelegate);
+		this.addDataSlots(propertyDelegate);
 	}
 	
 	@Override
-	public boolean canUse(PlayerEntity player) {
-		return this.blockEntity.canPlayerUse(player);
+	public boolean stillValid(Player player) {
+		return this.blockEntity.stillValid(player);
 	}
 	
 	@Override
-	public ItemStack quickMove(PlayerEntity player, int index) {
+	public ItemStack quickMoveStack(Player player, int index) {
 		ItemStack itemStack = ItemStack.EMPTY;
 		Slot slot = this.slots.get(index);
-		if (slot.hasStack()) {
-			ItemStack itemStack2 = slot.getStack();
+		if (slot.hasItem()) {
+			ItemStack itemStack2 = slot.getItem();
 			itemStack = itemStack2.copy();
 			if (index < this.ROWS * 9) {
-				if (!this.insertItem(itemStack2, this.ROWS * 9, this.slots.size(), true)) {
+				if (!this.moveItemStackTo(itemStack2, this.ROWS * 9, this.slots.size(), true)) {
 					if (blockEntity instanceof CompactingChestBlockEntity compactor) {
 						compactor.inventoryChanged();
 					}
 					return ItemStack.EMPTY;
 				}
-			} else if (!this.insertItem(itemStack2, 0, this.ROWS * 9, false)) {
+			} else if (!this.moveItemStackTo(itemStack2, 0, this.ROWS * 9, false)) {
 				if (blockEntity instanceof CompactingChestBlockEntity compactor) {
 					compactor.inventoryChanged();
 				}
@@ -80,9 +79,9 @@ public class CompactingChestScreenHandler extends ScreenHandler {
 			}
 			
 			if (itemStack2.isEmpty()) {
-				slot.setStack(ItemStack.EMPTY);
+				slot.setByPlayer(ItemStack.EMPTY);
 			} else {
-				slot.markDirty();
+				slot.setChanged();
 			}
 		}
 		
@@ -94,22 +93,22 @@ public class CompactingChestScreenHandler extends ScreenHandler {
 	
 	public void toggleMode() {
 		this.propertyDelegate.set(0, getCraftingMode().next().ordinal());
-		sendContentUpdates();
+		broadcastChanges();
 	}
 	
 	@Override
-	public void sendContentUpdates() {
-		super.sendContentUpdates();
+	public void broadcastChanges() {
+		super.broadcastChanges();
 		ClientPlayNetworking.send(new ChangeCompactingChestSettingsPayload(getCraftingMode()));
 	}
 	
 	@Override
-	public void onClosed(PlayerEntity player) {
-		super.onClosed(player);
-		this.blockEntity.onClose(player);
+	public void removed(Player player) {
+		super.removed(player);
+		this.blockEntity.stopOpen(player);
 	}
 	
-	public Inventory getInventory() {
+	public Container getInventory() {
 		return blockEntity;
 	}
 	

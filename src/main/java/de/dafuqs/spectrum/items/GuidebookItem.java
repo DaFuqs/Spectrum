@@ -6,64 +6,63 @@ import de.dafuqs.revelationary.advancement_criteria.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.advancement.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.*;
-import net.minecraft.registry.*;
-import net.minecraft.server.network.*;
-import net.minecraft.stat.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
+import net.minecraft.server.*;
+import net.minecraft.server.level.*;
+import net.minecraft.stats.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.entity.*;
 
 import java.util.*;
 
 public class GuidebookItem extends Item implements LoomPatternProvider {
 	
-	public static final Identifier GUIDEBOOK_ID = SpectrumCommon.locate("guidebook");
+	public static final ResourceLocation GUIDEBOOK_ID = SpectrumCommon.locate("guidebook");
 	public static final BookAddress GUIDEBOOK_ADDRESS = BookAddress.defaultFor(GUIDEBOOK_ID);
 	
-	public static final Identifier CUISINE_CATEGORY_ID = SpectrumCommon.locate("cuisine");
-	public static final Identifier DIMENSION_CATEGORY_ID = SpectrumCommon.locate("dimension");
+	public static final ResourceLocation CUISINE_CATEGORY_ID = SpectrumCommon.locate("cuisine");
+	public static final ResourceLocation DIMENSION_CATEGORY_ID = SpectrumCommon.locate("dimension");
 	
 	
-	public static BookAddress addressOf(Identifier category, Identifier entryId) {
+	public static BookAddress addressOf(ResourceLocation category, ResourceLocation entryId) {
 		return BookAddress.of(GUIDEBOOK_ID, category, entryId, 0);
 	}
 	
-	public GuidebookItem(Settings settings) {
+	public GuidebookItem(Properties settings) {
 		super(settings);
 	}
 	
 	
 	private static final Set<UUID> alreadyReprocessedPlayers = new HashSet<>();
 	
-	public static void reprocessAdvancementUnlocks(ServerPlayerEntity serverPlayerEntity) {
+	public static void reprocessAdvancementUnlocks(ServerPlayer serverPlayerEntity) {
 		if (serverPlayerEntity.getServer() == null || SpectrumCommon.minecraftServer == null) {
 			return;
 		}
 		
-		UUID uuid = serverPlayerEntity.getUuid();
+		UUID uuid = serverPlayerEntity.getUUID();
 		if (alreadyReprocessedPlayers.contains(uuid)) {
 			return;
 		}
 		alreadyReprocessedPlayers.add(uuid);
 		
-		PlayerAdvancementTracker tracker = serverPlayerEntity.getAdvancementTracker();
+		PlayerAdvancements tracker = serverPlayerEntity.getAdvancements();
 		
-		for (var advancement : serverPlayerEntity.getServer().getAdvancementLoader().getAdvancements()) {
-			var hasAdvancement = tracker.getProgress(advancement);
+		for (var advancement : serverPlayerEntity.getServer().getAdvancements().getAllAdvancements()) {
+			var hasAdvancement = tracker.getOrStartProgress(advancement);
 			if (!hasAdvancement.isDone()) {
 				for (var criterionEntry : advancement.value().criteria().entrySet()) {
-					var conditions = criterionEntry.getValue().conditions();
+					var conditions = criterionEntry.getValue().triggerInstance();
 					if (conditions instanceof AdvancementGottenCriterion.Conditions hasAdvancementConditions) {
-						var advancementCriterionAdvancement = SpectrumCommon.minecraftServer.getAdvancementLoader().get(hasAdvancementConditions.getAdvancementIdentifier());
+						var advancementCriterionAdvancement = SpectrumCommon.minecraftServer.getAdvancements().get(hasAdvancementConditions.getAdvancementIdentifier());
 						if (advancementCriterionAdvancement != null) {
-							var hasAdvancementCriterionAdvancement = tracker.getProgress(advancementCriterionAdvancement);
+							var hasAdvancementCriterionAdvancement = tracker.getOrStartProgress(advancementCriterionAdvancement);
 							if (hasAdvancementCriterionAdvancement.isDone()) {
-								tracker.grantCriterion(advancement, criterionEntry.getKey());
+								tracker.award(advancement, criterionEntry.getKey());
 							}
 						}
 					}
@@ -73,19 +72,19 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 	}
 	
 	@Override
-	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-		if (world.isClient()) {
+	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
+		if (world.isClientSide()) {
 			// if the player has never opened the book before
 			// automatically open the introduction page
 			openGuidebook();
-		} else if (user instanceof ServerPlayerEntity serverPlayerEntity) {
+		} else if (user instanceof ServerPlayer serverPlayerEntity) {
 			// Process new advancement unlocks that got added
 			// after spectrum has been installed / updated
 			reprocessAdvancementUnlocks(serverPlayerEntity);
 		}
-		user.incrementStat(Stats.USED.getOrCreateStat(this));
+		user.awardStat(Stats.ITEM_USED.get(this));
 		
-		return TypedActionResult.success(user.getStackInHand(hand), world.isClient);
+		return InteractionResultHolder.sidedSuccess(user.getItemInHand(hand), world.isClientSide);
 	}
 	
 	public void openGuidebook() {
@@ -97,13 +96,13 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 	}
 	
 	@Override
-	public RegistryKey<BannerPattern> getPattern() {
+	public ResourceKey<BannerPattern> getPattern() {
 		return SpectrumBannerPatterns.GUIDEBOOK;
 	}
 
 	@Override
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
 		addBannerPatternProviderTooltip(tooltip);
 	}
 	

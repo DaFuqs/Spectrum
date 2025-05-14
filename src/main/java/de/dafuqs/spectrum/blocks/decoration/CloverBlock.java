@@ -1,51 +1,52 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.registry.*;
-import net.minecraft.server.world.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
-import net.minecraft.util.shape.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.server.level.*;
+import net.minecraft.util.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.phys.shapes.*;
 
-public class CloverBlock extends PlantBlock implements Fertilizable {
-
-	public static final MapCodec<CloverBlock> CODEC = createCodec(CloverBlock::new);
-
-	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D);
-
-	public CloverBlock(Settings settings) {
+public class CloverBlock extends BushBlock implements BonemealableBlock {
+	
+	public static final MapCodec<CloverBlock> CODEC = simpleCodec(CloverBlock::new);
+	
+	protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D);
+	
+	public CloverBlock(Properties settings) {
 		super(settings);
 	}
 
 	@Override
-	public MapCodec<? extends CloverBlock> getCodec() {
+	public MapCodec<? extends CloverBlock> codec() {
 		return CODEC;
 	}
 
 	@Override
-	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		return SHAPE;
 	}
 	
 	@Override
-	public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
+	public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
 		return true;
 	}
 
 	@Override
-	public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
+	public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
 		return true;
 	}
 
 	@Override
-	public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-		world.getRegistryManager()
-				.get(RegistryKeys.CONFIGURED_FEATURE)
+	public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
+		world.registryAccess()
+				.registryOrThrow(Registries.CONFIGURED_FEATURE)
 				.get(SpectrumConfiguredFeatures.CLOVER_PATCH)
-				.generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
+				.place(world, world.getChunkSource().getGenerator(), random, pos);
 	}
 
 }

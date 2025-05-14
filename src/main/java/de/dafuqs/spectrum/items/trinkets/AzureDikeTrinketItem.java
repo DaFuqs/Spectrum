@@ -3,17 +3,16 @@ package de.dafuqs.spectrum.items.trinkets;
 import de.dafuqs.spectrum.api.item.*;
 import dev.emi.trinkets.api.*;
 import net.fabricmc.api.*;
-import net.minecraft.entity.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.item.*;
 
 import java.util.*;
 
 public abstract class AzureDikeTrinketItem extends SpectrumTrinketItem implements AzureDikeItem {
 	
-	public AzureDikeTrinketItem(Settings settings, Identifier unlockIdentifier) {
+	public AzureDikeTrinketItem(Properties settings, ResourceLocation unlockIdentifier) {
 		super(settings, unlockIdentifier);
 	}
 	
@@ -37,9 +36,9 @@ public abstract class AzureDikeTrinketItem extends SpectrumTrinketItem implement
 	
 	@Override
 	@Environment(EnvType.CLIENT)
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
-		tooltip.add(Text.translatable("item.spectrum.azure_dike_provider.tooltip", maxAzureDike(stack)));
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
+		tooltip.add(Component.translatable("item.spectrum.azure_dike_provider.tooltip", maxAzureDike(stack)));
 	}
 	
 }

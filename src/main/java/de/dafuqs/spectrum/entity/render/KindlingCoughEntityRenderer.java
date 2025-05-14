@@ -1,40 +1,42 @@
 package de.dafuqs.spectrum.entity.render;
 
+import com.mojang.blaze3d.vertex.*;
+import com.mojang.math.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.entity.models.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.fabricmc.api.*;
-import net.minecraft.client.render.*;
-import net.minecraft.client.render.entity.*;
-import net.minecraft.client.util.math.*;
+import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.entity.*;
+import net.minecraft.client.renderer.texture.*;
+import net.minecraft.resources.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
 
 @Environment(EnvType.CLIENT)
 public class KindlingCoughEntityRenderer extends EntityRenderer<KindlingCoughEntity> {
 	
-	private static final Identifier TEXTURE = SpectrumCommon.locate("textures/entity/kindling/cough.png");
+	private static final ResourceLocation TEXTURE = SpectrumCommon.locate("textures/entity/kindling/cough.png");
 	private final KindlingCoughEntityModel model;
 	
-	public KindlingCoughEntityRenderer(EntityRendererFactory.Context context) {
+	public KindlingCoughEntityRenderer(EntityRendererProvider.Context context) {
 		super(context);
-		this.model = new KindlingCoughEntityModel(context.getPart(SpectrumModelLayers.KINDLING_COUGH));
+		this.model = new KindlingCoughEntityModel(context.bakeLayer(SpectrumModelLayers.KINDLING_COUGH));
 	}
 	
-	public void render(KindlingCoughEntity kindlingCoughEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
-		matrixStack.push();
-		matrixStack.translate(0.0, 0.15000000596046448, 0.0);
-		matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(MathHelper.lerp(g, kindlingCoughEntity.prevYaw, kindlingCoughEntity.getYaw()) - 90.0F));
-		matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(MathHelper.lerp(g, kindlingCoughEntity.prevPitch, kindlingCoughEntity.getPitch())));
-		this.model.setAngles(kindlingCoughEntity, g, 0.0F, -0.1F, 0.0F, 0.0F);
-		VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(this.model.getLayer(TEXTURE));
-		this.model.render(matrixStack, vertexConsumer, i, OverlayTexture.DEFAULT_UV);
-		matrixStack.pop();
-		super.render(kindlingCoughEntity, f, g, matrixStack, vertexConsumerProvider, i);
+	public void render(KindlingCoughEntity kindlingCoughEntity, float f, float g, PoseStack poseStack, MultiBufferSource vertexConsumerProvider, int i) {
+		poseStack.pushPose();
+		poseStack.translate(0.0, 0.15000000596046448, 0.0);
+		poseStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(g, kindlingCoughEntity.yRotO, kindlingCoughEntity.getYRot()) - 90.0F));
+		poseStack.mulPose(Axis.ZP.rotationDegrees(Mth.lerp(g, kindlingCoughEntity.xRotO, kindlingCoughEntity.getXRot())));
+		this.model.setupAnim(kindlingCoughEntity, g, 0.0F, -0.1F, 0.0F, 0.0F);
+		VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(this.model.renderType(TEXTURE));
+		this.model.renderToBuffer(poseStack, vertexConsumer, i, OverlayTexture.NO_OVERLAY);
+		poseStack.popPose();
+		super.render(kindlingCoughEntity, f, g, poseStack, vertexConsumerProvider, i);
 	}
 	
-	public Identifier getTexture(KindlingCoughEntity kindlingCoughEntity) {
+	public ResourceLocation getTextureLocation(KindlingCoughEntity kindlingCoughEntity) {
 		return TEXTURE;
 	}
 }

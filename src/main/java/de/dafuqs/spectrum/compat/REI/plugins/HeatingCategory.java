@@ -6,7 +6,7 @@ import me.shedaniel.rei.api.client.gui.*;
 import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.fabricmc.api.*;
-import net.minecraft.text.*;
+import net.minecraft.network.chat.*;
 
 @Environment(EnvType.CLIENT)
 public class HeatingCategory extends BlockToBlockWithChanceCategory {
@@ -22,8 +22,8 @@ public class HeatingCategory extends BlockToBlockWithChanceCategory {
 	}
 	
 	@Override
-	public Text getTitle() {
-		return Text.translatable("container.spectrum.rei.heating.title");
+	public Component getTitle() {
+		return Component.translatable("container.spectrum.rei.heating.title");
 	}
 	
 }

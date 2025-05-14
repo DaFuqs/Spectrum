@@ -2,21 +2,21 @@ package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.blocks.particle_spawner.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.screen.*;
-import net.minecraft.util.math.*;
+import net.minecraft.core.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.item.*;
 
-public class ParticleSpawnerScreenHandler extends ScreenHandler {
+public class ParticleSpawnerScreenHandler extends AbstractContainerMenu {
 	
-	protected final PlayerEntity player;
+	protected final Player player;
 	protected ParticleSpawnerBlockEntity blockEntity;
 	
-	public ParticleSpawnerScreenHandler(int syncId, PlayerInventory inventory, BlockPos pos) {
-		this(syncId, inventory, inventory.player.getWorld().getBlockEntity(pos, SpectrumBlockEntities.PARTICLE_SPAWNER).orElseThrow());
+	public ParticleSpawnerScreenHandler(int syncId, Inventory inventory, BlockPos pos) {
+		this(syncId, inventory, inventory.player.level().getBlockEntity(pos, SpectrumBlockEntities.PARTICLE_SPAWNER).orElseThrow());
 	}
 	
-	public ParticleSpawnerScreenHandler(int syncId, PlayerInventory playerInventory, ParticleSpawnerBlockEntity blockEntity) {
+	public ParticleSpawnerScreenHandler(int syncId, Inventory playerInventory, ParticleSpawnerBlockEntity blockEntity) {
 		super(SpectrumScreenHandlerTypes.PARTICLE_SPAWNER, syncId);
 		
 		this.player = playerInventory.player;
@@ -28,12 +28,12 @@ public class ParticleSpawnerScreenHandler extends ScreenHandler {
 	}
 	
 	@Override
-	public ItemStack quickMove(PlayerEntity player, int index) {
+	public ItemStack quickMoveStack(Player player, int index) {
 		return ItemStack.EMPTY;
 	}
 	
 	@Override
-	public boolean canUse(PlayerEntity player) {
+	public boolean stillValid(Player player) {
 		return this.blockEntity != null && !this.blockEntity.isRemoved();
 	}
 	

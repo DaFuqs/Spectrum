@@ -1,15 +1,15 @@
 package de.dafuqs.spectrum.helpers;
 
 import net.minecraft.util.*;
-import net.minecraft.world.*;
+import net.minecraft.world.level.*;
 import org.jetbrains.annotations.*;
 
 public class TimeHelper {
 	
 	public static final long EPOCH_DAY_MILLIS = 86400000;
 	
-	public static TimeOfDay getTimeOfDay(@NotNull World world) {
-		return getTimeOfDay(world.getTimeOfDay());
+	public static TimeOfDay getTimeOfDay(@NotNull Level world) {
+		return getTimeOfDay(world.getDayTime());
 	}
 	
 	public static TimeOfDay getTimeOfDay(long timeOfDay) {
@@ -29,7 +29,7 @@ public class TimeHelper {
 		}
 	}
 	
-	public static boolean isBrightSunlight(World world) {
+	public static boolean isBrightSunlight(Level world) {
 		TimeOfDay timeOfDay = getTimeOfDay(world);
 		return timeOfDay.isDay() && !world.isRaining();
 	}
@@ -38,7 +38,7 @@ public class TimeHelper {
 		return time / 24000L % 2147483647L;
 	}
 	
-	public enum TimeOfDay implements StringIdentifiable {
+	public enum TimeOfDay implements StringRepresentable {
 		DAY(0, 12000),
 		NIGHT(12000, 24000),
 		NOON(6000, 7000),
@@ -63,7 +63,7 @@ public class TimeHelper {
 		}
 		
 		@Override
-		public String asString() {
+		public String getSerializedName() {
 			return name().toLowerCase();
 		}
 	}

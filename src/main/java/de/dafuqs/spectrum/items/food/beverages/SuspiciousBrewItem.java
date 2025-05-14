@@ -1,12 +1,11 @@
 package de.dafuqs.spectrum.items.food.beverages;
 
 import de.dafuqs.spectrum.api.item.*;
-import net.minecraft.component.*;
-import net.minecraft.component.type.*;
-import net.minecraft.item.*;
-import net.minecraft.item.tooltip.*;
-import net.minecraft.text.*;
-import net.minecraft.util.*;
+import net.minecraft.*;
+import net.minecraft.core.component.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.alchemy.*;
 
 import java.util.*;
 
@@ -14,16 +13,16 @@ public class SuspiciousBrewItem extends BeverageItem {
 	
 	//TODO should this use the SuspiciousStewContents component instead?
 	
-	public SuspiciousBrewItem(Settings settings) {
-		super(settings.component(DataComponentTypes.POTION_CONTENTS, PotionContentsComponent.DEFAULT));
+	public SuspiciousBrewItem(Properties settings) {
+		super(settings.component(DataComponents.POTION_CONTENTS, PotionContents.EMPTY));
 	}
 	
 	@Override
-	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		super.appendTooltip(stack, context, tooltip, type);
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
 		if (FermentedItem.isPreviewStack(stack)) {
-			tooltip.add(Text.translatable("item.spectrum.suspicious_brew.tooltip.preview").formatted(Formatting.GRAY));
-			tooltip.add(Text.translatable("item.spectrum.suspicious_brew.tooltip.preview2").formatted(Formatting.GRAY));
+			tooltip.add(Component.translatable("item.spectrum.suspicious_brew.tooltip.preview").withStyle(ChatFormatting.GRAY));
+			tooltip.add(Component.translatable("item.spectrum.suspicious_brew.tooltip.preview2").withStyle(ChatFormatting.GRAY));
 		}
 	}
 	

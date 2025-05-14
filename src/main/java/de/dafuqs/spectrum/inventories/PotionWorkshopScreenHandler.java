@@ -4,42 +4,41 @@ import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.blocks.potion_workshop.*;
 import de.dafuqs.spectrum.inventories.slots.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.inventory.*;
-import net.minecraft.item.*;
-import net.minecraft.screen.*;
-import net.minecraft.screen.slot.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
 
-public class PotionWorkshopScreenHandler extends ScreenHandler {
+public class PotionWorkshopScreenHandler extends AbstractContainerMenu {
 	
-	protected final World world;
-	private final Inventory inventory;
-	private final PropertyDelegate propertyDelegate;
+	protected final Level world;
+	private final Container inventory;
+	private final ContainerData propertyDelegate;
 	
-	public PotionWorkshopScreenHandler(int syncId, PlayerInventory playerInventory) {
+	public PotionWorkshopScreenHandler(int syncId, Inventory playerInventory) {
 		this(SpectrumScreenHandlerTypes.POTION_WORKSHOP, syncId, playerInventory);
 	}
 	
-	public PotionWorkshopScreenHandler(int syncId, PlayerInventory playerInventory, PotionWorkshopBlockEntity potionWorkshopBlockEntity, PropertyDelegate propertyDelegate) {
+	public PotionWorkshopScreenHandler(int syncId, Inventory playerInventory, PotionWorkshopBlockEntity potionWorkshopBlockEntity, ContainerData propertyDelegate) {
 		this(SpectrumScreenHandlerTypes.POTION_WORKSHOP, syncId, playerInventory, potionWorkshopBlockEntity, propertyDelegate);
 	}
 	
-	public PotionWorkshopScreenHandler(ScreenHandlerType<?> type, int i, PlayerInventory playerInventory) {
-		this(type, i, playerInventory, new SimpleInventory(PotionWorkshopBlockEntity.INVENTORY_SIZE), new ArrayPropertyDelegate(3));
+	public PotionWorkshopScreenHandler(MenuType<?> type, int i, Inventory playerInventory) {
+		this(type, i, playerInventory, new SimpleContainer(PotionWorkshopBlockEntity.INVENTORY_SIZE), new SimpleContainerData(3));
 	}
 	
-	protected PotionWorkshopScreenHandler(ScreenHandlerType<?> type, int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
+	protected PotionWorkshopScreenHandler(MenuType<?> type, int syncId, Inventory playerInventory, Container inventory, ContainerData propertyDelegate) {
 		super(type, syncId);
 		this.inventory = inventory;
-		this.world = playerInventory.player.getWorld();
+		this.world = playerInventory.player.level();
 		
-		checkDataCount(propertyDelegate, 3);
+		checkContainerDataCount(propertyDelegate, 3);
 		this.propertyDelegate = propertyDelegate;
-		this.addProperties(propertyDelegate);
+		this.addDataSlots(propertyDelegate);
 		
-		checkSize(inventory, PotionWorkshopBlockEntity.INVENTORY_SIZE);
-		inventory.onOpen(playerInventory.player);
+		checkContainerSize(inventory, PotionWorkshopBlockEntity.INVENTORY_SIZE);
+		inventory.startOpen(playerInventory.player);
 		
 		// mermaids gem slot
 		this.addSlot(new StackFilterSlot(inventory, 0, 26, 85, SpectrumItems.MERMAIDS_GEM));
@@ -86,21 +85,21 @@ public class PotionWorkshopScreenHandler extends ScreenHandler {
 	}
 	
 	@Override
-	public boolean canUse(PlayerEntity player) {
-		return this.inventory.canPlayerUse(player);
+	public boolean stillValid(Player player) {
+		return this.inventory.stillValid(player);
 	}
 	
 	@Override
-	public ItemStack quickMove(PlayerEntity player, int index) {
+	public ItemStack quickMoveStack(Player player, int index) {
 		ItemStack slotStackCopy = ItemStack.EMPTY;
 		Slot slot = this.slots.get(index);
 		
-		if (slot.hasStack()) {
-			ItemStack slotStack = slot.getStack();
+		if (slot.hasItem()) {
+			ItemStack slotStack = slot.getItem();
 			slotStackCopy = slotStack.copy();
 			if (index < PotionWorkshopBlockEntity.FIRST_INVENTORY_SLOT) {
 				// workshop (not output inv)
-				if (!this.insertItem(slotStack, PotionWorkshopBlockEntity.FIRST_INVENTORY_SLOT + 12, this.slots.size(), false)) {
+				if (!this.moveItemStackTo(slotStack, PotionWorkshopBlockEntity.FIRST_INVENTORY_SLOT + 12, this.slots.size(), false)) {
 					if (inventory instanceof PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
 						potionWorkshopBlockEntity.inventoryChanged();
 					}
@@ -108,14 +107,14 @@ public class PotionWorkshopScreenHandler extends ScreenHandler {
 				}
 			} else if (index < PotionWorkshopBlockEntity.FIRST_INVENTORY_SLOT + 12) {
 				// workshop (output inv)
-				if (!this.insertItem(slotStack, PotionWorkshopBlockEntity.FIRST_INVENTORY_SLOT + 12, this.slots.size(), false)) {
+				if (!this.moveItemStackTo(slotStack, PotionWorkshopBlockEntity.FIRST_INVENTORY_SLOT + 12, this.slots.size(), false)) {
 					return ItemStack.EMPTY;
 				}
 				// from player inv
 				// is reagent?
-			} else if (!this.insertItem(slotStack, PotionWorkshopBlockEntity.FIRST_REAGENT_SLOT, PotionWorkshopBlockEntity.FIRST_INVENTORY_SLOT, false)) {
+			} else if (!this.moveItemStackTo(slotStack, PotionWorkshopBlockEntity.FIRST_REAGENT_SLOT, PotionWorkshopBlockEntity.FIRST_INVENTORY_SLOT, false)) {
 				if (!slotStack.isEmpty()) {
-					this.insertItem(slotStack, 0, PotionWorkshopBlockEntity.FIRST_REAGENT_SLOT, false);
+					this.moveItemStackTo(slotStack, 0, PotionWorkshopBlockEntity.FIRST_REAGENT_SLOT, false);
 				}
 				if (inventory instanceof PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
 					potionWorkshopBlockEntity.inventoryChanged();
@@ -123,9 +122,9 @@ public class PotionWorkshopScreenHandler extends ScreenHandler {
 				return ItemStack.EMPTY;
 				// others
 			} else if (slotStack.isEmpty()) {
-				slot.setStack(ItemStack.EMPTY);
+				slot.setByPlayer(ItemStack.EMPTY);
 			} else {
-				slot.markDirty();
+				slot.setChanged();
 			}
 		}
 		
@@ -135,14 +134,14 @@ public class PotionWorkshopScreenHandler extends ScreenHandler {
 		return slotStackCopy;
 	}
 	
-	public Inventory getInventory() {
+	public Container getInventory() {
 		return this.inventory;
 	}
 	
 	@Override
-	public void onClosed(PlayerEntity player) {
-		super.onClosed(player);
-		this.inventory.onClose(player);
+	public void removed(Player player) {
+		super.removed(player);
+		this.inventory.stopOpen(player);
 	}
 	
 	public int getBrewTime() {

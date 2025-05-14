@@ -3,30 +3,29 @@ package de.dafuqs.spectrum.progression.advancement;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.*;
-import net.minecraft.advancement.criterion.*;
-import net.minecraft.predicate.entity.*;
-import net.minecraft.server.network.*;
-import net.minecraft.util.*;
+import net.minecraft.advancements.critereon.*;
+import net.minecraft.resources.*;
+import net.minecraft.server.level.*;
 
 import java.util.*;
 
-public class ConfirmationButtonPressedCriterion extends AbstractCriterion<ConfirmationButtonPressedCriterion.Conditions> {
+public class ConfirmationButtonPressedCriterion extends SimpleCriterionTrigger<ConfirmationButtonPressedCriterion.Conditions> {
 	
-	public static final Identifier ID = SpectrumCommon.locate("confirmation_button_pressed");
+	public static final ResourceLocation ID = SpectrumCommon.locate("confirmation_button_pressed");
 	
-	public void trigger(ServerPlayerEntity player, String confirmation) {
+	public void trigger(ServerPlayer player, String confirmation) {
 		this.trigger(player, (conditions) -> conditions.matches(confirmation));
 	}
 	
 	@Override
-	public Codec<ConfirmationButtonPressedCriterion.Conditions> getConditionsCodec() {
+	public Codec<ConfirmationButtonPressedCriterion.Conditions> codec() {
 		return ConfirmationButtonPressedCriterion.Conditions.CODEC;
 	}
 	
-	public record Conditions(Optional<LootContextPredicate> player, Optional<String> confirmation) implements AbstractCriterion.Conditions {
+	public record Conditions(Optional<ContextAwarePredicate> player, Optional<String> confirmation) implements SimpleCriterionTrigger.SimpleInstance {
 		
 		public static final Codec<ConfirmationButtonPressedCriterion.Conditions> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-				LootContextPredicate.CODEC.optionalFieldOf("player").forGetter(ConfirmationButtonPressedCriterion.Conditions::player),
+				ContextAwarePredicate.CODEC.optionalFieldOf("player").forGetter(ConfirmationButtonPressedCriterion.Conditions::player),
 				Codec.STRING.optionalFieldOf("confirmation").forGetter(ConfirmationButtonPressedCriterion.Conditions::confirmation)
 		).apply(instance, ConfirmationButtonPressedCriterion.Conditions::new));
 		

@@ -1,26 +1,26 @@
 package de.dafuqs.spectrum.helpers;
 
-import net.minecraft.component.*;
-import net.minecraft.component.type.*;
-import net.minecraft.item.*;
-import net.minecraft.text.*;
+import net.minecraft.core.component.*;
+import net.minecraft.network.chat.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public class LoreHelper {
 	
-	public static @NotNull List<Text> getLoreTextArrayFromString(@NotNull String string) {
-		List<Text> loreText = new ArrayList<>();
+	public static @NotNull List<Component> getLoreTextArrayFromString(@NotNull String string) {
+		List<Component> loreText = new ArrayList<>();
 		
 		for (String split : string.split("\\\\n")) {
-			loreText.addFirst(Text.literal(split));
+			loreText.addFirst(Component.literal(split));
 		}
 		
 		return loreText;
 	}
 	
-	public static @NotNull String getStringFromLoreTextArray(@NotNull List<Text> lore) {
+	public static @NotNull String getStringFromLoreTextArray(@NotNull List<Component> lore) {
 		if (lore.isEmpty()) {
 			return "";
 		} else {
@@ -35,43 +35,43 @@ public class LoreHelper {
 		}
 	}
 	
-	public static void setLore(@NotNull ItemStack itemStack, @Nullable List<Text> lore) {
+	public static void setLore(@NotNull ItemStack itemStack, @Nullable List<Component> lore) {
 		if (lore == null || lore.isEmpty()) {
-			itemStack.remove(DataComponentTypes.LORE);
+			itemStack.remove(DataComponents.LORE);
 		} else {
-			LoreComponent component = new LoreComponent(lore);
-			itemStack.set(DataComponentTypes.LORE, component);
+			ItemLore component = new ItemLore(lore);
+			itemStack.set(DataComponents.LORE, component);
 		}
 	}
 	
-	public static void setLore(@NotNull ItemStack stack, @Nullable Text lore) {
+	public static void setLore(@NotNull ItemStack stack, @Nullable Component lore) {
 		if (lore == null) {
-			stack.remove(DataComponentTypes.LORE);
+			stack.remove(DataComponents.LORE);
 		} else {
-			LoreComponent component = new LoreComponent(List.of(lore));
-			stack.set(DataComponentTypes.LORE, component);
+			ItemLore component = new ItemLore(List.of(lore));
+			stack.set(DataComponents.LORE, component);
 		}
 	}
 	
 	public static void removeLore(@NotNull ItemStack itemStack) {
-		itemStack.remove(DataComponentTypes.LORE);
+		itemStack.remove(DataComponents.LORE);
 	}
 	
 	public static boolean hasLore(@NotNull ItemStack itemStack) {
-		return itemStack.get(DataComponentTypes.LORE) == null;
+		return itemStack.get(DataComponents.LORE) == null;
 	}
 	
-	public static @NotNull List<Text> getLoreList(@NotNull ItemStack itemStack) {
-		LoreComponent component = itemStack.get(DataComponentTypes.LORE);
+	public static @NotNull List<Component> getLoreList(@NotNull ItemStack itemStack) {
+		ItemLore component = itemStack.get(DataComponents.LORE);
 		if (component == null) {
 			return new ArrayList<>();
 		}
 		return component.lines();
 	}
 	
-	public static boolean equalsLore(List<Text> lore, ItemStack stack) {
+	public static boolean equalsLore(List<Component> lore, ItemStack stack) {
 		if (hasLore(stack)) {
-			LoreComponent component = stack.get(DataComponentTypes.LORE);
+			ItemLore component = stack.get(DataComponents.LORE);
 			if (component == null) {
 				return lore.isEmpty();
 			}

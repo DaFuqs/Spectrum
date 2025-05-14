@@ -1,27 +1,28 @@
 package de.dafuqs.spectrum.blocks.deeper_down.flora;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
+import net.minecraft.core.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 
 public class WeepingGalaSprigBlock extends SaplingBlock {
-
-	public static final MapCodec<WeepingGalaSprigBlock> CODEC = createCodec(WeepingGalaSprigBlock::new);
-
-	public WeepingGalaSprigBlock(AbstractBlock.Settings settings) {
+	
+	public static final MapCodec<WeepingGalaSprigBlock> CODEC = simpleCodec(WeepingGalaSprigBlock::new);
+	
+	public WeepingGalaSprigBlock(BlockBehaviour.Properties settings) {
 		super(SpectrumSaplingGenerators.WEEPING_GALA_SAPLING_GENERATOR, settings);
 	}
 
 	@Override
-	public MapCodec<? extends WeepingGalaSprigBlock> getCodec() {
+	public MapCodec<? extends WeepingGalaSprigBlock> codec() {
 		return CODEC;
 	}
 
 	@Override
-	protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-		return floor.isIn(SpectrumBlockTags.ASH) || floor.isOf(SpectrumBlocks.ASHEN_BLACKSLAG) || super.canPlantOnTop(floor, world, pos);
+	protected boolean mayPlaceOn(BlockState floor, BlockGetter world, BlockPos pos) {
+		return floor.is(SpectrumBlockTags.ASH) || floor.is(SpectrumBlocks.ASHEN_BLACKSLAG) || super.mayPlaceOn(floor, world, pos);
 	}
 	
 }

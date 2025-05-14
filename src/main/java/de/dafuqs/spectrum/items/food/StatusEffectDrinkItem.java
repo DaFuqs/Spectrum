@@ -1,46 +1,46 @@
 package de.dafuqs.spectrum.items.food;
 
-import net.minecraft.advancement.criterion.*;
-import net.minecraft.component.*;
-import net.minecraft.component.type.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.server.network.*;
-import net.minecraft.stat.*;
-import net.minecraft.world.*;
-import net.minecraft.world.event.*;
+import net.minecraft.advancements.*;
+import net.minecraft.core.component.*;
+import net.minecraft.server.level.*;
+import net.minecraft.stats.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.alchemy.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.gameevent.*;
 
 public class StatusEffectDrinkItem extends DrinkItem {
 	
-	public StatusEffectDrinkItem(Settings settings) {
+	public StatusEffectDrinkItem(Properties settings) {
 		super(settings);
 	}
 	
 	@Override
-	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-		PlayerEntity playerEntity = user instanceof PlayerEntity ? (PlayerEntity) user : null;
-		if (playerEntity instanceof ServerPlayerEntity) {
-			Criteria.CONSUME_ITEM.trigger((ServerPlayerEntity) playerEntity, stack);
+	public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity user) {
+		Player playerEntity = user instanceof Player ? (Player) user : null;
+		if (playerEntity instanceof ServerPlayer) {
+			CriteriaTriggers.CONSUME_ITEM.trigger((ServerPlayer) playerEntity, stack);
 		}
 		
-		if (!world.isClient) {
-			PotionContentsComponent potionContentsComponent = stack.getOrDefault(DataComponentTypes.POTION_CONTENTS, PotionContentsComponent.DEFAULT);
+		if (!world.isClientSide) {
+			PotionContents potionContentsComponent = stack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
 			potionContentsComponent.forEachEffect((effect) -> {
-				if ((effect.getEffectType().value()).isInstant()) {
-					(effect.getEffectType().value()).applyInstantEffect(playerEntity, playerEntity, user, effect.getAmplifier(), 1.0);
+				if ((effect.getEffect().value()).isInstantenous()) {
+					(effect.getEffect().value()).applyInstantenousEffect(playerEntity, playerEntity, user, effect.getAmplifier(), 1.0);
 				} else {
-					user.addStatusEffect(effect);
+					user.addEffect(effect);
 				}
 			});
 		}
 		
 		if (playerEntity != null) {
-			playerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
+			playerEntity.awardStat(Stats.ITEM_USED.get(this));
 		}
 		
-		user.emitGameEvent(GameEvent.DRINK);
-		return super.finishUsing(stack, world, user);
+		user.gameEvent(GameEvent.DRINK);
+		return super.finishUsingItem(stack, world, user);
 	}
 	
 }

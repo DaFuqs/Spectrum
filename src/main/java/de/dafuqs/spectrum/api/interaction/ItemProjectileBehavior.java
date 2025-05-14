@@ -4,49 +4,50 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.component.*;
-import net.minecraft.enchantment.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.mob.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.entity.projectile.thrown.*;
-import net.minecraft.item.*;
-import net.minecraft.network.packet.s2c.play.*;
-import net.minecraft.predicate.item.*;
-import net.minecraft.registry.tag.*;
-import net.minecraft.server.network.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
+import net.minecraft.advancements.critereon.*;
+import net.minecraft.core.*;
+import net.minecraft.core.component.*;
+import net.minecraft.network.protocol.game.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
+import net.minecraft.tags.*;
 import net.minecraft.util.*;
-import net.minecraft.util.hit.*;
-import net.minecraft.util.math.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.monster.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.entity.projectile.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.context.*;
+import net.minecraft.world.item.enchantment.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public interface ItemProjectileBehavior {
 	
-	List<Pair<ItemPredicate, ItemProjectileBehavior>> BEHAVIORS = new ArrayList<>();
+	List<Tuple<ItemPredicate, ItemProjectileBehavior>> BEHAVIORS = new ArrayList<>();
 	
 	ItemProjectileBehavior DEFAULT = new Default();
 	
 	static void register(ItemProjectileBehavior behavior, ItemPredicate predicate) {
-		BEHAVIORS.add(new Pair<>(predicate, behavior));
+		BEHAVIORS.add(new Tuple<>(predicate, behavior));
 	}
 	
 	static void register(ItemProjectileBehavior behavior, Item... items) {
-		BEHAVIORS.add(new Pair<>(ItemPredicate.Builder.create().items(items).build(), behavior));
+		BEHAVIORS.add(new Tuple<>(ItemPredicate.Builder.item().of(items).build(), behavior));
 	}
 	
 	static void register(ItemProjectileBehavior behavior, TagKey<Item> tag) {
-		BEHAVIORS.add(new Pair<>(ItemPredicate.Builder.create().tag(tag).build(), behavior));
+		BEHAVIORS.add(new Tuple<>(ItemPredicate.Builder.item().of(tag).build(), behavior));
 	}
 	
 	static ItemProjectileBehavior get(ItemStack stack) {
-		for (Pair<ItemPredicate, ItemProjectileBehavior> entry : BEHAVIORS) {
-			if (entry.getLeft().test(stack)) {
-				return entry.getRight();
+		for (Tuple<ItemPredicate, ItemProjectileBehavior> entry : BEHAVIORS) {
+			if (entry.getA().test(stack)) {
+				return entry.getB();
 			}
 		}
 		return DEFAULT;
@@ -83,8 +84,8 @@ public interface ItemProjectileBehavior {
 			}
 			
 			@Override
-			public boolean dealDamage(ThrownItemEntity projectile, Entity owner, Entity target) {
-				return target.damage(target.getDamageSources().thrown(projectile, owner), damage);
+			public boolean dealDamage(ThrowableItemProjectile projectile, Entity owner, Entity target) {
+				return target.hurt(target.damageSources().thrown(projectile, owner), damage);
 			}
 		};
 	}
@@ -94,52 +95,53 @@ public interface ItemProjectileBehavior {
 		@Override
 		public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, Entity owner, EntityHitResult hitResult) {
 			Entity target = hitResult.getEntity();
-
-			if (target instanceof PlayerEntity player && (player.isCreative() || player.isSpectator())) {
+			
+			if (target instanceof Player player && (player.isCreative() || player.isSpectator())) {
 				return stack;
 			}
 			
 			// Lots of fun(tm) is to be had
-			if (stack.isIn(ItemTags.CREEPER_IGNITERS) && target instanceof CreeperEntity creeperEntity) {
-				World world = projectile.getWorld();
-				SoundEvent soundEvent = stack.isOf(Items.FIRE_CHARGE) ? SoundEvents.ITEM_FIRECHARGE_USE : SoundEvents.ITEM_FLINTANDSTEEL_USE;
-				world.playSound(null, projectile.getX(), projectile.getY(), projectile.getZ(), soundEvent, projectile.getSoundCategory(), 1.0F, world.getRandom().nextFloat() * 0.4F + 0.8F);
+			if (stack.is(ItemTags.CREEPER_IGNITERS) && target instanceof Creeper creeperEntity) {
+				Level world = projectile.level();
+				SoundEvent soundEvent = stack.is(Items.FIRE_CHARGE) ? SoundEvents.FIRECHARGE_USE : SoundEvents.FLINTANDSTEEL_USE;
+				world.playSound(null, projectile.getX(), projectile.getY(), projectile.getZ(), soundEvent, projectile.getSoundSource(), 1.0F, world.getRandom().nextFloat() * 0.4F + 0.8F);
 				creeperEntity.ignite();
 				
-				if (stack.isDamageable() && world instanceof ServerWorld serverWorld) {
-					stack.damage(1, serverWorld, null, item -> {});
-				} else if(!stack.contains(DataComponentTypes.UNBREAKABLE)) {
-					stack.decrement(1); // In Vanilla unbreakable Flint & Steel is not handled correctly and therefore consumed. This here probably still does not handle every modded item perfectly
+				if (stack.isDamageableItem() && world instanceof ServerLevel serverWorld) {
+					stack.hurtAndBreak(1, serverWorld, null, item -> {
+					});
+				} else if (!stack.has(DataComponents.UNBREAKABLE)) {
+					stack.shrink(1); // In Vanilla unbreakable Flint & Steel is not handled correctly and therefore consumed. This here probably still does not handle every modded item perfectly
 				}
 			}
 			
 			if (target instanceof LivingEntity livingTarget) {
-				if (target instanceof PlayerEntity && !SpectrumCommon.CONFIG.OmniAcceleratorPvP) {
-					if (stack.isIn(SpectrumItemTags.REQUIRES_OMNI_ACCELERATOR_PVP_ENABLED)) {
+				if (target instanceof Player && !SpectrumCommon.CONFIG.OmniAcceleratorPvP) {
+					if (stack.is(SpectrumItemTags.REQUIRES_OMNI_ACCELERATOR_PVP_ENABLED)) {
 						return stack;
 					}
 				}
 				
 				// attaching name tags, saddle horses, memorize entities...
-				if (owner instanceof PlayerEntity playerOwner && stack.useOnEntity(playerOwner, livingTarget, Hand.MAIN_HAND).isAccepted()) {
+				if (owner instanceof Player playerOwner && stack.interactLivingEntity(playerOwner, livingTarget, InteractionHand.MAIN_HAND).consumesAction()) {
 					return stack;
 				}
 				
 				// Force-feeds food, applies potions, ...
-				stack.getItem().finishUsing(stack, livingTarget.getWorld(), livingTarget);
+				stack.getItem().finishUsingItem(stack, livingTarget.level(), livingTarget);
 			}
 			return stack;
 		}
 		
 		@Override
 		public ItemStack onBlockHit(ItemProjectileEntity projectile, ItemStack stack, Entity owner, BlockHitResult hitResult) {
-			World world = projectile.getWorld();
+			Level world = projectile.level();
 			BlockPos hitPos = hitResult.getBlockPos();
 			
-			hitResult.withSide(hitResult.getSide());
-			Direction facing = hitResult.getSide().getOpposite();
-			BlockPos placementPos = hitPos.offset(facing.getOpposite());
-			Direction placementDirection = world.isAir(placementPos.down()) ? facing : Direction.UP;
+			hitResult.withDirection(hitResult.getDirection());
+			Direction facing = hitResult.getDirection().getOpposite();
+			BlockPos placementPos = hitPos.relative(facing.getOpposite());
+			Direction placementDirection = world.isEmptyBlock(placementPos.below()) ? facing : Direction.UP;
 			
 			if (!GenericClaimModsCompat.canPlaceBlock(world, placementPos, owner)) {
 				return stack;
@@ -149,10 +151,10 @@ public interface ItemProjectileBehavior {
 				if (stack.getItem() instanceof BlockItem blockItem) {
 					blockItem.place(new ItemProjectileBehavior.ItemProjectilePlacementContext(world, projectile, hitResult));
 				} else {
-					stack.useOnBlock(new AutomaticItemPlacementContext(world, placementPos, facing, stack, placementDirection));
+					stack.useOn(new DirectionalPlaceContext(world, placementPos, facing, stack, placementDirection));
 				}
 			} catch (Exception e) {
-				SpectrumCommon.logError("Item Projectile failed to use item " + stack.getItem().getName());
+				SpectrumCommon.logError("Item Projectile failed to use item " + stack.getItem().getDescription());
 				e.printStackTrace();
 			}
 			
@@ -166,69 +168,69 @@ public interface ItemProjectileBehavior {
 			Entity target = hitResult.getEntity();
 			
 			if (owner instanceof LivingEntity livingOwner) {
-				livingOwner.onAttacking(target);
+				livingOwner.setLastHurtMob(target);
 			}
 			
 			if (dealDamage(projectile, owner, target)) {
-				int targetFireTicks = target.getFireTicks();
+				int targetFireTicks = target.getRemainingFireTicks();
 				if (projectile.isOnFire()) {
-					target.setFireTicks(targetFireTicks);
+					target.setRemainingFireTicks(targetFireTicks);
 				}
 				
 				if (target instanceof LivingEntity livingTarget) {
-					if (owner.getWorld() instanceof ServerWorld serverWorld) {
-						EnchantmentHelper.onTargetDamaged(serverWorld, target, livingTarget.getRecentDamageSource(), stack);
+					if (owner.level() instanceof ServerLevel serverWorld) {
+						EnchantmentHelper.doPostAttackEffectsWithItemSource(serverWorld, target, livingTarget.getLastDamageSource(), stack);
 					}
-					if (target != owner && target instanceof PlayerEntity && owner instanceof ServerPlayerEntity serverPlayerOwner && !projectile.isSilent()) {
-						serverPlayerOwner.networkHandler.sendPacket(new GameStateChangeS2CPacket(GameStateChangeS2CPacket.PROJECTILE_HIT_PLAYER, 0.0F));
+					if (target != owner && target instanceof Player && owner instanceof ServerPlayer serverPlayerOwner && !projectile.isSilent()) {
+						serverPlayerOwner.connection.send(new ClientboundGameEventPacket(ClientboundGameEventPacket.ARROW_HIT_PLAYER, 0.0F));
 					}
-					projectile.playSound(SpectrumSoundEvents.BLOCK_CITRINE_CLUSTER_HIT, 1.0F, 1.2F / (projectile.getWorld().getRandom().nextFloat() * 0.2F + 0.9F));
+					projectile.playSound(SpectrumSoundEvents.BLOCK_CITRINE_CLUSTER_HIT, 1.0F, 1.2F / (projectile.level().getRandom().nextFloat() * 0.2F + 0.9F));
 				}
 			}
 			
 			if (destroyItemOnHit()) {
-				stack.decrement(1);
+				stack.shrink(1);
 			}
 			return stack;
 		}
 		
 		public abstract boolean destroyItemOnHit();
 		
-		public abstract boolean dealDamage(ThrownItemEntity projectile, Entity owner, Entity target);
+		public abstract boolean dealDamage(ThrowableItemProjectile projectile, Entity owner, Entity target);
 		
 		@Override
 		public ItemStack onBlockHit(ItemProjectileEntity projectile, ItemStack stack, Entity owner, BlockHitResult hitResult) {
 			if (destroyItemOnHit()) {
-				stack.decrement(1);
+				stack.shrink(1);
 			}
 			return stack;
 		}
 	}
 	
-	class ItemProjectilePlacementContext extends ItemPlacementContext {
+	class ItemProjectilePlacementContext extends BlockPlaceContext {
 		
 		ItemProjectileEntity itemProjectileEntity;
 		
-		public ItemProjectilePlacementContext(World world, ItemProjectileEntity itemProjectileEntity, BlockHitResult blockHitResult) {
-			super(world, null, Hand.MAIN_HAND, itemProjectileEntity.getStack(), blockHitResult);
+		public ItemProjectilePlacementContext(Level world, ItemProjectileEntity itemProjectileEntity, BlockHitResult blockHitResult) {
+			super(world, null, InteractionHand.MAIN_HAND, itemProjectileEntity.getItem(), blockHitResult);
 			this.itemProjectileEntity = itemProjectileEntity;
 		}
 		
 		@Override
-		public Direction getPlayerLookDirection() {
-			return Direction.getLookDirectionForAxis(itemProjectileEntity, Direction.Axis.Y);
+		public Direction getNearestLookingDirection() {
+			return Direction.getFacingAxis(itemProjectileEntity, Direction.Axis.Y);
 		}
 		
 		@Override
-		public Direction getVerticalPlayerLookDirection() {
-			return itemProjectileEntity.getPitch(1.0F) < 0.0F ? Direction.UP : Direction.DOWN;
+		public Direction getNearestLookingVerticalDirection() {
+			return itemProjectileEntity.getViewXRot(1.0F) < 0.0F ? Direction.UP : Direction.DOWN;
 		}
 		
 		@Override
-		public Direction[] getPlacementDirections() {
-			Direction[] directions = Direction.getEntityFacingOrder(itemProjectileEntity);
-			if (!this.canReplaceExisting) {
-				Direction direction = this.getSide();
+		public Direction[] getNearestLookingDirections() {
+			Direction[] directions = Direction.orderedByNearest(itemProjectileEntity);
+			if (!this.replaceClicked) {
+				Direction direction = this.getClickedFace();
 				
 				int i;
 				for (i = 0; i < directions.length && directions[i] != direction.getOpposite();)

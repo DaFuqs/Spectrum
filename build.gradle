@@ -86,10 +86,10 @@ dependencies {
 	}
 
 	// https://github.com/OnyxStudios/Cardinal-Components-API/wiki/
-	modImplementation include("dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cca_version}")
-	modImplementation include("dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${project.cca_version}")
-	modImplementation include("dev.onyxstudios.cardinal-components-api:cardinal-components-item:${project.cca_version}")
-	modImplementation include("dev.onyxstudios.cardinal-components-api:cardinal-components-level:${project.cca_version}")
+	modImplementation include("org.ladysnake.cardinal-components-api:cardinal-components-base:${project.cca_version}")
+	modImplementation include("org.ladysnake.cardinal-components-api:cardinal-components-entity:${project.cca_version}")
+	modImplementation include("org.ladysnake.cardinal-components-api:cardinal-components-item:${project.cca_version}")
+	modImplementation include("org.ladysnake.cardinal-components-api:cardinal-components-level:${project.cca_version}")
 
 	// Connect to local dev servers
 	// modLocalRuntime("maven.modrinth:auth-me:${project.auth_me_version}")

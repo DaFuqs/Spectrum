@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.helpers;
 
+import de.dafuqs.revelationary.api.advancements.*;
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.item.v1.*;
 import net.minecraft.core.*;
@@ -8,6 +10,7 @@ import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
 import org.jetbrains.annotations.*;
@@ -182,6 +185,17 @@ public class SpectrumEnchantmentHelper {
 	
 	public static int getEquipmentLevel(HolderLookup.Provider lookup, ResourceKey<Enchantment> key, LivingEntity entity) {
 		return getEntry(lookup, key).map(e -> EnchantmentHelper.getEnchantmentLevel(e, entity)).orElse(0);
+	}
+	
+	public static boolean canEntityUse(Entity entity, String idAsString) {
+		if (entity instanceof Player playerEntity) {
+			if (idAsString.contains("razing") || idAsString.contains("resonance") || idAsString.contains("voiding")) {
+				idAsString += "_usage";
+			}
+			return AdvancementHelper.hasAdvancement(playerEntity, SpectrumCommon.locate("unlocks/enchantments/" + idAsString.substring(idAsString.indexOf(':') + 1)));
+		} else {
+			return false;
+		}
 	}
 	
 }

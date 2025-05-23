@@ -18,7 +18,7 @@ repositories {
 	maven { url = "https://maven.blamejared.com" } // JEI
 	maven { url = "https://maven.ladysnake.org/releases" } // Cardinal Components API
 	maven { url = "https://maven.jamieswhiteshirt.com/libs-release/" } // Entity Reach Attribute
-	maven { url = "https://api.modrinth.com/maven" } // Revelationary, Additional Entity Attributes, Fractal Lib, Colorful Hearts
+	maven { url = "https://api.modrinth.com/maven" } // Revelationary, Additional Entity Attributes, Fractal Lib, Colorful Hearts, idwtialsimmoedm
 	maven { url = "https://cfa2.cursemaven.com" }
 	maven { url = "https://mvn.devos.one/releases/" } // Porting Lib
 	maven { url = "https://repo.unascribed.com" } // Ears API
@@ -105,6 +105,7 @@ dependencies {
 	modCompileOnly("maven.modrinth:travelersbackpack:${project.travelers_backpack_version}")
 	modCompileOnly("maven.modrinth:botania:${project.botania_version}")
 	modCompileOnly("maven.modrinth:vanity:${project.vanityslots_version}")
+	modImplementation("maven.modrinth:idwtialsimmoedm:${project.idwtialsimmoedm_version}")
 
 	//Porting Lib
 	for (String module in port_lib_modules.split(",")) {

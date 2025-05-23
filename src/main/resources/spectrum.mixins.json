@@ -124,6 +124,7 @@
     "client.DimensionTypeMixin",
     "client.DrawContextMixin",
     "client.ElytraFeatureRendererMixin",
+    "client.EnchantmentMixin",
     "client.EntityRenderDispatcherMixin",
     "client.GameRendererMixin",
     "client.HeadFeatureRendererMixin",

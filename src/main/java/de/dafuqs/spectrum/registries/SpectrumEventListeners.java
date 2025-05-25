@@ -230,7 +230,7 @@ public class SpectrumEventListeners {
 						.stream()
 						.filter(instance -> {
 							AtomicBoolean result = new AtomicBoolean(false);
-							instance.getEffectType().value().forEachAttributeModifier(instance.amplifier, (attribute, modifier) -> {
+							instance.getEffectType().value().forEachAttributeModifier(instance.getAmplifier(), (attribute, modifier) -> {
 								if (attribute.isIn(effectType))
 									result.set(true);
 							});

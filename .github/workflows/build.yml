@@ -24,6 +24,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: ${{ matrix.java }}
+          distribution: microsoft
       
       - name: setup gradle
         uses: gradle/actions/setup-gradle@v4

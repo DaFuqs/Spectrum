@@ -9,7 +9,6 @@ import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.entity.spawners.*;
-import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tools.*;
@@ -29,9 +28,7 @@ import net.minecraft.core.component.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
-import net.minecraft.server.*;
 import net.minecraft.server.level.*;
-import net.minecraft.server.network.*;
 import net.minecraft.server.packs.*;
 import net.minecraft.server.packs.resources.*;
 import net.minecraft.server.players.*;
@@ -237,7 +234,7 @@ public class SpectrumEventListeners {
 						.stream()
 						.filter(instance -> {
 							AtomicBoolean result = new AtomicBoolean(false);
-							instance.getEffect().value().createModifiers(instance.amplifier, (attribute, modifier) -> {
+							instance.getEffect().value().createModifiers(instance.getAmplifier(), (attribute, modifier) -> {
 								if (attribute.is(effectType))
 									result.set(true);
 							});

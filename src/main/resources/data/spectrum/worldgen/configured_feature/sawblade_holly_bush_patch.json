@@ -30,18 +30,13 @@
                 "blocks": "minecraft:air"
               },
               {
-                "type": "minecraft:would_survive",
+                "type": "minecraft:matching_blocks",
                 "offset": [
                   0,
                   -1,
                   0
                 ],
-                "state": {
-                  "Name": "spectrum:sawblade_holly_bush",
-                  "Properties": {
-                    "age": "7"
-                  }
-                }
+                "blocks": "spectrum:sawblade_grass"
               }
             ]
           }

@@ -1,0 +1,38 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "spectrum:enchantments_exist",
+      "values": [
+        "minecraft:thorns"
+      ]
+    }
+  ],
+  "type": "spectrum:enchantment_upgrade",
+  "bulk_item": {
+    "item": "spectrum:pink_pigment"
+  },
+  "enchantment": "minecraft:thorns",
+  "group": "minecraft",
+  "item_scaling": {
+    "type": "spectrum:indexed",
+    "indexes": [
+      8,
+      32,
+      128,
+      256,
+      512
+    ]
+  },
+  "level_cap": 6,
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_protection",
+  "xp_scaling": {
+    "type": "spectrum:indexed",
+    "indexes": [
+      100,
+      400,
+      2000,
+      4000,
+      10000
+    ]
+  }
+}

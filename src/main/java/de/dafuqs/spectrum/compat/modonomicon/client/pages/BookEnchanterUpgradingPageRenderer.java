@@ -47,11 +47,11 @@ public class BookEnchanterUpgradingPageRenderer extends BookGatedRecipePageRende
 
         // surrounding input slots
         List<ItemStack> inputStacks = new ArrayList<>();
-        int requiredItemCountSplit = recipe.getRequiredItemCount() / 8;
-        int requiredItemCountModulo = recipe.getRequiredItemCount() % 8;
+        int requiredItemCountSplit = recipe.getBaseItemCost() / 8;
+        int requiredItemCountModulo = recipe.getBaseItemCost() % 8;
         for (int i = 0; i < 8; i++) {
             int addAmount = i < requiredItemCountModulo ? 1 : 0;
-            inputStacks.add(new ItemStack(recipe.getRequiredItem(), requiredItemCountSplit + addAmount));
+            inputStacks.add(new ItemStack(recipe.getBulkItem(), requiredItemCountSplit + addAmount));
         }
 
         parentScreen.renderItemStack(drawContext, ingredientX + 16, recipeY, mouseX, mouseY, inputStacks.get(0));
@@ -67,7 +67,7 @@ public class BookEnchanterUpgradingPageRenderer extends BookGatedRecipePageRende
         parentScreen.renderIngredient(drawContext, ingredientX + 28, recipeY + 28, mouseX, mouseY, ingredients.getFirst());
 
         // Knowledge Gem and Enchanter
-        ItemStack knowledgeDropStackWithXP = KnowledgeGemItem.getKnowledgeDropStackWithXP(recipe.getRequiredExperience(), true);
+        ItemStack knowledgeDropStackWithXP = KnowledgeGemItem.getKnowledgeDropStackWithXP(recipe.getBaseXPCost(), true);
         parentScreen.renderItemStack(drawContext, recipeX + 81, recipeY + 9, mouseX, mouseY, knowledgeDropStackWithXP);
         parentScreen.renderItemStack(drawContext, recipeX + 81, recipeY + 46, mouseX, mouseY, SpectrumBlocks.ENCHANTER.asItem().getDefaultStack());
 

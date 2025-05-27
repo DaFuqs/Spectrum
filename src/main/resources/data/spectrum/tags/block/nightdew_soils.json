@@ -3,9 +3,10 @@
     "#spectrum:deep_soils",
     "#spectrum:blackslags",
     "#spectrum:groundcover",
-    "#spectrum:rock_crystal",
     "#spectrum:pyrite",
     "#spectrum:basal_marbles",
-    "spectrum:downstone"
+
+    "spectrum:downstone",
+    "spectrum:rock_crystal"
   ]
 }

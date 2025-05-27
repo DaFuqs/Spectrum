@@ -233,7 +233,7 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements BlockEntityP
 		if (!(user instanceof PlayerEntity player)) {
 			return false;
 		}
-		if (AdvancementHelper.hasAdvancement(player, SpectrumAdvancements.PASTEL_NODE_COLORING)) {
+		if (!AdvancementHelper.hasAdvancement(player, SpectrumAdvancements.PASTEL_NODE_COLORING)) {
 			return false;
 		}
 		@Nullable PastelNodeBlockEntity blockEntity = getBlockEntity(world, pos);

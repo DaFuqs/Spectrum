@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.api.item;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.cca.azure_dike.*;
 import dev.emi.trinkets.api.*;
 import net.minecraft.entity.*;
@@ -11,8 +10,6 @@ import net.minecraft.world.*;
 import java.util.*;
 
 public interface AzureDikeItem {
-	
-	Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("midgame/grow_azurite_in_crystallarieum");
 	
 	int maxAzureDike(ItemStack stack);
 	

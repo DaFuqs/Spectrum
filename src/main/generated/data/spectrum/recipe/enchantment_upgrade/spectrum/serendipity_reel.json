@@ -1,0 +1,28 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "spectrum:enchantments_exist",
+      "values": [
+        "spectrum:serendipity_reel"
+      ]
+    }
+  ],
+  "type": "spectrum:enchantment_upgrade",
+  "bulk_item": {
+    "item": "spectrum:light_blue_pigment"
+  },
+  "enchantment": "spectrum:serendipity_reel",
+  "item_scaling": {
+    "type": "spectrum:indexed",
+    "indexes": [
+      32,
+      128
+    ]
+  },
+  "level_cap": 3,
+  "required_advancement": "spectrum:unlocks/enchantments/serendipity_reel",
+  "xp_scaling": {
+    "type": "spectrum:doubling",
+    "scaling_value": 400
+  }
+}

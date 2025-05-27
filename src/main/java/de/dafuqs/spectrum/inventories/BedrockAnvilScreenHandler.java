@@ -244,10 +244,10 @@ public class BedrockAnvilScreenHandler extends ForgingScreenHandler {
 			// TODO: we are setting DataComponentTypes.CUSTOM_NAME above, already.
 			Text text = outputStack.getName();
 			if (pigmentInRepairSlot && text instanceof MutableText mutableText) {
-				TextColor newColor = TextColor.fromRgb(((PigmentItem) repairSlotStack.getItem()).getInkColor().getColorInt());
+				var newColor = ((PigmentItem) repairSlotStack.getItem()).getInkColor().getColorInt();
 				Text newName = mutableText.setStyle(mutableText.getStyle().withColor(newColor));
 				if (!newName.equals(inputStack.getName())) {
-					outputStack.set(DataComponentTypes.CUSTOM_NAME, Text.literal(this.newItemName));
+					outputStack.set(DataComponentTypes.CUSTOM_NAME, Text.literal(this.newItemName).withColor(newColor));
 				}
 			}
 			

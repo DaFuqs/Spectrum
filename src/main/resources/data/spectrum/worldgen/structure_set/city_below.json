@@ -12,5 +12,9 @@
     "spread_type": "triangular",
     "spacing": 24,
     "separation": 16
+  },
+  "exclusion_zone": {
+    "chunk_count": 16,
+    "other_set": "spectrum:undergrowth_manor"
   }
 }

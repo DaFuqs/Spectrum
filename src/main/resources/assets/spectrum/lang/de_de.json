@@ -10,7 +10,7 @@
   "recipeGroup.spectrum.shimmerstone_lights": "Funkelnde Lichter",
   "recipeGroup.spectrum.colored_spore_blossoms": "Farbige Sporenblüten",
   "recipeGroup.spectrum.glowblocks": "Glüh-Blöcke",
-  "recipeGroup.spectrum.player_only_glass": "Halbdurchlässiges Glas",
+  "recipeGroup.spectrum.semi_permeable_glass": "Halbdurchlässiges Glas",
   "recipeGroup.spectrum.bedrock_tools": "Bedrock Tools",
   "recipeGroup.spectrum.bedrock_armor": "Bedrock Rüstung",
   "recipeGroup.spectrum.fusion_shrines": "Fusions-Schrein",
@@ -24,7 +24,6 @@
   "container.spectrum.rei.crafting_time": "%f Sekunden",
   "container.spectrum.rei.crafting_time_one_second": "%f Sekunden",
   "container.spectrum.rei.enchantment_upgrading.title": "Verzauberungs-Upgrade",
-  "container.spectrum.rei.enchantment_upgrade.required_item_count": "(%fx)",
 
   "container.spectrum.bedrock_anvil": "Repariere & erstelle Beschreibung",
   "container.spectrum.bedrock_anvil.lore": "Beschreibung:",

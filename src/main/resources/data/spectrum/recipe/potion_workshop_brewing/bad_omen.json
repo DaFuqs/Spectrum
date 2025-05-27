@@ -1,0 +1,16 @@
+{
+  "type": "spectrum:potion_workshop_brewing",
+  "ingredient1": "minecraft:nether_wart",
+  "ingredient2": "spectrum:bloodboil_syrup",
+  "ingredient3": "spectrum:midnight_aberration",
+  "effect": "minecraft:bad_omen",
+  "base_duration_ticks": 36000,
+  "potency_modifier": 0.5,
+  "applicable_to_potions": true,
+  "applicable_to_tipped_arrows": false,
+  "applicable_to_potion_fillables": true,
+  "required_advancement": "spectrum:unlocks/potions/bad_omen",
+  "ink_color": "spectrum:black",
+  "ink_cost": 64,
+  "base_yield": 1
+}

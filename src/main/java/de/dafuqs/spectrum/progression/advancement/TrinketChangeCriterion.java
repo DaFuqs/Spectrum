@@ -58,8 +58,8 @@ public class TrinketChangeCriterion extends AbstractCriterion<TrinketChangeCrite
 		).apply(instance, TrinketChangeCriterion.Conditions::new));
 		
 		public boolean matches(List<ItemStack> trinketStacks, int totalCount, int spectrumCount) {
-			if (this.totalCountRange.isPresent() && this.totalCountRange.get().test(totalCount)
-					&& this.spectrumCountRange.isPresent() && this.spectrumCountRange.get().test(spectrumCount)) {
+			if ((this.totalCountRange.isPresent() && this.totalCountRange.get().test(totalCount))
+					|| (this.spectrumCountRange.isPresent() && this.spectrumCountRange.get().test(spectrumCount))) {
 				int i = this.itemPredicates.orElse(List.of()).size();
 				if (i == 0) {
 					return true;

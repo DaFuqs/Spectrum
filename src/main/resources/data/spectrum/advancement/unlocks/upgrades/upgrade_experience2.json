@@ -3,13 +3,11 @@
     "crafted_previous_upgrade": {
       "trigger": "spectrum:crafted_with_pedestal",
       "conditions": {
-        "items": [
-          {
-            "items": [
-              "spectrum:upgrade_experience"
-            ]
-          }
-        ]
+        "item": {
+          "items": [
+            "spectrum:upgrade_experience"
+          ]
+        }
       }
     },
     "collected_moonstone_shard": {

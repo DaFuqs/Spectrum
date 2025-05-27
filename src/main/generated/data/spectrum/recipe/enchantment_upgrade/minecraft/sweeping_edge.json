@@ -1,0 +1,40 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "spectrum:enchantments_exist",
+      "values": [
+        "minecraft:sweeping_edge"
+      ]
+    }
+  ],
+  "type": "spectrum:enchantment_upgrade",
+  "bulk_item": {
+    "item": "spectrum:red_pigment"
+  },
+  "enchantment": "minecraft:sweeping_edge",
+  "group": "minecraft",
+  "item_scaling": {
+    "type": "spectrum:indexed",
+    "indexes": [
+      8,
+      32,
+      64,
+      128,
+      256,
+      512
+    ]
+  },
+  "level_cap": 7,
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_damage",
+  "xp_scaling": {
+    "type": "spectrum:indexed",
+    "indexes": [
+      100,
+      400,
+      1000,
+      2000,
+      5000,
+      10000
+    ]
+  }
+}

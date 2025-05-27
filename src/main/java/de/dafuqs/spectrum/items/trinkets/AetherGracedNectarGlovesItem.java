@@ -23,9 +23,9 @@ public class AetherGracedNectarGlovesItem extends AzureDikeTrinketItem implement
 
 	public static final int HARMFUL_EFFECT_COST = 7;
 	public static Identifier MENTAL_PRESENCE_ATTRIBUTE_ID = SpectrumCommon.locate("nectar_gloves_sleep");
-
-	public AetherGracedNectarGlovesItem(Settings settings) {
-		super(settings);
+	
+	public AetherGracedNectarGlovesItem(Settings settings, Identifier unlockIdentifier) {
+		super(settings, unlockIdentifier);
 	}
 
 	@Override

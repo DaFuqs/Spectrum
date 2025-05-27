@@ -1,0 +1,38 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "spectrum:enchantments_exist",
+      "values": [
+        "minecraft:looting"
+      ]
+    }
+  ],
+  "type": "spectrum:enchantment_upgrade",
+  "bulk_item": {
+    "item": "spectrum:light_blue_pigment"
+  },
+  "enchantment": "minecraft:looting",
+  "group": "minecraft",
+  "item_scaling": {
+    "type": "spectrum:indexed",
+    "indexes": [
+      8,
+      32,
+      128,
+      512,
+      512
+    ]
+  },
+  "level_cap": 6,
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_luck",
+  "xp_scaling": {
+    "type": "spectrum:indexed",
+    "indexes": [
+      200,
+      500,
+      2400,
+      10000,
+      40000
+    ]
+  }
+}

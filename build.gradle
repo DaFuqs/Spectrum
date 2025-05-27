@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.9-SNAPSHOT'
+	id 'fabric-loom' version '1.10-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -18,7 +18,7 @@ repositories {
 	maven { url = "https://maven.blamejared.com" } // JEI
 	maven { url = "https://maven.ladysnake.org/releases" } // Cardinal Components API
 	maven { url = "https://maven.jamieswhiteshirt.com/libs-release/" } // Entity Reach Attribute
-	maven { url = "https://api.modrinth.com/maven" } // Revelationary, Additional Entity Attributes, Fractal Lib, Colorful Hearts
+	maven { url = "https://api.modrinth.com/maven" } // Revelationary, Additional Entity Attributes, Fractal Lib, Colorful Hearts, idwtialsimmoedm
 	maven { url = "https://cfa2.cursemaven.com" }
 	maven { url = "https://mvn.devos.one/releases/" } // Porting Lib
 	maven { url = "https://repo.unascribed.com" } // Ears API
@@ -39,11 +39,11 @@ fabricApi {
 
 dependencies {
 	// jetbrains annotations
-	implementation("org.jetbrains:annotations:26.0.1")
-	implementation("org.jetbrains:annotations:24.0.1")
+	implementation("org.jetbrains:annotations:26.0.2")
 
 	// graph api and its dependencies
 	implementation include("org.jgrapht:jgrapht-core:1.5.2")
+	implementation include("org.apfloat:apfloat:1.14.0")
 	implementation include("org.jheaps:jheaps:0.14")
 
 	// Some other dependency is adding annotations, and it throws an error without this
@@ -56,8 +56,7 @@ dependencies {
 	modImplementation("net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}")
 
 	// ours
-	// TODO: readd exclusions lib when ported to 1.21
-	// modImplementation("maven.modrinth:exclusions-lib:${project.exclusionslib_version}")
+	modImplementation include("maven.modrinth:exclusions-lib:${project.exclusionslib_version}")
 	modImplementation("de.dafuqs:revelationary:${project.revelationary_version}")
 	modImplementation include("de.dafuqs:additionalentityattributes:${project.additional_entity_attributes_version}")
 	modImplementation include("de.dafuqs:arrowhead:${project.arrowhead_version}")
@@ -87,13 +86,13 @@ dependencies {
 	}
 
 	// https://github.com/OnyxStudios/Cardinal-Components-API/wiki/
-	modImplementation include("dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cca_version}")
-	modImplementation include("dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${project.cca_version}")
-	modImplementation include("dev.onyxstudios.cardinal-components-api:cardinal-components-item:${project.cca_version}")
-	modImplementation include("dev.onyxstudios.cardinal-components-api:cardinal-components-level:${project.cca_version}")
+	modImplementation include("org.ladysnake.cardinal-components-api:cardinal-components-base:${project.cca_version}")
+	modImplementation include("org.ladysnake.cardinal-components-api:cardinal-components-entity:${project.cca_version}")
+	modImplementation include("org.ladysnake.cardinal-components-api:cardinal-components-item:${project.cca_version}")
+	modImplementation include("org.ladysnake.cardinal-components-api:cardinal-components-level:${project.cca_version}")
 
 	// Connect to local dev servers
-	modLocalRuntime("maven.modrinth:auth-me:${project.auth_me_version}")
+	// modLocalRuntime("maven.modrinth:auth-me:${project.auth_me_version}")
 
 	// Mod Compat
 	modCompileOnly("maven.modrinth:colorful-hearts:${project.colorful_hearts_version}") { transitive = false }
@@ -106,6 +105,7 @@ dependencies {
 	modCompileOnly("maven.modrinth:travelersbackpack:${project.travelers_backpack_version}")
 	modCompileOnly("maven.modrinth:botania:${project.botania_version}")
 	modCompileOnly("maven.modrinth:vanity:${project.vanityslots_version}")
+	modImplementation("maven.modrinth:idwtialsimmoedm:${project.idwtialsimmoedm_version}")
 
 	//Porting Lib
 	for (String module in port_lib_modules.split(",")) {
@@ -114,7 +114,8 @@ dependencies {
 
 	// Datagen dependencies
 	// TODO - Noaaan April 7th 2025: None of these are for 1.21.1 yet, lol
-	//modDatagenRuntimeOnly("curse.maven:gobber-427177:${project.gobber_version}")
+	// TODO - unilock May 6th 2025: AE2 will likely never be available for Fabric 1.21.1, lol
+	modDatagenRuntimeOnly("curse.maven:gobber-427177:${project.gobber_version}")
 	//modDatagenRuntimeOnly("maven.modrinth:ae2:${project.ae2_version}")
 	//modDatagenRuntimeOnly("maven.modrinth:botania:${project.botania_version}")
 	//modDatagenRuntimeOnly("maven.modrinth:create-fabric:${project.create_version}")

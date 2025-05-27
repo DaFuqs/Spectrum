@@ -1,14 +1,12 @@
 package de.dafuqs.spectrum.blocks.chests;
 
-import java.util.*;
-import java.util.stream.*;
-
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.events.*;
 import de.dafuqs.spectrum.events.listeners.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
+import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
@@ -32,6 +30,9 @@ import net.minecraft.world.*;
 import net.minecraft.world.event.*;
 import net.minecraft.world.event.listener.*;
 import org.jetbrains.annotations.*;
+
+import java.util.*;
+import java.util.stream.*;
 
 public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implements FilterConfigurable, ExtendedScreenHandlerFactory<FilterConfigurable.ExtendedDataWithPos>, SidedInventory, EventQueue.Callback<Object> {
 	
@@ -267,7 +268,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 			}
 		} else if (entry instanceof ItemEntityEventQueue.EventEntry itemEntry) {
 			ItemEntity itemEntity = itemEntry.itemEntity;
-			if (itemEntity != null && itemEntity.isAlive() && acceptsItemStack(itemEntity.getStack())) {
+			if (itemEntity != null && itemEntity.isAlive() && ((ItemEntityAccessor) itemEntity).getPickupDelay() != 32767 && acceptsItemStack(itemEntity.getStack())) {
 				int previousAmount = itemEntity.getStack().getCount();
 				ItemStack remainingStack = InventoryHelper.smartAddToInventory(itemEntity.getStack(), this, Direction.UP);
 				
@@ -276,12 +277,10 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 					world.playSound(null, itemEntity.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.9F + world.random.nextFloat() * 0.2F);
 					itemEntity.setStack(ItemStack.EMPTY);
 					itemEntity.discard();
-				} else {
-					if (remainingStack.getCount() != previousAmount) {
-						sendPlayItemEntityAbsorbedParticle((ServerWorld) world, itemEntity);
-						world.playSound(null, itemEntity.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.9F + world.random.nextFloat() * 0.2F);
-						itemEntity.setStack(remainingStack);
-					}
+				} else if (remainingStack.getCount() != previousAmount) {
+					sendPlayItemEntityAbsorbedParticle((ServerWorld) world, itemEntity);
+					world.playSound(null, itemEntity.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.9F + world.random.nextFloat() * 0.2F);
+					itemEntity.setStack(remainingStack);
 				}
 			}
 		}
@@ -342,9 +341,9 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 		boolean allAir = true;
 		for (int i = 0; i < ITEM_FILTER_SLOT_COUNT; i++) {
 			ItemVariant filterItem = this.filterItems.get(i);
-			if (filterItem.getItem().equals(itemStack.getItem())) {
+			if (itemStack.isOf(filterItem.getItem())) {
 				return true;
-			} else if (!filterItem.getItem().equals(Items.AIR)) {
+			} else if (!filterItem.isBlank()) {
 				allAir = false;
 			}
 		}

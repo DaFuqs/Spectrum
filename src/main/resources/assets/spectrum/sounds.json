@@ -791,10 +791,10 @@
       "spectrum:laments"
     ]
   },
-  "ambient.crystal_aura": {
-    "subtitle": "spectrum.subtitles.crystal_aura",
+  "ost.azure": {
+    "subtitle": "spectrum.subtitles.azure",
     "sounds": [
-      "spectrum:crystal_aura"
+      "spectrum:ost/azure"
     ]
   },
   "pedestal_crafting": {

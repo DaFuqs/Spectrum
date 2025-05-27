@@ -29,5 +29,8 @@
     "maybe_place_midnight_solution"
   ],
   "finish_crafting_effect": "place_midnight_solution",
-  "description": "spectrum.recipe.fusion_shrine.explanation.midnight_aberration"
+  "description": {
+    "type": "translatable",
+    "translate": "spectrum.recipe.fusion_shrine.explanation.midnight_aberration"
+  }
 }

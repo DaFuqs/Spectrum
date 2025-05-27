@@ -18,7 +18,6 @@ import net.minecraft.network.packet.*;
 import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.predicate.entity.*;
 import net.minecraft.registry.*;
-import net.minecraft.registry.tag.*;
 import net.minecraft.server.network.*;
 import net.minecraft.state.property.*;
 import net.minecraft.util.*;
@@ -42,7 +41,6 @@ public class FloatBlockEntity extends Entity {
 	private static final TrackedData<Float> GRAVITY_MODIFIER = DataTracker.registerData(FloatBlockEntity.class, TrackedDataHandlerRegistry.FLOAT);
 	
 	public int moveTime;
-	public boolean dropItem = true;
 	protected NbtCompound blockEntityData;
 	protected BlockState blockState = Blocks.STONE.getDefaultState();
 	protected boolean canSetBlock = true;
@@ -133,17 +131,15 @@ public class FloatBlockEntity extends Entity {
 			}
 		}
 		
-		this.move(MovementType.SELF, this.getVelocity());
 		this.moveEntities();
+		this.move(MovementType.SELF, this.getVelocity());
 		
 		if (!this.getWorld().isClient) {
-			if (!this.verticalCollision || this.isOnGround()) {
-				if (this.age > 100 && this.getWorld().isOutOfHeightLimit(this.getBlockPos())) {
-					this.breakApart();
-					this.discard();
-				}
-			} else {
+			if (this.verticalCollision) {
 				trySetBlock();
+			} else if (this.age > 100 && this.getWorld().isOutOfHeightLimit(this.getBlockPos())) {
+				this.dropAsItem();
+				this.discard();
 			}
 		}
 	}
@@ -199,7 +195,7 @@ public class FloatBlockEntity extends Entity {
 		if (traveledDistance > 0) {
 			int damage = (int) Math.min(MathHelper.floor(traveledDistance * DAMAGE_PER_FALLEN_BLOCK), MAX_DAMAGE);
 			if (damage > 0) {
-				// since the players position is tracked at its head and item entities are laying directly on the ground we have to use a relatively big bounding box here
+				// since the player position is tracked at its head and item entities are laying directly on the ground, we have to use a relatively big bounding box here
 				Predicate<Entity> predicate = EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR.and(entity -> entity.isAlive() && (entity instanceof LivingEntity || entity instanceof ItemEntity));
 				this.getWorld().getOtherEntities(this, this.getBoundingBox(), predicate).forEach((entity) -> {
 					if (entity instanceof ItemEntity itemEntity) {
@@ -216,7 +212,6 @@ public class FloatBlockEntity extends Entity {
 	protected void writeCustomDataToNbt(NbtCompound compound) {
 		compound.put("BlockState", NbtHelper.fromBlockState(this.blockState));
 		compound.putInt("Time", this.moveTime);
-		compound.putBoolean("DropItem", this.dropItem);
 		if (this.blockEntityData != null) {
 			compound.put("BlockEntityData", this.blockEntityData);
 		}
@@ -227,7 +222,6 @@ public class FloatBlockEntity extends Entity {
 	protected void readCustomDataFromNbt(NbtCompound compound) {
 		this.blockState = NbtHelper.toBlockState(this.getWorld().createCommandRegistryWrapper(RegistryKeys.BLOCK), compound.getCompound("BlockState"));
 		this.moveTime = compound.getInt("Time");
-		if (compound.contains("DropItem", 99)) this.dropItem = compound.getBoolean("DropItem");
 		if (compound.contains("BlockEntityData", 10)) this.blockEntityData = compound.getCompound("BlockEntityData");
 		if (this.blockState.isAir()) this.blockState = Blocks.STONE.getDefaultState();
 		if (compound.contains("GravityModifier", NbtElement.FLOAT_TYPE))
@@ -250,54 +244,11 @@ public class FloatBlockEntity extends Entity {
 	}
 	
 	public void trySetBlock() {
-		var registryLookup = getWorld().getRegistryManager();
-
-		if (!this.dropItem) {
-			boolean canBeReplaced = this.blockState.canReplace(new AutomaticItemPlacementContext(this.getWorld(), this.getBlockPos(), Direction.UP, ItemStack.EMPTY, Direction.DOWN));
-			
-			BlockState upperState = this.getWorld().getBlockState(this.getBlockPos().up());
-			boolean isAboveFree = upperState.isAir() || upperState.isIn(BlockTags.FIRE) || upperState.isLiquid() || upperState.isReplaceable();
-			
-			boolean canBlockSurvive = this.getBlockState().canPlaceAt(this.getWorld(), this.getBlockPos()) && !isAboveFree;
-			if (canBeReplaced && canBlockSurvive) {
-				if (this.blockState.contains(Properties.WATERLOGGED) && this.getWorld().getFluidState(this.getBlockPos()).getFluid() == Fluids.WATER) {
-					this.blockState = this.blockState.with(Properties.WATERLOGGED, true);
-				}
-				
-				if (this.getWorld().setBlockState(this.getBlockPos(), this.blockState, Block.NOTIFY_ALL)) {
-					this.discard();
-					if (this.blockEntityData != null && this.blockState.hasBlockEntity()) {
-						BlockEntity blockEntity = this.getWorld().getBlockEntity(this.getBlockPos());
-						if (blockEntity != null) {
-							NbtCompound compoundTag = blockEntity.createNbt(registryLookup);
-							for (String keyName : this.blockEntityData.getKeys()) {
-								NbtElement tag = this.blockEntityData.get(keyName);
-								if (tag != null && !"x".equals(keyName) && !"y".equals(keyName) && !"z".equals(keyName)) {
-									compoundTag.put(keyName, tag.copy());
-								}
-							}
-							
-							blockEntity.read(blockEntityData, registryLookup);
-							blockEntity.markDirty();
-						}
-					}
-					// Stop entities from clipping through the block when it's set
-					this.moveEntities();
-					
-				} else if (this.blockState.isToolRequired() && this.dropItem && this.getWorld().getGameRules().get(GameRules.DO_ENTITY_DROPS).get()) {
-					this.breakApart();
-				}
-			} else {
-				this.breakApart();
-			}
-			
-			this.moveEntities();
-		}
-
 		BlockPos blockPos = this.getBlockPos();
 		BlockState blockState = this.getWorld().getBlockState(blockPos);
 		boolean canReplace = blockState.canReplace(new AutomaticItemPlacementContext(this.getWorld(), blockPos, Direction.UP, ItemStack.EMPTY, Direction.DOWN));
 		boolean canPlace = this.blockState.canPlaceAt(this.getWorld(), blockPos);
+		
 		if (!this.canSetBlock || !canPlace || !canReplace) {
 			return;
 		}
@@ -311,6 +262,7 @@ public class FloatBlockEntity extends Entity {
 			if (this.blockEntityData != null && this.blockState.hasBlockEntity()) {
 				BlockEntity blockEntity = this.getWorld().getBlockEntity(blockPos);
 				if (blockEntity != null) {
+					var registryLookup = getWorld().getRegistryManager();
 					NbtCompound compoundTag = blockEntity.createNbt(registryLookup);
 					for (String keyName : this.blockEntityData.getKeys()) {
 						NbtElement tag = this.blockEntityData.get(keyName);
@@ -332,7 +284,9 @@ public class FloatBlockEntity extends Entity {
 		}
 		
 		World world = this.getWorld();
-		for (Entity entity : world.getOtherEntities(this, getBoundingBox().offset(0, 1.0, 0).offset(this.prevX - this.getX(), this.prevY - this.getY(), this.prevZ - this.getZ()).expand(0.1))) {
+		Box collissionBox = getBoundingBox().expand(0, 2D, 0);
+		
+		for (Entity entity : world.getOtherEntities(this, collissionBox)) {
 			if (entity instanceof FloatBlockEntity other && isPaltaeriaStratineCollision(other)) {
 				world.createExplosion(this, this.getX(), this.getY(), this.getZ(), 1.0F, World.ExplosionSourceType.NONE);
 				
@@ -343,21 +297,13 @@ public class FloatBlockEntity extends Entity {
 				
 				this.discard();
 				other.discard();
-			} else if (entity.isPushable() && entity.getPistonBehavior() != PistonBehavior.IGNORE) {
-				if(entity.getPos().getY() < this.getPos().getY() + 1) {
-					entity.setPos(entity.getPos().getX(), this.getPos().getY() + 1, entity.getPos().getZ());
-				}
-				if (entity.getVelocity().lengthSquared() < this.getVelocity().lengthSquared()) {
-					entity.setVelocity(this.getVelocity());
-				}
+			} else if (entity.isPushable() && entity.getPistonBehavior() != PistonBehavior.IGNORE && entity.getBoundingBox().intersects(collissionBox)) {
 				entity.move(MovementType.SHULKER_BOX, this.getVelocity());
-				
 				entity.setOnGround(true);
 				entity.fallDistance = 0F;
 				
 				this.onEntityCollision(entity);
 			}
-			
 		}
 	}
 	
@@ -371,13 +317,14 @@ public class FloatBlockEntity extends Entity {
 	/**
 	 * Break the block, spawn break particles, and drop stacks if it can.
 	 */
-	public void breakApart() {
+	public void dropAsItem() {
 		if (this.isRemoved()) return;
 		
 		this.discard();
-		if (this.dropItem && this.getWorld().getGameRules().getBoolean(GameRules.DO_ENTITY_DROPS)) {
+		if (this.getWorld().getGameRules().getBoolean(GameRules.DO_ENTITY_DROPS)) {
 			Block.dropStacks(this.blockState, this.getWorld(), this.getBlockPos());
 		}
+		
 		// spawn break particles
 		getWorld().syncWorldEvent(null, WorldEvents.BLOCK_BROKEN, this.getBlockPos(), Block.getRawIdFromState(blockState));
 	}

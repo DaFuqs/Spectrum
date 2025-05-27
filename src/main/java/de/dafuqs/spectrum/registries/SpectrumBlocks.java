@@ -1,12 +1,5 @@
 package de.dafuqs.spectrum.registries;
 
-import java.util.*;
-import java.util.function.*;
-
-import static de.dafuqs.spectrum.SpectrumCommon.*;
-import static de.dafuqs.spectrum.registries.SpectrumItems.*;
-import static net.minecraft.block.Blocks.*;
-
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.energy.color.*;
@@ -97,6 +90,13 @@ import net.minecraft.world.explosion.*;
 import net.minecraft.world.gen.feature.*;
 import org.jetbrains.annotations.*;
 
+import java.util.*;
+import java.util.function.*;
+
+import static de.dafuqs.spectrum.SpectrumCommon.*;
+import static de.dafuqs.spectrum.registries.SpectrumItems.*;
+import static net.minecraft.block.Blocks.*;
+
 @SuppressWarnings({"unused"})
 public class SpectrumBlocks {
 	
@@ -130,8 +130,8 @@ public class SpectrumBlocks {
 	public static final Block ITEM_BOWL_CALCITE = register(cutout(singleton(blockWithItem("item_bowl_calcite", new ItemBowlBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, BlockSoundGroup.CALCITE)), IS.of(16), InkColors.PINK), SpectrumTexturedModels.BOWL)));
 	public static final Block ITEM_ROUNDEL = register(singleton(blockWithItem("item_roundel", new ItemRoundelBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, BlockSoundGroup.CALCITE)), IS.of(16), InkColors.PINK), SpectrumTexturedModels.ROUNDEL));
 	public static final Block POTION_WORKSHOP = register(translucent(defaultNorthHorizontalFacing(blockWithItem("potion_workshop", new PotionWorkshopBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, BlockSoundGroup.CALCITE)), IS.of(1), InkColors.PURPLE), ModelIds::getBlockModelId)));
-	public static final Block SPIRIT_INSTILLER = register(singleton(blockWithItem("spirit_instiller", new SpiritInstillerBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, BlockSoundGroup.CALCITE)), IS.of(1), InkColors.WHITE), ModelIds::getBlockModelId).withPredefinedItemModel());
-	public static final CrystallarieumBlock CRYSTALLARIEUM = register(translucent(singleton(blockWithItem("crystallarieum", new CrystallarieumBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, BlockSoundGroup.CALCITE)), IS.of(1), InkColors.BROWN), ModelIds::getBlockModelId)).withPredefinedItemModel());
+	public static final Block SPIRIT_INSTILLER = register(singleton(cutout(blockWithItem("spirit_instiller", new SpiritInstillerBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, BlockSoundGroup.CALCITE)), IS.of(1), InkColors.WHITE)), ModelIds::getBlockModelId).withPredefinedItemModel());
+	public static final CrystallarieumBlock CRYSTALLARIEUM = register(cutout(singleton(blockWithItem("crystallarieum", new CrystallarieumBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, BlockSoundGroup.CALCITE)), IS.of(1), InkColors.BROWN), ModelIds::getBlockModelId)).withPredefinedItemModel());
 	public static final Block CINDERHEARTH = register(defaultNorthHorizontalFacing(blockWithItem("cinderhearth", new CinderhearthBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, BlockSoundGroup.CALCITE)), IS.of(1).fireproof(), InkColors.ORANGE), ModelIds::getBlockModelId));
 	
 	public static final Block COLOR_PICKER = register(cutout(defaultWestHorizontalFacing(blockWithItem("color_picker", new ColorPickerBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, BlockSoundGroup.CALCITE)), IS.of(8), InkColors.GREEN), ModelIds::getBlockModelId)));
@@ -1124,8 +1124,12 @@ public class SpectrumBlocks {
 	public static final Block NEPHRITE_BLOSSOM_STEM = register(cutout(blockWithItem("nephrite_blossom_stem", new NephriteBlossomStemBlock(settings(MapColor.PINK, BlockSoundGroup.WOOL, 2.0F).nonOpaque().noCollision()), InkColors.PINK)).withBlockItemModel((ctx, block) -> SpectrumModelHelper.registerBlockTexturedItemModel(ctx, block, "_bottom")).withBlockModel((ctx, block) -> {
 		Identifier bottom = SpectrumTexturedModels.cross(b -> b, "_bottom").upload(block, "_bottom", ctx.modelCollector);
 		Identifier top = SpectrumTexturedModels.cross(b -> b, "_top").upload(block, "_top", ctx.modelCollector);
-		Identifier base = ModelIds.getBlockSubModelId(block, "_base");
-		return MultipartBlockStateSupplier.create(block).with(When.create().set(NephriteBlossomStemBlock.STEM_PART, StemComponent.STEM), SpectrumModelHelper.createModelVariant(bottom)).with(When.create().set(NephriteBlossomStemBlock.STEM_PART, StemComponent.STEMALT), SpectrumModelHelper.createModelVariant(base)).with(When.create().set(NephriteBlossomStemBlock.STEM_PART, StemComponent.BASE), SpectrumModelHelper.createModelVariant(top), SpectrumModelHelper.createModelVariant(bottom));
+		Identifier fronds = ModelIds.getBlockSubModelId(block, "_base");
+		return MultipartBlockStateSupplier.create(block)
+				.with(When.create().set(NephriteBlossomStemBlock.STEM_PART, StemComponent.STEM), SpectrumModelHelper.createModelVariant(bottom))
+				.with(When.create().set(NephriteBlossomStemBlock.STEM_PART, StemComponent.STEMALT), SpectrumModelHelper.createModelVariant(top))
+				.with(When.create().set(NephriteBlossomStemBlock.STEM_PART, StemComponent.BASE), SpectrumModelHelper.createModelVariant(fronds))
+				.with(When.create().set(NephriteBlossomStemBlock.STEM_PART, StemComponent.BASE), SpectrumModelHelper.createModelVariant(bottom));
 	}));
 	public static final Block NEPHRITE_BLOSSOM_LEAVES = register(cutout(blockWithItem("nephrite_blossom_leaves", new NephriteBlossomLeavesBlock(settings(MapColor.PINK, BlockSoundGroup.GRASS, 0.2F).nonOpaque().ticksRandomly().luminance(state -> 13)), InkColors.PINK)).withBlockModel((ctx, block) -> VariantsBlockStateSupplier.create(block).coordinate(BlockStateVariantMap.create(Properties.AGE_2).register(age -> {
 		String suffix = age == 0 ? "" : age == 1 ? "_flowering" : "_fruiting";
@@ -1370,8 +1374,8 @@ public class SpectrumBlocks {
 	public static final Block ENDER_GLASS = register(translucent(blockWithItem("ender_glass", new EnderGlassBlock(AbstractBlock.Settings.copy(GLASS).mapColor(MapColor.PURPLE).nonOpaque().solidBlock(SpectrumBlocks::never).allowsSpawning((state, world, pos, entityType) -> state.get(EnderGlassBlock.TRANSPARENCY_STATE) == EnderGlassBlock.TransparencyState.SOLID).suffocates((state, world, pos) -> state.get(EnderGlassBlock.TRANSPARENCY_STATE) == EnderGlassBlock.TransparencyState.SOLID).blockVision((state, world, pos) -> state.get(EnderGlassBlock.TRANSPARENCY_STATE) == EnderGlassBlock.TransparencyState.SOLID)), InkColors.PURPLE)).withBlockItemModel((ctx, block) -> SpectrumModelHelper.registerParentedItemModel(ctx, block, block, "_solid")).withBlockModel((ctx, block) ->
 			VariantsBlockStateSupplier.create(block).coordinate(BlockStateVariantMap.create(EnderGlassBlock.TRANSPARENCY_STATE)
 					.register(transparency -> SpectrumModelHelper.createModelVariant(SpectrumTexturedModels.cubeAll(b -> b, "_" + transparency.asString()).upload(block, "_" + transparency.asString(), ctx.modelCollector))))));
-	public static final Block CLOVER = register(singleton(blockWithItem("clover", new CloverBlock(AbstractBlock.Settings.copy(SHORT_GRASS).offset(AbstractBlock.OffsetType.XZ)), IS.of(), InkColors.LIME), ModelIds::getBlockModelId).withItemModel(SpectrumModelHelper::registerItemModel));
-	public static final Block FOUR_LEAF_CLOVER = register(singleton(blockWithItem("four_leaf_clover", new FourLeafCloverBlock(AbstractBlock.Settings.copy(SHORT_GRASS).offset(AbstractBlock.OffsetType.XZ)), block -> new FourLeafCloverItem(block, IS.of(), SpectrumAdvancements.REVEAL_FOUR_LEAF_CLOVER, CLOVER.asItem()), InkColors.LIME), ModelIds::getBlockModelId).withItemModel(SpectrumModelHelper::registerItemModel));
+	public static final Block CLOVER = register(singleton(cutout(blockWithItem("clover", new CloverBlock(AbstractBlock.Settings.copy(SHORT_GRASS).offset(AbstractBlock.OffsetType.XZ)), IS.of(), InkColors.LIME)), ModelIds::getBlockModelId).withItemModel(SpectrumModelHelper::registerItemModel));
+	public static final Block FOUR_LEAF_CLOVER = register(singleton(cutout(blockWithItem("four_leaf_clover", new FourLeafCloverBlock(AbstractBlock.Settings.copy(SHORT_GRASS).offset(AbstractBlock.OffsetType.XZ)), block -> new FourLeafCloverItem(block, IS.of(), SpectrumAdvancements.REVEAL_FOUR_LEAF_CLOVER, CLOVER.asItem()), InkColors.LIME)), ModelIds::getBlockModelId).withItemModel(SpectrumModelHelper::registerItemModel));
 	
 	private static final UniformIntProvider gemOreExperienceProvider = UniformIntProvider.create(1, 4);
 	public static final Block TOPAZ_ORE = register(simple(blockWithItem("topaz_ore", new GemstoneOreBlock(gemOreExperienceProvider, ore(), BuiltinGemstoneColor.CYAN, SpectrumAdvancements.COLLECT_TOPAZ, STONE.getDefaultState()), InkColors.CYAN)));
@@ -1418,6 +1422,11 @@ public class SpectrumBlocks {
 	
 	public static final BloodOrchidBlock BLOOD_ORCHID = register(cutout(blockWithItem("blood_orchid", new BloodOrchidBlock(SpectrumStatusEffects.FRENZY, 10, AbstractBlock.Settings.copy(POPPY).offset(AbstractBlock.OffsetType.NONE).ticksRandomly()), InkColors.RED)).withBlockItemModel((ctx, block) -> SpectrumModelHelper.registerBlockTexturedItemModel(ctx, block, "5")).withBlockModel((ctx, block) -> VariantsBlockStateSupplier.create(block).coordinate(BlockStateVariantMap.create(BloodOrchidBlock.AGE).register(stage -> SpectrumModelHelper.createModelVariant(SpectrumTexturedModels.cross(b -> b, stage.toString()).upload(block, stage.toString(), ctx.modelCollector))))));
 	public static final PottedBloodOrchidBlock POTTED_BLOOD_ORCHID = register(cutout(singleton(block("potted_blood_orchid", new PottedBloodOrchidBlock(BLOOD_ORCHID, pottedPlant())), SpectrumTexturedModels.flowerPotCross(b -> BLOOD_ORCHID, "5", false))));
+	
+	public static final Block POTTED_SWEET_PEA = register(pottedPlant(block("potted_sweet_pea", new FlowerPotBlock(SWEET_PEA, pottedPlant().luminance(s -> 11).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always))), false));
+	public static final Block POTTED_APRICOTTI = register(pottedPlant(block("potted_apricotti", new FlowerPotBlock(APRICOTTI, pottedPlant().luminance(s -> 11).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always))), false));
+	public static final Block POTTED_VARIA_SPROUT = register(pottedPlant(block("potted_varia_sprout", new FlowerPotBlock(VARIA_SPROUT, pottedPlant().luminance(s -> 11).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always))), false));
+	public static final Block POTTED_HUMMING_BELL = register(pottedPlant(block("potted_humming_bell", new FlowerPotBlock(HUMMING_BELL, pottedPlant().luminance(s -> 9).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always))), false));
 	
 	public static ColoredSaplingBlock registerColoredSapling(String name, InkColor color, SaplingGenerator generator) {
 		return register(simplePlant(blockWithItem(name, new ColoredSaplingBlock(copyWithMapColor(OAK_SAPLING, color.getDyeColor().orElse(DyeColor.LIME).getMapColor()), color, generator), color)));

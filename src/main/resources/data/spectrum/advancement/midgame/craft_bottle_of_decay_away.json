@@ -15,11 +15,9 @@
     "craft": {
       "trigger": "spectrum:crafted_with_pedestal",
       "conditions": {
-        "items": [
-          {
-            "items": "spectrum:bottle_of_decay_away"
-          }
-        ]
+        "item": {
+          "items": "spectrum:bottle_of_decay_away"
+        }
       }
     },
     "gotten_previous": {

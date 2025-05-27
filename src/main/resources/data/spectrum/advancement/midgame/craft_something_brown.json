@@ -12,19 +12,17 @@
     }
   },
   "criteria": {
-    "craft": {
+    "crafted_something_brown": {
       "trigger": "spectrum:crafted_with_pedestal",
       "conditions": {
-        "items": [
-          {
-            "items": [
-              "spectrum:brown_spore_blossom",
-              "spectrum:brown_sapling",
-              "spectrum:brown_lamp",
-              "spectrum:brown_glowblock"
-            ]
-          }
-        ]
+        "item": {
+          "items": [
+            "spectrum:brown_spore_blossom",
+            "spectrum:brown_sapling",
+            "spectrum:brown_lamp",
+            "spectrum:brown_glowblock"
+          ]
+        }
       }
     },
     "gotten_previous": {

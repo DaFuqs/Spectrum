@@ -150,7 +150,6 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<StorageRecip
 	
 	private ItemStack tapWith(float thickness, long secondsFermented, float downfall) {
 		ItemStack stack = this.outputItemStack.copy();
-		stack.setCount(1);
 		return getFermentedStack(this.fermentationData, thickness, secondsFermented, downfall, stack);
 	}
 	
@@ -162,7 +161,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<StorageRecip
 			alcPercent = Math.max(0, alcPercent);
 		}
 		
-		if (alcPercent >= 100) {
+		if (alcPercent >= 100 && inputStack.getItem() instanceof FermentedItem) {
 			return SpectrumItems.PURE_ALCOHOL.getDefaultStack();
 		}
 		

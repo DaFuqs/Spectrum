@@ -1,11 +1,14 @@
 package de.dafuqs.spectrum.helpers;
 
+import de.dafuqs.revelationary.api.advancements.*;
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.item.v1.*;
 import net.minecraft.component.*;
 import net.minecraft.component.type.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.registry.*;
 import net.minecraft.registry.entry.*;
@@ -182,6 +185,18 @@ public class SpectrumEnchantmentHelper {
 	
 	public static int getEquipmentLevel(RegistryWrapper.WrapperLookup lookup, RegistryKey<Enchantment> key, LivingEntity entity) {
 		return getEntry(lookup, key).map(e -> EnchantmentHelper.getEquipmentLevel(e, entity)).orElse(0);
+	}
+	
+	public static boolean canEntityUse(Entity entity, String idAsString) {
+		if (entity instanceof PlayerEntity playerEntity) {
+			if (idAsString.contains("razing") || idAsString.contains("resonance") || idAsString.contains("voiding")) {
+				idAsString += "_usage";
+			}
+			return AdvancementHelper.hasAdvancement(playerEntity, SpectrumCommon.locate("unlocks/enchantments/" + idAsString.substring(idAsString.indexOf(':') + 1)));
+		}
+		else {
+			return false;
+		}
 	}
 	
 }

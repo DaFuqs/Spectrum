@@ -27,15 +27,18 @@ public class BlockAuraSoundInstance extends AbstractSoundInstance implements Tic
 	private final static List<BlockPos> toRemove = new ArrayList<>();
 	
 	private int age = 0;
+	private double absX, absY, absZ;
 	private final Queue<BlockPos> sources = new LinkedList<>();
 	private final World world;
+	private float volumeHold;
 	
 	private BlockAuraSoundInstance(SoundEvent sound, World world, BlockPos source) {
 		super(sound, SoundCategory.AMBIENT, SoundInstance.createRandom());
 		this.volume = MIN_VOLUME;
+		this.volumeHold = MIN_VOLUME;
 		this.repeat = true;
 		this.repeatDelay = 0;
-		this.relative = false;
+		this.relative = true;
 		this.world = world;
 		this.sources.add(source);
 		
@@ -52,24 +55,29 @@ public class BlockAuraSoundInstance extends AbstractSoundInstance implements Tic
 			updatePositionAndCount();
 		}
 		
-		float targetVolume = (float) MathHelper.clamp(sources.size() * 0.05 - 0.5, MIN_VOLUME, MAX_VOLUME);
-		if (this.volume < targetVolume) {
-			this.volume += VOLUME_EASING_STEPS;
-		} else if (this.volume > targetVolume) {
-			this.volume -= VOLUME_EASING_STEPS;
+		float targetVolume = (float) MathHelper.clamp((sources.size() * 0.05 - 0.5)
+				, MIN_VOLUME, MAX_VOLUME);
+		
+		if (this.volumeHold < targetVolume) {
+			this.volumeHold += VOLUME_EASING_STEPS;
+		} else if (this.volumeHold > targetVolume) {
+			this.volumeHold -= VOLUME_EASING_STEPS;
 		}
 		
+		var distance = MathHelper.clampedLerp(1, 0, Math.sqrt(MinecraftClient.getInstance().getCameraEntity().squaredDistanceTo(absX, absY, absZ)) / MAX_DISTANCE);
+		this.volume = (float) (volumeHold * distance * 0.8);
+		
 		double cameraEntityEyeY = MinecraftClient.getInstance().getCameraEntity().getEyeY();
-		var pitchMod = MathHelper.clamp((Math.abs(cameraEntityEyeY - this.y) - 2F) / 64F, 0, 0.334F);
-		if (cameraEntityEyeY < this.y) {
+		var pitchMod = MathHelper.clamp((Math.abs(cameraEntityEyeY - this.absY) - 4F) / 196F, 0, 0.225F);
+		if (cameraEntityEyeY < this.absY) {
 			pitchMod *= -1;
 		}
 		this.pitch = (float) (1 + pitchMod);
 		
-		if (volume > 0.25) {
-			Vec3d pos = new Vec3d(this.x, this.y, this.z);
-			float chance = volume / 2F;
-			ParticleHelper.playTriangulatedParticle(world, SpectrumParticleTypes.AZURE_AURA, Support.getIntFromDecimalWithChance(chance, random), true, new Vec3d(24, 8, 24), -8, true, pos, new Vec3d(0, 0.04D + random.nextDouble() * 0.06, 0));
+		if (volumeHold > 0.25) {
+			Vec3d pos = new Vec3d(this.absX, this.absY, this.absZ);
+			float chance = volumeHold / 2F;
+			ParticleHelper.playTriangulatedParticle(world, SpectrumParticleTypes.AZURE_AURA, Support.getIntFromDecimalWithChance(chance * 3, random), true, new Vec3d(24, 8, 24), -4, true, pos, new Vec3d(0, 0.04D + random.nextDouble() * 0.06, 0));
 			ParticleHelper.playTriangulatedParticle(world, SpectrumParticleTypes.AZURE_MOTE_SMALL, Support.getIntFromDecimalWithChance(chance, random), false, new Vec3d(16, 8, 16), -6, false, pos, Vec3d.ZERO);
 			ParticleHelper.playTriangulatedParticle(world, SpectrumParticleTypes.AZURE_MOTE, Support.getIntFromDecimalWithChance(chance, random), true, new Vec3d(16, 6, 16), -4, false, pos, Vec3d.ZERO);
 		}
@@ -95,9 +103,9 @@ public class BlockAuraSoundInstance extends AbstractSoundInstance implements Tic
 		
 		int count = sources.size();
 		if (count > 0) {
-			this.x = (double) x / count;
-			this.y = (double) y / count;
-			this.z = (double) z / count;
+			this.absX = (double) x / count;
+			this.absY = (double) y / count;
+			this.absZ = (double) z / count;
 		}
 	}
 	
@@ -109,7 +117,7 @@ public class BlockAuraSoundInstance extends AbstractSoundInstance implements Tic
 			done = true;
 		} else {
 			Entity cameraEntity = MinecraftClient.getInstance().getCameraEntity();
-			done = cameraEntity == null || cameraEntity.getPos().squaredDistanceTo(x, y, z) > MAX_DISTANCE * MAX_DISTANCE;
+			done = cameraEntity == null || cameraEntity.getPos().squaredDistanceTo(absX, absY, absZ) > MAX_DISTANCE * MAX_DISTANCE;
 		}
 		
 		if (done) {
@@ -122,7 +130,7 @@ public class BlockAuraSoundInstance extends AbstractSoundInstance implements Tic
 		double nearestDistance = Double.MAX_VALUE;
 		@Nullable BlockAuraSoundInstance nearest = null;
 		for (BlockAuraSoundInstance instance : INSTANCES) {
-			double squaredDistance = pos.getSquaredDistance(instance.x, instance.y, instance.z);
+			double squaredDistance = pos.getSquaredDistance(instance.absX, instance.absY, instance.absZ);
 			if (squaredDistance < nearestDistance) {
 				nearestDistance = squaredDistance;
 				nearest = instance;
@@ -135,7 +143,7 @@ public class BlockAuraSoundInstance extends AbstractSoundInstance implements Tic
 			}
 			nearest.sources.add(pos.toImmutable());
 		} else {
-			BlockAuraSoundInstance newInstance = new BlockAuraSoundInstance(SpectrumSoundEvents.CRYSTAL_AURA, world, pos.toImmutable());
+			BlockAuraSoundInstance newInstance = new BlockAuraSoundInstance(SpectrumSoundEvents.OST_AZURE, world, pos.toImmutable());
 			INSTANCES.add(newInstance);
 			MinecraftClient.getInstance().getSoundManager().play(newInstance);
 		}

@@ -53,7 +53,7 @@
       "type": "spectrum:enchanter_upgrading",
       "text": "book.spectrum.guidebook.upgrading.text",
       "title": "container.spectrum.rei.enchantment_upgrading.title",
-      "recipe_id": "spectrum:enchantment_upgrade/spectrum/big_catch/1_to_2"
+      "recipe_id": "spectrum:enchantment_upgrade/spectrum/big_catch"
     }
   ]
 }

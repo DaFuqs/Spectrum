@@ -2,7 +2,7 @@
   "name": "item.spectrum.aether_graced_nectar_gloves",
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:lategame/collect_nectar_gloves"
+    "advancement_id": "spectrum:lategame/collect_aether_graced_nectar_gloves"
   },
   "icon": {
     "item": "spectrum:aether_graced_nectar_gloves"

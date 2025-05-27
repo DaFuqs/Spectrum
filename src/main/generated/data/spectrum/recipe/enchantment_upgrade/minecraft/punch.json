@@ -1,0 +1,36 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "spectrum:enchantments_exist",
+      "values": [
+        "minecraft:punch"
+      ]
+    }
+  ],
+  "type": "spectrum:enchantment_upgrade",
+  "bulk_item": {
+    "item": "spectrum:red_pigment"
+  },
+  "enchantment": "minecraft:punch",
+  "group": "minecraft",
+  "item_scaling": {
+    "type": "spectrum:indexed",
+    "indexes": [
+      8,
+      32,
+      128,
+      256
+    ]
+  },
+  "level_cap": 5,
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_projectile",
+  "xp_scaling": {
+    "type": "spectrum:indexed",
+    "indexes": [
+      200,
+      1600,
+      3200,
+      6400
+    ]
+  }
+}

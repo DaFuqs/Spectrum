@@ -33,10 +33,12 @@ public class BookCinderhearthSmeltingPageRenderer extends BookGatedRecipePageRen
         super.onBeginDisplayPage(parentScreen, left, top);
 
         if (chanceTexts1 == null) {
-            chanceTexts1 = createChanceTexts(page.getRecipe1().value());
+			if (page.getRecipe1() != null)
+            	chanceTexts1 = createChanceTexts(page.getRecipe1().value());
         }
         if (chanceTexts2 == null) {
-            chanceTexts2 = createChanceTexts(page.getRecipe2().value());
+			if (page.getRecipe2() != null)
+            	chanceTexts2 = createChanceTexts(page.getRecipe2().value());
         }
     }
 
@@ -86,8 +88,8 @@ public class BookCinderhearthSmeltingPageRenderer extends BookGatedRecipePageRen
         renderTitle(drawContext, recipeY, second);
 
         // the ingredient
-        Ingredient ingredient = recipe.getIngredients().getFirst();
-        parentScreen.renderIngredient(drawContext, recipeX + 2, recipeY + 7, mouseX, mouseY, ingredient);
+        var ingredientStack = recipe.getIngredientStacks().getFirst();
+        parentScreen.renderIngredient(drawContext, recipeX + 2, recipeY + 7, mouseX, mouseY, ingredientStack.getIngredient(), ingredientStack.getCount());
 
         // cinderhearth
         parentScreen.renderItemStack(drawContext, recipeX + 21, recipeY + 26, mouseX, mouseY, recipe.createIcon());
@@ -98,9 +100,14 @@ public class BookCinderhearthSmeltingPageRenderer extends BookGatedRecipePageRen
             Pair<ItemStack, Float> possibleOutput = possibleOutputs.get(i);
             int x = recipeX + 37 + i * 23;
             parentScreen.renderItemStack(drawContext, x, recipeY + 6, mouseX, mouseY, possibleOutput.getLeft());
-
+			
             if (possibleOutput.getRight() < 1.0F) {
-                BookTextHolder chanceText = second ? chanceTexts2.get(chanceTextIndex) : chanceTexts1.get(chanceTextIndex);
+				var chance = second ? chanceTexts2 : chanceTexts1;
+				
+				if (chance == null)
+					continue;
+				
+				BookTextHolder chanceText = chance.get(chanceTextIndex);
                 renderBookTextHolder(drawContext, chanceText, x, recipeY + 24, BookEntryScreen.PAGE_WIDTH);
                 chanceTextIndex++;
             }

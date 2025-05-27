@@ -108,7 +108,7 @@
   "required_advancement": "spectrum:hidden/collect_cookbooks/brewers_handbook",
   "fabric:load_conditions": [
     {
-      "condition": "fabric:tags_populated",
+      "condition": "spectrum:tags_populated",
       "registry": "minecraft:fluid",
       "values": [
         "c:honey"

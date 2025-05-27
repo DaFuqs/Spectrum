@@ -2,7 +2,9 @@ package de.dafuqs.spectrum.registries;
 
 import com.mojang.brigadier.tree.*;
 import de.dafuqs.spectrum.commands.*;
+import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.command.v2.*;
+import net.fabricmc.loader.api.*;
 import net.minecraft.server.command.*;
 
 public class SpectrumCommands {
@@ -16,6 +18,8 @@ public class SpectrumCommands {
 			PrimordialFireCommand.register(spectrumNode);
 			DumpRegistriesCommand.register(spectrumNode);
 			DumpTagsCommand.register(spectrumNode);
+			ResetShadersCommand.register(spectrumNode);
+			
 
 			dispatcher.getRoot().addChild(spectrumNode);
 		});

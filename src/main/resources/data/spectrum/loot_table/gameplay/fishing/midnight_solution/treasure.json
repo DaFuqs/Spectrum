@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:fishing",
+  "type": "spectrum:fishing",
   "pools": [
     {
       "rolls": 1,
@@ -43,7 +43,7 @@
           "conditions": [
             {
               "condition": "minecraft:entity_properties",
-              "entity": "this",
+              "entity": "direct_attacker",
               "predicate": {
                 "type_specific": {
                   "type": "player",

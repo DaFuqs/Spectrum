@@ -32,7 +32,7 @@ public interface ITitrationBarrelRecipe extends GatedRecipe<StorageRecipeInput<S
 	Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/titration_barrel");
 	
 	// Called by the titration barrel when tapped
-	default ItemStack getResult(Inventory inventory, long secondsFermented, float downfall) {
+	default ItemStack getTitrationResult(Inventory inventory, long secondsFermented, float downfall) {
 		// Dr. Who would be proud
 		if (secondsFermented < 0) {
 			float ageIngameDays = TimeHelper.minecraftDaysFromSeconds(secondsFermented);

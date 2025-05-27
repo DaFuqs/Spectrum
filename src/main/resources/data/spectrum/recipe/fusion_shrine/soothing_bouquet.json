@@ -42,5 +42,8 @@
     "nothing"
   ],
   "finish_crafting_effect": "nothing",
-  "description": "spectrum.recipe.fusion_shrine.explanation.soothing_bouquet"
+  "description": {
+    "type": "translatable",
+    "translate": "spectrum.recipe.fusion_shrine.explanation.soothing_bouquet"
+  }
 }

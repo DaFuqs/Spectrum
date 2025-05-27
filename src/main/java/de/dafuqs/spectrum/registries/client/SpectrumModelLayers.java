@@ -52,8 +52,10 @@ public class SpectrumModelLayers {
 	public static final EntityModelLayer DOLPHIN_HEAD = new EntityModelLayer(SpectrumCommon.locate("dolphin_head"), "main");
 	public static final EntityModelLayer DONKEY_HEAD = new EntityModelLayer(SpectrumCommon.locate("donkey_head"), "main");
 	public static final EntityModelLayer DROWNED_HEAD = new EntityModelLayer(SpectrumCommon.locate("drowned_head"), "main");
+	public static final EntityModelLayer DROWNED_HEAD_OUTER = new EntityModelLayer(SpectrumCommon.locate("drowned_head"), "overlay");
 	public static final EntityModelLayer ELDER_GUARDIAN_HEAD = new EntityModelLayer(SpectrumCommon.locate("elder_guardian_head"), "main");
 	public static final EntityModelLayer ENDERMAN_HEAD = new EntityModelLayer(SpectrumCommon.locate("enderman_head"), "main");
+	public static final EntityModelLayer ENDERMAN_HEAD_OVERLAY = new EntityModelLayer(SpectrumCommon.locate("enderman_head"), "overlay");
 	public static final EntityModelLayer ENDERMITE_HEAD = new EntityModelLayer(SpectrumCommon.locate("endermite_head"), "main");
 	public static final EntityModelLayer EVOKER_HEAD = new EntityModelLayer(SpectrumCommon.locate("evoker_head"), "main");
 	public static final EntityModelLayer FOX_ARCTIC_HEAD = new EntityModelLayer(SpectrumCommon.locate("fox_arctic_head"), "main");
@@ -116,6 +118,7 @@ public class SpectrumModelLayers {
 	public static final EntityModelLayer SPIDER_HEAD = new EntityModelLayer(SpectrumCommon.locate("spider_head"), "main");
 	public static final EntityModelLayer SQUID_HEAD = new EntityModelLayer(SpectrumCommon.locate("squid_head"), "main");
 	public static final EntityModelLayer STRAY_HEAD = new EntityModelLayer(SpectrumCommon.locate("stray_head"), "main");
+	public static final EntityModelLayer STRAY_HEAD_OVERLAY = new EntityModelLayer(SpectrumCommon.locate("stray_head"), "overlay");
 	public static final EntityModelLayer STRIDER_HEAD = new EntityModelLayer(SpectrumCommon.locate("strider_head"), "main");
 	public static final EntityModelLayer TADPOLE_HEAD = new EntityModelLayer(SpectrumCommon.locate("tadpole_head"), "main");
 	public static final EntityModelLayer TROPICAL_FISH_HEAD = new EntityModelLayer(SpectrumCommon.locate("tropical_fish_head"), "main");
@@ -126,6 +129,9 @@ public class SpectrumModelLayers {
 	public static final EntityModelLayer VINDICATOR_HEAD = new EntityModelLayer(SpectrumCommon.locate("vindicator_head"), "main");
 	public static final EntityModelLayer WANDERING_TRADER_HEAD = new EntityModelLayer(SpectrumCommon.locate("wandering_trader_head"), "main");
 	public static final EntityModelLayer WARDEN_HEAD = new EntityModelLayer(SpectrumCommon.locate("warden_head"), "main");
+	public static final EntityModelLayer WARDEN_HEAD_BIOLUMINESCENT = new EntityModelLayer(SpectrumCommon.locate("piglin_brute_head"), "bioluminescent_layer");
+	public static final EntityModelLayer WARDEN_HEAD_PULSATING_SPOTS_1 = new EntityModelLayer(SpectrumCommon.locate("piglin_brute_head"), "pulsating_spots_1");
+	public static final EntityModelLayer WARDEN_HEAD_PULSATING_SPOTS_2 = new EntityModelLayer(SpectrumCommon.locate("piglin_brute_head"), "pulsating_spots_2");
 	public static final EntityModelLayer WITCH_HEAD = new EntityModelLayer(SpectrumCommon.locate("witch_head"), "main");
 	public static final EntityModelLayer WITHER_HEAD = new EntityModelLayer(SpectrumCommon.locate("wither_head"), "main");
 	public static final EntityModelLayer WOLF_HEAD = new EntityModelLayer(SpectrumCommon.locate("wolf_head"), "main");
@@ -136,6 +142,8 @@ public class SpectrumModelLayers {
 	public static final EntityModelLayer ARMADILLO_HEAD = new EntityModelLayer(SpectrumCommon.locate("armadillo_head"), "main");
 	public static final EntityModelLayer BREEZE_HEAD = new EntityModelLayer(SpectrumCommon.locate("breeze_head"), "main");
 	public static final EntityModelLayer BOGGED_HEAD = new EntityModelLayer(SpectrumCommon.locate("bogged_head"), "main");
+	public static final EntityModelLayer BOGGED_HEAD_OVERLAY = new EntityModelLayer(SpectrumCommon.locate("bogged_head"), "overlay");
+	public static final EntityModelLayer PIGLIN_BRUTE_HEAD = new EntityModelLayer(SpectrumCommon.locate("piglin_brute_head"), "main");
 	
 	public static final EntityModelLayer EGG_LAYING_WOOLY_PIG_HEAD = new EntityModelLayer(SpectrumCommon.locate("egg_laying_wooly_pig_head"), "main");
 	public static final EntityModelLayer ERASER_HEAD = new EntityModelLayer(SpectrumCommon.locate("eraser_head"), "body");
@@ -184,8 +192,10 @@ public class SpectrumModelLayers {
 		EntityModelLayerRegistry.registerModelLayer(COW_HEAD, CowHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(DONKEY_HEAD, HorseHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(DROWNED_HEAD, DrownedHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(DROWNED_HEAD_OUTER, DrownedHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(ELDER_GUARDIAN_HEAD, GuardianHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(ENDERMAN_HEAD, EndermanHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(ENDERMAN_HEAD_OVERLAY, EndermanHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(ENDERMITE_HEAD, EndermiteHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(EVOKER_HEAD, IllagerHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(FOX_HEAD, FoxHeadModel::getTexturedModelData);
@@ -245,6 +255,7 @@ public class SpectrumModelLayers {
 		EntityModelLayerRegistry.registerModelLayer(SPIDER_HEAD, SpiderHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(SQUID_HEAD, SquidHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(STRAY_HEAD, SkullEntityModel::getSkullTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(STRAY_HEAD_OVERLAY, SkullEntityModel::getSkullTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(STRIDER_HEAD, StriderHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(TADPOLE_HEAD, TadpoleHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(TURTLE_HEAD, TurtleHeadModel::getTexturedModelData);
@@ -253,15 +264,20 @@ public class SpectrumModelLayers {
 		EntityModelLayerRegistry.registerModelLayer(VINDICATOR_HEAD, IllagerHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(WANDERING_TRADER_HEAD, VillagerHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(WARDEN_HEAD, WardenHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(WARDEN_HEAD_BIOLUMINESCENT, WardenHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(WARDEN_HEAD_PULSATING_SPOTS_1, WardenHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(WARDEN_HEAD_PULSATING_SPOTS_2, WardenHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(WITCH_HEAD, WitchHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(WITHER_HEAD, ZombieHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(WOLF_HEAD, WolfHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(ZOGLIN_HEAD, HoglinHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(ZOMBIE_VILLAGER_HEAD, VillagerHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(ZOMBIFIED_PIGLIN_HEAD, PiglinHeadModel::getTexturedModelData);
-		EntityModelLayerRegistry.registerModelLayer(ARMADILLO_HEAD, PiglinHeadModel::getTexturedModelData);
-		EntityModelLayerRegistry.registerModelLayer(BREEZE_HEAD, PiglinHeadModel::getTexturedModelData);
-		EntityModelLayerRegistry.registerModelLayer(BOGGED_HEAD, PiglinHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(ARMADILLO_HEAD, ArmadilloHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(BREEZE_HEAD, BreezeHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(BOGGED_HEAD, BoggedHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(BOGGED_HEAD_OVERLAY, BoggedHeadModel::getTexturedModelDataOverlay);
+		EntityModelLayerRegistry.registerModelLayer(PIGLIN_BRUTE_HEAD, PiglinHeadModel::getTexturedModelData);
 		
 		EntityModelLayerRegistry.registerModelLayer(CAMEL_HEAD, CamelHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(SNIFFER_HEAD, SnifferHeadModel::getTexturedModelData);

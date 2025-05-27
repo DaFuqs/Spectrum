@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:fishing",
+  "type": "spectrum:fishing",
   "pools": [
     {
       "rolls": 1,
@@ -14,14 +14,7 @@
           "type": "minecraft:loot_table",
           "weight": 5,
           "quality": 2,
-          "value": "spectrum:gameplay/fishing/dragonrot/treasure",
-          "conditions": [
-            {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
-              "predicate": {}
-            }
-          ]
+          "value": "spectrum:gameplay/fishing/dragonrot/treasure"
         }
       ]
     }

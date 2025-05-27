@@ -15,14 +15,12 @@
     "crafted_salty_pastry": {
       "trigger": "spectrum:crafted_with_pedestal",
       "conditions": {
-        "items": [
-          {
-            "items": [
-              "spectrum:salted_jaramel_trifle",
-              "spectrum:salted_jaramel_tart"
-            ]
-          }
-        ]
+        "item": {
+          "items": [
+            "spectrum:salted_jaramel_trifle",
+            "spectrum:salted_jaramel_tart"
+          ]
+        }
       }
     },
     "gotten_previous": {

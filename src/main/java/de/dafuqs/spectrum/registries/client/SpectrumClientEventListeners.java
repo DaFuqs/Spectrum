@@ -54,12 +54,13 @@ public class SpectrumClientEventListeners {
 	
 	// TODO: Move to API package
 	public static final ObjectOpenHashSet<ModelIdentifier> CUSTOM_ITEM_MODELS = new ObjectOpenHashSet<>();
+	private static boolean postProcessWasOn = SpectrumCommon.CONFIG.PostProcess;
 	
 	private static void registerCustomItemRenderer(String id, Item item, Supplier<DynamicItemRenderer> renderer) {
 		CUSTOM_ITEM_MODELS.add(new ModelIdentifier(SpectrumCommon.locate(id), "inventory"));
 		DynamicItemRenderer.RENDERERS.put(item, renderer.get());
 	}
-	
+	//
 	public static void register() {
 		ResourceManagerHelper.get(ResourceType.CLIENT_RESOURCES).registerReloadListener(ParticleSpawnerParticlesDataLoader.INSTANCE);
 		
@@ -67,6 +68,7 @@ public class SpectrumClientEventListeners {
 		registerCustomItemRenderer("omni_accelerator", SpectrumItems.OMNI_ACCELERATOR, OmniAcceleratorItem.Renderer::new);
 		
 		WorldRenderEvents.START.register(context -> HudRenderers.clearItemStackOverlay());
+		
 		WorldRenderEvents.AFTER_ENTITIES.register(context -> ((ExtendedParticleManager) MinecraftClient.getInstance().particleManager).render(context.matrixStack(), context.consumers(), context.camera(), context.tickCounter().getTickDelta(true)));
 		WorldRenderEvents.AFTER_TRANSLUCENT.register(context -> {
 			Entity focusedEntity = context.camera().getFocusedEntity();
@@ -103,6 +105,15 @@ public class SpectrumClientEventListeners {
 			}
 		});
 		
+		ClientWorldEvents.AFTER_CLIENT_WORLD_CHANGE.register((client, world) -> {
+			if (SpectrumCommon.CONFIG.PostProcess && world.getRegistryKey().equals(SpectrumDimensions.DIMENSION_KEY)) {
+				initializeColorGrading(client);
+			}
+			else  {
+				SpectrumShaders.clearDimensionShaders();
+			}
+		});
+		
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
 			var world = client.world;
 			Entity cameraEntity = client.getCameraEntity();
@@ -115,8 +126,27 @@ public class SpectrumClientEventListeners {
 			RegistryEntry<Biome> biome = world.getBiome(client.getCameraEntity().getBlockPos());
 
 			HowlingSpireEffects.clientTick(world, cameraEntity, biome);
-			DarknessEffects.clientTick(world, cameraEntity, biome);
+			DimensionRenderEffects.clientTick(world, cameraEntity, biome);
+			
+			if (SpectrumCommon.CONFIG.PostProcess) {
+				if (!postProcessWasOn) {
+					initializeColorGrading(client);
+					postProcessWasOn = true;
+				}
+				
+				SpectrumShaders.updateDimensionShaders(world);
+			}
+			else if (postProcessWasOn) {
+				SpectrumShaders.clearDimensionShaders();
+				postProcessWasOn = false;
+			}
 		});
+	}
+	
+	private static void initializeColorGrading(MinecraftClient client) {
+		if (SpectrumShaders.colorGradingPostProcess.isEmpty()) {
+			SpectrumShaders.colorGradingPostProcess = SpectrumShaders.loadPostProcess(client, SpectrumShaders.COLOR_GRADING_ID);
+		}
 	}
 	
 	private static boolean renderExtendedBlockOutline(WorldRenderContext context, WorldRenderContext.BlockOutlineContext hitResult) {

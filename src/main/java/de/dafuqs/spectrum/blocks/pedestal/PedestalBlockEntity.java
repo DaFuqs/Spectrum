@@ -669,7 +669,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		} else if (slot == CRAFTING_TABLET_SLOT_ID && stack.isOf(SpectrumItems.CRAFTING_TABLET)) {
 			return true;
 		} else {
-			return stack.getItem().equals(getGemstonePowderItemForSlot(slot));
+			return stack.isOf(getGemstonePowderItemForSlot(slot));
 		}
 	}
 	

@@ -14,9 +14,7 @@
   "criteria": {
     "craft": {
       "trigger": "spectrum:crafted_with_pedestal",
-      "conditions": {
-        "items": []
-      }
+      "conditions": {}
     },
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",

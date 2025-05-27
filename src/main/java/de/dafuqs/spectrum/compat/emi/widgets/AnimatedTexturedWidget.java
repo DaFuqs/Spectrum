@@ -2,9 +2,9 @@ package de.dafuqs.spectrum.compat.emi.widgets;
 
 import com.mojang.blaze3d.systems.*;
 import dev.emi.emi.api.widget.*;
-import dev.emi.emi.runtime.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.tooltip.*;
+import net.minecraft.client.render.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 
@@ -53,15 +53,14 @@ public class AnimatedTexturedWidget extends Widget implements WidgetTooltipHolde
 	
 	@Override
 	public void render(DrawContext draw, int mouseX, int mouseY, float delta) {
-		EmiDrawContext context = EmiDrawContext.wrap(draw);
-		
+		RenderSystem.setShader(GameRenderer::getPositionTexProgram);
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		
 		if (animationDurationMS > 0) {
 			int index = MathHelper.ceil((System.currentTimeMillis() / (animationDurationMS / animationCount) % animationCount));
-			context.drawTexture(texture, x, y, 0, textureWidth, index * textureWidth, textureWidth, textureWidth, textureWidth, textureHeight);
+			draw.drawTexture(texture, x, y, 0, textureWidth, index * textureWidth, textureWidth, textureWidth, textureWidth, textureHeight);
 		} else {
-			context.drawTexture(texture, x, y, 0, textureWidth, textureWidth, textureWidth, textureWidth, textureWidth, textureHeight);
+			draw.drawTexture(texture, x, y, 0, textureWidth, textureWidth, textureWidth, textureWidth, textureWidth, textureHeight);
 		}
 	}
 	

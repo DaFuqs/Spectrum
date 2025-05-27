@@ -5,6 +5,7 @@ import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.predicate.location.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.fusion_shrine.*;
@@ -14,11 +15,13 @@ import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.transfer.v1.fluid.*;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.*;
+import net.minecraft.enchantment.*;
 import net.minecraft.item.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.recipe.*;
 import net.minecraft.registry.*;
+import net.minecraft.registry.entry.*;
 import net.minecraft.server.world.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
@@ -155,8 +158,12 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 	/**
 	 * Returns a boolean depending on if any of the recipe conditions are met.
 	 * These can always be true, be a specific day or moon phase, weather, a command, biome, etc.
+	 * <p></>
+	 * ME WHEN I CALL STREAM#ANYMATCH WHEN AN EMPTY SET SHOULD RETURN TRUE ~ Azzyypaaras
 	 */
 	public boolean areConditionMetCurrently(ServerWorld world, BlockPos pos) {
+		if (worldConditionsPredicates.isEmpty())
+			return true;
 		return this.worldConditionsPredicates.stream().anyMatch(p -> p.test(world, pos));
 	}
 	
@@ -220,6 +227,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 	// at once, since we cannot rely on positions in a grid like vanilla does in its crafting table.
 	public void craft(World world, FusionShrineBlockEntity fusionShrineBlockEntity) {
 		ItemStack firstStack = ItemStack.EMPTY;
+		var memory = ItemStack.EMPTY;
 		
 		int maxAmount = 1;
 		ItemStack output = craft(new StorageRecipeInput<>(fusionShrineBlockEntity.getItems(), fusionShrineBlockEntity.fluidStorage), world.getRegistryManager());
@@ -239,6 +247,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 				}
 			}
 			
+			memory = firstStack.copy();
 			if (maxAmount > 0) {
 				double efficiencyModifier = fusionShrineBlockEntity.getUpgradeHolder().getEffectiveValue(Upgradeable.UpgradeType.EFFICIENCY);
 				decrementIngredients(world, fusionShrineBlockEntity, maxAmount, efficiencyModifier);
@@ -259,7 +268,11 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 		}
 		
 		if (this.copyComponents) {
-			output = firstStack.copyComponentsToNewStack(output.getItem(), output.getCount());
+			var originalEnchantments = output.getEnchantments();
+			output = memory.copyComponentsToNewStack(output.getItem(), output.getCount());
+			for (RegistryEntry<Enchantment> enchantment : originalEnchantments.getEnchantments()) {
+				output.addEnchantment(enchantment, originalEnchantments.getLevel(enchantment));
+			}
 		}
 		
 		spawnCraftingResultAndXP(world, fusionShrineBlockEntity, output, maxAmount); // spawn results

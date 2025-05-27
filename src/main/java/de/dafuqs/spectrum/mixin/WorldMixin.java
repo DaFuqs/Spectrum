@@ -31,7 +31,8 @@ public abstract class WorldMixin {
 	
 	@Inject(method = "hasRain", at = @At("HEAD"), cancellable = true)
 	public void forcePermanentRain(BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
-		if (biomeAccess.getBiome(pos).isIn(SpectrumBiomeTags.HAS_PERMANENT_RAIN))
+		var biome = biomeAccess.getBiome(pos);
+		if (biome.matchesKey(SpectrumBiomes.DEEP_DRIPSTONE_CAVES) || biome.matchesKey(SpectrumBiomes.DRAGONROT_SWAMP))
 			cir.setReturnValue(true);
 	}
 }

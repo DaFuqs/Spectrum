@@ -42,6 +42,9 @@ public class CrystallarieumBlockEntityRenderer<T extends CrystallarieumBlockEnti
 	
 	@Override
 	public void render(CrystallarieumBlockEntity crystal, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
+		if (crystal.animator == null)
+			return;
+		
 		crystal.animator.animate(tickDelta, 0);
 		
 		var vertices = SPRITE.getVertexConsumer(vertexConsumers, RenderLayer::getEntityTranslucent);

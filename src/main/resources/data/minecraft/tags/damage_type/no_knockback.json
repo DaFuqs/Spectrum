@@ -1,6 +1,12 @@
 {
   "values": [
     "spectrum:decay",
-    "spectrum:dike_gate"
+    "spectrum:dike_gate",
+    "spectrum:midnight_solution",
+    "spectrum:bristle_sprouts",
+    "spectrum:deadly_poison",
+    "spectrum:sleep",
+    "spectrum:snapping_ivy",
+    "spectrum:ripping"
   ]
 }

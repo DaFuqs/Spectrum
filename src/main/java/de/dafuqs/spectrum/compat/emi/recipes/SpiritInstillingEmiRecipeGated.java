@@ -8,13 +8,13 @@ import de.dafuqs.spectrum.registries.*;
 import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.*;
 import net.minecraft.item.*;
-
+import net.minecraft.recipe.*;
 import java.util.*;
 
 public class SpiritInstillingEmiRecipeGated extends GatedSpectrumEmiRecipe<SpiritInstillerRecipe> {
 	
-	public SpiritInstillingEmiRecipeGated(SpiritInstillerRecipe recipe) {
-		super(SpectrumEmiRecipeCategories.SPIRIT_INSTILLER, recipe, 116, 48);
+	public SpiritInstillingEmiRecipeGated(RecipeEntry<SpiritInstillerRecipe> entry) {
+		super(SpectrumEmiRecipeCategories.SPIRIT_INSTILLER, entry, 116, 48);
 		inputs = recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getMatchingStacks().stream().map(EmiStack::of).toList())).toList();
 		
 		if (recipe instanceof SpawnerChangeRecipe spawnerChangeRecipe) {

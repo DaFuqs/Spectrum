@@ -18,5 +18,8 @@
     "lightning_around_shrine"
   ],
   "finish_crafting_effect": "weather_thunder",
-  "description": "spectrum.recipe.fusion_shrine.explanation.weather_thunder"
+  "description": {
+    "type": "translatable",
+    "translate": "spectrum.recipe.fusion_shrine.explanation.weather_thunder"
+  }
 }

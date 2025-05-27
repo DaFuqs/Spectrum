@@ -25,6 +25,9 @@ public class SpectrumConfig implements ConfigData {
 	@Comment("Affects how often the wind simulation updates - A lower number makes the simulation smoother, but increases the performance impact significantly")
 	public int WindSimInterval = 3;
 	
+	@Comment("Post process shaders")
+	public boolean PostProcess = true;
+	
 	@Comment("Items transported by a Pastel Network spawn particles")
 	public boolean PastelNetworkParticles = true;
 	

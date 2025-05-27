@@ -22,11 +22,9 @@
     "craft_pedestal": {
       "trigger": "spectrum:crafted_with_pedestal",
       "conditions": {
-        "items": [
-          {
-            "items": "spectrum:resonant_pickaxe"
-          }
-        ]
+        "item": {
+          "items": "spectrum:resonant_pickaxe"
+        }
       }
     },
     "gotten_previous": {

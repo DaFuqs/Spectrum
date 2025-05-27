@@ -1,12 +1,6 @@
 {
   "criteria": {
-    "created_pure_azurite": {
-      "trigger": "revelationary:advancement_gotten",
-      "conditions": {
-        "advancement_identifier": "spectrum:midgame/grow_azurite_in_crystallarieum"
-      }
-    },
-    "has_any_advanced_pastel_network_advacnement": {
+    "has_any_advanced_pastel_network_advancement": {
       "trigger": "revelationary:advancement_count",
       "conditions": {
         "count": {
@@ -15,8 +9,7 @@
         "advancement_identifiers": [
           "spectrum:midgame/create_big_pastel_network",
           "spectrum:midgame/create_pastel_network_using_every_node_type",
-          "spectrum:midgame/upgrade_pastel_node_throughput",
-          "spectrum:midgame/upgrade_pastel_node_lamp"
+          "spectrum:midgame/upgrade_pastel_node_throughput"
         ]
       }
     }

@@ -14,7 +14,7 @@
   },
   "fabric:load_conditions": [
     {
-      "condition": "fabric:tags_populated",
+      "condition": "spectrum:tags_populated",
       "registry": "minecraft:fluid",
       "values": [
         "c:milk"

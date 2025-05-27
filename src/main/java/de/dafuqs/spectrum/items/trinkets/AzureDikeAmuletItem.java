@@ -7,15 +7,16 @@ import dev.emi.trinkets.api.*;
 import net.fabricmc.api.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
-import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.item.tooltip.*;
 import net.minecraft.text.*;
+import net.minecraft.util.*;
 
 import java.util.*;
 
 public class AzureDikeAmuletItem extends InkDrainTrinketItem implements AzureDikeItem {
 	
-	public AzureDikeAmuletItem(Settings settings) {
-		super(settings, UNLOCK_IDENTIFIER, InkColors.BLUE);
+	public AzureDikeAmuletItem(Settings settings, Identifier unlockIdentifier) {
+		super(settings, unlockIdentifier, InkColors.BLUE);
 	}
 	
 	@Override

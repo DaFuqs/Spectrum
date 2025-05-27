@@ -1,12 +1,16 @@
 package de.dafuqs.spectrum.helpers;
 
+import com.mojang.datafixers.util.*;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.*;
+import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 
 import java.util.*;
+import java.util.stream.*;
 
 // TODO: migrate to net.minecraft.world.tick ?
 public class SchedulerMap<K> implements Iterable<Map.Entry<K, Integer>> {
-
+	
     private final Map<K, Integer> map;
 
     public SchedulerMap() {
@@ -72,16 +76,23 @@ public class SchedulerMap<K> implements Iterable<Map.Entry<K, Integer>> {
         return map.entrySet().iterator();
     }
 
-    public static <K> Codec<SchedulerMap<K>> getCodec(Codec<K> keyCodec) {
-        return Codec.unboundedMap(keyCodec, Codec.INT).xmap(SchedulerMap::new, s -> s.map);
+    public static <K> Codec<SchedulerMap<K>> getCodec(Codec<Pair<K, Integer>> entryCodec) {
+		return Codec.list(entryCodec).xmap(list -> {
+			var map = new HashMap<K, Integer>();
+			list.forEach(p -> map.put(p.getFirst(), p.getSecond()));
+			return new SchedulerMap<>(map);
+		}, m -> m.map.entrySet().stream().map(e -> new Pair<>(e.getKey(), e.getValue())).toList());
     }
-
-    public interface Callback {
+	
+	public Map<K, Integer> getMap() {
+		return map;
+	}
+	
+	public interface Callback {
         void trigger();
     }
 
     public interface Freezable extends Callback {
         boolean isFrozen();
     }
-
 }

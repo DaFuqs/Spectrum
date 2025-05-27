@@ -139,6 +139,8 @@
     "spectrum:zombie_horse_head",
     "spectrum:dolphin_head",
     "spectrum:pillager_head",
+    "spectrum:piglin_brute_head",
+
     "spectrum:axolotl_blue_wall_head",
     "spectrum:axolotl_wild_wall_head",
     "spectrum:axolotl_cyan_wall_head",
@@ -241,6 +243,7 @@
     "spectrum:bogged_head",
     "spectrum:armadillo_wall_head",
     "spectrum:breeze_wall_head",
-    "spectrum:bogged_wall_head"
+    "spectrum:bogged_wall_head",
+    "spectrum:piglin_brute_wall_head"
   ]
 }

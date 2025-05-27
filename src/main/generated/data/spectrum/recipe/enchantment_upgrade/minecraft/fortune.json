@@ -1,0 +1,36 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "spectrum:enchantments_exist",
+      "values": [
+        "minecraft:fortune"
+      ]
+    }
+  ],
+  "type": "spectrum:enchantment_upgrade",
+  "bulk_item": {
+    "item": "spectrum:light_blue_pigment"
+  },
+  "enchantment": "minecraft:fortune",
+  "group": "minecraft",
+  "item_scaling": {
+    "type": "spectrum:indexed",
+    "indexes": [
+      32,
+      128,
+      256,
+      512
+    ]
+  },
+  "level_cap": 5,
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_luck",
+  "xp_scaling": {
+    "type": "spectrum:indexed",
+    "indexes": [
+      100,
+      400,
+      3000,
+      10000
+    ]
+  }
+}

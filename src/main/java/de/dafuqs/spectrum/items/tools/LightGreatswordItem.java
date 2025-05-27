@@ -50,16 +50,11 @@ public class LightGreatswordItem extends ParryingSwordItem implements SplitDamag
 
 		var maxShieldTime = getMaxShieldingTime(user, stack);
 		if (!player.isOnGround() && maxShieldTime - remainingUseTicks > 5) {
-			var  yaw = player.getYaw();
-			var pitch = player.getPitch();
-			var roll = player.getBodyYaw();
 
-			float f = -MathHelper.sin(yaw * (float) (Math.PI / 180.0)) * MathHelper.cos(pitch * (float) (Math.PI / 180.0));
-			float g = -MathHelper.sin((pitch + roll) * (float) (Math.PI / 180.0));
-			float h = MathHelper.cos(yaw * (float) (Math.PI / 180.0)) * MathHelper.cos(pitch * (float) (Math.PI / 180.0));
+			var chargeDir = Vec3d.fromPolar(player.getPitch(), player.getYaw());
 			float chargeStrength = Math.min((float) (maxShieldTime - remainingUseTicks) / maxShieldTime + 0.2F, 1F);
 
-			player.addVelocity(new Vec3d(f, g, h).normalize().multiply(getLungeSpeed() * chargeStrength));
+			player.addVelocity(chargeDir.normalize().multiply(getLungeSpeed() * chargeStrength));
 			player.playSound(SpectrumSoundEvents.LUNGE, 2F, 0.8F + player.getRandom().nextFloat() * 0.2F);
 			MiscPlayerDataComponent.get(player).initiateLungeState();
 		}

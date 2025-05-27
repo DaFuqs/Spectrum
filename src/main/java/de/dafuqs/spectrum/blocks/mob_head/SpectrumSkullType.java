@@ -113,6 +113,7 @@ public enum SpectrumSkullType implements SkullBlock.SkullType {
 	ARMADILLO(EntityType.ARMADILLO, SoundEvents.ENTITY_ARMADILLO_AMBIENT.getId()),
 	BREEZE(EntityType.BREEZE, SoundEvents.ENTITY_BREEZE_IDLE_GROUND.getId()),
 	BOGGED(EntityType.BOGGED, SoundEvents.ENTITY_BOGGED_AMBIENT.getId()),
+	PIGLIN_BRUTE(EntityType.PIGLIN_BRUTE, SoundEvents.ENTITY_PIGLIN_BRUTE_AMBIENT.getId()),
 
     // Spectrum
 	EGG_LAYING_WOOLY_PIG(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG, SoundEvents.ENTITY_PIG_AMBIENT.getId()),

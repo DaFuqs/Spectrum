@@ -15,4 +15,8 @@ public class LagoonFishingBobberEntity extends SpectrumFishingBobberEntity {
 		super(SpectrumEntityTypes.LAGOON_FISHING_BOBBER, thrower, world, luckOfTheSeaLevel, waitTimeReductionTicks, exuberanceLevel, bigCatchLevel, serendipityReelLevel, inventoryInsertion, foundry);
 	}
 	
+	@Override
+	public int getLineColor() {
+		return 0xb6c6c8FF;
+	}
 }

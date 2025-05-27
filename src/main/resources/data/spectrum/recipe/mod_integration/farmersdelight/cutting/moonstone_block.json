@@ -1,16 +1,20 @@
 {
   "type": "farmersdelight:cutting",
   "ingredients": [
-    "spectrum:moonstone_block"
+    {
+      "item": "spectrum:moonstone_block"
+    }
   ],
   "result": [
     {
-      "item": "spectrum:moonstone_shard",
-      "count": 4
+      "item": {
+        "count": 4,
+        "id": "spectrum:moonstone_shard"
+      }
     }
   ],
   "tool": {
-    "fabric:type": "farmersdelight:tool_action",
+    "fabric:type": "farmersdelight:item_ability",
     "action": "pickaxe_dig"
   },
   "fabric:load_conditions": [

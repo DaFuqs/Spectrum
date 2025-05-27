@@ -1,8 +1,7 @@
 {
   "values": [
-    "spectrum:overgrown_blackslag",
     "spectrum:rotten_ground",
     "spectrum:slush",
-    "spectrum:overgrown_slush"
+    "#spectrum:groundcover"
   ]
 }

@@ -1,8 +1,9 @@
 package de.dafuqs.spectrum.items.trinkets;
 
 import net.minecraft.item.*;
-import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.item.tooltip.*;
 import net.minecraft.text.*;
+import net.minecraft.util.*;
 
 import java.util.*;
 
@@ -10,9 +11,9 @@ public class PuffCircletItem extends AzureDikeTrinketItem {
 	
 	public static final float PROJECTILE_DEFLECTION_COST = 4;
 	public static final float FALL_DAMAGE_NEGATING_COST = 2;
-
-	public PuffCircletItem(Settings settings) {
-		super(settings);
+	
+	public PuffCircletItem(Settings settings, Identifier unlockIdentifier) {
+		super(settings, unlockIdentifier);
 	}
 
 	@Override

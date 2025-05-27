@@ -9,11 +9,9 @@
     "obtain_center_ingredient": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
-        "items": [
-          {
-            "items": "#spectrum:unlocks_bag_of_holding"
-          }
-        ]
+        "item": {
+          "items": "#spectrum:unlocks_bag_of_holding"
+        }
       }
     },
     "gotten_radiating_ender": {

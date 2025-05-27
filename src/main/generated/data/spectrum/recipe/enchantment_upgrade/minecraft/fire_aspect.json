@@ -1,0 +1,29 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "spectrum:enchantments_exist",
+      "values": [
+        "minecraft:fire_aspect"
+      ]
+    }
+  ],
+  "type": "spectrum:enchantment_upgrade",
+  "bulk_item": {
+    "item": "spectrum:red_pigment"
+  },
+  "enchantment": "minecraft:fire_aspect",
+  "group": "minecraft",
+  "item_scaling": {
+    "type": "spectrum:doubling",
+    "scaling_factor": 2.0,
+    "scaling_value": 8
+  },
+  "level_cap": 4,
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_damage",
+  "xp_scaling": {
+    "type": "spectrum:doubling",
+    "scaling_factor": 2.0,
+    "scaling_value": 200,
+    "start": 200
+  }
+}

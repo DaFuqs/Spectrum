@@ -1,15 +1,16 @@
 package de.dafuqs.spectrum.items.trinkets;
 
 import net.minecraft.item.*;
-import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.item.tooltip.*;
 import net.minecraft.text.*;
+import net.minecraft.util.*;
 
 import java.util.*;
 
 public class AzureDikeCoreItem extends AzureDikeTrinketItem {
-
-	public AzureDikeCoreItem(Settings settings) {
-		super(settings);
+	
+	public AzureDikeCoreItem(Settings settings, Identifier unlockIdentifier) {
+		super(settings, unlockIdentifier);
 	}
 
 	@Override

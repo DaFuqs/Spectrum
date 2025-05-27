@@ -15,5 +15,8 @@ public class BedrockFishingBobberEntity extends SpectrumFishingBobberEntity {
 		super(SpectrumEntityTypes.BEDROCK_FISHING_BOBBER, thrower, world, luckOfTheSeaLevel, waitTimeReductionTicks, exuberanceLevel, bigCatchLevel, serendipityReelLevel, inventoryInsertion, foundry);
 	}
 	
-	
+	@Override
+	public int getLineColor() {
+		return 0xFFa10f1d;
+	}
 }

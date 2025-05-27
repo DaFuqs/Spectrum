@@ -12,14 +12,12 @@
     }
   },
   "criteria": {
-    "craft": {
+    "crafted_semi_permeable_glass": {
       "trigger": "spectrum:crafted_with_pedestal",
       "conditions": {
-        "items": [
-          {
-            "items": "#spectrum:player_only_glass"
-          }
-        ]
+        "item": {
+          "items": "#spectrum:semi_permeable_glass"
+        }
       }
     },
     "gotten_previous": {

@@ -32,7 +32,7 @@
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title": "effect.minecraft.fire_resistance",
+      "title": "book.spectrum.guidebook.potion_workshop_brewing.page1.title",
       "recipe_id": "spectrum:potion_workshop_brewing/fire_resistance",
       "text": "book.spectrum.guidebook.potion_workshop_brewing.page1.text"
     },

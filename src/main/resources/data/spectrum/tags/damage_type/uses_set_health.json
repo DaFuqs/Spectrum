@@ -1,7 +1,6 @@
 {
   "values": [
     "spectrum:set_health",
-    "spectrum:primordial_fire",
     "spectrum:sleep"
   ]
 }

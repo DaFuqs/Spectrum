@@ -2,6 +2,7 @@
   "name": "book.spectrum.guidebook.category.about.name",
   "description": "book.spectrum.guidebook.category.about.description",
   "icon": "specgrum:textures/icon.png",
+  "sort_number": 99,
   "show_category_button": false,
   "max_scroll_x": 512,
   "max_scroll_y": 512,

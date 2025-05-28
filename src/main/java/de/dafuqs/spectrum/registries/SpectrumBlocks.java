@@ -1,13 +1,5 @@
 package de.dafuqs.spectrum.registries;
 
-import java.util.*;
-import java.util.function.*;
-
-import static de.dafuqs.spectrum.SpectrumCommon.*;
-import static de.dafuqs.spectrum.registries.SpectrumItems.*;
-import static net.minecraft.world.level.block.Blocks.litBlockEmission;
-import static net.minecraft.world.level.block.Blocks.woodenButton;
-
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.energy.color.*;
@@ -51,6 +43,7 @@ import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.blocks.potion_workshop.*;
 import de.dafuqs.spectrum.blocks.present.*;
 import de.dafuqs.spectrum.blocks.redstone.*;
+import de.dafuqs.spectrum.blocks.rock_candy.*;
 import de.dafuqs.spectrum.blocks.shooting_star.*;
 import de.dafuqs.spectrum.blocks.spirit_instiller.*;
 import de.dafuqs.spectrum.blocks.spirit_sallow.*;
@@ -84,7 +77,6 @@ import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
 import net.minecraft.util.valueproviders.*;
-import net.minecraft.world.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.item.*;
@@ -100,6 +92,13 @@ import net.minecraft.world.level.levelgen.feature.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
+
+import java.util.*;
+import java.util.function.*;
+
+import static de.dafuqs.spectrum.SpectrumCommon.*;
+import static de.dafuqs.spectrum.registries.SpectrumItems.*;
+import static net.minecraft.world.level.block.Blocks.*;
 
 @SuppressWarnings({"unused"})
 public class SpectrumBlocks {
@@ -595,6 +594,19 @@ public class SpectrumBlocks {
 	public static final Block RUIN = register(decay(block("ruin", new RuinBlock(decay(MapColor.COLOR_BLACK, SoundType.STONE, 100.0F, 3600000.0F, PushReaction.BLOCK)))));
 	public static final Block FORFEITURE = register(decay(block("forfeiture", new ForfeitureBlock(decay(MapColor.COLOR_BLACK, SoundType.STONE, 100.0F, 3600000.0F, PushReaction.BLOCK)))));
 	public static final Block DECAY_AWAY = register(simple(block("decay_away", new DecayAwayBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT).pushReaction(PushReaction.DESTROY)))));
+	
+	// ROCK CANDY
+	private static BlockBehaviour.Properties rockCandy(Block block) {
+		return BlockBehaviour.Properties.ofFullCopy(block).pushReaction(PushReaction.DESTROY).destroyTime(0.5F).lightLevel(ROCK_CANDY_LUMINANCE).randomTicks();
+	}
+	
+	private static final ToIntFunction<BlockState> ROCK_CANDY_LUMINANCE = state -> Math.max(15, state.getValue(BlockStateProperties.AGE_2) * 3 + (state.getValue(SugarStickBlock.LOGGED) == FluidLogging.State.LIQUID_CRYSTAL ? LiquidCrystalFluidBlock.LUMINANCE : 8));
+	public static final Block SUGAR_STICK = register(sugarStick(blockWithItem("sugar_stick", new SugarStickBlock(rockCandy(Blocks.SMALL_AMETHYST_BUD), RockCandy.RockCandyVariant.SUGAR), InkColors.PINK), b -> b));
+	public static final Block TOPAZ_SUGAR_STICK = register(sugarStick(blockWithItem("topaz_sugar_stick", new SugarStickBlock(rockCandy(SMALL_TOPAZ_BUD), RockCandy.RockCandyVariant.TOPAZ), InkColors.PINK), b -> TOPAZ_GLASS));
+	public static final Block AMETHYST_SUGAR_STICK = register(sugarStick(blockWithItem("amethyst_sugar_stick", new SugarStickBlock(rockCandy(Blocks.SMALL_AMETHYST_BUD), RockCandy.RockCandyVariant.AMETHYST), InkColors.PINK), b -> AMETHYST_GLASS));
+	public static final Block CITRINE_SUGAR_STICK = register(sugarStick(blockWithItem("citrine_sugar_stick", new SugarStickBlock(rockCandy(SMALL_CITRINE_BUD), RockCandy.RockCandyVariant.CITRINE), InkColors.PINK), b -> CITRINE_GLASS));
+	public static final Block ONYX_SUGAR_STICK = register(sugarStick(blockWithItem("onyx_sugar_stick", new SugarStickBlock(rockCandy(SMALL_ONYX_BUD), RockCandy.RockCandyVariant.ONYX), InkColors.PINK), b -> ONYX_GLASS));
+	public static final Block MOONSTONE_SUGAR_STICK = register(sugarStick(blockWithItem("moonstone_sugar_stick", new SugarStickBlock(rockCandy(SMALL_MOONSTONE_BUD), RockCandy.RockCandyVariant.MOONSTONE), InkColors.PINK), b -> MOONSTONE_GLASS));
 	
 	// PASTEL NETWORK
 	private static BlockBehaviour.Properties pastelNode(SoundType soundGroup) {

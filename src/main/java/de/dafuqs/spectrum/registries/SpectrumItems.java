@@ -8,14 +8,15 @@ import de.dafuqs.spectrum.blocks.conditional.*;
 import de.dafuqs.spectrum.blocks.fluid.*;
 import de.dafuqs.spectrum.blocks.gravity.*;
 import de.dafuqs.spectrum.blocks.jade_vines.*;
+import de.dafuqs.spectrum.blocks.rock_candy.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.data.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.armor.*;
 import de.dafuqs.spectrum.items.bundles.*;
-import de.dafuqs.spectrum.items.conditional.*;
 import de.dafuqs.spectrum.items.conditional.CloakedItem;
+import de.dafuqs.spectrum.items.conditional.*;
 import de.dafuqs.spectrum.items.energy.*;
 import de.dafuqs.spectrum.items.food.*;
 import de.dafuqs.spectrum.items.food.beverages.*;
@@ -272,6 +273,13 @@ public class SpectrumItems {
 	public static final Item JADE_VINE_PETALS = register(simple(item("jade_vine_petals", new CloakedItemWithLoomPattern(IS.of(), SpectrumAdvancements.BUILD_SPIRIT_INSTILLER_STRUCTURE, LIME_DYE, SpectrumBannerPatterns.JADE_VINE), InkColors.LIME))); // TODO: Funky unlock?
 	public static final Item JADEITE_PETALS = register(simple(item("jadeite_petals", new Item(IS.of(Rarity.UNCOMMON)), InkColors.BROWN)));
 	public static final Item BLOOD_ORCHID_PETAL = register(simple(item("blood_orchid_petal", new CloakedItem(IS.of(), SpectrumAdvancements.REVEAL_BLOOD_ORCHID_PETALS, RED_DYE), InkColors.RED)));
+	
+	public static final Item ROCK_CANDY = register(simple(item("rock_candy", new RockCandyItem(IS.of().food(SpectrumFoodComponents.ROCK_CANDY), RockCandy.RockCandyVariant.SUGAR), InkColors.PINK)));
+	public static final Item TOPAZ_ROCK_CANDY = register(simple(item("topaz_rock_candy", new RockCandyItem(IS.of().food(SpectrumFoodComponents.TOPAZ_ROCK_CANDY), RockCandy.RockCandyVariant.TOPAZ), InkColors.CYAN)));
+	public static final Item AMETHYST_ROCK_CANDY = register(simple(item("amethyst_rock_candy", new RockCandyItem(IS.of().food(SpectrumFoodComponents.AMETHYST_ROCK_CANDY), RockCandy.RockCandyVariant.AMETHYST), InkColors.MAGENTA)));
+	public static final Item CITRINE_ROCK_CANDY = register(simple(item("citrine_rock_candy", new RockCandyItem(IS.of().food(SpectrumFoodComponents.CITRINE_ROCK_CANDY), RockCandy.RockCandyVariant.CITRINE), InkColors.YELLOW)));
+	public static final Item ONYX_ROCK_CANDY = register(simple(item("onyx_rock_candy", new RockCandyItem(IS.of().food(SpectrumFoodComponents.ONYX_ROCK_CANDY), RockCandy.RockCandyVariant.ONYX), InkColors.BLACK)));
+	public static final Item MOONSTONE_ROCK_CANDY = register(simple(item("moonstone_rock_candy", new RockCandyItem(IS.of().food(SpectrumFoodComponents.MOONSTONE_ROCK_CANDY), RockCandy.RockCandyVariant.MOONSTONE), InkColors.WHITE)));
 	
 	public static final Item BLOODBOIL_SYRUP = register(simple(item("bloodboil_syrup", new DrinkItem(IS.of().food(SpectrumFoodComponents.BLOODBOIL_SYRUP).craftRemainder(GLASS_BOTTLE)), InkColors.RED)));
 	public static final Item MILKY_RESIN = register(simple(item("milky_resin", new Item(IS.of(Rarity.UNCOMMON)), InkColors.LIGHT_GRAY)));

@@ -8,7 +8,7 @@ import net.minecraft.world.food.*;
 public class SpectrumFoodComponents {
 	
 	// EAT TIMES
-	// FoodComponent.DEFAULT_EAT_SECONDS is 1.6F seconds, snack is 0.8F
+	// FoodProperties.DEFAULT_EAT_SECONDS is 1.6F seconds, snack is 0.8F
 	private static final float TIME_BITE = 1.2F;
 	private static final float TIME_HEARTY = 3.2F;
 	private static final float TIME_FEAST = 4.8F;
@@ -198,6 +198,36 @@ public class SpectrumFoodComponents {
 	public static final FoodProperties BITTER_OILS = new FoodProperties.Builder()
 			.nutrition(0).saturationModifier(SAT_POOR).alwaysEdible()
 			.effect(new MobEffectInstance(SpectrumStatusEffects.DEADLY_POISON, 200), 1.0F)
+			.build();
+	
+	public static final FoodProperties ROCK_CANDY = new FoodProperties.Builder()
+			.nutrition(2).saturationModifier(SAT_POOR).fast()
+			.effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20 * 15, 4), 1.0F)
+			.build();
+	
+	public static final FoodProperties TOPAZ_ROCK_CANDY = new FoodProperties.Builder()
+			.nutrition(2).saturationModifier(SAT_POOR).fast()
+			.effect(new MobEffectInstance(MobEffects.ABSORPTION, 20 * 15), 1.0F)
+			.build();
+	
+	public static final FoodProperties AMETHYST_ROCK_CANDY = new FoodProperties.Builder()
+			.nutrition(2).saturationModifier(SAT_POOR).fast()
+			.effect(new MobEffectInstance(MobEffects.DIG_SPEED, 20 * 15, 4), 1.0F)
+			.build();
+	
+	public static final FoodProperties CITRINE_ROCK_CANDY = new FoodProperties.Builder()
+			.nutrition(2).saturationModifier(SAT_POOR).fast()
+			.effect(new MobEffectInstance(MobEffects.JUMP, 20 * 15, 2), 1.0F)
+			.build();
+	
+	public static final FoodProperties ONYX_ROCK_CANDY = new FoodProperties.Builder()
+			.nutrition(2).saturationModifier(SAT_POOR).fast()
+			.effect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 20 * 15, 1), 1.0F)
+			.build();
+	
+	public static final FoodProperties MOONSTONE_ROCK_CANDY = new FoodProperties.Builder()
+			.nutrition(2).saturationModifier(SAT_POOR).fast()
+			.effect(new MobEffectInstance(MobEffects.INVISIBILITY, 20 * 15), 1.0F)
 			.build();
 	
 	public static final FoodProperties BLOODBOIL_SYRUP = new FoodProperties.Builder()

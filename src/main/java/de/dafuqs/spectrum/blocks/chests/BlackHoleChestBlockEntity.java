@@ -243,8 +243,8 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 			return false;
 		}
 		Entity entity = event.context().sourceEntity();
-		if (entity instanceof ItemEntity) {
-			return true;
+		if (entity instanceof ItemEntity itemEntity) {
+			return acceptsItemStack(itemEntity.getItem());
 		}
 		return entity instanceof ExperienceOrb && hasExperienceStorageItem();
 	}

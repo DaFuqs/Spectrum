@@ -16,7 +16,7 @@ public class OnPrimordialFireSoundInstance extends AbstractSoundInstance impleme
 		super(SpectrumSoundEvents.PRIMORDIAL_FIRE_DOT, SoundSource.PLAYERS, player.getRandom());
 		this.looping = true;
 		this.delay = 0;
-		this.volume = 0.05F;
+		this.volume = 0.2F;
 		this.player = player;
 		this.relative = true;
 	}

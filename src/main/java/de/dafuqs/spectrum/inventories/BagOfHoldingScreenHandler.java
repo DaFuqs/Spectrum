@@ -4,6 +4,8 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
+import net.minecraft.world.item.*;
+import org.jetbrains.annotations.*;
 
 public class BagOfHoldingScreenHandler extends ChestMenu {
 	
@@ -16,11 +18,19 @@ public class BagOfHoldingScreenHandler extends ChestMenu {
 	}
 	
 	@Override
-	public void clicked(int slotIndex, int button, ClickType actionType, Player player) {
+	public void clicked(int slotIndex, int button, @NotNull ClickType actionType, @NotNull Player player) {
 		if (slotIndex > 0 && isValidSlotIndex(slotIndex) && this.slots.get(slotIndex).getItem().is(SpectrumItems.BAG_OF_HOLDING)) {
 			return;
 		}
 		super.clicked(slotIndex, button, actionType, player);
+	}
+	
+	@Override
+	public @NotNull ItemStack quickMoveStack(Player player, int slotIndex) {
+		if (slotIndex > 0 && isValidSlotIndex(slotIndex) && this.slots.get(slotIndex).getItem().is(SpectrumItems.BAG_OF_HOLDING)) {
+			return ItemStack.EMPTY;
+		}
+		return super.quickMoveStack(player, slotIndex);
 	}
 	
 }

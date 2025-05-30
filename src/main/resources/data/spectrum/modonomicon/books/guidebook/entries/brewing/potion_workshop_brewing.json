@@ -138,7 +138,7 @@
       "title": "effect.spectrum.life_drain",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:collect_downstone_fragments"
+        "advancement_id": "spectrum:lategame/collect_downstone_fragments"
       },
       "recipe_id": "spectrum:potion_workshop_brewing/life_drain"
     },

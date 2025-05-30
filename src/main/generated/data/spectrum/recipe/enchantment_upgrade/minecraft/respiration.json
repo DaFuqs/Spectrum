@@ -12,7 +12,7 @@
     "item": "spectrum:blue_pigment"
   },
   "enchantment": "minecraft:respiration",
-  "group": "minecraft",
+  "group": "vanilla_enchantment_upgrades",
   "item_scaling": {
     "type": "spectrum:indexed",
     "indexes": [

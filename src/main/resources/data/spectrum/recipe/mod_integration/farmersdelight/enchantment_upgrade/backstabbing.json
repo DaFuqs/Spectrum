@@ -4,7 +4,6 @@
     "item": "spectrum:red_pigment"
   },
   "enchantment": "minecraft:sharpness",
-  "group": "vanilla_enchantments",
   "item_scaling": {
     "type": "spectrum:doubling",
     "scaling_value": 8

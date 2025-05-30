@@ -4,16 +4,21 @@ import com.mojang.serialization.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.particle.effect.*;
+import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
+import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import org.jetbrains.annotations.*;
+
+import java.util.*;
 
 public class RuinBlock extends DecayBlock {
 	
@@ -66,22 +71,38 @@ public class RuinBlock extends DecayBlock {
 	}
 	
 	@Override
-	public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean moved) {
-		super.onRemove(state, world, pos, newState, moved);
+	public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
+		if (player instanceof ServerPlayer serverPlayer && shouldCreatePortalFacingUp(level, pos, state).isPresent()) {
+			SpectrumAdvancementCriteria.DEEPER_DOWN_PORTAL_OPENING.trigger(serverPlayer);
+		}
+		return super.playerWillDestroy(level, pos, state, player);
+	}
+	
+	@Override
+	public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean moved) {
+		super.onRemove(state, level, pos, newState, moved);
 		
-		if (state.getValue(RuinBlock.CONVERSION) != Conversion.NONE && newState.isAir()) {
-			if (world.dimension() == Level.NETHER) {
-				if (pos.getY() == world.getMinBuildHeight() + world.dimensionType().logicalHeight() - 1) { // Attempt to match the nether ceiling. Tricky...
-					world.setBlock(pos, SpectrumBlocks.DEEPER_DOWN_PORTAL.defaultBlockState().setValue(DeeperDownPortalBlock.FACING_UP, true), 3);
-				} else if (pos.getY() == world.getMinBuildHeight()) {
-					world.setBlock(pos, SpectrumBlocks.DEEPER_DOWN_PORTAL.defaultBlockState().setValue(DeeperDownPortalBlock.FACING_UP, false), 3);
-				}
-			} else if (world.dimension() == Level.OVERWORLD && pos.getY() == world.getMinBuildHeight()) {
-				world.setBlock(pos, SpectrumBlocks.DEEPER_DOWN_PORTAL.defaultBlockState().setValue(DeeperDownPortalBlock.FACING_UP, false), 3);
-			} else if (world.dimension() == SpectrumDimensions.DIMENSION_KEY && pos.getY() == world.getMaxBuildHeight() - 1) { // highest layer cannot be built on
-				world.setBlock(pos, SpectrumBlocks.DEEPER_DOWN_PORTAL.defaultBlockState().setValue(DeeperDownPortalBlock.FACING_UP, true), 3);
-			}
+		Optional<Boolean> shouldCreatePortalFacingUp = shouldCreatePortalFacingUp(level, pos, state);
+		if (shouldCreatePortalFacingUp.isPresent()) {
+			level.setBlockAndUpdate(pos, SpectrumBlocks.DEEPER_DOWN_PORTAL.defaultBlockState().setValue(DeeperDownPortalBlock.FACING_UP, shouldCreatePortalFacingUp.get()));
 		}
 	}
+	
+	protected Optional<Boolean> shouldCreatePortalFacingUp(Level level, BlockPos pos, BlockState state) {
+		DecayBlock.Conversion conversion = state.getValue(RuinBlock.CONVERSION);
+		if (level.dimension() == Level.NETHER) {
+			if (pos.getY() == level.getMinBuildHeight() + level.dimensionType().logicalHeight() - 1) { // Attempt to match the nether ceiling. Tricky...
+				return Optional.of(Boolean.TRUE);
+			} else if (pos.getY() == level.getMinBuildHeight()) {
+				return Optional.of(Boolean.FALSE);
+			}
+		} else if (conversion == Conversion.SPECIAL || level.dimension() == Level.OVERWORLD && pos.getY() == level.getMinBuildHeight()) {
+			return Optional.of(Boolean.FALSE);
+		} else if (level.dimension() == SpectrumDimensions.DIMENSION_KEY && pos.getY() == level.getMaxBuildHeight() - 1) { // highest layer cannot be built on
+			return Optional.of(Boolean.TRUE);
+		}
+		return Optional.empty();
+	}
+	
 	
 }

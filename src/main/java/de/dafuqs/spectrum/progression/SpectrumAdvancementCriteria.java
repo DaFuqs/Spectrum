@@ -42,6 +42,7 @@ public class SpectrumAdvancementCriteria {
 	public static PastelNodeUpgradeCriterion PASTEL_NODE_UPGRADING;
 	public static PreservationCheckCriterion PRESERVATION_CHECK;
 	public static FluidDippingCriterion FLUID_DIPPING;
+	public static DeeperDownPortalOpeningCriterion DEEPER_DOWN_PORTAL_OPENING;
 
 	public static void register() {
 		PEDESTAL_RECIPE_CALCULATED = CriteriaTriggers.register(PedestalRecipeCalculatedCriterion.ID.toString(), new PedestalRecipeCalculatedCriterion());
@@ -81,6 +82,7 @@ public class SpectrumAdvancementCriteria {
 		PASTEL_NODE_UPGRADING = CriteriaTriggers.register(PastelNodeUpgradeCriterion.ID.toString(), new PastelNodeUpgradeCriterion());
 		PRESERVATION_CHECK = CriteriaTriggers.register(PreservationCheckCriterion.ID.toString(), new PreservationCheckCriterion());
 		FLUID_DIPPING = CriteriaTriggers.register(FluidDippingCriterion.ID.toString(), new FluidDippingCriterion());
+		DEEPER_DOWN_PORTAL_OPENING = CriteriaTriggers.register(DeeperDownPortalOpeningCriterion.ID.toString(), new DeeperDownPortalOpeningCriterion());
 	}
 	
 }

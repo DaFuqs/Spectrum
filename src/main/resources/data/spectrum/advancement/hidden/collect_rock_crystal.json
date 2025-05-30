@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "#spectrum:rock_crystal"
+            "items": "spectrum:rock_crystal"
           }
         ]
       }

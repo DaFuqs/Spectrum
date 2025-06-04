@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "spectrum:sender_node"
+      "id": "spectrum:connection_node"
     },
     "hidden": true,
     "title": {

@@ -57,10 +57,10 @@ public class SpectrumModels {
 	public static final ModelTemplate SLAB_DETECTOR = new ModelTemplate(Optional.of(SpectrumCommon.locate("templates/slab_detector")), Optional.empty(), TOP, SIDE);
 	public static final ModelTemplate TRANSLUCENT_OUTER1 = new ModelTemplate(Optional.of(SpectrumCommon.locate("templates/translucent_outer1")), Optional.empty(), TEXTURE);
 	
-	public static final ResourceLocation PASTEL_GENERIC_NODE = SpectrumCommon.locate("pastel/generic_node");
-	public static final ResourceLocation PASTEL_PUSH_NODE = SpectrumCommon.locate("pastel/push_node");
-	public static final ResourceLocation PASTEL_PULL_NODE = SpectrumCommon.locate("pastel/pull_node");
-	public static final ResourceLocation PASTEL_STORE_NODE = SpectrumCommon.locate("pastel/store_node");
+	public static final ResourceLocation PASTEL_GENERIC_NODE = SpectrumCommon.locate("pastel/connection_node");
+	public static final ResourceLocation PASTEL_PUSH_NODE = SpectrumCommon.locate("pastel/sender_node");
+	public static final ResourceLocation PASTEL_PULL_NODE = SpectrumCommon.locate("pastel/gather_node");
+	public static final ResourceLocation PASTEL_STORE_NODE = SpectrumCommon.locate("pastel/storage_node");
 	
 	public static final ResourceLocation BALCITE_PYLON_PEDESTAL = SpectrumCommon.locate("block/balcite_pylon_pedestal");
 	public static final ResourceLocation MOB_BLOCK = SpectrumCommon.locate("block/mob_block");

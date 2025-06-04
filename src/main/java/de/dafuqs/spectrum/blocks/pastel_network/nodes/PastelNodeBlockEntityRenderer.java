@@ -26,7 +26,6 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
 	private static final Crystal PROVIDER = new Crystal(SpectrumItems.PROVIDER_NODE_CRYSTAL.getDefaultInstance(), 0.1, true);
 	private static final Crystal SENDER = new Crystal(SpectrumItems.SENDER_NODE_CRYSTAL.getDefaultInstance(), 0.1, true);
 	private static final Crystal STORAGE = new Crystal(SpectrumItems.STORAGE_NODE_CRYSTAL.getDefaultInstance(), 0.15, true);
-	private static final Crystal BUFFER = new Crystal(SpectrumItems.BUFFER_NODE_CRYSTAL.getDefaultInstance(), 0.1, true);
 	private static final Crystal GATHER = new Crystal(SpectrumItems.GATHER_NODE_CRYSTAL.getDefaultInstance(), 0.1, false);
 	
 	private static final ResourceLocation BASE = SpectrumCommon.locate("textures/block/pastel_node_base.png");
@@ -68,14 +67,12 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
 		var crystal = switch (node.getNodeType()) {
 			case CONNECTION -> CONNECTION;
 			case STORAGE -> STORAGE;
-			case BUFFER -> BUFFER;
 			case PROVIDER -> PROVIDER;
 			case SENDER -> SENDER;
 			case GATHER -> GATHER;
 		};
-
-		var minimal = SpectrumCommon.CONFIG.MinimalNodes;
-		var heightMod = minimal ? 0.7F : 0.5F;
+		
+		var heightMod = 0.7F;
 
 		switch (node.getState()) {
 			case CONNECTED -> {
@@ -124,19 +121,14 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
 		}
 
 		matrices.translate(0, -0.5, 0);
-
-		if (minimal) {
-			float quarterCrystalRotation = node.crystalRotation / 2;
-			matrices.mulPose(Axis.YP.rotation(quarterCrystalRotation));
-			var rootBuffer = vertexConsumers.getBuffer(RenderType.entityCutout(BASE));
-			base.render(matrices, rootBuffer, light, overlay);
-			
-			matrices.mulPose(Axis.YP.rotation(quarterCrystalRotation * 2));
-
-			matrices.scale(0.6F, 0.6F, 0.6F);
-		} else {
-			matrices.mulPose(Axis.YP.rotation(node.crystalRotation));
-		}
+		float quarterCrystalRotation = node.crystalRotation / 2;
+		matrices.mulPose(Axis.YP.rotation(quarterCrystalRotation));
+		var rootBuffer = vertexConsumers.getBuffer(RenderType.entityCutout(BASE));
+		base.render(matrices, rootBuffer, light, overlay);
+		
+		matrices.mulPose(Axis.YP.rotation(quarterCrystalRotation * 2));
+		
+		matrices.scale(0.6F, 0.6F, 0.6F);
 		
 		var color = SpectrumColorHelper.colorIntToVec(node.networkUUID.flatMap(id -> Pastel.getClientInstance().getNetwork(id)).map(PastelNetwork::getColor).orElse(0xFFFFFF));
 		color = SpectrumColorHelper.colorIntToVec(SpectrumColorHelper.interpolate(color, SpectrumColorHelper.WASH, 0.2125F));

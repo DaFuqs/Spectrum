@@ -850,7 +850,6 @@
   "block.spectrum.dream_gate": "幻梦之门",
   "block.spectrum.invisible_wall": "无形的墙",
   "block.spectrum.courier_statue": "远古雕像",
-  "item.spectrum.buffer_node_crystal": "缓冲节点水晶",
   "item.spectrum.connection_node_crystal": "连接节点水晶",
   "item.spectrum.gather_node_crystal": "收集节点水晶",
   "item.spectrum.provider_node_crystal": "提供节点水晶",
@@ -1803,14 +1802,12 @@
   "block.spectrum.provider_node": "§d绘彩网络提供节点",
   "block.spectrum.gather_node": "§8绘彩网络收集节点",
   "block.spectrum.sender_node": "§e绘彩网络发送节点",
-  "block.spectrum.buffer_node": "§a绘彩网络缓冲节点",
   "block.spectrum.storage_node": "§b绘彩网络存储节点",
   "block.spectrum.connection_node": "§7绘彩网络连接节点",
   "block.spectrum.pastel_network_nodes.tooltip.placing": "放置在如 箱子、熔炉的容器上",
   "block.spectrum.pastel_network_nodes.tooltip.range": "连接到 %d 格范围内的其他节点",
   "block.spectrum.pastel_network_nodes.connection_debug": "此节点连接到:",
   "block.spectrum.sender_node.tooltip": "将物品发送到收集和存储节点",
-  "block.spectrum.buffer_node.tooltip": "为收集节点提供物品",
   "block.spectrum.gather_node.tooltip": "从发送、提供和存储节点收集物品",
   "block.spectrum.provider_node.tooltip": "为收集节点提供物品",
   "block.spectrum.storage_node.tooltip": "作为发送和收集节点的存储",
@@ -3837,10 +3834,6 @@
   "book.spectrum.guidebook.budding_onyx.page0.text": "[缟玛瑙](entry://general/onyx_shards)的制作步骤实在相当繁琐.合成还要看月相, 尽管有[月相时钟](entry://equipment/crescent_clock) 但我经常错过这个短暂的时间窗口.\\\n如果能有什么可再生的手段来获取缟玛瑙岂不是方便得多?\\\n\\\n*奇怪的是,这道工序对其它种类的宝石晶似乎并不起效?*",
   "book.spectrum.guidebook.budding_onyx.page1.text": "最好一次性合成足量的[午夜像差](entry://general/midnight_aberration),因为这些东西在我手上衰变得很快.",
 
-  "book.spectrum.guidebook.buffer_node.name": "缓冲节点",
-  "book.spectrum.guidebook.buffer_node.page0.text": "一个修饰收集节点,它将从存储节点中请求物品,以便其他收集节点可以使用.\\\n\\\n在其[#](449900)过滤器[#]()中指定要收集的物品.",
-  "book.spectrum.guidebook.buffer_node.page1.text": "收集顺序:\n1. [发送节点](entry://pastel_network/sender_node)\n2. [提供节点](entry://pastel_network/provider_node)\n3. [存储节点](entry://pastel_network/storage_node)",
-
   "book.spectrum.guidebook.calming.page0.text": "喝下这个[#](449900)似乎可以减少敌人的生成和攻击性,[#]() 随着效果等级的提升而变化.大多数生物甚至会容忍我靠近它们.",
   "book.spectrum.guidebook.calming.page1.title": "催眠 (弱点性)",
   "book.spectrum.guidebook.calming.page1.text": " 这种有镇静特性的效果似乎使我更容易入睡,熬夜失眠必备.",
@@ -5576,7 +5569,7 @@
 
   "book.spectrum.guidebook.redstone_interaction.name": "红石交互",
   "book.spectrum.guidebook.redstone_interaction.page0.text": "当[#](bb00bb)绘彩节点[#]()接收到[#](449900)红石信号[#]()时,它会失去与其连接的容器的链接.",
-  "book.spectrum.guidebook.redstone_interaction.page1.text": "-[收集节点](entry://pastel_network/gather_node)将停止请求物品\n-[提供节点](entry://pastel_network/provider_node)将无法提供其物品\n-[发送节点](entry://pastel_network/sender_node)将停止发送其物品\n-[存储节点](entry://pastel_network/storage_node)将无法接受和提供其物品\n-[缓冲节点](entry://pastel_network/buffer_node)将停止请求和提供物品",
+  "book.spectrum.guidebook.redstone_interaction.page1.text": "-[收集节点](entry://pastel_network/gather_node)将停止请求物品\n-[提供节点](entry://pastel_network/provider_node)将无法提供其物品\n-[发送节点](entry://pastel_network/sender_node)将停止发送其物品\n-[存储节点](entry://pastel_network/storage_node)将无法接受和提供其物品",
   "book.spectrum.guidebook.redstone_interaction.page2.text": "虽然[#](bb00bb)绘彩节点[#]()的内置红石功能很不错,但事实证明某些情况需要专门的控制。我最近了解到的纯化资源似乎具有适合此类任务的品质。",
 
   "book.spectrum.guidebook.pastel_upgrades.redstone.name": "红石升级",

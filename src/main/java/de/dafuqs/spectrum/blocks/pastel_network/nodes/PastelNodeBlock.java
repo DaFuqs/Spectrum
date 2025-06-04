@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.blocks.pastel_network.nodes;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.revelationary.api.advancements.*;
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.blocks.decoration.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
@@ -14,7 +13,6 @@ import net.minecraft.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
-import net.minecraft.server.network.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
@@ -66,8 +64,8 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 	}
 
 	@Override
-	public RenderShape getRenderShape(BlockState state) {
-		return SpectrumCommon.CONFIG.MinimalNodes ? RenderShape.ENTITYBLOCK_ANIMATED : RenderShape.MODEL;
+	public @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
+		return RenderShape.ENTITYBLOCK_ANIMATED;
 	}
 	
 	@Override

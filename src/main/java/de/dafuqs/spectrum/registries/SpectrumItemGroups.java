@@ -232,7 +232,6 @@ public class SpectrumItemGroups {
 				entries.accept(SpectrumBlocks.PROVIDER_NODE);
 				entries.accept(SpectrumBlocks.SENDER_NODE);
 				entries.accept(SpectrumBlocks.STORAGE_NODE);
-				entries.accept(SpectrumBlocks.BUFFER_NODE);
 				entries.accept(SpectrumBlocks.GATHER_NODE);
 				
 				entries.accept(SpectrumBlocks.LIGHT_LEVEL_DETECTOR);
@@ -1521,7 +1520,6 @@ public class SpectrumItemGroups {
 				entries.accept(SpectrumItems.PROVIDER_NODE_CRYSTAL);
 				entries.accept(SpectrumItems.SENDER_NODE_CRYSTAL);
 				entries.accept(SpectrumItems.GATHER_NODE_CRYSTAL);
-				entries.accept(SpectrumItems.BUFFER_NODE_CRYSTAL);
 				
 				entries.accept(SpectrumBlocks.DOWNSTONE);
 				entries.accept(SpectrumBlocks.PRESERVATION_STONE);

@@ -521,7 +521,6 @@ public class SpectrumItems {
 	public static final Item PROVIDER_NODE_CRYSTAL = register(item("provider_node_crystal", new Item(IS.of()), InkColors.MAGENTA));
 	public static final Item SENDER_NODE_CRYSTAL = register(item("sender_node_crystal", new Item(IS.of()), InkColors.YELLOW));
 	public static final Item STORAGE_NODE_CRYSTAL = register(item("storage_node_crystal", new Item(IS.of()), InkColors.CYAN));
-	public static final Item BUFFER_NODE_CRYSTAL = register(item("buffer_node_crystal", new Item(IS.of()), InkColors.GREEN));
 	public static final Item GATHER_NODE_CRYSTAL = register(item("gather_node_crystal", new Item(IS.of()), InkColors.BLACK));
 	public static final Item EXTENDED_BUNDLE_ITEM = register(parented(item("extended_bundle", new ExtendedBundleItem(IS.of()), InkColors.BROWN), BUNDLE));
 	

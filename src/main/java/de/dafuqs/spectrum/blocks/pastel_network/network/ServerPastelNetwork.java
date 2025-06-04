@@ -97,8 +97,6 @@ public class ServerPastelNetwork extends PastelNetwork<ServerLevel> {
 				getLoadedNodes(PastelNodeType.GATHER).size() +
 				" - Stor: " +
 				getLoadedNodes(PastelNodeType.STORAGE).size() +
-				" - Buff: " +
-				getLoadedNodes(PastelNodeType.BUFFER).size() +
 				" - Conn: " +
 				getLoadedNodes(PastelNodeType.CONNECTION).size();
 	}

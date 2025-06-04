@@ -381,7 +381,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 					if (slotStack.getItem() instanceof ExperienceStorageItem && ExperienceStorageItem.removeStoredExperience(slotStack, requiredExperience)) {
 						requiredExperience = 0;
 					} else {
-						decrementUsingRemainder(potionWorkshopBlockEntity, slotStack, 1);
+						decrementUsingRemainder(potionWorkshopBlockEntity, slotStack, ingredientStack.getCount());
 					}
 					
 					break;

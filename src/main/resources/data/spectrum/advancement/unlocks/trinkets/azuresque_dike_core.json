@@ -18,6 +18,12 @@
         "advancement_identifier": "spectrum:lategame/collect_downstone_fragments"
       }
     },
+    "grown_azurite_in_crystallarieum": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/grow_azurite_in_crystallarieum"
+      }
+    },
     "got_large_amounts_of_dike": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {

@@ -333,8 +333,20 @@ public class SpectrumItemGroups {
 				entries.accept(SpectrumItems.MELOCHITES_COOKBOOK_VOL_1);
 				entries.accept(SpectrumItems.MELOCHITES_COOKBOOK_VOL_2);
 				entries.accept(SpectrumItems.BREWERS_HANDBOOK);
-				//entries.add(SpectrumItems.VARIA_COOKBOOK);
 				entries.accept(SpectrumItems.POISONERS_HANDBOOK);
+				
+				entries.accept(SpectrumBlocks.SUGAR_STICK);
+				entries.accept(SpectrumBlocks.TOPAZ_SUGAR_STICK);
+				entries.accept(SpectrumBlocks.AMETHYST_SUGAR_STICK);
+				entries.accept(SpectrumBlocks.CITRINE_SUGAR_STICK);
+				entries.accept(SpectrumBlocks.ONYX_SUGAR_STICK);
+				entries.accept(SpectrumBlocks.MOONSTONE_SUGAR_STICK);
+				entries.accept(SpectrumItems.ROCK_CANDY);
+				entries.accept(SpectrumItems.TOPAZ_ROCK_CANDY);
+				entries.accept(SpectrumItems.AMETHYST_ROCK_CANDY);
+				entries.accept(SpectrumItems.CITRINE_ROCK_CANDY);
+				entries.accept(SpectrumItems.ONYX_ROCK_CANDY);
+				entries.accept(SpectrumItems.MOONSTONE_ROCK_CANDY);
 				
 				entries.accept(SpectrumItems.TRIPLE_MEAT_POT_PIE);
 				entries.accept(SpectrumItems.KIMCHI);

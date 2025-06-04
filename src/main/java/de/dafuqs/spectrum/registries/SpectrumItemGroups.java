@@ -511,14 +511,19 @@ public class SpectrumItemGroups {
 				entries.accept(SpectrumBlocks.BLACKSLAG_CITRINE_ORE);
 				entries.accept(SpectrumBlocks.BLACKSLAG_ONYX_ORE);
 				entries.accept(SpectrumBlocks.BLACKSLAG_MOONSTONE_ORE);
+				
 				entries.accept(SpectrumBlocks.SHIMMERSTONE_ORE);
 				entries.accept(SpectrumBlocks.DEEPSLATE_SHIMMERSTONE_ORE);
 				entries.accept(SpectrumBlocks.BLACKSLAG_SHIMMERSTONE_ORE);
-				entries.accept(SpectrumBlocks.AZURITE_ORE);
-				entries.accept(SpectrumBlocks.DEEPSLATE_AZURITE_ORE);
-				entries.accept(SpectrumBlocks.BLACKSLAG_AZURITE_ORE);
+				entries.accept(SpectrumItems.SHIMMERSTONE_GEM);
+				
 				entries.accept(SpectrumBlocks.STRATINE_ORE);
+				entries.accept(SpectrumItems.STRATINE_FRAGMENTS);
+				entries.accept(SpectrumItems.STRATINE_GEM);
+				
 				entries.accept(SpectrumBlocks.PALTAERIA_ORE);
+				entries.accept(SpectrumItems.PALTAERIA_FRAGMENTS);
+				entries.accept(SpectrumItems.PALTAERIA_GEM);
 				
 				entries.accept(SpectrumBlocks.BLACKSLAG_COAL_ORE);
 				entries.accept(SpectrumBlocks.BLACKSLAG_COPPER_ORE);
@@ -529,32 +534,22 @@ public class SpectrumItemGroups {
 				entries.accept(SpectrumBlocks.BLACKSLAG_LAPIS_ORE);
 				entries.accept(SpectrumBlocks.BLACKSLAG_EMERALD_ORE);
 				
-				entries.accept(SpectrumItems.BISMUTH_FLAKE);
-				entries.accept(SpectrumBlocks.SMALL_BISMUTH_BUD);
-				entries.accept(SpectrumBlocks.LARGE_BISMUTH_BUD);
-				entries.accept(SpectrumBlocks.BISMUTH_CLUSTER);
-				entries.accept(SpectrumItems.BISMUTH_CRYSTAL);
+				entries.accept(SpectrumBlocks.AZURITE_ORE);
+				entries.accept(SpectrumBlocks.DEEPSLATE_AZURITE_ORE);
+				entries.accept(SpectrumBlocks.BLACKSLAG_AZURITE_ORE);
+				entries.accept(SpectrumItems.RAW_AZURITE);
 				
 				entries.accept(SpectrumBlocks.MALACHITE_ORE);
 				entries.accept(SpectrumBlocks.DEEPSLATE_MALACHITE_ORE);
 				entries.accept(SpectrumBlocks.BLACKSLAG_MALACHITE_ORE);
 				entries.accept(SpectrumItems.RAW_MALACHITE);
-				entries.accept(SpectrumBlocks.SMALL_MALACHITE_BUD);
-				entries.accept(SpectrumBlocks.LARGE_MALACHITE_BUD);
-				entries.accept(SpectrumBlocks.MALACHITE_CLUSTER);
-				entries.accept(SpectrumItems.PURE_MALACHITE);
-				
-				entries.accept(SpectrumItems.RAW_AZURITE);
-				entries.accept(SpectrumBlocks.SMALL_AZURITE_BUD);
-				entries.accept(SpectrumBlocks.LARGE_AZURITE_BUD);
-				entries.accept(SpectrumBlocks.AZURITE_CLUSTER);
-				entries.accept(SpectrumItems.PURE_AZURITE);
-				
 				entries.accept(SpectrumItems.RAW_BLOODSTONE);
-				entries.accept(SpectrumBlocks.SMALL_BLOODSTONE_BUD);
-				entries.accept(SpectrumBlocks.LARGE_BLOODSTONE_BUD);
-				entries.accept(SpectrumBlocks.BLOODSTONE_CLUSTER);
-				entries.accept(SpectrumItems.PURE_BLOODSTONE);
+				
+				entries.accept(SpectrumItems.BISMUTH_FLAKE);
+				entries.accept(SpectrumBlocks.SMALL_BISMUTH_BUD);
+				entries.accept(SpectrumBlocks.LARGE_BISMUTH_BUD);
+				entries.accept(SpectrumBlocks.BISMUTH_CLUSTER);
+				entries.accept(SpectrumItems.BISMUTH_CRYSTAL);
 				
 				entries.accept(SpectrumItems.FROSTBITE_ESSENCE);
 				entries.accept(SpectrumBlocks.FROSTBITE_CRYSTAL);
@@ -605,12 +600,6 @@ public class SpectrumItemGroups {
 				entries.accept(SpectrumItems.MIDNIGHT_ABERRATION);
 				entries.accept(SpectrumItems.MIDNIGHT_ABERRATION.getStableStack());
 				entries.accept(SpectrumItems.MIDNIGHT_CHIP);
-				
-				entries.accept(SpectrumItems.SHIMMERSTONE_GEM);
-				entries.accept(SpectrumItems.PALTAERIA_FRAGMENTS);
-				entries.accept(SpectrumItems.PALTAERIA_GEM);
-				entries.accept(SpectrumItems.STRATINE_FRAGMENTS);
-				entries.accept(SpectrumItems.STRATINE_GEM);
 				
 				entries.accept(SpectrumItems.HIBERNATING_JADE_VINE_BULB);
 				entries.accept(SpectrumItems.GERMINATED_JADE_VINE_BULB);
@@ -707,6 +696,19 @@ public class SpectrumItemGroups {
 				entries.accept(SpectrumBlocks.LARGE_ECHO_BUD);
 				entries.accept(SpectrumBlocks.ECHO_CLUSTER);
 				entries.accept(SpectrumBlocks.PURE_ECHO_BLOCK);
+				
+				entries.accept(SpectrumBlocks.SMALL_MALACHITE_BUD);
+				entries.accept(SpectrumBlocks.LARGE_MALACHITE_BUD);
+				entries.accept(SpectrumBlocks.MALACHITE_CLUSTER);
+				entries.accept(SpectrumItems.PURE_MALACHITE);
+				entries.accept(SpectrumBlocks.SMALL_BLOODSTONE_BUD);
+				entries.accept(SpectrumBlocks.LARGE_BLOODSTONE_BUD);
+				entries.accept(SpectrumBlocks.BLOODSTONE_CLUSTER);
+				entries.accept(SpectrumItems.PURE_BLOODSTONE);
+				entries.accept(SpectrumBlocks.SMALL_AZURITE_BUD);
+				entries.accept(SpectrumBlocks.LARGE_AZURITE_BUD);
+				entries.accept(SpectrumBlocks.AZURITE_CLUSTER);
+				entries.accept(SpectrumItems.PURE_AZURITE);
 				
 				if (SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.AE2_ID)) {
 					entries.accept(AE2Compat.PURE_CERTUS_QUARTZ);

@@ -36,6 +36,7 @@
         "spectrum:cat_head",
         "spectrum:cave_spider_head",
         "spectrum:chicken_head",
+        "spectrum:cod_head",
         "spectrum:cow_head",
         "spectrum:dolphin_head",
         "spectrum:donkey_head",
@@ -69,13 +70,13 @@
         "spectrum:parrot_cyan_head",
         "spectrum:parrot_gray_head",
         "spectrum:parrot_green_head",
-        "spectrum:parrot_red_head",
-        "spectrum:phantom_head"
+        "spectrum:parrot_red_head"
       ]
     },
     {
       "type": "spectrum:collection",
       "items": [
+        "spectrum:phantom_head",
         "spectrum:pig_head",
         "spectrum:pillager_head",
         "spectrum:polar_bear_head",
@@ -122,13 +123,13 @@
         "spectrum:wither_head",
         "spectrum:wolf_head",
         "spectrum:zoglin_head",
-        "spectrum:zombie_horse_head",
-        "spectrum:zombie_villager_head"
+        "spectrum:zombie_horse_head"
       ]
     },
     {
       "type": "spectrum:collection",
       "items": [
+        "spectrum:zombie_villager_head",
         "spectrum:zombified_piglin_head",
         "spectrum:armadillo_head",
         "spectrum:breeze_head",

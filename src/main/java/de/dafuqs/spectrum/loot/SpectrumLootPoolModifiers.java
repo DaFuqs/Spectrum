@@ -47,6 +47,7 @@ public class SpectrumLootPoolModifiers {
 		put(ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.withDefaultNamespace("entities/cat")), new TreasureHunterDropDefinition(SpectrumSkullType.CAT, 0.02F));
 		put(ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.withDefaultNamespace("entities/cave_spider")), new TreasureHunterDropDefinition(SpectrumSkullType.CAVE_SPIDER, 0.02F));
 		put(ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.withDefaultNamespace("entities/chicken")), new TreasureHunterDropDefinition(SpectrumSkullType.CHICKEN, 0.02F));
+		put(ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.withDefaultNamespace("entities/cod")), new TreasureHunterDropDefinition(SpectrumSkullType.COD, 0.02F));
 		put(ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.withDefaultNamespace("entities/cow")), new TreasureHunterDropDefinition(SpectrumSkullType.COW, 0.02F));
 		put(ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.withDefaultNamespace("entities/donkey")), new TreasureHunterDropDefinition(SpectrumSkullType.DONKEY, 0.02F));
 		put(ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.withDefaultNamespace("entities/drowned")), new TreasureHunterDropDefinition(SpectrumSkullType.DROWNED, 0.02F));

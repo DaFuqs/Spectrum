@@ -194,6 +194,16 @@
         ]
       }
     },
+    "has_cod_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "spectrum:cod_head"
+          }
+        ]
+      }
+    },
     "has_cow_head": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {

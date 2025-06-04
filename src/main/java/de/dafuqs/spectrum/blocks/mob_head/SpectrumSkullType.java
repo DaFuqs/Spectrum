@@ -27,6 +27,7 @@ public enum SpectrumSkullType implements SkullBlock.Type {
 	CAT(EntityType.CAT, SoundEvents.CAT_AMBIENT.getLocation()),
 	CAVE_SPIDER(EntityType.CAVE_SPIDER, SoundEvents.SPIDER_AMBIENT.getLocation()),
 	CHICKEN(EntityType.CHICKEN, SoundEvents.CHICKEN_AMBIENT.getLocation()),
+	COD(EntityType.COD, SoundEvents.COD_AMBIENT.getLocation()),
 	COW(EntityType.COW, SoundEvents.COW_AMBIENT.getLocation()),
 	DOLPHIN(EntityType.DOLPHIN, SoundEvents.DOLPHIN_AMBIENT.getLocation()),
 	DONKEY(EntityType.DONKEY, SoundEvents.DONKEY_AMBIENT.getLocation()),

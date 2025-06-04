@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.registries.client;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.blocks.mob_head.client.models.*;
 import de.dafuqs.spectrum.blocks.mob_head.client.models.PiglinHeadModel;
 import de.dafuqs.spectrum.blocks.mob_head.client.models.VillagerHeadModel;
+import de.dafuqs.spectrum.blocks.mob_head.client.models.*;
 import de.dafuqs.spectrum.entity.models.*;
 import de.dafuqs.spectrum.render.armor.*;
 import net.fabricmc.api.*;
@@ -51,6 +51,7 @@ public class SpectrumModelLayers {
 	public static final ModelLayerLocation CAT_HEAD = new ModelLayerLocation(SpectrumCommon.locate("cat_head"), "main");
 	public static final ModelLayerLocation CAVE_SPIDER_HEAD = new ModelLayerLocation(SpectrumCommon.locate("cave_spider_head"), "main");
 	public static final ModelLayerLocation CHICKEN_HEAD = new ModelLayerLocation(SpectrumCommon.locate("chicken_head"), "main");
+	public static final ModelLayerLocation COD_HEAD = new ModelLayerLocation(SpectrumCommon.locate("cod_head"), "main");
 	public static final ModelLayerLocation COW_HEAD = new ModelLayerLocation(SpectrumCommon.locate("cow_head"), "main");
 	public static final ModelLayerLocation DOLPHIN_HEAD = new ModelLayerLocation(SpectrumCommon.locate("dolphin_head"), "main");
 	public static final ModelLayerLocation DONKEY_HEAD = new ModelLayerLocation(SpectrumCommon.locate("donkey_head"), "main");
@@ -192,6 +193,7 @@ public class SpectrumModelLayers {
 		EntityModelLayerRegistry.registerModelLayer(CHICKEN_HEAD, ChickenHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(TROPICAL_FISH_HEAD, TropicalFishHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(TROPICAL_FISH_HEAD_PATTERN, TropicalFishHeadModel::getTexturedModelDataPattern);
+		EntityModelLayerRegistry.registerModelLayer(COD_HEAD, CodHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(COW_HEAD, CowHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(DONKEY_HEAD, HorseHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(DROWNED_HEAD, DrownedHeadModel::getTexturedModelData);

@@ -49,6 +49,7 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
 		builder.put(SpectrumSkullType.CAT, List.of(new Tuple<>(new CatHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.CAT_HEAD)), ResourceLocation.parse("textures/entity/cat/tabby.png"))));
 		builder.put(SpectrumSkullType.CAVE_SPIDER, List.of(new Tuple<>(new SpiderHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.CAVE_SPIDER_HEAD)), ResourceLocation.parse("textures/entity/spider/cave_spider.png"))));
 		builder.put(SpectrumSkullType.CHICKEN, List.of(new Tuple<>(new ChickenHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.CHICKEN_HEAD)), ResourceLocation.parse("textures/entity/chicken.png"))));
+		builder.put(SpectrumSkullType.COD, List.of(new Tuple<>(new CodHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.COD_HEAD)), ResourceLocation.parse("textures/entity/fish/cod.png"))));
 		builder.put(SpectrumSkullType.COW, List.of(new Tuple<>(new CowHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.COW_HEAD)), ResourceLocation.parse("textures/entity/cow/cow.png"))));
 		builder.put(SpectrumSkullType.DOLPHIN, List.of(new Tuple<>(new DolphinHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.DOLPHIN_HEAD)), ResourceLocation.parse("textures/entity/dolphin.png"))));
 		builder.put(SpectrumSkullType.DONKEY, List.of(new Tuple<>(new HorseHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.DONKEY_HEAD)), ResourceLocation.parse("textures/entity/horse/donkey.png"))));

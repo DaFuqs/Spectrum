@@ -36,6 +36,7 @@
     },
     {
       "type": "spectrum:checklist",
+      "start_counting_at": 4,
       "checklist": {
         "spectrum:lategame/revive_black_sludge_plant": "book.spectrum.guidebook.what_happened.page2.checklist.entry0",
         "spectrum:break_cracked_dragonbone": "book.spectrum.guidebook.what_happened.page2.checklist.entry1",

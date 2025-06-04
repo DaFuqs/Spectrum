@@ -18,11 +18,13 @@ import java.util.*;
 
 public class BookChecklistPage extends BookTextPage {
 	
+	private final int startCountingAt;
 	private final Map<ResourceLocation, BookTextHolder> checklist;
 	
-	public BookChecklistPage(BookTextHolder title, BookTextHolder text, boolean useMarkdownInTitle, boolean showTitleSeparator, String anchor, BookCondition condition, Map<ResourceLocation, BookTextHolder> checklist) {
+	public BookChecklistPage(BookTextHolder title, BookTextHolder text, boolean useMarkdownInTitle, boolean showTitleSeparator, String anchor, BookCondition condition, Map<ResourceLocation, BookTextHolder> checklist, int startCountingAt) {
         super(title, text, useMarkdownInTitle, showTitleSeparator, anchor, condition);
         this.checklist = checklist;
+		this.startCountingAt = startCountingAt;
     }
 	
 	public static BookChecklistPage fromJson(ResourceLocation entryId, JsonObject json, HolderLookup.Provider provider) {
@@ -31,7 +33,8 @@ public class BookChecklistPage extends BookTextPage {
 		var showTitleSeparator = GsonHelper.getAsBoolean(json, "show_title_separator", true);
         var text = BookGsonHelper.getAsBookTextHolder(json, "text", BookTextHolder.EMPTY, provider);
 		var anchor = GsonHelper.getAsString(json, "anchor", "");
-        var condition = json.has("condition")
+		int startCountingAt = GsonHelper.getAsInt(json, "start_counting_at", 1);
+		var condition = json.has("condition")
                 ? BookCondition.fromJson(entryId, json.getAsJsonObject("condition"), provider)
                 : new BookNoneCondition();
 		var checklistObject = GsonHelper.getAsJsonObject(json, "checklist", new JsonObject());
@@ -40,7 +43,7 @@ public class BookChecklistPage extends BookTextPage {
             var value = BookGsonHelper.getAsBookTextHolder(checklistObject, key, BookTextHolder.EMPTY, provider);
 			checklist.put(ResourceLocation.parse(key), value);
         }
-        return new BookChecklistPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, condition, checklist);
+		return new BookChecklistPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, condition, checklist, startCountingAt);
     }
 	
 	public static BookChecklistPage fromNetwork(RegistryFriendlyByteBuf buffer) {
@@ -49,6 +52,7 @@ public class BookChecklistPage extends BookTextPage {
         var showTitleSeparator = buffer.readBoolean();
         var text = BookTextHolder.fromNetwork(buffer);
 		var anchor = buffer.readUtf();
+		int startCountingAt = buffer.readInt();
         var condition = BookCondition.fromNetwork(buffer);
 
         // Because modonomicon decided RegistryByteBuf was worthwhile
@@ -59,8 +63,8 @@ public class BookChecklistPage extends BookTextPage {
             var value = BookTextHolder.fromNetwork(buffer);
             checklist.put(key, value);
         }
-
-        return new BookChecklistPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, condition, checklist);
+		
+		return new BookChecklistPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, condition, checklist, startCountingAt);
     }
 	
 	public Map<ResourceLocation, BookTextHolder> getChecklist() {
@@ -72,8 +76,8 @@ public class BookChecklistPage extends BookTextPage {
         super.prerenderMarkdown(textRenderer);
 		
 		List<MutableComponent> mutableTexts = new ArrayList<>();
-
-        int i = 1;
+		
+		int i = startCountingAt;
 		for (Map.Entry<ResourceLocation, BookTextHolder> entry : checklist.entrySet()) {
             BookTextHolder entryText = entry.getValue();
 			List<MutableComponent> rendered = textRenderer.render(entryText.getString());

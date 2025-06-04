@@ -2276,7 +2276,8 @@ public class SpectrumBlocks {
 	public static void register() {
 		// All the mob heads
 		for (SpectrumSkullType type : SpectrumSkullType.values()) {
-			BlockRegistrar<SpectrumSkullBlock> registrar = block(type.getSerializedName() + "_head", new SpectrumSkullBlock(type, BlockBehaviour.Properties.ofFullCopy(Blocks.SKELETON_SKULL).instrument(NoteBlockInstrument.CUSTOM_HEAD))).withBlockItemModel((ctx, block) -> SpectrumModelHelper.registerParentedItemModel(ctx, block, SpectrumModels.SKULL_ITEM)).withBlockModel((ctx, block) -> SpectrumModelHelper.createVariantsSupplier(block, SpectrumModels.MOB_HEAD));
+			BlockRegistrar<SpectrumSkullBlock> registrar = block(type.getSerializedName() + "_head", new SpectrumSkullBlock(type, BlockBehaviour.Properties.ofFullCopy(Blocks.SKELETON_SKULL).instrument(NoteBlockInstrument.CUSTOM_HEAD))).withBlockModel((ctx, block) -> SpectrumModelHelper.createVariantsSupplier(block, SpectrumModels.MOB_HEAD));
+			COMMON_REGISTRAR.flush(); // since `dropsLike()` requires the referenced block to be registered, we have to register it beforehand
 			Block wallHead = register(block(type.getSerializedName() + "_wall_head", new SpectrumWallSkullBlock(type, BlockBehaviour.Properties.ofFullCopy(Blocks.SKELETON_SKULL).dropsLike(registrar.block()))).withBlockModel((ctx, block) -> SpectrumModelHelper.createVariantsSupplier(block, SpectrumModels.MOB_HEAD)));
 			register(registrar.withItem(block -> new SpectrumSkullBlockItem(block, wallHead, IS.of(), type), InkColors.GRAY));
 		}

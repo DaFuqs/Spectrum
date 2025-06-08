@@ -219,7 +219,7 @@ public class SpectrumModelLayers {
 		EntityModelLayerRegistry.registerModelLayer(ILLUSIONER_HEAD, IllagerHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(IRON_GOLEM_HEAD, IronGolemHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(LLAMA_HEAD, LlamaHeadModel::getTexturedModelData);
-		EntityModelLayerRegistry.registerModelLayer(MAGMA_CUBE_HEAD, SlimeHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(MAGMA_CUBE_HEAD, MagmaCubeHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(MOOSHROOM_BROWN_HEAD, CowHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(MOOSHROOM_RED_HEAD, CowHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(MULE_HEAD, HorseHeadModel::getTexturedModelData);

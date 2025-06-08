@@ -9,26 +9,25 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 
-import java.util.*;
-
-public class BlackslagBlock extends RotatedPillarBlock implements BonemealableBlock {
+public class SlushBlock extends RotatedPillarBlock implements BonemealableBlock {
 	
-	public static final MapCodec<BlackslagBlock> CODEC = simpleCodec(BlackslagBlock::new);
+	public static final MapCodec<SlushBlock> CODEC = simpleCodec(SlushBlock::new);
 	
-	public BlackslagBlock(Properties settings) {
+	public SlushBlock(Properties settings) {
 		super(settings);
 	}
-
+	
 	@Override
-	public MapCodec<? extends BlackslagBlock> codec() {
+	public MapCodec<? extends SlushBlock> codec() {
 		return CODEC;
 	}
+	
 	
 	@Override
 	public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
 		for (BlockPos currPos : BlockPos.betweenClosed(pos.offset(-1, -1, -1), pos.offset(1, 1, 1))) {
 			BlockState currState = world.getBlockState(currPos);
-			if (currState.is(SpectrumBlockTags.SPREADS_TO_BLACKSLAG) || currState.is(SpectrumBlockTags.OVERGROWN)) {
+			if (currState.is(SpectrumBlockTags.OVERGROWN)) {
 				return true;
 			}
 		}
@@ -44,30 +43,18 @@ public class BlackslagBlock extends RotatedPillarBlock implements BonemealableBl
 	@Override
 	public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
 		boolean overgrownBlockNext = false;
-		List<BlockState> nextStates = new ArrayList<>();
 		
 		// search for all valid neighboring blocks and choose a weighted random one
 		for (BlockPos blockPos : BlockPos.betweenClosed(pos.offset(-1, -1, -1), pos.offset(1, 1, 1))) {
 			BlockState blockState = world.getBlockState(blockPos);
 			if (blockState.is(SpectrumBlockTags.OVERGROWN)) {
 				overgrownBlockNext = true;
-			} else if (blockState.is(SpectrumBlockTags.SPREADS_TO_BLACKSLAG)) {
-				nextStates.add(blockState);
 			}
 		}
 		
 		if (overgrownBlockNext) {
-			if (nextStates.isEmpty() || random.nextInt(nextStates.size() + 1) == 0) {
-				world.setBlockAndUpdate(pos, SpectrumBlocks.OVERGROWN_BLACKSLAG.defaultBlockState());
-				return;
-			}
+			world.setBlockAndUpdate(pos, SpectrumBlocks.OVERGROWN_SLUSH.defaultBlockState());
 		}
-		
-		if (nextStates.isEmpty()) {
-			return;
-		}
-		
-		Collections.shuffle(nextStates);
-		world.setBlockAndUpdate(pos, nextStates.getFirst());
 	}
+	
 }

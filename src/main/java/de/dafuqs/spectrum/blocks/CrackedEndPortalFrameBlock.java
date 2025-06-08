@@ -20,22 +20,14 @@ import net.minecraft.world.phys.shapes.*;
 public class CrackedEndPortalFrameBlock extends Block {
 	
 	public static final MapCodec<CrackedEndPortalFrameBlock> CODEC = simpleCodec(CrackedEndPortalFrameBlock::new);
-
-	public static final BooleanProperty FACING_VERTICAL;
-	public static final EnumProperty<EndPortalFrameEye> EYE_TYPE;
-	protected static final VoxelShape FRAME_SHAPE;
-	protected static final VoxelShape EYE_SHAPE;
-	protected static final VoxelShape FRAME_WITH_EYE_SHAPE;
+	
+	public static final BooleanProperty FACING_VERTICAL = BooleanProperty.create("facing_vertical");
+	public static final EnumProperty<EndPortalFrameEye> EYE_TYPE = EnumProperty.create("eye_type", CrackedEndPortalFrameBlock.EndPortalFrameEye.class);
+	protected static final VoxelShape FRAME_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 13.0D, 16.0D);
+	protected static final VoxelShape EYE_SHAPE = Block.box(4.0D, 13.0D, 4.0D, 12.0D, 16.0D, 12.0D);
+	protected static final VoxelShape FRAME_WITH_EYE_SHAPE = Shapes.or(FRAME_SHAPE, EYE_SHAPE);
 	private static BlockPattern COMPLETED_FRAME;
 	private static BlockPattern END_PORTAL;
-
-	static {
-		FACING_VERTICAL = BooleanProperty.create("facing_vertical");
-		EYE_TYPE = EnumProperty.create("eye_type", CrackedEndPortalFrameBlock.EndPortalFrameEye.class);
-		FRAME_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 13.0D, 16.0D);
-		EYE_SHAPE = Block.box(4.0D, 13.0D, 4.0D, 12.0D, 16.0D, 12.0D);
-		FRAME_WITH_EYE_SHAPE = Shapes.or(FRAME_SHAPE, EYE_SHAPE);
-	}
 
 	@Override
 	public MapCodec<? extends CrackedEndPortalFrameBlock> codec() {

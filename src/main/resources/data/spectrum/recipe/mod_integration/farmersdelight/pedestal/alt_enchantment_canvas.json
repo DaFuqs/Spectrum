@@ -2,6 +2,9 @@
   "type": "spectrum:pedestal",
   "time": 40,
   "tier": "simple",
+  "colors": {
+
+  },
   "cyan": 8,
   "magenta": 2,
   "yellow": 0,

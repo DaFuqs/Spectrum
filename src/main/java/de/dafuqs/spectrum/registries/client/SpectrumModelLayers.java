@@ -117,6 +117,7 @@ public class SpectrumModelLayers {
 	public static final ModelLayerLocation SILVERFISH_HEAD = new ModelLayerLocation(SpectrumCommon.locate("silverfish_head"), "main");
 	public static final ModelLayerLocation SKELETON_HORSE_HEAD = new ModelLayerLocation(SpectrumCommon.locate("skeleton_horse_head"), "main");
 	public static final ModelLayerLocation SLIME_HEAD = new ModelLayerLocation(SpectrumCommon.locate("slime_head"), "main");
+	public static final ModelLayerLocation SLIME_HEAD_TRANSLUCENT = new ModelLayerLocation(SpectrumCommon.locate("slime_head"), "translucent");
 	public static final ModelLayerLocation SNIFFER_HEAD = new ModelLayerLocation(SpectrumCommon.locate("sniffer_head"), "main");
 	public static final ModelLayerLocation SNOW_GOLEM_HEAD = new ModelLayerLocation(SpectrumCommon.locate("snow_golem_head"), "main");
 	public static final ModelLayerLocation SPIDER_HEAD = new ModelLayerLocation(SpectrumCommon.locate("spider_head"), "main");
@@ -256,6 +257,7 @@ public class SpectrumModelLayers {
 		EntityModelLayerRegistry.registerModelLayer(SHULKER_YELLOW_HEAD, ShulkerHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(SILVERFISH_HEAD, SilverfishHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(SLIME_HEAD, SlimeHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(SLIME_HEAD_TRANSLUCENT, SlimeHeadModel::getTexturedModelTranslucent);
 		EntityModelLayerRegistry.registerModelLayer(SNOW_GOLEM_HEAD, ZombieHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(SPIDER_HEAD, SpiderHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(SQUID_HEAD, SquidHeadModel::getTexturedModelData);

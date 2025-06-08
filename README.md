@@ -118,9 +118,3 @@ Every single input and be it just feedback or a bug report is greatly appreciate
 - Traveler's Backpacks: All of Spectrum's fluids are drinkable
 - Vein mining: Enchanter recipe
 - Victus: Potion recipes
-
-## Support Us
-| ![DaFuqs](https://avatars.githubusercontent.com/u/26429514?s=40&v=4) DaFuqs               | ![Azzy](https://avatars.githubusercontent.com/u/20349662?s=40&v=4) Azzy                     |
-|-------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
-| Creative Lead & Programming                                                               | Design Lead                                                                                 |
-| [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/U7U66NEVX)        | [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/azzyypaaras)        |

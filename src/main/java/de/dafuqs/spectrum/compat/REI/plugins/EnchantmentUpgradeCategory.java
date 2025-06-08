@@ -51,16 +51,16 @@ public class EnchantmentUpgradeCategory extends EnchanterCategory<EnchantmentUpg
 		widgets.add(Widgets.createTexturedWidget(BACKGROUND_TEXTURE, startPoint.x - 8 + 12, startPoint.y - 7 + 21, 0, 0, 54, 54));
 		
 		// Overchanting Star
-		if (overUnlocked && display.levelCap > display.maxNormal)
+		if (overUnlocked && display.recipeMaxLevel > display.enchantMaxLevel)
 			widgets.add(Widgets.withTooltip(
 					Widgets.withBounds(Widgets.createTexturedWidget(BACKGROUND_TEXTURE, startPoint.x - 10, startPoint.y + 2, 64, 0, 16, 16), new Rectangle(startPoint.x - 10, startPoint.y + 2, 16, 16)),
 					Component.translatable(EnchanterBlockEntity.OVERCHANTING_TOOLTIP).withStyle(s -> s.withColor(OVERCHANT_COLOR))));
 		
-		var max = overUnlocked ? display.levelCap : display.maxNormal;
+		var maxIndex = (overUnlocked ? display.recipeMaxLevel : display.enchantMaxLevel) - 1;
 		widgets.add(Widgets.createButton(new Rectangle(startPoint.x - 8 + 84, startPoint.y + 20, 8, 8), Component.literal("-"))
-				.onClick(b -> display.index = Math.clamp(display.index - 1, 1, max - 1))); // decrement
+				.onClick(b -> display.index = Math.clamp(display.index - 1, 0, maxIndex))); // decrement
 		widgets.add(Widgets.createButton(new Rectangle(startPoint.x - 8 + 94, startPoint.y + 20, 8, 8), Component.literal("+"))
-				.onClick(b -> display.index = Math.clamp(display.index + 1, 1, max - 1))); // increment
+				.onClick(b -> display.index = Math.clamp(display.index + 1, 0, maxIndex))); // increment
 		
 		// surrounding input slots
 		widgets.add(Widgets.createSlot(new Point(startPoint.x - 8 + 18, startPoint.y - 7 + 9)).markInput().entries(inputs.get(0)));
@@ -73,30 +73,28 @@ public class EnchantmentUpgradeCategory extends EnchanterCategory<EnchantmentUpg
 		widgets.add(Widgets.createSlot(new Point(startPoint.x - 8, startPoint.y - 7 + 27)).markInput().entries(inputs.get(7)));
 		
 		// Knowledge Gem and Enchanter
-		widgets.add(new IndexedEntryWidget(new Point(startPoint.x - 8 + 111, startPoint.y - 7 + 14), () -> display.index - 1).markInput()
-				.entries(inputs.get(overUnlocked ? EnchantmentUpgradeDisplay.OVERXP_INDEX : EnchantmentUpgradeDisplay.XP_INDEX)));
+		widgets.add(new IndexedEntryWidget(new Point(startPoint.x - 8 + 111, startPoint.y - 7 + 14), () -> display.index).markInput()
+				.entries(inputs.get(8)));
 		widgets.add(Widgets.createSlot(new Point(startPoint.x - 8 + 111, startPoint.y - 7 + 60)).entries(ENCHANTER).disableBackground());
 		
 		// center input slot
-		widgets.add(new IndexedEntryWidget(new Point(startPoint.x - 8 + 31, startPoint.y - 7 + 40), () -> display.index - 1).markInput()
-				.entries(inputs.get(overUnlocked ? EnchantmentUpgradeDisplay.OVERCHANT_INDEX : EnchantmentUpgradeDisplay.NORMAL_INDEX)));
+		widgets.add(new IndexedEntryWidget(new Point(startPoint.x - 8 + 31, startPoint.y - 7 + 40), () -> display.index).markInput()
+				.entries(inputs.get(9)));
 		
 		// output arrow
 		widgets.add(Widgets.createArrow(new Point(startPoint.x - 8 + 80, startPoint.y - 7 + 40)).animationDurationTicks(getCraftingTime(display)));
 		widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x - 8 + 111, startPoint.y - 7 + 40)));
 		
 		// output slot
-		var outputSlot = new IndexedEntryWidget(new Point(startPoint.x - 8 + 111, startPoint.y - 7 + 40), () -> display.index - 1).markOutput().disableBackground()
-				.entries(overUnlocked ? display.overchantOutputs : display.normalOutputs);
-		
-		widgets.add(outputSlot);
+		widgets.add(new IndexedEntryWidget(new Point(startPoint.x - 8 + 111, startPoint.y - 7 + 40), () -> display.index)
+				.markOutput().disableBackground().entries(display.getOutputEntries().getFirst()));
 		
 		// labels
 		var levelLabel = Widgets.createLabel(new Point(startPoint.x - 11 + 70, startPoint.y + 2), getDescriptionText(display)).leftAligned().color(NORMAL_COLOR).noShadow();
 		levelLabel.setOnRender((drawContext, label) -> {
-			var level = display.index;
+			var level = display.index + 1;
 			
-			if (level > display.maxNormal)
+			if (level > display.enchantMaxLevel)
 				label.setColor(OVERCHANT_COLOR);
 			else
 				label.setColor(NORMAL_COLOR);
@@ -106,7 +104,7 @@ public class EnchantmentUpgradeCategory extends EnchanterCategory<EnchantmentUpg
 		
 		var costLabel = Widgets.createLabel(new Point(startPoint.x - 11 + 70, startPoint.y - 11 + 85), getDescriptionText(display)).leftAligned().color(NORMAL_COLOR).noShadow();
 		costLabel.setOnRender((drawContext, label) -> {
-			var level = display.index;
+			var level = display.index + 1;
 			
 			label.setMessage(Component.translatable(EnchanterBlockEntity.ITEM_TRANS, display.itemScaling.apply(level)));
 		});

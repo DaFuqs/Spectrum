@@ -23,26 +23,23 @@ public class EnchantmentUpgradeDisplay extends EnchanterDisplay {
 	
 	protected final Holder<Enchantment> enchantment;
 	
-	static final int XP_INDEX = 8;
-	static final int OVERXP_INDEX = 9;
-	static final int NORMAL_INDEX = 10;
-	static final int OVERCHANT_INDEX = 11;
+	final int enchantMaxLevel;
+	final int recipeMaxLevel;
 	
-	final int levelCap;
-	final int maxNormal;
 	final Component transKey;
 	final RecipeScaling.ScalingData itemScaling;
 	final RecipeScaling.ScalingData xpScaling;
-	EntryIngredient normalOutputs, overchantOutputs; // this fucking sucks lmao
-	int index = 1; // THIS IS EVEN WORSE
+	
+	int index = 0;
 	
 	public EnchantmentUpgradeDisplay(@NotNull RecipeHolder<EnchantmentUpgradeRecipe> recipeEntry) {
 		super(recipeEntry, buildIngredients(recipeEntry.value()), buildOutputs(recipeEntry.value()));
 		
 		var recipe = recipeEntry.value();
 		enchantment = recipe.getEnchantment();
-		levelCap = recipe.getLevelCap();
-		maxNormal = enchantment.value().getMaxLevel();
+		
+		enchantMaxLevel = enchantment.value().getMaxLevel();
+		recipeMaxLevel = recipe.getLevelCap();
 		
 		itemScaling = recipe.getItemScaling();
 		xpScaling = recipe.getXPScaling();
@@ -51,8 +48,6 @@ public class EnchantmentUpgradeDisplay extends EnchanterDisplay {
 			s.withColor(EnchantmentUpgradeCategory.NORMAL_COLOR);
 			return s;
 		});
-		
-		fuck(recipe);
 	}
 	
 	private static List<EntryIngredient> buildIngredients(EnchantmentUpgradeRecipe recipe) {
@@ -60,69 +55,41 @@ public class EnchantmentUpgradeDisplay extends EnchanterDisplay {
 		
 		var enchant = recipe.getEnchantment();
 		var levelCap = recipe.getLevelCap();
-		var maxNormal = enchant.value().getMaxLevel();
 		
-		// You go first
+		var knowledgeGem = new ArrayList<ItemStack>();
+		var enchantedBooks = new ArrayList<ItemStack>();
+		
 		for (int i = 0; i < 8; i++) {
 			inputs.add(EntryIngredients.of(recipe.getBulkItem(), 1));
 		}
 		
-		// XP and Books
-		var xpNormal = new ArrayList<ItemStack>();
-		var xpOver = new ArrayList<ItemStack>();
-		var enchNormal = new ArrayList<ItemStack>();
-		var enchOver = new ArrayList<ItemStack>();
-		
-		for (int i = 1; i < levelCap; i++) {
-			ItemStack gem = KnowledgeGemItem.getKnowledgeDropStackWithXP(recipe.getXPScaling().apply(i), true);
-			
-			if (i < maxNormal) {
-				appendBookStack(enchant, i, enchNormal);
-				xpNormal.add(gem);
-			}
-			appendBookStack(enchant, i, enchOver);
-			xpOver.add(gem);
+		for (int level = 1; level < levelCap; level++) {
+			knowledgeGem.add(KnowledgeGemItem.getKnowledgeDropStackWithXP(recipe.getXPScaling().apply(level), true));
+			enchantedBooks.add(getEnchantedBookStackWith(enchant, level));
 		}
 		
-		inputs.add(EntryIngredients.ofItemStacks(xpNormal)); // The XP gem
-		inputs.add(EntryIngredients.ofItemStacks(xpOver)); // The XP gem
-		inputs.add(EntryIngredients.ofItemStacks(enchNormal)); // The center stack
-		inputs.add(EntryIngredients.ofItemStacks(enchOver));
-		return Collections.singletonList(EntryIngredients.ofItemStacks(enchOver));
+		inputs.add(EntryIngredients.ofItemStacks(knowledgeGem));
+		inputs.add(EntryIngredients.ofItemStacks(enchantedBooks));
+		return inputs;
 	}
 	
 	private static List<EntryIngredient> buildOutputs(EnchantmentUpgradeRecipe recipe) {
-		var enchOver = new ArrayList<ItemStack>();
-		
+		var stacks = new ArrayList<ItemStack>();
 		var levelCap = recipe.getLevelCap();
 		
-		for (int i = 2; i <= levelCap; i++) {
-			appendBookStack(recipe.getEnchantment(), i, enchOver);
+		for (int level = 1; level < levelCap; level++) {
+			stacks.add(getEnchantedBookStackWith(recipe.getEnchantment(), level + 1));
 		}
 		
-		return Collections.singletonList(EntryIngredients.ofItemStacks(enchOver));
+		return Collections.singletonList(EntryIngredients.ofItemStacks(stacks));
 	}
 	
-	private void fuck(EnchantmentUpgradeRecipe recipe) {
-		var enchNormal = new ArrayList<ItemStack>();
-		var enchOver = new ArrayList<ItemStack>();
-		
-		for (int i = 2; i <= levelCap; i++) {
-			if (i <= maxNormal)
-				appendBookStack(recipe.getEnchantment(), i, enchNormal);
-			appendBookStack(recipe.getEnchantment(), i, enchOver);
-		}
-		
-		normalOutputs = EntryIngredients.ofItemStacks(enchNormal);
-		overchantOutputs = EntryIngredients.ofItemStacks(enchOver);
-	}
-	
-	private static void appendBookStack(Holder<Enchantment> enchant, int i, ArrayList<ItemStack> enchIn) {
+	private static ItemStack getEnchantedBookStackWith(Holder<Enchantment> enchant, int level) {
 		var enchStack = new ItemStack(Items.ENCHANTED_BOOK);
 		var builder = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
-		builder.set(enchant, i);
+		builder.set(enchant, level);
 		enchStack.set(DataComponents.STORED_ENCHANTMENTS, builder.toImmutable());
-		enchIn.add(enchStack);
+		return enchStack;
 	}
 	
 	@Override

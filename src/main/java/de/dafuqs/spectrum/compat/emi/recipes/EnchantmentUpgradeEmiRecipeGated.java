@@ -52,8 +52,6 @@ public class EnchantmentUpgradeEmiRecipeGated extends GatedSpectrumEmiRecipe<Enc
 		maxNormal = enchant.value().getMaxLevel();
 		transKey = enchant.value().description().copy().withStyle(s -> s.withItalic(true));
 		
-		
-		// Pigments first due to funny bullshit
 		for (int i = 0; i < 8; i++) {
 			inputs.add(EmiStack.of(recipe.getBulkItem(), 1));
 		}

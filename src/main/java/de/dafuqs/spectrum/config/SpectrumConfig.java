@@ -115,6 +115,9 @@ public class SpectrumConfig implements ConfigData {
 	@Comment("When a player places decay, add an entry to the server log")
 	public boolean LogPlacingOfDecay = true;
 	
+	@Comment("Allow End Portals to be aligned in any shape, not only 3x3")
+	public boolean AllowDynamicEndPortalShape = true;
+	
 	@Comment("The audio volume for Spectrums crafting blocks. Set to 0.0 to turn those sounds off completely.")
 	public float BlockSoundVolume = 0.5F;
 	
@@ -130,9 +133,6 @@ public class SpectrumConfig implements ConfigData {
 	
 	@Comment("Flat additional damage dealt with each level of the First Strike enchantment")
 	public float FirstStrikeDamagePerLevel = 2.0F;
-
-	//TODO: Re-add the settings to disable certain enchants
-
 	@Comment("The percentile a mobs armor/hand stacks are being dropped when hit with a Disarming enchanted weapon per the enchantments level")
 	public float DisarmingChancePerLevelMobs = 0.01F;
 	@Comment("If > 0 the Disarming Enchantment is able to remove armor and hand tools from a hit player. Should be a far smaller chance than for mobs")
@@ -187,8 +187,7 @@ public class SpectrumConfig implements ConfigData {
 	public int AzureDikeHudOffsetX = 0;
 	public int AzureDikeHudOffsetY = 0;
 	public int AzureDikeHudOffsetYWithArmor = -10;
-	public int AzureDikeHudOffsetYForEachRowOfExtraHearts = -10;
-
+	
 	@Override
 	public void validatePostLoad() {
 		if (VanillaRecipeCraftingTimeTicks <= 0) {

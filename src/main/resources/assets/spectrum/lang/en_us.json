@@ -5757,6 +5757,7 @@
   "text.autoconfig.Spectrum.option.IntegrationPacksToSkipLoading": "Integration Packs to skip loading",
   "text.autoconfig.Spectrum.option.InventoryInsertionEnchantmentEnabled": "Enchantment Inventory Insertion available",
   "text.autoconfig.Spectrum.option.LogPlacingOfDecay": "Log Placing of Decay",
+  "text.autoconfig.Spectrum.option.AllowDynamicEndPortalShape": "Allow End Portals to be aligned in any shape, not only 3x3",
   "text.autoconfig.Spectrum.option.MaxLevelForEffectsInGreaterPotionPendant": "Max Level for Status Effects in Greater Potion Pendant",
   "text.autoconfig.Spectrum.option.MaxLevelForEffectsInLesserPotionPendant": "Max Level for Status Effects in Lesser Potion Pendant",
   "text.autoconfig.Spectrum.option.NameForUnrevealedEnchantments": "Name for unrevealed Enchantments",

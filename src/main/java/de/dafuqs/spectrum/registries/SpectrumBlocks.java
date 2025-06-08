@@ -22,6 +22,7 @@ import de.dafuqs.spectrum.blocks.deeper_down.*;
 import de.dafuqs.spectrum.blocks.deeper_down.flora.*;
 import de.dafuqs.spectrum.blocks.deeper_down.groundcover.*;
 import de.dafuqs.spectrum.blocks.enchanter.*;
+import de.dafuqs.spectrum.blocks.end_portal.*;
 import de.dafuqs.spectrum.blocks.ender.*;
 import de.dafuqs.spectrum.blocks.energy.*;
 import de.dafuqs.spectrum.blocks.farming.*;

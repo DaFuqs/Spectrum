@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.items.magic_items;
 
-import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.blocks.end_portal.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
 import net.minecraft.core.*;

@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.blocks.end_portal.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.world.*;
@@ -22,13 +22,13 @@ public abstract class EnderEyeItemMixin {
 		BlockPos blockPos = context.getClickedPos();
 		BlockState blockState = world.getBlockState(blockPos);
 		boolean eyeAdded = false;
-		if (blockState.is(SpectrumBlocks.CRACKED_END_PORTAL_FRAME) && blockState.getValue(CrackedEndPortalFrameBlock.EYE_TYPE).equals(CrackedEndPortalFrameBlock.EndPortalFrameEye.NONE)) {
+		if (blockState.is(SpectrumBlocks.CRACKED_END_PORTAL_FRAME) && blockState.getValue(CrackedEndPortalFrameBlock.EYE_TYPE) == CrackedEndPortalFrameBlock.EndPortalFrameEye.NONE) {
 			BlockState targetBlockState = blockState.setValue(CrackedEndPortalFrameBlock.EYE_TYPE, CrackedEndPortalFrameBlock.EndPortalFrameEye.WITH_EYE_OF_ENDER);
 			Block.pushEntitiesUp(blockState, targetBlockState, world, blockPos);
 			world.setBlock(blockPos, targetBlockState, 2);
 			world.updateNeighbourForOutputSignal(blockPos, SpectrumBlocks.CRACKED_END_PORTAL_FRAME);
 			eyeAdded = true;
-		} else if (blockState.is(Blocks.END_PORTAL_FRAME) && blockState.getValue(EndPortalFrameBlock.HAS_EYE).equals(false)) {
+		} else if (blockState.is(Blocks.END_PORTAL_FRAME) && !blockState.getValue(EndPortalFrameBlock.HAS_EYE)) {
 			BlockState targetBlockState = blockState.setValue(EndPortalFrameBlock.HAS_EYE, true);
 			Block.pushEntitiesUp(blockState, targetBlockState, world, blockPos);
 			world.setBlock(blockPos, targetBlockState, 2);
@@ -44,7 +44,7 @@ public abstract class EnderEyeItemMixin {
 				world.levelEvent(LevelEvent.END_PORTAL_FRAME_FILL, blockPos, 0);
 				
 				// Search for a valid end portal position. Found => create portal!
-				CrackedEndPortalFrameBlock.checkAndFillEndPortal(world, blockPos);
+				EndPortalShaper.checkAndFillEndPortal(world, blockPos);
 				
 				callbackInfoReturnable.setReturnValue(InteractionResult.CONSUME);
 			}

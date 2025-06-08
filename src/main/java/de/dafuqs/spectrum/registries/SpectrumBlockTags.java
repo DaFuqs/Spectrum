@@ -13,6 +13,7 @@ public class SpectrumBlockTags {
 	private static final DeferredRegistrar.Contextual<DatagenProxy.ProvidedTagBuilderBuilder<Block>> REGISTRAR = new DeferredRegistrar.Contextual<>(DatagenProxy.IS_DATAGEN);
 	
 	// PLANTS
+	public static final TagKey<Block> AMARANTH_PLANTABLE = of("amaranth_plantable");
 	public static final TagKey<Block> MERMAIDS_BRUSH_PLANTABLE = of("mermaids_brush_plantable");
 	public static final TagKey<Block> QUITOXIC_REEDS_PLANTABLE = of("quitoxic_reeds_plantable");
 	public static final TagKey<Block> SAWBLADE_HOLLY_PLANTABLE = of("sawblade_holly_plantable");

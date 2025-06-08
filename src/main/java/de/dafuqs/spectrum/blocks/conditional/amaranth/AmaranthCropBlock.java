@@ -113,4 +113,9 @@ public class AmaranthCropBlock extends TallCropBlock implements RevelationAware 
 		}
 	}
 	
+	@Override
+	protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
+		return state.is(SpectrumBlockTags.AMARANTH_PLANTABLE);
+	}
+	
 }

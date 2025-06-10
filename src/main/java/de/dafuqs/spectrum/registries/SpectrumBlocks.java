@@ -838,7 +838,11 @@ public class SpectrumBlocks {
 	public static final ToIntFunction<BlockState> LANTERN_LIGHT_PROVIDER = (state -> state.getValue(RedstoneLampBlock.LIT) ? 15 : 0);
 	
 	public static FungusBlock registerNoxshroom(String name, ResourceKey<ConfiguredFeature<?, ?>> feature, MapColor mapColor) {
-		return register(cutout(blockWithItem(name, new FungusBlock(feature, SHIMMEL, settings(mapColor, SoundType.FUNGUS, 0.0F).noCollission()), InkColors.LIME)).withBlockItemModel(SpectrumModelHelper::registerBlockTexturedItemModel).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block, SpectrumModelHelper.createModelVariant(SpectrumTexturedModels.cross(b -> b, "_type_1").createWithSuffix(block, "_type_1", ctx.modelOutput)), SpectrumModelHelper.createModelVariant(SpectrumTexturedModels.cross(b -> b, "_type_2").createWithSuffix(block, "_type_2", ctx.modelOutput)), SpectrumModelHelper.createModelVariant(SpectrumTexturedModels.cross(b -> b, "_type_3").createWithSuffix(block, "_type_3", ctx.modelOutput)))));
+		return register(cutout(blockWithItem(name, new FungusBlock(feature, SHIMMEL, settings(mapColor, SoundType.FUNGUS, 0.0F).noCollission()), InkColors.LIME))
+				.withBlockItemModel((ctx, block) -> ModelTemplates.FLAT_ITEM.create(ModelLocationUtils.getModelLocation(block.asItem()), SpectrumTextureMaps.layer0(block, "_type_1"), ctx.output)).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block,
+						SpectrumModelHelper.createModelVariant(SpectrumTexturedModels.cross(b -> b, "_type_1").createWithSuffix(block, "_type_1", ctx.modelOutput)),
+						SpectrumModelHelper.createModelVariant(SpectrumTexturedModels.cross(b -> b, "_type_2").createWithSuffix(block, "_type_2", ctx.modelOutput)),
+						SpectrumModelHelper.createModelVariant(SpectrumTexturedModels.cross(b -> b, "_type_3").createWithSuffix(block, "_type_3", ctx.modelOutput)))));
 	}
 	
 	public static final FungusBlock SLATE_NOXSHROOM = registerNoxshroom("slate_noxshroom", SpectrumConfiguredFeatures.SLATE_NOXFUNGUS, MapColor.COLOR_GRAY);
@@ -1250,7 +1254,7 @@ public class SpectrumBlocks {
 		ResourceLocation full = SpectrumTexturedModels.cross(b -> b, "_full").createWithSuffix(block, "_full", ctx.modelOutput);
 		return MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.property(BlockStateProperties.AGE_7).generate(age -> SpectrumModelHelper.createModelVariant(age < 3 ? none : age < 6 ? some : full)));
 	}));
-	public static final Block RADIATING_ENDER = register(simple(blockWithItem("radiating_ender", new RadiatingEnderBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.EMERALD_BLOCK).mapColor(MapColor.COLOR_PURPLE)), InkColors.PURPLE)));
+	public static final Block RADIATING_ENDER = register(simple(blockWithItem("radiating_ender", new RadiatingEnderBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.EMERALD_BLOCK).mapColor(MapColor.COLOR_PURPLE)), InkColors.PURPLE)).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block, SpectrumModelHelper.createModelVariant(TexturedModel.CUBE_TOP_BOTTOM.create(block, ctx.modelOutput))).with(SpectrumModelHelper.createUpDefaultFacingVariantMap())));
 	public static final Block AMARANTH = register(cutout(block("amaranth", new AmaranthCropBlock(settings(MapColor.NONE, SoundType.CROP, 0.0F).noCollission().randomTicks()))).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.properties(BlockStateProperties.AGE_7, TallCropBlock.HALF).generate((age, half) -> {
 		String suffix;
 		if (half == DoubleBlockHalf.LOWER) {

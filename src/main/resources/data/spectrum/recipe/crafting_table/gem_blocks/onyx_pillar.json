@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "W",
+    "W"
+  ],
+  "key": {
+    "W": [
+      {
+        "item": "spectrum:polished_onyx"
+      }
+    ]
+  },
+  "result": {
+    "id": "spectrum:onyx_pillar",
+    "count": 2
+  }
+}

@@ -3,11 +3,11 @@
   "group": "compacting",
   "ingredients": [
     {
-      "item": "spectrum:polished_citrine_block"
+      "item": "spectrum:polished_amethyst"
     }
   ],
   "result": {
-    "id": "spectrum:citrine_shard",
+    "id": "minecraft:amethyst_shard",
     "count": 9
   }
 }

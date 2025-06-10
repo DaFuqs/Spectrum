@@ -8,12 +8,12 @@
   "key": {
     "G": [
       {
-        "item": "spectrum:onyx_shard"
+        "item": "spectrum:topaz_shard"
       }
     ]
   },
   "result": {
-    "id": "spectrum:polished_onyx_block",
+    "id": "spectrum:polished_topaz",
     "count": 1
   }
 }

@@ -3,11 +3,11 @@
   "group": "compacting",
   "ingredients": [
     {
-      "item": "spectrum:polished_amethyst_block"
+      "item": "spectrum:polished_onyx"
     }
   ],
   "result": {
-    "id": "minecraft:amethyst_shard",
+    "id": "spectrum:onyx_shard",
     "count": 9
   }
 }

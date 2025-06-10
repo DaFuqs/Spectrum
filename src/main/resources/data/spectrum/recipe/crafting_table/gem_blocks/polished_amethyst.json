@@ -8,12 +8,12 @@
   "key": {
     "G": [
       {
-        "item": "spectrum:topaz_shard"
+        "item": "minecraft:amethyst_shard"
       }
     ]
   },
   "result": {
-    "id": "spectrum:polished_topaz_block",
+    "id": "spectrum:polished_amethyst",
     "count": 1
   }
 }

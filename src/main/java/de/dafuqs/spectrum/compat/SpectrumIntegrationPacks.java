@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.compat.alloy_forgery.*;
 import de.dafuqs.spectrum.compat.botania.*;
 import de.dafuqs.spectrum.compat.create.*;
 import de.dafuqs.spectrum.compat.exclusions_lib.*;
+import de.dafuqs.spectrum.compat.farmersdelight.*;
 import de.dafuqs.spectrum.compat.gobber.*;
 import de.dafuqs.spectrum.compat.malum.*;
 import de.dafuqs.spectrum.compat.modonomicon.*;
@@ -64,7 +65,7 @@ public class SpectrumIntegrationPacks {
 			registerIntegrationPack(TRAVELERS_BACKPACK_ID, () -> new TravelersBackpackCompat());
 			registerIntegrationPack(BOTANIA_ID, () -> new BotaniaCompat());
 			registerIntegrationPack(NEEPMEAT_ID, () -> new NEEPMeatCompat());
-			//registerIntegrationPack(FARMERSDELIGHT_ID, () -> new FDCompat());
+			registerIntegrationPack(FARMERSDELIGHT_ID, () -> new FDCompat());
 		registerIntegrationPack(MALUM_ID, () -> new MalumCompat());
 			registerIntegrationPack(CREATE_ID, () -> new CreateCompat());
 		}

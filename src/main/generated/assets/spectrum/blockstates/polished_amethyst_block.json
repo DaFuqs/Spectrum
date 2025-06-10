@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "spectrum:block/polished_amethyst_block"
+      "model": "spectrum:block/amethyst_pillar"
     }
   }
 }

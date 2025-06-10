@@ -17,9 +17,9 @@
   ],
   "key": {
     "Y": "spectrum:polished_basalt",
-    "A": "spectrum:polished_amethyst_block",
-    "T": "spectrum:polished_topaz_block",
-    "C": "spectrum:polished_citrine_block",
+    "A": "spectrum:polished_amethyst",
+    "T": "spectrum:polished_topaz",
+    "C": "spectrum:polished_citrine",
     "L": "spectrum:raw_azurite",
     "G": "spectrum:green_pigment"
   },

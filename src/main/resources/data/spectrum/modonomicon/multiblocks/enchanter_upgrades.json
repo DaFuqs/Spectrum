@@ -90,7 +90,7 @@
     },
     "G": {
       "type": "modonomicon:tag",
-      "display": "spectrum:polished_amethyst_block",
+      "display": "spectrum:polished_amethyst",
       "tag": "#spectrum:structure/gemstones"
     },
     "F": {

@@ -1207,11 +1207,11 @@
   "block.spectrum.deepslate_shimmerstone_light": "深板岩火花石灯",
   "block.spectrum.blackslag_shimmerstone_light": "黑渣岩火花石灯",
 
-  "block.spectrum.polished_amethyst_block": "磨制紫水晶块",
-  "block.spectrum.polished_citrine_block": "磨制黄水晶块",
-  "block.spectrum.polished_topaz_block": "磨制托帕石晶块",
-  "block.spectrum.polished_onyx_block": "磨制缟玛瑙晶块",
-  "block.spectrum.polished_moonstone_block": "磨制月长石晶块",
+  "block.spectrum.polished_amethyst": "磨制紫水晶块",
+  "block.spectrum.polished_citrine": "磨制黄水晶块",
+  "block.spectrum.polished_topaz": "磨制托帕石晶块",
+  "block.spectrum.polished_onyx": "磨制缟玛瑙晶块",
+  "block.spectrum.polished_moonstone": "磨制月长石晶块",
   "block.spectrum.spectral_shard_storage_block": "磨制七彩碎片块",
 
   "block.spectrum.black_block": "黑色方块",
@@ -3447,7 +3447,7 @@
   "tag.spectrum.axes": "斧",
   "tag.spectrum.bidents": "双叉戟",
   "tag.spectrum.fishing_rods": "钓鱼竿",
-  "tag.spectrum.gemstone_storage_blocks": "宝石储存块",
+  "tag.spectrum.polished_gemstone_blocks": "宝石储存块",
   "tag.spectrum.hoes": "锄",
   "tag.spectrum.hummingstones": "嗡鸣石",
   "tag.spectrum.ink_containers": "墨水容器",
@@ -4162,7 +4162,7 @@
   "book.spectrum.guidebook.fusion_shrine.page0.text": "为了创造[黑色的碎片](entry://general/onyx_shards),我开发了一种特殊的结构.\\\n我可以右击或者把物品扔上去就可以将物品放置在圣坛之上.圣坛也可以一次性处理一组物品,这样一来,融合也会更为高效.",
   "book.spectrum.guidebook.fusion_shrine.page1.text": "[#](bb00bb)方解石[#]()或[#](bb00bb)玄武岩[#]()材质皆可.\\\n需要露天的基座结构.",
   "book.spectrum.guidebook.fusion_shrine.page2.text": "结构尺寸:9x9x5",
-  "book.spectrum.guidebook.fusion_shrine.page3.text": "-1个融合圣坛\n-4个磨制宝石晶方块\n-4个雕纹磨制岩石方块\n-8根磨制岩石柱\n-12个磨制岩石台阶\n-77个磨制岩石方块\\\n\\\n可以自己决定[#](bb00bb)方解石[#]()或[#](bb00bb)玄武岩[#]()的结构材质,并根据自己的喜好选择[宝石晶方块](entry://decoration/gemstone_storage_blocks)的搭配.",
+  "book.spectrum.guidebook.fusion_shrine.page3.text": "-1个融合圣坛\n-4个磨制宝石晶方块\n-4个雕纹磨制岩石方块\n-8根磨制岩石柱\n-12个磨制岩石台阶\n-77个磨制岩石方块\\\n\\\n可以自己决定[#](bb00bb)方解石[#]()或[#](bb00bb)玄武岩[#]()的结构材质,并根据自己的喜好选择[宝石晶方块](entry://decoration/polished_gemstone_blocks)的搭配.",
 
   "book.spectrum.guidebook.gather_node.name": "收集节点",
   "book.spectrum.guidebook.gather_node.page0.text": "收集节点将主动从其他节点请求物品并将其放入与之绑定的容器中.\\\n\\\n右键单击打开[#](449900)过滤器[#](),可以指定要收集的物品.",
@@ -4204,8 +4204,8 @@
   "book.spectrum.guidebook.gemstone_runes.page2.title": "可选基座配方",
   "book.spectrum.guidebook.gemstone_runes.page2.text": "如果我有完整的宝石晶簇来进行合成,效率就高多了.",
 
-  "book.spectrum.guidebook.gemstone_storage_blocks.name": "宝石晶方块",
-  "book.spectrum.guidebook.gemstone_storage_blocks.page0.text": "这些宝石晶的外观实在是绚烂夺目.\\\n然而,天然的宝石晶块的表现还是过分温润,并不适合更加狂野的建筑构思.但既然手头的资源足够,这种事情理应不在话下.\\\n\\\n这些磨制方块也可以作为压缩的资源存储方式,以便不时之需.",
+  "book.spectrum.guidebook.polished_gemstone_blocks.name": "宝石晶方块",
+  "book.spectrum.guidebook.polished_gemstone_blocks.page0.text": "这些宝石晶的外观实在是绚烂夺目.\\\n然而,天然的宝石晶块的表现还是过分温润,并不适合更加狂野的建筑构思.但既然手头的资源足够,这种事情理应不在话下.\\\n\\\n这些磨制方块也可以作为压缩的资源存储方式,以便不时之需.",
 
   "book.spectrum.guidebook.geodes.name": "晶洞",
   "book.spectrum.guidebook.geodes.page0.title": "宝石晶洞",

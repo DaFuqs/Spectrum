@@ -257,11 +257,11 @@
   "block.spectrum.andesite_shimmerstone_light": "Andesit Glitzerstein-Licht",
   "block.spectrum.deepslate_shimmerstone_light": "Tiefenschiefer Glitzerstein-Licht",
 
-  "block.spectrum.polished_amethyst_block": "Polierter Amethyst",
-  "block.spectrum.polished_citrine_block": "Polierter Citrin",
-  "block.spectrum.polished_topaz_block": "Polierter Topas",
-  "block.spectrum.polished_onyx_block": "Polierter Onyx",
-  "block.spectrum.polished_moonstone_block": "Polierter Mondstein",
+  "block.spectrum.polished_amethyst": "Polierter Amethyst",
+  "block.spectrum.polished_citrine": "Polierter Citrin",
+  "block.spectrum.polished_topaz": "Polierter Topas",
+  "block.spectrum.polished_onyx": "Polierter Onyx",
+  "block.spectrum.polished_moonstone": "Polierter Mondstein",
   "block.spectrum.spectral_shard_storage_block": "Polierter Spektralsplitter-Block",
 
   "block.spectrum.black_block": "Schwarzer Block",

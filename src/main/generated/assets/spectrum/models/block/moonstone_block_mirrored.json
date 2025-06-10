@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_mirrored_all",
-  "textures": {
-    "all": "spectrum:block/moonstone_block"
-  }
-}

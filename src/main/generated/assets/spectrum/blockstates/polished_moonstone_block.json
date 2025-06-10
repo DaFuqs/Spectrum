@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "spectrum:block/polished_moonstone_block"
+      "model": "spectrum:block/moonstone_pillar"
     }
   }
 }

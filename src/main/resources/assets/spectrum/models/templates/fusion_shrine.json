@@ -3,9 +3,9 @@
   "textures": {
     "0": "spectrum:block/polished_basalt",
     "1": "spectrum:block/polished_calcite_pillar_side",
-    "2": "spectrum:block/polished_amethyst_block",
-    "3": "spectrum:block/polished_citrine_block",
-    "4": "spectrum:block/polished_topaz_block",
+    "2": "spectrum:block/amethyst_pillar",
+    "3": "spectrum:block/citrine_pillar",
+    "4": "spectrum:block/topaz_pillar",
     "particle": "spectrum:block/polished_basalt"
   },
   "elements": [

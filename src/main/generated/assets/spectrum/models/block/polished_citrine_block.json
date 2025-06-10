@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/cube_bottom_top",
   "textures": {
-    "bottom": "spectrum:block/polished_citrine_block_bottom",
-    "side": "spectrum:block/polished_citrine_block",
-    "top": "spectrum:block/polished_citrine_block_top"
+    "bottom": "spectrum:block/citrine_pillar_bottom",
+    "side": "spectrum:block/citrine_pillar",
+    "top": "spectrum:block/citrine_pillar_top"
   }
 }

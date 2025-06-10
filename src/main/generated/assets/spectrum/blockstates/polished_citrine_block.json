@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "spectrum:block/polished_citrine_block"
+      "model": "spectrum:block/citrine_pillar"
     }
   }
 }

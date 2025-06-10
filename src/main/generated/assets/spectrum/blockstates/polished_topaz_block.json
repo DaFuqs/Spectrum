@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "spectrum:block/polished_topaz_block"
+      "model": "spectrum:block/topaz_pillar"
     }
   }
 }

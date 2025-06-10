@@ -1,7 +1,8 @@
 {
   "values": [
     "#spectrum:ores",
-    "#spectrum:gemstone_storage_blocks",
+    "#spectrum:polished_gemstone_blocks",
+    "#spectrum:gemstone_pillars",
     "#spectrum:upgrades",
     "#spectrum:shimmerstone_lights",
     "#spectrum:colored_blocks",

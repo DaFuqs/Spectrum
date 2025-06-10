@@ -2,8 +2,8 @@
   "credit": "Made with Blockbench",
   "ambientocclusion": false,
   "textures": {
-    "3": "spectrum:block/polished_amethyst_block",
-    "particle": "spectrum:block/polished_amethyst_block"
+    "3": "spectrum:block/polished_amethyst",
+    "particle": "spectrum:block/polished_amethyst"
   },
   "elements": [
     {

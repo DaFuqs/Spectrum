@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.blocks.cinderhearth;
 
 import com.klikli_dev.modonomicon.api.multiblock.*;
 import com.mojang.serialization.*;
+import de.dafuqs.spectrum.blocks.upgrade.*;
 import de.dafuqs.spectrum.compat.modonomicon.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.effect.*;
@@ -26,15 +27,31 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
+import java.util.*;
+
 public class CinderhearthBlock extends BaseEntityBlock {
 	
 	public static final MapCodec<CinderhearthBlock> CODEC = simpleCodec(CinderhearthBlock::new);
 	
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 	
+	// Positions to check on place / destroy to upgrade those blocks upgrade counts
+	final static List<Vec3i> UPGRADE_BLOCK_OFFSETS = List.of(
+			new Vec3i(1, -1, 2),
+			new Vec3i(-1, -1, 2),
+			new Vec3i(1, -1, -2),
+			new Vec3i(-1, -1, -2),
+			new Vec3i(2, -1, 1),
+			new Vec3i(-2, -1, 1),
+			new Vec3i(2, -1, -1),
+			new Vec3i(-2, -1, -1)
+	);
+	
 	public CinderhearthBlock(Properties settings) {
 		super(settings);
 		this.registerDefaultState((this.stateDefinition.any()).setValue(FACING, Direction.EAST));
+		
+		Upgradeable.registerUpgradePosOffsets(UPGRADE_BLOCK_OFFSETS);
 	}
 	
 	@Override

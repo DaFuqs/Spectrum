@@ -92,6 +92,11 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		this.currentItemProcessingTime = -1;
 	}
 	
+	@Override
+	public List<Vec3i> getUpgradePosOffsets() {
+		return EnchanterBlock.UPGRADE_BLOCK_OFFSETS;
+	}
+	
 	@SuppressWarnings("unused")
 	public static void clientTick(Level world, BlockPos blockPos, BlockState blockState, @NotNull EnchanterBlockEntity enchanterBlockEntity) {
 		if (enchanterBlockEntity.currentRecipe != null) {

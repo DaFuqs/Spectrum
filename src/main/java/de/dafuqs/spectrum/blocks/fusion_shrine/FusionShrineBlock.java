@@ -4,6 +4,7 @@ import com.klikli_dev.modonomicon.api.multiblock.*;
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.blocks.upgrade.*;
 import de.dafuqs.spectrum.compat.modonomicon.*;
 import de.dafuqs.spectrum.inventories.storage.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
@@ -36,6 +37,8 @@ import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
 import org.jetbrains.annotations.*;
 
+import java.util.*;
+
 @SuppressWarnings("UnstableApiUsage")
 public class FusionShrineBlock extends InWorldInteractionBlock {
 	
@@ -45,9 +48,18 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 	public static final IntegerProperty LIGHT_LEVEL = IntegerProperty.create("light_level", 0, 15);
 	protected static final VoxelShape SHAPE;
 	
+	public static final List<Vec3i> UPGRADE_BLOCK_OFFSETS = List.of(
+			new Vec3i(2, 0, 2),
+			new Vec3i(-2, 0, 2),
+			new Vec3i(2, 0, -2),
+			new Vec3i(-2, 0, -2)
+	);
+	
 	public FusionShrineBlock(Properties settings) {
 		super(settings);
 		registerDefaultState(getStateDefinition().any().setValue(LIGHT_LEVEL, 0));
+		
+		Upgradeable.registerUpgradePosOffsets(UPGRADE_BLOCK_OFFSETS);
 	}
 
 	@Override

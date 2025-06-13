@@ -75,6 +75,11 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		this.inventory = NonNullList.withSize(INVENTORY_SIZE, ItemStack.EMPTY);
 	}
 	
+	@Override
+	public List<Vec3i> getUpgradePosOffsets() {
+		return PedestalBlock.UPGRADE_BLOCK_OFFSETS;
+	}
+	
 	public void updateInClientWorld() {
 		if (level instanceof ServerLevel serverWorld)
 			serverWorld.getChunkSource().blockChanged(worldPosition);

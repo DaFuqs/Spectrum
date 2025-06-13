@@ -4,6 +4,7 @@ import com.klikli_dev.modonomicon.api.multiblock.*;
 import com.klikli_dev.modonomicon.client.render.*;
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.blocks.upgrade.*;
 import de.dafuqs.spectrum.compat.modonomicon.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.progression.*;
@@ -21,12 +22,23 @@ import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
 import org.jetbrains.annotations.*;
 
+import java.util.*;
+
 public class SpiritInstillerBlock extends InWorldInteractionBlock {
 	
 	public static final MapCodec<SpiritInstillerBlock> CODEC = simpleCodec(SpiritInstillerBlock::new);
 	
+	public static final List<Vec3i> UPGRADE_BLOCK_OFFSETS = List.of(
+			new Vec3i(4, -1, 4),
+			new Vec3i(-4, -1, 4),
+			new Vec3i(4, -1, -4),
+			new Vec3i(-4, -1, -4)
+	);
+	
 	public SpiritInstillerBlock(Properties settings) {
 		super(settings);
+		
+		Upgradeable.registerUpgradePosOffsets(UPGRADE_BLOCK_OFFSETS);
 	}
 
 	@Override

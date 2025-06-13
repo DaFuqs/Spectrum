@@ -562,6 +562,11 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 	}
 	
 	@Override
+	public List<Vec3i> getUpgradePosOffsets() {
+		return CinderhearthBlock.UPGRADE_BLOCK_OFFSETS;
+	}
+	
+	@Override
 	public IndividualCappedInkStorage getEnergyStorage() {
 		return this.inkStorage;
 	}

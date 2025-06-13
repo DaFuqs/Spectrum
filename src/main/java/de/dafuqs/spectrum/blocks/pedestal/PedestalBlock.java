@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.blocks.upgrade.*;
 import de.dafuqs.spectrum.compat.modonomicon.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.effect.*;
@@ -41,10 +42,19 @@ public class PedestalBlock extends BaseEntityBlock implements RedstonePoweredBlo
 	private static final VoxelShape SHAPE;
 	private final PedestalVariant variant;
 	
+	public static final List<Vec3i> UPGRADE_BLOCK_OFFSETS = List.of(
+			new Vec3i(3, -2, 3),
+			new Vec3i(-3, -2, 3),
+			new Vec3i(3, -2, -3),
+			new Vec3i(-3, -2, -3)
+	);
+	
 	public PedestalBlock(Properties settings, PedestalVariant variant) {
 		super(settings);
 		this.variant = variant;
 		registerDefaultState(getStateDefinition().any().setValue(BlockStateProperties.POWERED, false));
+		
+		Upgradeable.registerUpgradePosOffsets(UPGRADE_BLOCK_OFFSETS);
 	}
 	
 	@Override

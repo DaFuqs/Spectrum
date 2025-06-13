@@ -5,6 +5,7 @@ import com.mojang.serialization.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.blocks.upgrade.*;
 import de.dafuqs.spectrum.compat.modonomicon.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
@@ -21,14 +22,25 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
+import java.util.*;
+
 public class EnchanterBlock extends InWorldInteractionBlock {
 	
 	public static final MapCodec<EnchanterBlock> CODEC = simpleCodec(EnchanterBlock::new);
 	
 	public static final ResourceLocation UNLOCK_IDENTIFIER = SpectrumCommon.locate("midgame/build_enchanting_structure");
 	
+	public static final List<Vec3i> UPGRADE_BLOCK_OFFSETS = List.of(
+			new Vec3i(3, 0, 3),
+			new Vec3i(-3, 0, 3),
+			new Vec3i(3, 0, -3),
+			new Vec3i(-3, 0, -3)
+	);
+	
 	public EnchanterBlock(Properties settings) {
 		super(settings);
+		
+		Upgradeable.registerUpgradePosOffsets(UPGRADE_BLOCK_OFFSETS);
 	}
 
 	@Override

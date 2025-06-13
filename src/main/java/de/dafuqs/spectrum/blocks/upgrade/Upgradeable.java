@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.upgrade;
 
+import com.google.common.collect.*;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.progression.*;
 import net.minecraft.core.*;
@@ -12,7 +13,10 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 public interface Upgradeable {
-
+	
+	// Positions to check on place / destroy to upgrade those blocks upgrade counts
+	Set<Vec3i> POSSIBLE_UPGRADE_POS_OFFSETS = Sets.newTreeSet();
+	
 	enum UpgradeType {
 		SPEED(1),     // faster crafting
 		EFFICIENCY(16), // chance to not use input resources (like gemstone powder)
@@ -175,5 +179,11 @@ public interface Upgradeable {
 	void calculateUpgrades();
 
 	UpgradeHolder getUpgradeHolder();
+	
+	List<Vec3i> getUpgradePosOffsets();
+	
+	static void registerUpgradePosOffsets(List<Vec3i> offsets) {
+		POSSIBLE_UPGRADE_POS_OFFSETS.addAll(offsets);
+	}
 	
 }

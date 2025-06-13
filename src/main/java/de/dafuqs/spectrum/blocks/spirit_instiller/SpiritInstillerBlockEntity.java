@@ -69,6 +69,11 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		super(SpectrumBlockEntities.SPIRIT_INSTILLER, pos, state, INVENTORY_SIZE);
 	}
 	
+	@Override
+	public List<Vec3i> getUpgradePosOffsets() {
+		return SpiritInstillerBlock.UPGRADE_BLOCK_OFFSETS;
+	}
+	
 	public static void clientTick(Level world, BlockPos blockPos, BlockState blockState, @NotNull SpiritInstillerBlockEntity instiller) {
 		if (instiller.animator == null) {
 			instiller.animator = FACTORY.create(FlowStates.INIT, instiller);

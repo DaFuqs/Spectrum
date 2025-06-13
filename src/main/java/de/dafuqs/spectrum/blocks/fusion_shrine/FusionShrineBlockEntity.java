@@ -215,6 +215,11 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		return upgrades;
 	}
 	
+	@Override
+	public List<Vec3i> getUpgradePosOffsets() {
+		return FusionShrineBlock.UPGRADE_BLOCK_OFFSETS;
+	}
+	
 	public static void scatterContents(Level world, BlockPos pos, FusionShrineBlockEntity blockEntity) {
 		Containers.dropContents(world, pos, blockEntity.getItems());
 		world.updateNeighbourForOutputSignal(pos, world.getBlockState(pos).getBlock());

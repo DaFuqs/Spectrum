@@ -23,42 +23,7 @@ public class UpgradeBlock extends BaseEntityBlock {
 	
 	protected static final VoxelShape SHAPE_UP = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 10.0D, 14.0D);
 	private static final List<Block> upgradeBlocks = new ArrayList<>();
-	// Positions to check on place / destroy to upgrade those blocks upgrade counts
-	private final List<Vec3i> possibleUpgradeBlockOffsets = new ArrayList<>() {{
-		// Pedestal
-		add(new Vec3i(3, -2, 3));
-		add(new Vec3i(-3, -2, 3));
-		add(new Vec3i(3, -2, -3));
-		add(new Vec3i(-3, -2, -3));
-
-		// Fusion Shrine
-		add(new Vec3i(2, 0, 2));
-		add(new Vec3i(-2, 0, 2));
-		add(new Vec3i(2, 0, -2));
-		add(new Vec3i(-2, 0, -2));
-		
-		// Enchanter
-		add(new Vec3i(3, 0, 3));
-		add(new Vec3i(-3, 0, 3));
-		add(new Vec3i(3, 0, -3));
-		add(new Vec3i(-3, 0, -3));
-		
-		// Spirit Instiller
-		add(new Vec3i(4, -1, 4));
-		add(new Vec3i(-4, -1, 4));
-		add(new Vec3i(4, -1, -4));
-		add(new Vec3i(-4, -1, -4));
-		
-		// Cinderhearth
-		add(new Vec3i(1, -1, 2));
-		add(new Vec3i(-1, -1, 2));
-		add(new Vec3i(1, -1, -2));
-		add(new Vec3i(-1, -1, -2));
-		add(new Vec3i(2, -1, 1));
-		add(new Vec3i(-2, -1, 1));
-		add(new Vec3i(2, -1, -1));
-		add(new Vec3i(-2, -1, -1));
-	}};
+	
 	// Like: The further the player progresses,
 	// the higher are the chances for good mods?
 	private final Upgradeable.UpgradeType upgradeType;
@@ -115,10 +80,10 @@ public class UpgradeBlock extends BaseEntityBlock {
 	 * and triggers it to update its upgrades
 	 */
 	private void updateConnectedUpgradeBlock(@NotNull ServerLevel world, @NotNull BlockPos pos) {
-		for (Vec3i possibleUpgradeBlockOffset : possibleUpgradeBlockOffsets) {
+		for (Vec3i possibleUpgradeBlockOffset : Upgradeable.POSSIBLE_UPGRADE_POS_OFFSETS) {
 			BlockPos currentPos = pos.offset(possibleUpgradeBlockOffset);
 			BlockEntity blockEntity = world.getBlockEntity(currentPos);
-			if (blockEntity instanceof Upgradeable upgradeable) {
+			if (blockEntity instanceof Upgradeable upgradeable && upgradeable.getUpgradePosOffsets().contains(possibleUpgradeBlockOffset)) {
 				upgradeable.resetUpgrades();
 				playConnectedParticles(world, pos, currentPos);
 			}

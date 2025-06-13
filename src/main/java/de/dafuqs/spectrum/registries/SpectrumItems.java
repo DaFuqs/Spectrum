@@ -54,7 +54,7 @@ import java.util.function.*;
 import static de.dafuqs.spectrum.SpectrumCommon.*;
 import static net.minecraft.world.item.Items.*;
 
-//TODO: I am not sure how our tools are implemented rn but they REALLY should be migrated to working off of tool components. ~ Azzyy (whom will not be the one doing this)
+//TODO: Migrate tools to use tool components
 public class SpectrumItems {
 	
 	public static final DeferredRegistrar ITEM_REGISTRAR = new DeferredRegistrar();
@@ -305,11 +305,8 @@ public class SpectrumItems {
 	public static final Item CHEONG = register(layered(item("cheong", new ItemWithTooltip(IS.of().food(SpectrumFoodComponents.CHEONG), "item.spectrum.cheong.tooltip"), InkColors.PINK), "", "_overlay", "_cap"));
 	public static final Item MERMAIDS_JAM = register(simple(item("mermaids_jam", new Item(IS.of().food(SpectrumFoodComponents.MERMAIDS_JAM)), InkColors.PINK)));
 	public static final Item MERMAIDS_POPCORN = register(simple(item("mermaids_popcorn", new ItemWithTooltip(IS.of().food(SpectrumFoodComponents.MERMAIDS_POPCORN), "item.spectrum.mermaids_popcorn.tooltip"), InkColors.PINK)));
-	public static final Item LE_FISHE_AU_CHOCOLAT = register(simple(item("le_fishe_au_chocolat", new Item(IS.of().food(SpectrumFoodComponents.LE_FISHE_AU_CHOCOLAT)), InkColors.PINK)));
-//	public static final Item STUFFED_PETALS = register(simple(item("stuffed_petals", new Item(IS.of().food(SpectrumFoodComponents.STUFFED_PETALS)), InkColors.PINK)));
-//	public static final Item PASTICHE = register(simple(item("pastiche", new Item(IS.of().food(SpectrumFoodComponents.PASTICHE)), InkColors.PINK)));
-//	public static final Item VITTORIAS_ROAST = register(simple(item("vittorias_roast", new Item(IS.of().food(SpectrumFoodComponents.VITTORIAS_ROAST)), InkColors.PINK)));
-	
+	public static final Item LE_FISHE_AU_CHOCOLAT = register(simple(item("le_fishe_au_chocolat", new Item(IS.of().food(SpectrumFoodComponents.LE_FISHE_AU_CHOCOLAT).jukeboxPlayable(SpectrumJukeboxSongs.MUSIC_LE_FISHE_AU_CHOCOLAT)), InkColors.PINK)));
+
 	public static final Item INFUSED_BEVERAGE = register(layered(item("infused_beverage", new BeverageItem(IS.of(16).food(SpectrumFoodComponents.BEVERAGE).craftRemainder(GLASS_BOTTLE).component(DataComponents.POTION_CONTENTS, PotionContents.EMPTY).component(SpectrumDataComponentTypes.INFUSED_BEVERAGE, InfusedBeverageComponent.DEFAULT)), InkColors.PINK), "", "_highlight"));
 	public static final Item SUSPICIOUS_BREW = register(simple(item("suspicious_brew", new SuspiciousBrewItem(IS.of(16).food(SpectrumFoodComponents.BEVERAGE).craftRemainder(GLASS_BOTTLE)), InkColors.LIME)));
 	public static final Item REPRISE = register(simple(item("reprise", new RepriseItem(IS.of(16).food(SpectrumFoodComponents.BEVERAGE).craftRemainder(GLASS_BOTTLE)), InkColors.PINK)));

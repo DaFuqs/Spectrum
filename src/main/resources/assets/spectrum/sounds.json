@@ -691,6 +691,14 @@
       }
     ]
   },
+  "music.le_fishe_au_chocolat": {
+    "sounds": [
+      {
+        "name": "spectrum:music/le_fishe_au_chocolat",
+        "stream": true
+      }
+    ]
+  },
 
   "spectrum.ui.new_revelation": {
     "sounds": [

@@ -1,0 +1,8 @@
+{
+  "comparator_output": 3,
+  "description": {
+    "translate": "jukebox_song.spectrum.le_fishe_au_chocolat"
+  },
+  "length_in_seconds": 58,
+  "sound_event": "spectrum:music.le_fishe_au_chocolat"
+}

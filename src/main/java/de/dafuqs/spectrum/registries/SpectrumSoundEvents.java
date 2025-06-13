@@ -14,6 +14,9 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent MUSIC_CREDITS = register("music.credits");
 	public static final SoundEvent MUSIC_DIVINITY = register("music.divinity");
 	
+	// Fishposting
+	public static final SoundEvent MUSIC_LE_FISHE_AU_CHOCOLAT = register("music.le_fishe_au_chocolat");
+	
 	// Music referenced in the biome.jsons
 	public static final SoundEvent MUSIC_DEEPER_DOWN_BLACK_LANGAST = register("music.deeper_down.black_langast");
 	public static final SoundEvent MUSIC_DEEPER_DOWN_CRYSTAL_GARDENS = register("music.deeper_down.crystal_gardens");

@@ -155,8 +155,6 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 	/**
 	 * Returns a boolean depending on if any of the recipe conditions are met.
 	 * These can always be true, be a specific day or moon phase, weather, a command, biome, etc.
-	 * <p></>
-	 * ME WHEN I CALL STREAM#ANYMATCH WHEN AN EMPTY SET SHOULD RETURN TRUE ~ Azzyypaaras
 	 */
 	public boolean areConditionMetCurrently(ServerLevel world, BlockPos pos) {
 		if (worldConditionsPredicates.isEmpty())

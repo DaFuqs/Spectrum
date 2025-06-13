@@ -42,7 +42,6 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-// I just want to say. That I hate this class with every bit of my heart ~ Azzyypaaras
 public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implements MultiblockCrafter {
 	
 	public static final String ITEM_TRANS = "container.spectrum.rei.enchantment_upgrade.required_item_count";

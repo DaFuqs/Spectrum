@@ -3,8 +3,6 @@ package de.dafuqs.spectrum;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.compat.*;
-import de.dafuqs.spectrum.compat.ears.*;
-import de.dafuqs.spectrum.compat.idwtialsimmoedm.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.networking.*;
@@ -16,7 +14,6 @@ import de.dafuqs.spectrum.registries.client.*;
 import de.dafuqs.spectrum.render.*;
 import de.dafuqs.spectrum.render.capes.*;
 import net.fabricmc.api.*;
-import net.fabricmc.loader.api.*;
 import net.minecraft.client.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
@@ -79,16 +76,6 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 
 		if (CONFIG.AddItemTooltips) {
 			SpectrumTooltips.register();
-		}
-		
-		if (FabricLoader.getInstance().isModLoaded("ears")) {
-			logInfo("Registering Ears Compat...");
-			EarsCompat.register();
-		}
-		
-		if (FabricLoader.getInstance().isModLoaded("idwtialsimmoedm")) {
-			logInfo("Registering idwtialsimmoedm Compat...");
-			IdwtialsimmoedmCompat.register();
 		}
 
 		logInfo("Registering Armor Renderers...");

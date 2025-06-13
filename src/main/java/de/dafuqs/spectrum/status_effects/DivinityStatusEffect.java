@@ -28,6 +28,7 @@ public class DivinityStatusEffect extends MobEffect {
 		if (amplifier > CIRCLET_AMPLIFIER && world.isClientSide) { // the circlet gives divinity 0, not showing effects; the ascension one does
 			ParticleHelper.playParticleWithPatternAndVelocityClient(entity.level(), entity.position(), ColoredCraftingParticleEffect.RED, VectorPattern.EIGHT, 0.2);
 		}
+		
 		boolean doEffects = 40 >> amplifier == 0;
 		if (entity instanceof Player player) {
 			if (!world.isClientSide) {

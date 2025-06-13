@@ -5,9 +5,11 @@ import de.dafuqs.spectrum.compat.ae2.*;
 import de.dafuqs.spectrum.compat.alloy_forgery.*;
 import de.dafuqs.spectrum.compat.botania.*;
 import de.dafuqs.spectrum.compat.create.*;
+import de.dafuqs.spectrum.compat.ears.*;
 import de.dafuqs.spectrum.compat.exclusions_lib.*;
 import de.dafuqs.spectrum.compat.farmersdelight.*;
 import de.dafuqs.spectrum.compat.gobber.*;
+import de.dafuqs.spectrum.compat.idwtialsimmoedm.*;
 import de.dafuqs.spectrum.compat.malum.*;
 import de.dafuqs.spectrum.compat.modonomicon.*;
 import de.dafuqs.spectrum.compat.neepmeat.*;
@@ -47,6 +49,10 @@ public class SpectrumIntegrationPacks {
 	public static final String NEEPMEAT_ID = "neepmeat";
 	public static final String MALUM_ID = "malum";
 	public static final String EXCLUSIONS_LIB_ID = "exclusions_lib";
+	
+	// Client Only
+	public static final String EARS_ID = "ears";
+	public static final String IDWTIALSIMMOEDM_ID = "idwtialsimmoedm";
 
 	@SuppressWarnings("Convert2MethodRef")
 	public static void register() {
@@ -66,7 +72,7 @@ public class SpectrumIntegrationPacks {
 			registerIntegrationPack(BOTANIA_ID, () -> new BotaniaCompat());
 			registerIntegrationPack(NEEPMEAT_ID, () -> new NEEPMeatCompat());
 			registerIntegrationPack(FARMERSDELIGHT_ID, () -> new FDCompat());
-		registerIntegrationPack(MALUM_ID, () -> new MalumCompat());
+			registerIntegrationPack(MALUM_ID, () -> new MalumCompat());
 			registerIntegrationPack(CREATE_ID, () -> new CreateCompat());
 		}
 		
@@ -76,7 +82,11 @@ public class SpectrumIntegrationPacks {
 	}
 	
 	@Environment(EnvType.CLIENT)
+	@SuppressWarnings("Convert2MethodRef")
 	public static void registerClient() {
+		registerIntegrationPack(EARS_ID, () -> new EarsCompat());
+		registerIntegrationPack(IDWTIALSIMMOEDM_ID, () -> new IdwtialsimmoedmCompat());
+		
 		for (ModIntegrationPack container : INTEGRATION_PACKS.values()) {
 			container.registerClient();
 		}

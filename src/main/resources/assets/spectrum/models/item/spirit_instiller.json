@@ -1,5 +1,6 @@
 {
-	"credit": "~ XOXO Azzyypaaras ~",
+  "parent": "minecraft:block/block",
+  "credit": "~ XOXO Azzyypaaras ~",
 	"texture_size": [128, 128],
 	"textures": {
 		"1": "spectrum:block/spirit_instiller"
@@ -74,72 +75,6 @@
 				"up": {"uv": [9.125, 6.625, 7.25, 4.75], "texture": "#1"},
 				"down": {"uv": [11, 4.75, 9.125, 6.625], "texture": "#1"}
 			}
-		},
-		{
-			"name": "blossom",
-			"from": [8, 18.5, 1.5],
-			"to": [8, 31.5, 14.5],
-			"rotation": {"angle": -22.5, "axis": "z", "origin": [8, 25, 8]},
-			"faces": {
-				"north": {"uv": [8.875, 3, 8.875, 4.625], "texture": "#1"},
-				"east": {"uv": [7.25, 3, 8.875, 4.625], "texture": "#1"},
-				"south": {"uv": [10.5, 3, 10.5, 4.625], "texture": "#1"},
-				"west": {"uv": [7.25, 3, 8.875, 4.625], "texture": "#1"},
-				"up": {"uv": [8.875, 3, 8.875, 1.375], "texture": "#1"},
-				"down": {"uv": [8.875, 1.375, 8.875, 3], "texture": "#1"}
-			}
-		}
-	],
-	"display": {
-		"thirdperson_righthand": {
-			"rotation": [75, 45, 0],
-			"translation": [0, 2.5, 0],
-			"scale": [0.375, 0.375, 0.375]
-		},
-		"thirdperson_lefthand": {
-			"rotation": [75, 45, 0],
-			"translation": [0, 2.5, 0],
-			"scale": [0.375, 0.375, 0.375]
-		},
-		"firstperson_righthand": {
-			"rotation": [0, 45, 0],
-			"scale": [0.4, 0.4, 0.4]
-		},
-		"firstperson_lefthand": {
-			"rotation": [0, 225, 0],
-			"scale": [0.4, 0.4, 0.4]
-		},
-		"ground": {
-			"translation": [0, 3, 0],
-			"scale": [0.25, 0.25, 0.25]
-		},
-		"gui": {
-			"rotation": [30, 45, 0],
-			"translation": [0, -2.25, 0],
-			"scale": [0.45, 0.45, 0.45]
-		},
-		"fixed": {
-			"rotation": [0, -90, 0],
-			"translation": [0, -4, -0.25],
-			"scale": [0.5, 0.5, 0.5]
-		}
-	},
-	"groups": [
-		0,
-		1,
-		2,
-		3,
-		{
-			"name": "head",
-			"origin": [8, 14.5, 8],
-			"color": 0,
-			"children": [4]
-		},
-		{
-			"name": "spectralblossom",
-			"origin": [8, 49, 8],
-			"color": 0,
-			"children": [5]
 		}
 	]
 }

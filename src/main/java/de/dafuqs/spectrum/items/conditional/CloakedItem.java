@@ -27,7 +27,7 @@ public class CloakedItem extends Item implements RevelationAware {
 	
 	@Override
 	public Map<BlockState, BlockState> getBlockStateCloaks() {
-		return new Hashtable<>();
+		return Map.of();
 	}
 	
 	@Override

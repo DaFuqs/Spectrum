@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.blocks.conditional;
 
 import com.mojang.serialization.*;
 import de.dafuqs.revelationary.api.revelations.*;
+import de.dafuqs.spectrum.blocks.decoration.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
@@ -15,7 +16,7 @@ import net.minecraft.world.level.storage.loot.parameters.*;
 
 import java.util.*;
 
-public class RadiatingEnderBlock extends Block implements RevelationAware {
+public class RadiatingEnderBlock extends SpectrumFacingBlock implements RevelationAware {
 	
 	public static final MapCodec<RadiatingEnderBlock> CODEC = simpleCodec(RadiatingEnderBlock::new);
 	

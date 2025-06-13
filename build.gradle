@@ -122,7 +122,7 @@ dependencies {
 	// Datagen dependencies
 	// TODO - Noaaan April 7th 2025: None of these are for 1.21.1 yet, lol
 	// TODO - unilock May 6th 2025: AE2 will likely never be available for Fabric 1.21.1, lol
-	modDatagenRuntimeOnly("curse.maven:gobber-427177:${project.gobber_version}")
+	//modDatagenRuntimeOnly("curse.maven:gobber-427177:${project.gobber_version}")
 	//modDatagenRuntimeOnly("maven.modrinth:ae2:${project.ae2_version}")
 	//modDatagenRuntimeOnly("maven.modrinth:botania:${project.botania_version}")
 	//modDatagenRuntimeOnly("maven.modrinth:create-fabric:${project.create_version}")

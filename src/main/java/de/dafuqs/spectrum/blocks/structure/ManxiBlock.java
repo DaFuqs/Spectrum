@@ -58,11 +58,16 @@ public class ManxiBlock extends HorizontalDirectionalBlock implements EntityBloc
 
 	@Override
 	public void attack(BlockState state, Level world, BlockPos pos, Player player) {
-		if (!world.isClientSide() && !player.getAbilities().instabuild) {
+		if (player.getAbilities().instabuild) {
+			return;
+		}
+		
+		if (world.isClientSide()) {
+			player.knockback(2, player.getX() - (pos.getX() + 0.5), player.getZ() - (pos.getZ() + 0.5));
+		} else {
 			player.displayClientMessage(Component.translatable("block.spectrum.manxi.nope").withStyle(s -> s.withColor(SpectrumStatusEffects.ETERNAL_SLUMBER_COLOR)), true);
 			world.playLocalSound(pos, SpectrumSoundEvents.DEEP_CRYSTAL_RING, SoundSource.BLOCKS, 1, 1.5F, true);
-			player.hurt(SpectrumDamageTypes.sleep(world, null), 6);
-			player.knockback(2, player.getX() - (pos.getX() + 0.5), player.getZ() - (pos.getZ() + 0.5));
+			player.hurt(world.damageSources().indirectMagic(player, player), 6);
 		}
 	}
 

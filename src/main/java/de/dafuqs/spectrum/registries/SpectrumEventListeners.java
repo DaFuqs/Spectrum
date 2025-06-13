@@ -95,15 +95,11 @@ public class SpectrumEventListeners {
 			}
 		});
 		
-		PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, blockEntity) -> {
+		PlayerBlockBreakEvents.AFTER.register((level, player, pos, state, blockEntity) -> {
 			if (player instanceof ServerPlayer serverPlayerEntity) {
-				ItemStack stack = player.getItemInHand(serverPlayerEntity.getUsedItemHand());
-				if (SpectrumEnchantmentHelper.hasEnchantment(player.level().registryAccess(), SpectrumEnchantments.INERTIA, stack)) {
-					InertiaComponent inertia = stack.getOrDefault(SpectrumDataComponentTypes.INERTIA, InertiaComponent.DEFAULT);
-					long inertiaAmount = state.is(inertia.lastMined()) ? inertia.count() + 1 : 1;
-					stack.set(SpectrumDataComponentTypes.INERTIA, new InertiaComponent(state.getBlock(), inertiaAmount));
-					
-					SpectrumAdvancementCriteria.INERTIA_USED.trigger(serverPlayerEntity, state, inertiaAmount);
+				ItemStack handStack = player.getItemInHand(serverPlayerEntity.getUsedItemHand());
+				if (SpectrumEnchantmentHelper.hasEnchantment(player.level().registryAccess(), SpectrumEnchantments.INERTIA, handStack)) {
+					InertiaComponent.onInertiaBlockBreak(level, pos, state, serverPlayerEntity, handStack);
 				}
 				
 				SpectrumAdvancementCriteria.BLOCK_BROKEN.trigger(serverPlayerEntity, state);

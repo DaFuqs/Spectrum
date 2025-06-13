@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/flower_pot_cross",
   "textures": {
-    "plant": "spectrum:block/potted_humming_bell"
+    "plant": "spectrum:block/humming_bell"
   }
 }

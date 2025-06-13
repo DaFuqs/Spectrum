@@ -1,3 +1,3 @@
 {
-  "parent": "minecraft:item/template_skull"
+  "parent": "spectrum:block/warden_head"
 }

@@ -1,12 +1,7 @@
 {
   "variants": {
-    "": [
-      {
-        "model": "spectrum:block/moonstone_block"
-      },
-      {
-        "model": "spectrum:block/moonstone_block_mirrored"
-      }
-    ]
+    "": {
+      "model": "spectrum:block/moonstone_block"
+    }
   }
 }

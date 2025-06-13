@@ -2,14 +2,13 @@
   "variants": {
     "": [
       {
-        "model": "spectrum:block/rotten_ground",
-        "weight": 4
+        "model": "spectrum:block/rotten_ground"
       },
       {
-        "model": "spectrum:block/rotten_ground_bony"
+        "model": "spectrum:block/rotten_ground_1"
       },
       {
-        "model": "spectrum:block/rotten_ground_boil"
+        "model": "spectrum:block/rotten_ground_2"
       }
     ]
   }

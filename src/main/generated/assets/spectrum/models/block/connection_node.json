@@ -1,3 +1,3 @@
 {
-  "parent": "spectrum:pastel/generic_node"
+  "parent": "spectrum:pastel/connection_node"
 }

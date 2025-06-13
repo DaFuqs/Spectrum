@@ -1,24 +1,7 @@
 {
   "variants": {
-    "": [
-      {
-        "model": "spectrum:block/potted_varia_sprout"
-      },
-      {
-        "model": "spectrum:block/potted_varia_sprout_2"
-      },
-      {
-        "model": "spectrum:block/potted_varia_sprout_3"
-      },
-      {
-        "model": "spectrum:block/potted_varia_sprout_4"
-      },
-      {
-        "model": "spectrum:block/potted_varia_sprout_5"
-      },
-      {
-        "model": "spectrum:block/potted_varia_sprout_6"
-      }
-    ]
+    "": {
+      "model": "spectrum:block/potted_varia_sprout"
+    }
   }
 }

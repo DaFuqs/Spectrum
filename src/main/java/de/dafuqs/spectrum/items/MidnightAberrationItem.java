@@ -27,7 +27,6 @@ public class MidnightAberrationItem extends CloakedItem implements FabricItem {
 	// Aberrations crumble in the player's inventory (or any inventory that ticks)
 	// but only after a short grace period, to give them a chance to actually look at it / use it
 	private static final int CRUMBLING_GRACE_PERIOD_TICKS = 40;
-	private static final String FIRST_INVENTORY_TICK_NBT = "first_inventory_tick";
 	
 	public MidnightAberrationItem(Item.Properties settings, ResourceLocation cloakAdvancementIdentifier, Item cloakItem) {
 		super(settings, cloakAdvancementIdentifier, cloakItem);
@@ -37,9 +36,14 @@ public class MidnightAberrationItem extends CloakedItem implements FabricItem {
 	public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
 		super.inventoryTick(stack, world, entity, slot, selected);
 		
-		if (!world.isClientSide && world.getGameTime() % 20 == 0 && entity instanceof ServerPlayer player) {
+		if (!world.isClientSide && world.getGameTime() % 20 == 0 && entity instanceof ServerPlayer player && !player.isCreative()) {
 			if (stack.has(SpectrumDataComponentTypes.STABLE))
 				return;
+			
+			// check if it's a real stack in the player's inventory or just a proxy item (like a Bottomless Bundle)
+			if (player.getInventory().getItem(slot) != stack) {
+				return;
+			}
 			
 			if (!stack.has(SpectrumDataComponentTypes.TIMESTAMP)) {
 				stack.set(SpectrumDataComponentTypes.TIMESTAMP, world.getGameTime());
@@ -51,7 +55,6 @@ public class MidnightAberrationItem extends CloakedItem implements FabricItem {
 				return;
 			}
 			
-			// check if it's a real stack in the player's inventory or just a proxy item (like a Bottomless Bundle)
 			if (world.random.nextFloat() < 0.2F) {
 				stack.shrink(1);
 				player.getInventory().placeItemBackInInventory(Items.GUNPOWDER.getDefaultInstance());

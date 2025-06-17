@@ -3,6 +3,7 @@ package de.dafuqs.spectrum;
 import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
+import de.dafuqs.spectrum.blocks.titration_barrel.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.compat.reverb.*;
 import de.dafuqs.spectrum.config.*;
@@ -33,6 +34,7 @@ import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.state.*;
 import org.jetbrains.annotations.*;
 import org.slf4j.*;
 
@@ -247,6 +249,15 @@ public class SpectrumCommon implements ModInitializer {
 		
 		//noinspection
 		ItemStorage.SIDED.registerForBlockEntity((be, d) -> Storage.empty(), SpectrumBlockEntities.HEARTBOUND_CHEST);
+		//noinspection
+		ItemStorage.SIDED.registerForBlockEntity((titrationBarrelBlockEntity, direction) -> {
+			BlockState state = titrationBarrelBlockEntity.getBlockState();
+			TitrationBarrelBlock.BarrelState barrelState = state.getValue(TitrationBarrelBlock.BARREL_STATE);
+			if (barrelState == TitrationBarrelBlock.BarrelState.EMPTY || barrelState == TitrationBarrelBlock.BarrelState.FILLED) {
+				return ItemStorage.SIDED.find(titrationBarrelBlockEntity.getLevel(), titrationBarrelBlockEntity.getBlockPos(), direction);
+			}
+			return null;
+		}, SpectrumBlockEntities.TITRATION_BARREL);
 		//noinspection
 		ItemStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.storage, SpectrumBlockEntities.BOTTOMLESS_BUNDLE);
 		//noinspection

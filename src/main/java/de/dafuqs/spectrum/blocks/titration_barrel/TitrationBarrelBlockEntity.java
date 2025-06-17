@@ -276,4 +276,13 @@ public class TitrationBarrelBlockEntity extends BlockEntity implements FluidStac
 		return false;
 	}
 	
+	@Override
+	public boolean canPlaceItem(int slot, ItemStack stack) {
+		return this.sealTime == -1;
+	}
+	
+	public boolean canTakeItem(Container target, int slot, ItemStack stack) {
+		return this.sealTime == -1;
+	}
+	
 }

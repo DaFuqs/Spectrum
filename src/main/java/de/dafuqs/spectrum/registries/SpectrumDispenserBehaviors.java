@@ -1,13 +1,19 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
+import de.dafuqs.spectrum.blocks.conditional.colored_tree.*;
 import de.dafuqs.spectrum.blocks.mob_head.*;
 import de.dafuqs.spectrum.blocks.shooting_star.*;
+import de.dafuqs.spectrum.blocks.titration_barrel.*;
 import de.dafuqs.spectrum.items.magic_items.ampoules.*;
 import de.dafuqs.spectrum.items.tools.*;
+import net.minecraft.core.*;
 import net.minecraft.core.dispenser.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
+import org.jetbrains.annotations.*;
 
 public class SpectrumDispenserBehaviors {
 	
@@ -46,6 +52,37 @@ public class SpectrumDispenserBehaviors {
 		DispenseItemBehavior armorEquipBehavior = DispenserBlock.DISPENSER_REGISTRY.get(Items.PLAYER_HEAD);
 		for (Block skullBlock : SpectrumSkullBlock.MOB_HEADS.values()) {
 			DispenserBlock.registerBehavior(skullBlock, armorEquipBehavior);
+		}
+		
+		// Sealing Titration Barrels
+		DispenseItemBehavior titrationBarrelSealingBehavior = new OptionalDispenseItemBehavior() {
+			@Override
+			@SuppressWarnings("resource")
+			protected @NotNull ItemStack execute(BlockSource pointer, @NotNull ItemStack stack) {
+				this.setSuccess(false);
+				
+				Direction direction = pointer.state().getValue(DispenserBlock.FACING);
+				BlockPos pos = pointer.pos().relative(direction);
+				BlockState state = pointer.level().getBlockState(pos);
+				
+				if (state.is(SpectrumBlocks.TITRATION_BARREL)) {
+					TitrationBarrelBlock.BarrelState barrelState = state.getValue(TitrationBarrelBlock.BARREL_STATE);
+					if (barrelState == TitrationBarrelBlock.BarrelState.EMPTY || barrelState == TitrationBarrelBlock.BarrelState.FILLED) {
+						BlockEntity blockEntity = pointer.level().getBlockEntity(pos);
+						if (blockEntity instanceof TitrationBarrelBlockEntity titrationBarrelBlockEntity && titrationBarrelBlockEntity.canBeSealed(null)) {
+							TitrationBarrelBlock.sealBarrel(pointer.level(), pos, state, titrationBarrelBlockEntity, null);
+							this.setSuccess(true);
+							stack.shrink(1);
+							return stack;
+						}
+					}
+				}
+				
+				return stack;
+			}
+		};
+		for (ColoredPlankBlock coloredPlankBlock : ColoredPlankBlock.all()) {
+			DispenserBlock.registerBehavior(coloredPlankBlock, titrationBarrelSealingBehavior);
 		}
 		
 		// Decay

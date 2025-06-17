@@ -212,7 +212,7 @@ public class TitrationBarrelBlock extends HorizontalDirectionalBlock implements 
 		}
 	}
 	
-	private void sealBarrel(Level world, BlockPos pos, BlockState state, TitrationBarrelBlockEntity barrelEntity, Player player) {
+	public static void sealBarrel(Level world, BlockPos pos, BlockState state, TitrationBarrelBlockEntity barrelEntity, @Nullable Player player) {
 		// give recipe remainders
 		barrelEntity.giveRecipeRemainders(player);
 		

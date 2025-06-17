@@ -23,7 +23,11 @@ public class ColoredPlankBlock extends Block {
 		this.color = color;
 		BLOCKS.put(color, this);
 	}
-
+	
+	public static Iterable<? extends ColoredPlankBlock> all() {
+		return BLOCKS.values();
+	}
+	
 	@Override
 	public MapCodec<? extends ColoredPlankBlock> codec() {
 		return CODEC;

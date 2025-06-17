@@ -219,10 +219,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity implements FluidStac
 		
 		if (player != null) {
 			SpectrumAdvancementCriteria.TITRATION_BARREL_TAPPING.trigger((ServerPlayer) player, harvestedStack, daysSealed, inventoryCount);
-			
-			if (message != null) {
-				player.displayClientMessage(message, true);
-			}
+			player.displayClientMessage(message, true);
 		}
 		
 		if (shouldReset) {
@@ -242,11 +239,16 @@ public class TitrationBarrelBlockEntity extends BlockEntity implements FluidStac
 		return new StorageRecipeInput<>(items, fluidStorage);
 	}
 	
-	public void giveRecipeRemainders(Player player) {
+	public void giveRecipeRemainders(@Nullable Player player) {
 		for (ItemStack stack : this.getItems()) {
 			ItemStack remainder = stack.getRecipeRemainder();
 			if (!remainder.isEmpty()) {
-				player.getInventory().placeItemBackInInventory(remainder);
+				if (player == null) {
+					popResource(level, this.getBlockPos(), remainder);
+				} else {
+					player.getInventory().placeItemBackInInventory(remainder);
+				}
+				
 			}
 		}
 	}
@@ -259,7 +261,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity implements FluidStac
 		}
 	}
 	
-	public boolean canBeSealed(Player player) {
+	public boolean canBeSealed(@Nullable Player player) {
 		int itemCount = InventoryHelper.countItemsInInventory(getItems());
 		Fluid fluid = fluidStorage.variant.getFluid();
 		if (itemCount == 0 && fluid == Fluids.EMPTY) {
@@ -269,7 +271,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity implements FluidStac
 		if (level != null) {
 			Optional<RecipeHolder<ITitrationBarrelRecipe>> optionalRecipe = getRecipeForInventory(level);
 			return optionalRecipe.isPresent()
-					&& optionalRecipe.get().value().canPlayerCraft(player)
+					&& (player == null || optionalRecipe.get().value().canPlayerCraft(player))
 					&& optionalRecipe.get().value().getFluidInput().test(this.getFluidVariant().getFluid());
 		}
 		

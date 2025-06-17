@@ -2,7 +2,8 @@
   "type": "spectrum:potion_workshop_reacting",
   "item": "spectrum:moonstone_powder",
   "modifiers": {
-    "make_effects_positive": true
+    "make_effects_positive": true,
+    "potency_multiplier": 0.75
   },
   "required_advancement": "spectrum:unlocks/reagents/moonstone_powder"
 }

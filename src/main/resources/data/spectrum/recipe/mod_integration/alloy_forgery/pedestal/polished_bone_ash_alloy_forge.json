@@ -2,11 +2,7 @@
   "type": "spectrum:pedestal",
   "time": 40,
   "tier": "basic",
-  "magenta": 0,
-  "yellow": 0,
-  "cyan": 0,
-  "black": 0,
-  "white": 0,
+  "colors": {},
   "experience": 0.1,
   "pattern": [
     "XXX",

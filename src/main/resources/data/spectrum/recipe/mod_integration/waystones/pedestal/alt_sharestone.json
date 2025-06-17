@@ -2,11 +2,9 @@
   "type": "spectrum:pedestal",
   "time": 180,
   "tier": "basic",
-  "magenta": 0,
-  "yellow": 0,
-  "cyan": 4,
-  "black": 0,
-  "white": 0,
+  "colors": {
+    "spectrum:cyan": 4
+  },
   "experience": 0.2,
   "pattern": [
     "SSS",

@@ -3,13 +3,9 @@
   "time": 40,
   "tier": "simple",
   "colors": {
-
+    "spectrum:cyan": 8,
+    "spectrum:magenta": 2
   },
-  "cyan": 8,
-  "magenta": 2,
-  "yellow": 0,
-  "black": 0,
-  "white": 0,
   "experience": 2.0,
   "pattern": [
     "PCP",

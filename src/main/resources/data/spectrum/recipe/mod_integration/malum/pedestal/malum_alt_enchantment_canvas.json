@@ -2,11 +2,10 @@
   "type": "spectrum:pedestal",
   "time": 40,
   "tier": "simple",
-  "cyan": 8,
-  "magenta": 2,
-  "yellow": 0,
-  "black": 0,
-  "white": 0,
+  "colors": {
+    "spectrum:cyan": 8,
+    "spectrum:magenta": 2
+  },
   "experience": 2.0,
   "pattern": [
     "PCP",

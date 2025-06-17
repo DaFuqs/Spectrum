@@ -2,11 +2,7 @@
   "type": "spectrum:pedestal_shapeless",
   "time": 50,
   "tier": "basic",
-  "cyan": 0,
-  "magenta": 0,
-  "yellow": 0,
-  "white": 0,
-  "black": 0,
+  "colors": {},
   "experience": 0.25,
   "ingredients": [
     "minecraft:water_bucket",

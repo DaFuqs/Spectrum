@@ -3,11 +3,9 @@
   "group": "mythicmetals_resources",
   "time": 400,
   "tier": "basic",
-  "cyan": 4,
-  "magenta": 0,
-  "yellow": 0,
-  "white": 0,
-  "black": 0,
+  "colors": {
+    "spectrum:cyan": 4
+  },
   "experience": 0.5,
   "pattern": [
     "AAA",

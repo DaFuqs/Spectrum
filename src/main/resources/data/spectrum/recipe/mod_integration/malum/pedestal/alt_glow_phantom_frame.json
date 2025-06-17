@@ -3,11 +3,9 @@
   "group": "phantom_frames",
   "time": 80,
   "tier": "basic",
-  "cyan": 0,
-  "magenta": 0,
-  "yellow": 4,
-  "white": 0,
-  "black": 0,
+  "colors": {
+    "spectrum:yellow": 4
+  },
   "experience": 0.5,
   "pattern": [
     "SGS",

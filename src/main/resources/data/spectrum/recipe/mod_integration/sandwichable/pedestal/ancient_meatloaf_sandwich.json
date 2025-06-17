@@ -2,11 +2,7 @@
   "type": "spectrum:pedestal_shapeless",
   "time": 80,
   "tier": "basic",
-  "magenta": 0,
-  "yellow": 0,
-  "cyan": 0,
-  "black": 0,
-  "white": 0,
+  "colors": {},
   "experience": 0.2,
   "ingredients": [
     "spectrum:meatloaf",

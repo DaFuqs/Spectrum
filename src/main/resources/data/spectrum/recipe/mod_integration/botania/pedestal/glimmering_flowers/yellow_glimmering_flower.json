@@ -3,11 +3,7 @@
   "group": "botania_glimmering_flowers",
   "time": 100,
   "tier": "basic",
-  "cyan": 0,
-  "magenta": 0,
-  "yellow": 0,
-  "white": 0,
-  "black": 0,
+  "colors": {},
   "experience": 0.1,
   "pattern": [
     "PS"

@@ -1,0 +1,84 @@
+{
+  "textures": {
+    "texture": "spectrum:block/weeping_gala_trapdoor",
+    "side": "spectrum:block/weeping_gala_door_side",
+    "particle": "#texture"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        13
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            16,
+            16,
+            0
+          ],
+          "texture": "#texture"
+        },
+        "east": {
+          "uv": [
+            6,
+            0,
+            3,
+            16
+          ],
+          "texture": "#side",
+          "cullface": "east"
+        },
+        "south": {
+          "uv": [
+            0,
+            16,
+            16,
+            0
+          ],
+          "texture": "#texture",
+          "cullface": "south"
+        },
+        "west": {
+          "uv": [
+            3,
+            0,
+            6,
+            16
+          ],
+          "texture": "#side",
+          "cullface": "west"
+        },
+        "up": {
+          "uv": [
+            6,
+            0,
+            3,
+            16
+          ],
+          "rotation": 90,
+          "texture": "#side",
+          "cullface": "up"
+        },
+        "down": {
+          "uv": [
+            3,
+            0,
+            6,
+            16
+          ],
+          "rotation": 90,
+          "texture": "#side",
+          "cullface": "down"
+        }
+      }
+    }
+  ]
+}

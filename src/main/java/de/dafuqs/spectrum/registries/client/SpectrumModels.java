@@ -26,6 +26,19 @@ public class SpectrumModels {
 	public static final ResourceLocation SKULL_ITEM = ResourceLocation.withDefaultNamespace("item/template_skull");
 	public static final ResourceLocation SPAWN_EGG = ResourceLocation.withDefaultNamespace("item/template_spawn_egg");
 	
+	// Improved Vanilla Block Templates
+	public static final ModelTemplate DOOR_BOTTOM_LEFT = new ModelTemplate(Optional.of(SpectrumCommon.locate("improved_vanilla/door_bottom_left")), Optional.empty(), BOTTOM, SIDE);
+	public static final ModelTemplate DOOR_BOTTOM_LEFT_OPEN = new ModelTemplate(Optional.of(SpectrumCommon.locate("improved_vanilla/door_bottom_left_open")), Optional.empty(), BOTTOM, SIDE);
+	public static final ModelTemplate DOOR_BOTTOM_RIGHT = new ModelTemplate(Optional.of(SpectrumCommon.locate("improved_vanilla/door_bottom_right")), Optional.empty(), BOTTOM, SIDE);
+	public static final ModelTemplate DOOR_BOTTOM_RIGHT_OPEN = new ModelTemplate(Optional.of(SpectrumCommon.locate("improved_vanilla/door_bottom_right_open")), Optional.empty(), BOTTOM, SIDE);
+	public static final ModelTemplate DOOR_TOP_LEFT = new ModelTemplate(Optional.of(SpectrumCommon.locate("improved_vanilla/door_top_left")), Optional.empty(), TOP, SIDE);
+	public static final ModelTemplate DOOR_TOP_LEFT_OPEN = new ModelTemplate(Optional.of(SpectrumCommon.locate("improved_vanilla/door_top_left_open")), Optional.empty(), TOP, SIDE);
+	public static final ModelTemplate DOOR_TOP_RIGHT = new ModelTemplate(Optional.of(SpectrumCommon.locate("improved_vanilla/door_top_right")), Optional.empty(), TOP, SIDE);
+	public static final ModelTemplate DOOR_TOP_RIGHT_OPEN = new ModelTemplate(Optional.of(SpectrumCommon.locate("improved_vanilla/door_top_right_open")), Optional.empty(), TOP, SIDE);
+	public static final ModelTemplate TEMPLATE_ORIENTABLE_TRAPDOOR_BOTTOM = new ModelTemplate(Optional.of(SpectrumCommon.locate("improved_vanilla/template_orientable_trapdoor_bottom")), Optional.empty(), TEXTURE, SIDE);
+	public static final ModelTemplate TEMPLATE_ORIENTABLE_TRAPDOOR_OPEN = new ModelTemplate(Optional.of(SpectrumCommon.locate("improved_vanilla/template_orientable_trapdoor_open")), Optional.empty(), TEXTURE, SIDE);
+	public static final ModelTemplate TEMPLATE_ORIENTABLE_TRAPDOOR_TOP = new ModelTemplate(Optional.of(SpectrumCommon.locate("improved_vanilla/template_orientable_trapdoor_top")), Optional.empty(), TEXTURE, SIDE);
+	
 	// Block Templates
 	public static final ModelTemplate SHIMMERSTONE_LIGHT = new ModelTemplate(Optional.of(SpectrumCommon.locate("templates/shimmerstone_light")), Optional.empty(), INNER, OUTER, PARTICLE);
 	public static final ModelTemplate SHIMMERSTONE_LIGHT_MIRRORED = new ModelTemplate(Optional.of(SpectrumCommon.locate("templates/shimmerstone_light_mirrored")), Optional.empty(), INNER, OUTER, PARTICLE);

@@ -1,7 +1,8 @@
 {
-  "parent": "minecraft:block/door_top_left",
+  "parent": "spectrum:improved_vanilla/door_top_left",
   "textures": {
     "bottom": "spectrum:block/ivory_noxwood_door_bottom",
-    "top": "spectrum:block/ivory_noxwood_door_top"
+    "top": "spectrum:block/ivory_noxwood_door_top",
+    "side": "spectrum:block/ivory_noxwood_door_side"
   }
 }

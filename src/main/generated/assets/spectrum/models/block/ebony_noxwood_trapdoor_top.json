@@ -1,6 +1,7 @@
 {
-  "parent": "minecraft:block/template_orientable_trapdoor_top",
+  "parent": "spectrum:improved_vanilla/template_orientable_trapdoor_top",
   "textures": {
-    "texture": "spectrum:block/ebony_noxwood_trapdoor"
+    "texture": "spectrum:block/ebony_noxwood_trapdoor",
+    "side": "spectrum:block/ebony_noxwood_door_side"
   }
 }

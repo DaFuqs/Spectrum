@@ -1,6 +1,7 @@
 {
-  "parent": "minecraft:block/template_orientable_trapdoor_open",
+  "parent": "spectrum:improved_vanilla/template_orientable_trapdoor_open",
   "textures": {
-    "texture": "spectrum:block/weeping_gala_trapdoor"
+    "texture": "spectrum:block/weeping_gala_trapdoor",
+    "side": "spectrum:block/weeping_gala_door_side"
   }
 }

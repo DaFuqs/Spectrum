@@ -10,8 +10,8 @@
     "salt": 7831267,
     "spread_type": "triangular",
     "frequency": 0.9,
-    "spacing": 80,
-    "separation": 60
+    "spacing": 60,
+    "separation": 40
   },
   "exclusion_zone": {
     "chunk_count": 16,

@@ -98,7 +98,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 			if (additionalManifestAdvanceSteps > 0) {
 				int newTicksToManifest = ticksToManifest - additionalManifestAdvanceSteps;
 				if (newTicksToManifest <= 0) {
-					this.manifest(world, blockPos);
+					this.manifestFromBlock(world, blockPos);
 				} else {
 					Optional<EntityType<?>> entityTypeOptional = MemoryItem.getEntityType(this.memoryItemStack);
 					if (entityTypeOptional.isPresent()) {
@@ -112,18 +112,17 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 		}
 	}
 	
-	protected void manifest(@NotNull ServerLevel world, BlockPos blockPos) {
-		manifest(world, blockPos, this.memoryItemStack, this.ownerUUID);
-	}
-	
-	public static boolean manifest(@NotNull ServerLevel world, BlockPos blockPos, ItemStack memoryItemStack, @Nullable UUID ownerUUID) {
+	protected void manifestFromBlock(@NotNull ServerLevel world, BlockPos blockPos) {
 		BlockState blockState = world.getBlockState(blockPos);
 		if (blockState.getBlock() instanceof SimpleWaterloggedBlock && blockState.getValue(BlockStateProperties.WATERLOGGED)) {
 			world.setBlockAndUpdate(blockPos, Blocks.WATER.defaultBlockState());
 		} else {
 			world.setBlockAndUpdate(blockPos, Blocks.AIR.defaultBlockState());
 		}
-		
+		manifest(world, blockPos, this.memoryItemStack, this.ownerUUID);
+	}
+	
+	public static boolean manifest(@NotNull ServerLevel world, BlockPos blockPos, ItemStack memoryItemStack, @Nullable UUID ownerUUID) {
 		Optional<Entity> hatchedEntityOptional = hatchEntity(world, blockPos, memoryItemStack);
 		
 		if (hatchedEntityOptional.isPresent()) {
@@ -181,7 +180,6 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 		return Optional.ofNullable(memoryItemStack.get(SpectrumDataComponentTypes.MEMORY))
 				.flatMap(memory -> MemoryItem.getEntityType(memoryItemStack)
 						.map(entityType -> {
-							// alignPosition: center the mob in the center of the blockPos
 							Entity entity = entityType.spawn(world, memoryItemStack, null, blockPos, MobSpawnType.SPAWN_EGG, true, false);
 							if (entity instanceof Mob mobEntity && !memory.spawnAsAdult())
 								mobEntity.setBaby(true);

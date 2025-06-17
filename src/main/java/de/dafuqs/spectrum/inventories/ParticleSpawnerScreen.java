@@ -135,21 +135,22 @@ public class ParticleSpawnerScreen extends AbstractContainerScreen<ParticleSpawn
 		var tr = this.font;
 		drawContext.drawString(tr, this.title, this.titleLabelX, this.titleLabelY, 2236962, false);
 		
-		drawContext.drawString(tr, Component.literal("C").withStyle(ChatFormatting.AQUA), 7, 54, TEXT_COLOR, false);
-		drawContext.drawString(tr, Component.literal("M").withStyle(ChatFormatting.LIGHT_PURPLE), 47, 54, TEXT_COLOR, false);
-		drawContext.drawString(tr, Component.literal("Y").withStyle(ChatFormatting.GOLD), 90, 54, TEXT_COLOR, false);
-		/*  this still uses the old color format, since it is easier to read on the background
-		drawContext.drawText(tr, Text.literal("C").setStyle(Style.EMPTY.withColor(InkColors.CYAN_COLOR)), 7, 54, TEXT_COLOR, false);
-		drawContext.drawText(tr, Text.literal("M").setStyle(Style.EMPTY.withColor(InkColors.MAGENTA_COLOR)), 47, 54, TEXT_COLOR, false);
-		drawContext.drawText(tr, Text.literal("Y").setStyle(Style.EMPTY.withColor(InkColors.YELLOW_COLOR)), 90, 54, TEXT_COLOR, false);
+		// this still uses the old color format, since it is easier to read on the background
+		drawContext.drawString(tr, Component.translatable("block.spectrum.particle_spawner.color_c").withStyle(ChatFormatting.AQUA), 7, 54, TEXT_COLOR, false);
+		drawContext.drawString(tr, Component.translatable("block.spectrum.particle_spawner.color_m").withStyle(ChatFormatting.LIGHT_PURPLE), 47, 54, TEXT_COLOR, false);
+		drawContext.drawString(tr, Component.translatable("block.spectrum.particle_spawner.color_y").withStyle(ChatFormatting.GOLD), 90, 54, TEXT_COLOR, false);
+		/*
+		drawContext.drawText(tr, Component.translatable("block.spectrum.particle_spawner.color_c").setStyle(Style.EMPTY.withColor(InkColors.CYAN_COLOR)), 7, 54, TEXT_COLOR, false);
+		drawContext.drawText(tr, Component.translatable("block.spectrum.particle_spawner.color_m").setStyle(Style.EMPTY.withColor(InkColors.MAGENTA_COLOR)), 47, 54, TEXT_COLOR, false);
+		drawContext.drawText(tr, Component.translatable("block.spectrum.particle_spawner.color_y").setStyle(Style.EMPTY.withColor(InkColors.YELLOW_COLOR)), 90, 54, TEXT_COLOR, false);
 		 */
-		drawContext.drawString(tr, Component.literal("Glow"), 130, 54, TEXT_COLOR, false);
+		drawContext.drawString(tr, Component.translatable("block.spectrum.particle_spawner.glow"), 130, 54, TEXT_COLOR, false);
 		
 		int offset = 23;
-		drawContext.drawString(tr, Component.translatable("block.spectrum.particle_spawner.particle_count"), 10, 53 + offset, TEXT_COLOR, false);
-		drawContext.drawString(tr, Component.literal("x"), 66, 64 + offset, TEXT_COLOR, false);
-		drawContext.drawString(tr, Component.literal("y"), 99, 64 + offset, TEXT_COLOR, false);
-		drawContext.drawString(tr, Component.literal("z"), 134, 64 + offset, TEXT_COLOR, false);
+		drawContext.drawString(tr, Component.translatable("block.spectrum.particle_spawner.particle_count"), 10, 51 + offset, TEXT_COLOR, false);
+		drawContext.drawString(tr, Component.translatable("block.spectrum.particle_spawner.pos_x"), 66, 64 + offset, TEXT_COLOR, false);
+		drawContext.drawString(tr, Component.translatable("block.spectrum.particle_spawner.pos_y"), 99, 64 + offset, TEXT_COLOR, false);
+		drawContext.drawString(tr, Component.translatable("block.spectrum.particle_spawner.pos_z"), 134, 64 + offset, TEXT_COLOR, false);
 		drawContext.drawString(tr, Component.translatable("block.spectrum.particle_spawner.offset"), 10, 78 + offset, TEXT_COLOR, false);
 		drawContext.drawString(tr, Component.translatable("block.spectrum.particle_spawner.variance"), 21, 97 + offset, TEXT_COLOR, false);
 		drawContext.drawString(tr, Component.translatable("block.spectrum.particle_spawner.velocity"), 10, 117 + offset, TEXT_COLOR, false);
@@ -219,7 +220,7 @@ public class ParticleSpawnerScreen extends AbstractContainerScreen<ParticleSpawn
 		this.glowing = configuration.glowing();
 		
 		int offset = 23;
-		amountField = addTextFieldWidget(startX + 110, startY + 50 + offset, Component.literal("Particles per Second"), String.valueOf(configuration.particlesPerSecond()), this::isPositiveDecimalNumberUnderThousand);
+		amountField = addTextFieldWidget(startX + 110, startY + 48 + offset, Component.literal("Particles per Second"), String.valueOf(configuration.particlesPerSecond()), this::isPositiveDecimalNumberUnderThousand);
 		positionXField = addTextFieldWidget(startX + 61, startY + 74 + offset, Component.literal("X Position"), String.valueOf(configuration.sourcePosition().x), this::isAbsoluteDecimalNumberThousand);
 		positionYField = addTextFieldWidget(startX + 96, startY + 74 + offset, Component.literal("Y Position"), String.valueOf(configuration.sourcePosition().y), this::isAbsoluteDecimalNumberThousand);
 		positionZField = addTextFieldWidget(startX + 131, startY + 74 + offset, Component.literal("Z Position"), String.valueOf(configuration.sourcePosition().z), this::isAbsoluteDecimalNumberThousand);

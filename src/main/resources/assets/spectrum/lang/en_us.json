@@ -3596,7 +3596,7 @@
   "book.spectrum.guidebook.potion_workshop_brewing.page0.text": "I was able to replicate all the potions I could do with the Brewing Stand and more! (though some of them are easier or harder to get enhanced effects from)\\\n\\\nI can use [Reagents](entry://brewing/potion_workshop_reagents) to tinker with their effects.",
   "book.spectrum.guidebook.potion_workshop_brewing.page1.text": "I can make **any vanilla potion** using the same ingredients as I would in the [#](bb00bb)Brewing Stand[#]().",
   "book.spectrum.guidebook.potion_workshop_brewing.page1.title": "Vanilla Potions",
-  "book.spectrum.guidebook.potion_workshop_brewing.page2.strong.text": "Using Milky Resin yields a stronger blend at the cost of duration.",
+  "book.spectrum.guidebook.potion_workshop_brewing.page2.strong.text": "Using Milky Resin yields a blend more susceptible for potency changes at the cost of duration.",
   "book.spectrum.guidebook.potion_workshop_brewing.page4.text": "Adding a Fermented Spider Eye will change the effect to **Mining Fatigue** instead.",
   "book.spectrum.guidebook.potion_workshop_brewing.page5.text": "Adding a Fermented Spider Eye will change the effect to **Hunger** instead.",
   "book.spectrum.guidebook.potion_workshop_brewing.page7.text": "Adding a Fermented Spider Eye will change the effect to **Bad Luck** instead.",

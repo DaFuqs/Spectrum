@@ -2638,7 +2638,7 @@
   "book.spectrum.guidebook.potion_workshop_brewing.page1.title": "Previously Known Potions",
   "book.spectrum.guidebook.potion_workshop_brewing.page17.text": "*This brew has a naturally low yield.*",
   "book.spectrum.guidebook.potion_workshop_brewing.page18.text": "*In spite of everything I've tried, this recipe seems limited to yielding a singular batch.*",
-  "book.spectrum.guidebook.potion_workshop_brewing.page2.strong.text": "Using Milky Resin yields a stronger blend at the cost of duration.",
+  "book.spectrum.guidebook.potion_workshop_brewing.page2.strong.text": "Using Milky Resin yields a blend more susceptible for potency changes at the cost of duration.",
   "book.spectrum.guidebook.potion_workshop_brewing.page4.text": "Adding a Fermented Spider Eye will change the effect to **Mining Fatigue** instead.",
   "book.spectrum.guidebook.potion_workshop_brewing.page5.text": "Adding a Fermented Spider Eye will change the effect to **Hunger** instead.",
   "book.spectrum.guidebook.potion_workshop_brewing.page7.text": "Adding a Fermented Spider Eye will change the effect to **Bad Luck** instead.",

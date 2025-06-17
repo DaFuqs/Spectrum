@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.blocks.conditional.colored_tree.*;
 import de.dafuqs.spectrum.blocks.mob_head.*;
 import de.dafuqs.spectrum.blocks.shooting_star.*;
 import de.dafuqs.spectrum.blocks.titration_barrel.*;
+import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.magic_items.ampoules.*;
 import de.dafuqs.spectrum.items.tools.*;
 import net.minecraft.core.*;
@@ -95,6 +96,7 @@ public class SpectrumDispenserBehaviors {
 		DispenserBlock.registerBehavior(SpectrumItems.BOTTLE_OF_DECAY_AWAY, blockPlacementDispenserBehavior);
 		
 		DispenserBlock.registerBehavior(SpectrumItems.PRIMORDIAL_LIGHTER, PrimordialLighterItem.DISPENSER_BEHAVIOR);
+		DispenserBlock.registerBehavior(SpectrumItems.ENDER_SPLICE, EnderSpliceItem.DISPENSER_BEHAVIOR);
 		
 		// Glass Ampoules
 		DispenseItemBehavior ampouleBehavior = (pointer, stack) -> {

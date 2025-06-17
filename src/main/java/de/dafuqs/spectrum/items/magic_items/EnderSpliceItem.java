@@ -12,6 +12,7 @@ import net.fabricmc.fabric.api.item.v1.*;
 import net.minecraft.advancements.*;
 import net.minecraft.client.*;
 import net.minecraft.core.*;
+import net.minecraft.core.dispenser.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
@@ -24,6 +25,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.portal.*;
 import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
@@ -31,6 +33,31 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 public class EnderSpliceItem extends Item {
+	
+	public static final DispenseItemBehavior DISPENSER_BEHAVIOR = new OptionalDispenseItemBehavior() {
+		
+		protected ItemStack execute(BlockSource blockSource, ItemStack stack) {
+			ServerLevel serverLevel = blockSource.level();
+			if (!serverLevel.isClientSide()) {
+				BlockPos blockPos = blockSource.pos().relative(blockSource.state().getValue(DispenserBlock.FACING));
+				this.setSuccess(tryTeleportPlayers(serverLevel, blockPos, stack));
+				if (this.isSuccess()) {
+					decrementWithChance(stack, serverLevel);
+				}
+			}
+			return stack;
+		}
+		
+		private static boolean tryTeleportPlayers(ServerLevel level, BlockPos pos, ItemStack stack) {
+			List<LivingEntity> list = level.getEntitiesOfClass(LivingEntity.class, new AABB(pos), EntitySelector.NO_SPECTATORS);
+			for (LivingEntity livingEntity : list) {
+				if (livingEntity instanceof ServerPlayer serverPlayer) {
+					teleport(stack, level, serverPlayer, serverPlayer);
+				}
+			}
+			return false;
+		}
+	};
 	
 	public EnderSpliceItem(Properties settings) {
 		super(settings);
@@ -63,47 +90,51 @@ public class EnderSpliceItem extends Item {
 				interactWithEntityClient();
 			}
 		} else if (user instanceof ServerPlayer playerEntity) {
-			CriteriaTriggers.CONSUME_ITEM.trigger(playerEntity, itemStack);
-			
-			boolean resonance = EnchantmentHelper.hasTag(itemStack, SpectrumEnchantmentTags.DIMENSIONAL_TELEPORT);
-			
-			// If Dimension & Pos stored => Teleport to that position
-			var teleportTargetPos = getTeleportTargetPos(itemStack);
-			if (teleportTargetPos.isPresent()) {
-				Level targetWorld = world.getServer().getLevel(teleportTargetPos.get().getA());
-				if (teleportPlayerToPos(world, user, playerEntity, targetWorld, teleportTargetPos.get().getB(), resonance)) {
-					decrementWithChance(itemStack, world, playerEntity);
-				}
-			} else {
-				// If UUID stored => Teleport to player, if online
-				Optional<UUID> teleportTargetPlayerUUID = getTeleportTargetPlayerUUID(itemStack);
-				if (teleportTargetPlayerUUID.isPresent()) {
-					if (teleportPlayerToPlayerWithUUID(world, user, playerEntity, teleportTargetPlayerUUID.get(), resonance)) {
-						decrementWithChance(itemStack, world, playerEntity);
-					}
-				} else {
-					// Nothing stored => Store current position
-					setTeleportTargetPos(itemStack, playerEntity.getCommandSenderWorld(), playerEntity.position());
-					world.playSound(null, playerEntity.blockPosition(), SpectrumSoundEvents.ENDER_SPLICE_BOUND, SoundSource.PLAYERS, 1.0F, 1.0F);
-				}
-			}
+			teleport(itemStack, world, user, playerEntity);
 			playerEntity.awardStat(Stats.ITEM_USED.get(this));
 		}
 		
 		return itemStack;
 	}
 	
-	private static void decrementWithChance(ItemStack itemStack, Level world, ServerPlayer playerEntity) {
+	// TODO: ability to teleport non-players (like triggered via dispenser)
+	private static void teleport(ItemStack itemStack, Level world, LivingEntity user, ServerPlayer playerEntity) {
+		CriteriaTriggers.CONSUME_ITEM.trigger(playerEntity, itemStack);
+		
+		boolean resonance = EnchantmentHelper.hasTag(itemStack, SpectrumEnchantmentTags.DIMENSIONAL_TELEPORT);
+		
+		// If Dimension & Pos stored => Teleport to that position
+		var teleportTargetPos = getTeleportTargetPos(itemStack);
+		if (teleportTargetPos.isPresent()) {
+			Level targetWorld = world.getServer().getLevel(teleportTargetPos.get().getA());
+			if (teleportPlayerToPos(world, user, playerEntity, targetWorld, teleportTargetPos.get().getB(), resonance)) {
+				if (!playerEntity.isCreative()) decrementWithChance(itemStack, world);
+			}
+		} else {
+			// If UUID stored => Teleport to player, if online
+			Optional<UUID> teleportTargetPlayerUUID = getTeleportTargetPlayerUUID(itemStack);
+			if (teleportTargetPlayerUUID.isPresent()) {
+				if (teleportPlayerToPlayerWithUUID(world, user, playerEntity, teleportTargetPlayerUUID.get(), resonance)) {
+					if (!playerEntity.isCreative()) decrementWithChance(itemStack, world);
+				}
+			} else {
+				// Nothing stored => Store current position
+				setTeleportTargetPos(itemStack, playerEntity.getCommandSenderWorld(), playerEntity.position());
+				world.playSound(null, playerEntity.blockPosition(), SpectrumSoundEvents.ENDER_SPLICE_BOUND, SoundSource.PLAYERS, 1.0F, 1.0F);
+			}
+		}
+	}
+	
+	private static void decrementWithChance(ItemStack itemStack, Level world) {
 		if (EnchantmentHelper.hasTag(itemStack, SpectrumEnchantmentTags.INDESTRUCTIBLE_EFFECT)) {
 			return;
 		}
-		if (!playerEntity.getAbilities().instabuild) {
-			int unbreakingLevel = SpectrumEnchantmentHelper.getLevel(world.registryAccess(), Enchantments.UNBREAKING, itemStack);
-			if (unbreakingLevel == 0) {
-				itemStack.shrink(1);
-			} else {
-				itemStack.shrink(Support.getIntFromDecimalWithChance(1.0 / (1 + unbreakingLevel), world.random));
-			}
+		
+		int unbreakingLevel = SpectrumEnchantmentHelper.getLevel(world.registryAccess(), Enchantments.UNBREAKING, itemStack);
+		if (unbreakingLevel == 0) {
+			itemStack.shrink(1);
+		} else {
+			itemStack.shrink(Support.getIntFromDecimalWithChance(1.0 / (1 + unbreakingLevel), world.random));
 		}
 	}
 	
@@ -117,7 +148,7 @@ public class EnderSpliceItem extends Item {
 		}
 	}
 	
-	private boolean teleportPlayerToPlayerWithUUID(Level world, LivingEntity user, Player playerEntity, UUID targetPlayerUUID, boolean hasResonance) {
+	private static boolean teleportPlayerToPlayerWithUUID(Level world, LivingEntity user, Player playerEntity, UUID targetPlayerUUID, boolean hasResonance) {
 		Player targetPlayer = PlayerOwned.getPlayerEntityIfOnline(targetPlayerUUID);
 		if (targetPlayer != null) {
 			return teleportPlayerToPos(targetPlayer.getCommandSenderWorld(), user, playerEntity, targetPlayer.getCommandSenderWorld(), targetPlayer.position(), hasResonance);
@@ -125,7 +156,7 @@ public class EnderSpliceItem extends Item {
 		return false;
 	}
 	
-	private boolean teleportPlayerToPos(Level world, LivingEntity user, Player playerEntity, Level targetWorld, Vec3 targetPos, boolean hasResonance) {
+	private static boolean teleportPlayerToPos(Level world, LivingEntity user, Player playerEntity, Level targetWorld, Vec3 targetPos, boolean hasResonance) {
 		boolean isSameWorld = isSameWorld(user.getCommandSenderWorld(), targetWorld);
 		Vec3 currentPos = playerEntity.position();
 		if ((hasResonance || isSameWorld) && targetWorld instanceof ServerLevel targetServerWorld) {
@@ -201,18 +232,18 @@ public class EnderSpliceItem extends Item {
 		tooltip.add(Component.translatable("item.spectrum.ender_splice.tooltip.unbound"));
 	}
 	
-	public Optional<Tuple<ResourceKey<Level>, Vec3>> getTeleportTargetPos(@NotNull ItemStack itemStack) {
+	public static Optional<Tuple<ResourceKey<Level>, Vec3>> getTeleportTargetPos(@NotNull ItemStack itemStack) {
 		var component = itemStack.getOrDefault(SpectrumDataComponentTypes.ENDER_SPLICE, EnderSpliceComponent.DEFAULT);
 		if (component.pos().isPresent() && component.dimension().isPresent())
 			return Optional.of(new Tuple<>(component.dimension().get(), component.pos().get()));
 		return Optional.empty();
 	}
 	
-	public Optional<UUID> getTeleportTargetPlayerUUID(@NotNull ItemStack itemStack) {
+	public static Optional<UUID> getTeleportTargetPlayerUUID(@NotNull ItemStack itemStack) {
 		return itemStack.getOrDefault(SpectrumDataComponentTypes.ENDER_SPLICE, EnderSpliceComponent.DEFAULT).targetUUID();
 	}
 	
-	public Optional<String> getTeleportTargetPlayerName(@NotNull ItemStack itemStack) {
+	public static Optional<String> getTeleportTargetPlayerName(@NotNull ItemStack itemStack) {
 		return itemStack.getOrDefault(SpectrumDataComponentTypes.ENDER_SPLICE, EnderSpliceComponent.DEFAULT).targetName();
 	}
 	

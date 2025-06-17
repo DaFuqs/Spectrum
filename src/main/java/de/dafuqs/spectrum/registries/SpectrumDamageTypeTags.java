@@ -16,6 +16,8 @@ public class SpectrumDamageTypeTags {
 	public static final TagKey<DamageType> CALCULATES_DAMAGE_BASED_ON_TOUGHNESS = of("calculates_damage_based_on_toughness");
 	public static final TagKey<DamageType> PARTLY_IGNORES_PROTECTION = of("partly_ignores_protection");
 	public static final TagKey<DamageType> ALWAYS_DROPS_MOB_HEAD = of("always_drops_mob_head");
+	public static final TagKey<DamageType> ERASER_IMMUNE_TO = of("eraser_immune_to");
+	public static final TagKey<DamageType> ERASER_HURTS_EXTRA = of("eraser_hurts_extra");
 	
 	private static TagKey<DamageType> of(String id) {
 		return TagKey.create(Registries.DAMAGE_TYPE, SpectrumCommon.locate(id));

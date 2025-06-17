@@ -85,6 +85,20 @@ public class EraserEntity extends Spider implements PackEntity<EraserEntity>, Bu
 	}
 	
 	@Override
+	public boolean hurt(DamageSource source, float amount) {
+		return super.hurt(source, source.is(SpectrumDamageTypeTags.ERASER_HURTS_EXTRA) ? amount * 10.0F : amount);
+	}
+	
+	@Override
+	public boolean isDamageSourceBlocked(DamageSource damageSource) {
+		if (damageSource.is(SpectrumDamageTypeTags.ERASER_IMMUNE_TO)) {
+			return true;
+		}
+		
+		return super.isDamageSourceBlocked(damageSource);
+	}
+	
+	@Override
 	public @Nullable SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType spawnReason, @Nullable SpawnGroupData entityData) {
 		RandomSource random = world.getRandom();
 		

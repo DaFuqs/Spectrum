@@ -3770,7 +3770,7 @@
   "book.spectrum.guidebook.ring_of_denser_steps.page1.text": "*probably my densest idea yet*",
   "book.spectrum.guidebook.ring_of_pursuit.page0.text": "Mining is my game.\\\nIt's almost a miracle that it's only now that I've come up with the idea of upgrading not only my tools, but my mining proficiency in general. This ring will even grow with my abilities.",
   "book.spectrum.guidebook.ring_of_pursuit.page1.text": "Can be infused with [Magenta Ink](entry://ink/ink) in a [Color Picker](entry://ink/color_picker) to increase mining speed.",
-  "book.spectrum.guidebook.rock_candy.page0.text": "A stick with [#](bb00bb)Sugar[#]() on it.\\\n\\\n...wait wait wait, I found out there's more to it!\\\nIf I place this stick so that its underside is immersed in [Liquid Crystal](entry://general/liquid_crystal) and I dissolve more [](item://minecraft:sugar) in the liquid, the stick will slowly turn into a sweet crunchy candy stick.",
+  "book.spectrum.guidebook.rock_candy.page0.text": "A stick with [#](bb00bb)Sugar[#]() on it.\\\n\\\n...wait wait wait, I found out there's more to it!\\\nIf I place this stick so that it's immersed in [Liquid Crystal](entry://general/liquid_crystal) and I dissolve some [](item://minecraft:sugar) (4 items, to be exact) in the liquid, the stick will slowly turn into sweet and crunchy **candy**!",
   "book.spectrum.guidebook.rock_candy.page1.text": "Maybe I can add more than just Sugar to it? Liquid *Crystal* and all that...",
   "book.spectrum.guidebook.rock_candy.page2.text": "[#](449900)Silk Touch[#]() retains its size for use as a fancy light, or simply for storage.",
   "book.spectrum.guidebook.rock_candy.page2.title": "Growing Rock Candy",

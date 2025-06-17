@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/flower_pot_cross",
   "textures": {
-    "plant": "spectrum:block/ivory_noxshroom"
+    "plant": "spectrum:block/ivory_noxshroom_type_1"
   }
 }

@@ -1,6 +1,3 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "spectrum:block/stardust_block"
-  }
+  "parent": "spectrum:block/stardust_block"
 }

@@ -38,8 +38,6 @@ public class InkPoweredStatusEffectInstance {
 			InkPoweredStatusEffectInstance::new
 	);
 	
-	public static final String NBT_KEY = "InkPoweredStatusEffects";
-	
 	private final MobEffectInstance statusEffectInstance;
 	private final InkCost cost;
 	private final int customColor; // -1: use effect default
@@ -88,10 +86,6 @@ public class InkPoweredStatusEffectInstance {
 				
 				InkCost cost = entry.getInkCost();
 				
-				if (effect == null) {
-					tooltip.add(Component.translatable("item.spectrum.potion.tooltip.invalid"));
-					continue;
-				}
 				MutableComponent mutableText = Component.translatable(effect.getDescriptionId());
 				if (effect.getAmplifier() > 0) {
 					mutableText = Component.translatable("potion.withAmplifier", mutableText, Component.translatable("potion.potency." + effect.getAmplifier()));

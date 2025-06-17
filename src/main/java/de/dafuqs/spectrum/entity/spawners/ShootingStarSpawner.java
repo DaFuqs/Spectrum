@@ -6,11 +6,13 @@ import de.dafuqs.spectrum.blocks.shooting_star.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.server.level.*;
+import net.minecraft.util.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
+import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
 public class ShootingStarSpawner implements CustomSpawner {
@@ -64,9 +66,11 @@ public class ShootingStarSpawner implements CustomSpawner {
 	}
 	
 	public static void spawnShootingStar(ServerLevel serverWorld, @NotNull Player playerEntity) {
-		ShootingStarEntity shootingStarEntity = new ShootingStarEntity(serverWorld, playerEntity.position().x(), playerEntity.position().y() + 200, playerEntity.position().z(), ShootingStar.Variant.getWeightedRandomType(serverWorld.getRandom()), false, 3 + serverWorld.random.nextInt(5), false);
-		shootingStarEntity.setDeltaMovement(serverWorld.random.nextDouble() * 0.2D - 0.1D, 0.0D, serverWorld.random.nextDouble() * 0.2D - 0.1D);
-		shootingStarEntity.push(5 - serverWorld.random.nextFloat() * 10, 0, 5 - serverWorld.random.nextFloat() * 10);
+		RandomSource rs = serverWorld.getRandom();
+		Vec3 spawnPos = playerEntity.position().add(rs.nextIntBetweenInclusive(-48, 48), 200, rs.nextIntBetweenInclusive(-48, 48));
+		
+		ShootingStarEntity shootingStarEntity = new ShootingStarEntity(serverWorld, spawnPos.x(), spawnPos.y(), spawnPos.z(), ShootingStar.Variant.getWeightedRandomType(rs), false, 3 + serverWorld.random.nextInt(5), false);
+		shootingStarEntity.setDeltaMovement(5 - rs.nextFloat() * 10, 0, 5 - rs.nextFloat() * 10);
 		serverWorld.addFreshEntity(shootingStarEntity);
 	}
 	

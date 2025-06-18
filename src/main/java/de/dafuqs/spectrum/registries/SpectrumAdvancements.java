@@ -29,6 +29,7 @@ public class SpectrumAdvancements {
 	
 	// Milestones with unlocks
 	public static final ResourceLocation APPLY_CONFLICTING_ENCHANTMENTS = SpectrumCommon.locate("milestones/unlock_conflicted_enchanting_with_enchanter");
+	public static final ResourceLocation UNLOCK_COMPLEX_REAGENTS = SpectrumCommon.locate("milestones/unlock_complex_reagents");
 	public static final ResourceLocation FOURTH_BREWING_SLOT = SpectrumCommon.locate("milestones/unlock_fourth_potion_workshop_reagent_slot");
 	public static final ResourceLocation HOSTILE_MEMORIZING = SpectrumCommon.locate("milestones/unlock_hostile_memorizing");
 	public static final ResourceLocation OVERENCHANTING = SpectrumCommon.locate("milestones/unlock_overenchanting_with_enchanter");

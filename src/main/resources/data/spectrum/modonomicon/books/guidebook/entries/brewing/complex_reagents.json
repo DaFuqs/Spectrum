@@ -1,38 +1,29 @@
 {
-  "name": "book.spectrum.guidebook.potion_workshop_reagents.name",
+  "name": "book.spectrum.guidebook.complex_reagents.name",
   "icon": {
-    "item": "minecraft:glowstone_dust"
+    "item": "minecraft:echo_shard"
   },
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
+    "advancement_id": "spectrum:milestones/unlock_complex_reagents"
   },
   "category": "spectrum:brewing",
   "hide_while_locked": true,
   "parents": [
     {
-      "entry": "spectrum:brewing/potion_workshop",
-      "line_enabled": false
+      "entry": "spectrum:brewing/simple_reagents",
+      "line_reversed": true
     }
   ],
   "background_u_index": 0,
   "background_v_index": 4,
-  "x": -1,
-  "y": 1,
+  "x": 0,
+  "y": 2,
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.potion_workshop_reagents.name",
-      "text": "book.spectrum.guidebook.potion_workshop_reagents.page0.text"
-    },
-    {
-      "type": "modonomicon:text",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
-      },
-      "title": "book.spectrum.guidebook.potion_workshop_reagents.page1.title",
-      "text": "book.spectrum.guidebook.potion_workshop_reagents.page1.text"
+      "title": "book.spectrum.guidebook.complex_reagents.name",
+      "text": "book.spectrum.guidebook.complex_reagents.order_of_application.text"
     },
     {
       "type": "modonomicon:spotlight",

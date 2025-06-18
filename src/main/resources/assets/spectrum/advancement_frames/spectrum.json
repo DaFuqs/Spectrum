@@ -113,7 +113,7 @@
     "frame": "spectrum:pile_of_poo"
   },
   {
-    "advancement": "spectrum:midgame/brew_no_potion_in_potion_workshop",
+    "advancement": "spectrum:brew_no_potion_in_potion_workshop",
     "frame": "spectrum:pile_of_poo"
   },
   {
@@ -258,19 +258,19 @@
     "frame": "paginatedadvancements:squircle"
   },
   {
-    "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
+    "advancement": "spectrum:brew_potion_in_potion_workshop",
     "frame": "paginatedadvancements:squircle"
   },
   {
-    "advancement": "spectrum:midgame/brew_powerful_potion_in_potion_workshop",
+    "advancement": "spectrum:brew_powerful_potion_in_potion_workshop",
     "frame": "paginatedadvancements:squircle"
   },
   {
-    "advancement": "spectrum:midgame/brew_potion_with_four_effects_in_potion_workshop",
+    "advancement": "spectrum:brew_potion_with_four_effects_in_potion_workshop",
     "frame": "paginatedadvancements:squircle"
   },
   {
-    "advancement": "spectrum:midgame/brew_lasting_potion_in_potion_workshop",
+    "advancement": "spectrum:brew_lasting_potion_in_potion_workshop",
     "frame": "paginatedadvancements:squircle"
   },
   {

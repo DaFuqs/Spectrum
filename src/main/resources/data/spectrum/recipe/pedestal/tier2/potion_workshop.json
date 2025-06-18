@@ -1,12 +1,12 @@
 {
   "type": "spectrum:pedestal",
-  "time": 1200,
-  "tier": "advanced",
+  "time": 800,
+  "tier": "simple",
   "colors": {
     "spectrum:cyan": 0,
     "spectrum:magenta": 4,
     "spectrum:yellow": 4,
-    "spectrum:black": 1,
+    "spectrum:black": 0,
     "spectrum:white": 0
   },
   "experience": 4.0,
@@ -19,7 +19,7 @@
     "B": "spectrum:polished_basalt",
     "P": "spectrum:polished_calcite",
     "C": "minecraft:copper_ingot",
-    "G": "spectrum:stratine_fragments",
+    "G": "minecraft:glass",
     "Q": "spectrum:quitoxic_powder"
   },
   "result": {

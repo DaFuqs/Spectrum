@@ -1,9 +1,9 @@
 {
     "criteria": {
-      "crafted_potion_in_potion_brewery": {
+      "unlocked_complex_reagents": {
         "trigger": "revelationary:advancement_gotten",
         "conditions": {
-          "advancement_identifier": "spectrum:midgame/brew_potion_in_potion_workshop"
+          "advancement_identifier": "spectrum:milestones/unlock_complex_reagents"
         }
       },
       "broke_decayed_bedrock": {

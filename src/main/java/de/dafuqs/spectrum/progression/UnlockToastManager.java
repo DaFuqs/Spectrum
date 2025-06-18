@@ -27,6 +27,7 @@ public class UnlockToastManager {
 		put(SpectrumAdvancements.UNLOCK_SHOOTING_STARS, new Tuple<>(Items.SPYGLASS.getDefaultInstance(), "shooting_stars_unlocked"));
 		put(SpectrumAdvancements.OVERENCHANTING, new Tuple<>(SpectrumBlocks.ENCHANTER.asItem().getDefaultInstance(), "overchanting_unlocked"));
 		put(SpectrumAdvancements.APPLY_CONFLICTING_ENCHANTMENTS, new Tuple<>(SpectrumBlocks.ENCHANTER.asItem().getDefaultInstance(), "enchant_conflicting_enchantments_unlocked"));
+		put(SpectrumAdvancements.UNLOCK_COMPLEX_REAGENTS, new Tuple<>(SpectrumBlocks.POTION_WORKSHOP.asItem().getDefaultInstance(), "complex_reagents_unlocked"));
 		put(SpectrumAdvancements.FOURTH_BREWING_SLOT, new Tuple<>(SpectrumBlocks.POTION_WORKSHOP.asItem().getDefaultInstance(), "fourth_potion_reagent_unlocked"));
 		put(SpectrumAdvancements.MIDGAME, new Tuple<>(SpectrumBlocks.PEDESTAL_ONYX.asItem().getDefaultInstance(), "second_advancement_tree_unlocked"));
 		put(SpectrumAdvancements.LATEGAME, new Tuple<>(SpectrumBlocks.PEDESTAL_MOONSTONE.asItem().getDefaultInstance(), "third_advancement_tree_unlocked"));

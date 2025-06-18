@@ -128,6 +128,8 @@ public class ItemColors extends ColorRegistry<Item> {
 		put(Items.TORCHFLOWER_SEEDS, InkColors.LIME);
 		put(Items.QUARTZ, InkColors.LIGHT_GRAY);
 		put(Items.QUARTZ_BLOCK, InkColors.LIGHT_GRAY);
+		put(Items.TUFF, InkColors.BROWN);
+		put(Items.WIND_CHARGE, InkColors.LIGHT_GRAY);
 		
 		put(Items.SCULK, InkColors.BLACK);
 		put(Items.SCULK_CATALYST, InkColors.BLACK);

@@ -6,5 +6,5 @@
     "additional_random_negative_effect_count": 1.0,
     "flat_yield_bonus": -1.0
   },
-  "required_advancement": "spectrum:midgame/brew_potion_in_potion_workshop"
+  "required_advancement": "spectrum:unlocks/reagents/stratine_fragments"
 }

@@ -1,19 +1,15 @@
 {
   "criteria": {
-    "crafted_potion_in_potion_brewery": {
+    "unlocked_complex_reagents": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
         "advancement_identifier": "spectrum:milestones/unlock_complex_reagents"
       }
     },
-    "eat_burgeon": {
-      "trigger": "minecraft:consume_item",
+    "collected_quitoxic_reeds": {
+      "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "item": {
-          "items": [
-            "spectrum:nectardew_burgeon"
-          ]
-        }
+        "advancement_identifier": "spectrum:collect_quitoxic_reeds"
       }
     }
   }

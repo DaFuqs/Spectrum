@@ -19,6 +19,8 @@
   "advancements.spectrum.brew_no_potion_in_potion_workshop.title": "Become too greedy",
   "advancements.spectrum.brew_potion_in_potion_workshop.description": "Use the Potion Workshop to brew a Potion. Add Reagents to add additional effects",
   "advancements.spectrum.brew_potion_in_potion_workshop.title": "Alchemy with a Touch of Magic",
+  "advancements.spectrum.brew_potion_in_potion_workshop_using_complex_reagent.description": "Brew a Potion by utilizing at least one complex reagent",
+  "advancements.spectrum.brew_potion_in_potion_workshop_using_complex_reagent.title": "Advanced Alchemy",
   "advancements.spectrum.brew_potion_with_four_effects_in_potion_workshop.description": "Brew a Potion with 4 unique effects",
   "advancements.spectrum.brew_potion_with_four_effects_in_potion_workshop.title": "Wicked Mix",
   "advancements.spectrum.brew_powerful_potion_in_potion_workshop.description": "Combine Reagents in the Potion Workshop to brew a Potion with a level IV effect",

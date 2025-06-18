@@ -4,5 +4,5 @@
   "modifiers": {
     "potency_multiplier": 1.25
   },
-  "required_advancement": "spectrum:midgame/brew_potion_in_potion_workshop"
+  "required_advancement": "spectrum:unlocks/reagents/citrine_powder"
 }

@@ -105,7 +105,7 @@
       "title": "book.spectrum.guidebook.potion_reagent",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
+        "advancement_id": "spectrum:milestones/unlock_complex_reagents"
       },
       "item": {
         "item": "botania:black_lotus"
@@ -117,7 +117,7 @@
       "title": "book.spectrum.guidebook.potion_reagent",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
+        "advancement_id": "spectrum:milestones/unlock_complex_reagents"
       },
       "item": {
         "item": "botania:blacker_lotus"
@@ -129,7 +129,7 @@
       "title": "book.spectrum.guidebook.potion_reagent",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
+        "advancement_id": "spectrum:milestones/unlock_complex_reagents"
       },
       "item": {
         "item": "spectrum:blackest_lotus"
@@ -141,7 +141,7 @@
       "title": "book.spectrum.guidebook.potion_reagent",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
+        "advancement_id": "spectrum:milestones/unlock_complex_reagents"
       },
       "item": {
         "item": "spectrum:least_black_lotus"
@@ -153,7 +153,7 @@
       "title": "book.spectrum.guidebook.potion_reagent",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
+        "advancement_id": "spectrum:milestones/unlock_complex_reagents"
       },
       "item": {
         "item": "botania:life_essence"
@@ -165,7 +165,7 @@
       "title": "book.spectrum.guidebook.potion_reagent",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
+        "advancement_id": "spectrum:milestones/unlock_complex_reagents"
       },
       "item": {
         "item": "botania:mana_powder"
@@ -177,7 +177,7 @@
       "title": "book.spectrum.guidebook.potion_reagent",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
+        "advancement_id": "spectrum:milestones/unlock_complex_reagents"
       },
       "item": {
         "item": "botania:pixie_dust"

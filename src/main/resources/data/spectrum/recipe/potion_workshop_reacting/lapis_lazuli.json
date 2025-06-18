@@ -4,5 +4,5 @@
   "modifiers": {
     "flat_yield_bonus": 0.5
   },
-  "required_advancement": "spectrum:midgame/brew_potion_in_potion_workshop"
+  "required_advancement": "spectrum:unlocks/reagents/lapis_lazuli"
 }

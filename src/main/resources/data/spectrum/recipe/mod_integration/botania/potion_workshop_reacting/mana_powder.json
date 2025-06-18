@@ -5,7 +5,7 @@
     "duration_multiplier": 1.25,
     "chance_to_add_last_effect": 0.15
   },
-  "required_advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
+  "required_advancement": "spectrum:milestones/unlock_complex_reagents",
   "fabric:load_conditions": [
     {
       "condition": "fabric:all_mods_loaded",

@@ -15,7 +15,7 @@
       "flat_duration_bonus_ticks": 2400
     }
   ],
-  "required_advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
+  "required_advancement": "spectrum:milestones/unlock_complex_reagents",
   "fabric:load_conditions": [
     {
       "condition": "fabric:all_mods_loaded",

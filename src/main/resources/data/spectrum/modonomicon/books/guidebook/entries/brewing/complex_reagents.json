@@ -70,7 +70,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
+        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop_using_complex_reagent"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.lapis_lazuli.text"
     },
@@ -98,10 +98,6 @@
       "item": {
         "item": "minecraft:dragon_breath"
       },
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/collect_vanilla/dragon_breath"
-      },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.dragon_breath.text"
     },
     {
@@ -111,7 +107,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
+        "advancement_id": "spectrum:unlocks/reagents/echo_shard"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.echo_shard.text"
     },
@@ -134,7 +130,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
+        "advancement_id": "spectrum:unlocks/reagents/topaz_powder"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.topaz_powder.text"
     },
@@ -145,7 +141,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
+        "advancement_id": "spectrum:unlocks/reagents/amethyst_powder"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.amethyst_powder.text"
     },
@@ -156,7 +152,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
+        "advancement_id": "spectrum:unlocks/reagents/citrine_powder"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.citrine_powder.text"
     },
@@ -167,7 +163,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
+        "advancement_id": "spectrum:unlocks/reagents/onyx_powder"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.onyx_powder.text"
     },
@@ -189,7 +185,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
+        "advancement_id": "spectrum:unlocks/reagents/shimmerstone_gem"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.shimmerstone_gem.text"
     },
@@ -200,7 +196,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
+        "advancement_id": "spectrum:unlocks/reagents/quitoxic_powder"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.quitoxic_powder.text"
     },
@@ -211,7 +207,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
+        "advancement_id": "spectrum:unlocks/reagents/stratine_fragments"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.stratine_fragments.text"
     },
@@ -288,7 +284,7 @@
       },
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
+        "advancement_id": "spectrum:unlocks/reagents/vegetal"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.vegetal.text"
     },

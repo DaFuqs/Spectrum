@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/collect_stratine",
+  "parent": "spectrum:collect_quitoxic_reeds",
   "display": {
     "icon": {
       "id": "spectrum:potion_workshop"
@@ -27,7 +27,7 @@
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:midgame/collect_stratine"
+        "advancement_identifier": "spectrum:collect_quitoxic_reeds"
       }
     }
   }

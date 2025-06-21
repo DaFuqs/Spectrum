@@ -17,7 +17,7 @@ public class EffectProlongingStatusEffect extends MobEffect {
 	}
 	
 	public static int getExtendedDuration(int originalDuration, int prolongingAmplifier) {
-		return (int) (originalDuration * (1 + ADDITIONAL_EFFECT_DURATION_MODIFIER_PER_LEVEL * prolongingAmplifier));
+		return (int) (originalDuration * (1 + ADDITIONAL_EFFECT_DURATION_MODIFIER_PER_LEVEL * (1 + prolongingAmplifier)));
 	}
 	
 }

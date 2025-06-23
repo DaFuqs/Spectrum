@@ -1,14 +1,12 @@
 package de.dafuqs.spectrum.entity.render;
 
 import com.mojang.blaze3d.vertex.*;
-import com.mojang.math.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
-import net.minecraft.world.inventory.*;
 import org.joml.*;
 
 import java.lang.Math;
@@ -25,7 +23,7 @@ public class MagicProjectileEntityRenderer extends EntityRenderer<MagicProjectil
 	@Override
 	public void render(MagicProjectileEntity magicProjectileEntity, float yaw, float tickDelta, PoseStack poseStack, MultiBufferSource vertexConsumerProvider, int light) {
 		poseStack.pushPose();
-		Vector3f starColor = magicProjectileEntity.getInkColor().getColorVec();
+		Vector3f color = magicProjectileEntity.getInkColor().getColorVec();
 		
 		double time = (magicProjectileEntity.level().getGameTime() % 24000) + tickDelta + RandomSource.create(magicProjectileEntity.getId()).nextInt(200);
 		float scale = 0.75F + 0.1F * (float) Math.sin(time / 10);
@@ -37,20 +35,19 @@ public class MagicProjectileEntityRenderer extends EntityRenderer<MagicProjectil
 		float k = 1F;
 		float l = 0F;
 		float m = 0.25F;
-		int s = (int) (starColor.x() * 255.0F);
-		int t = (int) (starColor.y() * 255.0F);
-		int u = (int) (starColor.z() * 255.0F);
+		int r = (int) (color.x() * 255.0F);
+		int g = (int) (color.y() * 255.0F);
+		int b = (int) (color.z() * 255.0F);
 		PoseStack.Pose entry = poseStack.last();
 		Matrix4f matrix4f = entry.pose();
 		
-		poseStack.translate(0.0D, 0.10000000149011612D, 0.0D);
+		poseStack.translate(0.0D, 0.1D, 0.0D);
 		poseStack.mulPose(this.entityRenderDispatcher.cameraOrientation());
-		poseStack.mulPose(Axis.YP.rotationDegrees(180.0F));
 		
-		vertex(vertexConsumer, entry, matrix4f, -0.5F, -0.25F, s, t, u, h, m, light);
-		vertex(vertexConsumer, entry, matrix4f, 0.5F, -0.25F, s, t, u, k, m, light);
-		vertex(vertexConsumer, entry, matrix4f, 0.5F, 0.75F, s, t, u, k, l, light);
-		vertex(vertexConsumer, entry, matrix4f, -0.5F, 0.75F, s, t, u, h, l, light);
+		vertex(vertexConsumer, entry, matrix4f, -0.5F, -0.25F, r, g, b, h, m, light);
+		vertex(vertexConsumer, entry, matrix4f, 0.5F, -0.25F, r, g, b, k, m, light);
+		vertex(vertexConsumer, entry, matrix4f, 0.5F, 0.75F, r, g, b, k, l, light);
+		vertex(vertexConsumer, entry, matrix4f, -0.5F, 0.75F, r, g, b, h, l, light);
 		poseStack.popPose();
 	}
 	
@@ -60,7 +57,7 @@ public class MagicProjectileEntityRenderer extends EntityRenderer<MagicProjectil
 
 	@Override
 	public ResourceLocation getTextureLocation(MagicProjectileEntity entity) {
-		return InventoryMenu.BLOCK_ATLAS;
+		return TEXTURE;
 	}
 	
 }

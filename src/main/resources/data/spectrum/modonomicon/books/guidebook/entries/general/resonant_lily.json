@@ -22,6 +22,7 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
+      "title": "block.spectrum.resonant_lily",
       "item": {
         "item": "spectrum:resonant_lily"
       },
@@ -29,6 +30,7 @@
     },
     {
       "type": "spectrum:liquid_crystal_converting",
+      "title": "container.spectrum.rei.liquid_crystal_converting.title",
       "recipe_id": "spectrum:liquid_crystal_converting/resonant_lily",
       "text": ""
     }

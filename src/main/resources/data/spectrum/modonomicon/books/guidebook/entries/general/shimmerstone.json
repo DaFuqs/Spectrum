@@ -17,7 +17,7 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "Shimmerstone",
+      "title": "book.spectrum.guidebook.shimmerstone.name",
       "item": {
         "item": "spectrum:shimmerstone_gem"
       },

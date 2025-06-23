@@ -17,6 +17,7 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
+      "title": "item.spectrum.bitter_oils",
       "item": {
         "item": "spectrum:bitter_oils"
       },

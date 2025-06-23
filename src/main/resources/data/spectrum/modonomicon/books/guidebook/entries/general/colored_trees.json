@@ -39,66 +39,82 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "ink.spectrum.black.name",
       "recipe_id": "spectrum:pedestal/tier1/saplings/black"
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "ink.spectrum.blue.name",
       "recipe_id": "spectrum:pedestal/tier1/saplings/blue"
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "ink.spectrum.brown.name",
       "recipe_id": "spectrum:pedestal/tier1/saplings/brown"
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "ink.spectrum.cyan.name",
       "recipe_id": "spectrum:pedestal/tier1/saplings/cyan"
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "ink.spectrum.gray.name",
       "recipe_id": "spectrum:pedestal/tier1/saplings/gray"
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "ink.spectrum.green.name",
       "recipe_id": "spectrum:pedestal/tier1/saplings/green"
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "ink.spectrum.light_blue.name",
       "recipe_id": "spectrum:pedestal/tier1/saplings/light_blue"
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "ink.spectrum.light_gray.name",
       "recipe_id": "spectrum:pedestal/tier1/saplings/light_gray"
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "ink.spectrum.lime.name",
       "recipe_id": "spectrum:pedestal/tier1/saplings/lime"
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "ink.spectrum.magenta.name",
       "recipe_id": "spectrum:pedestal/tier1/saplings/magenta"
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "ink.spectrum.orange.name",
       "recipe_id": "spectrum:pedestal/tier1/saplings/orange"
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "ink.spectrum.pink.name",
       "recipe_id": "spectrum:pedestal/tier1/saplings/pink"
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "ink.spectrum.purple.name",
       "recipe_id": "spectrum:pedestal/tier1/saplings/purple"
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "ink.spectrum.red.name",
       "recipe_id": "spectrum:pedestal/tier1/saplings/red"
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "ink.spectrum.white.name",
       "recipe_id": "spectrum:pedestal/tier1/saplings/white"
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "ink.spectrum.yellow.name",
       "recipe_id": "spectrum:pedestal/tier1/saplings/yellow"
     },
     {

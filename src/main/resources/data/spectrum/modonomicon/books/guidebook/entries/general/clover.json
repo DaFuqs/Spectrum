@@ -25,6 +25,7 @@
     },
     {
       "type": "modonomicon:spotlight",
+      "title": "block.spectrum.four_leaf_clover",
       "item": {
         "item": "spectrum:four_leaf_clover"
       },

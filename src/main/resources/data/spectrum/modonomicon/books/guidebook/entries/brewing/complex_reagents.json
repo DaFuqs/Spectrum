@@ -125,6 +125,7 @@
     },
     {
       "type": "modonomicon:spotlight",
+      "title": "item.spectrum.topaz_powder",
       "item": {
         "item": "spectrum:topaz_powder"
       },
@@ -136,6 +137,7 @@
     },
     {
       "type": "modonomicon:spotlight",
+      "title": "item.spectrum.amethyst_powder",
       "item": {
         "item": "spectrum:amethyst_powder"
       },
@@ -147,6 +149,7 @@
     },
     {
       "type": "modonomicon:spotlight",
+      "title": "item.spectrum.citrine_powder",
       "item": {
         "item": "spectrum:citrine_powder"
       },
@@ -158,6 +161,7 @@
     },
     {
       "type": "modonomicon:spotlight",
+      "title": "item.spectrum.onyx_powder",
       "item": {
         "item": "spectrum:onyx_powder"
       },
@@ -169,6 +173,7 @@
     },
     {
       "type": "modonomicon:spotlight",
+      "title": "item.spectrum.moonstone_powder",
       "item": {
         "item": "spectrum:moonstone_powder"
       },
@@ -180,6 +185,7 @@
     },
     {
       "type": "modonomicon:spotlight",
+      "title": "item.spectrum.shimmerstone_gem",
       "item": {
         "item": "spectrum:shimmerstone_gem"
       },
@@ -191,6 +197,7 @@
     },
     {
       "type": "modonomicon:spotlight",
+      "title": "item.spectrum.quitoxic_powder",
       "item": {
         "item": "spectrum:quitoxic_powder"
       },
@@ -202,6 +209,7 @@
     },
     {
       "type": "modonomicon:spotlight",
+      "title": "item.spectrum.stratine_fragments",
       "item": {
         "item": "spectrum:stratine_fragments"
       },
@@ -213,6 +221,7 @@
     },
     {
       "type": "modonomicon:spotlight",
+      "title": "item.spectrum.paltaeria_fragments",
       "item": {
         "item": "spectrum:paltaeria_fragments"
       },
@@ -224,6 +233,7 @@
     },
     {
       "type": "modonomicon:spotlight",
+      "title": "item.spectrum.stardust",
       "item": {
         "item": "spectrum:stardust"
       },
@@ -235,6 +245,7 @@
     },
     {
       "type": "modonomicon:spotlight",
+      "title": "item.spectrum.star_fragment",
       "item": {
         "item": "spectrum:star_fragment"
       },
@@ -246,6 +257,7 @@
     },
     {
       "type": "modonomicon:spotlight",
+      "title": "item.spectrum.storm_stone",
       "item": {
         "item": "spectrum:storm_stone"
       },
@@ -257,6 +269,7 @@
     },
     {
       "type": "modonomicon:spotlight",
+      "title": "item.spectrum.raw_azurite",
       "item": {
         "item": "spectrum:raw_azurite"
       },
@@ -268,6 +281,7 @@
     },
     {
       "type": "modonomicon:spotlight",
+      "title": "item.spectrum.four_leaf_clover",
       "item": {
         "item": "spectrum:four_leaf_clover"
       },
@@ -279,6 +293,7 @@
     },
     {
       "type": "modonomicon:spotlight",
+      "title": "item.spectrum.vegetal",
       "item": {
         "item": "spectrum:vegetal"
       },
@@ -290,6 +305,7 @@
     },
     {
       "type": "modonomicon:spotlight",
+      "title": "item.spectrum.neolith",
       "item": {
         "item": "spectrum:neolith"
       },
@@ -301,6 +317,7 @@
     },
     {
       "type": "modonomicon:spotlight",
+      "title": "item.spectrum.midnight_chip",
       "item": {
         "item": "spectrum:midnight_chip"
       },
@@ -312,6 +329,7 @@
     },
     {
       "type": "modonomicon:spotlight",
+      "title": "item.spectrum.moonstruck_nectar",
       "item": {
         "item": "spectrum:moonstruck_nectar"
       },
@@ -323,6 +341,7 @@
     },
     {
       "type": "modonomicon:spotlight",
+      "title": "item.spectrum.bedrock_dust",
       "item": {
         "item": "spectrum:bedrock_dust"
       },
@@ -334,6 +353,7 @@
     },
     {
       "type": "modonomicon:spotlight",
+      "title": "item.spectrum.bismuth_flake",
       "item": {
         "item": "spectrum:bismuth_flake"
       },
@@ -345,6 +365,7 @@
     },
     {
       "type": "modonomicon:spotlight",
+      "title": "item.spectrum.raw_malachite",
       "item": {
         "item": "spectrum:raw_malachite"
       },
@@ -356,6 +377,7 @@
     },
     {
       "type": "modonomicon:spotlight",
+      "title": "item.spectrum.raw_bloodstone",
       "item": {
         "item": "spectrum:raw_bloodstone"
       },
@@ -367,6 +389,7 @@
     },
     {
       "type": "modonomicon:spotlight",
+      "title": "item.spectrum.prickly_bayleaf",
       "item": {
         "item": "spectrum:prickly_bayleaf"
       },
@@ -379,6 +402,7 @@
     },
     {
       "type": "modonomicon:spotlight",
+      "title": "item.spectrum.jadeite_petals",
       "item": {
         "item": "spectrum:jadeite_petals"
       },
@@ -391,6 +415,7 @@
     },
     {
       "type": "modonomicon:spotlight",
+      "title": "item.spectrum.fissure_plum",
       "item": {
         "item": "spectrum:fissure_plum"
       },
@@ -403,6 +428,7 @@
     },
     {
       "type": "modonomicon:spotlight",
+      "title": "item.spectrum.bone_ash",
       "item": {
         "item": "spectrum:bone_ash"
       },
@@ -415,6 +441,7 @@
     },
     {
       "type": "modonomicon:spotlight",
+      "title": "item.spectrum.ash_flakes",
       "item": {
         "item": "spectrum:ash_flakes"
       },
@@ -427,6 +454,7 @@
     },
     {
       "type": "modonomicon:spotlight",
+      "title": "item.spectrum.bitter_oils",
       "item": {
         "item": "spectrum:bitter_oils"
       },
@@ -439,6 +467,7 @@
     },
     {
       "type": "modonomicon:spotlight",
+      "title": "item.spectrum.nightdew_sprout",
       "item": {
         "item": "spectrum:nightdew_sprout"
       },
@@ -451,6 +480,7 @@
     },
     {
       "type": "modonomicon:spotlight",
+      "title": "item.spectrum.nectardew_burgeon",
       "item": {
         "item": "spectrum:nectardew_burgeon"
       },

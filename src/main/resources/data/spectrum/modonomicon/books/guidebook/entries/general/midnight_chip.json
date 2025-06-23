@@ -24,6 +24,7 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
+      "title": "item.spectrum.midnight_chip",
       "item": {
         "item": "spectrum:midnight_chip"
       },
@@ -31,6 +32,7 @@
     },
     {
       "type": "spectrum:potion_workshop_crafting",
+      "title": "block.spectrum.midnight_solution",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/midnight_solution"

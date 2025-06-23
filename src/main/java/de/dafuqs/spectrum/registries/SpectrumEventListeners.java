@@ -17,12 +17,14 @@ import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.client.*;
 import dev.emi.trinkets.api.*;
+import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.entity.event.v1.*;
 import net.fabricmc.fabric.api.event.lifecycle.v1.*;
 import net.fabricmc.fabric.api.event.player.*;
 import net.fabricmc.fabric.api.item.v1.*;
 import net.fabricmc.fabric.api.resource.*;
 import net.fabricmc.fabric.api.util.*;
+import net.fabricmc.loader.api.*;
 import net.minecraft.advancements.*;
 import net.minecraft.core.component.*;
 import net.minecraft.core.particles.*;
@@ -372,7 +374,7 @@ public class SpectrumEventListeners {
 		});
 		
 		ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
-			private final ResourceLocation id = SpectrumCommon.locate("cache_clearer");
+			private final ResourceLocation id = SpectrumCommon.locate("server_data_cache_clearer");
 			
 			@Override
 			public void onResourceManagerReload(ResourceManager manager) {
@@ -380,23 +382,12 @@ public class SpectrumEventListeners {
 				SpectrumCommon.CACHED_ITEM_TAG_MAP.clear();
 				
 				if (SpectrumCommon.minecraftServer != null) {
-					//injectEnchantmentUpgradeRecipes(SpectrumCommon.minecraftServer);
 					FirestarterIdolBlock.addBlockSmeltingRecipes(SpectrumCommon.minecraftServer);
 				}
-			}
-			
-			@Override
-			public ResourceLocation getFabricId() {
-				return id;
-			}
-		});
-		
-		ResourceManagerHelper.get(PackType.CLIENT_RESOURCES).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
-			private final ResourceLocation id = SpectrumCommon.locate("cache_clearer_client");
-			
-			@Override
-			public void onResourceManagerReload(ResourceManager manager) {
-				UnlockToastManager.clear();
+				
+				if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
+					UnlockToastManager.clear();
+				}
 			}
 			
 			@Override

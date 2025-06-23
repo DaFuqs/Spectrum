@@ -6,6 +6,6 @@
   "ingredient1": "minecraft:dirt",
   "ingredient2": "minecraft:mud",
   "result": {
-    "id": "spectrum:goo_bucket"
+    "id": "spectrum:sludge_bucket"
   }
 }

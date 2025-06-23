@@ -212,7 +212,7 @@ public class SpectrumLootPoolModifiers {
 					builder.modifyPools(modifier -> modifier.add(NestedLootTable.lootTableReference(GoFishCompat.END_CRATES_LOOT_TABLE_ID).setWeight(5).setQuality(2).when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, new EntityPredicate.Builder().subPredicate(FishingHookPredicate.inOpenWater(true)).build()))));
 				} else if (key.equals(SpectrumLootTables.DEEPER_DOWN_FISHING)) {
 					builder.modifyPools(modifier -> modifier.add(NestedLootTable.lootTableReference(GoFishCompat.DEFAULT_CRATES_LOOT_TABLE_ID).setWeight(5).setQuality(2).when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, new EntityPredicate.Builder().subPredicate(FishingHookPredicate.inOpenWater(true)).build()))));
-				} else if (key.equals(SpectrumLootTables.GOO_FISHING)) {
+				} else if (key.equals(SpectrumLootTables.SLUDGE_FISHING)) {
 					builder.modifyPools(modifier -> modifier.add(NestedLootTable.lootTableReference(GoFishCompat.DEFAULT_CRATES_LOOT_TABLE_ID).setWeight(5).setQuality(2).when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, new EntityPredicate.Builder().subPredicate(FishingHookPredicate.inOpenWater(true)).build()))));
 				} else if (key.equals(SpectrumLootTables.LIQUID_CRYSTAL_FISHING)) {
 					builder.modifyPools(modifier -> modifier.add(NestedLootTable.lootTableReference(GoFishCompat.DEFAULT_CRATES_LOOT_TABLE_ID).setWeight(5).setQuality(2).when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, new EntityPredicate.Builder().subPredicate(FishingHookPredicate.inOpenWater(true)).build()))));

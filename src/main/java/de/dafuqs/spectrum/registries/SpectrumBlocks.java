@@ -1935,7 +1935,7 @@ public class SpectrumBlocks {
 	}
 	
 	public static final Block LIQUID_CRYSTAL = register(singleton(block("liquid_crystal", new LiquidCrystalFluidBlock(SpectrumFluids.LIQUID_CRYSTAL, BLAZING_CRYSTAL.defaultBlockState(), fluid(MapColor.CRIMSON_STEM).lightLevel((state) -> LiquidCrystalFluidBlock.LUMINANCE).replaceable())), SpectrumTexturedModels.particle(b -> b, "_still")));
-	public static final Block GOO = register(singleton(block("goo", new GooFluidBlock(SpectrumFluids.GOO, Blocks.MUD.defaultBlockState(), fluid(MapColor.TERRACOTTA_BROWN).replaceable())), SpectrumTexturedModels.particle(b -> b, "_still")));
+	public static final Block SLUDGE = register(singleton(block("sludge", new SludgeFluidBlock(SpectrumFluids.SLUDGE, Blocks.MUD.defaultBlockState(), fluid(MapColor.TERRACOTTA_BROWN).replaceable())), SpectrumTexturedModels.particle(b -> b, "_still")));
 	public static final Block MIDNIGHT_SOLUTION = register(singleton(block("midnight_solution", new MidnightSolutionFluidBlock(SpectrumFluids.MIDNIGHT_SOLUTION, BLACK_MATERIA.defaultBlockState(), fluid(MapColor.WARPED_STEM).replaceable())), SpectrumTexturedModels.particle(b -> b, "_still")));
 	public static final Block DRAGONROT = register(singleton(block("dragonrot", new DragonrotFluidBlock(SpectrumFluids.DRAGONROT, Blocks.BLACKSTONE.defaultBlockState(), fluid(MapColor.ICE).lightLevel((state) -> 15).replaceable())), SpectrumTexturedModels.particle(b -> b, "_still")));
 	

@@ -10,7 +10,7 @@ $RecipeTypes =
     'spectrum:liquid_crystal_converting',
     'spectrum:midnight_solution_converting',
     'spectrum:dragonrot_converting',
-    'spectrum:goo_converting',
+    'spectrum:sludge_converting',
     'spectrum:crystallarieum_growing',
     'spectrum:cinderhearth_smelting',
     'spectrum:titration_barrel_fermenting',

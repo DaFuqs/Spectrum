@@ -27,7 +27,7 @@ public class SpectrumRecipeTypes {
 	public static final RecipeType<PotionWorkshopBrewingRecipe> POTION_WORKSHOP_BREWING = register("potion_workshop_brewing");
 	public static final RecipeType<PotionWorkshopCraftingRecipe> POTION_WORKSHOP_CRAFTING = register("potion_workshop_crafting");
 	public static final RecipeType<PotionWorkshopReactingRecipe> POTION_WORKSHOP_REACTING = register("potion_workshop_reacting");
-	public static final RecipeType<GooConvertingRecipe> GOO_CONVERTING = register("goo_converting");
+	public static final RecipeType<SludgeConvertingRecipe> SLUDGE_CONVERTING = register("sludge_converting");
 	public static final RecipeType<LiquidCrystalConvertingRecipe> LIQUID_CRYSTAL_CONVERTING = register("liquid_crystal_converting");
 	public static final RecipeType<MidnightSolutionConvertingRecipe> MIDNIGHT_SOLUTION_CONVERTING = register("midnight_solution_converting");
 	public static final RecipeType<DragonrotConvertingRecipe> DRAGONROT_CONVERTING = register("dragonrot_converting");

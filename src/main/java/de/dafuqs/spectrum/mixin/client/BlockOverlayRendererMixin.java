@@ -22,8 +22,8 @@ public abstract class BlockOverlayRendererMixin {
 		if (!minecraft.player.isSpectator()) {
 			if (minecraft.player.isEyeInFluid(SpectrumFluidTags.LIQUID_CRYSTAL)) {
 				spectrum$renderOverlay(minecraft, poseStack, SpectrumFluids.LIQUID_CRYSTAL_OVERLAY_TEXTURE, SpectrumFluids.LIQUID_CRYSTAL_OVERLAY_ALPHA);
-			} else if (minecraft.player.isEyeInFluid(SpectrumFluidTags.GOO)) {
-				spectrum$renderOverlay(minecraft, poseStack, SpectrumFluids.GOO_OVERLAY_TEXTURE, SpectrumFluids.GOO_OVERLAY_ALPHA);
+			} else if (minecraft.player.isEyeInFluid(SpectrumFluidTags.SLUDGE)) {
+				spectrum$renderOverlay(minecraft, poseStack, SpectrumFluids.SLUDGE_OVERLAY_TEXTURE, SpectrumFluids.SLUDGE_OVERLAY_ALPHA);
 			} else if (minecraft.player.isEyeInFluid(SpectrumFluidTags.MIDNIGHT_SOLUTION)) {
 				spectrum$renderOverlay(minecraft, poseStack, SpectrumFluids.MIDNIGHT_SOLUTION_OVERLAY_TEXTURE, SpectrumFluids.MIDNIGHT_SOLUTION_OVERLAY_ALPHA);
 			} else if (minecraft.player.isEyeInFluid(SpectrumFluidTags.DRAGONROT)) {

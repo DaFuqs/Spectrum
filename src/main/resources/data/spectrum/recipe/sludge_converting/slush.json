@@ -1,5 +1,5 @@
 {
-  "type": "spectrum:goo_converting",
+  "type": "spectrum:sludge_converting",
   "required_advancement": "spectrum:hidden/collect_ash_and_slush",
   "ingredient": [
     {

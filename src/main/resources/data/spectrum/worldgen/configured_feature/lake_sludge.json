@@ -4,7 +4,7 @@
     "fluid": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "spectrum:goo",
+        "Name": "spectrum:sludge",
         "Properties": {
           "level": "0"
         }

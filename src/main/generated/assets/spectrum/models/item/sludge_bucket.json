@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "spectrum:item/goo_bucket"
+    "layer0": "spectrum:item/sludge_bucket"
   }
 }

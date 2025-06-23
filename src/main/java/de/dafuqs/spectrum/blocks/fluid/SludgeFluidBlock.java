@@ -12,9 +12,9 @@ import net.minecraft.world.level.material.*;
 import net.minecraft.world.level.pathfinder.*;
 import org.jetbrains.annotations.*;
 
-public class GooFluidBlock extends SpectrumFluidBlock {
+public class SludgeFluidBlock extends SpectrumFluidBlock {
 	
-	public GooFluidBlock(SpectrumFluid fluid, BlockState ultrawarmReplacementBlockState, Properties settings) {
+	public SludgeFluidBlock(SpectrumFluid fluid, BlockState ultrawarmReplacementBlockState, Properties settings) {
 		super(fluid, ultrawarmReplacementBlockState, settings);
 	}
 
@@ -26,19 +26,19 @@ public class GooFluidBlock extends SpectrumFluidBlock {
 	
 	@Override
 	public SimpleParticleType getSplashParticle() {
-		return SpectrumParticleTypes.GOO_SPLASH;
+		return SpectrumParticleTypes.SLUDGE_SPLASH;
 	}
 	
 	@Override
 	public Tuple<SimpleParticleType, SimpleParticleType> getFishingParticles() {
-		return new Tuple<>(SpectrumParticleTypes.GOO_POP, SpectrumParticleTypes.GOO_FISHING);
+		return new Tuple<>(SpectrumParticleTypes.SLUDGE_POP, SpectrumParticleTypes.SLUDGE_FISHING);
 	}
 
 	@Override
 	public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
 		super.animateTick(state, world, pos, random);
 		if (!world.getBlockState(pos.above()).isRedstoneConductor(world, pos.above()) && random.nextFloat() < 0.03F) {
-			world.addParticle(SpectrumParticleTypes.GOO_POP, pos.getX() + random.nextDouble(), pos.getY() + 1, pos.getZ() + random.nextDouble(), 0, random.nextDouble() * 0.1, 0);
+			world.addParticle(SpectrumParticleTypes.SLUDGE_POP, pos.getX() + random.nextDouble(), pos.getY() + 1, pos.getZ() + random.nextDouble(), 0, random.nextDouble() * 0.1, 0);
 		}
 	}
 	

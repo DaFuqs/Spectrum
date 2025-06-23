@@ -9,12 +9,12 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class GooConvertingRecipe extends FluidConvertingRecipe {
+public class SludgeConvertingRecipe extends FluidConvertingRecipe {
 	
-	public static final ResourceLocation UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/goo");
+	public static final ResourceLocation UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/sludge");
 	private static final Set<Item> outputItems = new HashSet<>();
 	
-	public GooConvertingRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier, @NotNull Ingredient inputIngredient, ItemStack outputItemStack) {
+	public SludgeConvertingRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier, @NotNull Ingredient inputIngredient, ItemStack outputItemStack) {
 		super(group, secret, requiredAdvancementIdentifier, inputIngredient, outputItemStack);
 		outputItems.add(outputItemStack.getItem());
 	}
@@ -25,17 +25,17 @@ public class GooConvertingRecipe extends FluidConvertingRecipe {
 	
 	@Override
 	public ItemStack getToastSymbol() {
-		return new ItemStack(SpectrumItems.GOO_BUCKET);
+		return new ItemStack(SpectrumItems.SLUDGE_BUCKET);
 	}
 	
 	@Override
 	public RecipeSerializer<?> getSerializer() {
-		return SpectrumRecipeSerializers.GOO_CONVERTING_SERIALIZER;
+		return SpectrumRecipeSerializers.SLUDGE_CONVERTING_SERIALIZER;
 	}
 	
 	@Override
 	public RecipeType<?> getType() {
-		return SpectrumRecipeTypes.GOO_CONVERTING;
+		return SpectrumRecipeTypes.SLUDGE_CONVERTING;
 	}
 	
 	@Override
@@ -45,7 +45,7 @@ public class GooConvertingRecipe extends FluidConvertingRecipe {
 	
 	@Override
 	public String getRecipeTypeShortID() {
-		return "goo_converting";
+		return "sludge_converting";
 	}
 	
 }

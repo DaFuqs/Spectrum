@@ -734,14 +734,14 @@
       "spectrum:ender_splice_bound"
     ]
   },
-	"goo_ambient": {
-		"subtitle": "spectrum.subtitles.block.goo.ambient",
+  "sludge_ambient": {
+    "subtitle": "spectrum.subtitles.block.sludge.ambient",
     "sounds": [
-			"spectrum:goo_ambient",
-			"spectrum:goo_ambient2",
-			"spectrum:goo_ambient3",
-			"spectrum:goo_ambient4",
-			"spectrum:goo_ambient5"
+      "spectrum:sludge_ambient",
+      "spectrum:sludge_ambient2",
+      "spectrum:sludge_ambient3",
+      "spectrum:sludge_ambient4",
+      "spectrum:sludge_ambient5"
     ]
   },
   "liquid_crystal_ambient": {

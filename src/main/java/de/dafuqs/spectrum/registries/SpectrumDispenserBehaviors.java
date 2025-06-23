@@ -31,7 +31,7 @@ public class SpectrumDispenserBehaviors {
 		
 		// Fluid Buckets
 		DispenseItemBehavior fluidBucketBehavior = DispenserBlock.DISPENSER_REGISTRY.get(Items.WATER_BUCKET);
-		DispenserBlock.registerBehavior(SpectrumItems.GOO_BUCKET, fluidBucketBehavior);
+		DispenserBlock.registerBehavior(SpectrumItems.SLUDGE_BUCKET, fluidBucketBehavior);
 		DispenserBlock.registerBehavior(SpectrumItems.LIQUID_CRYSTAL_BUCKET, fluidBucketBehavior);
 		DispenserBlock.registerBehavior(SpectrumItems.MIDNIGHT_SOLUTION_BUCKET, fluidBucketBehavior);
 		DispenserBlock.registerBehavior(SpectrumItems.DRAGONROT_BUCKET, fluidBucketBehavior);

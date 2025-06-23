@@ -6,20 +6,20 @@ import me.shedaniel.rei.api.common.category.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.crafting.*;
 
-public class GooConvertingDisplay extends FluidConvertingDisplay {
+public class SludgeConvertingDisplay extends FluidConvertingDisplay {
 	
-	public GooConvertingDisplay(RecipeHolder<GooConvertingRecipe> recipe) {
+	public SludgeConvertingDisplay(RecipeHolder<SludgeConvertingRecipe> recipe) {
 		super(recipe);
 	}
 	
 	@Override
 	public CategoryIdentifier<?> getCategoryIdentifier() {
-		return SpectrumPlugins.GOO_CONVERTING;
+		return SpectrumPlugins.SLUDGE_CONVERTING;
 	}
 	
 	@Override
 	public ResourceLocation getUnlockIdentifier() {
-		return GooConvertingRecipe.UNLOCK_IDENTIFIER;
+		return SludgeConvertingRecipe.UNLOCK_IDENTIFIER;
 	}
 	
 }

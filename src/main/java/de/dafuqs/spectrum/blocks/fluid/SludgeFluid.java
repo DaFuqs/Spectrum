@@ -17,31 +17,31 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.*;
 
-public abstract class GooFluid extends SpectrumFluid {
+public abstract class SludgeFluid extends SpectrumFluid {
 	
 	@Override
 	public Fluid getSource() {
-		return SpectrumFluids.GOO;
+		return SpectrumFluids.SLUDGE;
 	}
 	
 	@Override
 	public Fluid getFlowing() {
-		return SpectrumFluids.FLOWING_GOO;
+		return SpectrumFluids.FLOWING_SLUDGE;
 	}
 	
 	@Override
 	public Item getBucket() {
-		return SpectrumItems.GOO_BUCKET;
+		return SpectrumItems.SLUDGE_BUCKET;
 	}
 	
 	@Override
 	protected BlockState createLegacyBlock(FluidState fluidState) {
-		return SpectrumBlocks.GOO.defaultBlockState().setValue(BlockStateProperties.LEVEL, getLegacyLevel(fluidState));
+		return SpectrumBlocks.SLUDGE.defaultBlockState().setValue(BlockStateProperties.LEVEL, getLegacyLevel(fluidState));
 	}
 	
 	@Override
 	public boolean isSame(Fluid fluid) {
-		return fluid == SpectrumFluids.GOO || fluid == SpectrumFluids.FLOWING_GOO;
+		return fluid == SpectrumFluids.SLUDGE || fluid == SpectrumFluids.FLOWING_SLUDGE;
 	}
 	
 	@Override
@@ -50,7 +50,7 @@ public abstract class GooFluid extends SpectrumFluid {
 		BlockPos topPos = pos.above();
 		BlockState topState = world.getBlockState(topPos);
 		if (topState.isAir() && !topState.isSolidRender(world, topPos) && random.nextInt(1000) == 0) {
-			world.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SpectrumSoundEvents.GOO_AMBIENT, SoundSource.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F, false);
+			world.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SpectrumSoundEvents.SLUDGE_AMBIENT, SoundSource.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F, false);
 		}
 	}
 	
@@ -71,21 +71,21 @@ public abstract class GooFluid extends SpectrumFluid {
 	
 	@Override
 	public ParticleOptions getDripParticle() {
-		return SpectrumParticleTypes.DRIPPING_GOO;
+		return SpectrumParticleTypes.DRIPPING_SLUDGE;
 	}
 	
 	@Override
 	public ParticleOptions getSplashParticle() {
-		return SpectrumParticleTypes.GOO_SPLASH;
+		return SpectrumParticleTypes.SLUDGE_SPLASH;
 	}
 	
 	@Override
 	public RecipeType<? extends FluidConvertingRecipe> getDippingRecipeType() {
-		return SpectrumRecipeTypes.GOO_CONVERTING;
+		return SpectrumRecipeTypes.SLUDGE_CONVERTING;
 	}
 	
 	/**
-	 * Entities colliding with goo will get a slowness effect
+	 * Entities colliding with sludge will get a slowness effect
 	 * and losing their breath far quicker
 	 */
 	@Override
@@ -95,7 +95,7 @@ public abstract class GooFluid extends SpectrumFluid {
 		if (!world.isClientSide && entity instanceof LivingEntity livingEntity) {
 			// the entity is hurt at air == -20 and then reset to air = 0
 			// this way the entity loses its breath way faster, but gets damaged just as slow afterwards
-			if (livingEntity.isEyeInFluid(SpectrumFluidTags.GOO) && world.getGameTime() % 2 == 0 && livingEntity.getAirSupply() > 0) {
+			if (livingEntity.isEyeInFluid(SpectrumFluidTags.SLUDGE) && world.getGameTime() % 2 == 0 && livingEntity.getAirSupply() > 0) {
 				livingEntity.setAirSupply(livingEntity.getAirSupply() - 1);
 			}
 			
@@ -110,7 +110,7 @@ public abstract class GooFluid extends SpectrumFluid {
 		}
 	}
 	
-	public static class FlowingGoo extends GooFluid {
+	public static class FlowingSludge extends SludgeFluid {
 		
 		@Override
 		protected void createFluidStateDefinition(StateDefinition.Builder<Fluid, FluidState> builder) {
@@ -130,7 +130,7 @@ public abstract class GooFluid extends SpectrumFluid {
 		
 	}
 	
-	public static class StillGoo extends GooFluid {
+	public static class StillSludge extends SludgeFluid {
 		
 		@Override
 		public int getAmount(FluidState fluidState) {

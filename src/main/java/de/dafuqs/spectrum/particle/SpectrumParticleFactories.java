@@ -82,7 +82,7 @@ public class SpectrumParticleFactories {
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.LIQUID_CRYSTAL_SPARKLE, LitParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.DRAGONROT, BubblePopParticle.Provider::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.VOID_FOG, VoidFogParticle.Factory::new);
-		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.GOO_POP, BubblePopParticle.Provider::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.SLUDGE_POP, BubblePopParticle.Provider::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.BLUE_BUBBLE_POP, BubblePopParticle.Provider::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.GREEN_BUBBLE_POP, BubblePopParticle.Provider::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.SPIRIT_SALLOW, WindParticle.Factory::new);
@@ -104,32 +104,32 @@ public class SpectrumParticleFactories {
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.AZURE_MOTE_SMALL, AzureMoteParticle.Factory::new);
 		
 		// Fluid Splash
-		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.GOO_SPLASH, SplashParticle.Provider::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.SLUDGE_SPLASH, SplashParticle.Provider::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.LIQUID_CRYSTAL_SPLASH, SplashParticle.Provider::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.MIDNIGHT_SOLUTION_SPLASH, SplashParticle.Provider::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.DRAGONROT_SPLASH, SplashParticle.Provider::new);
 		
 		// Fluid Dripping
-		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.DRIPPING_GOO, SpectrumBlockLeakParticles.DrippingGooFactory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.DRIPPING_SLUDGE, SpectrumBlockLeakParticles.DrippingSludgeFactory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.DRIPPING_LIQUID_CRYSTAL, SpectrumBlockLeakParticles.DrippingLiquidCrystalFactory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.DRIPPING_MIDNIGHT_SOLUTION, SpectrumBlockLeakParticles.DrippingMidnightSolutionFactory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.DRIPPING_DRAGONROT, SpectrumBlockLeakParticles.DrippingDragonrotFactory::new);
 		
 		// Fluid Falling
-		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.FALLING_GOO, SpectrumBlockLeakParticles.FallingGooFactory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.FALLING_SLUDGE, SpectrumBlockLeakParticles.FallingSludgeFactory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.FALLING_LIQUID_CRYSTAL, SpectrumBlockLeakParticles.FallingLiquidCrystalFactory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.FALLING_MIDNIGHT_SOLUTION, SpectrumBlockLeakParticles.FallingMidnightSolutionFactory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.FALLING_DRAGONROT, SpectrumBlockLeakParticles.FallingDragonrotFactory::new);
 		
 		// Fluid Landing
-		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.LANDING_GOO, SpectrumBlockLeakParticles.LandingGooFactory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.LANDING_SLUDGE, SpectrumBlockLeakParticles.LandingSludgeFactory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.LANDING_LIQUID_CRYSTAL, SpectrumBlockLeakParticles.LandingLiquidCrystalFactory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.LANDING_MIDNIGHT_SOLUTION, SpectrumBlockLeakParticles.LandingMidnightSolutionFactory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.LANDING_DRAGONROT, SpectrumBlockLeakParticles.LandingDragonrotFactory::new);
 		
 		// Fluid Fishing
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.LAVA_FISHING, WakeParticle.Provider::new);
-		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.GOO_FISHING, WakeParticle.Provider::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.SLUDGE_FISHING, WakeParticle.Provider::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.LIQUID_CRYSTAL_FISHING, WakeParticle.Provider::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.MIDNIGHT_SOLUTION_FISHING, WakeParticle.Provider::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.DRAGONROT_FISHING, WakeParticle.Provider::new);

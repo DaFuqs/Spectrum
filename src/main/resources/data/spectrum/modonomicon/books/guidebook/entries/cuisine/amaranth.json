@@ -60,8 +60,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_amaranth_bushel"
       },
-      "recipe_id": "spectrum:pedestal/tier1/vanilla/packed_goo",
-      "text": "book.spectrum.guidebook.amaranth.packed_goo.text"
+      "recipe_id": "spectrum:pedestal/tier1/vanilla/packed_mud",
+      "text": "book.spectrum.guidebook.amaranth.packed_mud.text"
     },
     {
       "type": "spectrum:pedestal_crafting",

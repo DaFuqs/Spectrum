@@ -64,7 +64,7 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 		registry.addCategory(SpectrumEmiRecipeCategories.POTION_WORKSHOP_CRAFTING);
 		registry.addCategory(SpectrumEmiRecipeCategories.POTION_WORKSHOP_REACTING);
 		registry.addCategory(SpectrumEmiRecipeCategories.SPIRIT_INSTILLER);
-		registry.addCategory(SpectrumEmiRecipeCategories.GOO_CONVERTING);
+		registry.addCategory(SpectrumEmiRecipeCategories.SLUDGE_CONVERTING);
 		registry.addCategory(SpectrumEmiRecipeCategories.LIQUID_CRYSTAL_CONVERTING);
 		registry.addCategory(SpectrumEmiRecipeCategories.MIDNIGHT_SOLUTION_CONVERTING);
 		registry.addCategory(SpectrumEmiRecipeCategories.DRAGONROT_CONVERTING);
@@ -104,7 +104,7 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 		registry.addWorkstation(SpectrumEmiRecipeCategories.FREEZING, EmiStack.of(SpectrumBlocks.POLAR_BEAR_IDOL));
 		registry.addWorkstation(SpectrumEmiRecipeCategories.ENCHANTER, EmiStack.of(SpectrumBlocks.ENCHANTER));
 		registry.addWorkstation(SpectrumEmiRecipeCategories.ENCHANTMENT_UPGRADE, EmiStack.of(SpectrumBlocks.ENCHANTER));
-		registry.addWorkstation(SpectrumEmiRecipeCategories.GOO_CONVERTING, EmiStack.of(SpectrumItems.GOO_BUCKET));
+		registry.addWorkstation(SpectrumEmiRecipeCategories.SLUDGE_CONVERTING, EmiStack.of(SpectrumItems.SLUDGE_BUCKET));
 		registry.addWorkstation(SpectrumEmiRecipeCategories.LIQUID_CRYSTAL_CONVERTING, EmiStack.of(SpectrumItems.LIQUID_CRYSTAL_BUCKET));
 		registry.addWorkstation(SpectrumEmiRecipeCategories.MIDNIGHT_SOLUTION_CONVERTING, EmiStack.of(SpectrumItems.MIDNIGHT_SOLUTION_BUCKET));
 		registry.addWorkstation(SpectrumEmiRecipeCategories.DRAGONROT_CONVERTING, EmiStack.of(SpectrumItems.DRAGONROT_BUCKET));
@@ -135,7 +135,7 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 		addAll(registry, SpectrumRecipeTypes.POTION_WORKSHOP_CRAFTING, (r) -> new PotionWorkshopEmiRecipeGated<>(SpectrumEmiRecipeCategories.POTION_WORKSHOP_CRAFTING, r));
 		addAll(registry, SpectrumRecipeTypes.POTION_WORKSHOP_REACTING, PotionWorkshopReactingEmiRecipe::new);
 		addAll(registry, SpectrumRecipeTypes.SPIRIT_INSTILLING, SpiritInstillingEmiRecipeGated::new);
-		addAll(registry, SpectrumRecipeTypes.GOO_CONVERTING, (r) -> new FluidConvertingEmiRecipeGated<>(SpectrumEmiRecipeCategories.GOO_CONVERTING, r));
+		addAll(registry, SpectrumRecipeTypes.SLUDGE_CONVERTING, (r) -> new FluidConvertingEmiRecipeGated<>(SpectrumEmiRecipeCategories.SLUDGE_CONVERTING, r));
 		addAll(registry, SpectrumRecipeTypes.LIQUID_CRYSTAL_CONVERTING, (r) -> new FluidConvertingEmiRecipeGated<>(SpectrumEmiRecipeCategories.LIQUID_CRYSTAL_CONVERTING, r));
 		addAll(registry, SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING, (r) -> new FluidConvertingEmiRecipeGated<>(SpectrumEmiRecipeCategories.MIDNIGHT_SOLUTION_CONVERTING, r));
 		addAll(registry, SpectrumRecipeTypes.DRAGONROT_CONVERTING, (r) -> new FluidConvertingEmiRecipeGated<>(SpectrumEmiRecipeCategories.DRAGONROT_CONVERTING, r));
@@ -189,7 +189,7 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 		EmiStack dragonrot = EmiStack.of(SpectrumFluids.DRAGONROT, amount);
 		EmiStack liquidCrystal = EmiStack.of(SpectrumFluids.LIQUID_CRYSTAL, amount);
 		EmiStack midnightSolution = EmiStack.of(SpectrumFluids.MIDNIGHT_SOLUTION, amount);
-		EmiStack mud = EmiStack.of(SpectrumFluids.GOO, amount);
+		EmiStack mud = EmiStack.of(SpectrumFluids.SLUDGE, amount);
 		EmiStack waterCatalyst = water.copy().setRemainder(water);
 		EmiStack lavaCatalyst = lava.copy().setRemainder(lava);
 		EmiStack dragonrotCatalyst = dragonrot.copy().setRemainder(dragonrot);
@@ -216,7 +216,7 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 				.rightInput(mudCatalyst, false)
 				.output(EmiStack.of(Blocks.COARSE_DIRT))
 				.requiredAdvancement(DragonrotConvertingRecipe.UNLOCK_IDENTIFIER)
-				.requiredAdvancement(GooConvertingRecipe.UNLOCK_IDENTIFIER)
+				.requiredAdvancement(SludgeConvertingRecipe.UNLOCK_IDENTIFIER)
 				.build());
 		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
 				.id(syntheticId("world/fluid_interaction", SpectrumBlocks.ROTTEN_GROUND))
@@ -268,7 +268,7 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 				.rightInput(mudCatalyst, false)
 				.output(EmiStack.of(Blocks.CLAY))
 				.requiredAdvancement(LiquidCrystalConvertingRecipe.UNLOCK_IDENTIFIER)
-				.requiredAdvancement(GooConvertingRecipe.UNLOCK_IDENTIFIER)
+				.requiredAdvancement(SludgeConvertingRecipe.UNLOCK_IDENTIFIER)
 				.build());
 		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
 				.id(syntheticId("world/fluid_interaction", Blocks.TERRACOTTA))
@@ -282,14 +282,14 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 				.leftInput(mudCatalyst)
 				.rightInput(waterCatalyst, false)
 				.output(EmiStack.of(Blocks.DIRT))
-				.requiredAdvancement(GooConvertingRecipe.UNLOCK_IDENTIFIER)
+				.requiredAdvancement(SludgeConvertingRecipe.UNLOCK_IDENTIFIER)
 				.build());
 		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
 				.id(syntheticId("world/fluid_interaction", Blocks.MUD))
 				.leftInput(mudCatalyst)
 				.rightInput(lavaCatalyst, false)
 				.output(EmiStack.of(Blocks.MUD))
-				.requiredAdvancement(GooConvertingRecipe.UNLOCK_IDENTIFIER)
+				.requiredAdvancement(SludgeConvertingRecipe.UNLOCK_IDENTIFIER)
 				.build());
 	}
 	

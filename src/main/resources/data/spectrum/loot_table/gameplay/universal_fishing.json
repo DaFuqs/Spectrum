@@ -24,7 +24,7 @@
         },
         {
           "type": "minecraft:loot_table",
-          "value": "spectrum:gameplay/fishing/goo/fishing",
+          "value": "spectrum:gameplay/fishing/sludge/fishing",
           "conditions": [
             {
               "condition": "minecraft:entity_properties",
@@ -32,7 +32,7 @@
               "predicate": {
                 "location": {
                   "fluid": {
-                    "fluids": "#spectrum:goo"
+                    "fluids": "#spectrum:sludge"
                   }
                 }
               }

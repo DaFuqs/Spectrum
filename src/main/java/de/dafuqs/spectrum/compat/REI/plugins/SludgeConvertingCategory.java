@@ -9,21 +9,21 @@ import net.fabricmc.api.*;
 import net.minecraft.network.chat.*;
 
 @Environment(EnvType.CLIENT)
-public class GooConvertingCategory extends FluidConvertingCategory<GooConvertingDisplay> {
+public class SludgeConvertingCategory extends FluidConvertingCategory<SludgeConvertingDisplay> {
 	
 	@Override
-	public CategoryIdentifier<? extends GooConvertingDisplay> getCategoryIdentifier() {
-		return SpectrumPlugins.GOO_CONVERTING;
+	public CategoryIdentifier<? extends SludgeConvertingDisplay> getCategoryIdentifier() {
+		return SpectrumPlugins.SLUDGE_CONVERTING;
 	}
 	
 	@Override
 	public Renderer getIcon() {
-		return EntryStacks.of(SpectrumItems.GOO_BUCKET);
+		return EntryStacks.of(SpectrumItems.SLUDGE_BUCKET);
 	}
 	
 	@Override
 	public Component getTitle() {
-		return Component.translatable("container.spectrum.rei.goo_converting.title");
+		return Component.translatable("container.spectrum.rei.sludge_converting.title");
 	}
 	
 }

@@ -24,8 +24,6 @@ public class UpgradeBlock extends BaseEntityBlock {
 	protected static final VoxelShape SHAPE_UP = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 10.0D, 14.0D);
 	private static final List<Block> upgradeBlocks = new ArrayList<>();
 	
-	// Like: The further the player progresses,
-	// the higher are the chances for good mods?
 	private final Upgradeable.UpgradeType upgradeType;
 	private final int upgradeMod;
 	private final int effectColor;

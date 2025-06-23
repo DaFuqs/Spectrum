@@ -94,7 +94,7 @@ public record PotionMod(
 				Codec.BOOL.optionalFieldOf("make_splashing", false).forGetter(PotionFlags::makeSplashing),
 				Codec.BOOL.optionalFieldOf("make_lingering", false).forGetter(PotionFlags::makeLingering),
 				Codec.BOOL.optionalFieldOf("no_particles", false).forGetter(PotionFlags::noParticles),
-				Codec.BOOL.optionalFieldOf("un_identifiable", false).forGetter(PotionFlags::unidentifiable),
+				Codec.BOOL.optionalFieldOf("unidentifiable", false).forGetter(PotionFlags::unidentifiable),
 				Codec.BOOL.optionalFieldOf("make_effects_positive", false).forGetter(PotionFlags::makeEffectsPositive),
 				Codec.BOOL.optionalFieldOf("potent_decreasing_effect", false).forGetter(PotionFlags::potentDecreasingEffect),
 				Codec.BOOL.optionalFieldOf("negate_decreasing_duration", false).forGetter(PotionFlags::negateDecreasingDuration),

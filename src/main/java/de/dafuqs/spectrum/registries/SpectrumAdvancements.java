@@ -128,7 +128,7 @@ public class SpectrumAdvancements {
 	public static final ResourceLocation VIVISECT_KINDLING = SpectrumCommon.locate("mod_integration/neepmeat/vivisect_kindling");
 	
 	public static final ResourceLocation COLLECT_ALL_BASIC_PIGMENTS_BESIDES_BROWN = SpectrumCommon.locate("collect_all_basic_pigments_besides_brown");
-	public static final ResourceLocation COLLECT_TOPAZ = SpectrumCommon.locate("hidden/collect_shards/citrine");
+	public static final ResourceLocation COLLECT_TOPAZ = SpectrumCommon.locate("hidden/collect_shards/topaz");
 	public static final ResourceLocation COLLECT_AMETHYST = SpectrumCommon.locate("hidden/collect_shards/amethyst");
 	public static final ResourceLocation COLLECT_CITRINE = SpectrumCommon.locate("hidden/collect_shards/citrine");
 	public static final ResourceLocation CREATE_ONYX = SpectrumCommon.locate("create_onyx_shard");

@@ -6,9 +6,7 @@ import com.llamalad7.mixinextras.sugar.ref.*;
 import com.mojang.datafixers.util.*;
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.injectors.*;
-import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.resources.language.*;
-import net.minecraft.core.*;
 import net.minecraft.world.effect.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
@@ -42,21 +40,6 @@ public abstract class StatusEffectInstanceMixin implements StatusEffectInstanceI
 		});
 	}
 	
-	@Inject(method = "update", at = @At("HEAD"), cancellable = true)
-	private void spectrum$stackableEffects(MobEffectInstance newEffect, CallbackInfoReturnable<Boolean> cir) {
-		Holder<MobEffect> effectType = newEffect.getEffect();
-		if (effectType.is(SpectrumStatusEffectTags.STACKING)) {
-			SpectrumStatusEffects.effectsAreGettingStacked = true;
-			MobEffectInstance existingInstance = (MobEffectInstance) (Object) this;
-			
-			int newAmplifier = 1 + existingInstance.getAmplifier() + newEffect.getAmplifier();
-			existingInstance.spectrum$setAmplifier(newAmplifier);
-			
-			cir.setReturnValue(true);
-		}
-		SpectrumStatusEffects.effectsAreGettingStacked = false;
-	}
-	
 	@Inject(method = "update", at = @At("RETURN"))
 	private void readIncurable(MobEffectInstance that, CallbackInfoReturnable<Boolean> cir, @Local(ordinal = 0) LocalBooleanRef changed) {
 		if (incurable != that.spectrum$isIncurable()) {
@@ -84,7 +67,6 @@ public abstract class StatusEffectInstanceMixin implements StatusEffectInstanceI
 	public void spectrum$setAmplifier(int newAmplifier) {
 		this.amplifier = newAmplifier;
 	}
-	
 	
 	@ModifyReturnValue(method = "describeDuration", at = @At("RETURN"))
 	private String describeDuration(String original) {

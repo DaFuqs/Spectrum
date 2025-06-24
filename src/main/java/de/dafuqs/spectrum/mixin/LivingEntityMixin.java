@@ -487,12 +487,22 @@ public abstract class LivingEntityMixin {
 		return false;
 	}
 	
-	// TODO: WHAT THE FUCK
 	@Inject(method = "addEffect(Lnet/minecraft/world/effect/MobEffectInstance;Lnet/minecraft/world/entity/Entity;)Z", at = @At("HEAD"), cancellable = true)
-	private void spectrum$modifyOrCancelEffects(MobEffectInstance effect, Entity source, CallbackInfoReturnable<Boolean> cir) {
+	private void spectrum$addEffect(MobEffectInstance effect, Entity source, CallbackInfoReturnable<Boolean> cir) {
 		var entity = (LivingEntity) (Object) this;
 		var effectType = effect.getEffect();
 		
+		// if it is a stacking effect, stack it
+		MobEffectInstance existingInstance = this.getEffect(effectType);
+		if (existingInstance != null && effectType.is(SpectrumStatusEffectTags.STACKING)) {
+			SpectrumStatusEffects.effectsAreGettingStacked = true;
+			
+			int newAmplifier = 1 + existingInstance.getAmplifier() + effect.getAmplifier();
+			effect.spectrum$setAmplifier(newAmplifier);
+			SpectrumStatusEffects.effectsAreGettingStacked = false;
+		}
+		
+		// TODO: WHAT THE FUCK
 		if ((!entity.hasEffect(SpectrumStatusEffects.IMMUNITY)) && AetherGracedNectarGlovesItem.testEffectFor(entity, effectType)) {
 			var cost = (effect.getAmplifier() + 1) * AetherGracedNectarGlovesItem.HARMFUL_EFFECT_COST;
 			

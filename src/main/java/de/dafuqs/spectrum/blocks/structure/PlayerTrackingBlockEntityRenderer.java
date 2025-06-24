@@ -62,7 +62,7 @@ public class PlayerTrackingBlockEntityRenderer implements BlockEntityRenderer<Pl
 				matrices.scale(1.15F, 1.15F, 1.15F);
 				Minecraft.getInstance().getItemRenderer().renderStatic(SpectrumItems.POISONERS_HANDBOOK.getDefaultInstance(), ItemDisplayContext.GROUND, light, overlay, matrices, vertexConsumers, entity.getLevel(), 0);
 			}
-		} else if (state.is(SpectrumBlocks.TREASURE_ITEM_BOWL) && !taker && TreasureItemBowlBlock.canInteract(Minecraft.getInstance().player)) {
+		} else if (state.is(SpectrumBlocks.PRESERVATION_ITEM_BOWL) && !taker && PreservationItemBowlBlock.canInteract(Minecraft.getInstance().player)) {
 			double currentRadiant = radiant + (radiant * (time / 16.0) / 8.0F);
 			double height = Math.sin((time + currentRadiant) / 8.0) / 7.0; // item height
 			matrices.translate(0.5, 0.8 + height, 0.5); // position offset

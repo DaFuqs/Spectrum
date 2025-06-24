@@ -19,9 +19,9 @@ import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
 import org.jetbrains.annotations.*;
 
-public class WandLightBlock extends LightBlock {
+public class PersistentLightBlock extends LightBlock {
 	
-	public WandLightBlock(Properties settings) {
+	public PersistentLightBlock(Properties settings) {
 		super(settings);
 	}
 

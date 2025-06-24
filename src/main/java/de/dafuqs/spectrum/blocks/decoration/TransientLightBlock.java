@@ -9,11 +9,11 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 
-public class DecayingLightBlock extends WandLightBlock {
+public class TransientLightBlock extends PersistentLightBlock {
 	
-	public static final MapCodec<DecayingLightBlock> CODEC = simpleCodec(DecayingLightBlock::new);
+	public static final MapCodec<TransientLightBlock> CODEC = simpleCodec(TransientLightBlock::new);
 	
-	public DecayingLightBlock(Properties settings) {
+	public TransientLightBlock(Properties settings) {
 		super(settings);
 	}
 

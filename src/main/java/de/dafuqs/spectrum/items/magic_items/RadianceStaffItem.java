@@ -50,12 +50,12 @@ public class RadianceStaffItem extends Item implements InkPowered {
 		BlockState targetBlockState = world.getBlockState(targetPos);
 		if (targetBlockState.isAir()) {
 			if (playerEntity.isCreative() || InkPowered.tryDrainEnergy(playerEntity, INK_COST) || InventoryHelper.removeFromInventoryWithRemainders(playerEntity, COST)) {
-				world.setBlock(targetPos, SpectrumBlocks.WAND_LIGHT_BLOCK.defaultBlockState(), 3);
+				world.setBlock(targetPos, SpectrumBlocks.PERSISTENT_LIGHT.defaultBlockState(), 3);
 				return true;
 			}
 		} else if (targetBlockState.is(Blocks.WATER)) {
 			if (playerEntity.isCreative() || InkPowered.tryDrainEnergy(playerEntity, INK_COST) || InventoryHelper.removeFromInventoryWithRemainders(playerEntity, COST)) {
-				world.setBlock(targetPos, SpectrumBlocks.WAND_LIGHT_BLOCK.defaultBlockState().setValue(WATERLOGGED, true), 3);
+				world.setBlock(targetPos, SpectrumBlocks.PERSISTENT_LIGHT.defaultBlockState().setValue(WATERLOGGED, true), 3);
 				return true;
 			}
 		}
@@ -130,7 +130,7 @@ public class RadianceStaffItem extends Item implements InkPowered {
 		BlockPos pos = context.getClickedPos();
 		Direction direction = context.getClickedFace();
 		
-		if (!world.getBlockState(pos).is(SpectrumBlocks.WAND_LIGHT_BLOCK)) { // those get destroyed instead
+		if (!world.getBlockState(pos).is(SpectrumBlocks.PERSISTENT_LIGHT)) { // those get destroyed instead
 			BlockPos targetPos = pos.relative(direction);
 			if (placeLight(world, targetPos, (ServerPlayer) player)) {
 				RadianceStaffItem.playSoundAndParticles(world, targetPos, (ServerPlayer) player, world.random.nextInt(5), world.random.nextInt(5));

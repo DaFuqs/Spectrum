@@ -25,8 +25,8 @@ public class RadiancePinItem extends SpectrumTrinketItem {
 	
 	public static final int CHECK_EVERY_X_TICKS = 20;
 	public static final int MAX_LIGHT_LEVEL = 7;
-	public static final BlockState LIGHT_BLOCK_STATE = SpectrumBlocks.DECAYING_LIGHT_BLOCK.defaultBlockState().setValue(LightBlock.LEVEL, 15);
-	public static final BlockState LIGHT_BLOCK_STATE_WATER = SpectrumBlocks.DECAYING_LIGHT_BLOCK.defaultBlockState().setValue(LightBlock.LEVEL, 15).setValue(LightBlock.WATERLOGGED, true);
+	public static final BlockState LIGHT_BLOCK_STATE = SpectrumBlocks.TRANSIENT_LIGHT.defaultBlockState().setValue(LightBlock.LEVEL, 15);
+	public static final BlockState LIGHT_BLOCK_STATE_WATER = SpectrumBlocks.TRANSIENT_LIGHT.defaultBlockState().setValue(LightBlock.LEVEL, 15).setValue(LightBlock.WATERLOGGED, true);
 	
 	public RadiancePinItem(Properties settings) {
 		super(settings, SpectrumCommon.locate("unlocks/trinkets/radiance_pin"));
@@ -60,7 +60,7 @@ public class RadiancePinItem extends SpectrumTrinketItem {
 				} else if (currentState.equals(Blocks.WATER.defaultBlockState())) {
 					world.setBlock(pos, LIGHT_BLOCK_STATE_WATER, 3);
 					placed = true;
-				} else if (currentState.is(SpectrumBlocks.DECAYING_LIGHT_BLOCK)) {
+				} else if (currentState.is(SpectrumBlocks.TRANSIENT_LIGHT)) {
 					if (currentState.getValue(LightBlock.WATERLOGGED)) {
 						world.setBlock(pos, LIGHT_BLOCK_STATE_WATER, 3);
 					} else {

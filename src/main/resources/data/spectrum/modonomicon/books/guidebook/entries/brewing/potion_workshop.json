@@ -23,7 +23,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id": "spectrum:pedestal/tier3/potion_workshop",
+      "recipe_id": "spectrum:pedestal/tier2/potion_workshop",
       "text": "book.spectrum.guidebook.potion_workshop.page1.text"
     }
   ]

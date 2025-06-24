@@ -14,18 +14,18 @@ import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
 import org.jetbrains.annotations.*;
 
-public class TreasureItemBowlBlock extends Block implements EntityBlock {
+public class PreservationItemBowlBlock extends Block implements EntityBlock {
 	
-	public static final MapCodec<TreasureItemBowlBlock> CODEC = simpleCodec(TreasureItemBowlBlock::new);
+	public static final MapCodec<PreservationItemBowlBlock> CODEC = simpleCodec(PreservationItemBowlBlock::new);
 	
 	protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 11.0D, 16.0D);
 	
-	public TreasureItemBowlBlock(Properties settings) {
+	public PreservationItemBowlBlock(Properties settings) {
 		super(settings);
 	}
 
 	@Override
-	public MapCodec<? extends TreasureItemBowlBlock> codec() {
+	public MapCodec<? extends PreservationItemBowlBlock> codec() {
 		return CODEC;
 	}
 
@@ -44,6 +44,7 @@ public class TreasureItemBowlBlock extends Block implements EntityBlock {
 		if (bowl.hasTaken(player) || !canInteract(player))
 			return InteractionResult.FAIL;
 		
+		// TODO: that really needs to get dehardcoded
 		world.playLocalSound(pos, SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.BLOCKS, 1F, 1F, true);
 		player.getInventory().placeItemBackInInventory(SpectrumItems.AETHER_GRACED_NECTAR_GLOVES.getDefaultInstance());
 		bowl.markTaken(player);
@@ -52,6 +53,7 @@ public class TreasureItemBowlBlock extends Block implements EntityBlock {
 	}
 	
 	public static boolean canInteract(Player player) {
+		// TODO: that really needs to get dehardcoded
 		return player.hasEffect(SpectrumStatusEffects.FATAL_SLUMBER);
 	}
 

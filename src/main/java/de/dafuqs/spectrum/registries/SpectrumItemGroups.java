@@ -914,9 +914,9 @@ public class SpectrumItemGroups {
 				entries.accept(SpectrumBlocks.PYRITE_WALL);
 				entries.accept(SpectrumBlocks.PYRITE_PILE);
 				entries.accept(SpectrumBlocks.PYRITE_TILES);
-				entries.accept(SpectrumBlocks.PYRITE_TILES_SLAB);
-				entries.accept(SpectrumBlocks.PYRITE_TILES_STAIRS);
-				entries.accept(SpectrumBlocks.PYRITE_TILES_WALL);
+				entries.accept(SpectrumBlocks.PYRITE_TILE_SLAB);
+				entries.accept(SpectrumBlocks.PYRITE_TILE_STAIRS);
+				entries.accept(SpectrumBlocks.PYRITE_TILE_WALL);
 				entries.accept(SpectrumBlocks.PYRITE_PLATING);
 				entries.accept(SpectrumBlocks.PYRITE_TUBING);
 				entries.accept(SpectrumBlocks.PYRITE_RELIEF);
@@ -1538,7 +1538,7 @@ public class SpectrumItemGroups {
 				entries.accept(SpectrumBlocks.DIKE_CHISELED_PRESERVATION_STONE);
 				entries.accept(SpectrumBlocks.DREAM_CHISELED_PRESERVATION_STONE);
 				entries.accept(SpectrumBlocks.DEEP_LIGHT_CHISELED_PRESERVATION_STONE);
-				entries.accept(SpectrumBlocks.TREASURE_ITEM_BOWL);
+				entries.accept(SpectrumBlocks.PRESERVATION_ITEM_BOWL);
 				entries.accept(SpectrumBlocks.PRESERVATION_GLASS);
 				entries.accept(SpectrumBlocks.TINTED_PRESERVATION_GLASS);
 				entries.accept(SpectrumBlocks.PRESERVATION_ROUNDEL);

@@ -16,7 +16,7 @@ public class LightPlacingModifier extends ParticleAddingModifier {
 	
 	@Override
 	public void applyToBlocks(@NotNull ServerLevel world, @NotNull Iterable<BlockPos> blocks) {
-		BlockState lightState = SpectrumBlocks.WAND_LIGHT_BLOCK.defaultBlockState();
+		BlockState lightState = SpectrumBlocks.PERSISTENT_LIGHT.defaultBlockState();
 		for (BlockPos pos : blocks) {
 			if (world.getRandom().nextInt(12) == 0 && world.getBlockState(pos).isAir()) {
 				world.setBlockAndUpdate(pos, lightState);

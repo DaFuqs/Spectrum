@@ -331,12 +331,11 @@ public class SpectrumBlocks {
 			.select(Direction.DOWN, true, SpectrumModelHelper.createModelVariant(block, "").with(VariantProperties.X_ROT, VariantProperties.Rotation.R180).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)))));
 	public static final Block PYRITE_PROJECTOR = register(singletonWithSoup(blockWithItem("pyrite_projector", new ProjectorBlock(BlockBehaviour.Properties.ofFullCopy(PYRITE), "pyrite_projector_projection", 16, 14, 1.375F, 1F, 16F), InkColors.BROWN), ModelLocationUtils::getModelLocation));
 	
-	//TODO naming convention suggests that it should be 'pyrite_tile_slab', etc.
 	public static final Block PYRITE_TILES = register(simple(blockWithItem("pyrite_tiles", new Block(BlockBehaviour.Properties.ofFullCopy(PYRITE)), InkColors.BROWN)));
-	public static final Block PYRITE_TILES_SLAB = register(blockWithItem("pyrite_tiles_slab", new SlabBlock(BlockBehaviour.Properties.ofFullCopy(PYRITE_TILES)), InkColors.BROWN));
-	public static final Block PYRITE_TILES_STAIRS = register(blockWithItem("pyrite_tiles_stairs", new StairBlock(PYRITE_TILES.defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(PYRITE_TILES)), InkColors.BROWN));
-	public static final Block PYRITE_TILES_WALL = register(blockWithItem("pyrite_tiles_wall", new WallBlock(BlockBehaviour.Properties.ofFullCopy(PYRITE_TILES)), InkColors.BROWN));
-	public static final BlockFamily PYRITE_TILE_FAMILY = SpectrumModelHelper.registerBlockFamilyExceptBase(new BlockFamily.Builder(PYRITE_TILES).stairs(PYRITE_TILES_STAIRS).slab(PYRITE_TILES_SLAB).wall(PYRITE_TILES_WALL).getFamily(), TexturedModel.createDefault(b -> TextureMapping.cube(PYRITE_PLATING), ModelTemplates.CUBE_ALL));
+	public static final Block PYRITE_TILE_SLAB = register(blockWithItem("pyrite_tile_slab", new SlabBlock(BlockBehaviour.Properties.ofFullCopy(PYRITE_TILES)), InkColors.BROWN));
+	public static final Block PYRITE_TILE_STAIRS = register(blockWithItem("pyrite_tile_stairs", new StairBlock(PYRITE_TILES.defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(PYRITE_TILES)), InkColors.BROWN));
+	public static final Block PYRITE_TILE_WALL = register(blockWithItem("pyrite_tile_wall", new WallBlock(BlockBehaviour.Properties.ofFullCopy(PYRITE_TILES)), InkColors.BROWN));
+	public static final BlockFamily PYRITE_TILE_FAMILY = SpectrumModelHelper.registerBlockFamilyExceptBase(new BlockFamily.Builder(PYRITE_TILES).stairs(PYRITE_TILE_STAIRS).slab(PYRITE_TILE_SLAB).wall(PYRITE_TILE_WALL).getFamily(), TexturedModel.createDefault(b -> TextureMapping.cube(PYRITE_PLATING), ModelTemplates.CUBE_ALL));
 	
 	public static final Block DRAGONBONE = register(axisRotated(blockWithItem("dragonbone", new DragonboneBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BONE_BLOCK).strength(-1.0F, 22.0F).pushReaction(PushReaction.BLOCK)), InkColors.GREEN), TexturedModel.COLUMN));
 	public static final Block CRACKED_DRAGONBONE = register(axisRotated(blockWithItem("cracked_dragonbone", new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BONE_BLOCK).strength(100.0F, 1200.0F).pushReaction(PushReaction.BLOCK)), InkColors.GREEN), TexturedModel.COLUMN));
@@ -577,8 +576,8 @@ public class SpectrumBlocks {
 			.withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(SpectrumModelHelper.createBooleanModelMap(BottomlessBundleBlock.LOCKED, ModelLocationUtils.getModelLocation(block, "_locked"), ModelLocationUtils.getModelLocation(block, "_unlocked"))))
 			.withPredefinedItemModel());
 	
-	public static final Block WAND_LIGHT_BLOCK = register(singleton(block("wand_light", new WandLightBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LIGHT).sound(SpectrumBlockSoundGroups.WAND_LIGHT).instabreak())), SpectrumTexturedModels.particle(SpectrumTextures.SHIMMERSTONE_LIGHT)));
-	public static final Block DECAYING_LIGHT_BLOCK = register(parented(block("decaying_light", new DecayingLightBlock(BlockBehaviour.Properties.ofFullCopy(WAND_LIGHT_BLOCK).randomTicks())), b -> WAND_LIGHT_BLOCK));
+	public static final Block PERSISTENT_LIGHT = register(singleton(block("persistent_light", new PersistentLightBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LIGHT).sound(SpectrumBlockSoundGroups.LIGHT).instabreak())), SpectrumTexturedModels.particle(SpectrumTextures.SHIMMERSTONE_LIGHT)));
+	public static final Block TRANSIENT_LIGHT = register(parented(block("transient_light", new TransientLightBlock(BlockBehaviour.Properties.ofFullCopy(PERSISTENT_LIGHT).randomTicks())), b -> PERSISTENT_LIGHT));
 	
 	private static BlockBehaviour.Properties decay(MapColor mapColor, SoundType soundGroup, float strength, float resistance, PushReaction pistonBehavior) {
 		return settings(mapColor, soundGroup, strength, resistance).pushReaction(pistonBehavior).randomTicks().isValidSpawn((state, world, pos, type) -> false);
@@ -1792,8 +1791,7 @@ public class SpectrumBlocks {
 	public static final Block DREAM_CHISELED_PRESERVATION_STONE = register(simple(blockWithItem("dream_chiseled_preservation_stone", new Block(preservationBlock().lightLevel(state -> 6)), InkColors.BLUE)));
 	public static final Block DEEP_LIGHT_CHISELED_PRESERVATION_STONE = register(singleton(blockWithItem("deep_light_chiseled_preservation_stone", new DeepLightBlock(preservationBlock().lightLevel(state -> 2)), InkColors.BLUE), SpectrumTexturedModels.cubeColumn(b -> b, "", b -> PRESERVATION_STONE, "_top_generic")));
 	
-	//TODO not sure which is correct, but this should probably be renamed
-	public static final Block TREASURE_ITEM_BOWL = register(cutout(singleton(blockWithItem("item_bowl_enlightenment", new TreasureItemBowlBlock(preservationBlock().noOcclusion().isRedstoneConductor(SpectrumBlocks::never).isSuffocating(SpectrumBlocks::never).isViewBlocking(SpectrumBlocks::never)), InkColors.BLUE), TexturedModel.createDefault(b -> new TextureMapping().put(TextureSlot.SIDE, TextureMapping.getBlockTexture(b, "_side")).put(TextureSlot.TOP, TextureMapping.getBlockTexture(b, "_top")).put(TextureSlot.BOTTOM, locate("block/item_bowl_preservation_bottom")).put(SpectrumTextureKeys.INNER, locate("block/item_bowl_preservation_bottom")), SpectrumModels.BOWL))));
+	public static final Block PRESERVATION_ITEM_BOWL = register(cutout(singleton(blockWithItem("preservation_item_bowl", new PreservationItemBowlBlock(preservationBlock().noOcclusion().isRedstoneConductor(SpectrumBlocks::never).isSuffocating(SpectrumBlocks::never).isViewBlocking(SpectrumBlocks::never)), InkColors.BLUE), TexturedModel.createDefault(b -> new TextureMapping().put(TextureSlot.SIDE, TextureMapping.getBlockTexture(b, "_side")).put(TextureSlot.TOP, TextureMapping.getBlockTexture(b, "_top")).put(TextureSlot.BOTTOM, locate("block/item_bowl_preservation_bottom")).put(SpectrumTextureKeys.INNER, locate("block/item_bowl_preservation_bottom")), SpectrumModels.BOWL))));
 	public static final Block DIKE_GATE_FOUNTAIN = register(defaultUpFacing(blockWithItem("dike_gate_fountain", new SpectrumFacingBlock(preservationBlock()), InkColors.BLUE), SpectrumTexturedModels.cubeBottomTopParticle(b -> b, "_side", b -> b, "_top", b -> PRESERVATION_STONE, "", b -> PRESERVATION_STONE, "")));
 	public static final Block PRESERVATION_BRICKS = register(simple(blockWithItem("preservation_bricks", new Block(preservationBlock()), InkColors.BLUE)));
 	public static final Block SHIMMERING_PRESERVATION_BRICKS = register(simple(blockWithItem("shimmering_preservation_bricks", new Block(preservationBlock().lightLevel(s -> 5)), InkColors.BLUE)));

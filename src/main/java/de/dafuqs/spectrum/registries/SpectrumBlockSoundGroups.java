@@ -33,7 +33,7 @@ public class SpectrumBlockSoundGroups {
 	public static final SoundType LARGE_MOONSTONE_BUD = new SoundType(1.0F, 1.0F, SpectrumSoundEvents.BLOCK_LARGE_MOONSTONE_BUD_BREAK, SpectrumSoundEvents.BLOCK_MOONSTONE_CLUSTER_STEP, SpectrumSoundEvents.BLOCK_LARGE_MOONSTONE_BUD_PLACE, SpectrumSoundEvents.BLOCK_MOONSTONE_CLUSTER_HIT, SpectrumSoundEvents.BLOCK_MOONSTONE_CLUSTER_FALL);
 	
 	public static final SoundType SPECTRAL_BLOCK = new SoundType(1.0F, 1.0F, SpectrumSoundEvents.SPECTRAL_BLOCK_BREAK, SpectrumSoundEvents.SPECTRAL_BLOCK_STEP, SpectrumSoundEvents.SPECTRAL_BLOCK_PLACE, SpectrumSoundEvents.SPECTRAL_BLOCK_HIT, SpectrumSoundEvents.SPECTRAL_BLOCK_FALL);
-	public static final SoundType WAND_LIGHT = new SoundType(1.0F, 1.0F, SpectrumSoundEvents.RADIANCE_STAFF_BREAK, SoundEvents.AMETHYST_CLUSTER_STEP, SpectrumSoundEvents.RADIANCE_STAFF_PLACE, SpectrumSoundEvents.RADIANCE_STAFF_BREAK, SpectrumSoundEvents.RADIANCE_STAFF_BREAK);
+	public static final SoundType LIGHT = new SoundType(1.0F, 1.0F, SpectrumSoundEvents.RADIANCE_STAFF_BREAK, SoundEvents.AMETHYST_CLUSTER_STEP, SpectrumSoundEvents.RADIANCE_STAFF_PLACE, SpectrumSoundEvents.RADIANCE_STAFF_BREAK, SpectrumSoundEvents.RADIANCE_STAFF_BREAK);
 	
 	// MOB BLOCKS
 	public static final SoundType AXOLOTL_IDOL = new SoundType(1.0F, 1.0F, SoundEvents.AXOLOTL_DEATH, SoundEvents.WOOL_STEP, SoundEvents.AXOLOTL_IDLE_AIR, SoundEvents.AXOLOTL_HURT, SoundEvents.AXOLOTL_IDLE_AIR);

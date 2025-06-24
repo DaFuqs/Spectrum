@@ -1,7 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "XXX",
     "XXX"
   ],
   "key": {
@@ -12,7 +11,7 @@
     ]
   },
   "result": {
-    "id": "spectrum:pyrite_tiles_wall",
+    "id": "spectrum:pyrite_tile_slab",
     "count": 6
   }
 }

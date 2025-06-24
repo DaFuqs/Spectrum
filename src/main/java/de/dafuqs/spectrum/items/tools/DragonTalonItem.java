@@ -83,7 +83,9 @@ public class DragonTalonItem extends MalachiteBidentItem implements MergeableIte
 			durability += player.getAbilities().instabuild ? 0 : 500;
 			player.getCooldowns().addCooldown(result.getItem(), 400);
 		}
-		result.setDamageValue(Math.min(durability, firstHalf.getMaxDamage() - 1));
+		if (result.isDamageableItem()) {
+			result.setDamageValue(Math.min(durability, firstHalf.getMaxDamage() - 1));
+		}
 		
 		return result;
 	}

@@ -48,17 +48,18 @@ public class DragonrotFluidBlock extends SpectrumFluidBlock {
 		return false;
 	}
 	
-	public @Nullable BlockState handleFluidCollision(Level world, @NotNull FluidState state, @NotNull FluidState otherState) {
+	@Override
+	public @Nullable BlockState handleFluidCollision(Level world, @NotNull FluidState state, @NotNull FluidState otherState, Direction direction) {
 		if (otherState.is(FluidTags.WATER)) {
 			return SpectrumBlocks.SLUSH.defaultBlockState();
 		} else if (otherState.is(FluidTags.LAVA)) {
-			return Blocks.BLACKSTONE.defaultBlockState();
+			return Blocks.TERRACOTTA.defaultBlockState();
 		} else if (otherState.is(SpectrumFluidTags.SLUDGE)) {
-			return Blocks.COARSE_DIRT.defaultBlockState();
+			return direction == Direction.DOWN ? SpectrumBlocks.BLACKSLAG.defaultBlockState() : SpectrumBlocks.COBBLED_BLACKSLAG.defaultBlockState();
 		} else if (otherState.is(SpectrumFluidTags.LIQUID_CRYSTAL)) {
-			return SpectrumBlocks.ROTTEN_GROUND.defaultBlockState();
+			return Blocks.TUFF.defaultBlockState();
 		} else if (otherState.is(SpectrumFluidTags.MIDNIGHT_SOLUTION)) {
-			return SpectrumBlocks.BLACK_SLUDGE.defaultBlockState();
+			return SpectrumBlocks.ROTTEN_GROUND.defaultBlockState();
 		}
 		return null;
 	}

@@ -47,9 +47,10 @@ public class SludgeFluidBlock extends SpectrumFluidBlock {
 		return true;
 	}
 	
-	public @Nullable BlockState handleFluidCollision(Level world, @NotNull FluidState state, @NotNull FluidState otherState) {
+	@Override
+	public @Nullable BlockState handleFluidCollision(Level world, @NotNull FluidState state, @NotNull FluidState otherState, Direction direction) {
 		if (otherState.is(FluidTags.WATER)) {
-			return Blocks.DIRT.defaultBlockState();
+			return direction == Direction.DOWN ? Blocks.COARSE_DIRT.defaultBlockState() : Blocks.DIRT.defaultBlockState();
 		}
 		if (otherState.is(FluidTags.LAVA)) {
 			return Blocks.MUD.defaultBlockState();

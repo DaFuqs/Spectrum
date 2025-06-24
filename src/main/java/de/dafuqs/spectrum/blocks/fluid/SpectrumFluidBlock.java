@@ -68,7 +68,7 @@ public abstract class SpectrumFluidBlock extends LiquidBlock {
 	 * @return BlockState to be placed at the collision position. [null means no collision]
 	 * @implNote Triggers the extinguish sound if result is not null.
 	 */
-	public abstract @Nullable BlockState handleFluidCollision(Level world, @NotNull FluidState state, @NotNull FluidState otherState);
+	public abstract @Nullable BlockState handleFluidCollision(Level world, @NotNull FluidState state, @NotNull FluidState otherState, Direction direction);
 	
 	public void fireExtinguishEvent(LevelAccessor world, BlockPos pos) {
 		world.levelEvent(LevelEvent.LAVA_FIZZ, pos, 0);
@@ -85,16 +85,16 @@ public abstract class SpectrumFluidBlock extends LiquidBlock {
 		// Shouldn't happen but check anyway
 		// If it IS true then do nothing, since no interaction can take place at this position
 		final FluidState fluidState = state.getFluidState();
-		if (fluidState == null || fluidState.isEmpty()) return true;
+		if (fluidState.isEmpty()) return true;
 
 		for (Direction direction : Direction.values()) {
 			final FluidState otherState = world.getFluidState(pos.relative(direction));
-			if (otherState == null || otherState.isEmpty()) continue;
-
-			final BlockState setState = handleFluidCollision(world, fluidState, otherState);
+			if (otherState.isEmpty()) continue;
+			
+			final BlockState setState = handleFluidCollision(world, fluidState, otherState, direction);
 			if (setState != null) {
 				this.fireExtinguishEvent(world, pos);
-				world.setBlockAndUpdate(pos, setState);
+				world.setBlockAndUpdate(direction == Direction.DOWN ? pos.below() : pos, setState);
 				return false;
 			}
 		}

@@ -11,6 +11,7 @@ import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.SpectrumItems.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.fabricmc.api.*;
+import net.minecraft.core.*;
 import net.minecraft.data.models.model.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
@@ -19,10 +20,10 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
 import org.jetbrains.annotations.*;
 
-import static de.dafuqs.spectrum.registries.SpectrumBlocks.*;
 import static de.dafuqs.spectrum.registries.SpectrumBlocks.simple;
+import static de.dafuqs.spectrum.registries.SpectrumBlocks.*;
 import static de.dafuqs.spectrum.registries.SpectrumItems.simple;
-import static de.dafuqs.spectrum.registries.SpectrumItems.item;
+import static de.dafuqs.spectrum.registries.SpectrumItems.*;
 
 public class CreateCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	
@@ -73,7 +74,7 @@ public class CreateCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	
 	private BlockState spectrumFluidCollision(Level world, FluidState state, FluidState otherState) {
 		if (state.createLegacyBlock().getBlock() instanceof SpectrumFluidBlock spectrumFluid)
-			return spectrumFluid.handleFluidCollision(world, state, otherState);
+			return spectrumFluid.handleFluidCollision(world, state, otherState, Direction.DOWN);
 		return null;
 	}
 	

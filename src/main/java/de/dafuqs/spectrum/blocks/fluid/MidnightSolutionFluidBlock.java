@@ -71,17 +71,17 @@ public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 		// Shouldn't happen but check anyway
 		// If it IS true then do nothing, since no interaction can take place at this position
 		final FluidState fluidState = state.getFluidState();
-		if (fluidState == null || fluidState.isEmpty()) return true;
+		if (fluidState.isEmpty()) return true;
 
 		for (Direction direction : Direction.values()) {
 			BlockPos neighborPos = pos.relative(direction);
 			FluidState neighborFluidState = world.getFluidState(neighborPos);
 
 			// Do nothing if neighbor fluid state is empty. [matters for both collision and spread]
-			if (neighborFluidState == null || neighborFluidState.isEmpty()) continue;
+			if (neighborFluidState.isEmpty()) continue;
 
 			// Fluid collision interaction
-			final BlockState setState = handleFluidCollision(world, fluidState, neighborFluidState);
+			final BlockState setState = handleFluidCollision(world, fluidState, neighborFluidState, direction);
 			if (setState != null) {
 				fireExtinguishEvent(world, pos);
 				world.setBlockAndUpdate(pos, setState);
@@ -107,8 +107,10 @@ public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 		return true;
 	}
 	
-	public @Nullable BlockState handleFluidCollision(Level world, @NotNull FluidState state, @NotNull FluidState otherState) {
-		if (otherState.is(FluidTags.LAVA)) return Blocks.TERRACOTTA.defaultBlockState();
+	@Override
+	public @Nullable BlockState handleFluidCollision(Level world, @NotNull FluidState state, @NotNull FluidState otherState, Direction direction) {
+		if (otherState.is(FluidTags.LAVA)) return Blocks.BLACKSTONE.defaultBlockState();
+		if (otherState.is(SpectrumFluidTags.SLUDGE)) return SpectrumBlocks.BLACK_SLUDGE.defaultBlockState();
 		return null;
 	}
 

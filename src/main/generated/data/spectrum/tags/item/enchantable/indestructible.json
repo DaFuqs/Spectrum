@@ -1,5 +1,7 @@
 {
   "values": [
-    "#minecraft:enchantable/durability"
+    "#minecraft:enchantable/durability",
+
+    "spectrum:ender_splice"
   ]
 }

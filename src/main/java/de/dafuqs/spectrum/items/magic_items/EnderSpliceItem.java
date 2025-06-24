@@ -259,7 +259,7 @@ public class EnderSpliceItem extends Item {
 	
 	@Override
 	public boolean canBeEnchantedWith(ItemStack stack, Holder<Enchantment> enchantment, EnchantingContext context) {
-		return super.canBeEnchantedWith(stack, enchantment, context) || enchantment.is(SpectrumEnchantments.RESONANCE) || enchantment.is(SpectrumEnchantments.INDESTRUCTIBLE) || enchantment.is(Enchantments.UNBREAKING);
+		return super.canBeEnchantedWith(stack, enchantment, context) || enchantment.is(Enchantments.UNBREAKING);
 	}
 	
 }

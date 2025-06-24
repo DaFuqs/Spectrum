@@ -242,7 +242,7 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 	
 	@Override
 	public boolean canBeEnchantedWith(ItemStack stack, Holder<Enchantment> enchantment, EnchantingContext context) {
-		return super.canBeEnchantedWith(stack, enchantment, context) || enchantment.is(Enchantments.FORTUNE) || enchantment.is(Enchantments.SILK_TOUCH) || enchantment.is(SpectrumEnchantments.RESONANCE);
+		return super.canBeEnchantedWith(stack, enchantment, context) || enchantment.is(Enchantments.FORTUNE) || enchantment.is(Enchantments.SILK_TOUCH);
 	}
 	
 }

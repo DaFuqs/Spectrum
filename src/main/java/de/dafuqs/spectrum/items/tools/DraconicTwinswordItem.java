@@ -206,6 +206,6 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
 	
 	@Override
 	public boolean canBeEnchantedWith(ItemStack stack, Holder<Enchantment> enchantment, EnchantingContext context) {
-		return super.canBeEnchantedWith(stack, enchantment, context) || enchantment.is(Enchantments.CHANNELING) || enchantment.is(Enchantments.PIERCING) || enchantment.is(SpectrumEnchantments.INERTIA);
+		return super.canBeEnchantedWith(stack, enchantment, context) || enchantment.is(Enchantments.CHANNELING) || enchantment.is(Enchantments.PIERCING);
 	}
 }

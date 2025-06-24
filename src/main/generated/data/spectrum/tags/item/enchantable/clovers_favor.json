@@ -1,6 +1,8 @@
 {
   "values": [
     "#minecraft:enchantable/sword",
+    "#spectrum:bidents",
+
     {
       "id": "#malum:scythe",
       "required": false

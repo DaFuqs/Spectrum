@@ -499,7 +499,7 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 	
 	@Override
 	public boolean canBeEnchantedWith(ItemStack stack, Holder<Enchantment> enchantment, EnchantingContext context) {
-		return super.canBeEnchantedWith(stack, enchantment, context) || enchantment.is(Enchantments.POWER) || enchantment.is(SpectrumEnchantments.VOIDING);
+		return super.canBeEnchantedWith(stack, enchantment, context) || enchantment.is(Enchantments.POWER);
 	}
 	
 }

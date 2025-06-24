@@ -12,9 +12,7 @@ import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
-import net.minecraft.server.network.*;
 import net.minecraft.sounds.*;
-import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
@@ -188,6 +186,6 @@ public class DragonTalonItem extends MalachiteBidentItem implements MergeableIte
 	
 	@Override
 	public boolean canBeEnchantedWith(ItemStack stack, Holder<Enchantment> enchantment, EnchantingContext context) {
-		return super.canBeEnchantedWith(stack, enchantment, context) || enchantment.is(Enchantments.CHANNELING) || enchantment.is(Enchantments.PIERCING) || enchantment.is(SpectrumEnchantments.INERTIA);
+		return super.canBeEnchantedWith(stack, enchantment, context) || enchantment.is(Enchantments.CHANNELING) || enchantment.is(Enchantments.PIERCING);
 	}
 }

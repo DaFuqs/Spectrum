@@ -227,7 +227,7 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 	
 	@Override
 	public boolean canBeEnchantedWith(ItemStack stack, Holder<Enchantment> enchantment, EnchantingContext context) {
-		return super.canBeEnchantedWith(stack, enchantment, context) || enchantment.is(Enchantments.SHARPNESS) || enchantment.is(Enchantments.SMITE) || enchantment.is(Enchantments.BANE_OF_ARTHROPODS) || enchantment.is(Enchantments.LOOTING) || enchantment.is(SpectrumEnchantments.CLOVERS_FAVOR);
+		return super.canBeEnchantedWith(stack, enchantment, context) || enchantment.is(Enchantments.SHARPNESS) || enchantment.is(Enchantments.SMITE) || enchantment.is(Enchantments.BANE_OF_ARTHROPODS) || enchantment.is(Enchantments.LOOTING);
 	}
 	
 }

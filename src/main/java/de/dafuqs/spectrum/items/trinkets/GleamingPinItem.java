@@ -5,8 +5,6 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
-import net.fabricmc.fabric.api.item.v1.*;
-import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
@@ -14,7 +12,6 @@ import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
@@ -60,11 +57,6 @@ public class GleamingPinItem extends SpectrumTrinketItem {
 	@Override
 	public int getEnchantmentValue() {
 		return 16;
-	}
-	
-	@Override
-	public boolean canBeEnchantedWith(ItemStack stack, Holder<Enchantment> enchantment, EnchantingContext context) {
-		return super.canBeEnchantedWith(stack, enchantment, context) || enchantment.is(SpectrumEnchantments.SNIPING);
 	}
 	
 }

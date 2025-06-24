@@ -42,7 +42,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 	// In that case:
 	// - the player should not get XP
 	// - Yield upgrades disabled (item multiplication)
-	protected final boolean yieldUpgradesDisabled;
+	protected final boolean noBenefitsFromYieldAndEfficiencyUpgrades;
 	protected final boolean playCraftingFinishedEffects;
 	
 	protected final List<WorldConditionsPredicate> worldConditionsPredicates;
@@ -66,7 +66,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 			ItemStack output,
 			float experience,
 			int craftingTime,
-			boolean yieldUpgradesDisabled,
+			boolean noBenefitsFromYieldAndEfficiencyUpgrades,
 			boolean playCraftingFinishedEffects,
 			boolean copyComponents,
 			List<WorldConditionsPredicate> worldConditionsPredicates,
@@ -82,7 +82,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 		this.output = output;
 		this.experience = experience;
 		this.craftingTime = craftingTime;
-		this.yieldUpgradesDisabled = yieldUpgradesDisabled;
+		this.noBenefitsFromYieldAndEfficiencyUpgrades = noBenefitsFromYieldAndEfficiencyUpgrades;
 		this.playCraftingFinishedEffects = playCraftingFinishedEffects;
 		
 		this.worldConditionsPredicates = worldConditionsPredicates;
@@ -170,6 +170,10 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 		return this.craftingTime;
 	}
 	
+	public boolean areYieldAndEfficiencyUpgradesDisabled() {
+		return copyComponents || noBenefitsFromYieldAndEfficiencyUpgrades;
+	}
+	
 	/**
 	 * @param tick The crafting tick if the fusion shrine recipe
 	 * @return The effect that should be played for the given recipe tick
@@ -244,7 +248,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 			
 			memory = firstStack.copy();
 			if (maxAmount > 0) {
-				double efficiencyModifier = fusionShrineBlockEntity.getUpgradeHolder().getEffectiveValue(Upgradeable.UpgradeType.EFFICIENCY);
+				double efficiencyModifier = areYieldAndEfficiencyUpgradesDisabled() ? 1.0 : fusionShrineBlockEntity.getUpgradeHolder().getEffectiveValue(Upgradeable.UpgradeType.EFFICIENCY);
 				decrementIngredients(world, fusionShrineBlockEntity, maxAmount, efficiencyModifier);
 			}
 		} else {
@@ -254,7 +258,12 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 				for (int i = 0; i < fusionShrineBlockEntity.getContainerSize(); i++) {
 					ItemStack currentStack = fusionShrineBlockEntity.getItem(i);
 					if (ingredientStack.test(currentStack)) {
-						int reducedAmountAfterMod = Support.getIntFromDecimalWithChance(ingredientStack.getCount() / efficiencyModifier, world.random);
+						int reducedAmountAfterMod;
+						if (currentStack == firstStack && this.copyComponents) { // if `copyComponents` is set, it usually is a transformation. Don't apply efficiency there
+							reducedAmountAfterMod = ingredientStack.getCount();
+						} else {
+							reducedAmountAfterMod = Support.getIntFromDecimalWithChance(ingredientStack.getCount() / efficiencyModifier, world.random);
+						}
 						currentStack.shrink(reducedAmountAfterMod);
 						break;
 					}
@@ -298,7 +307,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 	
 	protected void spawnCraftingResultAndXP(@NotNull Level world, @NotNull FusionShrineBlockEntity fusionShrineBlockEntity, @NotNull ItemStack stack, int recipeCount) {
 		int resultAmountBeforeMod = recipeCount * stack.getCount();
-		double yieldModifier = yieldUpgradesDisabled ? 1.0 : fusionShrineBlockEntity.getUpgradeHolder().getEffectiveValue(Upgradeable.UpgradeType.YIELD);
+		double yieldModifier = areYieldAndEfficiencyUpgradesDisabled() ? 1.0 : fusionShrineBlockEntity.getUpgradeHolder().getEffectiveValue(Upgradeable.UpgradeType.YIELD);
 		int resultAmountAfterMod = Support.getIntFromDecimalWithChance(resultAmountBeforeMod * yieldModifier, world.random);
 		
 		int intExperience = Support.getIntFromDecimalWithChance(recipeCount * experience, world.random);
@@ -327,7 +336,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 				ItemStack.CODEC.optionalFieldOf("result", ItemStack.EMPTY).forGetter(recipe -> recipe.output),
 				Codec.FLOAT.optionalFieldOf("experience", 0f).forGetter(recipe -> recipe.experience),
 				Codec.INT.optionalFieldOf("time", 200).forGetter(recipe -> recipe.craftingTime),
-				Codec.BOOL.optionalFieldOf("disable_yield_upgrades", false).forGetter(recipe -> recipe.yieldUpgradesDisabled),
+				Codec.BOOL.optionalFieldOf("disable_yield_upgrades", false).forGetter(recipe -> recipe.noBenefitsFromYieldAndEfficiencyUpgrades),
 				Codec.BOOL.optionalFieldOf("play_crafting_finished_effects", true).forGetter(recipe -> recipe.playCraftingFinishedEffects),
 				Codec.BOOL.optionalFieldOf("copy_components", false).forGetter(recipe -> recipe.copyComponents),
 				CodecHelper.singleOrList(WorldConditionsPredicate.CODEC).optionalFieldOf("world_conditions", List.of()).forGetter(recipe -> recipe.worldConditionsPredicates),
@@ -346,7 +355,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 				ItemStack.OPTIONAL_STREAM_CODEC, recipe -> recipe.output,
 				ByteBufCodecs.FLOAT, recipe -> recipe.experience,
 				ByteBufCodecs.VAR_INT, recipe -> recipe.craftingTime,
-				ByteBufCodecs.BOOL, recipe -> recipe.yieldUpgradesDisabled,
+				ByteBufCodecs.BOOL, recipe -> recipe.noBenefitsFromYieldAndEfficiencyUpgrades,
 				ByteBufCodecs.BOOL, recipe -> recipe.playCraftingFinishedEffects,
 				ByteBufCodecs.BOOL, recipe -> recipe.copyComponents,
 				WorldConditionsPredicate.PACKET_CODEC.apply(ByteBufCodecs.list()), recipe -> recipe.worldConditionsPredicates,

@@ -123,7 +123,7 @@ public class EnchanterRecipe extends GatedSpectrumRecipe<RecipeInput> {
 	}
 	
 	public boolean areYieldAndEfficiencyUpgradesDisabled() {
-		return noBenefitsFromYieldAndEfficiencyUpgrades;
+		return copyComponents || noBenefitsFromYieldAndEfficiencyUpgrades;
 	}
 	
 	@Override

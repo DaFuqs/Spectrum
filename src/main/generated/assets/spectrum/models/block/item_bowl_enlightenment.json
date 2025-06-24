@@ -2,7 +2,7 @@
   "parent": "spectrum:templates/base_bowl",
   "textures": {
     "bottom": "spectrum:block/item_bowl_preservation_bottom",
-    "inner": "spectrum:block/item_bowl_preservation_bottom",
+    "inner": "spectrum:block/item_bowl_preservation_inner",
     "side": "spectrum:block/item_bowl_enlightenment_side",
     "top": "spectrum:block/item_bowl_enlightenment_top"
   }

@@ -6,13 +6,13 @@
       "entries": [
         {
           "type": "minecraft:loot_table",
-          "value": "spectrum:gameplay/fishing/goo/junk",
+          "value": "spectrum:gameplay/fishing/sludge/junk",
           "weight": 10,
           "quality": -2
         },
         {
           "type": "minecraft:loot_table",
-          "value": "spectrum:gameplay/fishing/goo/treasure",
+          "value": "spectrum:gameplay/fishing/sludge/treasure",
           "weight": 5,
           "quality": 2,
           "conditions": [
@@ -29,7 +29,7 @@
         },
         {
           "type": "minecraft:loot_table",
-          "value": "spectrum:gameplay/fishing/goo/fish",
+          "value": "spectrum:gameplay/fishing/sludge/fish",
           "weight": 80,
           "quality": -1
         }

@@ -43,7 +43,7 @@ public abstract class ItemStackMixin {
 		}
 	}
 	
-	@ModifyReturnValue(method = "canBeHurtBy", at = @At(value = "RETURN"))
+	@ModifyReturnValue(method = "isDamageableItem", at = @At(value = "RETURN"))
 	public boolean spectrum$applyIndestructibleEnchantment(boolean original) {
 		var stack = (ItemStack) (Object) this;
 		

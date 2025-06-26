@@ -38,7 +38,6 @@ public class BedrockCapeRenderer {
 		BedrockArmorCapeModel.FRONT_CLOTH.render(ms, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
 		ms.popPose();
 
-		// TODO - Respect player capes once armor tailoring is implemented
 		// Respect Elytras and Fabrics Render Event
 		if (RenderingContext.isElytraRendered || !LivingEntityFeatureRenderEvents.ALLOW_CAPE_RENDER.invoker().allowCapeRender(player)) {
 			return;

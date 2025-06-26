@@ -52,7 +52,6 @@ import java.util.function.*;
 @Environment(EnvType.CLIENT)
 public class SpectrumClientEventListeners {
 	
-	// TODO: Move to API package
 	public static final ObjectOpenHashSet<ModelResourceLocation> CUSTOM_ITEM_MODELS = new ObjectOpenHashSet<>();
 	private static boolean postProcessWasOn = SpectrumCommon.CONFIG.PostProcess;
 	

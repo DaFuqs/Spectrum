@@ -137,5 +137,6 @@ public class SpectrumAdvancements {
 	public static final ResourceLocation COLLECT_MALACHITE = SpectrumCommon.locate("lategame/collect_malachite");
 	public static final ResourceLocation FIND_FORGOTTEN_CITY = SpectrumCommon.locate("lategame/find_forgotten_city");
 	public static final ResourceLocation COLLECT_MYCEYLON = SpectrumCommon.locate("lategame/collect_myceylon");
+	public static final ResourceLocation COLLECT_JADE_VINE_PETALS = SpectrumCommon.locate("midgame/collect_jade_vine_petals");
 	public static final ResourceLocation BUILD_SPIRIT_INSTILLER_STRUCTURE = SpectrumCommon.locate("midgame/build_spirit_instiller_structure");
 }

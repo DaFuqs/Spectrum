@@ -270,7 +270,7 @@ public class SpectrumItems {
 	
 	public static final Item HIBERNATING_JADE_VINE_BULB = register(simple(item("hibernating_jade_vine_bulb", new ItemWithTooltip(IS.of(16), "item.spectrum.hibernating_jade_vine_bulb.tooltip"), InkColors.GRAY)));
 	public static final Item GERMINATED_JADE_VINE_BULB = register(simple(item("germinated_jade_vine_bulb", new GerminatedJadeVineBulbItem(IS.of(16), SpectrumAdvancements.COLLECT_HIBERNATING_JADE_VINE_BULB, LIME_DYE), InkColors.LIME)));
-	public static final Item JADE_VINE_PETALS = register(simple(item("jade_vine_petals", new CloakedItemWithLoomPattern(IS.of(), SpectrumAdvancements.BUILD_SPIRIT_INSTILLER_STRUCTURE, LIME_DYE, SpectrumBannerPatterns.JADE_VINE), InkColors.LIME))); // TODO: Funky unlock?
+	public static final Item JADE_VINE_PETALS = register(simple(item("jade_vine_petals", new CloakedItemWithLoomPattern(IS.of(), SpectrumAdvancements.COLLECT_JADE_VINE_PETALS, LIME_DYE, SpectrumBannerPatterns.JADE_VINE), InkColors.LIME)));
 	public static final Item JADEITE_PETALS = register(simple(item("jadeite_petals", new Item(IS.of(Rarity.UNCOMMON)), InkColors.BROWN)));
 	public static final Item BLOOD_ORCHID_PETAL = register(simple(item("blood_orchid_petal", new CloakedItem(IS.of(), SpectrumAdvancements.REVEAL_BLOOD_ORCHID_PETALS, RED_DYE), InkColors.RED)));
 	

@@ -165,11 +165,6 @@ public class UnlockToastManager {
 		
 		for (GatedRecipe<?> recipe : unlockedRecipes) {
 			if (!recipe.getResultItem(registryManager).isEmpty()) { // weather recipes
-				// FIXME - Better place to log this?
-				//if (recipe.getGroup() == null) {
-					//SpectrumCommon.logWarning("Found a recipe with null group: " + recipe.getId().toString() + " Please report this. If you are DaFuqs and you are reading this: you messed up big time.");
-				//}
-				
 				if (recipe.getGroup().isEmpty()) {
 					singleRecipes.add(recipe.getResultItem(registryManager));
 				} else {

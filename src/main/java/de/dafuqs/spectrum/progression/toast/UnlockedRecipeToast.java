@@ -63,11 +63,10 @@ public class UnlockedRecipeToast implements Toast {
 			// special handling for enchanted books
 			// Instead of the text "enchanted book" the toast will
 			// read the first stored enchantment in the book
-			var enchantments = itemStack.getEnchantments().entrySet();
-			// TODO - Review
-			if (!enchantments.isEmpty()) {
-				Object2IntMap.Entry<Holder<Enchantment>> enchantEntry = enchantments.iterator().next();
-				return Component.translatable(enchantEntry.getKey().getRegisteredName());
+			var enchantments = itemStack.get(DataComponents.STORED_ENCHANTMENTS);
+			if (enchantments != null && !enchantments.isEmpty()) {
+				Object2IntMap.Entry<Holder<Enchantment>> enchantEntry = enchantments.entrySet().iterator().next();
+				return enchantEntry.getKey().value().description();
 			}
 		} else if (itemStack.is(Items.POTION)) {
 			// special handling for potions
@@ -81,7 +80,7 @@ public class UnlockedRecipeToast implements Toast {
 	}
 	
 	@Override
-	public Toast.Visibility render(GuiGraphics drawContext, @NotNull ToastComponent manager, long startTime) {
+	public Toast.@NotNull Visibility render(GuiGraphics drawContext, @NotNull ToastComponent manager, long startTime) {
 		drawContext.blit(TEXTURE, 0, 0, 0, 32, this.width(), this.height());
 		
 		Minecraft client = manager.getMinecraft();

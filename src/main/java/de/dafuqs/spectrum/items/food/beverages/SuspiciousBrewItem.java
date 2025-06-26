@@ -11,8 +11,6 @@ import java.util.*;
 
 public class SuspiciousBrewItem extends BeverageItem {
 	
-	//TODO should this use the SuspiciousStewContents component instead?
-	
 	public SuspiciousBrewItem(Properties settings) {
 		super(settings.component(DataComponents.POTION_CONTENTS, PotionContents.EMPTY));
 	}

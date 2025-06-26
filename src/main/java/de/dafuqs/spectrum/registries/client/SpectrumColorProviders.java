@@ -47,7 +47,6 @@ public class SpectrumColorProviders {
 		registerBrewColors(SpectrumItems.INFUSED_BEVERAGE);
 		
 		registerOptionalInkColor(SpectrumItems.PAINTBRUSH);
-		//registerOptionalInkColor(SpectrumBlocks.CRYSTALLARIEUM.asItem()); // TODO: update item model to use tint layer
 	}
 	
 	private static void registerColoredLeaves() {

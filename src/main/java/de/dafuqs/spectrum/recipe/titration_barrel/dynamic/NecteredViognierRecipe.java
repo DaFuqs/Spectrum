@@ -49,7 +49,6 @@ public class NecteredViognierRecipe extends SweetenableTitrationBarrelRecipe {
 	protected @NotNull List<MobEffectInstance> getEffects(boolean nectar, double bloominess, double alcPercent) {
 		List<MobEffectInstance> effects = new ArrayList<>();
 		
-		//TODO should this be a float, and only casted to int at the end?
 		int effectDuration = (int) (150 * Math.round(alcPercent / 10));
 		if (alcPercent >= 35) {
 			effects.add(new MobEffectInstance(SpectrumStatusEffects.MAGIC_ANNULATION, effectDuration, (int) (alcPercent / 10)));

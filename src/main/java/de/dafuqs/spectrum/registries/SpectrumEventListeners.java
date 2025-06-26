@@ -211,14 +211,6 @@ public class SpectrumEventListeners {
 			}
 		});
 		
-		// CCA 1.21 supports mob conversion by default, but for now we have to persist this component ourselves
-		// TODO do we need this now?
-		ServerLivingEntityEvents.MOB_CONVERSION.register((previous, converted, keepEquipment) -> {
-			/*if (EverpromiseRibbonComponent.hasRibbon(previous)) {
-				EverpromiseRibbonComponent.attachRibbon(converted);
-			}*/
-		});
-		
 		ServerEntityEvents.EQUIPMENT_CHANGE.register((livingEntity, equipmentSlot, previousStack, currentStack) -> {
 			var oldInexorable = SpectrumEnchantmentHelper.getLevel(livingEntity.level().registryAccess(), SpectrumEnchantments.INEXORABLE, previousStack);
 			var newInexorable = SpectrumEnchantmentHelper.getLevel(livingEntity.level().registryAccess(), SpectrumEnchantments.INEXORABLE, currentStack);
@@ -273,7 +265,7 @@ public class SpectrumEventListeners {
 		CrossbowShootingCallback.register((world, shooter, crossbow, projectile) -> {
 			int snipingLevel = SpectrumEnchantmentHelper.getLevel(world.registryAccess(), SpectrumEnchantments.SNIPING, crossbow);
 			if (snipingLevel > 0) {
-				projectile.setDeltaMovement(projectile.getDeltaMovement().scale(1.25F * snipingLevel)); // TODO: is this a sensible value?
+				projectile.setDeltaMovement(projectile.getDeltaMovement().scale(1.25F * snipingLevel));
 			}
 			
 			if (crossbow.getItem() instanceof GlassCrestCrossbowItem && GlassCrestCrossbowItem.isOvercharged(crossbow)) {

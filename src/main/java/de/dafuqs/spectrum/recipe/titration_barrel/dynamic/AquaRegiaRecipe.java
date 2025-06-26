@@ -48,7 +48,6 @@ public class AquaRegiaRecipe extends SweetenableTitrationBarrelRecipe {
 	protected @NotNull List<MobEffectInstance> getEffects(boolean nectar, double bloominess, double alcPercent) {
 		List<MobEffectInstance> effects = new ArrayList<>();
 		
-		//TODO should this be a float, and only casted to int at the end?
 		int effectDuration = 1800;
 		if (alcPercent >= 40) {
 			effectDuration *= 2;

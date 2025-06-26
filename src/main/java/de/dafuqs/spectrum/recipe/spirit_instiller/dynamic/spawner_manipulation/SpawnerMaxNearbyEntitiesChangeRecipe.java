@@ -40,7 +40,7 @@ public class SpawnerMaxNearbyEntitiesChangeRecipe extends SpawnerChangeRecipe {
 	
 	
 	@Override
-	public CompoundTag getSpawnerResultNbt(CompoundTag spawnerBlockEntityNbt, ItemStack firstBowlStack, ItemStack secondBowlStack) {
+	public CompoundTag getSpawnerResultNbt(CompoundTag nbt, ItemStack firstBowlStack, ItemStack secondBowlStack) {
 		// Default spawner tag:
 		/* BlockEntityTag: {
 			MaxNearbyEntities: 6s,
@@ -55,12 +55,12 @@ public class SpawnerMaxNearbyEntitiesChangeRecipe extends SpawnerChangeRecipe {
 		 */
 		
 		short maxNearbyEntities = DEFAULT_MAX_ENTITIES;
-		if (spawnerBlockEntityNbt.contains("MaxNearbyEntities", Tag.TAG_SHORT)) {
-			maxNearbyEntities = spawnerBlockEntityNbt.getShort("MaxNearbyEntities");
+		if (nbt.contains("MaxNearbyEntities", Tag.TAG_SHORT)) {
+			maxNearbyEntities = nbt.getShort("MaxNearbyEntities");
 		}
-		spawnerBlockEntityNbt.putShort("MaxNearbyEntities", (short) Math.min(MAX_MAX_ENTITIES, maxNearbyEntities + 1));
+		nbt.putShort("MaxNearbyEntities", (short) Math.min(MAX_MAX_ENTITIES, maxNearbyEntities + 1));
 		
-		return spawnerBlockEntityNbt;
+		return nbt;
 	}
 	
 }

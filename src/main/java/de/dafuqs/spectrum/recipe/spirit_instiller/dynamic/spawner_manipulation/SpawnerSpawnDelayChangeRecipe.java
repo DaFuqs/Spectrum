@@ -43,7 +43,7 @@ public class SpawnerSpawnDelayChangeRecipe extends SpawnerChangeRecipe {
 	}
 	
 	@Override
-	public CompoundTag getSpawnerResultNbt(CompoundTag spawnerBlockEntityNbt, ItemStack firstBowlStack, ItemStack secondBowlStack) {
+	public CompoundTag getSpawnerResultNbt(CompoundTag nbt, ItemStack firstBowlStack, ItemStack secondBowlStack) {
 		// Default spawner tag:
 		/* BlockEntityTag: {
 			MaxNearbyEntities: 6s,
@@ -59,12 +59,12 @@ public class SpawnerSpawnDelayChangeRecipe extends SpawnerChangeRecipe {
 		
 		// 800 => 700 => 614 => 540 => 476 => 421 => 373 => 331 => ... => MIN_DELAY
 		short minSpawnDelay = DEFAULT_MIN_DELAY;
-		if (spawnerBlockEntityNbt.contains("MinSpawnDelay", Tag.TAG_SHORT)) {
-			minSpawnDelay = spawnerBlockEntityNbt.getShort("MinSpawnDelay");
+		if (nbt.contains("MinSpawnDelay", Tag.TAG_SHORT)) {
+			minSpawnDelay = nbt.getShort("MinSpawnDelay");
 		}
 		short maxSpawnDelay = DEFAULT_MAX_DELAY;
-		if (spawnerBlockEntityNbt.contains("MaxSpawnDelay", Tag.TAG_SHORT)) {
-			maxSpawnDelay = spawnerBlockEntityNbt.getShort("MaxSpawnDelay");
+		if (nbt.contains("MaxSpawnDelay", Tag.TAG_SHORT)) {
+			maxSpawnDelay = nbt.getShort("MaxSpawnDelay");
 		}
 		
 		short newMinSpawnDelay = (short) Math.pow(minSpawnDelay, EXPONENT);
@@ -77,10 +77,10 @@ public class SpawnerSpawnDelayChangeRecipe extends SpawnerChangeRecipe {
 			newMaxSpawnDelay = (short) (maxSpawnDelay - 1);
 		}
 		
-		spawnerBlockEntityNbt.putShort("MinSpawnDelay", (short) Math.max(MIN_MIN_DELAY, newMinSpawnDelay));
-		spawnerBlockEntityNbt.putShort("MaxSpawnDelay", (short) Math.max(MIN_MAX_DELAY, newMaxSpawnDelay));
+		nbt.putShort("MinSpawnDelay", (short) Math.max(MIN_MIN_DELAY, newMinSpawnDelay));
+		nbt.putShort("MaxSpawnDelay", (short) Math.max(MIN_MAX_DELAY, newMaxSpawnDelay));
 		
-		return spawnerBlockEntityNbt;
+		return nbt;
 	}
 	
 }

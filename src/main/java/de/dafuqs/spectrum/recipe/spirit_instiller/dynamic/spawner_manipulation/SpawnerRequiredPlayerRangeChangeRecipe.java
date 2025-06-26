@@ -39,7 +39,7 @@ public class SpawnerRequiredPlayerRangeChangeRecipe extends SpawnerChangeRecipe 
 	}
 	
 	@Override
-	public CompoundTag getSpawnerResultNbt(CompoundTag spawnerBlockEntityNbt, ItemStack firstBowlStack, ItemStack secondBowlStack) {
+	public CompoundTag getSpawnerResultNbt(CompoundTag nbt, ItemStack firstBowlStack, ItemStack secondBowlStack) {
 		// Default spawner tag:
 		/* BlockEntityTag: {
 			MaxNearbyEntities: 6s,
@@ -54,8 +54,8 @@ public class SpawnerRequiredPlayerRangeChangeRecipe extends SpawnerChangeRecipe 
 		 */
 		
 		short requiredPlayerRange = DEFAULT_DETECTION_RANGE;
-		if (spawnerBlockEntityNbt.contains("RequiredPlayerRange", Tag.TAG_SHORT)) {
-			requiredPlayerRange = spawnerBlockEntityNbt.getShort("RequiredPlayerRange");
+		if (nbt.contains("RequiredPlayerRange", Tag.TAG_SHORT)) {
+			requiredPlayerRange = nbt.getShort("RequiredPlayerRange");
 		}
 		
 		short newRequiredPlayerRange = (short) Math.pow(requiredPlayerRange, 1.02);
@@ -63,9 +63,9 @@ public class SpawnerRequiredPlayerRangeChangeRecipe extends SpawnerChangeRecipe 
 			newRequiredPlayerRange = (short) (requiredPlayerRange + 1);
 		}
 		
-		spawnerBlockEntityNbt.putShort("RequiredPlayerRange", (short) Math.min(MAX_DETECTION_RANGE, newRequiredPlayerRange));
+		nbt.putShort("RequiredPlayerRange", (short) Math.min(MAX_DETECTION_RANGE, newRequiredPlayerRange));
 		
-		return spawnerBlockEntityNbt;
+		return nbt;
 	}
 	
 }

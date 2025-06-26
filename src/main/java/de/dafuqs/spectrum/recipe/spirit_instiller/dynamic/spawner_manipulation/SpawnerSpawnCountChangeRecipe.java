@@ -38,7 +38,7 @@ public class SpawnerSpawnCountChangeRecipe extends SpawnerChangeRecipe {
 	}
 	
 	@Override
-	public CompoundTag getSpawnerResultNbt(CompoundTag spawnerBlockEntityNbt, ItemStack firstBowlStack, ItemStack secondBowlStack) {
+	public CompoundTag getSpawnerResultNbt(CompoundTag nbt, ItemStack firstBowlStack, ItemStack secondBowlStack) {
 		// Default spawner tag:
 		/* BlockEntityTag: {
 			MaxNearbyEntities: 6s,
@@ -53,12 +53,12 @@ public class SpawnerSpawnCountChangeRecipe extends SpawnerChangeRecipe {
 		 */
 		
 		short spawnCount = DEFAULT_SPAWN_COUNT;
-		if (spawnerBlockEntityNbt.contains("SpawnCount", Tag.TAG_SHORT)) {
-			spawnCount = spawnerBlockEntityNbt.getShort("SpawnCount");
+		if (nbt.contains("SpawnCount", Tag.TAG_SHORT)) {
+			spawnCount = nbt.getShort("SpawnCount");
 		}
-		spawnerBlockEntityNbt.putShort("SpawnCount", (short) Math.min(MAX_SPAWN_COUNT, spawnCount + 1));
+		nbt.putShort("SpawnCount", (short) Math.min(MAX_SPAWN_COUNT, spawnCount + 1));
 		
-		return spawnerBlockEntityNbt;
+		return nbt;
 	}
 	
 }

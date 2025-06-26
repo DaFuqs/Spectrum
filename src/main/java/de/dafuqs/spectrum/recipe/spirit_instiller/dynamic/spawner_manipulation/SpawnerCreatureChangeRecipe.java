@@ -59,12 +59,12 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 	}
 	
 	@Override
-	public CompoundTag getSpawnerResultNbt(CompoundTag spawnerBlockEntityNbt, ItemStack firstBowlStack, ItemStack secondBowlStack) {
+	public CompoundTag getSpawnerResultNbt(CompoundTag nbt, ItemStack firstBowlStack, ItemStack secondBowlStack) {
 		Optional<EntityType<?>> entityType = SpectrumSkullBlock.getEntityTypeOfSkullStack(firstBowlStack);
 		entityType = entityType.isEmpty() ? SpectrumSkullBlock.getEntityTypeOfSkullStack(secondBowlStack) : entityType;
 		
 		if (entityType.isEmpty()) {
-			return spawnerBlockEntityNbt;
+			return nbt;
 		}
 		
 		ResourceLocation entityTypeIdentifier = BuiltInRegistries.ENTITY_TYPE.getKey(entityType.get());
@@ -86,13 +86,13 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 		idCompound.putString("id", entityTypeIdentifier.toString());
 		CompoundTag entityCompound = new CompoundTag();
 		entityCompound.put("entity", idCompound);
-		spawnerBlockEntityNbt.put("SpawnData", entityCompound);
+		nbt.put("SpawnData", entityCompound);
 		
-		if (spawnerBlockEntityNbt.contains("SpawnPotentials")) {
-			spawnerBlockEntityNbt.remove("SpawnPotentials");
+		if (nbt.contains("SpawnPotentials")) {
+			nbt.remove("SpawnPotentials");
 		}
 		
-		return spawnerBlockEntityNbt;
+		return nbt;
 	}
 	
 }

@@ -12,9 +12,9 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 public class ClientPlayNetworkHandlerMixin {
 	
 	@Inject(method = "handleUpdateMobEffect", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;forceAddEffect(Lnet/minecraft/world/effect/MobEffectInstance;Lnet/minecraft/world/entity/Entity;)V"))
-	public void readAndApplyIncurableFlag(ClientboundUpdateMobEffectPacket packet, CallbackInfo ci, @Local MobEffectInstance effect) {
-		if (packet.spectrum$isIncurable())
-			effect.spectrum$setIncurable(true);
+	public void readAndApplySevereFlag(ClientboundUpdateMobEffectPacket packet, CallbackInfo ci, @Local MobEffectInstance effect) {
+		if (packet.spectrum$isSevere())
+			effect.spectrum$setSevere(true);
 	}
 	
 }

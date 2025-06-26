@@ -77,7 +77,7 @@ public record PotionMod(
 			boolean potentDecreasingEffect,
 			boolean negateDecreasingDuration,
 			boolean randomColor,
-			boolean incurable,
+			boolean severe,
 			List<Tuple<PotionRecipeEffect, Float>> additionalEffects
 	) {
 		private static final Codec<Tuple<PotionRecipeEffect, Float>> ENTRY_CODEC = RecordCodecBuilder.create(i -> i.group(
@@ -99,7 +99,7 @@ public record PotionMod(
 				Codec.BOOL.optionalFieldOf("potent_decreasing_effect", false).forGetter(PotionFlags::potentDecreasingEffect),
 				Codec.BOOL.optionalFieldOf("negate_decreasing_duration", false).forGetter(PotionFlags::negateDecreasingDuration),
 				Codec.BOOL.optionalFieldOf("random_color", false).forGetter(PotionFlags::randomColor),
-				Codec.BOOL.optionalFieldOf("incurable", false).forGetter(PotionFlags::incurable),
+				Codec.BOOL.optionalFieldOf("severe", false).forGetter(PotionFlags::severe),
 				ENTRY_CODEC.listOf().optionalFieldOf("additional_effects", List.of()).forGetter(PotionFlags::additionalEffects)
 		).apply(i, PotionFlags::new));
 		
@@ -112,7 +112,7 @@ public record PotionMod(
 				ByteBufCodecs.BOOL, PotionFlags::potentDecreasingEffect,
 				ByteBufCodecs.BOOL, PotionFlags::negateDecreasingDuration,
 				ByteBufCodecs.BOOL, PotionFlags::randomColor,
-				ByteBufCodecs.BOOL, PotionFlags::incurable,
+				ByteBufCodecs.BOOL, PotionFlags::severe,
 				ENTRY_PACKET_CODEC.apply(ByteBufCodecs.list()), PotionFlags::additionalEffects,
 				PotionFlags::new
 		);
@@ -176,7 +176,7 @@ public record PotionMod(
 					this.flags.potentDecreasingEffect | potionMod.flags.potentDecreasingEffect,
 					this.flags.negateDecreasingDuration | potionMod.flags.negateDecreasingDuration,
 					this.flags.randomColor | potionMod.flags.randomColor,
-					this.flags.incurable | potionMod.flags.incurable,
+					this.flags.severe | potionMod.flags.severe,
 					Stream.concat(this.flags.additionalEffects.stream(), potionMod.flags.additionalEffects.stream()).toList()
 			);
 			return this;

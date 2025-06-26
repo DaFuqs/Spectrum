@@ -20,7 +20,7 @@ public abstract class StatusEffectInstanceMixin implements StatusEffectInstanceI
 	@Shadow
 	public int amplifier;
 	@Unique
-	private boolean incurable;
+	private boolean severe;
 	
 	@ModifyExpressionValue(method = "<clinit>", at = @At(value = "INVOKE", target = "Lcom/mojang/serialization/codecs/RecordCodecBuilder;create(Ljava/util/function/Function;)Lcom/mojang/serialization/Codec;", remap = false))
 	private static Codec<MobEffectInstance> wrapCodec(Codec<MobEffectInstance> original) {
@@ -28,34 +28,34 @@ public abstract class StatusEffectInstanceMixin implements StatusEffectInstanceI
 			@Override
 			public <T> DataResult<Pair<MobEffectInstance, T>> apply(DynamicOps<T> ops, T input, DataResult<Pair<MobEffectInstance, T>> result) {
 				return result.map(pair -> {
-					ops.get(input, "incurable").flatMap(ops::getBooleanValue).ifSuccess(v -> pair.getFirst().spectrum$setIncurable(v));
+					ops.get(input, "severe").flatMap(ops::getBooleanValue).ifSuccess(v -> pair.getFirst().spectrum$setSevere(v));
 					return pair;
 				});
 			}
 			
 			@Override
 			public <T> DataResult<T> coApply(DynamicOps<T> ops, MobEffectInstance inst, DataResult<T> result) {
-				return result.map(output -> ops.set(output, "incurable", ops.createBoolean(inst.spectrum$isIncurable())));
+				return result.map(output -> ops.set(output, "severe", ops.createBoolean(inst.spectrum$isSevere())));
 			}
 		});
 	}
 	
 	@Inject(method = "update", at = @At("RETURN"))
-	private void readIncurable(MobEffectInstance that, CallbackInfoReturnable<Boolean> cir, @Local(ordinal = 0) LocalBooleanRef changed) {
-		if (incurable != that.spectrum$isIncurable()) {
-			spectrum$setIncurable(that.spectrum$isIncurable());
+	private void readSevere(MobEffectInstance that, CallbackInfoReturnable<Boolean> cir, @Local(ordinal = 0) LocalBooleanRef changed) {
+		if (severe != that.spectrum$isSevere()) {
+			spectrum$setSevere(that.spectrum$isSevere());
 			changed.set(true);
 		}
 	}
 	
 	@Override
-	public boolean spectrum$isIncurable() {
-		return incurable;
+	public boolean spectrum$isSevere() {
+		return severe;
 	}
 	
 	@Override
-	public void spectrum$setIncurable(boolean incurable) {
-		this.incurable = incurable;
+	public void spectrum$setSevere(boolean severe) {
+		this.severe = severe;
 	}
 	
 	@Override
@@ -70,8 +70,8 @@ public abstract class StatusEffectInstanceMixin implements StatusEffectInstanceI
 	
 	@ModifyReturnValue(method = "describeDuration", at = @At("RETURN"))
 	private String describeDuration(String original) {
-		if (this.incurable) {
-			original = original + I18n.get("item.spectrum.potion.tooltip.incurable");
+		if (this.severe) {
+			original = original + I18n.get("item.spectrum.potion.tooltip.severe");
 		}
 		return original;
 	}

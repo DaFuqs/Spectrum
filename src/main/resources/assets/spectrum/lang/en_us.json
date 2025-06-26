@@ -4856,7 +4856,7 @@
   "item.spectrum.potion.slower_to_drink": "Slower to drink",
   "item.spectrum.potion.tooltip.unidentifiable": "§0Blackened beyond recognition",
   "item.spectrum.potion.tooltip.invalid": "§5[?]",
-  "item.spectrum.potion.tooltip.incurable": "§5[Hard to cure]",
+  "item.spectrum.potion.tooltip.severe": "§5[Hard to cure]",
   "item.spectrum.potion_pendant.tooltip_max_level": "§7Supports Effects up to level ",
   "item.spectrum.potion_pendant.tooltip_not_full_count": "§7Fill with up to §f%d§7 Effects in the §fPotion Workshop",
   "item.spectrum.potion_pendant.tooltip_not_full_one": "§7Fill with an Effect in the §fPotion Workshop",
@@ -5264,7 +5264,7 @@
   "spectrum.rei.potion_workshop_reacting.spectrum.stratine_fragments": "• +1 potency\n• +1 negative effect\n• -1 yield",
   "spectrum.rei.potion_workshop_reacting.spectrum.topaz_powder": "• makes effects not show any particles",
   "spectrum.rei.potion_workshop_reacting.spectrum.vegetal": "• +200%% duration\n• -25%% potency",
-  "spectrum.rei.potion_workshop_reacting.spectrum.bitter_oils": "• -4 yield\n• makes effects (near) incurable",
+  "spectrum.rei.potion_workshop_reacting.spectrum.bitter_oils": "• -4 yield\n• makes effects hard to cure",
   "spectrum.rei.potion_workshop_reacting.spectrum.blackest_lotus": "• +3 positive effects\n• +1 negative effect\n• makes the potion unidentifiable.\n\nFancy a gamble?",
   "spectrum.rei.potion_workshop_reacting.spectrum.least_black_lotus": "• +1 positive effect\n• +3 negative effects\n• makes the potion unidentifiable.\n\nFancy a gamble?",
 

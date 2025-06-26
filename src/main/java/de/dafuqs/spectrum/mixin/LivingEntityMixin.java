@@ -223,7 +223,7 @@ public abstract class LivingEntityMixin {
 		var instance = (LivingEntity) (Object) this;
 		
 		if (original && this.hasEffect(SpectrumStatusEffects.IMMUNITY) && statusEffectInstance.getEffect().value().getCategory() == MobEffectCategory.HARMFUL) {
-			if (StatusEffectHelper.isIncurable(statusEffectInstance)) {
+			if (StatusEffectHelper.isSevere(statusEffectInstance)) {
 				var immunity = getEffect(SpectrumStatusEffects.IMMUNITY);
 				var cost = 600 * (statusEffectInstance.getAmplifier() + 1);
 				
@@ -504,7 +504,7 @@ public abstract class LivingEntityMixin {
 		if ((!entity.hasEffect(SpectrumStatusEffects.IMMUNITY)) && AetherGracedNectarGlovesItem.testEffectFor(entity, effectType)) {
 			var cost = (effect.getAmplifier() + 1) * AetherGracedNectarGlovesItem.HARMFUL_EFFECT_COST;
 			
-			if (StatusEffectHelper.isIncurable(effect))
+			if (StatusEffectHelper.isSevere(effect))
 				cost *= 3;
 			
 			if (AetherGracedNectarGlovesItem.tryBlockEffect(entity, cost)) {

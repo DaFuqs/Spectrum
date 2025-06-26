@@ -18,11 +18,11 @@ import java.util.*;
 public class EffectCommandMixin {
 	
 	@Inject(method = "clearEffects", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;removeAllEffects()Z"))
-	private static void clearIncurableEffects(CommandSourceStack source, Collection<? extends Entity> targets, CallbackInfoReturnable<Integer> cir, @Local Entity target) {
+	private static void clearSevereEffects(CommandSourceStack source, Collection<? extends Entity> targets, CallbackInfoReturnable<Integer> cir, @Local Entity target) {
         if (target instanceof LivingEntity living) {
 			for (MobEffectInstance effect : living.getActiveEffects()) {
-                if (effect.spectrum$isIncurable())
-                    effect.spectrum$setIncurable(false);
+				if (effect.spectrum$isSevere())
+					effect.spectrum$setSevere(false);
             }
 			// manually remove fatal slumber to bypass turning it into eternal slumber
 			living.removeEffect(SpectrumStatusEffects.FATAL_SLUMBER);
@@ -30,12 +30,12 @@ public class EffectCommandMixin {
     }
 	
 	@Inject(method = "clearEffect", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;removeEffect(Lnet/minecraft/core/Holder;)Z"))
-	private static void clearIncurableEffects(CommandSourceStack source, Collection<? extends Entity> targets, Holder<MobEffect> statusEffect, CallbackInfoReturnable<Integer> cir, @Local Entity target, @Local MobEffect ref) {
+	private static void clearSevereEffects(CommandSourceStack source, Collection<? extends Entity> targets, Holder<MobEffect> statusEffect, CallbackInfoReturnable<Integer> cir, @Local Entity target, @Local MobEffect ref) {
         if (target instanceof LivingEntity living) {
 			var effect = living.getEffect(living.level().registryAccess().registryOrThrow(Registries.MOB_EFFECT).wrapAsHolder(ref));
             if (effect != null) {
-                if (effect.spectrum$isIncurable())
-                    effect.spectrum$setIncurable(false);
+				if (effect.spectrum$isSevere())
+					effect.spectrum$setSevere(false);
             }
         }
     }

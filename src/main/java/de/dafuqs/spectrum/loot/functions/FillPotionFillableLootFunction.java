@@ -15,6 +15,7 @@ import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.functions.*;
 import net.minecraft.world.level.storage.loot.predicates.*;
 import net.minecraft.world.level.storage.loot.providers.number.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -27,7 +28,7 @@ public class FillPotionFillableLootFunction extends LootItemConditionalFunction 
 	public record InkPoweredPotionTemplate(
 			boolean ambient, boolean showParticles, NumberProvider duration,
 			List<Holder<MobEffect>> statusEffects, int color, NumberProvider amplifier,
-			List<InkColor> inkColors, NumberProvider inkCost, boolean unidentifiable, boolean incurable
+			List<InkColor> inkColors, NumberProvider inkCost, boolean unidentifiable
 	) {
 		
 		public static final MapCodec<InkPoweredPotionTemplate> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
@@ -39,8 +40,7 @@ public class FillPotionFillableLootFunction extends LootItemConditionalFunction 
 				NumberProviders.CODEC.fieldOf("amplifier").forGetter(InkPoweredPotionTemplate::amplifier),
 				CodecHelper.singleOrList(InkColor.CODEC).fieldOf("ink_color").forGetter(InkPoweredPotionTemplate::inkColors),
 				NumberProviders.CODEC.fieldOf("ink_cost").forGetter(InkPoweredPotionTemplate::inkCost),
-				Codec.BOOL.optionalFieldOf("unidentifiable", false).forGetter(InkPoweredPotionTemplate::unidentifiable),
-				Codec.BOOL.optionalFieldOf("incurable", false).forGetter(InkPoweredPotionTemplate::incurable)
+				Codec.BOOL.optionalFieldOf("unidentifiable", false).forGetter(InkPoweredPotionTemplate::unidentifiable)
 		).apply(i, InkPoweredPotionTemplate::new));
 		
 		public InkPoweredStatusEffectInstance get(LootContext context) {
@@ -48,7 +48,7 @@ public class FillPotionFillableLootFunction extends LootItemConditionalFunction 
 			MobEffectInstance statusEffectInstance = new MobEffectInstance(statusEffect, this.duration.getInt(context), this.amplifier.getInt(context), ambient, showParticles, true);
 			InkColor inkColor = this.inkColors.get(context.getRandom().nextInt(this.inkColors.size()));
 			int cost = this.inkCost.getInt(context);
-			return new InkPoweredStatusEffectInstance(statusEffectInstance, new InkCost(inkColor, cost), this.color, this.unidentifiable, this.incurable);
+			return new InkPoweredStatusEffectInstance(statusEffectInstance, new InkCost(inkColor, cost), this.color, this.unidentifiable);
 		}
 		
 	}
@@ -61,12 +61,12 @@ public class FillPotionFillableLootFunction extends LootItemConditionalFunction 
 	}
 	
 	@Override
-	public LootItemFunctionType<? extends LootItemConditionalFunction> getType() {
+	public @NotNull LootItemFunctionType<? extends LootItemConditionalFunction> getType() {
 		return SpectrumLootFunctionTypes.FILL_POTION_FILLABLE;
 	}
 	
 	@Override
-	public ItemStack run(ItemStack stack, LootContext context) {
+	public @NotNull ItemStack run(@NotNull ItemStack stack, @NotNull LootContext context) {
 		if (this.template == null)
 			return stack;
 

@@ -13,25 +13,25 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 public abstract class EntityStatusEffectsS2CPacketMixin implements EntityStatusEffectS2CPacketInjector {
 	
 	@Unique
-	private boolean incurable;
+	private boolean severe;
 	
 	@Inject(method = "<init>(ILnet/minecraft/world/effect/MobEffectInstance;Z)V", at = @At("RETURN"))
-	public void initIncurable(int entityId, MobEffectInstance effect, boolean keepFading, CallbackInfo ci) {
-		this.incurable = StatusEffectHelper.isIncurable(effect);
+	public void initSevere(int entityId, MobEffectInstance effect, boolean keepFading, CallbackInfo ci) {
+		this.severe = StatusEffectHelper.isSevere(effect);
 	}
 	
 	@Inject(method = "<init>(Lnet/minecraft/network/RegistryFriendlyByteBuf;)V", at = @At("RETURN"))
-	public void initIncurable(RegistryFriendlyByteBuf buf, CallbackInfo ci) {
-		this.incurable = buf.readBoolean();
+	public void initSevere(RegistryFriendlyByteBuf buf, CallbackInfo ci) {
+		this.severe = buf.readBoolean();
 	}
 	
 	@Inject(method = "write", at = @At("RETURN"))
-	public void writeIncurable(RegistryFriendlyByteBuf buf, CallbackInfo ci) {
-		buf.writeBoolean(incurable);
+	public void writeSevere(RegistryFriendlyByteBuf buf, CallbackInfo ci) {
+		buf.writeBoolean(severe);
 	}
 	
 	@Override
-	public boolean spectrum$isIncurable() {
-		return incurable;
+	public boolean spectrum$isSevere() {
+		return severe;
 	}
 }

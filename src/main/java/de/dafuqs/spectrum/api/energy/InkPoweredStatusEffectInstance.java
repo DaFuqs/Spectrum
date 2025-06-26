@@ -25,8 +25,7 @@ public class InkPoweredStatusEffectInstance {
 			MobEffectInstance.CODEC.fieldOf("effect").forGetter(c -> c.statusEffectInstance),
 			InkCost.CODEC.fieldOf("ink_cost").forGetter(c -> c.cost),
 			Codec.INT.optionalFieldOf("custom_color", -1).forGetter(c -> c.customColor),
-			Codec.BOOL.optionalFieldOf("unidentifiable", false).forGetter(c -> c.unidentifiable),
-			Codec.BOOL.optionalFieldOf("incurable", false).forGetter(c -> c.incurable)
+			Codec.BOOL.optionalFieldOf("unidentifiable", false).forGetter(c -> c.unidentifiable)
 	).apply(i, InkPoweredStatusEffectInstance::new));
 	
 	public static final StreamCodec<RegistryFriendlyByteBuf, InkPoweredStatusEffectInstance> PACKET_CODEC = StreamCodec.composite(
@@ -34,7 +33,6 @@ public class InkPoweredStatusEffectInstance {
 			InkCost.PACKET_CODEC, c -> c.cost,
 			ByteBufCodecs.VAR_INT, c -> c.customColor,
 			ByteBufCodecs.BOOL, c -> c.unidentifiable,
-			ByteBufCodecs.BOOL, c -> c.incurable,
 			InkPoweredStatusEffectInstance::new
 	);
 	
@@ -42,16 +40,12 @@ public class InkPoweredStatusEffectInstance {
 	private final InkCost cost;
 	private final int customColor; // -1: use effect default
 	private final boolean unidentifiable;
-	//TODO why can't this use StatusEffectInstance's mixed-in incurable?
-	private final boolean incurable;
 	
-	public InkPoweredStatusEffectInstance(MobEffectInstance statusEffectInstance, InkCost cost, int customColor, boolean unidentifiable, boolean incurable) {
+	public InkPoweredStatusEffectInstance(MobEffectInstance statusEffectInstance, InkCost cost, int customColor, boolean unidentifiable) {
 		this.statusEffectInstance = statusEffectInstance;
 		this.cost = cost;
 		this.customColor = customColor;
 		this.unidentifiable = unidentifiable;
-		this.incurable = incurable;
-		if (incurable) statusEffectInstance.spectrum$setIncurable(true);
 	}
 	
 	public MobEffectInstance getStatusEffectInstance() {
@@ -95,8 +89,8 @@ public class InkPoweredStatusEffectInstance {
 				}
 				mutableText.withStyle(effect.getEffect().value().getCategory().getTooltipFormatting());
 				mutableText.append(Component.translatable("spectrum.tooltip.ink_cost", Support.getShortenedNumberString(cost.cost()), cost.color().getColoredInkName()).withStyle(ChatFormatting.GRAY));
-				if (entry.isIncurable()) {
-					mutableText.append(Component.translatable("item.spectrum.potion.tooltip.incurable"));
+				if (entry.statusEffectInstance.spectrum$isSevere()) {
+					mutableText.append(Component.translatable("item.spectrum.potion.tooltip.severe"));
 				}
 				tooltip.add(mutableText);
 				
@@ -141,9 +135,5 @@ public class InkPoweredStatusEffectInstance {
 	
 	public boolean isUnidentifiable() {
 		return this.unidentifiable;
-	}
-	
-	public boolean isIncurable() {
-		return this.incurable;
 	}
 }

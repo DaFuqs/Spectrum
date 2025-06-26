@@ -43,7 +43,7 @@ public abstract class LivingEntityPreventStatusClearMixin {
 	
 	@WrapWithCondition(method = "removeAllEffects", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;onEffectRemoved(Lnet/minecraft/world/effect/MobEffectInstance;)V"))
 	private boolean spectrum$preventStatusClear(LivingEntity instance, MobEffectInstance effect, @Share("blockRemoval") LocalBooleanRef blockRemoval) {
-		if (StatusEffectHelper.isIncurable(effect)) {
+		if (StatusEffectHelper.isSevere(effect)) {
 			if (affectedByImmunity(instance, effect.getAmplifier()))
 				return true;
 			
@@ -72,7 +72,7 @@ public abstract class LivingEntityPreventStatusClearMixin {
 		if (effect == null)
 			return original.call(instance, effectRegistryEntry);
 		
-		cancel = StatusEffectHelper.isIncurable(effect);
+		cancel = StatusEffectHelper.isSevere(effect);
 		
 		if (cancel) {
 			cancel = !affectedByImmunity(instance, effect.getAmplifier());

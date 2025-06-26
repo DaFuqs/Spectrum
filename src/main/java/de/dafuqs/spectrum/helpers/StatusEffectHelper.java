@@ -34,7 +34,7 @@ public class StatusEffectHelper {
 	}
 	
 	private static final StatusEffectBackground DIVINITY = new StatusEffectBackground("divinity");
-	private static final StatusEffectBackground INCURABLE = new StatusEffectBackground("incurable");
+	private static final StatusEffectBackground SEVERE = new StatusEffectBackground("severe");
 	private static final StatusEffectBackground NIGHT_ALCHEMY = new StatusEffectBackground("night_alchemy");
 	
 	public static ResourceLocation getTextureLocation(ResourceLocation original, MobEffectInstance effect, RenderType renderType) {
@@ -43,8 +43,8 @@ public class StatusEffectHelper {
 		if (type == SpectrumStatusEffects.DIVINITY)
 			return DIVINITY.get(renderType);
 		
-		if (isIncurable(effect) && type != SpectrumStatusEffects.ETERNAL_SLUMBER && type != SpectrumStatusEffects.FATAL_SLUMBER) {
-			return INCURABLE.get(renderType);
+		if (isSevere(effect) && type != SpectrumStatusEffects.ETERNAL_SLUMBER && type != SpectrumStatusEffects.FATAL_SLUMBER) {
+			return SEVERE.get(renderType);
 		}
 		
 		if (type.is(SpectrumStatusEffectTags.NIGHT_ALCHEMY))
@@ -53,13 +53,10 @@ public class StatusEffectHelper {
 		return original;
 	}
 	
-	//TODO this needs a better name. What even is this.
-	//Also why is that not a tag?
-	public static boolean isIncurable(MobEffectInstance instance) {
+	public static boolean isSevere(MobEffectInstance instance) {
 		var type = instance.getEffect();
-		if (type == SpectrumStatusEffects.ETERNAL_SLUMBER || type == SpectrumStatusEffects.FATAL_SLUMBER)
+		if (type.is(SpectrumStatusEffectTags.CANNOT_BE_SEVERE))
 			return false;
-		
-		return instance.spectrum$isIncurable();
+		return instance.spectrum$isSevere();
 	}
 }

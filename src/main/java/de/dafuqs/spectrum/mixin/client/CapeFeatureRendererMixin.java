@@ -33,7 +33,6 @@ public abstract class CapeFeatureRendererMixin extends RenderLayer<AbstractClien
 		ItemStack chestStack = VanitySlotsCompat.getEquippedStack(player, EquipmentSlot.CHEST);
 		if (chestStack.getItem() == SpectrumItems.BEDROCK_CHESTPLATE) {
 			BedrockCapeRenderer.renderBedrockCapeAndCloth(ms, vertices, light, player, h, chestStack);
-			// TODO - Cancel for now, as the new armor tailoring system is not implemented yet
 			ci.cancel();
 		}	
 	}

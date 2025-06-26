@@ -143,6 +143,8 @@
     "client.accessors.RenderLayerAccessor",
     "compat.colorful_hearts.absent.InGameHudMixin",
     "compat.colorful_hearts.present.HeartMixin",
+    "compat.connector.absent.InGameHudMixin",
+    "compat.connector.present.InGameHudMixin",
     "compat.sodium.present.ColorProviderRegistryMixin"
   ],
   "injectors": {

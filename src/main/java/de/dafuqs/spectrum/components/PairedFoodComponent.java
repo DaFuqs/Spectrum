@@ -16,7 +16,6 @@ import net.minecraft.world.level.*;
 
 public record PairedFoodComponent(Item item, boolean consumeAndApplyRequiredStack, FoodProperties bonusFoodComponent) {
 	
-	//TODO what is bonusFoodComponent used for?
 	public static final Codec<PairedFoodComponent> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 			BuiltInRegistries.ITEM.byNameCodec().fieldOf("item").forGetter(PairedFoodComponent::item),
 			Codec.BOOL.optionalFieldOf("consume_and_apply_required_stack", true).forGetter(PairedFoodComponent::consumeAndApplyRequiredStack),
@@ -47,8 +46,9 @@ public record PairedFoodComponent(Item item, boolean consumeAndApplyRequiredStac
 			return;
 		}
 		ItemStack foundRequiredStack = player.getInventory().getItem(requiredSlotStack);
+		ItemStack foundRequiredStackCopy = foundRequiredStack.copy();
+		player.eat(world, foundRequiredStackCopy, bonusFoodComponent);
 		
-		// should the required stack be consumed, too?
 		if (consumeAndApplyRequiredStack) {
 			FoodProperties component = foundRequiredStack.get(DataComponents.FOOD);
 			if (component != null) {

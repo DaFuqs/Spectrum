@@ -617,11 +617,11 @@ public abstract class LivingEntityMixin {
 		return sprinting;
 	}
 	
-	@Inject(method = "eat(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/ItemStack;", at = @At(value = "HEAD"))
-	private void spectrum$conditionalFood(Level world, ItemStack stack, CallbackInfoReturnable<ItemStack> cir) {
-		PairedFoodComponent component = stack.get(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT);
+	@Inject(method = "eat(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/food/FoodProperties;)Lnet/minecraft/world/item/ItemStack;", at = @At(value = "HEAD"))
+	private void spectrum$conditionalFood(Level level, ItemStack food, FoodProperties foodProperties, CallbackInfoReturnable<ItemStack> cir) {
+		PairedFoodComponent component = food.get(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT);
 		if (component != null) {
-			component.tryEatFood(world, (LivingEntity) (Object) this, stack);
+			component.tryEatFood(level, (LivingEntity) (Object) this, food);
 		}
 	}
 	

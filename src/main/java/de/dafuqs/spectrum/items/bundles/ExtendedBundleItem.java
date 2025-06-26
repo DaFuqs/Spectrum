@@ -15,8 +15,6 @@ import java.util.*;
 
 public class ExtendedBundleItem extends BundleItem {
 	
-	// TODO: Currently, this isn't displayed properly by the tooltip component. If we make one, we can probably replace PresentTooltipComponent and BottomlessBundleTooltipComponent with it
-	
 	public ExtendedBundleItem(Properties settings) {
 		super(settings.component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY));
 	}

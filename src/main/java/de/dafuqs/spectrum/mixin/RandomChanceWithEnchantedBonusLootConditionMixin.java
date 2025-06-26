@@ -27,7 +27,6 @@ public abstract class RandomChanceWithEnchantedBonusLootConditionMixin {
 		// if the result was to not drop a drop before reroll
 		// gets more probable with each additional level of Clovers Favor
 		if (!original) {
-			// TODO: can we use localcapture here to avoid recalculating these values?
 			if (context.getParamOrNull(LootContextParams.ATTACKING_ENTITY) instanceof LivingEntity livingEntity) {
 				int level = EnchantmentHelper.getEnchantmentLevel(this.enchantment, livingEntity);
 				if (level > 0) {

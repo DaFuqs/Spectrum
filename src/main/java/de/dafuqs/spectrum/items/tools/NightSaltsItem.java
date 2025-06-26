@@ -36,7 +36,7 @@ public class NightSaltsItem extends Item implements SleepAlteringItem {
             component.setSleepTimers(20 * 10, 20 * 10, 0);
             component.setLastSleepItem(this);
 			
-			player.addEffect(new MobEffectInstance(SpectrumStatusEffects.CALMING, 20 * 20, 2)); // TODO: this should probs be moved to a food component, so the effect shows up as tooltip
+			player.addEffect(new MobEffectInstance(SpectrumStatusEffects.CALMING, 20 * 20, 2));
 			if (!player.getAbilities().instabuild)
 				stack.shrink(1);
         }

@@ -382,7 +382,6 @@ public abstract class LivingEntityMixin {
 	
 	@ModifyExpressionValue(method = "causeFallDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;calculateFallDamage(FF)I"))
 	private int spectrum$puffCircletDamageNegation(int original) {
-		// TODO: fixme
 		LivingEntity thisEntity = (LivingEntity) (Object) this;
 		float cost = Math.min(original, PuffCircletItem.FALL_DAMAGE_NEGATING_COST);
 		// check if damage reduction is applicable to this entity
@@ -502,7 +501,6 @@ public abstract class LivingEntityMixin {
 			SpectrumStatusEffects.effectsAreGettingStacked = false;
 		}
 		
-		// TODO: WHAT THE FUCK
 		if ((!entity.hasEffect(SpectrumStatusEffects.IMMUNITY)) && AetherGracedNectarGlovesItem.testEffectFor(entity, effectType)) {
 			var cost = (effect.getAmplifier() + 1) * AetherGracedNectarGlovesItem.HARMFUL_EFFECT_COST;
 			

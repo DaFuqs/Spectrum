@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.items.map;
 import com.mojang.datafixers.util.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
+import net.fabricmc.fabric.api.tag.convention.v2.*;
 import net.minecraft.client.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
@@ -323,7 +324,7 @@ public class ArtisansAtlasItem extends MapItem {
 				Pair<ResourceLocation, StructureStart> pair = ArtisansAtlasState.locateAnyStructureAtBlock(serverWorld, blockPos);
 				if (pair != null) {
 					ResourceLocation structureId = pair.getFirst();
-					if (SpectrumStructureTags.isIn(serverWorld, structureId, SpectrumStructureTags.UNLOCATABLE)) { // TODO: use c: tag
+					if (SpectrumStructureTags.isIn(serverWorld, structureId, ConventionalStructureTags.HIDDEN_FROM_LOCATOR_SELECTION)) {
 						serverPlayerEntity.displayClientMessage(Component.translatable("item.spectrum.artisans_atlas.unlocatable"), true);
 					} else {
 						serverPlayerEntity.displayClientMessage(Component.translatable("item.spectrum.artisans_atlas.set_structure").append(Component.translatable(structureId.toLanguageKey("structure"))), true);

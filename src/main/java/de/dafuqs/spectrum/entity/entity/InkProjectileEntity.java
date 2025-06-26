@@ -270,10 +270,6 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 						double ab = Explosion.getSeenPercent(vec3d, entity);
 						double velocity = (1.0D - w) * ab;
 						
-						// TODO: why is this commented out? Can projectiles still trigger the "kill creature with ink projectile" advancement?
-						//float damage = (float) ((int) ((ac * ac + ac) / 2.0D * (double) q + 1.0D));
-						//entity.damage(SpectrumDamageSources.inkProjectile(this, attacker), damage);
-						
 						if (entity instanceof LivingEntity livingEntity) {
 							int i = SpectrumEnchantmentHelper.getEquipmentLevel(level().registryAccess(), Enchantments.BLAST_PROTECTION, livingEntity);
 							if (i > 0) {

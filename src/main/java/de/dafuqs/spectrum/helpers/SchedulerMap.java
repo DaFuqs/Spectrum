@@ -1,14 +1,10 @@
 package de.dafuqs.spectrum.helpers;
 
 import com.mojang.datafixers.util.*;
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.codecs.*;
-import de.dafuqs.spectrum.blocks.pastel_network.network.*;
+import com.mojang.serialization.*;
 
 import java.util.*;
-import java.util.stream.*;
 
-// TODO: migrate to net.minecraft.world.tick ?
 public class SchedulerMap<K> implements Iterable<Map.Entry<K, Integer>> {
 	
     private final Map<K, Integer> map;

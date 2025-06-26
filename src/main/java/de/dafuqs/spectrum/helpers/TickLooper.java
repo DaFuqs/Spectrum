@@ -4,7 +4,6 @@ import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import net.minecraft.nbt.*;
 
-// TODO: migrate to net.minecraft.world.tick ?
 public final class TickLooper {
 
     public static final Codec<TickLooper> CODEC = RecordCodecBuilder.create(i -> i.group(

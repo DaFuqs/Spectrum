@@ -25,6 +25,7 @@ import net.minecraft.world.level.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
+import java.util.function.*;
 
 public class DragonTalonItem extends MalachiteBidentItem implements MergeableItem, SlotReservingItem, SlotBackgroundEffectProvider {
 	
@@ -183,7 +184,7 @@ public class DragonTalonItem extends MalachiteBidentItem implements MergeableIte
 	}
 	
 	@Override
-	public void expandTooltip(ItemStack stack, @Nullable Player player, List<Component> tooltip, TooltipContext context) {
+	public void expandTooltip(ItemStack stack, @Nullable Player player, Consumer<Component> tooltip, TooltipContext context) {
 	}
 	
 	@Override

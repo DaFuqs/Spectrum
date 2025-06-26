@@ -156,12 +156,12 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 				itemEntity.setItem(result.getA());
 				itemEntity.setDefaultPickUpDelay();
 			}
-		} else if (itemStack.is(SpectrumItems.ENCHANTMENT_CANVAS) && itemStack.has(SpectrumDataComponentTypes.CANVAS_ENCHANTMENTS)) {
+		} else if (itemStack.has(SpectrumDataComponentTypes.CANVAS_ENCHANTMENTS)) {
 			ItemEnchantments canvasEnchantments = itemStack.get(SpectrumDataComponentTypes.CANVAS_ENCHANTMENTS);
 			Item boundItem = BuiltInRegistries.ITEM.get(itemStack.get(SpectrumDataComponentTypes.BOUND_ITEM));
 			if (!canvasEnchantments.isEmpty()) {
-				int randomEnchantmentIndex = world.random.nextInt(enchantments.size());
-				Object2IntMap.Entry<Holder<Enchantment>> entryToRemove = enchantments.entrySet().stream().toList().get(randomEnchantmentIndex);
+				int randomEnchantmentIndex = world.random.nextInt(canvasEnchantments.size());
+				Object2IntMap.Entry<Holder<Enchantment>> entryToRemove = canvasEnchantments.entrySet().stream().toList().get(randomEnchantmentIndex);
 				
 				var builder = new ItemEnchantments.Mutable(canvasEnchantments);
 				builder.set(entryToRemove.getKey(), 0);

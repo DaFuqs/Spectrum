@@ -23,13 +23,11 @@ public class EnchantmentCanvasItem extends Item {
 	 * clicked onto another stack
 	 */
 	@Override
-	public boolean overrideStackedOnOther(ItemStack stack, Slot slot, ClickAction clickType, Player player) {
+	public boolean overrideStackedOnOther(@NotNull ItemStack stack, @NotNull Slot slot, @NotNull ClickAction clickType, @NotNull Player player) {
 		if (clickType == ClickAction.SECONDARY) {
 			ItemStack otherStack = slot.getItem();
 			if (otherStack.getCount() == 1 && tryExchangeEnchantments(stack, otherStack, player)) {
-				if (player != null) {
-					playExchangeSound(player);
-				}
+				playExchangeSound(player);
 				return true;
 			}
 		}
@@ -40,12 +38,10 @@ public class EnchantmentCanvasItem extends Item {
 	 * itemStack is right-clicked onto this
 	 */
 	@Override
-	public boolean overrideOtherStackedOnMe(ItemStack stack, ItemStack otherStack, Slot slot, ClickAction clickType, Player player, SlotAccess cursorStackReference) {
+	public boolean overrideOtherStackedOnMe(@NotNull ItemStack stack, @NotNull ItemStack otherStack, @NotNull Slot slot, @NotNull ClickAction clickType, @NotNull Player player, @NotNull SlotAccess cursorStackReference) {
 		if (clickType == ClickAction.SECONDARY && otherStack.getCount() == 1 && slot.allowModification(player)) {
 			if (tryExchangeEnchantments(stack, otherStack, player)) {
-				if (player != null) {
-					playExchangeSound(player);
-				}
+				playExchangeSound(player);
 				return true;
 			}
 		}
@@ -65,7 +61,7 @@ public class EnchantmentCanvasItem extends Item {
 		}
 		
 		boolean drop = false;
-		if (canvasStack.getCount() >= 1) {
+		if (canvasStack.getCount() > 1) {
 			canvasStack = canvasStack.split(1);
 			drop = true;
 		}
@@ -93,10 +89,10 @@ public class EnchantmentCanvasItem extends Item {
 	}
 
 	@Override
-	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+	public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, @NotNull List<Component> tooltip, @NotNull TooltipFlag type) {
 		Optional<Item> boundItem = getItemBoundTo(stack);
 		if (boundItem.isPresent()) {
-			tooltip.add(Component.translatable("item.spectrum.enchantment_canvas.tooltip.bound_to").append(boundItem.get().getDescription()));
+			tooltip.add(Component.translatable("item.spectrum.enchantment_canvas.tooltip.bound_to", boundItem.get().getDescription()));
 		} else {
 			tooltip.add(Component.translatable("item.spectrum.enchantment_canvas.tooltip.not_bound"));
 			tooltip.add(Component.translatable("item.spectrum.enchantment_canvas.tooltip.not_bound2"));

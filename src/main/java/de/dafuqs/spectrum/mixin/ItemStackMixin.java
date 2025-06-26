@@ -19,6 +19,7 @@ import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
 import java.util.*;
+import java.util.function.*;
 
 @Mixin(ItemStack.class)
 public abstract class ItemStackMixin {
@@ -71,21 +72,33 @@ public abstract class ItemStackMixin {
 		}
 	}
 	
-	@Inject(method = "getTooltipLines(Lnet/minecraft/world/item/Item$TooltipContext;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/TooltipFlag;)Ljava/util/List;", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/TooltipFlag;isAdvanced()Z", shift = At.Shift.BEFORE, ordinal = 1))
-	public void spectrum$expandTooltipPostDamage(Item.TooltipContext context, Player player, TooltipFlag type, CallbackInfoReturnable<List<Component>> cir, @Local List<Component> tooltip) {
+	@Inject(method = "getTooltipLines(Lnet/minecraft/world/item/Item$TooltipContext;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/TooltipFlag;)Ljava/util/List;", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;addAttributeTooltips(Ljava/util/function/Consumer;Lnet/minecraft/world/entity/player/Player;)V"))
+	public void spectrum$AppendTooltip(Item.TooltipContext context, Player player, TooltipFlag type, CallbackInfoReturnable<List<Component>> cir, @Local Consumer<Component> consumer) {
 		var stack = (ItemStack) (Object) this;
+		
+		if (stack.has(SpectrumDataComponentTypes.CONCEALED_EFFECT)) {
+			spectrum$addConcealedEffectsTooltip(stack, context, consumer, player);
+		}
+		
+		if (stack.getItem() instanceof ExpandedStatTooltip expanded) {
+			expanded.expandTooltip(stack, player, consumer, context);
+		}
+		
+		if (stack.has(SpectrumDataComponentTypes.CANVAS_ENCHANTMENTS)) {
+			stack.get(SpectrumDataComponentTypes.CANVAS_ENCHANTMENTS).addToTooltip(context, consumer, type);
+		}
+		
+	}
+	
+	public void spectrum$addConcealedEffectsTooltip(ItemStack stack, Item.TooltipContext context, Consumer<Component> tooltipAdder, Player player) {
 		var oilEffect = stack.get(SpectrumDataComponentTypes.CONCEALED_EFFECT);
 		var profile = stack.get(DataComponents.PROFILE);
 		if (oilEffect != null && profile != null && player.getUUID().equals(profile.id().orElse(null))) {
 			var subText = new ArrayList<Component>();
 			PotionContents.addPotionTooltip(List.of(oilEffect), subText::add, 1f, context.tickRate());
 			
-			tooltip.add(Component.translatable("info.spectrum.tooltip.adulterated.info").withStyle(s -> s.withColor(ConcealingOilsItem.POISONED_COLOUR)));
-			tooltip.add(Component.translatable("info.spectrum.tooltip.adulterated.effect", subText.getFirst()).withStyle(s -> s.withColor(ConcealingOilsItem.POISONED_COLOUR).withItalic(true)));
-		}
-		
-		if (stack.getItem() instanceof ExpandedStatTooltip expanded) {
-			expanded.expandTooltip(stack, player, tooltip, context);
+			tooltipAdder.accept(Component.translatable("info.spectrum.tooltip.adulterated.info").withStyle(s -> s.withColor(ConcealingOilsItem.POISONED_COLOUR)));
+			tooltipAdder.accept(Component.translatable("info.spectrum.tooltip.adulterated.effect", subText.getFirst()).withStyle(s -> s.withColor(ConcealingOilsItem.POISONED_COLOUR).withItalic(true)));
 		}
 	}
 	

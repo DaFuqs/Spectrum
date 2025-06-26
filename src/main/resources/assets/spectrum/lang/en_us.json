@@ -4510,7 +4510,7 @@
   "item.spectrum.enchanted_golden_carrot": "Enchanted Golden Carrot",
   "item.spectrum.enchanter_structure_placer": "Enchanter Structure Placer",
   "item.spectrum.enchantment_canvas": "Enchantment Canvas",
-  "item.spectrum.enchantment_canvas.tooltip.bound_to": "§7Bound to ",
+  "item.spectrum.enchantment_canvas.tooltip.bound_to": "§7Bound to %s",
   "item.spectrum.enchantment_canvas.tooltip.not_bound": "§7Right click onto an item to swap Enchantments",
   "item.spectrum.enchantment_canvas.tooltip.not_bound2": "§7The Canvas will be bound to items of that type",
   "item.spectrum.ender_splice": "Ender Splice",

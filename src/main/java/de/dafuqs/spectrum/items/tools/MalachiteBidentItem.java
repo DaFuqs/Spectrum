@@ -30,6 +30,7 @@ import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
+import java.util.function.*;
 
 public class MalachiteBidentItem extends TridentItem implements Preenchanted, ExpandedStatTooltip, ArmorPiercingItem {
 	
@@ -210,18 +211,18 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 	}
 	
 	@Override
-	public void expandTooltip(ItemStack stack, @Nullable Player player, List<Component> tooltip, TooltipContext context) {
+	public void expandTooltip(ItemStack stack, @Nullable Player player, Consumer<Component> tooltip, TooltipContext context) {
 		if (Screen.hasShiftDown()) {
-			tooltip.add(Component.translatable("item.spectrum.bident.postToolTip.ap", armorPierce * 100).withStyle(ChatFormatting.DARK_GREEN));
+			tooltip.accept(Component.translatable("item.spectrum.bident.postToolTip.ap", armorPierce * 100).withStyle(ChatFormatting.DARK_GREEN));
 			
 			if (protPierce > 0) {
-				tooltip.add(Component.translatable("item.spectrum.bident.postToolTip.pp", protPierce * 100).withStyle(ChatFormatting.DARK_GREEN));
+				tooltip.accept(Component.translatable("item.spectrum.bident.postToolTip.pp", protPierce * 100).withStyle(ChatFormatting.DARK_GREEN));
 			}
 			if (canBeDisabled()) {
-				tooltip.add(Component.translatable("item.spectrum.bident.postToolTip.disable").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
+				tooltip.accept(Component.translatable("item.spectrum.bident.postToolTip.disable").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
 			}
 		} else {
-			tooltip.add(Component.translatable("spectrum.tooltip.press_shift_for_more").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
+			tooltip.accept(Component.translatable("spectrum.tooltip.press_shift_for_more").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
 		}
 	}
 	

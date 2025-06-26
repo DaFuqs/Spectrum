@@ -141,7 +141,6 @@ public abstract class SpectrumChestBlockEntity extends RandomizableContainerBloc
 		this.stateManager.recheckOpeners(this.getLevel(), this.getBlockPos(), this.getBlockState());
 	}
 	
-	// TODO Should the loot table NBT only be maintained for TreasureChestBlockEntity?
 	@Override
 	public void loadAdditional(CompoundTag tag, HolderLookup.Provider registryLookup) {
 		super.loadAdditional(tag, registryLookup);

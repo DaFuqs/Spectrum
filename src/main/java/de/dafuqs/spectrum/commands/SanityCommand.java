@@ -20,8 +20,8 @@ import de.dafuqs.spectrum.recipe.enchanter.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.advancements.*;
-import net.minecraft.commands.*;
 import net.minecraft.commands.Commands;
+import net.minecraft.commands.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.locale.*;
@@ -318,7 +318,7 @@ public class SanityCommand {
 			if (advancementId.getNamespace().equals(modId) && !path.startsWith("hidden") && !path.startsWith("progression") && !path.startsWith("milestones") && parentId.isPresent()) {
 				ResourceLocation gottenPreviousAdvancementIdentifier = null;
 				for (List<String> requirement : advancement.value().requirements().requirements()) {
-					if (!requirement.isEmpty() && requirement.getFirst().equals("gotten_previous")) { // TODO: is that correct?
+					if (!requirement.isEmpty() && requirement.getFirst().equals("gotten_previous")) {
 						CriterionTriggerInstance conditions = advancement.value().criteria().get("gotten_previous").triggerInstance();
 						if (conditions instanceof AdvancementGottenCriterion.Conditions advancementConditions) {
 							gottenPreviousAdvancementIdentifier = advancementConditions.getAdvancementIdentifier();
@@ -380,18 +380,6 @@ public class SanityCommand {
 				SpectrumCommon.logWarning("[SANITY: Item Crushing] Recipe '" + recipeEntry.id() + "' has a nonexistent sound set");
 			}
 		}
-		
-		// Enchantments with nonexistent unlock enchantment
-		//TODO: Sanity between cloaked+revealed enchants and their tags
-//		for (Map.Entry<RegistryKey<Enchantment>, Enchantment> enchantment : registryManager.get(RegistryKeys.ENCHANTMENT).getEntrySet()) {
-//			if (enchantment.getValue() instanceof SpectrumEnchantment spectrumEnchantment) {
-//				Identifier advancementIdentifier = spectrumEnchantment.getUnlockAdvancementIdentifier();
-//				AdvancementEntry advancementCriterionAdvancement = advancementLoader.get(advancementIdentifier);
-//				if (advancementCriterionAdvancement == null) {
-//					SpectrumCommon.logWarning("[SANITY: Enchantments] Enchantment '" + enchantment.getKey().getValue() + "' references advancement '" + advancementIdentifier + "' that does not exist");
-//				}
-//			}
-//		}
 		
 		// Enchantments without recipe
 		Map<Holder<Enchantment>, InkColor> craftingColors = new HashMap<>();
@@ -511,7 +499,7 @@ public class SanityCommand {
 				}
 			}
 			Item outputItem = recipe.value().getResultItem(registryManager).getItem();
-			if (outputItem != null && outputItem != Items.AIR && ColorRegistry.ITEM_COLORS.getMapping(outputItem).isEmpty()) {
+			if (outputItem != Items.AIR && ColorRegistry.ITEM_COLORS.getMapping(outputItem).isEmpty()) {
 				SpectrumCommon.logWarning("[SANITY: " + name + " Recipe] Output '" + BuiltInRegistries.ITEM.getKey(outputItem) + "' in recipe '" + recipe.id() + "', does not exist in the item color registry. Add it for nice effects!");
 			}
 		}

@@ -22,7 +22,6 @@ public interface ImplementedInventory extends Container {
 	 * Creates an inventory from the item list.
 	 */
 	static ImplementedInventory of(NonNullList<ItemStack> items) {
-		// FIXME
 		return () -> items;
 	}
 	

@@ -28,7 +28,6 @@ public class ServerPastelNetworkManager extends SavedData implements PastelNetwo
 	}
 	
 	public static ServerPastelNetworkManager get(ServerLevel world) {
-		// TODO: We need to spoof a datafixer type, null will prevent data from being read
 		SavedData.Factory<ServerPastelNetworkManager> type = new SavedData.Factory<>(ServerPastelNetworkManager::new, (nbtCompound, lookup) -> ServerPastelNetworkManager.fromNbt(nbtCompound), null);
 		return world.getDataStorage().computeIfAbsent(type, PERSISTENT_STATE_ID);
 	}

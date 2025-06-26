@@ -367,7 +367,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		pedestalBlockEntity.storedXP += experience;
 		
 		Player player = pedestalBlockEntity.getOwnerIfOnline();
-		//TODO revisit onCraftByCrafter (see OfflineDataLookup)
+		//TODO revisit onCraftedBySystem (see OfflineDataLookup)
 		if (player != null) {
 			outputStack.onCraftedBy(world, player, outputStack.getCount());
 		}
@@ -608,7 +608,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 	
 	private boolean craftVanillaRecipe(@Nullable CraftingRecipe recipe, PedestalBlockEntity pedestal, int maxCountPerStack) {
 		if (canAcceptRecipeOutput(recipe, createRecipeInput(), maxCountPerStack)) {
-			ItemStack recipeOutput = recipe.assemble(createRecipeInput().getCraftingGridInput(), null);
+			ItemStack recipeOutput = recipe.assemble(createRecipeInput().getCraftingGridInput(), pedestal.getLevel().registryAccess());
 			Player player = getOwnerIfOnline();
 			//TODO revise for non-player crafting
 			if (player == null) {

@@ -184,16 +184,19 @@ public class MemoryItem extends BlockItem {
 	
 	public static void appendEntries(HolderLookup.Provider lookup, Output entries) {
 		// adding all memories that have spirit instiller recipes
-		Set<MemoryComponent> encountered = new HashSet<>();
-		//TODO does this work on dedicated servers?
+		Set<CustomData> encountered = new HashSet<>();
+		
 		if (SpectrumCommon.minecraftServer != null) {
 			Item memoryItem = SpectrumBlocks.MEMORY.asItem();
 			for (var recipe : SpectrumCommon.minecraftServer.getRecipeManager().getAllRecipesFor(SpectrumRecipeTypes.SPIRIT_INSTILLING)) {
 				ItemStack output = recipe.value().getResultItem(lookup);
-				var memory = output.get(SpectrumDataComponentTypes.MEMORY);
-				if (output.is(memoryItem) && memory != null && !encountered.contains(memory)) {
+				if (!output.is(memoryItem)) {
+					continue;
+				}
+				var entity = output.get(DataComponents.ENTITY_DATA);
+				if (entity != null && !encountered.contains(entity)) {
 					entries.accept(output);
-					encountered.add(memory);
+					encountered.add(entity);
 				}
 			}
 		}

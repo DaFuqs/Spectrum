@@ -35,6 +35,18 @@
     {
       "type": "modonomicon:spotlight",
       "item": {
+        "item": "spectrum:aether_vestiges"
+      },
+      "anchor": "aether_vestiges",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/reagents/aether_vestiges"
+      },
+      "text": "book.spectrum.guidebook.potion_workshop_reagents.aether_vestiges.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
         "item": "spectrum:pure_redstone"
       },
       "anchor": "pure_redstone",

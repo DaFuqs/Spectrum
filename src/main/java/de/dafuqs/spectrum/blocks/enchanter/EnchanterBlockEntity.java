@@ -617,7 +617,6 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 				var level = enchanter.items.get(0).get(DataComponents.STORED_ENCHANTMENTS).getLevel(upgrade.value().getEnchantment());
 				enchanter.craftingTimeTotal = upgrade.value().getItemScaling().apply(level);
 				
-				//TODO why are we doing this?
 				EnchanterInventory testInventory = new EnchanterInventory();
 				testInventory.setItem(0, enchanter.virtualInventory.getItem(0));
 				testInventory.setItem(1, enchanter.virtualInventory.getItem(1));

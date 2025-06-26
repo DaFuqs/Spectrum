@@ -17,6 +17,18 @@
       "spectrum:use_fail"
     ]
   },
+  "block.vine.shear": {
+    "subtitle": "spectrum.subtitles.block.vine.shear",
+    "sounds": [
+      "minecraft:block/beehive/shear"
+    ]
+  },
+  "block.vine.infuse": {
+    "subtitle": "spectrum.subtitles.block.vine.infuse",
+    "sounds": [
+      "minecraft:block/amethyst/shimmer"
+    ]
+  },
   "block.redstone_mechanism.trigger": {
     "subtitle": "spectrum.subtitles.block.redstone_mechanism.trigger",
     "sounds": [

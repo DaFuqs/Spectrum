@@ -114,31 +114,27 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 				player.displayClientMessage(toggle.getTriggerText(), true);
 			}
 			// switching to another enchantment
-			// fortune handling is a bit special. Its level is preserved in NBT,
-			// to restore the original enchant level when switching back
+			// fortune handling is a bit special. Its level is preserved,
+			// so we can restore the original enchant level when switching back
 			case SELECT_FORTUNE ->
 				enchantAndRemoveOthers(player, stack, toggle.getTriggerText(), Enchantments.FORTUNE);
 			case SELECT_SILK_TOUCH ->
 				enchantAndRemoveOthers(player, stack, toggle.getTriggerText(), Enchantments.SILK_TOUCH);
 			case SELECT_RESONANCE -> enchantAndRemoveOthers(player, stack, toggle.getTriggerText(), SpectrumEnchantments.RESONANCE);
 			case ENABLE_RIGHT_CLICK_ACTIONS -> {
-				stack.update(SpectrumDataComponentTypes.WORKSTAFF, WorkstaffComponent.DEFAULT, comp ->
-						new WorkstaffComponent(true, comp.canShoot(), comp.fortuneLevel()));
+				stack.update(SpectrumDataComponentTypes.WORKSTAFF, WorkstaffComponent.DEFAULT, comp -> new WorkstaffComponent(true, comp.canShoot(), comp.fortuneLevel()));
 				player.displayClientMessage(toggle.getTriggerText(), true);
 			}
 			case DISABLE_RIGHT_CLICK_ACTIONS -> {
-				stack.update(SpectrumDataComponentTypes.WORKSTAFF, WorkstaffComponent.DEFAULT, comp ->
-						new WorkstaffComponent(false, comp.canShoot(), comp.fortuneLevel()));
+				stack.update(SpectrumDataComponentTypes.WORKSTAFF, WorkstaffComponent.DEFAULT, comp -> new WorkstaffComponent(false, comp.canShoot(), comp.fortuneLevel()));
 				player.displayClientMessage(toggle.getTriggerText(), true);
 			}
 			case ENABLE_PROJECTILES -> {
-				stack.update(SpectrumDataComponentTypes.WORKSTAFF, WorkstaffComponent.DEFAULT, comp ->
-						new WorkstaffComponent(comp.canTill(), true, comp.fortuneLevel()));
+				stack.update(SpectrumDataComponentTypes.WORKSTAFF, WorkstaffComponent.DEFAULT, comp -> new WorkstaffComponent(comp.canTill(), true, comp.fortuneLevel()));
 				player.displayClientMessage(toggle.getTriggerText(), true);
 			}
 			case DISABLE_PROJECTILES -> {
-				stack.update(SpectrumDataComponentTypes.WORKSTAFF, WorkstaffComponent.DEFAULT, comp ->
-						new WorkstaffComponent(comp.canTill(), false, comp.fortuneLevel()));
+				stack.update(SpectrumDataComponentTypes.WORKSTAFF, WorkstaffComponent.DEFAULT, comp -> new WorkstaffComponent(comp.canTill(), false, comp.fortuneLevel()));
 				player.displayClientMessage(toggle.getTriggerText(), true);
 			}
 		}
@@ -159,8 +155,7 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 			level = stack.getOrDefault(SpectrumDataComponentTypes.WORKSTAFF, WorkstaffComponent.DEFAULT).fortuneLevel();
 		} else {
 			int fortuneLevel = SpectrumEnchantmentHelper.getLevel(registryLookup, Enchantments.FORTUNE, stack);
-			stack.update(SpectrumDataComponentTypes.WORKSTAFF, WorkstaffComponent.DEFAULT, comp ->
-					new WorkstaffComponent(comp.canTill(), comp.canShoot(), Math.max(fortuneLevel, 1)));
+			stack.update(SpectrumDataComponentTypes.WORKSTAFF, WorkstaffComponent.DEFAULT, comp -> new WorkstaffComponent(comp.canTill(), comp.canShoot(), Math.max(fortuneLevel, 1)));
 		}
 		
 		ItemStack newStack = stack.copy();

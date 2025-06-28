@@ -224,6 +224,7 @@ public class PaintbrushItem extends Item implements SignApplicator {
 							causeKnockback(user, user.getYRot(), user.getXRot(), 0, 0.3F);
 						}
 					}
+					return InteractionResultHolder.success(user.getItemInHand(hand));
 				} else {
 					if (world.isClientSide) {
 						user.playSound(SpectrumSoundEvents.USE_FAIL, 1.0F, 1.0F);

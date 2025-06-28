@@ -3,13 +3,5 @@
   "textures": {
     "layer0": "spectrum:item/paintbrush",
     "layer1": "spectrum:item/paintbrush_tint"
-  },
-  "overrides": [
-    {
-      "predicate": {
-        "oversized": 1.0
-      },
-      "model": "spectrum:item/paintbrush_oversized"
-    }
-  ]
+  }
 }

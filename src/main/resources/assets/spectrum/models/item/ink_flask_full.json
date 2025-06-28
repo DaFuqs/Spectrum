@@ -3,6 +3,7 @@
   "textures": {
     "layer0": "spectrum:item/ink_flask_base",
     "layer1": "spectrum:item/ink_flask_tint_full",
-    "layer2": "spectrum:item/ink_flask_overlay_full"
+    "layer2": "spectrum:item/ink_flask_overlay_full",
+    "layer3": "spectrum:item/ink_flask_lid"
   }
 }

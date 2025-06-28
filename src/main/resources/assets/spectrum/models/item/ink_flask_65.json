@@ -1,9 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "spectrum:item/ink_flask_base",
-    "layer1": "spectrum:item/ink_flask_tint_65",
-    "layer2": "spectrum:item/ink_flask_overlay_65",
-    "layer3": "spectrum:item/ink_flask_lid"
-  }
-}

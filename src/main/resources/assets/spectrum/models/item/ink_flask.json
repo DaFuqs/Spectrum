@@ -6,34 +6,10 @@
 	"overrides": [
 		{
 			"predicate": {
-        "fill_state": 0.1
+        "fill_state": 0.01
 			},
-      "model": "spectrum:item/ink_flask_10"
+      "model": "spectrum:item/ink_flask_partial"
 		},
-    {
-      "predicate": {
-        "fill_state": 0.25
-      },
-      "model": "spectrum:item/ink_flask_25"
-    },
-    {
-      "predicate": {
-        "fill_state": 0.4
-      },
-      "model": "spectrum:item/ink_flask_40"
-    },{
-      "predicate": {
-        "fill_state": 0.65
-      },
-      "model": "spectrum:item/ink_flask_65"
-    },
-    {
-      "predicate": {
-        "fill_state": 0.8
-      },
-      "model": "spectrum:item/ink_flask_80"
-    },
-
 		{
 			"predicate": {
         "fill_state": 1

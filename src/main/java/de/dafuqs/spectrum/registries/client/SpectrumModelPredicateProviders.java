@@ -257,23 +257,7 @@ public class SpectrumModelPredicateProviders {
 			SingleInkStorage storage = SpectrumItems.INK_FLASK.getEnergyStorage(stack);
 			float current = (float) storage.getCurrentTotal();
 			float maximum = (float) storage.getMaxTotal();
-			if (current == 0 || maximum == 0)
-				return 0F;
-			
-			var fill = current / maximum;
-			
-			if (fill < 0.1F)
-				return 0.1F;
-			else if (fill < 0.25F)
-				return 0.25F;
-			else if (fill < 0.4F)
-				return 0.4F;
-			else if (fill < 0.65F)
-				return 0.65F;
-			else if(fill < 0.8F)
-				return 0.8F;
-			
-			return 1F;
+			return current == 0 || maximum == 0 ? 0.0F : Math.max(0.01F, current / maximum);
 		});
 	}
 	

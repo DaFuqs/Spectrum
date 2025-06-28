@@ -2,8 +2,7 @@
   "parent": "item/handheld",
   "textures": {
     "layer0": "spectrum:item/paintbrush",
-    "layer1": "spectrum:item/paintbrush_tint",
-    "layer2": "spectrum:item/paintbrush_overlay"
+    "layer1": "spectrum:item/paintbrush_tint"
   },
   "overrides": [
     {

@@ -1,5 +1,5 @@
 {
-  "parent": "block/block",
+  "credit": "Made with Blockbench",
   "ambientocclusion": false,
   "textures": {
     "particle": "#cross"

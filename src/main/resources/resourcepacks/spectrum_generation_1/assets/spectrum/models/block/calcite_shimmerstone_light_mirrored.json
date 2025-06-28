@@ -1,8 +1,0 @@
-{
-  "parent": "spectrum:templates/base_flat_light_mirrored",
-  "textures": {
-    "outer": "spectrum:block/polished_calcite",
-    "inner": "spectrum:block/shimmerstone_light",
-    "particle": "spectrum:block/polished_calcite"
-  }
-}

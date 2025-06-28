@@ -2,7 +2,7 @@
   "parent": "spectrum:templates/complex_orientable",
   "textures": {
     "back": "spectrum:block/block_detector_back",
-    "bottom": "spectrum:block/notched_polished_basalt_top",
+    "bottom": "spectrum:block/notched_polished_basalt",
     "front": "spectrum:block/block_detector_front",
     "particle": "spectrum:block/block_detector_side",
     "side": "spectrum:block/block_detector_side",

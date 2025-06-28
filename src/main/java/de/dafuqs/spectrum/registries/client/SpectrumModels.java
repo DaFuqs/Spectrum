@@ -44,7 +44,7 @@ public class SpectrumModels {
 	public static final ModelTemplate SHIMMERSTONE_LIGHT_MIRRORED = new ModelTemplate(Optional.of(SpectrumCommon.locate("templates/shimmerstone_light_mirrored")), Optional.empty(), INNER, OUTER, PARTICLE);
 	public static final ModelTemplate BASE_PYLON_BODY = new ModelTemplate(Optional.of(SpectrumCommon.locate("templates/base_pylon_body")), Optional.empty(), SIDE, END);
 	public static final ModelTemplate BASE_TRANS_LIGHT_CORE = new ModelTemplate(Optional.of(SpectrumCommon.locate("templates/base_trans_light_core")), Optional.empty(), GLASS, CASE, BASE, ENDS, SHELL, FILAMENT);
-	public static final ModelTemplate BOWL = new ModelTemplate(Optional.of(SpectrumCommon.locate("templates/base_bowl")), Optional.empty(), TEXTURE);
+	public static final ModelTemplate BOWL = new ModelTemplate(Optional.of(SpectrumCommon.locate("templates/item_bowl")), Optional.empty(), TEXTURE);
 	public static final ModelTemplate CHIME = new ModelTemplate(Optional.of(SpectrumCommon.locate("templates/chime")), Optional.empty(), BASE, GEMSTONE);
 	public static final ModelTemplate CUSHION = new ModelTemplate(Optional.of(SpectrumCommon.locate("templates/cushion")), Optional.empty(), SIDE, TOP, BOTTOM);
 	public static final ModelTemplate COLORED_LAMP_ON = new ModelTemplate(Optional.of(SpectrumCommon.locate("templates/colored_lamp_on")), Optional.empty(), INNER, OUTER);

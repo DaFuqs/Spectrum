@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:templates/base_bowl",
+  "parent": "spectrum:templates/item_bowl",
   "textures": {
     "bottom": "spectrum:block/item_bowl_calcite_bottom",
     "inner": "spectrum:block/item_bowl_calcite_inner",

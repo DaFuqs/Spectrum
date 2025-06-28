@@ -431,12 +431,6 @@ public class SpectrumBlocks {
 	public static final Block CRACKED_BASALT_TILES = register(blockWithItem("cracked_basalt_tiles", new Block(BlockBehaviour.Properties.ofFullCopy(BASALT_TILES)), InkColors.BROWN));
 	public static final BlockFamily BASALT_TILE_FAMILY = SpectrumModelHelper.registerBlockFamily(new BlockFamily.Builder(BASALT_TILES).stairs(BASALT_TILE_STAIRS).slab(BASALT_TILE_SLAB).wall(BASALT_TILE_WALL).cracked(CRACKED_BASALT_TILES).getFamily());
 	
-	public static final Block PLANED_BASALT = register(blockWithItem("planed_basalt", new Block(BlockBehaviour.Properties.ofFullCopy(POLISHED_BASALT)), InkColors.BROWN));
-	public static final Block PLANED_BASALT_STAIRS = register(blockWithItem("planed_basalt_stairs", new StairBlock(PLANED_BASALT.defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(PLANED_BASALT)), InkColors.BROWN));
-	public static final Block PLANED_BASALT_SLAB = register(blockWithItem("planed_basalt_slab", new SlabBlock(BlockBehaviour.Properties.ofFullCopy(PLANED_BASALT)), InkColors.BROWN));
-	public static final Block PLANED_BASALT_WALL = register(blockWithItem("planed_basalt_wall", new WallBlock(BlockBehaviour.Properties.ofFullCopy(PLANED_BASALT)), InkColors.BROWN));
-	public static final BlockFamily PLANED_BASALT_FAMILY = SpectrumModelHelper.registerBlockFamily(new BlockFamily.Builder(PLANED_BASALT).stairs(PLANED_BASALT_STAIRS).slab(PLANED_BASALT_SLAB).wall(PLANED_BASALT_WALL).getFamily());
-	
 	public static final Block TOPAZ_CHISELED_BASALT = register(simple(blockWithItem("topaz_chiseled_basalt", new Block(BlockBehaviour.Properties.ofFullCopy(BASALT_BRICKS).lightLevel(s -> 6)), InkColors.CYAN)));
 	public static final Block AMETHYST_CHISELED_BASALT = register(simple(blockWithItem("amethyst_chiseled_basalt", new Block(BlockBehaviour.Properties.ofFullCopy(BASALT_BRICKS).lightLevel(s -> 5)), InkColors.MAGENTA)));
 	public static final Block CITRINE_CHISELED_BASALT = register(simple(blockWithItem("citrine_chiseled_basalt", new Block(BlockBehaviour.Properties.ofFullCopy(BASALT_BRICKS).lightLevel(s -> 7)), InkColors.YELLOW)));
@@ -474,12 +468,6 @@ public class SpectrumBlocks {
 	public static final Block CALCITE_TILE_WALL = register(blockWithItem("calcite_tile_wall", new WallBlock(BlockBehaviour.Properties.ofFullCopy(CALCITE_TILES)), InkColors.BROWN));
 	public static final Block CRACKED_CALCITE_TILES = register(blockWithItem("cracked_calcite_tiles", new Block(BlockBehaviour.Properties.ofFullCopy(CALCITE_TILES)), InkColors.BROWN));
 	public static final BlockFamily CALCITE_TILE_FAMILY = SpectrumModelHelper.registerBlockFamily(new BlockFamily.Builder(CALCITE_TILES).stairs(CALCITE_TILE_STAIRS).slab(CALCITE_TILE_SLAB).wall(CALCITE_TILE_WALL).cracked(CRACKED_CALCITE_TILES).getFamily());
-	
-	public static final Block PLANED_CALCITE = register(blockWithItem("planed_calcite", new Block(BlockBehaviour.Properties.ofFullCopy(POLISHED_CALCITE)), InkColors.BROWN));
-	public static final Block PLANED_CALCITE_STAIRS = register(blockWithItem("planed_calcite_stairs", new StairBlock(PLANED_CALCITE.defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(PLANED_CALCITE)), InkColors.BROWN));
-	public static final Block PLANED_CALCITE_SLAB = register(blockWithItem("planed_calcite_slab", new SlabBlock(BlockBehaviour.Properties.ofFullCopy(PLANED_CALCITE)), InkColors.BROWN));
-	public static final Block PLANED_CALCITE_WALL = register(blockWithItem("planed_calcite_wall", new WallBlock(BlockBehaviour.Properties.ofFullCopy(PLANED_CALCITE)), InkColors.BROWN));
-	public static final BlockFamily PLANED_CALCITE_FAMILY = SpectrumModelHelper.registerBlockFamily(new BlockFamily.Builder(PLANED_CALCITE).stairs(PLANED_CALCITE_STAIRS).slab(PLANED_CALCITE_SLAB).wall(PLANED_CALCITE_WALL).getFamily());
 	
 	public static final Block TOPAZ_CHISELED_CALCITE = register(simple(blockWithItem("topaz_chiseled_calcite", new Block(BlockBehaviour.Properties.ofFullCopy(CALCITE_BRICKS).lightLevel(s -> 6)), InkColors.CYAN)));
 	public static final Block AMETHYST_CHISELED_CALCITE = register(simple(blockWithItem("amethyst_chiseled_calcite", new Block(BlockBehaviour.Properties.ofFullCopy(CALCITE_BRICKS).lightLevel(s -> 5)), InkColors.MAGENTA)));

@@ -788,10 +788,6 @@ public class SpectrumItemGroups {
 				entries.accept(SpectrumBlocks.BASALT_TILE_STAIRS);
 				entries.accept(SpectrumBlocks.BASALT_TILE_SLAB);
 				entries.accept(SpectrumBlocks.BASALT_TILE_WALL);
-				entries.accept(SpectrumBlocks.PLANED_BASALT);
-				entries.accept(SpectrumBlocks.PLANED_BASALT_SLAB);
-				entries.accept(SpectrumBlocks.PLANED_BASALT_STAIRS);
-				entries.accept(SpectrumBlocks.PLANED_BASALT_WALL);
 				entries.accept(SpectrumBlocks.CRACKED_BASALT_TILES);
 				entries.accept(SpectrumBlocks.POLISHED_BASALT_BUTTON);
 				entries.accept(SpectrumBlocks.POLISHED_BASALT_PRESSURE_PLATE);
@@ -816,10 +812,6 @@ public class SpectrumItemGroups {
 				entries.accept(SpectrumBlocks.CALCITE_TILE_STAIRS);
 				entries.accept(SpectrumBlocks.CALCITE_TILE_SLAB);
 				entries.accept(SpectrumBlocks.CALCITE_TILE_WALL);
-				entries.accept(SpectrumBlocks.PLANED_CALCITE);
-				entries.accept(SpectrumBlocks.PLANED_CALCITE_SLAB);
-				entries.accept(SpectrumBlocks.PLANED_CALCITE_STAIRS);
-				entries.accept(SpectrumBlocks.PLANED_CALCITE_WALL);
 				entries.accept(SpectrumBlocks.CRACKED_CALCITE_TILES);
 				entries.accept(SpectrumBlocks.POLISHED_CALCITE_BUTTON);
 				entries.accept(SpectrumBlocks.POLISHED_CALCITE_PRESSURE_PLATE);

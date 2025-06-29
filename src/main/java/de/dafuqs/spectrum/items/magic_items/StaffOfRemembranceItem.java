@@ -29,6 +29,7 @@ public class StaffOfRemembranceItem extends Item implements InkPowered, Prioriti
 	public static final InkColor USED_COLOR = InkColors.LIGHT_GRAY;
 	public static final InkCost TURN_NEUTRAL_TO_MEMORY_COST = new InkCost(USED_COLOR, 1000);
 	public static final InkCost TURN_HOSTILE_TO_MEMORY_COST = new InkCost(USED_COLOR, 5000);
+	public static final InkCost CREATE_PLAYER_MEMORY_COST = new InkCost(USED_COLOR, 5000);
 	
 	public StaffOfRemembranceItem(Properties settings) {
 		super(settings);
@@ -52,8 +53,8 @@ public class StaffOfRemembranceItem extends Item implements InkPowered, Prioriti
 			return InteractionResult.FAIL;
 		}
 		
-		if (!world.isClientSide && entity instanceof Mob mobEntity) {
-			if (turnEntityToMemory(user, mobEntity)) {
+		if (!world.isClientSide) {
+			if (turnEntityToMemory(user, entity)) {
 				PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerLevel) world, entity.position(), ColoredSparkleRisingParticleEffect.LIGHT_GRAY, 10, Vec3.ZERO, new Vec3(0.2, 0.2, 0.2));
 				PlayParticleWithExactVelocityPayload.playParticleWithExactVelocity((ServerLevel) world, entity.position(), ColoredExplosionParticleEffect.LIGHT_GRAY, 1, Vec3.ZERO);
 				world.playSound(null, pos.x(), pos.y(), pos.z(), SpectrumSoundEvents.RADIANCE_STAFF_PLACE, SoundSource.PLAYERS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
@@ -61,18 +62,43 @@ public class StaffOfRemembranceItem extends Item implements InkPowered, Prioriti
 				world.playSound(null, pos.x(), pos.y(), pos.z(), SpectrumSoundEvents.USE_FAIL, SoundSource.PLAYERS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
 			}
 		}
+		
 		return InteractionResult.sidedSuccess(world.isClientSide);
 	}
 	
-	private boolean turnEntityToMemory(Player user, Mob entity) {
+	private boolean turnEntityToMemory(Player user, LivingEntity entity) {
 		if (!entity.isAlive() || entity.isRemoved() || entity.isVehicle()) {
 			return false;
 		}
-		if (entity.getType().is(SpectrumEntityTypeTags.STAFF_OF_REMEMBRANCE_BLACKLISTED)) {
+		
+		if (entity instanceof ServerPlayer player) {
+			if (!InkPowered.tryDrainEnergy(user, CREATE_PLAYER_MEMORY_COST)) {
+				return false;
+			}
+			
+			entity.hurt(SpectrumDamageTypes.remembrance(user.level(), user), 4);
+			
+			ItemStack memoryStack = MemoryItem.getForPlayer(player, 4);
+			MemoryItem.setTicksToManifest(memoryStack, 1);
+			
+			Vec3 entityPos = entity.position();
+			ItemEntity itemEntity = new ItemEntity(entity.level(), entityPos.x(), entityPos.y(), entityPos.z(), memoryStack);
+			itemEntity.setDeltaMovement(new Vec3(0.0, 0.15, 0.0));
+			entity.level().addFreshEntity(itemEntity);
+			
+			return true;
+		}
+		
+		if (!(entity instanceof Mob mob)) {
 			return false;
 		}
 		
-		MobCategory spawnGroup = entity.getType().getCategory();
+		EntityType<?> entityType = mob.getType();
+		if (entityType.is(SpectrumEntityTypeTags.STAFF_OF_REMEMBRANCE_BLACKLISTED)) {
+			return false;
+		}
+		
+		MobCategory spawnGroup = entityType.getCategory();
 		if (spawnGroup == MobCategory.MONSTER) {
 			if (!user.isCreative() && !AdvancementHelper.hasAdvancement(user, SpectrumAdvancements.HOSTILE_MEMORIZING)) {
 				return false;
@@ -86,19 +112,19 @@ public class StaffOfRemembranceItem extends Item implements InkPowered, Prioriti
 			}
 		}
 		
-		entity.dropLeash(true, true);
-		entity.playAmbientSound();
-		entity.spawnAnim();
+		mob.dropLeash(true, true);
+		mob.playAmbientSound();
+		mob.spawnAnim();
 		
 		ItemStack memoryStack = MemoryItem.getMemoryForEntity(entity);
 		MemoryItem.setTicksToManifest(memoryStack, 1);
 		MemoryItem.setSpawnAsAdult(memoryStack, true);
 		
-		Vec3 entityPos = entity.position();
-		ItemEntity itemEntity = new ItemEntity(entity.level(), entityPos.x(), entityPos.y(), entityPos.z(), memoryStack);
+		Vec3 entityPos = mob.position();
+		ItemEntity itemEntity = new ItemEntity(mob.level(), entityPos.x(), entityPos.y(), entityPos.z(), memoryStack);
 		itemEntity.setDeltaMovement(new Vec3(0.0, 0.15, 0.0));
-		entity.level().addFreshEntity(itemEntity);
-		entity.remove(Entity.RemovalReason.DISCARDED);
+		mob.level().addFreshEntity(itemEntity);
+		mob.remove(Entity.RemovalReason.DISCARDED);
 		
 		return true;
 	}

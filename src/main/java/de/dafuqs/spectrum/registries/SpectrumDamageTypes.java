@@ -41,6 +41,7 @@ public class SpectrumDamageTypes {
 	public static final ResourceKey<DamageType> SHOOTING_STAR = ResourceKey.create(Registries.DAMAGE_TYPE, locate("shooting_star"));
 	public static final ResourceKey<DamageType> SLEEP = ResourceKey.create(Registries.DAMAGE_TYPE, locate("sleep"));
 	public static final ResourceKey<DamageType> SNAPPING_IVY = ResourceKey.create(Registries.DAMAGE_TYPE, locate("snapping_ivy"));
+	public static final ResourceKey<DamageType> REMEMBRANCE = ResourceKey.create(Registries.DAMAGE_TYPE, locate("remembrance"));
 	
 	public static DamageSource mobHeadDrop(Level world) {
 		return new DamageSource(world.damageSources().damageTypes.getHolderOrThrow(MOB_HEAD_DROP));
@@ -132,6 +133,10 @@ public class SpectrumDamageTypes {
 	
 	public static DamageSource snappingIvy(Level world) {
 		return new DamageSource(world.damageSources().damageTypes.getHolderOrThrow(SNAPPING_IVY));
+	}
+	
+	public static DamageSource remembrance(Level world, @Nullable LivingEntity attacker) {
+		return new DamageSource(world.damageSources().damageTypes.getHolderOrThrow(REMEMBRANCE), attacker);
 	}
 	
 	public static DamageSource primordialFire(Level world) {

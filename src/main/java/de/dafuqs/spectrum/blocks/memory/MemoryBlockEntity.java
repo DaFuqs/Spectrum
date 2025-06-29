@@ -1,18 +1,22 @@
 package de.dafuqs.spectrum.blocks.memory;
 
 import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
+import net.minecraft.core.component.*;
 import net.minecraft.nbt.*;
+import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
@@ -100,10 +104,17 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 				if (newTicksToManifest <= 0) {
 					this.manifestFromBlock(world, blockPos);
 				} else {
-					Optional<EntityType<?>> entityTypeOptional = MemoryItem.getEntityType(this.memoryItemStack);
-					if (entityTypeOptional.isPresent()) {
+					Optional<EntityType<?>> entityType;
+					Optional<ResolvableProfile> playerOptional = MemoryItem.getPlayer(this.memoryItemStack);
+					if (playerOptional.isPresent()) {
+						entityType = Optional.of(EntityType.PLAYER);
+					} else {
+						entityType = MemoryItem.getEntityType(this.memoryItemStack);
+					}
+					
+					if (entityType.isPresent()) {
 						MemoryItem.setTicksToManifest(this.memoryItemStack, newTicksToManifest);
-						PlayMemoryManifestingParticlesPayload.playMemoryManifestingParticles(world, blockPos, entityTypeOptional.get(), 3);
+						PlayMemoryManifestingParticlesPayload.playMemoryManifestingParticles(world, blockPos, entityType.get(), 3);
 						world.playSound(null, this.worldPosition, SpectrumSoundEvents.BLOCK_MEMORY_ADVANCE, SoundSource.BLOCKS, 0.7F, 0.9F + world.random.nextFloat() * 0.2F);
 						this.setChanged();
 					}
@@ -177,15 +188,34 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 	}
 	
 	public static Optional<Entity> hatchEntity(ServerLevel world, BlockPos blockPos, ItemStack memoryItemStack) {
-		return Optional.ofNullable(memoryItemStack.get(SpectrumDataComponentTypes.MEMORY))
-				.flatMap(memory -> MemoryItem.getEntityType(memoryItemStack)
-						.map(entityType -> {
-							Entity entity = entityType.spawn(world, memoryItemStack, null, blockPos, MobSpawnType.SPAWN_EGG, true, false);
-							if (entity instanceof Mob mobEntity && !memory.spawnAsAdult())
-								mobEntity.setBaby(true);
-							return entity;
-						})
-				);
+		MemoryComponent memoryComponent = memoryItemStack.get(SpectrumDataComponentTypes.MEMORY);
+		if (memoryComponent == null) {
+			return Optional.empty();
+		}
+		
+		ResolvableProfile profile = memoryItemStack.get(DataComponents.PROFILE);
+		if (profile != null) {
+			@Nullable ServerPlayer player = world.getServer().getPlayerList().getPlayer(profile.id().get());
+			if (player == null) {
+				return Optional.empty();
+			}
+			world.playSound(player, player.position().x(), player.position().y(), player.position().z(), SpectrumSoundEvents.PLAYER_TELEPORTS, SoundSource.PLAYERS, 1.0F, 1.0F);
+			player.teleportTo(world, blockPos.getX() + 0.5, blockPos.getY() + 0.5, blockPos.getZ() + 0.5, player.yBodyRot, 0);
+			world.playSound(player, player.position().x(), player.position().y, player.position().z, SpectrumSoundEvents.PLAYER_TELEPORTS, SoundSource.PLAYERS, 1.0F, 1.0F);
+			player.displayClientMessage(Component.translatable("item.spectrum.memory.you_were_remembered_by_a_memory"), true);
+			
+			return Optional.of(player);
+		}
+		
+		Optional<EntityType<?>> entityType = MemoryItem.getEntityType(memoryItemStack);
+		if (entityType.isPresent()) {
+			Entity entity = entityType.get().spawn(world, memoryItemStack, null, blockPos, MobSpawnType.SPAWN_EGG, true, false);
+			if (entity instanceof Mob mobEntity && !memoryComponent.spawnAsAdult())
+				mobEntity.setBaby(true);
+			return Optional.ofNullable(entity);
+		}
+		
+		return Optional.empty();
 	}
 	
 	@Override

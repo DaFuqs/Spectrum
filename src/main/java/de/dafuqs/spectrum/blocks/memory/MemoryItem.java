@@ -9,6 +9,7 @@ import net.minecraft.core.component.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
@@ -73,7 +74,16 @@ public class MemoryItem extends BlockItem {
 		CompoundTag entityCompound = new CompoundTag();
 		entityCompound.putString("id", BuiltInRegistries.ENTITY_TYPE.getKey(entityType).toString());
 		stack.set(DataComponents.ENTITY_DATA, CustomData.of(entityCompound));
-
+		
+		return stack;
+	}
+	
+	public static ItemStack getForPlayer(ServerPlayer player, int ticksToManifest) {
+		ItemStack stack = SpectrumBlocks.MEMORY.asItem().getDefaultInstance();
+		
+		stack.set(SpectrumDataComponentTypes.MEMORY, new MemoryComponent.Builder(MemoryComponent.DEFAULT).ticksToManifest(ticksToManifest).build());
+		stack.set(DataComponents.PROFILE, new ResolvableProfile(player.getGameProfile()));
+		
 		return stack;
 	}
 	
@@ -85,6 +95,14 @@ public class MemoryItem extends BlockItem {
 		var data = getEntityData(stack);
 		if (!data.contains("id", Tag.TAG_STRING)) return Optional.empty();
 		return EntityType.byString(data.getString("id"));
+	}
+	
+	public static Optional<ResolvableProfile> getPlayer(ItemStack stack) {
+		var data = stack.get(DataComponents.PROFILE);
+		if (data == null) {
+			return Optional.empty();
+		}
+		return Optional.of(data);
 	}
 	
 	public static @Nullable Component getMemoryEntityCustomName(ItemStack stack, HolderLookup.Provider drm) {
@@ -146,7 +164,23 @@ public class MemoryItem extends BlockItem {
 	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		super.appendHoverText(stack, context, tooltip, type);
 		
-		getEntityType(stack).ifPresentOrElse(entityType -> {
+		Optional<ResolvableProfile> profile = getPlayer(stack);
+		Optional<EntityType<?>> entity = getEntityType(stack);
+		
+		if (profile.isPresent()) {
+			ResolvableProfile resolvableProfile = profile.get();
+			if (isUnrecognizable(stack) || !resolvableProfile.isResolved()) {
+				tooltip.add(Component.translatable("item.spectrum.memory.tooltip.unrecognizable_entity_type").withStyle(ChatFormatting.GRAY));
+			} else {
+				boolean isBrokenPromise = isBrokenPromise(stack);
+				if (isBrokenPromise) {
+					tooltip.add(Component.translatable("item.spectrum.memory.tooltip.named_broken_promise").append(resolvableProfile.name().get()).withStyle(ChatFormatting.WHITE, ChatFormatting.ITALIC));
+				} else {
+					tooltip.add(Component.translatable("item.spectrum.memory.tooltip.named").append(resolvableProfile.name().get()).withStyle(ChatFormatting.WHITE, ChatFormatting.ITALIC));
+				}
+			}
+		} else if (entity.isPresent()) {
+			EntityType<?> entityType = entity.get();
 			if (isUnrecognizable(stack)) {
 				tooltip.add(Component.translatable("item.spectrum.memory.tooltip.unrecognizable_entity_type").withStyle(ChatFormatting.GRAY));
 			} else {
@@ -166,7 +200,9 @@ public class MemoryItem extends BlockItem {
 					}
 				}
 			}
-			
+		}
+		
+		if (profile.isPresent() || entity.isPresent()) {
 			int ticksToHatch = getTicksToManifest(stack);
 			if (ticksToHatch <= 0) {
 				tooltip.add(Component.translatable("item.spectrum.memory.tooltip.does_not_manifest").withStyle(ChatFormatting.GRAY));
@@ -179,7 +215,9 @@ public class MemoryItem extends BlockItem {
 			} else {
 				tooltip.add(Component.translatable("item.spectrum.memory.tooltip.short_time_to_manifest").withStyle(ChatFormatting.GRAY));
 			}
-		}, () -> tooltip.add(Component.translatable("item.spectrum.memory.tooltip.unset_entity_type").withStyle(ChatFormatting.GRAY)));
+		} else {
+			tooltip.add(Component.translatable("item.spectrum.memory.tooltip.unset_entity_type").withStyle(ChatFormatting.GRAY));
+		}
 	}
 	
 	public static void appendEntries(HolderLookup.Provider lookup, Output entries) {

@@ -161,8 +161,8 @@ public class SpectrumModelLayers {
 	/**
 	 * Armor
 	 */
-	public static final ModelLayerLocation MAIN_BEDROCK_LAYER = new ModelLayerLocation(SpectrumCommon.locate("bedrock_armor"), "main");
-	public static final ResourceLocation BEDROCK_ARMOR_MAIN_ID = SpectrumCommon.locate("textures/armor/bedrock_armor_main.png");
+	public static final ModelLayerLocation BEDROCK_LAYER = new ModelLayerLocation(SpectrumCommon.locate("bedrock_armor"), "main");
+	public static final ResourceLocation BEDROCK_ARMOR_ID = SpectrumCommon.locate("textures/armor/bedrock_armor.png");
 	
 	
 	public static void register() {
@@ -301,7 +301,7 @@ public class SpectrumModelLayers {
 		EntityModelLayerRegistry.registerModelLayer(LIZARD_HEAD_FRILLS, LizardHeadModel::getTexturedModelDataFrills);
 		EntityModelLayerRegistry.registerModelLayer(PRESERVATION_TURRET_HEAD, PreservationTurretHeadModel::getTexturedModelData);
 		
-		EntityModelLayerRegistry.registerModelLayer(MAIN_BEDROCK_LAYER, () -> LayerDefinition.create(BedrockArmorModel.getModelData(), 128, 128));
+		EntityModelLayerRegistry.registerModelLayer(BEDROCK_LAYER, () -> LayerDefinition.create(BedrockArmorModel.getMeshDefinition(), 128, 128));
 	}
 	
 }

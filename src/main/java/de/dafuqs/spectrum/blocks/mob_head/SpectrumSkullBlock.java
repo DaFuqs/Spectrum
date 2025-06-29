@@ -68,27 +68,8 @@ public class SpectrumSkullBlock extends SkullBlock {
 			return Optional.of(EntityType.WITHER_SKELETON);
 		} else if (Items.PIGLIN_HEAD == item) {
 			return Optional.of(EntityType.PIGLIN);
-		}
-		return Optional.empty();
-	}
-	
-	public static Optional<SkullBlock.Type> getSkullType(ItemStack itemStack) {
-		Item item = itemStack.getItem();
-		if (item instanceof SpectrumSkullBlockItem spectrumSkullBlockItem) {
-			return Optional.of(spectrumSkullBlockItem.type);
-		}
-		if (Items.CREEPER_HEAD == item) {
-			return Optional.of(SkullBlock.Types.CREEPER);
-		} else if (Items.DRAGON_HEAD == item) {
-			return Optional.of(SkullBlock.Types.DRAGON);
-		} else if (Items.ZOMBIE_HEAD == item) {
-			return Optional.of(SkullBlock.Types.ZOMBIE);
-		} else if (Items.SKELETON_SKULL == item) {
-			return Optional.of(SkullBlock.Types.SKELETON);
-		} else if (Items.WITHER_SKELETON_SKULL == item) {
-			return Optional.of(SkullBlock.Types.WITHER_SKELETON);
-		} else if (Items.PIGLIN_HEAD == item) {
-			return Optional.of(SkullBlock.Types.PIGLIN);
+		} else if (Items.PLAYER_HEAD == item) {
+			return Optional.of(EntityType.PLAYER);
 		}
 		return Optional.empty();
 	}
@@ -109,6 +90,8 @@ public class SpectrumSkullBlock extends SkullBlock {
 			return Optional.of(Blocks.WITHER_SKELETON_SKULL);
 		} else if (SkullBlock.Types.PIGLIN == skullType) {
 			return Optional.of(Blocks.PIGLIN_HEAD);
+		} else if (SkullBlock.Types.PLAYER == skullType) {
+			return Optional.of(Blocks.PLAYER_HEAD);
 		}
 		return Optional.empty();
 	}

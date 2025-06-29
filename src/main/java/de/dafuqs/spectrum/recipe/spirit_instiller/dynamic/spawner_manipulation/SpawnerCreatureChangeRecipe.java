@@ -2,15 +2,21 @@ package de.dafuqs.spectrum.recipe.spirit_instiller.dynamic.spawner_manipulation;
 
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.mob_head.*;
+import de.dafuqs.spectrum.blocks.spirit_instiller.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
+import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.crafting.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -59,11 +65,18 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 	}
 	
 	@Override
-	public CompoundTag getSpawnerResultNbt(CompoundTag nbt, ItemStack firstBowlStack, ItemStack secondBowlStack) {
+	public CompoundTag getSpawnerResultNbt(CompoundTag nbt, ItemStack firstBowlStack, ItemStack secondBowlStack, InstanceRecipeInput<SpiritInstillerBlockEntity> recipeInput) {
 		Optional<EntityType<?>> entityType = SpectrumSkullBlock.getEntityTypeOfSkullStack(firstBowlStack);
 		entityType = entityType.isEmpty() ? SpectrumSkullBlock.getEntityTypeOfSkullStack(secondBowlStack) : entityType;
 		
 		if (entityType.isEmpty()) {
+			return nbt;
+		}
+		if (entityType.get() == EntityType.PLAYER) {
+			@Nullable Player player = recipeInput.getInstance().getOwnerIfOnline();
+			if (player instanceof ServerPlayer serverPlayer) {
+				Support.grantAdvancementCriterion(serverPlayer, SpectrumAdvancements.FAILED_CREATING_PLAYER_SPAWNER, "failed_creating_player_spawner");
+			}
 			return nbt;
 		}
 		

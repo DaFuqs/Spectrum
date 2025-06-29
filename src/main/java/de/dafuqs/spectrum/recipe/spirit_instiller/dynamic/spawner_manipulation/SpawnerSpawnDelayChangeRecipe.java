@@ -1,6 +1,8 @@
 package de.dafuqs.spectrum.recipe.spirit_instiller.dynamic.spawner_manipulation;
 
 import de.dafuqs.spectrum.api.recipe.*;
+import de.dafuqs.spectrum.blocks.spirit_instiller.*;
+import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.chat.*;
@@ -43,7 +45,7 @@ public class SpawnerSpawnDelayChangeRecipe extends SpawnerChangeRecipe {
 	}
 	
 	@Override
-	public CompoundTag getSpawnerResultNbt(CompoundTag nbt, ItemStack firstBowlStack, ItemStack secondBowlStack) {
+	public CompoundTag getSpawnerResultNbt(CompoundTag nbt, ItemStack firstBowlStack, ItemStack secondBowlStack, InstanceRecipeInput<SpiritInstillerBlockEntity> recipeInput) {
 		// Default spawner tag:
 		/* BlockEntityTag: {
 			MaxNearbyEntities: 6s,

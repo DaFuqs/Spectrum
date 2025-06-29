@@ -140,5 +140,6 @@ public class SpectrumAdvancements {
 	public static final ResourceLocation COLLECT_JADE_VINE_PETALS = SpectrumCommon.locate("midgame/collect_jade_vine_petals");
 	public static final ResourceLocation BUILD_SPIRIT_INSTILLER_STRUCTURE = SpectrumCommon.locate("midgame/build_spirit_instiller_structure");
 	public static final ResourceLocation JADE_VINE_CROSSBREEDING = SpectrumCommon.locate("spirit_instiller/secret/germinated_jade_vine_crossbreeding");
+	public static final ResourceLocation FAILED_CREATING_PLAYER_SPAWNER = SpectrumCommon.locate("midgame/failed_creating_player_spawner");
 	
 }

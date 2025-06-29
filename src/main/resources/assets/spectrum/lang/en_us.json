@@ -467,6 +467,9 @@
   "advancements.spectrum.wear_complete_set_of_bedrock_armor.title": "Black Knight",
   "advancements.spectrum.become_enlightened.title": "The Professional Catposter",
   "advancements.spectrum.become_enlightened.description": "From posting cats every day, to solving the secrets of the universe: you are truly the best of the best. You finally know how many A's it takes to spell Noaaan's name.",
+  "advancements.spectrum.failed_creating_player_spawner.title": "Not how babies are made",
+  "advancements.spectrum.failed_creating_player_spawner.description": "Try creating a Player spawner",
+
   "attribute.name.spectrum.mental_presence": "Mental Presence",
   "attribute.name.spectrum.mental_presence.desc": "Potency of mind related effects",
 

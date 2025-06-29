@@ -83,7 +83,10 @@
     "frame": "paginatedadvancements:crested"
   },
 
-
+  {
+    "advancement": "spectrum:midgame/failed_creating_player_spawner",
+    "frame": "spectrum:pile_of_poo"
+  },
   {
     "advancement": "spectrum:fail_to_take_item_out_of_pedestal",
     "frame": "spectrum:pile_of_poo"

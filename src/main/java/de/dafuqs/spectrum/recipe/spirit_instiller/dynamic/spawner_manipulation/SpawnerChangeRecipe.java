@@ -51,7 +51,7 @@ public abstract class SpawnerChangeRecipe extends SpiritInstillerRecipe {
 			if (!spawnerNbt.contains("id")) {
 				spawnerNbt.putString("id", "minecraft:spawner");
 			}
-			spawnerNbt = getSpawnerResultNbt(spawnerNbt, firstBowlStack, secondBowlStack);
+			spawnerNbt = getSpawnerResultNbt(spawnerNbt, firstBowlStack, secondBowlStack, recipeInput);
 			resultStack = spawnerStack.copyWithCount(1);
 			resultStack.set(DataComponents.BLOCK_ENTITY_DATA, CustomData.of(spawnerNbt));
 			
@@ -68,7 +68,7 @@ public abstract class SpawnerChangeRecipe extends SpiritInstillerRecipe {
 	
 	public abstract boolean canCraftWithBlockEntityTag(CustomData spawnerBlockEntityNbt, ItemStack leftBowlStack, ItemStack rightBowlStack);
 	
-	public abstract CompoundTag getSpawnerResultNbt(CompoundTag nbt, ItemStack firstBowlStack, ItemStack secondBowlStack);
+	public abstract CompoundTag getSpawnerResultNbt(CompoundTag nbt, ItemStack firstBowlStack, ItemStack secondBowlStack, InstanceRecipeInput<SpiritInstillerBlockEntity> recipeInput);
 	
 	public abstract Component getOutputLoreText();
 	

@@ -1,11 +1,11 @@
 {
-  "parent": "block/block",
+  "format_version": "1.21.6",
   "credit": "Made with Blockbench",
+  "parent": "block/block",
   "textures": {
     "0": "spectrum:block/item_bowl_basalt",
     "1": "spectrum:block/polished_basalt_pillar_side",
     "2": "spectrum:block/polished_basalt",
-    "3": "spectrum:block/polished_basalt_pillar_top",
     "particle": "spectrum:block/item_bowl_basalt"
   },
   "elements": [
@@ -59,10 +59,10 @@
         },
         "up": {
           "uv": [
-            0,
-            0,
-            12,
-            12
+            2,
+            2,
+            14,
+            14
           ],
           "texture": "#2"
         }

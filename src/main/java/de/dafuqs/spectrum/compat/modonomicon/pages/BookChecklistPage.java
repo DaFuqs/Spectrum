@@ -52,7 +52,6 @@ public class BookChecklistPage extends BookTextPage {
         var showTitleSeparator = buffer.readBoolean();
         var text = BookTextHolder.fromNetwork(buffer);
 		var anchor = buffer.readUtf();
-		int startCountingAt = buffer.readInt();
         var condition = BookCondition.fromNetwork(buffer);
 
         // Because modonomicon decided RegistryByteBuf was worthwhile
@@ -63,6 +62,7 @@ public class BookChecklistPage extends BookTextPage {
             var value = BookTextHolder.fromNetwork(buffer);
             checklist.put(key, value);
         }
+		int startCountingAt = buffer.readInt();
 		
 		return new BookChecklistPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, condition, checklist, startCountingAt);
     }
@@ -115,6 +115,7 @@ public class BookChecklistPage extends BookTextPage {
 			buffer.writeResourceLocation(entry.getKey());
 			entry.getValue().toNetwork(buffer);
 		}
+		buffer.writeVarInt(startCountingAt);
     }
 
 }

@@ -422,6 +422,10 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 			}
 			
 			public int add(ItemStack stack) {
+				if (this.count != 0 && this.variant != ItemVariant.of(stack)) {
+					return 0;
+				}
+
 				int toAdd = Math.min(stack.getCount(), this.getMaxAllowed(stack));
 				if (toAdd == 0)
 					return 0;
@@ -453,6 +457,9 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 			}
 			
 			public long add(Slot slot, Player player) {
+				if (this.count != 0 && this.variant != ItemVariant.of(slot.getItem())) {
+					return 0;
+				}
 				var maxAllowed = this.getMaxAllowed(slot.getItem());
 				return this.add(slot.safeTake(slot.getItem().getCount(), maxAllowed, player));
 			}

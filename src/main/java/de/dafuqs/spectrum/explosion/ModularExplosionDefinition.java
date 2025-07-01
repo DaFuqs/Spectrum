@@ -17,6 +17,7 @@ import net.minecraft.world.item.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
+import java.lang.*;
 
 /**
  * A Set of ExplosionModifiers
@@ -51,6 +52,14 @@ public class ModularExplosionDefinition {
 	public static ModularExplosionDefinition getFromStack(ItemStack stack) {
 		return stack.getOrDefault(SpectrumDataComponentTypes.MODULAR_EXPLOSION, new ModularExplosionDefinition());
 	}
+
+	public static ModularExplosionDefinition clone(ModularExplosionDefinition original) {
+		return new ModularExplosionDefinition(original.archetype, new ArrayList<ExplosionModifier>(original.modifiers));
+	}
+
+	public static ModularExplosionDefinition cloneFromStack(ItemStack stack) {
+		return clone(getFromStack(stack));
+	}
 	
 	public static void removeFromStack(ItemStack stack) {
 		stack.remove(SpectrumDataComponentTypes.MODULAR_EXPLOSION);
@@ -73,7 +82,14 @@ public class ModularExplosionDefinition {
 	}
 	
 	public void addModifiers(List<ExplosionModifier> modifiers) {
-		this.modifiers.addAll(modifiers);
+		try {
+			this.modifiers.addAll(modifiers);
+		} catch (java.lang.UnsupportedOperationException e) { // `modifiers` collection actually may be ImmutableCollection
+			var newModifiers = new ArrayList<ExplosionModifier>();
+			newModifiers.addAll(this.modifiers);
+			newModifiers.addAll(modifiers);
+			this.modifiers = newModifiers;
+		}
 	}
 	
 	public ExplosionArchetype getArchetype() {

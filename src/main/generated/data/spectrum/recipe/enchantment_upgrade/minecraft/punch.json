@@ -12,7 +12,7 @@
     "item": "spectrum:red_pigment"
   },
   "enchantment": "minecraft:punch",
-  "group": "minecraft",
+  "group": "vanilla_enchantment_upgrades",
   "item_scaling": {
     "type": "spectrum:indexed",
     "indexes": [

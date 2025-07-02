@@ -12,7 +12,7 @@
     "item": "spectrum:light_blue_pigment"
   },
   "enchantment": "minecraft:fortune",
-  "group": "minecraft",
+  "group": "vanilla_enchantment_upgrades",
   "item_scaling": {
     "type": "spectrum:indexed",
     "indexes": [

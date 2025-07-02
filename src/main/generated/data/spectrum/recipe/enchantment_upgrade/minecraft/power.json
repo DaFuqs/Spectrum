@@ -12,7 +12,7 @@
     "item": "spectrum:red_pigment"
   },
   "enchantment": "minecraft:power",
-  "group": "minecraft",
+  "group": "vanilla_enchantment_upgrades",
   "item_scaling": {
     "type": "spectrum:doubling",
     "scaling_value": 8

@@ -260,8 +260,8 @@ public class SpectrumRecipeProvider extends FabricRecipeProvider {
 	
 	private void generateEnchantmentUpgradeRecipe(RecipeOutput ctx, String group, ResourceKey<Enchantment> enchantment, ResourceLocation advancement, Item bulkItem, int levelCap, RecipeScaling.ScalingData xpScaling, RecipeScaling.ScalingData itemScaling) {
 		ctx = withConditions(ctx, new SpectrumResourceConditions.EnchantmentsExistResourceCondition(List.of(enchantment)));
-		String namespace = enchantment.registry().getNamespace();
-		String base = "enchantment_upgrade/" + namespace + "/" + enchantment.registry().getPath().replace("/", ".");
+		String namespace = enchantment.location().getNamespace();
+		String base = "enchantment_upgrade/" + namespace + "/" + enchantment.location().getPath().replace("/", ".");
 		generateRecipe(ctx, base, new EnchantmentUpgradeRecipe(group, false, Optional.of(advancement), Either.right(enchantment), levelCap, Ingredient.of(bulkItem), xpScaling, itemScaling));
 	}
 	

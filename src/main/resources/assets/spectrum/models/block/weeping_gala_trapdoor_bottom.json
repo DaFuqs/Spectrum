@@ -1,0 +1,7 @@
+{
+  "parent": "spectrum:improved_vanilla/template_orientable_trapdoor_bottom",
+  "textures": {
+    "texture": "spectrum:block/weeping_gala_trapdoor",
+    "side": "spectrum:block/weeping_gala_door_side"
+  }
+}

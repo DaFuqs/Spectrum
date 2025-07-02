@@ -1,0 +1,9 @@
+{
+  "type": "spectrum:drop_self",
+  "block": {
+    "blocks": "minecraft:cake"
+  },
+  "state_properties_to_copy": [
+    "bites"
+  ]
+}

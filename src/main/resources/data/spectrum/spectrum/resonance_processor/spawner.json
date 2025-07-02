@@ -1,0 +1,16 @@
+{
+  "type": "spectrum:drop_self",
+  "block": {
+    "blocks": "minecraft:spawner"
+  },
+  "nbt_to_copy": [
+    "SpawnData",
+    "SpawnCount",
+    "MinSpawnDelay",
+    "MaxSpawnDelay",
+    "SpawnRange",
+    "RequiredPlayerRange",
+    "SpawnPotentials",
+    "MaxNearbyEntities"
+  ]
+}

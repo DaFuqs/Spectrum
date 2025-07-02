@@ -12,7 +12,7 @@
     "item": "spectrum:light_gray_pigment"
   },
   "enchantment": "minecraft:soul_speed",
-  "group": "vanilla_enchantment_upgrades",
+  "group": "minecraft",
   "item_scaling": {
     "type": "spectrum:doubling",
     "scaling_factor": 2.0,

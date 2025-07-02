@@ -12,7 +12,7 @@
     "item": "spectrum:blue_pigment"
   },
   "enchantment": "minecraft:lure",
-  "group": "vanilla_enchantment_upgrades",
+  "group": "minecraft",
   "item_scaling": {
     "type": "spectrum:indexed",
     "indexes": [

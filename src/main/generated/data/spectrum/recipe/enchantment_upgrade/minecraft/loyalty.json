@@ -12,7 +12,7 @@
     "item": "spectrum:brown_pigment"
   },
   "enchantment": "minecraft:loyalty",
-  "group": "vanilla_enchantment_upgrades",
+  "group": "minecraft",
   "item_scaling": {
     "type": "spectrum:doubling",
     "scaling_factor": 2.0,

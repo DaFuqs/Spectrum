@@ -12,7 +12,7 @@
     "item": "spectrum:cyan_pigment"
   },
   "enchantment": "minecraft:unbreaking",
-  "group": "vanilla_enchantment_upgrades",
+  "group": "minecraft",
   "item_scaling": {
     "type": "spectrum:indexed",
     "indexes": [

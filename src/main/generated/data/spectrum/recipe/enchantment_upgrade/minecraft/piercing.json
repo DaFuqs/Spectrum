@@ -12,7 +12,7 @@
     "item": "spectrum:red_pigment"
   },
   "enchantment": "minecraft:piercing",
-  "group": "vanilla_enchantment_upgrades",
+  "group": "minecraft",
   "item_scaling": {
     "type": "spectrum:doubling",
     "scaling_value": 8

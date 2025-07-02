@@ -12,7 +12,7 @@
     "item": "spectrum:pink_pigment"
   },
   "enchantment": "minecraft:thorns",
-  "group": "vanilla_enchantment_upgrades",
+  "group": "minecraft",
   "item_scaling": {
     "type": "spectrum:indexed",
     "indexes": [

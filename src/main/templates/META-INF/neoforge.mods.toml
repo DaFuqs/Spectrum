@@ -1,0 +1,157 @@
+# TODO: remove modLoader and loaderVersion in 1.21.6+
+modLoader="javafml" #mandatory
+loaderVersion="[1,)" #mandatory
+license="lGPL3"
+
+issueTrackerURL="https://github.com/DaFuqs/Spectrum/issues"
+
+# A list of mods - how many allowed here is determined by the individual mod loader
+[[mods]] #mandatory
+modId="spectrum" #mandatory
+version="${version}" #mandatory
+displayName="Spectrum" #mandatory
+
+# A URL to query for updates for this mod. See the JSON update specification https://docs.neoforged.net/docs/misc/updatechecker/
+#updateJSONURL="https://change.me.example.invalid/updates.json" #optional
+
+# A URL for the "homepage" for this mod, displayed in the mod UI
+displayURL="https://github.com/DaFuqs/Spectrum" #optional
+
+# A file name (in the root of the mod JAR) containing a logo for display
+#logoFile="examplemod.png" #optional
+
+# A text field displayed in the mod UI
+#credits="" #optional
+
+# A text field displayed in the mod UI
+#authors="" #optional
+
+# The description text for the mod (multi line!) (#mandatory)
+description='''A full-feature magic mod about harnessing the powers of color'''
+
+# The [[mixins]] block allows you to declare your mixin config to FML so that it gets loaded.
+[[mixins]]
+config="spectrum.mixins.json"
+
+# The [[accessTransformers]] block allows you to declare where your AT file is.
+# If this block is omitted, a fallback attempt will be made to load an AT from META-INF/accesstransformer.cfg
+#[[accessTransformers]]
+#file="META-INF/accesstransformer.cfg"
+
+# The coremods config file path is not configurable and is always loaded from META-INF/coremods.json
+
+# A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
+[[dependencies.spectrum]] #optional
+modId="neoforge" #mandatory
+type="required" #mandatory
+versionRange="${neoforge_version_range}"
+ordering="NONE"
+side="BOTH"
+
+# Here's another dependency
+[[dependencies.spectrum]]
+modId="minecraft"
+type="required"
+versionRange="[${minecraft_version}]"
+ordering="NONE"
+side="BOTH"
+
+#{
+#  "schemaVersion": 1,
+#  "id": "spectrum",
+#  "version": "${version}",
+#  "name": "Spectrum",
+#  "description": "A full-feature magic mod about harnessing the powers of color",
+#  "authors": [
+#    "DaFuqs - Big Boss (Furry)",
+#    "Azzyypaaras - Easygoing egoist (Art and Writing, Gayest)",
+#    "Noaaan - Mythic Coder (Hard Carries on MC Updates)"
+#  ],
+#  "contributors": [
+#    "Salad Cat (OST)",
+#    "Electro_593 (A lot of code, big porting hours)",
+#    "HoneyHive (Illustrations)",
+#    "800020h (Structures)",
+#    "MsRandom (Gayer, Shaders)",
+#    "Quarx (Sound design)",
+#    "Athebyne (Gay Dragon)",
+#    "Robotgiggle (Loot, Tweaks)",
+#    "pizzacalz0ne (wacky but genius code)"
+#  ],
+#  "contact": {
+#    "homepage": "https://github.com/DaFuqs/",
+#    "sources": "https://github.com/DaFuqs/Spectrum",
+#    "issues": "https://github.com/DaFuqs/Spectrum/issues"
+#  },
+#  "license": "lGPL3",
+#  "icon": "assets/spectrum/icon.png",
+#  "environment": "*",
+#  "entrypoints": {
+#    "main": [
+#      "de.dafuqs.spectrum.SpectrumCommon"
+#    ],
+#    "client": [
+#      "de.dafuqs.spectrum.SpectrumClient"
+#    ],
+#    "preLaunch": [],
+#    "modmenu": [
+#      "de.dafuqs.spectrum.config.ModMenuConfig"
+#    ],
+#    "rei_common": [
+#      "de.dafuqs.spectrum.compat.REI.REICommonIntegration"
+#    ],
+#    "rei_client": [
+#      "de.dafuqs.spectrum.compat.REI.REIClientIntegration"
+#    ],
+#    "emi": [
+#      "de.dafuqs.spectrum.compat.emi.SpectrumEmiPlugin"
+#    ],
+#    "cardinal-components": [
+#      "de.dafuqs.spectrum.cca.SpectrumComponentInitializers"
+#    ]
+#  },
+#  "accessWidener": "spectrum.accesswidener",
+#  "mixins": [
+#    "spectrum.mixins.json"
+#  ],
+#  "custom": {
+#    "loom:injected_interfaces": {
+#      "net/minecraft/class_20": [
+#        "de/dafuqs/spectrum/injectors/MapDecorationInjector"
+#      ],
+#      "net/minecraft/class_1293": [
+#        "de/dafuqs/spectrum/injectors/StatusEffectInstanceInjector"
+#      ],
+#      "net/minecraft/class_2783": [
+#        "de/dafuqs/spectrum/injectors/EntityStatusEffectS2CPacketInjector"
+#      ],
+#      "net/minecraft/class_4174\u0024class_4175": [
+#        "de/dafuqs/spectrum/injectors/FoodComponentBuilderInjector"
+#      ]
+#    },
+#    "cardinal-components": [
+#      "spectrum:azure_dike",
+#      "spectrum:hardcore_deaths",
+#      "spectrum:last_kill",
+#      "spectrum:everpromise_ribbon",
+#      "spectrum:on_primordial_fire",
+#      "spectrum:misc_player_data"
+#    ],
+#    "lithium:options": {
+#      "entity.collisions.fluid": false
+#    }
+#  },
+#  "depends": {
+#    "minecraft": "=1.21.1",
+#    "fabricloader": "*",
+#    "fabric-api": "*",
+#    "revelationary": "*",
+#    "cloth-config": "*",
+#    "modonomicon": "*",
+#    "trinkets": "*"
+#  },
+#  "suggests": {
+#    "paginatedadvancements": "*"
+#  },
+#  "breaks": {}
+#}

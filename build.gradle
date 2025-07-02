@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.10-SNAPSHOT'
+	id 'net.neoforged.moddev' version '2.0.96'
 	id 'maven-publish'
 }
 
@@ -11,7 +11,8 @@ base {
 }
 
 repositories {
-	mavenLocal()
+	// TODO: generally bad practice to have it enabled by default
+//	mavenLocal()
 	maven { url = "https://maven.is-immensely.gay/releases" } // Revelationary, Fractal, AEA, Arrowhead, Dimensional Reverb...
 	maven { url = "https://maven.shedaniel.me/" } // Cloth Config, REI
 	maven { url = "https://maven.terraformersmc.com/" } // Modmenu, EMI
@@ -33,91 +34,136 @@ repositories {
 	mavenCentral()
 }
 
-fabricApi {
-	configureDataGeneration {
-		client = true
-		modId = "spectrum-datagen"
-		createSourceSet = true
+neoForge {
+	version = project.neoforge_version
+
+	parchment {
+		minecraftVersion = project.parchment_minecraft_version
+		mappingsVersion = project.parchment_mappings_version
+	}
+
+	// Default run configurations.
+	// These can be tweaked, removed, or duplicated as needed.
+	runs {
+		client {
+			client()
+		}
+
+		server {
+			server()
+			programArgument '--nogui'
+		}
+
+//		data {
+//			data()
+//
+//			// example of overriding the workingDirectory set in configureEach above, uncomment if you want to use it
+//			// gameDirectory = project.file('run-data')
+//
+//			// Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
+//			programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+//		}
+
+		// applies to all the run configs above
+		configureEach {
+			// Recommended logging data for a userdev environment
+			// The markers can be added/remove as needed separated by commas.
+			// "SCAN": For mods scan.
+			// "REGISTRIES": For firing of registry events.
+			// "REGISTRYDUMP": For getting the contents of all registries.
+			systemProperty 'forge.logging.markers', 'REGISTRIES'
+
+			// Recommended logging level for the console
+			// You can set various levels here.
+			// Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
+			logLevel = org.slf4j.event.Level.DEBUG
+		}
+	}
+
+	mods {
+		spectrum {
+			sourceSet sourceSets.main
+		}
 	}
 }
 
 dependencies {
-	// jetbrains annotations
-	implementation("org.jetbrains:annotations:26.0.2")
-
-	// graph api and its dependencies
-	implementation include("org.jgrapht:jgrapht-core:1.5.2")
-	implementation include("org.apfloat:apfloat:1.14.0")
-	implementation include("org.jheaps:jheaps:0.14")
-
-	// Some other dependency is adding annotations, and it throws an error without this
-	compileOnly("com.demonwav.mcdev:annotations:1.0")
-
-	// minecraft, fabric & api
-	minecraft("com.mojang:minecraft:${project.minecraft_version}")
-	mappings loom.layered() {
-		officialMojangMappings()
-		parchment("org.parchmentmc.data:parchment-${project.parchment_mappings}@zip")
-	}
-	modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
-	modImplementation("net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}")
-
-	// ours
-	modImplementation include("maven.modrinth:exclusions-lib:${project.exclusionslib_version}")
-	modImplementation("de.dafuqs:revelationary:${project.revelationary_version}")
-	modImplementation include("de.dafuqs:additionalentityattributes:${project.additional_entity_attributes_version}")
-	modImplementation include("de.dafuqs:arrowhead:${project.arrowhead_version}")
-	modImplementation include("de.dafuqs:reverb:${project.dimensional_reverb_version}")
-	modImplementation include("de.dafuqs:fractal:${project.fractal_version}")
-
-	// external and compat
-	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") { exclude(group: "net.fabricmc.fabric-api") }
-	modApi("dev.architectury:architectury-fabric:${project.architectury_version}") { exclude(group: "net.fabricmc.fabric-api") }
-	modApi("com.terraformersmc:modmenu:${project.modmenu_version}")
-	modImplementation("eu.pb4:common-protection-api:${project.cpa_version}")
-	modImplementation("dev.emi:trinkets:${project.trinkets_version}") // https://github.com/emilyploszaj/trinkets
-	modCompileOnly("me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}")
-	// https://github.com/shedaniel/RoughlyEnoughItems
-	modCompileOnly("dev.emi:emi-fabric:${emi_version}") // https://github.com/emilyploszaj/emi
-	// https://github.com/klikli-dev/modonomicon
-	modImplementation("com.klikli_dev:modonomicon-${project.minecraft_version}-fabric:${project.modonomicon_version}") {
-		exclude(group: "com.klikli_dev")
-		exclude(group: "mezz.jei")
-	}
-
-	switch (recipe_viewer.toLowerCase(Locale.ROOT)) {
-		case "rei": modLocalRuntime("me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"); break
-		case "emi": modLocalRuntime("dev.emi:emi-fabric:${emi_version}"); break
-		case "disabled": break
-		default: println("Unknown recipe viewer specified: $recipe_viewer. Must be EMI, REI or disabled.")
-	}
-
-	// https://github.com/OnyxStudios/Cardinal-Components-API/wiki/
-	modImplementation include("org.ladysnake.cardinal-components-api:cardinal-components-base:${project.cca_version}")
-	modImplementation include("org.ladysnake.cardinal-components-api:cardinal-components-entity:${project.cca_version}")
-	modImplementation include("org.ladysnake.cardinal-components-api:cardinal-components-item:${project.cca_version}")
-	modImplementation include("org.ladysnake.cardinal-components-api:cardinal-components-level:${project.cca_version}")
-
-	// Connect to local dev servers
-	// modLocalRuntime("maven.modrinth:auth-me:${project.auth_me_version}")
-
-	// Mod Compat
-	modCompileOnly("maven.modrinth:colorful-hearts:${project.colorful_hearts_version}") { transitive = false }
-	modCompileOnly("maven.modrinth:sodium:${project.sodium_version}") { transitive = false }
-	modCompileOnly("com.unascribed:ears-api:${project.ears_version}")
-	modCompileOnly("maven.modrinth:create-fabric:${project.create_version}") { transitive = false }
-	modCompileOnly("maven.modrinth:neepmeat:${project.neepmeat_version}") { transitive = false }
-	modCompileOnly("maven.modrinth:lodestonelib:${project.lodestone_version}") { transitive = false }
-	modCompileOnly("maven.modrinth:malum:${project.malum_version}") { transitive = false }
-	modCompileOnly("maven.modrinth:travelersbackpack:${project.travelers_backpack_version}")
-	modCompileOnly("maven.modrinth:botania:${project.botania_version}")
-	modCompileOnly("maven.modrinth:vanity:${project.vanityslots_version}")
-	modImplementation("maven.modrinth:idwtialsimmoedm:${project.idwtialsimmoedm_version}")
-
-	//Porting Lib
-	for (String module in port_lib_modules.split(",")) {
-		modCompileOnly("io.github.fabricators_of_create.Porting-Lib:$module:${project.port_lib_version}") { transitive = false }
-	}
+//	// jetbrains annotations
+//	implementation("org.jetbrains:annotations:26.0.2")
+//
+//	// graph api and its dependencies
+//	implementation include("org.jgrapht:jgrapht-core:1.5.2")
+//	implementation include("org.apfloat:apfloat:1.14.0")
+//	implementation include("org.jheaps:jheaps:0.14")
+//
+//	// Some other dependency is adding annotations, and it throws an error without this
+//	compileOnly("com.demonwav.mcdev:annotations:1.0")
+//
+//	// minecraft, fabric & api
+//	minecraft("com.mojang:minecraft:${project.minecraft_version}")
+//	mappings loom.layered() {
+//		officialMojangMappings()
+//		parchment("org.parchmentmc.data:parchment-${project.parchment_mappings}@zip")
+//	}
+//	modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
+//	modImplementation("net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}")
+//
+//	// ours
+//	modImplementation include("maven.modrinth:exclusions-lib:${project.exclusionslib_version}")
+//	modImplementation("de.dafuqs:revelationary:${project.revelationary_version}")
+//	modImplementation include("de.dafuqs:additionalentityattributes:${project.additional_entity_attributes_version}")
+//	modImplementation include("de.dafuqs:arrowhead:${project.arrowhead_version}")
+//	modImplementation include("de.dafuqs:reverb:${project.dimensional_reverb_version}")
+//	modImplementation include("de.dafuqs:fractal:${project.fractal_version}")
+//
+//	// external and compat
+//	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") { exclude(group: "net.fabricmc.fabric-api") }
+//	modApi("dev.architectury:architectury-fabric:${project.architectury_version}") { exclude(group: "net.fabricmc.fabric-api") }
+//	modApi("com.terraformersmc:modmenu:${project.modmenu_version}")
+//	modImplementation("eu.pb4:common-protection-api:${project.cpa_version}")
+//	modImplementation("dev.emi:trinkets:${project.trinkets_version}") // https://github.com/emilyploszaj/trinkets
+//	modCompileOnly("me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}")
+//	// https://github.com/shedaniel/RoughlyEnoughItems
+//	modCompileOnly("dev.emi:emi-fabric:${emi_version}") // https://github.com/emilyploszaj/emi
+//	// https://github.com/klikli-dev/modonomicon
+//	modImplementation("com.klikli_dev:modonomicon-${project.minecraft_version}-fabric:${project.modonomicon_version}") {
+//		exclude(group: "com.klikli_dev")
+//		exclude(group: "mezz.jei")
+//	}
+//
+//	switch (recipe_viewer.toLowerCase(Locale.ROOT)) {
+//		case "rei": modLocalRuntime("me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"); break
+//		case "emi": modLocalRuntime("dev.emi:emi-fabric:${emi_version}"); break
+//		case "disabled": break
+//		default: println("Unknown recipe viewer specified: $recipe_viewer. Must be EMI, REI or disabled.")
+//	}
+//
+//	// https://github.com/OnyxStudios/Cardinal-Components-API/wiki/
+//	modImplementation include("org.ladysnake.cardinal-components-api:cardinal-components-base:${project.cca_version}")
+//	modImplementation include("org.ladysnake.cardinal-components-api:cardinal-components-entity:${project.cca_version}")
+//	modImplementation include("org.ladysnake.cardinal-components-api:cardinal-components-item:${project.cca_version}")
+//	modImplementation include("org.ladysnake.cardinal-components-api:cardinal-components-level:${project.cca_version}")
+//
+//	// Connect to local dev servers
+//	// modLocalRuntime("maven.modrinth:auth-me:${project.auth_me_version}")
+//
+//	// Mod Compat
+//	modCompileOnly("maven.modrinth:colorful-hearts:${project.colorful_hearts_version}") { transitive = false }
+//	modCompileOnly("maven.modrinth:sodium:${project.sodium_version}") { transitive = false }
+//	modCompileOnly("com.unascribed:ears-api:${project.ears_version}")
+//	modCompileOnly("maven.modrinth:create-fabric:${project.create_version}") { transitive = false }
+//	modCompileOnly("maven.modrinth:neepmeat:${project.neepmeat_version}") { transitive = false }
+//	modCompileOnly("maven.modrinth:lodestonelib:${project.lodestone_version}") { transitive = false }
+//	modCompileOnly("maven.modrinth:malum:${project.malum_version}") { transitive = false }
+//	modCompileOnly("maven.modrinth:travelersbackpack:${project.travelers_backpack_version}")
+//	modCompileOnly("maven.modrinth:botania:${project.botania_version}")
+//	modCompileOnly("maven.modrinth:vanity:${project.vanityslots_version}")
+//	modImplementation("maven.modrinth:idwtialsimmoedm:${project.idwtialsimmoedm_version}")
+//
+//	//Porting Lib
+//	for (String module in port_lib_modules.split(",")) {
+//		modCompileOnly("io.github.fabricators_of_create.Porting-Lib:$module:${project.port_lib_version}") { transitive = false }
+//	}
 
 	// Datagen dependencies
 	// TODO - Noaaan April 7th 2025: None of these are for 1.21.1 yet, lol
@@ -128,27 +174,34 @@ dependencies {
 	//modDatagenRuntimeOnly("maven.modrinth:create-fabric:${project.create_version}")
 }
 
-loom {
-	accessWidenerPath = file("src/main/resources/spectrum.accesswidener")
-}
+//loom {
+//	accessWidenerPath = file("src/main/resources/spectrum.accesswidener")
+//}
 
-processResources {
-	inputs.property "version", project.version
-	inputs.property "minecraft_version", project.minecraft_version
-	inputs.property "loader_version", project.loader_version
-	filteringCharset = "UTF-8"
-
-	filesMatching("fabric.mod.json") {
-		expand "version": project.version,
-				"minecraft_version": project.minecraft_version,
-				"loader_version": project.loader_version
-	}
+// This block of code expands all declared replace properties in the specified resource targets.
+// A missing property will result in an error. Properties are expanded using ${} Groovy notation.
+var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
+	var replaceProperties = [
+			version: version,
+			minecraft_version: minecraft_version,
+			neoforge_version_range: neoforge_version_range,
+	]
+	inputs.properties replaceProperties
+	expand replaceProperties
+	from "src/main/templates"
+	into "build/generated/sources/modMetadata"
 }
+// Include the output of "generateModMetadata" as an input directory for the build
+// this works with both building through Gradle and the IDE.
+sourceSets.main.resources.srcDir generateModMetadata
+// To avoid having to run "generateModMetadata" manually, make it run on every project reload
+neoForge.ideSyncTask generateModMetadata
 
 tasks.withType(JavaCompile).configureEach {
 	it.options.release = 21
 }
 
+// TODO: bad practice, generally indicates an issue with the build
 tasks.withType(Jar).configureEach {
 	duplicatesStrategy = DuplicatesStrategy.WARN
 }

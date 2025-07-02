@@ -75,10 +75,15 @@ public class SpectrumFishingRodHookedCriterion extends SimpleCriterionTrigger<Sp
 			if (hookedEntityContext == null && !hookedEntity.equals(LootContextPredicate.EMPTY) ||
 				!this.hookedEntity.test(hookedEntityContext)) return false;
 			 */
-			if (this.fishedEntity.isPresent() && !this.fishedEntity.get().matches(fishedEntityContext) && fishedEntityContext == null)
-				return false;
-			if (this.hookedEntity.isPresent() && this.hookedEntity.get().matches(hookedEntityContext) && hookedEntityContext == null)
-				return false;
+			if (this.fishedEntity.isPresent()) {
+				if (fishedEntityContext == null || !this.fishedEntity.get().matches(fishedEntityContext))
+					return false;
+			}
+
+			if (this.hookedEntity.isPresent()) {
+				if (hookedEntityContext == null || !this.hookedEntity.get().matches(hookedEntityContext))
+					return false;
+			}
 			
 			if (this.caughtItem.isPresent()) {
 				if (hookedEntityContext != null) {

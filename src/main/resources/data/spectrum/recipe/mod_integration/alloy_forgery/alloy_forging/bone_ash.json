@@ -1,15 +1,18 @@
 {
   "type": "alloy_forgery:forging",
   "inputs": [
-    "spectrum:dragonbone_chunk"
+    {
+      "item": "spectrum:dragonbone_chunk",
+      "count": 2
+    }
   ],
   "output": {
-    "id": "spectrum:bone_ash",
+    "item": "spectrum:bone_ash",
     "count": 45
   },
   "overrides": {
     "4+": {
-      "id": "spectrum:bone_ash",
+      "item": "spectrum:bone_ash",
       "count": 64
     }
   },

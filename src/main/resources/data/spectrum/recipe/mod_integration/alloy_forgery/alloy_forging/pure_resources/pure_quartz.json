@@ -7,12 +7,12 @@
     }
   ],
   "output": {
-    "id": "minecraft:quartz",
+    "item": "minecraft:quartz",
     "count": 8
   },
   "overrides": {
     "4+": {
-      "id": "minecraft:quartz",
+      "item": "minecraft:quartz",
       "count": 10
     }
   },

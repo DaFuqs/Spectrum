@@ -7,12 +7,12 @@
     }
   ],
   "output": {
-    "id": "minecraft:prismarine_crystals",
+    "item": "minecraft:prismarine_crystals",
     "count": 8
   },
   "overrides": {
     "4+": {
-      "id": "minecraft:prismarine_crystals",
+      "item": "minecraft:prismarine_crystals",
       "count": 10
     }
   },

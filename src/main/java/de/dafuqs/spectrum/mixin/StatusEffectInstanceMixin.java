@@ -6,6 +6,7 @@ import com.llamalad7.mixinextras.sugar.ref.*;
 import com.mojang.datafixers.util.*;
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.injectors.*;
+import net.fabricmc.api.*;
 import net.minecraft.client.resources.language.*;
 import net.minecraft.world.effect.*;
 import org.spongepowered.asm.mixin.*;
@@ -68,6 +69,7 @@ public abstract class StatusEffectInstanceMixin implements StatusEffectInstanceI
 		this.amplifier = newAmplifier;
 	}
 	
+	@Environment(EnvType.CLIENT)
 	@ModifyReturnValue(method = "describeDuration()Ljava/lang/String;", at = @At("RETURN"))
 	private String describeDuration(String original) {
 		if (this.severe) {

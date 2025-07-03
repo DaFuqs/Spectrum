@@ -1,4 +1,4 @@
-﻿$gems = @("sparklestone", "azurite", "paletur", "stratine")
+﻿$gems = @("sparklestone", "azurite", "paltaeria", "stratine")
 
 foreach($gem in $gems) {
     New-Item -Name "$gem`_shard_from_$gem`_ore_smelting.json" -ItemType File -Value @"

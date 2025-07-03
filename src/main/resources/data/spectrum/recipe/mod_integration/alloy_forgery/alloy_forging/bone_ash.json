@@ -2,8 +2,7 @@
   "type": "alloy_forgery:forging",
   "inputs": [
     {
-      "item": "spectrum:dragonbone_chunk",
-      "count": 2
+      "item": "spectrum:dragonbone_chunk"
     }
   ],
   "output": {

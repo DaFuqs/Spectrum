@@ -139,11 +139,14 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
 			
 			if (!tablet.is(SpectrumItems.CRAFTING_TABLET))
 				continue;
-			
-			var recipe = CraftingTabletItem.getStoredRecipe(level, tablet).value();
 
+			RecipeHolder<?> recipeHolder = CraftingTabletItem.getStoredRecipe(level, tablet);
+			if (recipeHolder == null)
+				continue;
 
-			if (!isRecipeValid(recipe))
+			Recipe<?> recipe = recipeHolder.value();
+
+			if (recipe == null || !isRecipeValid(recipe))
 				continue;
 			
 			var output = recipe.getResultItem(level.registryAccess());
@@ -169,8 +172,13 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
 			if (!tablet.is(SpectrumItems.CRAFTING_TABLET))
 				continue;
 			
-			var recipe = CraftingTabletItem.getStoredRecipe(level, tablet).value();
-			if (isRecipeValid(recipe) && isRecipeCraftable(recipe) && canSlotFitCraftingOutput(inventory.get(RESULT_SLOTS[i]), recipe))
+			RecipeHolder<?> recipeHolder = CraftingTabletItem.getStoredRecipe(level, tablet);
+			if (recipeHolder == null)
+				continue;
+
+			Recipe<?> recipe = recipeHolder.value();
+
+			if (recipe != null && isRecipeValid(recipe) && isRecipeCraftable(recipe) && canSlotFitCraftingOutput(inventory.get(RESULT_SLOTS[i]), recipe))
 				return true;
 		}
 		return false;

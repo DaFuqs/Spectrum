@@ -213,39 +213,39 @@ public class SpectrumRecipeProvider extends FabricRecipeProvider {
 		generateEnchantmentUpgradeRecipe(ctx, "", TREASURE_HUNTER, ENCHANTMENTS_TREASURE_HUNTER, LIGHT_BLUE_PIGMENT, 5, RecipeScaling.indices(200, 400, 2000, 10000), RecipeScaling.doubling(0, 8, 2.0F));
 		
 		// Vanilla
-		generateEnchantmentUpgradeRecipe(ctx, "minecraft", Enchantments.BANE_OF_ARTHROPODS, ENCHANTMENTS_VANILLA_DAMAGE, BLACK_PIGMENT, 8, RecipeScaling.doubling(100), RecipeScaling.doubling(8));
-		generateEnchantmentUpgradeRecipe(ctx, "minecraft", Enchantments.BLAST_PROTECTION, ENCHANTMENTS_VANILLA_PROTECTION, PINK_PIGMENT, 8, RecipeScaling.doubling(100), RecipeScaling.doubling(8));
-		generateEnchantmentUpgradeRecipe(ctx, "minecraft", Enchantments.DEPTH_STRIDER, ENCHANTMENTS_VANILLA_WATER, BLUE_PIGMENT, 3, RecipeScaling.doubling(200), RecipeScaling.indices(8, 32));
-		generateEnchantmentUpgradeRecipe(ctx, "minecraft", Enchantments.EFFICIENCY, ENCHANTMENTS_VANILLA_QUITOXIC, YELLOW_PIGMENT, 8, RecipeScaling.indices(200, 400, 600, 800, 1600, 2600, 4000), RecipeScaling.doubling(8));
-		generateEnchantmentUpgradeRecipe(ctx, "minecraft", Enchantments.FEATHER_FALLING, ENCHANTMENTS_VANILLA_QUITOXIC, BLUE_PIGMENT, 6, RecipeScaling.doubling(250), RecipeScaling.indices(8, 16, 32, 64, 256));
-		generateEnchantmentUpgradeRecipe(ctx, "minecraft", Enchantments.FIRE_ASPECT, ENCHANTMENTS_VANILLA_DAMAGE, RED_PIGMENT, 4, RecipeScaling.doubling(200, 200, 2.0F), RecipeScaling.doubling(0, 8, 2.0F));
-		generateEnchantmentUpgradeRecipe(ctx, "minecraft", Enchantments.FIRE_PROTECTION, ENCHANTMENTS_VANILLA_PROTECTION, PINK_PIGMENT, 8, RecipeScaling.indices(100, 200, 300, 400, 800, 1300, 2000), RecipeScaling.doubling(8));
-		generateEnchantmentUpgradeRecipe(ctx, "minecraft", Enchantments.FORTUNE, ENCHANTMENTS_VANILLA_LUCK, LIGHT_BLUE_PIGMENT, 5, RecipeScaling.indices(100, 400, 3000, 10000), RecipeScaling.indices(32, 128, 256, 512));
-		generateEnchantmentUpgradeRecipe(ctx, "minecraft", Enchantments.FROST_WALKER, ENCHANTMENTS_VANILLA_TREASURE, LIGHT_GRAY_PIGMENT, 4, RecipeScaling.indices(400, 1600, 3200), RecipeScaling.doubling(0, 8, 2.0F));
-		generateEnchantmentUpgradeRecipe(ctx, "minecraft", Enchantments.IMPALING, ENCHANTMENTS_VANILLA_TRIDENT, BROWN_PIGMENT, 8, RecipeScaling.indices(100, 200, 300, 400, 800, 1300, 2000), RecipeScaling.doubling(8));
-		generateEnchantmentUpgradeRecipe(ctx, "minecraft", Enchantments.KNOCKBACK, ENCHANTMENTS_VANILLA_DAMAGE, BLACK_PIGMENT, 5, RecipeScaling.indices(200, 1600, 3200, 6400), RecipeScaling.indices(8, 32, 128, 256));
-		generateEnchantmentUpgradeRecipe(ctx, "minecraft", Enchantments.LOOTING, ENCHANTMENTS_VANILLA_LUCK, LIGHT_BLUE_PIGMENT, 6, RecipeScaling.indices(200, 500, 2400, 10000, 40000), RecipeScaling.indices(8, 32, 128, 512, 512));
-		generateEnchantmentUpgradeRecipe(ctx, "minecraft", Enchantments.LOYALTY, ENCHANTMENTS_VANILLA_TRIDENT, BROWN_PIGMENT, 4, RecipeScaling.doubling(0, 200, 2.0F), RecipeScaling.doubling(0, 8, 2.0F));
-		generateEnchantmentUpgradeRecipe(ctx, "minecraft", Enchantments.LUCK_OF_THE_SEA, ENCHANTMENTS_VANILLA_WATER_LUCK, LIGHT_BLUE_PIGMENT, 5, RecipeScaling.indices(200, 400, 2000, 4000), RecipeScaling.indices(8, 32, 128, 256));
-		generateEnchantmentUpgradeRecipe(ctx, "minecraft", Enchantments.LURE, ENCHANTMENTS_VANILLA_WATER, BLUE_PIGMENT, 5, RecipeScaling.indices(200, 400, 2000, 4000), RecipeScaling.indices(8, 32, 128, 256));
-		generateEnchantmentUpgradeRecipe(ctx, "minecraft", Enchantments.PIERCING, ENCHANTMENTS_VANILLA_PROJECTILE, RED_PIGMENT, 8, RecipeScaling.indices(100, 200, 300, 400, 800, 1300, 2000), RecipeScaling.doubling(8));
-		generateEnchantmentUpgradeRecipe(ctx, "minecraft", Enchantments.POWER, ENCHANTMENTS_VANILLA_PROJECTILE, RED_PIGMENT, 8, RecipeScaling.doubling(200), RecipeScaling.doubling(8));
-		generateEnchantmentUpgradeRecipe(ctx, "minecraft", Enchantments.PROJECTILE_PROTECTION, ENCHANTMENTS_VANILLA_PROTECTION, PINK_PIGMENT, 8, RecipeScaling.indices(100, 200, 300, 400, 800, 1300, 2000), RecipeScaling.doubling(8));
-		generateEnchantmentUpgradeRecipe(ctx, "minecraft", Enchantments.PROTECTION, ENCHANTMENTS_VANILLA_PROTECTION, PINK_PIGMENT, 8, RecipeScaling.indices(200, 400, 600, 800, 1600, 4000, 8000), RecipeScaling.doubling(8));
-		generateEnchantmentUpgradeRecipe(ctx, "minecraft", Enchantments.PUNCH, ENCHANTMENTS_VANILLA_PROJECTILE, RED_PIGMENT, 5, RecipeScaling.indices(200, 1600, 3200, 6400), RecipeScaling.indices(8, 32, 128, 256));
-		generateEnchantmentUpgradeRecipe(ctx, "minecraft", Enchantments.QUICK_CHARGE, ENCHANTMENTS_VANILLA_PROJECTILE, RED_PIGMENT, 5, RecipeScaling.indices(200, 1600, 5000, 10000), RecipeScaling.indices(8, 32, 512, 512));
-		generateEnchantmentUpgradeRecipe(ctx, "minecraft", Enchantments.RESPIRATION, ENCHANTMENTS_VANILLA_WATER, BLUE_PIGMENT, 6, RecipeScaling.indices(100, 200, 1600, 4800, 10000), RecipeScaling.indices(8, 32, 128, 256, 512));
-		generateEnchantmentUpgradeRecipe(ctx, "minecraft", Enchantments.RIPTIDE, ENCHANTMENTS_VANILLA_TRIDENT, BROWN_PIGMENT, 3, RecipeScaling.indices(200, 2400, 10000), RecipeScaling.doubling(0, 8, 2.0F));
-		generateEnchantmentUpgradeRecipe(ctx, "minecraft", Enchantments.SHARPNESS, ENCHANTMENTS_VANILLA_DAMAGE, BLACK_PIGMENT, 8, RecipeScaling.doubling(75), RecipeScaling.doubling(8));
-		generateEnchantmentUpgradeRecipe(ctx, "minecraft", Enchantments.SMITE, ENCHANTMENTS_VANILLA_DAMAGE, BLACK_PIGMENT, 8, RecipeScaling.indices(100, 200, 300, 400, 800, 1300, 2000), RecipeScaling.doubling(8));
-		generateEnchantmentUpgradeRecipe(ctx, "minecraft", Enchantments.SOUL_SPEED, ENCHANTMENTS_VANILLA_TREASURE, LIGHT_GRAY_PIGMENT, 3, RecipeScaling.indices(200, 2400, 10000), RecipeScaling.doubling(0, 8, 2.0F));
-		generateEnchantmentUpgradeRecipe(ctx, "minecraft", Enchantments.SWEEPING_EDGE, ENCHANTMENTS_VANILLA_DAMAGE, RED_PIGMENT, 7, RecipeScaling.indices(100, 400, 1000, 2000, 5000, 10000), RecipeScaling.indices(8, 32, 64, 128, 256, 512));
-		generateEnchantmentUpgradeRecipe(ctx, "minecraft", Enchantments.SWIFT_SNEAK, ENCHANTMENTS_VANILLA_SWIFT_SNEAK, LIGHT_BLUE_PIGMENT, 5, RecipeScaling.indices(200, 600, 2000, 5000), RecipeScaling.indices(8, 32, 128, 256));
-		generateEnchantmentUpgradeRecipe(ctx, "minecraft", Enchantments.THORNS, ENCHANTMENTS_VANILLA_PROTECTION, PINK_PIGMENT, 6, RecipeScaling.indices(100, 400, 2000, 4000, 10000), RecipeScaling.indices(8, 32, 128, 256, 512));
-		generateEnchantmentUpgradeRecipe(ctx, "minecraft", Enchantments.UNBREAKING, ENCHANTMENTS_VANILLA_UNBREAKING, CYAN_PIGMENT, 6, RecipeScaling.indices(100, 400, 2000, 4000, 10000), RecipeScaling.indices(8, 32, 256, 512, 512));
-		generateEnchantmentUpgradeRecipe(ctx, "minecraft", Enchantments.WIND_BURST, ENCHANTMENTS_VANILLA_DAMAGE, YELLOW_PIGMENT, 5, RecipeScaling.doubling(200), RecipeScaling.doubling(16));
-		generateEnchantmentUpgradeRecipe(ctx, "minecraft", Enchantments.BREACH, ENCHANTMENTS_VANILLA_BREACHING, RED_PIGMENT, 5, RecipeScaling.doubling(200), RecipeScaling.doubling(8));
-		generateEnchantmentUpgradeRecipe(ctx, "minecraft", Enchantments.DENSITY, ENCHANTMENTS_VANILLA_TRIAL, CYAN_PIGMENT, 8, RecipeScaling.doubling(400), RecipeScaling.doubling(16));
+		generateEnchantmentUpgradeRecipe(ctx, "vanilla_enchantment_upgrades", Enchantments.BANE_OF_ARTHROPODS, ENCHANTMENTS_VANILLA_DAMAGE, BLACK_PIGMENT, 8, RecipeScaling.doubling(100), RecipeScaling.doubling(8));
+		generateEnchantmentUpgradeRecipe(ctx, "vanilla_enchantment_upgrades", Enchantments.BLAST_PROTECTION, ENCHANTMENTS_VANILLA_PROTECTION, PINK_PIGMENT, 8, RecipeScaling.doubling(100), RecipeScaling.doubling(8));
+		generateEnchantmentUpgradeRecipe(ctx, "vanilla_enchantment_upgrades", Enchantments.DEPTH_STRIDER, ENCHANTMENTS_VANILLA_WATER, BLUE_PIGMENT, 3, RecipeScaling.doubling(200), RecipeScaling.indices(8, 32));
+		generateEnchantmentUpgradeRecipe(ctx, "vanilla_enchantment_upgrades", Enchantments.EFFICIENCY, ENCHANTMENTS_VANILLA_QUITOXIC, YELLOW_PIGMENT, 8, RecipeScaling.indices(200, 400, 600, 800, 1600, 2600, 4000), RecipeScaling.doubling(8));
+		generateEnchantmentUpgradeRecipe(ctx, "vanilla_enchantment_upgrades", Enchantments.FEATHER_FALLING, ENCHANTMENTS_VANILLA_QUITOXIC, BLUE_PIGMENT, 6, RecipeScaling.doubling(250), RecipeScaling.indices(8, 16, 32, 64, 256));
+		generateEnchantmentUpgradeRecipe(ctx, "vanilla_enchantment_upgrades", Enchantments.FIRE_ASPECT, ENCHANTMENTS_VANILLA_DAMAGE, RED_PIGMENT, 4, RecipeScaling.doubling(200, 200, 2.0F), RecipeScaling.doubling(0, 8, 2.0F));
+		generateEnchantmentUpgradeRecipe(ctx, "vanilla_enchantment_upgrades", Enchantments.FIRE_PROTECTION, ENCHANTMENTS_VANILLA_PROTECTION, PINK_PIGMENT, 8, RecipeScaling.indices(100, 200, 300, 400, 800, 1300, 2000), RecipeScaling.doubling(8));
+		generateEnchantmentUpgradeRecipe(ctx, "vanilla_enchantment_upgrades", Enchantments.FORTUNE, ENCHANTMENTS_VANILLA_LUCK, LIGHT_BLUE_PIGMENT, 5, RecipeScaling.indices(100, 400, 3000, 10000), RecipeScaling.indices(32, 128, 256, 512));
+		generateEnchantmentUpgradeRecipe(ctx, "vanilla_enchantment_upgrades", Enchantments.FROST_WALKER, ENCHANTMENTS_VANILLA_TREASURE, LIGHT_GRAY_PIGMENT, 4, RecipeScaling.indices(400, 1600, 3200), RecipeScaling.doubling(0, 8, 2.0F));
+		generateEnchantmentUpgradeRecipe(ctx, "vanilla_enchantment_upgrades", Enchantments.IMPALING, ENCHANTMENTS_VANILLA_TRIDENT, BROWN_PIGMENT, 8, RecipeScaling.indices(100, 200, 300, 400, 800, 1300, 2000), RecipeScaling.doubling(8));
+		generateEnchantmentUpgradeRecipe(ctx, "vanilla_enchantment_upgrades", Enchantments.KNOCKBACK, ENCHANTMENTS_VANILLA_DAMAGE, BLACK_PIGMENT, 5, RecipeScaling.indices(200, 1600, 3200, 6400), RecipeScaling.indices(8, 32, 128, 256));
+		generateEnchantmentUpgradeRecipe(ctx, "vanilla_enchantment_upgrades", Enchantments.LOOTING, ENCHANTMENTS_VANILLA_LUCK, LIGHT_BLUE_PIGMENT, 6, RecipeScaling.indices(200, 500, 2400, 10000, 40000), RecipeScaling.indices(8, 32, 128, 512, 512));
+		generateEnchantmentUpgradeRecipe(ctx, "vanilla_enchantment_upgrades", Enchantments.LOYALTY, ENCHANTMENTS_VANILLA_TRIDENT, BROWN_PIGMENT, 4, RecipeScaling.doubling(0, 200, 2.0F), RecipeScaling.doubling(0, 8, 2.0F));
+		generateEnchantmentUpgradeRecipe(ctx, "vanilla_enchantment_upgrades", Enchantments.LUCK_OF_THE_SEA, ENCHANTMENTS_VANILLA_WATER_LUCK, LIGHT_BLUE_PIGMENT, 5, RecipeScaling.indices(200, 400, 2000, 4000), RecipeScaling.indices(8, 32, 128, 256));
+		generateEnchantmentUpgradeRecipe(ctx, "vanilla_enchantment_upgrades", Enchantments.LURE, ENCHANTMENTS_VANILLA_WATER, BLUE_PIGMENT, 5, RecipeScaling.indices(200, 400, 2000, 4000), RecipeScaling.indices(8, 32, 128, 256));
+		generateEnchantmentUpgradeRecipe(ctx, "vanilla_enchantment_upgrades", Enchantments.PIERCING, ENCHANTMENTS_VANILLA_PROJECTILE, RED_PIGMENT, 8, RecipeScaling.indices(100, 200, 300, 400, 800, 1300, 2000), RecipeScaling.doubling(8));
+		generateEnchantmentUpgradeRecipe(ctx, "vanilla_enchantment_upgrades", Enchantments.POWER, ENCHANTMENTS_VANILLA_PROJECTILE, RED_PIGMENT, 8, RecipeScaling.doubling(200), RecipeScaling.doubling(8));
+		generateEnchantmentUpgradeRecipe(ctx, "vanilla_enchantment_upgrades", Enchantments.PROJECTILE_PROTECTION, ENCHANTMENTS_VANILLA_PROTECTION, PINK_PIGMENT, 8, RecipeScaling.indices(100, 200, 300, 400, 800, 1300, 2000), RecipeScaling.doubling(8));
+		generateEnchantmentUpgradeRecipe(ctx, "vanilla_enchantment_upgrades", Enchantments.PROTECTION, ENCHANTMENTS_VANILLA_PROTECTION, PINK_PIGMENT, 8, RecipeScaling.indices(200, 400, 600, 800, 1600, 4000, 8000), RecipeScaling.doubling(8));
+		generateEnchantmentUpgradeRecipe(ctx, "vanilla_enchantment_upgrades", Enchantments.PUNCH, ENCHANTMENTS_VANILLA_PROJECTILE, RED_PIGMENT, 5, RecipeScaling.indices(200, 1600, 3200, 6400), RecipeScaling.indices(8, 32, 128, 256));
+		generateEnchantmentUpgradeRecipe(ctx, "vanilla_enchantment_upgrades", Enchantments.QUICK_CHARGE, ENCHANTMENTS_VANILLA_PROJECTILE, RED_PIGMENT, 5, RecipeScaling.indices(200, 1600, 5000, 10000), RecipeScaling.indices(8, 32, 512, 512));
+		generateEnchantmentUpgradeRecipe(ctx, "vanilla_enchantment_upgrades", Enchantments.RESPIRATION, ENCHANTMENTS_VANILLA_WATER, BLUE_PIGMENT, 6, RecipeScaling.indices(100, 200, 1600, 4800, 10000), RecipeScaling.indices(8, 32, 128, 256, 512));
+		generateEnchantmentUpgradeRecipe(ctx, "vanilla_enchantment_upgrades", Enchantments.RIPTIDE, ENCHANTMENTS_VANILLA_TRIDENT, BROWN_PIGMENT, 3, RecipeScaling.indices(200, 2400, 10000), RecipeScaling.doubling(0, 8, 2.0F));
+		generateEnchantmentUpgradeRecipe(ctx, "vanilla_enchantment_upgrades", Enchantments.SHARPNESS, ENCHANTMENTS_VANILLA_DAMAGE, BLACK_PIGMENT, 8, RecipeScaling.doubling(75), RecipeScaling.doubling(8));
+		generateEnchantmentUpgradeRecipe(ctx, "vanilla_enchantment_upgrades", Enchantments.SMITE, ENCHANTMENTS_VANILLA_DAMAGE, BLACK_PIGMENT, 8, RecipeScaling.indices(100, 200, 300, 400, 800, 1300, 2000), RecipeScaling.doubling(8));
+		generateEnchantmentUpgradeRecipe(ctx, "vanilla_enchantment_upgrades", Enchantments.SOUL_SPEED, ENCHANTMENTS_VANILLA_TREASURE, LIGHT_GRAY_PIGMENT, 3, RecipeScaling.indices(200, 2400, 10000), RecipeScaling.doubling(0, 8, 2.0F));
+		generateEnchantmentUpgradeRecipe(ctx, "vanilla_enchantment_upgrades", Enchantments.SWEEPING_EDGE, ENCHANTMENTS_VANILLA_DAMAGE, RED_PIGMENT, 7, RecipeScaling.indices(100, 400, 1000, 2000, 5000, 10000), RecipeScaling.indices(8, 32, 64, 128, 256, 512));
+		generateEnchantmentUpgradeRecipe(ctx, "vanilla_enchantment_upgrades", Enchantments.SWIFT_SNEAK, ENCHANTMENTS_VANILLA_SWIFT_SNEAK, LIGHT_BLUE_PIGMENT, 5, RecipeScaling.indices(200, 600, 2000, 5000), RecipeScaling.indices(8, 32, 128, 256));
+		generateEnchantmentUpgradeRecipe(ctx, "vanilla_enchantment_upgrades", Enchantments.THORNS, ENCHANTMENTS_VANILLA_PROTECTION, PINK_PIGMENT, 6, RecipeScaling.indices(100, 400, 2000, 4000, 10000), RecipeScaling.indices(8, 32, 128, 256, 512));
+		generateEnchantmentUpgradeRecipe(ctx, "vanilla_enchantment_upgrades", Enchantments.UNBREAKING, ENCHANTMENTS_VANILLA_UNBREAKING, CYAN_PIGMENT, 6, RecipeScaling.indices(100, 400, 2000, 4000, 10000), RecipeScaling.indices(8, 32, 256, 512, 512));
+		generateEnchantmentUpgradeRecipe(ctx, "vanilla_enchantment_upgrades", Enchantments.WIND_BURST, ENCHANTMENTS_VANILLA_DAMAGE, YELLOW_PIGMENT, 5, RecipeScaling.doubling(200), RecipeScaling.doubling(16));
+		generateEnchantmentUpgradeRecipe(ctx, "vanilla_enchantment_upgrades", Enchantments.BREACH, ENCHANTMENTS_VANILLA_BREACHING, RED_PIGMENT, 5, RecipeScaling.doubling(200), RecipeScaling.doubling(8));
+		generateEnchantmentUpgradeRecipe(ctx, "vanilla_enchantment_upgrades", Enchantments.DENSITY, ENCHANTMENTS_VANILLA_TRIAL, CYAN_PIGMENT, 8, RecipeScaling.doubling(400), RecipeScaling.doubling(16));
 		
 	}
 	
@@ -260,8 +260,8 @@ public class SpectrumRecipeProvider extends FabricRecipeProvider {
 	
 	private void generateEnchantmentUpgradeRecipe(RecipeOutput ctx, String group, ResourceKey<Enchantment> enchantment, ResourceLocation advancement, Item bulkItem, int levelCap, RecipeScaling.ScalingData xpScaling, RecipeScaling.ScalingData itemScaling) {
 		ctx = withConditions(ctx, new SpectrumResourceConditions.EnchantmentsExistResourceCondition(List.of(enchantment)));
-		String namespace = enchantment.registry().getNamespace();
-		String base = "enchantment_upgrade/" + namespace + "/" + enchantment.registry().getPath().replace("/", ".");
+		String namespace = enchantment.location().getNamespace();
+		String base = "enchantment_upgrade/" + namespace + "/" + enchantment.location().getPath().replace("/", ".");
 		generateRecipe(ctx, base, new EnchantmentUpgradeRecipe(group, false, Optional.of(advancement), Either.right(enchantment), levelCap, Ingredient.of(bulkItem), xpScaling, itemScaling));
 	}
 	

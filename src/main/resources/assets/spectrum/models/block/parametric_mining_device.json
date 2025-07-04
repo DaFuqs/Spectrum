@@ -1,5 +1,5 @@
 {
-  "credit": "~ XOXO Azzyypaaras ~",
+  "parent": "minecraft:block/block",
   "texture_size": [
     32,
     32

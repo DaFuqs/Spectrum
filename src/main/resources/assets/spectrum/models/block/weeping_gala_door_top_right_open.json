@@ -1,0 +1,8 @@
+{
+  "parent": "spectrum:improved_vanilla/door_top_right_open",
+  "textures": {
+    "bottom": "spectrum:block/weeping_gala_door_bottom",
+    "top": "spectrum:block/weeping_gala_door_top",
+    "side": "spectrum:block/weeping_gala_door_side"
+  }
+}

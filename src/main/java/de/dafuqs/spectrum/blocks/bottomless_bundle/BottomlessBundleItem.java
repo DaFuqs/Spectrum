@@ -409,16 +409,20 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 			}
 			
 			public int getMaxAllowed(ItemStack stack) {
-				return (int) Math.min(getMaxAllowed(ItemVariant.of(stack), stack.getCount()), Integer.MAX_VALUE);
-			}
-			
-			public long getMaxAllowed(ItemVariant variant, long amount) {
-				if (isEmpty()) {
-					return this.max;
-				}
-				if (variant.isBlank() || amount <= 0 || !variant.getItem().canFitInsideContainerItems())
+				if (this.count > 0 && !this.variant.matches(stack)) {
 					return 0;
-				return voiding ? Long.MAX_VALUE : this.max - this.count;
+				}
+				
+				long result;
+				ItemVariant stackVariant = ItemVariant.of(stack);
+				if (isEmpty()) {
+					result = this.max;
+				} else if (stackVariant.isBlank() || (long) stack.getCount() <= 0 || !stackVariant.getItem().canFitInsideContainerItems()) {
+					result = 0;
+				} else {
+					result = voiding ? Long.MAX_VALUE : this.max - this.count;
+				}
+				return (int) Math.min(result, Integer.MAX_VALUE);
 			}
 			
 			public int add(ItemStack stack) {

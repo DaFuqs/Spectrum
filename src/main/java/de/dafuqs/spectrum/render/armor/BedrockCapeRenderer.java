@@ -16,7 +16,6 @@ public class BedrockCapeRenderer {
 	/**
 	 * Renders the bedrock cloth and cape on the player
 	 */
-	// public static void renderBedrockCapeAndCloth(PoseStack ms, MultiBufferSource vertices, int light, AbstractClientPlayer player, float h, ItemStack stack) {
 	public static boolean renderBedrockCapeAndCloth(PoseStack ms, MultiBufferSource vertices, int light, AbstractClientPlayer player, float h, ItemStack stack) {
 		// Vanilla cape values
 		var capeRotations = BedrockArmorModel.computeFrontClothRotation(player, h);

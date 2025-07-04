@@ -38,7 +38,7 @@ public class BedrockArmorItem extends ArmorItem implements Preenchanted {
 	protected BedrockArmorModel provideArmorModelForSlot(EquipmentSlot slot) {
 		var models = Minecraft.getInstance().getEntityModels();
 		var root = models.bakeLayer(SpectrumModelLayers.BEDROCK_LAYER);
-		return new BedrockArmorModel(root);
+		return new BedrockArmorModel(root, slot);
     }
 
     @Environment(EnvType.CLIENT)

@@ -7,12 +7,12 @@
     }
   ],
   "output": {
-    "id": "minecraft:netherite_scrap",
+    "item": "minecraft:netherite_scrap",
     "count": 4
   },
   "overrides": {
     "4+": {
-      "id": "minecraft:netherite_scrap",
+      "item": "minecraft:netherite_scrap",
       "count": 5
     }
   },

@@ -5,12 +5,13 @@ import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.block.*;
+import org.jetbrains.annotations.*;
 
-import java.util.function.*;
 import java.util.function.Supplier;
 
 public enum SpectrumToolMaterial implements Tier {
 	
+	// TODO: make these configurable
 	LOW_HEALTH(BlockTags.INCORRECT_FOR_IRON_TOOL, 16, 4.0F, 2.0F, 10, Ingredient::of),
 	LOW_HEALTH_MINING_LEVEL_4(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 16, 4.0F, 2.0F, 10, Ingredient::of),
 	VOIDING(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 1143, 20.0F, 1.0F, 5, Ingredient::of),
@@ -55,7 +56,7 @@ public enum SpectrumToolMaterial implements Tier {
 	}
 	
 	@Override
-	public TagKey<Block> getIncorrectBlocksForDrops() {
+	public @NotNull TagKey<Block> getIncorrectBlocksForDrops() {
 		return this.inverseTag;
 	}
 	
@@ -65,7 +66,7 @@ public enum SpectrumToolMaterial implements Tier {
 	}
 	
 	@Override
-	public Ingredient getRepairIngredient() {
+	public @NotNull Ingredient getRepairIngredient() {
 		return this.repairIngredient.get();
 	}
 }

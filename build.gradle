@@ -149,6 +149,16 @@ tasks.withType(JavaCompile).configureEach {
 	it.options.release = 21
 }
 
+tasks.withType(Jar).configureEach {
+	duplicatesStrategy = DuplicatesStrategy.WARN
+}
+tasks.withType(Zip).configureEach {
+	duplicatesStrategy = DuplicatesStrategy.WARN
+}
+tasks.withType(Copy).configureEach {
+	duplicatesStrategy = DuplicatesStrategy.WARN
+}
+
 java {
 	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task if it is present.
 	// If you remove this line, sources will not be generated.

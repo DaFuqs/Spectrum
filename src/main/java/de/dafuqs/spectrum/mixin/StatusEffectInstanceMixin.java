@@ -6,7 +6,6 @@ import com.llamalad7.mixinextras.sugar.ref.*;
 import com.mojang.datafixers.util.*;
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.injectors.*;
-import net.minecraft.client.resources.language.*;
 import net.minecraft.world.effect.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
@@ -66,14 +65,6 @@ public abstract class StatusEffectInstanceMixin implements StatusEffectInstanceI
 	@Override
 	public void spectrum$setAmplifier(int newAmplifier) {
 		this.amplifier = newAmplifier;
-	}
-	
-	@ModifyReturnValue(method = "describeDuration", at = @At("RETURN"))
-	private String describeDuration(String original) {
-		if (this.severe) {
-			original = original + I18n.get("item.spectrum.potion.tooltip.severe");
-		}
-		return original;
 	}
 	
 }

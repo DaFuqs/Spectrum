@@ -46,7 +46,7 @@ public class ExplosionModificationRecipe extends ShapelessPedestalRecipe {
 		}
 		
 		Pair<List<ExplosionArchetype>, List<ExplosionModifier>> pair = findArchetypeAndModifiers(inventory);
-		ModularExplosionDefinition currentSet = ModularExplosionDefinition.getFromStack(nonModStack);
+		ModularExplosionDefinition currentSet = ModularExplosionDefinition.cloneFromStack(nonModStack);
 		List<ExplosionArchetype> archetypes = pair.getFirst();
 		List<ExplosionModifier> mods = pair.getSecond();
 		
@@ -103,7 +103,7 @@ public class ExplosionModificationRecipe extends ShapelessPedestalRecipe {
 			return output;
 		}
 		
-		ModularExplosionDefinition set = ModularExplosionDefinition.getFromStack(output);
+		ModularExplosionDefinition set = ModularExplosionDefinition.cloneFromStack(output);
 		
 		// adding new modifiers
 		if (!archetypes.isEmpty()) {

@@ -1,0 +1,11 @@
+{
+  "values": [
+    "#minecraft:enchantable/durability",
+    "#minecraft:enchantable/mining",
+    "#minecraft:enchantable/vanishing",
+    {
+      "id": "#trinkets:enchantable/enchantable",
+      "required": false
+    }
+  ]
+}

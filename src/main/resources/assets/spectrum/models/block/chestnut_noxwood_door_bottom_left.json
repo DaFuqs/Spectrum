@@ -1,0 +1,7 @@
+{
+  "parent": "spectrum:improved_vanilla/door_bottom_left",
+  "textures": {
+    "bottom": "spectrum:block/chestnut_noxwood_door_bottom",
+    "side": "spectrum:block/chestnut_noxwood_door_side"
+  }
+}

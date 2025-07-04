@@ -1,6 +1,5 @@
 {
   "parent": "minecraft:block/block",
-  "credit": "Made by Azazelthedemonlord ~ https://azazelthedemonlord.newgrounds.com/ ~ ♡",
   "textures": {
     "0": "#side",
     "1": "#top",

@@ -1,3 +1,5 @@
 {
-  "parent": "spectrum:item/sender_node"
+  "textures": {
+    "particle": "spectrum:block/calcite_cap"
+  }
 }

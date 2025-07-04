@@ -158,7 +158,7 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
 		PageRendererRegistry.registerPageRenderer(SLUDGE_CONVERTING_PAGE, p -> new BookFluidConvertingPageRenderer<>((BookGatedRecipePage<SludgeConvertingRecipe>) p) {
             @Override
 			public ResourceLocation getBackgroundTexture() {
-				return SpectrumCommon.locate("textures/gui/guidebook/goo.png");
+				return SpectrumCommon.locate("textures/gui/guidebook/sludge.png");
             }
         });
     }

@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.render.armor;
 
+import com.mojang.blaze3d.vertex.*;
 import net.minecraft.client.model.*;
 import net.minecraft.client.model.geom.*;
 import net.minecraft.client.model.geom.builders.*;
@@ -8,6 +9,8 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 
 public class BedrockArmorModel extends HumanoidArmorModel<LivingEntity> {
+	final EquipmentSlot slot;
+	
 	public final ModelPart head;
 	public final ModelPart body;
 	public final ModelPart rightArm;
@@ -15,8 +18,10 @@ public class BedrockArmorModel extends HumanoidArmorModel<LivingEntity> {
 	public final ModelPart rightLeg;
 	public final ModelPart leftLeg;
 	
-	public BedrockArmorModel(ModelPart root) {
+	public BedrockArmorModel(ModelPart root, EquipmentSlot slot) {
 		super(root);
+		this.slot = slot;
+		
 		this.head = root.getChild("head");
 		this.body = root.getChild("body");
 		this.rightArm = root.getChild("right_arm");
@@ -108,7 +113,7 @@ public class BedrockArmorModel extends HumanoidArmorModel<LivingEntity> {
 		);
 		
 		leftLeg.addOrReplaceChild(
-				"armor_left_leg",
+				"left_leg_armor",
 				CubeListBuilder.create()
 						.texOffs(42, 51)
 						.addBox(-2.5F, -0.15F, -2.5F, 5.0F, 10.0F, 5.0F, new CubeDeformation(0.15F)),
@@ -130,7 +135,7 @@ public class BedrockArmorModel extends HumanoidArmorModel<LivingEntity> {
 		);
 		
 		rightLeg.addOrReplaceChild(
-				"armor_right_leg",
+				"right_leg_armor",
 				CubeListBuilder.create()
 						.texOffs(59, 28)
 						.addBox(-2.5F, -0.15F, -2.5F, 5.0F, 10.0F, 5.0F, new CubeDeformation(0.149F)),
@@ -176,6 +181,43 @@ public class BedrockArmorModel extends HumanoidArmorModel<LivingEntity> {
 			q += 25.0F;
 		}
 		return new Tuple<>(-(6.0F + r / 2.0F + q), capeZOffset);
+	}
+	
+	
+	@Override
+	public void renderToBuffer(PoseStack ms, VertexConsumer buffer, int light, int overlay, int color) {
+		renderArmorPart(slot);
+		super.renderToBuffer(ms, buffer, light, overlay, color);
+	}
+	
+	private void renderArmorPart(EquipmentSlot slot) {
+		setAllVisible(false);
+		rightLeg.getChild("right_leg_armor").visible = false;
+		leftLeg.getChild("left_leg_armor").visible = false;
+		rightLeg.getChild("right_boot").visible = false;
+		leftLeg.getChild("left_boot").visible = false;
+		switch (slot) {
+			case HEAD -> head.visible = true;
+			case CHEST -> {
+				body.visible = true;
+				rightArm.visible = true;
+				leftArm.visible = true;
+			}
+			case LEGS -> {
+				rightLeg.visible = true;
+				leftLeg.visible = true;
+				rightLeg.getChild("right_leg_armor").visible = true;
+				leftLeg.getChild("left_leg_armor").visible = true;
+			}
+			case FEET -> {
+				rightLeg.visible = true;
+				leftLeg.visible = true;
+				rightLeg.getChild("right_boot").visible = true;
+				leftLeg.getChild("left_boot").visible = true;
+			}
+			case MAINHAND, OFFHAND -> {
+			}
+		}
 	}
 	
 }

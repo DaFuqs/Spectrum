@@ -116,6 +116,7 @@
     "client.BuiltinModelItemRendererMixin",
     "client.CapeFeatureRendererMixin",
     "client.ClientPlayNetworkHandlerMixin",
+    "client.ClientStatusEffectInstanceMixin",
     "client.DeathScreenMixin",
     "client.DimensionTypeMixin",
     "client.DrawContextMixin",

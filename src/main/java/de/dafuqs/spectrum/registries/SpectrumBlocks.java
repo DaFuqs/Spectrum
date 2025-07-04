@@ -415,7 +415,7 @@ public class SpectrumBlocks {
 	
 	public static final Block POLISHED_BASALT_PILLAR = register(axisRotated(blockWithItem("polished_basalt_pillar", new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(POLISHED_BASALT)), InkColors.BROWN), TexturedModel.COLUMN));
 	public static final Block POLISHED_BASALT_CREST = register(blockWithItem("polished_basalt_crest", new CardinalFacingBlock(BlockBehaviour.Properties.ofFullCopy(POLISHED_BASALT)), InkColors.BROWN).withBlockModel((ctx, block) -> SpectrumModelHelper.createVariantsSupplier(ctx, block, TexturedModel.COLUMN).with(SpectrumModelHelper.createCardinalFacingVariantMap())));
-	public static final Block NOTCHED_POLISHED_BASALT = register(singleton(blockWithItem("notched_polished_basalt", new Block(BlockBehaviour.Properties.ofFullCopy(POLISHED_BASALT)), InkColors.BROWN), TexturedModel.COLUMN));
+	public static final Block NOTCHED_POLISHED_BASALT = register(simple((blockWithItem("notched_polished_basalt", new Block(BlockBehaviour.Properties.ofFullCopy(POLISHED_BASALT)), InkColors.BROWN))));
 	
 	public static final Block BASALT_BRICKS = register(blockWithItem("basalt_bricks", new Block(BlockBehaviour.Properties.ofFullCopy(POLISHED_BASALT)), InkColors.BROWN));
 	public static final Block BASALT_BRICK_STAIRS = register(blockWithItem("basalt_brick_stairs", new StairBlock(BASALT_BRICKS.defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(BASALT_BRICKS)), InkColors.BROWN));
@@ -453,7 +453,7 @@ public class SpectrumBlocks {
 	
 	public static final Block POLISHED_CALCITE_PILLAR = register(axisRotated(blockWithItem("polished_calcite_pillar", new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(POLISHED_CALCITE)), InkColors.BROWN), TexturedModel.COLUMN));
 	public static final Block POLISHED_CALCITE_CREST = register(blockWithItem("polished_calcite_crest", new CardinalFacingBlock(BlockBehaviour.Properties.ofFullCopy(POLISHED_CALCITE)), InkColors.BROWN).withBlockModel((ctx, block) -> SpectrumModelHelper.createVariantsSupplier(ctx, block, TexturedModel.COLUMN).with(SpectrumModelHelper.createCardinalFacingVariantMap())));
-	public static final Block NOTCHED_POLISHED_CALCITE = register(singleton(blockWithItem("notched_polished_calcite", new Block(BlockBehaviour.Properties.ofFullCopy(POLISHED_CALCITE)), InkColors.BROWN), TexturedModel.COLUMN));
+	public static final Block NOTCHED_POLISHED_CALCITE = register(simple(blockWithItem("notched_polished_calcite", new Block(BlockBehaviour.Properties.ofFullCopy(POLISHED_CALCITE)), InkColors.BROWN)));
 	
 	public static final Block CALCITE_BRICKS = register(blockWithItem("calcite_bricks", new Block(BlockBehaviour.Properties.ofFullCopy(POLISHED_CALCITE)), InkColors.BROWN));
 	public static final Block CALCITE_BRICK_STAIRS = register(blockWithItem("calcite_brick_stairs", new StairBlock(CALCITE_BRICKS.defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(CALCITE_BRICKS)), InkColors.BROWN));
@@ -839,10 +839,10 @@ public class SpectrumBlocks {
 	public static final FungusBlock IVORY_NOXSHROOM = registerNoxshroom("ivory_noxshroom", SpectrumConfiguredFeatures.IVORY_NOXFUNGUS, MapColor.QUARTZ);
 	public static final FungusBlock CHESTNUT_NOXSHROOM = registerNoxshroom("chestnut_noxshroom", SpectrumConfiguredFeatures.CHESTNUT_NOXFUNGUS, MapColor.CRIMSON_NYLIUM);
 	
-	public static final FlowerPotBlock POTTED_SLATE_NOXSHROOM = register(pottedPlant(block("potted_slate_noxshroom", new FlowerPotBlock(SLATE_NOXSHROOM, pottedPlant())), false));
-	public static final FlowerPotBlock POTTED_EBONY_NOXSHROOM = register(pottedPlant(block("potted_ebony_noxshroom", new FlowerPotBlock(EBONY_NOXSHROOM, pottedPlant())), false));
-	public static final FlowerPotBlock POTTED_IVORY_NOXSHROOM = register(pottedPlant(block("potted_ivory_noxshroom", new FlowerPotBlock(IVORY_NOXSHROOM, pottedPlant())), false));
-	public static final FlowerPotBlock POTTED_CHESTNUT_NOXSHROOM = register(pottedPlant(block("potted_chestnut_noxshroom", new FlowerPotBlock(CHESTNUT_NOXSHROOM, pottedPlant())), false));
+	public static final FlowerPotBlock POTTED_SLATE_NOXSHROOM = register(pottedPlantWithCustomTexture(block("potted_slate_noxshroom", new FlowerPotBlock(SLATE_NOXSHROOM, pottedPlant())), "_type_1"));
+	public static final FlowerPotBlock POTTED_EBONY_NOXSHROOM = register(pottedPlantWithCustomTexture(block("potted_ebony_noxshroom", new FlowerPotBlock(EBONY_NOXSHROOM, pottedPlant())), "_type_1"));
+	public static final FlowerPotBlock POTTED_IVORY_NOXSHROOM = register(pottedPlantWithCustomTexture(block("potted_ivory_noxshroom", new FlowerPotBlock(IVORY_NOXSHROOM, pottedPlant())), "_type_1"));
+	public static final FlowerPotBlock POTTED_CHESTNUT_NOXSHROOM = register(pottedPlantWithCustomTexture(block("potted_chestnut_noxshroom", new FlowerPotBlock(CHESTNUT_NOXSHROOM, pottedPlant())), "_type_1"));
 	
 	public static BlockBehaviour.Properties noxcap(MapColor color) {
 		return settings(color, SoundType.STEM, 4.0F).instrument(NoteBlockInstrument.BASS);
@@ -1425,10 +1425,10 @@ public class SpectrumBlocks {
 	public static final BloodOrchidBlock BLOOD_ORCHID = register(cutout(blockWithItem("blood_orchid", new BloodOrchidBlock(SpectrumStatusEffects.FRENZY, 10, BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY).offsetType(BlockBehaviour.OffsetType.NONE).randomTicks()), InkColors.RED)).withBlockItemModel((ctx, block) -> SpectrumModelHelper.registerBlockTexturedItemModel(ctx, block, "5")).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.property(BloodOrchidBlock.AGE).generate(stage -> SpectrumModelHelper.createModelVariant(SpectrumTexturedModels.cross(b -> b, stage.toString()).createWithSuffix(block, stage.toString(), ctx.modelOutput))))));
 	public static final PottedBloodOrchidBlock POTTED_BLOOD_ORCHID = register(cutout(singleton(block("potted_blood_orchid", new PottedBloodOrchidBlock(BLOOD_ORCHID, pottedPlant())), SpectrumTexturedModels.flowerPotCross(b -> BLOOD_ORCHID, "5", false))));
 	
-	public static final Block POTTED_SWEET_PEA = register(pottedPlant(block("potted_sweet_pea", new FlowerPotBlock(SWEET_PEA, pottedPlant().lightLevel(s -> 11).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always))), false));
-	public static final Block POTTED_APRICOTTI = register(pottedPlant(block("potted_apricotti", new FlowerPotBlock(APRICOTTI, pottedPlant().lightLevel(s -> 11).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always))), false));
+	public static final Block POTTED_SWEET_PEA = register(pottedPlantWithCustomTexture(block("potted_sweet_pea", new FlowerPotBlock(SWEET_PEA, pottedPlant().lightLevel(s -> 11).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always))), "_potted"));
+	public static final Block POTTED_APRICOTTI = register(pottedPlantWithCustomTexture(block("potted_apricotti", new FlowerPotBlock(APRICOTTI, pottedPlant().lightLevel(s -> 11).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always))), "_potted"));
+	public static final Block POTTED_HUMMING_BELL = register(pottedPlantWithCustomTexture(block("potted_humming_bell", new FlowerPotBlock(HUMMING_BELL, pottedPlant().lightLevel(s -> 9).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always))), "_potted"));
 	public static final Block POTTED_VARIA_SPROUT = register(pottedPlant(block("potted_varia_sprout", new FlowerPotBlock(VARIA_SPROUT, pottedPlant().lightLevel(s -> 11).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always))), false));
-	public static final Block POTTED_HUMMING_BELL = register(pottedPlant(block("potted_humming_bell", new FlowerPotBlock(HUMMING_BELL, pottedPlant().lightLevel(s -> 9).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always))), false));
 	
 	public static ColoredSaplingBlock registerColoredSapling(String name, InkColor color, TreeGrower generator) {
 		return register(simplePlant(blockWithItem(name, new ColoredSaplingBlock(copyWithMapColor(Blocks.OAK_SAPLING, color.getDyeColor().orElse(DyeColor.LIME).getMapColor()), color, generator), color)));
@@ -1783,7 +1783,7 @@ public class SpectrumBlocks {
 	public static final Block PRESERVATION_ITEM_BOWL = register(cutout(singleton(blockWithItem("preservation_item_bowl", new PreservationItemBowlBlock(preservationBlock().noOcclusion().isRedstoneConductor(SpectrumBlocks::never).isSuffocating(SpectrumBlocks::never).isViewBlocking(SpectrumBlocks::never)), InkColors.BLUE), TexturedModel.createDefault(b -> new TextureMapping().put(TextureSlot.TEXTURE, locate("block/preservation_item_bowl")).put(TextureSlot.SIDE, locate("block/preservation_bricks")).put(SpectrumTextureKeys.BASE, locate("block/preservation_stone_top_0")), SpectrumModels.BOWL))));
 	public static final Block DIKE_GATE_FOUNTAIN = register(defaultUpFacing(blockWithItem("dike_gate_fountain", new SpectrumFacingBlock(preservationBlock()), InkColors.BLUE), SpectrumTexturedModels.cubeBottomTopParticle(b -> b, "_side", b -> b, "_top", b -> PRESERVATION_STONE, "", b -> PRESERVATION_STONE, "")));
 	public static final Block PRESERVATION_BRICKS = register(simple(blockWithItem("preservation_bricks", new Block(preservationBlock()), InkColors.BLUE)));
-	public static final Block SHIMMERING_PRESERVATION_BRICKS = register(simple(blockWithItem("shimmering_preservation_bricks", new Block(preservationBlock().lightLevel(s -> 5)), InkColors.BLUE)));
+	public static final Block SHIMMERING_PRESERVATION_BRICKS = register(blockWithItem("shimmering_preservation_bricks", new Block(preservationBlock().lightLevel(s -> 5)), InkColors.BLUE).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block, SpectrumModelHelper.createModelVariant(TexturedModel.CUBE.create(block, ctx.modelOutput)), SpectrumModelHelper.createModelVariant(SpectrumTexturedModels.cubeAll(b -> b, "_fast").createWithSuffix(block, "_fast", ctx.modelOutput)), SpectrumModelHelper.createModelVariant(SpectrumTexturedModels.cubeAll(b -> b, "_slow").createWithSuffix(block, "_slow", ctx.modelOutput)))));
 	public static final Block COURIER_STATUE = register(cutout(blockWithItem("courier_statue", new StatueBlock(preservationBlock()), InkColors.BLUE)).withBlockItemModel((ctx, block) -> SpectrumModelHelper.registerParentedItemModel(ctx, block, block, "_top")).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(SpectrumModelHelper.createNorthDefaultHorizontalFacingVariantMap()).with(PropertyDispatch.property(StatueBlock.HALF).select(DoubleBlockHalf.LOWER, SpectrumModelHelper.createModelVariant(block, "_bottom")).select(DoubleBlockHalf.UPPER, SpectrumModelHelper.createModelVariant(block, "_top")))));
 	public static final Block MANXI = register(singletonWithSoup(block("manxi", new ManxiBlock(preservationBlock().noOcclusion().noCollission().noLootTable())), b -> SpectrumModels.MOB_HEAD));
 	
@@ -1819,7 +1819,7 @@ public class SpectrumBlocks {
 	public static final ShootingStarBlock PRISTINE_SHOOTING_STAR = register(cutout(singleton(blockWithItem("pristine_shooting_star", new ShootingStarBlock(shootingStar(), ShootingStar.Variant.PRISTINE), block -> new ShootingStarItem(block, IS.of(1, Rarity.UNCOMMON)), InkColors.PURPLE), SpectrumTexturedModels.SHOOTING_STAR)));
 	public static final ShootingStarBlock GEMSTONE_SHOOTING_STAR = register(cutout(singleton(blockWithItem("gemstone_shooting_star", new ShootingStarBlock(shootingStar(), ShootingStar.Variant.GEMSTONE), block -> new ShootingStarItem(block, IS.of(1, Rarity.UNCOMMON)), InkColors.PURPLE), SpectrumTexturedModels.SHOOTING_STAR)));
 	public static final Block STARDUST_BLOCK = register(simple(blockWithItem("stardust_block", new ColoredFallingBlock(new ColorRGBA(DyeColor.PURPLE.getFireworkColor()), BlockBehaviour.Properties.ofFullCopy(Blocks.SAND).mapColor(MapColor.COLOR_PURPLE)), IS.of(1, Rarity.UNCOMMON), InkColors.BLACK)));
-	
+
 	public static final Block INCANDESCENT_AMALGAM = register(cutout(singletonWithSoup(blockWithItem("incandescent_amalgam", new IncandescentAmalgamBlock(BlockBehaviour.Properties.of().instabreak().noOcclusion()), block -> new IncandescentAmalgamItem(block, IS.of(16).food(SpectrumFoodComponents.INCANDESCENT_AMALGAM)), InkColors.RED), ModelLocationUtils::getModelLocation)).withBlockItemModel(SpectrumModelHelper::registerBlockTexturedItemModel));
 	
 	private static BlockBehaviour.Properties idol(SoundType soundGroup) {
@@ -2034,6 +2034,10 @@ public class SpectrumBlocks {
 		return cutout(registrar).withBlockModel((ctx, block) -> SpectrumModelHelper.pottedPlantBlockModel(ctx, block, tinted));
 	}
 	
+	public static <T extends FlowerPotBlock> BlockRegistrar<T> pottedPlantWithCustomTexture(BlockRegistrar<T> registrar, String suffix) {
+		return cutout(registrar).withBlockModel((ctx, block) -> SpectrumModelHelper.pottedPlantWithCustomTextureBlockModel(ctx, block, suffix));
+	}
+	
 	public static <T extends Block> BlockRegistrar<T> log(BlockRegistrar<T> registrar) {
 		return registrar.withBlockModel(SpectrumModelHelper::logBlockModel);
 	}
@@ -2077,7 +2081,7 @@ public class SpectrumBlocks {
 	public static <T extends Block> BlockRegistrar<T> detector(BlockRegistrar<T> registrar) {
 		return burnable(registrar, 300).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(SpectrumModelHelper.createBooleanModelMap(BlockStateProperties.INVERTED,
 				SpectrumModels.SLAB_DETECTOR.createWithSuffix(block, "_inverted", SpectrumTextureMaps.sideTop(block, "_side", block, "_inverted_top"), ctx.modelOutput),
-				SpectrumModels.SLAB_DETECTOR.create(block, SpectrumTextureMaps.sideTop(block, "_side", block, "_top"), ctx.modelOutput))));
+				SpectrumModels.SLAB_DETECTOR.create(block, SpectrumTextureMaps.sideTop(block, "_side", block, ""), ctx.modelOutput))));
 	}
 	
 	public static <T extends Block> BlockRegistrar<T> burnable(BlockRegistrar<T> registrar, int burnTicks) {

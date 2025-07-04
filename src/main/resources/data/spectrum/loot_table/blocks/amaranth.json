@@ -41,8 +41,7 @@
             },
             {
               "type": "minecraft:item",
-              "name": "spectrum:amaranth_grains",
-              "count": 1
+              "name": "spectrum:amaranth_grains"
             }
           ]
         }

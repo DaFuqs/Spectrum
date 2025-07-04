@@ -46,8 +46,8 @@ public class TallCropBlock extends CropBlock {
 	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
         this.tryGrow(state, world, pos, random, 25F);
     }
-
-    @Override
+	
+	@Override
 	public void growCrops(Level world, BlockPos pos, BlockState state) {
 		if (state.getValue(HALF) == DoubleBlockHalf.UPPER) {
 			pos = pos.below();
@@ -109,7 +109,7 @@ public class TallCropBlock extends CropBlock {
      * Returns the bottom block state for the given age.
      */
     @Override
-	public BlockState getStateForAge(int age) {
+	public @NotNull BlockState getStateForAge(int age) {
         return this.withAgeAndHalf(age, DoubleBlockHalf.LOWER);
     }
     
@@ -179,32 +179,32 @@ public class TallCropBlock extends CropBlock {
     }
 	
 	protected static void breakTheOtherHalf(Level world, BlockPos pos, BlockState state, Player player) {
+		if (!player.isCreative()) {
+			dropResources(state, world, pos, null, player, player.getMainHandItem());
+		}
+		
 		if (state.getValue(HALF) == DoubleBlockHalf.UPPER) {
 			BlockPos downPos = pos.below();
 			BlockState blockState = world.getBlockState(downPos);
 			if (blockState.is(state.getBlock()) && blockState.getValue(HALF) == DoubleBlockHalf.LOWER) {
-				if (!player.isCreative()) {
-					dropResources(state, world, downPos, null, player, player.getMainHandItem());
-				}
-				BlockState blockState2 = blockState.hasProperty(BlockStateProperties.WATERLOGGED) && blockState.getValue(BlockStateProperties.WATERLOGGED) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState();
-				world.setBlock(downPos, blockState2, Block.UPDATE_SUPPRESS_DROPS | Block.UPDATE_ALL);
-				world.levelEvent(player, LevelEvent.PARTICLES_DESTROY_BLOCK, downPos, Block.getId(blockState));
+				breakTheOtherHalf(world, downPos, state, player, downPos, blockState);
 			}
 		} else {
 			BlockPos upPos = pos.above();
 			BlockState blockState = world.getBlockState(upPos);
 			if (blockState.is(state.getBlock()) && blockState.getValue(HALF) == DoubleBlockHalf.UPPER) {
-				if (!player.isCreative()) {
-					dropResources(state, world, pos, null, player, player.getMainHandItem());
-				}
-				BlockState blockState2 = blockState.hasProperty(BlockStateProperties.WATERLOGGED) && blockState.getValue(BlockStateProperties.WATERLOGGED) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState();
-				world.setBlock(upPos, blockState2, Block.UPDATE_SUPPRESS_DROPS | Block.UPDATE_ALL);
-				world.levelEvent(player, LevelEvent.PARTICLES_DESTROY_BLOCK, upPos, Block.getId(blockState));
-            }
+				breakTheOtherHalf(world, pos, state, player, upPos, blockState);
+			}
         }
     }
-
-    @Override
+	
+	private static void breakTheOtherHalf(Level world, BlockPos pos, BlockState state, Player player, BlockPos upPos, BlockState blockState) {
+		BlockState blockState2 = blockState.hasProperty(BlockStateProperties.WATERLOGGED) && blockState.getValue(BlockStateProperties.WATERLOGGED) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState();
+		world.setBlock(upPos, blockState2, Block.UPDATE_SUPPRESS_DROPS | Block.UPDATE_ALL);
+		world.levelEvent(player, LevelEvent.PARTICLES_DESTROY_BLOCK, upPos, Block.getId(blockState));
+	}
+	
+	@Override
 	public BlockState playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
 		if (!world.isClientSide) {
 			breakTheOtherHalf(world, pos, state, player);

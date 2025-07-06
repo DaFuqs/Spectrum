@@ -44,7 +44,7 @@ public class ServerPastelNetwork extends PastelNetwork<ServerLevel> {
 	}
 	
 	public ServerPastelNetwork(ServerLevel world, PastelNodeBlockEntity initialNode) {
-		this(world, initialNode.getNodeId(), initialNode.getPastelNetworkColor(), new TickLooper(10));
+		this(world, UUID.randomUUID(), initialNode.getPastelNetworkColor(), new TickLooper(10));
 		addNode(initialNode);
 	}
 	

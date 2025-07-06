@@ -340,6 +340,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		this.creationStamp = nbt.contains("creationStamp") ? nbt.getLong("creationStamp") : 0;
 		this.lastTransferTick = nbt.contains("LastTransferTick", Tag.TAG_LONG) ? nbt.getLong("LastTransferTick") : 0;
 		this.itemCountUnderway = nbt.contains("ItemCountUnderway", Tag.TAG_LONG) ? nbt.getLong("ItemCountUnderway") : 0;
+		this.color = nbt.contains("ColorId", Tag.TAG_INT) ? Optional.of(DyeColor.byId(nbt.getInt("ColorId"))) : Optional.empty();
 		this.outerRing = nbt.contains("OuterRing") ? Optional.ofNullable(SpectrumRegistries.PASTEL_UPGRADE.get(ResourceLocation.tryParse(nbt.getString("OuterRing")))) : Optional.empty();
 		this.innerRing = nbt.contains("InnerRing") ? Optional.ofNullable(SpectrumRegistries.PASTEL_UPGRADE.get(ResourceLocation.tryParse(nbt.getString("InnerRing")))) : Optional.empty();
 		this.redstoneRing = nbt.contains("RedstoneRing") ? Optional.ofNullable(SpectrumRegistries.PASTEL_UPGRADE.get(ResourceLocation.tryParse(nbt.getString("RedstoneRing")))) : Optional.empty();
@@ -357,6 +358,9 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		}
 		if (this.networkUUID.isPresent()) {
 			nbt.putUUID("NetworkUUID", this.networkUUID.get());
+		}
+		if (this.color.isPresent()) {
+			nbt.putInt("ColorId", this.color.get().getId());
 		}
 		nbt.putUUID("NodeID", this.nodeId);
 		nbt.putBoolean("Triggered", this.triggered);

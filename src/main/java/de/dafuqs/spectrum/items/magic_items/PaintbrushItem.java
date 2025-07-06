@@ -134,7 +134,7 @@ public class PaintbrushItem extends Item implements SignApplicator {
 					context.getLevel().playSound(null, context.getClickedPos(), SpectrumSoundEvents.USE_FAIL, SoundSource.BLOCKS, 1.0F, 1.0F);
 				}
 			}
-			return false;
+			return true;
 		}
 		
 		return cursedColor(context);

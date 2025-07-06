@@ -48,9 +48,6 @@ public class SpectrumCommon implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		
-		// Register internals
-		SpectrumRegistries.register();
-		InkColors.register();
 		InkColorMixes.register();
 		SpectrumEntityAttributes.register();
 		SpectrumLoadConditions.register();

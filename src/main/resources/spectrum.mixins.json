@@ -5,6 +5,8 @@
   "compatibilityLevel": "JAVA_21",
   "plugin": "de.dafuqs.spectrum.mixin.compat.Plugin",
   "mixins": [
+    "accessors.CachedRegistryInfoGetterAccessor",
+    "accessors.RegistryOpsAccessor"
   ],
   "client": [
   ],

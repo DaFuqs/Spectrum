@@ -1,6 +1,8 @@
 package de.dafuqs.spectrum;
 
+import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.config.*;
+import de.dafuqs.spectrum.registries.*;
 import me.shedaniel.autoconfig.*;
 import me.shedaniel.autoconfig.serializer.*;
 import net.minecraft.resources.*;
@@ -69,6 +71,10 @@ public class SpectrumCommon {
 	public SpectrumCommon(IEventBus modBus) {
 		logInfo("Starting Common Startup");
 		
+		// Register internals
+		modBus.addListener(SpectrumRegistries::registerBuiltInRegistries);
+		modBus.addListener(SpectrumRegistries::registerDynamicRegistries);
+		InkColors.register();
 	}
 	
 	/**

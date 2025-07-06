@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.helpers;
 
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.api.energy.color.*;
-import de.dafuqs.spectrum.items.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import org.jetbrains.annotations.*;
@@ -102,9 +101,10 @@ public class SpectrumColorHelper {
 			Item item = itemStack.getItem();
 			if (item instanceof DyeItem dyeItem) {
 				return Optional.of(dyeItem.getDyeColor());
-			} else if (item instanceof PigmentItem pigmentItem) {
+				// TODO PORT
+			} /*else if (item instanceof PigmentItem pigmentItem) {
 				return pigmentItem.getInkColor().getDyeColor();
-			}
+			}*/
 		}
 		return Optional.empty();
 	}

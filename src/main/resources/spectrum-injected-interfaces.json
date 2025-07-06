@@ -1,0 +1,14 @@
+{
+  "net/minecraft/world/level/saveddata/maps/MapDecoration": [
+    "de/dafuqs/spectrum/injectors/MapDecorationInjector"
+  ],
+  "net/minecraft/world/effect/MobEffectInstance": [
+    "de/dafuqs/spectrum/injectors/StatusEffectInstanceInjector"
+  ],
+  "net/minecraft/network/protocol/game/ClientboundUpdateMobEffectPacket": [
+    "de/dafuqs/spectrum/injectors/EntityStatusEffectS2CPacketInjector"
+  ],
+  "net/minecraft/world/food/FoodProperties$Builder": [
+    "de/dafuqs/spectrum/injectors/FoodComponentBuilderInjector"
+  ]
+}

@@ -5,6 +5,10 @@
   "compatibilityLevel": "JAVA_21",
   "plugin": "de.dafuqs.spectrum.mixin.compat.Plugin",
   "mixins": [
+    "EntityStatusEffectsS2CPacketMixin",
+    "FoodComponentBuilderMixin",
+    "MapDecorationMixin",
+    "StatusEffectInstanceMixin",
     "accessors.CachedRegistryInfoGetterAccessor",
     "accessors.RegistryOpsAccessor"
   ],

@@ -42,6 +42,10 @@ neoForge {
 		mappingsVersion = project.parchment_mappings_version
 	}
 
+	interfaceInjectionData {
+		from file("src/main/resources/spectrum-injected-interfaces.json")
+	}
+
 	// Default run configurations.
 	// These can be tweaked, removed, or duplicated as needed.
 	runs {

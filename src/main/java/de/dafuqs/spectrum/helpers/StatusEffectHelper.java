@@ -40,12 +40,13 @@ public class StatusEffectHelper {
 	public static ResourceLocation getTextureLocation(ResourceLocation original, MobEffectInstance effect, RenderType renderType) {
 		var type = effect.getEffect();
 		
-		if (type == SpectrumStatusEffects.DIVINITY)
-			return DIVINITY.get(renderType);
-		
-		if (isSevere(effect) && type != SpectrumStatusEffects.ETERNAL_SLUMBER && type != SpectrumStatusEffects.FATAL_SLUMBER) {
-			return SEVERE.get(renderType);
-		}
+		// TODO PORT
+//		if (type == SpectrumStatusEffects.DIVINITY)
+//			return DIVINITY.get(renderType);
+//
+//		if (isSevere(effect) && type != SpectrumStatusEffects.ETERNAL_SLUMBER && type != SpectrumStatusEffects.FATAL_SLUMBER) {
+//			return SEVERE.get(renderType);
+//		}
 		
 		if (type.is(SpectrumStatusEffectTags.NIGHT_ALCHEMY))
 			return NIGHT_ALCHEMY.get(renderType);

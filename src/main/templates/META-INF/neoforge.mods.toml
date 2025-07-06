@@ -115,20 +115,6 @@ side="BOTH"
 #    "spectrum.mixins.json"
 #  ],
 #  "custom": {
-#    "loom:injected_interfaces": {
-#      "net/minecraft/class_20": [
-#        "de/dafuqs/spectrum/injectors/MapDecorationInjector"
-#      ],
-#      "net/minecraft/class_1293": [
-#        "de/dafuqs/spectrum/injectors/StatusEffectInstanceInjector"
-#      ],
-#      "net/minecraft/class_2783": [
-#        "de/dafuqs/spectrum/injectors/EntityStatusEffectS2CPacketInjector"
-#      ],
-#      "net/minecraft/class_4174\u0024class_4175": [
-#        "de/dafuqs/spectrum/injectors/FoodComponentBuilderInjector"
-#      ]
-#    },
 #    "cardinal-components": [
 #      "spectrum:azure_dike",
 #      "spectrum:hardcore_deaths",

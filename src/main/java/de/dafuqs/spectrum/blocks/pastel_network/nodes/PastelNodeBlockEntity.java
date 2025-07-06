@@ -74,6 +74,8 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	
 	protected BlockApiCache<Storage<ItemVariant>, Direction> connectedStorageCache = null;
 	protected Direction cachedDirection = null;
+
+	protected Boolean isInitialized = false;
 	
 	private final List<ItemVariant> filterItems;
 	float rotationTarget, crystalRotation, lastRotationTarget, heightTarget, crystalHeight, lastHeightTarget, alphaTarget, ringAlpha, lastAlphaTarget;
@@ -101,6 +103,11 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	}
 	
 	public static void tick(@NotNull Level world, BlockPos pos, BlockState state, PastelNodeBlockEntity node) {
+		if (!node.isInitialized && !world.isClientSide()) { // kinda onLoad()?
+			node.getServerNetwork().ifPresent(network -> network.initializeNode(node));
+			node.isInitialized = true;
+		}
+
 		if (node.lamp && state.getValue(BlockStateProperties.LIT) != node.canTransfer()) {
 			world.setBlockAndUpdate(pos, state.setValue(BlockStateProperties.LIT, node.cachedUnpowered));
 		}
@@ -546,6 +553,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	public void connectToNearbyNodes(@Nullable Entity user) {
 		// remove from existing network, if it had one and join new networks
 		Pastel.getServerInstance().removeNode(this, NodeRemovalReason.DISCONNECT);
+		this.setNetworkUUID(null);
 		
 		// scan for all connectable nearby nodes
 		Map<Optional<ServerPastelNetwork>, List<PastelNodeBlockEntity>> connectableNodes = new Object2ObjectArrayMap<>();
@@ -584,7 +592,12 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 			
 			network = Pastel.getServerInstance().createNetwork((ServerLevel) level, this);
 			for (PastelNodeBlockEntity entry : connectableNodes.get(Optional.empty())) {
-				network.addEdge(this, entry);
+				try {
+					network.addEdge(this, entry); // Sometimes throws 'IllegalStateException("Attempted to add an edge to a foreign network")' (why? idk. better safe than sorry)
+				} catch (Exception e) {
+					SpectrumCommon.logWarning("PastelNodeBlockEntity can't connectToNearbyNodes: " + e.getMessage());
+					e.printStackTrace();
+				}
 			}
 		} else if (foundNetworkCount == 1) {
 			// there is exactly one other network

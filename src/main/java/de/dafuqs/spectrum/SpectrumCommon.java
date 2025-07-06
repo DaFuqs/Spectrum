@@ -1,5 +1,8 @@
 package de.dafuqs.spectrum;
 
+import de.dafuqs.spectrum.config.*;
+import me.shedaniel.autoconfig.*;
+import me.shedaniel.autoconfig.serializer.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.*;
 import net.minecraft.tags.*;
@@ -20,8 +23,7 @@ public class SpectrumCommon {
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("Spectrum");
 	public static final Map<ResourceLocation, TagKey<Item>> CACHED_ITEM_TAG_MAP = new HashMap<>();
-	// TODO PORT
-//	public static SpectrumConfig CONFIG;
+	public static SpectrumConfig CONFIG;
 
 	public static void logInfo(String message) {
 		LOGGER.info("[Spectrum] {}", message);
@@ -55,6 +57,14 @@ public class SpectrumCommon {
 	// Will be null when playing on a dedicated server!
 	@Nullable
 	public static MinecraftServer minecraftServer;
+	
+	static {
+		//Set up config
+		logInfo("Loading config file...");
+		AutoConfig.register(SpectrumConfig.class, JanksonConfigSerializer::new);
+		CONFIG = AutoConfig.getConfigHolder(SpectrumConfig.class).getConfig();
+		logInfo("Finished loading config file.");
+	}
 	
 	public SpectrumCommon(IEventBus modBus) {
 		logInfo("Starting Common Startup");

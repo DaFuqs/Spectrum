@@ -45,14 +45,6 @@ public class SpectrumCommon implements ModInitializer {
 	// Miscellaneous registrars
 	public static final DeferredRegistrar FUEL_REGISTRAR = new DeferredRegistrar();
 	
-	static {
-		//Set up config
-		logInfo("Loading config file...");
-		AutoConfig.register(SpectrumConfig.class, JanksonConfigSerializer::new);
-		CONFIG = AutoConfig.getConfigHolder(SpectrumConfig.class).getConfig();
-		logInfo("Finished loading config file.");
-	}
-	
 	@Override
 	public void onInitialize() {
 		

@@ -114,7 +114,7 @@ dependencies {
 //
 //	// ours
 //	modImplementation include("maven.modrinth:exclusions-lib:${project.exclusionslib_version}")
-//	modImplementation("de.dafuqs:revelationary:${project.revelationary_version}")
+	implementation("de.dafuqs:revelationary-neoforge:${project.revelationary_version}")
 //	modImplementation include("de.dafuqs:additionalentityattributes:${project.additional_entity_attributes_version}")
 //	modImplementation include("de.dafuqs:arrowhead:${project.arrowhead_version}")
 //	modImplementation include("de.dafuqs:reverb:${project.dimensional_reverb_version}")

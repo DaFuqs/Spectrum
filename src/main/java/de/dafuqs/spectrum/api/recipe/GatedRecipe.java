@@ -1,14 +1,13 @@
 package de.dafuqs.spectrum.api.recipe;
 
 import de.dafuqs.revelationary.api.advancements.*;
-import de.dafuqs.spectrum.progression.*;
-import net.fabricmc.api.*;
-import net.fabricmc.loader.api.*;
 import net.minecraft.locale.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.crafting.*;
+import net.neoforged.api.distmarker.*;
+import net.neoforged.fml.loading.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -37,14 +36,15 @@ public interface GatedRecipe<C extends RecipeInput> extends Recipe<C> {
 	}
 	
 	default void registerInToastManager(RecipeType<?> recipeType, GatedRecipe<C> gatedRecipe) {
-		if (FabricLoader.getInstance().getEnvironmentType() != EnvType.SERVER) {
+		if (FMLEnvironment.dist.isClient()) {
 			registerInToastManagerClient(recipeType, gatedRecipe);
 		}
 	}
 	
-	@Environment(EnvType.CLIENT)
+	@OnlyIn(Dist.CLIENT)
 	private void registerInToastManagerClient(RecipeType<?> recipeType, GatedRecipe<C> gatedRecipe) {
-		UnlockToastManager.registerGatedRecipe(recipeType, gatedRecipe);
+		// TODO PORT
+//		UnlockToastManager.registerGatedRecipe(recipeType, gatedRecipe);
 	}
 	
 	default @Nullable Component getSecretHintText(ResourceLocation id) {

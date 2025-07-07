@@ -1,12 +1,12 @@
 package de.dafuqs.spectrum.api.gui;
 
 import de.dafuqs.spectrum.*;
-import net.fabricmc.api.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screens.inventory.*;
 import net.minecraft.client.gui.screens.inventory.tooltip.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
+import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 public interface SpectrumTooltipComponent extends ClientTooltipComponent {
@@ -50,7 +50,7 @@ public interface SpectrumTooltipComponent extends ClientTooltipComponent {
 		context.blit(TEXTURE, x, y, sprite.u, sprite.v, sprite.width, sprite.height, 128, 128);
 	}
 	
-	@Environment(EnvType.CLIENT)
+	@OnlyIn(Dist.CLIENT)
 	enum Sprite {
 		SLOT(0, 0, 18, 20),
 		DOTTED_SLOT(18, 0, 18 + 18, 20),

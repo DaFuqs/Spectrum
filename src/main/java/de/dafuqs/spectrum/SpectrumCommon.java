@@ -210,11 +210,11 @@ public class SpectrumCommon {
 //		ExplosionModifiers.register();
 //		ExplosionModifierProviders.register();
 //
-//		logInfo("Registering Dispenser, Resonance & Present Unwrap Behaviors...");
+		logInfo("Registering Dispenser, Resonance & Present Unwrap Behaviors...");
 //		SpectrumDispenserBehaviors.register();
 //		SpectrumPresentUnpackBehaviors.register();
-//		SpectrumResonanceProcessorTypes.register();
-//
+		SpectrumResonanceProcessorTypes.register(modBus);
+
 //		logInfo("Registering Resource Conditions...");
 //		SpectrumResourceConditions.register();
 //		logInfo("Registering Structure WeightedPool Element Types...");

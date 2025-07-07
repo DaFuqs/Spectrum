@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.registries;
 
 //import com.mojang.serialization.*;
+import com.mojang.serialization.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 //import de.dafuqs.spectrum.api.interaction.*;
@@ -11,6 +12,7 @@ import de.dafuqs.spectrum.api.energy.color.*;
 //import de.dafuqs.spectrum.explosion.*;
 //import de.dafuqs.spectrum.items.tools.*;
 //import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.api.interaction.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
 
@@ -29,8 +31,8 @@ public class SpectrumRegistryKeys {
 //	public static final ResourceKey<Registry<ExplosionModifierType>> EXPLOSION_MODIFIER_TYPE = of("explosion_modifier_type");
 //	public static final ResourceKey<Registry<ExplosionModifier>> EXPLOSION_MODIFIER = of("explosion_effect_modifier");
 //
-//	public static final ResourceKey<Registry<MapCodec<? extends ResonanceProcessor>>> RESONANCE_PROCESSOR_TYPE = of("resonance_processor_type");
-//	public static final ResourceKey<Registry<ResonanceProcessor>> RESONANCE_PROCESSOR = of("resonance_processor");
+	public static final ResourceKey<Registry<MapCodec<? extends ResonanceProcessor>>> RESONANCE_PROCESSOR_TYPE = of("resonance_processor_type");
+	public static final ResourceKey<Registry<ResonanceProcessor>> RESONANCE_PROCESSOR = of("resonance_processor");
 	
 	private static <T> ResourceKey<Registry<T>> of(String name) {
 		return ResourceKey.createRegistryKey(SpectrumCommon.locate(name));

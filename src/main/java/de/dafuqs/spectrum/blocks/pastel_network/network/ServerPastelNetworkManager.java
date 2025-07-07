@@ -62,7 +62,6 @@ public class ServerPastelNetworkManager extends SavedData implements PastelNetwo
 				wrapper.put("network", opt.get());
 				wrapper.put("scheduler", transgender(network.getTransmissions()));
 				wrapper.put("graph", network.graphToNbt());
-				// Trans missions?... do... do they really?
 				networkList.add(wrapper);
 			}
 		}

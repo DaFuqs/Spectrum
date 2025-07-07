@@ -47,12 +47,12 @@ public class BookChecklistPage extends BookTextPage {
     }
 	
 	public static BookChecklistPage fromNetwork(RegistryFriendlyByteBuf buffer) {
-        var title = BookTextHolder.fromNetwork(buffer);
-        var useMarkdownInTitle = buffer.readBoolean();
-        var showTitleSeparator = buffer.readBoolean();
-        var text = BookTextHolder.fromNetwork(buffer);
-		var anchor = buffer.readUtf();
-        var condition = BookCondition.fromNetwork(buffer);
+		BookTextHolder title = BookTextHolder.fromNetwork(buffer);
+		boolean useMarkdownInTitle = buffer.readBoolean();
+		boolean showTitleSeparator = buffer.readBoolean();
+		BookTextHolder text = BookTextHolder.fromNetwork(buffer);
+		String anchor = buffer.readUtf();
+		BookCondition condition = BookCondition.fromNetwork(buffer);
 
         // Because modonomicon decided RegistryByteBuf was worthwhile
         int checklistSize = buffer.readVarInt();
@@ -105,17 +105,17 @@ public class BookChecklistPage extends BookTextPage {
 	public ResourceLocation getType() {
         return ModonomiconCompat.CHECKLIST_PAGE;
     }
-
-    @Override
+	
+	@Override
 	public void toNetwork(RegistryFriendlyByteBuf buffer) {
-        super.toNetwork(buffer);
+		super.toNetwork(buffer);
 		
 		buffer.writeVarInt(checklist.size());
 		for (var entry : checklist.entrySet()) {
 			buffer.writeResourceLocation(entry.getKey());
 			entry.getValue().toNetwork(buffer);
 		}
-		buffer.writeVarInt(startCountingAt);
-    }
+		buffer.writeInt(startCountingAt);
+	}
 
 }

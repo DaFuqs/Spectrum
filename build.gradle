@@ -42,6 +42,8 @@ neoForge {
 		mappingsVersion = project.parchment_mappings_version
 	}
 
+	validateAccessTransformers = true
+
 	interfaceInjectionData {
 		from file("src/main/resources/spectrum-injected-interfaces.json")
 	}
@@ -177,10 +179,6 @@ dependencies {
 	//modDatagenRuntimeOnly("maven.modrinth:botania:${project.botania_version}")
 	//modDatagenRuntimeOnly("maven.modrinth:create-fabric:${project.create_version}")
 }
-
-//loom {
-//	accessWidenerPath = file("src/main/resources/spectrum.accesswidener")
-//}
 
 // This block of code expands all declared replace properties in the specified resource targets.
 // A missing property will result in an error. Properties are expanded using ${} Groovy notation.

@@ -8,7 +8,6 @@ accessible	class	net/minecraft/world/level/storage/loot/functions/ApplyBonusCoun
 accessible	class	net/minecraft/world/level/levelgen/structure/pools/JigsawPlacement$Placer
 accessible	class	net/minecraft/resources/RegistryOps$HolderLookupAdapter
 accessible	class	net/minecraft/world/level/biome/Biome$ClimateSettings
-accessible	class	net/minecraft/world/level/LocalMobCapCalculator$MobCounts
 accessible	class	net/minecraft/client/gui/MapRenderer$MapInstance
 accessible	method	net/minecraft/client/particle/DripParticle$DripHangParticle	<init>	(Lnet/minecraft/client/multiplayer/ClientLevel;DDDLnet/minecraft/world/level/material/Fluid;Lnet/minecraft/core/particles/ParticleOptions;)V
 accessible	method	net/minecraft/client/particle/DripParticle$FallAndLandParticle	<init>	(Lnet/minecraft/client/multiplayer/ClientLevel;DDDLnet/minecraft/world/level/material/Fluid;Lnet/minecraft/core/particles/ParticleOptions;)V

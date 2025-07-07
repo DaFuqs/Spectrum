@@ -13,7 +13,7 @@ public record SweetenedPredicate(boolean sweetened) implements SingleComponentIt
 	
 	@Override
 	public DataComponentType<JadeWineComponent> componentType() {
-		return SpectrumDataComponentTypes.JADE_WINE;
+		return SpectrumDataComponentTypes.JADE_WINE.get();
 	}
 	
 	@Override

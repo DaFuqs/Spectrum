@@ -18,7 +18,7 @@ public record InfusedBeveragePredicate(Optional<String> variant) implements Sing
 	
 	@Override
 	public DataComponentType<InfusedBeverageComponent> componentType() {
-		return SpectrumDataComponentTypes.INFUSED_BEVERAGE;
+		return SpectrumDataComponentTypes.INFUSED_BEVERAGE.get();
 	}
 	
 	@Override

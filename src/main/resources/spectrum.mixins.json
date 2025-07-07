@@ -10,6 +10,7 @@
     "MapDecorationMixin",
     "StatusEffectInstanceMixin",
     "accessors.CachedRegistryInfoGetterAccessor",
+    "accessors.ExplosionAccessor",
     "accessors.RegistryOpsAccessor"
   ],
   "client": [

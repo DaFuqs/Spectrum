@@ -8,13 +8,11 @@ import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.damagesource.*;
-import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
-import java.util.logging.*;
 
 /**
  * Modifies an explosion in some way

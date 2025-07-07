@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.components;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.revelationary.*;
-import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
@@ -50,7 +49,8 @@ public record InertiaComponent(Block lastMined, long count) {
 		long inertiaAmount = state.is(inertia.lastMined()) ? inertia.count() + 1 : 1;
 		handStack.set(SpectrumDataComponentTypes.INERTIA, new InertiaComponent(state.getBlock(), inertiaAmount));
 		
-		SpectrumAdvancementCriteria.INERTIA_USED.trigger(serverPlayerEntity, state, inertiaAmount);
+		// TODO PORT
+//		SpectrumAdvancementCriteria.INERTIA_USED.trigger(serverPlayerEntity, state, inertiaAmount);
 	}
 	
 }

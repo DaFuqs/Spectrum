@@ -1,14 +1,10 @@
 package de.dafuqs.spectrum.explosion;
 
 import com.mojang.datafixers.util.*;
-import de.dafuqs.spectrum.blocks.*;
-import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
-import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import it.unimi.dsi.fastutil.objects.*;
-import net.fabricmc.fabric.api.tag.convention.v2.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.server.level.*;
@@ -25,6 +21,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.phys.*;
+import net.neoforged.neoforge.common.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -41,31 +38,33 @@ public class ModularExplosion {
 		double blastRadius = baseBlastRadius;
 		double killZoneRadius = 0;
 		ExplosionShape shape = ExplosionShape.DEFAULT;
-		ItemStack miningStack = new ItemStack(SpectrumItems.BEDROCK_PICKAXE);
-		
-		for (ExplosionModifier explosionEffect : modifiers) {
-			damageMod += explosionEffect.getDamageModifier();
-			killzoneDamageMod += explosionEffect.getKillZoneDamageModifier();
-			
-			blastRadius += explosionEffect.getBlastRadiusModifier();
-			killZoneRadius += explosionEffect.getKillZoneRadius();
-			
-			Optional<DamageSource> effectDamage = explosionEffect.getDamageSource(owner);
-			if (effectDamage.isPresent()) {
-				damageSource = effectDamage.get();
-			}
-			Optional<ExplosionShape> optionalExplosionShape = explosionEffect.getShape();
-			if (optionalExplosionShape.isPresent()) {
-				shape = optionalExplosionShape.get();
-			}
-			explosionEffect.addEnchantments(world, miningStack);
-		}
+		// TODO PORT
+//		ItemStack miningStack = new ItemStack(SpectrumItems.BEDROCK_PICKAXE);
+//
+//		for (ExplosionModifier explosionEffect : modifiers) {
+//			damageMod += explosionEffect.getDamageModifier();
+//			killzoneDamageMod += explosionEffect.getKillZoneDamageModifier();
+//
+//			blastRadius += explosionEffect.getBlastRadiusModifier();
+//			killZoneRadius += explosionEffect.getKillZoneRadius();
+//
+//			Optional<DamageSource> effectDamage = explosionEffect.getDamageSource(owner);
+//			if (effectDamage.isPresent()) {
+//				damageSource = effectDamage.get();
+//			}
+//			Optional<ExplosionShape> optionalExplosionShape = explosionEffect.getShape();
+//			if (optionalExplosionShape.isPresent()) {
+//				shape = optionalExplosionShape.get();
+//			}
+//			explosionEffect.addEnchantments(world, miningStack);
+//		}
 		
 		float blastDamage = baseDamage * damageMod;
 		float killZoneDamage = baseDamage * killzoneDamageMod;
 		
 		Vec3 center = Vec3.atCenterOf(pos);
-		world.playSound(null, center.x(), center.y(), center.z(), SpectrumSoundEvents.BLOCK_MODULAR_EXPLOSIVE_EXPLODE, SoundSource.BLOCKS, 1.0F, 0.8F + world.getRandom().nextFloat() * 0.3F);
+		// TODO PORT
+//		world.playSound(null, center.x(), center.y(), center.z(), SpectrumSoundEvents.BLOCK_MODULAR_EXPLOSIVE_EXPLODE, SoundSource.BLOCKS, 1.0F, 0.8F + world.getRandom().nextFloat() * 0.3F);
 		playVisualEffects(world, center, modifiers, blastRadius);
 		
 		
@@ -78,7 +77,7 @@ public class ModularExplosion {
 				// damage entity
 				double distance = Math.max(entity.position().distanceTo(center) - entity.getBbWidth() / 2, 0);
 				if (distance <= killZoneRadius) {
-					entity.hurt(damageSource, entity.getType().is(ConventionalEntityTypeTags.BOSSES) ? killZoneDamage / 25F : killZoneDamage);
+					entity.hurt(damageSource, entity.getType().is(Tags.EntityTypes.BOSSES) ? killZoneDamage / 25F : killZoneDamage);
 				} else {
 					double finalDamage = Mth.lerp(distance / blastRadius, blastDamage, blastDamage / 2);
 					entity.hurt(damageSource, (float) finalDamage);
@@ -92,11 +91,12 @@ public class ModularExplosion {
 			}
 		}
 		if (archetype.affectsBlocks) {
-			List<BlockPos> affectedBlocks = processExplosion(world, owner, pos, shape, blastRadius, miningStack);
-			
-			for (ExplosionModifier explosionEffect : modifiers) {
-				explosionEffect.applyToBlocks(world, affectedBlocks);
-			}
+			// TODO PORT
+//			List<BlockPos> affectedBlocks = processExplosion(world, owner, pos, shape, blastRadius, miningStack);
+//
+//			for (ExplosionModifier explosionEffect : modifiers) {
+//				explosionEffect.applyToBlocks(world, affectedBlocks);
+//			}
 		}
 	}
 	
@@ -107,9 +107,10 @@ public class ModularExplosion {
 		
 		RandomSource random = world.getRandom();
 		ArrayList<ParticleOptions> types = new ArrayList<>(effectModifiers.stream().map(ExplosionModifier::getParticleEffects).filter(Optional::isPresent).map(Optional::get).toList());
-		types.add(SpectrumParticleTypes.PRIMORDIAL_SMOKE);
-		
-		world.sendParticles(SpectrumParticleTypes.PRIMORDIAL_FLAME, pos.x(), pos.y(), pos.z(), 30, random.nextFloat() * 0.5 - 0.25, random.nextFloat() * 0.5 - 0.25, random.nextFloat() * 0.5 - 0.25, 0.0);
+		// TODO PORT
+//		types.add(SpectrumParticleTypes.PRIMORDIAL_SMOKE);
+//
+//		world.sendParticles(SpectrumParticleTypes.PRIMORDIAL_FLAME, pos.x(), pos.y(), pos.z(), 30, random.nextFloat() * 0.5 - 0.25, random.nextFloat() * 0.5 - 0.25, random.nextFloat() * 0.5 - 0.25, 0.0);
 		
 		double particleCount = blastRadius * blastRadius + random.nextInt((int) (blastRadius * 2)) * (types.size() / 2F + 0.5);
 		for (int i = 0; i < particleCount; i++) {
@@ -129,9 +130,10 @@ public class ModularExplosion {
 		List<BlockPos> affectedBlocks = new ArrayList<>();
 		int radius = (int) blastRadius / 2;
 		for (BlockPos p : BlockPos.withinManhattan(center, radius, radius, radius)) {
-			if (!GenericClaimModsCompat.canBreak(world, p, owner)) {
-				continue;
-			}
+			// TODO PORT
+//			if (!GenericClaimModsCompat.canBreak(world, p, owner)) {
+//				continue;
+//			}
 			if (shape.isAffected(center, p) && processBlock(world, owner, world.random, center, p, drops, miningStack, explosion)) {
 				affectedBlocks.add(new BlockPos(p.getX(), p.getY(), p.getZ()));
 			}

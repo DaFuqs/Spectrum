@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.explosion;
 
 import com.mojang.serialization.*;
-import de.dafuqs.spectrum.blocks.shooting_star.*;
 import de.dafuqs.spectrum.helpers.*;
 import io.netty.buffer.*;
 import net.minecraft.network.chat.*;

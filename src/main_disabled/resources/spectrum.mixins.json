@@ -82,7 +82,6 @@
     "accessors.BundleContentsComponentBuilderAccessor",
     "accessors.DensityCapAccessor",
     "accessors.ExperienceDroppingBlockAccessor",
-    "accessors.ExplosionAccessor",
     "accessors.FluidBlockAccessor",
     "accessors.FoxEntityAccessor",
     "accessors.GoatHornItemAccessor",

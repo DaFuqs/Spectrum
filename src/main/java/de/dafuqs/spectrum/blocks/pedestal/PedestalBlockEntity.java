@@ -282,7 +282,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		if (!pedestalBlockEntity.inventoryChanged) {
 			return pedestalBlockEntity.currentRecipe;
 		}
-		
+
 		// unchanged pedestal recipe?
 		if (currentRecipe instanceof PedestalRecipe pedestalRecipe && pedestalRecipe.matches(pedestalBlockEntity.createRecipeInput(), world)) {
 			return pedestalBlockEntity.currentRecipe;
@@ -295,17 +295,28 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 			}
 		}
 		
+		// is a crafting tablet in the slot?
+		// only allow this recipe
+		@Nullable RecipeHolder<?> craftingTabletRecipe = pedestalBlockEntity.getStoredCraftingTabletRecipe();
+		
 		// current recipe does not match last recipe
 		// => search valid recipe
-		var pedestalRecipe = world.getRecipeManager().getRecipeFor(SpectrumRecipeTypes.PEDESTAL, pedestalBlockEntity.createRecipeInput(), world).orElse(null);
+		RecipeHolder<PedestalRecipe> pedestalRecipe = world.getRecipeManager().getRecipeFor(SpectrumRecipeTypes.PEDESTAL, pedestalBlockEntity.createRecipeInput(), world).orElse(null);
 		if (pedestalRecipe == null) {
 			if (SpectrumCommon.CONFIG.canPedestalCraftVanillaRecipes()) {
-				return world.getRecipeManager().getRecipeFor(RecipeType.CRAFTING, pedestalBlockEntity.createRecipeInput().getCraftingGridInput(), world).orElse(null);
+				RecipeHolder<?> holder = world.getRecipeManager().getRecipeFor(RecipeType.CRAFTING, pedestalBlockEntity.createRecipeInput().getCraftingGridInput(), world).orElse(null);
+				if (craftingTabletRecipe != null && !craftingTabletRecipe.equals(holder)) {
+					return null;
+				}
+				return holder;
 			}
 			return null;
 		}
 		
 		if (!pedestalRecipe.value().canCraft(pedestalBlockEntity)) {
+			return null;
+		}
+		if (craftingTabletRecipe != null && !craftingTabletRecipe.equals(pedestalRecipe)) {
 			return null;
 		}
 		return pedestalRecipe;
@@ -701,15 +712,12 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 			return true;
 		}
 		
-		if (slot < 9 && inventory.get(CRAFTING_TABLET_SLOT_ID).is(SpectrumItems.CRAFTING_TABLET)) {
-			ItemStack craftingTabletItem = inventory.get(CRAFTING_TABLET_SLOT_ID);
-			
-			if (inventory.get(slot).getCount() > 0) {
+		if (slot < 9 && hasCraftingTablet()) {
+			RecipeHolder<?> holder = getStoredCraftingTabletRecipe();
+			if (holder == null) {
 				return false;
 			}
-			
-			var storedRecipeKey = CraftingTabletItem.getStoredRecipe(this.getLevel(), craftingTabletItem);
-			var storedRecipe = storedRecipeKey == null ? null : storedRecipeKey.value();
+			Recipe<?> storedRecipe = holder.value();
 			
 			int width = 3;
 			if (storedRecipe instanceof ShapedRecipe shapedRecipe) {
@@ -736,6 +744,15 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		} else {
 			return slot < CRAFTING_TABLET_SLOT_ID;
 		}
+	}
+	
+	private boolean hasCraftingTablet() {
+		return inventory.get(CRAFTING_TABLET_SLOT_ID).getCount() > 0;
+	}
+	
+	private @Nullable RecipeHolder<?> getStoredCraftingTabletRecipe() {
+		ItemStack craftingTabletItem = inventory.get(CRAFTING_TABLET_SLOT_ID);
+		return CraftingTabletItem.getStoredRecipe(this.getLevel(), craftingTabletItem);
 	}
 	
 	private int getCraftingRecipeSlotDependingOnWidth(int slot, int recipeWidth) {

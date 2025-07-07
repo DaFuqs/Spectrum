@@ -24,6 +24,9 @@ import java.util.*;
 public class CrystallarieumRecipe extends GatedSpectrumRecipe<SingleRecipeInput> {
 	
 	public static final ResourceLocation UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/crystallarieum");
+	public static final int GROWTH_SPEED_V = 0;
+	public static final int CONSUMPTION_V = 7;
+	public static final int CONSUME_CHANCE_V = 14;
 	
 	protected final static Map<BlockState, RecipeHolder<CrystallarieumRecipe>> STATE_CACHE = new HashMap<>();
 	protected static final FluidVariant LIQUID_CRYSTAL = FluidVariant.of(SpectrumFluids.LIQUID_CRYSTAL);
@@ -64,6 +67,55 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe<SingleRecipeInput>
 			}
 			return null;
 		});
+	}
+	
+	public static int growthSpeedOffsetU(CrystallarieumCatalyst catalyst) {
+		int offset = 0;
+		float accel = catalyst.growthAccelerationMod();
+		
+		if (accel > 0.2) {
+			if (accel >= 5)
+				offset = 70 + 7 * 4;
+			else if (accel > 1)
+				offset = 70 + 7 * 3;
+			else if (accel == 1)
+				offset = 70 + 7 * 2;
+			else if (accel < 1)
+				offset = 70 + 7;
+		}
+		return offset;
+	}
+	
+	public static int consumptionOffsetU(CrystallarieumCatalyst catalyst, int offsetU) {
+		float drain = catalyst.inkConsumptionMod();
+		
+		if (drain >= 5)
+			offsetU = 0;
+		else if (drain > 1)
+			offsetU = 7;
+		else if (drain == 1)
+			offsetU = 7 * 2;
+		else if (drain < 0.2)
+			offsetU = 7 * 4;
+		else if (drain < 1)
+			offsetU = 7 * 3;
+		return 70 + offsetU;
+	}
+	
+	public static int consumeChanceOffsetU(CrystallarieumCatalyst catalyst, int offsetU) {
+		float chance = catalyst.consumeChancePerSecond();
+		
+		if (chance >= 0.25)
+			offsetU = 0;
+		else if (chance < 0.0001)
+			offsetU = 7 * 4;
+		else if (chance <= 0.02)
+			offsetU = 7 * 3;
+		else if (chance < 0.05)
+			offsetU = 7 * 2;
+		else if (chance < 0.25)
+			offsetU = 7;
+		return 70 + offsetU;
 	}
 	
 	@Override

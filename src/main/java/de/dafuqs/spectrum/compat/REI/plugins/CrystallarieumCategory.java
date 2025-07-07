@@ -61,10 +61,10 @@ public class CrystallarieumCategory extends GatedDisplayCategory<CrystallarieumD
 		}
 		
 		// catalysts
-		widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 1 + 42), Component.translatable("container.spectrum.rei.crystallarieum.catalyst")).leftAligned().color(0x3f3f3f).noShadow());
-		widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 1 + 58), Component.translatable("container.spectrum.rei.crystallarieum.accelerator")).leftAligned().color(0x3f3f3f).noShadow());
-		widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 1 + 68), Component.translatable("container.spectrum.rei.crystallarieum.ink_consumption")).leftAligned().color(0x3f3f3f).noShadow());
-		widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 1 + 78), Component.translatable("container.spectrum.rei.crystallarieum.used_up")).leftAligned().color(0x3f3f3f).noShadow());
+		widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 44), Component.translatable("container.spectrum.rei.crystallarieum.catalyst")).leftAligned().color(0x3f3f3f).noShadow());
+		widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 60), Component.translatable("container.spectrum.rei.crystallarieum.speed")).leftAligned().color(0x3f3f3f).noShadow());
+		widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 70), Component.translatable("container.spectrum.rei.crystallarieum.ink_drain")).leftAligned().color(0x3f3f3f).noShadow());
+		widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 80), Component.translatable("container.spectrum.rei.crystallarieum.depletion")).leftAligned().color(0x3f3f3f).noShadow());
 		
 		int i = 0;
 		int startX = 46;
@@ -73,32 +73,29 @@ public class CrystallarieumCategory extends GatedDisplayCategory<CrystallarieumD
 			int offsetX = startPoint.x + startX + offsetPerReagent * i;
 			widgets.add(Widgets.createSlot(new Point(offsetX, startPoint.y + 1 + 38)).markInput().entries(EntryIngredients.ofIngredient(catalyst.ingredient())));
 			
-			float growthAcceleration = catalyst.growthAccelerationMod();
-			int offsetU = growthAcceleration == 1 ? 97 : growthAcceleration >= 6 ? 85 : growthAcceleration > 1 ? 67 : growthAcceleration <= 0.25 ? 79 : 73;
-			widgets.add(Widgets.createTexturedWidget(BACKGROUND_TEXTURE, offsetX + 5, startPoint.y + 1 + 59, offsetU, 0, 6, 6, 128, 128));
+			int offsetU = CrystallarieumRecipe.growthSpeedOffsetU(catalyst);
+			widgets.add(Widgets.createTexturedWidget(BACKGROUND_TEXTURE, offsetX + 5, startPoint.y + 60, offsetU, CrystallarieumRecipe.GROWTH_SPEED_V, 7, 7, 128, 128));
 			
-			float inkConsumption = catalyst.inkConsumptionMod();
-			offsetU = inkConsumption == 1 ? 97 : inkConsumption >= 8 ? 85 : inkConsumption > 1 ? 67 : inkConsumption <= 0.25 ? 79 : 73;
-			widgets.add(Widgets.createTexturedWidget(BACKGROUND_TEXTURE, offsetX + 5, startPoint.y + 1 + 69, offsetU, 6, 6, 6, 128, 128));
+			offsetU = CrystallarieumRecipe.consumptionOffsetU(catalyst, offsetU);
+			widgets.add(Widgets.createTexturedWidget(BACKGROUND_TEXTURE, offsetX + 5, startPoint.y + 70, offsetU, CrystallarieumRecipe.CONSUMPTION_V, 7, 7, 128, 128));
 			
-			float consumeChance = catalyst.consumeChancePerSecond();
-			offsetU = consumeChance == 0 ? 97 : consumeChance >= 0.2 ? 85 : consumeChance >= 0.05 ? 67 : 91;
-			widgets.add(Widgets.createTexturedWidget(BACKGROUND_TEXTURE, offsetX + 5, startPoint.y + 1 + 79, offsetU, 6, 6, 6, 128, 128));
+			offsetU = CrystallarieumRecipe.consumeChanceOffsetU(catalyst, offsetU);
+			widgets.add(Widgets.createTexturedWidget(BACKGROUND_TEXTURE, offsetX + 5, startPoint.y + 80, offsetU, CrystallarieumRecipe.CONSUME_CHANCE_V, 7, 7, 128, 128));
 			
 			i++;
 		}
 		
 		// description texts
 		if (display.growsWithoutCatalyst) {
-			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 1 + 90), Component.translatable("container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds_catalyst_optional", display.secondsPerStage)).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 92), Component.translatable("container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds_catalyst_optional", display.secondsPerStage)).leftAligned().color(0x3f3f3f).noShadow());
 		} else {
-			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 1 + 90), Component.translatable("container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds", display.secondsPerStage)).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 92), Component.translatable("container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds", display.secondsPerStage)).leftAligned().color(0x3f3f3f).noShadow());
 		}
 	}
 	
 	@Override
 	public int getDisplayHeight() {
-		return 108;
+		return 109;
 	}
 	
 }

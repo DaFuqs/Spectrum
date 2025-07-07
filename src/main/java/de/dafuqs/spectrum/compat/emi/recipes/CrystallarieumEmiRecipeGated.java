@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.compat.emi.recipes;
 
-import com.klikli_dev.modonomicon.datagen.book.demo.features.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.emi.*;
 import de.dafuqs.spectrum.recipe.crystallarieum.*;
@@ -15,7 +14,9 @@ import java.util.*;
 import java.util.stream.*;
 
 public class CrystallarieumEmiRecipeGated extends GatedSpectrumEmiRecipe<CrystallarieumRecipe> {
+	
 	private final static ResourceLocation BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/modonomicon/crystallarieum.png");
+	private static final int LINE_HEIGHT = 10;
 	
 	public CrystallarieumEmiRecipeGated(RecipeHolder<CrystallarieumRecipe> entry) {
 		super(SpectrumEmiRecipeCategories.CRYSTALLARIEUM, entry, 124, 100);
@@ -51,60 +52,24 @@ public class CrystallarieumEmiRecipeGated extends GatedSpectrumEmiRecipe<Crystal
 		}
 		
 		// catalysts
-		widgets.addText(Component.translatable("container.spectrum.rei.crystallarieum.catalyst"), 0, 42, 0x3f3f3f, false);
-		widgets.addText(Component.translatable("container.spectrum.rei.crystallarieum.accelerator"), 0, 58, 0x3f3f3f, false);
-		widgets.addText(Component.translatable("container.spectrum.rei.crystallarieum.ink_consumption"), 0, 68, 0x3f3f3f, false);
-		widgets.addText(Component.translatable("container.spectrum.rei.crystallarieum.used_up"), 0, 78, 0x3f3f3f, false);
+		widgets.addText(Component.translatable("container.spectrum.rei.crystallarieum.catalyst"), 0, 43, 0x3f3f3f, false);
+		widgets.addText(Component.translatable("container.spectrum.rei.crystallarieum.speed"), 0, 49 + LINE_HEIGHT, 0x3f3f3f, false);
+		widgets.addText(Component.translatable("container.spectrum.rei.crystallarieum.ink_drain"), 0, 49 + LINE_HEIGHT * 2, 0x3f3f3f, false);
+		widgets.addText(Component.translatable("container.spectrum.rei.crystallarieum.depletion"), 0, 49 + LINE_HEIGHT * 3, 0x3f3f3f, false);
 		
 		List<CrystallarieumCatalyst> catalysts = recipe.getCatalysts();
 		for (int i = 0; i < catalysts.size(); i++) {
 			CrystallarieumCatalyst catalyst = catalysts.get(i);
 			int xOff = 46 + 18 * i;
 			widgets.addSlot(EmiIngredient.of(catalyst.ingredient()), xOff, 38);
-			int offset = 0;
-			float accel = catalyst.growthAccelerationMod();
+			int offsetU = CrystallarieumRecipe.growthSpeedOffsetU(catalyst);
+			widgets.addTexture(BACKGROUND_TEXTURE, xOff + 5, 59, 7, 7, offsetU, CrystallarieumRecipe.GROWTH_SPEED_V, 7, 7, 128, 128);
 			
-			if (accel > 0.2) {
-				if (accel >= 5)
-					offset = 7 * 4;
-				else if (accel > 1)
-					offset = 7 * 3;
-				else if(accel == 1)
-					offset = 7 * 2;
-				else if (accel < 1)
-					offset = 7;
-			}
-			widgets.addTexture(BACKGROUND_TEXTURE, xOff + 5, 59, 7, 7, 70 + offset, 0, 7, 7, 128, 128);
+			offsetU = CrystallarieumRecipe.consumptionOffsetU(catalyst, offsetU);
+			widgets.addTexture(BACKGROUND_TEXTURE, xOff + 5, 69, 7, 7, offsetU, CrystallarieumRecipe.CONSUMPTION_V, 7, 7, 128, 128);
 			
-			float drain = catalyst.inkConsumptionMod();
-			
-			if (drain >= 5)
-				offset = 0;
-			else if (drain > 1)
-				offset = 7;
-			else if(drain == 1)
-				offset = 7 * 2;
-			else if (drain < 0.2)
-				offset = 7 * 4;
-			else if (drain < 1)
-				offset = 7 * 3;
-			
-			widgets.addTexture(BACKGROUND_TEXTURE, xOff + 5, 69, 7, 7, 70 + offset, 7, 7, 7, 128, 128);
-			
-			float chance = catalyst.consumeChancePerSecond();
-			
-			if (chance >= 0.25)
-				offset = 0;
-			else if (chance < 0.0001)
-				offset = 7 * 4;
-			else if (chance <= 0.02)
-				offset = 7 * 3;
-			else if(chance < 0.05)
-				offset = 7 * 2;
-			else if (chance < 0.25)
-				offset = 7;
-			
-			widgets.addTexture(BACKGROUND_TEXTURE, xOff + 5, 79, 7, 7, 70 + offset, 14, 7, 7, 128, 128);
+			offsetU = CrystallarieumRecipe.consumeChanceOffsetU(catalyst, offsetU);
+			widgets.addTexture(BACKGROUND_TEXTURE, xOff + 5, 79, 7, 7, offsetU, CrystallarieumRecipe.CONSUME_CHANCE_V, 7, 7, 128, 128);
 		}
 		
 		if (recipe.growsWithoutCatalyst()) {

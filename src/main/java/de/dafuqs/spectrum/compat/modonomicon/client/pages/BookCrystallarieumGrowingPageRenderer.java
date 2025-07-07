@@ -22,8 +22,12 @@ import java.util.*;
 public class BookCrystallarieumGrowingPageRenderer extends BookGatedRecipePageRenderer<CrystallarieumRecipe, BookGatedRecipePage<CrystallarieumRecipe>> {
 	
 	private static final ResourceLocation BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/modonomicon/crystallarieum.png");
+	private static final int LINE_HEIGHT = 9;
 
     private static BookTextHolder catalystText;
+	private static BookTextHolder speedText;
+	private static BookTextHolder inkDrainText;
+	private static BookTextHolder depletionText;
     private BookTextHolder craftingTimeText1 = null;
     private BookTextHolder craftingTimeText2 = null;
 
@@ -31,9 +35,12 @@ public class BookCrystallarieumGrowingPageRenderer extends BookGatedRecipePageRe
         super(page);
 		
 		ResourceLocation font = BookDataManager.Client.get().safeFont(this.page.getBook().getFont());
-
-        if (catalystText == null) {
-			catalystText = new BookTextHolder(Component.translatable("container.spectrum.modonomicon.crystallarieum.catalyst").withStyle(s -> s.withFont(font)));
+		
+		if (catalystText == null) {
+			catalystText = new BookTextHolder(Component.translatable("container.spectrum.rei.crystallarieum.catalyst").withStyle(s -> s.withFont(font)));
+			speedText = new BookTextHolder(Component.translatable("container.spectrum.rei.crystallarieum.speed").withStyle(s -> s.withFont(font)));
+			inkDrainText = new BookTextHolder(Component.translatable("container.spectrum.rei.crystallarieum.ink_drain").withStyle(s -> s.withFont(font)));
+			depletionText = new BookTextHolder(Component.translatable("container.spectrum.rei.crystallarieum.depletion").withStyle(s -> s.withFont(font)));
         }
 
         if (page.getRecipe1() != null) {
@@ -89,6 +96,9 @@ public class BookCrystallarieumGrowingPageRenderer extends BookGatedRecipePageRe
 
         // catalyst text
         renderBookTextHolder(drawContext, catalystText, 0, 42, BookEntryScreen.PAGE_WIDTH);
+		renderBookTextHolder(drawContext, speedText, 0, 45 + LINE_HEIGHT, BookEntryScreen.PAGE_WIDTH);
+		renderBookTextHolder(drawContext, inkDrainText, 0, 45 + LINE_HEIGHT * 2, BookEntryScreen.PAGE_WIDTH);
+		renderBookTextHolder(drawContext, depletionText, 0, 45 + LINE_HEIGHT * 3, BookEntryScreen.PAGE_WIDTH);
 		renderBookTextHolder(drawContext, second ? craftingTimeText2 : craftingTimeText1, 0, 82, BookEntryScreen.PAGE_WIDTH);
 
         // the catalysts
@@ -99,53 +109,18 @@ public class BookCrystallarieumGrowingPageRenderer extends BookGatedRecipePageRe
             parentScreen.renderIngredient(drawContext, recipeX + startX + offsetPerReagent * x, recipeY + 27, mouseX, mouseY, catalyst.ingredient());
 
             RenderSystem.enableBlend();
-			int offset = 0;
-			float accel = catalyst.growthAccelerationMod();
 			
-			if (accel > 0.2) {
-				if (accel >= 5)
-					offset = 7 * 4;
-				else if (accel > 1)
-					offset = 7 * 3;
-				else if(accel == 1)
-					offset = 7 * 2;
-				else if (accel < 1)
-					offset = 7;
-			}
-			drawContext.blit(BACKGROUND_TEXTURE, offsetX + 5, recipeY + 45, 7, 7, 70 + offset, 0, 7, 7, 128, 128);
+			int offsetU = CrystallarieumRecipe.growthSpeedOffsetU(catalyst);
+			drawContext.blit(BACKGROUND_TEXTURE, offsetX + 5, recipeY + 45, 7, 7, offsetU, CrystallarieumRecipe.GROWTH_SPEED_V, 7, 7, 128, 128);
 			
-			float drain = catalyst.inkConsumptionMod();
+			offsetU = CrystallarieumRecipe.consumptionOffsetU(catalyst, offsetU);
+			drawContext.blit(BACKGROUND_TEXTURE, offsetX + 5, recipeY + 54, 7, 7, offsetU, CrystallarieumRecipe.CONSUMPTION_V, 7, 7, 128, 128);
 			
-			if (drain >= 5)
-				offset = 0;
-			else if (drain > 1)
-				offset = 7;
-			else if(drain == 1)
-				offset = 7 * 2;
-			else if (drain < 0.2)
-				offset = 7 * 4;
-			else if (drain < 1)
-				offset = 7 * 3;
-			
-			drawContext.blit(BACKGROUND_TEXTURE, offsetX + 5, recipeY + 54, 7, 7, 70 + offset, 7, 7, 7, 128, 128);
-			
-			float chance = catalyst.consumeChancePerSecond();
-			
-			if (chance >= 0.25)
-				offset = 0;
-			else if (chance < 0.0001)
-				offset = 7 * 4;
-			else if (chance <= 0.02)
-				offset = 7 * 3;
-			else if(chance < 0.05)
-				offset = 7 * 2;
-			else if (chance < 0.25)
-				offset = 7;
-			
-			drawContext.blit(BACKGROUND_TEXTURE, offsetX + 5, recipeY + 63, 7, 7, 70 + offset, 14, 7, 7, 128, 128);
+			offsetU = CrystallarieumRecipe.consumeChanceOffsetU(catalyst, offsetU);
+			drawContext.blit(BACKGROUND_TEXTURE, offsetX + 5, recipeY + 63, 7, 7, offsetU, CrystallarieumRecipe.CONSUME_CHANCE_V, 7, 7, 128, 128);
 
             x++;
         }
     }
-
+	
 }

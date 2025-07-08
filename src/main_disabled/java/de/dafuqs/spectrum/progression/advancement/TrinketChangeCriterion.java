@@ -11,12 +11,13 @@ import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public class TrinketChangeCriterion extends SimpleCriterionTrigger<TrinketChangeCriterion.Conditions> {
 	
-	public static final ResourceLocation ID = SpectrumCommon.locate("trinket_change");
+	public static final String NAME = "trinket_change";
 	
 	public void trigger(ServerPlayer player) {
 		this.trigger(player, (conditions) -> {
@@ -37,7 +38,7 @@ public class TrinketChangeCriterion extends SimpleCriterionTrigger<TrinketChange
 	}
 	
 	@Override
-	public Codec<Conditions> codec() {
+	public @NotNull Codec<Conditions> codec() {
 		return Conditions.CODEC;
 	}
 	

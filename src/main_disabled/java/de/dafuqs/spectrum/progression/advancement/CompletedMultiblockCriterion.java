@@ -7,19 +7,20 @@ import de.dafuqs.spectrum.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public class CompletedMultiblockCriterion extends SimpleCriterionTrigger<CompletedMultiblockCriterion.Conditions> {
 	
-	public static final ResourceLocation ID = SpectrumCommon.locate("completed_multiblock");
+	public static final String NAME = "completed_multiblock";
 	
 	public void trigger(ServerPlayer player, Multiblock iMultiblock) {
 		this.trigger(player, (conditions) -> conditions.matches(iMultiblock));
 	}
 	
 	@Override
-	public Codec<Conditions> codec() {
+	public @NotNull Codec<Conditions> codec() {
 		return Conditions.CODEC;
 	}
 	

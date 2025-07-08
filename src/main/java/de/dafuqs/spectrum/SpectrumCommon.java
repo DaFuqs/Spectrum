@@ -93,8 +93,8 @@ public class SpectrumCommon {
 //		// Register ALL the stuff
 //		logInfo("Registering Status Effects...");
 //		SpectrumStatusEffects.register();
-//		logInfo("Registering Advancement Criteria...");
-//		SpectrumAdvancementCriteria.register();
+		logInfo("Registering Advancement Criteria...");
+		SpectrumAdvancementCriteria.register(modBus);
 //		logInfo("Registering Particle Types...");
 //		SpectrumParticleTypes.register();
 		logInfo("Registering Sound Events...");

@@ -2,10 +2,8 @@ package de.dafuqs.spectrum.progression;
 
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.progression.toast.*;
-import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.*;
 import it.unimi.dsi.fastutil.objects.*;
-import net.fabricmc.api.*;
 import net.minecraft.client.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
@@ -14,11 +12,12 @@ import net.minecraft.util.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
+import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public class UnlockToastManager {
 	// Advancement Identifier + Recipe Variant => Recipe
 	public static final Map<ResourceLocation, Map<RecipeType<?>, Set<GatedRecipe<?>>>> gatedRecipes = new HashMap<>();

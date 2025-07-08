@@ -14,6 +14,7 @@ import net.minecraft.world.entity.item.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -24,7 +25,7 @@ import java.util.*;
  */
 public class SpectrumFishingRodHookedCriterion extends SimpleCriterionTrigger<SpectrumFishingRodHookedCriterion.Conditions> {
 	
-	public static final ResourceLocation ID = SpectrumCommon.locate("fishing_rod_hooked");
+	public static final String NAME = "fishing_rod_hooked";
 	
 	public void trigger(ServerPlayer player, ItemStack rod, SpectrumFishingBobberEntity bobber, Entity fishedEntity, Collection<ItemStack> fishingLoots) {
 		LootContext bobberContext = EntityPredicate.createContext(player, bobber);
@@ -40,7 +41,7 @@ public class SpectrumFishingRodHookedCriterion extends SimpleCriterionTrigger<Sp
 	}
 	
 	@Override
-	public Codec<Conditions> codec() {
+	public @NotNull Codec<Conditions> codec() {
 		return Conditions.CODEC;
 	}
 	

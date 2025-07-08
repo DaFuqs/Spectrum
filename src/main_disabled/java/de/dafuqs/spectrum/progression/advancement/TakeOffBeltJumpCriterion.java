@@ -11,12 +11,13 @@ import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public class TakeOffBeltJumpCriterion extends SimpleCriterionTrigger<TakeOffBeltJumpCriterion.Conditions> {
 	
-	public static final ResourceLocation ID = SpectrumCommon.locate("take_off_belt_jump");
+	public static final String NAME = "take_off_belt_jump";
 	
 	public static TakeOffBeltJumpCriterion.Conditions create(ItemPredicate itemPredicate, MinMaxBounds.Ints chargesRange) {
 		return new TakeOffBeltJumpCriterion.Conditions(Optional.empty(), itemPredicate, chargesRange);
@@ -42,7 +43,7 @@ public class TakeOffBeltJumpCriterion extends SimpleCriterionTrigger<TakeOffBelt
 	}
 	
 	@Override
-	public Codec<Conditions> codec() {
+	public @NotNull Codec<Conditions> codec() {
 		return Conditions.CODEC;
 	}
 	

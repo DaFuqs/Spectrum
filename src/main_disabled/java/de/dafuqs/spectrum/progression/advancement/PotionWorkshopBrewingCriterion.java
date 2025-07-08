@@ -13,12 +13,13 @@ import net.minecraft.server.level.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public class PotionWorkshopBrewingCriterion extends SimpleCriterionTrigger<PotionWorkshopBrewingCriterion.Conditions> {
 	
-	public static final ResourceLocation ID = SpectrumCommon.locate("potion_workshop_brewing");
+	public static final String NAME = "potion_workshop_brewing";
 	
 	@SuppressWarnings("deprecation")
 	public void trigger(ServerPlayer player, ItemStack itemStack, int brewedCount, PotionWorkshopBlockEntity potionWorkshop) {
@@ -59,7 +60,7 @@ public class PotionWorkshopBrewingCriterion extends SimpleCriterionTrigger<Potio
 	}
 	
 	@Override
-	public Codec<Conditions> codec() {
+	public @NotNull Codec<Conditions> codec() {
 		return Conditions.CODEC;
 	}
 	

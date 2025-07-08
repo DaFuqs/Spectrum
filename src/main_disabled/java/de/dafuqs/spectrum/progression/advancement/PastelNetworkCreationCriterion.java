@@ -8,12 +8,13 @@ import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public class PastelNetworkCreationCriterion extends SimpleCriterionTrigger<PastelNetworkCreationCriterion.Conditions> {
 	
-	public static final ResourceLocation ID = SpectrumCommon.locate("pastel_network_creation");
+	public static final String NAME = "pastel_network_creation";
 	
 	public void trigger(ServerPlayer player, ServerPastelNetwork network) {
 		this.trigger(player, (conditions) -> conditions.matches(network.getLoadedNodes(PastelNodeType.CONNECTION).size(), network.getLoadedNodes(PastelNodeType.PROVIDER).size(),
@@ -21,7 +22,7 @@ public class PastelNetworkCreationCriterion extends SimpleCriterionTrigger<Paste
 	}
 	
 	@Override
-	public Codec<Conditions> codec() {
+	public @NotNull Codec<Conditions> codec() {
 		return Conditions.CODEC;
 	}
 	

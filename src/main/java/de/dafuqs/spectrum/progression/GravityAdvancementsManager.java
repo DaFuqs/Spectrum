@@ -19,22 +19,20 @@ public class GravityAdvancementsManager {
 	 * @param additionalGravity  The additional gravity the entity got applied for a single stack. Will be added up for each tick in this function
 	 */
 	public static void processAppliedGravityForAdvancements(@NotNull ServerPlayer serverPlayerEntity, double additionalGravity) {
-		ServerLevel serverWorld = (ServerLevel) serverPlayerEntity.level();
-		if (serverWorld != null) {
-			if (serverWorld.getGameTime() != lastGravityTick || lastServerPlayerEntity != serverPlayerEntity) {
-				lastServerPlayerEntity = serverPlayerEntity;
-				lastGravityTick = serverWorld.getGameTime();
-				appliedGravityThisTick = 0.0D;
-			}
-			appliedGravityThisTick += additionalGravity;
-			
-			// taking flight
-			if (appliedGravityThisTick > 0.081) {
-				Support.grantAdvancementCriterion(serverPlayerEntity, "lategame/carry_too_many_low_gravity_blocks", "gravity");
-				// unable to jump a full block
-			} else if (appliedGravityThisTick < -0.025) {
-				Support.grantAdvancementCriterion(serverPlayerEntity, "midgame/carry_too_many_heavy_gravity_blocks", "gravity");
-			}
+		ServerLevel serverLevel = (ServerLevel) serverPlayerEntity.level();
+		if (serverLevel.getGameTime() != lastGravityTick || lastServerPlayerEntity != serverPlayerEntity) {
+			lastServerPlayerEntity = serverPlayerEntity;
+			lastGravityTick = serverLevel.getGameTime();
+			appliedGravityThisTick = 0.0D;
+		}
+		appliedGravityThisTick += additionalGravity;
+		
+		// taking flight
+		if (appliedGravityThisTick > 0.081) {
+			Support.grantAdvancementCriterion(serverPlayerEntity, "lategame/carry_too_many_low_gravity_blocks", "gravity");
+			// unable to jump a full block
+		} else if (appliedGravityThisTick < -0.025) {
+			Support.grantAdvancementCriterion(serverPlayerEntity, "midgame/carry_too_many_heavy_gravity_blocks", "gravity");
 		}
 	}
 	

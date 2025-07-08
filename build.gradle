@@ -11,8 +11,6 @@ base {
 }
 
 repositories {
-	// TODO: generally bad practice to have it enabled by default
-//	mavenLocal()
 	maven { url = "https://maven.is-immensely.gay/releases" } // Revelationary, Fractal, AEA, Arrowhead, Dimensional Reverb...
 	maven { url = "https://maven.shedaniel.me/" } // Cloth Config, REI
 	maven { url = "https://maven.terraformersmc.com/" } // Modmenu, EMI
@@ -25,7 +23,6 @@ repositories {
 	maven { url = "https://mvn.devos.one/releases/" } // Porting Lib
 	maven { url = "https://repo.unascribed.com" } // Ears API
 	maven { url = "https://dl.cloudsmith.io/public/klikli-dev/mods/maven/" } // Modonomicon
-	//maven { url = "https://jitpack.io" }
 	maven { url = "https://maven.wispforest.io/releases" }
 	maven {
 		name = 'ParchmentMC'
@@ -94,48 +91,32 @@ neoForge {
 }
 
 dependencies {
-//	// jetbrains annotations
-//	implementation("org.jetbrains:annotations:26.0.2")
-//
 //	// graph api and its dependencies
-//	implementation include("org.jgrapht:jgrapht-core:1.5.2")
-//	implementation include("org.apfloat:apfloat:1.14.0")
-//	implementation include("org.jheaps:jheaps:0.14")
-//
-//	// Some other dependency is adding annotations, and it throws an error without this
-//	compileOnly("com.demonwav.mcdev:annotations:1.0")
-//
-//	// minecraft, fabric & api
-//	minecraft("com.mojang:minecraft:${project.minecraft_version}")
-//	mappings loom.layered() {
-//		officialMojangMappings()
-//		parchment("org.parchmentmc.data:parchment-${project.parchment_mappings}@zip")
-//	}
-//	modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
-//	modImplementation("net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}")
-//
+	implementation jarJar("org.jgrapht:jgrapht-core:1.5.2")
+	implementation jarJar("org.apfloat:apfloat:1.14.0")
+	implementation jarJar("org.jheaps:jheaps:0.14")
+
 //	// ours
 //	modImplementation include("maven.modrinth:exclusions-lib:${project.exclusionslib_version}")
 	implementation("de.dafuqs:revelationary-neoforge:${project.revelationary_version}")
-//	modImplementation include("de.dafuqs:additionalentityattributes:${project.additional_entity_attributes_version}")
+	implementation("maven.modrinth:additionalentityattributes:${project.additional_entity_attributes_version}")
+	jarJar("maven.modrinth:additionalentityattributes:${project.additional_entity_attributes_version}")
 //	modImplementation include("de.dafuqs:arrowhead:${project.arrowhead_version}")
-//	modImplementation include("de.dafuqs:reverb:${project.dimensional_reverb_version}")
+//	jarJar("de.dafuqs:reverb:${project.dimensional_reverb_version}")
 //	modImplementation include("de.dafuqs:fractal:${project.fractal_version}")
 
 	// external and compat
 	api("me.shedaniel.cloth:cloth-config-neoforge:${project.cloth_config_version}")
-//	modApi("dev.architectury:architectury-fabric:${project.architectury_version}") { exclude(group: "net.fabricmc.fabric-api") }
-//	modApi("com.terraformersmc:modmenu:${project.modmenu_version}")
 //	modImplementation("eu.pb4:common-protection-api:${project.cpa_version}")
 //	modImplementation("dev.emi:trinkets:${project.trinkets_version}") // https://github.com/emilyploszaj/trinkets
 //	modCompileOnly("me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}")
 //	// https://github.com/shedaniel/RoughlyEnoughItems
 //	modCompileOnly("dev.emi:emi-fabric:${emi_version}") // https://github.com/emilyploszaj/emi
 //	// https://github.com/klikli-dev/modonomicon
-//	modImplementation("com.klikli_dev:modonomicon-${project.minecraft_version}-fabric:${project.modonomicon_version}") {
-//		exclude(group: "com.klikli_dev")
-//		exclude(group: "mezz.jei")
-//	}
+	implementation("com.klikli_dev:modonomicon-${project.minecraft_version}-neoforge:${project.modonomicon_version}") {
+		exclude(group: "com.klikli_dev")
+		exclude(group: "mezz.jei")
+	}
 //
 //	switch (recipe_viewer.toLowerCase(Locale.ROOT)) {
 //		case "rei": modLocalRuntime("me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"); break

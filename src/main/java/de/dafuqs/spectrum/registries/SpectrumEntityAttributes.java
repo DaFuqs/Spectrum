@@ -20,12 +20,7 @@ public class SpectrumEntityAttributes {
 	 * <1 means it is more resistant than the default, getting weaker effects
 	 * >1 means it is more vulnerable
 	 */
-	public static final Holder<Attribute> MENTAL_PRESENCE = register("mental_presence", new RangedAttribute("attribute.name.spectrum.mental_presence", 1.0, 0, 1024));
-	
-	
-	private static Holder<Attribute> register(String name, Attribute attribute) {
-		return Registry.registerForHolder(BuiltInRegistries.ATTRIBUTE, SpectrumCommon.locate(name), attribute);
-	}
+	public static final Holder<Attribute> MENTAL_PRESENCE = REGISTRAR.register("mental_presence", () -> new RangedAttribute("attribute.name.pastel.mental_presence", 1.0, 0, 1024));
 	
 	public static void register(IEventBus modBus) {
 		REGISTRAR.register(modBus);

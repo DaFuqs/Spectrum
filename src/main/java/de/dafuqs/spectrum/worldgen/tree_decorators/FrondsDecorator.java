@@ -48,7 +48,7 @@ public class FrondsDecorator extends TreeDecorator {
 	
 	@Override
 	protected TreeDecoratorType<?> type() {
-		return SpectrumTreeDecoratorTypes.FRONDS;
+		return SpectrumTreeDecoratorTypes.FRONDS.value();
 	}
 	
 	@Override

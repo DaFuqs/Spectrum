@@ -772,7 +772,6 @@
   "text.autoconfig.Spectrum.option.AzureDikeHudOffsetYForEachRowOfExtraHearts": "新增的每一行蔚蓝护盾值在屏幕上的Y坐标增量",
   "text.autoconfig.Spectrum.option.ColoredTreePatchChanceChunk": "在所有X个区块中试图生成染色的树",
   "text.autoconfig.Spectrum.option.OmniAcceleratorPvP": "允许使用全能发射器PvP",
-  "text.autoconfig.Spectrum.option.QuitoxicSpawnTag": "基于标签生成奇毒苇",
 
   "block.spectrum.upgrade_speed": "I级合成加速器",
   "block.spectrum.upgrade_speed2": "II级合成加速器",

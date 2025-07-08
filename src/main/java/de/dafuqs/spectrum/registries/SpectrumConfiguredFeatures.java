@@ -5,10 +5,14 @@ import de.dafuqs.spectrum.blocks.deeper_down.flora.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.level.levelgen.feature.*;
+import net.neoforged.neoforge.registries.*;
 
 import java.util.*;
 
+// TODO: rename to SpectrumConfiguredFeatureKeys
 public class SpectrumConfiguredFeatures {
+	
+	private static final DeferredRegister<ConfiguredFeature<?, ?>> REGISTRAR = DeferredRegister.create(Registries.CONFIGURED_FEATURE, SpectrumCommon.MOD_ID);
 	
 	public static final ResourceKey<ConfiguredFeature<?, ?>> CLOVER_PATCH = of("clover_patch");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SNAPPING_IVY_PATCH = of("snapping_ivy_patch");

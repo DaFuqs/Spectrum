@@ -123,8 +123,8 @@ public class SpectrumCommon {
 //		SpectrumFeatures.register();
 //		logInfo("Registering Biome Modifications...");
 //		SpectrumPlacedFeatures.addBiomeModifications();
-//		logInfo("Registering Structure Types...");
-//		SpectrumStructureTypes.register();
+		logInfo("Registering Structure Types...");
+		SpectrumStructureTypes.register(modBus);
 //
 //		// Dimension
 //		logInfo("Registering Dimension...");
@@ -219,14 +219,14 @@ public class SpectrumCommon {
 
 //		logInfo("Registering Resource Conditions...");
 //		SpectrumResourceConditions.register();
-//		logInfo("Registering Structure WeightedPool Element Types...");
-//		SpectrumStructurePoolElementTypes.register();
+		logInfo("Registering Structure WeightedPool Element Types...");
+		SpectrumStructurePoolElementTypes.register(modBus);
 //		logInfo("Registering Event Listeners...");
 //		SpectrumEventListeners.register();
 //		logInfo("Registering Path Node Types...");
 //		SpectrumPathNodeTypes.register();
-//		logInfo("Registering Tree Decorator Types...");
-//		SpectrumTreeDecoratorTypes.register();
+		logInfo("Registering Tree Decorator Types...");
+		SpectrumTreeDecoratorTypes.register(modBus);
 //
 //		//noinspection
 //		ItemStorage.SIDED.registerForBlockEntity((be, d) -> Storage.empty(), SpectrumBlockEntities.HEARTBOUND_CHEST);

@@ -108,7 +108,7 @@ public class SpectrumCommon {
 //		logInfo("Registering Blocks...");
 //		SpectrumBlocks.register();
 //		logInfo("Registering Items...");
-//		SpectrumPotions.register();
+		SpectrumPotions.register(modBus);
 //		SpectrumItems.register();
 //		SpectrumItemGroups.register();
 //		logInfo("Registering Block Entities...");

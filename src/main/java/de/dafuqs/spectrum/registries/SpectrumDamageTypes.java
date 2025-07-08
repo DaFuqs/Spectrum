@@ -1,8 +1,6 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.api.damage_type.*;
-import de.dafuqs.spectrum.entity.entity.*;
-import de.dafuqs.spectrum.spells.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.damagesource.*;
@@ -59,13 +57,14 @@ public class SpectrumDamageTypes {
 		return new DamageSource(world.damageSources().damageTypes.getHolderOrThrow(DRAGONROT));
 	}
 	
-	public static DamageSource inkProjectile(InkProjectileEntity projectile, @Nullable Entity attacker) {
+	// TODO: port
+	/*public static DamageSource inkProjectile(InkProjectileEntity projectile, @Nullable Entity attacker) {
 		return new DamageSource(projectile.damageSources().damageTypes.getHolderOrThrow(INK_PROJECTILE), projectile, attacker);
 	}
 	
 	public static DamageSource moonstoneStrike(Level world, @Nullable MoonstoneStrike moonstoneStrike) {
 		return moonstoneStrike(world, moonstoneStrike != null ? moonstoneStrike.getCausingEntity() : null);
-	}
+	}*/
 	
 	public static DamageSource moonstoneStrike(Level world, @Nullable LivingEntity attacker) {
 		return new MoonstoneStrikeDamageSource(world, attacker);

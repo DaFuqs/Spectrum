@@ -115,13 +115,14 @@
     }
   },
   "required_advancement": "spectrum:triggers/confirmed_drinking_age",
-  "fabric:load_conditions": [
+  "neoforge:conditions": [
     {
-      "condition": "spectrum:tags_populated",
-      "registry": "minecraft:item",
-      "values": [
-        "c:foods/rices"
-      ]
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "registry": "minecraft:item",
+        "tag": "c:foods/rices"
+      }
     }
   ]
 }

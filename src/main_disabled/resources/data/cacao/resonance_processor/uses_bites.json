@@ -8,12 +8,10 @@
   "state_properties_to_copy": [
     "bites"
   ],
-  "fabric:load_conditions": [
+  "neoforge:conditions": [
     {
-      "condition": "fabric:all_mods_loaded",
-      "values": [
-        "cacao"
-      ]
+      "type": "neoforge:mod_loaded",
+      "modid": "cacao"
     }
   ]
 }

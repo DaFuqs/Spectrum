@@ -35,12 +35,10 @@
     "id": "mythicmetals:enchanted_midas_gold_block"
   },
   "required_advancement": "spectrum:lategame/collect_pure_resource",
-  "fabric:load_conditions": [
+  "neoforge:conditions": [
     {
-      "condition": "fabric:all_mods_loaded",
-      "values": [
-        "mythicmetals"
-      ]
+      "type": "neoforge:mod_loaded",
+      "modid": "mythicmetals"
     }
   ]
 }

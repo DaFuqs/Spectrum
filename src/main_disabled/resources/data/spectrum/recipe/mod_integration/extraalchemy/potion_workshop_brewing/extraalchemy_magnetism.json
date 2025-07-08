@@ -11,12 +11,10 @@
   "applicable_to_potion_fillables": true,
   "ink_color": "spectrum:cyan",
   "ink_cost": 2,
-  "fabric:load_conditions": [
+  "neoforge:conditions": [
     {
-      "condition": "fabric:all_mods_loaded",
-      "values": [
-        "extraalchemy"
-      ]
+      "type": "neoforge:mod_loaded",
+      "modid": "extraalchemy"
     }
   ]
 }

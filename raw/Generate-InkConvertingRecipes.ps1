@@ -23,12 +23,10 @@
   "color": "$_",
   "amount": 25,
   "required_advancement": "spectrum:hidden/collect_pigment/$_",
-  "fabric:load_conditions": [
+  "neoforge:conditions": [
     {
-      "condition": "fabric:all_mods_loaded",
-      "values": [
-        "botania"
-      ]
+      "type": "neoforge:mod_loaded",
+      "modid": "botania"
     }
   ]
 }

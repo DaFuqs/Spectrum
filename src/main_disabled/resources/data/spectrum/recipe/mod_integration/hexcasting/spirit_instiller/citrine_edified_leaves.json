@@ -11,12 +11,10 @@
   "result": {
     "id": "hexcasting:citrine_edified_leaves"
   },
-  "fabric:load_conditions": [
+  "neoforge:conditions": [
     {
-      "condition": "fabric:all_mods_loaded",
-      "values": [
-        "hexcasting"
-      ]
+      "type": "neoforge:mod_loaded",
+      "modid": "hexcasting"
     }
   ]
 }

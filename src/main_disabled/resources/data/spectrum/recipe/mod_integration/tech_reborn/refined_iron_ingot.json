@@ -9,9 +9,9 @@
   ],
   "experience": 0.2,
   "time": 100,
-  "fabric:load_conditions": [
+  "neoforge:conditions": [
     {
-      "condition": "fabric:all_mods_loaded",
+      "type": "neoforge:mod_loaded",
       "values": [
         "techreborn"
       ]

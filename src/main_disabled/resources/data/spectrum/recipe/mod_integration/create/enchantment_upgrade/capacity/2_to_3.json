@@ -1,13 +1,11 @@
 {
-  "fabric:load_conditions": [
+  "neoforge:conditions": [
     {
-      "condition": "fabric:all_mods_loaded",
-      "values": [
-        "create"
-      ]
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
     },
     {
-      "condition": "spectrum:enchantments_exist",
+      "type": "spectrum:enchantments_exist",
       "values": [
         "create:capacity"
       ]

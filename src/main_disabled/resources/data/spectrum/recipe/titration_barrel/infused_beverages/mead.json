@@ -107,16 +107,11 @@
     }
   },
   "required_advancement": "spectrum:triggers/confirmed_drinking_age",
-  "fabric:load_conditions": [
+  "neoforge:conditions": [
     {
-      "condition": "fabric:not",
-      "value": {
-        "condition": "spectrum:tags_populated",
-        "registry": "minecraft:fluid",
-        "values": [
-          "c:honey"
-        ]
-      }
+      "type": "neoforge:tag_empty",
+      "registry": "minecraft:fluid",
+      "tag": "c:honey"
     }
   ]
 }

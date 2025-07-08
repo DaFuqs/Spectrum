@@ -7,12 +7,10 @@
     "item": "spectrum:lime_pigment",
     "count": 6
   },
-  "fabric:load_conditions": [
+  "neoforge:conditions": [
     {
-      "condition": "fabric:all_mods_loaded",
-      "values": [
-        "ants"
-      ]
+      "type": "neoforge:mod_loaded",
+      "modid": "ants"
     }
   ]
 }

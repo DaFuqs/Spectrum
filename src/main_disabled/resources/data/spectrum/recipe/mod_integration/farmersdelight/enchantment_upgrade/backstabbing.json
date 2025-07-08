@@ -13,12 +13,10 @@
     "type": "spectrum:doubling",
     "scaling_value": 50
   },
-  "fabric:load_conditions": [
+  "neoforge:conditions": [
     {
-      "condition": "fabric:all_mods_loaded",
-      "values": [
-        "farmersdelight"
-      ]
+      "type": "neoforge:mod_loaded",
+      "modid": "farmersdelight"
     }
   ]
 }

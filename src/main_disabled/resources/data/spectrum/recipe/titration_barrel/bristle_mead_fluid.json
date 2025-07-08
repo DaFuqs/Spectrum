@@ -106,13 +106,14 @@
     "count": 4
   },
   "required_advancement": "spectrum:hidden/collect_cookbooks/brewers_handbook",
-  "fabric:load_conditions": [
+  "neoforge:conditions": [
     {
-      "condition": "spectrum:tags_populated",
-      "registry": "minecraft:fluid",
-      "values": [
-        "c:honey"
-      ]
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "registry": "minecraft:fluid",
+        "tag": "c:honey"
+      }
     }
   ]
 }

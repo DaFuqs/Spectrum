@@ -14,12 +14,10 @@
   "required_advancement": "spectrum:collect_four_leaf_clover",
   "ink_color": "spectrum:light_blue",
   "ink_cost": 2,
-  "fabric:load_conditions": [
+  "neoforge:conditions": [
     {
-      "condition": "fabric:all_mods_loaded",
-      "values": [
-        "the_bumblezone"
-      ]
+      "type": "neoforge:mod_loaded",
+      "modid": "the_bumblezone"
     }
   ]
 }

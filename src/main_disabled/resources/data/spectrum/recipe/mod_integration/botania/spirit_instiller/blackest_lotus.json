@@ -15,12 +15,10 @@
     "id": "spectrum:blackest_lotus"
   },
   "required_advancement": "spectrum:lategame/strike_up_hummingstone_hymn",
-  "fabric:load_conditions": [
+  "neoforge:conditions": [
     {
-      "condition": "fabric:all_mods_loaded",
-      "values": [
-        "botania"
-      ]
+      "type": "neoforge:mod_loaded",
+      "modid": "botania"
     }
   ]
 }

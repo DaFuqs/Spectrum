@@ -1,7 +1,7 @@
 {
-  "fabric:load_conditions": [
+  "neoforge:conditions": [
     {
-      "condition": "spectrum:enchantments_exist",
+      "type": "spectrum:enchantments_exist",
       "values": [
         "minecraft:smite"
       ]

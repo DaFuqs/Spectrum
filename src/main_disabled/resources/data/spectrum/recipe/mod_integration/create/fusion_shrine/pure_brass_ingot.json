@@ -20,9 +20,9 @@
     "visual_explosions_on_shrine"
   ],
   "finish_crafting_effect": "single_visual_explosion_on_shrine",
-  "fabric:load_conditions": [
+  "neoforge:conditions": [
     {
-      "condition": "spectrum:integration_pack_active",
+      "type": "spectrum:integration_pack_active",
       "integration_pack": "create"
     }
   ]

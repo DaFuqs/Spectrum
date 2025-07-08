@@ -12,13 +12,14 @@
     "id": "spectrum:clotted_cream",
     "count": 4
   },
-  "fabric:load_conditions": [
+  "neoforge:conditions": [
     {
-      "condition": "spectrum:tags_populated",
-      "registry": "minecraft:fluid",
-      "values": [
-        "c:milk"
-      ]
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "registry": "minecraft:fluid",
+        "tag": "c:milk"
+      }
     }
   ]
 }

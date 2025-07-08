@@ -13,12 +13,10 @@
   },
   "particleEffectIdentifier": "cloud",
   "soundEventIdentifier": "block.metal.break",
-  "fabric:load_conditions": [
+  "neoforge:conditions": [
     {
-      "condition": "fabric:all_mods_loaded",
-      "values": [
-        "spelunkery"
-      ]
+      "type": "neoforge:mod_loaded",
+      "modid": "spelunkery"
     }
   ]
 }

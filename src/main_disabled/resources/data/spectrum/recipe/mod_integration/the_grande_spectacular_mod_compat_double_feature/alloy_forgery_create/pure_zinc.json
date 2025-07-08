@@ -18,13 +18,14 @@
   },
   "min_forge_tier": 1,
   "fuel_per_tick": 10,
-  "fabric:load_conditions": [
+  "neoforge:conditions": [
     {
-      "condition": "fabric:all_mods_loaded",
-      "values": [
-        "alloy_forgery",
-        "create"
-      ]
+      "type": "neoforge:mod_loaded",
+      "modid": "alloy_forgery"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
     }
   ]
 }

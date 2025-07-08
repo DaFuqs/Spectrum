@@ -40,12 +40,10 @@
     }
   },
   "required_advancement": "spectrum:unlocks/enchantments/vanilla_treasure",
-  "fabric:load_conditions": [
+  "neoforge:conditions": [
     {
-      "condition": "fabric:all_mods_loaded",
-      "values": [
-        "supplementaries"
-      ]
+      "type": "neoforge:mod_loaded",
+      "modid": "supplementaries"
     }
   ]
 }

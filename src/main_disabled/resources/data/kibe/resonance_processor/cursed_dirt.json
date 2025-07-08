@@ -5,12 +5,10 @@
       "kibe:cursed_dirt"
     ]
   },
-  "fabric:load_conditions": [
+  "neoforge:conditions": [
     {
-      "condition": "fabric:all_mods_loaded",
-      "values": [
-        "kibe"
-      ]
+      "type": "neoforge:mod_loaded",
+      "modid": "kibe"
     }
   ]
 }

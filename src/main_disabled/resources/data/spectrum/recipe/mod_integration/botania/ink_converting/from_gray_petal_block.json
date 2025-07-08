@@ -6,12 +6,10 @@
   "ink_color": "spectrum:gray",
   "amount": 225,
   "required_advancement": "spectrum:hidden/collect_pigment/gray",
-  "fabric:load_conditions": [
+  "neoforge:conditions": [
     {
-      "condition": "fabric:all_mods_loaded",
-      "values": [
-        "botania"
-      ]
+      "type": "neoforge:mod_loaded",
+      "modid": "botania"
     }
   ]
 }

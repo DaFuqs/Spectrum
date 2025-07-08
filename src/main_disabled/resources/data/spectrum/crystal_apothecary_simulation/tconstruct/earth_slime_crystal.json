@@ -10,12 +10,10 @@
     "id": "tconstruct:earth_slime_crystal",
     "count": 1
   },
-  "fabric:load_conditions": [
+  "neoforge:conditions": [
     {
-      "condition": "fabric:all_mods_loaded",
-      "values": [
-        "tconstruct"
-      ]
+      "type": "neoforge:mod_loaded",
+      "modid": "tconstruct"
     }
   ]
 }

@@ -40,9 +40,9 @@
     }
   },
   "required_advancement": "spectrum:unlocks/enchantments/steadfast",
-  "fabric:load_conditions": [
+  "neoforge:conditions": [
     {
-      "condition": "spectrum:enchantments_exist",
+      "type": "spectrum:enchantments_exist",
       "values": [
         "spectrum:steadfast"
       ]

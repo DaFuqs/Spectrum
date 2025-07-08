@@ -41,9 +41,9 @@
     }
   },
   "required_advancement": "spectrum:unlocks/enchantments/vanilla_water_luck",
-  "fabric:load_conditions": [
+  "neoforge:conditions": [
     {
-      "condition": "spectrum:enchantments_exist",
+      "type": "spectrum:enchantments_exist",
       "values": [
         "minecraft:luck_of_the_sea"
       ]

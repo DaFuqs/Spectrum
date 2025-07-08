@@ -41,9 +41,9 @@
     }
   },
   "required_advancement": "spectrum:unlocks/enchantments/vanilla_curses",
-  "fabric:load_conditions": [
+  "neoforge:conditions": [
     {
-      "condition": "spectrum:enchantments_exist",
+      "type": "spectrum:enchantments_exist",
       "values": [
         "minecraft:vanishing_curse"
       ]

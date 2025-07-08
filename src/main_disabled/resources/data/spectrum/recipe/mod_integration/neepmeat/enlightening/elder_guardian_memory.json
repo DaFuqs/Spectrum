@@ -9,12 +9,10 @@
     "resource": "spectrum:elder_guardian_head",
     "amount": 1
   },
-  "fabric:load_conditions": [
+  "neoforge:conditions": [
     {
-      "condition": "fabric:all_mods_loaded",
-      "values": [
-        "neepmeat"
-      ]
+      "type": "neoforge:mod_loaded",
+      "modid": "neepmeat"
     }
   ]
 }

@@ -216,9 +216,9 @@ public class SpectrumCommon {
 //		SpectrumDispenserBehaviors.register();
 //		SpectrumPresentUnpackBehaviors.register();
 		SpectrumResonanceProcessorTypes.register(modBus);
-
-//		logInfo("Registering Resource Conditions...");
-//		SpectrumResourceConditions.register();
+		
+		logInfo("Registering Resource Conditions...");
+		SpectrumResourceConditions.register(modBus);
 		logInfo("Registering Structure WeightedPool Element Types...");
 		SpectrumStructurePoolElementTypes.register(modBus);
 //		logInfo("Registering Event Listeners...");

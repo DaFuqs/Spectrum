@@ -162,10 +162,11 @@ public class SpectrumDamageTypes {
 		public MoonstoneStrikeDamageSource(Level world, LivingEntity attacker) {
 			super(world.damageSources().damageTypes.getHolderOrThrow(MOONSTONE_STRIKE), attacker);
 		}
-
-		public MoonstoneStrikeDamageSource(MoonstoneStrike moonstoneStrike) {
+		
+		// TODO: port
+		/*public MoonstoneStrikeDamageSource(MoonstoneStrike moonstoneStrike) {
 			super(moonstoneStrike.getDamageSource().typeHolder(), moonstoneStrike.getCausingEntity());
-		}
+		}*/
 	}
 
 	public static class IrradianceDamageSource extends DamageSource {

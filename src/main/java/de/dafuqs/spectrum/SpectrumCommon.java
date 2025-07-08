@@ -2,6 +2,8 @@ package de.dafuqs.spectrum;
 
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.config.*;
+import de.dafuqs.spectrum.loot.*;
+import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import me.shedaniel.autoconfig.*;
 import me.shedaniel.autoconfig.serializer.*;
@@ -95,8 +97,8 @@ public class SpectrumCommon {
 //		SpectrumAdvancementCriteria.register();
 //		logInfo("Registering Particle Types...");
 //		SpectrumParticleTypes.register();
-//		logInfo("Registering Sound Events...");
-//		SpectrumSoundEvents.register();
+		logInfo("Registering Sound Events...");
+		SpectrumSoundEvents.register(modBus);
 //		logInfo("Registering BlockSound Groups...");
 //		SpectrumBlockSoundGroups.register();
 //		logInfo("Registering Fluids...");
@@ -141,8 +143,8 @@ public class SpectrumCommon {
 //
 //		// Loot
 //		logInfo("Registering Loot Conditions & Functions...");
-//		SpectrumLootContextTypes.register();
-//		SpectrumLootFunctionTypes.register();
+		SpectrumLootContextTypes.register();
+		SpectrumLootFunctionTypes.register(modBus);
 //
 //		logInfo("Setting up server side Mod Compat...");
 //		SpectrumIntegrationPacks.register();

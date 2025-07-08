@@ -81,7 +81,7 @@ public class SpectrumCommon {
 		modBus.addListener(SpectrumRegistries::registerDynamicRegistries);
 		InkColors.register();
 		InkColorMixes.register();
-//		SpectrumEntityAttributes.register();
+		SpectrumEntityAttributes.register(modBus);
 //		SpectrumLoadConditions.register();
 		
 		logInfo("Registering Component Types...");

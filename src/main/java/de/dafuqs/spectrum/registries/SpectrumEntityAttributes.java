@@ -5,8 +5,12 @@ import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.ai.attributes.*;
+import net.neoforged.bus.api.*;
+import net.neoforged.neoforge.registries.*;
 
 public class SpectrumEntityAttributes {
+	
+	private static final DeferredRegister<Attribute> REGISTRAR = DeferredRegister.create(Registries.ATTRIBUTE, SpectrumCommon.MOD_ID);
 	
 	public static final ResourceLocation CRIT_MODIFIER_ID = SpectrumCommon.locate("crit_modifier");
 	public static final ResourceLocation REACH_MODIFIER_ID = SpectrumCommon.locate("reach_modifier");
@@ -23,8 +27,8 @@ public class SpectrumEntityAttributes {
 		return Registry.registerForHolder(BuiltInRegistries.ATTRIBUTE, SpectrumCommon.locate(name), attribute);
 	}
 	
-	public static void register() {
-	
+	public static void register(IEventBus modBus) {
+		REGISTRAR.register(modBus);
 	}
 	
 }

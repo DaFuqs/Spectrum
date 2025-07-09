@@ -67,6 +67,26 @@ public class SpectrumClientEventListeners {
 		registerCustomItemRenderer("omni_accelerator", SpectrumItems.OMNI_ACCELERATOR, OmniAcceleratorItem.Renderer::new);
 		
 		WorldRenderEvents.START.register(context -> HudRenderers.clearItemStackOverlay());
+
+		WorldRenderEvents.START.register(context -> {
+			Minecraft client = Minecraft.getInstance();
+			if (client.player != null) {
+				Boolean newSmartCull;
+				if (client.hitResult instanceof BlockHitResult blockHitResult &&
+						client.player.level().getBlockState(blockHitResult.getBlockPos())
+								.getBlock() == SpectrumBlocks.UNIVERSE_SPYHOLE) {
+					newSmartCull = false;
+				} else {
+					newSmartCull = true;
+				}
+				if (client.smartCull != newSmartCull) {
+					client.smartCull = newSmartCull;
+					if (newSmartCull == false) {
+						client.levelRenderer.needsUpdate(); // we need to draw caves etc...
+					}
+				}
+			}
+		});
 		
 		WorldRenderEvents.AFTER_ENTITIES.register(context -> ((ExtendedParticleManager) Minecraft.getInstance().particleEngine).render(context.matrixStack(), context.consumers(), context.camera(), context.tickCounter().getGameTimeDeltaPartialTick(true)));
 		WorldRenderEvents.AFTER_TRANSLUCENT.register(context -> {

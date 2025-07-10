@@ -32,9 +32,11 @@ import net.minecraft.client.renderer.*;
 import net.minecraft.client.resources.model.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
+import net.minecraft.core.particles.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.packs.*;
+import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
@@ -55,33 +57,43 @@ public class SpectrumClientEventListeners {
 	public static final ObjectOpenHashSet<ModelResourceLocation> CUSTOM_ITEM_MODELS = new ObjectOpenHashSet<>();
 	private static boolean postProcessWasOn = SpectrumCommon.CONFIG.PostProcess;
 	
+	private static int lookingAtUniverseSpyholeTicks = 0;
+	private static @Nullable BlockHitResult lookingAtUniverseSpyholeHitResult = null;
+	private static boolean lookingAtUniverseSpyholeeffectsPlayed = false;
+	
 	private static void registerCustomItemRenderer(String id, Item item, Supplier<DynamicItemRenderer> renderer) {
 		CUSTOM_ITEM_MODELS.add(new ModelResourceLocation(SpectrumCommon.locate(id), "inventory"));
 		DynamicItemRenderer.RENDERERS.put(item, renderer.get());
 	}
-	//
+	
 	public static void register() {
 		ResourceManagerHelper.get(PackType.CLIENT_RESOURCES).registerReloadListener(ParticleSpawnerParticlesDataLoader.INSTANCE);
 		
 		registerCustomItemRenderer("bottomless_bundle", SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem(), BottomlessBundleItem.Renderer::new);
 		registerCustomItemRenderer("omni_accelerator", SpectrumItems.OMNI_ACCELERATOR, OmniAcceleratorItem.Renderer::new);
 		
-		WorldRenderEvents.START.register(context -> HudRenderers.clearItemStackOverlay());
-
 		WorldRenderEvents.START.register(context -> {
+			HudRenderers.clearItemStackOverlay();
+			
 			Minecraft client = Minecraft.getInstance();
 			if (client.player != null) {
-				Boolean newSmartCull;
-				if (client.hitResult instanceof BlockHitResult blockHitResult &&
-						client.player.level().getBlockState(blockHitResult.getBlockPos())
-								.getBlock() == SpectrumBlocks.UNIVERSE_SPYHOLE) {
-					newSmartCull = false;
+				
+				boolean lookingAtUniverseSpyhole = (client.hitResult instanceof BlockHitResult blockHitResult) &&
+						client.player.level().getBlockState(blockHitResult.getBlockPos()).getBlock() == SpectrumBlocks.UNIVERSE_SPYHOLE;
+				
+				if (lookingAtUniverseSpyhole) {
+					lookingAtUniverseSpyholeTicks++;
+					lookingAtUniverseSpyholeHitResult = (BlockHitResult) client.hitResult;
 				} else {
-					newSmartCull = true;
+					lookingAtUniverseSpyholeTicks = 0;
+					lookingAtUniverseSpyholeHitResult = null;
+					lookingAtUniverseSpyholeeffectsPlayed = false;
 				}
+				
+				boolean newSmartCull = !lookingAtUniverseSpyhole;
 				if (client.smartCull != newSmartCull) {
 					client.smartCull = newSmartCull;
-					if (newSmartCull == false) {
+					if (!newSmartCull) {
 						client.levelRenderer.needsUpdate(); // we need to draw caves etc...
 					}
 				}
@@ -99,7 +111,7 @@ public class SpectrumClientEventListeners {
 		});
 		WorldRenderEvents.BLOCK_OUTLINE.register(SpectrumClientEventListeners::renderExtendedBlockOutline);
 		BiomeAttenuatingSoundInstance.clear();
-
+		
 		ModelLoadingPlugin.register((ctx) -> {
 			ctx.modifyModelAfterBake().register((orig, c) -> {
 				ModelResourceLocation id = c.topLevelId();
@@ -127,8 +139,7 @@ public class SpectrumClientEventListeners {
 		ClientWorldEvents.AFTER_CLIENT_WORLD_CHANGE.register((client, world) -> {
 			if (SpectrumCommon.CONFIG.PostProcess && world.dimension().equals(SpectrumDimensions.DIMENSION_KEY)) {
 				initializeColorGrading(client);
-			}
-			else  {
+			} else {
 				SpectrumShaders.clearDimensionShaders();
 			}
 		});
@@ -143,9 +154,14 @@ public class SpectrumClientEventListeners {
 			}
 			
 			Holder<Biome> biome = world.getBiome(client.getCameraEntity().blockPosition());
-
+			
 			HowlingSpireEffects.clientTick(world, cameraEntity, biome);
 			DimensionRenderEffects.clientTick(world, cameraEntity, biome);
+			
+			// Looking at a universe
+			if (lookingAtUniverseSpyholeTicks > 0 && lookingAtUniverseSpyholeHitResult != null) {
+				playLookingAtUniverseSpyholeParticles(cameraEntity, world);
+			}
 			
 			if (SpectrumCommon.CONFIG.PostProcess) {
 				if (!postProcessWasOn) {
@@ -154,12 +170,39 @@ public class SpectrumClientEventListeners {
 				}
 				
 				SpectrumShaders.updateDimensionShaders(world);
-			}
-			else if (postProcessWasOn) {
+			} else if (postProcessWasOn) {
 				SpectrumShaders.clearDimensionShaders();
 				postProcessWasOn = false;
 			}
 		});
+	}
+	
+	private static void playLookingAtUniverseSpyholeParticles(Entity cameraEntity, ClientLevel world) {
+		int particleCountPerSide;
+		ParticleOptions particleType = ParticleTypes.PORTAL;
+		if (!lookingAtUniverseSpyholeeffectsPlayed) {
+			particleType = ParticleTypes.REVERSE_PORTAL;
+			cameraEntity.playSound(SpectrumSoundEvents.SOFT_HUM, 1.0F, 1.0F);
+			particleCountPerSide = 20;
+			lookingAtUniverseSpyholeeffectsPlayed = true;
+		} else {
+			particleCountPerSide = Math.max(1, 10 - lookingAtUniverseSpyholeTicks);
+		}
+		
+		BlockPos pos = lookingAtUniverseSpyholeHitResult.getBlockPos();
+		RandomSource random = world.getRandom();
+		for (int i = 0; i < particleCountPerSide; i++) {
+			for (Direction direction : Direction.values()) {
+				BlockPos blockPos = pos.relative(direction);
+				BlockState blockState = world.getBlockState(blockPos);
+				if (!blockState.isFaceSturdy(world, blockPos, direction.getOpposite())) {
+					double d = direction.getStepX() == 0 ? random.nextDouble() : 0.5 + direction.getStepX() * 0.6;
+					double e = direction.getStepY() == 0 ? random.nextDouble() : 0.5 + direction.getStepY() * 0.6;
+					double f = direction.getStepZ() == 0 ? random.nextDouble() : 0.5 + direction.getStepZ() * 0.6;
+					world.addParticle(particleType, pos.getX() + d, pos.getY() + e, pos.getZ() + f, 0.0, 0.0, 0.0);
+				}
+			}
+		}
 	}
 	
 	private static void initializeColorGrading(Minecraft client) {

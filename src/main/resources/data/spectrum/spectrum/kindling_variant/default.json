@@ -1,0 +1,9 @@
+{
+  "default_texture": "spectrum:entity/kindling/kindling",
+  "blinking_texture": "spectrum:entity/kindling/kindling_blink",
+  "angry_texture": "spectrum:entity/kindling/kindling_angry",
+  "clipped_texture": "spectrum:entity/kindling/kindling_clipped",
+  "blinking_clipped_texture": "spectrum:entity/kindling/kindling_blink_clipped",
+  "angry_clipped_texture": "spectrum:entity/kindling/kindling_angry_clipped",
+  "clipping_loot_table": "spectrum:gameplay/kindling_clipping"
+}

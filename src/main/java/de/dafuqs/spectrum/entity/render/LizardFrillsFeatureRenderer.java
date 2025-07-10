@@ -20,12 +20,11 @@ public class LizardFrillsFeatureRenderer<T extends LizardEntity> extends RenderL
     
     @Override
 	public void render(PoseStack matrices, MultiBufferSource vertexConsumers, int light, T lizard, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
-        LizardFrillVariant frills = lizard.getFrills();
-        if (frills != LizardFrillVariant.NONE) {
-			VertexConsumer vertexConsumer = vertexConsumers.getBuffer(SpectrumRenderLayers.GlowInTheDarkRenderLayer.get(frills.getTextureLocation()));
-            var color = lizard.getColor().getColorInt();
-			this.getParentModel().renderToBuffer(matrices, vertexConsumer, 15728640, OverlayTexture.NO_OVERLAY, color);
-        }
+		LizardFrillVariant frills = lizard.getFrills().value();
+		
+		VertexConsumer vertexConsumer = vertexConsumers.getBuffer(SpectrumRenderLayers.GlowInTheDarkRenderLayer.get(frills.getTextureLocation()));
+		var color = lizard.getColor().getColorInt();
+		this.getParentModel().renderToBuffer(matrices, vertexConsumer, 15728640, OverlayTexture.NO_OVERLAY, color);
     }
     
 }

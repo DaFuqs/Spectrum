@@ -1,45 +1,39 @@
 package de.dafuqs.spectrum.entity.variants;
 
 import com.mojang.serialization.*;
-import de.dafuqs.spectrum.*;
+import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
+import net.minecraft.network.*;
+import net.minecraft.network.codec.*;
 import net.minecraft.resources.*;
-import net.minecraft.tags.*;
-import net.minecraft.util.*;
 
-public enum LizardFrillVariant implements StringRepresentable {
+public class LizardFrillVariant {
 	
-	SIMPLE("simple", "textures/entity/lizard/frills_simple.png"),
-	FANCY("fancy", "textures/entity/lizard/frills_fancy.png"),
-	RUFFLED("ruffled", "textures/entity/lizard/frills_ruffled.png"),
-	MODEST("modest", "textures/entity/lizard/frills_modest.png"),
-	NONE("none", "textures/entity/lizard/frills_none.png");
+	public static final Codec<LizardFrillVariant> DIRECT_CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+			ResourceLocation.CODEC.fieldOf("texture").forGetter((variant) -> variant.texture)
+	).apply(instance, LizardFrillVariant::new));
+	public static final Codec<Holder<LizardFrillVariant>> CODEC = RegistryFileCodec.create(SpectrumRegistryKeys.LIZARD_FRILL_VARIANT, DIRECT_CODEC);
 	
-	public static Codec<LizardFrillVariant> CODEC = StringRepresentable.fromEnum(LizardFrillVariant::values);
+	public static final StreamCodec<RegistryFriendlyByteBuf, LizardFrillVariant> DIRECT_STREAM_CODEC = StreamCodec.composite(
+			ResourceLocation.STREAM_CODEC, LizardFrillVariant::getTextureLocation,
+			LizardFrillVariant::new);
+	public static final StreamCodec<RegistryFriendlyByteBuf, Holder<LizardFrillVariant>> STREAM_CODEC = ByteBufCodecs.holder(SpectrumRegistryKeys.LIZARD_FRILL_VARIANT, DIRECT_STREAM_CODEC);
 	
-	private final String name;
-	private final ResourceLocation id;
-	private final ResourceLocation texture;
+	public static final ResourceKey<LizardFrillVariant> SIMPLE = createKey("simple");
 	
-	LizardFrillVariant(String name, String texture) {
-		this.name = name;
-		this.id = SpectrumCommon.locate(name);
-		this.texture = SpectrumCommon.locate(texture);
-		Registry.register(SpectrumRegistries.LIZARD_FRILL_VARIANT, id, this);
+	private static ResourceKey<LizardFrillVariant> createKey(String name) {
+		return ResourceKey.create(SpectrumRegistryKeys.LIZARD_FRILL_VARIANT, ResourceLocation.withDefaultNamespace(name));
 	}
 	
-	public TagKey<LizardFrillVariant> getReference() {
-		return TagKey.create(SpectrumRegistries.LIZARD_FRILL_VARIANT.key(), id);
+	private final ResourceLocation texture;
+	
+	LizardFrillVariant(ResourceLocation texture) {
+		this.texture = texture.withPath((string) -> "textures/" + string + ".png");
 	}
 	
 	public ResourceLocation getTextureLocation() {
 		return texture;
-	}
-	
-	@Override
-	public String getSerializedName() {
-		return name;
 	}
 	
 }

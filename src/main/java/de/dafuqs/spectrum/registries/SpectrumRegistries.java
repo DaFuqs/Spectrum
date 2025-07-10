@@ -25,19 +25,18 @@ public class SpectrumRegistries {
 	public static final SpectrumRegistry<GemstoneColor> GEMSTONE_COLOR = register(SpectrumRegistryKeys.GEMSTONE_COLOR, true);
 	public static final SpectrumRegistry<GlassArrowVariant> GLASS_ARROW_VARIANT = register(SpectrumRegistryKeys.GLASS_ARROW_VARIANT, true);
 	public static final SpectrumRegistry<InkColor> INK_COLOR = register(SpectrumRegistryKeys.INK_COLOR, true);
-	public static final SpectrumRegistry<KindlingVariant> KINDLING_VARIANT = register(SpectrumRegistryKeys.KINDLING_VARIANT, true);
-	public static final SpectrumRegistry<LizardFrillVariant> LIZARD_FRILL_VARIANT = register(SpectrumRegistryKeys.LIZARD_FRILL_VARIANT, true);
-	public static final SpectrumRegistry<LizardHornVariant> LIZARD_HORN_VARIANT = register(SpectrumRegistryKeys.LIZARD_HORN_VARIANT, true);
 	public static final SpectrumRegistry<PastelUpgradeSignature> PASTEL_UPGRADE = register(SpectrumRegistryKeys.PASTEL_UPGRADE, false);
 	public static final SpectrumRegistry<RecipeScaling> RECIPE_SCALING = register(SpectrumRegistryKeys.RECIPE_SCALING, true);
-	
 	public static final SpectrumRegistry<MapCodec<? extends ResonanceProcessor>> RESONANCE_PROCESSOR_TYPE = register(SpectrumRegistryKeys.RESONANCE_PROCESSOR_TYPE, false);
 	
 	public static final SpectrumRegistry<ExplosionModifierType> EXPLOSION_MODIFIER_TYPE = register(SpectrumRegistryKeys.EXPLOSION_MODIFIER_TYPE, true);
 	public static final SpectrumRegistry<ExplosionModifier> EXPLOSION_MODIFIER = register(SpectrumRegistryKeys.EXPLOSION_MODIFIER, true);
-	
+
 	public static void register() {
 		DynamicRegistries.registerSynced(SpectrumRegistryKeys.RESONANCE_PROCESSOR, ResonanceProcessor.CODEC);
+		DynamicRegistries.registerSynced(SpectrumRegistryKeys.KINDLING_VARIANT, KindlingVariant.DIRECT_CODEC);
+		DynamicRegistries.registerSynced(SpectrumRegistryKeys.LIZARD_FRILL_VARIANT, LizardFrillVariant.DIRECT_CODEC);
+		DynamicRegistries.registerSynced(SpectrumRegistryKeys.LIZARD_HORN_VARIANT, LizardHornVariant.DIRECT_CODEC);
 	}
 	
 	private static <T> SpectrumRegistry<T> register(ResourceKey<? extends Registry<T>> key, boolean synced) {

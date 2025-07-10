@@ -27,11 +27,13 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
+import java.util.*;
+
 // funny little creatures always out for trouble
 public class LizardEntity extends TamableAnimal implements PackEntity<LizardEntity>, POIMemorized {
 	
-	protected static final EntityDataAccessor<LizardFrillVariant> FRILL_VARIANT = SynchedEntityData.defineId(LizardEntity.class, SpectrumTrackedDataHandlerRegistry.LIZARD_FRILL_VARIANT);
-	protected static final EntityDataAccessor<LizardHornVariant> HORN_VARIANT = SynchedEntityData.defineId(LizardEntity.class, SpectrumTrackedDataHandlerRegistry.LIZARD_HORN_VARIANT);
+	protected static final EntityDataAccessor<Holder<LizardFrillVariant>> FRILL_VARIANT = SynchedEntityData.defineId(LizardEntity.class, SpectrumTrackedDataHandlerRegistry.LIZARD_FRILL_VARIANT);
+	protected static final EntityDataAccessor<Holder<LizardHornVariant>> HORN_VARIANT = SynchedEntityData.defineId(LizardEntity.class, SpectrumTrackedDataHandlerRegistry.LIZARD_HORN_VARIANT);
 	protected static final EntityDataAccessor<InkColor> COLOR = SynchedEntityData.defineId(LizardEntity.class, SpectrumTrackedDataHandlerRegistry.INK_COLOR);
 
 	protected @Nullable LizardEntity leader;
@@ -102,16 +104,25 @@ public class LizardEntity extends TamableAnimal implements PackEntity<LizardEnti
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 		super.defineSynchedData(builder);
 		builder.define(COLOR, InkColors.MAGENTA);
-		builder.define(FRILL_VARIANT, LizardFrillVariant.SIMPLE);
-		builder.define(HORN_VARIANT, LizardHornVariant.HORNY);
+		
+		RegistryAccess registryAccess = this.registryAccess();
+		Registry<LizardFrillVariant> lizardFrillVariantRegistry = registryAccess.registryOrThrow(SpectrumRegistryKeys.LIZARD_FRILL_VARIANT);
+		Optional<Holder.Reference<LizardFrillVariant>> frillHolder = lizardFrillVariantRegistry.getHolder(LizardFrillVariant.SIMPLE);
+		builder.define(FRILL_VARIANT, frillHolder.or(lizardFrillVariantRegistry::getAny).orElseThrow());
+		
+		Registry<LizardHornVariant> kindlingHornRegistry = registryAccess.registryOrThrow(SpectrumRegistryKeys.LIZARD_HORN_VARIANT);
+		Optional<Holder.Reference<LizardHornVariant>> hornHolder = kindlingHornRegistry.getHolder(LizardHornVariant.HORNY);
+		builder.define(HORN_VARIANT, hornHolder.or(kindlingHornRegistry::getAny).orElseThrow());
 	}
 
 	@Override
 	public @Nullable SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType spawnReason, @Nullable SpawnGroupData entityData) {
 		RandomSource random = world.getRandom();
-		this.setFrills(SpectrumRegistries.getRandomTagEntry(SpectrumRegistries.LIZARD_FRILL_VARIANT, LizardFrillVariant.SIMPLE.getReference(), random, LizardFrillVariant.SIMPLE));
-		this.setHorns(SpectrumRegistries.getRandomTagEntry(SpectrumRegistries.LIZARD_HORN_VARIANT, LizardHornVariant.HORNY.getReference(), random, LizardHornVariant.HORNY));
-		this.setColor(SpectrumRegistries.getRandomTagEntry(SpectrumRegistries.INK_COLOR, InkColorTags.ELEMENTAL_COLORS, random, InkColors.MAGENTA));
+		this.setFrills(world.registryAccess().registry(SpectrumRegistryKeys.LIZARD_FRILL_VARIANT).get().getRandom(world.getRandom()).get());
+		this.setHorns(world.registryAccess().registry(SpectrumRegistryKeys.LIZARD_HORN_VARIANT).get().getRandom(world.getRandom()).get());
+		
+		List<InkColor> elementals = InkColors.elementals();
+		this.setColor(elementals.get(random.nextInt(elementals.size())));
 		
 		return super.finalizeSpawn(world, difficulty, spawnReason, entityData);
 	}
@@ -120,8 +131,12 @@ public class LizardEntity extends TamableAnimal implements PackEntity<LizardEnti
 	public void addAdditionalSaveData(CompoundTag nbt) {
 		super.addAdditionalSaveData(nbt);
 		nbt.putString("color", this.getColor().getID().toString());
-		nbt.putString("frills", SpectrumRegistries.LIZARD_FRILL_VARIANT.getKey(this.getFrills()).toString());
-		nbt.putString("horns", SpectrumRegistries.LIZARD_HORN_VARIANT.getKey(this.getHorns()).toString());
+		this.getFrills().unwrapKey().ifPresent((resourceKey) -> {
+			nbt.putString("frills", resourceKey.location().toString());
+		});
+		this.getHorns().unwrapKey().ifPresent((resourceKey) -> {
+			nbt.putString("horns", resourceKey.location().toString());
+		});
 		writePOIPosToNbt(nbt);
 	}
 	
@@ -132,11 +147,15 @@ public class LizardEntity extends TamableAnimal implements PackEntity<LizardEnti
 		InkColor color = SpectrumRegistries.INK_COLOR.get(ResourceLocation.tryParse(nbt.getString("color")));
 		this.setColor(color == null ? SpectrumRegistries.getRandomTagEntry(SpectrumRegistries.INK_COLOR, InkColorTags.ELEMENTAL_COLORS, this.random, InkColors.CYAN) : color);
 		
-		LizardFrillVariant frills = SpectrumRegistries.LIZARD_FRILL_VARIANT.get(ResourceLocation.tryParse(nbt.getString("frills")));
-		this.setFrills(frills == null ? SpectrumRegistries.getRandomTagEntry(SpectrumRegistries.LIZARD_FRILL_VARIANT, LizardFrillVariant.SIMPLE.getReference(), this.random, LizardFrillVariant.SIMPLE) : frills);
+		Optional.ofNullable(ResourceLocation.tryParse(nbt.getString("frills")))
+				.map((resourceLocation) -> ResourceKey.create(SpectrumRegistryKeys.LIZARD_FRILL_VARIANT, resourceLocation))
+				.flatMap((resourceKey) -> this.registryAccess().registryOrThrow(SpectrumRegistryKeys.LIZARD_FRILL_VARIANT).getHolder(resourceKey))
+				.ifPresent(this::setFrills);
 		
-		LizardHornVariant horns = SpectrumRegistries.LIZARD_HORN_VARIANT.get(ResourceLocation.tryParse(nbt.getString("horns")));
-		this.setHorns(horns == null ? SpectrumRegistries.getRandomTagEntry(SpectrumRegistries.LIZARD_HORN_VARIANT, LizardHornVariant.HORNY.getReference(), this.random, LizardHornVariant.HORNY) : horns);
+		Optional.ofNullable(ResourceLocation.tryParse(nbt.getString("horns")))
+				.map((resourceLocation) -> ResourceKey.create(SpectrumRegistryKeys.LIZARD_HORN_VARIANT, resourceLocation))
+				.flatMap((resourceKey) -> this.registryAccess().registryOrThrow(SpectrumRegistryKeys.LIZARD_HORN_VARIANT).getHolder(resourceKey))
+				.ifPresent(this::setHorns);
 		
 		readPOIPosFromNbt(nbt);
 	}
@@ -192,19 +211,19 @@ public class LizardEntity extends TamableAnimal implements PackEntity<LizardEnti
 		this.entityData.set(COLOR, color);
 	}
 	
-	public LizardFrillVariant getFrills() {
+	public Holder<LizardFrillVariant> getFrills() {
 		return this.entityData.get(FRILL_VARIANT);
 	}
 	
-	public void setFrills(LizardFrillVariant variant) {
+	public void setFrills(Holder<LizardFrillVariant> variant) {
 		this.entityData.set(FRILL_VARIANT, variant);
 	}
 	
-	public LizardHornVariant getHorns() {
+	public Holder<LizardHornVariant> getHorns() {
 		return this.entityData.get(HORN_VARIANT);
 	}
 	
-	public void setHorns(LizardHornVariant variant) {
+	public void setHorns(Holder<LizardHornVariant> variant) {
 		this.entityData.set(HORN_VARIANT, variant);
 	}
 	
@@ -252,13 +271,13 @@ public class LizardEntity extends TamableAnimal implements PackEntity<LizardEnti
 		
 		return InkColorMixes.getRandomMixedColor(color1, color2, world.random);
 	}
-
-	private LizardFrillVariant getChildFrills(LizardEntity firstParent, LizardEntity secondParent) {
+	
+	private Holder<LizardFrillVariant> getChildFrills(LizardEntity firstParent, LizardEntity secondParent) {
 		Level world = this.level();
 		return world.random.nextBoolean() ? firstParent.getFrills() : secondParent.getFrills();
 	}
-
-	private LizardHornVariant getChildHorns(LizardEntity firstParent, LizardEntity secondParent) {
+	
+	private Holder<LizardHornVariant> getChildHorns(LizardEntity firstParent, LizardEntity secondParent) {
 		Level world = this.level();
 		return world.random.nextBoolean() ? firstParent.getHorns() : secondParent.getHorns();
 	}

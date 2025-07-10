@@ -26,7 +26,6 @@ public class SpectrumLootTables {
 	public static final ResourceKey<LootTable> MIDNIGHT_SOLUTION_FISHING = keyOf("gameplay/fishing/midnight_solution/fishing");
 	
 	// Entities
-	public static final ResourceKey<LootTable> KINDLING_CLIPPING = keyOf("gameplay/kindling_clipping");
 	public static final ResourceKey<LootTable> EGG_LAYING_WOOLY_PIG_SHEARING = keyOf("entities/egg_laying_wooly_pig_shearing");
 	
 	// Blocks

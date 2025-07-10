@@ -1,46 +1,39 @@
 package de.dafuqs.spectrum.entity.variants;
 
 import com.mojang.serialization.*;
-import de.dafuqs.spectrum.*;
+import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
+import net.minecraft.network.*;
+import net.minecraft.network.codec.*;
 import net.minecraft.resources.*;
-import net.minecraft.tags.*;
-import net.minecraft.util.*;
 
-public enum LizardHornVariant implements StringRepresentable {
+public class LizardHornVariant {
 	
-	HORNY("horny", "textures/entity/lizard/horns_horny.png"),
-	STRAIGHT("straight", "textures/entity/lizard/horns_straight.png"),
-	FLEXIBLE("flexible", "textures/entity/lizard/horns_flexible.png"),
-	QUEER("queer", "textures/entity/lizard/horns_queer.png"),
-	POLY("poly", "textures/entity/lizard/horns_poly.png"),
-	ONLY_LIKES_YOU_AS_A_FRIEND("friendzoned", "textures/entity/lizard/horns_friendzoned.png");
+	public static final Codec<LizardHornVariant> DIRECT_CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+			ResourceLocation.CODEC.fieldOf("texture").forGetter((variant) -> variant.texture)
+	).apply(instance, LizardHornVariant::new));
+	public static final Codec<Holder<LizardHornVariant>> CODEC = RegistryFileCodec.create(SpectrumRegistryKeys.LIZARD_HORN_VARIANT, DIRECT_CODEC);
 	
-	public static Codec<LizardHornVariant> CODEC = StringRepresentable.fromEnum(LizardHornVariant::values);
+	public static final StreamCodec<RegistryFriendlyByteBuf, LizardHornVariant> DIRECT_STREAM_CODEC = StreamCodec.composite(
+			ResourceLocation.STREAM_CODEC, LizardHornVariant::getTextureLocation,
+			LizardHornVariant::new);
+	public static final StreamCodec<RegistryFriendlyByteBuf, Holder<LizardHornVariant>> STREAM_CODEC = ByteBufCodecs.holder(SpectrumRegistryKeys.LIZARD_HORN_VARIANT, DIRECT_STREAM_CODEC);
 	
-	private final String name;
-	private final ResourceLocation id;
-	private final ResourceLocation texture;
+	public static final ResourceKey<LizardHornVariant> HORNY = createKey("horny");
 	
-	LizardHornVariant(String name, String texture) {
-		this.name = name;
-		this.id = SpectrumCommon.locate(name);
-		this.texture = SpectrumCommon.locate(texture);
-		Registry.register(SpectrumRegistries.LIZARD_HORN_VARIANT, id, this);
+	private static ResourceKey<LizardHornVariant> createKey(String name) {
+		return ResourceKey.create(SpectrumRegistryKeys.LIZARD_HORN_VARIANT, ResourceLocation.withDefaultNamespace(name));
 	}
 	
-	public TagKey<LizardHornVariant> getReference() {
-		return TagKey.create(SpectrumRegistries.LIZARD_HORN_VARIANT.key(), id);
+	private final ResourceLocation texture;
+	
+	LizardHornVariant(ResourceLocation texture) {
+		this.texture = texture.withPath((string) -> "textures/" + string + ".png");
 	}
 	
 	public ResourceLocation getTextureLocation() {
 		return texture;
-	}
-	
-	@Override
-	public String getSerializedName() {
-		return name;
 	}
 	
 }

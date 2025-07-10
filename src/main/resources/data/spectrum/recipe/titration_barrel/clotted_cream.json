@@ -22,7 +22,7 @@
         "condition": "spectrum:tags_populated",
         "registry": "minecraft:fluid",
         "values": [
-          "minecraft:water"
+          "c:milk"
         ]
       }
     }

@@ -18,7 +18,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public class CrystallarieumCategory extends GatedDisplayCategory<CrystallarieumDisplay> {
 	
 	public final static ResourceLocation BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/modonomicon/crystallarieum.png");

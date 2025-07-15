@@ -9,10 +9,10 @@
     "FoodComponentBuilderMixin",
     "MapDecorationMixin",
     "StatusEffectInstanceMixin",
-    "accessors.CachedRegistryInfoGetterAccessor",
     "accessors.BiomeAccessor",
     "accessors.BundleContentsComponentAccessor",
     "accessors.BundleContentsComponentBuilderAccessor",
+    "accessors.CachedRegistryInfoGetterAccessor",
     "accessors.DensityCapAccessor",
     "accessors.ExperienceDroppingBlockAccessor",
     "accessors.ExplosionAccessor",
@@ -32,6 +32,7 @@
     "accessors.TridentEntityAccessor"
   ],
   "client": [
+    "client.BlockOverlayRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

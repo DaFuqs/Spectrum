@@ -15,7 +15,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public class FusionShrineCategory extends GatedDisplayCategory<FusionShrineDisplay> {
 	
 	private static final EntryIngredient FUSION_SHRINE_BASALT = EntryIngredients.of(SpectrumBlocks.FUSION_SHRINE_BASALT);

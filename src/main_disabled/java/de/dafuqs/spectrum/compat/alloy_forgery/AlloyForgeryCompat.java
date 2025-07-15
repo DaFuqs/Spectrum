@@ -19,7 +19,7 @@ public class AlloyForgeryCompat extends SpectrumIntegrationPacks.ModIntegrationP
 	
 	}
 	
-	@Environment(EnvType.CLIENT)
+	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void registerClient() {
 	

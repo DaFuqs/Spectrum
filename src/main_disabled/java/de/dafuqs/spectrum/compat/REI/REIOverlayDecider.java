@@ -6,7 +6,7 @@ import net.fabricmc.api.*;
 import net.minecraft.client.gui.screens.*;
 import net.minecraft.world.*;
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public class REIOverlayDecider implements OverlayDecider {
 	
 	public static final OverlayDecider INSTANCE = new REIOverlayDecider();

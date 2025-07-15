@@ -81,7 +81,7 @@ public class SpectrumIntegrationPacks {
 		}
 	}
 	
-	@Environment(EnvType.CLIENT)
+	@OnlyIn(Dist.CLIENT)
 	@SuppressWarnings("Convert2MethodRef")
 	public static void registerClient() {
 		registerIntegrationPack(EARS_ID, () -> new EarsCompat());

@@ -24,7 +24,7 @@ import java.util.*;
 
 import static de.dafuqs.spectrum.SpectrumCommon.*;
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public class SpectrumClient implements ClientModInitializer, RevealingCallback, ClientAdvancementPacketCallback {
 
 	public static final SkyLerper skyLerper = new SkyLerper();

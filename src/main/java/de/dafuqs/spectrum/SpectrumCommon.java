@@ -101,8 +101,8 @@ public class SpectrumCommon {
 		SpectrumSoundEvents.register(modBus);
 //		logInfo("Registering BlockSound Groups...");
 //		SpectrumBlockSoundGroups.register();
-//		logInfo("Registering Fluids...");
-//		SpectrumFluids.register();
+		logInfo("Registering Fluids...");
+		SpectrumFluids.register(modBus);
 //		logInfo("Registering Armor Materials...");
 //		SpectrumArmorMaterials.register();
 //		logInfo("Registering Blocks...");
@@ -135,11 +135,11 @@ public class SpectrumCommon {
 //		DimensionReverb.setup();
 //
 //		// Recipes
-//		logInfo("Registering Recipe Types...");
+		logInfo("Registering Recipe Types...");
 //		SpectrumRecipeScalings.init();
 //		SpectrumFusionShrineWorldEffects.register();
-//		SpectrumRecipeTypes.register();
-//		SpectrumRecipeSerializers.register();
+		SpectrumRecipeTypes.register(modBus);
+		SpectrumRecipeSerializers.register(modBus);
 //
 //		// Loot
 //		logInfo("Registering Loot Conditions & Functions...");

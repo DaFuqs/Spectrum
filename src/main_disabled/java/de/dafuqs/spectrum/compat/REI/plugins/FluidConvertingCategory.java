@@ -7,7 +7,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public abstract class FluidConvertingCategory<T extends FluidConvertingDisplay> extends GatedDisplayCategory<FluidConvertingDisplay> {
 	
 	@Override

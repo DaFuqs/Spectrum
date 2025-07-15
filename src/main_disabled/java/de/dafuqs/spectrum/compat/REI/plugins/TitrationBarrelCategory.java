@@ -15,7 +15,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public class TitrationBarrelCategory extends GatedDisplayCategory<TitrationBarrelDisplay> {
 	
 	@Override

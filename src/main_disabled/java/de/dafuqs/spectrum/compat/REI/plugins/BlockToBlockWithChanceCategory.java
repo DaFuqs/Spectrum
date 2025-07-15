@@ -8,7 +8,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public abstract class BlockToBlockWithChanceCategory extends GatedDisplayCategory<BlockToBlockWithChanceDisplay> {
 	
 	@Override

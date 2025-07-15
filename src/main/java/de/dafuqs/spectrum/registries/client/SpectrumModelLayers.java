@@ -1,0 +1,307 @@
+package de.dafuqs.spectrum.registries.client;
+
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.mob_head.client.models.PiglinHeadModel;
+import de.dafuqs.spectrum.blocks.mob_head.client.models.VillagerHeadModel;
+import de.dafuqs.spectrum.blocks.mob_head.client.models.*;
+import de.dafuqs.spectrum.entity.models.*;
+import de.dafuqs.spectrum.render.armor.*;
+import net.neoforged.api.distmarker.*;
+import net.fabricmc.fabric.api.client.rendering.v1.*;
+import net.minecraft.client.model.*;
+import net.minecraft.client.model.geom.*;
+import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.resources.*;
+
+@OnlyIn(Dist.CLIENT)
+public class SpectrumModelLayers {
+	
+	/**
+	 * Entities
+	 */
+	public static final ModelLayerLocation WOOLY_PIG = new ModelLayerLocation(SpectrumCommon.locate("egg_laying_wooly_pig"), "main");
+	public static final ModelLayerLocation WOOLY_PIG_HAT = new ModelLayerLocation(SpectrumCommon.locate("egg_laying_wooly_pig"), "hat");
+	public static final ModelLayerLocation WOOLY_PIG_WOOL = new ModelLayerLocation(SpectrumCommon.locate("egg_laying_wooly_pig"), "wool");
+	
+	public static final ModelLayerLocation PRESERVATION_TURRET = new ModelLayerLocation(SpectrumCommon.locate("preservation_turret"), "main");
+	public static final ModelLayerLocation MONSTROSITY = new ModelLayerLocation(SpectrumCommon.locate("monstrosity"), "main");
+	public static final ModelLayerLocation LIZARD_SCALES = new ModelLayerLocation(SpectrumCommon.locate("lizard"), "main");
+	public static final ModelLayerLocation LIZARD_FRILLS = new ModelLayerLocation(SpectrumCommon.locate("lizard"), "frills");
+	public static final ModelLayerLocation LIZARD_HORNS = new ModelLayerLocation(SpectrumCommon.locate("lizard"), "horns");
+	public static final ModelLayerLocation KINDLING = new ModelLayerLocation(SpectrumCommon.locate("kindling"), "main");
+	public static final ModelLayerLocation KINDLING_SADDLE = new ModelLayerLocation(SpectrumCommon.locate("kindling_saddle"), "main");
+	public static final ModelLayerLocation KINDLING_ARMOR = new ModelLayerLocation(SpectrumCommon.locate("kindling_armor"), "main");
+	public static final ModelLayerLocation KINDLING_COUGH = new ModelLayerLocation(SpectrumCommon.locate("kindling_cough"), "main");
+	public static final ModelLayerLocation ERASER = new ModelLayerLocation(SpectrumCommon.locate("eraser"), "body");
+	
+	
+	/**
+	 * Mob Heads
+	 */
+	public static final ModelLayerLocation ALLAY_HEAD = new ModelLayerLocation(SpectrumCommon.locate("allay_head"), "main");
+	public static final ModelLayerLocation AXOLOTL_BLUE_HEAD = new ModelLayerLocation(SpectrumCommon.locate("axolotl_blue_head"), "main");
+	public static final ModelLayerLocation AXOLOTL_CYAN_HEAD = new ModelLayerLocation(SpectrumCommon.locate("axolotl_cyan_head"), "main");
+	public static final ModelLayerLocation AXOLOTL_GOLD_HEAD = new ModelLayerLocation(SpectrumCommon.locate("axolotl_gold_head"), "main");
+	public static final ModelLayerLocation AXOLOTL_LEUCISTIC_HEAD = new ModelLayerLocation(SpectrumCommon.locate("axolotl_lucy_head"), "main");
+	public static final ModelLayerLocation AXOLOTL_WILD_HEAD = new ModelLayerLocation(SpectrumCommon.locate("axolotl_wild_head"), "main");
+	public static final ModelLayerLocation BAT_HEAD = new ModelLayerLocation(SpectrumCommon.locate("bat_head"), "main");
+	public static final ModelLayerLocation BEE_HEAD = new ModelLayerLocation(SpectrumCommon.locate("bee_head"), "main");
+	public static final ModelLayerLocation BLAZE_HEAD = new ModelLayerLocation(SpectrumCommon.locate("blaze_head"), "main");
+	public static final ModelLayerLocation CAMEL_HEAD = new ModelLayerLocation(SpectrumCommon.locate("camel_head"), "main");
+	public static final ModelLayerLocation CAT_HEAD = new ModelLayerLocation(SpectrumCommon.locate("cat_head"), "main");
+	public static final ModelLayerLocation CAVE_SPIDER_HEAD = new ModelLayerLocation(SpectrumCommon.locate("cave_spider_head"), "main");
+	public static final ModelLayerLocation CHICKEN_HEAD = new ModelLayerLocation(SpectrumCommon.locate("chicken_head"), "main");
+	public static final ModelLayerLocation COD_HEAD = new ModelLayerLocation(SpectrumCommon.locate("cod_head"), "main");
+	public static final ModelLayerLocation COW_HEAD = new ModelLayerLocation(SpectrumCommon.locate("cow_head"), "main");
+	public static final ModelLayerLocation DOLPHIN_HEAD = new ModelLayerLocation(SpectrumCommon.locate("dolphin_head"), "main");
+	public static final ModelLayerLocation DONKEY_HEAD = new ModelLayerLocation(SpectrumCommon.locate("donkey_head"), "main");
+	public static final ModelLayerLocation DROWNED_HEAD = new ModelLayerLocation(SpectrumCommon.locate("drowned_head"), "main");
+	public static final ModelLayerLocation DROWNED_HEAD_OUTER = new ModelLayerLocation(SpectrumCommon.locate("drowned_head"), "overlay");
+	public static final ModelLayerLocation ELDER_GUARDIAN_HEAD = new ModelLayerLocation(SpectrumCommon.locate("elder_guardian_head"), "main");
+	public static final ModelLayerLocation ENDERMAN_HEAD = new ModelLayerLocation(SpectrumCommon.locate("enderman_head"), "main");
+	public static final ModelLayerLocation ENDERMAN_HEAD_OVERLAY = new ModelLayerLocation(SpectrumCommon.locate("enderman_head"), "overlay");
+	public static final ModelLayerLocation ENDERMITE_HEAD = new ModelLayerLocation(SpectrumCommon.locate("endermite_head"), "main");
+	public static final ModelLayerLocation EVOKER_HEAD = new ModelLayerLocation(SpectrumCommon.locate("evoker_head"), "main");
+	public static final ModelLayerLocation FOX_ARCTIC_HEAD = new ModelLayerLocation(SpectrumCommon.locate("fox_arctic_head"), "main");
+	public static final ModelLayerLocation FOX_HEAD = new ModelLayerLocation(SpectrumCommon.locate("fox_head"), "main");
+	public static final ModelLayerLocation FROG_COLD_HEAD = new ModelLayerLocation(SpectrumCommon.locate("frog_cold_head"), "main");
+	public static final ModelLayerLocation FROG_TEMPERATE_HEAD = new ModelLayerLocation(SpectrumCommon.locate("frog_temperate_head"), "main");
+	public static final ModelLayerLocation FROG_WARM_HEAD = new ModelLayerLocation(SpectrumCommon.locate("frog_warm_head"), "main");
+	public static final ModelLayerLocation GHAST_HEAD = new ModelLayerLocation(SpectrumCommon.locate("ghast_head"), "main");
+	public static final ModelLayerLocation GLOW_SQUID_HEAD = new ModelLayerLocation(SpectrumCommon.locate("glow_squid_head"), "main");
+	public static final ModelLayerLocation GOAT_HEAD = new ModelLayerLocation(SpectrumCommon.locate("goat_head"), "main");
+	public static final ModelLayerLocation GUARDIAN_HEAD = new ModelLayerLocation(SpectrumCommon.locate("guardian_head"), "main");
+	public static final ModelLayerLocation HOGLIN_HEAD = new ModelLayerLocation(SpectrumCommon.locate("hoglin_head"), "main");
+	public static final ModelLayerLocation HORSE_HEAD = new ModelLayerLocation(SpectrumCommon.locate("horse_head"), "main");
+	public static final ModelLayerLocation HUSK_HEAD = new ModelLayerLocation(SpectrumCommon.locate("husk_head"), "main");
+	public static final ModelLayerLocation ILLUSIONER_HEAD = new ModelLayerLocation(SpectrumCommon.locate("illusioner_head"), "main");
+	public static final ModelLayerLocation IRON_GOLEM_HEAD = new ModelLayerLocation(SpectrumCommon.locate("iron_golem_head"), "main");
+	public static final ModelLayerLocation LLAMA_HEAD = new ModelLayerLocation(SpectrumCommon.locate("llama_head"), "main");
+	public static final ModelLayerLocation MAGMA_CUBE_HEAD = new ModelLayerLocation(SpectrumCommon.locate("magma_cube_head"), "main");
+	public static final ModelLayerLocation MOOSHROOM_BROWN_HEAD = new ModelLayerLocation(SpectrumCommon.locate("mooshroom_brown_head"), "main");
+	public static final ModelLayerLocation MOOSHROOM_RED_HEAD = new ModelLayerLocation(SpectrumCommon.locate("mooshroom_red_head"), "main");
+	public static final ModelLayerLocation MULE_HEAD = new ModelLayerLocation(SpectrumCommon.locate("mule_head"), "main");
+	public static final ModelLayerLocation OCELOT_HEAD = new ModelLayerLocation(SpectrumCommon.locate("ocelot_head"), "main");
+	public static final ModelLayerLocation PANDA_HEAD = new ModelLayerLocation(SpectrumCommon.locate("panda_head"), "main");
+	public static final ModelLayerLocation PARROT_BLUE_HEAD = new ModelLayerLocation(SpectrumCommon.locate("parrot_blue_head"), "main");
+	public static final ModelLayerLocation PARROT_CYAN_HEAD = new ModelLayerLocation(SpectrumCommon.locate("parrot_cyan_head"), "main");
+	public static final ModelLayerLocation PARROT_GRAY_HEAD = new ModelLayerLocation(SpectrumCommon.locate("parrot_gray_head"), "main");
+	public static final ModelLayerLocation PARROT_GREEN_HEAD = new ModelLayerLocation(SpectrumCommon.locate("parrot_green_head"), "main");
+	public static final ModelLayerLocation PARROT_RED_HEAD = new ModelLayerLocation(SpectrumCommon.locate("parrot_red_head"), "main");
+	public static final ModelLayerLocation PHANTOM_HEAD = new ModelLayerLocation(SpectrumCommon.locate("phantom_head"), "main");
+	public static final ModelLayerLocation PIG_HEAD = new ModelLayerLocation(SpectrumCommon.locate("pig_head"), "main");
+	public static final ModelLayerLocation PILLAGER_HEAD = new ModelLayerLocation(SpectrumCommon.locate("pillager_head"), "main");
+	public static final ModelLayerLocation POLAR_BEAR_HEAD = new ModelLayerLocation(SpectrumCommon.locate("polar_bear_head"), "main");
+	public static final ModelLayerLocation PUFFERFISH_HEAD = new ModelLayerLocation(SpectrumCommon.locate("pufferfish_head"), "main");
+	public static final ModelLayerLocation RABBIT_HEAD = new ModelLayerLocation(SpectrumCommon.locate("rabbit_head"), "main");
+	public static final ModelLayerLocation RAVAGER_HEAD = new ModelLayerLocation(SpectrumCommon.locate("ravager_head"), "main");
+	public static final ModelLayerLocation SALMON_HEAD = new ModelLayerLocation(SpectrumCommon.locate("salmon_head"), "main");
+	public static final ModelLayerLocation SHEEP_HEAD = new ModelLayerLocation(SpectrumCommon.locate("sheep_head"), "main");
+	public static final ModelLayerLocation SHULKER_BLACK_HEAD = new ModelLayerLocation(SpectrumCommon.locate("shulker_black_head"), "main");
+	public static final ModelLayerLocation SHULKER_BLUE_HEAD = new ModelLayerLocation(SpectrumCommon.locate("shulker_blue_head"), "main");
+	public static final ModelLayerLocation SHULKER_BROWN_HEAD = new ModelLayerLocation(SpectrumCommon.locate("shulker_brown_head"), "main");
+	public static final ModelLayerLocation SHULKER_CYAN_HEAD = new ModelLayerLocation(SpectrumCommon.locate("shulker_cyan_head"), "main");
+	public static final ModelLayerLocation SHULKER_GRAY_HEAD = new ModelLayerLocation(SpectrumCommon.locate("shulker_gray_head"), "main");
+	public static final ModelLayerLocation SHULKER_GREEN_HEAD = new ModelLayerLocation(SpectrumCommon.locate("shulker_green_head"), "main");
+	public static final ModelLayerLocation SHULKER_HEAD = new ModelLayerLocation(SpectrumCommon.locate("shulker_head"), "main");
+	public static final ModelLayerLocation SHULKER_LIGHT_BLUE_HEAD = new ModelLayerLocation(SpectrumCommon.locate("shulker_light_blue_head"), "main");
+	public static final ModelLayerLocation SHULKER_LIGHT_GRAY_HEAD = new ModelLayerLocation(SpectrumCommon.locate("shulker_light_gray_head"), "main");
+	public static final ModelLayerLocation SHULKER_LIME_HEAD = new ModelLayerLocation(SpectrumCommon.locate("shulker_lime_head"), "main");
+	public static final ModelLayerLocation SHULKER_MAGENTA_HEAD = new ModelLayerLocation(SpectrumCommon.locate("shulker_magenta_head"), "main");
+	public static final ModelLayerLocation SHULKER_ORANGE_HEAD = new ModelLayerLocation(SpectrumCommon.locate("shulker_orange_head"), "main");
+	public static final ModelLayerLocation SHULKER_PINK_HEAD = new ModelLayerLocation(SpectrumCommon.locate("shulker_pink_head"), "main");
+	public static final ModelLayerLocation SHULKER_PURPLE_HEAD = new ModelLayerLocation(SpectrumCommon.locate("shulker_purple_head"), "main");
+	public static final ModelLayerLocation SHULKER_RED_HEAD = new ModelLayerLocation(SpectrumCommon.locate("shulker_red_head"), "main");
+	public static final ModelLayerLocation SHULKER_WHITE_HEAD = new ModelLayerLocation(SpectrumCommon.locate("shulker_white_head"), "main");
+	public static final ModelLayerLocation SHULKER_YELLOW_HEAD = new ModelLayerLocation(SpectrumCommon.locate("shulker_yellow_head"), "main");
+	public static final ModelLayerLocation SILVERFISH_HEAD = new ModelLayerLocation(SpectrumCommon.locate("silverfish_head"), "main");
+	public static final ModelLayerLocation SKELETON_HORSE_HEAD = new ModelLayerLocation(SpectrumCommon.locate("skeleton_horse_head"), "main");
+	public static final ModelLayerLocation SLIME_HEAD = new ModelLayerLocation(SpectrumCommon.locate("slime_head"), "main");
+	public static final ModelLayerLocation SLIME_HEAD_TRANSLUCENT = new ModelLayerLocation(SpectrumCommon.locate("slime_head"), "translucent");
+	public static final ModelLayerLocation SNIFFER_HEAD = new ModelLayerLocation(SpectrumCommon.locate("sniffer_head"), "main");
+	public static final ModelLayerLocation SNOW_GOLEM_HEAD = new ModelLayerLocation(SpectrumCommon.locate("snow_golem_head"), "main");
+	public static final ModelLayerLocation SPIDER_HEAD = new ModelLayerLocation(SpectrumCommon.locate("spider_head"), "main");
+	public static final ModelLayerLocation SQUID_HEAD = new ModelLayerLocation(SpectrumCommon.locate("squid_head"), "main");
+	public static final ModelLayerLocation STRAY_HEAD = new ModelLayerLocation(SpectrumCommon.locate("stray_head"), "main");
+	public static final ModelLayerLocation STRAY_HEAD_OVERLAY = new ModelLayerLocation(SpectrumCommon.locate("stray_head"), "overlay");
+	public static final ModelLayerLocation STRIDER_HEAD = new ModelLayerLocation(SpectrumCommon.locate("strider_head"), "main");
+	public static final ModelLayerLocation TADPOLE_HEAD = new ModelLayerLocation(SpectrumCommon.locate("tadpole_head"), "main");
+	public static final ModelLayerLocation TROPICAL_FISH_HEAD = new ModelLayerLocation(SpectrumCommon.locate("tropical_fish_head"), "main");
+	public static final ModelLayerLocation TROPICAL_FISH_HEAD_PATTERN = new ModelLayerLocation(SpectrumCommon.locate("tropical_fish_head"), "pattern");
+	public static final ModelLayerLocation TURTLE_HEAD = new ModelLayerLocation(SpectrumCommon.locate("turtle_head"), "main");
+	public static final ModelLayerLocation VEX_HEAD = new ModelLayerLocation(SpectrumCommon.locate("vex_head"), "main");
+	public static final ModelLayerLocation VILLAGER_HEAD = new ModelLayerLocation(SpectrumCommon.locate("villager_head"), "main");
+	public static final ModelLayerLocation VINDICATOR_HEAD = new ModelLayerLocation(SpectrumCommon.locate("vindicator_head"), "main");
+	public static final ModelLayerLocation WANDERING_TRADER_HEAD = new ModelLayerLocation(SpectrumCommon.locate("wandering_trader_head"), "main");
+	public static final ModelLayerLocation WARDEN_HEAD = new ModelLayerLocation(SpectrumCommon.locate("warden_head"), "main");
+	public static final ModelLayerLocation WARDEN_HEAD_BIOLUMINESCENT = new ModelLayerLocation(SpectrumCommon.locate("piglin_brute_head"), "bioluminescent_layer");
+	public static final ModelLayerLocation WARDEN_HEAD_PULSATING_SPOTS_1 = new ModelLayerLocation(SpectrumCommon.locate("piglin_brute_head"), "pulsating_spots_1");
+	public static final ModelLayerLocation WARDEN_HEAD_PULSATING_SPOTS_2 = new ModelLayerLocation(SpectrumCommon.locate("piglin_brute_head"), "pulsating_spots_2");
+	public static final ModelLayerLocation WITCH_HEAD = new ModelLayerLocation(SpectrumCommon.locate("witch_head"), "main");
+	public static final ModelLayerLocation WITHER_HEAD = new ModelLayerLocation(SpectrumCommon.locate("wither_head"), "main");
+	public static final ModelLayerLocation WOLF_HEAD = new ModelLayerLocation(SpectrumCommon.locate("wolf_head"), "main");
+	public static final ModelLayerLocation ZOGLIN_HEAD = new ModelLayerLocation(SpectrumCommon.locate("zoglin_head"), "main");
+	public static final ModelLayerLocation ZOMBIE_HORSE_HEAD = new ModelLayerLocation(SpectrumCommon.locate("zombie_horse_head"), "main");
+	public static final ModelLayerLocation ZOMBIE_VILLAGER_HEAD = new ModelLayerLocation(SpectrumCommon.locate("zombie_villager_head"), "main");
+	public static final ModelLayerLocation ZOMBIFIED_PIGLIN_HEAD = new ModelLayerLocation(SpectrumCommon.locate("zombified_piglin_head"), "main");
+	public static final ModelLayerLocation ARMADILLO_HEAD = new ModelLayerLocation(SpectrumCommon.locate("armadillo_head"), "main");
+	public static final ModelLayerLocation BREEZE_HEAD = new ModelLayerLocation(SpectrumCommon.locate("breeze_head"), "main");
+	public static final ModelLayerLocation BOGGED_HEAD = new ModelLayerLocation(SpectrumCommon.locate("bogged_head"), "main");
+	public static final ModelLayerLocation BOGGED_HEAD_OVERLAY = new ModelLayerLocation(SpectrumCommon.locate("bogged_head"), "overlay");
+	public static final ModelLayerLocation PIGLIN_BRUTE_HEAD = new ModelLayerLocation(SpectrumCommon.locate("piglin_brute_head"), "main");
+	
+	public static final ModelLayerLocation EGG_LAYING_WOOLY_PIG_HEAD = new ModelLayerLocation(SpectrumCommon.locate("egg_laying_wooly_pig_head"), "main");
+	public static final ModelLayerLocation ERASER_HEAD = new ModelLayerLocation(SpectrumCommon.locate("eraser_head"), "body");
+	public static final ModelLayerLocation KINDLING_HEAD = new ModelLayerLocation(SpectrumCommon.locate("kindling_head"), "main");
+	public static final ModelLayerLocation LIZARD_HEAD = new ModelLayerLocation(SpectrumCommon.locate("lizard_head"), "main");
+	public static final ModelLayerLocation LIZARD_HEAD_FRILLS = new ModelLayerLocation(SpectrumCommon.locate("lizard_head"), "frills");
+	public static final ModelLayerLocation MONSTROSITY_HEAD = new ModelLayerLocation(SpectrumCommon.locate("monstrosity_head"), "main");
+	public static final ModelLayerLocation PRESERVATION_TURRET_HEAD = new ModelLayerLocation(SpectrumCommon.locate("preservation_turret_head"), "main");
+	
+	/**
+	 * Armor
+	 */
+	public static final ModelLayerLocation BEDROCK_LAYER = new ModelLayerLocation(SpectrumCommon.locate("bedrock_armor"), "main");
+	public static final ResourceLocation BEDROCK_ARMOR_ID = SpectrumCommon.locate("textures/armor/bedrock_armor.png");
+	
+	
+	public static void register() {
+		EntityModelLayerRegistry.registerModelLayer(WOOLY_PIG, EggLayingWoolyPigEntityModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(WOOLY_PIG_HAT, EggLayingWoolyPigHatEntityModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(WOOLY_PIG_WOOL, EggLayingWoolyPigWoolEntityModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(PRESERVATION_TURRET, PreservationTurretEntityModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(MONSTROSITY, MonstrosityEntityModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(LIZARD_SCALES, LizardEntityModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(LIZARD_FRILLS, LizardEntityModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(LIZARD_HORNS, LizardEntityModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(KINDLING, KindlingEntityModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(KINDLING_SADDLE, KindlingEntityModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(KINDLING_ARMOR, KindlingEntityModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(KINDLING_COUGH, KindlingCoughEntityModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(ERASER, EraserEntityModel::getTexturedModelData);
+		
+		EntityModelLayerRegistry.registerModelLayer(ALLAY_HEAD, AllayHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(AXOLOTL_BLUE_HEAD, AxolotlHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(AXOLOTL_CYAN_HEAD, AxolotlHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(AXOLOTL_GOLD_HEAD, AxolotlHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(AXOLOTL_WILD_HEAD, AxolotlHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(AXOLOTL_LEUCISTIC_HEAD, AxolotlHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(BAT_HEAD, BatHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(BEE_HEAD, BeeHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(BLAZE_HEAD, BlazeHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(CAT_HEAD, CatHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(CAVE_SPIDER_HEAD, SpiderHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(CHICKEN_HEAD, ChickenHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(TROPICAL_FISH_HEAD, TropicalFishHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(TROPICAL_FISH_HEAD_PATTERN, TropicalFishHeadModel::getTexturedModelDataPattern);
+		EntityModelLayerRegistry.registerModelLayer(COD_HEAD, CodHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(COW_HEAD, CowHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(DONKEY_HEAD, HorseHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(DROWNED_HEAD, DrownedHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(DROWNED_HEAD_OUTER, DrownedHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(ELDER_GUARDIAN_HEAD, GuardianHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(ENDERMAN_HEAD, EndermanHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(ENDERMAN_HEAD_OVERLAY, EndermanHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(ENDERMITE_HEAD, EndermiteHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(EVOKER_HEAD, IllagerHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(FOX_HEAD, FoxHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(FOX_ARCTIC_HEAD, FoxHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(FROG_COLD_HEAD, FrogHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(FROG_TEMPERATE_HEAD, FrogHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(FROG_WARM_HEAD, FrogHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(GHAST_HEAD, GhastHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(GLOW_SQUID_HEAD, SquidHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(GOAT_HEAD, GoatHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(GUARDIAN_HEAD, GuardianHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(HOGLIN_HEAD, HoglinHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(HORSE_HEAD, HorseHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(HUSK_HEAD, ZombieHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(ILLUSIONER_HEAD, IllagerHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(IRON_GOLEM_HEAD, IronGolemHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(LLAMA_HEAD, LlamaHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(MAGMA_CUBE_HEAD, MagmaCubeHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(MOOSHROOM_BROWN_HEAD, CowHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(MOOSHROOM_RED_HEAD, CowHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(MULE_HEAD, HorseHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(OCELOT_HEAD, CatHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(PANDA_HEAD, PandaHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(PARROT_BLUE_HEAD, ParrotHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(PARROT_CYAN_HEAD, ParrotHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(PARROT_GRAY_HEAD, ParrotHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(PARROT_GREEN_HEAD, ParrotHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(PARROT_RED_HEAD, ParrotHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(PHANTOM_HEAD, PhantomHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(PIG_HEAD, PigHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(POLAR_BEAR_HEAD, BearHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(PUFFERFISH_HEAD, PufferFishHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(RABBIT_HEAD, RabbitHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(RAVAGER_HEAD, RavagerHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(SALMON_HEAD, SalmonHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(SHEEP_HEAD, SheepHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(SHULKER_HEAD, ShulkerHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(SHULKER_BLACK_HEAD, ShulkerHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(SHULKER_BLUE_HEAD, ShulkerHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(SHULKER_BROWN_HEAD, ShulkerHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(SHULKER_CYAN_HEAD, ShulkerHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(SHULKER_GRAY_HEAD, ShulkerHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(SHULKER_GREEN_HEAD, ShulkerHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(SHULKER_LIGHT_BLUE_HEAD, ShulkerHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(SHULKER_LIGHT_GRAY_HEAD, ShulkerHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(SHULKER_LIME_HEAD, ShulkerHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(SHULKER_MAGENTA_HEAD, ShulkerHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(SHULKER_ORANGE_HEAD, ShulkerHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(SHULKER_PINK_HEAD, ShulkerHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(SHULKER_PURPLE_HEAD, ShulkerHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(SHULKER_RED_HEAD, ShulkerHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(SHULKER_WHITE_HEAD, ShulkerHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(SHULKER_YELLOW_HEAD, ShulkerHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(SILVERFISH_HEAD, SilverfishHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(SLIME_HEAD, SlimeHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(SLIME_HEAD_TRANSLUCENT, SlimeHeadModel::getTexturedModelTranslucent);
+		EntityModelLayerRegistry.registerModelLayer(SNOW_GOLEM_HEAD, ZombieHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(SPIDER_HEAD, SpiderHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(SQUID_HEAD, SquidHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(STRAY_HEAD, SkullModel::createMobHeadLayer);
+		EntityModelLayerRegistry.registerModelLayer(STRAY_HEAD_OVERLAY, SkullModel::createMobHeadLayer);
+		EntityModelLayerRegistry.registerModelLayer(STRIDER_HEAD, StriderHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(TADPOLE_HEAD, TadpoleHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(TURTLE_HEAD, TurtleHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(VEX_HEAD, VexHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(VILLAGER_HEAD, VillagerHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(VINDICATOR_HEAD, IllagerHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(WANDERING_TRADER_HEAD, VillagerHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(WARDEN_HEAD, WardenHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(WARDEN_HEAD_BIOLUMINESCENT, WardenHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(WARDEN_HEAD_PULSATING_SPOTS_1, WardenHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(WARDEN_HEAD_PULSATING_SPOTS_2, WardenHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(WITCH_HEAD, WitchHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(WITHER_HEAD, ZombieHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(WOLF_HEAD, WolfHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(ZOGLIN_HEAD, HoglinHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(ZOMBIE_VILLAGER_HEAD, VillagerHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(ZOMBIFIED_PIGLIN_HEAD, PiglinHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(ARMADILLO_HEAD, ArmadilloHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(BREEZE_HEAD, BreezeHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(BOGGED_HEAD, BoggedHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(BOGGED_HEAD_OVERLAY, BoggedHeadModel::getTexturedModelDataOverlay);
+		EntityModelLayerRegistry.registerModelLayer(PIGLIN_BRUTE_HEAD, PiglinHeadModel::getTexturedModelData);
+		
+		EntityModelLayerRegistry.registerModelLayer(CAMEL_HEAD, CamelHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(SNIFFER_HEAD, SnifferHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(SKELETON_HORSE_HEAD, HorseHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(ZOMBIE_HORSE_HEAD, HorseHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(DOLPHIN_HEAD, DolphinHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(PILLAGER_HEAD, IllagerHeadModel::getTexturedModelData);
+		
+		EntityModelLayerRegistry.registerModelLayer(EGG_LAYING_WOOLY_PIG_HEAD, EggLayingWoolyPigHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(MONSTROSITY_HEAD, MonstrosityHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(KINDLING_HEAD, KindlingHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(ERASER_HEAD, EraserHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(LIZARD_HEAD, LizardHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(LIZARD_HEAD_FRILLS, LizardHeadModel::getTexturedModelDataFrills);
+		EntityModelLayerRegistry.registerModelLayer(PRESERVATION_TURRET_HEAD, PreservationTurretHeadModel::getTexturedModelData);
+		
+		EntityModelLayerRegistry.registerModelLayer(BEDROCK_LAYER, () -> LayerDefinition.create(BedrockArmorModel.getMeshDefinition(), 128, 128));
+	}
+	
+}

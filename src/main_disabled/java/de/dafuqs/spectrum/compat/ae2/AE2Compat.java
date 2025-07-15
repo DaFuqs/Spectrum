@@ -55,7 +55,7 @@ public class AE2Compat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	}
 	
 	@Override
-	@Environment(EnvType.CLIENT)
+	@OnlyIn(Dist.CLIENT)
 	public void registerClient() {
 		SpectrumBlocks.CLIENT_REGISTRAR.flush();
 	}

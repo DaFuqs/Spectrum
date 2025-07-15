@@ -8,7 +8,7 @@ import me.shedaniel.rei.api.common.util.*;
 import net.fabricmc.api.*;
 import net.minecraft.network.chat.*;
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public class FreezingCategory extends BlockToBlockWithChanceCategory {
 	
 	@Override

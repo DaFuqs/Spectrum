@@ -9,7 +9,7 @@ public class NEEPMeatCompat extends SpectrumIntegrationPacks.ModIntegrationPack 
 
 	}
 
-	@Environment(EnvType.CLIENT)
+	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void registerClient() {
 

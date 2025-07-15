@@ -11,7 +11,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public abstract class GatedItemInformationPageCategory extends GatedDisplayCategory<GatedItemInformationDisplay> {
 	
 	@Override

@@ -7,7 +7,7 @@ import net.fabricmc.api.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public class PotionWorkshopBrewingCategory extends PotionWorkshopCategory<PotionWorkshopBrewingDisplay> {
 	
 	@Override

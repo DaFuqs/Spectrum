@@ -61,7 +61,7 @@ public class FDCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 		});
 	}
 	
-	@Environment(EnvType.CLIENT)
+	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void registerClient() {
 	

@@ -10,7 +10,7 @@ import net.fabricmc.api.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.*;
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public class PotionWorkshopReactingCategory extends GatedItemInformationPageCategory {
 	
 	public static final EntryStack<ItemStack> POTION_WORKSHOP_ENTRY = EntryStacks.of(SpectrumBlocks.POTION_WORKSHOP);

@@ -24,6 +24,7 @@ repositories {
 	maven { url = "https://repo.unascribed.com" } // Ears API
 	maven { url = "https://dl.cloudsmith.io/public/klikli-dev/mods/maven/" } // Modonomicon
 	maven { url = "https://maven.wispforest.io/releases" }
+	maven { url = "https://maven.theillusivec4.top/" } // curios
 	maven {
 		name = 'ParchmentMC'
 		url = 'https://maven.parchmentmc.org'
@@ -117,6 +118,9 @@ dependencies {
 		exclude(group: "com.klikli_dev")
 		exclude(group: "mezz.jei")
 	}
+
+	compileOnly "top.theillusivec4.curios:curios-neoforge:${project.curios_version}:api"
+
 //
 //	switch (recipe_viewer.toLowerCase(Locale.ROOT)) {
 //		case "rei": modLocalRuntime("me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"); break

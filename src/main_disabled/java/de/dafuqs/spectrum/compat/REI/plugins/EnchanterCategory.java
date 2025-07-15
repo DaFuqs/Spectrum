@@ -10,7 +10,7 @@ import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import org.jetbrains.annotations.*;
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public abstract class EnchanterCategory<T extends EnchanterDisplay> extends GatedDisplayCategory<T> {
 	
 	public final static ResourceLocation BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/container/enchanter.png");

@@ -88,7 +88,7 @@ public class TravelersBackpackCompat extends SpectrumIntegrationPacks.ModIntegra
 		});
 	}
 	
-	@Environment(EnvType.CLIENT)
+	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void registerClient() {
 	

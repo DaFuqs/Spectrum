@@ -13,7 +13,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public class NaturesStaffConversionsCategory extends GatedDisplayCategory<NaturesStaffConversionsDisplay> {
 	
 	@Override

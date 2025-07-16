@@ -10,42 +10,40 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 
 import java.util.*;
-import java.util.function.*;
 import java.util.function.Supplier;
 
 import static de.dafuqs.spectrum.SpectrumCommon.*;
 
 public class SpectrumArmorMaterials {
 	
-	public static Holder<ArmorMaterial> GEMSTONE;
-	public static Holder<ArmorMaterial> BEDROCK;
+	public static Holder<ArmorMaterial> GEMSTONE = register("gemstone",
+			Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+				map.put(ArmorItem.Type.BOOTS, SpectrumCommon.CONFIG.GemstoneArmorBootsProtection);
+				map.put(ArmorItem.Type.LEGGINGS, SpectrumCommon.CONFIG.GemstoneArmorLeggingsProtection);
+				map.put(ArmorItem.Type.CHESTPLATE, SpectrumCommon.CONFIG.GemstoneArmorChestplateProtection);
+				map.put(ArmorItem.Type.HELMET, SpectrumCommon.CONFIG.GemstoneArmorHelmetProtection);
+			}),
+			15,
+			BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.AMETHYST_BLOCK_CHIME),
+			SpectrumCommon.CONFIG.GemstoneArmorToughness,
+			SpectrumCommon.CONFIG.GemstoneArmorKnockbackResistance,
+			() -> Ingredient.of(SpectrumItemTags.GEMSTONE_SHARDS));
+	
+	public static Holder<ArmorMaterial> BEDROCK = register("bedrock",
+			Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+				map.put(ArmorItem.Type.BOOTS, SpectrumCommon.CONFIG.BedrockArmorBootsProtection);
+				map.put(ArmorItem.Type.LEGGINGS, SpectrumCommon.CONFIG.BedrockArmorLeggingsProtection);
+				map.put(ArmorItem.Type.CHESTPLATE, SpectrumCommon.CONFIG.BedrockArmorChestplateProtection);
+				map.put(ArmorItem.Type.HELMET, SpectrumCommon.CONFIG.BedrockArmorHelmetProtection);
+			}),
+			5,
+			SoundEvents.ARMOR_EQUIP_NETHERITE,
+			SpectrumCommon.CONFIG.BedrockArmorToughness,
+			SpectrumCommon.CONFIG.BedrockArmorKnockbackResistance,
+			() -> Ingredient.of(SpectrumItems.BEDROCK_DUST));
 
 	public static void register() {
-		GEMSTONE = register("gemstone",
-				Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
-					map.put(ArmorItem.Type.BOOTS, SpectrumCommon.CONFIG.GemstoneArmorBootsProtection);
-					map.put(ArmorItem.Type.LEGGINGS, SpectrumCommon.CONFIG.GemstoneArmorLeggingsProtection);
-					map.put(ArmorItem.Type.CHESTPLATE, SpectrumCommon.CONFIG.GemstoneArmorChestplateProtection);
-					map.put(ArmorItem.Type.HELMET, SpectrumCommon.CONFIG.GemstoneArmorHelmetProtection);
-				}),
-				15,
-				BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.AMETHYST_BLOCK_CHIME),
-				SpectrumCommon.CONFIG.GemstoneArmorToughness,
-				SpectrumCommon.CONFIG.GemstoneArmorKnockbackResistance,
-				() -> Ingredient.of(SpectrumItemTags.GEMSTONE_SHARDS));
 
-		BEDROCK = register("bedrock",
-				Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
-					map.put(ArmorItem.Type.BOOTS, SpectrumCommon.CONFIG.BedrockArmorBootsProtection);
-					map.put(ArmorItem.Type.LEGGINGS, SpectrumCommon.CONFIG.BedrockArmorLeggingsProtection);
-					map.put(ArmorItem.Type.CHESTPLATE, SpectrumCommon.CONFIG.BedrockArmorChestplateProtection);
-					map.put(ArmorItem.Type.HELMET, SpectrumCommon.CONFIG.BedrockArmorHelmetProtection);
-				}),
-				5,
-				SoundEvents.ARMOR_EQUIP_NETHERITE,
-				SpectrumCommon.CONFIG.BedrockArmorToughness,
-				SpectrumCommon.CONFIG.BedrockArmorKnockbackResistance,
-				() -> Ingredient.of(SpectrumItems.BEDROCK_DUST));
 	}
 	
 	public static Holder<ArmorMaterial> register(
@@ -55,8 +53,8 @@ public class SpectrumArmorMaterials {
 			Holder<SoundEvent> equipSound,
 			float toughness,
 			float knockbackResistance,
-			Supplier<Ingredient> repairIngredient
-	) {
+			Supplier<Ingredient> repairIngredient) {
+		
 		List<ArmorMaterial.Layer> layers = List.of(new ArmorMaterial.Layer(locate(id)));
 
 		EnumMap<ArmorItem.Type, Integer> enumMap = new EnumMap<>(ArmorItem.Type.class);
@@ -66,8 +64,7 @@ public class SpectrumArmorMaterials {
 		}
 		
 		return Registry.registerForHolder(
-				BuiltInRegistries.ARMOR_MATERIAL,
-				locate(id),
+				BuiltInRegistries.ARMOR_MATERIAL, locate(id),
 				new ArmorMaterial(enumMap, enchantability, equipSound, Suppliers.memoize(repairIngredient::get), layers, toughness, knockbackResistance));
 	}
 	

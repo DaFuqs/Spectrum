@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.entity.variants;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.network.*;
@@ -23,7 +24,7 @@ public class LizardHornVariant {
 	public static final ResourceKey<LizardHornVariant> HORNY = createKey("horny");
 	
 	private static ResourceKey<LizardHornVariant> createKey(String name) {
-		return ResourceKey.create(SpectrumRegistryKeys.LIZARD_HORN_VARIANT, ResourceLocation.withDefaultNamespace(name));
+		return ResourceKey.create(SpectrumRegistryKeys.LIZARD_HORN_VARIANT, SpectrumCommon.locate(name));
 	}
 	
 	private final ResourceLocation texture;

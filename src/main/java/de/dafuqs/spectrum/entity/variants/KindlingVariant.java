@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.entity.variants;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
@@ -38,7 +39,7 @@ public class KindlingVariant {
 	public static final ResourceKey<KindlingVariant> DEFAULT = createKey("default");
 	
 	private static ResourceKey<KindlingVariant> createKey(String name) {
-		return ResourceKey.create(SpectrumRegistryKeys.KINDLING_VARIANT, ResourceLocation.withDefaultNamespace(name));
+		return ResourceKey.create(SpectrumRegistryKeys.KINDLING_VARIANT, SpectrumCommon.locate(name));
 	}
 	
 	private final ResourceLocation defaultTexture;

@@ -90,7 +90,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 	protected void saveAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
 		super.saveAdditional(nbt, registryLookup);
 		PlayerOwned.writeOwnerUUID(nbt, this.ownerUUID);
-		if (this.memoryItemStack.isEmpty()) {
+		if (!this.memoryItemStack.isEmpty()) {
 			CodecHelper.writeNbt(nbt, "MemoryItem", ItemStack.CODEC, memoryItemStack);
 		}
 	}

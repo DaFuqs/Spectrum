@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.mixin.client;
 
+import com.llamalad7.mixinextras.sugar.*;
 import de.dafuqs.spectrum.blocks.mob_head.*;
 import de.dafuqs.spectrum.blocks.mob_head.client.*;
 import net.fabricmc.api.*;
@@ -19,8 +20,8 @@ public abstract class HeadFeatureRendererMixin<T extends LivingEntity, M extends
 
 	@Inject(method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/entity/LivingEntity;FFFFFF)V",
 			at = @At(value = "INVOKE", target = "Lnet/minecraft/client/model/ModelPart;rotate(Lnet/minecraft/client/util/math/MatrixStack;)V", shift = At.Shift.AFTER),
-			cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
-	private void spectrum$renderSkull(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, T livingEntity, float animationProgress, float h, float j, float k, float l, float m, CallbackInfo ci, ItemStack itemStack, Item item, boolean bl) {
+			cancellable = true)
+	private void spectrum$renderSkull(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, T livingEntity, float animationProgress, float h, float j, float k, float l, float m, CallbackInfo ci, @Local Item item, @Local boolean bl) {
 		if (item instanceof BlockItem blockItem && blockItem.getBlock() instanceof SpectrumSkullBlock spectrumSkullBlock) {
 			m = 1.1875F;
 			matrixStack.scale(m, -m, -m);

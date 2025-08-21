@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 @Mixin(InGameOverlayRenderer.class)
 public abstract class BlockOverlayRendererMixin {
 
-	@Inject(method = "renderOverlays(Lnet/minecraft/client/MinecraftClient;Lnet/minecraft/client/util/math/MatrixStack;)V", at = @At("TAIL"), locals = LocalCapture.CAPTURE_FAILSOFT)
+	@Inject(method = "renderOverlays(Lnet/minecraft/client/MinecraftClient;Lnet/minecraft/client/util/math/MatrixStack;)V", at = @At("TAIL"))
 	private static void spectrum$renderFluidOverlay(MinecraftClient minecraftClient, MatrixStack matrixStack, CallbackInfo ci) {
 		if (!minecraftClient.player.isSpectator()) {
 			if (minecraftClient.player.isSubmergedIn(SpectrumFluidTags.LIQUID_CRYSTAL)) {

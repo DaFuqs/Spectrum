@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.mixin;
 
 import com.google.gson.*;
+import com.llamalad7.mixinextras.sugar.*;
 import de.dafuqs.spectrum.helpers.NbtHelper;
 import net.minecraft.advancement.*;
 import net.minecraft.item.*;
@@ -19,9 +20,8 @@ public class AdvancementDisplayMixin {
 					value = "INVOKE",
 					target = "Lnet/minecraft/item/ItemStack;<init>(Lnet/minecraft/item/ItemConvertible;)V",
 					ordinal = 0),
-			locals = LocalCapture.CAPTURE_FAILSOFT,
 			cancellable = true)
-	private static void iconFromJson(JsonObject json, CallbackInfoReturnable<ItemStack> info, Item item) {
+	private static void iconFromJson(JsonObject json, CallbackInfoReturnable<ItemStack> info, @Local Item item) {
 		ItemStack itemStack = new ItemStack(item);
 		Optional<NbtCompound> nbt = NbtHelper.getNbtCompound(json.get("nbt"));
 		if (nbt.isPresent()) itemStack.setNbt(nbt.get());

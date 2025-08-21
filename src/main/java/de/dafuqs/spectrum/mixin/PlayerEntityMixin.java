@@ -257,12 +257,12 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 		return experience;
 	}
 	
-	@ModifyVariable(method = "getBlockBreakingSpeed",
-			slice = @Slice(from = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;hasStatusEffect(Lnet/minecraft/entity/effect/StatusEffect;)Z"),
+	@ModifyConstant(method = "getBlockBreakingSpeed",
+			slice = @Slice(
+					from = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;hasStatusEffect(Lnet/minecraft/entity/effect/StatusEffect;)Z"),
 					to = @At("TAIL")
 			),
-			at = @At(value = "LOAD"),
-			ordinal = 1
+			constant = {@Constant(floatValue = 0.3F), @Constant(floatValue = 0.09F), @Constant(floatValue = 0.0027F), @Constant(floatValue = 8.1E-4F)}
 	)
 	public float applyInexorableEffects(float value) {
 		if (isInexorableActive())

@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
+import com.llamalad7.mixinextras.sugar.*;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
@@ -26,9 +27,9 @@ public abstract class GlassBottleItemMixin {
 	
 	@Inject(method = "use(Lnet/minecraft/world/World;Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/util/Hand;)Lnet/minecraft/util/TypedActionResult;",
 			at = @At(value = "INVOKE", target = "Lnet/minecraft/fluid/FluidState;isIn(Lnet/minecraft/registry/tag/TagKey;)Z"),
-			cancellable = true,
-			locals = LocalCapture.CAPTURE_FAILHARD)
-	public void onUse(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir, List<AreaEffectCloudEntity> list, ItemStack handStack, BlockHitResult areaEffectCloudEntity, BlockPos blockPos) {
+			cancellable = true
+	)
+	public void onUse(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir, @Local ItemStack handStack, @Local BlockPos blockPos) {
 		BlockState blockState = world.getBlockState(blockPos);
 		
 		if (blockState.isOf(SpectrumBlocks.FADING)

@@ -21,8 +21,8 @@ public abstract class WitherEntityMixin extends LivingEntity {
 	}
 
 	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ItemEntity;setCovetedItem()V"),
-			method = "dropEquipment(Lnet/minecraft/entity/damage/DamageSource;IZ)V", locals = LocalCapture.CAPTURE_FAILSOFT)
-	private void spawnEntity(DamageSource source, int lootingMultiplier, boolean allowDrops, CallbackInfo ci, ItemEntity itemEntity) {
+			method = "dropEquipment(Lnet/minecraft/entity/damage/DamageSource;IZ)V")
+	private void spawnEntity(DamageSource source, int lootingMultiplier, boolean allowDrops, CallbackInfo ci, @Local ItemEntity itemEntity) {
 		Entity attackerEntity = source.getAttacker();
 		if (attackerEntity instanceof LivingEntity livingAttacker) {
 			World world = attackerEntity.getWorld();

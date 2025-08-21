@@ -14,8 +14,7 @@ import de.dafuqs.spectrum.registries.*;
 import dev.emi.emi.api.*;
 import dev.emi.emi.api.recipe.*;
 import dev.emi.emi.api.stack.*;
-import dev.emi.emi.config.*;
-import dev.emi.emi.runtime.*;
+import net.fabricmc.loader.api.*;
 import net.minecraft.block.*;
 import net.minecraft.client.gui.screen.ingame.*;
 import net.minecraft.fluid.*;
@@ -185,12 +184,13 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 		});
 		
 		//WorldInteractionRecipe
-		EmiStack water = EmiStack.of(Fluids.WATER, FluidUnit.BUCKET);
-		EmiStack lava = EmiStack.of(Fluids.LAVA, FluidUnit.BUCKET);
-		EmiStack dragonrot = EmiStack.of(SpectrumFluids.DRAGONROT, FluidUnit.BUCKET);
-		EmiStack liquidCrystal = EmiStack.of(SpectrumFluids.LIQUID_CRYSTAL, FluidUnit.BUCKET);
-		EmiStack midnightSolution = EmiStack.of(SpectrumFluids.MIDNIGHT_SOLUTION, FluidUnit.BUCKET);
-		EmiStack mud = EmiStack.of(SpectrumFluids.MUD, FluidUnit.BUCKET);
+		long amount = FabricLoader.getInstance().isModLoaded("connectormod") ? 1_000 : 81_000;
+		EmiStack water = EmiStack.of(Fluids.WATER, amount);
+		EmiStack lava = EmiStack.of(Fluids.LAVA, amount);
+		EmiStack dragonrot = EmiStack.of(SpectrumFluids.DRAGONROT, amount);
+		EmiStack liquidCrystal = EmiStack.of(SpectrumFluids.LIQUID_CRYSTAL, amount);
+		EmiStack midnightSolution = EmiStack.of(SpectrumFluids.MIDNIGHT_SOLUTION, amount);
+		EmiStack mud = EmiStack.of(SpectrumFluids.MUD, amount);
 		EmiStack waterCatalyst = water.copy().setRemainder(water);
 		EmiStack lavaCatalyst = lava.copy().setRemainder(lava);
 		EmiStack dragonrotCatalyst = dragonrot.copy().setRemainder(dragonrot);
@@ -317,8 +317,8 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 		try {
 			registry.addRecipe(supplier.get());
 		} catch (Throwable e) {
-			EmiReloadLog.warn("Exception thrown when parsing EMI recipe (no ID available)");
-			EmiReloadLog.error(e);
+			SpectrumCommon.logWarning("Exception thrown when parsing EMI recipe (no ID available)");
+			SpectrumCommon.logError(e.toString());
 		}
 	}
 	

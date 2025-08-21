@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.8-SNAPSHOT'
+	id 'fabric-loom' version '1.11-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -30,7 +30,7 @@ repositories {
 
 dependencies {
 	// jetbrains annotations
-	implementation ("org.jetbrains:annotations:26.0.1")
+	implementation ("org.jetbrains:annotations:26.0.2")
 
 	// graph api and its dependencies
 	implementation include("org.jgrapht:jgrapht-core:1.5.2")
@@ -65,7 +65,7 @@ dependencies {
 	modCompileOnly("dev.emi:emi-fabric:${emi_version}") // https://github.com/emilyploszaj/emi
 	// https://github.com/klikli-dev/modonomicon
 	modImplementation("com.klikli_dev:modonomicon-${project.minecraft_version}-fabric:${project.modonomicon_version}") { exclude(group: "com.klikli_dev") exclude(group: "mezz.jei") }
-	modCompileOnly("mezz.jei:jei-1.20.1-fabric:15.20.0.105")
+	modCompileOnly("mezz.jei:jei-1.20.1-fabric:15.20.0.112")
 	// required by modonomicon, though in a very outdated version, so we include our up to date version here
 
 	switch (recipe_viewer.toLowerCase(Locale.ROOT)) {

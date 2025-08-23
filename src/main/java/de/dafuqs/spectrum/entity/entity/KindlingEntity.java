@@ -168,6 +168,7 @@ public class KindlingEntity extends AbstractHorse implements RangedAttackMob, Ne
 		});
 		nbt.putInt("chillTime", getChillTime());
 		nbt.putInt("eepyTime", getEepyTime());
+		nbt.putInt("clip_time", getClipTime());
 		nbt.putBoolean("playing", isPlaying());
 	}
 	
@@ -184,6 +185,7 @@ public class KindlingEntity extends AbstractHorse implements RangedAttackMob, Ne
 		setChillTime(nbt.getInt("chillTime"));
 		setEepyTime(nbt.getInt("eepyTime"));
 		setPlaying(nbt.getBoolean("playing"));
+		setClipped(nbt.getInt("clip_time"));
 		
 		this.syncSaddleToClients();
 	}
@@ -544,7 +546,6 @@ public class KindlingEntity extends AbstractHorse implements RangedAttackMob, Ne
 		}
 		
 		if (canEat) {
-			//this.playEatingAnimation();
 			this.gameEvent(GameEvent.EAT);
 		}
 		

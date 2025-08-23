@@ -33,12 +33,12 @@ public class ItemProjectileEntity extends ThrowableItemProjectile {
 				HitResult.Type type = hitResult.getType();
 				if (type == HitResult.Type.ENTITY) {
 					this.level().gameEvent(GameEvent.PROJECTILE_LAND, hitResult.getLocation(), GameEvent.Context.of(this, null));
-					behavior.onEntityHit(this, stack, getOwner(), (EntityHitResult) hitResult);
+					stack = behavior.onEntityHit(this, stack, getOwner(), (EntityHitResult) hitResult);
 				} else if (type == HitResult.Type.BLOCK) {
 					BlockHitResult blockHitResult = (BlockHitResult) hitResult;
 					BlockPos blockPos = blockHitResult.getBlockPos();
 					this.level().gameEvent(GameEvent.PROJECTILE_LAND, blockPos, GameEvent.Context.of(this, this.level().getBlockState(blockPos)));
-					behavior.onBlockHit(this, stack, getOwner(), (BlockHitResult) hitResult);
+					stack = behavior.onBlockHit(this, stack, getOwner(), (BlockHitResult) hitResult);
 				}
 			}
 			

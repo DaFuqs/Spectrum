@@ -121,7 +121,8 @@
           "id": "spectrum:present",
           "components": {
             "spectrum:wrapped_present": {
-              "variant": "pride"
+              "variant": "pride",
+              "colors": {}
             }
           }
         }

@@ -7,7 +7,6 @@ import de.dafuqs.spectrum.compat.botania.*;
 import de.dafuqs.spectrum.compat.create.*;
 import de.dafuqs.spectrum.compat.ears.*;
 import de.dafuqs.spectrum.compat.exclusions_lib.*;
-import de.dafuqs.spectrum.compat.farmersdelight.*;
 import de.dafuqs.spectrum.compat.gobber.*;
 import de.dafuqs.spectrum.compat.idwtialsimmoedm.*;
 import de.dafuqs.spectrum.compat.malum.*;
@@ -45,7 +44,6 @@ public class SpectrumIntegrationPacks {
 	public static final String BOTANIA_ID = "botania";
 	public static final String MODONOMICON_ID = "modonomicon";
 	public static final String CREATE_ID = "create";
-	public static final String FARMERSDELIGHT_ID = "farmersdelight";
 	public static final String NEEPMEAT_ID = "neepmeat";
 	public static final String MALUM_ID = "malum";
 	public static final String EXCLUSIONS_LIB_ID = "exclusions_lib";
@@ -71,7 +69,6 @@ public class SpectrumIntegrationPacks {
 			registerIntegrationPack(TRAVELERS_BACKPACK_ID, () -> new TravelersBackpackCompat());
 			registerIntegrationPack(BOTANIA_ID, () -> new BotaniaCompat());
 			registerIntegrationPack(NEEPMEAT_ID, () -> new NEEPMeatCompat());
-			registerIntegrationPack(FARMERSDELIGHT_ID, () -> new FDCompat());
 			registerIntegrationPack(MALUM_ID, () -> new MalumCompat());
 			registerIntegrationPack(CREATE_ID, () -> new CreateCompat());
 		}

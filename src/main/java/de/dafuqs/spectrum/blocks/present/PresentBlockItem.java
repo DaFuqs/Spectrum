@@ -48,15 +48,15 @@ public class PresentBlockItem extends BlockItem {
 	}
 	
 	public static boolean isWrapped(ItemStack itemStack) {
-		return getWrapData(itemStack).wrapped();
+		return getWrapData(itemStack) != null;
 	}
 	
-	public static WrappedPresentComponent getWrapData(ItemStack itemStack) {
-		return itemStack.getOrDefault(SpectrumDataComponentTypes.WRAPPED_PRESENT, WrappedPresentComponent.DEFAULT);
+	public static @Nullable WrappedPresentComponent getWrapData(ItemStack itemStack) {
+		return itemStack.get(SpectrumDataComponentTypes.WRAPPED_PRESENT);
 	}
 	
 	public static void wrap(ItemStack itemStack, PresentBlock.WrappingPaper wrappingPaper, Map<Integer, Integer> colors) {
-		itemStack.set(SpectrumDataComponentTypes.WRAPPED_PRESENT, new WrappedPresentComponent(true, wrappingPaper, colors));
+		itemStack.set(SpectrumDataComponentTypes.WRAPPED_PRESENT, new WrappedPresentComponent(wrappingPaper, colors));
 	}
 	
 	@Override

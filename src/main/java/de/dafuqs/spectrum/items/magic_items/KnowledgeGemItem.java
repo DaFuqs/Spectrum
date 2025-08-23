@@ -73,7 +73,7 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Loo
 		super.onUseTick(world, user, stack, remainingUseTicks);
 		if (user instanceof ServerPlayer serverPlayerEntity) {
 			
-			int playerExperience = serverPlayerEntity.totalExperience;
+			int playerExperience = getActualPlayerExperience(serverPlayerEntity);
 			int itemExperience = ExperienceStorageItem.getStoredExperience(stack);
 			int transferableExperience = getTransferableExperiencePerTick(world.registryAccess(), stack);
 			
@@ -134,7 +134,7 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Loo
 	public boolean removePlayerExperience(@NotNull Player playerEntity, int experience) {
 		if (playerEntity.isCreative()) {
 			return true;
-		} else if (playerEntity.totalExperience < experience) {
+		} else if (getActualPlayerExperience(playerEntity) < experience) {
 			return false;
 		} else {
 			playerEntity.giveExperiencePoints(-experience);
@@ -174,5 +174,34 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Loo
 	public boolean canBeEnchantedWith(ItemStack stack, Holder<Enchantment> enchantment, EnchantingContext context) {
 		return super.canBeEnchantedWith(stack, enchantment, context) || enchantment.is(Enchantments.EFFICIENCY) || enchantment.is(Enchantments.QUICK_CHARGE);
 	}
-
+	
+	///////////////////
+	
+	/*
+		Because vanilla we have to add up player.experienceLevel and player.experienceProgress
+		player.totalExperience can be wrong if something granted the player levels, instead of XP points
+		like the command `/experience add TestUser 1 levels`
+	 */
+	public int getActualPlayerExperience(Player player) {
+		int experience = 0;
+		for (int i = 0; i < player.experienceLevel; i++) {
+			int levelXP;
+			if (i >= 30) {
+				levelXP = 112 + (i - 30) * 9;
+			} else {
+				levelXP = i >= 15 ? 37 + (i - 15) * 5 : 7 + i * 2;
+			}
+			experience += levelXP;
+		}
+		int playerExperience = experience;
+		int result;
+		if (player.experienceLevel >= 30) {
+			result = 112 + (player.experienceLevel - 30) * 9;
+		} else {
+			result = player.experienceLevel >= 15 ? 37 + (player.experienceLevel - 15) * 5 : 7 + player.experienceLevel * 2;
+		}
+		playerExperience += Math.round(player.experienceProgress * result);
+		return playerExperience;
+	}
+	
 }

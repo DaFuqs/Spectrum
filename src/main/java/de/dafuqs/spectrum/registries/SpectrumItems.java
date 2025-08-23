@@ -14,7 +14,6 @@ import de.dafuqs.spectrum.data.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.armor.*;
-import de.dafuqs.spectrum.items.bundles.*;
 import de.dafuqs.spectrum.items.conditional.CloakedItem;
 import de.dafuqs.spectrum.items.conditional.*;
 import de.dafuqs.spectrum.items.energy.*;
@@ -519,7 +518,6 @@ public class SpectrumItems {
 	public static final Item SENDER_NODE_CRYSTAL = register(item("sender_node_crystal", new Item(IS.of()), InkColors.YELLOW));
 	public static final Item STORAGE_NODE_CRYSTAL = register(item("storage_node_crystal", new Item(IS.of()), InkColors.CYAN));
 	public static final Item GATHER_NODE_CRYSTAL = register(item("gather_node_crystal", new Item(IS.of()), InkColors.BLACK));
-	public static final Item EXTENDED_BUNDLE_ITEM = register(parented(item("extended_bundle", new ExtendedBundleItem(IS.of()), InkColors.BROWN), BUNDLE));
 	
 	public static <T extends Item> T register(ItemRegistrar<T> registrar) {
 		return registrar.item();

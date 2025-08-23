@@ -15,7 +15,6 @@
     "BlockMixin",
     "BrainMixin",
     "BrewingRecipeRegistryMixin",
-    "BundleItemMixin",
     "CatEntityMixin",
     "ChunkNoiseSamplerMixin",
     "CropAndStemBlockMixin",

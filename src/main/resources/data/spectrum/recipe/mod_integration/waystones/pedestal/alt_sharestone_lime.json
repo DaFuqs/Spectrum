@@ -8,16 +8,17 @@
   "experience": 0.2,
   "pattern": [
     "SSS",
-    " E ",
+    "PEP",
     "OOO"
   ],
   "key": {
     "O": "minecraft:obsidian",
     "S": "minecraft:stone_bricks",
-    "E": "spectrum:radiating_ender"
+    "E": "spectrum:radiating_ender",
+    "P": "spectrum:lime_pigment"
   },
   "result": {
-    "id": "waystones:sharestone",
+    "id": "waystones:lime_sharestone",
     "count": 2
   },
   "required_advancement": "spectrum:collect_radiating_ender",

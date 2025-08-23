@@ -1,0 +1,33 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 180,
+  "tier": "basic",
+  "colors": {
+    "spectrum:cyan": 4
+  },
+  "experience": 0.2,
+  "pattern": [
+    "SSS",
+    "PEP",
+    "OOO"
+  ],
+  "key": {
+    "O": "minecraft:obsidian",
+    "S": "minecraft:stone_bricks",
+    "E": "spectrum:radiating_ender",
+    "P": "spectrum:green_pigment"
+  },
+  "result": {
+    "id": "waystones:green_sharestone",
+    "count": 2
+  },
+  "required_advancement": "spectrum:collect_radiating_ender",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "waystones"
+      ]
+    }
+  ]
+}

@@ -26,12 +26,13 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.mod_integration.waystones.page0.text",
-      "title": "book.spectrum.guidebook.mod_integration.waystones.name"
+      "title": "book.spectrum.guidebook.mod_integration.waystones.name",
+      "text": "book.spectrum.guidebook.mod_integration.waystones.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe_id": "spectrum:mod_integration/waystones/pedestal/alt_sharestone"
+      "recipe_id": "spectrum:mod_integration/waystones/pedestal/alt_sharestone_red",
+      "text": "book.spectrum.guidebook.mod_integration.waystones.sharestones_recipe.text"
     }
   ]
 }

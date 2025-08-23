@@ -1201,8 +1201,8 @@ public class SpectrumBlocks {
 		return settings(mapColor, SoundType.METAL, 4.0F, 6.0F).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops();
 	}
 	
-	public static final FloatBlock PALTAERIA_FLOATBLOCK = register(singleton(blockWithItem("paltaeria_floatblock", new FloatBlock(gravityBlock(MapColor.COLOR_LIGHT_BLUE), 0.2F), block -> new FloatBlockItem(block, IS.of().fireResistant(), -0.02F), InkColors.RED), SpectrumTexturedModels.cubeBottomTop(b -> b, "", b -> b, "_top", b -> b, "_bottom")));
-	public static final FloatBlock STRATINE_FLOATBLOCK = register(singleton(blockWithItem("stratine_floatblock", new FloatBlock(gravityBlock(MapColor.NETHER), -0.2F), block -> new FloatBlockItem(block, IS.of(), 0.02F), InkColors.CYAN), SpectrumTexturedModels.cubeBottomTop(b -> b, "", b -> b, "_top", b -> b, "_bottom")));
+	public static final FloatBlock PALTAERIA_FLOATBLOCK = register(singleton(blockWithItem("paltaeria_floatblock", new FloatBlock(gravityBlock(MapColor.COLOR_LIGHT_BLUE), 0.2F), block -> new FloatBlockItem(block, IS.of().fireResistant(), 0.02F), InkColors.RED), SpectrumTexturedModels.cubeBottomTop(b -> b, "", b -> b, "_top", b -> b, "_bottom")));
+	public static final FloatBlock STRATINE_FLOATBLOCK = register(singleton(blockWithItem("stratine_floatblock", new FloatBlock(gravityBlock(MapColor.NETHER), -0.2F), block -> new FloatBlockItem(block, IS.of(), -0.02F), InkColors.CYAN), SpectrumTexturedModels.cubeBottomTop(b -> b, "", b -> b, "_top", b -> b, "_bottom")));
 	public static final FloatBlock HOVER_BLOCK = register(singleton(blockWithItem("hover_block", new FloatBlock(gravityBlock(MapColor.DIAMOND), 0.0F), block -> new FloatBlockItem(block, IS.of(), 0F) {
 		@Override
 		public double applyGravity(ItemStack stack, Level world, Entity entity) {

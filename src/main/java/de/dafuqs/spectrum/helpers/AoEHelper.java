@@ -25,20 +25,11 @@ public class AoEHelper {
 		}
 		
 		Level world = player.level();
-		if (world.isEmptyBlock(pos)) {
-			return;
-		}
-		
 		Predicate<BlockState> minableBlocksPredicate = state -> {
 			boolean suitableTool = !state.requiresCorrectToolForDrops() || stack.isCorrectToolForDrops(state);
-			boolean suitableSpeed = stack.getDestroySpeed(state) > 1;
+			boolean suitableSpeed = stack.getDestroySpeed(state) > 0;
 			return suitableTool && suitableSpeed;
 		};
-
-		BlockState targetState = world.getBlockState(pos);
-		if (!minableBlocksPredicate.test(targetState)) {
-			return;
-		}
 		
 		boolean doX = side.getStepX() == 0;
 		boolean doY = side.getStepY() == 0;

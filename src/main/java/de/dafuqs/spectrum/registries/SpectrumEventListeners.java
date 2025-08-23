@@ -99,6 +99,11 @@ public class SpectrumEventListeners {
 		
 		PlayerBlockBreakEvents.AFTER.register((level, player, pos, state, blockEntity) -> {
 			if (player instanceof ServerPlayer serverPlayerEntity) {
+				ItemStack stack = serverPlayerEntity.getMainHandItem();
+				if (stack.getItem() instanceof AoEBreakingTool tool) {
+					tool.afterBreakingBlock(stack, pos, serverPlayerEntity);
+				}
+				
 				ItemStack handStack = player.getItemInHand(serverPlayerEntity.getUsedItemHand());
 				if (SpectrumEnchantmentHelper.hasEnchantment(player.level().registryAccess(), SpectrumEnchantments.INERTIA, handStack)) {
 					InertiaComponent.onInertiaBlockBreak(level, pos, state, serverPlayerEntity, handStack);

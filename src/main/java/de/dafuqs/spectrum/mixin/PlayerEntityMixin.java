@@ -35,6 +35,7 @@ import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.phys.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -62,6 +63,14 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 	
 	@Unique
 	public SpectrumFishingBobberEntity fishingBobber;
+	
+	@Inject(method = "makeStuckInBlock", at = @At("HEAD"), cancellable = true)
+	public void makeStuckInBlock(BlockState state, Vec3 motionMultiplier, CallbackInfo ci) {
+		if (InexorableHelper.isArmorActive((Player) (Object) this)) {
+			ci.cancel();
+		}
+		super.makeStuckInBlock(state, motionMultiplier);
+	}
 	
 	@WrapOperation(method = "getDestroySpeed", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Inventory;getDestroySpeed(Lnet/minecraft/world/level/block/state/BlockState;)F"))
 	private float spectrum$modifygetBlockBreakingSpeed(Inventory inventory, BlockState state, Operation<Float> original) {

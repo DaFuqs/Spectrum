@@ -51,7 +51,7 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 	protected boolean inventoryChanged;
 	
 	public static final List<InkColor> USED_INK_COLORS = List.of(InkColors.ORANGE, InkColors.MAGENTA, InkColors.LIGHT_BLUE, InkColors.PURPLE, InkColors.BLACK);
-	public static final long INK_STORAGE_SIZE = 8 * 64 * 100;
+	public static final long INK_STORAGE_SIZE = 16 * 64 * 100; // equals 16 stacks of pigment
 	public static final long INK_COST_PER_TICK = 8;
 	protected IndividualCappedInkStorage inkStorage;
 	

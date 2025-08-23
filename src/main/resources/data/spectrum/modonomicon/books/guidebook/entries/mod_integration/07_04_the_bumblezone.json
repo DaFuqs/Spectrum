@@ -33,12 +33,24 @@
       "type": "spectrum:collection",
       "title": "book.spectrum.guidebook.mod_integration.the_bumblezone.essence_ink.title",
       "items": [
-        "the_bumblezone:essence_raging",
-        "the_bumblezone:essence_knowing",
-        "the_bumblezone:essence_calming",
-        "the_bumblezone:essence_life",
-        "the_bumblezone:essence_radiance",
-        "the_bumblezone:essence_continuity"
+        {
+          "id": "the_bumblezone:essence_raging"
+        },
+        {
+          "id": "the_bumblezone:essence_knowing"
+        },
+        {
+          "id": "the_bumblezone:essence_calming"
+        },
+        {
+          "id": "the_bumblezone:essence_life"
+        },
+        {
+          "id": "the_bumblezone:essence_radiance"
+        },
+        {
+          "id": "the_bumblezone:essence_continuity"
+        }
       ],
       "condition": {
         "type": "modonomicon:advancement",

@@ -23,8 +23,12 @@
       "type": "spectrum:collection",
       "title": "book.spectrum.guidebook.item_bowl.name",
       "items": [
-        "spectrum:item_bowl_basalt",
-        "spectrum:item_bowl_calcite"
+        {
+          "id": "spectrum:item_bowl_basalt"
+        },
+        {
+          "id": "spectrum:item_bowl_calcite"
+        }
       ],
       "text": "book.spectrum.guidebook.item_bowl.page0.text"
     },

@@ -49,9 +49,15 @@
         "advancement_id": "spectrum:break_gemstone_ore"
       },
       "items": [
-        "spectrum:topaz_ore",
-        "spectrum:amethyst_ore",
-        "spectrum:citrine_ore"
+        {
+          "id": "spectrum:topaz_ore"
+        },
+        {
+          "id": "spectrum:amethyst_ore"
+        },
+        {
+          "id": "spectrum:citrine_ore"
+        }
       ],
       "text": "book.spectrum.guidebook.geodes.page3.text"
     },

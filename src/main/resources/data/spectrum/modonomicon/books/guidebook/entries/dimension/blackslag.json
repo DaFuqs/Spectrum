@@ -23,33 +23,87 @@
       "type": "spectrum:collection",
       "title": "block.spectrum.blackslag",
       "items": [
-        "spectrum:blackslag",
-        "spectrum:blackslag_stairs",
-        "spectrum:blackslag_slab",
-        "spectrum:blackslag_wall",
-        "spectrum:cobbled_blackslag",
-        "spectrum:cobbled_blackslag_stairs",
-        "spectrum:cobbled_blackslag_slab",
-        "spectrum:cobbled_blackslag_wall",
-        "spectrum:polished_blackslag",
-        "spectrum:polished_blackslag_button",
-        "spectrum:polished_blackslag_pressure_plate",
-        "spectrum:polished_blackslag_stairs",
-        "spectrum:polished_blackslag_slab",
-        "spectrum:polished_blackslag_wall",
-        "spectrum:blackslag_tiles",
-        "spectrum:blackslag_tile_stairs",
-        "spectrum:blackslag_tile_slab",
-        "spectrum:blackslag_tile_wall",
-        "spectrum:blackslag_bricks",
-        "spectrum:blackslag_brick_stairs",
-        "spectrum:blackslag_brick_slab",
-        "spectrum:blackslag_brick_wall",
-        "spectrum:polished_blackslag_pillar",
-        "spectrum:chiseled_polished_blackslag",
-        "spectrum:ancient_chiseled_polished_blackslag",
-        "spectrum:cracked_blackslag_bricks",
-        "spectrum:cracked_blackslag_tiles"
+        {
+          "id": "spectrum:blackslag"
+        },
+        {
+          "id": "spectrum:blackslag_stairs"
+        },
+        {
+          "id": "spectrum:blackslag_slab"
+        },
+        {
+          "id": "spectrum:blackslag_wall"
+        },
+        {
+          "id": "spectrum:cobbled_blackslag"
+        },
+        {
+          "id": "spectrum:cobbled_blackslag_stairs"
+        },
+        {
+          "id": "spectrum:cobbled_blackslag_slab"
+        },
+        {
+          "id": "spectrum:cobbled_blackslag_wall"
+        },
+        {
+          "id": "spectrum:polished_blackslag"
+        },
+        {
+          "id": "spectrum:polished_blackslag_button"
+        },
+        {
+          "id": "spectrum:polished_blackslag_pressure_plate"
+        },
+        {
+          "id": "spectrum:polished_blackslag_stairs"
+        },
+        {
+          "id": "spectrum:polished_blackslag_slab"
+        },
+        {
+          "id": "spectrum:polished_blackslag_wall"
+        },
+        {
+          "id": "spectrum:blackslag_tiles"
+        },
+        {
+          "id": "spectrum:blackslag_tile_stairs"
+        },
+        {
+          "id": "spectrum:blackslag_tile_slab"
+        },
+        {
+          "id": "spectrum:blackslag_tile_wall"
+        },
+        {
+          "id": "spectrum:blackslag_bricks"
+        },
+        {
+          "id": "spectrum:blackslag_brick_stairs"
+        },
+        {
+          "id": "spectrum:blackslag_brick_slab"
+        },
+        {
+          "id": "spectrum:blackslag_brick_wall"
+        },
+        {
+          "id": "spectrum:polished_blackslag_pillar"
+        },
+        {
+          "id": "spectrum:chiseled_polished_blackslag"
+        },
+        {
+          "id": "spectrum:ancient_chiseled_polished_blackslag"
+        },
+        {
+          "id": "spectrum:cracked_blackslag_bricks"
+        },
+        {
+          "id": "spectrum:cracked_blackslag_tiles"
+        }
       ],
       "text": "book.spectrum.guidebook.blackslag.page0.text"
     },

@@ -40,12 +40,24 @@
         "advancement_id": "spectrum:unlocks/enchantments/resonance_usage"
       },
       "items": [
-        "immersive_weathering:charred_log",
-        "immersive_weathering:charred_planks",
-        "immersive_weathering:charred_stairs",
-        "immersive_weathering:charred_slab",
-        "immersive_weathering:charred_fence",
-        "immersive_weathering:charred_fence_gate"
+        {
+          "id": "immersive_weathering:charred_log"
+        },
+        {
+          "id": "immersive_weathering:charred_planks"
+        },
+        {
+          "id": "immersive_weathering:charred_stairs"
+        },
+        {
+          "id": "immersive_weathering:charred_slab"
+        },
+        {
+          "id": "immersive_weathering:charred_fence"
+        },
+        {
+          "id": "immersive_weathering:charred_fence_gate"
+        }
       ],
       "text": "book.spectrum.guidebook.mod_integration.immersive_weathering.charred_wood_resonance.text"
     },
@@ -57,19 +69,45 @@
         "advancement_id": "spectrum:unlocks/enchantments/resonance_usage"
       },
       "items": [
-        "immersive_weathering:sandy_stone",
-        "immersive_weathering:sandy_stone_stairs",
-        "immersive_weathering:sandy_stone_slab",
-        "immersive_weathering:sandy_stone_wall",
-        "immersive_weathering:sandy_cobblestone",
-        "immersive_weathering:sandy_cobblestone_stairs",
-        "immersive_weathering:sandy_cobblestone_slab",
-        "immersive_weathering:sandy_cobblestone_wall",
-        "immersive_weathering:sandy_stone_bricks",
-        "immersive_weathering:sandy_stone_brick_stairs",
-        "immersive_weathering:sandy_stone_brick_slab",
-        "immersive_weathering:sandy_stone_brick_wall",
-        "immersive_weathering:sandy_chiseled_stone_bricks"
+        {
+          "id": "immersive_weathering:sandy_stone"
+        },
+        {
+          "id": "immersive_weathering:sandy_stone_stairs"
+        },
+        {
+          "id": "immersive_weathering:sandy_stone_slab"
+        },
+        {
+          "id": "immersive_weathering:sandy_stone_wall"
+        },
+        {
+          "id": "immersive_weathering:sandy_cobblestone"
+        },
+        {
+          "id": "immersive_weathering:sandy_cobblestone_stairs"
+        },
+        {
+          "id": "immersive_weathering:sandy_cobblestone_slab"
+        },
+        {
+          "id": "immersive_weathering:sandy_cobblestone_wall"
+        },
+        {
+          "id": "immersive_weathering:sandy_stone_bricks"
+        },
+        {
+          "id": "immersive_weathering:sandy_stone_brick_stairs"
+        },
+        {
+          "id": "immersive_weathering:sandy_stone_brick_slab"
+        },
+        {
+          "id": "immersive_weathering:sandy_stone_brick_wall"
+        },
+        {
+          "id": "immersive_weathering:sandy_chiseled_stone_bricks"
+        }
       ],
       "text": "book.spectrum.guidebook.mod_integration.immersive_weathering.sandy_stone_resonance.text"
     }

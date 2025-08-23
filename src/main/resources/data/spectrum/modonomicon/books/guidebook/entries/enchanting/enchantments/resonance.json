@@ -98,8 +98,12 @@
       "type": "spectrum:collection",
       "title": "book.spectrum.guidebook.resonance.page9.title",
       "items": [
-        "minecraft:suspicious_sand",
-        "minecraft:suspicious_gravel"
+        {
+          "id": "minecraft:suspicious_sand"
+        },
+        {
+          "id": "minecraft:suspicious_gravel"
+        }
       ],
       "text": "book.spectrum.guidebook.resonance.page9.text"
     },

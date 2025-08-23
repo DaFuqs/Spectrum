@@ -26,13 +26,27 @@
       "type": "spectrum:collection",
       "title": "book.spectrum.guidebook.shimmerstone_lights.name",
       "items": [
-        "spectrum:andesite_shimmerstone_light",
-        "spectrum:basalt_shimmerstone_light",
-        "spectrum:calcite_shimmerstone_light",
-        "spectrum:deepslate_shimmerstone_light",
-        "spectrum:diorite_shimmerstone_light",
-        "spectrum:granite_shimmerstone_light",
-        "spectrum:stone_shimmerstone_light"
+        {
+          "id": "spectrum:andesite_shimmerstone_light"
+        },
+        {
+          "id": "spectrum:basalt_shimmerstone_light"
+        },
+        {
+          "id": "spectrum:calcite_shimmerstone_light"
+        },
+        {
+          "id": "spectrum:deepslate_shimmerstone_light"
+        },
+        {
+          "id": "spectrum:diorite_shimmerstone_light"
+        },
+        {
+          "id": "spectrum:granite_shimmerstone_light"
+        },
+        {
+          "id": "spectrum:stone_shimmerstone_light"
+        }
       ],
       "text": "book.spectrum.guidebook.shimmerstone_lights.page0.text"
     },

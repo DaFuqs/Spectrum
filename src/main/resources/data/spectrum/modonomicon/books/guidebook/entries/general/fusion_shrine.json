@@ -27,8 +27,12 @@
       "type": "spectrum:collection",
       "title": "block.spectrum.fusion_shrine",
       "items": [
-        "spectrum:fusion_shrine_basalt",
-        "spectrum:fusion_shrine_calcite"
+        {
+          "id": "spectrum:fusion_shrine_basalt"
+        },
+        {
+          "id": "spectrum:fusion_shrine_calcite"
+        }
       ],
       "text": "book.spectrum.guidebook.fusion_shrine.page0.text"
     },

@@ -715,9 +715,9 @@ public abstract class LivingEntityMixin {
 		}
 	}
 	
-	@Redirect(method = "tickMovement()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isWet()Z"))
-	private boolean spectrum$isWet(LivingEntity livingEntity) {
-		return livingEntity.isTouchingWater() ? ((TouchingWaterAware) livingEntity).spectrum$isActuallyTouchingWater() : livingEntity.isWet();
+	@WrapOperation(method = "tickMovement()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isWet()Z"))
+	private boolean spectrum$isWet(LivingEntity livingEntity, Operation<Boolean> original) {
+		return livingEntity.isTouchingWater() ? ((TouchingWaterAware) livingEntity).spectrum$isActuallyTouchingWater() : original.call(livingEntity);
 	}
 	
 }

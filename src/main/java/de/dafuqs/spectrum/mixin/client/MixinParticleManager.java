@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.mixin.client;
 
+import com.llamalad7.mixinextras.sugar.*;
 import de.dafuqs.spectrum.particle.render.*;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.render.*;
@@ -14,8 +15,8 @@ public class MixinParticleManager implements ExtendedParticleManager {
     @Unique
     private final EarlyRenderingParticleContainer spectrum$earlyRenderingParticleContainer = new EarlyRenderingParticleContainer();
 
-    @Inject(method = "tick", at = @At(value = "INVOKE", target = "Ljava/util/Map;computeIfAbsent(Ljava/lang/Object;Ljava/util/function/Function;)Ljava/lang/Object;"), locals = LocalCapture.CAPTURE_FAILHARD)
-    private void earlyRenderingHook(final CallbackInfo ci, final Particle particle) {
+    @Inject(method = "tick", at = @At(value = "INVOKE", target = "Ljava/util/Map;computeIfAbsent(Ljava/lang/Object;Ljava/util/function/Function;)Ljava/lang/Object;"))
+    private void earlyRenderingHook(final CallbackInfo ci, @Local final Particle particle) {
         spectrum$earlyRenderingParticleContainer.add(particle);
     }
 

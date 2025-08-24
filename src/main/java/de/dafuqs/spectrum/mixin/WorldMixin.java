@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
+import com.llamalad7.mixinextras.sugar.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
@@ -21,8 +22,8 @@ public abstract class WorldMixin {
 	
 	// using a mixin additional to net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents,
 	// since the fabric api event does not trigger for indirect breaks, like via projectile
-	@Inject(method = "breakBlock", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getFluidState(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/fluid/FluidState;"), locals = LocalCapture.CAPTURE_FAILHARD)
-	public void breakBlock(BlockPos pos, boolean drop, Entity breakingEntity, int maxUpdateDepth, CallbackInfoReturnable<Boolean> cir, BlockState state) {
+	@Inject(method = "breakBlock", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getFluidState(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/fluid/FluidState;"))
+	public void breakBlock(BlockPos pos, boolean drop, Entity breakingEntity, int maxUpdateDepth, CallbackInfoReturnable<Boolean> cir, @Local BlockState state) {
 		if (breakingEntity instanceof ServerPlayerEntity serverPlayerEntity) {
 			SpectrumAdvancementCriteria.BLOCK_BROKEN.trigger(serverPlayerEntity, state);
 		}

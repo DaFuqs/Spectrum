@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
+import com.llamalad7.mixinextras.sugar.*;
 import de.dafuqs.spectrum.items.map.ArtisansAtlasState;
 import de.dafuqs.spectrum.networking.SpectrumS2CPackets;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
@@ -19,7 +20,6 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import java.util.Collection;
 
@@ -33,10 +33,9 @@ public class MapStatePlayerUpdateTrackerMixin {
     @Inject(
             method = "getPacket",
             at = @At(value = "NEW", target = "(IBZLjava/util/Collection;Lnet/minecraft/item/map/MapState$UpdateData;)Lnet/minecraft/network/packet/s2c/play/MapUpdateS2CPacket;"),
-            locals = LocalCapture.CAPTURE_FAILHARD,
             cancellable = true
     )
-    private void spectrum$getArtisansAtlasPacket(int mapId, CallbackInfoReturnable<Packet<?>> cir, MapState.UpdateData updateData, Collection<MapIcon> icons) {
+    private void spectrum$getArtisansAtlasPacket(int mapId, CallbackInfoReturnable<Packet<?>> cir, @Local MapState.UpdateData updateData, @Local Collection<MapIcon> icons) {
         World world = player.getWorld();
         if (world != null) {
             String mapStr = FilledMapItem.getMapName(mapId);

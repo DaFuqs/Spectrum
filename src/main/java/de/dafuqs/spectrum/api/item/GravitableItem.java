@@ -22,7 +22,7 @@ public interface GravitableItem {
 		if (world != null && entity != null) {
 			// don't affect creative/spectators/... players or immune boss mobs
 			if (entity.isPushable() && !entity.isNoGravity() && !entity.isSpectator()) {
-				if (entity instanceof Player player && player.isCreative()) {
+				if (entity instanceof Player player && player.getAbilities().flying) {
 					return 0;
 				}
 

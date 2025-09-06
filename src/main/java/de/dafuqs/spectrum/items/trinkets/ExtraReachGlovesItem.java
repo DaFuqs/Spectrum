@@ -15,7 +15,7 @@ import net.minecraft.world.item.*;
 
 import java.util.*;
 
-public class ExtraReachGlovesItem extends InkDrainTrinketItem {
+public class ExtraReachGlovesItem extends InkDrainTrinketItem implements SingleSlotGlove {
 	
 	public ExtraReachGlovesItem(Properties settings) {
 		super(settings, SpectrumCommon.locate("unlocks/trinkets/gloves_of_dawns_grasp"), InkColors.LIGHT_BLUE);
@@ -41,6 +41,7 @@ public class ExtraReachGlovesItem extends InkDrainTrinketItem {
 			modifiers.put(Attributes.BLOCK_INTERACTION_RANGE, new AttributeModifier(BLOCK_INTERACTION_ATTRIBUTE_ID, extraReach, AttributeModifier.Operation.ADD_VALUE));
 			modifiers.put(Attributes.ENTITY_INTERACTION_RANGE, new AttributeModifier(ENTITY_INTERACTION_ATTRIBUTE_ID, extraReach / 6, AttributeModifier.Operation.ADD_VALUE));
 		}
+		SingleSlotGlove.disableSecondGloveSlot(modifiers);
 		
 		return modifiers;
 	}

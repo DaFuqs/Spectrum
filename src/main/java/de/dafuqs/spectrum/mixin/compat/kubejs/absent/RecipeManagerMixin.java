@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.mixin;
+package de.dafuqs.spectrum.mixin.compat.kubejs.absent;
 
 import com.google.common.collect.*;
 import com.llamalad7.mixinextras.injector.*;

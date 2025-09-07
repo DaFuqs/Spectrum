@@ -35,15 +35,10 @@ public class SpectrumModelPredicateProviders {
 		registerAnimatedWandPredicates(SpectrumItems.STAFF_OF_REMEMBRANCE);
 		registerKnowledgeDropPredicates(SpectrumItems.KNOWLEDGE_GEM);
 		registerAshenCircletPredicates(SpectrumItems.ASHEN_CIRCLET);
-		registerNullableInkColorPredicate(SpectrumItems.INK_FLASK);
 		registerInkFillStateItemPredicate(SpectrumItems.INK_FLASK);
 		registerMoonPhasePredicates(SpectrumItems.CRESCENT_CLOCK);
 		registerActivatableItemPredicate(SpectrumItems.DREAMFLAYER);
-		registerOversizedItemPredicate(SpectrumItems.DREAMFLAYER);
-		registerOversizedItemPredicate(SpectrumItems.KNOTTED_SWORD);
-		registerOversizedItemPredicate(SpectrumItems.NECTAR_LANCE);
-		registerOversizedItemPredicate(SpectrumItems.BEDROCK_SWORD);
-		registerOversizedItemPredicate(SpectrumItems.BEDROCK_AXE);
+		registerNullableInkColorPredicate(SpectrumItems.PAINTBRUSH);
 		
 		registerOversizedItemPredicate(SpectrumItems.PAINTBRUSH);
 		

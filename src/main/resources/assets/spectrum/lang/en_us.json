@@ -5810,7 +5810,7 @@
   "text.autoconfig.Spectrum.option.WindSimInterval": "Wind Simulation Update Interval",
   "text.autoconfig.Spectrum.option.PostProcess": "Enable Post-Process Shaders",
   "text.autoconfig.Spectrum.option.DimensionBrightnessMod": "Dimension Brightness",
-  "text.autoconfig.Spectrum.option.MinimalNodes": "Minimal Nodes",
+  "text.autoconfig.Spectrum.option.PastelNetworkParticles": "Pastel Network transfers spawn particles",
   "text.autoconfig.Spectrum.title": "Spectrum",
 
   "trinkets.slot.chest.pin": "Pin",

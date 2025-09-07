@@ -226,8 +226,8 @@ public class DimensionRenderEffects {
 	// this should really be a data loader
 	static {
 		var builder = ImmutableMap.<ResourceKey<Biome>, Float>builder();
-		builder.put(SpectrumBiomes.BLACK_LANGAST, 0.7F);
-		builder.put(SpectrumBiomes.DEEP_BARRENS, 0.325F);
+		builder.put(SpectrumBiomes.BLACK_LANGAST, 0.4F);
+		builder.put(SpectrumBiomes.DEEP_BARRENS, 0.25F);
 		builder.put(SpectrumBiomes.DEEP_DRIPSTONE_CAVES, 0.1F);
 		builder.put(SpectrumBiomes.NOXSHROOM_FOREST, 0.05F);
 		DARKENING_MULTIPLIERS = builder.build();

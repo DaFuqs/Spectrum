@@ -12,15 +12,12 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.renderer.item.*;
 import net.minecraft.core.component.*;
-import net.minecraft.nbt.*;
 import net.minecraft.resources.*;
-import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 
-// Vanilla models see: ModelPredicateProviderRegistry
 public class SpectrumModelPredicateProviders {
 	
 	public static void registerClient() {
@@ -40,10 +37,6 @@ public class SpectrumModelPredicateProviders {
 		registerActivatableItemPredicate(SpectrumItems.DREAMFLAYER);
 		registerNullableInkColorPredicate(SpectrumItems.PAINTBRUSH);
 		
-		registerOversizedItemPredicate(SpectrumItems.PAINTBRUSH);
-		
-		registerOversizedItemPredicate(SpectrumItems.DRACONIC_TWINSWORD);
-		registerOversizedItemPredicate(SpectrumItems.DRAGON_TALON);
 		registerSlotReservingItem(SpectrumItems.DRAGON_TALON);
 		registerSlotReservingItem(SpectrumItems.DRACONIC_TWINSWORD);
 		
@@ -57,6 +50,11 @@ public class SpectrumModelPredicateProviders {
 		registerOversizedItemPredicate(SpectrumItems.FEROCIOUS_GLASS_CREST_BIDENT);
 		registerOversizedItemPredicate(SpectrumItems.FRACTAL_GLASS_CREST_BIDENT);
 		registerOversizedItemPredicate(SpectrumItems.OMNI_ACCELERATOR);
+		registerOversizedItemPredicate(SpectrumItems.DREAMFLAYER);
+		registerOversizedItemPredicate(SpectrumItems.KNOTTED_SWORD);
+		registerOversizedItemPredicate(SpectrumItems.NECTAR_LANCE);
+		registerOversizedItemPredicate(SpectrumItems.DRACONIC_TWINSWORD);
+		registerOversizedItemPredicate(SpectrumItems.DRAGON_TALON);
 		
 		registerBidentThrowingItemPredicate(SpectrumItems.MALACHITE_BIDENT);
 		registerBidentThrowingItemPredicate(SpectrumItems.FEROCIOUS_GLASS_CREST_BIDENT);
@@ -75,9 +73,9 @@ public class SpectrumModelPredicateProviders {
 	}
 	
 	private static void registerNullableInkColorPredicate(Item item) {
-		ItemProperties.register(item, ResourceLocation.parse("color"), (stack, clientWorld, entity, i) -> {
+		ItemProperties.register(item, ResourceLocation.parse("has_ink_color"), (stack, clientWorld, entity, i) -> {
 			var color = stack.get(SpectrumDataComponentTypes.INK_COLOR);
-			return color == null ? -1 : color.getColorInt();
+			return color == null ? 0.0F : 1.0F;
 		});
 	}
 	
@@ -136,9 +134,8 @@ public class SpectrumModelPredicateProviders {
 	 * 1.0: as projectile
 	 */
 	private static void registerBidentThrowingItemPredicate(Item item) {
-		ItemProperties.register(item, ResourceLocation.parse("bident_throwing"), (stack, world, entity, i) -> {
-			return entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 0.5F : 0.0F;
-		});
+		ItemProperties.register(item, ResourceLocation.parse("bident_throwing"), (stack, world, entity, i) ->
+				entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 0.5F : 0.0F);
 	}
 	
 	private static void registerPresentPredicates(Item item) {

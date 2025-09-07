@@ -254,7 +254,7 @@ public class SpectrumCommon implements ModInitializer {
 			BlockState state = titrationBarrelBlockEntity.getBlockState();
 			TitrationBarrelBlock.BarrelState barrelState = state.getValue(TitrationBarrelBlock.BARREL_STATE);
 			if (barrelState == TitrationBarrelBlock.BarrelState.EMPTY || barrelState == TitrationBarrelBlock.BarrelState.FILLED) {
-				return ItemStorage.SIDED.find(titrationBarrelBlockEntity.getLevel(), titrationBarrelBlockEntity.getBlockPos(), direction);
+				return InventoryStorage.of(titrationBarrelBlockEntity, direction);
 			}
 			return null;
 		}, SpectrumBlockEntities.TITRATION_BARREL);

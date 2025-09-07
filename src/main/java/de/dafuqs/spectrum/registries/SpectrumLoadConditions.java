@@ -14,12 +14,10 @@ import java.util.*;
 public class SpectrumLoadConditions {
 	
 	public record SpectrumTagsPopulatedResourceCondition(ResourceLocation registry, List<ResourceLocation> tags) implements ResourceCondition {
-		public static final MapCodec<SpectrumTagsPopulatedResourceCondition> CODEC = RecordCodecBuilder.mapCodec((instance) -> {
-			return instance.group(ResourceLocation.CODEC.fieldOf("registry").orElse(
-							Registries.ITEM.location()).forGetter(SpectrumTagsPopulatedResourceCondition::registry),
-					ResourceLocation.CODEC.listOf().fieldOf("values").forGetter(SpectrumTagsPopulatedResourceCondition::tags)
-			).apply(instance, SpectrumTagsPopulatedResourceCondition::new);
-		});
+		public static final MapCodec<SpectrumTagsPopulatedResourceCondition> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
+				ResourceLocation.CODEC.fieldOf("registry").orElse(Registries.ITEM.location()).forGetter(SpectrumTagsPopulatedResourceCondition::registry),
+				ResourceLocation.CODEC.listOf().fieldOf("values").forGetter(SpectrumTagsPopulatedResourceCondition::tags)
+		).apply(instance, SpectrumTagsPopulatedResourceCondition::new));
 		
 		public ResourceConditionType<?> getType() {
 			return SpectrumLoadConditions.TAGS_POPULATED;
@@ -30,6 +28,10 @@ public class SpectrumLoadConditions {
 		}
 		
 		public static boolean tagsPopulated(HolderLookup.Provider registryLookup, ResourceLocation registryId, List<ResourceLocation> tags) {
+			if (registryLookup == null) {
+				return false;
+			}
+			
 			ResourceKey<Registry<Registry<?>>> registryKey = ResourceKey.createRegistryKey(registryId);
 			HolderLookup.RegistryLookup<Registry<?>> wrapper = registryLookup.lookupOrThrow(registryKey);
 			
@@ -66,6 +68,5 @@ public class SpectrumLoadConditions {
 	public static void register() {
 		ResourceConditions.register(TAGS_POPULATED);
 	}
-	
 	
 }

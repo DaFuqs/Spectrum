@@ -304,7 +304,9 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 			return false;
 		}
 		if (enchanter.currentRecipe == null) {
-			return false;
+			// Hard-coded center enchanting recipe has no serialized recipe, so currentRecipe == null
+			// does not mean the enchanter has no valid recipe.
+			return isValidCenterEnchantingSetup(enchanter);
 		}
 		
 		var recipe = enchanter.currentRecipe.value();
@@ -579,7 +581,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	
 	private static boolean recipeMatches(EnchanterBlockEntity blockEntity, Level world) {
 		if (blockEntity.currentRecipe == null) {
-			return false;
+			return isValidCenterEnchantingSetup(blockEntity);
 		}
 		if (blockEntity.currentRecipe.value() instanceof EnchanterRecipe recipe) {
 			return recipe.matches(blockEntity.virtualInventory.createInput(), world);

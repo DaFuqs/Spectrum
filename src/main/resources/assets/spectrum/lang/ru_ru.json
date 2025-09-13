@@ -219,7 +219,7 @@
   "death.attack.spectrum_moonstone_blast.player": "%1$s сгнил благодаря %2$s",
   "death.attack.spectrum_set_health.player": "%1$s был отправлен в царство теней благодаря %2$s",
   "death.attack.spectrum_set_health": "%1$s был отправлен в царство теней благодаря %2$s при помощи %3$s",
-  "death.attack.spectrum_ripper": "%1$s хотел поиграть в игру",
+  "death.attack.spectrum_ripping": "%1$s хотел поиграть в игру",
   "death.attack.spectrum_kindling_cough": "%1$s был зажарен до смерти %2$s",
   "death.attack.spectrum_snapping_ivy": "%1$s застрял в плюще",
   "death.attack.spectrum_primordial_fire": "Душа %1$s превратилась в тлеющую сажу",

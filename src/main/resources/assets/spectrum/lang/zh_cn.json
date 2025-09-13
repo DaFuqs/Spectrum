@@ -347,7 +347,7 @@
   "death.attack.spectrum_set_health.player": "%1$s 被 %2$s 送到了影之界",
   "death.attack.spectrum_set_health.item": "%1$s 利用 %3$s 将 %2$s 送到了影之界",
   "death.attack.spectrum_bristle_sprouts": "%1$s 被刺死了",
-  "death.attack.spectrum_ripper": "%1$s 想玩个游戏",
+  "death.attack.spectrum_ripping": "%1$s 想玩个游戏",
   "death.attack.spectrum_kindling_cough": "%1$s 被 %2$s 烤熟了",
   "death.attack.spectrum_snapping_ivy": "%1$s 有点退缩了",
   "death.attack.spectrum_primordial_fire": "%1$s 的灵魂化为了燃烧的灰烬",

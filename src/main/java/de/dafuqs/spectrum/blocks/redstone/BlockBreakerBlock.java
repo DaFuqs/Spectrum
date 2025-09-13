@@ -106,10 +106,12 @@ public class BlockBreakerBlock extends RedstoneInteractionBlock implements Entit
 		if (BREAK_STACK == null) { // we initialize the item here instead of it being final because of load order shenanigans
 			BREAK_STACK = new ItemStack(SpectrumItems.MALACHITE_WORKSTAFF);
 		}
+		Block block = blockState.getBlock();
 		Block.dropResources(blockState, world, pos, blockEntity, breaker, BREAK_STACK);
 		
 		if (world.setBlock(pos, fluidState.createLegacyBlock(), Block.UPDATE_ALL, 512)) {
 			world.gameEvent(GameEvent.BLOCK_DESTROY, pos, GameEvent.Context.of(breaker, blockState));
+			block.destroy(world, pos, blockState);
 		}
 	}
 	

@@ -600,14 +600,14 @@ public class SpectrumBlocks {
 	
 	// PASTEL NETWORK
 	private static BlockBehaviour.Properties pastelNode(SoundType soundGroup) {
-		return settings(MapColor.NONE, soundGroup, 1.5F).pushReaction(PushReaction.DESTROY).noOcclusion().requiresCorrectToolForDrops();
+		return settings(MapColor.NONE, soundGroup, 1.0F).pushReaction(PushReaction.DESTROY).noOcclusion();
 	}
 	
-	public static final Block CONNECTION_NODE = register(singleton(blockWithItem("connection_node", new PastelNodeBlock(pastelNode(SoundType.AMETHYST_CLUSTER), PastelNodeType.CONNECTION), IS.of(16), InkColors.LIGHT_GRAY), SpectrumTexturedModels.particle(SpectrumTextures.CALCITE_CAP)).withPredefinedItemModel());
-	public static final Block PROVIDER_NODE = register(singleton(blockWithItem("provider_node", new PastelNodeBlock(pastelNode(SoundType.AMETHYST_CLUSTER), PastelNodeType.PROVIDER), IS.of(16), InkColors.MAGENTA), SpectrumTexturedModels.particle(SpectrumTextures.CALCITE_CAP)).withPredefinedItemModel());
-	public static final Block STORAGE_NODE = register(singleton(blockWithItem("storage_node", new PastelNodeBlock(pastelNode(SpectrumBlockSoundGroups.TOPAZ_CLUSTER), PastelNodeType.STORAGE), IS.of(16), InkColors.CYAN), SpectrumTexturedModels.particle(SpectrumTextures.CALCITE_CAP)).withPredefinedItemModel());
-	public static final Block SENDER_NODE = register(singleton(blockWithItem("sender_node", new PastelNodeBlock(pastelNode(SpectrumBlockSoundGroups.CITRINE_CLUSTER), PastelNodeType.SENDER), IS.of(16), InkColors.YELLOW), SpectrumTexturedModels.particle(SpectrumTextures.CALCITE_CAP)).withPredefinedItemModel());
-	public static final Block GATHER_NODE = register(singleton(blockWithItem("gather_node", new PastelNodeBlock(pastelNode(SpectrumBlockSoundGroups.ONYX_CLUSTER), PastelNodeType.GATHER), IS.of(16), InkColors.BLACK), SpectrumTexturedModels.particle(SpectrumTextures.CALCITE_CAP)).withPredefinedItemModel());
+	public static final Block CONNECTION_NODE = register(singleton(blockWithItem("connection_node", new PastelNodeBlock(pastelNode(SoundType.AMETHYST_CLUSTER), PastelNodeType.CONNECTION), IS.of(), InkColors.LIGHT_GRAY), SpectrumTexturedModels.particle(SpectrumTextures.CALCITE_CAP)).withPredefinedItemModel());
+	public static final Block PROVIDER_NODE = register(singleton(blockWithItem("provider_node", new PastelNodeBlock(pastelNode(SoundType.AMETHYST_CLUSTER), PastelNodeType.PROVIDER), IS.of(), InkColors.MAGENTA), SpectrumTexturedModels.particle(SpectrumTextures.CALCITE_CAP)).withPredefinedItemModel());
+	public static final Block STORAGE_NODE = register(singleton(blockWithItem("storage_node", new PastelNodeBlock(pastelNode(SpectrumBlockSoundGroups.TOPAZ_CLUSTER), PastelNodeType.STORAGE), IS.of(), InkColors.CYAN), SpectrumTexturedModels.particle(SpectrumTextures.CALCITE_CAP)).withPredefinedItemModel());
+	public static final Block SENDER_NODE = register(singleton(blockWithItem("sender_node", new PastelNodeBlock(pastelNode(SpectrumBlockSoundGroups.CITRINE_CLUSTER), PastelNodeType.SENDER), IS.of(), InkColors.YELLOW), SpectrumTexturedModels.particle(SpectrumTextures.CALCITE_CAP)).withPredefinedItemModel());
+	public static final Block GATHER_NODE = register(singleton(blockWithItem("gather_node", new PastelNodeBlock(pastelNode(SpectrumBlockSoundGroups.ONYX_CLUSTER), PastelNodeType.GATHER), IS.of(), InkColors.BLACK), SpectrumTexturedModels.particle(SpectrumTextures.CALCITE_CAP)).withPredefinedItemModel());
 	
 	// COLORED BLOCK FAMILIES
 	

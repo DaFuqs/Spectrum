@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.sound;
 
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
@@ -57,8 +58,7 @@ public class BlockAuraSoundInstance extends AbstractSoundInstance implements Tic
 			updatePositionAndCount();
 		}
 		
-		float targetVolume = (float) Mth.clamp((sources.size() * 0.05 - 0.5)
-				, MIN_VOLUME, MAX_VOLUME);
+		float targetVolume = (float) Mth.clamp((sources.size() * 0.05 - 0.5), MIN_VOLUME, MAX_VOLUME);
 		
 		if (this.volumeHold < targetVolume) {
 			this.volumeHold += VOLUME_EASING_STEPS;
@@ -90,7 +90,7 @@ public class BlockAuraSoundInstance extends AbstractSoundInstance implements Tic
 		int y = 0;
 		int z = 0;
 		for (BlockPos source : sources) {
-			if (!world.hasChunkAt(source) || !world.getBlockState(source).is(SpectrumBlockTags.AZURITE_ORES)) { // tag is hardcoded for now. But should we have more blocks like that, we can easily split it
+			if (!world.hasChunkAt(source) || !(world.getBlockState(source).getBlock() instanceof AzureAuraEmitting)) { // tag is hardcoded for now. But should we have more blocks like that, we can easily split it
 				toRemove.add(source);
 			} else {
 				x += source.getX();

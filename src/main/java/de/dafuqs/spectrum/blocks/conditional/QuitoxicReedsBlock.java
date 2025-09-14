@@ -4,7 +4,6 @@ import com.mojang.serialization.*;
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
@@ -25,6 +24,7 @@ import net.minecraft.world.phys.shapes.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
+import java.util.concurrent.atomic.*;
 
 public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidLogging.SpectrumFluidLoggable {
 	
@@ -39,6 +39,8 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 	
 	public static final int MAX_GROWTH_HEIGHT_WATER = 5;
 	public static final int MAX_GROWTH_HEIGHT_CRYSTAL = 7;
+	
+	public static final int MAX_CONSUMABLE_BLOCK_SEARCH_DISTANCE = 8;
 	
 	protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
 	
@@ -162,7 +164,7 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 				// consume 1 block close to the reed when growing.
 				// if the quitoxic reeds are growing in liquid crystal: 1/4 chance to consume
 				// search for block it could be planted on. 1 block => 1 quitoxic reed
-				Optional<BlockPos> posToConsumeBlock = searchPlantablePos(world, pos.below(height), SpectrumBlockTags.QUITOXIC_REEDS_PLANTABLE, random);
+				Optional<BlockPos> posToConsumeBlock = searchConsumableBlock(world, pos.below(height), SpectrumBlockTags.QUITOXIC_REEDS_PLANTABLE, random);
 				if (posToConsumeBlock.isEmpty() || world.getBlockState(posToConsumeBlock.get().above()).getBlock() instanceof QuitoxicReedsBlock) {
 					return;
 				}
@@ -185,26 +187,23 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 		}
 	}
 	
-	private Optional<BlockPos> searchPlantablePos(Level world, @NotNull BlockPos searchPos, TagKey<Block> searchBlockState, RandomSource random) {
-		List<Direction> directions = Util.shuffledCopy(Direction.values(), random);
+	private Optional<BlockPos> searchConsumableBlock(Level world, @NotNull BlockPos origin, TagKey<Block> searchTag, RandomSource random) {
+		Direction direction = Direction.Plane.HORIZONTAL.getRandomDirection(random);
+		AtomicReference<BlockPos> lastFoundPos = new AtomicReference<>(origin);
+		BlockPos.breadthFirstTraversal(origin, MAX_CONSUMABLE_BLOCK_SEARCH_DISTANCE, 100,
+				(pos, blockPosConsumer) -> {
+					lastFoundPos.set(pos);
+					blockPosConsumer.accept(pos.relative(direction));
+					blockPosConsumer.accept(pos.relative(Direction.DOWN));
+					blockPosConsumer.accept(pos.relative(Direction.UP));
+				},
+				pos -> world.getBlockState(pos).is(searchTag)
+		);
 		
-		int i = 0;
-		int range = 8;
-		BlockPos currentPos = new BlockPos(searchPos.getX(), searchPos.getY(), searchPos.getZ());
-		while (i < 6) {
-			if (range < 8 && world.getBlockState(currentPos.relative(directions.get(i))).is(searchBlockState)) {
-				range++;
-				currentPos = currentPos.relative(directions.get(i));
-			} else {
-				i++;
-				range = 0;
-			}
-		}
-		
-		if (currentPos.equals(searchPos)) {
+		if (lastFoundPos.get().equals(origin)) {
 			return Optional.empty();
 		} else {
-			return Optional.of(currentPos);
+			return Optional.of(lastFoundPos.get());
 		}
 	}
 	
@@ -236,14 +235,14 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 	
 	@Override
 	public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
-		return isValidBlock(world, pos);
+		return isValidBlockForPlanting(world, pos);
 	}
 	
 	/**
 	 * Can be placed in up to 2 blocks deep water / liquid crystal
 	 * growing on SpectrumBlockTags.QUITOXIC_REEDS_PLANTABLE only
 	 */
-	private boolean isValidBlock(LevelReader world, BlockPos pos) {
+	private boolean isValidBlockForPlanting(LevelReader world, BlockPos pos) {
 		BlockState downState = world.getBlockState(pos.below());
 		if (downState.is(this)) {
 			return true;

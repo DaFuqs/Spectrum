@@ -1,11 +1,5 @@
 {
   "criteria": {
-    "unlocked_head_fusion": {
-      "trigger": "revelationary:advancement_gotten",
-      "conditions": {
-        "advancement_identifier": "spectrum:unlocks/head_fusion/basic_recipes"
-      }
-    },
     "collected_incandescent_essence": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {

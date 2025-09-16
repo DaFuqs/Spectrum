@@ -12,10 +12,10 @@
         "advancement_identifier": "spectrum:collect_quitoxic_reeds"
       }
     },
-    "collected_blazing_crystal": {
+    "collected_incandescent_essence": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_blazing_crystal"
+        "advancement_identifier": "spectrum:hidden/collect_incandescent_essence"
       }
     }
   }

@@ -443,7 +443,7 @@ public class SpectrumItems {
 	// Specialty Magical Tools
 	public static final KnowledgeGemItem KNOWLEDGE_GEM = register(item("knowledge_gem", new KnowledgeGemItem(IS.of(1, Rarity.UNCOMMON), 10000), InkColors.PURPLE));
 	public static final Item CELESTIAL_POCKETWATCH = register(simple(item("celestial_pocketwatch", new CelestialPocketWatchItem(IS.of(1, Rarity.UNCOMMON)), InkColors.MAGENTA)));
-	public static final Item ARTISANS_ATLAS = register(simple(item("artisans_atlas", new ArtisansAtlasItem(IS.of(1, Rarity.UNCOMMON)), InkColors.YELLOW)));
+	public static final Item ARTISANS_ATLAS = register(simple(item("artisans_atlas", new ArtisansAtlasItem(IS.of(Rarity.UNCOMMON)), InkColors.YELLOW)));
 	public static final Item GILDED_BOOK = register(simple(item("gilded_book", new GildedBookItem(IS.of(Rarity.UNCOMMON)), InkColors.PURPLE)));
 	public static final Item ENCHANTMENT_CANVAS = register(item("enchantment_canvas", new EnchantmentCanvasItem(IS.of(16, Rarity.UNCOMMON)), InkColors.PURPLE));
 	public static final Item EVERPROMISE_RIBBON = register(simple(item("everpromise_ribbon", new EverpromiseRibbonItem(IS.of()), InkColors.PINK)));

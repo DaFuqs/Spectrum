@@ -169,12 +169,6 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 			PlayBlockBoundSoundInstancePayload.sendPlayBlockBoundSoundInstance(SpectrumSoundEvents.FUSION_SHRINE_CRAFTING, (ServerLevel) world, fusionShrineBlockEntity.getBlockPos(), fusionShrineBlockEntity.craftingTimeTotal - fusionShrineBlockEntity.craftingTime);
 		}
 		
-		// play the current crafting effect
-		FusionShrineRecipeWorldEffect effect = recipe.value().getWorldEffectForTick(fusionShrineBlockEntity.craftingTime, fusionShrineBlockEntity.craftingTimeTotal);
-		if (effect != null) {
-			effect.trigger((ServerLevel) world, blockPos);
-		}
-		
 		// craft when enough ticks have passed
 		if (fusionShrineBlockEntity.craftingTime == fusionShrineBlockEntity.craftingTimeTotal) {
 			craft(world, blockPos, fusionShrineBlockEntity, recipe);
@@ -182,6 +176,13 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		} else {
 			PlayFusionCraftingInProgressParticlePayload.sendPlayFusionCraftingInProgressParticles((ServerLevel) world, blockPos);
 		}
+		
+		// play the current crafting effect
+		FusionShrineRecipeWorldEffect effect = recipe.value().getWorldEffectForTick(fusionShrineBlockEntity.craftingTime, fusionShrineBlockEntity.craftingTimeTotal);
+		if (effect != null) {
+			effect.trigger((ServerLevel) world, blockPos);
+		}
+		
 		fusionShrineBlockEntity.setChanged();
 	}
 	

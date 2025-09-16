@@ -194,7 +194,6 @@ public class SpectrumEventListeners {
 			
 			SpectrumCommon.logInfo("Injecting dynamic recipes into recipe manager...");
 			FirestarterIdolBlock.addBlockSmeltingRecipes(server);
-			//injectEnchantmentUpgradeRecipes(server);
 		});
 		
 		EntitySleepEvents.STOP_SLEEPING.register((entity, sleepingPos) -> {

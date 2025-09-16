@@ -1,0 +1,27 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 40,
+  "tier": "basic",
+  "colors": {},
+  "experience": 0.1,
+  "pattern": [
+    "#X#",
+    "III"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:redstone_torch"
+    },
+    "I": {
+      "item": "minecraft:stone"
+    },
+    "X": {
+      "item": "spectrum:pure_redstone"
+    }
+  },
+  "result": {
+    "id": "minecraft:repeater",
+    "count": 8
+  },
+  "required_advancement": "spectrum:lategame/collect_pure_resource"
+}

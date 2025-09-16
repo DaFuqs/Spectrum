@@ -93,12 +93,6 @@ public class CompactingChestScreenHandler extends AbstractContainerMenu {
 	
 	public void toggleMode() {
 		this.propertyDelegate.set(0, getCraftingMode().next().ordinal());
-		broadcastChanges();
-	}
-	
-	@Override
-	public void broadcastChanges() {
-		super.broadcastChanges();
 		ClientPlayNetworking.send(new ChangeCompactingChestSettingsPayload(getCraftingMode()));
 	}
 	

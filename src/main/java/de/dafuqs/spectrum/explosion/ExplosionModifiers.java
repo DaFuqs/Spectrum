@@ -65,7 +65,7 @@ public class ExplosionModifiers {
 	});
 	
 	// Other entity damage modifications
-	public static final ExplosionModifier KILL_ZONE = registerModifier("kill_zone", new KillZoneModifier(DAMAGE_MODIFICATION, 0.5F, 20F, 0xb3801b));
+	public static final ExplosionModifier KILL_ZONE = registerModifier("kill_zone", new KillZoneModifier(DAMAGE_MODIFICATION, 0.5F, 8F, 0xb3801b));
 	// public static final ExplosionModifier LOOTING = registerModifier("looting", new EnchantmentAddingModifier(DAMAGE_MODIFICATION, Enchantments.LOOTING, 3, ParticleTypes.ENCHANT, 0x5433a5)); // TODO: For this we'd have to do really bad things to loot table processing
 	
 	// Shapes

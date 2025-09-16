@@ -546,7 +546,7 @@ public abstract class LivingEntityMixin {
 		}
 	}
 	
-	@Inject(method = "hurt", at = @At("HEAD"), cancellable = true)
+	@Inject(method = "hurt", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/damagesource/DamageSource;is(Lnet/minecraft/tags/TagKey;)Z"), cancellable = true)
 	private void spectrum$applyBonusDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		LivingEntity target = (LivingEntity) (Object) this;
 		
@@ -576,9 +576,10 @@ public abstract class LivingEntityMixin {
 				
 				boolean damaged = false;
 				for (Tuple<DamageSource, Float> entry : composition.get()) {
-					int invincibilityFrameStore = target.hurtTime;
+					int invulnerableTimeStore = target.invulnerableTime;
+					target.invulnerableTime = 0;
 					damaged |= hurt(entry.getA(), entry.getB());
-					target.hurtTime = invincibilityFrameStore;
+					target.invulnerableTime = invulnerableTimeStore;
 				}
 				
 				SpectrumDamageTypes.recursiveDamageFlag = false;

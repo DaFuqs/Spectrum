@@ -16,6 +16,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.*;
@@ -97,21 +98,21 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 	}
 	
 	@Override
-	public BlockState playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
+	public void playerDestroy(Level level, Player player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
 		// since the quitoxic reeds are stacked and break from bottom to top
 		// bot the player that broke the other blocks is not propagated we
 		// have to apply a workaround here by counting the reeds above this
 		// and dropping that many times loot to account for it
 		for (int i = 1; i < MAX_GROWTH_HEIGHT_CRYSTAL; i++) {
 			BlockPos offsetPos = pos.offset(0, i, 0);
-			if (world.getBlockState(offsetPos).is(this)) {
-				world.setBlockAndUpdate(offsetPos, world.getBlockState(offsetPos).setValue(ALWAYS_DROP, true));
+			if (level.getBlockState(offsetPos).is(this)) {
+				level.setBlockAndUpdate(offsetPos, level.getBlockState(offsetPos).setValue(ALWAYS_DROP, true));
 			} else {
 				break;
 			}
 		}
 		
-		return super.playerWillDestroy(world, pos, state, player);
+		super.playerDestroy(level, player, pos, state, blockEntity, tool);
 	}
 	
 	@Override

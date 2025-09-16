@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.blocks.decoration.*;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
@@ -22,6 +23,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -116,7 +118,7 @@ public class RadianceStaffItem extends Item implements InkPowered {
 	}
 	
 	@Override
-	public InteractionResult useOn(UseOnContext context) {
+	public @NotNull InteractionResult useOn(UseOnContext context) {
 		Level world = context.getLevel();
 		if (world.isClientSide) {
 			return InteractionResult.SUCCESS;
@@ -130,17 +132,25 @@ public class RadianceStaffItem extends Item implements InkPowered {
 		BlockPos pos = context.getClickedPos();
 		Direction direction = context.getClickedFace();
 		
-		if (!world.getBlockState(pos).is(SpectrumBlocks.PERSISTENT_LIGHT)) { // those get destroyed instead
+		BlockState state = world.getBlockState(pos);
+		if (state.getBlock() instanceof PersistentLightBlock) {
+			// toggle the lights level
+			BlockState newState = state.cycle(LEVEL);
+			if (newState.getValue(LEVEL) == 0) { // skip light level of 0, since they would be absolutely useless and unintuitive
+				newState = newState.cycle(LEVEL);
+			}
+			world.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SpectrumSoundEvents.RADIANCE_STAFF_PLACE, SoundSource.PLAYERS, 1.0F, (float) (0.75 + 0.05 * newState.getValue(LEVEL)));
+			world.setBlock(pos, newState, Block.UPDATE_CLIENTS);
+		} else {
+			// try placing a light
 			BlockPos targetPos = pos.relative(direction);
 			if (placeLight(world, targetPos, (ServerPlayer) player)) {
 				RadianceStaffItem.playSoundAndParticles(world, targetPos, (ServerPlayer) player, world.random.nextInt(5), world.random.nextInt(5));
 			} else {
 				RadianceStaffItem.playDenySound(world, player);
 			}
-			return InteractionResult.CONSUME;
 		}
-		
-		return InteractionResult.PASS;
+		return InteractionResult.CONSUME;
 	}
 	
 	public void usage(Level world, ServerPlayer user) {

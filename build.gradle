@@ -10,6 +10,10 @@ base {
 	archivesName = project.archives_base_name
 }
 
+tasks.withType(JavaCompile).configureEach {
+	options.compilerArgs += ["-Xmaxerrs", "5000", "-Xmaxwarns", "5000"]
+}
+
 repositories {
 	maven { url = "https://maven.is-immensely.gay/releases" } // Revelationary, Fractal, AEA, Arrowhead, Dimensional Reverb...
 	maven { url = "https://maven.shedaniel.me/" } // Cloth Config, REI

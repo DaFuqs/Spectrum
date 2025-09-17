@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.status_effects;
 
-import de.dafuqs.spectrum.cca.*;
+import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.world.effect.*;
@@ -28,7 +28,7 @@ public class SleepStatusEffect extends MobEffect {
 		
 		float scaling;
 		if (entity instanceof Player player && player.level().isClientSide()) {
-			scaling = (float) MiscPlayerDataComponent.get(player).getLastSyncedSleepPotency();
+			scaling = (float) MiscPlayerDataAttachmentType.get(player).getLastSyncedSleepPotency();
 		} else {
 			scaling = (float) entity.getAttributeValue(SpectrumEntityAttributes.MENTAL_PRESENCE);
 		}

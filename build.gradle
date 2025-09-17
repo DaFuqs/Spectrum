@@ -129,12 +129,6 @@ dependencies {
 //		default: println("Unknown recipe viewer specified: $recipe_viewer. Must be EMI, REI or disabled.")
 //	}
 //
-//	// https://github.com/OnyxStudios/Cardinal-Components-API/wiki/
-//	modImplementation include("org.ladysnake.cardinal-components-api:cardinal-components-base:${project.cca_version}")
-//	modImplementation include("org.ladysnake.cardinal-components-api:cardinal-components-entity:${project.cca_version}")
-//	modImplementation include("org.ladysnake.cardinal-components-api:cardinal-components-item:${project.cca_version}")
-//	modImplementation include("org.ladysnake.cardinal-components-api:cardinal-components-level:${project.cca_version}")
-//
 //	// Connect to local dev servers
 //	// modLocalRuntime("maven.modrinth:auth-me:${project.auth_me_version}")
 //
@@ -150,11 +144,6 @@ dependencies {
 //	modCompileOnly("maven.modrinth:botania:${project.botania_version}")
 //	modCompileOnly("maven.modrinth:vanity:${project.vanityslots_version}")
 //	modImplementation("maven.modrinth:idwtialsimmoedm:${project.idwtialsimmoedm_version}")
-//
-//	//Porting Lib
-//	for (String module in port_lib_modules.split(",")) {
-//		modCompileOnly("io.github.fabricators_of_create.Porting-Lib:$module:${project.port_lib_version}") { transitive = false }
-//	}
 
 	// Datagen dependencies
 	// TODO - Noaaan April 7th 2025: None of these are for 1.21.1 yet, lol

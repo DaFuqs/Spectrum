@@ -1,30 +1,41 @@
-package de.dafuqs.spectrum.cca;
+package de.dafuqs.spectrum.attachment_types;
 
-import de.dafuqs.spectrum.*;
+import com.mojang.serialization.*;
+import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.api.entity.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
-import net.minecraft.nbt.*;
-import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
+import net.neoforged.neoforge.attachment.*;
 import org.jetbrains.annotations.*;
-import org.ladysnake.cca.api.v3.component.sync.*;
-import org.ladysnake.cca.api.v3.component.tick.*;
 
 import java.util.*;
 
-/**
- * Because not every niche thing can have its own component
- */
-public class MiscPlayerDataComponent implements AutoSyncedComponent, CommonTickingComponent {
+public class MiscPlayerDataAttachmentType {
 	
-	public static final org.ladysnake.cca.api.v3.component.ComponentKey<MiscPlayerDataComponent> MISC_PLAYER_DATA_COMPONENT = org.ladysnake.cca.api.v3.component.ComponentRegistry.getOrCreate(SpectrumCommon.locate("misc_player_data"), MiscPlayerDataComponent.class);
-	private final Player player;
+	public static final String NAME = "misc_player_data";
+	
+	public static final Codec<MiscPlayerDataAttachmentType> CODEC = RecordCodecBuilder.create(i -> i.group(
+			Codec.INT.fieldOf("ticky_before_sleep").forGetter(m -> m.ticksBeforeSleep),
+			Codec.INT.fieldOf("sleeping_window").forGetter(m -> m.sleepingWindow),
+			Codec.INT.fieldOf("sleep_invincibility").forGetter(m -> m.sleepInvincibility),
+			BuiltInRegistries.ITEM.byNameCodec().optionalFieldOf("sleep_consumable").forGetter(m -> (Optional<Item>) (Object) m.sleepConsumable)
+	).apply(i, MiscPlayerDataAttachmentType::ofCodec));
+	
+	public static final AttachmentType<MiscPlayerDataAttachmentType> ATTACHMENT_TYPE = AttachmentType.builder((holder) -> new MiscPlayerDataAttachmentType((Player) holder)).serialize(CODEC).build();
+	
+	public MiscPlayerDataAttachmentType(@NotNull Player player) {
+		this.player = player;
+	}
+	
+	private MiscPlayerDataAttachmentType() {
+	}
+	
+	private Player player;
 	
 	// Sleep
 	private int ticksBeforeSleep = -1, sleepingWindow = -1, sleepInvincibility;
@@ -35,25 +46,26 @@ public class MiscPlayerDataComponent implements AutoSyncedComponent, CommonTicki
 	private boolean isLunging, bHopWindow, perfectCounter;
 	private int parryTicks;
 	
-	public MiscPlayerDataComponent(Player player) {
-		this.player = player;
+	public static MiscPlayerDataAttachmentType ofCodec(int ticksBeforeSleep, int sleepingWindow, int sleepInvincibility, Optional<Item> sleepConsumable) {
+		var data = new MiscPlayerDataAttachmentType();
+		data.ticksBeforeSleep = ticksBeforeSleep;
+		data.sleepingWindow = sleepingWindow;
+		data.sleepInvincibility = sleepInvincibility;
+		
+		data.sleepConsumable = (Optional<SleepAlteringItem>) (Object) sleepConsumable;
+		return data;
 	}
 	
-	
-	@Override
-	public void tick() {
+	public void tick() { // TODO: call
 		tickSleep();
 		tickSwordMechanics();
-	}
-	
-	@Override
-	public void serverTick() {
-		org.ladysnake.cca.api.v3.component.tick.CommonTickingComponent.super.serverTick();
 		
-		var fortitude = player.getAttributeValue(SpectrumEntityAttributes.MENTAL_PRESENCE);
-		if (lastSyncedSleepPotency != fortitude) {
-			lastSyncedSleepPotency = fortitude;
-			SyncMentalPresencePayload.sendMentalPresenceSync((ServerPlayer) player, fortitude);
+		if (!player.level().isClientSide()) {
+			double fortitude = player.getAttributeValue(SpectrumEntityAttributes.MENTAL_PRESENCE);
+			if (lastSyncedSleepPotency != fortitude) {
+				lastSyncedSleepPotency = fortitude;
+				SyncMentalPresencePayload.sendMentalPresenceSync((ServerPlayer) player, fortitude);
+			}
 		}
 	}
 	
@@ -192,33 +204,12 @@ public class MiscPlayerDataComponent implements AutoSyncedComponent, CommonTicki
 		this.sleepConsumable = Optional.of(item);
 	}
 	
-	@Override
-	public void readFromNbt(CompoundTag tag, HolderLookup.@NotNull Provider wrapperLookup) {
-		ticksBeforeSleep = tag.getInt("ticksBeforeSleep");
-		sleepingWindow = tag.getInt("sleepingWindow");
-		sleepInvincibility = tag.getInt("sleepInvincibility");
-		
-		if (tag.contains("sleepConsumable")) {
-			sleepConsumable = Optional.of((SleepAlteringItem) BuiltInRegistries.ITEM.get(ResourceLocation.tryParse(tag.getString("sleepConsumable"))));
+	public static MiscPlayerDataAttachmentType get(@NotNull Player player) {
+		MiscPlayerDataAttachmentType data = player.getData(ATTACHMENT_TYPE);
+		if (data.player == null) {
+			data.player = player;
 		}
-	}
-	
-	@Override
-	public void writeToNbt(CompoundTag tag, HolderLookup.@NotNull Provider wrapperLookup) {
-		tag.putInt("ticksBeforeSleep", ticksBeforeSleep);
-		tag.putInt("sleepingWindow", sleepingWindow);
-		tag.putInt("sleepInvincibility", sleepInvincibility);
-		
-		sleepConsumable
-				.map(sleepPenalizingItem -> (Item) sleepPenalizingItem)
-				.map(Item::builtInRegistryHolder)
-				.flatMap(Holder.Reference::unwrapKey)
-				.map(ResourceKey::location)
-				.ifPresent(id -> tag.putString("sleepConsumable", id.toString()));
-	}
-	
-	public static MiscPlayerDataComponent get(@NotNull Player player) {
-		return MISC_PLAYER_DATA_COMPONENT.get(player);
+		return data;
 	}
 	
 	public void setLastSyncedSleepPotency(double lastSyncedSleepPotency) {

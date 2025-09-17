@@ -3,20 +3,20 @@ package de.dafuqs.spectrum.render;
 import com.mojang.blaze3d.platform.*;
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.cca.azure_dike.*;
-import net.neoforged.api.distmarker.*;
-import net.fabricmc.fabric.api.client.rendering.v1.*;
+import de.dafuqs.spectrum.attachment_types.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
+import net.neoforged.api.distmarker.*;
 
 @OnlyIn(Dist.CLIENT)
 public class HudRenderers {
 	
-	private static final Component missingInkText = Component.translatable("item.spectrum.constructors_staff.tooltip.missing_ink");
-	private static final Component noneText = Component.translatable("item.spectrum.constructors_staff.tooltip.none_in_inventory");
+	private static final Component MISSING_INK_TEXT = Component.translatable("item.spectrum.constructors_staff.tooltip.missing_ink");
+	private static final Component NONE_TEXT = Component.translatable("item.spectrum.constructors_staff.tooltip.none_in_inventory");
 	
 	private static ItemStack itemStackToRender;
 	private static int amount;
@@ -31,10 +31,10 @@ public class HudRenderers {
 	
 	// this is run in InGameHudMixin instead to render behind the chat and other gui elements
 	public static void renderAzureDike(GuiGraphics drawContext, Player cameraPlayer, int x, int y) {
-		AzureDikeComponent azureDikeComponent = AzureDikeProvider.getAzureDikeComponent(cameraPlayer);
-		int maxCharges = (int) Math.ceil(azureDikeComponent.getMaxProtection());
+		AzureDikeAttachmentType azureDikeAttachment = cameraPlayer.getData(AzureDikeAttachmentType.ATTACHMENT_TYPE);
+		int maxCharges = (int) Math.ceil(azureDikeAttachment.getMaxCharges());
 		if (maxCharges > 0) {
-			int charges = (int) Math.ceil(azureDikeComponent.getCurrentProtection());
+			int charges = (int) Math.ceil(azureDikeAttachment.getCurrentCharges());
 			
 			boolean blink = false;
 			if (cameraPlayer.getLastDamageSource() != null && cameraPlayer.level() != null) {
@@ -49,7 +49,7 @@ public class HudRenderers {
 			boolean renderBackRow = filledDikeCanisters > 0;
 			boolean hasArmor = cameraPlayer.getArmorValue() > 0;
 			
-			var texture = AzureDikeComponent.AZURE_DIKE_BAR_TEXTURE;
+			ResourceLocation texture = AzureDikeAttachmentType.AZURE_DIKE_BAR_TEXTURE;
 			
 			x += SpectrumCommon.CONFIG.AzureDikeHudOffsetX;
 			y += hasArmor ? SpectrumCommon.CONFIG.AzureDikeHudOffsetYWithArmor : SpectrumCommon.CONFIG.AzureDikeHudOffsetY;
@@ -118,9 +118,9 @@ public class HudRenderers {
 			poseStack.scale(2F, 2F, 1F);
 			drawContext.drawString(textRenderer, itemStackToRender.getHoverName(), x + 18, y + 8, 0xFFFFFF, false);
 			if (amount == 0) {
-				drawContext.drawString(textRenderer, noneText, x + 18, y + 19, 0xDDDDDD, false);
+				drawContext.drawString(textRenderer, NONE_TEXT, x + 18, y + 19, 0xDDDDDD, false);
 			} else if (missingInk) {
-				drawContext.drawString(textRenderer, missingInkText, x + 18, y + 19, 0xDDDDDD, false);
+				drawContext.drawString(textRenderer, MISSING_INK_TEXT, x + 18, y + 19, 0xDDDDDD, false);
 			} else {
 				drawContext.drawString(textRenderer, amount + "x", x + 18, y + 19, 0xDDDDDD, false);
 			}

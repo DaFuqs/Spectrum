@@ -85,9 +85,6 @@ public class SpectrumCommon {
 		InkColorMixes.register();
 		SpectrumEntityAttributes.register(modBus);
 		
-		logInfo("Registering Component Types...");
-		SpectrumDataComponentTypes.register(modBus);
-		
 		logInfo("Registering Block / Item Color Registries...");
 		ColorRegistry.registerColorRegistries();
 		
@@ -229,6 +226,9 @@ public class SpectrumCommon {
 //		SpectrumPathNodeTypes.register();
 		logInfo("Registering Tree Decorator Types...");
 		SpectrumTreeDecoratorTypes.register(modBus);
+		
+		logInfo("Registering Attachments...");
+		SpectrumAttachmentTypes.register(modBus);
 //
 //		//noinspection
 //		ItemStorage.SIDED.registerForBlockEntity((be, d) -> Storage.empty(), SpectrumBlockEntities.HEARTBOUND_CHEST);

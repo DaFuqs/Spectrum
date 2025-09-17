@@ -2,10 +2,9 @@ package de.dafuqs.spectrum.commands;
 
 import com.mojang.brigadier.arguments.*;
 import com.mojang.brigadier.tree.*;
-import de.dafuqs.spectrum.cca.*;
+import de.dafuqs.spectrum.attachment_types.*;
 import net.minecraft.commands.*;
 import net.minecraft.commands.arguments.*;
-import net.minecraft.commands.arguments.selector.*;
 import net.minecraft.commands.arguments.selector.EntitySelector;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.entity.*;
@@ -31,7 +30,7 @@ public class PrimordialFireCommand {
 		
 		for (Entity entity : targets) {
 			if (entity instanceof LivingEntity livingEntity) {
-				OnPrimordialFireComponent.setPrimordialFireTicks(livingEntity, ticks);
+				PrimordialFireAttachmentType.setPrimordialFireTicks(livingEntity, ticks);
 				affectedTargets++;
 			}
 		}

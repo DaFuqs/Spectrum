@@ -9,7 +9,6 @@ import de.dafuqs.spectrum.recipe.enchanter.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.datagen.v1.*;
 import net.fabricmc.fabric.api.datagen.v1.provider.*;
-import net.fabricmc.fabric.api.transfer.v1.fluid.*;
 import net.minecraft.core.*;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.*;

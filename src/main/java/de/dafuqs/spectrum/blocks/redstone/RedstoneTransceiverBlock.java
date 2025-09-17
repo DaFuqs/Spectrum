@@ -130,7 +130,7 @@ public class RedstoneTransceiverBlock extends DiodeBlock implements EntityBlock,
 	@Override
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return world.isClientSide ? null : Support.checkType(type, SpectrumBlockEntities.REDSTONE_TRANSCEIVER, RedstoneTransceiverBlockEntity::serverTick);
+		return world.isClientSide ? null : Support.checkType(type, SpectrumBlockEntities.REDSTONE_TRANSCEIVER.get(), RedstoneTransceiverBlockEntity::serverTick);
 	}
 	
 	@Override

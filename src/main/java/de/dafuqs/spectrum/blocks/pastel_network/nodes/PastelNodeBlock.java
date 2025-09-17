@@ -107,7 +107,7 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 		super.setPlacedBy(world, pos, state, placer, itemStack);
 		
 		if (!world.isClientSide()) {
-			Optional<PastelNodeBlockEntity> blockEntity = world.getBlockEntity(pos, SpectrumBlockEntities.PASTEL_NODE);
+			Optional<PastelNodeBlockEntity> blockEntity = world.getBlockEntity(pos, SpectrumBlockEntities.PASTEL_NODE.get());
 			blockEntity.ifPresent(pastelNodeBlockEntity -> pastelNodeBlockEntity.connectToNearbyNodes(placer));
 		}
 	}

@@ -79,7 +79,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	protected FlowData<Float> _alpha = FlowData.NULL(), _speed = FlowData.NULL(), _bounce = FlowData.NULL();
 	
 	public CrystallarieumBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntities.CRYSTALLARIEUM, pos, state, INVENTORY_SIZE);
+		super(SpectrumBlockEntities.CRYSTALLARIEUM.get(), pos, state, INVENTORY_SIZE);
 		this.inkStorage = new IndividualCappedInkStorage(INK_STORAGE_SIZE);
 		this.canWork = true;
 	}

@@ -39,7 +39,7 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 	private boolean spawnParticles;
 	
 	public PreservationControllerBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntities.PRESERVATION_CONTROLLER, pos, state);
+		super(SpectrumBlockEntities.PRESERVATION_CONTROLLER.get(), pos, state);
 	}
 	
 	public static void serverTick(@NotNull Level world, BlockPos blockPos, BlockState blockState, PreservationControllerBlockEntity blockEntity) {

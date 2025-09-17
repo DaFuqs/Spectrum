@@ -44,7 +44,7 @@ public class CrystallarieumBlock extends InWorldInteractionBlock implements Slot
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return createTickerHelper(type, SpectrumBlockEntities.CRYSTALLARIEUM, world.isClientSide ? CrystallarieumBlockEntity::clientTick : CrystallarieumBlockEntity::serverTick);
+		return createTickerHelper(type, SpectrumBlockEntities.CRYSTALLARIEUM.get(), world.isClientSide ? CrystallarieumBlockEntity::clientTick : CrystallarieumBlockEntity::serverTick);
 	}
 	
 	@Override

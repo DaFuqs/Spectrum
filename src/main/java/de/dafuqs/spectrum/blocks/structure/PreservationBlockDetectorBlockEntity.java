@@ -25,7 +25,7 @@ public class PreservationBlockDetectorBlockEntity extends BlockEntity implements
 	protected List<String> commands = List.of(); // get executed in order. First command that fails ends the chain
 	
 	public PreservationBlockDetectorBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntities.PRESERVATION_BLOCK_DETECTOR, pos, state);
+		super(SpectrumBlockEntities.PRESERVATION_BLOCK_DETECTOR.get(), pos, state);
 	}
 	
 	@Override

@@ -25,7 +25,7 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 	protected boolean initialized = false;
 	
 	public ParticleSpawnerBlockEntity(BlockPos blockPos, BlockState blockState) {
-		this(SpectrumBlockEntities.PARTICLE_SPAWNER, blockPos, blockState);
+		this(SpectrumBlockEntities.PARTICLE_SPAWNER.get(), blockPos, blockState);
 	}
 	
 	public ParticleSpawnerBlockEntity(BlockEntityType<ParticleSpawnerBlockEntity> blockEntityType, BlockPos blockPos, BlockState blockState) {

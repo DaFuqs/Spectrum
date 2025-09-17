@@ -24,7 +24,7 @@ public class HeartboundChestBlockEntity extends SpectrumChestBlockEntity impleme
 	private long lastNonOwnerOpenedTick;
 	
 	public HeartboundChestBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntities.HEARTBOUND_CHEST, blockPos, blockState);
+		super(SpectrumBlockEntities.HEARTBOUND_CHEST.get(), blockPos, blockState);
 		this.lastNonOwnerOpenedTick = -1;
 	}
 	

@@ -12,7 +12,7 @@ public class ProjectorBlockEntity extends BlockEntity {
 	final float heightOffset, bobMultiplier, scaling;
 	
 	public ProjectorBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntities.PROJECTOR, pos, state);
+		super(SpectrumBlockEntities.PROJECTOR.get(), pos, state);
 		var projectorBlock = (ProjectorBlock) state.getBlock();
 		heightOffset = projectorBlock.heightOffset;
 		bobMultiplier = projectorBlock.bobMultiplier;

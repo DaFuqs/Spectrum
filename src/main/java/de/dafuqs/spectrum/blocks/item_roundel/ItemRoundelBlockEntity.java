@@ -12,7 +12,7 @@ public class ItemRoundelBlockEntity extends InWorldInteractionBlockEntity {
 	protected static final int INVENTORY_SIZE = 6;
 	
 	public ItemRoundelBlockEntity(BlockPos pos, BlockState state) {
-		this(SpectrumBlockEntities.ITEM_ROUNDEL, pos, state, INVENTORY_SIZE);
+		this(SpectrumBlockEntities.ITEM_ROUNDEL.get(), pos, state, INVENTORY_SIZE);
 	}
 	
 	public ItemRoundelBlockEntity(BlockEntityType<? extends ItemRoundelBlockEntity> blockEntityType, BlockPos pos, BlockState state, int inventorySize) {

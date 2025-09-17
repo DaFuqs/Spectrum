@@ -41,7 +41,7 @@ public class CrystalApothecaryBlockEntity extends RandomizableContainerBlockEnti
 	private String ownerName;
 	
 	public CrystalApothecaryBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntities.CRYSTAL_APOTHECARY, blockPos, blockState);
+		super(SpectrumBlockEntities.CRYSTAL_APOTHECARY.get(), blockPos, blockState);
 		this.blockPosEventTransferListener = new BlockPosEventQueue(new BlockPositionSource(this.worldPosition), RANGE, this);
 		this.inventory = NonNullList.withSize(27, ItemStack.EMPTY);
 		this.listenerPaused = false;

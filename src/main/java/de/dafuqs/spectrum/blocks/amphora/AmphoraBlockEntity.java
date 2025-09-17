@@ -21,7 +21,7 @@ public class AmphoraBlockEntity extends RandomizableContainerBlockEntity {
 	private final ContainerOpenersCounter stateManager;
 	
 	public AmphoraBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntities.AMPHORA, pos, state);
+		super(SpectrumBlockEntities.AMPHORA.get(), pos, state);
 		
 		this.inventory = NonNullList.withSize(getContainerSize(), ItemStack.EMPTY);
 		this.stateManager = new ContainerOpenersCounter() {

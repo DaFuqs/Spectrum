@@ -24,7 +24,7 @@ public class EnderDropperBlockEntity extends DispenserBlockEntity implements Pla
 	private String ownerName;
 	
 	public EnderDropperBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntities.ENDER_DROPPER, blockPos, blockState);
+		super(SpectrumBlockEntities.ENDER_DROPPER.get(), blockPos, blockState);
 	}
 	
 	@Override

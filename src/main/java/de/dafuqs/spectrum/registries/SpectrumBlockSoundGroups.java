@@ -4,7 +4,6 @@ package de.dafuqs.spectrum.registries;
 import net.minecraft.sounds.*;
 import net.minecraft.world.level.block.*;
 
-@SuppressWarnings("unused")
 public class SpectrumBlockSoundGroups {
 	
 	// float volume, float pitch, SoundEvent breakSound, SoundEvent stepSound, SoundEvent placeSound, SoundEvent hitSound, SoundEvent fallSound
@@ -32,7 +31,7 @@ public class SpectrumBlockSoundGroups {
 	public static final SoundType MEDIUM_MOONSTONE_BUD = new SoundType(1.0F, 1.0F, SpectrumSoundEvents.BLOCK_MEDIUM_MOONSTONE_BUD_BREAK, SpectrumSoundEvents.BLOCK_MOONSTONE_CLUSTER_STEP, SpectrumSoundEvents.BLOCK_MEDIUM_MOONSTONE_BUD_PLACE, SpectrumSoundEvents.BLOCK_MOONSTONE_CLUSTER_HIT, SpectrumSoundEvents.BLOCK_MOONSTONE_CLUSTER_FALL);
 	public static final SoundType LARGE_MOONSTONE_BUD = new SoundType(1.0F, 1.0F, SpectrumSoundEvents.BLOCK_LARGE_MOONSTONE_BUD_BREAK, SpectrumSoundEvents.BLOCK_MOONSTONE_CLUSTER_STEP, SpectrumSoundEvents.BLOCK_LARGE_MOONSTONE_BUD_PLACE, SpectrumSoundEvents.BLOCK_MOONSTONE_CLUSTER_HIT, SpectrumSoundEvents.BLOCK_MOONSTONE_CLUSTER_FALL);
 	
-	public static final SoundType SPECTRAL_BLOCK = new SoundType(1.0F, 1.0F, SpectrumSoundEvents.SPECTRAL_BLOCK_BREAK, SpectrumSoundEvents.SPECTRAL_BLOCK_STEP, SpectrumSoundEvents.SPECTRAL_BLOCK_PLACE, SpectrumSoundEvents.SPECTRAL_BLOCK_HIT, SpectrumSoundEvents.SPECTRAL_BLOCK_FALL);
+	//public static final SoundType SPECTRAL_BLOCK = new SoundType(1.0F, 1.0F, SpectrumSoundEvents.SPECTRAL_BLOCK_BREAK, SpectrumSoundEvents.SPECTRAL_BLOCK_STEP, SpectrumSoundEvents.SPECTRAL_BLOCK_PLACE, SpectrumSoundEvents.SPECTRAL_BLOCK_HIT, SpectrumSoundEvents.SPECTRAL_BLOCK_FALL);
 	public static final SoundType LIGHT = new SoundType(1.0F, 1.0F, SpectrumSoundEvents.RADIANCE_STAFF_BREAK, SoundEvents.AMETHYST_CLUSTER_STEP, SpectrumSoundEvents.RADIANCE_STAFF_PLACE, SpectrumSoundEvents.RADIANCE_STAFF_BREAK, SpectrumSoundEvents.RADIANCE_STAFF_BREAK);
 	
 	// MOB BLOCKS
@@ -56,7 +55,6 @@ public class SpectrumBlockSoundGroups {
 	public static final SoundType GUARDIAN_IDOL = new SoundType(1.0F, 1.0F, SoundEvents.GUARDIAN_DEATH, SoundEvents.WOOL_STEP, SoundEvents.GUARDIAN_AMBIENT, SoundEvents.GUARDIAN_HURT, SoundEvents.GUARDIAN_AMBIENT);
 	public static final SoundType HORSE_IDOL = new SoundType(1.0F, 1.0F, SoundEvents.HORSE_DEATH, SoundEvents.WOOL_STEP, SoundEvents.HORSE_AMBIENT, SoundEvents.HORSE_HURT, SoundEvents.HORSE_AMBIENT);
 	public static final SoundType ILLUSIONER_IDOL = new SoundType(1.0F, 1.0F, SoundEvents.ILLUSIONER_DEATH, SoundEvents.WOOL_STEP, SoundEvents.ILLUSIONER_AMBIENT, SoundEvents.ILLUSIONER_HURT, SoundEvents.ILLUSIONER_AMBIENT);
-	public static final SoundType LLAMA_IDOL = new SoundType(1.0F, 1.0F, SoundEvents.LLAMA_DEATH, SoundEvents.WOOL_STEP, SoundEvents.LLAMA_AMBIENT, SoundEvents.LLAMA_HURT, SoundEvents.LLAMA_AMBIENT);
 	public static final SoundType OCELOT_IDOL = new SoundType(1.0F, 1.0F, SoundEvents.OCELOT_DEATH, SoundEvents.WOOL_STEP, SoundEvents.OCELOT_AMBIENT, SoundEvents.OCELOT_HURT, SoundEvents.OCELOT_AMBIENT);
 	public static final SoundType PARROT_IDOL = new SoundType(1.0F, 1.0F, SoundEvents.PARROT_DEATH, SoundEvents.WOOL_STEP, SoundEvents.PARROT_AMBIENT, SoundEvents.PARROT_HURT, SoundEvents.PARROT_AMBIENT);
 	public static final SoundType PHANTOM_IDOL = new SoundType(1.0F, 1.0F, SoundEvents.PHANTOM_DEATH, SoundEvents.WOOL_STEP, SoundEvents.PHANTOM_AMBIENT, SoundEvents.PHANTOM_HURT, SoundEvents.PHANTOM_AMBIENT);

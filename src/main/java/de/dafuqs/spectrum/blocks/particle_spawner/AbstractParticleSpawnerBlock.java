@@ -39,7 +39,7 @@ public abstract class AbstractParticleSpawnerBlock extends BaseEntityBlock {
 	@Override
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return world.isClientSide ? createTickerHelper(type, SpectrumBlockEntities.PARTICLE_SPAWNER, ParticleSpawnerBlockEntity::clientTick) : null;
+		return world.isClientSide ? createTickerHelper(type, SpectrumBlockEntities.PARTICLE_SPAWNER.get(), ParticleSpawnerBlockEntity::clientTick) : null;
 	}
 	
 	@Override

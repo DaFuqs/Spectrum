@@ -21,7 +21,7 @@ public class JadeVineRootsBlockEntity extends BlockEntity {
 	private boolean wasExposedToSunlight = false;
 	
 	public JadeVineRootsBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntities.JADE_VINE_ROOTS, pos, state);
+		super(SpectrumBlockEntities.JADE_VINE_ROOTS.get(), pos, state);
 		this.fenceBlockState = Blocks.OAK_FENCE.defaultBlockState();
 	}
 	

@@ -37,7 +37,7 @@ public class BlackHoleChestBlock extends SpectrumChestBlock {
 	@Override
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return createTickerHelper(type, SpectrumBlockEntities.BLACK_HOLE_CHEST, BlackHoleChestBlockEntity::tick);
+		return createTickerHelper(type, SpectrumBlockEntities.BLACK_HOLE_CHEST.get(), BlackHoleChestBlockEntity::tick);
 	}
 	
 	@Override

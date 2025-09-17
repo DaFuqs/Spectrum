@@ -17,7 +17,7 @@ public class PlayerDetectorBlockEntity extends BlockEntity implements PlayerOwne
 	private String ownerName;
 	
 	public PlayerDetectorBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntities.PLAYER_DETECTOR, blockPos, blockState);
+		super(SpectrumBlockEntities.PLAYER_DETECTOR.get(), blockPos, blockState);
 	}
 	
 	@Override

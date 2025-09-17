@@ -21,7 +21,7 @@ public class BlackHoleChestScreenHandler extends AbstractContainerMenu {
 	protected Container filterInventory;
 	
 	public BlackHoleChestScreenHandler(int syncId, Inventory playerInventory, FilterConfigurable.ExtendedDataWithPos data) {
-		this(syncId, playerInventory, playerInventory.player.level().getBlockEntity(data.pos(), SpectrumBlockEntities.BLACK_HOLE_CHEST).orElseThrow(), data.data());
+		this(syncId, playerInventory, playerInventory.player.level().getBlockEntity(data.pos(), SpectrumBlockEntities.BLACK_HOLE_CHEST.get()).orElseThrow(), data.data());
 	}
 	
 	public BlackHoleChestScreenHandler(int syncId, Inventory playerInventory, BlackHoleChestBlockEntity blockEntity, FilterConfigurable.ExtendedData data) {

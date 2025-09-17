@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.state.*;
 public class BlockPlacerBlockEntity extends DispenserBlockEntity {
 	
 	public BlockPlacerBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntities.BLOCK_PLACER, pos, state);
+		super(SpectrumBlockEntities.BLOCK_PLACER.get(), pos, state);
 	}
 	
 	@Override

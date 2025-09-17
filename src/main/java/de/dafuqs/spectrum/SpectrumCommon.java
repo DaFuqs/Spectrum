@@ -1,8 +1,10 @@
 package de.dafuqs.spectrum;
 
+import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.loot.*;
+import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import me.shedaniel.autoconfig.*;
@@ -13,12 +15,15 @@ import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.entity.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.fml.common.*;
+import net.neoforged.neoforge.event.*;
 import org.jetbrains.annotations.*;
 import org.slf4j.*;
 
 import java.util.*;
+import java.util.function.*;
 
 @Mod(SpectrumCommon.MOD_ID)
 public class SpectrumCommon {
@@ -70,9 +75,6 @@ public class SpectrumCommon {
 		logInfo("Finished loading config file.");
 	}
 	
-	// Miscellaneous registrars
-//	public static final DeferredRegistrar FUEL_REGISTRAR = new DeferredRegistrar();
-	
 	public SpectrumCommon(IEventBus modBus) {
 		logInfo("Starting Common Startup");
 		
@@ -82,40 +84,40 @@ public class SpectrumCommon {
 		InkColors.register();
 		InkColorMixes.register();
 		SpectrumEntityAttributes.register(modBus);
-//		SpectrumLoadConditions.register();
 		
 		logInfo("Registering Component Types...");
 		SpectrumDataComponentTypes.register(modBus);
 		
-//		logInfo("Registering Block / Item Color Registries...");
-//		ColorRegistry.registerColorRegistries();
-//
-//		// Register ALL the stuff
-//		logInfo("Registering Status Effects...");
-//		SpectrumStatusEffects.register();
+		logInfo("Registering Block / Item Color Registries...");
+		ColorRegistry.registerColorRegistries();
+		
+		// Register ALL the stuff
+		logInfo("Registering Status Effects...");
+		SpectrumStatusEffects.register();
 		logInfo("Registering Advancement Criteria...");
 		SpectrumAdvancementCriteria.register(modBus);
-//		logInfo("Registering Particle Types...");
-//		SpectrumParticleTypes.register();
+		logInfo("Registering Particle Types...");
+		SpectrumParticleTypes.register(modBus);
 		logInfo("Registering Sound Events...");
 		SpectrumSoundEvents.register(modBus);
-//		logInfo("Registering BlockSound Groups...");
-//		SpectrumBlockSoundGroups.register();
+		logInfo("Registering BlockSound Groups...");
+		SpectrumBlockSoundGroups.register();
 		logInfo("Registering Fluids...");
 		SpectrumFluids.register(modBus);
-//		logInfo("Registering Armor Materials...");
-//		SpectrumArmorMaterials.register();
-//		logInfo("Registering Blocks...");
-//		SpectrumBlocks.register();
-//		logInfo("Registering Items...");
+		logInfo("Registering Armor Materials...");
+		SpectrumArmorMaterials.register();
+		logInfo("Registering Blocks...");
+		SpectrumBlocks.register();
+		logInfo("Registering Items...");
 		SpectrumPotions.register(modBus);
-//		SpectrumItems.register();
-//		SpectrumItemGroups.register();
-//		logInfo("Registering Block Entities...");
-//		SpectrumBlockEntities.register();
-//
-//		// Pastel
-//		logInfo("Registering Pastel Upgrades...");
+		SpectrumItems.register(modBus);
+		SpectrumItemGroups.register();
+		logInfo("Registering Block Entities...");
+		SpectrumBlockEntities.register(modBus);
+		modBus.addListener((Consumer<BlockEntityTypeAddBlocksEvent>) event -> event.modify(BlockEntityType.BARREL, SpectrumBlocks.WEEPING_GALA_BARREL.get()));
+		
+		// Pastel
+		logInfo("Registering Pastel Upgrades...");
 //		SpectrumPastelUpgrades.register();
 //
 //		// Worldgen

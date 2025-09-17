@@ -62,7 +62,7 @@ public class ItemBowlBlock extends InWorldInteractionBlock {
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return world.isClientSide ? createTickerHelper(type, SpectrumBlockEntities.ITEM_BOWL, ItemBowlBlockEntity::clientTick) : null;
+		return world.isClientSide ? createTickerHelper(type, SpectrumBlockEntities.ITEM_BOWL.get(), ItemBowlBlockEntity::clientTick) : null;
 	}
 	
 	@Override

@@ -21,7 +21,7 @@ public class PresentBlockEntity extends BlockEntity implements PlayerOwnedWithNa
 	protected int openingTicks = 0;
 	
 	public PresentBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntities.PRESENT, pos, state);
+		super(SpectrumBlockEntities.PRESENT.get(), pos, state);
 	}
 	
 	public void triggerAdvancement() {

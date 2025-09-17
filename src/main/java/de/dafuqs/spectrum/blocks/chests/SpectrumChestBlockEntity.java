@@ -16,10 +16,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.neoforged.api.distmarker.*;
 
-@OnlyIn(
-		value = Dist.CLIENT,
-		_interface = LidBlockEntity.class
-)
+@OnlyIn(value = Dist.CLIENT, _interface = LidBlockEntity.class)
 public abstract class SpectrumChestBlockEntity extends RandomizableContainerBlockEntity implements LidBlockEntity {
 	
 	public final ContainerOpenersCounter stateManager;

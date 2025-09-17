@@ -44,7 +44,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	long interpTicks, interpLength = 1, age, storedXP, maxStoredXP;
 	
 	public BlackHoleChestBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntities.BLACK_HOLE_CHEST, blockPos, blockState);
+		super(SpectrumBlockEntities.BLACK_HOLE_CHEST.get(), blockPos, blockState);
 		this.itemAndExperienceEventQueue = new ItemAndExperienceEventQueue(new BlockPositionSource(this.worldPosition), RANGE, this);
 		this.filterItems = NonNullList.withSize(ITEM_FILTER_SLOT_COUNT, ItemStack.EMPTY);
 	}

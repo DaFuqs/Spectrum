@@ -100,7 +100,7 @@ public class CrystalApothecaryBlock extends BaseEntityBlock {
 	@Override
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return createTickerHelper(type, SpectrumBlockEntities.CRYSTAL_APOTHECARY, CrystalApothecaryBlockEntity::tick);
+		return createTickerHelper(type, SpectrumBlockEntities.CRYSTAL_APOTHECARY.get(), CrystalApothecaryBlockEntity::tick);
 	}
 	
 	@Override

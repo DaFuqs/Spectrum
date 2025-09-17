@@ -14,7 +14,7 @@ public class PlayerTrackerBlockEntity extends BlockEntity {
 	private final List<UUID> playersThatOpenedAlready = new ArrayList<>();
 	
 	public PlayerTrackerBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntities.PLAYER_TRACKING, pos, state);
+		super(SpectrumBlockEntities.PLAYER_TRACKING.get(), pos, state);
 	}
 	
 	public boolean hasTaken(Player player) {

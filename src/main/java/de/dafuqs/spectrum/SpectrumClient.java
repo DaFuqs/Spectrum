@@ -16,5 +16,8 @@ public class SpectrumClient {
 		modContainer.registerExtensionPoint(IConfigScreenFactory.class, (modCont, parent) -> AutoConfig.getConfigScreen(SpectrumConfig.class, parent).get());
 		
 		modBus.addListener(SpectrumFluids::registerClient);
+		
+		
+		modBus.addListener(SpectrumBlockEntities::registerClient);
 	}
 }

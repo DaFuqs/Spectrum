@@ -47,7 +47,7 @@ public abstract class PlacedItemBlock extends BaseEntityBlock {
 	
 	@Override
 	public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state) {
-		Optional<PlacedItemBlockEntity> blockEntity = world.getBlockEntity(pos, SpectrumBlockEntities.PLACED_ITEM);
+		Optional<PlacedItemBlockEntity> blockEntity = world.getBlockEntity(pos, SpectrumBlockEntities.PLACED_ITEM.get());
 		if (blockEntity.isPresent()) {
 			return blockEntity.get().getStack().copy();
 		}

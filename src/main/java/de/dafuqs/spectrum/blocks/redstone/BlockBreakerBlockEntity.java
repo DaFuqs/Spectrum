@@ -15,7 +15,7 @@ public class BlockBreakerBlockEntity extends BlockEntity implements PlayerOwned 
 	private UUID ownerUUID;
 	
 	public BlockBreakerBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntities.BLOCK_BREAKER, pos, state);
+		super(SpectrumBlockEntities.BLOCK_BREAKER.get(), pos, state);
 	}
 	
 	@Override

@@ -13,7 +13,7 @@ public class ParticleSpawnerScreenHandler extends AbstractContainerMenu {
 	protected ParticleSpawnerBlockEntity blockEntity;
 	
 	public ParticleSpawnerScreenHandler(int syncId, Inventory inventory, BlockPos pos) {
-		this(syncId, inventory, inventory.player.level().getBlockEntity(pos, SpectrumBlockEntities.PARTICLE_SPAWNER).orElseThrow());
+		this(syncId, inventory, inventory.player.level().getBlockEntity(pos, SpectrumBlockEntities.PARTICLE_SPAWNER.get()).orElseThrow());
 	}
 	
 	public ParticleSpawnerScreenHandler(int syncId, Inventory playerInventory, ParticleSpawnerBlockEntity blockEntity) {

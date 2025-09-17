@@ -130,7 +130,7 @@ public class HummingstoneBlock extends BaseEntityBlock {
 	@Override
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return world.isClientSide ? null : createTickerHelper(type, SpectrumBlockEntities.HUMMINGSTONE, HummingstoneBlockEntity::serverTick);
+		return world.isClientSide ? null : createTickerHelper(type, SpectrumBlockEntities.HUMMINGSTONE.get(), HummingstoneBlockEntity::serverTick);
 	}
 	
 	@Override

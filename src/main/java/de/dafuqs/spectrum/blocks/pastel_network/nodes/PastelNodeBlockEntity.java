@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.blocks.pastel_network.nodes;
 import com.google.common.base.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
-import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.pastel.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
@@ -26,7 +25,6 @@ import net.minecraft.network.protocol.*;
 import net.minecraft.network.protocol.game.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
-import net.minecraft.server.network.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
@@ -81,7 +79,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	private ConnectionState connectionState;
 	
 	public PastelNodeBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntities.PASTEL_NODE, blockPos, blockState);
+		super(SpectrumBlockEntities.PASTEL_NODE.get(), blockPos, blockState);
 		this.filterItems = NonNullList.withSize(MAX_FILTER_SLOTS, ItemVariant.blank());
 		this.outerRing = Optional.empty();
 		this.innerRing = Optional.empty();
@@ -551,7 +549,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		Map<Optional<ServerPastelNetwork>, List<PastelNodeBlockEntity>> connectableNodes = new Object2ObjectArrayMap<>();
 		ServerPastelNetwork biggestNetwork = null;
 		for (BlockPos pos : BlockPos.withinManhattan(this.getBlockPos(), RANGE, RANGE, RANGE)) {
-			Optional<PastelNodeBlockEntity> blockEntity = level.getBlockEntity(pos, SpectrumBlockEntities.PASTEL_NODE);
+			Optional<PastelNodeBlockEntity> blockEntity = level.getBlockEntity(pos, SpectrumBlockEntities.PASTEL_NODE.get());
 			if (blockEntity.isPresent() && canConnect(this, blockEntity.get())) {
 				PastelNodeBlockEntity connectableNode = blockEntity.get();
 				Optional<ServerPastelNetwork> connectableNetwork = connectableNode.getServerNetwork();

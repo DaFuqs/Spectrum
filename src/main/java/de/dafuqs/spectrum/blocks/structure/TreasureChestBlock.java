@@ -49,7 +49,7 @@ public class TreasureChestBlock extends SpectrumChestBlock {
 	@Override
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return world.isClientSide ? createTickerHelper(type, SpectrumBlockEntities.PRESERVATION_CHEST, TreasureChestBlockEntity::clientTick) : null;
+		return world.isClientSide ? createTickerHelper(type, SpectrumBlockEntities.PRESERVATION_CHEST.get(), TreasureChestBlockEntity::clientTick) : null;
 	}
 	
 	@Override

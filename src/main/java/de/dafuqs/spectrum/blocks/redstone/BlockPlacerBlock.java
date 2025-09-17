@@ -53,7 +53,7 @@ public class BlockPlacerBlock extends RedstoneInteractionBlock implements Entity
 	}
 	
 	protected void dispense(ServerLevel world, BlockState state, BlockPos pos) {
-		BlockPlacerBlockEntity blockEntity = world.getBlockEntity(pos, SpectrumBlockEntities.BLOCK_PLACER).orElse(null);
+		BlockPlacerBlockEntity blockEntity = world.getBlockEntity(pos, SpectrumBlockEntities.BLOCK_PLACER.get()).orElse(null);
 		if (blockEntity == null) {
 			SpectrumCommon.LOGGER.warn("Ignoring block place attempt for Block Player without matching block entity at {}", pos);
 		} else {

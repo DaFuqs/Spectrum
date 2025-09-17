@@ -16,7 +16,7 @@ public class HummingstoneBlockEntity extends BlockEntity implements Hummingstone
 	protected final HummingstoneEventQueue listener;
 	
 	public HummingstoneBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntities.HUMMINGSTONE, pos, state);
+		super(SpectrumBlockEntities.HUMMINGSTONE.get(), pos, state);
 		this.listener = new HummingstoneEventQueue(new BlockPositionSource(this.worldPosition), RANGE, this);
 	}
 	

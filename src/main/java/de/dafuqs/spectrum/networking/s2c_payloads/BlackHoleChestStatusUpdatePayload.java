@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.registries.*;
-import net.neoforged.api.distmarker.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.fabricmc.fabric.api.networking.v1.*;
 import net.minecraft.client.*;
@@ -13,6 +12,7 @@ import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
+import net.neoforged.api.distmarker.*;
 
 import java.util.*;
 
@@ -44,12 +44,11 @@ public record BlackHoleChestStatusUpdatePayload(BlockPos pos, boolean isFull, bo
 		}
 	}
 	
-	@SuppressWarnings("resource")
 	@OnlyIn(Dist.CLIENT)
 	public static void execute(BlackHoleChestStatusUpdatePayload payload, ClientPlayNetworking.Context context) {
 		Minecraft client = context.client();
 		if (client.level != null) {
-			Optional<BlackHoleChestBlockEntity> entity = client.level.getBlockEntity(payload.pos, SpectrumBlockEntities.BLACK_HOLE_CHEST);
+			Optional<BlackHoleChestBlockEntity> entity = client.level.getBlockEntity(payload.pos, SpectrumBlockEntities.BLACK_HOLE_CHEST.get());
 			entity.ifPresent(chest -> {
 				chest.setFull(payload.isFull);
 				chest.setHasXPStorage(payload.canStoreExperience);

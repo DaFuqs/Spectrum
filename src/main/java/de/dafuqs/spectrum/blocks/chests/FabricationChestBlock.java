@@ -35,7 +35,7 @@ public class FabricationChestBlock extends SpectrumChestBlock {
 	@Override
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return createTickerHelper(type, SpectrumBlockEntities.FABRICATION_CHEST, FabricationChestBlockEntity::tick);
+		return createTickerHelper(type, SpectrumBlockEntities.FABRICATION_CHEST.get(), FabricationChestBlockEntity::tick);
 	}
 	
 	@Override

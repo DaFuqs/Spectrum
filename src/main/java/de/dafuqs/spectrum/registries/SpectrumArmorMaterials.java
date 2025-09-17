@@ -8,14 +8,16 @@ import net.minecraft.core.registries.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
+import net.neoforged.neoforge.registries.*;
 
 import java.util.*;
-import java.util.function.*;
 import java.util.function.Supplier;
 
 import static de.dafuqs.spectrum.SpectrumCommon.*;
 
 public class SpectrumArmorMaterials {
+	
+	private static final DeferredRegister<ArmorMaterial> REGISTRAR = DeferredRegister.create(Registries.ARMOR_MATERIAL, SpectrumCommon.MOD_ID);
 	
 	public static Holder<ArmorMaterial> GEMSTONE;
 	public static Holder<ArmorMaterial> BEDROCK;
@@ -55,20 +57,22 @@ public class SpectrumArmorMaterials {
 			Holder<SoundEvent> equipSound,
 			float toughness,
 			float knockbackResistance,
-			Supplier<Ingredient> repairIngredient
-	) {
-		List<ArmorMaterial.Layer> layers = List.of(new ArmorMaterial.Layer(locate(id)));
+			Supplier<Ingredient> repairIngredient) {
 		
+		List<ArmorMaterial.Layer> layers = List.of(new ArmorMaterial.Layer(locate(id)));
 		EnumMap<ArmorItem.Type, Integer> enumMap = new EnumMap<>(ArmorItem.Type.class);
 		
 		for (ArmorItem.Type type : ArmorItem.Type.values()) {
 			enumMap.put(type, defense.get(type));
 		}
 		
-		return Registry.registerForHolder(
-				BuiltInRegistries.ARMOR_MATERIAL,
-				locate(id),
-				new ArmorMaterial(enumMap, enchantability, equipSound, Suppliers.memoize(repairIngredient::get), layers, toughness, knockbackResistance));
+		return REGISTRAR.register(
+				id,
+				() -> new ArmorMaterial(
+						enumMap, enchantability, equipSound, Suppliers.memoize(repairIngredient::get), layers, toughness,
+						knockbackResistance
+				)
+		);
 	}
 	
 }

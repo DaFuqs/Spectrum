@@ -30,7 +30,7 @@ public class PreservationRoundelBlockEntity extends ItemRoundelBlockEntity imple
 	protected List<Vec3i> otherRoundelOffsets = new ArrayList<>();
 	
 	public PreservationRoundelBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntities.PRESERVATION_ROUNDEL, pos, state, INVENTORY_SIZE);
+		super(SpectrumBlockEntities.PRESERVATION_ROUNDEL.get(), pos, state, INVENTORY_SIZE);
 	}
 	
 	@Override

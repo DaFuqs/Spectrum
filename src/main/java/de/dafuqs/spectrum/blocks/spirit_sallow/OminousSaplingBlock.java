@@ -67,7 +67,7 @@ public class OminousSaplingBlock extends BushBlock implements EntityBlock {
 	
 	@Override
 	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-		return new OminousSaplingBlockEntity(SpectrumBlockEntities.OMINOUS_SAPLING, pos, state);
+		return new OminousSaplingBlockEntity(SpectrumBlockEntities.OMINOUS_SAPLING.get(), pos, state);
 	}
 	
 	@Override

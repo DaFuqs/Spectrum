@@ -44,7 +44,7 @@ public class ColorPickerScreenHandler extends AbstractContainerMenu implements I
 	}
 	
 	public ColorPickerScreenHandler(int syncId, Inventory playerInventory, ScreenOpeningData data) {
-		this(syncId, playerInventory, playerInventory.player.level().getBlockEntity(data.pos(), SpectrumBlockEntities.COLOR_PICKER).orElseThrow(), data.inkColor());
+		this(syncId, playerInventory, playerInventory.player.level().getBlockEntity(data.pos(), SpectrumBlockEntities.COLOR_PICKER.get()).orElseThrow(), data.inkColor());
 	}
 	
 	public ColorPickerScreenHandler(int syncId, Inventory playerInventory, ColorPickerBlockEntity blockEntity, Optional<Holder<InkColor>> selectedColor) {

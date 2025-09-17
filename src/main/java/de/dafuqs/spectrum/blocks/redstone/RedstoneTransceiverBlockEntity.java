@@ -23,7 +23,7 @@ public class RedstoneTransceiverBlockEntity extends BlockEntity implements Wirel
 	private int currentSignal;
 	
 	public RedstoneTransceiverBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntities.REDSTONE_TRANSCEIVER, blockPos, blockState);
+		super(SpectrumBlockEntities.REDSTONE_TRANSCEIVER.get(), blockPos, blockState);
 		this.listener = new WirelessRedstoneSignalEventQueue(new BlockPositionSource(this.worldPosition), RANGE, this);
 	}
 	

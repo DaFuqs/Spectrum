@@ -22,7 +22,7 @@ public class PlacedItemBlockEntity extends BlockEntity implements PlayerOwned {
 	}
 	
 	public PlacedItemBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntities.PLACED_ITEM, pos, state);
+		super(SpectrumBlockEntities.PLACED_ITEM.get(), pos, state);
 	}
 	
 	@Override

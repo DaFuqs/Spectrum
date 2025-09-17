@@ -62,7 +62,7 @@ public class PreservationControllerBlock extends BaseEntityBlock {
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return world.isClientSide ? null : createTickerHelper(type, SpectrumBlockEntities.PRESERVATION_CONTROLLER, PreservationControllerBlockEntity::serverTick);
+		return world.isClientSide ? null : createTickerHelper(type, SpectrumBlockEntities.PRESERVATION_CONTROLLER.get(), PreservationControllerBlockEntity::serverTick);
 	}
 	
 	@Override

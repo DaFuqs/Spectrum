@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.networking.s2c_payloads;
 import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.registries.*;
-import net.neoforged.api.distmarker.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.fabricmc.fabric.api.networking.v1.*;
 import net.minecraft.client.*;
@@ -13,6 +12,7 @@ import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.item.*;
+import net.neoforged.api.distmarker.*;
 
 import java.util.*;
 
@@ -46,7 +46,7 @@ public record FabricationChestStatusUpdatePayload(BlockPos pos, boolean isFull, 
 		var isFull = payload.isFull;
 		var hasValidRecipes = payload.hasValidRecipes;
 		List<ItemStack> outputs = payload.stacks;
-		Optional<FabricationChestBlockEntity> entity = client.level.getBlockEntity(pos, SpectrumBlockEntities.FABRICATION_CHEST);
+		Optional<FabricationChestBlockEntity> entity = client.level.getBlockEntity(pos, SpectrumBlockEntities.FABRICATION_CHEST.get());
 		if (entity.isPresent()) {
 			entity.get().updateState(isFull, hasValidRecipes, outputs);
 		}

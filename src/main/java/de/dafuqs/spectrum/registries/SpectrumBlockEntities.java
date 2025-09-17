@@ -32,156 +32,120 @@ import de.dafuqs.spectrum.blocks.structure.*;
 import de.dafuqs.spectrum.blocks.titration_barrel.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
 import net.minecraft.client.renderer.blockentity.*;
-import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
+import net.neoforged.bus.api.*;
+import net.neoforged.fml.event.lifecycle.*;
+import net.neoforged.neoforge.registries.*;
 
 import java.util.*;
+import java.util.function.*;
 
 public class SpectrumBlockEntities {
 	
-	public static BlockEntityType<OminousSaplingBlockEntity> OMINOUS_SAPLING;
-	public static BlockEntityType<PedestalBlockEntity> PEDESTAL;
-	public static BlockEntityType<FusionShrineBlockEntity> FUSION_SHRINE;
-	public static BlockEntityType<EnchanterBlockEntity> ENCHANTER;
+	public static final DeferredRegister<BlockEntityType<?>> REGISTRAR = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, SpectrumCommon.MOD_ID);
 	
-	public static BlockEntityType<ItemBowlBlockEntity> ITEM_BOWL;
-	public static BlockEntityType<ItemRoundelBlockEntity> ITEM_ROUNDEL;
-	public static BlockEntityType<EnderDropperBlockEntity> ENDER_DROPPER;
-	public static BlockEntityType<EnderHopperBlockEntity> ENDER_HOPPER;
-	public static BlockEntityType<ParticleSpawnerBlockEntity> PARTICLE_SPAWNER;
-	public static BlockEntityType<UpgradeBlockEntity> UPGRADE_BLOCK;
-	public static BlockEntityType<SpectrumSkullBlockEntity> SKULL;
-	public static BlockEntityType<BottomlessBundleBlockEntity> BOTTOMLESS_BUNDLE;
-	public static BlockEntityType<PotionWorkshopBlockEntity> POTION_WORKSHOP;
-	public static BlockEntityType<CrystallarieumBlockEntity> CRYSTALLARIEUM;
-	public static BlockEntityType<CinderhearthBlockEntity> CINDERHEARTH;
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<OminousSaplingBlockEntity>> OMINOUS_SAPLING = register("ominous_sapling_block_entity", OminousSaplingBlockEntity::new, SpectrumBlocks.OMINOUS_SAPLING);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<PedestalBlockEntity>> PEDESTAL = register("pedestal_block_entity", PedestalBlockEntity::new, SpectrumBlocks.PEDESTAL_BASIC_AMETHYST, SpectrumBlocks.PEDESTAL_BASIC_TOPAZ, SpectrumBlocks.PEDESTAL_BASIC_CITRINE, SpectrumBlocks.PEDESTAL_ALL_BASIC, SpectrumBlocks.PEDESTAL_ONYX, SpectrumBlocks.PEDESTAL_MOONSTONE);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<FusionShrineBlockEntity>> FUSION_SHRINE = register("fusion_shrine_block_entity", FusionShrineBlockEntity::new, SpectrumBlocks.FUSION_SHRINE_BASALT, SpectrumBlocks.FUSION_SHRINE_CALCITE);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<EnchanterBlockEntity>> ENCHANTER = register("enchanter_block_entity", EnchanterBlockEntity::new, SpectrumBlocks.ENCHANTER);
 	
-	public static BlockEntityType<CrystalApothecaryBlockEntity> CRYSTAL_APOTHECARY;
-	public static BlockEntityType<ColorPickerBlockEntity> COLOR_PICKER;
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<ItemBowlBlockEntity>> ITEM_BOWL = register("item_bowl_block_entity", ItemBowlBlockEntity::new, SpectrumBlocks.ITEM_BOWL_BASALT, SpectrumBlocks.ITEM_BOWL_CALCITE);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<ItemRoundelBlockEntity>> ITEM_ROUNDEL = register("item_roundel", ItemRoundelBlockEntity::new, SpectrumBlocks.ITEM_ROUNDEL);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<EnderDropperBlockEntity>> ENDER_DROPPER = register("ender_dropper", EnderDropperBlockEntity::new, SpectrumBlocks.ENDER_DROPPER);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<EnderHopperBlockEntity>> ENDER_HOPPER = register("ender_hopper", EnderHopperBlockEntity::new, SpectrumBlocks.ENDER_HOPPER);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<ParticleSpawnerBlockEntity>> PARTICLE_SPAWNER = register("particle_spawner", ParticleSpawnerBlockEntity::new, SpectrumBlocks.PARTICLE_SPAWNER, SpectrumBlocks.CREATIVE_PARTICLE_SPAWNER);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<UpgradeBlockEntity>> UPGRADE_BLOCK = register("upgrade_block", UpgradeBlockEntity::new,
+			SpectrumBlocks.UPGRADE_SPEED, SpectrumBlocks.UPGRADE_SPEED2, SpectrumBlocks.UPGRADE_SPEED3
+			, SpectrumBlocks.UPGRADE_EFFICIENCY, SpectrumBlocks.UPGRADE_EFFICIENCY2,
+			SpectrumBlocks.UPGRADE_EXPERIENCE, SpectrumBlocks.UPGRADE_EXPERIENCE2,
+			SpectrumBlocks.UPGRADE_YIELD, SpectrumBlocks.UPGRADE_YIELD2);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<SpectrumSkullBlockEntity>> SKULL;
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<BottomlessBundleBlockEntity>> BOTTOMLESS_BUNDLE = register("bottomless_bundle", BottomlessBundleBlockEntity::new, SpectrumBlocks.BOTTOMLESS_BUNDLE);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<PotionWorkshopBlockEntity>> POTION_WORKSHOP = register("potion_workshop", PotionWorkshopBlockEntity::new, SpectrumBlocks.POTION_WORKSHOP);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<CrystallarieumBlockEntity>> CRYSTALLARIEUM = register("crystallarieum", CrystallarieumBlockEntity::new, SpectrumBlocks.CRYSTALLARIEUM);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<CinderhearthBlockEntity>> CINDERHEARTH = register("cinderhearth", CinderhearthBlockEntity::new, SpectrumBlocks.CINDERHEARTH);
 	
-	public static BlockEntityType<CompactingChestBlockEntity> COMPACTING_CHEST;
-	public static BlockEntityType<FabricationChestBlockEntity> FABRICATION_CHEST;
-	public static BlockEntityType<HeartboundChestBlockEntity> HEARTBOUND_CHEST;
-	public static BlockEntityType<BlackHoleChestBlockEntity> BLACK_HOLE_CHEST;
-	public static BlockEntityType<TreasureChestBlockEntity> PRESERVATION_CHEST;
-	public static BlockEntityType<AmphoraBlockEntity> AMPHORA;
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<CrystalApothecaryBlockEntity>> CRYSTAL_APOTHECARY = register("crystal_apothecary", CrystalApothecaryBlockEntity::new, SpectrumBlocks.CRYSTAL_APOTHECARY);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<ColorPickerBlockEntity>> COLOR_PICKER = register("color_picker", ColorPickerBlockEntity::new, SpectrumBlocks.COLOR_PICKER);
 	
-	public static BlockEntityType<ProjectorBlockEntity> PROJECTOR;
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<CompactingChestBlockEntity>> COMPACTING_CHEST = register("compacting_chest", CompactingChestBlockEntity::new, SpectrumBlocks.COMPACTING_CHEST);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<FabricationChestBlockEntity>> FABRICATION_CHEST = register("fabrication_chest", FabricationChestBlockEntity::new, SpectrumBlocks.FABRICATION_CHEST);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<HeartboundChestBlockEntity>> HEARTBOUND_CHEST = register("heartbound_chest", HeartboundChestBlockEntity::new, SpectrumBlocks.HEARTBOUND_CHEST);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<BlackHoleChestBlockEntity>> BLACK_HOLE_CHEST = register("black_hole_chest", BlackHoleChestBlockEntity::new, SpectrumBlocks.BLACK_HOLE_CHEST);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<TreasureChestBlockEntity>> PRESERVATION_CHEST = register("preservation_chest", TreasureChestBlockEntity::new, SpectrumBlocks.PRESERVATION_CHEST);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<AmphoraBlockEntity>> AMPHORA = register("amphora", AmphoraBlockEntity::new, SpectrumBlocks.CHESTNUT_NOXWOOD_AMPHORA, SpectrumBlocks.EBONY_NOXWOOD_AMPHORA, SpectrumBlocks.SLATE_NOXWOOD_AMPHORA, SpectrumBlocks.IVORY_NOXWOOD_AMPHORA, SpectrumBlocks.WEEPING_GALA_AMPHORA);
 	
-	public static BlockEntityType<PlayerDetectorBlockEntity> PLAYER_DETECTOR;
-	public static BlockEntityType<RedstoneCalculatorBlockEntity> REDSTONE_CALCULATOR;
-	public static BlockEntityType<RedstoneTransceiverBlockEntity> REDSTONE_TRANSCEIVER;
-	public static BlockEntityType<BlockPlacerBlockEntity> BLOCK_PLACER;
-	public static BlockEntityType<BlockBreakerBlockEntity> BLOCK_BREAKER;
-	public static BlockEntityType<BlockFlooderBlockEntity> BLOCK_FLOODER;
-	public static BlockEntityType<SpiritInstillerBlockEntity> SPIRIT_INSTILLER;
-	public static BlockEntityType<MemoryBlockEntity> MEMORY;
-	public static BlockEntityType<JadeVineRootsBlockEntity> JADE_VINE_ROOTS;
-	public static BlockEntityType<PresentBlockEntity> PRESENT;
-	public static BlockEntityType<TitrationBarrelBlockEntity> TITRATION_BARREL;
-	public static BlockEntityType<PastelNodeBlockEntity> PASTEL_NODE;
-	public static BlockEntityType<HummingstoneBlockEntity> HUMMINGSTONE;
-	public static BlockEntityType<PlacedItemBlockEntity> PLACED_ITEM;
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<ProjectorBlockEntity>> PROJECTOR = register("projector", ProjectorBlockEntity::new, SpectrumBlocks.PYRITE_PROJECTOR);
 	
-	public static BlockEntityType<PreservationControllerBlockEntity> PRESERVATION_CONTROLLER;
-	public static BlockEntityType<PreservationRoundelBlockEntity> PRESERVATION_ROUNDEL;
-	public static BlockEntityType<PreservationBlockDetectorBlockEntity> PRESERVATION_BLOCK_DETECTOR;
-	public static BlockEntityType<DeepLightBlockEntity> DEEP_LIGHT;
-	public static BlockEntityType<PlayerTrackerBlockEntity> PLAYER_TRACKING;
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<PlayerDetectorBlockEntity>> PLAYER_DETECTOR = register("player_detector", PlayerDetectorBlockEntity::new, SpectrumBlocks.PLAYER_DETECTOR);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<RedstoneCalculatorBlockEntity>> REDSTONE_CALCULATOR = register("redstone_calculator", RedstoneCalculatorBlockEntity::new, SpectrumBlocks.REDSTONE_CALCULATOR);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<RedstoneTransceiverBlockEntity>> REDSTONE_TRANSCEIVER = register("redstone_transceiver", RedstoneTransceiverBlockEntity::new, SpectrumBlocks.REDSTONE_TRANSCEIVER);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<BlockPlacerBlockEntity>> BLOCK_PLACER = register("block_placer", BlockPlacerBlockEntity::new, SpectrumBlocks.BLOCK_PLACER);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<BlockBreakerBlockEntity>> BLOCK_BREAKER = register("block_breaker", BlockBreakerBlockEntity::new, SpectrumBlocks.BLOCK_BREAKER);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<BlockFlooderBlockEntity>> BLOCK_FLOODER = register("block_flooder", BlockFlooderBlockEntity::new, SpectrumBlocks.BLOCK_FLOODER);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<SpiritInstillerBlockEntity>> SPIRIT_INSTILLER = register("spirit_instiller", SpiritInstillerBlockEntity::new, SpectrumBlocks.SPIRIT_INSTILLER);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<MemoryBlockEntity>> MEMORY = register("memory", MemoryBlockEntity::new, SpectrumBlocks.MEMORY);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<JadeVineRootsBlockEntity>> JADE_VINE_ROOTS = register("jade_vine_roots", JadeVineRootsBlockEntity::new, SpectrumBlocks.JADE_VINE_ROOTS);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<PresentBlockEntity>> PRESENT = register("present", PresentBlockEntity::new, SpectrumBlocks.PRESENT);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<TitrationBarrelBlockEntity>> TITRATION_BARREL = register("titration_barrel", TitrationBarrelBlockEntity::new, SpectrumBlocks.TITRATION_BARREL);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<PastelNodeBlockEntity>> PASTEL_NODE = register("pastel_node", PastelNodeBlockEntity::new, SpectrumBlocks.CONNECTION_NODE, SpectrumBlocks.PROVIDER_NODE, SpectrumBlocks.STORAGE_NODE, SpectrumBlocks.SENDER_NODE, SpectrumBlocks.GATHER_NODE);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<HummingstoneBlockEntity>> HUMMINGSTONE = register("hummingstone", HummingstoneBlockEntity::new, SpectrumBlocks.HUMMINGSTONE);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<PlacedItemBlockEntity>> PLACED_ITEM = register("placed_item", PlacedItemBlockEntity::new, SpectrumBlocks.INCANDESCENT_AMALGAM, SpectrumBlocks.THREAT_CONFLUX, SpectrumBlocks.PARAMETRIC_MINING_DEVICE,
+			SpectrumBlocks.COLORFUL_SHOOTING_STAR, SpectrumBlocks.FIERY_SHOOTING_STAR, SpectrumBlocks.GEMSTONE_SHOOTING_STAR, SpectrumBlocks.GLISTERING_SHOOTING_STAR, SpectrumBlocks.PRISTINE_SHOOTING_STAR);
 	
-	private static <T extends BlockEntity> BlockEntityType<T> register(String id, BlockEntityType.BlockEntitySupplier<T> factory, Block... blocks) {
-		return Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, SpectrumCommon.locate(id), BlockEntityType.Builder.of(factory, blocks).build());
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<PreservationControllerBlockEntity>> PRESERVATION_CONTROLLER = register("preservation_controller", PreservationControllerBlockEntity::new, SpectrumBlocks.PRESERVATION_CONTROLLER);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<PreservationRoundelBlockEntity>> PRESERVATION_ROUNDEL = register("preservation_roundel", PreservationRoundelBlockEntity::new, SpectrumBlocks.PRESERVATION_ROUNDEL);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<PreservationBlockDetectorBlockEntity>> PRESERVATION_BLOCK_DETECTOR = register("preservation_block_detector", PreservationBlockDetectorBlockEntity::new, SpectrumBlocks.PRESERVATION_BLOCK_DETECTOR);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<DeepLightBlockEntity>> DEEP_LIGHT = register("deep_light", DeepLightBlockEntity::new, SpectrumBlocks.DEEP_LIGHT_CHISELED_PRESERVATION_STONE);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<PlayerTrackerBlockEntity>> PLAYER_TRACKING = register("player_tracking", PlayerTrackerBlockEntity::new, SpectrumBlocks.MANXI, SpectrumBlocks.PRESERVATION_ITEM_BOWL);
+	
+	private static <T extends BlockEntity> DeferredHolder<BlockEntityType<?>, BlockEntityType<T>> register(String id, BlockEntityType.BlockEntitySupplier<T> factory, Supplier<? extends Block>... blocks) {
+		return REGISTRAR.register(id, () -> BlockEntityType.Builder.of(factory, Arrays.stream(blocks).map(Supplier::get).toList().toArray(new Block[0])).build(null));
 	}
 	
-	public static void register() {
-		OMINOUS_SAPLING = register("ominous_sapling_block_entity", OminousSaplingBlockEntity::new, SpectrumBlocks.OMINOUS_SAPLING);
-		PEDESTAL = register("pedestal_block_entity", PedestalBlockEntity::new, SpectrumBlocks.PEDESTAL_BASIC_AMETHYST, SpectrumBlocks.PEDESTAL_BASIC_TOPAZ, SpectrumBlocks.PEDESTAL_BASIC_CITRINE, SpectrumBlocks.PEDESTAL_ALL_BASIC, SpectrumBlocks.PEDESTAL_ONYX, SpectrumBlocks.PEDESTAL_MOONSTONE);
-		FUSION_SHRINE = register("fusion_shrine_block_entity", FusionShrineBlockEntity::new, SpectrumBlocks.FUSION_SHRINE_BASALT, SpectrumBlocks.FUSION_SHRINE_CALCITE);
-		ENCHANTER = register("enchanter_block_entity", EnchanterBlockEntity::new, SpectrumBlocks.ENCHANTER);
-		ITEM_BOWL = register("item_bowl_block_entity", ItemBowlBlockEntity::new, SpectrumBlocks.ITEM_BOWL_BASALT, SpectrumBlocks.ITEM_BOWL_CALCITE);
-		ITEM_ROUNDEL = register("item_roundel", ItemRoundelBlockEntity::new, SpectrumBlocks.ITEM_ROUNDEL);
-		ENDER_DROPPER = register("ender_dropper", EnderDropperBlockEntity::new, SpectrumBlocks.ENDER_DROPPER);
-		ENDER_HOPPER = register("ender_hopper", EnderHopperBlockEntity::new, SpectrumBlocks.ENDER_HOPPER);
-		PARTICLE_SPAWNER = register("particle_spawner", ParticleSpawnerBlockEntity::new, SpectrumBlocks.PARTICLE_SPAWNER, SpectrumBlocks.CREATIVE_PARTICLE_SPAWNER);
-		COMPACTING_CHEST = register("compacting_chest", CompactingChestBlockEntity::new, SpectrumBlocks.COMPACTING_CHEST);
-		FABRICATION_CHEST = register("fabrication_chest", FabricationChestBlockEntity::new, SpectrumBlocks.FABRICATION_CHEST);
-		HEARTBOUND_CHEST = register("heartbound_chest", HeartboundChestBlockEntity::new, SpectrumBlocks.HEARTBOUND_CHEST);
-		BLACK_HOLE_CHEST = register("black_hole_chest", BlackHoleChestBlockEntity::new, SpectrumBlocks.BLACK_HOLE_CHEST);
-		PRESERVATION_CHEST = register("preservation_chest", TreasureChestBlockEntity::new, SpectrumBlocks.PRESERVATION_CHEST);
-		AMPHORA = register("amphora", AmphoraBlockEntity::new, SpectrumBlocks.CHESTNUT_NOXWOOD_AMPHORA, SpectrumBlocks.EBONY_NOXWOOD_AMPHORA, SpectrumBlocks.SLATE_NOXWOOD_AMPHORA, SpectrumBlocks.IVORY_NOXWOOD_AMPHORA, SpectrumBlocks.WEEPING_GALA_AMPHORA);
-		PROJECTOR = register("projector", ProjectorBlockEntity::new, SpectrumBlocks.PYRITE_PROJECTOR);
-		PLAYER_DETECTOR = register("player_detector", PlayerDetectorBlockEntity::new, SpectrumBlocks.PLAYER_DETECTOR);
-		REDSTONE_CALCULATOR = register("redstone_calculator", RedstoneCalculatorBlockEntity::new, SpectrumBlocks.REDSTONE_CALCULATOR);
-		REDSTONE_TRANSCEIVER = register("redstone_transceiver", RedstoneTransceiverBlockEntity::new, SpectrumBlocks.REDSTONE_TRANSCEIVER);
-		BLOCK_PLACER = register("block_placer", BlockPlacerBlockEntity::new, SpectrumBlocks.BLOCK_PLACER);
-		BLOCK_BREAKER = register("block_breaker", BlockBreakerBlockEntity::new, SpectrumBlocks.BLOCK_BREAKER);
-		BLOCK_FLOODER = register("block_flooder", BlockFlooderBlockEntity::new, SpectrumBlocks.BLOCK_FLOODER);
-		BOTTOMLESS_BUNDLE = register("bottomless_bundle", BottomlessBundleBlockEntity::new, SpectrumBlocks.BOTTOMLESS_BUNDLE);
-		POTION_WORKSHOP = register("potion_workshop", PotionWorkshopBlockEntity::new, SpectrumBlocks.POTION_WORKSHOP);
-		SPIRIT_INSTILLER = register("spirit_instiller", SpiritInstillerBlockEntity::new, SpectrumBlocks.SPIRIT_INSTILLER);
-		MEMORY = register("memory", MemoryBlockEntity::new, SpectrumBlocks.MEMORY);
-		JADE_VINE_ROOTS = register("jade_vine_roots", JadeVineRootsBlockEntity::new, SpectrumBlocks.JADE_VINE_ROOTS);
-		CRYSTALLARIEUM = register("crystallarieum", CrystallarieumBlockEntity::new, SpectrumBlocks.CRYSTALLARIEUM);
-		CRYSTAL_APOTHECARY = register("crystal_apothecary", CrystalApothecaryBlockEntity::new, SpectrumBlocks.CRYSTAL_APOTHECARY);
-		COLOR_PICKER = register("color_picker", ColorPickerBlockEntity::new, SpectrumBlocks.COLOR_PICKER);
-		CINDERHEARTH = register("cinderhearth", CinderhearthBlockEntity::new, SpectrumBlocks.CINDERHEARTH);
-		PRESENT = register("present", PresentBlockEntity::new, SpectrumBlocks.PRESENT);
-		TITRATION_BARREL = register("titration_barrel", TitrationBarrelBlockEntity::new, SpectrumBlocks.TITRATION_BARREL);
-		PASTEL_NODE = register("pastel_node", PastelNodeBlockEntity::new, SpectrumBlocks.CONNECTION_NODE, SpectrumBlocks.PROVIDER_NODE, SpectrumBlocks.STORAGE_NODE, SpectrumBlocks.SENDER_NODE, SpectrumBlocks.GATHER_NODE);
-		HUMMINGSTONE = register("hummingstone", HummingstoneBlockEntity::new, SpectrumBlocks.HUMMINGSTONE);
-		PLACED_ITEM = register("placed_item", PlacedItemBlockEntity::new, SpectrumBlocks.INCANDESCENT_AMALGAM, SpectrumBlocks.THREAT_CONFLUX, SpectrumBlocks.PARAMETRIC_MINING_DEVICE,
-				SpectrumBlocks.COLORFUL_SHOOTING_STAR, SpectrumBlocks.FIERY_SHOOTING_STAR, SpectrumBlocks.GEMSTONE_SHOOTING_STAR, SpectrumBlocks.GLISTERING_SHOOTING_STAR, SpectrumBlocks.PRISTINE_SHOOTING_STAR);
-		PRESERVATION_CONTROLLER = register("preservation_controller", PreservationControllerBlockEntity::new, SpectrumBlocks.PRESERVATION_CONTROLLER);
-		PRESERVATION_ROUNDEL = register("preservation_roundel", PreservationRoundelBlockEntity::new, SpectrumBlocks.PRESERVATION_ROUNDEL);
-		PRESERVATION_BLOCK_DETECTOR = register("preservation_block_detector", PreservationBlockDetectorBlockEntity::new, SpectrumBlocks.PRESERVATION_BLOCK_DETECTOR);
-		DEEP_LIGHT = register("deep_light", DeepLightBlockEntity::new, SpectrumBlocks.DEEP_LIGHT_CHISELED_PRESERVATION_STONE);
-		PLAYER_TRACKING = register("player_tracking", PlayerTrackerBlockEntity::new, SpectrumBlocks.MANXI, SpectrumBlocks.PRESERVATION_ITEM_BOWL);
+	public static void register(IEventBus eventBus) {
+		SKULL = register("skull", SpectrumSkullBlockEntity::new, new Supplier<Block>() {
+			@Override
+			public Block get() {
+				List<Block> skullBlocksList = new ArrayList<>();
+				skullBlocksList.addAll(SpectrumSkullBlock.getMobHeads());
+				skullBlocksList.addAll(SpectrumWallSkullBlock.getMobWallHeads());
+				
+				Block[] skullBlocksArray = new Block[skullBlocksList.size()];
+				skullBlocksArray = skullBlocksList.toArray(skullBlocksArray);
+				return skullBlocksArray;
+			}
+		});
 		
-		// All the upgrades
-		List<Block> upgradeBlocksList = UpgradeBlock.getUpgradeBlocks();
-		Block[] upgradeBlocksArray = new Block[upgradeBlocksList.size()];
-		upgradeBlocksArray = upgradeBlocksList.toArray(upgradeBlocksArray);
-		UPGRADE_BLOCK = register("upgrade_block", UpgradeBlockEntity::new, upgradeBlocksArray);
-		
-		// All the skulls
-		List<Block> skullBlocksList = new ArrayList<>();
-		skullBlocksList.addAll(SpectrumSkullBlock.getMobHeads());
-		skullBlocksList.addAll(SpectrumWallSkullBlock.getMobWallHeads());
-		
-		Block[] skullBlocksArray = new Block[skullBlocksList.size()];
-		skullBlocksArray = skullBlocksList.toArray(skullBlocksArray);
-		SKULL = register("skull", SpectrumSkullBlockEntity::new, skullBlocksArray);
-		
-		BlockEntityType.BARREL.addSupportedBlock(SpectrumBlocks.WEEPING_GALA_BARREL);
+		REGISTRAR.register(eventBus);
 	}
 	
-	public static void registerClient() {
-		BlockEntityRenderers.register(SpectrumBlockEntities.PEDESTAL, PedestalBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.BOTTOMLESS_BUNDLE, BottomlessBundleBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.HEARTBOUND_CHEST, HeartboundChestBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.COMPACTING_CHEST, CompactingChestBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.FABRICATION_CHEST, FabricationChestBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.PRESERVATION_CHEST, SpectrumChestBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.BLACK_HOLE_CHEST, BlackHoleChestBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.UPGRADE_BLOCK, UpgradeBlockBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.FUSION_SHRINE, FusionShrineBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.ENCHANTER, EnchanterBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.ITEM_BOWL, ItemBowlBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.ITEM_ROUNDEL, ItemRoundelBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.PRESERVATION_ROUNDEL, ItemRoundelBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.SKULL, SpectrumSkullBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.SPIRIT_INSTILLER, SpiritInstillerBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.JADE_VINE_ROOTS, JadeVineRootsBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.CRYSTALLARIEUM, CrystallarieumBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.COLOR_PICKER, ColorPickerBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.PRESERVATION_CONTROLLER, PreservationControllerBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.PROJECTOR, ProjectorBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.DEEP_LIGHT, DeepLightBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.PLAYER_TRACKING, PlayerTrackingBlockEntityRenderer::new);
-		
-		BlockEntityRenderers.register(SpectrumBlockEntities.PASTEL_NODE, PastelNodeBlockEntityRenderer::new);
+	public static void registerClient(FMLClientSetupEvent event) {
+		BlockEntityRenderers.register(SpectrumBlockEntities.PEDESTAL.get(), PedestalBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.BOTTOMLESS_BUNDLE.get(), BottomlessBundleBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.HEARTBOUND_CHEST.get(), HeartboundChestBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.COMPACTING_CHEST.get(), CompactingChestBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.FABRICATION_CHEST.get(), FabricationChestBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.PRESERVATION_CHEST.get(), SpectrumChestBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.BLACK_HOLE_CHEST.get(), BlackHoleChestBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.UPGRADE_BLOCK.get(), UpgradeBlockBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.FUSION_SHRINE.get(), FusionShrineBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.ENCHANTER.get(), EnchanterBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.ITEM_BOWL.get(), ItemBowlBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.ITEM_ROUNDEL.get(), ItemRoundelBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.PRESERVATION_ROUNDEL.get(), ItemRoundelBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.SKULL.get(), SpectrumSkullBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.SPIRIT_INSTILLER.get(), SpiritInstillerBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.JADE_VINE_ROOTS.get(), JadeVineRootsBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.CRYSTALLARIEUM.get(), CrystallarieumBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.COLOR_PICKER.get(), ColorPickerBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.PRESERVATION_CONTROLLER.get(), PreservationControllerBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.PROJECTOR.get(), ProjectorBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.DEEP_LIGHT.get(), DeepLightBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.PLAYER_TRACKING.get(), PlayerTrackingBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SpectrumBlockEntities.PASTEL_NODE.get(), PastelNodeBlockEntityRenderer::new);
 	}
 	
 }

@@ -13,12 +13,9 @@ import net.minecraft.world.level.pathfinder.*;
 import net.minecraft.world.phys.shapes.*;
 import org.jetbrains.annotations.*;
 
-import java.util.*;
-
 public class UpgradeBlock extends BaseEntityBlock {
 	
 	protected static final VoxelShape SHAPE_UP = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 10.0D, 14.0D);
-	private static final List<Block> upgradeBlocks = new ArrayList<>();
 	
 	private final Upgradeable.UpgradeType upgradeType;
 	private final int upgradeMod;
@@ -29,18 +26,12 @@ public class UpgradeBlock extends BaseEntityBlock {
 		this.upgradeType = upgradeType;
 		this.upgradeMod = upgradeMod;
 		this.effectColor = effectColor;
-
-		upgradeBlocks.add(this);
 	}
 
 	@Override
 	public MapCodec<? extends UpgradeBlock> codec() {
 		//TODO: Make the codec
 		return null;
-	}
-
-	public static List<Block> getUpgradeBlocks() {
-		return upgradeBlocks;
 	}
 	
 	@Override

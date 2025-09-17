@@ -2,8 +2,6 @@ package de.dafuqs.spectrum.helpers;
 
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.api.recipe.*;
-import net.fabricmc.fabric.api.transfer.v1.item.*;
-import net.fabricmc.fabric.api.transfer.v1.storage.*;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
@@ -16,6 +14,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
+import net.neoforged.neoforge.items.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -84,10 +83,10 @@ public class InventoryHelper {
 		return true;
 	}
 	
-	public static boolean isItemCountInInventory(List<ItemStack> inventory, ItemVariant itemVariant, int maxSearchAmount) {
+	public static boolean isItemCountInInventory(List<ItemStack> inventory, ItemStack itemVariant, int maxSearchAmount) {
 		int count = 0;
 		for (ItemStack inventoryStack : inventory) {
-			if (itemVariant.matches(inventoryStack)) {
+			if (ItemStack.isSameItemSameComponents(itemVariant, inventoryStack)) {
 				count += inventoryStack.getCount();
 				if (count >= maxSearchAmount) {
 					return true;
@@ -451,19 +450,12 @@ public class InventoryHelper {
 		return remainders;
 	}
 	
-	@SuppressWarnings("UnstableApiUsage")
-	public static boolean canFitStacks(List<ItemStack> stacks, Container inventory) {
-		var storage = InventoryStorage.of(inventory, null);
-		
-		if (!storage.supportsInsertion())
-			return false;
+	public static boolean canFitStacks(List<ItemStack> stacks, IItemHandlerModifiable inventory) {
+		if (stacks.isEmpty()) return true;
 		
 		for (ItemStack stack : stacks) {
-			if (stack.isEmpty())
-				continue;
-			
-			if (StorageUtil.simulateInsert(storage, ItemVariant.of(stack), stack.getMaxStackSize(), null) != stack.getCount())
-				return false;
+			if (stack.isEmpty()) continue;
+			if (!ItemHandlerHelper.insertItemStacked(inventory, stack, true).isEmpty()) return false;
 		}
 		
 		return true;

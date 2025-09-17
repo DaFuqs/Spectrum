@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.state.*;
 public class SpectrumSkullBlockEntity extends BlockEntity {
 	
 	public SpectrumSkullBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntities.SKULL, pos, state);
+		super(SpectrumBlockEntities.SKULL.get(), pos, state);
 	}
 	
 }

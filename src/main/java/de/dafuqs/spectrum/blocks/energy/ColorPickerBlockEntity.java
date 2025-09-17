@@ -52,7 +52,7 @@ public class ColorPickerBlockEntity extends RandomizableContainerBlockEntity imp
 	private UUID ownerUUID;
 	
 	public ColorPickerBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntities.COLOR_PICKER, blockPos, blockState);
+		super(SpectrumBlockEntities.COLOR_PICKER.get(), blockPos, blockState);
 		
 		this.inventory = NonNullList.withSize(INVENTORY_SIZE, ItemStack.EMPTY);
 		this.inkStorage = new TotalCappedInkStorage(STORAGE_AMOUNT, Map.of());

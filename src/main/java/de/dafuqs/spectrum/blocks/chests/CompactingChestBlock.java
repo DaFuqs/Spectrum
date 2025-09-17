@@ -32,7 +32,7 @@ public class CompactingChestBlock extends SpectrumChestBlock {
 	@Override
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return createTickerHelper(type, SpectrumBlockEntities.COMPACTING_CHEST, CompactingChestBlockEntity::tick);
+		return createTickerHelper(type, SpectrumBlockEntities.COMPACTING_CHEST.get(), CompactingChestBlockEntity::tick);
 	}
 	
 	@Override

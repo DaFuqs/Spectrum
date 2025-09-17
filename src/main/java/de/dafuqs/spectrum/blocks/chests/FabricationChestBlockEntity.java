@@ -34,7 +34,7 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
 	long interpTicks, interpLength = 1, age;
 	
 	public FabricationChestBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntities.FABRICATION_CHEST, blockPos, blockState);
+		super(SpectrumBlockEntities.FABRICATION_CHEST.get(), blockPos, blockState);
 	}
 	
 	@SuppressWarnings("unused")
@@ -226,7 +226,7 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
 		
 		var remainders = InventoryHelper.getRemainders(ingredients, this);
 		
-		return InventoryHelper.canFitStacks(remainders, this);
+		return InventoryHelper.canFitStacks(remainders, this.inventory);
 	}
 	
 	@Override

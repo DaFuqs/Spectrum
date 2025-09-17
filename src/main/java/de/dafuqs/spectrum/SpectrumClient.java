@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum;
 
 import de.dafuqs.spectrum.config.*;
+import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.registries.*;
 import me.shedaniel.autoconfig.*;
 import net.neoforged.api.distmarker.*;
@@ -16,8 +17,7 @@ public class SpectrumClient {
 		modContainer.registerExtensionPoint(IConfigScreenFactory.class, (modCont, parent) -> AutoConfig.getConfigScreen(SpectrumConfig.class, parent).get());
 		
 		modBus.addListener(SpectrumFluids::registerClient);
-		
-		
 		modBus.addListener(SpectrumBlockEntities::registerClient);
+		modBus.register(SpectrumScreenHandlerTypes.class);
 	}
 }

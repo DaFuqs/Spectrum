@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.commands;
 
 import com.mojang.brigadier.tree.*;
-import net.fabricmc.loader.api.*;
 import net.minecraft.commands.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;

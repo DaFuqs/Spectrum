@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.blocks.shooting_star.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.*;
-import net.fabricmc.fabric.api.networking.v1.*;
 import net.minecraft.client.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;

@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.compat.REI.*;
 import me.shedaniel.math.*;
 import me.shedaniel.rei.api.client.gui.widgets.*;
 import me.shedaniel.rei.api.client.registry.display.*;
-import net.fabricmc.api.*;
 import net.minecraft.network.chat.*;
 import org.jetbrains.annotations.*;
 

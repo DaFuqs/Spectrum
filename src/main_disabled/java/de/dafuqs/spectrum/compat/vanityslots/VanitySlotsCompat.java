@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.compat.vanityslots;
 
 import gay.nyako.vanityslots.*;
-import net.fabricmc.loader.api.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 

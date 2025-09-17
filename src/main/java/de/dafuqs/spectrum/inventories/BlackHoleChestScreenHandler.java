@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.inventories.slots.*;
 import de.dafuqs.spectrum.registries.*;
-import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;

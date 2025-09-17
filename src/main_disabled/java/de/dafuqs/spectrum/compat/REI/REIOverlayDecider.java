@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.compat.REI;
 
 import de.dafuqs.spectrum.inventories.*;
 import me.shedaniel.rei.api.client.registry.screen.*;
-import net.fabricmc.api.*;
 import net.minecraft.client.gui.screens.*;
 import net.minecraft.world.*;
 

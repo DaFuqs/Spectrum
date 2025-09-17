@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.api.predicate.block.*;
 import de.dafuqs.spectrum.data.*;
 import de.dafuqs.spectrum.data_loaders.resonance_processors.*;
-import net.fabricmc.fabric.api.tag.convention.v2.*;
 import net.minecraft.resources.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.item.*;

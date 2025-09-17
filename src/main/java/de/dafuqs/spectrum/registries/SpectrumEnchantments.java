@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.data.*;
-import net.fabricmc.fabric.api.datagen.v1.provider.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;

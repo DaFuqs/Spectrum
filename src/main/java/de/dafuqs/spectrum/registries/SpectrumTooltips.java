@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.registries;
 
 import com.mojang.serialization.*;
-import net.fabricmc.fabric.api.client.item.v1.*;
 import net.minecraft.*;
 import net.minecraft.core.component.*;
 import net.minecraft.nbt.*;

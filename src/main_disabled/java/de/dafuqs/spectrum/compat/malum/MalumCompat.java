@@ -4,7 +4,6 @@ import com.sammy.malum.registry.common.item.*;
 import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.compat.*;
-import net.fabricmc.api.*;
 
 public class MalumCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	

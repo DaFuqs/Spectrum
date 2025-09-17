@@ -5,7 +5,6 @@ import com.mojang.datafixers.util.*;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.*;
-import net.fabricmc.fabric.api.resource.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.packs.resources.*;

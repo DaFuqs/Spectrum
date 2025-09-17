@@ -6,7 +6,6 @@ import com.tiviacz.travelersbackpack.inventory.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
-import net.fabricmc.api.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;

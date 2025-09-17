@@ -2,12 +2,9 @@ package de.dafuqs.spectrum.progression.advancement;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.items.trinkets.*;
-import dev.emi.trinkets.api.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.advancements.critereon.*;
-import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;

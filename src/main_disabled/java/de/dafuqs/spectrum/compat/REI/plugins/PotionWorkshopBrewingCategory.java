@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.compat.REI.plugins;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.REI.*;
 import me.shedaniel.rei.api.common.category.*;
-import net.fabricmc.api.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 

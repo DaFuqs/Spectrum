@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.registries;
 
 import com.mojang.brigadier.tree.*;
 import de.dafuqs.spectrum.commands.*;
-import net.fabricmc.fabric.api.command.v2.*;
 import net.minecraft.commands.*;
 
 public class SpectrumCommands {

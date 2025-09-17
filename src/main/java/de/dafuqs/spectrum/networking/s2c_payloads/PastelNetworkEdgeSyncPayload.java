@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.networking.s2c_payloads;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.networking.*;
-import net.fabricmc.fabric.api.networking.v1.*;
 import net.minecraft.client.*;
 import net.minecraft.core.*;
 import net.minecraft.network.*;

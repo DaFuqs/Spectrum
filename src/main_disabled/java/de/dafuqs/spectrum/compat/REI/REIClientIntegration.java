@@ -32,7 +32,6 @@ import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.transfer.info.stack.*;
 import me.shedaniel.rei.api.common.util.*;
 import me.shedaniel.rei.plugin.common.*;
-import net.fabricmc.api.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.level.block.*;
 

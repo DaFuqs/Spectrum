@@ -4,7 +4,6 @@ import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
 import de.dafuqs.spectrum.items.armor.*;
 import de.dafuqs.spectrum.render.*;
-import net.fabricmc.fabric.api.client.rendering.v1.*;
 import net.minecraft.client.player.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.texture.*;

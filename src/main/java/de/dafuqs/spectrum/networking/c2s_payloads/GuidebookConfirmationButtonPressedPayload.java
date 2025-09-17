@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.networking.c2s_payloads;
 
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.progression.*;
-import net.fabricmc.fabric.api.networking.v1.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;

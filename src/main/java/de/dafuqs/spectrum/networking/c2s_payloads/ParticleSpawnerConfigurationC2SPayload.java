@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.blocks.particle_spawner.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
-import net.fabricmc.fabric.api.networking.v1.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;

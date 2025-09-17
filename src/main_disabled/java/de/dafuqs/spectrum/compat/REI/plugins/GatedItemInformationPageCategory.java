@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.compat.REI.plugins;
 import me.shedaniel.math.*;
 import me.shedaniel.rei.api.client.gui.widgets.*;
 import me.shedaniel.rei.api.common.entry.*;
-import net.fabricmc.api.*;
 import net.minecraft.client.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;

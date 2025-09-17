@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.registries.*;
-import net.fabricmc.fabric.api.networking.v1.*;
 import net.minecraft.client.*;
 import net.minecraft.core.*;
 import net.minecraft.network.*;

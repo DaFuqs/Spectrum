@@ -7,7 +7,6 @@ import de.dafuqs.spectrum.entity.variants.*;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.registries.*;
-import net.fabricmc.fabric.api.tag.convention.v2.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.nbt.*;

@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.commands;
 
 import com.mojang.brigadier.tree.*;
 import de.dafuqs.spectrum.registries.client.*;
-import net.fabricmc.loader.api.*;
 import net.minecraft.commands.*;
 
 public class ResetShadersCommand {

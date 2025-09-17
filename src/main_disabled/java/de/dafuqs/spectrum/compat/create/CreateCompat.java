@@ -10,7 +10,6 @@ import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.SpectrumItems.*;
 import de.dafuqs.spectrum.registries.client.*;
-import net.fabricmc.api.*;
 import net.minecraft.core.*;
 import net.minecraft.data.models.model.*;
 import net.minecraft.world.item.*;

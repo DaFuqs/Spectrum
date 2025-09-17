@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.TextWidget.*;
 import dev.emi.emi.api.widget.*;
-import net.fabricmc.api.*;
 import net.minecraft.client.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.crafting.*;

@@ -9,7 +9,6 @@ import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.magic_items.ampoules.*;
 import de.dafuqs.spectrum.items.tools.*;
-import net.fabricmc.fabric.api.tag.convention.v2.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;

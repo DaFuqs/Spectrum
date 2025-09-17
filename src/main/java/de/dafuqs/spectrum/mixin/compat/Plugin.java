@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.mixin.compat;
 
-import net.fabricmc.loader.api.*;
 import org.objectweb.asm.tree.*;
 import org.spongepowered.asm.mixin.extensibility.*;
 

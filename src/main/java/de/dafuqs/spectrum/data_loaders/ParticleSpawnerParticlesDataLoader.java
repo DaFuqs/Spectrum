@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.data_loaders;
 import com.google.gson.*;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
-import net.fabricmc.fabric.api.resource.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;

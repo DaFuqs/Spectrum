@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.entity;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.entity.entity.*;
-import net.fabricmc.fabric.api.object.builder.v1.entity.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.world.entity.*;

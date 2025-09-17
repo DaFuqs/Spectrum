@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.registries.*;
-import dev.emi.trinkets.api.*;
 import net.minecraft.core.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;

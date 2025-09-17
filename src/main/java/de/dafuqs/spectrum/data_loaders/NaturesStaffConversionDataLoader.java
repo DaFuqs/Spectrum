@@ -4,7 +4,6 @@ import com.google.gson.*;
 import com.mojang.brigadier.exceptions.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.recipe.*;
-import net.fabricmc.fabric.api.resource.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.packs.resources.*;

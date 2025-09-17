@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.helpers;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
-import net.fabricmc.fabric.api.item.v1.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.core.registries.*;

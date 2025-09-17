@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.mixin.client;
 
 import de.dafuqs.spectrum.registries.*;
-import dev.emi.trinkets.api.*;
 import net.minecraft.client.model.*;
 import net.minecraft.client.model.geom.*;
 import net.minecraft.world.entity.*;

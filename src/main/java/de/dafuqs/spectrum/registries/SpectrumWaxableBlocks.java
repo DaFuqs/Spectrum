@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.registries;
 
-import net.fabricmc.fabric.api.registry.*;
 
 public class SpectrumWaxableBlocks {
 	

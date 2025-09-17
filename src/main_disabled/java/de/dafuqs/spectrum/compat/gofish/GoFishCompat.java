@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.compat.gofish;
 
-import net.fabricmc.loader.api.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;

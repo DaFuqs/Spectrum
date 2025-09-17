@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.registries;
 
-import net.fabricmc.fabric.api.object.builder.v1.block.type.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.*;

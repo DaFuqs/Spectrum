@@ -10,7 +10,6 @@ import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.items.energy.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
-import net.fabricmc.fabric.api.client.rendering.v1.*;
 import net.minecraft.client.color.block.*;
 import net.minecraft.client.color.item.*;
 import net.minecraft.util.*;

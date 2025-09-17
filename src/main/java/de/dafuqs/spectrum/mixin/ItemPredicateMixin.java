@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.mixin;
 
 import com.llamalad7.mixinextras.injector.*;
 import com.llamalad7.mixinextras.sugar.*;
-import net.fabricmc.fabric.api.tag.convention.v2.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.*;
 import net.minecraft.world.item.*;

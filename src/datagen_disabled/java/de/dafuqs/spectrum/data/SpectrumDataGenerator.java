@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.data;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
-import net.fabricmc.fabric.api.datagen.v1.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import org.jetbrains.annotations.*;

@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.compat.neepmeat;
 
 import de.dafuqs.spectrum.compat.*;
-import net.fabricmc.api.*;
 import net.minecraft.world.entity.*;
 
 public class NEEPMeatCompat extends SpectrumIntegrationPacks.ModIntegrationPack {

@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.registries.client;
 
 import de.dafuqs.spectrum.items.armor.*;
 import de.dafuqs.spectrum.registries.*;
-import net.fabricmc.fabric.api.client.rendering.v1.*;
 import net.minecraft.world.item.*;
 
 import java.util.*;

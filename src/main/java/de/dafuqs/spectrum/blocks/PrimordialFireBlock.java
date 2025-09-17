@@ -7,7 +7,6 @@ import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.recipe.primordial_fire_burning.*;
 import de.dafuqs.spectrum.registries.*;
-import net.fabricmc.fabric.api.registry.*;
 import net.minecraft.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;

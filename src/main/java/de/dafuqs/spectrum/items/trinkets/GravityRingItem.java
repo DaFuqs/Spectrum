@@ -4,7 +4,6 @@ import com.google.common.collect.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.energy.storage.*;
 import de.dafuqs.spectrum.api.item.*;
-import dev.emi.trinkets.api.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.*;

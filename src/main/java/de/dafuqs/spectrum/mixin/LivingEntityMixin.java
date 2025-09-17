@@ -21,8 +21,6 @@ import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.status_effects.*;
-import dev.emi.trinkets.api.*;
-import net.fabricmc.fabric.api.tag.convention.v2.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.protocol.game.*;

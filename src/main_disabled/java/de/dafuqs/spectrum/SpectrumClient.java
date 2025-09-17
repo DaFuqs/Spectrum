@@ -13,7 +13,6 @@ import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.*;
 import de.dafuqs.spectrum.render.*;
 import de.dafuqs.spectrum.render.capes.*;
-import net.fabricmc.api.*;
 import net.minecraft.client.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;

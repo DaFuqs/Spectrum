@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.blocks.pastel_network.network;
 
 import com.mojang.blaze3d.vertex.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
-import net.fabricmc.fabric.api.client.rendering.v1.*;
 import net.minecraft.client.multiplayer.*;
 import net.minecraft.core.*;
 import net.minecraft.world.*;

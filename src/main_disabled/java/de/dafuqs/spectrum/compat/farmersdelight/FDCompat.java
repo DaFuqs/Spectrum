@@ -4,8 +4,6 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.conditional.amaranth.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.registries.*;
-import net.fabricmc.api.*;
-import net.fabricmc.fabric.api.loot.v3.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;

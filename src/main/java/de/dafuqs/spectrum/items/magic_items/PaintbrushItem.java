@@ -11,7 +11,6 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.registries.*;
-import net.fabricmc.loader.api.*;
 import net.minecraft.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;

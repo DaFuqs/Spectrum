@@ -7,8 +7,6 @@ import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.api.item_group.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.registries.*;
-import net.fabricmc.api.*;
-import net.fabricmc.fabric.api.event.lifecycle.v1.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;

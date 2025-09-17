@@ -14,8 +14,6 @@ import de.dafuqs.spectrum.compat.malum.*;
 import de.dafuqs.spectrum.compat.modonomicon.*;
 import de.dafuqs.spectrum.compat.neepmeat.*;
 import de.dafuqs.spectrum.compat.travelersbackpack.*;
-import net.fabricmc.api.*;
-import net.fabricmc.loader.api.*;
 
 import java.util.*;
 import java.util.function.*;

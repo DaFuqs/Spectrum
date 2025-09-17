@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.conditional.colored_tree.*;
-import net.fabricmc.fabric.api.registry.*;
 
 public class SpectrumFlammableBlocks {
 	

@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.render;
 
 import com.mojang.blaze3d.vertex.*;
-import net.fabricmc.fabric.api.transfer.v1.client.fluid.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.world.level.block.entity.*;
 import org.jetbrains.annotations.*;

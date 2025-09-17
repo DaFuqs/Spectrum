@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.particle_spawner.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.networking.c2s_payloads.*;
-import net.fabricmc.fabric.mixin.client.particle.*;
 import net.minecraft.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.components.*;

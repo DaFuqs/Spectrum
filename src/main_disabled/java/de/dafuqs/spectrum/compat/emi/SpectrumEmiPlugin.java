@@ -13,7 +13,6 @@ import de.dafuqs.spectrum.registries.*;
 import dev.emi.emi.api.*;
 import dev.emi.emi.api.recipe.*;
 import dev.emi.emi.api.stack.*;
-import net.fabricmc.loader.api.*;
 import net.minecraft.client.gui.screens.inventory.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;

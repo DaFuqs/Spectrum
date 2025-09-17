@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.effect.*;
-import net.fabricmc.fabric.api.networking.v1.*;
 import net.minecraft.client.*;
 import net.minecraft.core.*;
 import net.minecraft.network.*;

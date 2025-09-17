@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.*;
 import it.unimi.dsi.fastutil.objects.*;
-import net.fabricmc.fabric.api.item.v1.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;

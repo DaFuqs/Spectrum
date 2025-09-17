@@ -1,7 +1,5 @@
 package de.dafuqs.spectrum.data;
 
-import net.fabricmc.fabric.api.datagen.v1.*;
-import net.fabricmc.fabric.api.datagen.v1.provider.*;
 import net.minecraft.client.renderer.block.model.*;
 import net.minecraft.data.models.*;
 

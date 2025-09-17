@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.c2s_payloads.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.*;
-import net.fabricmc.fabric.api.item.v1.*;
 import net.minecraft.advancements.*;
 import net.minecraft.client.*;
 import net.minecraft.core.*;

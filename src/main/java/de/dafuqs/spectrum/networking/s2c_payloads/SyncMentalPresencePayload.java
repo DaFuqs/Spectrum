@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.networking.s2c_payloads;
 import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.deeper_down.*;
 import de.dafuqs.spectrum.networking.*;
-import net.fabricmc.fabric.api.networking.v1.*;
 import net.minecraft.client.player.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;

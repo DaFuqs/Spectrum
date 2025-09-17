@@ -8,7 +8,6 @@ import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.SpectrumItems.*;
 import de.dafuqs.spectrum.registries.client.*;
-import net.fabricmc.api.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;

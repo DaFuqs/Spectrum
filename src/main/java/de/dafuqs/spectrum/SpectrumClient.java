@@ -3,6 +3,7 @@ package de.dafuqs.spectrum;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.registries.client.*;
 import me.shedaniel.autoconfig.*;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.bus.api.*;
@@ -19,5 +20,6 @@ public class SpectrumClient {
 		modBus.addListener(SpectrumFluids::registerClient);
 		modBus.addListener(SpectrumBlockEntities::registerClient);
 		modBus.register(SpectrumScreenHandlerTypes.class);
+		modBus.addListener(SpectrumModelLayers::register);
 	}
 }

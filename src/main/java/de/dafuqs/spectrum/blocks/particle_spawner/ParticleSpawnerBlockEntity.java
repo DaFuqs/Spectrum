@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.blocks.particle_spawner;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
-import net.fabricmc.fabric.api.screenhandler.v1.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.chat.*;

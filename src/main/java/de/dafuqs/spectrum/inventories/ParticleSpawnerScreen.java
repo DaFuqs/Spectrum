@@ -5,8 +5,6 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.particle_spawner.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.networking.c2s_payloads.*;
-import net.neoforged.api.distmarker.*;
-import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.fabricmc.fabric.mixin.client.particle.*;
 import net.minecraft.*;
 import net.minecraft.client.gui.*;
@@ -19,6 +17,7 @@ import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.phys.*;
+import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 import org.lwjgl.glfw.*;
 

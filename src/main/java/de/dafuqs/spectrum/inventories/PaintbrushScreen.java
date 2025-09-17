@@ -3,12 +3,11 @@ package de.dafuqs.spectrum.inventories;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.networking.c2s_payloads.*;
 import de.dafuqs.spectrum.registries.*;
-import net.neoforged.api.distmarker.*;
-import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.minecraft.client.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.entity.player.*;
+import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;

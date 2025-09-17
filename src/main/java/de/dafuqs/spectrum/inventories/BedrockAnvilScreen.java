@@ -4,8 +4,6 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.networking.c2s_payloads.*;
-import net.neoforged.api.distmarker.*;
-import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.components.*;
@@ -17,6 +15,7 @@ import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
+import net.neoforged.api.distmarker.*;
 import org.lwjgl.glfw.*;
 
 @OnlyIn(Dist.CLIENT)

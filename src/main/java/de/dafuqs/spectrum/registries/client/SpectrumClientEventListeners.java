@@ -21,7 +21,6 @@ import it.unimi.dsi.fastutil.objects.*;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.*;
 import net.fabricmc.fabric.api.client.item.v1.*;
 import net.fabricmc.fabric.api.client.model.loading.v1.*;
-import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
 import net.fabricmc.fabric.api.resource.*;
 import net.minecraft.*;

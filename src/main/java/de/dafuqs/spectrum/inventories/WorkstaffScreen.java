@@ -4,14 +4,13 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.networking.c2s_payloads.*;
 import de.dafuqs.spectrum.registries.*;
-import net.neoforged.api.distmarker.*;
-import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.minecraft.client.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
+import net.neoforged.api.distmarker.*;
 
 @OnlyIn(Dist.CLIENT)
 public class WorkstaffScreen extends QuickNavigationGridScreen<WorkstaffScreenHandler> {

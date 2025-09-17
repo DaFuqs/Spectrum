@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.blocks.energy.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.widgets.*;
 import de.dafuqs.spectrum.networking.c2s_payloads.*;
-import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screens.inventory.*;
 import net.minecraft.core.*;

@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.api.block.*;
-import net.fabricmc.fabric.api.screenhandler.v1.*;
 import net.minecraft.client.gui.screens.*;
 import net.minecraft.client.gui.screens.inventory.*;
 import net.minecraft.core.*;
@@ -52,7 +51,7 @@ public class SpectrumScreenHandlerTypes {
 	}
 	
 	public static void register() {
-		PAINTBRUSH = registerSimple(SpectrumScreenHandlerIDs.PAINTBRUSH, PaintbrushScreenHandler::new);
+		PAINTBRUSH
 		WORKSTAFF = registerSimple(SpectrumScreenHandlerIDs.WORKSTAFF, WorkstaffScreenHandler::new);
 		
 		PEDESTAL = registerExtended(SpectrumScreenHandlerIDs.PEDESTAL, PedestalScreenHandler::new, PedestalScreenHandler.ScreenOpeningData.PACKET_CODEC);

@@ -9,7 +9,6 @@ import de.dafuqs.spectrum.compat.modonomicon.pages.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.c2s_payloads.*;
 import de.dafuqs.spectrum.sound.*;
-import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.components.*;

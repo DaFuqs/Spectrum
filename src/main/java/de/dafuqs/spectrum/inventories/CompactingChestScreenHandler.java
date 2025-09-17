@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.inventories;
 import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.networking.c2s_payloads.*;
 import de.dafuqs.spectrum.registries.*;
-import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.minecraft.core.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;

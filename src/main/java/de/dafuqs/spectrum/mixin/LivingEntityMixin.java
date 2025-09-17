@@ -8,9 +8,9 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.damage_type.*;
 import de.dafuqs.spectrum.api.entity.*;
 import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.attachment_types.*;
+import de.dafuqs.spectrum.attachment_types.azure_dike.*;
 import de.dafuqs.spectrum.blocks.memory.*;
-import de.dafuqs.spectrum.cca.*;
-import de.dafuqs.spectrum.cca.azure_dike.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.helpers.enchantments.*;
@@ -39,6 +39,7 @@ import net.minecraft.world.food.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
+import net.neoforged.neoforge.common.*;
 import org.jetbrains.annotations.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
@@ -150,9 +151,9 @@ public abstract class LivingEntityMixin {
 		
 		if (entity instanceof Player player) {
 			if (override) {
-				friction += MiscPlayerDataComponent.get(player).getFrictionModifiers();
+				friction += MiscPlayerDataAttachmentType.get(player).getFrictionModifiers();
 			} else {
-				f.set(Math.min(f.get() + MiscPlayerDataComponent.get(player).getFrictionModifiers(), 0.99F));
+				f.set(Math.min(f.get() + MiscPlayerDataAttachmentType.get(player).getFrictionModifiers(), 0.99F));
 			}
 		}
 		
@@ -246,7 +247,7 @@ public abstract class LivingEntityMixin {
 	@ModifyReturnValue(method = "canDisableShield", at = @At("RETURN"))
 	private boolean spectrum$lungeBreaksShields(boolean original) {
 		if ((LivingEntity) (Object) this instanceof Player player
-				&& MiscPlayerDataComponent.get(player).isLunging()) {
+				&& MiscPlayerDataAttachmentType.get(player).isLunging()) {
 			return player.getMainHandItem().getItem() instanceof LightGreatswordItem;
 		}
 		return original;
@@ -269,7 +270,7 @@ public abstract class LivingEntityMixin {
 			return original;
 		
 		if (entity instanceof Player player && parryingSword.canBluffParry(activeStack, entity, useTime)) {
-			var comp = MiscPlayerDataComponent.get(player);
+			var comp = MiscPlayerDataAttachmentType.get(player);
 			comp.setParryTicks(15);
 			
 			if (parryingSword.canPerfectParry(activeStack, entity, useTime))
@@ -314,7 +315,7 @@ public abstract class LivingEntityMixin {
 	
 	@ModifyArg(method = "getDamageAfterMagicAbsorb", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/damagesource/CombatRules;getDamageAfterMagicAbsorb(FF)F"), index = 1)
 	private float spectrum$modifyAppliedDamage(float protection, @Local(argsOnly = true) DamageSource source) {
-		var pair = getArmorPiercing(source);
+		var pair = spectrum$getArmorPiercing(source);
 		
 		if (pair.isPresent()) {
 			var ap = pair.get().getA();
@@ -330,9 +331,9 @@ public abstract class LivingEntityMixin {
 	@ModifyVariable(method = "getDamageAfterArmorAbsorb", at = @At("STORE"), ordinal = 0, argsOnly = true)
 	private float spectrum$applyArmorToDamage(float amount, DamageSource source) {
 		float defense = getArmorValue();
-		float toughness = getToughness();
+		float toughness = spectrum$getToughness();
 		var modified = false;
-		var pair = getArmorPiercing(source);
+		var pair = spectrum$getArmorPiercing(source);
 		var entity = (LivingEntity) (Object) this;
 		
 		if (pair.isPresent()) {
@@ -358,7 +359,7 @@ public abstract class LivingEntityMixin {
 	}
 	
 	@Unique
-	private Optional<Tuple<ArmorPiercingItem, ItemStack>> getArmorPiercing(DamageSource source) {
+	private Optional<Tuple<ArmorPiercingItem, ItemStack>> spectrum$getArmorPiercing(DamageSource source) {
 		if (!(source instanceof StackTracking stackTracking))
 			return Optional.empty();
 		
@@ -376,7 +377,7 @@ public abstract class LivingEntityMixin {
 	}
 	
 	@Unique
-	private float getToughness() {
+	private float spectrum$getToughness() {
 		return (float) this.getAttributeValue(Attributes.ARMOR_TOUGHNESS);
 	}
 	
@@ -385,14 +386,15 @@ public abstract class LivingEntityMixin {
 		LivingEntity thisEntity = (LivingEntity) (Object) this;
 		float cost = Math.min(original, PuffCircletItem.FALL_DAMAGE_NEGATING_COST);
 		// check if damage reduction is applicable to this entity
-		if (original <= 0 || thisEntity.isInvulnerableTo(thisEntity.damageSources().fall()) || AzureDikeProvider.getAzureDikeCharges(thisEntity) <= cost) return original;
+		AzureDikeAttachmentType azureDikeAttachment = thisEntity.getData(AzureDikeAttachmentType.ATTACHMENT_TYPE);
+		if (original <= 0 || thisEntity.isInvulnerableTo(thisEntity.damageSources().fall()) || azureDikeAttachment.getCurrentCharges() <= cost) return original;
 		
 		// check if this entity is protected by puff circlet
 		Optional<TrinketComponent> component = TrinketsApi.getTrinketComponent(thisEntity);
 		if (component.isEmpty() || component.get().getEquipped(SpectrumItems.PUFF_CIRCLET).isEmpty()) return original;
 		
 		// do damage reduction
-		AzureDikeProvider.absorbDamage(thisEntity, cost);
+		azureDikeAttachment.absorbDamage(thisEntity, cost);
 		
 		// yoink
 		Vec3 velocity = thisEntity.getDeltaMovement();
@@ -434,7 +436,8 @@ public abstract class LivingEntityMixin {
 			original.call(instance, source, amount);
 			return;
 		}
-		instance.actuallyHurt(source, AzureDikeProvider.absorbDamage(instance, amount));
+		AzureDikeAttachmentType azureDikeAttachment = instance.getData(AzureDikeAttachmentType.ATTACHMENT_TYPE);
+		instance.actuallyHurt(source, azureDikeAttachment.absorbDamage(instance, amount));
 	}
 	
 	@WrapOperation(at = @At(value = "INVOKE", target = "net/minecraft/world/entity/LivingEntity.actuallyHurt (Lnet/minecraft/world/damagesource/DamageSource;F)V", ordinal = 1), method = "hurt")
@@ -443,7 +446,8 @@ public abstract class LivingEntityMixin {
 			original.call(instance, source, amount);
 			return;
 		}
-		instance.actuallyHurt(source, AzureDikeProvider.absorbDamage(instance, amount));
+		AzureDikeAttachmentType azureDikeAttachment = instance.getData(AzureDikeAttachmentType.ATTACHMENT_TYPE);
+		instance.actuallyHurt(source, azureDikeAttachment.absorbDamage(instance, amount));
 	}
 	
 	@Inject(method = "tickEffects", at = @At(value = "INVOKE", target = "Ljava/util/Iterator;remove()V"))
@@ -521,7 +525,7 @@ public abstract class LivingEntityMixin {
 				effect.spectrum$setDuration(MobEffectInstance.INFINITE_DURATION);
 			}
 		} else if (effectType == SpectrumStatusEffects.FATAL_SLUMBER) {
-			if (SleepStatusEffect.isImmuneish(entity) && entity.getType().is(ConventionalEntityTypeTags.BOSSES)) {
+			if (SleepStatusEffect.isImmuneish(entity) && entity.getType().is(Tags.EntityTypes.BOSSES)) {
 				effect.spectrum$setDuration(20 * 60);
 			} else {
 				effect.spectrum$setDuration(Math.max(Math.round(effect.getDuration() * resistanceModifier * 3), 20 * 10));
@@ -639,7 +643,7 @@ public abstract class LivingEntityMixin {
 	protected void drop(ServerLevel world, DamageSource damageSource, CallbackInfo ci) {
 		LivingEntity thisEntity = (LivingEntity) (Object) this;
 		
-		if (EverpromiseRibbonComponent.hasRibbon(thisEntity)) {
+		if (EverpromiseRibbonAttachmentType.hasRibbon(thisEntity)) {
 			ItemStack memoryStack = MemoryItem.getMemoryForEntity(thisEntity);
 			MemoryItem.setTicksToManifest(memoryStack, 20);
 			MemoryItem.setSpawnAsAdult(memoryStack, true);

@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.blocks.mob_head.client.models;
 
 import de.dafuqs.spectrum.blocks.mob_head.client.*;
-import net.neoforged.api.distmarker.*;
 import net.minecraft.client.model.geom.*;
 import net.minecraft.client.model.geom.builders.*;
+import net.neoforged.api.distmarker.*;
 
 @OnlyIn(Dist.CLIENT)
 public class EggLayingWoolyPigHeadModel extends SpectrumSkullModel {

@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.render.*;
-import de.dafuqs.spectrum.cca.*;
+import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
 import net.minecraft.network.chat.*;
@@ -33,7 +33,7 @@ public class SoothingBouquetItem extends Item implements SleepAlteringItem, Slot
 	@Override
 	public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity user) {
 		if (user instanceof Player player) {
-			var component = MiscPlayerDataComponent.get(player);
+			var component = MiscPlayerDataAttachmentType.get(player);
 			
 			component.setSleepTimers(50, 20 * 6, 0);
 			component.setLastSleepItem(this);

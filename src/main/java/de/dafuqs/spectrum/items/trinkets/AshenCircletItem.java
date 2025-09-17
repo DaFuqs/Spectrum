@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.items.trinkets;
 import com.google.common.collect.*;
 import de.dafuqs.additionalentityattributes.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.cca.*;
+import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
 import net.minecraft.client.*;
@@ -59,7 +59,7 @@ public class AshenCircletItem extends SpectrumTrinketItem {
 		if (entity.isOnFire()) {
 			entity.setRemainingFireTicks(0);
 		}
-		if (getCooldownTicks(stack, entity.level()) == 0 && OnPrimordialFireComponent.putOut(entity)) {
+		if (getCooldownTicks(stack, entity.level()) == 0 && PrimordialFireAttachmentType.putOut(entity)) {
 			entity.level().playSound(null, entity.blockPosition(), SoundEvents.SPLASH_POTION_BREAK, SoundSource.PLAYERS, 1.0F, 1.0F);
 			setCooldown(stack, entity.level());
 		}

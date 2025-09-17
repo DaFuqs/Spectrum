@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.entity.render;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
 import de.dafuqs.spectrum.entity.entity.*;
-import net.neoforged.api.distmarker.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.texture.*;
@@ -12,6 +11,7 @@ import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
+import net.neoforged.api.distmarker.*;
 
 @OnlyIn(Dist.CLIENT)
 public class BidentEntityRenderer extends EntityRenderer<BidentBaseEntity> {

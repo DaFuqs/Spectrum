@@ -11,7 +11,6 @@ import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.*;
-import net.neoforged.api.distmarker.*;
 import net.minecraft.client.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
@@ -31,6 +30,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
+import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 import org.joml.*;
 

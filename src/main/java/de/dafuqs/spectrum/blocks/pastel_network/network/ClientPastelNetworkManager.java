@@ -2,14 +2,14 @@ package de.dafuqs.spectrum.blocks.pastel_network.network;
 
 import com.mojang.blaze3d.vertex.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
-import net.neoforged.api.distmarker.*;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
 import net.minecraft.client.multiplayer.*;
 import net.minecraft.core.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.phys.*;
-import org.jgrapht.Graph;
+import net.neoforged.api.distmarker.*;
+import org.jgrapht.*;
 import org.jgrapht.graph.*;
 import org.joml.Math;
 

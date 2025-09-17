@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.particle.client;
 import de.dafuqs.spectrum.particle.effect.*;
 import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.particle.*;
-import net.minecraft.util.*;
 import net.minecraft.world.level.material.*;
 import net.neoforged.api.distmarker.*;
 import org.joml.*;

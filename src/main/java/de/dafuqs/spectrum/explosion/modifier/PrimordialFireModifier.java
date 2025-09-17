@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.explosion.modifier;
 
+import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.blocks.*;
-import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.explosion.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
@@ -9,7 +9,6 @@ import net.minecraft.core.particles.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.level.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -33,7 +32,7 @@ public class PrimordialFireModifier extends DamageChangingModifier {
 	@Override
 	public void applyToEntity(@NotNull Entity entity, double distance) {
 		if (entity instanceof LivingEntity livingEntity) {
-			OnPrimordialFireComponent.addPrimordialFireTicks(livingEntity, 20);
+			PrimordialFireAttachmentType.addPrimordialFireTicks(livingEntity, 20);
 		}
 	}
 	

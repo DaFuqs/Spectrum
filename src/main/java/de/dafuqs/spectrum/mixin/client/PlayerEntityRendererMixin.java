@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.mixin.client;
 
 import com.llamalad7.mixinextras.injector.*;
 import com.llamalad7.mixinextras.sugar.*;
-import de.dafuqs.spectrum.cca.*;
+import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.model.*;
@@ -34,7 +34,7 @@ public class PlayerEntityRendererMixin {
 	
 	@ModifyReturnValue(method = "getArmPose", at = @At(value = "TAIL"))
 	private static HumanoidModel.ArmPose lungeAction(HumanoidModel.ArmPose original, @Local(argsOnly = true) AbstractClientPlayer player) {
-		if (MiscPlayerDataComponent.get(player).isLunging()) {
+		if (MiscPlayerDataAttachmentType.get(player).isLunging()) {
 			return HumanoidModel.ArmPose.BOW_AND_ARROW;
 		}
 		

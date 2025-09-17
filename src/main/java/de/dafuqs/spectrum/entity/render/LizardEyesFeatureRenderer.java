@@ -3,11 +3,11 @@ package de.dafuqs.spectrum.entity.render;
 import com.mojang.blaze3d.vertex.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.entity.models.*;
-import net.neoforged.api.distmarker.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.entity.layers.*;
 import net.minecraft.world.entity.*;
+import net.neoforged.api.distmarker.*;
 
 @OnlyIn(Dist.CLIENT)
 public class LizardEyesFeatureRenderer<T extends LivingEntity> extends EyesLayer<T, LizardEntityModel<T>> {

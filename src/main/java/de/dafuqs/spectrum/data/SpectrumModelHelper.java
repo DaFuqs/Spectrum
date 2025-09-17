@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.data;
 
 import com.google.gson.*;
 import de.dafuqs.spectrum.blocks.decoration.*;
-import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.minecraft.core.*;
 import net.minecraft.data.*;

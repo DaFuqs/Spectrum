@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.progression.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
-import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.neoforged.api.distmarker.*;
 import top.theillusivec4.curios.api.*;

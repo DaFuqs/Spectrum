@@ -9,8 +9,8 @@ import org.joml.*;
 
 import java.awt.*;
 import java.lang.Math;
-import java.util.*;
 import java.util.List;
+import java.util.*;
 import java.util.regex.*;
 
 public class SpectrumColorHelper {

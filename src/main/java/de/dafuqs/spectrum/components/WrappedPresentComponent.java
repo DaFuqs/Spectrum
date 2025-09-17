@@ -1,14 +1,5 @@
 package de.dafuqs.spectrum.components;
 
-import com.mojang.serialization.*;
-import com.mojang.serialization.codecs.*;
-import de.dafuqs.spectrum.helpers.*;
-import net.minecraft.network.*;
-import net.minecraft.network.codec.*;
-import net.minecraft.util.*;
-
-import java.util.*;
-
 public record WrappedPresentComponent() {}
 // TODO PORT
 //public record WrappedPresentComponent(boolean wrapped, PresentBlock.WrappingPaper variant, Map<Integer, Integer> colors) {

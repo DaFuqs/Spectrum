@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.entity.models.*;
 import de.dafuqs.spectrum.registries.client.*;
-import net.neoforged.api.distmarker.*;
 import net.minecraft.client.model.geom.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.*;
@@ -16,6 +15,7 @@ import net.minecraft.tags.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
+import net.neoforged.api.distmarker.*;
 
 @OnlyIn(Dist.CLIENT)
 public class KindlingEntityArmorFeatureRenderer extends RenderLayer<KindlingEntity, KindlingEntityModel> {

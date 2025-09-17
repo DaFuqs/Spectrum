@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.items.magic_items;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.*;
-import net.neoforged.api.distmarker.*;
 import net.minecraft.*;
 import net.minecraft.client.*;
 import net.minecraft.core.component.*;
@@ -20,6 +19,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
+import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;

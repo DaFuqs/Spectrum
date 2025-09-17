@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.networking.s2c_payloads;
 
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.*;
-import net.neoforged.api.distmarker.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.fabricmc.fabric.api.networking.v1.*;
 import net.minecraft.client.*;
@@ -15,6 +14,7 @@ import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 import net.minecraft.world.phys.*;
+import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 public record PlayParticleWithRandomOffsetAndVelocityPayload(Vec3 pos, ParticleOptions effect, int amount, Vec3 randomOffset, Vec3 randomVelocity) implements CustomPacketPayload {

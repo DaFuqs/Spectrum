@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.particle;
 
 import de.dafuqs.spectrum.blocks.pastel_network.*;
-import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.client.*;
 import net.minecraft.client.*;
 import net.minecraft.client.multiplayer.*;

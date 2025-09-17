@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.networking.s2c_payloads;
 
 import de.dafuqs.spectrum.items.map.*;
 import de.dafuqs.spectrum.networking.*;
-import net.neoforged.api.distmarker.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
@@ -10,6 +9,7 @@ import net.minecraft.network.protocol.*;
 import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.network.protocol.game.*;
 import net.minecraft.resources.*;
+import net.neoforged.api.distmarker.*;
 
 import java.util.*;
 

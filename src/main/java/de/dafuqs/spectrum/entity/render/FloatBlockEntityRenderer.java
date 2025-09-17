@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.entity.render;
 
 import com.mojang.blaze3d.vertex.*;
 import de.dafuqs.spectrum.entity.entity.*;
-import net.neoforged.api.distmarker.*;
 import net.minecraft.client.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.block.*;
@@ -14,6 +13,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
+import net.neoforged.api.distmarker.*;
 
 @OnlyIn(Dist.CLIENT)
 public class FloatBlockEntityRenderer extends EntityRenderer<FloatBlockEntity> {

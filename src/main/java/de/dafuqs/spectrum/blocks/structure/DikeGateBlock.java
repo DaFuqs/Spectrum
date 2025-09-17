@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.structure;
 
 import com.mojang.serialization.*;
-import de.dafuqs.spectrum.cca.azure_dike.*;
+import de.dafuqs.spectrum.attachment_types.azure_dike.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;

@@ -6,12 +6,12 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.entity.models.*;
 import de.dafuqs.spectrum.registries.client.*;
-import net.neoforged.api.distmarker.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
+import net.neoforged.api.distmarker.*;
 
 @OnlyIn(Dist.CLIENT)
 public class KindlingCoughEntityRenderer extends EntityRenderer<KindlingCoughEntity> {

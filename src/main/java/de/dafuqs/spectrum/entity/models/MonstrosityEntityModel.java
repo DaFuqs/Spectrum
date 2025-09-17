@@ -2,10 +2,10 @@ package de.dafuqs.spectrum.entity.models;
 
 import com.mojang.blaze3d.vertex.*;
 import de.dafuqs.spectrum.entity.entity.*;
-import net.neoforged.api.distmarker.*;
 import net.minecraft.client.model.*;
 import net.minecraft.client.model.geom.*;
 import net.minecraft.client.model.geom.builders.*;
+import net.neoforged.api.distmarker.*;
 
 @OnlyIn(Dist.CLIENT)
 public class MonstrosityEntityModel extends EntityModel<MonstrosityEntity> {

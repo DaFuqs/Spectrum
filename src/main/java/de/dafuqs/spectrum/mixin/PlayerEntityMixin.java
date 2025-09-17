@@ -8,7 +8,7 @@ import com.llamalad7.mixinextras.sugar.ref.*;
 import de.dafuqs.additionalentityattributes.*;
 import de.dafuqs.spectrum.api.entity.*;
 import de.dafuqs.spectrum.api.item.*;
-import de.dafuqs.spectrum.cca.*;
+import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -106,7 +106,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 	@Inject(method = "killedEntity", at = @At("HEAD"))
 	private void spectrum$rememberKillOther(ServerLevel world, LivingEntity other, CallbackInfoReturnable<Boolean> cir) {
 		Player entity = (Player) (Object) this;
-		LastKillComponent.rememberKillTick(entity, entity.level().getGameTime());
+		LastKillAttachmentType.rememberKillTick(entity, entity.level().getGameTime());
 		
 		MobEffectInstance frenzy = entity.getEffect(SpectrumStatusEffects.FRENZY);
 		if (frenzy != null) {
@@ -118,7 +118,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 	private void spectrum$stopSleep(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		if (amount > 0) {
 			Player entity = (Player) (Object) this;
-			MiscPlayerDataComponent.get(entity).notifyHit();
+			MiscPlayerDataAttachmentType.get(entity).notifyHit();
 		}
 	}
 	
@@ -183,7 +183,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 	@Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;getDeltaMovement()Lnet/minecraft/world/phys/Vec3;"))
 	private void spectrum$perfectCounter(Entity target, CallbackInfo ci, @Local(ordinal = 0) LocalFloatRef damage) {
 		var player = (Player) (Object) this;
-		if (MiscPlayerDataComponent.get(player).consumePerfectCounter()) {
+		if (MiscPlayerDataAttachmentType.get(player).consumePerfectCounter()) {
 			damage.set(damage.get() * 1.5F);
 		}
 	}
@@ -191,7 +191,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 	@Unique
 	protected boolean hasForcedCrits(Entity target) {
 		var player = (Player) (Object) this;
-		var component = MiscPlayerDataComponent.get(player);
+		var component = MiscPlayerDataAttachmentType.get(player);
 		
 		if (NectarLanceItem.sleepCrits(player, target)) {
 			return true;
@@ -205,7 +205,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 	protected void spectrum$switchCritSound(Level instance, Player except, double x, double y, double z, SoundEvent sound, SoundSource category, float volume, float pitch, Operation<Void> original) {
 		var player = (Player) (Object) this;
 		var stack = this.getItemInHand(InteractionHand.MAIN_HAND);
-		var component = MiscPlayerDataComponent.get(player);
+		var component = MiscPlayerDataAttachmentType.get(player);
 		if (stack.getItem() instanceof LightGreatswordItem && component.isLunging()) {
 			original.call(instance, except, x, y, z, SpectrumSoundEvents.LUNGE_CRIT, category, 1F, 1F + random.nextFloat() * 0.2F);
 			return;
@@ -328,12 +328,12 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 	public void spectrum$applyWakeUpEffects(boolean skipSleepTimer, boolean updateSleepingPlayers, CallbackInfo ci) {
 		var player = (Player) (Object) this;
 		if (!player.level().isClientSide())
-			MiscPlayerDataComponent.get(player).resetSleepingState(true);
+			MiscPlayerDataAttachmentType.get(player).resetSleepingState(true);
 	}
 	
 	@WrapOperation(method = "updatePlayerPose", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;setPose(Lnet/minecraft/world/entity/Pose;)V"))
 	public void spectrum$forceSwimmingState(Player instance, Pose entityPose, Operation<Void> original) {
-		var component = MiscPlayerDataComponent.get(instance);
+		var component = MiscPlayerDataAttachmentType.get(instance);
 		if ((component.shouldLieDown() || instance.hasEffect(SpectrumStatusEffects.FATAL_SLUMBER)) && canPlayerFitWithinBlocksAndEntitiesWhen(Pose.SWIMMING)) {
 			instance.setPose(Pose.SWIMMING);
 			return;

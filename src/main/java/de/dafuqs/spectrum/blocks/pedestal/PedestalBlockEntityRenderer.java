@@ -5,7 +5,6 @@ import com.mojang.math.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.client.*;
-import net.neoforged.api.distmarker.*;
 import net.minecraft.client.*;
 import net.minecraft.client.model.geom.*;
 import net.minecraft.client.model.geom.builders.*;
@@ -14,6 +13,7 @@ import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
+import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 @OnlyIn(Dist.CLIENT)

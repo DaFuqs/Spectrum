@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.mixin.client;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.cca.*;
+import de.dafuqs.spectrum.attachment_types.*;
 import net.minecraft.client.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.*;
@@ -27,7 +27,7 @@ public abstract class EntityRenderDispatcherMixin {
 	
 	@Inject(method = "renderFlame", at = @At(value = "HEAD"), cancellable = true)
 	public void spectrum$render(PoseStack matrices, MultiBufferSource vertexConsumers, Entity entity, Quaternionf rotation, CallbackInfo ci) {
-		if (entity instanceof LivingEntity livingEntity && OnPrimordialFireComponent.isOnPrimordialFire(livingEntity)) {
+		if (entity instanceof LivingEntity livingEntity && PrimordialFireAttachmentType.isOnPrimordialFire(livingEntity)) {
 			ci.cancel();
 		}
 	}
@@ -35,7 +35,7 @@ public abstract class EntityRenderDispatcherMixin {
 	
 	@Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/entity/EntityRenderer;render(Lnet/minecraft/world/entity/Entity;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V", shift = At.Shift.AFTER))
 	public <E extends Entity> void spectrum$render(E entity, double x, double y, double z, float yaw, float tickDelta, PoseStack matrices, MultiBufferSource vertexConsumers, int light, CallbackInfo ci) {
-		if (entity instanceof LivingEntity livingEntity && OnPrimordialFireComponent.isOnPrimordialFire(livingEntity)) {
+		if (entity instanceof LivingEntity livingEntity && PrimordialFireAttachmentType.isOnPrimordialFire(livingEntity)) {
 			spectrum$renderPrimordialFire(matrices, vertexConsumers, entity);
 		}
 	}

@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.*;
-import net.neoforged.api.distmarker.*;
 import net.minecraft.*;
 import net.minecraft.client.*;
 import net.minecraft.network.chat.*;
@@ -18,6 +17,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
+import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;

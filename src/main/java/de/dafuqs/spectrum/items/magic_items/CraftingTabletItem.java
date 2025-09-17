@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.items.tooltip.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.*;
-import net.neoforged.api.distmarker.*;
 import net.minecraft.*;
 import net.minecraft.client.*;
 import net.minecraft.core.*;
@@ -21,6 +20,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
+import net.neoforged.api.distmarker.*;
 
 import java.util.*;
 

@@ -2,9 +2,9 @@ package de.dafuqs.spectrum.mixin.client;
 
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.registries.*;
-import net.neoforged.api.distmarker.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.*;
+import net.neoforged.api.distmarker.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;

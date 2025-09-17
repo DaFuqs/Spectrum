@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.networking.s2c_payloads;
 
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.sound.*;
-import net.neoforged.api.distmarker.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.fabricmc.fabric.api.networking.v1.*;
 import net.minecraft.core.*;
@@ -13,6 +12,7 @@ import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.level.block.*;
+import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 // MaxDurationTicks of <1 means "stop playing"

@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.items.trinkets;
 import com.google.common.collect.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.render.*;
-import de.dafuqs.spectrum.cca.azure_dike.*;
+import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
@@ -57,10 +57,11 @@ public class AetherGracedNectarGlovesItem extends AzureDikeTrinketItem implement
 	}
 	
 	public static boolean tryBlockEffect(LivingEntity entity, int cost) {
-		if (AzureDikeProvider.getAzureDikeCharges(entity) == 0)
+		AzureDikeAttachmentType azureDikeAttachment = entity.getData(AzureDikeAttachmentType.ATTACHMENT_TYPE);
+		if (azureDikeAttachment.getCurrentCharges() == 0)
 			return false;
 		
-		return AzureDikeProvider.absorbDamage(entity, cost) == 0;
+		return azureDikeAttachment.absorbDamage(entity, cost) == 0;
 	}
 	
 	@Override

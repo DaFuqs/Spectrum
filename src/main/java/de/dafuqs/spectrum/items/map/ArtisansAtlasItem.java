@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.items.map;
 
 import com.mojang.datafixers.util.*;
 import de.dafuqs.spectrum.registries.*;
-import net.neoforged.api.distmarker.*;
 import net.fabricmc.fabric.api.tag.convention.v2.*;
 import net.minecraft.client.*;
 import net.minecraft.core.*;
@@ -24,6 +23,7 @@ import net.minecraft.world.level.levelgen.structure.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.level.saveddata.maps.*;
 import net.minecraft.world.phys.*;
+import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;

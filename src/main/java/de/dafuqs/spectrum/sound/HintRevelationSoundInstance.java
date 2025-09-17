@@ -1,10 +1,10 @@
 package de.dafuqs.spectrum.sound;
 
 import de.dafuqs.spectrum.registries.*;
-import net.neoforged.api.distmarker.*;
 import net.minecraft.client.resources.sounds.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.entity.player.*;
+import net.neoforged.api.distmarker.*;
 
 @OnlyIn(Dist.CLIENT)
 public class HintRevelationSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {

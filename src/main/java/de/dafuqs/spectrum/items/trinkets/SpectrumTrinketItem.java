@@ -2,10 +2,8 @@ package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.progression.*;
-import dev.emi.trinkets.api.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
-import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;

@@ -3,10 +3,10 @@ package de.dafuqs.spectrum.registries;
 import de.dafuqs.arrowhead.api.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
-import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.entity.spawners.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -17,7 +17,6 @@ import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.client.*;
 import dev.emi.trinkets.api.*;
-import net.neoforged.api.distmarker.*;
 import net.fabricmc.fabric.api.entity.event.v1.*;
 import net.fabricmc.fabric.api.event.lifecycle.v1.*;
 import net.fabricmc.fabric.api.event.player.*;
@@ -236,20 +235,20 @@ public class SpectrumEventListeners {
 		});
 		
 		EntitySleepEvents.ALLOW_BED.register((entity, sleepingPos, state, vanillaResult) -> {
-			if (entity instanceof Player player && MiscPlayerDataComponent.get(player).isSleeping())
+			if (entity instanceof Player player && MiscPlayerDataAttachmentType.get(player).isSleeping())
 				return InteractionResult.SUCCESS;
 			
 			return InteractionResult.PASS;
 		});
 		
 		EntitySleepEvents.MODIFY_SLEEPING_DIRECTION.register((entity, sleepingPos, sleepingDirection) -> {
-			if (entity instanceof Player player && MiscPlayerDataComponent.get(player).isSleeping())
+			if (entity instanceof Player player && MiscPlayerDataAttachmentType.get(player).isSleeping())
 				return player.getDirection();
 			return sleepingDirection;
 		});
 		
 		EntitySleepEvents.ALLOW_NEARBY_MONSTERS.register((player, sleepingPos, vanillaResult) -> {
-			if (MiscPlayerDataComponent.get(player).isSleeping() || player.hasEffect(SpectrumStatusEffects.SOMNOLENCE))
+			if (MiscPlayerDataAttachmentType.get(player).isSleeping() || player.hasEffect(SpectrumStatusEffects.SOMNOLENCE))
 				return InteractionResult.SUCCESS;
 			
 			return InteractionResult.PASS;
@@ -340,8 +339,8 @@ public class SpectrumEventListeners {
 		
 		ServerLivingEntityEvents.AFTER_DEATH.register((entity, damageSource) -> {
 			if (entity instanceof ServerPlayer player) {
-				if (entity.level().getLevelData().isHardcore() || HardcoreDeathComponent.isInHardcore(player)) {
-					HardcoreDeathComponent.addHardcoreDeath(player.serverLevel(), player.getGameProfile());
+				if (entity.level().getLevelData().isHardcore() || HardcoreDeathAttachmentType.isInHardcore(player)) {
+					HardcoreDeathAttachmentType.addHardcoreDeath(player.serverLevel(), player.getGameProfile());
 				}
 				evaluateAndDropPlayerHead(player, damageSource);
 			}

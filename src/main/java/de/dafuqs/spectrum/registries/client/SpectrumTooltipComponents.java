@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.registries.client;
 
 import de.dafuqs.spectrum.items.tooltip.*;
-import net.neoforged.api.distmarker.*;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
+import net.neoforged.api.distmarker.*;
 
 @OnlyIn(Dist.CLIENT)
 public class SpectrumTooltipComponents {

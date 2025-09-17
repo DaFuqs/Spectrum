@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
-import net.neoforged.api.distmarker.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.fabricmc.fabric.api.networking.v1.*;
 import net.minecraft.core.*;
@@ -13,6 +12,7 @@ import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.level.*;
+import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 public record PlayPedestalUpgradedParticlePayload(BlockPos pedestalPos, PedestalRecipeTier newTier) implements CustomPacketPayload {

@@ -4,7 +4,6 @@ import de.dafuqs.additionalentityattributes.*;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.variants.*;
-import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.registries.*;

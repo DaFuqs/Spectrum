@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.mixin;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.*;
 import com.llamalad7.mixinextras.sugar.*;
-import de.dafuqs.spectrum.cca.*;
+import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.events.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
@@ -43,7 +43,7 @@ public abstract class ServerWorldMixin {
 	
 	@Inject(method = "method_18773", at = @At(value = "HEAD"))
 	private static void spectrum$applyWakeupEffects(ServerPlayer player, CallbackInfo ci) {
-		MiscPlayerDataComponent.get(player).resetSleepingState(false);
+		MiscPlayerDataAttachmentType.get(player).resetSleepingState(false);
 		player.removeEffect(SpectrumStatusEffects.SOMNOLENCE);
 	}
 }

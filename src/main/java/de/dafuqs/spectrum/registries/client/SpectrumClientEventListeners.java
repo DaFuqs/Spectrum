@@ -18,7 +18,6 @@ import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.render.*;
 import de.dafuqs.spectrum.sound.*;
 import it.unimi.dsi.fastutil.objects.*;
-import net.neoforged.api.distmarker.*;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.*;
 import net.fabricmc.fabric.api.client.item.v1.*;
 import net.fabricmc.fabric.api.client.model.loading.v1.*;
@@ -43,6 +42,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
+import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 import oshi.util.tuples.*;
 

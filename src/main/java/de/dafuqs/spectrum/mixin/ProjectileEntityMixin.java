@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.cca.azure_dike.*;
+import de.dafuqs.spectrum.attachment_types.*;
+import de.dafuqs.spectrum.attachment_types.azure_dike.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.effect.*;
@@ -47,9 +48,10 @@ public abstract class ProjectileEntityMixin {
 						if (component.isPresent()) {
 							List<Tuple<SlotReference, ItemStack>> equipped = component.get().getEquipped(SpectrumItems.PUFF_CIRCLET);
 							if (!equipped.isEmpty()) {
-								var charges = AzureDikeProvider.getAzureDikeCharges(livingEntity);
+								AzureDikeAttachmentType azureDikeAttachment = livingEntity.getData(AzureDikeAttachmentType.ATTACHMENT_TYPE);
+								float charges = azureDikeAttachment.getCurrentCharges();
 								if (charges > 0) {
-									AzureDikeProvider.absorbDamage(livingEntity, PuffCircletItem.PROJECTILE_DEFLECTION_COST);
+									azureDikeAttachment.absorbDamage(livingEntity, PuffCircletItem.PROJECTILE_DEFLECTION_COST);
 									protect = true;
 								}
 							}

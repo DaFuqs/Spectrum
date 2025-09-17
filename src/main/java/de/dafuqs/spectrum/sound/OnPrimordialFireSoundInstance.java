@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.sound;
 
-import de.dafuqs.spectrum.cca.*;
+import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.resources.sounds.*;
 import net.minecraft.sounds.*;
@@ -32,6 +32,6 @@ public class OnPrimordialFireSoundInstance extends AbstractSoundInstance impleme
 	
 	@Override
 	public boolean isStopped() {
-		return player == null || player.isRemoved() || !OnPrimordialFireComponent.isOnPrimordialFire(player);
+		return player == null || player.isRemoved() || !PrimordialFireAttachmentType.isOnPrimordialFire(player);
 	}
 }

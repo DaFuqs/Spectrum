@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
-import net.neoforged.api.distmarker.*;
 import net.minecraft.*;
 import net.minecraft.client.*;
 import net.minecraft.core.*;
@@ -19,6 +18,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
+import net.neoforged.api.distmarker.*;
 import oshi.util.tuples.*;
 
 import java.util.*;

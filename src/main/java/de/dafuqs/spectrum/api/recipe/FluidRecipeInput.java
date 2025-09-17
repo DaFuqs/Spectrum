@@ -1,11 +1,11 @@
 package de.dafuqs.spectrum.api.recipe;
 
 import de.dafuqs.spectrum.recipe.*;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.*;
 import net.neoforged.neoforge.fluids.*;
 import net.neoforged.neoforge.fluids.capability.*;
 
-import java.util.List;
+import java.util.*;
 
 public class FluidRecipeInput<T extends IFluidHandler & IFluidTank> extends SimpleRecipeInput {
 	

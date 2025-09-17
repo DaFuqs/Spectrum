@@ -1,12 +1,10 @@
 package de.dafuqs.spectrum.blocks.boom;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.*;
 import de.dafuqs.spectrum.blocks.*;
-import de.dafuqs.spectrum.blocks.energy.*;
 import de.dafuqs.spectrum.explosion.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
-import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
@@ -17,7 +15,6 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 

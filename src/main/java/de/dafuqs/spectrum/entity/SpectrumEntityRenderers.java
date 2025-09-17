@@ -1,10 +1,10 @@
 package de.dafuqs.spectrum.entity;
 
 import de.dafuqs.spectrum.entity.render.*;
-import net.neoforged.api.distmarker.*;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.world.entity.*;
+import net.neoforged.api.distmarker.*;
 
 @OnlyIn(Dist.CLIENT)
 public class SpectrumEntityRenderers {

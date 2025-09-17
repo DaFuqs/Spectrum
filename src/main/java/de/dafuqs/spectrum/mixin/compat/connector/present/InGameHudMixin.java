@@ -1,16 +1,13 @@
 package de.dafuqs.spectrum.mixin.compat.connector.present;
 
-import com.llamalad7.mixinextras.sugar.Local;
-import de.dafuqs.spectrum.render.HudRenderers;
+import com.llamalad7.mixinextras.sugar.*;
+import de.dafuqs.spectrum.render.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.world.entity.player.*;
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.callback.*;
 
 @Mixin(Gui.class)
 public class InGameHudMixin {

@@ -2,8 +2,6 @@ package de.dafuqs.spectrum.items.trinkets;
 
 import com.google.common.collect.*;
 import de.dafuqs.spectrum.*;
-import dev.emi.trinkets.api.*;
-import net.neoforged.api.distmarker.*;
 import net.minecraft.client.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;

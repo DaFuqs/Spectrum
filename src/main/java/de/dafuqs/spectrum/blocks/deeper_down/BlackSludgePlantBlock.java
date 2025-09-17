@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.deeper_down;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.world.level.*;

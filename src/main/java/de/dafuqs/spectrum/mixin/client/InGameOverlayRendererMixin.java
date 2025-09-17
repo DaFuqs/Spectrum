@@ -4,7 +4,7 @@ import com.mojang.blaze3d.systems.*;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.cca.*;
+import de.dafuqs.spectrum.attachment_types.*;
 import net.minecraft.client.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.texture.*;
@@ -21,7 +21,7 @@ public class InGameOverlayRendererMixin {
 	@Inject(method = "renderScreenEffect", at = @At(value = "HEAD"))
 	private static void spectrum$renderPrimordialFire(Minecraft client, PoseStack matrices, CallbackInfo ci) {
 		if (!client.player.isSpectator()) {
-			if (OnPrimordialFireComponent.isOnPrimordialFire(client.player)) {
+			if (PrimordialFireAttachmentType.isOnPrimordialFire(client.player)) {
 				renderPrimordialFireOverlay(client, matrices);
 			}
 		}
@@ -29,7 +29,7 @@ public class InGameOverlayRendererMixin {
 	
 	@Inject(method = "renderFire", at = @At(value = "HEAD"), cancellable = true)
 	private static void spectrum$cancelFireOverlayWithPrimordialFire(Minecraft client, PoseStack matrices, CallbackInfo ci) {
-		if (OnPrimordialFireComponent.isOnPrimordialFire(client.player)) {
+		if (PrimordialFireAttachmentType.isOnPrimordialFire(client.player)) {
 			ci.cancel();
 		}
 	}

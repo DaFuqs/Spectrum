@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.lava_sponge;
 
 import com.mojang.serialization.*;
-import net.neoforged.api.distmarker.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.server.level.*;
@@ -9,6 +8,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
+import net.neoforged.api.distmarker.*;
 
 public class WetLavaSpongeBlock extends WetSpongeBlock {
 	

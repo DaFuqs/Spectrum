@@ -6,12 +6,12 @@ import de.dafuqs.spectrum.blocks.mob_head.client.models.VillagerHeadModel;
 import de.dafuqs.spectrum.blocks.mob_head.client.models.*;
 import de.dafuqs.spectrum.entity.models.*;
 import de.dafuqs.spectrum.render.armor.*;
-import net.neoforged.api.distmarker.*;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
 import net.minecraft.client.model.*;
 import net.minecraft.client.model.geom.*;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.*;
+import net.neoforged.api.distmarker.*;
 
 @OnlyIn(Dist.CLIENT)
 public class SpectrumModelLayers {

@@ -6,7 +6,6 @@ import net.minecraft.core.particles.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import org.jetbrains.annotations.*;
 

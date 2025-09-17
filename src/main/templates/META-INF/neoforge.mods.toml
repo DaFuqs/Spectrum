@@ -107,7 +107,7 @@ side="BOTH"
 #      "de.dafuqs.spectrum.compat.emi.SpectrumEmiPlugin"
 #    ],
 #    "cardinal-components": [
-#      "de.dafuqs.spectrum.cca.SpectrumComponentInitializers"
+#      "de.dafuqs.spectrum.registries.SpectrumAttachmentTypes"
 #    ]
 #  },
 #  "accessWidener": "spectrum.accesswidener",

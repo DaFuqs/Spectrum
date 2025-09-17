@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.sound;
 
 import de.dafuqs.spectrum.*;
-import net.neoforged.api.distmarker.*;
 import net.minecraft.client.*;
 import net.minecraft.client.resources.sounds.*;
 import net.minecraft.core.*;
@@ -10,6 +9,7 @@ import net.minecraft.sounds.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
+import net.neoforged.api.distmarker.*;
 
 import java.util.*;
 

@@ -9,7 +9,6 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.*;
-import net.neoforged.api.distmarker.*;
 import net.fabricmc.fabric.api.item.v1.*;
 import net.minecraft.client.*;
 import net.minecraft.core.*;
@@ -28,6 +27,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
+import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;

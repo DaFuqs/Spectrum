@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.entity.entity;
 
+import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.blocks.*;
-import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
@@ -59,7 +59,7 @@ public class KindlingCoughEntity extends Projectile {
 		
 		Entity hitEntity = entityHitResult.getEntity();
 		if (hitEntity instanceof LivingEntity livingEntity) {
-			OnPrimordialFireComponent.addPrimordialFireTicks(livingEntity, FIRE_TICKS_ON_HIT);
+			PrimordialFireAttachmentType.addPrimordialFireTicks(livingEntity, FIRE_TICKS_ON_HIT);
 		} else {
 			hitEntity.setRemainingFireTicks(FIRE_TICKS_ON_HIT);
 		}

@@ -4,7 +4,7 @@ import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.world.level.*;
-import org.jgrapht.Graph;
+import org.jgrapht.*;
 import org.jgrapht.graph.*;
 
 import java.util.*;

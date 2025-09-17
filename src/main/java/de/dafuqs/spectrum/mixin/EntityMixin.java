@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.mixin;
 
 import com.llamalad7.mixinextras.injector.*;
-import de.dafuqs.spectrum.cca.*;
+import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.helpers.enchantments.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.status_effects.*;
@@ -27,7 +27,7 @@ public abstract class EntityMixin {
 	private void spectrum$rememberKillOther(ServerLevel world, LivingEntity other, CallbackInfoReturnable<Boolean> cir) {
 		Entity entity = (Entity) (Object) this;
 		if (entity instanceof LivingEntity livingEntity) {
-			LastKillComponent.rememberKillTick(livingEntity, livingEntity.level().getGameTime());
+			LastKillAttachmentType.rememberKillTick(livingEntity, livingEntity.level().getGameTime());
 			
 			MobEffectInstance frenzy = livingEntity.getEffect(SpectrumStatusEffects.FRENZY);
 			if (frenzy != null) {
@@ -99,7 +99,7 @@ public abstract class EntityMixin {
 	public boolean spectrum$considerPrimfireAsFire(boolean original) {
 		var entity = (Entity) (Object) this;
 		
-		if (entity instanceof LivingEntity living && OnPrimordialFireComponent.isOnPrimordialFire(living))
+		if (entity instanceof LivingEntity living && PrimordialFireAttachmentType.isOnPrimordialFire(living))
 			return true;
 		
 		return original;

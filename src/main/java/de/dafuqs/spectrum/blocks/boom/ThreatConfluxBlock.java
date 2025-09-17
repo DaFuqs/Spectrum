@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.boom;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.explosion.*;
 import de.dafuqs.spectrum.registries.*;

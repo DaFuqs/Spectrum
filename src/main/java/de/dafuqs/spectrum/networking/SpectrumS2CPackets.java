@@ -1,12 +1,12 @@
 package de.dafuqs.spectrum.networking;
 
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
-import net.neoforged.api.distmarker.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.fabricmc.fabric.api.networking.v1.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
+import net.neoforged.api.distmarker.*;
 
 public class SpectrumS2CPackets {
 	

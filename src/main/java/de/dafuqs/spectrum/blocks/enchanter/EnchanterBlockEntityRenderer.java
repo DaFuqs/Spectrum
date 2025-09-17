@@ -8,7 +8,6 @@ import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.core.*;
 import net.minecraft.world.item.*;
-import org.joml.*;
 import org.joml.Math;
 
 public class EnchanterBlockEntityRenderer implements BlockEntityRenderer<EnchanterBlockEntity> {

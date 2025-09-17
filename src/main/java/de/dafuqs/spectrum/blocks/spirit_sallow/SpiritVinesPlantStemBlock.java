@@ -4,7 +4,6 @@ import com.mojang.serialization.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.*;
-import net.neoforged.api.distmarker.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
@@ -15,6 +14,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
+import net.neoforged.api.distmarker.*;
 
 public class SpiritVinesPlantStemBlock extends GrowingPlantHeadBlock implements SpiritVine {
 	

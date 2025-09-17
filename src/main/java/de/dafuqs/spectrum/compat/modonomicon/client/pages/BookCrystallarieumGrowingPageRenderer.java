@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.compat.modonomicon.client.pages;
 import com.klikli_dev.modonomicon.book.*;
 import com.klikli_dev.modonomicon.client.gui.book.entry.*;
 import com.klikli_dev.modonomicon.data.*;
-import com.klikli_dev.modonomicon.fluid.*;
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.modonomicon.pages.*;

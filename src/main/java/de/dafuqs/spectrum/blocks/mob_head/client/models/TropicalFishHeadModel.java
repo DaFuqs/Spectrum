@@ -2,13 +2,13 @@ package de.dafuqs.spectrum.blocks.mob_head.client.models;
 
 import com.mojang.blaze3d.vertex.*;
 import de.dafuqs.spectrum.blocks.mob_head.client.*;
-import net.neoforged.api.distmarker.*;
 import net.minecraft.client.model.geom.*;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
+import net.neoforged.api.distmarker.*;
 
 @OnlyIn(Dist.CLIENT)
 public class TropicalFishHeadModel extends SpectrumSkullModel {

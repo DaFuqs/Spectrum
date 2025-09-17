@@ -3,8 +3,8 @@ package de.dafuqs.spectrum.recipe.spirit_instiller.dynamic;
 import com.mojang.authlib.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.recipe.*;
+import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.blocks.spirit_instiller.*;
-import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.spirit_instiller.*;
 import de.dafuqs.spectrum.registries.*;
@@ -40,8 +40,7 @@ public class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe {
 		if (gameProfile != null && SpectrumCommon.minecraftServer != null) {
 			ServerPlayer revivedPlayer = SpectrumCommon.minecraftServer.getPlayerList().getPlayerByName(gameProfile.getName());
 			if (revivedPlayer != null) {
-				HardcoreDeathComponent.removeHardcoreDeath(gameProfile);
-				revivedPlayer.setGameMode(SpectrumCommon.minecraftServer.getDefaultGameType());
+				HardcoreDeathAttachmentType.clearHardcoreDeath(revivedPlayer);
 				
 				Rotation blockRotation = spiritInstillerBlockEntity.getMultiblockRotation();
 				float yaw = 0.0F;
@@ -70,7 +69,7 @@ public class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe {
 			
 			PlayerList playerManager = SpectrumCommon.minecraftServer.getPlayerList();
 			ServerPlayer playerToRevive = gameProfile.getId() == null ? playerManager.getPlayerByName(gameProfile.getName()) : playerManager.getPlayer(gameProfile.getId());
-			return playerToRevive != null && HardcoreDeathComponent.hasHardcoreDeath(gameProfile);
+			return playerToRevive != null && HardcoreDeathAttachmentType.hasHardcoreDeath(playerToRevive);
 		}
 		return false;
 	}

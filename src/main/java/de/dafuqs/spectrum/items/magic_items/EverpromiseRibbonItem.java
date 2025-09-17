@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.api.item.*;
-import de.dafuqs.spectrum.cca.*;
+import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
@@ -44,7 +44,7 @@ public class EverpromiseRibbonItem extends Item implements PrioritizedEntityInte
 								random.nextGaussian() * 0.02, random.nextGaussian() * 0.02, random.nextGaussian() * 0.02);
 					}
 				} else {
-					EverpromiseRibbonComponent.attachRibbon(entity);
+					EverpromiseRibbonAttachmentType.attachRibbon(entity);
 					
 					Component newName = stack.getHoverName();
 					if (newName instanceof MutableComponent mutableText) {

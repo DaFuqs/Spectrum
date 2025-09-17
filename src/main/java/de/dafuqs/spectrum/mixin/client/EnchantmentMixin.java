@@ -3,12 +3,12 @@ package de.dafuqs.spectrum.mixin.client;
 import com.llamalad7.mixinextras.injector.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.*;
-import net.neoforged.api.distmarker.*;
 import net.minecraft.*;
 import net.minecraft.client.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.enchantment.*;
+import net.neoforged.api.distmarker.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 

@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
-import net.fabricmc.fabric.api.item.v1.*;
 import net.minecraft.*;
 import net.minecraft.client.gui.screens.*;
 import net.minecraft.core.*;
@@ -227,8 +226,8 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 	}
 	
 	@Override
-	public boolean canBeEnchantedWith(ItemStack stack, Holder<Enchantment> enchantment, EnchantingContext context) {
-		return super.canBeEnchantedWith(stack, enchantment, context) || enchantment.is(Enchantments.SHARPNESS) || enchantment.is(Enchantments.SMITE) || enchantment.is(Enchantments.BANE_OF_ARTHROPODS) || enchantment.is(Enchantments.LOOTING);
+	public boolean supportsEnchantment(@NotNull ItemStack stack, @NotNull Holder<Enchantment> enchantment) {
+		return super.supportsEnchantment(stack, enchantment) || enchantment.is(Enchantments.SHARPNESS) || enchantment.is(Enchantments.SMITE) || enchantment.is(Enchantments.BANE_OF_ARTHROPODS) || enchantment.is(Enchantments.LOOTING);
 	}
 	
 }

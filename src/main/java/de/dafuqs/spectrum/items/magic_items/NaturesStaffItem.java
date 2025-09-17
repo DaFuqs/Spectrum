@@ -9,7 +9,6 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.*;
-import net.fabricmc.fabric.api.item.v1.*;
 import net.minecraft.client.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
@@ -305,8 +304,8 @@ public class NaturesStaffItem extends Item implements InkPowered {
 	}
 	
 	@Override
-	public boolean canBeEnchantedWith(ItemStack stack, Holder<Enchantment> enchantment, EnchantingContext context) {
-		return super.canBeEnchantedWith(stack, enchantment, context) || enchantment.is(Enchantments.EFFICIENCY);
+	public boolean supportsEnchantment(@NotNull ItemStack stack, @NotNull Holder<Enchantment> enchantment) {
+		return super.supportsEnchantment(stack, enchantment) || enchantment.is(Enchantments.EFFICIENCY);
 	}
 	
 }

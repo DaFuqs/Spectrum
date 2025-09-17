@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
-import net.fabricmc.fabric.api.item.v1.*;
 import net.minecraft.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
@@ -205,7 +204,7 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
 	}
 	
 	@Override
-	public boolean canBeEnchantedWith(ItemStack stack, Holder<Enchantment> enchantment, EnchantingContext context) {
-		return super.canBeEnchantedWith(stack, enchantment, context) || enchantment.is(Enchantments.CHANNELING) || enchantment.is(Enchantments.PIERCING);
+	public boolean supportsEnchantment(@NotNull ItemStack stack, @NotNull Holder<Enchantment> enchantment) {
+		return super.supportsEnchantment(stack, enchantment) || enchantment.is(Enchantments.CHANNELING) || enchantment.is(Enchantments.PIERCING);
 	}
 }

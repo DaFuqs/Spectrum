@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.items.tools;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.render.*;
-import net.fabricmc.fabric.api.item.v1.*;
 import net.minecraft.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
@@ -71,8 +70,8 @@ public class FractalBidentItem extends MalachiteBidentItem implements SlotBackgr
 	}
 	
 	@Override
-	public boolean canBeEnchantedWith(ItemStack stack, Holder<Enchantment> enchantment, EnchantingContext context) {
-		return super.canBeEnchantedWith(stack, enchantment, context) || enchantment.is(Enchantments.EFFICIENCY) || enchantment.is(Enchantments.POWER);
+	public boolean supportsEnchantment(@NotNull ItemStack stack, @NotNull Holder<Enchantment> enchantment) {
+		return super.supportsEnchantment(stack, enchantment) || enchantment.is(Enchantments.EFFICIENCY) || enchantment.is(Enchantments.POWER);
 	}
 	
 }

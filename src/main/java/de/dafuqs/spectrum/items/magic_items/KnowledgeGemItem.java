@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.items.magic_items;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
-import net.fabricmc.fabric.api.item.v1.*;
 import net.minecraft.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
@@ -171,8 +170,8 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Loo
 	}
 	
 	@Override
-	public boolean canBeEnchantedWith(ItemStack stack, Holder<Enchantment> enchantment, EnchantingContext context) {
-		return super.canBeEnchantedWith(stack, enchantment, context) || enchantment.is(Enchantments.EFFICIENCY) || enchantment.is(Enchantments.QUICK_CHARGE);
+	public boolean supportsEnchantment(@NotNull ItemStack stack, @NotNull Holder<Enchantment> enchantment) {
+		return super.supportsEnchantment(stack, enchantment) || enchantment.is(Enchantments.EFFICIENCY) || enchantment.is(Enchantments.QUICK_CHARGE);
 	}
 	
 }

@@ -29,7 +29,10 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.levelgen.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
+import net.neoforged.neoforge.fluids.*;
+import net.neoforged.neoforge.fluids.capability.*;
 import net.neoforged.neoforge.fluids.capability.templates.*;
+import net.neoforged.neoforge.items.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -169,43 +172,16 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 			// Specially handle fluid items
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (entity instanceof ItemEntity itemEntity && blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
-				SingleVariantStorage<FluidVariant> storage = fusionShrineBlockEntity.fluidStorage;
 				ItemStack itemStack = itemEntity.getItem();
+				Optional<IFluidHandlerItem> fluidHandler = FluidUtil.getFluidHandler(itemStack);
 				
 				// We're not considering stacked fluid storages for the time being
-				if (itemStack.getCount() == 1) {
-					SingleSlotStorage<ItemVariant> slot = new DroppedItemStorage(itemStack);
-					SingleSlotContainerItemContext ctx = new SingleSlotContainerItemContext(slot);
-					Storage<FluidVariant> fluidStorage = FluidStorage.ITEM.find(itemStack, ctx);
-					
-					if (fluidStorage != null) {
-						boolean anyInserted = false;
-						for (StorageView<FluidVariant> view : fluidStorage) {
-							try (Transaction transaction = Transaction.openOuter()) {
-								FluidVariant variant = view.getResource();
-								long inserted = variant.isBlank() ? 0 : storage.insert(variant, view.getAmount(), transaction);
-								long extracted = fluidStorage.extract(variant, inserted, transaction);
-								if (inserted == extracted && inserted != 0) {
-									anyInserted = true;
-									transaction.commit();
-								}
-							}
-						}
-						
-						if (!anyInserted && !storage.getResource().isBlank()) {
-							try (Transaction transaction = Transaction.openOuter()) {
-								long inserted = fluidStorage.insert(storage.getResource(), storage.getAmount(), transaction);
-								long extracted = storage.extract(storage.getResource(), inserted, transaction);
-								if (inserted == extracted && inserted != 0) {
-									transaction.commit();
-								}
-							}
-						}
-						
-						itemEntity.setItem(slot.getResource().toStack(itemStack.getCount()));
+				if (fluidHandler.isPresent()) {
+					FluidUtil.tryFluidTransfer(fusionShrineBlockEntity.tank, fluidHandler.get(), 1000, true);
+				} else {
+					itemEntity.setItem(ItemHandlerHelper.insertItemStacked(fusionShrineBlockEntity.getInventory(), itemStack, false));
 						fusionShrineBlockEntity.inventoryChanged();
 						return;
-					}
 				}
 			}
 			

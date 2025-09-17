@@ -38,6 +38,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.fml.event.lifecycle.*;
 import net.neoforged.neoforge.registries.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -61,7 +62,7 @@ public class SpectrumBlockEntities {
 			, SpectrumBlocks.UPGRADE_EFFICIENCY, SpectrumBlocks.UPGRADE_EFFICIENCY2,
 			SpectrumBlocks.UPGRADE_EXPERIENCE, SpectrumBlocks.UPGRADE_EXPERIENCE2,
 			SpectrumBlocks.UPGRADE_YIELD, SpectrumBlocks.UPGRADE_YIELD2);
-	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<SpectrumSkullBlockEntity>> SKULL;
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<SpectrumSkullBlockEntity>> SKULL = register("skull", SpectrumSkullBlockEntity::new, getMobHeadSuppliers());
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<BottomlessBundleBlockEntity>> BOTTOMLESS_BUNDLE = register("bottomless_bundle", BottomlessBundleBlockEntity::new, SpectrumBlocks.BOTTOMLESS_BUNDLE);
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<PotionWorkshopBlockEntity>> POTION_WORKSHOP = register("potion_workshop", PotionWorkshopBlockEntity::new, SpectrumBlocks.POTION_WORKSHOP);
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<CrystallarieumBlockEntity>> CRYSTALLARIEUM = register("crystallarieum", CrystallarieumBlockEntity::new, SpectrumBlocks.CRYSTALLARIEUM);
@@ -101,25 +102,26 @@ public class SpectrumBlockEntities {
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<DeepLightBlockEntity>> DEEP_LIGHT = register("deep_light", DeepLightBlockEntity::new, SpectrumBlocks.DEEP_LIGHT_CHISELED_PRESERVATION_STONE);
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<PlayerTrackerBlockEntity>> PLAYER_TRACKING = register("player_tracking", PlayerTrackerBlockEntity::new, SpectrumBlocks.MANXI, SpectrumBlocks.PRESERVATION_ITEM_BOWL);
 	
+	@SafeVarargs
 	private static <T extends BlockEntity> DeferredHolder<BlockEntityType<?>, BlockEntityType<T>> register(String id, BlockEntityType.BlockEntitySupplier<T> factory, Supplier<? extends Block>... blocks) {
 		return REGISTRAR.register(id, () -> BlockEntityType.Builder.of(factory, Arrays.stream(blocks).map(Supplier::get).toList().toArray(new Block[0])).build(null));
 	}
 	
 	public static void register(IEventBus eventBus) {
-		SKULL = register("skull", SpectrumSkullBlockEntity::new, new Supplier<Block>() {
-			@Override
-			public Block get() {
-				List<Block> skullBlocksList = new ArrayList<>();
-				skullBlocksList.addAll(SpectrumSkullBlock.getMobHeads());
-				skullBlocksList.addAll(SpectrumWallSkullBlock.getMobWallHeads());
-				
-				Block[] skullBlocksArray = new Block[skullBlocksList.size()];
-				skullBlocksArray = skullBlocksList.toArray(skullBlocksArray);
-				return skullBlocksArray;
-			}
-		});
-		
 		REGISTRAR.register(eventBus);
+	}
+	
+	private static Supplier<? extends Block> @NotNull [] getMobHeadSuppliers() {
+		List<Supplier<? extends Block>> list = new ArrayList<>();
+		for (Block s : SpectrumSkullBlock.getMobHeads()) {
+			list.add(() -> s);
+		}
+		for (Block s : SpectrumWallSkullBlock.getMobWallHeads()) {
+			list.add(() -> s);
+		}
+		Supplier<? extends Block>[] skullBlocksArray = (Supplier<? extends Block>[]) new Supplier<?>[list.size()];
+		skullBlocksArray = list.toArray(skullBlocksArray);
+		return skullBlocksArray;
 	}
 	
 	public static void registerClient(FMLClientSetupEvent event) {

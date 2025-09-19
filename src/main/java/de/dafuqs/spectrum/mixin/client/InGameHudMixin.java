@@ -32,9 +32,9 @@ public abstract class InGameHudMixin {
 
     @Shadow public abstract void render(DrawContext context, float tickDelta);
 
-    @Inject(method = "renderStatusBars(Lnet/minecraft/client/gui/DrawContext;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;getArmor()I"))
-    private void spectrum$renderHealthBar(DrawContext context, CallbackInfo ci, @Local PlayerEntity cameraPlayer, @Local(ordinal = 3) int x, @Local(ordinal = 9) int armorY) {
-        HudRenderers.renderAzureDike(context, cameraPlayer, x, armorY);
+    @Inject(method = "renderStatusBars(Lnet/minecraft/client/gui/DrawContext;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;getArmor()I"), locals = LocalCapture.CAPTURE_FAILHARD)
+    private void spectrum$renderHealthBar(DrawContext context, CallbackInfo ci, PlayerEntity cameraPlayer, int a_, boolean b_, long c_, int d_, HungerManager e_, int f_, int healthX, int g_, int h_, float i_, int j_, int k_, int l_, int armorY) {
+        HudRenderers.renderAzureDike(context, cameraPlayer, healthX, armorY);
     }
 
     @ModifyExpressionValue(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/MinecraftClient;isFancyGraphicsOrBetter()Z"))

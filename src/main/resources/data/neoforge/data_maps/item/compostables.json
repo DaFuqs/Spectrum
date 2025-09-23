@@ -1,0 +1,264 @@
+{
+  "values": {
+    "spectrum:vegetal": {
+      "chance": 1.0
+    },
+    "spectrum:bone_ash": {
+      "chance": 1.0
+    },
+    "spectrum:clover": {
+      "chance": 0.5
+    },
+    "spectrum:four_leaf_clover": {
+      "chance": 0.5
+    },
+    "spectrum:blood_orchid_petal": {
+      "chance": 0.3
+    },
+    "spectrum:blood_orchid": {
+      "chance": 0.3
+    },
+    "spectrum:hibernating_jade_vine_bulb": {
+      "chance": 0.65
+    },
+    "spectrum:germinated_jade_vine_bulb": {
+      "chance": 0.65
+    },
+    "spectrum:varia_sprout": {
+      "chance": 0.5
+    },
+
+    "spectrum:weeping_gala_sprig": {
+      "chance": 0.3
+    },
+    "spectrum:weeping_gala_leaves": {
+      "chance": 0.3
+    },
+
+    "spectrum:jade_vine_petals": {
+      "chance": 0.65
+    },
+    "spectrum:jade_vine_petal_block": {
+      "chance": 1.0
+    },
+    "spectrum:jade_vine_petal_carpet": {
+      "chance": 0.65
+    },
+
+    "spectrum:jadeite_lotus_bulb": {
+      "chance": 0.65
+    },
+    "spectrum:jadeite_lotus_flower": {
+      "chance": 0.85
+    },
+    "spectrum:jadeite_petals": {
+      "chance": 0.65
+    },
+    "spectrum:jadeite_petal_block": {
+      "chance": 1.0
+    },
+    "spectrum:jadeite_petal_carpet": {
+      "chance": 0.65
+    },
+
+    "spectrum:sweet_pea": {
+      "chance": 0.65
+    },
+    "spectrum:apricotti": {
+      "chance": 0.65
+    },
+    "spectrum:humming_bell": {
+      "chance": 0.65
+    },
+    "spectrum:resonant_lily": {
+      "chance": 0.65
+    },
+    "spectrum:moss_ball": {
+      "chance": 0.5
+    },
+    "spectrum:giant_moss_ball": {
+      "chance": 1.0
+    },
+
+    "spectrum:nightdew_sprout": {
+      "chance": 0.65
+    },
+    "spectrum:nectardew_burgeon": {
+      "chance": 0.85
+    },
+    "spectrum:nephrite_blossom_bulb": {
+      "chance": 0.65
+    },
+    "spectrum:nephrite_blossom_leaves": {
+      "chance": 0.3
+    },
+    "spectrum:fissure_plum": {
+      "chance": 0.65
+    },
+
+    "spectrum:aloe_leaf": {
+      "chance": 0.3
+    },
+    "spectrum:bristle_sprouts": {
+      "chance": 0.3
+    },
+    "spectrum:sawblade_holly_berry": {
+      "chance": 0.65
+    },
+    "spectrum:snapping_ivy": {
+      "chance": 0.65
+    },
+
+    "spectrum:small_red_dragonjag": {
+      "chance": 0.3
+    },
+    "spectrum:small_yellow_dragonjag": {
+      "chance": 0.3
+    },
+    "spectrum:small_pink_dragonjag": {
+      "chance": 0.3
+    },
+    "spectrum:small_purple_dragonjag": {
+      "chance": 0.3
+    },
+    "spectrum:small_black_dragonjag": {
+      "chance": 0.3
+    },
+
+    "spectrum:slate_noxshroom": {
+      "chance": 0.65
+    },
+    "spectrum:ebony_noxshroom": {
+      "chance": 0.65
+    },
+    "spectrum:ivory_noxshroom": {
+      "chance": 0.65
+    },
+    "spectrum:chestnut_noxshroom": {
+      "chance": 0.65
+    },
+    "spectrum:slate_noxcap_block": {
+      "chance": 0.85
+    },
+    "spectrum:slate_noxcap_gills": {
+      "chance": 0.85
+    },
+    "spectrum:ebony_noxcap_block": {
+      "chance": 0.85
+    },
+    "spectrum:ebony_noxcap_gills": {
+      "chance": 0.85
+    },
+    "spectrum:ivory_noxcap_block": {
+      "chance": 0.85
+    },
+    "spectrum:ivory_noxcap_gills": {
+      "chance": 0.85
+    },
+    "spectrum:chestnut_noxcap_block": {
+      "chance": 0.85
+    },
+    "spectrum:chestnut_noxcap_gills": {
+      "chance": 0.85
+    },
+
+    "spectrum:black_sapling": {
+      "chance": 0.3
+    },
+    "spectrum:blue_sapling": {
+      "chance": 0.3
+    },
+    "spectrum:brown_sapling": {
+      "chance": 0.3
+    },
+    "spectrum:cyan_sapling": {
+      "chance": 0.3
+    },
+    "spectrum:gray_sapling": {
+      "chance": 0.3
+    },
+    "spectrum:green_sapling": {
+      "chance": 0.3
+    },
+    "spectrum:light_blue_sapling": {
+      "chance": 0.3
+    },
+    "spectrum:light_gray_sapling": {
+      "chance": 0.3
+    },
+    "spectrum:lime_sapling": {
+      "chance": 0.3
+    },
+    "spectrum:magenta_sapling": {
+      "chance": 0.3
+    },
+    "spectrum:orange_sapling": {
+      "chance": 0.3
+    },
+    "spectrum:pink_sapling": {
+      "chance": 0.3
+    },
+    "spectrum:purple_sapling": {
+      "chance": 0.3
+    },
+    "spectrum:red_sapling": {
+      "chance": 0.3
+    },
+    "spectrum:white_sapling": {
+      "chance": 0.3
+    },
+    "spectrum:yellow_sapling": {
+      "chance": 0.3
+    },
+
+    "spectrum:black_leaves": {
+      "chance": 0.3
+    },
+    "spectrum:blue_leaves": {
+      "chance": 0.3
+    },
+    "spectrum:brown_leaves": {
+      "chance": 0.3
+    },
+    "spectrum:cyan_leaves": {
+      "chance": 0.3
+    },
+    "spectrum:gray_leaves": {
+      "chance": 0.3
+    },
+    "spectrum:green_leaves": {
+      "chance": 0.3
+    },
+    "spectrum:light_blue_leaves": {
+      "chance": 0.3
+    },
+    "spectrum:light_gray_leaves": {
+      "chance": 0.3
+    },
+    "spectrum:lime_leaves": {
+      "chance": 0.3
+    },
+    "spectrum:magenta_leaves": {
+      "chance": 0.3
+    },
+    "spectrum:orange_leaves": {
+      "chance": 0.3
+    },
+    "spectrum:pink_leaves": {
+      "chance": 0.3
+    },
+    "spectrum:purple_leaves": {
+      "chance": 0.3
+    },
+    "spectrum:red_leaves": {
+      "chance": 0.3
+    },
+    "spectrum:white_leaves": {
+      "chance": 0.3
+    },
+    "spectrum:yellow_leaves": {
+      "chance": 0.3
+    }
+
+  }
+}

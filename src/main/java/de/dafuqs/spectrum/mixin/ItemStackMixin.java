@@ -51,17 +51,6 @@ public abstract class ItemStackMixin {
 		return original && !EnchantmentHelper.hasTag(stack, SpectrumEnchantmentTags.INDESTRUCTIBLE_EFFECT);
 	}
 	
-	// thank you so, so much @williewillus / @Botania for this snippet of code
-	// https://github.com/VazkiiMods/Botania/blob/1.18.x/Fabric/src/main/java/vazkii/botania/fabric/mixin/FabricMixinItemStack.java
-	@Inject(at = @At("HEAD"), method = "is(Lnet/minecraft/world/item/Item;)Z", cancellable = true)
-	private void spectrum$isSpectrumShears(Item item, CallbackInfoReturnable<Boolean> cir) {
-		if (item == Items.SHEARS) {
-			if (is(SpectrumItems.BEDROCK_SHEARS)) {
-				cir.setReturnValue(true);
-			}
-		}
-	}
-	
 	// The enchantment table does not allow enchanting items that already have enchantments applied
 	// This mixin changes items, that only got their DefaultEnchantments to still be enchantable
 	@Inject(method = "isEnchantable()Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/enchantment/ItemEnchantments;isEmpty()Z"), cancellable = true)

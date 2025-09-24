@@ -6,6 +6,7 @@ import net.minecraft.core.registries.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -24,7 +25,7 @@ public class MeatToRottenFleshRecipe extends DragonrotConvertingRecipe {
 	}
 	
 	@Override
-	public RecipeSerializer<?> getSerializer() {
+	public @NotNull RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeSerializers.DRAGONROT_MEAT_TO_ROTTEN_FLESH;
 	}
 	

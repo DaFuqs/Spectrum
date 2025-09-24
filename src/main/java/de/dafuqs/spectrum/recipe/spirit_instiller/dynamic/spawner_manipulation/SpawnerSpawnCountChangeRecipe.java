@@ -16,7 +16,7 @@ public class SpawnerSpawnCountChangeRecipe extends SpawnerChangeRecipe {
 	protected static final int MAX_SPAWN_COUNT = 16;
 	
 	public SpawnerSpawnCountChangeRecipe() {
-		super(IngredientStack.ofItems(SpectrumItems.NEOLITH, 4));
+		super(IngredientStack.ofItems(SpectrumItems.NEOLITH.get(), 4));
 	}
 	
 	@Override

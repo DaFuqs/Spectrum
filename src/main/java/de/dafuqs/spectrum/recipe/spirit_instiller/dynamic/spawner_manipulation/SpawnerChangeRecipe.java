@@ -28,7 +28,7 @@ public abstract class SpawnerChangeRecipe extends SpiritInstillerRecipe {
 	
 	public SpawnerChangeRecipe(IngredientStack ingredient) {
 		super("spawner_manipulation", false, Optional.of(SpectrumAdvancements.SPAWNER_MANIPULATION),
-				IngredientStack.ofItems(Items.SPAWNER), ingredient, IngredientStack.ofItems(SpectrumItems.VEGETAL, 4),
+				IngredientStack.ofItems(Items.SPAWNER), ingredient, IngredientStack.ofItems(SpectrumItems.VEGETAL.get(), 4),
 				Items.SPAWNER.getDefaultInstance(), 200, 0, true);
 	}
 	

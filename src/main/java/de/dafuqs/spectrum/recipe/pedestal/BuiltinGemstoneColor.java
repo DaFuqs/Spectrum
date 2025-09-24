@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
+import org.jetbrains.annotations.*;
 
 public enum BuiltinGemstoneColor implements GemstoneColor, StringRepresentable {
 	CYAN("cyan", InkColors.CYAN_COLOR),
@@ -31,26 +32,26 @@ public enum BuiltinGemstoneColor implements GemstoneColor, StringRepresentable {
 	public Item getGemstonePowderItem() {
 		switch (this) {
 			case CYAN -> {
-				return SpectrumItems.TOPAZ_POWDER;
+				return SpectrumItems.TOPAZ_POWDER.get();
 			}
 			case MAGENTA -> {
-				return SpectrumItems.AMETHYST_POWDER;
+				return SpectrumItems.AMETHYST_POWDER.get();
 			}
 			case YELLOW -> {
-				return SpectrumItems.CITRINE_POWDER;
+				return SpectrumItems.CITRINE_POWDER.get();
 			}
 			case BLACK -> {
-				return SpectrumItems.ONYX_POWDER;
+				return SpectrumItems.ONYX_POWDER.get();
 			}
 			case WHITE -> {
-				return SpectrumItems.MOONSTONE_POWDER;
+				return SpectrumItems.MOONSTONE_POWDER.get();
 			}
 			default -> throw new RuntimeException("Tried getting powder item for a color which does not have one");
 		}
 	}
 	
 	@Override
-	public String getSerializedName() {
+	public @NotNull String getSerializedName() {
 		return name();
 	}
 }

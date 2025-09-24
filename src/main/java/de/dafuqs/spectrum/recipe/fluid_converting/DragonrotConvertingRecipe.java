@@ -24,17 +24,17 @@ public class DragonrotConvertingRecipe extends FluidConvertingRecipe {
 	}
 	
 	@Override
-	public ItemStack getToastSymbol() {
-		return new ItemStack(SpectrumItems.DRAGONROT_BUCKET);
+	public @NotNull ItemStack getToastSymbol() {
+		return new ItemStack(SpectrumItems.DRAGONROT_BUCKET.get());
 	}
 	
 	@Override
-	public RecipeSerializer<?> getSerializer() {
+	public @NotNull RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeSerializers.DRAGONROT_CONVERTING_SERIALIZER;
 	}
 	
 	@Override
-	public RecipeType<?> getType() {
+	public @NotNull RecipeType<?> getType() {
 		return SpectrumRecipeTypes.DRAGONROT_CONVERTING;
 	}
 	

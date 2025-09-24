@@ -24,17 +24,17 @@ public class MidnightSolutionConvertingRecipe extends FluidConvertingRecipe {
 	}
 	
 	@Override
-	public ItemStack getToastSymbol() {
-		return new ItemStack(SpectrumItems.MIDNIGHT_SOLUTION_BUCKET);
+	public @NotNull ItemStack getToastSymbol() {
+		return new ItemStack(SpectrumItems.MIDNIGHT_SOLUTION_BUCKET.get());
 	}
 	
 	@Override
-	public RecipeSerializer<?> getSerializer() {
+	public @NotNull RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeSerializers.MIDNIGHT_SOLUTION_CONVERTING_SERIALIZER;
 	}
 	
 	@Override
-	public RecipeType<?> getType() {
+	public @NotNull RecipeType<?> getType() {
 		return SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING;
 	}
 	

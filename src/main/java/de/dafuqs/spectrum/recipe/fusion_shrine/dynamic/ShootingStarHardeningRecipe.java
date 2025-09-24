@@ -13,6 +13,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.material.*;
+import net.neoforged.neoforge.fluids.crafting.*;
 
 import java.util.*;
 

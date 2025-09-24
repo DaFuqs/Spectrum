@@ -21,7 +21,7 @@ public class SpawnerSpawnDelayChangeRecipe extends SpawnerChangeRecipe {
 	protected static final float EXPONENT = 0.98F;
 	
 	public SpawnerSpawnDelayChangeRecipe() {
-		super(IngredientStack.ofItems(SpectrumItems.MIDNIGHT_CHIP, 4));
+		super(IngredientStack.ofItems(SpectrumItems.MIDNIGHT_CHIP.get(), 4));
 	}
 	
 	@Override

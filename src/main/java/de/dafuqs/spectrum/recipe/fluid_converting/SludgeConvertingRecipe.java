@@ -24,17 +24,17 @@ public class SludgeConvertingRecipe extends FluidConvertingRecipe {
 	}
 	
 	@Override
-	public ItemStack getToastSymbol() {
-		return new ItemStack(SpectrumItems.SLUDGE_BUCKET);
+	public @NotNull ItemStack getToastSymbol() {
+		return new ItemStack(SpectrumItems.SLUDGE_BUCKET.get());
 	}
 	
 	@Override
-	public RecipeSerializer<?> getSerializer() {
+	public @NotNull RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeSerializers.SLUDGE_CONVERTING_SERIALIZER;
 	}
 	
 	@Override
-	public RecipeType<?> getType() {
+	public @NotNull RecipeType<?> getType() {
 		return SpectrumRecipeTypes.SLUDGE_CONVERTING;
 	}
 	

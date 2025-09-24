@@ -16,7 +16,7 @@ public class SpawnerMaxNearbyEntitiesChangeRecipe extends SpawnerChangeRecipe {
 	protected static final int MAX_MAX_ENTITIES = 40;
 	
 	public SpawnerMaxNearbyEntitiesChangeRecipe() {
-		super(IngredientStack.ofItems(SpectrumItems.MERMAIDS_GEM, 4));
+		super(IngredientStack.ofItems(SpectrumItems.MERMAIDS_GEM.get(), 4));
 	}
 	
 	@Override

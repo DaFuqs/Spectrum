@@ -21,14 +21,14 @@ public class StarCandyRecipe extends ShapedPedestalRecipe {
 	public static final float PURPLE_STAR_CANDY_CHANCE = 0.01F;
 	
 	public StarCandyRecipe() {
-		super("", false, Optional.of(UNLOCK_IDENTIFIER), PedestalRecipeTier.BASIC, new RawShapedPedestalRecipe(3, 3, generateInputs(), Optional.empty()), Map.of(BuiltinGemstoneColor.YELLOW, 1), SpectrumItems.STAR_CANDY.getDefaultInstance(), 1.0F, 20, false, false);
+		super("", false, Optional.of(UNLOCK_IDENTIFIER), PedestalRecipeTier.BASIC, new RawShapedPedestalRecipe(3, 3, generateInputs(), Optional.empty()), Map.of(BuiltinGemstoneColor.YELLOW, 1), SpectrumItems.STAR_CANDY.get().getDefaultInstance(), 1.0F, 20, false, false);
 	}
 	
 	@Override
 	public ItemStack assemble(PedestalRecipeInput input, HolderLookup.Provider wrapperLookup) {
 		@Nullable Player player = input.getPlayer();
 		if (player != null && player.getRandom().nextFloat() < PURPLE_STAR_CANDY_CHANCE + player.getAttributeValue(Attributes.LUCK)) {
-			return SpectrumItems.ENCHANTED_STAR_CANDY.getDefaultInstance();
+			return SpectrumItems.ENCHANTED_STAR_CANDY.get().getDefaultInstance();
 		}
 		return this.output.copy();
 	}
@@ -38,12 +38,12 @@ public class StarCandyRecipe extends ShapedPedestalRecipe {
 				IngredientStack.ofItems(Items.SUGAR),
 				IngredientStack.ofItems(Items.SUGAR),
 				IngredientStack.ofItems(Items.SUGAR),
-				IngredientStack.ofItems(SpectrumItems.STARDUST),
-				IngredientStack.ofItems(SpectrumItems.STARDUST),
-				IngredientStack.ofItems(SpectrumItems.STARDUST),
-				IngredientStack.ofItems(SpectrumItems.AMARANTH_GRAINS),
-				IngredientStack.ofItems(SpectrumItems.AMARANTH_GRAINS),
-				IngredientStack.ofItems(SpectrumItems.AMARANTH_GRAINS)
+				IngredientStack.ofItems(SpectrumItems.STARDUST.get()),
+				IngredientStack.ofItems(SpectrumItems.STARDUST.get()),
+				IngredientStack.ofItems(SpectrumItems.STARDUST.get()),
+				IngredientStack.ofItems(SpectrumItems.AMARANTH_GRAINS.get()),
+				IngredientStack.ofItems(SpectrumItems.AMARANTH_GRAINS.get()),
+				IngredientStack.ofItems(SpectrumItems.AMARANTH_GRAINS.get())
 		);
 	}
 	

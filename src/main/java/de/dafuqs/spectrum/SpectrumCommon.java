@@ -197,11 +197,9 @@ public class SpectrumCommon {
 //		});
 //
 //		logInfo("Adding to Fabric's Registries...");
-//		SpectrumFlammableBlocks.register();
-//		SpectrumStrippableBlocks.register();
-//		SpectrumWaxableBlocks.register();
-//		SpectrumTillableBlocks.register();
-//		SpectrumCompostableBlocks.register();
+		SpectrumFlammableBlocks.register();
+		SpectrumStrippableBlocks.register();
+		SpectrumTillableBlocks.register();
 //
 //		logInfo("Registering Game Events...");
 //		SpectrumGameEvents.register();

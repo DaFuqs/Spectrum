@@ -24,17 +24,17 @@ public class LiquidCrystalConvertingRecipe extends FluidConvertingRecipe {
 	}
 	
 	@Override
-	public ItemStack getToastSymbol() {
-		return new ItemStack(SpectrumItems.LIQUID_CRYSTAL_BUCKET);
+	public @NotNull ItemStack getToastSymbol() {
+		return new ItemStack(SpectrumItems.LIQUID_CRYSTAL_BUCKET.get());
 	}
 	
 	@Override
-	public RecipeSerializer<?> getSerializer() {
+	public @NotNull RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeSerializers.LIQUID_CRYSTAL_CONVERTING_SERIALIZER;
 	}
 	
 	@Override
-	public RecipeType<?> getType() {
+	public @NotNull RecipeType<?> getType() {
 		return SpectrumRecipeTypes.LIQUID_CRYSTAL_CONVERTING;
 	}
 	

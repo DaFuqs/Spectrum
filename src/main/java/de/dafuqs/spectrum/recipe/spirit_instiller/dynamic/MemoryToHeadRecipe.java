@@ -26,7 +26,7 @@ public class MemoryToHeadRecipe extends SpiritInstillerRecipe {
 	
 	public MemoryToHeadRecipe() {
 		super("", false, Optional.of(SpectrumCommon.locate("unlocks/memory_to_head")),
-				IngredientStack.ofItems(SpectrumBlocks.MEMORY.asItem()), IngredientStack.ofItems(SpectrumItems.VEGETAL, 4), IngredientStack.ofItems(SpectrumItems.QUITOXIC_POWDER, 4),
+				IngredientStack.ofItems(SpectrumBlocks.MEMORY.asItem()), IngredientStack.ofItems(SpectrumItems.VEGETAL.get(), 4), IngredientStack.ofItems(SpectrumItems.QUITOXIC_POWDER.get(), 4),
 				new ItemStack(Blocks.ZOMBIE_HEAD), 200, 1, true);
 	}
 	

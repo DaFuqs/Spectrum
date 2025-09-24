@@ -23,7 +23,7 @@ import java.util.*;
 public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 	
 	public SpawnerCreatureChangeRecipe() {
-		super(IngredientStack.ofTag(SpectrumItemTags.SKULLS), IngredientStack.ofItems(SpectrumItems.DOWNSTONE_FRAGMENTS, 4), Optional.of(SpectrumAdvancements.SPAWNER_CREATURE_CHANGE));
+		super(IngredientStack.ofTag(SpectrumItemTags.SKULLS), IngredientStack.ofItems(SpectrumItems.DOWNSTONE_FRAGMENTS.get(), 4), Optional.of(SpectrumAdvancements.SPAWNER_CREATURE_CHANGE));
 	}
 	
 	@Override

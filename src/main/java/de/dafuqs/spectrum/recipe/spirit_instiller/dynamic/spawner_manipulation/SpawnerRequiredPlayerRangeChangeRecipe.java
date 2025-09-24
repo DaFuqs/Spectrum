@@ -16,7 +16,7 @@ public class SpawnerRequiredPlayerRangeChangeRecipe extends SpawnerChangeRecipe 
 	protected static final int MAX_DETECTION_RANGE = 64;
 	
 	public SpawnerRequiredPlayerRangeChangeRecipe() {
-		super(IngredientStack.ofItems(SpectrumItems.STRATINE_GEM, 4));
+		super(IngredientStack.ofItems(SpectrumItems.STRATINE_GEM.get(), 4));
 	}
 	
 	@Override

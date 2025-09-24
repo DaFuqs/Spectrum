@@ -1,0 +1,40 @@
+{
+  "values": {
+    "spectrum:pure_alcohol": {
+      "burn_time": 16000
+    },
+    "spectrum:chrysocolla": {
+      "burn_time": 16000
+    },
+    "spectrum:incandescent_essence": {
+      "burn_time": 2400
+    },
+    "spectrum:pure_coal": {
+      "burn_time": 3200
+    },
+    "spectrum:pure_alcohol": {
+      "burn_time": 16000
+    },
+    "spectrum:pure_alcohol": {
+      "burn_time": 16000
+    },
+    "spectrum:pure_alcohol": {
+      "burn_time": 16000
+    },
+    "spectrum:pure_alcohol": {
+      "burn_time": 16000
+    },
+    "spectrum:pure_alcohol": {
+      "burn_time": 16000
+    },
+    "spectrum:pure_alcohol": {
+      "burn_time": 16000
+    },
+    "spectrum:pure_alcohol": {
+      "burn_time": 16000
+    },
+    "spectrum:pure_alcohol": {
+      "burn_time": 16000
+    }
+  }
+}

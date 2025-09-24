@@ -59,7 +59,7 @@ public class SpectrumDataComponentTypes {
 	public static final Supplier<DataComponentType<ResourceLocation>> STORED_RECIPE = register("stored_recipe", builder -> builder.persistent(ResourceLocation.CODEC).networkSynchronized(ResourceLocation.STREAM_CODEC));
 	public static final Supplier<DataComponentType<GlobalPos>> TARGETED_STRUCTURE = register("targeted_structure", builder -> builder.persistent(GlobalPos.CODEC).networkSynchronized(GlobalPos.STREAM_CODEC));
 	// TODO PORT
-//	public static final Supplier<DataComponentType<WrappedPresentComponent>> WRAPPED_PRESENT = register("wrapped_present", builder -> builder.persistent(WrappedPresentComponent.CODEC).networkSynchronized(WrappedPresentComponent.PACKET_CODEC).cacheEncoding());
+	public static final Supplier<DataComponentType<WrappedPresentComponent>> WRAPPED_PRESENT = register("wrapped_present", builder -> builder.persistent(WrappedPresentComponent.CODEC).networkSynchronized(WrappedPresentComponent.PACKET_CODEC).cacheEncoding());
 	public static final Supplier<DataComponentType<WithMilkComponent>> WITH_MILK = register("with_milk", builder -> builder.persistent(WithMilkComponent.CODEC).networkSynchronized(WithMilkComponent.PACKET_CODEC));
 	public static final Supplier<DataComponentType<WorkstaffComponent>> WORKSTAFF = register("workstaff", builder -> builder.persistent(WorkstaffComponent.CODEC).networkSynchronized(WorkstaffComponent.PACKET_CODEC));
 	

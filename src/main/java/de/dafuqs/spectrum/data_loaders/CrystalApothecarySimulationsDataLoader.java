@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.*;
 
 import java.util.*;
 
-public class CrystalApothecarySimulationsDataLoader extends SimpleJsonResourceReloadListener implements IdentifiableResourceReloadListener {
+public class CrystalApothecarySimulationsDataLoader extends SimpleJsonResourceReloadListener {
 	
 	public static final String ID = "crystal_apothecary_simulation";
 	public static final CrystalApothecarySimulationsDataLoader INSTANCE = new CrystalApothecarySimulationsDataLoader();
@@ -55,11 +55,6 @@ public class CrystalApothecarySimulationsDataLoader extends SimpleJsonResourceRe
 			
 			COMPENSATIONS.put(buddingBlock.result().get(), entry.result().get());
 		});
-	}
-	
-	@Override
-	public ResourceLocation getFabricId() {
-		return SpectrumCommon.locate(ID);
 	}
 	
 }

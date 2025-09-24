@@ -14,7 +14,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class ParticleSpawnerParticlesDataLoader extends SimpleJsonResourceReloadListener implements IdentifiableResourceReloadListener {
+public class ParticleSpawnerParticlesDataLoader extends SimpleJsonResourceReloadListener {
 	
 	public static final String ID = "particle_spawner_particle";
 	public static final ParticleSpawnerParticlesDataLoader INSTANCE = new ParticleSpawnerParticlesDataLoader();
@@ -57,11 +57,6 @@ public class ParticleSpawnerParticlesDataLoader extends SimpleJsonResourceReload
 			
 			PARTICLES.add(new ParticleSpawnerEntry(particleType, guiTexture, supportsColoring, unlockIdentifier));
 		});
-	}
-	
-	@Override
-	public ResourceLocation getFabricId() {
-		return SpectrumCommon.locate(ID);
 	}
 	
 	public static List<ParticleSpawnerEntry> getAllUnlocked(Player player) {

@@ -3,6 +3,7 @@ package de.dafuqs.spectrum;
 import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.config.*;
+import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.loot.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.progression.*;
@@ -18,6 +19,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.fml.common.*;
+import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.event.*;
 import org.jetbrains.annotations.*;
 import org.slf4j.*;
@@ -181,11 +183,13 @@ public class SpectrumCommon {
 //		SpectrumC2SPackets.register();
 //		SpectrumS2CPackets.register();
 //
-//		logInfo("Registering Data Loaders...");
-//		ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener(NaturesStaffConversionDataLoader.INSTANCE);
-//		ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener(EntityFishingDataLoader.INSTANCE);
-//		ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener(CrystalApothecarySimulationsDataLoader.INSTANCE);
-//
+		logInfo("Registering Data Loaders...");
+		NeoForge.EVENT_BUS.addListener((Consumer<AddReloadListenerEvent>) event -> {
+			event.addListener(NaturesStaffConversionDataLoader.INSTANCE);
+			event.addListener(EntityFishingDataLoader.INSTANCE);
+			event.addListener(CrystalApothecarySimulationsDataLoader.INSTANCE);
+		});
+		
 //		ServerLifecycleEvents.SERVER_STARTING.register(server -> {
 //			SpectrumCommon.logInfo("Fetching server instance...");
 //			minecraftServer = server;

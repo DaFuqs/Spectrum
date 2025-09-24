@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.data_loaders;
 
 import com.google.gson.*;
 import com.mojang.brigadier.exceptions.*;
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.recipe.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
@@ -15,7 +14,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class NaturesStaffConversionDataLoader extends SimpleJsonResourceReloadListener implements IdentifiableResourceReloadListener {
+public class NaturesStaffConversionDataLoader extends SimpleJsonResourceReloadListener {
 	
 	public static final String ID = "natures_staff_conversion";
 	public static final NaturesStaffConversionDataLoader INSTANCE = new NaturesStaffConversionDataLoader();
@@ -48,11 +47,6 @@ public class NaturesStaffConversionDataLoader extends SimpleJsonResourceReloadLi
 				}
 			}
 		});
-	}
-	
-	@Override
-	public ResourceLocation getFabricId() {
-		return SpectrumCommon.locate(ID);
 	}
 	
 	public static @Nullable BlockState getConvertedBlockState(Block block) {

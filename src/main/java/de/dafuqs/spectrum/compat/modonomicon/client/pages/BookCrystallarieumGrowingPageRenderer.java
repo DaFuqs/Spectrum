@@ -3,8 +3,10 @@ package de.dafuqs.spectrum.compat.modonomicon.client.pages;
 import com.klikli_dev.modonomicon.book.*;
 import com.klikli_dev.modonomicon.client.gui.book.entry.*;
 import com.klikli_dev.modonomicon.data.*;
+import com.klikli_dev.modonomicon.fluid.*;
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.crystallarieum.*;
 import de.dafuqs.spectrum.compat.modonomicon.pages.*;
 import de.dafuqs.spectrum.recipe.crystallarieum.*;
 import de.dafuqs.spectrum.registries.*;
@@ -69,7 +71,7 @@ public class BookCrystallarieumGrowingPageRenderer extends BookGatedRecipePageRe
 		int offsetPerReagent = 18;
 		Ingredient ingredient = recipe.getIngredientStack();
 		parentScreen.renderIngredient(drawContext, recipeX + startX, recipeY + 5, mouseX, mouseY, ingredient);
-		parentScreen.renderFluidStack(drawContext, recipeX + startX - offsetPerReagent - 4, recipeY + 5, mouseX, mouseY, new FabricFluidHolder(recipe.getFluidMedium(), 1000));
+		parentScreen.renderFluidStack(drawContext, recipeX + startX - offsetPerReagent - 4, recipeY + 5, mouseX, mouseY, new NeoFluidHolder(recipe.getFluidMedium()));
 		drawContext.blit(BACKGROUND_TEXTURE, recipeX + startX - offsetPerReagent - 7, recipeY + 1, 0, 0, 53, 25, 128, 128);
 		
 		
@@ -84,7 +86,7 @@ public class BookCrystallarieumGrowingPageRenderer extends BookGatedRecipePageRe
 		}
 		
 		// crystallarieum
-		parentScreen.renderItemStack(drawContext, recipeX + startX + offsetPerReagent, recipeY + 8, mouseX, mouseY, SpectrumBlocks.CRYSTALLARIEUM.asStackWithColor(recipe.getInkColor()));
+		parentScreen.renderItemStack(drawContext, recipeX + startX + offsetPerReagent, recipeY + 8, mouseX, mouseY, CrystallarieumBlock.asStackWithColor(SpectrumBlocks.CRYSTALLARIEUM.get().asItem().getDefaultInstance(), recipe.getInkColor()));
 		
 		// catalyst text
 		renderBookTextHolder(drawContext, catalystText, 0, 42, BookEntryScreen.PAGE_WIDTH);

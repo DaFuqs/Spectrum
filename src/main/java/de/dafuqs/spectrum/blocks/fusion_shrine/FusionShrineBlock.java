@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
 import de.dafuqs.spectrum.compat.modonomicon.*;
-import de.dafuqs.spectrum.inventories.storage.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.progression.*;
@@ -180,8 +179,8 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 					FluidUtil.tryFluidTransfer(fusionShrineBlockEntity.tank, fluidHandler.get(), 1000, true);
 				} else {
 					itemEntity.setItem(ItemHandlerHelper.insertItemStacked(fusionShrineBlockEntity.getInventory(), itemStack, false));
-						fusionShrineBlockEntity.inventoryChanged();
-						return;
+					fusionShrineBlockEntity.inventoryChanged();
+					return;
 				}
 			}
 			
@@ -205,7 +204,7 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 			if (blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity && verifyStructure(world, pos, (ServerPlayer) player)) {
 				fusionShrineBlockEntity.setOwner(player);
 				
-				if (FluidStorageUtil.interactWithFluidStorage(fusionShrineBlockEntity.fluidStorage, player, hand)) {
+				if (FluidUtil.interactWithFluidHandler(player, hand, fusionShrineBlockEntity.getTank())) {
 					fusionShrineBlockEntity.inventoryChanged();
 					return ItemInteractionResult.CONSUME;
 				}
@@ -231,7 +230,7 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return createTickerHelper(type, SpectrumBlockEntities.FUSION_SHRINE, world.isClientSide ? FusionShrineBlockEntity::clientTick : FusionShrineBlockEntity::serverTick);
+		return createTickerHelper(type, SpectrumBlockEntities.FUSION_SHRINE.get(), world.isClientSide ? FusionShrineBlockEntity::clientTick : FusionShrineBlockEntity::serverTick);
 	}
 	
 	static {

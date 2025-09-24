@@ -22,6 +22,8 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
+import net.neoforged.neoforge.fluids.capability.templates.*;
+import net.neoforged.neoforge.fluids.crafting.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -45,24 +47,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	@Nullable
 	protected RecipeHolder<CrystallarieumRecipe> currentRecipe;
 	protected CrystallarieumCatalyst currentCatalyst = CrystallarieumCatalyst.EMPTY;
-	protected SingleVariantStorage<FluidVariant> fluidStorage = new SingleVariantStorage<>() {
-		@Override
-		protected FluidVariant getBlankVariant() {
-			return FluidVariant.blank();
-		}
-		
-		@Override
-		protected long getCapacity(FluidVariant variant) {
-			return FluidConstants.BUCKET;
-		}
-		
-		
-		@Override
-		protected void onFinalCommit() {
-			super.onFinalCommit();
-			inventoryChanged();
-		}
-	};
+	protected FluidTank fluidStorage = new FluidTank(1000);
 	
 	// for performance reasons, the crystallarieum only processes recipe logic every 20 ticks
 	public static final int SECOND = 20;
@@ -228,7 +213,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 			this.tickLooper = TickLooper.readNbt(nbt.getCompound("Looper"));
 		}
 		
-		this.fluidStorage.variant = CodecHelper.fromNbt(FluidVariant.CODEC, nbt.get("FluidVariant"), FluidVariant.blank());
+		this.fluidStorage.variant = CodecHelper.fromNbt(FluidIngredient.CODEC, nbt.get("FluidIngredient"), FluidIngredient.blank());
 		this.fluidStorage.amount = nbt.getLong("FluidAmount");
 		
 		this.canWork = nbt.getBoolean("CanWork");
@@ -248,7 +233,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		CodecHelper.writeNbt(nbt, "InkStorage", InkStorageComponent.CODEC, new InkStorageComponent(this.inkStorage));
 		nbt.put("Looper", this.tickLooper.toNbt());
 		
-		CodecHelper.writeNbt(nbt, "FluidVariant", FluidVariant.CODEC, this.fluidStorage.variant);
+		CodecHelper.writeNbt(nbt, "FluidIngredient", FluidIngredient.CODEC, this.fluidStorage.variant);
 		nbt.putLong("FluidAmount", this.fluidStorage.amount);
 		
 		nbt.putBoolean("CanWork", this.canWork);
@@ -326,7 +311,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		}
 	}
 	
-	public SingleVariantStorage<FluidVariant> getFluidStorage() {
+	public FluidTank getFluidStorage() {
 		return fluidStorage;
 	}
 	

@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.structure;
 
 import com.mojang.serialization.*;
-import de.dafuqs.spectrum.attachment_types.azure_dike.*;
+import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
@@ -39,16 +39,13 @@ public class DikeGateBlock extends TransparentBlock {
 	public VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		if (context instanceof EntityCollisionContext entityShapeContext) {
 			Entity entity = entityShapeContext.getEntity();
-			if (entity instanceof LivingEntity livingEntity) {
-				
-				if (entity instanceof Player player && player.isCreative()) {
-					return Shapes.empty();
-				}
-				
-				var charges = AzureDikeProvider.getAzureDikeCharges(livingEntity);
-				if (charges > 0) {
-					return Shapes.empty();
-				}
+			if (entity instanceof Player player && player.isCreative()) {
+				return Shapes.empty();
+			}
+			
+			AzureDikeAttachmentType azureDikeAttachment = entity.getData(AzureDikeAttachmentType.ATTACHMENT_TYPE);
+			if (azureDikeAttachment.getCurrentCharges() > 0) {
+				return Shapes.empty();
 			}
 		}
 		return Shapes.block();
@@ -98,8 +95,8 @@ public class DikeGateBlock extends TransparentBlock {
 	}
 	
 	public void punishEntityWithoutAzureDike(BlockGetter world, BlockPos pos, Entity entity, boolean decreasedSounds) {
-		if (world instanceof ServerLevel serverWorld && entity instanceof LivingEntity livingEntity) {
-			int charges = (int) Math.ceil(AzureDikeProvider.getAzureDikeCharges(livingEntity));
+		if (world instanceof ServerLevel serverWorld) {
+			int charges = (int) Math.ceil(entity.getData(AzureDikeAttachmentType.ATTACHMENT_TYPE).getCurrentCharges());
 			if (charges == 0) {
 				entity.hurt(SpectrumDamageTypes.dike(serverWorld), 1);
 				PlayParticleWithExactVelocityPayload.playParticles(serverWorld, pos, SpectrumParticleTypes.AZURE_DIKE_RUNES, 10);

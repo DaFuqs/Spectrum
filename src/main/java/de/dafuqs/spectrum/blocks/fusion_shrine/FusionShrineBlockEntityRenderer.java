@@ -25,11 +25,11 @@ public class FusionShrineBlockEntityRenderer<T extends FusionShrineBlockEntity> 
 	@Override
 	public void render(FusionShrineBlockEntity fusionShrineBlockEntity, float tickDelta, PoseStack poseStack, MultiBufferSource vertexConsumerProvider, int light, int overlay) {
 		// the fluid in the shrine
-		FluidVariant fluidVariant = fusionShrineBlockEntity.getFluidVariant();
-		if (!fluidVariant.isBlank()) {
+		FluidIngredient FluidIngredient = fusionShrineBlockEntity.getFluidIngredient();
+		if (!FluidIngredient.isBlank()) {
 			poseStack.pushPose();
-			TextureAtlasSprite sprite = IClientFluidTypeExtensions.of(fluidVariant.getFluid());
-			int[] colors = FluidRendering.unpackColorOf(fluidVariant, fusionShrineBlockEntity);
+			TextureAtlasSprite sprite = IClientFluidTypeExtensions.of(FluidIngredient.getFluid());
+			int[] colors = FluidRendering.unpackColorOf(FluidIngredient, fusionShrineBlockEntity);
 			FluidRendering.renderFluid(vertexConsumerProvider.getBuffer(RenderType.translucent()), poseStack.last().pose(), sprite, light, overlay, 2, 14, 0.9F, 2, 14, colors);
 			poseStack.popPose();
 		}

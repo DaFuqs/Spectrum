@@ -54,11 +54,11 @@ public class CrystallarieumBlockEntityRenderer<T extends CrystallarieumBlockEnti
 		if (!fluid.isBlank()) {
 			
 			matrices.pushPose();
-			TextureAtlasSprite sprite = FluidVariantRendering.getSprite(fluid);
+			TextureAtlasSprite sprite = FluidIngredientRendering.getSprite(fluid);
 			assert sprite != null;
 			
 			var pos = crystal.getBlockPos().above();
-			var luminance = FluidVariantAttributes.getLuminance(fluid);
+			var luminance = FluidIngredientAttributes.getLuminance(fluid);
 			var skylight = crystal.getLevel().getBrightness(LightLayer.BLOCK, pos);
 			var glow = LightTexture.pack(Math.max(luminance, skylight), crystal.getLevel().getBrightness(LightLayer.SKY, pos));
 			

@@ -116,7 +116,7 @@ public class TitrationBarrelBlock extends HorizontalDirectionalBlock implements 
 								
 								if (ContainerItemContext.forPlayerInteraction(player, hand).find(FluidStorage.ITEM) != null) {
 									if (FluidStorageUtil.interactWithFluidStorage(barrelEntity.fluidStorage, player, hand)) {
-										if (barrelEntity.getFluidVariant().isBlank()) {
+										if (barrelEntity.getFluidIngredient().isBlank()) {
 											if (state.getValue(BARREL_STATE) == TitrationBarrelBlock.BarrelState.FILLED && barrelEntity.isEmpty()) {
 												world.setBlockAndUpdate(pos, state.setValue(BARREL_STATE, TitrationBarrelBlock.BarrelState.EMPTY));
 											}
@@ -199,7 +199,7 @@ public class TitrationBarrelBlock extends HorizontalDirectionalBlock implements 
 		if (stack.isPresent()) {
 			player.getInventory().placeItemBackInInventory(stack.get());
 			barrelEntity.setChanged();
-			if (barrelEntity.isEmpty() && barrelEntity.getFluidVariant().isBlank()) {
+			if (barrelEntity.isEmpty() && barrelEntity.getFluidIngredient().isBlank()) {
 				world.setBlockAndUpdate(pos, state.setValue(BARREL_STATE, BarrelState.EMPTY));
 			} else {
 				// They'll get updated if the block state changes anyway

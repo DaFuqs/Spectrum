@@ -38,14 +38,14 @@ public class SpectrumColorProviders {
 		// Same for Amaranth
 		registerAmaranth();
 		
-		registerClovers(SpectrumBlocks.CLOVER, SpectrumBlocks.FOUR_LEAF_CLOVER);
-		registerMemory(SpectrumBlocks.MEMORY);
-		registerPotionFillables(SpectrumItems.LESSER_POTION_PENDANT, SpectrumItems.GREATER_POTION_PENDANT, SpectrumItems.MALACHITE_GLASS_AMPOULE);
-		registerPickyPotionFillables(SpectrumItems.NIGHTFALLS_BLADE, SpectrumItems.CONCEALING_OILS);
-		registerSingleInkStorages(SpectrumItems.INK_FLASK);
-		registerBrewColors(SpectrumItems.INFUSED_BEVERAGE);
+		registerClovers(SpectrumBlocks.CLOVER.get(), SpectrumBlocks.FOUR_LEAF_CLOVER.get());
+		registerMemory(SpectrumBlocks.MEMORY.get());
+		registerPotionFillables(SpectrumItems.LESSER_POTION_PENDANT.get(), SpectrumItems.GREATER_POTION_PENDANT.get(), SpectrumItems.MALACHITE_GLASS_AMPOULE.get());
+		registerPickyPotionFillables(SpectrumItems.NIGHTFALLS_BLADE.get(), SpectrumItems.CONCEALING_OILS.get());
+		registerSingleInkStorages(SpectrumItems.INK_FLASK.get());
+		registerBrewColors(SpectrumItems.INFUSED_BEVERAGE.get());
 		
-		registerOptionalInkColor(SpectrumItems.PAINTBRUSH);
+		registerOptionalInkColor(SpectrumItems.PAINTBRUSH.get());
 	}
 	
 	private static void registerColoredLeaves() {

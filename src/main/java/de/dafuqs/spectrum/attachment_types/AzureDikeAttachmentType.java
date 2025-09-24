@@ -48,10 +48,7 @@ public class AzureDikeAttachmentType {
 	public record Payload(int entityId, float maxProtection, float currentProtection, int ticksPerPointOfRecharge, int rechargeDelayTicksAfterGettingHit, int currentRechargeDelay) implements CustomPacketPayload {
 		
 		public Payload(int entityId, AzureDikeAttachmentType attachment) {
-			this(
-					entityId, attachment.maxCharges, attachment.currentCharges, attachment.ticksToReplenishCharge,
-					attachment.ticksToReplenishChargeAfterGettingHit, attachment.currentRechargeDelay
-			);
+			this(entityId, attachment.maxCharges, attachment.currentCharges, attachment.ticksToReplenishCharge, attachment.ticksToReplenishChargeAfterGettingHit, attachment.currentRechargeDelay);
 		}
 		
 		public static final StreamCodec<FriendlyByteBuf, Payload> CODEC = StreamCodec.composite(

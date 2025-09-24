@@ -24,11 +24,11 @@ public class FluidRendering {
 		builder.addVertex(pos, x1, y, z1).setColor(color[1], color[2], color[3], color[0]).setUv(u1, v1).setOverlay(overlay).setLight(light).setNormal(0f, 1f, 0f);
 	}
 	
-	public static int colorOf(FluidVariant fluid, @Nullable BlockEntity entity) {
-		return entity == null ? FluidVariantRendering.getColor(fluid, null, null) : FluidVariantRendering.getColor(fluid, entity.getLevel(), entity.getBlockPos());
+	public static int colorOf(FluidIngredient fluid, @Nullable BlockEntity entity) {
+		return entity == null ? FluidIngredientRendering.getColor(fluid, null, null) : FluidIngredientRendering.getColor(fluid, entity.getLevel(), entity.getBlockPos());
 	}
 	
-	public static int[] unpackColorOf(FluidVariant fluid, @Nullable BlockEntity entity) {
+	public static int[] unpackColorOf(FluidIngredient fluid, @Nullable BlockEntity entity) {
 		return unpackColor(colorOf(fluid, entity));
 	}
 	

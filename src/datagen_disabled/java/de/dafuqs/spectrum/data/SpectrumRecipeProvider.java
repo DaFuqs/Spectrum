@@ -251,7 +251,7 @@ public class SpectrumRecipeProvider extends FabricRecipeProvider {
 				stages.stream().map(s -> s.defaultBlockState().setValue(BlockStateProperties.FACING, Direction.UP)).toList(),
 				secondsPerStage, inkColor, 1 << (inkCostTier - 1), growsWithoutCatalyst,
 				catalysts,
-				FluidVariant.of(medium == null ? SpectrumFluids.LIQUID_CRYSTAL : medium),
+				FluidIngredient.of(medium == null ? SpectrumFluids.LIQUID_CRYSTAL : medium),
 				additionalResults));
 	}
 	

@@ -63,7 +63,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 	protected final CraftingDelegate propertyDelegate = new CraftingDelegate();
 	
 	public PedestalBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntities.PEDESTAL, blockPos, blockState);
+		super(SpectrumBlockEntities.PEDESTAL.get(), blockPos, blockState);
 		
 		if (blockState.getBlock() instanceof PedestalBlock pedestalBlock) {
 			this.pedestalVariant = pedestalBlock.getVariant();
@@ -406,11 +406,11 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 	
 	public static Item getGemstonePowderItemForSlot(int slot) {
 		return switch (slot) {
-			case 9 -> SpectrumItems.TOPAZ_POWDER;
-			case 10 -> SpectrumItems.AMETHYST_POWDER;
-			case 11 -> SpectrumItems.CITRINE_POWDER;
-			case 12 -> SpectrumItems.ONYX_POWDER;
-			case 13 -> SpectrumItems.MOONSTONE_POWDER;
+			case 9 -> SpectrumItems.TOPAZ_POWDER.get();
+			case 10 -> SpectrumItems.AMETHYST_POWDER.get();
+			case 11 -> SpectrumItems.CITRINE_POWDER.get();
+			case 12 -> SpectrumItems.ONYX_POWDER.get();
+			case 13 -> SpectrumItems.MOONSTONE_POWDER.get();
 			default -> Items.AIR;
 		};
 	}

@@ -128,7 +128,7 @@ public class StuckStormStoneBlock extends HorizontalDirectionalBlock implements 
 	
 	@Override
 	public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state) {
-		return new ItemStack(SpectrumItems.STORM_STONE);
+		return new ItemStack(SpectrumItems.STORM_STONE.get());
 	}
 	
 }

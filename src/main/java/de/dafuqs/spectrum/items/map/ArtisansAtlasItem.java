@@ -23,6 +23,7 @@ import net.minecraft.world.level.material.*;
 import net.minecraft.world.level.saveddata.maps.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
+import net.neoforged.neoforge.common.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -302,7 +303,7 @@ public class ArtisansAtlasItem extends MapItem {
 	}
 	
 	@Override
-	public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
+	public void inventoryTick(@NotNull ItemStack stack, @NotNull Level world, @NotNull Entity entity, int slot, boolean selected) {
 		if (!world.isClientSide) {
 			MapItemSavedData state = getSavedData(stack, world);
 			if (state instanceof ArtisansAtlasState atlasState) {
@@ -323,7 +324,7 @@ public class ArtisansAtlasItem extends MapItem {
 				Pair<ResourceLocation, StructureStart> pair = ArtisansAtlasState.locateAnyStructureAtBlock(serverWorld, blockPos);
 				if (pair != null) {
 					ResourceLocation structureId = pair.getFirst();
-					if (SpectrumStructureTags.isIn(serverWorld, structureId, ConventionalStructureTags.HIDDEN_FROM_LOCATOR_SELECTION)) {
+					if (SpectrumStructureTags.isIn(serverWorld, structureId, Tags.Structures.HIDDEN_FROM_LOCATOR_SELECTION)) {
 						serverPlayerEntity.displayClientMessage(Component.translatable("item.spectrum.artisans_atlas.unlocatable"), true);
 					} else {
 						serverPlayerEntity.displayClientMessage(Component.translatable("item.spectrum.artisans_atlas.set_structure").append(Component.translatable(structureId.toLanguageKey("structure"))), true);

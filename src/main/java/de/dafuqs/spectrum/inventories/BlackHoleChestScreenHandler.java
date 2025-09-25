@@ -56,7 +56,7 @@ public class BlackHoleChestScreenHandler extends AbstractContainerMenu {
 		}
 		
 		// experience provider slot
-		this.addSlot(new StackFilterSlot(blockEntity, BlackHoleChestBlockEntity.EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT, 152, 18, SpectrumItems.KNOWLEDGE_GEM));
+		this.addSlot(new StackFilterSlot(blockEntity, BlackHoleChestBlockEntity.EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT, 152, 18, SpectrumItems.KNOWLEDGE_GEM.get()));
 		
 		// filter slots
 		for (k = 0; k < BlackHoleChestBlockEntity.ITEM_FILTER_SLOT_COUNT; ++k) {
@@ -113,7 +113,7 @@ public class BlackHoleChestScreenHandler extends AbstractContainerMenu {
 		@Override
 		public boolean onClicked(ItemStack heldStack, ClickAction type, Player player) {
 			if (blockEntity != null) {
-				blockEntity.setFilterItem(getContainerSlot(), ItemVariant.of(heldStack));
+				blockEntity.setFilterItem(getContainerSlot(), heldStack.copyWithCount(1));
 			}
 			return super.onClicked(heldStack, type, player);
 		}

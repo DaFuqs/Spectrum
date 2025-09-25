@@ -17,7 +17,7 @@ public class PlayerEntityRendererMixin {
 	
 	@ModifyExpressionValue(method = "getArmPose", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;getUseAnimation()Lnet/minecraft/world/item/UseAnim;"))
 	private static UseAnim modifyUseAction(UseAnim original, @Local ItemStack itemStack, @Local(argsOnly = true) AbstractClientPlayer player) {
-		if (itemStack.getItem() == SpectrumItems.NIGHT_SALTS) {
+		if (itemStack.getItem() == SpectrumItems.NIGHT_SALTS.get()) {
 			return UseAnim.TOOT_HORN;
 		}
 		return original;

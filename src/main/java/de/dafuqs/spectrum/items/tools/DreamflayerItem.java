@@ -85,7 +85,7 @@ public class DreamflayerItem extends SwordItem implements InkPowered, Activatabl
 	}
 	
 	@Override
-	public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
+	public void inventoryTick(@NotNull ItemStack stack, @NotNull Level world, @NotNull Entity entity, int slot, boolean selected) {
 		super.inventoryTick(stack, world, entity, slot, selected);
 		
 		if (world.isClientSide) {

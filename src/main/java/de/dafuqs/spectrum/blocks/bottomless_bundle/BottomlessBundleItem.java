@@ -220,7 +220,7 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 	}
 	
 	@Override
-	public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
+	public void inventoryTick(@NotNull ItemStack stack, @NotNull Level world, @NotNull Entity entity, int slot, boolean selected) {
 		// We unbundle, tick and then rebundle the stack, in case inventory tick would modify components, count or other properties
 		// The slot isn't technically correct, since it's the slot of the bundle, not that of the bundled stack
 		BottomlessStack.Builder builder = BottomlessStack.Builder.of(world, stack);

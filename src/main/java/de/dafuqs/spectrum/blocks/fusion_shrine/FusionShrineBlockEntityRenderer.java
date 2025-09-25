@@ -11,6 +11,8 @@ import net.minecraft.client.renderer.texture.*;
 import net.minecraft.world.item.*;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.neoforge.client.extensions.common.*;
+import net.neoforged.neoforge.fluids.*;
+import org.jetbrains.annotations.*;
 import org.joml.Math;
 
 import java.util.*;
@@ -25,8 +27,8 @@ public class FusionShrineBlockEntityRenderer<T extends FusionShrineBlockEntity> 
 	@Override
 	public void render(FusionShrineBlockEntity fusionShrineBlockEntity, float tickDelta, PoseStack poseStack, MultiBufferSource vertexConsumerProvider, int light, int overlay) {
 		// the fluid in the shrine
-		FluidIngredient FluidIngredient = fusionShrineBlockEntity.getFluidIngredient();
-		if (!FluidIngredient.isBlank()) {
+		@NotNull FluidStack FluidIngredient = fusionShrineBlockEntity.getTank().getFluid();
+		if (!FluidIngredient.isEmpty()) {
 			poseStack.pushPose();
 			TextureAtlasSprite sprite = IClientFluidTypeExtensions.of(FluidIngredient.getFluid());
 			int[] colors = FluidRendering.unpackColorOf(FluidIngredient, fusionShrineBlockEntity);

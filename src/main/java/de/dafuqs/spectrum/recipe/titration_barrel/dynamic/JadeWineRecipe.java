@@ -13,6 +13,7 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.material.*;
 import net.neoforged.neoforge.fluids.capability.templates.*;
+import net.neoforged.neoforge.fluids.crafting.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -21,11 +22,11 @@ public class JadeWineRecipe extends SweetenableTitrationBarrelRecipe {
 	
 	public static final ResourceLocation UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/food/jade_wine");
 	public static final int MIN_FERMENTATION_TIME_HOURS = 24;
-	public static final ItemStack OUTPUT_STACK = getDefaultStackWithCount(SpectrumItems.JADE_WINE, 4);
+	public static final ItemStack OUTPUT_STACK = getDefaultStackWithCount(SpectrumItems.JADE_WINE.get(), 4);
 	public static final Item TAPPING_ITEM = Items.GLASS_BOTTLE;
 	public static final List<IngredientStack> INGREDIENT_STACKS = new ArrayList<>() {{
-		add(IngredientStack.ofItems(SpectrumItems.GERMINATED_JADE_VINE_BULB));
-		add(IngredientStack.ofItems(SpectrumItems.JADE_VINE_PETALS, 3));
+		add(IngredientStack.ofItems(SpectrumItems.GERMINATED_JADE_VINE_BULB.get()));
+		add(IngredientStack.ofItems(SpectrumItems.JADE_VINE_PETALS.get(), 3));
 	}};
 	
 	public JadeWineRecipe() {
@@ -34,9 +35,9 @@ public class JadeWineRecipe extends SweetenableTitrationBarrelRecipe {
 	
 	@Override
 	public ItemStack tap(Container inventory, long secondsFermented, float downfall) {
-		int bulbCount = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.GERMINATED_JADE_VINE_BULB);
-		int petalCount = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.JADE_VINE_PETALS);
-		boolean nectar = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.MOONSTRUCK_NECTAR) > 0;
+		int bulbCount = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.GERMINATED_JADE_VINE_BULB.get());
+		int petalCount = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.JADE_VINE_PETALS.get());
+		boolean nectar = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.MOONSTRUCK_NECTAR.get()) > 0;
 		
 		float thickness = getThickness(bulbCount, petalCount);
 		return tapWith(bulbCount, petalCount, nectar, thickness, secondsFermented, downfall);
@@ -93,7 +94,7 @@ public class JadeWineRecipe extends SweetenableTitrationBarrelRecipe {
 	}
 	
 	@Override
-	public boolean matches(FluidRecipeInput<FluidTank> recipeInput, Level world) {
+	public boolean matches(FluidRecipeInput<FluidTank> recipeInput, @NotNull Level world) {
 		boolean bulbsFound = false;
 		
 		for (int i = 0; i < recipeInput.size(); i++) {
@@ -112,7 +113,7 @@ public class JadeWineRecipe extends SweetenableTitrationBarrelRecipe {
 	}
 	
 	@Override
-	public RecipeSerializer<?> getSerializer() {
+	public @NotNull RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeSerializers.TITRATION_BARREL_JADE_WINE;
 	}
 	

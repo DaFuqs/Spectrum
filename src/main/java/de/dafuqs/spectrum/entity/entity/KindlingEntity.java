@@ -38,6 +38,7 @@ import net.minecraft.world.level.pathfinder.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.phys.*;
+import net.neoforged.neoforge.common.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -377,7 +378,7 @@ public class KindlingEntity extends AbstractHorse implements RangedAttackMob, Ne
 				}
 				
 				if (candidate.is(SpectrumBlockTags.BASE_STONE_DEEPER_DOWN)) {
-					world.setBlockAndUpdate(transmutePos, SpectrumBlocks.BLACK_MATERIA.defaultBlockState());
+					world.setBlockAndUpdate(transmutePos, SpectrumBlocks.BLACK_MATERIA.get().defaultBlockState());
 					continue;
 				}
 				

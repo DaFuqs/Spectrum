@@ -123,31 +123,31 @@ public class CraftingTabletScreenHandler extends RecipeBookMenu<RecipeInput, Rec
 				
 				int magenta = pedestalRecipe.getGemstonePowderAmount(BuiltinGemstoneColor.CYAN);
 				if (magenta > 0) {
-					inventory.setItem(9, new ItemStack(SpectrumItems.TOPAZ_POWDER, magenta));
+					inventory.setItem(9, new ItemStack(SpectrumItems.TOPAZ_POWDER.get(), magenta));
 				} else {
 					inventory.setItem(9, ItemStack.EMPTY);
 				}
 				int yellow = pedestalRecipe.getGemstonePowderAmount(BuiltinGemstoneColor.MAGENTA);
 				if (yellow > 0) {
-					inventory.setItem(10, new ItemStack(SpectrumItems.AMETHYST_POWDER, yellow));
+					inventory.setItem(10, new ItemStack(SpectrumItems.AMETHYST_POWDER.get(), yellow));
 				} else {
 					inventory.setItem(10, ItemStack.EMPTY);
 				}
 				int cyan = pedestalRecipe.getGemstonePowderAmount(BuiltinGemstoneColor.YELLOW);
 				if (cyan > 0) {
-					inventory.setItem(11, new ItemStack(SpectrumItems.CITRINE_POWDER, cyan));
+					inventory.setItem(11, new ItemStack(SpectrumItems.CITRINE_POWDER.get(), cyan));
 				} else {
 					inventory.setItem(11, ItemStack.EMPTY);
 				}
 				int black = pedestalRecipe.getGemstonePowderAmount(BuiltinGemstoneColor.BLACK);
 				if (black > 0) {
-					inventory.setItem(12, new ItemStack(SpectrumItems.ONYX_POWDER, black));
+					inventory.setItem(12, new ItemStack(SpectrumItems.ONYX_POWDER.get(), black));
 				} else {
 					inventory.setItem(12, ItemStack.EMPTY);
 				}
 				int white = pedestalRecipe.getGemstonePowderAmount(BuiltinGemstoneColor.WHITE);
 				if (white > 0) {
-					inventory.setItem(13, new ItemStack(SpectrumItems.MOONSTONE_POWDER, white));
+					inventory.setItem(13, new ItemStack(SpectrumItems.MOONSTONE_POWDER.get(), white));
 				} else {
 					inventory.setItem(13, ItemStack.EMPTY);
 				}

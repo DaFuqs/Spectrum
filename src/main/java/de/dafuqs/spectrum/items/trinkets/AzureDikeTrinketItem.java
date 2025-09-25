@@ -12,7 +12,7 @@ import top.theillusivec4.curios.api.type.capability.*;
 
 import java.util.*;
 
-public abstract class AzureDikeTrinketItem extends SpectrumTrinketItem implements AzureDikeItem {
+public abstract class AzureDikeTrinketItem extends SpectrumTrinketItem implements AzureDikeItem, ICurioItem {
 	
 	public AzureDikeTrinketItem(Properties settings, ResourceLocation unlockIdentifier) {
 		super(settings, unlockIdentifier);

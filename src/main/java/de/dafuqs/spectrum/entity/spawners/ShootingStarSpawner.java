@@ -28,7 +28,7 @@ public class ShootingStarSpawner implements CustomSpawner {
 		
 		for (Player playerEntity : world.getEntities(EntityType.PLAYER, Entity::isAlive)) {
 			if (!playerEntity.isSpectator()
-					&& AdvancementHelper.hasAdvancement(playerEntity, SpectrumItems.STAR_FRAGMENT.getCloakAdvancementIdentifier())
+					&& AdvancementHelper.hasAdvancement(playerEntity, SpectrumItems.STAR_FRAGMENT.get().getCloakAdvancementIdentifier())
 					&& world.getRandom().nextFloat() < getShootingStarChanceWithMultiplier(playerEntity)) {
 				
 				// 1 % chance for each cycle to spawn a lot of shooting stars for the player

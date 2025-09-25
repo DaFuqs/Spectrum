@@ -26,7 +26,7 @@ public abstract class EnderEyeItemMixin {
 			BlockState targetBlockState = blockState.setValue(CrackedEndPortalFrameBlock.EYE_TYPE, CrackedEndPortalFrameBlock.EndPortalFrameEye.WITH_EYE_OF_ENDER);
 			Block.pushEntitiesUp(blockState, targetBlockState, world, blockPos);
 			world.setBlock(blockPos, targetBlockState, 2);
-			world.updateNeighbourForOutputSignal(blockPos, SpectrumBlocks.CRACKED_END_PORTAL_FRAME);
+			world.updateNeighbourForOutputSignal(blockPos, SpectrumBlocks.CRACKED_END_PORTAL_FRAME.get());
 			eyeAdded = true;
 		} else if (blockState.is(Blocks.END_PORTAL_FRAME) && !blockState.getValue(EndPortalFrameBlock.HAS_EYE)) {
 			BlockState targetBlockState = blockState.setValue(EndPortalFrameBlock.HAS_EYE, true);

@@ -35,7 +35,7 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Loo
 	}
 	
 	public static ItemStack getKnowledgeDropStackWithXP(int experience, boolean noStoreTooltip) {
-		ItemStack stack = new ItemStack(SpectrumItems.KNOWLEDGE_GEM);
+		ItemStack stack = new ItemStack(SpectrumItems.KNOWLEDGE_GEM.get());
 		stack.set(SpectrumDataComponentTypes.STORED_EXPERIENCE, experience);
 		if (noStoreTooltip) stack.set(SpectrumDataComponentTypes.HIDE_USAGE_TOOLTIP, Unit.INSTANCE);
 		return stack;

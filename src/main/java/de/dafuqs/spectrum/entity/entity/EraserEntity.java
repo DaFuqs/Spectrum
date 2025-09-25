@@ -328,12 +328,12 @@ public class EraserEntity extends Spider implements PackEntity<EraserEntity>, Bu
 	}
 	
 	@Override
-	public ItemStack getBucketItemStack() {
-		return new ItemStack(SpectrumItems.BUCKET_OF_ERASER);
+	public @NotNull ItemStack getBucketItemStack() {
+		return new ItemStack(SpectrumItems.BUCKET_OF_ERASER.get());
 	}
 	
 	@Override
-	public SoundEvent getPickupSound() {
+	public @NotNull SoundEvent getPickupSound() {
 		return SoundEvents.BUCKET_FILL;
 	}
 	

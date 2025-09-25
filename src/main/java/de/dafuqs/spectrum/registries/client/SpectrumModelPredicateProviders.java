@@ -12,9 +12,7 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.renderer.item.*;
 import net.minecraft.core.component.*;
-import net.minecraft.nbt.*;
 import net.minecraft.resources.*;
-import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
@@ -24,59 +22,59 @@ import net.minecraft.world.item.component.*;
 public class SpectrumModelPredicateProviders {
 	
 	public static void registerClient() {
-		registerBowPredicates(SpectrumItems.BEDROCK_BOW);
-		registerCrossbowPredicates(SpectrumItems.BEDROCK_CROSSBOW);
-		registerSpectrumFishingRodItemPredicates(SpectrumItems.LAGOON_ROD);
-		registerSpectrumFishingRodItemPredicates(SpectrumItems.MOLTEN_ROD);
-		registerSpectrumFishingRodItemPredicates(SpectrumItems.BEDROCK_FISHING_ROD);
-		registerEnderSplicePredicates(SpectrumItems.ENDER_SPLICE);
-		registerAnimatedWandPredicates(SpectrumItems.NATURES_STAFF);
-		registerAnimatedWandPredicates(SpectrumItems.RADIANCE_STAFF);
-		registerAnimatedWandPredicates(SpectrumItems.STAFF_OF_REMEMBRANCE);
-		registerKnowledgeDropPredicates(SpectrumItems.KNOWLEDGE_GEM);
-		registerAshenCircletPredicates(SpectrumItems.ASHEN_CIRCLET);
-		registerNullableInkColorPredicate(SpectrumItems.INK_FLASK);
-		registerInkFillStateItemPredicate(SpectrumItems.INK_FLASK);
-		registerMoonPhasePredicates(SpectrumItems.CRESCENT_CLOCK);
-		registerActivatableItemPredicate(SpectrumItems.DREAMFLAYER);
-		registerOversizedItemPredicate(SpectrumItems.DREAMFLAYER);
-		registerOversizedItemPredicate(SpectrumItems.KNOTTED_SWORD);
-		registerOversizedItemPredicate(SpectrumItems.NECTAR_LANCE);
-		registerOversizedItemPredicate(SpectrumItems.BEDROCK_SWORD);
-		registerOversizedItemPredicate(SpectrumItems.BEDROCK_AXE);
+		registerBowPredicates(SpectrumItems.BEDROCK_BOW.get());
+		registerCrossbowPredicates(SpectrumItems.BEDROCK_CROSSBOW.get());
+		registerSpectrumFishingRodItemPredicates(SpectrumItems.LAGOON_ROD.get());
+		registerSpectrumFishingRodItemPredicates(SpectrumItems.MOLTEN_ROD.get());
+		registerSpectrumFishingRodItemPredicates(SpectrumItems.BEDROCK_FISHING_ROD.get());
+		registerEnderSplicePredicates(SpectrumItems.ENDER_SPLICE.get());
+		registerAnimatedWandPredicates(SpectrumItems.NATURES_STAFF.get());
+		registerAnimatedWandPredicates(SpectrumItems.RADIANCE_STAFF.get());
+		registerAnimatedWandPredicates(SpectrumItems.STAFF_OF_REMEMBRANCE.get());
+		registerKnowledgeDropPredicates(SpectrumItems.KNOWLEDGE_GEM.get());
+		registerAshenCircletPredicates(SpectrumItems.ASHEN_CIRCLET.get());
+		registerNullableInkColorPredicate(SpectrumItems.INK_FLASK.get());
+		registerInkFillStateItemPredicate(SpectrumItems.INK_FLASK.get());
+		registerMoonPhasePredicates(SpectrumItems.CRESCENT_CLOCK.get());
+		registerActivatableItemPredicate(SpectrumItems.DREAMFLAYER.get());
+		registerOversizedItemPredicate(SpectrumItems.DREAMFLAYER.get());
+		registerOversizedItemPredicate(SpectrumItems.KNOTTED_SWORD.get());
+		registerOversizedItemPredicate(SpectrumItems.NECTAR_LANCE.get());
+		registerOversizedItemPredicate(SpectrumItems.BEDROCK_SWORD.get());
+		registerOversizedItemPredicate(SpectrumItems.BEDROCK_AXE.get());
 		
-		registerOversizedItemPredicate(SpectrumItems.PAINTBRUSH);
+		registerOversizedItemPredicate(SpectrumItems.PAINTBRUSH.get());
 		
-		registerOversizedItemPredicate(SpectrumItems.DRACONIC_TWINSWORD);
-		registerOversizedItemPredicate(SpectrumItems.DRAGON_TALON);
-		registerSlotReservingItem(SpectrumItems.DRAGON_TALON);
-		registerSlotReservingItem(SpectrumItems.DRACONIC_TWINSWORD);
+		registerOversizedItemPredicate(SpectrumItems.DRACONIC_TWINSWORD.get());
+		registerOversizedItemPredicate(SpectrumItems.DRAGON_TALON.get());
+		registerSlotReservingItem(SpectrumItems.DRAGON_TALON.get());
+		registerSlotReservingItem(SpectrumItems.DRACONIC_TWINSWORD.get());
 		
-		registerOversizedItemPredicate(SpectrumItems.MALACHITE_WORKSTAFF);
-		registerOversizedItemPredicate(SpectrumItems.MALACHITE_ULTRA_GREATSWORD);
-		registerOversizedItemPredicate(SpectrumItems.MALACHITE_CROSSBOW);
-		registerOversizedItemPredicate(SpectrumItems.MALACHITE_BIDENT);
-		registerOversizedItemPredicate(SpectrumItems.GLASS_CREST_WORKSTAFF);
-		registerOversizedItemPredicate(SpectrumItems.GLASS_CREST_ULTRA_GREATSWORD);
-		registerOversizedItemPredicate(SpectrumItems.GLASS_CREST_CROSSBOW);
-		registerOversizedItemPredicate(SpectrumItems.FEROCIOUS_GLASS_CREST_BIDENT);
-		registerOversizedItemPredicate(SpectrumItems.FRACTAL_GLASS_CREST_BIDENT);
-		registerOversizedItemPredicate(SpectrumItems.OMNI_ACCELERATOR);
+		registerOversizedItemPredicate(SpectrumItems.MALACHITE_WORKSTAFF.get());
+		registerOversizedItemPredicate(SpectrumItems.MALACHITE_ULTRA_GREATSWORD.get());
+		registerOversizedItemPredicate(SpectrumItems.MALACHITE_CROSSBOW.get());
+		registerOversizedItemPredicate(SpectrumItems.MALACHITE_BIDENT.get());
+		registerOversizedItemPredicate(SpectrumItems.GLASS_CREST_WORKSTAFF.get());
+		registerOversizedItemPredicate(SpectrumItems.GLASS_CREST_ULTRA_GREATSWORD.get());
+		registerOversizedItemPredicate(SpectrumItems.GLASS_CREST_CROSSBOW.get());
+		registerOversizedItemPredicate(SpectrumItems.FEROCIOUS_GLASS_CREST_BIDENT.get());
+		registerOversizedItemPredicate(SpectrumItems.FRACTAL_GLASS_CREST_BIDENT.get());
+		registerOversizedItemPredicate(SpectrumItems.OMNI_ACCELERATOR.get());
 		
-		registerBidentThrowingItemPredicate(SpectrumItems.MALACHITE_BIDENT);
-		registerBidentThrowingItemPredicate(SpectrumItems.FEROCIOUS_GLASS_CREST_BIDENT);
-		registerBidentThrowingItemPredicate(SpectrumItems.FRACTAL_GLASS_CREST_BIDENT);
+		registerBidentThrowingItemPredicate(SpectrumItems.MALACHITE_BIDENT.get());
+		registerBidentThrowingItemPredicate(SpectrumItems.FEROCIOUS_GLASS_CREST_BIDENT.get());
+		registerBidentThrowingItemPredicate(SpectrumItems.FRACTAL_GLASS_CREST_BIDENT.get());
 		
-		registerMalachiteCrossbowPredicates(SpectrumItems.MALACHITE_CROSSBOW);
-		registerMalachiteCrossbowPredicates(SpectrumItems.GLASS_CREST_CROSSBOW);
+		registerMalachiteCrossbowPredicates(SpectrumItems.MALACHITE_CROSSBOW.get());
+		registerMalachiteCrossbowPredicates(SpectrumItems.GLASS_CREST_CROSSBOW.get());
 		
-		registerBottomlessBundlePredicates(SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem());
-		registerEnchantmentCanvasPredicates(SpectrumItems.ENCHANTMENT_CANVAS);
-		registerPresentPredicates(SpectrumBlocks.PRESENT.asItem());
-		registerMysteriousLocketPredicates(SpectrumItems.MYSTERIOUS_LOCKET);
-		registerStructureCompassPredicates(SpectrumItems.MYSTERIOUS_COMPASS);
+		registerBottomlessBundlePredicates(SpectrumBlocks.BOTTOMLESS_BUNDLE.get().asItem());
+		registerEnchantmentCanvasPredicates(SpectrumItems.ENCHANTMENT_CANVAS.get());
+		registerPresentPredicates(SpectrumBlocks.PRESENT.get().asItem());
+		registerMysteriousLocketPredicates(SpectrumItems.MYSTERIOUS_LOCKET.get());
+		registerStructureCompassPredicates(SpectrumItems.MYSTERIOUS_COMPASS.get());
 		
-		registerPipeBombPredicates(SpectrumItems.PIPE_BOMB);
+		registerPipeBombPredicates(SpectrumItems.PIPE_BOMB.get());
 	}
 	
 	private static void registerNullableInkColorPredicate(Item item) {
@@ -254,7 +252,7 @@ public class SpectrumModelPredicateProviders {
 	
 	private static void registerInkFillStateItemPredicate(Item item) {
 		ItemProperties.register(item, ResourceLocation.parse("fill_state"), (stack, world, entity, i) -> {
-			SingleInkStorage storage = SpectrumItems.INK_FLASK.getEnergyStorage(stack);
+			SingleInkStorage storage = SpectrumItems.INK_FLASK.get().getEnergyStorage(stack);
 			float current = (float) storage.getCurrentTotal();
 			float maximum = (float) storage.getMaxTotal();
 			return current == 0 || maximum == 0 ? 0.0F : Math.max(0.01F, current / maximum);

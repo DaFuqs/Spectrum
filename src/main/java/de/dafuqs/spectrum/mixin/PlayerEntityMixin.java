@@ -97,7 +97,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 	
 	@Inject(method = "updateSwimming()V", at = @At("HEAD"), cancellable = true)
 	public void spectrum$updateSwimming(CallbackInfo ci) {
-		if (SpectrumTrinketItem.hasEquipped(this, SpectrumItems.RING_OF_DENSER_STEPS)) {
+		if (SpectrumTrinketItem.hasEquipped(this, SpectrumItems.RING_OF_DENSER_STEPS.get())) {
 			this.setSwimming(false);
 			ci.cancel();
 		}
@@ -129,7 +129,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 		Multimap<Holder<Attribute>, AttributeModifier> map = Multimaps.newMultimap(Maps.newLinkedHashMap(), ArrayList::new);
 		
 		AttributeModifier jeopardantModifier;
-		if (SpectrumTrinketItem.hasEquipped(player, SpectrumItems.JEOPARDANT)) {
+		if (SpectrumTrinketItem.hasEquipped(player, SpectrumItems.JEOPARDANT.get())) {
 			jeopardantModifier = new AttributeModifier(AttackRingItem.ATTACK_RING_DAMAGE_ID, AttackRingItem.getAttackModifierForEntity(player), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
 		} else {
 			jeopardantModifier = new AttributeModifier(AttackRingItem.ATTACK_RING_DAMAGE_ID, 0, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
@@ -148,7 +148,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 	@ModifyExpressionValue(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;getEntitiesOfClass(Ljava/lang/Class;Lnet/minecraft/world/phys/AABB;)Ljava/util/List;"))
 	protected List<LivingEntity> spectrum$increaseSweepRadius(List<LivingEntity> original, Entity target) {
 		var stack = this.getItemInHand(InteractionHand.MAIN_HAND);
-		if (stack.getItem() == SpectrumItems.DRACONIC_TWINSWORD) {
+		if (stack.getItem() == SpectrumItems.DRACONIC_TWINSWORD.get()) {
 			var channeling = getChanneling(stack) + 1;
 			var size = channeling * 2 + 0.5;
 			var entities = this.level().getEntitiesOfClass(LivingEntity.class, target.getBoundingBox().inflate(size, 0.4 * channeling, size));
@@ -216,7 +216,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 	@WrapOperation(method = "attack", at = @At(value = "INVOKE", target = "net/minecraft/world/level/Level.playSound (Lnet/minecraft/world/entity/player/Player;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V", ordinal = 1))
 	protected void spectrum$switchSweepSound(Level instance, Player except, double x, double y, double z, SoundEvent sound, SoundSource category, float volume, float pitch, Operation<Void> original) {
 		var stack = this.getItemInHand(InteractionHand.MAIN_HAND);
-		if (stack.getItem() == SpectrumItems.DRACONIC_TWINSWORD && getChanneling(stack) > 0) {
+		if (stack.getItem() == SpectrumItems.DRACONIC_TWINSWORD.get() && getChanneling(stack) > 0) {
 			this.level().playSound(except, x, y, z, SpectrumSoundEvents.ELECTRIC_DISCHARGE, category, 0.75F, 0.9F + random.nextFloat() * 0.2F);
 			return;
 		}

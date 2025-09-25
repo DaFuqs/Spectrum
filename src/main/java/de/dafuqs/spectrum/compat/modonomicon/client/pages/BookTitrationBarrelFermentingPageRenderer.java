@@ -15,6 +15,7 @@ import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
+import net.neoforged.neoforge.fluids.crafting.*;
 
 import java.util.*;
 
@@ -53,7 +54,7 @@ public class BookTitrationBarrelFermentingPageRenderer extends BookGatedRecipePa
 		renderTitle(drawContext, recipeY, second);
 		
 		FluidIngredient fluid = recipe.getFluidInput();
-		boolean usesFluid = fluid != FluidIngredient.EMPTY;
+		boolean usesFluid = fluid != FluidIngredient.empty();
 		IngredientStack bucketStack = IngredientStack.EMPTY;
 		if (usesFluid) {
 			bucketStack = IngredientStack.of(recipe.getFluidInput().into());

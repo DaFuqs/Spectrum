@@ -8,6 +8,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.material.*;
 import net.neoforged.neoforge.fluids.crafting.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -38,7 +39,7 @@ public class CheongRecipe extends TitrationBarrelRecipe {
 	}
 	
 	@Override
-	public RecipeSerializer<?> getSerializer() {
+	public @NotNull RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeSerializers.TITRATION_BARREL_CHEONG;
 	}
 	

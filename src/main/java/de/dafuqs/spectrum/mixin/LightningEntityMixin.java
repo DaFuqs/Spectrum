@@ -50,7 +50,7 @@ public abstract class LightningEntityMixin {
 		
 		if (world.isEmptyBlock(aboveGroundBlockPos)) {
 			Direction randomDirection = Direction.from2DDataValue(world.random.nextInt(4));
-			BlockState placementBlockState = SpectrumBlocks.STUCK_STORM_STONE.defaultBlockState().setValue(StuckStormStoneBlock.FACING, randomDirection);
+			BlockState placementBlockState = SpectrumBlocks.STUCK_STORM_STONE.get().defaultBlockState().setValue(StuckStormStoneBlock.FACING, randomDirection);
 			if (placementBlockState.canSurvive(world, aboveGroundBlockPos)) {
 				world.setBlockAndUpdate(aboveGroundBlockPos, placementBlockState);
 			}

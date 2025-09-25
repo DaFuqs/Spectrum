@@ -89,12 +89,9 @@ public class RedstoneTransceiverBlockEntity extends BlockEntity implements Wirel
 			this.currentSignal = receivedSignal;
 			// trigger a block update in all cases, even when powered does not change. That way connected blocks
 			// can react on the strength change of the block, since we store the power in the block entity, not the block state
-			if (receivedSignal == 0) {
-				world.setBlock(worldPosition, world.getBlockState(worldPosition).setValue(RedstoneTransceiverBlock.POWERED, false), Block.UPDATE_CLIENTS);
-			} else {
-				world.setBlock(worldPosition, world.getBlockState(worldPosition).setValue(RedstoneTransceiverBlock.POWERED, true), Block.UPDATE_CLIENTS);
-			}
-			world.blockUpdated(worldPosition, SpectrumBlocks.REDSTONE_TRANSCEIVER);
+			BlockState newState = world.getBlockState(worldPosition).setValue(RedstoneTransceiverBlock.POWERED, receivedSignal != 0);
+			world.setBlock(worldPosition, newState, Block.UPDATE_CLIENTS);
+			world.blockUpdated(worldPosition, newState.getBlock());
 		}
 	}
 	

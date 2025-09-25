@@ -80,7 +80,7 @@ public class EnchanterBlock extends InWorldInteractionBlock {
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return createTickerHelper(type, SpectrumBlockEntities.ENCHANTER, world.isClientSide ? EnchanterBlockEntity::clientTick : EnchanterBlockEntity::serverTick);
+		return createTickerHelper(type, SpectrumBlockEntities.ENCHANTER.get(), world.isClientSide ? EnchanterBlockEntity::clientTick : EnchanterBlockEntity::serverTick);
 	}
 	
 	@Override

@@ -84,7 +84,7 @@ public class RuinBlock extends DecayBlock {
 		
 		Optional<Boolean> shouldCreatePortalFacingUp = shouldCreatePortalFacingUp(level, pos, state);
 		if (shouldCreatePortalFacingUp.isPresent()) {
-			level.setBlockAndUpdate(pos, SpectrumBlocks.DEEPER_DOWN_PORTAL.defaultBlockState().setValue(DeeperDownPortalBlock.FACING_UP, shouldCreatePortalFacingUp.get()));
+			level.setBlockAndUpdate(pos, SpectrumBlocks.DEEPER_DOWN_PORTAL.get().defaultBlockState().setValue(DeeperDownPortalBlock.FACING_UP, shouldCreatePortalFacingUp.get()));
 		}
 	}
 	

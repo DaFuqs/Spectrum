@@ -47,7 +47,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 	public final FluidTank tank = new FluidTank(1000);
 	
 	public FusionShrineBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntities.FUSION_SHRINE, pos, state, INVENTORY_SIZE);
+		super(SpectrumBlockEntities.FUSION_SHRINE.get(), pos, state, INVENTORY_SIZE);
 	}
 	
 	@SuppressWarnings("unused")

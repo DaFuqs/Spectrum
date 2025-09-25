@@ -64,7 +64,7 @@ public class SugarStickBlock extends Block implements RockCandy {
 	@Nullable
 	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
 		FluidState fluidState = ctx.getLevel().getFluidState(ctx.getClickedPos());
-		if (fluidState.getType() == SpectrumFluids.LIQUID_CRYSTAL) {
+		if (fluidState.getType() == SpectrumFluids.LIQUID_CRYSTAL.get()) {
 			return super.getStateForPlacement(ctx).setValue(LOGGED, FluidLogging.State.LIQUID_CRYSTAL);
 		} else {
 			return super.getStateForPlacement(ctx);
@@ -73,7 +73,7 @@ public class SugarStickBlock extends Block implements RockCandy {
 	
 	@Override
 	public FluidState getFluidState(BlockState state) {
-		return state.getValue(LOGGED).isOf(SpectrumFluids.LIQUID_CRYSTAL) ? SpectrumFluids.LIQUID_CRYSTAL.getSource(false) : super.getFluidState(state);
+		return state.getValue(LOGGED).isOf(SpectrumFluids.LIQUID_CRYSTAL.get()) ? SpectrumFluids.LIQUID_CRYSTAL.get().getSource(false) : super.getFluidState(state);
 	}
 	
 	@Override
@@ -83,7 +83,7 @@ public class SugarStickBlock extends Block implements RockCandy {
 	
 	@Override
 	protected boolean isRandomlyTicking(BlockState state) {
-		return state.getValue(LOGGED).isOf(SpectrumFluids.LIQUID_CRYSTAL) && state.getValue(AGE) < BlockStateProperties.MAX_AGE_2;
+		return state.getValue(LOGGED).isOf(SpectrumFluids.LIQUID_CRYSTAL.get()) && state.getValue(AGE) < BlockStateProperties.MAX_AGE_2;
 	}
 	
 	@Override
@@ -109,7 +109,7 @@ public class SugarStickBlock extends Block implements RockCandy {
 	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		super.randomTick(state, world, pos, random);
 		
-		if (state.getValue(LOGGED).isOf(SpectrumFluids.LIQUID_CRYSTAL)) {
+		if (state.getValue(LOGGED).isOf(SpectrumFluids.LIQUID_CRYSTAL.get())) {
 			int age = state.getValue(AGE);
 			if (age < BlockStateProperties.MAX_AGE_2) {
 				List<ItemEntity> itemEntities = world.getEntitiesOfClass(ItemEntity.class, AABB.ofSize(Vec3.atCenterOf(pos), ITEM_SEARCH_RANGE, ITEM_SEARCH_RANGE, ITEM_SEARCH_RANGE));

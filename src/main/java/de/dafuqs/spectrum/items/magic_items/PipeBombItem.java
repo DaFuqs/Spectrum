@@ -59,7 +59,7 @@ public class PipeBombItem extends Item implements DamageAwareItem, TickAwareItem
 	}
 	
 	@Override
-	public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
+	public void inventoryTick(@NotNull ItemStack stack, @NotNull Level world, @NotNull Entity entity, int slot, boolean selected) {
 		if (world instanceof ServerLevel serverWorld) {
 			if (isPrimeTimeElapsed(world, stack)) {
 				explode(stack, serverWorld, entity.position(), entity);

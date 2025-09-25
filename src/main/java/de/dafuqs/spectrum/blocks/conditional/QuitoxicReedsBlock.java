@@ -87,7 +87,7 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 		FluidState fluidState = ctx.getLevel().getFluidState(ctx.getClickedPos());
 		if (fluidState.is(FluidTags.WATER) && fluidState.getAmount() == 8) {
 			return super.getStateForPlacement(ctx).setValue(LOGGED, FluidLogging.State.WATER);
-		} else if (fluidState.getType() == SpectrumFluids.LIQUID_CRYSTAL) {
+		} else if (fluidState.getType() == SpectrumFluids.LIQUID_CRYSTAL.get()) {
 			return super.getStateForPlacement(ctx).setValue(LOGGED, FluidLogging.State.LIQUID_CRYSTAL);
 		} else {
 			return super.getStateForPlacement(ctx).setValue(LOGGED, FluidLogging.State.NOT_LOGGED);
@@ -118,7 +118,7 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 		if (fluidLog == FluidLogging.State.WATER) {
 			world.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
 		} else if (fluidLog == FluidLogging.State.LIQUID_CRYSTAL) {
-			world.scheduleTick(pos, SpectrumFluids.LIQUID_CRYSTAL, SpectrumFluids.LIQUID_CRYSTAL.getTickDelay(world));
+			world.scheduleTick(pos, SpectrumFluids.LIQUID_CRYSTAL.get(), SpectrumFluids.LIQUID_CRYSTAL.get().getTickDelay(world));
 		}
 		
 		if (!state.canSurvive(world, pos)) {

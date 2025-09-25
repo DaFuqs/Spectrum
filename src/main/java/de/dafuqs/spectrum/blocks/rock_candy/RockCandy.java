@@ -21,15 +21,15 @@ public interface RockCandy {
 			Item item = itemStack.getItem();
 			if (item == Items.SUGAR) {
 				return RockCandyVariant.SUGAR;
-			} else if (item == SpectrumItems.TOPAZ_POWDER) {
+			} else if (item == SpectrumItems.TOPAZ_POWDER.get()) {
 				return RockCandyVariant.TOPAZ;
-			} else if (item == SpectrumItems.AMETHYST_POWDER) {
+			} else if (item == SpectrumItems.AMETHYST_POWDER.get()) {
 				return RockCandyVariant.AMETHYST;
-			} else if (item == SpectrumItems.CITRINE_POWDER) {
+			} else if (item == SpectrumItems.CITRINE_POWDER.get()) {
 				return RockCandyVariant.CITRINE;
-			} else if (item == SpectrumItems.ONYX_POWDER) {
+			} else if (item == SpectrumItems.ONYX_POWDER.get()) {
 				return RockCandyVariant.ONYX;
-			} else if (item == SpectrumItems.MOONSTONE_POWDER) {
+			} else if (item == SpectrumItems.MOONSTONE_POWDER.get()) {
 				return RockCandyVariant.MOONSTONE;
 			}
 			return null;

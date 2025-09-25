@@ -50,7 +50,7 @@ public class ManxiBlock extends HorizontalDirectionalBlock implements EntityBloc
 			return InteractionResult.FAIL;
 		
 		world.playLocalSound(pos, SoundEvents.CHISELED_BOOKSHELF_PICKUP_ENCHANTED, SoundSource.BLOCKS, 1F, 1F, true);
-		player.getInventory().placeItemBackInInventory(SpectrumItems.POISONERS_HANDBOOK.getDefaultInstance());
+		player.getInventory().placeItemBackInInventory(SpectrumItems.POISONERS_HANDBOOK.get().getDefaultInstance());
 		manxi.markTaken(player);
 		
 		return InteractionResult.CONSUME;

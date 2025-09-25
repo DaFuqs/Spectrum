@@ -104,7 +104,7 @@ public class SpiritInstillerBlock extends InWorldInteractionBlock {
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return createTickerHelper(type, SpectrumBlockEntities.SPIRIT_INSTILLER, world.isClientSide ? SpiritInstillerBlockEntity::clientTick : SpiritInstillerBlockEntity::serverTick);
+		return createTickerHelper(type, SpectrumBlockEntities.SPIRIT_INSTILLER.get(), world.isClientSide ? SpiritInstillerBlockEntity::clientTick : SpiritInstillerBlockEntity::serverTick);
 	}
 	
 	@Override

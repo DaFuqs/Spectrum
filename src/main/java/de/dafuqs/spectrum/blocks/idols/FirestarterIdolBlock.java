@@ -35,7 +35,7 @@ public class FirestarterIdolBlock extends IdolBlock {
 		put(Blocks.CALCITE, new Tuple<>(Blocks.BASALT.defaultBlockState(), 0.5F));
 		put(Blocks.NETHERRACK, new Tuple<>(Blocks.MAGMA_BLOCK.defaultBlockState(), 0.25F));
 		put(Blocks.MAGMA_BLOCK, new Tuple<>(Blocks.LAVA.defaultBlockState(), 0.5F));
-		put(SpectrumBlocks.FROSTBITE_CRYSTAL, new Tuple<>(SpectrumBlocks.BLAZING_CRYSTAL.defaultBlockState(), 0.5F));
+		put(SpectrumBlocks.FROSTBITE_CRYSTAL.get(), new Tuple<>(SpectrumBlocks.BLAZING_CRYSTAL.get().defaultBlockState(), 0.5F));
 	}};
 	
 	public FirestarterIdolBlock(Properties settings, ParticleOptions particleEffect) {

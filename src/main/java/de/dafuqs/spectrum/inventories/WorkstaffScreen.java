@@ -27,7 +27,7 @@ public class WorkstaffScreen extends QuickNavigationGridScreen<WorkstaffScreenHa
 			GridEntry.EMPTY,
 			GridEntry.item(Items.FEATHER, Component.translatable("item.spectrum.workstaff.gui.silk_touch"), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.SELECT_SILK_TOUCH)),
 			GridEntry.BACK,
-			GridEntry.item(SpectrumItems.RESONANCE_SHARD, Component.translatable("item.spectrum.workstaff.gui.resonance"), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.SELECT_RESONANCE)),
+			GridEntry.item(SpectrumItems.RESONANCE_SHARD.get(), Component.translatable("item.spectrum.workstaff.gui.resonance"), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.SELECT_RESONANCE)),
 			GridEntry.item(SpectrumBlocks.FOUR_LEAF_CLOVER.asItem(), Component.translatable("item.spectrum.workstaff.gui.fortune"), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.SELECT_FORTUNE))
 	);
 	
@@ -39,7 +39,7 @@ public class WorkstaffScreen extends QuickNavigationGridScreen<WorkstaffScreenHa
 		if (mainHandStack.getItem() instanceof WorkstaffItem workstaffItem && workstaffItem.canTill(mainHandStack)) {
 			rightClickGridEntry = GridEntry.item(Items.WOODEN_HOE, Component.translatable("item.spectrum.workstaff.gui.disable_right_click_actions"), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.DISABLE_RIGHT_CLICK_ACTIONS));
 		} else {
-			rightClickGridEntry = GridEntry.item(SpectrumItems.MULTITOOL, Component.translatable("item.spectrum.workstaff.gui.enable_right_click_actions"), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.ENABLE_RIGHT_CLICK_ACTIONS));
+			rightClickGridEntry = GridEntry.item(SpectrumItems.MULTITOOL.get(), Component.translatable("item.spectrum.workstaff.gui.enable_right_click_actions"), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.ENABLE_RIGHT_CLICK_ACTIONS));
 		}
 		
 		if (mainHandStack.getItem() instanceof GlassCrestWorkstaffItem) {

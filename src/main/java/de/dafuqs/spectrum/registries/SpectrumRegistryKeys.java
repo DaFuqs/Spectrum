@@ -1,21 +1,15 @@
 package de.dafuqs.spectrum.registries;
 
-//import com.mojang.serialization.*;
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.color.*;
-//import de.dafuqs.spectrum.api.interaction.*;
-//import de.dafuqs.spectrum.api.item.*;
-//import de.dafuqs.spectrum.api.pastel.*;
-//import de.dafuqs.spectrum.api.recipe.*;
-//import de.dafuqs.spectrum.entity.variants.*;
-//import de.dafuqs.spectrum.explosion.*;
-//import de.dafuqs.spectrum.items.tools.*;
-//import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.api.pastel.*;
 import de.dafuqs.spectrum.api.recipe.*;
+import de.dafuqs.spectrum.entity.variants.*;
 import de.dafuqs.spectrum.explosion.*;
+import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.recipe.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
@@ -24,12 +18,12 @@ public class SpectrumRegistryKeys {
 	
 	public static final ResourceKey<Registry<FusionShrineRecipeWorldEffect>> WORLD_EFFECT = of("world_effect");
 	public static final ResourceKey<Registry<GemstoneColor>> GEMSTONE_COLOR = of("gemstone_color");
-//	public static final ResourceKey<Registry<GlassArrowVariant>> GLASS_ARROW_VARIANT = of("glass_arrow_variant");
+	public static final ResourceKey<Registry<GlassArrowVariant>> GLASS_ARROW_VARIANT = of("glass_arrow_variant");
 	public static final ResourceKey<Registry<InkColor>> INK_COLOR = of("ink_color");
-//	public static final ResourceKey<Registry<KindlingVariant>> KINDLING_VARIANT = of("kindling_variant");
-//	public static final ResourceKey<Registry<LizardFrillVariant>> LIZARD_FRILL_VARIANT = of("lizard_frill_variant");
-//	public static final ResourceKey<Registry<LizardHornVariant>> LIZARD_HORN_VARIANT = of("lizard_horn_variant");
-//	public static final ResourceKey<Registry<PastelUpgradeSignature>> PASTEL_UPGRADE = of("pastel_upgrade");
+	public static final ResourceKey<Registry<KindlingVariant>> KINDLING_VARIANT = of("kindling_variant");
+	public static final ResourceKey<Registry<LizardFrillVariant>> LIZARD_FRILL_VARIANT = of("lizard_frill_variant");
+	public static final ResourceKey<Registry<LizardHornVariant>> LIZARD_HORN_VARIANT = of("lizard_horn_variant");
+	public static final ResourceKey<Registry<PastelUpgradeSignature>> PASTEL_UPGRADE = of("pastel_upgrade");
 public static final ResourceKey<Registry<RecipeScaling>> RECIPE_SCALING = of("recipe_scaling");
 
 	public static final ResourceKey<Registry<ExplosionModifierType>> EXPLOSION_MODIFIER_TYPE = of("explosion_modifier_type");

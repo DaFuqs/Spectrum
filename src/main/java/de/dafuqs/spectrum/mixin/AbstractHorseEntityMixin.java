@@ -31,7 +31,7 @@ public abstract class AbstractHorseEntityMixin {
 				&& thisEntity.level() instanceof ServerLevel serverWorld) {
 			
 			double addedGravity = 0;
-			for (ItemStack stack : this.inventory.items) {
+			for (ItemStack stack : this.inventory.getItems()) {
 				if (stack.getItem() instanceof GravitableItem gravitableItem) {
 					addedGravity += gravitableItem.applyGravity(stack, serverWorld, thisEntity);
 				}

@@ -18,7 +18,7 @@ public record GuidebookHintBoughtPayload(ResourceLocation completionAdvancement,
 	public static final Type<GuidebookHintBoughtPayload> ID = SpectrumC2SPackets.makeId("guidebook_hint_bought");
 	public static final StreamCodec<RegistryFriendlyByteBuf, GuidebookHintBoughtPayload> CODEC = StreamCodec.composite(
 			ResourceLocation.STREAM_CODEC, GuidebookHintBoughtPayload::completionAdvancement,
-			IngredientStack.Serializer.PACKET_CODEC, GuidebookHintBoughtPayload::payment,
+			IngredientStack.STREAM_CODEC, GuidebookHintBoughtPayload::payment,
 			GuidebookHintBoughtPayload::new);
 	
 	@Override

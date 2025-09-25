@@ -36,7 +36,7 @@ public class RadianceStaffItem extends Item implements InkPowered {
 	public static final int MIN_LIGHT_LEVEL = 10;
 	
 	public static final InkCost INK_COST = new InkCost(InkColors.YELLOW, 10);
-	public static final ItemStack COST = new ItemStack(SpectrumItems.SHIMMERSTONE_GEM, 1);
+	public static final ItemStack COST = new ItemStack(SpectrumItems.SHIMMERSTONE_GEM.get(), 1);
 	
 	public RadianceStaffItem(Properties settings) {
 		super(settings);

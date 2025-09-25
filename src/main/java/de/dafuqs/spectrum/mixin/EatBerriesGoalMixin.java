@@ -51,12 +51,12 @@ public abstract class EatBerriesGoalMixin extends MoveToBlockGoal {
 		int berriesPlucked = 1 + world.random.nextInt(2) + (age == SawbladeHollyBushBlock.MAX_AGE ? 1 : 0);
 		ItemStack itemStack = foxEntity.getItemBySlot(EquipmentSlot.MAINHAND);
 		if (itemStack.isEmpty()) {
-			foxEntity.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(SpectrumItems.SAWBLADE_HOLLY_BERRY));
+			foxEntity.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(SpectrumItems.SAWBLADE_HOLLY_BERRY.get()));
 			--berriesPlucked;
 		}
 		
 		if (berriesPlucked > 0) {
-			Block.popResource(world, this.blockPos, new ItemStack(SpectrumItems.SAWBLADE_HOLLY_BERRY, berriesPlucked));
+			Block.popResource(world, this.blockPos, new ItemStack(SpectrumItems.SAWBLADE_HOLLY_BERRY.get(), berriesPlucked));
 		}
 		
 		foxEntity.playSound(SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, 1.0F, 1.0F);

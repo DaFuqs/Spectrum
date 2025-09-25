@@ -185,7 +185,7 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 					BlockPos offsetPos = worldPosition.offset(x, y, 0);
 					BlockState offsetState = level.getBlockState(offsetPos);
 					if (offsetState.is(SpectrumBlockTags.UNBREAKABLE_STRUCTURE_BLOCKS)) {
-						level.setBlockAndUpdate(offsetPos, SpectrumBlocks.POLISHED_CALCITE.defaultBlockState());
+						level.setBlockAndUpdate(offsetPos, SpectrumBlocks.POLISHED_CALCITE.get().defaultBlockState());
 						level.globalLevelEvent(LevelEvent.PARTICLES_DESTROY_BLOCK, offsetPos, Block.getId(offsetState));
 						didSomething = true;
 					}
@@ -197,7 +197,7 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 					BlockPos offsetPos = worldPosition.offset(0, y, z);
 					BlockState offsetState = level.getBlockState(offsetPos);
 					if (offsetState.is(SpectrumBlockTags.UNBREAKABLE_STRUCTURE_BLOCKS)) {
-						level.setBlockAndUpdate(offsetPos, SpectrumBlocks.POLISHED_CALCITE.defaultBlockState());
+						level.setBlockAndUpdate(offsetPos, SpectrumBlocks.POLISHED_CALCITE.get().defaultBlockState());
 						level.globalLevelEvent(LevelEvent.PARTICLES_DESTROY_BLOCK, offsetPos, Block.getId(offsetState));
 						didSomething = true;
 					}

@@ -28,7 +28,7 @@ public class ExtendedBundleItem extends BundleItem {
 	}
 	
 	@Override
-	public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
+	public void inventoryTick(@NotNull ItemStack stack, @NotNull Level world, @NotNull Entity entity, int slot, boolean selected) {
 		super.inventoryTick(stack, world, entity, slot, selected);
 		
 		// Tick stacks inside the bundle. Technically slot is incorrect, so it might break

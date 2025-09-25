@@ -26,20 +26,20 @@ public class SlushVegetationBlock extends SnowyDirtBlock {
 	@Override
 	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		if (!canSurvive(state, world, pos)) {
-			world.setBlockAndUpdate(pos, SpectrumBlocks.SLUSH.defaultBlockState());
+			world.setBlockAndUpdate(pos, SpectrumBlocks.SLUSH.get().defaultBlockState());
 		}
 	}
 	
-	private static boolean canSurvive(BlockState state, BlockGetter world, BlockPos pos) {
+	public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
 		BlockPos blockPos = pos.above();
-		BlockState blockState = world.getBlockState(blockPos);
+		BlockState blockState = level.getBlockState(blockPos);
 		if (blockState.is(Blocks.SNOW) && blockState.getValue(SnowLayerBlock.LAYERS) == 1) {
 			return true;
 		} else if (blockState.getFluidState().getAmount() == 8) {
 			return false;
 		} else {
-			int light = LightEngine.getLightBlockInto(world, state, pos, blockState, blockPos, Direction.UP, blockState.getLightBlock(world, blockPos));
-			return light < world.getMaxLightLevel();
+			int light = LightEngine.getLightBlockInto(level, state, pos, blockState, blockPos, Direction.UP, blockState.getLightBlock(level, blockPos));
+			return light < level.getMaxLightLevel();
 		}
 	}
 	

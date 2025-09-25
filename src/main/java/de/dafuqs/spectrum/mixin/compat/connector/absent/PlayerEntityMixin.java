@@ -21,7 +21,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 	@ModifyExpressionValue(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;distanceToSqr(Lnet/minecraft/world/entity/Entity;)D", shift = At.Shift.AFTER))
 	protected double spectrum$increaseSweepMaxDistance(double original) {
 		var stack = this.getItemInHand(InteractionHand.MAIN_HAND);
-		if (stack.getItem() == SpectrumItems.DRACONIC_TWINSWORD) {
+		if (stack.getItem() == SpectrumItems.DRACONIC_TWINSWORD.get()) {
 			int channeling = SpectrumEnchantmentHelper.getLevel(level().registryAccess(), Enchantments.CHANNELING, stack);
 			return original * 3 * ((channeling + 1) * 1.5);
 		}

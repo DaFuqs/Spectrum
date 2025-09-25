@@ -17,7 +17,7 @@ class DynamicEndPortalShaper implements EndPortalShaper {
 	
 	private static final Predicate<BlockState> BORDER_STATE_PREDICATE = BlockStatePredicate
 			.forBlock(Blocks.END_PORTAL_FRAME).where(EndPortalFrameBlock.HAS_EYE, Predicates.equalTo(true))
-			.or(BlockStatePredicate.forBlock(SpectrumBlocks.CRACKED_END_PORTAL_FRAME).where(CrackedEndPortalFrameBlock.EYE_TYPE, Predicates.equalTo(CrackedEndPortalFrameBlock.EndPortalFrameEye.WITH_EYE_OF_ENDER)));
+			.or(BlockStatePredicate.forBlock(SpectrumBlocks.CRACKED_END_PORTAL_FRAME.get()).where(CrackedEndPortalFrameBlock.EYE_TYPE, Predicates.equalTo(CrackedEndPortalFrameBlock.EndPortalFrameEye.WITH_EYE_OF_ENDER)));
 	
 	public void placePortals(Level level, BlockPos startPos) {
 		var portalPositions = findValidPortal(level, startPos);

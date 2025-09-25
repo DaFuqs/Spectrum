@@ -14,7 +14,7 @@ import top.theillusivec4.curios.api.type.capability.*;
 
 import java.util.*;
 
-public class AzureDikeAmuletItem extends InkDrainTrinketItem implements AzureDikeItem {
+public class AzureDikeAmuletItem extends InkDrainTrinketItem implements AzureDikeItem, ICurioItem {
 	
 	public AzureDikeAmuletItem(Properties settings, ResourceLocation unlockIdentifier) {
 		super(settings, unlockIdentifier, InkColors.BLUE);

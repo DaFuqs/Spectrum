@@ -170,7 +170,7 @@ public class HummingstoneBlock extends BaseEntityBlock {
 		world.gameEvent(entity, SpectrumGameEvents.HUMMINGSTONE_HYMN, pos);
 		world.playSound(null, pos, SoundEvents.AMETHYST_BLOCK_BREAK, SoundSource.BLOCKS, 1.25F, 0.5F + world.random.nextFloat() * 1.2F);
 		world.destroyBlock(pos, false);
-		popResource(world, pos, SpectrumItems.RESONANCE_SHARD.getDefaultInstance());
+		popResource(world, pos, SpectrumItems.RESONANCE_SHARD.get().getDefaultInstance());
 		
 		if (entity instanceof ServerPlayer serverPlayerEntity) {
 			SpectrumAdvancementCriteria.CREATE_HUMMINGSTONE_HYMN.trigger(serverPlayerEntity, (ServerLevel) world, pos);

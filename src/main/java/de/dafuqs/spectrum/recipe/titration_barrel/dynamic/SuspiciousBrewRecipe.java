@@ -20,6 +20,7 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.material.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -115,7 +116,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 	}
 	
 	@Override
-	public RecipeSerializer<?> getSerializer() {
+	public @NotNull RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeSerializers.TITRATION_BARREL_SUSPICIOUS_BREW;
 	}
 	

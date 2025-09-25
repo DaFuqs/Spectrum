@@ -53,7 +53,7 @@ public class SlushBlock extends RotatedPillarBlock implements BonemealableBlock 
 		}
 		
 		if (overgrownBlockNext) {
-			world.setBlockAndUpdate(pos, SpectrumBlocks.OVERGROWN_SLUSH.defaultBlockState());
+			world.setBlockAndUpdate(pos, SpectrumBlocks.OVERGROWN_SLUSH.get().defaultBlockState());
 		}
 	}
 	

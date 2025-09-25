@@ -23,7 +23,7 @@ public class MysteriousLocketItem extends Item {
 			ItemStack handStack = user.getItemInHand(hand);
 			if (handStack.has(SpectrumDataComponentTypes.SOCKETED)) {
 				handStack.shrink(1);
-				user.getInventory().placeItemBackInInventory(SpectrumItems.MYSTERIOUS_COMPASS.getDefaultInstance());
+				user.getInventory().placeItemBackInInventory(SpectrumItems.MYSTERIOUS_COMPASS.get().getDefaultInstance());
 				world.playSound(null, user.getX(), user.getY(), user.getZ(), SpectrumSoundEvents.UNLOCK, SoundSource.NEUTRAL, 1.0F, 1.0F);
 			}
 		}

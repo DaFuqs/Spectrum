@@ -111,7 +111,7 @@ public class NecteredViognierRecipe extends SweetenableTitrationBarrelRecipe {
 	}
 	
 	@Override
-	public RecipeSerializer<?> getSerializer() {
+	public @NotNull RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeSerializers.TITRATION_BARREL_NECTERED_VIOGNIER;
 	}
 	

@@ -197,7 +197,7 @@ public class ShootingStarEntity extends Entity {
 						ItemEntity itemEntity = new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), shootingStarStack);
 						this.level().addFreshEntity(itemEntity);
 					} else {
-						ItemStack starFragmentStack = SpectrumItems.STAR_FRAGMENT.getDefaultInstance();
+						ItemStack starFragmentStack = SpectrumItems.STAR_FRAGMENT.get().getDefaultInstance();
 						ItemEntity itemEntity = new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), starFragmentStack);
 						this.level().addFreshEntity(itemEntity);
 					}
@@ -341,7 +341,7 @@ public class ShootingStarEntity extends Entity {
 					if (this.availableHits <= 0) {
 						PlayParticleWithExactVelocityPayload.playParticleWithExactVelocity((ServerLevel) this.level(), this.position(), ParticleTypes.EXPLOSION, 1, Vec3.ZERO);
 						
-						ItemEntity itemEntity = new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), SpectrumItems.STAR_FRAGMENT.getDefaultInstance());
+						ItemEntity itemEntity = new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), SpectrumItems.STAR_FRAGMENT.get().getDefaultInstance());
 						itemEntity.push(0, 0.15, 0);
 						this.level().addFreshEntity(itemEntity);
 						this.discard();
@@ -390,7 +390,7 @@ public class ShootingStarEntity extends Entity {
 		if (amount > 5 && (damageSource.is(DamageTypes.FALLING_ANVIL) || damageSource.is(SpectrumDamageTypes.FLOATBLOCK))) {
 			this.playHitParticles();
 			
-			ItemStack starFragmentStack = SpectrumItems.STAR_FRAGMENT.getDefaultInstance();
+			ItemStack starFragmentStack = SpectrumItems.STAR_FRAGMENT.get().getDefaultInstance();
 			starFragmentStack.setCount(2);
 			ItemEntity itemEntity = new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), starFragmentStack);
 			this.level().addFreshEntity(itemEntity);

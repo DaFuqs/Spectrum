@@ -50,7 +50,7 @@ public class MermaidsBrushBlock extends BushBlock implements BonemealableBlock, 
 	
 	@Override
 	public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state) {
-		return new ItemStack(SpectrumItems.MERMAIDS_GEM);
+		return new ItemStack(SpectrumItems.MERMAIDS_GEM.get());
 	}
 	
 	@Override
@@ -84,7 +84,7 @@ public class MermaidsBrushBlock extends BushBlock implements BonemealableBlock, 
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
 		FluidState fluidState = ctx.getLevel().getFluidState(ctx.getClickedPos());
-		if (fluidState.getType() == SpectrumFluids.LIQUID_CRYSTAL) {
+		if (fluidState.getType() == SpectrumFluids.LIQUID_CRYSTAL.get()) {
 			return super.getStateForPlacement(ctx).setValue(LOGGED, FluidLogging.State.LIQUID_CRYSTAL);
 		} else if (fluidState.is(FluidTags.WATER)) {
 			return super.getStateForPlacement(ctx).setValue(LOGGED, FluidLogging.State.WATER);
@@ -98,7 +98,7 @@ public class MermaidsBrushBlock extends BushBlock implements BonemealableBlock, 
 			return Blocks.AIR.defaultBlockState();
 		} else {
 			if (state.getValue(LOGGED) == FluidLogging.State.LIQUID_CRYSTAL) {
-				world.scheduleTick(pos, SpectrumFluids.LIQUID_CRYSTAL, SpectrumFluids.LIQUID_CRYSTAL.getTickDelay(world));
+				world.scheduleTick(pos, SpectrumFluids.LIQUID_CRYSTAL.get(), SpectrumFluids.LIQUID_CRYSTAL.get().getTickDelay(world));
 			} else {
 				world.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
 			}
@@ -121,7 +121,7 @@ public class MermaidsBrushBlock extends BushBlock implements BonemealableBlock, 
 	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		int age = state.getValue(AGE);
 		if (age == 7) {
-			ItemEntity pearlEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, new ItemStack(SpectrumItems.MERMAIDS_GEM, 1));
+			ItemEntity pearlEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, new ItemStack(SpectrumItems.MERMAIDS_GEM.get()));
 			world.addFreshEntity(pearlEntity);
 			world.setBlock(pos, state.setValue(AGE, 0), 3);
 		} else {
@@ -166,7 +166,7 @@ public class MermaidsBrushBlock extends BushBlock implements BonemealableBlock, 
 		int nextAge = age + random.nextIntBetweenInclusive(1, (int) Math.ceil(attempts * chance));
 		
 		if (nextAge >= 8) {
-			ItemEntity pearlEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, new ItemStack(SpectrumItems.MERMAIDS_GEM, 1));
+			ItemEntity pearlEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, new ItemStack(SpectrumItems.MERMAIDS_GEM.get()));
 			world.addFreshEntity(pearlEntity);
 		}
 		

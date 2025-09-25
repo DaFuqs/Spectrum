@@ -138,7 +138,7 @@ public class CinderhearthRecipe extends GatedStackSpectrumRecipe<SingleRecipeInp
 				Codec.STRING.optionalFieldOf("group", "").forGetter(recipe -> recipe.group),
 				Codec.BOOL.optionalFieldOf("secret", false).forGetter(recipe -> recipe.secret),
 				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancementIdentifier),
-				IngredientStack.Serializer.CODEC.fieldOf("ingredient").forGetter(recipe -> recipe.ingredient),
+				IngredientStack.CODEC.fieldOf("ingredient").forGetter(recipe -> recipe.ingredient),
 				Codec.INT.fieldOf("time").forGetter(recipe -> recipe.time),
 				Codec.FLOAT.optionalFieldOf("experience", 0f).forGetter(recipe -> recipe.experience),
 				Codec.withAlternative(
@@ -154,7 +154,7 @@ public class CinderhearthRecipe extends GatedStackSpectrumRecipe<SingleRecipeInp
 				ByteBufCodecs.STRING_UTF8, recipe -> recipe.group,
 				ByteBufCodecs.BOOL, recipe -> recipe.secret,
 				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.requiredAdvancementIdentifier,
-				IngredientStack.Serializer.PACKET_CODEC, recipe -> recipe.ingredient,
+				IngredientStack.STREAM_CODEC, recipe -> recipe.ingredient,
 				ByteBufCodecs.VAR_INT, recipe -> recipe.time,
 				ByteBufCodecs.FLOAT, recipe -> recipe.experience,
 				PacketCodecHelper.pair(ItemStack.STREAM_CODEC, ByteBufCodecs.FLOAT).apply(ByteBufCodecs.list()), recipe -> recipe.resultsWithChance,

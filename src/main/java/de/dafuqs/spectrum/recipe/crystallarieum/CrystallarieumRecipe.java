@@ -208,7 +208,7 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe<SingleRecipeInput>
 				ByteBufCodecs.VAR_INT, recipe -> recipe.inkPerSecond,
 				ByteBufCodecs.BOOL, recipe -> recipe.growsWithoutCatalyst,
 				CrystallarieumCatalyst.PACKET_CODEC.apply(ByteBufCodecs.list()), recipe -> recipe.catalysts,
-				FluidIngredient.PACKET_CODEC, recipe -> recipe.medium,
+				FluidIngredient.STREAM_CODEC, recipe -> recipe.medium,
 				ItemStack.STREAM_CODEC.apply(ByteBufCodecs.list()), recipe -> recipe.additionalResults,
 				CrystallarieumRecipe::new
 		);

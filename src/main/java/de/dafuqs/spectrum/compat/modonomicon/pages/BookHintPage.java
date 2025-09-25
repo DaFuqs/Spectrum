@@ -37,7 +37,7 @@ public class BookHintPage extends BookTextPage {
 		IngredientStack cost = IngredientStack.EMPTY;
 		if (json.has("cost")) {
 			var ingredient = GsonHelper.getAsJsonObject(json, "cost");
-			cost = IngredientStack.Serializer.CODEC.parse(provider.createSerializationContext(JsonOps.INSTANCE), ingredient).result().orElse(cost);
+			cost = IngredientStack.CODEC.parse(provider.createSerializationContext(JsonOps.INSTANCE), ingredient).result().orElse(cost);
 		}
 		return new BookHintPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, condition, completionAdvancement, cost);
 	}
@@ -50,7 +50,7 @@ public class BookHintPage extends BookTextPage {
 		var anchor = buffer.readUtf();
 		var condition = BookCondition.fromNetwork(buffer);
 		var completionAdvancement = buffer.readResourceLocation();
-		var cost = IngredientStack.Serializer.PACKET_CODEC.decode(buffer);
+		var cost = IngredientStack.STREAM_CODEC.decode(buffer);
 		return new BookHintPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, condition, completionAdvancement, cost);
 	}
 	
@@ -71,7 +71,7 @@ public class BookHintPage extends BookTextPage {
 	public void toNetwork(RegistryFriendlyByteBuf buffer) {
 		super.toNetwork(buffer);
 		buffer.writeResourceLocation(completionAdvancement);
-		IngredientStack.Serializer.PACKET_CODEC.encode(buffer, cost);
+		IngredientStack.STREAM_CODEC.encode(buffer, cost);
 	}
 	
 }

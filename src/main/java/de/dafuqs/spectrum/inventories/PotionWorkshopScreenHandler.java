@@ -41,7 +41,7 @@ public class PotionWorkshopScreenHandler extends AbstractContainerMenu {
 		inventory.startOpen(playerInventory.player);
 		
 		// mermaids gem slot
-		this.addSlot(new StackFilterSlot(inventory, 0, 26, 85, SpectrumItems.MERMAIDS_GEM));
+		this.addSlot(new StackFilterSlot(inventory, 0, 26, 85, SpectrumItems.MERMAIDS_GEM.get()));
 		
 		// base ingredient inventory
 		this.addSlot(new Slot(inventory, 1, 134, 41));

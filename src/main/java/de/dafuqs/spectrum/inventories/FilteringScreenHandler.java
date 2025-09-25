@@ -101,7 +101,7 @@ public class FilteringScreenHandler extends AbstractContainerMenu {
 		@Override
 		public boolean onClicked(ItemStack heldStack, ClickAction type, Player player) {
 			if (!world.isClientSide && filterConfigurable != null) {
-				filterConfigurable.filterItems().set(getContainerSlot(), ItemVariant.of(heldStack));
+				filterConfigurable.filterItems().set(getContainerSlot(), heldStack.copyWithCount(1));
 			}
 			return super.onClicked(heldStack, type, player);
 		}

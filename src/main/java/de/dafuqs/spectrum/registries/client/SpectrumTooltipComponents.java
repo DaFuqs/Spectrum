@@ -2,21 +2,15 @@ package de.dafuqs.spectrum.registries.client;
 
 import de.dafuqs.spectrum.items.tooltip.*;
 import net.neoforged.api.distmarker.*;
+import net.neoforged.neoforge.client.event.*;
 
 @OnlyIn(Dist.CLIENT)
 public class SpectrumTooltipComponents {
 	
-	public static void registerTooltipComponents() {
-		TooltipComponentCallback.EVENT.register((data -> {
-			if (data instanceof CraftingTabletTooltipData craftingTabletTooltipData) {
-				return new CraftingTabletTooltipComponent(craftingTabletTooltipData);
-			} else if (data instanceof BottomlessBundleTooltipData bottomlessBundleTooltipData) {
-				return new BottomlessBundleTooltipComponent(bottomlessBundleTooltipData);
-			} else if (data instanceof PresentTooltipData presentTooltipData) {
-				return new PresentTooltipComponent(presentTooltipData);
-			}
-			return null;
-		}));
+	public static void registerTooltipComponents(RegisterClientTooltipComponentFactoriesEvent event) {
+		event.register(CraftingTabletTooltipData.class, CraftingTabletTooltipComponent::new);
+		event.register(ItemStorageTooltipData.class, BottomlessBundleTooltipComponent::new);
+		event.register(PresentTooltipData.class, PresentTooltipComponent::new);
 	}
 	
 }

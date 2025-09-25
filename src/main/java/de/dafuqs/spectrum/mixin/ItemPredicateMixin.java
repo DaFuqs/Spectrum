@@ -5,6 +5,7 @@ import com.llamalad7.mixinextras.sugar.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.*;
 import net.minecraft.world.item.*;
+import net.neoforged.neoforge.common.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 

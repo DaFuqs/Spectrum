@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_21",
   "plugin": "de.dafuqs.spectrum.mixin.compat.Plugin",
   "mixins": [
+    "AbstractHorseEntityMixin",
     "EntityStatusEffectsS2CPacketMixin",
     "FoodComponentBuilderMixin",
     "MapDecorationMixin",
@@ -32,7 +33,8 @@
     "accessors.TridentEntityAccessor"
   ],
   "client": [
-    "client.BlockOverlayRendererMixin"
+    "client.BlockOverlayRendererMixin",
+    "client.accessors.RenderLayerAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

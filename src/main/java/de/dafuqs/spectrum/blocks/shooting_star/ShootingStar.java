@@ -85,19 +85,19 @@ public interface ShootingStar {
 		public Block getBlock() {
 			switch (this) {
 				case PRISTINE -> {
-					return SpectrumBlocks.PRISTINE_SHOOTING_STAR;
+					return SpectrumBlocks.PRISTINE_SHOOTING_STAR.get();
 				}
 				case GEMSTONE -> {
-					return SpectrumBlocks.GEMSTONE_SHOOTING_STAR;
+					return SpectrumBlocks.GEMSTONE_SHOOTING_STAR.get();
 				}
 				case FIERY -> {
-					return SpectrumBlocks.FIERY_SHOOTING_STAR;
+					return SpectrumBlocks.FIERY_SHOOTING_STAR.get();
 				}
 				case COLORFUL -> {
-					return SpectrumBlocks.COLORFUL_SHOOTING_STAR;
+					return SpectrumBlocks.COLORFUL_SHOOTING_STAR.get();
 				}
 				default -> {
-					return SpectrumBlocks.GLISTERING_SHOOTING_STAR;
+					return SpectrumBlocks.GLISTERING_SHOOTING_STAR.get();
 				}
 			}
 		}

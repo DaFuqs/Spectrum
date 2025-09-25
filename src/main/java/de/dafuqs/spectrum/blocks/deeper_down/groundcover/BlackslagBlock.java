@@ -58,7 +58,7 @@ public class BlackslagBlock extends RotatedPillarBlock implements BonemealableBl
 		
 		if (overgrownBlockNext) {
 			if (nextStates.isEmpty() || random.nextInt(nextStates.size() + 1) == 0) {
-				world.setBlockAndUpdate(pos, SpectrumBlocks.OVERGROWN_BLACKSLAG.defaultBlockState());
+				world.setBlockAndUpdate(pos, SpectrumBlocks.OVERGROWN_BLACKSLAG.get().defaultBlockState());
 				return;
 			}
 		}

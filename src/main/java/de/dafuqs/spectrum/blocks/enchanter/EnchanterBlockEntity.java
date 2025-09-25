@@ -85,7 +85,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	private Direction itemFacing; // for rendering the item on the enchanter only
 	
 	public EnchanterBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntities.ENCHANTER, pos, state, INVENTORY_SIZE);
+		super(SpectrumBlockEntities.ENCHANTER.get(), pos, state, INVENTORY_SIZE);
 		this.virtualInventory = new EnchanterInventory();
 		this.currentItemProcessingTime = -1;
 	}
@@ -364,7 +364,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	
 	public static ItemEnchantments getHighestEnchantmentsInItemBowls(@NotNull EnchanterBlockEntity enchanterBlockEntity) {
 		return SpectrumEnchantmentHelper.collectHighestEnchantments(
-				enchanterBlockEntity.virtualInventory.items.subList(2, 10));
+				enchanterBlockEntity.virtualInventory.getItems().subList(2, 10));
 	}
 	
 	public static int getRequiredExperienceToEnchantCenterItem(@NotNull EnchanterBlockEntity enchanterBlockEntity) {
@@ -670,7 +670,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		this.virtualInventoryRecipeOrientation = nbt.getInt("virtual_recipe_orientation");
 		this.virtualInventoryRecipeMirrored = nbt.getBoolean("virtual_recipe_mirrored");
 		this.virtualInventory = new EnchanterInventory();
-		ContainerHelper.loadAllItems(nbt, this.virtualInventory.items, registryLookup);
+		ContainerHelper.loadAllItems(nbt, this.virtualInventory.getItems(), registryLookup);
 		if (nbt.contains("item_facing", Tag.TAG_STRING)) {
 			this.itemFacing = Direction.valueOf(nbt.getString("item_facing").toUpperCase(Locale.ROOT));
 		}
@@ -705,7 +705,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		nbt.putBoolean("inventory_changed", this.inventoryChanged);
 		nbt.putBoolean("owner_can_apply_conflicting_enchantments", this.canOwnerApplyConflictingEnchantments);
 		nbt.putBoolean("owner_can_overenchant", this.canOwnerOverenchant);
-		ContainerHelper.saveAllItems(nbt, this.virtualInventory.items, registryLookup);
+		ContainerHelper.saveAllItems(nbt, this.virtualInventory.getItems(), registryLookup);
 		if (this.itemFacing != null) {
 			nbt.putString("item_facing", this.itemFacing.toString().toUpperCase(Locale.ROOT));
 		}

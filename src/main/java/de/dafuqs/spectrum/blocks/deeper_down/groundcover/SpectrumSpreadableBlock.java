@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.lighting.*;
 import org.jetbrains.annotations.*;
 
+// TODO: unused????
 public class SpectrumSpreadableBlock extends SnowyDirtBlock {
 	
 	protected final @Nullable Block blockAbleToSpreadTo;

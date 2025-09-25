@@ -112,7 +112,7 @@ public class AquaRegiaRecipe extends SweetenableTitrationBarrelRecipe {
 	}
 	
 	@Override
-	public RecipeSerializer<?> getSerializer() {
+	public @NotNull RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeSerializers.TITRATION_BARREL_AQUA_REGIA;
 	}
 	

@@ -171,7 +171,7 @@ public class RawShapedPedestalRecipe {
 		buf.writeVarInt(this.height);
 		
 		for (IngredientStack ingredient : this.ingredients) {
-			IngredientStack.Serializer.PACKET_CODEC.encode(buf, ingredient);
+			IngredientStack.STREAM_CODEC.encode(buf, ingredient);
 		}
 		
 	}
@@ -180,7 +180,7 @@ public class RawShapedPedestalRecipe {
 		int i = buf.readVarInt();
 		int j = buf.readVarInt();
 		NonNullList<IngredientStack> defaultedList = NonNullList.withSize(i * j, IngredientStack.EMPTY);
-		defaultedList.replaceAll((ingredient) -> IngredientStack.Serializer.PACKET_CODEC.decode(buf));
+		defaultedList.replaceAll((ingredient) -> IngredientStack.STREAM_CODEC.decode(buf));
 		return new RawShapedPedestalRecipe(i, j, defaultedList, Optional.empty());
 	}
 	
@@ -215,7 +215,7 @@ public class RawShapedPedestalRecipe {
 		}, String::valueOf);
 		
 		public static final MapCodec<Data> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-				ExtraCodecs.strictUnboundedMap(KEY_ENTRY_CODEC, IngredientStack.Serializer.CODEC).fieldOf("key").forGetter((data) -> data.key),
+				ExtraCodecs.strictUnboundedMap(KEY_ENTRY_CODEC, IngredientStack.CODEC).fieldOf("key").forGetter((data) -> data.key),
 				PATTERN_CODEC.fieldOf("pattern").forGetter((data) -> data.pattern)
 		).apply(i, Data::new));
 		

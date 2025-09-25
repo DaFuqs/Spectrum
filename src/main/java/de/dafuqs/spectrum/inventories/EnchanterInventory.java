@@ -16,7 +16,7 @@ public class EnchanterInventory extends SimpleContainer {
 	}
 	
 	public RecipeInput createInput() {
-		return new SimpleRecipeInput(this.items);
+		return new SimpleRecipeInput(this.getItems());
 	}
 	
 	public void rotate() {

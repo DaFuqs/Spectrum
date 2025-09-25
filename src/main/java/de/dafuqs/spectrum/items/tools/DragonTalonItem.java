@@ -72,7 +72,7 @@ public class DragonTalonItem extends MalachiteBidentItem implements MergeableIte
 	@Override
 	public ItemStack getMergeResult(ServerPlayer player, ItemStack firstHalf, ItemStack secondHalf) {
 		var durability = Math.max(firstHalf.getDamageValue(), secondHalf.getDamageValue());
-		var result = new ItemStack(SpectrumItems.DRACONIC_TWINSWORD);
+		var result = new ItemStack(SpectrumItems.DRACONIC_TWINSWORD.get());
 		result.applyComponents(firstHalf.getComponents());
 		
 		result.remove(SpectrumDataComponentTypes.PAIRED_ITEM);
@@ -110,7 +110,7 @@ public class DragonTalonItem extends MalachiteBidentItem implements MergeableIte
 	}
 	
 	@Override
-	public boolean isFoil(ItemStack stack) {
+	public boolean isFoil(@NotNull ItemStack stack) {
 		return super.isFoil(stack) && !SlotReservingItem.isReservingSlot(stack);
 	}
 	
@@ -145,7 +145,7 @@ public class DragonTalonItem extends MalachiteBidentItem implements MergeableIte
 	}
 	
 	@Override
-	public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
+	public void inventoryTick(@NotNull ItemStack stack, @NotNull Level world, @NotNull Entity entity, int slot, boolean selected) {
 		if (entity instanceof Player player) {
 			if (player.getCooldowns().isOnCooldown(stack.getItem()) || SlotReservingItem.isReservingSlot(stack)) {
 				stack.remove(DataComponents.ATTRIBUTE_MODIFIERS);

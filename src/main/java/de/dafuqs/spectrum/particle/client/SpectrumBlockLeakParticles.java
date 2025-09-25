@@ -19,7 +19,7 @@ public class SpectrumBlockLeakParticles {
 		
 		@Override
 		public Particle createParticle(SimpleParticleType defaultParticleType, ClientLevel clientWorld, double d, double e, double f, double g, double h, double i) {
-			DripParticle blockLeakParticle = new DripParticle.DripLandParticle(clientWorld, d, e, f, SpectrumFluids.SLUDGE);
+			DripParticle blockLeakParticle = new DripParticle.DripLandParticle(clientWorld, d, e, f, SpectrumFluids.SLUDGE.get());
 			blockLeakParticle.setColor(SpectrumFluids.SLUDGE_COLOR_VEC.x(), SpectrumFluids.SLUDGE_COLOR_VEC.y(), SpectrumFluids.SLUDGE_COLOR_VEC.z());
 			blockLeakParticle.pickSprite(this.spriteProvider);
 			return blockLeakParticle;
@@ -35,7 +35,7 @@ public class SpectrumBlockLeakParticles {
 		
 		@Override
 		public Particle createParticle(SimpleParticleType defaultParticleType, ClientLevel clientWorld, double d, double e, double f, double g, double h, double i) {
-			DripParticle blockLeakParticle = new DripParticle.FallAndLandParticle(clientWorld, d, e, f, SpectrumFluids.SLUDGE, SpectrumParticleTypes.LANDING_SLUDGE);
+			DripParticle blockLeakParticle = new DripParticle.FallAndLandParticle(clientWorld, d, e, f, SpectrumFluids.SLUDGE.get(), SpectrumParticleTypes.LANDING_SLUDGE);
 			blockLeakParticle.setColor(SpectrumFluids.SLUDGE_COLOR_VEC.x(), SpectrumFluids.SLUDGE_COLOR_VEC.y(), SpectrumFluids.SLUDGE_COLOR_VEC.z());
 			blockLeakParticle.pickSprite(this.spriteProvider);
 			return blockLeakParticle;
@@ -51,7 +51,7 @@ public class SpectrumBlockLeakParticles {
 		
 		@Override
 		public Particle createParticle(SimpleParticleType defaultParticleType, ClientLevel clientWorld, double d, double e, double f, double g, double h, double i) {
-			DripParticle blockLeakParticle = new DripParticle.DripHangParticle(clientWorld, d, e, f, SpectrumFluids.SLUDGE, SpectrumParticleTypes.FALLING_SLUDGE);
+			DripParticle blockLeakParticle = new DripParticle.DripHangParticle(clientWorld, d, e, f, SpectrumFluids.SLUDGE.get(), SpectrumParticleTypes.FALLING_SLUDGE);
 			blockLeakParticle.setColor(SpectrumFluids.SLUDGE_COLOR_VEC.x(), SpectrumFluids.SLUDGE_COLOR_VEC.y(), SpectrumFluids.SLUDGE_COLOR_VEC.z());
 			blockLeakParticle.pickSprite(this.spriteProvider);
 			return blockLeakParticle;
@@ -67,7 +67,7 @@ public class SpectrumBlockLeakParticles {
 		
 		@Override
 		public Particle createParticle(SimpleParticleType defaultParticleType, ClientLevel clientWorld, double d, double e, double f, double g, double h, double i) {
-			DripParticle blockLeakParticle = new DripParticle.DripLandParticle(clientWorld, d, e, f, SpectrumFluids.LIQUID_CRYSTAL);
+			DripParticle blockLeakParticle = new DripParticle.DripLandParticle(clientWorld, d, e, f, SpectrumFluids.LIQUID_CRYSTAL.get());
 			blockLeakParticle.setColor(SpectrumFluids.LIQUID_CRYSTAL_COLOR_VEC.x(), SpectrumFluids.LIQUID_CRYSTAL_COLOR_VEC.y(), SpectrumFluids.LIQUID_CRYSTAL_COLOR_VEC.z());
 			blockLeakParticle.pickSprite(this.spriteProvider);
 			return blockLeakParticle;
@@ -83,7 +83,7 @@ public class SpectrumBlockLeakParticles {
 		
 		@Override
 		public Particle createParticle(SimpleParticleType defaultParticleType, ClientLevel clientWorld, double d, double e, double f, double g, double h, double i) {
-			DripParticle blockLeakParticle = new DripParticle.FallAndLandParticle(clientWorld, d, e, f, SpectrumFluids.LIQUID_CRYSTAL, SpectrumParticleTypes.LANDING_LIQUID_CRYSTAL);
+			DripParticle blockLeakParticle = new DripParticle.FallAndLandParticle(clientWorld, d, e, f, SpectrumFluids.LIQUID_CRYSTAL.get(), SpectrumParticleTypes.LANDING_LIQUID_CRYSTAL);
 			blockLeakParticle.setColor(SpectrumFluids.LIQUID_CRYSTAL_COLOR_VEC.x(), SpectrumFluids.LIQUID_CRYSTAL_COLOR_VEC.y(), SpectrumFluids.LIQUID_CRYSTAL_COLOR_VEC.z());
 			blockLeakParticle.pickSprite(this.spriteProvider);
 			return blockLeakParticle;
@@ -99,7 +99,7 @@ public class SpectrumBlockLeakParticles {
 		
 		@Override
 		public Particle createParticle(SimpleParticleType defaultParticleType, ClientLevel clientWorld, double d, double e, double f, double g, double h, double i) {
-			DripParticle blockLeakParticle = new DripParticle.DripHangParticle(clientWorld, d, e, f, SpectrumFluids.LIQUID_CRYSTAL, SpectrumParticleTypes.FALLING_LIQUID_CRYSTAL);
+			DripParticle blockLeakParticle = new DripParticle.DripHangParticle(clientWorld, d, e, f, SpectrumFluids.LIQUID_CRYSTAL.get(), SpectrumParticleTypes.FALLING_LIQUID_CRYSTAL);
 			blockLeakParticle.setColor(SpectrumFluids.LIQUID_CRYSTAL_COLOR_VEC.x(), SpectrumFluids.LIQUID_CRYSTAL_COLOR_VEC.y(), SpectrumFluids.LIQUID_CRYSTAL_COLOR_VEC.z());
 			blockLeakParticle.pickSprite(this.spriteProvider);
 			return blockLeakParticle;
@@ -115,7 +115,7 @@ public class SpectrumBlockLeakParticles {
 		
 		@Override
 		public Particle createParticle(SimpleParticleType defaultParticleType, ClientLevel clientWorld, double d, double e, double f, double g, double h, double i) {
-			DripParticle blockLeakParticle = new DripParticle.DripLandParticle(clientWorld, d, e, f, SpectrumFluids.MIDNIGHT_SOLUTION);
+			DripParticle blockLeakParticle = new DripParticle.DripLandParticle(clientWorld, d, e, f, SpectrumFluids.MIDNIGHT_SOLUTION.get());
 			blockLeakParticle.setColor(SpectrumFluids.MIDNIGHT_SOLUTION_COLOR_VEC.x(), SpectrumFluids.MIDNIGHT_SOLUTION_COLOR_VEC.y(), SpectrumFluids.MIDNIGHT_SOLUTION_COLOR_VEC.z());
 			blockLeakParticle.pickSprite(this.spriteProvider);
 			return blockLeakParticle;
@@ -131,7 +131,7 @@ public class SpectrumBlockLeakParticles {
 		
 		@Override
 		public Particle createParticle(SimpleParticleType defaultParticleType, ClientLevel clientWorld, double d, double e, double f, double g, double h, double i) {
-			DripParticle blockLeakParticle = new DripParticle.FallAndLandParticle(clientWorld, d, e, f, SpectrumFluids.MIDNIGHT_SOLUTION, SpectrumParticleTypes.LANDING_MIDNIGHT_SOLUTION);
+			DripParticle blockLeakParticle = new DripParticle.FallAndLandParticle(clientWorld, d, e, f, SpectrumFluids.MIDNIGHT_SOLUTION.get(), SpectrumParticleTypes.LANDING_MIDNIGHT_SOLUTION);
 			blockLeakParticle.setColor(SpectrumFluids.MIDNIGHT_SOLUTION_COLOR_VEC.x(), SpectrumFluids.MIDNIGHT_SOLUTION_COLOR_VEC.y(), SpectrumFluids.MIDNIGHT_SOLUTION_COLOR_VEC.z());
 			blockLeakParticle.pickSprite(this.spriteProvider);
 			return blockLeakParticle;
@@ -147,7 +147,7 @@ public class SpectrumBlockLeakParticles {
 		
 		@Override
 		public Particle createParticle(SimpleParticleType defaultParticleType, ClientLevel clientWorld, double d, double e, double f, double g, double h, double i) {
-			DripParticle blockLeakParticle = new DripParticle.DripHangParticle(clientWorld, d, e, f, SpectrumFluids.MIDNIGHT_SOLUTION, SpectrumParticleTypes.FALLING_MIDNIGHT_SOLUTION);
+			DripParticle blockLeakParticle = new DripParticle.DripHangParticle(clientWorld, d, e, f, SpectrumFluids.MIDNIGHT_SOLUTION.get(), SpectrumParticleTypes.FALLING_MIDNIGHT_SOLUTION);
 			blockLeakParticle.setColor(SpectrumFluids.MIDNIGHT_SOLUTION_COLOR_VEC.x(), SpectrumFluids.MIDNIGHT_SOLUTION_COLOR_VEC.y(), SpectrumFluids.MIDNIGHT_SOLUTION_COLOR_VEC.z());
 			blockLeakParticle.pickSprite(this.spriteProvider);
 			return blockLeakParticle;
@@ -163,7 +163,7 @@ public class SpectrumBlockLeakParticles {
 		
 		@Override
 		public Particle createParticle(SimpleParticleType defaultParticleType, ClientLevel clientWorld, double d, double e, double f, double g, double h, double i) {
-			DripParticle blockLeakParticle = new DripParticle.DripLandParticle(clientWorld, d, e, f, SpectrumFluids.DRAGONROT);
+			DripParticle blockLeakParticle = new DripParticle.DripLandParticle(clientWorld, d, e, f, SpectrumFluids.DRAGONROT.get());
 			blockLeakParticle.setColor(SpectrumFluids.DRAGONROT_COLOR_VEC.x(), SpectrumFluids.DRAGONROT_COLOR_VEC.y(), SpectrumFluids.DRAGONROT_COLOR_VEC.z());
 			blockLeakParticle.pickSprite(this.spriteProvider);
 			return blockLeakParticle;
@@ -179,7 +179,7 @@ public class SpectrumBlockLeakParticles {
 		
 		@Override
 		public Particle createParticle(SimpleParticleType defaultParticleType, ClientLevel clientWorld, double d, double e, double f, double g, double h, double i) {
-			DripParticle blockLeakParticle = new DripParticle.FallAndLandParticle(clientWorld, d, e, f, SpectrumFluids.DRAGONROT, SpectrumParticleTypes.LANDING_DRAGONROT);
+			DripParticle blockLeakParticle = new DripParticle.FallAndLandParticle(clientWorld, d, e, f, SpectrumFluids.DRAGONROT.get(), SpectrumParticleTypes.LANDING_DRAGONROT);
 			blockLeakParticle.setColor(SpectrumFluids.DRAGONROT_COLOR_VEC.x(), SpectrumFluids.DRAGONROT_COLOR_VEC.y(), SpectrumFluids.DRAGONROT_COLOR_VEC.z());
 			blockLeakParticle.pickSprite(this.spriteProvider);
 			return blockLeakParticle;
@@ -195,7 +195,7 @@ public class SpectrumBlockLeakParticles {
 		
 		@Override
 		public Particle createParticle(SimpleParticleType defaultParticleType, ClientLevel clientWorld, double d, double e, double f, double g, double h, double i) {
-			DripParticle blockLeakParticle = new DripParticle.DripHangParticle(clientWorld, d, e, f, SpectrumFluids.DRAGONROT, SpectrumParticleTypes.FALLING_DRAGONROT);
+			DripParticle blockLeakParticle = new DripParticle.DripHangParticle(clientWorld, d, e, f, SpectrumFluids.DRAGONROT.get(), SpectrumParticleTypes.FALLING_DRAGONROT);
 			blockLeakParticle.setColor(SpectrumFluids.DRAGONROT_COLOR_VEC.x(), SpectrumFluids.DRAGONROT_COLOR_VEC.y(), SpectrumFluids.DRAGONROT_COLOR_VEC.z());
 			blockLeakParticle.pickSprite(this.spriteProvider);
 			return blockLeakParticle;

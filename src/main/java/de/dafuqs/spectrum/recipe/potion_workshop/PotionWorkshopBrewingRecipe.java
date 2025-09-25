@@ -388,9 +388,9 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 				Codec.BOOL.optionalFieldOf("secret", false).forGetter(c -> c.secret),
 				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(c -> c.requiredAdvancementIdentifier),
 				Codec.INT.optionalFieldOf("time", 200).forGetter(c -> c.craftingTime),
-				IngredientStack.Serializer.CODEC.fieldOf("ingredient1").forGetter(c -> c.ingredient1),
-				IngredientStack.Serializer.CODEC.optionalFieldOf("ingredient2", IngredientStack.EMPTY).forGetter(c -> c.ingredient2),
-				IngredientStack.Serializer.CODEC.optionalFieldOf("ingredient3", IngredientStack.EMPTY).forGetter(c -> c.ingredient3),
+				IngredientStack.CODEC.fieldOf("ingredient1").forGetter(c -> c.ingredient1),
+				IngredientStack.CODEC.optionalFieldOf("ingredient2", IngredientStack.EMPTY).forGetter(c -> c.ingredient2),
+				IngredientStack.CODEC.optionalFieldOf("ingredient3", IngredientStack.EMPTY).forGetter(c -> c.ingredient3),
 				PotionRecipeEffect.CODEC.forGetter(c -> c.recipeData)
 		).apply(i, PotionWorkshopBrewingRecipe::new));
 		
@@ -399,9 +399,9 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 				ByteBufCodecs.BOOL, c -> c.secret,
 				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), c -> c.requiredAdvancementIdentifier,
 				ByteBufCodecs.VAR_INT, c -> c.craftingTime,
-				IngredientStack.Serializer.PACKET_CODEC, c -> c.ingredient1,
-				IngredientStack.Serializer.PACKET_CODEC, c -> c.ingredient2,
-				IngredientStack.Serializer.PACKET_CODEC, c -> c.ingredient3,
+				IngredientStack.STREAM_CODEC, c -> c.ingredient1,
+				IngredientStack.STREAM_CODEC, c -> c.ingredient2,
+				IngredientStack.STREAM_CODEC, c -> c.ingredient3,
 				PotionRecipeEffect.PACKET_CODEC, c -> c.recipeData,
 				PotionWorkshopBrewingRecipe::new
 		);

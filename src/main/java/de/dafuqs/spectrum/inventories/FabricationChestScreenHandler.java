@@ -45,7 +45,7 @@ public class FabricationChestScreenHandler extends AbstractContainerMenu {
 		// crafting tablet slots
 		for (int j = 0; j < 4; j++) {
 			int slotId = FabricationChestBlockEntity.RECIPE_SLOTS[j];
-			this.addSlot(new StackFilterSlot(inventory, slotId, 26 + j * 36, 18, SpectrumItems.CRAFTING_TABLET));
+			this.addSlot(new StackFilterSlot(inventory, slotId, 26 + j * 36, 18, SpectrumItems.CRAFTING_TABLET.get()));
 		}
 		
 		// crafting result slots

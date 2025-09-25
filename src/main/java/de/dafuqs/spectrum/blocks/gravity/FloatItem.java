@@ -15,7 +15,7 @@ public class FloatItem extends Item implements GravitableItem {
 	}
 	
 	@Override
-	public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
+	public void inventoryTick(@NotNull ItemStack stack, @NotNull Level world, @NotNull Entity entity, int slot, boolean selected) {
 		applyGravity(stack, world, entity);
 	}
 	

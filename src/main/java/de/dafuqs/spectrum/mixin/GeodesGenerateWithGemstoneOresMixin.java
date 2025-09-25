@@ -18,7 +18,7 @@ public abstract class GeodesGenerateWithGemstoneOresMixin {
 	
 	@Inject(at = @At("TAIL"), method = "place")
 	public void generate(FeaturePlaceContext<GeodeConfiguration> context, CallbackInfoReturnable<Boolean> cir) {
-		generateGemstoneOres(context);
+		spectrum$generateGemstoneOres(context);
 	}
 	
 	/**
@@ -29,13 +29,13 @@ public abstract class GeodesGenerateWithGemstoneOresMixin {
 	 * @param context The GeodeFeatures feature config
 	 */
 	@Unique
-	private void generateGemstoneOres(FeaturePlaceContext<GeodeConfiguration> context) {
+	private void spectrum$generateGemstoneOres(FeaturePlaceContext<GeodeConfiguration> context) {
 		BlockState gemBlock = context.config().geodeBlockSettings.innerLayerProvider.getState(context.random(), context.origin());
 		if (gemBlock != null) {
-			BlockState oreBlockState = getGemstoneOreForGeodeBlock(gemBlock);
+			BlockState oreBlockState = spectrum$getGemstoneOreForGeodeBlock(gemBlock);
 			if (oreBlockState != null) { // do not handle other modded geodes
-				BlockState blackslagOreBlockState = getGemstoneBlackslagOreForGeodeBlock(gemBlock);
-				BlockState deepslateOreBlockState = getGemstoneDeepslateOreForGeodeBlock(gemBlock);
+				BlockState blackslagOreBlockState = spectrum$getGemstoneBlackslagOreForGeodeBlock(gemBlock);
+				BlockState deepslateOreBlockState = spectrum$getGemstoneDeepslateOreForGeodeBlock(gemBlock);
 				WorldGenLevel world = context.level();
 				RandomSource random = context.random();
 				// having steps for distance with a fixed amount assures
@@ -69,18 +69,18 @@ public abstract class GeodesGenerateWithGemstoneOresMixin {
 	 * @return the matching ore for that block state. Does return null if no matching ore exists. For example if another mod adds additional geodes
 	 */
 	@Unique
-	private BlockState getGemstoneOreForGeodeBlock(BlockState blockState) {
+	private BlockState spectrum$getGemstoneOreForGeodeBlock(BlockState blockState) {
 		Block block = blockState.getBlock();
 		if (block.equals(Blocks.AMETHYST_BLOCK)) {
-			return SpectrumBlocks.AMETHYST_ORE.defaultBlockState();
-		} else if (block.equals(SpectrumBlocks.CITRINE_BLOCK)) {
-			return SpectrumBlocks.CITRINE_ORE.defaultBlockState();
-		} else if (block.equals(SpectrumBlocks.TOPAZ_BLOCK)) {
-			return SpectrumBlocks.TOPAZ_ORE.defaultBlockState();
-		} else if (block.equals(SpectrumBlocks.ONYX_BLOCK)) {
-			return SpectrumBlocks.ONYX_ORE.defaultBlockState();
-		} else if (block.equals(SpectrumBlocks.MOONSTONE_BLOCK)) {
-			return SpectrumBlocks.MOONSTONE_ORE.defaultBlockState();
+			return SpectrumBlocks.AMETHYST_ORE.get().defaultBlockState();
+		} else if (block.equals(SpectrumBlocks.CITRINE_BLOCK.get())) {
+			return SpectrumBlocks.CITRINE_ORE.get().defaultBlockState();
+		} else if (block.equals(SpectrumBlocks.TOPAZ_BLOCK.get())) {
+			return SpectrumBlocks.TOPAZ_ORE.get().defaultBlockState();
+		} else if (block.equals(SpectrumBlocks.ONYX_BLOCK.get())) {
+			return SpectrumBlocks.ONYX_ORE.get().defaultBlockState();
+		} else if (block.equals(SpectrumBlocks.MOONSTONE_BLOCK.get())) {
+			return SpectrumBlocks.MOONSTONE_ORE.get().defaultBlockState();
 		}
 		return null;
 	}
@@ -93,18 +93,18 @@ public abstract class GeodesGenerateWithGemstoneOresMixin {
 	 * @return the matching ore for that block state. Does return null if no matching ore exists. For example if another mod adds additional geodes
 	 */
 	@Unique
-	private BlockState getGemstoneDeepslateOreForGeodeBlock(BlockState blockState) {
+	private BlockState spectrum$getGemstoneDeepslateOreForGeodeBlock(BlockState blockState) {
 		Block block = blockState.getBlock();
 		if (block.equals(Blocks.AMETHYST_BLOCK)) {
-			return SpectrumBlocks.DEEPSLATE_AMETHYST_ORE.defaultBlockState();
-		} else if (block.equals(SpectrumBlocks.CITRINE_BLOCK)) {
-			return SpectrumBlocks.DEEPSLATE_CITRINE_ORE.defaultBlockState();
-		} else if (block.equals(SpectrumBlocks.TOPAZ_BLOCK)) {
-			return SpectrumBlocks.DEEPSLATE_TOPAZ_ORE.defaultBlockState();
-		} else if (block.equals(SpectrumBlocks.ONYX_BLOCK)) {
-			return SpectrumBlocks.DEEPSLATE_ONYX_ORE.defaultBlockState();
-		} else if (block.equals(SpectrumBlocks.MOONSTONE_BLOCK)) {
-			return SpectrumBlocks.DEEPSLATE_MOONSTONE_ORE.defaultBlockState();
+			return SpectrumBlocks.DEEPSLATE_AMETHYST_ORE.get().defaultBlockState();
+		} else if (block.equals(SpectrumBlocks.CITRINE_BLOCK.get())) {
+			return SpectrumBlocks.DEEPSLATE_CITRINE_ORE.get().defaultBlockState();
+		} else if (block.equals(SpectrumBlocks.TOPAZ_BLOCK.get())) {
+			return SpectrumBlocks.DEEPSLATE_TOPAZ_ORE.get().defaultBlockState();
+		} else if (block.equals(SpectrumBlocks.ONYX_BLOCK.get())) {
+			return SpectrumBlocks.DEEPSLATE_ONYX_ORE.get().defaultBlockState();
+		} else if (block.equals(SpectrumBlocks.MOONSTONE_BLOCK.get())) {
+			return SpectrumBlocks.DEEPSLATE_MOONSTONE_ORE.get().defaultBlockState();
 		}
 		return null;
 	}
@@ -117,18 +117,18 @@ public abstract class GeodesGenerateWithGemstoneOresMixin {
 	 * @return the matching ore for that block state. Does return null if no matching ore exists. For example if another mod adds additional geodes
 	 */
 	@Unique
-	private BlockState getGemstoneBlackslagOreForGeodeBlock(BlockState blockState) {
+	private BlockState spectrum$getGemstoneBlackslagOreForGeodeBlock(BlockState blockState) {
 		Block block = blockState.getBlock();
 		if (block.equals(Blocks.AMETHYST_BLOCK)) {
-			return SpectrumBlocks.BLACKSLAG_AMETHYST_ORE.defaultBlockState();
-		} else if (block.equals(SpectrumBlocks.CITRINE_BLOCK)) {
-			return SpectrumBlocks.BLACKSLAG_CITRINE_ORE.defaultBlockState();
-		} else if (block.equals(SpectrumBlocks.TOPAZ_BLOCK)) {
-			return SpectrumBlocks.BLACKSLAG_TOPAZ_ORE.defaultBlockState();
-		} else if (block.equals(SpectrumBlocks.ONYX_BLOCK)) {
-			return SpectrumBlocks.BLACKSLAG_ONYX_ORE.defaultBlockState();
-		} else if (block.equals(SpectrumBlocks.MOONSTONE_BLOCK)) {
-			return SpectrumBlocks.BLACKSLAG_MOONSTONE_ORE.defaultBlockState();
+			return SpectrumBlocks.BLACKSLAG_AMETHYST_ORE.get().defaultBlockState();
+		} else if (block.equals(SpectrumBlocks.CITRINE_BLOCK.get())) {
+			return SpectrumBlocks.BLACKSLAG_CITRINE_ORE.get().defaultBlockState();
+		} else if (block.equals(SpectrumBlocks.TOPAZ_BLOCK.get())) {
+			return SpectrumBlocks.BLACKSLAG_TOPAZ_ORE.get().defaultBlockState();
+		} else if (block.equals(SpectrumBlocks.ONYX_BLOCK.get())) {
+			return SpectrumBlocks.BLACKSLAG_ONYX_ORE.get().defaultBlockState();
+		} else if (block.equals(SpectrumBlocks.MOONSTONE_BLOCK.get())) {
+			return SpectrumBlocks.BLACKSLAG_MOONSTONE_ORE.get().defaultBlockState();
 		}
 		return null;
 	}

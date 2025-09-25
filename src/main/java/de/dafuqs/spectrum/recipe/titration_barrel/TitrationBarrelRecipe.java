@@ -102,7 +102,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<FluidRecipeI
 	
 	@Override
 	@Deprecated
-	public ItemStack assemble(FluidRecipeInput<FluidTank> inventory, HolderLookup.Provider drm) {
+	public @NotNull ItemStack assemble(@NotNull FluidRecipeInput<FluidTank> inventory, HolderLookup.@NotNull Provider drm) {
 		return getDefaultTap(1).copy();
 	}
 	
@@ -118,7 +118,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<FluidRecipeI
 	}
 	
 	@Override
-	public ItemStack getResultItem(HolderLookup.Provider registryManager) {
+	public @NotNull ItemStack getResultItem(HolderLookup.@NotNull Provider registryManager) {
 		return getDefaultTap(1);
 	}
 	
@@ -206,7 +206,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<FluidRecipeI
 	}
 	
 	@Override
-	public RecipeSerializer<?> getSerializer() {
+	public @NotNull RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeSerializers.TITRATION_BARREL;
 	}
 	
@@ -254,8 +254,8 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<FluidRecipeI
 				Codec.STRING.optionalFieldOf("group", "").forGetter(recipe -> recipe.group),
 				Codec.BOOL.optionalFieldOf("secret", false).forGetter(recipe -> recipe.secret),
 				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancementIdentifier),
-				IngredientStack.Serializer.CODEC.listOf().fieldOf("ingredients").forGetter(recipe -> recipe.inputStacks),
-				FluidIngredient.CODEC.optionalFieldOf("fluid", FluidIngredient.EMPTY).forGetter(recipe -> recipe.fluid),
+				IngredientStack.CODEC.listOf().fieldOf("ingredients").forGetter(recipe -> recipe.inputStacks),
+				FluidIngredient.CODEC.optionalFieldOf("fluid", FluidIngredient.empty()).forGetter(recipe -> recipe.fluid),
 				ItemStack.STRICT_CODEC.fieldOf("result").forGetter(recipe -> recipe.outputItemStack),
 				BuiltInRegistries.ITEM.byNameCodec().optionalFieldOf("tapping_item", Items.AIR).forGetter(recipe -> recipe.tappingItem),
 				Codec.INT.optionalFieldOf("min_fermentation_time_hours", 24).forGetter(recipe -> recipe.minFermentationTimeHours),
@@ -266,8 +266,8 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<FluidRecipeI
 				ByteBufCodecs.STRING_UTF8, c -> c.group,
 				ByteBufCodecs.BOOL, c -> c.secret,
 				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), c -> c.requiredAdvancementIdentifier,
-				IngredientStack.Serializer.PACKET_CODEC.apply(ByteBufCodecs.list()), c -> c.inputStacks,
-				FluidIngredient.PACKET_CODEC, c -> c.fluid,
+				IngredientStack.STREAM_CODEC.apply(ByteBufCodecs.list()), c -> c.inputStacks,
+				FluidIngredient.STREAM_CODEC, c -> c.fluid,
 				ItemStack.STREAM_CODEC, c -> c.outputItemStack,
 				ByteBufCodecs.registry(Registries.ITEM), recipe -> recipe.tappingItem,
 				ByteBufCodecs.VAR_INT, recipe -> recipe.minFermentationTimeHours,

@@ -36,19 +36,19 @@ public class SpiritVinesPlantBlock extends GrowingPlantBodyBlock implements Spir
 	protected GrowingPlantHeadBlock getHeadBlock() {
 		switch (gemstoneColor) {
 			case BuiltinGemstoneColor.CYAN -> {
-				return SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES;
+				return SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES.get();
 			}
 			case BuiltinGemstoneColor.MAGENTA -> {
-				return SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES;
+				return SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES.get();
 			}
 			case BuiltinGemstoneColor.YELLOW -> {
-				return SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES;
+				return SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES.get();
 			}
 			case BuiltinGemstoneColor.BLACK -> {
-				return SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES;
+				return SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES.get();
 			}
 			case BuiltinGemstoneColor.WHITE -> {
-				return SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES;
+				return SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES.get();
 			}
 			default -> {
 				return null;

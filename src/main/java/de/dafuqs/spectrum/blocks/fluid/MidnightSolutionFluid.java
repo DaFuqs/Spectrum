@@ -43,7 +43,7 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 	
 	@Override
 	public @NotNull Item getBucket() {
-		return SpectrumItems.MIDNIGHT_SOLUTION_BUCKET;
+		return SpectrumItems.MIDNIGHT_SOLUTION_BUCKET.get();
 	}
 	
 	@Override
@@ -53,7 +53,7 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 	
 	@Override
 	public boolean isSame(@NotNull Fluid fluid) {
-		return fluid == SpectrumFluids.MIDNIGHT_SOLUTION || fluid == SpectrumFluids.FLOWING_MIDNIGHT_SOLUTION;
+		return fluid == SpectrumFluids.MIDNIGHT_SOLUTION.get() || fluid == SpectrumFluids.FLOWING_MIDNIGHT_SOLUTION.get();
 	}
 	
 	@Override
@@ -124,7 +124,7 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 						livingEntity.hurt(SpectrumDamageTypes.midnightSolution(world), damageMult);
 					}
 					if (livingEntity.isDeadOrDying()) {
-						livingEntity.spawnAtLocation(SpectrumItems.MIDNIGHT_CHIP.getDefaultInstance());
+						livingEntity.spawnAtLocation(SpectrumItems.MIDNIGHT_CHIP.get().getDefaultInstance());
 					}
 				}
 			} else if (entity instanceof ItemEntity itemEntity && !itemEntity.hasPickUpDelay()) {

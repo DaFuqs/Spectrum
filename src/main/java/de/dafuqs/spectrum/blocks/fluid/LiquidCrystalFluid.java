@@ -34,7 +34,7 @@ public abstract class LiquidCrystalFluid extends SpectrumFluid {
 	
 	@Override
 	public @NotNull Item getBucket() {
-		return SpectrumItems.LIQUID_CRYSTAL_BUCKET;
+		return SpectrumItems.LIQUID_CRYSTAL_BUCKET.get();
 	}
 	
 	@Override
@@ -44,7 +44,7 @@ public abstract class LiquidCrystalFluid extends SpectrumFluid {
 	
 	@Override
 	public boolean isSame(@NotNull Fluid fluid) {
-		return fluid == SpectrumFluids.LIQUID_CRYSTAL || fluid == SpectrumFluids.FLOWING_LIQUID_CRYSTAL;
+		return fluid == SpectrumFluids.LIQUID_CRYSTAL.get() || fluid == SpectrumFluids.FLOWING_LIQUID_CRYSTAL.get();
 	}
 	
 	@Override

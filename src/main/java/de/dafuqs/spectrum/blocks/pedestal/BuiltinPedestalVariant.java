@@ -28,22 +28,22 @@ public enum BuiltinPedestalVariant implements PedestalVariant {
 	public Block getPedestalBlock() {
 		switch (this) {
 			case BASIC_TOPAZ -> {
-				return SpectrumBlocks.PEDESTAL_BASIC_TOPAZ;
+				return SpectrumBlocks.PEDESTAL_BASIC_TOPAZ.get();
 			}
 			case BASIC_AMETHYST -> {
-				return SpectrumBlocks.PEDESTAL_BASIC_AMETHYST;
+				return SpectrumBlocks.PEDESTAL_BASIC_AMETHYST.get();
 			}
 			case BASIC_CITRINE -> {
-				return SpectrumBlocks.PEDESTAL_BASIC_CITRINE;
+				return SpectrumBlocks.PEDESTAL_BASIC_CITRINE.get();
 			}
 			case CMY -> {
-				return SpectrumBlocks.PEDESTAL_ALL_BASIC;
+				return SpectrumBlocks.PEDESTAL_ALL_BASIC.get();
 			}
 			case ONYX -> {
-				return SpectrumBlocks.PEDESTAL_ONYX;
+				return SpectrumBlocks.PEDESTAL_ONYX.get();
 			}
 			default -> {
-				return SpectrumBlocks.PEDESTAL_MOONSTONE;
+				return SpectrumBlocks.PEDESTAL_MOONSTONE.get();
 			}
 		}
 	}

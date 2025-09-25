@@ -80,11 +80,11 @@ public abstract class PedestalRecipe extends GatedStackSpectrumRecipe<PedestalRe
 		int onyxPowderAmount = this.powderInputs.getOrDefault(BuiltinGemstoneColor.BLACK, 0);
 		int moonstonePowderAmount = this.powderInputs.getOrDefault(BuiltinGemstoneColor.WHITE, 0);
 		
-		return ((topazPowderAmount == 0 || isStackAtLeast(inv.getItem(9), SpectrumItems.TOPAZ_POWDER, topazPowderAmount))
-				&& (amethystPowderAmount == 0 || isStackAtLeast(inv.getItem(10), SpectrumItems.AMETHYST_POWDER, amethystPowderAmount))
-				&& (citrinePowderAmount == 0 || isStackAtLeast(inv.getItem(11), SpectrumItems.CITRINE_POWDER, citrinePowderAmount))
-				&& (onyxPowderAmount == 0 || isStackAtLeast(inv.getItem(12), SpectrumItems.ONYX_POWDER, onyxPowderAmount))
-				&& (moonstonePowderAmount == 0 || isStackAtLeast(inv.getItem(13), SpectrumItems.MOONSTONE_POWDER, moonstonePowderAmount)));
+		return ((topazPowderAmount == 0 || isStackAtLeast(inv.getItem(9), SpectrumItems.TOPAZ_POWDER.get(), topazPowderAmount))
+				&& (amethystPowderAmount == 0 || isStackAtLeast(inv.getItem(10), SpectrumItems.AMETHYST_POWDER.get(), amethystPowderAmount))
+				&& (citrinePowderAmount == 0 || isStackAtLeast(inv.getItem(11), SpectrumItems.CITRINE_POWDER.get(), citrinePowderAmount))
+				&& (onyxPowderAmount == 0 || isStackAtLeast(inv.getItem(12), SpectrumItems.ONYX_POWDER.get(), onyxPowderAmount))
+				&& (moonstonePowderAmount == 0 || isStackAtLeast(inv.getItem(13), SpectrumItems.MOONSTONE_POWDER.get(), moonstonePowderAmount)));
 	}
 	
 	private boolean isStackAtLeast(ItemStack sourceItemStack, Item item, int amount) {

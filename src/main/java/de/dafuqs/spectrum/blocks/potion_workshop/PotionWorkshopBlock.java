@@ -54,7 +54,7 @@ public class PotionWorkshopBlock extends HorizontalDirectionalBlock implements E
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return world.isClientSide ? null : Support.checkType(type, SpectrumBlockEntities.POTION_WORKSHOP, PotionWorkshopBlockEntity::tick);
+		return world.isClientSide ? null : Support.checkType(type, SpectrumBlockEntities.POTION_WORKSHOP.get(), PotionWorkshopBlockEntity::tick);
 	}
 	
 	@Override

@@ -28,7 +28,7 @@ public class FreezingIdolBlock extends IdolBlock {
 		put(Blocks.PACKED_ICE, new Tuple<>(Blocks.BLUE_ICE.defaultBlockState(), 0.1F));
 		put(Blocks.GRASS_BLOCK, new Tuple<>(Blocks.PODZOL.defaultBlockState(), 0.1F));
 		put(Blocks.BASALT, new Tuple<>(Blocks.CALCITE.defaultBlockState(), 0.5F));
-		put(SpectrumBlocks.BLAZING_CRYSTAL, new Tuple<>(SpectrumBlocks.FROSTBITE_CRYSTAL.defaultBlockState(), 0.5F));
+		put(SpectrumBlocks.BLAZING_CRYSTAL.get(), new Tuple<>(SpectrumBlocks.FROSTBITE_CRYSTAL.get().defaultBlockState(), 0.5F));
 	}};
 	public static final Map<BlockState, Tuple<BlockState, Float>> FREEZING_STATE_MAP = new HashMap<>() {{
 		put(Blocks.LAVA.defaultBlockState(), new Tuple<>(Blocks.OBSIDIAN.defaultBlockState(), 1.0F)); // just full, not flowing

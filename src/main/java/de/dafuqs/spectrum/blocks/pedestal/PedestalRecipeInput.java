@@ -11,11 +11,11 @@ import java.util.*;
 public class PedestalRecipeInput implements RecipeInput {
 	
 	private static final List<ItemStack> FULL_GEMSTONE_POWDER_STACKS = List.of(
-			new ItemStack(SpectrumItems.TOPAZ_POWDER, 64),
-			new ItemStack(SpectrumItems.AMETHYST_POWDER, 64),
-			new ItemStack(SpectrumItems.CITRINE_POWDER, 64),
-			new ItemStack(SpectrumItems.ONYX_POWDER, 64),
-			new ItemStack(SpectrumItems.MOONSTONE_POWDER, 64)
+			new ItemStack(SpectrumItems.TOPAZ_POWDER.get(), 64),
+			new ItemStack(SpectrumItems.AMETHYST_POWDER.get(), 64),
+			new ItemStack(SpectrumItems.CITRINE_POWDER.get(), 64),
+			new ItemStack(SpectrumItems.ONYX_POWDER.get(), 64),
+			new ItemStack(SpectrumItems.MOONSTONE_POWDER.get(), 64)
 	);
 	
 	@Nullable

@@ -32,17 +32,17 @@ public abstract class SludgeFluid extends SpectrumFluid {
 	
 	@Override
 	public @NotNull Item getBucket() {
-		return SpectrumItems.SLUDGE_BUCKET;
+		return SpectrumItems.SLUDGE_BUCKET.get();
 	}
 	
 	@Override
 	protected BlockState createLegacyBlock(FluidState fluidState) {
-		return SpectrumBlocks.SLUDGE.defaultBlockState().setValue(BlockStateProperties.LEVEL, getLegacyLevel(fluidState));
+		return SpectrumBlocks.SLUDGE.get().defaultBlockState().setValue(BlockStateProperties.LEVEL, getLegacyLevel(fluidState));
 	}
 	
 	@Override
 	public boolean isSame(@NotNull Fluid fluid) {
-		return fluid == SpectrumFluids.SLUDGE || fluid == SpectrumFluids.FLOWING_SLUDGE;
+		return fluid == SpectrumFluids.SLUDGE.get() || fluid == SpectrumFluids.FLOWING_SLUDGE.get();
 	}
 	
 	@Override

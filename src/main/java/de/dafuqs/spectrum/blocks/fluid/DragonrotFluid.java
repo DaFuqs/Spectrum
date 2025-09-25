@@ -35,7 +35,7 @@ public abstract class DragonrotFluid extends SpectrumFluid {
 	
 	@Override
 	public @NotNull Item getBucket() {
-		return SpectrumItems.DRAGONROT_BUCKET;
+		return SpectrumItems.DRAGONROT_BUCKET.get();
 	}
 	
 	@Override
@@ -45,7 +45,7 @@ public abstract class DragonrotFluid extends SpectrumFluid {
 	
 	@Override
 	public boolean isSame(@NotNull Fluid fluid) {
-		return fluid == SpectrumFluids.DRAGONROT || fluid == SpectrumFluids.FLOWING_DRAGONROT;
+		return fluid == SpectrumFluids.DRAGONROT.get() || fluid == SpectrumFluids.FLOWING_DRAGONROT.get();
 	}
 	
 	@Override

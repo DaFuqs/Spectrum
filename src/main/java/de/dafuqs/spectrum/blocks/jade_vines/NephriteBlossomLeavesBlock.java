@@ -39,7 +39,7 @@ public class NephriteBlossomLeavesBlock extends LeavesBlock implements Bonemeala
 		if (state.getValue(AGE) == MAX_AGE) {
 			int fortuneLevel = SpectrumEnchantmentHelper.getLevel(world.registryAccess(), Enchantments.FORTUNE, handStack) / 2;
 			int count = 1 + world.getRandom().nextInt(fortuneLevel + 1);
-			player.getInventory().placeItemBackInInventory(new ItemStack(SpectrumItems.GLASS_PEACH, count));
+			player.getInventory().placeItemBackInInventory(new ItemStack(SpectrumItems.GLASS_PEACH.get(), count));
 			
 			world.setBlockAndUpdate(pos, state.setValue(AGE, 0));
 			player.playNotifySound(SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1, 1 + player.getRandom().nextFloat() * 0.25F);

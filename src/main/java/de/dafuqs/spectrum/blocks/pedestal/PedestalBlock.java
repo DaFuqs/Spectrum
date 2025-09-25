@@ -190,7 +190,7 @@ public class PedestalBlock extends BaseEntityBlock implements RedstonePoweredBlo
 	}
 	
 	protected void openScreen(Level world, BlockPos pos, Player player) {
-		Optional<PedestalBlockEntity> blockEntity = world.getBlockEntity(pos, SpectrumBlockEntities.PEDESTAL);
+		Optional<PedestalBlockEntity> blockEntity = world.getBlockEntity(pos, SpectrumBlockEntities.PEDESTAL.get());
 		if (blockEntity.isPresent()) {
 			PedestalBlockEntity pedestalBlockEntity = blockEntity.get();
 			pedestalBlockEntity.setOwner(player);
@@ -246,7 +246,7 @@ public class PedestalBlock extends BaseEntityBlock implements RedstonePoweredBlo
 	@Override
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level world, BlockState state, BlockEntityType<T> type) {
-		return createTickerHelper(type, SpectrumBlockEntities.PEDESTAL, world.isClientSide ? PedestalBlockEntity::clientTick : PedestalBlockEntity::serverTick);
+		return createTickerHelper(type, SpectrumBlockEntities.PEDESTAL.get(), world.isClientSide ? PedestalBlockEntity::clientTick : PedestalBlockEntity::serverTick);
 	}
 	
 	@Override

@@ -40,8 +40,8 @@ public class GerminatedJadeVineBulbItem extends CloakedItem {
 			} else {
 				ServerPlayer player = (ServerPlayer) context.getPlayer();
 				
-				world.setBlockAndUpdate(pos, SpectrumBlocks.JADE_VINE_ROOTS.defaultBlockState());
-				BlockState bulbState = SpectrumBlocks.JADE_VINE_BULB.defaultBlockState();
+				world.setBlockAndUpdate(pos, SpectrumBlocks.JADE_VINE_ROOTS.get().defaultBlockState());
+				BlockState bulbState = SpectrumBlocks.JADE_VINE_BULB.get().defaultBlockState();
 				world.setBlockAndUpdate(pos.below(), bulbState);
 				world.playSound(null, pos, SoundEvents.CROP_PLANTED, SoundSource.PLAYERS, 1.0F, 1.0F);
 				

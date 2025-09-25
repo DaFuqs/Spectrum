@@ -53,7 +53,7 @@ public class JadeVineRootsBlock extends BaseEntityBlock implements JadeVine, Nat
 	
 	@Override
 	public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state) {
-		return SpectrumItems.GERMINATED_JADE_VINE_BULB.getDefaultInstance();
+		return SpectrumItems.GERMINATED_JADE_VINE_BULB.get().getDefaultInstance();
 	}
 	
 	@Override
@@ -214,7 +214,7 @@ public class JadeVineRootsBlock extends BaseEntityBlock implements JadeVine, Nat
 			}
 		} else if (plantState.isAir() && age > 0) {
 			// plant was destroyed? => grow a new bulb
-			world.setBlockAndUpdate(plantPos, SpectrumBlocks.JADE_VINE_BULB.defaultBlockState());
+			world.setBlockAndUpdate(plantPos, SpectrumBlocks.JADE_VINE_BULB.get().defaultBlockState());
 			anyGrown = true;
 			JadeVine.spawnParticlesServer(world, plantPos, 16);
 		}
@@ -279,16 +279,16 @@ public class JadeVineRootsBlock extends BaseEntityBlock implements JadeVine, Nat
 		if (targetState.getBlock() instanceof JadeVineBulbBlock) {
 			// is there room to grow the whole plant?
 			if (world.getBlockState(blockPos.below()).isAir() && world.getBlockState(blockPos.below(2)).isAir()) {
-				world.setBlockAndUpdate(blockPos, SpectrumBlocks.JADE_VINES.defaultBlockState().setValue(JadeVinePlantBlock.PART, JadeVinePlantBlock.JadeVinesPlantPart.BASE));
-				world.setBlockAndUpdate(blockPos.below(), SpectrumBlocks.JADE_VINES.defaultBlockState().setValue(JadeVinePlantBlock.PART, JadeVinePlantBlock.JadeVinesPlantPart.MIDDLE));
-				world.setBlockAndUpdate(blockPos.below(2), SpectrumBlocks.JADE_VINES.defaultBlockState().setValue(JadeVinePlantBlock.PART, JadeVinePlantBlock.JadeVinesPlantPart.TIP));
+				world.setBlockAndUpdate(blockPos, SpectrumBlocks.JADE_VINES.get().defaultBlockState().setValue(JadeVinePlantBlock.PART, JadeVinePlantBlock.JadeVinesPlantPart.BASE));
+				world.setBlockAndUpdate(blockPos.below(), SpectrumBlocks.JADE_VINES.get().defaultBlockState().setValue(JadeVinePlantBlock.PART, JadeVinePlantBlock.JadeVinesPlantPart.MIDDLE));
+				world.setBlockAndUpdate(blockPos.below(2), SpectrumBlocks.JADE_VINES.get().defaultBlockState().setValue(JadeVinePlantBlock.PART, JadeVinePlantBlock.JadeVinesPlantPart.TIP));
 				return true;
 			}
 		} else if (targetState.isAir()) {
-			world.setBlockAndUpdate(blockPos, SpectrumBlocks.JADE_VINE_BULB.defaultBlockState());
+			world.setBlockAndUpdate(blockPos, SpectrumBlocks.JADE_VINE_BULB.get().defaultBlockState());
 			return true;
 		} else if (canBePlantedOn(targetState)) {
-			world.setBlockAndUpdate(blockPos, SpectrumBlocks.JADE_VINE_ROOTS.defaultBlockState());
+			world.setBlockAndUpdate(blockPos, SpectrumBlocks.JADE_VINE_ROOTS.get().defaultBlockState());
 			
 			long lastGrowTime = -1;
 			BlockEntity currentBlockEntity = world.getBlockEntity(blockPos.above());

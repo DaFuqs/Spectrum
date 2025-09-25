@@ -27,7 +27,7 @@ public class LavaSpongeBlock extends SpongeBlock {
 	@Override
 	protected void tryAbsorbWater(Level world, BlockPos pos) {
 		if (this.absorbLava(world, pos)) {
-			world.setBlock(pos, SpectrumBlocks.WET_LAVA_SPONGE.defaultBlockState(), 2);
+			world.setBlock(pos, SpectrumBlocks.WET_LAVA_SPONGE.get().defaultBlockState(), 2);
 			world.playSound(null, pos, SoundEvents.SPONGE_ABSORB, SoundSource.BLOCKS, 1.0F, 1.0F);
 		}
 	}

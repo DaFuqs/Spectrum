@@ -132,7 +132,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	@Override
 	public List<IngredientStack> getIngredientStacks() {
 		NonNullList<IngredientStack> defaultedList = NonNullList.create();
-		defaultedList.add(IngredientStack.ofItems(SpectrumItems.MERMAIDS_GEM));
+		defaultedList.add(IngredientStack.ofItems(SpectrumItems.MERMAIDS_GEM.get()));
 		defaultedList.add(IngredientStack.ofItems(Items.GLASS_BOTTLE));
 		addIngredientStacks(defaultedList);
 		return defaultedList;

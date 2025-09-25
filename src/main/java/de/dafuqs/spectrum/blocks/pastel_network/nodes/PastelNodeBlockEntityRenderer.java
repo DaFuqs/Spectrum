@@ -22,11 +22,11 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
 	
 	private static final long REAL_DAY_LENGTH = 86400 * 20;
 	
-	private static final Crystal CONNECTION = new Crystal(SpectrumItems.CONNECTION_NODE_CRYSTAL.getDefaultInstance(), 0.25, false);
-	private static final Crystal PROVIDER = new Crystal(SpectrumItems.PROVIDER_NODE_CRYSTAL.getDefaultInstance(), 0.1, true);
-	private static final Crystal SENDER = new Crystal(SpectrumItems.SENDER_NODE_CRYSTAL.getDefaultInstance(), 0.1, true);
-	private static final Crystal STORAGE = new Crystal(SpectrumItems.STORAGE_NODE_CRYSTAL.getDefaultInstance(), 0.15, true);
-	private static final Crystal GATHER = new Crystal(SpectrumItems.GATHER_NODE_CRYSTAL.getDefaultInstance(), 0.1, false);
+	private static final Crystal CONNECTION = new Crystal(SpectrumItems.CONNECTION_NODE_CRYSTAL.get().getDefaultInstance(), 0.25, false);
+	private static final Crystal PROVIDER = new Crystal(SpectrumItems.PROVIDER_NODE_CRYSTAL.get().getDefaultInstance(), 0.1, true);
+	private static final Crystal SENDER = new Crystal(SpectrumItems.SENDER_NODE_CRYSTAL.get().getDefaultInstance(), 0.1, true);
+	private static final Crystal STORAGE = new Crystal(SpectrumItems.STORAGE_NODE_CRYSTAL.get().getDefaultInstance(), 0.15, true);
+	private static final Crystal GATHER = new Crystal(SpectrumItems.GATHER_NODE_CRYSTAL.get().getDefaultInstance(), 0.1, false);
 	
 	private static final ResourceLocation BASE = SpectrumCommon.locate("textures/block/pastel_node_base.png");
 	
@@ -54,7 +54,7 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
 	}
 	
 	@Override
-	public void render(PastelNodeBlockEntity node, float tickDelta, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay) {
+	public void render(PastelNodeBlockEntity node, float tickDelta, @NotNull PoseStack matrices, @NotNull MultiBufferSource vertexConsumers, int light, int overlay) {
 		if (node.getState() == null)
 			return;
 		

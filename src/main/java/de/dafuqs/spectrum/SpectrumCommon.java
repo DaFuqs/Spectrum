@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.data_loaders.*;
+import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.loot.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.progression.*;
@@ -158,9 +159,9 @@ public class SpectrumCommon {
 //		SpectrumItemDamageImmunities.registerDefaultItemStackImmunities();
 //		logInfo("Registering Enchantment Drops...");
 //		SpectrumLootPoolModifiers.setup();
-//		logInfo("Registering Variant Specific Predicates...");
-//		SpectrumItemSubPredicateTypes.register();
-//		SpectrumEntitySubPredicateTypes.register();
+		logInfo("Registering Variant Specific Predicates...");
+		SpectrumItemSubPredicateTypes.register(modBus);
+		SpectrumEntitySubPredicateTypes.register();
 //
 //		logInfo("Registering Blocks and Items to Fuel Registry...");
 //		FUEL_REGISTRAR.flush();

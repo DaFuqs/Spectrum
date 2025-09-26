@@ -63,6 +63,16 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 	@Unique
 	public SpectrumFishingBobberEntity fishingBobber;
 	
+	@ModifyVariable(method = "attack", name = "entityReachSq", at = @At(value = "STORE"))
+	protected double spectrum$increaseSweepMaxDistance(double original) {
+		var stack = this.getItemInHand(InteractionHand.MAIN_HAND);
+		if (stack.getItem() == SpectrumItems.DRACONIC_TWINSWORD.get()) {
+			int channeling = SpectrumEnchantmentHelper.getLevel(level().registryAccess(), Enchantments.CHANNELING, stack);
+			return original * 3 * ((channeling + 1) * 1.5);
+		}
+		return original;
+	}
+	
 	@WrapOperation(method = "getDestroySpeed", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Inventory;getDestroySpeed(Lnet/minecraft/world/level/block/state/BlockState;)F"))
 	private float spectrum$modifygetBlockBreakingSpeed(Inventory inventory, BlockState state, Operation<Float> original) {
 		ItemStack stack = inventory.items.get(inventory.selected);

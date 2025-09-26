@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.mixin.compat.connector.absent;
+package de.dafuqs.spectrum.mixin;
 
 import com.llamalad7.mixinextras.sugar.*;
 import de.dafuqs.spectrum.render.*;
@@ -17,7 +17,7 @@ public class InGameHudMixin {
 	private Minecraft minecraft;
 	
 	@Inject(method = "renderPlayerHealth", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/profiling/ProfilerFiller;popPush(Ljava/lang/String;)V"))
-	private void spectrum$renderAzureDikeBar(GuiGraphics context, CallbackInfo ci, @Local Player cameraPlayer, @Local(ordinal = 2) int x, @Local(ordinal = 4) int y, @Local(ordinal = 6) int heartRows, @Local(ordinal = 7) int rowHeight) {
+	private void spectrum$renderAzureDikeBar(GuiGraphics context, CallbackInfo ci, @Local Player cameraPlayer, @Local(ordinal = 3) int x, @Local(ordinal = 5) int y, @Local(ordinal = 7) int heartRows, @Local(ordinal = 8) int rowHeight) {
 		minecraft.getProfiler().popPush("spectrum:azure");
 		HudRenderers.renderAzureDike(context, cameraPlayer, x, y - (heartRows - 1) * rowHeight - 10);
 	}

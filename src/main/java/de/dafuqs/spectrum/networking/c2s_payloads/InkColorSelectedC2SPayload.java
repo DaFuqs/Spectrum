@@ -11,6 +11,8 @@ import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.inventory.*;
+import net.neoforged.neoforge.network.handling.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -18,19 +20,19 @@ public record InkColorSelectedC2SPayload(Optional<Holder<InkColor>> inkColor) im
 	
 	public static final Type<InkColorSelectedC2SPayload> ID = SpectrumC2SPackets.makeId("ink_color_select");
 	public static final StreamCodec<RegistryFriendlyByteBuf, InkColorSelectedC2SPayload> CODEC = StreamCodec.composite(
-			ByteBufCodecs.optional(ByteBufCodecs.holderRegistry(SpectrumRegistries.INK_COLOR.key())), InkColorSelectedC2SPayload::inkColor,
+			ByteBufCodecs.optional(ByteBufCodecs.holderRegistry(SpectrumRegistries.INK_COLOR.key())),
+			InkColorSelectedC2SPayload::inkColor,
 			InkColorSelectedC2SPayload::new
 	);
 	
 	@Override
-	public Type<? extends CustomPacketPayload> type() {
+	public @NotNull Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 	
-	@SuppressWarnings("resource")
-	public static ServerPlayNetworking.PlayPayloadHandler<InkColorSelectedC2SPayload> getPayloadHandler() {
+	public static IPayloadHandler<InkColorSelectedC2SPayload> getPayloadHandler() {
 		return (payload, context) -> {
-			ServerPlayer player = context.player();
+			ServerPlayer player = (ServerPlayer) context.player();
 			AbstractContainerMenu screenHandler = player.containerMenu;
 			if (screenHandler instanceof InkColorSelectedPacketReceiver inkColorSelectedPacketReceiver) {
 				
@@ -39,7 +41,7 @@ public record InkColorSelectedC2SPayload(Optional<Holder<InkColor>> inkColor) im
 				// send the newly selected color to all players that have the same gui open
 				// this is minus the player that selected that entry (since they have that info already)
 				inkColorSelectedPacketReceiver.onInkColorSelectedPacket(inkColor);
-				for (ServerPlayer serverPlayer : context.server().getPlayerList().getPlayers()) {
+				for (ServerPlayer serverPlayer : player.level().getServer().getPlayerList().getPlayers()) {
 					if (serverPlayer.containerMenu instanceof InkColorSelectedPacketReceiver receiver && receiver.getBlockEntity() != null && receiver.getBlockEntity() == inkColorSelectedPacketReceiver.getBlockEntity()) {
 						InkColorSelectedS2CPayload.sendInkColorSelected(inkColor, serverPlayer);
 					}

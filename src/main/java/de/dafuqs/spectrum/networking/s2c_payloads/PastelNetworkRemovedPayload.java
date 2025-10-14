@@ -7,8 +7,9 @@ import net.minecraft.core.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
-import net.minecraft.server.level.*;
-import net.neoforged.api.distmarker.*;
+import net.neoforged.neoforge.network.*;
+import net.neoforged.neoforge.network.handling.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -21,18 +22,15 @@ public record PastelNetworkRemovedPayload(UUID networkUUID) implements CustomPac
 	);
 	
 	public static void send(ServerPastelNetwork network) {
-		for (ServerPlayer player : PlayerLookup.world(network.getWorld())) {
-			ServerPlayNetworking.send(player, new PastelNetworkRemovedPayload(network.getUUID()));
-		}
+		PacketDistributor.sendToPlayersInDimension(network.getLevel(), new PastelNetworkRemovedPayload(network.getUUID()));
 	}
 	
-	@OnlyIn(Dist.CLIENT)
-	public static void execute(PastelNetworkRemovedPayload payload, ClientPlayNetworking.Context context) {
-		context.client().execute(() -> Pastel.getClientInstance().removeNetwork(payload.networkUUID));
+	public static void execute(PastelNetworkRemovedPayload payload, IPayloadContext context) {
+		context.enqueueWork(() -> Pastel.getClientInstance().removeNetwork(payload.networkUUID));
 	}
 	
 	@Override
-	public Type<? extends CustomPacketPayload> type() {
+	public @NotNull Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

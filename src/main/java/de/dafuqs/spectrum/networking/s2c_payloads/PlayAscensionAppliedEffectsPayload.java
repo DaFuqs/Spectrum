@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.networking.s2c_payloads;
 
 import de.dafuqs.spectrum.networking.*;
-import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.*;
 import net.minecraft.client.*;
 import net.minecraft.network.*;
@@ -13,24 +12,33 @@ import net.neoforged.api.distmarker.*;
 
 public record PlayAscensionAppliedEffectsPayload() implements CustomPacketPayload {
 	
-	public static final Type<PlayAscensionAppliedEffectsPayload> ID = SpectrumC2SPackets.makeId("play_ascension_applied_effects");
-	public static final StreamCodec<FriendlyByteBuf, PlayAscensionAppliedEffectsPayload> CODEC = StreamCodec.of((buf, value) -> {
-	}, buf -> new PlayAscensionAppliedEffectsPayload());
+	public static final Type<PlayAscensionAppliedEffectsPayload> ID = SpectrumC2SPackets.makeId(
+			"play_ascension_applied_effects");
+	public static final StreamCodec<FriendlyByteBuf, PlayAscensionAppliedEffectsPayload> CODEC = StreamCodec.of(
+			(buf, value) -> {
+			}, buf -> new PlayAscensionAppliedEffectsPayload()
+	);
 	
 	public static void playAscensionAppliedEffects(ServerPlayer player) {
-		ServerPlayNetworking.send(player, new PlayAscensionAppliedEffectsPayload());
+		PacketDistributor.sendToPlayer(player, new PlayAscensionAppliedEffectsPayload());
+	}
+	
+	public static void execute(PlayAscensionAppliedEffectsPayload payload, IPayloadContext context) {
+		execute(context.player());
 	}
 	
 	@SuppressWarnings("resource")
 	@OnlyIn(Dist.CLIENT)
-	public static void execute(PlayAscensionAppliedEffectsPayload payload, ClientPlayNetworking.Context context) {
-		Minecraft client = context.client();
-		client.level.playSound(null, client.player.blockPosition(), SpectrumSoundEvents.FADING_PLACED, SoundSource.PLAYERS, 1.0F, 1.0F);
-		client.getSoundManager().play(new DivinitySoundInstance());
+	private static void execute(Player player) {
+		var level = player.level();
+		level.playSound(null, player.blockPosition(), SpectrumSounds.FADING_PLACED, SoundSource.PLAYERS, 1.0F, 1.0F);
+		Minecraft.getInstance()
+				.getSoundManager()
+				.play(new DivinitySoundInstance());
 	}
 	
 	@Override
-	public Type<? extends CustomPacketPayload> type() {
+	public @NotNull Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

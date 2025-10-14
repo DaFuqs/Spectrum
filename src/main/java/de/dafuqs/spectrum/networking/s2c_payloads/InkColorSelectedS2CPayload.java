@@ -10,7 +10,9 @@ import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.inventory.*;
-import net.neoforged.api.distmarker.*;
+import net.neoforged.neoforge.network.*;
+import net.neoforged.neoforge.network.handling.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -18,16 +20,16 @@ public record InkColorSelectedS2CPayload(Optional<Holder<InkColor>> inkColor) im
 	
 	public static final Type<InkColorSelectedS2CPayload> ID = SpectrumC2SPackets.makeId("ink_color_selected");
 	public static final StreamCodec<RegistryFriendlyByteBuf, InkColorSelectedS2CPayload> CODEC = StreamCodec.composite(
-			ByteBufCodecs.optional(ByteBufCodecs.holderRegistry(SpectrumRegistries.INK_COLOR.key())), InkColorSelectedS2CPayload::inkColor,
+			ByteBufCodecs.optional(ByteBufCodecs.holderRegistry(SpectrumRegistries.INK_COLOR.key())),
+			InkColorSelectedS2CPayload::inkColor,
 			InkColorSelectedS2CPayload::new
 	);
 	
 	public static void sendInkColorSelected(Optional<Holder<InkColor>> inkColor, ServerPlayer player) {
-		ServerPlayNetworking.send(player, new InkColorSelectedS2CPayload(inkColor));
+		PacketDistributor.sendToPlayer(player, new InkColorSelectedS2CPayload(inkColor));
 	}
 	
-	@OnlyIn(Dist.CLIENT)
-	public static void execute(InkColorSelectedS2CPayload payload, ClientPlayNetworking.Context context) {
+	public static void execute(InkColorSelectedS2CPayload payload, IPayloadContext context) {
 		AbstractContainerMenu screenHandler = context.player().containerMenu;
 		if (screenHandler instanceof InkColorSelectedPacketReceiver inkColorSelectedPacketReceiver) {
 			inkColorSelectedPacketReceiver.onInkColorSelectedPacket(payload.inkColor());
@@ -35,7 +37,7 @@ public record InkColorSelectedS2CPayload(Optional<Holder<InkColor>> inkColor) im
 	}
 	
 	@Override
-	public Type<? extends CustomPacketPayload> type() {
+	public @NotNull Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 	

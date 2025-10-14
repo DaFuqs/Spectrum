@@ -18,7 +18,7 @@ public class ClientPastelNetwork extends PastelNetwork<ClientLevel> {
 	
 	public void setGraph(Graph<BlockPos, DefaultEdge> graph) {
 		this.graph = graph;
-		this.lastChangeTick = world.getGameTime();
+		this.lastChangeTick = level.getGameTime();
 	}
 	
 }

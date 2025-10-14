@@ -20,7 +20,6 @@ public final class Plugin implements IMixinConfigPlugin {
 	public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
 		String COMPAT_PACKAGE_ROOT = Plugin.class.getPackageName(); // Shorthand getting the plugin package to ensure not making trouble with other mixins
 		String COMPAT_PRESENT_KEY = "present";
-		FabricLoader LOADER = FabricLoader.getInstance();
 		
 		if (!mixinClassName.startsWith(COMPAT_PACKAGE_ROOT)) {
 			return true; // We do not meddle with the others' work
@@ -34,9 +33,9 @@ public final class Plugin implements IMixinConfigPlugin {
 		
 		if (isPresentMixin) {
 			// We only load the mixin if the mod we want to be present is found
-			return LOADER.isModLoaded(compatModId);
+			return LoadingModList.get().getModFileById(compatModId);
 		}
-		return !LOADER.isModLoaded(compatModId);
+		return !LoadingModList.get().getModFileById(compatModId);
 	}
 	
 	@Override

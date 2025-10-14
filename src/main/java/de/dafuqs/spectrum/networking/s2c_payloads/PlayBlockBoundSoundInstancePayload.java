@@ -10,14 +10,17 @@ import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.level.block.*;
-import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 // MaxDurationTicks of <1 means "stop playing"
-public record PlayBlockBoundSoundInstancePayload(SoundEvent soundEvent, BlockPos pos, Holder<Block> block, int maxDurationTicks) implements CustomPacketPayload {
+public record PlayBlockBoundSoundInstancePayload(
+		SoundEvent soundEvent, BlockPos pos, Holder<Block> block, int maxDurationTicks
+) implements CustomPacketPayload {
 	
-	public static final Type<PlayBlockBoundSoundInstancePayload> ID = SpectrumC2SPackets.makeId("play_block_bound_sound_instance");
-	public static final StreamCodec<RegistryFriendlyByteBuf, PlayBlockBoundSoundInstancePayload> CODEC = StreamCodec.composite(
+	public static final Type<PlayBlockBoundSoundInstancePayload> ID = SpectrumC2SPackets.makeId(
+			"play_block_bound_sound_instance");
+	public static final StreamCodec<RegistryFriendlyByteBuf, PlayBlockBoundSoundInstancePayload> CODEC
+			= StreamCodec.composite(
 			SoundEvent.DIRECT_STREAM_CODEC, PlayBlockBoundSoundInstancePayload::soundEvent,
 			BlockPos.STREAM_CODEC, PlayBlockBoundSoundInstancePayload::pos,
 			ByteBufCodecs.holderRegistry(Registries.BLOCK), PlayBlockBoundSoundInstancePayload::block,
@@ -25,29 +28,40 @@ public record PlayBlockBoundSoundInstancePayload(SoundEvent soundEvent, BlockPos
 			PlayBlockBoundSoundInstancePayload::new
 	);
 	
-	public static void sendPlayBlockBoundSoundInstance(SoundEvent soundEvent, @NotNull ServerLevel world, BlockPos pos, int maxDurationTicks) {
-		for (ServerPlayer player : PlayerLookup.tracking(world, pos)) {
-			ServerPlayNetworking.send(player, new PlayBlockBoundSoundInstancePayload(soundEvent, pos, world.getBlockState(pos).getBlock().builtInRegistryHolder(), maxDurationTicks));
-		}
+	public static void sendPlayBlockBoundSoundInstance(
+			SoundEvent soundEvent, @NotNull ServerLevel world, BlockPos pos, int maxDurationTicks) {
+		PacketDistributor.sendToPlayersTrackingChunk(
+				world, new ChunkPos(pos), new PlayBlockBoundSoundInstancePayload(
+						soundEvent, pos, world.getBlockState(pos)
+						.getBlock()
+						.builtInRegistryHolder(),
+						maxDurationTicks
+				)
+		);
 	}
 	
 	public static void sendCancelBlockBoundSoundInstance(@NotNull ServerLevel world, BlockPos pos) {
-		for (ServerPlayer player : PlayerLookup.tracking(world, pos)) {
-			ServerPlayNetworking.send(player, new PlayBlockBoundSoundInstancePayload(SoundEvents.EMPTY, pos, world.getBlockState(pos).getBlock().builtInRegistryHolder(), -1));
-		}
+		PacketDistributor.sendToPlayersTrackingChunk(
+				world, new ChunkPos(pos), new PlayBlockBoundSoundInstancePayload(
+						SoundEvents.EMPTY, pos,
+						world.getBlockState(pos)
+								.getBlock()
+								.builtInRegistryHolder(), -1
+				)
+		);
 	}
 	
-	@OnlyIn(Dist.CLIENT)
-	public static void execute(PlayBlockBoundSoundInstancePayload payload, ClientPlayNetworking.Context context) {
+	public static void execute(PlayBlockBoundSoundInstancePayload payload, IPayloadContext context) {
 		if (payload.maxDurationTicks < 0) {
 			CraftingBlockSoundInstance.stopPlayingOnPos(payload.pos);
 		} else {
-			CraftingBlockSoundInstance.startSoundInstance(payload.soundEvent, payload.pos, payload.block.value(), payload.maxDurationTicks);
+			CraftingBlockSoundInstance.startSoundInstance(
+					payload.soundEvent, payload.pos, payload.block.value(), payload.maxDurationTicks);
 		}
 	}
 	
 	@Override
-	public Type<? extends CustomPacketPayload> type() {
+	public @NotNull Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

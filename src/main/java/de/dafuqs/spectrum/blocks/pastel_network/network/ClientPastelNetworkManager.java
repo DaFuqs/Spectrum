@@ -39,7 +39,7 @@ public class ClientPastelNetworkManager implements PastelNetworkManager<ClientLe
 		ClientLevel world = context.world();
 		long worldTime = world.getGameTime();
 		for (ClientPastelNetwork network : this.networks) {
-			if (network.getWorld().dimensionType() != world.dimensionType()) continue;
+			if (network.getLevel().dimensionType() != world.dimensionType()) continue;
 			
 			float alphaMod = paintbrushInHand ? 1.0F : (network.lastChangeTick - worldTime + 20) * 0.05F;
 			if (alphaMod <= 0.0F) continue;
@@ -62,7 +62,7 @@ public class ClientPastelNetworkManager implements PastelNetworkManager<ClientLe
 				matrices.pushPose();
 				matrices.translate(-pos.x, -pos.y, -pos.z);
 				var cross = source.cross(target);
-				var interval = (cross.getX() + cross.getY() + cross.getZ() + network.world.getGameTime()) % 1000000F;
+				var interval = (cross.getX() + cross.getY() + cross.getZ() + network.level.getGameTime()) % 1000000F;
 				var alpha = alphaMod * (1.0 - (Math.max(Math.sin((interval / 17F)) * 2.5 - 2, 0)));
 				colors[0] = (float) alpha;
 				PastelRenderHelper.renderLineTo(context.matrixStack(), context.consumers(), colors, source, target);

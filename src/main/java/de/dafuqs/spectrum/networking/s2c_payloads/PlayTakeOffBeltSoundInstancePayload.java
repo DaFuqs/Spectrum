@@ -6,25 +6,26 @@ import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
-import net.neoforged.api.distmarker.*;
 
 public record PlayTakeOffBeltSoundInstancePayload() implements CustomPacketPayload {
 	
-	public static final Type<PlayTakeOffBeltSoundInstancePayload> ID = SpectrumC2SPackets.makeId("play_take_off_belt_sound_instance");
-	public static final StreamCodec<FriendlyByteBuf, PlayTakeOffBeltSoundInstancePayload> CODEC = StreamCodec.of((buf, value) -> {
-	}, buf -> new PlayTakeOffBeltSoundInstancePayload());
+	public static final Type<PlayTakeOffBeltSoundInstancePayload> ID = SpectrumC2SPackets.makeId(
+			"play_take_off_belt_sound_instance");
+	public static final StreamCodec<FriendlyByteBuf, PlayTakeOffBeltSoundInstancePayload> CODEC = StreamCodec.of(
+			(buf, value) -> {
+			}, buf -> new PlayTakeOffBeltSoundInstancePayload()
+	);
 	
 	public static void sendPlayTakeOffBeltSoundInstance(ServerPlayer playerEntity) {
-		ServerPlayNetworking.send(playerEntity, new PlayTakeOffBeltSoundInstancePayload());
+		PacketDistributor.sendToPlayer(playerEntity, new PlayTakeOffBeltSoundInstancePayload());
 	}
 	
-	@OnlyIn(Dist.CLIENT)
-	public static void execute(PlayTakeOffBeltSoundInstancePayload payload, ClientPlayNetworking.Context context) {
+	public static void execute(PlayTakeOffBeltSoundInstancePayload payload, IPayloadContext context) {
 		TakeOffBeltSoundInstance.startSoundInstance();
 	}
 	
 	@Override
-	public Type<? extends CustomPacketPayload> type() {
+	public @NotNull Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

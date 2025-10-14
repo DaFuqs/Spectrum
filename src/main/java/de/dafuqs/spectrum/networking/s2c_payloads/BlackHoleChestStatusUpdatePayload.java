@@ -4,13 +4,15 @@ import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.client.*;
 import net.minecraft.core.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
-import net.neoforged.api.distmarker.*;
+import net.minecraft.world.level.*;
+import net.neoforged.neoforge.network.*;
+import net.neoforged.neoforge.network.handling.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -37,26 +39,25 @@ public record BlackHoleChestStatusUpdatePayload(BlockPos pos, boolean isFull, bo
 			maxStoredXP = experienceStorageItem.getMaxStoredExperience(chest.getLevel().registryAccess(), xpStack);
 		}
 		
-		for (ServerPlayer player : PlayerLookup.tracking(chest)) {
-			ServerPlayNetworking.send(player, new BlackHoleChestStatusUpdatePayload(chest.getBlockPos(), chest.isFullServer(), chest.canStoreExperience(), storedXP, maxStoredXP));
-		}
+		PacketDistributor.sendToPlayersTrackingChunk(
+				(ServerLevel) chest.getLevel(), new ChunkPos(chest.getBlockPos()),
+				new BlackHoleChestStatusUpdatePayload(chest.getBlockPos(), chest.isFullServer(), chest.canStoreExperience(), storedXP, maxStoredXP)
+		);
 	}
 	
-	@OnlyIn(Dist.CLIENT)
-	public static void execute(BlackHoleChestStatusUpdatePayload payload, ClientPlayNetworking.Context context) {
-		Minecraft client = context.client();
-		if (client.level != null) {
-			Optional<BlackHoleChestBlockEntity> entity = client.level.getBlockEntity(payload.pos, SpectrumBlockEntities.BLACK_HOLE_CHEST.get());
-			entity.ifPresent(chest -> {
-				chest.setFull(payload.isFull);
-				chest.setHasXPStorage(payload.canStoreExperience);
-				chest.setXPData(payload.storedExperience, payload.maxStoredExperience);
-			});
-		}
+	@SuppressWarnings("resource")
+	public static void execute(BlackHoleChestStatusUpdatePayload payload, IPayloadContext context) {
+		var level = context.player().level();
+		Optional<BlackHoleChestBlockEntity> entity = level.getBlockEntity(payload.pos, SpectrumBlockEntities.BLACK_HOLE_CHEST.get());
+		entity.ifPresent(chest -> {
+			chest.setFull(payload.isFull);
+			chest.setHasXPStorage(payload.canStoreExperience);
+			chest.setXPData(payload.storedExperience, payload.maxStoredExperience);
+		});
 	}
 	
 	@Override
-	public Type<? extends CustomPacketPayload> type() {
+	public @NotNull Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.particle.effect.*;
-import net.minecraft.client.*;
 import net.minecraft.core.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
@@ -14,47 +13,50 @@ import net.minecraft.server.level.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 import org.joml.*;
 
 public record PlayFusionCraftingFinishedParticlePayload(BlockPos pos, InkColor color) implements CustomPacketPayload {
 	
-	public static final Type<PlayFusionCraftingFinishedParticlePayload> ID = SpectrumC2SPackets.makeId("play_fusion_crafting_finished_particle");
-	public static final StreamCodec<FriendlyByteBuf, PlayFusionCraftingFinishedParticlePayload> CODEC = StreamCodec.composite(
+	public static final Type<PlayFusionCraftingFinishedParticlePayload> ID = SpectrumC2SPackets.makeId(
+			"play_fusion_crafting_finished_particle");
+	public static final StreamCodec<FriendlyByteBuf, PlayFusionCraftingFinishedParticlePayload> CODEC
+			= StreamCodec.composite(
 			BlockPos.STREAM_CODEC, PlayFusionCraftingFinishedParticlePayload::pos,
-			InkColor.PACKET_CODEC, PlayFusionCraftingFinishedParticlePayload::color,
+			InkColor.STREAM_CODEC, PlayFusionCraftingFinishedParticlePayload::color,
 			PlayFusionCraftingFinishedParticlePayload::new
 	);
 	
-	public static void sendPlayFusionCraftingFinishedParticles(Level world, BlockPos pos, @NotNull ItemStack itemStack) {
+	public static void sendPlayFusionCraftingFinishedParticles(
+			Level world, BlockPos pos, @NotNull ItemStack itemStack) {
 		InkColor inkColor = ColorRegistry.ITEM_COLORS.getMapping(itemStack.getItem(), InkColors.LIGHT_GRAY);
-		
-		for (ServerPlayer player : PlayerLookup.tracking((ServerLevel) world, pos)) {
-			ServerPlayNetworking.send(player, new PlayFusionCraftingFinishedParticlePayload(pos, inkColor));
-		}
+		PacketDistributor.sendToPlayersTrackingChunk(
+				(ServerLevel) world, new ChunkPos(pos), new PlayFusionCraftingFinishedParticlePayload(pos, inkColor));
 	}
 	
 	@SuppressWarnings("resource")
-	@OnlyIn(Dist.CLIENT)
-	public static void execute(PlayFusionCraftingFinishedParticlePayload payload, ClientPlayNetworking.Context context) {
-		Minecraft client = context.client();
+	public static void execute(PlayFusionCraftingFinishedParticlePayload payload, IPayloadContext context) {
 		BlockPos pos = payload.pos;
 		Vec3 sourcePos = new Vec3(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
 		
 		Vector3f color = payload.color.getColorVec();
 		float velocityModifier = 0.25F;
 		for (Vec3 velocity : VectorPattern.SIXTEEN.getVectors()) {
-			client.level.addParticle(
-					new DynamicParticleEffect(ColoredCraftingParticleEffect.of(payload.color.getColorInt()).getType(), 0.0F, color, 1.5F, 40, false, true),
-					sourcePos.x, sourcePos.y, sourcePos.z,
-					velocity.x * velocityModifier, 0.0F, velocity.z * velocityModifier
-			);
+			context.player()
+					.level()
+					.addParticle(
+							new DynamicParticleEffect(
+									ColoredCraftingParticleEffect.of(payload.color.getColorInt())
+											.getType(), 0.0F, color, 1.5F, 40, false, true
+							),
+							sourcePos.x, sourcePos.y, sourcePos.z,
+							velocity.x * velocityModifier, 0.0F, velocity.z * velocityModifier
+					);
 		}
 	}
 	
 	@Override
-	public Type<? extends CustomPacketPayload> type() {
+	public @NotNull Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

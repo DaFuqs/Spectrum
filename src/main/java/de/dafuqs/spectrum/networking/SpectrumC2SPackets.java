@@ -3,6 +3,8 @@ package de.dafuqs.spectrum.networking;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.networking.c2s_payloads.*;
 import net.minecraft.network.protocol.common.custom.*;
+import net.neoforged.neoforge.network.event.*;
+import net.neoforged.neoforge.network.registration.*;
 
 public class SpectrumC2SPackets {
 	
@@ -10,28 +12,19 @@ public class SpectrumC2SPackets {
 		return new CustomPacketPayload.Type<>(SpectrumCommon.locate(id));
 	}
 	
-	public static void register() {
-		PayloadTypeRegistry.playC2S().register(AddLoreBedrockAnvilPayload.ID, AddLoreBedrockAnvilPayload.CODEC);
-		PayloadTypeRegistry.playC2S().register(BindEnderSpliceToPlayerPayload.ID, BindEnderSpliceToPlayerPayload.CODEC);
-		PayloadTypeRegistry.playC2S().register(ChangeCompactingChestSettingsPayload.ID, ChangeCompactingChestSettingsPayload.CODEC);
-		PayloadTypeRegistry.playC2S().register(GuidebookConfirmationButtonPressedPayload.ID, GuidebookConfirmationButtonPressedPayload.CODEC);
-		PayloadTypeRegistry.playC2S().register(GuidebookHintBoughtPayload.ID, GuidebookHintBoughtPayload.CODEC);
-		PayloadTypeRegistry.playC2S().register(InkColorSelectedC2SPayload.ID, InkColorSelectedC2SPayload.CODEC);
-		PayloadTypeRegistry.playC2S().register(ParticleSpawnerConfigurationC2SPayload.ID, ParticleSpawnerConfigurationC2SPayload.CODEC);
-		PayloadTypeRegistry.playC2S().register(RenameItemInBedrockAnvilPayload.ID, RenameItemInBedrockAnvilPayload.CODEC);
-		PayloadTypeRegistry.playC2S().register(SetShadowSlotPayload.ID, SetShadowSlotPayload.CODEC);
-		PayloadTypeRegistry.playC2S().register(WorkstaffToggleSelectedPayload.ID, WorkstaffToggleSelectedPayload.CODEC);
+	public static void register(RegisterPayloadHandlersEvent event) {
+		PayloadRegistrar registrar = event.registrar("1");
 		
-		ServerPlayNetworking.registerGlobalReceiver(AddLoreBedrockAnvilPayload.ID, AddLoreBedrockAnvilPayload.getPayloadHandler());
-		ServerPlayNetworking.registerGlobalReceiver(BindEnderSpliceToPlayerPayload.ID, BindEnderSpliceToPlayerPayload.getPayloadHandler());
-		ServerPlayNetworking.registerGlobalReceiver(ChangeCompactingChestSettingsPayload.ID, ChangeCompactingChestSettingsPayload.getPayloadHandler());
-		ServerPlayNetworking.registerGlobalReceiver(GuidebookConfirmationButtonPressedPayload.ID, GuidebookConfirmationButtonPressedPayload.getPayloadHandler());
-		ServerPlayNetworking.registerGlobalReceiver(GuidebookHintBoughtPayload.ID, GuidebookHintBoughtPayload.getPayloadHandler());
-		ServerPlayNetworking.registerGlobalReceiver(InkColorSelectedC2SPayload.ID, InkColorSelectedC2SPayload.getPayloadHandler());
-		ServerPlayNetworking.registerGlobalReceiver(ParticleSpawnerConfigurationC2SPayload.ID, ParticleSpawnerConfigurationC2SPayload.getPayloadHandler());
-		ServerPlayNetworking.registerGlobalReceiver(RenameItemInBedrockAnvilPayload.ID, RenameItemInBedrockAnvilPayload.getPayloadHandler());
-		ServerPlayNetworking.registerGlobalReceiver(SetShadowSlotPayload.ID, SetShadowSlotPayload.getPayloadHandler());
-		ServerPlayNetworking.registerGlobalReceiver(WorkstaffToggleSelectedPayload.ID, WorkstaffToggleSelectedPayload.getPayloadHandler());
+		registrar.playToServer(AddLoreBedrockAnvilPayload.ID, AddLoreBedrockAnvilPayload.CODEC, AddLoreBedrockAnvilPayload.getPayloadHandler());
+		registrar.playToServer(BindEnderSpliceToPlayerPayload.ID, BindEnderSpliceToPlayerPayload.CODEC, BindEnderSpliceToPlayerPayload.getPayloadHandler());
+		registrar.playToServer(ChangeCompactingChestSettingsPayload.ID, ChangeCompactingChestSettingsPayload.CODEC, ChangeCompactingChestSettingsPayload.getPayloadHandler());
+		registrar.playToServer(GuidebookConfirmationButtonPressedPayload.ID, GuidebookConfirmationButtonPressedPayload.CODEC, GuidebookConfirmationButtonPressedPayload.getPayloadHandler());
+		registrar.playToServer(GuidebookHintBoughtPayload.ID, GuidebookHintBoughtPayload.CODEC, GuidebookHintBoughtPayload.getPayloadHandler());
+		registrar.playToServer(InkColorSelectedC2SPayload.ID, InkColorSelectedC2SPayload.CODEC, InkColorSelectedC2SPayload.getPayloadHandler());
+		registrar.playToServer(ParticleSpawnerConfigurationC2SPayload.ID, ParticleSpawnerConfigurationC2SPayload.CODEC, ParticleSpawnerConfigurationC2SPayload.getPayloadHandler());
+		registrar.playToServer(RenameItemInBedrockAnvilPayload.ID, RenameItemInBedrockAnvilPayload.CODEC, RenameItemInBedrockAnvilPayload.getPayloadHandler());
+		registrar.playToServer(SetShadowSlotPayload.ID, SetShadowSlotPayload.CODEC, SetShadowSlotPayload.getPayloadHandler());
+		registrar.playToServer(WorkstaffToggleSelectedPayload.ID, WorkstaffToggleSelectedPayload.CODEC, WorkstaffToggleSelectedPayload.getPayloadHandler());
 	}
 	
 }

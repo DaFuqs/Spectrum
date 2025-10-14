@@ -10,6 +10,10 @@ import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.item.*;
+import net.neoforged.neoforge.items.*;
+import net.neoforged.neoforge.items.wrapper.*;
+import net.neoforged.neoforge.network.handling.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -19,18 +23,19 @@ public record GuidebookHintBoughtPayload(ResourceLocation completionAdvancement,
 	public static final StreamCodec<RegistryFriendlyByteBuf, GuidebookHintBoughtPayload> CODEC = StreamCodec.composite(
 			ResourceLocation.STREAM_CODEC, GuidebookHintBoughtPayload::completionAdvancement,
 			IngredientStack.STREAM_CODEC, GuidebookHintBoughtPayload::payment,
-			GuidebookHintBoughtPayload::new);
+			GuidebookHintBoughtPayload::new
+	);
 	
 	@Override
-	public Type<? extends CustomPacketPayload> type() {
+	public @NotNull Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 	
-	public static ServerPlayNetworking.PlayPayloadHandler<GuidebookHintBoughtPayload> getPayloadHandler() {
+	public static IPayloadHandler<GuidebookHintBoughtPayload> getPayloadHandler() {
 		return (payload, context) -> {
-			ServerPlayer player = context.player();
-			for (ItemStack remainder : InventoryHelper.removeIngredientStacksFromInventoryWithRemainders(List.of(payload.payment()), player.getInventory())) {
-				InventoryHelper.smartAddToInventory(remainder, player.getInventory(), null);
+			ServerPlayer player = (ServerPlayer) context.player();
+			for (ItemStack remainder : InventoryHelper.removeIngredientStacksFromInventoryWithRemainders(List.of(payload.payment()), new PlayerInvWrapper(player.getInventory()))) {
+				ItemHandlerHelper.insertItemStacked(new PlayerInvWrapper(player.getInventory()), remainder, false);
 			}
 			
 			// give the player the hidden "used_tip" advancement and play a sound

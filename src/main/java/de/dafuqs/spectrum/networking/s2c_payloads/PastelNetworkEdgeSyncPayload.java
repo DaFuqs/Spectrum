@@ -3,13 +3,15 @@ package de.dafuqs.spectrum.networking.s2c_payloads;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.networking.*;
-import net.minecraft.client.*;
+import net.minecraft.client.multiplayer.*;
 import net.minecraft.core.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
-import net.minecraft.server.level.*;
-import net.neoforged.api.distmarker.*;
+import net.minecraft.world.level.*;
+import net.neoforged.neoforge.network.*;
+import net.neoforged.neoforge.network.handling.*;
+import org.jetbrains.annotations.*;
 import org.jgrapht.*;
 import org.jgrapht.graph.*;
 
@@ -39,7 +41,7 @@ public record PastelNetworkEdgeSyncPayload(UUID networkUUID, int color, Graph<Bl
 		}
 		
 		@Override
-		public Graph<BlockPos, DefaultEdge> decode(RegistryFriendlyByteBuf buf) {
+		public @NotNull Graph<BlockPos, DefaultEdge> decode(RegistryFriendlyByteBuf buf) {
 			Graph<BlockPos, DefaultEdge> graph = new SimpleGraph<>(DefaultEdge.class);
 			
 			int vertexCount = buf.readInt();
@@ -70,27 +72,35 @@ public record PastelNetworkEdgeSyncPayload(UUID networkUUID, int color, Graph<Bl
 	);
 	
 	public static void send(ServerPastelNetwork network, BlockPos pos) {
-		for (ServerPlayer player : PlayerLookup.tracking(network.getWorld(), pos)) {
-			ServerPlayNetworking.send(player, new PastelNetworkEdgeSyncPayload(network.getUUID(), network.getColor(), network.getGraph()));
-		}
+		PacketDistributor.sendToPlayersTrackingChunk(
+				network.getLevel(), new ChunkPos(pos), new PastelNetworkEdgeSyncPayload(
+						network.getUUID(),
+						network.getColor(),
+						network.getGraph()
+				)
+		);
 	}
 	
-	@OnlyIn(Dist.CLIENT)
-	public static void execute(PastelNetworkEdgeSyncPayload payload, ClientPlayNetworking.Context context) {
-		Minecraft client = context.client();
-		client.execute(() -> {
-			Optional<? extends ClientPastelNetwork> network = Pastel.getClientInstance().getNetwork(payload.networkUUID);
+	public static void execute(PastelNetworkEdgeSyncPayload payload, IPayloadContext context) {
+		context.enqueueWork(() -> {
+			var level = context.player()
+					.level();
+			Optional<? extends ClientPastelNetwork> network = Pastel.getClientInstance()
+					.getNetwork(payload.networkUUID);
 			if (network.isPresent()) {
-				network.get().setGraph(payload.graph);
+				network.get()
+						.setGraph(payload.graph);
 			} else {
-				ClientPastelNetwork newNetwork = Pastel.getClientInstance().createNetwork(client.level, payload.networkUUID, payload.color);
+				ClientPastelNetwork newNetwork = Pastel.getClientInstance()
+						.createNetwork(
+								(ClientLevel) level, payload.networkUUID, payload.color);
 				newNetwork.setGraph(payload.graph);
 			}
 		});
 	}
 	
 	@Override
-	public Type<? extends CustomPacketPayload> type() {
+	public @NotNull Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

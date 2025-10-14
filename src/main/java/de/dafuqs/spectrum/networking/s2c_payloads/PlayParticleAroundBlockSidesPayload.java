@@ -9,14 +9,17 @@ import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.phys.*;
-import net.neoforged.api.distmarker.*;
 
 import java.util.function.*;
 
-public record PlayParticleAroundBlockSidesPayload(BlockPos pos, int quantity, Vec3 velocity, ParticleOptions particle, Direction[] sides) implements CustomPacketPayload {
+public record PlayParticleAroundBlockSidesPayload(
+		BlockPos pos, int quantity, Vec3 velocity, ParticleOptions particle, Direction[] sides
+) implements CustomPacketPayload {
 	
-	public static final Type<PlayParticleAroundBlockSidesPayload> ID = SpectrumC2SPackets.makeId("play_particle_around_block_sides");
-	public static final StreamCodec<RegistryFriendlyByteBuf, PlayParticleAroundBlockSidesPayload> CODEC = StreamCodec.composite(
+	public static final Type<PlayParticleAroundBlockSidesPayload> ID = SpectrumC2SPackets.makeId(
+			"play_particle_around_block_sides");
+	public static final StreamCodec<RegistryFriendlyByteBuf, PlayParticleAroundBlockSidesPayload> CODEC
+			= StreamCodec.composite(
 			BlockPos.STREAM_CODEC, PlayParticleAroundBlockSidesPayload::pos,
 			ByteBufCodecs.VAR_INT, PlayParticleAroundBlockSidesPayload::quantity,
 			PacketCodecHelper.VEC3D, PlayParticleAroundBlockSidesPayload::velocity,
@@ -25,21 +28,30 @@ public record PlayParticleAroundBlockSidesPayload(BlockPos pos, int quantity, Ve
 			PlayParticleAroundBlockSidesPayload::new
 	);
 	
-	public static void playParticleAroundBlockSides(ServerLevel world, int quantity, BlockPos pos, Vec3 velocity, ParticleOptions particleEffect, Predicate<ServerPlayer> sendCheck, Direction... sides) {
-		for (ServerPlayer player : PlayerLookup.tracking(world, pos)) {
-			if (!sendCheck.test(player))
+	public static void playParticleAroundBlockSides(
+			ServerLevel level, int quantity, BlockPos pos, Vec3 velocity, ParticleOptions particleEffect,
+			Predicate<ServerPlayer> sendCheck, Direction... sides
+	) {
+		Packet<?> packet = new ClientboundCustomPayloadPacket(
+				new PlayParticleAroundBlockSidesPayload(pos, quantity, velocity, particleEffect, sides));
+		
+		for (ServerPlayer player : level.getChunkSource().chunkMap.getPlayers(new ChunkPos(pos), false)) {
+			if (sendCheck.test(player))
 				continue;
-			ServerPlayNetworking.send(player, new PlayParticleAroundBlockSidesPayload(pos, quantity, velocity, particleEffect, sides));
+			
+			player.connection.send(packet);
 		}
 	}
 	
-	@OnlyIn(Dist.CLIENT)
-	public static void execute(PlayParticleAroundBlockSidesPayload payload, ClientPlayNetworking.Context context) {
-		ParticleHelper.playParticleAroundBlockSides(context.client().level, payload.particle, payload.pos, payload.sides, payload.quantity, payload.velocity);
+	public static void execute(PlayParticleAroundBlockSidesPayload payload, IPayloadContext context) {
+		ParticleHelper.playParticleAroundBlockSides(
+				context.player()
+						.level(), payload.particle, payload.pos, payload.sides, payload.quantity, payload.velocity
+		);
 	}
 	
 	@Override
-	public Type<? extends CustomPacketPayload> type() {
+	public @NotNull Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

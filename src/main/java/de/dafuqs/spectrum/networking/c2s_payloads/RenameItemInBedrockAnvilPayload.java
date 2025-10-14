@@ -6,6 +6,7 @@ import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.util.*;
+import net.neoforged.neoforge.network.handling.*;
 import org.jetbrains.annotations.*;
 
 public record RenameItemInBedrockAnvilPayload(String name) implements CustomPacketPayload {
@@ -14,11 +15,11 @@ public record RenameItemInBedrockAnvilPayload(String name) implements CustomPack
 	public static final StreamCodec<FriendlyByteBuf, RenameItemInBedrockAnvilPayload> CODEC = StreamCodec.composite(ByteBufCodecs.STRING_UTF8, RenameItemInBedrockAnvilPayload::name, RenameItemInBedrockAnvilPayload::new);
 	
 	@Override
-	public Type<? extends CustomPacketPayload> type() {
+	public @NotNull Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 	
-	public static ServerPlayNetworking.@NotNull PlayPayloadHandler<RenameItemInBedrockAnvilPayload> getPayloadHandler() {
+	public static IPayloadHandler<RenameItemInBedrockAnvilPayload> getPayloadHandler() {
 		return (payload, context) -> {
 			if (context.player().containerMenu instanceof BedrockAnvilScreenHandler bedrockAnvilScreenHandler) {
 				String string = StringUtil.filterText(payload.name);

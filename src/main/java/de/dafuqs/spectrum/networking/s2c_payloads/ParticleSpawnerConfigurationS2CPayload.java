@@ -2,12 +2,12 @@ package de.dafuqs.spectrum.networking.s2c_payloads;
 
 import de.dafuqs.spectrum.blocks.particle_spawner.*;
 import de.dafuqs.spectrum.networking.*;
-import net.minecraft.client.*;
 import net.minecraft.core.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
-import net.neoforged.api.distmarker.*;
+import net.neoforged.neoforge.network.handling.*;
+import org.jetbrains.annotations.*;
 
 public record ParticleSpawnerConfigurationS2CPayload(BlockPos pos, ParticleSpawnerConfiguration configuration) implements CustomPacketPayload {
 	
@@ -19,16 +19,14 @@ public record ParticleSpawnerConfigurationS2CPayload(BlockPos pos, ParticleSpawn
 	);
 	
 	@SuppressWarnings("resource")
-	@OnlyIn(Dist.CLIENT)
-	public static void execute(ParticleSpawnerConfigurationS2CPayload payload, ClientPlayNetworking.Context context) {
-		Minecraft client = context.client();
-		if (client.level.getBlockEntity(payload.pos()) instanceof ParticleSpawnerBlockEntity particleSpawnerBlockEntity) {
+	public static void execute(ParticleSpawnerConfigurationS2CPayload payload, IPayloadContext context) {
+		if (context.player().level().getBlockEntity(payload.pos()) instanceof ParticleSpawnerBlockEntity particleSpawnerBlockEntity) {
 			particleSpawnerBlockEntity.applySettings(payload.configuration());
 		}
 	}
 	
 	@Override
-	public Type<? extends CustomPacketPayload> type() {
+	public @NotNull Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

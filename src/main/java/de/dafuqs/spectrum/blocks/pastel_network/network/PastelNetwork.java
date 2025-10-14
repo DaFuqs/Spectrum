@@ -13,7 +13,7 @@ import java.util.stream.*;
 public class PastelNetwork<W extends Level> {
 	
 	protected Graph<BlockPos, DefaultEdge> graph = new SimpleGraph<>(DefaultEdge.class);
-	protected final W world;
+	protected final W level;
 	protected final UUID uuid;
 	protected final int color;
 	
@@ -23,8 +23,8 @@ public class PastelNetwork<W extends Level> {
 		HIGH
 	}
 	
-	public PastelNetwork(W world, UUID uuid, int color) {
-		this.world = world;
+	public PastelNetwork(W level, UUID uuid, int color) {
+		this.level = level;
 		this.uuid = uuid;
 		this.color = color;
 	}
@@ -33,8 +33,8 @@ public class PastelNetwork<W extends Level> {
 		return graph.vertexSet().size();
 	}
 	
-	public W getWorld() {
-		return this.world;
+	public W getLevel() {
+		return this.level;
 	}
 	
 	public Graph<BlockPos, DefaultEdge> getGraph() {

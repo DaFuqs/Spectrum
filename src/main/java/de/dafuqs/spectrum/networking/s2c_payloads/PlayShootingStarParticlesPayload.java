@@ -4,40 +4,46 @@ import de.dafuqs.spectrum.blocks.shooting_star.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.*;
-import net.minecraft.client.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.phys.*;
-import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
-public record PlayShootingStarParticlesPayload(Vec3 shootingStarPos, ShootingStar.Variant variant) implements CustomPacketPayload {
+public record PlayShootingStarParticlesPayload(Vec3 shootingStarPos, ShootingStar.Variant variant)
+		implements CustomPacketPayload {
 	
-	public static final Type<PlayShootingStarParticlesPayload> ID = SpectrumC2SPackets.makeId("play_shooting_star_particles");
+	public static final Type<PlayShootingStarParticlesPayload> ID = SpectrumC2SPackets.makeId(
+			"play_shooting_star_particles");
 	public static final StreamCodec<FriendlyByteBuf, PlayShootingStarParticlesPayload> CODEC = StreamCodec.composite(
 			PacketCodecHelper.VEC3D, PlayShootingStarParticlesPayload::shootingStarPos,
-			ShootingStar.Variant.PACKET_CODEC, PlayShootingStarParticlesPayload::variant,
+			ShootingStar.Variant.STREAM_CODEC, PlayShootingStarParticlesPayload::variant,
 			PlayShootingStarParticlesPayload::new
 	);
 	
 	public static void sendPlayShootingStarParticles(@NotNull ShootingStarEntity shootingStarEntity) {
-		for (ServerPlayer player : PlayerLookup.tracking((ServerLevel) shootingStarEntity.level(), shootingStarEntity.blockPosition())) {
-			ServerPlayNetworking.send(player, new PlayShootingStarParticlesPayload(shootingStarEntity.position(), shootingStarEntity.getShootingStarType()));
-		}
+		PacketDistributor.sendToPlayersTrackingChunk(
+				(ServerLevel) shootingStarEntity.level(), new ChunkPos(shootingStarEntity.blockPosition()),
+				new PlayShootingStarParticlesPayload(
+						shootingStarEntity.position(),
+						shootingStarEntity.getShootingStarType()
+				)
+		);
 	}
 	
-	@SuppressWarnings("resource")
-	@OnlyIn(Dist.CLIENT)
-	public static void execute(PlayShootingStarParticlesPayload payload, ClientPlayNetworking.Context context) {
-		Minecraft client = context.client();
+	public static void execute(PlayShootingStarParticlesPayload payload, IPayloadContext context) {
+		var level = context.player()
+				.level();
 		
-		ShootingStarEntity.playHitParticles(client.level, payload.shootingStarPos.x, payload.shootingStarPos.y, payload.shootingStarPos.z, payload.variant, 25);
+		ShootingStarEntity.playHitParticles(
+				level, payload.shootingStarPos.x, payload.shootingStarPos.y, payload.shootingStarPos.z, payload.variant,
+				25
+		);
 	}
 	
 	@Override
-	public Type<? extends CustomPacketPayload> type() {
+	public @NotNull Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

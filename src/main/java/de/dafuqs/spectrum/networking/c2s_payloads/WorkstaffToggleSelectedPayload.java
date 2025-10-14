@@ -8,6 +8,8 @@ import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.inventory.*;
+import net.neoforged.neoforge.network.handling.*;
+import org.jetbrains.annotations.*;
 
 public record WorkstaffToggleSelectedPayload(int index) implements CustomPacketPayload {
 	
@@ -18,13 +20,13 @@ public record WorkstaffToggleSelectedPayload(int index) implements CustomPacketP
 	);
 	
 	@Override
-	public Type<? extends CustomPacketPayload> type() {
+	public @NotNull Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 	
-	public static ServerPlayNetworking.PlayPayloadHandler<WorkstaffToggleSelectedPayload> getPayloadHandler() {
+	public static IPayloadHandler<WorkstaffToggleSelectedPayload> getPayloadHandler() {
 		return (payload, context) -> {
-			ServerPlayer player = context.player();
+			ServerPlayer player = (ServerPlayer) context.player();
 			AbstractContainerMenu screenHandler = player.containerMenu;
 			if (screenHandler instanceof WorkstaffScreenHandler workstaffScreenHandler) {
 				WorkstaffItem.GUIToggle toggle = WorkstaffItem.GUIToggle.values()[payload.index];

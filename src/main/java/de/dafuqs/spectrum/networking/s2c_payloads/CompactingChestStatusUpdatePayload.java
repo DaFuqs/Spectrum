@@ -3,39 +3,40 @@ package de.dafuqs.spectrum.networking.s2c_payloads;
 import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.client.*;
 import net.minecraft.core.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
-import net.neoforged.api.distmarker.*;
+import net.minecraft.world.level.*;
+import net.neoforged.neoforge.network.*;
+import net.neoforged.neoforge.network.handling.*;
+import org.jetbrains.annotations.*;
 
-public record CompactingChestStatusUpdatePayload(BlockPos pos, boolean hasToCraft) implements CustomPacketPayload {
+import java.util.*;
+
+public record CompactingChestStatusUpdatePayload(BlockPos pos, long timeStamp) implements CustomPacketPayload {
 	
 	public static final Type<CompactingChestStatusUpdatePayload> ID = SpectrumC2SPackets.makeId("compacting_chest_status_update");
 	public static final StreamCodec<FriendlyByteBuf, CompactingChestStatusUpdatePayload> CODEC = StreamCodec.composite(
 			BlockPos.STREAM_CODEC, CompactingChestStatusUpdatePayload::pos,
-			ByteBufCodecs.BOOL, CompactingChestStatusUpdatePayload::hasToCraft,
+			ByteBufCodecs.VAR_LONG, CompactingChestStatusUpdatePayload::timeStamp,
 			CompactingChestStatusUpdatePayload::new
 	);
 	
 	public static void sendCompactingChestStatusUpdate(CompactingChestBlockEntity chest) {
-		for (ServerPlayer player : PlayerLookup.tracking(chest)) {
-			ServerPlayNetworking.send(player, new CompactingChestStatusUpdatePayload(chest.getBlockPos(), chest.hasToCraft()));
-		}
+		PacketDistributor.sendToPlayersTrackingChunk((ServerLevel) chest.getLevel(), new ChunkPos(chest.getBlockPos()), new CompactingChestStatusUpdatePayload(chest.getBlockPos(), chest.craftingTimeStamp));
 	}
 	
 	@SuppressWarnings("resource")
-	@OnlyIn(Dist.CLIENT)
-	public static void execute(CompactingChestStatusUpdatePayload payload, ClientPlayNetworking.Context context) {
-		Minecraft client = context.client();
-		var entity = client.level.getBlockEntity(payload.pos, SpectrumBlockEntities.COMPACTING_CHEST.get());
-		entity.ifPresent(compactingChestBlockEntity -> compactingChestBlockEntity.shouldCraft(payload.hasToCraft));
+	public static void execute(CompactingChestStatusUpdatePayload payload, IPayloadContext context) {
+		Level level = context.player().level();
+		Optional<CompactingChestBlockEntity> entity = level.getBlockEntity(payload.pos, SpectrumBlockEntities.COMPACTING_CHEST.get());
+		entity.ifPresent(compactingChestBlockEntity -> compactingChestBlockEntity.craftingTimeStamp = payload.timeStamp());
 	}
 	
 	@Override
-	public Type<? extends CustomPacketPayload> type() {
+	public @NotNull Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

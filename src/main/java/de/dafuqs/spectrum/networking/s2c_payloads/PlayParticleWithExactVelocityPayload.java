@@ -2,8 +2,6 @@ package de.dafuqs.spectrum.networking.s2c_payloads;
 
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.*;
-import net.minecraft.client.*;
-import net.minecraft.client.multiplayer.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.network.*;
@@ -11,13 +9,15 @@ import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.phys.*;
-import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
-public record PlayParticleWithExactVelocityPayload(Vec3 pos, ParticleOptions particle, int amount, Vec3 velocity) implements CustomPacketPayload {
+public record PlayParticleWithExactVelocityPayload(Vec3 pos, ParticleOptions particle, int amount, Vec3 velocity)
+		implements CustomPacketPayload {
 	
-	public static final Type<PlayParticleWithExactVelocityPayload> ID = SpectrumC2SPackets.makeId("play_particle_with_exact_velocity");
-	public static final StreamCodec<RegistryFriendlyByteBuf, PlayParticleWithExactVelocityPayload> CODEC = StreamCodec.composite(
+	public static final Type<PlayParticleWithExactVelocityPayload> ID = SpectrumC2SPackets.makeId(
+			"play_particle_with_exact_velocity");
+	public static final StreamCodec<RegistryFriendlyByteBuf, PlayParticleWithExactVelocityPayload> CODEC
+			= StreamCodec.composite(
 			PacketCodecHelper.VEC3D, PlayParticleWithExactVelocityPayload::pos,
 			ParticleTypes.STREAM_CODEC, PlayParticleWithExactVelocityPayload::particle,
 			ByteBufCodecs.INT, PlayParticleWithExactVelocityPayload::amount,
@@ -43,25 +43,31 @@ public record PlayParticleWithExactVelocityPayload(Vec3 pos, ParticleOptions par
 	 * @param position       the pos of the particles
 	 * @param particleEffect The particle effect to play
 	 */
-	public static void playParticleWithExactVelocity(ServerLevel world, @NotNull Vec3 position, @NotNull ParticleOptions particleEffect, int amount, @NotNull Vec3 velocity) {
-		for (ServerPlayer player : PlayerLookup.tracking(world, BlockPos.containing(position))) {
-			ServerPlayNetworking.send(player, new PlayParticleWithExactVelocityPayload(position, particleEffect, amount, velocity));
-		}
+	public static void playParticleWithExactVelocity(
+			ServerLevel world, @NotNull Vec3 position, @NotNull ParticleOptions particleEffect, int amount,
+			@NotNull Vec3 velocity
+	) {
+		PacketDistributor.sendToPlayersTrackingChunk(
+				world, new ChunkPos(BlockPos.containing(position)),
+				new PlayParticleWithExactVelocityPayload(position, particleEffect, amount, velocity)
+		);
 	}
 	
 	@SuppressWarnings("resource")
-	@OnlyIn(Dist.CLIENT)
-	public static void execute(PlayParticleWithExactVelocityPayload payload, ClientPlayNetworking.Context context) {
-		Minecraft client = context.client();
-		ClientLevel world = client.level;
+	public static void execute(PlayParticleWithExactVelocityPayload payload, IPayloadContext context) {
+		var level = context.player()
+				.level();
 		
 		for (int i = 0; i < payload.amount; i++) {
-			world.addParticle(payload.particle, payload.pos.x(), payload.pos.y(), payload.pos.z(), payload.velocity.x(), payload.velocity.y(), payload.velocity.z());
+			level.addParticle(
+					payload.particle, payload.pos.x(), payload.pos.y(), payload.pos.z(), payload.velocity.x(),
+					payload.velocity.y(), payload.velocity.z()
+			);
 		}
 	}
 	
 	@Override
-	public Type<? extends CustomPacketPayload> type() {
+	public @NotNull Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 	

@@ -9,9 +9,10 @@ import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
+import net.neoforged.neoforge.network.handling.*;
+import org.jetbrains.annotations.*;
 
-public record SetShadowSlotPayload(int screenHandlerSyncId, int slotId,
-								   ItemStack shadowStack) implements CustomPacketPayload {
+public record SetShadowSlotPayload(int screenHandlerSyncId, int slotId, ItemStack shadowStack) implements CustomPacketPayload {
 	
 	public static final Type<SetShadowSlotPayload> ID = SpectrumC2SPackets.makeId("set_shadow_slot");
 	public static final StreamCodec<RegistryFriendlyByteBuf, SetShadowSlotPayload> CODEC = StreamCodec.composite(
@@ -22,13 +23,13 @@ public record SetShadowSlotPayload(int screenHandlerSyncId, int slotId,
 	);
 	
 	@Override
-	public Type<? extends CustomPacketPayload> type() {
+	public @NotNull Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 	
-	public static ServerPlayNetworking.PlayPayloadHandler<SetShadowSlotPayload> getPayloadHandler() {
+	public static IPayloadHandler<SetShadowSlotPayload> getPayloadHandler() {
 		return (payload, context) -> {
-			ServerPlayer player = context.player();
+			ServerPlayer player = (ServerPlayer) context.player();
 			AbstractContainerMenu screenHandler = player.containerMenu;
 			
 			if (screenHandler == null || screenHandler.containerId != payload.screenHandlerSyncId) {

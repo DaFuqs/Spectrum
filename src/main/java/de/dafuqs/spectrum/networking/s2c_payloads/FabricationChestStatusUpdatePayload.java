@@ -3,14 +3,16 @@ package de.dafuqs.spectrum.networking.s2c_payloads;
 import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.client.*;
 import net.minecraft.core.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.item.*;
-import net.neoforged.api.distmarker.*;
+import net.minecraft.world.level.*;
+import net.neoforged.neoforge.network.*;
+import net.neoforged.neoforge.network.handling.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -31,27 +33,23 @@ public record FabricationChestStatusUpdatePayload(BlockPos pos, boolean isFull, 
 		boolean hasValidRecipes = chest.hasValidRecipes();
 		List<ItemStack> stacks = new ArrayList<>(chest.getRecipeOutputs());
 		
-		for (ServerPlayer player : PlayerLookup.tracking(chest)) {
-			ServerPlayNetworking.send(player, new FabricationChestStatusUpdatePayload(pos, isFull, hasValidRecipes, stacks));
-		}
+		PacketDistributor.sendToPlayersTrackingChunk(
+				(ServerLevel) chest.getLevel(), new ChunkPos(pos), new FabricationChestStatusUpdatePayload(
+						pos, isFull,
+						hasValidRecipes,
+						stacks
+				)
+		);
 	}
 	
 	@SuppressWarnings("resource")
-	@OnlyIn(Dist.CLIENT)
-	public static void execute(FabricationChestStatusUpdatePayload payload, ClientPlayNetworking.Context context) {
-		Minecraft client = context.client();
-		var pos = payload.pos;
-		var isFull = payload.isFull;
-		var hasValidRecipes = payload.hasValidRecipes;
-		List<ItemStack> outputs = payload.stacks;
-		Optional<FabricationChestBlockEntity> entity = client.level.getBlockEntity(pos, SpectrumBlockEntities.FABRICATION_CHEST.get());
-		if (entity.isPresent()) {
-			entity.get().updateState(isFull, hasValidRecipes, outputs);
-		}
+	public static void execute(FabricationChestStatusUpdatePayload payload, IPayloadContext context) {
+		Optional<FabricationChestBlockEntity> entity = context.player().level().getBlockEntity(payload.pos, SpectrumBlockEntities.FABRICATION_CHEST.get());
+		entity.ifPresent(fabricationChestBlockEntity -> fabricationChestBlockEntity.updateState(payload.isFull, payload.hasValidRecipes, payload.stacks));
 	}
 	
 	@Override
-	public Type<? extends CustomPacketPayload> type() {
+	public @NotNull Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

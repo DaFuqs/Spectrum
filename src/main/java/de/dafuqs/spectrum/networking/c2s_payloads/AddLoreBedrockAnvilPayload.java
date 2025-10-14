@@ -6,6 +6,8 @@ import de.dafuqs.spectrum.networking.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
+import net.neoforged.neoforge.network.handling.*;
+import org.jetbrains.annotations.*;
 
 public record AddLoreBedrockAnvilPayload(String lore) implements CustomPacketPayload {
 	
@@ -13,11 +15,11 @@ public record AddLoreBedrockAnvilPayload(String lore) implements CustomPacketPay
 	public static final StreamCodec<FriendlyByteBuf, AddLoreBedrockAnvilPayload> CODEC = StreamCodec.composite(ByteBufCodecs.STRING_UTF8, AddLoreBedrockAnvilPayload::lore, AddLoreBedrockAnvilPayload::new);
 	
 	@Override
-	public Type<? extends CustomPacketPayload> type() {
+	public @NotNull Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 	
-	public static ServerPlayNetworking.PlayPayloadHandler<AddLoreBedrockAnvilPayload> getPayloadHandler() {
+	public static IPayloadHandler<AddLoreBedrockAnvilPayload> getPayloadHandler() {
 		return (payload, context) -> {
 			if (context.player().containerMenu instanceof BedrockAnvilScreenHandler bedrockAnvilScreenHandler) {
 				if (!bedrockAnvilScreenHandler.stillValid(context.player())) {

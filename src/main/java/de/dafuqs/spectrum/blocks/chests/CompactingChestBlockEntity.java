@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.blocks.chests;
 
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
-import de.dafuqs.spectrum.networking.c2s_payloads.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
@@ -361,8 +360,8 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 		return SpectrumSoundEvents.COMPACTING_CHEST_CLOSE;
 	}
 	
-	public void applySettings(ChangeCompactingChestSettingsPayload packet) {
-		this.autoCraftingMode = packet.mode();
+	public void applySettings(AutoCraftingMode mode) {
+		this.autoCraftingMode = mode;
 		this.lastCraftingRecipe = null;
 	}
 	

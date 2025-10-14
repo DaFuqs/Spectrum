@@ -16,28 +16,38 @@ import net.neoforged.api.distmarker.*;
 
 public record PlayDivinityAppliedEffectsPayload() implements CustomPacketPayload {
 	
-	public static final Type<PlayDivinityAppliedEffectsPayload> ID = SpectrumC2SPackets.makeId("play_divinity_applied_effects");
-	public static final StreamCodec<FriendlyByteBuf, PlayDivinityAppliedEffectsPayload> CODEC = StreamCodec.of((buf, value) -> {
-	}, buf -> new PlayDivinityAppliedEffectsPayload());
+	public static final Type<PlayDivinityAppliedEffectsPayload> ID = SpectrumC2SPackets.makeId(
+			"play_divinity_applied_effects");
+	public static final StreamCodec<FriendlyByteBuf, PlayDivinityAppliedEffectsPayload> CODEC = StreamCodec.of(
+			(buf, value) -> {
+			}, buf -> new PlayDivinityAppliedEffectsPayload()
+	);
 	
 	public static void playDivinityAppliedEffects(ServerPlayer player) {
-		ServerPlayNetworking.send(player, new PlayDivinityAppliedEffectsPayload());
+		PacketDistributor.sendToPlayer(player, new PlayDivinityAppliedEffectsPayload());
 	}
 	
-	@SuppressWarnings("resource")
+	public static void execute(PlayDivinityAppliedEffectsPayload payload, IPayloadContext context) {
+		execute(context.player());
+	}
+	
 	@OnlyIn(Dist.CLIENT)
-	public static void execute(PlayDivinityAppliedEffectsPayload payload, ClientPlayNetworking.Context context) {
-		Minecraft client = context.client();
-		Player player = client.player;
+	private static void execute(Player player) {
+		var level = player.level();
+		var client = Minecraft.getInstance();
 		client.particleEngine.createTrackingEmitter(player, SpectrumParticleTypes.DIVINITY, 30);
-		client.gameRenderer.displayItemActivation(SpectrumItems.DIVINATION_HEART.getDefaultInstance());
-		client.level.playSound(null, player.blockPosition(), SpectrumSoundEvents.FAILING_PLACED, SoundSource.PLAYERS, 1.0F, 1.0F);
-		ParticleHelper.playParticleWithPatternAndVelocityClient(player.level(), player.position(), ColoredCraftingParticleEffect.WHITE, VectorPattern.SIXTEEN, 0.4);
-		ParticleHelper.playParticleWithPatternAndVelocityClient(player.level(), player.position(), ColoredCraftingParticleEffect.RED, VectorPattern.SIXTEEN, 0.4);
+		client.gameRenderer.displayItemActivation(SpectrumItems.DIVINATION_HEART.get()
+				.getDefaultInstance());
+		level.playSound(
+				null, player.blockPosition(), SpectrumSounds.FAILING_PLACED, SoundSource.PLAYERS, 1.0F, 1.0F);
+		ParticleHelper.playParticleWithPatternAndVelocityClient(
+				level, player.position(), ColoredCraftingParticleEffect.WHITE, VectorPattern.SIXTEEN, 0.4);
+		ParticleHelper.playParticleWithPatternAndVelocityClient(
+				level, player.position(), ColoredCraftingParticleEffect.RED, VectorPattern.SIXTEEN, 0.4);
 	}
 	
 	@Override
-	public Type<? extends CustomPacketPayload> type() {
+	public @NotNull Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

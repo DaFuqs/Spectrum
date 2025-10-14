@@ -8,6 +8,7 @@ import net.minecraft.core.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.server.level.*;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import org.jetbrains.annotations.*;
 
@@ -17,29 +18,25 @@ public class PastelTransmission implements SchedulerMap.Callback {
 	
 	public static final Codec<PastelTransmission> CODEC = RecordCodecBuilder.create(i -> i.group(
 			BlockPos.CODEC.listOf().fieldOf("node_positions").forGetter(PastelTransmission::getNodePositions),
-			ItemVariant.CODEC.fieldOf("variant").forGetter(PastelTransmission::getVariant),
-			Codec.LONG.fieldOf("amount").forGetter(PastelTransmission::getAmount),
+			ItemStack.CODEC.fieldOf("stack").forGetter(PastelTransmission::getVariant),
 			Codec.INT.fieldOf("vertex_time").forGetter(PastelTransmission::getVertexTime)
 	).apply(i, PastelTransmission::new));
 	
 	public static final StreamCodec<RegistryFriendlyByteBuf, PastelTransmission> PACKET_CODEC = StreamCodec.composite(
 			BlockPos.STREAM_CODEC.apply(ByteBufCodecs.list()), PastelTransmission::getNodePositions,
-			ItemVariant.PACKET_CODEC, PastelTransmission::getVariant,
-			ByteBufCodecs.VAR_LONG, PastelTransmission::getAmount,
+			ItemStack.STREAM_CODEC, PastelTransmission::getVariant,
 			ByteBufCodecs.VAR_INT, PastelTransmission::getVertexTime,
 			PastelTransmission::new
 	);
 	
 	private @Nullable ServerPastelNetwork network;
 	private final List<BlockPos> nodePositions;
-	private final ItemVariant variant;
-	private final long amount;
+	private final ItemStack stack;
 	private final int vertexTime;
 	
-	public PastelTransmission(List<BlockPos> nodePositions, ItemVariant variant, long amount, int vertexTime) {
+	public PastelTransmission(List<BlockPos> nodePositions, ItemStack stack, int vertexTime) {
 		this.nodePositions = nodePositions;
-		this.variant = variant;
-		this.amount = amount;
+		this.stack = stack;
 		this.vertexTime = vertexTime;
 	}
 	
@@ -63,12 +60,8 @@ public class PastelTransmission implements SchedulerMap.Callback {
 		return vertexTime * (nodePositions.size() - 1);
 	}
 	
-	public ItemVariant getVariant() {
-		return this.variant;
-	}
-	
-	public long getAmount() {
-		return this.amount;
+	public ItemStack getVariant() {
+		return this.stack;
 	}
 	
 	public BlockPos getStartPos() {
@@ -87,7 +80,7 @@ public class PastelTransmission implements SchedulerMap.Callback {
 		
 		@NotNull BlockPos destinationPos = nodePositions.get(nodePositions.size() - 1);
 		@Nullable PastelNodeBlockEntity destinationNode = this.network.getLoadedNodeAt(destinationPos);
-		Level world = this.network.getWorld();
+		Level world = this.network.getLevel();
 		
 		int inserted = 0;
 		if (destinationNode != null) {
@@ -95,7 +88,7 @@ public class PastelTransmission implements SchedulerMap.Callback {
 			if (destinationStorage != null) {
 				try (Transaction transaction = Transaction.openOuter()) {
 					if (destinationStorage.supportsInsertion()) {
-						inserted = (int) destinationStorage.insert(variant, amount, transaction);
+						inserted = (int) destinationStorage.insert(stack, amount, transaction);
 						destinationNode.addItemCountUnderway(-inserted);
 						transaction.commit();
 					}
@@ -103,7 +96,7 @@ public class PastelTransmission implements SchedulerMap.Callback {
 			}
 		}
 		if (inserted != amount) {
-			InWorldInteractionHelper.scatter(world, destinationPos.getX() + 0.5, destinationPos.getY() + 0.5, destinationPos.getZ() + 0.5, variant, amount - inserted);
+			InWorldInteractionHelper.scatter(world, destinationPos.getX() + 0.5, destinationPos.getY() + 0.5, destinationPos.getZ() + 0.5, stack, amount - inserted);
 		}
 	}
 	

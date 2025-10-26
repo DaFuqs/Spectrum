@@ -29,7 +29,7 @@
     "outer_block": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "minecraft:basalt"
+        "Name": "minecraft:smooth_basalt"
       }
     },
 
@@ -42,7 +42,7 @@
     "decorators": {},
     "spawns": [],
     "generation": {
-      "weight": 1.0,
+      "weight": 1.5,
       "group": "starry_skies:overworld/treasure"
     }
   }

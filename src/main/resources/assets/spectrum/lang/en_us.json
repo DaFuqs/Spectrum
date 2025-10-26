@@ -3504,7 +3504,7 @@
   "book.spectrum.guidebook.pedestal.page2.text": "I placed it down and it did... nothing much.\\\n\\\nBut I quickly figured out what I was missing: [Gemstone Powder](entry://general/gemstone_powder) for some oomph as well, a trigger to make it start crafting, like a [Paintbrush](entry://general/paintbrush) or a [#](449900)redstone signal[#]() and air or an inventory above it.",
   "book.spectrum.guidebook.pedestal.automation.title": "Pedestal Automation",
   "book.spectrum.guidebook.pedestal.automation.text": "I can automate the Pigment Pedestal using a [Crafting Tablet](entry://equipment/crafting_tablet).\\\nWhen I set a recipe in the tablet and put it into the designated slot of the Pedestal, it will put items hoppered into it directly into the correct spots.",
-  "book.spectrum.guidebook.pedestal_customisation.text": "I can exchange the basalt blocks with calcite and choose the gemstone blocks as I like it best.\\\n\\\nBy mixing [#](bb00bb)Calcite[#]() and [#](bb00bb)Basalt[#]() I can give the structure my own personal touch.",
+  "book.spectrum.guidebook.pedestal_customisation.text": "I can exchange the basalt blocks with calcite and choose the gemstone blocks to my liking.\\\n\\\nBy mixing [#](bb00bb)Calcite[#]() and [#](bb00bb)Basalt[#]() I can give the structure my own personal touch.",
   "book.spectrum.guidebook.pedestal_customisation.title": "Individualize!",
   "book.spectrum.guidebook.pedestal_upgrade_cmy.name": "Pedestal CMY Upgrade",
   "book.spectrum.guidebook.pedestal_upgrade_cmy.page0.text": "I now have three gems. *And an idea!* I could upgrade my [Pedestal](entry://general/pedestal) with all three types I found! This will make it both prettier and more versatile.",

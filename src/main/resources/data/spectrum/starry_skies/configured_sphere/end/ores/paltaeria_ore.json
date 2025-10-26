@@ -28,7 +28,7 @@
     "spawns": [],
     "generation": {
       "weight": 0.5,
-      "group": "starry_skies:nether/ores"
+      "group": "starry_skies:end/ores"
     }
   }
 }

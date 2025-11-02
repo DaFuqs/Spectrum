@@ -16,13 +16,14 @@
 
     "size": {
       "type": "minecraft:uniform",
-      "min_inclusive": 5,
-      "max_exclusive": 20
+      "min_inclusive": 10,
+      "max_exclusive": 14
     },
 
     "decorators": {
-      "spectrum:clover": 0.8,
-      "spectrum:four_leaf_clover": 0.8
+      "spectrum:quitoxic_reeds_pond": 1.0,
+      "spectrum:clover": 0.5,
+      "spectrum:four_leaf_clover": 0.5
     },
     "spawns": [
       {

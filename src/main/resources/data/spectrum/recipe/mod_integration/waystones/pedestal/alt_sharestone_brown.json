@@ -1,5 +1,6 @@
 {
   "type": "spectrum:pedestal",
+  "group": "sharestones",
   "time": 180,
   "tier": "basic",
   "colors": {

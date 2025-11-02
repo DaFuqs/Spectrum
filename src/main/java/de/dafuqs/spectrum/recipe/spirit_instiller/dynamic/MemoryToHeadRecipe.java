@@ -64,8 +64,7 @@ public class MemoryToHeadRecipe extends SpiritInstillerRecipe {
 					LootParams.Builder builder = new LootParams.Builder(world)
 							.withParameter(LootContextParams.THIS_ENTITY, livingEntity)
 							.withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(pos))
-							.withParameter(LootContextParams.DAMAGE_SOURCE, SpectrumDamageTypes.mobHeadDrop(world)
-							);
+							.withParameter(LootContextParams.DAMAGE_SOURCE, SpectrumDamageTypes.mobHeadDrop(world));
 					
 					LootParams lootContextParameterSet = builder.create(LootContextParamSets.ENTITY);
 					List<ItemStack> loot = lootTable.getRandomItems(lootContextParameterSet, livingEntity.getLootTableSeed());

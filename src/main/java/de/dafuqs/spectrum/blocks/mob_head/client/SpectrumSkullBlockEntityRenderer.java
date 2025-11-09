@@ -178,7 +178,11 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
 		builder.put(SpectrumSkullType.LIZARD_YELLOW, List.of(new Tuple<>(new LizardHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.LIZARD_HEAD), modelLoader.bakeLayer(SpectrumModelLayers.LIZARD_HEAD_FRILLS), InkColors.YELLOW.getColorInt()), LizardHeadModel.HEAD_TEXTURE)));
 		builder.put(SpectrumSkullType.MONSTROSITY, List.of(new Tuple<>(new MonstrosityHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.MONSTROSITY_HEAD)), MonstrosityEntityRenderer.TEXTURE)));
 		builder.put(SpectrumSkullType.PRESERVATION_TURRET, List.of(new Tuple<>(new PreservationTurretHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.PRESERVATION_TURRET_HEAD)), PreservationTurretEntityRenderer.TEXTURE)));
-
+		builder.put(SpectrumSkullType.MARROW, List.of(
+				new Tuple<>(new StrayHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.MARROW_HEAD)), MarrowRenderer.MARROW_SKELETON_LOCATION),
+				new Tuple<>(new StrayHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.MARROW_HEAD_OVERLAY)), MarrowRenderer.MARROW_CLOTHES_LOCATION)
+		));
+		
         return builder.build();
     }
 

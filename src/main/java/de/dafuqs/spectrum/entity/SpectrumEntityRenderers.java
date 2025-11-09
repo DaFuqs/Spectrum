@@ -39,6 +39,7 @@ public class SpectrumEntityRenderers {
 		register(SpectrumEntityTypes.ITEM_PROJECTILE, ThrownItemRenderer::new);
 		register(SpectrumEntityTypes.DRAGON_TALON, (context) -> new BidentEntityRenderer(context, 1.5F, 0));
 		register(SpectrumEntityTypes.DRACONIC_TWINSWORD, (context) -> new BidentEntityRenderer(context, 2.15F, 0));
+		register(SpectrumEntityTypes.MARROW, MarrowRenderer::new);
 	}
 	
 	private static <T extends Entity> void register(EntityType<? extends T> type, EntityRendererProvider<T> factory) {

@@ -6,7 +6,13 @@
         "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure"
       }
     },
-    "collected_dragonbone": {
+    "collected_dragonbone_chunk": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_dragonbone_chunk"
+      }
+    },
+    "broke_cracked_dragonbone": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
         "advancement_identifier": "spectrum:break_cracked_dragonbone"
@@ -15,8 +21,11 @@
   },
   "requirements": [
     [
-      "build_complex_pedestal_structure",
-      "collected_dragonbone"
+      "build_complex_pedestal_structure"
+    ],
+    [
+      "collected_dragonbone_chunk",
+      "broke_cracked_dragonbone"
     ]
   ]
 }

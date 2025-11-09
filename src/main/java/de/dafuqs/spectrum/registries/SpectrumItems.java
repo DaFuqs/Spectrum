@@ -407,6 +407,7 @@ public class SpectrumItems {
 	public static final Item KINDLING_SPAWN_EGG = register(parented(item("kindling_spawn_egg", new SpawnEggItem(SpectrumEntityTypes.KINDLING, 0xda4261, 0xffd452, IS.of()), InkColors.WHITE), SpectrumModels.SPAWN_EGG));
 	public static final Item LIZARD_SPAWN_EGG = register(parented(item("lizard_spawn_egg", new SpawnEggItem(SpectrumEntityTypes.LIZARD, 0x896459, 0x503a40, IS.of()), InkColors.WHITE), SpectrumModels.SPAWN_EGG));
 	public static final Item ERASER_SPAWN_EGG = register(parented(item("eraser_spawn_egg", new SpawnEggItem(SpectrumEntityTypes.ERASER, 0x200d29, 0xc83e93, IS.of()), InkColors.WHITE), SpectrumModels.SPAWN_EGG));
+	public static final Item MARROW_SPAWN_EGG = register(parented(item("marrow_spawn_egg", new SpawnEggItem(SpectrumEntityTypes.MARROW, 0x200d29, 0xc83e93, IS.of()), InkColors.WHITE), SpectrumModels.SPAWN_EGG));
 	
 	// Magical Tools
 	public static final Item BAG_OF_HOLDING = register(simple(item("bag_of_holding", new BagOfHoldingItem(IS.of(1)), InkColors.PURPLE)));

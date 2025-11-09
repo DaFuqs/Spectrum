@@ -2181,5 +2181,39 @@
       "spectrum:entity.lizard.ambient2",
       "spectrum:entity.lizard.ambient3"
     ]
+  },
+  "entity.marrow.ambient": {
+    "sounds": [
+      "mob/stray/idle1",
+      "mob/stray/idle2",
+      "mob/stray/idle3",
+      "mob/stray/idle4"
+    ],
+    "subtitle": "spectrum.subtitles.entity.marrow.ambient"
+  },
+  "entity.marrow.death": {
+    "sounds": [
+      "mob/stray/death1",
+      "mob/stray/death2"
+    ],
+    "subtitle": "spectrum.subtitles.entity.marrow.death"
+  },
+  "entity.marrow.hurt": {
+    "sounds": [
+      "mob/stray/hurt1",
+      "mob/stray/hurt2",
+      "mob/stray/hurt3",
+      "mob/stray/hurt4"
+    ],
+    "subtitle": "spectrum.subtitles.entity.marrow.hurt"
+  },
+  "entity.marrow.step": {
+    "sounds": [
+      "mob/stray/step1",
+      "mob/stray/step2",
+      "mob/stray/step3",
+      "mob/stray/step4"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
   }
 }

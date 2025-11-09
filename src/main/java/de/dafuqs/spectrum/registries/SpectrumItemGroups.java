@@ -1479,6 +1479,7 @@ public class SpectrumItemGroups {
 				entries.accept(SpectrumItems.KINDLING_SPAWN_EGG);
 				entries.accept(SpectrumItems.LIZARD_SPAWN_EGG);
 				entries.accept(SpectrumItems.ERASER_SPAWN_EGG);
+				entries.accept(SpectrumItems.MARROW_SPAWN_EGG);
 				entries.accept(SpectrumItems.BUCKET_OF_ERASER);
 				MemoryItem.appendEntries(displayContext.holders(), entries);
 			}).build();

@@ -284,6 +284,11 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent ENTITY_ERASER_DEATH = register("entity.eraser.death");
 	public static final SoundEvent ENTITY_ERASER_STEP = register("entity.eraser.step");
 	
+	public static final SoundEvent ENTITY_MARROW_AMBIENT = register("entity.marrow.ambient");
+	public static final SoundEvent ENTITY_MARROW_HURT = register("entity.marrow.hurt");
+	public static final SoundEvent ENTITY_MARROW_DEATH = register("entity.marrow.death");
+	public static final SoundEvent ENTITY_MARROW_STEP = register("entity.marrow.step");
+	
 	
 	// OST - AMBIENT
 	public static final SoundEvent OST_AZURE = register("ost.azure");

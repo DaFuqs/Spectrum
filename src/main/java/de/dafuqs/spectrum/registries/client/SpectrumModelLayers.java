@@ -33,8 +33,12 @@ public class SpectrumModelLayers {
 	public static final ModelLayerLocation KINDLING_ARMOR = new ModelLayerLocation(SpectrumCommon.locate("kindling_armor"), "main");
 	public static final ModelLayerLocation KINDLING_COUGH = new ModelLayerLocation(SpectrumCommon.locate("kindling_cough"), "main");
 	public static final ModelLayerLocation ERASER = new ModelLayerLocation(SpectrumCommon.locate("eraser"), "body");
-
 	
+	public static final ModelLayerLocation MARROW = new ModelLayerLocation(SpectrumCommon.locate("marrow"), "main");
+	public static final ModelLayerLocation MARROW_INNER_ARMOR = new ModelLayerLocation(SpectrumCommon.locate("marrow"), "inner_armor");
+	public static final ModelLayerLocation MARROW_OUTER_ARMOR = new ModelLayerLocation(SpectrumCommon.locate("marrow"), "outer_armor");
+	public static final ModelLayerLocation MARROW_OUTER_LAYER = new ModelLayerLocation(SpectrumCommon.locate("marrow"), "outer");
+
 	/**
 	 * Mob Heads
 	 */
@@ -157,6 +161,8 @@ public class SpectrumModelLayers {
 	public static final ModelLayerLocation LIZARD_HEAD_FRILLS = new ModelLayerLocation(SpectrumCommon.locate("lizard_head"), "frills");
 	public static final ModelLayerLocation MONSTROSITY_HEAD = new ModelLayerLocation(SpectrumCommon.locate("monstrosity_head"), "main");
 	public static final ModelLayerLocation PRESERVATION_TURRET_HEAD = new ModelLayerLocation(SpectrumCommon.locate("preservation_turret_head"), "main");
+	public static final ModelLayerLocation MARROW_HEAD = new ModelLayerLocation(SpectrumCommon.locate("marrow_head"), "main");
+	public static final ModelLayerLocation MARROW_HEAD_OVERLAY = new ModelLayerLocation(SpectrumCommon.locate("marrow_head"), "overlay");
 
 	/**
 	 * Armor
@@ -179,6 +185,11 @@ public class SpectrumModelLayers {
 		EntityModelLayerRegistry.registerModelLayer(KINDLING_ARMOR, KindlingEntityModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(KINDLING_COUGH, KindlingCoughEntityModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(ERASER, EraserEntityModel::getTexturedModelData);
+		
+		EntityModelLayerRegistry.registerModelLayer(MARROW, SkeletonModel::createBodyLayer);
+		EntityModelLayerRegistry.registerModelLayer(MARROW_INNER_ARMOR, SkeletonModel::createBodyLayer);
+		EntityModelLayerRegistry.registerModelLayer(MARROW_OUTER_ARMOR, SkeletonModel::createBodyLayer);
+		EntityModelLayerRegistry.registerModelLayer(MARROW_OUTER_LAYER, SkeletonModel::createBodyLayer);
 		
 		EntityModelLayerRegistry.registerModelLayer(ALLAY_HEAD, AllayHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(AXOLOTL_BLUE_HEAD, AxolotlHeadModel::getTexturedModelData);
@@ -300,6 +311,8 @@ public class SpectrumModelLayers {
 		EntityModelLayerRegistry.registerModelLayer(LIZARD_HEAD, LizardHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(LIZARD_HEAD_FRILLS, LizardHeadModel::getTexturedModelDataFrills);
 		EntityModelLayerRegistry.registerModelLayer(PRESERVATION_TURRET_HEAD, PreservationTurretHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(MARROW_HEAD, SkullModel::createMobHeadLayer);
+		EntityModelLayerRegistry.registerModelLayer(MARROW_HEAD_OVERLAY, SkullModel::createMobHeadLayer);
 		
 		EntityModelLayerRegistry.registerModelLayer(BEDROCK_LAYER, () -> LayerDefinition.create(BedrockArmorModel.getMeshDefinition(), 128, 128));
 	}

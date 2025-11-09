@@ -4298,6 +4298,7 @@
   "entity.spectrum.parametric_mining_device": "Parametric Mining Device",
   "entity.spectrum.light_spear": "Light Spear",
   "entity.spectrum.seat": "Seat",
+  "entity.spectrum.marrow": "Marrow",
 
   "explosion_archetype.spectrum.all": "Block and Entity Damaging Explosion",
   "explosion_archetype.spectrum.cosmetic": "Cosmetic Explosion",
@@ -5345,6 +5346,10 @@
   "spectrum.subtitles.entity.preservation_turret.hurt": "Preservation Turret hurts",
   "spectrum.subtitles.entity.preservation_turret.open": "Preservation Turret opens",
   "spectrum.subtitles.entity.preservation_turret.shoot": "Preservation Turret shoots",
+  "spectrum.subtitles.entity.marrow.ambient": "Marrow rattles",
+  "spectrum.subtitles.entity.marrow.death": "Marrow dies",
+  "spectrum.subtitles.entity.marrow.hurt": "Marrow hurts",
+
   "spectrum.subtitles.exchanging_staff.select": "Exchanging Staff dings",
   "spectrum.subtitles.fusion_shrine_ambient": "Fusion Shrine hums",
   "spectrum.subtitles.fusion_shrine_crafting_aborted": "Items dropping",

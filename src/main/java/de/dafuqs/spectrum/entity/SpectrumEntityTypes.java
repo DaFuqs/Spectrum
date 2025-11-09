@@ -41,6 +41,7 @@ public class SpectrumEntityTypes {
 	public static final EntityType<ItemProjectileEntity> ITEM_PROJECTILE = register("item_projectile", EntityType.Builder.<ItemProjectileEntity>of(ItemProjectileEntity::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(6).updateInterval(20));
 	public static final EntityType<DragonTalonEntity> DRAGON_TALON = register("dragon_talon", 4, 10, true, EntityDimensions.scalable(0.5F, 0.5F), true, DragonTalonEntity::new);
 	public static final EntityType<DraconicTwinswordEntity> DRACONIC_TWINSWORD = register("draconic_twinsword", 6, 2, true, EntityDimensions.scalable(0.5F, 0.5F), true, DraconicTwinswordEntity::new);
+	public static final EntityType<Marrow> MARROW = register("marrow", 6, 2, true, EntityDimensions.scalable(0.5F, 0.5F), true, Marrow::new);
 	
 	public static void register() {
 		FabricDefaultAttributeRegistry.register(EGG_LAYING_WOOLY_PIG, EggLayingWoolyPigEntity.createEggLayingWoolyPigAttributes());
@@ -49,6 +50,7 @@ public class SpectrumEntityTypes {
 		FabricDefaultAttributeRegistry.register(LIZARD, LizardEntity.createLizardAttributes());
 		FabricDefaultAttributeRegistry.register(KINDLING, KindlingEntity.createKindlingAttributes());
 		FabricDefaultAttributeRegistry.register(ERASER, EraserEntity.createEraserAttributes());
+		FabricDefaultAttributeRegistry.register(MARROW, Marrow.createMarrowAttributes());
 	}
 	
 	// TODO: migrate to FabricEntityTypeBuilder, so the "No data fixer registered for xxxx" errors go away

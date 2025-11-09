@@ -40,3 +40,4 @@ accessible	method	net/minecraft/client/particle/DripParticle$FallingParticle	<in
 accessible	method	net/minecraft/client/particle/DripParticle	<init>	(Lnet/minecraft/client/multiplayer/ClientLevel;DDDLnet/minecraft/world/level/material/Fluid;)V
 accessible	field	net/minecraft/client/particle/Particle	gravity	F
 accessible	method	net/minecraft/client/particle/SuspendedParticle	<init>	(Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/client/particle/SpriteSet;DDDDDD)V
+accessible method net/minecraft/world/entity/monster/AbstractSkeleton getStepSound ()Lnet/minecraft/sounds/SoundEvent;

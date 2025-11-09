@@ -102,18 +102,15 @@ dependencies {
 	implementation jarJar("org.jheaps:jheaps:0.14")
 
 //	// ours
-//	modImplementation include("maven.modrinth:exclusions-lib:${project.exclusionslib_version}")
+	implementation("maven.modrinth:exclusions-lib:${project.exclusionslib_version}")
 	implementation("de.dafuqs:revelationary-neoforge:${project.revelationary_version}")
-	implementation("maven.modrinth:additionalentityattributes:${project.additional_entity_attributes_version}")
-	jarJar("maven.modrinth:additionalentityattributes:${project.additional_entity_attributes_version}")
+	implementation jarJar("maven.modrinth:additionalentityattributes:${project.additional_entity_attributes_version}")
 //	modImplementation include("de.dafuqs:arrowhead:${project.arrowhead_version}")
 //	jarJar("de.dafuqs:reverb:${project.dimensional_reverb_version}")
-//	modImplementation include("de.dafuqs:fractal:${project.fractal_version}")
+	implementation jarJar("de.dafuqs:Fractal:${project.fractal_version}")
 
 	// external and compat
 	api("me.shedaniel.cloth:cloth-config-neoforge:${project.cloth_config_version}")
-//	modImplementation("eu.pb4:common-protection-api:${project.cpa_version}")
-//	modImplementation("dev.emi:trinkets:${project.trinkets_version}") // https://github.com/emilyploszaj/trinkets
 //	modCompileOnly("me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}")
 //	// https://github.com/shedaniel/RoughlyEnoughItems
 //	modCompileOnly("dev.emi:emi-fabric:${emi_version}") // https://github.com/emilyploszaj/emi

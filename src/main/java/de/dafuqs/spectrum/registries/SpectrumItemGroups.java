@@ -7,9 +7,6 @@ import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.item_group.*;
 import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.blocks.mob_head.*;
-import de.dafuqs.spectrum.compat.ae2.*;
-import de.dafuqs.spectrum.compat.create.*;
-import de.dafuqs.spectrum.compat.gobber.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import net.minecraft.core.*;
@@ -25,13 +22,14 @@ import java.util.*;
 @SuppressWarnings("unused")
 public class SpectrumItemGroups {
 	
-	public static final CreativeModeTab MAIN = FabricItemGroup.builder()
+	public static final CreativeModeTab MAIN = CreativeModeTab.builder()
 			.icon(() -> new ItemStack(SpectrumBlocks.PEDESTAL_ALL_BASIC))
 			.displayItems((displayContext, entries) -> {
 				entries.accept(SpectrumBlocks.PEDESTAL_ALL_BASIC, CreativeModeTab.TabVisibility.PARENT_TAB_ONLY);
-				for (ItemSubGroup subGroup : SpectrumItemGroups.MAIN.fractal$getChildren()) {
+				/*TODO: review. Still needed for items to get picked up by recipe viewer seraches?
+				for (CreativeSubTab subGroup : SpectrumItemGroups.MAIN.fractal$getChildren()) {
 					entries.acceptAll(subGroup.getSearchTabDisplayItems(), CreativeModeTab.TabVisibility.SEARCH_TAB_ONLY);
-				}
+				}*/
 			})
 			.hideTitle()
 			.title(Component.translatable("itemGroup.spectrum"))
@@ -41,7 +39,7 @@ public class SpectrumItemGroups {
 		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, ItemGroupIDs.MAIN_GROUP_ID, MAIN);
 	}
 	
-	public static final ItemSubGroup EQUIPMENT = new ItemSubGroup.Builder(MAIN, ItemGroupIDs.SUBTAB_EQUIPMENT, Component.translatable("itemGroup.spectrum.equipment"))
+	public static final CreativeSubTab EQUIPMENT = new CreativeSubTab.Builder(MAIN, ItemGroupIDs.SUBTAB_EQUIPMENT, Component.translatable("itemGroup.spectrum.equipment"))
 			.styled(ItemGroupIDs.STYLE)
 			.entries((displayContext, entries) -> {
 				HolderLookup.Provider lookup = displayContext.holders();
@@ -53,41 +51,41 @@ public class SpectrumItemGroups {
 				entries.accept(SpectrumItems.BOTTLE_OF_RUIN);
 				entries.accept(SpectrumItems.BOTTLE_OF_FORFEITURE);
 				entries.accept(SpectrumItems.BOTTLE_OF_DECAY_AWAY);
-				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.MULTITOOL));
-				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.TENDER_PICKAXE));
-				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.LUCKY_PICKAXE));
-				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.RAZOR_FALCHION));
-				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.OBLIVION_PICKAXE));
-				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.RESONANT_PICKAXE));
-				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.DRAGONRENDING_PICKAXE));
-				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.LAGOON_ROD));
+				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.MULTITOOL.get()));
+				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.TENDER_PICKAXE.get()));
+				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.LUCKY_PICKAXE.get()));
+				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.RAZOR_FALCHION.get()));
+				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.OBLIVION_PICKAXE.get()));
+				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.RESONANT_PICKAXE.get()));
+				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.DRAGONRENDING_PICKAXE.get()));
+				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.LAGOON_ROD.get()));
 				entries.accept(SpectrumItems.MOLTEN_ROD);
 				entries.accept(SpectrumItems.FETCHLING_HELMET);
 				entries.accept(SpectrumItems.FEROCIOUS_CHESTPLATE);
 				entries.accept(SpectrumItems.SYLPH_LEGGINGS);
 				entries.accept(SpectrumItems.OREAD_BOOTS);
-				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.BEDROCK_PICKAXE));
-				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.BEDROCK_AXE));
-				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.BEDROCK_SHOVEL));
-				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.BEDROCK_SWORD));
-				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.BEDROCK_HOE));
-				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.BEDROCK_BOW));
-				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.BEDROCK_CROSSBOW));
-				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.BEDROCK_SHEARS));
-				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.BEDROCK_FISHING_ROD));
-				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.BEDROCK_HELMET));
-				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.BEDROCK_CHESTPLATE));
-				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.BEDROCK_LEGGINGS));
-				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.BEDROCK_BOOTS));
-				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.MALACHITE_WORKSTAFF));
-				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.MALACHITE_ULTRA_GREATSWORD));
-				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.MALACHITE_CROSSBOW));
-				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.MALACHITE_BIDENT));
-				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.GLASS_CREST_WORKSTAFF));
-				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.GLASS_CREST_ULTRA_GREATSWORD));
-				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.FEROCIOUS_GLASS_CREST_BIDENT));
-				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.FRACTAL_GLASS_CREST_BIDENT));
-				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.GLASS_CREST_CROSSBOW));
+				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.BEDROCK_PICKAXE.get()));
+				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.BEDROCK_AXE.get()));
+				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.BEDROCK_SHOVEL.get()));
+				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.BEDROCK_SWORD.get()));
+				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.BEDROCK_HOE.get()));
+				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.BEDROCK_BOW.get()));
+				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.BEDROCK_CROSSBOW.get()));
+				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.BEDROCK_SHEARS.get()));
+				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.BEDROCK_FISHING_ROD.get()));
+				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.BEDROCK_HELMET.get()));
+				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.BEDROCK_CHESTPLATE.get()));
+				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.BEDROCK_LEGGINGS.get()));
+				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.BEDROCK_BOOTS.get()));
+				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.MALACHITE_WORKSTAFF.get()));
+				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.MALACHITE_ULTRA_GREATSWORD.get()));
+				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.MALACHITE_CROSSBOW.get()));
+				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.MALACHITE_BIDENT.get()));
+				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.GLASS_CREST_WORKSTAFF.get()));
+				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.GLASS_CREST_ULTRA_GREATSWORD.get()));
+				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.FEROCIOUS_GLASS_CREST_BIDENT.get()));
+				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.FRACTAL_GLASS_CREST_BIDENT.get()));
+				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.GLASS_CREST_CROSSBOW.get()));
 				entries.accept(SpectrumItems.MALACHITE_GLASS_ARROW);
 				entries.accept(SpectrumItems.TOPAZ_GLASS_ARROW);
 				entries.accept(SpectrumItems.AMETHYST_GLASS_ARROW);
@@ -99,8 +97,8 @@ public class SpectrumItemGroups {
 				entries.accept(SpectrumItems.BLOODSTONE_GLASS_AMPOULE);
 				entries.accept(SpectrumItems.DREAMFLAYER);
 				entries.accept(SpectrumItems.NIGHTFALLS_BLADE);
-				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.DRACONIC_TWINSWORD));
-				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.DRAGON_TALON));
+				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.DRACONIC_TWINSWORD.get()));
+				entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, SpectrumItems.DRAGON_TALON.get()));
 				entries.accept(SpectrumItems.KNOTTED_SWORD);
 				entries.accept(SpectrumItems.NECTAR_LANCE);
 				entries.accept(SpectrumItems.OMNI_ACCELERATOR);
@@ -113,30 +111,30 @@ public class SpectrumItemGroups {
 				entries.accept(SpectrumItems.GLOW_VISION_GOGGLES);
 				entries.accept(SpectrumItems.JEOPARDANT);
 				entries.accept(SpectrumItems.SEVEN_LEAGUE_BOOTS);
-				entries.accept(SpectrumEnchantmentHelper.getEnchantedStack(lookup, SpectrumItems.SEVEN_LEAGUE_BOOTS, Map.of(Enchantments.POWER, 5)));
+				entries.accept(SpectrumEnchantmentHelper.getEnchantedStack(lookup, SpectrumItems.SEVEN_LEAGUE_BOOTS.get(), Map.of(Enchantments.POWER, 5)));
 				entries.accept(SpectrumItems.COTTON_CLOUD_BOOTS);
 				entries.accept(SpectrumItems.RADIANCE_PIN);
 				entries.accept(SpectrumItems.TOTEM_PENDANT);
 				entries.accept(SpectrumItems.TAKE_OFF_BELT);
-				entries.accept(SpectrumEnchantmentHelper.getEnchantedStack(lookup, SpectrumItems.TAKE_OFF_BELT, Map.of(Enchantments.POWER, 5, Enchantments.FEATHER_FALLING, 4)));
+				entries.accept(SpectrumEnchantmentHelper.getEnchantedStack(lookup, SpectrumItems.TAKE_OFF_BELT.get(), Map.of(Enchantments.POWER, 5, Enchantments.FEATHER_FALLING, 4)));
 				entries.accept(SpectrumItems.AZURE_DIKE_BELT);
 				entries.accept(SpectrumItems.AZURE_DIKE_RING);
 				entries.accept(SpectrumItems.SHIELDGRASP_AMULET);
-				entries.accept(SpectrumItems.SHIELDGRASP_AMULET.getFullStack());
+				entries.accept(SpectrumItems.SHIELDGRASP_AMULET.get().getFullStack());
 				entries.accept(SpectrumItems.HEARTSINGERS_REWARD);
-				entries.accept(SpectrumItems.HEARTSINGERS_REWARD.getFullStack());
+				entries.accept(SpectrumItems.HEARTSINGERS_REWARD.get().getFullStack());
 				entries.accept(SpectrumItems.GLOVES_OF_DAWNS_GRASP);
-				entries.accept(SpectrumItems.GLOVES_OF_DAWNS_GRASP.getFullStack());
+				entries.accept(SpectrumItems.GLOVES_OF_DAWNS_GRASP.get().getFullStack());
 				entries.accept(SpectrumItems.RING_OF_PURSUIT);
-				entries.accept(SpectrumItems.RING_OF_PURSUIT.getFullStack());
+				entries.accept(SpectrumItems.RING_OF_PURSUIT.get().getFullStack());
 				entries.accept(SpectrumItems.RING_OF_DENSER_STEPS);
-				entries.accept(SpectrumItems.RING_OF_DENSER_STEPS.getFullStack());
+				entries.accept(SpectrumItems.RING_OF_DENSER_STEPS.get().getFullStack());
 				entries.accept(SpectrumItems.RING_OF_AERIAL_GRACE);
-				entries.accept(SpectrumItems.RING_OF_AERIAL_GRACE.getFullStack());
+				entries.accept(SpectrumItems.RING_OF_AERIAL_GRACE.get().getFullStack());
 				entries.accept(SpectrumItems.LAURELS_OF_SERENITY);
-				entries.accept(SpectrumItems.LAURELS_OF_SERENITY.getFullStack());
+				entries.accept(SpectrumItems.LAURELS_OF_SERENITY.get().getFullStack());
 				entries.accept(SpectrumItems.GLEAMING_PIN);
-				entries.accept(SpectrumEnchantmentHelper.getEnchantedStack(lookup, SpectrumItems.GLEAMING_PIN, Map.of(SpectrumEnchantments.SNIPING, 2)));
+				entries.accept(SpectrumEnchantmentHelper.getEnchantedStack(lookup, SpectrumItems.GLEAMING_PIN.get(), Map.of(SpectrumEnchantments.SNIPING, 2)));
 				entries.accept(SpectrumItems.LESSER_POTION_PENDANT);
 				entries.accept(SpectrumItems.GREATER_POTION_PENDANT);
 				entries.accept(SpectrumItems.ASHEN_CIRCLET);
@@ -155,11 +153,11 @@ public class SpectrumItemGroups {
 				ItemStack enchantedKnowledgeGemStack = SpectrumEnchantmentHelper.getEnchantedStack(lookup, SpectrumItems.KNOWLEDGE_GEM.asItem(), Map.of(Enchantments.EFFICIENCY, 5, Enchantments.QUICK_CHARGE, 3));
 				entries.accept(enchantedKnowledgeGemStack.copy());
 				
-				ItemStack knowledgeGemStack = SpectrumItems.KNOWLEDGE_GEM.getDefaultInstance();
-				ExperienceStorageItem.addStoredExperience(lookup, knowledgeGemStack, SpectrumItems.KNOWLEDGE_GEM.getMaxStoredExperience(lookup, knowledgeGemStack));
+				ItemStack knowledgeGemStack = SpectrumItems.KNOWLEDGE_GEM.get().getDefaultInstance();
+				ExperienceStorageItem.addStoredExperience(lookup, knowledgeGemStack, SpectrumItems.KNOWLEDGE_GEM.get().getMaxStoredExperience(lookup, knowledgeGemStack));
 				entries.accept(knowledgeGemStack);
 				
-				ExperienceStorageItem.addStoredExperience(lookup, enchantedKnowledgeGemStack, SpectrumItems.KNOWLEDGE_GEM.getMaxStoredExperience(lookup, enchantedKnowledgeGemStack));
+				ExperienceStorageItem.addStoredExperience(lookup, enchantedKnowledgeGemStack, SpectrumItems.KNOWLEDGE_GEM.get().getMaxStoredExperience(lookup, enchantedKnowledgeGemStack));
 				entries.accept(enchantedKnowledgeGemStack);
 				
 				entries.accept(SpectrumItems.CELESTIAL_POCKETWATCH);
@@ -173,16 +171,16 @@ public class SpectrumItemGroups {
 				entries.accept(SpectrumItems.BAG_OF_HOLDING);
 				entries.accept(SpectrumItems.RADIANCE_STAFF);
 				entries.accept(SpectrumItems.NATURES_STAFF);
-				entries.accept(SpectrumEnchantmentHelper.getEnchantedStack(lookup, SpectrumItems.NATURES_STAFF, Map.of(Enchantments.EFFICIENCY, 5)));
+				entries.accept(SpectrumEnchantmentHelper.getEnchantedStack(lookup, SpectrumItems.NATURES_STAFF.get(), Map.of(Enchantments.EFFICIENCY, 5)));
 				entries.accept(SpectrumItems.STAFF_OF_REMEMBRANCE);
 				entries.accept(SpectrumItems.CONSTRUCTORS_STAFF);
 				entries.accept(SpectrumItems.EXCHANGING_STAFF);
-				SpectrumEnchantmentHelper.addOrUpgradeEnchantmentOpt(lookup, SpectrumItems.EXCHANGING_STAFF.getDefaultInstance(), Enchantments.FORTUNE, 3, false, false).ifPresent(entries::accept);
-				SpectrumEnchantmentHelper.addOrUpgradeEnchantmentOpt(lookup, SpectrumItems.EXCHANGING_STAFF.getDefaultInstance(), Enchantments.SILK_TOUCH, 1, false, false).ifPresent(entries::accept);
-				SpectrumEnchantmentHelper.addOrUpgradeEnchantmentOpt(lookup, SpectrumItems.EXCHANGING_STAFF.getDefaultInstance(), SpectrumEnchantments.RESONANCE, 1, false, false).ifPresent(entries::accept);
+				SpectrumEnchantmentHelper.addOrUpgradeEnchantmentOpt(lookup, SpectrumItems.EXCHANGING_STAFF.get().getDefaultInstance(), Enchantments.FORTUNE, 3, false, false).ifPresent(entries::accept);
+				SpectrumEnchantmentHelper.addOrUpgradeEnchantmentOpt(lookup, SpectrumItems.EXCHANGING_STAFF.get().getDefaultInstance(), Enchantments.SILK_TOUCH, 1, false, false).ifPresent(entries::accept);
+				SpectrumEnchantmentHelper.addOrUpgradeEnchantmentOpt(lookup, SpectrumItems.EXCHANGING_STAFF.get().getDefaultInstance(), SpectrumEnchantments.RESONANCE, 1, false, false).ifPresent(entries::accept);
 				entries.accept(SpectrumItems.BLOCK_FLOODER);
 				entries.accept(SpectrumItems.ENDER_SPLICE);
-				entries.accept(SpectrumEnchantmentHelper.getEnchantedStack(lookup, SpectrumItems.ENDER_SPLICE, Map.of(SpectrumEnchantments.RESONANCE, 1, SpectrumEnchantments.INDESTRUCTIBLE, 1)));
+				entries.accept(SpectrumEnchantmentHelper.getEnchantedStack(lookup, SpectrumItems.ENDER_SPLICE.get(), Map.of(SpectrumEnchantments.RESONANCE, 1, SpectrumEnchantments.INDESTRUCTIBLE, 1)));
 				entries.accept(SpectrumItems.PERTURBED_EYE);
 				entries.accept(SpectrumBlocks.PARAMETRIC_MINING_DEVICE);
 				entries.accept(SpectrumBlocks.THREAT_CONFLUX);
@@ -194,7 +192,7 @@ public class SpectrumItemGroups {
 				entries.accept(SpectrumItems.MYSTERIOUS_COMPASS);
 			}).build();
 	
-	public static final ItemSubGroup FUNCTIONAL = new ItemSubGroup.Builder(MAIN, ItemGroupIDs.SUBTAB_FUNCTIONAL, Component.translatable("itemGroup.spectrum.functional"))
+	public static final CreativeSubTab FUNCTIONAL = new CreativeSubTab.Builder(MAIN, ItemGroupIDs.SUBTAB_FUNCTIONAL, Component.translatable("itemGroup.spectrum.functional"))
 			.styled(ItemGroupIDs.STYLE)
 			.entries((displayContext, entries) -> {
 				entries.accept(SpectrumBlocks.PEDESTAL_BASIC_TOPAZ);
@@ -322,7 +320,7 @@ public class SpectrumItemGroups {
 				entries.accept(SpectrumBlocks.ZOMBIE_IDOL);
 			}).build();
 	
-	public static final ItemSubGroup CUISINE = new ItemSubGroup.Builder(MAIN, ItemGroupIDs.SUBTAB_CUISINE, Component.translatable("itemGroup.spectrum.cuisine"))
+	public static final CreativeSubTab CUISINE = new CreativeSubTab.Builder(MAIN, ItemGroupIDs.SUBTAB_CUISINE, Component.translatable("itemGroup.spectrum.cuisine"))
 			.styled(ItemGroupIDs.STYLE)
 			.entries((displayContext, entries) -> {
 				entries.accept(SpectrumItems.IMBRIFER_COOKBOOK);
@@ -447,7 +445,7 @@ public class SpectrumItemGroups {
 				entries.accept(SpectrumItems.EVERNECTAR);
 			}).build();
 	
-	public static final ItemSubGroup RESOURCES = new ItemSubGroup.Builder(MAIN, ItemGroupIDs.SUBTAB_RESOURCES, Component.translatable("itemGroup.spectrum.resources"))
+	public static final CreativeSubTab RESOURCES = new CreativeSubTab.Builder(MAIN, ItemGroupIDs.SUBTAB_RESOURCES, Component.translatable("itemGroup.spectrum.resources"))
 			.styled(ItemGroupIDs.STYLE)
 			.entries((displayContext, entries) -> {
 				entries.accept(SpectrumItems.TOPAZ_SHARD);
@@ -634,7 +632,7 @@ public class SpectrumItemGroups {
 				entries.accept(SpectrumItems.DRAGONROT_BUCKET);
 			}).build();
 	
-	public static final ItemSubGroup PURE_RESOURCES = new ItemSubGroup.Builder(MAIN, ItemGroupIDs.SUBTAB_PURE_RESOURCES, Component.translatable("itemGroup.spectrum.pure_resources"))
+	public static final CreativeSubTab PURE_RESOURCES = new CreativeSubTab.Builder(MAIN, ItemGroupIDs.SUBTAB_PURE_RESOURCES, Component.translatable("itemGroup.spectrum.pure_resources"))
 			.styled(ItemGroupIDs.STYLE)
 			.entries((displayContext, entries) -> {
 				entries.accept(SpectrumItems.PURE_COAL);
@@ -763,7 +761,7 @@ public class SpectrumItemGroups {
 				
 			}).build();
 	
-	public static final ItemSubGroup BLOCKS = new ItemSubGroup.Builder(MAIN, ItemGroupIDs.SUBTAB_BLOCKS, Component.translatable("itemGroup.spectrum.blocks"))
+	public static final CreativeSubTab BLOCKS = new CreativeSubTab.Builder(MAIN, ItemGroupIDs.SUBTAB_BLOCKS, Component.translatable("itemGroup.spectrum.blocks"))
 			.styled(ItemGroupIDs.STYLE)
 			.entries((displayContext, entries) -> {
 				entries.accept(SpectrumBlocks.SMOOTH_BASALT_SLAB);
@@ -1072,7 +1070,7 @@ public class SpectrumItemGroups {
 				entries.accept(SpectrumBlocks.JADEITE_LOTUS_FLOWER);
 			}).build();
 	
-	public static final ItemSubGroup DECORATION = new ItemSubGroup.Builder(MAIN, ItemGroupIDs.SUBTAB_DECORATION, Component.translatable("itemGroup.spectrum.decoration"))
+	public static final CreativeSubTab DECORATION = new CreativeSubTab.Builder(MAIN, ItemGroupIDs.SUBTAB_DECORATION, Component.translatable("itemGroup.spectrum.decoration"))
 			.styled(ItemGroupIDs.STYLE)
 			.entries((displayContext, entries) -> {
 				entries.accept(SpectrumBlocks.POLISHED_TOPAZ);
@@ -1248,7 +1246,7 @@ public class SpectrumItemGroups {
 				entries.accept(SpectrumItems.MUSIC_DISC_DIVINITY);
 			}).build();
 	
-	public static final ItemSubGroup COLORED_WOOD = new ItemSubGroup.Builder(MAIN, ItemGroupIDs.SUBTAB_COLORED_WOOD, Component.translatable("itemGroup.spectrum.colored_wood"))
+	public static final CreativeSubTab COLORED_WOOD = new CreativeSubTab.Builder(MAIN, ItemGroupIDs.SUBTAB_COLORED_WOOD, Component.translatable("itemGroup.spectrum.colored_wood"))
 			.styled(ItemGroupIDs.STYLE)
 			.entries((displayContext, entries) -> {
 				entries.accept(SpectrumBlocks.WHITE_LOG);
@@ -1461,7 +1459,7 @@ public class SpectrumItemGroups {
 				entries.accept(SpectrumBlocks.BLACK_SLAB);
 			}).build();
 	
-	public static final ItemSubGroup MOB_HEADS = new ItemSubGroup.Builder(MAIN, ItemGroupIDs.SUBTAB_MOB_HEADS, Component.translatable("itemGroup.spectrum.mob_heads"))
+	public static final CreativeSubTab MOB_HEADS = new CreativeSubTab.Builder(MAIN, ItemGroupIDs.SUBTAB_MOB_HEADS, Component.translatable("itemGroup.spectrum.mob_heads"))
 			.styled(ItemGroupIDs.STYLE)
 			.entries((displayContext, entries) -> {
 				for (Block skullBlock : SpectrumSkullBlock.MOB_HEADS.values()) {
@@ -1469,7 +1467,7 @@ public class SpectrumItemGroups {
 				}
 			}).build();
 	
-	public static final ItemSubGroup CREATURES = new ItemSubGroup.Builder(MAIN, ItemGroupIDs.SUBTAB_CREATURES, Component.translatable("itemGroup.spectrum.creatures"))
+	public static final CreativeSubTab CREATURES = new CreativeSubTab.Builder(MAIN, ItemGroupIDs.SUBTAB_CREATURES, Component.translatable("itemGroup.spectrum.creatures"))
 			.styled(ItemGroupIDs.STYLE)
 			.entries((displayContext, entries) -> {
 				entries.accept(SpectrumItems.EGG_LAYING_WOOLY_PIG_SPAWN_EGG);
@@ -1481,7 +1479,7 @@ public class SpectrumItemGroups {
 				MemoryItem.appendEntries(displayContext.holders(), entries);
 			}).build();
 	
-	public static final ItemSubGroup ENERGY = new ItemSubGroup.Builder(MAIN, ItemGroupIDs.SUBTAB_ENERGY, Component.translatable("itemGroup.spectrum.energy"))
+	public static final CreativeSubTab ENERGY = new CreativeSubTab.Builder(MAIN, ItemGroupIDs.SUBTAB_ENERGY, Component.translatable("itemGroup.spectrum.energy"))
 			.styled(ItemGroupIDs.STYLE)
 			.entries((displayContext, entries) -> {
 				entries.accept(SpectrumItems.INK_FLASK);
@@ -1496,7 +1494,7 @@ public class SpectrumItemGroups {
 				entries.accept(SpectrumItems.ARTISTS_PALETTE.getFullStack());
 			}).build();
 	
-	public static final ItemSubGroup CREATIVE = new ItemSubGroup.Builder(MAIN, ItemGroupIDs.SUBTAB_CREATIVE, Component.translatable("itemGroup.spectrum.creative"))
+	public static final CreativeSubTab CREATIVE = new CreativeSubTab.Builder(MAIN, ItemGroupIDs.SUBTAB_CREATIVE, Component.translatable("itemGroup.spectrum.creative"))
 			.styled(ItemGroupIDs.STYLE)
 			.entries((displayContext, entries) -> {
 				entries.accept(SpectrumItems.PEDESTAL_TIER_1_STRUCTURE_PLACER);

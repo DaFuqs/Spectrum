@@ -4058,6 +4058,7 @@
   "commands.spectrum.primordial_fire.put_out.success": "Extinguished %d entities",
   "commands.spectrum.progression_sanity.success": "Printed the sanity checks findings to the servers console",
   "commands.spectrum.spawn_shooting_star.success": "Spawned %d shooting stars for each player",
+  "commands.spectrum.list_item_tags.list": "%s is in the following item tags:",
 
   "container.spectrum.bedrock_anvil": "Repair & Customize",
   "container.spectrum.bedrock_anvil.lore": "Lore:",

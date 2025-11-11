@@ -10,15 +10,16 @@ public class SpectrumCommands {
 	public static void register() {
 		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
 			LiteralCommandNode<CommandSourceStack> spectrumNode = Commands.literal("spectrum").build();
+			
 			ShootingStarCommand.register(spectrumNode);
 			SanityCommand.register(spectrumNode);
 			PrintConfigCommand.register(spectrumNode);
 			PrimordialFireCommand.register(spectrumNode);
 			DumpRegistriesCommand.register(spectrumNode);
 			DumpTagsCommand.register(spectrumNode);
+			ListItemTagsCommand.register(spectrumNode, registryAccess);
 			ResetShadersCommand.register(spectrumNode);
 			
-
 			dispatcher.getRoot().addChild(spectrumNode);
 		});
 	}

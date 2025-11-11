@@ -57,7 +57,7 @@ public class SanityCommand {
 			SpectrumCommon.locate("lategame/strike_up_hummingstone_hymn")         // its parent is 2 parents in
 	);
 	
-	private static final List<ResourceLocation> GUIDEBOOK_WARNING_WHITELIST = List.of(
+	private static final List<ResourceLocation> GUIDEBOOK_WARNING_WHITELIST = List.of( // TODO: unused
 			SpectrumCommon.locate("cuisine/cookbooks/brewers_handbook")           // "*_fluid" mod compat recipe page
 	);
 	

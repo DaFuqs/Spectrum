@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.compat.emi.recipes;
 
-import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.compat.emi.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import dev.emi.emi.api.stack.*;
@@ -10,6 +9,7 @@ import net.fabricmc.api.*;
 import net.minecraft.client.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.material.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -21,7 +21,7 @@ public class TitrationBarrelEmiRecipeGated extends GatedSpectrumEmiRecipe<ITitra
 	public TitrationBarrelEmiRecipeGated(RecipeHolder<ITitrationBarrelRecipe> entry) {
 		super(SpectrumEmiRecipeCategories.TITRATION_BARREL, entry, 136, 50);
 		inputs = new ArrayList<>();
-		if (recipe.getFluidInput() != FluidIngredient.EMPTY) {
+		if (!recipe.getFluidInput().fluid().get().isSame(Fluids.EMPTY)) {
 			inputs.add(FluidIngredientEmi.into(recipe.getFluidInput()));
 		}
 		inputs.addAll(recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getMatchingStacks().stream().map(EmiStack::of).toList())).toList());

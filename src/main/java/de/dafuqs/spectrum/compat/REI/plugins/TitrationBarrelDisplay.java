@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.compat.REI.plugins;
 
 import de.dafuqs.revelationary.api.advancements.*;
-import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.compat.REI.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import me.shedaniel.rei.api.common.category.*;
@@ -11,6 +10,7 @@ import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.client.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.material.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -42,7 +42,7 @@ public class TitrationBarrelDisplay extends GatedSpectrumDisplay {
 	
 	public static List<EntryIngredient> buildInputs(ITitrationBarrelRecipe recipe) {
 		List<EntryIngredient> inputs = REIHelper.toEntryIngredients(recipe.getIngredientStacks());
-		if (recipe.getFluidInput() != FluidIngredient.EMPTY) {
+		if (!recipe.getFluidInput().fluid().get().isSame(Fluids.EMPTY)) {
 			inputs.add(FluidIngredientREI.into(recipe.getFluidInput()));
 		}
 		return inputs;

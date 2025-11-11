@@ -90,6 +90,7 @@ public class PastelTransmission implements SchedulerMap.Callback {
 		}
 		if (inserted != amount) {
 			InWorldInteractionHelper.scatter(world, destinationPos.getX() + 0.5, destinationPos.getY() + 0.5, destinationPos.getZ() + 0.5, variant, amount - inserted);
+			destinationNode.addItemCountUnderway(-(amount - inserted));
 		}
     }
 

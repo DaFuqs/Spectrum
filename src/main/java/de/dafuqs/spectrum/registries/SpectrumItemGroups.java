@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.item_group.*;
+import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.blocks.mob_head.*;
 import de.dafuqs.spectrum.compat.*;
@@ -152,6 +153,10 @@ public class SpectrumItemGroups {
 				entries.accept(SpectrumItems.CRAFTING_TABLET);
 				entries.accept(SpectrumBlocks.BOTTOMLESS_BUNDLE);
 				entries.accept(SpectrumEnchantmentHelper.getEnchantedStack(lookup, SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem(), Map.of(Enchantments.POWER, 5, SpectrumEnchantments.VOIDING, 1)));
+				
+				ItemStack fullBottomlessStack = SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem().getDefaultInstance();
+				fullBottomlessStack.set(SpectrumDataComponentTypes.BOTTOMLESS_STACK, new BottomlessBundleItem.BottomlessStack(Items.ARROW.getDefaultInstance(), BottomlessBundleItem.getMaxStoredAmount(0), false));
+				entries.accept(fullBottomlessStack);
 				
 				entries.accept(SpectrumItems.KNOWLEDGE_GEM);
 				ItemStack enchantedKnowledgeGemStack = SpectrumEnchantmentHelper.getEnchantedStack(lookup, SpectrumItems.KNOWLEDGE_GEM.asItem(), Map.of(Enchantments.EFFICIENCY, 5, Enchantments.QUICK_CHARGE, 3));

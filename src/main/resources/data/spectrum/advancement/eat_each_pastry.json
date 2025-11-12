@@ -153,6 +153,36 @@
         }
       }
     },
+    "myceylon_apple_pie": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:myceylon_apple_pie"
+          ]
+        }
+      }
+    },
+    "myceylon_pumpkin_pie": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:myceylon_pumpkin_pie"
+          ]
+        }
+      }
+    },
+    "rabbit_cream_pie": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:rabbit_cream_pie"
+          ]
+        }
+      }
+    },
     "star_candy": {
       "trigger": "minecraft:consume_item",
       "conditions": {

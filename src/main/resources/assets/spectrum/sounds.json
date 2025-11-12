@@ -438,11 +438,26 @@
   "primordial_fire_crackle": {
     "subtitle": "spectrum.subtitles.primordial_fire_crackle",
     "sounds": [
-      "spectrum:primfire0",
-      "spectrum:primfire1",
-      "spectrum:primfire2",
-      "spectrum:primfire3",
-      "spectrum:primfire4"
+      {
+        "name": "spectrum:primfire0",
+        "volume": 0.6
+      },
+      {
+        "name": "spectrum:primfire1",
+        "volume": 0.6
+      },
+      {
+        "name": "spectrum:primfire2",
+        "volume": 0.6
+      },
+      {
+        "name": "spectrum:primfire3",
+        "volume": 0.6
+      },
+      {
+        "name": "spectrum:primfire4",
+        "volume": 0.6
+      }
     ]
   },
   "primordial_fire_dot": {

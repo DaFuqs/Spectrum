@@ -42,6 +42,7 @@ public class SpectrumEntityTypes {
 	public static final EntityType<DragonTalonEntity> DRAGON_TALON = register("dragon_talon", 4, 10, true, EntityDimensions.scalable(0.5F, 0.5F), true, DragonTalonEntity::new);
 	public static final EntityType<DraconicTwinswordEntity> DRACONIC_TWINSWORD = register("draconic_twinsword", 6, 2, true, EntityDimensions.scalable(0.5F, 0.5F), true, DraconicTwinswordEntity::new);
 	public static final EntityType<Marrow> MARROW = register("marrow", 6, 2, true, EntityDimensions.scalable(0.5F, 0.5F), true, Marrow::new);
+	public static final EntityType<Marrow> SPLINTERSPAWN = register("splinterspawn", 6, 2, true, EntityDimensions.scalable(0.5F, 0.5F), true, Marrow::new);
 	
 	public static void register() {
 		FabricDefaultAttributeRegistry.register(EGG_LAYING_WOOLY_PIG, EggLayingWoolyPigEntity.createEggLayingWoolyPigAttributes());

@@ -912,7 +912,10 @@
   },
   "spirit_instiller_crafting_finished": {
     "sounds": [
-      "spectrum:spirit_instiller_crafting_finished"
+      {
+        "name": "spectrum:spirit_instiller_crafting_finished",
+        "volume": 0.6
+      }
     ]
   },
   "natures_staff_use": {

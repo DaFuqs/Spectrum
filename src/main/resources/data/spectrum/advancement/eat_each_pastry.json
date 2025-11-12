@@ -123,6 +123,16 @@
         }
       }
     },
+    "cream_pastry": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:cream_pastry"
+          ]
+        }
+      }
+    },
     "lucky_roll": {
       "trigger": "minecraft:consume_item",
       "conditions": {

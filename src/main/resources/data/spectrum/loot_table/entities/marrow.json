@@ -86,7 +86,21 @@
             },
             {
               "function": "minecraft:set_potion",
-              "id": "spectrum:stiffness"
+              "id": "minecraft:mundane"
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:potion_contents": {
+                  "custom_effects": [
+                    {
+                      "id": "spectrum:stiffness",
+                      "amplifier": 0,
+                      "duration": 600
+                    }
+                  ]
+                }
+              }
             }
           ]
         }

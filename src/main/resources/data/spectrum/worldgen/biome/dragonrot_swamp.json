@@ -49,7 +49,7 @@
         "maxCount": 8
       },
       {
-        "type": "minecraft:skeleton",
+        "type": "spectrum:marrow",
         "weight": 100,
         "minCount": 4,
         "maxCount": 4

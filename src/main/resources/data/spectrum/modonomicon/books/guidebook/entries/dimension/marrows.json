@@ -16,14 +16,15 @@
   ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": -5,
-  "y": 0,
+  "x": -3,
+  "y": -1,
   "pages": [
     {
       "type": "modonomicon:entity",
       "title": "book.spectrum.guidebook.marrows.page0.name",
       "entity_id": "spectrum:marrow",
       "scale": 0.5,
+      "offset": 0.4,
       "text": "book.spectrum.guidebook.marrows.page0.text"
     },
     {

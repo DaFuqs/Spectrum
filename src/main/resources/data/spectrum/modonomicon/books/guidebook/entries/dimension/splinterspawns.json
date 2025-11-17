@@ -1,0 +1,44 @@
+{
+  "name": "book.spectrum.guidebook.splinterspawns.name",
+  "icon": {
+    "item": "spectrum:splinterspawn_head"
+  },
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/entity_interact/splinterspawn"
+  },
+  "category": "spectrum:dimension",
+  "hide_while_locked": true,
+  "parents": [
+    {
+      "entry": "spectrum:dimension/creatures",
+      "line_reversed": true
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": -2,
+  "y": 1,
+  "pages": [
+    {
+      "type": "modonomicon:entity",
+      "title": "book.spectrum.guidebook.splinterspawns.page0.name",
+      "entity_id": "spectrum:splinterspawn",
+      "scale": 0.5,
+      "text": "book.spectrum.guidebook.splinterspawns.page0.text"
+    },
+    {
+      "type": "spectrum:collection",
+      "title": "book.spectrum.guidebook.splinterspawns.page1.title",
+      "items": [
+        {
+          "id": "spectrum:splinterspawn_infested_pyrite"
+        },
+        {
+          "id": "spectrum:splinterspawn_infested_shale_clay"
+        }
+      ],
+      "text": "book.spectrum.guidebook.splinterspawns.page1.text"
+    }
+  ]
+}

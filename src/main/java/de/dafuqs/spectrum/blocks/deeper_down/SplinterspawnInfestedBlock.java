@@ -117,6 +117,7 @@ public class SplinterspawnInfestedBlock extends Block {
 			BlockPos offsetPos = pos.relative(direction);
 			if (!level.getBlockState(offsetPos).isSolid() && random.nextInt(16) == 0) {
 				playSound(level, pos, random);
+				break;
 			}
 		}
 	}

@@ -137,6 +137,9 @@ public class SpectrumConfig implements ConfigData {
 	public float DisarmingChancePerLevelMobs = 0.01F;
 	@Comment("If > 0 the Disarming Enchantment is able to remove armor and hand tools from a hit player. Should be a far smaller chance than for mobs")
 	public float DisarmingChancePerLevelPlayers = 0.001F;
+	@Comment("Experience dropped my mined infested blocks is multiplied by this value")
+	public float PestControlExperienceMultiplier = 2.0F;
+	
 	@Comment("The duration a glow ink sac gives night vision when wearing a glow vision helmet in seconds")
 	public int GlowVisionGogglesDuration = 240;
 	@Comment("If the Omni Accelerator should be able to have interactions in PvP that can drain the targets XP, modify their equipment, ... (configured via the requires_omni_accelerator_pvp_enabled item tag)")

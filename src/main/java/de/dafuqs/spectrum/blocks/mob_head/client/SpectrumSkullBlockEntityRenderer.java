@@ -182,8 +182,9 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
 				new Tuple<>(new StrayHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.MARROW_HEAD)), MarrowRenderer.MARROW_SKELETON_LOCATION),
 				new Tuple<>(new StrayHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.MARROW_HEAD_OVERLAY)), MarrowRenderer.MARROW_CLOTHES_LOCATION)
 		));
+		builder.put(SpectrumSkullType.SPLINTERSPAWN, List.of(new Tuple<>(new SilverfishHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.SPLINTERSPAWN_HEAD)), SpectrumCommon.locate("textures/entity/splinterspawn/splinterspawn.png"))));
 		
-        return builder.build();
+		return builder.build();
     }
 
     @Override

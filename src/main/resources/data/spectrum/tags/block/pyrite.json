@@ -15,6 +15,7 @@
     "spectrum:pyrite_stack",
     "spectrum:pyrite_paneling",
     "spectrum:pyrite_vent",
-    "spectrum:pyrite_projector"
+    "spectrum:pyrite_projector",
+    "spectrum:splinterspawn_infested_pyrite"
   ]
 }

@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
+import de.dafuqs.spectrum.blocks.deeper_down.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
@@ -18,6 +19,7 @@ public abstract class InfestedBlockMixin {
 	
 	/*
 	 * Do not spawn silverfish when block is broken with Resonance Tool
+	 * And Kill the Silverfish when using Pest Control, dropping XP
 	 */
 	@Inject(at = @At("HEAD"), method = "spawnAfterBreak", cancellable = true)
 	public void onStacksDropped(BlockState state, ServerLevel world, BlockPos pos, ItemStack stack, boolean dropExperience, CallbackInfo ci) {
@@ -28,13 +30,7 @@ public abstract class InfestedBlockMixin {
 		if (EnchantmentHelper.hasTag(stack, SpectrumEnchantmentTags.AUTO_KILLS_SILVERFISH)) {
 			Silverfish silverfishEntity = EntityType.SILVERFISH.create(world);
 			if (silverfishEntity != null) {
-				silverfishEntity.moveTo(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, 0.0F, 0.0F);
-				world.addFreshEntity(silverfishEntity);
-				silverfishEntity.spawnAnim();
-				silverfishEntity.kill();
-				
-				ExperienceOrb experienceOrbEntity = new ExperienceOrb(world, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, 10);
-				world.addFreshEntity(experienceOrbEntity);
+				SplinterspawnInfestedBlock.spawnEntityKillAndDropXP(world, pos, dropExperience, silverfishEntity);
 			}
 			ci.cancel();
 		}

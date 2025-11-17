@@ -337,6 +337,9 @@ public class SpectrumBlocks {
 	public static final Block PYRITE_TILE_WALL = register(blockWithItem("pyrite_tile_wall", new WallBlock(BlockBehaviour.Properties.ofFullCopy(PYRITE_TILES)), InkColors.BROWN));
 	public static final BlockFamily PYRITE_TILE_FAMILY = SpectrumModelHelper.registerBlockFamilyExceptBase(new BlockFamily.Builder(PYRITE_TILES).stairs(PYRITE_TILE_STAIRS).slab(PYRITE_TILE_SLAB).wall(PYRITE_TILE_WALL).getFamily(), TexturedModel.createDefault(b -> TextureMapping.cube(PYRITE_PLATING), ModelTemplates.CUBE_ALL));
 	
+	public static final Block SPLINTERSPAWN_INFESTED_PYRITE = register(parented(blockWithItem("splinterspawn_infested_pyrite", new SplinterspawnInfestedBlock(PYRITE, BlockBehaviour.Properties.ofFullCopy(PYRITE)), InkColors.BROWN), b -> PYRITE));
+	public static final Block SPLINTERSPAWN_INFESTED_SHALE_CLAY = register(parented(blockWithItem("splinterspawn_infested_shale_clay", new SplinterspawnInfestedBlock(SHALE_CLAY, BlockBehaviour.Properties.ofFullCopy(SHALE_CLAY)), InkColors.BROWN), b -> SHALE_CLAY));
+	
 	public static final Block DRAGONBONE = register(axisRotated(blockWithItem("dragonbone", new DragonboneBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BONE_BLOCK).strength(-1.0F, 22.0F).pushReaction(PushReaction.BLOCK)), InkColors.GREEN), TexturedModel.COLUMN));
 	public static final Block CRACKED_DRAGONBONE = register(axisRotated(blockWithItem("cracked_dragonbone", new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BONE_BLOCK).strength(100.0F, 1200.0F).pushReaction(PushReaction.BLOCK)), InkColors.GREEN), TexturedModel.COLUMN));
 	

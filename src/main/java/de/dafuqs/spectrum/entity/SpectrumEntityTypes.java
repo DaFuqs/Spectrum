@@ -42,7 +42,7 @@ public class SpectrumEntityTypes {
 	public static final EntityType<DragonTalonEntity> DRAGON_TALON = register("dragon_talon", 4, 10, true, EntityDimensions.scalable(0.5F, 0.5F), true, DragonTalonEntity::new);
 	public static final EntityType<DraconicTwinswordEntity> DRACONIC_TWINSWORD = register("draconic_twinsword", 6, 2, true, EntityDimensions.scalable(0.5F, 0.5F), true, DraconicTwinswordEntity::new);
 	public static final EntityType<Marrow> MARROW = register("marrow", 6, 2, true, EntityDimensions.scalable(0.5F, 0.5F), true, Marrow::new);
-	public static final EntityType<Marrow> SPLINTERSPAWN = register("splinterspawn", 6, 2, true, EntityDimensions.scalable(0.5F, 0.5F), true, Marrow::new);
+	public static final EntityType<Splinterspawn> SPLINTERSPAWN = register("splinterspawn", EntityType.Builder.of(Splinterspawn::new, MobCategory.MONSTER).sized(0.4F, 0.3F).eyeHeight(0.13F).passengerAttachments(0.2375F).clientTrackingRange(8));
 	
 	public static void register() {
 		FabricDefaultAttributeRegistry.register(EGG_LAYING_WOOLY_PIG, EggLayingWoolyPigEntity.createEggLayingWoolyPigAttributes());
@@ -52,6 +52,7 @@ public class SpectrumEntityTypes {
 		FabricDefaultAttributeRegistry.register(KINDLING, KindlingEntity.createKindlingAttributes());
 		FabricDefaultAttributeRegistry.register(ERASER, EraserEntity.createEraserAttributes());
 		FabricDefaultAttributeRegistry.register(MARROW, Marrow.createMarrowAttributes());
+		FabricDefaultAttributeRegistry.register(SPLINTERSPAWN, Splinterspawn.createSplinterSpawnAttributes());
 	}
 	
 	// TODO: migrate to FabricEntityTypeBuilder, so the "No data fixer registered for xxxx" errors go away

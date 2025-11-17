@@ -163,6 +163,7 @@ public class SpectrumModelLayers {
 	public static final ModelLayerLocation PRESERVATION_TURRET_HEAD = new ModelLayerLocation(SpectrumCommon.locate("preservation_turret_head"), "main");
 	public static final ModelLayerLocation MARROW_HEAD = new ModelLayerLocation(SpectrumCommon.locate("marrow_head"), "main");
 	public static final ModelLayerLocation MARROW_HEAD_OVERLAY = new ModelLayerLocation(SpectrumCommon.locate("marrow_head"), "overlay");
+	public static final ModelLayerLocation SPLINTERSPAWN_HEAD = new ModelLayerLocation(SpectrumCommon.locate("splinterspawn_head"), "main");
 
 	/**
 	 * Armor
@@ -313,6 +314,7 @@ public class SpectrumModelLayers {
 		EntityModelLayerRegistry.registerModelLayer(PRESERVATION_TURRET_HEAD, PreservationTurretHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(MARROW_HEAD, SkullModel::createMobHeadLayer);
 		EntityModelLayerRegistry.registerModelLayer(MARROW_HEAD_OVERLAY, SkullModel::createMobHeadLayer);
+		EntityModelLayerRegistry.registerModelLayer(SPLINTERSPAWN_HEAD, SkullModel::createMobHeadLayer);
 		
 		EntityModelLayerRegistry.registerModelLayer(BEDROCK_LAYER, () -> LayerDefinition.create(BedrockArmorModel.getMeshDefinition(), 128, 128));
 	}

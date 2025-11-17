@@ -289,6 +289,10 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent ENTITY_MARROW_DEATH = register("entity.marrow.death");
 	public static final SoundEvent ENTITY_MARROW_STEP = register("entity.marrow.step");
 	
+	public static final SoundEvent ENTITY_SPLINTERSPAWN_AMBIENT = register("entity.splinterspawn.ambient");
+	public static final SoundEvent ENTITY_SPLINTERSPAWN_HURT = register("entity.splinterspawn.hurt");
+	public static final SoundEvent ENTITY_SPLINTERSPAWN_DEATH = register("entity.splinterspawn.death");
+	public static final SoundEvent ENTITY_SPLINTERSPAWN_STEP = register("entity.splinterspawn.step");
 	
 	// OST - AMBIENT
 	public static final SoundEvent OST_AZURE = register("ost.azure");

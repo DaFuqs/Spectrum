@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.entity.entity;
 
+import de.dafuqs.spectrum.blocks.deeper_down.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.sounds.*;
@@ -7,9 +8,7 @@ import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.ai.goal.*;
-import net.minecraft.world.entity.ai.goal.target.*;
 import net.minecraft.world.entity.monster.*;
-import net.minecraft.world.entity.player.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 
@@ -23,10 +22,7 @@ public class Splinterspawn extends Silverfish {
 	protected void registerGoals() {
 		this.goalSelector.addGoal(1, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new ClimbOnTopOfPowderSnowGoal(this, this.level()));
-		this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.0, false));
-		// this.goalSelector.addGoal(5, new SilverfishMergeWithStoneGoal(this));
-		this.targetSelector.addGoal(1, (new HurtByTargetGoal(this, new Class[0])).setAlertOthers(new Class[0]));
-		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, Player.class, true));
+		this.goalSelector.addGoal(2, new SplinterspawnMoveToBlockGoal(this, 2.0));
 	}
 	
 	public static AttributeSupplier.Builder createSplinterSpawnAttributes() {
@@ -61,6 +57,43 @@ public class Splinterspawn extends Silverfish {
 	@Override
 	protected int getBaseExperienceReward() {
 		return 5;
+	}
+	
+	public class SplinterspawnMoveToBlockGoal extends MoveToBlockGoal {
+		
+		public SplinterspawnMoveToBlockGoal(Splinterspawn splinterspawn, double speedModifier) {
+			super(splinterspawn, speedModifier, 8);
+		}
+		
+		@Override
+		protected boolean isValidTarget(LevelReader level, BlockPos pos) {
+			return SplinterspawnInfestedBlock.isCompatibleHostBlock(level.getBlockState(pos));
+		}
+		
+		@Override
+		public void tick() {
+			if (this.isReachedTarget()) {
+				this.onReachedTarget();
+			} else {
+				super.tick();
+			}
+		}
+		
+		protected void onReachedTarget() {
+			if (Splinterspawn.this.level().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING)) {
+				LevelAccessor levelAccessor = this.mob.level();
+				
+				for (Direction direction : Direction.values()) {
+					BlockState blockState = levelAccessor.getBlockState(blockPos.relative(direction));
+					if (SplinterspawnInfestedBlock.isCompatibleHostBlock(blockState)) {
+						levelAccessor.setBlock(blockPos, SplinterspawnInfestedBlock.infestedStateByHost(blockState), 3);
+						this.mob.spawnAnim();
+						this.mob.discard();
+					}
+				}
+				
+			}
+		}
 	}
 	
 }

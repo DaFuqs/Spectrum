@@ -314,7 +314,7 @@ public class SpectrumModelLayers {
 		EntityModelLayerRegistry.registerModelLayer(PRESERVATION_TURRET_HEAD, PreservationTurretHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(MARROW_HEAD, SkullModel::createMobHeadLayer);
 		EntityModelLayerRegistry.registerModelLayer(MARROW_HEAD_OVERLAY, SkullModel::createMobHeadLayer);
-		EntityModelLayerRegistry.registerModelLayer(SPLINTERSPAWN_HEAD, SkullModel::createMobHeadLayer);
+		EntityModelLayerRegistry.registerModelLayer(SPLINTERSPAWN_HEAD, SilverfishHeadModel::getTexturedModelData);
 		
 		EntityModelLayerRegistry.registerModelLayer(BEDROCK_LAYER, () -> LayerDefinition.create(BedrockArmorModel.getMeshDefinition(), 128, 128));
 	}

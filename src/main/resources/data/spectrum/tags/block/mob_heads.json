@@ -141,7 +141,8 @@
     "spectrum:dolphin_head",
     "spectrum:pillager_head",
     "spectrum:piglin_brute_head",
-
+    "spectrum:marrow_head",
+    "spectrum:splinterspawn_head",
     "spectrum:axolotl_blue_wall_head",
     "spectrum:axolotl_wild_wall_head",
     "spectrum:axolotl_cyan_wall_head",
@@ -246,6 +247,8 @@
     "spectrum:armadillo_wall_head",
     "spectrum:breeze_wall_head",
     "spectrum:bogged_wall_head",
-    "spectrum:piglin_brute_wall_head"
+    "spectrum:piglin_brute_wall_head",
+    "spectrum:marrow_wall_head",
+    "spectrum:splinterspawn_wall_head"
   ]
 }

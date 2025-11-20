@@ -121,6 +121,8 @@
     "spectrum:pillager_head",
     "spectrum:armadillo_head",
     "spectrum:breeze_head",
-    "spectrum:bogged_head"
+    "spectrum:bogged_head",
+    "spectrum:marrow_head",
+    "spectrum:splinterspawn_head"
   ]
 }

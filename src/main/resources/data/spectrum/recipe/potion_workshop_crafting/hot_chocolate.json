@@ -3,7 +3,7 @@
   "base_ingredient": "minecraft:glass_bottle",
   "use_up_base_ingredient": true,
   "color": 9128969,
-  "ingredient1": "#c:milk",
+  "ingredient1": "#c:foods/milk",
   "ingredient2": "spectrum:fresh_chocolate",
   "result": {
     "id": "spectrum:hot_chocolate"

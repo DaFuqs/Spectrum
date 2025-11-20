@@ -448,20 +448,16 @@ public class SanityCommand {
 		for (RecipeHolder<?> recipe : source.getLevel().getRecipeManager().getRecipes()) {
 			ResourceLocation id = recipe.id();
 			Recipe<?> r = recipe.value();
+			int brokenCount = 0;
 			for (Ingredient ingredient : r.getIngredients()) {
 				if (ingredient.getItems().length == 0 && !ingredient.isEmpty() && ingredient != Ingredient.EMPTY) {
-					SpectrumCommon.logWarning("[SANITY: Recipe Ingredients] Recipe '" + id + "' has an empty ingredient");
+					brokenCount++;
 				}
 			}
-		}
-		BuiltInRegistries.ITEM.getTags().toList().forEach(tagKeyNamedPair -> {
-			TagKey<Item> tag = tagKeyNamedPair.getSecond().key();
-			int size = tagKeyNamedPair.getSecond().size();
-			
-			if (size == 0) {
-				SpectrumCommon.logWarning("[SANITY: Item Tags] Tag '" + tag + "' seems to be empty");
+			if (brokenCount > 0) {
+				SpectrumCommon.logWarning("[SANITY: Recipe Ingredients] Recipe '" + id + "' has " + brokenCount + " broken ingredient(s)");
 			}
-		});
+		}
 		
 		// items / blocks missing in the creative tab (this will also omit them from most recipe viewers)
 		Collection<ItemStack> itemGroupStacks = SpectrumItemGroups.MAIN.getSearchTabDisplayItems();

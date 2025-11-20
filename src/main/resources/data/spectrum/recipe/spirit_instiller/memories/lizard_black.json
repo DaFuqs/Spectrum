@@ -4,7 +4,7 @@
   "time": 800,
   "experience": 4.0,
   "ingredient1": "spectrum:lizard_black_head",
-  "ingredient2": "#c:raw_meat",
+  "ingredient2": "#minecraft:meat",
   "center_ingredient": {
     "tag": "spectrum:memory_bonding_agents",
     "count": 4

@@ -2,7 +2,7 @@
   "type": "spectrum:midnight_solution_converting",
   "ingredient": [
     {
-      "tag": "minecraft:music_discs"
+      "tag": "c:music_discs"
     }
   ],
   "result": {

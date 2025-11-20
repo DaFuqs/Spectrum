@@ -7,7 +7,7 @@
   "color": 10027008,
   "ingredient1": "spectrum:jade_vine_petals",
   "ingredient2": "spectrum:bloodboil_syrup",
-  "ingredient3": "#c:milk",
+  "ingredient3": "#c:foods/milk",
   "result": {
     "id": "spectrum:demon_tea",
     "components": {

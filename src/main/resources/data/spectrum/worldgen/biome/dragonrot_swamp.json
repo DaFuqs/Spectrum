@@ -61,12 +61,6 @@
         "maxCount": 4
       },
       {
-        "type": "minecraft:drowned",
-        "weight": 400,
-        "minCount": 4,
-        "maxCount": 8
-      },
-      {
         "type": "minecraft:spider",
         "weight": 10,
         "minCount": 4,

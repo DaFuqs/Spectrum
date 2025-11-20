@@ -5736,7 +5736,10 @@
   "tag.spectrum.white_logs": "White Logs",
   "tag.spectrum.workstaffs": "Workstaffs",
   "tag.spectrum.yellow_logs": "Yellow Logs",
-  "tag.spectrum.crossbows": "Spectrum Crossbows",
+  "tag.spectrum.gemstone_pillars": "Gemstone Pillars",
+  "tag.spectrum.reagent.complex": "Complex Reagents",
+  "tag.spectrum.reagent.reagents": "Reagents",
+  "tag.spectrum.reagent.simple": "Simple Reagents",
 
   "tag.trinkets.chest.pin": "Pins",
   "tag.trinkets.head.crown": "Crowns",

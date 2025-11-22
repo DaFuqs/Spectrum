@@ -28,6 +28,11 @@
       "title": "container.spectrum.rei.pedestal_recipe",
       "recipe_id": "spectrum:pedestal/tier1/redstone_sand",
       "text": "book.spectrum.guidebook.redstone_sand.page1.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.redstone_sand.features.title",
+      "text": "book.spectrum.guidebook.redstone_sand.features.text"
     }
   ]
 }

@@ -2235,7 +2235,7 @@
     "subtitle": "subtitles.block.generic.footsteps"
   },
 
-  "entity.silverfish.ambient": {
+  "entity.splinterspawn.ambient": {
     "sounds": [
       "mob/silverfish/say1",
       "mob/silverfish/say2",
@@ -2244,13 +2244,13 @@
     ],
     "subtitle": "spectrum.subtitles.entity.splinterspawn.ambient"
   },
-  "entity.silverfish.death": {
+  "entity.splinterspawn.death": {
     "sounds": [
       "mob/silverfish/kill"
     ],
     "subtitle": "spectrum.subtitles.entity.splinterspawn.death"
   },
-  "entity.silverfish.hurt": {
+  "entity.splinterspawn.hurt": {
     "sounds": [
       "mob/silverfish/hit1",
       "mob/silverfish/hit2",
@@ -2258,7 +2258,7 @@
     ],
     "subtitle": "spectrum.subtitles.entity.splinterspawn.hurt"
   },
-  "entity.silverfish.step": {
+  "entity.splinterspawn.step": {
     "sounds": [
       "mob/silverfish/step1",
       "mob/silverfish/step2",

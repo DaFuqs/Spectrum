@@ -39,6 +39,9 @@ public class ItemRoundelBlockEntityRenderer<T extends ItemRoundelBlockEntity> im
 			
 			float time = blockEntity.getLevel().getGameTime() % 24000 + tickDelta;
 			double radiant = Math.toRadians(360.0F / inventoryStacks.size());
+			if (blockEntity.reversed) {
+				radiant = -radiant;
+			}
 
 			for (int i = 0; i < inventoryStacks.size(); i++) {
 				poseStack.pushPose();

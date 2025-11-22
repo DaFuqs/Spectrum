@@ -1,5 +1,5 @@
 {
-  "name": "tag.spectrum.mob_heads",
+  "name": "book.spectrum.guidebook.mob_heads.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/mob_heads"
@@ -17,7 +17,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "tag.spectrum.mob_heads",
+      "title": "book.spectrum.guidebook.mob_heads.name",
       "text": "book.spectrum.guidebook.mob_heads.page0.text"
     },
     {

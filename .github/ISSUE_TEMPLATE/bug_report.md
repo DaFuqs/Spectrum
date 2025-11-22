@@ -7,6 +7,8 @@ assignees: ''
 
 ---
 
+**Note:** If the bug happens on Forge/Neoforge in combination with **Sinytra Connector**, please report all issues to Sinytra Connector instead
+
 **Describe the bug**
 A clear and concise description of what the bug is.
 

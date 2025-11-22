@@ -4,6 +4,7 @@ import com.klikli_dev.modonomicon.api.multiblock.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -736,8 +737,13 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 			
 			int resultRecipeSlot = getCraftingRecipeSlotDependingOnWidth(slot, width);
 			if (resultRecipeSlot < storedRecipe.getIngredients().size()) {
-				Ingredient ingredient = storedRecipe.getIngredients().get(resultRecipeSlot);
-				return ingredient.test(stack);
+				ItemStack stackInSlot = this.getItem(slot);
+				if (storedRecipe instanceof PedestalRecipe pedestalRecipe) {
+					IngredientStack ingredientStack = pedestalRecipe.getIngredientStacks().get(resultRecipeSlot);
+					return ingredientStack.getIngredient().test(stack) && stackInSlot.getCount() < ingredientStack.getCount();
+				} else {
+					return stackInSlot.isEmpty() && storedRecipe.getIngredients().get(resultRecipeSlot).test(stack);
+				}
 			} else {
 				return false;
 			}

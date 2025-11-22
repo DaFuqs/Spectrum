@@ -33,6 +33,10 @@
       "type": "modonomicon:text",
       "title": "book.spectrum.guidebook.redstone_sand.features.title",
       "text": "book.spectrum.guidebook.redstone_sand.features.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.redstone_sand.features2.text"
     }
   ]
 }

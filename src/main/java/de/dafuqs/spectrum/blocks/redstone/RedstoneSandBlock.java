@@ -61,7 +61,8 @@ public class RedstoneSandBlock extends FallingBlock {
 		int power = state.getValue(POWER);
 		int powerShould = Math.max(0, bestNeighborSignal - 1);
 		if (power != powerShould) {
-			world.setBlockAndUpdate(pos, world.getBlockState(pos).setValue(POWER, powerShould));
+			state = state.setValue(POWER, powerShould);
+			world.setBlockAndUpdate(pos, state);
 		}
 		if (powerShould > 0) {
 			// fall, if not supported

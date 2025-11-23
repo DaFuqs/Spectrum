@@ -1,0 +1,12 @@
+{
+  "type": "spectrum:ink_converting",
+  "group": "colorful_azaleas_ink",
+  "ingredient": [
+    {
+      "item": "colorfulazaleas:pink_blooming_azalea_leaves"
+    }
+  ],
+  "ink_color": "spectrum:pink",
+  "amount": 25,
+  "required_advancement": "spectrum:midgame/spectrum_midgame"
+}

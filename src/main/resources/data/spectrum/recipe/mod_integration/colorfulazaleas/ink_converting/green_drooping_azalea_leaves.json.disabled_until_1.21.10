@@ -1,0 +1,12 @@
+{
+  "type": "spectrum:ink_converting",
+  "group": "colorful_azaleas_ink",
+  "ingredient": [
+    {
+      "item": "colorfulazaleas:green_drooping_azalea_leaves"
+    }
+  ],
+  "ink_color": "spectrum:green",
+  "amount": 10,
+  "required_advancement": "spectrum:midgame/spectrum_midgame"
+}

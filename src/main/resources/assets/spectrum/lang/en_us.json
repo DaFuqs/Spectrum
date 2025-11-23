@@ -3149,6 +3149,12 @@
   "book.spectrum.guidebook.milky_resin.page1.title": "Plant-based Milk",
   "book.spectrum.guidebook.mob_heads.name": "Mob Heads",
   "book.spectrum.guidebook.mob_heads.page0.text": "I was able to get a Mob Head, but not one of the ones I knew about, but one I had never seen before.\\\n\\\nWhile they make for a nice display on my wall, they also still inherit a small spark of the creature's existence.",
+
+  "book.spectrum.guidebook.mod_integration.colorfulazaleas.name": "Colorful Azaleas",
+  "book.spectrum.guidebook.mod_integration.colorfulazaleas.page0.text": "Colored Trees!\\\nWell, different ones. But still.\\\n\\\nSimilar, but not identical to the [colored trees I created myself](entry://general/colored_trees). There has to be something there...",
+  "book.spectrum.guidebook.mod_integration.colorfulazaleas.page1.text": "Colored Azalea leaves, including their blooming variant, contain quite a bit of magical energy, able to be converted into Ink.",
+  "book.spectrum.guidebook.mod_integration.colorfulazaleas.page2.text": "While not highly efficient, flowering and drooping leaves will do, too.",
+
   "book.spectrum.guidebook.mod_integration.ae2.name": "Applied Energistics",
   "book.spectrum.guidebook.mod_integration.ae2.page0.text": "\"Any technology advanced enough is indistinguishable from magic\", I once heard.\\\n\\\nI'm still not entirely sure how this system manages to store so many blocks in such a small space, but since I regularly walk around with hundreds of square metres of dirt, I've never bothered to question it.",
   "book.spectrum.guidebook.mod_integration.ae2.page1.text": "Looks like the [#](bb00bb)Crystal Growth Accelerator[#]() can speed up the growth of all kinds of Gemstone Buds!",
@@ -5200,6 +5206,7 @@
   "recipeGroup.spectrum.weeping_gala_deco": "Weeping Gala Deco",
   "recipeGroup.spectrum.vanilla_enchantment_upgrades": "Vanilla Enchantment Upgrades",
   "recipeGroup.spectrum.sharestones": "Sharestones",
+  "recipeGroup.spectrum.colorful_azaleas_ink": "Ink from Colorful Azaleas",
 
   "spectrum.gui.guidebook.reveal_hint_button.text": "Uncover Insight    ",
   "spectrum.gui.guidebook.reveal_hint_button.tooltip.lacking_resource": "You do not have this in your inventory",

@@ -1,0 +1,47 @@
+{
+  "name": "book.spectrum.guidebook.mod_integration.colorfulazaleas.name",
+  "icon": {
+    "item": "colorfulazaleas:orange_azalea_sapling"
+  },
+  "condition": {
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:mod_loaded",
+        "mod_id": "colorfulazaleas"
+      },
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:place_pedestal"
+      }
+    ]
+  },
+  "category": "spectrum:mod_integration",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 10,
+  "y": 6,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.mod_integration.colorfulazaleas.name",
+      "text": "book.spectrum.guidebook.mod_integration.colorfulazaleas.page0.text"
+    },
+    {
+      "type": "spectrum:ink_converting",
+      "title": "container.spectrum.rei.ink_converting.title",
+      "recipe_id": "spectrum:mod_integration/colorfulazaleas/ink_converting/blue_azalea_leaves",
+      "recipe_id2": "spectrum:mod_integration/colorfulazaleas/ink_converting/blue_blooming_azalea_leaves",
+      "text": "book.spectrum.guidebook.mod_integration.colorfulazaleas.page1.text"
+    },
+    {
+      "type": "spectrum:ink_converting",
+      "title": "container.spectrum.rei.ink_converting.title",
+      "recipe_id": "spectrum:mod_integration/colorfulazaleas/ink_converting/blue_drooping_azalea_leaves",
+      "recipe_id2": "spectrum:mod_integration/colorfulazaleas/ink_converting/blue_flowering_azalea_leaves",
+      "text": "book.spectrum.guidebook.mod_integration.colorfulazaleas.page2.text"
+    }
+  ]
+}

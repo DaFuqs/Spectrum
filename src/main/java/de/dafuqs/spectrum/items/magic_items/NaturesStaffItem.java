@@ -114,10 +114,6 @@ public class NaturesStaffItem extends Item implements InkPowered {
 		}
 	}
 	
-	public float getInkCostMod(HolderLookup.Provider lookup, ItemStack itemStack) {
-		return 3.0F / (3.0F + SpectrumEnchantmentHelper.getLevel(lookup, Enchantments.EFFICIENCY, itemStack));
-	}
-	
 	@Override
 	public InteractionResult useOn(UseOnContext context) {
 		Level world = context.getLevel();
@@ -171,8 +167,8 @@ public class NaturesStaffItem extends Item implements InkPowered {
 							}
 						}
 						world.setBlock(blockPos, destinationState, 3);
-
-						payForUse(player, stack);
+						
+						payForStaffUse(player, stack, INK_COST, ITEM_COST);
 						success = true;
 					} else if (sourceState.is(SpectrumBlockTags.NATURES_STAFF_STACKABLE)) {
 						// blockstate marked as stackable => stack more on top!
@@ -209,15 +205,14 @@ public class NaturesStaffItem extends Item implements InkPowered {
 						// fertilizable => grow!
 						success = true;
 					} else {
-						if (sourceState.isFaceSturdy(world, blockPos, context.getClickedFace())
-								&& BoneMealItem.growWaterPlant(Items.BONE_MEAL.getDefaultInstance(), world, blockPos.relative(context.getClickedFace()), context.getClickedFace())) {
+						if (sourceState.isFaceSturdy(world, blockPos, context.getClickedFace()) && BoneMealItem.growWaterPlant(Items.BONE_MEAL.getDefaultInstance(), world, blockPos.relative(context.getClickedFace()), context.getClickedFace())) {
 							success = true;
 						}
 					}
 				}
 
 				if (success) {
-					payForUse(player, stack);
+					payForStaffUse(player, stack, INK_COST, ITEM_COST);
 					SpectrumAdvancementCriteria.NATURES_STAFF_USE.trigger(player, sourceState, world.getBlockState(blockPos));
 					return InteractionResult.CONSUME;
 				}
@@ -264,21 +259,6 @@ public class NaturesStaffItem extends Item implements InkPowered {
 		} else {
 			world.levelEvent(LevelEvent.PARTICLES_AND_SOUND_PLANT_GROWTH, blockPos, 15);
 		}
-	}
-	
-	private boolean payForUse(Player player, ItemStack stack) {
-		boolean paid = player.isCreative(); // free for creative players
-		if (!paid) { // try pay with ink
-			paid = InkPowered.tryDrainEnergy(player, INK_COST, getInkCostMod(player.level().registryAccess(), stack));
-		}
-		if (!paid && player.getInventory().contains(ITEM_COST)) {  // try pay with item
-			int efficiencyLevel = SpectrumEnchantmentHelper.getLevel(player.level().registryAccess(), Enchantments.EFFICIENCY, stack);
-			if (player.getRandom().nextFloat() > (2.0 / (2 + efficiencyLevel))) {
-				return true;
-			}
-			paid = ContainerHelper.clearOrCountMatchingItems(player.getInventory(), ITEM_COST::test, 1, false) == 1;
-		}
-		return paid;
 	}
 	
 	private static boolean canUse(Player player) {

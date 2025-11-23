@@ -10,6 +10,7 @@ import dev.emi.trinkets.api.*;
 import net.fabricmc.api.*;
 import net.minecraft.*;
 import net.minecraft.client.*;
+import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
@@ -18,6 +19,8 @@ import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.item.enchantment.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -257,6 +260,25 @@ public interface InkPowered {
 		}
 		
 		return false;
+	}
+	
+	default boolean payForStaffUse(Player player, ItemStack stack, @NotNull InkCost inkCost, @Nullable Ingredient itemCost) {
+		boolean paid = player.isCreative(); // free for creative players
+		if (!paid) { // try pay with ink
+			paid = InkPowered.tryDrainEnergy(player, inkCost, getInkCostMod(player.level().registryAccess(), stack));
+		}
+		if (!paid && itemCost != null && player.getInventory().contains(itemCost)) {  // try pay with item
+			int efficiencyLevel = SpectrumEnchantmentHelper.getLevel(player.level().registryAccess(), Enchantments.EFFICIENCY, stack);
+			if (player.getRandom().nextFloat() > (2.0 / (2 + efficiencyLevel))) {
+				return true;
+			}
+			paid = ContainerHelper.clearOrCountMatchingItems(player.getInventory(), itemCost::test, 1, false) == 1;
+		}
+		return paid;
+	}
+	
+	default float getInkCostMod(HolderLookup.Provider lookup, ItemStack itemStack) {
+		return 3.0F / (3.0F + SpectrumEnchantmentHelper.getLevel(lookup, Enchantments.EFFICIENCY, itemStack));
 	}
 	
 }

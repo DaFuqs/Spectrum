@@ -8,6 +8,7 @@ import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
+import net.fabricmc.fabric.api.item.v1.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
@@ -19,6 +20,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.*;
 import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
@@ -44,19 +46,19 @@ public class RadianceStaffItem extends Item implements InkPowered {
 		super(settings);
 	}
 	
-	public static boolean placeLight(Level world, BlockPos targetPos, ServerPlayer playerEntity) {
+	public boolean placeLight(Level world, BlockPos targetPos, ServerPlayer playerEntity, ItemStack radianceStaff) {
 		if (!GenericClaimModsCompat.canPlaceBlock(world, targetPos, playerEntity)) {
 			return false;
 		}
 
 		BlockState targetBlockState = world.getBlockState(targetPos);
 		if (targetBlockState.isAir()) {
-			if (playerEntity.isCreative() || InkPowered.tryDrainEnergy(playerEntity, INK_COST) || ContainerHelper.clearOrCountMatchingItems(playerEntity.getInventory(), COST::test, 1, false) == 1) {
+			if (payForStaffUse(playerEntity, radianceStaff, INK_COST, COST)) {
 				world.setBlock(targetPos, SpectrumBlocks.PERSISTENT_LIGHT.defaultBlockState(), 3);
 				return true;
 			}
 		} else if (targetBlockState.is(Blocks.WATER)) {
-			if (playerEntity.isCreative() || InkPowered.tryDrainEnergy(playerEntity, INK_COST) || ContainerHelper.clearOrCountMatchingItems(playerEntity.getInventory(), COST::test, 1, false) == 1) {
+			if (payForStaffUse(playerEntity, radianceStaff, INK_COST, COST)) {
 				world.setBlock(targetPos, SpectrumBlocks.PERSISTENT_LIGHT.defaultBlockState().setValue(WATERLOGGED, true), 3);
 				return true;
 			}
@@ -113,7 +115,7 @@ public class RadianceStaffItem extends Item implements InkPowered {
 	public void onUseTick(Level world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
 		// trigger the items' usage action every x ticks
 		if (user instanceof ServerPlayer serverPlayerEntity && user.getTicksUsingItem() > USE_DURATION && user.getTicksUsingItem() % USE_DURATION == 0) {
-			usage(world, serverPlayerEntity);
+			usage(world, serverPlayerEntity, stack);
 		}
 	}
 	
@@ -144,7 +146,7 @@ public class RadianceStaffItem extends Item implements InkPowered {
 		} else {
 			// try placing a light
 			BlockPos targetPos = pos.relative(direction);
-			if (placeLight(world, targetPos, (ServerPlayer) player)) {
+			if (placeLight(world, targetPos, (ServerPlayer) player, context.getItemInHand())) {
 				RadianceStaffItem.playSoundAndParticles(world, targetPos, (ServerPlayer) player, world.random.nextInt(5), world.random.nextInt(5));
 			} else {
 				RadianceStaffItem.playDenySound(world, player);
@@ -153,7 +155,7 @@ public class RadianceStaffItem extends Item implements InkPowered {
 		return InteractionResult.CONSUME;
 	}
 	
-	public void usage(Level world, ServerPlayer user) {
+	public void usage(Level world, ServerPlayer user, ItemStack radianceStaff) {
 		int useTimes = (user.getTicksUsingItem() / USE_DURATION);
 		int maxCheckDistance = Math.min(MAX_REACH_STEPS, useTimes);
 		
@@ -176,10 +178,9 @@ public class RadianceStaffItem extends Item implements InkPowered {
 				);
 				
 				if (world.getBrightness(LightLayer.BLOCK, targetPos) < MIN_LIGHT_LEVEL) {
-					if (placeLight(world, targetPos, user)) {
+					if (placeLight(world, targetPos, user, radianceStaff)) {
 						success = true;
 						playSoundAndParticles(world, targetPos, user, useTimes, iteration);
-						break;
 					}
 				}
 			}
@@ -193,6 +194,11 @@ public class RadianceStaffItem extends Item implements InkPowered {
 	@Override
 	public int getEnchantmentValue() {
 		return 8;
+	}
+	
+	@Override
+	public boolean canBeEnchantedWith(ItemStack stack, Holder<Enchantment> enchantment, EnchantingContext context) {
+		return super.canBeEnchantedWith(stack, enchantment, context) || enchantment.is(Enchantments.EFFICIENCY);
 	}
 	
 	@Override

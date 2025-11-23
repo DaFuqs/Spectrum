@@ -5876,6 +5876,8 @@
   "lore.spectrum.heartbound_staff.lore_2": "Then that's a bug - you should not be able to get this",
   "lore.spectrum.heartbound_staff.lore_3": "Please report it!",
 
+  "spectrum.filled_map.undergrowth_manor_surveillance": "Surveillance Map",
+
   "______food_tooltips": "Food Tooltips:",
   "spectrum.food.withChance": "%s [%d%%]",
   "spectrum.food.whenEaten": "When Eaten:",

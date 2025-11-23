@@ -17,6 +17,7 @@ import net.minecraft.world.level.*;
 public class BookInkConvertingPageRenderer extends BookGatedRecipePageRenderer<InkConvertingRecipe, BookGatedRecipePage<InkConvertingRecipe>> {
 	
 	private static final ResourceLocation BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/modonomicon/ink_converting.png");
+	
 	private BookTextHolder inkText1;
 	private BookTextHolder inkText2;
 	private BookTextHolder amountText1;
@@ -27,18 +28,20 @@ public class BookInkConvertingPageRenderer extends BookGatedRecipePageRenderer<I
 		
 		ResourceLocation font = BookDataManager.Client.get().safeFont(this.page.getBook().getFont());
 		
-		InkConvertingRecipe recipe1 = page.getRecipe1().value();
+		RecipeHolder<InkConvertingRecipe> recipe1 = page.getRecipe1();
 		if (recipe1 != null) {
-			Component colorText = Component.translatable("container.spectrum.rei.ink_converting.color", recipe1.getInkColor().getName()).withStyle(s -> s.withFont(font));
-			Component amountText = Component.translatable("container.spectrum.rei.ink_converting.amount", recipe1.getInkAmount()).withStyle(s -> s.withFont(font));
+			InkConvertingRecipe recipe = recipe1.value();
+			Component colorText = Component.translatable("container.spectrum.rei.ink_converting.color", recipe.getInkColor().getName()).withStyle(s -> s.withFont(font));
+			Component amountText = Component.translatable("container.spectrum.rei.ink_converting.amount", recipe.getInkAmount()).withStyle(s -> s.withFont(font));
 			inkText1 = new BookTextHolder(colorText);
 			amountText1 = new BookTextHolder(amountText);
 		}
 		
-		InkConvertingRecipe recipe2 = page.getRecipe2().value();
+		RecipeHolder<InkConvertingRecipe> recipe2 = page.getRecipe2();
 		if (recipe2 != null) {
-			Component colorText = Component.translatable("container.spectrum.rei.ink_converting.color", recipe2.getInkColor().getName()).withStyle(s -> s.withFont(font));
-			Component amountText = Component.translatable("container.spectrum.rei.ink_converting.amount", recipe2.getInkAmount()).withStyle(s -> s.withFont(font));
+			InkConvertingRecipe recipe = recipe2.value();
+			Component colorText = Component.translatable("container.spectrum.rei.ink_converting.color", recipe.getInkColor().getName()).withStyle(s -> s.withFont(font));
+			Component amountText = Component.translatable("container.spectrum.rei.ink_converting.amount", recipe.getInkAmount()).withStyle(s -> s.withFont(font));
 			inkText2 = new BookTextHolder(colorText);
 			amountText2 = new BookTextHolder(amountText);
 		}
@@ -46,7 +49,7 @@ public class BookInkConvertingPageRenderer extends BookGatedRecipePageRenderer<I
 	
 	@Override
 	protected int getRecipeHeight() {
-		return 34;
+		return 40;
 	}
 	
 	@Override
@@ -63,10 +66,11 @@ public class BookInkConvertingPageRenderer extends BookGatedRecipePageRenderer<I
 		}
 		
 		// the ingredient
+		parentScreen.renderItemStack(drawContext, recipeX + 3, recipeY + 14, mouseX, mouseY, recipe.getToastSymbol());
 		parentScreen.renderIngredient(drawContext, recipeX + 3, recipeY + 3, mouseX, mouseY, recipe.getIngredients().getFirst());
 		
-		this.renderBookTextHolder(drawContext, second ? inkText2 : inkText1, 50, recipeY + 1, BookEntryScreen.PAGE_WIDTH);
-		this.renderBookTextHolder(drawContext, second ? amountText2 : amountText1, 50, recipeY + 11, BookEntryScreen.PAGE_WIDTH);
+		this.renderBookTextHolder(drawContext, second ? inkText2 : inkText1, 50, recipeY + 6, BookEntryScreen.PAGE_WIDTH);
+		this.renderBookTextHolder(drawContext, second ? amountText2 : amountText1, 50, recipeY + 16, BookEntryScreen.PAGE_WIDTH);
 	}
 	
 }

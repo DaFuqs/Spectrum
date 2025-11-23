@@ -84,6 +84,11 @@ public class SpectrumConfig implements ConfigData {
 	public int VanillaRecipeCraftingTimeTicks = 40;
 	
 	@Comment("""
+			How much an item gets repaired when crafting it with Moonstruck Nectar
+			""")
+	public float RepairAnythingRecipeRepairPercentage = 0.33F;
+	
+	@Comment("""
 			How fast decay will be spreading on random tick
 			can be used to slow down propagation speed of decay in the worlds
 			decay does use very few resources, but if your fear of someone letting decay

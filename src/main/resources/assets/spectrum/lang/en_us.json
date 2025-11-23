@@ -5858,6 +5858,7 @@
   "text.autoconfig.Spectrum.option.PostProcess": "Enable Post-Process Shaders",
   "text.autoconfig.Spectrum.option.DimensionBrightnessMod": "Dimension Brightness",
   "text.autoconfig.Spectrum.option.PastelNetworkParticles": "Pastel Network transfers spawn particles",
+  "text.autoconfig.Spectrum.option.RepairAnythingRecipeRepairPercentage": "How much an item gets repaired when crafting it with Moonstruck Nectar",
   "text.autoconfig.Spectrum.title": "Spectrum",
 
   "trinkets.slot.chest.pin": "Pin",

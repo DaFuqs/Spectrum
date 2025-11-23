@@ -5871,6 +5871,11 @@
   "lore.spectrum.time_travel_tap": "Worthy of a Time Traveller",
   "lore.spectrum.evernectar": "...Evernectar?",
 
+  "lore.spectrum.heartbound_staff.name": "You shouldn't be seeing this in Survival",
+  "lore.spectrum.heartbound_staff.lore_1": "If you aren't in creative right now",
+  "lore.spectrum.heartbound_staff.lore_2": "Then that's a bug - you should not be able to get this",
+  "lore.spectrum.heartbound_staff.lore_3": "Please report it!",
+
   "______food_tooltips": "Food Tooltips:",
   "spectrum.food.withChance": "%s [%d%%]",
   "spectrum.food.whenEaten": "When Eaten:",

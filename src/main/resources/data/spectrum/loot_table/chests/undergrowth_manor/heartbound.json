@@ -2,34 +2,16 @@
   "type": "minecraft:chest",
   "pools": [
     {
-      "rolls": 52,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:gather_node_crystal"
-        }
-      ]
-    },
-    {
       "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:courier_statue"
-        }
-      ]
-    },
-    {
-      "rolls": 1,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:spectral_shard",
+          "name": "spectrum:paintbrush",
           "functions": [
             {
               "function": "minecraft:set_name",
               "name": {
-                "text": "You shouldn't be seeing this in Survival"
+                "translate": "lore.spectrum.heartbound_staff.name"
               }
             },
             {
@@ -37,13 +19,13 @@
               "mode": "replace_all",
               "lore": [
                 {
-                  "text": "If you aren't in creative right now"
+                  "translate": "lore.spectrum.heartbound_staff.lore_1"
                 },
                 {
-                  "text": "Then that's a bug - you should not be able to get this"
+                  "translate": "lore.spectrum.heartbound_staff.lore_2"
                 },
                 {
-                  "text": "Please report it!"
+                  "translate": "lore.spectrum.heartbound_staff.lore_3"
                 }
               ]
             }

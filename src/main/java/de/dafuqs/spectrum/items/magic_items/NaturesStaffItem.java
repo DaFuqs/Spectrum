@@ -23,6 +23,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.*;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
@@ -33,8 +34,8 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 public class NaturesStaffItem extends Item implements InkPowered {
-
-	public static final ItemStack ITEM_COST = new ItemStack(SpectrumItems.VEGETAL, 1);
+	
+	public static final Ingredient ITEM_COST = Ingredient.of(SpectrumItemTags.NATURES_STAFF_CONSUMABLE);
 	public static final InkCost INK_COST = new InkCost(InkColors.LIME, 20);
 	
 	public NaturesStaffItem(Properties settings) {
@@ -272,11 +273,10 @@ public class NaturesStaffItem extends Item implements InkPowered {
 		}
 		if (!paid && player.getInventory().contains(ITEM_COST)) {  // try pay with item
 			int efficiencyLevel = SpectrumEnchantmentHelper.getLevel(player.level().registryAccess(), Enchantments.EFFICIENCY, stack);
-			if (efficiencyLevel == 0) {
-				paid = InventoryHelper.removeFromInventoryWithRemainders(player, ITEM_COST);
-			} else {
-				paid = player.getRandom().nextFloat() > (2.0 / (2 + efficiencyLevel)) || InventoryHelper.removeFromInventoryWithRemainders(player, ITEM_COST);
+			if (player.getRandom().nextFloat() > (2.0 / (2 + efficiencyLevel))) {
+				return true;
 			}
+			paid = ContainerHelper.clearOrCountMatchingItems(player.getInventory(), ITEM_COST::test, 1, false) == 1;
 		}
 		return paid;
 	}

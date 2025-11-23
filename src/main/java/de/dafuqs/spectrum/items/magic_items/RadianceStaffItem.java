@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.decoration.*;
 import de.dafuqs.spectrum.compat.claims.*;
-import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
@@ -19,6 +18,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.*;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
@@ -38,7 +38,7 @@ public class RadianceStaffItem extends Item implements InkPowered {
 	public static final int MIN_LIGHT_LEVEL = 10;
 	
 	public static final InkCost INK_COST = new InkCost(InkColors.YELLOW, 10);
-	public static final ItemStack COST = new ItemStack(SpectrumItems.SHIMMERSTONE_GEM, 1);
+	public static final Ingredient COST = Ingredient.of(SpectrumItemTags.RADIANCE_STAFF_CONSUMABLE);
 	
 	public RadianceStaffItem(Properties settings) {
 		super(settings);
@@ -51,12 +51,12 @@ public class RadianceStaffItem extends Item implements InkPowered {
 
 		BlockState targetBlockState = world.getBlockState(targetPos);
 		if (targetBlockState.isAir()) {
-			if (playerEntity.isCreative() || InkPowered.tryDrainEnergy(playerEntity, INK_COST) || InventoryHelper.removeFromInventoryWithRemainders(playerEntity, COST)) {
+			if (playerEntity.isCreative() || InkPowered.tryDrainEnergy(playerEntity, INK_COST) || ContainerHelper.clearOrCountMatchingItems(playerEntity.getInventory(), COST::test, 1, false) == 1) {
 				world.setBlock(targetPos, SpectrumBlocks.PERSISTENT_LIGHT.defaultBlockState(), 3);
 				return true;
 			}
 		} else if (targetBlockState.is(Blocks.WATER)) {
-			if (playerEntity.isCreative() || InkPowered.tryDrainEnergy(playerEntity, INK_COST) || InventoryHelper.removeFromInventoryWithRemainders(playerEntity, COST)) {
+			if (playerEntity.isCreative() || InkPowered.tryDrainEnergy(playerEntity, INK_COST) || ContainerHelper.clearOrCountMatchingItems(playerEntity.getInventory(), COST::test, 1, false) == 1) {
 				world.setBlock(targetPos, SpectrumBlocks.PERSISTENT_LIGHT.defaultBlockState().setValue(WATERLOGGED, true), 3);
 				return true;
 			}

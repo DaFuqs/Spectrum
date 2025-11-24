@@ -37,7 +37,7 @@ public class SpectrumEntityTypes {
 	public static final EntityType<LizardEntity> LIZARD = register("lizard", EntityType.Builder.of(LizardEntity::new, MobCategory.MONSTER).sized(1.0F, 0.7F).clientTrackingRange(10));
 	public static final EntityType<KindlingEntity> KINDLING = register("kindling", EntityType.Builder.of(KindlingEntity::new, MobCategory.CREATURE).sized(1.0F, 1.0F).passengerAttachments(0.5F).clientTrackingRange(10).fireImmune());
 	public static final EntityType<KindlingCoughEntity> KINDLING_COUGH = register("kindling_cough", EntityType.Builder.<KindlingCoughEntity>of(KindlingCoughEntity::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(10).fireImmune());
-	public static final EntityType<EraserEntity> ERASER = register("eraser", EntityType.Builder.of(EraserEntity::new, MobCategory.MONSTER).sized(0.3F, 0.3F).clientTrackingRange(10));
+	public static final EntityType<EraserEntity> ERASER = register("eraser", EntityType.Builder.of(EraserEntity::new, MobCategory.MONSTER).sized(0.4F, 0.4F).clientTrackingRange(10));
 	public static final EntityType<ItemProjectileEntity> ITEM_PROJECTILE = register("item_projectile", EntityType.Builder.<ItemProjectileEntity>of(ItemProjectileEntity::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(6).updateInterval(20));
 	public static final EntityType<DragonTalonEntity> DRAGON_TALON = register("dragon_talon", 4, 10, true, EntityDimensions.scalable(0.5F, 0.5F), true, DragonTalonEntity::new);
 	public static final EntityType<DraconicTwinswordEntity> DRACONIC_TWINSWORD = register("draconic_twinsword", 6, 2, true, EntityDimensions.scalable(0.5F, 0.5F), true, DraconicTwinswordEntity::new);

@@ -140,7 +140,7 @@ public class MemoryItem extends BlockItem {
 	}
 	
 	public static int getEggColor(ItemStack stack, int tintIndex) {
-		if (stack.has(SpectrumDataComponentTypes.MEMORY) && !isUnrecognizable(stack)) {
+		if (!isUnrecognizable(stack)) {
 			var entityType = getEntityType(stack);
 			if (entityType.isPresent()) {
 				EntityType<?> type = entityType.get();

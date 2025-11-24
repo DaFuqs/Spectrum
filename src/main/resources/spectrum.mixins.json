@@ -105,7 +105,6 @@
     "compat.connectormod.absent.ExplosionMixin",
     "compat.connectormod.absent.PlayerEntityMixin",
     "compat.connectormod.present.ExplosionMixin",
-    "compat.connectormod.present.PlayerEntityMixin",
 		"compat.kubejs.absent.RecipeManagerMixin",
     "compat.quilt_status_effect.absent.LivingEntityPreventStatusClearMixin",
     "compat.quilt_status_effect.present.SpectrumEventListenersMixin"

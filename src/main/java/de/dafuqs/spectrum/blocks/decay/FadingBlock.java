@@ -8,6 +8,7 @@ import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
+import net.minecraft.util.valueproviders.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
@@ -19,11 +20,11 @@ public class FadingBlock extends DecayBlock {
 	public static final MapCodec<FadingBlock> CODEC = simpleCodec(FadingBlock::new);
 	
 	public FadingBlock(Properties settings) {
-		super(settings, SpectrumCommon.CONFIG.FadingDecayTickRate, SpectrumCommon.CONFIG.FadingCanDestroyBlockEntities, 1, 1F);
+		super(settings, SpectrumCommon.CONFIG.FadingDecayTickRate, SpectrumCommon.CONFIG.FadingCanDestroyBlockEntities, 1, 1F, UniformInt.of(0, 1));
 	}
 
 	@Override
-	protected MapCodec<? extends FadingBlock> codec() {
+	public MapCodec<? extends FadingBlock> codec() {
 		return CODEC;
 	}
 	

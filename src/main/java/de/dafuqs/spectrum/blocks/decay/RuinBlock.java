@@ -11,6 +11,7 @@ import net.minecraft.core.particles.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
+import net.minecraft.util.valueproviders.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
@@ -25,12 +26,12 @@ public class RuinBlock extends DecayBlock {
 	public static final MapCodec<RuinBlock> CODEC = simpleCodec(RuinBlock::new);
 	
 	public RuinBlock(Properties settings) {
-		super(settings, SpectrumCommon.CONFIG.RuinDecayTickRate, SpectrumCommon.CONFIG.RuinCanDestroyBlockEntities, 3, 5F);
+		super(settings, SpectrumCommon.CONFIG.RuinDecayTickRate, SpectrumCommon.CONFIG.RuinCanDestroyBlockEntities, 3, 5F, UniformInt.of(2, 3));
 		registerDefaultState(getStateDefinition().any().setValue(CONVERSION, Conversion.NONE));
 	}
 
 	@Override
-	protected MapCodec<? extends RuinBlock> codec() {
+	public MapCodec<? extends RuinBlock> codec() {
 		return CODEC;
 	}
 	

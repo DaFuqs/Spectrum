@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.items.trinkets;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.progression.*;
 import dev.emi.trinkets.api.*;
+import net.fabricmc.loader.api.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
@@ -50,6 +51,10 @@ public abstract class SpectrumTrinketItem extends TrinketItem {
 	@Override
 	public boolean canEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		if (entity instanceof PlayerEntity playerEntity) {
+			if (FabricLoader.getInstance().isModLoaded("accessories")) {
+				// prevents issue: https://github.com/wisp-forest/accessories/issues/194
+				return super.canEquip(stack, slot, entity);
+			}
 			// does the player have the matching advancement?
 			if (AdvancementHelper.hasAdvancement(playerEntity, getUnlockIdentifier())) {
 				// Can only a single trinket of that type be equipped at once?

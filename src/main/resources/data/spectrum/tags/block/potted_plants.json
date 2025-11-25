@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
+    "spectrum:potted_amaranth_bushel",
+    "spectrum:potted_blood_orchid",
+    "spectrum:potted_resonant_lily",
 
     "spectrum:potted_white_sapling",
     "spectrum:potted_orange_sapling",
@@ -17,7 +20,11 @@
     "spectrum:potted_brown_sapling",
     "spectrum:potted_green_sapling",
     "spectrum:potted_red_sapling",
-    "spectrum:potted_black_sapling"
+    "spectrum:potted_black_sapling",
 
+    "spectrum:potted_slate_noxshroom",
+    "spectrum:potted_ebony_noxshroom",
+    "spectrum:potted_ivory_noxshroom",
+    "spectrum:potted_chestnut_noxshroom"
   ]
 }

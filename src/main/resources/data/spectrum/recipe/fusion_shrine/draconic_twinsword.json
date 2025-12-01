@@ -23,6 +23,13 @@
     },
     {
       "item": "minecraft:enchanted_book",
+      "preview_components": {
+        "minecraft:stored_enchantments": {
+          "levels": {
+            "spectrum:sniping": 2
+          }
+        }
+      },
       "predicates": {
         "minecraft:stored_enchantments": [
           {

@@ -20,7 +20,12 @@
     "spectrum:clotted_cream",
     {
       "item": "spectrum:infused_beverage",
-      "recipeViewNbt": "{Variant: \"sawblade_holly_liquor\", Color: 13723654 }",
+      "preview_components": {
+        "spectrum:infused_beverage": {
+          "variant": "sawblade_holly_liquor",
+          "color": 13723654
+        }
+      },
       "predicates": {
         "spectrum:infused_beverage": [
           {

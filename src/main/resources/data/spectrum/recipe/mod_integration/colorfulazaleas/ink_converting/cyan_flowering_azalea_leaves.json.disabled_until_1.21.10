@@ -8,5 +8,14 @@
   ],
   "ink_color": "spectrum:cyan",
   "amount": 10,
-  "required_advancement": "spectrum:midgame/spectrum_midgame"
+
+  "required_advancement": "spectrum:midgame/spectrum_midgame",
+  "fabric:load_conditions": [
+   {
+     "condition": "fabric:all_mods_loaded",
+     "values": [
+  	   "colorfulazaleas"
+     ]
+   }
+  ]
 }

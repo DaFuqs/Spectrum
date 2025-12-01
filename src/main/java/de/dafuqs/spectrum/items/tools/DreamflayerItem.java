@@ -33,8 +33,6 @@ public class DreamflayerItem extends SwordItem implements InkPowered, Activatabl
 	/**
 	 * The less armor the attacker with this sword has and the more
 	 * the one that gets attacked, the higher the damage will be
-	 * <p>
-	 * See LivingEntityMixin spectrum$applyDreamflayerDamage
 	 */
 	public static final float ARMOR_DIFFERENCE_DAMAGE_MULTIPLIER = 2.5F;
 	
@@ -131,8 +129,8 @@ public class DreamflayerItem extends SwordItem implements InkPowered, Activatabl
 			float damage = baseAttackDamage * (active ? 1.5f : 1f);
 			float speed = baseAttackSpeed * (active ? 0.75f : 1f);
 			stack.update(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.EMPTY, comp -> {
-				var builder = ItemAttributeModifiers.builder();
-				for (var entry : comp.modifiers()) {
+				ItemAttributeModifiers.Builder builder = ItemAttributeModifiers.builder();
+				for (ItemAttributeModifiers.Entry entry : comp.modifiers()) {
 					if (entry.modifier().is(BASE_ATTACK_DAMAGE_ID))
 						builder.add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, damage, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND);
 					if (entry.modifier().is(BASE_ATTACK_SPEED_ID))

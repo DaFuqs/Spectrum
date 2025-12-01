@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.sound;
 
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.*;
@@ -58,7 +59,7 @@ public class BlockAuraSoundInstance extends AbstractSoundInstance implements Tic
 			updatePositionAndCount();
 		}
 		
-		float targetVolume = (float) Mth.clamp((sources.size() * 0.05 - 0.5), MIN_VOLUME, MAX_VOLUME);
+		float targetVolume = (float) Mth.clamp((sources.size() * 0.05 - 0.5), MIN_VOLUME, MAX_VOLUME) * SpectrumCommon.CONFIG.OreAuraSoundVolume;
 		
 		if (this.volumeHold < targetVolume) {
 			this.volumeHold += VOLUME_EASING_STEPS;

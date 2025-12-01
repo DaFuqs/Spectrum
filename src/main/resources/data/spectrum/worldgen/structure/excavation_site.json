@@ -3,7 +3,7 @@
   "biomes": "#spectrum:has_structure/excavation_site",
   "step": "underground_structures",
   "spawn_overrides": {},
-  "terrain_adaptation": "beard_box",
+  "terrain_adaptation": "encapsulate",
   "start_pool": "spectrum:excavation_site/main",
   "size": 2,
   "start_height": {

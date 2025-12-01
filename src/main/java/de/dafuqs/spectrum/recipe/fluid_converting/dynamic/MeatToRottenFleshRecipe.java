@@ -4,7 +4,7 @@ import com.neep.neepmeat.init.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.core.registries.*;
+import net.fabricmc.fabric.impl.recipe.ingredient.builtin.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
@@ -18,10 +18,11 @@ public class MeatToRottenFleshRecipe extends DragonrotConvertingRecipe {
 	}
 	
 	private static Ingredient getMeatsIngredient() {
-		return Ingredient.of(BuiltInRegistries.ITEM.getOrCreateTag(ItemTags.MEAT)
-				.stream()
-				.filter(item -> item.value() == Items.ROTTEN_FLESH && !(SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.NEEPMEAT_ID) && item == NMItems.MEAT_SCRAP))
-				.map(ItemStack::new));
+		if (SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.NEEPMEAT_ID)) {
+			return new DifferenceIngredient(Ingredient.of(ItemTags.MEAT), Ingredient.of(Items.ROTTEN_FLESH, NMItems.MEAT_SCRAP)).toVanilla();
+		} else {
+			return new DifferenceIngredient(Ingredient.of(ItemTags.MEAT), Ingredient.of(Items.ROTTEN_FLESH)).toVanilla();
+		}
 	}
 	
 	@Override

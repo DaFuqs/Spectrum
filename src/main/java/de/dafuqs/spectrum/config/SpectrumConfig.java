@@ -127,7 +127,7 @@ public class SpectrumConfig implements ConfigData {
 	public float BlockSoundVolume = 0.5F;
 	
 	@Comment("The volume for audio that plays when close to certain ores")
-	public float OreAuraSoundVolume = 0.75F;
+	public float OreAuraSoundVolume = 0.5F;
 	
 	@ConfigEntry.Gui.Tooltip
 	@Comment("When empty, enchantments that the player has not unlocked show up with a scattered name. You can use a different name here")

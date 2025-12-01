@@ -61,12 +61,17 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 		}
 	}
 	
-	public void setData(LivingEntity livingEntity, @NotNull ItemStack creatureSpawnItemStack) {
-		if (livingEntity instanceof Player playerEntity)
+	public void setData(LivingEntity livingEntity, @NotNull ItemStack memoryStack) {
+		if (livingEntity instanceof Player playerEntity) {
 			setOwner(playerEntity);
+			if (playerEntity instanceof ServerPlayer serverPlayer && MemoryItem.getEntityType(memoryStack).isEmpty()) {
+				// TODO: can be moved to a 'placed_block' criterion, once they are able to check for existence of components
+				Support.grantAdvancementCriterion(serverPlayer, SpectrumAdvancements.PLACE_FORGOTTEN_MEMORY, "place_forgotten_memory");
+			}
+		}
 		
-		if (creatureSpawnItemStack.getItem() instanceof MemoryItem) {
-			this.memoryItemStack = creatureSpawnItemStack.copy();
+		if (memoryStack.getItem() instanceof MemoryItem) {
+			this.memoryItemStack = memoryStack.copy();
 			this.memoryItemStack.setCount(1);
 		}
 		

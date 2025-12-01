@@ -471,6 +471,8 @@
   "advancements.spectrum.failed_creating_player_spawner.description": "Try to create a Player spawner",
   "advancements.spectrum.failed_creating_empty_or_blacklisted_spawner.title": "This Ain't It, Chief",
   "advancements.spectrum.failed_creating_empty_or_blacklisted_spawner.description": "Fail creating a spawner of a powerful mob - or one the Spirit Instiller does not recognize.",
+  "advancements.spectrum.place_forgotten_memory.title": "Shadows of what was",
+  "advancements.spectrum.place_forgotten_memory.description": "We all die twice: once when we simply cease to be and then when those who knew us are no longer here.",
 
   "attribute.name.spectrum.mental_presence": "Mental Presence",
   "attribute.name.spectrum.mental_presence.desc": "Potency of mind related effects",

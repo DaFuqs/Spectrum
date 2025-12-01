@@ -14,6 +14,7 @@ import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.particle.render.*;
+import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.render.*;
 import de.dafuqs.spectrum.sound.*;
@@ -123,8 +124,10 @@ public class SpectrumClientEventListeners {
 		});
 		
 		ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> SpectrumColorProviders.registerClient());
-		ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> Pastel.clearClientInstance());
-		
+		ClientPlayConnectionEvents.DISCONNECT.register((clientPacketListener, minecraft) -> {
+			Pastel.clearClientInstance();
+			UnlockToastManager.clear();
+		});
 		ItemTooltipCallback.EVENT.register((stack, tooltipContext, tooltipType, lines) -> {
 			if (stack.has(DataComponents.FOOD)) {
 				if (BuiltInRegistries.ITEM.getKey(stack.getItem()).getNamespace().equals(SpectrumCommon.MOD_ID)) {

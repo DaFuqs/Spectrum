@@ -23,6 +23,7 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.material.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -72,23 +73,22 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 			return SpectrumItems.PURE_ALCOHOL.getDefaultInstance();
 		} else {
 			// add up all stew effects with their durations from the input stacks
-			var stewEffects = new HashMap<Holder<MobEffect>, Double>();
-			for (var stack : stacks) {
-				var stewEffectsComponent = SuspiciousStewEffects.EMPTY;
-				if (stack.getItem() instanceof SuspiciousEffectHolder sussyBakka) // IN THIS WORL YOU ARE EITHER A SUSSY BAKKA OR A BUSSY SUKKA
-					stewEffectsComponent = sussyBakka.getSuspiciousEffects();
-				
-				for (var effect : stewEffectsComponent.effects()) {
-					var key = effect.effect();
-					var duration = effect.duration() * (Support.logBase(2, 1 + stack.getCount()));
-					stewEffects.put(key, stewEffects.getOrDefault(key, 0d) + duration);
+			Map<Holder<MobEffect>, Double> stewEffects = new HashMap<>();
+			for (ItemStack stack : stacks) {
+				@Nullable SuspiciousEffectHolder suspiciousEffectHolder = SuspiciousEffectHolder.tryGet(stack.getItem());
+				if (suspiciousEffectHolder != null) {
+					for (SuspiciousStewEffects.Entry effect : suspiciousEffectHolder.getSuspiciousEffects().effects()) {
+						Holder<MobEffect> key = effect.effect();
+						double duration = effect.duration() * (Support.logBase(2, 1 + stack.getCount()));
+						stewEffects.put(key, stewEffects.getOrDefault(key, 0D) + duration);
+					}
 				}
 			}
 			
-			var finalStatusEffects = new ArrayList<MobEffectInstance>();
+			List<MobEffectInstance> finalStatusEffects = new ArrayList<>();
 			double clampedAlcPercent = Mth.clamp(alcPercent, 1D, 20D); // a too high number will cause issues with the effects length exceeding the integer limit, lol
-			for (var entry : stewEffects.entrySet()) {
-				var finalDurationTicks = entry.getValue() * Math.pow(2, clampedAlcPercent);
+			for (Map.Entry<Holder<MobEffect>, Double> entry : stewEffects.entrySet()) {
+				double finalDurationTicks = entry.getValue() * Math.pow(2, clampedAlcPercent);
 				finalStatusEffects.add(new MobEffectInstance(entry.getKey(), (int) finalDurationTicks, 0));
 			}
 			

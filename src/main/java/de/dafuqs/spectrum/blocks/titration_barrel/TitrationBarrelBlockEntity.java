@@ -171,7 +171,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity implements FluidStac
 		
 		Optional<RecipeHolder<ITitrationBarrelRecipe>> optionalRecipe = getRecipeForInventory(world);
 		if (optionalRecipe.isEmpty()) {
-			if (getItems().isEmpty() && getFluidVariant().isBlank()) {
+			if (inventoryCount == 0 && getFluidVariant().isBlank()) {
 				message = Component.translatable("block.spectrum.titration_barrel.empty_when_tapping");
 			} else {
 				message = Component.translatable("block.spectrum.titration_barrel.invalid_recipe_when_tapping");
@@ -179,30 +179,27 @@ public class TitrationBarrelBlockEntity extends BlockEntity implements FluidStac
 			shouldReset = true;
 		} else {
 			ITitrationBarrelRecipe recipe = optionalRecipe.get().value();
-			
-			long secondsFermented = (this.tapTime - this.sealTime) / 1000;
-			var output = recipe.getOutputCountAfterAngelsShare(world, biome.getBaseTemperature(), secondsFermented);
-			
+
 			if (recipe.getFluidInput().test(this.getFluidVariant())) {
 				if (recipe.canPlayerCraft(player)) {
 					boolean canTap = true;
 					Item tappingItem = recipe.getTappingItem();
 					if (tappingItem != Items.AIR) {
 						if (handStack.is(tappingItem)) {
-							output = Math.min(output, handStack.getCount());
-							handStack.shrink(output);
+							handStack.shrink(1);
 						} else {
 							message = Component.translatable("block.spectrum.titration_barrel.tapping_item_required").append(tappingItem.getDescription());
 							canTap = false;
 						}
 					}
 					if (canTap) {
+						long secondsFermented = (this.tapTime - this.sealTime) / 1000;
 						float downfall = ((BiomeAccessor) (Object) biome).getClimateSettings().downfall();
-						harvestedStack = recipe.getTitrationResult(this, secondsFermented, downfall);
-						harvestedStack.setCount(output);
+						harvestedStack = recipe.tap(this, secondsFermented, downfall);
 						
-						this.extractedBottles += output;
+						this.extractedBottles += 1;
 						shouldReset = isEmpty(biome.getBaseTemperature(), this.extractedBottles, recipe);
+						
 					}
 				} else {
 					message = Component.translatable("block.spectrum.titration_barrel.recipe_not_unlocked");

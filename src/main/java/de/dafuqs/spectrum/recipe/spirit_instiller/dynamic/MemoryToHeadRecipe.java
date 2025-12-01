@@ -86,7 +86,7 @@ public class MemoryToHeadRecipe extends SpiritInstillerRecipe {
 	}
 	
 	@Override
-	public boolean canCraftWithStacks(RecipeInput inventory) {
+	public boolean canCraftWithStacks(InstanceRecipeInput<SpiritInstillerBlockEntity> inventory) {
 		ItemStack instillerStack = inventory.getItem(0);
 		return getSkullTypeForMemory(instillerStack).isPresent();
 	}

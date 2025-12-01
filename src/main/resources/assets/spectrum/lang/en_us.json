@@ -468,7 +468,9 @@
   "advancements.spectrum.become_enlightened.title": "The Professional Catposter",
   "advancements.spectrum.become_enlightened.description": "From posting cats every day, to solving the secrets of the universe: you are truly the best of the best. You finally know how many A's it takes to spell Noaaan's name.",
   "advancements.spectrum.failed_creating_player_spawner.title": "Not how babies are made",
-  "advancements.spectrum.failed_creating_player_spawner.description": "Try creating a Player spawner",
+  "advancements.spectrum.failed_creating_player_spawner.description": "Try to create a Player spawner",
+  "advancements.spectrum.failed_creating_empty_or_blacklisted_spawner.title": "This Ain't It, Chief",
+  "advancements.spectrum.failed_creating_empty_or_blacklisted_spawner.description": "Fail creating a spawner of a powerful mob - or one the Spirit Instiller does not recognize.",
 
   "attribute.name.spectrum.mental_presence": "Mental Presence",
   "attribute.name.spectrum.mental_presence.desc": "Potency of mind related effects",

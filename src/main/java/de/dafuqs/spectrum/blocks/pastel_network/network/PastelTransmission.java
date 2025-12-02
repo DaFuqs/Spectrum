@@ -5,8 +5,11 @@ import de.dafuqs.spectrum.helpers.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.fabricmc.fabric.api.transfer.v1.storage.*;
 import net.fabricmc.fabric.api.transfer.v1.transaction.*;
+import net.minecraft.nbt.*;
+import net.minecraft.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.util.math.*;
+import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;

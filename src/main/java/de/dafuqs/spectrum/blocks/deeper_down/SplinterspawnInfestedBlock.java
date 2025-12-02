@@ -75,13 +75,14 @@ public class SplinterspawnInfestedBlock extends Block {
 		Collections.shuffle(directions);
 		for (Direction direction : directions) {
 			BlockPos offsetPos = pos.relative(direction);
-			BlockState offsetBlock = level.getBlockState(offsetPos);
-			if (isCompatibleHostBlock(offsetBlock)) {
-				newState = hostStateByInfested(level.getBlockState(pos));
-				level.setBlockAndUpdate(offsetPos, infestedStateByHost(offsetBlock));
+			BlockState offsetState = level.getBlockState(offsetPos);
+			if (isCompatibleHostBlock(offsetState)) {
+				newState = getUninfestedState(state);
+				BlockState newOffsetState = getInfestedState(offsetState);
+				level.setBlockAndUpdate(offsetPos, newOffsetState);
+				level.levelEvent(player, LevelEvent.PARTICLES_DESTROY_BLOCK, offsetPos, getId(newOffsetState));
 				
 				playSound(level, offsetPos, level.random);
-				// TODO: play particles on the neighboring block
 				break;
 			}
 		}
@@ -115,7 +116,7 @@ public class SplinterspawnInfestedBlock extends Block {
 		
 		for (Direction direction : Direction.values()) {
 			BlockPos offsetPos = pos.relative(direction);
-			if (!level.getBlockState(offsetPos).isSolid() && random.nextInt(16) == 0) {
+			if (!level.getBlockState(offsetPos).isSolid() && random.nextInt(300) == 0) {
 				playSound(level, pos, random);
 				break;
 			}
@@ -124,7 +125,6 @@ public class SplinterspawnInfestedBlock extends Block {
 	
 	protected void playSound(Level level, BlockPos pos, RandomSource random) {
 		level.playLocalSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SpectrumSoundEvents.ENTITY_SPLINTERSPAWN_AMBIENT, SoundSource.AMBIENT, 1.0F + random.nextFloat(), random.nextFloat() * 0.7F + 0.3F, false);
-		
 	}
 	
 	public static void spawnEntityKillAndDropXP(ServerLevel level, BlockPos pos, boolean dropExperience, Silverfish splinterspawn) {
@@ -140,12 +140,24 @@ public class SplinterspawnInfestedBlock extends Block {
 		}
 	}
 	
-	public static BlockState infestedStateByHost(BlockState host) {
-		return BlockVariantHelper.getNewStateWithProperties(HOST_TO_INFESTED_STATES, host, () -> BLOCK_BY_HOST_BLOCK.get(host.getBlock()).defaultBlockState());
+	public static BlockState getInfestedState(BlockState notInfested) {
+		BlockState target = HOST_TO_INFESTED_STATES.getOrDefault(notInfested, null);
+		if (target == null) {
+			Block targetBlock = BLOCK_BY_HOST_BLOCK.get(notInfested.getBlock());
+			target = targetBlock.withPropertiesOf(notInfested);
+			HOST_TO_INFESTED_STATES.put(notInfested, target);
+		}
+		return target;
 	}
 	
-	public BlockState hostStateByInfested(BlockState infested) {
-		return BlockVariantHelper.getNewStateWithProperties(INFESTED_TO_HOST_STATES, infested, () -> this.getHostBlock().defaultBlockState());
+	public BlockState getUninfestedState(BlockState infested) {
+		BlockState target = INFESTED_TO_HOST_STATES.getOrDefault(infested, null);
+		if (target == null) {
+			Block targetBlock = ((SplinterspawnInfestedBlock) infested.getBlock()).hostBlock;
+			target = targetBlock.withPropertiesOf(infested);
+			INFESTED_TO_HOST_STATES.put(infested, target);
+		}
+		return target;
 	}
 	
 }

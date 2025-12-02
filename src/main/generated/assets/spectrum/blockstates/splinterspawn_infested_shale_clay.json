@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "spectrum:block/shale_clay"
+      "model": "spectrum:block/splinterspawn_infested_shale_clay"
     }
   }
 }

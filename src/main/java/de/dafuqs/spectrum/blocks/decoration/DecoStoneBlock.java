@@ -39,7 +39,7 @@ public class DecoStoneBlock extends Block {
 			BlockState blockState = world.getBlockState(blockPos);
 			if (blockState.is(state.getBlock()) && blockState.getValue(HALF) == DoubleBlockHalf.LOWER) {
 				world.setBlock(blockPos, Blocks.AIR.defaultBlockState(), 35);
-				world.levelEvent(player, 2001, blockPos, Block.getId(blockState));
+				world.levelEvent(player, LevelEvent.PARTICLES_DESTROY_BLOCK, blockPos, Block.getId(blockState));
 			}
 		}
 	}

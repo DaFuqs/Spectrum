@@ -9,10 +9,8 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
-import net.minecraft.world.level.block.state.properties.*;
 
 import java.util.*;
-import java.util.function.*;
 
 public class BlockVariantHelper {
 	
@@ -132,23 +130,6 @@ public class BlockVariantHelper {
 		repairedStates.put(block, returnBlock);
 		
 		return returnBlock;
-	}
-	
-	public static BlockState getNewStateWithProperties(Map<BlockState, BlockState> stateMap, BlockState state, Supplier<BlockState> supplier) {
-		return stateMap.computeIfAbsent(state, (blockState) -> {
-			BlockState blockState2 = supplier.get();
-			for (Property<?> property : blockState.getProperties()) {
-				copyProperty(blockState, blockState2, property);
-			}
-			return blockState2;
-		});
-	}
-	
-	private static <T extends Comparable<T>> BlockState copyProperty(BlockState from, BlockState to, Property<T> property) {
-		if (to.hasProperty(property)) {
-			return to.setValue(property, from.getValue(property));
-		}
-		return to;
 	}
 	
 }

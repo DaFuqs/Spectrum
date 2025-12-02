@@ -22,13 +22,14 @@ public class Splinterspawn extends Silverfish {
 	protected void registerGoals() {
 		this.goalSelector.addGoal(1, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new ClimbOnTopOfPowderSnowGoal(this, this.level()));
-		this.goalSelector.addGoal(2, new SplinterspawnMoveToBlockGoal(this, 2.0));
+		this.goalSelector.addGoal(2, new SplinterspawnMoveToBlockGoal(this, 1.5));
+		this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0));
 	}
 	
 	public static AttributeSupplier.Builder createSplinterSpawnAttributes() {
 		return Monster.createMonsterAttributes()
 				.add(Attributes.MAX_HEALTH, 24.0)
-				.add(Attributes.MOVEMENT_SPEED, 0.3)
+				.add(Attributes.MOVEMENT_SPEED, 0.5)
 				.add(Attributes.ATTACK_DAMAGE, 4.0)
 				.add(Attributes.ARMOR, 3.0)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 0.2);
@@ -59,6 +60,11 @@ public class Splinterspawn extends Silverfish {
 		return 5;
 	}
 	
+	@Override
+	public void tick() {
+		super.tick();
+	}
+	
 	public class SplinterspawnMoveToBlockGoal extends MoveToBlockGoal {
 		
 		public SplinterspawnMoveToBlockGoal(Splinterspawn splinterspawn, double speedModifier) {
@@ -83,16 +89,25 @@ public class Splinterspawn extends Silverfish {
 			if (Splinterspawn.this.level().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING)) {
 				LevelAccessor levelAccessor = this.mob.level();
 				
+				if (tryMergeInto(levelAccessor.getBlockState(blockPos), levelAccessor)) {
+					return;
+				}
 				for (Direction direction : Direction.values()) {
 					BlockState blockState = levelAccessor.getBlockState(blockPos.relative(direction));
-					if (SplinterspawnInfestedBlock.isCompatibleHostBlock(blockState)) {
-						levelAccessor.setBlock(blockPos, SplinterspawnInfestedBlock.infestedStateByHost(blockState), 3);
-						this.mob.spawnAnim();
-						this.mob.discard();
-					}
+					tryMergeInto(blockState, levelAccessor);
 				}
 				
 			}
+		}
+		
+		private boolean tryMergeInto(BlockState blockState, LevelAccessor levelAccessor) {
+			if (SplinterspawnInfestedBlock.isCompatibleHostBlock(blockState)) {
+				levelAccessor.setBlock(blockPos, SplinterspawnInfestedBlock.getInfestedState(blockState), 3);
+				this.mob.spawnAnim();
+				this.mob.discard();
+				return true;
+			}
+			return false;
 		}
 	}
 	

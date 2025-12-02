@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "spectrum:block/pyrite"
+      "model": "spectrum:block/splinterspawn_infested_pyrite"
     }
   }
 }

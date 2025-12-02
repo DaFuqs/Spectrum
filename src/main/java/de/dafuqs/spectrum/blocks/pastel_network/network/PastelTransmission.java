@@ -5,11 +5,8 @@ import de.dafuqs.spectrum.helpers.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.fabricmc.fabric.api.transfer.v1.storage.*;
 import net.fabricmc.fabric.api.transfer.v1.transaction.*;
-import net.minecraft.nbt.*;
-import net.minecraft.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.util.math.*;
-import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -90,7 +87,9 @@ public class PastelTransmission implements SchedulerMap.Callback {
 		}
 		if (inserted != amount) {
 			InWorldInteractionHelper.scatter(world, destinationPos.getX() + 0.5, destinationPos.getY() + 0.5, destinationPos.getZ() + 0.5, variant, amount - inserted);
-			destinationNode.addItemCountUnderway(-(amount - inserted));
+			if (destinationNode != null) {
+				destinationNode.addItemCountUnderway(-(amount - inserted));
+			}
 		}
     }
 

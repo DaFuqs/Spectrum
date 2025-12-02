@@ -147,7 +147,7 @@ public class PrimordialFireBlock extends BaseFireBlock {
 			entity.hurt(SpectrumDamageTypes.primordialFire(world, null), DAMAGE);
 			OnPrimordialFireComponent.addPrimordialFireTicks(livingEntity, 5);
 		}
-		if (world.getGameTime() % 20 == 0 && entity instanceof ItemEntity itemEntity) {
+		if (entity instanceof ItemEntity itemEntity && !itemEntity.hasPickUpDelay()) {
 			PrimordialFireBurningRecipe.processItemEntity(world, itemEntity);
 		}
 	}

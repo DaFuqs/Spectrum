@@ -40,7 +40,6 @@ public abstract class TridentEntityMixin extends AbstractArrow {
 	
 	@Unique
 	private double getDamage(ItemStack stack) {
-		// TODO: is that correct?
 		ItemAttributeModifiers attributeModifiersComponent = stack.getOrDefault(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.EMPTY);
 		return attributeModifiersComponent.compute(1.0D, EquipmentSlot.MAINHAND);
 	}

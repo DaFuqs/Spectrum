@@ -2604,11 +2604,11 @@
 
   "book.spectrum.guidebook.marrows.name": "Marrows",
   "book.spectrum.guidebook.marrows.page0.text": "Skeletons, but not just any Skeletons. ",
-  "book.spectrum.guidebook.marrows.page1.text": "\\\nTheir bones are much more robust compared to those common Skeletons on the surface, which have long since ceased to pose a threat to me. While still killable they are a tad more annoying. (note to me: *how do you call killing undead creatures?*)\\\n\\\nThey fire [Arrows of Stiffness](entry://brewing/effects/stiffness).",
+  "book.spectrum.guidebook.marrows.page1.text": "\\\nTheir bones are much more robust compared to those common Skeletons on the surface, which have long since ceased to pose a threat to me.\\\nWhile still killable, these ones are quite a bit more annoying.\\\nThey fire [Arrows of Stiffness](entry://brewing/effects/stiffness).\\\n\\\n(*note to me: how to call killing undead creatures?*)",
   "book.spectrum.guidebook.splinterspawns.name": "Splinterspawns",
   "book.spectrum.guidebook.splinterspawns.page0.text": "Much like Silverfish, Splinterspawns hide in Blocks. They seem related?",
   "book.spectrum.guidebook.splinterspawns.page1.title": "Infested Blocks",
-  "book.spectrum.guidebook.splinterspawns.page1.text": "Unlike their relatives from the Overworld, they seem to prefer to remain hidden and avoid conflict. They only show themselves when they have nowhere else to retreat to and seem very observant.\\\n\\\nA valid strategy for survival down here?",
+  "book.spectrum.guidebook.splinterspawns.page1.text": "Unlike their relatives from the Overworld, they seem to prefer to remain hidden and avoid conflict. They seem very observant and only show themselves when they have nowhere else to retreat to.\\\n\\\nA valid strategy for survival down here?",
 
 
 

@@ -44,12 +44,6 @@ public class TitrationBarrelBlockEntity extends BlockEntity implements FluidStac
 		protected long getCapacity(FluidVariant variant) {
 			return FluidConstants.BUCKET;
 		}
-		
-		@Override
-		protected void onFinalCommit() {
-			super.onFinalCommit();
-			inventoryChanged();
-		}
 	};
 	
 	@Override

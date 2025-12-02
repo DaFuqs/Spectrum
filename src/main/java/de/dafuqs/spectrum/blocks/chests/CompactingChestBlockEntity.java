@@ -226,12 +226,8 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	}
 	
 	@Override
-	public void setItem(int slot, ItemStack stack) {
-		super.setItem(slot, stack);
-		shouldCraft(true);
-	}
-	
-	public void inventoryChanged() {
+	public void setChanged() {
+		super.setChanged();
 		shouldCraft(true);
 	}
 	

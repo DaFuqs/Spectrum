@@ -108,7 +108,7 @@ public class EnchanterBlock extends InWorldInteractionBlock {
 							if (retrieveStack(world, pos, player, hand, handStack, enchanterBlockEntity, i)) {
 								enchanterBlockEntity.setItemFacingDirection(player.getDirection());
 								enchanterBlockEntity.setOwner(player);
-								enchanterBlockEntity.inventoryChanged();
+								enchanterBlockEntity.setChanged();
 								break;
 							}
 						}
@@ -120,7 +120,7 @@ public class EnchanterBlock extends InWorldInteractionBlock {
 						if (exchangeStack(world, pos, player, hand, handStack, enchanterBlockEntity, inputInventorySlotIndex)) {
 							enchanterBlockEntity.setItemFacingDirection(player.getDirection());
 							enchanterBlockEntity.setOwner(player);
-							enchanterBlockEntity.inventoryChanged();
+							enchanterBlockEntity.setChanged();
 						}
 					}
 				}

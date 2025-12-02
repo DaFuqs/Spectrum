@@ -207,7 +207,7 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 						}
 						
 						itemEntity.setItem(slot.getResource().toStack(itemStack.getCount()));
-						fusionShrineBlockEntity.inventoryChanged();
+						fusionShrineBlockEntity.setChanged();
 						return;
 					}
 				}
@@ -234,15 +234,12 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 				fusionShrineBlockEntity.setOwner(player);
 				
 				if (FluidStorageUtil.interactWithFluidStorage(fusionShrineBlockEntity.fluidStorage, player, hand)) {
-					fusionShrineBlockEntity.inventoryChanged();
 					return ItemInteractionResult.CONSUME;
 				}
 				if ((player.isShiftKeyDown() || handStack.isEmpty()) && retrieveLastStack(world, pos, player, hand, handStack, fusionShrineBlockEntity)) {
-					fusionShrineBlockEntity.inventoryChanged();
 					return ItemInteractionResult.CONSUME;
 				}
 				if (!handStack.isEmpty() && inputHandStack(world, player, hand, handStack, fusionShrineBlockEntity)) {
-					fusionShrineBlockEntity.inventoryChanged();
 					return ItemInteractionResult.CONSUME;
 				}
 			}

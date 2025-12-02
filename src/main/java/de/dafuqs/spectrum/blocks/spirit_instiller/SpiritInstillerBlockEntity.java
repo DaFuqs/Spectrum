@@ -277,7 +277,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		
 		playCraftingFinishedEffects(spiritInstillerBlockEntity);
 		spiritInstillerBlockEntity.craftingTime = 0;
-		spiritInstillerBlockEntity.inventoryChanged();
+		spiritInstillerBlockEntity.setChanged();
 	}
 	
 	public static void decrementItemsInInstillerAndBowls(@NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
@@ -483,9 +483,9 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 	}
 	
 	@Override
-	public void inventoryChanged() {
+	public void setChanged() {
+		super.setChanged();
 		this.inventoryChanged = true;
-		super.inventoryChanged();
 	}
 	
 	static {

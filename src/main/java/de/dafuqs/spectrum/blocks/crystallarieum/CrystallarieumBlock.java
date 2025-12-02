@@ -83,7 +83,6 @@ public class CrystallarieumBlock extends InWorldInteractionBlock implements Slot
 				if (player.isShiftKeyDown() || stack.isEmpty()) {
 					// sneaking or empty hand: remove items
 					if (retrieveStack(world, pos, player, hand, stack, crystallarieumBlockEntity, 1) || retrieveStack(world, pos, player, hand, stack, crystallarieumBlockEntity, 0)) {
-						crystallarieumBlockEntity.inventoryChanged();
 						crystallarieumBlockEntity.setOwner(player);
 					}
 					return ItemInteractionResult.CONSUME;
@@ -96,12 +95,10 @@ public class CrystallarieumBlock extends InWorldInteractionBlock implements Slot
 					// hand is full and inventory already contains item: exchange them
 					else if (stack.getItem() instanceof InkStorageItem<?> inkStorageItem) {
 						if (inkStorageItem.getDrainability().canDrain(false) && exchangeStack(world, pos, player, hand, stack, crystallarieumBlockEntity, CrystallarieumBlockEntity.INK_STORAGE_STACK_SLOT_ID)) {
-							crystallarieumBlockEntity.inventoryChanged();
 							crystallarieumBlockEntity.setOwner(player);
 						}
 					} else {
 						if (exchangeStack(world, pos, player, hand, stack, crystallarieumBlockEntity, CrystallarieumBlockEntity.CATALYST_SLOT_ID)) {
-							crystallarieumBlockEntity.inventoryChanged();
 							crystallarieumBlockEntity.setOwner(player);
 						}
 					}

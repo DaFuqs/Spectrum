@@ -85,7 +85,7 @@ public class ItemBowlBlock extends InWorldInteractionBlock {
 			BlockPos currentPos = pos.offset(possibleUpgradeBlockOffset);
 			BlockEntity blockEntity = world.getBlockEntity(currentPos);
 			if (blockEntity instanceof EnchanterBlockEntity enchanterBlockEntity) {
-				enchanterBlockEntity.inventoryChanged();
+				enchanterBlockEntity.setChanged();
 				break;
 			}
 		}
@@ -94,7 +94,7 @@ public class ItemBowlBlock extends InWorldInteractionBlock {
 			BlockPos currentPos = pos.offset(possibleUpgradeBlockOffset);
 			BlockEntity blockEntity = world.getBlockEntity(currentPos);
 			if (blockEntity instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
-				spiritInstillerBlockEntity.inventoryChanged();
+				spiritInstillerBlockEntity.setChanged();
 				break;
 			}
 		}

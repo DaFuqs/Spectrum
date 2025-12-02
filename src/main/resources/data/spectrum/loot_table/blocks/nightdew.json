@@ -18,6 +18,24 @@
           "chance": 0.334
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:nectardew_burgeon"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "spectrum:sleepers_nearby",
+          "range_blocks": 20,
+          "lerp_base": 0.0005,
+          "lerp_max": 0.004,
+          "delta_per_sleeping_entity_by_range": 0.05
+        }
+      ]
     }
   ]
 }

@@ -164,6 +164,7 @@ public class SpectrumCommon implements ModInitializer {
 		logInfo("Registering Loot Conditions & Functions...");
 		SpectrumLootContextTypes.register();
 		SpectrumLootFunctionTypes.register();
+		SpectrumLootConditions.register();
 		
 		logInfo("Setting up server side Mod Compat...");
 		SpectrumIntegrationPacks.register();

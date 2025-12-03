@@ -151,7 +151,7 @@ public class SpectrumEventListeners {
 			PlayerList playerManager = server.getPlayerList();
 			for (ServerPlayer player : playerManager.getPlayers()) {
 				Level world = player.level();
-				if (!player.isCreative() && !player.isSpectator() && world.dimension() == SpectrumDimensions.DIMENSION_KEY && player.getY() > world.getMaxBuildHeight()) {
+				if (!player.isCreative() && !player.isSpectator() && world.dimension() == SpectrumDimensions.DIMENSION_KEY && player.getY() >= world.getMaxBuildHeight()) {
 					player.hurt(player.damageSources().fellOutOfWorld(), 10.0F);
 					if (player.isDeadOrDying()) {
 						Support.grantAdvancementCriterion(player, "lategame/get_killed_while_out_of_deeper_down_bounds", "get_rekt");

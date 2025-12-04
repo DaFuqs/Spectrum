@@ -345,31 +345,8 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
     }
 	
 	@Override
-	protected void onInvOpenOrClose(Level world, BlockPos pos, BlockState state, int oldViewerCount, int newViewerCount) {
-		super.onInvOpenOrClose(world, pos, state, oldViewerCount, newViewerCount);
-		updateFullState(true);
-	}
-	
-	@Override
-	public void setItem(int slot, ItemStack stack) {
-		super.setItem(slot, stack);
+	public void setChanged() {
 		updateFullState(false);
-	}
-	
-	@Override
-	public ItemStack removeItem(int slot, int amount) {
-		var stack = super.removeItem(slot, amount);
-		if (!stack.isEmpty())
-			updateFullState(false);
-		return stack;
-	}
-	
-	@Override
-	public ItemStack removeItemNoUpdate(int slot) {
-		var stack = super.removeItemNoUpdate(slot);
-		if (!stack.isEmpty())
-			updateFullState(false);
-		return stack;
 	}
 
 	public void updateState(boolean full, boolean hasValidRecipes, List<ItemStack> cachedOutputs) {

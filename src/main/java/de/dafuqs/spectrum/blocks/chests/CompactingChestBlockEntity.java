@@ -231,7 +231,8 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 		shouldCraft(true);
 	}
 	
-	public void inventoryChanged() {
+	@Override
+	public void setChanged() {
 		shouldCraft(true);
 	}
 	

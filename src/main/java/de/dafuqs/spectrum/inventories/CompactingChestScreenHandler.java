@@ -67,14 +67,10 @@ public class CompactingChestScreenHandler extends AbstractContainerMenu {
 			if (index < this.ROWS * 9) {
 				if (!this.moveItemStackTo(itemStack2, this.ROWS * 9, this.slots.size(), true)) {
 					if (blockEntity instanceof CompactingChestBlockEntity compactor) {
-						compactor.inventoryChanged();
 					}
 					return ItemStack.EMPTY;
 				}
 			} else if (!this.moveItemStackTo(itemStack2, 0, this.ROWS * 9, false)) {
-				if (blockEntity instanceof CompactingChestBlockEntity compactor) {
-					compactor.inventoryChanged();
-				}
 				return ItemStack.EMPTY;
 			}
 			
@@ -85,9 +81,6 @@ public class CompactingChestScreenHandler extends AbstractContainerMenu {
 			}
 		}
 		
-		if (blockEntity instanceof CompactingChestBlockEntity compactor) {
-			compactor.inventoryChanged();
-		}
 		return itemStack;
 	}
 	

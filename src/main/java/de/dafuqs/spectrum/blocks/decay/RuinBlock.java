@@ -86,9 +86,11 @@ public class RuinBlock extends DecayBlock {
 	public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean moved) {
 		super.onRemove(state, level, pos, newState, moved);
 		
-		Optional<Boolean> shouldCreatePortalFacingUp = shouldCreatePortalFacingUp(level, pos, state);
-		if (shouldCreatePortalFacingUp.isPresent()) {
-			level.setBlockAndUpdate(pos, SpectrumBlocks.DEEPER_DOWN_PORTAL.defaultBlockState().setValue(DeeperDownPortalBlock.FACING_UP, shouldCreatePortalFacingUp.get()));
+		if (newState.isAir()) {
+			Optional<Boolean> shouldCreatePortalFacingUp = shouldCreatePortalFacingUp(level, pos, state);
+			if (shouldCreatePortalFacingUp.isPresent()) {
+				level.setBlockAndUpdate(pos, SpectrumBlocks.DEEPER_DOWN_PORTAL.defaultBlockState().setValue(DeeperDownPortalBlock.FACING_UP, shouldCreatePortalFacingUp.get()));
+			}
 		}
 	}
 	

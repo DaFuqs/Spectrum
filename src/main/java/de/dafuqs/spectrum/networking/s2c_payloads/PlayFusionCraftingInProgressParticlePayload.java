@@ -7,17 +7,16 @@ import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
+import net.neoforged.neoforge.network.*;
+import net.neoforged.neoforge.network.handling.*;
+import org.jetbrains.annotations.*;
 
 public record PlayFusionCraftingInProgressParticlePayload(BlockPos pos) implements CustomPacketPayload {
 	
-	public static final Type<PlayFusionCraftingInProgressParticlePayload> ID = SpectrumC2SPackets.makeId(
-			"play_fusion_crafting_in_progress_particle");
-	public static final StreamCodec<FriendlyByteBuf, PlayFusionCraftingInProgressParticlePayload> CODEC
-			= StreamCodec.composite(
-			BlockPos.STREAM_CODEC, PlayFusionCraftingInProgressParticlePayload::pos,
-			PlayFusionCraftingInProgressParticlePayload::new
-	);
+	public static final Type<PlayFusionCraftingInProgressParticlePayload> ID = SpectrumC2SPackets.makeId("play_fusion_crafting_in_progress_particle");
+	public static final StreamCodec<FriendlyByteBuf, PlayFusionCraftingInProgressParticlePayload> CODEC = StreamCodec.composite(BlockPos.STREAM_CODEC, PlayFusionCraftingInProgressParticlePayload::pos, PlayFusionCraftingInProgressParticlePayload::new);
 	
 	public static void sendPlayFusionCraftingInProgressParticles(ServerLevel world, BlockPos pos) {
 		PacketDistributor.sendToPlayersTrackingChunk(
@@ -26,9 +25,7 @@ public record PlayFusionCraftingInProgressParticlePayload(BlockPos pos) implemen
 	
 	@SuppressWarnings("resource")
 	public static void execute(PlayFusionCraftingInProgressParticlePayload payload, IPayloadContext context) {
-		BlockEntity blockEntity = context.player()
-				.level()
-				.getBlockEntity(payload.pos);
+		BlockEntity blockEntity = context.player().level().getBlockEntity(payload.pos);
 		if (blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
 			fusionShrineBlockEntity.spawnCraftingParticles();
 		}

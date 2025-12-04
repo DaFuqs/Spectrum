@@ -10,6 +10,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.*;
 import org.apache.commons.lang3.math.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -20,7 +21,7 @@ public class ExtendedBundleItem extends BundleItem {
 	}
 	
 	@Override
-	public int getBarWidth(ItemStack stack) {
+	public int getBarWidth(@NotNull ItemStack stack) {
 		// If we're not considering max stacks, report the fullness by occupancy. Otherwise, by stacks.
 		if (ignoreStacks(stack))
 			return super.getBarWidth(stack);

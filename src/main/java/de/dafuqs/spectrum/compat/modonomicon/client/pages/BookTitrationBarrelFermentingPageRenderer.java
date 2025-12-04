@@ -9,6 +9,7 @@ import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.compat.modonomicon.*;
 import de.dafuqs.spectrum.compat.modonomicon.pages.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
+import de.dafuqs.spectrum.render.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.resources.*;
@@ -57,7 +58,7 @@ public class BookTitrationBarrelFermentingPageRenderer extends BookGatedRecipePa
 		boolean usesFluid = fluid != FluidIngredient.empty();
 		IngredientStack bucketStack = IngredientStack.EMPTY;
 		if (usesFluid) {
-			bucketStack = IngredientStack.of(recipe.getFluidInput().into());
+			bucketStack = IngredientStack.of(FluidRendering.fluidIngredientAsBucket(recipe.getFluidInput()));
 		}
 		
 		// the ingredients

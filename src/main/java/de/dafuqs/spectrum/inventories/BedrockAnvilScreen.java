@@ -100,7 +100,7 @@ public class BedrockAnvilScreen extends ItemCombinerScreen<BedrockAnvilScreenHan
 			}
 			
 			if ((this.menu).setNewItemName(string)) {
-				ClientPlayNetworking.send(new RenameItemInBedrockAnvilPayload(name));
+				PacketDistributor.sendToServer(new RenameItemInBedrockAnvilPayload(name));
 			}
 		}
 	}
@@ -114,7 +114,7 @@ public class BedrockAnvilScreen extends ItemCombinerScreen<BedrockAnvilScreenHan
 			}
 			
 			if (this.menu.setNewItemLore(string)) {
-				ClientPlayNetworking.send(new AddLoreBedrockAnvilPayload(lore));
+				PacketDistributor.sendToServer(new AddLoreBedrockAnvilPayload(lore));
 			}
 		}
 	}

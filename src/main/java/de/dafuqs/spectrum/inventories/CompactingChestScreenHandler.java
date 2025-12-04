@@ -98,7 +98,7 @@ public class CompactingChestScreenHandler extends AbstractContainerMenu {
 	@Override
 	public void broadcastChanges() {
 		super.broadcastChanges();
-		ClientPlayNetworking.send(new ChangeCompactingChestSettingsPayload(getCraftingMode()));
+		PacketDistributor.sendToServer(new ChangeCompactingChestSettingsPayload(getCraftingMode()));
 	}
 	
 	@Override

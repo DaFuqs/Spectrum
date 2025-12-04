@@ -68,7 +68,7 @@ public class CinderhearthBlock extends BaseEntityBlock {
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return world.isClientSide ? null : createTickerHelper(type, SpectrumBlockEntities.CINDERHEARTH, CinderhearthBlockEntity::serverTick);
+		return world.isClientSide ? null : createTickerHelper(type, SpectrumBlockEntities.CINDERHEARTH.get(), CinderhearthBlockEntity::serverTick);
 	}
 	
 	@Override

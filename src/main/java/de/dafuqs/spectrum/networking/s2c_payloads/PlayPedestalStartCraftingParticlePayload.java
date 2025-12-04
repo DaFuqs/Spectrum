@@ -7,13 +7,15 @@ import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
+import net.minecraft.world.level.*;
+import net.neoforged.neoforge.network.*;
+import net.neoforged.neoforge.network.handling.*;
+import org.jetbrains.annotations.*;
 
 public record PlayPedestalStartCraftingParticlePayload(BlockPos pedestalPos) implements CustomPacketPayload {
 	
-	public static final Type<PlayPedestalStartCraftingParticlePayload> ID = SpectrumC2SPackets.makeId(
-			"play_pedestal_start_crafting_particle");
-	public static final StreamCodec<FriendlyByteBuf, PlayPedestalStartCraftingParticlePayload> CODEC
-			= StreamCodec.composite(
+	public static final Type<PlayPedestalStartCraftingParticlePayload> ID = SpectrumC2SPackets.makeId("play_pedestal_start_crafting_particle");
+	public static final StreamCodec<FriendlyByteBuf, PlayPedestalStartCraftingParticlePayload> CODEC = StreamCodec.composite(
 			BlockPos.STREAM_CODEC, PlayPedestalStartCraftingParticlePayload::pedestalPos,
 			PlayPedestalStartCraftingParticlePayload::new
 	);
@@ -26,10 +28,7 @@ public record PlayPedestalStartCraftingParticlePayload(BlockPos pedestalPos) imp
 	}
 	
 	public static void execute(PlayPedestalStartCraftingParticlePayload payload, IPayloadContext context) {
-		//PedestalBlockEntity.spawnCraftingStartParticles(
-		//    context.player()
-		//           .level(), payload.pedestalPos
-		//);
+		PedestalBlockEntity.spawnCraftingStartParticles(context.player().level(), payload.pedestalPos);
 	}
 	
 	@Override

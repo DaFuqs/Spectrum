@@ -84,7 +84,7 @@ public class PastelTransmission implements SchedulerMap.Callback {
 		
 		int inserted = 0;
 		if (destinationNode != null) {
-			Storage<ItemVariant> destinationStorage = destinationNode.getConnectedStorage();
+			Storage<ItemStack> destinationStorage = destinationNode.getConnectedStorage();
 			if (destinationStorage != null) {
 				try (Transaction transaction = Transaction.openOuter()) {
 					if (destinationStorage.supportsInsertion()) {

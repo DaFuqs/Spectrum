@@ -142,7 +142,7 @@ public class EnderSpliceItem extends Item {
 		Minecraft client = Minecraft.getInstance();
 		HitResult hitResult = client.hitResult;
 		if (hitResult != null && hitResult.getType() == HitResult.Type.ENTITY && ((EntityHitResult) hitResult).getEntity() instanceof Player playerEntity) {
-			ClientPlayNetworking.send(new BindEnderSpliceToPlayerPayload(playerEntity.getId()));
+			PacketDistributor.sendToServer(new BindEnderSpliceToPlayerPayload(playerEntity.getId()));
 		}
 	}
 	

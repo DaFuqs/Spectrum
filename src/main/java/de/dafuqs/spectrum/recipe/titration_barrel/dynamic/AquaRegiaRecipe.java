@@ -12,6 +12,8 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.material.*;
+import net.neoforged.neoforge.fluids.capability.templates.*;
+import net.neoforged.neoforge.fluids.crafting.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -20,11 +22,11 @@ public class AquaRegiaRecipe extends SweetenableTitrationBarrelRecipe {
 	
 	public static final ResourceLocation UNLOCK_IDENTIFIER = SpectrumCommon.locate("hidden/collect_cookbooks/imbrifer_cookbook");
 	public static final int MIN_FERMENTATION_TIME_HOURS = 24;
-	public static final ItemStack OUTPUT_STACK = getDefaultStackWithCount(SpectrumItems.AQUA_REGIA, 4);
+	public static final ItemStack OUTPUT_STACK = getDefaultStackWithCount(SpectrumItems.AQUA_REGIA.get(), 4);
 	public static final Item TAPPING_ITEM = Items.GLASS_BOTTLE;
 	public static final List<IngredientStack> INGREDIENT_STACKS = new ArrayList<>() {{
 		add(IngredientStack.ofItems(SpectrumBlocks.JADEITE_LOTUS_BULB.asItem()));
-		add(IngredientStack.ofItems(SpectrumItems.JADEITE_PETALS, 3));
+		add(IngredientStack.ofItems(SpectrumItems.JADEITE_PETALS.get(), 3));
 	}};
 	
 	public AquaRegiaRecipe() {
@@ -34,8 +36,8 @@ public class AquaRegiaRecipe extends SweetenableTitrationBarrelRecipe {
 	@Override
 	public ItemStack tap(Container inventory, long secondsFermented, float downfall) {
 		int bulbCount = InventoryHelper.getItemCountInInventory(inventory, SpectrumBlocks.JADEITE_LOTUS_BULB.asItem());
-		int petalCount = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.JADEITE_PETALS);
-		boolean nectar = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.MOONSTRUCK_NECTAR) > 0;
+		int petalCount = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.JADEITE_PETALS.get());
+		boolean nectar = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.MOONSTRUCK_NECTAR.get()) > 0;
 		
 		float thickness = getThickness(bulbCount, petalCount);
 		return tapWith(bulbCount, petalCount, nectar, thickness, secondsFermented, downfall);

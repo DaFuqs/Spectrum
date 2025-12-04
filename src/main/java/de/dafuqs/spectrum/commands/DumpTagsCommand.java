@@ -5,6 +5,7 @@ import net.minecraft.commands.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
+import net.neoforged.fml.loading.*;
 
 import java.io.*;
 
@@ -20,7 +21,7 @@ public class DumpTagsCommand {
 	}
 	
 	private static int execute(CommandSourceStack source) {
-		File baseDir = FabricLoader.getInstance().getGameDir().resolve("tag_dump").toFile();
+		File baseDir = FMLLoader.getGamePath().resolve("tag_dump").toFile(); // TODO: test
 		baseDir.mkdirs();
 		
 		source.registryAccess().registries().forEach(registry -> {

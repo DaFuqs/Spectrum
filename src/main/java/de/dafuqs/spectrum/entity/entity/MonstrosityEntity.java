@@ -226,7 +226,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		}
 	}
 	
-	public static AttributeSupplier createMonstrosityAttributes() {
+	public static AttributeSupplier.Builder createMonstrosityAttributes() {
 		return Monster.createMonsterAttributes()
 				.add(Attributes.MAX_HEALTH, 600.0)
 				.add(Attributes.ATTACK_DAMAGE, 24.0)
@@ -234,8 +234,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 				.add(Attributes.ARMOR, 18.0)
 				.add(Attributes.ARMOR_TOUGHNESS, 4.0)
 				.add(Attributes.ATTACK_KNOCKBACK, 2.0)
-				.add(AdditionalEntityAttributes.MAGIC_PROTECTION, 4.0)
-				.build();
+				.add(AdditionalEntityAttributes.MAGIC_PROTECTION, 4.0);
 	}
 	
 	@Override

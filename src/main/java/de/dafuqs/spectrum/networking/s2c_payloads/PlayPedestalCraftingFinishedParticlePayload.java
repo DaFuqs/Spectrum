@@ -9,34 +9,27 @@ import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.neoforged.neoforge.network.*;
+import net.neoforged.neoforge.network.handling.*;
+import org.jetbrains.annotations.*;
 
-public record PlayPedestalCraftingFinishedParticlePayload(BlockPos pedestalPos, ItemStack craftedStack)
-		implements CustomPacketPayload {
+public record PlayPedestalCraftingFinishedParticlePayload(BlockPos pedestalPos, ItemStack craftedStack) implements CustomPacketPayload {
 	
-	public static final Type<PlayPedestalCraftingFinishedParticlePayload> ID = SpectrumC2SPackets.makeId(
-			"play_pedestal_crafting_finished_particle");
-	public static final StreamCodec<RegistryFriendlyByteBuf, PlayPedestalCraftingFinishedParticlePayload> CODEC
-			= StreamCodec.composite(
+	public static final Type<PlayPedestalCraftingFinishedParticlePayload> ID = SpectrumC2SPackets.makeId("play_pedestal_crafting_finished_particle");
+	public static final StreamCodec<RegistryFriendlyByteBuf, PlayPedestalCraftingFinishedParticlePayload> CODEC = StreamCodec.composite(
 			BlockPos.STREAM_CODEC, PlayPedestalCraftingFinishedParticlePayload::pedestalPos,
 			ItemStack.STREAM_CODEC, PlayPedestalCraftingFinishedParticlePayload::craftedStack,
 			PlayPedestalCraftingFinishedParticlePayload::new
 	);
 	
-	public static void sendPlayPedestalCraftingFinishedParticle(
-			ServerLevel world, BlockPos pedestalPos, ItemStack craftedStack) {
-		PacketDistributor.sendToPlayersTrackingChunk(
-				world, new ChunkPos(pedestalPos), new PlayPedestalCraftingFinishedParticlePayload(
-						pedestalPos,
-						craftedStack
-				)
-		);
+	public static void sendPlayPedestalCraftingFinishedParticle(ServerLevel world, BlockPos pedestalPos, ItemStack craftedStack) {
+		PacketDistributor.sendToPlayersTrackingChunk(world, new ChunkPos(pedestalPos), new PlayPedestalCraftingFinishedParticlePayload(pedestalPos, craftedStack));
 	}
 	
 	@SuppressWarnings("resource")
 	public static void execute(PlayPedestalCraftingFinishedParticlePayload payload, IPayloadContext context) {
-		var level = context.player()
-				.level();
-		
+		Level level = context.player().level();
 		RandomSource random = level.random;
 		
 		for (int i = 0; i < 10; i++) {

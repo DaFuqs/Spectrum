@@ -45,7 +45,7 @@ public record PastelTransmissionPayload(int networkColor, int travelTime, Pastel
 		int travelTime = payload.travelTime();
 		PastelTransmission transmission = payload.transmission;
 		BlockPos spawnPos = transmission.getStartPos();
-		context.player().level().addParticle(new PastelTransmissionParticleEffect(transmission.getNodePositions(), transmission.getStack(), travelTime, color), spawnPos.getX() + 0.5, spawnPos.getY() + 0.5, spawnPos.getZ() + 0.5, 0, 0, 0);
+		context.player().level().addParticle(new PastelTransmissionParticleEffect(transmission.getNodePositions(), transmission.getVariant(), travelTime, color), spawnPos.getX() + 0.5, spawnPos.getY() + 0.5, spawnPos.getZ() + 0.5, 0, 0, 0);
 	}
 	
 	@Override

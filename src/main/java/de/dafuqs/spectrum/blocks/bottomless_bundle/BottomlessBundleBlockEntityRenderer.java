@@ -30,7 +30,7 @@ public class BottomlessBundleBlockEntityRenderer implements BlockEntityRenderer<
 		matrices.pushPose();
 		
 		boolean bl = bundle.getLevel() != null;
-		BlockState blockState = bl ? bundle.getBlockState() : SpectrumBlocks.BOTTOMLESS_BUNDLE.defaultBlockState();
+		BlockState blockState = bl ? bundle.getBlockState() : SpectrumBlocks.BOTTOMLESS_BUNDLE.get().defaultBlockState();
 		var yaw = 22.5F;
 		yaw *= blockState.getValue(SkullBlock.ROTATION);
 		matrices.translate(0.5D, 1.5D, 0.5D);

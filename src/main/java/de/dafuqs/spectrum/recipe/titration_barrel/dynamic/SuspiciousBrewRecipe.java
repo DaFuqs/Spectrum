@@ -20,6 +20,8 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.material.*;
+import net.neoforged.neoforge.fluids.capability.templates.*;
+import net.neoforged.neoforge.fluids.crafting.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -28,7 +30,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 	
 	public static final Item TAPPING_ITEM = Items.GLASS_BOTTLE;
 	public static final int MIN_FERMENTATION_TIME_HOURS = 4;
-	public static final ItemStack OUTPUT_STACK = getDefaultStackWithCount(SpectrumItems.SUSPICIOUS_BREW, 4);
+	public static final ItemStack OUTPUT_STACK = getDefaultStackWithCount(SpectrumItems.SUSPICIOUS_BREW.get(), 4);
 	public static final ResourceLocation UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/food/suspicious_brew");
 	public static final List<IngredientStack> INGREDIENT_STACKS = new ArrayList<>() {{
 		add(IngredientStack.ofTag(ItemTags.SMALL_FLOWERS, 1));
@@ -67,7 +69,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 		float ageIngameDays = TimeHelper.minecraftDaysFromSeconds(secondsFermented);
 		double alcPercent = getAlcPercent(this.fermentationData.fermentationSpeedMod(), thickness, downfall, ageIngameDays);
 		if (alcPercent >= 100) {
-			return SpectrumItems.PURE_ALCOHOL.getDefaultInstance();
+			return SpectrumItems.PURE_ALCOHOL.get().getDefaultInstance();
 		} else {
 			// add up all stew effects with their durations from the input stacks
 			var stewEffects = new HashMap<Holder<MobEffect>, Double>();

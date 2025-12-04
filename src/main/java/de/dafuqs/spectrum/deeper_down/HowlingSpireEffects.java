@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.particle.client.*;
 import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.sound.*;
 import net.minecraft.client.*;
 import net.minecraft.client.multiplayer.*;
 import net.minecraft.core.*;

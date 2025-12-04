@@ -1,8 +1,10 @@
 package de.dafuqs.spectrum.networking.s2c_payloads;
 
 import de.dafuqs.spectrum.blocks.memory.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.effect.*;
+import net.minecraft.client.multiplayer.*;
 import net.minecraft.core.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
@@ -10,16 +12,16 @@ import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.level.*;
+import net.neoforged.neoforge.network.*;
+import net.neoforged.neoforge.network.handling.*;
 import org.jetbrains.annotations.*;
 import org.joml.*;
 
-public record PlayMemoryManifestingParticlesPayload(BlockPos pos, int eggColor1, int eggColor2, int amount)
-		implements CustomPacketPayload {
+public record PlayMemoryManifestingParticlesPayload(BlockPos pos, int eggColor1, int eggColor2, int amount) implements CustomPacketPayload {
 	
-	public static final Type<PlayMemoryManifestingParticlesPayload> ID = SpectrumC2SPackets.makeId(
-			"play_memory_manifesting_particles");
-	public static final StreamCodec<FriendlyByteBuf, PlayMemoryManifestingParticlesPayload> CODEC
-			= StreamCodec.composite(
+	public static final Type<PlayMemoryManifestingParticlesPayload> ID = SpectrumC2SPackets.makeId("play_memory_manifesting_particles");
+	public static final StreamCodec<FriendlyByteBuf, PlayMemoryManifestingParticlesPayload> CODEC = StreamCodec.composite(
 			BlockPos.STREAM_CODEC, PlayMemoryManifestingParticlesPayload::pos,
 			ByteBufCodecs.INT, PlayMemoryManifestingParticlesPayload::eggColor1,
 			ByteBufCodecs.INT, PlayMemoryManifestingParticlesPayload::eggColor2,
@@ -40,12 +42,11 @@ public record PlayMemoryManifestingParticlesPayload(BlockPos pos, int eggColor1,
 	
 	@SuppressWarnings("resource")
 	public static void execute(PlayMemoryManifestingParticlesPayload payload, IPayloadContext context) {
-		ClientLevel level = (ClientLevel) context.player()
-				.level();
+		ClientLevel level = (ClientLevel) context.player().level();
 		RandomSource random = level.random;
 		
-		Vector3f colorVec1 = ColorHelper.colorIntToVec(payload.eggColor1);
-		Vector3f colorVec2 = ColorHelper.colorIntToVec(payload.eggColor1);
+		Vector3f colorVec1 = SpectrumColorHelper.colorIntToVec(payload.eggColor1);
+		Vector3f colorVec2 = SpectrumColorHelper.colorIntToVec(payload.eggColor1);
 		
 		BlockPos pos = payload.pos;
 		for (int i = 0; i < payload.amount; i++) {
@@ -53,16 +54,14 @@ public record PlayMemoryManifestingParticlesPayload(BlockPos pos, int eggColor1,
 			
 			// color1
 			level.addParticle(
-					new DynamicParticleEffect(
-							ColoredCraftingParticleEffect.WHITE.getType(), 0.5F, colorVec1, 1.0F, randomLifetime, false, true),
+					new DynamicParticleEffect(ColoredCraftingParticleEffect.WHITE.getType(), 0.5F, colorVec1, 1.0F, randomLifetime, false, true),
 					pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ(),
 					0.15 - random.nextFloat() * 0.3, random.nextFloat() * 0.15 + 0.1, 0.15 - random.nextFloat() * 0.3
 			);
 			
 			// color2
 			level.addParticle(
-					new DynamicParticleEffect(
-							ColoredCraftingParticleEffect.WHITE.getType(), 0.5F, colorVec2, 1.0F, randomLifetime, false, true),
+					new DynamicParticleEffect(ColoredCraftingParticleEffect.WHITE.getType(), 0.5F, colorVec2, 1.0F, randomLifetime, false, true),
 					pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5,
 					0.15 - random.nextFloat() * 0.3, random.nextFloat() * 0.15 + 0.1, 0.15 - random.nextFloat() * 0.3
 			);

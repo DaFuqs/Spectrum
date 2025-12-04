@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.compat.modonomicon.*;
 import de.dafuqs.spectrum.compat.modonomicon.pages.*;
 import de.dafuqs.spectrum.recipe.fusion_shrine.*;
+import de.dafuqs.spectrum.render.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.resources.*;
@@ -46,8 +47,8 @@ public class BookFusionShrineCraftingPageRenderer extends BookGatedRecipePageRen
 			ModonomiconHelper.renderIngredientStack(drawContext, parentScreen, recipeX + startX + i * 16, recipeY + 3, mouseX, mouseY, ingredients.get(i));
 		}
 		
-		if (recipe.getFluid() != FluidIngredient.EMPTY) {
-			@NotNull Ingredient fluidIngredient = recipe.getFluid().into();
+		if (!recipe.getFluid().isEmpty()) {
+			@NotNull Ingredient fluidIngredient = FluidRendering.fluidIngredientAsBucket(recipe.getFluid());
 			parentScreen.renderItemStack(drawContext, recipeX + 14, recipeY + 31, mouseX, mouseY, recipe.getToastSymbol()); // the shrine
 			parentScreen.renderIngredient(drawContext, recipeX + 30, recipeY + 31, mouseX, mouseY, fluidIngredient); // the fluid
 		} else {

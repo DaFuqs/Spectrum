@@ -224,7 +224,7 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
 		if (!InventoryHelper.hasInInventory(ingredients, this))
 			return false;
 		
-		var remainders = InventoryHelper.getRemainders(ingredients, this);
+		List<ItemStack> remainders = InventoryHelper.getRemainders(ingredients, this);
 		
 		return InventoryHelper.canFitStacks(remainders, this.inventory);
 	}

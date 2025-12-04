@@ -14,6 +14,7 @@ import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.components.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.sounds.*;
+import net.neoforged.neoforge.network.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -191,7 +192,7 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
 			soundInstance = new HintRevelationSoundInstance(mc.player);
 			Minecraft.getInstance().getSoundManager().play(soundInstance);
 			
-			ClientPlayNetworking.send(new GuidebookHintBoughtPayload(page.getCompletionAdvancement(), page.getCost()));
+			PacketDistributor.sendToServer(new GuidebookHintBoughtPayload(page.getCompletionAdvancement(), page.getCost()));
 			revealProgress = 1;
 			lastRevealTime = mc.level.getGameTime();
 			mc.player.playSound(SoundEvents.EXPERIENCE_ORB_PICKUP, 1.0F, 1.0F);

@@ -95,7 +95,7 @@ public class ColorPickerScreen extends AbstractContainerScreen<ColorPickerScreen
 	public void accept(Optional<Holder<InkColor>> inkColor) {
 		ColorPickerBlockEntity colorPicker = this.menu.getBlockEntity();
 		colorPicker.setSelectedColor(inkColor);
-		ClientPlayNetworking.send(new InkColorSelectedC2SPayload(inkColor));
+		PacketDistributor.sendToServer(new InkColorSelectedC2SPayload(inkColor));
 	}
 	
 }

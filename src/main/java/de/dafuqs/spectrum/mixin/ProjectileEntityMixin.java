@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.attachment_types.*;
-import de.dafuqs.spectrum.attachment_types.azure_dike.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.effect.*;

@@ -463,7 +463,7 @@ public class ParticleSpawnerScreen extends AbstractContainerScreen<ParticleSpawn
 					collisionsEnabled
 			);
 			
-			ClientPlayNetworking.send(new ParticleSpawnerConfigurationC2SPayload(configuration));
+			PacketDistributor.sendToServer(new ParticleSpawnerConfigurationC2SPayload(configuration));
 		} catch (Exception e) {
 			// the text boxes currently are not able to be parsed yet.
 			// wait until everything is set up

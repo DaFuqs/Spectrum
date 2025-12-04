@@ -12,6 +12,8 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.material.*;
+import net.neoforged.neoforge.fluids.capability.templates.*;
+import net.neoforged.neoforge.fluids.crafting.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -21,11 +23,11 @@ public class NecteredViognierRecipe extends SweetenableTitrationBarrelRecipe {
 	public static final ResourceLocation UNLOCK_IDENTIFIER = SpectrumCommon.locate("hidden/collect_cookbooks/imperial_cookbook");
 	
 	public static final int MIN_FERMENTATION_TIME_HOURS = 24;
-	public static final ItemStack OUTPUT_STACK = getDefaultStackWithCount(SpectrumItems.NECTERED_VIOGNIER, 4);
+	public static final ItemStack OUTPUT_STACK = getDefaultStackWithCount(SpectrumItems.NECTERED_VIOGNIER.get(), 4);
 	public static final Item TAPPING_ITEM = Items.GLASS_BOTTLE;
 	public static final List<IngredientStack> INGREDIENT_STACKS = new ArrayList<>() {{
 		add(IngredientStack.ofItems(SpectrumBlocks.NEPHRITE_BLOSSOM_BULB.asItem()));
-		add(IngredientStack.ofItems(SpectrumItems.GLASS_PEACH, 4));
+		add(IngredientStack.ofItems(SpectrumItems.GLASS_PEACH.get(), 4));
 	}};
 	
 	public NecteredViognierRecipe() {
@@ -35,8 +37,8 @@ public class NecteredViognierRecipe extends SweetenableTitrationBarrelRecipe {
 	@Override
 	public ItemStack tap(Container inventory, long secondsFermented, float downfall) {
 		int bulbCount = InventoryHelper.getItemCountInInventory(inventory, SpectrumBlocks.NEPHRITE_BLOSSOM_BULB.asItem());
-		int petalCount = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.GLASS_PEACH);
-		boolean nectar = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.MOONSTRUCK_NECTAR) > 0;
+		int petalCount = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.GLASS_PEACH.get());
+		boolean nectar = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.MOONSTRUCK_NECTAR.get()) > 0;
 		
 		float thickness = getThickness(bulbCount, petalCount);
 		return tapWith(bulbCount, petalCount, nectar, thickness, secondsFermented, downfall);

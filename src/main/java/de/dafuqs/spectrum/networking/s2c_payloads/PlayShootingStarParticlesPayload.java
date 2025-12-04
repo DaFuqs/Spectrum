@@ -8,17 +8,18 @@ import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
+import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
+import net.neoforged.neoforge.network.*;
+import net.neoforged.neoforge.network.handling.*;
 import org.jetbrains.annotations.*;
 
-public record PlayShootingStarParticlesPayload(Vec3 shootingStarPos, ShootingStar.Variant variant)
-		implements CustomPacketPayload {
+public record PlayShootingStarParticlesPayload(Vec3 shootingStarPos, ShootingStar.Variant variant) implements CustomPacketPayload {
 	
-	public static final Type<PlayShootingStarParticlesPayload> ID = SpectrumC2SPackets.makeId(
-			"play_shooting_star_particles");
+	public static final Type<PlayShootingStarParticlesPayload> ID = SpectrumC2SPackets.makeId("play_shooting_star_particles");
 	public static final StreamCodec<FriendlyByteBuf, PlayShootingStarParticlesPayload> CODEC = StreamCodec.composite(
 			PacketCodecHelper.VEC3D, PlayShootingStarParticlesPayload::shootingStarPos,
-			ShootingStar.Variant.STREAM_CODEC, PlayShootingStarParticlesPayload::variant,
+			ShootingStar.Variant.PACKET_CODEC, PlayShootingStarParticlesPayload::variant,
 			PlayShootingStarParticlesPayload::new
 	);
 	
@@ -33,17 +34,14 @@ public record PlayShootingStarParticlesPayload(Vec3 shootingStarPos, ShootingSta
 	}
 	
 	public static void execute(PlayShootingStarParticlesPayload payload, IPayloadContext context) {
-		var level = context.player()
-				.level();
+		Level level = context.player().level();
 		
-		ShootingStarEntity.playHitParticles(
-				level, payload.shootingStarPos.x, payload.shootingStarPos.y, payload.shootingStarPos.z, payload.variant,
-				25
-		);
+		ShootingStarEntity.playHitParticles(level, payload.shootingStarPos.x, payload.shootingStarPos.y, payload.shootingStarPos.z, payload.variant, 25);
 	}
 	
 	@Override
 	public @NotNull Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
+	
 }

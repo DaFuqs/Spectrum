@@ -15,14 +15,10 @@ import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
 import org.jetbrains.annotations.*;
 
-public record PlayParticleWithRandomOffsetAndVelocityPayload(
-		Vec3 pos, ParticleOptions effect, int amount, Vec3 randomOffset, Vec3 randomVelocity
-) implements CustomPacketPayload {
+public record PlayParticleWithRandomOffsetAndVelocityPayload(Vec3 pos, ParticleOptions effect, int amount, Vec3 randomOffset, Vec3 randomVelocity) implements CustomPacketPayload {
 	
-	public static final Type<PlayParticleWithRandomOffsetAndVelocityPayload> ID = SpectrumC2SPackets.makeId(
-			"play_particle_with_random_offset_and_velocity");
-	public static final StreamCodec<RegistryFriendlyByteBuf, PlayParticleWithRandomOffsetAndVelocityPayload> CODEC
-			= StreamCodec.composite(
+	public static final Type<PlayParticleWithRandomOffsetAndVelocityPayload> ID = SpectrumC2SPackets.makeId("play_particle_with_random_offset_and_velocity");
+	public static final StreamCodec<RegistryFriendlyByteBuf, PlayParticleWithRandomOffsetAndVelocityPayload> CODEC = StreamCodec.composite(
 			PacketCodecHelper.VEC3D, PlayParticleWithRandomOffsetAndVelocityPayload::pos,
 			ParticleTypes.STREAM_CODEC, PlayParticleWithRandomOffsetAndVelocityPayload::effect,
 			ByteBufCodecs.INT, PlayParticleWithRandomOffsetAndVelocityPayload::amount,
@@ -38,23 +34,16 @@ public record PlayParticleWithRandomOffsetAndVelocityPayload(
 	 * @param position       the pos of the particles
 	 * @param particleEffect The particle effect to play
 	 */
-	public static void playParticleWithRandomOffsetAndVelocity(
-			ServerLevel world, Vec3 position, @NotNull ParticleOptions particleEffect, int amount, Vec3 randomOffset,
-			Vec3 randomVelocity
-	) {
+	public static void playParticleWithRandomOffsetAndVelocity(ServerLevel world, Vec3 position, @NotNull ParticleOptions particleEffect, int amount, Vec3 randomOffset, Vec3 randomVelocity) {
 		PacketDistributor.sendToPlayersTrackingChunk(
 				world, new ChunkPos(BlockPos.containing(position)),
-				new PlayParticleWithRandomOffsetAndVelocityPayload(
-						position, particleEffect, amount, randomOffset,
-						randomVelocity
-				)
+				new PlayParticleWithRandomOffsetAndVelocityPayload(position, particleEffect, amount, randomOffset, randomVelocity)
 		);
 	}
 	
 	@SuppressWarnings("resource")
 	public static void execute(PlayParticleWithRandomOffsetAndVelocityPayload payload, IPayloadContext context) {
-		var level = context.player()
-				.level();
+		Level level = context.player().level();
 		RandomSource random = level.getRandom();
 		
 		Vec3 pos = payload.pos;

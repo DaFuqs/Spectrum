@@ -9,6 +9,7 @@ import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.compat.modonomicon.pages.*;
 import de.dafuqs.spectrum.networking.c2s_payloads.*;
 import net.minecraft.client.gui.components.*;
+import net.neoforged.neoforge.network.*;
 
 public class BookConfirmationButtonPageRenderer extends BookTextPageRenderer {
 	
@@ -43,7 +44,7 @@ public class BookConfirmationButtonPageRenderer extends BookTextPageRenderer {
 	
 	protected void confirmationButtonClicked(Button button) {
 		if (!(page instanceof BookConfirmationButtonPage confirmationPage)) return;
-		ClientPlayNetworking.send(new GuidebookConfirmationButtonPressedPayload(confirmationPage.getConfirmationString()));
+		PacketDistributor.sendToServer(new GuidebookConfirmationButtonPressedPayload(confirmationPage.getConfirmationString()));
 		button.setMessage(confirmationPage.getConfirmedButtonText().getComponent());
 		BookGuiManager.get().openEntry(page.getBook().getId(), page.getParentEntry().getId(), page.getPageNumber());
 	}

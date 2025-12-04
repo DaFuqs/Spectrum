@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.api.item.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
+import org.jetbrains.annotations.*;
 
 public class FloatItem extends Item implements GravitableItem {
 	

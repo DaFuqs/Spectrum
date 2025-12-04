@@ -21,8 +21,8 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
-import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.*;
+import net.neoforged.neoforge.fluids.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -86,15 +86,15 @@ public class TitrationBarrelBlock extends HorizontalDirectionalBlock implements 
 							// or seal it with a piece of colored wood
 							if (handStack.isEmpty()) {
 								int itemCount = InventoryHelper.countItemsInInventory(barrelEntity);
-								Fluid fluid = barrelEntity.fluidStorage.variant.getFluid();
-								if (fluid == Fluids.EMPTY) {
+								FluidStack fluid = barrelEntity.fluidStorage.getFluid();
+								if (fluid.isEmpty()) {
 									if (itemCount == TitrationBarrelBlockEntity.MAX_ITEM_COUNT) {
 										player.displayClientMessage(Component.translatable("block.spectrum.titration_barrel.content_count_without_fluid_full", itemCount), true);
 									} else {
 										player.displayClientMessage(Component.translatable("block.spectrum.titration_barrel.content_count_without_fluid", itemCount), true);
 									}
 								} else {
-									String fluidName = fluid.defaultFluidState().createLegacyBlock().getBlock().getName().getString();
+									Component fluidName = fluid.getHoverName();
 									if (itemCount == TitrationBarrelBlockEntity.MAX_ITEM_COUNT) {
 										player.displayClientMessage(Component.translatable("block.spectrum.titration_barrel.content_count_with_fluid_full", fluidName, itemCount), true);
 									} else {
@@ -199,7 +199,7 @@ public class TitrationBarrelBlock extends HorizontalDirectionalBlock implements 
 		if (stack.isPresent()) {
 			player.getInventory().placeItemBackInInventory(stack.get());
 			barrelEntity.setChanged();
-			if (barrelEntity.isEmpty() && barrelEntity.getFluidIngredient().isBlank()) {
+			if (barrelEntity.items.isEmpty() && barrelEntity.fluidStorage.isEmpty()) {
 				world.setBlockAndUpdate(pos, state.setValue(BARREL_STATE, BarrelState.EMPTY));
 			} else {
 				// They'll get updated if the block state changes anyway
@@ -271,7 +271,7 @@ public class TitrationBarrelBlock extends HorizontalDirectionalBlock implements 
 					float icurr = InventoryHelper.countItemsInInventory(blockEntity);
 					float imax = TitrationBarrelBlockEntity.MAX_ITEM_COUNT;
 					
-					float fcurr = blockEntity.fluidStorage.amount;
+					float fcurr = blockEntity.fluidStorage.getFluidAmount();
 					float fmax = blockEntity.fluidStorage.getCapacity();
 					
 					return Mth.floor(((icurr / imax) + (fcurr / fmax)) / 2.0f * 14.0f) + isNotEmpty;

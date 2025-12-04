@@ -4,6 +4,7 @@ import com.mojang.brigadier.tree.*;
 import net.minecraft.commands.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
+import net.neoforged.fml.loading.*;
 
 import java.io.*;
 
@@ -19,7 +20,7 @@ public class DumpRegistriesCommand {
 	}
 	
 	private static int execute(CommandSourceStack source) {
-		File directory = FabricLoader.getInstance().getGameDir().resolve("registry_dump").toFile();
+		File directory = FMLLoader.getGamePath().resolve("registry_dump").toFile(); // TODO: test
 		
 		source.registryAccess().registries().forEach(registry -> {
 			File file = new File(directory, registry.key().location().toString().replace(":", "/") + ".txt");

@@ -23,6 +23,14 @@ public abstract class InGameHudMixin {
 	@Shadow
 	public abstract void render(GuiGraphics context, DeltaTracker tickerCounter);
 	
+	@ModifyVariable(method = "renderHearts", at = @At("STORE"), ordinal = 7)
+	private int spectrum$showDivinityHardcoreHearts(int i, GuiGraphics context, Player player, int x, int y, int lines, int regeneratingHeartIndex, float maxHealth, int lastHealth, int health, int absorption, boolean blinking) {
+		if (player.hasEffect(SpectrumStatusEffects.DIVINITY)) {
+			return 9 * 5;
+		}
+		return i;
+	}
+	
 	@ModifyExpressionValue(method = "renderCameraOverlays", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;useFancyGraphics()Z"))
 	private boolean spectrum$disableVignietteInDimension(boolean original) {
 		var player = Minecraft.getInstance().player;

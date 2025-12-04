@@ -41,7 +41,7 @@ public class SpectrumEntityRenderers {
 	}
 	
 	private static <T extends Entity> void register(EntityType<? extends T> type, EntityRendererProvider<T> factory) {
-		EntityRendererRegistry.register(type, factory);
+		EntityRenderers.register(type, factory);
 	}
 	
 }

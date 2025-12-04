@@ -101,7 +101,7 @@ public interface FilterConfigurable {
 				
 				// Sync with server
 				if (player.level().isClientSide()) {
-					ClientPlayNetworking.send(new SetShadowSlotPayload(syncId, slot.index, shadowStack));
+					PacketDistributor.sendToServer(new SetShadowSlotPayload(syncId, slot.index, shadowStack));
 				}
 			}
 			

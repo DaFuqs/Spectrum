@@ -8,16 +8,16 @@ import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
+import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
+import net.neoforged.neoforge.network.*;
+import net.neoforged.neoforge.network.handling.*;
 import org.jetbrains.annotations.*;
 
-public record PlayParticleWithExactVelocityPayload(Vec3 pos, ParticleOptions particle, int amount, Vec3 velocity)
-		implements CustomPacketPayload {
+public record PlayParticleWithExactVelocityPayload(Vec3 pos, ParticleOptions particle, int amount, Vec3 velocity) implements CustomPacketPayload {
 	
-	public static final Type<PlayParticleWithExactVelocityPayload> ID = SpectrumC2SPackets.makeId(
-			"play_particle_with_exact_velocity");
-	public static final StreamCodec<RegistryFriendlyByteBuf, PlayParticleWithExactVelocityPayload> CODEC
-			= StreamCodec.composite(
+	public static final Type<PlayParticleWithExactVelocityPayload> ID = SpectrumC2SPackets.makeId("play_particle_with_exact_velocity");
+	public static final StreamCodec<RegistryFriendlyByteBuf, PlayParticleWithExactVelocityPayload> CODEC = StreamCodec.composite(
 			PacketCodecHelper.VEC3D, PlayParticleWithExactVelocityPayload::pos,
 			ParticleTypes.STREAM_CODEC, PlayParticleWithExactVelocityPayload::particle,
 			ByteBufCodecs.INT, PlayParticleWithExactVelocityPayload::amount,
@@ -43,10 +43,7 @@ public record PlayParticleWithExactVelocityPayload(Vec3 pos, ParticleOptions par
 	 * @param position       the pos of the particles
 	 * @param particleEffect The particle effect to play
 	 */
-	public static void playParticleWithExactVelocity(
-			ServerLevel world, @NotNull Vec3 position, @NotNull ParticleOptions particleEffect, int amount,
-			@NotNull Vec3 velocity
-	) {
+	public static void playParticleWithExactVelocity(ServerLevel world, @NotNull Vec3 position, @NotNull ParticleOptions particleEffect, int amount, @NotNull Vec3 velocity) {
 		PacketDistributor.sendToPlayersTrackingChunk(
 				world, new ChunkPos(BlockPos.containing(position)),
 				new PlayParticleWithExactVelocityPayload(position, particleEffect, amount, velocity)
@@ -55,8 +52,7 @@ public record PlayParticleWithExactVelocityPayload(Vec3 pos, ParticleOptions par
 	
 	@SuppressWarnings("resource")
 	public static void execute(PlayParticleWithExactVelocityPayload payload, IPayloadContext context) {
-		var level = context.player()
-				.level();
+		Level level = context.player().level();
 		
 		for (int i = 0; i < payload.amount; i++) {
 			level.addParticle(

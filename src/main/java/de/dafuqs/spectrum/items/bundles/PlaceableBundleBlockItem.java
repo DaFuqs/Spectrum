@@ -31,43 +31,43 @@ public class PlaceableBundleBlockItem extends BlockItem {
 	
 	@Override
 	public boolean overrideStackedOnOther(ItemStack stack, Slot slot, ClickAction clickType, Player player) {
-		return SpectrumItems.EXTENDED_BUNDLE_ITEM.overrideStackedOnOther(stack, slot, clickType, player);
+		return SpectrumItems.EXTENDED_BUNDLE_ITEM.get().overrideStackedOnOther(stack, slot, clickType, player);
 	}
 	
 	@Override
 	public boolean overrideOtherStackedOnMe(ItemStack stack, ItemStack otherStack, Slot slot, ClickAction clickType, Player player, SlotAccess cursorStackReference) {
-		return SpectrumItems.EXTENDED_BUNDLE_ITEM.overrideOtherStackedOnMe(stack, otherStack, slot, clickType, player, cursorStackReference);
+		return SpectrumItems.EXTENDED_BUNDLE_ITEM.get().overrideOtherStackedOnMe(stack, otherStack, slot, clickType, player, cursorStackReference);
 	}
 	
 	@Override
 	public boolean isBarVisible(ItemStack stack) {
-		return SpectrumItems.EXTENDED_BUNDLE_ITEM.isBarVisible(stack);
+		return SpectrumItems.EXTENDED_BUNDLE_ITEM.get().isBarVisible(stack);
 	}
 	
 	@Override
 	public int getBarWidth(ItemStack stack) {
-		return SpectrumItems.EXTENDED_BUNDLE_ITEM.getBarWidth(stack);
+		return SpectrumItems.EXTENDED_BUNDLE_ITEM.get().getBarWidth(stack);
 	}
 	
 	@Override
 	public int getBarColor(ItemStack stack) {
-		return SpectrumItems.EXTENDED_BUNDLE_ITEM.getBarColor(stack);
+		return SpectrumItems.EXTENDED_BUNDLE_ITEM.get().getBarColor(stack);
 	}
 	
 	@Override
 	public Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
-		return SpectrumItems.EXTENDED_BUNDLE_ITEM.getTooltipImage(stack);
+		return SpectrumItems.EXTENDED_BUNDLE_ITEM.get().getTooltipImage(stack);
 	}
 	
 	@Override
 	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		super.appendHoverText(stack, context, tooltip, type);
-		SpectrumItems.EXTENDED_BUNDLE_ITEM.appendHoverText(stack, context, tooltip, type);
+		SpectrumItems.EXTENDED_BUNDLE_ITEM.get().appendHoverText(stack, context, tooltip, type);
 	}
 	
 	@Override
 	public void onDestroyed(ItemEntity entity) {
-		SpectrumItems.EXTENDED_BUNDLE_ITEM.onDestroyed(entity);
+		SpectrumItems.EXTENDED_BUNDLE_ITEM.get().onDestroyed(entity);
 		super.onDestroyed(entity);
 	}
 	

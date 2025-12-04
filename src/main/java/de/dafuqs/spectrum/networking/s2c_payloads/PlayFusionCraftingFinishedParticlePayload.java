@@ -13,17 +13,17 @@ import net.minecraft.server.level.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
+import net.neoforged.neoforge.network.*;
+import net.neoforged.neoforge.network.handling.*;
 import org.jetbrains.annotations.*;
 import org.joml.*;
 
 public record PlayFusionCraftingFinishedParticlePayload(BlockPos pos, InkColor color) implements CustomPacketPayload {
 	
-	public static final Type<PlayFusionCraftingFinishedParticlePayload> ID = SpectrumC2SPackets.makeId(
-			"play_fusion_crafting_finished_particle");
-	public static final StreamCodec<FriendlyByteBuf, PlayFusionCraftingFinishedParticlePayload> CODEC
-			= StreamCodec.composite(
+	public static final Type<PlayFusionCraftingFinishedParticlePayload> ID = SpectrumC2SPackets.makeId("play_fusion_crafting_finished_particle");
+	public static final StreamCodec<FriendlyByteBuf, PlayFusionCraftingFinishedParticlePayload> CODEC = StreamCodec.composite(
 			BlockPos.STREAM_CODEC, PlayFusionCraftingFinishedParticlePayload::pos,
-			InkColor.STREAM_CODEC, PlayFusionCraftingFinishedParticlePayload::color,
+			InkColor.PACKET_CODEC, PlayFusionCraftingFinishedParticlePayload::color,
 			PlayFusionCraftingFinishedParticlePayload::new
 	);
 	
@@ -42,16 +42,11 @@ public record PlayFusionCraftingFinishedParticlePayload(BlockPos pos, InkColor c
 		Vector3f color = payload.color.getColorVec();
 		float velocityModifier = 0.25F;
 		for (Vec3 velocity : VectorPattern.SIXTEEN.getVectors()) {
-			context.player()
-					.level()
-					.addParticle(
-							new DynamicParticleEffect(
-									ColoredCraftingParticleEffect.of(payload.color.getColorInt())
-											.getType(), 0.0F, color, 1.5F, 40, false, true
-							),
-							sourcePos.x, sourcePos.y, sourcePos.z,
-							velocity.x * velocityModifier, 0.0F, velocity.z * velocityModifier
-					);
+			context.player().level().addParticle(
+					new DynamicParticleEffect(ColoredCraftingParticleEffect.of(payload.color.getColorInt()).getType(), 0.0F, color, 1.5F, 40, false, true),
+					sourcePos.x, sourcePos.y, sourcePos.z,
+					velocity.x * velocityModifier, 0.0F, velocity.z * velocityModifier
+			);
 		}
 	}
 	

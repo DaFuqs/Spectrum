@@ -168,7 +168,7 @@ public class SpectrumCommon {
 //
 //		logInfo("Registering Entities...");
 //		SpectrumTrackedDataHandlerRegistry.register();
-//		SpectrumEntityTypes.register();
+		SpectrumEntityTypes.register(modBus);
 //
 //		logInfo("Registering Omni Accelerator Projectiles & Behaviors...");
 //		SpectrumOmniAcceleratorProjectiles.register();

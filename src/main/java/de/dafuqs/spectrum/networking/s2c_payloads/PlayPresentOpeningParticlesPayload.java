@@ -8,14 +8,16 @@ import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
+import net.minecraft.world.level.*;
+import net.neoforged.neoforge.network.*;
+import net.neoforged.neoforge.network.handling.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public record PlayPresentOpeningParticlesPayload(BlockPos presentPos, Map<Integer, Integer> colors)
-		implements CustomPacketPayload {
+public record PlayPresentOpeningParticlesPayload(BlockPos presentPos, Map<Integer, Integer> colors) implements CustomPacketPayload {
 	
-	public static final Type<PlayPresentOpeningParticlesPayload> ID = SpectrumC2SPackets.makeId(
-			"play_present_opening_particles");
+	public static final Type<PlayPresentOpeningParticlesPayload> ID = SpectrumC2SPackets.makeId("play_present_opening_particles");
 	public static final StreamCodec<FriendlyByteBuf, PlayPresentOpeningParticlesPayload> CODEC = StreamCodec.composite(
 			BlockPos.STREAM_CODEC, PlayPresentOpeningParticlesPayload::presentPos,
 			ByteBufCodecs.map(Object2IntArrayMap::new, ByteBufCodecs.INT, ByteBufCodecs.INT),
@@ -23,15 +25,12 @@ public record PlayPresentOpeningParticlesPayload(BlockPos presentPos, Map<Intege
 			PlayPresentOpeningParticlesPayload::new
 	);
 	
-	public static void playPresentOpeningParticles(
-			ServerLevel serverWorld, BlockPos presentPos, Map<Integer, Integer> colors) {
-		PacketDistributor.sendToPlayersTrackingChunk(
-				serverWorld, new ChunkPos(presentPos), new PlayPresentOpeningParticlesPayload(presentPos, colors));
+	public static void playPresentOpeningParticles(ServerLevel serverWorld, BlockPos presentPos, Map<Integer, Integer> colors) {
+		PacketDistributor.sendToPlayersTrackingChunk(serverWorld, new ChunkPos(presentPos), new PlayPresentOpeningParticlesPayload(presentPos, colors));
 	}
 	
 	public static void execute(PlayPresentOpeningParticlesPayload payload, IPayloadContext context) {
-		var level = context.player()
-				.level();
+		Level level = context.player().level();
 		PresentBlock.spawnParticles(level, payload.presentPos, payload.colors);
 	}
 	

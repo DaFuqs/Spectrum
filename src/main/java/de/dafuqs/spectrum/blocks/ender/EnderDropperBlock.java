@@ -106,13 +106,7 @@ public class EnderDropperBlock extends DispenserBlock {
 						// getting inv will always work since .chooseNonEmptySlot() and others would fail otherwise
 						//noinspection DataFlowIssue
 						Container inv = enderDropperBlockEntity.getOwnerIfOnline().getEnderChestInventory();
-						long moved = StorageUtil.move(
-								InventoryStorage.of(inv, direction).getSlot(i),
-								target,
-								iv -> true,
-								1,
-								null
-						);
+						long moved = StorageUtil.move(InventoryStorage.of(inv, direction).getSlot(i), target, iv -> true, 1, null);
 						// return without triggering fail event if successfully moved
 						if (moved == 1) return;
 					}

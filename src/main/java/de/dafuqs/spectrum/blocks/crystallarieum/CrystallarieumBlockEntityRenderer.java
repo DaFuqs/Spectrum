@@ -17,6 +17,7 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.neoforged.api.distmarker.*;
+import net.neoforged.neoforge.fluids.*;
 
 @OnlyIn(Dist.CLIENT)
 public class CrystallarieumBlockEntityRenderer<T extends CrystallarieumBlockEntity> implements BlockEntityRenderer<T> {
@@ -50,8 +51,8 @@ public class CrystallarieumBlockEntityRenderer<T extends CrystallarieumBlockEnti
 		
 		renderHalo(crystal, tickDelta, matrices, vertexConsumers, light, overlay, vertices);
 		
-		var fluid = crystal.fluidStorage.variant;
-		if (!fluid.isBlank()) {
+		FluidStack fluid = crystal.fluidStorage.getFluid();
+		if (!fluid.isEmpty()) {
 			
 			matrices.pushPose();
 			TextureAtlasSprite sprite = FluidIngredientRendering.getSprite(fluid);
@@ -62,9 +63,9 @@ public class CrystallarieumBlockEntityRenderer<T extends CrystallarieumBlockEnti
 			var skylight = crystal.getLevel().getBrightness(LightLayer.BLOCK, pos);
 			var glow = LightTexture.pack(Math.max(luminance, skylight), crystal.getLevel().getBrightness(LightLayer.SKY, pos));
 			
-			var full = crystal.fluidStorage.amount == FluidConstants.BUCKET;
-			var y = full ? 0.975F : 0.94F;
-			var rim = full ? 1 : 2;
+			boolean full = crystal.fluidStorage.getFluidAmount() == crystal.fluidStorage.getCapacity();
+			float y = full ? 0.975F : 0.94F;
+			int rim = full ? 1 : 2;
 			
 			int[] colors = FluidRendering.unpackColorOf(fluid, crystal);
 			FluidRendering.renderFluid(vertexConsumers.getBuffer(RenderType.translucent()), matrices.last().pose(), sprite, glow, overlay, rim, 16 - rim, y, rim, 16 - rim, colors);

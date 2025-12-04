@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.api.interaction;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.advancements.critereon.*;

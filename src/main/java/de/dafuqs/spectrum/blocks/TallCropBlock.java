@@ -89,7 +89,7 @@ public class TallCropBlock extends CropBlock {
 		if (world.getRawBrightness(pos, 0) >= 9) {
 			int age = this.getAge(state);
 			if (age < this.getMaxAge()) {
-				float moisture = getGrowthSpeed(this, world, pos);
+				float moisture = getGrowthSpeed(state, world, pos);
 				// More likely if there's more moisture
 				if (random.nextInt((int) (upperBound / moisture) + 1) == 0) {
 					if (age >= Block.UPDATE_CLIENTS) {

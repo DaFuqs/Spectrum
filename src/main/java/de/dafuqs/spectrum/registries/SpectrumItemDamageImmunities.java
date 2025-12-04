@@ -10,8 +10,12 @@ public class SpectrumItemDamageImmunities {
 		ItemDamageImmunity.registerImmunity(Items.NETHER_STAR, DamageTypeTags.IS_FIRE);
 		ItemDamageImmunity.registerImmunity(Items.NETHER_STAR, DamageTypeTags.IS_EXPLOSION);
 		
+		ItemDamageImmunity.registerImmunity(SpectrumBlocks.CRACKED_END_PORTAL_FRAME, DamageTypeTags.IS_FIRE);
 		ItemDamageImmunity.registerImmunity(SpectrumBlocks.CRACKED_END_PORTAL_FRAME, DamageTypeTags.IS_EXPLOSION);
+		
 		ItemDamageImmunity.registerImmunity(SpectrumItems.DOOMBLOOM_SEED, DamageTypeTags.IS_EXPLOSION);
+		ItemDamageImmunity.registerImmunity(SpectrumItems.DRAGONBONE_CHUNK, DamageTypeTags.IS_EXPLOSION);
+		ItemDamageImmunity.registerImmunity(SpectrumBlocks.CRACKED_DRAGONBONE, DamageTypeTags.IS_EXPLOSION);
 	}
 	
 }

@@ -36,19 +36,41 @@
       "bonus_rolls": 0,
       "entries": [
         {
-          "type": "minecraft:item",
-          "name": "spectrum:dragonbone_chunk",
-          "functions": [
+          "type": "minecraft:alternatives",
+          "children": [
             {
-              "add": false,
-              "count": {
-                "type": "minecraft:uniform",
-                "max": 2,
-                "min": 0
-              },
-              "function": "minecraft:set_count"
+              "type": "minecraft:item",
+              "name": "spectrum:dragonbone_chunk",
+              "conditions": [
+                {
+                  "condition": "minecraft:damage_source_properties",
+                  "predicate": {
+                    "tags": [
+                      {
+                        "id": "minecraft:is_explosion",
+                        "expected": true
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "minecraft:bone"
             }
           ]
+        }
+      ],
+      "functions": [
+        {
+          "add": false,
+          "count": {
+            "type": "minecraft:uniform",
+            "min": 0,
+            "max": 2
+          },
+          "function": "minecraft:set_count"
         }
       ]
     },

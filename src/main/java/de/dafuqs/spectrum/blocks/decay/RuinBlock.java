@@ -57,6 +57,9 @@ public class RuinBlock extends DecayBlock {
 		if (stateToSpreadTo.getCollisionShape(world, stateToSpreadToPos).isEmpty() || stateToSpreadTo.is(SpectrumBlockTags.RUIN_SAFE)) {
 			return null;
 		}
+		if (SpectrumDimensionTags.is(world, SpectrumDimensionTags.RUIN_SAFE)) {
+			return null;
+		}
 		
 		if (stateToSpreadTo.is(SpectrumBlockTags.RUIN_SPECIAL_CONVERSIONS)) {
 			return this.defaultBlockState().setValue(CONVERSION, Conversion.SPECIAL);

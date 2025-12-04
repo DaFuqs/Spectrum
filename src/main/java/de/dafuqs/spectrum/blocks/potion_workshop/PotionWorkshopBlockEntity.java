@@ -487,9 +487,9 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 	}
 	
 	@Override
-	public void setChanged() {
-		super.setChanged();
+	public void inventoryChanged() {
 		this.inventoryChanged = true;
+		this.setChanged();
 	}
 	
 	@Override

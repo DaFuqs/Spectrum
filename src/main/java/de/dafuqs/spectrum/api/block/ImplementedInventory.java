@@ -81,6 +81,7 @@ public interface ImplementedInventory extends Container {
 		if (!result.isEmpty()) {
 			setChanged();
 		}
+		inventoryChanged();
 		return result;
 	}
 	
@@ -92,6 +93,9 @@ public interface ImplementedInventory extends Container {
 	@Override
 	default ItemStack removeItemNoUpdate(int slot) {
 		ItemStack stack = ContainerHelper.takeItem(getItems(), slot);
+		if (!stack.isEmpty()) {
+			inventoryChanged();
+		}
 		return stack;
 	}
 	
@@ -109,7 +113,7 @@ public interface ImplementedInventory extends Container {
 		if (stack.getCount() > stack.getMaxStackSize()) {
 			stack.setCount(stack.getMaxStackSize());
 		}
-		setChanged();
+		inventoryChanged();
 	}
 	
 	/**
@@ -118,6 +122,7 @@ public interface ImplementedInventory extends Container {
 	@Override
 	default void clearContent() {
 		getItems().clear();
+		inventoryChanged();
 	}
 	
 	/**
@@ -127,6 +132,7 @@ public interface ImplementedInventory extends Container {
 	 */
 	@Override
 	default void setChanged() {
+		inventoryChanged();
 	}
 	
 	/**
@@ -135,6 +141,9 @@ public interface ImplementedInventory extends Container {
 	@Override
 	default boolean stillValid(Player player) {
 		return true;
+	}
+	
+	default void inventoryChanged() {
 	}
 	
 }

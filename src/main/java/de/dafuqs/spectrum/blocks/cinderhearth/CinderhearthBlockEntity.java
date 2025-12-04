@@ -444,7 +444,7 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 			
 			// reset
 			cinderhearth.propertyDelegate.craftingTime = 0;
-			cinderhearth.setChanged();
+			cinderhearth.inventoryChanged();
 			
 			// grant experience & advancements
 			float experienceMod = cinderhearth.drainInkForUpgrades(cinderhearth, UpgradeType.EXPERIENCE, InkColors.PURPLE, cinderhearth.usesEfficiency);
@@ -515,14 +515,14 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 	@Override
 	public ItemStack removeItem(int slot, int amount) {
 		ItemStack removedStack = ContainerHelper.removeItem(this.inventory, slot, amount);
-		this.setChanged();
+		this.inventoryChanged();
 		return removedStack;
 	}
 	
 	@Override
 	public ItemStack removeItemNoUpdate(int slot) {
 		ItemStack removedStack = ContainerHelper.takeItem(this.inventory, slot);
-		this.setChanged();
+		this.inventoryChanged();
 		return removedStack;
 	}
 	
@@ -532,7 +532,7 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 		if (stack.getCount() > this.getMaxStackSize()) {
 			stack.setCount(this.getMaxStackSize());
 		}
-		this.setChanged();
+		this.inventoryChanged();
 	}
 	
 	@Override
@@ -544,17 +544,16 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 		}
 	}
 	
-	@Override
-	public void setChanged() {
-		super.setChanged();
+	public void inventoryChanged() {
 		this.inventoryChanged = true;
 		this.canTransferInk = true;
+		this.setChanged();
 	}
 	
 	@Override
 	public void clearContent() {
 		this.inventory.clear();
-		this.setChanged();
+		this.inventoryChanged();
 	}
 	
 	@Override

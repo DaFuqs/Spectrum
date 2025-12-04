@@ -57,6 +57,13 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		protected long getCapacity(FluidVariant variant) {
 			return FluidConstants.BUCKET;
 		}
+		
+		
+		@Override
+		protected void onFinalCommit() {
+			super.onFinalCommit();
+			inventoryChanged();
+		}
 	};
 	
 	// for performance reasons, the crystallarieum only processes recipe logic every 20 ticks
@@ -203,9 +210,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	}
 	
 	@Override
-	public void setChanged() {
-		super.setChanged();
-		
+	public void inventoryChanged() {
 		if (this.currentRecipe == null || level == null) {
 			this.currentCatalyst = CrystallarieumCatalyst.EMPTY;
 			this.canWork = false;
@@ -215,6 +220,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 			this.canWork = this.currentRecipe.value().getNextState(this.currentRecipe, topState).isPresent()
 					&& (this.currentRecipe.value().growsWithoutCatalyst() || this.currentCatalyst != CrystallarieumCatalyst.EMPTY);
 		}
+		super.inventoryChanged();
 	}
 	
 	@Override
@@ -321,7 +327,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 			if (player != null) {
 				this.ownerUUID = player;
 			}
-			setChanged();
+			inventoryChanged();
 		}
 	}
 	
@@ -357,7 +363,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 				}
 			}
 			
-			setChanged();
+			inventoryChanged();
 		}
 	}
 	

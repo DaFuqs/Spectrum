@@ -185,7 +185,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 					
 					int consumedItems = tickEnchantmentUpgradeRecipe(world, enchanterBlockEntity, enchanterBlockEntity.craftingTimeTotal - enchanterBlockEntity.craftingTime);
 					if (consumedItems == 0) {
-						enchanterBlockEntity.setChanged();
+						enchanterBlockEntity.inventoryChanged();
 					} else {
 						enchanterBlockEntity.craftingTime += consumedItems;
 						if (enchanterBlockEntity.craftingTime >= enchanterBlockEntity.craftingTimeTotal) {
@@ -228,7 +228,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 			if (craftingSuccess) {
 				enchanterBlockEntity.currentItemProcessingTime = -1;
 				enchanterBlockEntity.craftingTime = 0;
-				enchanterBlockEntity.setChanged();
+				enchanterBlockEntity.inventoryChanged();
 			}
 		}
 	}
@@ -773,9 +773,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	}
 	
 	@Override
-	public void setChanged() {
-		super.setChanged();
-		
+	public void inventoryChanged() {
 		if (level == null) return;
 		virtualInventory = new EnchanterInventory(
 				this.getItem(0), // center item
@@ -793,6 +791,8 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		virtualInventory.setChanged();
 		inventoryChanged = true;
 		currentItemProcessingTime = -1;
+		
+		super.inventoryChanged();
 	}
 	
 	public ItemStack getItemBowlStack(Level world, BlockPos blockPos) {

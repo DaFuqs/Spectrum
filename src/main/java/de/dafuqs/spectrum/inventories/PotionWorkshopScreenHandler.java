@@ -100,6 +100,9 @@ public class PotionWorkshopScreenHandler extends AbstractContainerMenu {
 			if (index < PotionWorkshopBlockEntity.FIRST_INVENTORY_SLOT) {
 				// workshop (not output inv)
 				if (!this.moveItemStackTo(slotStack, PotionWorkshopBlockEntity.FIRST_INVENTORY_SLOT + 12, this.slots.size(), false)) {
+					if (inventory instanceof PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
+						potionWorkshopBlockEntity.inventoryChanged();
+					}
 					return ItemStack.EMPTY;
 				}
 			} else if (index < PotionWorkshopBlockEntity.FIRST_INVENTORY_SLOT + 12) {
@@ -113,6 +116,9 @@ public class PotionWorkshopScreenHandler extends AbstractContainerMenu {
 				if (!slotStack.isEmpty()) {
 					this.moveItemStackTo(slotStack, 0, PotionWorkshopBlockEntity.FIRST_REAGENT_SLOT, false);
 				}
+				if (inventory instanceof PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
+					potionWorkshopBlockEntity.inventoryChanged();
+				}
 				return ItemStack.EMPTY;
 				// others
 			} else if (slotStack.isEmpty()) {
@@ -120,6 +126,10 @@ public class PotionWorkshopScreenHandler extends AbstractContainerMenu {
 			} else {
 				slot.setChanged();
 			}
+		}
+		
+		if (inventory instanceof PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
+			potionWorkshopBlockEntity.inventoryChanged();
 		}
 		return slotStackCopy;
 	}

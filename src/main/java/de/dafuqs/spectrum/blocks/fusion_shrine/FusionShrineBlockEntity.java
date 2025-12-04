@@ -61,6 +61,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		protected void onFinalCommit() {
 			super.onFinalCommit();
 			setLightForFluid(worldPosition, this.variant.getFluid());
+			inventoryChanged();
 			setChanged();
 		}
 	};
@@ -111,6 +112,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		world.playSound(null, this.getBlockPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundSource.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.9F + world.random.nextFloat() * 0.2F);
 		world.playSound(null, this.getBlockPos(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.5F + world.random.nextFloat() * 0.2F);
 		FusionShrineBlock.scatterContents(world, this.getBlockPos());
+		this.inventoryChanged();
 	}
 	
 	@SuppressWarnings("unused")
@@ -171,6 +173,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		FusionShrineRecipeWorldEffect effect = recipe.value().getWorldEffectForTick(fusionShrineBlockEntity.craftingTime, fusionShrineBlockEntity.craftingTimeTotal);
 		if (fusionShrineBlockEntity.craftingTime == fusionShrineBlockEntity.craftingTimeTotal) {
 			craft(world, blockPos, fusionShrineBlockEntity, recipe);
+			fusionShrineBlockEntity.inventoryChanged();
 		} else {
 			PlayFusionCraftingInProgressParticlePayload.sendPlayFusionCraftingInProgressParticles((ServerLevel) world, blockPos);
 		}
@@ -206,7 +209,6 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		fusionShrineBlockEntity.fluidStorage.variant = FluidVariant.blank();
 		fusionShrineBlockEntity.fluidStorage.amount = 0;
 		world.setBlock(blockPos, world.getBlockState(blockPos).setValue(FusionShrineBlock.LIGHT_LEVEL, 0), 3);
-		fusionShrineBlockEntity.setChanged();
 	}
 	
 	@Override
@@ -324,8 +326,8 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 	}
 	
 	@Override
-	public void setChanged() {
-		super.setChanged();
+	public void inventoryChanged() {
+		super.inventoryChanged();
 		this.inventoryChanged = true;
 		this.craftingTime = 0;
 	}

@@ -87,9 +87,8 @@ public class PreservationRoundelBlockEntity extends ItemRoundelBlockEntity imple
 	}
 	
 	@Override
-	public void setChanged() {
-		super.setChanged();
-		
+	public void inventoryChanged() {
+		super.inventoryChanged();
 		if (level instanceof ServerLevel && controllerOffset != null && inventoryAndConnectedOnesMatchRequirement()) {
 			BlockEntity blockEntity = level.getBlockEntity(Support.directionalOffset(this.worldPosition, this.controllerOffset, level.getBlockState(this.worldPosition).getValue(PreservationControllerBlock.FACING)));
 			if (blockEntity instanceof PreservationControllerBlockEntity controller) {

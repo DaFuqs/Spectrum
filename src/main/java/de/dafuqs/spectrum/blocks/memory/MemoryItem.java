@@ -185,45 +185,45 @@ public class MemoryItem extends BlockItem {
 		NbtCompound nbt = stack.getNbt();
 		Optional<EntityType<?>> entityType = getEntityType(nbt);
 		int ticksToHatch = getTicksToManifest(nbt);
-			if (entityType.isPresent() && nbt != null && !nbt.contains("hideTooltip")) { //had to add the null check, otherwise IDEA would complain -Shiv
-				if (isEntityTypeUnrecognizable(nbt)) {
-					tooltip.add(Text.translatable("item.spectrum.memory.tooltip.unrecognizable_entity_type").formatted(Formatting.GRAY));
-				} else {
-					boolean isBrokenPromise = isBrokenPromise(nbt);
-					Text customName = getMemoryEntityCustomName(nbt);
-					if (isBrokenPromise) {
-						if (customName == null) {
-							tooltip.add(Text.translatable("item.spectrum.memory.tooltip.entity_type_broken_promise", entityType.get().getName()));
-						} else {
-							tooltip.add(Text.translatable("item.spectrum.memory.tooltip.named_broken_promise").append(customName).formatted(Formatting.WHITE, Formatting.ITALIC));
-						}
+		if (entityType.isPresent() && nbt != null && !nbt.contains("hideTooltip")) { //had to add the null check, otherwise IDEA would complain -Shiv
+			if (isEntityTypeUnrecognizable(nbt)) {
+				tooltip.add(Text.translatable("item.spectrum.memory.tooltip.unrecognizable_entity_type").formatted(Formatting.GRAY));
+			} else {
+				boolean isBrokenPromise = isBrokenPromise(nbt);
+				Text customName = getMemoryEntityCustomName(nbt);
+				if (isBrokenPromise) {
+					if (customName == null) {
+						tooltip.add(Text.translatable("item.spectrum.memory.tooltip.entity_type_broken_promise", entityType.get().getName()));
 					} else {
-						if (customName == null) {
-							tooltip.add(Text.translatable("item.spectrum.memory.tooltip.entity_type", entityType.get().getName()));
-						} else {
-							tooltip.add(Text.translatable("item.spectrum.memory.tooltip.named").append(customName).formatted(Formatting.WHITE, Formatting.ITALIC));
-						}
+						tooltip.add(Text.translatable("item.spectrum.memory.tooltip.named_broken_promise").append(customName).formatted(Formatting.WHITE, Formatting.ITALIC));
+					}
+				} else {
+					if (customName == null) {
+						tooltip.add(Text.translatable("item.spectrum.memory.tooltip.entity_type", entityType.get().getName()));
+					} else {
+						tooltip.add(Text.translatable("item.spectrum.memory.tooltip.named").append(customName).formatted(Formatting.WHITE, Formatting.ITALIC));
 					}
 				}
-			} else if ( nbt != null && nbt.contains("hideTooltip")) {
-				return; // Catches if the item is a blank memory, meant to prevent "forgotten" from no longer displaying with an empty tag
-			} else {
-				tooltip.add(Text.translatable("item.spectrum.memory.tooltip.unset_entity_type").formatted(Formatting.GRAY));
-				return;
 			}
-			
-			if (ticksToHatch <= 0) {
-				tooltip.add(Text.translatable("item.spectrum.memory.tooltip.does_not_manifest").formatted(Formatting.GRAY));
-			} else if (ticksToHatch > 100) {
-				tooltip.add(Text.translatable("item.spectrum.memory.tooltip.extra_long_time_to_manifest").formatted(Formatting.GRAY));
-			} else if (ticksToHatch > 20) {
-				tooltip.add(Text.translatable("item.spectrum.memory.tooltip.long_time_to_manifest").formatted(Formatting.GRAY));
-			} else if (ticksToHatch > 5) {
-				tooltip.add(Text.translatable("item.spectrum.memory.tooltip.medium_time_to_manifest").formatted(Formatting.GRAY));
-			} else {
-				tooltip.add(Text.translatable("item.spectrum.memory.tooltip.short_time_to_manifest").formatted(Formatting.GRAY));
-			}
+		} else if ( nbt != null && nbt.contains("hideTooltip")) {
+			return; // Catches if the item is a blank memory, meant to prevent "forgotten" from no longer displaying with an empty tag
+		} else {
+			tooltip.add(Text.translatable("item.spectrum.memory.tooltip.unset_entity_type").formatted(Formatting.GRAY));
+			return;
 		}
+		
+		if (ticksToHatch <= 0) {
+			tooltip.add(Text.translatable("item.spectrum.memory.tooltip.does_not_manifest").formatted(Formatting.GRAY));
+		} else if (ticksToHatch > 100) {
+			tooltip.add(Text.translatable("item.spectrum.memory.tooltip.extra_long_time_to_manifest").formatted(Formatting.GRAY));
+		} else if (ticksToHatch > 20) {
+			tooltip.add(Text.translatable("item.spectrum.memory.tooltip.long_time_to_manifest").formatted(Formatting.GRAY));
+		} else if (ticksToHatch > 5) {
+			tooltip.add(Text.translatable("item.spectrum.memory.tooltip.medium_time_to_manifest").formatted(Formatting.GRAY));
+		} else {
+			tooltip.add(Text.translatable("item.spectrum.memory.tooltip.short_time_to_manifest").formatted(Formatting.GRAY));
+		}
+	}
 	
 	public static void appendEntries(Entries entries) {
 		// adding all memories that have spirit instiller recipes

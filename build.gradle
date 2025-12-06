@@ -64,7 +64,7 @@ dependencies {
 	modImplementation("net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}")
 
 	// ours
-	modImplementation include("maven.modrinth:exclusions-lib:${project.exclusionslib_version}")
+	modImplementation("maven.modrinth:exclusions-lib:${project.exclusionslib_version}")
 	modImplementation("de.dafuqs:revelationary:${project.revelationary_version}")
 	modImplementation include("de.dafuqs:additionalentityattributes:${project.additional_entity_attributes_version}")
 	modImplementation include("de.dafuqs:arrowhead:${project.arrowhead_version}")
@@ -72,7 +72,7 @@ dependencies {
 	modImplementation include("de.dafuqs:fractal:${project.fractal_version}")
 
 	// external and compat
-	modImplementation include("de.dafuqs.starryskies:StarrySkies:${project.starry_skies_version}")
+	modImplementation("de.dafuqs.starryskies:StarrySkies:${project.starry_skies_version}")
 	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") { exclude(group: "net.fabricmc.fabric-api") }
 	modApi("dev.architectury:architectury-fabric:${project.architectury_version}") { exclude(group: "net.fabricmc.fabric-api") }
 	modApi("com.terraformersmc:modmenu:${project.modmenu_version}")

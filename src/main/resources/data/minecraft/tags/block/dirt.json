@@ -1,5 +1,7 @@
 {
   "values": [
-    "#spectrum:dirt_blocks"
+    "#spectrum:groundcover",
+    "spectrum:rotten_ground",
+    "spectrum:slush"
   ]
 }

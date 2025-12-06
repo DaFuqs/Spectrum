@@ -5879,6 +5879,9 @@
   "lore.spectrum.time_travel_tap": "Worthy of a Time Traveller",
   "lore.spectrum.evernectar": "...Evernectar?",
 
+  "lore.spectrum.remembrance_memory.line_1": "2002 - 2025",
+  "lore.spectrum.remembrance_memory.line_2": "Never Forgotten",
+
   "lore.spectrum.heartbound_staff.name": "You shouldn't be seeing this in Survival",
   "lore.spectrum.heartbound_staff.lore_1": "If you aren't in creative right now",
   "lore.spectrum.heartbound_staff.lore_2": "Then that's a bug - you should not be able to get this",

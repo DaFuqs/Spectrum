@@ -7,6 +7,8 @@ import net.minecraft.resources.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.level.*;
 
+import java.util.*;
+
 public class SpectrumDimensionTags {
 	
 	public static final TagKey<Level> RUIN_SAFE = of("ruin_safe");
@@ -19,6 +21,11 @@ public class SpectrumDimensionTags {
 		Registry<Level> registry = level.registryAccess().registryOrThrow(Registries.DIMENSION);
 		ResourceKey<Level> key = level.dimension();
 		Holder.Reference<Level> resourceKey = registry.getHolderOrThrow(key);
-		return registry.getTag(tag).get().contains(resourceKey);
+		
+		Optional<HolderSet.Named<Level>> optional = registry.getTag(tag);
+		if (optional.isEmpty()) {
+			return false;
+		}
+		return optional.get().contains(resourceKey);
 	}
 }

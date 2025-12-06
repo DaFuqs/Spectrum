@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.blocks;
 
 import de.dafuqs.spectrum.api.block.*;
 import net.minecraft.core.*;
-import net.minecraft.core.component.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.protocol.*;
 import net.minecraft.network.protocol.game.*;
@@ -11,7 +10,6 @@ import net.minecraft.server.level.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.storage.loot.*;
@@ -19,7 +17,6 @@ import org.jetbrains.annotations.*;
 
 public abstract class InWorldInteractionBlockEntity extends BlockEntity implements RandomizableContainer, ImplementedInventory {
 	
-	private final int inventorySize;
 	protected NonNullList<ItemStack> items;
 	@Nullable
 	protected ResourceKey<LootTable> lootTable;
@@ -27,7 +24,6 @@ public abstract class InWorldInteractionBlockEntity extends BlockEntity implemen
 	
 	public InWorldInteractionBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, int inventorySize) {
 		super(type, pos, state);
-		this.inventorySize = inventorySize;
 		this.items = NonNullList.withSize(inventorySize, ItemStack.EMPTY);
 	}
 	
@@ -46,19 +42,20 @@ public abstract class InWorldInteractionBlockEntity extends BlockEntity implemen
 	}
 	
 	@Override
-	public void loadAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
-		super.loadAdditional(nbt, registryLookup);
-		this.items = NonNullList.withSize(inventorySize, ItemStack.EMPTY);
-		if (!this.tryLoadLootTable(nbt)) {
-			ContainerHelper.loadAllItems(nbt, items, registryLookup);
+	public void loadAdditional(CompoundTag tag, HolderLookup.Provider registryLookup) {
+		super.loadAdditional(tag, registryLookup);
+		
+		this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
+		if (!this.tryLoadLootTable(tag)) {
+			ContainerHelper.loadAllItems(tag, this.items, registryLookup);
 		}
 	}
 	
 	@Override
-	public void saveAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
-		super.saveAdditional(nbt, registryLookup);
-		if (!this.trySaveLootTable(nbt)) {
-			ContainerHelper.saveAllItems(nbt, items, registryLookup);
+	public void saveAdditional(CompoundTag tag, HolderLookup.Provider registryLookup) {
+		super.saveAdditional(tag, registryLookup);
+		if (!this.trySaveLootTable(tag)) {
+			ContainerHelper.saveAllItems(tag, this.items, registryLookup);
 		}
 	}
 
@@ -107,24 +104,6 @@ public abstract class InWorldInteractionBlockEntity extends BlockEntity implemen
 	@Override
 	public void setLootTableSeed(long lootTableSeed) {
 		this.lootTableSeed = lootTableSeed;
-	}
-	
-	@Override
-	protected void applyImplicitComponents(BlockEntity.DataComponentInput components) {
-		super.applyImplicitComponents(components);
-		SeededContainerLoot containerLootComponent = components.get(DataComponents.CONTAINER_LOOT);
-		if (containerLootComponent != null) {
-			this.lootTable = containerLootComponent.lootTable();
-			this.lootTableSeed = containerLootComponent.seed();
-		}
-	}
-	
-	@Override
-	protected void collectImplicitComponents(DataComponentMap.Builder componentMapBuilder) {
-		super.collectImplicitComponents(componentMapBuilder);
-		if (this.lootTable != null) {
-			componentMapBuilder.set(DataComponents.CONTAINER_LOOT, new SeededContainerLoot(this.lootTable, this.lootTableSeed));
-		}
 	}
 	
 }

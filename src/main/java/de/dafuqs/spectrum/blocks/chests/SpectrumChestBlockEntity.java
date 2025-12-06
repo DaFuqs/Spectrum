@@ -3,14 +3,12 @@ package de.dafuqs.spectrum.blocks.chests;
 import de.dafuqs.spectrum.inventories.*;
 import net.fabricmc.api.*;
 import net.minecraft.core.*;
-import net.minecraft.core.component.*;
 import net.minecraft.nbt.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
@@ -144,24 +142,19 @@ public abstract class SpectrumChestBlockEntity extends RandomizableContainerBloc
 	@Override
 	public void loadAdditional(CompoundTag tag, HolderLookup.Provider registryLookup) {
 		super.loadAdditional(tag, registryLookup);
-		this.tryLoadLootTable(tag);
+		
 		this.inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-		ContainerHelper.loadAllItems(tag, this.inventory, registryLookup);
+		if (!this.tryLoadLootTable(tag)) {
+			ContainerHelper.loadAllItems(tag, this.inventory, registryLookup);
+		}
 	}
 	
 	@Override
 	public void saveAdditional(CompoundTag tag, HolderLookup.Provider registryLookup) {
 		super.saveAdditional(tag, registryLookup);
-		this.trySaveLootTable(tag);
-		if (!this.inventory.isEmpty()) {
+		if (!this.trySaveLootTable(tag)) {
 			ContainerHelper.saveAllItems(tag, this.inventory, registryLookup);
 		}
-	}
-	
-	@Override
-	protected void collectImplicitComponents(DataComponentMap.Builder componentMapBuilder) {
-		super.collectImplicitComponents(componentMapBuilder);
-		componentMapBuilder.set(DataComponents.CONTAINER_LOOT, new SeededContainerLoot(this.lootTable, this.lootTableSeed));
 	}
 	
 	public SoundEvent getOpenSound() {

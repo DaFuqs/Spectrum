@@ -183,10 +183,13 @@ public class MemoryItem extends BlockItem {
 		super.appendTooltip(stack, world, tooltip, context);
 		
 		NbtCompound nbt = stack.getNbt();
+		if (nbt != null && nbt.contains("hideTooltip")) {
+			return;
+		}
+		
 		Optional<EntityType<?>> entityType = getEntityType(nbt);
 		int ticksToHatch = getTicksToManifest(nbt);
-		
-		if (entityType.isPresent()) {
+		if (entityType.isPresent()) { //had to add the null check, otherwise IDEA would complain -Shiv
 			if (isEntityTypeUnrecognizable(nbt)) {
 				tooltip.add(Text.translatable("item.spectrum.memory.tooltip.unrecognizable_entity_type").formatted(Formatting.GRAY));
 			} else {

@@ -137,6 +137,15 @@ public class ServerPastelNetwork extends PastelNetwork<ServerWorld> {
 		addPriorityNode(node);
 	}
 	
+	protected void removeSelf() {
+		for (BlockPos vertex : this.graph.vertexSet()) {
+			Optional<PastelNodeBlockEntity> be = world.getBlockEntity(vertex, SpectrumBlockEntities.PASTEL_NODE);
+			be.ifPresent(pastelNodeBlockEntity -> pastelNodeBlockEntity.setNetworkUUID(null));
+		}
+		SpectrumS2CPacketSender.syncPastelNetworkRemoved(this);
+		Pastel.getServerInstance().removeNetwork(this.getUUID());
+	}
+	
 	/**
 	 * Note: this does not check if the nodes can connect, that should be done before calling this method.
 	 */
@@ -157,15 +166,9 @@ public class ServerPastelNetwork extends PastelNetwork<ServerWorld> {
 	// check if a recently removed node split the network into subnetworks
 	// or if the network is too small now (0 / 1 nodes) delete it
 	private void checkForNetworkSplit(BlockPos sourcePos) {
-		Set<BlockPos> vertices = this.graph.vertexSet();
-		
 		// if our network now has 1 or less nodes we don't really have a network anymore
 		if (this.graph.vertexSet().size() < 2) {
-			for (BlockPos vertex : vertices) {
-				Optional<PastelNodeBlockEntity> be = world.getBlockEntity(vertex, SpectrumBlockEntities.PASTEL_NODE);
-				be.ifPresent(pastelNodeBlockEntity -> pastelNodeBlockEntity.setNetworkUUID(null));
-			}
-			Pastel.getServerInstance().removeNetwork(this.getUUID());
+			this.removeSelf();
 		}
 		
 		// if our network is still big enough, check if all vertices are still interconnected
@@ -175,6 +178,7 @@ public class ServerPastelNetwork extends PastelNetwork<ServerWorld> {
 		
 		if (connectedSets.size() == 1) {
 			// all nodes still are connected in some way, awesome!
+			this.transmissionLogic.invalidateCache();
 			return;
 		}
 		
@@ -200,13 +204,7 @@ public class ServerPastelNetwork extends PastelNetwork<ServerWorld> {
 		if (biggestSetSize == 1) {
 			// the network was split into something you can't even call a network anymore
 			// fast fail => remove the network entirely
-			
-			for (BlockPos pos : this.graph.vertexSet()) {
-				Optional<PastelNodeBlockEntity> blockEntity = world.getBlockEntity(pos, SpectrumBlockEntities.PASTEL_NODE);
-				blockEntity.ifPresent(pastelNodeBlockEntity -> pastelNodeBlockEntity.setNetworkUUID(null));
-			}
-			
-			SpectrumS2CPacketSender.syncPastelNetworkRemoved(this);
+			this.removeSelf();
 			return;
 		}
 		

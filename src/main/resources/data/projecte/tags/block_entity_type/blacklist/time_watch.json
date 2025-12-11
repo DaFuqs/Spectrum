@@ -1,3 +1,10 @@
 {
-  "values": []
+  "values": [
+		"spectrum:memory",
+		"spectrum:pedestal_block_entity",
+		"spectrum:fusion_shrine_block_entity",
+		"spectrum:enchanter_block_entity",
+		"spectrum:item_bowl_block_entity"
+
+	]
 }

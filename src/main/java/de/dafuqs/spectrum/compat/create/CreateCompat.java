@@ -52,15 +52,19 @@ public class CreateCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 			entries.add(PURE_ZINC_BLOCK);
 		});
 		
-        PipeCollisionEvent.FLOW.register(event -> {
-            final BlockState result = handleBidirectionalCollision(event.getLevel(), event.getFirstFluid(), event.getSecondFluid());
-            if (result != null) event.setState(result);
-        });
+		if (SpectrumIntegrationPacks.CONNECTOR_LOADED) {
+			// TODO
+		} else {
+			PipeCollisionEvent.FLOW.register(event -> {
+				final BlockState result = handleBidirectionalCollision(event.getLevel(), event.getFirstFluid(), event.getSecondFluid());
+				if (result != null) event.setState(result);
+			});
 
-        PipeCollisionEvent.SPILL.register(event -> {
-            final BlockState result = handleBidirectionalCollision(event.getLevel(), event.getPipeFluid(), event.getWorldFluid());
-            if (result != null) event.setState(result);
-        });
+			PipeCollisionEvent.SPILL.register(event -> {
+				final BlockState result = handleBidirectionalCollision(event.getLevel(), event.getPipeFluid(), event.getWorldFluid());
+				if (result != null) event.setState(result);
+			});
+		}
 		
 	}
 

@@ -59,16 +59,26 @@ public class SpectrumIntegrationPacks {
 		if (!FabricLoader.getInstance().isModLoaded(CONNECTOR_ID)) {
 			// Connector on forge causes a lot of issues since most
 			// code bases of forge mods differ quite a lot from their fabric counterparts
-			registerIntegrationPack(AE2_ID, () -> new AE2Compat());
-			registerIntegrationPack(GOBBER_ID, () -> new GobberCompat());
+
+			// Farbic Exclusive Mods
 			registerIntegrationPack(ALLOY_FORGERY_ID, () -> new AlloyForgeryCompat());
-			registerIntegrationPack(BOTANIA_ID, () -> new BotaniaCompat());
 			registerIntegrationPack(NEEPMEAT_ID, () -> new NEEPMeatCompat());
-			registerIntegrationPack(FARMERSDELIGHT_ID, () -> new FDCompat());
-			registerIntegrationPack(MALUM_ID, () -> new MalumCompat());
+			
+			// Connector Problematic ones, see #792 on github
+			registerIntegrationPack(MALUM_ID, () -> new MalumCompat()); //NoSuchField error
 			registerIntegrationPack(TRAVELERS_BACKPACK_ID, () -> new TravelersBackpackCompat());
-			registerIntegrationPack(CREATE_ID, () -> new CreateCompat());
+			
+			registerIntegrationPack(CREATE_ID, () -> new CreateCompat()); // this one needs a bit of work with tags...
+				//^ extra note: create on fabric is a bit different jsyk
 		}
+		
+		// These will work across connector, for notaton sake, I will label the version and tested FORGE version here
+		//   All were tested for 1.20.1 - FORGE 47.4.10 w/ FFAPI 0.92.6+1.11.14,
+		//   Connector 1.0.0-beta.47, and ConnectorExtras-1.11.2
+		registerIntegrationPack(FARMERSDELIGHT_ID, () -> new FDCompat()); //working with ver 1.20.1-1.2.9
+		registerIntegrationPack(AE2_ID, () -> new AE2Compat()); // working with forge-15.4.10
+		registerIntegrationPack(GOBBER_ID, () -> new GobberCompat()); // working with 1.20.1-2.8.9
+		registerIntegrationPack(BOTANIA_ID, () -> new BotaniaCompat()); // working with 1.20.1-450-FORGE
 		
 		for (ModIntegrationPack container : INTEGRATION_PACKS.values()) {
 			container.register();

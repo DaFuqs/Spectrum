@@ -75,6 +75,8 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	protected Direction cachedDirection = null;
 
 	private final List<ItemVariant> filterItems;
+	private final HashSet<Item> filterHashset = new HashSet<>(10);
+	private int nbtCheckingFilterItems = 0;
 	float rotationTarget, crystalRotation, lastRotationTarget, heightTarget, crystalHeight, lastHeightTarget, alphaTarget, ringAlpha, lastAlphaTarget;
 	long creationStamp = -1, interpTicks, interpLength = -1, spinTicks;
 	private State state;
@@ -250,6 +252,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 
 		if (filterSlotRows < oldFilterSlotCount) {
 			for (int i = getDrawnSlots(); i < filterItems.size(); i++) {
+				filterHashset.remove(filterItems.get(i).getItem());
 				filterItems.set(i, ItemVariant.blank());
 			}
 		}
@@ -351,6 +354,11 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		
 		if (this.getNodeType().usesFilters()) {
 			FilterConfigurable.readFilterNbt(nbt, this.filterItems);
+			this.filterHashset.clear();
+			this.filterItems.forEach((itemVariant) -> {
+				this.filterHashset.add(itemVariant.getItem());
+				this.updateNbtCheckingCount(itemVariant, 1);
+			});
 		}
 	}
 
@@ -450,9 +458,23 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 
 	@Override
 	public void setFilterItem(int slot, ItemVariant item) {
+		System.out.printf("Current NBT filtering items: %s\n", this.nbtCheckingFilterItems);
+		updateNbtCheckingCount(item, 1);
+		updateNbtCheckingCount(this.filterItems.get(slot), -1);
+		if(Collections.frequency(this.filterItems, item) == 1) { this.filterHashset.remove(this.filterItems.get(slot).getItem()); }
 		this.filterItems.set(slot, item);
+		this.filterHashset.add(item.getItem());
+		System.out.printf("Updated NBT filtering items: %s\n", this.nbtCheckingFilterItems);
 	}
-
+	
+	private void updateNbtCheckingCount(ItemVariant itemVariant, int change) {
+		if(!itemVariant.hasNbt()) { return; }
+		ItemStack stack = itemVariant.toStack();
+		if((stack.isIn(SpectrumItemTags.TAG_FILTERING_ITEMS) && stack.hasCustomName()) || LoreHelper.hasLore(stack)) {
+			this.nbtCheckingFilterItems += change;
+		}
+	}
+	
 	public Predicate<ItemVariant> getTransferFilterTo(PastelNodeBlockEntity other) {
 		if (this.getNodeType().usesFilters() && !this.hasEmptyFilter()) {
 			if (other.getNodeType().usesFilters() && !other.hasEmptyFilter()) {
@@ -467,8 +489,13 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 			return itemVariant -> true;
 		}
 	}
-
 	private boolean filter(ItemVariant variant) {
+		if(nbtCheckingFilterItems == 0) {
+			System.out.printf("Using optimised filter for %s\n", variant);
+			return filterHashset.contains(variant.getItem());
+	 	}
+		
+		System.out.printf("Using unoptimised filter for %s\n", variant);
 		filter: for (ItemVariant filterItem : filterItems) {
 			if (filterItem.isBlank()) {
 				continue;

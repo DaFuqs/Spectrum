@@ -458,13 +458,11 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 
 	@Override
 	public void setFilterItem(int slot, ItemVariant item) {
-		System.out.printf("Current NBT filtering items: %s\n", this.nbtCheckingFilterItems);
 		updateNbtCheckingCount(item, 1);
 		updateNbtCheckingCount(this.filterItems.get(slot), -1);
 		if(Collections.frequency(this.filterItems, item) == 1) { this.filterHashset.remove(this.filterItems.get(slot).getItem()); }
 		this.filterItems.set(slot, item);
 		this.filterHashset.add(item.getItem());
-		System.out.printf("Updated NBT filtering items: %s\n", this.nbtCheckingFilterItems);
 	}
 	
 	private void updateNbtCheckingCount(ItemVariant itemVariant, int change) {
@@ -491,11 +489,9 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	}
 	private boolean filter(ItemVariant variant) {
 		if(nbtCheckingFilterItems == 0) {
-			System.out.printf("Using optimised filter for %s\n", variant);
 			return filterHashset.contains(variant.getItem());
 	 	}
 		
-		System.out.printf("Using unoptimised filter for %s\n", variant);
 		filter: for (ItemVariant filterItem : filterItems) {
 			if (filterItem.isBlank()) {
 				continue;

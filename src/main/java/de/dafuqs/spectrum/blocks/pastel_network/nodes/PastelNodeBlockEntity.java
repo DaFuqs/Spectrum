@@ -554,15 +554,15 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 
 	public boolean testNBTPredicates(String description, ItemStack stack, ItemVariant variant) {
 		var tested = variant.getNbt();
-		var cleanString = StringUtils.trim(description).toLowerCase();
+		var cleanString = StringUtils.trim(description);
 		var pieces = StringUtils.splitByWholeSeparator(cleanString, null);
 		var target = pieces[0];
-		var predicateString = StringUtils.remove(cleanString, target); // We don't want ambiguity when checking for keywords
+		var predicateString = StringUtils.remove(cleanString.toLowerCase(), target); // We don't want ambiguity when checking for keywords
 		var source = stack.getNbt(); //No need to check if it has nbt, to get here it already had to have some.
 		boolean nullSourceFilter = false;
 
 		// A few corrections for ease of use
-		if (StringUtils.equalsAnyIgnoreCase(target, "durability", "uses"))
+		if (StringUtils.equalsAnyIgnoreCase(target, "durability", "uses", "damage"))
 			target = ItemStack.DAMAGE_KEY;
 
 		if (StringUtils.equalsAnyIgnoreCase(target, "enchs", "enchants", "enchantment")) {
@@ -639,7 +639,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		}
 
 		switch (testedData.getType()) {
-			case NbtElement.NUMBER_TYPE: {
+			case NbtElement.NUMBER_TYPE: case NbtElement.INT_TYPE: {
 				var testedNum = ((AbstractNbtNumber) testedData).doubleValue();
 
 				// Special damage keywords - durability is weird and counts up as it decreases

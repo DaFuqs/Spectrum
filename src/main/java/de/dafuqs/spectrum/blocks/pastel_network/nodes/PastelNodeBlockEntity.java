@@ -75,6 +75,8 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	protected Direction cachedDirection = null;
 
 	private final List<ItemVariant> filterItems;
+	private final HashSet<Item> filterHashset = new HashSet<>(10);
+	private int nbtCheckingFilterItems = 0;
 	float rotationTarget, crystalRotation, lastRotationTarget, heightTarget, crystalHeight, lastHeightTarget, alphaTarget, ringAlpha, lastAlphaTarget;
 	long creationStamp = -1, interpTicks, interpLength = -1, spinTicks;
 	private State state;
@@ -250,6 +252,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 
 		if (filterSlotRows < oldFilterSlotCount) {
 			for (int i = getDrawnSlots(); i < filterItems.size(); i++) {
+				filterHashset.remove(filterItems.get(i).getItem());
 				filterItems.set(i, ItemVariant.blank());
 			}
 		}
@@ -351,6 +354,11 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		
 		if (this.getNodeType().usesFilters()) {
 			FilterConfigurable.readFilterNbt(nbt, this.filterItems);
+			this.filterHashset.clear();
+			this.filterItems.forEach((itemVariant) -> {
+				this.filterHashset.add(itemVariant.getItem());
+				this.updateNbtCheckingCount(itemVariant, 1);
+			});
 		}
 	}
 
@@ -450,9 +458,21 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 
 	@Override
 	public void setFilterItem(int slot, ItemVariant item) {
+		updateNbtCheckingCount(item, 1);
+		updateNbtCheckingCount(this.filterItems.get(slot), -1);
+		if(Collections.frequency(this.filterItems, item) == 1) { this.filterHashset.remove(this.filterItems.get(slot).getItem()); }
 		this.filterItems.set(slot, item);
+		this.filterHashset.add(item.getItem());
 	}
-
+	
+	private void updateNbtCheckingCount(ItemVariant itemVariant, int change) {
+		if(!itemVariant.hasNbt()) { return; }
+		ItemStack stack = itemVariant.toStack();
+		if((stack.isIn(SpectrumItemTags.TAG_FILTERING_ITEMS) && stack.hasCustomName()) || LoreHelper.hasLore(stack)) {
+			this.nbtCheckingFilterItems += change;
+		}
+	}
+	
 	public Predicate<ItemVariant> getTransferFilterTo(PastelNodeBlockEntity other) {
 		if (this.getNodeType().usesFilters() && !this.hasEmptyFilter()) {
 			if (other.getNodeType().usesFilters() && !other.hasEmptyFilter()) {
@@ -467,8 +487,11 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 			return itemVariant -> true;
 		}
 	}
-
 	private boolean filter(ItemVariant variant) {
+		if(nbtCheckingFilterItems == 0) {
+			return filterHashset.contains(variant.getItem());
+	 	}
+		
 		filter: for (ItemVariant filterItem : filterItems) {
 			if (filterItem.isBlank()) {
 				continue;
@@ -527,15 +550,15 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 
 	public boolean testNBTPredicates(String description, ItemStack stack, ItemVariant variant) {
 		var tested = variant.getNbt();
-		var cleanString = StringUtils.trim(description).toLowerCase();
+		var cleanString = StringUtils.trim(description);
 		var pieces = StringUtils.splitByWholeSeparator(cleanString, null);
 		var target = pieces[0];
-		var predicateString = StringUtils.remove(cleanString, target); // We don't want ambiguity when checking for keywords
+		var predicateString = StringUtils.remove(cleanString.toLowerCase(), target); // We don't want ambiguity when checking for keywords
 		var source = stack.getNbt(); //No need to check if it has nbt, to get here it already had to have some.
 		boolean nullSourceFilter = false;
 
 		// A few corrections for ease of use
-		if (StringUtils.equalsAnyIgnoreCase(target, "durability", "uses"))
+		if (StringUtils.equalsAnyIgnoreCase(target, "durability", "uses", "damage"))
 			target = ItemStack.DAMAGE_KEY;
 
 		if (StringUtils.equalsAnyIgnoreCase(target, "enchs", "enchants", "enchantment")) {
@@ -612,7 +635,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		}
 
 		switch (testedData.getType()) {
-			case NbtElement.NUMBER_TYPE: {
+			case NbtElement.NUMBER_TYPE: case NbtElement.INT_TYPE: {
 				var testedNum = ((AbstractNbtNumber) testedData).doubleValue();
 
 				// Special damage keywords - durability is weird and counts up as it decreases

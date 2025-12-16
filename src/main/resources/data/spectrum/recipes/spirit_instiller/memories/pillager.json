@@ -7,7 +7,7 @@
     "item": "spectrum:pillager_head"
   },
   "ingredient2": {
-    "tag": "minecraft:emerald"
+    "item": "minecraft:emerald"
   },
   "center_ingredient": {
     "tag": "spectrum:memory_bonding_agents",

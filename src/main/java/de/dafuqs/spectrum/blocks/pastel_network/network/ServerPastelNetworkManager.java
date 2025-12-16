@@ -106,7 +106,7 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 		// we have no network yet
 		// => Create one
 		if (firstNetwork.isEmpty() && secondNetwork.isEmpty()) {
-			ServerPastelNetwork newNetwork = createNetwork((ServerWorld) firstNode.getWorld(), firstNode.getNodeId());
+			ServerPastelNetwork newNetwork = createNetwork((ServerWorld) firstNode.getWorld(), UUID.randomUUID());
 			newNetwork.addNode(secondNode);
 			secondNode.setNetworkUUID(newNetwork.getUUID());
 			newNetwork.addNodeAndConnect(firstNode, secondNode);

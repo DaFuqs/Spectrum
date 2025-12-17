@@ -144,27 +144,30 @@ public class InventoryHelper {
 	
 	public static ItemStack setOrCombineStack(Container inventory, int slot, ItemStack addingStack) {
 		ItemStack existingStack = inventory.getItem(slot);
+		int max = Math.min(addingStack.getMaxStackSize(), inventory.getMaxStackSize());
 		if (existingStack.isEmpty()) {
-			if (addingStack.getCount() > addingStack.getMaxStackSize()) {
-				int amount = addingStack.getMaxStackSize();
-				amount = Math.min(amount, inventory.getMaxStackSize());
+			if (addingStack.getCount() > max) {
 				ItemStack newStack = addingStack.copy();
-				newStack.setCount(amount);
-				addingStack.shrink(amount);
+				newStack.setCount(max);
+				addingStack.shrink(max);
 				inventory.setItem(slot, newStack);
 			} else {
 				inventory.setItem(slot, addingStack);
 				return ItemStack.EMPTY;
 			}
 		} else {
-			combineStacks(existingStack, addingStack);
+			combineStacks(existingStack, addingStack, max);
 		}
 		return addingStack;
 	}
-
+	
 	public static void combineStacks(ItemStack originalStack, ItemStack addingStack) {
+		combineStacks(originalStack, addingStack, originalStack.getMaxStackSize());
+	}
+	
+	public static void combineStacks(ItemStack originalStack, ItemStack addingStack, int max) {
 		if (ItemStack.isSameItemSameComponents(originalStack, addingStack)) {
-			int leftOverAmountInExistingStack = originalStack.getMaxStackSize() - originalStack.getCount();
+			int leftOverAmountInExistingStack = max - originalStack.getCount();
 			if (leftOverAmountInExistingStack > 0) {
 				int addAmount = Math.min(leftOverAmountInExistingStack, addingStack.getCount());
 				originalStack.grow(addAmount);
@@ -189,7 +192,7 @@ public class InventoryHelper {
 				inventory.setItem(i, stackToAdd);
 				return true;
 			} else if (stackToAdd.isStackable()) {
-				combineStacks(currentStack, stackToAdd);
+				combineStacks(currentStack, stackToAdd, inventory.getMaxStackSize());
 				if (stackToAdd.isEmpty()) {
 					return true;
 				}
@@ -220,7 +223,7 @@ public class InventoryHelper {
 			for (int j = 0; j < stacksToAdd.size(); j++) {
 				ItemStack stackToAdd = stacksToAdd.get(j);
 				if (stackToAdd.isStackable()) {
-					combineStacks(inventoryStack, stackToAdd);
+					combineStacks(inventoryStack, stackToAdd, inventory.getMaxStackSize());
 					if (stackToAdd.isEmpty()) {
 						stacksToAdd.remove(j);
 						if (stacksToAdd.isEmpty()) {

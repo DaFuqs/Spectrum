@@ -33,6 +33,8 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
+import net.neoforged.neoforge.capabilities.*;
+import net.neoforged.neoforge.items.*;
 import org.apache.commons.lang3.*;
 import org.jetbrains.annotations.*;
 
@@ -67,9 +69,6 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	protected int transferTime = PastelTransmissionLogic.DEFAULT_TRANSFER_TICKS_PER_NODE;
 	protected int filterSlotRows = DEFAULT_FILTER_SLOT_ROWS;
 	
-	protected BlockApiCache<Storage<ItemStack>, Direction> connectedStorageCache = null;
-	protected Direction cachedDirection = null;
-	
 	private final List<ItemStack> filterItems;
 	float rotationTarget, crystalRotation, lastRotationTarget, heightTarget, crystalHeight, lastHeightTarget, alphaTarget, ringAlpha, lastAlphaTarget;
 	long creationStamp = -1, interpTicks, interpLength = -1, spinTicks;
@@ -77,22 +76,19 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	
 	public PastelNodeBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntities.PASTEL_NODE.get(), blockPos, blockState);
-		this.filterItems = NonNullList.withSize(MAX_FILTER_SLOTS, ItemStack.blank());
+		this.filterItems = NonNullList.withSize(MAX_FILTER_SLOTS, ItemStack.EMPTY);
 		this.outerRing = Optional.empty();
 		this.innerRing = Optional.empty();
 		this.redstoneRing = Optional.empty();
 	}
 	
-	public @Nullable Storage<ItemStack> getConnectedStorage() {
-		if (connectedStorageCache == null) {
-			BlockState state = this.getBlockState();
-			if (!(state.getBlock() instanceof PastelNodeBlock)) {
-				return null;
-			}
-			cachedDirection = state.getValue(PastelNodeBlock.FACING);
-			connectedStorageCache = BlockApiCache.create(ItemStorage.SIDED, (ServerLevel) level, this.getBlockPos().relative(cachedDirection.getOpposite()));
+	public @Nullable IItemHandler getConnectedStorage() {
+		BlockState state = this.getBlockState();
+		if (!(state.getBlock() instanceof PastelNodeBlock)) {
+			return null;
 		}
-		return connectedStorageCache.find(cachedDirection);
+		Direction direction = state.getValue(PastelNodeBlock.FACING);
+		return level.getCapability(Capabilities.ItemHandler.BLOCK, this.getBlockPos().relative(direction), direction.getOpposite());
 	}
 	
 	public static void tick(@NotNull Level world, BlockPos pos, BlockState state, PastelNodeBlockEntity node) {

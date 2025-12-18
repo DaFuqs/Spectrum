@@ -18,6 +18,8 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
+import net.neoforged.neoforge.capabilities.*;
+import net.neoforged.neoforge.items.*;
 import org.jetbrains.annotations.*;
 
 public class EnderDropperBlock extends DispenserBlock {
@@ -101,14 +103,17 @@ public class EnderDropperBlock extends DispenserBlock {
 					ItemStack itemStack3 = BEHAVIOR.dispense(blockPointer, itemStack);
 					enderDropperBlockEntity.setItem(i, itemStack3);
 				} else {
-					Storage<ItemVariant> target = ItemStorage.SIDED.find(world, pos.relative(direction), direction.getOpposite());
+					IItemHandler target = world.getCapability(Capabilities.ItemHandler.BLOCK, pos.relative(direction), direction.getOpposite());
 					if (target != null) {
 						// getting inv will always work since .chooseNonEmptySlot() and others would fail otherwise
 						//noinspection DataFlowIssue
-						Container inv = enderDropperBlockEntity.getOwnerIfOnline().getEnderChestInventory();
-						long moved = StorageUtil.move(InventoryStorage.of(inv, direction).getSlot(i), target, iv -> true, 1, null);
+						
+						ItemStack moved = ItemHandlerHelper.insertItemStacked(target, itemStack.copyWithCount(1), false);
 						// return without triggering fail event if successfully moved
-						if (moved == 1) return;
+						if (moved.isEmpty()) {
+							enderDropperBlockEntity.getOwnerIfOnline().getEnderChestInventory().setChanged();
+							return;
+						}
 					}
 					world.levelEvent(LevelEvent.SOUND_DISPENSER_FAIL, pos, 0); // no room to dispense to
 				}

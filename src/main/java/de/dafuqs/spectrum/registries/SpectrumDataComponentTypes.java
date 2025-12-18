@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.registries;
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.explosion.*;
 import net.minecraft.core.*;
@@ -28,7 +29,7 @@ public class SpectrumDataComponentTypes {
 	public static final Supplier<DataComponentType<Unit>> ACTIVATED = register("activated", builder -> builder.persistent(Codec.unit(Unit.INSTANCE)).networkSynchronized(StreamCodec.unit(Unit.INSTANCE)));
 	public static final Supplier<DataComponentType<Integer>> AOE = register("aoe", builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT));
 	public static final Supplier<DataComponentType<BeverageComponent>> BEVERAGE = register("beverage", builder -> builder.persistent(BeverageComponent.CODEC).networkSynchronized(BeverageComponent.PACKET_CODEC));
-//	public static final Supplier<DataComponentType<BottomlessBundleItem.BottomlessStack>> BOTTOMLESS_STACK = register("bottomless_stack", builder -> builder.persistent(BottomlessBundleItem.BottomlessStack.CODEC).networkSynchronized(BottomlessBundleItem.BottomlessStack.PACKET_CODEC));
+	public static final Supplier<DataComponentType<BottomlessBundleItem.BottomlessStack>> BOTTOMLESS_STACK = register("bottomless_stack", builder -> builder.persistent(BottomlessBundleItem.BottomlessStack.CODEC).networkSynchronized(BottomlessBundleItem.BottomlessStack.PACKET_CODEC));
 	public static final Supplier<DataComponentType<ResourceLocation>> BOUND_ITEM = register("bound_item", builder -> builder.persistent(ResourceLocation.CODEC).networkSynchronized(ResourceLocation.STREAM_CODEC));
 	public static final Supplier<DataComponentType<ItemEnchantments>> CANVAS_ENCHANTMENTS = register("canvas_enchantments", (builder) -> builder.persistent(ItemEnchantments.CODEC).networkSynchronized(ItemEnchantments.STREAM_CODEC).cacheEncoding());
 	public static final Supplier<DataComponentType<PairedFoodComponent>> PAIRED_FOOD_COMPONENT = register("paired_food_component", builder -> builder.persistent(PairedFoodComponent.CODEC).networkSynchronized(PairedFoodComponent.PACKET_CODEC));
@@ -58,7 +59,6 @@ public class SpectrumDataComponentTypes {
 	public static final Supplier<DataComponentType<Integer>> STORED_EXPERIENCE = register("stored_experience", builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT));
 	public static final Supplier<DataComponentType<ResourceLocation>> STORED_RECIPE = register("stored_recipe", builder -> builder.persistent(ResourceLocation.CODEC).networkSynchronized(ResourceLocation.STREAM_CODEC));
 	public static final Supplier<DataComponentType<GlobalPos>> TARGETED_STRUCTURE = register("targeted_structure", builder -> builder.persistent(GlobalPos.CODEC).networkSynchronized(GlobalPos.STREAM_CODEC));
-	// TODO PORT
 	public static final Supplier<DataComponentType<WrappedPresentComponent>> WRAPPED_PRESENT = register("wrapped_present", builder -> builder.persistent(WrappedPresentComponent.CODEC).networkSynchronized(WrappedPresentComponent.PACKET_CODEC).cacheEncoding());
 	public static final Supplier<DataComponentType<WithMilkComponent>> WITH_MILK = register("with_milk", builder -> builder.persistent(WithMilkComponent.CODEC).networkSynchronized(WithMilkComponent.PACKET_CODEC));
 	public static final Supplier<DataComponentType<WorkstaffComponent>> WORKSTAFF = register("workstaff", builder -> builder.persistent(WorkstaffComponent.CODEC).networkSynchronized(WorkstaffComponent.PACKET_CODEC));

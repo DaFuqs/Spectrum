@@ -44,7 +44,7 @@ public class BottomlessBundleBlockEntity extends BlockEntity {
 		}
 		
 		@Override
-		protected long getCapacity(ItemVariant variant) {
+		protected long getCapacity(ItemStack variant) {
 			return BottomlessBundleItem.getMaxStoredAmount(powerLevel);
 		}
 		
@@ -60,7 +60,7 @@ public class BottomlessBundleBlockEntity extends BlockEntity {
 	};
 	
 	public BottomlessBundleBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntities.BOTTOMLESS_BUNDLE, pos, state);
+		super(SpectrumBlockEntities.BOTTOMLESS_BUNDLE.get(), pos, state);
 		this.bottomlessBundleStack = SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem().getDefaultInstance();
 	}
 	

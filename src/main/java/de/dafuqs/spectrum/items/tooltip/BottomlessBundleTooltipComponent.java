@@ -26,7 +26,7 @@ public class BottomlessBundleTooltipComponent implements SpectrumTooltipComponen
 		
 		this.itemStacks = NonNullList.withSize(5, ItemStack.EMPTY);
 		for (int i = 0; i < Math.min(5, displayedSlotCount + 1); i++) {
-			ItemStack slotStack = data.variant().toStack();
+			ItemStack slotStack = data.variant();
 			var stackAmount = Math.min(Math.min(maxCount, amount - i * maxCount), Integer.MAX_VALUE);
 			slotStack.setCount((int) stackAmount);
 			this.itemStacks.set(i, slotStack);

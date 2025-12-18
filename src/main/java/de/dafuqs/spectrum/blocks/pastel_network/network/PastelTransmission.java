@@ -10,6 +10,7 @@ import net.minecraft.network.codec.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
+import net.neoforged.neoforge.items.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -83,20 +84,17 @@ public class PastelTransmission implements SchedulerMap.Callback {
 		Level world = this.network.getLevel();
 		
 		int inserted = 0;
+		int count = stack.getCount();
 		if (destinationNode != null) {
-			Storage<ItemStack> destinationStorage = destinationNode.getConnectedStorage();
+			IItemHandler destinationStorage = destinationNode.getConnectedStorage();
 			if (destinationStorage != null) {
-				try (Transaction transaction = Transaction.openOuter()) {
-					if (destinationStorage.supportsInsertion()) {
-						inserted = (int) destinationStorage.insert(stack, amount, transaction);
-						destinationNode.addItemCountUnderway(-inserted);
-						transaction.commit();
-					}
-				}
+				inserted = count;
+				inserted -= ItemHandlerHelper.insertItemStacked(destinationStorage, stack.copyWithCount(count), false).getCount();
+				destinationNode.addItemCountUnderway(-count);
 			}
 		}
-		if (inserted != amount) {
-			InWorldInteractionHelper.scatter(world, destinationPos.getX() + 0.5, destinationPos.getY() + 0.5, destinationPos.getZ() + 0.5, stack, amount - inserted);
+		if (inserted != count) {
+			InWorldInteractionHelper.scatter(world, destinationPos.getX() + 0.5, destinationPos.getY() + 0.5, destinationPos.getZ() + 0.5, stack, count - inserted);
 		}
 	}
 	

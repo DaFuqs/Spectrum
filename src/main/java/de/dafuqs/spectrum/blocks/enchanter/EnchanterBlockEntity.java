@@ -260,7 +260,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 					if (centerStackIsGildedBook || virtualSlotStack.getItem() instanceof EnchantedBookItem) {
 						for (var entry : EnchantmentHelper.getEnchantmentsForCrafting(virtualSlotStack).entrySet()) {
 							var enchantment = entry.getKey();
-							var isAcceptable = isEnchantableBookInCenter || centerStack.canBeEnchantedWith(enchantment, EnchantingContext.ACCEPTABLE);
+							var isAcceptable = isEnchantableBookInCenter || centerStack.supportsEnchantment(enchantment);
 							var isRedundant = existingEnchantments.stream().anyMatch(existing -> existing.getKey() == enchantment && existing.getIntValue() >= entry.getIntValue());
 							if (isAcceptable && !isRedundant) {
 								if (enchanterBlockEntity.canOwnerApplyConflictingEnchantments) {
@@ -405,7 +405,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	 * @return The required experience to enchant. -1 if the enchantment is not applicable
 	 */
 	public static int getRequiredExperienceToEnchantWithEnchantment(ItemStack stack, Holder<Enchantment> enchantment, int level, boolean allowEnchantmentConflicts) {
-		if (!stack.canBeEnchantedWith(enchantment, EnchantingContext.ACCEPTABLE) && !SpectrumEnchantmentHelper.isEnchantableBook(stack)) {
+		if (!stack.supportsEnchantment(enchantment) && !SpectrumEnchantmentHelper.isEnchantableBook(stack)) {
 			return -1;
 		}
 		
@@ -428,7 +428,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	
 	public static Integer getEnchantingPrice(ItemStack stack, Holder<Enchantment> enchantment, int level) {
 		int enchantability = Math.max(1, stack.getItem().getEnchantmentValue()); // items like Elytras have an enchantability of 0, but can get unbreaking
-		if (stack.canBeEnchantedWith(enchantment, EnchantingContext.ACCEPTABLE) || SpectrumEnchantmentHelper.isEnchantableBook(stack)) {
+		if (stack.supportsEnchantment(enchantment) || SpectrumEnchantmentHelper.isEnchantableBook(stack)) {
 			return getRequiredExperienceForEnchantment(enchantability, enchantment, level);
 		}
 		return -1;

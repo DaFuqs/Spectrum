@@ -65,7 +65,7 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 		return itemStack.has(DataComponents.LOCK);
 	}
 	
-	public static ItemVariant getTemplateVariant(ItemStack stack) {
+	public static ItemStack getTemplateVariant(ItemStack stack) {
 		return stack.getOrDefault(SpectrumDataComponentTypes.BOTTOMLESS_STACK, BottomlessStack.DEFAULT).variant();
 	}
 	
@@ -115,7 +115,7 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 	
 	@Override
 	public Optional<TooltipComponent> getTooltipImage(ItemStack bundleStack) {
-		ItemVariant variant = getTemplateVariant(bundleStack);
+		ItemStack variant = getTemplateVariant(bundleStack);
 		var storedAmount = getStoredAmount(bundleStack);
 		
 		return Optional.of(new BottomlessBundleTooltipData(variant, storedAmount));
@@ -132,7 +132,7 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 						Component.translatable("item.spectrum.bottomless_bundle.tooltip.locked").withStyle(ChatFormatting.GRAY));
 			}
 		} else {
-			ItemVariant variant = getTemplateVariant(stack);
+			ItemStack variant = getTemplateVariant(stack);
 			var powerLevel = context.registries()
 					.lookup(Registries.ENCHANTMENT)
 					.flatMap(impl -> impl.get(Enchantments.POWER))
@@ -224,11 +224,11 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 		// We unbundle, tick and then rebundle the stack, in case inventory tick would modify components, count or other properties
 		// The slot isn't technically correct, since it's the slot of the bundle, not that of the bundled stack
 		BottomlessStack.Builder builder = BottomlessStack.Builder.of(world, stack);
-		ItemVariant bundledVariant = builder.getVariant();
-		ItemStack bundledStack = builder.getVariant().toStack((int) Math.min(Integer.MAX_VALUE, builder.count));
+		ItemStack bundledVariant = builder.getVariant();
+		ItemStack bundledStack = builder.getVariant().copyWithCount((int) Math.min(Integer.MAX_VALUE, builder.count));
 		long count = bundledStack.getCount();
 		bundledStack.inventoryTick(world, entity, slot, selected);
-		if (!bundledVariant.matches(bundledStack) || bundledStack.getCount() != count) {
+		if (!ItemStack.isSameItemSameComponents(bundledVariant, bundledStack) || bundledStack.getCount() != count) {
 			builder.set(bundledStack, Math.min(builder.getMaxAllowed(bundledStack), builder.count + bundledStack.getCount() - count));
 			builder.buildAndSet(stack);
 		}
@@ -237,8 +237,8 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 	
 	@Override
 	public boolean acceptsItemStack(ItemStack inventoryInsertionAcceptorStack, ItemStack itemStackToAccept) {
-		ItemVariant variant = getTemplateVariant(inventoryInsertionAcceptorStack);
-		return !variant.isBlank() && variant.matches(itemStackToAccept);
+		ItemStack variant = getTemplateVariant(inventoryInsertionAcceptorStack);
+		return !variant.isEmpty() && ItemStack.isSameItemSameComponents(variant, itemStackToAccept);
 	}
 	
 	@Override
@@ -304,7 +304,6 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 		
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	public static class Renderer implements DynamicItemRenderer {
 		public Renderer() {
 		}
@@ -317,7 +316,7 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 			if (mode != ItemDisplayContext.GUI
 					|| getStoredAmount(stack) <= 0)
 				return;
-			ItemStack bundledStack = BottomlessBundleItem.getTemplateVariant(stack).toStack();
+			ItemStack bundledStack = BottomlessBundleItem.getTemplateVariant(stack);
 			Minecraft client = Minecraft.getInstance();
 			BakedModel bundledModel = renderer.getModel(bundledStack, client.level, client.player, 0);
 			
@@ -376,7 +375,7 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 			private final boolean voiding, locked;
 			private final long max;
 			private long count;
-			private ItemVariant variant;
+			private ItemStack variant;
 			
 			public static Builder of(Level world, ItemStack stack) {
 				var prev = stack.getOrDefault(SpectrumDataComponentTypes.BOTTOMLESS_STACK, BottomlessStack.DEFAULT);
@@ -395,20 +394,20 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 			}
 			
 			public Builder clear() {
-				this.variant = ItemVariant.blank();
+				this.variant = ItemStack.EMPTY;
 				this.count = 0;
 				return this;
 			}
 			
 			public int getMaxAllowed(ItemStack stack) {
-				return (int) Math.min(getMaxAllowed(ItemVariant.of(stack), stack.getCount()), Integer.MAX_VALUE);
+				return (int) Math.min(getMaxAllowed(stack, stack.getCount()), Integer.MAX_VALUE);
 			}
 			
-			public long getMaxAllowed(ItemVariant variant, long amount) {
+			public long getMaxAllowed(ItemStack variant, long amount) {
 				if (isEmpty()) {
 					return this.max;
 				}
-				if (variant.isBlank() || amount <= 0 || !variant.getItem().canFitInsideContainerItems())
+				if (variant.isEmpty() || amount <= 0 || !variant.getItem().canFitInsideContainerItems())
 					return 0;
 				return voiding ? Long.MAX_VALUE : this.max - this.count;
 			}
@@ -419,14 +418,14 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 					return 0;
 				
 				if (this.count == 0)
-					this.variant = ItemVariant.of(stack);
+					this.variant = stack.copyWithCount(1);
 				
 				this.count += Math.min(this.max - this.count, toAdd);
 				return toAdd;
 			}
 			
 			public void setStack(ItemStack stack) {
-				this.variant = ItemVariant.of(stack);
+				this.variant = stack.copyWithCount(1);
 			}
 			
 			public void set(SingleVariantStorage<ItemVariant> storage) {
@@ -436,10 +435,11 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 			
 			public void set(ItemStack stack, long count) {
 				if (stack.isEmpty() || count == 0) {
-					this.variant = ItemVariant.blank();
+					this.variant = ItemStack.EMPTY;
 					this.count = 0;
 				} else {
-					this.variant = ItemVariant.of(stack);
+					this.variant = stack.copyWithCount(1);
+					;
 					this.count = count;
 				}
 			}
@@ -454,10 +454,10 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 					return ItemStack.EMPTY;
 				
 				var toRemove = Math.min((int) this.count, amount);
-				var removed = this.variant.toStack(toRemove);
+				var removed = this.variant.copyWithCount(toRemove);
 				this.count -= toRemove;
 				if (this.count == 0)
-					this.variant = ItemVariant.blank();
+					this.variant = ItemStack.EMPTY;
 				
 				return removed;
 			}
@@ -470,12 +470,12 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 				return count;
 			}
 			
-			public ItemVariant getVariant() {
+			public ItemStack getVariant() {
 				return variant;
 			}
 			
 			public boolean isEmpty() {
-				return count == 0 || variant.isBlank();
+				return count == 0 || variant.isEmpty();
 			}
 			
 			public void buildAndSet(ItemStack bottomlessBundleStack) {

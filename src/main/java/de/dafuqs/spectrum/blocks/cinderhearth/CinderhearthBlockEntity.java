@@ -18,6 +18,7 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.nbt.*;
+import net.minecraft.network.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.network.protocol.*;
 import net.minecraft.network.protocol.game.*;
@@ -36,7 +37,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements MultiblockCrafter, WorldlyContainer, ExtendedScreenHandlerFactory<BlockPos>, InkStorageBlockEntity<IndividualCappedInkStorage>, StackedContentsCompatible {
+public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements MultiblockCrafter, WorldlyContainer, MenuProvider, InkStorageBlockEntity<IndividualCappedInkStorage>, StackedContentsCompatible {
 	
 	public static final int INVENTORY_SIZE = 11;
 	public static final int INPUT_SLOT_ID = 0;
@@ -107,7 +108,7 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 	}
 	
 	public CinderhearthBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntities.CINDERHEARTH, pos, state);
+		super(SpectrumBlockEntities.CINDERHEARTH.get(), pos, state);
 		this.inventory = NonNullList.withSize(INVENTORY_SIZE, ItemStack.EMPTY);
 		this.inkStorage = new IndividualCappedInkStorage(INK_STORAGE_SIZE, USED_INK_COLORS);
 	}
@@ -177,8 +178,8 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 	}
 	
 	@Override
-	public BlockPos getScreenOpeningData(ServerPlayer serverPlayerEntity) {
-		return worldPosition;
+	public void writeClientSideData(AbstractContainerMenu menu, RegistryFriendlyByteBuf buffer) {
+		buffer.writeBlockPos(this.worldPosition);
 	}
 	
 	@Override

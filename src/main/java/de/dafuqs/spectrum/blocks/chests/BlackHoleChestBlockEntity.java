@@ -12,6 +12,7 @@ import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
+import net.minecraft.network.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
@@ -30,7 +31,7 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 import java.util.stream.*;
 
-public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implements FilterConfigurable, ExtendedScreenHandlerFactory<FilterConfigurable.ExtendedDataWithPos>, WorldlyContainer, EventQueue.Callback<Object> {
+public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implements FilterConfigurable, MenuProvider, WorldlyContainer, EventQueue.Callback<Object> {
 	
 	public static final int INVENTORY_SIZE = 28;
 	public static final int ITEM_FILTER_SLOT_COUNT = 5;
@@ -305,8 +306,8 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	}
 	
 	@Override
-	public FilterConfigurable.ExtendedDataWithPos getScreenOpeningData(ServerPlayer player) {
-		return new ExtendedDataWithPos(worldPosition, this);
+	public void writeClientSideData(AbstractContainerMenu menu, RegistryFriendlyByteBuf buffer) {
+		FilterConfigurable.ExtendedDataWithPos.PACKET_CODEC.encode(buffer, new ExtendedDataWithPos(worldPosition, this));
 	}
 	
 	@Override

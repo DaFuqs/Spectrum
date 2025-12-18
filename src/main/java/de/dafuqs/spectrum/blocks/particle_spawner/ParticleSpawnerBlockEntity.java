@@ -5,10 +5,11 @@ import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
+import net.minecraft.network.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.network.protocol.*;
 import net.minecraft.network.protocol.game.*;
-import net.minecraft.server.level.*;
+import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.level.*;
@@ -18,7 +19,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
-public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos> {
+public class ParticleSpawnerBlockEntity extends BlockEntity implements MenuProvider {
 	
 	protected ParticleSpawnerConfiguration configuration;
 	protected boolean initialized = false;
@@ -116,7 +117,7 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 	}
 	
 	@Override
-	public BlockPos getScreenOpeningData(ServerPlayer serverPlayerEntity) {
-		return this.worldPosition;
+	public void writeClientSideData(AbstractContainerMenu menu, RegistryFriendlyByteBuf buffer) {
+		buffer.writeBlockPos(this.worldPosition);
 	}
 }

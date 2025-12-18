@@ -15,6 +15,7 @@ import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
+import net.minecraft.network.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.network.protocol.*;
 import net.minecraft.network.protocol.game.*;
@@ -34,7 +35,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class ColorPickerBlockEntity extends RandomizableContainerBlockEntity implements PlayerOwned, InkStorageBlockEntity<TotalCappedInkStorage>, ExtendedScreenHandlerFactory<ColorPickerScreenHandler.ScreenOpeningData> {
+public class ColorPickerBlockEntity extends RandomizableContainerBlockEntity implements PlayerOwned, InkStorageBlockEntity<TotalCappedInkStorage>, MenuProvider {
 	
 	public static final int INVENTORY_SIZE = 2; // input & output slots
 	public static final int INPUT_SLOT_ID = 0;
@@ -120,8 +121,8 @@ public class ColorPickerBlockEntity extends RandomizableContainerBlockEntity imp
 	}
 	
 	@Override
-	public ColorPickerScreenHandler.ScreenOpeningData getScreenOpeningData(ServerPlayer serverPlayerEntity) {
-		return new ColorPickerScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor);
+	public void writeClientSideData(AbstractContainerMenu menu, RegistryFriendlyByteBuf buffer) {
+		ColorPickerScreenHandler.ScreenOpeningData.PACKET_CODEC.encode(buffer, new ColorPickerScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor));
 	}
 	
 	@Override

@@ -17,6 +17,7 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.nbt.*;
+import net.minecraft.network.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.network.protocol.*;
 import net.minecraft.network.protocol.game.*;
@@ -38,7 +39,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class PedestalBlockEntity extends BaseContainerBlockEntity implements MultiblockCrafter, StackedContentsCompatible, WorldlyContainer, ExtendedScreenHandlerFactory<PedestalScreenHandler.ScreenOpeningData> {
+public class PedestalBlockEntity extends BaseContainerBlockEntity implements MultiblockCrafter, StackedContentsCompatible, WorldlyContainer, MenuProvider {
 	
 	public static final int INVENTORY_SIZE = 16; // 9 crafting, 5 gems, 1 craftingTablet, 1 output
 	public static final int CRAFTING_TABLET_SLOT_ID = 14;
@@ -455,8 +456,8 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 	}
 	
 	@Override
-	public PedestalScreenHandler.ScreenOpeningData getScreenOpeningData(ServerPlayer serverPlayerEntity) {
-		return new PedestalScreenHandler.ScreenOpeningData(this.getBlockPos(), this.getPedestalTier(), this.getHighestAvailableRecipeTier());
+	public void writeClientSideData(AbstractContainerMenu menu, RegistryFriendlyByteBuf buffer) {
+		PedestalScreenHandler.ScreenOpeningData.PACKET_CODEC.encode(buffer, new PedestalScreenHandler.ScreenOpeningData(this.getBlockPos(), this.getPedestalTier(), this.getHighestAvailableRecipeTier()));
 	}
 	
 	@Override

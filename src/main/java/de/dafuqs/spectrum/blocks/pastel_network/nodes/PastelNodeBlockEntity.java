@@ -16,6 +16,7 @@ import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.nbt.*;
+import net.minecraft.network.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.network.protocol.*;
 import net.minecraft.network.protocol.game.*;
@@ -39,7 +40,7 @@ import java.util.Optional;
 import java.util.*;
 import java.util.function.Predicate;
 
-public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigurable, ExtendedScreenHandlerFactory<FilterConfigurable.ExtendedData>, PastelUpgradeable {
+public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigurable, MenuProvider, PastelUpgradeable {
 	
 	public static final int MAX_FILTER_SLOTS = 25;
 	public static final int SLOTS_PER_ROW = 5;
@@ -66,23 +67,23 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	protected int transferTime = PastelTransmissionLogic.DEFAULT_TRANSFER_TICKS_PER_NODE;
 	protected int filterSlotRows = DEFAULT_FILTER_SLOT_ROWS;
 	
-	protected BlockApiCache<Storage<ItemVariant>, Direction> connectedStorageCache = null;
+	protected BlockApiCache<Storage<ItemStack>, Direction> connectedStorageCache = null;
 	protected Direction cachedDirection = null;
 	
-	private final List<ItemVariant> filterItems;
+	private final List<ItemStack> filterItems;
 	float rotationTarget, crystalRotation, lastRotationTarget, heightTarget, crystalHeight, lastHeightTarget, alphaTarget, ringAlpha, lastAlphaTarget;
 	long creationStamp = -1, interpTicks, interpLength = -1, spinTicks;
 	private ConnectionState connectionState;
 	
 	public PastelNodeBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntities.PASTEL_NODE.get(), blockPos, blockState);
-		this.filterItems = NonNullList.withSize(MAX_FILTER_SLOTS, ItemVariant.blank());
+		this.filterItems = NonNullList.withSize(MAX_FILTER_SLOTS, ItemStack.blank());
 		this.outerRing = Optional.empty();
 		this.innerRing = Optional.empty();
 		this.redstoneRing = Optional.empty();
 	}
 	
-	public @Nullable Storage<ItemVariant> getConnectedStorage() {
+	public @Nullable Storage<ItemStack> getConnectedStorage() {
 		if (connectedStorageCache == null) {
 			BlockState state = this.getBlockState();
 			if (!(state.getBlock() instanceof PastelNodeBlock)) {
@@ -244,7 +245,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		
 		if (filterSlotRows < oldFilterSlotCount) {
 			for (int i = getDrawnSlots(); i < filterItems.size(); i++) {
-				filterItems.set(i, ItemVariant.blank());
+				filterItems.set(i, ItemStack.EMPTY);
 			}
 		}
 	}
@@ -424,16 +425,16 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	}
 	
 	@Override
-	public List<ItemVariant> getItemFilters() {
+	public List<ItemStack> getItemFilters() {
 		return this.filterItems;
 	}
 	
 	@Override
-	public void setFilterItem(int slot, ItemVariant item) {
+	public void setFilterItem(int slot, ItemStack item) {
 		this.filterItems.set(slot, item);
 	}
 	
-	public Predicate<ItemVariant> getTransferFilterTo(PastelNodeBlockEntity other) {
+	public Predicate<ItemStack> getTransferFilterTo(PastelNodeBlockEntity other) {
 		if (this.getNodeType().usesFilters() && !this.hasEmptyFilter()) {
 			if (other.getNodeType().usesFilters() && !other.hasEmptyFilter()) {
 				// unionize both filters
@@ -448,11 +449,11 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		}
 	}
 	
-	private boolean filter(ItemVariant variant) {
+	private boolean filter(ItemStack variant) {
 		return filterItems
 				.stream()
 				.anyMatch(filterItem -> {
-					ItemStack filterStack = filterItem.toStack();
+					ItemStack filterStack = filterItem;
 					
 					if (!filterStack.has(DataComponents.CUSTOM_NAME) || !filterStack.is(SpectrumItemTags.TAG_FILTERING_ITEMS))
 						return filterStack.getItem() == variant.getItem();
@@ -505,8 +506,8 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	}
 	
 	@Override
-	public FilterConfigurable.ExtendedData getScreenOpeningData(ServerPlayer player) {
-		return new FilterConfigurable.ExtendedData(this);
+	public void writeClientSideData(AbstractContainerMenu menu, RegistryFriendlyByteBuf buffer) {
+		ExtendedData.PACKET_CODEC.encode(buffer, new ExtendedData(this));
 	}
 	
 	public boolean equals(Object obj) {

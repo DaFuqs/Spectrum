@@ -106,7 +106,7 @@ dependencies {
 	implementation("de.dafuqs:revelationary-neoforge:${project.revelationary_version}")
 	implementation jarJar("maven.modrinth:additionalentityattributes:${project.additional_entity_attributes_version}")
 	implementation jarJar("de.dafuqs:arrowhead:${project.arrowhead_version}")
-	jarJar("de.dafuqs:reverb:${project.dimensional_reverb_version}")
+	implementation jarJar("de.dafuqs:reverb-neoforge:${project.dimensional_reverb_version}")
 	implementation jarJar("de.dafuqs:Fractal:${project.fractal_version}")
 
 	// external and compat

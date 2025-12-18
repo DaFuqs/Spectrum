@@ -277,19 +277,14 @@ public class SpectrumEventListeners {
 							Vec3.ZERO, particleVelocity);
 					
 					if (shooter instanceof ServerPlayer serverPlayerEntity) {
-						Support.grantAdvancementCriterion(serverPlayerEntity,
-								SpectrumCommon.locate("lategame/shoot_fully_overcharged_crossbow"),
-								"shot_fully_overcharged_crossbow");
+						Support.grantAdvancementCriterion(serverPlayerEntity, SpectrumCommon.locate("lategame/shoot_fully_overcharged_crossbow"), "shot_fully_overcharged_crossbow");
 					}
 					if (projectile instanceof AbstractArrow persistentProjectileEntity) {
 						persistentProjectileEntity.setBaseDamage(persistentProjectileEntity.getBaseDamage() * 1.5);
 					}
 				}
 				
-				PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerLevel) world,
-						projectile.position(), ParticleTypes.FIREWORK, 10,
-						Vec3.ZERO, particleVelocity);
-				
+				PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerLevel) world, projectile.position(), ParticleTypes.FIREWORK, 10, Vec3.ZERO, particleVelocity);
 				GlassCrestCrossbowItem.unOvercharge(crossbow);
 			}
 		});

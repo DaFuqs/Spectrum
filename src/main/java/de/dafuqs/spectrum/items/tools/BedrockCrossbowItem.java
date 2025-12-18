@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.api.item.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -20,7 +21,7 @@ public class BedrockCrossbowItem extends CrossbowItem implements Preenchanted, A
 	}
 	
 	@Override
-	public boolean isEnchantable(ItemStack stack) {
+	public boolean isEnchantable(@NotNull ItemStack stack) {
 		return true;
 	}
 	

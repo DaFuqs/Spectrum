@@ -9,6 +9,7 @@ import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.enchantment.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -32,12 +33,12 @@ public class MalachiteCrossbowItem extends CrossbowItem implements Preenchanted,
 	}
 	
 	@Override
-	public boolean isValidRepairItem(ItemStack stack, ItemStack ingredient) {
+	public boolean isValidRepairItem(@NotNull ItemStack stack, @NotNull ItemStack ingredient) {
 		return SpectrumToolMaterial.MALACHITE.getRepairIngredient().test(ingredient) || super.isValidRepairItem(stack, ingredient);
 	}
 	
 	@Override
-	public Predicate<ItemStack> getAllSupportedProjectiles() {
+	public @NotNull Predicate<ItemStack> getAllSupportedProjectiles() {
 		return PROJECTILES;
 	}
 	

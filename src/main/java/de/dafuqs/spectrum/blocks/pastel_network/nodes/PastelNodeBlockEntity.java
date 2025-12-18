@@ -355,6 +355,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		if (this.getNodeType().usesFilters()) {
 			FilterConfigurable.readFilterNbt(nbt, this.filterItems);
 			this.filterHashset.clear();
+			this.nbtCheckingFilterItems = 0;
 			this.filterItems.forEach((itemVariant) -> {
 				this.filterHashset.add(itemVariant.getItem());
 				this.updateNbtCheckingCount(itemVariant, 1);

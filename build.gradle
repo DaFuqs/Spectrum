@@ -105,8 +105,8 @@ dependencies {
 	implementation("maven.modrinth:exclusions-lib:${project.exclusionslib_version}")
 	implementation("de.dafuqs:revelationary-neoforge:${project.revelationary_version}")
 	implementation jarJar("maven.modrinth:additionalentityattributes:${project.additional_entity_attributes_version}")
-//	modImplementation include("de.dafuqs:arrowhead:${project.arrowhead_version}")
-//	jarJar("de.dafuqs:reverb:${project.dimensional_reverb_version}")
+	implementation jarJar("de.dafuqs:arrowhead:${project.arrowhead_version}")
+	jarJar("de.dafuqs:reverb:${project.dimensional_reverb_version}")
 	implementation jarJar("de.dafuqs:Fractal:${project.fractal_version}")
 
 	// external and compat
@@ -147,8 +147,6 @@ dependencies {
 //	modImplementation("maven.modrinth:idwtialsimmoedm:${project.idwtialsimmoedm_version}")
 
 	// Datagen dependencies
-	// TODO - Noaaan April 7th 2025: None of these are for 1.21.1 yet, lol
-	// TODO - unilock May 6th 2025: AE2 will likely never be available for Fabric 1.21.1, lol
 	//modDatagenRuntimeOnly("curse.maven:gobber-427177:${project.gobber_version}")
 	//modDatagenRuntimeOnly("maven.modrinth:ae2:${project.ae2_version}")
 	//modDatagenRuntimeOnly("maven.modrinth:botania:${project.botania_version}")

@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.api.block;
 
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.slots.*;
+import de.dafuqs.spectrum.networking.c2s_payloads.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.*;
@@ -10,6 +11,7 @@ import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
+import net.neoforged.neoforge.network.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;

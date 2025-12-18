@@ -70,6 +70,9 @@ public class SpectrumClient implements RevealingCallback, ClientAdvancementPacke
 		NeoForge.EVENT_BUS.addListener((Consumer<AddReloadListenerEvent>) event -> {
 			event.addListener(ParticleSpawnerParticlesDataLoader.INSTANCE);
 		});
+		
+		modBus.addListener(SpectrumColorProviders::registerBlocks);
+		modBus.addListener(SpectrumColorProviders::registerItems);
 	}
 	
 	@Override

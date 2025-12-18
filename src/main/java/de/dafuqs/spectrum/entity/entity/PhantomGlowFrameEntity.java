@@ -17,7 +17,7 @@ public class PhantomGlowFrameEntity extends PhantomFrameEntity {
 	}
 	
 	public PhantomGlowFrameEntity(Level world, BlockPos pos, Direction facing) {
-		this(SpectrumEntityTypes.GLOW_PHANTOM_FRAME, world, pos, facing);
+		this(SpectrumEntityTypes.GLOW_PHANTOM_FRAME.get(), world, pos, facing);
 	}
 	
 	public PhantomGlowFrameEntity(EntityType<? extends ItemFrame> type, Level world, BlockPos pos, Direction facing) {

@@ -34,7 +34,7 @@ public class DragonTalonEntity extends BidentBaseEntity {
 	private static final EntityDataAccessor<Boolean> HIT = SynchedEntityData.defineId(DragonTalonEntity.class, EntityDataSerializers.BOOLEAN);
 	
 	public DragonTalonEntity(Level world) {
-		this(SpectrumEntityTypes.DRAGON_TALON, world);
+		this(SpectrumEntityTypes.DRAGON_TALON.get(), world);
 	}
 	
 	public DragonTalonEntity(EntityType<? extends ThrownTrident> entityType, Level world) {

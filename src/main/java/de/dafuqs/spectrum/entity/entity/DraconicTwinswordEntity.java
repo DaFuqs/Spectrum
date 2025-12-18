@@ -48,7 +48,7 @@ public class DraconicTwinswordEntity extends BidentBaseEntity implements NonLivi
 	private float damageMult = 1, velMult = 1;
 	
 	public DraconicTwinswordEntity(Level world) {
-		this(SpectrumEntityTypes.DRACONIC_TWINSWORD, world);
+		this(SpectrumEntityTypes.DRACONIC_TWINSWORD.get(), world);
 	}
 	
 	public DraconicTwinswordEntity(EntityType<? extends ThrownTrident> entityType, Level world) {

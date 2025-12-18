@@ -54,7 +54,6 @@ public class SpectrumClientEventListeners {
 		DynamicItemRenderer.RENDERERS.put(item, renderer.get());
 	}
 	
-	//
 	public static void register() {
 		ResourceManagerHelper.get(PackType.CLIENT_RESOURCES).registerReloadListener(ParticleSpawnerParticlesDataLoader.INSTANCE);
 		

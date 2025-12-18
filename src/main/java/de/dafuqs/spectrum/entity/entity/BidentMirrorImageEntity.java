@@ -16,7 +16,7 @@ import org.jetbrains.annotations.*;
 
 public class BidentMirrorImageEntity extends BidentBaseEntity {
 	public BidentMirrorImageEntity(Level world) {
-		this(SpectrumEntityTypes.BIDENT_MIRROR_IMAGE, world);
+		this(SpectrumEntityTypes.BIDENT_MIRROR_IMAGE.get(), world);
 	}
 	
 	public BidentMirrorImageEntity(EntityType<? extends ThrownTrident> entityType, Level world) {

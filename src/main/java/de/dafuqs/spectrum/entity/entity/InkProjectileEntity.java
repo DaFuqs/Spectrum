@@ -43,7 +43,7 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 	}
 	
 	public InkProjectileEntity(double x, double y, double z, Level world) {
-		this(SpectrumEntityTypes.INK_PROJECTILE, world);
+		this(SpectrumEntityTypes.INK_PROJECTILE.get(), world);
 		this.moveTo(x, y, z, this.getYRot(), this.getXRot());
 		this.reapplyPosition();
 	}

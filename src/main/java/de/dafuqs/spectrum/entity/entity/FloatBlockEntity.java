@@ -71,7 +71,7 @@ public class FloatBlockEntity extends Entity {
 	}
 	
 	public FloatBlockEntity(Level world, BlockPos pos, BlockState blockState) {
-		this(SpectrumEntityTypes.FLOAT_BLOCK, world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, blockState);
+		this(SpectrumEntityTypes.FLOAT_BLOCK.get(), world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, blockState);
 	}
 	
 	/**

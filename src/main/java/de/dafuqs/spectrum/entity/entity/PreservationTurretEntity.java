@@ -417,7 +417,7 @@ public class PreservationTurretEntity extends AbstractGolem implements Enemy, Vi
 				&& EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(entity)
 				&& !this.isAlliedTo(entity)
 				&& livingEntity.getType() != EntityType.ARMOR_STAND
-				&& livingEntity.getType() != SpectrumEntityTypes.PRESERVATION_TURRET
+				&& livingEntity.getType() != SpectrumEntityTypes.PRESERVATION_TURRET.get()
 				&& !livingEntity.isInvulnerable()
 				&& !livingEntity.isDeadOrDying()
 				&& this.level().getWorldBorder().isWithinBounds(livingEntity.getBoundingBox());

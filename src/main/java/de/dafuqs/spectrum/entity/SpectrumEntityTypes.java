@@ -6,6 +6,7 @@ import net.minecraft.core.registries.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.item.*;
 import net.minecraft.world.entity.projectile.*;
+import net.neoforged.bus.api.*;
 import net.neoforged.neoforge.event.entity.*;
 import net.neoforged.neoforge.registries.*;
 
@@ -74,6 +75,11 @@ public class SpectrumEntityTypes {
 	
 	private static <T extends Entity> DeferredHolder<EntityType<?>, EntityType<T>> register(String id, EntityType.Builder<T> type) {
 		return REGISTER.register(id, () -> type.build(SpectrumCommon.MOD_ID + "." + id));
+	}
+	
+	public static void register(IEventBus modBus) {
+		modBus.addListener(SpectrumEntityTypes::registerAttributes);
+		REGISTER.register(modBus);
 	}
 	
 }

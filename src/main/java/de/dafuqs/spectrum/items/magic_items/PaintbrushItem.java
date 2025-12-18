@@ -26,6 +26,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.neoforged.api.distmarker.*;
+import net.neoforged.fml.loading.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -44,7 +45,7 @@ public class PaintbrushItem extends Item implements SignApplicator {
 	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		super.appendHoverText(stack, context, tooltip, type);
 		
-		if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
+		if (FMLLoader.getDist() == Dist.CLIENT) {
 			appendClientTooltips(stack, tooltip);
 		}
 	}

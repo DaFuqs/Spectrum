@@ -34,7 +34,7 @@ public record GuidebookHintBoughtPayload(ResourceLocation completionAdvancement,
 	public static IPayloadHandler<GuidebookHintBoughtPayload> getPayloadHandler() {
 		return (payload, context) -> {
 			ServerPlayer player = (ServerPlayer) context.player();
-			for (ItemStack remainder : InventoryHelper.removeIngredientStacksFromInventoryWithRemainders(List.of(payload.payment()), new PlayerInvWrapper(player.getInventory()))) {
+			for (ItemStack remainder : InventoryHelper.removeIngredientStacksFromInventoryWithRemainders(List.of(payload.payment()), player.getInventory())) {
 				ItemHandlerHelper.insertItemStacked(new PlayerInvWrapper(player.getInventory()), remainder, false);
 			}
 			

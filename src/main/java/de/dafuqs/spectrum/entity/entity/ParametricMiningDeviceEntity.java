@@ -20,11 +20,11 @@ public class ParametricMiningDeviceEntity extends ThrowableItemProjectile {
 	}
 	
 	public ParametricMiningDeviceEntity(Level world, LivingEntity owner) {
-		super(SpectrumEntityTypes.PARAMETRIC_MINING_DEVICE_ENTITY, owner, world);
+		super(SpectrumEntityTypes.PARAMETRIC_MINING_DEVICE_ENTITY.get(), owner, world);
 	}
 	
 	public ParametricMiningDeviceEntity(Level world, double x, double y, double z) {
-		super(SpectrumEntityTypes.PARAMETRIC_MINING_DEVICE_ENTITY, x, y, z, world);
+		super(SpectrumEntityTypes.PARAMETRIC_MINING_DEVICE_ENTITY.get(), x, y, z, world);
 	}
 	
 	@Override

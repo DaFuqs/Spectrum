@@ -383,7 +383,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 			// => Upgrade
 			pedestalBlockEntity.playSound(SpectrumSoundEvents.PEDESTAL_UPGRADE);
 			PedestalBlock.upgradeToVariant(world, pedestalBlockEntity.getBlockPos(), newPedestalVariant);
-			PlayPedestalUpgradedParticlePayload.spawnPedestalUpgradeParticles(world, pedestalBlockEntity.worldPosition, newPedestalVariant);
+			PlayPedestalUpgradedParticlePayload.spawnPedestalUpgradeParticles(pedestalBlockEntity, newPedestalVariant);
 			
 			pedestalBlockEntity.pedestalVariant = newPedestalVariant;
 			pedestalBlockEntity.currentRecipe = null; // reset the recipe, otherwise pedestal would remember crafting the update

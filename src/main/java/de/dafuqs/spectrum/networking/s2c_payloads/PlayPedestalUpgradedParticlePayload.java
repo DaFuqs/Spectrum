@@ -1,7 +1,9 @@
 package de.dafuqs.spectrum.networking.s2c_payloads;
 
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.recipe.pedestal.*;
 import net.minecraft.core.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
@@ -12,23 +14,23 @@ import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
 import org.jetbrains.annotations.*;
 
-public record PlayPedestalUpgradedParticlePayload(BlockPos pedestalPos) implements CustomPacketPayload {
+public record PlayPedestalUpgradedParticlePayload(BlockPos pedestalPos, PedestalRecipeTier newTier) implements CustomPacketPayload {
 	
-	public static final Type<PlayPedestalStartCraftingParticlePayload> ID = SpectrumC2SPackets.makeId("play_pedestal_start_crafting_particle");
-	public static final StreamCodec<FriendlyByteBuf, PlayPedestalStartCraftingParticlePayload> CODEC = StreamCodec.composite(
-			BlockPos.STREAM_CODEC, PlayPedestalStartCraftingParticlePayload::pedestalPos,
-			PlayPedestalStartCraftingParticlePayload::new
+	public static final Type<PlayPedestalUpgradedParticlePayload> ID = SpectrumC2SPackets.makeId("play_pedestal_start_crafting_particle");
+	public static final StreamCodec<FriendlyByteBuf, PlayPedestalUpgradedParticlePayload> CODEC = StreamCodec.composite(
+			BlockPos.STREAM_CODEC, PlayPedestalUpgradedParticlePayload::pedestalPos,
+			PedestalRecipeTier.PACKET_CODEC, PlayPedestalUpgradedParticlePayload::newTier,
+			PlayPedestalUpgradedParticlePayload::new
 	);
 	
-	// TODO: use
-	public static void spawnPedestalStartCraftingParticles(PedestalBlockEntity pedestalBlockEntity) {
+	public static void spawnPedestalUpgradeParticles(PedestalBlockEntity pedestalBlockEntity, @NotNull PedestalVariant newPedestalVariant) {
 		PacketDistributor.sendToPlayersTrackingChunk(
 				(ServerLevel) pedestalBlockEntity.getLevel(), new ChunkPos(pedestalBlockEntity.getBlockPos()),
-				new PlayPedestalStartCraftingParticlePayload(pedestalBlockEntity.getBlockPos())
+				new PlayPedestalUpgradedParticlePayload(pedestalBlockEntity.getBlockPos(), newPedestalVariant.getRecipeTier())
 		);
 	}
 	
-	public static void execute(PlayPedestalStartCraftingParticlePayload payload, IPayloadContext context) {
+	public static void execute(PlayPedestalUpgradedParticlePayload payload, IPayloadContext context) {
 		PedestalBlock.spawnUpgradeParticleEffectsForTier(payload.pedestalPos, payload.newTier);
 	}
 	

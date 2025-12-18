@@ -39,17 +39,6 @@ public abstract class ItemRendererMixin {
 		}
 		return original;
 	}
-
-	/* All of this was commented as it used to handle over-sized item rendering. The method above handles it, but in case of mod compat issues, this is staying as a comment.
-	@Inject(at = @At("HEAD"), method = "renderItem(Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformationMode;ZLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;Lnet/minecraft/world/World;III)V")
-	private void spectrum$storeItemRenderMode1(LivingEntity entity, ItemStack stack, ModelTransformationMode renderMode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, World world, int light, int overlay, int seed, CallbackInfo ci) {
-		SpectrumModelPredicateProviders.currentItemRenderMode = renderMode;
-	}
-	
-	@Inject(at = @At("HEAD"), method = "renderItem(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformationMode;ZLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;IILnet/minecraft/client/render/model/BakedModel;)V")
-	private void spectrum$storeItemRenderMode2(ItemStack stack, ModelTransformationMode renderMode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, BakedModel model, CallbackInfo ci) {
-		SpectrumModelPredicateProviders.currentItemRenderMode = renderMode;
-	}*/
 	
 	@Inject(at = @At("HEAD"), method = "render", cancellable = true)
 	private void spectrum$dynRender(ItemStack stack, ItemDisplayContext renderMode, boolean leftHanded, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay, BakedModel model, CallbackInfo ci) {
@@ -64,11 +53,5 @@ public abstract class ItemRendererMixin {
 			}
 		}
 	}
-
-	/* Same thing with the over-sized item rendering, but to handle REI-specific stuff.
-	@Inject(at = @At("HEAD"), method = "renderBakedItemQuads(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumer;Ljava/util/List;Lnet/minecraft/item/ItemStack;II)V")
-	private void spectrum$storeItemRenderMode3(MatrixStack matrices, VertexConsumer vertices, List<BakedQuad> quads, ItemStack stack, int light, int overlay, CallbackInfo ci) {
-		SpectrumModelPredicateProviders.currentItemRenderMode = ModelTransformationMode.GUI;
-	}*/
 	
 }

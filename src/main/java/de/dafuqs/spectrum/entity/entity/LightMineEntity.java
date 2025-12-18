@@ -33,7 +33,7 @@ public class LightMineEntity extends LightShardBaseEntity {
 	}
 	
 	public LightMineEntity(Level world, LivingEntity owner, float detectionRange, float damage, float lifeSpanTicks) {
-		super(SpectrumEntityTypes.LIGHT_MINE, world, owner, detectionRange, damage, lifeSpanTicks);
+		super(SpectrumEntityTypes.LIGHT_MINE.get(), world, owner, detectionRange, damage, lifeSpanTicks);
 	}
 	
 	public static void summonBarrage(Level world, @Nullable LivingEntity user, @Nullable LivingEntity target, Predicate<LivingEntity> targetPredicate, List<MobEffectInstance> effects, Vec3 position, IntProvider count) {

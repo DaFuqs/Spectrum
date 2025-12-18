@@ -24,7 +24,7 @@ public class KindlingCoughEntity extends Projectile {
 	}
 	
 	public KindlingCoughEntity(Level world, LivingEntity owner) {
-		this(SpectrumEntityTypes.KINDLING_COUGH, world);
+		this(SpectrumEntityTypes.KINDLING_COUGH.get(), world);
 		this.setOwner(owner);
 		this.setPos(owner.getX() - (owner.getBbWidth() + 1.0F) * 0.5 * Mth.sin(owner.yBodyRot * 0.017453292F), owner.getEyeY() - 0.1, owner.getZ() + (owner.getBbWidth() + 1.0F) * 0.5 * (double) Mth.cos(owner.yBodyRot * 0.017453292F));
 	}

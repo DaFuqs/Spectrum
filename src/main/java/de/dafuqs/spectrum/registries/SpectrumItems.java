@@ -401,12 +401,12 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> DEEP_LIGHT_BANNER_PATTERN = register(banner(item("deep_light_banner_pattern", () -> new BannerPatternItem(SpectrumBannerPatternTags.DEEP_LIGHT_TAG, IS.of(1, Rarity.RARE)), InkColors.LIGHT_BLUE)));
 	
 	// Spawning items
-	public static final DeferredItem<Item> BUCKET_OF_ERASER = register(simple(item("bucket_of_eraser", () -> new EmptyFluidEntityBucketItem(SpectrumEntityTypes.ERASER, Fluids.EMPTY, SoundEvents.BUCKET_EMPTY, IS.of()), InkColors.PINK)));
-	public static final DeferredItem<Item> EGG_LAYING_WOOLY_PIG_SPAWN_EGG = register(parented(item("egg_laying_wooly_pig_spawn_egg", () -> new SpawnEggItem(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG, 0x3a2c38, 0xfff2e0, IS.of()), InkColors.WHITE), SpectrumModels.SPAWN_EGG));
-	public static final DeferredItem<Item> PRESERVATION_TURRET_SPAWN_EGG = register(parented(item("preservation_turret_spawn_egg", () -> new SpawnEggItem(SpectrumEntityTypes.PRESERVATION_TURRET, 0xf3f6f8, 0xc8c5be, IS.of()), InkColors.WHITE), SpectrumModels.SPAWN_EGG));
-	public static final DeferredItem<Item> KINDLING_SPAWN_EGG = register(parented(item("kindling_spawn_egg", () -> new SpawnEggItem(SpectrumEntityTypes.KINDLING, 0xda4261, 0xffd452, IS.of()), InkColors.WHITE), SpectrumModels.SPAWN_EGG));
-	public static final DeferredItem<Item> LIZARD_SPAWN_EGG = register(parented(item("lizard_spawn_egg", () -> new SpawnEggItem(SpectrumEntityTypes.LIZARD, 0x896459, 0x503a40, IS.of()), InkColors.WHITE), SpectrumModels.SPAWN_EGG));
-	public static final DeferredItem<Item> ERASER_SPAWN_EGG = register(parented(item("eraser_spawn_egg", () -> new SpawnEggItem(SpectrumEntityTypes.ERASER, 0x200d29, 0xc83e93, IS.of()), InkColors.WHITE), SpectrumModels.SPAWN_EGG));
+	public static final DeferredItem<Item> BUCKET_OF_ERASER = register(simple(item("bucket_of_eraser", () -> new EmptyFluidEntityBucketItem(SpectrumEntityTypes.ERASER.get(), Fluids.EMPTY, SoundEvents.BUCKET_EMPTY, IS.of()), InkColors.PINK)));
+	public static final DeferredItem<Item> EGG_LAYING_WOOLY_PIG_SPAWN_EGG = register(parented(item("egg_laying_wooly_pig_spawn_egg", () -> new SpawnEggItem(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG.get(), 0x3a2c38, 0xfff2e0, IS.of()), InkColors.WHITE), SpectrumModels.SPAWN_EGG));
+	public static final DeferredItem<Item> PRESERVATION_TURRET_SPAWN_EGG = register(parented(item("preservation_turret_spawn_egg", () -> new SpawnEggItem(SpectrumEntityTypes.PRESERVATION_TURRET.get(), 0xf3f6f8, 0xc8c5be, IS.of()), InkColors.WHITE), SpectrumModels.SPAWN_EGG));
+	public static final DeferredItem<Item> KINDLING_SPAWN_EGG = register(parented(item("kindling_spawn_egg", () -> new SpawnEggItem(SpectrumEntityTypes.KINDLING.get(), 0xda4261, 0xffd452, IS.of()), InkColors.WHITE), SpectrumModels.SPAWN_EGG));
+	public static final DeferredItem<Item> LIZARD_SPAWN_EGG = register(parented(item("lizard_spawn_egg", () -> new SpawnEggItem(SpectrumEntityTypes.LIZARD.get(), 0x896459, 0x503a40, IS.of()), InkColors.WHITE), SpectrumModels.SPAWN_EGG));
+	public static final DeferredItem<Item> ERASER_SPAWN_EGG = register(parented(item("eraser_spawn_egg", () -> new SpawnEggItem(SpectrumEntityTypes.ERASER.get(), 0x200d29, 0xc83e93, IS.of()), InkColors.WHITE), SpectrumModels.SPAWN_EGG));
 	
 	// Magical Tools
 	public static final DeferredItem<Item> BAG_OF_HOLDING = register(simple(item("bag_of_holding", () -> new BagOfHoldingItem(IS.of(1)), InkColors.PURPLE)));
@@ -437,8 +437,8 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> MUSIC_DISC_DIVINITY = register(simple(item("music_disc_divinity", () -> new Item(IS.of(1, Rarity.RARE).jukeboxPlayable(SpectrumJukeboxSongs.DIVINITY)), InkColors.GREEN)));
 	
 	// Item Frames
-	public static final DeferredItem<Item> PHANTOM_FRAME = register(simple(item("phantom_frame", () -> new PhantomFrameItem(SpectrumEntityTypes.PHANTOM_FRAME, IS.of()), InkColors.YELLOW)));
-	public static final DeferredItem<Item> GLOW_PHANTOM_FRAME = register(simple(item("glow_phantom_frame", () -> new PhantomGlowFrameItem(SpectrumEntityTypes.GLOW_PHANTOM_FRAME, IS.of()), InkColors.YELLOW)));
+	public static final DeferredItem<Item> PHANTOM_FRAME = register(simple(item("phantom_frame", () -> new PhantomFrameItem(SpectrumEntityTypes.PHANTOM_FRAME.get(), IS.of()), InkColors.YELLOW)));
+	public static final DeferredItem<Item> GLOW_PHANTOM_FRAME = register(simple(item("glow_phantom_frame", () -> new PhantomGlowFrameItem(SpectrumEntityTypes.GLOW_PHANTOM_FRAME.get(), IS.of()), InkColors.YELLOW)));
 	
 	// Specialty Magical Tools
 	public static final DeferredItem<KnowledgeGemItem> KNOWLEDGE_GEM = register(item("knowledge_gem", () -> new KnowledgeGemItem(IS.of(1, Rarity.UNCOMMON), 10000), InkColors.PURPLE));

@@ -15,7 +15,7 @@ public class PhantomGlowFrameItem extends SpectrumItemFrameItem {
 	
 	@Override
 	public ItemFrame getItemFrameEntity(Level world, BlockPos blockPos, Direction direction) {
-		return new PhantomGlowFrameEntity(SpectrumEntityTypes.GLOW_PHANTOM_FRAME, world, blockPos, direction);
+		return new PhantomGlowFrameEntity(SpectrumEntityTypes.GLOW_PHANTOM_FRAME.get(), world, blockPos, direction);
 	}
 	
 }

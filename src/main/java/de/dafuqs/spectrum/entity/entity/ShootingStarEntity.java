@@ -50,7 +50,7 @@ public class ShootingStarEntity extends Entity {
 	}
 	
 	public ShootingStarEntity(Level world, double x, double y, double z, ShootingStar.Variant type, boolean playerPlaced, int availableHits, boolean hardened) {
-		this(SpectrumEntityTypes.SHOOTING_STAR, world);
+		this(SpectrumEntityTypes.SHOOTING_STAR.get(), world);
 		this.setPos(x, y, z);
 		this.setYRot(this.random.nextFloat() * 360.0F);
 		this.setShootingStarType(type, playerPlaced, availableHits, hardened);

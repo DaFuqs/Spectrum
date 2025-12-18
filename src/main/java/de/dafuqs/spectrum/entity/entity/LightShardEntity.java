@@ -24,7 +24,7 @@ public class LightShardEntity extends LightShardBaseEntity {
 	}
 	
 	public LightShardEntity(Level world, LivingEntity owner, float damageMod, float lifeSpanTicks) {
-		super(SpectrumEntityTypes.LIGHT_SHARD, world, owner, 48, damageMod, lifeSpanTicks);
+		super(SpectrumEntityTypes.LIGHT_SHARD.get(), world, owner, 48, damageMod, lifeSpanTicks);
 		scaleOffset /= 1.5F;
 		spriteId = world.getRandom().nextInt(4);
 	}

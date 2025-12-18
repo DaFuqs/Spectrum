@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.particle_spawner.*;
 import de.dafuqs.spectrum.data_loaders.*;
+import de.dafuqs.spectrum.mixin.client.accessors.*;
 import de.dafuqs.spectrum.networking.c2s_payloads.*;
 import net.minecraft.*;
 import net.minecraft.client.gui.*;

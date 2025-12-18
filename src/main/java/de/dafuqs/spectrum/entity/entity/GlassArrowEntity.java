@@ -31,12 +31,12 @@ public class GlassArrowEntity extends AbstractArrow {
 	}
 	
 	public GlassArrowEntity(Level world, LivingEntity owner, ItemStack stack, ItemStack shotFrom) {
-		super(SpectrumEntityTypes.GLASS_ARROW, owner, world, stack, shotFrom);
+		super(SpectrumEntityTypes.GLASS_ARROW.get(), owner, world, stack, shotFrom);
 		setBaseDamage(getBaseDamage() * DAMAGE_MODIFIER);
 	}
 	
 	public GlassArrowEntity(Level world, double x, double y, double z, ItemStack stack, ItemStack shotFrom) {
-		super(SpectrumEntityTypes.GLASS_ARROW, x, y, z, world, stack, shotFrom);
+		super(SpectrumEntityTypes.GLASS_ARROW.get(), x, y, z, world, stack, shotFrom);
 		setBaseDamage(getBaseDamage() * DAMAGE_MODIFIER);
 	}
 	

@@ -12,6 +12,7 @@ import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
+import net.neoforged.neoforge.network.*;
 
 import java.util.*;
 import java.util.function.*;

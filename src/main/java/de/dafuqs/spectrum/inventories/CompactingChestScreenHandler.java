@@ -8,6 +8,7 @@ import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
+import net.neoforged.neoforge.network.*;
 
 public class CompactingChestScreenHandler extends AbstractContainerMenu {
 	

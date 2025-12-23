@@ -75,34 +75,24 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 		}
 	}
 	
+	/*
+		The shrine needs an air-like block just above and sky access all the rest of the way
+	 */
 	public static boolean verifySkyAccess(ServerLevel world, BlockPos shrinePos) {
-		if (world.getBlockState(shrinePos.above()).isRedstoneConductor(world, shrinePos.above())) {
-			world.playSound(null, shrinePos, SpectrumSoundEvents.USE_FAIL, SoundSource.NEUTRAL, 1.0F, 1.0F);
-			PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity(world, shrinePos.above().getCenter(), ColoredSparkleRisingParticleEffect.RED, 8, Vec3.ZERO, new Vec3(0.1, 0.1, 0.1));
-			return false;
-		}
-		
-		// getTopY() returns the topmost "air" block
-		// which may or may not be the pos of the Fusion Shrine
-		// we search down until we find the shrine itself or a non-opaque block
-		int topY = world.getHeight(Heightmap.Types.WORLD_SURFACE, shrinePos.getX(), shrinePos.getZ());
-		BlockPos.MutableBlockPos mutablePos = new BlockPos.MutableBlockPos(shrinePos.getX(), topY, shrinePos.getZ());
-		for (int y = topY; y > shrinePos.getY(); y--) {
-			mutablePos.setY(y - 1);
-			BlockState posState = world.getBlockState(mutablePos);
-			if (posState.getLightBlock(world, mutablePos) > 0) {
-				break;
+		int x = shrinePos.getX();
+		int z = shrinePos.getZ();
+		int l = world.getHeight(Heightmap.Types.WORLD_SURFACE, x, z);
+		BlockPos.MutableBlockPos blockPos = new BlockPos.MutableBlockPos();
+		for (int m = shrinePos.getY() + 1; m <= l; ++m) {
+			blockPos = blockPos.set(x, m, z);
+			BlockState blockState = world.getBlockState(blockPos);
+			if ((m == shrinePos.getY() + 1 && !blockState.isAir()) || !blockState.propagatesSkylightDown(world, blockPos)) {
+				world.playSound(null, shrinePos, SpectrumSoundEvents.USE_FAIL, SoundSource.NEUTRAL, 1.0F, 1.0F);
+				PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity(world, blockPos.getCenter(), ColoredSparkleRisingParticleEffect.RED, 8, Vec3.ZERO, new Vec3(0.1, 0.1, 0.1));
+				return false;
 			}
 		}
-		
-		if (mutablePos.getY() == shrinePos.getY()) {
-			return true;
-		}
-		
-		PlayParticleWithExactVelocityPayload.playParticleWithExactVelocity(world, new Vec3(shrinePos.getX() + 0.5, shrinePos.getY() + 1, shrinePos.getZ() + 0.5), ColoredSparkleRisingParticleEffect.RED, 1, new Vec3(0, 0.5, 0));
-		PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity(world, new Vec3(shrinePos.getX() + 0.5, topY - 0.5, shrinePos.getZ() + 0.5), ColoredSparkleRisingParticleEffect.RED, 8, Vec3.ZERO, new Vec3(0.1, 0.1, 0.1));
-		world.playSound(null, shrinePos, SpectrumSoundEvents.USE_FAIL, SoundSource.NEUTRAL, 1.0F, 1.0F);
-		return false;
+		return true;
 	}
 	
 	public static boolean verifyStructure(Level world, BlockPos blockPos, @Nullable ServerPlayer serverPlayerEntity) {

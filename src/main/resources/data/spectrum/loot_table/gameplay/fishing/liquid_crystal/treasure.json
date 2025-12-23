@@ -16,11 +16,6 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:wheat",
-          "weight": 3
-        },
-        {
-          "type": "minecraft:item",
           "name": "minecraft:emerald",
           "weight": 1,
           "quality": 1

@@ -23,7 +23,7 @@ import java.util.*;
 
 public class PotionWorkshopReactingRecipe extends GatedSpectrumRecipe<RecipeInput> implements DescriptiveGatedRecipe<RecipeInput> {
 	
-	protected static final HashMap<Item, List<PotionMod>> reagents = new HashMap<>();
+	protected static final HashMap<Item, List<PotionMod>> REAGENTS = new HashMap<>();
 	
 	protected final Item item;
 	protected final List<PotionMod> modifiers;
@@ -33,7 +33,7 @@ public class PotionWorkshopReactingRecipe extends GatedSpectrumRecipe<RecipeInpu
 		this.item = item;
 		this.modifiers = modifiers;
 		
-		reagents.put(item, modifiers);
+		REAGENTS.put(item, modifiers);
 		
 		registerInToastManager(getType(), this);
 	}
@@ -107,13 +107,13 @@ public class PotionWorkshopReactingRecipe extends GatedSpectrumRecipe<RecipeInpu
 		return this.item;
 	}
 	
-	public static boolean isReagent(Item item) {
-		return reagents.containsKey(item);
+	public static boolean isReagent(ItemStack stack) {
+		return REAGENTS.containsKey(stack.getItem());
 	}
 	
 	public static PotionMod.Builder combine(PotionMod.Builder builder, ItemStack reagentStack, RandomSource random) {
 		Item reagent = reagentStack.getItem();
-		List<PotionMod> reagentMods = reagents.getOrDefault(reagent, null);
+		List<PotionMod> reagentMods = REAGENTS.getOrDefault(reagent, null);
 		if (reagentMods != null)
 			builder.combine(reagentMods.get(random.nextInt(reagentMods.size())));
 		return builder;

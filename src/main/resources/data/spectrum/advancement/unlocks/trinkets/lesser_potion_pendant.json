@@ -18,6 +18,12 @@
         "advancement_identifier": "spectrum:midgame/brew_lasting_potion_in_potion_workshop"
       }
     },
+    "brew_potion_with_beneficial_and_harmful_reagents_in_potion_workshop": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/brew_potion_with_beneficial_and_harmful_reagents_in_potion_workshop"
+      }
+    },
     "unlocked_liquid_crystal": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
@@ -41,7 +47,8 @@
     [
       "brewed_potion_with_four_effects_in_potion_workshop",
       "brewed_powerful_potion_in_potion_workshop",
-      "brew_lasting_potion_in_potion_workshop"
+      "brew_lasting_potion_in_potion_workshop",
+      "brew_potion_with_beneficial_and_harmful_reagents_in_potion_workshop"
     ],
     [
       "unlocked_liquid_crystal"

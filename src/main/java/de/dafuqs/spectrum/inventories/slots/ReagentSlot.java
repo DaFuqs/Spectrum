@@ -13,7 +13,7 @@ public class ReagentSlot extends Slot {
 	
 	@Override
 	public boolean mayPlace(ItemStack stack) {
-		return super.mayPlace(stack) && PotionWorkshopReactingRecipe.isReagent(stack.getItem());
+		return super.mayPlace(stack) && PotionWorkshopReactingRecipe.isReagent(stack);
 	}
 	
 }

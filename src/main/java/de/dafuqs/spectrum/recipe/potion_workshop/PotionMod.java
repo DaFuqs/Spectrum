@@ -73,7 +73,8 @@ public record PotionMod(
 			boolean makeLingering,
 			boolean noParticles,
 			boolean unidentifiable,
-			boolean makeEffectsPositive,
+			boolean makeEffectsBeneficial,
+			boolean makeEffectsHarmful,
 			boolean potentDecreasingEffect,
 			boolean negateDecreasingDuration,
 			boolean randomColor,
@@ -90,12 +91,41 @@ public record PotionMod(
 				ByteBufCodecs.FLOAT
 		);
 		
+		public record Conditions(PotionFlags potionFlags) {
+			
+			public Conditions(PotionFlags potionFlags) {
+				this.potionFlags = potionFlags;
+			}
+			
+			public static final PotionFlags.Conditions ANY = new Conditions(new PotionFlags(false, false, false, false, false, false, false, false, false, false, List.of()));
+			
+			public static final Codec<PotionFlags.Conditions> CODEC = RecordCodecBuilder.create(i -> i.group(
+					PotionMod.PotionFlags.CODEC.forGetter(Conditions::potionFlags)
+			).apply(i, PotionFlags.Conditions::new));
+			
+			public boolean test(PotionFlags reagentFlags) {
+				if (this.potionFlags.makeSplashing && !reagentFlags.makeSplashing) return false;
+				if (this.potionFlags.makeLingering && !reagentFlags.makeLingering) return false;
+				if (this.potionFlags.noParticles && !reagentFlags.noParticles) return false;
+				if (this.potionFlags.unidentifiable && !reagentFlags.unidentifiable) return false;
+				if (this.potionFlags.makeEffectsBeneficial && !reagentFlags.makeEffectsBeneficial) return false;
+				if (this.potionFlags.makeEffectsHarmful && !reagentFlags.makeEffectsHarmful) return false;
+				if (this.potionFlags.potentDecreasingEffect && !reagentFlags.potentDecreasingEffect) return false;
+				if (this.potionFlags.negateDecreasingDuration && !reagentFlags.negateDecreasingDuration) return false;
+				if (this.potionFlags.randomColor && !reagentFlags.randomColor) return false;
+				if (this.potionFlags.severe && !reagentFlags.severe) return false;
+				return true;
+			}
+			
+		}
+		
 		public static final MapCodec<PotionFlags> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
 				Codec.BOOL.optionalFieldOf("make_splashing", false).forGetter(PotionFlags::makeSplashing),
 				Codec.BOOL.optionalFieldOf("make_lingering", false).forGetter(PotionFlags::makeLingering),
 				Codec.BOOL.optionalFieldOf("no_particles", false).forGetter(PotionFlags::noParticles),
 				Codec.BOOL.optionalFieldOf("unidentifiable", false).forGetter(PotionFlags::unidentifiable),
-				Codec.BOOL.optionalFieldOf("make_effects_positive", false).forGetter(PotionFlags::makeEffectsPositive),
+				Codec.BOOL.optionalFieldOf("make_effects_beneficial", false).forGetter(PotionFlags::makeEffectsBeneficial),
+				Codec.BOOL.optionalFieldOf("make_effects_harmful", false).forGetter(PotionFlags::makeEffectsHarmful),
 				Codec.BOOL.optionalFieldOf("potent_decreasing_effect", false).forGetter(PotionFlags::potentDecreasingEffect),
 				Codec.BOOL.optionalFieldOf("negate_decreasing_duration", false).forGetter(PotionFlags::negateDecreasingDuration),
 				Codec.BOOL.optionalFieldOf("random_color", false).forGetter(PotionFlags::randomColor),
@@ -108,7 +138,8 @@ public record PotionMod(
 				ByteBufCodecs.BOOL, PotionFlags::makeLingering,
 				ByteBufCodecs.BOOL, PotionFlags::noParticles,
 				ByteBufCodecs.BOOL, PotionFlags::unidentifiable,
-				ByteBufCodecs.BOOL, PotionFlags::makeEffectsPositive,
+				ByteBufCodecs.BOOL, PotionFlags::makeEffectsBeneficial,
+				ByteBufCodecs.BOOL, PotionFlags::makeEffectsHarmful,
 				ByteBufCodecs.BOOL, PotionFlags::potentDecreasingEffect,
 				ByteBufCodecs.BOOL, PotionFlags::negateDecreasingDuration,
 				ByteBufCodecs.BOOL, PotionFlags::randomColor,
@@ -139,7 +170,7 @@ public record PotionMod(
 		public float yield = 0;
 		public int additionalDrinkDurationTicks = 0;
 		public PotionFlags flags = new PotionFlags(
-				false, false, false, false, false,
+				false, false, false, false, false, false,
 				false, false, false, false, List.of()
 		);
 		;
@@ -172,7 +203,8 @@ public record PotionMod(
 					this.flags.makeLingering | potionMod.flags.makeLingering,
 					this.flags.noParticles | potionMod.flags.noParticles,
 					this.flags.unidentifiable | potionMod.flags.unidentifiable,
-					this.flags.makeEffectsPositive | potionMod.flags.makeEffectsPositive,
+					this.flags.makeEffectsBeneficial | potionMod.flags.makeEffectsBeneficial,
+					this.flags.makeEffectsHarmful | potionMod.flags.makeEffectsHarmful,
 					this.flags.potentDecreasingEffect | potionMod.flags.potentDecreasingEffect,
 					this.flags.negateDecreasingDuration | potionMod.flags.negateDecreasingDuration,
 					this.flags.randomColor | potionMod.flags.randomColor,

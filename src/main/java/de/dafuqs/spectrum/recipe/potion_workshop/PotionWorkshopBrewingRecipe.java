@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.recipe.potion_workshop;
 
 
+import com.google.common.collect.*;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.api.energy.*;
@@ -38,27 +39,33 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		add(new Tuple<>(0.25F, 0.667F));
 	}};
 	
-	public static final Map<Holder<MobEffect>, Holder<MobEffect>> negativeToPositiveEffect = new HashMap<>() {{
-		put(MobEffects.BAD_OMEN, MobEffects.HERO_OF_THE_VILLAGE);
-		put(MobEffects.HUNGER, MobEffects.SATURATION);
-		put(MobEffects.HARM, MobEffects.HEAL);
-		put(MobEffects.DIG_SLOWDOWN, MobEffects.DIG_SPEED);
-		put(MobEffects.MOVEMENT_SLOWDOWN, MobEffects.MOVEMENT_SPEED);
-		put(MobEffects.UNLUCK, MobEffects.LUCK);
-		put(MobEffects.WEAKNESS, MobEffects.DAMAGE_BOOST);
-		put(MobEffects.WITHER, MobEffects.REGENERATION);
-		put(SpectrumStatusEffects.STIFFNESS, SpectrumStatusEffects.SWIFTNESS);
-		put(SpectrumStatusEffects.DENSITY, SpectrumStatusEffects.LIGHTWEIGHT);
-	}};
+	public static final BiMap<Holder<MobEffect>, Holder<MobEffect>> HARMFUL_TO_BENEFICIAL_EFFECT = HashBiMap.create();
 	
-	public static @Nullable PotionWorkshopBrewingRecipe getPositiveRecipe(@NotNull Holder<MobEffect> statusEffect) {
-		if (statusEffect.value().getCategory() == MobEffectCategory.HARMFUL) {
-			Holder<MobEffect> positiveEffect = negativeToPositiveEffect.getOrDefault(statusEffect, null);
-			if (positiveEffect == null) {
+	static {
+		HARMFUL_TO_BENEFICIAL_EFFECT.put(MobEffects.BAD_OMEN, MobEffects.HERO_OF_THE_VILLAGE);
+		HARMFUL_TO_BENEFICIAL_EFFECT.put(MobEffects.HUNGER, SpectrumStatusEffects.NOURISHING);
+		HARMFUL_TO_BENEFICIAL_EFFECT.put(MobEffects.HARM, MobEffects.HEAL);
+		HARMFUL_TO_BENEFICIAL_EFFECT.put(MobEffects.DIG_SLOWDOWN, MobEffects.DIG_SPEED);
+		HARMFUL_TO_BENEFICIAL_EFFECT.put(MobEffects.MOVEMENT_SLOWDOWN, MobEffects.MOVEMENT_SPEED);
+		HARMFUL_TO_BENEFICIAL_EFFECT.put(MobEffects.UNLUCK, MobEffects.LUCK);
+		HARMFUL_TO_BENEFICIAL_EFFECT.put(MobEffects.WEAKNESS, MobEffects.DAMAGE_BOOST);
+		HARMFUL_TO_BENEFICIAL_EFFECT.put(MobEffects.WITHER, MobEffects.REGENERATION);
+		HARMFUL_TO_BENEFICIAL_EFFECT.put(MobEffects.CONFUSION, MobEffects.JUMP);
+		HARMFUL_TO_BENEFICIAL_EFFECT.put(MobEffects.BLINDNESS, MobEffects.NIGHT_VISION);
+		HARMFUL_TO_BENEFICIAL_EFFECT.put(SpectrumStatusEffects.STIFFNESS, SpectrumStatusEffects.SWIFTNESS);
+		HARMFUL_TO_BENEFICIAL_EFFECT.put(SpectrumStatusEffects.DENSITY, SpectrumStatusEffects.LIGHTWEIGHT);
+	}
+	
+	;
+	
+	public static @Nullable PotionWorkshopBrewingRecipe getInverseRecipe(@NotNull Holder<MobEffect> statusEffect, MobEffectCategory sourceCategory, BiMap<Holder<MobEffect>, Holder<MobEffect>> map) {
+		if (statusEffect.value().getCategory() == sourceCategory) {
+			Holder<MobEffect> beneficialEffect = map.getOrDefault(statusEffect, null);
+			if (beneficialEffect == null) {
 				return null;
 			}
-			for (PotionWorkshopBrewingRecipe positiveRecipe : positiveRecipes) {
-				if (positiveRecipe.recipeData.statusEffect() == positiveEffect) {
+			for (PotionWorkshopBrewingRecipe positiveRecipe : beneficialRecipes) {
+				if (positiveRecipe.recipeData.statusEffect() == beneficialEffect) {
 					return positiveRecipe;
 				}
 			}
@@ -66,12 +73,19 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		return null;
 	}
 	
-	public static final List<PotionWorkshopBrewingRecipe> positiveRecipes = new ArrayList<>();
-	public static final List<PotionWorkshopBrewingRecipe> negativeRecipes = new ArrayList<>();
+	public static final List<PotionWorkshopBrewingRecipe> beneficialRecipes = new ArrayList<>();
+	public static final List<PotionWorkshopBrewingRecipe> harmfulRecipes = new ArrayList<>();
+	public static PotionWorkshopBrewingRecipe immunityRecipe = null;
 	
 	public final PotionRecipeEffect recipeData;
 	
 	protected ItemStack cachedOutput;
+	
+	public static void clearMemorizedRecipes() {
+		beneficialRecipes.clear();
+		harmfulRecipes.clear();
+		immunityRecipe = null;
+	}
 	
 	public PotionWorkshopBrewingRecipe(
 			String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier, int craftingTime,
@@ -85,20 +99,23 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		registerInToastManager(getType(), this);
 		
 		// remember one of each status effect recipe for quick lookup
+		if (recipeData.statusEffect() == SpectrumStatusEffects.IMMUNITY) {
+			immunityRecipe = this;
+		}
 		if (recipeData.statusEffect().value().getCategory() == MobEffectCategory.BENEFICIAL) {
-			for (PotionWorkshopBrewingRecipe ae : positiveRecipes) {
+			for (PotionWorkshopBrewingRecipe ae : beneficialRecipes) {
 				if (ae.recipeData.statusEffect().value() == recipeData.statusEffect()) {
 					return;
 				}
 			}
-			positiveRecipes.add(this);
+			beneficialRecipes.add(this);
 		} else if (recipeData.statusEffect().value().getCategory() == MobEffectCategory.HARMFUL) {
-			for (PotionWorkshopBrewingRecipe ae : negativeRecipes) {
+			for (PotionWorkshopBrewingRecipe ae : harmfulRecipes) {
 				if (ae.recipeData.statusEffect() == recipeData.statusEffect()) {
 					return;
 				}
 			}
-			negativeRecipes.add(this);
+			harmfulRecipes.add(this);
 		}
 	}
 	
@@ -276,10 +293,25 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	}
 	
 	private void addEffect(PotionMod potionMod, RandomSource random, List<InkPoweredStatusEffectInstance> effects) {
-		if (potionMod.flags().makeEffectsPositive()) {
-			PotionWorkshopBrewingRecipe positiveRecipe = getPositiveRecipe(recipeData.statusEffect());
-			if (positiveRecipe != null) {
-				effects.add(positiveRecipe.recipeData.getStatusEffectInstance(potionMod, random));
+		if (potionMod.flags().makeEffectsBeneficial() && potionMod.flags().makeEffectsHarmful()) {
+			// listen here, you little shit
+			if (immunityRecipe != null) {
+				effects.add(immunityRecipe.recipeData.getStatusEffectInstance(potionMod, random));
+			}
+			return;
+		}
+		
+		if (potionMod.flags().makeEffectsBeneficial()) {
+			PotionWorkshopBrewingRecipe beneficialRecipe = getInverseRecipe(recipeData.statusEffect(), MobEffectCategory.HARMFUL, HARMFUL_TO_BENEFICIAL_EFFECT);
+			if (beneficialRecipe != null) {
+				effects.add(beneficialRecipe.recipeData.getStatusEffectInstance(potionMod, random));
+				return;
+			}
+		}
+		if (potionMod.flags().makeEffectsHarmful()) {
+			PotionWorkshopBrewingRecipe harmfulRecipe = getInverseRecipe(recipeData.statusEffect(), MobEffectCategory.BENEFICIAL, HARMFUL_TO_BENEFICIAL_EFFECT.inverse());
+			if (harmfulRecipe != null) {
+				effects.add(harmfulRecipe.recipeData.getStatusEffectInstance(potionMod, random));
 				return;
 			}
 		}
@@ -294,7 +326,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		// random positive ones
 		int additionalPositiveEffectCount = Support.getIntFromDecimalWithChance(potionMod.additionalRandomPositiveEffectCount(), random);
 		if (additionalPositiveEffectCount > 0) {
-			List<PotionWorkshopBrewingRecipe> randomlySelectedRecipes = pullRandomMatchingRecipes(positiveRecipes, additionalPositiveEffectCount, effects, baseIngredient);
+			List<PotionWorkshopBrewingRecipe> randomlySelectedRecipes = pullRandomMatchingRecipes(beneficialRecipes, additionalPositiveEffectCount, effects, baseIngredient);
 			for (PotionWorkshopBrewingRecipe recipe : randomlySelectedRecipes) {
 				InkPoweredStatusEffectInstance statusEffectInstance = recipe.recipeData.getStatusEffectInstance(potionMod, random);
 				if (statusEffectInstance != null) {
@@ -306,7 +338,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		// random negative ones
 		int additionalNegativeEffectCount = Support.getIntFromDecimalWithChance(potionMod.additionalRandomNegativeEffectCount(), random);
 		if (additionalNegativeEffectCount > 0) {
-			List<PotionWorkshopBrewingRecipe> randomlySelectedRecipes = pullRandomMatchingRecipes(potionMod.flags().makeEffectsPositive() ? positiveRecipes : negativeRecipes, additionalNegativeEffectCount, effects, baseIngredient);
+			List<PotionWorkshopBrewingRecipe> randomlySelectedRecipes = pullRandomMatchingRecipes(potionMod.flags().makeEffectsBeneficial() ? beneficialRecipes : harmfulRecipes, additionalNegativeEffectCount, effects, baseIngredient);
 			for (PotionWorkshopBrewingRecipe recipe : randomlySelectedRecipes) {
 				InkPoweredStatusEffectInstance statusEffectInstance = recipe.recipeData.getStatusEffectInstance(potionMod, random);
 				if (statusEffectInstance != null) {

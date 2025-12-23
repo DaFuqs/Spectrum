@@ -15,6 +15,7 @@ import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.progression.*;
+import de.dafuqs.spectrum.recipe.potion_workshop.*;
 import de.dafuqs.spectrum.registries.client.*;
 import dev.emi.trinkets.api.*;
 import net.fabricmc.api.*;
@@ -368,6 +369,8 @@ public class SpectrumEventListeners {
 			
 			return true;
 		});
+		
+		ServerLifecycleEvents.SERVER_STOPPING.register(minecraftServer -> PotionWorkshopBrewingRecipe.clearMemorizedRecipes());
 		
 		ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
 			private final ResourceLocation id = SpectrumCommon.locate("server_data_cache_clearer");

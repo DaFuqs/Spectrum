@@ -133,9 +133,16 @@ public class BlockPlacerBlock extends RedstoneInteractionBlock implements BlockE
 	}
 	
 	public static final class BlockPlacerPlacementContext extends AutomaticItemPlacementContext {
+		// Shadows the variable facing in the superclass.
+		private final Direction facing;
 		
 		public BlockPlacerPlacementContext(World world, BlockPos pos, Direction facing, ItemStack stack, Direction side) {
 			super(world, pos, facing, stack, side);
+			this.facing = facing;
+		}
+		
+		public Direction getPlayerLookDirection() {
+			return facing.getOpposite();
 		}
 		
 		// SlabBlocks cause a non-funny StackOverflowError

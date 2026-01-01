@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.chests;
 
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.events.*;
@@ -9,6 +10,7 @@ import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
+import it.unimi.dsi.fastutil.objects.*;
 import net.fabricmc.fabric.api.screenhandler.v1.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.minecraft.block.*;
@@ -18,16 +20,20 @@ import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.*;
+import net.minecraft.registry.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.screen.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
+import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import net.minecraft.world.event.*;
 import net.minecraft.world.event.listener.*;
+import org.apache.commons.lang3.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -46,12 +52,15 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	private boolean isOpen, isFull, hasXPStorage;
 	float storageTarget, storagePos, lastStorageTarget, capTarget, capPos, lastCapTarget, orbTarget, orbPos, lastOrbTarget, yawTarget, orbYaw, lastYawTarget;
 	long interpTicks, interpLength = 1, age, storedXP, maxStoredXP;
-
+	
+	private final Object2BooleanMap<TagKey<Item>> filteredTags;
+	private boolean allTagsDeny = true;
 	
 	public BlackHoleChestBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntities.BLACK_HOLE_CHEST, blockPos, blockState);
 		this.itemAndExperienceEventQueue = new ItemAndExperienceEventQueue(new BlockPositionSource(this.pos), RANGE, this);
 		this.filterItems = DefaultedList.ofSize(ITEM_FILTER_SLOT_COUNT, ItemVariant.blank());
+		this.filteredTags = new Object2BooleanArrayMap<>();
 	}
 
 	public static void tick(@NotNull World world, BlockPos pos, BlockState state, BlackHoleChestBlockEntity chest) {
@@ -227,6 +236,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	public void readNbt(NbtCompound tag) {
 		super.readNbt(tag);
 		FilterConfigurable.readFilterNbt(tag, filterItems);
+		this.updateFilteredTags();
 		age = tag.getLong("age");
 	}
 	
@@ -322,12 +332,45 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 
 	public void setFilterItem(int slot, ItemVariant item) {
 		this.filterItems.set(slot, item);
+		this.updateFilteredTags();
 		this.markDirty();
+	}
+	
+	public void updateFilteredTags() {
+		filteredTags.clear();
+		this.allTagsDeny = true;
+		this.getItemFilters().forEach((itemVariant) -> {
+			ItemStack stack = itemVariant.toStack();
+			String name = StringUtils.trim(stack.getName().getString());
+			boolean allow = !name.startsWith("!");
+			Identifier identifier = Identifier.tryParse(StringUtils.remove(allow ? name : name.substring(1), '#'));
+			if(identifier == null) { return; }
+			
+			// Copied from PastelNodeBlockEntity. This entire section could potentially be a candidate to move into its own function.
+			TagKey<Item> tag = SpectrumCommon.CACHED_ITEM_TAG_MAP.computeIfAbsent(identifier, tagId -> Registries.ITEM.streamTags()
+					.filter(t -> t.id().equals(tagId))
+					.findFirst()
+					.orElse(null));
+					
+			if(tag == null) { return; }
+			if(allow) { this.allTagsDeny = false; }
+			this.filteredTags.put(tag, allow);
+		});
 	}
 	
 	public boolean acceptsItemStack(ItemStack itemStack) {
 		if (itemStack.isEmpty()) {
 			return false;
+		}
+		
+		if (!this.filteredTags.isEmpty()) {
+			int returnValue = 0;
+			// Latest takes precedence.
+			for(TagKey<Item> tag : this.filteredTags.keySet()) {
+				if(itemStack.isIn(tag)) { returnValue = this.filteredTags.getBoolean(tag) ? 1 : -1; }
+			}
+			if(returnValue != 0) { return returnValue == 1; }
+			if(this.allTagsDeny) { return true; }
 		}
 		
 		boolean allAir = true;

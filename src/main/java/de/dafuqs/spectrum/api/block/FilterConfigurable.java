@@ -1,23 +1,121 @@
 package de.dafuqs.spectrum.api.block;
 
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.slots.*;
 import de.dafuqs.spectrum.networking.c2s_payloads.*;
+import de.dafuqs.spectrum.registries.*;
+import it.unimi.dsi.fastutil.objects.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.minecraft.core.*;
+import net.minecraft.core.component.*;
+import net.minecraft.core.registries.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
+import net.minecraft.resources.*;
+import net.minecraft.tags.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
+import org.apache.commons.lang3.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public interface FilterConfigurable {
+	
+	default Object2BooleanMap<TagKey<Item>> getFilteredTags() {
+		return Object2BooleanMaps.emptyMap();
+	}
+	
+	default boolean onlyDenyListTags() {
+		return true;
+	}
+	
+	default void setOnlyDenyListTags(boolean onlyDenyListTags) {
+	}
+	
+	default boolean acceptsItem(Item item) {
+		if (item == null || item.equals(Items.AIR)) {
+			return false;
+		}
+		
+		if (!this.getFilteredTags().isEmpty()) {
+			int returnValue = 0;
+			// Latest takes precedence. 1 for if it's allowed, -1 for if it's denied.
+			for (TagKey<Item> tag : this.getFilteredTags().keySet()) {
+				if (item.builtInRegistryHolder().is(tag)) {
+					returnValue = this.getFilteredTags().getBoolean(tag) ? 1 : -1;
+				}
+			}
+			if (returnValue != 0) {
+				return returnValue == 1;
+			}
+			// If we only have denyList tags, treat not being in any as am implicit c:everything.
+			if (this.onlyDenyListTags()) {
+				return true;
+			}
+		}
+		
+		boolean allAir = true;
+		for (ItemVariant filterItem : this.getItemFilters()) {
+			if (filterItem.getItem().equals(item)) {
+				return true;
+			}
+			if (!filterItem.getItem().equals(Items.AIR)) {
+				allAir = false;
+			}
+		}
+		return allAir;
+	}
+	
+	// Run on NBT read.
+	default void clearFilters() {
+		this.getFilteredTags().clear();
+		this.setOnlyDenyListTags(true);
+	}
+	
+	default boolean addTagFilteringItem(ItemVariant itemVariant) {
+		ItemStack stack = itemVariant.toStack();
+		if (!stack.has(DataComponents.CUSTOM_NAME) || !stack.is(SpectrumItemTags.TAG_FILTERING_ITEMS)) {
+			this.setOnlyDenyListTags(false);
+			return false;
+		}
+		String name = StringUtils.trim(stack.getHoverName().getString());
+		if (StringUtils.equalsAnyIgnoreCase(name, "*", "any", "all", "everything", "c:*", "c:any", "c:all", "c:everything")) {
+			this.setOnlyDenyListTags(true);
+			return true;
+		}
+		
+		boolean allow = !name.startsWith("!");
+		ResourceLocation identifier = ResourceLocation.tryParse(StringUtils.remove(allow ? name : name.substring(1), '#'));
+		if (identifier == null) {
+			return false;
+		}
+		
+		// Copied from PastelNodeBlockEntity. This entire section could potentially be a candidate to move into its own function.
+		TagKey<Item> tag = SpectrumCommon.CACHED_ITEM_TAG_MAP.computeIfAbsent(identifier, tagId -> BuiltInRegistries.ITEM.getTagNames()
+				.filter(t -> t.location().equals(tagId))
+				.findFirst()
+				.orElse(null));
+		
+		if (tag == null) {
+			return false;
+		}
+		if (allow) {
+			this.setOnlyDenyListTags(false);
+		}
+		return this.getFilteredTags().put(tag, allow);
+	}
+	
+	// Call on change.
+	default void updateTagFilteringItems() {
+		this.clearFilters();
+		this.getItemFilters().forEach(this::addTagFilteringItem);
+	}
 	
 	List<ItemVariant> getItemFilters();
 	
@@ -127,21 +225,6 @@ public interface FilterConfigurable {
 		public @NotNull FilterConfigurable.ShadowSlotClicker getClicker() {
 			return clicker;
 		}
-	}
-	
-	static void writeScreenOpeningData(RegistryFriendlyByteBuf buf, FilterConfigurable configurable) {
-		writeScreenOpeningData(buf, configurable.getItemFilters(), configurable.getFilterRows(), configurable.getSlotsPerRow(), configurable.getDrawnSlots());
-	}
-	
-	static void writeScreenOpeningData(RegistryFriendlyByteBuf buf, List<ItemVariant> filterItems, int rows, int slotsPerRow, int drawnSlots) {
-		buf.writeInt(filterItems.size());
-		for (ItemVariant filterItem : filterItems) {
-			// The difference between just using filterItem.toNbt() is that ItemVariant nbt uses "item" while ItemStack uses "id"
-			ItemStack.STREAM_CODEC.encode(buf, filterItem.toStack());
-		}
-		buf.writeInt(rows);
-		buf.writeInt(slotsPerRow);
-		buf.writeInt(drawnSlots);
 	}
 	
 	default boolean hasEmptyFilter() {

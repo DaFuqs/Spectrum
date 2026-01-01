@@ -21,13 +21,13 @@ public class BlackHoleChestScreenHandler extends AbstractContainerMenu {
 	protected Container filterInventory;
 	
 	public BlackHoleChestScreenHandler(int syncId, Inventory playerInventory, FilterConfigurable.ExtendedDataWithPos data) {
-		this(syncId, playerInventory, playerInventory.player.level().getBlockEntity(data.pos(), SpectrumBlockEntities.BLACK_HOLE_CHEST).orElseThrow(), data.data());
+		this(syncId, playerInventory, playerInventory.player.level().getBlockEntity(data.pos(), SpectrumBlockEntities.BLACK_HOLE_CHEST).orElseThrow(), data);
 	}
 	
-	public BlackHoleChestScreenHandler(int syncId, Inventory playerInventory, BlackHoleChestBlockEntity blockEntity, FilterConfigurable.ExtendedData data) {
+	public BlackHoleChestScreenHandler(int syncId, Inventory playerInventory, BlackHoleChestBlockEntity blockEntity, FilterConfigurable.ExtendedDataWithPos data) {
 		super(SpectrumScreenHandlerTypes.BLACK_HOLE_CHEST, syncId);
 		this.world = playerInventory.player.level();
-		this.filterInventory = FilterConfigurable.getFilterInventoryFromExtendedData(syncId, playerInventory, data, this);
+		this.filterInventory = FilterConfigurable.getFilterInventoryFromExtendedData(syncId, playerInventory, data.data(), this);
 		this.blockEntity = blockEntity;
 		
 		checkContainerSize(blockEntity, BlackHoleChestBlockEntity.INVENTORY_SIZE);
@@ -35,7 +35,7 @@ public class BlackHoleChestScreenHandler extends AbstractContainerMenu {
 		
 		int i = (ROWS - 4) * 18;
 		
-		// sucking chest slots
+		// chest slots
 		int j;
 		int k;
 		for (j = 0; j < ROWS; ++j) {

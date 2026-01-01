@@ -17,8 +17,6 @@ import net.fabricmc.fabric.api.screenhandler.v1.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.fabricmc.fabric.api.transfer.v1.storage.*;
 import net.minecraft.core.*;
-import net.minecraft.core.component.*;
-import net.minecraft.core.registries.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.network.protocol.*;
@@ -26,6 +24,7 @@ import net.minecraft.network.protocol.game.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
+import net.minecraft.tags.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.*;
@@ -36,14 +35,13 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
-import org.apache.commons.lang3.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigurable, ExtendedScreenHandlerFactory<FilterConfigurable.ExtendedData>, PastelUpgradeable {
+public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigurable, ExtendedScreenHandlerFactory<FilterConfigurable.ExtendedDataWithPos>, PastelUpgradeable {
 	
 	public static final int MAX_FILTER_SLOTS = 25;
 	public static final int SLOTS_PER_ROW = 5;
@@ -80,9 +78,13 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	long creationStamp = -1, interpTicks, interpLength = -1, spinTicks;
 	private ConnectionState connectionState;
 	
+	private final Object2BooleanMap<TagKey<Item>> filteredTags;
+	private boolean allTagsDeny = true;
+
 	public PastelNodeBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntities.PASTEL_NODE, blockPos, blockState);
 		this.filterItems = NonNullList.withSize(MAX_FILTER_SLOTS, ItemVariant.blank());
+		this.filteredTags = new Object2BooleanArrayMap<>();
 		this.outerRing = Optional.empty();
 		this.innerRing = Optional.empty();
 		this.redstoneRing = Optional.empty();
@@ -255,6 +257,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		
 		if (filterSlotRows < oldFilterSlotCount) {
 			for (int i = getDrawnSlots(); i < filterItems.size(); i++) {
+				updateTagFilteringItems();
 				filterItems.set(i, ItemVariant.blank());
 			}
 		}
@@ -348,6 +351,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		
 		if (this.getNodeType().usesFilters()) {
 			FilterConfigurable.readFilterNbt(nbt, this.filterItems);
+			this.updateTagFilteringItems();
 		}
 	}
 	
@@ -446,55 +450,37 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		return this.filterItems;
 	}
 	
+	public Object2BooleanMap<TagKey<Item>> getFilteredTags() {
+		return this.filteredTags;
+	}
+	
+	public boolean onlyDenyListTags() {
+		return this.allTagsDeny;
+	}
+	
+	public void setOnlyDenyListTags(boolean onlyDenyListTags) {
+		this.allTagsDeny = onlyDenyListTags;
+	}
+
 	@Override
 	public void setFilterItem(int slot, ItemVariant item) {
 		this.filterItems.set(slot, item);
+		this.updateTagFilteringItems();
 	}
 	
 	public Predicate<ItemVariant> getTransferFilterTo(PastelNodeBlockEntity other) {
 		if (this.getNodeType().usesFilters() && !this.hasEmptyFilter()) {
 			if (other.getNodeType().usesFilters() && !other.hasEmptyFilter()) {
 				// unionize both filters
-				return Predicates.and(this::filter, other::filter);
+				return Predicates.and(variant1 -> this.acceptsItem(variant1.getItem()), variant -> other.acceptsItem(variant.getItem()));
 			} else {
-				return this::filter;
+				return variant -> this.acceptsItem(variant.getItem());
 			}
 		} else if (other.getNodeType().usesFilters() && !other.hasEmptyFilter()) {
-			return other::filter;
+			return variant -> other.acceptsItem(variant.getItem());
 		} else {
 			return itemVariant -> true;
 		}
-	}
-	
-	private boolean filter(ItemVariant variant) {
-		return filterItems
-				.stream()
-				.anyMatch(filterItem -> {
-					ItemStack filterStack = filterItem.toStack();
-					
-					if (!filterStack.has(DataComponents.CUSTOM_NAME) || !filterStack.is(SpectrumItemTags.TAG_FILTERING_ITEMS))
-						return filterStack.getItem() == variant.getItem();
-					
-					var name = StringUtils.trim(filterStack.getHoverName().getString());
-					
-					// This is to allow nbt filtering without item / tag filtering.
-					if (StringUtils.equalsAnyIgnoreCase(name, "*", "any", "all", "everything", "c:*", "c:any", "c:all", "c:everything"))
-						return true;
-					
-					var id = ResourceLocation.tryParse(StringUtils.remove(name, '#')); // let's be nice and remove any pound signs
-					if (id == null)
-						return false;
-					
-					var tag = SpectrumCommon.CACHED_ITEM_TAG_MAP.computeIfAbsent(id, tagId -> BuiltInRegistries.ITEM.getTagNames()
-							.filter(t -> t.location().equals(tagId))
-							.findFirst()
-							.orElse(null));
-					
-					if (tag == null)
-						return false;
-					
-					return variant.getItem().builtInRegistryHolder().is(tag);
-				});
 	}
 	
 	public long getCreationStamp() {
@@ -509,7 +495,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	@Nullable
 	@Override
 	public AbstractContainerMenu createMenu(int syncId, Inventory inv, Player player) {
-		return new FilteringScreenHandler(syncId, inv, new ExtendedData(this));
+		return new FilteringScreenHandler(syncId, inv, new FilterConfigurable.ExtendedDataWithPos(this.worldPosition, this));
 	}
 	
 	@Override
@@ -523,8 +509,8 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	}
 	
 	@Override
-	public FilterConfigurable.ExtendedData getScreenOpeningData(ServerPlayer player) {
-		return new FilterConfigurable.ExtendedData(this);
+	public FilterConfigurable.ExtendedDataWithPos getScreenOpeningData(ServerPlayer player) {
+		return new FilterConfigurable.ExtendedDataWithPos(this.getBlockPos(), this);
 	}
 	
 	public boolean equals(Object obj) {

@@ -15,18 +15,18 @@ import java.util.function.*;
 public class FilteringScreenHandler extends AbstractContainerMenu {
 	
 	protected final Level world;
-	protected FilterConfigurable.ExtendedData filterConfigurable;
+	protected FilterConfigurable filterConfigurable;
 	protected final Container filterInventory;
 	protected final int rows, slotsPerRow, drawnSlots;
 	
-	public FilteringScreenHandler(int syncId, Inventory playerInventory, FilterConfigurable.ExtendedData data) {
+	public FilteringScreenHandler(int syncId, Inventory playerInventory, FilterConfigurable.ExtendedDataWithPos data) {
 		this(SpectrumScreenHandlerTypes.FILTERING, syncId, playerInventory,
-				(handler) -> new Tuple<>(FilterConfigurable.getFilterInventoryFromItemsHandler(syncId, playerInventory, data.filterItems(), handler), new Integer[]{
-						data.rows(),
-						data.slotsPerRow(),
-						data.drawnSlots()
+				(handler) -> new Tuple<>(FilterConfigurable.getFilterInventoryFromItemsHandler(syncId, playerInventory, data.data().filterItems(), handler), new Integer[]{
+						data.data().rows(),
+						data.data().slotsPerRow(),
+						data.data().drawnSlots()
 				}));
-		this.filterConfigurable = data;
+		this.filterConfigurable = (FilterConfigurable) world.getBlockEntity(data.pos());
 	}
 	
 	protected FilteringScreenHandler(MenuType<?> type, int syncId, Inventory playerInventory, Function<AbstractContainerMenu, Tuple<Container, Integer[]>> filterInventoryFactory) {
@@ -101,7 +101,7 @@ public class FilteringScreenHandler extends AbstractContainerMenu {
 		@Override
 		public boolean onClicked(ItemStack heldStack, ClickAction type, Player player) {
 			if (!world.isClientSide && filterConfigurable != null) {
-				filterConfigurable.filterItems().set(getContainerSlot(), ItemVariant.of(heldStack));
+				filterConfigurable.setFilterItem(getContainerSlot(), ItemVariant.of(heldStack));
 			}
 			return super.onClicked(heldStack, type, player);
 		}

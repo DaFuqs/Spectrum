@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.chests;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.events.*;
@@ -15,10 +14,8 @@ import it.unimi.dsi.fastutil.objects.*;
 import net.fabricmc.fabric.api.screenhandler.v1.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.minecraft.core.*;
-import net.minecraft.core.registries.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.chat.*;
-import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.tags.*;
@@ -32,7 +29,6 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
-import org.apache.commons.lang3.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -215,7 +211,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	
 	@Override
 	protected AbstractContainerMenu createMenu(int syncId, Inventory playerInventory) {
-		return new BlackHoleChestScreenHandler(syncId, playerInventory, this, new ExtendedData(this));
+		return new BlackHoleChestScreenHandler(syncId, playerInventory, this, new FilterConfigurable.ExtendedDataWithPos(this.worldPosition, this));
 	}
 	
 	@Override
@@ -235,7 +231,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	public void loadAdditional(CompoundTag tag, HolderLookup.Provider registryLookup) {
 		super.loadAdditional(tag, registryLookup);
 		FilterConfigurable.readFilterNbt(tag, filterItems);
-		this.updateFilteredTags();
+		this.updateTagFilteringItems();
 		age = tag.getLong("age");
 	}
 	
@@ -254,8 +250,8 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 			return false;
 		}
 		Entity entity = event.context().sourceEntity();
-		if (entity instanceof ItemEntity itemEntity) {
-			return acceptsItemStack(itemEntity.getItem());
+		if (entity instanceof ItemEntity) {
+			return true;
 		}
 		return entity instanceof ExperienceOrb && hasExperienceStorageItem();
 	}
@@ -277,7 +273,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 			}
 		} else if (entry instanceof ItemEntityEventQueue.EventEntry itemEntry) {
 			ItemEntity itemEntity = itemEntry.itemEntity;
-			if (itemEntity != null && itemEntity.isAlive() && ((ItemEntityAccessor) itemEntity).getPickupDelay() != 32767 && acceptsItemStack(itemEntity.getItem())) {
+			if (itemEntity != null && itemEntity.isAlive() && ((ItemEntityAccessor) itemEntity).getPickupDelay() != 32767 && this.acceptsItem(itemEntity.getItem().getItem())) {
 				int previousAmount = itemEntity.getItem().getCount();
 				ItemStack remainingStack = InventoryHelper.smartAddToInventory(itemEntity.getItem(), this, Direction.UP);
 				
@@ -319,7 +315,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	
 	@Override
 	public FilterConfigurable.ExtendedDataWithPos getScreenOpeningData(ServerPlayer player) {
-		return new ExtendedDataWithPos(worldPosition, this);
+		return new FilterConfigurable.ExtendedDataWithPos(worldPosition, this);
 	}
 	
 	@Override
@@ -339,69 +335,20 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	
 	public void setFilterItem(int slot, ItemVariant item) {
 		this.filterItems.set(slot, item);
-		this.updateFilteredTags();
+		this.updateTagFilteringItems();
 		this.setChanged();
 	}
 	
-	public void updateFilteredTags() {
-		filteredTags.clear();
-		this.allTagsDeny = true;
-		this.getItemFilters().forEach((itemVariant) -> {
-			ItemStack stack = itemVariant.toStack();
-			String name = StringUtils.trim(stack.getDisplayName().getString());
-			boolean allow = !name.startsWith("!");
-			ResourceLocation identifier = ResourceLocation.tryParse(StringUtils.remove(allow ? name : name.substring(1), '#'));
-			if (identifier == null) {
-				return;
-			}
-			
-			// Copied from PastelNodeBlockEntity. This entire section could potentially be a candidate to move into its own function.
-			TagKey<Item> tag = SpectrumCommon.CACHED_ITEM_TAG_MAP.computeIfAbsent(identifier, tagId -> BuiltInRegistries.ITEM.getTagNames()
-					.filter(t -> t.location().equals(tagId))
-					.findFirst()
-					.orElse(null));
-			
-			if (tag == null) {
-				return;
-			}
-			if (allow) {
-				this.allTagsDeny = false;
-			}
-			this.filteredTags.put(tag, allow);
-		});
+	public Object2BooleanMap<TagKey<Item>> getFilteredTags() {
+		return this.filteredTags;
 	}
 	
-	public boolean acceptsItemStack(ItemStack itemStack) {
-		if (itemStack.isEmpty()) {
-			return false;
-		}
-		
-		if (!this.filteredTags.isEmpty()) {
-			int returnValue = 0;
-			// Latest takes precedence.
-			for (TagKey<Item> tag : this.filteredTags.keySet()) {
-				if (itemStack.is(tag)) {
-					returnValue = this.filteredTags.getBoolean(tag) ? 1 : -1;
-				}
-			}
-			if (returnValue != 0) {
-				return returnValue == 1;
-			}
-			if (this.allTagsDeny) {
-				return true;
-			}
-		}
-		
-		boolean allAir = true;
-		for (int i = 0; i < ITEM_FILTER_SLOT_COUNT; i++) {
-			ItemVariant filterItem = this.filterItems.get(i);
-			if (itemStack.is(filterItem.getItem())) {
-				return true;
-			} else if (!filterItem.isBlank()) {
-				allAir = false;
-			}
-		}
-		return allAir;
+	public boolean onlyDenyListTags() {
+		return this.allTagsDeny;
+	}
+	
+	public void setOnlyDenyListTags(boolean onlyDenyListTags) {
+		this.allTagsDeny = onlyDenyListTags;
 	}
 	
 	public boolean hasExperienceStorageItem() {

@@ -40,7 +40,7 @@ import java.util.*;
 import java.util.stream.*;
 
 @SuppressWarnings("UnstableApiUsage")
-public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implements ExtendedScreenHandlerFactory, SidedInventory, EventQueue.Callback<Object> {
+public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implements ExtendedScreenHandlerFactory, SidedInventory, EventQueue.Callback<Object>, TagFilteringInventory {
 	
 	public static final int INVENTORY_SIZE = 28;
 	public static final int ITEM_FILTER_SLOT_COUNT = 5;
@@ -236,7 +236,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	public void readNbt(NbtCompound tag) {
 		super.readNbt(tag);
 		FilterConfigurable.readFilterNbt(tag, filterItems);
-		this.updateFilteredTags();
+		this.updateTagFilteringItems();
 		age = tag.getLong("age");
 	}
 	
@@ -278,7 +278,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 			}
 		} else if (entry instanceof ItemEntityEventQueue.EventEntry itemEntry) {
 			ItemEntity itemEntity = itemEntry.itemEntity;
-			if (itemEntity != null && itemEntity.isAlive() && !itemEntity.cannotPickup() && acceptsItemStack(itemEntity.getStack())) {
+			if (itemEntity != null && itemEntity.isAlive() && !itemEntity.cannotPickup() && this.acceptsItem(itemEntity.getStack().getItem())) {
 				int previousAmount = itemEntity.getStack().getCount();
 				ItemStack remainingStack = InventoryHelper.smartAddToInventory(itemEntity.getStack(), this, Direction.UP);
 				
@@ -332,58 +332,13 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 
 	public void setFilterItem(int slot, ItemVariant item) {
 		this.filterItems.set(slot, item);
-		this.updateFilteredTags();
+		this.updateTagFilteringItems();
 		this.markDirty();
 	}
 	
-	public void updateFilteredTags() {
-		filteredTags.clear();
-		this.allTagsDeny = true;
-		this.getItemFilters().forEach((itemVariant) -> {
-			ItemStack stack = itemVariant.toStack();
-			String name = StringUtils.trim(stack.getName().getString());
-			boolean allow = !name.startsWith("!");
-			Identifier identifier = Identifier.tryParse(StringUtils.remove(allow ? name : name.substring(1), '#'));
-			if(identifier == null) { return; }
-			
-			// Copied from PastelNodeBlockEntity. This entire section could potentially be a candidate to move into its own function.
-			TagKey<Item> tag = SpectrumCommon.CACHED_ITEM_TAG_MAP.computeIfAbsent(identifier, tagId -> Registries.ITEM.streamTags()
-					.filter(t -> t.id().equals(tagId))
-					.findFirst()
-					.orElse(null));
-					
-			if(tag == null) { return; }
-			if(allow) { this.allTagsDeny = false; }
-			this.filteredTags.put(tag, allow);
-		});
-	}
-	
-	public boolean acceptsItemStack(ItemStack itemStack) {
-		if (itemStack.isEmpty()) {
-			return false;
-		}
-		
-		if (!this.filteredTags.isEmpty()) {
-			int returnValue = 0;
-			// Latest takes precedence.
-			for(TagKey<Item> tag : this.filteredTags.keySet()) {
-				if(itemStack.isIn(tag)) { returnValue = this.filteredTags.getBoolean(tag) ? 1 : -1; }
-			}
-			if(returnValue != 0) { return returnValue == 1; }
-			if(this.allTagsDeny) { return true; }
-		}
-		
-		boolean allAir = true;
-		for (int i = 0; i < ITEM_FILTER_SLOT_COUNT; i++) {
-			ItemVariant filterItem = this.filterItems.get(i);
-			if (filterItem.getItem().equals(itemStack.getItem())) {
-				return true;
-			} else if (!filterItem.getItem().equals(Items.AIR)) {
-				allAir = false;
-			}
-		}
-		return allAir;
-	}
+	public Object2BooleanMap<TagKey<Item>> getFilteredTags() { return this.filteredTags; }
+	public boolean onlyDenyListTags() { return this.allTagsDeny; }
+	public void setOnlyDenyListTags(boolean onlyDenyListTags) { this.allTagsDeny = onlyDenyListTags; }
 	
 	public boolean hasExperienceStorageItem() {
 		return this.inventory.get(EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT).getItem() instanceof ExperienceStorageItem;

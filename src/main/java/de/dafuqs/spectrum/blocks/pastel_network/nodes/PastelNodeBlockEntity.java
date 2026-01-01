@@ -12,6 +12,7 @@ import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
+import it.unimi.dsi.fastutil.objects.*;
 import net.fabricmc.fabric.api.lookup.v1.block.*;
 import net.fabricmc.fabric.api.screenhandler.v1.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
@@ -28,6 +29,7 @@ import net.minecraft.network.listener.*;
 import net.minecraft.network.packet.*;
 import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.registry.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.screen.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
@@ -46,7 +48,7 @@ import java.util.*;
 import java.util.function.Predicate;
 
 @SuppressWarnings("UnstableApiUsage")
-public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigurable, ExtendedScreenHandlerFactory, Stampable, PastelUpgradeable {
+public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigurable, ExtendedScreenHandlerFactory, Stampable, PastelUpgradeable, TagFilteringInventory {
 
 	public static final int MAX_FILTER_SLOTS = 25;
 	public static final int SLOTS_PER_ROW = 5;
@@ -80,10 +82,14 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	float rotationTarget, crystalRotation, lastRotationTarget, heightTarget, crystalHeight, lastHeightTarget, alphaTarget, ringAlpha, lastAlphaTarget;
 	long creationStamp = -1, interpTicks, interpLength = -1, spinTicks;
 	private State state;
+	
+	private final Object2BooleanMap<TagKey<Item>> filteredTags;
+	private boolean allTagsDeny = true;
 
 	public PastelNodeBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntities.PASTEL_NODE, blockPos, blockState);
 		this.filterItems = DefaultedList.ofSize(MAX_FILTER_SLOTS, ItemVariant.blank());
+		this.filteredTags = new Object2BooleanArrayMap<>();
 		this.outerRing = Optional.empty();
 		this.innerRing = Optional.empty();
 		this.redstoneRing = Optional.empty();
@@ -253,6 +259,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		if (filterSlotRows < oldFilterSlotCount) {
 			for (int i = getDrawnSlots(); i < filterItems.size(); i++) {
 				filterHashset.remove(filterItems.get(i).getItem());
+				updateNbtCheckingCount(this.filterItems.get(i), -1);
 				filterItems.set(i, ItemVariant.blank());
 			}
 		}
@@ -359,6 +366,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 				this.filterHashset.add(itemVariant.getItem());
 				this.updateNbtCheckingCount(itemVariant, 1);
 			});
+			this.updateTagFilteringItems();
 		}
 	}
 
@@ -455,6 +463,9 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	public List<ItemVariant> getItemFilters() {
 		return this.filterItems;
 	}
+	public Object2BooleanMap<TagKey<Item>> getFilteredTags() { return this.filteredTags; }
+	public boolean onlyDenyListTags() { return this.allTagsDeny; }
+	public void setOnlyDenyListTags(boolean onlyDenyListTags) { this.allTagsDeny = onlyDenyListTags; }
 
 	@Override
 	public void setFilterItem(int slot, ItemVariant item) {
@@ -463,6 +474,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		if(Collections.frequency(this.filterItems, item) == 1) { this.filterHashset.remove(this.filterItems.get(slot).getItem()); }
 		this.filterItems.set(slot, item);
 		this.filterHashset.add(item.getItem());
+		this.updateTagFilteringItems();
 	}
 	
 	private void updateNbtCheckingCount(ItemVariant itemVariant, int change) {
@@ -507,35 +519,9 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 						continue filter;
 				}
 			}
-			
-			if (!filterStack.hasCustomName() || !filterStack.isIn(SpectrumItemTags.TAG_FILTERING_ITEMS)) {
-				if (filterStack.getItem() == variant.getItem()) {
-					return true;
-				} else {
-					continue;
-				}
-			}
-			var name = StringUtils.trim(filterStack.getName().getString());
-			
-			// This is to allow nbt filtering without item / tag filtering.
-			if (StringUtils.equalsAnyIgnoreCase(name, "*", "any", "all", "everything", "c:*", "c:any", "c:all", "c:everything"))
-				return true;
-			
-			var id = Identifier.tryParse(StringUtils.remove(name, '#')); // let's be nice and remove any pound signs for the dumb idiots
-			if (id == null)
-				continue;
-			
-			var tag = SpectrumCommon.CACHED_ITEM_TAG_MAP.computeIfAbsent(id, tagId -> Registries.ITEM.streamTags()
-					.filter(t -> t.id().equals(tagId))
-					.findFirst()
-					.orElse(null));
-			
-			if (tag == null)
-				continue;
-			
-			if (variant.getItem().getRegistryEntry().isIn(tag))
-				return true;
 		}
+		
+		if (this.acceptsItem(variant.getItem())) { return true; }
 		return false;
 	}
 

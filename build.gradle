@@ -111,8 +111,8 @@ dependencies {
 
 	// external and compat
 	api("me.shedaniel.cloth:cloth-config-neoforge:${project.cloth_config_version}")
-	compileOnly("me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}") // https://github.com/shedaniel/RoughlyEnoughItems
-	compileOnly("dev.emi:emi-fabric:${emi_version}") // https://github.com/emilyploszaj/emi
+	compileOnly("me.shedaniel:RoughlyEnoughItems-neoforge:${project.rei_version}") // https://github.com/shedaniel/RoughlyEnoughItems
+	compileOnly("dev.emi:emi-neoforge:${emi_version}") // https://github.com/emilyploszaj/emi
 	implementation("com.klikli_dev:modonomicon-${project.minecraft_version}-neoforge:${project.modonomicon_version}") {
 		exclude(group: "com.klikli_dev")
 		exclude(group: "mezz.jei")
@@ -122,28 +122,27 @@ dependencies {
 
 
 	switch (recipe_viewer.toLowerCase(Locale.ROOT)) {
-		case "rei": localRuntime("me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"); break
-		case "emi": localRuntime("dev.emi:emi-fabric:${emi_version}"); break
+		case "rei": implementation("me.shedaniel:RoughlyEnoughItems-neoforge:$rei_version"); break
+		case "emi": implementation("dev.emi:emi-neoforge:${emi_version}"); break
 		case "disabled": break
 		default: println("Unknown recipe viewer specified: $recipe_viewer. Must be EMI, REI or disabled.")
 	}
 
 	// Mod Compat
-	localRuntime("maven.modrinth:colorful-hearts:${project.colorful_hearts_version}") { transitive = false }
-	localRuntime("maven.modrinth:sodium:${project.sodium_version}") { transitive = false }
-	localRuntime("com.unascribed:ears-api:${project.ears_version}")
-	localRuntime("maven.modrinth:create:${project.create_version}") { transitive = false }
-	localRuntime("maven.modrinth:lodestonelib:${project.lodestone_version}") { transitive = false }
-	localRuntime("maven.modrinth:malum:${project.malum_version}") { transitive = false }
-	localRuntime("maven.modrinth:travelersbackpack:${project.travelers_backpack_version}")
-	localRuntime("maven.modrinth:botania:${project.botania_version}")
-	localRuntime("maven.modrinth:vanity:${project.vanityslots_version}")
+	implementation("maven.modrinth:colorful-hearts:${project.colorful_hearts_version}") { transitive = false }
+	implementation("maven.modrinth:sodium:${project.sodium_version}") { transitive = false }
+	implementation("com.unascribed:ears-api:${project.ears_version}")
+	implementation("maven.modrinth:create:${project.create_version}") { transitive = false }
+	implementation("maven.modrinth:lodestonelib:${project.lodestone_version}") { transitive = false }
+	implementation("maven.modrinth:malum:${project.malum_version}") { transitive = false }
+	implementation("maven.modrinth:travelersbackpack:${project.travelers_backpack_version}")
+	// implementation("maven.modrinth:botania:${project.botania_version}") // still on MC 1.20.1
+	implementation("maven.modrinth:vanity:${project.vanityslots_version}")
 
 	// Datagen dependencies
-	modDatagenRuntimeOnly("curse.maven:gobber-427177:${project.gobber_version}")
-	modDatagenRuntimeOnly("maven.modrinth:ae2:${project.ae2_version}")
-	modDatagenRuntimeOnly("maven.modrinth:botania:${project.botania_version}")
-	modDatagenRuntimeOnly("maven.modrinth:create-fabric:${project.create_version}")
+	compileOnly("curse.maven:gobber-427177:${project.gobber_version}")
+	compileOnly("maven.modrinth:ae2:${project.ae2_version}")
+	compileOnly("maven.modrinth:create:${project.create_version}")
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

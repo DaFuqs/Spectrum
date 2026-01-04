@@ -105,9 +105,9 @@ public class SpectrumCommon {
 		logInfo("Registering Fluids...");
 		SpectrumFluids.register(modBus);
 		logInfo("Registering Armor Materials...");
-		SpectrumArmorMaterials.register();
+		SpectrumArmorMaterials.register(modBus);
 		logInfo("Registering Blocks...");
-		SpectrumBlocks.register();
+		SpectrumBlocks.register(modBus);
 		logInfo("Registering Items...");
 		SpectrumPotions.register(modBus);
 		SpectrumItems.register(modBus);

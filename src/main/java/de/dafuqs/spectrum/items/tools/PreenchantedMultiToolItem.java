@@ -23,7 +23,7 @@ public class PreenchantedMultiToolItem extends MultiToolItem implements Preencha
 	
 	@Override
 	public ResourceKey<BannerPattern> getPattern() {
-		return SpectrumBannerPatterns.MULTITOOL;
+		return SpectrumBannerPatternKeys.MULTITOOL;
 	}
 	
 	@Override

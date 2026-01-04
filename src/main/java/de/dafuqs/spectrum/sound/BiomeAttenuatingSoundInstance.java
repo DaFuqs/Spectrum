@@ -143,29 +143,29 @@ public class BiomeAttenuatingSoundInstance extends AbstractSoundInstance impleme
 		if (LAMENTS != null && LAMENTS.isStopped()) {
             LAMENTS = null;
         }
-		
-		if (biome.is(SpectrumBiomes.HOWLING_SPIRES)) {
+        
+        if (biome.is(SpectrumBiomeKeys.HOWLING_SPIRES)) {
             if (WIND_HIGH == null) {
-                WIND_HIGH = new BiomeAttenuatingSoundInstance(SpectrumBiomes.HOWLING_SPIRES, SpectrumSoundEvents.HOWLING_WIND_HIGH, 0.525F, false);
+                WIND_HIGH = new BiomeAttenuatingSoundInstance(SpectrumBiomeKeys.HOWLING_SPIRES, SpectrumSoundEvents.HOWLING_WIND_HIGH, 0.525F, false);
                 client.getSoundManager().play(WIND_HIGH);
             }
 
             if (WIND_LOW == null) {
-                WIND_LOW = new BiomeAttenuatingSoundInstance(SpectrumBiomes.HOWLING_SPIRES, SpectrumSoundEvents.HOWLING_WIND_LOW, 1.8F, true);
+                WIND_LOW = new BiomeAttenuatingSoundInstance(SpectrumBiomeKeys.HOWLING_SPIRES, SpectrumSoundEvents.HOWLING_WIND_LOW, 1.8F, true);
                 client.getSoundManager().play(WIND_LOW);
             }
-        } else if (biome.is(SpectrumBiomes.DEEP_DRIPSTONE_CAVES)) {
+        } else if (biome.is(SpectrumBiomeKeys.DEEP_DRIPSTONE_CAVES)) {
             if (SHOWER == null) {
-                SHOWER = new BiomeAttenuatingSoundInstance(SpectrumBiomes.DEEP_DRIPSTONE_CAVES, SpectrumSoundEvents.SHOWER, 2F, false);
+                SHOWER = new BiomeAttenuatingSoundInstance(SpectrumBiomeKeys.DEEP_DRIPSTONE_CAVES, SpectrumSoundEvents.SHOWER, 2F, false);
                 client.getSoundManager().play(SHOWER);
             }
-        } else if (biome.is(SpectrumBiomes.DRAGONROT_SWAMP)) {
+        } else if (biome.is(SpectrumBiomeKeys.DRAGONROT_SWAMP)) {
             if (LAMENTS == null) {
-                LAMENTS = new BiomeAttenuatingSoundInstance(SpectrumBiomes.DRAGONROT_SWAMP, SpectrumSoundEvents.LAMENTS, 1.25F, true);
+                LAMENTS = new BiomeAttenuatingSoundInstance(SpectrumBiomeKeys.DRAGONROT_SWAMP, SpectrumSoundEvents.LAMENTS, 1.25F, true);
                 client.getSoundManager().play(LAMENTS);
             }
             if (SHOWER == null) {
-                SHOWER = new BiomeAttenuatingSoundInstance(SpectrumBiomes.DRAGONROT_SWAMP, SpectrumSoundEvents.SHOWER, 2F, false);
+                SHOWER = new BiomeAttenuatingSoundInstance(SpectrumBiomeKeys.DRAGONROT_SWAMP, SpectrumSoundEvents.SHOWER, 2F, false);
                 client.getSoundManager().play(SHOWER);
             }
         }

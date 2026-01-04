@@ -10,31 +10,50 @@
       "burn_time": 2400
     },
     "spectrum:pure_coal": {
-      "burn_time": 3200
+      "burn_time": 32000
     },
-    "spectrum:pure_alcohol": {
-      "burn_time": 16000
+    "spectrum:wet_lava_sponge": {
+      "burn_time": 12800
     },
-    "spectrum:pure_alcohol": {
-      "burn_time": 16000
+
+    "spectrum:weeping_gala_log": {
+      "burn_time": 600
     },
-    "spectrum:pure_alcohol": {
-      "burn_time": 16000
+    "spectrum:stripped_weeping_gala_log": {
+      "burn_time": 600
     },
-    "spectrum:pure_alcohol": {
-      "burn_time": 16000
+    "spectrum:weeping_gala_wood": {
+      "burn_time": 600
     },
-    "spectrum:pure_alcohol": {
-      "burn_time": 16000
+    "spectrum:stripped_weeping_gala_wood": {
+      "burn_time": 600
     },
-    "spectrum:pure_alcohol": {
-      "burn_time": 16000
+    "spectrum:weeping_gala_planks": {
+      "burn_time": 600
     },
-    "spectrum:pure_alcohol": {
-      "burn_time": 16000
+    "spectrum:weeping_gala_stairs": {
+      "burn_time": 600
     },
-    "spectrum:pure_alcohol": {
-      "burn_time": 16000
+    "spectrum:weeping_gala_slab": {
+      "burn_time": 300
+    },
+    "spectrum:weeping_gala_fence": {
+      "burn_time": 600
+    },
+    "spectrum:weeping_gala_fence_gate": {
+      "burn_time": 600
+    },
+    "spectrum:weeping_gala_door": {
+      "burn_time": 400
+    },
+    "spectrum:weeping_gala_trapdoor": {
+      "burn_time": 600
+    },
+    "spectrum:weeping_gala_button": {
+      "burn_time": 200
+    },
+    "spectrum:weeping_gala_pressure_plate": {
+      "burn_time": 600
     }
   }
 }

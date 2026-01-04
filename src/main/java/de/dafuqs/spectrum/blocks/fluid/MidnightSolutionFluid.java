@@ -112,7 +112,7 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 				if (!livingEntity.isDeadOrDying() && world.getGameTime() % 20 == 0) {
 					var damageMult = 1F;
 					
-					if (world.getBiome(pos).is(SpectrumBiomes.BLACK_LANGAST))
+					if (world.getBiome(pos).is(SpectrumBiomeKeys.BLACK_LANGAST))
 						damageMult = 9F;
 					
 					if (livingEntity.isEyeInFluid(SpectrumFluidTags.MIDNIGHT_SOLUTION)) {

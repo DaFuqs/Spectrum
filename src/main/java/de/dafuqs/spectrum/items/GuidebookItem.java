@@ -97,7 +97,7 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 	
 	@Override
 	public ResourceKey<BannerPattern> getPattern() {
-		return SpectrumBannerPatterns.GUIDEBOOK;
+		return SpectrumBannerPatternKeys.GUIDEBOOK;
 	}
 	
 	@Override

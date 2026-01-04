@@ -18,7 +18,7 @@ public class FourLeafCloverItem extends CloakedBlockItem implements LoomPatternP
 	
 	@Override
 	public ResourceKey<BannerPattern> getPattern() {
-		return SpectrumBannerPatterns.FOUR_LEAF_CLOVER;
+		return SpectrumBannerPatternKeys.FOUR_LEAF_CLOVER;
 	}
 	
 	@Override

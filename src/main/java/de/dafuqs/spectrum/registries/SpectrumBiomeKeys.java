@@ -6,8 +6,7 @@ import net.minecraft.resources.*;
 import net.minecraft.world.level.biome.*;
 
 @SuppressWarnings("unused")
-// TODO: rename to SpectrumBiomeKeys
-public class SpectrumBiomes {
+public class SpectrumBiomeKeys {
 	
 	public static final ResourceKey<Biome> BLACK_LANGAST = getKey("black_langast");
 	public static final ResourceKey<Biome> CRYSTAL_GARDENS = getKey("crystal_gardens");

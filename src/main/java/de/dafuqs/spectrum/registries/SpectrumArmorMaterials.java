@@ -8,6 +8,7 @@ import net.minecraft.core.registries.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
+import net.neoforged.bus.api.*;
 import net.neoforged.neoforge.registries.*;
 
 import java.util.*;
@@ -19,35 +20,34 @@ public class SpectrumArmorMaterials {
 	
 	private static final DeferredRegister<ArmorMaterial> REGISTRAR = DeferredRegister.create(Registries.ARMOR_MATERIAL, SpectrumCommon.MOD_ID);
 	
-	public static Holder<ArmorMaterial> GEMSTONE;
-	public static Holder<ArmorMaterial> BEDROCK;
+	public static Holder<ArmorMaterial> GEMSTONE = register("gemstone",
+			Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+				map.put(ArmorItem.Type.BOOTS, SpectrumCommon.CONFIG.GemstoneArmorBootsProtection);
+				map.put(ArmorItem.Type.LEGGINGS, SpectrumCommon.CONFIG.GemstoneArmorLeggingsProtection);
+				map.put(ArmorItem.Type.CHESTPLATE, SpectrumCommon.CONFIG.GemstoneArmorChestplateProtection);
+				map.put(ArmorItem.Type.HELMET, SpectrumCommon.CONFIG.GemstoneArmorHelmetProtection);
+			}),
+			15,
+			BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.AMETHYST_BLOCK_CHIME),
+			SpectrumCommon.CONFIG.GemstoneArmorToughness,
+			SpectrumCommon.CONFIG.GemstoneArmorKnockbackResistance,
+			() -> Ingredient.of(SpectrumItemTags.GEMSTONE_SHARDS));
 	
-	public static void register() {
-		GEMSTONE = register("gemstone",
-				Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
-					map.put(ArmorItem.Type.BOOTS, SpectrumCommon.CONFIG.GemstoneArmorBootsProtection);
-					map.put(ArmorItem.Type.LEGGINGS, SpectrumCommon.CONFIG.GemstoneArmorLeggingsProtection);
-					map.put(ArmorItem.Type.CHESTPLATE, SpectrumCommon.CONFIG.GemstoneArmorChestplateProtection);
-					map.put(ArmorItem.Type.HELMET, SpectrumCommon.CONFIG.GemstoneArmorHelmetProtection);
-				}),
-				15,
-				BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.AMETHYST_BLOCK_CHIME),
-				SpectrumCommon.CONFIG.GemstoneArmorToughness,
-				SpectrumCommon.CONFIG.GemstoneArmorKnockbackResistance,
-				() -> Ingredient.of(SpectrumItemTags.GEMSTONE_SHARDS));
-		
-		BEDROCK = register("bedrock",
-				Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
-					map.put(ArmorItem.Type.BOOTS, SpectrumCommon.CONFIG.BedrockArmorBootsProtection);
-					map.put(ArmorItem.Type.LEGGINGS, SpectrumCommon.CONFIG.BedrockArmorLeggingsProtection);
-					map.put(ArmorItem.Type.CHESTPLATE, SpectrumCommon.CONFIG.BedrockArmorChestplateProtection);
-					map.put(ArmorItem.Type.HELMET, SpectrumCommon.CONFIG.BedrockArmorHelmetProtection);
-				}),
-				5,
-				SoundEvents.ARMOR_EQUIP_NETHERITE,
-				SpectrumCommon.CONFIG.BedrockArmorToughness,
-				SpectrumCommon.CONFIG.BedrockArmorKnockbackResistance,
-				() -> Ingredient.of(SpectrumItems.BEDROCK_DUST));
+	public static Holder<ArmorMaterial> BEDROCK = register("bedrock",
+			Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+				map.put(ArmorItem.Type.BOOTS, SpectrumCommon.CONFIG.BedrockArmorBootsProtection);
+				map.put(ArmorItem.Type.LEGGINGS, SpectrumCommon.CONFIG.BedrockArmorLeggingsProtection);
+				map.put(ArmorItem.Type.CHESTPLATE, SpectrumCommon.CONFIG.BedrockArmorChestplateProtection);
+				map.put(ArmorItem.Type.HELMET, SpectrumCommon.CONFIG.BedrockArmorHelmetProtection);
+			}),
+			5,
+			SoundEvents.ARMOR_EQUIP_NETHERITE,
+			SpectrumCommon.CONFIG.BedrockArmorToughness,
+			SpectrumCommon.CONFIG.BedrockArmorKnockbackResistance,
+			() -> Ingredient.of(SpectrumItems.BEDROCK_DUST));
+	
+	public static void register(IEventBus eventBus) {
+		REGISTRAR.register(eventBus);
 	}
 	
 	public static Holder<ArmorMaterial> register(

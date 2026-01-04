@@ -135,7 +135,7 @@ public class CraftingTabletItem extends Item implements LoomPatternProvider {
 	
 	@Override
 	public ResourceKey<BannerPattern> getPattern() {
-		return SpectrumBannerPatterns.CRAFTING_TABLET;
+		return SpectrumBannerPatternKeys.CRAFTING_TABLET;
 	}
 	
 }

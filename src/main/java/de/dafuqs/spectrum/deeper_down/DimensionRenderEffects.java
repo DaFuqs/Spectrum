@@ -225,39 +225,39 @@ public class DimensionRenderEffects {
 	// this should really be a data loader
 	static {
 		var builder = ImmutableMap.<ResourceKey<Biome>, Float>builder();
-		builder.put(SpectrumBiomes.BLACK_LANGAST, 0.7F);
-		builder.put(SpectrumBiomes.DEEP_BARRENS, 0.325F);
-		builder.put(SpectrumBiomes.DEEP_DRIPSTONE_CAVES, 0.1F);
-		builder.put(SpectrumBiomes.NOXSHROOM_FOREST, 0.05F);
+		builder.put(SpectrumBiomeKeys.BLACK_LANGAST, 0.7F);
+		builder.put(SpectrumBiomeKeys.DEEP_BARRENS, 0.325F);
+		builder.put(SpectrumBiomeKeys.DEEP_DRIPSTONE_CAVES, 0.1F);
+		builder.put(SpectrumBiomeKeys.NOXSHROOM_FOREST, 0.05F);
 		DARKENING_MULTIPLIERS = builder.build();
 		
 		// Fog darkening,
 		var fogBuilder = ImmutableMap.<ResourceKey<Biome>, Float>builder();
-		fogBuilder.put(SpectrumBiomes.NOXSHROOM_FOREST, 0.125F);
-		fogBuilder.put(SpectrumBiomes.RAZOR_EDGE, 0.65F);
-		fogBuilder.put(SpectrumBiomes.DEEP_DRIPSTONE_CAVES, 0.25F);
-		fogBuilder.put(SpectrumBiomes.DEEP_BARRENS, 0.55F);
-		fogBuilder.put(SpectrumBiomes.BLACK_LANGAST, 0.0125F);
+		fogBuilder.put(SpectrumBiomeKeys.NOXSHROOM_FOREST, 0.125F);
+		fogBuilder.put(SpectrumBiomeKeys.RAZOR_EDGE, 0.65F);
+		fogBuilder.put(SpectrumBiomeKeys.DEEP_DRIPSTONE_CAVES, 0.25F);
+		fogBuilder.put(SpectrumBiomeKeys.DEEP_BARRENS, 0.55F);
+		fogBuilder.put(SpectrumBiomeKeys.BLACK_LANGAST, 0.0125F);
 		FOG_DARKENING_MULTIPLIERS = fogBuilder.build();
 		
 		// These are percents of view distance (capped to 192 blocks for far)
 		// Format is [near, far]. ...
 		var transMultiplier = ImmutableMap.<ResourceKey<Biome>, float[]>builder();
-		transMultiplier.put(SpectrumBiomes.NOXSHROOM_FOREST, new float[]{-3F, 1.5F});
-		transMultiplier.put(SpectrumBiomes.HOWLING_SPIRES, new float[]{-5.25F, 1.25F});
-		transMultiplier.put(SpectrumBiomes.DEEP_DRIPSTONE_CAVES, new float[]{-4F, 1.5F});
-		transMultiplier.put(SpectrumBiomes.DEEP_BARRENS, new float[]{-5F, 0.5F});
-		transMultiplier.put(SpectrumBiomes.BLACK_LANGAST, new float[]{-8F, 0.5F});
-		transMultiplier.put(SpectrumBiomes.DRAGONROT_SWAMP, new float[]{-4F, 1F});
+		transMultiplier.put(SpectrumBiomeKeys.NOXSHROOM_FOREST, new float[]{-3F, 1.5F});
+		transMultiplier.put(SpectrumBiomeKeys.HOWLING_SPIRES, new float[]{-5.25F, 1.25F});
+		transMultiplier.put(SpectrumBiomeKeys.DEEP_DRIPSTONE_CAVES, new float[]{-4F, 1.5F});
+		transMultiplier.put(SpectrumBiomeKeys.DEEP_BARRENS, new float[]{-5F, 0.5F});
+		transMultiplier.put(SpectrumBiomeKeys.BLACK_LANGAST, new float[]{-8F, 0.5F});
+		transMultiplier.put(SpectrumBiomeKeys.DRAGONROT_SWAMP, new float[]{-4F, 1F});
 		FOG_DISTANCE_MULTIPLIERS = transMultiplier.build();
 		
 		var colorGradingBuilder = ImmutableMap.<ResourceKey<Biome>, ColorGrading>builder();
-		colorGradingBuilder.put(SpectrumBiomes.NOXSHROOM_FOREST, new ColorGrading(1.05F, 0.015F, 80, 0.7F, 0.3125F));
-		colorGradingBuilder.put(SpectrumBiomes.HOWLING_SPIRES, new ColorGrading(1.0F, 0.0F, 60, 0.9F, 0.425F));
-		colorGradingBuilder.put(SpectrumBiomes.DEEP_DRIPSTONE_CAVES, new ColorGrading(1.0F, 0.02F, 60, 0.8F, 0.3F));
-		colorGradingBuilder.put(SpectrumBiomes.DEEP_BARRENS, new ColorGrading(0.5F, 0.0F, 55, 0.7F, 0.2F));
-		colorGradingBuilder.put(SpectrumBiomes.BLACK_LANGAST, new ColorGrading(0.5F, 0.0F, 60, 1.0F, 0.1F));
-		colorGradingBuilder.put(SpectrumBiomes.DRAGONROT_SWAMP, new ColorGrading(0.7F, 0.05F, 105, 0.75F, 0.3F));
+		colorGradingBuilder.put(SpectrumBiomeKeys.NOXSHROOM_FOREST, new ColorGrading(1.05F, 0.015F, 80, 0.7F, 0.3125F));
+		colorGradingBuilder.put(SpectrumBiomeKeys.HOWLING_SPIRES, new ColorGrading(1.0F, 0.0F, 60, 0.9F, 0.425F));
+		colorGradingBuilder.put(SpectrumBiomeKeys.DEEP_DRIPSTONE_CAVES, new ColorGrading(1.0F, 0.02F, 60, 0.8F, 0.3F));
+		colorGradingBuilder.put(SpectrumBiomeKeys.DEEP_BARRENS, new ColorGrading(0.5F, 0.0F, 55, 0.7F, 0.2F));
+		colorGradingBuilder.put(SpectrumBiomeKeys.BLACK_LANGAST, new ColorGrading(0.5F, 0.0F, 60, 1.0F, 0.1F));
+		colorGradingBuilder.put(SpectrumBiomeKeys.DRAGONROT_SWAMP, new ColorGrading(0.7F, 0.05F, 105, 0.75F, 0.3F));
 		COLOR_GRADING_DATA = colorGradingBuilder.build();
 	}
 	

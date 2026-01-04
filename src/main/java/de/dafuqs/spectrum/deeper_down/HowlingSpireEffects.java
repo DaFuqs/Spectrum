@@ -33,7 +33,7 @@ public class HowlingSpireEffects {
 		lastSpireTicks = spireTicks;
 		BiomeAttenuatingSoundInstance.update(biome);
 		
-		boolean inHowlingSpires = biome.is(SpectrumBiomes.HOWLING_SPIRES);
+		boolean inHowlingSpires = biome.is(SpectrumBiomeKeys.HOWLING_SPIRES);
 		if (inHowlingSpires) {
 			if (spireTicks < 60) {
 				spireTicks++;

@@ -60,7 +60,7 @@ public class FallingAshParticle extends TextureSheetParticle {
 		var time = level.getGameTime() % 432000;
 		
 		if ((age + 2 < lifetime)
-				&& level.getBiome(pos).is(SpectrumBiomes.HOWLING_SPIRES)) {
+				&& level.getBiome(pos).is(SpectrumBiomeKeys.HOWLING_SPIRES)) {
 			age++;
 		}
 		

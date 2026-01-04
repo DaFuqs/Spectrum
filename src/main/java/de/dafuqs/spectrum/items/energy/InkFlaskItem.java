@@ -63,7 +63,7 @@ public class InkFlaskItem extends Item implements InkStorageItem<SingleInkStorag
 	
 	@Override
 	public ResourceKey<BannerPattern> getPattern() {
-		return SpectrumBannerPatterns.INK_FLASK;
+		return SpectrumBannerPatternKeys.INK_FLASK;
 	}
 	
 	@Override

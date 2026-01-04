@@ -15,8 +15,8 @@ import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.armor.*;
 import de.dafuqs.spectrum.items.bundles.*;
-import de.dafuqs.spectrum.items.conditional.CloakedItem;
 import de.dafuqs.spectrum.items.conditional.*;
+import de.dafuqs.spectrum.items.conditional.CloakedItem;
 import de.dafuqs.spectrum.items.energy.*;
 import de.dafuqs.spectrum.items.food.*;
 import de.dafuqs.spectrum.items.food.beverages.*;
@@ -217,9 +217,9 @@ public class SpectrumItems {
 	public static final DeferredItem<GemstoneArmorItem> OREAD_BOOTS = register(simple(item("oread_boots", () -> new GemstoneArmorItem(SpectrumArmorMaterials.GEMSTONE, ArmorItem.Type.BOOTS, IS.of(Rarity.UNCOMMON).durability(9 * 11)), InkColors.BLUE)));
 	
 	// Decay drops
-	public static final DeferredItem<Item> VEGETAL = register(simple(item("vegetal", () -> new CloakedItemWithLoomPattern(IS.of(), SpectrumAdvancements.CRAFT_BOTTLE_OF_FADING, GUNPOWDER, SpectrumBannerPatterns.VEGETAL), InkColors.LIME)));
-	public static final DeferredItem<Item> NEOLITH = register(simple(item("neolith", () -> new CloakedItemWithLoomPattern(IS.of(Rarity.UNCOMMON), SpectrumAdvancements.CRAFT_BOTTLE_OF_FAILING, GUNPOWDER, SpectrumBannerPatterns.NEOLITH), InkColors.PINK)));
-	public static final DeferredItem<Item> BEDROCK_DUST = register(simple(item("bedrock_dust", () -> new CloakedItemWithLoomPattern(IS.of(Rarity.UNCOMMON), SpectrumAdvancements.BREAK_DECAYED_BEDROCK, GUNPOWDER, SpectrumBannerPatterns.BEDROCK_DUST), InkColors.BLACK)));
+	public static final DeferredItem<Item> VEGETAL = register(simple(item("vegetal", () -> new CloakedItemWithLoomPattern(IS.of(), SpectrumAdvancements.CRAFT_BOTTLE_OF_FADING, GUNPOWDER, SpectrumBannerPatternKeys.VEGETAL), InkColors.LIME)));
+	public static final DeferredItem<Item> NEOLITH = register(simple(item("neolith", () -> new CloakedItemWithLoomPattern(IS.of(Rarity.UNCOMMON), SpectrumAdvancements.CRAFT_BOTTLE_OF_FAILING, GUNPOWDER, SpectrumBannerPatternKeys.NEOLITH), InkColors.PINK)));
+	public static final DeferredItem<Item> BEDROCK_DUST = register(simple(item("bedrock_dust", () -> new CloakedItemWithLoomPattern(IS.of(Rarity.UNCOMMON), SpectrumAdvancements.BREAK_DECAYED_BEDROCK, GUNPOWDER, SpectrumBannerPatternKeys.BEDROCK_DUST), InkColors.BLACK)));
 	
 	public static final DeferredItem<MidnightAberrationItem> MIDNIGHT_ABERRATION = register(simple(item("midnight_aberration", () -> new MidnightAberrationItem(IS.of(Rarity.UNCOMMON), SpectrumAdvancements.CREATE_MIDNIGHT_ABERRATION, SpectrumItems.SPECTRAL_SHARD.get()), InkColors.GRAY)));
 	public static final DeferredItem<Item> MIDNIGHT_CHIP = register(simple(item("midnight_chip", () -> new CloakedItem(IS.of(Rarity.UNCOMMON), SpectrumAdvancements.CREATE_MIDNIGHT_ABERRATION, GRAY_DYE), InkColors.GRAY)));
@@ -243,8 +243,8 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> BOTTLE_OF_DECAY_AWAY = register(simple(item("bottle_of_decay_away", () -> new DecayPlacerItem(SpectrumBlocks.DECAY_AWAY.get(), IS.of(16), List.of(Component.translatable("item.spectrum.bottle_of_decay_away.tooltip"))), InkColors.PINK)));
 	
 	// Resources
-	public static final DeferredItem<Item> SHIMMERSTONE_GEM = register(simple(item("shimmerstone_gem", () -> new CloakedItemWithLoomPattern(IS.of(), ((RevelationAware) SpectrumBlocks.SHIMMERSTONE_ORE).getCloakAdvancementIdentifier(), YELLOW_DYE, SpectrumBannerPatterns.SHIMMERSTONE), InkColors.YELLOW)));
-	public static final DeferredItem<Item> RAW_AZURITE = register(simple(item("raw_azurite", () -> new CloakedItemWithLoomPattern(IS.of(), SpectrumBlocks.AZURITE_ORE.getCloakAdvancementIdentifier(), BLUE_DYE, SpectrumBannerPatterns.RAW_AZURITE), InkColors.BLUE)));
+	public static final DeferredItem<Item> SHIMMERSTONE_GEM = register(simple(item("shimmerstone_gem", () -> new CloakedItemWithLoomPattern(IS.of(), ((RevelationAware) SpectrumBlocks.SHIMMERSTONE_ORE).getCloakAdvancementIdentifier(), YELLOW_DYE, SpectrumBannerPatternKeys.SHIMMERSTONE), InkColors.YELLOW)));
+	public static final DeferredItem<Item> RAW_AZURITE = register(simple(item("raw_azurite", () -> new CloakedItemWithLoomPattern(IS.of(), SpectrumBlocks.AZURITE_ORE.getCloakAdvancementIdentifier(), BLUE_DYE, SpectrumBannerPatternKeys.RAW_AZURITE), InkColors.BLUE)));
 	public static final DeferredItem<Item> PURE_AZURITE = register(simple(item("pure_azurite", () -> new CloakedItem(IS.of(), SpectrumBlocks.AZURITE_ORE.getCloakAdvancementIdentifier(), BLUE_DYE), InkColors.BLUE)));
 	public static final DeferredItem<CloakedFloatItem> PALTAERIA_FRAGMENTS = register(simple(item("paltaeria_fragments", () -> new CloakedFloatItem(IS.of(), 0.00125F, ((RevelationAware) SpectrumBlocks.PALTAERIA_ORE).getCloakAdvancementIdentifier(), CYAN_DYE), InkColors.LIGHT_BLUE)));
 	public static final DeferredItem<CloakedFloatItem> PALTAERIA_GEM = register(simple(item("paltaeria_gem", () -> new CloakedFloatItem(IS.of(16), 0.01F, ((RevelationAware) SpectrumBlocks.PALTAERIA_ORE).getCloakAdvancementIdentifier(), CYAN_DYE), InkColors.LIGHT_BLUE)));
@@ -264,12 +264,12 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> STORM_STONE = register(simple(item("storm_stone", () -> new StormStoneItem(IS.of(), SpectrumAdvancements.REVEAL_STORM_STONES, YELLOW_DYE), InkColors.LIGHT_BLUE)));
 	public static final DeferredItem<Item> MERMAIDS_GEM = register(simple(item("mermaids_gem", () -> new MermaidsGemItem(SpectrumBlocks.MERMAIDS_BRUSH.get(), IS.of()), InkColors.YELLOW)));
 	public static final DeferredItem<CloakedItem> STAR_FRAGMENT = register(simple(item("star_fragment", () -> new CloakedItem(IS.of(16), SpectrumAdvancements.UNLOCK_SHOOTING_STARS, PURPLE_DYE), InkColors.PURPLE)));
-	public static final DeferredItem<Item> STARDUST = register(simple(item("stardust", () -> new CloakedItemWithLoomPattern(IS.of(), SpectrumAdvancements.UNLOCK_SHOOTING_STARS, PURPLE_DYE, SpectrumBannerPatterns.SHIMMER), InkColors.PURPLE)));
+	public static final DeferredItem<Item> STARDUST = register(simple(item("stardust", () -> new CloakedItemWithLoomPattern(IS.of(), SpectrumAdvancements.UNLOCK_SHOOTING_STARS, PURPLE_DYE, SpectrumBannerPatternKeys.SHIMMER), InkColors.PURPLE)));
 	public static final DeferredItem<Item> ASH_FLAKES = register(simple(item("ash_flakes", () -> new AshItem(IS.of()), InkColors.LIGHT_GRAY)));
 	
 	public static final DeferredItem<Item> HIBERNATING_JADE_VINE_BULB = register(simple(item("hibernating_jade_vine_bulb", () -> new ItemWithTooltip(IS.of(16), "item.spectrum.hibernating_jade_vine_bulb.tooltip"), InkColors.GRAY)));
 	public static final DeferredItem<Item> GERMINATED_JADE_VINE_BULB = register(simple(item("germinated_jade_vine_bulb", () -> new GerminatedJadeVineBulbItem(IS.of(16), SpectrumAdvancements.COLLECT_HIBERNATING_JADE_VINE_BULB, LIME_DYE), InkColors.LIME)));
-	public static final DeferredItem<Item> JADE_VINE_PETALS = register(simple(item("jade_vine_petals", () -> new CloakedItemWithLoomPattern(IS.of(), SpectrumAdvancements.COLLECT_JADE_VINE_PETALS, LIME_DYE, SpectrumBannerPatterns.JADE_VINE), InkColors.LIME)));
+	public static final DeferredItem<Item> JADE_VINE_PETALS = register(simple(item("jade_vine_petals", () -> new CloakedItemWithLoomPattern(IS.of(), SpectrumAdvancements.COLLECT_JADE_VINE_PETALS, LIME_DYE, SpectrumBannerPatternKeys.JADE_VINE), InkColors.LIME)));
 	public static final DeferredItem<Item> JADEITE_PETALS = register(simple(item("jadeite_petals", () -> new Item(IS.of(Rarity.UNCOMMON)), InkColors.BROWN)));
 	public static final DeferredItem<Item> BLOOD_ORCHID_PETAL = register(simple(item("blood_orchid_petal", () -> new CloakedItem(IS.of(), SpectrumAdvancements.REVEAL_BLOOD_ORCHID_PETALS, RED_DYE), InkColors.RED)));
 	

@@ -6,7 +6,7 @@ import net.minecraft.resources.*;
 import net.minecraft.world.level.block.entity.*;
 
 @SuppressWarnings("unused")
-public class SpectrumBannerPatterns {
+public class SpectrumBannerPatternKeys {
 	
 	public static ResourceKey<BannerPattern> SPECTRUM_LOGO = of("spectrum_logo");
 	public static ResourceKey<BannerPattern> AMETHYST_CLUSTER = of("amethyst_cluster");

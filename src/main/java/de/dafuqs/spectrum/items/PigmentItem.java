@@ -34,7 +34,7 @@ public class PigmentItem extends CloakedItem implements LoomPatternProvider {
 	
 	@Override
 	public ResourceKey<BannerPattern> getPattern() {
-		return SpectrumBannerPatterns.PIGMENT;
+		return SpectrumBannerPatternKeys.PIGMENT;
 	}
 	
 	@Override

@@ -58,7 +58,7 @@ public class ArtistsPaletteItem extends SpectrumTrinketItem implements InkStorag
 	
 	@Override
 	public ResourceKey<BannerPattern> getPattern() {
-		return SpectrumBannerPatterns.PALETTE;
+		return SpectrumBannerPatternKeys.PALETTE;
 	}
 	
 	@Override

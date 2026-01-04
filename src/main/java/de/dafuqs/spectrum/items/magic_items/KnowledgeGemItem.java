@@ -156,7 +156,7 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Loo
 	
 	@Override
 	public ResourceKey<BannerPattern> getPattern() {
-		return SpectrumBannerPatterns.KNOWLEDGE_GEM;
+		return SpectrumBannerPatternKeys.KNOWLEDGE_GEM;
 	}
 	
 	@Override

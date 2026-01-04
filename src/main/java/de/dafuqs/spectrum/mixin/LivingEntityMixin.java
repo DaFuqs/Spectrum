@@ -22,7 +22,6 @@ import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.status_effects.*;
 import dev.emi.trinkets.api.*;
-import net.fabricmc.fabric.api.tag.convention.v2.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.protocol.game.*;
@@ -521,7 +520,7 @@ public abstract class LivingEntityMixin {
 				effect.spectrum$setDuration(MobEffectInstance.INFINITE_DURATION);
 			}
 		} else if (effectType == SpectrumStatusEffects.FATAL_SLUMBER) {
-			if (SleepStatusEffect.isImmuneish(entity) && entity.getType().is(ConventionalEntityTypeTags.BOSSES)) {
+			if (SleepStatusEffect.isImmuneish(entity)) {
 				effect.spectrum$setDuration(20 * 60);
 			} else {
 				effect.spectrum$setDuration(Math.max(Math.round(effect.getDuration() * resistanceModifier * 3), 20 * 10));

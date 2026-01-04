@@ -10,9 +10,8 @@ import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.entity.layers.*;
 import net.minecraft.resources.*;
-import net.neoforged.api.distmarker.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class EggLayingWoolyPigWoolFeatureRenderer extends RenderLayer<EggLayingWoolyPigEntity, EggLayingWoolyPigEntityModel> {
 	
 	private final EggLayingWoolyPigHatEntityModel hat;

@@ -9,11 +9,10 @@ import net.minecraft.sounds.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import net.neoforged.api.distmarker.*;
 
 import java.util.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class CraftingBlockSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
 	
 	private static List<CraftingBlockSoundInstance> playingSoundInstances = new ArrayList<>();
@@ -44,7 +43,6 @@ public class CraftingBlockSoundInstance extends AbstractSoundInstance implements
 		updateVolume();
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	public static void startSoundInstance(SoundEvent soundEvent, BlockPos sourceBlockPos, Block sourceBlock, int maxDurationTicks) {
 		Minecraft client = Minecraft.getInstance();
 		stopPlayingOnPos(sourceBlockPos);

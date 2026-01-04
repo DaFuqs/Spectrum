@@ -10,7 +10,6 @@ import net.minecraft.client.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
-import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -44,7 +43,6 @@ public class InkAssortmentItem extends Item implements InkStorageItem<Individual
 	}
 	
 	@Override
-	@OnlyIn(Dist.CLIENT)
 	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		super.appendHoverText(stack, context, tooltip, type);
 		getEnergyStorage(stack).addTooltip(tooltip);

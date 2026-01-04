@@ -7,10 +7,9 @@ import net.minecraft.client.model.geom.*;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.util.*;
-import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class PreservationTurretEntityModel<T extends PreservationTurretEntity> extends ListModel<T> {
 	
 	private final ModelPart body;

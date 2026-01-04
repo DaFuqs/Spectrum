@@ -8,10 +8,9 @@ import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.core.registries.*;
-import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class DynamicParticle extends TextureSheetParticle {
 	
 	protected boolean glowInTheDark = false;

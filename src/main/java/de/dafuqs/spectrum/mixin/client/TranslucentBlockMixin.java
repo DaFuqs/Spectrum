@@ -4,12 +4,11 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import net.neoforged.api.distmarker.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
-@OnlyIn(Dist.CLIENT)
+
 @Mixin(HalfTransparentBlock.class)
 public abstract class TranslucentBlockMixin {
 	

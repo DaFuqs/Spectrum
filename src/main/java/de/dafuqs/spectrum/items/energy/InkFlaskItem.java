@@ -12,7 +12,6 @@ import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.entity.*;
-import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -47,7 +46,6 @@ public class InkFlaskItem extends Item implements InkStorageItem<SingleInkStorag
 	}
 	
 	@Override
-	@OnlyIn(Dist.CLIENT)
 	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		super.appendHoverText(stack, context, tooltip, type);
 		getEnergyStorage(stack).addTooltip(tooltip);

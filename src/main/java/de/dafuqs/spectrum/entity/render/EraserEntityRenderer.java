@@ -6,9 +6,8 @@ import de.dafuqs.spectrum.entity.models.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.resources.*;
-import net.neoforged.api.distmarker.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class EraserEntityRenderer extends MobRenderer<EraserEntity, EraserEntityModel> {
 	
 	public static final ResourceLocation TEXTURE = SpectrumCommon.locate("textures/entity/eraser/eraser_base.png");

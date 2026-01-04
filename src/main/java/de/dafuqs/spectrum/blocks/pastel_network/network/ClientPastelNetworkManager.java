@@ -14,7 +14,7 @@ import org.joml.Math;
 
 import java.util.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class ClientPastelNetworkManager implements PastelNetworkManager<ClientLevel, ClientPastelNetwork>, Clearable {
 	
 	protected static final int MAX_RENDER_DISTANCE_SQUARED = 48 * 48;

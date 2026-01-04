@@ -30,7 +30,6 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 import org.joml.*;
 
@@ -86,7 +85,6 @@ public class PedestalBlock extends BaseEntityBlock implements RedstonePoweredBlo
 	 *
 	 * @param newPedestalRecipeTier The tier the pedestal has been upgraded to
 	 */
-	@OnlyIn(Dist.CLIENT)
 	public static void spawnUpgradeParticleEffectsForTier(BlockPos blockPos, @NotNull PedestalRecipeTier newPedestalRecipeTier) {
 		Minecraft client = Minecraft.getInstance();
 		Level world = client.level;
@@ -261,7 +259,6 @@ public class PedestalBlock extends BaseEntityBlock implements RedstonePoweredBlo
 	}
 	
 	@Override
-	@OnlyIn(Dist.CLIENT)
 	public void animateTick(@NotNull BlockState state, Level world, BlockPos pos, RandomSource random) {
 		if (state.getValue(BlockStateProperties.POWERED)) {
 			Vector3f color = new Vector3f(0.5F, 0.5F, 0.5F);

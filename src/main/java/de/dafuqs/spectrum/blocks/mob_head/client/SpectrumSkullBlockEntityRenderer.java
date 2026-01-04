@@ -18,12 +18,11 @@ import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<SpectrumSkullBlockEntity> {
 	
 	private static Map<SkullBlock.Type, List<Tuple<SpectrumSkullModel, ResourceLocation>>> MODELS = new HashMap<>();

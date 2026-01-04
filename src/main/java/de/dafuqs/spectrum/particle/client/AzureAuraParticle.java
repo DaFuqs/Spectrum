@@ -9,9 +9,8 @@ import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.util.*;
 import net.minecraft.world.phys.*;
-import net.neoforged.api.distmarker.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class AzureAuraParticle extends RisingParticle {
 	
 	private final float alphaMult;

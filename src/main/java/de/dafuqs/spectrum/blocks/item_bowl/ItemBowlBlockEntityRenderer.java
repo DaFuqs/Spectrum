@@ -6,9 +6,8 @@ import net.minecraft.client.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.world.item.*;
-import net.neoforged.api.distmarker.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class ItemBowlBlockEntityRenderer implements BlockEntityRenderer<ItemBowlBlockEntity> {
 	
 	final double radiant = Math.toRadians(360.0F);

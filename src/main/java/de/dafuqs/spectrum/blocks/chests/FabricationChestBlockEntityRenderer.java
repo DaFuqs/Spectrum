@@ -17,10 +17,9 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
-@OnlyIn(Dist.CLIENT)
+
 @SuppressWarnings({"unused", "FieldCanBeLocal"})
 public class FabricationChestBlockEntityRenderer implements BlockEntityRenderer<FabricationChestBlockEntity> {
 	

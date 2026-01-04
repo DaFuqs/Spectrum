@@ -8,11 +8,10 @@ import net.minecraft.client.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.enchantment.*;
-import net.neoforged.api.distmarker.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 
-@OnlyIn(Dist.CLIENT)
+
 @Mixin(Enchantment.class)
 public abstract class EnchantmentMixin {
 	

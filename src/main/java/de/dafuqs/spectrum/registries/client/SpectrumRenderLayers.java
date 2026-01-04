@@ -4,9 +4,8 @@ import com.mojang.blaze3d.vertex.*;
 import de.dafuqs.spectrum.mixin.client.accessors.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.resources.*;
-import net.neoforged.api.distmarker.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class SpectrumRenderLayers {
 	
 	/**

@@ -6,11 +6,10 @@ import net.minecraft.client.particle.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
-import net.neoforged.api.distmarker.*;
 
 import java.util.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class TransmissionParticle extends TextureSheetParticle {
 	
 	private final PositionSource positionSource;
@@ -51,7 +50,6 @@ public class TransmissionParticle extends TextureSheetParticle {
 		return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	public static class Factory implements ParticleProvider<TransmissionParticleEffect> {
 		private final SpriteSet spriteProvider;
 		

@@ -4,17 +4,15 @@ import de.dafuqs.spectrum.particle.effect.*;
 import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.particle.*;
 import net.minecraft.world.level.material.*;
-import net.neoforged.api.distmarker.*;
 import org.joml.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class ColoredBlockLeakParticle extends DripParticle {
 	
 	public ColoredBlockLeakParticle(ClientLevel world, double x, double y, double z, Fluid fluid) {
 		super(world, x, y, z, fluid);
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	public static class Factory implements ParticleProvider<ColoredFallingSporeBlossomParticleEffect> {
 		
 		private final SpriteSet spriteProvider;

@@ -3,11 +3,10 @@ package de.dafuqs.spectrum.items.tooltip;
 import de.dafuqs.spectrum.api.gui.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.world.item.*;
-import net.neoforged.api.distmarker.*;
 
 import java.util.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class PresentTooltipComponent implements SpectrumTooltipComponent {
 	
 	private final List<ItemStack> itemStacks;

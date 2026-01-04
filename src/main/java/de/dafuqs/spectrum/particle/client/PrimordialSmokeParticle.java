@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.particle.client;
 import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.*;
-import net.neoforged.api.distmarker.*;
 
 public class PrimordialSmokeParticle extends BaseAshSmokeParticle {
 	protected PrimordialSmokeParticle(ClientLevel world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, float scaleMultiplier, SpriteSet spriteProvider) {
@@ -13,7 +12,6 @@ public class PrimordialSmokeParticle extends BaseAshSmokeParticle {
 		bCol = 1;
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	public static class Factory implements ParticleProvider<SimpleParticleType> {
 		private final SpriteSet spriteProvider;
 		

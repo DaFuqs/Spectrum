@@ -5,19 +5,17 @@ import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.util.*;
-import net.neoforged.api.distmarker.*;
 import org.joml.*;
 
 import java.util.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class ColoredWaterSuspendParticle extends SuspendedParticle {
 	
 	public ColoredWaterSuspendParticle(ClientLevel world, SpriteSet spriteProvider, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
 		super(world, spriteProvider, x, y, z, velocityX, velocityY, velocityZ);
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	public static class Factory implements ParticleProvider<ColoredSporeBlossomAirParticleEffect> {
 		
 		private final SpriteSet spriteProvider;

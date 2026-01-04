@@ -11,12 +11,11 @@ import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class BlockAuraSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
 	
 	public static final List<BlockAuraSoundInstance> INSTANCES = new ArrayList<>();

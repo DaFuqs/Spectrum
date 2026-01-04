@@ -8,7 +8,7 @@ import net.minecraft.core.particles.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class MoonstoneStrikeParticle extends NoRenderParticle {
 	
 	private final static int MAX_AGE = 40;
@@ -36,7 +36,6 @@ public class MoonstoneStrikeParticle extends NoRenderParticle {
 		}
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	public static class Factory implements ParticleProvider<SimpleParticleType> {
 		public Factory() {
 		}

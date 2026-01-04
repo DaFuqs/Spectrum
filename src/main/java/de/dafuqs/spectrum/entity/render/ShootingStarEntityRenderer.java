@@ -13,9 +13,8 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import net.neoforged.api.distmarker.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class ShootingStarEntityRenderer extends EntityRenderer<ShootingStarEntity> {
 	
 	public ShootingStarEntityRenderer(EntityRendererProvider.Context context) {

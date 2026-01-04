@@ -4,7 +4,6 @@ import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.util.*;
-import net.neoforged.api.distmarker.*;
 
 public class ZigZagParticle extends TextureSheetParticle {
 	
@@ -65,7 +64,6 @@ public class ZigZagParticle extends TextureSheetParticle {
 		return j | k << 16;
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	public static class Factory implements ParticleProvider<SimpleParticleType> {
 		
 		private final SpriteSet spriteProvider;

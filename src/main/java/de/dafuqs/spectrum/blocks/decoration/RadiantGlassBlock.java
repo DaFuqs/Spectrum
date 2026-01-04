@@ -6,7 +6,6 @@ import net.minecraft.core.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import net.neoforged.api.distmarker.*;
 
 public class RadiantGlassBlock extends TransparentBlock {
 	
@@ -22,7 +21,6 @@ public class RadiantGlassBlock extends TransparentBlock {
 	}
 	
 	@Override
-	@OnlyIn(Dist.CLIENT)
 	public boolean skipRendering(BlockState state, BlockState stateFrom, Direction direction) {
 		if (stateFrom.is(this) || stateFrom.is(SpectrumBlocks.RADIANT_SEMI_PERMEABLE_GLASS)) {
 			return true;

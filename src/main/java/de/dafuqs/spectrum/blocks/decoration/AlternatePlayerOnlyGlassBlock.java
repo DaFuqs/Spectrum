@@ -9,7 +9,6 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.pathfinder.*;
 import net.minecraft.world.phys.shapes.*;
-import net.neoforged.api.distmarker.*;
 
 public class AlternatePlayerOnlyGlassBlock extends TransparentBlock {
 	
@@ -62,7 +61,6 @@ public class AlternatePlayerOnlyGlassBlock extends TransparentBlock {
 	}
 	
 	@Override
-	@OnlyIn(Dist.CLIENT)
 	public boolean skipRendering(BlockState state, BlockState stateFrom, Direction direction) {
 		if (stateFrom.is(this) || stateFrom.getBlock() == alternateBlock) {
 			return true;

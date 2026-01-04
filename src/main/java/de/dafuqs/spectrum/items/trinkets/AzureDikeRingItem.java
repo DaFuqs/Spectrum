@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.items.trinkets;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
-import net.neoforged.api.distmarker.*;
 
 import java.util.*;
 
@@ -19,7 +18,6 @@ public class AzureDikeRingItem extends AzureDikeTrinketItem {
 	}
 	
 	@Override
-	@OnlyIn(Dist.CLIENT)
 	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		super.appendHoverText(stack, context, tooltip, type);
 		tooltip.add(Component.translatable("item.spectrum.azure_dike_ring.tooltip"));

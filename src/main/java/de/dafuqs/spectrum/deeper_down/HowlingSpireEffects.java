@@ -11,9 +11,8 @@ import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.biome.*;
-import net.neoforged.api.distmarker.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class HowlingSpireEffects {
 	
 	public static int spireTicks, lastSpireTicks;

@@ -19,7 +19,7 @@ import net.minecraft.world.level.*;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.neoforge.fluids.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class CrystallarieumBlockEntityRenderer<T extends CrystallarieumBlockEntity> implements BlockEntityRenderer<T> {
 	
 	private static final Material SPRITE = new Material(InventoryMenu.BLOCK_ATLAS, SpectrumCommon.locate("block/crystallarieum"));

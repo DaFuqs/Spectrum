@@ -8,9 +8,8 @@ import net.minecraft.util.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import net.neoforged.api.distmarker.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class PipeBombChargingSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
 	
 	private final Player player;

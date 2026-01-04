@@ -6,9 +6,8 @@ import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.util.*;
 import net.minecraft.world.phys.*;
-import net.neoforged.api.distmarker.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class WindParticle extends TextureSheetParticle {
 	
 	private static final WindStrength wind = new WindStrength();

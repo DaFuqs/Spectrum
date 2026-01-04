@@ -3,11 +3,10 @@ package de.dafuqs.spectrum.particle.client;
 import de.dafuqs.spectrum.particle.effect.*;
 import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.particle.*;
-import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 import org.joml.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class ColoredExplosionParticle extends HugeExplosionParticle {
 	
 	protected ColoredExplosionParticle(ClientLevel world, double x, double y, double z, double d, SpriteSet spriteProvider, float red, float green, float blue) {
@@ -23,7 +22,7 @@ public class ColoredExplosionParticle extends HugeExplosionParticle {
 		return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
 	}
 	
-	@OnlyIn(Dist.CLIENT)
+	
 	public static class Factory implements ParticleProvider<ColoredExplosionParticleEffect> {
 		
 		private final SpriteSet spriteProvider;

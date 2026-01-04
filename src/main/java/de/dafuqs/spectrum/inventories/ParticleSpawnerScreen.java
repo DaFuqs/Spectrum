@@ -24,7 +24,7 @@ import org.lwjgl.glfw.*;
 import java.util.*;
 import java.util.function.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class ParticleSpawnerScreen extends AbstractContainerScreen<ParticleSpawnerScreenHandler> {
 	
 	protected static final ResourceLocation GUI_TEXTURE = SpectrumCommon.locate("textures/gui/container/particle_spawner.png");

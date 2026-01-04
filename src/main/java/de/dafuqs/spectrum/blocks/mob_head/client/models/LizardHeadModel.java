@@ -8,9 +8,8 @@ import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
-import net.neoforged.api.distmarker.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class LizardHeadModel extends SpectrumSkullModel {
 	
 	public static final ResourceLocation HEAD_TEXTURE = SpectrumCommon.locate("textures/entity/lizard/lizard_head.png");

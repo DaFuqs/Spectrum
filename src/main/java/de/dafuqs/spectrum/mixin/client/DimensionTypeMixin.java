@@ -3,11 +3,10 @@ package de.dafuqs.spectrum.mixin.client;
 import de.dafuqs.spectrum.*;
 import net.minecraft.client.*;
 import net.minecraft.world.level.dimension.*;
-import net.neoforged.api.distmarker.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 
-@OnlyIn(Dist.CLIENT)
+
 @Mixin(DimensionType.class)
 public abstract class DimensionTypeMixin {
 	

@@ -21,7 +21,6 @@ public class AzureDikeAmuletItem extends InkDrainTrinketItem implements AzureDik
 	}
 	
 	@Override
-	@OnlyIn(Dist.CLIENT)
 	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		tooltip.add(Component.translatable("item.spectrum.azure_dike_provider.tooltip", maxAzureDike(stack)));
 		super.appendHoverText(stack, context, tooltip, type);

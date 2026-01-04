@@ -5,12 +5,11 @@ import de.dafuqs.spectrum.blocks.mob_head.*;
 import de.dafuqs.spectrum.blocks.mob_head.client.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.world.item.*;
-import net.neoforged.api.distmarker.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
-@OnlyIn(Dist.CLIENT)
+
 @Mixin(BlockEntityWithoutLevelRenderer.class)
 public abstract class BuiltinModelItemRendererMixin {
 	

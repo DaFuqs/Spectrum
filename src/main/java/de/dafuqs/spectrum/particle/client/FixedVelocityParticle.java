@@ -5,10 +5,9 @@ import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.util.*;
-import net.neoforged.api.distmarker.*;
 import org.joml.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class FixedVelocityParticle extends TextureSheetParticle {
 	
 	protected FixedVelocityParticle(ClientLevel clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
@@ -44,7 +43,6 @@ public class FixedVelocityParticle extends TextureSheetParticle {
 		return j | k << 16;
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	public static class Factory implements ParticleProvider<SimpleParticleType> {
 		
 		private final SpriteSet spriteProvider;
@@ -62,7 +60,6 @@ public class FixedVelocityParticle extends TextureSheetParticle {
 		}
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	public static class ColoredFluidRisingFactory implements ParticleProvider<ColoredFluidRisingParticleEffect> {
 		
 		private final SpriteSet spriteProvider;
@@ -84,7 +81,6 @@ public class FixedVelocityParticle extends TextureSheetParticle {
 		}
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	public static class ColoredSparkleRisingFactory implements ParticleProvider<ColoredSparkleRisingParticleEffect> {
 		
 		private final SpriteSet spriteProvider;

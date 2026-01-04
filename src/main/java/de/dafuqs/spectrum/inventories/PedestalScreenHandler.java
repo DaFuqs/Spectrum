@@ -12,7 +12,6 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
-import net.neoforged.api.distmarker.*;
 
 public class PedestalScreenHandler extends RecipeBookMenu<RecipeInput, Recipe<RecipeInput>> {
 	
@@ -153,7 +152,6 @@ public class PedestalScreenHandler extends RecipeBookMenu<RecipeInput, Recipe<Re
 		return blockEntity.stillValid(player);
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	public int getCraftingProgress() {
 		int craftingTime = getCraftingTime();
 		int craftingTimeTotal = getCraftingTimeTotal();
@@ -165,7 +163,6 @@ public class PedestalScreenHandler extends RecipeBookMenu<RecipeInput, Recipe<Re
 	}
 	
 	@Override
-	@OnlyIn(Dist.CLIENT)
 	public RecipeBookType getRecipeBookType() {
 		return this.category;
 	}

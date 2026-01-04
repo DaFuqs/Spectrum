@@ -1,12 +1,15 @@
 package de.dafuqs.spectrum.registries;
 
-import de.dafuqs.fractal.api.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.item_group.*;
 import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.blocks.mob_head.*;
+import de.dafuqs.spectrum.compat.*;
+import de.dafuqs.spectrum.compat.ae2.*;
+import de.dafuqs.spectrum.compat.create.*;
+import de.dafuqs.spectrum.compat.gobber.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import net.minecraft.core.*;

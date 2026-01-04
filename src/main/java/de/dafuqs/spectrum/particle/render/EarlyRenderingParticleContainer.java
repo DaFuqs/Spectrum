@@ -6,11 +6,10 @@ import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.client.*;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.renderer.*;
-import net.neoforged.api.distmarker.*;
 
 import java.util.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class EarlyRenderingParticleContainer {
 	
 	private static final int MAX_PARTICLES = 16384;

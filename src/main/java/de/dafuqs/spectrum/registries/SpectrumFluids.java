@@ -7,7 +7,6 @@ import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.fluid.*;
 import de.dafuqs.spectrum.helpers.*;
-import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.client.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.core.*;
@@ -75,7 +74,6 @@ public class SpectrumFluids {
 		ItemColors.FLUID_COLORS.registerColorMapping(DRAGONROT.get().getFlowing(), InkColors.GRAY);
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	public static void registerClient(RegisterClientExtensionsEvent event) {
 		setupFluidRendering(event, LIQUID_CRYSTAL_TYPE.get(), "liquid_crystal", LIQUID_CRYSTAL_TINT, LIQUID_CRYSTAL_OVERLAY_ALPHA);
 		setupFluidRendering(event, SLUDGE_TYPE.get(), "sludge", SLUDGE_TINT, SLUDGE_OVERLAY_ALPHA);
@@ -83,7 +81,6 @@ public class SpectrumFluids {
 		setupFluidRendering(event, DRAGONROT_TYPE.get(), "dragonrot", DRAGONROT_TINT, DRAGONROT_OVERLAY_ALPHA);
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	private static void setupFluidRendering(RegisterClientExtensionsEvent event, final FluidType fluidType, final String name, int tint, float overlayAlpha) {
 		ResourceLocation overlay = SpectrumCommon.locate("textures/misc/" + name + "_overlay.png");
 		ResourceLocation still = SpectrumCommon.locate("block/" + name + "_still");

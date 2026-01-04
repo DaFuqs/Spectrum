@@ -33,7 +33,6 @@ public record PlayDivinityAppliedEffectsPayload() implements CustomPacketPayload
 		execute(context.player());
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	private static void execute(Player player) {
 		Level level = player.level();
 		Minecraft client = Minecraft.getInstance();

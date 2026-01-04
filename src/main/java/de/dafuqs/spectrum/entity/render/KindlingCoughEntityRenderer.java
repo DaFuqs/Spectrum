@@ -11,9 +11,8 @@ import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
-import net.neoforged.api.distmarker.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class KindlingCoughEntityRenderer extends EntityRenderer<KindlingCoughEntity> {
 	
 	private static final ResourceLocation TEXTURE = SpectrumCommon.locate("textures/entity/kindling/cough.png");

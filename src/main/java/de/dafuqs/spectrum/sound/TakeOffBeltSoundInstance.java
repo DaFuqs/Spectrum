@@ -10,9 +10,8 @@ import net.minecraft.util.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import net.neoforged.api.distmarker.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class TakeOffBeltSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
 	
 	private final long lastParticleTick;
@@ -31,7 +30,6 @@ public class TakeOffBeltSoundInstance extends AbstractSoundInstance implements T
 		this.z = player.getZ();
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	public static void startSoundInstance() {
 		TakeOffBeltSoundInstance soundInstance = new TakeOffBeltSoundInstance();
 		if (!Minecraft.getInstance().getSoundManager().isActive(soundInstance)) {

@@ -7,9 +7,8 @@ import de.dafuqs.spectrum.entity.models.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.resources.*;
-import net.neoforged.api.distmarker.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class PreservationTurretEntityRenderer extends MobRenderer<PreservationTurretEntity, PreservationTurretEntityModel<PreservationTurretEntity>> {
 	
 	public static final ResourceLocation TEXTURE = SpectrumCommon.locate("textures/entity/preservation_turret/preservation_turret.png");

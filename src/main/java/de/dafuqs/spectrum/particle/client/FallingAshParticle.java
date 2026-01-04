@@ -11,7 +11,6 @@ import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.util.*;
 import net.minecraft.world.phys.*;
-import net.neoforged.api.distmarker.*;
 
 public class FallingAshParticle extends TextureSheetParticle {
 	
@@ -261,7 +260,6 @@ public class FallingAshParticle extends TextureSheetParticle {
 		return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	public static class Factory implements ParticleProvider<SimpleParticleType> {
 		private final SpriteSet spriteProvider;
 		

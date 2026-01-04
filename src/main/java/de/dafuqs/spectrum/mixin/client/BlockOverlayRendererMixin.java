@@ -1,10 +1,9 @@
 package de.dafuqs.spectrum.mixin.client;
 
 import net.minecraft.client.renderer.*;
-import net.neoforged.api.distmarker.*;
 import org.spongepowered.asm.mixin.*;
 
-@OnlyIn(Dist.CLIENT)
+
 @Mixin(ScreenEffectRenderer.class)
 public abstract class BlockOverlayRendererMixin {
 	

@@ -5,9 +5,8 @@ import net.minecraft.client.particle.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.util.*;
-import net.neoforged.api.distmarker.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class LitParticle extends RisingParticle {
 	
 	protected LitParticle(ClientLevel clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {

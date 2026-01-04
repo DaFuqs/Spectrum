@@ -6,9 +6,8 @@ import net.minecraft.client.model.geom.*;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
-import net.neoforged.api.distmarker.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class LizardEntityModel<T extends LivingEntity> extends AgeableListModel<T> {
 	
 	private final ModelPart body;

@@ -6,10 +6,9 @@ import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.resources.model.*;
 import net.minecraft.world.item.*;
-import net.neoforged.api.distmarker.*;
 
 // Similar to FAPIs DynamicItemRenderer, except with a little more information.
-@OnlyIn(Dist.CLIENT)
+
 @FunctionalInterface
 public interface DynamicItemRenderer {
 	

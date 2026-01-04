@@ -4,7 +4,7 @@ import de.dafuqs.spectrum.items.tooltip.*;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.neoforge.client.event.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class SpectrumTooltipComponents {
 	
 	public static void registerTooltipComponents(RegisterClientTooltipComponentFactoriesEvent event) {

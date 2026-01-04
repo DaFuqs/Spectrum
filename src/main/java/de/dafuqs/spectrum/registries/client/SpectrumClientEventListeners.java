@@ -43,7 +43,7 @@ import oshi.util.tuples.*;
 import java.util.*;
 import java.util.function.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class SpectrumClientEventListeners {
 	
 	public static final ObjectOpenHashSet<ModelResourceLocation> CUSTOM_ITEM_MODELS = new ObjectOpenHashSet<>();

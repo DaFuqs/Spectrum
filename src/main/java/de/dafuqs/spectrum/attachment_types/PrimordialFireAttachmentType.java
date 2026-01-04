@@ -58,7 +58,7 @@ public class PrimordialFireAttachmentType {
 	
 	public static final float BASE_PERCENT_DAMAGE = 0.1F;
 	
-	@OnlyIn(Dist.CLIENT)
+	
 	private static Optional<OnPrimordialFireSoundInstance> soundInstance;
 	
 	public static void setPrimordialFireTicks(LivingEntity entity, long ticks) {
@@ -132,7 +132,7 @@ public class PrimordialFireAttachmentType {
 		return baseDamage * fireImmunityMultiplier * entity.getMaxHealth();
 	}
 	
-	@OnlyIn(Dist.CLIENT)
+	
 	public void clientTick(LivingEntity entity) { // TODO: call me - grandma
 		long primordialFireTicks = entity.getData(ATTACHMENT_TYPE);
 		

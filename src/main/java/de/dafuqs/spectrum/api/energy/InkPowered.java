@@ -13,7 +13,6 @@ import net.minecraft.server.level.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
-import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -25,7 +24,6 @@ public interface InkPowered {
 	 */
 	ResourceLocation REQUIRED_ADVANCEMENT = SpectrumCommon.locate("milestones/unlock_ink_use");
 	
-	@OnlyIn(Dist.CLIENT)
 	static boolean canUseClient() {
 		Minecraft client = Minecraft.getInstance();
 		return canUse(client.player);
@@ -45,7 +43,6 @@ public interface InkPowered {
 	 * The colors that the object requires for working.
 	 * These are added as the player facing tooltip
 	 **/
-	@OnlyIn(Dist.CLIENT)
 	default void addInkPoweredTooltip(List<Component> tooltip) {
 		if (canUseClient()) {
 			if (getUsedColors().size() > 1) {

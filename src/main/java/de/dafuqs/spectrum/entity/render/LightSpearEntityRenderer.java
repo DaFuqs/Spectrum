@@ -8,9 +8,8 @@ import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
-import net.neoforged.api.distmarker.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class LightSpearEntityRenderer extends EntityRenderer<LightShardBaseEntity> {
 	
 	public LightSpearEntityRenderer(EntityRendererProvider.Context ctx) {

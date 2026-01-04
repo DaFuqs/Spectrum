@@ -137,7 +137,6 @@ public class EnderSpliceItem extends Item {
 		}
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	public void interactWithEntityClient() {
 		// If aiming at an entity: trigger entity interaction
 		Minecraft client = Minecraft.getInstance();
@@ -189,7 +188,6 @@ public class EnderSpliceItem extends Item {
 		return ItemUtils.startUsingInstantly(world, user, hand);
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	public void startSoundInstance(Player user) {
 		Minecraft.getInstance().getSoundManager().play(new EnderSpliceChargingSoundInstance(user));
 	}
@@ -205,7 +203,6 @@ public class EnderSpliceItem extends Item {
 	}
 	
 	@Override
-	@OnlyIn(Dist.CLIENT)
 	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		// If Dimension & Pos stored => Teleport to that position
 		var teleportTargetPos = getTeleportTargetPos(stack);

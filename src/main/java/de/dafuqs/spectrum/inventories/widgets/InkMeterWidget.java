@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.energy.storage.*;
 import de.dafuqs.spectrum.helpers.*;
-import net.neoforged.api.distmarker.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.components.*;
@@ -15,7 +14,7 @@ import net.minecraft.network.chat.*;
 
 import java.util.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class InkMeterWidget implements Renderable, GuiEventListener, NarratableEntry {
 	
 	public static final int WIDTH_PER_COLOR = 4;

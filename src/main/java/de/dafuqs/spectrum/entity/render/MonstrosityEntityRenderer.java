@@ -8,9 +8,8 @@ import de.dafuqs.spectrum.registries.client.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.resources.*;
-import net.neoforged.api.distmarker.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class MonstrosityEntityRenderer extends MobRenderer<MonstrosityEntity, MonstrosityEntityModel> {
 	
 	public static final ResourceLocation TEXTURE = SpectrumCommon.locate("textures/entity/monstrosity.png");

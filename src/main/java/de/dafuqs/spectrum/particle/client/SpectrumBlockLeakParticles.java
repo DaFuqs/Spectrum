@@ -5,9 +5,8 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.*;
-import net.neoforged.api.distmarker.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class SpectrumBlockLeakParticles {
 	
 	public static class LandingSludgeFactory implements ParticleProvider<SimpleParticleType> {

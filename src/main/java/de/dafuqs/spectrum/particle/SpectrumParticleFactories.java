@@ -12,7 +12,7 @@ import net.neoforged.api.distmarker.*;
 import net.neoforged.neoforge.client.event.*;
 
 // See ParticleManager for vanilla
-@OnlyIn(Dist.CLIENT)
+
 public class SpectrumParticleFactories {
 	
 	public static void register(RegisterParticleProvidersEvent event) {

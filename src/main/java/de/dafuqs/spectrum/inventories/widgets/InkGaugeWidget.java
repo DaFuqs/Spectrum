@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.inventories.widgets;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.helpers.*;
-import net.neoforged.api.distmarker.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.components.*;
@@ -14,7 +13,7 @@ import net.minecraft.network.chat.*;
 
 import java.util.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class InkGaugeWidget implements Renderable, GuiEventListener, NarratableEntry {
 	
 	public final int x;

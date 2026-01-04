@@ -10,10 +10,9 @@ import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.entity.layers.*;
 import net.minecraft.resources.*;
-import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class KindlingEntityRenderer extends MobRenderer<KindlingEntity, KindlingEntityModel> {
 	
 	public static final ResourceLocation SADDLE_TEXTURE = SpectrumCommon.locate("textures/entity/kindling/saddle.png");

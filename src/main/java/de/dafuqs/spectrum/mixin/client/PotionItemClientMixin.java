@@ -4,14 +4,13 @@ import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.*;
-import net.neoforged.api.distmarker.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
 import java.util.*;
 
-@OnlyIn(Dist.CLIENT)
+
 @Mixin({PotionItem.class, LingeringPotionItem.class, TippedArrowItem.class})
 public abstract class PotionItemClientMixin {
 	

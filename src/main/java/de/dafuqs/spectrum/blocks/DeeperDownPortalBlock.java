@@ -25,7 +25,6 @@ import net.minecraft.world.level.material.*;
 import net.minecraft.world.level.portal.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import net.neoforged.api.distmarker.*;
 
 public class DeeperDownPortalBlock extends Block {
 	
@@ -271,7 +270,6 @@ public class DeeperDownPortalBlock extends Block {
 	}
 	
 	@Override
-	@OnlyIn(Dist.CLIENT)
 	public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
 		if (!state.getValue(DeeperDownPortalBlock.FACING_UP) || random.nextInt(8) == 0) {
 			spawnVoidFogParticle(world, pos, random);

@@ -13,7 +13,6 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.shapes.*;
-import net.neoforged.api.distmarker.*;
 
 public class EtherealPlatformBlock extends TransparentBlock {
 	
@@ -34,7 +33,6 @@ public class EtherealPlatformBlock extends TransparentBlock {
 	}
 	
 	@Override
-	@OnlyIn(Dist.CLIENT)
 	public boolean skipRendering(BlockState state, BlockState stateFrom, Direction direction) {
 		return state.getValue(AGE) == 0 || !(direction == Direction.UP);
 	}
@@ -118,7 +116,6 @@ public class EtherealPlatformBlock extends TransparentBlock {
 	}
 	
 	@Override
-	@OnlyIn(Dist.CLIENT)
 	public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
 		int age = state.getValue((AGE));
 		if ((world.isClientSide && Minecraft.getInstance().player.getMainHandItem().is(SpectrumBlocks.ETHEREAL_PLATFORM.asItem()))) {

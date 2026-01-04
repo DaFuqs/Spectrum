@@ -14,10 +14,9 @@ import net.minecraft.util.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
-@OnlyIn(Dist.CLIENT)
+
 @SuppressWarnings({"unused", "FieldCanBeLocal"})
 public class BlackHoleChestBlockEntityRenderer implements BlockEntityRenderer<BlackHoleChestBlockEntity> {
 	

@@ -31,7 +31,6 @@ public record PlayAscensionAppliedEffectsPayload() implements CustomPacketPayloa
 	}
 	
 	@SuppressWarnings("resource")
-	@OnlyIn(Dist.CLIENT)
 	private static void execute(Player player) {
 		var level = player.level();
 		level.playSound(null, player.blockPosition(), SpectrumSoundEvents.FADING_PLACED, SoundSource.PLAYERS, 1.0F, 1.0F);

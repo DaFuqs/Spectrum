@@ -8,7 +8,6 @@ import net.minecraft.util.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import net.neoforged.api.distmarker.*;
 
 public class WetLavaSpongeBlock extends WetSpongeBlock {
 	
@@ -56,7 +55,6 @@ public class WetLavaSpongeBlock extends WetSpongeBlock {
 	}
 	
 	@Override
-	@OnlyIn(Dist.CLIENT)
 	public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
 		Direction direction = Direction.getRandom(random);
 		if (direction != Direction.UP) {

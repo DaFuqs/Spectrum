@@ -22,7 +22,6 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.*;
-import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -112,7 +111,6 @@ public class OmniAcceleratorItem extends BundleItem implements InkPowered, Exten
 		addInkPoweredTooltip(tooltip);
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	public static class Renderer implements DynamicItemRenderer {
 		public Renderer() {
 		}

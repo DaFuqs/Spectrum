@@ -9,10 +9,9 @@ import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
-import net.neoforged.api.distmarker.*;
 import org.joml.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class LightMineEntityRenderer extends EntityRenderer<LightMineEntity> {
 	
 	public LightMineEntityRenderer(EntityRendererProvider.Context ctx) {

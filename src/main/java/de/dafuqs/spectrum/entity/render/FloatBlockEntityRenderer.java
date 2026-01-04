@@ -13,9 +13,8 @@ import net.minecraft.util.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import net.neoforged.api.distmarker.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class FloatBlockEntityRenderer extends EntityRenderer<FloatBlockEntity> {
 	private final RandomSource random = RandomSource.create();
 	

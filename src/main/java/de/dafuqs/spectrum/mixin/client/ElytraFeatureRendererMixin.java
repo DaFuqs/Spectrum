@@ -5,12 +5,11 @@ import de.dafuqs.spectrum.render.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.layers.*;
 import net.minecraft.world.entity.*;
-import net.neoforged.api.distmarker.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
-@OnlyIn(Dist.CLIENT)
+
 @Mixin(ElytraLayer.class)
 public abstract class ElytraFeatureRendererMixin {
 	

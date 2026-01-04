@@ -11,11 +11,10 @@ import net.minecraft.resources.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
-import net.neoforged.api.distmarker.*;
 
 import java.util.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class RevelationToast implements Toast {
 	
 	private final ResourceLocation TEXTURE = SpectrumCommon.locate("textures/gui/toasts.png");

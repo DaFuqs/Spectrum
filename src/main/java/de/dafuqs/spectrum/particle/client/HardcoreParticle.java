@@ -3,9 +3,8 @@ package de.dafuqs.spectrum.particle.client;
 import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.*;
-import net.neoforged.api.distmarker.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class HardcoreParticle extends SimpleAnimatedParticle {
 	
 	HardcoreParticle(ClientLevel world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, SpriteSet spriteProvider) {
@@ -25,7 +24,6 @@ public class HardcoreParticle extends SimpleAnimatedParticle {
 		
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	public static class Factory implements ParticleProvider<SimpleParticleType> {
 		private final SpriteSet spriteProvider;
 		

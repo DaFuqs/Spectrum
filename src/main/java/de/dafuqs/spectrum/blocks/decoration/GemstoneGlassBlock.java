@@ -8,7 +8,6 @@ import net.minecraft.core.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 public class GemstoneGlassBlock extends TransparentBlock {
@@ -33,7 +32,6 @@ public class GemstoneGlassBlock extends TransparentBlock {
 	}
 	
 	@Override
-	@OnlyIn(Dist.CLIENT)
 	public boolean skipRendering(BlockState state, BlockState stateFrom, Direction direction) {
 		if (stateFrom.is(this)) {
 			return true;

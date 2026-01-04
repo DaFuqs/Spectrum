@@ -6,9 +6,8 @@ import net.minecraft.client.model.geom.*;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.resources.*;
-import net.neoforged.api.distmarker.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class SlimeHeadModel extends SpectrumSkullModel {
 	
 	protected final ModelPart translucent;

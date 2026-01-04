@@ -4,7 +4,6 @@ import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.energy.*;
 import de.dafuqs.spectrum.registries.*;
-import net.neoforged.api.distmarker.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.components.*;
@@ -20,7 +19,7 @@ import java.util.function.*;
 
 import static de.dafuqs.spectrum.helpers.RenderHelper.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class ColorSelectionWidget extends AbstractWidget {
 	
 	protected final ColorPickerBlockEntity colorPicker;

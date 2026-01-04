@@ -19,7 +19,7 @@ import net.neoforged.api.distmarker.*;
 import net.neoforged.neoforge.network.*;
 import org.lwjgl.glfw.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class BedrockAnvilScreen extends ItemCombinerScreen<BedrockAnvilScreenHandler> {
 	
 	private static final ResourceLocation TEXTURE = SpectrumCommon.locate("textures/gui/container/bedrock_anvil.png");

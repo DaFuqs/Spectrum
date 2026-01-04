@@ -8,7 +8,7 @@ import org.jetbrains.annotations.*;
 public class GenericClaimModsCompat {
 	
 	// TODO: what are common claims mods on Neoforge?
-	/*public static final boolean IS_COMMON_PROTECTION_API_PRESENT = FabricLoader.getInstance().isModLoaded("common-protection-api");
+	/*public static final boolean IS_COMMON_PROTECTION_API_PRESENT = SpectrumIntegrationPacks.isModLoaded("common-protection-api");
 	
 	/**
 	 * Call this for all kinds of world modifications
@@ -24,8 +24,8 @@ public class GenericClaimModsCompat {
 	public static boolean canBreak(Level world, BlockPos pos, @Nullable Entity cause) {
 		/*if (IS_COMMON_PROTECTION_API_PRESENT) {
 			return CommonProtectionApiCompat.canBreak(world, pos, cause);
-		}
-		return true;*/
+		}*/
+		return true;
 	}
 	
 	public static boolean canInteract(Level world, Entity entity, @Nullable Entity cause) {

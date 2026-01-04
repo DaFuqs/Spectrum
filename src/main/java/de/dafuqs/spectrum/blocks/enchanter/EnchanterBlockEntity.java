@@ -36,7 +36,6 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -689,7 +688,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		}
 	}
 	
-	@OnlyIn(Dist.CLIENT)
+	
 	protected void stopCraftingMusic() {
 		CraftingBlockSoundInstance.stopPlayingOnPos(this.worldPosition);
 	}

@@ -2,10 +2,9 @@ package de.dafuqs.spectrum.deeper_down;
 
 import net.minecraft.client.renderer.*;
 import net.minecraft.world.phys.*;
-import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class DeeperDownDimensionEffects extends DimensionSpecialEffects {
 	
 	public DeeperDownDimensionEffects() {

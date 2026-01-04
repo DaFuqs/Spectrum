@@ -5,7 +5,6 @@ import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.util.*;
-import net.neoforged.api.distmarker.*;
 
 public class LightTrailParticle extends SimpleAnimatedParticle {
 	protected LightTrailParticle(ClientLevel world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, SpriteSet spriteProvider) {
@@ -28,7 +27,6 @@ public class LightTrailParticle extends SimpleAnimatedParticle {
 		quadSize = Mth.lerp(fadeProgress, 0.2F, 0.1F);
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	public static class Factory implements ParticleProvider<SimpleParticleType> {
 		private final SpriteSet spriteProvider;
 		

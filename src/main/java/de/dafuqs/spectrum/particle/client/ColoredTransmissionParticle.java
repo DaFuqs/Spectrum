@@ -3,10 +3,9 @@ package de.dafuqs.spectrum.particle.client;
 import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.client.multiplayer.*;
 import net.minecraft.world.level.gameevent.*;
-import net.neoforged.api.distmarker.*;
 import org.joml.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class ColoredTransmissionParticle extends TransmissionParticle {
 	
 	public ColoredTransmissionParticle(ClientLevel world, double x, double y, double z, PositionSource positionSource, int maxAge, int color) {

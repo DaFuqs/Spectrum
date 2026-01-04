@@ -75,7 +75,6 @@ public abstract class SpectrumChestBlockEntity extends RandomizableContainerBloc
 	}
 	
 	@Override
-	@OnlyIn(Dist.CLIENT)
 	public float getOpenNess(float tickDelta) {
 		return this.lidAnimator.getOpenness(tickDelta);
 	}

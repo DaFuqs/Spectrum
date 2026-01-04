@@ -11,13 +11,11 @@ import net.minecraft.resources.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
-import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public class BedrockArmorItem extends ArmorItem implements Preenchanted {
-	@OnlyIn(Dist.CLIENT)
 	private BedrockArmorModel model;
 	
 	public BedrockArmorItem(Holder<ArmorMaterial> material, ArmorItem.Type type, Properties settings) {
@@ -34,14 +32,12 @@ public class BedrockArmorItem extends ArmorItem implements Preenchanted {
 		return false;
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	protected BedrockArmorModel provideArmorModelForSlot(EquipmentSlot slot) {
 		var models = Minecraft.getInstance().getEntityModels();
 		var root = models.bakeLayer(SpectrumModelLayers.BEDROCK_LAYER);
 		return new BedrockArmorModel(root);
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	public BedrockArmorModel getArmorModel() {
 		if (model == null) {
 			model = provideArmorModelForSlot(getEquipmentSlot());

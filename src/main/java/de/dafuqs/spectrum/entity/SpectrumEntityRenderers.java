@@ -3,9 +3,8 @@ package de.dafuqs.spectrum.entity;
 import de.dafuqs.spectrum.entity.render.*;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.world.entity.*;
-import net.neoforged.api.distmarker.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class SpectrumEntityRenderers {
 	
 	public static void registerClient() {

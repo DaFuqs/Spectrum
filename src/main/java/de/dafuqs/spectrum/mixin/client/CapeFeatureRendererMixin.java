@@ -11,12 +11,11 @@ import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.entity.layers.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
-import net.neoforged.api.distmarker.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
-@OnlyIn(Dist.CLIENT)
+
 @Mixin(CapeLayer.class)
 public abstract class CapeFeatureRendererMixin extends RenderLayer<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> {
 	

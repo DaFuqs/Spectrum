@@ -4,9 +4,8 @@ import de.dafuqs.spectrum.entity.entity.*;
 import net.minecraft.client.model.*;
 import net.minecraft.client.model.geom.*;
 import net.minecraft.client.model.geom.builders.*;
-import net.neoforged.api.distmarker.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class KindlingCoughEntityModel extends HierarchicalModel<KindlingCoughEntity> {
 	
 	private final ModelPart root;

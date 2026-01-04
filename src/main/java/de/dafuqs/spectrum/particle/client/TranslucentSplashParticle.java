@@ -6,9 +6,8 @@ import net.minecraft.client.particle.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
-import net.neoforged.api.distmarker.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class TranslucentSplashParticle extends WaterDropParticle {
 	
 	protected TranslucentSplashParticle(ClientLevel clientWorld, double d, double e, double f) {
@@ -25,7 +24,6 @@ public class TranslucentSplashParticle extends WaterDropParticle {
 		return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	public static class Factory implements ParticleProvider<SimpleParticleType> {
 		private final SpriteSet spriteProvider;
 		

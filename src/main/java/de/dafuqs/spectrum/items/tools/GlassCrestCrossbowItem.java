@@ -17,7 +17,6 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -49,7 +48,6 @@ public class GlassCrestCrossbowItem extends MalachiteCrossbowItem implements Ext
 		return super.use(world, user, hand);
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	public void startSoundInstance(Player user) {
 		Minecraft.getInstance().getSoundManager().play(new OverchargingSoundInstance(user));
 	}
@@ -104,7 +102,6 @@ public class GlassCrestCrossbowItem extends MalachiteCrossbowItem implements Ext
 	}
 	
 	@Override
-	@OnlyIn(Dist.CLIENT)
 	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		super.appendHoverText(stack, context, tooltip, type);
 		float overcharge = getOvercharge(stack);

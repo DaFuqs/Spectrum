@@ -13,9 +13,8 @@ import net.minecraft.util.*;
 import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
-import net.neoforged.api.distmarker.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class GlassArrowEntityRenderer extends EntityRenderer<GlassArrowEntity> {
 	
 	private final ItemRenderer itemRenderer;

@@ -96,12 +96,12 @@ neoForge {
 }
 
 dependencies {
-//	// graph api and its dependencies
+	// graph api and its dependencies
 	implementation jarJar("org.jgrapht:jgrapht-core:1.5.2")
 	implementation jarJar("org.apfloat:apfloat:1.14.0")
 	implementation jarJar("org.jheaps:jheaps:0.14")
 
-//	// ours
+	// ours
 	implementation("maven.modrinth:exclusions-lib:${project.exclusionslib_version}")
 	implementation("de.dafuqs:revelationary-neoforge:${project.revelationary_version}")
 	implementation jarJar("maven.modrinth:additionalentityattributes:${project.additional_entity_attributes_version}")
@@ -111,46 +111,39 @@ dependencies {
 
 	// external and compat
 	api("me.shedaniel.cloth:cloth-config-neoforge:${project.cloth_config_version}")
-//	modCompileOnly("me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}")
-//	// https://github.com/shedaniel/RoughlyEnoughItems
-//	modCompileOnly("dev.emi:emi-fabric:${emi_version}") // https://github.com/emilyploszaj/emi
-//	// https://github.com/klikli-dev/modonomicon
+	compileOnly("me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}") // https://github.com/shedaniel/RoughlyEnoughItems
+	compileOnly("dev.emi:emi-fabric:${emi_version}") // https://github.com/emilyploszaj/emi
 	implementation("com.klikli_dev:modonomicon-${project.minecraft_version}-neoforge:${project.modonomicon_version}") {
 		exclude(group: "com.klikli_dev")
 		exclude(group: "mezz.jei")
-	}
+	} // https://github.com/klikli-dev/modonomicon
 
 	compileOnly "top.theillusivec4.curios:curios-neoforge:${project.curios_version}:api"
 
-//
-//	switch (recipe_viewer.toLowerCase(Locale.ROOT)) {
-//		case "rei": modLocalRuntime("me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"); break
-//		case "emi": modLocalRuntime("dev.emi:emi-fabric:${emi_version}"); break
-//		case "disabled": break
-//		default: println("Unknown recipe viewer specified: $recipe_viewer. Must be EMI, REI or disabled.")
-//	}
-//
-//	// Connect to local dev servers
-//	// modLocalRuntime("maven.modrinth:auth-me:${project.auth_me_version}")
-//
-//	// Mod Compat
-//	modCompileOnly("maven.modrinth:colorful-hearts:${project.colorful_hearts_version}") { transitive = false }
-//	modCompileOnly("maven.modrinth:sodium:${project.sodium_version}") { transitive = false }
-//	modCompileOnly("com.unascribed:ears-api:${project.ears_version}")
-//	modCompileOnly("maven.modrinth:create-fabric:${project.create_version}") { transitive = false }
-//	modCompileOnly("maven.modrinth:neepmeat:${project.neepmeat_version}") { transitive = false }
-//	modCompileOnly("maven.modrinth:lodestonelib:${project.lodestone_version}") { transitive = false }
-//	modCompileOnly("maven.modrinth:malum:${project.malum_version}") { transitive = false }
-//	modCompileOnly("maven.modrinth:travelersbackpack:${project.travelers_backpack_version}")
-//	modCompileOnly("maven.modrinth:botania:${project.botania_version}")
-//	modCompileOnly("maven.modrinth:vanity:${project.vanityslots_version}")
-//	modImplementation("maven.modrinth:idwtialsimmoedm:${project.idwtialsimmoedm_version}")
+
+	switch (recipe_viewer.toLowerCase(Locale.ROOT)) {
+		case "rei": localRuntime("me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"); break
+		case "emi": localRuntime("dev.emi:emi-fabric:${emi_version}"); break
+		case "disabled": break
+		default: println("Unknown recipe viewer specified: $recipe_viewer. Must be EMI, REI or disabled.")
+	}
+
+	// Mod Compat
+	localRuntime("maven.modrinth:colorful-hearts:${project.colorful_hearts_version}") { transitive = false }
+	localRuntime("maven.modrinth:sodium:${project.sodium_version}") { transitive = false }
+	localRuntime("com.unascribed:ears-api:${project.ears_version}")
+	localRuntime("maven.modrinth:create:${project.create_version}") { transitive = false }
+	localRuntime("maven.modrinth:lodestonelib:${project.lodestone_version}") { transitive = false }
+	localRuntime("maven.modrinth:malum:${project.malum_version}") { transitive = false }
+	localRuntime("maven.modrinth:travelersbackpack:${project.travelers_backpack_version}")
+	localRuntime("maven.modrinth:botania:${project.botania_version}")
+	localRuntime("maven.modrinth:vanity:${project.vanityslots_version}")
 
 	// Datagen dependencies
-	//modDatagenRuntimeOnly("curse.maven:gobber-427177:${project.gobber_version}")
-	//modDatagenRuntimeOnly("maven.modrinth:ae2:${project.ae2_version}")
-	//modDatagenRuntimeOnly("maven.modrinth:botania:${project.botania_version}")
-	//modDatagenRuntimeOnly("maven.modrinth:create-fabric:${project.create_version}")
+	modDatagenRuntimeOnly("curse.maven:gobber-427177:${project.gobber_version}")
+	modDatagenRuntimeOnly("maven.modrinth:ae2:${project.ae2_version}")
+	modDatagenRuntimeOnly("maven.modrinth:botania:${project.botania_version}")
+	modDatagenRuntimeOnly("maven.modrinth:create-fabric:${project.create_version}")
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
@@ -176,7 +169,7 @@ tasks.withType(JavaCompile).configureEach {
 	it.options.release = 21
 }
 
-// TODO: bad practice, generally indicates an issue with the build
+// TODO: fix duplicates
 tasks.withType(Jar).configureEach {
 	duplicatesStrategy = DuplicatesStrategy.WARN
 }

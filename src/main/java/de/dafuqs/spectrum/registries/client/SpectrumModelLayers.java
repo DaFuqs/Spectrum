@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.registries.client;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.mob_head.client.models.*;
 import de.dafuqs.spectrum.blocks.mob_head.client.models.PiglinHeadModel;
 import de.dafuqs.spectrum.blocks.mob_head.client.models.VillagerHeadModel;
-import de.dafuqs.spectrum.blocks.mob_head.client.models.*;
 import de.dafuqs.spectrum.entity.models.*;
 import de.dafuqs.spectrum.render.armor.*;
 import net.minecraft.client.model.*;
@@ -14,7 +14,7 @@ import net.neoforged.api.distmarker.*;
 import net.neoforged.fml.event.lifecycle.*;
 import net.neoforged.neoforge.client.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class SpectrumModelLayers {
 	
 	/**

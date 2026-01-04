@@ -21,7 +21,6 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import net.neoforged.api.distmarker.*;
 
 import java.util.*;
 
@@ -78,7 +77,6 @@ public class RadianceStaffItem extends Item implements InkPowered {
 	}
 	
 	@Override
-	@OnlyIn(Dist.CLIENT)
 	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		if (InkPowered.canUseClient()) {
 			tooltip.add(Component.translatable("item.spectrum.radiance_staff.tooltip.ink", INK_COST.color().getColoredInkName()));

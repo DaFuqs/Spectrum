@@ -7,11 +7,10 @@ import net.minecraft.client.resources.sounds.*;
 import net.minecraft.resources.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.level.*;
-import net.neoforged.api.distmarker.*;
 
 import java.util.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class MagicProjectileSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
 	
 	private final ResourceKey<Level> worldKey;
@@ -38,7 +37,6 @@ public class MagicProjectileSoundInstance extends AbstractSoundInstance implemen
 		this.volume = 1.0F;
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	public static void startSoundInstance(MagicProjectileEntity projectile) {
 		Minecraft client = Minecraft.getInstance();
 		MagicProjectileSoundInstance newInstance = new MagicProjectileSoundInstance(client.level.dimension(), projectile);

@@ -5,10 +5,9 @@ import net.minecraft.client.gui.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
-import net.neoforged.api.distmarker.*;
 import org.joml.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class CraftingTabletTooltipComponent implements SpectrumTooltipComponent {
 	
 	private final ItemStack itemStack;

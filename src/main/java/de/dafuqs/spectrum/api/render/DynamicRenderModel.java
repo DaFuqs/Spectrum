@@ -13,7 +13,7 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 import java.util.function.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class DynamicRenderModel extends ForwardingBakedModel implements UnbakedModel {
 	private static class WrappingOverridesList extends ItemOverrides {
 		private final ItemOverrides wrapped;

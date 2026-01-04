@@ -13,7 +13,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class PaintbrushScreen extends QuickNavigationGridScreen<PaintbrushScreenHandler> {
 	
 	public static final QuickNavigationGridScreen.Grid MAGENTA_GRID = new QuickNavigationGridScreen.Grid(

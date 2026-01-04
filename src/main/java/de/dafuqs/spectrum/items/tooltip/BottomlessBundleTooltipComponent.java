@@ -4,11 +4,10 @@ import de.dafuqs.spectrum.api.gui.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.core.*;
 import net.minecraft.world.item.*;
-import net.neoforged.api.distmarker.*;
 
 import java.util.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class BottomlessBundleTooltipComponent implements SpectrumTooltipComponent {
 	
 	private static final int MAX_DISPLAYED_SLOTS = 5;

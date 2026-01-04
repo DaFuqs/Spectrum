@@ -18,7 +18,6 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.*;
-import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 public abstract class DragonrotFluid extends SpectrumFluid {
@@ -49,7 +48,6 @@ public abstract class DragonrotFluid extends SpectrumFluid {
 	}
 	
 	@Override
-	@OnlyIn(Dist.CLIENT)
 	public void animateTick(Level world, BlockPos pos, FluidState state, RandomSource random) {
 		BlockPos topPos = pos.above();
 		BlockState topState = world.getBlockState(topPos);

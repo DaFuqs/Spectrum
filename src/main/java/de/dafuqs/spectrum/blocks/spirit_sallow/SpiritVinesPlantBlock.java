@@ -14,7 +14,6 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import net.neoforged.api.distmarker.*;
 
 public class SpiritVinesPlantBlock extends GrowingPlantBodyBlock implements SpiritVine {
 	
@@ -62,7 +61,6 @@ public class SpiritVinesPlantBlock extends GrowingPlantBodyBlock implements Spir
 	}
 	
 	@Override
-	@OnlyIn(Dist.CLIENT)
 	public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state) {
 		return new ItemStack(SpiritVine.getYieldItem(state));
 	}

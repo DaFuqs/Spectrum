@@ -8,9 +8,8 @@ import net.minecraft.client.renderer.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
-import net.neoforged.api.distmarker.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class TropicalFishHeadModel extends SpectrumSkullModel {
 	
 	private static final ResourceLocation PATTERN_TEXTURE = ResourceLocation.parse("textures/entity/fish/tropical_a_pattern_1.png");

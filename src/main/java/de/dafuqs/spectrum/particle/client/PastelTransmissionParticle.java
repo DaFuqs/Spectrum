@@ -16,11 +16,10 @@ import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
-import net.neoforged.api.distmarker.*;
 
 import java.util.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class PastelTransmissionParticle extends TransmissionParticle implements EarlyRenderingParticle {
 	
 	private final ItemRenderer itemRenderer;

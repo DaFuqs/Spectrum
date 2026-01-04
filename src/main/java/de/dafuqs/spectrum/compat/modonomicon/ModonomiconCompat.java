@@ -5,6 +5,7 @@ import com.klikli_dev.modonomicon.client.render.page.*;
 import com.klikli_dev.modonomicon.data.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.recipe.*;
+import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.compat.modonomicon.client.pages.*;
 import de.dafuqs.spectrum.compat.modonomicon.page_types.*;
 import de.dafuqs.spectrum.compat.modonomicon.pages.*;

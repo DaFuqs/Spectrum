@@ -6,9 +6,8 @@ import net.minecraft.client.*;
 import net.minecraft.client.resources.sounds.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.entity.player.*;
-import net.neoforged.api.distmarker.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class MonstrositySoundInstance extends AbstractTickableSoundInstance {
 	
 	private static int instances = 0;

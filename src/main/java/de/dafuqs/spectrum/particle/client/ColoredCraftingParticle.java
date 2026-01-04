@@ -4,11 +4,10 @@ import de.dafuqs.spectrum.particle.effect.*;
 import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.particle.*;
 import net.minecraft.util.*;
-import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 import org.joml.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class ColoredCraftingParticle extends TextureSheetParticle {
 	
 	protected ColoredCraftingParticle(ClientLevel clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ, float red, float green, float blue) {
@@ -43,7 +42,7 @@ public class ColoredCraftingParticle extends TextureSheetParticle {
 		return j | k << 16;
 	}
 	
-	@OnlyIn(Dist.CLIENT)
+	
 	public static class Factory implements ParticleProvider<ColoredCraftingParticleEffect> {
 		
 		private final SpriteSet spriteProvider;

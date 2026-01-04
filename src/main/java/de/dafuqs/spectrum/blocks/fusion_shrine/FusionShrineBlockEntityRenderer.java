@@ -17,7 +17,7 @@ import org.joml.Math;
 
 import java.util.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class FusionShrineBlockEntityRenderer<T extends FusionShrineBlockEntity> implements BlockEntityRenderer<T> {
 	
 	@SuppressWarnings("unused")

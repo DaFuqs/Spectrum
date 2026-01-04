@@ -17,12 +17,11 @@ import net.minecraft.world.effect.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.*;
 import net.minecraft.world.item.enchantment.*;
-import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class UnlockedRecipeToast implements Toast {
 	
 	private final ResourceLocation TEXTURE = SpectrumCommon.locate("textures/gui/toasts.png");

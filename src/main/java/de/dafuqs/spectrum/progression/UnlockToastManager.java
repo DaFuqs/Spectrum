@@ -13,12 +13,11 @@ import net.minecraft.util.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
-import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class UnlockToastManager {
 	// Advancement Identifier + Recipe Variant => Recipe
 	public static final Map<ResourceLocation, Map<RecipeType<?>, Set<GatedRecipe<?>>>> gatedRecipes = new HashMap<>();

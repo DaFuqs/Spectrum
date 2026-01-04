@@ -13,10 +13,9 @@ import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
-import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class PedestalBlockEntityRenderer<C extends PedestalBlockEntity> implements BlockEntityRenderer<C> {
 	
 	private final ResourceLocation GROUND_MARK = SpectrumCommon.locate("textures/misc/circle.png");

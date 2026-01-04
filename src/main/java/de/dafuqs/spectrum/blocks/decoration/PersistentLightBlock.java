@@ -16,7 +16,6 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 public class PersistentLightBlock extends LightBlock {
@@ -51,7 +50,6 @@ public class PersistentLightBlock extends LightBlock {
 		return false;
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	private boolean holdsRadianceStaffClient() {
 		return holdsRadianceStaff(Minecraft.getInstance().player);
 	}

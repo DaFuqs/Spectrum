@@ -6,7 +6,6 @@ import net.minecraft.client.renderer.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.util.*;
-import net.neoforged.api.distmarker.*;
 
 public class BloodflyParticle extends TextureSheetParticle {
 	
@@ -131,7 +130,6 @@ public class BloodflyParticle extends TextureSheetParticle {
 		return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	public static class Factory implements ParticleProvider<SimpleParticleType> {
 		private final SpriteSet spriteProvider;
 		

@@ -9,12 +9,11 @@ import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.layers.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
-import net.neoforged.api.distmarker.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
-@OnlyIn(Dist.CLIENT)
+
 @Mixin(CustomHeadLayer.class)
 public abstract class HeadFeatureRendererMixin<T extends LivingEntity, M extends EntityModel<T> & HeadedModel> {
 	

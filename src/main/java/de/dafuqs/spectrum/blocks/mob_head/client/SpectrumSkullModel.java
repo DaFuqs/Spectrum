@@ -4,9 +4,8 @@ import com.mojang.blaze3d.vertex.*;
 import net.minecraft.client.model.*;
 import net.minecraft.client.model.geom.*;
 import net.minecraft.client.renderer.*;
-import net.neoforged.api.distmarker.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public abstract class SpectrumSkullModel extends SkullModelBase {
 	
 	protected static final float ROTATION_VEC = (float) Math.PI / 180.0F;

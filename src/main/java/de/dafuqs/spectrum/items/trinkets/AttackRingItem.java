@@ -45,7 +45,6 @@ public class AttackRingItem extends SpectrumTrinketItem {
 	}
 	
 	@Override
-	@OnlyIn(Dist.CLIENT)
 	public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, @NotNull List<Component> tooltip, @NotNull TooltipFlag type) {
 		super.appendHoverText(stack, context, tooltip, type);
 		Minecraft client = Minecraft.getInstance();

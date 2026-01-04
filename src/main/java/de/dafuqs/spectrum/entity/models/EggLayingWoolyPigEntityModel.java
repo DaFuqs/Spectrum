@@ -6,9 +6,8 @@ import net.minecraft.client.model.*;
 import net.minecraft.client.model.geom.*;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.util.*;
-import net.neoforged.api.distmarker.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class EggLayingWoolyPigEntityModel extends EntityModel<EggLayingWoolyPigEntity> {
 	
 	protected final ModelPart torso;

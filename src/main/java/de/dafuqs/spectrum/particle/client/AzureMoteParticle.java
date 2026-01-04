@@ -4,7 +4,6 @@ import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.core.particles.*;
-import net.neoforged.api.distmarker.*;
 
 public class AzureMoteParticle extends BloodflyParticle {
 	
@@ -26,7 +25,6 @@ public class AzureMoteParticle extends BloodflyParticle {
 		return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	public static class Factory implements ParticleProvider<SimpleParticleType> {
 		private final SpriteSet spriteProvider;
 		

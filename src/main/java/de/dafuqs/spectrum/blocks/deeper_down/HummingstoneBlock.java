@@ -20,7 +20,6 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
-import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 public class HummingstoneBlock extends BaseEntityBlock {
@@ -45,7 +44,6 @@ public class HummingstoneBlock extends BaseEntityBlock {
 		return RenderShape.MODEL;
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
 		super.animateTick(state, world, pos, random);

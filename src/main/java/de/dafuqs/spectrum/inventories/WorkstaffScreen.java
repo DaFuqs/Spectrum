@@ -13,7 +13,7 @@ import net.minecraft.world.item.enchantment.*;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.neoforge.network.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class WorkstaffScreen extends QuickNavigationGridScreen<WorkstaffScreenHandler> {
 	
 	private static final Grid RANGE_GRID = new Grid(

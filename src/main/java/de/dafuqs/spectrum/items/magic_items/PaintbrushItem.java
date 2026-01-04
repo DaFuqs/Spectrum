@@ -50,7 +50,6 @@ public class PaintbrushItem extends Item implements SignApplicator {
 		}
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	private static void appendClientTooltips(ItemStack stack, List<Component> tooltip) {
 		boolean unlockedColoring = AdvancementHelper.hasAdvancementClient(SpectrumAdvancements.PAINTBRUSH_COLORING);
 		boolean unlockedSlinging = AdvancementHelper.hasAdvancementClient(SpectrumAdvancements.PAINTBRUSH_INK_SLINGING);

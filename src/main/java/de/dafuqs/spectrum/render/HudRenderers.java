@@ -12,7 +12,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.neoforged.api.distmarker.*;
 
-@OnlyIn(Dist.CLIENT)
+
 public class HudRenderers {
 	
 	private static final Component MISSING_INK_TEXT = Component.translatable("item.spectrum.constructors_staff.tooltip.missing_ink");

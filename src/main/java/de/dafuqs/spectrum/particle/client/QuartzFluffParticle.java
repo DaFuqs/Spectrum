@@ -4,7 +4,6 @@ import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.util.*;
-import net.neoforged.api.distmarker.*;
 
 public class QuartzFluffParticle extends BaseAshSmokeParticle {
 	
@@ -50,7 +49,6 @@ public class QuartzFluffParticle extends BaseAshSmokeParticle {
 		}
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	public static class Factory implements ParticleProvider<SimpleParticleType> {
 		private final SpriteSet spriteProvider;
 		

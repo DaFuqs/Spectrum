@@ -19,7 +19,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -151,7 +150,6 @@ public class DreamflayerItem extends SwordItem implements InkPowered, Activatabl
 		return List.of(USED_COLOR);
 	}
 	
-	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void addInkPoweredTooltip(List<Component> tooltip) {
 		InkPowered.super.addInkPoweredTooltip(tooltip);

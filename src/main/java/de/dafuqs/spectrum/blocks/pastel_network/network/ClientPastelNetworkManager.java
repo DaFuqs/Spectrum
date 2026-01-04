@@ -2,12 +2,13 @@ package de.dafuqs.spectrum.blocks.pastel_network.network;
 
 import com.mojang.blaze3d.vertex.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
+import net.minecraft.client.*;
 import net.minecraft.client.multiplayer.*;
+import net.minecraft.client.renderer.*;
 import net.minecraft.core.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.phys.*;
-import net.neoforged.api.distmarker.*;
 import org.jgrapht.*;
 import org.jgrapht.graph.*;
 import org.joml.Math;
@@ -33,13 +34,12 @@ public class ClientPastelNetworkManager implements PastelNetworkManager<ClientLe
 		return network;
 	}
 	
-	public void renderLines(WorldRenderContext context, LivingEntity cameraEntity, boolean paintbrushInHand) {
+	public void renderLines(ClientLevel level, PoseStack matrices, MultiBufferSource bufferSource, Camera camera, LivingEntity cameraEntity, boolean paintbrushInHand) {
 		BlockPos cameraEntityPos = cameraEntity.blockPosition();
 		
-		ClientLevel world = context.world();
-		long worldTime = world.getGameTime();
+		long worldTime = level.getGameTime();
 		for (ClientPastelNetwork network : this.networks) {
-			if (network.getLevel().dimensionType() != world.dimensionType()) continue;
+			if (network.getLevel().dimensionType() != level.dimensionType()) continue;
 			
 			float alphaMod = paintbrushInHand ? 1.0F : (network.lastChangeTick - worldTime + 20) * 0.05F;
 			if (alphaMod <= 0.0F) continue;
@@ -57,15 +57,14 @@ public class ClientPastelNetworkManager implements PastelNetworkManager<ClientLe
 					continue;
 				}
 				
-				final PoseStack matrices = context.matrixStack();
-				final Vec3 pos = context.camera().getPosition();
+				final Vec3 pos = camera.getPosition();
 				matrices.pushPose();
 				matrices.translate(-pos.x, -pos.y, -pos.z);
 				var cross = source.cross(target);
 				var interval = (cross.getX() + cross.getY() + cross.getZ() + network.level.getGameTime()) % 1000000F;
 				var alpha = alphaMod * (1.0 - (Math.max(Math.sin((interval / 17F)) * 2.5 - 2, 0)));
 				colors[0] = (float) alpha;
-				PastelRenderHelper.renderLineTo(context.matrixStack(), context.consumers(), colors, source, target);
+				PastelRenderHelper.renderLineTo(matrices, bufferSource, colors, source, target);
 				
 				matrices.popPose();
 			}

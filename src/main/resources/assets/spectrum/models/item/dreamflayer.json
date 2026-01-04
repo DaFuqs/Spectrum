@@ -4,26 +4,18 @@
     "layer0": "spectrum:item/dreamflayer"
   },
   "overrides": [
+
+		{
+			"predicate": {
+				"activated": 1.0
+			},
+			"model": "spectrum:item/dreamflayer_activated"
+		},
     {
       "predicate": {
-        "oversized": 0.0,
-        "activated": 1.0
-      },
-      "model": "spectrum:item/dreamflayer_activated"
-    },
-    {
-      "predicate": {
-        "oversized": 1.0,
-        "activated": 0.0
-      },
-      "model": "spectrum:item/dreamflayer_oversized"
-    },
-    {
-      "predicate": {
-        "activated": 1.0,
         "oversized": 1.0
       },
-      "model": "spectrum:item/dreamflayer_activated_oversized"
+      "model": "spectrum:item/dreamflayer_oversized"
     }
   ]
 }

@@ -2,5 +2,13 @@
   "parent": "spectrum:item/handheld_oversized",
   "textures": {
     "layer0": "spectrum:item/dreamflayer_activated"
-  }
+  },
+  "overrides": [
+    {
+			"predicate": {
+				"activated": 1.0
+			},
+			"model": "spectrum:item/dreamflayer_activated_oversized"
+		}
+  ]
 }

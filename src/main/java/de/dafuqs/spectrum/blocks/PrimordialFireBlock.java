@@ -187,12 +187,11 @@ public class PrimordialFireBlock extends BaseFireBlock {
 				
 				boolean biomeHasIncreasedFireBurnout = world.getBiome(pos).is(BiomeTags.INCREASED_FIRE_BURNOUT);
 				int spreadReduction = biomeHasIncreasedFireBurnout ? -50 : 0;
-				this.trySpreadingFire(world, pos.east(), 300 + spreadReduction, random);
-				this.trySpreadingFire(world, pos.west(), 300 + spreadReduction, random);
-				this.trySpreadingFire(world, pos.below(), 250 + spreadReduction, random);
-				this.trySpreadingFire(world, pos.above(), 250 + spreadReduction, random);
-				this.trySpreadingFire(world, pos.north(), 300 + spreadReduction, random);
-				this.trySpreadingFire(world, pos.south(), 300 + spreadReduction, random);
+				for (Direction direction : Direction.values()) {
+					int spreadFactor = direction.getAxis() == Direction.Axis.Y ? 250 : 300;
+					this.trySpreadingFire(world, pos.relative(direction), direction.getOpposite(), spreadFactor + spreadReduction, random);
+					
+				}
 				
 				BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
 				for (int x = -1; x <= 1; ++x) {
@@ -219,20 +218,12 @@ public class PrimordialFireBlock extends BaseFireBlock {
 		}
 	}
 	
-	private int getSpreadChance(BlockState state) {
-		return state.hasProperty(BlockStateProperties.WATERLOGGED) && state.getValue(BlockStateProperties.WATERLOGGED) ? 0 : FlammableBlockRegistry.getDefaultInstance().get(state.getBlock()).getSpreadChance();
-	}
-	
-	private int getBurnChance(BlockState state) {
-		return state.hasProperty(BlockStateProperties.WATERLOGGED) && state.getValue(BlockStateProperties.WATERLOGGED) ? 0 : FlammableBlockRegistry.getDefaultInstance().get(state.getBlock()).getBurnChance();
-	}
-	
-	private void trySpreadingFire(Level world, BlockPos pos, int spreadFactor, RandomSource random) {
+	private void trySpreadingFire(Level world, BlockPos pos, Direction direction, int spreadFactor, RandomSource random) {
 		if (!GenericClaimModsCompat.canBreak(world, pos, null)) {
 			return;
 		}
 		
-		int spreadChance = this.getSpreadChance(world.getBlockState(pos));
+		int spreadChance = world.getBlockState(pos).getFlammability(world, pos, direction);
 		if (random.nextInt(spreadFactor) < spreadChance) {
 			BlockState currentState = world.getBlockState(pos);
 			if (random.nextBoolean()) {
@@ -266,7 +257,7 @@ public class PrimordialFireBlock extends BaseFireBlock {
 			int i = 0;
 			for (Direction direction : Direction.values()) {
 				BlockState blockState = world.getBlockState(pos.relative(direction));
-				i = Math.max(this.getBurnChance(blockState), i);
+				i = Math.max(blockState.getFireSpreadSpeed(world, pos, direction.getOpposite()), i);
 			}
 			return i;
 		}
@@ -274,7 +265,7 @@ public class PrimordialFireBlock extends BaseFireBlock {
 	
 	@Override
 	protected boolean canBurn(BlockState state) {
-		return this.getBurnChance(state) > 0;
+		return ((FireBlock) Blocks.FIRE).getIgniteOdds(state) > 0;
 	}
 	
 	@Override

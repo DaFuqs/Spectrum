@@ -85,7 +85,7 @@ public class TitrationBarrelBlock extends HorizontalDirectionalBlock implements 
 							// player is able to put items in
 							// or seal it with a piece of colored wood
 							if (handStack.isEmpty()) {
-								int itemCount = InventoryHelper.countItemsInInventory(barrelEntity);
+								int itemCount = InventoryHelper.countItemsInInventory(barrelEntity.items);
 								FluidStack fluid = barrelEntity.fluidStorage.getFluid();
 								if (fluid.isEmpty()) {
 									if (itemCount == TitrationBarrelBlockEntity.MAX_ITEM_COUNT) {
@@ -114,19 +114,17 @@ public class TitrationBarrelBlock extends HorizontalDirectionalBlock implements 
 									return ItemInteractionResult.CONSUME;
 								}
 								
-								if (ContainerItemContext.forPlayerInteraction(player, hand).find(FluidStorage.ITEM) != null) {
-									if (FluidStorageUtil.interactWithFluidStorage(barrelEntity.fluidStorage, player, hand)) {
-										if (barrelEntity.getFluidIngredient().isBlank()) {
-											if (state.getValue(BARREL_STATE) == TitrationBarrelBlock.BarrelState.FILLED && barrelEntity.isEmpty()) {
-												world.setBlockAndUpdate(pos, state.setValue(BARREL_STATE, TitrationBarrelBlock.BarrelState.EMPTY));
-											}
-										} else {
-											if (state.getValue(BARREL_STATE) == TitrationBarrelBlock.BarrelState.EMPTY) {
-												world.setBlockAndUpdate(pos, state.setValue(BARREL_STATE, TitrationBarrelBlock.BarrelState.FILLED));
-											}
+								if (FluidUtil.interactWithFluidHandler(player, hand, barrelEntity.fluidStorage)) {
+									if (!barrelEntity.fluidStorage.isEmpty()) {
+										if (state.getValue(BARREL_STATE) == TitrationBarrelBlock.BarrelState.FILLED && barrelEntity.fluidStorage.isEmpty()) {
+											world.setBlockAndUpdate(pos, state.setValue(BARREL_STATE, TitrationBarrelBlock.BarrelState.EMPTY));
 										}
-										return ItemInteractionResult.CONSUME;
+									} else {
+										if (state.getValue(BARREL_STATE) == TitrationBarrelBlock.BarrelState.EMPTY) {
+											world.setBlockAndUpdate(pos, state.setValue(BARREL_STATE, TitrationBarrelBlock.BarrelState.FILLED));
+										}
 									}
+									return ItemInteractionResult.CONSUME;
 								}
 								
 								int countBefore = handStack.getCount();

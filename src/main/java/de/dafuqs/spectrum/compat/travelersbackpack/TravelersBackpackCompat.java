@@ -20,7 +20,7 @@ public class TravelersBackpackCompat extends SpectrumIntegrationPacks.ModIntegra
 	public abstract static class SpectrumEffectFluid extends EffectFluid {
 		
 		public SpectrumEffectFluid(String id, Fluid fluid) {
-			super(id, fluid, 81000);
+			super(id, fluid, 1000);
 		}
 		
 		public boolean canExecuteEffect(FluidIngredientWrapper stack, Level world, Entity entity) {
@@ -31,7 +31,7 @@ public class TravelersBackpackCompat extends SpectrumIntegrationPacks.ModIntegra
 	
 	@Override
 	public void register() {
-		EffectFluidRegistry.registerFluidEffect(new SpectrumEffectFluid("spectrum:sludge", SpectrumFluids.SLUDGE.getSource()) {
+		EffectFluidRegistry.registerFluidEffect(new SpectrumEffectFluid("spectrum:sludge", SpectrumFluids.SLUDGE.get().getSource()) {
 			@Override
 			public void affectDrinker(FluidIngredientWrapper FluidIngredientWrapper, Level world, Entity entity) {
 				if (entity instanceof LivingEntity livingEntity) {
@@ -43,7 +43,7 @@ public class TravelersBackpackCompat extends SpectrumIntegrationPacks.ModIntegra
 			
 		});
 		
-		EffectFluidRegistry.registerFluidEffect(new SpectrumEffectFluid("spectrum:liquid_crystal", SpectrumFluids.LIQUID_CRYSTAL.getSource()) {
+		EffectFluidRegistry.registerFluidEffect(new SpectrumEffectFluid("spectrum:liquid_crystal", SpectrumFluids.LIQUID_CRYSTAL.get().getSource()) {
 			@Override
 			public void affectDrinker(FluidIngredientWrapper fluidStack, Level world, Entity entity) {
 				if (entity instanceof Player player) {
@@ -52,7 +52,7 @@ public class TravelersBackpackCompat extends SpectrumIntegrationPacks.ModIntegra
 			}
 		});
 		
-		EffectFluidRegistry.registerFluidEffect(new SpectrumEffectFluid("spectrum:midnight_solution", SpectrumFluids.MIDNIGHT_SOLUTION.getSource()) {
+		EffectFluidRegistry.registerFluidEffect(new SpectrumEffectFluid("spectrum:midnight_solution", SpectrumFluids.MIDNIGHT_SOLUTION.get().getSource()) {
 			@Override
 			public void affectDrinker(FluidIngredientWrapper fluidStack, Level world, Entity entity) {
 				if (entity instanceof Player player) {
@@ -75,7 +75,7 @@ public class TravelersBackpackCompat extends SpectrumIntegrationPacks.ModIntegra
 			}
 		});
 		
-		EffectFluidRegistry.registerFluidEffect(new SpectrumEffectFluid("spectrum:dragonrot", SpectrumFluids.DRAGONROT.getSource()) {
+		EffectFluidRegistry.registerFluidEffect(new SpectrumEffectFluid("spectrum:dragonrot", SpectrumFluids.DRAGONROT.get().getSource()) {
 			@Override
 			public void affectDrinker(FluidIngredientWrapper fluidStack, Level world, Entity entity) {
 				if (entity instanceof LivingEntity livingEntity) {

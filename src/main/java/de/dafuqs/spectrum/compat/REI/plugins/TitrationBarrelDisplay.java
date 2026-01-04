@@ -10,6 +10,7 @@ import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.client.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
+import net.neoforged.neoforge.fluids.crafting.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -41,7 +42,7 @@ public class TitrationBarrelDisplay extends GatedSpectrumDisplay {
 	
 	public static List<EntryIngredient> buildInputs(ITitrationBarrelRecipe recipe) {
 		List<EntryIngredient> inputs = REIHelper.toEntryIngredients(recipe.getIngredientStacks());
-		if (recipe.getFluidInput() != FluidIngredient.EMPTY) {
+		if (recipe.getFluidInput() != FluidIngredient.empty()) {
 			inputs.add(FluidIngredientREI.into(recipe.getFluidInput()));
 		}
 		return inputs;

@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.compat.REI;
 import de.dafuqs.spectrum.api.recipe.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
+import net.neoforged.neoforge.fluids.crafting.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -15,14 +16,11 @@ public class REIHelper {
 	}
 	
 	public static EntryIngredient ofIngredientStack(@NotNull IngredientStack ingredientStack) {
-		return EntryIngredients.ofItemStacks(ingredientStack.getMatchingStacks());
+		return EntryIngredients.ofItemStacks(ingredientStack.getItems().toList());
 	}
 	
 	public static EntryIngredient ofFluidIngredient(FluidIngredient fluidIngredient) {
-		if (fluidIngredient.isTag()) {
-			return EntryIngredients.ofFluidTag(fluidIngredient.tag().get());
-		}
-		return EntryIngredients.of(fluidIngredient.fluid().get());
+		return EntryIngredient.of(Arrays.stream(fluidIngredient.getStacks()).map(stack -> EntryStacks.of(stack.getFluid(), stack.getAmount())).toList());
 	}
 	
 }

@@ -12,12 +12,15 @@ import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.client.resources.model.*;
+import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import net.neoforged.api.distmarker.*;
+import net.neoforged.neoforge.client.extensions.common.*;
+import net.neoforged.neoforge.client.textures.*;
 import net.neoforged.neoforge.fluids.*;
+import org.jetbrains.annotations.*;
 
 
 public class CrystallarieumBlockEntityRenderer<T extends CrystallarieumBlockEntity> implements BlockEntityRenderer<T> {
@@ -41,7 +44,7 @@ public class CrystallarieumBlockEntityRenderer<T extends CrystallarieumBlockEnti
 	}
 	
 	@Override
-	public void render(CrystallarieumBlockEntity crystal, float tickDelta, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay) {
+	public void render(CrystallarieumBlockEntity crystal, float tickDelta, @NotNull PoseStack matrices, @NotNull MultiBufferSource vertexConsumers, int light, int overlay) {
 		if (crystal.animator == null)
 			return;
 		
@@ -55,19 +58,19 @@ public class CrystallarieumBlockEntityRenderer<T extends CrystallarieumBlockEnti
 		if (!fluid.isEmpty()) {
 			
 			matrices.pushPose();
-			TextureAtlasSprite sprite = FluidIngredientRendering.getSprite(fluid);
-			assert sprite != null;
+			IClientFluidTypeExtensions fluidTypeExtensions = IClientFluidTypeExtensions.of(fluid.getFluid());
+			TextureAtlasSprite sprite = FluidSpriteCache.getSprite(fluidTypeExtensions.getStillTexture(fluid));
 			
-			var pos = crystal.getBlockPos().above();
-			var luminance = FluidIngredientAttributes.getLuminance(fluid);
-			var skylight = crystal.getLevel().getBrightness(LightLayer.BLOCK, pos);
-			var glow = LightTexture.pack(Math.max(luminance, skylight), crystal.getLevel().getBrightness(LightLayer.SKY, pos));
+			BlockPos pos = crystal.getBlockPos().above();
+			int luminance = fluid.getFluidType().getLightLevel(fluid);
+			int skylight = crystal.getLevel().getBrightness(LightLayer.BLOCK, pos);
+			int glow = LightTexture.pack(Math.max(luminance, skylight), crystal.getLevel().getBrightness(LightLayer.SKY, pos));
 			
 			boolean full = crystal.fluidStorage.getFluidAmount() == crystal.fluidStorage.getCapacity();
 			float y = full ? 0.975F : 0.94F;
 			int rim = full ? 1 : 2;
 			
-			int[] colors = FluidRendering.unpackColorOf(fluid, crystal);
+			int[] colors = FluidRendering.unpackColor(fluidTypeExtensions.getTintColor(fluid.getFluid().defaultFluidState(), crystal.getLevel(), crystal.getBlockPos()));
 			FluidRendering.renderFluid(vertexConsumers.getBuffer(RenderType.translucent()), matrices.last().pose(), sprite, glow, overlay, rim, 16 - rim, y, rim, 16 - rim, colors);
 			
 			matrices.popPose();

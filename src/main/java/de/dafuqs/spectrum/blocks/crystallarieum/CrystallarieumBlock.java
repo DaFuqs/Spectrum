@@ -17,6 +17,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
+import net.neoforged.neoforge.fluids.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -86,8 +87,9 @@ public class CrystallarieumBlock extends InWorldInteractionBlock implements Slot
 					}
 					return ItemInteractionResult.CONSUME;
 				} else {
-					if (ContainerItemContext.forPlayerInteraction(player, hand).find(FluidStorage.ITEM) != null) {
-						FluidStorageUtil.interactWithFluidStorage(crystallarieumBlockEntity.fluidStorage, player, hand);
+					if (FluidUtil.interactWithFluidHandler(player, hand, crystallarieumBlockEntity.fluidStorage)) {
+						crystallarieumBlockEntity.updateInClientWorld();
+						return ItemInteractionResult.CONSUME;
 					}
 					
 					// hand is full and inventory is empty: add

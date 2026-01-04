@@ -34,7 +34,7 @@ public class CrystallarieumEmiRecipeGated extends GatedSpectrumEmiRecipe<Crystal
 	@Override
 	public void addUnlockedWidgets(WidgetHolder widgets) {
 		widgets.addSlot(inputs.getFirst(), 0, 0);
-		widgets.addSlot(EmiStack.of(recipe.getFluidMedium().getFluid()), 0, 18);
+		widgets.addSlot(EmiStack.of(recipe.getFluidIngredient().getFluid()), 0, 18);
 		
 		widgets.addSlot(EmiStack.of(SpectrumBlocks.CRYSTALLARIEUM.asStackWithColor(recipe.getInkColor())), 20, 18).drawBack(false);
 		

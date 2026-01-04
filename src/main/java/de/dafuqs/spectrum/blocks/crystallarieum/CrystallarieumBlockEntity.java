@@ -23,7 +23,6 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.neoforged.neoforge.fluids.capability.templates.*;
-import net.neoforged.neoforge.fluids.crafting.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -91,8 +90,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		if (currentRecipe == null) {
 			animator.swapState(FlowStates.INACTIVE);
 		} else {
-			if (fluidStorage.variant.equals(currentRecipe.value().getFluidMedium()) ||
-					inkStorage.getEnergy(currentRecipe.value().getInkColor()) > 0) {
+			if (currentRecipe.value().getFluidIngredient().test(fluidStorage.getFluid()) && inkStorage.getEnergy(currentRecipe.value().getInkColor()) > 0) {
 				animator.swapState(FlowStates.ACTIVE);
 			} else {
 				animator.swapState(FlowStates.IDLE);
@@ -127,10 +125,8 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 			return;
 		}
 		
-		if (!crystallarieum.fluidStorage.variant.equals(recipe.value().getFluidMedium()) ||
-				crystallarieum.inkStorage.getEnergy(recipe.value().getInkColor()) == 0) {
-			if (crystallarieum.canWork)
-				crystallarieum.canWork = false;
+		if (crystallarieum.canWork && (!recipe.value().getFluidIngredient().test(crystallarieum.fluidStorage.getFluid()) || crystallarieum.inkStorage.getEnergy(recipe.value().getInkColor()) == 0)) {
+			crystallarieum.canWork = false;
 			return;
 		}
 		
@@ -213,9 +209,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 			this.tickLooper = TickLooper.readNbt(nbt.getCompound("Looper"));
 		}
 		
-		this.fluidStorage.variant = CodecHelper.fromNbt(FluidIngredient.CODEC, nbt.get("FluidIngredient"), FluidIngredient.blank());
-		this.fluidStorage.amount = nbt.getLong("FluidAmount");
-		
+		this.fluidStorage.readFromNBT(registryLookup, nbt);
 		this.canWork = nbt.getBoolean("CanWork");
 		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
 		this.currentCatalyst = CrystallarieumCatalyst.EMPTY;
@@ -233,9 +227,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		CodecHelper.writeNbt(nbt, "InkStorage", InkStorageComponent.CODEC, new InkStorageComponent(this.inkStorage));
 		nbt.put("Looper", this.tickLooper.toNbt());
 		
-		CodecHelper.writeNbt(nbt, "FluidIngredient", FluidIngredient.CODEC, this.fluidStorage.variant);
-		nbt.putLong("FluidAmount", this.fluidStorage.amount);
-		
+		this.fluidStorage.writeToNBT(registryLookup, nbt);
 		nbt.putBoolean("CanWork", this.canWork);
 		nbt.putInt("CurrentGrowthStageDuration", this.currentGrowthStageTicks);
 		PlayerOwned.writeOwnerUUID(nbt, this.ownerUUID);

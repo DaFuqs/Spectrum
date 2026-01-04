@@ -2,7 +2,8 @@ package de.dafuqs.spectrum.compat.REI;
 
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
-import net.minecraft.world.level.material.*;
+import net.neoforged.neoforge.fluids.*;
+import net.neoforged.neoforge.fluids.crafting.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -10,29 +11,21 @@ import java.util.*;
 import static net.minecraft.world.level.material.Fluids.*;
 
 public class FluidIngredientREI {
-    // ALWAYS pass FluidIngredient.EMPTY INSTEAD OF null
-    // DO NOT pass(OR EVEN USE AT ALL) hacked-in weird Ingredients.
-    // Only use ones provided by FluidIngredient.of() or FluidIngredient.EMPTY.
-    public static EntryIngredient into(@NotNull FluidIngredient ingredient) {
+	
+	public static EntryIngredient into(@NotNull FluidIngredient ingredient) {
         Objects.requireNonNull(ingredient);
         // Return empty stack if ingredient is empty.
         // Semi-redundant: the sole caller of this *checks if input is empty*.
-        if (ingredient == FluidIngredient.EMPTY)
+		if (ingredient == FluidIngredient.empty())
             return EntryIngredients.of(EMPTY);
-
-        if (ingredient.fluid().isPresent())
-            return EntryIngredients.of(ingredient.fluid().get());
-        // NOTE: Using EMIs fluid filter for parity.
-        if (ingredient.tag().isPresent())
-            return EntryIngredients.ofTag(ingredient.tag().get(),
-                    (entry) -> {
-                        Fluid fluid = entry.value();
-						if (!fluid.defaultFluidState().isSource())
-                            return EntryStacks.of(EMPTY);
-                        return EntryStacks.of(fluid);
-                    });
-
-        // UNREACHABLE under normal circumstances!
-        throw new AssertionError("Invalid FluidIngredient object");
+		
+		FluidStack[] stacks = ingredient.getStacks();
+		EntryIngredient.Builder builder = EntryIngredient.builder(stacks.length);
+		
+		for (var stack : stacks) {
+			builder.add(EntryStacks.of(stack.getFluid(), stack.getAmount()));
+		}
+		
+		return builder.build();
     }
 }

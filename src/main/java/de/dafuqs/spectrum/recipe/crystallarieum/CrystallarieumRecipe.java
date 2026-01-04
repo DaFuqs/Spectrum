@@ -120,7 +120,7 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe<SingleRecipeInput>
 		return defaultedList;
 	}
 	
-	public FluidIngredient getFluidMedium() {
+	public FluidIngredient getFluidIngredient() {
 		return medium;
 	}
 	

@@ -155,7 +155,7 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 			level = stack.getOrDefault(SpectrumDataComponentTypes.WORKSTAFF, WorkstaffComponent.DEFAULT).fortuneLevel();
 		} else {
 			int fortuneLevel = SpectrumEnchantmentHelper.getLevel(registryLookup, Enchantments.FORTUNE, stack);
-			stack.update(SpectrumDataComponentTypes.WORKSTAFF, WorkstaffComponent.DEFAULT, comp -> new WorkstaffComponent(comp.canTill(), comp.canShoot(), Math.max(fortuneLevel, 1)));
+			stack.update(SpectrumDataComponentTypes.WORKSTAFF, WorkstaffComponent.DEFAULT, comp -> new WorkstaffComponent(comp.canTill(), comp.canShoot(), Math.max(comp.fortuneLevel(), Math.max(fortuneLevel, 1))));
 		}
 		
 		ItemStack newStack = stack.copy();

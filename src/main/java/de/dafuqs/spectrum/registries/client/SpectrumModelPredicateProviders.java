@@ -49,7 +49,6 @@ public class SpectrumModelPredicateProviders {
 		registerOversizedItemPredicate(SpectrumItems.GLASS_CREST_CROSSBOW);
 		registerOversizedItemPredicate(SpectrumItems.FEROCIOUS_GLASS_CREST_BIDENT);
 		registerOversizedItemPredicate(SpectrumItems.FRACTAL_GLASS_CREST_BIDENT);
-		registerOversizedItemPredicate(SpectrumItems.OMNI_ACCELERATOR);
 		registerOversizedItemPredicate(SpectrumItems.DREAMFLAYER);
 		registerOversizedItemPredicate(SpectrumItems.KNOTTED_SWORD);
 		registerOversizedItemPredicate(SpectrumItems.NECTAR_LANCE);

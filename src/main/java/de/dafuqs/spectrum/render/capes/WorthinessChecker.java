@@ -5,12 +5,8 @@ import java.util.*;
 public class WorthinessChecker {
 
     private static final HashMap<UUID, Entry> PLAYER_MAP = new HashMap<>();
-
-    public static CapeType getCapeType(UUID uuid) {
-        return Optional.ofNullable(PLAYER_MAP.get(uuid)).map(entry -> entry.capeType).orElse(CapeType.NONE);
-    }
-
-    private static void putPlayer(UUID id, CapeType cape) {
+	
+	private static void putPlayer(UUID id, CapeType cape) {
         PLAYER_MAP.put(id, new Entry(id, cape));
     }
 

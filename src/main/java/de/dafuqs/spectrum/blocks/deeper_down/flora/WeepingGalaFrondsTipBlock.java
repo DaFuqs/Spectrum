@@ -1,7 +1,6 @@
-package de.dafuqs.spectrum.blocks.deeper_down;
+package de.dafuqs.spectrum.blocks.deeper_down.flora;
 
 import com.mojang.serialization.*;
-import de.dafuqs.spectrum.blocks.deeper_down.flora.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;

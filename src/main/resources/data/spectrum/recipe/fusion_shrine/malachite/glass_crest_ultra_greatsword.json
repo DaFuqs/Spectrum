@@ -20,12 +20,7 @@
     }
   ],
   "result": {
-    "id": "spectrum:glass_crest_ultra_greatsword",
-    "components": {
-      "enchantments": {
-        "minecraft:sweeping_edge": 4
-      }
-    }
+    "id": "spectrum:glass_crest_ultra_greatsword"
   },
   "required_advancement": "spectrum:unlocks/malachite/glass_crest_ultra_greatsword",
   "start_crafting_effect": "nothing",

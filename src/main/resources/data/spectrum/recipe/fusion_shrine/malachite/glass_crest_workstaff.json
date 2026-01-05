@@ -39,12 +39,7 @@
     }
   ],
   "result": {
-    "id": "spectrum:glass_crest_workstaff",
-    "components": {
-      "enchantments": {
-        "minecraft:fortune": 4
-      }
-    }
+    "id": "spectrum:glass_crest_workstaff"
   },
   "required_advancement": "spectrum:unlocks/malachite/glass_crest_workstaff",
   "start_crafting_effect": "nothing",

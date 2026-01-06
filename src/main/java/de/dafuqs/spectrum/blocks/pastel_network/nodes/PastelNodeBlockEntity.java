@@ -328,13 +328,10 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		return canTransfer && notPowered;
 	}
 
-	public void markTransferred() {
-		if (triggerTransfer) {
-			markTriggered();
-		}
-
-		this.lastTransferTick = world.getTime();
-		this.markDirty();
+	public void markTransferred(boolean setTransferCooldown) {
+		if (triggerTransfer) { markTriggered(); }
+		if (setTransferCooldown && world != null) { this.lastTransferTick = world.getTime(); }
+		if (triggerTransfer || setTransferCooldown) { this.markDirty(); }
 	}
 
 	@Override

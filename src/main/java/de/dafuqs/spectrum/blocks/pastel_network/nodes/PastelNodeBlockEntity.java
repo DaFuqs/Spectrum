@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.blocks.pastel_network.nodes;
 import com.google.common.base.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
-import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.pastel.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
@@ -26,7 +25,6 @@ import net.minecraft.network.protocol.*;
 import net.minecraft.network.protocol.game.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
-import net.minecraft.server.network.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
@@ -41,8 +39,8 @@ import net.minecraft.world.level.block.state.properties.*;
 import org.apache.commons.lang3.*;
 import org.jetbrains.annotations.*;
 
-import java.util.Optional;
 import java.util.*;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigurable, ExtendedScreenHandlerFactory<FilterConfigurable.ExtendedData>, PastelUpgradeable {
@@ -320,13 +318,16 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		return canTransfer && notPowered;
 	}
 	
-	public void markTransferred() {
+	public void markTransferred(boolean setTransferCooldown) {
 		if (triggerTransfer) {
 			markTriggered();
 		}
-		
-		this.lastTransferTick = level.getGameTime();
-		this.setChanged();
+		if (setTransferCooldown && level != null) {
+			this.lastTransferTick = level.getGameTime();
+		}
+		if (triggerTransfer || setTransferCooldown) {
+			this.setChanged();
+		}
 	}
 	
 	@Override

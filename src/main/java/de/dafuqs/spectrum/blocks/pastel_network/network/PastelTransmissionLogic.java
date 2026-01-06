@@ -147,14 +147,8 @@ public class PastelTransmissionLogic {
 					this.network.addTransmission(transmission, travelTime);
 					PastelTransmissionPayload.sendPastelTransmissionParticle(this.network, travelTime, transmission);
 					
-					if (transferMode == TransferMode.PULL) {
-						destinationNode.markTransferred();
-					} else if (transferMode == TransferMode.PUSH) {
-						sourceNode.markTransferred();
-					} else {
-						destinationNode.markTransferred();
-						sourceNode.markTransferred();
-					}
+					destinationNode.markTransferred(transferMode != TransferMode.PUSH);
+					sourceNode.markTransferred(transferMode != TransferMode.PULL);
 					
 					destinationNode.addItemCountUnderway(transferrableAmount);
 					transaction.commit();

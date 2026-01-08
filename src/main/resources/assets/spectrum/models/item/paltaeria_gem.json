@@ -1,6 +1,15 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "spectrum:item/paltaeria_gem"
-  }
+	"format_version": "1.21.11",
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:item/generated",
+	"textures": {
+		"layer0": "spectrum:item/paltaeria_gem"
+	},
+	"display": {
+		"ground": {
+			"rotation": [0, 0, 180],
+			"translation": [0, -4.5, 0],
+			"scale": [0.5, 0.5, 0.5]
+		}
+	}
 }

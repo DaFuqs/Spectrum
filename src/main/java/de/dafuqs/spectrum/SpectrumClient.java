@@ -28,7 +28,7 @@ import static de.dafuqs.spectrum.SpectrumCommon.*;
 public class SpectrumClient implements ClientModInitializer, RevealingCallback, ClientAdvancementPacketCallback {
 
 	public static final SkyLerper skyLerper = new SkyLerper();
-
+	
 	@Override
 	public void onInitializeClient() {
 		logInfo("Starting Client Startup");
@@ -84,7 +84,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 
 		RevealingCallback.register(this);
 		ClientAdvancementPacketCallback.registerCallback(this);
-
+		
 		logInfo("Client startup completed!");
 	}
 

@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.entity.entity;
 
 import com.google.common.collect.*;
 import de.dafuqs.additionalentityattributes.*;
-import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.entity.ai.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
@@ -40,14 +39,23 @@ import java.util.*;
 import java.util.function.*;
 
 public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttackMob {
-
-	public static @Nullable MonstrosityEntity theOneAndOnly = null;
+	
+	private static @Nullable MonstrosityEntity theOneAndOnly = null;
+	
+	public static @Nullable MonstrosityEntity getTheOneAndOnly() {
+		if (theOneAndOnly != null && theOneAndOnly.isRemoved()) {
+			theOneAndOnly = null;
+		}
+		return theOneAndOnly;
+	}
+	
 	public static final Predicate<LivingEntity> ENTITY_TARGETS = (entity) -> {
 		if (entity instanceof Player player) {
 			if (player.isSpectator() || player.isCreative()) {
 				return false;
 			}
-			return !AdvancementHelper.hasAdvancement(player, SpectrumAdvancements.KILLED_MONSTROSITY);
+			return true;
+			//return !AdvancementHelper.hasAdvancement(player, SpectrumAdvancements.KILLED_MONSTROSITY);
 		}
 		return false;
 	};
@@ -77,7 +85,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 			this.remove(RemovalReason.DISCARDED);
 		}
 	}
-
+	
 	@Override
 	public void spawnAnim() {
 		super.spawnAnim();

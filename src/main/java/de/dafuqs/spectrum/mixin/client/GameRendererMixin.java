@@ -4,7 +4,7 @@ import com.llamalad7.mixinextras.injector.*;
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.deeper_down.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.spectrum.registries.client.*;
+import de.dafuqs.spectrum.shaders.*;
 import net.minecraft.client.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.world.entity.*;
@@ -33,12 +33,9 @@ public abstract class GameRendererMixin {
 		RenderSystem.disableBlend();
 		RenderSystem.disableDepthTest();
 		RenderSystem.resetTextureMatrix();
+		
 		SpectrumShaders.colorGradingPostProcess.ifPresent(pps -> pps.process(tickCounter.getGameTimeDeltaTicks()));
-	}
-	
-	@Inject(method = "close", at = @At("TAIL"))
-	private void closeShaders(CallbackInfo ci) {
-		SpectrumShaders.clearDimensionShaders();
+		SpectrumShaders.noiseEdgePostProcess.ifPresent(pps -> pps.process(tickCounter.getGameTimeDeltaTicks()));
 	}
 	
 	@Inject(method = "resize", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/LevelRenderer;resize(II)V"))

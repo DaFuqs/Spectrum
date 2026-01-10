@@ -1,0 +1,12 @@
+{
+  "targets": [
+    "swap"
+  ],
+  "passes": [
+    {
+      "name": "spectrum:noise_edge",
+      "intarget": "minecraft:main",
+      "outtarget": "swap"
+    }
+  ]
+}

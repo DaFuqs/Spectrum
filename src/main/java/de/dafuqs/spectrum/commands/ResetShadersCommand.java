@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.commands;
 
 import com.mojang.brigadier.tree.*;
-import de.dafuqs.spectrum.registries.client.*;
+import de.dafuqs.spectrum.shaders.*;
 import net.fabricmc.api.*;
 import net.fabricmc.loader.api.*;
 import net.minecraft.commands.*;
@@ -18,6 +18,6 @@ public class ResetShadersCommand {
 	}
 	
 	private static void execute() {
-		SpectrumShaders.clearDimensionShaders();
+		SpectrumShaders.clearShaders();
 	}
 }

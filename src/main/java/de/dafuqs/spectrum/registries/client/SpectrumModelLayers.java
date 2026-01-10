@@ -24,7 +24,6 @@ public class SpectrumModelLayers {
 	public static final ModelLayerLocation WOOLY_PIG_WOOL = new ModelLayerLocation(SpectrumCommon.locate("egg_laying_wooly_pig"), "wool");
 	
 	public static final ModelLayerLocation PRESERVATION_TURRET = new ModelLayerLocation(SpectrumCommon.locate("preservation_turret"), "main");
-	public static final ModelLayerLocation MONSTROSITY = new ModelLayerLocation(SpectrumCommon.locate("monstrosity"), "main");
 	public static final ModelLayerLocation LIZARD_SCALES = new ModelLayerLocation(SpectrumCommon.locate("lizard"), "main");
 	public static final ModelLayerLocation LIZARD_FRILLS = new ModelLayerLocation(SpectrumCommon.locate("lizard"), "frills");
 	public static final ModelLayerLocation LIZARD_HORNS = new ModelLayerLocation(SpectrumCommon.locate("lizard"), "horns");

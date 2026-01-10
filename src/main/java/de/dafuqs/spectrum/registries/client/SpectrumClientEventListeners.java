@@ -17,6 +17,7 @@ import de.dafuqs.spectrum.particle.render.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.render.*;
+import de.dafuqs.spectrum.shaders.*;
 import de.dafuqs.spectrum.sound.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.fabricmc.api.*;
@@ -125,6 +126,7 @@ public class SpectrumClientEventListeners {
 		
 		ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> SpectrumColorProviders.registerClient());
 		ClientPlayConnectionEvents.DISCONNECT.register((clientPacketListener, minecraft) -> {
+			SpectrumShaders.clearShaders();
 			Pastel.clearClientInstance();
 			UnlockToastManager.clear();
 		});
@@ -141,9 +143,9 @@ public class SpectrumClientEventListeners {
 		
 		ClientWorldEvents.AFTER_CLIENT_WORLD_CHANGE.register((client, world) -> {
 			if (SpectrumCommon.CONFIG.PostProcess && world.dimension().equals(SpectrumDimensions.DIMENSION_KEY)) {
-				initializeColorGrading(client);
+				SpectrumShaders.initializeShaders(client);
 			} else {
-				SpectrumShaders.clearDimensionShaders();
+				SpectrumShaders.clearShaders();
 			}
 		});
 		
@@ -161,20 +163,20 @@ public class SpectrumClientEventListeners {
 			HowlingSpireEffects.clientTick(world, cameraEntity, biome);
 			DimensionRenderEffects.clientTick(world, cameraEntity, biome);
 			
-			// Looking at a universe
+			// Looking at a Universe Spyhole
 			if (lookingAtUniverseSpyholeTicks > 0 && lookingAtUniverseSpyholeHitResult != null) {
 				playLookingAtUniverseSpyholeParticles(cameraEntity, world);
 			}
 			
-			if (SpectrumCommon.CONFIG.PostProcess) {
+			if (SpectrumCommon.CONFIG.PostProcess && world.dimension().equals(SpectrumDimensions.DIMENSION_KEY)) {
 				if (!postProcessWasOn) {
-					initializeColorGrading(client);
+					SpectrumShaders.initializeShaders(client);
 					postProcessWasOn = true;
 				}
 				
-				SpectrumShaders.updateDimensionShaders(world);
+				SpectrumShaders.updateShaders(client, world);
 			} else if (postProcessWasOn) {
-				SpectrumShaders.clearDimensionShaders();
+				SpectrumShaders.clearShaders();
 				postProcessWasOn = false;
 			}
 		});
@@ -205,12 +207,6 @@ public class SpectrumClientEventListeners {
 					world.addParticle(particleType, pos.getX() + d, pos.getY() + e, pos.getZ() + f, 0.0, 0.0, 0.0);
 				}
 			}
-		}
-	}
-	
-	private static void initializeColorGrading(Minecraft client) {
-		if (SpectrumShaders.colorGradingPostProcess.isEmpty()) {
-			SpectrumShaders.colorGradingPostProcess = SpectrumShaders.loadPostProcess(client, SpectrumShaders.COLOR_GRADING_ID);
 		}
 	}
 	

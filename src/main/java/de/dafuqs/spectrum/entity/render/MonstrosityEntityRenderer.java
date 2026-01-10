@@ -20,6 +20,18 @@ public class MonstrosityEntityRenderer extends EntityRenderer<MonstrosityEntity>
 	
 	private static final Style STYLE = Style.EMPTY.withObfuscated(true);
 	
+	private static final int MAX_FLAVOR_TEXT_EXCLUSIVE = 13;
+	private static final float FLAVOR_TEXT_CHANCE = 0.5F;
+	private static final Component[] TEXTS;
+	
+	
+	static {
+		TEXTS = new Component[MAX_FLAVOR_TEXT_EXCLUSIVE];
+		for (int i = 0; i < MAX_FLAVOR_TEXT_EXCLUSIVE; i++) {
+			TEXTS[i] = Component.translatable("entity.spectrum.monstrosity.text" + i);
+		}
+	}
+	
 	public MonstrosityEntityRenderer(EntityRendererProvider.Context context) {
 		super(context);
 	}
@@ -37,17 +49,22 @@ public class MonstrosityEntityRenderer extends EntityRenderer<MonstrosityEntity>
 		Matrix4f matrix4f = poseStack.last().pose();
 		Font font = this.getFont();
 		
-		bbWidth *= 10;
 		int maxYOffset = (int) bbHeight * 20;
 		
 		RandomSource random = entity.level().random;
 		int amount = (int) bbHeight * 8;
+		FormattedCharSequence sequence;
 		for (int i = 0; i < amount; i++) {
 			int yOffset = random.nextIntBetweenInclusive(-maxYOffset, maxYOffset);
-			int length = (int) Math.max(bbWidth * 0.5F, random.nextIntBetweenInclusive((int) (bbWidth * 0.5F), (int) (bbWidth * 1.2F)) - Math.abs(yOffset) / 4);
-			FormattedCharSequence sequence = FormattedCharSequence.forward(new String(new char[length]).replace("\0", "0"), STYLE);
 			
-			float xOffset = -font.width(sequence) / 2.0F;
+			if (random.nextFloat() < FLAVOR_TEXT_CHANCE) {
+				sequence = TEXTS[random.nextInt(MAX_FLAVOR_TEXT_EXCLUSIVE)].getVisualOrderText();
+			} else {
+				int length = (int) Math.max(bbWidth * 0.5F, random.nextIntBetweenInclusive((int) (bbWidth * 5F), (int) (bbWidth * 12F - Math.abs(yOffset) / 4)));
+				sequence = FormattedCharSequence.forward(new String(new char[length]).replace("\0", "0"), STYLE);
+			}
+			
+			float xOffset = -font.width(sequence) / 2.0F + random.nextIntBetweenInclusive((int) -bbWidth * 20, (int) bbWidth * 20);
 			
 			font.drawInBatch(sequence, xOffset, yOffset, -1, false, matrix4f, bufferSource, Font.DisplayMode.NORMAL, 0, 15728880);
 		}

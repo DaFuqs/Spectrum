@@ -20,7 +20,7 @@ public class MonstrosityEntityRenderer extends EntityRenderer<MonstrosityEntity>
 	
 	private static final Style STYLE = Style.EMPTY.withObfuscated(true);
 	
-	private static final int MAX_FLAVOR_TEXT_EXCLUSIVE = 13;
+	private static final int MAX_FLAVOR_TEXT_EXCLUSIVE = 19;
 	private static final float FLAVOR_TEXT_CHANCE = 0.5F;
 	private static final Component[] TEXTS;
 	

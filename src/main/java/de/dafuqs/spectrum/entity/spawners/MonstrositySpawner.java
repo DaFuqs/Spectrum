@@ -20,7 +20,7 @@ public class MonstrositySpawner implements CustomSpawner {
 	public int tick(ServerLevel world, boolean spawnMonsters, boolean spawnAnimals) {
 		// if we already have a Monstrosity that has a valid target
 		// If that is true, let that one do its thing
-		MonstrosityEntity monstrosity = MonstrosityEntity.getTheOneAndOnly();
+		MonstrosityEntity monstrosity = MonstrosityEntity.getTheOneAndOnlyServer();
 		if (monstrosity != null && monstrosity.hasValidTarget()) {
 			return 0;
 		}

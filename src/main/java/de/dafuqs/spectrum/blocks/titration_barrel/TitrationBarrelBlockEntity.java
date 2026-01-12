@@ -216,7 +216,9 @@ public class TitrationBarrelBlockEntity extends BlockEntity implements FluidStac
 		
 		if (player != null) {
 			SpectrumAdvancementCriteria.TITRATION_BARREL_TAPPING.trigger((ServerPlayer) player, harvestedStack, daysSealed, inventoryCount);
-			player.displayClientMessage(message, true);
+			if (message != null) { // if you read `Condition is always true` here, Your IDE is lying to you
+				player.displayClientMessage(message, true);
+			}
 		}
 		
 		if (shouldReset) {

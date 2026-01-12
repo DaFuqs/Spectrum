@@ -10,6 +10,8 @@ import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.network.protocol.*;
+import net.minecraft.network.protocol.game.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
@@ -61,8 +63,8 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 		}
 	}
 	
-	public void setData(LivingEntity livingEntity, @NotNull ItemStack memoryStack) {
-		if (livingEntity instanceof Player playerEntity) {
+	public void setData(LivingEntity placer, @NotNull ItemStack memoryStack) {
+		if (placer instanceof Player playerEntity) {
 			setOwner(playerEntity);
 			if (playerEntity instanceof ServerPlayer serverPlayer && MemoryItem.getEntityType(memoryStack).isEmpty()) {
 				// TODO: can be moved to a 'placed_block' criterion, once they are able to check for existence of components
@@ -71,14 +73,18 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 		}
 		
 		if (memoryStack.getItem() instanceof MemoryItem) {
-			this.memoryItemStack = memoryStack.copy();
-			this.memoryItemStack.setCount(1);
+			this.memoryItemStack = memoryStack.copyWithCount(1);
 		}
 		
-		if (livingEntity.level() instanceof ServerLevel serverWorld)
-			serverWorld.getChunkSource().blockChanged(worldPosition);
-		
 		this.setChanged();
+	}
+	
+	public void setChanged() {
+		super.setChanged();
+		
+		if (level instanceof ServerLevel serverLevel) {
+			serverLevel.getChunkSource().blockChanged(worldPosition);
+		}
 	}
 	
 	@Override
@@ -184,7 +190,13 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 		}
 	}
 	
-	// Called when the chunk is first loaded to initialize this be
+	@Nullable
+	@Override
+	public Packet<ClientGamePacketListener> getUpdatePacket() {
+		return ClientboundBlockEntityDataPacket.create(this);
+	}
+	
+	// Called by ClientboundBlockEntityDataPacket when the chunk is first loaded to initialize this be
 	@Override
 	public CompoundTag getUpdateTag(HolderLookup.Provider registryLookup) {
 		CompoundTag nbtCompound = new CompoundTag();

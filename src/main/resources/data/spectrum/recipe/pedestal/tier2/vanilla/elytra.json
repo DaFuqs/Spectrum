@@ -1,0 +1,29 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 600,
+  "tier": "simple",
+  "colors": {
+    "spectrum:magenta": 8,
+    "spectrum:yellow": 8,
+    "spectrum:cyan": 8,
+    "spectrum:black": 0,
+    "spectrum:white": 0
+  },
+  "experience": 4.0,
+  "pattern": [
+    "CGC",
+    "MPM",
+    "MPM"
+  ],
+  "key": {
+    "G": "spectrum:star_fragment",
+    "P": "spectrum:stardust",
+    "M": "spectrum:resplendent_feather",
+    "C": "minecraft:phantom_membrane"
+  },
+  "result": {
+    "id": "minecraft:elytra",
+    "count": 1
+  },
+  "required_advancement": "spectrum:unlocks/equipment/early_elytra"
+}

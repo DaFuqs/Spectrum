@@ -4038,9 +4038,10 @@
   "book.spectrum.guidebook.mundane_items.spectral_arrow.text": "Prettier in amber",
   "book.spectrum.guidebook.mundane_items.bell.text": "Alluring to foxes",
   "book.spectrum.guidebook.mundane_items.name_tag.text": "I have no idea where the clover goes",
-  "book.spectrum.guidebook.mundane_items.elytra.text": "According to all known laws of aviation, these aren't wings.",
+  "book.spectrum.guidebook.mundane_items.early_elytra.text": "*According to all known laws of aviation, these are wings.*",
+  "book.spectrum.guidebook.mundane_items.elytra.text": "*According to all known laws of aviation, these aren't wings.*",
   "book.spectrum.guidebook.mundane_items.trident.text": "I heard something about bedrock and finding these, but I just got swarmed by bugs",
-  "book.spectrum.guidebook.mundane_items.heavy_core.text": "Breach me,,,",
+  "book.spectrum.guidebook.mundane_items.heavy_core.text": "*Breach me*",
 
   "book.spectrum.guidebook.vanilla_enchantments.name": "Vanilla Enchantments",
   "book.spectrum.guidebook.vanilla_enchantments.page0.text": "The Enchanter is also able to create most enchantments I'm already familiar with.\\\n\\\nThose Enchantments can be upgraded to higher levels, too – using the same [Pigment](entry://general/pigment) used for creating it.",

@@ -16,7 +16,7 @@
       "trigger": "spectrum:loot_function_trigger",
       "conditions": {
         "tags": [
-          "spectrum:mob_heads"
+          "spectrum:mob_head"
         ]
       }
     },

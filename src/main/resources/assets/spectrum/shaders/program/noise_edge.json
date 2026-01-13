@@ -54,6 +54,14 @@
       "values": [
         0.0
       ]
+    },
+    {
+      "name": "BlockSize",
+      "type": "float",
+      "count": 1,
+      "values": [
+        8.0
+      ]
     }
   ]
 }

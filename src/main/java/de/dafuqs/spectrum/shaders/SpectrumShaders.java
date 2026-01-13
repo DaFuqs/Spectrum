@@ -75,7 +75,7 @@ public class SpectrumShaders {
 		MonstrosityEntity monstrosity = MonstrosityEntity.getTheOneAndOnly();
 		if(monstrosity != null) {
 			float distance = cameraEntity.distanceTo(monstrosity) - monstrosity.getBbWidth();
-			float alpha = 1.0F - distance * 0.05F;
+			float alpha = 1.0F - distance * 0.025F;
 			if(alpha > 0) {
 				intensity = alpha;
 			}

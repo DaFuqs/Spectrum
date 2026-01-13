@@ -238,7 +238,7 @@ public class DimensionRenderEffects {
 		fogBuilder.put(SpectrumBiomes.RAZOR_EDGE, 0.65F);
 		fogBuilder.put(SpectrumBiomes.DEEP_DRIPSTONE_CAVES, 0.25F);
 		fogBuilder.put(SpectrumBiomes.DEEP_BARRENS, 0.55F);
-		fogBuilder.put(SpectrumBiomes.BLACK_LANGAST, 0.0125F);
+		fogBuilder.put(SpectrumBiomes.BLACK_LANGAST, 0.025F);
 		FOG_DARKENING_MULTIPLIERS = fogBuilder.build();
 		
 		// These are percents of view distance (capped to 192 blocks for far)

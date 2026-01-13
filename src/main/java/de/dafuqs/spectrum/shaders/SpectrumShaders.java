@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.shaders;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.deeper_down.*;
+import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.*;
 import net.minecraft.client.multiplayer.*;
@@ -22,16 +23,7 @@ public class SpectrumShaders {
 	
 	private static final String[] COLOR_GRADING_UNIFORMS = new String[] {"Saturation", "Rubedo", "ColorTemperature", "DesaturateThreshold", "BloomThreshold"};
 	
-	public static void initializeShaders(Minecraft client) {
-		if (colorGradingPostProcess.isEmpty()) {
-			colorGradingPostProcess = SpectrumShaders.loadPostProcess(client, SpectrumShaders.COLOR_GRADING_ID);
-		}
-		if (noiseEdgePostProcess.isEmpty()) {
-			noiseEdgePostProcess = SpectrumShaders.loadPostProcess(client, SpectrumShaders.NOISE_EDGE_ID);
-		}
-	}
-	
-	public static Optional<PostChain> loadPostProcess(Minecraft client, ResourceLocation id) {
+	private static Optional<PostChain> loadPostProcess(Minecraft client, ResourceLocation id) {
 		PostChain post = null;
 		try {
 			post = new PostChain(client.getTextureManager(), client.getResourceManager(), client.getMainRenderTarget(), id);
@@ -46,9 +38,22 @@ public class SpectrumShaders {
 		return Optional.ofNullable(post);
 	}
 	
+	public static void resizeShaders(int width, int height) {
+		colorGradingPostProcess.ifPresent(pps -> pps.resize(width, height));
+		noiseEdgePostProcess.ifPresent(pps -> pps.resize(width, height));
+	}
+	
 	public static void updateShaders(Minecraft client, ClientLevel world) {
 		tickNoise(client);
-		tickColorGrading(world);
+		if (world.dimension().equals(SpectrumDimensions.DIMENSION_KEY)) {
+			if (colorGradingPostProcess.isEmpty()) {
+				colorGradingPostProcess = SpectrumShaders.loadPostProcess(client, SpectrumShaders.COLOR_GRADING_ID);
+			}
+			tickColorGrading(world);
+		} else if (colorGradingPostProcess.isPresent()) {
+			colorGradingPostProcess.get().close();
+			colorGradingPostProcess = Optional.empty();
+		}
 	}
 	
 	private static void tickColorGrading(ClientLevel world) {
@@ -61,39 +66,31 @@ public class SpectrumShaders {
 		}
 	}
 	
-	public static void clearShaders() {
-		if (colorGradingPostProcess.isPresent()) {
-			colorGradingPostProcess.get().close();
-			colorGradingPostProcess = Optional.empty();
-		}
-		if (noiseEdgePostProcess.isPresent()) {
-			noiseEdgePostProcess.get().close();
-			noiseEdgePostProcess = Optional.empty();
-		}
-	}
-	
-	public static void resizeShaders(int width, int height) {
-		colorGradingPostProcess.ifPresent(pps -> pps.resize(width, height));
-		noiseEdgePostProcess.ifPresent(pps -> pps.resize(width, height));
-	}
-	
 	public static void tickNoise(Minecraft client) {
 		Entity cameraEntity = client.getCameraEntity();
-		if (cameraEntity == null || noiseEdgePostProcess.isEmpty()) return;
+		if (cameraEntity == null) return;
 		
-		float intensity = 0.5F;
+		float intensity = 0.0F;
 		
-		/*MonstrosityEntity monstrosity = MonstrosityEntity.getTheOneAndOnly();
+		MonstrosityEntity monstrosity = MonstrosityEntity.getTheOneAndOnly();
 		if(monstrosity != null) {
-			float distance = cameraEntity.distanceTo(monstrosity) - monstrosity.getBbHeight();
+			float distance = cameraEntity.distanceTo(monstrosity) - monstrosity.getBbWidth();
 			float alpha = 1.0F - distance * 0.05F;
 			if(alpha > 0) {
 				intensity = alpha;
 			}
-		}*/
+		}
 		
-		noiseEdgePostProcess.get().setUniform("Intensity", intensity);
-		noiseEdgePostProcess.get().setUniform("Time", client.getTimer().getGameTimeDeltaTicks());
+		if (intensity > 0) {
+			if (noiseEdgePostProcess.isEmpty()) {
+				noiseEdgePostProcess = SpectrumShaders.loadPostProcess(client, SpectrumShaders.NOISE_EDGE_ID);
+			}
+			noiseEdgePostProcess.get().setUniform("Intensity", intensity);
+			noiseEdgePostProcess.get().setUniform("Time", client.getTimer().getGameTimeDeltaTicks());
+		} else if (noiseEdgePostProcess.isPresent()) {
+			noiseEdgePostProcess.get().close();
+			noiseEdgePostProcess = Optional.empty();
+		}
 	}
 	
 }

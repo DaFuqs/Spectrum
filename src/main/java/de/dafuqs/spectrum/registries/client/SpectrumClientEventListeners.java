@@ -57,7 +57,6 @@ import java.util.function.*;
 public class SpectrumClientEventListeners {
 	
 	public static final ObjectOpenHashSet<ModelResourceLocation> CUSTOM_ITEM_MODELS = new ObjectOpenHashSet<>();
-	private static boolean postProcessWasOn = SpectrumCommon.CONFIG.PostProcess;
 	
 	private static int lookingAtUniverseSpyholeTicks = 0;
 	private static @Nullable BlockHitResult lookingAtUniverseSpyholeHitResult = null;
@@ -126,7 +125,6 @@ public class SpectrumClientEventListeners {
 		
 		ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> SpectrumColorProviders.registerClient());
 		ClientPlayConnectionEvents.DISCONNECT.register((clientPacketListener, minecraft) -> {
-			SpectrumShaders.clearShaders();
 			Pastel.clearClientInstance();
 			UnlockToastManager.clear();
 		});
@@ -138,14 +136,6 @@ public class SpectrumClientEventListeners {
 			}
 			if (stack.is(SpectrumItemTags.COMING_SOON_TOOLTIP)) {
 				lines.add(Component.translatable("spectrum.tooltip.coming_soon").withStyle(ChatFormatting.RED));
-			}
-		});
-		
-		ClientWorldEvents.AFTER_CLIENT_WORLD_CHANGE.register((client, world) -> {
-			if (SpectrumCommon.CONFIG.PostProcess && world.dimension().equals(SpectrumDimensions.DIMENSION_KEY)) {
-				SpectrumShaders.initializeShaders(client);
-			} else {
-				SpectrumShaders.clearShaders();
 			}
 		});
 		
@@ -168,16 +158,8 @@ public class SpectrumClientEventListeners {
 				playLookingAtUniverseSpyholeParticles(cameraEntity, world);
 			}
 			
-			if (SpectrumCommon.CONFIG.PostProcess && world.dimension().equals(SpectrumDimensions.DIMENSION_KEY)) {
-				if (!postProcessWasOn) {
-					SpectrumShaders.initializeShaders(client);
-					postProcessWasOn = true;
-				}
-				
+			if (SpectrumCommon.CONFIG.PostProcess) {
 				SpectrumShaders.updateShaders(client, world);
-			} else if (postProcessWasOn) {
-				SpectrumShaders.clearShaders();
-				postProcessWasOn = false;
 			}
 		});
 	}

@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.rock_candy;
 
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.particle.effect.*;
@@ -108,9 +109,17 @@ public class SugarStickBlock extends Block implements RockCandy {
 				List<ItemEntity> itemEntities = world.getNonSpectatingEntities(ItemEntity.class, Box.of(Vec3d.ofCenter(pos), ITEM_SEARCH_RANGE, ITEM_SEARCH_RANGE, ITEM_SEARCH_RANGE));
 				Collections.shuffle(itemEntities);
 				for (ItemEntity itemEntity : itemEntities) {
-					// is the item also submerged?
-					// lazy, but mostly accurate and performant way to check if it's the same liquid pool
-					if (!itemEntity.isSubmergedIn(SpectrumFluidTags.LIQUID_CRYSTAL)) {
+					
+					// This implements checking if the item is submerged at eye level. This is necessary as the mixin went haywire
+					// in a connector environment (TLDR: isSubmergedIn() breaks though mixin transmog with Connector, this fixes it
+					var currentFluidHeight = itemEntity.getBlockStateAtPos().getFluidState().getHeight();
+					var eyePosY = itemEntity.getEyePos().y;
+					var entityPosFloorY = Math.floor(itemEntity.getEyePos().y);
+					var entityEyeFloorOffset = eyePosY -  entityPosFloorY;
+					
+					// Checks to see if the checked item is submerged and in liquid crystal, if one of these are false (making this true), continue to next to aiterate.
+					// This is to replace the submerge mixin check, given connector was screwing with its check
+					if (!itemEntity.getBlockStateAtPos().isOf(SpectrumBlocks.LIQUID_CRYSTAL)|| entityEyeFloorOffset > currentFluidHeight) {
 						continue;
 					}
 					

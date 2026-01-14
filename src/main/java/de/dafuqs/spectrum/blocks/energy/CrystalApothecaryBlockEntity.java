@@ -94,6 +94,9 @@ public class CrystalApothecaryBlockEntity extends RandomizableContainerBlockEnti
 			}
 		}
 		
+		List<ItemStack> needsAwarding = new ArrayList<>();
+		int totalNeedsAwarding = 0;
+		
 		// for each of those blocks generate some loot
 		double gameRuleTickModifier = world.getGameRules().getRule(GameRules.RULE_RANDOMTICKING).get() / 3.0;
 		for (Map.Entry<Block, Integer> match : matches.entrySet()) {
@@ -104,10 +107,56 @@ public class CrystalApothecaryBlockEntity extends RandomizableContainerBlockEnti
 			if (compensatedItemCount > 0) {
 				ItemStack compensatedStack = drop.compensatedStack().copy();
 				compensatedStack.setCount(compensatedItemCount);
-				
-				ItemStack remainingStack = InventoryHelper.smartAddToInventory(compensatedStack, blockEntity, null);
-				if (!remainingStack.isEmpty()) {
-					break; // overflow will be voided
+				needsAwarding.add(compensatedStack);
+				totalNeedsAwarding += compensatedItemCount;
+			}
+		}
+		
+		if (needsAwarding.size() <= 1) {
+			for (ItemStack awardStack : needsAwarding) {
+				InventoryHelper.smartAddToInventory(awardStack, blockEntity, null);
+			}
+			return;
+		}
+		
+		for (int slot = 0; slot < blockEntity.size(); slot++) {
+			if (totalNeedsAwarding <= 0) {
+				break;
+			}
+			ItemStack currentStack = blockEntity.getStack(slot);
+			if (currentStack.isEmpty()) {
+				int selector = world.random.nextInt(totalNeedsAwarding);
+				int acc = 0;
+				for (ItemStack awardStack : needsAwarding) {
+					acc += awardStack.getCount();
+					if (selector < acc) {
+						int maxCount = Math.min(blockEntity.getMaxCountPerStack(), awardStack.getMaxCount());
+						int toAward = Math.min(maxCount, awardStack.getCount());
+						ItemStack newStack = awardStack.copy();
+						newStack.setCount(toAward);
+						awardStack.decrement(toAward);
+						blockEntity.setStack(slot, newStack);
+						totalNeedsAwarding -= toAward;
+						break;
+					}
+				}
+			} else {
+				int maxCount = Math.min(blockEntity.getMaxCountPerStack(), currentStack.getMaxCount());
+				if (currentStack.getCount() > maxCount) {
+					continue;
+				}
+				int wantsAdded = maxCount - currentStack.getCount();
+				for (ItemStack awardStack : needsAwarding) {
+					if (wantsAdded <= 0) {
+						break;
+					}
+					if (ItemStack.canCombine(currentStack, awardStack)) {
+						int canAdd = Math.min(wantsAdded, awardStack.getCount());
+						awardStack.decrement(canAdd);
+						currentStack.increment(canAdd);
+						totalNeedsAwarding -= canAdd;
+						wantsAdded -= canAdd;
+					}
 				}
 			}
 		}

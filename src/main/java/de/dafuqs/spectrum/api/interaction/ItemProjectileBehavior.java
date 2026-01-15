@@ -128,7 +128,7 @@ public interface ItemProjectileBehavior {
 				}
 				
 				// Force-feeds food, applies potions, ...
-				stack.getItem().finishUsingItem(stack, livingTarget.level(), livingTarget);
+				return stack.getItem().finishUsingItem(stack, livingTarget.level(), livingTarget);
 			}
 			return stack;
 		}

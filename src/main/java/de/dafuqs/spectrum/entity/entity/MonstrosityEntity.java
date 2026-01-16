@@ -79,19 +79,22 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		this.noCulling = true;
 		this.previousHealth = getHealth();
 		
-		if (!world.isClientSide && (MonstrosityEntity.theOneAndOnly == null || MonstrosityEntity.theOneAndOnly.isRemoved() || !MonstrosityEntity.theOneAndOnly.isAlive())) {
-			MonstrosityEntity.theOneAndOnly = this;
-		} else {
-			this.remove(RemovalReason.DISCARDED);
+		if (!world.isClientSide) {
+			if (theOneAndOnly != null) {
+				this.remove(RemovalReason.DISCARDED);
+				return;
+			}
+			theOneAndOnly = this;
 		}
 	}
 	
 	@Override
-	public void onClientRemoval() {
-		if (theOneAndOnly == this) {
-			theOneAndOnly = null;
+	public void remove(RemovalReason reason) {
+		super.remove(reason);
+		
+		if (!level().isClientSide) {
+			MonstrosityEntity.theOneAndOnly = null;
 		}
-		super.onClientRemoval();
 	}
 	
 	@Override
@@ -164,15 +167,6 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		}
 		
 		return bl;
-	}
-	
-	@Override
-	protected void checkFallDamage(double heightDifference, boolean onGround, BlockState state, BlockPos landedPosition) {
-	}
-	
-	@Override
-	public boolean onClimbable() {
-		return false;
 	}
 	
 	@Override

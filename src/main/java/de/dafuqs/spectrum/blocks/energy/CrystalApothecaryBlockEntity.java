@@ -119,29 +119,29 @@ public class CrystalApothecaryBlockEntity extends RandomizableContainerBlockEnti
 			return;
 		}
 		
-		for (int slot = 0; slot < blockEntity.size(); slot++) {
+		for (int slot = 0; slot < blockEntity.getContainerSize(); slot++) {
 			if (totalNeedsAwarding <= 0) {
 				break;
 			}
-			ItemStack currentStack = blockEntity.getStack(slot);
+			ItemStack currentStack = blockEntity.getItem(slot);
 			if (currentStack.isEmpty()) {
 				int selector = world.random.nextInt(totalNeedsAwarding);
 				int acc = 0;
 				for (ItemStack awardStack : needsAwarding) {
 					acc += awardStack.getCount();
 					if (selector < acc) {
-						int maxCount = Math.min(blockEntity.getMaxCountPerStack(), awardStack.getMaxCount());
+						int maxCount = Math.min(blockEntity.getMaxStackSize(), awardStack.getMaxStackSize());
 						int toAward = Math.min(maxCount, awardStack.getCount());
 						ItemStack newStack = awardStack.copy();
 						newStack.setCount(toAward);
-						awardStack.decrement(toAward);
-						blockEntity.setStack(slot, newStack);
+						awardStack.shrink(toAward);
+						blockEntity.setItem(slot, newStack);
 						totalNeedsAwarding -= toAward;
 						break;
 					}
 				}
 			} else {
-				int maxCount = Math.min(blockEntity.getMaxCountPerStack(), currentStack.getMaxCount());
+				int maxCount = Math.min(blockEntity.getMaxStackSize(), currentStack.getMaxStackSize());
 				if (currentStack.getCount() > maxCount) {
 					continue;
 				}
@@ -150,10 +150,10 @@ public class CrystalApothecaryBlockEntity extends RandomizableContainerBlockEnti
 					if (wantsAdded <= 0) {
 						break;
 					}
-					if (ItemStack.canCombine(currentStack, awardStack)) {
+					if (ItemStack.isSameItemSameComponents(currentStack, awardStack)) {
 						int canAdd = Math.min(wantsAdded, awardStack.getCount());
-						awardStack.decrement(canAdd);
-						currentStack.increment(canAdd);
+						awardStack.shrink(canAdd);
+						currentStack.grow(canAdd);
 						totalNeedsAwarding -= canAdd;
 						wantsAdded -= canAdd;
 					}
@@ -163,14 +163,14 @@ public class CrystalApothecaryBlockEntity extends RandomizableContainerBlockEnti
 	}
 	
 	public static int countValidGemstoneClusterBlocksAroundBlockPos(Level world, BlockPos blockPos, Collection<Block> allowedBlocks) {
-		int count = 0;
+		Set<BlockPos> count = new TreeSet<>();
 		for (Direction direction : Direction.values()) {
 			BlockState offsetState = world.getBlockState(blockPos.relative(direction));
 			if (offsetState.isAir() || offsetState.getBlock() == Blocks.WATER || allowedBlocks.contains(offsetState.getBlock())) {
-				count++;
+				count.add(blockPos.relative(direction));
 			}
 		}
-		return count;
+		return count.size();
 	}
 	
 	@Override

@@ -29,7 +29,7 @@ public abstract class EntityApplyFluidsMixin implements TouchingWaterAware {
 	@Override
 	public void spectrum$setActuallyTouchingWater(boolean actuallyTouchingWater) { this.actuallyTouchingWater = actuallyTouchingWater; }
 	
-	@Deprecated //Mixin breaks in Connector Environment -Shibva
+	//This breaks in a connector enviorment for some reason. -Shibva
 	//@Inject(method = "isSubmergedIn", at = @At("RETURN"), cancellable = true)
 	//public void spectrum$isSubmergedIn(TagKey<Fluid> fluidTag, CallbackInfoReturnable<Boolean> cir) {
 	//	if (!cir.getReturnValue() && fluidTag == FluidTags.WATER) {

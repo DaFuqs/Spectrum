@@ -43,23 +43,21 @@ public record PlayMemoryManifestingParticlesPayload(BlockPos pos, int eggColor1,
 		RandomSource random = client.level.random;
 		
 		Vector3f colorVec1 = SpectrumColorHelper.colorIntToVec(payload.eggColor1);
-		Vector3f colorVec2 = SpectrumColorHelper.colorIntToVec(payload.eggColor1);
+		Vector3f colorVec2 = SpectrumColorHelper.colorIntToVec(payload.eggColor2);
 		
 		BlockPos pos = payload.pos;
 		for (int i = 0; i < payload.amount; i++) {
-			int randomLifetime = 30 + random.nextInt(20);
-			
 			// color1
 			client.level.addParticle(
-					new DynamicParticleEffect(ColoredCraftingParticleEffect.WHITE.getType(), 0.5F, colorVec1, 1.0F, randomLifetime, false, true),
-					pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ(),
+					new DynamicParticleEffect(ColoredCraftingParticleEffect.WHITE.getType(), 0.5F, colorVec1, 1.0F, 30 + random.nextInt(20), false, true),
+					pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
 					0.15 - random.nextFloat() * 0.3, random.nextFloat() * 0.15 + 0.1, 0.15 - random.nextFloat() * 0.3
 			);
 			
 			// color2
 			client.level.addParticle(
-					new DynamicParticleEffect(ColoredCraftingParticleEffect.WHITE.getType(), 0.5F, colorVec2, 1.0F, randomLifetime, false, true),
-					pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5,
+					new DynamicParticleEffect(ColoredCraftingParticleEffect.WHITE.getType(), 0.5F, colorVec2, 1.0F, 30 + random.nextInt(20), false, true),
+					pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
 					0.15 - random.nextFloat() * 0.3, random.nextFloat() * 0.15 + 0.1, 0.15 - random.nextFloat() * 0.3
 			);
 		}

@@ -25,8 +25,6 @@ public class MalumCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 		ItemColors.ITEM_COLORS.registerColorMapping(ItemRegistry.MASS_OF_BLIGHTED_GUNK.get(), InkColors.LIGHT_GRAY);
 		ItemColors.ITEM_COLORS.registerColorMapping(ItemRegistry.CURSED_SAPBALL.get(), InkColors.BROWN);
 		ItemColors.ITEM_COLORS.registerColorMapping(ItemRegistry.PROCESSED_SOULSTONE.get(), InkColors.PURPLE);
-		
-		
 	}
 
     @Environment(EnvType.CLIENT)

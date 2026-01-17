@@ -1,15 +1,10 @@
 package de.dafuqs.spectrum.compat;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.compat.ae2.*;
 import de.dafuqs.spectrum.compat.alloy_forgery.*;
-import de.dafuqs.spectrum.compat.botania.*;
-import de.dafuqs.spectrum.compat.create.*;
 import de.dafuqs.spectrum.compat.ears.*;
 import de.dafuqs.spectrum.compat.exclusions_lib.*;
-import de.dafuqs.spectrum.compat.gobber.*;
 import de.dafuqs.spectrum.compat.idwtialsimmoedm.*;
-import de.dafuqs.spectrum.compat.malum.*;
 import de.dafuqs.spectrum.compat.modonomicon.*;
 import de.dafuqs.spectrum.compat.neepmeat.*;
 import de.dafuqs.spectrum.compat.starry_skies.*;
@@ -65,14 +60,14 @@ public class SpectrumIntegrationPacks {
 		if (!FabricLoader.getInstance().isModLoaded(CONNECTOR_ID)) {
 			// Connector on neoforge causes a lot of issues since most code bases
 			// of neoforge mods differ quite a lot from their fabric counterparts
-			registerIntegrationPack(AE2_ID, () -> new AE2Compat());
-			registerIntegrationPack(GOBBER_ID, () -> new GobberCompat());
+			// registerIntegrationPack(AE2_ID, () -> new AE2Compat()); // stuck in 1.20.1
+			// registerIntegrationPack(GOBBER_ID, () -> new GobberCompat()); // stuck in 1.20.1
 			registerIntegrationPack(ALLOY_FORGERY_ID, () -> new AlloyForgeryCompat());
 			registerIntegrationPack(TRAVELERS_BACKPACK_ID, () -> new TravelersBackpackCompat());
-			registerIntegrationPack(BOTANIA_ID, () -> new BotaniaCompat());
+			// registerIntegrationPack(BOTANIA_ID, () -> new BotaniaCompat()); // stuck in 1.20.1
 			registerIntegrationPack(NEEPMEAT_ID, () -> new NEEPMeatCompat());
-			registerIntegrationPack(MALUM_ID, () -> new MalumCompat());
-			registerIntegrationPack(CREATE_ID, () -> new CreateCompat());
+			// registerIntegrationPack(MALUM_ID, () -> new MalumCompat()); // stuck in 1.20.1
+			// registerIntegrationPack(CREATE_ID, () -> new CreateCompat()); // stuck in 1.20.1
 			registerIntegrationPack(STARRY_SKIES_ID, () -> new StarrySkiesCompat());
 		}
 		

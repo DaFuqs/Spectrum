@@ -165,7 +165,7 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
 			if (!tablet.is(SpectrumItems.CRAFTING_TABLET))
 				continue;
 			
-			var recipe = CraftingTabletItem.getStoredRecipe(level, tablet).value();
+			Recipe<?> recipe = CraftingTabletItem.getStoredRecipe(level, tablet).value();
 			if (isRecipeValid(recipe) && isRecipeCraftable(recipe) && canSlotFitCraftingOutput(inventory.get(RESULT_SLOTS[i]), recipe))
 				return true;
 		}
@@ -226,7 +226,7 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
 		
 		List<ItemStack> remainders = InventoryHelper.getRemainders(ingredients, this);
 		
-		return InventoryHelper.canFitStacks(remainders, this.inventory);
+		return InventoryHelper.canFitStacks(this.inventory, remainders);
 	}
 	
 	@Override

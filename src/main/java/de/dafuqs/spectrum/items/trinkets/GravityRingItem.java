@@ -6,9 +6,9 @@ import de.dafuqs.spectrum.api.energy.storage.*;
 import de.dafuqs.spectrum.api.item.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
-import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
+import top.theillusivec4.curios.api.*;
 
 public abstract class GravityRingItem extends InkDrainTrinketItem implements GravitableItem {
 	
@@ -17,8 +17,8 @@ public abstract class GravityRingItem extends InkDrainTrinketItem implements Gra
 	}
 	
 	@Override
-	public Multimap<Holder<Attribute>, AttributeModifier> getModifiers(ItemStack stack, SlotReference slot, LivingEntity entity, ResourceLocation slotIdentifier) {
-		Multimap<Holder<Attribute>, AttributeModifier> modifiers = super.getModifiers(stack, slot, entity, slotIdentifier);
+	public Multimap<Holder<Attribute>, AttributeModifier> getAttributeModifiers(SlotContext slotContext, ResourceLocation id, ItemStack stack) {
+		Multimap<Holder<Attribute>, AttributeModifier> modifiers = super.getAttributeModifiers(slotContext, id, stack);
 		
 		FixedSingleInkStorage inkStorage = getEnergyStorage(stack);
 		long storedInk = inkStorage.getEnergy(inkStorage.getStoredColor());
@@ -35,9 +35,10 @@ public abstract class GravityRingItem extends InkDrainTrinketItem implements Gra
 	protected abstract boolean negativeGravity();
 	
 	@Override
-	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
-		super.tick(stack, slot, entity);
-		applyGravity(stack, entity.level(), entity);
+	public void curioTick(SlotContext slotContext, ItemStack stack) {
+		super.curioTick(slotContext, stack);
+		
+		applyGravity(stack, slotContext.entity().level(), slotContext.entity());
 	}
 	
 	public double getBonus(long storedInk) {

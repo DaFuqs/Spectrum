@@ -19,6 +19,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
+// TODO: cleanup
 public class InventoryHelper {
 	
 	public static int getItemCountInInventory(Container inventory, Item item) {
@@ -100,6 +101,22 @@ public class InventoryHelper {
 		List<ItemStack> foundStacks = new ArrayList<>();
 		int count = 0;
 		for (ItemStack inventoryStack : inventory) {
+			if (ItemStack.isSameItemSameComponents(inventoryStack, itemStack)) {
+				foundStacks.add(inventoryStack);
+				count += inventoryStack.getCount();
+				if (count >= maxSearchAmount) {
+					return new Tuple<>(count, foundStacks);
+				}
+			}
+		}
+		return new Tuple<>(count, foundStacks);
+	}
+	
+	public static Tuple<Integer, List<ItemStack>> getStackCountInInventory(ItemStack itemStack, IItemHandler inventory, int maxSearchAmount) {
+		List<ItemStack> foundStacks = new ArrayList<>();
+		int count = 0;
+		for (int slot = 0; slot < inventory.getSlots(); slot++) {
+			ItemStack inventoryStack = inventory.getStackInSlot(slot);
 			if (ItemStack.isSameItemSameComponents(inventoryStack, itemStack)) {
 				foundStacks.add(inventoryStack);
 				count += inventoryStack.getCount();
@@ -461,7 +478,7 @@ public class InventoryHelper {
 		return true;
 	}
 	
-	public static List<ItemStack> getRemainders(List<Ingredient> ingredients, Container inventory) {
+	public static List<ItemStack> getRemainders(List<Ingredient> ingredients) {
 		List<ItemStack> remainders = new ArrayList<>();
 		
 		for (Ingredient ingredient : ingredients) {

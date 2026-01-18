@@ -231,11 +231,6 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 		shouldCraft(true);
 	}
 	
-	@Override
-	public void setChanged() {
-		shouldCraft(true);
-	}
-	
 	private boolean tryCraftOnce() {
 		Optional<RecipeHolder<CraftingRecipe>> optionalCraftingRecipe = Optional.empty();
 		NonNullList<ItemStack> inventory = this.getItems();

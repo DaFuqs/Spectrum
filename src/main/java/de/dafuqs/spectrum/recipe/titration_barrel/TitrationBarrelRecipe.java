@@ -149,7 +149,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<StorageRecip
 	}
 	
 	private ItemStack tapWith(float thickness, long secondsFermented, float downfall) {
-		ItemStack stack = this.outputItemStack.copy();
+		ItemStack stack = this.outputItemStack.copyWithCount(1);
 		return getFermentedStack(this.fermentationData, thickness, secondsFermented, downfall, stack);
 	}
 	

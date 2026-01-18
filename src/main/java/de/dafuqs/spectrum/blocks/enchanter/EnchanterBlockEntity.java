@@ -431,7 +431,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	
 	public static Integer getEnchantingPrice(ItemStack stack, Holder<Enchantment> enchantment, int level) {
 		int enchantability = Math.max(1, stack.getItem().getEnchantmentValue()); // items like Elytras have an enchantability of 0, but can get unbreaking
-		if (stack.canBeEnchantedWith(enchantment, EnchantingContext.ACCEPTABLE) || SpectrumEnchantmentHelper.isEnchantableBook(stack)) {
+		if (stack.canBeEnchantedWith(enchantment, EnchantingContext.ACCEPTABLE) || SpectrumEnchantmentHelper.isEnchantableBook(stack) || stack.is(Items.ENCHANTED_BOOK)) {
 			return getRequiredExperienceForEnchantment(enchantability, enchantment, level);
 		}
 		return -1;

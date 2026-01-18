@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.titration_barrel;
 
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
@@ -27,7 +28,7 @@ import java.util.*;
 
 import static de.dafuqs.spectrum.blocks.titration_barrel.TitrationBarrelBlock.*;
 
-public class TitrationBarrelBlockEntity extends BlockEntity implements FluidStackInventory {
+public class TitrationBarrelBlockEntity extends BlockEntity implements ImplementedInventory {
 	
 	protected static final int INVENTORY_SIZE = 5;
 	public static final int MAX_ITEM_COUNT = 64;
@@ -39,7 +40,6 @@ public class TitrationBarrelBlockEntity extends BlockEntity implements FluidStac
 		return this.items;
 	}
 	
-	@Override
 	public FluidTank getFluidStorage() {
 		return this.fluidStorage;
 	}
@@ -54,6 +54,11 @@ public class TitrationBarrelBlockEntity extends BlockEntity implements FluidStac
 	public TitrationBarrelBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntities.TITRATION_BARREL.get(), pos, state);
 		this.items = NonNullList.withSize(INVENTORY_SIZE, ItemStack.EMPTY);
+	}
+	
+	@Override
+	public void inventoryChanged() {
+		this.setChanged();
 	}
 	
 	@Override

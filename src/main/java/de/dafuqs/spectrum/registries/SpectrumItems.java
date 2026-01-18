@@ -14,8 +14,8 @@ import de.dafuqs.spectrum.data.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.armor.*;
-import de.dafuqs.spectrum.items.conditional.CloakedItem;
 import de.dafuqs.spectrum.items.conditional.*;
+import de.dafuqs.spectrum.items.conditional.CloakedItem;
 import de.dafuqs.spectrum.items.energy.*;
 import de.dafuqs.spectrum.items.food.*;
 import de.dafuqs.spectrum.items.food.beverages.*;
@@ -295,11 +295,11 @@ public class SpectrumItems {
 	public static final Item KIMCHI = register(simple(item("kimchi", new KimchiItem(IS.of().food(SpectrumFoodComponents.KIMCHI)), InkColors.PINK)));
 	public static final Item CLOTTED_CREAM = register(simple(item("clotted_cream", new ClottedCreamItem(IS.of().food(SpectrumFoodComponents.CLOTTED_CREAM), new String[]{"item.spectrum.clotted_cream.tooltip", "item.spectrum.clotted_cream.tooltip2"}), InkColors.PINK)));
 	public static final Item FRESH_CHOCOLATE = register(simple(item("fresh_chocolate", new Item(IS.of().food(SpectrumFoodComponents.FRESH_CHOCOLATE)), InkColors.PINK)));
-	public static final Item HOT_CHOCOLATE = register(simple(item("hot_chocolate", new DrinkItem(IS.of(16).food(SpectrumFoodComponents.HOT_CHOCOLATE).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.HOT_CHOCOLATE_SCONE_BONUS))), InkColors.PINK)));
-	public static final Item KARAK_CHAI = register(simple(item("karak_chai", new DrinkItem(IS.of(16).food(SpectrumFoodComponents.KARAK_CHAI).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.KARAK_CHAI_SCONE_BONUS))), InkColors.PINK)));
-	public static final Item AZALEA_TEA = register(simple(item("azalea_tea", new AzaleaTeaItem(IS.of(16).food(SpectrumFoodComponents.AZALEA_TEA).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.AZALEA_TEA_SCONE_BONUS))), InkColors.PURPLE)));
+	public static final Item HOT_CHOCOLATE = register(simple(item("hot_chocolate", new DrinkItem(IS.of(16).food(SpectrumFoodComponents.HOT_CHOCOLATE).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.HOT_CHOCOLATE_SCONE_BONUS)).craftRemainder(GLASS_BOTTLE)), InkColors.PINK)));
+	public static final Item KARAK_CHAI = register(simple(item("karak_chai", new DrinkItem(IS.of(16).food(SpectrumFoodComponents.KARAK_CHAI).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.KARAK_CHAI_SCONE_BONUS)).craftRemainder(GLASS_BOTTLE)), InkColors.PINK)));
+	public static final Item AZALEA_TEA = register(simple(item("azalea_tea", new AzaleaTeaItem(IS.of(16).food(SpectrumFoodComponents.AZALEA_TEA).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.AZALEA_TEA_SCONE_BONUS)).craftRemainder(GLASS_BOTTLE)), InkColors.PURPLE)));
 	public static final Item BODACIOUS_BERRY_BAR = register(simple(item("bodacious_berry_bar", new Item(IS.of().food(SpectrumFoodComponents.BODACIOUS_BERRY_BAR)), InkColors.PINK)));
-	public static final Item DEMON_TEA = register(simple(item("demon_tea", new DrinkItem(IS.of(16).food(SpectrumFoodComponents.DEMON_TEA).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.DEMON_TEA_SCONE_BONUS))), InkColors.RED)));
+	public static final Item DEMON_TEA = register(simple(item("demon_tea", new DrinkItem(IS.of(16).food(SpectrumFoodComponents.DEMON_TEA).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.DEMON_TEA_SCONE_BONUS)).craftRemainder(GLASS_BOTTLE)), InkColors.RED)));
 	
 	public static final Item CHEONG = register(layered(item("cheong", new ItemWithTooltip(IS.of().food(SpectrumFoodComponents.CHEONG), "item.spectrum.cheong.tooltip"), InkColors.PINK), "", "_overlay", "_cap"));
 	public static final Item MERMAIDS_JAM = register(simple(item("mermaids_jam", new Item(IS.of().food(SpectrumFoodComponents.MERMAIDS_JAM)), InkColors.PINK)));
@@ -360,11 +360,11 @@ public class SpectrumItems {
 	public static final Item BREWERS_HANDBOOK = register(simple(item("brewers_handbook", new CookbookItem(IS.of().stacksTo(1).rarity(Rarity.UNCOMMON), GuidebookItem.addressOf(GuidebookItem.CUISINE_CATEGORY_ID, locate("cuisine/cookbooks/brewers_handbook"))), InkColors.PURPLE)));
 	public static final Item POISONERS_HANDBOOK = register(simple(item("poisoners_handbook", new CookbookItem(IS.of().stacksTo(1).rarity(Rarity.EPIC), GuidebookItem.addressOf(GuidebookItem.DIMENSION_CATEGORY_ID, locate("dimension/poisoners_handbook")), SpectrumStatusEffects.ETERNAL_SLUMBER_COLOR), InkColors.PURPLE)));
 	
-	public static final Item AQUA_REGIA = register(simple(item("aqua_regia", new JadeWineItem(IS.of(16).food(SpectrumFoodComponents.AQUA_REGIA)), InkColors.PINK)));
+	public static final Item AQUA_REGIA = register(simple(item("aqua_regia", new JadeWineItem(IS.of(16).food(SpectrumFoodComponents.AQUA_REGIA).craftRemainder(GLASS_BOTTLE)), InkColors.PINK)));
 	public static final Item BAGNUN = register(simple(item("bagnun", new Item(IS.of().food(SpectrumFoodComponents.BAGNUN)), InkColors.PINK)));
 	public static final Item BANYASH = register(simple(item("banyash", new Item(IS.of().food(SpectrumFoodComponents.BANYASH)), InkColors.PINK)));
 	public static final Item BERLINER = register(simple(item("berliner", new Item(IS.of().food(SpectrumFoodComponents.BERLINER)), InkColors.PINK)));
-	public static final Item BRISTLE_MEAD = register(simple(item("bristle_mead", new BeverageItem(IS.of(16).food(SpectrumFoodComponents.BEVERAGE).component(DataComponents.POTION_CONTENTS, PotionContents.EMPTY)), InkColors.PINK)));
+	public static final Item BRISTLE_MEAD = register(simple(item("bristle_mead", new BeverageItem(IS.of(16).food(SpectrumFoodComponents.BEVERAGE).component(DataComponents.POTION_CONTENTS, PotionContents.EMPTY).craftRemainder(GLASS_BOTTLE)), InkColors.PINK)));
 	public static final Item CHAUVE_SOURIS_AU_VIN = register(simple(item("chauve_souris_au_vin", new Item(IS.of().food(SpectrumFoodComponents.CHAUVE_SOURIS_AU_VIN)), InkColors.PINK)));
 	public static final Item CRAWFISH = register(simple(item("crawfish", new Item(IS.of().food(SpectrumFoodComponents.CRAWFISH)), InkColors.PINK)));
 	public static final Item CRAWFISH_COCKTAIL = register(simple(item("crawfish_cocktail", new Item(IS.of().food(SpectrumFoodComponents.CRAWFISH_COCKTAIL)), InkColors.PINK)));
@@ -373,15 +373,15 @@ public class SpectrumItems {
 	public static final Item FISHCAKE = register(simple(item("fishcake", new Item(IS.of().food(SpectrumFoodComponents.FISHCAKE)), InkColors.PINK)));
 	public static final Item LIZARD_MEAT = register(simple(item("lizard_meat", new Item(IS.of().food(SpectrumFoodComponents.LIZARD_MEAT)), InkColors.PINK)));
 	public static final Item COOKED_LIZARD_MEAT = register(simple(item("cooked_lizard_meat", new Item(IS.of().food(SpectrumFoodComponents.COOKED_LIZARD_MEAT)), InkColors.PINK)));
-	public static final Item GOLDEN_BRISTLE_TEA = register(simple(item("golden_bristle_tea", new DrinkItem(IS.of(16).food(SpectrumFoodComponents.GOLDEN_BRISTLE_TEA).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.GOLDEN_BRISTLE_TEA_SCONE_BONUS))), InkColors.PINK)));
+	public static final Item GOLDEN_BRISTLE_TEA = register(simple(item("golden_bristle_tea", new DrinkItem(IS.of(16).food(SpectrumFoodComponents.GOLDEN_BRISTLE_TEA).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.GOLDEN_BRISTLE_TEA_SCONE_BONUS)).craftRemainder(GLASS_BOTTLE)), InkColors.PINK)));
 	public static final Item HARE_ROAST = register(simple(item("hare_roast", new Item(IS.of().food(SpectrumFoodComponents.HARE_ROAST)), InkColors.PINK)));
 	public static final Item JUNKET = register(simple(item("junket", new Item(IS.of().food(SpectrumFoodComponents.JUNKET)), InkColors.PINK)));
 	public static final Item KOI = register(simple(item("koi", new Item(IS.of().food(SpectrumFoodComponents.KOI)), InkColors.PINK)));
 	public static final Item MEATLOAF = register(simple(item("meatloaf", new Item(IS.of().food(SpectrumFoodComponents.MEATLOAF)), InkColors.PINK)));
 	public static final Item MEATLOAF_SANDWICH = register(simple(item("meatloaf_sandwich", new Item(IS.of().food(SpectrumFoodComponents.MEATLOAF_SANDWICH)), InkColors.PINK)));
 	public static final Item MELLOW_SHALLOT_SOUP = register(simple(item("mellow_shallot_soup", new Item(IS.of().food(SpectrumFoodComponents.MELLOW_SHALLOT_SOUP)), InkColors.PINK)));
-	public static final Item MORCHELLA = register(simple(item("morchella", new BeverageItem(IS.of(16).food(SpectrumFoodComponents.BEVERAGE).component(DataComponents.POTION_CONTENTS, PotionContents.EMPTY)), InkColors.PINK)));
-	public static final Item NECTERED_VIOGNIER = register(simple(item("nectered_viognier", new JadeWineItem(IS.of(16).food(SpectrumFoodComponents.NECTERED_VIOGNIER)), InkColors.PINK)));
+	public static final Item MORCHELLA = register(simple(item("morchella", new BeverageItem(IS.of(16).food(SpectrumFoodComponents.BEVERAGE).component(DataComponents.POTION_CONTENTS, PotionContents.EMPTY).craftRemainder(GLASS_BOTTLE)), InkColors.PINK)));
+	public static final Item NECTERED_VIOGNIER = register(simple(item("nectered_viognier", new JadeWineItem(IS.of(16).food(SpectrumFoodComponents.NECTERED_VIOGNIER).craftRemainder(GLASS_BOTTLE)), InkColors.PINK)));
 	public static final Item PEACHES_FLAMBE = register(simple(item("peaches_flambe", new Item(IS.of().food(SpectrumFoodComponents.PEACHES_FLAMBE)), InkColors.PINK)));
 	public static final Item PEACH_CREAM = register(simple(item("peach_cream", new DrinkItem(IS.of(16).food(SpectrumFoodComponents.PEACH_CREAM).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.PEACH_CREAM_SCONE_BONUS))), InkColors.PINK)));
 	public static final Item PEACH_JAM = register(simple(item("peach_jam", new Item(IS.of().food(SpectrumFoodComponents.PEACH_JAM)), InkColors.PINK)));
@@ -389,7 +389,7 @@ public class SpectrumItems {
 	public static final Item SEDATIVES = register(simple(item("sedatives", new SedativesItem(IS.of().food(SpectrumFoodComponents.SEDATIVES), "item.spectrum.sedatives.tooltip"), InkColors.PINK)));
 	public static final Item SLUSHSLIDE = register(simple(item("slushslide", new DrinkItem(IS.of(16).food(SpectrumFoodComponents.SLUSHSLIDE), "item.spectrum.slushslide.tooltip"), InkColors.PINK)));
 	public static final Item SURSTROMMING = register(simple(item("surstromming", new Item(IS.of().food(SpectrumFoodComponents.SURSTROMMING)), InkColors.PINK)));
-	public static final Item EVERNECTAR = register(simple(item("evernectar", new EvernectarItem(IS.of(1, Rarity.EPIC).food(SpectrumFoodComponents.EVERNECTAR).craftRemainder(GLASS_BOTTLE), "item.spectrum.evernectar.tooltip"), InkColors.LIME)));
+	public static final Item EVERNECTAR = register(simple(item("evernectar", new DrinkItem(IS.of(1, Rarity.EPIC).food(SpectrumFoodComponents.EVERNECTAR).craftRemainder(GLASS_BOTTLE), "item.spectrum.evernectar.tooltip"), InkColors.LIME)));
 	
 	// Banner Patterns
 	public static final Item LOGO_BANNER_PATTERN = register(banner(item("logo_banner_pattern", new BannerPatternItem(SpectrumBannerPatternTags.SPECTRUM_LOGO_TAG, IS.of(1, Rarity.UNCOMMON)), InkColors.LIGHT_BLUE)));
@@ -427,7 +427,7 @@ public class SpectrumItems {
 	public static final Item NIGHT_SALTS = register(simple(item("night_salts", new NightSaltsItem(IS.of(16)), InkColors.PURPLE)));
 	public static final Item SOOTHING_BOUQUET = register(simple(item("soothing_bouquet", new SoothingBouquetItem(IS.of(1, Rarity.RARE)), InkColors.PURPLE)));
 	public static final Item CONCEALING_OILS = register(layered(item("concealing_oils", new ConcealingOilsItem(IS.of(1)), InkColors.BLACK), "", "_tint", "_overlay"));
-	public static final Item BITTER_OILS = register(simple(item("bitter_oils", new DrinkItem(IS.of(16).food(SpectrumFoodComponents.BITTER_OILS)), InkColors.BLUE)));
+	public static final Item BITTER_OILS = register(simple(item("bitter_oils", new DrinkItem(IS.of(16).food(SpectrumFoodComponents.BITTER_OILS).craftRemainder(GLASS_BOTTLE)), InkColors.BLUE)));
 	
 	public static final Item INCANDESCENT_ESSENCE = register(simple(burnable(item("incandescent_essence", new CloakedItem(IS.of().fireResistant(), SpectrumAdvancements.MIDGAME, ORANGE_DYE), InkColors.ORANGE), 2400)));
 	public static final Item FROSTBITE_ESSENCE = register(simple(item("frostbite_essence", new CloakedItem(IS.of(), SpectrumAdvancements.MIDGAME, LIGHT_BLUE_DYE), InkColors.LIGHT_BLUE)));

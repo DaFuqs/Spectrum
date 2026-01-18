@@ -5,19 +5,22 @@ import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.api.predicate.block.*;
 import de.dafuqs.spectrum.data.*;
 import de.dafuqs.spectrum.data_loaders.resonance_processors.*;
+import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.levelgen.feature.*;
 import net.neoforged.neoforge.common.*;
+import net.neoforged.neoforge.registries.*;
 
 import java.util.function.*;
 
 @SuppressWarnings("unused")
 public class SpectrumResonanceProcessors {
 	
-	private static final DeferredRegistrar.Contextual<DatagenProxy.BootstrapContext<ResonanceProcessor>> REGISTRAR = new DeferredRegistrar.Contextual<>(DatagenProxy.IS_DATAGEN);
+	private static final DeferredRegister<ResonanceProcessor> REGISTRAR = DeferredRegister.create(SpectrumRegistryKeys.RESONANCE_PROCESSOR, SpectrumCommon.MOD_ID);
 	
 	public static final ResourceKey<ResonanceProcessor> PURE_RESONANCES_FROM_ORE = register("pure_resonances_from_ore", ctx -> ModifyDropsResonanceProcessor
 			.builder(BrokenBlockPredicate.Builder.create().registryEntryList(ctx.blocks().getOrThrow(Tags.Blocks.ORES)).build())
@@ -37,7 +40,7 @@ public class SpectrumResonanceProcessors {
 			.addModifiedDrop(Ingredient.of(Items.NETHERITE_SCRAP), SpectrumItems.PURE_NETHERITE_SCRAP.get())
 			.build());
 	
-	public static final ResourceKey<ResonanceProcessor> BLACK_MATERIA = registerDropSelf("black_materia", SpectrumBlocks.BLACK_MATERIA, builder -> builder);
+	public static final ResourceKey<ResonanceProcessor> BLACK_MATERIA = registerDropSelf("black_materia", SpectrumBlocks.BLACK_MATERIA.get(), builder -> builder);
 	
 	public static final ResourceKey<ResonanceProcessor> BRUSHABLE_BLOCKS = registerDropSelf("brushable_blocks", SpectrumBlockTags.C_BRUSHABLE_BLOCKS, builder -> builder
 			.copyNbt("LootTable", "LootTableSeed", "item"));

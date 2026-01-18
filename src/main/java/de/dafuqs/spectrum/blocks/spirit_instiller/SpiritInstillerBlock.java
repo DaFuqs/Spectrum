@@ -139,5 +139,4 @@ public class SpiritInstillerBlock extends InWorldInteractionBlock {
 			return ItemInteractionResult.CONSUME;
 		}
 	}
-	
 }

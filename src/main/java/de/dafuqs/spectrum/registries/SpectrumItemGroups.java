@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.registries;
 
+import de.dafuqs.fractal.api.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.item.*;
@@ -29,7 +30,7 @@ public class SpectrumItemGroups {
 			.icon(() -> new ItemStack(SpectrumBlocks.PEDESTAL_ALL_BASIC))
 			.displayItems((displayContext, entries) -> {
 				entries.accept(SpectrumBlocks.PEDESTAL_ALL_BASIC, CreativeModeTab.TabVisibility.PARENT_TAB_ONLY);
-				/*TODO: review. Still needed for items to get picked up by recipe viewer seraches?
+				/*TODO: review. Still needed for items to get picked up by recipe viewer searches?
 				for (CreativeSubTab subGroup : SpectrumItemGroups.MAIN.fractal$getChildren()) {
 					entries.acceptAll(subGroup.getSearchTabDisplayItems(), CreativeModeTab.TabVisibility.SEARCH_TAB_ONLY);
 				}*/
@@ -374,9 +375,6 @@ public class SpectrumItemGroups {
 				entries.accept(SpectrumItems.MERMAIDS_JAM);
 				entries.accept(SpectrumItems.MERMAIDS_POPCORN);
 				entries.accept(SpectrumItems.LE_FISHE_AU_CHOCOLAT);
-				//entries.add(SpectrumItems.STUFFED_PETALS);
-				//entries.add(SpectrumItems.PASTICHE);
-				//entries.add(SpectrumItems.VITTORIAS_ROAST);
 				entries.accept(SpectrumItems.LUCKY_ROLL);
 				entries.accept(SpectrumItems.HONEY_PASTRY);
 				entries.accept(SpectrumItems.JARAMEL_TART);
@@ -432,7 +430,7 @@ public class SpectrumItemGroups {
 				if (SpectrumCommon.minecraftServer != null) {
 					for (RecipeHolder<ITitrationBarrelRecipe> recipe : SpectrumCommon.minecraftServer.getRecipeManager().getAllRecipesFor(SpectrumRecipeTypes.TITRATION_BARREL)) {
 						ItemStack output = recipe.value().getResultItem(SpectrumCommon.minecraftServer.registryAccess()).copy();
-						if (output.getItem().components().has(SpectrumDataComponentTypes.INFUSED_BEVERAGE)) {
+						if (output.getItem().components().has(SpectrumDataComponentTypes.INFUSED_BEVERAGE.get())) {
 							output.setCount(1);
 							entries.accept(output);
 						}
@@ -575,7 +573,7 @@ public class SpectrumItemGroups {
 				
 				entries.accept(SpectrumItems.AMARANTH_GRAINS);
 				entries.accept(SpectrumBlocks.AMARANTH_BUSHEL);
-				entries.accept(BuiltInRegistries.ITEM.get(SpectrumItems.GLISTERING_MELON_SEEDS));
+				entries.accept(SpectrumItems.GLISTERING_MELON_SEEDS);
 				
 				entries.accept(SpectrumBlocks.GLISTERING_SHOOTING_STAR);
 				entries.accept(SpectrumBlocks.FIERY_SHOOTING_STAR);
@@ -608,7 +606,7 @@ public class SpectrumItemGroups {
 				entries.accept(SpectrumItems.NEOLITH);
 				entries.accept(SpectrumItems.BEDROCK_DUST);
 				entries.accept(SpectrumItems.MIDNIGHT_ABERRATION);
-				entries.accept(SpectrumItems.MIDNIGHT_ABERRATION.getStableStack());
+				entries.accept(SpectrumItems.MIDNIGHT_ABERRATION.get().getStableStack());
 				entries.accept(SpectrumItems.MIDNIGHT_CHIP);
 				
 				entries.accept(SpectrumItems.HIBERNATING_JADE_VINE_BULB);
@@ -1487,14 +1485,14 @@ public class SpectrumItemGroups {
 			.entries((displayContext, entries) -> {
 				entries.accept(SpectrumItems.INK_FLASK);
 				for (InkColor color : InkColors.all()) {
-					entries.accept(SpectrumItems.INK_FLASK.getFullStack(color));
+					entries.accept(SpectrumItems.INK_FLASK.get().getFullStack(color));
 				}
 				entries.accept(SpectrumItems.INK_ASSORTMENT);
-				entries.accept(SpectrumItems.INK_ASSORTMENT.getFullStack());
+				entries.accept(SpectrumItems.INK_ASSORTMENT.get().getFullStack());
 				entries.accept(SpectrumItems.PIGMENT_PALETTE);
-				entries.accept(SpectrumItems.PIGMENT_PALETTE.getFullStack());
+				entries.accept(SpectrumItems.PIGMENT_PALETTE.get().getFullStack());
 				entries.accept(SpectrumItems.ARTISTS_PALETTE);
-				entries.accept(SpectrumItems.ARTISTS_PALETTE.getFullStack());
+				entries.accept(SpectrumItems.ARTISTS_PALETTE.get().getFullStack());
 			}).build();
 	
 	public static final CreativeSubTab CREATIVE = new CreativeSubTab.Builder(MAIN, ItemGroupIDs.SUBTAB_CREATIVE, Component.translatable("itemGroup.spectrum.creative"))
@@ -1561,10 +1559,6 @@ public class SpectrumItemGroups {
 				entries.accept(SpectrumBlocks.PRESERVATION_CHEST);
 				
 				entries.accept(SpectrumItems.DIVINATION_HEART);
-				
-				//entries.add(SpectrumItems.SPECTRAL_SHARD);
-				//entries.add(SpectrumBlocks.SPECTRAL_SHARD_BLOCK);
-				//entries.add(SpectrumBlocks.SPECTRAL_SHARD_STORAGE_BLOCK);
 			}).build();
 	
 }

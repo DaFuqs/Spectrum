@@ -349,7 +349,7 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> DRAGONBONE_BROTH = register(simple(item("dragonbone_broth", () -> new StackableStewItem(IS.of(8).food(SpectrumFoodComponents.DRAGONBONE_BROTH)), InkColors.GRAY)));
 	public static final DeferredItem<Item> DOOMBLOOM_SEED = register(simple(item("doombloom_seed", () -> new ItemNameBlockItem(SpectrumBlocks.DOOMBLOOM.get(), IS.of().fireResistant()), InkColors.BLACK)));
 	
-	public static final ResourceKey<Item> GLISTERING_MELON_SEEDS = simple(new ItemRegistrar<>("glistering_melon_seeds").withItem(() -> new ItemNameBlockItem(BuiltInRegistries.BLOCK.get(SpectrumBlocks.GLISTERING_MELON_STEM), IS.of()), InkColors.LIME)).itemKey();
+	public static final DeferredItem<Item> GLISTERING_MELON_SEEDS = register(simple(new ItemRegistrar<>("glistering_melon_seeds").withItem(() -> new ItemNameBlockItem(BuiltInRegistries.BLOCK.get(SpectrumBlocks.GLISTERING_MELON_STEM), IS.of()), InkColors.LIME)));
 	public static final DeferredItem<Item> AMARANTH_GRAINS = register(simple(item("amaranth_grains", () -> new ItemNameBlockItem(SpectrumBlocks.AMARANTH.get(), IS.of()), InkColors.LIME)));
 	
 	// Cookbooks

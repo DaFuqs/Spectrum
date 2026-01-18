@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
 import de.dafuqs.spectrum.compat.modonomicon.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.progression.*;
@@ -31,7 +32,6 @@ import net.minecraft.world.phys.shapes.*;
 import net.neoforged.neoforge.fluids.*;
 import net.neoforged.neoforge.fluids.capability.*;
 import net.neoforged.neoforge.fluids.capability.templates.*;
-import net.neoforged.neoforge.items.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -178,7 +178,7 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 				if (fluidHandler.isPresent()) {
 					FluidUtil.tryFluidTransfer(fusionShrineBlockEntity.tank, fluidHandler.get(), 1000, true);
 				} else {
-					itemEntity.setItem(ItemHandlerHelper.insertItemStacked(fusionShrineBlockEntity.getInventory(), itemStack, false));
+					itemEntity.setItem(InventoryHelper.smartAddToInventory(itemStack, fusionShrineBlockEntity, null));
 					fusionShrineBlockEntity.inventoryChanged();
 					return;
 				}

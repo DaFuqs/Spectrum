@@ -219,12 +219,12 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
 	}
 	
 	private boolean isRecipeCraftable(Recipe<?> recipe) {
-		var ingredients = recipe.getIngredients();
+		NonNullList<Ingredient> ingredients = recipe.getIngredients();
 		
 		if (!InventoryHelper.hasInInventory(ingredients, this))
 			return false;
 		
-		List<ItemStack> remainders = InventoryHelper.getRemainders(ingredients, this);
+		List<ItemStack> remainders = InventoryHelper.getRemainders(ingredients);
 		
 		return InventoryHelper.canFitStacks(this.inventory, remainders);
 	}

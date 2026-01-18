@@ -467,12 +467,18 @@ public class InventoryHelper {
 		return remainders;
 	}
 	
-	public static boolean canFitStacks(List<ItemStack> stacks, IItemHandlerModifiable inventory) {
-		if (stacks.isEmpty()) return true;
+	public static boolean canFitStacks(IItemHandlerModifiable inventory, List<ItemStack> stacks) {
+		if (stacks.isEmpty()) {
+			return true;
+		}
 		
 		for (ItemStack stack : stacks) {
-			if (stack.isEmpty()) continue;
-			if (!ItemHandlerHelper.insertItemStacked(inventory, stack, true).isEmpty()) return false;
+			if (stack.isEmpty()) {
+				continue;
+			}
+			if (!ItemHandlerHelper.insertItemStacked(inventory, stack, true).isEmpty()) {
+				return false;
+			}
 		}
 		
 		return true;

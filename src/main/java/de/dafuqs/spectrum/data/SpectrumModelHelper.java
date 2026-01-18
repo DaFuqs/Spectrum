@@ -124,17 +124,17 @@ public class SpectrumModelHelper {
 	}
 	
 	public static BlockFamily registerBlockFamily(BlockFamily family) {
-		BLOCK_STATE_MODEL_REGISTRAR.defer(ctx -> ctx.family(family.getBaseBlock()).generateFor(family));
+		//BLOCK_STATE_MODEL_REGISTRAR.defer(ctx -> ctx.family(family.getBaseBlock()).generateFor(family));
 		return family;
 	}
 	
 	public static BlockFamily registerBlockFamilyExceptBase(BlockFamily family, TexturedModel.Provider variantFactory) {
-		BLOCK_STATE_MODEL_REGISTRAR.defer(ctx -> {
+		/*BLOCK_STATE_MODEL_REGISTRAR.defer(ctx -> {
 			TexturedModel texturedModel = variantFactory.get(family.getBaseBlock());
 			BlockModelGenerators.BlockFamilyProvider texturePool = ctx.new BlockFamilyProvider(texturedModel.getMapping());
 			texturePool.fullBlock = ModelLocationUtils.getModelLocation(family.getBaseBlock());
 			texturePool.generateFor(family);
-		});
+		});*/
 		return family;
 	}
 	

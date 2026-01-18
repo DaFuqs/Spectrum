@@ -34,7 +34,7 @@ public class ClientPastelNetworkManager implements PastelNetworkManager<ClientLe
 		return network;
 	}
 	
-	public void renderLines(ClientLevel level, PoseStack matrices, MultiBufferSource bufferSource, Camera camera, LivingEntity cameraEntity, boolean paintbrushInHand) {
+	public void renderLines(ClientLevel level, PoseStack poseStack, MultiBufferSource bufferSource, Camera camera, LivingEntity cameraEntity, boolean paintbrushInHand) {
 		BlockPos cameraEntityPos = cameraEntity.blockPosition();
 		
 		long worldTime = level.getGameTime();
@@ -58,15 +58,15 @@ public class ClientPastelNetworkManager implements PastelNetworkManager<ClientLe
 				}
 				
 				final Vec3 pos = camera.getPosition();
-				matrices.pushPose();
-				matrices.translate(-pos.x, -pos.y, -pos.z);
+				poseStack.pushPose();
+				poseStack.translate(-pos.x, -pos.y, -pos.z);
 				var cross = source.cross(target);
 				var interval = (cross.getX() + cross.getY() + cross.getZ() + network.level.getGameTime()) % 1000000F;
 				var alpha = alphaMod * (1.0 - (Math.max(Math.sin((interval / 17F)) * 2.5 - 2, 0)));
 				colors[0] = (float) alpha;
-				PastelRenderHelper.renderLineTo(matrices, bufferSource, colors, source, target);
+				PastelRenderHelper.renderLineTo(poseStack, bufferSource, colors, source, target);
 				
-				matrices.popPose();
+				poseStack.popPose();
 			}
 		}
 	}

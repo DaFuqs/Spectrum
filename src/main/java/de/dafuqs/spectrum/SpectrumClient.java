@@ -48,7 +48,7 @@ public class SpectrumClient implements RevealingCallback, ClientAdvancementPacke
 		HudRenderers.register();
 		modBus.addListener(SpectrumTooltipComponents::registerTooltipComponents);
 		SpectrumDimensions.registerClient();
-		SpectrumClientEventListeners.register();
+		SpectrumClientEventListeners.register(modBus);
 		
 		if (SpectrumCommon.CONFIG.AddItemTooltips) {
 			SpectrumTooltips.register();

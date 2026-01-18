@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.api.render;
 
+import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.renderer.block.model.*;
 import net.minecraft.client.renderer.texture.*;
@@ -7,7 +8,6 @@ import net.minecraft.client.resources.model.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
-import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -15,6 +15,9 @@ import java.util.function.*;
 
 
 public class DynamicRenderModel extends ForwardingBakedModel implements UnbakedModel {
+	
+	public static final ObjectOpenHashSet<ModelResourceLocation> CUSTOM_ITEM_MODELS = new ObjectOpenHashSet<>();
+	
 	private static class WrappingOverridesList extends ItemOverrides {
 		private final ItemOverrides wrapped;
 		

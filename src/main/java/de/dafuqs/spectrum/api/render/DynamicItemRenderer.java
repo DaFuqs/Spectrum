@@ -7,6 +7,8 @@ import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.resources.model.*;
 import net.minecraft.world.item.*;
 
+import java.util.function.*;
+
 // Similar to FAPIs DynamicItemRenderer, except with a little more information.
 
 @FunctionalInterface
@@ -28,5 +30,9 @@ public interface DynamicItemRenderer {
 	 * @param model           the original model [use this to render the underlying item model]
 	 */
 	void render(ItemRenderer renderer, ItemStack stack, ItemDisplayContext mode, boolean leftHanded, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay, BakedModel model);
+	
+	static void registerDynamicItemRenderer(Item item, Supplier<DynamicItemRenderer> renderer) {
+		DynamicItemRenderer.RENDERERS.put(item, renderer.get());
+	}
 	
 }

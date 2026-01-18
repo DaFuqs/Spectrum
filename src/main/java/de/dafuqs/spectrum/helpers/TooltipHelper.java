@@ -8,6 +8,7 @@ import net.minecraft.network.chat.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.food.*;
+import net.minecraft.world.inventory.tooltip.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 
@@ -15,14 +16,14 @@ import java.util.*;
 
 public class TooltipHelper {
 	
-	public static void addFoodComponentEffectTooltip(ItemStack stack, List<Component> tooltip, float updateTickRate) {
+	public static void addFoodComponentEffectTooltip(ItemStack stack, List<Either<FormattedText, TooltipComponent>> tooltip, float updateTickRate) {
 		FoodProperties foodComponent = stack.get(DataComponents.FOOD);
 		if (foodComponent != null) {
 			buildEffectTooltipWithChance(tooltip, foodComponent.effects(), stack.getUseAnimation() == UseAnim.DRINK ? Component.translatable("spectrum.food.whenDrunk") : Component.translatable("spectrum.food.whenEaten"), updateTickRate);
 		}
 	}
 	
-	public static void buildEffectTooltipWithChance(List<Component> tooltip, List<FoodProperties.PossibleEffect> entries, MutableComponent attributeModifierText, float updateTickRate) {
+	public static void buildEffectTooltipWithChance(List<Either<FormattedText, TooltipComponent>> tooltip, List<FoodProperties.PossibleEffect> entries, MutableComponent attributeModifierText, float updateTickRate) {
 		if (entries.isEmpty()) {
 			return;
 		}
@@ -47,12 +48,12 @@ public class TooltipHelper {
 				translatableText = Component.translatable("spectrum.food.withChance", translatableText, Math.round(chance * 100));
 			}
 			
-			tooltip.add(translatableText.withStyle(statusEffect.value().getCategory().getTooltipFormatting()));
+			tooltip.add(Either.left(translatableText.withStyle(statusEffect.value().getCategory().getTooltipFormatting())));
 		}
 		
 		if (!modifiersList.isEmpty()) {
-			tooltip.add(Component.empty());
-			tooltip.add(attributeModifierText.withStyle(ChatFormatting.DARK_PURPLE));
+			tooltip.add(Either.left(Component.empty()));
+			tooltip.add(Either.left(attributeModifierText.withStyle(ChatFormatting.DARK_PURPLE)));
 			
 			for (var pair : modifiersList) {
 				var modifier = pair.getSecond();
@@ -65,10 +66,10 @@ public class TooltipHelper {
 				}
 				
 				if (d > 0.0D) {
-					tooltip.add((Component.translatable("attribute.modifier.plus." + modifier.operation().id(), ItemAttributeModifiers.ATTRIBUTE_MODIFIER_FORMAT.format(e), Component.translatable((pair.getFirst()).getDescriptionId()))).withStyle(ChatFormatting.BLUE));
+					tooltip.add(Either.left((Component.translatable("attribute.modifier.plus." + modifier.operation().id(), ItemAttributeModifiers.ATTRIBUTE_MODIFIER_FORMAT.format(e), Component.translatable((pair.getFirst()).getDescriptionId()))).withStyle(ChatFormatting.BLUE)));
 				} else if (d < 0.0D) {
 					e *= -1.0D;
-					tooltip.add((Component.translatable("attribute.modifier.take." + modifier.operation().id(), ItemAttributeModifiers.ATTRIBUTE_MODIFIER_FORMAT.format(e), Component.translatable((pair.getFirst()).getDescriptionId()))).withStyle(ChatFormatting.RED));
+					tooltip.add(Either.left((Component.translatable("attribute.modifier.take." + modifier.operation().id(), ItemAttributeModifiers.ATTRIBUTE_MODIFIER_FORMAT.format(e), Component.translatable((pair.getFirst()).getDescriptionId()))).withStyle(ChatFormatting.RED)));
 				}
 			}
 		}

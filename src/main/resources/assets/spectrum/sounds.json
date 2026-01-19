@@ -1,4 +1,12 @@
 {
+  "item.night_salts.use": {
+    "subtitle": "spectrum.subtitles.night_salts.use",
+    "sounds": [
+      "minecraft:mob/sniffer/scenting1",
+      "minecraft:mob/sniffer/scenting2",
+      "minecraft:mob/sniffer/scenting3"
+    ]
+  },
   "item.primordial_lighter.use": {
     "subtitle": "spectrum.subtitles.primordial_lighter.use",
     "sounds": [

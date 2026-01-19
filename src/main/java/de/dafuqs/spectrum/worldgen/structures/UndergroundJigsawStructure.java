@@ -118,7 +118,7 @@ public class UndergroundJigsawStructure extends Structure {
 			return Optional.empty();
 		}
 		
-		// if we are randomly picked a solid block:
+		// if we randomly picked a solid block:
 		// search downwards until we find the first non-solid block
 		// (so we do not place our structure in solid stone)
 		NoiseColumn heightLimitView = chunkGenerator.getBaseColumn(box.getCenter().getX(), box.getCenter().getZ(), world, noiseConfig);
@@ -133,7 +133,7 @@ public class UndergroundJigsawStructure extends Structure {
 		} while (true);
 		
 		// then search down until we find a position 
-		// that matches the criteria of at least 3/4 corner blocks
+		// that matches the criteria of at least 2/4 corner blocks
 		NoiseColumn[] verticalBlockSamples = new NoiseColumn[]{
 				chunkGenerator.getBaseColumn(box.minX(), box.minZ(), world, noiseConfig),
 				chunkGenerator.getBaseColumn(box.minX(), box.maxZ(), world, noiseConfig),
@@ -149,7 +149,7 @@ public class UndergroundJigsawStructure extends Structure {
 				BlockState blockState = verticalBlockSample.getBlock(floorY);
 				if (blockPredicate.test(blockState)) {
 					matchingBlocks++;
-					if (matchingBlocks == 3) {
+					if (matchingBlocks == 2) {
 						floorY -= buryDepth.sample(random);
 						if (floorY < lowestY) {
 							return Optional.empty();

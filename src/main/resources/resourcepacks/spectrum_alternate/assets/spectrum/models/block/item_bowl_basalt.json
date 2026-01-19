@@ -1,9 +1,0 @@
-{
-  "parent": "spectrum:templates/item_bowl",
-  "textures": {
-    "bottom": "spectrum:block/item_bowl_basalt_bottom",
-    "inner": "spectrum:block/item_bowl_basalt_inner",
-    "side": "spectrum:block/item_bowl_basalt_side",
-    "top": "spectrum:block/item_bowl_basalt_top"
-  }
-}

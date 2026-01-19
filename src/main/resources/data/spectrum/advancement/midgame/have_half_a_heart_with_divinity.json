@@ -22,7 +22,7 @@
       "trigger": "spectrum:divinity_tick",
       "conditions": {
         "is_alive": true,
-        "health": {
+        "health_range": {
           "max": 1.00
         }
       }

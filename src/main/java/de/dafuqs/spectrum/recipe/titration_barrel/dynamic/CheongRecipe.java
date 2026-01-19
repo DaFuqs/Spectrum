@@ -24,7 +24,7 @@ public class CheongRecipe extends TitrationBarrelRecipe {
 	
 	public CheongRecipe() {
 		super("", false, Optional.empty(), INGREDIENT_STACKS, FluidIngredient.of(Fluids.WATER),
-				OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, FermentationData.DEFAULT);
+				OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, Optional.empty());
 	}
 	
 	@Override

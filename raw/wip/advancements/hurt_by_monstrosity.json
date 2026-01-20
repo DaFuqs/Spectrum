@@ -2,7 +2,7 @@
   "parent": "spectrum:lategame/spectrum_lategame",
   "display": {
     "icon": {
-      "item": "spectrum:bedrock_dust"
+      "id": "spectrum:bedrock_dust"
     },
     "title": {
       "translate": "advancements.spectrum.hurt_by_monstrosity.title"

@@ -11,7 +11,7 @@ public class SpectrumAdvancementCriteria {
 	public static CompletedMultiblockCriterion COMPLETED_MULTIBLOCK;
 	public static BlockBrokenCriterion BLOCK_BROKEN;
 	public static LootFunctionTriggerCriterion LOOT_FUNCTION_TRIGGER;
-	public static NaturesStaffConversionCriterion NATURES_STAFF_USE;
+	public static NaturesStaffConversionCriterion NATURES_STAFF_CONVERSION;
 	public static EnchanterCraftingCriterion ENCHANTER_CRAFTING;
 	public static EnchanterEnchantingCriterion ENCHANTER_ENCHANTING;
 	public static EnchantmentUpgradedCriterion ENCHANTER_UPGRADING;
@@ -36,8 +36,8 @@ public class SpectrumAdvancementCriteria {
 	public static ConfirmationButtonPressedCriterion CONFIRMATION_BUTTON_PRESSED;
 	public static BloodOrchidPluckingCriterion BLOOD_ORCHID_PLUCKING;
 	public static DivinityTickCriterion DIVINITY_TICK;
-	public static PairedFoodEatenCriterion CONDITIONAL_FOOD_EATEN;
-	public static HummingstoneHymnCriterion CREATE_HUMMINGSTONE_HYMN;
+	public static ConsumedPairedFoodCriterion CONSUMED_PAIRED_FOOD;
+	public static HummingstoneHymnCriterion HUMMINGSTONE_HYMN;
 	public static PastelNetworkCreationCriterion PASTEL_NETWORK_CREATING;
 	public static PastelNodeUpgradeCriterion PASTEL_NODE_UPGRADING;
 	public static PreservationCheckCriterion PRESERVATION_CHECK;
@@ -51,7 +51,7 @@ public class SpectrumAdvancementCriteria {
 		COMPLETED_MULTIBLOCK = CriteriaTriggers.register(CompletedMultiblockCriterion.ID.toString(), new CompletedMultiblockCriterion());
 		BLOCK_BROKEN = CriteriaTriggers.register(BlockBrokenCriterion.ID.toString(), new BlockBrokenCriterion());
 		LOOT_FUNCTION_TRIGGER = CriteriaTriggers.register(LootFunctionTriggerCriterion.ID.toString(), new LootFunctionTriggerCriterion());
-		NATURES_STAFF_USE = CriteriaTriggers.register(NaturesStaffConversionCriterion.ID.toString(), new NaturesStaffConversionCriterion());
+		NATURES_STAFF_CONVERSION = CriteriaTriggers.register(NaturesStaffConversionCriterion.ID.toString(), new NaturesStaffConversionCriterion());
 		ENCHANTER_CRAFTING = CriteriaTriggers.register(EnchanterCraftingCriterion.ID.toString(), new EnchanterCraftingCriterion());
 		ENCHANTER_ENCHANTING = CriteriaTriggers.register(EnchanterEnchantingCriterion.ID.toString(), new EnchanterEnchantingCriterion());
 		ENCHANTER_UPGRADING = CriteriaTriggers.register(EnchantmentUpgradedCriterion.ID.toString(), new EnchantmentUpgradedCriterion());
@@ -76,8 +76,8 @@ public class SpectrumAdvancementCriteria {
 		CONFIRMATION_BUTTON_PRESSED = CriteriaTriggers.register(ConfirmationButtonPressedCriterion.ID.toString(), new ConfirmationButtonPressedCriterion());
 		BLOOD_ORCHID_PLUCKING = CriteriaTriggers.register(BloodOrchidPluckingCriterion.ID.toString(), new BloodOrchidPluckingCriterion());
 		DIVINITY_TICK = CriteriaTriggers.register(DivinityTickCriterion.ID.toString(), new DivinityTickCriterion());
-		CONDITIONAL_FOOD_EATEN = CriteriaTriggers.register(PairedFoodEatenCriterion.ID.toString(), new PairedFoodEatenCriterion());
-		CREATE_HUMMINGSTONE_HYMN = CriteriaTriggers.register(HummingstoneHymnCriterion.ID.toString(), new HummingstoneHymnCriterion());
+		CONSUMED_PAIRED_FOOD = CriteriaTriggers.register(ConsumedPairedFoodCriterion.ID.toString(), new ConsumedPairedFoodCriterion());
+		HUMMINGSTONE_HYMN = CriteriaTriggers.register(HummingstoneHymnCriterion.ID.toString(), new HummingstoneHymnCriterion());
 		PASTEL_NETWORK_CREATING = CriteriaTriggers.register(PastelNetworkCreationCriterion.ID.toString(), new PastelNetworkCreationCriterion());
 		PASTEL_NODE_UPGRADING = CriteriaTriggers.register(PastelNodeUpgradeCriterion.ID.toString(), new PastelNodeUpgradeCriterion());
 		PRESERVATION_CHECK = CriteriaTriggers.register(PreservationCheckCriterion.ID.toString(), new PreservationCheckCriterion());

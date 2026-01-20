@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "spectrum:spectral_shard"
+      "id": "spectrum:spectral_shard"
     },
     "frame": "challenge",
     "title": {

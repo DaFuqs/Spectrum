@@ -31,7 +31,7 @@ public class DivinityTickCriterion extends SimpleCriterionTrigger<DivinityTickCr
 		public static final Codec<Conditions> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 				ContextAwarePredicate.CODEC.optionalFieldOf("player").forGetter(Conditions::player),
 				Codec.BOOL.optionalFieldOf("is_alive").forGetter(Conditions::isAlive),
-				MinMaxBounds.Doubles.CODEC.optionalFieldOf("health_range", MinMaxBounds.Doubles.ANY).forGetter(Conditions::healthRange)
+				MinMaxBounds.Doubles.CODEC.optionalFieldOf("health", MinMaxBounds.Doubles.ANY).forGetter(Conditions::healthRange)
 		).apply(instance, DivinityTickCriterion.Conditions::new));
 		
 		public boolean matches(boolean isPlayerAlive, float health) {

@@ -2,7 +2,7 @@
   "parent": "spectrum:lategame/hurt_by_monstrosity",
   "display": {
     "icon": {
-      "item": "spectrum:monstrosity_head"
+      "id": "spectrum:monstrosity_head"
     },
     "frame": "challenge",
     "title": {

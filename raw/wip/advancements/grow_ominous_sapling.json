@@ -2,7 +2,7 @@
   "parent": "spectrum:endgame/plant_ominous_sapling",
   "display": {
     "icon": {
-      "item": "minecraft:dead_bush"
+      "id": "minecraft:dead_bush"
     },
     "hidden": true,
     "title": {

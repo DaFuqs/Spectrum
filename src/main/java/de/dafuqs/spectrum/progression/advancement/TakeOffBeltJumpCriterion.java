@@ -29,11 +29,9 @@ public class TakeOffBeltJumpCriterion extends SimpleCriterionTrigger<TakeOffBelt
 				List<Tuple<SlotReference, ItemStack>> equipped = component.get().getEquipped(SpectrumItems.TAKE_OFF_BELT);
 				if (!equipped.isEmpty()) {
 					ItemStack firstBelt = equipped.getFirst().getB();
-					if (firstBelt != null) {
-						int charge = TakeOffBeltItem.getCurrentCharge(player);
-						if (charge > 0) {
-							return conditions.matches(firstBelt, charge);
-						}
+					int charge = TakeOffBeltItem.getCurrentCharge(player);
+					if (charge > 0) {
+						return conditions.matches(firstBelt, charge);
 					}
 				}
 			}

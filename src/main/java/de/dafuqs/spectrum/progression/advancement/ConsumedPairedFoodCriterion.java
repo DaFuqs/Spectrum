@@ -10,7 +10,7 @@ import net.minecraft.world.item.*;
 
 import java.util.*;
 
-public class PairedFoodEatenCriterion extends SimpleCriterionTrigger<PairedFoodEatenCriterion.Conditions> {
+public class ConsumedPairedFoodCriterion extends SimpleCriterionTrigger<ConsumedPairedFoodCriterion.Conditions> {
 	
 	public static final ResourceLocation ID = SpectrumCommon.locate("consumed_paired_food");
 	
@@ -25,18 +25,18 @@ public class PairedFoodEatenCriterion extends SimpleCriterionTrigger<PairedFoodE
 	
 	public record Conditions(
 			Optional<ContextAwarePredicate> player,
-			ItemPredicate teaItem,
-			ItemPredicate sconeItem
+			ItemPredicate consumedItem,
+			ItemPredicate pairedItem
 	) implements SimpleCriterionTrigger.SimpleInstance {
 		
-		public static final Codec<PairedFoodEatenCriterion.Conditions> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-				ContextAwarePredicate.CODEC.optionalFieldOf("player").forGetter(PairedFoodEatenCriterion.Conditions::player),
-				ItemPredicate.CODEC.optionalFieldOf("eaten_item", ItemPredicate.Builder.item().build()).forGetter(PairedFoodEatenCriterion.Conditions::teaItem),
-				ItemPredicate.CODEC.optionalFieldOf("paired_item", ItemPredicate.Builder.item().build()).forGetter(PairedFoodEatenCriterion.Conditions::sconeItem)
-		).apply(instance, PairedFoodEatenCriterion.Conditions::new));
+		public static final Codec<ConsumedPairedFoodCriterion.Conditions> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+				ContextAwarePredicate.CODEC.optionalFieldOf("player").forGetter(ConsumedPairedFoodCriterion.Conditions::player),
+				ItemPredicate.CODEC.optionalFieldOf("consumed_item", ItemPredicate.Builder.item().build()).forGetter(ConsumedPairedFoodCriterion.Conditions::consumedItem),
+				ItemPredicate.CODEC.optionalFieldOf("paired_item", ItemPredicate.Builder.item().build()).forGetter(ConsumedPairedFoodCriterion.Conditions::pairedItem)
+		).apply(instance, ConsumedPairedFoodCriterion.Conditions::new));
 		
 		public boolean matches(ItemStack teaStack, ItemStack sconeStack) {
-			return teaItem.test(teaStack) && sconeItem.test(sconeStack);
+			return consumedItem.test(teaStack) && pairedItem.test(sconeStack);
 		}
 	}
 	

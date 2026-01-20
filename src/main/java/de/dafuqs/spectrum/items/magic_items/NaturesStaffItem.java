@@ -213,7 +213,7 @@ public class NaturesStaffItem extends Item implements InkPowered {
 
 				if (success) {
 					payForStaffUse(player, stack, INK_COST, ITEM_COST);
-					SpectrumAdvancementCriteria.NATURES_STAFF_USE.trigger(player, sourceState, world.getBlockState(blockPos));
+					SpectrumAdvancementCriteria.NATURES_STAFF_CONVERSION.trigger(player, sourceState, world.getBlockState(blockPos));
 					return InteractionResult.CONSUME;
 				}
 			}

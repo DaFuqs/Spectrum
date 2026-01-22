@@ -1,0 +1,20 @@
+{
+  "type": "mekanism:sawing",
+  "input": {
+    "ingredient": {
+      "item": "spectrum:chestnut_noxwood_trapdoor"
+    }
+  },
+  "mainOutput": {
+    "item": "spectrum:chestnut_noxwood_planks",
+    "count": 3
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "mekanism"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "type": "mekanism:sawing",
+  "input": {
+    "ingredient": {
+      "tag": "spectrum:gray_logs"
+    }
+  },
+  "mainOutput": {
+    "count": 6.0,
+    "item": "spectrum:gray_planks"
+  },
+  "secondaryChance": 0.35,
+  "secondaryOutput": {
+    "item": "spectrum:gray_pigment",
+    "count": 1.0
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "mekanism"
+      ]
+    }
+  ]
+}

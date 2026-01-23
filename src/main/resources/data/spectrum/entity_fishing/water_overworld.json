@@ -1,48 +1,49 @@
 {
-  "location": {
-    "fluids": "#minecraft:water",
-    "dimension": "minecraft:overworld"
-  },
+  "fluids": [
+    "minecraft:water",
+    "minecraft:flowing_water"
+  ],
+  "dimension": "minecraft:overworld",
   "chance": 0.05,
   "entities": [
     {
-      "id": "minecraft:cod",
+      "entity_type": "minecraft:cod",
       "weight": 20
     },
     {
-      "id": "minecraft:salmon",
+      "entity_type": "minecraft:salmon",
       "weight": 20
     },
     {
-      "id": "minecraft:pufferfish",
+      "entity_type": "minecraft:pufferfish",
       "weight": 8
     },
     {
-      "id": "minecraft:tropical_fish",
+      "entity_type": "minecraft:tropical_fish",
       "weight": 5
     },
     {
-      "id": "minecraft:squid",
+      "entity_type": "minecraft:squid",
       "weight": 4
     },
     {
-      "id": "minecraft:turtle",
+      "entity_type": "minecraft:turtle",
       "weight": 2
     },
     {
-      "id": "minecraft:dolphin",
+      "entity_type": "minecraft:dolphin",
       "weight": 1
     },
     {
-      "id": "minecraft:axolotl",
+      "entity_type": "minecraft:axolotl",
       "weight": 1
     },
     {
-      "id": "minecraft:drowned",
+      "entity_type": "minecraft:drowned",
       "weight": 4
     },
     {
-      "id": "minecraft:guardian",
+      "entity_type": "minecraft:guardian",
       "weight": 1
     }
   ]

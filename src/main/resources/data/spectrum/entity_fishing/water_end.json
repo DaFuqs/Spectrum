@@ -1,28 +1,29 @@
 {
-  "location": {
-    "fluids": "#minecraft:water",
-    "dimension": "minecraft:the_end"
-  },
+  "fluids": [
+    "minecraft:water",
+    "minecraft:flowing_water"
+  ],
+  "dimension": "minecraft:the_end",
   "chance": 0.02,
   "entities": [
     {
-      "id": "minecraft:cod",
+      "entity_type": "minecraft:cod",
       "weight": 10
     },
     {
-      "id": "minecraft:salmon",
+      "entity_type": "minecraft:salmon",
       "weight": 10
     },
     {
-      "id": "minecraft:pufferfish",
+      "entity_type": "minecraft:pufferfish",
       "weight": 1
     },
     {
-      "id": "minecraft:shulker",
+      "entity_type": "minecraft:shulker",
       "weight": 1
     },
     {
-      "id": "minecraft:enderman",
+      "entity_type": "minecraft:enderman",
       "weight": 1
     }
   ]

@@ -1,0 +1,29 @@
+{
+  "fluids": [
+    "minecraft:lava",
+    "minecraft:flowing_lava"
+  ],
+  "dimension": "minecraft:nether",
+  "chance": 0.02,
+  "entities": [
+    {
+      "entity_type": "minecraft:magma_cube",
+      "weight": 1,
+      "nbt": {
+        "Size": 4
+      }
+    },
+    {
+      "entity_type": "minecraft:blaze",
+      "weight": 2
+    },
+    {
+      "entity_type": "minecraft:strider",
+      "weight": 2
+    },
+    {
+      "entity_type": "minecraft:fireball",
+      "weight": 1
+    }
+  ]
+}

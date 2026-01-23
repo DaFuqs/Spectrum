@@ -413,7 +413,7 @@ public abstract class LivingEntityMixin {
 	private float spectrum$modifyDamage(float amount, DamageSource source) {
 		@Nullable MobEffectInstance vulnerability = getEffect(SpectrumStatusEffects.VULNERABILITY);
 		if (vulnerability != null) {
-			amount *= 1 + (SpectrumStatusEffects.VULNERABILITY_ADDITIONAL_DAMAGE_PERCENT_PER_LEVEL * vulnerability.getAmplifier());
+			amount *= 1 + (SpectrumStatusEffects.VULNERABILITY_ADDITIONAL_DAMAGE_PERCENT_PER_LEVEL * vulnerability.getAmplifier() + 1);
 		}
 		return amount;
 	}

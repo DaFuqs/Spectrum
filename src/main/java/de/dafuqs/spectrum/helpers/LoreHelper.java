@@ -14,7 +14,7 @@ public class LoreHelper {
 		List<Component> loreText = new ArrayList<>();
 		
 		for (String split : string.split("\\\\n")) {
-			loreText.addFirst(Component.literal(split));
+			loreText.add(Component.literal(split));
 		}
 		
 		return loreText;

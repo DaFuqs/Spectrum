@@ -68,7 +68,7 @@ public class NightSaltsItem extends Item implements SleepAlteringItem {
 
     @Override
 	public SoundEvent getDrinkingSound() {
-		return SoundEvents.SNIFFER_SCENTING;
+		return SpectrumSoundEvents.NIGHT_SALTS_USE;
     }
 
     @Override

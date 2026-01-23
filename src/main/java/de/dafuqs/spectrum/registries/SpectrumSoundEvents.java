@@ -159,6 +159,7 @@ public class SpectrumSoundEvents {
 	
 	public static final SoundEvent BLOCK_MEMORY_ADVANCE = register("block.memory.advance");
 	public static final SoundEvent ITEM_PRIMORDIAL_LIGHTER_USE = register("item.primordial_lighter.use");
+	public static final SoundEvent NIGHT_SALTS_USE = register("item.night_salts.use");
 	
 	public static final SoundEvent VINE_SHEAR = register("block.vine.shear");
 	public static final SoundEvent VINE_INFUSE = register("block.vine.infuse");

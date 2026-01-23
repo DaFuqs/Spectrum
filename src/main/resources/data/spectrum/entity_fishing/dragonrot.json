@@ -1,42 +1,43 @@
 {
-  "location": {
-    "fluids": "#spectrum:dragonrot"
-  },
+  "fluids": [
+    "spectrum:dragonrot",
+    "spectrum:flowing_dragonrot"
+  ],
   "chance": 0.5,
   "entities": [
     {
-      "id": "minecraft:creeper",
+      "entity_type": "minecraft:creeper",
       "weight": 5,
       "nbt": {
         "powered": true
       }
     },
     {
-      "id": "minecraft:creeper",
+      "entity_type": "minecraft:creeper",
       "weight": 2
     },
     {
-      "id": "spectrum:eraser",
+      "entity_type": "spectrum:marrow",
       "weight": 2
     },
     {
-      "id": "minecraft:drowned",
+      "entity_type": "minecraft:drowned",
       "weight": 2
     },
     {
-      "id": "minecraft:skeleton",
+      "entity_type": "minecraft:skeleton",
       "weight": 2
     },
     {
-      "id": "minecraft:wither_skeleton",
+      "entity_type": "minecraft:wither_skeleton",
       "weight": 2
     },
     {
-      "id": "minecraft:zombie_horse",
+      "entity_type": "minecraft:zombie_horse",
       "weight": 1
     },
     {
-      "id": "minecraft:skeleton_horse",
+      "entity_type": "minecraft:skeleton_horse",
       "weight": 1
     }
   ]

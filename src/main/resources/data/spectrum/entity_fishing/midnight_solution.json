@@ -1,27 +1,28 @@
 {
-  "location": {
-    "fluids": "#spectrum:midnight_solution"
-  },
+  "fluids": [
+    "spectrum:midnight_solution",
+    "spectrum:flowing_midnight_solution"
+  ],
   "chance": 0.25,
   "entities": [
     {
-      "id": "minecraft:wither_skeleton",
+      "entity_type": "minecraft:wither_skeleton",
       "weight": 5
     },
     {
-      "id": "minecraft:drowned",
+      "entity_type": "minecraft:drowned",
       "weight": 5
     },
     {
-      "id": "spectrum:eraser",
+      "entity_type": "spectrum:eraser",
       "weight": 5
     },
     {
-      "id": "minecraft:skeleton",
+      "entity_type": "minecraft:skeleton",
       "weight": 5
     },
     {
-      "id": "minecraft:creeper",
+      "entity_type": "minecraft:creeper",
       "weight": 2
     }
   ]

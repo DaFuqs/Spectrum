@@ -1,15 +1,16 @@
 {
-  "location": {
-    "fluids": "#minecraft:lava"
-  },
+  "fluids": [
+    "minecraft:lava",
+    "minecraft:flowing_lava"
+  ],
   "chance": 0.02,
   "entities": [
     {
-      "id": "minecraft:magma_cube",
+      "entity_type": "minecraft:magma_cube",
       "weight": 10
     },
     {
-      "id": "minecraft:blaze",
+      "entity_type": "minecraft:blaze",
       "weight": 1
     }
   ]

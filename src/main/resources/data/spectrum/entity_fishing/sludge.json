@@ -1,28 +1,29 @@
 {
-  "location": {
-    "fluids": "#spectrum:sludge"
-  },
+  "fluids": [
+    "spectrum:sludge",
+    "spectrum:flowing_sludge"
+  ],
   "chance": 0.05,
   "entities": [
     {
-      "id": "minecraft:tadpole",
+      "entity_type": "minecraft:tadpole",
       "weight": 20
     },
     {
-      "id": "minecraft:frog",
+      "entity_type": "minecraft:frog",
       "weight": 5
     },
     {
-      "id": "minecraft:tadpole",
+      "entity_type": "minecraft:tadpole",
       "weight": 2
     },
     {
-      "id": "minecraft:drowned",
+      "entity_type": "minecraft:drowned",
       "weight": 1
     },
     {
-      "id": "minecraft:slime",
-      "weight": 1
+      "entity_type": "minecraft:slime",
+      "weight": 5
     }
   ]
 }

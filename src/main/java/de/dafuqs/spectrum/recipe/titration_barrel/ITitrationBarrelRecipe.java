@@ -37,7 +37,7 @@ public interface ITitrationBarrelRecipe extends GatedRecipe<StorageRecipeInput<S
 			float ageIngameDays = TimeHelper.minecraftDaysFromSeconds(secondsFermented);
 			List<MobEffectInstance> statusEffects = List.of(new MobEffectInstance(MobEffects.INVISIBILITY, 3600, 0));
 			
-			var stack = SpectrumItems.SUSPICIOUS_BREW.getDefaultInstance();
+			ItemStack stack = SpectrumItems.SUSPICIOUS_BREW.getDefaultInstance();
 			stack.set(SpectrumDataComponentTypes.BEVERAGE, new BeverageComponent((long) ageIngameDays, 0, 0));
 			stack.set(DataComponents.POTION_CONTENTS, new PotionContents(Optional.empty(), Optional.empty(), statusEffects));
 			LoreHelper.setLore(stack, Component.translatable("lore.spectrum.time_travel_tap"));
@@ -59,7 +59,7 @@ public interface ITitrationBarrelRecipe extends GatedRecipe<StorageRecipeInput<S
 	default int getOutputCountAfterAngelsShare(Level world, float temperature, long secondsFermented) {
 		int originalOutputCount = getResultItem(world.registryAccess()).getCount();
 		
-		if (getFermentationData() == null) {
+		if (getFermentationData().isEmpty()) {
 			return originalOutputCount;
 		}
 		
@@ -102,6 +102,6 @@ public interface ITitrationBarrelRecipe extends GatedRecipe<StorageRecipeInput<S
 		return secondsFermented / 60 / 60 >= getMinFermentationTimeHours();
 	}
 	
-	FermentationData getFermentationData();
+	Optional<FermentationData> getFermentationData();
 	
 }

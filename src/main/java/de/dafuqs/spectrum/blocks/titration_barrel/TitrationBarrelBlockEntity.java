@@ -195,7 +195,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity implements FluidStac
 					if (canTap) {
 						long secondsFermented = (this.tapTime - this.sealTime) / 1000;
 						float downfall = ((BiomeAccessor) (Object) biome).getClimateSettings().downfall();
-						harvestedStack = recipe.tap(this, secondsFermented, downfall);
+						harvestedStack = recipe.getTitrationResult(this, secondsFermented, downfall);
 						
 						this.extractedBottles += 1;
 						shouldReset = isEmpty(biome.getBaseTemperature(), this.extractedBottles, recipe);

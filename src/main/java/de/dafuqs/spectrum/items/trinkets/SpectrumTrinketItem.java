@@ -21,13 +21,6 @@ public abstract class SpectrumTrinketItem extends TrinketItem {
 		this.unlockIdentifier = unlockIdentifier;
 	}
 	
-	public static boolean hasEquipped(Object entity, Item item) {
-		if (entity instanceof LivingEntity livingEntity) {
-			return hasEquipped(livingEntity, item);
-		}
-		return false;
-	}
-	
 	public static boolean hasEquipped(LivingEntity entity, Item item) {
 		Optional<TrinketComponent> trinketComponent = TrinketsApi.getTrinketComponent(entity);
 		return trinketComponent.map(component -> component.isEquipped(item)).orElse(false);

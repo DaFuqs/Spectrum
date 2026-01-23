@@ -2,7 +2,7 @@
   "parent": "spectrum:endgame/find_forsaken_cathedral",
   "display": {
     "icon": {
-      "item": "spectrum:preservation_stone"
+      "id": "spectrum:preservation_stone"
     },
     "hidden": true,
     "title": {

@@ -28,6 +28,9 @@ public class SpectrumConfig implements ConfigData {
 	@Comment("Post process shaders")
 	public boolean PostProcess = true;
 	
+	@Comment("Post process shaders")
+	public boolean AlwaysSpawnLightBlockParticles = false;
+	
 	@Comment("Items transported by a Pastel Network spawn particles")
 	public boolean PastelNetworkParticles = true;
 	
@@ -173,6 +176,57 @@ public class SpectrumConfig implements ConfigData {
 	public int BedrockArmorBootsProtection = 5;
 	public float BedrockArmorToughness = 3.0F;
 	public float BedrockArmorKnockbackResistance = 0.3F;
+	
+	// Tool Material Stats
+	public int LowHealthDurability = 16;
+	public float LowHealthMiningSpeed = 4.0F;
+	public float LowHealthAttackDamage = 2.0F;
+	public int LowHealthEnchantability = 10;
+	
+	public int VoidingDurability = 1143;
+	public float VoidingMiningSpeed = 20.0F;
+	public float VoidingAttackDamage = 1.0F;
+	public int VoidingEnchantability = 5;
+	
+	public int BedrockDurability = 0;
+	public float BedrockMiningSpeed = 15.0F;
+	public float BedrockAttackDamage = 5.0F;
+	public int BedrockEnchantability = 3;
+	
+	public int DraconicDurability = 10000;
+	public float DraconicMiningSpeed = 11.5F;
+	public float DraconicAttackDamage = 7.0F;
+	public int DraconicEnchantability = 1;
+	
+	public int MalachiteDurability = 1536;
+	public float MalachiteMiningSpeed = 14.0F;
+	public float MalachiteAttackDamage = 5.0F;
+	public int MalachiteEnchantability = 20;
+	
+	public int GlassCrestDurability = 6144;
+	public float GlassCrestMiningSpeed = 18.0F;
+	public float GlassCrestAttackDamage = 10.0F;
+	public int GlassCrestEnchantability = 5;
+	
+	public int VerdigrisDurability = 1536;
+	public float VerdigrisMiningSpeed = 7.0F;
+	public float VerdigrisAttackDamage = 2.5F;
+	public int VerdigrisEnchantability = 14;
+	
+	public int NectarDurability = 6144;
+	public float NectarMiningSpeed = 9.5F;
+	public float NectarAttackDamage = 9.0F;
+	public int NectarEnchantability = 30;
+	
+	public int DreamflayerDurability = 650;
+	public float DreamflayerMiningSpeed = 5.0F;
+	public float DreamflayerAttackDamage = 2.0F;
+	public int DreamflayerEnchantability = 20;
+	
+	public int NightfallDurability = 650;
+	public float NightfallMiningSpeed = 2.0F;
+	public float NightfallAttackDamage = 1.0F;
+	public int NightfallEnchantability = 0;
 	
 	public int MaxLevelForEffectsInLesserPotionPendant = 3;
 	public int MaxLevelForEffectsInGreaterPotionPendant = 1;

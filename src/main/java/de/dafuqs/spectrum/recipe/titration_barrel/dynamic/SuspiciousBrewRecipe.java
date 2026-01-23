@@ -41,7 +41,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 	}};
 	
 	public SuspiciousBrewRecipe() {
-		super("", false, Optional.of(UNLOCK_IDENTIFIER), INGREDIENT_STACKS, FluidIngredient.of(Fluids.WATER), OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, new FermentationData(1.25F, 0.01F, List.of()));
+		super("", false, Optional.of(UNLOCK_IDENTIFIER), INGREDIENT_STACKS, FluidIngredient.of(Fluids.WATER), OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, Optional.of(new FermentationData(1.25F, 0.01F, List.of())));
 	}
 	
 	@Override
@@ -68,7 +68,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 	
 	public ItemStack tapWith(List<ItemStack> stacks, float thickness, long secondsFermented, float downfall) {
 		float ageIngameDays = TimeHelper.minecraftDaysFromSeconds(secondsFermented);
-		double alcPercent = getAlcPercent(this.fermentationData.fermentationSpeedMod(), thickness, downfall, ageIngameDays);
+		double alcPercent = this.fermentationData.isEmpty() ? 0 : getAlcPercent(this.fermentationData.get().fermentationSpeedMod(), thickness, downfall, ageIngameDays);
 		if (alcPercent >= 100) {
 			return SpectrumItems.PURE_ALCOHOL.getDefaultInstance();
 		} else {

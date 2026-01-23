@@ -2,7 +2,7 @@
   "parent": "spectrum:endgame/create_spectral_shard",
   "display": {
     "icon": {
-      "item": "minecraft:enchanted_book"
+      "id": "minecraft:enchanted_book"
     },
     "title": {
       "translate": "advancements.spectrum.upgrade_enchanted_book_to_fortune4.title"
@@ -15,14 +15,16 @@
     "upgraded_enchanted_book_to_fortune4": {
       "trigger": "spectrum:enchantment_upgraded",
       "conditions": {
-        "enchantment_identifier": "minecraft:fortune",
-        "enchantment_level": {
-          "min": 4
+        "enchantments": {
+          "enchantments": "minecraft:fortune",
+          "levels": {
+            "min": 4
+          }
         }
       }
     },
     "gotten_previous": {
-      "trigger":"revelationary:advancement_gotten",
+      "trigger": "revelationary:advancement_gotten",
       "conditions": {
         "advancement_identifier": "spectrum:endgame/create_spectral_shard"
       }

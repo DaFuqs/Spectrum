@@ -57,8 +57,8 @@ public class SpectrumFishingRodHookedCriterion extends SimpleCriterionTrigger<Sp
 		public static final Codec<Conditions> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 				ContextAwarePredicate.CODEC.optionalFieldOf("player").forGetter(Conditions::player),
 				ItemPredicate.CODEC.optionalFieldOf("rod").forGetter(Conditions::rod),
-				ContextAwarePredicate.CODEC.optionalFieldOf("bobber").forGetter(Conditions::bobber),
-				ContextAwarePredicate.CODEC.optionalFieldOf("hooked_entity").forGetter(Conditions::hookedEntity),
+				EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("bobber").forGetter(Conditions::bobber),
+				EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("hooked_entity").forGetter(Conditions::hookedEntity),
 				EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("fished_entity").forGetter(Conditions::fishedEntity),
 				ItemPredicate.CODEC.optionalFieldOf("item").forGetter(Conditions::caughtItem),
 				FluidPredicate.CODEC.optionalFieldOf("fluid").forGetter(Conditions::fluidPredicate)

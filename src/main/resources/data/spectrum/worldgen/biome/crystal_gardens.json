@@ -121,7 +121,10 @@
       "spectrum:dd_patch_grass_normal",
       "spectrum:dd_glow_lichen",
       "spectrum:dd_liquid_crystal_flower_patch",
-      "spectrum:nephrite_blossoms"
+      "spectrum:nephrite_blossoms",
+      "spectrum:pitcher_plant_patch",
+      "spectrum:torchflower_patch",
+      "spectrum:dd_waterlily"
     ],
     []
   ],

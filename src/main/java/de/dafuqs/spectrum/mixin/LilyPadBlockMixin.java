@@ -16,8 +16,8 @@ public class LilyPadBlockMixin {
 	public boolean spectrum$extendLilyPlaceables(boolean original, BlockState floor, BlockGetter world, BlockPos pos) {
         if (original)
             return true;
-        FluidState fluidState = world.getFluidState(pos);
-		FluidState fluidState2 = world.getFluidState(pos.above());
-		return (fluidState.getType() == SpectrumFluids.SLUDGE || fluidState.getType() == SpectrumFluids.LIQUID_CRYSTAL) && fluidState2.getType() == Fluids.EMPTY;
+        FluidState localState = world.getFluidState(pos);
+		FluidState aboveState = world.getFluidState(pos.above());
+		return (localState.getType() == SpectrumFluids.SLUDGE || localState.getType() == SpectrumFluids.LIQUID_CRYSTAL) && aboveState.getType() == Fluids.EMPTY;
     }
 }

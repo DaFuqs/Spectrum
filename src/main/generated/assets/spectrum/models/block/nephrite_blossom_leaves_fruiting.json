@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/leaves",
-  "textures": {
-    "all": "spectrum:block/nephrite_blossom_leaves_fruiting"
-  }
-}

@@ -1,6 +1,0 @@
-{
-  "parent": "spectrum:templates_item/large_bud",
-  "textures": {
-    "layer0": "spectrum:block/large_bismuth_bud"
-  }
-}

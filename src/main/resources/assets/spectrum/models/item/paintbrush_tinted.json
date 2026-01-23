@@ -1,7 +1,0 @@
-{
-  "parent": "item/handheld",
-  "textures": {
-    "layer0": "spectrum:item/paintbrush",
-    "layer1": "spectrum:item/paintbrush_tint"
-  }
-}

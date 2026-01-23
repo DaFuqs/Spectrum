@@ -1,8 +1,0 @@
-{
-  "parent": "spectrum:templates/shimmerstone_light",
-  "textures": {
-    "inner": "spectrum:block/shimmerstone_light",
-    "outer": "minecraft:block/polished_andesite",
-    "particle": "minecraft:block/polished_andesite"
-  }
-}

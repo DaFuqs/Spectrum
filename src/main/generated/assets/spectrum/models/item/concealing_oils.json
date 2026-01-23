@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "spectrum:item/concealing_oils",
-    "layer1": "spectrum:item/concealing_oils_tint",
-    "layer2": "spectrum:item/concealing_oils_overlay"
-  }
-}

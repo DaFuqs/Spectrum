@@ -1,7 +1,0 @@
-{
-  "parent": "spectrum:templates/colored_lamp_on",
-  "textures": {
-    "inner": "spectrum:block/magenta_lamp_on",
-    "outer": "spectrum:block/magenta_lamp_outer"
-  }
-}

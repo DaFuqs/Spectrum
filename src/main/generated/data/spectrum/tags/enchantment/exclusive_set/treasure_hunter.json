@@ -1,9 +1,0 @@
-{
-  "values": [
-    "minecraft:looting",
-    {
-      "id": "malum:spirit_plunder",
-      "required": false
-    }
-  ]
-}

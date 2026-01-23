@@ -1,9 +1,0 @@
-{
-  "values": [
-    "minecraft:sharpness",
-    {
-      "id": "malum:haunted",
-      "required": false
-    }
-  ]
-}

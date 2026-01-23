@@ -1,7 +1,0 @@
-{
-  "parent": "spectrum:improved_vanilla/template_orientable_trapdoor_open",
-  "textures": {
-    "texture": "spectrum:block/chestnut_noxwood_trapdoor",
-    "side": "spectrum:block/chestnut_noxwood_door_side"
-  }
-}

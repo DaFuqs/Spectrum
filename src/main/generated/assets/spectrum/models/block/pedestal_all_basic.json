@@ -1,7 +1,0 @@
-{
-  "parent": "spectrum:templates/pedestal",
-  "textures": {
-    "particle": "spectrum:block/pedestal_all_basic_breaking",
-    "pedestal": "spectrum:block/pedestal_all_basic"
-  }
-}

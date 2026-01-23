@@ -1,6 +1,0 @@
-{
-  "type": "spectrum:drop_self",
-  "block": {
-    "blocks": "#spectrum:splinterspawn_infested_blocks"
-  }
-}

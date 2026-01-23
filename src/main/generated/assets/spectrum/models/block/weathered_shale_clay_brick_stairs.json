@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "bottom": "spectrum:block/weathered_shale_clay_bricks",
-    "side": "spectrum:block/weathered_shale_clay_bricks",
-    "top": "spectrum:block/weathered_shale_clay_bricks"
-  }
-}

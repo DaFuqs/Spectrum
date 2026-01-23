@@ -1,9 +1,0 @@
-{
-  "type": "spectrum:potion_workshop_reacting",
-  "item": "minecraft:fermented_spider_eye",
-  "modifiers": {
-    "make_effects_harmful": true,
-    "duration_multiplier": 0.75
-  },
-  "required_advancement": "spectrum:unlocks/reagents/fermented_spider_eye"
-}

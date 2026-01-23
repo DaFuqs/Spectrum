@@ -1,8 +1,0 @@
-{
-  "parent": "spectrum:templates/shimmerstone_light",
-  "textures": {
-    "inner": "spectrum:block/shimmerstone_light",
-    "outer": "spectrum:block/basalt_flat_light",
-    "particle": "spectrum:block/basalt_flat_light"
-  }
-}

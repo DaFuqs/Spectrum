@@ -1,6 +1,0 @@
-{
-  "parent": "spectrum:templates_item/cluster",
-  "textures": {
-    "layer0": "spectrum:block/emerald_cluster"
-  }
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "block/orientable",
-  "textures": {
-    "top": "spectrum:block/polished_basalt",
-    "front": "alloy_forgery:block/polished_basalt_forge_controller_front",
-    "side": "spectrum:block/polished_basalt"
-  }
-}

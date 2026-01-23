@@ -1,6 +1,0 @@
-{
-  "parent": "spectrum:templates/redstone_transceiver_channel_base",
-  "textures": {
-    "all": "spectrum:block/blue_block"
-  }
-}

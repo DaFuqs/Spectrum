@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.chests;
 
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.events.*;
@@ -9,6 +10,7 @@ import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
+import it.unimi.dsi.fastutil.objects.*;
 import net.fabricmc.fabric.api.screenhandler.v1.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.minecraft.block.*;
@@ -18,23 +20,27 @@ import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.*;
+import net.minecraft.registry.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.screen.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
+import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import net.minecraft.world.event.*;
 import net.minecraft.world.event.listener.*;
+import org.apache.commons.lang3.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.stream.*;
 
 @SuppressWarnings("UnstableApiUsage")
-public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implements ExtendedScreenHandlerFactory, SidedInventory, EventQueue.Callback<Object> {
+public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implements ExtendedScreenHandlerFactory, SidedInventory, EventQueue.Callback<Object>, TagFilteringInventory {
 	
 	public static final int INVENTORY_SIZE = 28;
 	public static final int ITEM_FILTER_SLOT_COUNT = 5;
@@ -46,12 +52,15 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	private boolean isOpen, isFull, hasXPStorage;
 	float storageTarget, storagePos, lastStorageTarget, capTarget, capPos, lastCapTarget, orbTarget, orbPos, lastOrbTarget, yawTarget, orbYaw, lastYawTarget;
 	long interpTicks, interpLength = 1, age, storedXP, maxStoredXP;
-
+	
+	private final Object2BooleanMap<TagKey<Item>> filteredTags;
+	private boolean allTagsDeny = true;
 	
 	public BlackHoleChestBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntities.BLACK_HOLE_CHEST, blockPos, blockState);
 		this.itemAndExperienceEventQueue = new ItemAndExperienceEventQueue(new BlockPositionSource(this.pos), RANGE, this);
 		this.filterItems = DefaultedList.ofSize(ITEM_FILTER_SLOT_COUNT, ItemVariant.blank());
+		this.filteredTags = new Object2BooleanArrayMap<>();
 	}
 
 	public static void tick(@NotNull World world, BlockPos pos, BlockState state, BlackHoleChestBlockEntity chest) {
@@ -227,6 +236,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	public void readNbt(NbtCompound tag) {
 		super.readNbt(tag);
 		FilterConfigurable.readFilterNbt(tag, filterItems);
+		this.updateTagFilteringItems();
 		age = tag.getLong("age");
 	}
 	
@@ -268,7 +278,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 			}
 		} else if (entry instanceof ItemEntityEventQueue.EventEntry itemEntry) {
 			ItemEntity itemEntity = itemEntry.itemEntity;
-			if (itemEntity != null && itemEntity.isAlive() && !itemEntity.cannotPickup() && acceptsItemStack(itemEntity.getStack())) {
+			if (itemEntity != null && itemEntity.isAlive() && !itemEntity.cannotPickup() && this.acceptsItem(itemEntity.getStack().getItem())) {
 				int previousAmount = itemEntity.getStack().getCount();
 				ItemStack remainingStack = InventoryHelper.smartAddToInventory(itemEntity.getStack(), this, Direction.UP);
 				
@@ -322,25 +332,13 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 
 	public void setFilterItem(int slot, ItemVariant item) {
 		this.filterItems.set(slot, item);
+		this.updateTagFilteringItems();
 		this.markDirty();
 	}
 	
-	public boolean acceptsItemStack(ItemStack itemStack) {
-		if (itemStack.isEmpty()) {
-			return false;
-		}
-		
-		boolean allAir = true;
-		for (int i = 0; i < ITEM_FILTER_SLOT_COUNT; i++) {
-			ItemVariant filterItem = this.filterItems.get(i);
-			if (filterItem.getItem().equals(itemStack.getItem())) {
-				return true;
-			} else if (!filterItem.getItem().equals(Items.AIR)) {
-				allAir = false;
-			}
-		}
-		return allAir;
-	}
+	public Object2BooleanMap<TagKey<Item>> getFilteredTags() { return this.filteredTags; }
+	public boolean onlyDenyListTags() { return this.allTagsDeny; }
+	public void setOnlyDenyListTags(boolean onlyDenyListTags) { this.allTagsDeny = onlyDenyListTags; }
 	
 	public boolean hasExperienceStorageItem() {
 		return this.inventory.get(EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT).getItem() instanceof ExperienceStorageItem;

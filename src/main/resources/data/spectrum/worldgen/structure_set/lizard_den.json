@@ -24,7 +24,7 @@
       "other_set": "spectrum:city_below",
       "chunk_count": 1
     },
-    "spacing": 2,
-    "separation": 1
+    "spacing": 4,
+    "separation": 3
   }
 }

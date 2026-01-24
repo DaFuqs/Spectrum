@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.inventories.slots.*;
 import de.dafuqs.spectrum.registries.*;
-import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
@@ -61,7 +60,7 @@ public class BlackHoleChestScreenHandler extends AbstractContainerMenu {
 		
 		// filter slots
 		for (k = 0; k < BlackHoleChestBlockEntity.ITEM_FILTER_SLOT_COUNT; ++k) {
-			this.addSlot(new BlackHoleChestFilterSlot(filterInventory, k, 8 + k * 23, 18));
+			this.addSlot(new FilterSlot(blockEntity, filterInventory, k, 8 + k * 23, 18));
 		}
 	}
 	
@@ -103,21 +102,6 @@ public class BlackHoleChestScreenHandler extends AbstractContainerMenu {
 	public void removed(Player player) {
 		super.removed(player);
 		blockEntity.stopOpen(player);
-	}
-	
-	protected class BlackHoleChestFilterSlot extends ShadowSlot {
-		
-		public BlackHoleChestFilterSlot(Container inventory, int index, int x, int y) {
-			super(inventory, index, x, y);
-		}
-		
-		@Override
-		public boolean onClicked(ItemStack heldStack, ClickAction type, Player player) {
-			if (blockEntity != null) {
-				blockEntity.setFilterItem(getContainerSlot(), ItemVariant.of(heldStack));
-			}
-			return super.onClicked(heldStack, type, player);
-		}
 	}
 	
 }

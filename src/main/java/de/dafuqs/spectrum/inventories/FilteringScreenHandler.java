@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.inventories.slots.*;
-import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
@@ -20,18 +19,18 @@ public class FilteringScreenHandler extends AbstractContainerMenu {
 	protected final int rows, slotsPerRow, drawnSlots;
 	
 	public FilteringScreenHandler(int syncId, Inventory playerInventory, FilterConfigurable.ExtendedDataWithPos data) {
-		this(SpectrumScreenHandlerTypes.FILTERING, syncId, playerInventory,
+		this(SpectrumScreenHandlerTypes.FILTERING, syncId, playerInventory, data,
 				(handler) -> new Tuple<>(FilterConfigurable.getFilterInventoryFromItemsHandler(syncId, playerInventory, data.data().filterItems(), handler), new Integer[]{
 						data.data().rows(),
 						data.data().slotsPerRow(),
 						data.data().drawnSlots()
 				}));
-		this.filterConfigurable = (FilterConfigurable) world.getBlockEntity(data.pos());
 	}
 	
-	protected FilteringScreenHandler(MenuType<?> type, int syncId, Inventory playerInventory, Function<AbstractContainerMenu, Tuple<Container, Integer[]>> filterInventoryFactory) {
+	protected FilteringScreenHandler(MenuType<?> type, int syncId, Inventory playerInventory, FilterConfigurable.ExtendedDataWithPos data, Function<AbstractContainerMenu, Tuple<Container, Integer[]>> filterInventoryFactory) {
 		super(type, syncId);
 		this.world = playerInventory.player.level();
+		this.filterConfigurable = (FilterConfigurable) playerInventory.player.level().getBlockEntity(data.pos());
 		var pair = filterInventoryFactory.apply(this);
 		this.filterInventory = pair.getA();
 		var slotData = pair.getB();
@@ -49,7 +48,7 @@ public class FilteringScreenHandler extends AbstractContainerMenu {
 				for (int k = 0; k < slotsPerRow; ++k) {
 					if (index == slotCount)
 						break slotDraw;
-					this.addSlot(new FilterSlot(filterInventory, index, startX + k * 23, 18 + i * (FilteringScreen.STRIP_HEIGHT + 8)));
+					this.addSlot(new FilterSlot(filterConfigurable, filterInventory, index, startX + k * 23, 18 + i * (FilteringScreen.STRIP_HEIGHT + 8)));
 					index++;
 				}
 			}
@@ -90,21 +89,6 @@ public class FilteringScreenHandler extends AbstractContainerMenu {
 	@Override
 	public void removed(Player player) {
 		super.removed(player);
-	}
-
-	protected class FilterSlot extends ShadowSlot {
-		
-		public FilterSlot(Container inventory, int index, int x, int y) {
-			super(inventory, index, x, y);
-		}
-
-		@Override
-		public boolean onClicked(ItemStack heldStack, ClickAction type, Player player) {
-			if (!world.isClientSide && filterConfigurable != null) {
-				filterConfigurable.setFilterItem(getContainerSlot(), ItemVariant.of(heldStack));
-			}
-			return super.onClicked(heldStack, type, player);
-		}
 	}
 
 }

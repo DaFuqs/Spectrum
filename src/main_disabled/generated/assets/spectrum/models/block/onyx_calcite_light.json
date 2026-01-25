@@ -1,8 +1,0 @@
-{
-  "parent": "spectrum:templates/multilayer_light",
-  "textures": {
-    "inside": "spectrum:block/onyx_block",
-    "side": "spectrum:block/onyx_calcite_light",
-    "top": "spectrum:block/calcite_cap"
-  }
-}

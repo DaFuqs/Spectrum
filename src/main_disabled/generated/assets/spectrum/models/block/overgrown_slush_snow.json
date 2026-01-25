@@ -1,9 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "bottom": "spectrum:block/slush",
-    "particle": "spectrum:block/overgrown_slush_snow_top",
-    "side": "spectrum:block/overgrown_slush_snow_side",
-    "top": "spectrum:block/overgrown_slush_snow_top"
-  }
-}

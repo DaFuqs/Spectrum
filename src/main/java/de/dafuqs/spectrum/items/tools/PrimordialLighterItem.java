@@ -19,13 +19,14 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.gameevent.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public class PrimordialLighterItem extends FlintAndSteelItem implements CreativeOnlyItem {
 	
 	public static final DispenseItemBehavior DISPENSER_BEHAVIOR = new OptionalDispenseItemBehavior() {
-		protected ItemStack execute(BlockSource pointer, ItemStack stack) {
+		protected @NotNull ItemStack execute(BlockSource pointer, @NotNull ItemStack stack) {
 			var world = pointer.level();
 			this.setSuccess(true);
 			Direction direction = pointer.state().getValue(DispenserBlock.FACING);
@@ -61,7 +62,7 @@ public class PrimordialLighterItem extends FlintAndSteelItem implements Creative
 		
 		if (PrimordialFireBlock.canBePlacedAt(world, blockOnSide, context.getHorizontalDirection())) {
 			world.playSound(player, blockOnSide, SpectrumSoundEvents.ITEM_PRIMORDIAL_LIGHTER_USE, SoundSource.BLOCKS, 1.0F, world.getRandom().nextFloat() * 0.4F + 0.8F);
-			BlockState primordialFireState = SpectrumBlocks.PRIMORDIAL_FIRE.getStateForPosition(world, blockOnSide);
+			BlockState primordialFireState = SpectrumBlocks.PRIMORDIAL_FIRE.get().getStateForPosition(world, blockOnSide);
 			world.setBlock(blockOnSide, primordialFireState, 11);
 			world.gameEvent(player, GameEvent.BLOCK_PLACE, pos);
 			

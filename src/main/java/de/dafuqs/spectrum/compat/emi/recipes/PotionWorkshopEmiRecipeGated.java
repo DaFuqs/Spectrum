@@ -16,7 +16,7 @@ public class PotionWorkshopEmiRecipeGated<T extends PotionWorkshopRecipe> extend
 	public PotionWorkshopEmiRecipeGated(EmiRecipeCategory category, RecipeHolder<T> entry) {
 		super(category, entry, 112, 66);
 		
-		this.inputs = entry.value().getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getMatchingStacks().stream().map(EmiStack::of).toList())).toList();
+		this.inputs = entry.value().getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getItems().map(EmiStack::of).toList())).toList();
 	}
 	
 	@Override

@@ -27,7 +27,7 @@ public class SpiritInstillingCategory extends GatedDisplayCategory<SpiritInstill
 	
 	@Override
 	public Component getTitle() {
-		return SpectrumBlocks.SPIRIT_INSTILLER.getName();
+		return SpectrumBlocks.SPIRIT_INSTILLER.get().getName();
 	}
 	
 	@Override

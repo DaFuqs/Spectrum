@@ -68,7 +68,7 @@ public class SpectrumEntityColorProcessors {
 		});
 		
 		// SPECTRUM
-		EntityColorProcessorRegistry.register(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG, (entity, dyeColor, player) -> {
+		EntityColorProcessorRegistry.register(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG.get(), (entity, dyeColor, player) -> {
 			if (dyeColor.isEmpty()) {
 				return false;
 			}
@@ -79,7 +79,7 @@ public class SpectrumEntityColorProcessors {
 			entity.setColor(color);
 			return true;
 		});
-		EntityColorProcessorRegistry.register(SpectrumEntityTypes.INK_PROJECTILE, (entity, dyeColor, player) -> {
+		EntityColorProcessorRegistry.register(SpectrumEntityTypes.INK_PROJECTILE.get(), (entity, dyeColor, player) -> {
 			if (dyeColor.isEmpty()) {
 				return false;
 			}

@@ -112,7 +112,7 @@ public class CrystallarieumBlock extends InWorldInteractionBlock implements Slot
 		return ItemInteractionResult.SUCCESS;
 	}
 	
-	public static ItemStack asStackWithColor(ItemStack stack, InkColor color) {
+	public static ItemStack withColor(ItemStack stack, InkColor color) {
 		stack.set(SpectrumDataComponentTypes.INK_COLOR, color);
 		return stack;
 	}

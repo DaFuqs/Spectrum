@@ -1,8 +1,0 @@
-{
-  "parent": "spectrum:templates/multilayer_light",
-  "textures": {
-    "inside": "spectrum:block/ivory_noxcap_gills",
-    "side": "spectrum:block/ivory_noxwood_light",
-    "top": "spectrum:block/ivory_noxwood_light_top"
-  }
-}

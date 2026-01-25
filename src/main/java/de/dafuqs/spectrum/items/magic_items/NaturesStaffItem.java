@@ -264,7 +264,7 @@ public class NaturesStaffItem extends Item implements InkPowered {
 	private boolean payForUse(Player player, ItemStack stack) {
 		boolean paid = player.isCreative(); // free for creative players
 		if (!paid) { // try pay with ink
-			paid = InkPowered.tryDrainEnergy(player, INK_COST, getInkCostMod(player.level().registryAccess(), stack));
+			paid = InkPowered.tryDrainEnergy(player, INK_COST.color(), (long) (INK_COST.cost() * getInkCostMod(player.level().registryAccess(), stack)));
 		}
 		if (!paid && player.getInventory().contains(ITEM_COST)) {  // try pay with item
 			int efficiencyLevel = SpectrumEnchantmentHelper.getLevel(player.level().registryAccess(), Enchantments.EFFICIENCY, stack);

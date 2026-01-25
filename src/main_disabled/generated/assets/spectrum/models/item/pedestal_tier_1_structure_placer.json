@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "spectrum:item/pedestal_tier_1_structure_placer"
-  }
-}

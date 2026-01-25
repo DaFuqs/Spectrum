@@ -27,7 +27,7 @@ public class NaturesStaffConversionsCategory extends GatedDisplayCategory<Nature
 	
 	@Override
 	public Component getTitle() {
-		return SpectrumItems.NATURES_STAFF.getDescription();
+		return SpectrumItems.NATURES_STAFF.get().getDescription();
 	}
 	
 	@Override

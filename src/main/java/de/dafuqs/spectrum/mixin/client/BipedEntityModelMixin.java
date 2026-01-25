@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.mixin.client;
 
+import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.model.*;
 import net.minecraft.client.model.geom.*;
@@ -28,8 +29,7 @@ public class BipedEntityModelMixin {
 	
 	@Inject(method = {"setupAnim(Lnet/minecraft/world/entity/LivingEntity;FFFFF)V"}, at = @At("TAIL"), cancellable = true)
 	public void poseArms(LivingEntity livingEntity, float f, float g, float h, float i, float j, CallbackInfo ci) {
-		Optional<TrinketComponent> trinketComponent = TrinketsApi.getTrinketComponent(livingEntity);
-		if (trinketComponent.isPresent() && trinketComponent.get().isEquipped(SpectrumItems.NEAT_RING)) {
+		if (SpectrumTrinketItem.hasEquipped(livingEntity, SpectrumItems.NEAT_RING.get())) {
 			this.rightLeg.xRot = 0;
 			this.rightLeg.yRot = 0;
 			this.leftLeg.xRot = 0;

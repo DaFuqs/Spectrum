@@ -42,16 +42,11 @@ public abstract class ProjectileEntityMixin {
 					if (reboundInstance != null && entity.level().getRandom().nextFloat() < SpectrumStatusEffects.PROJECTILE_REBOUND_CHANCE_PER_LEVEL * reboundInstance.getAmplifier()) {
 						protect = true;
 					} else {
-						Optional<TrinketComponent> component = TrinketsApi.getTrinketComponent(livingEntity);
-						if (component.isPresent()) {
-							List<Tuple<SlotReference, ItemStack>> equipped = component.get().getEquipped(SpectrumItems.PUFF_CIRCLET);
-							if (!equipped.isEmpty()) {
-								AzureDikeAttachmentType azureDikeAttachment = livingEntity.getData(AzureDikeAttachmentType.ATTACHMENT_TYPE);
-								float charges = azureDikeAttachment.getCurrentCharges();
-								if (charges > 0) {
-									azureDikeAttachment.absorbDamage(livingEntity, PuffCircletItem.PROJECTILE_DEFLECTION_COST);
-									protect = true;
-								}
+						if (SpectrumTrinketItem.hasEquipped(livingEntity, SpectrumItems.PUFF_CIRCLET.get())) {
+							AzureDikeAttachmentType azureDikeAttachment = livingEntity.getData(AzureDikeAttachmentType.ATTACHMENT_TYPE);
+							if (azureDikeAttachment.getCurrentCharges() > 0) {
+								azureDikeAttachment.absorbDamage(livingEntity, PuffCircletItem.PROJECTILE_DEFLECTION_COST);
+								protect = true;
 							}
 						}
 					}

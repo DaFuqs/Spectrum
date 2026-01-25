@@ -24,7 +24,7 @@ public class TitrationBarrelCategory extends GatedDisplayCategory<TitrationBarre
 	
 	@Override
 	public Component getTitle() {
-		return SpectrumBlocks.TITRATION_BARREL.getName();
+		return SpectrumBlocks.TITRATION_BARREL.get().getName();
 	}
 	
 	@Override

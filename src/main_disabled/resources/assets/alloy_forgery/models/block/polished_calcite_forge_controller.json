@@ -1,8 +1,0 @@
-{
-  "parent": "block/orientable",
-  "textures": {
-    "top": "spectrum:block/polished_calcite",
-    "front": "alloy_forgery:block/polished_calcite_forge_controller_front",
-    "side": "spectrum:block/polished_calcite"
-  }
-}

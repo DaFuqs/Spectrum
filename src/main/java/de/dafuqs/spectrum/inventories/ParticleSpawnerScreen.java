@@ -18,6 +18,7 @@ import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
+import net.neoforged.neoforge.network.*;
 import org.jetbrains.annotations.*;
 import org.lwjgl.glfw.*;
 

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "bottom": "spectrum:block/ivory_noxwood_light_top",
-    "side": "spectrum:block/ivory_noxwood_amphora_side",
-    "top": "spectrum:block/ivory_noxwood_amphora_top_open"
-  }
-}

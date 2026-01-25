@@ -122,9 +122,6 @@ public class IngredientStack implements ICustomIngredient {
 		return SpectrumIngredientTypes.INGREDIENT_STACK;
 	}
 	
-	@Nullable
-	private List<ItemStack> matchingStacks;
-	
 	public boolean isEmpty() {
 		return this == EMPTY || this.ingredient.isEmpty();
 	}

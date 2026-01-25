@@ -185,10 +185,10 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 		long amount = 1000;
 		EmiStack water = EmiStack.of(Fluids.WATER, amount);
 		EmiStack lava = EmiStack.of(Fluids.LAVA, amount);
-		EmiStack dragonrot = EmiStack.of(SpectrumFluids.DRAGONROT, amount);
-		EmiStack liquidCrystal = EmiStack.of(SpectrumFluids.LIQUID_CRYSTAL, amount);
-		EmiStack midnightSolution = EmiStack.of(SpectrumFluids.MIDNIGHT_SOLUTION, amount);
-		EmiStack mud = EmiStack.of(SpectrumFluids.SLUDGE, amount);
+		EmiStack dragonrot = EmiStack.of(SpectrumFluids.DRAGONROT.get(), amount);
+		EmiStack liquidCrystal = EmiStack.of(SpectrumFluids.LIQUID_CRYSTAL.get(), amount);
+		EmiStack midnightSolution = EmiStack.of(SpectrumFluids.MIDNIGHT_SOLUTION.get(), amount);
+		EmiStack mud = EmiStack.of(SpectrumFluids.SLUDGE.get(), amount);
 		EmiStack waterCatalyst = water.copy().setRemainder(water);
 		EmiStack lavaCatalyst = lava.copy().setRemainder(lava);
 		EmiStack dragonrotCatalyst = dragonrot.copy().setRemainder(dragonrot);
@@ -196,7 +196,7 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 		EmiStack midnightSolutionCatalyst = midnightSolution.copy().setRemainder(midnightSolution);
 		EmiStack mudCatalyst = mud.copy().setRemainder(mud);
 		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
-				.id(syntheticId("world/fluid_interaction", SpectrumBlocks.SLUSH))
+				.id(syntheticId("world/fluid_interaction", SpectrumBlocks.SLUSH.get()))
 				.leftInput(dragonrotCatalyst)
 				.rightInput(waterCatalyst, false)
 				.output(EmiStack.of(SpectrumBlocks.SLUSH))
@@ -218,7 +218,7 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 				.requiredAdvancement(SludgeConvertingRecipe.UNLOCK_IDENTIFIER)
 				.build());
 		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
-				.id(syntheticId("world/fluid_interaction", SpectrumBlocks.ROTTEN_GROUND))
+				.id(syntheticId("world/fluid_interaction", SpectrumBlocks.ROTTEN_GROUND.get()))
 				.leftInput(dragonrotCatalyst)
 				.rightInput(liquidCrystalCatalyst, false)
 				.output(EmiStack.of(SpectrumBlocks.ROTTEN_GROUND))
@@ -226,7 +226,7 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 				.requiredAdvancement(LiquidCrystalConvertingRecipe.UNLOCK_IDENTIFIER)
 				.build());
 		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
-				.id(syntheticId("world/fluid_interaction", SpectrumBlocks.BLACK_SLUDGE))
+				.id(syntheticId("world/fluid_interaction", SpectrumBlocks.BLACK_SLUDGE.get()))
 				.leftInput(dragonrotCatalyst)
 				.rightInput(midnightSolutionCatalyst, false)
 				.output(EmiStack.of(SpectrumBlocks.BLACK_SLUDGE))
@@ -234,7 +234,7 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 				.requiredAdvancement(MidnightSolutionConvertingRecipe.UNLOCK_IDENTIFIER)
 				.build());
 		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
-				.id(syntheticId("world/fluid_interaction", SpectrumBlocks.FROSTBITE_CRYSTAL))
+				.id(syntheticId("world/fluid_interaction", SpectrumBlocks.FROSTBITE_CRYSTAL.get()))
 				.leftInput(liquidCrystal)
 				.rightInput(waterCatalyst, false)
 				.output(EmiStack.of(SpectrumBlocks.FROSTBITE_CRYSTAL))
@@ -248,7 +248,7 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 				.requiredAdvancement(LiquidCrystalConvertingRecipe.UNLOCK_IDENTIFIER)
 				.build());
 		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
-				.id(syntheticId("world/fluid_interaction", SpectrumBlocks.BLAZING_CRYSTAL))
+				.id(syntheticId("world/fluid_interaction", SpectrumBlocks.BLAZING_CRYSTAL.get()))
 				.leftInput(liquidCrystal)
 				.rightInput(lavaCatalyst, false)
 				.output(EmiStack.of(SpectrumBlocks.BLAZING_CRYSTAL))

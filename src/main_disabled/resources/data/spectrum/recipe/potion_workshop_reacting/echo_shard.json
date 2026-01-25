@@ -1,8 +1,0 @@
-{
-  "type": "spectrum:potion_workshop_reacting",
-  "item": "minecraft:echo_shard",
-  "modifiers": {
-    "chance_to_add_last_effect": 0.5
-  },
-  "required_advancement": "spectrum:unlocks/reagents/echo_shard"
-}

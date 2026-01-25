@@ -121,7 +121,7 @@ public class PrimordialFireBlock extends BaseFireBlock {
 		BlockState state = world.getBlockState(pos);
 		
 		if (PrimordialFireBlock.canBePlacedAt(world, pos, direction)) {
-			if (world.setBlockAndUpdate(pos, SpectrumBlocks.PRIMORDIAL_FIRE.getStateForPosition(world, pos))) {
+			if (world.setBlockAndUpdate(pos, SpectrumBlocks.PRIMORDIAL_FIRE.get().getStateForPosition(world, pos))) {
 				world.gameEvent(null, GameEvent.BLOCK_PLACE, pos);
 				return true;
 			}

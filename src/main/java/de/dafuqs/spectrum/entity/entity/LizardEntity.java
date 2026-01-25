@@ -236,7 +236,7 @@ public class LizardEntity extends TamableAnimal implements PackEntity<LizardEnti
 	@Override
 	public @Nullable AgeableMob getBreedOffspring(ServerLevel world, AgeableMob entity) {
 		LizardEntity other = (LizardEntity) entity;
-		LizardEntity child = SpectrumEntityTypes.LIZARD.create(world);
+		LizardEntity child = SpectrumEntityTypes.LIZARD.get().create(world);
 		if (child != null) {
 			child.setColor(getChildColor(this, other));
 			child.setFrills(getChildFrills(this, other));

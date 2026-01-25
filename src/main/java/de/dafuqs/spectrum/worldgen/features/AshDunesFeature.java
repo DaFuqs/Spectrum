@@ -132,9 +132,9 @@ public class AshDunesFeature extends Feature<AshDunesFeatureConfig> {
 	
 	private void placeAshBlock(WorldGenLevel world, BlockPos.MutableBlockPos pos, int height) {
 		if (height == 8) {
-			setBlock(world, pos, SpectrumBlocks.ASH.defaultBlockState());
+			setBlock(world, pos, SpectrumBlocks.ASH.get().defaultBlockState());
 		} else {
-			setBlock(world, pos, SpectrumBlocks.ASH_PILE.defaultBlockState().setValue(LAYERS, height));
+			setBlock(world, pos, SpectrumBlocks.ASH_PILE.get().defaultBlockState().setValue(LAYERS, height));
 		}
 	}
 	

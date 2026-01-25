@@ -17,7 +17,6 @@ public class SpectrumCommands {
 			DumpTagsCommand.register(spectrumNode);
 			ResetShadersCommand.register(spectrumNode);
 			
-			
 			dispatcher.getRoot().addChild(spectrumNode);
 		});
 	}

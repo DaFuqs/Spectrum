@@ -57,7 +57,7 @@ public class NephriteBlossomFeature extends Feature<NephriteBlossomFeatureConfig
 		for (int height = 0; height < stemHeight; height++) {
 			
 			if (height == 0) {
-				this.setBlock(world, stemPointer, SpectrumBlocks.NEPHRITE_BLOSSOM_STEM.defaultBlockState());
+				this.setBlock(world, stemPointer, SpectrumBlocks.NEPHRITE_BLOSSOM_STEM.get().defaultBlockState());
 				topStem = true;
 			} else if (isReplaceable(world, stemPointer)) {
 				this.setBlock(world, stemPointer, NephriteBlossomStemBlock.getStemVariant(topStem));
@@ -101,7 +101,7 @@ public class NephriteBlossomFeature extends Feature<NephriteBlossomFeatureConfig
 	}
 	
 	private BlockState getLeafState(RandomSource random, boolean allowFlowering) {
-		var state = SpectrumBlocks.NEPHRITE_BLOSSOM_LEAVES.defaultBlockState().setValue(NephriteBlossomLeavesBlock.DISTANCE, 1);
+		var state = SpectrumBlocks.NEPHRITE_BLOSSOM_LEAVES.get().defaultBlockState().setValue(NephriteBlossomLeavesBlock.DISTANCE, 1);
 		if (!allowFlowering) {
 			return state;
 		}

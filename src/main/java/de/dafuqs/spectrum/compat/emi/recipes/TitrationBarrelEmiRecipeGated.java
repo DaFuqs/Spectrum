@@ -8,6 +8,7 @@ import dev.emi.emi.api.widget.*;
 import net.minecraft.client.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.crafting.*;
+import net.neoforged.neoforge.fluids.crafting.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -19,10 +20,10 @@ public class TitrationBarrelEmiRecipeGated extends GatedSpectrumEmiRecipe<ITitra
 	public TitrationBarrelEmiRecipeGated(RecipeHolder<ITitrationBarrelRecipe> entry) {
 		super(SpectrumEmiRecipeCategories.TITRATION_BARREL, entry, 136, 50);
 		inputs = new ArrayList<>();
-		if (recipe.getFluidInput() != FluidIngredient.EMPTY) {
+		if (!recipe.getFluidInput().isEmpty()) {
 			inputs.add(FluidIngredientEmi.into(recipe.getFluidInput()));
 		}
-		inputs.addAll(recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getMatchingStacks().stream().map(EmiStack::of).toList())).toList());
+		inputs.addAll(recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getItems().map(EmiStack::of).toList())).toList());
 		
 		displayedStacks = buildFermentationOutputVariations(recipe);
 	}

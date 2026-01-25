@@ -1,6 +1,0 @@
-{
-  "parent": "spectrum:templates/translucent_outer1",
-  "textures": {
-    "texture": "spectrum:block/vegetal_block"
-  }
-}

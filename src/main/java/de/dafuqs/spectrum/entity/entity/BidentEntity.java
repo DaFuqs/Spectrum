@@ -9,7 +9,7 @@ import net.minecraft.world.phys.*;
 public class BidentEntity extends BidentBaseEntity {
 	
 	public BidentEntity(Level world) {
-		this(SpectrumEntityTypes.BIDENT, world);
+		this(SpectrumEntityTypes.BIDENT.get(), world);
 	}
 	
 	public BidentEntity(EntityType<? extends ThrownTrident> entityType, Level world) {

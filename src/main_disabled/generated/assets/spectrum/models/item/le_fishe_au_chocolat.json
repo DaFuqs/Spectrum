@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "spectrum:item/le_fishe_au_chocolat"
-  }
-}

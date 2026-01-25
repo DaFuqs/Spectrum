@@ -36,7 +36,7 @@ public class MonstrositySpawner implements CustomSpawner {
 			// a monstrosity should spawn for the player
 			// do we already have one? If no create one
 			if (MonstrosityEntity.theOneAndOnly == null) {
-				MonstrosityEntity monstrosity = SpectrumEntityTypes.MONSTROSITY.create(world);
+				MonstrosityEntity monstrosity = SpectrumEntityTypes.MONSTROSITY.get().create(world);
 				DifficultyInstance localDifficulty = world.getCurrentDifficultyAt(playerEntity.blockPosition());
 				monstrosity.finalizeSpawn(world, localDifficulty, MobSpawnType.NATURAL, null);
 				world.addFreshEntityWithPassengers(monstrosity);

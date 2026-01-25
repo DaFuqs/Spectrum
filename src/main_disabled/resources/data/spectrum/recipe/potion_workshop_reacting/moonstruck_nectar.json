@@ -1,8 +1,0 @@
-{
-  "type": "spectrum:potion_workshop_reacting",
-  "item": "spectrum:moonstruck_nectar",
-  "modifiers": {
-    "additional_drink_duration_ticks": -28
-  },
-  "required_advancement": "spectrum:unlocks/reagents/moonstruck_nectar"
-}

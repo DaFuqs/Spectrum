@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/spore_blossom",
-  "textures": {
-    "flower": "spectrum:block/light_gray_spore_blossom",
-    "particle": "spectrum:block/light_gray_spore_blossom"
-  }
-}

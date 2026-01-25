@@ -312,8 +312,8 @@ public class FloatBlockEntity extends Entity {
 	public boolean isPaltaeriaStratineCollision(FloatBlockEntity other) {
 		Block thisBlock = this.blockState.getBlock();
 		Block otherBlock = other.getBlockState().getBlock();
-		return thisBlock == SpectrumBlocks.PALTAERIA_FLOATBLOCK && otherBlock == SpectrumBlocks.STRATINE_FLOATBLOCK
-				|| thisBlock == SpectrumBlocks.STRATINE_FLOATBLOCK && otherBlock == SpectrumBlocks.PALTAERIA_FLOATBLOCK;
+		return thisBlock == SpectrumBlocks.PALTAERIA_FLOATBLOCK.get() && otherBlock == SpectrumBlocks.STRATINE_FLOATBLOCK.get()
+				|| thisBlock == SpectrumBlocks.STRATINE_FLOATBLOCK.get() && otherBlock == SpectrumBlocks.PALTAERIA_FLOATBLOCK.get();
 	}
 	
 	/**

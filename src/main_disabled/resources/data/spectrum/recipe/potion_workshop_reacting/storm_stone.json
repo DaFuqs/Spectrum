@@ -1,8 +1,0 @@
-{
-  "type": "spectrum:potion_workshop_reacting",
-  "item": "spectrum:storm_stone",
-  "modifiers": {
-    "potent_decreasing_effect": true
-  },
-  "required_advancement": "spectrum:unlocks/reagents/storm_stone"
-}

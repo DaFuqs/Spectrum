@@ -178,7 +178,7 @@ public class BedrockAnvilScreenHandler extends ItemCombinerMenu {
 						int newEnchantmentLevel = entry.getIntValue();
 						newEnchantmentLevel = t == newEnchantmentLevel ? newEnchantmentLevel + 1 : Math.max(newEnchantmentLevel, t);
 						Enchantment enchantment = registryEntry.value();
-						boolean itemStackIsAcceptableForStack = inputStack.canBeEnchantedWith(registryEntry, EnchantingContext.ACCEPTABLE);
+						boolean itemStackIsAcceptableForStack = inputStack.supportsEnchantment(registryEntry);
 						if (this.player.getAbilities().instabuild || inputStack.is(Items.ENCHANTED_BOOK)) {
 							itemStackIsAcceptableForStack = true;
 						}

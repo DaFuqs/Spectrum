@@ -1,9 +1,0 @@
-{
-  "type": "spectrum:potion_workshop_reacting",
-  "item": "spectrum:bone_ash",
-  "modifiers": {
-    "last_effect_duration_modifier": 2.0,
-    "last_effect_potency_modifier": 2.0
-  },
-  "required_advancement": "spectrum:unlocks/reagents/bone_ash"
-}

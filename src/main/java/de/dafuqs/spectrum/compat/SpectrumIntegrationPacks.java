@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.compat.ae2.*;
 import de.dafuqs.spectrum.compat.alloy_forgery.*;
 import de.dafuqs.spectrum.compat.create.*;
 import de.dafuqs.spectrum.compat.exclusions_lib.*;
-import de.dafuqs.spectrum.compat.farmersdelight.*;
 import de.dafuqs.spectrum.compat.gobber.*;
 import de.dafuqs.spectrum.compat.malum.*;
 import de.dafuqs.spectrum.compat.modonomicon.*;
@@ -18,7 +17,6 @@ import java.util.function.*;
 public class SpectrumIntegrationPacks {
 	
 	protected static final Map<String, ModIntegrationPack> INTEGRATION_PACKS = new HashMap<>();
-	
 	
 	public abstract static class ModIntegrationPack {
 		public abstract void register();
@@ -39,7 +37,6 @@ public class SpectrumIntegrationPacks {
 	//public static final String BOTANIA_ID = "botania";
 	public static final String MODONOMICON_ID = "modonomicon";
 	public static final String CREATE_ID = "create";
-	public static final String FARMERSDELIGHT_ID = "farmersdelight";
 	public static final String MALUM_ID = "malum";
 	public static final String EXCLUSIONS_LIB_ID = "exclusions_lib";
 
@@ -56,7 +53,6 @@ public class SpectrumIntegrationPacks {
 		registerIntegrationPack(ALLOY_FORGERY_ID, () -> new AlloyForgeryCompat());
 		registerIntegrationPack(TRAVELERS_BACKPACK_ID, () -> new TravelersBackpackCompat());
 		//registerIntegrationPack(BOTANIA_ID, () -> new BotaniaCompat());
-		registerIntegrationPack(FARMERSDELIGHT_ID, () -> new FDCompat());
 		registerIntegrationPack(MALUM_ID, () -> new MalumCompat());
 		registerIntegrationPack(CREATE_ID, () -> new CreateCompat());
 		

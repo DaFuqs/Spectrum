@@ -187,7 +187,7 @@ public class KindlingEntity extends AbstractHorse implements RangedAttackMob, Ne
 	@Nullable
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob entity) {
-		KindlingEntity baby = SpectrumEntityTypes.KINDLING.create(world);
+		KindlingEntity baby = SpectrumEntityTypes.KINDLING.get().create(world);
 		if (baby != null) {
 			baby.setKindlingVariant(this.random.nextBoolean() ? this.getKindlingVariant() : ((KindlingEntity) entity).getKindlingVariant());
 		}

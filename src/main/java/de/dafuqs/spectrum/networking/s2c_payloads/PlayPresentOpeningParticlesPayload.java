@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.networking.s2c_payloads;
 import de.dafuqs.spectrum.blocks.present.*;
 import de.dafuqs.spectrum.networking.*;
 import it.unimi.dsi.fastutil.objects.*;
+import net.minecraft.client.multiplayer.*;
 import net.minecraft.core.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
@@ -30,8 +31,7 @@ public record PlayPresentOpeningParticlesPayload(BlockPos presentPos, Map<Intege
 	}
 	
 	public static void execute(PlayPresentOpeningParticlesPayload payload, IPayloadContext context) {
-		Level level = context.player().level();
-		PresentBlock.spawnParticles(level, payload.presentPos, payload.colors);
+		PresentBlock.spawnParticles((ClientLevel) context.player().level(), payload.presentPos, payload.colors);
 	}
 	
 	@Override

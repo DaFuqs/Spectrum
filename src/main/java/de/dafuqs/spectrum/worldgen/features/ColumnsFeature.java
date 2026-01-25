@@ -18,7 +18,7 @@ import java.util.*;
  */
 public class ColumnsFeature extends Feature<ColumnsFeatureConfig> {
 	
-	private static final ImmutableList<Block> CANNOT_REPLACE_BLOCKS = ImmutableList.of(Blocks.BEDROCK, Blocks.CHEST, Blocks.SPAWNER, SpectrumBlocks.DOWNSTONE);
+	private static final ImmutableList<Block> CANNOT_REPLACE_BLOCKS = ImmutableList.of(Blocks.BEDROCK, Blocks.CHEST, Blocks.SPAWNER, SpectrumBlocks.DOWNSTONE.get());
 	private static final int BIG_MAX_OFFSET = 5;
 	private static final int BIG_COUNT = 50;
 	private static final int SMALL_MAX_OFFSET = 8;

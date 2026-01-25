@@ -1,7 +1,0 @@
-{
-  "parent": "spectrum:templates/base_fusion_shrine",
-  "textures": {
-    "particle": "spectrum:block/fusion_shrine_basalt_breaking",
-    "shrine": "spectrum:block/fusion_shrine_basalt"
-  }
-}

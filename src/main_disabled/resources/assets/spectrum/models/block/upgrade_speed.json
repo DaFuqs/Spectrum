@@ -1,9 +1,0 @@
-{
-  "parent": "spectrum:templates/upgrade",
-  "textures": {
-    "inner": "spectrum:block/upgrade_speed_inner",
-    "outer": "spectrum:block/upgrade_speed_outer",
-    "base": "spectrum:block/upgrade_base",
-    "particle": "spectrum:block/upgrade_speed_inner"
-  }
-}

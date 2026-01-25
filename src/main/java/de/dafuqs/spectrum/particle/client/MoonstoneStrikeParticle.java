@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.particle.client;
 
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import net.minecraft.client.multiplayer.*;

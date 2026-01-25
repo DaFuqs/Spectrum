@@ -147,7 +147,7 @@ public class EggLayingWoolyPigEntity extends Animal implements Shearable {
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob entity) {
 		EggLayingWoolyPigEntity other = (EggLayingWoolyPigEntity) entity;
-		EggLayingWoolyPigEntity child = SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG.create(world);
+		EggLayingWoolyPigEntity child = SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG.get().create(world);
 		if (child != null) {
 			child.setColor(this.getChildColor(this, other));
 			if (world.random.nextInt(50) == 0) {

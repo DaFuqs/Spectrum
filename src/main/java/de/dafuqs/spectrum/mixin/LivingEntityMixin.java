@@ -387,8 +387,9 @@ public abstract class LivingEntityMixin {
 		if (original <= 0 || thisEntity.isInvulnerableTo(thisEntity.damageSources().fall()) || azureDikeAttachment.getCurrentCharges() <= cost) return original;
 		
 		// check if this entity is protected by puff circlet
-		Optional<TrinketComponent> component = TrinketsApi.getTrinketComponent(thisEntity);
-		if (component.isEmpty() || component.get().getEquipped(SpectrumItems.PUFF_CIRCLET).isEmpty()) return original;
+		if (SpectrumTrinketItem.hasEquipped(thisEntity, SpectrumItems.PUFF_CIRCLET.get())) {
+			return original;
+		}
 		
 		// do damage reduction
 		azureDikeAttachment.absorbDamage(thisEntity, cost);

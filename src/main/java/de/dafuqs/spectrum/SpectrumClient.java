@@ -2,6 +2,7 @@ package de.dafuqs.spectrum;
 
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.revelationary.api.revelations.*;
+import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.entity.*;
@@ -39,8 +40,7 @@ public class SpectrumClient implements RevealingCallback, ClientAdvancementPacke
 	public SpectrumClient(IEventBus modBus, ModContainer modContainer) {
 		SpectrumCommon.logInfo("Starting Client Startup");
 		SpectrumBlocks.registerClient();
-		// TODO: port
-		// SpectrumIntegrationPacks.registerClient();
+		SpectrumIntegrationPacks.registerClient();
 		SpectrumModelPredicateProviders.registerClient();
 		SpectrumEntityRenderers.registerClient();
 		SpectrumS2CPackets.registerS2CReceivers();

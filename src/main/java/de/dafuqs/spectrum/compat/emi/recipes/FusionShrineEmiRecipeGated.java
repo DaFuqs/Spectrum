@@ -25,7 +25,7 @@ public class FusionShrineEmiRecipeGated extends GatedSpectrumEmiRecipe<FusionShr
 		}
 		inputs = new ArrayList<>();
 		inputs.add(FluidIngredientEmi.into(recipe.getFluid()));
-		inputs.addAll(recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getMatchingStacks().stream().map(EmiStack::of).toList())).toList());
+		inputs.addAll(recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getItems().map(EmiStack::of).toList())).toList());
 		outputs = List.of(EmiStack.of(recipe.getResultItem(getRegistryManager())));
 	}
 	

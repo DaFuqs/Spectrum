@@ -66,10 +66,10 @@ public class JadeiteLotusFeature extends Feature<JadeiteLotusFeatureConfig> {
 		
 		for (int height = 0; height < stemHeight; height++) {
 			if (height == 0) {
-				this.setBlock(world, stemPointer, SpectrumBlocks.JADEITE_LOTUS_STEM.defaultBlockState().setValue(JadeiteLotusStemBlock.INVERTED, inverted));
+				this.setBlock(world, stemPointer, SpectrumBlocks.JADEITE_LOTUS_STEM.get().defaultBlockState().setValue(JadeiteLotusStemBlock.INVERTED, inverted));
 				topStem = true;
 			} else if (height == stemHeight - 1) {
-				this.setBlock(world, stemPointer, SpectrumBlocks.JADEITE_LOTUS_FLOWER.defaultBlockState().setValue(JadeiteLotusFlowerBlock.FACING, inverted ? Direction.UP : Direction.DOWN));
+				this.setBlock(world, stemPointer, SpectrumBlocks.JADEITE_LOTUS_FLOWER.get().defaultBlockState().setValue(JadeiteLotusFlowerBlock.FACING, inverted ? Direction.UP : Direction.DOWN));
 			} else {
 				this.setBlock(world, stemPointer, JadeiteLotusStemBlock.getStemVariant(topStem, inverted));
 				topStem = !topStem;

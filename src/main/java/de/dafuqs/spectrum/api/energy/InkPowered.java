@@ -3,9 +3,11 @@ package de.dafuqs.spectrum.api.energy;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.progression.*;
 import net.minecraft.*;
 import net.minecraft.client.*;
+import net.minecraft.core.registries.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
@@ -13,6 +15,7 @@ import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import org.jetbrains.annotations.*;
+import top.theillusivec4.curios.api.*;
 
 import java.util.*;
 
@@ -92,6 +95,10 @@ public interface InkPowered {
 		return false;
 	}
 	
+	static boolean tryDrainEnergy(@NotNull Player player, @NotNull InkCost cost) {
+		return  tryDrainEnergy(player.getInventory(), cost.color(), cost.cost());
+	}
+	
 	static boolean tryDrainEnergy(@NotNull Player player, @NotNull InkColor color, long amount) {
 		if (player.isCreative()) return true;
 		
@@ -101,6 +108,93 @@ public interface InkPowered {
 		}
 		
 		return false;
+	}
+	
+	static boolean hasAvailableInk(Player player, InkCost inkCost) {
+		return hasAvailableInk(player, inkCost.color(), inkCost.cost());
+	}
+	
+	static boolean hasAvailableInk(Player player, InkColor color, long amount) {
+		if (!canUse(player)) {
+			return false;
+		}
+		
+		if(SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.MALUM_ID)) {
+			var effect = BuiltInRegistries.MOB_EFFECT.get(ResourceLocation.parse("malum:silenced"));
+			if (player.hasEffect(BuiltInRegistries.MOB_EFFECT.wrapAsHolder(effect))) {
+				return false;
+			}
+		}
+		
+		if (player.isCreative()) {
+			return true;
+		}
+		
+		// hands
+		for (ItemStack itemStack : player.getHandSlots()) {
+			amount -= tryGetEnergy(itemStack, color);
+			if (amount <= 0) {
+				return true;
+			}
+		}
+		
+		// curio slots
+		List<ItemStack> inkStorages = CuriosApi
+				.getCuriosInventory(player)
+				.stream()
+				.flatMap(inventory -> inventory
+						.findCurios(itemStack1 -> itemStack1.getItem() instanceof InkStorageItem<?>)
+						.stream()
+				)
+				.map(SlotResult::stack).toList();
+		for (ItemStack inkStorage : inkStorages) {
+			amount -= tryGetEnergy(inkStorage, color);
+			if (amount <= 0) {
+				return true;
+			}
+		}
+		
+		// inventory
+		for (ItemStack itemStack : player.getInventory().items) {
+			amount -= tryGetEnergy(itemStack, color);
+			if (amount <= 0) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	static long getAvailableInk(@NotNull Player player, InkColor color) {
+		if (player.isCreative()) {
+			return Long.MAX_VALUE;
+		}
+		if (!canUse(player)) {
+			return 0;
+		}
+		
+		long available = 0;
+		
+		// hands
+		for (ItemStack itemStack : player.getHandSlots()) {
+			available += tryGetEnergy(itemStack, color);
+		}
+		
+		// trinket slots
+		available += CuriosApi
+				.getCuriosInventory(player)
+				.stream()
+				.flatMap(inventory -> inventory
+						.findCurios(itemStack1 -> itemStack1.getItem() instanceof InkStorageItem<?>)
+						.stream()
+				)
+				.map(SlotResult::stack).mapToLong(stack -> tryGetEnergy(stack, color)).sum();
+		
+		// inventory
+		for (ItemStack itemStack : player.getInventory().items) {
+			available += tryGetEnergy(itemStack, color);
+		}
+		return available;
 	}
 	
 }

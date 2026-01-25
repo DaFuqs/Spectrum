@@ -30,7 +30,7 @@ public abstract class CapeFeatureRendererMixin extends RenderLayer<AbstractClien
 	public void spectrum$renderBedrockCape(PoseStack ms, MultiBufferSource vertices, int light, AbstractClientPlayer player, float f, float g, float h, float j, float k, float l, CallbackInfo ci) {
 		// Check for the chestplate, and begin rendering the cape if equipped
 		ItemStack chestStack = VanitySlotsCompat.getEquippedStack(player, EquipmentSlot.CHEST);
-		if (chestStack.getItem() == SpectrumItems.BEDROCK_CHESTPLATE) {
+		if (chestStack.getItem() == SpectrumItems.BEDROCK_CHESTPLATE.get()) {
 			BedrockCapeRenderer.renderBedrockCapeAndCloth(ms, vertices, light, player, h, chestStack);
 			ci.cancel();
 		}

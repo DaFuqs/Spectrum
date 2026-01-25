@@ -40,7 +40,7 @@ public class AzureDikeAmuletItem extends InkDrainTrinketItem implements AzureDik
 	
 	@Override
 	public void curioBreak(SlotContext slotContext, ItemStack stack) {
-		ICurioItem.super.curioBreak(slotContext, stack);
+		super.curioBreak(slotContext, stack);
 		
 		if (slotContext.entity() instanceof ServerPlayer serverPlayerEntity) {
 			SpectrumAdvancementCriteria.TRINKET_CHANGE.trigger(serverPlayerEntity);

@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
+import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.world.entity.*;
@@ -24,11 +25,8 @@ public abstract class FarmlandBlockMixin extends Block {
 		
 		// if carrying puff circlet: no trampling
 		if (entity instanceof LivingEntity livingEntity) {
-			Optional<TrinketComponent> component = TrinketsApi.getTrinketComponent(livingEntity);
-			if (component.isPresent()) {
-				if (!component.get().getEquipped(SpectrumItems.PUFF_CIRCLET).isEmpty()) {
-					info.cancel();
-				}
+			if (SpectrumTrinketItem.hasEquipped(livingEntity, SpectrumItems.PUFF_CIRCLET.get())) {
+				info.cancel();
 			}
 		}
 	}

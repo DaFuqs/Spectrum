@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.status_effects;
 
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.*;

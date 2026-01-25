@@ -1,0 +1,9 @@
+{
+  "values": [
+    "minecraft:ender_eye",
+    {
+      "id": "malum:warp_flux",
+      "required": false
+    }
+  ]
+}

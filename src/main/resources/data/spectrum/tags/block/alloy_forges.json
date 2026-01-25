@@ -1,0 +1,28 @@
+{
+  "values": [
+    {
+      "id": "alloy_forgery:polished_basalt_forge_controller",
+      "required": false
+    },
+    {
+      "id": "alloy_forgery:polished_calcite_forge_controller",
+      "required": false
+    },
+    {
+      "id": "alloy_forgery:polished_blackslag_forge_controller",
+      "required": false
+    },
+    {
+      "id": "alloy_forgery:polished_shale_clay_forge_controller",
+      "required": false
+    },
+    {
+      "id": "alloy_forgery:pyrite_forge_controller",
+      "required": false
+    },
+    {
+      "id": "alloy_forgery:polished_bone_ash_forge_controller",
+      "required": false
+    }
+  ]
+}

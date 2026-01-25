@@ -1,0 +1,30 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "chalk_chalk",
+  "time": 400,
+  "tier": "basic",
+  "colors": {},
+  "experience": 0.25,
+  "pattern": [
+    " D ",
+    "DCD",
+    " D "
+  ],
+  "key": {
+    "C": "minecraft:calcite",
+    "D": "spectrum:blue_pigment"
+  },
+  "result": {
+    "id": "chalk:blue_chalk",
+    "components": {
+      "unbreakable": {}
+    }
+  },
+  "required_advancement": "spectrum:hidden/collect_pigment/blue",
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "chalk-colorful-addon"
+    }
+  ]
+}

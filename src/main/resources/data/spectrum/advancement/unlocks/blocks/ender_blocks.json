@@ -1,0 +1,22 @@
+{
+  "criteria": {
+    "built_structure": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:build_basic_pedestal_structure"
+      }
+    },
+    "gotten_radiating_ender": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:collect_radiating_ender"
+      }
+    },
+    "collected_pigment": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:collect_pigment"
+      }
+    }
+  }
+}

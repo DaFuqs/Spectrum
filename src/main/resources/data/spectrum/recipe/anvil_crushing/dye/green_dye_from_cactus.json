@@ -1,0 +1,16 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": [
+    {
+      "item": "minecraft:cactus"
+    }
+  ],
+  "crushedItemsPerPointOfDamage": 2,
+  "experience": 0.0,
+  "result": {
+    "id": "minecraft:green_dye",
+    "count": 2
+  },
+  "particleEffectIdentifier": "cloud",
+  "soundEventIdentifier": "block.grass.break"
+}

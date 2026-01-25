@@ -1,0 +1,14 @@
+{
+  "criteria": {
+    "has_echo_shard": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:echo_shard"
+          }
+        ]
+      }
+    }
+  }
+}

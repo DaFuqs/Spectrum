@@ -1,0 +1,31 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 3600,
+  "tier": "advanced",
+  "colors": {
+    "spectrum:cyan": 16,
+    "spectrum:magenta": 16,
+    "spectrum:yellow": 16,
+    "spectrum:black": 4,
+    "spectrum:white": 0
+  },
+  "experience": 4.0,
+  "pattern": [
+    "GLG",
+    "TAC",
+    "YYY"
+  ],
+  "key": {
+    "Y": "spectrum:polished_basalt",
+    "A": "spectrum:polished_amethyst",
+    "T": "spectrum:polished_topaz",
+    "C": "spectrum:polished_citrine",
+    "L": "spectrum:raw_azurite",
+    "G": "spectrum:green_pigment"
+  },
+  "result": {
+    "id": "spectrum:upgrade_efficiency",
+    "count": 1
+  },
+  "required_advancement": "spectrum:unlocks/upgrades/upgrade_efficiency"
+}

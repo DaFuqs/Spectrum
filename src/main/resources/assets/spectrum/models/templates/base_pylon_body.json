@@ -1,0 +1,24 @@
+{
+	"credit": "~ XOXO Azzyypaaras ~",
+	"parent": "block/block",
+	"textures": {
+		"0": "#side",
+		"1": "#end",
+		"particle": "#side"
+	},
+	"elements": [
+		{
+			"name": "pylon",
+			"from": [3, 0, 3],
+			"to": [13, 16, 13],
+			"faces": {
+				"north": {"uv": [3, 0, 13, 16], "texture": "#0"},
+				"east": {"uv": [3, 0, 13, 16], "texture": "#0"},
+				"south": {"uv": [3, 0, 13, 16], "texture": "#0"},
+				"west": {"uv": [3, 0, 13, 16], "texture": "#0"},
+				"up": {"uv": [0, 0, 10, 10], "texture": "#1"},
+				"down": {"uv": [0, 0, 10, 10], "rotation": 270, "texture": "#1"}
+			}
+		}
+	]
+}

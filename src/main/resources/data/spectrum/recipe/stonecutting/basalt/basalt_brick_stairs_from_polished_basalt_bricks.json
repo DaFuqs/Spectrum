@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": [
+    {
+      "item": "spectrum:basalt_bricks"
+    }
+  ],
+  "result": {
+    "id": "spectrum:basalt_brick_stairs",
+    "count": 1
+  }
+}

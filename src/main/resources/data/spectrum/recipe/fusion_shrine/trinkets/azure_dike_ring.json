@@ -1,0 +1,26 @@
+{
+  "type": "spectrum:fusion_shrine",
+  "time": 600,
+  "experience": 2.0,
+  "fluid": {
+    "fluid": "spectrum:liquid_crystal"
+  },
+  "ingredients": [
+    "spectrum:fanciful_tuff_ring",
+    {
+      "item": "spectrum:raw_azurite",
+      "count": 32
+    },
+    {
+      "item": "spectrum:blue_pigment",
+      "count": 16
+    }
+  ],
+  "result": {
+    "id": "spectrum:azure_dike_ring"
+  },
+  "required_advancement": "spectrum:unlocks/trinkets/azure_dike_ring",
+  "start_crafting_effect": "nothing",
+  "during_crafting_effects": [],
+  "finish_crafting_effect": "single_visual_explosion_on_shrine"
+}

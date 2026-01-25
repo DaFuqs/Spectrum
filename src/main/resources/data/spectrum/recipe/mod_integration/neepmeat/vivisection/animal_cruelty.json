@@ -1,0 +1,21 @@
+{
+  "type": "neepmeat:vivisection",
+  "entity": "spectrum:kindling",
+  "max_health": 2,
+  "output": [
+    {
+      "resource": "spectrum:resplendent_feather",
+      "amount": 4
+    },
+    {
+      "resource": "spectrum:dragonbone_chunk",
+      "amount": 1
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "neepmeat"
+    }
+  ]
+}

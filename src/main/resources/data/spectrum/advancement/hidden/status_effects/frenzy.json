@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "frenzy": {
+      "trigger": "minecraft:effects_changed",
+      "conditions": {
+        "effects": {
+          "spectrum:frenzy": {}
+        }
+      }
+    }
+  }
+}

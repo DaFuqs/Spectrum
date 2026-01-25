@@ -1,0 +1,22 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": [
+    {
+      "item": "minecraft:ancient_debris"
+    }
+  ],
+  "crushedItemsPerPointOfDamage": 0.01,
+  "experience": 2.0,
+  "result": {
+    "id": "create:cinder_flour",
+    "count": 64
+  },
+  "particleEffectIdentifier": "enchanted_hit",
+  "soundEventIdentifier": "block.metal.break",
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    }
+  ]
+}

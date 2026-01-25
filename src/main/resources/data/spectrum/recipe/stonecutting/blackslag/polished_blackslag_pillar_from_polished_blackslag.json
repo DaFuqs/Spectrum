@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": [
+    {
+      "item": "spectrum:polished_blackslag"
+    }
+  ],
+  "result": {
+    "id": "spectrum:polished_blackslag_pillar",
+    "count": 1
+  }
+}

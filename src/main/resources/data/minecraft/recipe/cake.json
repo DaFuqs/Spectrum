@@ -1,0 +1,28 @@
+{
+  "comment": "Overriding the vanilla recipe to make it use c:milk and c:eggs",
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "AAA",
+    "BEB",
+    "CCC"
+  ],
+  "key": {
+    "A": {
+      "tag": "c:foods/milks"
+    },
+    "B": {
+      "item": "minecraft:sugar"
+    },
+    "C": {
+      "item": "minecraft:wheat"
+    },
+    "E": {
+      "tag": "c:foods/eggs"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "minecraft:cake"
+  }
+}

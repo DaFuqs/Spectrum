@@ -1,0 +1,6 @@
+{
+  "parent": "item/fishing_rod",
+  "textures": {
+    "layer0": "spectrum:item/molten_rod_cast"
+  }
+}

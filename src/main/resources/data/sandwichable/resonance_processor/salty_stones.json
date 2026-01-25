@@ -1,0 +1,15 @@
+{
+  "type": "spectrum:drop_self",
+  "block": {
+    "blocks": [
+      "sandwichable:salty_rocks",
+      "sandwichable:salty_stone"
+    ]
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "sandwichable"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "credit": "~ XOXO Azzyypaaras ~",
+  "texture_size": [
+    32,
+    32
+  ],
+  "textures": {
+    "0": "spectrum:block/parametric_mining_device",
+    "particle": "spectrum:block/parametric_mining_device"
+  },
+  "elements": [
+    {
+      "name": "root",
+      "from": [
+        4,
+        0,
+        4
+      ],
+      "to": [
+        12,
+        4,
+        12
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            4,
+            2
+          ],
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            4,
+            2
+          ],
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            4,
+            2
+          ],
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            4,
+            2
+          ],
+          "texture": "#0"
+        },
+        "up": {
+          "uv": [
+            0,
+            8,
+            4,
+            12
+          ],
+          "texture": "#0"
+        },
+        "down": {
+          "uv": [
+            4,
+            0,
+            8,
+            4
+          ],
+          "texture": "#0"
+        }
+      }
+    }
+  ]
+}

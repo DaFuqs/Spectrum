@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "GGG",
+    "GGG"
+  ],
+  "key": {
+    "G": [
+      {
+        "item": "spectrum:moonstone_shard"
+      }
+    ]
+  },
+  "result": {
+    "id": "spectrum:polished_moonstone",
+    "count": 1
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "mythicmetals_resources",
+  "time": 400,
+  "tier": "basic",
+  "colors": {
+    "spectrum:yellow": 4
+  },
+  "experience": 0.5,
+  "pattern": [
+    "AAA",
+    "AHA",
+    "AAA"
+  ],
+  "key": {
+    "A": "mythicmetals:banglum_block",
+    "H": "spectrum:incandescent_amalgam"
+  },
+  "result": {
+    "id": "mythicmetals:banglum_chunk",
+    "count": 1
+  },
+  "required_advancement": "spectrum:mod_integration/mythicmetals/unlock_banglum",
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "mythicmetals"
+    }
+  ]
+}

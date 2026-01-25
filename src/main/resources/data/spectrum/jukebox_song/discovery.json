@@ -1,0 +1,8 @@
+{
+  "comparator_output": 1,
+  "description": {
+    "translate": "jukebox_song.spectrum.discovery"
+  },
+  "length_in_seconds": 120,
+  "sound_event": "spectrum:music.discovery"
+}

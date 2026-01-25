@@ -1,0 +1,49 @@
+{
+  "type": "starry_skies:geode",
+  "config": {
+    "inner_block": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "spectrum:citrine_block"
+      }
+    },
+    "inner_speckles_block": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "spectrum:budding_citrine"
+      }
+    },
+    "inner_speckles_block_chance": 0.12,
+    "inner_speckles_attached_block": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "spectrum:citrine_cluster"
+      }
+    },
+    "middle_block": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:calcite"
+      }
+    },
+    "outer_block": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:basalt"
+      }
+    },
+
+    "size": {
+      "type": "minecraft:uniform",
+      "min_inclusive": 5,
+      "max_exclusive": 7
+    },
+
+    "decorators": {},
+    "spawns": [],
+    "generation": {
+      "weight": 1.0,
+      "group": "starry_skies:overworld/treasure"
+    }
+  }
+}

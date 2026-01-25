@@ -1,0 +1,17 @@
+{
+  "criteria": {
+    "has_any_advanced_pastel_network_advancement": {
+      "trigger": "revelationary:advancement_count",
+      "conditions": {
+        "count": {
+          "min": 1
+        },
+        "advancement_identifiers": [
+          "spectrum:midgame/create_big_pastel_network",
+          "spectrum:midgame/create_pastel_network_using_every_node_type",
+          "spectrum:midgame/upgrade_pastel_node_throughput"
+        ]
+      }
+    }
+  }
+}

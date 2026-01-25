@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "collected_raw_bloodstone": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_raw_bloodstone"
+      }
+    },
+    "solved_wireless_redstone_preservation_ruin": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:milestones/reveal_blood_orchid_petals"
+      }
+    }
+  }
+}

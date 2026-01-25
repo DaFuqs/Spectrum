@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": [
+    {
+      "item": "spectrum:polished_bone_ash"
+    }
+  ],
+  "result": {
+    "id": "spectrum:polished_bone_ash_wall",
+    "count": 1
+  }
+}

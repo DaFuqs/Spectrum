@@ -1,0 +1,23 @@
+{
+  "budding_block": "geode_plus:budding_blackstone_gold_nugget",
+  "valid_neighbor_blocks": [
+    "geode_plus:small_nether_gold_nugget_bud",
+    "geode_plus:medium_nether_gold_nugget_bud",
+    "geode_plus:large_nether_gold_nugget_bud",
+    "geode_plus:nether_gold_nugget_cluster",
+    "minecraft:air",
+    "minecraft:cave_air",
+    "minecraft:water"
+  ],
+  "ticks_for_compensation_loot_per_valid_neighbor": 20000,
+  "compensated_loot": {
+    "id": "minecraft:gold_nugget",
+    "count": 2
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "geode_plus"
+    }
+  ]
+}

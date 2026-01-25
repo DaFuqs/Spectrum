@@ -1,0 +1,53 @@
+{
+  "display": {
+    "icon": {
+      "id": "spectrum:sender_node"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.upgrade_pastel_node_throughput.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.upgrade_pastel_node_throughput.description"
+    }
+  },
+  "parent": "spectrum:midgame/upgrade_pastel_node",
+  "criteria": {
+    "applied_resonance_shard": {
+      "trigger": "spectrum:pastel_node_upgrade",
+      "conditions": {
+        "input": {
+          "items": [
+            "spectrum:resonance_shard"
+          ]
+        }
+      }
+    },
+    "applied_pure_malachite": {
+      "trigger": "spectrum:pastel_node_upgrade",
+      "conditions": {
+        "input": {
+          "items": [
+            "spectrum:pure_malachite"
+          ]
+        }
+      }
+    },
+    "applied_pure_bloodstone": {
+      "trigger": "spectrum:pastel_node_upgrade",
+      "conditions": {
+        "input": {
+          "items": [
+            "spectrum:pure_bloodstone"
+          ]
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/create_pastel_network"
+      }
+    }
+  }
+}

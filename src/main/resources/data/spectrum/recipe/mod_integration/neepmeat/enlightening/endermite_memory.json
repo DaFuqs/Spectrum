@@ -1,0 +1,18 @@
+{
+  "type": "neepmeat:enlightening",
+  "item_input": {
+    "resource": "spectrum:silverfish_head",
+    "amount": 1
+  },
+  "data": 1000,
+  "output": {
+    "resource": "spectrum:endermite_head",
+    "amount": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "neepmeat"
+    }
+  ]
+}

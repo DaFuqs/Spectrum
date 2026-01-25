@@ -1,0 +1,33 @@
+{
+  "type": "starry_skies:core",
+  "config": {
+    "main_block": {
+      "type": "starry_skies:weighted_block_group_state_provider",
+      "group": "stones"
+    },
+    "core_block": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "spectrum:shimmerstone_ore"
+      }
+    },
+    "core_radius": {
+      "type": "minecraft:uniform",
+      "min_inclusive": 2,
+      "max_exclusive": 4
+    },
+
+    "size": {
+      "type": "minecraft:uniform",
+      "min_inclusive": 5,
+      "max_exclusive": 9
+    },
+
+    "decorators": {},
+    "spawns": [],
+    "generation": {
+      "weight": 0.8,
+      "group": "starry_skies:overworld/ores"
+    }
+  }
+}

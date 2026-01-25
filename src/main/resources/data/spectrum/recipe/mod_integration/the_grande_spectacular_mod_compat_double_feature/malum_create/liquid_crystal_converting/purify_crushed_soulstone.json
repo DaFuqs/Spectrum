@@ -1,0 +1,23 @@
+{
+  "type": "spectrum:liquid_crystal_converting",
+  "required_advancement": "spectrum:unlocks/blocks/liquid_crystal",
+  "ingredient": [
+    {
+      "item": "malum:crushed_soulstone"
+    }
+  ],
+  "result": {
+    "id": "malum:hex_ash",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "malum"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    }
+  ]
+}

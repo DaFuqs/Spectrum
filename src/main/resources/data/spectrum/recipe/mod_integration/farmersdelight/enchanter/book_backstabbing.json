@@ -1,0 +1,49 @@
+{
+  "type": "spectrum:enchanter",
+  "time": 300,
+  "required_experience": 100,
+  "ingredients": [
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "spectrum:red_pigment"
+    },
+    {
+      "item": "spectrum:red_pigment"
+    },
+    {
+      "item": "spectrum:stardust"
+    },
+    {
+      "item": "minecraft:flint"
+    },
+    {
+      "item": "spectrum:red_pigment"
+    },
+    {
+      "item": "spectrum:red_pigment"
+    },
+    {
+      "item": "spectrum:stardust"
+    },
+    {
+      "item": "minecraft:flint"
+    }
+  ],
+  "result": {
+    "id": "minecraft:enchanted_book",
+    "components": {
+      "stored_enchantments": {
+        "farmersdelight:backstabbing": 1
+      }
+    }
+  },
+  "required_advancement": "spectrum:hidden/collect_stardust",
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "farmersdelight"
+    }
+  ]
+}

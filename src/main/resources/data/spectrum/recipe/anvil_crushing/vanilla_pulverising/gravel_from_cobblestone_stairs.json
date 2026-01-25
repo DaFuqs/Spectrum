@@ -1,0 +1,16 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": [
+    {
+      "item": "minecraft:cobblestone_stairs"
+    }
+  ],
+  "crushedItemsPerPointOfDamage": 2,
+  "experience": 0,
+  "result": {
+    "id": "minecraft:gravel",
+    "count": 1
+  },
+  "particleEffectIdentifier": "cloud",
+  "soundEventIdentifier": "block.stone.break"
+}

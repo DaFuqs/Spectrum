@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WWW"
+  ],
+  "key": {
+    "W": [
+      {
+        "item": "spectrum:basalt_bricks"
+      }
+    ]
+  },
+  "result": {
+    "id": "spectrum:basalt_brick_slab",
+    "count": 6
+  }
+}

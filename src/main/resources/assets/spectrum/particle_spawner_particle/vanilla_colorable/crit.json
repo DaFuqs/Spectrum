@@ -1,0 +1,5 @@
+{
+  "particle_type": "minecraft:crit",
+  "gui_texture": "minecraft:critical_hit",
+  "supports_coloring": true
+}

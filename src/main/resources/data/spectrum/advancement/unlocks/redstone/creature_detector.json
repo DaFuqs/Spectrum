@@ -1,0 +1,22 @@
+{
+  "criteria": {
+    "built_complex_pedestal_structure": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure"
+      }
+    },
+    "has_quartz": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_vanilla/quartz"
+      }
+    },
+    "collected_corresponding_shard": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_moonstone"
+      }
+    }
+  }
+}

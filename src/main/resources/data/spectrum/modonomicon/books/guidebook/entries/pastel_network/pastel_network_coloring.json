@@ -1,0 +1,38 @@
+{
+  "name": "book.spectrum.guidebook.pastel_network_coloring.name",
+  "icon": {
+    "item": "spectrum:paintbrush",
+    "components": {
+      "spectrum:ink_color": "spectrum:orange"
+    }
+  },
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:milestones/unlock_pastel_node_coloring"
+  },
+  "category": "spectrum:pastel_network",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 4,
+  "x": 5,
+  "y": 0,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.pastel_network_coloring.name",
+      "text": "book.spectrum.guidebook.pastel_network_coloring.page0.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.pastel_network_coloring.page1.title",
+      "item": {
+        "item": "spectrum:paintbrush",
+        "components": {
+          "spectrum:ink_color": "spectrum:orange"
+        }
+      },
+      "text": "book.spectrum.guidebook.pastel_network_coloring.page1.text"
+    }
+  ]
+}

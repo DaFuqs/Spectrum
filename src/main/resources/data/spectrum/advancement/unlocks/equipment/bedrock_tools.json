@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "collected_bedrock_dust": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/break_decayed_bedrock"
+      }
+    },
+    "collected_stratine_gem": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_stratine_gem"
+      }
+    }
+  }
+}

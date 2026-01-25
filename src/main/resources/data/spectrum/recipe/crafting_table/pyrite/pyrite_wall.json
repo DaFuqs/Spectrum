@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": [
+      {
+        "item": "spectrum:pyrite"
+      }
+    ]
+  },
+  "result": {
+    "id": "spectrum:pyrite_wall",
+    "count": 6
+  }
+}

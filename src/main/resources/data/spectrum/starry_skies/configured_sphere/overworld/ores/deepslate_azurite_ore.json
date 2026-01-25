@@ -1,0 +1,33 @@
+{
+  "type": "starry_skies:core",
+  "config": {
+    "main_block": {
+      "type": "starry_skies:weighted_block_group_state_provider",
+      "group": "deepslates"
+    },
+    "core_block": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "spectrum:deepslate_azurite_ore"
+      }
+    },
+    "core_radius": {
+      "type": "minecraft:uniform",
+      "min_inclusive": 3,
+      "max_exclusive": 4
+    },
+
+    "size": {
+      "type": "minecraft:uniform",
+      "min_inclusive": 4,
+      "max_exclusive": 7
+    },
+
+    "decorators": {},
+    "spawns": [],
+    "generation": {
+      "weight": 0.5,
+      "group": "starry_skies:overworld/ores"
+    }
+  }
+}

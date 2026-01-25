@@ -1,0 +1,12 @@
+{
+  "type": "spectrum:sludge_converting",
+  "ingredient": [
+    {
+      "item": "minecraft:wheat"
+    }
+  ],
+  "result": {
+    "id": "minecraft:string",
+    "count": 2
+  }
+}

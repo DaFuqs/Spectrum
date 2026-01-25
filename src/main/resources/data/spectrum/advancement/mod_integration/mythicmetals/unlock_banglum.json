@@ -1,0 +1,22 @@
+{
+  "criteria": {
+    "unlocked_amalgam": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/items/incandescent_amalgam"
+      }
+    },
+    "collected_banglum_chunk": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "mythicmetals:banglum_chunk"
+      }
+    }
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "mythicmetals"
+    }
+  ]
+}

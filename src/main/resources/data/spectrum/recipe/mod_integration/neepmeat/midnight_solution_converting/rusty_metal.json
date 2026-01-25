@@ -1,0 +1,18 @@
+{
+  "type": "spectrum:midnight_solution_converting",
+  "ingredient": [
+    {
+      "item": "neepmeat:polished_metal"
+    }
+  ],
+  "result": {
+    "id": "neepmeat:rusty_metal",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "neepmeat"
+    }
+  ]
+}

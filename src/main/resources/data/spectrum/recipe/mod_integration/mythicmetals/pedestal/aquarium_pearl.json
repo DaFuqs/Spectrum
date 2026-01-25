@@ -1,0 +1,30 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "mythicmetals_resources",
+  "time": 400,
+  "tier": "basic",
+  "colors": {
+    "spectrum:cyan": 4
+  },
+  "experience": 0.5,
+  "pattern": [
+    "AAA",
+    "AHA",
+    "AAA"
+  ],
+  "key": {
+    "A": "mythicmetals:aquarium_block",
+    "H": "minecraft:heart_of_the_sea"
+  },
+  "result": {
+    "id": "mythicmetals:aquarium_pearl",
+    "count": 1
+  },
+  "required_advancement": "mythicmetals:aquarium_pearl",
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "mythicmetals"
+    }
+  ]
+}

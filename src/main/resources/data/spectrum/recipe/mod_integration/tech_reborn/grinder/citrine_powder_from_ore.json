@@ -1,0 +1,20 @@
+{
+  "type": "techreborn:grinder",
+  "power": 4,
+  "time": 270,
+  "ingredients": [
+    "#spectrum:citrine_ores"
+  ],
+  "results": [
+    {
+      "id": "spectrum:citrine_powder",
+      "count": 12
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "techreborn"
+    }
+  ]
+}

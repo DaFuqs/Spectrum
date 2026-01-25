@@ -1,0 +1,26 @@
+{
+  "type": "spectrum:pedestal_shapeless",
+  "time": 50,
+  "tier": "basic",
+  "colors": {},
+  "experience": 0.25,
+  "ingredients": [
+    "minecraft:water_bucket",
+    "spectrum:ash_flakes",
+    "spectrum:ash_flakes",
+    "spectrum:ash_flakes",
+    "spectrum:ash_flakes",
+    "minecraft:porkchop"
+  ],
+  "result": {
+    "id": "supplementaries:soap",
+    "count": 6
+  },
+  "required_advancement": "spectrum:hidden/collect_ash",
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "supplementaries"
+    }
+  ]
+}

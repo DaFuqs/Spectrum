@@ -1,0 +1,25 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": [
+    {
+      "item": "malum:brilliant_deepslate"
+    }
+  ],
+  "crushedItemsPerPointOfDamage": 0.75,
+  "experience": 0.75,
+  "result": {
+    "id": "malum:crushed_brilliance"
+  },
+  "particleEffectIdentifier": "enchanted_hit",
+  "soundEventIdentifier": "block.metal.break",
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "malum"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    }
+  ]
+}

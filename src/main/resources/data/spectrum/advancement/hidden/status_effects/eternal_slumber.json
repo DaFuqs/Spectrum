@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "eternal_slumber": {
+      "trigger": "minecraft:effects_changed",
+      "conditions": {
+        "effects": {
+          "spectrum:eternal_slumber": {}
+        }
+      }
+    }
+  }
+}

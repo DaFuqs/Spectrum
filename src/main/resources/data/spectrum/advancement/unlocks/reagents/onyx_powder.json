@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "unlocked_complex_reagents": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:milestones/unlock_complex_reagents"
+      }
+    },
+    "created_onyx_shard": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:create_onyx_shard"
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "compacting",
+  "time": 20,
+  "tier": "basic",
+  "colors": {
+    "spectrum:magenta": 0,
+    "spectrum:yellow": 0,
+    "spectrum:cyan": 0,
+    "spectrum:black": 0,
+    "spectrum:white": 0
+  },
+  "experience": 0.0,
+  "pattern": [
+    "BBB",
+    "BBB",
+    "BBB"
+  ],
+  "key": {
+    "B": "spectrum:bedrock_dust"
+  },
+  "result": {
+    "id": "spectrum:bedrock_dust_block",
+    "count": 1
+  },
+  "required_advancement": "spectrum:midgame/break_decayed_bedrock",
+  "disable_yield_upgrades": true
+}

@@ -1,0 +1,15 @@
+{
+  "type": "spectrum:ink_converting",
+  "ingredient": {
+    "item": "the_bumblezone:essence_radiance"
+  },
+  "ink_color": "spectrum:yellow",
+  "amount": 25000,
+  "required_advancement": "spectrum:mod_integration/the_bumblezone/yellow_radiance",
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "the_bumblezone"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "type": "spectrum:enchanter",
+  "group": "vanilla",
+  "time": 1200,
+  "required_experience": 500,
+  "ingredients": [
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "spectrum:yellow_pigment"
+    },
+    {
+      "item": "spectrum:yellow_pigment"
+    },
+    {
+      "item": "minecraft:wind_charge"
+    },
+    {
+      "item": "spectrum:paltaeria_fragments"
+    },
+    {
+      "item": "spectrum:yellow_pigment"
+    },
+    {
+      "item": "spectrum:yellow_pigment"
+    },
+    {
+      "item": "minecraft:wind_charge"
+    },
+    {
+      "item": "spectrum:paltaeria_fragments"
+    }
+  ],
+  "result": {
+    "id": "minecraft:enchanted_book",
+    "components": {
+      "stored_enchantments": {
+        "minecraft:wind_burst": 1
+      }
+    }
+  },
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_trial_treasure",
+  "neoforge:conditions": [
+    {
+      "type": "spectrum:enchantments_exist",
+      "values": [
+        "minecraft:wind_burst"
+      ]
+    }
+  ]
+}

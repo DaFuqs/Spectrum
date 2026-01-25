@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": [
+    {
+      "item": "spectrum:polished_calcite"
+    }
+  ],
+  "result": {
+    "id": "spectrum:calcite_tile_slab",
+    "count": 2
+  }
+}

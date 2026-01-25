@@ -1,0 +1,14 @@
+{
+  "values": [
+    "#trinkets:chest/necklace",
+    "#trinkets:chest/pin",
+    "#trinkets:feet/shoes",
+    "#trinkets:hand/glove",
+    "#trinkets:hand/ring",
+    "#trinkets:head/crown",
+    "#trinkets:head/face",
+    "#trinkets:legs/belt",
+    "#trinkets:legs/pigment_palette",
+    "#trinkets:offhand/ring"
+  ]
+}

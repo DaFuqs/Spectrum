@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": [
+    {
+      "item": "spectrum:pyrite_tiles"
+    }
+  ],
+  "result": {
+    "id": "spectrum:pyrite_tile_wall",
+    "count": 1
+  }
+}

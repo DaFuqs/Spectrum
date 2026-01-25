@@ -1,0 +1,15 @@
+{
+  "type": "spectrum:ink_converting",
+  "ingredient": {
+    "item": "botania:yellow_petal_block"
+  },
+  "ink_color": "spectrum:yellow",
+  "amount": 225,
+  "required_advancement": "spectrum:hidden/collect_pigment/yellow",
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "botania"
+    }
+  ]
+}

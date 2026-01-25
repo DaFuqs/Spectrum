@@ -1,0 +1,6 @@
+{
+  "particle_type": "spectrum:light_trail",
+  "gui_texture": "spectrum:light_trail_0",
+  "unlock_identifier": "spectrum:unlocks/items/glass_ampoules",
+  "supports_coloring": false
+}

@@ -1,0 +1,16 @@
+{
+  "values": [
+    "#spectrum:base_stone_deeper_down",
+    "spectrum:shale_clay",
+    "#c:ores",
+    "#c:stones",
+    "#c:farmlands",
+    "#minecraft:dirt",
+    "minecraft:diorite",
+    "minecraft:granite",
+    "minecraft:andesite",
+    "minecraft:tuff",
+    "minecraft:calcite",
+    "minecraft:basalt"
+  ]
+}

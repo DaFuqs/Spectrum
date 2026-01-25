@@ -1,0 +1,14 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "spectrum:item/radiance_staff"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "in_use": 1
+      },
+      "model": "spectrum:item/radiance_staff_use"
+    }
+  ]
+}

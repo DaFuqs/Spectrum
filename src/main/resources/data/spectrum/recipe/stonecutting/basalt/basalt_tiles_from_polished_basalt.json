@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": [
+    {
+      "item": "spectrum:polished_basalt"
+    }
+  ],
+  "result": {
+    "id": "spectrum:basalt_tiles",
+    "count": 1
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "type": "spectrum:enchanter",
+  "time": 500,
+  "required_experience": 200,
+  "ingredients": [
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "spectrum:purple_pigment"
+    },
+    {
+      "item": "spectrum:purple_pigment"
+    },
+    {
+      "item": "malum:mass_of_blighted_gunk"
+    },
+    {
+      "item": "spectrum:storm_stone"
+    },
+    {
+      "item": "spectrum:purple_pigment"
+    },
+    {
+      "item": "spectrum:purple_pigment"
+    },
+    {
+      "item": "malum:mass_of_blighted_gunk"
+    },
+    {
+      "item": "spectrum:storm_stone"
+    }
+  ],
+  "result": {
+    "id": "minecraft:enchanted_book",
+    "components": {
+      "stored_enchantments": {
+        "malum:haunted": 1
+      }
+    }
+  },
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_damage",
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "malum"
+    }
+  ]
+}

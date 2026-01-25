@@ -1,0 +1,22 @@
+{
+  "criteria": {
+    "with_moonstone": {
+      "trigger": "spectrum:completed_multiblock",
+      "conditions": {
+        "multiblock_identifier": "spectrum:pedestal_complex_structure_check"
+      }
+    },
+    "without_moonstone": {
+      "trigger": "spectrum:completed_multiblock",
+      "conditions": {
+        "multiblock_identifier": "spectrum:pedestal_complex_structure_without_moonstone_check"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "with_moonstone",
+      "without_moonstone"
+    ]
+  ]
+}

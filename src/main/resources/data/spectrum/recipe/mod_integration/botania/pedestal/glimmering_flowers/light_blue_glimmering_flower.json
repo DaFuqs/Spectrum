@@ -1,0 +1,26 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "botania_glimmering_flowers",
+  "time": 100,
+  "tier": "basic",
+  "colors": {},
+  "experience": 0.1,
+  "pattern": [
+    "PS"
+  ],
+  "key": {
+    "P": "botania:light_blue_mystical_flower",
+    "S": "spectrum:shimmerstone_gem"
+  },
+  "result": {
+    "id": "botania:light_blue_shiny_flower",
+    "count": 1
+  },
+  "required_advancement": "spectrum:collect_shimmerstone",
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "botania"
+    }
+  ]
+}

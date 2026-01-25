@@ -1,0 +1,14 @@
+{
+  "type": "ants:colony_shoveling",
+  "hive_ingredient": "spectrum:spirit_sallow_leaves",
+  "result": {
+    "item": "minecraft:glowstone_dust",
+    "count": 6
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "ants"
+    }
+  ]
+}

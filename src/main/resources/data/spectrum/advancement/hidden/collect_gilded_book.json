@@ -1,0 +1,14 @@
+{
+  "criteria": {
+    "gotten_gilded_book": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "spectrum:gilded_book"
+          }
+        ]
+      }
+    }
+  }
+}

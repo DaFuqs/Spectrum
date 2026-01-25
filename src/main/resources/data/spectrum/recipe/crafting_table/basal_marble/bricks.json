@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WW",
+    "WW"
+  ],
+  "key": {
+    "W": [
+      {
+        "item": "spectrum:polished_basal_marble"
+      }
+    ]
+  },
+  "result": {
+    "id": "spectrum:basal_marble_bricks",
+    "count": 4
+  }
+}

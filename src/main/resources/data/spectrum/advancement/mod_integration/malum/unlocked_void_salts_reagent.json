@@ -1,0 +1,32 @@
+{
+  "criteria": {
+    "found_well": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structures": "malum:weeping_well"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "crafted_potion_in_potion_brewery": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:milestones/unlock_complex_reagents"
+      }
+    }
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "malum"
+    }
+  ]
+}

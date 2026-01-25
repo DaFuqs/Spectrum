@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "milk:still_milk",
+      "required": false
+    },
+    {
+      "id": "minecraft:milk",
+      "required": false
+    }
+  ]
+}

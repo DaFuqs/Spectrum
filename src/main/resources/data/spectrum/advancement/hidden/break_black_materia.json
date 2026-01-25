@@ -1,0 +1,18 @@
+{
+  "criteria": {
+    "broken_black_materia": {
+      "trigger": "spectrum:block_broken",
+      "conditions": {
+        "block": {
+          "blocks": "spectrum:black_materia"
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/create_midnight_aberration"
+      }
+    }
+  }
+}

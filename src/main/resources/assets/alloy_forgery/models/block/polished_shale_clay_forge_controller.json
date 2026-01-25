@@ -1,0 +1,8 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "top": "spectrum:block/polished_shale_clay",
+    "front": "alloy_forgery:block/polished_shale_clay_forge_controller_front",
+    "side": "spectrum:block/polished_shale_clay"
+  }
+}

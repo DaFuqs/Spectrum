@@ -1,0 +1,20 @@
+{
+  "type": "spectrum:cinderhearth",
+  "ingredient": "minecraft:iron_ingot",
+  "results": [
+    {
+      "id": "techreborn:refined_iron_ingot",
+      "count": 2
+    }
+  ],
+  "experience": 0.2,
+  "time": 100,
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "values": [
+        "techreborn"
+      ]
+    }
+  ]
+}

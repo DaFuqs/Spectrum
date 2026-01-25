@@ -1,0 +1,17 @@
+{
+  "type": "spectrum:drop_self",
+  "block": {
+    "blocks": [
+      "brewinandchewin:quiche"
+    ]
+  },
+  "state_properties_to_copy": [
+    "bites"
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "brewinandchewin"
+    }
+  ]
+}

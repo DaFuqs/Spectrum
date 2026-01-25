@@ -1,0 +1,27 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    "spectrum:yellow_leaves"
+  ],
+  "results": [
+    {
+      "id": "spectrum:yellow_pigment",
+      "count": 1,
+      "chance": 1.0
+    },
+    {
+      "result": {
+        "id": "spectrum:yellow_sapling",
+        "count": 1
+      },
+      "chance": 0.02
+    }
+  ],
+  "processingTime": 450,
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    }
+  ]
+}

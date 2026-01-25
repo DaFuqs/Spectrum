@@ -1,0 +1,6 @@
+{
+  "parent": "spectrum:item/handheld_oversized",
+  "textures": {
+    "layer0": "spectrum:item/knotted_sword_oversized"
+  }
+}

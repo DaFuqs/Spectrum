@@ -1,0 +1,25 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "hexcasting:charged_amethyst",
+  "modifiers": [
+    {
+      "flat_duration_bonus_ticks": 300
+    },
+    {
+      "flat_duration_bonus_ticks": 600
+    },
+    {
+      "flat_duration_bonus_ticks": 1200
+    },
+    {
+      "flat_duration_bonus_ticks": 2400
+    }
+  ],
+  "required_advancement": "spectrum:milestones/unlock_complex_reagents",
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "hexcasting"
+    }
+  ]
+}

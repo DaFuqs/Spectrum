@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "fatal_slumber": {
+      "trigger": "minecraft:effects_changed",
+      "conditions": {
+        "effects": {
+          "spectrum:fatal_slumber": {}
+        }
+      }
+    }
+  }
+}

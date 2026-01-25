@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "spectrum:block/sender_node",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "spectrum:block/sender_node",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "spectrum:block/sender_node",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "spectrum:block/sender_node",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "spectrum:block/sender_node"
+    },
+    "facing=west": {
+      "model": "spectrum:block/sender_node",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "neepmeat:grinding",
+  "input": {
+    "resource": "spectrum:amaranth_bushel",
+    "amount": 1
+  },
+  "output": {
+    "resource": "spectrum:amaranth_grains",
+    "amount": 2
+  },
+  "experience": 0.25,
+  "processtime": 10,
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "neepmeat"
+    }
+  ]
+}

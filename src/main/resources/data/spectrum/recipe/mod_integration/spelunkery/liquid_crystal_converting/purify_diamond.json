@@ -1,0 +1,19 @@
+{
+  "type": "spectrum:liquid_crystal_converting",
+  "required_advancement": "spectrum:unlocks/blocks/liquid_crystal",
+  "ingredient": [
+    {
+      "item": "spelunkery:rough_diamond"
+    }
+  ],
+  "result": {
+    "id": "minecraft:diamond",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "spelunkery"
+    }
+  ]
+}

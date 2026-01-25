@@ -1,0 +1,17 @@
+{
+  "type": "spectrum:ink_converting",
+  "ingredient": [
+    {
+      "item": "botania:pink_petal"
+    }
+  ],
+  "ink_color": "spectrum:pink",
+  "amount": 25,
+  "required_advancement": "spectrum:hidden/collect_pigment/pink",
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "botania"
+    }
+  ]
+}

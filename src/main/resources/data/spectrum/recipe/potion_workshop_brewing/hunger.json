@@ -1,0 +1,14 @@
+{
+  "type": "spectrum:potion_workshop_brewing",
+  "ingredient1": "minecraft:nether_wart",
+  "ingredient2": "spectrum:citrine_shard",
+  "ingredient3": "minecraft:fermented_spider_eye",
+  "effect": "minecraft:hunger",
+  "base_duration_ticks": 900,
+  "potency_modifier": 1.0,
+  "applicable_to_potions": true,
+  "applicable_to_tipped_arrows": true,
+  "applicable_to_potion_fillables": true,
+  "ink_color": "spectrum:lime",
+  "ink_cost": 2
+}

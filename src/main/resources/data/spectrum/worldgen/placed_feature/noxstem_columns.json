@@ -1,0 +1,12 @@
+{
+  "feature": "spectrum:noxstem_columns/weighted",
+  "placement": [
+    {
+      "type": "minecraft:count",
+      "count": 36
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

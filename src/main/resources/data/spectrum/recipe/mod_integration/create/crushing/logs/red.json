@@ -1,0 +1,27 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    "#spectrum:red_logs"
+  ],
+  "results": [
+    {
+      "id": "spectrum:red_pigment",
+      "count": 1,
+      "chance": 1.0
+    },
+    {
+      "result": {
+        "id": "spectrum:red_pigment",
+        "count": 1
+      },
+      "chance": 0.5
+    }
+  ],
+  "processingTime": 450,
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    }
+  ]
+}

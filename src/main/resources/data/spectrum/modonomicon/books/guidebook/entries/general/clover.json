@@ -1,0 +1,51 @@
+{
+  "name": "block.spectrum.clover",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/collect_clover"
+  },
+  "icon": {
+    "item": "spectrum:four_leaf_clover"
+  },
+  "category": "spectrum:general",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 4,
+  "y": -3,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "title": "block.spectrum.clover",
+      "item": {
+        "item": "spectrum:clover"
+      },
+      "text": "book.spectrum.guidebook.clover.clover.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "block.spectrum.four_leaf_clover",
+      "item": {
+        "item": "spectrum:four_leaf_clover"
+      },
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:collect_four_leaf_clover"
+      },
+      "text": "book.spectrum.guidebook.clover.four_leaf_clover.text"
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "title": "container.spectrum.rei.anvil_crushing.title",
+      "recipe_id": "spectrum:anvil_crushing/dye/green_dye_from_clover",
+      "text": "book.spectrum.guidebook.clover.clover_crushing.text"
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "title": "container.spectrum.rei.anvil_crushing.title",
+      "recipe_id": "spectrum:anvil_crushing/dye/green_dye_from_four_leaf_clover",
+      "text": "book.spectrum.guidebook.clover.four_leaf_clover_crushing.text"
+    }
+  ]
+}

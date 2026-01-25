@@ -1,0 +1,88 @@
+{
+  "type": "starry_skies:modular",
+  "config": {
+    "main_block": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:dirt"
+      }
+    },
+    "top_block": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:grass_block"
+      }
+    },
+
+    "size": {
+      "type": "minecraft:uniform",
+      "min_inclusive": 5,
+      "max_exclusive": 20
+    },
+
+    "decorators": {
+      "spectrum:clover": 0.8,
+      "spectrum:four_leaf_clover": 0.8
+    },
+    "spawns": [
+      {
+        "type": "minecraft:cow",
+        "chance": 0.25,
+        "min_count": 2,
+        "max_count": 4
+      },
+      {
+        "type": "minecraft:sheep",
+        "chance": 0.25,
+        "min_count": 2,
+        "max_count": 4
+      },
+      {
+        "type": "minecraft:chicken",
+        "chance": 0.25,
+        "min_count": 2,
+        "max_count": 4
+      },
+      {
+        "type": "minecraft:pig",
+        "chance": 0.25,
+        "min_count": 2,
+        "max_count": 4
+      },
+      {
+        "type": "minecraft:wolf",
+        "chance": 0.08,
+        "min_count": 3,
+        "max_count": 5
+      },
+      {
+        "type": "minecraft:horse",
+        "chance": 0.08,
+        "min_count": 1,
+        "max_count": 3
+      },
+      {
+        "type": "minecraft:donkey",
+        "chance": 0.05,
+        "min_count": 1,
+        "max_count": 3
+      },
+      {
+        "type": "minecraft:mule",
+        "chance": 0.05,
+        "min_count": 1,
+        "max_count": 2
+      },
+      {
+        "type": "minecraft:goat",
+        "chance": 0.05,
+        "min_count": 1,
+        "max_count": 3
+      }
+    ],
+    "generation": {
+      "weight": 1.0,
+      "group": "starry_skies:overworld/essential"
+    }
+  }
+}

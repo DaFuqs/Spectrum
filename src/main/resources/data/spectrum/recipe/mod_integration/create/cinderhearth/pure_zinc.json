@@ -1,0 +1,19 @@
+{
+  "type": "spectrum:cinderhearth",
+  "ingredient": "spectrum:pure_zinc",
+  "results": [
+    {
+      "id": "create:zinc_ingot",
+      "count": 2
+    }
+  ],
+  "experience": 0.5,
+  "time": 200,
+  "required_advancement": "spectrum:lategame/collect_pure_resource",
+  "neoforge:conditions": [
+    {
+      "type": "spectrum:integration_pack_active",
+      "integration_pack": "create"
+    }
+  ]
+}

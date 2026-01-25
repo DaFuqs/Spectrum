@@ -1,0 +1,29 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "pylons",
+  "time": 40,
+  "tier": "advanced",
+  "colors": {
+    "spectrum:magenta": 0,
+    "spectrum:yellow": 0,
+    "spectrum:cyan": 0,
+    "spectrum:black": 2,
+    "spectrum:white": 0
+  },
+  "experience": 1.0,
+  "pattern": [
+    " S ",
+    "SSS",
+    "XYX"
+  ],
+  "key": {
+    "S": "spectrum:onyx_shard",
+    "X": "spectrum:polished_basalt",
+    "Y": "spectrum:polished_calcite"
+  },
+  "result": {
+    "id": "spectrum:onyx_pylon",
+    "count": 1
+  },
+  "required_advancement": "spectrum:unlocks/pylons/onyx_pylon"
+}

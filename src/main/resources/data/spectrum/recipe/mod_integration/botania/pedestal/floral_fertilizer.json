@@ -1,0 +1,27 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "botania_mushrooms",
+  "time": 100,
+  "tier": "basic",
+  "colors": {},
+  "experience": 0.1,
+  "pattern": [
+    "MPS"
+  ],
+  "key": {
+    "M": "minecraft:bone_meal",
+    "P": "#spectrum:pigments",
+    "S": "#spectrum:pigments"
+  },
+  "result": {
+    "id": "botania:fertilizer",
+    "count": 4
+  },
+  "required_advancement": "spectrum:collect_pigment",
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "botania"
+    }
+  ]
+}

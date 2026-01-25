@@ -1,0 +1,22 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": [
+    {
+      "item": "minecraft:ender_pearl"
+    }
+  ],
+  "crushedItemsPerPointOfDamage": 1,
+  "experience": 0.1,
+  "result": {
+    "id": "ae2:ender_dust"
+  },
+  "particleEffectIdentifier": "enchanted_hit",
+  "particleCount": 10,
+  "soundEventIdentifier": "block.glass.break",
+  "neoforge:conditions": [
+    {
+      "type": "spectrum:integration_pack_active",
+      "integration_pack": "ae2"
+    }
+  ]
+}

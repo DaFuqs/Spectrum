@@ -1,0 +1,9 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "spectrum:bitter_oils",
+  "modifiers": {
+    "severe": true,
+    "flat_yield_bonus": -4.0
+  },
+  "required_advancement": "spectrum:hidden/collect_cookbooks/poisoners_handbook"
+}

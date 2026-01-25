@@ -1,0 +1,16 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": [
+    {
+      "item": "minecraft:prismarine_bricks"
+    }
+  ],
+  "crushedItemsPerPointOfDamage": 1,
+  "experience": 0,
+  "result": {
+    "id": "minecraft:prismarine_shard",
+    "count": 2
+  },
+  "particleEffectIdentifier": "cloud",
+  "soundEventIdentifier": "block.stone.break"
+}

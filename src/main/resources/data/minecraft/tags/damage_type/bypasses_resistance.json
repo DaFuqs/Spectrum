@@ -1,0 +1,7 @@
+{
+  "values": [
+    "spectrum:irradiance",
+    "spectrum:set_health",
+    "spectrum:evisceration"
+  ]
+}

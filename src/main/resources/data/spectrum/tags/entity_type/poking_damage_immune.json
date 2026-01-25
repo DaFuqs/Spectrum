@@ -1,0 +1,17 @@
+{
+  "values": [
+    "minecraft:bee",
+    "minecraft:fox",
+    "minecraft:ocelot",
+    "minecraft:cat",
+    "minecraft:wolf",
+    "minecraft:skeleton",
+    "minecraft:stray",
+    "spectrum:lizard",
+    "spectrum:eraser",
+    {
+      "id": "ants:ant",
+      "required": false
+    }
+  ]
+}

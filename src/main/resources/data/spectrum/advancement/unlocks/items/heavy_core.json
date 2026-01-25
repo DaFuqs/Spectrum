@@ -1,0 +1,28 @@
+{
+  "criteria": {
+    "build_spectrum_complex": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure"
+      }
+    },
+    "entered_trial_chamber": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "minecraft:adventure/minecraft_trials_edition"
+      }
+    },
+    "collected_beezmuths": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_bismuth_crystal"
+      }
+    },
+    "collected_basal_marble": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_basal_marble"
+      }
+    }
+  }
+}

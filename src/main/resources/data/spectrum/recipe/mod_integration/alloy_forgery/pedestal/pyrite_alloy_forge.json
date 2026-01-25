@@ -1,0 +1,26 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 40,
+  "tier": "basic",
+  "colors": {},
+  "experience": 0.1,
+  "pattern": [
+    "XXX",
+    "XBX",
+    "XXX"
+  ],
+  "key": {
+    "B": "minecraft:blast_furnace",
+    "X": "spectrum:pyrite"
+  },
+  "required_advancement": "spectrum:hidden/collect_pyrite",
+  "result": {
+    "id": "alloy_forgery:pyrite_forge_controller"
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "alloy_forgery"
+    }
+  ]
+}

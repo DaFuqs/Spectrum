@@ -1,0 +1,5 @@
+{
+  "particle_type": "minecraft:heart",
+  "gui_texture": "minecraft:heart",
+  "supports_coloring": false
+}

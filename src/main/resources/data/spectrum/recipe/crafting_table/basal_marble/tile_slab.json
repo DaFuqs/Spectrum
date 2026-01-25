@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WWW"
+  ],
+  "key": {
+    "W": [
+      {
+        "item": "spectrum:basal_marble_tiles"
+      }
+    ]
+  },
+  "result": {
+    "id": "spectrum:basal_marble_tile_slab",
+    "count": 6
+  }
+}

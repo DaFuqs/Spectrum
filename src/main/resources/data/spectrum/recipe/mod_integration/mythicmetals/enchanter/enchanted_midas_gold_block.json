@@ -1,0 +1,44 @@
+{
+  "type": "spectrum:enchanter",
+  "time": 600,
+  "required_experience": 50,
+  "ingredients": [
+    {
+      "item": "mythicmetals:midas_gold_block"
+    },
+    {
+      "item": "mythicmetals:midas_gold_block"
+    },
+    {
+      "item": "mythicmetals:midas_gold_block"
+    },
+    {
+      "item": "spectrum:pure_gold_block"
+    },
+    {
+      "item": "spectrum:pure_gold_block"
+    },
+    {
+      "item": "mythicmetals:midas_gold_block"
+    },
+    {
+      "item": "mythicmetals:midas_gold_block"
+    },
+    {
+      "item": "spectrum:pure_gold_block"
+    },
+    {
+      "item": "spectrum:pure_gold_block"
+    }
+  ],
+  "result": {
+    "id": "mythicmetals:enchanted_midas_gold_block"
+  },
+  "required_advancement": "spectrum:lategame/collect_pure_resource",
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "mythicmetals"
+    }
+  ]
+}

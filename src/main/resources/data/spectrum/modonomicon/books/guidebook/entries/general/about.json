@@ -1,0 +1,14 @@
+{
+  "name": "book.spectrum.guidebook.about.name",
+  "description": "book.spectrum.guidebook.about.description",
+  "icon": "spectrum:textures/gui/guidebook/icons/online.png",
+  "category": "spectrum:general",
+  "hide_while_locked": false,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 4,
+  "x": -12,
+  "y": -4,
+  "category_to_open": "spectrum:about",
+  "read_by_default": true
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "spectrum:templates/base_pylon_pedestal",
+  "textures": {
+    "top": "spectrum:block/balcite_pylon_stand_top",
+    "side": "spectrum:block/balcite_pylon_stand_side",
+    "anchor": "spectrum:block/balcite_pylon_stand_anchor",
+    "bottom": "spectrum:block/balcite_pylon_stand_bottom"
+  }
+}

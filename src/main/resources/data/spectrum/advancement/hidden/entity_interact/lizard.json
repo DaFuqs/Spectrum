@@ -1,0 +1,49 @@
+{
+  "criteria": {
+    "entity_interact": {
+      "trigger": "minecraft:player_interacted_with_entity",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "spectrum:lizard"
+            }
+          }
+        ]
+      }
+    },
+    "entity_hurt_player": {
+      "trigger": "minecraft:entity_hurt_player",
+      "conditions": {
+        "damage": {
+          "source_entity": {
+            "type": "spectrum:lizard"
+          }
+        }
+      }
+    },
+    "player_hurt_entity": {
+      "trigger": "minecraft:player_hurt_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "spectrum:lizard"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "entity_interact",
+      "entity_hurt_player",
+      "player_hurt_entity"
+    ]
+  ]
+}

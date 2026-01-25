@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "built_enchanting_structure": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/build_enchanting_structure"
+      }
+    },
+    "entered_trial_chamber": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "minecraft:adventure/minecraft_trials_edition"
+      }
+    }
+  }
+}

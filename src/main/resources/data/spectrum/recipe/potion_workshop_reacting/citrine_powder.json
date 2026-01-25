@@ -1,0 +1,8 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "spectrum:citrine_powder",
+  "modifiers": {
+    "potency_multiplier": 1.25
+  },
+  "required_advancement": "spectrum:unlocks/reagents/citrine_powder"
+}

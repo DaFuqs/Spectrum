@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "density": {
+      "trigger": "minecraft:effects_changed",
+      "conditions": {
+        "effects": {
+          "spectrum:density": {}
+        }
+      }
+    }
+  }
+}

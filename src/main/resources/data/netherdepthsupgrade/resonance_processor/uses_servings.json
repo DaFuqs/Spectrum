@@ -1,0 +1,17 @@
+{
+  "type": "spectrum:drop_self",
+  "block": {
+    "blocks": [
+      "netherdepthsupgrade:nether_rice_roll_medley_block"
+    ]
+  },
+  "state_properties_to_copy": [
+    "servings"
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "netherdepthsupgrade"
+    }
+  ]
+}

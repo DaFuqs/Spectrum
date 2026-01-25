@@ -1,0 +1,13 @@
+{
+  "values": [
+    "spectrum:blasting/blackslag_to_polished_blackslag",
+    "spectrum:blasting/calcite_to_polished_calcite",
+    "spectrum:blasting/cobbled_blackslag_to_blackslag",
+    "spectrum:blasting/polished_basalt_unsmelting",
+    "spectrum:blasting/polished_blackslag_unsmelting",
+    "spectrum:blasting/polished_calcite_unsmelting",
+    "spectrum:blasting/polished_shale_clay_unsmelting",
+    "spectrum:blasting/shale_clay_to_polished_shale_clay",
+    "spectrum:blasting/smooth_basalt_to_polished_basalt"
+  ]
+}

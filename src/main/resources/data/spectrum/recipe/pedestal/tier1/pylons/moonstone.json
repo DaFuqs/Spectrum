@@ -1,0 +1,29 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "pylons",
+  "time": 40,
+  "tier": "complex",
+  "colors": {
+    "spectrum:magenta": 0,
+    "spectrum:yellow": 0,
+    "spectrum:cyan": 0,
+    "spectrum:black": 0,
+    "spectrum:white": 2
+  },
+  "experience": 1.0,
+  "pattern": [
+    " S ",
+    "SSS",
+    "XYX"
+  ],
+  "key": {
+    "S": "spectrum:moonstone_shard",
+    "X": "spectrum:polished_basalt",
+    "Y": "spectrum:polished_calcite"
+  },
+  "result": {
+    "id": "spectrum:moonstone_pylon",
+    "count": 1
+  },
+  "required_advancement": "spectrum:unlocks/pylons/moonstone_pylon"
+}

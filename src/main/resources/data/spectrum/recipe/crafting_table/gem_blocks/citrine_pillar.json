@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "W",
+    "W"
+  ],
+  "key": {
+    "W": [
+      {
+        "item": "spectrum:polished_citrine"
+      }
+    ]
+  },
+  "result": {
+    "id": "spectrum:citrine_pillar",
+    "count": 2
+  }
+}

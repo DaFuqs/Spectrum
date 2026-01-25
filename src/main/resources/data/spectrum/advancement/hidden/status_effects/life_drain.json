@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "life_drain": {
+      "trigger": "minecraft:effects_changed",
+      "conditions": {
+        "effects": {
+          "spectrum:life_drain": {}
+        }
+      }
+    }
+  }
+}

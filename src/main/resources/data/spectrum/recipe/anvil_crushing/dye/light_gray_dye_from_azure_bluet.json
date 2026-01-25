@@ -1,0 +1,16 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": [
+    {
+      "item": "minecraft:azure_bluet"
+    }
+  ],
+  "crushedItemsPerPointOfDamage": 2,
+  "experience": 0.0,
+  "result": {
+    "id": "minecraft:light_gray_dye",
+    "count": 2
+  },
+  "particleEffectIdentifier": "cloud",
+  "soundEventIdentifier": "block.grass.break"
+}

@@ -1,0 +1,49 @@
+{
+  "type": "spectrum:weighted_random_feature",
+  "config": {
+    "features": [
+      {
+        "data": {
+          "feature": "spectrum:noxfungi/slate",
+          "placement": []
+        },
+        "weight": 100
+      },
+      {
+        "data": {
+          "feature": "spectrum:noxfungi/ebony",
+          "placement": []
+        },
+        "weight": 100
+      },
+      {
+        "data": {
+          "feature": "spectrum:noxfungi/ivory",
+          "placement": []
+        },
+        "weight": 100
+      },
+      {
+        "data": {
+          "feature": "spectrum:noxfungi/chestnut",
+          "placement": []
+        },
+        "weight": 1
+      },
+      {
+        "weight": 5,
+        "data": {
+          "feature": "minecraft:huge_brown_mushroom",
+          "placement": []
+        }
+      },
+      {
+        "weight": 5,
+        "data": {
+          "feature": "minecraft:huge_red_mushroom",
+          "placement": []
+        }
+      }
+    ]
+  }
+}

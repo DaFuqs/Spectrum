@@ -1,0 +1,9 @@
+{
+  "values": [
+    "#minecraft:is_lightning",
+    "#minecraft:is_fire",
+    "#minecraft:damages_helmet",
+
+    "spectrum:snapping_ivy"
+  ]
+}

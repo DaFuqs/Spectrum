@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": [
+    {
+      "item": "spectrum:blackslag"
+    }
+  ],
+  "result": {
+    "id": "spectrum:blackslag_stairs",
+    "count": 1
+  }
+}

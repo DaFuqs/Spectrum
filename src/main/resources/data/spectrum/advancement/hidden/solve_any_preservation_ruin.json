@@ -1,0 +1,29 @@
+{
+  "criteria": {
+    "solved_color_mixing_preservation_ruin": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:solve_color_mixing_preservation_ruin"
+      }
+    },
+    "solved_dike_gate_preservation_ruin": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:solve_dike_gate_preservation_ruin"
+      }
+    },
+    "solved_wireless_redstone_preservation_ruin": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:solve_wireless_redstone_preservation_ruin"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "solved_color_mixing_preservation_ruin",
+      "solved_dike_gate_preservation_ruin",
+      "solved_wireless_redstone_preservation_ruin"
+    ]
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "values": [
+    "#spectrum:gemstone_clusters",
+    "#spectrum:crystallarieum_growable_clusters",
+
+    {
+      "id": "biomemakeover:illunite_cluster",
+      "required": false
+    },
+
+    {
+      "id": "mythicupgrades:ametrine_cluster",
+      "required": false
+    },
+    {
+      "id": "mythicupgrades:aquamarine_cluster",
+      "required": false
+    },
+    {
+      "id": "mythicupgrades:jade_crystal_cluster",
+      "required": false
+    },
+    {
+      "id": "mythicupgrades:ruby_crystal_cluster",
+      "required": false
+    },
+    {
+      "id": "mythicupgrades:sapphire_crystal_cluster",
+      "required": false
+    },
+    {
+      "id": "mythicupgrades:topaz_crystal_cluster",
+      "required": false
+    },
+
+    {
+      "id": "geode_plus:celestite_cluster",
+      "required": false
+    },
+    {
+      "id": "geode_plus:diamond_crystal",
+      "required": false
+    },
+    {
+      "id": "geode_plus:echo_crystal",
+      "required": false
+    },
+    {
+      "id": "geode_plus:emerald_cluster",
+      "required": false
+    },
+    {
+      "id": "geode_plus:lapis_cluster",
+      "required": false
+    },
+    {
+      "id": "geode_plus:nether_ancient_debris_cluster",
+      "required": false
+    },
+    {
+      "id": "geode_plus:nether_glowstone_cluster",
+      "required": false
+    },
+    {
+      "id": "geode_plus:nether_gold_nugget_cluster",
+      "required": false
+    },
+    {
+      "id": "geode_plus:nether_quartz_crystal",
+      "required": false
+    },
+    {
+      "id": "geode_plus:pink_topaz_crystal",
+      "required": false
+    },
+    {
+      "id": "geode_plus:prismarine_cluster",
+      "required": false
+    },
+    {
+      "id": "geode_plus:redstone_crystal",
+      "required": false
+    },
+    {
+      "id": "geode_plus:wrappist_cluster",
+      "required": false
+    },
+
+    {
+      "id": "geodes:emerald_cluster",
+      "required": false
+    },
+    {
+      "id": "geodes:quartz_cluster",
+      "required": false
+    },
+    {
+      "id": "geodes:diamond_cluster",
+      "required": false
+    },
+    {
+      "id": "geodes:echo_cluster",
+      "required": false
+    },
+    {
+      "id": "geodes:lapis_cluster",
+      "required": false
+    },
+    {
+      "id": "geodes:gypsum_rose",
+      "required": false
+    },
+
+    {
+      "id": "byg:subzero_crystal_cluster",
+      "required": false
+    },
+    {
+      "id": "byg:therium_crystal_cluster",
+      "required": false
+    },
+    {
+      "id": "byg:ametrine_cluster",
+      "required": false
+    },
+
+    {
+      "id": "tconstruct:earth_slime_crystal_cluster",
+      "required": false
+    },
+    {
+      "id": "tconstruct:sky_slime_crystal_cluster",
+      "required": false
+    },
+    {
+      "id": "tconstruct:ichor_slime_crystal_cluster",
+      "required": false
+    },
+    {
+      "id": "tconstruct:ender_slime_crystal_cluster",
+      "required": false
+    }
+  ]
+}

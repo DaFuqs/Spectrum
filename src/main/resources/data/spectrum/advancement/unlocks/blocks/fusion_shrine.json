@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "collected_all_basic_pigments_besides_brown": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:collect_all_basic_pigments_besides_brown"
+      }
+    },
+    "crafted_cmy_pedestal": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:craft_cmy_pedestal"
+      }
+    }
+  }
+}

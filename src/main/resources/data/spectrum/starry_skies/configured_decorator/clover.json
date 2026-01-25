@@ -1,0 +1,9 @@
+{
+  "type": "starry_skies:single_block",
+  "config": {
+    "block": {
+      "Name": "spectrum:clover"
+    },
+    "chance": 0.02
+  }
+}

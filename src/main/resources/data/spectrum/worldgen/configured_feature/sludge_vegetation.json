@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:simple_block",
+  "config": {
+    "to_place": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "weight": 8,
+          "data": {
+            "Name": "spectrum:sag_leaf"
+          }
+        },
+        {
+          "weight": 7,
+          "data": {
+            "Name": "spectrum:sag_bubble"
+          }
+        },
+        {
+          "weight": 4,
+          "data": {
+            "Name": "spectrum:small_sag_bubble"
+          }
+        }
+      ]
+    }
+  }
+}

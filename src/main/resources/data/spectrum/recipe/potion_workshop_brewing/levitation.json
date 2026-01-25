@@ -1,0 +1,14 @@
+{
+  "type": "spectrum:potion_workshop_brewing",
+  "ingredient1": "minecraft:nether_wart",
+  "ingredient2": "spectrum:paltaeria_fragments",
+  "effect": "minecraft:levitation",
+  "base_duration_ticks": 200,
+  "potency_modifier": 1.0,
+  "applicable_to_potions": true,
+  "applicable_to_tipped_arrows": true,
+  "applicable_to_potion_fillables": true,
+  "required_advancement": "spectrum:lategame/collect_paltaeria",
+  "ink_color": "spectrum:brown",
+  "ink_cost": 8
+}

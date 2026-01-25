@@ -1,0 +1,8 @@
+{
+  "values": [
+    {
+      "id": "botania:mana_burst",
+      "required": false
+    }
+  ]
+}

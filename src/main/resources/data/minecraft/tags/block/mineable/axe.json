@@ -1,0 +1,33 @@
+{
+  "values": [
+    "#spectrum:spirit_sallow_wood",
+    "#spectrum:colored_spore_blossoms",
+    "#spectrum:detectors",
+    "#spectrum:noxwood",
+    "#spectrum:jadeite",
+    "#spectrum:nephrite",
+    "#spectrum:woody_plants",
+
+    "spectrum:fading",
+    "spectrum:heartbound_chest",
+    "spectrum:glistering_melon",
+    "spectrum:four_leaf_clover",
+    "spectrum:quitoxic_reeds",
+    "spectrum:mermaids_brush",
+    "spectrum:resonant_lily",
+    "spectrum:clover",
+    "spectrum:glistering_melon_stem",
+    "spectrum:attached_glistering_melon_stem",
+    "spectrum:bottomless_bundle",
+    "spectrum:amaranth",
+    "spectrum:amaranth_bushel",
+    "spectrum:titration_barrel",
+
+    "spectrum:weeping_gala_lantern",
+    "spectrum:weeping_gala_lamp",
+    "spectrum:weeping_gala_amphora",
+    "spectrum:weeping_gala_barrel",
+    "spectrum:weeping_gala_pillar",
+    "spectrum:weeping_gala_light"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    "spectrum:onyx_block"
+  ],
+  "results": [
+    {
+      "id": "spectrum:onyx_shard",
+      "count": 1
+    },
+    {
+      "id": "spectrum:onyx_shard",
+      "chance": 0.5
+    }
+  ],
+  "processingTime": 150,
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    }
+  ]
+}

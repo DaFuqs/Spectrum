@@ -1,0 +1,6 @@
+{
+  "parent": "spectrum:item/handheld_oversized_throwing",
+  "textures": {
+    "layer0": "spectrum:item/malachite_bident_oversized"
+  }
+}

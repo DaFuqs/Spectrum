@@ -1,0 +1,53 @@
+{
+  "parent": "spectrum:midgame/break_decayed_bedrock",
+  "display": {
+    "icon": {
+      "id": "minecraft:bedrock"
+    },
+    "title": {
+      "translate": "advancements.spectrum.open_deeper_down_portal.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.open_deeper_down_portal.description"
+    }
+  },
+  "criteria": {
+    "opened_deeper_down_portal_in_overworld": {
+      "trigger": "spectrum:deeper_down_portal_opening",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "dimension": "minecraft:overworld"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "entered_dimension": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/enter_dimension"
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/break_decayed_bedrock"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "opened_deeper_down_portal_in_overworld",
+      "entered_dimension"
+    ],
+    [
+      "gotten_previous"
+    ]
+  ]
+}

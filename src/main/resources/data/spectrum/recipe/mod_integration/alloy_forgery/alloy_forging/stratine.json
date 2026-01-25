@@ -1,0 +1,28 @@
+{
+  "type": "alloy_forgery:forging",
+  "inputs": [
+    "spectrum:stratine_ore"
+  ],
+  "output": {
+    "id": "spectrum:stratine_fragments",
+    "count": 3
+  },
+  "overrides": {
+    "3": {
+      "id": "spectrum:stratine_fragments",
+      "count": 4
+    },
+    "4+": {
+      "id": "spectrum:stratine_fragments",
+      "count": 5
+    }
+  },
+  "min_forge_tier": 2,
+  "fuel_per_tick": 5,
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "alloy_forgery"
+    }
+  ]
+}

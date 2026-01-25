@@ -1,0 +1,7 @@
+{
+  "criteria": {
+    "used_tip": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

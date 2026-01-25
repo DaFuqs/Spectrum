@@ -1,0 +1,23 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    "spectrum:citrine_block"
+  ],
+  "results": [
+    {
+      "id": "spectrum:citrine_shard",
+      "count": 1
+    },
+    {
+      "id": "spectrum:citrine_shard",
+      "chance": 0.5
+    }
+  ],
+  "processingTime": 150,
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    }
+  ]
+}

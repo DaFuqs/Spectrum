@@ -1,0 +1,12 @@
+{
+  "type": "spectrum:sludge_converting",
+  "required_advancement": "spectrum:hidden/collect_ash_and_slush",
+  "ingredient": [
+    {
+      "item": "spectrum:ash"
+    }
+  ],
+  "result": {
+    "id": "spectrum:slush"
+  }
+}

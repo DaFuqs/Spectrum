@@ -1,0 +1,26 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 40,
+  "tier": "basic",
+  "colors": {},
+  "experience": 0.1,
+  "pattern": [
+    "XXX",
+    "XBX",
+    "XXX"
+  ],
+  "key": {
+    "B": "minecraft:blast_furnace",
+    "X": "spectrum:polished_bone_ash"
+  },
+  "result": {
+    "id": "alloy_forgery:polished_bone_ash_forge_controller"
+  },
+  "required_advancement": "spectrum:break_cracked_dragonbone",
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "alloy_forgery"
+    }
+  ]
+}

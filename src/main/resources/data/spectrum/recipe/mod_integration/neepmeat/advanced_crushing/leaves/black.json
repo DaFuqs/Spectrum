@@ -1,0 +1,24 @@
+{
+  "type": "neepmeat:advanced_crushing",
+  "input": {
+    "resource": "spectrum:black_leaves",
+    "amount": 1
+  },
+  "output": {
+    "resource": "spectrum:black_pigment",
+    "amount": 1
+  },
+  "extra": {
+    "resource": "spectrum:black_sapling",
+    "amount": 1,
+    "chance": 0.03
+  },
+  "experience": 0.7,
+  "processtime": 45,
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "neepmeat"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "type": "spectrum:liquid_crystal_converting",
+  "required_advancement": "spectrum:unlocks/blocks/liquid_crystal",
+  "ingredient": [
+    {
+      "item": "create:crushed_raw_iron"
+    }
+  ],
+  "result": {
+    "id": "minecraft:redstone",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+    "criteria": {
+      "unlocked_complex_reagents": {
+        "trigger": "revelationary:advancement_gotten",
+        "conditions": {
+          "advancement_identifier": "spectrum:milestones/unlock_complex_reagents"
+        }
+      },
+      "obtained_bloodstone": {
+        "trigger": "revelationary:advancement_gotten",
+        "conditions": {
+          "advancement_identifier": "spectrum:hidden/collect_raw_bloodstone"
+        }
+      }
+    }
+}

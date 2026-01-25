@@ -1,0 +1,30 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 40,
+  "tier": "simple",
+  "colors": {
+    "spectrum:cyan": 8,
+    "spectrum:magenta": 2
+  },
+  "experience": 2.0,
+  "pattern": [
+    "PCP",
+    "CAC",
+    "PCP"
+  ],
+  "key": {
+    "A": "minecraft:phantom_membrane",
+    "C": "farmersdelight:canvas",
+    "P": "spectrum:purple_pigment"
+  },
+  "result": {
+    "id": "spectrum:enchantment_canvas"
+  },
+  "required_advancement": "spectrum:unlocks/items/enchantment_canvas",
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "farmersdelight"
+    }
+  ]
+}

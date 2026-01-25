@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "another_roll": {
+      "trigger": "minecraft:effects_changed",
+      "conditions": {
+        "effects": {
+          "spectrum:effect_prolonging": {}
+        }
+      }
+    }
+  }
+}

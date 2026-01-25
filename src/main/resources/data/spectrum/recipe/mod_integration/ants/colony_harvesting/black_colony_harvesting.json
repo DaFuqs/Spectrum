@@ -1,0 +1,16 @@
+{
+  "type": "ants:colony_harvesting",
+  "group": "spectrum_leaves_harvesting",
+  "hive_ingredient": "spectrum:black_leaves",
+  "hand_ingredient": "spectrum:vegetal",
+  "result": {
+    "item": "spectrum:black_pigment",
+    "count": 6
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "ants"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 240,
+  "tier": "basic",
+  "colors": {
+    "spectrum:cyan": 4,
+    "spectrum:magenta": 4
+  },
+  "experience": 2.0,
+  "pattern": [
+    "OOO",
+    "TWT",
+    "OOO"
+  ],
+  "key": {
+    "O": "minecraft:obsidian",
+    "W": "malum:warp_flux",
+    "T": "spectrum:radiating_ender"
+  },
+  "result": {
+    "id": "spectrum:bag_of_holding",
+    "count": 1
+  },
+  "required_advancement": "spectrum:unlocks/items/bag_of_holding",
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "malum"
+    }
+  ]
+}

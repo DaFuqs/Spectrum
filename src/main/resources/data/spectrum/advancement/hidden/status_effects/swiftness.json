@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "swiftness": {
+      "trigger": "minecraft:effects_changed",
+      "conditions": {
+        "effects": {
+          "spectrum:swiftness": {}
+        }
+      }
+    }
+  }
+}

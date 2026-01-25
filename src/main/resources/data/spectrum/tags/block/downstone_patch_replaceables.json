@@ -1,0 +1,8 @@
+{
+  "values": [
+    "#spectrum:base_stone_deeper_down",
+    "#minecraft:base_stone_overworld",
+    "minecraft:air",
+    "minecraft:cave_air"
+  ]
+}

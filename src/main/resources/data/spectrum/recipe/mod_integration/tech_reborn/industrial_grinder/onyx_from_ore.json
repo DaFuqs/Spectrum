@@ -1,0 +1,28 @@
+{
+  "type": "techreborn:industrial_grinder",
+  "power": 64,
+  "time": 100,
+  "tank": {
+    "fluid": "spectrum:liquid_crystal",
+    "amount": 100
+  },
+  "ingredients": [
+    "#spectrum:onyx_ores"
+  ],
+  "results": [
+    {
+      "id": "spectrum:onyx_shard",
+      "count": 6
+    },
+    {
+      "item": "spectrum:onyx_powder",
+      "count": 8
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "techreborn"
+    }
+  ]
+}

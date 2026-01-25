@@ -1,0 +1,15 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "botania:mana_powder",
+  "modifiers": {
+    "duration_multiplier": 1.25,
+    "chance_to_add_last_effect": 0.15
+  },
+  "required_advancement": "spectrum:milestones/unlock_complex_reagents",
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "botania"
+    }
+  ]
+}

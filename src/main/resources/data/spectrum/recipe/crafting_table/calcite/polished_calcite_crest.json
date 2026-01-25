@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "# #"
+  ],
+  "key": {
+    "#": [
+      {
+        "item": "spectrum:polished_calcite"
+      }
+    ]
+  },
+  "result": {
+    "id": "spectrum:polished_calcite_crest",
+    "count": 3
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "name": "book.spectrum.guidebook.mod_integration.immersive_weathering.name",
+  "icon": "immersive_weathering:oak_bark",
+  "condition": {
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:mod_loaded",
+        "mod_id": "immersive_weathering"
+      },
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:place_pedestal"
+      }
+    ]
+  },
+  "category": "spectrum:mod_integration",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 7,
+  "y": 2,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.mod_integration.immersive_weathering.page0.text",
+      "title": "book.spectrum.guidebook.mod_integration.immersive_weathering.name"
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "recipe_id": "spectrum:mod_integration/immersive_weathering/enchanter/enchanted_golden_moss",
+      "text": "book.spectrum.guidebook.mod_integration.immersive_weathering.enchanted_golden_moss.text"
+    },
+    {
+      "type": "spectrum:collection",
+      "title": "book.spectrum.guidebook.mod_integration.immersive_weathering.charred_wood_resonance.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/enchantments/resonance_usage"
+      },
+      "items": [
+        "immersive_weathering:charred_log",
+        "immersive_weathering:charred_planks",
+        "immersive_weathering:charred_stairs",
+        "immersive_weathering:charred_slab",
+        "immersive_weathering:charred_fence",
+        "immersive_weathering:charred_fence_gate"
+      ],
+      "text": "book.spectrum.guidebook.mod_integration.immersive_weathering.charred_wood_resonance.text"
+    },
+    {
+      "type": "spectrum:collection",
+      "title": "book.spectrum.guidebook.mod_integration.immersive_weathering.sandy_stone_resonance.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/enchantments/resonance_usage"
+      },
+      "items": [
+        "immersive_weathering:sandy_stone",
+        "immersive_weathering:sandy_stone_stairs",
+        "immersive_weathering:sandy_stone_slab",
+        "immersive_weathering:sandy_stone_wall",
+        "immersive_weathering:sandy_cobblestone",
+        "immersive_weathering:sandy_cobblestone_stairs",
+        "immersive_weathering:sandy_cobblestone_slab",
+        "immersive_weathering:sandy_cobblestone_wall",
+        "immersive_weathering:sandy_stone_bricks",
+        "immersive_weathering:sandy_stone_brick_stairs",
+        "immersive_weathering:sandy_stone_brick_slab",
+        "immersive_weathering:sandy_stone_brick_wall",
+        "immersive_weathering:sandy_chiseled_stone_bricks"
+      ],
+      "text": "book.spectrum.guidebook.mod_integration.immersive_weathering.sandy_stone_resonance.text"
+    }
+  ]
+}

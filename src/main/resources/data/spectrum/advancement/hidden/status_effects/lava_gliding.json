@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "lava_gliding": {
+      "trigger": "minecraft:effects_changed",
+      "conditions": {
+        "effects": {
+          "spectrum:lava_gliding": {}
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "values": [
+    {
+      "id": "malum:sacred_spirit",
+      "required": false
+    },
+    {
+      "id": "malum:wicked_spirit",
+      "required": false
+    },
+    {
+      "id": "malum:arcane_spirit",
+      "required": false
+    },
+    {
+      "id": "malum:eldritch_spirit",
+      "required": false
+    },
+    {
+      "id": "malum:aerial_spirit",
+      "required": false
+    },
+    {
+      "id": "malum:aqueous_spirit",
+      "required": false
+    },
+    {
+      "id": "malum:earthen_spirit",
+      "required": false
+    },
+    {
+      "id": "malum:infernal_spirit",
+      "required": false
+    }
+  ]
+}

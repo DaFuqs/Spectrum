@@ -9,8 +9,11 @@ import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.context.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
+import net.neoforged.neoforge.common.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 

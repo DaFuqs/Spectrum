@@ -215,8 +215,6 @@ public class SpectrumCommon {
 		
 		logInfo("Adding to Fabric's Registries...");
 		SpectrumFlammableBlocks.register();
-		SpectrumStrippableBlocks.register();
-		SpectrumTillableBlocks.register();
 		
 		logInfo("Registering Game Events...");
 		SpectrumGameEvents.register();

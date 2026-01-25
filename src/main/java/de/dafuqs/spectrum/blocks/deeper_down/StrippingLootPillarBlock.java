@@ -2,12 +2,17 @@ package de.dafuqs.spectrum.blocks.deeper_down;
 
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.blocks.conditional.colored_tree.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.context.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.storage.loot.*;
+import net.neoforged.neoforge.common.*;
+import org.jetbrains.annotations.*;
 
 public class StrippingLootPillarBlock extends RotatedPillarBlock implements StrippableDrop {
 	

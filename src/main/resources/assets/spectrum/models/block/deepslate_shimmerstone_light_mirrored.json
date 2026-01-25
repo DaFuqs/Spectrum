@@ -1,0 +1,8 @@
+{
+  "parent": "spectrum:templates/shimmerstone_light_mirrored",
+  "textures": {
+    "inner": "spectrum:block/shimmerstone_light",
+    "outer": "spectrum:block/deepslate_flat_light",
+    "particle": "spectrum:block/deepslate_flat_light"
+  }
+}

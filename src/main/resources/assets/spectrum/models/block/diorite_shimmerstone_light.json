@@ -1,0 +1,8 @@
+{
+  "parent": "spectrum:templates/shimmerstone_light",
+  "textures": {
+    "inner": "spectrum:block/shimmerstone_light",
+    "outer": "minecraft:block/polished_diorite",
+    "particle": "minecraft:block/polished_diorite"
+  }
+}

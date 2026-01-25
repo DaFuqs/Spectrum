@@ -1,0 +1,6 @@
+{
+  "parent": "spectrum:templates/double_cross",
+  "textures": {
+    "cross": "spectrum:block/small_black_dragonjag"
+  }
+}

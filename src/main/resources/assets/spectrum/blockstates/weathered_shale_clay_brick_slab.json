@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "spectrum:block/weathered_shale_clay_brick_slab"
+    },
+    "type=double": {
+      "model": "spectrum:block/weathered_shale_clay_bricks"
+    },
+    "type=top": {
+      "model": "spectrum:block/weathered_shale_clay_brick_slab_top"
+    }
+  }
+}

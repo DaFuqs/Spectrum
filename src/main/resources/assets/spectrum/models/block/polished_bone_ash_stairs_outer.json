@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "spectrum:block/polished_bone_ash",
+    "side": "spectrum:block/polished_bone_ash",
+    "top": "spectrum:block/polished_bone_ash"
+  }
+}

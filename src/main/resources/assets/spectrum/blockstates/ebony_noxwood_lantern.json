@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "diagonal=false,hanging=false,tall=false": {
+      "model": "spectrum:block/ebony_noxwood_lantern_small"
+    },
+    "diagonal=false,hanging=false,tall=true": {
+      "model": "spectrum:block/ebony_noxwood_lantern_tall"
+    },
+    "diagonal=false,hanging=true,tall=false": {
+      "model": "spectrum:block/ebony_noxwood_lantern_hanging_small"
+    },
+    "diagonal=false,hanging=true,tall=true": {
+      "model": "spectrum:block/ebony_noxwood_lantern_hanging_tall"
+    },
+    "diagonal=true,hanging=false,tall=false": {
+      "model": "spectrum:block/ebony_noxwood_lantern_diagonal_small"
+    },
+    "diagonal=true,hanging=false,tall=true": {
+      "model": "spectrum:block/ebony_noxwood_lantern_diagonal_tall"
+    },
+    "diagonal=true,hanging=true,tall=false": {
+      "model": "spectrum:block/ebony_noxwood_lantern_hanging_diagonal_small"
+    },
+    "diagonal=true,hanging=true,tall=true": {
+      "model": "spectrum:block/ebony_noxwood_lantern_hanging_diagonal_tall"
+    }
+  }
+}

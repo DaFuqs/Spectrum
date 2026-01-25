@@ -1,0 +1,6 @@
+{
+  "parent": "spectrum:templates/redstone_timer_base",
+  "textures": {
+    "light": "minecraft:block/redstone_torch_off"
+  }
+}

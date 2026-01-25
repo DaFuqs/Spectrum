@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "spectrum:block/cracked_dragonbone_top",
+    "side": "spectrum:block/cracked_dragonbone_side"
+  }
+}

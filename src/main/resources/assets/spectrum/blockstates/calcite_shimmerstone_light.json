@@ -1,0 +1,50 @@
+{
+  "variants": {
+    "facing=down,inverted=false": {
+      "model": "spectrum:block/calcite_shimmerstone_light",
+      "x": 90
+    },
+    "facing=down,inverted=true": {
+      "model": "spectrum:block/calcite_shimmerstone_light_mirrored",
+      "x": 90
+    },
+    "facing=east,inverted=false": {
+      "model": "spectrum:block/calcite_shimmerstone_light",
+      "y": 90
+    },
+    "facing=east,inverted=true": {
+      "model": "spectrum:block/calcite_shimmerstone_light_mirrored",
+      "y": 90
+    },
+    "facing=north,inverted=false": {
+      "model": "spectrum:block/calcite_shimmerstone_light"
+    },
+    "facing=north,inverted=true": {
+      "model": "spectrum:block/calcite_shimmerstone_light_mirrored"
+    },
+    "facing=south,inverted=false": {
+      "model": "spectrum:block/calcite_shimmerstone_light",
+      "y": 180
+    },
+    "facing=south,inverted=true": {
+      "model": "spectrum:block/calcite_shimmerstone_light_mirrored",
+      "y": 180
+    },
+    "facing=up,inverted=false": {
+      "model": "spectrum:block/calcite_shimmerstone_light",
+      "x": 270
+    },
+    "facing=up,inverted=true": {
+      "model": "spectrum:block/calcite_shimmerstone_light_mirrored",
+      "x": 270
+    },
+    "facing=west,inverted=false": {
+      "model": "spectrum:block/calcite_shimmerstone_light",
+      "y": 270
+    },
+    "facing=west,inverted=true": {
+      "model": "spectrum:block/calcite_shimmerstone_light_mirrored",
+      "y": 270
+    }
+  }
+}

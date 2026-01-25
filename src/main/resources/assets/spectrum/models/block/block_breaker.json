@@ -1,0 +1,11 @@
+{
+  "parent": "spectrum:templates/complex_orientable",
+  "textures": {
+    "back": "spectrum:block/block_breaker_back",
+    "bottom": "spectrum:block/polished_bone_ash_pillar_top",
+    "front": "spectrum:block/block_breaker_front",
+    "particle": "spectrum:block/block_breaker_side",
+    "side": "spectrum:block/block_breaker_side",
+    "top": "spectrum:block/block_breaker_top"
+  }
+}

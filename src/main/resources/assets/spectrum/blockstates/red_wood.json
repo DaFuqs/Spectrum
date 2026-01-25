@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "spectrum:block/red_wood",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "spectrum:block/red_wood"
+    },
+    "axis=z": {
+      "model": "spectrum:block/red_wood",
+      "x": 90
+    }
+  }
+}

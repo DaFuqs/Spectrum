@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "spectrum:block/bone_ash_shingles"
+    },
+    "facing=north": {
+      "model": "spectrum:block/bone_ash_shingles",
+      "y": 270
+    },
+    "facing=south": {
+      "model": "spectrum:block/bone_ash_shingles",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "spectrum:block/bone_ash_shingles",
+      "y": 180
+    }
+  }
+}

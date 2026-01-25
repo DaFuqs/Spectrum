@@ -1,0 +1,6 @@
+{
+  "parent": "spectrum:templates_item/medium_bud",
+  "textures": {
+    "layer0": "spectrum:block/medium_citrine_bud"
+  }
+}

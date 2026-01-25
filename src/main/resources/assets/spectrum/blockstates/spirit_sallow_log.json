@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "spectrum:block/spirit_sallow_log_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "spectrum:block/spirit_sallow_log"
+    },
+    "axis=z": {
+      "model": "spectrum:block/spirit_sallow_log_horizontal",
+      "x": 90
+    }
+  }
+}

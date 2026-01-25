@@ -1,0 +1,308 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "spectrum:block/redstone_transceiver_sender",
+        "y": 180
+      },
+      "when": {
+        "facing": "north",
+        "powered": "true",
+        "sender": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/redstone_transceiver_sender_off",
+        "y": 180
+      },
+      "when": {
+        "facing": "north",
+        "powered": "false",
+        "sender": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/redstone_transceiver_receiver",
+        "y": 180
+      },
+      "when": {
+        "facing": "north",
+        "powered": "true",
+        "sender": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/redstone_transceiver_receiver_off",
+        "y": 180
+      },
+      "when": {
+        "facing": "north",
+        "powered": "false",
+        "sender": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/redstone_transceiver_sender",
+        "y": 270
+      },
+      "when": {
+        "facing": "east",
+        "powered": "true",
+        "sender": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/redstone_transceiver_sender_off",
+        "y": 270
+      },
+      "when": {
+        "facing": "east",
+        "powered": "false",
+        "sender": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/redstone_transceiver_receiver",
+        "y": 270
+      },
+      "when": {
+        "facing": "east",
+        "powered": "true",
+        "sender": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/redstone_transceiver_receiver_off",
+        "y": 270
+      },
+      "when": {
+        "facing": "east",
+        "powered": "false",
+        "sender": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/redstone_transceiver_sender",
+        "y": 0
+      },
+      "when": {
+        "facing": "south",
+        "powered": "true",
+        "sender": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/redstone_transceiver_sender_off",
+        "y": 0
+      },
+      "when": {
+        "facing": "south",
+        "powered": "false",
+        "sender": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/redstone_transceiver_receiver",
+        "y": 0
+      },
+      "when": {
+        "facing": "south",
+        "powered": "true",
+        "sender": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/redstone_transceiver_receiver_off",
+        "y": 0
+      },
+      "when": {
+        "facing": "south",
+        "powered": "false",
+        "sender": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/redstone_transceiver_sender",
+        "y": 90
+      },
+      "when": {
+        "facing": "west",
+        "powered": "true",
+        "sender": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/redstone_transceiver_sender_off",
+        "y": 90
+      },
+      "when": {
+        "facing": "west",
+        "powered": "false",
+        "sender": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/redstone_transceiver_receiver",
+        "y": 90
+      },
+      "when": {
+        "facing": "west",
+        "powered": "true",
+        "sender": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/redstone_transceiver_receiver_off",
+        "y": 90
+      },
+      "when": {
+        "facing": "west",
+        "powered": "false",
+        "sender": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/redstone_transceiver_channel_white"
+      },
+      "when": {
+        "channel": "white"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/redstone_transceiver_channel_orange"
+      },
+      "when": {
+        "channel": "orange"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/redstone_transceiver_channel_magenta"
+      },
+      "when": {
+        "channel": "magenta"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/redstone_transceiver_channel_light_blue"
+      },
+      "when": {
+        "channel": "light_blue"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/redstone_transceiver_channel_yellow"
+      },
+      "when": {
+        "channel": "yellow"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/redstone_transceiver_channel_lime"
+      },
+      "when": {
+        "channel": "lime"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/redstone_transceiver_channel_pink"
+      },
+      "when": {
+        "channel": "pink"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/redstone_transceiver_channel_gray"
+      },
+      "when": {
+        "channel": "gray"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/redstone_transceiver_channel_light_gray"
+      },
+      "when": {
+        "channel": "light_gray"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/redstone_transceiver_channel_cyan"
+      },
+      "when": {
+        "channel": "cyan"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/redstone_transceiver_channel_purple"
+      },
+      "when": {
+        "channel": "purple"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/redstone_transceiver_channel_blue"
+      },
+      "when": {
+        "channel": "blue"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/redstone_transceiver_channel_brown"
+      },
+      "when": {
+        "channel": "brown"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/redstone_transceiver_channel_green"
+      },
+      "when": {
+        "channel": "green"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/redstone_transceiver_channel_red"
+      },
+      "when": {
+        "channel": "red"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/redstone_transceiver_channel_black"
+      },
+      "when": {
+        "channel": "black"
+      }
+    }
+  ]
+}

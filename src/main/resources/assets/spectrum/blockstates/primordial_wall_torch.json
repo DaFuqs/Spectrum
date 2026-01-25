@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "spectrum:block/primordial_wall_torch"
+    },
+    "facing=north": {
+      "model": "spectrum:block/primordial_wall_torch",
+      "y": 270
+    },
+    "facing=south": {
+      "model": "spectrum:block/primordial_wall_torch",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "spectrum:block/primordial_wall_torch",
+      "y": 180
+    }
+  }
+}

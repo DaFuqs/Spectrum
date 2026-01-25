@@ -1,0 +1,6 @@
+{
+  "parent": "spectrum:templates/double_cross",
+  "textures": {
+    "cross": "spectrum:block/tall_pink_dragonjag_bottom_dead"
+  }
+}

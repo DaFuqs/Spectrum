@@ -1,0 +1,80 @@
+{
+  "variants": {
+    "barrel_state=empty,facing=east": {
+      "model": "spectrum:block/titration_barrel",
+      "x": 90,
+      "y": 90
+    },
+    "barrel_state=empty,facing=north": {
+      "model": "spectrum:block/titration_barrel",
+      "x": 90
+    },
+    "barrel_state=empty,facing=south": {
+      "model": "spectrum:block/titration_barrel",
+      "x": 90,
+      "y": 180
+    },
+    "barrel_state=empty,facing=west": {
+      "model": "spectrum:block/titration_barrel",
+      "x": 90,
+      "y": 270
+    },
+    "barrel_state=filled,facing=east": {
+      "model": "spectrum:block/titration_barrel_filled",
+      "x": 90,
+      "y": 90
+    },
+    "barrel_state=filled,facing=north": {
+      "model": "spectrum:block/titration_barrel_filled",
+      "x": 90
+    },
+    "barrel_state=filled,facing=south": {
+      "model": "spectrum:block/titration_barrel_filled",
+      "x": 90,
+      "y": 180
+    },
+    "barrel_state=filled,facing=west": {
+      "model": "spectrum:block/titration_barrel_filled",
+      "x": 90,
+      "y": 270
+    },
+    "barrel_state=sealed,facing=east": {
+      "model": "spectrum:block/titration_barrel_sealed",
+      "x": 90,
+      "y": 90
+    },
+    "barrel_state=sealed,facing=north": {
+      "model": "spectrum:block/titration_barrel_sealed",
+      "x": 90
+    },
+    "barrel_state=sealed,facing=south": {
+      "model": "spectrum:block/titration_barrel_sealed",
+      "x": 90,
+      "y": 180
+    },
+    "barrel_state=sealed,facing=west": {
+      "model": "spectrum:block/titration_barrel_sealed",
+      "x": 90,
+      "y": 270
+    },
+    "barrel_state=tapped,facing=east": {
+      "model": "spectrum:block/titration_barrel_tapped",
+      "x": 90,
+      "y": 90
+    },
+    "barrel_state=tapped,facing=north": {
+      "model": "spectrum:block/titration_barrel_tapped",
+      "x": 90
+    },
+    "barrel_state=tapped,facing=south": {
+      "model": "spectrum:block/titration_barrel_tapped",
+      "x": 90,
+      "y": 180
+    },
+    "barrel_state=tapped,facing=west": {
+      "model": "spectrum:block/titration_barrel_tapped",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

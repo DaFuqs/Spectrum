@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "spectrum:block/weeping_gala_slab"
+    },
+    "type=double": {
+      "model": "spectrum:block/weeping_gala_planks"
+    },
+    "type=top": {
+      "model": "spectrum:block/weeping_gala_slab_top"
+    }
+  }
+}

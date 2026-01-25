@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "inverted=false": {
+      "model": "spectrum:block/creature_detector"
+    },
+    "inverted=true": {
+      "model": "spectrum:block/creature_detector_inverted"
+    }
+  }
+}

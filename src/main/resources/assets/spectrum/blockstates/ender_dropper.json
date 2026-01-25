@@ -1,0 +1,26 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "spectrum:block/ender_dropper_vertical",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "spectrum:block/ender_dropper",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "spectrum:block/ender_dropper"
+    },
+    "facing=south": {
+      "model": "spectrum:block/ender_dropper",
+      "y": 180
+    },
+    "facing=up": {
+      "model": "spectrum:block/ender_dropper_vertical"
+    },
+    "facing=west": {
+      "model": "spectrum:block/ender_dropper",
+      "y": 270
+    }
+  }
+}

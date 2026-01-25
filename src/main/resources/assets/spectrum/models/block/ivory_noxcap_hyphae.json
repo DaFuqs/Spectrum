@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "spectrum:block/ivory_noxcap_stem",
+    "side": "spectrum:block/ivory_noxcap_stem"
+  }
+}

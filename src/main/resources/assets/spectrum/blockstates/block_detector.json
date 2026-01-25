@@ -1,0 +1,110 @@
+{
+  "variants": {
+    "orientation=down_east,triggered=false": {
+      "model": "spectrum:block/block_detector",
+      "x": 90,
+      "y": 90
+    },
+    "orientation=down_east,triggered=true": {
+      "model": "spectrum:block/block_detector_active",
+      "x": 90,
+      "y": 90
+    },
+    "orientation=down_north,triggered=false": {
+      "model": "spectrum:block/block_detector",
+      "x": 90
+    },
+    "orientation=down_north,triggered=true": {
+      "model": "spectrum:block/block_detector_active",
+      "x": 90
+    },
+    "orientation=down_south,triggered=false": {
+      "model": "spectrum:block/block_detector",
+      "x": 90,
+      "y": 180
+    },
+    "orientation=down_south,triggered=true": {
+      "model": "spectrum:block/block_detector_active",
+      "x": 90,
+      "y": 180
+    },
+    "orientation=down_west,triggered=false": {
+      "model": "spectrum:block/block_detector",
+      "x": 90,
+      "y": 270
+    },
+    "orientation=down_west,triggered=true": {
+      "model": "spectrum:block/block_detector_active",
+      "x": 90,
+      "y": 270
+    },
+    "orientation=east_up,triggered=false": {
+      "model": "spectrum:block/block_detector",
+      "y": 90
+    },
+    "orientation=east_up,triggered=true": {
+      "model": "spectrum:block/block_detector_active",
+      "y": 90
+    },
+    "orientation=north_up,triggered=false": {
+      "model": "spectrum:block/block_detector"
+    },
+    "orientation=north_up,triggered=true": {
+      "model": "spectrum:block/block_detector_active"
+    },
+    "orientation=south_up,triggered=false": {
+      "model": "spectrum:block/block_detector",
+      "y": 180
+    },
+    "orientation=south_up,triggered=true": {
+      "model": "spectrum:block/block_detector_active",
+      "y": 180
+    },
+    "orientation=up_east,triggered=false": {
+      "model": "spectrum:block/block_detector",
+      "x": 270,
+      "y": 270
+    },
+    "orientation=up_east,triggered=true": {
+      "model": "spectrum:block/block_detector_active",
+      "x": 270,
+      "y": 270
+    },
+    "orientation=up_north,triggered=false": {
+      "model": "spectrum:block/block_detector",
+      "x": 270,
+      "y": 180
+    },
+    "orientation=up_north,triggered=true": {
+      "model": "spectrum:block/block_detector_active",
+      "x": 270,
+      "y": 180
+    },
+    "orientation=up_south,triggered=false": {
+      "model": "spectrum:block/block_detector",
+      "x": 270
+    },
+    "orientation=up_south,triggered=true": {
+      "model": "spectrum:block/block_detector_active",
+      "x": 270
+    },
+    "orientation=up_west,triggered=false": {
+      "model": "spectrum:block/block_detector",
+      "x": 270,
+      "y": 90
+    },
+    "orientation=up_west,triggered=true": {
+      "model": "spectrum:block/block_detector_active",
+      "x": 270,
+      "y": 90
+    },
+    "orientation=west_up,triggered=false": {
+      "model": "spectrum:block/block_detector",
+      "y": 270
+    },
+    "orientation=west_up,triggered=true": {
+      "model": "spectrum:block/block_detector_active",
+      "y": 270
+    }
+  }
+}

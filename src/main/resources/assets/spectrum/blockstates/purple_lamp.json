@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "spectrum:block/purple_lamp"
+    },
+    "lit=true": {
+      "model": "spectrum:block/purple_lamp_on"
+    }
+  }
+}

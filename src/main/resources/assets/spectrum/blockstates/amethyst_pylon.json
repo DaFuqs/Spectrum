@@ -1,0 +1,309 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "spectrum:block/amethyst_pylon_head",
+        "x": 180
+      },
+      "when": {
+        "facing": "down",
+        "section": "head"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/amethyst_pylon_body",
+        "x": 180
+      },
+      "when": {
+        "facing": "down",
+        "section": "body"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/amethyst_pylon_waist",
+        "x": 180
+      },
+      "when": {
+        "facing": "down",
+        "section": "waist"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/amethyst_pylon_foot",
+        "x": 180
+      },
+      "when": {
+        "facing": "down",
+        "section": "foot"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/balcite_pylon_pedestal",
+        "x": 180
+      },
+      "when": {
+        "facing": "down",
+        "pedestal": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/amethyst_pylon_head"
+      },
+      "when": {
+        "facing": "up",
+        "section": "head"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/amethyst_pylon_body"
+      },
+      "when": {
+        "facing": "up",
+        "section": "body"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/amethyst_pylon_waist"
+      },
+      "when": {
+        "facing": "up",
+        "section": "waist"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/amethyst_pylon_foot"
+      },
+      "when": {
+        "facing": "up",
+        "section": "foot"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/balcite_pylon_pedestal"
+      },
+      "when": {
+        "facing": "up",
+        "pedestal": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/amethyst_pylon_head",
+        "x": 90
+      },
+      "when": {
+        "facing": "north",
+        "section": "head"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/amethyst_pylon_body",
+        "x": 90
+      },
+      "when": {
+        "facing": "north",
+        "section": "body"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/amethyst_pylon_waist",
+        "x": 90
+      },
+      "when": {
+        "facing": "north",
+        "section": "waist"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/amethyst_pylon_foot",
+        "x": 90
+      },
+      "when": {
+        "facing": "north",
+        "section": "foot"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/balcite_pylon_pedestal",
+        "x": 90
+      },
+      "when": {
+        "facing": "north",
+        "pedestal": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/amethyst_pylon_head",
+        "x": 270
+      },
+      "when": {
+        "facing": "south",
+        "section": "head"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/amethyst_pylon_body",
+        "x": 270
+      },
+      "when": {
+        "facing": "south",
+        "section": "body"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/amethyst_pylon_waist",
+        "x": 270
+      },
+      "when": {
+        "facing": "south",
+        "section": "waist"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/amethyst_pylon_foot",
+        "x": 270
+      },
+      "when": {
+        "facing": "south",
+        "section": "foot"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/balcite_pylon_pedestal",
+        "x": 270
+      },
+      "when": {
+        "facing": "south",
+        "pedestal": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/amethyst_pylon_head",
+        "x": 90,
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "section": "head"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/amethyst_pylon_body",
+        "x": 90,
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "section": "body"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/amethyst_pylon_waist",
+        "x": 90,
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "section": "waist"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/amethyst_pylon_foot",
+        "x": 90,
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "section": "foot"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/balcite_pylon_pedestal",
+        "x": 90,
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "pedestal": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/amethyst_pylon_head",
+        "x": 90,
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "section": "head"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/amethyst_pylon_body",
+        "x": 90,
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "section": "body"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/amethyst_pylon_waist",
+        "x": 90,
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "section": "waist"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/amethyst_pylon_foot",
+        "x": 90,
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "section": "foot"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/balcite_pylon_pedestal",
+        "x": 90,
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "pedestal": "true"
+      }
+    }
+  ]
+}

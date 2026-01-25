@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "spectrum:block/preservation_stone",
+    "particle": "spectrum:block/preservation_stone",
+    "side": "spectrum:block/dike_gate_fountain_side",
+    "top": "spectrum:block/dike_gate_fountain_top"
+  }
+}

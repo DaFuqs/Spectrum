@@ -1,0 +1,7 @@
+{
+  "parent": "spectrum:templates/colored_lamp_on",
+  "textures": {
+    "inner": "spectrum:block/black_lamp_on",
+    "outer": "spectrum:block/black_lamp_outer"
+  }
+}

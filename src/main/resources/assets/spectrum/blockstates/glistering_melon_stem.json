@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "spectrum:block/glistering_melon_stem_stage0"
+    },
+    "age=1": {
+      "model": "spectrum:block/glistering_melon_stem_stage1"
+    },
+    "age=2": {
+      "model": "spectrum:block/glistering_melon_stem_stage2"
+    },
+    "age=3": {
+      "model": "spectrum:block/glistering_melon_stem_stage3"
+    },
+    "age=4": {
+      "model": "spectrum:block/glistering_melon_stem_stage4"
+    },
+    "age=5": {
+      "model": "spectrum:block/glistering_melon_stem_stage5"
+    },
+    "age=6": {
+      "model": "spectrum:block/glistering_melon_stem_stage6"
+    },
+    "age=7": {
+      "model": "spectrum:block/glistering_melon_stem_stage7"
+    }
+  }
+}

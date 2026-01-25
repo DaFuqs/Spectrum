@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "spectrum:block/tall_yellow_dragonjag_top_dead"
+  }
+}

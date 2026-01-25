@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "spectrum:block/radiating_ender_bottom",
+    "side": "spectrum:block/radiating_ender_side",
+    "top": "spectrum:block/radiating_ender_top"
+  }
+}

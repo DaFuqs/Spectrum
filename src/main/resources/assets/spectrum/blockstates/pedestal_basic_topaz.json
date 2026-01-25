@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "spectrum:block/pedestal_basic_topaz"
+    }
+  }
+}

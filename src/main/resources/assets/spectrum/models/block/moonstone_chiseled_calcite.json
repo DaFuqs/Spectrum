@@ -1,0 +1,7 @@
+{
+  "parent": "spectrum:templates/moonstone_chiseled",
+  "textures": {
+    "line": "spectrum:block/moonstone_chiseled_calcite",
+    "side": "spectrum:block/calcite_cap"
+  }
+}

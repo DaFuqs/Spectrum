@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "conversion=default": {
+      "model": "spectrum:block/failing_default"
+    },
+    "conversion=none": {
+      "model": "spectrum:block/failing_none"
+    },
+    "conversion=special": {
+      "model": "spectrum:block/failing_default"
+    }
+  }
+}

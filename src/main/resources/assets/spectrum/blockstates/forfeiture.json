@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "conversion=default": {
+      "model": "spectrum:block/forfeiture_default"
+    },
+    "conversion=none": {
+      "model": "spectrum:block/forfeiture_none"
+    },
+    "conversion=special": {
+      "model": "spectrum:block/forfeiture_default"
+    }
+  }
+}

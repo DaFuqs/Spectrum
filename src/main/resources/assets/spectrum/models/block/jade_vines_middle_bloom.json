@@ -1,0 +1,7 @@
+{
+  "parent": "spectrum:templates/jade_vines_middle",
+  "textures": {
+    "flower": "spectrum:block/jade_vine_plant_blooming",
+    "particle": "spectrum:block/jade_vine_plant_breaking"
+  }
+}

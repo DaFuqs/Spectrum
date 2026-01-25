@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "spectrum:block/purple_log",
+    "side": "spectrum:block/purple_log"
+  }
+}

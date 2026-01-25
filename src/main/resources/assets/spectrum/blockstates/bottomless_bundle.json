@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "locked=false": {
+      "model": "spectrum:block/bottomless_bundle_unlocked"
+    },
+    "locked=true": {
+      "model": "spectrum:block/bottomless_bundle_locked"
+    }
+  }
+}

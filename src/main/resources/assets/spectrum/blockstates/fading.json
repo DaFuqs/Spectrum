@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "conversion=default": {
+      "model": "spectrum:block/fading_default"
+    },
+    "conversion=none": {
+      "model": "spectrum:block/fading_none"
+    },
+    "conversion=special": {
+      "model": "spectrum:block/fading_default"
+    }
+  }
+}

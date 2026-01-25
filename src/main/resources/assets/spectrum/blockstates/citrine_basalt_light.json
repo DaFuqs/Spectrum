@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "spectrum:block/citrine_basalt_light",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "spectrum:block/citrine_basalt_light"
+    },
+    "axis=z": {
+      "model": "spectrum:block/citrine_basalt_light",
+      "x": 90
+    }
+  }
+}

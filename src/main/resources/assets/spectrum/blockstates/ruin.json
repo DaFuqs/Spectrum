@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "conversion=default": {
+      "model": "spectrum:block/ruin_default"
+    },
+    "conversion=none": {
+      "model": "spectrum:block/ruin_none"
+    },
+    "conversion=special": {
+      "model": "spectrum:block/ruin_default"
+    }
+  }
+}

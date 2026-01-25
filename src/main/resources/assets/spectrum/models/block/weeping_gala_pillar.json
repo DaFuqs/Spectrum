@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "spectrum:block/weeping_gala_pillar_top",
+    "side": "spectrum:block/weeping_gala_pillar_side"
+  }
+}

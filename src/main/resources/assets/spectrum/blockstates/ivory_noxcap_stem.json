@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "spectrum:block/ivory_noxcap_stem",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "spectrum:block/ivory_noxcap_stem"
+    },
+    "axis=z": {
+      "model": "spectrum:block/ivory_noxcap_stem",
+      "x": 90
+    }
+  }
+}

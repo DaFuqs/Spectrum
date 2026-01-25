@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "spectrum:block/weathered_polished_shale_clay_slab"
+    },
+    "type=double": {
+      "model": "spectrum:block/weathered_polished_shale_clay"
+    },
+    "type=top": {
+      "model": "spectrum:block/weathered_polished_shale_clay_slab_top"
+    }
+  }
+}

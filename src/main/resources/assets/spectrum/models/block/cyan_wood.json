@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "spectrum:block/cyan_log",
+    "side": "spectrum:block/cyan_log"
+  }
+}

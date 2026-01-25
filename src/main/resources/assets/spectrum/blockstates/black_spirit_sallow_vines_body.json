@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "crystals=false": {
+      "model": "spectrum:block/black_spirit_sallow_vines_body_none"
+    },
+    "crystals=true": {
+      "model": "spectrum:block/black_spirit_sallow_vines_body_crystals"
+    }
+  }
+}

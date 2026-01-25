@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "spectrum:block/resplendent_block_bottom",
+    "side": "spectrum:block/resplendent_block_side",
+    "top": "spectrum:block/resplendent_block_top"
+  }
+}

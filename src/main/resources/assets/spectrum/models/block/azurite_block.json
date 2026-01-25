@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "spectrum:block/azurite_block_bottom",
+    "side": "spectrum:block/azurite_block_side",
+    "top": "spectrum:block/azurite_block_top"
+  }
+}

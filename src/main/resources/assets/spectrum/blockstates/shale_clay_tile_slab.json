@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "spectrum:block/shale_clay_tile_slab"
+    },
+    "type=double": {
+      "model": "spectrum:block/shale_clay_tiles"
+    },
+    "type=top": {
+      "model": "spectrum:block/shale_clay_tile_slab_top"
+    }
+  }
+}

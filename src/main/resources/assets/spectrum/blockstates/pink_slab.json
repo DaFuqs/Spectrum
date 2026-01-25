@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "spectrum:block/pink_slab"
+    },
+    "type=double": {
+      "model": "spectrum:block/pink_planks"
+    },
+    "type=top": {
+      "model": "spectrum:block/pink_slab_top"
+    }
+  }
+}

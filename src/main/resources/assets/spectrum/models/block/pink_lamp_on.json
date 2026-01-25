@@ -1,0 +1,7 @@
+{
+  "parent": "spectrum:templates/colored_lamp_on",
+  "textures": {
+    "inner": "spectrum:block/pink_lamp_on",
+    "outer": "spectrum:block/pink_lamp_outer"
+  }
+}

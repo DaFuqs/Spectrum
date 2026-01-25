@@ -1,0 +1,8 @@
+{
+  "parent": "spectrum:templates/multilayer_light",
+  "textures": {
+    "inside": "spectrum:block/topaz_block",
+    "side": "spectrum:block/topaz_basalt_light",
+    "top": "spectrum:block/basalt_cap"
+  }
+}

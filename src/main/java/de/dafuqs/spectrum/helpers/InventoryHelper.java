@@ -112,6 +112,8 @@ public class InventoryHelper {
 		return new Tuple<>(count, foundStacks);
 	}
 	
+	// Kept for parity with other code that may use IItemHandler-like checks in the future.
+	// If you need a dedicated IItemHandler adapter, implement it in the caller; this project avoids net.minecraftforge imports.
 	public static Tuple<Integer, List<ItemStack>> getStackCountInInventory(ItemStack itemStack, IItemHandler inventory, int maxSearchAmount) {
 		List<ItemStack> foundStacks = new ArrayList<>();
 		int count = 0;
@@ -467,21 +469,73 @@ public class InventoryHelper {
 		return remainders;
 	}
 	
-	public static boolean canFitStacks(IItemHandlerModifiable inventory, List<ItemStack> stacks) {
-		if (stacks.isEmpty()) {
+	/**
+	 * Check whether a list of stacks can be fully inserted into the provided inventory list.
+	 * This simulates insertion without modifying the real inventory.
+	 *
+	 * @param inventory the target inventory represented as a List<ItemStack> (mutable slots)
+	 * @param stacks    the list of stacks to fit into the inventory
+	 * @return true if all stacks can be fully placed into the inventory, false otherwise
+	 */
+	public static boolean canFitStacks(List<ItemStack> inventory, List<ItemStack> stacks) {
+		if (stacks == null || stacks.isEmpty()) {
 			return true;
 		}
 		
 		for (ItemStack stack : stacks) {
-			if (stack.isEmpty()) {
-				continue;
+			if (stack == null || stack.isEmpty()) continue;
+			ItemStack remaining = stack.copy();
+			
+			// Simulate insertion into a copy of the inventory
+			List<ItemStack> sim = new ArrayList<>(inventory.size());
+			for (ItemStack s : inventory) sim.add(s == null ? ItemStack.EMPTY : s.copy());
+			
+			// First try to merge into existing stacks
+			for (int i = 0; i < sim.size(); i++) {
+				ItemStack slot = sim.get(i);
+				if (slot.isEmpty()) continue;
+				if (ItemStack.isSameItemSameComponents(slot, remaining)) {
+					int space = Math.min(slot.getMaxStackSize(), remaining.getMaxStackSize()) - slot.getCount();
+					if (space > 0) {
+						int toMove = Math.min(space, remaining.getCount());
+						slot.grow(toMove);
+						remaining.shrink(toMove);
+						if (remaining.isEmpty()) break;
+					}
+				}
 			}
-			if (!ItemHandlerHelper.insertItemStacked(inventory, stack, true).isEmpty()) {
+			
+			// Then fill empty slots
+			if (!remaining.isEmpty()) {
+				for (int i = 0; i < sim.size(); i++) {
+					ItemStack slot = sim.get(i);
+					if (slot.isEmpty()) {
+						int toInsert = Math.min(remaining.getCount(), remaining.getMaxStackSize());
+						sim.set(i, remaining.copyWithCount(toInsert));
+						remaining.shrink(toInsert);
+						if (remaining.isEmpty()) break;
+					}
+				}
+			}
+			
+			if (!remaining.isEmpty()) {
 				return false;
 			}
 		}
 		
 		return true;
+	}
+	
+	/**
+	 * Convenience overload: build a simulated list from a Container and delegate to the list-based canFitStacks.
+	 */
+	public static boolean canFitStacks(Container inventory, List<ItemStack> stacks) {
+		List<ItemStack> list = new ArrayList<>();
+		for (int i = 0; i < inventory.getContainerSize(); i++) {
+			ItemStack s = inventory.getItem(i);
+			list.add(s == null ? ItemStack.EMPTY : s.copy());
+		}
+		return canFitStacks(list, stacks);
 	}
 	
 	public static List<ItemStack> getRemainders(List<Ingredient> ingredients) {

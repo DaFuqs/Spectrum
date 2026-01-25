@@ -244,8 +244,8 @@ public class SpectrumItems {
 	
 	// Resources
 	public static final DeferredItem<Item> SHIMMERSTONE_GEM = register(simple(item("shimmerstone_gem", () -> new CloakedItemWithLoomPattern(IS.of(), ((RevelationAware) SpectrumBlocks.SHIMMERSTONE_ORE).getCloakAdvancementIdentifier(), YELLOW_DYE, SpectrumBannerPatternKeys.SHIMMERSTONE), InkColors.YELLOW)));
-	public static final DeferredItem<Item> RAW_AZURITE = register(simple(item("raw_azurite", () -> new CloakedItemWithLoomPattern(IS.of(), SpectrumBlocks.AZURITE_ORE.getCloakAdvancementIdentifier(), BLUE_DYE, SpectrumBannerPatternKeys.RAW_AZURITE), InkColors.BLUE)));
-	public static final DeferredItem<Item> PURE_AZURITE = register(simple(item("pure_azurite", () -> new CloakedItem(IS.of(), SpectrumBlocks.AZURITE_ORE.getCloakAdvancementIdentifier(), BLUE_DYE), InkColors.BLUE)));
+	public static final DeferredItem<Item> RAW_AZURITE = register(simple(item("raw_azurite", () -> new CloakedItemWithLoomPattern(IS.of(), SpectrumBlocks.AZURITE_ORE.get().getCloakAdvancementIdentifier(), BLUE_DYE, SpectrumBannerPatternKeys.RAW_AZURITE), InkColors.BLUE)));
+	public static final DeferredItem<Item> PURE_AZURITE = register(simple(item("pure_azurite", () -> new CloakedItem(IS.of(), SpectrumBlocks.AZURITE_ORE.get().getCloakAdvancementIdentifier(), BLUE_DYE), InkColors.BLUE)));
 	public static final DeferredItem<CloakedFloatItem> PALTAERIA_FRAGMENTS = register(simple(item("paltaeria_fragments", () -> new CloakedFloatItem(IS.of(), 0.00125F, ((RevelationAware) SpectrumBlocks.PALTAERIA_ORE).getCloakAdvancementIdentifier(), CYAN_DYE), InkColors.LIGHT_BLUE)));
 	public static final DeferredItem<CloakedFloatItem> PALTAERIA_GEM = register(simple(item("paltaeria_gem", () -> new CloakedFloatItem(IS.of(16), 0.01F, ((RevelationAware) SpectrumBlocks.PALTAERIA_ORE).getCloakAdvancementIdentifier(), CYAN_DYE), InkColors.LIGHT_BLUE)));
 	public static final DeferredItem<CloakedFloatItem> STRATINE_FRAGMENTS = register(simple(item("stratine_fragments", () -> new CloakedFloatItem(IS.of().fireResistant(), -0.00125F, ((RevelationAware) SpectrumBlocks.STRATINE_ORE).getCloakAdvancementIdentifier(), RED_DYE), InkColors.RED)));

@@ -10,6 +10,14 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import org.jetbrains.annotations.*;
 
+import java.util.*;
+
+/**
+ * Forge-native replacement for the Fabric SingleVariantStorage-based block entity.
+ * - Removes any Fabric Transfer API usage.
+ * - Provides a tiny VariantStorage inner class with the minimal surface needed by the mod.
+ * - Keeps the exact NBT/layout used by BottomlessBundleItem.BottomlessStack so saved items remain compatible.
+ */
 public class BottomlessBundleBlockEntity extends BlockEntity {
 	
 	// Do not modify without syncing storage too!
@@ -21,43 +29,64 @@ public class BottomlessBundleBlockEntity extends BlockEntity {
 	private boolean isVoiding;
 	protected int powerLevel;
 	
-	public final SingleVariantStorage<ItemVariant> storage = new SingleVariantStorage<>() {
+	/**
+	 * Minimal Forge-native storage equivalent to Fabric's SingleVariantStorage<ItemVariant> that this mod used.
+	 * Exposes public fields `variant` and `amount` so existing call-sites (the builder etc.) can access them directly.
+	 */
+	public final class VariantStorage {
+		/**
+		 * The template variant as a single-item ItemStack (count always expected to be 1 when non-empty).
+		 */
+		public ItemStack variant = ItemStack.EMPTY;
+		/**
+		 * The stored amount (may exceed Integer.MAX_VALUE).
+		 */
+		public long amount = 0L;
 		
-		@Override
-		protected boolean canInsert(ItemVariant variant) {
-			return variant.getItem().canFitInsideContainerItems()
-					&& (this.variant.isBlank() || this.variant.isOf(variant.getItem())
-					&& ItemStack.isSameItemSameComponents(this.variant.toStack(), variant.toStack()));
+		protected boolean canInsert(ItemStack toInsert) {
+			// must be an item that can be stored & same item type/components as existing template (if set)
+			if (toInsert.isEmpty()) return false;
+			if (!toInsert.getItem().canFitInsideContainerItems()) return false;
+			if (this.variant.isEmpty()) return true;
+			return ItemStack.isSameItemSameComponents(this.variant, toInsert);
 		}
 		
-		@Override
-		public long insert(ItemVariant insertedVariant, long maxAmount, TransactionContext transaction) {
-			long inserted = super.insert(insertedVariant, maxAmount, transaction);
-			return isVoiding ? maxAmount : inserted;
+		/**
+		 * Immediate (non-transactional) insert. Returns the amount actually inserted.
+		 * Mirrors the behavior used previously: if the bundle is voiding, callers expect the returned
+		 * value to effectively indicate success for the attempted amount, so we return maxAmount in that case.
+		 */
+		public long insert(ItemStack insertedVariant, long maxAmount) {
+			if (!canInsert(insertedVariant)) return 0L;
+			long capacity = getCapacity(insertedVariant);
+			long space = capacity - this.amount;
+			if (space <= 0L) return 0L;
+			long toInsert = Math.min(space, maxAmount);
+			if (this.variant.isEmpty()) {
+				// Lock template to one copy of the item
+				this.variant = insertedVariant.copyWithCount(1);
+			}
+			this.amount += toInsert;
+			return isVoiding ? maxAmount : toInsert;
 		}
 		
-		@Override
-		protected ItemVariant getBlankVariant() {
-			// lock to the item the player set it to when placing it down
-			// variant will only ever be null upon initialization, where it'll be set to the bundle
-			return this.variant == null ? ItemVariant.blank() : this.variant;
+		protected ItemStack getBlankVariant() {
+			return this.variant == null ? ItemStack.EMPTY : this.variant;
 		}
 		
-		@Override
 		protected long getCapacity(ItemStack variant) {
 			return BottomlessBundleItem.getMaxStoredAmount(powerLevel);
 		}
 		
-		// NOTE: the bundle stack's contents *could* be synced here,
-		// though that'd be very costly considering the reasonably large average amount of committed transactions.
-		// Only do so if it [sync] becomes a real problem in the future,
-		// e.g. when unpredictable bundle/storage changes become a thing [if ever]
-		@Override
+		/**
+		 * Called after a final commit in Fabric impl; here we forward to mark the block entity changed.
+		 */
 		protected void onFinalCommit() {
-			super.onFinalCommit();
 			setChanged();
 		}
-	};
+	}
+	
+	public final VariantStorage storage = new VariantStorage();
 	
 	public BottomlessBundleBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntities.BOTTOMLESS_BUNDLE.get(), pos, state);
@@ -75,7 +104,8 @@ public class BottomlessBundleBlockEntity extends BlockEntity {
 	// Trivial sync methods. Call whenever bundle/storage contents need to be synced with each other [(de)serialization, bundle stack set, bundle block break loot]
 	private void syncBundleWithStorage() {
 		var builder = BottomlessBundleItem.BottomlessStack.Builder.of(this.level, this.bottomlessBundleStack);
-		builder.set(this.storage);
+		// Use the Forge-native storage fields (variant ItemStack and amount long)
+		builder.set(this.storage.variant, this.storage.amount);
 		builder.buildAndSet(this.bottomlessBundleStack);
 	}
 	

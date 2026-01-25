@@ -20,7 +20,7 @@ public class InkColors {
 	 * So, instead, we use something closer to midnight solution in shade.
 	 */
 	public static final int BLACK_TEXT_COLOR = 0xff302951;
-
+	
 	public static final int CYAN_COLOR = 0xff5bffed;
 	public static final int MAGENTA_COLOR = 0xffff4ff6;
 	public static final int YELLOW_COLOR = 0xffeded00;
@@ -37,7 +37,7 @@ public class InkColors {
 	public static final int BROWN_COLOR = 0xff70400d;
 	public static final int LIGHT_GRAY_COLOR = 0xffadadad;
 	public static final int GRAY_COLOR = 0xff464646;
-
+	
 	public static final InkColor CYAN = register("cyan", new InkColor(DyeColor.CYAN, CYAN_COLOR, BASE_ADVANCEMENT_ID));
 	public static final InkColor LIGHT_BLUE = register("light_blue", new InkColor(DyeColor.LIGHT_BLUE, LIGHT_BLUE_COLOR, BASE_ADVANCEMENT_ID));
 	public static final InkColor BLUE = register("blue", new InkColor(DyeColor.BLUE, BLUE_COLOR, BASE_ADVANCEMENT_ID));
@@ -55,33 +55,32 @@ public class InkColors {
 	public static final InkColor LIGHT_GRAY = register("light_gray", new InkColor(DyeColor.LIGHT_GRAY, LIGHT_GRAY_COLOR, WHITE_ADVANCEMENT_ID));
 	public static final InkColor WHITE = register("white", new InkColor(DyeColor.WHITE, WHITE_COLOR, WHITE_ADVANCEMENT_ID));
 	
-	// in case an addon adds new colors
-	// for places where we have to use a fixed size list, like GUIs with limited space
 	public static final List<InkColor> BUILTIN_COLORS = List.of(
-			InkColors.CYAN, InkColors.LIGHT_BLUE, InkColors.BLUE, InkColors.PURPLE,
-			InkColors.MAGENTA, InkColors.PINK, InkColors.RED, InkColors.ORANGE,
-			InkColors.YELLOW, InkColors.LIME, InkColors.GREEN, InkColors.BROWN,
-			InkColors.BLACK, InkColors.GRAY, InkColors.LIGHT_GRAY, InkColors.WHITE
+			CYAN, LIGHT_BLUE, BLUE, PURPLE,
+			MAGENTA, PINK, RED, ORANGE,
+			YELLOW, LIME, GREEN, BROWN,
+			BLACK, GRAY, LIGHT_GRAY, WHITE
 	);
 	
 	protected static InkColor register(String name, InkColor inkColor) {
 		return Registry.register(SpectrumRegistries.INK_COLOR, SpectrumCommon.locate(name), inkColor);
 	}
 	
-	public static void register() {
-	
-	}
+	public static void register() {}
 	
 	public static Iterable<InkColor> all() {
 		return SpectrumRegistries.INK_COLOR;
 	}
 	
 	public static List<InkColor> elementals() {
-		return SpectrumRegistries.INK_COLOR.getTag(InkColorTags.ELEMENTAL_COLORS).map(entries -> entries.stream().map(Holder::value).toList()).orElseGet(() -> List.of(CYAN, MAGENTA, YELLOW, WHITE, BLACK));
+		return SpectrumRegistries.INK_COLOR.getTag(InkColorTags.ELEMENTAL_COLORS)
+				.map(entries -> entries.stream().map(Holder::value).toList())
+				.orElseGet(() -> List.of(CYAN, MAGENTA, YELLOW, WHITE, BLACK));
 	}
 	
 	public static List<InkColor> compounds() {
-		return SpectrumRegistries.INK_COLOR.getTag(InkColorTags.COMPOUND_COLORS).map(entries -> entries.stream().map(Holder::value).toList()).orElseGet(() -> List.of(LIGHT_BLUE, BLUE, PURPLE, PINK, RED, ORANGE, LIME, GREEN, BROWN, GRAY, LIGHT_GRAY));
+		return SpectrumRegistries.INK_COLOR.getTag(InkColorTags.COMPOUND_COLORS)
+				.map(entries -> entries.stream().map(Holder::value).toList())
+				.orElseGet(() -> List.of(LIGHT_BLUE, BLUE, PURPLE, PINK, RED, ORANGE, LIME, GREEN, BROWN, GRAY, LIGHT_GRAY));
 	}
-	
 }

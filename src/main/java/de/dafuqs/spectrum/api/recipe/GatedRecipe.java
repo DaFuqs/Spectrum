@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.api.recipe;
 
 import de.dafuqs.revelationary.api.advancements.*;
+import de.dafuqs.spectrum.progression.*;
 import net.minecraft.locale.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
@@ -42,16 +43,16 @@ public interface GatedRecipe<C extends RecipeInput> extends Recipe<C> {
 	}
 	
 	private void registerInToastManagerClient(RecipeType<?> recipeType, GatedRecipe<C> gatedRecipe) {
-		// TODO PORT
-//		UnlockToastManager.registerGatedRecipe(recipeType, gatedRecipe);
+		UnlockToastManager.registerGatedRecipe(recipeType, gatedRecipe);
 	}
 	
 	default @Nullable Component getSecretHintText(ResourceLocation id) {
 		if (isSecret()) {
 			String secretHintLangKey = id.toLanguageKey("recipe", "hint").replace("/", ".");
-			return Language.getInstance().has(secretHintLangKey) ? Component.translatable(secretHintLangKey) : null;
+			return Language.getInstance().has(secretHintLangKey)
+					? Component.translatable(secretHintLangKey)
+					: null;
 		}
 		return null;
 	}
-	
 }

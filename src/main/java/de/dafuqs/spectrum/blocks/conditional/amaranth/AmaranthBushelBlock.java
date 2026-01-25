@@ -24,17 +24,16 @@ public class AmaranthBushelBlock extends FlowerBlock implements RevelationAware 
 			propertiesCodec()
 	).apply(instance, AmaranthBushelBlock::new));
 	
-	public AmaranthBushelBlock(Holder<MobEffect> stewEffect, float effectLengthInSeconds, BlockBehaviour.Properties settings) {
-		this(makeEffectList(stewEffect, effectLengthInSeconds), settings);
+	public AmaranthBushelBlock(Holder<MobEffect> effect, float seconds, BlockBehaviour.Properties properties) {
+		this(makeEffectList(effect, seconds), properties);
 	}
 	
-	public AmaranthBushelBlock(SuspiciousStewEffects stewEffects, BlockBehaviour.Properties settings) {
-		super(stewEffects, settings);
-		RevelationAware.register(this);
+	public AmaranthBushelBlock(SuspiciousStewEffects suspiciousStewEffects, BlockBehaviour.Properties properties) {
+		super(suspiciousStewEffects, properties);
 	}
 	
 	@Override
-	public MapCodec<? extends AmaranthBushelBlock> codec() {
+	public @NotNull MapCodec<? extends AmaranthBushelBlock> codec() {
 		return CODEC;
 	}
 	

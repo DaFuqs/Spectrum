@@ -428,10 +428,8 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 				this.variant = stack.copyWithCount(1);
 			}
 			
-			public void set(SingleVariantStorage<ItemVariant> storage) {
-				this.variant = storage.variant;
-				this.count = storage.amount;
-			}
+			// Removed Fabric-specific SingleVariantStorage setter. Use the ItemStack+long setter below instead.
+			// public void set(SingleVariantStorage<ItemVariant> storage) { ... }  // removed
 			
 			public void set(ItemStack stack, long count) {
 				if (stack.isEmpty() || count == 0) {
@@ -439,7 +437,6 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 					this.count = 0;
 				} else {
 					this.variant = stack.copyWithCount(1);
-					;
 					this.count = count;
 				}
 			}

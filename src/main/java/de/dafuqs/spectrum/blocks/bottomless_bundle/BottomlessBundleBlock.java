@@ -70,40 +70,47 @@ public class BottomlessBundleBlock extends BaseEntityBlock {
 	public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
 		if (!world.isClientSide) {
 			if (player.isShiftKeyDown()) {
-				world.getBlockEntity(pos, SpectrumBlockEntities.BOTTOMLESS_BUNDLE).ifPresent((bottomlessBundleBlockEntity) -> {
+				BlockEntity be = world.getBlockEntity(pos);
+				if (be instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
 					long amount = bottomlessBundleBlockEntity.storage.amount;
-					ItemVariant variant = bottomlessBundleBlockEntity.storage.getResource();
+					ItemStack variant = bottomlessBundleBlockEntity.storage.variant;
 					long maxStoredAmount = BottomlessBundleItem.getMaxStoredAmount(bottomlessBundleBlockEntity.powerLevel);
-					if (variant.isBlank()) {
+					if (variant == null || variant.isEmpty()) {
 						player.displayClientMessage(Component.translatable("item.spectrum.bottomless_bundle.tooltip.empty"), true);
 					} else {
 						player.displayClientMessage(Component.translatable("item.spectrum.bottomless_bundle.tooltip.count_of", amount, maxStoredAmount).append(variant.getItem().getDescription()), true);
 					}
-				});
+				}
 			} else {
-				world.getBlockEntity(pos, SpectrumBlockEntities.BOTTOMLESS_BUNDLE).ifPresent((bottomlessBundleBlockEntity) -> {
-					SingleVariantStorage<ItemVariant> storage = bottomlessBundleBlockEntity.storage;
-					ItemVariant storedVariant = storage.variant;
+				BlockEntity be = world.getBlockEntity(pos);
+				if (be instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
+					var storage = bottomlessBundleBlockEntity.storage;
+					ItemStack storedVariant = storage.variant;
 					
-					try (Transaction transaction = Transaction.openOuter()) {
-						if (storedVariant.matches(stack) || storedVariant.isBlank()) {
-							// insert
-							if (!stack.isEmpty() && stack.getItem().canFitInsideContainerItems()) {
-								long inserted = storage.insert(ItemVariant.of(stack), stack.getCount(), transaction);
-								stack.shrink((int) inserted);
-								world.playSound(null, pos, SoundEvents.BUNDLE_INSERT, SoundSource.BLOCKS, 0.8F, 0.8F + world.getRandom().nextFloat() * 0.4F);
+					// If same type or empty template -> try to insert
+					if ((storedVariant.isEmpty() || ItemStack.isSameItemSameComponents(storedVariant, stack))) {
+						if (!stack.isEmpty() && stack.getItem().canFitInsideContainerItems()) {
+							long inserted = storage.insert(stack, stack.getCount());
+							stack.shrink((int) inserted);
+							world.playSound(null, pos, SoundEvents.BUNDLE_INSERT, SoundSource.BLOCKS, 0.8F, 0.8F + world.getRandom().nextFloat() * 0.4F);
+						}
+					} else {
+						// extract one stack worth (or up to available amount)
+						if (!storage.variant.isEmpty() && storage.amount > 0) {
+							int extractCount = Math.min(storage.variant.getItem().getDefaultMaxStackSize(), (int) Math.min(Integer.MAX_VALUE, storage.amount));
+							ItemStack removed = storage.variant.copyWithCount(extractCount);
+							storage.amount -= extractCount;
+							if (storage.amount <= 0) {
+								storage.variant = ItemStack.EMPTY;
+								storage.amount = 0;
 							}
-						} else {
-							// extract
-							long extractedAmount = storage.extract(storedVariant, storedVariant.getItem().getDefaultMaxStackSize(), transaction);
-							player.getInventory().placeItemBackInInventory(storedVariant.toStack((int) extractedAmount));
+							player.getInventory().placeItemBackInInventory(removed);
 							world.playSound(null, pos, SoundEvents.BUNDLE_REMOVE_ONE, SoundSource.BLOCKS, 0.8F, 0.8F + world.getRandom().nextFloat() * 0.4F);
 						}
-						transaction.commit();
 					}
 					
 					bottomlessBundleBlockEntity.setChanged();
-				});
+				}
 			}
 			return ItemInteractionResult.CONSUME;
 		}
@@ -135,8 +142,9 @@ public class BottomlessBundleBlock extends BaseEntityBlock {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
 			float curr = bottomlessBundleBlockEntity.storage.amount;
-			float max = bottomlessBundleBlockEntity.storage.getCapacity();
-			return Mth.floor(curr / max * 14.0f) + curr > 0 ? 1 : 0;
+			float max = BottomlessBundleItem.getMaxStoredAmount(bottomlessBundleBlockEntity.powerLevel);
+			int signal = Mth.floor(curr / max * 14.0f) + (curr > 0 ? 1 : 0);
+			return signal;
 		}
 		
 		return 0;

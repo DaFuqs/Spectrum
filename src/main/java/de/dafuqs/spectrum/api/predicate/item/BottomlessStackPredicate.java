@@ -18,12 +18,14 @@ public record BottomlessStackPredicate(ItemPredicate template, LongRange count) 
 	
 	@Override
 	public DataComponentType<BottomlessBundleItem.BottomlessStack> componentType() {
-		return SpectrumDataComponentTypes.BOTTOMLESS_STACK;
+		// SpectrumDataComponentTypes.BOTTOMLESS_STACK is a Supplier-like holder; call get() to obtain the actual type.
+		return SpectrumDataComponentTypes.BOTTOMLESS_STACK.get();
 	}
 	
 	@Override
 	public boolean matches(ItemStack stack, BottomlessBundleItem.BottomlessStack component) {
-		return template.test(component.variant().toStack()) && count.test(component.count());
+		// component.variant() already returns an ItemStack, so pass it directly to ItemPredicate.test(...)
+		return template.test(component.variant()) && count.test(component.count());
 	}
 	
 }

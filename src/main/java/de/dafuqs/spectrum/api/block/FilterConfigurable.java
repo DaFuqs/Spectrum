@@ -233,10 +233,6 @@ public interface FilterConfigurable {
 	
 	record ExtendedData(List<ItemVariant> filterItems, int rows, int slotsPerRow, int drawnSlots) {
 		
-		public ExtendedData(FilterConfigurable configurable) {
-			this(configurable.getItemFilters(), configurable.getFilterRows(), configurable.getSlotsPerRow(), configurable.getDrawnSlots());
-		}
-		
 		public static final StreamCodec<RegistryFriendlyByteBuf, ExtendedData> PACKET_CODEC = StreamCodec.composite(
 				ItemVariant.PACKET_CODEC.apply(ByteBufCodecs.list()), ExtendedData::filterItems,
 				ByteBufCodecs.VAR_INT, ExtendedData::rows,

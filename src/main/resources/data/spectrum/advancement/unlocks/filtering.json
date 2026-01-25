@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "unlock_pastel_network": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/blocks/pastel_network"
+      }
+    },
+    "unlock_black_hole_chest": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/blocks/black_hole_chest"
+      }
+    }
+  }
+}

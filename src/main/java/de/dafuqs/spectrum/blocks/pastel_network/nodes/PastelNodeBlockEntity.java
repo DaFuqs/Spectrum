@@ -454,10 +454,12 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		return this.filteredTags;
 	}
 	
+	@Override
 	public boolean onlyDenyListTags() {
 		return this.allTagsDeny;
 	}
 	
+	@Override
 	public void setOnlyDenyListTags(boolean onlyDenyListTags) {
 		this.allTagsDeny = onlyDenyListTags;
 	}

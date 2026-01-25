@@ -333,20 +333,24 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 		return ITEM_FILTER_SLOT_COUNT;
 	}
 	
+	@Override
 	public void setFilterItem(int slot, ItemVariant item) {
 		this.filterItems.set(slot, item);
 		this.updateTagFilteringItems();
 		this.setChanged();
 	}
 	
+	@Override
 	public Object2BooleanMap<TagKey<Item>> getFilteredTags() {
 		return this.filteredTags;
 	}
 	
+	@Override
 	public boolean onlyDenyListTags() {
 		return this.allTagsDeny;
 	}
 	
+	@Override
 	public void setOnlyDenyListTags(boolean onlyDenyListTags) {
 		this.allTagsDeny = onlyDenyListTags;
 	}

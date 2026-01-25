@@ -8,6 +8,7 @@ import net.minecraft.core.particles.*;
 import net.minecraft.server.level.*;
 import net.minecraft.tags.*;
 import net.minecraft.util.*;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
@@ -112,6 +113,16 @@ public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 		if (otherState.is(FluidTags.LAVA)) return Blocks.BLACKSTONE.defaultBlockState();
 		if (otherState.is(SpectrumFluidTags.SLUDGE)) return SpectrumBlocks.BLACK_SLUDGE.get().defaultBlockState();
 		return null;
+	}
+	
+	@Override
+	public @Nullable PathType getBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob mob) {
+		return PathType.DAMAGE_OTHER;
+	}
+	
+	@Override
+	public @Nullable PathType getAdjacentBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob mob, PathType originalType) {
+		return PathType.DANGER_OTHER;
 	}
 	
 }

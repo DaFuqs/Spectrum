@@ -9,6 +9,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
+import net.minecraft.world.level.pathfinder.*;
 import org.jetbrains.annotations.*;
 
 public abstract class SpectrumFluidBlock extends LiquidBlock {
@@ -99,6 +100,16 @@ public abstract class SpectrumFluidBlock extends LiquidBlock {
 			}
 		}
 		return true;
+	}
+	
+	@Override
+	public @Nullable PathType getBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob mob) {
+		return PathType.WATER;
+	}
+	
+	@Override
+	public @Nullable PathType getAdjacentBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob mob, PathType originalType) {
+		return PathType.WATER_BORDER;
 	}
 	
 }

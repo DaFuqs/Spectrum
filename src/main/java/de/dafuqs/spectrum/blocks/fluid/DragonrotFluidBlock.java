@@ -6,6 +6,7 @@ import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.tags.*;
 import net.minecraft.util.*;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
@@ -62,6 +63,16 @@ public class DragonrotFluidBlock extends SpectrumFluidBlock {
 			return SpectrumBlocks.ROTTEN_GROUND.get().defaultBlockState();
 		}
 		return null;
+	}
+	
+	@Override
+	public @Nullable PathType getBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob mob) {
+		return PathType.DAMAGE_OTHER;
+	}
+	
+	@Override
+	public @Nullable PathType getAdjacentBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob mob, PathType originalType) {
+		return PathType.DANGER_OTHER;
 	}
 	
 }

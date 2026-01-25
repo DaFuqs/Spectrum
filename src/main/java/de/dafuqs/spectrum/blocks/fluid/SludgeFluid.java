@@ -15,6 +15,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.*;
+import net.minecraft.world.level.pathfinder.*;
 import org.jetbrains.annotations.*;
 
 public abstract class SludgeFluid extends SpectrumFluid {

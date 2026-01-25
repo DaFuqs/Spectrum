@@ -2,10 +2,17 @@ package de.dafuqs.spectrum;
 
 import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.blocks.pastel_network.*;
+import de.dafuqs.spectrum.compat.*;
+import de.dafuqs.spectrum.compat.reverb.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.entity.*;
+import de.dafuqs.spectrum.events.*;
+import de.dafuqs.spectrum.explosion.*;
+import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.loot.*;
+import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
@@ -22,6 +29,9 @@ import net.neoforged.bus.api.*;
 import net.neoforged.fml.common.*;
 import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.event.*;
+import net.neoforged.neoforge.event.server.*;
+import net.neoforged.neoforge.network.event.*;
+import net.neoforged.neoforge.network.registration.*;
 import org.jetbrains.annotations.*;
 import org.slf4j.*;
 
@@ -118,72 +128,74 @@ public class SpectrumCommon {
 		
 		// Pastel
 		logInfo("Registering Pastel Upgrades...");
-//		SpectrumPastelUpgrades.register();
-//
-//		// Worldgen
-//		logInfo("Registering Features...");
-//		SpectrumFeatures.register();
-//		logInfo("Registering Biome Modifications...");
-//		SpectrumPlacedFeatures.addBiomeModifications();
+		SpectrumPastelUpgrades.register();
+		
+		// Worldgen
+		logInfo("Registering Features...");
+		SpectrumFeatures.register(modBus);
+		logInfo("Registering Biome Modifications...");
+		SpectrumPlacedFeatures.addBiomeModifications();
 		logInfo("Registering Structure Types...");
 		SpectrumStructureTypes.register(modBus);
-//
-//		// Dimension
-//		logInfo("Registering Dimension...");
-//		SpectrumDimensions.register();
-//
-//		// Dimension effects
-//		logInfo("Registering Dimension Sound Effects...");
-//		DimensionReverb.setup();
-//
-//		// Recipes
+		
+		// Dimension
+		logInfo("Registering Dimension...");
+		SpectrumDimensions.register();
+		
+		// Dimension effects
+		logInfo("Registering Dimension Sound Effects...");
+		DimensionReverb.setup();
+		
+		// Recipes
 		logInfo("Registering Recipe Types...");
-//		SpectrumRecipeScalings.init();
-//		SpectrumFusionShrineWorldEffects.register();
+		SpectrumRecipeScalings.init();
+		SpectrumFusionShrineWorldEffects.register();
 		SpectrumRecipeTypes.register(modBus);
 		SpectrumRecipeSerializers.register(modBus);
-//
-//		// Loot
-//		logInfo("Registering Loot Conditions & Functions...");
+		
+		// Loot
+		logInfo("Registering Loot Conditions & Functions...");
 		SpectrumLootContextTypes.register();
 		SpectrumLootFunctionTypes.register(modBus);
-//
-//		logInfo("Setting up server side Mod Compat...");
-//		SpectrumIntegrationPacks.register();
-//
-//		// GUI
-//		logInfo("Registering Screen Handler Types...");
-//		SpectrumScreenHandlerTypes.register();
-//
-//		logInfo("Registering Default Item Stack Damage Immunities...");
-//		SpectrumItemDamageImmunities.registerDefaultItemStackImmunities();
-//		logInfo("Registering Enchantment Drops...");
-//		SpectrumLootPoolModifiers.setup();
+		
+		logInfo("Setting up server side Mod Compat...");
+		SpectrumIntegrationPacks.register();
+		
+		// GUI
+		logInfo("Registering Screen Handler Types...");
+		SpectrumScreenHandlerTypes.register(modBus);
+		
+		logInfo("Registering Default Item Stack Damage Immunities...");
+		SpectrumItemDamageImmunities.registerDefaultItemStackImmunities();
+		logInfo("Registering Enchantment Drops...");
+		SpectrumLootPoolModifiers.setup();
 		logInfo("Registering Variant Specific Predicates...");
 		SpectrumItemSubPredicateTypes.register(modBus);
 		SpectrumEntitySubPredicateTypes.register();
-//
-//		logInfo("Registering Blocks and Items to Fuel Registry...");
-//		FUEL_REGISTRAR.flush();
-//
-//		logInfo("Registering Entities...");
-//		SpectrumTrackedDataHandlerRegistry.register();
+		
+		logInfo("Registering Entities...");
+		SpectrumTrackedDataHandlerRegistry.register(modBus);
 		SpectrumEntityTypes.register(modBus);
-//
-//		logInfo("Registering Omni Accelerator Projectiles & Behaviors...");
-//		SpectrumOmniAcceleratorProjectiles.register();
-//		SpectrumItemProjectileBehaviors.register();
-//
+		
+		logInfo("Registering Omni Accelerator Projectiles & Behaviors...");
+		SpectrumOmniAcceleratorProjectiles.register();
+		SpectrumItemProjectileBehaviors.register();
+
 		SpectrumEntityColorProcessors.register();
 		SpectrumItemProviders.register();
-//
-//		logInfo("Registering Commands...");
-//		SpectrumCommands.register();
-//
-//		logInfo("Registering Networking Packets...");
-//		SpectrumC2SPackets.register();
-//		SpectrumS2CPackets.register();
-//
+		
+		logInfo("Registering Commands...");
+		SpectrumCommands.register();
+		
+		logInfo("Registering Networking Packets...");
+		modBus.addListener(SpectrumC2SPackets::register);
+		modBus.addListener(
+				RegisterPayloadHandlersEvent.class, (event) -> {
+					PayloadRegistrar registrar = event.registrar("1");
+					SpectrumS2CPackets.register(registrar);
+				}
+		);
+
 		logInfo("Registering Data Loaders...");
 		NeoForge.EVENT_BUS.addListener((Consumer<AddReloadListenerEvent>) event -> {
 			event.addListener(NaturesStaffConversionDataLoader.INSTANCE);
@@ -191,48 +203,46 @@ public class SpectrumCommon {
 			event.addListener(CrystalApothecarySimulationsDataLoader.INSTANCE);
 		});
 		
-//		ServerLifecycleEvents.SERVER_STARTING.register(server -> {
-//			SpectrumCommon.logInfo("Fetching server instance...");
-//			minecraftServer = server;
-//		});
-//
-//		ServerLifecycleEvents.SERVER_STOPPED.register(server -> {
-//			Pastel.clearServerInstance();
-//			minecraftServer = null;
-//		});
-//
-//		logInfo("Adding to Fabric's Registries...");
+		NeoForge.EVENT_BUS.addListener((Consumer<ServerStartingEvent>) event -> {
+			SpectrumCommon.logInfo("Fetching server instance...");
+			minecraftServer = event.getServer();
+		});
+		
+		NeoForge.EVENT_BUS.addListener((Consumer<ServerStoppedEvent>) event -> {
+			Pastel.clearServerInstance();
+			minecraftServer = null;
+		});
+		
+		logInfo("Adding to Fabric's Registries...");
 		SpectrumFlammableBlocks.register();
 		SpectrumStrippableBlocks.register();
 		SpectrumTillableBlocks.register();
-//
-//		logInfo("Registering Game Events...");
-//		SpectrumGameEvents.register();
-//		SpectrumPositionSources.register();
-//
-//		logInfo("Registering Explosion Effects & Providers...");
-//		ExplosionModifiers.register();
-//		ExplosionModifierProviders.register();
-//
+		
+		logInfo("Registering Game Events...");
+		SpectrumGameEvents.register();
+		SpectrumPositionSources.register();
+		
+		logInfo("Registering Explosion Effects & Providers...");
+		ExplosionModifiers.register();
+		ExplosionModifierProviders.register();
+
 		logInfo("Registering Dispenser, Resonance & Present Unwrap Behaviors...");
-//		SpectrumDispenserBehaviors.register();
-//		SpectrumPresentUnpackBehaviors.register();
+		SpectrumDispenserBehaviors.register();
+		SpectrumPresentUnpackBehaviors.register();
 		SpectrumResonanceProcessorTypes.register(modBus);
 		
 		logInfo("Registering Resource Conditions...");
 		SpectrumResourceConditions.register(modBus);
 		logInfo("Registering Structure WeightedPool Element Types...");
 		SpectrumStructurePoolElementTypes.register(modBus);
-//		logInfo("Registering Event Listeners...");
-//		SpectrumEventListeners.register();
-//		logInfo("Registering Path Node Types...");
-//		SpectrumPathNodeTypes.register();
+		logInfo("Registering Event Listeners...");
+		SpectrumEventListeners.register();
 		logInfo("Registering Tree Decorator Types...");
 		SpectrumTreeDecoratorTypes.register(modBus);
 		
 		logInfo("Registering Attachments...");
 		SpectrumAttachmentTypes.register(modBus);
-//
+
 //		//noinspection
 //		ItemStorage.SIDED.registerForBlockEntity((be, d) -> Storage.empty(), SpectrumBlockEntities.HEARTBOUND_CHEST);
 //		//noinspection

@@ -16,9 +16,11 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.gameevent.*;
+import net.minecraft.world.level.pathfinder.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
 import net.neoforged.neoforge.common.*;
+import org.jetbrains.annotations.*;
 
 public class SawbladeHollyBushBlock extends BushBlock implements BonemealableBlock {
 	
@@ -154,6 +156,16 @@ public class SawbladeHollyBushBlock extends BushBlock implements BonemealableBlo
 	public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
 		int newAge = Math.min(MAX_AGE, state.getValue(AGE) + (random.nextBoolean() ? 1 : 2));
 		world.setBlock(pos, state.setValue(AGE, newAge), Block.UPDATE_CLIENTS);
+	}
+	
+	@Override
+	public @Nullable PathType getBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob mob) {
+		return PathType.DAMAGE_OTHER;
+	}
+	
+	@Override
+	public @Nullable PathType getAdjacentBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob mob, PathType originalType) {
+		return PathType.DANGER_OTHER;
 	}
 	
 }

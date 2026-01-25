@@ -10,8 +10,10 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.pathfinder.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
+import org.jetbrains.annotations.*;
 
 public class BristleSproutsBlock extends BushBlock implements BonemealableBlock {
 	
@@ -71,4 +73,15 @@ public class BristleSproutsBlock extends BushBlock implements BonemealableBlock 
 	public float getMaxHorizontalOffset() {
 		return 0.265F;
 	}
+	
+	@Override
+	public @Nullable PathType getBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob mob) {
+		return PathType.DAMAGE_OTHER;
+	}
+	
+	@Override
+	public @Nullable PathType getAdjacentBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob mob, PathType originalType) {
+		return PathType.DANGER_OTHER;
+	}
+	
 }

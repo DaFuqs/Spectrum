@@ -20,11 +20,7 @@ import java.util.function.*;
 
 public class SpectrumModelHelper {
 	
-	public static final DeferredRegister<ItemModelGenerators> ITEM_MODEL_REGISTRAR = new DeferredRegister<>(DatagenProxy.IS_DATAGEN);
-	public static final DeferredRegister<BlockModelGenerators> BLOCK_STATE_MODEL_REGISTRAR = new DeferredRegister<>(DatagenProxy.IS_DATAGEN);
-	
 	// Item Models
-	
 	public static void registerItemModel(ItemModelGenerators ctx, Item item) {
 		registerItemModel(ctx, item, "");
 	}

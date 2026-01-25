@@ -82,11 +82,17 @@ public class SpectrumBlockTags {
 		return TagKey.create(Registries.BLOCK, SpectrumCommon.locate(id));
 	}
 	
+	private static TagKey<Block> conventional(String id) {
+		return TagKey.create(Registries.BLOCK, SpectrumCommon.locate(id));
+	}
+	
 	// CONVENTIONAL TAGS ("c" namespace)
+	public static final TagKey<Block> C_LIGHTNING_RODS = conventional("lightning_rods");
+	public static final TagKey<Block> C_BRUSHABLE_BLOCKS = conventional("brushable_blocks");
+	public static final TagKey<Block> C_INFESTED_BLOCKS = conventional("infested_blocks");
 	
 	// TODO: port datagen
 	/*
-	
 	private static final DeferredRegister.Contextual<DatagenProxy.ProvidedTagBuilderBuilder<Block>> REGISTRAR = new DeferredRegistrar.Contextual<>(DatagenProxy.IS_DATAGEN);
 	
 	public static final TagKey<Block> C_LIGHTNING_RODS = conventional("lightning_rods", provider -> provider
@@ -107,10 +113,6 @@ public class SpectrumBlockTags {
 			.add(Blocks.INFESTED_MOSSY_STONE_BRICKS)
 			.add(Blocks.INFESTED_STONE_BRICKS)
 			.add(SpectrumBlocks.INFESTED_BLACKSLAG));
-	
-	private static TagKey<Block> conventional(String id) {
-		return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", id));
-	}
 	
 	private static TagKey<Block> conventional(String id, DatagenProxy.TagBuilderCallback<Block> builder) {
 		TagKey<Block> tag = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", id));

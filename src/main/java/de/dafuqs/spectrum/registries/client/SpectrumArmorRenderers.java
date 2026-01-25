@@ -37,7 +37,7 @@ public class SpectrumArmorRenderers {
 					private HumanoidModel<LivingEntity> provideArmorModelForSlot(EquipmentSlot slot) {
 						var models = Minecraft.getInstance().getEntityModels();
 						var root = models.bakeLayer(SpectrumModelLayers.BEDROCK_LAYER);
-						return new BedrockArmorModel(root, slot);
+						return new BedrockArmorModel(root);
 					}
 					
 				}, BEDROCK_ARMOR

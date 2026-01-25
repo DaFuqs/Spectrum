@@ -33,7 +33,8 @@ public class SpectrumItemTags {
 	public static final TagKey<Item> PASTEL_NODE_UPGRADES = of("pastel_node_upgrades");
 	public static final TagKey<Item> TAG_FILTERING_ITEMS = of("tag_filtering_items");
 	public static final TagKey<Item> WEEPING_GALA_LOGS = of("weeping_gala_logs");
-
+	public static final TagKey<Item> TRINKETS = of("trinkets");
+	
 	private static TagKey<Item> of(String id) {
 		return TagKey.create(Registries.ITEM, SpectrumCommon.locate(id));
 	}

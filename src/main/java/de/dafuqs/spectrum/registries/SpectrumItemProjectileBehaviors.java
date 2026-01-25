@@ -21,6 +21,7 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.phys.*;
+import net.neoforged.neoforge.common.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -63,13 +64,13 @@ public class SpectrumItemProjectileBehaviors {
 				}
 				return false;
 			}
-		}, SpectrumItems.STORM_STONE);
+		}, SpectrumItems.STORM_STONE.get());
 		
 		ItemProjectileBehavior.register(ItemProjectileBehavior.damaging(4F, true), SpectrumItemTags.GEMSTONE_SHARDS);
 		ItemProjectileBehavior.register(ItemProjectileBehavior.damaging(6F, true), Items.POINTED_DRIPSTONE);
 		ItemProjectileBehavior.register(ItemProjectileBehavior.damaging(6F, true), Items.END_ROD);
 		ItemProjectileBehavior.register(ItemProjectileBehavior.damaging(6F, true), Items.BLAZE_ROD);
-		ItemProjectileBehavior.register(ItemProjectileBehavior.damaging(8F, true), SpectrumItems.STAR_FRAGMENT);
+		ItemProjectileBehavior.register(ItemProjectileBehavior.damaging(8F, true), SpectrumItems.STAR_FRAGMENT.get());
 		
 		ItemProjectileBehavior.register(new ItemProjectileBehavior.Damaging() {
 			
@@ -97,7 +98,7 @@ public class SpectrumItemProjectileBehaviors {
 				}
 				return stack;
 			}
-		}, ConventionalItemTags.MUSIC_DISCS);
+		}, Tags.Items.MUSIC_DISCS);
 		
 		ItemProjectileBehavior.register(new ItemProjectileBehavior.Default() {
 			@Override
@@ -156,7 +157,7 @@ public class SpectrumItemProjectileBehaviors {
 				}
 				return accelerator;
 			}
-		}, SpectrumItems.OMNI_ACCELERATOR);
+		}, SpectrumItems.OMNI_ACCELERATOR.get());
 		
 		ItemProjectileBehavior.register(new ItemProjectileBehavior.Default() {
 			@Override
@@ -201,7 +202,7 @@ public class SpectrumItemProjectileBehaviors {
 				return stack;
 			}
 			
-		}, SpectrumItems.PIPE_BOMB);
+		}, SpectrumItems.PIPE_BOMB.get());
 		
 		ItemProjectileBehavior.register(new ItemProjectileBehavior.Default() {
 			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {
@@ -219,7 +220,7 @@ public class SpectrumItemProjectileBehaviors {
 				return stack;
 			}
 			
-		}, SpectrumItems.AZURITE_GLASS_AMPOULE, SpectrumItems.MALACHITE_GLASS_AMPOULE, SpectrumItems.BLOODSTONE_GLASS_AMPOULE);
+		}, SpectrumItems.AZURITE_GLASS_AMPOULE.get(), SpectrumItems.MALACHITE_GLASS_AMPOULE.get(), SpectrumItems.BLOODSTONE_GLASS_AMPOULE.get());
 	}
 	
 	protected static void registerPvP() {
@@ -239,7 +240,7 @@ public class SpectrumItemProjectileBehaviors {
 				}
 				return stack;
 			}
-		}, SpectrumItems.ENCHANTMENT_CANVAS);
+		}, SpectrumItems.ENCHANTMENT_CANVAS.get());
 		
 		ItemProjectileBehavior.register(new ItemProjectileBehavior.Default() {
 			@Override
@@ -259,7 +260,7 @@ public class SpectrumItemProjectileBehaviors {
 				}
 				return stack;
 			}
-		}, SpectrumItems.KNOWLEDGE_GEM);
+		}, SpectrumItems.KNOWLEDGE_GEM.get());
 		
 		ItemProjectileBehavior.register(new ItemProjectileBehavior.Default() {
 			@Override
@@ -270,7 +271,7 @@ public class SpectrumItemProjectileBehaviors {
 				}
 				return stack;
 			}
-		}, SpectrumItems.CRAFTING_TABLET);
+		}, SpectrumItems.CRAFTING_TABLET.get());
 	}
 	
 }

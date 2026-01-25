@@ -187,7 +187,7 @@ public class AshDunesFeature extends Feature<AshDunesFeatureConfig> {
 	}
 	
 	private static boolean canPlaceAt(WorldGenLevel world, BlockPos pos) {
-		return (world.isEmptyBlock(pos) || world.getBlockState(pos).is(SpectrumBlocks.VARIA_SPROUT)) && SpectrumBlocks.ASH_PILE.defaultBlockState().canSurvive(world, pos);
+		return (world.isEmptyBlock(pos) || world.getBlockState(pos).is(SpectrumBlocks.VARIA_SPROUT)) && SpectrumBlocks.ASH_PILE.get().defaultBlockState().canSurvive(world, pos);
 	}
 	
 	private record Emitter(BlockPos.MutableBlockPos pos, float strength, boolean cutout) {

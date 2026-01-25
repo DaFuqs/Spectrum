@@ -130,7 +130,7 @@ public class SpectrumFusionShrineWorldEffects {
 					if (p.getX() == pos.getX() && p.getZ() == pos.getZ()) {
 						return;
 					}
-					world.setBlockAndUpdate(targetPos.get(), SpectrumBlocks.MIDNIGHT_SOLUTION.defaultBlockState());
+					world.setBlockAndUpdate(targetPos.get(), SpectrumBlocks.MIDNIGHT_SOLUTION.get().defaultBlockState());
 					MidnightSolutionFluidBlock.fizz(world, targetPos.get());
 				}
 			}
@@ -145,7 +145,7 @@ public class SpectrumFusionShrineWorldEffects {
 				if (p.getX() == pos.getX() && p.getZ() == pos.getZ()) {
 					return;
 				}
-				world.setBlockAndUpdate(p, SpectrumBlocks.MIDNIGHT_SOLUTION.defaultBlockState());
+				world.setBlockAndUpdate(p, SpectrumBlocks.MIDNIGHT_SOLUTION.get().defaultBlockState());
 				MidnightSolutionFluidBlock.fizz(world, targetPos.get());
 			}
 		}

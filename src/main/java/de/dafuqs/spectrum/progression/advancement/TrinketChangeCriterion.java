@@ -3,12 +3,16 @@ package de.dafuqs.spectrum.progression.advancement;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.items.trinkets.*;
+import de.dafuqs.spectrum.registries.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
+import net.neoforged.neoforge.items.*;
 import org.jetbrains.annotations.*;
+import top.theillusivec4.curios.api.*;
+import top.theillusivec4.curios.api.type.capability.*;
 
 import java.util.*;
 
@@ -18,13 +22,16 @@ public class TrinketChangeCriterion extends SimpleCriterionTrigger<TrinketChange
 	
 	public void trigger(ServerPlayer player) {
 		this.trigger(player, (conditions) -> {
-			Optional<TrinketComponent> trinketComponent = TrinketsApi.getTrinketComponent(player);
-			if (trinketComponent.isPresent()) {
+			Optional<ICuriosItemHandler> curiosHandler = CuriosApi.getCuriosInventory(player);
+			if (curiosHandler.isPresent()) {
 				List<ItemStack> equippedStacks = new ArrayList<>();
 				int spectrumStacks = 0;
-				for (Tuple<SlotReference, ItemStack> t : trinketComponent.get().getAllEquipped()) {
-					equippedStacks.add(t.getB());
-					if (t.getB().getItem() instanceof SpectrumTrinketItem) {
+				IItemHandlerModifiable equippedCurios = curiosHandler.get().getEquippedCurios();
+				for (int i = 0; i < equippedCurios.getSlots(); i++) {
+					ItemStack stack = equippedCurios.getStackInSlot(i);
+					
+					equippedStacks.add(stack);
+					if (stack.is(SpectrumItemTags.TRINKETS)) {
 						spectrumStacks++;
 					}
 				}

@@ -175,7 +175,7 @@ public class SpectrumCommon {
 //		SpectrumItemProjectileBehaviors.register();
 //
 		SpectrumEntityColorProcessors.register();
-//		SpectrumItemProviders.register();
+		SpectrumItemProviders.register();
 //
 //		logInfo("Registering Commands...");
 //		SpectrumCommands.register();

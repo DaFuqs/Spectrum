@@ -9,8 +9,11 @@ import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import org.jetbrains.annotations.*;
+import top.theillusivec4.curios.api.*;
+import top.theillusivec4.curios.api.type.capability.*;
 
 import java.util.*;
+import java.util.function.*;
 
 public class TakeOffBeltJumpCriterion extends SimpleCriterionTrigger<TakeOffBeltJumpCriterion.Conditions> {
 	
@@ -21,22 +24,12 @@ public class TakeOffBeltJumpCriterion extends SimpleCriterionTrigger<TakeOffBelt
 	}
 	
 	public void trigger(ServerPlayer player) {
-		this.trigger(player, (conditions) -> {
-			Optional<TrinketComponent> component = TrinketsApi.getTrinketComponent(player);
-			if (component.isPresent()) {
-				List<Tuple<SlotReference, ItemStack>> equipped = component.get().getEquipped(SpectrumItems.TAKE_OFF_BELT);
-				if (!equipped.isEmpty()) {
-					ItemStack firstBelt = equipped.getFirst().getB();
-					if (firstBelt != null) {
-						int charge = TakeOffBeltItem.getCurrentCharge(player);
-						if (charge > 0) {
-							return conditions.matches(firstBelt, charge);
-						}
-					}
-				}
-			}
-			return false;
-		});
+		Optional<ItemStack> takeOffBelt = SpectrumTrinketItem.getFirstEquipped(player, SpectrumItems.TAKE_OFF_BELT.get());
+		if(takeOffBelt.isEmpty()) {
+			return;
+		}
+		
+		this.trigger(player, conditions -> conditions.matches(takeOffBelt.get(), TakeOffBeltItem.getCurrentCharge(player)));
 	}
 	
 	@Override

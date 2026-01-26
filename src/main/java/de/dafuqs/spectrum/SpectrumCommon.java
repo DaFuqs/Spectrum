@@ -2,9 +2,11 @@ package de.dafuqs.spectrum;
 
 import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.compat.reverb.*;
+import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.entity.*;
@@ -21,6 +23,7 @@ import me.shedaniel.autoconfig.serializer.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.*;
 import net.minecraft.tags.*;
+import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
@@ -30,6 +33,7 @@ import net.neoforged.fml.common.*;
 import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.event.*;
 import net.neoforged.neoforge.event.server.*;
+import net.neoforged.neoforge.event.tick.*;
 import net.neoforged.neoforge.network.event.*;
 import net.neoforged.neoforge.network.registration.*;
 import org.jetbrains.annotations.*;
@@ -211,6 +215,10 @@ public class SpectrumCommon {
 		NeoForge.EVENT_BUS.addListener((Consumer<ServerStoppedEvent>) event -> {
 			Pastel.clearServerInstance();
 			minecraftServer = null;
+		});
+		NeoForge.EVENT_BUS.addListener((Consumer<PlayerTickEvent.Post>) event -> {
+			Player player = event.getEntity();
+			MiscPlayerDataAttachmentType.get(player).tick();
 		});
 		
 		logInfo("Adding to Fabric's Registries...");

@@ -2,15 +2,21 @@ package de.dafuqs.spectrum.attachment_types;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.entity.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.registries.*;
+import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
+import net.minecraft.network.*;
+import net.minecraft.network.codec.*;
+import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.attachment.*;
+import net.neoforged.neoforge.network.handling.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -47,16 +53,15 @@ public class MiscPlayerDataAttachmentType {
 	private int parryTicks;
 	
 	public static MiscPlayerDataAttachmentType ofCodec(int ticksBeforeSleep, int sleepingWindow, int sleepInvincibility, Optional<Item> sleepConsumable) {
-		var data = new MiscPlayerDataAttachmentType();
+		MiscPlayerDataAttachmentType data = new MiscPlayerDataAttachmentType();
 		data.ticksBeforeSleep = ticksBeforeSleep;
 		data.sleepingWindow = sleepingWindow;
 		data.sleepInvincibility = sleepInvincibility;
-		
 		data.sleepConsumable = (Optional<SleepAlteringItem>) (Object) sleepConsumable;
 		return data;
 	}
 	
-	public void tick() { // TODO: call
+	public void tick() {
 		tickSleep();
 		tickSwordMechanics();
 		
@@ -219,4 +224,36 @@ public class MiscPlayerDataAttachmentType {
 	public double getLastSyncedSleepPotency() {
 		return lastSyncedSleepPotency;
 	}
+	
+	public record Payload(UUID id, int ticksBeforeSleep, int sleepingWindow, int sleepInvincibility, Optional<Item> sleepConsumable) implements CustomPacketPayload {
+		
+		public static final StreamCodec<RegistryFriendlyByteBuf, Payload> CODEC = StreamCodec.composite(
+				UUIDUtil.STREAM_CODEC, Payload::id,
+				ByteBufCodecs.INT, Payload::ticksBeforeSleep,
+				ByteBufCodecs.INT, Payload::sleepingWindow,
+				ByteBufCodecs.INT, Payload::sleepInvincibility,
+				ByteBufCodecs.optional(ByteBufCodecs.registry(Registries.ITEM)), Payload::sleepConsumable,
+				Payload::new
+		);
+		
+		public static final Type<MiscPlayerDataAttachmentType.Payload> TYPE = new CustomPacketPayload.Type<>(SpectrumCommon.locate(NAME));
+		
+		public static void execute(Payload payload, IPayloadContext context) {
+			Player player = context.player().level().getPlayerByUUID(payload.id);
+			if (player == null)
+				return;
+			
+			MiscPlayerDataAttachmentType data = player.getData(ATTACHMENT_TYPE);
+			data.ticksBeforeSleep = payload.ticksBeforeSleep();
+			data.sleepingWindow = payload.sleepingWindow();
+			data.sleepInvincibility = payload.sleepInvincibility();
+			data.sleepConsumable = (Optional<SleepAlteringItem>) (Object) payload.sleepConsumable;
+		}
+		
+		@Override
+		public Type<? extends CustomPacketPayload> type() {
+			return TYPE;
+		}
+	}
+	
 }

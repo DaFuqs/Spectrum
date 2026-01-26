@@ -80,7 +80,7 @@ public class ParticleSpawnerScreen extends AbstractContainerScreen<ParticleSpawn
 	protected void init() {
 		super.init();
 		
-		this.spriteAtlasTexture = ((ParticleManagerAccessor) minecraft.particleEngine).getParticleAtlasTexture();
+		this.spriteAtlasTexture = ((ParticleManagerAccessor) minecraft.particleEngine).getTextureAtlas();
 		this.displayedParticleEntries = ParticleSpawnerParticlesDataLoader.getAllUnlocked(minecraft.player);
 		
 		this.selectableWidgets.clear();

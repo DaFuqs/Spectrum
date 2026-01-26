@@ -1,0 +1,17 @@
+{
+  "type": "spectrum:treasure_hunter",
+  "conditions": [],
+  "entries": [
+    {
+      "entity": {
+          "type": "minecraft:frog",
+          "type_specific": {
+            "type": "minecraft:frog",
+            "variant": "minecraft:cold"
+          }
+      },
+      "head_stack": "spectrum:bat_head",
+      "drop_chance_per_level": 0.02
+    }
+  ]
+}

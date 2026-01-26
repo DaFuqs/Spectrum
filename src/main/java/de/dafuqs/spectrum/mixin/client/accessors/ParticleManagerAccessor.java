@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.mixin.client.accessors;
 
 import net.minecraft.client.particle.*;
+import net.minecraft.client.renderer.texture.*;
 import net.minecraft.resources.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.gen.*;
@@ -12,5 +13,8 @@ public interface ParticleManagerAccessor {
 	
 	@Accessor
 	Map<ResourceLocation, SpriteSet> getSpriteSets();
+	
+	@Accessor
+	TextureAtlas getTextureAtlas();
 	
 }

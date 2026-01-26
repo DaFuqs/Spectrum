@@ -1,0 +1,13 @@
+{
+  "type": "spectrum:sniffer_digging_additions",
+  "conditions": [],
+  "targets": [
+    "minecraft:gameplay/sniffer_digging"
+  ],
+  "count": {
+    "type": "constant",
+    "value": 1
+  },
+  "chance": 0.1,
+  "replace": true
+}

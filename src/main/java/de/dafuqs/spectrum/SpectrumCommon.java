@@ -168,7 +168,7 @@ public class SpectrumCommon {
 		logInfo("Registering Default Item Stack Damage Immunities...");
 		SpectrumItemDamageImmunities.registerDefaultItemStackImmunities();
 		logInfo("Registering Enchantment Drops...");
-		SpectrumLootPoolModifiers.setup();
+		SpectrumLootPoolModifiers.register(modBus);
 		logInfo("Registering Variant Specific Predicates...");
 		SpectrumItemSubPredicateTypes.register(modBus);
 		SpectrumEntitySubPredicateTypes.register();

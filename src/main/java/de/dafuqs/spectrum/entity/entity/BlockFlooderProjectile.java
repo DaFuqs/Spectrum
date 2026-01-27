@@ -15,7 +15,7 @@ import net.minecraft.world.phys.*;
 
 public class BlockFlooderProjectile extends ThrowableItemProjectile {
 	
-	public BlockFlooderProjectile(EntityType<ThrowableItemProjectile> thrownItemEntityEntityType, Level world) {
+	public BlockFlooderProjectile(EntityType<BlockFlooderProjectile> thrownItemEntityEntityType, Level world) {
 		super(SpectrumEntityTypes.BLOCK_FLOODER_PROJECTILE.get(), world);
 	}
 	

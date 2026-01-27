@@ -32,11 +32,12 @@ public final class Plugin implements IMixinConfigPlugin {
 		// Whether the mixin is for when the mod is loaded or not
 		boolean isPresentMixin = mixinPath[compatRoot.length + 1].equals(COMPAT_PRESENT_KEY);
 		
+		// We only load the mixin if the mod we want to be present is found
+		boolean modFileExists = LoadingModList.get().getModFileById(compatModId) != null;
 		if (isPresentMixin) {
-			// We only load the mixin if the mod we want to be present is found
-			return LoadingModList.get().getModFileById(compatModId);
+			return modFileExists;
 		}
-		return !LoadingModList.get().getModFileById(compatModId);
+		return !modFileExists;
 	}
 	
 	@Override

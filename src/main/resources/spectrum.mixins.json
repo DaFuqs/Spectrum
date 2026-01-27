@@ -76,13 +76,9 @@
     "TemptGoalMixin",
     "TridentEntityMixin",
     "WitherEntityMixin",
-    "WorldMixin",
-    "compat.connector.absent.EntityApplyFluidsMixinNoSinytra",
-    "compat.connector.absent.PlayerEntityMixin",
-    "compat.connector.present.PlayerEntityMixin"
+    "WorldMixin"
   ],
   "client": [
-    "InGameHudMixin",
     "accessors.DimensionEffectsAccessor",
     "accessors.WorldRendererAccessor",
     "client.AbstractInventoryScreenMixin",
@@ -115,11 +111,7 @@
     "client.TranslationStorageMixin",
     "client.TranslucentBlockMixin",
     "client.accessors.ParticleManagerAccessor",
-    "client.accessors.RenderLayerAccessor",
-    "compat.colorful_hearts.absent.InGameHudMixin",
-    "compat.colorful_hearts.present.HeartMixin",
-    "compat.connector.absent.InGameHudMixin",
-    "compat.sodium.present.ColorProviderRegistryMixin"
+    "client.accessors.RenderLayerAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

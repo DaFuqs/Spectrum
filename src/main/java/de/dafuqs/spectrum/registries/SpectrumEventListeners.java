@@ -17,6 +17,7 @@ import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.minecraft.advancements.*;
+import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.core.registries.*;
@@ -44,11 +45,20 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.*;
+import net.neoforged.bus.api.*;
+import net.neoforged.fml.event.lifecycle.*;
+import net.neoforged.neoforge.common.util.*;
+import net.neoforged.neoforge.event.*;
+import net.neoforged.neoforge.event.enchanting.*;
+import net.neoforged.neoforge.event.entity.living.*;
+import net.neoforged.neoforge.event.entity.player.*;
+import net.neoforged.neoforge.event.level.*;
 
 import java.util.*;
 import java.util.concurrent.atomic.*;
 
 public class SpectrumEventListeners {
+	
 	
 	/**
 	 * Caches the luminance states from fluids as int
@@ -57,71 +67,196 @@ public class SpectrumEventListeners {
 	 */
 	public static final HashMap<Fluid, Integer> fluidLuminance = new HashMap<>();
 	
-	public static void register() {
-		AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
-			if (!world.isClientSide && !player.isSpectator()) {
-				
-				ItemStack mainHandStack = player.getMainHandItem();
-				if (mainHandStack.getItem() instanceof ExchangeStaffItem exchangeStaffItem) {
-					BlockState targetBlockState = world.getBlockState(pos);
-					if (exchangeStaffItem.canInteractWith(targetBlockState, world, pos, player)) {
-						Optional<Block> storedBlock = ExchangeStaffItem.getStoredBlock(player.getMainHandItem());
-						
-						if (storedBlock.isPresent()
-								&& storedBlock.get() != targetBlockState.getBlock()
-								&& storedBlock.get().asItem() != Items.AIR
-								&& ExchangeStaffItem.exchange(world, pos, player, storedBlock.get(), player.getMainHandItem(), true, direction)) {
-							
-							return InteractionResult.SUCCESS;
-						}
+	
+	 // I'm putting all event listeners here, they can be moved later so nbd
+	
+	@SubscribeEvent
+	public InteractionResult exchangeBlock(PlayerInteractEvent.LeftClickBlock event) {
+		Level world = event.getLevel();
+		BlockPos pos = event.getPos();
+		Player player = event.getEntity();
+		Direction direction = event.getFace();
+		
+		if (!world.isClientSide && !player.isSpectator()) {
+			
+			ItemStack mainHandStack = player.getMainHandItem();
+			if (mainHandStack.getItem() instanceof ExchangeStaffItem exchangeStaffItem) {
+				BlockState targetBlockState = world.getBlockState(pos);
+				if (exchangeStaffItem.canInteractWith(targetBlockState, world, pos, player)) {
+					Optional<Block> storedBlock = ExchangeStaffItem.getStoredBlock(player.getMainHandItem());
+					
+					if (storedBlock.isPresent()
+							&& storedBlock.get() != targetBlockState.getBlock()
+							&& storedBlock.get().asItem() != Items.AIR
+							&& ExchangeStaffItem.exchange(world, pos, player, storedBlock.get(), player.getMainHandItem(),
+							true, direction)) {
+						return InteractionResult.SUCCESS;
 					}
-					world.playSound(null, player.blockPosition(), SoundEvents.DISPENSER_FAIL, SoundSource.PLAYERS, 1.0F, 1.0F);
-					return InteractionResult.FAIL;
 				}
+				world.playSound(null, player.blockPosition(), SoundEvents.DISPENSER_FAIL, SoundSource.PLAYERS, 1.0F, 1.0F);
+				return InteractionResult.FAIL;
 			}
-			return InteractionResult.PASS;
-		});
+		}
 		
-		CommonLifecycleEvents.TAGS_LOADED.register((registries, client) -> {
-			if (client) {
-				SpectrumColorProviders.resetToggleableProviders();
+		return InteractionResult.PASS;
+	}
+	
+	@SubscribeEvent
+	public void resetColorProviders(TagsUpdatedEvent event) {
+		if (event.getUpdateCause() == TagsUpdatedEvent.UpdateCause.CLIENT_PACKET_RECEIVED) {
+			SpectrumColorProviders.resetToggleableProviders();
+		}
+	}
+	
+	//Curious: Gang idfk what to name this I'ma be so fr
+	//Curious TODO: Find a proper name for this event
+	@SubscribeEvent
+	public void triggerInertia(BlockEvent.BreakEvent event) {
+		Player player = event.getPlayer();
+		BlockPos pos = event.getPos();
+		Level level = event.getPlayer().level();
+		BlockState state = event.getState();
+		if (player instanceof ServerPlayer serverPlayerEntity) {
+			ItemStack handStack = player.getItemInHand(serverPlayerEntity.getUsedItemHand());
+			if (SpectrumEnchantmentHelper.hasEnchantment(player.level().registryAccess(), SpectrumEnchantments.INERTIA, handStack)) {
+				InertiaComponent.onInertiaBlockBreak(level, pos, state, serverPlayerEntity, handStack);
 			}
-		});
+			
+			SpectrumAdvancementCriteria.BLOCK_BROKEN.trigger(serverPlayerEntity, state);
+		}
+	}
+	
+	//Curious: I'm like 90% sure this isn't needed anymore since Enchantments are stored as components now so I'm just commenting both instances of this
+	//Curious TODO: Look into whether enchantments still need this event check for the Indestructible enchant
+//	@SubscribeEvent
+//	public TriState preventIndestructible(GetEnchantmentLevelEvent.) {
+//		RegistryE
+//		if (registryEntry.is(SpectrumEnchantments.INDESTRUCTIBLE) && itemStack.is(SpectrumItemTags.INDESTRUCTIBLE_BLACKLISTED)) {
+//			return TriState.FALSE;
+//		}
+//		return TriState.DEFAULT;
+//	}
+	
+	@SubscribeEvent
+	public InteractionResult triggerPrioritizedEntityInteraction(PlayerInteractEvent.EntityInteract event){
 		
-		PlayerBlockBreakEvents.AFTER.register((level, player, pos, state, blockEntity) -> {
-			if (player instanceof ServerPlayer serverPlayerEntity) {
-				ItemStack handStack = player.getItemInHand(serverPlayerEntity.getUsedItemHand());
-				if (SpectrumEnchantmentHelper.hasEnchantment(player.level().registryAccess(), SpectrumEnchantments.INERTIA, handStack)) {
-					InertiaComponent.onInertiaBlockBreak(level, pos, state, serverPlayerEntity, handStack);
-				}
-				
-				SpectrumAdvancementCriteria.BLOCK_BROKEN.trigger(serverPlayerEntity, state);
-			}
-		});
+		Player player = event.getEntity();
+		Entity entity = event.getTarget();
+		InteractionHand hand = event.getHand();
+		ItemStack handStack = player.getItemInHand(hand);
 		
-		EnchantmentEvents.ALLOW_ENCHANTING.register((registryEntry, itemStack, enchantingContext) -> {
-			if (registryEntry.is(SpectrumEnchantments.INDESTRUCTIBLE) && itemStack.is(SpectrumItemTags.INDESTRUCTIBLE_BLACKLISTED)) {
-				return TriState.FALSE;
-			}
-			return TriState.DEFAULT;
-		});
+		if (handStack.getItem() instanceof PrioritizedEntityInteraction && entity instanceof LivingEntity livingEntity) {
+			return handStack.interactLivingEntity(player, livingEntity, hand);
+		}
+		return InteractionResult.PASS;
 		
-		UseEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
-			ItemStack handStack = player.getItemInHand(hand);
-			if (handStack.getItem() instanceof PrioritizedEntityInteraction && entity instanceof LivingEntity livingEntity) {
-				return handStack.interactLivingEntity(player, livingEntity, hand);
-			}
-			return InteractionResult.PASS;
-		});
+	}
+	
+	@SubscribeEvent
+	public InteractionResult triggerPrioritizedBlockInteraction(PlayerInteractEvent.RightClickBlock event) {
 		
-		UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
-			ItemStack handStack = player.getItemInHand(hand);
-			if (handStack.getItem() instanceof PrioritizedBlockInteraction) {
-				return handStack.useOn(new UseOnContext(player, hand, hitResult));
-			}
-			return InteractionResult.PASS;
-		});
+		Player player = event.getEntity();
+		InteractionHand hand = event.getHand();
+		BlockHitResult hitResult = event.getHitVec();
+		ItemStack handStack = player.getItemInHand(hand);
 		
+		if (handStack.getItem() instanceof PrioritizedBlockInteraction) {
+			return handStack.useOn(new UseOnContext(player, hand, hitResult));
+		}
+		return InteractionResult.PASS;
+		
+	}
+	
+	//Curious: I'm basically checking the sleep timer when the player wakes up here
+	//Curious: Miraculously this works due to a single line in the Player class which is awesome
+	@SubscribeEvent
+	public void triggerWhispyCirclet(PlayerWakeUpEvent event) {
+		Player player = event.getEntity();
+		
+		if(player.getSleepTimer() == 100 && SpectrumTrinketItem.hasEquipped(player, SpectrumItems.WHISPY_CIRCLET.asItem())) {
+			player.setHealth(player.getMaxHealth());
+			WhispyCircletItem.removeNegativeStatusEffects(player);
+		}
+		
+	}
+	
+	@SubscribeEvent
+	public void triggerJeopardentKillCriterion(LivingDeathEvent event) {
+		Entity player = event.getSource().getEntity();
+		LivingEntity target = event.getEntity();
+		
+		if(player instanceof ServerPlayer && SpectrumTrinketItem.hasEquipped((LivingEntity) player, SpectrumItems.JEOPARDANT.asItem())) {
+			SpectrumAdvancementCriteria.JEOPARDANT_KILL.trigger((ServerPlayer) player, target);
+		}
+	}
+	
+	
+	public static void register() {
+//		AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
+//			if (!world.isClientSide && !player.isSpectator()) {
+//
+//				ItemStack mainHandStack = player.getMainHandItem();
+//				if (mainHandStack.getItem() instanceof ExchangeStaffItem exchangeStaffItem) {
+//					BlockState targetBlockState = world.getBlockState(pos);
+//					if (exchangeStaffItem.canInteractWith(targetBlockState, world, pos, player)) {
+//						Optional<Block> storedBlock = ExchangeStaffItem.getStoredBlock(player.getMainHandItem());
+//
+//						if (storedBlock.isPresent()
+//								&& storedBlock.get() != targetBlockState.getBlock()
+//								&& storedBlock.get().asItem() != Items.AIR
+//								&& ExchangeStaffItem.exchange(world, pos, player, storedBlock.get(), player.getMainHandItem(), true, direction)) {
+//
+//							return InteractionResult.SUCCESS;
+//						}
+//					}
+//					world.playSound(null, player.blockPosition(), SoundEvents.DISPENSER_FAIL, SoundSource.PLAYERS, 1.0F, 1.0F);
+//					return InteractionResult.FAIL;
+//				}
+//			}
+//			return InteractionResult.PASS;
+//		});
+
+//		CommonLifecycleEvents.TAGS_LOADED.register((registries, client) -> {
+//			if (client) {
+//				SpectrumColorProviders.resetToggleableProviders();
+//			}
+//		});
+
+//		PlayerBlockBreakEvents.AFTER.register((level, player, pos, state, blockEntity) -> {
+//			if (player instanceof ServerPlayer serverPlayerEntity) {
+//				ItemStack handStack = player.getItemInHand(serverPlayerEntity.getUsedItemHand());
+//				if (SpectrumEnchantmentHelper.hasEnchantment(player.level().registryAccess(), SpectrumEnchantments.INERTIA, handStack)) {
+//					InertiaComponent.onInertiaBlockBreak(level, pos, state, serverPlayerEntity, handStack);
+//				}
+//
+//				SpectrumAdvancementCriteria.BLOCK_BROKEN.trigger(serverPlayerEntity, state);
+//			}
+//		});
+
+//		EnchantmentEvents.ALLOW_ENCHANTING.register((registryEntry, itemStack, enchantingContext) -> {
+//			if (registryEntry.is(SpectrumEnchantments.INDESTRUCTIBLE) && itemStack.is(SpectrumItemTags.INDESTRUCTIBLE_BLACKLISTED)) {
+//				return TriState.FALSE;
+//			}
+//			return TriState.DEFAULT;
+//		});
+
+//		UseEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
+//			ItemStack handStack = player.getItemInHand(hand);
+//			if (handStack.getItem() instanceof PrioritizedEntityInteraction && entity instanceof LivingEntity livingEntity) {
+//				return handStack.interactLivingEntity(player, livingEntity, hand);
+//			}
+//			return InteractionResult.PASS;
+//		});
+		
+//		UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
+//			ItemStack handStack = player.getItemInHand(hand);
+//			if (handStack.getItem() instanceof PrioritizedBlockInteraction) {
+//				return handStack.useOn(new UseOnContext(player, hand, hitResult));
+//			}
+//			return InteractionResult.PASS;
+//		});
+		//I don't wanna mess with server stuff rn I'm not sure how this works
+		//TODO: Look into server code stuff so these can be handled
 		ServerTickEvents.END_SERVER_TICK.register(server -> {
 			if (!server.tickRateManager().runsNormally()) {
 				return;
@@ -183,25 +318,25 @@ public class SpectrumEventListeners {
 			//injectEnchantmentUpgradeRecipes(server);
 		});
 		
-		EntitySleepEvents.STOP_SLEEPING.register((entity, sleepingPos) -> {
-			// If the player wears a Whispy Cirlcet and sleeps
-			// they get fully healed and all negative status effects removed
-			// When the sleep timer reached 100 the player is fully asleep
-			if (entity instanceof ServerPlayer serverPlayerEntity
-					&& serverPlayerEntity.getSleepTimer() == 100
-					&& SpectrumTrinketItem.hasEquipped(entity, SpectrumItems.WHISPY_CIRCLET)) {
-				
-				entity.setHealth(entity.getMaxHealth());
-				WhispyCircletItem.removeNegativeStatusEffects(entity);
-			}
-		});
+//		EntitySleepEvents.STOP_SLEEPING.register((entity, sleepingPos) -> {
+//			// If the player wears a Whispy Cirlcet and sleeps
+//			// they get fully healed and all negative status effects removed
+//			// When the sleep timer reached 100 the player is fully asleep
+//			if (entity instanceof ServerPlayer serverPlayerEntity
+//					&& serverPlayerEntity.getSleepTimer() == 100
+//					&& SpectrumTrinketItem.hasEquipped(entity, SpectrumItems.WHISPY_CIRCLET)) {
+//
+//				entity.setHealth(entity.getMaxHealth());
+//				WhispyCircletItem.removeNegativeStatusEffects(entity);
+//			}
+//		});
 		
-		ServerEntityCombatEvents.AFTER_KILLED_OTHER_ENTITY.register((world, entity, killedEntity) -> {
-			if (entity instanceof ServerPlayer serverPlayerEntity && SpectrumTrinketItem.hasEquipped(serverPlayerEntity, SpectrumItems.JEOPARDANT)) {
-				SpectrumAdvancementCriteria.JEOPARDANT_KILL.trigger(serverPlayerEntity, killedEntity);
-			}
-		});
-		
+//		ServerEntityCombatEvents.AFTER_KILLED_OTHER_ENTITY.register((world, entity, killedEntity) -> {
+//			if (entity instanceof ServerPlayer serverPlayerEntity && SpectrumTrinketItem.hasEquipped(serverPlayerEntity, SpectrumItems.JEOPARDANT)) {
+//				SpectrumAdvancementCriteria.JEOPARDANT_KILL.trigger(serverPlayerEntity, killedEntity);
+//			}
+//		});
+		//Curious: This is too scary for me Daf
 		ServerEntityEvents.EQUIPMENT_CHANGE.register((livingEntity, equipmentSlot, previousStack, currentStack) -> {
 			var oldInexorable = SpectrumEnchantmentHelper.getLevel(livingEntity.level().registryAccess(), SpectrumEnchantments.INEXORABLE, previousStack);
 			var newInexorable = SpectrumEnchantmentHelper.getLevel(livingEntity.level().registryAccess(), SpectrumEnchantments.INEXORABLE, currentStack);

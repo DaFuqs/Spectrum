@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.helpers;
 import de.dafuqs.spectrum.api.interaction.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.fabricmc.fabric.api.transfer.v1.storage.*;
+import net.fabricmc.fabric.api.transfer.v1.transaction.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.*;
@@ -355,7 +356,7 @@ public class InventoryHelper {
 		return remainders;
 	}
 
-	@SuppressWarnings("UnstableApiUsage")
+	@SuppressWarnings({"UnstableApiUsage", "Deprecation"})
     public static boolean canFitStacks(List<ItemStack> stacks, Inventory inventory) {
 		var storage = InventoryStorage.of(inventory, null);
 
@@ -366,7 +367,11 @@ public class InventoryHelper {
 			if (stack.isEmpty())
 				continue;
 
-			if (StorageUtil.simulateInsert(storage, ItemVariant.of(stack), stack.getMaxCount(), null) != stack.getCount())
+			  // Getting the current transaction, as it will be cancelled anyway,
+			 // and passing null can cause an exception, making the simulated insert fail,
+			// or crashing the entire game.
+			
+			if (StorageUtil.simulateInsert(storage, ItemVariant.of(stack), stack.getMaxCount(), Transaction.getCurrentUnsafe()) != stack.getCount())
 				return false;
 		}
 

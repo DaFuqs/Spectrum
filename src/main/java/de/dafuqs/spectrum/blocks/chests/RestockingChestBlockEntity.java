@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.fabric.api.transfer.v1.transaction.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
@@ -218,12 +219,18 @@ public class RestockingChestBlockEntity extends SpectrumChestBlockEntity impleme
 		}
 		return false;
 	}
-
+	
+	@SuppressWarnings({"UnstableApiUsage", "Deprecation"})
 	private static boolean isRecipeValid(Recipe<?> recipe) {
 		return recipe instanceof ShapelessRecipe || recipe instanceof ShapedRecipe;
 	}
 
 	private boolean isRecipeCraftable(Recipe<?> recipe, int index) {
+		 // Don't check if a recipe can be crafted when simulating insertion of its remainders.
+		if(Transaction.isOpen()) {
+			return true;
+		}
+		
 		var ingredients = recipe.getIngredients();
 
 		if (!InventoryHelper.hasInInventory(ingredients, this))

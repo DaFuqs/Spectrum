@@ -233,7 +233,7 @@ public class ServerPastelNetwork extends PastelNetwork<ServerWorld> {
 					disconnectedBEs.add(blockEntity.get());
 					blockEntities.add(blockEntity.get());
 					if (newNetworkUUID == null) {
-						newNetworkUUID = blockEntity.get().getNodeId();
+						newNetworkUUID = UUID.randomUUID();
 					}
 				}
 			}

@@ -40,7 +40,7 @@ public interface StrippableDrop {
 	}
 	
 	static List<ItemStack> getStrippedStacks(BlockState state, ServerLevel world, BlockPos pos, @Nullable BlockEntity blockEntity, @Nullable Entity entity, ItemStack stack, ResourceKey<LootTable> lootTableKey) {
-		var builder = (new LootParams.Builder(world))
+		LootParams.Builder builder = new LootParams.Builder(world)
 				.withParameter(LootContextParams.BLOCK_STATE, state)
 				.withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(pos))
 				.withParameter(LootContextParams.TOOL, stack)

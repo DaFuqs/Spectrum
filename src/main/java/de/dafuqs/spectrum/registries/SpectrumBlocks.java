@@ -863,9 +863,9 @@ public class SpectrumBlocks {
 	
 	private static final int NOXCAP_BUTTON_BLOCK_PRESS_TIME_TICKS = 30;
 	
-	public static final DeferredBlock<Block> STRIPPED_SLATE_NOXCAP_STEM = register(axisRotated(blockWithItem("stripped_slate_noxcap_stem", () -> new RotatedPillarBlock(noxcap(MapColor.COLOR_GRAY)), InkColors.LIME), TexturedModel.COLUMN_ALT));
-	public static final DeferredBlock<Block> STRIPPED_SLATE_NOXCAP_HYPHAE = register(axisRotated(blockWithItem("stripped_slate_noxcap_hyphae", () -> new RotatedPillarBlock(noxcap(MapColor.COLOR_GRAY)), InkColors.LIME), SpectrumTexturedModels.cubeColumn(b -> SpectrumBlocks.STRIPPED_SLATE_NOXCAP_STEM.get(), "", b -> STRIPPED_SLATE_NOXCAP_STEM.get(), "")));
-	public static final DeferredBlock<Block> SLATE_NOXCAP_STEM = register(axisRotated(blockWithItem("slate_noxcap_stem", () -> new StrippingLootPillarBlock(noxcap(MapColor.COLOR_GRAY), STRIPPED_SLATE_NOXCAP_STEM.get(), SpectrumLootTables.SLATE_NOXCAP_STRIPPING), InkColors.LIME), TexturedModel.COLUMN_ALT));
+	public static final DeferredBlock<RotatedPillarBlock> STRIPPED_SLATE_NOXCAP_STEM = register(axisRotated(blockWithItem("stripped_slate_noxcap_stem", () -> new RotatedPillarBlock(noxcap(MapColor.COLOR_GRAY)), InkColors.LIME), TexturedModel.COLUMN_ALT));
+	public static final DeferredBlock<RotatedPillarBlock> STRIPPED_SLATE_NOXCAP_HYPHAE = register(axisRotated(blockWithItem("stripped_slate_noxcap_hyphae", () -> new RotatedPillarBlock(noxcap(MapColor.COLOR_GRAY)), InkColors.LIME), SpectrumTexturedModels.cubeColumn(b -> SpectrumBlocks.STRIPPED_SLATE_NOXCAP_STEM.get(), "", b -> STRIPPED_SLATE_NOXCAP_STEM.get(), "")));
+	public static final DeferredBlock<Block> SLATE_NOXCAP_STEM = register(axisRotated(blockWithItem("slate_noxcap_stem", () -> new StrippingLootPillarBlock(noxcap(MapColor.COLOR_GRAY), STRIPPED_SLATE_NOXCAP_STEM, SpectrumLootTables.SLATE_NOXCAP_STRIPPING), InkColors.LIME), TexturedModel.COLUMN_ALT));
 	public static final DeferredBlock<Block> SLATE_NOXCAP_HYPHAE = register(axisRotated(blockWithItem("slate_noxcap_hyphae", () -> new StrippingLootPillarBlock(noxcap(MapColor.COLOR_GRAY), STRIPPED_SLATE_NOXCAP_HYPHAE.get(), SpectrumLootTables.SLATE_NOXCAP_STRIPPING), InkColors.LIME), SpectrumTexturedModels.cubeColumn(b -> SLATE_NOXCAP_STEM.get(), "", b -> SLATE_NOXCAP_STEM.get(), "")));
 	public static final DeferredBlock<Block> SLATE_NOXCAP_BLOCK = register(singleton(blockWithItem("slate_noxcap_block", () -> new Block(noxcap(MapColor.COLOR_GRAY)), InkColors.LIME), TexturedModel.COLUMN_ALT));
 	public static final DeferredBlock<Block> SLATE_NOXCAP_GILLS = register(axisRotated(blockWithItem("slate_noxcap_gills", () -> new RotatedPillarBlock(noxcap(MapColor.DIAMOND).lightLevel(state -> 9).emissiveRendering(SpectrumBlocks::always).hasPostProcess(SpectrumBlocks::always)), InkColors.LIME), TexturedModel.COLUMN_ALT));
@@ -887,8 +887,8 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> SLATE_NOXWOOD_PRESSURE_PLATE = register(blockWithItem("slate_noxwood_pressure_plate", () -> new PressurePlateBlock(SpectrumBlockSetTypes.NOXWOOD, noxcap(MapColor.COLOR_GRAY)), InkColors.LIME));
 	public static final BlockFamily SLATE_NOXWOOD_FAMILY = SpectrumModelHelper.registerBlockFamily(new BlockFamily.Builder(SLATE_NOXWOOD_PLANKS.get()).stairs(SLATE_NOXWOOD_STAIRS.get()).slab(SLATE_NOXWOOD_SLAB.get()).fence(SLATE_NOXWOOD_FENCE.get()).fenceGate(SLATE_NOXWOOD_FENCE_GATE.get()).door(SLATE_NOXWOOD_DOOR.get()).trapdoor(SLATE_NOXWOOD_TRAPDOOR.get()).button(SLATE_NOXWOOD_BUTTON.get()).pressurePlate(SLATE_NOXWOOD_PRESSURE_PLATE.get()).getFamily());
 	
-	public static final DeferredBlock<Block> STRIPPED_EBONY_NOXCAP_STEM = register(axisRotated(blockWithItem("stripped_ebony_noxcap_stem", () -> new RotatedPillarBlock(noxcap(MapColor.TERRACOTTA_BLACK)), InkColors.LIME), TexturedModel.COLUMN_ALT));
-	public static final DeferredBlock<Block> STRIPPED_EBONY_NOXCAP_HYPHAE = register(axisRotated(blockWithItem("stripped_ebony_noxcap_hyphae", () -> new RotatedPillarBlock(noxcap(MapColor.TERRACOTTA_BLACK)), InkColors.LIME), SpectrumTexturedModels.cubeColumn(b -> STRIPPED_EBONY_NOXCAP_STEM.get(), "", b -> STRIPPED_EBONY_NOXCAP_STEM.get(), "")));
+	public static final DeferredBlock<RotatedPillarBlock> STRIPPED_EBONY_NOXCAP_STEM = register(axisRotated(blockWithItem("stripped_ebony_noxcap_stem", () -> new RotatedPillarBlock(noxcap(MapColor.TERRACOTTA_BLACK)), InkColors.LIME), TexturedModel.COLUMN_ALT));
+	public static final DeferredBlock<RotatedPillarBlock> STRIPPED_EBONY_NOXCAP_HYPHAE = register(axisRotated(blockWithItem("stripped_ebony_noxcap_hyphae", () -> new RotatedPillarBlock(noxcap(MapColor.TERRACOTTA_BLACK)), InkColors.LIME), SpectrumTexturedModels.cubeColumn(b -> STRIPPED_EBONY_NOXCAP_STEM.get(), "", b -> STRIPPED_EBONY_NOXCAP_STEM.get(), "")));
 	public static final DeferredBlock<Block> EBONY_NOXCAP_STEM = register(axisRotated(blockWithItem("ebony_noxcap_stem", () -> new StrippingLootPillarBlock(noxcap(MapColor.TERRACOTTA_BLACK), STRIPPED_EBONY_NOXCAP_STEM.get(), SpectrumLootTables.EBONY_NOXCAP_STRIPPING), InkColors.LIME), TexturedModel.COLUMN_ALT));
 	public static final DeferredBlock<Block> EBONY_NOXCAP_HYPHAE = register(axisRotated(blockWithItem("ebony_noxcap_hyphae", () -> new StrippingLootPillarBlock(noxcap(MapColor.TERRACOTTA_BLACK), STRIPPED_EBONY_NOXCAP_HYPHAE.get(), SpectrumLootTables.EBONY_NOXCAP_STRIPPING), InkColors.LIME), SpectrumTexturedModels.cubeColumn(b -> EBONY_NOXCAP_STEM.get(), "", b -> EBONY_NOXCAP_STEM.get(), "")));
 	public static final DeferredBlock<Block> EBONY_NOXCAP_BLOCK = register(singleton(blockWithItem("ebony_noxcap_block", () -> new Block(noxcap(MapColor.TERRACOTTA_BLACK)), InkColors.LIME), TexturedModel.COLUMN_ALT));
@@ -911,8 +911,8 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> EBONY_NOXWOOD_PRESSURE_PLATE = register(blockWithItem("ebony_noxwood_pressure_plate", () -> new PressurePlateBlock(SpectrumBlockSetTypes.NOXWOOD, noxcap(MapColor.TERRACOTTA_BLACK)), InkColors.LIME));
 	public static final BlockFamily EBONY_NOXWOOD_FAMILY = SpectrumModelHelper.registerBlockFamily(new BlockFamily.Builder(EBONY_NOXWOOD_PLANKS.get()).stairs(EBONY_NOXWOOD_STAIRS.get()).slab(EBONY_NOXWOOD_SLAB.get()).fence(EBONY_NOXWOOD_FENCE.get()).fenceGate(EBONY_NOXWOOD_FENCE_GATE.get()).door(EBONY_NOXWOOD_DOOR.get()).trapdoor(EBONY_NOXWOOD_TRAPDOOR.get()).button(EBONY_NOXWOOD_BUTTON.get()).pressurePlate(EBONY_NOXWOOD_PRESSURE_PLATE.get()).getFamily());
 	
-	public static final DeferredBlock<Block> STRIPPED_IVORY_NOXCAP_STEM = register(axisRotated(blockWithItem("stripped_ivory_noxcap_stem", () -> new RotatedPillarBlock(noxcap(MapColor.QUARTZ)), InkColors.LIME), TexturedModel.COLUMN_ALT));
-	public static final DeferredBlock<Block> STRIPPED_IVORY_NOXCAP_HYPHAE = register(axisRotated(blockWithItem("stripped_ivory_noxcap_hyphae", () -> new RotatedPillarBlock(noxcap(MapColor.QUARTZ)), InkColors.LIME), SpectrumTexturedModels.cubeColumn(b -> STRIPPED_IVORY_NOXCAP_STEM.get(), "", b -> STRIPPED_IVORY_NOXCAP_STEM.get(), "")));
+	public static final DeferredBlock<RotatedPillarBlock> STRIPPED_IVORY_NOXCAP_STEM = register(axisRotated(blockWithItem("stripped_ivory_noxcap_stem", () -> new RotatedPillarBlock(noxcap(MapColor.QUARTZ)), InkColors.LIME), TexturedModel.COLUMN_ALT));
+	public static final DeferredBlock<RotatedPillarBlock> STRIPPED_IVORY_NOXCAP_HYPHAE = register(axisRotated(blockWithItem("stripped_ivory_noxcap_hyphae", () -> new RotatedPillarBlock(noxcap(MapColor.QUARTZ)), InkColors.LIME), SpectrumTexturedModels.cubeColumn(b -> STRIPPED_IVORY_NOXCAP_STEM.get(), "", b -> STRIPPED_IVORY_NOXCAP_STEM.get(), "")));
 	public static final DeferredBlock<Block> IVORY_NOXCAP_STEM = register(axisRotated(blockWithItem("ivory_noxcap_stem", () -> new StrippingLootPillarBlock(noxcap(MapColor.QUARTZ), STRIPPED_IVORY_NOXCAP_STEM.get(), SpectrumLootTables.IVORY_NOXCAP_STRIPPING), InkColors.LIME), TexturedModel.COLUMN_ALT));
 	public static final DeferredBlock<Block> IVORY_NOXCAP_HYPHAE = register(axisRotated(blockWithItem("ivory_noxcap_hyphae", () -> new StrippingLootPillarBlock(noxcap(MapColor.QUARTZ), STRIPPED_IVORY_NOXCAP_HYPHAE.get(), SpectrumLootTables.IVORY_NOXCAP_STRIPPING), InkColors.LIME), SpectrumTexturedModels.cubeColumn(b -> IVORY_NOXCAP_STEM.get(), "", b -> IVORY_NOXCAP_STEM.get(), "")));
 	public static final DeferredBlock<Block> IVORY_NOXCAP_BLOCK = register(singleton(blockWithItem("ivory_noxcap_block", () -> new Block(noxcap(MapColor.QUARTZ)), InkColors.LIME), TexturedModel.COLUMN_ALT));
@@ -935,8 +935,8 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> IVORY_NOXWOOD_PRESSURE_PLATE = register(blockWithItem("ivory_noxwood_pressure_plate", () -> new PressurePlateBlock(SpectrumBlockSetTypes.NOXWOOD, noxcap(MapColor.QUARTZ)), InkColors.LIME));
 	public static final BlockFamily IVORY_NOXWOOD_FAMILY = SpectrumModelHelper.registerBlockFamily(new BlockFamily.Builder(IVORY_NOXWOOD_PLANKS.get()).stairs(IVORY_NOXWOOD_STAIRS.get()).slab(IVORY_NOXWOOD_SLAB.get()).fence(IVORY_NOXWOOD_FENCE.get()).fenceGate(IVORY_NOXWOOD_FENCE_GATE.get()).door(IVORY_NOXWOOD_DOOR.get()).trapdoor(IVORY_NOXWOOD_TRAPDOOR.get()).button(IVORY_NOXWOOD_BUTTON.get()).pressurePlate(IVORY_NOXWOOD_PRESSURE_PLATE.get()).getFamily());
 	
-	public static final DeferredBlock<Block> STRIPPED_CHESTNUT_NOXCAP_STEM = register(axisRotated(blockWithItem("stripped_chestnut_noxcap_stem", () -> new RotatedPillarBlock(noxcap(MapColor.CRIMSON_NYLIUM)), InkColors.LIME), TexturedModel.COLUMN_ALT));
-	public static final DeferredBlock<Block> STRIPPED_CHESTNUT_NOXCAP_HYPHAE = register(axisRotated(blockWithItem("stripped_chestnut_noxcap_hyphae", () -> new RotatedPillarBlock(noxcap(MapColor.QUARTZ)), InkColors.LIME), SpectrumTexturedModels.cubeColumn(b -> STRIPPED_CHESTNUT_NOXCAP_STEM.get(), "", b -> STRIPPED_CHESTNUT_NOXCAP_STEM.get(), "")));
+	public static final DeferredBlock<RotatedPillarBlock> STRIPPED_CHESTNUT_NOXCAP_STEM = register(axisRotated(blockWithItem("stripped_chestnut_noxcap_stem", () -> new RotatedPillarBlock(noxcap(MapColor.CRIMSON_NYLIUM)), InkColors.LIME), TexturedModel.COLUMN_ALT));
+	public static final DeferredBlock<RotatedPillarBlock> STRIPPED_CHESTNUT_NOXCAP_HYPHAE = register(axisRotated(blockWithItem("stripped_chestnut_noxcap_hyphae", () -> new RotatedPillarBlock(noxcap(MapColor.QUARTZ)), InkColors.LIME), SpectrumTexturedModels.cubeColumn(b -> STRIPPED_CHESTNUT_NOXCAP_STEM.get(), "", b -> STRIPPED_CHESTNUT_NOXCAP_STEM.get(), "")));
 	public static final DeferredBlock<Block> CHESTNUT_NOXCAP_STEM = register(axisRotated(blockWithItem("chestnut_noxcap_stem", () -> new StrippingLootPillarBlock(noxcap(MapColor.CRIMSON_NYLIUM), STRIPPED_CHESTNUT_NOXCAP_STEM.get(), SpectrumLootTables.CHESTNUT_NOXCAP_STRIPPING), InkColors.LIME), TexturedModel.COLUMN_ALT));
 	public static final DeferredBlock<Block> CHESTNUT_NOXCAP_HYPHAE = register(axisRotated(blockWithItem("chestnut_noxcap_hyphae", () -> new StrippingLootPillarBlock(noxcap(MapColor.QUARTZ), STRIPPED_CHESTNUT_NOXCAP_HYPHAE.get(), SpectrumLootTables.CHESTNUT_NOXCAP_STRIPPING), InkColors.LIME), SpectrumTexturedModels.cubeColumn(b -> CHESTNUT_NOXCAP_STEM.get(), "", b -> CHESTNUT_NOXCAP_STEM.get(), "")));
 	public static final DeferredBlock<Block> CHESTNUT_NOXCAP_BLOCK = register(singleton(blockWithItem("chestnut_noxcap_block", () -> new Block(noxcap(MapColor.CRIMSON_NYLIUM)), InkColors.LIME), TexturedModel.COLUMN_ALT));
@@ -967,10 +967,10 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<FlowerPotBlock> POTTED_WEEPING_GALA_SPRIG = register(pottedPlant(block("potted_weeping_gala_sprig", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, () -> WEEPING_GALA_SPRIG.get(), pottedPlant())), false));
 	
 	public static final DeferredBlock<Block> WEEPING_GALA_LEAVES = register(singleton(blockWithItem("weeping_gala_leaves", () -> new LeavesBlock(copyWithMapColor(Blocks.OAK_LEAVES, MapColor.WARPED_WART_BLOCK)), InkColors.LIME), TexturedModel.LEAVES));
-	public static final DeferredBlock<Block> WEEPING_GALA_LOG = register(log(blockWithItem("weeping_gala_log", () -> new RotatedPillarBlock(galaWood(MapColor.COLOR_BROWN)), InkColors.LIME)));
-	public static final DeferredBlock<Block> STRIPPED_WEEPING_GALA_LOG = register(log(blockWithItem("stripped_weeping_gala_log", () -> new RotatedPillarBlock(galaWood(MapColor.COLOR_BROWN)), InkColors.LIME)));
-	public static final DeferredBlock<Block> WEEPING_GALA_WOOD = register(wood(blockWithItem("weeping_gala_wood", () -> new RotatedPillarBlock(galaWood(MapColor.COLOR_BROWN)), InkColors.LIME), WEEPING_GALA_LOG.get()));
-	public static final DeferredBlock<Block> STRIPPED_WEEPING_GALA_WOOD = register(wood(blockWithItem("stripped_weeping_gala_wood", () -> new RotatedPillarBlock(galaWood(MapColor.COLOR_BROWN)), InkColors.LIME), STRIPPED_WEEPING_GALA_LOG.get()));
+	public static final DeferredBlock<RotatedPillarBlock> STRIPPED_WEEPING_GALA_LOG = register(log(blockWithItem("stripped_weeping_gala_log", () -> new RotatedPillarBlock(galaWood(MapColor.COLOR_BROWN)), InkColors.LIME)));
+	public static final DeferredBlock<RotatedPillarBlock> STRIPPED_WEEPING_GALA_WOOD = register(wood(blockWithItem("stripped_weeping_gala_wood", () -> new RotatedPillarBlock(galaWood(MapColor.COLOR_BROWN)), InkColors.LIME), STRIPPED_WEEPING_GALA_LOG.get()));
+	public static final DeferredBlock<Block> WEEPING_GALA_LOG = register(log(blockWithItem("weeping_gala_log", () -> new StrippableRotatedPillarBlock(galaWood(MapColor.COLOR_BROWN), STRIPPED_WEEPING_GALA_WOOD), InkColors.LIME)));
+	public static final DeferredBlock<Block> WEEPING_GALA_WOOD = register(wood(blockWithItem("weeping_gala_wood", () -> new StrippableRotatedPillarBlock(galaWood(MapColor.COLOR_BROWN), STRIPPED_WEEPING_GALA_LOG), InkColors.LIME), WEEPING_GALA_LOG.get()));
 	
 	public static final DeferredBlock<Block> WEEPING_GALA_FRONDS = register(cross(block("weeping_gala_fronds", () -> new WeepingGalaFrondsBlock(BlockBehaviour.Properties.ofFullCopy(WEEPING_GALA_LEAVES.get()).noCollission()))));
 	public static final DeferredBlock<WeepingGalaFrondsTipBlock> WEEPING_GALA_FRONDS_PLANT = register(cutout(block("weeping_gala_fronds_plant", () -> new WeepingGalaFrondsTipBlock(BlockBehaviour.Properties.ofFullCopy(WEEPING_GALA_LEAVES.get()).noCollission().lightLevel(s -> s.getValue(WeepingGalaFrondsTipBlock.FORM).getLuminance())))).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.property(WeepingGalaFrondsTipBlock.FORM)
@@ -1473,48 +1473,6 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<PottedColoredSaplingBlock> POTTED_WHITE_SAPLING = registerPottedColoredSapling("potted_white_sapling", WHITE_SAPLING);
 	public static final DeferredBlock<PottedColoredSaplingBlock> POTTED_YELLOW_SAPLING = registerPottedColoredSapling("potted_yellow_sapling", YELLOW_SAPLING);
 	
-	public static DeferredBlock<ColoredLogBlock> registerColoredLog(String name, InkColor color) {
-		return register(log(blockWithItem(name, () -> new ColoredLogBlock(copyWithMapColor(Blocks.OAK_LOG, color.getDyeColor().orElse(DyeColor.LIME).getMapColor()), color), color)));
-	}
-	
-	public static final DeferredBlock<ColoredLogBlock> BLACK_LOG = registerColoredLog("black_log", InkColors.BLACK);
-	public static final DeferredBlock<ColoredLogBlock> BLUE_LOG = registerColoredLog("blue_log", InkColors.BLUE);
-	public static final DeferredBlock<ColoredLogBlock> BROWN_LOG = registerColoredLog("brown_log", InkColors.BROWN);
-	public static final DeferredBlock<ColoredLogBlock> CYAN_LOG = registerColoredLog("cyan_log", InkColors.CYAN);
-	public static final DeferredBlock<ColoredLogBlock> GRAY_LOG = registerColoredLog("gray_log", InkColors.GRAY);
-	public static final DeferredBlock<ColoredLogBlock> GREEN_LOG = registerColoredLog("green_log", InkColors.GREEN);
-	public static final DeferredBlock<ColoredLogBlock> LIGHT_BLUE_LOG = registerColoredLog("light_blue_log", InkColors.LIGHT_BLUE);
-	public static final DeferredBlock<ColoredLogBlock> LIGHT_GRAY_LOG = registerColoredLog("light_gray_log", InkColors.LIGHT_GRAY);
-	public static final DeferredBlock<ColoredLogBlock> LIME_LOG = registerColoredLog("lime_log", InkColors.LIME);
-	public static final DeferredBlock<ColoredLogBlock> MAGENTA_LOG = registerColoredLog("magenta_log", InkColors.MAGENTA);
-	public static final DeferredBlock<ColoredLogBlock> ORANGE_LOG = registerColoredLog("orange_log", InkColors.ORANGE);
-	public static final DeferredBlock<ColoredLogBlock> PINK_LOG = registerColoredLog("pink_log", InkColors.PINK);
-	public static final DeferredBlock<ColoredLogBlock> PURPLE_LOG = registerColoredLog("purple_log", InkColors.PURPLE);
-	public static final DeferredBlock<ColoredLogBlock> RED_LOG = registerColoredLog("red_log", InkColors.RED);
-	public static final DeferredBlock<ColoredLogBlock> WHITE_LOG = registerColoredLog("white_log", InkColors.WHITE);
-	public static final DeferredBlock<ColoredLogBlock> YELLOW_LOG = registerColoredLog("yellow_log", InkColors.YELLOW);
-	
-	public static DeferredBlock<ColoredWoodBlock> registerColoredWood(String name, DeferredBlock<ColoredLogBlock> logBlock) {
-		return register(wood(blockWithItem(name, () -> new ColoredWoodBlock(copyWithMapColor(Blocks.OAK_WOOD, logBlock.get().defaultMapColor()), logBlock.get().getColor()), logBlock.get().getColor()), logBlock.get()));
-	}
-	
-	public static final DeferredBlock<ColoredWoodBlock> BLACK_WOOD = registerColoredWood("black_wood", BLACK_LOG);
-	public static final DeferredBlock<ColoredWoodBlock> BLUE_WOOD = registerColoredWood("blue_wood", BLUE_LOG);
-	public static final DeferredBlock<ColoredWoodBlock> BROWN_WOOD = registerColoredWood("brown_wood", BROWN_LOG);
-	public static final DeferredBlock<ColoredWoodBlock> CYAN_WOOD = registerColoredWood("cyan_wood", CYAN_LOG);
-	public static final DeferredBlock<ColoredWoodBlock> GRAY_WOOD = registerColoredWood("gray_wood", GRAY_LOG);
-	public static final DeferredBlock<ColoredWoodBlock> GREEN_WOOD = registerColoredWood("green_wood", GREEN_LOG);
-	public static final DeferredBlock<ColoredWoodBlock> LIGHT_BLUE_WOOD = registerColoredWood("light_blue_wood", LIGHT_BLUE_LOG);
-	public static final DeferredBlock<ColoredWoodBlock> LIGHT_GRAY_WOOD = registerColoredWood("light_gray_wood", LIGHT_GRAY_LOG);
-	public static final DeferredBlock<ColoredWoodBlock> LIME_WOOD = registerColoredWood("lime_wood", LIME_LOG);
-	public static final DeferredBlock<ColoredWoodBlock> MAGENTA_WOOD = registerColoredWood("magenta_wood", MAGENTA_LOG);
-	public static final DeferredBlock<ColoredWoodBlock> ORANGE_WOOD = registerColoredWood("orange_wood", ORANGE_LOG);
-	public static final DeferredBlock<ColoredWoodBlock> PINK_WOOD = registerColoredWood("pink_wood", PINK_LOG);
-	public static final DeferredBlock<ColoredWoodBlock> PURPLE_WOOD = registerColoredWood("purple_wood", PURPLE_LOG);
-	public static final DeferredBlock<ColoredWoodBlock> RED_WOOD = registerColoredWood("red_wood", RED_LOG);
-	public static final DeferredBlock<ColoredWoodBlock> WHITE_WOOD = registerColoredWood("white_wood", WHITE_LOG);
-	public static final DeferredBlock<ColoredWoodBlock> YELLOW_WOOD = registerColoredWood("yellow_wood", YELLOW_LOG);
-	
 	public static DeferredBlock<ColoredStrippedLogBlock> registerColoredStrippedLog(String name, InkColor color) {
 		return register(log(blockWithItem(name, () -> new ColoredStrippedLogBlock(copyWithMapColor(Blocks.STRIPPED_OAK_LOG, color.getDyeColor().orElse(DyeColor.LIME).getMapColor()), color), color)));
 	}
@@ -1556,6 +1514,48 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_RED_WOOD = registerColoredStrippedWood("stripped_red_wood", STRIPPED_RED_LOG, InkColors.RED);
 	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_WHITE_WOOD = registerColoredStrippedWood("stripped_white_wood", STRIPPED_WHITE_LOG, InkColors.WHITE);
 	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_YELLOW_WOOD = registerColoredStrippedWood("stripped_yellow_wood", STRIPPED_YELLOW_LOG, InkColors.YELLOW);
+	
+	public static DeferredBlock<ColoredLogBlock> registerColoredLog(String name, Supplier<? extends ColoredStrippedLogBlock> strippedBlock, InkColor color) {
+		return register(log(blockWithItem(name, () -> new ColoredLogBlock(copyWithMapColor(Blocks.OAK_LOG, color.getDyeColor().orElse(DyeColor.LIME).getMapColor()), strippedBlock, color), color)));
+	}
+	
+	public static final DeferredBlock<ColoredLogBlock> BLACK_LOG = registerColoredLog("black_log", STRIPPED_BLACK_LOG, InkColors.BLACK);
+	public static final DeferredBlock<ColoredLogBlock> BLUE_LOG = registerColoredLog("blue_log", STRIPPED_BLUE_LOG, InkColors.BLUE);
+	public static final DeferredBlock<ColoredLogBlock> BROWN_LOG = registerColoredLog("brown_log", STRIPPED_BROWN_LOG, InkColors.BROWN);
+	public static final DeferredBlock<ColoredLogBlock> CYAN_LOG = registerColoredLog("cyan_log", STRIPPED_CYAN_LOG, InkColors.CYAN);
+	public static final DeferredBlock<ColoredLogBlock> GRAY_LOG = registerColoredLog("gray_log", STRIPPED_GRAY_LOG, InkColors.GRAY);
+	public static final DeferredBlock<ColoredLogBlock> GREEN_LOG = registerColoredLog("green_log", STRIPPED_GREEN_LOG, InkColors.GREEN);
+	public static final DeferredBlock<ColoredLogBlock> LIGHT_BLUE_LOG = registerColoredLog("light_blue_log", STRIPPED_LIGHT_BLUE_LOG, InkColors.LIGHT_BLUE);
+	public static final DeferredBlock<ColoredLogBlock> LIGHT_GRAY_LOG = registerColoredLog("light_gray_log", STRIPPED_LIGHT_GRAY_LOG, InkColors.LIGHT_GRAY);
+	public static final DeferredBlock<ColoredLogBlock> LIME_LOG = registerColoredLog("lime_log", STRIPPED_LIME_LOG, InkColors.LIME);
+	public static final DeferredBlock<ColoredLogBlock> MAGENTA_LOG = registerColoredLog("magenta_log", STRIPPED_MAGENTA_LOG, InkColors.MAGENTA);
+	public static final DeferredBlock<ColoredLogBlock> ORANGE_LOG = registerColoredLog("orange_log", STRIPPED_ORANGE_LOG, InkColors.ORANGE);
+	public static final DeferredBlock<ColoredLogBlock> PINK_LOG = registerColoredLog("pink_log", STRIPPED_PINK_LOG, InkColors.PINK);
+	public static final DeferredBlock<ColoredLogBlock> PURPLE_LOG = registerColoredLog("purple_log", STRIPPED_PURPLE_LOG, InkColors.PURPLE);
+	public static final DeferredBlock<ColoredLogBlock> RED_LOG = registerColoredLog("red_log", STRIPPED_RED_LOG, InkColors.RED);
+	public static final DeferredBlock<ColoredLogBlock> WHITE_LOG = registerColoredLog("white_log", STRIPPED_WHITE_LOG, InkColors.WHITE);
+	public static final DeferredBlock<ColoredLogBlock> YELLOW_LOG = registerColoredLog("yellow_log", STRIPPED_YELLOW_LOG, InkColors.YELLOW);
+	
+	public static DeferredBlock<ColoredWoodBlock> registerColoredWood(String name, Supplier<? extends ColoredStrippedWoodBlock> strippedBlock, DeferredBlock<ColoredLogBlock> logBlock) {
+		return register(wood(blockWithItem(name, () -> new ColoredWoodBlock(copyWithMapColor(Blocks.OAK_WOOD, logBlock.get().defaultMapColor()), strippedBlock, logBlock.get().getColor()), logBlock.get().getColor()), logBlock.get()));
+	}
+	
+	public static final DeferredBlock<ColoredWoodBlock> BLACK_WOOD = registerColoredWood("black_wood", STRIPPED_BLACK_WOOD, BLACK_LOG);
+	public static final DeferredBlock<ColoredWoodBlock> BLUE_WOOD = registerColoredWood("blue_wood", STRIPPED_BLUE_WOOD, BLUE_LOG);
+	public static final DeferredBlock<ColoredWoodBlock> BROWN_WOOD = registerColoredWood("brown_wood", STRIPPED_BROWN_WOOD, BROWN_LOG);
+	public static final DeferredBlock<ColoredWoodBlock> CYAN_WOOD = registerColoredWood("cyan_wood", STRIPPED_CYAN_WOOD, CYAN_LOG);
+	public static final DeferredBlock<ColoredWoodBlock> GRAY_WOOD = registerColoredWood("gray_wood", STRIPPED_GRAY_WOOD, GRAY_LOG);
+	public static final DeferredBlock<ColoredWoodBlock> GREEN_WOOD = registerColoredWood("green_wood", STRIPPED_GREEN_WOOD, GREEN_LOG);
+	public static final DeferredBlock<ColoredWoodBlock> LIGHT_BLUE_WOOD = registerColoredWood("light_blue_wood", STRIPPED_LIGHT_BLUE_WOOD, LIGHT_BLUE_LOG);
+	public static final DeferredBlock<ColoredWoodBlock> LIGHT_GRAY_WOOD = registerColoredWood("light_gray_wood", STRIPPED_LIGHT_GRAY_WOOD, LIGHT_GRAY_LOG);
+	public static final DeferredBlock<ColoredWoodBlock> LIME_WOOD = registerColoredWood("lime_wood", STRIPPED_LIME_WOOD, LIME_LOG);
+	public static final DeferredBlock<ColoredWoodBlock> MAGENTA_WOOD = registerColoredWood("magenta_wood", STRIPPED_MAGENTA_WOOD, MAGENTA_LOG);
+	public static final DeferredBlock<ColoredWoodBlock> ORANGE_WOOD = registerColoredWood("orange_wood", STRIPPED_ORANGE_WOOD, ORANGE_LOG);
+	public static final DeferredBlock<ColoredWoodBlock> PINK_WOOD = registerColoredWood("pink_wood", STRIPPED_PINK_WOOD, PINK_LOG);
+	public static final DeferredBlock<ColoredWoodBlock> PURPLE_WOOD = registerColoredWood("purple_wood", STRIPPED_PURPLE_WOOD, PURPLE_LOG);
+	public static final DeferredBlock<ColoredWoodBlock> RED_WOOD = registerColoredWood("red_wood", STRIPPED_RED_WOOD, RED_LOG);
+	public static final DeferredBlock<ColoredWoodBlock> WHITE_WOOD = registerColoredWood("white_wood", STRIPPED_WHITE_WOOD, WHITE_LOG);
+	public static final DeferredBlock<ColoredWoodBlock> YELLOW_WOOD = registerColoredWood("yellow_wood", STRIPPED_YELLOW_WOOD, YELLOW_LOG);
 	
 	public static DeferredBlock<ColoredLeavesBlock> registerColoredLeaves(String name, InkColor color) {
 		return register(singleton(blockWithItem(name, () -> new ColoredLeavesBlock(copyWithMapColor(Blocks.OAK_LEAVES, color.getDyeColor().orElse(DyeColor.LIME).getMapColor()), color), color), TexturedModel.LEAVES));

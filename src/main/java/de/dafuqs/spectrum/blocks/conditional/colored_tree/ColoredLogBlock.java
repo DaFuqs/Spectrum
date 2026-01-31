@@ -4,6 +4,7 @@ import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.blocks.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
@@ -16,19 +17,15 @@ import net.neoforged.neoforge.common.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
+import java.util.function.*;
 
-public class ColoredLogBlock extends RotatedPillarBlock implements RevelationAware, ColoredTree {
-	
-	public static final MapCodec<ColoredLogBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-			propertiesCodec(),
-			InkColor.CODEC.fieldOf("color").forGetter(ColoredLogBlock::getColor)
-	).apply(instance, ColoredLogBlock::new));
+public class ColoredLogBlock extends StrippableRotatedPillarBlock implements RevelationAware, ColoredTree {
 	
 	private static final Map<InkColor, ColoredLogBlock> LOGS = new Object2ObjectArrayMap<>();
 	protected final InkColor color;
 	
-	public ColoredLogBlock(Properties settings, InkColor color) {
-		super(settings);
+	public ColoredLogBlock(Properties settings, Supplier<? extends RotatedPillarBlock> strippedBlock, InkColor color) {
+		super(settings, strippedBlock);
 		this.color = color;
 		LOGS.put(color, this);
 		RevelationAware.register(this);
@@ -36,7 +33,8 @@ public class ColoredLogBlock extends RotatedPillarBlock implements RevelationAwa
 	
 	@Override
 	public MapCodec<? extends ColoredLogBlock> codec() {
-		return CODEC;
+		// TODO: make the codec
+		return null;
 	}
 	
 	@Override

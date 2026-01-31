@@ -4,6 +4,7 @@ import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.blocks.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
@@ -12,27 +13,24 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 
 import java.util.*;
+import java.util.function.*;
 
-public class ColoredWoodBlock extends RotatedPillarBlock implements RevelationAware, ColoredTree {
-	
-	public static final MapCodec<ColoredWoodBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-			propertiesCodec(),
-			InkColor.CODEC.fieldOf("color").forGetter(ColoredWoodBlock::getColor)
-	).apply(instance, ColoredWoodBlock::new));
+public class ColoredWoodBlock extends StrippableRotatedPillarBlock implements RevelationAware, ColoredTree {
 	
 	private static final Map<InkColor, ColoredWoodBlock> WOOD = new Object2ObjectArrayMap<>();
 	protected final InkColor color;
 	
-	public ColoredWoodBlock(Properties settings, InkColor color) {
-		super(settings);
+	public ColoredWoodBlock(Properties settings, Supplier<? extends ColoredStrippedWoodBlock> strippedBlock, InkColor color) {
+		super(settings, strippedBlock);
 		this.color = color;
 		WOOD.put(color, this);
 		RevelationAware.register(this);
 	}
 	
 	@Override
-	public MapCodec<? extends ColoredWoodBlock> codec() {
-		return CODEC;
+	public MapCodec<? extends ColoredLogBlock> codec() {
+		// TODO: make the codec
+		return null;
 	}
 	
 	@Override

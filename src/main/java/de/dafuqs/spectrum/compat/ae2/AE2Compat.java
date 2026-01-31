@@ -53,6 +53,7 @@ public class AE2Compat extends SpectrumIntegrationPacks.ModIntegrationPack {
 				accept(PURE_FLUIX_BLOCK);
 			}
 		}));
+		*/
 	}
 	
 	@Override

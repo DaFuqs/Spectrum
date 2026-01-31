@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.blocks.deeper_down;
 
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.conditional.colored_tree.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
@@ -14,14 +15,14 @@ import net.minecraft.world.level.storage.loot.*;
 import net.neoforged.neoforge.common.*;
 import org.jetbrains.annotations.*;
 
-public class StrippingLootPillarBlock extends RotatedPillarBlock implements StrippableDrop {
+import java.util.function.*;
+
+public class StrippingLootPillarBlock extends StrippableRotatedPillarBlock implements StrippableDrop {
 	
-	private final Block sourceBlock;
 	private final ResourceKey<LootTable> strippingLootTableKey;
 	
-	public StrippingLootPillarBlock(Properties settings, Block sourceBlock, ResourceKey<LootTable> strippingLootTableKey) {
-		super(settings);
-		this.sourceBlock = sourceBlock;
+	public StrippingLootPillarBlock(Properties settings, Supplier<? extends RotatedPillarBlock> strippedBlock, ResourceKey<LootTable> strippingLootTableKey) {
+		super(settings, strippedBlock);
 		this.strippingLootTableKey = strippingLootTableKey;
 	}
 	
@@ -33,7 +34,7 @@ public class StrippingLootPillarBlock extends RotatedPillarBlock implements Stri
 	
 	@Override
 	public Block getStrippedBlock() {
-		return sourceBlock;
+		return strippedBlock.get();
 	}
 	
 	@Override

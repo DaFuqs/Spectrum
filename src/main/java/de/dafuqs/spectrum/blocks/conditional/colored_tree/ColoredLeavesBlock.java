@@ -9,6 +9,7 @@ import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 
@@ -29,6 +30,10 @@ public class ColoredLeavesBlock extends LeavesBlock implements RevelationAware, 
 		this.color = color;
 		LEAVES.put(color, this);
 		RevelationAware.register(this);
+	}
+	
+	public static Collection<ColoredLeavesBlock> allLeaves() {
+		return LEAVES.values();
 	}
 	
 	@Override

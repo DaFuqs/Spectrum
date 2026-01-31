@@ -2,14 +2,18 @@ package de.dafuqs.spectrum.progression;
 
 import net.minecraft.client.color.item.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.*;
+import net.neoforged.neoforge.client.event.*;
 
 public class ToggleableItemColorProvider implements ItemColor {
 	
-	final ItemColor vanillaProvider;
+	final RegisterColorHandlersEvent.Item event;
+	final ItemStack vanillaStack;
 	boolean shouldApply;
 	
-	public ToggleableItemColorProvider(ItemColor vanillaProvider) {
-		this.vanillaProvider = vanillaProvider;
+	public ToggleableItemColorProvider(RegisterColorHandlersEvent.Item event, ItemStack vanillaStack) {
+		this.event = event;
+		this.vanillaStack = vanillaStack;
 		this.shouldApply = true;
 	}
 	
@@ -20,7 +24,7 @@ public class ToggleableItemColorProvider implements ItemColor {
 	@Override
 	public int getColor(ItemStack stack, int tintIndex) {
 		if (shouldApply) {
-			return vanillaProvider.getColor(stack, tintIndex);
+			return event.getItemColors().getColor(Blocks.OAK_LEAVES.asItem().getDefaultInstance(), tintIndex);
 		} else {
 			// no tint
 			return 16777215;

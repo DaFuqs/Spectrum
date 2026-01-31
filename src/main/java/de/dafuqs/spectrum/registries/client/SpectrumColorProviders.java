@@ -58,33 +58,14 @@ public class SpectrumColorProviders {
 	}
 	
 	public static void registerItems(RegisterColorHandlersEvent.Item event) {
-		// Biome Colors for colored leaves items and blocks
-		// They don't use it, but their decoy oak leaves do
-		ItemColor leavesItemColorProvider = ItemColors.getItemColors(Blocks.OAK_LEAVES.asItem());
-		if (leavesItemColorProvider != null) {
-			coloredLeavesBlockColorProvider = new ToggleableBlockColorProvider(leavesBlockColorProvider);
-			coloredLeavesItemColorProvider = new ToggleableItemColorProvider(leavesItemColorProvider);
-			
-			for (InkColor color1 : InkColors.all()) {
-				Block block = ColoredLeavesBlock.byColor(color1);
-				ColorProviderRegistry.ITEM.register(coloredLeavesItemColorProvider, block);
-			}
-		}
+		coloredLeavesItemColorProvider = new ToggleableItemColorProvider(event, Blocks.OAK_LEAVES.asItem().getDefaultInstance());
+		event.register(coloredLeavesItemColorProvider, ColoredLeavesBlock.allLeaves().toArray(new ColoredLeavesBlock[0]));
 		
-		// Same for Amaranth
-		ItemColor fernItemColorProvider = ColorProviderRegistry.ITEM.get(Blocks.FERN);
-		if (fernItemColorProvider != null) {
-			amaranthBushelBlockColorProvider = new ToggleableBlockColorProvider(fernBlockColorProvider);
-			amaranthBushelItemColorProvider = new ToggleableItemColorProvider(fernItemColorProvider);
-			ColorProviderRegistry.ITEM.register(amaranthBushelItemColorProvider, SpectrumBlocks.AMARANTH_BUSHEL);
-		}
+		amaranthBushelItemColorProvider = new ToggleableItemColorProvider(event, Blocks.FERN.asItem().getDefaultInstance());
+		event.register(amaranthBushelItemColorProvider, SpectrumBlocks.AMARANTH_BUSHEL);
 		
-		ItemColor largeFernItemColorProvider = ColorProviderRegistry.ITEM.get(Blocks.LARGE_FERN);
-		if (largeFernItemColorProvider != null) {
-			amaranthCropBlockColorProvider = new ToggleableBlockColorProvider(largeFernBlockColorProvider);
-			amaranthCropItemColorProvider = new ToggleableItemColorProvider(largeFernItemColorProvider);
-			ColorProviderRegistry.ITEM.register(amaranthCropItemColorProvider, SpectrumBlocks.AMARANTH);
-		}
+		amaranthCropItemColorProvider = new ToggleableItemColorProvider(event, Blocks.LARGE_FERN.asItem().getDefaultInstance());
+		event.register(amaranthCropItemColorProvider, SpectrumBlocks.AMARANTH);
 		
 		event.register((stack, tintIndex) -> {
 			if (tintIndex == 2)
@@ -101,7 +82,7 @@ public class SpectrumColorProviders {
 				}
 			}
 			return -1;
-		}, new Item[]{SpectrumItems.LESSER_POTION_PENDANT.get(), SpectrumItems.GREATER_POTION_PENDANT.get(), SpectrumItems.MALACHITE_GLASS_AMPOULE.get()});
+		}, SpectrumItems.LESSER_POTION_PENDANT.get(), SpectrumItems.GREATER_POTION_PENDANT.get(), SpectrumItems.MALACHITE_GLASS_AMPOULE.get());
 		
 		event.register((stack, tintIndex) -> {
 			if (tintIndex == 1) {
@@ -111,7 +92,7 @@ public class SpectrumColorProviders {
 				}
 			}
 			return -1;
-		}, new Item[]{SpectrumItems.NIGHTFALLS_BLADE.get(), SpectrumItems.CONCEALING_OILS.get()});
+		}, SpectrumItems.NIGHTFALLS_BLADE.get(), SpectrumItems.CONCEALING_OILS.get());
 		
 		event.register((stack, tintIndex) -> {
 			if (tintIndex == 1) {

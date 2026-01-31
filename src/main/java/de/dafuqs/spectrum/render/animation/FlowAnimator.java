@@ -34,7 +34,7 @@ public class FlowAnimator {
 	 */
 	public void animate(float tickDelta, long time) {
 		var delta = Math.clamp(1 - ((interpProgress - tickDelta) / info.interpTime), 0, 1);
-		liveData.forEach(flowData -> flowData.update(delta, time));
+		liveData.forEach(flowData -> flowData.update(tickDelta, delta, time));
 	}
 	
 	/**

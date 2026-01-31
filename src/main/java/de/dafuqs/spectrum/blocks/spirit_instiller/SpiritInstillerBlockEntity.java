@@ -494,14 +494,14 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		
 		builder.handle("platformY", FlowHandlers.FLOAT)
 				.initial(0F)
-				.interpolate(Interpolation.EASE_OUT)
+				.interpolate(Interpolation.CUBIC_OUT)
 				.loopback(FlowStates.MB_INVALID, FlowStates.INACTIVE)
 				.forStates((tickDelta, time) -> (float) (Math.sin((time + tickDelta + 15) / 23) + 4F), FlowStates.IDLE)
 				.forStates(platformPos, FlowStates.ACTIVE)
 				.push();
 		builder.handle("haloY", FlowHandlers.FLOAT)
 				.initial(0F)
-				.interpolate(Interpolation.EASE_OUT)
+				.interpolate(Interpolation.CUBIC_OUT)
 				.startingKeyFrame(((tickDelta, time) -> (float) (Math.sin((time + tickDelta) / 23) + 1)))
 				.loopback(FlowStates.MB_INVALID, FlowStates.INACTIVE, FlowStates.IDLE)
 				.forStates((tickDelta, time) -> platformPos.at(tickDelta, time) - 34.5F, FlowStates.ACTIVE)
@@ -525,7 +525,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		
 		builder.handle("blossomAlpha", FlowHandlers.FLOAT)
 				.initial(0F)
-				.interpolate(Interpolation.EASE_OUT)
+				.interpolate(Interpolation.CUBIC_OUT)
 				.loopback(FlowStates.ACTIVE)
 				.forStates(1F, FlowStates.INACTIVE, FlowStates.IDLE)
 				.push();

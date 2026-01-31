@@ -74,8 +74,8 @@ public final class FlowData<N extends Number> {
 		}
 	}
 	
-	public void update(float delta, long time) {
-		value = signature.handler.interpolate(signature.interpolation, pastKeyFrame.at(delta, time), nextKeyFrame.at(delta, time), delta, time);
+	public void update(float tickDelta, float interpDelta, long time) {
+		value = signature.handler.interpolate(signature.interpolation, pastKeyFrame.at(tickDelta, time), nextKeyFrame.at(tickDelta, time), interpDelta, time);
 	}
 	
 	public FlowHandler<N> getHandler() {

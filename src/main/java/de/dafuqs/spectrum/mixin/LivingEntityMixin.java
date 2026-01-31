@@ -158,6 +158,7 @@ public abstract class LivingEntityMixin {
 			f.set(Math.min(friction, 0.99F));
 	}
 	
+	// TODO: fixin mixin
 	@ModifyExpressionValue(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/Block;getFriction()F"))
 	private float spectrum$increaseSlipperiness(float original) {
 		var entity = (LivingEntity) (Object) this;

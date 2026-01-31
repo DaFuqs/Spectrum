@@ -12,6 +12,6 @@ import java.util.*;
 public interface FoxEntityAccessor {
 	
 	@Invoker
-	void invokeAddTrustedUuid(@Nullable UUID uuid);
+	void invokeAddTrustedUUID(@Nullable UUID uuid);
 	
 }

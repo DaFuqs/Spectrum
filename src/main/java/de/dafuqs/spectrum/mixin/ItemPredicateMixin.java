@@ -11,6 +11,13 @@ import org.spongepowered.asm.mixin.injection.*;
 
 import java.util.*;
 
+// TODO: migrate bedrock shears and loot tables to use
+/*
+{
+  "condition": "neoforge:can_item_perform_ability"
+  "ability": "shears_dig",
+}
+ */
 @Mixin(ItemPredicate.class)
 public abstract class ItemPredicateMixin {
 	

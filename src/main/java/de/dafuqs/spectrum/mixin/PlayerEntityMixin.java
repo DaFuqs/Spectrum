@@ -61,7 +61,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 	protected abstract boolean canPlayerFitWithinBlocksAndEntitiesWhen(Pose pose);
 	
 	@Unique
-	public SpectrumFishingBobberEntity fishingBobber;
+	public SpectrumFishingBobberEntity spectrum$fishingBobber;
 	
 	@ModifyVariable(method = "attack", name = "entityReachSq", at = @At(value = "STORE"))
 	protected double spectrum$increaseSweepMaxDistance(double original) {
@@ -73,6 +73,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 		return original;
 	}
 	
+	// TODO: fixin mixin
 	@WrapOperation(method = "getDestroySpeed", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Inventory;getDestroySpeed(Lnet/minecraft/world/level/block/state/BlockState;)F"))
 	private float spectrum$modifygetBlockBreakingSpeed(Inventory inventory, BlockState state, Operation<Float> original) {
 		ItemStack stack = inventory.items.get(inventory.selected);
@@ -258,7 +259,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 	
 	@Override
 	public void setSpectrumBobber(SpectrumFishingBobberEntity bobber) {
-		this.fishingBobber = bobber;
+		this.spectrum$fishingBobber = bobber;
 	}
 	
 	@Override
@@ -268,7 +269,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 	
 	@Override
 	public SpectrumFishingBobberEntity getSpectrumBobber() {
-		return this.fishingBobber;
+		return this.spectrum$fishingBobber;
 	}
 	
 	@Inject(at = @At("HEAD"), method = "isHurt", cancellable = true)
@@ -301,6 +302,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 		return experience;
 	}
 	
+	// TODO: fixin mixin
 	@ModifyConstant(method = "getDestroySpeed",
 			slice = @Slice(from = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;hasEffect(Lnet/minecraft/core/Holder;)Z"),
 					to = @At("TAIL")

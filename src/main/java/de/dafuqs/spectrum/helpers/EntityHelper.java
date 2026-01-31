@@ -21,7 +21,7 @@ public class EntityHelper {
 				horseBaseEntity.setOwnerUUID(playerUUID);
 			}
 		} else if (entity instanceof Fox foxEntity) {
-			((FoxEntityAccessor) foxEntity).invokeAddTrustedUuid(playerUUID);
+			((FoxEntityAccessor) foxEntity).invokeAddTrustedUUID(playerUUID);
 		}
 	}
 	

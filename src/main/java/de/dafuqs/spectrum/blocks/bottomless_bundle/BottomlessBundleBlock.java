@@ -74,7 +74,7 @@ public class BottomlessBundleBlock extends BaseEntityBlock {
 				if (be instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
 					long amount = bottomlessBundleBlockEntity.storage.amount;
 					ItemStack variant = bottomlessBundleBlockEntity.storage.variant;
-					long maxStoredAmount = BottomlessBundleItem.getMaxStoredAmount(bottomlessBundleBlockEntity.powerLevel);
+					long maxStoredAmount = bottomlessBundleBlockEntity.storage.getCapacity();
 					if (variant == null || variant.isEmpty()) {
 						player.displayClientMessage(Component.translatable("item.spectrum.bottomless_bundle.tooltip.empty"), true);
 					} else {
@@ -90,8 +90,8 @@ public class BottomlessBundleBlock extends BaseEntityBlock {
 					// If same type or empty template -> try to insert
 					if ((storedVariant.isEmpty() || ItemStack.isSameItemSameComponents(storedVariant, stack))) {
 						if (!stack.isEmpty() && stack.getItem().canFitInsideContainerItems()) {
-							long inserted = storage.insert(stack, stack.getCount());
-							stack.shrink((int) inserted);
+							ItemStack remainder = storage.insertItem(0, stack, false);
+							stack.setCount(remainder.getCount());
 							world.playSound(null, pos, SoundEvents.BUNDLE_INSERT, SoundSource.BLOCKS, 0.8F, 0.8F + world.getRandom().nextFloat() * 0.4F);
 						}
 					} else {
@@ -142,7 +142,7 @@ public class BottomlessBundleBlock extends BaseEntityBlock {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
 			float curr = bottomlessBundleBlockEntity.storage.amount;
-			float max = BottomlessBundleItem.getMaxStoredAmount(bottomlessBundleBlockEntity.powerLevel);
+			float max = bottomlessBundleBlockEntity.storage.getCapacity();
 			int signal = Mth.floor(curr / max * 14.0f) + (curr > 0 ? 1 : 0);
 			return signal;
 		}
@@ -168,11 +168,11 @@ public class BottomlessBundleBlock extends BaseEntityBlock {
 	}
 	
 	protected BlockState rotate(BlockState state, Rotation rotation) {
-		return (BlockState) state.setValue(ROTATION, rotation.rotate((Integer) state.getValue(ROTATION), MAX_ROTATIONS));
+		return state.setValue(ROTATION, rotation.rotate(state.getValue(ROTATION), MAX_ROTATIONS));
 	}
 	
 	protected BlockState mirror(BlockState state, Mirror mirror) {
-		return (BlockState) state.setValue(ROTATION, mirror.mirror((Integer) state.getValue(ROTATION), MAX_ROTATIONS));
+		return state.setValue(ROTATION, mirror.mirror(state.getValue(ROTATION), MAX_ROTATIONS));
 	}
 	
 	@Override

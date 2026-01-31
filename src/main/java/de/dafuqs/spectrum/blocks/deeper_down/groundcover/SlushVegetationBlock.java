@@ -5,10 +5,14 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.context.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.lighting.*;
+import net.neoforged.neoforge.common.*;
+import org.jetbrains.annotations.*;
 
 public class SlushVegetationBlock extends SnowyDirtBlock {
 	
@@ -41,6 +45,15 @@ public class SlushVegetationBlock extends SnowyDirtBlock {
 			int light = LightEngine.getLightBlockInto(level, state, pos, blockState, blockPos, Direction.UP, blockState.getLightBlock(level, blockPos));
 			return light < level.getMaxLightLevel();
 		}
+	}
+	
+	@Override
+	public @Nullable BlockState getToolModifiedState(BlockState state, UseOnContext context, ItemAbility itemAbility, boolean simulate) {
+		ItemStack handStack = context.getItemInHand();
+		if (itemAbility == ItemAbilities.HOE_TILL && handStack.canPerformAction(itemAbility) && HoeItem.onlyIfAirAbove(context)) {
+			return SpectrumBlocks.TILLED_SLUSH.get().defaultBlockState());
+		}
+		return null;
 	}
 	
 }

@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#c:is_overworld",
+  "features": "spectrum:topaz_geode",
+  "step": "underground_structures"
+}

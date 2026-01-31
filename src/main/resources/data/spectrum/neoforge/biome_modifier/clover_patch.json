@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#spectrum:clover_generating_in",
+  "features": "spectrum:clover_patch",
+  "step": "vegetal_decoration"
+}

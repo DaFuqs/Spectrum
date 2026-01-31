@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#c:is_nether",
+  "features": "spectrum:stratine_ore",
+  "step": "underground_ores"
+}

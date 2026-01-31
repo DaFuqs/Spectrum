@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#spectrum:dragonbone_fossils_generating_in",
+  "features": "spectrum:dragon_fossil_overworld_buried",
+  "step": "underground_decoration"
+}

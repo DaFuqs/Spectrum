@@ -138,8 +138,6 @@ public class SpectrumCommon {
 		// Worldgen
 		logInfo("Registering Features...");
 		SpectrumFeatures.register(modBus);
-		logInfo("Registering Biome Modifications...");
-		SpectrumPlacedFeatures.addBiomeModifications();
 		logInfo("Registering Structure Types...");
 		SpectrumStructureTypes.register(modBus);
 		

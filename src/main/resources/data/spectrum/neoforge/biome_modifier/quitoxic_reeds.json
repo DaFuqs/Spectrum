@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#spectrum:quitoxic_reeds_generating_in",
+  "features": "spectrum:quitoxic_reeds",
+  "step": "vegetal_decoration"
+}

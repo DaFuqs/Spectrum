@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
+import de.dafuqs.spectrum.capabilities.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.compat.reverb.*;
 import de.dafuqs.spectrum.components.*;
@@ -220,8 +221,9 @@ public class SpectrumCommon {
 			Player player = event.getEntity();
 			MiscPlayerDataAttachmentType.get(player).tick();
 		});
+		NeoForge.EVENT_BUS.addListener(SpectrumCapabilities::register);
 		
-		logInfo("Adding to Fabric's Registries...");
+		logInfo("Registering Flammable Blocks...");
 		SpectrumFlammableBlocks.register();
 		
 		logInfo("Registering Game Events...");

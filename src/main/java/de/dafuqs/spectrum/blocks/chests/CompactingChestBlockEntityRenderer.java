@@ -3,18 +3,13 @@ package de.dafuqs.spectrum.blocks.chests;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.model.geom.*;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.client.resources.model.*;
-import net.minecraft.core.*;
-import net.minecraft.util.*;
 import net.minecraft.world.inventory.*;
-import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.*;
 import org.jetbrains.annotations.*;
 
 
@@ -56,41 +51,21 @@ public class CompactingChestBlockEntityRenderer implements BlockEntityRenderer<C
 	}
 	
 	@Override
-	public void render(CompactingChestBlockEntity chest, float tickDelta, PoseStack poseStack, @NotNull MultiBufferSource vertexConsumers, int light, int overlay) {
-		Level world = chest.getLevel();
-		boolean bl = world != null;
-		BlockState blockState = bl ? chest.getBlockState() : SpectrumBlocks.COMPACTING_CHEST.get().defaultBlockState().setValue(ChestBlock.FACING, Direction.SOUTH);
+	public void render(CompactingChestBlockEntity chest, float tickDelta, PoseStack poseStack, MultiBufferSource vertexConsumers, int light, int overlay) {
+		if (chest.animator == null || chest.getLevel() == null)
+			return;
+		
+		chest.animator.animate(tickDelta, chest.getLevel().getGameTime() % 100000);
+		
 		poseStack.pushPose();
-		float f = blockState.hasProperty(ChestBlock.FACING) ? blockState.getValue(ChestBlock.FACING).toYRot() : 0;
+		float f = chest.getBlockState().getValue(ChestBlock.FACING).toYRot();
 		poseStack.translate(0.5D, 1.5D, 0.5D);
 		poseStack.mulPose(Axis.YP.rotationDegrees(-f));
 		poseStack.mulPose(Axis.XP.rotationDegrees(180));
 		
-		switch (chest.getState()) {
-			case OPEN -> {
-				chest.pistonTarget = 14;
-				chest.driverTarget = 6;
-				chest.capTarget = 5;
-			}
-			case CRAFTING -> {
-				chest.pistonTarget = (float) (Math.sin((chest.activeTicks % 500000 + tickDelta) / 10F) * 5 + 4);
-				chest.driverTarget = (float) (Math.sin(((chest.activeTicks + 13) % 500000 + tickDelta) / 10F) * 5 + 5);
-				chest.capTarget = 0;
-			}
-			case CLOSED -> {
-				chest.pistonTarget = 0;
-				chest.driverTarget = 0;
-				chest.capTarget = 0;
-			}
-		}
-		
-		var interp = Mth.clamp((chest.interpTicks + tickDelta) / chest.interpLength, 0F, 1F);
-		chest.pistonPos = Mth.lerp(interp, chest.lastPistonTarget, chest.pistonTarget);
-		chest.driverPos = Mth.lerp(interp, chest.lastDriverTarget, chest.driverTarget);
-		chest.capPos = Mth.lerp(interp, chest.lastCapTarget, chest.capTarget);
-		piston.y = -22 - chest.pistonPos;
-		driver.y = 21 - chest.driverPos;
-		cap.y = 21 - chest.capPos;
+		piston.y = -22 - chest.piston.get();
+		driver.y = 21 - chest.driver.get();
+		cap.y = 21 - chest.cap.get();
 		
 		VertexConsumer vertexConsumer = SPRITE_IDENTIFIER.buffer(vertexConsumers, RenderType::entityCutoutNoCull);
 		root.render(poseStack, vertexConsumer, light, overlay);

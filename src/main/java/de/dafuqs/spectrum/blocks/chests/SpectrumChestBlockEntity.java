@@ -1,9 +1,13 @@
 package de.dafuqs.spectrum.blocks.chests;
 
+import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.inventories.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.nbt.*;
+import net.minecraft.network.protocol.*;
+import net.minecraft.network.protocol.game.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
@@ -15,9 +19,10 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.neoforged.api.distmarker.*;
+import org.jetbrains.annotations.*;
 
 @OnlyIn(value = Dist.CLIENT, _interface = LidBlockEntity.class)
-public abstract class SpectrumChestBlockEntity extends RandomizableContainerBlockEntity implements LidBlockEntity {
+public abstract class SpectrumChestBlockEntity extends RandomizableContainerBlockEntity implements LidBlockEntity, ImplementedInventory {
 	
 	public final ContainerOpenersCounter stateManager;
 	protected final ChestLidController lidAnimator;
@@ -63,6 +68,16 @@ public abstract class SpectrumChestBlockEntity extends RandomizableContainerBloc
 				return inventory == SpectrumChestBlockEntity.this;
 			}
 		};
+	}
+	
+	@Override
+	public ItemStack getItem(int index) {
+		return inventory.get(index);
+	}
+	
+	@Override
+	public @Nullable Packet<ClientGamePacketListener> getUpdatePacket() {
+		return ClientboundBlockEntityDataPacket.create(this);
 	}
 	
 	private static void playSound(Level world, BlockPos pos, SoundEvent soundEvent) {
@@ -123,7 +138,7 @@ public abstract class SpectrumChestBlockEntity extends RandomizableContainerBloc
 	}
 	
 	@Override
-	protected NonNullList<ItemStack> getItems() {
+	public NonNullList<ItemStack> getItems() {
 		return this.inventory;
 	}
 	

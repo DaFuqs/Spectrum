@@ -27,6 +27,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.fluids.*;
+import net.neoforged.neoforge.fluids.capability.*;
 import net.neoforged.neoforge.fluids.capability.templates.*;
 import org.jetbrains.annotations.*;
 
@@ -298,6 +299,10 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		super.inventoryChanged();
 		this.inventoryChanged = true;
 		this.craftingTime = 0;
+	}
+	
+	public FluidTank getFluidStorage() {
+		return tank;
 	}
 	
 }

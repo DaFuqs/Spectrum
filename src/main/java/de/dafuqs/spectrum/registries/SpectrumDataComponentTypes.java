@@ -15,6 +15,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.item.enchantment.*;
 import net.neoforged.bus.api.*;
+import net.neoforged.neoforge.fluids.*;
 import net.neoforged.neoforge.registries.*;
 
 import java.util.*;
@@ -62,6 +63,7 @@ public class SpectrumDataComponentTypes {
 	public static final Supplier<DataComponentType<WrappedPresentComponent>> WRAPPED_PRESENT = register("wrapped_present", builder -> builder.persistent(WrappedPresentComponent.CODEC).networkSynchronized(WrappedPresentComponent.PACKET_CODEC).cacheEncoding());
 	public static final Supplier<DataComponentType<WithMilkComponent>> WITH_MILK = register("with_milk", builder -> builder.persistent(WithMilkComponent.CODEC).networkSynchronized(WithMilkComponent.PACKET_CODEC));
 	public static final Supplier<DataComponentType<WorkstaffComponent>> WORKSTAFF = register("workstaff", builder -> builder.persistent(WorkstaffComponent.CODEC).networkSynchronized(WorkstaffComponent.PACKET_CODEC));
+	public static final Supplier<DataComponentType<SimpleFluidContent>> FLUID_CONTENT = register("fluid_content", builder -> builder.persistent(SimpleFluidContent.CODEC));
 	
 	public static <T> Supplier<DataComponentType<T>> register(String id, UnaryOperator<DataComponentType.Builder<T>> builderOperator) {
 		return REGISTRAR.registerComponentType(id, builderOperator);

@@ -10,6 +10,7 @@ import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.entity.spawners.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.*;
@@ -356,7 +357,7 @@ public class SpectrumEventListeners {
 			
 			@Override
 			public void onResourceManagerReload(ResourceManager manager) {
-				CompactingChestBlockEntity.clearCache();
+				AutoCraftingMode.clearCache();
 				SpectrumCommon.CACHED_ITEM_TAG_MAP.clear();
 				
 				if (SpectrumCommon.minecraftServer != null) {

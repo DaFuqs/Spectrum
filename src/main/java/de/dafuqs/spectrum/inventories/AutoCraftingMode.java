@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.inventories;
 
+import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 
@@ -9,6 +10,8 @@ public enum AutoCraftingMode {
 	OneXOne(1, 1),
 	TwoXTwo(2, 2),
 	ThreeXThree(3, 3);
+	
+	private static final Map<AutoCraftingMode, Map<ItemStack, Optional<RecipeHolder<CraftingRecipe>>>> CACHE = new EnumMap<>(AutoCraftingMode.class);
 	
 	private final int width;
 	private final int height;
@@ -40,6 +43,14 @@ public enum AutoCraftingMode {
 			inputs.add(stack);
 		}
 		return CraftingInput.ofPositioned(width, height, inputs);
+	}
+	
+	public static Map<ItemStack, Optional<RecipeHolder<CraftingRecipe>>> getCache(AutoCraftingMode mode) {
+		return CACHE.computeIfAbsent(mode, m -> new HashMap<>());
+	}
+	
+	public static void clearCache() {
+		CACHE.clear();
 	}
 	
 }

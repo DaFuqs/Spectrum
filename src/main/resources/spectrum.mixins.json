@@ -71,6 +71,7 @@
     "ServerPlayNetworkHandlerMixin$NetworkEntityValidationMixin",
     "ServerWorldMixin",
     "ShearsDispenserBehaviorMixin",
+    "SimpleCriterionTriggerMixin",
     "SpawnDensityCapperMixin",
     "StatusEffectUtilMixin",
     "TemptGoalMixin",

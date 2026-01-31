@@ -4,7 +4,6 @@ import com.mojang.serialization.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.mob_head.*;
-import de.dafuqs.spectrum.compat.gofish.*;
 import de.dafuqs.spectrum.loot.functions.*;
 import de.dafuqs.spectrum.loot.loot_modifiers.*;
 import de.dafuqs.spectrum.registries.*;

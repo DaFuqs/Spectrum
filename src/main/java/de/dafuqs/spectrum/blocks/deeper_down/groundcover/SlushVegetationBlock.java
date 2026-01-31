@@ -51,7 +51,7 @@ public class SlushVegetationBlock extends SnowyDirtBlock {
 	public @Nullable BlockState getToolModifiedState(BlockState state, UseOnContext context, ItemAbility itemAbility, boolean simulate) {
 		ItemStack handStack = context.getItemInHand();
 		if (itemAbility == ItemAbilities.HOE_TILL && handStack.canPerformAction(itemAbility) && HoeItem.onlyIfAirAbove(context)) {
-			return SpectrumBlocks.TILLED_SLUSH.get().defaultBlockState());
+			return SpectrumBlocks.TILLED_SLUSH.get().defaultBlockState();
 		}
 		return null;
 	}

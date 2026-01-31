@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.networking.c2s_payloads.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
+import net.minecraft.network.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
@@ -16,10 +17,12 @@ public class CompactingChestScreenHandler extends AbstractContainerMenu {
 	private final CompactingChestBlockEntity blockEntity;
 	protected final int ROWS = 3;
 	
-	public CompactingChestScreenHandler(int syncId, Inventory playerInventory, BlockPos pos) {
-		this(syncId, playerInventory, (CompactingChestBlockEntity) playerInventory.player.level().getBlockEntity(pos), new SimpleContainerData(1));
+	// clientside
+	public CompactingChestScreenHandler(int syncId, Inventory playerInventory, RegistryFriendlyByteBuf buf) {
+		this(syncId, playerInventory, (CompactingChestBlockEntity) playerInventory.player.level().getBlockEntity(BlockPos.STREAM_CODEC.decode(buf)), new SimpleContainerData(1));
 	}
 	
+	// serverside
 	public CompactingChestScreenHandler(int syncId, Inventory playerInventory, CompactingChestBlockEntity blockEntity, ContainerData propertyDelegate) {
 		super(SpectrumScreenHandlerTypes.COMPACTING_CHEST, syncId);
 		

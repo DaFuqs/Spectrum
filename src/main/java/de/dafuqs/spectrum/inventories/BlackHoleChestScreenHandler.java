@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.inventories.slots.*;
 import de.dafuqs.spectrum.registries.*;
+import net.minecraft.network.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
@@ -19,10 +20,12 @@ public class BlackHoleChestScreenHandler extends AbstractContainerMenu {
 	protected BlackHoleChestBlockEntity blockEntity;
 	protected Container filterInventory;
 	
-	public BlackHoleChestScreenHandler(int syncId, Inventory playerInventory, FilterConfigurable.ExtendedDataWithPos data) {
-		this(syncId, playerInventory, playerInventory.player.level().getBlockEntity(data.pos(), SpectrumBlockEntities.BLACK_HOLE_CHEST.get()).orElseThrow(), data.data());
+	// clientside
+	public BlackHoleChestScreenHandler(int syncId, Inventory playerInventory, RegistryFriendlyByteBuf buf) {
+		this(syncId, playerInventory, playerInventory.player.level().getBlockEntity(FilterConfigurable.ExtendedDataWithPos.PACKET_CODEC.decode(buf).pos(), SpectrumBlockEntities.BLACK_HOLE_CHEST.get()).orElseThrow(), FilterConfigurable.ExtendedDataWithPos.PACKET_CODEC.decode(buf).data());
 	}
 	
+	// serverside
 	public BlackHoleChestScreenHandler(int syncId, Inventory playerInventory, BlackHoleChestBlockEntity blockEntity, FilterConfigurable.ExtendedData data) {
 		super(SpectrumScreenHandlerTypes.BLACK_HOLE_CHEST, syncId);
 		this.world = playerInventory.player.level();

@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.inventories.slots.*;
+import net.minecraft.network.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
@@ -18,18 +19,23 @@ public class FilteringScreenHandler extends AbstractContainerMenu {
 	protected final Container filterInventory;
 	protected final int rows, slotsPerRow, drawnSlots;
 	
+	// clientside
+	public FilteringScreenHandler(int syncId, Inventory playerInventory, RegistryFriendlyByteBuf buf) {
+		this(syncId, playerInventory, FilterConfigurable.ExtendedData.PACKET_CODEC.decode(buf));
+	}
+	
 	public FilteringScreenHandler(int syncId, Inventory playerInventory, FilterConfigurable.ExtendedData data) {
-		this(SpectrumScreenHandlerTypes.FILTERING, syncId, playerInventory,
-				(handler) -> new Tuple<>(FilterConfigurable.getFilterInventoryFromItemsHandler(syncId, playerInventory, data.filterItems(), handler), new Integer[]{
-						data.rows(),
-						data.slotsPerRow(),
-						data.drawnSlots()
-				}));
+		this(syncId, playerInventory, (handler) -> new Tuple<>(FilterConfigurable.getFilterInventoryFromItemsHandler(syncId, playerInventory, data.filterItems(), handler), new Integer[]{
+				data.rows(),
+				data.slotsPerRow(),
+				data.drawnSlots()
+		}));
 		this.filterConfigurable = data;
 	}
 	
-	protected FilteringScreenHandler(MenuType<?> type, int syncId, Inventory playerInventory, Function<AbstractContainerMenu, Tuple<Container, Integer[]>> filterInventoryFactory) {
-		super(type, syncId);
+	// serverside
+	protected FilteringScreenHandler(int syncId, Inventory playerInventory, Function<AbstractContainerMenu, Tuple<Container, Integer[]>> filterInventoryFactory) {
+		super(SpectrumScreenHandlerTypes.FILTERING, syncId);
 		this.world = playerInventory.player.level();
 		var pair = filterInventoryFactory.apply(this);
 		this.filterInventory = pair.getA();

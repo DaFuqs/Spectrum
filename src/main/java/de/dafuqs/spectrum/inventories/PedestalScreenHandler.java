@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.*;
 import io.netty.buffer.*;
 import net.minecraft.core.*;
+import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
@@ -33,18 +34,15 @@ public class PedestalScreenHandler extends RecipeBookMenu<RecipeInput, Recipe<Re
 	private final PedestalRecipeTier maxPedestalRecipeTier;
 	
 	// clientside
-	public PedestalScreenHandler(int syncId, Inventory playerInventory, ScreenOpeningData screenOpeningData) {
-		this(syncId, playerInventory, playerInventory.player.level().getBlockEntity(screenOpeningData.pos, SpectrumBlockEntities.PEDESTAL.get()).orElseThrow(), new SimpleContainerData(2), screenOpeningData.pedestalRecipeTier, screenOpeningData.maxRecipeTier);
+	public PedestalScreenHandler(int syncId, Inventory playerInventory, RegistryFriendlyByteBuf buf) {
+		this(syncId, playerInventory, playerInventory.player.level().getBlockEntity(ScreenOpeningData.PACKET_CODEC.decode(buf).pos, SpectrumBlockEntities.PEDESTAL.get()).orElseThrow(),
+				new SimpleContainerData(2), ScreenOpeningData.PACKET_CODEC.decode(buf).pedestalRecipeTier, ScreenOpeningData.PACKET_CODEC.decode(buf).maxRecipeTier);
 	}
 	
 	// serverside
-	public PedestalScreenHandler(int syncId, Inventory playerInventory, PedestalBlockEntity blockEntity, ContainerData propertyDelegate, PedestalRecipeTier pedestalRecipeTier, PedestalRecipeTier maxRecipeTier) {
-		this(SpectrumScreenHandlerTypes.PEDESTAL, RecipeBookType.CRAFTING, syncId, playerInventory, blockEntity, propertyDelegate, pedestalRecipeTier, maxRecipeTier);
-	}
-	
-	protected PedestalScreenHandler(MenuType<?> type, RecipeBookType recipeBookCategory, int i, Inventory playerInventory, PedestalBlockEntity blockEntity, ContainerData propertyDelegate, PedestalRecipeTier pedestalRecipeTier, PedestalRecipeTier maxRecipeTier) {
-		super(type, i);
-		this.category = recipeBookCategory;
+	protected PedestalScreenHandler(int syncId, Inventory playerInventory, PedestalBlockEntity blockEntity, ContainerData propertyDelegate, PedestalRecipeTier pedestalRecipeTier, PedestalRecipeTier maxRecipeTier) {
+		super(SpectrumScreenHandlerTypes.PEDESTAL, syncId);
+		this.category = RecipeBookType.CRAFTING;
 		this.propertyDelegate = propertyDelegate;
 		this.world = playerInventory.player.level();
 		

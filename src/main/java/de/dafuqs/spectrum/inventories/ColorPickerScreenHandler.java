@@ -34,19 +34,12 @@ public class ColorPickerScreenHandler extends AbstractContainerMenu implements I
 	public final ServerPlayer player;
 	protected ColorPickerBlockEntity blockEntity;
 	
-	@Override
-	public void broadcastChanges() {
-		super.broadcastChanges();
-		
-		if (this.player != null && this.blockEntity.getInkDirty()) {
-			UpdateBlockEntityInkPayload.updateBlockEntityInk(blockEntity.getBlockPos(), blockEntity.getEnergyStorage(), player);
-		}
+	// clientside
+	public ColorPickerScreenHandler(int syncId, Inventory playerInventory, RegistryFriendlyByteBuf buf) {
+		this(syncId, playerInventory, playerInventory.player.level().getBlockEntity(ScreenOpeningData.PACKET_CODEC.decode(buf).pos(), SpectrumBlockEntities.COLOR_PICKER.get()).orElseThrow(), ScreenOpeningData.PACKET_CODEC.decode(buf).inkColor());
 	}
 	
-	public ColorPickerScreenHandler(int syncId, Inventory playerInventory, ScreenOpeningData data) {
-		this(syncId, playerInventory, playerInventory.player.level().getBlockEntity(data.pos(), SpectrumBlockEntities.COLOR_PICKER.get()).orElseThrow(), data.inkColor());
-	}
-	
+	// serverside
 	public ColorPickerScreenHandler(int syncId, Inventory playerInventory, ColorPickerBlockEntity blockEntity, Optional<Holder<InkColor>> selectedColor) {
 		super(SpectrumScreenHandlerTypes.COLOR_PICKER, syncId);
 		
@@ -124,6 +117,15 @@ public class ColorPickerScreenHandler extends AbstractContainerMenu implements I
 	@Override
 	public void onInkColorSelectedPacket(Optional<Holder<InkColor>> inkColor) {
 		this.blockEntity.setSelectedColor(inkColor);
+	}
+	
+	@Override
+	public void broadcastChanges() {
+		super.broadcastChanges();
+		
+		if (this.player != null && this.blockEntity.getInkDirty()) {
+			UpdateBlockEntityInkPayload.updateBlockEntityInk(blockEntity.getBlockPos(), blockEntity.getEnergyStorage(), player);
+		}
 	}
 	
 }

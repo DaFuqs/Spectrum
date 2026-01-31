@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.inventories.slots.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
+import net.minecraft.network.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
@@ -22,19 +23,12 @@ public class CinderhearthScreenHandler extends AbstractContainerMenu {
 	
 	public final ServerPlayer player;
 	
-	@Override
-	public void broadcastChanges() {
-		super.broadcastChanges();
-		
-		if (this.player != null && this.blockEntity.getInkDirty()) {
-			UpdateBlockEntityInkPayload.updateBlockEntityInk(blockEntity.getBlockPos(), blockEntity.getEnergyStorage(), player);
-		}
+	// clientside
+	public CinderhearthScreenHandler(int syncId, Inventory playerInventory, RegistryFriendlyByteBuf buf) {
+		this(syncId, playerInventory, playerInventory.player.level().getBlockEntity(BlockPos.STREAM_CODEC.decode(buf), SpectrumBlockEntities.CINDERHEARTH.get()).orElseThrow(), new SimpleContainerData(2));
 	}
 	
-	public CinderhearthScreenHandler(int syncId, Inventory playerInventory, BlockPos pos) {
-		this(syncId, playerInventory, playerInventory.player.level().getBlockEntity(pos, SpectrumBlockEntities.CINDERHEARTH.get()).orElseThrow(), new SimpleContainerData(2));
-	}
-	
+	// serverside
 	public CinderhearthScreenHandler(int syncId, Inventory playerInventory, CinderhearthBlockEntity blockEntity, ContainerData propertyDelegate) {
 		super(SpectrumScreenHandlerTypes.CINDERHEARTH, syncId);
 		
@@ -122,6 +116,15 @@ public class CinderhearthScreenHandler extends AbstractContainerMenu {
 	
 	public int getCraftingTimeTotal() {
 		return this.propertyDelegate.get(1);
+	}
+	
+	@Override
+	public void broadcastChanges() {
+		super.broadcastChanges();
+		
+		if (this.player != null && this.blockEntity.getInkDirty()) {
+			UpdateBlockEntityInkPayload.updateBlockEntityInk(blockEntity.getBlockPos(), blockEntity.getEnergyStorage(), player);
+		}
 	}
 	
 }

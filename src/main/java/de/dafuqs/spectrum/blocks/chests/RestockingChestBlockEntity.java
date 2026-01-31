@@ -226,16 +226,14 @@ public class RestockingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	}
 
 	private boolean isRecipeCraftable(Recipe<?> recipe, int index) {
-		 // Don't check if a recipe can be crafted when simulating insertion of its remainders.
-		if(Transaction.isOpen()) {
-			return true;
-		}
-		
 		var ingredients = recipe.getIngredients();
 
 		if (!InventoryHelper.hasInInventory(ingredients, this))
 			return false;
-
+		
+		// Don't check if a recipe can be crafted when simulating insertion of its remainders.
+		if (Transaction.isOpen()) return true;
+		
 		var remainders = InventoryHelper.getRemainders(ingredients, this);
 
 		return InventoryHelper.canFitStacks(remainders, this);

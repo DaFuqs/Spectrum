@@ -39,7 +39,7 @@ public class SpectrumS2CPackets {
 		registrar.playToClient(PlayPresentOpeningParticlesPayload.ID, PlayPresentOpeningParticlesPayload.CODEC, PlayPresentOpeningParticlesPayload::execute);
 		registrar.playToClient(PlayAscensionAppliedEffectsPayload.ID, PlayAscensionAppliedEffectsPayload.CODEC, PlayAscensionAppliedEffectsPayload::execute);
 		registrar.playToClient(PlayDivinityAppliedEffectsPayload.ID, PlayDivinityAppliedEffectsPayload.CODEC, PlayDivinityAppliedEffectsPayload::execute);
-		registrar.playToClient(MoonstoneBlastPayload.ID, MoonstoneBlastPayload.CODEC, MoonstoneBlastPayload::execute);
+		registrar.playToClient(MoonstoneStrikePayload.ID, MoonstoneStrikePayload.CODEC, MoonstoneStrikePayload::execute);
 		registrar.playToClient(SyncArtisansAtlasPayload.ID, SyncArtisansAtlasPayload.CODEC, SyncArtisansAtlasPayload::execute);
 		registrar.playToClient(SyncMentalPresencePayload.ID, SyncMentalPresencePayload.CODEC, SyncMentalPresencePayload::execute);
 		registrar.playToClient(CompactingChestStatusUpdatePayload.ID, CompactingChestStatusUpdatePayload.CODEC, CompactingChestStatusUpdatePayload::execute);

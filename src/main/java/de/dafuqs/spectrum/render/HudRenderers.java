@@ -10,7 +10,9 @@ import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
-import net.neoforged.api.distmarker.*;
+import net.neoforged.neoforge.client.event.*;
+import net.neoforged.neoforge.client.gui.*;
+import org.jetbrains.annotations.*;
 
 
 public class HudRenderers {
@@ -22,82 +24,103 @@ public class HudRenderers {
 	private static int amount;
 	private static boolean missingInk;
 	
-	public static void register() {
-		HudRenderCallback.EVENT.register((drawContext, tickDelta) -> renderSelectedStaffStack(drawContext));
+	public static final ResourceLocation AZURE_DIKE_OVERLAY_ID = SpectrumCommon.locate("azure_dike");
+	
+	public static void register(RegisterGuiLayersEvent event) {
+		event.registerAbove(VanillaGuiLayers.PLAYER_HEALTH, AZURE_DIKE_OVERLAY_ID, new AzureDikeLayer());
+	}
+	
+	public static void registerPost(RenderGuiLayerEvent.Post event) {
+		if (event.getName().equals(VanillaGuiLayers.CROSSHAIR)) {
+			renderSelectedStaffStack(event.getGuiGraphics());
+		}
 	}
 	
 	private static final int SPECTRUM$_DIKE_HEARTS_PER_ROW = 10;
 	private static final int SPECTRUM$_DIKE_PER_ROW = 20;
 	
-	// this is run in InGameHudMixin instead to render behind the chat and other gui elements
-	public static void renderAzureDike(GuiGraphics drawContext, Player cameraPlayer, int x, int y) {
-		AzureDikeAttachmentType azureDikeAttachment = cameraPlayer.getData(AzureDikeAttachmentType.ATTACHMENT_TYPE);
-		int maxCharges = (int) Math.ceil(azureDikeAttachment.getMaxCharges());
-		if (maxCharges > 0) {
-			int charges = (int) Math.ceil(azureDikeAttachment.getCurrentCharges());
+	private static class AzureDikeLayer implements LayeredDraw.Layer {
+		
+		@Override
+		public void render(@NotNull GuiGraphics drawContext, @NotNull DeltaTracker deltaTracker) {
+			var minecraft = Minecraft.getInstance();
 			
-			boolean blink = false;
-			if (cameraPlayer.getLastDamageSource() != null && cameraPlayer.level() != null) {
-				blink = (cameraPlayer.level().getGameTime() >> 2) % 2 == 0;
+			if (minecraft.options.hideGui || minecraft.gameMode == null || !minecraft.gameMode.canHurtPlayer()) {
+				return;
 			}
 			
-			int totalDikeCanisters = (maxCharges - 1) / SPECTRUM$_DIKE_PER_ROW;
-			int filledDikeCanisters = (charges - 1) / SPECTRUM$_DIKE_PER_ROW;
-			int displayedDike = (charges - 1) % SPECTRUM$_DIKE_PER_ROW + 1;
-			int dikeHeartOutlinesThisRow = totalDikeCanisters > filledDikeCanisters ? SPECTRUM$_DIKE_HEARTS_PER_ROW : (((maxCharges - 1) % SPECTRUM$_DIKE_PER_ROW / 2) + 1);
+			Player cameraPlayer = Minecraft.getInstance().player;
+			int x = drawContext.guiWidth() / 2 - 91;
+			int y = drawContext.guiHeight() - Minecraft.getInstance().gui.leftHeight;
 			
-			boolean renderBackRow = filledDikeCanisters > 0;
-			boolean hasArmor = cameraPlayer.getArmorValue() > 0;
-			
-			ResourceLocation texture = AzureDikeAttachmentType.AZURE_DIKE_BAR_TEXTURE;
-			
-			x += SpectrumCommon.CONFIG.AzureDikeHudOffsetX;
-			y += hasArmor ? SpectrumCommon.CONFIG.AzureDikeHudOffsetYWithArmor : SpectrumCommon.CONFIG.AzureDikeHudOffsetY;
-			
-			RenderSystem.enableBlend();
-			
-			// back row
-			if (renderBackRow) {
-				for (int i = displayedDike / 2; i < 10; i++) {
-					drawContext.blit(texture, x + i * 8, y, 36, 9, 9, 9, 256, 256); // "back row" icon
+			AzureDikeAttachmentType azureDikeAttachment = cameraPlayer.getData(AzureDikeAttachmentType.ATTACHMENT_TYPE);
+			int maxCharges = (int) Math.ceil(azureDikeAttachment.getMaxCharges());
+			if (maxCharges > 0) {
+				int charges = (int) Math.ceil(azureDikeAttachment.getCurrentCharges());
+				
+				boolean blink = false;
+				if (cameraPlayer.getLastDamageSource() != null) {
+					blink = (cameraPlayer.level().getGameTime() >> 2) % 2 == 0;
 				}
-			}
-			
-			// outline
-			for (int i = 0; i < dikeHeartOutlinesThisRow; i++) {
+				
+				int totalDikeCanisters = (maxCharges - 1) / SPECTRUM$_DIKE_PER_ROW;
+				int filledDikeCanisters = (charges - 1) / SPECTRUM$_DIKE_PER_ROW;
+				int displayedDike = (charges - 1) % SPECTRUM$_DIKE_PER_ROW + 1;
+				int dikeHeartOutlinesThisRow = totalDikeCanisters > filledDikeCanisters ? SPECTRUM$_DIKE_HEARTS_PER_ROW : (((maxCharges - 1) % SPECTRUM$_DIKE_PER_ROW / 2) + 1);
+				
+				boolean renderBackRow = filledDikeCanisters > 0;
+				boolean hasArmor = cameraPlayer.getArmorValue() > 0;
+				
+				ResourceLocation texture = AzureDikeAttachmentType.AZURE_DIKE_BAR_TEXTURE;
+				
+				x += SpectrumCommon.CONFIG.AzureDikeHudOffsetX;
+				y += hasArmor ? SpectrumCommon.CONFIG.AzureDikeHudOffsetYWithArmor : SpectrumCommon.CONFIG.AzureDikeHudOffsetY;
+				
+				RenderSystem.enableBlend();
+				
+				// back row
 				if (renderBackRow) {
-					if (blink) {
-						drawContext.blit(texture, x + i * 8, y, 54, 9, 9, 9, 256, 256); // background
-					} else {
-						drawContext.blit(texture, x + i * 8, y, 45, 9, 9, 9, 256, 256); // background
-					}
-				} else {
-					if (blink) {
-						drawContext.blit(texture, x + i * 8, y, 9, 9, 9, 9, 256, 256); // background
-					} else {
-						drawContext.blit(texture, x + i * 8, y, 0, 9, 9, 9, 256, 256); // background
+					for (int i = displayedDike / 2; i < 10; i++) {
+						drawContext.blit(texture, x + i * 8, y, 36, 9, 9, 9, 256, 256); // "back row" icon
 					}
 				}
-			}
-			
-			// hearts
-			for (int i = 0; i < displayedDike; i += 2) {
-				if (i + 1 < displayedDike) {
-					drawContext.blit(texture, x + i * 4, y, 18, 9, 9, 9, 256, 256); // full charge icon
-				} else {
-					drawContext.blit(texture, x + i * 4, y, 27, 9, 9, 9, 256, 256); // half charge icon
+				
+				// outline
+				for (int i = 0; i < dikeHeartOutlinesThisRow; i++) {
+					if (renderBackRow) {
+						if (blink) {
+							drawContext.blit(texture, x + i * 8, y, 54, 9, 9, 9, 256, 256); // background
+						} else {
+							drawContext.blit(texture, x + i * 8, y, 45, 9, 9, 9, 256, 256); // background
+						}
+					} else {
+						if (blink) {
+							drawContext.blit(texture, x + i * 8, y, 9, 9, 9, 9, 256, 256); // background
+						} else {
+							drawContext.blit(texture, x + i * 8, y, 0, 9, 9, 9, 256, 256); // background
+						}
+					}
 				}
+				
+				// hearts
+				for (int i = 0; i < displayedDike; i += 2) {
+					if (i + 1 < displayedDike) {
+						drawContext.blit(texture, x + i * 4, y, 18, 9, 9, 9, 256, 256); // full charge icon
+					} else {
+						drawContext.blit(texture, x + i * 4, y, 27, 9, 9, 9, 256, 256); // half charge icon
+					}
+				}
+				
+				// canisters
+				for (int i = 0; i < filledDikeCanisters; i++) {
+					drawContext.blit(texture, x + i * 6, y - 9, 0, 0, 9, 9, 256, 256); // full canisters
+				}
+				for (int i = filledDikeCanisters; i < totalDikeCanisters; i++) {
+					drawContext.blit(texture, x + i * 6, y - 9, 9, 0, 9, 9, 256, 256); // empty canisters
+				}
+				
+				RenderSystem.disableBlend();
 			}
-			
-			// canisters
-			for (int i = 0; i < filledDikeCanisters; i++) {
-				drawContext.blit(texture, x + i * 6, y - 9, 0, 0, 9, 9, 256, 256); // full canisters
-			}
-			for (int i = filledDikeCanisters; i < totalDikeCanisters; i++) {
-				drawContext.blit(texture, x + i * 6, y - 9, 9, 0, 9, 9, 256, 256); // empty canisters
-			}
-			
-			RenderSystem.disableBlend();
 		}
 	}
 	

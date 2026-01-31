@@ -7,7 +7,6 @@ import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.inventories.*;
-import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.progression.toast.*;
@@ -43,15 +42,18 @@ public class SpectrumClient implements RevealingCallback, ClientAdvancementPacke
 		SpectrumIntegrationPacks.registerClient();
 		SpectrumModelPredicateProviders.registerClient();
 		SpectrumEntityRenderers.registerClient();
-		SpectrumS2CPackets.registerS2CReceivers();
 		modBus.addListener(SpectrumParticleFactories::register);
-		HudRenderers.register();
+		
+		modBus.addListener(HudRenderers::register);
+		NeoForge.EVENT_BUS.addListener(HudRenderers::registerPost);
+		
+		NeoForge.EVENT_BUS.addListener(HudRenderers::registerPost);
 		modBus.addListener(SpectrumTooltipComponents::registerTooltipComponents);
 		SpectrumDimensions.registerClient();
 		SpectrumClientEventListeners.register(modBus);
 		
 		if (SpectrumCommon.CONFIG.AddItemTooltips) {
-			SpectrumTooltips.register();
+			NeoForge.EVENT_BUS.addListener(SpectrumTooltips::register);
 		}
 		modBus.addListener(SpectrumArmorRenderers::register);
 		WorthinessChecker.init();

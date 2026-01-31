@@ -9,7 +9,7 @@ public class SpectrumTooltipComponents {
 	
 	public static void registerTooltipComponents(RegisterClientTooltipComponentFactoriesEvent event) {
 		event.register(CraftingTabletTooltipData.class, CraftingTabletTooltipComponent::new);
-		event.register(ItemStorageTooltipData.class, BottomlessBundleTooltipComponent::new);
+		event.register(BottomlessBundleTooltipData.class, BottomlessBundleTooltipComponent::new);
 		event.register(PresentTooltipData.class, PresentTooltipComponent::new);
 	}
 	

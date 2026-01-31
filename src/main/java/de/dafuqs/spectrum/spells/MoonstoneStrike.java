@@ -48,11 +48,11 @@ public class MoonstoneStrike {
 		this.damageSource = damageSource == null ? SpectrumDamageTypes.moonstoneStrike(world, this) : damageSource;
 	}
 	
-	public static void create(Level world, Entity entity, @Nullable DamageSource damageSource, double x, double y, double z, float power) {
+	public static void create(Level world, @Nullable Entity entity, @Nullable DamageSource damageSource, double x, double y, double z, float power) {
 		create(world, entity, damageSource, x, y, z, power, power);
 	}
 	
-	public static void create(Level world, Entity entity, @Nullable DamageSource damageSource, double x, double y, double z, float power, float knockbackMod) {
+	public static void create(Level world, @Nullable Entity entity, @Nullable DamageSource damageSource, double x, double y, double z, float power, float knockbackMod) {
 		MoonstoneStrike moonstoneStrike = new MoonstoneStrike(world, entity, damageSource, x, y, z, power, knockbackMod);
 		
 		if (world.isClientSide) {
@@ -61,7 +61,7 @@ public class MoonstoneStrike {
 			world.addParticle(SpectrumParticleTypes.MOONSTONE_STRIKE, x, y, z, 1.0, 0.0, 0.0);
 		} else {
 			moonstoneStrike.damageAndKnockbackEntities();
-			MoonstoneBlastPayload.sendMoonstoneBlast((ServerLevel) world, moonstoneStrike);
+			MoonstoneStrikePayload.sendMoonstoneStrike((ServerLevel) world, moonstoneStrike);
 			moonstoneStrike.affectWorld();
 		}
 	}

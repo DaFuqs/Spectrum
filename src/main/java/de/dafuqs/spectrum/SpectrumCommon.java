@@ -189,7 +189,7 @@ public class SpectrumCommon {
 		SpectrumItemProviders.register();
 		
 		logInfo("Registering Commands...");
-		SpectrumCommands.register();
+		NeoForge.EVENT_BUS.addListener(SpectrumCommands::register);
 		
 		logInfo("Registering Networking Packets...");
 		modBus.addListener(SpectrumC2SPackets::register);

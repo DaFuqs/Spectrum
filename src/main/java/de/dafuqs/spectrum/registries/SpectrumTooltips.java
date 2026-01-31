@@ -11,24 +11,25 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
+import net.neoforged.neoforge.event.entity.player.*;
 
 import java.util.*;
 
 public class SpectrumTooltips {
 	
-	public static void register() {
-		ItemTooltipCallback.EVENT.register((stack, tooltipContext, tooltipType, lines) -> {
-			DataComponentMap components = stack.getComponents();
-			if (!components.isEmpty()) {
-				if (stack.is(Blocks.SCULK_SHRIEKER.asItem())) {
-					addSculkShriekerTooltips(lines, components);
-				} else if (stack.is(ItemTags.SIGNS)) {
-					addSignTooltips(lines, components);
-				} else if (stack.is(Items.SPAWNER)) {
-					addSpawnerTooltips(lines, components);
-				}
+	public static void register(ItemTooltipEvent event) {
+		var stack = event.getItemStack();
+		
+		DataComponentMap components = stack.getComponents();
+		if (!components.isEmpty()) {
+			if (stack.is(Blocks.SCULK_SHRIEKER.asItem())) {
+				addSculkShriekerTooltips(event.getToolTip(), components);
+			} else if (stack.is(ItemTags.SIGNS)) {
+				addSignTooltips(event.getToolTip(), components);
+			} else if (stack.is(Items.SPAWNER)) {
+				addSpawnerTooltips(event.getToolTip(), components);
 			}
-		});
+		}
 	}
 	
 	private static void addSculkShriekerTooltips(List<Component> lines, DataComponentMap components) {

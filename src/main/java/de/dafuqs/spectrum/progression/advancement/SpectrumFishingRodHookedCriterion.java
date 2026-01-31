@@ -17,6 +17,7 @@ import net.minecraft.world.level.storage.loot.parameters.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
+import java.util.function.*;
 
 /**
  * Advanced fishing criterion that can also:
@@ -37,7 +38,8 @@ public class SpectrumFishingRodHookedCriterion extends SimpleCriterionTrigger<Sp
 		// since that one requires a FishingBobberEntity and SpectrumFishingBobberEntity
 		// does not extend that we have to do some hacky shenanigans running trigger() directly
 		LootContext hookedEntityOrBobberContext = EntityPredicate.createContext(player, (bobber.getHookedEntity() != null ? bobber.getHookedEntity() : bobber));
-		CriteriaTriggers.FISHING_ROD_HOOKED.trigger(player, (conditions) -> conditions.matches(rod, hookedEntityOrBobberContext, fishingLoots));
+		Predicate<FishingRodHookedTrigger.TriggerInstance> instancePredicate = triggerInstance -> triggerInstance.matches(rod, hookedEntityOrBobberContext, fishingLoots);
+		CriteriaTriggers.FISHING_ROD_HOOKED.spectrum$trigger(player, instancePredicate);
 	}
 	
 	@Override

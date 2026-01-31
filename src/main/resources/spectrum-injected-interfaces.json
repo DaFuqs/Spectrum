@@ -10,5 +10,8 @@
   ],
   "net/minecraft/world/food/FoodProperties$Builder": [
     "de/dafuqs/spectrum/injectors/FoodComponentBuilderInjector"
+  ],
+  "net/minecraft/advancements/critereon/SimpleCriterionTrigger": [
+    "de/dafuqs/spectrum/injectors/SimpleCriterionTriggerInjector"
   ]
 }

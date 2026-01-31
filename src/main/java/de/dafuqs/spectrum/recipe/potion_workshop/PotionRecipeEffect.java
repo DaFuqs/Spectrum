@@ -16,7 +16,6 @@ import net.minecraft.world.effect.*;
 import net.minecraft.world.item.*;
 import org.jetbrains.annotations.*;
 
-// TODO - Refactor
 public record PotionRecipeEffect(
 		boolean applicableToPotions,
 		boolean applicableToTippedArrows,

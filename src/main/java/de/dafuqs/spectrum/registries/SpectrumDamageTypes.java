@@ -59,7 +59,6 @@ public class SpectrumDamageTypes {
 		return new DamageSource(world.damageSources().damageTypes.getHolderOrThrow(DRAGONROT));
 	}
 	
-	// TODO: port
 	public static DamageSource inkProjectile(InkProjectileEntity projectile, @Nullable Entity attacker) {
 		return new DamageSource(projectile.damageSources().damageTypes.getHolderOrThrow(INK_PROJECTILE), projectile, attacker);
 	}
@@ -165,10 +164,9 @@ public class SpectrumDamageTypes {
 			super(world.damageSources().damageTypes.getHolderOrThrow(MOONSTONE_STRIKE), attacker);
 		}
 		
-		// TODO: port
-		/*public MoonstoneStrikeDamageSource(MoonstoneStrike moonstoneStrike) {
+		public MoonstoneStrikeDamageSource(MoonstoneStrike moonstoneStrike) {
 			super(moonstoneStrike.getDamageSource().typeHolder(), moonstoneStrike.getCausingEntity());
-		}*/
+		}
 	}
 
 	public static class IrradianceDamageSource extends DamageSource {

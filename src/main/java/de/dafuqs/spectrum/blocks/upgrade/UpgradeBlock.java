@@ -1,6 +1,8 @@
 package de.dafuqs.spectrum.blocks.upgrade;
 
 import com.mojang.serialization.*;
+import de.dafuqs.spectrum.networking.s2c_payloads.*;
+import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
@@ -9,7 +11,9 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.level.pathfinder.*;
+import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
 import org.jetbrains.annotations.*;
 
@@ -79,8 +83,7 @@ public class UpgradeBlock extends BaseEntityBlock {
 		int particleColor = getEffectColor();
 		world.playSound(null, pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D, SpectrumSoundEvents.CRAFTING_DING, SoundSource.BLOCKS, 1.0F, 1.0F);
 		
-		// TODO: port
-		/*PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity(
+		PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity(
 				world, Vec3.atCenterOf(pos),
 				ColoredSparkleRisingParticleEffect.of(particleColor),
 				10, new Vec3(0.5, 0.5, 0.5),
@@ -91,7 +94,7 @@ public class UpgradeBlock extends BaseEntityBlock {
 						new Vec3(pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D),
 						new BlockPositionSource(currentPos), 6,
 						particleColor)
-		);*/
+		);
 	}
 	
 	private int getEffectColor() {

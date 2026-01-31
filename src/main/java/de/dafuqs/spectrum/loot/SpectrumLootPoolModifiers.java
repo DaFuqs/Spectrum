@@ -34,7 +34,7 @@ public class SpectrumLootPoolModifiers {
 	
 	public static void register(IEventBus modBus) {
 		REGISTRAR.register("sniffer_digging_additions", () -> SnifferDiggingAdditionsModifier.CODEC);
-		REGISTRAR.register("treasure_hunter", () -> TreasureHunterModifier.CODEC); // TODO
+		REGISTRAR.register("treasure_hunter", () -> TreasureHunterModifier.CODEC);
 		
 		REGISTRAR.register(modBus);
 	}

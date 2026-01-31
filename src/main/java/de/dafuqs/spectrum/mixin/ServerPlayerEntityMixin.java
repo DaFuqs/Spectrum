@@ -15,7 +15,6 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 
 import java.util.*;
 
-// TODO: Migrate these mixins to FAPI ServerEntityCombatEvents
 @Mixin(ServerPlayer.class)
 public abstract class ServerPlayerEntityMixin {
 	

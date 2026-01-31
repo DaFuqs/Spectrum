@@ -17,10 +17,10 @@ public class MeatToRottenFleshRecipe extends DragonrotConvertingRecipe {
 	}
 	
 	private static Ingredient getMeatsIngredient() {
-		// TODO: reenable neepmeat compat
+		// TODO: is there a matching tag we can use here, instead of filtering?
 		return Ingredient.of(BuiltInRegistries.ITEM.getOrCreateTag(ItemTags.MEAT)
 				.stream()
-				/*.filter(item -> item.value() == Items.ROTTEN_FLESH && !(SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.NEEPMEAT_ID) && item == NMItems.MEAT_SCRAP))*/
+				.filter(item -> item.value() == Items.ROTTEN_FLESH)
 				.map(ItemStack::new));
 	}
 	

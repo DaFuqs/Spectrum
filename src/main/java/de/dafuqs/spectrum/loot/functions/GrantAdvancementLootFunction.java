@@ -4,6 +4,7 @@ import com.google.common.collect.*;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.loot.*;
+import de.dafuqs.spectrum.progression.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
@@ -44,8 +45,7 @@ public class GrantAdvancementLootFunction extends LootItemConditionalFunction {
 		Entity entity = context.getParamOrNull(this.entity.getParam());
 		if (entity instanceof ServerPlayer player) {
 			for (ResourceLocation id : this.ids) {
-				// TODO: port
-				// SpectrumAdvancementCriteria.LOOT_FUNCTION_TRIGGER.trigger(player, id);
+				SpectrumAdvancementCriteria.LOOT_FUNCTION_TRIGGER.trigger(player, id);
 			}
 		}
 		return stack;

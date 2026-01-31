@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.components;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
+import de.dafuqs.spectrum.progression.*;
 import net.minecraft.core.component.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.network.*;
@@ -56,8 +57,7 @@ public record PairedFoodComponent(Item item, boolean consumeAndApplyRequiredStac
 		}
 		
 		if (player instanceof ServerPlayer serverPlayer) {
-			// TODO PORT
-//			SpectrumAdvancementCriteria.CONDITIONAL_FOOD_EATEN.trigger(serverPlayer, eatenStack, foundRequiredStack);
+			SpectrumAdvancementCriteria.PAIRED_FOOD_EATEN.trigger(serverPlayer, eatenStack, foundRequiredStack);
 		}
 	}
 	

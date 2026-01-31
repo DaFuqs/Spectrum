@@ -20,7 +20,7 @@ public class DumpRegistriesCommand {
 	}
 	
 	private static int execute(CommandSourceStack source) {
-		File directory = FMLLoader.getGamePath().resolve("registry_dump").toFile(); // TODO: test
+		File directory = FMLLoader.getGamePath().resolve("registry_dump").toFile();
 		
 		source.registryAccess().registries().forEach(registry -> {
 			File file = new File(directory, registry.key().location().toString().replace(":", "/") + ".txt");

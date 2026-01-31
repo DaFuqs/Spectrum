@@ -12,6 +12,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
+import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.registries.*;
 
 import static de.dafuqs.spectrum.registries.SpectrumBlocks.*;
@@ -35,19 +36,23 @@ public class AE2Compat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	@Override
 	public void register() {
 		// TODO: port
-		/*CreativeSubTabEvent.modifyEntriesEvent(ItemGroupIDs.SUBTAB_PURE_RESOURCES).register(entries -> {
-			entries.accept(PURE_CERTUS_QUARTZ);
-			entries.accept(SMALL_CERTUS_QUARTZ_BUD);
-			entries.accept(LARGE_CERTUS_QUARTZ_BUD);
-			entries.accept(CERTUS_QUARTZ_CLUSTER);
-			entries.accept(PURE_CERTUS_QUARTZ_BLOCK);
-			
-			entries.accept(PURE_FLUIX);
-			entries.accept(SMALL_FLUIX_BUD);
-			entries.accept(LARGE_FLUIX_BUD);
-			entries.accept(FLUIX_CLUSTER);
-			entries.accept(PURE_FLUIX_BLOCK);
-		});*/
+		/*
+		NeoForge.EVENT_BUS.register(new CreativeSubTabEvent(SpectrumItemGroups.MAIN, SpectrumItemGroups.PURE_RESOURCES, new CreativeModeTab.Output() {
+			@Override
+			public void accept(ItemStack stack, CreativeModeTab.TabVisibility tabVisibility) {
+				accept(PURE_CERTUS_QUARTZ);
+				accept(SMALL_CERTUS_QUARTZ_BUD);
+				accept(LARGE_CERTUS_QUARTZ_BUD);
+				accept(CERTUS_QUARTZ_CLUSTER);
+				accept(PURE_CERTUS_QUARTZ_BLOCK);
+				
+				accept(PURE_FLUIX);
+				accept(SMALL_FLUIX_BUD);
+				accept(LARGE_FLUIX_BUD);
+				accept(FLUIX_CLUSTER);
+				accept(PURE_FLUIX_BLOCK);
+			}
+		}));
 	}
 	
 	@Override

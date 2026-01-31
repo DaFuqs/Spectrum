@@ -21,7 +21,7 @@ public class DumpTagsCommand {
 	}
 	
 	private static int execute(CommandSourceStack source) {
-		File baseDir = FMLLoader.getGamePath().resolve("tag_dump").toFile(); // TODO: test
+		File baseDir = FMLLoader.getGamePath().resolve("tag_dump").toFile();
 		baseDir.mkdirs();
 		
 		source.registryAccess().registries().forEach(registry -> {

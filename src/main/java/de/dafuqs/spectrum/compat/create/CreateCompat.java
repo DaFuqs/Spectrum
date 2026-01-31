@@ -16,8 +16,11 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
+import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.registries.*;
 import org.jetbrains.annotations.*;
+
+import java.util.function.*;
 
 import static de.dafuqs.spectrum.registries.SpectrumBlocks.*;
 import static de.dafuqs.spectrum.registries.SpectrumItems.*;
@@ -40,17 +43,17 @@ public class CreateCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 			entries.accept(LARGE_ZINC_BUD);
 			entries.accept(ZINC_CLUSTER);
 			entries.accept(PURE_ZINC_BLOCK);
-		});
+		});*/
 		
-		PipeCollisionEvent.FLOW.register(event -> {
+		NeoForge.EVENT_BUS.register((Consumer<PipeCollisionEvent.Flow>) event -> {
 			final BlockState result = handleBidirectionalCollision(event.getLevel(), event.getFirstFluid(), event.getSecondFluid());
 			if (result != null) event.setState(result);
 		});
 		
-		PipeCollisionEvent.SPILL.register(event -> {
+		NeoForge.EVENT_BUS.register((Consumer<PipeCollisionEvent.Spill>) event -> {
 			final BlockState result = handleBidirectionalCollision(event.getLevel(), event.getPipeFluid(), event.getWorldFluid());
 			if (result != null) event.setState(result);
-		});*/
+		});
 	}
 	
 	// NOTE: firstFluid and secondFluid are assumed to be not null without checking,

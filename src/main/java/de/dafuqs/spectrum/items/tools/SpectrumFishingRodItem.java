@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.spectrum.api.entity.*;
+import de.dafuqs.spectrum.compat.gofish.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
@@ -67,8 +68,7 @@ public abstract class SpectrumFishingRodItem extends FishingRodItem {
 	}
 	
 	public boolean shouldSmeltDrops(ItemStack itemStack) {
-		// TODO: readd gofish compat
-		return EnchantmentHelper.hasTag(itemStack, SpectrumEnchantmentTags.SMELTS_MORE_LOOT) /*|| GoFishCompat.hasDeepfry(itemStack)*/;
+		return EnchantmentHelper.hasTag(itemStack, SpectrumEnchantmentTags.SMELTS_MORE_LOOT);
 	}
 	
 	@Override

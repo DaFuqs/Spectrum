@@ -23,8 +23,6 @@ public interface AzureDikeItem {
 	default void recalculate(LivingEntity livingEntity) {
 		Level world = livingEntity.level();
 		if (!world.isClientSide) {
-			// TODO: port
-			/*
 			AzureDikeComponent azureDikeComponent = AzureDikeProvider.AZURE_DIKE_COMPONENT.get(livingEntity);
 			
 			Optional<TrinketComponent> trinketComponent = TrinketsApi.getTrinketComponent(livingEntity);
@@ -47,7 +45,7 @@ public interface AzureDikeItem {
 				int rechargeDelayTicksAfterGettingHit = (int) Math.max(1, DefaultAzureDikeComponent.BASE_RECHARGE_DELAY_TICKS_AFTER_DAMAGE / rechargeDelayAfterDamageModifier);
 				
 				azureDikeComponent.set(Math.round((maxAzureDike * maxAzureDikeMultiplier)), ticksPerPointOfRecharge, rechargeDelayTicksAfterGettingHit, false);
-			}*/
+			}
 		}
 	}
 	

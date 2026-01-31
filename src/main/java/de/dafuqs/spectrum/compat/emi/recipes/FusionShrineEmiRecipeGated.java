@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.compat.emi.recipes;
 import de.dafuqs.spectrum.compat.emi.*;
 import de.dafuqs.spectrum.recipe.fusion_shrine.*;
 import de.dafuqs.spectrum.registries.*;
+import dev.emi.emi.api.neoforge.*;
 import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.TextWidget.*;
 import dev.emi.emi.api.widget.*;
@@ -24,7 +25,7 @@ public class FusionShrineEmiRecipeGated extends GatedSpectrumEmiRecipe<FusionShr
 			texts = List.of();
 		}
 		inputs = new ArrayList<>();
-		inputs.add(FluidIngredientEmi.into(recipe.getFluid()));
+		inputs.add(NeoForgeEmiIngredient.of(recipe.getFluid()));
 		inputs.addAll(recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getItems().map(EmiStack::of).toList())).toList());
 		outputs = List.of(EmiStack.of(recipe.getResultItem(getRegistryManager())));
 	}

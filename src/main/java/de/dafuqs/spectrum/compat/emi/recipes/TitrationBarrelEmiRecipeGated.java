@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.compat.emi.recipes;
 
 import de.dafuqs.spectrum.compat.emi.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
+import dev.emi.emi.api.neoforge.*;
 import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.TextWidget.*;
 import dev.emi.emi.api.widget.*;
@@ -21,7 +22,7 @@ public class TitrationBarrelEmiRecipeGated extends GatedSpectrumEmiRecipe<ITitra
 		super(SpectrumEmiRecipeCategories.TITRATION_BARREL, entry, 136, 50);
 		inputs = new ArrayList<>();
 		if (!recipe.getFluidInput().isEmpty()) {
-			inputs.add(FluidIngredientEmi.into(recipe.getFluidInput()));
+			inputs.add(NeoForgeEmiIngredient.of(recipe.getFluidInput()));
 		}
 		inputs.addAll(recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getItems().map(EmiStack::of).toList())).toList());
 		

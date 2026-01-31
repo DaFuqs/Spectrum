@@ -5,8 +5,10 @@ import de.dafuqs.spectrum.blocks.crystallarieum.*;
 import de.dafuqs.spectrum.compat.emi.*;
 import de.dafuqs.spectrum.recipe.crystallarieum.*;
 import de.dafuqs.spectrum.registries.*;
+import dev.emi.emi.api.neoforge.*;
 import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.*;
+import dev.emi.emi.platform.neoforge.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.crafting.*;
@@ -35,7 +37,7 @@ public class CrystallarieumEmiRecipeGated extends GatedSpectrumEmiRecipe<Crystal
 	@Override
 	public void addUnlockedWidgets(WidgetHolder widgets) {
 		widgets.addSlot(inputs.getFirst(), 0, 0);
-		widgets.addSlot(EmiStack.of(recipe.getFluidIngredient().getFluid()), 0, 18);
+		widgets.addSlot(NeoForgeEmiIngredient.of(recipe.getFluidIngredient()), 0, 18);
 		
 		widgets.addSlot(EmiStack.of(CrystallarieumBlock.withColor(SpectrumBlocks.CRYSTALLARIEUM.toStack(), recipe.getInkColor())), 20, 18).drawBack(false);
 		

@@ -80,7 +80,6 @@ public class AzureDikeAttachmentType {
 	
 	public static final ResourceLocation AZURE_DIKE_BAR_TEXTURE = SpectrumCommon.locate("textures/gui/azure_dike_overlay.png");
 	
-	// TODO: use again
 	public final static int BASE_RECHARGE_DELAY_TICKS = 40;
 	public final static int BASE_RECHARGE_DELAY_TICKS_AFTER_DAMAGE = 200;
 	

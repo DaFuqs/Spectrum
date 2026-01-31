@@ -5,10 +5,9 @@
       "modid": "create"
     },
     {
-      "type": "spectrum:enchantments_exist",
-      "values": [
-        "create:capacity"
-      ]
+      "type": "neoforge:registered",
+      "registry": "minecraft:enchantment",
+      "value": "create:capacity"
     }
   ],
   "type": "spectrum:enchantment_upgrade",

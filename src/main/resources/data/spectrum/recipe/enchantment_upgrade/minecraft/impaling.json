@@ -1,10 +1,9 @@
 {
   "neoforge:conditions": [
     {
-      "type": "spectrum:enchantments_exist",
-      "values": [
-        "minecraft:impaling"
-      ]
+      "type": "neoforge:registered",
+      "registry": "minecraft:enchantment",
+      "value": "minecraft:impaling"
     }
   ],
   "type": "spectrum:enchantment_upgrade",

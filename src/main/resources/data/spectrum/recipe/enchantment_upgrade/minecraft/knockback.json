@@ -1,10 +1,9 @@
 {
   "neoforge:conditions": [
     {
-      "type": "spectrum:enchantments_exist",
-      "values": [
-        "minecraft:knockback"
-      ]
+      "type": "neoforge:registered",
+      "registry": "minecraft:enchantment",
+      "value": "minecraft:knockback"
     }
   ],
   "type": "spectrum:enchantment_upgrade",

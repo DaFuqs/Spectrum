@@ -1,10 +1,9 @@
 {
   "neoforge:conditions": [
     {
-      "type": "spectrum:enchantments_exist",
-      "values": [
-        "minecraft:soul_speed"
-      ]
+      "type": "neoforge:registered",
+      "registry": "minecraft:enchantment",
+      "value": "minecraft:soul_speed"
     }
   ],
   "type": "spectrum:enchantment_upgrade",

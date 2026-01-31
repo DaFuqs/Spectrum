@@ -43,10 +43,9 @@
   "required_advancement": "spectrum:unlocks/enchantments/vanilla_swift_sneak",
   "neoforge:conditions": [
     {
-      "type": "spectrum:enchantments_exist",
-      "values": [
-        "minecraft:swift_sneak"
-      ]
+      "type": "neoforge:registered",
+      "registry": "minecraft:enchantment",
+      "value": "minecraft:swift_sneak"
     }
   ]
 }

@@ -43,10 +43,9 @@
   "required_advancement": "spectrum:unlocks/enchantments/vanilla_luck",
   "neoforge:conditions": [
     {
-      "type": "spectrum:enchantments_exist",
-      "values": [
-        "minecraft:looting"
-      ]
+      "type": "neoforge:registered",
+      "registry": "minecraft:enchantment",
+      "value": "minecraft:looting"
     }
   ]
 }

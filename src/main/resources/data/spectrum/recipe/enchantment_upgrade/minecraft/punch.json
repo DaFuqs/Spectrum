@@ -1,10 +1,9 @@
 {
   "neoforge:conditions": [
     {
-      "type": "spectrum:enchantments_exist",
-      "values": [
-        "minecraft:punch"
-      ]
+      "type": "neoforge:registered",
+      "registry": "minecraft:enchantment",
+      "value": "minecraft:punch"
     }
   ],
   "type": "spectrum:enchantment_upgrade",

@@ -1,10 +1,9 @@
 {
   "neoforge:conditions": [
     {
-      "type": "spectrum:enchantments_exist",
-      "values": [
-        "minecraft:luck_of_the_sea"
-      ]
+      "type": "neoforge:registered",
+      "registry": "minecraft:enchantment",
+      "value": "minecraft:luck_of_the_sea"
     }
   ],
   "type": "spectrum:enchantment_upgrade",

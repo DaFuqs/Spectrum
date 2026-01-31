@@ -5,10 +5,9 @@
       "modid": "create"
     },
     {
-      "type": "spectrum:enchantments_exist",
-      "values": [
-        "create:potato_recovery"
-      ]
+      "type": "neoforge:registered",
+      "registry": "minecraft:enchantment",
+      "value": "create:potato_recovery"
     }
   ],
   "type": "spectrum:enchantment_upgrade",

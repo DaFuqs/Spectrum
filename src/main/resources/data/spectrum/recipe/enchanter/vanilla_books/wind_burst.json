@@ -43,10 +43,9 @@
   "required_advancement": "spectrum:unlocks/enchantments/vanilla_trial_treasure",
   "neoforge:conditions": [
     {
-      "type": "spectrum:enchantments_exist",
-      "values": [
-        "minecraft:wind_burst"
-      ]
+      "type": "neoforge:registered",
+      "registry": "minecraft:enchantment",
+      "value": "minecraft:wind_burst"
     }
   ]
 }

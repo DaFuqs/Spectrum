@@ -43,10 +43,9 @@
   "required_advancement": "spectrum:unlocks/enchantments/vanilla_quitoxic",
   "neoforge:conditions": [
     {
-      "type": "spectrum:enchantments_exist",
-      "values": [
-        "minecraft:efficiency"
-      ]
+      "type": "neoforge:registered",
+      "registry": "minecraft:enchantment",
+      "value": "minecraft:efficiency"
     }
   ]
 }

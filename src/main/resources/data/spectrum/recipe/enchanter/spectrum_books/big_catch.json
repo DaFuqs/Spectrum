@@ -42,10 +42,9 @@
   "required_advancement": "spectrum:unlocks/enchantments/big_catch",
   "neoforge:conditions": [
     {
-      "type": "spectrum:enchantments_exist",
-      "values": [
-        "spectrum:big_catch"
-      ]
+      "type": "neoforge:registered",
+      "registry": "minecraft:enchantment",
+      "value": "spectrum:big_catch"
     }
   ]
 }

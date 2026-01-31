@@ -1,10 +1,9 @@
 {
   "neoforge:conditions": [
     {
-      "type": "spectrum:enchantments_exist",
-      "values": [
-        "spectrum:improved_critical"
-      ]
+      "type": "neoforge:registered",
+      "registry": "minecraft:enchantment",
+      "value": "spectrum:improved_critical"
     }
   ],
   "type": "spectrum:enchantment_upgrade",

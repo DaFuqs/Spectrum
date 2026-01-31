@@ -42,10 +42,9 @@
   "required_advancement": "spectrum:unlocks/enchantments/serendipity_reel",
   "neoforge:conditions": [
     {
-      "type": "spectrum:enchantments_exist",
-      "values": [
-        "spectrum:serendipity_reel"
-      ]
+      "type": "neoforge:registered",
+      "registry": "minecraft:enchantment",
+      "value": "spectrum:serendipity_reel"
     }
   ]
 }

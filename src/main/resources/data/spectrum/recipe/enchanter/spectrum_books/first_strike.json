@@ -42,10 +42,9 @@
   "required_advancement": "spectrum:unlocks/enchantments/first_strike",
   "neoforge:conditions": [
     {
-      "type": "spectrum:enchantments_exist",
-      "values": [
-        "spectrum:first_strike"
-      ]
+      "type": "neoforge:registered",
+      "registry": "minecraft:enchantment",
+      "value": "spectrum:first_strike"
     }
   ]
 }

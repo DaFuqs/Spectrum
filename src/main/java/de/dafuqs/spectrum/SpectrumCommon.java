@@ -49,6 +49,7 @@ public class SpectrumCommon {
 	public static final String MOD_ID = "spectrum";
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("Spectrum");
+	// Todo: move to filter classes
 	public static final Map<ResourceLocation, TagKey<Item>> CACHED_ITEM_TAG_MAP = new HashMap<>();
 	public static SpectrumConfig CONFIG;
 

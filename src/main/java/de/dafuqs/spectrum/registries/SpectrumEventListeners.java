@@ -4,7 +4,6 @@ import de.dafuqs.arrowhead.api.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.attachment_types.*;
-import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.components.*;
@@ -27,11 +26,9 @@ import net.minecraft.server.*;
 import net.minecraft.server.level.*;
 import net.minecraft.server.packs.*;
 import net.minecraft.server.packs.resources.*;
-import net.minecraft.server.players.*;
 import net.minecraft.sounds.*;
 import net.minecraft.stats.*;
 import net.minecraft.tags.*;
-import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.effect.*;
@@ -47,17 +44,19 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.*;
+import net.neoforged.api.distmarker.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.fml.common.*;
-import net.neoforged.fml.event.lifecycle.*;
-import net.neoforged.neoforge.common.util.*;
+import net.neoforged.fml.loading.*;
 import net.neoforged.neoforge.event.*;
-import net.neoforged.neoforge.event.enchanting.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.entity.player.*;
 import net.neoforged.neoforge.event.level.*;
 import net.neoforged.neoforge.event.server.*;
 import net.neoforged.neoforge.event.tick.*;
+import org.jetbrains.annotations.*;
+import top.theillusivec4.curios.api.*;
+import top.theillusivec4.curios.api.type.capability.*;
 
 import java.util.*;
 import java.util.concurrent.atomic.*;
@@ -210,10 +209,10 @@ public class SpectrumEventListeners {
 				}
 			}
 				
-				/* TODO: Monstrosity
-				if (world.getRegistryKey() == SpectrumDimensions.DIMENSION_KEY) {
-					MonstrositySpawner.INSTANCE.spawn(world, true, true);
-				}*/
+			/* TODO: Monstrosity
+			if (world.getRegistryKey() == SpectrumDimensions.DIMENSION_KEY) {
+				MonstrositySpawner.INSTANCE.spawn(world, true, true);
+			}*/
 		}
 		
 	}
@@ -237,87 +236,172 @@ public class SpectrumEventListeners {
 		FirestarterIdolBlock.addBlockSmeltingRecipes(server);
 	}
 	
+	@SubscribeEvent
+	public void tickPastelNetwork(ServerTickEvent.Post event) {
+		MinecraftServer server = event.getServer();
+		
+		if (!server.tickRateManager().runsNormally()) {
+			return;
+		}
+		
+		try {
+			Pastel.getServerInstance().tick();
+		} catch (Exception e) {
+			SpectrumCommon.logError("Error in the Pastel Network transmission loop.");
+			e.printStackTrace();
+		}
+	}
 	
+	@SubscribeEvent
+	public void damagePlayersOutOfBoundsInDD(PlayerTickEvent.Post event) {
+		if(event.getEntity() instanceof ServerPlayer player) {
+			Level world = player.level();
+			if (!player.isCreative() && !player.isSpectator() && world.dimension() == SpectrumDimensions.DIMENSION_KEY && player.getY() > world.getMaxBuildHeight()) {
+				player.hurt(player.damageSources().fellOutOfWorld(), 10.0F);
+				if (player.isDeadOrDying()) {
+					Support.grantAdvancementCriterion(player, "lategame/get_killed_while_out_of_deeper_down_bounds", "get_rekt");
+				}
+			}
+		}
+	}
 	
+	@SubscribeEvent
+	public void onEquipmentChange(LivingEquipmentChangeEvent event) {
+		var livingEntity = event.getEntity();
+		var oldEquipment = event.getFrom();
+		var newEquipment = event.getTo();
+		var equipmentSlot = event.getSlot();
+		
+		var oldInexorable = SpectrumEnchantmentHelper.getLevel(livingEntity.level().registryAccess(), SpectrumEnchantments.INEXORABLE, oldEquipment);
+		var newInexorable = SpectrumEnchantmentHelper.getLevel(livingEntity.level().registryAccess(), SpectrumEnchantments.INEXORABLE, newEquipment);
+		
+		var effectType = equipmentSlot == EquipmentSlot.CHEST ? SpectrumAttributeTags.INEXORABLE_ARMOR_EFFECTIVE : SpectrumAttributeTags.INEXORABLE_HANDHELD_EFFECTIVE;
+		
+		//TODO make inexorable use enchantment effects or something
+		//TODO also move the enchantment cloaking logic from LivingEntityMixin into here
+		if (oldInexorable > 0 && newInexorable <= 0) {
+			livingEntity.getActiveEffects()
+					.stream()
+					.filter(instance -> {
+						AtomicBoolean result = new AtomicBoolean(false);
+						instance.getEffect()
+								.value()
+								.createModifiers(
+										instance.getAmplifier(), (attribute, modifier) -> {
+											if (attribute.is(effectType))
+												result.set(true);
+										}
+								);
+						return result.get();
+					})
+					.forEach(instance -> instance.getEffect()
+							.value()
+							.onEffectStarted(livingEntity, instance.getAmplifier()));
+		}
+	}
+	
+	@SubscribeEvent
+	public void onLivingDeath(LivingDeathEvent event) {
+		var killedEntity = event.getEntity();
+		var damageSource = event.getSource();
+		
+		if (damageSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+			return;
+		}
+		
+		Optional<ICuriosItemHandler> curiosInventory = CuriosApi.getCuriosInventory(killedEntity);
+		if (curiosInventory.isPresent()) {
+			Optional<SlotResult> firstTotemPendant = curiosInventory.get().findFirstCurio(SpectrumItems.TOTEM_PENDANT.get());
+			if (firstTotemPendant.isPresent()) {
+				ItemStack totemStack = firstTotemPendant.get().stack();
+				
+				// increase stat
+				if (killedEntity instanceof ServerPlayer serverPlayerEntity) {
+					serverPlayerEntity.awardStat(Stats.ITEM_USED.get(SpectrumItems.TOTEM_PENDANT.get()));
+					CriteriaTriggers.USED_TOTEM.trigger(serverPlayerEntity, totemStack);
+				}
+				
+				// consume pendant
+				totemStack.shrink(1);
+				
+				// Heal and add effects
+				killedEntity.setHealth(1.0F);
+				killedEntity.removeAllEffects();
+				killedEntity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 900, 1));
+				killedEntity.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 100, 1));
+				killedEntity.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 800, 0));
+				killedEntity.level().broadcastEntityEvent(killedEntity, EntityEvent.TALISMAN_ACTIVATE);
+				
+				event.setCanceled(true);
+			}
+		}
+		
+		if (event.getEntity() instanceof ServerPlayer player) {
+			if (player.level().getLevelData().isHardcore() || HardcoreDeathAttachmentType.isInHardcore(player)) {
+				HardcoreDeathAttachmentType.setHardcoreDeath(player);
+			}
+			evaluateAndDropPlayerHead(player, event.getSource());
+		}
+	}
+	
+	@SubscribeEvent
+	private static void preventFireDamage(LivingIncomingDamageEvent event) {
+		LivingEntity entity = event.getEntity();
+		DamageSource source = event.getSource();
+		
+		// If the player is damaged by lava and wears an ashen circlet:
+		// prevent damage and grant fire resistance
+		if (source.is(DamageTypes.LAVA)) {
+			Optional<ItemStack> ashenCircletStack = SpectrumTrinketItem.getFirstEquipped(entity, SpectrumItems.ASHEN_CIRCLET.get());
+			if (ashenCircletStack.isPresent()) {
+				if (AshenCircletItem.getCooldownTicks(ashenCircletStack.get(), entity.level()) == 0) {
+					AshenCircletItem.grantFireResistance(ashenCircletStack.get(), entity);
+					event.setCanceled(true);
+				}
+			}
+		} else if (source.is(DamageTypeTags.IS_FIRE) && SpectrumTrinketItem.hasEquipped(entity, SpectrumItems.ASHEN_CIRCLET.get())) {
+			event.setCanceled(true);
+		}
+	}
+	
+	@SubscribeEvent
+	private static void canPlayerSleep(CanPlayerSleepEvent event) {
+		var player = event.getEntity();
+		var reason = event.getProblem();
+		
+		if (reason != Player.BedSleepingProblem.NOT_POSSIBLE_NOW && MiscPlayerDataAttachmentType.get(player).isSleeping()) {
+			event.setProblem(null);
+		} else if ((reason == Player.BedSleepingProblem.NOT_POSSIBLE_NOW || reason == Player.BedSleepingProblem.NOT_SAFE) && player.hasEffect(SpectrumStatusEffects.SOMNOLENCE)) {
+			event.setProblem(null);
+		}
+	}
+	
+	@SubscribeEvent
+	private static void onReloadResources(AddReloadListenerEvent event) {
+		event.addListener(new ResourceManagerReloadListener() {
+			@Override
+			public void onResourceManagerReload(ResourceManager resourceManager) {
+				AutoCraftingMode.clearCache();
+				SpectrumCommon.CACHED_ITEM_TAG_MAP.clear();
+				
+				if (SpectrumCommon.minecraftServer != null) {
+					FirestarterIdolBlock.addBlockSmeltingRecipes(SpectrumCommon.minecraftServer);
+				}
+				
+				if (FMLLoader.getDist() == Dist.CLIENT) {
+					UnlockToastManager.clear();
+				}
+			}
+			
+			@Override
+			public @NotNull String getName() {
+				return SpectrumCommon.MOD_ID + ":resoruces_cleanup";
+			}
+		});
+	}
 	
 	
 	public static void register() {
-
-		ServerTickEvents.END_SERVER_TICK.register(server -> {
-			if (!server.tickRateManager().runsNormally()) {
-				return;
-			}
-			
-			try {
-				Pastel.getServerInstance().tick();
-			} catch (Exception e) {
-				SpectrumCommon.logError("Error in the Pastel Network transmission loop.");
-				e.printStackTrace();
-			}
-			
-			PlayerList playerManager = server.getPlayerList();
-			for (ServerPlayer player : playerManager.getPlayers()) {
-				Level world = player.level();
-				if (!player.isCreative() && !player.isSpectator() && world.dimension() == SpectrumDimensions.DIMENSION_KEY && player.getY() > world.getMaxBuildHeight()) {
-					player.hurt(player.damageSources().fellOutOfWorld(), 10.0F);
-					if (player.isDeadOrDying()) {
-						Support.grantAdvancementCriterion(player, "lategame/get_killed_while_out_of_deeper_down_bounds", "get_rekt");
-					}
-				}
-			}
-		});
-
-		ServerEntityEvents.EQUIPMENT_CHANGE.register((livingEntity, equipmentSlot, previousStack, currentStack) -> {
-			var oldInexorable = SpectrumEnchantmentHelper.getLevel(livingEntity.level().registryAccess(), SpectrumEnchantments.INEXORABLE, previousStack);
-			var newInexorable = SpectrumEnchantmentHelper.getLevel(livingEntity.level().registryAccess(), SpectrumEnchantments.INEXORABLE, currentStack);
-			
-			var effectType = equipmentSlot == EquipmentSlot.CHEST ? SpectrumAttributeTags.INEXORABLE_ARMOR_EFFECTIVE : SpectrumAttributeTags.INEXORABLE_HANDHELD_EFFECTIVE;
-			
-			//TODO make inexorable use enchantment effects or something
-			//TODO also move the enchantment cloaking logic from LivingEntityMixin into here
-			if (oldInexorable > 0 && newInexorable <= 0) {
-				livingEntity.getActiveEffects()
-						.stream()
-						.filter(instance -> {
-							AtomicBoolean result = new AtomicBoolean(false);
-							instance.getEffect().value().createModifiers(instance.getAmplifier(), (attribute, modifier) -> {
-								if (attribute.is(effectType))
-									result.set(true);
-							});
-							return result.get();
-						})
-						.forEach(instance -> instance.getEffect().value().onEffectStarted(livingEntity, instance.getAmplifier()));
-			}
-			
-		});
-		
-		EntitySleepEvents.ALLOW_BED.register((entity, sleepingPos, state, vanillaResult) -> {
-			if (entity instanceof Player player && MiscPlayerDataAttachmentType.get(player).isSleeping())
-				return InteractionResult.SUCCESS;
-			
-			return InteractionResult.PASS;
-		});
-		
-		EntitySleepEvents.MODIFY_SLEEPING_DIRECTION.register((entity, sleepingPos, sleepingDirection) -> {
-			if (entity instanceof Player player && MiscPlayerDataAttachmentType.get(player).isSleeping())
-				return player.getDirection();
-			return sleepingDirection;
-		});
-		
-		EntitySleepEvents.ALLOW_NEARBY_MONSTERS.register((player, sleepingPos, vanillaResult) -> {
-			if (MiscPlayerDataAttachmentType.get(player).isSleeping() || player.hasEffect(SpectrumStatusEffects.SOMNOLENCE))
-				return InteractionResult.SUCCESS;
-			
-			return InteractionResult.PASS;
-		});
-		
-		EntitySleepEvents.ALLOW_SLEEP_TIME.register((player, sleepingPos, vanillaResult) -> {
-			if (player.hasEffect(SpectrumStatusEffects.SOMNOLENCE))
-				return InteractionResult.SUCCESS;
-			
-			return InteractionResult.PASS;
-		});
-		
 		CrossbowShootingCallback.register((world, shooter, crossbow, projectile) -> {
 			int snipingLevel = SpectrumEnchantmentHelper.getLevel(world.registryAccess(), SpectrumEnchantments.SNIPING, crossbow);
 			if (snipingLevel > 0) {
@@ -353,97 +437,10 @@ public class SpectrumEventListeners {
 				GlassCrestCrossbowItem.unOvercharge(crossbow);
 			}
 		});
-		
-		ServerLivingEntityEvents.ALLOW_DEATH.register((entity, damageSource, damageAmount) -> {
-			if (damageSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
-				return true;
-			}
-			Optional<TrinketComponent> optionalTrinketComponent = TrinketsApi.getTrinketComponent(entity);
-			if (optionalTrinketComponent.isPresent()) {
-				List<Tuple<SlotReference, ItemStack>> totems = optionalTrinketComponent.get().getEquipped(SpectrumItems.TOTEM_PENDANT);
-				for (Tuple<SlotReference, ItemStack> pair : totems) {
-					ItemStack totemStack = pair.getB();
-					
-					if (totemStack.getCount() > 0) {
-						// increase stat
-						if (entity instanceof ServerPlayer serverPlayerEntity) {
-							serverPlayerEntity.awardStat(Stats.ITEM_USED.get(SpectrumItems.TOTEM_PENDANT));
-							CriteriaTriggers.USED_TOTEM.trigger(serverPlayerEntity, totemStack);
-						}
-						
-						// consume pendant
-						totemStack.shrink(1);
-						
-						// Heal and add effects
-						entity.setHealth(1.0F);
-						entity.removeAllEffects();
-						entity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 900, 1));
-						entity.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 100, 1));
-						entity.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 800, 0));
-						entity.level().broadcastEntityEvent(entity, EntityEvent.TALISMAN_ACTIVATE);
-						
-						return false;
-					}
-				}
-			}
-			return true;
-		});
-		
-		ServerLivingEntityEvents.AFTER_DEATH.register((entity, damageSource) -> {
-			if (entity instanceof ServerPlayer player) {
-				if (entity.level().getLevelData().isHardcore() || HardcoreDeathAttachmentType.isInHardcore(player)) {
-					HardcoreDeathAttachmentType.addHardcoreDeath(player.serverLevel(), player.getGameProfile());
-				}
-				evaluateAndDropPlayerHead(player, damageSource);
-			}
-		});
-		
-		ServerLivingEntityEvents.ALLOW_DAMAGE.register((entity, source, amount) -> {
-			// If the player is damaged by lava and wears an ashen circlet:
-			// prevent damage and grant fire resistance
-			if (source.is(DamageTypes.LAVA)) {
-				Optional<ItemStack> ashenCircletStack = SpectrumTrinketItem.getFirstEquipped(entity, SpectrumItems.ASHEN_CIRCLET);
-				if (ashenCircletStack.isPresent()) {
-					if (AshenCircletItem.getCooldownTicks(ashenCircletStack.get(), entity.level()) == 0) {
-						AshenCircletItem.grantFireResistance(ashenCircletStack.get(), entity);
-						return false;
-					}
-				}
-			} else if (source.is(DamageTypeTags.IS_FIRE) && SpectrumTrinketItem.hasEquipped(entity, SpectrumItems.ASHEN_CIRCLET)) {
-				return false;
-			}
-			
-			return true;
-		});
-		
-		ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
-			private final ResourceLocation id = SpectrumCommon.locate("server_data_cache_clearer");
-			
-			@Override
-			public void onResourceManagerReload(ResourceManager manager) {
-				AutoCraftingMode.clearCache();
-				SpectrumCommon.CACHED_ITEM_TAG_MAP.clear();
-				
-				if (SpectrumCommon.minecraftServer != null) {
-					FirestarterIdolBlock.addBlockSmeltingRecipes(SpectrumCommon.minecraftServer);
-				}
-				
-				if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
-					UnlockToastManager.clear();
-				}
-			}
-			
-			@Override
-			public ResourceLocation getFabricId() {
-				return id;
-			}
-		});
 	}
 	
 	private static void evaluateAndDropPlayerHead(ServerPlayer player, DamageSource source) {
 		if (!player.isSpectator()) {
-			// TODO: Can we evaluate a SpectrumLootPoolModifiers.treasureHunter() here instead?
-			// code reuse is always nice
 			ServerLevel serverWorld = player.serverLevel();
 			
 			boolean shouldDropHead = source.is(SpectrumDamageTypeTags.ALWAYS_DROPS_MOB_HEAD);

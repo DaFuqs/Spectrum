@@ -49,6 +49,7 @@ neoForge {
 
 	interfaceInjectionData {
 		from file("src/main/resources/spectrum-injected-interfaces.json")
+		publish file("interfaces.json")
 	}
 
 	// Default run configurations.

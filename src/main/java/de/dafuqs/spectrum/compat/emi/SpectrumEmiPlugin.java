@@ -23,6 +23,7 @@ import net.minecraft.world.level.material.*;
 import java.util.*;
 import java.util.function.*;
 
+@EmiEntrypoint
 public class SpectrumEmiPlugin implements EmiPlugin {
 	
 	@Override

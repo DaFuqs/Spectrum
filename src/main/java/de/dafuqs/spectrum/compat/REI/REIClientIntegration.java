@@ -31,6 +31,7 @@ import me.shedaniel.rei.api.common.display.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.transfer.info.stack.*;
 import me.shedaniel.rei.api.common.util.*;
+import me.shedaniel.rei.forge.*;
 import me.shedaniel.rei.plugin.common.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.level.block.*;
@@ -38,7 +39,7 @@ import net.minecraft.world.level.block.*;
 import java.util.*;
 import java.util.stream.*;
 
-
+@REIPluginClient
 public class REIClientIntegration implements REIClientPlugin {
 	
 	@Override

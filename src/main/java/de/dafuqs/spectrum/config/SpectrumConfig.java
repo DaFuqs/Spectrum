@@ -6,6 +6,7 @@ import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.*;
 
 import java.util.*;
 
+// TODO: migrate to neoforge builtin config
 @Config(name = "Spectrum")
 public class SpectrumConfig implements ConfigData {
 	

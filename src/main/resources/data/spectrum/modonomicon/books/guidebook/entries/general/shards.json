@@ -12,6 +12,10 @@
   "parents": [
     {
       "entry": "spectrum:general/geodes"
+    },
+    {
+      "entry": "spectrum:general/gemstone_ores",
+      "line_reversed": true
     }
   ],
   "background_u_index": 0,

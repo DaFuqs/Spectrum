@@ -171,6 +171,7 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 				ItemEnchantments targetEnchants = builder.toImmutable();
 				if (targetEnchants.isEmpty()) {
 					itemStack.remove(SpectrumDataComponentTypes.CANVAS_ENCHANTMENTS);
+					itemStack.remove(SpectrumDataComponentTypes.BOUND_ITEM);
 				} else {
 					itemStack.set(SpectrumDataComponentTypes.CANVAS_ENCHANTMENTS, targetEnchants);
 				}

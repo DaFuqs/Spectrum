@@ -1,0 +1,25 @@
+{
+  "type": "mekanism:sawing",
+  "input": {
+    "ingredient": {
+      "tag": "spectrum:ivory_noxcap_stems"
+    }
+  },
+  "mainOutput": {
+    "count": 6,
+    "item": "spectrum:ivory_noxwood_planks"
+  },
+  "secondaryChance": 0.25,
+  "secondaryOutput": {
+    "item": "mekanism:sawdust",
+    "count": 1
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "mekanism"
+      ]
+    }
+  ]
+}

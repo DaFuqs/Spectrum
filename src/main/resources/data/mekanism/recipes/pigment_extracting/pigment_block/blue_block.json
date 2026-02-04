@@ -1,0 +1,20 @@
+{
+  "type": "mekanism:pigment_extracting",
+  "input": {
+    "ingredient": {
+      "item": "spectrum:blue_block"
+    }
+  },
+  "output": {
+    "amount": 6912,
+    "pigment": "mekanism:blue"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "mekanism"
+      ]
+    }
+  ]
+}

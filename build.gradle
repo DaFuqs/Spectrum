@@ -78,6 +78,8 @@ neoForge {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 dependencies {
+	// TODO: to work in dev, these dependencies will probably need adding to additionalRuntimeClasspath as well!
+	// TODO: for details see https://github.com/neoforged/ModDevGradle?tab=readme-ov-file#external-dependencies-runs
 	// jgrapht (the graph lib we use) and its dependencies
 	implementation jarJar("org.jgrapht:jgrapht-core:1.5.2")
 	implementation jarJar("org.apfloat:apfloat:1.14.0")
@@ -101,6 +103,7 @@ dependencies {
 	implementation("maven.modrinth:exclusions-lib:${project.exclusionslib_version}")
 
 	compileOnly "top.theillusivec4.curios:curios-neoforge:${project.curios_version}:api"
+	runtimeOnly "top.theillusivec4.curios:curios-neoforge:${project.curios_version}"
 
 
 	switch (recipe_viewer.toLowerCase(Locale.ROOT)) {
@@ -115,8 +118,8 @@ dependencies {
 	implementation("maven.modrinth:sodium:${project.sodium_version}") { transitive = false }
 	implementation("com.unascribed:ears-api:${project.ears_version}")
 	implementation("maven.modrinth:create:${project.create_version}") { transitive = false }
-	implementation("maven.modrinth:lodestonelib:${project.lodestone_version}") { transitive = false }
-	implementation("maven.modrinth:malum:${project.malum_version}") { transitive = false }
+	/*implementation*/ compileOnly("maven.modrinth:lodestonelib:${project.lodestone_version}") { transitive = false }
+	/*implementation*/ compileOnly("maven.modrinth:malum:${project.malum_version}") { transitive = false }
 	implementation("maven.modrinth:travelersbackpack:${project.travelers_backpack_version}")
 	// implementation("maven.modrinth:botania:${project.botania_version}") // still on MC 1.20.1
 	implementation("maven.modrinth:vanity:${project.vanityslots_version}")
@@ -140,6 +143,10 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
 			version: version,
 			minecraft_version: minecraft_version,
 			neoforge_version_range: neoforge_version_range,
+			cloth_config_version_range: cloth_config_version_range,
+			curios_version_range: curios_version_range,
+			modonomicon_version_range: modonomicon_version_range,
+			revelationary_version_range: revelationary_version_range,
 	]
 	inputs.properties replaceProperties
 	expand replaceProperties

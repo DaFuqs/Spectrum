@@ -36,27 +36,27 @@ side="BOTH"
 [[dependencies.spectrum]]
 modId="revelationary"
 type="required"
-versionRange="[${minecraft_version}]"
+versionRange="${revelationary_version_range}"
 ordering="NONE"
 side="BOTH"
 
 [[dependencies.spectrum]]
 modId="modonomicon"
 type="required"
-versionRange="[${minecraft_version}]"
+versionRange="${modonomicon_version_range}"
 ordering="NONE"
 side="BOTH"
 
 [[dependencies.spectrum]]
 modId="curios"
 type="required"
-versionRange="[${minecraft_version}]"
+versionRange="${curios_version_range}"
 ordering="NONE"
 side="BOTH"
 
 [[dependencies.spectrum]]
-modId="cloth-config"
+modId="cloth_config"
 type="required"
-versionRange="[${minecraft_version}]"
+versionRange="${cloth_config_version_range}"
 ordering="NONE"
 side="BOTH"

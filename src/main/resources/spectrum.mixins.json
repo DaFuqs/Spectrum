@@ -73,7 +73,6 @@
     "ShearsDispenserBehaviorMixin",
     "SimpleCriterionTriggerMixin",
     "SpawnDensityCapperMixin",
-    "accessors.MobEffectInstanceAccessor",
     "StatusEffectUtilMixin",
     "TemptGoalMixin",
     "TridentEntityMixin",

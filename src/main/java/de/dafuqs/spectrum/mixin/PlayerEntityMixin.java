@@ -73,38 +73,37 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 		return original;
 	}
 	
-	// TODO: fixin mixin
-//	@WrapOperation(method = "getDestroySpeed", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Inventory;getDestroySpeed(Lnet/minecraft/world/level/block/state/BlockState;)F"))
-//	private float spectrum$modifygetBlockBreakingSpeed(Inventory inventory, BlockState state, Operation<Float> original) {
-//		ItemStack stack = inventory.items.get(inventory.selected);
-//		RegistryAccess drm = registryAccess();
-//		Tool tool = stack.get(DataComponents.TOOL);
-//		float speed = original.call(inventory, state);
-//
-//		// RAZING GAMING
-//		int razingLevel = SpectrumEnchantmentHelper.getLevel(drm, SpectrumEnchantments.RAZING, stack);
-//		if (razingLevel > 0 && tool != null && tool.getMiningSpeed(state) > tool.defaultMiningSpeed()) {
-//			float hardness = state.getBlock().defaultDestroyTime();
-//			speed = (float) Math.max(1 + hardness, Math.pow(2, 1 + razingLevel / 8F));
-//		}
-//
-//		// INERTIA GAMING
-//		// inertia mining speed calculation logic is capped at 5 levels.
-//		// Higher and the formula would do weird stuff
-//		int inertiaLevel = SpectrumEnchantmentHelper.getLevel(drm, SpectrumEnchantments.INERTIA, stack);
-//		inertiaLevel = Math.min(4, inertiaLevel);
-//		if (inertiaLevel > 0) {
-//			var inertia = stack.getOrDefault(SpectrumDataComponentTypes.INERTIA, InertiaComponent.DEFAULT);
-//			if (state.is(inertia.lastMined())) {
-//				var additionalSpeedPercent = 2.0 * Math.log(inertia.count()) / Math.log((6 - inertiaLevel) * (6 - inertiaLevel) + 1);
-//				speed *= 0.5F + (float) additionalSpeedPercent;
-//			} else {
-//				speed /= 4;
-//			}
-//		}
-//
-//		return speed;
-//	}
+	@WrapOperation(method = "getDigSpeed", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Inventory;getDestroySpeed(Lnet/minecraft/world/level/block/state/BlockState;)F"))
+	private float spectrum$modifygetBlockBreakingSpeed(Inventory inventory, BlockState state, Operation<Float> original) {
+		ItemStack stack = inventory.items.get(inventory.selected);
+		RegistryAccess drm = registryAccess();
+		Tool tool = stack.get(DataComponents.TOOL);
+		float speed = original.call(inventory, state);
+
+		// RAZING GAMING
+		int razingLevel = SpectrumEnchantmentHelper.getLevel(drm, SpectrumEnchantments.RAZING, stack);
+		if (razingLevel > 0 && tool != null && tool.getMiningSpeed(state) > tool.defaultMiningSpeed()) {
+			float hardness = state.getBlock().defaultDestroyTime();
+			speed = (float) Math.max(1 + hardness, Math.pow(2, 1 + razingLevel / 8F));
+		}
+
+		// INERTIA GAMING
+		// inertia mining speed calculation logic is capped at 5 levels.
+		// Higher and the formula would do weird stuff
+		int inertiaLevel = SpectrumEnchantmentHelper.getLevel(drm, SpectrumEnchantments.INERTIA, stack);
+		inertiaLevel = Math.min(4, inertiaLevel);
+		if (inertiaLevel > 0) {
+			var inertia = stack.getOrDefault(SpectrumDataComponentTypes.INERTIA, InertiaComponent.DEFAULT);
+			if (state.is(inertia.lastMined())) {
+				var additionalSpeedPercent = 2.0 * Math.log(inertia.count()) / Math.log((6 - inertiaLevel) * (6 - inertiaLevel) + 1);
+				speed *= 0.5F + (float) additionalSpeedPercent;
+			} else {
+				speed /= 4;
+			}
+		}
+
+		return speed;
+	}
 	
 	@Inject(method = "updateSwimming()V", at = @At("HEAD"), cancellable = true)
 	public void spectrum$updateSwimming(CallbackInfo ci) {

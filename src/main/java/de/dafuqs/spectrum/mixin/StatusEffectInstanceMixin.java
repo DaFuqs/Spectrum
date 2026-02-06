@@ -16,11 +16,11 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 public abstract class StatusEffectInstanceMixin implements StatusEffectInstanceInjector {
 	
 	@Shadow
-	public int duration;
+	private int duration;
 	@Shadow
-	public int amplifier;
+	private int amplifier;
 	@Unique
-	private boolean severe;
+	private boolean spectrum$severe;
 	
 	@ModifyExpressionValue(method = "<clinit>", at = @At(value = "INVOKE", target = "Lcom/mojang/serialization/codecs/RecordCodecBuilder;create(Ljava/util/function/Function;)Lcom/mojang/serialization/Codec;", remap = false))
 	private static Codec<MobEffectInstance> wrapCodec(Codec<MobEffectInstance> original) {
@@ -42,7 +42,7 @@ public abstract class StatusEffectInstanceMixin implements StatusEffectInstanceI
 	
 	@Inject(method = "update", at = @At("RETURN"))
 	private void readSevere(MobEffectInstance that, CallbackInfoReturnable<Boolean> cir, @Local(ordinal = 0) LocalBooleanRef changed) {
-		if (severe != that.spectrum$isSevere()) {
+		if (spectrum$severe != that.spectrum$isSevere()) {
 			spectrum$setSevere(that.spectrum$isSevere());
 			changed.set(true);
 		}
@@ -50,12 +50,12 @@ public abstract class StatusEffectInstanceMixin implements StatusEffectInstanceI
 	
 	@Override
 	public boolean spectrum$isSevere() {
-		return severe;
+		return spectrum$severe;
 	}
 	
 	@Override
 	public void spectrum$setSevere(boolean severe) {
-		this.severe = severe;
+		this.spectrum$severe = severe;
 	}
 	
 	@Override
@@ -70,7 +70,7 @@ public abstract class StatusEffectInstanceMixin implements StatusEffectInstanceI
 	
 	@ModifyReturnValue(method = "describeDuration()Ljava/lang/String;", at = @At("RETURN"))
 	private String describeDuration(String original) {
-		if (this.severe) {
+		if (this.spectrum$severe) {
 			original = original + I18n.get("item.spectrum.potion.tooltip.severe");
 		}
 		return original;

@@ -25,7 +25,8 @@ public class HeldItemRendererMixin {
 	private void renderTwoHandedMap(PoseStack matrices, MultiBufferSource vertexConsumers, int light, float pitch, float equipProgress, float swingProgress) {
 	}
 	
-	@Inject(method = "renderArmWithItem", at = @At(value = "INVOKE", target = "net/minecraft/world/item/ItemStack.is (Lnet/minecraft/world/item/Item;)Z", ordinal = 1), cancellable = true)
+	// TODO: do we need that mixin? ARTISANS_ATLAS extends MapItem
+	@Inject(method = "renderArmWithItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;getItem()Lnet/minecraft/world/item/Item;", ordinal = 1), cancellable = true)
 	private void spectrum$renderFirstPersonItem(AbstractClientPlayer player, float tickDelta, float pitch, InteractionHand hand, float swingProgress, ItemStack item, float equipProgress, PoseStack matrices, MultiBufferSource vertexConsumers, int light, CallbackInfo ci) {
 		if (item.is(SpectrumItems.ARTISANS_ATLAS)) {
 			boolean isInMainHand = hand == InteractionHand.MAIN_HAND;

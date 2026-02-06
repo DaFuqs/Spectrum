@@ -7,6 +7,7 @@ import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.world.item.*;
+import org.objectweb.asm.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -69,7 +70,7 @@ public abstract class DrawContextMixin {
 		}
 	}
 	
-	@Inject(method = "renderItemDecorations(Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V", at = @At(value = "FIELD", target = "net/minecraft/client/gui/GuiGraphics.minecraft : Lnet/minecraft/client/Minecraft;", ordinal = 0, shift = At.Shift.BEFORE))
+	@Inject(method = "renderItemDecorations(Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V", at = @At(value = "FIELD", target = "net/minecraft/client/gui/GuiGraphics.minecraft : Lnet/minecraft/client/Minecraft;", ordinal = 0, shift = At.Shift.BEFORE, opcode = Opcodes.GETFIELD))
 	protected void spectrum$appendBars(Font textRenderer, ItemStack stack, int x, int y, String countOverride, CallbackInfo ci) {
 		if (!(stack.getItem() instanceof ExtendedItemBarProvider extendedItemBarProvider)) {
 			return;

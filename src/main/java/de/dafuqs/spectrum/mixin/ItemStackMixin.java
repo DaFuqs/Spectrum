@@ -79,6 +79,7 @@ public abstract class ItemStackMixin {
 		
 	}
 	
+	@Unique
 	public void spectrum$addConcealedEffectsTooltip(ItemStack stack, Item.TooltipContext context, Consumer<Component> tooltipAdder, Player player) {
 		var oilEffect = stack.get(SpectrumDataComponentTypes.CONCEALED_EFFECT);
 		var profile = stack.get(DataComponents.PROFILE);

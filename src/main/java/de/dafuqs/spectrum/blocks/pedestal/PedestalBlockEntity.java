@@ -327,9 +327,9 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		if (recipe != null) {
 			ItemStack output;
 			if (recipe instanceof PedestalRecipe pedestalRecipe) {
-				output = pedestalRecipe.assemble(input, null);
+				output = pedestalRecipe.assemble(input, level.registryAccess());
 			} else if (recipe instanceof CraftingRecipe craftingRecipe) {
-				output = craftingRecipe.assemble(input.getCraftingGridInput(), null);
+				output = craftingRecipe.assemble(input.getCraftingGridInput(), level.registryAccess());
 			} else {
 				output = ItemStack.EMPTY;
 			}
@@ -800,7 +800,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		}
 		
 		if (currentRecipe instanceof CraftingRecipe craftingRecipe) {
-			return craftingRecipe.assemble(createRecipeInput().getCraftingGridInput(), null);
+			return craftingRecipe.assemble(createRecipeInput().getCraftingGridInput(), level.registryAccess());
 		}
 		
 		return ItemStack.EMPTY;

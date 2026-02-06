@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
+import net.neoforged.neoforge.common.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -42,6 +43,11 @@ public class ImmunityStatusEffect extends MobEffect {
 		for (Holder<MobEffect> effect : effectsToRemove) {
 			entity.removeEffect(effect);
 		}
+	}
+	
+	@Override
+	public void fillEffectCures(Set<EffectCure> cures, @NotNull MobEffectInstance effectInstance) {
+		cures.add(SpectrumStatusEffectCures.COMMAND_ONLY);
 	}
 	
 }

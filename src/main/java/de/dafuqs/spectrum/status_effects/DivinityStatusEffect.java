@@ -12,6 +12,10 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.level.*;
+import net.neoforged.neoforge.common.*;
+import org.jetbrains.annotations.*;
+
+import java.util.*;
 
 public class DivinityStatusEffect extends MobEffect {
 	
@@ -73,6 +77,11 @@ public class DivinityStatusEffect extends MobEffect {
 	@Override
 	public void removeAttributeModifiers(AttributeMap attributes) {
 		super.removeAttributeModifiers(attributes);
+	}
+	
+	@Override
+	public void fillEffectCures(Set<EffectCure> cures, @NotNull MobEffectInstance effectInstance) {
+		cures.add(SpectrumStatusEffectCures.COMMAND_ONLY);
 	}
 	
 }

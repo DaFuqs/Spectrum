@@ -5,7 +5,10 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
+import net.neoforged.neoforge.common.*;
 import org.jetbrains.annotations.*;
+
+import java.util.*;
 
 public class FrenzyStatusEffect extends MobEffect {
 	
@@ -81,6 +84,11 @@ public class FrenzyStatusEffect extends MobEffect {
 		} else {
 			return existingValue - additionalValue * (amplifier - increase);
 		}
+	}
+	
+	@Override
+	public void fillEffectCures(Set<EffectCure> cures, @NotNull MobEffectInstance effectInstance) {
+		cures.add(SpectrumStatusEffectCures.SEDATIVES);
 	}
 	
 }

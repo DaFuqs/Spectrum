@@ -8,6 +8,10 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
+import net.neoforged.neoforge.common.*;
+import org.jetbrains.annotations.*;
+
+import java.util.*;
 
 public class AscensionStatusEffect extends MobEffect {
 	
@@ -43,6 +47,11 @@ public class AscensionStatusEffect extends MobEffect {
 		if (entity instanceof ServerPlayer player) {
 			PlayAscensionAppliedEffectsPayload.playAscensionAppliedEffects(player);
 		}
+	}
+	
+	@Override
+	public void fillEffectCures(Set<EffectCure> cures, @NotNull MobEffectInstance effectInstance) {
+		cures.add(SpectrumStatusEffectCures.COMMAND_ONLY);
 	}
 	
 }

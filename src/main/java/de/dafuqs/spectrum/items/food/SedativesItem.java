@@ -24,7 +24,7 @@ public class SedativesItem extends ItemWithTooltip {
 				var duration = frenzy.getDuration();
 				
 				if (world.getRandom().nextInt((int) (frenzy.getAmplifier() + Math.round(duration / 30.0) + 1)) == 0) {
-					user.removeEffect(SpectrumStatusEffects.FRENZY);
+					user.removeEffectsCuredBy(SpectrumStatusEffectCures.SEDATIVES);
 					if (frenzy.getAmplifier() > 0) {
 						user.addEffect(new MobEffectInstance(SpectrumStatusEffects.FRENZY, duration, level - 1, frenzy.isAmbient(), frenzy.isVisible(), frenzy.showIcon()));
 					}

@@ -1,8 +1,13 @@
 package de.dafuqs.spectrum.status_effects;
 
 import de.dafuqs.spectrum.registries.*;
+import net.minecraft.core.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
+import net.neoforged.neoforge.common.*;
+import org.jetbrains.annotations.*;
+
+import java.util.*;
 
 public class DeadlyPoisonStatusEffect extends MobEffect {
 	
@@ -24,6 +29,13 @@ public class DeadlyPoisonStatusEffect extends MobEffect {
 		} else {
 			return true;
 		}
+	}
+	
+	@Override
+	public void fillEffectCures(Set<EffectCure> cures, @NotNull MobEffectInstance effectInstance) {
+		super.fillEffectCures(cures, effectInstance);
+		
+		cures.add(EffectCures.HONEY);
 	}
 	
 }

@@ -6,7 +6,10 @@ import net.minecraft.core.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
+import net.neoforged.neoforge.common.*;
 import org.jetbrains.annotations.*;
+
+import java.util.*;
 
 public class SleepStatusEffect extends MobEffect {
 	
@@ -94,6 +97,15 @@ public class SleepStatusEffect extends MobEffect {
 			return SpectrumStatusEffects.SOMNOLENCE;
 		}
 		return null;
+	}
+	
+	@Override
+	public void fillEffectCures(Set<EffectCure> cures, @NotNull MobEffectInstance effectInstance) {
+		Holder<MobEffect> holder = effectInstance.getEffect();
+		
+		if (holder.equals(SpectrumStatusEffects.SOMNOLENCE) || holder.equals(SpectrumStatusEffects.CALMING)) {
+			cures.add(SpectrumStatusEffectCures.SEDATIVES);
+		}
 	}
 	
 	// Sleep effects don't scale except for uh, calming ufck

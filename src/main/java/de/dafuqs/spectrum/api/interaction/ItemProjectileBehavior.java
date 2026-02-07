@@ -25,28 +25,33 @@ import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
+import java.util.function.*;
 
 public interface ItemProjectileBehavior {
 	
-	List<Tuple<ItemPredicate, ItemProjectileBehavior>> BEHAVIORS = new ArrayList<>();
+	List<Tuple<Supplier<ItemPredicate>, ItemProjectileBehavior>> BEHAVIORS = new ArrayList<>();
 	
 	ItemProjectileBehavior DEFAULT = new Default();
 	
-	static void register(ItemProjectileBehavior behavior, ItemPredicate predicate) {
+	static void register(ItemProjectileBehavior behavior, Supplier<ItemPredicate> predicate) {
 		BEHAVIORS.add(new Tuple<>(predicate, behavior));
 	}
 	
+	static void register(ItemProjectileBehavior behavior, ItemPredicate predicate) {
+		BEHAVIORS.add(new Tuple<>(() -> predicate, behavior));
+	}
+	
 	static void register(ItemProjectileBehavior behavior, Item... items) {
-		BEHAVIORS.add(new Tuple<>(ItemPredicate.Builder.item().of(items).build(), behavior));
+		register(behavior, () -> ItemPredicate.Builder.item().of(items).build());
 	}
 	
 	static void register(ItemProjectileBehavior behavior, TagKey<Item> tag) {
-		BEHAVIORS.add(new Tuple<>(ItemPredicate.Builder.item().of(tag).build(), behavior));
+		register(behavior, () -> ItemPredicate.Builder.item().of(tag).build());
 	}
 	
 	static ItemProjectileBehavior get(ItemStack stack) {
-		for (Tuple<ItemPredicate, ItemProjectileBehavior> entry : BEHAVIORS) {
-			if (entry.getA().test(stack)) {
+		for (Tuple<Supplier<ItemPredicate>, ItemProjectileBehavior> entry : BEHAVIORS) {
+			if (entry.getA().get().test(stack)) {
 				return entry.getB();
 			}
 		}
@@ -62,6 +67,7 @@ public interface ItemProjectileBehavior {
 	 * @param hitResult  The EntityHitResult. Contains the entity hit and position
 	 * @return The stack that should be dropped. If the stack has a count > 0, it automatically gets dropped at the position of the impact. If the item should get consumed, decrement the stack from the parameters and return it here
 	 */
+	// TODO: check and use return value
 	ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult);
 	
 	/**
@@ -73,6 +79,7 @@ public interface ItemProjectileBehavior {
 	 * @param hitResult  The EntityHitResult. Contains the entity hit and position
 	 * @return The stack that should be dropped. If the stack has a count > 0, it automatically gets dropped at the position of the impact. If the item should get consumed, decrement the stack from the parameters and return it here
 	 */
+	// TODO: check and use return value
 	ItemStack onBlockHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, BlockHitResult hitResult);
 	
 	

@@ -13,7 +13,7 @@ public class SpectrumEntityColorProcessors {
 	
 	public static void register() {
 		// VANILLA
-		EntityColorProcessorRegistry.register(EntityType.SHEEP, (entity, dyeColor, player) -> {
+		EntityColorProcessorRegistry.register(() -> EntityType.SHEEP, (entity, dyeColor, player) -> {
 			if (dyeColor.isEmpty()) {
 				return false;
 			}
@@ -25,7 +25,7 @@ public class SpectrumEntityColorProcessors {
 			entity.setColor(color);
 			return true;
 		});
-		EntityColorProcessorRegistry.register(EntityType.WOLF, (entity, dyeColor, player) -> {
+		EntityColorProcessorRegistry.register(() -> EntityType.WOLF, (entity, dyeColor, player) -> {
 			if (dyeColor.isEmpty()) {
 				return false;
 			}
@@ -40,7 +40,7 @@ public class SpectrumEntityColorProcessors {
 			entity.setCollarColor(color);
 			return true;
 		});
-		EntityColorProcessorRegistry.register(EntityType.CAT, (entity, dyeColor, player) -> {
+		EntityColorProcessorRegistry.register(() -> EntityType.CAT, (entity, dyeColor, player) -> {
 			if (dyeColor.isEmpty()) {
 				return false;
 			}
@@ -55,7 +55,7 @@ public class SpectrumEntityColorProcessors {
 			entity.setCollarColor(color);
 			return true;
 		});
-		EntityColorProcessorRegistry.register(EntityType.SHULKER, (entity, dyeColor, player) -> {
+		EntityColorProcessorRegistry.register(() -> EntityType.SHULKER, (entity, dyeColor, player) -> {
 			@Nullable DyeColor shulkerColor = entity.getColor();
 			if (shulkerColor == null && dyeColor.isEmpty()) {
 				return false;
@@ -68,7 +68,7 @@ public class SpectrumEntityColorProcessors {
 		});
 		
 		// SPECTRUM
-		EntityColorProcessorRegistry.register(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG.get(), (entity, dyeColor, player) -> {
+		EntityColorProcessorRegistry.register(() -> SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG.get(), (entity, dyeColor, player) -> {
 			if (dyeColor.isEmpty()) {
 				return false;
 			}
@@ -79,7 +79,7 @@ public class SpectrumEntityColorProcessors {
 			entity.setColor(color);
 			return true;
 		});
-		EntityColorProcessorRegistry.register(SpectrumEntityTypes.INK_PROJECTILE.get(), (entity, dyeColor, player) -> {
+		EntityColorProcessorRegistry.register(() -> SpectrumEntityTypes.INK_PROJECTILE.get(), (entity, dyeColor, player) -> {
 			if (dyeColor.isEmpty()) {
 				return false;
 			}

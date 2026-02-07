@@ -13,10 +13,11 @@ import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
+import java.util.function.*;
 
 public interface OmniAcceleratorProjectile {
 	
-	List<Tuple<ItemPredicate, OmniAcceleratorProjectile>> PROJECTILES = new ArrayList<>();
+	List<Tuple<Supplier<ItemPredicate>, OmniAcceleratorProjectile>> PROJECTILES = new ArrayList<>();
 	
 	OmniAcceleratorProjectile DEFAULT = (stack, shooter, world, shotFrom) -> {
 		ItemProjectileEntity itemProjectileEntity = new ItemProjectileEntity(world, shooter);
@@ -26,21 +27,25 @@ public interface OmniAcceleratorProjectile {
 		return itemProjectileEntity;
 	};
 	
-	static void register(OmniAcceleratorProjectile behavior, ItemPredicate predicate) {
+	static void register(OmniAcceleratorProjectile behavior, Supplier<ItemPredicate> predicate) {
 		PROJECTILES.add(new Tuple<>(predicate, behavior));
 	}
 	
+	static void register(OmniAcceleratorProjectile behavior, ItemPredicate predicate) {
+		register(behavior, () -> predicate);
+	}
+	
 	static void register(OmniAcceleratorProjectile behavior, ItemLike... items) {
-		PROJECTILES.add(new Tuple<>(ItemPredicate.Builder.item().of(items).build(), behavior));
+		register(behavior, ItemPredicate.Builder.item().of(items).build());
 	}
 	
 	static void register(OmniAcceleratorProjectile behavior, TagKey<Item> tag) {
-		PROJECTILES.add(new Tuple<>(ItemPredicate.Builder.item().of(tag).build(), behavior));
+		register(behavior, ItemPredicate.Builder.item().of(tag).build());
 	}
 	
 	static OmniAcceleratorProjectile get(ItemStack stack) {
-		for (Tuple<ItemPredicate, OmniAcceleratorProjectile> entry : PROJECTILES) {
-			if (entry.getA().test(stack)) {
+		for (Tuple<Supplier<ItemPredicate>, OmniAcceleratorProjectile> entry : PROJECTILES) {
+			if (entry.getA().get().test(stack)) {
 				return entry.getB();
 			}
 		}

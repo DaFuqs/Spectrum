@@ -9,6 +9,7 @@ import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.magic_items.ampoules.*;
 import de.dafuqs.spectrum.items.tools.*;
+import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
@@ -64,13 +65,13 @@ public class SpectrumItemProjectileBehaviors {
 				}
 				return false;
 			}
-		}, SpectrumItems.STORM_STONE.get());
+		}, () -> ItemPredicate.Builder.item().of(SpectrumItems.STORM_STONE.get()).build());
 		
 		ItemProjectileBehavior.register(ItemProjectileBehavior.damaging(4F, true), SpectrumItemTags.GEMSTONE_SHARDS);
 		ItemProjectileBehavior.register(ItemProjectileBehavior.damaging(6F, true), Items.POINTED_DRIPSTONE);
 		ItemProjectileBehavior.register(ItemProjectileBehavior.damaging(6F, true), Items.END_ROD);
 		ItemProjectileBehavior.register(ItemProjectileBehavior.damaging(6F, true), Items.BLAZE_ROD);
-		ItemProjectileBehavior.register(ItemProjectileBehavior.damaging(8F, true), SpectrumItems.STAR_FRAGMENT.get());
+		ItemProjectileBehavior.register(ItemProjectileBehavior.damaging(8F, true), () -> ItemPredicate.Builder.item().of(SpectrumItems.STAR_FRAGMENT.get()).build());
 		
 		ItemProjectileBehavior.register(new ItemProjectileBehavior.Damaging() {
 			
@@ -129,7 +130,7 @@ public class SpectrumItemProjectileBehaviors {
 				stack.shrink(1);
 				return stack;
 			}
-		}, SpectrumBlocks.INCANDESCENT_AMALGAM.asItem());
+		}, () -> ItemPredicate.Builder.item().of(SpectrumBlocks.INCANDESCENT_AMALGAM.get()).build());
 		
 		ItemProjectileBehavior.register(new ItemProjectileBehavior() {
 			@Override
@@ -157,7 +158,7 @@ public class SpectrumItemProjectileBehaviors {
 				}
 				return accelerator;
 			}
-		}, SpectrumItems.OMNI_ACCELERATOR.get());
+		}, () -> ItemPredicate.Builder.item().of(SpectrumItems.OMNI_ACCELERATOR.get()).build());
 		
 		ItemProjectileBehavior.register(new ItemProjectileBehavior.Default() {
 			@Override
@@ -188,7 +189,7 @@ public class SpectrumItemProjectileBehaviors {
 				return stack;
 			}
 			
-		}, SpectrumBlocks.MEMORY.asItem());
+		}, () -> ItemPredicate.Builder.item().of(SpectrumBlocks.MEMORY.get()).build());
 		
 		ItemProjectileBehavior.register(new ItemProjectileBehavior.Default() {
 			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {
@@ -202,7 +203,7 @@ public class SpectrumItemProjectileBehaviors {
 				return stack;
 			}
 			
-		}, SpectrumItems.PIPE_BOMB.get());
+		}, () -> ItemPredicate.Builder.item().of(SpectrumItems.PIPE_BOMB.get()).build());
 		
 		ItemProjectileBehavior.register(new ItemProjectileBehavior.Default() {
 			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {
@@ -220,7 +221,7 @@ public class SpectrumItemProjectileBehaviors {
 				return stack;
 			}
 			
-		}, SpectrumItems.AZURITE_GLASS_AMPOULE.get(), SpectrumItems.MALACHITE_GLASS_AMPOULE.get(), SpectrumItems.BLOODSTONE_GLASS_AMPOULE.get());
+		}, () -> ItemPredicate.Builder.item().of(SpectrumItems.AZURITE_GLASS_AMPOULE.get(), SpectrumItems.MALACHITE_GLASS_AMPOULE.get(), SpectrumItems.BLOODSTONE_GLASS_AMPOULE.get()).build());
 	}
 	
 	protected static void registerPvP() {
@@ -240,7 +241,7 @@ public class SpectrumItemProjectileBehaviors {
 				}
 				return stack;
 			}
-		}, SpectrumItems.ENCHANTMENT_CANVAS.get());
+		}, () -> ItemPredicate.Builder.item().of(SpectrumItems.ENCHANTMENT_CANVAS.get()).build());
 		
 		ItemProjectileBehavior.register(new ItemProjectileBehavior.Default() {
 			@Override
@@ -260,7 +261,7 @@ public class SpectrumItemProjectileBehaviors {
 				}
 				return stack;
 			}
-		}, SpectrumItems.KNOWLEDGE_GEM.get());
+		}, () -> ItemPredicate.Builder.item().of(SpectrumItems.KNOWLEDGE_GEM.get()).build());
 		
 		ItemProjectileBehavior.register(new ItemProjectileBehavior.Default() {
 			@Override
@@ -271,7 +272,7 @@ public class SpectrumItemProjectileBehaviors {
 				}
 				return stack;
 			}
-		}, SpectrumItems.CRAFTING_TABLET.get());
+		}, () -> ItemPredicate.Builder.item().of(SpectrumItems.CRAFTING_TABLET.get()).build());
 	}
 	
 }

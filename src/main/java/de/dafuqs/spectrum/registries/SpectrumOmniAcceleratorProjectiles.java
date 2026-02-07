@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.registries;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.blocks.shooting_star.*;
 import de.dafuqs.spectrum.entity.entity.*;
+import net.minecraft.advancements.critereon.*;
 import net.minecraft.sounds.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.*;
@@ -15,6 +16,8 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
+
+import java.util.function.*;
 
 public class SpectrumOmniAcceleratorProjectiles {
 	
@@ -150,7 +153,7 @@ public class SpectrumOmniAcceleratorProjectiles {
 			public SoundEvent getSoundEffect() {
 				return SpectrumSoundEvents.ENTITY_BLOCK_FLOODER_THROW;
 			}
-		}, SpectrumItems.BLOCK_FLOODER);
+		}, () -> ItemPredicate.Builder.item().of(SpectrumItems.BLOCK_FLOODER.get()).build());
 		
 		OmniAcceleratorProjectile.register(new OmniAcceleratorProjectile() {
 			@Override
@@ -166,7 +169,7 @@ public class SpectrumOmniAcceleratorProjectiles {
 			public SoundEvent getSoundEffect() {
 				return SpectrumSoundEvents.BLOCK_PARAMETRIC_MINING_DEVICE_THROWN;
 			}
-		}, SpectrumBlocks.PARAMETRIC_MINING_DEVICE);
+		}, () -> ItemPredicate.Builder.item().of(SpectrumBlocks.PARAMETRIC_MINING_DEVICE.get()).build());
 		
 		OmniAcceleratorProjectile.register(new OmniAcceleratorProjectile() {
 			@Override

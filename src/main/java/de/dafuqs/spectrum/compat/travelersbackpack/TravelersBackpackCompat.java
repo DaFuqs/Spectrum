@@ -33,6 +33,9 @@ public class TravelersBackpackCompat extends SpectrumIntegrationPacks.ModIntegra
 	@Override
 	public void register() {
 		
+		// TODO: fix loading issues
+		// Trying to access unbound value: ResourceKey[minecraft:fluid / spectrum:sludge]
+		/*
 		EffectFluidRegistry.registerFluidEffect(new SpectrumEffectFluid("spectrum:sludge", SpectrumFluids.SLUDGE.get().getSource()) {
 			@Override
 			public void affectDrinker(FluidStack fluidStack, Level world, Entity entity) {
@@ -42,7 +45,6 @@ public class TravelersBackpackCompat extends SpectrumIntegrationPacks.ModIntegra
 					livingEntity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 600, 3));
 				}
 			}
-			
 		});
 		
 		EffectFluidRegistry.registerFluidEffect(new SpectrumEffectFluid("spectrum:liquid_crystal", SpectrumFluids.LIQUID_CRYSTAL.get().getSource()) {
@@ -85,7 +87,8 @@ public class TravelersBackpackCompat extends SpectrumIntegrationPacks.ModIntegra
 					livingEntity.hurt(SpectrumDamageTypes.dragonrot(world), 1000); // 💀
 				}
 			}
-		});
+		});*/
+		
 	}
 	
 	

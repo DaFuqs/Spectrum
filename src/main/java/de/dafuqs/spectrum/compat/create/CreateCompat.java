@@ -45,20 +45,25 @@ public class CreateCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 			entries.accept(PURE_ZINC_BLOCK);
 		});*/
 		
-		NeoForge.EVENT_BUS.register((Consumer<PipeCollisionEvent.Flow>) event -> {
-			final BlockState result = handleBidirectionalCollision(event.getLevel(), event.getFirstFluid(), event.getSecondFluid());
-			if (result != null) event.setState(result);
-		});
-		
-		NeoForge.EVENT_BUS.register((Consumer<PipeCollisionEvent.Spill>) event -> {
-			final BlockState result = handleBidirectionalCollision(event.getLevel(), event.getPipeFluid(), event.getWorldFluid());
-			if (result != null) event.setState(result);
-		});
+		NeoForge.EVENT_BUS.addListener(CreateCompat::onPipeSpillCollision);
+		NeoForge.EVENT_BUS.addListener(CreateCompat::onPipeFlowCollision);
+	}
+	
+	private static void onPipeFlowCollision(PipeCollisionEvent.Flow event) {
+		var result = handleBidirectionalCollision(event.getLevel(), event.getFirstFluid(), event.getSecondFluid());
+		if (result != null)
+			event.setState(result);
+	}
+	
+	private static void onPipeSpillCollision(PipeCollisionEvent.Spill event) {
+		var result = handleBidirectionalCollision(event.getLevel(), event.getPipeFluid(), event.getWorldFluid());
+		if (result != null)
+			event.setState(result);
 	}
 	
 	// NOTE: firstFluid and secondFluid are assumed to be not null without checking,
 	// since the default Create event handlers for pipe collisions would throw a NullPointerException otherwise.
-	private BlockState handleBidirectionalCollision(Level world, @NotNull Fluid firstFluid, @NotNull Fluid secondFluid) {
+	private static BlockState handleBidirectionalCollision(Level world, @NotNull Fluid firstFluid, @NotNull Fluid secondFluid) {
 		final FluidState firstState = firstFluid.defaultFluidState();
 		final FluidState secondState = secondFluid.defaultFluidState();
 		
@@ -70,14 +75,13 @@ public class CreateCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 		return spectrumFluidCollision(world, secondState, firstState);
 	}
 	
-	private BlockState spectrumFluidCollision(Level world, FluidState state, FluidState otherState) {
+	private static BlockState spectrumFluidCollision(Level world, FluidState state, FluidState otherState) {
 		if (state.createLegacyBlock().getBlock() instanceof SpectrumFluidBlock spectrumFluid)
 			return spectrumFluid.handleFluidCollision(world, state, otherState, Direction.DOWN);
 		return null;
 	}
 	
 	@Override
-	
 	public void registerClient() {
 	
 	}

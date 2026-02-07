@@ -26,7 +26,6 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe<SingleRecipeInput>
 	public static final ResourceLocation UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/crystallarieum");
 	
 	protected final static Map<BlockState, RecipeHolder<CrystallarieumRecipe>> STATE_CACHE = new HashMap<>();
-	protected static final FluidIngredient LIQUID_CRYSTAL = FluidIngredient.of(SpectrumFluids.LIQUID_CRYSTAL.get());
 	
 	protected final Ingredient ingredient;
 	protected final List<BlockState> growthStages;
@@ -193,7 +192,7 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe<SingleRecipeInput>
 				).fieldOf("ink_cost_tier").forGetter(recipe -> recipe.inkPerSecond),
 				Codec.BOOL.optionalFieldOf("grows_without_catalyst", false).forGetter(recipe -> recipe.growsWithoutCatalyst),
 				CrystallarieumCatalyst.CODEC.listOf().fieldOf("catalysts").forGetter(recipe -> recipe.catalysts),
-				FluidIngredient.CODEC.optionalFieldOf("fluid_medium", LIQUID_CRYSTAL).forGetter(recipe -> recipe.medium),
+				FluidIngredient.CODEC.fieldOf("fluid_medium").forGetter(recipe -> recipe.medium),
 				ItemStack.CODEC.listOf().optionalFieldOf("additional_recipe_manager_results", ImmutableList.of()).forGetter(recipe -> recipe.additionalResults)
 		).apply(i, CrystallarieumRecipe::new));
 		

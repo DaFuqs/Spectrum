@@ -1,5 +1,8 @@
 {
   "type": "spectrum:crystallarieum_growing",
+  "fluid_medium": {
+    "fluid": "minecraft:water"
+  },
   "additional_recipe_manager_results": [
     {
       "count": 1,
@@ -32,9 +35,6 @@
       "ink_consumption_mod": 2.0
     }
   ],
-  "fluid_medium": {
-    "fluid": "minecraft:water"
-  },
   "growth_stage_states": [
     {
       "Name": "spectrum:small_prismarine_bud",

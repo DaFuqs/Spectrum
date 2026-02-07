@@ -1,5 +1,8 @@
 {
   "type": "spectrum:crystallarieum_growing",
+  "fluid_medium": {
+    "fluid": "spectrum:midnight_solution"
+  },
   "additional_recipe_manager_results": [
     {
       "count": 1,
@@ -40,9 +43,6 @@
       "ink_consumption_mod": 0.125
     }
   ],
-  "fluid_medium": {
-    "fluid": "spectrum:midnight_solution"
-  },
   "growth_stage_states": [
     {
       "Name": "spectrum:small_echo_bud",

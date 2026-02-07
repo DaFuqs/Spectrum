@@ -16,9 +16,15 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.level.pathfinder.*;
+import net.neoforged.neoforge.fluids.*;
 import org.jetbrains.annotations.*;
 
 public abstract class SludgeFluid extends SpectrumFluid {
+	
+	@Override
+	public @NotNull FluidType getFluidType() {
+		return SpectrumFluids.SLUDGE_TYPE.get();
+	}
 	
 	@Override
 	public @NotNull Fluid getSource() {

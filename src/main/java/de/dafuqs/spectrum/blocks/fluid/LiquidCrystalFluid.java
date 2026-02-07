@@ -17,9 +17,15 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.*;
+import net.neoforged.neoforge.fluids.*;
 import org.jetbrains.annotations.*;
 
 public abstract class LiquidCrystalFluid extends SpectrumFluid {
+	
+	@Override
+	public @NotNull FluidType getFluidType() {
+		return SpectrumFluids.LIQUID_CRYSTAL_TYPE.get();
+	}
 	
 	@Override
 	public @NotNull Fluid getSource() {

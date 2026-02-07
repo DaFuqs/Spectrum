@@ -91,6 +91,7 @@ public abstract class SpectrumFluid extends FlowingFluid {
 		return Optional.of(SoundEvents.BUCKET_FILL);
 	}
 	
+	// TODO: unused???
 	public abstract ParticleOptions getSplashParticle();
 	
 	public void onEntityCollision(BlockState state, Level world, BlockPos pos, Entity entity) {

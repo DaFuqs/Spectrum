@@ -18,9 +18,15 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.*;
+import net.neoforged.neoforge.fluids.*;
 import org.jetbrains.annotations.*;
 
 public abstract class DragonrotFluid extends SpectrumFluid {
+	
+	@Override
+	public @NotNull FluidType getFluidType() {
+		return SpectrumFluids.DRAGONROT_TYPE.get();
+	}
 	
 	@Override
 	public @NotNull Fluid getSource() {

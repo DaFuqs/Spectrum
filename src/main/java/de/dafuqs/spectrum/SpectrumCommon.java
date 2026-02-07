@@ -215,7 +215,7 @@ public class SpectrumCommon {
 			Player player = event.getEntity();
 			MiscPlayerDataAttachmentType.get(player).tick();
 		});
-		NeoForge.EVENT_BUS.addListener(SpectrumCapabilities::register);
+		modBus.addListener(SpectrumCapabilities::register);
 		
 		logInfo("Registering Flammable Blocks...");
 		SpectrumFlammableBlocks.register();

@@ -35,7 +35,7 @@ public record LizardPredicate(Optional<InkColor> color, Optional<LizardFrillVari
 	
 	@Override
 	public MapCodec<LizardPredicate> codec() {
-		return SpectrumEntitySubPredicateTypes.LIZARD;
+		return SpectrumEntitySubPredicateTypes.LIZARD.get();
 	}
 	
 }

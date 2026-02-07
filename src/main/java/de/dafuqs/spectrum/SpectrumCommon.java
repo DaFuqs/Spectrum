@@ -171,7 +171,7 @@ public class SpectrumCommon {
 		SpectrumLootPoolModifiers.register(modBus);
 		logInfo("Registering Variant Specific Predicates...");
 		SpectrumItemSubPredicateTypes.register(modBus);
-		SpectrumEntitySubPredicateTypes.register();
+		SpectrumEntitySubPredicateTypes.register(modBus);
 		
 		logInfo("Registering Entities...");
 		SpectrumTrackedDataHandlerRegistry.register(modBus);

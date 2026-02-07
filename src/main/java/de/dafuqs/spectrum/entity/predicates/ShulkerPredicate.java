@@ -30,7 +30,7 @@ public record ShulkerPredicate(Optional<DyeColor> color) implements EntitySubPre
 	
 	@Override
 	public MapCodec<ShulkerPredicate> codec() {
-		return SpectrumEntitySubPredicateTypes.SHULKER;
+		return SpectrumEntitySubPredicateTypes.SHULKER.get();
 	}
 	
 }

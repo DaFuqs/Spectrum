@@ -34,7 +34,7 @@ public record KindlingPredicate(Optional<Boolean> clipped, Optional<Boolean> ang
 	
 	@Override
 	public MapCodec<KindlingPredicate> codec() {
-		return SpectrumEntitySubPredicateTypes.KINDLING;
+		return SpectrumEntitySubPredicateTypes.KINDLING.get();
 	}
 	
 }

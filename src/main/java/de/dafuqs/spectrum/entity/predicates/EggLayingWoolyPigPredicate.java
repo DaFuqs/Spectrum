@@ -34,7 +34,7 @@ public record EggLayingWoolyPigPredicate(Optional<DyeColor> color, Optional<Bool
 	
 	@Override
 	public MapCodec<EggLayingWoolyPigPredicate> codec() {
-		return SpectrumEntitySubPredicateTypes.EGG_LAYING_WOOLY_PIG;
+		return SpectrumEntitySubPredicateTypes.EGG_LAYING_WOOLY_PIG.get();
 	}
 	
 }

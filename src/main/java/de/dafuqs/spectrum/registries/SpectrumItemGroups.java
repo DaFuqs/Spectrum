@@ -20,13 +20,17 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.block.*;
+import net.neoforged.bus.api.*;
+import net.neoforged.neoforge.registries.*;
 
 import java.util.*;
 
 @SuppressWarnings("unused")
 public class SpectrumItemGroups {
 	
-	public static final CreativeModeTab MAIN = CreativeModeTab.builder()
+	public static final DeferredRegister<CreativeModeTab> REGISTRAR = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, SpectrumCommon.MOD_ID);
+	
+	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MAIN = REGISTRAR.register("main", () -> CreativeModeTab.builder()
 			.icon(() -> new ItemStack(SpectrumBlocks.PEDESTAL_ALL_BASIC))
 			.displayItems((displayContext, entries) -> {
 				entries.accept(SpectrumBlocks.PEDESTAL_ALL_BASIC, CreativeModeTab.TabVisibility.PARENT_TAB_ONLY);
@@ -37,12 +41,14 @@ public class SpectrumItemGroups {
 			})
 			.hideTitle()
 			.title(Component.translatable("itemGroup.spectrum"))
-			.build();
+			.build());
 	
-	public static void register() {
-		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, ItemGroupIDs.MAIN_GROUP_ID, MAIN);
+	public static void register(IEventBus eventBus) {
+		REGISTRAR.register(eventBus);
 	}
 	
+	// TODO: fix
+	/*
 	public static final CreativeSubTab EQUIPMENT = new CreativeSubTab.Builder(MAIN, ItemGroupIDs.SUBTAB_EQUIPMENT, Component.translatable("itemGroup.spectrum.equipment"))
 			.styled(ItemGroupIDs.STYLE)
 			.entries((displayContext, entries) -> {
@@ -1560,5 +1566,6 @@ public class SpectrumItemGroups {
 				
 				entries.accept(SpectrumItems.DIVINATION_HEART);
 			}).build();
+	 */
 	
 }

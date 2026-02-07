@@ -82,7 +82,6 @@ public class SpectrumCommon {
 		return ResourceLocation.fromNamespaceAndPath(namespace, path);
 	}
 	
-	// Will be null when playing on a dedicated server!
 	@Nullable
 	public static MinecraftServer minecraftServer;
 	
@@ -119,6 +118,7 @@ public class SpectrumCommon {
 		logInfo("Registering BlockSound Groups...");
 		SpectrumBlockSoundGroups.register();
 		logInfo("Registering Fluids...");
+		NeoForgeMod.enableMilkFluid(); // TODO: remove all milk-item fluid-like compat recipes
 		SpectrumFluids.register(modBus);
 		logInfo("Registering Armor Materials...");
 		SpectrumArmorMaterials.register(modBus);
@@ -127,7 +127,7 @@ public class SpectrumCommon {
 		logInfo("Registering Items...");
 		SpectrumPotions.register(modBus);
 		SpectrumItems.register(modBus);
-		SpectrumItemGroups.register();
+		SpectrumItemGroups.register(modBus);
 		logInfo("Registering Block Entities...");
 		SpectrumBlockEntities.register(modBus);
 		modBus.addListener((Consumer<BlockEntityTypeAddBlocksEvent>) event -> event.modify(BlockEntityType.BARREL, SpectrumBlocks.WEEPING_GALA_BARREL.get()));

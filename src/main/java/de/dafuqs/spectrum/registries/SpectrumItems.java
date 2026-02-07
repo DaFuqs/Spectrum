@@ -483,7 +483,7 @@ public class SpectrumItems {
 	public static final DeferredItem<InkAssortmentItem> INK_ASSORTMENT = register(simple(item("ink_assortment", () -> new InkAssortmentItem(IS.of(1), 64 * 100), InkColors.WHITE)));
 	public static final DeferredItem<PigmentPaletteItem> PIGMENT_PALETTE = register(simple(item("pigment_palette", () -> new PigmentPaletteItem(IS.of(1, Rarity.UNCOMMON), 64 * 64 * 100), InkColors.WHITE)));
 	public static final DeferredItem<ArtistsPaletteItem> ARTISTS_PALETTE = register(simple(item("artists_palette", () -> new ArtistsPaletteItem(IS.of(1, Rarity.UNCOMMON), 64 * 64 * 64 * 64 * 100), InkColors.WHITE)));
-	public static final DeferredItem<CreativeInkAssortmentItem> CREATIVE_INK_ASSORTMENT = register(parented(item("creative_ink_assortment", () -> new CreativeInkAssortmentItem(IS.of(1, Rarity.EPIC)), InkColors.WHITE), INK_ASSORTMENT.get()));
+	public static final DeferredItem<CreativeInkAssortmentItem> CREATIVE_INK_ASSORTMENT = register(item("creative_ink_assortment", () -> new CreativeInkAssortmentItem(IS.of(1, Rarity.EPIC)), InkColors.WHITE));
 	
 	public static final DeferredItem<GleamingPinItem> GLEAMING_PIN = register(simple(item("gleaming_pin", () -> new GleamingPinItem(IS.of(1, Rarity.UNCOMMON)), InkColors.YELLOW)));
 	public static final DeferredItem<Item> LESSER_POTION_PENDANT = register(layered(item("lesser_potion_pendant", () -> new PotionPendantItem(IS.of(1, Rarity.UNCOMMON), 1, CONFIG.MaxLevelForEffectsInLesserPotionPendant - 1, SpectrumAdvancements.UNLOCK_LESSER_POTION_PENDANT), InkColors.PINK), "_base", "_overlay"));
@@ -578,7 +578,8 @@ public class SpectrumItems {
 		public ItemRegistrar<T> withItem(Supplier<T> itemFactory, InkColor color) {
 			if (hasItem) throw new UnsupportedOperationException("Attempted to register two items with id " + id);
 			hasItem = true;
-			ItemColors.ITEM_COLORS.registerColorMapping(item.get(), color);
+			// TODO: migrate to data loader
+			// ItemColors.ITEM_COLORS.registerColorMapping(item.get(), color);
 			item = REGISTRAR.register(id.getPath(), itemFactory);
 			return this;
 		}

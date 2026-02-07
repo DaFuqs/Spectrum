@@ -442,7 +442,7 @@ public class SanityCommand {
 		}
 		
 		// items / blocks missing in the creative tab (this will also omit them from most recipe viewers)
-		Collection<ItemStack> itemGroupStacks = SpectrumItemGroups.MAIN.getSearchTabDisplayItems();
+		Collection<ItemStack> itemGroupStacks = SpectrumItemGroups.MAIN.get().getSearchTabDisplayItems();
 		for (Map.Entry<ResourceKey<Item>, Item> item : BuiltInRegistries.ITEM.entrySet()) {
 			if (item.getKey().location().getNamespace().equals(modId) && !item.getValue().builtInRegistryHolder().is(SpectrumItemTags.COMING_SOON_TOOLTIP)) {
 				boolean found = false;

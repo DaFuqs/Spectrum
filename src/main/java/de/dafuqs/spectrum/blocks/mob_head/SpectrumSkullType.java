@@ -10,6 +10,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.level.block.*;
 
 import java.util.*;
+import java.util.function.*;
 
 public enum SpectrumSkullType implements SkullBlock.Type {
 	
@@ -118,40 +119,44 @@ public enum SpectrumSkullType implements SkullBlock.Type {
 	PIGLIN_BRUTE(EntityType.PIGLIN_BRUTE, SoundEvents.PIGLIN_BRUTE_AMBIENT.getLocation()),
 	
 	// Spectrum
-	EGG_LAYING_WOOLY_PIG(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG.get(), SoundEvents.PIG_AMBIENT.getLocation()),
-	ERASER(SpectrumEntityTypes.ERASER.get(), SoundEvents.SPIDER_AMBIENT.getLocation()),
-	KINDLING(SpectrumEntityTypes.KINDLING.get(), SpectrumSoundEvents.ENTITY_KINDLING_AMBIENT.getLocation()),
-	LIZARD_BLACK(SpectrumEntityTypes.LIZARD.get(), SpectrumSoundEvents.ENTITY_LIZARD_AMBIENT.getLocation()),
-	LIZARD_BLUE(SpectrumEntityTypes.LIZARD.get(), SpectrumSoundEvents.ENTITY_LIZARD_AMBIENT.getLocation()),
-	LIZARD_BROWN(SpectrumEntityTypes.LIZARD.get(), SpectrumSoundEvents.ENTITY_LIZARD_AMBIENT.getLocation()),
-	LIZARD_CYAN(SpectrumEntityTypes.LIZARD.get(), SpectrumSoundEvents.ENTITY_LIZARD_AMBIENT.getLocation()),
-	LIZARD_GRAY(SpectrumEntityTypes.LIZARD.get(), SpectrumSoundEvents.ENTITY_LIZARD_AMBIENT.getLocation()),
-	LIZARD_GREEN(SpectrumEntityTypes.LIZARD.get(), SpectrumSoundEvents.ENTITY_LIZARD_AMBIENT.getLocation()),
-	LIZARD_LIGHT_BLUE(SpectrumEntityTypes.LIZARD.get(), SpectrumSoundEvents.ENTITY_LIZARD_AMBIENT.getLocation()),
-	LIZARD_LIGHT_GRAY(SpectrumEntityTypes.LIZARD.get(), SpectrumSoundEvents.ENTITY_LIZARD_AMBIENT.getLocation()),
-	LIZARD_LIME(SpectrumEntityTypes.LIZARD.get(), SpectrumSoundEvents.ENTITY_LIZARD_AMBIENT.getLocation()),
-	LIZARD_MAGENTA(SpectrumEntityTypes.LIZARD.get(), SpectrumSoundEvents.ENTITY_LIZARD_AMBIENT.getLocation()),
-	LIZARD_ORANGE(SpectrumEntityTypes.LIZARD.get(), SpectrumSoundEvents.ENTITY_LIZARD_AMBIENT.getLocation()),
-	LIZARD_PINK(SpectrumEntityTypes.LIZARD.get(), SpectrumSoundEvents.ENTITY_LIZARD_AMBIENT.getLocation()),
-	LIZARD_PURPLE(SpectrumEntityTypes.LIZARD.get(), SpectrumSoundEvents.ENTITY_LIZARD_AMBIENT.getLocation()),
-	LIZARD_RED(SpectrumEntityTypes.LIZARD.get(), SpectrumSoundEvents.ENTITY_LIZARD_AMBIENT.getLocation()),
-	LIZARD_WHITE(SpectrumEntityTypes.LIZARD.get(), SpectrumSoundEvents.ENTITY_LIZARD_AMBIENT.getLocation()),
-	LIZARD_YELLOW(SpectrumEntityTypes.LIZARD.get(), SpectrumSoundEvents.ENTITY_LIZARD_AMBIENT.getLocation()),
-	MONSTROSITY(SpectrumEntityTypes.MONSTROSITY.get(), SpectrumSoundEvents.ENTITY_MONSTROSITY_AMBIENT.getLocation()),
-	PRESERVATION_TURRET(SpectrumEntityTypes.PRESERVATION_TURRET.get(), SpectrumSoundEvents.ENTITY_PRESERVATION_TURRET_AMBIENT.getLocation());
+	EGG_LAYING_WOOLY_PIG(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG, SoundEvents.PIG_AMBIENT.getLocation()),
+	ERASER(SpectrumEntityTypes.ERASER, SoundEvents.SPIDER_AMBIENT.getLocation()),
+	KINDLING(SpectrumEntityTypes.KINDLING, SpectrumSoundEvents.ENTITY_KINDLING_AMBIENT.getLocation()),
+	LIZARD_BLACK(SpectrumEntityTypes.LIZARD, SpectrumSoundEvents.ENTITY_LIZARD_AMBIENT.getLocation()),
+	LIZARD_BLUE(SpectrumEntityTypes.LIZARD, SpectrumSoundEvents.ENTITY_LIZARD_AMBIENT.getLocation()),
+	LIZARD_BROWN(SpectrumEntityTypes.LIZARD, SpectrumSoundEvents.ENTITY_LIZARD_AMBIENT.getLocation()),
+	LIZARD_CYAN(SpectrumEntityTypes.LIZARD, SpectrumSoundEvents.ENTITY_LIZARD_AMBIENT.getLocation()),
+	LIZARD_GRAY(SpectrumEntityTypes.LIZARD, SpectrumSoundEvents.ENTITY_LIZARD_AMBIENT.getLocation()),
+	LIZARD_GREEN(SpectrumEntityTypes.LIZARD, SpectrumSoundEvents.ENTITY_LIZARD_AMBIENT.getLocation()),
+	LIZARD_LIGHT_BLUE(SpectrumEntityTypes.LIZARD, SpectrumSoundEvents.ENTITY_LIZARD_AMBIENT.getLocation()),
+	LIZARD_LIGHT_GRAY(SpectrumEntityTypes.LIZARD, SpectrumSoundEvents.ENTITY_LIZARD_AMBIENT.getLocation()),
+	LIZARD_LIME(SpectrumEntityTypes.LIZARD, SpectrumSoundEvents.ENTITY_LIZARD_AMBIENT.getLocation()),
+	LIZARD_MAGENTA(SpectrumEntityTypes.LIZARD, SpectrumSoundEvents.ENTITY_LIZARD_AMBIENT.getLocation()),
+	LIZARD_ORANGE(SpectrumEntityTypes.LIZARD, SpectrumSoundEvents.ENTITY_LIZARD_AMBIENT.getLocation()),
+	LIZARD_PINK(SpectrumEntityTypes.LIZARD, SpectrumSoundEvents.ENTITY_LIZARD_AMBIENT.getLocation()),
+	LIZARD_PURPLE(SpectrumEntityTypes.LIZARD, SpectrumSoundEvents.ENTITY_LIZARD_AMBIENT.getLocation()),
+	LIZARD_RED(SpectrumEntityTypes.LIZARD, SpectrumSoundEvents.ENTITY_LIZARD_AMBIENT.getLocation()),
+	LIZARD_WHITE(SpectrumEntityTypes.LIZARD, SpectrumSoundEvents.ENTITY_LIZARD_AMBIENT.getLocation()),
+	LIZARD_YELLOW(SpectrumEntityTypes.LIZARD, SpectrumSoundEvents.ENTITY_LIZARD_AMBIENT.getLocation()),
+	MONSTROSITY(SpectrumEntityTypes.MONSTROSITY, SpectrumSoundEvents.ENTITY_MONSTROSITY_AMBIENT.getLocation()),
+	PRESERVATION_TURRET(SpectrumEntityTypes.PRESERVATION_TURRET, SpectrumSoundEvents.ENTITY_PRESERVATION_TURRET_AMBIENT.getLocation());
 	
 	public static final Codec<SpectrumSkullType> CODEC = StringRepresentable.fromEnum(SpectrumSkullType::values);
 	
-	private final EntityType<?> entityType;
+	private final Supplier<? extends EntityType<?>> entityType;
 	private final ResourceLocation noteBlockSound;
 	
 	SpectrumSkullType(EntityType<?> entityType, ResourceLocation noteBlockSound) {
+		this(() -> entityType, noteBlockSound);
+	}
+	
+	SpectrumSkullType(Supplier<? extends EntityType<?>> entityType, ResourceLocation noteBlockSound) {
 		this.entityType = entityType;
 		this.noteBlockSound = noteBlockSound;
 	}
 	
 	public EntityType<?> getEntityType() {
-		return this.entityType;
+		return this.entityType.get();
 	}
 	
 	public ResourceLocation getNoteBlockSound() {

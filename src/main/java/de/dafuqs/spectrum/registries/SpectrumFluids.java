@@ -74,7 +74,8 @@ public class SpectrumFluids {
 	
 	private static DeferredHolder<Fluid, SpectrumFluid> registerFluid(String name, Supplier<SpectrumFluid> supplier, InkColor color) {
 		DeferredHolder<Fluid, SpectrumFluid> fluid = FLUID_REGISTRAR.register(name, supplier);
-		ItemColors.FLUID_COLORS.registerColorMapping(supplier.get(), color);
+		// TODO: make this a data loader (throws NullPointerException here)
+		// ItemColors.FLUID_COLORS.registerColorMapping(fluid.get(), color);
 		return fluid;
 	}
 	

@@ -30,12 +30,12 @@ public abstract class DragonrotFluid extends SpectrumFluid {
 	
 	@Override
 	public @NotNull Fluid getSource() {
-		return SpectrumFluids.DRAGONROT.get().getSource();
+		return SpectrumFluids.DRAGONROT.get();
 	}
 	
 	@Override
 	public @NotNull Fluid getFlowing() {
-		return SpectrumFluids.FLOWING_DRAGONROT.get().getFlowing();
+		return SpectrumFluids.FLOWING_DRAGONROT.get();
 	}
 	
 	@Override

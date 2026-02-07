@@ -38,12 +38,12 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 	
 	@Override
 	public @NotNull Fluid getSource() {
-		return SpectrumFluids.MIDNIGHT_SOLUTION.get().getSource();
+		return SpectrumFluids.MIDNIGHT_SOLUTION.get();
 	}
 	
 	@Override
 	public @NotNull Fluid getFlowing() {
-		return SpectrumFluids.FLOWING_MIDNIGHT_SOLUTION.get().getFlowing();
+		return SpectrumFluids.FLOWING_MIDNIGHT_SOLUTION.get();
 	}
 	
 	@Override

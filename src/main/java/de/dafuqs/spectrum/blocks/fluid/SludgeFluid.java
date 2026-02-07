@@ -28,12 +28,12 @@ public abstract class SludgeFluid extends SpectrumFluid {
 	
 	@Override
 	public @NotNull Fluid getSource() {
-		return SpectrumFluids.SLUDGE.get().getSource();
+		return SpectrumFluids.SLUDGE.get();
 	}
 	
 	@Override
 	public @NotNull Fluid getFlowing() {
-		return SpectrumFluids.FLOWING_SLUDGE.get().getFlowing();
+		return SpectrumFluids.FLOWING_SLUDGE.get();
 	}
 	
 	@Override

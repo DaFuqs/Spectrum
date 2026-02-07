@@ -29,12 +29,12 @@ public abstract class LiquidCrystalFluid extends SpectrumFluid {
 	
 	@Override
 	public @NotNull Fluid getSource() {
-		return SpectrumFluids.LIQUID_CRYSTAL.get().getSource();
+		return SpectrumFluids.LIQUID_CRYSTAL.get();
 	}
 	
 	@Override
 	public @NotNull Fluid getFlowing() {
-		return SpectrumFluids.FLOWING_LIQUID_CRYSTAL.get().getFlowing();
+		return SpectrumFluids.FLOWING_LIQUID_CRYSTAL.get();
 	}
 	
 	@Override

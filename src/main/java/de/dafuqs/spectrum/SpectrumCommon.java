@@ -182,7 +182,6 @@ public class SpectrumCommon {
 		SpectrumItemProjectileBehaviors.register();
 
 		SpectrumEntityColorProcessors.register();
-		SpectrumItemProviders.register();
 		
 		logInfo("Registering Commands...");
 		NeoForge.EVENT_BUS.addListener(SpectrumCommands::register);

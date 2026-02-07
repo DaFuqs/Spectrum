@@ -59,7 +59,40 @@ public class SpectrumCapabilities {
 			public @Nullable IItemHandler getCapability(ItemStack stack, Void context) {
 				return null;
 			}
-		});*/
+		});
+		
+		event.registerItem(Capabilities.ItemHandler.ITEM, (ignored, ignored2) -> iterableProvider((player, stack) -> stack.getOrDefault(DataComponents.CONTAINER, ItemContainerContents.EMPTY).nonEmptyItems()), Items.SHULKER_BOX);
+			event.registerItem(Capabilities.ItemHandler.ITEM, (ignored, ignored2) -> iterableProvider((player, stack) -> stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).items()), Items.BUNDLE);
+			
+			event.registerItem(
+					Capabilities.ItemHandler.ITEM, (ignored, ignored2) -> new ItemProvider() {
+						@Override
+						public int provideItems(Player player, ItemStack stack, Item requestedItem, int amount) {
+							var storage = ItemStorage.load(stack);
+							if (!storage.stack(1)
+									.is(requestedItem))
+								return 0;
+							
+							return (int) storage.extractPure(amount);
+						}
+						
+						@Override
+						public int getItemCount(Player player, ItemStack stack, Item requestedItem) {
+							var storage = ItemStorage.load(stack);
+							if (!storage.getReference()
+									.asItem()
+									.equals(requestedItem))
+								return 0;
+							return (int) Math.min(Integer.MAX_VALUE, storage.getCount());
+						}
+					}, SpectrumBlocks.BOTTOMLESS_BUNDLE
+			);
+			
+			// BAG_OF_HOLDING only works server side
+			// the client does not know about the content of the ender chest, unless opened
+			event.registerItem(Capabilities.ItemHandler.ITEM, (ignored, ignored2) -> iterableProvider((player, stack) -> player == null ? List.of() : player.getEnderChestInventory().getItems()), SpectrumItems.BAG_OF_HOLDING);
+			
+		*/
 		
 		// FluidHandler.ITEM
 		event.registerItem(Capabilities.FluidHandler.ITEM, (stack, v) -> new FluidHandlerItemStackSimple.Consumable(SpectrumDataComponentTypes.FLUID_CONTENT, stack, 1000), SpectrumItems.MERMAIDS_GEM.get());

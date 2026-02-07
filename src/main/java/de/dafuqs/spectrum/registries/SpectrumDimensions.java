@@ -13,10 +13,6 @@ public class SpectrumDimensions {
 	public static final ResourceLocation DIMENSION_ID = SpectrumCommon.locate("deeper_down");
 	public static final ResourceKey<Level> DIMENSION_KEY = ResourceKey.create(Registries.DIMENSION, DIMENSION_ID);
 	
-	public static void register() {
-	
-	}
-	
 	public static void registerClient() {
 		DimensionEffectsAccessor.getEFFECTS().put(EFFECTS_ID, new DeeperDownDimensionEffects());
 	}

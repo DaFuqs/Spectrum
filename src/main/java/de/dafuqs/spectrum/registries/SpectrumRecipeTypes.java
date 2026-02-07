@@ -43,12 +43,14 @@ public class SpectrumRecipeTypes {
 	public static final RecipeType<PrimordialFireBurningRecipe> PRIMORDIAL_FIRE_BURNING = register("primordial_fire_burning");
 	
 	private static <T extends Recipe<?>> RecipeType<T> register(String id) {
-		return Registry.register(BuiltInRegistries.RECIPE_TYPE, SpectrumCommon.locate(id), new RecipeType<T>() {
+		RecipeType<T> type = new RecipeType<>() {
 			@Override
 			public String toString() {
 				return "spectrum:" + id;
 			}
-		});
+		};
+		REGISTRAR.register(id, () -> type);
+		return type;
 	}
 	
 	public static void register(IEventBus eventBus) {

@@ -134,17 +134,13 @@ public class SpectrumCommon {
 		
 		// Pastel
 		logInfo("Registering Pastel Upgrades...");
-		SpectrumPastelUpgrades.register();
+		SpectrumPastelUpgrades.register(modBus);
 		
 		// Worldgen
 		logInfo("Registering Features...");
 		SpectrumFeatures.register(modBus);
 		logInfo("Registering Structure Types...");
 		SpectrumStructureTypes.register(modBus);
-		
-		// Dimension
-		logInfo("Registering Dimension...");
-		SpectrumDimensions.register();
 		
 		// Dimension effects
 		logInfo("Registering Dimension Sound Effects...");
@@ -250,24 +246,6 @@ public class SpectrumCommon {
 		logInfo("Registering Attachments...");
 		SpectrumAttachmentTypes.register(modBus);
 
-//		//noinspection
-//		ItemStorage.SIDED.registerForBlockEntity((be, d) -> Storage.empty(), SpectrumBlockEntities.HEARTBOUND_CHEST);
-//		//noinspection
-//		ItemStorage.SIDED.registerForBlockEntity((titrationBarrelBlockEntity, direction) -> {
-//			BlockState state = titrationBarrelBlockEntity.getBlockState();
-//			TitrationBarrelBlock.BarrelState barrelState = state.getValue(TitrationBarrelBlock.BARREL_STATE);
-//			if (barrelState == TitrationBarrelBlock.BarrelState.EMPTY || barrelState == TitrationBarrelBlock.BarrelState.FILLED) {
-//				return ItemStorage.SIDED.find(titrationBarrelBlockEntity.getLevel(), titrationBarrelBlockEntity.getBlockPos(), direction);
-//			}
-//			return null;
-//		}, SpectrumBlockEntities.TITRATION_BARREL);
-//		//noinspection
-//		ItemStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.storage, SpectrumBlockEntities.BOTTOMLESS_BUNDLE);
-//		//noinspection
-//		FluidStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.fluidStorage, SpectrumBlockEntities.FUSION_SHRINE);
-//		//noinspection
-//		FluidStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.getFluidStorage(), SpectrumBlockEntities.TITRATION_BARREL);
-//
 //		// Builtin Resource Packs
 //		logInfo("Registering Builtin Resource Packs...");
 //		Optional<ModContainer> modContainer = FabricLoader.getInstance().getModContainer(SpectrumCommon.MOD_ID);

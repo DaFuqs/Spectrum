@@ -6,8 +6,7 @@ import net.minecraft.util.valueproviders.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
 
-public record ColumnsFeatureConfig(BlockState blockState, IntProvider reach,
-								   IntProvider height) implements FeatureConfiguration {
+public record ColumnsFeatureConfig(BlockState blockState, IntProvider reach, IntProvider height) implements FeatureConfiguration {
 	
 	public static final Codec<ColumnsFeatureConfig> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
 			BlockState.CODEC.fieldOf("state").forGetter((config) -> config.blockState),

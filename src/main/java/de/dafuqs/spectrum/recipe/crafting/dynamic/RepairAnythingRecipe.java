@@ -8,8 +8,6 @@ import net.minecraft.world.level.*;
 
 public class RepairAnythingRecipe extends CustomRecipe {
 	
-	private static final Ingredient MOONSTRUCK_NECTAR = Ingredient.of(SpectrumItems.MOONSTRUCK_NECTAR);
-	
 	public RepairAnythingRecipe() {
 		super(CraftingBookCategory.MISC);
 	}
@@ -22,7 +20,7 @@ public class RepairAnythingRecipe extends CustomRecipe {
 		for (int j = 0; j < input.size(); ++j) {
 			ItemStack itemStack = input.getItem(j);
 			if (!itemStack.isEmpty()) {
-				if (MOONSTRUCK_NECTAR.test(itemStack)) {
+				if (itemStack.is(SpectrumItems.MOONSTRUCK_NECTAR)) {
 					if (nectarFound) {
 						return false;
 					}
@@ -44,7 +42,7 @@ public class RepairAnythingRecipe extends CustomRecipe {
 		ItemStack itemStack = ItemStack.EMPTY;
 		for (int j = 0; j < input.size(); ++j) {
 			itemStack = input.getItem(j);
-			if (!itemStack.isEmpty() && !MOONSTRUCK_NECTAR.test(itemStack)) {
+			if (!itemStack.isEmpty() && !itemStack.is(SpectrumItems.MOONSTRUCK_NECTAR)) {
 				break;
 			}
 		}

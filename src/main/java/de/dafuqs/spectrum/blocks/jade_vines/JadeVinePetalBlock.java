@@ -6,6 +6,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.shapes.*;
+import org.jetbrains.annotations.*;
 
 public class JadeVinePetalBlock extends Block {
 	
@@ -35,5 +36,16 @@ public class JadeVinePetalBlock extends Block {
 	public int getLightBlock(BlockState state, BlockGetter world, BlockPos pos) {
 		return 2;
 	}
+	
+	@Override
+	public int getFireSpreadSpeed(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
+		return 30;
+	}
+	
+	@Override
+	public int getFlammability(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
+		return 60;
+	}
+	
 	
 }

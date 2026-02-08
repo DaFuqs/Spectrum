@@ -2,22 +2,17 @@ package de.dafuqs.spectrum.blocks.deeper_down;
 
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.api.block.*;
-import de.dafuqs.spectrum.blocks.*;
-import de.dafuqs.spectrum.blocks.conditional.colored_tree.*;
+import de.dafuqs.spectrum.blocks.flammable.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
-import net.minecraft.world.item.*;
-import net.minecraft.world.item.context.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.storage.loot.*;
-import net.neoforged.neoforge.common.*;
-import org.jetbrains.annotations.*;
 
 import java.util.function.*;
 
-public class StrippingLootPillarBlock extends StrippableRotatedPillarBlock implements StrippableDrop {
+public class StrippingLootPillarBlock extends FlammableLogBlock implements StrippableDrop {
 	
 	private final ResourceKey<LootTable> strippingLootTableKey;
 	

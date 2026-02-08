@@ -8,6 +8,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -59,6 +60,16 @@ public class ColoredSporeBlossomBlock extends SporeBlossomBlock {
 				world.addParticle(this.airParticleType, (double) mutable.getX() + random.nextDouble(), (double) mutable.getY() + random.nextDouble(), (double) mutable.getZ() + random.nextDouble(), 0.0D, 0.0D, 0.0D);
 			}
 		}
+	}
+	
+	@Override
+	public int getFireSpreadSpeed(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
+		return 60;
+	}
+	
+	@Override
+	public int getFlammability(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
+		return 100;
 	}
 	
 }

@@ -4,18 +4,18 @@ import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.blocks.flammable.*;
 import de.dafuqs.spectrum.registries.client.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 
 import java.util.*;
 
-public class ColoredLeavesBlock extends LeavesBlock implements RevelationAware, ColoredTree {
+public class ColoredLeavesBlock extends FlammableLeavesBlock implements RevelationAware, ColoredTree {
 	
 	public static final MapCodec<ColoredLeavesBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
 			propertiesCodec(),

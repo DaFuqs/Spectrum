@@ -1,14 +1,14 @@
 package de.dafuqs.spectrum.blocks.spirit_sallow;
 
 import com.mojang.serialization.*;
+import de.dafuqs.spectrum.blocks.flammable.*;
 import de.dafuqs.spectrum.particle.*;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.*;
-import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 
-public class SpiritSallowLeavesBlock extends LeavesBlock {
+public class SpiritSallowLeavesBlock extends FlammableLeavesBlock {
 	
 	public static final MapCodec<SpiritSallowLeavesBlock> CODEC = simpleCodec(SpiritSallowLeavesBlock::new);
 	

@@ -3,12 +3,12 @@ package de.dafuqs.spectrum.blocks.conditional.colored_tree;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.blocks.flammable.*;
 import it.unimi.dsi.fastutil.objects.*;
-import net.minecraft.world.level.block.*;
 
 import java.util.*;
 
-public class ColoredPlankBlock extends Block {
+public class ColoredPlankBlock extends FlammablePlankBlock {
 	
 	public static final MapCodec<ColoredPlankBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
 			propertiesCodec(),

@@ -10,6 +10,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.shapes.*;
+import org.jetbrains.annotations.*;
 
 public class CloverBlock extends BushBlock implements BonemealableBlock {
 	
@@ -47,6 +48,16 @@ public class CloverBlock extends BushBlock implements BonemealableBlock {
 				.registryOrThrow(Registries.CONFIGURED_FEATURE)
 				.get(SpectrumConfiguredFeatures.CLOVER_PATCH)
 				.place(world, world.getChunkSource().getGenerator(), random, pos);
+	}
+	
+	@Override
+	public int getFireSpreadSpeed(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
+		return 60;
+	}
+	
+	@Override
+	public int getFlammability(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
+		return 100;
 	}
 	
 }

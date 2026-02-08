@@ -1,12 +1,12 @@
 package de.dafuqs.spectrum.blocks.conditional.colored_tree;
 
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.blocks.flammable.*;
 import it.unimi.dsi.fastutil.objects.*;
-import net.minecraft.world.level.block.*;
 
 import java.util.*;
 
-public class ColoredFenceBlock extends FenceBlock {
+public class ColoredFenceBlock extends FlammableFenceBlock {
 	
 	private static final Map<InkColor, ColoredFenceBlock> BLOCKS = new Object2ObjectArrayMap<>();
 	protected final InkColor color;

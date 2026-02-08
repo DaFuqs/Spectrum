@@ -16,6 +16,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
+import org.jetbrains.annotations.*;
 
 public class AbyssalVineBlock extends TriStateVineBlock {
 	
@@ -133,4 +134,15 @@ public class AbyssalVineBlock extends TriStateVineBlock {
 		super.createBlockStateDefinition(builder);
 		builder.add(BERRIES);
 	}
+	
+	@Override
+	public int getFireSpreadSpeed(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
+		return 15;
+	}
+	
+	@Override
+	public int getFlammability(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
+		return 60;
+	}
+	
 }

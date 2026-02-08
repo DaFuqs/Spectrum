@@ -1,25 +1,21 @@
 package de.dafuqs.spectrum.blocks.conditional.colored_tree;
 
 import com.mojang.serialization.*;
-import com.mojang.serialization.codecs.*;
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.api.energy.color.*;
-import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.blocks.flammable.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.context.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import net.neoforged.neoforge.common.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
 
-public class ColoredLogBlock extends StrippableRotatedPillarBlock implements RevelationAware, ColoredTree {
+public class ColoredLogBlock extends FlammableLogBlock implements RevelationAware, ColoredTree {
 	
 	private static final Map<InkColor, ColoredLogBlock> LOGS = new Object2ObjectArrayMap<>();
 	protected final InkColor color;

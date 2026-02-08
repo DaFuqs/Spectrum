@@ -1,13 +1,14 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
 import com.mojang.serialization.*;
+import de.dafuqs.spectrum.blocks.flammable.*;
 import net.minecraft.core.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 
-public class CushionedCarpetBlock extends CarpetBlock {
+public class CushionedCarpetBlock extends FlammableCarpetBlock {
 	
 	public static final MapCodec<CushionedCarpetBlock> CODEC = simpleCodec(CushionedCarpetBlock::new);
 	

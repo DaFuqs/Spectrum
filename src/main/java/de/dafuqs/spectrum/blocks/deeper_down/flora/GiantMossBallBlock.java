@@ -4,16 +4,18 @@ import com.mojang.serialization.*;
 import net.minecraft.core.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
+import org.jetbrains.annotations.*;
 
 public class GiantMossBallBlock extends MossBallBlock {
 	
 	public static final MapCodec<GiantMossBallBlock> CODEC = simpleCodec(GiantMossBallBlock::new);
 	
 	public GiantMossBallBlock(Properties settings) {
-		super(settings);
+		super(settings.ignitedByLava());
 	}
 
 //    @Override
@@ -27,6 +29,16 @@ public class GiantMossBallBlock extends MossBallBlock {
 		if (entity instanceof LivingEntity && entity.getType() != EntityType.FOX && entity.getType() != EntityType.BEE) {
 			entity.makeStuckInBlock(state, new Vec3(0.9F, 0.334, 0.9F));
 		}
+	}
+	
+	@Override
+	public int getFireSpreadSpeed(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
+		return 30;
+	}
+	
+	@Override
+	public int getFlammability(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
+		return 60;
 	}
 	
 	@Override

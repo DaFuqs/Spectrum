@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.jade_vines;
 
 import com.mojang.serialization.*;
+import de.dafuqs.spectrum.blocks.flammable.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
@@ -17,7 +18,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
 
-public class NephriteBlossomLeavesBlock extends LeavesBlock implements BonemealableBlock {
+public class NephriteBlossomLeavesBlock extends FlammableLeavesBlock implements BonemealableBlock {
 	
 	public static final MapCodec<NephriteBlossomLeavesBlock> CODEC = simpleCodec(NephriteBlossomLeavesBlock::new);
 	

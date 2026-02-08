@@ -280,4 +280,14 @@ public class JadeVinePlantBlock extends Block implements JadeVine, NaturesStaffT
 		
 	}
 	
+	@Override
+	public int getFireSpreadSpeed(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
+		return 30;
+	}
+	
+	@Override
+	public int getFlammability(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
+		return 60;
+	}
+	
 }

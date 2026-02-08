@@ -13,6 +13,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.phys.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -69,4 +70,15 @@ public class NightdewBlock extends TriStateVineBlock {
 		LootTable lootTable = world.getServer().reloadableRegistries().getLootTable(lootTableKey);
 		return lootTable.getRandomItems(builder.create(LootContextParamSets.BLOCK));
 	}
+	
+	@Override
+	public int getFireSpreadSpeed(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
+		return 15;
+	}
+	
+	@Override
+	public int getFlammability(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
+		return 60;
+	}
+	
 }

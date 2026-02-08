@@ -4,6 +4,7 @@ import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.blocks.flammable.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
@@ -14,17 +15,17 @@ import net.minecraft.world.level.block.state.*;
 
 import java.util.*;
 
-public class ColoredStrippedLogBlock extends RotatedPillarBlock implements RevelationAware, ColoredTree {
+public class ColoredStrippedSpectrumLogBlock extends FlammableRotatedPillarBlock implements RevelationAware, ColoredTree {
 	
-	public static final MapCodec<ColoredStrippedLogBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+	public static final MapCodec<ColoredStrippedSpectrumLogBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
 			propertiesCodec(),
-			InkColor.CODEC.fieldOf("color").forGetter(ColoredStrippedLogBlock::getColor)
-	).apply(instance, ColoredStrippedLogBlock::new));
+			InkColor.CODEC.fieldOf("color").forGetter(ColoredStrippedSpectrumLogBlock::getColor)
+	).apply(instance, ColoredStrippedSpectrumLogBlock::new));
 	
-	private static final Map<InkColor, ColoredStrippedLogBlock> LOGS = new Object2ObjectArrayMap<>();
+	private static final Map<InkColor, ColoredStrippedSpectrumLogBlock> LOGS = new Object2ObjectArrayMap<>();
 	protected final InkColor color;
 	
-	public ColoredStrippedLogBlock(Properties settings, InkColor color) {
+	public ColoredStrippedSpectrumLogBlock(Properties settings, InkColor color) {
 		super(settings);
 		this.color = color;
 		LOGS.put(color, this);
@@ -32,7 +33,7 @@ public class ColoredStrippedLogBlock extends RotatedPillarBlock implements Revel
 	}
 	
 	@Override
-	public MapCodec<? extends ColoredStrippedLogBlock> codec() {
+	public MapCodec<? extends ColoredStrippedSpectrumLogBlock> codec() {
 		return CODEC;
 	}
 	
@@ -60,11 +61,11 @@ public class ColoredStrippedLogBlock extends RotatedPillarBlock implements Revel
 		return this.color;
 	}
 	
-	public static ColoredStrippedLogBlock byColor(InkColor color) {
+	public static ColoredStrippedSpectrumLogBlock byColor(InkColor color) {
 		return LOGS.get(color);
 	}
 	
-	public static Collection<ColoredStrippedLogBlock> all() {
+	public static Collection<ColoredStrippedSpectrumLogBlock> all() {
 		return LOGS.values();
 	}
 	

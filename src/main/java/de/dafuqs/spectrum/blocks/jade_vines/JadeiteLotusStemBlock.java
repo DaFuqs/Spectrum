@@ -124,4 +124,15 @@ public class JadeiteLotusStemBlock extends BushBlock {
 		super.createBlockStateDefinition(builder);
 		builder.add(STEM_PART, INVERTED);
 	}
+	
+	@Override
+	public int getFireSpreadSpeed(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
+		return 30;
+	}
+	
+	@Override
+	public int getFlammability(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
+		return 60;
+	}
+	
 }

@@ -1,10 +1,9 @@
 package de.dafuqs.spectrum.blocks.conditional.colored_tree;
 
 import com.mojang.serialization.*;
-import com.mojang.serialization.codecs.*;
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.api.energy.color.*;
-import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.blocks.flammable.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
@@ -15,12 +14,12 @@ import net.minecraft.world.level.block.state.*;
 import java.util.*;
 import java.util.function.*;
 
-public class ColoredWoodBlock extends StrippableRotatedPillarBlock implements RevelationAware, ColoredTree {
+public class ColoredWoodBlock extends FlammableLogBlock implements RevelationAware, ColoredTree {
 	
 	private static final Map<InkColor, ColoredWoodBlock> WOOD = new Object2ObjectArrayMap<>();
 	protected final InkColor color;
 	
-	public ColoredWoodBlock(Properties settings, Supplier<? extends ColoredStrippedWoodBlock> strippedBlock, InkColor color) {
+	public ColoredWoodBlock(Properties settings, Supplier<? extends ColoredStrippedWoodBlockSpectrum> strippedBlock, InkColor color) {
 		super(settings, strippedBlock);
 		this.color = color;
 		WOOD.put(color, this);

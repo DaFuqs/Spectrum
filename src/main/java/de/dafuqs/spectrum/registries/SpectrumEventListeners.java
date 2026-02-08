@@ -185,16 +185,18 @@ public class SpectrumEventListeners {
 	@SubscribeEvent
 	public static void tickSpawners(LevelTickEvent.Pre event) {
 		Level level =  event.getLevel();
-		ServerLevel world = level.getServer().getLevel(level.dimension());
-		
-		if(!world.tickRateManager().runsNormally()) {
+		if(!(level instanceof ServerLevel serverLevel)) {
 			return;
 		}
 		
-		if (world.getGameTime() % 100 == 0 && !world.isClientSide) {
-			if (TimeHelper.getTimeOfDay(world).isNight()) { // 90 chances in a night
-				if (SpectrumCommon.CONFIG.ShootingStarWorlds.contains(world.dimension().location().toString())) {
-					ShootingStarSpawner.INSTANCE.tick((ServerLevel) world, true, true);
+		if(!serverLevel.tickRateManager().runsNormally()) {
+			return;
+		}
+		
+		if (serverLevel.getGameTime() % 100 == 0) {
+			if (TimeHelper.getTimeOfDay(serverLevel).isNight()) { // 90 chances in a night
+				if (SpectrumCommon.CONFIG.ShootingStarWorlds.contains(serverLevel.dimension().location().toString())) {
+					ShootingStarSpawner.INSTANCE.tick(serverLevel, true, true);
 				}
 			}
 				
@@ -203,7 +205,6 @@ public class SpectrumEventListeners {
 				MonstrositySpawner.INSTANCE.spawn(world, true, true);
 			}*/
 		}
-		
 	}
 	
 	@SubscribeEvent

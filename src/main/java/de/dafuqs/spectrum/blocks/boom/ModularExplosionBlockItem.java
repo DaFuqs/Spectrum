@@ -24,7 +24,6 @@ public class ModularExplosionBlockItem extends BlockItem implements ModularExplo
 	@Override
 	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		super.appendHoverText(stack, context, tooltip, type);
-		ModularExplosionDefinition.getFromStack(stack).appendTooltip(tooltip, this);
 	}
 	
 	@Override

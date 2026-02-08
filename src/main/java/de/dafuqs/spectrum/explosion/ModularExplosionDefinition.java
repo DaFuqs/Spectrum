@@ -27,17 +27,6 @@ import java.util.*;
  */
 public class ModularExplosionDefinition {
 	
-	public static final Codec<ModularExplosionDefinition> CODEC = RecordCodecBuilder.create(i -> i.group(
-			StringRepresentable.fromEnum(ExplosionArchetype::values).fieldOf("archetype").forGetter(c -> c.archetype),
-			SpectrumRegistries.EXPLOSION_MODIFIER.byNameCodec().listOf().optionalFieldOf("modifiers", List.of()).forGetter(c -> c.modifiers)
-	).apply(i, ModularExplosionDefinition::new));
-	
-	public static final StreamCodec<RegistryFriendlyByteBuf, ModularExplosionDefinition> PACKET_CODEC = PacketCodecHelper.tuple(
-			ExplosionArchetype.PACKET_CODEC, c -> c.archetype,
-			ByteBufCodecs.registry(SpectrumRegistryKeys.EXPLOSION_MODIFIER).apply(ByteBufCodecs.list()), c -> c.modifiers,
-			ModularExplosionDefinition::new
-	);
-	
 	protected ExplosionArchetype archetype = ExplosionArchetype.COSMETIC;
 	protected List<ExplosionModifier> modifiers;
 	
@@ -45,37 +34,20 @@ public class ModularExplosionDefinition {
 		this.modifiers = new ArrayList<>();
 	}
 	
-	public ModularExplosionDefinition(ExplosionArchetype archetype, List<ExplosionModifier> modifiers) {
-		this.archetype = archetype;
-		this.modifiers = modifiers;
-	}
-	
-	public static ModularExplosionDefinition getFromStack(ItemStack stack) {
-		return stack.getOrDefault(SpectrumDataComponentTypes.MODULAR_EXPLOSION, new ModularExplosionDefinition());
-	}
-	
-	public static void removeFromStack(ItemStack stack) {
-		stack.remove(SpectrumDataComponentTypes.MODULAR_EXPLOSION);
-	}
-	
 	// Calls the explosion logic
 	public static void explode(@NotNull ServerLevel world, BlockPos pos, @Nullable Player owner, ItemStack stack) {
 		if (stack.getItem() instanceof ModularExplosionProvider provider) {
-			ModularExplosionDefinition definition = getFromStack(stack);
+			ModularExplosionDefinition definition = new ModularExplosionDefinition();
 			ModularExplosion.explode(world, pos, owner, provider.getBaseExplosionBlastRadius(), provider.getBaseExplosionDamage(), definition.archetype, definition.modifiers);
 		}
 	}
 	
 	public static void explode(@NotNull ServerLevel world, BlockPos pos, Direction direction, @Nullable Player owner, ItemStack stack) {
 		if (stack.getItem() instanceof ModularExplosionProvider provider) {
-			ModularExplosionDefinition definition = getFromStack(stack);
+			ModularExplosionDefinition definition = new ModularExplosionDefinition();
 			BlockPos finalPos = pos.relative(direction, (int) provider.getBaseExplosionBlastRadius() - 2); // TODO: Add distance added via blast range modification
 			ModularExplosion.explode(world, finalPos, owner, provider.getBaseExplosionBlastRadius(), provider.getBaseExplosionDamage(), definition.archetype, definition.modifiers);
 		}
-	}
-	
-	public void addModifiers(List<ExplosionModifier> modifiers) {
-		this.modifiers.addAll(modifiers);
 	}
 	
 	public ExplosionArchetype getArchetype() {
@@ -84,52 +56,6 @@ public class ModularExplosionDefinition {
 	
 	public void setArchetype(ExplosionArchetype archetype) {
 		this.archetype = archetype;
-	}
-	
-	public boolean isValid(ModularExplosionProvider provider) {
-		if (this.modifiers.size() > provider.getMaxExplosionModifiers()) {
-			return false;
-		}
-		
-		Map<ExplosionModifierType, Integer> occurrences = new HashMap<>();
-		for (ExplosionModifier modifier : modifiers) {
-			if (!modifier.type.acceptsArchetype(archetype)) {
-				return false;
-			}
-			ExplosionModifierType type = modifier.getType();
-			int typeCount = occurrences.getOrDefault(type, 0);
-			if (typeCount > type.getMaxModifiersForType()) {
-				return false;
-			}
-			occurrences.put(type, typeCount + 1);
-		}
-		
-		return true;
-	}
-	
-	public int getModifierCount() {
-		return this.modifiers.size();
-	}
-	
-	public void attachToStack(ItemStack stack) {
-		stack.set(SpectrumDataComponentTypes.MODULAR_EXPLOSION, this);
-	}
-	
-	// Tooltips
-	public void appendTooltip(List<Component> tooltip, ModularExplosionProvider provider) {
-		int modifierCount = this.modifiers.size();
-		int maxModifierCount = provider.getMaxExplosionModifiers();
-		
-		tooltip.add(archetype.getName());
-		tooltip.add(Component.translatable("item.spectrum.tooltip.explosives.remaining_slots", modifierCount, maxModifierCount).withStyle(ChatFormatting.GRAY));
-		
-		if (modifierCount == 0) {
-			tooltip.add(Component.translatable("item.spectrum.tooltip.explosives.modifiers").withStyle(ChatFormatting.GRAY));
-		} else {
-			for (ExplosionModifier explosionModifier : modifiers) {
-				tooltip.add(explosionModifier.getName());
-			}
-		}
 	}
 	
 	// Calls the explosion logic

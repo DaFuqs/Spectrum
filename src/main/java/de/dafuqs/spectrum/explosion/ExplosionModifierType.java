@@ -13,20 +13,4 @@ public class ExplosionModifierType {
 		this.maxModifiersForType = maxModifiersForType;
 	}
 	
-	public boolean acceptsArchetype(ExplosionArchetype archetype) {
-		return switch (this.applicableArchetype) {
-			case ALL, COSMETIC -> true;
-			case DESTROY_BLOCKS -> archetype.affectsBlocks;
-			case DAMAGE_ENTITIES -> archetype.affectsEntities;
-		};
-	}
-	
-	public int getMaxModifiersForType() {
-		return maxModifiersForType;
-	}
-	
-	public ResourceLocation getId() {
-		return SpectrumRegistries.EXPLOSION_MODIFIER_TYPE.getKey(this);
-	}
-	
 }

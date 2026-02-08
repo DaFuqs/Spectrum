@@ -31,16 +31,18 @@ public class SpectrumRegistries {
 	public static final SpectrumRegistry<RecipeScaling> RECIPE_SCALING = create(SpectrumRegistryKeys.RECIPE_SCALING, true);
 
 	public static final SpectrumRegistry<MapCodec<? extends ResonanceProcessor>> RESONANCE_PROCESSOR_TYPE = create(SpectrumRegistryKeys.RESONANCE_PROCESSOR_TYPE, false);
-
-	public static final SpectrumRegistry<ExplosionModifierType> EXPLOSION_MODIFIER_TYPE = create(SpectrumRegistryKeys.EXPLOSION_MODIFIER_TYPE, true);
-	public static final SpectrumRegistry<ExplosionModifier> EXPLOSION_MODIFIER = create(SpectrumRegistryKeys.EXPLOSION_MODIFIER, true);
 	
 	public static void registerBuiltInRegistries(NewRegistryEvent event) {
+		event.register(WORLD_EFFECT);
+		event.register(GEMSTONE_COLOR);
+		event.register(GLASS_ARROW_VARIANT);
 		event.register(INK_COLOR);
+		event.register(KINDLING_VARIANT);
+		event.register(LIZARD_FRILL_VARIANT);
+		event.register(LIZARD_HORN_VARIANT);
+		event.register(PASTEL_UPGRADE);
+		event.register(RECIPE_SCALING);
 		event.register(RESONANCE_PROCESSOR_TYPE);
-		
-		event.register(EXPLOSION_MODIFIER_TYPE);
-		event.register(EXPLOSION_MODIFIER);
 	}
 
 	public static void registerDynamicRegistries(DataPackRegistryEvent.NewRegistry event) {

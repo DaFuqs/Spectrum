@@ -47,7 +47,6 @@ public class SpectrumDataComponentTypes {
 	public static final Supplier<DataComponentType<JadeWineComponent>> JADE_WINE = register("jade_wine", builder -> builder.persistent(JadeWineComponent.CODEC).networkSynchronized(JadeWineComponent.PACKET_CODEC));
 	public static final Supplier<DataComponentType<Long>> LAST_COOLDOWN_START = register("last_cooldown_start", builder -> builder.persistent(Codec.LONG).networkSynchronized(ByteBufCodecs.VAR_LONG));
 	public static final Supplier<DataComponentType<MemoryComponent>> MEMORY = register("memory", builder -> builder.persistent(MemoryComponent.CODEC).networkSynchronized(MemoryComponent.PACKET_CODEC).cacheEncoding());
-	public static final Supplier<DataComponentType<ModularExplosionDefinition>> MODULAR_EXPLOSION = register("modular_explosion", builder -> builder.persistent(ModularExplosionDefinition.CODEC).networkSynchronized(ModularExplosionDefinition.PACKET_CODEC));
 	public static final Supplier<DataComponentType<MobEffectInstance>> CONCEALED_EFFECT = register("concealed_effect", builder -> builder.persistent(MobEffectInstance.CODEC).networkSynchronized(MobEffectInstance.STREAM_CODEC));
 	public static final Supplier<DataComponentType<Float>> OVERCHARGED = register("overcharged", builder -> builder.persistent(Codec.FLOAT).networkSynchronized(ByteBufCodecs.FLOAT));
 	public static final Supplier<DataComponentType<PairedItemComponent>> PAIRED_ITEM = register("paired_item", builder -> builder.persistent(PairedItemComponent.CODEC).networkSynchronized(PairedItemComponent.PACKET_CODEC));

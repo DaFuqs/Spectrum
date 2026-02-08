@@ -80,19 +80,4 @@ public abstract class ExplosionModifier {
 		return Optional.empty();
 	}
 	
-	public ResourceLocation getId() {
-		return SpectrumRegistries.EXPLOSION_MODIFIER.getKey(this);
-	}
-	
-	protected String loadTranslationKey() {
-		if (this.translationKey == null) {
-			this.translationKey = Util.makeDescriptionId("explosion_modifier", SpectrumRegistries.EXPLOSION_MODIFIER.getKey(this));
-		}
-		return this.translationKey;
-	}
-	
-	public Component getName() {
-		return Component.translatable(loadTranslationKey()).withStyle(style -> style.withColor(displayColor).withItalic(true));
-	}
-	
 }

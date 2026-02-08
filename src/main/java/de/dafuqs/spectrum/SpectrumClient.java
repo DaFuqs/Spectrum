@@ -24,6 +24,7 @@ import net.neoforged.api.distmarker.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.fml.*;
 import net.neoforged.fml.common.*;
+import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.gui.*;
 import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.event.*;
@@ -37,11 +38,11 @@ public class SpectrumClient implements RevealingCallback, ClientAdvancementPacke
 	public static final SkyLerper skyLerper = new SkyLerper();
 	
 	public SpectrumClient(IEventBus modBus, ModContainer modContainer) {
-		SpectrumCommon.logInfo("Starting Client Startup");
-		SpectrumBlocks.registerClient();
-		SpectrumIntegrationPacks.registerClient();
-		SpectrumModelPredicateProviders.registerClient();
-		SpectrumEntityRenderers.registerClient();
+		SpectrumCommon.logInfo("Running Client Startup");
+		modBus.addListener(SpectrumBlocks::registerClient);
+		modBus.addListener(SpectrumIntegrationPacks::registerClient);
+		modBus.addListener(SpectrumModelPredicateProviders::registerClient);
+		modBus.addListener(SpectrumEntityRenderers::registerClient);
 		modBus.addListener(SpectrumParticleFactories::register);
 		
 		modBus.addListener(HudRenderers::register);
@@ -49,7 +50,7 @@ public class SpectrumClient implements RevealingCallback, ClientAdvancementPacke
 		
 		NeoForge.EVENT_BUS.addListener(HudRenderers::registerPost);
 		modBus.addListener(SpectrumTooltipComponents::registerTooltipComponents);
-		SpectrumDimensions.registerClient();
+		modBus.addListener(SpectrumDimensions::registerClient);
 		SpectrumClientEventListeners.register(modBus);
 		
 		if (SpectrumCommon.CONFIG.AddItemTooltips) {
@@ -66,7 +67,7 @@ public class SpectrumClient implements RevealingCallback, ClientAdvancementPacke
 		
 		modBus.addListener(SpectrumFluids::registerClient);
 		modBus.addListener(SpectrumBlockEntities::registerClient);
-		modBus.register(SpectrumScreenHandlerTypes.class);
+		modBus.addListener(SpectrumScreenHandlerTypes::registerClient);
 		modBus.addListener(SpectrumModelLayers::register);
 		
 		NeoForge.EVENT_BUS.addListener((Consumer<AddReloadListenerEvent>) event -> {

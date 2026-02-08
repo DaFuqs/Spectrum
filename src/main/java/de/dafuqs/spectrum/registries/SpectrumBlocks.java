@@ -90,6 +90,7 @@ import net.minecraft.world.level.levelgen.feature.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.bus.api.*;
+import net.neoforged.fml.event.lifecycle.*;
 import net.neoforged.neoforge.registries.*;
 import org.jetbrains.annotations.*;
 
@@ -2208,7 +2209,7 @@ public class SpectrumBlocks {
 		//REGISTRAR.flush();
 	}
 	
-	public static void registerClient() {
+	public static void registerClient(FMLClientSetupEvent event) {
 		//CLIENT_REGISTRAR.flush();
 	}
 	

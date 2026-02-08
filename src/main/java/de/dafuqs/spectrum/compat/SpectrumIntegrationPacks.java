@@ -9,6 +9,7 @@ import de.dafuqs.spectrum.compat.gobber.*;
 import de.dafuqs.spectrum.compat.malum.*;
 import de.dafuqs.spectrum.compat.modonomicon.*;
 import de.dafuqs.spectrum.compat.travelersbackpack.*;
+import net.neoforged.fml.event.lifecycle.*;
 import net.neoforged.fml.loading.*;
 
 import java.util.*;
@@ -61,7 +62,7 @@ public class SpectrumIntegrationPacks {
 		}
 	}
 	
-	public static void registerClient() {
+	public static void registerClient(FMLClientSetupEvent event) {
 		for (ModIntegrationPack container : INTEGRATION_PACKS.values()) {
 			container.registerClient();
 		}

@@ -53,9 +53,9 @@ public class SpectrumClientEventListeners {
 		modBus.addListener(SpectrumColorProviders::registerBlocks);
 		modBus.addListener(SpectrumColorProviders::registerItems);
 		
-		DynamicItemRenderer.registerDynamicItemRenderer(SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem(), BottomlessBundleItem.Renderer::new);
-		DynamicItemRenderer.registerDynamicItemRenderer(SpectrumItems.OMNI_ACCELERATOR.asItem(), OmniAcceleratorItem.Renderer::new);
 		// TODO: port
+		//DynamicItemRenderer.registerDynamicItemRenderer(SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem(), BottomlessBundleItem.Renderer::new);
+		//DynamicItemRenderer.registerDynamicItemRenderer(SpectrumItems.OMNI_ACCELERATOR.asItem(), OmniAcceleratorItem.Renderer::new);
 		/*ModelLoadingPlugin.register((ctx) -> {
 			ctx.modifyModelAfterBake().register((orig, c) -> {
 				ModelResourceLocation id = c.topLevelId();

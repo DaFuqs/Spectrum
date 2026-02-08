@@ -3,11 +3,12 @@ package de.dafuqs.spectrum.entity;
 import de.dafuqs.spectrum.entity.render.*;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.world.entity.*;
+import net.neoforged.fml.event.lifecycle.*;
 
 
 public class SpectrumEntityRenderers {
 	
-	public static void registerClient() {
+	public static void registerClient(FMLClientSetupEvent event) {
 		register(SpectrumEntityTypes.FLOAT_BLOCK.get(), FloatBlockEntityRenderer::new);
 		register(SpectrumEntityTypes.SEAT.get(), SeatEntityRenderer::new);
 		register(SpectrumEntityTypes.SHOOTING_STAR.get(), ShootingStarEntityRenderer::new);

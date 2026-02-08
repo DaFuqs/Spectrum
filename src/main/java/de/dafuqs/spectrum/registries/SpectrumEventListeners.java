@@ -64,19 +64,16 @@ import java.util.concurrent.atomic.*;
 @EventBusSubscriber(modid = SpectrumCommon.MOD_ID)
 public class SpectrumEventListeners {
 	
-	
 	/**
 	 * Caches the luminance states from fluids as int
 	 * for blocks that react to the light level of fluids
 	 * like the fusion shrine lighting up with lava or liquid crystal
 	 */
+	// TODO: can these be pulled from the fluid types instead?
 	public static final HashMap<Fluid, Integer> fluidLuminance = new HashMap<>();
 	
-	
-	 // I'm putting all event listeners here, they can be moved later so nbd
-	
 	@SubscribeEvent
-	public InteractionResult exchangeBlock(PlayerInteractEvent.LeftClickBlock event) {
+	public static InteractionResult exchangeBlock(PlayerInteractEvent.LeftClickBlock event) {
 		Level world = event.getLevel();
 		BlockPos pos = event.getPos();
 		Player player = event.getEntity();
@@ -107,14 +104,14 @@ public class SpectrumEventListeners {
 	}
 	
 	@SubscribeEvent
-	public void resetColorProviders(TagsUpdatedEvent event) {
+	public static void resetColorProviders(TagsUpdatedEvent event) {
 		if (event.getUpdateCause() == TagsUpdatedEvent.UpdateCause.CLIENT_PACKET_RECEIVED) {
 			SpectrumColorProviders.resetToggleableProviders();
 		}
 	}
 	
 	@SubscribeEvent
-	public void handleInertia(BlockEvent.BreakEvent event) {
+	public static void handleInertia(BlockEvent.BreakEvent event) {
 		Player player = event.getPlayer();
 		BlockPos pos = event.getPos();
 		Level level = event.getPlayer().level();
@@ -141,7 +138,7 @@ public class SpectrumEventListeners {
 //	}
 	
 	@SubscribeEvent
-	public InteractionResult triggerPrioritizedEntityInteraction(PlayerInteractEvent.EntityInteract event){
+	public static InteractionResult triggerPrioritizedEntityInteraction(PlayerInteractEvent.EntityInteract event){
 		
 		Player player = event.getEntity();
 		Entity entity = event.getTarget();
@@ -156,7 +153,7 @@ public class SpectrumEventListeners {
 	}
 	
 	@SubscribeEvent
-	public InteractionResult triggerPrioritizedBlockInteraction(PlayerInteractEvent.RightClickBlock event) {
+	public static InteractionResult triggerPrioritizedBlockInteraction(PlayerInteractEvent.RightClickBlock event) {
 		
 		Player player = event.getEntity();
 		InteractionHand hand = event.getHand();
@@ -173,7 +170,7 @@ public class SpectrumEventListeners {
 	//Curious: I'm basically checking the sleep timer when the player wakes up here
 	//Curious: Miraculously this works due to a single line in the Player class which is awesome
 	@SubscribeEvent
-	public void triggerWhispyCirclet(PlayerWakeUpEvent event) {
+	public static void triggerWhispyCirclet(PlayerWakeUpEvent event) {
 		Player player = event.getEntity();
 		
 		if(player.getSleepTimer() == 100 && SpectrumTrinketItem.hasEquipped(player, SpectrumItems.WHISPY_CIRCLET.asItem())) {
@@ -184,7 +181,7 @@ public class SpectrumEventListeners {
 	}
 	
 	@SubscribeEvent
-	public void triggerJeopardantKillCriterion(LivingDeathEvent event) {
+	public static void triggerJeopardantKillCriterion(LivingDeathEvent event) {
 		Entity player = event.getSource().getEntity();
 		LivingEntity target = event.getEntity();
 		
@@ -194,7 +191,7 @@ public class SpectrumEventListeners {
 	}
 	
 	@SubscribeEvent
-	public void tickSpawners(LevelTickEvent.Pre event) {
+	public static void tickSpawners(LevelTickEvent.Pre event) {
 		Level level =  event.getLevel();
 		ServerLevel world = level.getServer().getLevel(level.dimension());
 		
@@ -218,7 +215,7 @@ public class SpectrumEventListeners {
 	}
 	
 	@SubscribeEvent
-	public void updateFluidLuminance(ServerStartedEvent event) {
+	public static void updateFluidLuminance(ServerStartedEvent event) {
 		SpectrumCommon.logInfo("Querying fluid luminance...");
 		for (Iterator<Block> it = BuiltInRegistries.BLOCK.stream().iterator(); it.hasNext(); ) {
 			Block block = it.next();
@@ -229,7 +226,7 @@ public class SpectrumEventListeners {
 	}
 	
 	@SubscribeEvent
-	public void injectDynamicRecipe(ServerStartedEvent event) {
+	public static void injectDynamicRecipe(ServerStartedEvent event) {
 		MinecraftServer server = event.getServer();
 		
 		SpectrumCommon.logInfo("Injecting dynamic recipes into recipe manager...");
@@ -237,7 +234,7 @@ public class SpectrumEventListeners {
 	}
 	
 	@SubscribeEvent
-	public void tickPastelNetwork(ServerTickEvent.Post event) {
+	public static void tickPastelNetwork(ServerTickEvent.Post event) {
 		MinecraftServer server = event.getServer();
 		
 		if (!server.tickRateManager().runsNormally()) {
@@ -253,7 +250,7 @@ public class SpectrumEventListeners {
 	}
 	
 	@SubscribeEvent
-	public void damagePlayersOutOfBoundsInDD(PlayerTickEvent.Post event) {
+	public static void damagePlayersOutOfBoundsInDD(PlayerTickEvent.Post event) {
 		if(event.getEntity() instanceof ServerPlayer player) {
 			Level world = player.level();
 			if (!player.isCreative() && !player.isSpectator() && world.dimension() == SpectrumDimensions.DIMENSION_KEY && player.getY() > world.getMaxBuildHeight()) {
@@ -266,7 +263,7 @@ public class SpectrumEventListeners {
 	}
 	
 	@SubscribeEvent
-	public void onEquipmentChange(LivingEquipmentChangeEvent event) {
+	public static void onEquipmentChange(LivingEquipmentChangeEvent event) {
 		var livingEntity = event.getEntity();
 		var oldEquipment = event.getFrom();
 		var newEquipment = event.getTo();
@@ -301,7 +298,7 @@ public class SpectrumEventListeners {
 	}
 	
 	@SubscribeEvent
-	public void onLivingDeath(LivingDeathEvent event) {
+	public static void onLivingDeath(LivingDeathEvent event) {
 		var killedEntity = event.getEntity();
 		var damageSource = event.getSource();
 		

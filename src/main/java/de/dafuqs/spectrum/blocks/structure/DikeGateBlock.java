@@ -39,6 +39,10 @@ public class DikeGateBlock extends TransparentBlock {
 	public VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		if (context instanceof EntityCollisionContext entityShapeContext) {
 			Entity entity = entityShapeContext.getEntity();
+			if(entity == null) {
+				return Shapes.block();
+			}
+			
 			if (entity instanceof Player player && player.isCreative()) {
 				return Shapes.empty();
 			}

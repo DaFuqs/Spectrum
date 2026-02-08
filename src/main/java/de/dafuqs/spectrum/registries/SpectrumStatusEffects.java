@@ -12,6 +12,7 @@ import net.minecraft.server.level.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
+import net.neoforged.bus.api.*;
 import net.neoforged.neoforge.registries.*;
 
 import java.util.function.*;
@@ -176,8 +177,8 @@ public class SpectrumStatusEffects {
 		return REGISTRAR.register(id, entry);
 	}
 	
-	public static void register() {
-	
+	public static void register(IEventBus modBus) {
+		REGISTRAR.register(modBus);
 	}
 	
 	public static boolean isStrongSleepEffect(MobEffectInstance instance) {

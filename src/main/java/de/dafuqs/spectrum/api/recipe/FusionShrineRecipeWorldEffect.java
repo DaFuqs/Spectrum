@@ -12,6 +12,8 @@ import net.minecraft.network.codec.*;
 import net.minecraft.server.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.phys.*;
+import net.neoforged.bus.api.*;
+import net.neoforged.neoforge.registries.*;
 
 /**
  * Effects that are played when crafting with the fusion shrine

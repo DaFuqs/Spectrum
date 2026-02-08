@@ -107,7 +107,6 @@
     "client.BipedEntityModelMixin",
     "client.BlockOverlayRendererMixin",
     "client.BuiltinModelItemRendererMixin",
-    "client.CapeFeatureRendererMixin",
     "client.DeathScreenMixin",
     "client.DimensionTypeMixin",
     "client.DrawContextMixin",

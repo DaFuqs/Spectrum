@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.registries;
 
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.fluid.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -14,6 +15,8 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.levelgen.*;
 import net.minecraft.world.level.storage.*;
 import net.minecraft.world.phys.*;
+import net.neoforged.bus.api.*;
+import net.neoforged.neoforge.registries.*;
 
 import java.util.*;
 
@@ -205,8 +208,10 @@ public class SpectrumFusionShrineWorldEffects {
 		}
 	});
 	
-	public static void register() {
+	public static final DeferredRegister<FusionShrineRecipeWorldEffect> REGISTRAR = DeferredRegister.create(SpectrumRegistryKeys.WORLD_EFFECT, SpectrumCommon.MOD_ID);
 	
+	public static void register(IEventBus bus) {
+		REGISTRAR.register(bus);
 	}
 	
 }

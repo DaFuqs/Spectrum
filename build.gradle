@@ -135,7 +135,7 @@ dependencies {
 	/*implementation*/ compileOnly("maven.modrinth:malum:${project.malum_version}") { transitive = false }
 	implementation("maven.modrinth:travelersbackpack:${project.travelers_backpack_version}")
 	// implementation("maven.modrinth:botania:${project.botania_version}") // still on MC 1.20.1
-	implementation("maven.modrinth:vanity:${project.vanityslots_version}")
+	// implementation("maven.modrinth:vanity:${project.vanityslots_version}")
 
 	// Datagen dependencies
 	compileOnly("curse.maven:gobber-427177:${project.gobber_version}")

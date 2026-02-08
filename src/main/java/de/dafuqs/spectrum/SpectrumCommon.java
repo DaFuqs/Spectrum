@@ -2,6 +2,7 @@ package de.dafuqs.spectrum;
 
 import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.capabilities.*;
@@ -109,7 +110,7 @@ public class SpectrumCommon {
 		
 		// Register ALL the stuff
 		logInfo("Registering Status Effects...");
-		SpectrumStatusEffects.register();
+		SpectrumStatusEffects.register(modBus);
 		logInfo("Registering Advancement Criteria...");
 		SpectrumAdvancementCriteria.register(modBus);
 		logInfo("Registering Particle Types...");
@@ -151,7 +152,7 @@ public class SpectrumCommon {
 		// Recipes
 		logInfo("Registering Recipe Types...");
 		SpectrumRecipeScalings.init();
-		SpectrumFusionShrineWorldEffects.register();
+		SpectrumFusionShrineWorldEffects.register(modBus);
 		SpectrumRecipeTypes.register(modBus);
 		SpectrumRecipeSerializers.register(modBus);
 		

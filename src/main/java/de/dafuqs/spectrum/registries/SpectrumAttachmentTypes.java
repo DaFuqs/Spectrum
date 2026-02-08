@@ -17,6 +17,8 @@ public class SpectrumAttachmentTypes {
 		REGISTRAR.register(LastKillAttachmentType.NAME, () -> LastKillAttachmentType.ATTACHMENT_TYPE);
 		REGISTRAR.register(MiscPlayerDataAttachmentType.NAME, () -> MiscPlayerDataAttachmentType.ATTACHMENT_TYPE);
 		REGISTRAR.register(HardcoreDeathAttachmentType.NAME, () -> HardcoreDeathAttachmentType.ATTACHMENT_TYPE);
+		
+		REGISTRAR.register(eventBus);
 	}
 	
 }

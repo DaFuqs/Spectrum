@@ -5868,6 +5868,11 @@
   "structure.minecraft.village_snowy": "Village",
   "structure.minecraft.village_taiga": "Village",
 
+  "fluid_type.spectrum.liquid_crystal": "Liquid Crystal",
+  "fluid_type.spectrum.sludge": "Sludge",
+  "fluid_type.spectrum.black_materia": "Black Materia",
+  "fluid_type.spectrum.dragonrot": "Dragonrot",
+
   "______changes_for_vanilla": "Changes:",
   "block.minecraft.polished_basalt": "Basalt Pillar",
   "subtitles.block.amethyst_block.chime": "Gemstone chimes",

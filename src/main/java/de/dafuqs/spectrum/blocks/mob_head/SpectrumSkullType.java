@@ -155,8 +155,8 @@ public enum SpectrumSkullType implements SkullBlock.Type {
 		this.noteBlockSound = noteBlockSound;
 	}
 	
-	public EntityType<?> getEntityType() {
-		return this.entityType.get();
+	public Supplier<? extends EntityType<?>> getEntityType() {
+		return this.entityType;
 	}
 	
 	public ResourceLocation getNoteBlockSound() {

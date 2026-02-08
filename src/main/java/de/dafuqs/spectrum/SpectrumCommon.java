@@ -56,15 +56,15 @@ public class SpectrumCommon {
 	public static SpectrumConfig CONFIG;
 
 	public static void logInfo(String message) {
-		LOGGER.info("[Spectrum] {}", message);
+		LOGGER.info("{}", message);
 	}
 	
 	public static void logWarning(String message) {
-		LOGGER.warn("[Spectrum] {}", message);
+		LOGGER.warn("{}", message);
 	}
 	
 	public static void logError(String message) {
-		LOGGER.error("[Spectrum] {}", message);
+		LOGGER.error("{}", message);
 	}
 	
 	public static ResourceLocation locate(String name) {

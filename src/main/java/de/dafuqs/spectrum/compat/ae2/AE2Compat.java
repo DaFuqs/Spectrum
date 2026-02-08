@@ -16,7 +16,6 @@ import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.registries.*;
 
 import static de.dafuqs.spectrum.registries.SpectrumBlocks.*;
-import static de.dafuqs.spectrum.registries.SpectrumItems.item;
 
 public class AE2Compat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	
@@ -30,8 +29,8 @@ public class AE2Compat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	public static DeferredBlock<Block> PURE_CERTUS_QUARTZ_BLOCK = SpectrumBlocks.register(simple(blockWithItem("pure_certus_quartz_block", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.SAND).strength(0.3F).sound(SoundType.GLASS)), InkColors.YELLOW)));
 	public static DeferredBlock<Block> PURE_FLUIX_BLOCK = SpectrumBlocks.register(simple(blockWithItem("pure_fluix_block", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.SAND).strength(0.3F).sound(SoundType.GLASS)), InkColors.YELLOW)));
 	
-	public static DeferredItem<Item> PURE_CERTUS_QUARTZ = SpectrumItems.register(SpectrumItems.simple(item("pure_certus_quartz", () -> new Item(IS.of()), InkColors.YELLOW)));
-	public static DeferredItem<Item> PURE_FLUIX = SpectrumItems.register(SpectrumItems.simple(item("pure_fluix", () -> new Item(IS.of()), InkColors.YELLOW)));
+	public static DeferredItem<Item> PURE_CERTUS_QUARTZ = SpectrumItems.register("pure_certus_quartz", () -> new Item(IS.of()));
+	public static DeferredItem<Item> PURE_FLUIX = SpectrumItems.register("pure_fluix", () -> new Item(IS.of()));
 	
 	@Override
 	public void register() {

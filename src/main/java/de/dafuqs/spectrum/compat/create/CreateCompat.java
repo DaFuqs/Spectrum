@@ -32,7 +32,7 @@ public class CreateCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	public static DeferredBlock<SpectrumClusterBlock> ZINC_CLUSTER = SpectrumBlocks.register(cluster(blockWithItem("zinc_cluster", () -> new SpectrumClusterBlock(BlockBehaviour.Properties.ofFullCopy(SMALL_ZINC_BUD.get()), SpectrumClusterBlock.GrowthStage.CLUSTER), InkColors.BROWN), SpectrumModels.CRYSTALLARIEUM_FARMABLE));
 	public static DeferredBlock<Block> PURE_ZINC_BLOCK = SpectrumBlocks.register(simple(blockWithItem("pure_zinc_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)), InkColors.BROWN)));
 	
-	public static DeferredItem<Item> PURE_ZINC = SpectrumItems.register(simple(item("pure_zinc", () -> new Item(IS.of()), InkColors.BROWN)));
+	public static DeferredItem<Item> PURE_ZINC = SpectrumItems.register("pure_zinc", () -> new Item(IS.of()));
 	
 	@Override
 	public void register() {

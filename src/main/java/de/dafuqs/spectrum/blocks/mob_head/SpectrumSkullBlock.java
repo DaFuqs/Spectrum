@@ -19,6 +19,7 @@ import net.minecraft.world.level.block.state.predicate.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
+import java.util.function.*;
 
 public class SpectrumSkullBlock extends SkullBlock {
 	
@@ -28,7 +29,7 @@ public class SpectrumSkullBlock extends SkullBlock {
 	).apply(i, SpectrumSkullBlock::new));
 	
 	public static final BiMap<SpectrumSkullType, Block> MOB_HEADS = EnumHashBiMap.create(SpectrumSkullType.class);
-	private static final Map<EntityType<?>, SpectrumSkullType> ENTITY_TYPE_TO_SKULL_TYPE = new Object2ObjectOpenHashMap<>();
+	private static final Map<Supplier<? extends EntityType<?>>, SpectrumSkullType> ENTITY_TYPE_TO_SKULL_TYPE = new Object2ObjectOpenHashMap<>();
 	private final SpectrumSkullType skullType;
 	
 	@Nullable
@@ -54,7 +55,7 @@ public class SpectrumSkullBlock extends SkullBlock {
 	public static Optional<EntityType<?>> getEntityTypeOfSkullStack(ItemStack itemStack) {
 		Item item = itemStack.getItem();
 		if (item instanceof SpectrumSkullBlockItem spectrumSkullBlockItem) {
-			return Optional.of(spectrumSkullBlockItem.type.getEntityType());
+			return Optional.of(spectrumSkullBlockItem.type.getEntityType().get());
 		}
 		if (Items.CREEPER_HEAD == item) {
 			return Optional.of(EntityType.CREEPER);

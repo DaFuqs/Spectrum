@@ -1887,10 +1887,19 @@ public class SpectrumBlocks {
 	}
 	
 	public static void register(IEventBus eventBus) {
+		for (SpectrumSkullType type : SpectrumSkullType.values()) {
+			BlockRegistrar<SpectrumSkullBlock> registrar = block(type.getSerializedName() + "_head", () -> new SpectrumSkullBlock(type, BlockBehaviour.Properties.ofFullCopy(Blocks.SKELETON_SKULL).instrument(NoteBlockInstrument.CUSTOM_HEAD))).withBlockItemModel((ctx, block) -> SpectrumModelHelper.registerParentedItemModel(ctx, block, SpectrumModels.SKULL_ITEM)).withBlockModel((ctx, block) -> SpectrumModelHelper.createVariantsSupplier(block, SpectrumModels.MOB_HEAD));
+			DeferredBlock<SpectrumWallSkullBlock> wallHead = register(block(type.getSerializedName() + "_wall_head", () -> new SpectrumWallSkullBlock(type, BlockBehaviour.Properties.ofFullCopy(Blocks.SKELETON_SKULL).dropsLike(registrar.holder.get()))).withBlockModel((ctx, block) -> SpectrumModelHelper.createVariantsSupplier(block, SpectrumModels.MOB_HEAD)));
+			register(registrar.withItem(block -> new SpectrumSkullBlockItem(block, wallHead.get(), IS.of(), type), InkColors.GRAY));
+		}
+		
 		REGISTRAR.register(eventBus);
 	}
 	
 	public static<T extends Block> DeferredBlock<T> register(BlockRegistrar<T> registrar) {
+		if(registrar.hasItem) {
+			SpectrumItems.REGISTRAR.register(registrar.id.getPath(), () -> registrar.callback.apply(registrar.holder.get()));
+		}
 		return Objects.requireNonNull(registrar.holder(), "Attempted to register a null block");
 	}
 	
@@ -2086,7 +2095,8 @@ public class SpectrumBlocks {
 		@Nullable
 		private DeferredBlock<T> holder = null;
 		@Nullable
-		private Item item = null;
+		private final Item item = null;
+		private Function<T, Item> callback = null;
 		
 		public BlockRegistrar(String name) {
 			this.id = locate(name);
@@ -2102,6 +2112,7 @@ public class SpectrumBlocks {
 		public BlockRegistrar<T> withItem(Function<T, Item> callback, InkColor color) {
 			if (hasItem) throw new UnsupportedOperationException("Attempted to register two items with id " + id);
 			hasItem = true;
+			this.callback = callback;
 			
 			// TODO: fix
 			/*SpectrumItems.REGISTRAR.register(id.getPath(), () -> {
@@ -2195,18 +2206,6 @@ public class SpectrumBlocks {
 			return ResourceKey.create(Registries.ITEM, id);
 		}
 		
-	}
-	
-	public static void register() {
-		// All the mob heads
-		for (SpectrumSkullType type : SpectrumSkullType.values()) {
-			BlockRegistrar<SpectrumSkullBlock> registrar = block(type.getSerializedName() + "_head", () -> new SpectrumSkullBlock(type, BlockBehaviour.Properties.ofFullCopy(Blocks.SKELETON_SKULL).instrument(NoteBlockInstrument.CUSTOM_HEAD))).withBlockItemModel((ctx, block) -> SpectrumModelHelper.registerParentedItemModel(ctx, block, SpectrumModels.SKULL_ITEM)).withBlockModel((ctx, block) -> SpectrumModelHelper.createVariantsSupplier(block, SpectrumModels.MOB_HEAD));
-			//REGISTRAR.flush(); // since `dropsLike()` requires the referenced block to be registered, we have to register it beforehand
-			DeferredBlock<SpectrumWallSkullBlock> wallHead = register(block(type.getSerializedName() + "_wall_head", () -> new SpectrumWallSkullBlock(type, BlockBehaviour.Properties.ofFullCopy(Blocks.SKELETON_SKULL).dropsLike(registrar.holder.get()))).withBlockModel((ctx, block) -> SpectrumModelHelper.createVariantsSupplier(block, SpectrumModels.MOB_HEAD)));
-			register(registrar.withItem(block -> new SpectrumSkullBlockItem(block, wallHead.get(), IS.of(), type), InkColors.GRAY));
-		}
-		
-		//REGISTRAR.flush();
 	}
 	
 	public static void registerClient(FMLClientSetupEvent event) {

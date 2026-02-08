@@ -16,8 +16,6 @@ import net.neoforged.neoforge.registries.*;
 
 import static de.dafuqs.spectrum.registries.SpectrumBlocks.blockWithItem;
 import static de.dafuqs.spectrum.registries.SpectrumBlocks.cluster;
-import static de.dafuqs.spectrum.registries.SpectrumItems.item;
-import static de.dafuqs.spectrum.registries.SpectrumItems.simple;
 
 public class GobberCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	
@@ -35,9 +33,9 @@ public class GobberCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	public static DeferredBlock<Block> PURE_GLOBETTE_NETHER_BLOCK = SpectrumBlocks.register(SpectrumBlocks.simple(blockWithItem("pure_globette_nether_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.QUARTZ_BLOCK)), InkColors.RED)));
 	public static DeferredBlock<Block> PURE_GLOBETTE_END_BLOCK = SpectrumBlocks.register(SpectrumBlocks.simple(blockWithItem("pure_globette_end_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.QUARTZ_BLOCK)), InkColors.GREEN)));
 	
-	public static DeferredItem<Item> PURE_GLOBETTE = SpectrumItems.register(simple(item("pure_globette", () -> new Item(IS.of()), InkColors.BLUE)));
-	public static DeferredItem<Item> PURE_GLOBETTE_NETHER = SpectrumItems.register(simple(item("pure_globette_nether", () -> new Item(IS.of()), InkColors.RED)));
-	public static DeferredItem<Item> PURE_GLOBETTE_END = SpectrumItems.register(simple(item("pure_globette_end", () -> new Item(IS.of()), InkColors.GREEN)));
+	public static DeferredItem<Item> PURE_GLOBETTE = SpectrumItems.register("pure_globette", () -> new Item(IS.of()));
+	public static DeferredItem<Item> PURE_GLOBETTE_NETHER = SpectrumItems.register("pure_globette_nether", () -> new Item(IS.of()));
+	public static DeferredItem<Item> PURE_GLOBETTE_END = SpectrumItems.register("pure_globette_end", () -> new Item(IS.of()));
 	
 	@Override
 	public void register() {

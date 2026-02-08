@@ -16,7 +16,7 @@ import org.jetbrains.annotations.*;
 
 public record PlayPedestalUpgradedParticlePayload(BlockPos pedestalPos, PedestalRecipeTier newTier) implements CustomPacketPayload {
 	
-	public static final Type<PlayPedestalUpgradedParticlePayload> ID = SpectrumC2SPackets.makeId("play_pedestal_start_crafting_particle");
+	public static final Type<PlayPedestalUpgradedParticlePayload> ID = SpectrumC2SPackets.makeId("play_pedestal_upgraded_particle");
 	public static final StreamCodec<FriendlyByteBuf, PlayPedestalUpgradedParticlePayload> CODEC = StreamCodec.composite(
 			BlockPos.STREAM_CODEC, PlayPedestalUpgradedParticlePayload::pedestalPos,
 			PedestalRecipeTier.PACKET_CODEC, PlayPedestalUpgradedParticlePayload::newTier,

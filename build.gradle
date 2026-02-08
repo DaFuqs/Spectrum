@@ -86,12 +86,15 @@ configurations {
 }
 
 dependencies {
-	// TODO: to work in dev, these dependencies will probably need adding to additionalRuntimeClasspath as well!
-	// TODO: for details see https://github.com/neoforged/ModDevGradle?tab=readme-ov-file#external-dependencies-runs
+	// TODO: remove additionalRuntimeClasspath for MC 1.21.9+
+	// see https://github.com/neoforged/ModDevGradle?tab=readme-ov-file#external-dependencies-runs
 	// jgrapht (the graph lib we use) and its dependencies
 	implementation jarJar("org.jgrapht:jgrapht-core:1.5.2")
 	implementation jarJar("org.apfloat:apfloat:1.14.0")
 	implementation jarJar("org.jheaps:jheaps:0.14")
+    additionalRuntimeClasspath "org.jgrapht:jgrapht-core:1.5.2"
+    additionalRuntimeClasspath "org.apfloat:apfloat:1.14.0"
+    additionalRuntimeClasspath "org.jheaps:jheaps:0.14"
 
 	// ours
 	implementation("de.dafuqs:revelationary-neoforge:${project.revelationary_version}")

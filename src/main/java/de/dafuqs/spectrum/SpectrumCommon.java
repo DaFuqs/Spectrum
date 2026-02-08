@@ -127,6 +127,7 @@ public class SpectrumCommon {
 		SpectrumBlocks.register(modBus);
 		logInfo("Registering Items...");
 		SpectrumPotions.register(modBus);
+		SpectrumDataComponentTypes.register(modBus);
 		SpectrumItems.register(modBus);
 		SpectrumItemGroups.register(modBus);
 		logInfo("Registering Block Entities...");

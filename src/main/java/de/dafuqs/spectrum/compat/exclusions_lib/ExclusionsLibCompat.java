@@ -7,6 +7,7 @@ import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.levelgen.blockpredicates.*;
+import org.jetbrains.annotations.*;
 
 /**
  * Loaded when Exclusions Lib is *not* present
@@ -26,7 +27,7 @@ public class ExclusionsLibCompat {
 			return false;
 		}
 		
-		public BlockPredicateType<?> type() {
+		public @NotNull BlockPredicateType<?> type() {
 			return BlockPredicateType.TRUE;
 		}
 	}
@@ -38,9 +39,7 @@ public class ExclusionsLibCompat {
 	}
 	
 	private static <P extends BlockPredicate> BlockPredicateType<P> registerBlockPredicate(ResourceLocation id, MapCodec<P> codec) {
-		return Registry.register(BuiltInRegistries.BLOCK_PREDICATE_TYPE, id, () -> {
-			return codec;
-		});
+		return Registry.register(BuiltInRegistries.BLOCK_PREDICATE_TYPE, id, () -> codec);
 	}
 	
 }

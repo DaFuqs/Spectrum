@@ -4,17 +4,23 @@ import de.dafuqs.spectrum.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.world.level.gameevent.*;
+import net.neoforged.bus.api.*;
+import net.neoforged.neoforge.registries.*;
+
+import java.util.function.*;
 
 public class SpectrumPositionSources {
 	
-	public static PositionSourceType<ExactPositionSource> EXACT;
+	private static final DeferredRegister<PositionSourceType<?>> REGISTRAR = DeferredRegister.create(Registries.POSITION_SOURCE_TYPE, SpectrumCommon.MOD_ID);
 	
-	static <S extends PositionSourceType<T>, T extends PositionSource> S register(String id, S positionSourceType) {
-		return Registry.register(BuiltInRegistries.POSITION_SOURCE_TYPE, SpectrumCommon.locate(id), positionSourceType);
+	public static DeferredHolder<PositionSourceType<?>, ExactPositionSource.Type> EXACT = register("exact", ExactPositionSource.Type::new);
+	
+	public static void register(IEventBus bus) {
+		REGISTRAR.register(bus);
 	}
 	
-	public static void register() {
-		EXACT = register("exact", new ExactPositionSource.Type());
+	private static <S extends PositionSourceType<T>, T extends PositionSource> DeferredHolder<PositionSourceType<?>, S> register(String id, Supplier<S> positionSourceType) {
+		return REGISTRAR.register(id, positionSourceType);
 	}
 	
 }

@@ -933,7 +933,7 @@ public class SpectrumBlocks {
 	public static final BlockSetType GALA_BLOCK_SET_TYPE = new BlockSetType("spectrum_gala");
 	public static final WoodType GALA_WOOD_TYPE = new WoodType("spectrum_gala", GALA_BLOCK_SET_TYPE);
 	
-	public static final DeferredBlock<Block> WEEPING_GALA_PLANKS = register(blockWithItem("weeping_gala_planks", () -> new SpectrumPlankBlock(galaWood(MapColor.COLOR_BROWN)), InkColors.LIME));
+	public static final DeferredBlock<Block> WEEPING_GALA_PLANKS = register(blockWithItem("weeping_gala_planks", () -> new FlammablePlankBlock(galaWood(MapColor.COLOR_BROWN)), InkColors.LIME));
 	public static final DeferredBlock<Block> WEEPING_GALA_STAIRS = register(blockWithItem("weeping_gala_stairs", () -> new FlammableStairBlock(WEEPING_GALA_PLANKS.get().defaultBlockState(), galaWood(MapColor.COLOR_BROWN)), InkColors.LIME));
 	public static final DeferredBlock<Block> WEEPING_GALA_SLAB = register(blockWithItem("weeping_gala_slab", () -> new FlammableSlabBlock(galaWood(MapColor.COLOR_BROWN)), InkColors.LIME));
 	public static final DeferredBlock<Block> WEEPING_GALA_FENCE = register(blockWithItem("weeping_gala_fence", () -> new FlammableFenceBlock(galaWood(MapColor.COLOR_BROWN)), InkColors.LIME));

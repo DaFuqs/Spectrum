@@ -31,6 +31,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.fml.common.*;
+import net.neoforged.fml.event.lifecycle.*;
 import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.event.*;
 import net.neoforged.neoforge.event.server.*;
@@ -219,15 +220,14 @@ public class SpectrumCommon {
 		
 		logInfo("Registering Game Events...");
 		SpectrumGameEvents.register(modBus);
-		SpectrumPositionSources.register();
-		
-		logInfo("Registering Explosion Effects & Providers...");
-		ExplosionModifiers.register();
-		ExplosionModifierProviders.register();
+		SpectrumPositionSources.register(modBus);
 
 		logInfo("Registering Dispenser, Resonance & Present Unwrap Behaviors...");
-		SpectrumDispenserBehaviors.register();
-		SpectrumPresentUnpackBehaviors.register();
+		modBus.addListener((Consumer<FMLCommonSetupEvent>) event -> event.enqueueWork(() -> {
+			SpectrumDispenserBehaviors.register();
+			SpectrumPresentUnpackBehaviors.register();
+		}));
+		
 		SpectrumResonanceProcessorTypes.register(modBus);
 		
 		logInfo("Registering Resource Conditions...");
@@ -241,14 +241,6 @@ public class SpectrumCommon {
 		
 		logInfo("Registering Attachments...");
 		SpectrumAttachmentTypes.register(modBus);
-
-//		// Builtin Resource Packs
-//		logInfo("Registering Builtin Resource Packs...");
-//		Optional<ModContainer> modContainer = FabricLoader.getInstance().getModContainer(SpectrumCommon.MOD_ID);
-//		if (modContainer.isPresent()) {
-//			ResourceManagerHelper.registerBuiltinResourcePack(locate("spectrum_generation_1"), modContainer.get(), Component.nullToEmpty("Generation 1 Spectrum textures"), ResourcePackActivationType.NORMAL);
-//			ResourceManagerHelper.registerBuiltinResourcePack(locate("spectrum_programmer_art"), modContainer.get(), Component.nullToEmpty("Spectrum's Programmer Art"), ResourcePackActivationType.NORMAL);
-//		}
 		
 		logInfo("Common startup completed!");
 	}

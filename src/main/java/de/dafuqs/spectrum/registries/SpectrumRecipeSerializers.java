@@ -44,7 +44,6 @@ public class SpectrumRecipeSerializers {
 	public static final RecipeSerializer<ShapedPedestalRecipe> SHAPED_PEDESTAL_RECIPE_SERIALIZER = register("pedestal", new ShapedPedestalRecipe.Serializer());
 	public static final RecipeSerializer<ShapelessPedestalRecipe> SHAPELESS_PEDESTAL_RECIPE_SERIALIZER = register("pedestal_shapeless", new ShapelessPedestalRecipe.Serializer());
 	public static final RecipeSerializer<StarCandyRecipe> PEDESTAL_STAR_CANDY = register("pedestal_star_candy", new EmptyRecipeSerializer<>(StarCandyRecipe::new));
-	public static final RecipeSerializer<ExplosionModificationRecipe> MODULAR_EXPLOSIVE_MODIFICATION = register("modular_explosive_modification", new EmptyRecipeSerializer<>(ExplosionModificationRecipe::new));
 	
 	// Anvil Crushing
 	public static final RecipeSerializer<AnvilCrushingRecipe> ANVIL_CRUSHING_RECIPE_SERIALIZER = register("anvil_crushing", new AnvilCrushingRecipe.Serializer());

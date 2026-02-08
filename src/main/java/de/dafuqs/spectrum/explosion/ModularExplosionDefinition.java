@@ -22,6 +22,8 @@ import java.util.*;
  * A Set of ExplosionModifiers
  * - serializable as SpectrumDataComponentTypes.MODULAR_EXPLOSION
  * - implements the actual explosion logic
+ *
+ * TODO: rework the whole system to use enchantments instead
  */
 public class ModularExplosionDefinition {
 	

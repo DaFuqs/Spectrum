@@ -32,7 +32,7 @@ public class ExactPositionSource implements PositionSource {
 	
 	@Override
 	public PositionSourceType<?> getType() {
-		return SpectrumPositionSources.EXACT;
+		return SpectrumPositionSources.EXACT.get();
 	}
 	
 	public static class Type implements PositionSourceType<ExactPositionSource> {

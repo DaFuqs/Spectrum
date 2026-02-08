@@ -217,11 +217,8 @@ public class SpectrumCommon {
 		});
 		modBus.addListener(SpectrumCapabilities::register);
 		
-		logInfo("Registering Flammable Blocks...");
-		SpectrumFlammableBlocks.register();
-		
 		logInfo("Registering Game Events...");
-		SpectrumGameEvents.register();
+		SpectrumGameEvents.register(modBus);
 		SpectrumPositionSources.register();
 		
 		logInfo("Registering Explosion Effects & Providers...");

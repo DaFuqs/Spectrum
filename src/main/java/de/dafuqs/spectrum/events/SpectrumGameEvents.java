@@ -4,29 +4,27 @@ import de.dafuqs.spectrum.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.world.level.gameevent.*;
+import net.neoforged.bus.api.*;
+import net.neoforged.neoforge.registries.*;
 
 public class SpectrumGameEvents {
 	
-	public static Holder<GameEvent> ENTITY_SPAWNED;
-	public static Holder<GameEvent> BLOCK_CHANGED;
+	private static final DeferredRegister<GameEvent> REGISTRAR = DeferredRegister.create(Registries.GAME_EVENT, SpectrumCommon.MOD_ID);
 	
-	public static Holder<GameEvent> HUMMINGSTONE_HUMMING;
-	public static Holder<GameEvent> HUMMINGSTONE_HYMN;
+	public static Holder<GameEvent> ENTITY_SPAWNED = register("entity_spawned", 16);
+	public static Holder<GameEvent> BLOCK_CHANGED = register("block_changed", 16);
 	
-	public static Holder<GameEvent> WIRELESS_REDSTONE_SIGNAL;
+	public static Holder<GameEvent> HUMMINGSTONE_HUMMING = register("hummingstone_humming", 16);
+	public static Holder<GameEvent> HUMMINGSTONE_HYMN = register("hummingstone_hymn", 16);
 	
-	public static void register() {
-		ENTITY_SPAWNED = register("entity_spawned", 16);
-		BLOCK_CHANGED = register("block_changed", 16);
-		
-		HUMMINGSTONE_HUMMING = register("hummingstone_humming", 16);
-		HUMMINGSTONE_HYMN = register("hummingstone_hymn", 16);
-		
-		WIRELESS_REDSTONE_SIGNAL = register("wireless_redstone_signal", 16);
+	public static Holder<GameEvent> WIRELESS_REDSTONE_SIGNAL = register("wireless_redstone_signal", 16);
+	
+	public static void register(IEventBus eventBus) {
+		REGISTRAR.register(eventBus);
 	}
 	
 	private static Holder<GameEvent> register(String id, int range) {
-		return Registry.registerForHolder(BuiltInRegistries.GAME_EVENT, SpectrumCommon.locate(id), new GameEvent(range));
+		return REGISTRAR.register(id, () -> new GameEvent(range));
 	}
 	
 }

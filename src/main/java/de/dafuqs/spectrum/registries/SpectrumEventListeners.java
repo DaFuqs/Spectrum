@@ -64,14 +64,6 @@ import java.util.concurrent.atomic.*;
 @EventBusSubscriber(modid = SpectrumCommon.MOD_ID)
 public class SpectrumEventListeners {
 	
-	/**
-	 * Caches the luminance states from fluids as int
-	 * for blocks that react to the light level of fluids
-	 * like the fusion shrine lighting up with lava or liquid crystal
-	 */
-	// TODO: can these be pulled from the fluid types instead?
-	public static final HashMap<Fluid, Integer> fluidLuminance = new HashMap<>();
-	
 	@SubscribeEvent
 	public static InteractionResult exchangeBlock(PlayerInteractEvent.LeftClickBlock event) {
 		Level world = event.getLevel();
@@ -212,17 +204,6 @@ public class SpectrumEventListeners {
 			}*/
 		}
 		
-	}
-	
-	@SubscribeEvent
-	public static void updateFluidLuminance(ServerStartedEvent event) {
-		SpectrumCommon.logInfo("Querying fluid luminance...");
-		for (Iterator<Block> it = BuiltInRegistries.BLOCK.stream().iterator(); it.hasNext(); ) {
-			Block block = it.next();
-			if (block instanceof LiquidBlock fluidBlock) {
-				fluidLuminance.put(fluidBlock.fluid, fluidBlock.defaultBlockState().getLightEmission());
-			}
-		}
 	}
 	
 	@SubscribeEvent
@@ -460,8 +441,9 @@ public class SpectrumEventListeners {
 		}
 	}
 	
+	// TODO: inline
 	public static int getFluidLuminance(Fluid fluid) {
-		return fluidLuminance.getOrDefault(fluid, 0);
+		return fluid.getFluidType().getLightLevel();
 	}
 	
 }

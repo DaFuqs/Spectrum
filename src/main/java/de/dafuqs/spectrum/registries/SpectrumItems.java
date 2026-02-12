@@ -347,7 +347,7 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> DRAGONBONE_BROTH = register("dragonbone_broth", () -> new StackableStewItem(IS.of(8).food(SpectrumFoodComponents.DRAGONBONE_BROTH)));
 	public static final DeferredItem<Item> DOOMBLOOM_SEED = register("doombloom_seed", () -> new ItemNameBlockItem(SpectrumBlocks.DOOMBLOOM.get(), IS.of().fireResistant()));
 	
-	public static final DeferredItem<Item> GLISTERING_MELON_SEEDS = register("glistering_melon_seeds", () -> new ItemNameBlockItem(BuiltInRegistries.BLOCK.get(SpectrumBlocks.GLISTERING_MELON_STEM), IS.of()));
+	public static final DeferredItem<Item> GLISTERING_MELON_SEEDS = register("glistering_melon_seeds", () -> new ItemNameBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM.get(), IS.of()));
 	public static final DeferredItem<Item> AMARANTH_GRAINS = register("amaranth_grains", () -> new ItemNameBlockItem(SpectrumBlocks.AMARANTH.get(), IS.of()));
 	
 	// Cookbooks

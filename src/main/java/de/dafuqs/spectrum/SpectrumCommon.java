@@ -228,6 +228,7 @@ public class SpectrumCommon {
 		modBus.addListener((Consumer<FMLCommonSetupEvent>) event -> event.enqueueWork(() -> {
 			SpectrumDispenserBehaviors.register();
 			SpectrumPresentUnpackBehaviors.register();
+			SpectrumItemGroups.registerSubTabs();
 		}));
 		
 		SpectrumResonanceProcessorTypes.register(modBus);

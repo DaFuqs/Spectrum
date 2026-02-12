@@ -35,8 +35,12 @@ public class PedestalScreenHandler extends RecipeBookMenu<RecipeInput, Recipe<Re
 	
 	// clientside
 	public PedestalScreenHandler(int syncId, Inventory playerInventory, RegistryFriendlyByteBuf buf) {
-		this(syncId, playerInventory, playerInventory.player.level().getBlockEntity(ScreenOpeningData.PACKET_CODEC.decode(buf).pos, SpectrumBlockEntities.PEDESTAL.get()).orElseThrow(),
-				new SimpleContainerData(2), ScreenOpeningData.PACKET_CODEC.decode(buf).pedestalRecipeTier, ScreenOpeningData.PACKET_CODEC.decode(buf).maxRecipeTier);
+		this(syncId, playerInventory, ScreenOpeningData.PACKET_CODEC.decode(buf));
+	}
+	
+	private PedestalScreenHandler(int syncId, Inventory playerInventory, ScreenOpeningData screenopeningData) {
+		this(syncId, playerInventory, playerInventory.player.level().getBlockEntity(screenopeningData.pos, SpectrumBlockEntities.PEDESTAL.get()).orElseThrow(),
+				new SimpleContainerData(2), screenopeningData.pedestalRecipeTier, screenopeningData.maxRecipeTier);
 	}
 	
 	// serverside

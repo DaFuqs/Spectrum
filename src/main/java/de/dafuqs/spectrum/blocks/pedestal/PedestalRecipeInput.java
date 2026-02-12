@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -19,11 +20,13 @@ public class PedestalRecipeInput implements RecipeInput {
 	);
 	
 	@Nullable
+	private final Level level;
 	private final Player player;
 	private final CraftingInput craftingGridInput;
 	private final List<ItemStack> gemstonePowderStacks;
 	
-	public PedestalRecipeInput(CraftingInput craftingGridInput, List<ItemStack> gemstonePowderStacks, @Nullable Player player) {
+	public PedestalRecipeInput(Level level, CraftingInput craftingGridInput, List<ItemStack> gemstonePowderStacks, @Nullable Player player) {
+		this.level = level;
 		this.player = player;
 		this.craftingGridInput = craftingGridInput;
 		this.gemstonePowderStacks = gemstonePowderStacks;
@@ -33,12 +36,12 @@ public class PedestalRecipeInput implements RecipeInput {
 		return craftingGridInput;
 	}
 	
-	public static PedestalRecipeInput create(List<ItemStack> stacks, @Nullable Player player) {
-		return new PedestalRecipeInput(CraftingInput.of(3, 3, stacks.subList(0, 9)), stacks.subList(9, 14), player);
+	public static PedestalRecipeInput create(Level level, List<ItemStack> stacks, @Nullable Player player) {
+		return new PedestalRecipeInput(level, CraftingInput.of(3, 3, stacks.subList(0, 9)), stacks.subList(9, 14), player);
 	}
 	
-	public static PedestalRecipeInput createWithFullGemstonePowder(List<ItemStack> stacks, @Nullable Player player) {
-		return new PedestalRecipeInput(CraftingInput.of(3, 3, stacks), FULL_GEMSTONE_POWDER_STACKS, player);
+	public static PedestalRecipeInput createWithFullGemstonePowder(Level level, List<ItemStack> stacks, @Nullable Player player) {
+		return new PedestalRecipeInput(level, CraftingInput.of(3, 3, stacks), FULL_GEMSTONE_POWDER_STACKS, player);
 	}
 	
 	@Override
@@ -66,6 +69,10 @@ public class PedestalRecipeInput implements RecipeInput {
 	
 	public @Nullable Player getPlayer() {
 		return this.player;
+	}
+	
+	public @NotNull Level getLevel() {
+		return this.level;
 	}
 	
 }

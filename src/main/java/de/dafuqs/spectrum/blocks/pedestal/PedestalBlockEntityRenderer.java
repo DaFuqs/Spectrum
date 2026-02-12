@@ -22,11 +22,6 @@ public class PedestalBlockEntityRenderer<C extends PedestalBlockEntity> implemen
 	private final ResourceLocation GROUND_MARK = SpectrumCommon.locate("textures/misc/circle.png");
 	private final ModelPart circle;
 	
-	private static final int RECIPE_RECALCULATION_TICKS = 4;
-	private @Nullable Recipe<?> cachedRecipe;
-	private long cachedRecipeTime = 0;
-	private ItemStack cachedRecipeOutput = ItemStack.EMPTY;
-	
 	public PedestalBlockEntityRenderer(BlockEntityRendererProvider.Context ctx) {
 		super();
 		this.circle = getTexturedModelData().bakeRoot().getChild("circle");
@@ -50,17 +45,10 @@ public class PedestalBlockEntityRenderer<C extends PedestalBlockEntity> implemen
 		
 		// render floating item stacks
 		Recipe<?> currentRecipe = entity.getCurrentRecipe();
-		if (currentRecipe instanceof PedestalRecipe pedestalRecipe) {
+		if (currentRecipe instanceof PedestalRecipe) {
 			float time = entity.getLevel().getGameTime() % 50000 + tickDelta;
 			this.circle.yRot = time / 25.0F;
 			this.circle.render(poseStack, vertexConsumerProvider.getBuffer(SpectrumRenderLayers.GlowInTheDarkRenderLayer.get(GROUND_MARK)), light, overlay);
-			
-			long currentTime = entity.getLevel().getGameTime();
-			if (this.cachedRecipeTime + RECIPE_RECALCULATION_TICKS < currentTime || this.cachedRecipe != pedestalRecipe) {
-				this.cachedRecipeOutput = pedestalRecipe.assemble(entity.createRecipeInput(), entity.getLevel().registryAccess());
-				this.cachedRecipe = pedestalRecipe;
-				this.cachedRecipeTime = currentTime;
-			}
 			
 			poseStack.pushPose();
 			double height = Math.sin((time) / 8.0) / 6.0; // item height
@@ -70,7 +58,7 @@ public class PedestalBlockEntityRenderer<C extends PedestalBlockEntity> implemen
 			// fixed lighting because:
 			// 1. light variable would always be 0 anyway (the pedestal is opaque, making the inside black)
 			// 2. the floating item looks like a hologram
-			Minecraft.getInstance().getItemRenderer().renderStatic(this.cachedRecipeOutput, ItemDisplayContext.GROUND, LightTexture.FULL_BRIGHT, overlay, poseStack, vertexConsumerProvider, entity.getLevel(), 0);
+			Minecraft.getInstance().getItemRenderer().renderStatic(entity.getCurrentCraftingRecipeOutput(), ItemDisplayContext.GROUND, LightTexture.FULL_BRIGHT, overlay, poseStack, vertexConsumerProvider, entity.getLevel(), 0);
 			poseStack.popPose();
 		}
 	}

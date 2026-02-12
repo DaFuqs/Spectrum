@@ -62,6 +62,10 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 	protected boolean inventoryChanged;
 	public @Nullable RecipeHolder<?> currentRecipe;
 	
+	private static final int RECIPE_RECALCULATION_TICKS = 4;
+	protected long cachedRecipeTime = Long.MIN_VALUE;
+	protected ItemStack cachedRecipeOutput = ItemStack.EMPTY;
+	
 	protected final CraftingDelegate propertyDelegate = new CraftingDelegate();
 	
 	public PedestalBlockEntity(BlockPos blockPos, BlockState blockState) {
@@ -295,6 +299,8 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 				return pedestalBlockEntity.currentRecipe;
 			}
 		}
+		
+		pedestalBlockEntity.cachedRecipeTime = Long.MIN_VALUE;
 		
 		// is a crafting tablet in the slot?
 		// only allow this recipe
@@ -782,7 +788,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 	}
 	
 	public PedestalRecipeInput createRecipeInput() {
-		return PedestalRecipeInput.create(this.inventory, getOwnerIfOnline());
+		return PedestalRecipeInput.create(level, this.inventory, getOwnerIfOnline());
 	}
 	
 	public CraftingInput.Positioned createPositionedInput() {
@@ -794,16 +800,24 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		if (level == null || currentRecipe == null) {
 			return ItemStack.EMPTY;
 		}
+		long gameTime = level.getGameTime();
+		if(gameTime < this.cachedRecipeTime + RECIPE_RECALCULATION_TICKS) {
+			return cachedRecipeOutput;
+		}
+		
+		ItemStack cachedResult = ItemStack.EMPTY;
 		
 		if (currentRecipe instanceof PedestalRecipe pedestalRecipe) {
-			return pedestalRecipe.assemble(createRecipeInput(), level.registryAccess());
+			cachedResult = pedestalRecipe.assemble(createRecipeInput(), level.registryAccess());
 		}
 		
 		if (currentRecipe instanceof CraftingRecipe craftingRecipe) {
-			return craftingRecipe.assemble(createRecipeInput().getCraftingGridInput(), level.registryAccess());
+			cachedResult = craftingRecipe.assemble(createRecipeInput().getCraftingGridInput(), level.registryAccess());
 		}
 		
-		return ItemStack.EMPTY;
+		this.cachedRecipeTime = gameTime;
+		this.cachedRecipeOutput = cachedResult;
+		return cachedResult;
 	}
 	
 	public PedestalRecipeTier getHighestAvailableRecipeTier() {

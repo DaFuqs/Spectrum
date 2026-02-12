@@ -111,7 +111,7 @@ public class CraftingTabletScreenHandler extends RecipeBookMenu<RecipeInput, Rec
 		if (!world.isClientSide) {
 			ServerPlayer serverPlayerEntity = (ServerPlayer) player;
 			
-			PedestalRecipeInput pedestalRecipeInput = PedestalRecipeInput.createWithFullGemstonePowder(inventory.getItems(), player);
+			PedestalRecipeInput pedestalRecipeInput = PedestalRecipeInput.createWithFullGemstonePowder(world, inventory.getItems(), player);
 			
 			Optional<RecipeHolder<PedestalRecipe>> optionalPedestalCraftingRecipe = world.getRecipeManager().getRecipeFor(SpectrumRecipeTypes.PEDESTAL, pedestalRecipeInput, world);
 			if (optionalPedestalCraftingRecipe.isPresent()) {
@@ -203,7 +203,7 @@ public class CraftingTabletScreenHandler extends RecipeBookMenu<RecipeInput, Rec
 	
 	@Override
 	public boolean recipeMatches(RecipeHolder recipe) {
-		PedestalRecipeInput pedestalRecipeInput = PedestalRecipeInput.createWithFullGemstonePowder(this.craftingInventory.getItems(), player);
+		PedestalRecipeInput pedestalRecipeInput = PedestalRecipeInput.createWithFullGemstonePowder(world, this.craftingInventory.getItems(), player);
 		if (recipe.value() instanceof PedestalRecipe pedestalRecipe)
 			return pedestalRecipe.matches(pedestalRecipeInput, this.world);
 		if (recipe.value() instanceof CraftingRecipe craftingRecipe)

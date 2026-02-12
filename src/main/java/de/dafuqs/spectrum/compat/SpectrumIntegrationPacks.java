@@ -9,6 +9,7 @@ import de.dafuqs.spectrum.compat.gobber.*;
 import de.dafuqs.spectrum.compat.malum.*;
 import de.dafuqs.spectrum.compat.modonomicon.*;
 import de.dafuqs.spectrum.compat.travelersbackpack.*;
+import net.neoforged.bus.api.*;
 import net.neoforged.fml.event.lifecycle.*;
 import net.neoforged.fml.loading.*;
 
@@ -42,11 +43,11 @@ public class SpectrumIntegrationPacks {
 	public static final String EXCLUSIONS_LIB_ID = "exclusions_lib";
 
 	@SuppressWarnings("Convert2MethodRef")
-	public static void register() {
+	public static void register(IEventBus modBus) {
 		registerIntegrationPack(MODONOMICON_ID, () -> new ModonomiconCompat());
 		
 		if (!SpectrumIntegrationPacks.isModLoaded(EXCLUSIONS_LIB_ID)) {
-			ExclusionsLibCompat.registerNotPresent();
+			ExclusionsLibCompat.registerNotPresent(modBus);
 		}
 		
 		registerIntegrationPack(AE2_ID, () -> new AE2Compat());

@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.fractal.api.*;
+import de.dafuqs.fractal.interfaces.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.item.*;
@@ -34,10 +35,9 @@ public class SpectrumItemGroups {
 			.icon(() -> new ItemStack(SpectrumBlocks.PEDESTAL_ALL_BASIC))
 			.displayItems((displayContext, entries) -> {
 				entries.accept(SpectrumBlocks.PEDESTAL_ALL_BASIC, CreativeModeTab.TabVisibility.PARENT_TAB_ONLY);
-				/*TODO: review. Still needed for items to get picked up by recipe viewer searches?
-				for (CreativeSubTab subGroup : SpectrumItemGroups.MAIN.fractal$getChildren()) {
+				for (CreativeSubTab subGroup : ((ICreativeTabParent) SpectrumItemGroups.MAIN.get()).fractal$getChildren()) {
 					entries.acceptAll(subGroup.getSearchTabDisplayItems(), CreativeModeTab.TabVisibility.SEARCH_TAB_ONLY);
-				}*/
+				}
 			})
 			.hideTitle()
 			.title(Component.translatable("itemGroup.spectrum"))

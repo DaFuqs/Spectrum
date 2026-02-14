@@ -2181,7 +2181,64 @@ public class SpectrumBlocks {
 	}
 	
 	public static void registerClient(FMLClientSetupEvent event) {
-		// I assume that will be obsolete starting MC 26.1
+		// This will be obsolete starting MC 26.1
+		ItemBlockRenderTypes.setRenderLayer(TOPAZ_GLASS_PANE.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(AMETHYST_GLASS_PANE.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(CITRINE_GLASS_PANE.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(ONYX_GLASS_PANE.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(MOONSTONE_GLASS_PANE.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(RADIANT_GLASS_PANE.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(HUMMINGSTONE_GLASS_PANE.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(SMALL_COAL_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LARGE_COAL_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(COAL_CLUSTER.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(SMALL_IRON_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LARGE_IRON_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(IRON_CLUSTER.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(SMALL_GOLD_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LARGE_GOLD_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(GOLD_CLUSTER.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(SMALL_DIAMOND_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LARGE_DIAMOND_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(DIAMOND_CLUSTER.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(SMALL_EMERALD_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LARGE_EMERALD_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(EMERALD_CLUSTER.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(SMALL_REDSTONE_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LARGE_REDSTONE_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(REDSTONE_CLUSTER.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(SMALL_LAPIS_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LARGE_LAPIS_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LAPIS_CLUSTER.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(SMALL_COPPER_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LARGE_COPPER_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(COPPER_CLUSTER.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(SMALL_QUARTZ_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LARGE_QUARTZ_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(QUARTZ_CLUSTER.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(SMALL_NETHERITE_SCRAP_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LARGE_NETHERITE_SCRAP_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(NETHERITE_SCRAP_CLUSTER.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(SMALL_ECHO_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LARGE_ECHO_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(ECHO_CLUSTER.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(SMALL_GLOWSTONE_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LARGE_GLOWSTONE_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(GLOWSTONE_CLUSTER.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(SMALL_PRISMARINE_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LARGE_PRISMARINE_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(PRISMARINE_CLUSTER.get(), RenderType.cutout());
+		
+		ItemBlockRenderTypes.setRenderLayer(AZURITE_CLUSTER.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LARGE_AZURITE_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(SMALL_AZURITE_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(MALACHITE_CLUSTER.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LARGE_MALACHITE_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(SMALL_MALACHITE_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(BLOODSTONE_CLUSTER.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LARGE_BLOODSTONE_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(SMALL_BLOODSTONE_BUD.get(), RenderType.cutout());
+		
 		ItemBlockRenderTypes.setRenderLayer(TOPAZ_CLUSTER.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(LARGE_TOPAZ_BUD.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(MEDIUM_TOPAZ_BUD.get(), RenderType.cutout());

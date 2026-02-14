@@ -130,6 +130,20 @@ public class SpectrumEventListeners {
 //	}
 	
 	@SubscribeEvent
+	private static void entityTick(EntityTickEvent.Post event) {
+		var entity = event.getEntity();
+		
+		if (entity instanceof LivingEntity living) {
+			PrimordialFireAttachmentType.tick(living);
+			
+			if (living.level().isClientSide())
+				return;
+			AzureDikeAttachmentType azureDikeAttachment = living.getData(AzureDikeAttachmentType.ATTACHMENT_TYPE);
+			azureDikeAttachment.serverTick(living);
+		}
+	}
+	
+	@SubscribeEvent
 	public static InteractionResult triggerPrioritizedEntityInteraction(PlayerInteractEvent.EntityInteract event){
 		
 		Player player = event.getEntity();

@@ -59,7 +59,7 @@ public class PrimordialFireAttachmentType {
 	public static final float BASE_PERCENT_DAMAGE = 0.1F;
 	
 	
-	private static Optional<OnPrimordialFireSoundInstance> soundInstance;
+	private static Optional<OnPrimordialFireSoundInstance> soundInstance = Optional.empty();
 	
 	public static void setPrimordialFireTicks(LivingEntity entity, long ticks) {
 		if (entity.getType().is(SpectrumEntityTypeTags.PRIMORDIAL_FIRE_IMMUNE)) {
@@ -98,9 +98,17 @@ public class PrimordialFireAttachmentType {
 		return true;
 	}
 	
-	public void serverTick(LivingEntity entity) { // TODO: call me - grandma
+	public static void tick(LivingEntity entity) {
+		Level level = entity.level();
 		long primordialFireTicks = entity.getData(ATTACHMENT_TYPE);
-		
+		if(level.isClientSide) {
+			clientTick(entity, primordialFireTicks);
+		} else {
+			serverTick(entity, primordialFireTicks);
+		}
+	}
+	
+	protected static void serverTick(LivingEntity entity, long primordialFireTicks) {
 		if (primordialFireTicks == 0)
 			return;
 		
@@ -112,6 +120,7 @@ public class PrimordialFireAttachmentType {
 		}
 		
 		primordialFireTicks -= entity.getFluidHeight(FluidTags.WATER) > 0 ? 3 : 1;
+		entity.setData(ATTACHMENT_TYPE, primordialFireTicks);
 		
 		// was on fire, but is not any longer
 		if (primordialFireTicks <= 0) {
@@ -119,7 +128,7 @@ public class PrimordialFireAttachmentType {
 		}
 	}
 	
-	public float getDamage(LivingEntity entity) {
+	public static float getDamage(LivingEntity entity) {
 		float baseDamage = BASE_PERCENT_DAMAGE;
 		
 		//Bosses have great and exceptional souls that can resist a lot more.
@@ -133,9 +142,7 @@ public class PrimordialFireAttachmentType {
 	}
 	
 	
-	public void clientTick(LivingEntity entity) { // TODO: call me - grandma
-		long primordialFireTicks = entity.getData(ATTACHMENT_TYPE);
-		
+	protected static void clientTick(LivingEntity entity, long primordialFireTicks) {
 		if (primordialFireTicks > 0) {
 			if (entity.equals(Minecraft.getInstance().player) && primordialFireTicks > 2 && soundInstance.isEmpty()) {
 				soundInstance = Optional.of(new OnPrimordialFireSoundInstance((Player) entity));

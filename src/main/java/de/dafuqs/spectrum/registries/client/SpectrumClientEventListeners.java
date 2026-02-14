@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.api.render.*;
+import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.data_loaders.*;
@@ -38,6 +39,7 @@ import net.minecraft.world.phys.shapes.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.common.*;
+import net.neoforged.neoforge.event.tick.*;
 import org.jetbrains.annotations.*;
 import oshi.util.tuples.*;
 

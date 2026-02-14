@@ -10,7 +10,6 @@ import net.minecraft.client.model.*;
 import net.minecraft.client.model.geom.*;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.*;
-import net.neoforged.api.distmarker.*;
 import net.neoforged.fml.event.lifecycle.*;
 import net.neoforged.neoforge.client.*;
 
@@ -64,7 +63,7 @@ public class SpectrumModelLayers {
 	public static final ModelLayerLocation ENDERMITE_HEAD = new ModelLayerLocation(SpectrumCommon.locate("endermite_head"), "main");
 	public static final ModelLayerLocation EVOKER_HEAD = new ModelLayerLocation(SpectrumCommon.locate("evoker_head"), "main");
 	public static final ModelLayerLocation FOX_ARCTIC_HEAD = new ModelLayerLocation(SpectrumCommon.locate("fox_arctic_head"), "main");
-	public static final ModelLayerLocation FOX_HEAD = new ModelLayerLocation(SpectrumCommon.locate("fox_head"), "main");
+	public static final ModelLayerLocation FOX_RED_HEAD = new ModelLayerLocation(SpectrumCommon.locate("fox_red_head"), "main");
 	public static final ModelLayerLocation FROG_COLD_HEAD = new ModelLayerLocation(SpectrumCommon.locate("frog_cold_head"), "main");
 	public static final ModelLayerLocation FROG_TEMPERATE_HEAD = new ModelLayerLocation(SpectrumCommon.locate("frog_temperate_head"), "main");
 	public static final ModelLayerLocation FROG_WARM_HEAD = new ModelLayerLocation(SpectrumCommon.locate("frog_warm_head"), "main");
@@ -84,11 +83,11 @@ public class SpectrumModelLayers {
 	public static final ModelLayerLocation MULE_HEAD = new ModelLayerLocation(SpectrumCommon.locate("mule_head"), "main");
 	public static final ModelLayerLocation OCELOT_HEAD = new ModelLayerLocation(SpectrumCommon.locate("ocelot_head"), "main");
 	public static final ModelLayerLocation PANDA_HEAD = new ModelLayerLocation(SpectrumCommon.locate("panda_head"), "main");
+	public static final ModelLayerLocation PARROT_RED_BLUE_HEAD = new ModelLayerLocation(SpectrumCommon.locate("parrot_red_blue_head"), "main");
 	public static final ModelLayerLocation PARROT_BLUE_HEAD = new ModelLayerLocation(SpectrumCommon.locate("parrot_blue_head"), "main");
-	public static final ModelLayerLocation PARROT_CYAN_HEAD = new ModelLayerLocation(SpectrumCommon.locate("parrot_cyan_head"), "main");
-	public static final ModelLayerLocation PARROT_GRAY_HEAD = new ModelLayerLocation(SpectrumCommon.locate("parrot_gray_head"), "main");
 	public static final ModelLayerLocation PARROT_GREEN_HEAD = new ModelLayerLocation(SpectrumCommon.locate("parrot_green_head"), "main");
-	public static final ModelLayerLocation PARROT_RED_HEAD = new ModelLayerLocation(SpectrumCommon.locate("parrot_red_head"), "main");
+	public static final ModelLayerLocation PARROT_YELLOW_BLUE_HEAD = new ModelLayerLocation(SpectrumCommon.locate("parrot_yellow_blue_head"), "main");
+	public static final ModelLayerLocation PARROT_GRAY_HEAD = new ModelLayerLocation(SpectrumCommon.locate("parrot_gray_head"), "main");
 	public static final ModelLayerLocation PHANTOM_HEAD = new ModelLayerLocation(SpectrumCommon.locate("phantom_head"), "main");
 	public static final ModelLayerLocation PIG_HEAD = new ModelLayerLocation(SpectrumCommon.locate("pig_head"), "main");
 	public static final ModelLayerLocation PILLAGER_HEAD = new ModelLayerLocation(SpectrumCommon.locate("pillager_head"), "main");
@@ -204,7 +203,7 @@ public class SpectrumModelLayers {
 		ClientHooks.registerLayerDefinition(ENDERMAN_HEAD_OVERLAY, EndermanHeadModel::getTexturedModelData);
 		ClientHooks.registerLayerDefinition(ENDERMITE_HEAD, EndermiteHeadModel::getTexturedModelData);
 		ClientHooks.registerLayerDefinition(EVOKER_HEAD, IllagerHeadModel::getTexturedModelData);
-		ClientHooks.registerLayerDefinition(FOX_HEAD, FoxHeadModel::getTexturedModelData);
+		ClientHooks.registerLayerDefinition(FOX_RED_HEAD, FoxHeadModel::getTexturedModelData);
 		ClientHooks.registerLayerDefinition(FOX_ARCTIC_HEAD, FoxHeadModel::getTexturedModelData);
 		ClientHooks.registerLayerDefinition(FROG_COLD_HEAD, FrogHeadModel::getTexturedModelData);
 		ClientHooks.registerLayerDefinition(FROG_TEMPERATE_HEAD, FrogHeadModel::getTexturedModelData);
@@ -226,10 +225,10 @@ public class SpectrumModelLayers {
 		ClientHooks.registerLayerDefinition(OCELOT_HEAD, CatHeadModel::getTexturedModelData);
 		ClientHooks.registerLayerDefinition(PANDA_HEAD, PandaHeadModel::getTexturedModelData);
 		ClientHooks.registerLayerDefinition(PARROT_BLUE_HEAD, ParrotHeadModel::getTexturedModelData);
-		ClientHooks.registerLayerDefinition(PARROT_CYAN_HEAD, ParrotHeadModel::getTexturedModelData);
+		ClientHooks.registerLayerDefinition(PARROT_YELLOW_BLUE_HEAD, ParrotHeadModel::getTexturedModelData);
 		ClientHooks.registerLayerDefinition(PARROT_GRAY_HEAD, ParrotHeadModel::getTexturedModelData);
 		ClientHooks.registerLayerDefinition(PARROT_GREEN_HEAD, ParrotHeadModel::getTexturedModelData);
-		ClientHooks.registerLayerDefinition(PARROT_RED_HEAD, ParrotHeadModel::getTexturedModelData);
+		ClientHooks.registerLayerDefinition(PARROT_RED_BLUE_HEAD, ParrotHeadModel::getTexturedModelData);
 		ClientHooks.registerLayerDefinition(PHANTOM_HEAD, PhantomHeadModel::getTexturedModelData);
 		ClientHooks.registerLayerDefinition(PIG_HEAD, PigHeadModel::getTexturedModelData);
 		ClientHooks.registerLayerDefinition(POLAR_BEAR_HEAD, BearHeadModel::getTexturedModelData);

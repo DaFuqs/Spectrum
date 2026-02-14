@@ -22,7 +22,11 @@ public class BlackHoleChestScreenHandler extends AbstractContainerMenu {
 	
 	// clientside
 	public BlackHoleChestScreenHandler(int syncId, Inventory playerInventory, RegistryFriendlyByteBuf buf) {
-		this(syncId, playerInventory, playerInventory.player.level().getBlockEntity(FilterConfigurable.ExtendedDataWithPos.PACKET_CODEC.decode(buf).pos(), SpectrumBlockEntities.BLACK_HOLE_CHEST.get()).orElseThrow(), FilterConfigurable.ExtendedDataWithPos.PACKET_CODEC.decode(buf).data());
+		this(syncId, playerInventory, FilterConfigurable.ExtendedDataWithPos.PACKET_CODEC.decode(buf));
+	}
+	
+	protected BlackHoleChestScreenHandler(int syncId, Inventory playerInventory, FilterConfigurable.ExtendedDataWithPos data) {
+		this(syncId, playerInventory, playerInventory.player.level().getBlockEntity(data.pos(), SpectrumBlockEntities.BLACK_HOLE_CHEST.get()).orElseThrow(), data.data());
 	}
 	
 	// serverside
@@ -37,7 +41,7 @@ public class BlackHoleChestScreenHandler extends AbstractContainerMenu {
 		
 		int i = (ROWS - 4) * 18;
 		
-		// sucking chest slots
+		// black hole chest slots
 		int j;
 		int k;
 		for (j = 0; j < ROWS; ++j) {

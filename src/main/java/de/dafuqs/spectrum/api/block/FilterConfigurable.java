@@ -151,7 +151,7 @@ public interface FilterConfigurable {
 		}
 		
 		public static final StreamCodec<RegistryFriendlyByteBuf, ExtendedData> PACKET_CODEC = StreamCodec.composite(
-				ItemStack.STREAM_CODEC.apply(ByteBufCodecs.list()), ExtendedData::filterItems,
+				ItemStack.OPTIONAL_STREAM_CODEC.apply(ByteBufCodecs.list()), ExtendedData::filterItems,
 				ByteBufCodecs.VAR_INT, ExtendedData::rows,
 				ByteBufCodecs.VAR_INT, ExtendedData::slotsPerRow,
 				ByteBufCodecs.VAR_INT, ExtendedData::drawnSlots,

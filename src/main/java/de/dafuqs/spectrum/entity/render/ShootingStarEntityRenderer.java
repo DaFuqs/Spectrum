@@ -13,6 +13,7 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
+import net.neoforged.neoforge.client.model.data.*;
 
 
 public class ShootingStarEntityRenderer extends EntityRenderer<ShootingStarEntity> {
@@ -32,13 +33,12 @@ public class ShootingStarEntityRenderer extends EntityRenderer<ShootingStarEntit
 			
 			if (blockState != world.getBlockState(BlockPos.containing(shootingStarEntity.position())) && blockState.getRenderShape() != RenderShape.INVISIBLE) {
 				poseStack.pushPose();
-				
-				BlockPos blockpos = BlockPos.containing(shootingStarEntity.getX(), shootingStarEntity.getBoundingBox().maxY, shootingStarEntity.getZ());
 				poseStack.translate(-0.5, 0.0, -0.5);
+				
 				BlockRenderDispatcher blockRenderManager = Minecraft.getInstance().getBlockRenderer();
-				blockRenderManager.getModelRenderer().tesselateBlock(world, blockRenderManager.getBlockModel(blockState), blockState, blockpos, poseStack, vertexConsumerProvider.getBuffer(ItemBlockRenderTypes.getMovingBlockRenderType(blockState)), false, world.random, blockState.getSeed(shootingStarEntity.blockPosition()), OverlayTexture.NO_OVERLAY);
+				blockRenderManager.renderSingleBlock(blockState, poseStack, vertexConsumerProvider, light, OverlayTexture.NO_OVERLAY, ModelData.EMPTY, RenderType.CUTOUT);
+				
 				poseStack.popPose();
-				super.render(shootingStarEntity, yaw, tickDelta, poseStack, vertexConsumerProvider, light);
 			}
 		}
 		

@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.registries;
 
+import com.klikli_dev.modonomicon.registry.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.item.*;
@@ -57,7 +58,7 @@ public class SpectrumItems {
 	public static final DeferredRegister.Items REGISTRAR = DeferredRegister.createItems(SpectrumCommon.MOD_ID);
 	
 	// Main items
-	public static final DeferredItem<GuidebookItem> GUIDEBOOK = register("guidebook", () -> new GuidebookItem(IS.of(1)));
+	public static final DeferredItem<GuidebookItem> GUIDEBOOK = register("guidebook", () -> new GuidebookItem(IS.of(1).component(DataComponentRegistry.BOOK_ID, GuidebookItem.GUIDEBOOK_ID)));
 	public static final DeferredItem<Item> PAINTBRUSH = register("paintbrush", () -> new PaintbrushItem(IS.of(1)));
 	public static final DeferredItem<Item> CRAFTING_TABLET = register("crafting_tablet", () -> new CraftingTabletItem(IS.of(1)));
 	

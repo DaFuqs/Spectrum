@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.items;
 
 import com.klikli_dev.modonomicon.client.gui.*;
 import com.klikli_dev.modonomicon.client.gui.book.*;
+import com.klikli_dev.modonomicon.item.*;
 import de.dafuqs.revelationary.advancement_criteria.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.item.*;
@@ -16,17 +17,18 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class GuidebookItem extends Item implements LoomPatternProvider {
+public class GuidebookItem extends ModonomiconItem implements LoomPatternProvider {
 	
 	public static final ResourceLocation GUIDEBOOK_ID = SpectrumCommon.locate("guidebook");
 	public static final BookAddress GUIDEBOOK_ADDRESS = BookAddress.defaultFor(GUIDEBOOK_ID);
 	
 	public static final ResourceLocation CUISINE_CATEGORY_ID = SpectrumCommon.locate("cuisine");
-	public static final ResourceLocation DIMENSION_CATEGORY_ID = SpectrumCommon.locate("dimension");
 	
+	private static final Set<UUID> alreadyReprocessedPlayers = new HashSet<>();
 	
 	public static BookAddress addressOf(ResourceLocation category, ResourceLocation entryId) {
 		return BookAddress.of(GUIDEBOOK_ID, category, entryId, 0);
@@ -35,9 +37,6 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 	public GuidebookItem(Properties settings) {
 		super(settings);
 	}
-	
-	
-	private static final Set<UUID> alreadyReprocessedPlayers = new HashSet<>();
 	
 	public static void reprocessAdvancementUnlocks(ServerPlayer serverPlayerEntity) {
 		if (serverPlayerEntity.getServer() == null || SpectrumCommon.minecraftServer == null) {
@@ -72,23 +71,14 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 	}
 	
 	@Override
-	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
-		if (world.isClientSide()) {
-			// if the player has never opened the book before
-			// automatically open the introduction page
-			openGuidebook();
-		} else if (user instanceof ServerPlayer serverPlayerEntity) {
+	public @NotNull InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
+		if (!world.isClientSide() && user instanceof ServerPlayer serverPlayerEntity) {
 			// Process new advancement unlocks that got added
 			// after spectrum has been installed / updated
 			reprocessAdvancementUnlocks(serverPlayerEntity);
 		}
-		user.awardStat(Stats.ITEM_USED.get(this));
 		
-		return InteractionResultHolder.sidedSuccess(user.getItemInHand(hand), world.isClientSide);
-	}
-	
-	public void openGuidebook() {
-		BookGuiManager.get().openBook(GUIDEBOOK_ADDRESS);
+		return super.use(world, user, hand);
 	}
 	
 	public void openGuidebook(BookAddress address) {
@@ -102,7 +92,6 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 	
 	@Override
 	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-		super.appendHoverText(stack, context, tooltip, type);
 		addBannerPatternProviderTooltip(tooltip);
 	}
 	

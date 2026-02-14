@@ -9,27 +9,27 @@
   "results": [
     {
       "count": 4,
-      "item": "minecraft:amethyst_shard"
+      "id": "minecraft:amethyst_shard"
     },
     {
       "chance": 0.25,
-      "item": "minecraft:amethyst_shard"
+      "id": "minecraft:amethyst_shard"
     },
     {
       "count": 4,
-      "item": "spectrum:amethyst_powder"
+      "id": "spectrum:amethyst_powder"
     },
     {
       "chance": 0.25,
-      "item": "spectrum:amethyst_powder"
+      "id": "spectrum:amethyst_powder"
     },
     {
       "chance": 0.75,
-      "item": "create:experience_nugget"
+      "id": "create:experience_nugget"
     },
     {
       "chance": 0.125,
-      "item": "spectrum:cobbled_blackslag"
+      "id": "spectrum:cobbled_blackslag"
     }
   ],
   "neoforge:conditions": [

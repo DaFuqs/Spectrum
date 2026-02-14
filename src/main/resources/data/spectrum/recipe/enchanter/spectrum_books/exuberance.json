@@ -42,7 +42,7 @@
   "required_advancement": "spectrum:unlocks/enchantments/exuberance",
   "neoforge:conditions": [
     {
-      "type": "neoforge:registered",
+      "type": "spectrum:registered",
       "registry": "minecraft:enchantment",
       "value": "spectrum:exuberance"
     }

@@ -9,19 +9,19 @@
   "results": [
     {
       "count": 2,
-      "item": "spectrum:paltaeria_fragments"
+      "id": "spectrum:paltaeria_fragments"
     },
     {
       "chance": 0.5,
-      "item": "spectrum:paltaeria_fragments"
+      "id": "spectrum:paltaeria_fragments"
     },
     {
       "chance": 0.75,
-      "item": "create:experience_nugget"
+      "id": "create:experience_nugget"
     },
     {
       "chance": 0.125,
-      "item": "minecraft:end_stone"
+      "id": "minecraft:end_stone"
     }
   ],
   "neoforge:conditions": [

@@ -43,7 +43,7 @@
   "required_advancement": "spectrum:unlocks/enchantments/vanilla_damage",
   "neoforge:conditions": [
     {
-      "type": "neoforge:registered",
+      "type": "spectrum:registered",
       "registry": "minecraft:enchantment",
       "value": "minecraft:fire_aspect"
     }

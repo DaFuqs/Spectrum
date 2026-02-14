@@ -9,19 +9,19 @@
   "results": [
     {
       "count": 2,
-      "item": "spectrum:stratine_fragments"
+      "id": "spectrum:stratine_fragments"
     },
     {
       "chance": 0.5,
-      "item": "spectrum:stratine_fragments"
+      "id": "spectrum:stratine_fragments"
     },
     {
       "chance": 0.75,
-      "item": "create:experience_nugget"
+      "id": "create:experience_nugget"
     },
     {
       "chance": 0.125,
-      "item": "minecraft:netherrack"
+      "id": "minecraft:netherrack"
     }
   ],
   "neoforge:conditions": [

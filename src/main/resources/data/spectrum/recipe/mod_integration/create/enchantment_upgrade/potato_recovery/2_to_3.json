@@ -5,7 +5,7 @@
       "modid": "create"
     },
     {
-      "type": "neoforge:registered",
+      "type": "spectrum:registered",
       "registry": "minecraft:enchantment",
       "value": "create:potato_recovery"
     }

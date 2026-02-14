@@ -109,6 +109,7 @@ public class SpectrumCommon {
 		ColorRegistry.registerColorRegistries();
 		
 		// Register ALL the stuff
+		SpectrumLoadConditions.register(modBus);
 		logInfo("Registering Status Effects...");
 		SpectrumStatusEffects.register(modBus);
 		logInfo("Registering Advancement Criteria...");

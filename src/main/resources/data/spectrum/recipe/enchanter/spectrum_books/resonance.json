@@ -42,7 +42,7 @@
   "required_advancement": "spectrum:unlocks/enchantments/resonance_crafting",
   "neoforge:conditions": [
     {
-      "type": "neoforge:registered",
+      "type": "spectrum:registered",
       "registry": "minecraft:enchantment",
       "value": "spectrum:resonance"
     }

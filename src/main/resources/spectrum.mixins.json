@@ -82,6 +82,7 @@
     "accessors.BundleContentsComponentAccessor",
     "accessors.BundleContentsComponentBuilderAccessor",
     "accessors.CachedRegistryInfoGetterAccessor",
+    "accessors.ConditionContextAccessor",
     "accessors.DensityCapAccessor",
     "accessors.ExperienceDroppingBlockAccessor",
     "accessors.ExplosionAccessor",
@@ -97,6 +98,7 @@
     "accessors.RegistryOpsAccessor",
     "accessors.SlimeEntityAccessor",
     "accessors.StatusEffectInstanceAccessor",
+    "accessors.TagManagerAccessor",
     "accessors.TridentEntityAccessor"
   ],
   "client": [

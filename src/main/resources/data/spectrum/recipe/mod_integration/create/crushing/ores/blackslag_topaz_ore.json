@@ -9,27 +9,27 @@
   "results": [
     {
       "count": 4,
-      "item": "spectrum:topaz_shard"
+      "id": "spectrum:topaz_shard"
     },
     {
       "chance": 0.25,
-      "item": "spectrum:topaz_shard"
+      "id": "spectrum:topaz_shard"
     },
     {
       "count": 4,
-      "item": "spectrum:topaz_powder"
+      "id": "spectrum:topaz_powder"
     },
     {
       "chance": 0.25,
-      "item": "spectrum:topaz_powder"
+      "id": "spectrum:topaz_powder"
     },
     {
       "chance": 0.75,
-      "item": "create:experience_nugget"
+      "id": "create:experience_nugget"
     },
     {
       "chance": 0.125,
-      "item": "spectrum:cobbled_blackslag"
+      "id": "spectrum:cobbled_blackslag"
     }
   ],
   "neoforge:conditions": [

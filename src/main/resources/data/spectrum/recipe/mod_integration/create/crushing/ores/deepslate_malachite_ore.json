@@ -9,19 +9,19 @@
   "results": [
     {
       "count": 3,
-      "item": "spectrum:raw_malachite"
+      "id": "spectrum:raw_malachite"
     },
     {
       "chance": 0.75,
-      "item": "spectrum:raw_malachite"
+      "id": "spectrum:raw_malachite"
     },
     {
       "chance": 0.75,
-      "item": "create:experience_nugget"
+      "id": "create:experience_nugget"
     },
     {
       "chance": 0.125,
-      "item": "minecraft:cobbled_deepslate"
+      "id": "minecraft:cobbled_deepslate"
     }
   ],
   "neoforge:conditions": [

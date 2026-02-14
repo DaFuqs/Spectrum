@@ -42,7 +42,7 @@
   "required_advancement": "spectrum:unlocks/enchantments/razing_crafting",
   "neoforge:conditions": [
     {
-      "type": "neoforge:registered",
+      "type": "spectrum:registered",
       "registry": "minecraft:enchantment",
       "value": "spectrum:razing"
     }

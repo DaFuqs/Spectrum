@@ -9,19 +9,19 @@
   "results": [
     {
       "count": 12,
-      "item": "minecraft:lapis_lazuli"
+      "id": "minecraft:lapis_lazuli"
     },
     {
       "chance": 0.5,
-      "item": "minecraft:lapis_lazuli"
+      "id": "minecraft:lapis_lazuli"
     },
     {
       "chance": 0.75,
-      "item": "create:experience_nugget"
+      "id": "create:experience_nugget"
     },
     {
       "chance": 0.125,
-      "item": "spectrum:cobbled_blackslag"
+      "id": "spectrum:cobbled_blackslag"
     }
   ],
   "neoforge:conditions": [

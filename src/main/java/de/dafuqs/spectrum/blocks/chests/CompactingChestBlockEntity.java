@@ -40,9 +40,9 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	public long craftingTimeStamp;
 	
 	protected FlowAnimator animator;
-	protected FlowData<Float> piston = FlowData.NULL();
-	protected FlowData<Float> driver = FlowData.NULL();
-	protected FlowData<Float> cap = FlowData.NULL();
+	protected FlowData<Float> _piston = FlowData.NULL();
+	protected FlowData<Float> _driver = FlowData.NULL();
+	protected FlowData<Float> _cap = FlowData.NULL();
 	
 	private final ContainerData propertyDelegate = new ContainerData() {
 		@Override

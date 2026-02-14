@@ -60,7 +60,7 @@ public class ColorSelectionWidget extends AbstractWidget {
 	}
 	
 	@Override
-	protected void renderWidget(GuiGraphics context, int mouseX, int mouseY, float delta) {
+	protected void renderWidget(@NotNull GuiGraphics context, int mouseX, int mouseY, float delta) {
 		// draw selection icons
 		int i = -1;
 		int currentX = this.getX() + 1;
@@ -116,9 +116,7 @@ public class ColorSelectionWidget extends AbstractWidget {
 	}
 	
 	@Override
-	protected void updateWidgetNarration(NarrationElementOutput builder) {
-		builder.add(NarratedElementType.TITLE, Component.translatable("spectrum.narration.color_selection", this.colorPicker.getSelectedColor()));
-	}
+	protected void updateWidgetNarration(@NotNull NarrationElementOutput builder) { }
 	
 	private boolean isUnselection(double mouseX, double mouseY) {
 		return mouseX >= (double) selectedDotX && mouseX < (double) (selectedDotX + 4) && mouseY >= (double) selectedDotY && mouseY < (double) (selectedDotY + 4);

@@ -63,9 +63,9 @@ public class CompactingChestBlockEntityRenderer implements BlockEntityRenderer<C
 		poseStack.mulPose(Axis.YP.rotationDegrees(-f));
 		poseStack.mulPose(Axis.XP.rotationDegrees(180));
 		
-		piston.y = -22 - chest.piston.get();
-		driver.y = 21 - chest.driver.get();
-		cap.y = 21 - chest.cap.get();
+		piston.y = -22 - chest._piston.get();
+		driver.y = 21 - chest._driver.get();
+		cap.y = 21 - chest._cap.get();
 		
 		VertexConsumer vertexConsumer = SPRITE_IDENTIFIER.buffer(vertexConsumers, RenderType::entityCutoutNoCull);
 		root.render(poseStack, vertexConsumer, light, overlay);

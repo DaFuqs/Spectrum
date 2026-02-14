@@ -63,7 +63,7 @@ public class SpectrumBlockEntities {
 			, SpectrumBlocks.UPGRADE_EFFICIENCY, SpectrumBlocks.UPGRADE_EFFICIENCY2,
 			SpectrumBlocks.UPGRADE_EXPERIENCE, SpectrumBlocks.UPGRADE_EXPERIENCE2,
 			SpectrumBlocks.UPGRADE_YIELD, SpectrumBlocks.UPGRADE_YIELD2);
-	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<SpectrumSkullBlockEntity>> SKULL = register("skull", SpectrumSkullBlockEntity::new);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<SpectrumSkullBlockEntity>> SKULL = register("skull", SpectrumSkullBlockEntity::new); // supported blocks are added in addBlockEntityTypeBlocks()
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<BottomlessBundleBlockEntity>> BOTTOMLESS_BUNDLE = register("bottomless_bundle", BottomlessBundleBlockEntity::new, SpectrumBlocks.BOTTOMLESS_BUNDLE);
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<PotionWorkshopBlockEntity>> POTION_WORKSHOP = register("potion_workshop", PotionWorkshopBlockEntity::new, SpectrumBlocks.POTION_WORKSHOP);
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<CrystallarieumBlockEntity>> CRYSTALLARIEUM = register("crystallarieum", CrystallarieumBlockEntity::new, SpectrumBlocks.CRYSTALLARIEUM);

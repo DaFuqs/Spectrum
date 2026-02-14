@@ -22,12 +22,7 @@
   },
   "result": {
     "id": "spectrum:parametric_mining_device",
-    "count": 8,
-    "components": {
-      "spectrum:modular_explosion": {
-        "archetype": "destroy_blocks"
-      }
-    }
+    "count": 8
   },
   "required_advancement": "spectrum:unlocks/blocks/modular_explosives"
 }

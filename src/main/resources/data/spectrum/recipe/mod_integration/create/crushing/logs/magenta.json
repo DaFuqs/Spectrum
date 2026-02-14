@@ -1,7 +1,9 @@
 {
   "type": "create:crushing",
   "ingredients": [
-    "#spectrum:magenta_logs"
+    {
+      "tag": "spectrum:magenta_logs"
+    }
   ],
   "results": [
     {
@@ -10,10 +12,8 @@
       "chance": 1.0
     },
     {
-      "result": {
         "id": "spectrum:magenta_pigment",
-        "count": 1
-      },
+      "count": 1,
       "chance": 0.5
     }
   ],

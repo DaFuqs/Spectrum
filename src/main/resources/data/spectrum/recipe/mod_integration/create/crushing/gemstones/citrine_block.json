@@ -1,7 +1,9 @@
 {
   "type": "create:crushing",
   "ingredients": [
-    "spectrum:citrine_block"
+    {
+      "item": "spectrum:citrine_block"
+    }
   ],
   "results": [
     {

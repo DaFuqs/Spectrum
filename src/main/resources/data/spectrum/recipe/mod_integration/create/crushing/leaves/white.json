@@ -1,7 +1,9 @@
 {
   "type": "create:crushing",
   "ingredients": [
-    "spectrum:white_leaves"
+    {
+      "item": "spectrum:white_leaves"
+    }
   ],
   "results": [
     {
@@ -10,10 +12,8 @@
       "chance": 1.0
     },
     {
-      "result": {
         "id": "spectrum:white_sapling",
-        "count": 1
-      },
+      "count": 1,
       "chance": 0.02
     }
   ],

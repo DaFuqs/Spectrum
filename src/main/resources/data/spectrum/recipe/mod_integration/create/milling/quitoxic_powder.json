@@ -1,7 +1,9 @@
 {
   "type": "create:milling",
   "ingredients": [
-    "spectrum:quitoxic_reeds"
+    {
+      "item": "spectrum:quitoxic_reeds"
+    }
   ],
   "results": [
     {
@@ -10,10 +12,8 @@
       "chance": 1.0
     },
     {
-      "result": {
-        "id": "spectrum:quitoxic_powder",
-        "count": 1
-      },
+      "id": "spectrum:quitoxic_powder",
+      "count": 1,
       "chance": 0.5
     }
   ],

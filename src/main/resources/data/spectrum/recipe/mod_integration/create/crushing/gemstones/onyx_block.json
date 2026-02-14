@@ -1,7 +1,9 @@
 {
   "type": "create:crushing",
   "ingredients": [
-    "spectrum:onyx_block"
+    {
+      "item": "spectrum:onyx_block"
+    }
   ],
   "results": [
     {

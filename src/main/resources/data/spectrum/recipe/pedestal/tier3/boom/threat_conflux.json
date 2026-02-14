@@ -22,16 +22,7 @@
   },
   "result": {
     "id": "spectrum:threat_conflux",
-    "count": 2,
-    "components": {
-      "spectrum:modular_explosion": {
-        "archetype": "damage_entities",
-        "modifiers": [
-          "spectrum:kill_zone",
-          "spectrum:incandescence"
-        ]
-      }
-    }
+    "count": 2
   },
   "required_advancement": "spectrum:unlocks/blocks/modular_explosives"
 }

@@ -1,7 +1,9 @@
 {
   "type": "create:crushing",
   "ingredients": [
-    "spectrum:topaz_block"
+    {
+      "item": "spectrum:topaz_block"
+    }
   ],
   "results": [
     {

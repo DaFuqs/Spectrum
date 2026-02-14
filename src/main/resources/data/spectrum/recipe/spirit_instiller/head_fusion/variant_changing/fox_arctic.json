@@ -3,7 +3,7 @@
   "group": "head_fusion",
   "time": 800,
   "experience": 4.0,
-  "ingredient1": "spectrum:fox_head",
+  "ingredient1": "spectrum:fox_red_head",
   "ingredient2": {
     "item": "spectrum:frostbite_essence",
     "count": 4

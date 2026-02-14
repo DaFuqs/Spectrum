@@ -1,7 +1,9 @@
 {
   "type": "create:crushing",
   "ingredients": [
-    "spectrum:moonstone_block"
+    {
+      "item": "spectrum:moonstone_block"
+    }
   ],
   "results": [
     {

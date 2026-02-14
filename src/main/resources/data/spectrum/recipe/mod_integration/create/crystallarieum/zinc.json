@@ -1,5 +1,8 @@
 {
   "type": "spectrum:crystallarieum_growing",
+  "fluid_medium": {
+    "fluid": "spectrum:liquid_crystal"
+  },
   "ingredient": [
     {
       "item": "create:raw_zinc"

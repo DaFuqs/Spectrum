@@ -1,7 +1,9 @@
 {
   "type": "create:milling",
   "ingredients": [
-    "spectrum:blazing_crystal"
+    {
+      "item": "spectrum:blazing_crystal"
+    }
   ],
   "results": [
     {
@@ -10,17 +12,13 @@
       "chance": 1.0
     },
     {
-      "result": {
-        "id": "spectrum:incandescent_essence",
-        "count": 2
-      },
+      "id": "spectrum:incandescent_essence",
+      "count": 2,
       "chance": 0.5
     },
     {
-      "result": {
-        "id": "spectrum:incandescent_essence",
-        "count": 2
-      },
+      "id": "spectrum:incandescent_essence",
+      "count": 2,
       "chance": 0.5
     }
   ],

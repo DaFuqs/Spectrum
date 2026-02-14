@@ -36,5 +36,4 @@ public class BedrockArmorCapeModel {
 		return data.getRoot().bake(128, 128);
 	}
 	
-	
 }

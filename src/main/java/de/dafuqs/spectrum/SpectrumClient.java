@@ -13,6 +13,7 @@ import de.dafuqs.spectrum.progression.toast.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.*;
 import de.dafuqs.spectrum.render.*;
+import de.dafuqs.spectrum.render.armor.*;
 import de.dafuqs.spectrum.render.capes.*;
 import me.shedaniel.autoconfig.*;
 import net.minecraft.client.*;
@@ -69,6 +70,7 @@ public class SpectrumClient implements RevealingCallback, ClientAdvancementPacke
 		modBus.addListener(SpectrumBlockEntities::registerClient);
 		modBus.addListener(SpectrumScreenHandlerTypes::registerClient);
 		modBus.addListener(SpectrumModelLayers::register);
+		modBus.addListener(BedrockCapeRenderer::registerLayers);
 		
 		NeoForge.EVENT_BUS.addListener((Consumer<AddReloadListenerEvent>) event -> {
 			event.addListener(ParticleSpawnerParticlesDataLoader.INSTANCE);

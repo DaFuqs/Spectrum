@@ -134,7 +134,7 @@ public class SpectrumCommon {
 		SpectrumItemGroups.register(modBus);
 		logInfo("Registering Block Entities...");
 		SpectrumBlockEntities.register(modBus);
-		modBus.addListener((Consumer<BlockEntityTypeAddBlocksEvent>) event -> event.modify(BlockEntityType.BARREL, SpectrumBlocks.WEEPING_GALA_BARREL.get()));
+		modBus.addListener(SpectrumBlockEntities::addBlockEntityTypeBlocks);
 		
 		// Pastel
 		logInfo("Registering Pastel Upgrades...");

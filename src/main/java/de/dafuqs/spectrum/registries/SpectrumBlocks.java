@@ -1890,9 +1890,9 @@ public class SpectrumBlocks {
 	
 	public static void register(IEventBus eventBus) {
 		for (SpectrumSkullType type : SpectrumSkullType.values()) {
-			BlockRegistrar<SpectrumSkullBlock> registrar = block(type.getSerializedName() + "_head", () -> new SpectrumSkullBlock(type, BlockBehaviour.Properties.ofFullCopy(SKELETON_SKULL).instrument(NoteBlockInstrument.CUSTOM_HEAD))).withBlockItemModel((ctx, block) -> SpectrumModelHelper.registerParentedItemModel(ctx, block, SpectrumModels.SKULL_ITEM)).withBlockModel((ctx, block) -> SpectrumModelHelper.createVariantsSupplier(block, SpectrumModels.MOB_HEAD));
-			DeferredBlock<SpectrumWallSkullBlock> wallHead = register(block(type.getSerializedName() + "_wall_head", () -> new SpectrumWallSkullBlock(type, BlockBehaviour.Properties.ofFullCopy(SKELETON_SKULL).dropsLike(registrar.holder.get()))).withBlockModel((ctx, block) -> SpectrumModelHelper.createVariantsSupplier(block, SpectrumModels.MOB_HEAD)));
-			register(registrar.withItem(block -> new SpectrumSkullBlockItem(block, wallHead.get(), IS.of(), type), InkColors.GRAY));
+			BlockRegistrar<SpectrumSkullBlock> head = block(type.getSerializedName() + "_head", () -> new SpectrumSkullBlock(type, BlockBehaviour.Properties.ofFullCopy(SKELETON_SKULL).instrument(NoteBlockInstrument.CUSTOM_HEAD))).withBlockItemModel((ctx, block) -> SpectrumModelHelper.registerParentedItemModel(ctx, block, SpectrumModels.SKULL_ITEM)).withBlockModel((ctx, block) -> SpectrumModelHelper.createVariantsSupplier(block, SpectrumModels.MOB_HEAD));
+			DeferredBlock<SpectrumWallSkullBlock> wallHead = register(block(type.getSerializedName() + "_wall_head", () -> new SpectrumWallSkullBlock(type, BlockBehaviour.Properties.ofFullCopy(SKELETON_SKULL).dropsLike(head.holder.get()))).withBlockModel((ctx, block) -> SpectrumModelHelper.createVariantsSupplier(block, SpectrumModels.MOB_HEAD)));
+			register(head.withItem(block -> new SpectrumSkullBlockItem(block, wallHead.get(), IS.of(), type), InkColors.GRAY));
 		}
 		
 		REGISTRAR.register(eventBus);
@@ -2182,6 +2182,23 @@ public class SpectrumBlocks {
 	
 	public static void registerClient(FMLClientSetupEvent event) {
 		// I assume that will be obsolete starting MC 26.1
+		ItemBlockRenderTypes.setRenderLayer(TOPAZ_CLUSTER.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LARGE_TOPAZ_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(MEDIUM_TOPAZ_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(SMALL_TOPAZ_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(CITRINE_CLUSTER.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LARGE_CITRINE_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(MEDIUM_CITRINE_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(SMALL_CITRINE_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(ONYX_CLUSTER.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LARGE_ONYX_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(MEDIUM_ONYX_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(SMALL_ONYX_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(MOONSTONE_CLUSTER.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LARGE_MOONSTONE_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(MEDIUM_MOONSTONE_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(SMALL_MOONSTONE_BUD.get(), RenderType.cutout());
+		
 		ItemBlockRenderTypes.setRenderLayer(PEDESTAL_BASIC_TOPAZ.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(PEDESTAL_BASIC_AMETHYST.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(PEDESTAL_BASIC_CITRINE.get(), RenderType.cutout());

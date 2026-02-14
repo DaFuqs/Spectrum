@@ -129,33 +129,47 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 		if (level == null)
 			return Optional.empty();
 		
+		Set<AutoCraftingMode.ItemStackHash> triedHashes = new  HashSet<>();
 		for (ItemStack itemStack : inventory) {
 			if (itemStack.isEmpty()) {
 				continue;
 			}
 			
+			AutoCraftingMode.ItemStackHash hash = new AutoCraftingMode.ItemStackHash(itemStack);
+			if(triedHashes.contains(hash)) {
+				continue; // don't try similar stacks more than once
+			}
+			triedHashes.add(hash);
+			
 			int requiredItemCount = this.mode.getSize();
 			Tuple<Integer, List<ItemStack>> stackPair = InventoryHelper.getStackCountInInventory(itemStack, inventory, requiredItemCount);
 			if (stackPair.getA() >= requiredItemCount) {
-				Map<ItemStack, Optional<RecipeHolder<CraftingRecipe>>> currentCache = AutoCraftingMode.getCache(mode);
+				Map<AutoCraftingMode.ItemStackHash, Optional<RecipeHolder<CraftingRecipe>>> currentCache = AutoCraftingMode.getCache(mode);
 				ItemStack itemVariant = itemStack.copyWithCount(1);
 				
-				Optional<RecipeHolder<CraftingRecipe>> recipe = currentCache.get(itemVariant);
+				Optional<RecipeHolder<CraftingRecipe>> recipe = currentCache.get(hash);
+				
+				// not yet tried
+				if(recipe == null) {
+					CraftingInput input = this.mode.createRecipeInput(itemStack).input();
+					var optionalCraftingRecipe = level.getRecipeManager().getRecipeFor(RecipeType.CRAFTING, input, level);
+					if (optionalCraftingRecipe.isEmpty() || optionalCraftingRecipe.get().value().assemble(input, level.registryAccess()).isEmpty()) {
+						optionalCraftingRecipe = Optional.empty();
+					}
+					currentCache.put(hash, optionalCraftingRecipe);
+					this.lastCraftedStack = itemVariant;
+					if(optionalCraftingRecipe.isPresent()) {
+						this.lastCraftingRecipe = optionalCraftingRecipe.get();
+					}
+					return optionalCraftingRecipe;
+				}
+				
+				// valid combination
 				if (recipe.isPresent()) {
 					this.lastCraftedStack = itemVariant;
 					this.lastCraftingRecipe = recipe.get();
 					return recipe;
 				}
-				
-				CraftingInput input = this.mode.createRecipeInput(itemStack).input();
-				var optionalCraftingRecipe = level.getRecipeManager().getRecipeFor(RecipeType.CRAFTING, input, level);
-				if (optionalCraftingRecipe.isEmpty() || optionalCraftingRecipe.get().value().assemble(input, level.registryAccess()).isEmpty()) {
-					optionalCraftingRecipe = Optional.empty();
-				}
-				
-				currentCache.put(itemVariant, optionalCraftingRecipe);
-				this.lastCraftedStack = itemVariant;
-				return optionalCraftingRecipe;
 			}
 		}
 		

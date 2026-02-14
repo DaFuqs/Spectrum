@@ -1,7 +1,7 @@
 {
   "type": "spectrum:crystallarieum_growing",
   "ingredient": {
-    "item": "ae2:certus_quartz_crystal"
+    "item": "ae2:certus_quartz_dust"
   },
   "growth_stage_states": [
     {
@@ -61,7 +61,7 @@
   ],
   "additional_recipe_manager_results": [
     {
-      "id": "spectrum:pure_bloodstone"
+      "id": "spectrum:pure_certus_quartz"
     }
   ],
   "neoforge:conditions": [

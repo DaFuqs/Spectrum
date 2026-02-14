@@ -2,7 +2,7 @@
   "type": "spectrum:anvil_crushing",
   "ingredient": [
     {
-      "tag": "c:zinc_ores"
+      "tag": "c:ores/zinc"
     }
   ],
   "crushedItemsPerPointOfDamage": 0.75,

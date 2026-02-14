@@ -18,7 +18,7 @@
   "key": {
     "A": "spectrum:amaranth_grains",
     "C": "spectrum:four_leaf_clover",
-    "M": "#c:milk",
+    "M": "#c:drinks/milk",
     "S": "minecraft:sugar"
   },
   "result": {

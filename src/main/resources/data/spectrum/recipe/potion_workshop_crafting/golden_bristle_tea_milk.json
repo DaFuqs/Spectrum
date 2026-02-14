@@ -7,7 +7,7 @@
   "color": 15853164,
   "ingredient1": "spectrum:sawblade_holly_berry",
   "ingredient2": "minecraft:honey_bottle",
-  "ingredient3": "#c:milk",
+  "ingredient3": "#c:drinks/milk",
   "result": {
     "id": "spectrum:golden_bristle_tea",
     "components": {

@@ -65,7 +65,10 @@
     }
   ],
   "additional_recipe_manager_results": [
-    "spectrum:pure_zinc"
+    {
+      "count": 1,
+      "id": "spectrum:pure_zinc"
+    }
   ],
   "neoforge:conditions": [
     {

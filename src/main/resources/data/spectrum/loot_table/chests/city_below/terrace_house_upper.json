@@ -50,7 +50,7 @@
                 {
                   "spectrum:bottomless_stack": {
                     "variant": {
-                      "item": "minecraft:tipped_arrow",
+                      "id": "minecraft:tipped_arrow",
                       "components": {
                         "potion_contents": {
                           "potion": "spectrum:pigment_potion",
@@ -75,7 +75,7 @@
                 {
                   "spectrum:bottomless_stack": {
                     "variant": {
-                      "item": "minecraft:tipped_arrow",
+                      "id": "minecraft:tipped_arrow",
                       "components": {
                         "potion_contents": {
                           "potion": "spectrum:pigment_potion",
@@ -100,7 +100,7 @@
                 {
                   "spectrum:bottomless_stack": {
                     "variant": {
-                      "item": "minecraft:tipped_arrow",
+                      "id": "minecraft:tipped_arrow",
                       "components": {
                         "potion_contents": {
                           "potion": "spectrum:pigment_potion",
@@ -124,7 +124,7 @@
                 },
                 {
                   "spectrum:bottomless_stack": {
-                    "variant": {
+                    "id": {
                       "item": "minecraft:tipped_arrow",
                       "components": {
                         "potion_contents": {
@@ -150,7 +150,7 @@
                 {
                   "spectrum:bottomless_stack": {
                     "variant": {
-                      "item": "minecraft:tipped_arrow",
+                      "id": "minecraft:tipped_arrow",
                       "components": {
                         "potion_contents": {
                           "potion": "spectrum:pigment_potion",
@@ -175,7 +175,7 @@
                 {
                   "spectrum:bottomless_stack": {
                     "variant": {
-                      "item": "minecraft:tipped_arrow",
+                      "id": "minecraft:tipped_arrow",
                       "components": {
                         "potion_contents": {
                           "potion": "spectrum:pigment_potion",

@@ -26,6 +26,7 @@ public class AmaranthBushelBlock extends FlowerBlock implements RevelationAware 
 	
 	public AmaranthBushelBlock(Holder<MobEffect> effect, float seconds, BlockBehaviour.Properties properties) {
 		this(makeEffectList(effect, seconds), properties);
+		RevelationAware.register(this);
 	}
 	
 	public AmaranthBushelBlock(SuspiciousStewEffects suspiciousStewEffects, BlockBehaviour.Properties properties) {

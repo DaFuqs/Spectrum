@@ -7,9 +7,9 @@ import net.neoforged.neoforge.client.event.*;
 
 public class ToggleableItemColorProvider implements ItemColor {
 	
-	final RegisterColorHandlersEvent.Item event;
-	final ItemStack vanillaStack;
-	boolean shouldApply;
+	private final RegisterColorHandlersEvent.Item event;
+	private final ItemStack vanillaStack;
+	private boolean shouldApply;
 	
 	public ToggleableItemColorProvider(RegisterColorHandlersEvent.Item event, ItemStack vanillaStack) {
 		this.event = event;
@@ -24,7 +24,7 @@ public class ToggleableItemColorProvider implements ItemColor {
 	@Override
 	public int getColor(ItemStack stack, int tintIndex) {
 		if (shouldApply) {
-			return event.getItemColors().getColor(Blocks.OAK_LEAVES.asItem().getDefaultInstance(), tintIndex);
+			return event.getItemColors().getColor(vanillaStack, tintIndex);
 		} else {
 			// no tint
 			return 16777215;

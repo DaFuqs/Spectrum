@@ -1,0 +1,6 @@
+{
+  "parent": "spectrum:templates_item/cluster",
+  "textures": {
+    "layer0": "spectrum:block/zinc_cluster"
+  }
+}

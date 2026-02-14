@@ -302,10 +302,10 @@ public class ParticleSpawnerScreen extends AbstractContainerScreen<ParticleSpawn
 		
 		if (displayedParticleEntries.isEmpty()) {
 			setColoringEnabled(false);
+		} else {
+			ParticleSpawnerParticlesDataLoader.ParticleSpawnerEntry entry = displayedParticleEntries.get(this.particleSelectionIndex);
+			setColoringEnabled(entry.supportsColoring());
 		}
-		
-		ParticleSpawnerParticlesDataLoader.ParticleSpawnerEntry entry = displayedParticleEntries.get(this.particleSelectionIndex);
-		setColoringEnabled(entry.supportsColoring());
 	}
 	
 	private void navigationButtonPressed(Button buttonWidget) {

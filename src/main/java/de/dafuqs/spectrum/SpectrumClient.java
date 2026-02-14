@@ -72,10 +72,6 @@ public class SpectrumClient implements RevealingCallback, ClientAdvancementPacke
 		modBus.addListener(SpectrumModelLayers::register);
 		modBus.addListener(BedrockCapeRenderer::registerLayers);
 		
-		NeoForge.EVENT_BUS.addListener((Consumer<AddReloadListenerEvent>) event -> {
-			event.addListener(ParticleSpawnerParticlesDataLoader.INSTANCE);
-		});
-		
 		modBus.addListener(SpectrumColorProviders::registerBlocks);
 		modBus.addListener(SpectrumColorProviders::registerItems);
 	}

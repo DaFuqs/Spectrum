@@ -1,3 +1,12 @@
 {
-  "type": "spectrum:meat_rotting"
+  "type": "spectrum:dragonrot_converting",
+  "ingredient": [
+    {
+      "tag": "spectrum:rottable_meat"
+    }
+  ],
+  "result": {
+    "id": "minecraft:rotten_flesh",
+    "count": 1
+  }
 }

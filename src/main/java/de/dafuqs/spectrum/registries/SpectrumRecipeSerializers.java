@@ -8,7 +8,6 @@ import de.dafuqs.spectrum.recipe.crafting.dynamic.*;
 import de.dafuqs.spectrum.recipe.crystallarieum.*;
 import de.dafuqs.spectrum.recipe.enchanter.*;
 import de.dafuqs.spectrum.recipe.fluid_converting.*;
-import de.dafuqs.spectrum.recipe.fluid_converting.dynamic.*;
 import de.dafuqs.spectrum.recipe.fusion_shrine.*;
 import de.dafuqs.spectrum.recipe.fusion_shrine.dynamic.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
@@ -66,7 +65,6 @@ public class SpectrumRecipeSerializers {
 	public static final FluidConvertingRecipe.Serializer<LiquidCrystalConvertingRecipe> LIQUID_CRYSTAL_CONVERTING_SERIALIZER = register("liquid_crystal_converting", new FluidConvertingRecipe.Serializer<>(LiquidCrystalConvertingRecipe::new));
 	public static final FluidConvertingRecipe.Serializer<MidnightSolutionConvertingRecipe> MIDNIGHT_SOLUTION_CONVERTING_SERIALIZER = register("midnight_solution_converting", new FluidConvertingRecipe.Serializer<>(MidnightSolutionConvertingRecipe::new));
 	public static final FluidConvertingRecipe.Serializer<DragonrotConvertingRecipe> DRAGONROT_CONVERTING_SERIALIZER = register("dragonrot_converting", new FluidConvertingRecipe.Serializer<>(DragonrotConvertingRecipe::new));
-	public static final RecipeSerializer<MeatToRottenFleshRecipe> DRAGONROT_MEAT_TO_ROTTEN_FLESH = register("meat_rotting", new EmptyRecipeSerializer<>(MeatToRottenFleshRecipe::new));
 	
 	// Spirit Instiller
 	public static final RecipeSerializer<SpiritInstillerRecipe> SPIRIT_INSTILLING_SERIALIZER = register("spirit_instiller", new SpiritInstillerRecipe.Serializer());

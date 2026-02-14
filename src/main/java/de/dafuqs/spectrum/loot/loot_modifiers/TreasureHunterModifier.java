@@ -24,8 +24,6 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-// TODO: migrate the remaining entries to the json
-// TODO: test advancement trigger
 public class TreasureHunterModifier extends LootModifier {
 	
 	public record Entry(EntityPredicate predicate, ItemStack headStack, float chance) {
@@ -47,6 +45,7 @@ public class TreasureHunterModifier extends LootModifier {
 	
 	protected TreasureHunterModifier(LootItemCondition[] conditionsIn, List<TreasureHunterModifier.Entry> entries) {
 		super(conditionsIn);
+		this.entries = entries;
 	}
 	
 	@Override

@@ -12,6 +12,7 @@ public class SpectrumEntityAttributes {
 	
 	private static final DeferredRegister<Attribute> REGISTRAR = DeferredRegister.create(Registries.ATTRIBUTE, SpectrumCommon.MOD_ID);
 	
+	// TODO: this is entirely the wrong location for this
 	public static final ResourceLocation CRIT_MODIFIER_ID = SpectrumCommon.locate("crit_modifier");
 	public static final ResourceLocation REACH_MODIFIER_ID = SpectrumCommon.locate("reach_modifier");
 	
@@ -20,7 +21,8 @@ public class SpectrumEntityAttributes {
 	 * <1 means it is more resistant than the default, getting weaker effects
 	 * >1 means it is more vulnerable
 	 */
-	public static final Holder<Attribute> MENTAL_PRESENCE = REGISTRAR.register("mental_presence", () -> new RangedAttribute("attribute.name.pastel.mental_presence", 1.0, 0, 1024));
+	// TODO: remove? Both hardly used and hard to understand
+	public static final Holder<Attribute> MENTAL_PRESENCE = REGISTRAR.register("mental_presence", () -> new RangedAttribute("attribute.name.spectrum.mental_presence", 1.0, 0, 1024));
 	
 	public static void register(IEventBus modBus) {
 		REGISTRAR.register(modBus);

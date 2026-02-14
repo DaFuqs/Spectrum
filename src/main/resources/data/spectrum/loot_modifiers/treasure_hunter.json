@@ -4,13 +4,1387 @@
   "entries": [
     {
       "entity": {
+        "type": "minecraft:creeper"
+      },
+      "head_stack": {
+        "id": "minecraft:creeper_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:skeleton"
+      },
+      "head_stack": {
+        "id": "minecraft:skeleton_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:wither_skeleton"
+      },
+      "head_stack": {
+        "id": "minecraft:wither_skeleton_head"
+      },
+      "drop_chance_per_level": 0.1
+    },
+    {
+      "entity": {
+        "type": "minecraft:zombie"
+      },
+      "head_stack": {
+        "id": "minecraft:zombie_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:piglin"
+      },
+      "head_stack": {
+        "id": "minecraft:piglin_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:piglin_brute"
+      },
+      "head_stack": {
+        "id": "spectrum:piglin_brute_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:ender_dragon"
+      },
+      "head_stack": {
+        "id": "minecraft:dragon_head"
+      },
+      "drop_chance_per_level": 0.35
+    },
+    {
+      "entity": {
+        "type": "minecraft:sheep"
+      },
+      "head_stack": {
+        "id": "spectrum:sheep_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:bat"
+      },
+      "head_stack": {
+        "id": "spectrum:bat_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:blaze"
+      },
+      "head_stack": {
+        "id": "spectrum:blaze_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:cat"
+      },
+      "head_stack": {
+        "id": "spectrum:cat_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:cave_spider"
+      },
+      "head_stack": {
+        "id": "spectrum:cave_spider_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:chicken"
+      },
+      "head_stack": {
+        "id": "spectrum:chicken_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:cod"
+      },
+      "head_stack": {
+        "id": "spectrum:cod_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:cow"
+      },
+      "head_stack": {
+        "id": "spectrum:cow_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:donkey"
+      },
+      "head_stack": {
+        "id": "spectrum:donkey_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:drowned"
+      },
+      "head_stack": {
+        "id": "spectrum:drowned_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:elder_guardian"
+      },
+      "head_stack": {
+        "id": "spectrum:elder_guardian_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:enderman"
+      },
+      "head_stack": {
+        "id": "spectrum:enderman_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:endermite"
+      },
+      "head_stack": {
+        "id": "spectrum:endermite_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:evoker"
+      },
+      "head_stack": {
+        "id": "spectrum:evoker_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:ghast"
+      },
+      "head_stack": {
+        "id": "spectrum:ghast_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:guardian"
+      },
+      "head_stack": {
+        "id": "spectrum:guardian_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:hoglin"
+      },
+      "head_stack": {
+        "id": "spectrum:hoglin_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:horse"
+      },
+      "head_stack": {
+        "id": "spectrum:horse_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:husk"
+      },
+      "head_stack": {
+        "id": "spectrum:husk_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:illusioner"
+      },
+      "head_stack": {
+        "id": "spectrum:illusioner_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:iron_golem"
+      },
+      "head_stack": {
+        "id": "spectrum:iron_golem_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:llama"
+      },
+      "head_stack": {
+        "id": "spectrum:llama_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:magma_cube"
+      },
+      "head_stack": {
+        "id": "spectrum:magma_cube_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:mule"
+      },
+      "head_stack": {
+        "id": "spectrum:mule_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:ocelot"
+      },
+      "head_stack": {
+        "id": "spectrum:ocelot_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:panda"
+      },
+      "head_stack": {
+        "id": "spectrum:panda_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:phantom"
+      },
+      "head_stack": {
+        "id": "spectrum:phantom_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:pig"
+      },
+      "head_stack": {
+        "id": "spectrum:pig_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:polar_bear"
+      },
+      "head_stack": {
+        "id": "spectrum:polar_bear_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:pufferfish"
+      },
+      "head_stack": {
+        "id": "spectrum:pufferfish_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:rabbit"
+      },
+      "head_stack": {
+        "id": "spectrum:rabbit_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:ravager"
+      },
+      "head_stack": {
+        "id": "spectrum:ravager_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:salmon"
+      },
+      "head_stack": {
+        "id": "spectrum:salmon_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:silverfish"
+      },
+      "head_stack": {
+        "id": "spectrum:silverfish_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:slime"
+      },
+      "head_stack": {
+        "id": "spectrum:slime_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:snow_golem"
+      },
+      "head_stack": {
+        "id": "spectrum:snow_golem_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:spider"
+      },
+      "head_stack": {
+        "id": "spectrum:spider_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:squid"
+      },
+      "head_stack": {
+        "id": "spectrum:squid_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:stray"
+      },
+      "head_stack": {
+        "id": "spectrum:stray_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:strider"
+      },
+      "head_stack": {
+        "id": "spectrum:strider_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:trader_llama"
+      },
+      "head_stack": {
+        "id": "spectrum:trader_llama_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:turtle"
+      },
+      "head_stack": {
+        "id": "spectrum:turtle_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:vex"
+      },
+      "head_stack": {
+        "id": "spectrum:vex_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:villager"
+      },
+      "head_stack": {
+        "id": "spectrum:villager_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:vindicator"
+      },
+      "head_stack": {
+        "id": "spectrum:vindicator_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:wandering_trader"
+      },
+      "head_stack": {
+        "id": "spectrum:wandering_trader_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:witch"
+      },
+      "head_stack": {
+        "id": "spectrum:witch_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:wither"
+      },
+      "head_stack": {
+        "id": "spectrum:wither_head"
+      },
+      "drop_chance_per_level": 0.15
+    },
+    {
+      "entity": {
+        "type": "minecraft:wolf"
+      },
+      "head_stack": {
+        "id": "spectrum:wolf_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:zoglin"
+      },
+      "head_stack": {
+        "id": "spectrum:zoglin_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:zombie_villager"
+      },
+      "head_stack": {
+        "id": "spectrum:zombie_villager_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:zombified_piglin"
+      },
+      "head_stack": {
+        "id": "spectrum:zombified_piglin_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:bee"
+      },
+      "head_stack": {
+        "id": "spectrum:bee_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:tropical_fish"
+      },
+      "head_stack": {
+        "id": "spectrum:tropical_fish_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:goat"
+      },
+      "head_stack": {
+        "id": "spectrum:goat_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:glow_squid"
+      },
+      "head_stack": {
+        "id": "spectrum:glow_squid_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:warden"
+      },
+      "head_stack": {
+        "id": "spectrum:warden_head"
+      },
+      "drop_chance_per_level": 0.2
+    },
+    {
+      "entity": {
+        "type": "minecraft:tadpole"
+      },
+      "head_stack": {
+        "id": "spectrum:tadpole_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:allay"
+      },
+      "head_stack": {
+        "id": "spectrum:allay_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:camel"
+      },
+      "head_stack": {
+        "id": "spectrum:camel_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:sniffer"
+      },
+      "head_stack": {
+        "id": "spectrum:sniffer_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:skeleton_horse"
+      },
+      "head_stack": {
+        "id": "spectrum:skeleton_horse_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:zombie_horse"
+      },
+      "head_stack": {
+        "id": "spectrum:zombie_horse_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:dolphin"
+      },
+      "head_stack": {
+        "id": "spectrum:dolphin_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:pillager"
+      },
+      "head_stack": {
+        "id": "spectrum:pillager_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:armadillo"
+      },
+      "head_stack": {
+        "id": "spectrum:armadillo_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:breeze"
+      },
+      "head_stack": {
+        "id": "spectrum:breeze_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:bogged"
+      },
+      "head_stack": {
+        "id": "spectrum:bogged_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:egg_laying_wooly_pig"
+      },
+      "head_stack": {
+        "id": "spectrum:egg_laying_wooly_pig_head"
+      },
+      "drop_chance_per_level": 0.1
+    },
+    {
+      "entity": {
+        "type": "minecraft:kindling"
+      },
+      "head_stack": {
+        "id": "spectrum:kindling_head"
+      },
+      "drop_chance_per_level": 0.1
+    },
+    {
+      "entity": {
+        "type": "minecraft:preservation_turret"
+      },
+      "head_stack": {
+        "id": "spectrum:preservation_turret_head"
+      },
+      "drop_chance_per_level": 0.1
+    },
+    {
+      "entity": {
+        "type": "minecraft:monstrosity"
+      },
+      "head_stack": {
+        "id": "spectrum:monstrosity_head"
+      },
+      "drop_chance_per_level": 0.1
+    },
+    {
+      "entity": {
+        "type": "minecraft:eraser"
+      },
+      "head_stack": {
+        "id": "spectrum:eraser_head"
+      },
+      "drop_chance_per_level": 0.1
+    },
+    
+    
+    
+    {
+      "entity": {
           "type": "minecraft:frog",
           "type_specific": {
             "type": "minecraft:frog",
             "variant": "minecraft:cold"
           }
       },
-      "head_stack": "spectrum:bat_head",
+      "head_stack": {
+        "id": "spectrum:frog_cold_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:frog",
+        "type_specific": {
+          "type": "minecraft:frog",
+          "variant": "minecraft:temperate"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:frog_temperate_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:frog",
+        "type_specific": {
+          "type": "minecraft:frog",
+          "variant": "minecraft:warm"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:frog_warm_head"
+      },
+      "drop_chance_per_level": 0.02
+    }
+
+  ,
+    {
+      "entity": {
+        "type": "minecraft:fox",
+        "type_specific": {
+          "type": "minecraft:fox",
+          "variant": "red"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:fox_red_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:fox",
+        "type_specific": {
+          "type": "minecraft:fox",
+          "variant": "snow"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:fox_arctic_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+
+
+    {
+      "entity": {
+        "type": "minecraft:mooshroom",
+        "type_specific": {
+          "type": "minecraft:mooshroom",
+          "variant": "red"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:mooshroom_red_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:mooshroom",
+        "type_specific": {
+          "type": "minecraft:mooshroom",
+          "variant": "brown"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:mooshroom_brown_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+
+
+
+    {
+      "entity": {
+        "type": "minecraft:shulker",
+        "type_specific": {
+          "type": "spectrum:shulker"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:shulker_head"
+      },
+      "drop_chance_per_level": 0.05
+    },
+    {
+      "entity": {
+        "type": "minecraft:shulker",
+        "type_specific": {
+          "type": "spectrum:shulker",
+          "color": "black"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:shulker_black_head"
+      },
+      "drop_chance_per_level": 0.05
+    },
+    {
+      "entity": {
+        "type": "minecraft:shulker",
+        "type_specific": {
+          "type": "spectrum:shulker",
+          "color": "blue"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:shulker_blue_head"
+      },
+      "drop_chance_per_level": 0.05
+    },
+    {
+      "entity": {
+        "type": "minecraft:shulker",
+        "type_specific": {
+          "type": "spectrum:shulker",
+          "color": "brown"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:shulker_brown_head"
+      },
+      "drop_chance_per_level": 0.05
+    },
+    {
+      "entity": {
+        "type": "minecraft:shulker",
+        "type_specific": {
+          "type": "spectrum:shulker",
+          "color": "cyan"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:shulker_cyan_head"
+      },
+      "drop_chance_per_level": 0.05
+    },
+    {
+      "entity": {
+        "type": "minecraft:shulker",
+        "type_specific": {
+          "type": "spectrum:shulker",
+          "color": "gray"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:shulker_gray_head"
+      },
+      "drop_chance_per_level": 0.05
+    },
+    {
+      "entity": {
+        "type": "minecraft:shulker",
+        "type_specific": {
+          "type": "spectrum:shulker",
+          "color": "green"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:shulker_green_head"
+      },
+      "drop_chance_per_level": 0.05
+    },
+    {
+      "entity": {
+        "type": "minecraft:shulker",
+        "type_specific": {
+          "type": "spectrum:shulker",
+          "color": "light_blue"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:shulker_light_blue_head"
+      },
+      "drop_chance_per_level": 0.05
+    },
+    {
+      "entity": {
+        "type": "minecraft:shulker",
+        "type_specific": {
+          "type": "spectrum:shulker",
+          "color": "light_gray"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:shulker_light_gray_head"
+      },
+      "drop_chance_per_level": 0.05
+    },
+    {
+      "entity": {
+        "type": "minecraft:shulker",
+        "type_specific": {
+          "type": "spectrum:shulker",
+          "color": "lime"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:shulker_lime_head"
+      },
+      "drop_chance_per_level": 0.05
+    },
+    {
+      "entity": {
+        "type": "minecraft:shulker",
+        "type_specific": {
+          "type": "spectrum:shulker",
+          "color": "magenta"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:shulker_magenta_head"
+      },
+      "drop_chance_per_level": 0.05
+    },
+    {
+      "entity": {
+        "type": "minecraft:shulker",
+        "type_specific": {
+          "type": "spectrum:shulker",
+          "color": "orange"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:shulker_orange_head"
+      },
+      "drop_chance_per_level": 0.05
+    },
+    {
+      "entity": {
+        "type": "minecraft:shulker",
+        "type_specific": {
+          "type": "spectrum:shulker",
+          "color": "pink"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:shulker_pink_head"
+      },
+      "drop_chance_per_level": 0.05
+    },
+    {
+      "entity": {
+        "type": "minecraft:shulker",
+        "type_specific": {
+          "type": "spectrum:shulker",
+          "color": "purple"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:shulker_purple_head"
+      },
+      "drop_chance_per_level": 0.05
+    },
+    {
+      "entity": {
+        "type": "minecraft:shulker",
+        "type_specific": {
+          "type": "spectrum:shulker",
+          "color": "red"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:shulker_red_head"
+      },
+      "drop_chance_per_level": 0.05
+    },
+    {
+      "entity": {
+        "type": "minecraft:shulker",
+        "type_specific": {
+          "type": "spectrum:shulker",
+          "color": "white"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:shulker_white_head"
+      },
+      "drop_chance_per_level": 0.05
+    },
+    {
+      "entity": {
+        "type": "minecraft:shulker",
+        "type_specific": {
+          "type": "spectrum:shulker",
+          "color": "yellow"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:shulker_yellow_head"
+      },
+      "drop_chance_per_level": 0.05
+    },
+
+
+    {
+      "entity": {
+        "type": "spectrum:lizard",
+        "type_specific": {
+          "type": "spectrum:lizard",
+          "color": "spectrum:black"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:lizard_black_head"
+      },
+      "drop_chance_per_level": 0.05
+    },
+    {
+      "entity": {
+        "type": "spectrum:lizard",
+        "type_specific": {
+          "type": "spectrum:lizard",
+          "color": "spectrum:blue"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:lizard_blue_head"
+      },
+      "drop_chance_per_level": 0.05
+    },
+    {
+      "entity": {
+        "type": "spectrum:lizard",
+        "type_specific": {
+          "type": "spectrum:lizard",
+          "color": "spectrum:brown"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:lizard_brown_head"
+      },
+      "drop_chance_per_level": 0.05
+    },
+    {
+      "entity": {
+        "type": "spectrum:lizard",
+        "type_specific": {
+          "type": "spectrum:lizard",
+          "color": "spectrum:cyan"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:lizard_cyan_head"
+      },
+      "drop_chance_per_level": 0.05
+    },
+    {
+      "entity": {
+        "type": "spectrum:lizard",
+        "type_specific": {
+          "type": "spectrum:lizard",
+          "color": "spectrum:gray"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:lizard_gray_head"
+      },
+      "drop_chance_per_level": 0.05
+    },
+    {
+      "entity": {
+        "type": "spectrum:lizard",
+        "type_specific": {
+          "type": "spectrum:lizard",
+          "color": "spectrum:green"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:lizard_green_head"
+      },
+      "drop_chance_per_level": 0.05
+    },
+    {
+      "entity": {
+        "type": "spectrum:lizard",
+        "type_specific": {
+          "type": "spectrum:lizard",
+          "color": "spectrum:light_blue"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:lizard_light_blue_head"
+      },
+      "drop_chance_per_level": 0.05
+    },
+    {
+      "entity": {
+        "type": "spectrum:lizard",
+        "type_specific": {
+          "type": "spectrum:lizard",
+          "color": "spectrum:light_gray"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:lizard_light_gray_head"
+      },
+      "drop_chance_per_level": 0.05
+    },
+    {
+      "entity": {
+        "type": "spectrum:lizard",
+        "type_specific": {
+          "type": "spectrum:lizard",
+          "color": "spectrum:lime"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:lizard_lime_head"
+      },
+      "drop_chance_per_level": 0.05
+    },
+    {
+      "entity": {
+        "type": "spectrum:lizard",
+        "type_specific": {
+          "type": "spectrum:lizard",
+          "color": "spectrum:magenta"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:lizard_magenta_head"
+      },
+      "drop_chance_per_level": 0.05
+    },
+    {
+      "entity": {
+        "type": "spectrum:lizard",
+        "type_specific": {
+          "type": "spectrum:lizard",
+          "color": "spectrum:orange"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:lizard_orange_head"
+      },
+      "drop_chance_per_level": 0.05
+    },
+    {
+      "entity": {
+        "type": "spectrum:lizard",
+        "type_specific": {
+          "type": "spectrum:lizard",
+          "color": "spectrum:pink"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:lizard_pink_head"
+      },
+      "drop_chance_per_level": 0.05
+    },
+    {
+      "entity": {
+        "type": "spectrum:lizard",
+        "type_specific": {
+          "type": "spectrum:lizard",
+          "color": "spectrum:purple"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:lizard_purple_head"
+      },
+      "drop_chance_per_level": 0.05
+    },
+    {
+      "entity": {
+        "type": "spectrum:lizard",
+        "type_specific": {
+          "type": "spectrum:lizard",
+          "color": "spectrum:red"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:lizard_red_head"
+      },
+      "drop_chance_per_level": 0.05
+    },
+    {
+      "entity": {
+        "type": "spectrum:lizard",
+        "type_specific": {
+          "type": "spectrum:lizard",
+          "color": "spectrum:white"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:lizard_white_head"
+      },
+      "drop_chance_per_level": 0.05
+    },
+    {
+      "entity": {
+        "type": "spectrum:lizard",
+        "type_specific": {
+          "type": "spectrum:lizard",
+          "color": "spectrum:yellow"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:lizard_yellow_head"
+      },
+      "drop_chance_per_level": 0.05
+    },
+
+
+    {
+      "entity": {
+        "type": "minecraft:axolotl",
+        "type_specific": {
+          "type": "minecraft:axolotl",
+          "variant": "lucy"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:axolotl_lucy_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:axolotl",
+        "type_specific": {
+          "type": "minecraft:axolotl",
+          "variant": "wild"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:axolotl_wild_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:axolotl",
+        "type_specific": {
+          "type": "minecraft:axolotl",
+          "variant": "gold"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:axolotl_gold_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:axolotl",
+        "type_specific": {
+          "type": "minecraft:axolotl",
+          "variant": "cyan"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:axolotl_cyan_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:axolotl",
+        "type_specific": {
+          "type": "minecraft:axolotl",
+          "variant": "blue"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:axolotl_blue_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+
+
+    {
+      "entity": {
+        "type": "minecraft:parrot",
+        "type_specific": {
+          "type": "minecraft:parrot",
+          "variant": "red_blue"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:parrot_red_blue_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:parrot",
+        "type_specific": {
+          "type": "minecraft:parrot",
+          "variant": "blue"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:parrot_blue_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:parrot",
+        "type_specific": {
+          "type": "minecraft:parrot",
+          "variant": "green"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:parrot_green_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:parrot",
+        "type_specific": {
+          "type": "minecraft:parrot",
+          "variant": "yellow_blue"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:parrot_yellow_blue_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "minecraft:parrot",
+        "type_specific": {
+          "type": "minecraft:parrot",
+          "variant": "gray"
+        }
+      },
+      "head_stack": {
+        "id": "spectrum:parrot_gray_head"
+      },
       "drop_chance_per_level": 0.02
     }
   ]

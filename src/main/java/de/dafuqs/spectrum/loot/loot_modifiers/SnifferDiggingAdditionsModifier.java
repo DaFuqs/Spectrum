@@ -19,7 +19,7 @@ public class SnifferDiggingAdditionsModifier extends LootModifier {
 	
 	public static final MapCodec<SnifferDiggingAdditionsModifier> CODEC = RecordCodecBuilder.mapCodec(i ->
 			LootModifier.codecStart(i).and(i.group(
-									ExtraCodecs.RESOURCE_PATH_CODEC.xmap(ResourceLocation::tryParse, ResourceLocation::toString).listOf().fieldOf("targets").forGetter(m -> m.targets),
+							ResourceLocation.CODEC.listOf().fieldOf("targets").forGetter(m -> m.targets),
 									IntProvider.POSITIVE_CODEC.fieldOf("count").forGetter(m -> m.count),
 									Codec.FLOAT.fieldOf("chance").forGetter(m -> m.chance),
 									Codec.BOOL.fieldOf("replace").forGetter(m -> m.replace)
@@ -47,6 +47,10 @@ public class SnifferDiggingAdditionsModifier extends LootModifier {
 		
 		if (!targets.contains(id) || random.nextFloat() > chance)
 			return original;
+		
+		if (replace) {
+			original.clear();
+		}
 		
 		original.add(new ItemStack(item, count.sample(random)));
 		return original;

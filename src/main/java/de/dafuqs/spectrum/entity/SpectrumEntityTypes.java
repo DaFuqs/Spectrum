@@ -2,10 +2,16 @@ package de.dafuqs.spectrum.entity;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.entity.entity.*;
+import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
+import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.animal.horse.*;
 import net.minecraft.world.entity.item.*;
+import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.projectile.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.levelgen.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.neoforge.event.entity.*;
 import net.neoforged.neoforge.registries.*;
@@ -54,6 +60,10 @@ public class SpectrumEntityTypes {
 		event.put(ERASER.get(), EraserEntity.createEraserAttributes().build());
 	}
 	
+	public static void registerSpawnPlacements(RegisterSpawnPlacementsEvent event) {
+		event.register(ERASER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.AND);
+	}
+	
 	// TODO: remove
 	public static <X extends Entity> DeferredHolder<EntityType<?>, EntityType<X>> register(String name, int trackingDistance, int updateIntervalTicks, boolean alwaysUpdateVelocity, EntityDimensions size, boolean fireImmune, EntityType.EntityFactory<X> factory) {
 		return REGISTER.register(
@@ -79,6 +89,7 @@ public class SpectrumEntityTypes {
 	
 	public static void register(IEventBus modBus) {
 		modBus.addListener(SpectrumEntityTypes::registerAttributes);
+		modBus.addListener(SpectrumEntityTypes::registerSpawnPlacements);
 		REGISTER.register(modBus);
 	}
 	

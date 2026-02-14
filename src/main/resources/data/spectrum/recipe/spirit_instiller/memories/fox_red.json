@@ -3,7 +3,7 @@
   "group": "memories",
   "time": 800,
   "experience": 4.0,
-  "ingredient1": "spectrum:fox_head",
+  "ingredient1": "spectrum:fox_red_head",
   "ingredient2": "#minecraft:fox_food",
   "center_ingredient": {
     "tag": "spectrum:memory_bonding_agents",

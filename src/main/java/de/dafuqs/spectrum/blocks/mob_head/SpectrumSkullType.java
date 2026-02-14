@@ -8,6 +8,7 @@ import net.minecraft.sounds.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.block.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -36,7 +37,7 @@ public enum SpectrumSkullType implements SkullBlock.Type {
 	ENDERMAN(EntityType.ENDERMAN, SoundEvents.ENDERMAN_AMBIENT.getLocation()),
 	ENDERMITE(EntityType.ENDERMITE, SoundEvents.ENDERMITE_AMBIENT.getLocation()),
 	EVOKER(EntityType.EVOKER, SoundEvents.EVOKER_AMBIENT.getLocation()),
-	FOX(EntityType.FOX, SoundEvents.FOX_AMBIENT.getLocation()),
+	FOX_RED(EntityType.FOX, SoundEvents.FOX_AMBIENT.getLocation()),
 	FOX_ARCTIC(EntityType.FOX, SoundEvents.FOX_AMBIENT.getLocation()),
 	FROG_COLD(EntityType.FROG, SoundEvents.FROG_AMBIENT.getLocation()),
 	FROG_TEMPERATE(EntityType.FROG, SoundEvents.FROG_AMBIENT.getLocation()),
@@ -58,10 +59,10 @@ public enum SpectrumSkullType implements SkullBlock.Type {
 	OCELOT(EntityType.OCELOT, SoundEvents.OCELOT_AMBIENT.getLocation()),
 	PANDA(EntityType.PANDA, SoundEvents.PANDA_AMBIENT.getLocation()),
 	PARROT_BLUE(EntityType.PARROT, SoundEvents.PARROT_AMBIENT.getLocation()),
-	PARROT_CYAN(EntityType.PARROT, SoundEvents.PARROT_AMBIENT.getLocation()),
+	PARROT_YELLOW_BLUE(EntityType.PARROT, SoundEvents.PARROT_AMBIENT.getLocation()),
 	PARROT_GRAY(EntityType.PARROT, SoundEvents.PARROT_AMBIENT.getLocation()),
 	PARROT_GREEN(EntityType.PARROT, SoundEvents.PARROT_AMBIENT.getLocation()),
-	PARROT_RED(EntityType.PARROT, SoundEvents.PARROT_AMBIENT.getLocation()),
+	PARROT_RED_BLUE(EntityType.PARROT, SoundEvents.PARROT_AMBIENT.getLocation()),
 	PHANTOM(EntityType.PHANTOM, SoundEvents.PHANTOM_AMBIENT.getLocation()),
 	PIG(EntityType.PIG, SoundEvents.PIG_AMBIENT.getLocation()),
 	PILLAGER(EntityType.PILLAGER, SoundEvents.PILLAGER_AMBIENT.getLocation()),
@@ -161,7 +162,7 @@ public enum SpectrumSkullType implements SkullBlock.Type {
 	}
 	
 	@Override
-	public String getSerializedName() {
+	public @NotNull String getSerializedName() {
 		return name().toLowerCase(Locale.ROOT);
 	}
 	

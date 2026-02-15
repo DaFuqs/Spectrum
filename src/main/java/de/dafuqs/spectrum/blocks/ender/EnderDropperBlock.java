@@ -59,6 +59,14 @@ public class EnderDropperBlock extends DispenserBlock {
 	}
 	
 	@Override
+	protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
+		// we don't want to drop the players ender chest content when destroyed
+		if (state.hasBlockEntity() && !state.is(newState.getBlock())) {
+			level.removeBlockEntity(pos);
+		}
+	}
+	
+	@Override
 	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
 		if (world.isClientSide) {
 			return InteractionResult.SUCCESS;
@@ -77,7 +85,7 @@ public class EnderDropperBlock extends DispenserBlock {
 					
 					PiglinAi.angerNearbyPiglins(player, true);
 				} else {
-					player.displayClientMessage(Component.translatable("block.spectrum.ender_dropper_with_owner", enderDropperBlockEntity.getOwnerName()), true);
+					player.displayClientMessage(Component.translatable("block.spectrum.ender_dropper.owner", enderDropperBlockEntity.getOwnerName()), true);
 				}
 			}
 			return InteractionResult.CONSUME;
@@ -105,9 +113,6 @@ public class EnderDropperBlock extends DispenserBlock {
 				} else {
 					IItemHandler target = world.getCapability(Capabilities.ItemHandler.BLOCK, pos.relative(direction), direction.getOpposite());
 					if (target != null) {
-						// getting inv will always work since .chooseNonEmptySlot() and others would fail otherwise
-						//noinspection DataFlowIssue
-						
 						ItemStack moved = ItemHandlerHelper.insertItemStacked(target, itemStack.copyWithCount(1), false);
 						// return without triggering fail event if successfully moved
 						if (moved.isEmpty()) {

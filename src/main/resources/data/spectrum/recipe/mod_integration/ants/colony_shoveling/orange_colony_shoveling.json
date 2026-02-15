@@ -3,7 +3,7 @@
   "group": "spectrum_leaves_shoveling",
   "hive_ingredient": "spectrum:orange_leaves",
   "result": {
-    "item": "minecraft:orange_dye",
+    "id": "minecraft:orange_dye",
     "count": 6
   },
   "neoforge:conditions": [

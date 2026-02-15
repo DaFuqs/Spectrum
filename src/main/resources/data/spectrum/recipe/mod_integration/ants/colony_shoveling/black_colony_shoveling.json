@@ -3,7 +3,7 @@
   "group": "spectrum_leaves_shoveling",
   "hive_ingredient": "spectrum:black_leaves",
   "result": {
-    "item": "minecraft:black_dye",
+    "id": "minecraft:black_dye",
     "count": 6
   },
   "neoforge:conditions": [

@@ -4,7 +4,7 @@
   "hive_ingredient": "spectrum:cyan_leaves",
   "hand_ingredient": "spectrum:vegetal",
   "result": {
-    "item": "spectrum:cyan_pigment",
+    "id": "spectrum:cyan_pigment",
     "count": 6
   },
   "neoforge:conditions": [

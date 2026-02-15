@@ -39,27 +39,7 @@ public class GobberCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	
 	@Override
 	public void register() {
-		// TODO: port
-		/*
-		ItemSubGroupEvents.modifyEntriesEvent(ItemGroupIDs.SUBTAB_PURE_RESOURCES).register(entries -> {
-			entries.accept(PURE_GLOBETTE);
-			entries.accept(SMALL_GLOBETTE_BUD);
-			entries.accept(LARGE_GLOBETTE_BUD);
-			entries.accept(GLOBETTE_CLUSTER);
-			entries.accept(PURE_GLOBETTE_BLOCK);
-			
-			entries.accept(PURE_GLOBETTE_NETHER);
-			entries.accept(SMALL_GLOBETTE_NETHER_BUD);
-			entries.accept(LARGE_GLOBETTE_NETHER_BUD);
-			entries.accept(GLOBETTE_NETHER_CLUSTER);
-			entries.accept(PURE_GLOBETTE_NETHER_BLOCK);
-			
-			entries.accept(PURE_GLOBETTE_END);
-			entries.accept(SMALL_GLOBETTE_END_BUD);
-			entries.accept(LARGE_GLOBETTE_END_BUD);
-			entries.accept(GLOBETTE_END_CLUSTER);
-			entries.accept(PURE_GLOBETTE_END_BLOCK);
-		});*/
+	
 	}
 	
 	@Override

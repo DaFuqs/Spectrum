@@ -3,7 +3,7 @@
   "group": "spectrum_leaves_shoveling",
   "hive_ingredient": "spectrum:light_blue_leaves",
   "result": {
-    "item": "minecraft:light_blue_dye",
+    "id": "minecraft:light_blue_dye",
     "count": 6
   },
   "neoforge:conditions": [

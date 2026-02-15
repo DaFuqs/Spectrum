@@ -3,7 +3,7 @@
   "group": "spectrum_leaves_shoveling",
   "hive_ingredient": "spectrum:green_leaves",
   "result": {
-    "item": "minecraft:green_dye",
+    "id": "minecraft:green_dye",
     "count": 6
   },
   "neoforge:conditions": [

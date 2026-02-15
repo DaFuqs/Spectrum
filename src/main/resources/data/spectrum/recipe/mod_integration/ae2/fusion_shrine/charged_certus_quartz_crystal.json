@@ -2,7 +2,9 @@
   "type": "spectrum:fusion_shrine",
   "time": 80,
   "experience": 0.2,
-  "fluid": "minecraft:water",
+  "fluid": {
+    "fluid": "minecraft:water"
+  },
   "ingredients": [
     "spectrum:storm_stone",
     {

@@ -14,7 +14,7 @@
     }
   ],
   "result": {
-    "item": "spectrum:spectral_shard",
+    "id": "spectrum:spectral_shard",
     "count": 9
   },
   "required_advancement": "spectrum:endgame/create_spectral_shard"

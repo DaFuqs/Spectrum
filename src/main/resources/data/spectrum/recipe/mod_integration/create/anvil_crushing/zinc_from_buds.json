@@ -1,21 +1,26 @@
 {
   "type": "spectrum:anvil_crushing",
   "ingredient": [
-    "spectrum:small_globette_nether_bud",
-    "spectrum:large_globette_nether_bud"
+    {
+      "item": "spectrum:small_zinc_bud"
+    },
+    {
+      "item": "spectrum:large_zinc_bud"
+    }
   ],
   "crushedItemsPerPointOfDamage": 1.0,
   "experience": 2.0,
   "result": {
-    "id": "gobber2:gobber2_globette_nether",
+    "id": "create:zinc_ingot",
     "count": 2
   },
   "particleEffectIdentifier": "explosion",
   "soundEventIdentifier": "block.amethyst_cluster.break",
+  "required_advancement": "spectrum:lategame/collect_pure_resource",
   "neoforge:conditions": [
     {
       "type": "spectrum:integration_pack_active",
-      "integration_pack": "gobber2"
+      "integration_pack": "create"
     }
   ]
 }

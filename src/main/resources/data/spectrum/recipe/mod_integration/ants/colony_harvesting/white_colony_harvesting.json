@@ -4,7 +4,7 @@
   "hive_ingredient": "spectrum:white_leaves",
   "hand_ingredient": "spectrum:vegetal",
   "result": {
-    "item": "spectrum:white_pigment",
+    "id": "spectrum:white_pigment",
     "count": 6
   },
   "neoforge:conditions": [

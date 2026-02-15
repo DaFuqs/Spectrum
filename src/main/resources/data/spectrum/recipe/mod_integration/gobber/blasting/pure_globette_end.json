@@ -1,12 +1,10 @@
 {
   "type": "minecraft:blasting",
-  "ingredient": [
-    {
-      "item": "spectrum:pure_globette_end"
-    }
-  ],
+  "ingredient": {
+    "item": "spectrum:pure_globette_end"
+  },
   "result": {
-    "id": "gobber2:gobber2_globette_end"
+    "id": "gobber2:gobber2_ingot_end"
   },
   "experience": 0.5,
   "cookingtime": 100,

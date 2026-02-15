@@ -1,17 +1,15 @@
 {
   "type": "spectrum:cinderhearth",
-  "ingredient": "spectrum:pure_fluix",
+  "ingredient": {
+    "item": "spectrum:pure_fluix"
+  },
   "results": [
     {
       "id": "ae2:fluix_crystal",
-      "count": 4
-    },
-    {
-      "id": "ae2:fluix_dust",
-      "chance": 0.1
+      "count": 2.0
     }
   ],
-  "experience": 1,
+  "experience": 0.5,
   "time": 200,
   "required_advancement": "spectrum:lategame/collect_pure_resource",
   "neoforge:conditions": [

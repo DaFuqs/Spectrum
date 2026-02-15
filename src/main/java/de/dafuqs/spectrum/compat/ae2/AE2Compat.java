@@ -34,25 +34,7 @@ public class AE2Compat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	
 	@Override
 	public void register() {
-		// TODO: port
-		/*
-		NeoForge.EVENT_BUS.register(new CreativeSubTabEvent(SpectrumItemGroups.MAIN, SpectrumItemGroups.PURE_RESOURCES, new CreativeModeTab.Output() {
-			@Override
-			public void accept(ItemStack stack, CreativeModeTab.TabVisibility tabVisibility) {
-				accept(PURE_CERTUS_QUARTZ);
-				accept(SMALL_CERTUS_QUARTZ_BUD);
-				accept(LARGE_CERTUS_QUARTZ_BUD);
-				accept(CERTUS_QUARTZ_CLUSTER);
-				accept(PURE_CERTUS_QUARTZ_BLOCK);
-				
-				accept(PURE_FLUIX);
-				accept(SMALL_FLUIX_BUD);
-				accept(LARGE_FLUIX_BUD);
-				accept(FLUIX_CLUSTER);
-				accept(PURE_FLUIX_BLOCK);
-			}
-		}));
-		*/
+	
 	}
 	
 	@Override

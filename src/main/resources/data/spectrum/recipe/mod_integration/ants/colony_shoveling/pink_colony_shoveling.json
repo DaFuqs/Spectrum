@@ -3,7 +3,7 @@
   "group": "spectrum_leaves_shoveling",
   "hive_ingredient": "spectrum:pink_leaves",
   "result": {
-    "item": "minecraft:pink_dye",
+    "id": "minecraft:pink_dye",
     "count": 6
   },
   "neoforge:conditions": [

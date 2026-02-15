@@ -1,10 +1,8 @@
 {
   "type": "minecraft:blasting",
-  "ingredient": [
-    {
-      "item": "spectrum:pure_certus_quartz"
-    }
-  ],
+  "ingredient": {
+    "item": "spectrum:pure_certus_quartz"
+  },
   "result": {
     "id": "ae2:certus_quartz_crystal"
   },

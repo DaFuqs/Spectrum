@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:templates_item/cluster",
+  "parent": "minecraft:item/amethyst_cluster",
   "textures": {
     "layer0": "spectrum:block/fluix_cluster"
   }

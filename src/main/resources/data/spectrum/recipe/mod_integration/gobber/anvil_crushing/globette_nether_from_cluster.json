@@ -1,18 +1,17 @@
 {
   "type": "spectrum:anvil_crushing",
-  "ingredient": [
-    {
-      "item": "spectrum:globette_end_cluster"
-    }
-  ],
+  "ingredient": {
+    "item": "spectrum:globette_nether_cluster"
+  },
   "crushedItemsPerPointOfDamage": 1.0,
   "experience": 3.0,
   "result": {
-    "id": "gobber2:gobber2_globette_end",
+    "id": "gobber2:gobber2_ingot_nether",
     "count": 6
   },
   "particleEffectIdentifier": "explosion",
   "soundEventIdentifier": "block.amethyst_cluster.break",
+  "required_advancement": "spectrum:lategame/collect_pure_resource",
   "neoforge:conditions": [
     {
       "type": "spectrum:integration_pack_active",

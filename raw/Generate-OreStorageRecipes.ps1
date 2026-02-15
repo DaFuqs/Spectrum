@@ -17,7 +17,7 @@ New-Item -Name "pure_$_`_block`.json" -ItemType File -Value @"
     }
   },
   "result": {
-    "item": "spectrum:pure_$_`_block",
+    "id": "spectrum:pure_$_`_block",
     "count": 1
   }
 }
@@ -33,7 +33,7 @@ New-Item -Name "pure_$_`_from_pure_$_`_block`.json" -ItemType File -Value @"
     }
   ],
   "result": {
-    "item": "spectrum:pure_$_",
+    "id": "spectrum:pure_$_",
     "count": 9
   }
 }

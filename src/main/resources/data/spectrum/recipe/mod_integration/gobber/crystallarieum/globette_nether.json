@@ -3,30 +3,18 @@
   "ingredient": {
     "item": "gobber2:gobber2_globette_nether"
   },
-  "growth_stage_states": [
+  "ink_color": "spectrum:orange",
+  "ink_cost_tier": 3,
+  "seconds_per_growth_stage": 60,
+  "fluid_medium": {
+    "fluid": "minecraft:lava"
+  },
+  "additional_recipe_manager_results": [
     {
-      "Name": "spectrum:small_globette_nether_bud",
-      "Properties": {
-        "facing": "up"
-      }
-    },
-    {
-      "Name": "spectrum:large_globette_nether_bud",
-      "Properties": {
-        "facing": "up"
-      }
-    },
-    {
-      "Name": "spectrum:globette_nether_cluster",
-      "Properties": {
-        "facing": "up"
-      }
+      "count": 1,
+      "id": "spectrum:pure_globette_nether"
     }
   ],
-  "seconds_per_growth_stage": 120,
-  "ink_color": "spectrum:red",
-  "ink_cost_tier": 3,
-  "grows_without_catalyst": false,
   "catalysts": [
     {
       "ingredient": {
@@ -53,9 +41,27 @@
       "consume_chance_per_second": 0.1
     }
   ],
-  "additional_recipe_manager_results": [
+  "growth_stage_states": [
     {
-      "id": "spectrum:pure_globette_nether"
+      "Name": "spectrum:small_globette_nether_bud",
+      "Properties": {
+        "facing": "up",
+        "waterlogged": "false"
+      }
+    },
+    {
+      "Name": "spectrum:large_globette_nether_bud",
+      "Properties": {
+        "facing": "up",
+        "waterlogged": "false"
+      }
+    },
+    {
+      "Name": "spectrum:globette_nether_cluster",
+      "Properties": {
+        "facing": "up",
+        "waterlogged": "false"
+      }
     }
   ],
   "neoforge:conditions": [

@@ -4,7 +4,7 @@
   "hive_ingredient": "spectrum:purple_leaves",
   "hand_ingredient": "spectrum:vegetal",
   "result": {
-    "item": "spectrum:purple_pigment",
+    "id": "spectrum:purple_pigment",
     "count": 6
   },
   "neoforge:conditions": [

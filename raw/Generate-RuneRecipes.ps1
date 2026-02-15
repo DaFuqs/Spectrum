@@ -29,7 +29,7 @@ foreach($gem in $gems) {
     }
   },
   "result": {
-    "item": "spectrum:$gem`_chiseled_$material",
+    "id": "spectrum:$gem`_chiseled_$material",
     "count": 4
   }
 }
@@ -60,7 +60,7 @@ foreach($gem in $gems) {
     }
   },
   "result": {
-    "item": "spectrum:$gem`_chiseled_$material",
+    "id": "spectrum:$gem`_chiseled_$material",
     "count": 1
   }
 }

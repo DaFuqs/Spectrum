@@ -3,7 +3,7 @@
   "group": "spectrum_leaves_shoveling",
   "hive_ingredient": "spectrum:purple_leaves",
   "result": {
-    "item": "minecraft:purple_dye",
+    "id": "minecraft:purple_dye",
     "count": 6
   },
   "neoforge:conditions": [

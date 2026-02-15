@@ -4,7 +4,7 @@
   "hive_ingredient": "spectrum:yellow_leaves",
   "hand_ingredient": "spectrum:vegetal",
   "result": {
-    "item": "spectrum:yellow_pigment",
+    "id": "spectrum:yellow_pigment",
     "count": 6
   },
   "neoforge:conditions": [

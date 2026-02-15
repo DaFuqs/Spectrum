@@ -4,7 +4,7 @@
   "hive_ingredient": "spectrum:lime_leaves",
   "hand_ingredient": "spectrum:vegetal",
   "result": {
-    "item": "spectrum:lime_pigment",
+    "id": "spectrum:lime_pigment",
     "count": 6
   },
   "neoforge:conditions": [

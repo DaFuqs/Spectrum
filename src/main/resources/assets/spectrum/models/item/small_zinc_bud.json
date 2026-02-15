@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:templates_item/small_bud",
+  "parent": "minecraft:item/small_amethyst_bud",
   "textures": {
     "layer0": "spectrum:block/small_zinc_bud"
   }

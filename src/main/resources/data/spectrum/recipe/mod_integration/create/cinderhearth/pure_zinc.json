@@ -1,10 +1,12 @@
 {
   "type": "spectrum:cinderhearth",
-  "ingredient": "spectrum:pure_zinc",
+  "ingredient": {
+    "item": "spectrum:pure_zinc"
+  },
   "results": [
     {
       "id": "create:zinc_ingot",
-      "count": 2
+      "count": 2.0
     }
   ],
   "experience": 0.5,

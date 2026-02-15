@@ -1,32 +1,20 @@
 {
   "type": "spectrum:crystallarieum_growing",
-  "ingredient": {
-    "item": "ae2:certus_quartz_dust"
+  "fluid_medium": {
+    "fluid": "spectrum:liquid_crystal"
   },
-  "growth_stage_states": [
+  "ingredient": {
+    "item": "ae2:fluix_dust"
+  },
+  "ink_color": "spectrum:brown",
+  "ink_cost_tier": 2,
+  "seconds_per_growth_stage": 60,
+  "additional_recipe_manager_results": [
     {
-      "Name": "spectrum:small_certus_quartz_bud",
-      "Properties": {
-        "facing": "up"
-      }
-    },
-    {
-      "Name": "spectrum:large_certus_quartz_bud",
-      "Properties": {
-        "facing": "up"
-      }
-    },
-    {
-      "Name": "spectrum:certus_quartz_cluster",
-      "Properties": {
-        "facing": "up"
-      }
+      "count": 1,
+      "id": "spectrum:pure_fluix"
     }
   ],
-  "seconds_per_growth_stage": 60,
-  "ink_color": "spectrum:yellow",
-  "ink_cost_tier": 2,
-  "grows_without_catalyst": false,
   "catalysts": [
     {
       "ingredient": [
@@ -59,9 +47,27 @@
       "consume_chance_per_second": 0.2
     }
   ],
-  "additional_recipe_manager_results": [
+  "growth_stage_states": [
     {
-      "id": "spectrum:pure_certus_quartz"
+      "Name": "spectrum:small_fluix_bud",
+      "Properties": {
+        "facing": "up",
+        "waterlogged": "false"
+      }
+    },
+    {
+      "Name": "spectrum:large_fluix_bud",
+      "Properties": {
+        "facing": "up",
+        "waterlogged": "false"
+      }
+    },
+    {
+      "Name": "spectrum:fluix_cluster",
+      "Properties": {
+        "facing": "up",
+        "waterlogged": "false"
+      }
     }
   ],
   "neoforge:conditions": [

@@ -4,7 +4,7 @@
   "hive_ingredient": "spectrum:orange_leaves",
   "hand_ingredient": "spectrum:vegetal",
   "result": {
-    "item": "spectrum:orange_pigment",
+    "id": "spectrum:orange_pigment",
     "count": 6
   },
   "neoforge:conditions": [

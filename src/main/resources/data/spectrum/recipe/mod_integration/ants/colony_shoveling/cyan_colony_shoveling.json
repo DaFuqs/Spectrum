@@ -3,7 +3,7 @@
   "group": "spectrum_leaves_shoveling",
   "hive_ingredient": "spectrum:cyan_leaves",
   "result": {
-    "item": "minecraft:cyan_dye",
+    "id": "minecraft:cyan_dye",
     "count": 6
   },
   "neoforge:conditions": [

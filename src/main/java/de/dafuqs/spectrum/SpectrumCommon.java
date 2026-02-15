@@ -81,7 +81,7 @@ public class SpectrumCommon {
 		int i = id.indexOf(':');
 		String path = id.substring(i + 1);
 		String namespace = i > 0 ? id.substring(0, i) : SpectrumCommon.MOD_ID;
-		return ResourceLocation.fromNamespaceAndPath(namespace, path);
+		return ResourceLocation.fromNamespaceAndPath(namespace, path.toLowerCase(Locale.ROOT));
 	}
 	
 	@Nullable

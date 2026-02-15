@@ -20,17 +20,17 @@ import java.util.*;
 
 public class SpectrumRegistries {
 	
-	public static final SpectrumRegistry<FusionShrineRecipeWorldEffect> WORLD_EFFECT = create(SpectrumRegistryKeys.WORLD_EFFECT, false);
-	public static final SpectrumRegistry<GemstoneColor> GEMSTONE_COLOR = create(SpectrumRegistryKeys.GEMSTONE_COLOR, true);
-	public static final SpectrumRegistry<GlassArrowVariant> GLASS_ARROW_VARIANT = create(SpectrumRegistryKeys.GLASS_ARROW_VARIANT, true);
-	public static final SpectrumRegistry<InkColor> INK_COLOR = create(SpectrumRegistryKeys.INK_COLOR, true);
-	public static final SpectrumRegistry<KindlingVariant> KINDLING_VARIANT = create(SpectrumRegistryKeys.KINDLING_VARIANT, true);
-	public static final SpectrumRegistry<LizardFrillVariant> LIZARD_FRILL_VARIANT = create(SpectrumRegistryKeys.LIZARD_FRILL_VARIANT, true);
-	public static final SpectrumRegistry<LizardHornVariant> LIZARD_HORN_VARIANT = create(SpectrumRegistryKeys.LIZARD_HORN_VARIANT, true);
-	public static final SpectrumRegistry<PastelUpgradeSignature> PASTEL_UPGRADE = create(SpectrumRegistryKeys.PASTEL_UPGRADE, false);
-	public static final SpectrumRegistry<RecipeScaling> RECIPE_SCALING = create(SpectrumRegistryKeys.RECIPE_SCALING, true);
+	public static final Registry<FusionShrineRecipeWorldEffect> WORLD_EFFECT = register(SpectrumRegistryKeys.WORLD_EFFECT, false);
+	public static final Registry<GemstoneColor> GEMSTONE_COLOR = register(SpectrumRegistryKeys.GEMSTONE_COLOR, true);
+	public static final Registry<GlassArrowVariant> GLASS_ARROW_VARIANT = register(SpectrumRegistryKeys.GLASS_ARROW_VARIANT, true);
+	public static final Registry<InkColor> INK_COLOR = register(SpectrumRegistryKeys.INK_COLOR, true);
+	public static final Registry<KindlingVariant> KINDLING_VARIANT = register(SpectrumRegistryKeys.KINDLING_VARIANT, true);
+	public static final Registry<LizardFrillVariant> LIZARD_FRILL_VARIANT = register(SpectrumRegistryKeys.LIZARD_FRILL_VARIANT, true);
+	public static final Registry<LizardHornVariant> LIZARD_HORN_VARIANT = register(SpectrumRegistryKeys.LIZARD_HORN_VARIANT, true);
+	public static final Registry<PastelUpgradeSignature> PASTEL_UPGRADE = register(SpectrumRegistryKeys.PASTEL_UPGRADE, false);
+	public static final Registry<RecipeScaling> RECIPE_SCALING = register(SpectrumRegistryKeys.RECIPE_SCALING, true);
 
-	public static final SpectrumRegistry<MapCodec<? extends ResonanceProcessor>> RESONANCE_PROCESSOR_TYPE = create(SpectrumRegistryKeys.RESONANCE_PROCESSOR_TYPE, false);
+	public static final Registry<MapCodec<? extends ResonanceProcessor>> RESONANCE_PROCESSOR_TYPE = register(SpectrumRegistryKeys.RESONANCE_PROCESSOR_TYPE, false);
 	
 	public static void registerBuiltInRegistries(NewRegistryEvent event) {
 		event.register(WORLD_EFFECT);
@@ -44,23 +44,15 @@ public class SpectrumRegistries {
 		event.register(RECIPE_SCALING);
 		event.register(RESONANCE_PROCESSOR_TYPE);
 	}
+	
+	private static <T> Registry<T> register(ResourceKey<? extends Registry<T>> key, boolean synced) {
+		return new RegistryBuilder<>(key).sync(synced).create();
+	}
 
 	public static void registerDynamicRegistries(DataPackRegistryEvent.NewRegistry event) {
 		event.dataPackRegistry(SpectrumRegistryKeys.RESONANCE_PROCESSOR, ResonanceProcessor.CODEC, ResonanceProcessor.CODEC);
 	}
-
-	private static <T> SpectrumRegistry<T> create(ResourceKey<? extends Registry<T>> key, boolean synced) {
-		var registry = new SpectrumRegistry<>(key, Lifecycle.stable());
-		// TODO PORT internals access...
-		try {
-			var method = BaseMappedRegistry.class.getDeclaredMethod("setSync", boolean.class);
-			method.setAccessible(true);
-			method.invoke(registry, synced);
-		} catch (ReflectiveOperationException ex) {
-			throw new RuntimeException("Failed to mark registry as syncable", ex);
-		}
-		return registry;
-	}
+	
 	
 	public static <T> T getRandomTagEntry(Registry<T> registry, TagKey<T> tag, RandomSource random, T fallback) {
 		Optional<HolderSet.Named<T>> tagEntries = registry.getTag(tag);

@@ -16,8 +16,7 @@
       "trigger": "spectrum:fishing_rod_hooked",
       "conditions": {
         "fluid": {
-          fluid": {
-          "tag":
+          "fluids": "#minecraft:lava"
         }
       }
     },

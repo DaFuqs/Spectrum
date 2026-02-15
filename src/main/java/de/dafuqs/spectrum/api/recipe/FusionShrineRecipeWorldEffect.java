@@ -9,6 +9,7 @@ import net.minecraft.commands.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.network.codec.*;
+import net.minecraft.resources.*;
 import net.minecraft.server.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.phys.*;

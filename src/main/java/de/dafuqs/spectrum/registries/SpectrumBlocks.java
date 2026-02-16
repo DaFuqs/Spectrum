@@ -519,7 +519,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> ONYX_SEMI_PERMEABLE_GLASS = register(parented(blockWithItem("onyx_semi_permeable_glass", () -> new GemstonePlayerOnlyGlassBlock(BlockBehaviour.Properties.ofFullCopy(ONYX_GLASS.get()), BuiltinGemstoneColor.BLACK), InkColors.BLACK), b -> ONYX_GLASS.get()));
 	public static final DeferredBlock<Block> MOONSTONE_SEMI_PERMEABLE_GLASS = register(parented(blockWithItem("moonstone_semi_permeable_glass", () -> new GemstonePlayerOnlyGlassBlock(BlockBehaviour.Properties.ofFullCopy(MOONSTONE_GLASS.get()), BuiltinGemstoneColor.WHITE), InkColors.WHITE), b -> MOONSTONE_GLASS.get()));
 	
-	public static final DeferredBlock<Block> GLISTERING_MELON = register(singleton(new BlockRegistrar<>("glistering_melon").withBlock(() -> new Block(BlockBehaviour.Properties.ofFullCopy(MELON))).withItem(block -> new BlockItem(block, IS.of()), InkColors.LIME), TexturedModel.COLUMN));
+	public static final DeferredBlock<Block> GLISTERING_MELON = register(singleton(new BlockRegistrar<>("glistering_melon").withBlock(() -> new Block(BlockBehaviour.Properties.ofFullCopy(MELON))).withItem(block -> new BlockItem(block, IS.of())), TexturedModel.COLUMN));
 	public static final DeferredBlock<Block> ATTACHED_GLISTERING_MELON_STEM = register(new BlockRegistrar<>("attached_glistering_melon_stem").withBlock(() -> new AttachedStemBlock(ResourceKey.create(Registries.BLOCK, SpectrumCommon.locate("glistering_melon_stem")), GLISTERING_MELON.getKey(), SpectrumItems.GLISTERING_MELON_SEEDS.getKey(), BlockBehaviour.Properties.ofFullCopy(Blocks.ATTACHED_MELON_STEM))));
 	public static final DeferredBlock<Block> GLISTERING_MELON_STEM = register(new BlockRegistrar<>("glistering_melon_stem").withBlock(() -> new StemBlock(GLISTERING_MELON.getKey(), ATTACHED_GLISTERING_MELON_STEM.getKey(), SpectrumItems.GLISTERING_MELON_SEEDS.getKey(), BlockBehaviour.Properties.ofFullCopy(Blocks.MELON_STEM))).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.property(BlockStateProperties.AGE_7).generate(age -> SpectrumModelHelper.createModelVariant(ModelTemplates.STEMS[age].create(block, TextureMapping.stem(block), ctx.modelOutput))))).withBlockModel((ctx, block) -> {
 		Block attached = BuiltInRegistries.BLOCK.get(ATTACHED_GLISTERING_MELON_STEM.getKey());
@@ -1892,7 +1892,7 @@ public class SpectrumBlocks {
 		for (SpectrumSkullType type : SpectrumSkullType.values()) {
 			BlockRegistrar<SpectrumSkullBlock> head = block(type.getSerializedName() + "_head", () -> new SpectrumSkullBlock(type, BlockBehaviour.Properties.ofFullCopy(SKELETON_SKULL).instrument(NoteBlockInstrument.CUSTOM_HEAD))).withBlockItemModel((ctx, block) -> SpectrumModelHelper.registerParentedItemModel(ctx, block, SpectrumModels.SKULL_ITEM)).withBlockModel((ctx, block) -> SpectrumModelHelper.createVariantsSupplier(block, SpectrumModels.MOB_HEAD));
 			DeferredBlock<SpectrumWallSkullBlock> wallHead = register(block(type.getSerializedName() + "_wall_head", () -> new SpectrumWallSkullBlock(type, BlockBehaviour.Properties.ofFullCopy(SKELETON_SKULL).dropsLike(head.holder.get()))).withBlockModel((ctx, block) -> SpectrumModelHelper.createVariantsSupplier(block, SpectrumModels.MOB_HEAD)));
-			register(head.withItem(block -> new SpectrumSkullBlockItem(block, wallHead.get(), IS.of(), type), InkColors.GRAY));
+			register(head.withItem(block -> new SpectrumSkullBlockItem(block, wallHead.get(), IS.of(), type)));
 		}
 		
 		REGISTRAR.register(eventBus);
@@ -1918,7 +1918,7 @@ public class SpectrumBlocks {
 	}
 	
 	public static <T extends Block> BlockRegistrar<T> blockWithItem(String name, Supplier<T> block, Function<T, Item> itemFactory, InkColor color) {
-		return block(name, block).withItem(itemFactory, color);
+		return block(name, block).withItem(itemFactory);
 	}
 	
 	public static <T extends Block> BlockRegistrar<T> simple(BlockRegistrar<T> registrar) {
@@ -2108,17 +2108,10 @@ public class SpectrumBlocks {
 			return this;
 		}
 		
-		public BlockRegistrar<T> withItem(Function<T, Item> callback, InkColor color) {
+		public BlockRegistrar<T> withItem(Function<T, Item> callback) {
 			if (hasItem) throw new UnsupportedOperationException("Attempted to register two items with id " + id);
-			hasItem = true;
+			this.hasItem = true;
 			this.callback = callback;
-			
-			// TODO: fix
-			/*SpectrumItems.REGISTRAR.register(id.getPath(), () -> {
-				Item item = callback.apply(holder.get());
-				ItemColors.ITEM_COLORS.registerColorMapping(item, color);
-				return item;
-			});*/
 			return this;
 		}
 		

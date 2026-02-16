@@ -16,9 +16,7 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 import java.util.function.*;
 
-/**
- * Local forwarding implementation to avoid depending on an external ForwardingBakedModel helper class.
- */
+// TODO: use
 class ForwardingBakedModel implements BakedModel {
 	protected BakedModel wrapped;
 	

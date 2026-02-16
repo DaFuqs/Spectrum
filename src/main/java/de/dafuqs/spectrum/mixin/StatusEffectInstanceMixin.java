@@ -7,6 +7,7 @@ import com.mojang.datafixers.util.*;
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.injectors.*;
 import net.minecraft.client.resources.language.*;
+import net.minecraft.network.chat.*;
 import net.minecraft.world.effect.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
@@ -71,7 +72,7 @@ public abstract class StatusEffectInstanceMixin implements StatusEffectInstanceI
 	@ModifyReturnValue(method = "describeDuration()Ljava/lang/String;", at = @At("RETURN"))
 	private String describeDuration(String original) {
 		if (this.spectrum$severe) {
-			original = original + I18n.get("item.spectrum.potion.tooltip.severe");
+			original = original + Component.translatable("item.spectrum.potion.tooltip.severe").getString();
 		}
 		return original;
 	}

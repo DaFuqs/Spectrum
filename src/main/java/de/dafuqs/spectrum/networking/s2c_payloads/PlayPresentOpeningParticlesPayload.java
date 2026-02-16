@@ -31,7 +31,7 @@ public record PlayPresentOpeningParticlesPayload(BlockPos presentPos, Map<Intege
 	}
 	
 	public static void execute(PlayPresentOpeningParticlesPayload payload, IPayloadContext context) {
-		PresentBlock.spawnParticles((ClientLevel) context.player().level(), payload.presentPos, payload.colors);
+		PresentBlock.spawnParticlesClient((ClientLevel) context.player().level(), payload.presentPos, payload.colors);
 	}
 	
 	@Override

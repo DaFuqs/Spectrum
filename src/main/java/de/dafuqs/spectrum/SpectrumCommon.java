@@ -133,9 +133,6 @@ public class SpectrumCommon {
 		logInfo("Registering Block Entities...");
 		SpectrumBlockEntities.register(modBus);
 		modBus.addListener(SpectrumBlockEntities::addBlockEntityTypeBlocks);
-		
-		// Pastel
-		logInfo("Registering Pastel Upgrades...");
 		SpectrumPastelUpgrades.register(modBus);
 		
 		// Worldgen
@@ -225,6 +222,7 @@ public class SpectrumCommon {
 
 		logInfo("Registering Dispenser, Resonance & Present Unwrap Behaviors...");
 		modBus.addListener((Consumer<FMLCommonSetupEvent>) event -> event.enqueueWork(() -> {
+			SpectrumPastelUpgrades.registerBuiltinUpgrades();
 			SpectrumDispenserBehaviors.register();
 			SpectrumPresentUnpackBehaviors.register();
 			SpectrumItemGroups.registerSubTabs();

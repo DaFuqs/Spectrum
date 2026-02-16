@@ -112,7 +112,7 @@ public class ItemBowlBlockEntity extends InWorldInteractionBlockEntity {
 						new Vec3(0.4, 0.2, 0.4), new Vec3(0.06, 0.16, 0.06));
 				
 				ColorTransmissionPayload.playColorTransmissionParticle(serverWorld, new ColoredTransmission(new Vec3(this.worldPosition.getX() + 0.5D, this.worldPosition.getY() + 1.0D, this.worldPosition.getZ() + 0.5D), new ExactPositionSource(orbTargetPos), 20, itemColor.getColorInt()));
-			} else if (this.getLevel() instanceof ClientLevel clientWorld) {
+			} else if (this.getLevel().isClientSide()) {
 				for (int i = 0; i < 50; i++) {
 					float randomOffsetX = worldPosition.getX() + 0.3F + level.random.nextFloat() * 0.6F;
 					float randomOffsetY = worldPosition.getY() + 0.3F + level.random.nextFloat() * 0.6F;
@@ -121,13 +121,13 @@ public class ItemBowlBlockEntity extends InWorldInteractionBlockEntity {
 					float randomVelocityY = level.random.nextFloat() * 0.16F;
 					float randomVelocityZ = 0.03F - level.random.nextFloat() * 0.06F;
 					
-					clientWorld.addParticle(sparkleRisingParticleEffect,
+					this.getLevel().addParticle(sparkleRisingParticleEffect,
 							randomOffsetX, randomOffsetY, randomOffsetZ,
 							randomVelocityX, randomVelocityY, randomVelocityZ);
 				}
 				
 				ParticleOptions sphereParticleEffect = new ColoredTransmissionParticleEffect(new ExactPositionSource(orbTargetPos), 20, itemColor.getColorInt());
-				clientWorld.addParticle(sphereParticleEffect, this.worldPosition.getX() + 0.5D, this.worldPosition.getY() + 1.0D, this.worldPosition.getZ() + 0.5D, (orbTargetPos.x() - this.worldPosition.getX()) * 0.045, 0, (orbTargetPos.z() - this.worldPosition.getZ()) * 0.045);
+				this.getLevel().addParticle(sphereParticleEffect, this.worldPosition.getX() + 0.5D, this.worldPosition.getY() + 1.0D, this.worldPosition.getZ() + 0.5D, (orbTargetPos.x() - this.worldPosition.getX()) * 0.045, 0, (orbTargetPos.z() - this.worldPosition.getZ()) * 0.045);
 			}
 			
 			level.playSound(null, this.worldPosition, SpectrumSoundEvents.CRAFTING_DING, SoundSource.BLOCKS, SpectrumCommon.CONFIG.BlockSoundVolume, 0.7F + level.random.nextFloat() * 0.6F);

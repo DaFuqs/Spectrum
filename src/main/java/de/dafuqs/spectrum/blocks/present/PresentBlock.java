@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import it.unimi.dsi.fastutil.objects.*;
-import net.minecraft.client.multiplayer.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.network.chat.*;
@@ -191,18 +190,18 @@ public class PresentBlock extends BaseEntityBlock {
 		PlayPresentOpeningParticlesPayload.playPresentOpeningParticles(world, pos, colors);
 	}
 	
-	public static void spawnParticles(ClientLevel world, BlockPos pos, Map<Integer, Integer> colors) {
+	public static void spawnParticlesClient(Level world, BlockPos pos, Map<Integer, Integer> colors) {
 		if (colors.isEmpty()) {
 			int randomColor = DyeColor.byId(world.random.nextInt(DyeColor.values().length)).getTextureDiffuseColor();
-			spawnParticles(world, pos, randomColor, 15);
+			spawnParticlesClient(world, pos, randomColor, 15);
 		} else {
 			for (Map.Entry<Integer, Integer> color : colors.entrySet()) {
-				spawnParticles(world, pos, color.getKey(), color.getValue() * 10);
+				spawnParticlesClient(world, pos, color.getKey(), color.getValue() * 10);
 			}
 		}
 	}
 	
-	private static void spawnParticles(ClientLevel world, BlockPos pos, int color, int amount) {
+	private static void spawnParticlesClient(Level world, BlockPos pos, int color, int amount) {
 		double posX = pos.getX() + 0.5;
 		double posY = pos.getY() + 0.25;
 		double posZ = pos.getZ() + 0.5;

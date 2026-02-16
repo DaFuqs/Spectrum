@@ -57,7 +57,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 			int randomSlot = world.getRandom().nextInt(fusionShrineBlockEntity.getContainerSize());
 			ItemStack randomStack = fusionShrineBlockEntity.getItem(randomSlot);
 			if (!randomStack.isEmpty()) {
-				Optional<InkColor> optionalItemColor = ColorRegistry.ITEM_COLORS.getMapping(randomStack.getItem());
+				Optional<InkColor> optionalItemColor = ColorRegistry.ITEM_COLORS.getInkColor(randomStack.getItem());
 				if (optionalItemColor.isPresent()) {
 					ParticleOptions particleEffect = ColoredCraftingParticleEffect.of(optionalItemColor.get().getColorInt());
 					
@@ -77,7 +77,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		var recipe = this.currentRecipe;
 		if (recipe != null && level != null) {
 			Fluid fluid = this.getTank().getFluid().getFluid();
-			Optional<InkColor> optionalFluidColor = ColorRegistry.FLUID_COLORS.getMapping(fluid);
+			Optional<InkColor> optionalFluidColor = ColorRegistry.FLUID_COLORS.getInkColor(fluid);
 			if (optionalFluidColor.isPresent()) {
 				ParticleOptions particleEffect = ColoredFluidRisingParticleEffect.of(optionalFluidColor.get().getColorInt());
 				

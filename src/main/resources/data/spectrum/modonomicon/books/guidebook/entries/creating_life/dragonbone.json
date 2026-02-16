@@ -22,6 +22,7 @@
     },
     {
       "type": "modonomicon:spotlight",
+      "title": "item.spectrum.dragonbone_chunk",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:break_cracked_dragonbone"

@@ -493,13 +493,13 @@ public class SanityCommand {
 		for (RecipeHolder<R> recipe : recipeManager.getAllRecipesFor(recipeType)) {
 			for (Ingredient inputIngredient : recipe.value().getIngredients()) {
 				for (ItemStack matchingItemStack : inputIngredient.getItems()) {
-					if (ColorRegistry.ITEM_COLORS.getMapping(matchingItemStack.getItem()).isEmpty()) {
+					if (ColorRegistry.ITEM_COLORS.getInkColor(matchingItemStack.getItem()).isEmpty()) {
 						SpectrumCommon.logWarning("[SANITY: " + name + " Recipe] Input '" + BuiltInRegistries.ITEM.getKey(matchingItemStack.getItem()) + "' in recipe '" + recipe.id() + "', does not exist in the item color registry. Add it for nice effects!");
 					}
 				}
 			}
 			Item outputItem = recipe.value().getResultItem(registryManager).getItem();
-			if (outputItem != Items.AIR && ColorRegistry.ITEM_COLORS.getMapping(outputItem).isEmpty()) {
+			if (outputItem != Items.AIR && ColorRegistry.ITEM_COLORS.getInkColor(outputItem).isEmpty()) {
 				SpectrumCommon.logWarning("[SANITY: " + name + " Recipe] Output '" + BuiltInRegistries.ITEM.getKey(outputItem) + "' in recipe '" + recipe.id() + "', does not exist in the item color registry. Add it for nice effects!");
 			}
 		}

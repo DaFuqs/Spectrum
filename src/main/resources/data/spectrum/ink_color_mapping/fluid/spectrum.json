@@ -1,0 +1,17 @@
+{
+  "spectrum:light_gray": [
+    "spectrum:liquid_crystal",
+    "spectrum:flowing_liquid_crystal"
+  ],
+  "spectrum:brown": [
+    "spectrum:sludge",
+    "spectrum:flowing_sludge"
+  ],
+  "spectrum:gray": [
+    "spectrum:midnight_solution",
+    "spectrum:flowing_midnight_solution",
+
+    "spectrum:dragonrot",
+    "spectrum:flowing_dragonrot"
+  ]
+}

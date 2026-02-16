@@ -29,7 +29,7 @@ public record PlayFusionCraftingFinishedParticlePayload(BlockPos pos, InkColor c
 	
 	public static void sendPlayFusionCraftingFinishedParticles(
 			Level world, BlockPos pos, @NotNull ItemStack itemStack) {
-		InkColor inkColor = ColorRegistry.ITEM_COLORS.getMapping(itemStack.getItem(), InkColors.LIGHT_GRAY);
+		InkColor inkColor = ColorRegistry.ITEM_COLORS.getInkColor(itemStack.getItem(), InkColors.LIGHT_GRAY);
 		PacketDistributor.sendToPlayersTrackingChunk(
 				(ServerLevel) world, new ChunkPos(pos), new PlayFusionCraftingFinishedParticlePayload(pos, inkColor));
 	}

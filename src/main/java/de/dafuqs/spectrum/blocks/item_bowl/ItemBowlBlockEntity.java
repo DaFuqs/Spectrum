@@ -42,7 +42,7 @@ public class ItemBowlBlockEntity extends InWorldInteractionBlockEntity {
 	public static void clientTick(@NotNull Level world, BlockPos blockPos, BlockState blockState, ItemBowlBlockEntity itemBowlBlockEntity) {
 		ItemStack storedStack = itemBowlBlockEntity.getItem(0);
 		if (!storedStack.isEmpty()) {
-			Optional<InkColor> optionalItemColor = ColorRegistry.ITEM_COLORS.getMapping(storedStack.getItem());
+			Optional<InkColor> optionalItemColor = ColorRegistry.ITEM_COLORS.getInkColor(storedStack.getItem());
 			if (optionalItemColor.isPresent()) {
 				int particleCount = Support.getIntFromDecimalWithChance(Math.max(0.1, (float) storedStack.getCount() / (storedStack.getMaxStackSize() * 2)), world.random);
 				spawnRisingParticles(world, blockPos, storedStack, particleCount);
@@ -52,7 +52,7 @@ public class ItemBowlBlockEntity extends InWorldInteractionBlockEntity {
 	
 	public static void spawnRisingParticles(Level world, BlockPos blockPos, ItemStack itemStack, int amount) {
 		if (amount > 0) {
-			Optional<InkColor> optionalItemColor = ColorRegistry.ITEM_COLORS.getMapping(itemStack.getItem());
+			Optional<InkColor> optionalItemColor = ColorRegistry.ITEM_COLORS.getInkColor(itemStack.getItem());
 			if (optionalItemColor.isPresent()) {
 				ParticleOptions particleEffect = ColoredSparkleRisingParticleEffect.of(optionalItemColor.get().getColorInt());
 				
@@ -102,7 +102,7 @@ public class ItemBowlBlockEntity extends InWorldInteractionBlockEntity {
 	public void spawnOrbParticles(Vec3 orbTargetPos) {
 		ItemStack storedStack = this.getItem(0);
 		if (!storedStack.isEmpty() && level != null) {
-			InkColor itemColor = ColorRegistry.ITEM_COLORS.getMapping(storedStack.getItem(), InkColors.PURPLE);
+			InkColor itemColor = ColorRegistry.ITEM_COLORS.getInkColor(storedStack.getItem(), InkColors.PURPLE);
 			ParticleOptions sparkleRisingParticleEffect = ColoredSparkleRisingParticleEffect.of(itemColor.getColorInt());
 			
 			if (this.getLevel() instanceof ServerLevel serverWorld) {

@@ -22,6 +22,7 @@ import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import me.shedaniel.autoconfig.*;
 import me.shedaniel.autoconfig.serializer.*;
+import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.*;
 import net.minecraft.tags.*;
@@ -104,9 +105,6 @@ public class SpectrumCommon {
 		InkColors.register();
 		InkColorMixes.register();
 		SpectrumEntityAttributes.register(modBus);
-		
-		logInfo("Registering Block / Item Color Registries...");
-		ColorRegistry.registerColorRegistries();
 		
 		// Register ALL the stuff
 		SpectrumLoadConditions.register(modBus);
@@ -192,11 +190,10 @@ public class SpectrumCommon {
 		
 		logInfo("Registering Networking Packets...");
 		modBus.addListener(SpectrumC2SPackets::register);
-		modBus.addListener(
-				RegisterPayloadHandlersEvent.class, (event) -> {
-					PayloadRegistrar registrar = event.registrar("1");
-					SpectrumS2CPackets.register(registrar);
-				}
+		modBus.addListener(RegisterPayloadHandlersEvent.class, (event) -> {
+				PayloadRegistrar registrar = event.registrar("1");
+				SpectrumS2CPackets.register(registrar);
+			}
 		);
 
 		logInfo("Registering Data Loaders...");
@@ -204,6 +201,7 @@ public class SpectrumCommon {
 			event.addListener(NaturesStaffConversionDataLoader.INSTANCE);
 			event.addListener(EntityFishingDataLoader.INSTANCE);
 			event.addListener(CrystalApothecarySimulationsDataLoader.INSTANCE);
+			ColorRegistry.registerColorRegistries(event);
 		});
 		
 		NeoForge.EVENT_BUS.addListener((Consumer<ServerStartingEvent>) event -> {

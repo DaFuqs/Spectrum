@@ -1,0 +1,14 @@
+{
+  "spectrum:blue": [
+    "minecraft:water",
+    "minecraft:flowing_water"
+  ],
+  "spectrum:orange": [
+    "minecraft:lava",
+    "minecraft:flowing_lava"
+  ],
+  "spectrum:white": [
+    "minecraft:milk",
+    "minecraft:flowing_milk"
+  ]
+}

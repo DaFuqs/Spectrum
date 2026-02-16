@@ -6,9 +6,5 @@
   "spectrum:orange": [
     "minecraft:lava",
     "minecraft:flowing_lava"
-  ],
-  "spectrum:white": [
-    "minecraft:milk",
-    "minecraft:flowing_milk"
   ]
 }

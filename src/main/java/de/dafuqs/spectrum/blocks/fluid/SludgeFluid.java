@@ -101,7 +101,7 @@ public abstract class SludgeFluid extends SpectrumFluid {
 		if (!world.isClientSide && entity instanceof LivingEntity livingEntity) {
 			// the entity is hurt at air == -20 and then reset to air = 0
 			// this way the entity loses its breath way faster, but gets damaged just as slow afterwards
-			if (livingEntity.isEyeInFluid(SpectrumFluidTags.SLUDGE) && world.getGameTime() % 2 == 0 && livingEntity.getAirSupply() > 0) {
+			if (livingEntity.isEyeInFluidType(SpectrumFluids.SLUDGE_TYPE.get()) && world.getGameTime() % 2 == 0 && livingEntity.getAirSupply() > 0) {
 				livingEntity.setAirSupply(livingEntity.getAirSupply() - 1);
 			}
 			

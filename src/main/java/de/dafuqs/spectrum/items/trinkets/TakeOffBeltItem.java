@@ -18,13 +18,12 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 import top.theillusivec4.curios.api.*;
 
 import java.util.*;
 
-public class TakeOffBeltItem extends SpectrumTrinketItem {
+public class TakeOffBeltItem extends SpectrumCurioItem {
 	
 	public static final int CHARGE_TIME_TICKS = 20;
 	public static final int MAX_CHARGES = 8;

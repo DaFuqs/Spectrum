@@ -18,7 +18,7 @@ import top.theillusivec4.curios.api.*;
 
 import java.util.*;
 
-public class AetherGracedNectarGlovesItem extends AzureDikeTrinketItem implements SlotBackgroundEffectProvider {
+public class AetherGracedNectarGlovesItem extends AzureDikeCurioItem implements SlotBackgroundEffectProvider {
 	
 	public static final int HARMFUL_EFFECT_COST = 7;
 	public static ResourceLocation MENTAL_PRESENCE_ATTRIBUTE_ID = SpectrumCommon.locate("nectar_gloves_sleep");

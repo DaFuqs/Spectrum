@@ -18,7 +18,7 @@ import top.theillusivec4.curios.api.*;
 
 import java.util.*;
 
-public class WeepingCircletItem extends SpectrumTrinketItem {
+public class WeepingCircletItem extends SpectrumCurioItem {
 	
 	private final static int TRIGGER_EVERY_X_TICKS = 40;
 	private final static int EFFECT_DURATION = TRIGGER_EVERY_X_TICKS + 10;
@@ -55,7 +55,7 @@ public class WeepingCircletItem extends SpectrumTrinketItem {
 		Level world = entity.level();
 		if (!world.isClientSide) {
 			long time = entity.level().getGameTime();
-			if (entity.isEyeInFluid(SpectrumFluidTags.ACTIVATES_WEEPING_CIRCLET)) {
+			if (entity.getEyeInFluidType().canSwim(entity)) {
 				if (always || time % TRIGGER_EVERY_X_TICKS == 0) {
 					entity.setAirSupply(entity.getMaxAirSupply());
 					entity.addEffect(new MobEffectInstance(MobEffects.DOLPHINS_GRACE, EFFECT_DURATION, 1, true, true));

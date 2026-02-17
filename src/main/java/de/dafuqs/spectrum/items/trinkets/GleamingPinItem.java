@@ -17,7 +17,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class GleamingPinItem extends SpectrumTrinketItem {
+public class GleamingPinItem extends SpectrumCurioItem {
 	
 	public static final int BASE_RANGE = 12;
 	public static final int RANGE_BONUS_PER_LEVEL_OF_SNIPING = 4;

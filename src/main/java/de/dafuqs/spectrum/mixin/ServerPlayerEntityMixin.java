@@ -31,7 +31,7 @@ public abstract class ServerPlayerEntityMixin {
 		// true if the entity got hurt
 		if (cir.getReturnValue() != null && cir.getReturnValue()) {
 			ServerPlayer thisPlayer = (ServerPlayer) (Object) this;
-			Optional<ItemStack> gleamingPinStack = SpectrumTrinketItem.getFirstEquipped(thisPlayer, SpectrumItems.GLEAMING_PIN.get());
+			Optional<ItemStack> gleamingPinStack = SpectrumCurioItem.getFirstEquipped(thisPlayer, SpectrumItems.GLEAMING_PIN.get());
 			if (gleamingPinStack.isPresent() && world.getGameTime() - this.spectrum$lastGleamingPinTriggerTick > GleamingPinItem.COOLDOWN_TICKS) {
 				GleamingPinItem.doGleamingPinEffect(thisPlayer, world, gleamingPinStack.get());
 				this.spectrum$lastGleamingPinTriggerTick = world.getGameTime();

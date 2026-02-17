@@ -111,10 +111,9 @@ public abstract class DragonrotFluid extends SpectrumFluid {
 			if (!livingEntity.isDeadOrDying() && world.getGameTime() % 20 == 0 && !(livingEntity instanceof Enemy)) {
 				var dragon = entity.getType().is(SpectrumEntityTypeTags.DRACONIC);
 				var damage = dragon ? 30 : 6;
-				var ticks = dragon ? 20 : 5;
 				var cut = dragon ? 100 : 40;
 				
-				if (livingEntity.isEyeInFluid(SpectrumFluidTags.DRAGONROT)) {
+				if (livingEntity.isEyeInFluidType(SpectrumFluids.DRAGONROT_TYPE.get())) {
 					livingEntity.hurt(SpectrumDamageTypes.dragonrot(world), damage);
 				} else {
 					livingEntity.hurt(SpectrumDamageTypes.dragonrot(world), damage / 2F);

@@ -12,17 +12,13 @@ import top.theillusivec4.curios.api.type.capability.*;
 
 import java.util.*;
 
-public abstract class SpectrumTrinketItem extends Item implements ICurioItem {
+public abstract class SpectrumCurioItem extends Item implements ICurioItem {
 	
 	private final ResourceLocation unlockIdentifier;
 	
-	public SpectrumTrinketItem(Properties settings, ResourceLocation unlockIdentifier) {
+	public SpectrumCurioItem(Properties settings, ResourceLocation unlockIdentifier) {
 		super(settings);
 		this.unlockIdentifier = unlockIdentifier;
-	}
-	
-	public static boolean hasEquipped(SlotContext slotContext, Item item) {
-		return hasEquipped(slotContext.entity(), item);
 	}
 	
 	public static boolean hasEquipped(LivingEntity entity, Item item) {

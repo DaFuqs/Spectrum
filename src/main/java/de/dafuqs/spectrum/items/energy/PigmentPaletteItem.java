@@ -20,7 +20,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class PigmentPaletteItem extends SpectrumTrinketItem implements InkStorageItem<IndividualCappedInkStorage>, LoomPatternProvider, ExtendedItemBarProvider {
+public class PigmentPaletteItem extends SpectrumCurioItem implements InkStorageItem<IndividualCappedInkStorage>, LoomPatternProvider, ExtendedItemBarProvider {
 	
 	private final long maxEnergyPerColor;
 	

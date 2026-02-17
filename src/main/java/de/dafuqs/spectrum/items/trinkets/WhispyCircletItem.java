@@ -19,7 +19,7 @@ import top.theillusivec4.curios.api.*;
 
 import java.util.*;
 
-public class WhispyCircletItem extends SpectrumTrinketItem {
+public class WhispyCircletItem extends SpectrumCurioItem {
 	
 	public static final ResourceLocation ATTRIBUTE_ID = SpectrumCommon.locate("whispy_circlet_mental_presence");
 	

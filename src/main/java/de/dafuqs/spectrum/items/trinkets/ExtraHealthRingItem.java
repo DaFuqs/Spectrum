@@ -14,7 +14,7 @@ import top.theillusivec4.curios.api.*;
 
 import java.util.*;
 
-public class ExtraHealthRingItem extends InkDrainTrinketItem {
+public class ExtraHealthRingItem extends InkDrainCurioItem {
 	
 	public ExtraHealthRingItem(Properties settings) {
 		super(settings, SpectrumCommon.locate("unlocks/trinkets/heartsingers_reward"), InkColors.PINK);

@@ -432,7 +432,7 @@ public class SanityCommand {
 		
 		// Trinkets that have invalid equip advancement and thus can't be equipped
 		for (Map.Entry<ResourceKey<Item>, Item> item : BuiltInRegistries.ITEM.entrySet()) {
-			if (item.getValue() instanceof SpectrumTrinketItem trinketItem) {
+			if (item.getValue() instanceof SpectrumCurioItem trinketItem) {
 				ResourceLocation advancementIdentifier = trinketItem.getUnlockIdentifier();
 				@Nullable AdvancementHolder advancementCriterionAdvancement = advancementLoader.get(advancementIdentifier);
 				if (advancementCriterionAdvancement == null) {

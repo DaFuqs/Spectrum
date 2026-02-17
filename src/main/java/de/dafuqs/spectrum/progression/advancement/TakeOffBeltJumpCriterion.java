@@ -6,14 +6,10 @@ import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.server.level.*;
-import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import org.jetbrains.annotations.*;
-import top.theillusivec4.curios.api.*;
-import top.theillusivec4.curios.api.type.capability.*;
 
 import java.util.*;
-import java.util.function.*;
 
 public class TakeOffBeltJumpCriterion extends SimpleCriterionTrigger<TakeOffBeltJumpCriterion.Conditions> {
 	
@@ -24,7 +20,7 @@ public class TakeOffBeltJumpCriterion extends SimpleCriterionTrigger<TakeOffBelt
 	}
 	
 	public void trigger(ServerPlayer player) {
-		Optional<ItemStack> takeOffBelt = SpectrumTrinketItem.getFirstEquipped(player, SpectrumItems.TAKE_OFF_BELT.get());
+		Optional<ItemStack> takeOffBelt = SpectrumCurioItem.getFirstEquipped(player, SpectrumItems.TAKE_OFF_BELT.get());
 		if(takeOffBelt.isEmpty()) {
 			return;
 		}

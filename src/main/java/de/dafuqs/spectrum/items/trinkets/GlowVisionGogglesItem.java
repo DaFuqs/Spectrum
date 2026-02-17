@@ -11,12 +11,11 @@ import net.minecraft.sounds.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import net.neoforged.api.distmarker.*;
 import top.theillusivec4.curios.api.*;
 
 import java.util.*;
 
-public class GlowVisionGogglesItem extends SpectrumTrinketItem implements InkPowered {
+public class GlowVisionGogglesItem extends SpectrumCurioItem implements InkPowered {
 	
 	public static final InkCost INK_COST = new InkCost(InkColors.LIGHT_BLUE, 20);
 	public static final ItemStack ITEM_COST = new ItemStack(Items.GLOW_INK_SAC, 1);

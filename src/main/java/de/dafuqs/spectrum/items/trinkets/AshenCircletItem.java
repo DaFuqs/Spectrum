@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
-import net.minecraft.client.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
@@ -16,13 +15,12 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 import top.theillusivec4.curios.api.*;
 
 import java.util.*;
 
-public class AshenCircletItem extends SpectrumTrinketItem {
+public class AshenCircletItem extends SpectrumCurioItem {
 	
 	public static final int FIRE_RESISTANCE_EFFECT_DURATION = 600;
 	public static final long COOLDOWN_TICKS = 3000;

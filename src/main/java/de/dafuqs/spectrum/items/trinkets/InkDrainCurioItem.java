@@ -18,7 +18,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStorageItem<FixedSingleInkStorage>, ExtendedItemBarProvider, SlotBackgroundEffectProvider {
+public class InkDrainCurioItem extends SpectrumCurioItem implements InkStorageItem<FixedSingleInkStorage>, ExtendedItemBarProvider, SlotBackgroundEffectProvider {
 	
 	/**
 	 * TODO: set to the original value again, once ink networking is in. Currently the original max value cannot be achieved.
@@ -27,7 +27,7 @@ public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStora
 	public static final int MAX_INK = 3276800; // 1677721600;
 	public final InkColor inkColor;
 	
-	public InkDrainTrinketItem(Properties settings, ResourceLocation unlockIdentifier, InkColor inkColor) {
+	public InkDrainCurioItem(Properties settings, ResourceLocation unlockIdentifier, InkColor inkColor) {
 		super(settings, unlockIdentifier);
 		this.inkColor = inkColor;
 	}

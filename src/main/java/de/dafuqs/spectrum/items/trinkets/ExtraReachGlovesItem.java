@@ -14,7 +14,7 @@ import top.theillusivec4.curios.api.*;
 
 import java.util.*;
 
-public class ExtraReachGlovesItem extends InkDrainTrinketItem {
+public class ExtraReachGlovesItem extends InkDrainCurioItem {
 	
 	public ExtraReachGlovesItem(Properties settings) {
 		super(settings, SpectrumCommon.locate("unlocks/trinkets/gloves_of_dawns_grasp"), InkColors.LIGHT_BLUE);

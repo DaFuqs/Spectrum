@@ -10,7 +10,7 @@ import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
 import top.theillusivec4.curios.api.*;
 
-public abstract class GravityRingItem extends InkDrainTrinketItem implements GravitableItem {
+public abstract class GravityRingItem extends InkDrainCurioItem implements GravitableItem {
 	
 	public GravityRingItem(Properties settings, ResourceLocation unlockIdentifier, InkColor inkColor) {
 		super(settings, unlockIdentifier, inkColor);

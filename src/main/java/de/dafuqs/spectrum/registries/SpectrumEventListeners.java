@@ -20,11 +20,8 @@ import net.minecraft.advancements.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.core.particles.*;
-import net.minecraft.core.registries.*;
-import net.minecraft.resources.*;
 import net.minecraft.server.*;
 import net.minecraft.server.level.*;
-import net.minecraft.server.packs.*;
 import net.minecraft.server.packs.resources.*;
 import net.minecraft.sounds.*;
 import net.minecraft.stats.*;
@@ -179,7 +176,7 @@ public class SpectrumEventListeners {
 	public static void triggerWhispyCirclet(PlayerWakeUpEvent event) {
 		Player player = event.getEntity();
 		
-		if(player.getSleepTimer() == 100 && SpectrumTrinketItem.hasEquipped(player, SpectrumItems.WHISPY_CIRCLET.asItem())) {
+		if(player.getSleepTimer() == 100 && SpectrumCurioItem.hasEquipped(player, SpectrumItems.WHISPY_CIRCLET.asItem())) {
 			player.setHealth(player.getMaxHealth());
 			WhispyCircletItem.removeNegativeStatusEffects(player);
 		}
@@ -191,7 +188,7 @@ public class SpectrumEventListeners {
 		Entity player = event.getSource().getEntity();
 		LivingEntity target = event.getEntity();
 		
-		if(player instanceof ServerPlayer && SpectrumTrinketItem.hasEquipped((LivingEntity) player, SpectrumItems.JEOPARDANT.asItem())) {
+		if(player instanceof ServerPlayer && SpectrumCurioItem.hasEquipped((LivingEntity) player, SpectrumItems.JEOPARDANT.asItem())) {
 			SpectrumAdvancementCriteria.JEOPARDANT_KILL.trigger((ServerPlayer) player, target);
 		}
 	}
@@ -345,14 +342,14 @@ public class SpectrumEventListeners {
 		// If the player is damaged by lava and wears an ashen circlet:
 		// prevent damage and grant fire resistance
 		if (source.is(DamageTypes.LAVA)) {
-			Optional<ItemStack> ashenCircletStack = SpectrumTrinketItem.getFirstEquipped(entity, SpectrumItems.ASHEN_CIRCLET.get());
+			Optional<ItemStack> ashenCircletStack = SpectrumCurioItem.getFirstEquipped(entity, SpectrumItems.ASHEN_CIRCLET.get());
 			if (ashenCircletStack.isPresent()) {
 				if (AshenCircletItem.getCooldownTicks(ashenCircletStack.get(), entity.level()) == 0) {
 					AshenCircletItem.grantFireResistance(ashenCircletStack.get(), entity);
 					event.setCanceled(true);
 				}
 			}
-		} else if (source.is(DamageTypeTags.IS_FIRE) && SpectrumTrinketItem.hasEquipped(entity, SpectrumItems.ASHEN_CIRCLET.get())) {
+		} else if (source.is(DamageTypeTags.IS_FIRE) && SpectrumCurioItem.hasEquipped(entity, SpectrumItems.ASHEN_CIRCLET.get())) {
 			event.setCanceled(true);
 		}
 	}

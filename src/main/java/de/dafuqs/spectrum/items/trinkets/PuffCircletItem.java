@@ -6,7 +6,7 @@ import net.minecraft.world.item.*;
 
 import java.util.*;
 
-public class PuffCircletItem extends AzureDikeTrinketItem {
+public class PuffCircletItem extends AzureDikeCurioItem {
 	
 	public static final float PROJECTILE_DEFLECTION_COST = 4;
 	public static final float FALL_DAMAGE_NEGATING_COST = 2;

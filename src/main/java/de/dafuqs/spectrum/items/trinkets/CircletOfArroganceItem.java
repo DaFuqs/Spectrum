@@ -15,7 +15,7 @@ import top.theillusivec4.curios.api.*;
 
 import java.util.*;
 
-public class CircletOfArroganceItem extends SpectrumTrinketItem {
+public class CircletOfArroganceItem extends SpectrumCurioItem {
 	
 	private static final int TRIGGER_EVERY_X_TICKS = 240;
 	private static final int EFFECT_DURATION = TRIGGER_EVERY_X_TICKS + 10;

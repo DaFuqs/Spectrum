@@ -11,7 +11,7 @@ import net.minecraft.world.item.enchantment.*;
 import org.jetbrains.annotations.*;
 import top.theillusivec4.curios.api.*;
 
-public class SevenLeagueBootsItem extends SpectrumTrinketItem {
+public class SevenLeagueBootsItem extends SpectrumCurioItem {
 	
 	public static final ResourceLocation MOVEMENT_SPEED_ATTRIBUTE_ID = SpectrumCommon.locate("seven_league_boots_movement_speed");
 	public static final ResourceLocation STEP_UP_ATTRIBUTE_ID = SpectrumCommon.locate("seven_league_boots_step_up");

@@ -14,7 +14,7 @@ import top.theillusivec4.curios.api.*;
 
 import java.util.*;
 
-public class ExtraMiningSpeedRingItem extends InkDrainTrinketItem {
+public class ExtraMiningSpeedRingItem extends InkDrainCurioItem {
 	
 	public ExtraMiningSpeedRingItem(Properties settings) {
 		super(settings, SpectrumCommon.locate("unlocks/trinkets/ring_of_pursuit"), InkColors.MAGENTA);

@@ -15,7 +15,7 @@ import top.theillusivec4.curios.api.*;
 
 import java.util.*;
 
-public class PotionPendantItem extends SpectrumTrinketItem implements InkPoweredPotionFillable {
+public class PotionPendantItem extends SpectrumCurioItem implements InkPoweredPotionFillable {
 	
 	private final static int TRIGGER_EVERY_X_TICKS = 300;
 	private final static int EFFECT_DURATION = TRIGGER_EVERY_X_TICKS + 220; // always keeps the effect active & prevents the 10 seconds of screen flashing when night vision runs out

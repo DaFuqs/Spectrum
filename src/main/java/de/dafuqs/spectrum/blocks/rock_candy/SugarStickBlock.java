@@ -117,7 +117,7 @@ public class SugarStickBlock extends Block implements RockCandy {
 				for (ItemEntity itemEntity : itemEntities) {
 					// is the item also submerged?
 					// lazy, but mostly accurate and performant way to check if it's the same liquid pool
-					if (!itemEntity.isEyeInFluid(SpectrumFluidTags.LIQUID_CRYSTAL)) {
+					if (!itemEntity.isInFluidType(SpectrumFluids.LIQUID_CRYSTAL_TYPE.get())) {
 						continue;
 					}
 					

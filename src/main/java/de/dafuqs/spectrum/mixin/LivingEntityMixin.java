@@ -137,7 +137,7 @@ public abstract class LivingEntityMixin {
 		}
 		
 		if (!entity.onGround()) {
-			var optionalTrinket = SpectrumTrinketItem.getFirstEquipped(entity, SpectrumItems.RING_OF_AERIAL_GRACE.get());
+			var optionalTrinket = SpectrumCurioItem.getFirstEquipped(entity, SpectrumItems.RING_OF_AERIAL_GRACE.get());
 			if (optionalTrinket.isPresent()) {
 				var inkStorage = SpectrumItems.RING_OF_AERIAL_GRACE.get().getEnergyStorage(optionalTrinket.get());
 				var storedInk = inkStorage.getEnergy(inkStorage.getStoredColor());
@@ -179,7 +179,7 @@ public abstract class LivingEntityMixin {
 	private boolean spectrum$modifyFluidWalking(boolean original) {
 		var entity = (LivingEntity) (Object) this;
 		
-		if (SpectrumTrinketItem.hasEquipped(entity, SpectrumItems.RING_OF_AERIAL_GRACE.get()))
+		if (SpectrumCurioItem.hasEquipped(entity, SpectrumItems.RING_OF_AERIAL_GRACE.get()))
 			return !entity.isUnderWater();
 		
 		return original;
@@ -387,7 +387,7 @@ public abstract class LivingEntityMixin {
 		if (original <= 0 || thisEntity.isInvulnerableTo(thisEntity.damageSources().fall()) || azureDikeAttachment.getCurrentCharges() <= cost) return original;
 		
 		// check if this entity is protected by puff circlet
-		if (SpectrumTrinketItem.hasEquipped(thisEntity, SpectrumItems.PUFF_CIRCLET.get())) {
+		if (SpectrumCurioItem.hasEquipped(thisEntity, SpectrumItems.PUFF_CIRCLET.get())) {
 			return original;
 		}
 		
@@ -661,11 +661,6 @@ public abstract class LivingEntityMixin {
 		if (entity.level() != null && entity.level().getGameTime() % 20 == 0) {
 			InexorableHelper.checkAndRemoveSlowdownModifiers(entity);
 		}
-	}
-	
-	@Redirect(method = "aiStep", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;isInWaterRainOrBubble()Z"))
-	private boolean spectrum$isWet(LivingEntity livingEntity) {
-		return livingEntity.isInWater() ? ((TouchingWaterAware) livingEntity).spectrum$isActuallyTouchingWater() : livingEntity.isInWaterRainOrBubble();
 	}
 	
 }

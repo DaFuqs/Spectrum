@@ -16,7 +16,7 @@ import top.theillusivec4.curios.api.*;
 
 import java.util.*;
 
-public class LaurelsOfSerenityItem extends InkDrainTrinketItem {
+public class LaurelsOfSerenityItem extends InkDrainCurioItem {
 	
 	public LaurelsOfSerenityItem(Properties settings) {
 		super(settings, SpectrumCommon.locate("unlocks/trinkets/laurels_of_serenity"), InkColors.PURPLE);

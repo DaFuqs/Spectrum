@@ -7,7 +7,7 @@ import net.minecraft.world.item.*;
 
 import java.util.*;
 
-public class TotemPendantItem extends SpectrumTrinketItem {
+public class TotemPendantItem extends SpectrumCurioItem {
 	
 	public TotemPendantItem(Properties settings) {
 		super(settings, SpectrumCommon.locate("unlocks/trinkets/totem_pendant"));

@@ -6,15 +6,14 @@ import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.item.*;
-import net.neoforged.api.distmarker.*;
 import top.theillusivec4.curios.api.*;
 import top.theillusivec4.curios.api.type.capability.*;
 
 import java.util.*;
 
-public abstract class AzureDikeTrinketItem extends SpectrumTrinketItem implements AzureDikeItem, ICurioItem {
+public abstract class AzureDikeCurioItem extends SpectrumCurioItem implements AzureDikeItem, ICurioItem {
 	
-	public AzureDikeTrinketItem(Properties settings, ResourceLocation unlockIdentifier) {
+	public AzureDikeCurioItem(Properties settings, ResourceLocation unlockIdentifier) {
 		super(settings, unlockIdentifier);
 	}
 	

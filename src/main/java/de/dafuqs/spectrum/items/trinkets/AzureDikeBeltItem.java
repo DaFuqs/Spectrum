@@ -6,7 +6,7 @@ import net.minecraft.world.item.*;
 
 import java.util.*;
 
-public class AzureDikeBeltItem extends AzureDikeTrinketItem {
+public class AzureDikeBeltItem extends AzureDikeCurioItem {
 	
 	public AzureDikeBeltItem(Properties settings, ResourceLocation unlockIdentifier) {
 		super(settings, unlockIdentifier);

@@ -15,7 +15,7 @@ import top.theillusivec4.curios.api.*;
 
 import java.util.*;
 
-public class AttackRingItem extends SpectrumTrinketItem {
+public class AttackRingItem extends SpectrumCurioItem {
 	
 	public static final ResourceLocation ATTACK_RING_DAMAGE_ID = SpectrumCommon.locate("jeopardant");
 	

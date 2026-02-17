@@ -13,7 +13,7 @@ import top.theillusivec4.curios.api.*;
 
 import java.util.*;
 
-public class CottonCloudBootsItem extends SpectrumTrinketItem {
+public class CottonCloudBootsItem extends SpectrumCurioItem {
 	
 	public CottonCloudBootsItem(Properties settings) {
 		super(settings, SpectrumCommon.locate("unlocks/trinkets/cotton_cloud_boots"));

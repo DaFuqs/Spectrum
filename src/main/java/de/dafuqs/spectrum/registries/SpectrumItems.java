@@ -9,7 +9,6 @@ import de.dafuqs.spectrum.blocks.gravity.*;
 import de.dafuqs.spectrum.blocks.jade_vines.*;
 import de.dafuqs.spectrum.blocks.rock_candy.*;
 import de.dafuqs.spectrum.components.*;
-import de.dafuqs.spectrum.data.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.armor.*;
@@ -28,10 +27,7 @@ import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
-import de.dafuqs.spectrum.registries.client.*;
 import net.minecraft.core.component.*;
-import net.minecraft.core.registries.*;
-import net.minecraft.data.models.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.sounds.*;
@@ -43,7 +39,6 @@ import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.material.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.neoforge.registries.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -469,13 +464,13 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> AZURE_DIKE_BELT = register("azure_dike_belt", () -> new AzureDikeBeltItem(IS.of(1, Rarity.UNCOMMON), SpectrumAdvancements.UNLOCK_AZURE_DIKE_BELT));
 	public static final DeferredItem<Item> AZURE_DIKE_RING = register("azure_dike_ring", () -> new AzureDikeRingItem(IS.of(1, Rarity.UNCOMMON), SpectrumAdvancements.UNLOCK_AZURE_DIKE_RING));
 	public static final DeferredItem<Item> AZURESQUE_DIKE_CORE = register("azuresque_dike_core", () -> new AzureDikeCoreItem(IS.of(1, Rarity.EPIC), SpectrumAdvancements.UNLOCK_AZURESQUE_DIKE_CORE));
-	public static final DeferredItem<InkDrainTrinketItem> SHIELDGRASP_AMULET = register("shieldgrasp_amulet", () -> new AzureDikeAmuletItem(IS.of(1, Rarity.UNCOMMON), SpectrumAdvancements.UNLOCK_SHIELDGRASP_AMULET));
-	public static final DeferredItem<InkDrainTrinketItem> HEARTSINGERS_REWARD = register("heartsingers_reward", () -> new ExtraHealthRingItem(IS.of(1, Rarity.UNCOMMON)));
-	public static final DeferredItem<InkDrainTrinketItem> GLOVES_OF_DAWNS_GRASP = register("gloves_of_dawns_grasp", () -> new ExtraReachGlovesItem(IS.of(1, Rarity.UNCOMMON)));
-	public static final DeferredItem<InkDrainTrinketItem> RING_OF_PURSUIT = register("ring_of_pursuit", () -> new ExtraMiningSpeedRingItem(IS.of(1, Rarity.UNCOMMON)));
-	public static final DeferredItem<InkDrainTrinketItem> RING_OF_DENSER_STEPS = register("ring_of_denser_steps", () -> new RingOfDenserStepsItem(IS.of(1, Rarity.UNCOMMON)));
-	public static final DeferredItem<InkDrainTrinketItem> RING_OF_AERIAL_GRACE = register("ring_of_aerial_grace", () -> new RingOfAerialGraceItem(IS.of(1, Rarity.UNCOMMON)));
-	public static final DeferredItem<InkDrainTrinketItem> LAURELS_OF_SERENITY = register("laurels_of_serenity", () -> new LaurelsOfSerenityItem(IS.of(1, Rarity.UNCOMMON)));
+	public static final DeferredItem<InkDrainCurioItem> SHIELDGRASP_AMULET = register("shieldgrasp_amulet", () -> new AzureDikeAmuletItem(IS.of(1, Rarity.UNCOMMON), SpectrumAdvancements.UNLOCK_SHIELDGRASP_AMULET));
+	public static final DeferredItem<InkDrainCurioItem> HEARTSINGERS_REWARD = register("heartsingers_reward", () -> new ExtraHealthRingItem(IS.of(1, Rarity.UNCOMMON)));
+	public static final DeferredItem<InkDrainCurioItem> GLOVES_OF_DAWNS_GRASP = register("gloves_of_dawns_grasp", () -> new ExtraReachGlovesItem(IS.of(1, Rarity.UNCOMMON)));
+	public static final DeferredItem<InkDrainCurioItem> RING_OF_PURSUIT = register("ring_of_pursuit", () -> new ExtraMiningSpeedRingItem(IS.of(1, Rarity.UNCOMMON)));
+	public static final DeferredItem<InkDrainCurioItem> RING_OF_DENSER_STEPS = register("ring_of_denser_steps", () -> new RingOfDenserStepsItem(IS.of(1, Rarity.UNCOMMON)));
+	public static final DeferredItem<InkDrainCurioItem> RING_OF_AERIAL_GRACE = register("ring_of_aerial_grace", () -> new RingOfAerialGraceItem(IS.of(1, Rarity.UNCOMMON)));
+	public static final DeferredItem<InkDrainCurioItem> LAURELS_OF_SERENITY = register("laurels_of_serenity", () -> new LaurelsOfSerenityItem(IS.of(1, Rarity.UNCOMMON)));
 	
 	// Ink storage
 	public static final DeferredItem<InkFlaskItem> INK_FLASK = register("ink_flask", () -> new InkFlaskItem(IS.of(1), 64 * 64 * 100)); // 64 stacks of pigments (1 pigment => 100 energy)

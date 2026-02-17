@@ -121,7 +121,7 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 					if (world.getBiome(pos).is(SpectrumBiomeKeys.BLACK_LANGAST))
 						damageMult = 9F;
 					
-					if (livingEntity.isEyeInFluid(SpectrumFluidTags.MIDNIGHT_SOLUTION)) {
+					if (livingEntity.isEyeInFluidType(SpectrumFluids.MIDNIGHT_SOLUTION_TYPE.get())) {
 						livingEntity.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 50, 0));
 						livingEntity.hurt(SpectrumDamageTypes.midnightSolution(world), 2 * damageMult);
 					} else {

@@ -8,13 +8,12 @@ import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.item.*;
-import net.neoforged.api.distmarker.*;
 import top.theillusivec4.curios.api.*;
 import top.theillusivec4.curios.api.type.capability.*;
 
 import java.util.*;
 
-public class AzureDikeAmuletItem extends InkDrainTrinketItem implements AzureDikeItem, ICurioItem {
+public class AzureDikeAmuletItem extends InkDrainCurioItem implements AzureDikeItem, ICurioItem {
 	
 	public AzureDikeAmuletItem(Properties settings, ResourceLocation unlockIdentifier) {
 		super(settings, unlockIdentifier, InkColors.BLUE);

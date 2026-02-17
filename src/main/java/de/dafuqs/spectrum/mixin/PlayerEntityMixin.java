@@ -107,7 +107,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 	
 	@Inject(method = "updateSwimming()V", at = @At("HEAD"), cancellable = true)
 	public void spectrum$updateSwimming(CallbackInfo ci) {
-		if (SpectrumTrinketItem.hasEquipped(this, SpectrumItems.RING_OF_DENSER_STEPS.get())) {
+		if (SpectrumCurioItem.hasEquipped(this, SpectrumItems.RING_OF_DENSER_STEPS.get())) {
 			this.setSwimming(false);
 			ci.cancel();
 		}
@@ -139,7 +139,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 		Multimap<Holder<Attribute>, AttributeModifier> map = Multimaps.newMultimap(Maps.newLinkedHashMap(), ArrayList::new);
 		
 		AttributeModifier jeopardantModifier;
-		if (SpectrumTrinketItem.hasEquipped(player, SpectrumItems.JEOPARDANT.get())) {
+		if (SpectrumCurioItem.hasEquipped(player, SpectrumItems.JEOPARDANT.get())) {
 			jeopardantModifier = new AttributeModifier(AttackRingItem.ATTACK_RING_DAMAGE_ID, AttackRingItem.getAttackModifierForEntity(player), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
 		} else {
 			jeopardantModifier = new AttributeModifier(AttackRingItem.ATTACK_RING_DAMAGE_ID, 0, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
@@ -299,40 +299,6 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 			}
 		}
 		return experience;
-	}
-	
-	// TODO: fixin mixin
-//	@ModifyConstant(method = "getDestroySpeed",
-//			slice = @Slice(from = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;hasEffect(Lnet/minecraft/core/Holder;)Z"),
-//					to = @At("TAIL")
-//			),
-//			constant = {@Constant(floatValue = 0.3F), @Constant(floatValue = 0.09F), @Constant(floatValue = 0.0027F), @Constant(floatValue = 8.1E-4F)}
-//	)
-//	public float applyInexorableEffects(float value) {
-//		if (isInexorableActive())
-//			return 1F;
-//
-//		return value;
-//	}
-	
-	@ModifyReturnValue(method = "getDestroySpeed", at = @At("RETURN"))
-	public float applyInexorableAntiSlowdowns(float original) {
-		if (isInexorableActive()) {
-			var player = (Player) (Object) this;
-			var f = original;
-			
-			boolean hasAquaAffinity = SpectrumEnchantmentHelper.getEquipmentLevel(player.level().registryAccess(), Enchantments.AQUA_AFFINITY, player) > 0;
-			if (player.isEyeInFluid(FluidTags.WATER) && !hasAquaAffinity)
-				f *= 5;
-			
-			if (!player.onGround())
-				f *= 5;
-			
-			return f;
-		}
-		
-		return original;
-		
 	}
 	
 	@Inject(method = "stopSleepInBed", at = @At(value = "HEAD"))

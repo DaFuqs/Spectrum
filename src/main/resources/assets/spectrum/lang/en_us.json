@@ -5703,9 +5703,14 @@
   "tag.spectrum.yellow_logs": "Yellow Logs",
   "tag.spectrum.crossbows": "Spectrum Crossbows",
 
-  "curios.identifier.pin": "Pin",
-  "curios.identifier.crown": "Crown",
+  "curios.identifier.face": "Face",
+  "curios.identifier.feet": "Feet",
   "curios.identifier.palette": "Palette",
+  "curios.identifier.pin": "Pin",
+  "curios.modifiers.face": "When worn on face:",
+  "curios.modifiers.feet": "When worn on feet:",
+  "curios.modifiers.palette": "When worn as palette:",
+  "curios.modifiers.pin": "When worn as pin:",
 
   "text.autoconfig.Spectrum.option.AddItemTooltips": "Add advanced tooltips for Spawners, Signs, Skulk Shriekers and much more",
   "text.autoconfig.Spectrum.option.AzureDikeHudOffsetX": "X Position of the Azure Dike Overlay on the players screen. Default: On top of Hearts",

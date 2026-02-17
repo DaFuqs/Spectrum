@@ -21,7 +21,7 @@ import top.theillusivec4.curios.api.*;
 
 import java.util.*;
 
-public class RadiancePinItem extends SpectrumTrinketItem {
+public class RadiancePinItem extends SpectrumCurioItem {
 	
 	public static final int CHECK_EVERY_X_TICKS = 20;
 	public static final int MAX_LIGHT_LEVEL = 7;

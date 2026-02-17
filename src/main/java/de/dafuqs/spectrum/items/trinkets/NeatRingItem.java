@@ -6,7 +6,7 @@ import net.minecraft.world.item.*;
 
 import java.util.*;
 
-public class NeatRingItem extends SpectrumTrinketItem {
+public class NeatRingItem extends SpectrumCurioItem {
 	
 	
 	public NeatRingItem(Properties settings) {

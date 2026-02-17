@@ -16,7 +16,7 @@
         "type": "minecraft:skeleton"
       },
       "head_stack": {
-        "id": "minecraft:skeleton_head"
+        "id": "minecraft:skeleton_skull"
       },
       "drop_chance_per_level": 0.02
     },
@@ -25,7 +25,7 @@
         "type": "minecraft:wither_skeleton"
       },
       "head_stack": {
-        "id": "minecraft:wither_skeleton_head"
+        "id": "minecraft:wither_skeleton_skull"
       },
       "drop_chance_per_level": 0.1
     },
@@ -427,15 +427,6 @@
     },
     {
       "entity": {
-        "type": "minecraft:trader_llama"
-      },
-      "head_stack": {
-        "id": "spectrum:trader_llama_head"
-      },
-      "drop_chance_per_level": 0.02
-    },
-    {
-      "entity": {
         "type": "minecraft:turtle"
       },
       "head_stack": {
@@ -677,9 +668,12 @@
       },
       "drop_chance_per_level": 0.02
     },
+
+
+
     {
       "entity": {
-        "type": "minecraft:egg_laying_wooly_pig"
+        "type": "spectrum:egg_laying_wooly_pig"
       },
       "head_stack": {
         "id": "spectrum:egg_laying_wooly_pig_head"
@@ -688,7 +682,7 @@
     },
     {
       "entity": {
-        "type": "minecraft:kindling"
+        "type": "spectrum:kindling"
       },
       "head_stack": {
         "id": "spectrum:kindling_head"
@@ -697,7 +691,7 @@
     },
     {
       "entity": {
-        "type": "minecraft:preservation_turret"
+        "type": "spectrum:preservation_turret"
       },
       "head_stack": {
         "id": "spectrum:preservation_turret_head"
@@ -706,7 +700,7 @@
     },
     {
       "entity": {
-        "type": "minecraft:monstrosity"
+        "type": "spectrum:monstrosity"
       },
       "head_stack": {
         "id": "spectrum:monstrosity_head"
@@ -715,7 +709,7 @@
     },
     {
       "entity": {
-        "type": "minecraft:eraser"
+        "type": "spectrum:eraser"
       },
       "head_stack": {
         "id": "spectrum:eraser_head"

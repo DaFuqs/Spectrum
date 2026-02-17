@@ -40,12 +40,5 @@
       }
     }
   },
-  "required_advancement": "spectrum:unlocks/enchantments/vanilla_water_luck",
-  "neoforge:conditions": [
-    {
-      "type": "spectrum:registered",
-      "registry": "minecraft:enchantment",
-      "value": "minecraft:luck_of_the_sea"
-    }
-  ]
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_water_luck"
 }

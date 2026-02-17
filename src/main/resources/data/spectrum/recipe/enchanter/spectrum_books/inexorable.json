@@ -39,12 +39,5 @@
       }
     }
   },
-  "required_advancement": "spectrum:unlocks/enchantments/inexorable",
-  "neoforge:conditions": [
-    {
-      "type": "spectrum:registered",
-      "registry": "minecraft:enchantment",
-      "value": "spectrum:inexorable"
-    }
-  ]
+  "required_advancement": "spectrum:unlocks/enchantments/inexorable"
 }

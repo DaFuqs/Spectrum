@@ -40,12 +40,5 @@
       }
     }
   },
-  "required_advancement": "spectrum:unlocks/enchantments/vanilla_projectile",
-  "neoforge:conditions": [
-    {
-      "type": "spectrum:registered",
-      "registry": "minecraft:enchantment",
-      "value": "minecraft:quick_charge"
-    }
-  ]
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_projectile"
 }

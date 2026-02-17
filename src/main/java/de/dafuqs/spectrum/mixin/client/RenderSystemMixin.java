@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
-@Mixin(value = RenderSystem.class, priority = 1001, remap = false)
+@Mixin(value = RenderSystem.class, priority = 1001)
 public class RenderSystemMixin {
 	
 	@Shadow

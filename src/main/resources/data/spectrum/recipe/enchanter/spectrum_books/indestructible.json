@@ -39,12 +39,5 @@
       }
     }
   },
-  "required_advancement": "spectrum:unlocks/enchantments/indestructible",
-  "neoforge:conditions": [
-    {
-      "type": "spectrum:registered",
-      "registry": "minecraft:enchantment",
-      "value": "spectrum:indestructible"
-    }
-  ]
+  "required_advancement": "spectrum:unlocks/enchantments/indestructible"
 }

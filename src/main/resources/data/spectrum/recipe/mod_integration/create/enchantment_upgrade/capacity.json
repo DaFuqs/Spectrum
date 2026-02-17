@@ -3,11 +3,6 @@
     {
       "type": "neoforge:mod_loaded",
       "modid": "create"
-    },
-    {
-      "type": "spectrum:registered",
-      "registry": "minecraft:enchantment",
-      "value": "create:capacity"
     }
   ],
 

@@ -40,12 +40,5 @@
       }
     }
   },
-  "required_advancement": "spectrum:unlocks/enchantments/vanilla_trial",
-  "neoforge:conditions": [
-    {
-      "type": "spectrum:registered",
-      "registry": "minecraft:enchantment",
-      "value": "minecraft:density"
-    }
-  ]
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_trial"
 }

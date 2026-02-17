@@ -39,12 +39,5 @@
       }
     }
   },
-  "required_advancement": "spectrum:unlocks/enchantments/disarming",
-  "neoforge:conditions": [
-    {
-      "type": "spectrum:registered",
-      "registry": "minecraft:enchantment",
-      "value": "spectrum:disarming"
-    }
-  ]
+  "required_advancement": "spectrum:unlocks/enchantments/disarming"
 }

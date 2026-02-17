@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 @Mixin(FogRenderer.class)
 public class BackgroundRendererMixin {
 	
-	@Inject(method = "setupFog", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/RenderSystem;setShaderFogStart(F)V", remap = false, shift = At.Shift.BEFORE))
+	@Inject(method = "setupFog", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/RenderSystem;setShaderFogStart(F)V", shift = At.Shift.BEFORE))
 	private static void spectrum$modifyFog(Camera camera, FogRenderer.FogMode fogType, float viewDistance, boolean thickFog, float tickDelta, CallbackInfo ci, @Local FogRenderer.FogData fogData) {
 		var world = Minecraft.getInstance().level;
 		
@@ -41,7 +41,7 @@ public class BackgroundRendererMixin {
 			tfog.set(true);
 	}
 	
-	@WrapOperation(method = "setupColor", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/RenderSystem;clearColor(FFFF)V", remap = false, ordinal = 1))
+	@WrapOperation(method = "setupColor", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/RenderSystem;clearColor(FFFF)V", ordinal = 1))
 	private static void spectrum$darkenBackground(float red, float green, float blue, float alpha, Operation<Void> original) {
 		var darkening = DimensionRenderEffects.fogDarkness;
 		var blend = DimensionRenderEffects.blend;

@@ -40,12 +40,5 @@
       }
     }
   },
-  "required_advancement": "spectrum:unlocks/enchantments/vanilla_protection",
-  "neoforge:conditions": [
-    {
-      "type": "spectrum:registered",
-      "registry": "minecraft:enchantment",
-      "value": "minecraft:thorns"
-    }
-  ]
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_protection"
 }

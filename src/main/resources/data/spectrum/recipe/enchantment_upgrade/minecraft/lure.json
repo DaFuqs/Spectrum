@@ -1,11 +1,4 @@
 {
-  "neoforge:conditions": [
-    {
-      "type": "spectrum:registered",
-      "registry": "minecraft:enchantment",
-      "value": "minecraft:lure"
-    }
-  ],
   "type": "spectrum:enchantment_upgrade",
   "bulk_item": {
     "item": "spectrum:blue_pigment"

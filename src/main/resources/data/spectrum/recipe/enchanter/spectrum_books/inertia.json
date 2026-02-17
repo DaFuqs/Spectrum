@@ -39,12 +39,5 @@
       }
     }
   },
-  "required_advancement": "spectrum:unlocks/enchantments/inertia",
-  "neoforge:conditions": [
-    {
-      "type": "spectrum:registered",
-      "registry": "minecraft:enchantment",
-      "value": "spectrum:inertia"
-    }
-  ]
+  "required_advancement": "spectrum:unlocks/enchantments/inertia"
 }

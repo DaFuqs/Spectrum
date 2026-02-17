@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.*;
 @Mixin(BlockAttachedEntity.class)
 public abstract class MC252934Mixin {
 	
-	@Redirect(method = "readAdditionalSaveData", at = @At(value = "INVOKE", target = "Lorg/slf4j/Logger;error(Ljava/lang/String;Ljava/lang/Object;)V", remap = false))
+	@Redirect(method = "readAdditionalSaveData", at = @At(value = "INVOKE", target = "Lorg/slf4j/Logger;error(Ljava/lang/String;Ljava/lang/Object;)V"))
 	private void spectrum$fixMC252934(Logger thisLogger, String format, Object arg) {
 	}
 	

@@ -40,12 +40,5 @@
       }
     }
   },
-  "required_advancement": "spectrum:unlocks/enchantments/vanilla_silk_touch",
-  "neoforge:conditions": [
-    {
-      "type": "spectrum:registered",
-      "registry": "minecraft:enchantment",
-      "value": "minecraft:silk_touch"
-    }
-  ]
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_silk_touch"
 }

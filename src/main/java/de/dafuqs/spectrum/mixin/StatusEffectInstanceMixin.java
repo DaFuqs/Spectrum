@@ -22,7 +22,7 @@ public abstract class StatusEffectInstanceMixin implements StatusEffectInstanceI
 	@Unique
 	private boolean spectrum$severe;
 	
-	@ModifyExpressionValue(method = "<clinit>", at = @At(value = "INVOKE", target = "Lcom/mojang/serialization/codecs/RecordCodecBuilder;create(Ljava/util/function/Function;)Lcom/mojang/serialization/Codec;", remap = false))
+	@ModifyExpressionValue(method = "<clinit>", at = @At(value = "INVOKE", target = "Lcom/mojang/serialization/codecs/RecordCodecBuilder;create(Ljava/util/function/Function;)Lcom/mojang/serialization/Codec;"))
 	private static Codec<MobEffectInstance> wrapCodec(Codec<MobEffectInstance> original) {
 		return original.mapResult(new Codec.ResultFunction<>() {
 			@Override

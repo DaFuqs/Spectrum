@@ -1,11 +1,4 @@
 {
-  "neoforge:conditions": [
-    {
-      "type": "spectrum:registered",
-      "registry": "minecraft:enchantment",
-      "value": "spectrum:disarming"
-    }
-  ],
   "type": "spectrum:enchantment_upgrade",
   "bulk_item": {
     "item": "spectrum:red_pigment"

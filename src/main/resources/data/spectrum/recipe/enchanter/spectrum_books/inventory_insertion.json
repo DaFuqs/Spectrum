@@ -39,12 +39,5 @@
       }
     }
   },
-  "required_advancement": "spectrum:unlocks/enchantments/inventory_insertion",
-  "neoforge:conditions": [
-    {
-      "type": "spectrum:registered",
-      "registry": "minecraft:enchantment",
-      "value": "spectrum:inventory_insertion"
-    }
-  ]
+  "required_advancement": "spectrum:unlocks/enchantments/inventory_insertion"
 }

@@ -40,12 +40,5 @@
       }
     }
   },
-  "required_advancement": "spectrum:unlocks/enchantments/vanilla_damage",
-  "neoforge:conditions": [
-    {
-      "type": "spectrum:registered",
-      "registry": "minecraft:enchantment",
-      "value": "minecraft:bane_of_arthropods"
-    }
-  ]
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_damage"
 }

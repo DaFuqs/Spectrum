@@ -39,12 +39,5 @@
       }
     }
   },
-  "required_advancement": "spectrum:unlocks/enchantments/pest_control",
-  "neoforge:conditions": [
-    {
-      "type": "spectrum:registered",
-      "registry": "minecraft:enchantment",
-      "value": "spectrum:pest_control"
-    }
-  ]
+  "required_advancement": "spectrum:unlocks/enchantments/pest_control"
 }

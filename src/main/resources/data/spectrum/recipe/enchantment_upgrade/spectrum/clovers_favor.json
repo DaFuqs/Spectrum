@@ -1,11 +1,4 @@
 {
-  "neoforge:conditions": [
-    {
-      "type": "spectrum:registered",
-      "registry": "minecraft:enchantment",
-      "value": "spectrum:clovers_favor"
-    }
-  ],
   "type": "spectrum:enchantment_upgrade",
   "bulk_item": {
     "item": "spectrum:light_blue_pigment"

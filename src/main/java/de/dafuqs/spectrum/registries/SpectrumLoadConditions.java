@@ -20,7 +20,7 @@ public class SpectrumLoadConditions {
 	
 	public static final DeferredRegister<MapCodec<? extends ICondition>> REGISTRAR = DeferredRegister.create(NeoForgeRegistries.CONDITION_SERIALIZERS, SpectrumCommon.MOD_ID);
 	
-	public record Registered(ResourceLocation registry, ResourceLocation value) implements ICondition {
+	/*public record Registered(ResourceLocation registry, ResourceLocation value) implements ICondition {
 		public static final MapCodec<Registered> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
 						ResourceLocation.CODEC.fieldOf("registry").orElse(Registries.ITEM.location()).forGetter(Registered::registry),
 						ResourceLocation.CODEC.fieldOf("value").forGetter(Registered::value))
@@ -60,10 +60,10 @@ public class SpectrumLoadConditions {
 		public ResourceLocation value() {
 			return this.value;
 		}
-	}
+	}*/
 	
 	public static void register(IEventBus eventBus) {
-		REGISTRAR.register("registered", () -> Registered.CODEC);
+		//REGISTRAR.register("registered", () -> Registered.CODEC);
 		REGISTRAR.register(eventBus);
 	}
 }

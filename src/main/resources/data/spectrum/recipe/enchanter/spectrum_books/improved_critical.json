@@ -39,12 +39,5 @@
       }
     }
   },
-  "required_advancement": "spectrum:unlocks/enchantments/improved_critical",
-  "neoforge:conditions": [
-    {
-      "type": "spectrum:registered",
-      "registry": "minecraft:enchantment",
-      "value": "spectrum:improved_critical"
-    }
-  ]
+  "required_advancement": "spectrum:unlocks/enchantments/improved_critical"
 }

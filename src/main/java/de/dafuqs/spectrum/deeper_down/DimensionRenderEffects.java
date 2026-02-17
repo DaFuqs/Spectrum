@@ -123,7 +123,8 @@ public class DimensionRenderEffects {
 			farTarget = targets[1];
 			if (GRADING_QUEUE.ready()) {
 				GRADING_QUEUE.set(COLOR_GRADING_DATA.getOrDefault(biomeKey, DEFAULT).asArray(), ColorGrading.GRADING_OUT.clone());
-			} else {
+			}
+			else {
 				GRADING_QUEUE.accept(COLOR_GRADING_DATA.getOrDefault(biomeKey, DEFAULT).asArray());
 			}
 			
@@ -225,8 +226,8 @@ public class DimensionRenderEffects {
 	// this should really be a data loader
 	static {
 		var builder = ImmutableMap.<ResourceKey<Biome>, Float>builder();
-		builder.put(SpectrumBiomeKeys.BLACK_LANGAST, 0.7F);
-		builder.put(SpectrumBiomeKeys.DEEP_BARRENS, 0.325F);
+		builder.put(SpectrumBiomeKeys.BLACK_LANGAST, 0.4F);
+		builder.put(SpectrumBiomeKeys.DEEP_BARRENS, 0.25F);
 		builder.put(SpectrumBiomeKeys.DEEP_DRIPSTONE_CAVES, 0.1F);
 		builder.put(SpectrumBiomeKeys.NOXSHROOM_FOREST, 0.05F);
 		DARKENING_MULTIPLIERS = builder.build();
@@ -237,7 +238,7 @@ public class DimensionRenderEffects {
 		fogBuilder.put(SpectrumBiomeKeys.RAZOR_EDGE, 0.65F);
 		fogBuilder.put(SpectrumBiomeKeys.DEEP_DRIPSTONE_CAVES, 0.25F);
 		fogBuilder.put(SpectrumBiomeKeys.DEEP_BARRENS, 0.55F);
-		fogBuilder.put(SpectrumBiomeKeys.BLACK_LANGAST, 0.0125F);
+		fogBuilder.put(SpectrumBiomeKeys.BLACK_LANGAST, 0.025F);
 		FOG_DARKENING_MULTIPLIERS = fogBuilder.build();
 		
 		// These are percents of view distance (capped to 192 blocks for far)
@@ -266,7 +267,7 @@ public class DimensionRenderEffects {
 		
 		private static void update(float[] old, float[] current, float delta) {
 			for (int i = 0; i < 5; i++) {
-				GRADING_OUT[i] = lerp(delta, old[i], current[i]);
+				GRADING_OUT[i] =lerp(delta, old[i], current[i]);
 			}
 		}
 		

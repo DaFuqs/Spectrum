@@ -2222,6 +2222,10 @@ public class SpectrumBlocks {
 		ItemBlockRenderTypes.setRenderLayer(LARGE_PRISMARINE_BUD.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(PRISMARINE_CLUSTER.get(), RenderType.cutout());
 		
+		ItemBlockRenderTypes.setRenderLayer(BISMUTH_CLUSTER.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LARGE_BISMUTH_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(SMALL_BISMUTH_BUD.get(), RenderType.cutout());
+		
 		ItemBlockRenderTypes.setRenderLayer(AZURITE_CLUSTER.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(LARGE_AZURITE_BUD.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(SMALL_AZURITE_BUD.get(), RenderType.cutout());

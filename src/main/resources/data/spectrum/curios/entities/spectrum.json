@@ -4,13 +4,13 @@
   ],
   "slots": [
     "belt",
-    "crown",
     "face",
+    "feet",
     "hands",
+    "head",
     "necklace",
     "palette",
     "pin",
-    "ring",
-    "shoes"
+    "ring"
   ]
 }

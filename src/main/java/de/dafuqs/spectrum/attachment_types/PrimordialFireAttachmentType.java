@@ -141,7 +141,7 @@ public class PrimordialFireAttachmentType {
 		return baseDamage * fireImmunityMultiplier * entity.getMaxHealth();
 	}
 	
-	
+	@OnlyIn(Dist.CLIENT)
 	protected static void clientTick(LivingEntity entity, long primordialFireTicks) {
 		if (primordialFireTicks > 0) {
 			if (entity.equals(Minecraft.getInstance().player) && primordialFireTicks > 2 && soundInstance.isEmpty()) {

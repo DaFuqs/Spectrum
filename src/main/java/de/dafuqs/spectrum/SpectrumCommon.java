@@ -157,9 +157,6 @@ public class SpectrumCommon {
 		SpectrumLootContextTypes.register();
 		SpectrumLootFunctionTypes.register(modBus);
 		
-		logInfo("Setting up server side Mod Compat...");
-		SpectrumIntegrationPacks.register(modBus);
-		
 		// GUI
 		logInfo("Registering Screen Handler Types...");
 		SpectrumScreenHandlerTypes.register(modBus);
@@ -222,7 +219,6 @@ public class SpectrumCommon {
 
 		logInfo("Registering Dispenser, Resonance & Present Unwrap Behaviors...");
 		modBus.addListener((Consumer<FMLCommonSetupEvent>) event -> event.enqueueWork(() -> {
-			SpectrumPastelUpgrades.registerBuiltinUpgrades();
 			SpectrumDispenserBehaviors.register();
 			SpectrumPresentUnpackBehaviors.register();
 			SpectrumItemGroups.registerSubTabs();
@@ -241,6 +237,9 @@ public class SpectrumCommon {
 		
 		logInfo("Registering Attachments...");
 		SpectrumAttachmentTypes.register(modBus);
+		
+		logInfo("Setting up server side Mod Compat...");
+		SpectrumIntegrationPacks.register(modBus);
 		
 		logInfo("Common startup completed!");
 	}

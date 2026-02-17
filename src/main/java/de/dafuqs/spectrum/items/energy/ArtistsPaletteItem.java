@@ -66,7 +66,6 @@ public class ArtistsPaletteItem extends SpectrumTrinketItem implements InkStorag
 		return 1;
 	}
 	
-	
 	@Override
 	public ExtendedItemBarProvider.BarSignature getSignature(@Nullable Player player, @NotNull ItemStack stack, int index) {
 		var storage = getEnergyStorage(stack);

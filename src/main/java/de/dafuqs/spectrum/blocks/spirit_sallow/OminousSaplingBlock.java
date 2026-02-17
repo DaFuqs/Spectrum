@@ -35,11 +35,11 @@ public class OminousSaplingBlock extends BushBlock implements EntityBlock {
 	@Override
 	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
 		if (!world.isClientSide()) {
-			OminousSaplingBlockEntity ominousSaplingBlockEntity = getBlockEntity(world, pos);
-			if (ominousSaplingBlockEntity != null) {
-				player.displayClientMessage(Component.nullToEmpty("Sapling owner UUID: " + ominousSaplingBlockEntity.getOwnerUUID()), true);
+			Optional<OminousSaplingBlockEntity> ominousSaplingBlockEntity = world.getBlockEntity(pos, SpectrumBlockEntities.OMINOUS_SAPLING.get());
+			if (ominousSaplingBlockEntity.isPresent()) {
+				player.displayClientMessage(Component.literal("Sapling owner UUID: " + ominousSaplingBlockEntity.get().getOwnerUUID()), true);
 			} else {
-				player.displayClientMessage(Component.nullToEmpty("Sapling block entity putt :("), true);
+				player.displayClientMessage(Component.literal("Sapling block entity putt :("), true);
 			}
 		}
 		return InteractionResult.SUCCESS;
@@ -53,9 +53,9 @@ public class OminousSaplingBlock extends BushBlock implements EntityBlock {
 	}
 	
 	private void generateOminousTree(ServerLevel world, BlockPos pos, BlockState state, RandomSource random) {
-		OminousSaplingBlockEntity ominousSaplingBlockEntity = getBlockEntity(world, pos);
-		if (ominousSaplingBlockEntity != null) {
-			UUID ownerUUID = ominousSaplingBlockEntity.getOwnerUUID();
+		Optional<OminousSaplingBlockEntity> ominousSaplingBlockEntity = world.getBlockEntity(pos, SpectrumBlockEntities.OMINOUS_SAPLING.get());
+		if (ominousSaplingBlockEntity.isPresent()) {
+			UUID ownerUUID = ominousSaplingBlockEntity.get().getOwnerUUID();
 			Player playerEntity = PlayerOwned.getPlayerEntityIfOnline(ownerUUID);
 			if (playerEntity instanceof ServerPlayer serverPlayerEntity) {
 				Support.grantAdvancementCriterion(serverPlayerEntity, "endgame/grow_ominous_sapling", "grow");
@@ -73,15 +73,6 @@ public class OminousSaplingBlock extends BushBlock implements EntityBlock {
 	@Override
 	public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
 		return null;
-	}
-	
-	private OminousSaplingBlockEntity getBlockEntity(Level world, BlockPos blockPos) {
-		BlockEntity saplingBlockEntity = world.getBlockEntity(blockPos);
-		if (saplingBlockEntity instanceof OminousSaplingBlockEntity) {
-			return (OminousSaplingBlockEntity) saplingBlockEntity;
-		} else {
-			return null;
-		}
 	}
 	
 }

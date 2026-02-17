@@ -92,9 +92,9 @@ public class CelestialPocketWatchItem extends Item implements InkPowered {
 	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		super.appendHoverText(stack, context, tooltip, type);
 		
-		var world = Minecraft.getInstance().level;
-		if (world != null) {
-			switch (canAdvanceTime(world)) {
+		Level level = context.level();
+		if (level != null) {
+			switch (canAdvanceTime(level)) {
 				case FAILED_GAME_RULE -> tooltip.add(Component.translatable("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_gamerule").withStyle(ChatFormatting.GRAY));
 				case FAILED_FIXED_TIME -> tooltip.add(Component.translatable("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_fixed_time").withStyle(ChatFormatting.GRAY));
 				case SUCCESS -> tooltip.add(Component.translatable("item.spectrum.celestial_pocketwatch.tooltip.working").withStyle(ChatFormatting.GRAY));

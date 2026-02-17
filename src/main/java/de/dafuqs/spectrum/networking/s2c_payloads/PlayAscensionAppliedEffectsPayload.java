@@ -10,10 +10,13 @@ import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.entity.player.*;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
 import org.jetbrains.annotations.*;
+
+import java.util.logging.*;
 
 public record PlayAscensionAppliedEffectsPayload() implements CustomPacketPayload {
 	
@@ -31,12 +34,11 @@ public record PlayAscensionAppliedEffectsPayload() implements CustomPacketPayloa
 	}
 	
 	@SuppressWarnings("resource")
+	@OnlyIn(Dist.CLIENT)
 	private static void execute(Player player) {
-		var level = player.level();
+		Level level = player.level();
 		level.playSound(null, player.blockPosition(), SpectrumSoundEvents.FADING_PLACED, SoundSource.PLAYERS, 1.0F, 1.0F);
-		Minecraft.getInstance()
-				.getSoundManager()
-				.play(new DivinitySoundInstance());
+		Minecraft.getInstance().getSoundManager().play(new DivinitySoundInstance());
 	}
 	
 	@Override

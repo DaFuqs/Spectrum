@@ -6,7 +6,6 @@ import com.llamalad7.mixinextras.sugar.ref.*;
 import com.mojang.datafixers.util.*;
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.injectors.*;
-import net.minecraft.client.resources.language.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.effect.*;
 import org.spongepowered.asm.mixin.*;

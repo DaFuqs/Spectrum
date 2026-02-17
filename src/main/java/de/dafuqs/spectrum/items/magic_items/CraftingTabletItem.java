@@ -20,6 +20,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
+import net.neoforged.api.distmarker.*;
 
 import java.util.*;
 
@@ -107,7 +108,7 @@ public class CraftingTabletItem extends Item implements LoomPatternProvider {
 	@Override
 	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		super.appendHoverText(stack, context, tooltip, type);
-		var recipe = getStoredRecipe(Minecraft.getInstance().level, stack);
+		var recipe = getStoredRecipe(context.level(), stack);
 		if (recipe == null) {
 			tooltip.add(Component.translatable("item.spectrum.crafting_tablet.tooltip.no_recipe").withStyle(ChatFormatting.GRAY));
 		} else {
@@ -123,6 +124,7 @@ public class CraftingTabletItem extends Item implements LoomPatternProvider {
 	}
 	
 	@Override
+	@OnlyIn(Dist.CLIENT)
 	public Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
 		Minecraft client = Minecraft.getInstance();
 		var storedRecipe = CraftingTabletItem.getStoredRecipe(client.level, stack);

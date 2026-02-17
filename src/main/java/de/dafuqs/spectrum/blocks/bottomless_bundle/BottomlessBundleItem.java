@@ -34,6 +34,7 @@ import net.minecraft.world.item.context.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
+import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -304,6 +305,7 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 		
 	}
 	
+	@OnlyIn(Dist.CLIENT)
 	public static class Renderer implements DynamicItemRenderer {
 		public Renderer() {
 		}

@@ -355,10 +355,10 @@ public class ArtisansAtlasItem extends MapItem {
 	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		super.appendHoverText(stack, context, tooltip, type);
 		
-		var world = Minecraft.getInstance().level;
-		if (world == null) return;
+		Level level = context.level();
+		if (level == null) return;
 		
-		if (getSavedData(stack, world) instanceof ArtisansAtlasState atlasState) {
+		if (getSavedData(stack, level) instanceof ArtisansAtlasState atlasState) {
 			ResourceLocation structureId = atlasState.getTargetId();
 			if (structureId == null)
 				tooltip.add(Component.translatable("item.spectrum.artisans_atlas.empty"));

@@ -14,6 +14,7 @@ import net.minecraft.server.level.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
+import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 import top.theillusivec4.curios.api.*;
 
@@ -26,6 +27,8 @@ public interface InkPowered {
 	 */
 	ResourceLocation REQUIRED_ADVANCEMENT = SpectrumCommon.locate("milestones/unlock_ink_use");
 	
+	
+	@OnlyIn(Dist.CLIENT)
 	static boolean canUseClient() {
 		Minecraft client = Minecraft.getInstance();
 		return canUse(client.player);

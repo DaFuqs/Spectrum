@@ -71,9 +71,9 @@ public class AshenCircletItem extends SpectrumTrinketItem {
 		tooltip.add(Component.translatable("item.spectrum.ashen_circlet.tooltip").withStyle(ChatFormatting.GRAY));
 		tooltip.add(Component.translatable("item.spectrum.ashen_circlet.tooltip2").withStyle(ChatFormatting.GRAY));
 		
-		var world = Minecraft.getInstance().level;
-		if (world != null) {
-			long cooldownTicks = getCooldownTicks(stack, world);
+		Level level = context.level();
+		if (level != null) {
+			long cooldownTicks = getCooldownTicks(stack, level);
 			if (cooldownTicks == 0) {
 				tooltip.add(Component.translatable("item.spectrum.ashen_circlet.tooltip.cooldown_full"));
 			} else {

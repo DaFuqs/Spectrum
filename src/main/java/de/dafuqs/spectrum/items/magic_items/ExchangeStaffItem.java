@@ -26,6 +26,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
+import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 import oshi.util.tuples.*;
 
@@ -161,6 +162,7 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 		return Optional.empty();
 	}
 	
+	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		super.appendHoverText(stack, context, tooltip, type);

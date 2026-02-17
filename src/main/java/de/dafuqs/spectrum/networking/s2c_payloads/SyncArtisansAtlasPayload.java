@@ -31,6 +31,7 @@ public record SyncArtisansAtlasPayload(Optional<ResourceLocation> targetId, Clie
 		execute(payload);
 	}
 	
+	@OnlyIn(Dist.CLIENT)
 	private static void execute(SyncArtisansAtlasPayload payload) {
 		Minecraft client = Minecraft.getInstance();
 		ClientLevel level = client.level;

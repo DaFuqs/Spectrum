@@ -19,6 +19,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
+import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -41,6 +42,7 @@ public class PipeBombItem extends Item implements DamageAwareItem, TickAwareItem
 		return ItemUtils.startUsingInstantly(world, user, hand);
 	}
 	
+	@OnlyIn(Dist.CLIENT)
 	public void startSoundInstance(Player user) {
 		Minecraft.getInstance().getSoundManager().play(new PipeBombChargingSoundInstance(user));
 	}

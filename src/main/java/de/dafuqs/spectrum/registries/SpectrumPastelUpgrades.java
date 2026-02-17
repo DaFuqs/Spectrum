@@ -22,10 +22,7 @@ public class SpectrumPastelUpgrades {
 	public static final PastelUpgradeSignature.Category REDSTONE = PastelUpgradeSignature.Category.redstone();
 	
 	public static void register(IEventBus eventBus) {
-		REGISTRAR.register(eventBus);
-	}
-	
-	public static void registerBuiltinUpgrades() {
+		
 		DeferredHolder<PastelUpgradeSignature, PastelUpgradeSignature> WEAK_STACK = register(
 				"weak_stack", () -> PastelUpgradeSignature.builder(SpectrumItems.RAW_BLOODSTONE.get(), STACK, NAMESPACE)
 						.named("weak_stack").stackMod(3).stackMult(2).build()
@@ -82,6 +79,8 @@ public class SpectrumPastelUpgrades {
 				"lamp", () -> PastelUpgradeSignature.builder(SpectrumItems.PURE_GLOWSTONE.get(), REDSTONE, NAMESPACE)
 						.redstone("lamp").lamp(true).buildRedstone()
 		);
+		
+		REGISTRAR.register(eventBus);
 	}
 	
 	private static DeferredHolder<PastelUpgradeSignature, PastelUpgradeSignature> register(String name, Supplier<PastelUpgradeSignature> upgrade) {

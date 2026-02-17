@@ -5703,9 +5703,9 @@
   "tag.spectrum.yellow_logs": "Yellow Logs",
   "tag.spectrum.crossbows": "Spectrum Crossbows",
 
-  "tag.trinkets.chest.pin": "Pins",
-  "tag.trinkets.head.crown": "Crowns",
-  "tag.trinkets.legs.pigment_palette": "Palettes",
+  "curios.identifier.pin": "Pins",
+  "curios.identifier.crown": "Crowns",
+  "curios.identifier.palette": "Palettes",
 
   "text.autoconfig.Spectrum.option.AddItemTooltips": "Add advanced tooltips for Spawners, Signs, Skulk Shriekers and much more",
   "text.autoconfig.Spectrum.option.AzureDikeHudOffsetX": "X Position of the Azure Dike Overlay on the players screen. Default: On top of Hearts",

@@ -1393,9 +1393,9 @@
   "block.minecraft.banner.spectrum.jade_vine.orange": "Vinha de Jade Laranja",
   "block.minecraft.banner.spectrum.jade_vine.white": "Vinha de Jade Branca",
 
-  "trinkets.slot.chest.pin": "Broche",
-  "trinkets.slot.head.crown": "Coroa",
-  "trinkets.slot.legs.pigment_palette": "Paleta de Pigmentos",
+  "curios.identifier.pin": "Broche",
+  "curios.identifier.crown": "Coroa",
+  "curios.identifier.palette": "Paleta de Pigmentos",
 
 	"item.spectrum.fanciful_tuff_ring": "Anel de Pedra Fantástico",
   "item.spectrum.fanciful_belt": "Cinto Fantástico",

@@ -7,12 +7,14 @@ import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.block.*;
 import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.client.renderer.texture.*;
+import net.minecraft.util.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 
 @Environment(EnvType.CLIENT)
 public class JadeVineRootsBlockEntityRenderer implements BlockEntityRenderer<JadeVineRootsBlockEntity> {
+	private final RandomSource random = RandomSource.create();
 	
 	@SuppressWarnings("unused")
 	public JadeVineRootsBlockEntityRenderer(BlockEntityRendererProvider.Context ctx) {
@@ -34,7 +36,7 @@ public class JadeVineRootsBlockEntityRenderer implements BlockEntityRenderer<Jad
 						poseStack,
 						vertexConsumerProvider.getBuffer(ItemBlockRenderTypes.getMovingBlockRenderType(fenceBlockState)),
 						true,
-						world.random,
+						random,
 						fenceBlockState.getSeed(entity.getBlockPos()),
 						OverlayTexture.NO_OVERLAY
 				);

@@ -341,7 +341,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 			bowlStacks.add(enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack(2 + i));
 		}
 		
-		return SpectrumEnchantmentHelper.collectHighestEnchantments(bowlStacks);
+		return SpectrumEnchantmentHelper.collectHighestEnchantments(bowlStacks, SpectrumEnchantmentTags.ENCHANTER_BLACKLIST);
 	}
 	
 	public static int getRequiredExperienceToEnchantCenterItem(@NotNull EnchanterBlockEntity enchanterBlockEntity) {

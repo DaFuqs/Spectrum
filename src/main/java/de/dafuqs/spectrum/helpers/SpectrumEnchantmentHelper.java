@@ -8,6 +8,7 @@ import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.registry.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
 
@@ -141,19 +142,41 @@ public class SpectrumEnchantmentHelper {
 		return false;
 	}
 	
-	public static Map<Enchantment, Integer> collectHighestEnchantments(List<ItemStack> itemStacks) {
+	//This instance of collectHighestEnchantments is to enable the use of an optional filter
+	public static Map<Enchantment, Integer> collectHighestEnchantments(List<ItemStack> itemStacks, TagKey<Enchantment> blacklist) {
 		Map<Enchantment, Integer> enchantmentLevelMap = new LinkedHashMap<>();
-		
 		for (ItemStack itemStack : itemStacks) {
 			Map<Enchantment, Integer> itemStackEnchantments = EnchantmentHelper.get(itemStack);
 			for (Enchantment enchantment : itemStackEnchantments.keySet()) {
 				int level = itemStackEnchantments.get(enchantment);
 				
-				if (SpectrumEnchantmentTags.isIn(SpectrumEnchantmentTags.ENCHANTER_BLACKLIST, enchantment)) {
+				if (SpectrumEnchantmentTags.isIn(blacklist, enchantment)) {
 					continue;
 				}
 					
-					if (enchantmentLevelMap.containsKey(enchantment)) {
+				if (enchantmentLevelMap.containsKey(enchantment)) {
+					int storedLevel = enchantmentLevelMap.get(enchantment);
+					if (level > storedLevel) {
+						enchantmentLevelMap.put(enchantment, level);
+					}
+				} else {
+					enchantmentLevelMap.put(enchantment, level);
+				}
+			}
+		}
+		
+		return enchantmentLevelMap;
+	}
+	
+	//The filterless version of the method above
+	public static Map<Enchantment, Integer> collectHighestEnchantments(List<ItemStack> itemStacks) {
+		Map<Enchantment, Integer> enchantmentLevelMap = new LinkedHashMap<>();
+		for (ItemStack itemStack : itemStacks) {
+			Map<Enchantment, Integer> itemStackEnchantments = EnchantmentHelper.get(itemStack);
+			for (Enchantment enchantment : itemStackEnchantments.keySet()) {
+				int level = itemStackEnchantments.get(enchantment);
+				
+				if (enchantmentLevelMap.containsKey(enchantment)) {
 					int storedLevel = enchantmentLevelMap.get(enchantment);
 					if (level > storedLevel) {
 						enchantmentLevelMap.put(enchantment, level);

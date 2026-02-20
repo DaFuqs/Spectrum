@@ -148,7 +148,12 @@ public class SpectrumEnchantmentHelper {
 			Map<Enchantment, Integer> itemStackEnchantments = EnchantmentHelper.get(itemStack);
 			for (Enchantment enchantment : itemStackEnchantments.keySet()) {
 				int level = itemStackEnchantments.get(enchantment);
-				if (enchantmentLevelMap.containsKey(enchantment)) {
+				
+				if (SpectrumEnchantmentTags.isIn(SpectrumEnchantmentTags.ENCHANTER_BLACKLIST, enchantment)) {
+					continue;
+				}
+					
+					if (enchantmentLevelMap.containsKey(enchantment)) {
 					int storedLevel = enchantmentLevelMap.get(enchantment);
 					if (level > storedLevel) {
 						enchantmentLevelMap.put(enchantment, level);

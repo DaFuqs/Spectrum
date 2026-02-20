@@ -12,6 +12,8 @@ public class SpectrumEnchantmentTags {
 	
 	public static final TagKey<Enchantment> SPECTRUM_ENCHANTMENT = of("enchantments");
 	
+	public static final TagKey<Enchantment> ENCHANTER_BLACKLIST = of("enchanter_blacklisted_enchantments");
+	
 	private static TagKey<Enchantment> of(String id) {
 		return TagKey.of(RegistryKeys.ENCHANTMENT, SpectrumCommon.locate(id));
 	}

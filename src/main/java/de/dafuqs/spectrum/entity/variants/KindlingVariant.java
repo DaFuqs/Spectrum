@@ -1,22 +1,47 @@
 package de.dafuqs.spectrum.entity.variants;
 
 import com.mojang.serialization.*;
+import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.network.*;
+import net.minecraft.network.codec.*;
 import net.minecraft.resources.*;
-import net.minecraft.tags.*;
-import net.minecraft.util.*;
 import net.minecraft.world.level.storage.loot.*;
 
-public enum KindlingVariant implements StringRepresentable {
+public class KindlingVariant {
 	
-	DEFAULT("default", "textures/entity/kindling/kindling.png", "textures/entity/kindling/kindling_blink.png", "textures/entity/kindling/kindling_angry.png", "textures/entity/kindling/kindling_clipped.png", "textures/entity/kindling/kindling_blink_clipped.png", "textures/entity/kindling/kindling_angry_clipped.png", SpectrumLootTables.KINDLING_CLIPPING);
+	public static final Codec<KindlingVariant> DIRECT_CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+			ResourceLocation.CODEC.fieldOf("default_texture").forGetter((variant) -> variant.defaultTexture),
+			ResourceLocation.CODEC.fieldOf("blinking_texture").forGetter((variant) -> variant.blinkingTexture),
+			ResourceLocation.CODEC.fieldOf("angry_texture").forGetter((variant) -> variant.angryTexture),
+			ResourceLocation.CODEC.fieldOf("clipped_texture").forGetter((variant) -> variant.clippedTexture),
+			ResourceLocation.CODEC.fieldOf("blinking_clipped_texture").forGetter((variant) -> variant.blinkingClippedTexture),
+			ResourceLocation.CODEC.fieldOf("angry_clipped_texture").forGetter((variant) -> variant.angryClippedTexture),
+			ResourceKey.codec(Registries.LOOT_TABLE).fieldOf("clipping_loot_table").forGetter((variant) -> variant.clippingLootTable)
+	).apply(instance, KindlingVariant::new));
+	public static final Codec<Holder<KindlingVariant>> CODEC = RegistryFileCodec.create(SpectrumRegistryKeys.KINDLING_VARIANT, DIRECT_CODEC);
 	
-	public static Codec<KindlingVariant> CODEC = StringRepresentable.fromEnum(KindlingVariant::values);
+	public static final StreamCodec<RegistryFriendlyByteBuf, KindlingVariant> DIRECT_STREAM_CODEC = PacketCodecHelper.tuple(
+			ResourceLocation.STREAM_CODEC, KindlingVariant::getDefaultTexture,
+			ResourceLocation.STREAM_CODEC, KindlingVariant::getBlinkingTexture,
+			ResourceLocation.STREAM_CODEC, KindlingVariant::getAngryTexture,
+			ResourceLocation.STREAM_CODEC, KindlingVariant::getClippedTexture,
+			ResourceLocation.STREAM_CODEC, KindlingVariant::getBlinkingClippedTexture,
+			ResourceLocation.STREAM_CODEC, KindlingVariant::getAngryClippedTexture,
+			ResourceKey.streamCodec(Registries.LOOT_TABLE), KindlingVariant::getClippingLootTable,
+			KindlingVariant::new);
+	public static final StreamCodec<RegistryFriendlyByteBuf, Holder<KindlingVariant>> STREAM_CODEC = ByteBufCodecs.holder(SpectrumRegistryKeys.KINDLING_VARIANT, DIRECT_STREAM_CODEC);
 	
-	private final String name;
-	private final ResourceLocation id;
+	public static final ResourceKey<KindlingVariant> DEFAULT = createKey("default");
+	
+	private static ResourceKey<KindlingVariant> createKey(String name) {
+		return ResourceKey.create(SpectrumRegistryKeys.KINDLING_VARIANT, SpectrumCommon.locate(name));
+	}
+	
 	private final ResourceLocation defaultTexture;
 	private final ResourceLocation blinkingTexture;
 	private final ResourceLocation angryTexture;
@@ -25,21 +50,15 @@ public enum KindlingVariant implements StringRepresentable {
 	private final ResourceLocation angryClippedTexture;
 	private final ResourceKey<LootTable> clippingLootTable;
 	
-	KindlingVariant(String name, String defaultTexture, String blinkingTexture, String angryTexture, String clippedTexture, String blinkingClippedTexture, String angryClippedTexture, ResourceKey<LootTable> clippingLootTable) {
-		this.name = name;
-		this.id = SpectrumCommon.locate(name);
-		this.defaultTexture = SpectrumCommon.locate(defaultTexture);
-		this.blinkingTexture = SpectrumCommon.locate(blinkingTexture);
-		this.angryTexture = SpectrumCommon.locate(angryTexture);
-		this.clippedTexture = SpectrumCommon.locate(clippedTexture);
-		this.blinkingClippedTexture = SpectrumCommon.locate(blinkingClippedTexture);
-		this.angryClippedTexture = SpectrumCommon.locate(angryClippedTexture);
+	KindlingVariant(ResourceLocation defaultTexture, ResourceLocation blinkingTexture, ResourceLocation angryTexture, ResourceLocation clippedTexture,
+					ResourceLocation blinkingClippedTexture, ResourceLocation angryClippedTexture, ResourceKey<LootTable> clippingLootTable) {
+		this.defaultTexture = defaultTexture.withPath((string) -> "textures/" + string + ".png");
+		this.blinkingTexture = blinkingTexture.withPath((string) -> "textures/" + string + ".png");
+		this.angryTexture = angryTexture.withPath((string) -> "textures/" + string + ".png");
+		this.clippedTexture = clippedTexture.withPath((string) -> "textures/" + string + ".png");
+		this.blinkingClippedTexture = blinkingClippedTexture.withPath((string) -> "textures/" + string + ".png");
+		this.angryClippedTexture = angryClippedTexture.withPath((string) -> "textures/" + string + ".png");
 		this.clippingLootTable = clippingLootTable;
-		Registry.register(SpectrumRegistries.KINDLING_VARIANT, id, this);
-	}
-	
-	public TagKey<KindlingVariant> getReference() {
-		return TagKey.create(SpectrumRegistries.KINDLING_VARIANT.key(), id);
 	}
 	
 	public ResourceLocation getDefaultTexture() {
@@ -70,8 +89,4 @@ public enum KindlingVariant implements StringRepresentable {
 		return clippingLootTable;
 	}
 	
-	@Override
-	public String getSerializedName() {
-		return name;
-	}
 }

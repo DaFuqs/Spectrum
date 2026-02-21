@@ -92,6 +92,7 @@ public class BlockVariantHelper {
 		put(Blocks.OXIDIZED_CUT_COPPER, Blocks.WEATHERED_CUT_COPPER);
 	}};
 	
+	//TODO: unused
 	public static Block getCursedRepairedBlockVariant(Level world, BlockPos blockPos) {
 		BlockEntity blockEntity = world.getBlockEntity(blockPos);
 		if (blockEntity != null) {

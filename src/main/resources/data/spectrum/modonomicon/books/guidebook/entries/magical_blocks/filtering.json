@@ -1,0 +1,59 @@
+{
+  "name": "book.spectrum.guidebook.filtering.title",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/filtering"
+  },
+  "icon": "spectrum:textures/gui/guidebook/icons/filter_slot.png",
+  "category": "spectrum:magical_blocks",
+  "hide_while_locked": true,
+  "parents": [
+    {
+      "entry": "spectrum:magical_blocks/black_hole_chest"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 3,
+  "y": -2,
+  "pages": [
+    {
+      "type": "spectrum:snippet",
+      "resource_path": "spectrum:textures/gui/container/filter.png",
+      "resource_width": 256,
+      "resource_height": 256,
+      "texture_x": 176,
+      "texture_y": 0,
+      "texture_width": 18,
+      "texture_height": 18,
+      "border": true,
+      "title": "book.spectrum.guidebook.filtering.title",
+      "text": "book.spectrum.guidebook.filtering.filter_slot.text"
+    },
+    {
+      "type": "spectrum:collection",
+      "items": [
+        {
+          "id": "minecraft:name_tag",
+          "components": {
+            "minecraft:custom_name": "{\"text\":\"c:ores\"}"
+          }
+        },
+        {
+          "id": "minecraft:name_tag",
+          "components": {
+            "minecraft:custom_name": "{\"text\":\"!spectrum:ores\"}"
+          }
+        },
+        {
+          "id": "minecraft:name_tag",
+          "components": {
+            "minecraft:custom_name": "{\"text\":\"any\"}"
+          }
+        }
+      ],
+      "title": "book.spectrum.guidebook.filtering.tag_filtering.title",
+      "text": "book.spectrum.guidebook.filtering.tag_filtering.text"
+    }
+  ]
+}

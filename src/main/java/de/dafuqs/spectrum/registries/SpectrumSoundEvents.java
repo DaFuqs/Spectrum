@@ -162,6 +162,7 @@ public class SpectrumSoundEvents {
 	
 	public static final SoundEvent BLOCK_MEMORY_ADVANCE = register("block.memory.advance");
 	public static final SoundEvent ITEM_PRIMORDIAL_LIGHTER_USE = register("item.primordial_lighter.use");
+	public static final SoundEvent NIGHT_SALTS_USE = register("item.night_salts.use");
 	
 	public static final SoundEvent VINE_SHEAR = register("block.vine.shear");
 	public static final SoundEvent VINE_INFUSE = register("block.vine.infuse");
@@ -286,6 +287,16 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent ENTITY_ERASER_HURT = register("entity.eraser.hurt");
 	public static final SoundEvent ENTITY_ERASER_DEATH = register("entity.eraser.death");
 	public static final SoundEvent ENTITY_ERASER_STEP = register("entity.eraser.step");
+	
+	public static final SoundEvent ENTITY_MARROW_AMBIENT = register("entity.marrow.ambient");
+	public static final SoundEvent ENTITY_MARROW_HURT = register("entity.marrow.hurt");
+	public static final SoundEvent ENTITY_MARROW_DEATH = register("entity.marrow.death");
+	public static final SoundEvent ENTITY_MARROW_STEP = register("entity.marrow.step");
+	
+	public static final SoundEvent ENTITY_SPLINTERSPAWN_AMBIENT = register("entity.splinterspawn.ambient");
+	public static final SoundEvent ENTITY_SPLINTERSPAWN_HURT = register("entity.splinterspawn.hurt");
+	public static final SoundEvent ENTITY_SPLINTERSPAWN_DEATH = register("entity.splinterspawn.death");
+	public static final SoundEvent ENTITY_SPLINTERSPAWN_STEP = register("entity.splinterspawn.step");
 	
 	// OST - AMBIENT
 	public static final SoundEvent OST_AZURE = register("ost.azure");

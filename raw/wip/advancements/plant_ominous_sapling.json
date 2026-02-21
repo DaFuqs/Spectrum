@@ -2,7 +2,7 @@
   "parent": "spectrum:endgame/spectrum_endgame",
   "display": {
     "icon": {
-      "item": "spectrum:ominous_sapling"
+      "id": "spectrum:ominous_sapling"
     },
     "hidden": true,
     "title": {

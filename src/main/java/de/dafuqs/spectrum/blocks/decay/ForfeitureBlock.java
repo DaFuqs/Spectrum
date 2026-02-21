@@ -8,6 +8,7 @@ import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
+import net.minecraft.util.valueproviders.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
@@ -21,12 +22,12 @@ public class ForfeitureBlock extends DecayBlock {
 	// A special version of ruin that spreads indefinitely, even through air.
 	// There are no brakes on the Forfeiture train
 	public ForfeitureBlock(Properties settings) {
-		super(settings, SpectrumCommon.CONFIG.ForfeitureDecayTickRate, SpectrumCommon.CONFIG.ForfeitureCanDestroyBlockEntities, 4, 7.5F);
+		super(settings, SpectrumCommon.CONFIG.ForfeitureDecayTickRate, SpectrumCommon.CONFIG.ForfeitureCanDestroyBlockEntities, 4, 7.5F, UniformInt.of(3, 4));
 		registerDefaultState(getStateDefinition().any().setValue(CONVERSION, Conversion.NONE));
 	}
 	
 	@Override
-	protected MapCodec<? extends ForfeitureBlock> codec() {
+	public MapCodec<? extends ForfeitureBlock> codec() {
 		return CODEC;
 	}
 	

@@ -9,13 +9,13 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": -10,
+  "x": -11,
   "y": 0,
   "pages": [
     {
       "type": "modonomicon:image",
       "use_legacy_rendering": true,
-      "title": "book.spectrum.guidebook.geodes.page0.title",
+      "title": "book.spectrum.guidebook.geodes.name",
       "images": [
         "spectrum:textures/gui/guidebook/geode.png"
       ],
@@ -29,31 +29,6 @@
         "advancement_id": "spectrum:collect_any_basic_shard"
       },
       "text": "book.spectrum.guidebook.geodes.page1.text"
-    },
-    {
-      "type": "modonomicon:multiblock",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:collect_any_basic_shard"
-      },
-      "show_visualize_button": false,
-      "multiblock_id": "spectrum:amethyst_geode",
-      "text": "book.spectrum.guidebook.geodes.page2.text",
-      "multiblock_name": "multiblock.spectrum.amethyst_geode"
-    },
-    {
-      "type": "spectrum:collection",
-      "title": "book.spectrum.guidebook.geodes.page3.title",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:break_gemstone_ore"
-      },
-      "items": [
-        "spectrum:topaz_ore",
-        "spectrum:amethyst_ore",
-        "spectrum:citrine_ore"
-      ],
-      "text": "book.spectrum.guidebook.geodes.page3.text"
     },
     {
       "type": "modonomicon:spotlight",

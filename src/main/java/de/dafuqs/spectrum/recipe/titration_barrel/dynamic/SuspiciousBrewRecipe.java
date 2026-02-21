@@ -40,7 +40,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 	}};
 	
 	public SuspiciousBrewRecipe() {
-		super("", false, Optional.of(UNLOCK_IDENTIFIER), INGREDIENT_STACKS, FluidIngredient.of(Fluids.WATER), OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, new FermentationData(1.25F, 0.01F, List.of()));
+		super("", false, Optional.of(UNLOCK_IDENTIFIER), INGREDIENT_STACKS, FluidIngredient.of(Fluids.WATER), OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, Optional.of(new FermentationData(1.25F, 0.01F, List.of())));
 	}
 	
 	@Override
@@ -67,28 +67,27 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 	
 	public ItemStack tapWith(List<ItemStack> stacks, float thickness, long secondsFermented, float downfall) {
 		float ageIngameDays = TimeHelper.minecraftDaysFromSeconds(secondsFermented);
-		double alcPercent = getAlcPercent(this.fermentationData.fermentationSpeedMod(), thickness, downfall, ageIngameDays);
+		double alcPercent = this.fermentationData.isEmpty() ? 0 : getAlcPercent(this.fermentationData.get().fermentationSpeedMod(), thickness, downfall, ageIngameDays);
 		if (alcPercent >= 100) {
 			return SpectrumItems.PURE_ALCOHOL.get().getDefaultInstance();
 		} else {
 			// add up all stew effects with their durations from the input stacks
-			var stewEffects = new HashMap<Holder<MobEffect>, Double>();
-			for (var stack : stacks) {
-				var stewEffectsComponent = SuspiciousStewEffects.EMPTY;
-				if (stack.getItem() instanceof SuspiciousEffectHolder sussyBakka) // IN THIS WORL YOU ARE EITHER A SUSSY BAKKA OR A BUSSY SUKKA
-					stewEffectsComponent = sussyBakka.getSuspiciousEffects();
-				
-				for (var effect : stewEffectsComponent.effects()) {
-					var key = effect.effect();
-					var duration = effect.duration() * (Support.logBase(2, 1 + stack.getCount()));
-					stewEffects.put(key, stewEffects.getOrDefault(key, 0d) + duration);
+			Map<Holder<MobEffect>, Double> stewEffects = new HashMap<>();
+			for (ItemStack stack : stacks) {
+				@Nullable SuspiciousEffectHolder suspiciousEffectHolder = SuspiciousEffectHolder.tryGet(stack.getItem());
+				if (suspiciousEffectHolder != null) {
+					for (SuspiciousStewEffects.Entry effect : suspiciousEffectHolder.getSuspiciousEffects().effects()) {
+						Holder<MobEffect> key = effect.effect();
+						double duration = effect.duration() * (Support.logBase(2, 1 + stack.getCount()));
+						stewEffects.put(key, stewEffects.getOrDefault(key, 0D) + duration);
+					}
 				}
 			}
 			
-			var finalStatusEffects = new ArrayList<MobEffectInstance>();
+			List<MobEffectInstance> finalStatusEffects = new ArrayList<>();
 			double clampedAlcPercent = Mth.clamp(alcPercent, 1D, 20D); // a too high number will cause issues with the effects length exceeding the integer limit, lol
-			for (var entry : stewEffects.entrySet()) {
-				var finalDurationTicks = entry.getValue() * Math.pow(2, clampedAlcPercent);
+			for (Map.Entry<Holder<MobEffect>, Double> entry : stewEffects.entrySet()) {
+				double finalDurationTicks = entry.getValue() * Math.pow(2, clampedAlcPercent);
 				finalStatusEffects.add(new MobEffectInstance(entry.getKey(), (int) finalDurationTicks, 0));
 			}
 			

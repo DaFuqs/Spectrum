@@ -45,7 +45,7 @@ import java.util.*;
 
 public class KindlingEntity extends AbstractHorse implements RangedAttackMob, NeutralMob, Shearable {
 	
-	protected static final EntityDataAccessor<KindlingVariant> VARIANT = SynchedEntityData.defineId(KindlingEntity.class, SpectrumTrackedDataHandlerRegistry.KINDLING_VARIANT);
+	protected static final EntityDataAccessor<Holder<KindlingVariant>> VARIANT = SynchedEntityData.defineId(KindlingEntity.class, SpectrumTrackedDataHandlerRegistry.KINDLING_VARIANT);
 	protected static final Ingredient FOOD = Ingredient.of(SpectrumItemTags.KINDLING_FOOD);
 	
 	private static final UniformInt ANGER_TIME_RANGE = TimeUtil.rangeOfSeconds(30, 59);
@@ -115,7 +115,12 @@ public class KindlingEntity extends AbstractHorse implements RangedAttackMob, Ne
 	@Override
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 		super.defineSynchedData(builder);
-		builder.define(VARIANT, KindlingVariant.DEFAULT);
+		
+		RegistryAccess registryAccess = this.registryAccess();
+		Registry<KindlingVariant> kindlingVariantRegistry = registryAccess.registryOrThrow(SpectrumRegistryKeys.KINDLING_VARIANT);
+		Optional<Holder.Reference<KindlingVariant>> variantHolder = kindlingVariantRegistry.getHolder(KindlingVariant.DEFAULT);
+		builder.define(VARIANT, variantHolder.or(kindlingVariantRegistry::getAny).orElseThrow());
+		
 		builder.define(ANGER, 0);
 		builder.define(CHILL, 40);
 		builder.define(EEPY_SNEEZE, 0);
@@ -146,11 +151,11 @@ public class KindlingEntity extends AbstractHorse implements RangedAttackMob, Ne
 		super.onSyncedDataUpdated(data);
 	}
 	
-	public KindlingVariant getKindlingVariant() {
+	public Holder<KindlingVariant> getKindlingVariant() {
 		return this.entityData.get(VARIANT);
 	}
 	
-	public void setKindlingVariant(KindlingVariant variant) {
+	public void setKindlingVariant(Holder<KindlingVariant> variant) {
 		this.entityData.set(VARIANT, variant);
 	}
 	
@@ -158,9 +163,12 @@ public class KindlingEntity extends AbstractHorse implements RangedAttackMob, Ne
 	public void addAdditionalSaveData(CompoundTag nbt) {
 		super.addAdditionalSaveData(nbt);
 		this.addPersistentAngerSaveData(nbt);
-		Optional.ofNullable(SpectrumRegistries.KINDLING_VARIANT.getKey(this.getKindlingVariant())).ifPresent(id -> nbt.putString("variant", id.toString()));
+		this.getKindlingVariant().unwrapKey().ifPresent((resourceKey) -> {
+			nbt.putString("variant", resourceKey.location().toString());
+		});
 		nbt.putInt("chillTime", getChillTime());
 		nbt.putInt("eepyTime", getEepyTime());
+		nbt.putInt("clip_time", getClipTime());
 		nbt.putBoolean("playing", isPlaying());
 	}
 	
@@ -169,12 +177,15 @@ public class KindlingEntity extends AbstractHorse implements RangedAttackMob, Ne
 		super.readAdditionalSaveData(nbt);
 		this.readPersistentAngerSaveData(this.level(), nbt);
 		
-		KindlingVariant variant = SpectrumRegistries.KINDLING_VARIANT.get(ResourceLocation.tryParse(nbt.getString("variant")));
-		this.setKindlingVariant(variant == null ? KindlingVariant.DEFAULT : variant);
-		
+		Optional.ofNullable(ResourceLocation.tryParse(nbt.getString("variant")))
+				.map((resourceLocation) -> ResourceKey.create(SpectrumRegistryKeys.KINDLING_VARIANT, resourceLocation))
+				.flatMap((resourceKey) -> this.registryAccess().registryOrThrow(SpectrumRegistryKeys.KINDLING_VARIANT).getHolder(resourceKey))
+				.ifPresent(this::setKindlingVariant);
+
 		setChillTime(nbt.getInt("chillTime"));
 		setEepyTime(nbt.getInt("eepyTime"));
 		setPlaying(nbt.getBoolean("playing"));
+		setClipped(nbt.getInt("clip_time"));
 		
 		this.syncSaddleToClients();
 	}
@@ -533,7 +544,6 @@ public class KindlingEntity extends AbstractHorse implements RangedAttackMob, Ne
 		}
 		
 		if (canEat) {
-			//this.playEatingAnimation();
 			this.gameEvent(GameEvent.EAT);
 		}
 		
@@ -558,7 +568,7 @@ public class KindlingEntity extends AbstractHorse implements RangedAttackMob, Ne
 	}
 	
 	public List<ItemStack> getClippedStacks(ServerLevel world) {
-		LootTable lootTable = world.getServer().reloadableRegistries().getLootTable(this.getKindlingVariant().getClippingLootTable());
+		LootTable lootTable = world.getServer().reloadableRegistries().getLootTable(this.getKindlingVariant().value().getClippingLootTable());
 		return lootTable.getRandomItems(
 				new LootParams.Builder(world)
 						.withParameter(LootContextParams.THIS_ENTITY, KindlingEntity.this)

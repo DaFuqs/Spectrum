@@ -21,9 +21,11 @@
       "title": "book.spectrum.guidebook.ink.name"
     },
     {
-      "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.ink.page1.title",
-      "text": "book.spectrum.guidebook.ink.page1.text"
+      "type": "spectrum:ink_converting",
+      "title": "book.spectrum.guidebook.ink.pigment_converting.title",
+      "recipe_id": "spectrum:ink_converting/pigment/cyan",
+      "recipe_id2": "spectrum:ink_converting/dye/cyan",
+      "text": "book.spectrum.guidebook.ink.pigment_converting.text"
     },
     {
       "type": "modonomicon:image",

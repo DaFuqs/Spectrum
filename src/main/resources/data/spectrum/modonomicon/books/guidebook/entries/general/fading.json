@@ -33,6 +33,12 @@
       "title": "container.spectrum.rei.pedestal_recipe",
       "recipe_id": "spectrum:pedestal/tier1/bottle_of_fading",
       "text": "book.spectrum.guidebook.fading.page1.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "spectrum:pedestal/tier1/bottle_of_fading_essence",
+      "text": "book.spectrum.guidebook.fading.alternative_recipe.text"
     }
   ]
 }

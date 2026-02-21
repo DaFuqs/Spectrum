@@ -7,12 +7,12 @@
     }
   ],
   "output": {
-    "id": "minecraft:echo_shard",
+    "item": "minecraft:echo_shard",
     "count": 4
   },
   "overrides": {
     "4+": {
-      "id": "minecraft:echo_shard",
+      "item": "minecraft:echo_shard",
       "count": 5
     }
   },

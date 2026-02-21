@@ -1,0 +1,44 @@
+{
+  "feature": "spectrum:dd_waterlily",
+  "placement": [
+    {
+      "type": "minecraft:count",
+      "count": 48
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:uniform",
+        "min_inclusive": {
+          "above_bottom": 16
+        },
+        "max_inclusive": {
+          "above_bottom": 96
+        }
+      }
+    },
+    {
+      "type": "minecraft:biome"
+    },
+    {
+      "type": "minecraft:environment_scan",
+      "direction_of_search": "down",
+      "max_steps": 5,
+      "target_condition": {
+        "type": "minecraft:matching_blocks",
+        "blocks": "spectrum:liquid_crystal",
+        "offset": [
+          0,
+          -1,
+          0
+        ]
+      },
+      "allowed_search_condition": {
+        "type": "minecraft:replaceable"
+      }
+    }
+  ]
+}

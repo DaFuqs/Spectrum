@@ -7,7 +7,6 @@ import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.mob_head.*;
 import de.dafuqs.spectrum.blocks.mob_head.client.models.*;
 import de.dafuqs.spectrum.entity.render.*;
-import de.dafuqs.spectrum.entity.variants.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.minecraft.client.model.geom.*;
 import net.minecraft.client.renderer.*;
@@ -176,13 +175,18 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
 		builder.put(SpectrumSkullType.LIZARD_RED, List.of(new Tuple<>(new LizardHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.LIZARD_HEAD), modelLoader.bakeLayer(SpectrumModelLayers.LIZARD_HEAD_FRILLS), InkColors.RED.getColorInt()), LizardHeadModel.HEAD_TEXTURE)));
 		builder.put(SpectrumSkullType.LIZARD_WHITE, List.of(new Tuple<>(new LizardHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.LIZARD_HEAD), modelLoader.bakeLayer(SpectrumModelLayers.LIZARD_HEAD_FRILLS), InkColors.WHITE.getColorInt()), LizardHeadModel.HEAD_TEXTURE)));
 		builder.put(SpectrumSkullType.LIZARD_YELLOW, List.of(new Tuple<>(new LizardHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.LIZARD_HEAD), modelLoader.bakeLayer(SpectrumModelLayers.LIZARD_HEAD_FRILLS), InkColors.YELLOW.getColorInt()), LizardHeadModel.HEAD_TEXTURE)));
-		builder.put(SpectrumSkullType.MONSTROSITY, List.of(new Tuple<>(new MonstrosityHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.MONSTROSITY_HEAD)), MonstrosityEntityRenderer.TEXTURE)));
+		builder.put(SpectrumSkullType.MONSTROSITY, List.of(new Tuple<>(new MonstrosityHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.MONSTROSITY_HEAD)), PreservationTurretEntityRenderer.TEXTURE)));
 		builder.put(SpectrumSkullType.PRESERVATION_TURRET, List.of(new Tuple<>(new PreservationTurretHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.PRESERVATION_TURRET_HEAD)), PreservationTurretEntityRenderer.TEXTURE)));
+		builder.put(SpectrumSkullType.MARROW, List.of(
+				new Tuple<>(new StrayHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.MARROW_HEAD)), MarrowRenderer.MARROW_SKELETON_LOCATION),
+				new Tuple<>(new StrayHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.MARROW_HEAD_OVERLAY)), MarrowRenderer.MARROW_CLOTHES_LOCATION)
+		));
+		builder.put(SpectrumSkullType.SPLINTERSPAWN, List.of(new Tuple<>(new SilverfishHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.SPLINTERSPAWN_HEAD)), SpectrumCommon.locate("textures/entity/splinterspawn/splinterspawn.png"))));
 		
 		return builder.build();
-	}
-	
-	@Override
+    }
+
+    @Override
 	public void render(SpectrumSkullBlockEntity spectrumSkullBlockEntity, float tickDelta, PoseStack poseStack, MultiBufferSource vertexConsumerProvider, int light, int j) {
 		BlockState blockState = spectrumSkullBlockEntity.getBlockState();
 		Direction direction = null;

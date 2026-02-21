@@ -9,13 +9,14 @@ import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
+import net.minecraft.util.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.neoforged.neoforge.client.model.data.*;
 
-
+@Environment(EnvType.CLIENT)
 public class ShootingStarEntityRenderer extends EntityRenderer<ShootingStarEntity> {
 	
 	public ShootingStarEntityRenderer(EntityRendererProvider.Context context) {

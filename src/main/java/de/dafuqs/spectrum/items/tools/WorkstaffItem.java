@@ -102,7 +102,7 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 		
 		switch (toggle) {
 			case SELECT_1x1 -> {
-				stack.set(SpectrumDataComponentTypes.AOE, 0);
+				stack.remove(SpectrumDataComponentTypes.AOE);
 				player.displayClientMessage(toggle.getTriggerText(), true);
 			}
 			case SELECT_3x3 -> {
@@ -113,7 +113,7 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 				stack.set(SpectrumDataComponentTypes.AOE, 2);
 				player.displayClientMessage(toggle.getTriggerText(), true);
 			}
-			// switching to another enchantment
+			// Switching to another enchantment
 			// fortune handling is a bit special. Its level is preserved,
 			// so we can restore the original enchant level when switching back
 			case SELECT_FORTUNE -> enchantAndRemoveOthers(player, stack, toggle.getTriggerText(), Enchantments.FORTUNE);
@@ -153,7 +153,7 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 			level = stack.getOrDefault(SpectrumDataComponentTypes.WORKSTAFF, WorkstaffComponent.DEFAULT).fortuneLevel();
 		} else {
 			int fortuneLevel = SpectrumEnchantmentHelper.getLevel(registryLookup, Enchantments.FORTUNE, stack);
-			stack.update(SpectrumDataComponentTypes.WORKSTAFF, WorkstaffComponent.DEFAULT, comp -> new WorkstaffComponent(comp.canTill(), comp.canShoot(), Math.max(fortuneLevel, 1)));
+			stack.update(SpectrumDataComponentTypes.WORKSTAFF, WorkstaffComponent.DEFAULT, comp -> new WorkstaffComponent(comp.canTill(), comp.canShoot(), Math.max(comp.fortuneLevel(), Math.max(fortuneLevel, 1))));
 		}
 		
 		ItemStack newStack = stack.copy();

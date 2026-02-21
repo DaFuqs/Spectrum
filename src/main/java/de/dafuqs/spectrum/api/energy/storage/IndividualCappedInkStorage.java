@@ -13,7 +13,7 @@ import static de.dafuqs.spectrum.helpers.Support.*;
 public class IndividualCappedInkStorage implements InkStorage {
 	
 	protected final long maxEnergyPerColor;
-	protected final Map<InkColor, Long> storedEnergy = new Object2LongArrayMap<>();
+	protected Map<InkColor, Long> storedEnergy = new Object2LongArrayMap<>();
 	protected long currentTotal; // This is a cache for quick lookup. Can be recalculated anytime using the values in storedEnergy.
 	
 	// support all ink colors
@@ -154,7 +154,13 @@ public class IndividualCappedInkStorage implements InkStorage {
 	
 	@Override
 	public void clearContent() {
-		this.storedEnergy.clear();
+		Set<InkColor> supportedColors = this.storedEnergy.keySet();
+		Map<InkColor, Long> newContent = new HashMap<>();
+		for (InkColor color : supportedColors) {
+			newContent.put(color, 0L);
+		}
+		this.storedEnergy = newContent;
+		this.currentTotal = 0L;
 	}
 	
 	public Set<InkColor> getSupportedColors() {

@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.progression.*;
 import net.minecraft.*;
 import net.minecraft.client.*;
+import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
@@ -14,6 +15,8 @@ import net.minecraft.server.level.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.item.enchantment.*;
 import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 import top.theillusivec4.curios.api.*;
@@ -48,14 +51,17 @@ public interface InkPowered {
 	 * The colors that the object requires for working.
 	 * These are added as the player facing tooltip
 	 **/
+	@Environment(EnvType.CLIENT)
 	default void addInkPoweredTooltip(List<Component> tooltip) {
-		if (getUsedColors().size() > 1) {
-			tooltip.add(Component.translatable("spectrum.tooltip.ink_powered.prefix").withStyle(ChatFormatting.GRAY));
-			for (InkColor color : getUsedColors()) {
-				tooltip.add(color.getColoredInkName().withStyle(ChatFormatting.GRAY));
+		if (canUseClient()) {
+			if (getUsedColors().size() > 1) {
+				tooltip.add(Component.translatable("spectrum.tooltip.ink_powered.prefix").withStyle(ChatFormatting.GRAY));
+				for (InkColor color : getUsedColors()) {
+					tooltip.add(color.getColoredInkName().withStyle(ChatFormatting.GRAY));
+				}
+			} else {
+				tooltip.add(Component.translatable("spectrum.tooltip.ink_powered.consume", getUsedColors().get(0).getColoredInkName()).withStyle(ChatFormatting.GRAY));
 			}
-		} else {
-			tooltip.add(Component.translatable("spectrum.tooltip.ink_powered.consume", getUsedColors().get(0).getColoredInkName()).withStyle(ChatFormatting.GRAY));
 		}
 	}
 	
@@ -87,27 +93,48 @@ public interface InkPowered {
 		return 0;
 	}
 	
+	/**
+	 * Searches an inventory for InkEnergyStorageItems and tries to drain the color energy.
+	 * If enough could be drained returns true, else false.
+	 * If not enough energy is available it will be drained as much as is available
+	 * but return will still be false
+	 **/
 	static boolean tryDrainEnergy(@NotNull Container inventory, InkColor color, long amount) {
 		for (int i = 0; i < inventory.getContainerSize(); i++) {
 			ItemStack currentStack = inventory.getItem(i);
-			if (!currentStack.isEmpty()) {
+			if (!currentStack.isEmpty()) { // fast fail
 				amount -= tryDrainEnergy(currentStack, color, amount, null);
-				if (amount <= 0) return true;
+				if (amount <= 0) {
+					return true;
+				}
 			}
 		}
 		return false;
 	}
 	
-	static boolean tryDrainEnergy(@NotNull Player player, @NotNull InkCost cost) {
-		return  tryDrainEnergy(player.getInventory(), cost.color(), cost.cost());
+	static boolean tryDrainEnergy(@NotNull Player player, @NotNull InkCost inkCost) {
+		return tryDrainEnergy(player, inkCost.color(), inkCost.cost());
 	}
 	
+	static boolean tryDrainEnergy(@NotNull Player player, @NotNull InkCost inkCost, float costModifier) {
+		return tryDrainEnergy(player, inkCost.color(), Support.getIntFromDecimalWithChance(inkCost.cost() * costModifier, player.getRandom()));
+	}
+	
+	/**
+	 * Searches the players Trinkets for energy storage first and inventory second
+	 * for PigmentEnergyStorageItem and tries to drain the color energy.
+	 * If enough could be drained returns true, else false.
+	 * If not enough energy is available it will be drained as much as is available
+	 * but return will still be false
+	 * <p>
+	 * Check Order:
+	 * - Offhand
+	 * - Trinket Slots
+	 * - Inventory
+	 **/
 	static boolean tryDrainEnergy(@NotNull Player player, @NotNull InkColor color, long amount) {
-		if (player.isCreative()) return true;
-		
-		for (ItemStack itemStack : player.getInventory().items) {
-			amount -= tryDrainEnergy(itemStack, color, amount, player);
-			if (amount <= 0) return true;
+		if (player.isCreative()) {
+			return true;
 		}
 		
 		return false;
@@ -135,7 +162,7 @@ public interface InkPowered {
 		
 		// hands
 		for (ItemStack itemStack : player.getHandSlots()) {
-			amount -= tryGetEnergy(itemStack, color);
+			amount -= tryDrainEnergy(itemStack, color, amount, player);
 			if (amount <= 0) {
 				return true;
 			}
@@ -159,7 +186,7 @@ public interface InkPowered {
 		
 		// inventory
 		for (ItemStack itemStack : player.getInventory().items) {
-			amount -= tryGetEnergy(itemStack, color);
+			amount -= tryDrainEnergy(itemStack, color, amount, player);
 			if (amount <= 0) {
 				return true;
 			}
@@ -198,6 +225,76 @@ public interface InkPowered {
 			available += tryGetEnergy(itemStack, color);
 		}
 		return available;
+	}
+	
+	static boolean hasAvailableInk(Player player, InkCost inkCost) {
+		return hasAvailableInk(player, inkCost.color(), inkCost.cost());
+	}
+	
+	static boolean hasAvailableInk(Player player, InkColor color, long amount) {
+		if (!canUse(player)) {
+			return false;
+		}
+
+		if(SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.MALUM_ID)) {
+			var effect = BuiltInRegistries.MOB_EFFECT.get(ResourceLocation.parse("malum:silenced"));
+			if (player.hasEffect(BuiltInRegistries.MOB_EFFECT.wrapAsHolder(effect))) {
+				return false;
+			}
+		}
+		
+		if (player.isCreative()) {
+			return true;
+		}
+		
+		// hands
+		for (ItemStack itemStack : player.getHandSlots()) {
+			amount -= tryGetEnergy(itemStack, color);
+			if (amount <= 0) {
+				return true;
+			}
+		}
+		
+		// trinket slot
+		Optional<TrinketComponent> optionalTrinketComponent = TrinketsApi.getTrinketComponent(player);
+		if (optionalTrinketComponent.isPresent()) {
+			List<Tuple<SlotReference, ItemStack>> trinketInkStorages = optionalTrinketComponent.get().getEquipped(itemStack -> itemStack.getItem() instanceof InkStorageItem<?>);
+			for (Tuple<SlotReference, ItemStack> trinketEnergyStorageStack : trinketInkStorages) {
+				amount -= tryGetEnergy(trinketEnergyStorageStack.getB(), color);
+				if (amount <= 0) {
+					return true;
+				}
+			}
+		}
+		
+		// inventory
+		for (ItemStack itemStack : player.getInventory().items) {
+			amount -= tryGetEnergy(itemStack, color);
+			if (amount <= 0) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	default boolean payForStaffUse(Player player, ItemStack stack, @NotNull InkCost inkCost, @Nullable Ingredient itemCost) {
+		boolean paid = player.isCreative(); // free for creative players
+		if (!paid) { // try pay with ink
+			paid = InkPowered.tryDrainEnergy(player, inkCost, getInkCostMod(player.level().registryAccess(), stack));
+		}
+		if (!paid && itemCost != null && player.getInventory().contains(itemCost)) {  // try pay with item
+			int efficiencyLevel = SpectrumEnchantmentHelper.getLevel(player.level().registryAccess(), Enchantments.EFFICIENCY, stack);
+			if (player.getRandom().nextFloat() > (2.0 / (2 + efficiencyLevel))) {
+				return true;
+			}
+			paid = ContainerHelper.clearOrCountMatchingItems(player.getInventory(), itemCost::test, 1, false) == 1;
+		}
+		return paid;
+	}
+	
+	default float getInkCostMod(HolderLookup.Provider lookup, ItemStack itemStack) {
+		return 3.0F / (3.0F + SpectrumEnchantmentHelper.getLevel(lookup, Enchantments.EFFICIENCY, itemStack));
 	}
 	
 }

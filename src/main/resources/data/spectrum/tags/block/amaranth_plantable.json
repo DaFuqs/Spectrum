@@ -1,6 +1,8 @@
 {
   "values": [
     "minecraft:farmland",
+    "spectrum:tilled_slush",
+    "spectrum:tilled_shale_clay",
     {
       "id": "farmersdelight:rich_soil_farmland",
       "required": false

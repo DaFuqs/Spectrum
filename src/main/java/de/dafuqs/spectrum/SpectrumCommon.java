@@ -156,6 +156,10 @@ public class SpectrumCommon {
 		logInfo("Registering Loot Conditions & Functions...");
 		SpectrumLootContextTypes.register();
 		SpectrumLootFunctionTypes.register(modBus);
+		SpectrumLootConditions.register(modBus);
+		
+		logInfo("Setting up server side Mod Compat...");
+		SpectrumIntegrationPacks.register();
 		
 		// GUI
 		logInfo("Registering Screen Handler Types...");

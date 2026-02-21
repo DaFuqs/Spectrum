@@ -44,7 +44,7 @@ public class ServerPastelNetwork extends PastelNetwork<ServerLevel> {
 	}
 	
 	public ServerPastelNetwork(ServerLevel world, PastelNodeBlockEntity initialNode) {
-		this(world, initialNode.getNodeId(), initialNode.getPastelNetworkColor(), new TickLooper(10));
+		this(world, UUID.randomUUID(), initialNode.getPastelNetworkColor(), new TickLooper(10));
 		addNode(initialNode);
 	}
 	
@@ -163,23 +163,6 @@ public class ServerPastelNetwork extends PastelNetwork<ServerLevel> {
 		}
 		addPriorityNode(node);
 		node.setNetworkUUID(this.getUUID());
-	}
-	
-	/**
-	 * Note: this does not check if the nodes can connect, that should be done before calling this method.
-	 */
-	protected void addNodeAndConnect(PastelNodeBlockEntity newNode, PastelNodeBlockEntity existing) {
-		if (addLoadedNode(newNode))
-			return;
-		
-		this.graph.addVertex(newNode.getBlockPos());
-		getGraph().addEdge(newNode.getBlockPos(), existing.getBlockPos());
-		
-		// check for priority
-		addPriorityNode(newNode);
-		
-		newNode.setNetworkUUID(this.getUUID());
-		PastelNetworkEdgeSyncPayload.send(this, newNode.getBlockPos());
 	}
 	
 	// check if a recently removed node split the network into subnetworks

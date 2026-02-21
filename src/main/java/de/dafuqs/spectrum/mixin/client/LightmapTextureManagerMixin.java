@@ -13,7 +13,6 @@ import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 
 @Mixin(value = LightTexture.class, priority = 9999)
-
 public class LightmapTextureManagerMixin {
 	
 	@Shadow

@@ -1,26 +1,23 @@
 {
-  "type": "spectrum:anvil_crushing",
-  "ingredient": [
-    {
-      "item": "spectrum:small_globette_nether_bud"
-    },
-    {
-      "item": "spectrum:large_globette_nether_bud"
-    }
-  ],
-  "crushedItemsPerPointOfDamage": 1.0,
-  "experience": 2.0,
-  "result": {
-    "id": "gobber2:gobber2_ingot_nether",
-    "count": 2
-  },
-  "particleEffectIdentifier": "explosion",
-  "soundEventIdentifier": "block.amethyst_cluster.break",
-  "required_advancement": "spectrum:lategame/collect_pure_resource",
   "neoforge:conditions": [
     {
-      "type": "spectrum:integration_pack_active",
-      "integration_pack": "gobber2"
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
     }
-  ]
+  ],
+
+  "type": "spectrum:enchantment_upgrade",
+  "bulk_item": {
+    "item": "spectrum:cyan_pigment"
+  },
+  "enchantment": "create:capacity",
+  "item_scaling": {
+    "type": "spectrum:doubling",
+    "scaling_value": 8
+  },
+  "level_cap": 5,
+  "xp_scaling": {
+    "type": "spectrum:doubling",
+    "scaling_value": 400
+  }
 }

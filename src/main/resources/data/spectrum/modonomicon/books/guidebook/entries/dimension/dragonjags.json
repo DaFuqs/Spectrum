@@ -23,11 +23,21 @@
       "type": "spectrum:collection",
       "title": "book.spectrum.guidebook.dragonjags.name",
       "items": [
-        "spectrum:small_red_dragonjag",
-        "spectrum:small_yellow_dragonjag",
-        "spectrum:small_pink_dragonjag",
-        "spectrum:small_purple_dragonjag",
-        "spectrum:small_black_dragonjag"
+        {
+          "id": "spectrum:small_red_dragonjag"
+        },
+        {
+          "id": "spectrum:small_yellow_dragonjag"
+        },
+        {
+          "id": "spectrum:small_pink_dragonjag"
+        },
+        {
+          "id": "spectrum:small_purple_dragonjag"
+        },
+        {
+          "id": "spectrum:small_black_dragonjag"
+        }
       ],
       "text": "book.spectrum.guidebook.dragonjags.page0.text"
     },

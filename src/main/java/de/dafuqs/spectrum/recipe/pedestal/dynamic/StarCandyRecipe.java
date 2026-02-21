@@ -19,6 +19,7 @@ public class StarCandyRecipe extends ShapedPedestalRecipe {
 	
 	public static final ResourceLocation UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/food/star_candy");
 	public static final float PURPLE_STAR_CANDY_CHANCE = 0.01F;
+	public static final float PURPLE_STAR_CANDY_LUCK_BONUS_CHANCE = 0.1F;
 	
 	public StarCandyRecipe() {
 		super("", false, Optional.of(UNLOCK_IDENTIFIER), PedestalRecipeTier.BASIC, new RawShapedPedestalRecipe(3, 3, generateInputs(), Optional.empty()), Map.of(BuiltinGemstoneColor.YELLOW, 1), SpectrumItems.STAR_CANDY.get().getDefaultInstance(), 1.0F, 20, false, false);
@@ -27,7 +28,7 @@ public class StarCandyRecipe extends ShapedPedestalRecipe {
 	@Override
 	public ItemStack assemble(PedestalRecipeInput input, HolderLookup.Provider wrapperLookup) {
 		@Nullable Player player = input.getPlayer();
-		if (player != null && player.getRandom().nextFloat() < PURPLE_STAR_CANDY_CHANCE + player.getAttributeValue(Attributes.LUCK)) {
+		if (player != null && player.getRandom().nextFloat() < PURPLE_STAR_CANDY_CHANCE + player.getAttributeValue(Attributes.LUCK) * PURPLE_STAR_CANDY_LUCK_BONUS_CHANCE) {
 			return SpectrumItems.ENCHANTED_STAR_CANDY.get().getDefaultInstance();
 		}
 		return this.output.copy();

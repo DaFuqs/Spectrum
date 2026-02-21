@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.blocks.decoration.*;
 import de.dafuqs.spectrum.compat.claims.*;
-import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
@@ -17,10 +17,13 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.*;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -35,26 +38,26 @@ public class RadianceStaffItem extends Item implements InkPowered {
 	public static final int MIN_LIGHT_LEVEL = 10;
 	
 	public static final InkCost INK_COST = new InkCost(InkColors.YELLOW, 10);
-	public static final ItemStack COST = new ItemStack(SpectrumItems.SHIMMERSTONE_GEM.get(), 1);
+	public static final Ingredient COST = Ingredient.of(SpectrumItemTags.RADIANCE_STAFF_CONSUMABLE);
 	
 	public RadianceStaffItem(Properties settings) {
 		super(settings);
 	}
 	
-	public static boolean placeLight(Level world, BlockPos targetPos, ServerPlayer playerEntity) {
+	public boolean placeLight(Level world, BlockPos targetPos, ServerPlayer playerEntity, ItemStack radianceStaff) {
 		if (!GenericClaimModsCompat.canPlaceBlock(world, targetPos, playerEntity)) {
 			return false;
 		}
 		
 		BlockState targetBlockState = world.getBlockState(targetPos);
 		if (targetBlockState.isAir()) {
-			if (playerEntity.isCreative() || InkPowered.tryDrainEnergy(playerEntity, INK_COST) || InventoryHelper.removeFromInventoryWithRemainders(playerEntity, COST)) {
-				world.setBlock(targetPos, SpectrumBlocks.PERSISTENT_LIGHT.get().defaultBlockState(), 3);
+			if (payForStaffUse(playerEntity, radianceStaff, INK_COST, COST)) {
+				world.setBlock(targetPos, SpectrumBlocks.PERSISTENT_LIGHT.defaultBlockState(), 3);
 				return true;
 			}
 		} else if (targetBlockState.is(Blocks.WATER)) {
-			if (playerEntity.isCreative() || InkPowered.tryDrainEnergy(playerEntity, INK_COST) || InventoryHelper.removeFromInventoryWithRemainders(playerEntity, COST)) {
-				world.setBlock(targetPos, SpectrumBlocks.PERSISTENT_LIGHT.get().defaultBlockState().setValue(WATERLOGGED, true), 3);
+			if (payForStaffUse(playerEntity, radianceStaff, INK_COST, COST)) {
+				world.setBlock(targetPos, SpectrumBlocks.PERSISTENT_LIGHT.defaultBlockState().setValue(WATERLOGGED, true), 3);
 				return true;
 			}
 		}
@@ -77,6 +80,7 @@ public class RadianceStaffItem extends Item implements InkPowered {
 	}
 	
 	@Override
+	@Environment(EnvType.CLIENT)
 	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		if (InkPowered.canUseClient()) {
 			tooltip.add(Component.translatable("item.spectrum.radiance_staff.tooltip.ink", INK_COST.color().getColoredInkName()));
@@ -109,12 +113,12 @@ public class RadianceStaffItem extends Item implements InkPowered {
 	public void onUseTick(Level world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
 		// trigger the items' usage action every x ticks
 		if (user instanceof ServerPlayer serverPlayerEntity && user.getTicksUsingItem() > USE_DURATION && user.getTicksUsingItem() % USE_DURATION == 0) {
-			usage(world, serverPlayerEntity);
+			usage(world, serverPlayerEntity, stack);
 		}
 	}
 	
 	@Override
-	public InteractionResult useOn(UseOnContext context) {
+	public @NotNull InteractionResult useOn(UseOnContext context) {
 		Level world = context.getLevel();
 		if (world.isClientSide) {
 			return InteractionResult.SUCCESS;
@@ -128,20 +132,28 @@ public class RadianceStaffItem extends Item implements InkPowered {
 		BlockPos pos = context.getClickedPos();
 		Direction direction = context.getClickedFace();
 		
-		if (!world.getBlockState(pos).is(SpectrumBlocks.PERSISTENT_LIGHT)) { // those get destroyed instead
+		BlockState state = world.getBlockState(pos);
+		if (state.getBlock() instanceof PersistentLightBlock) {
+			// toggle the lights level
+			BlockState newState = state.cycle(LEVEL);
+			if (newState.getValue(LEVEL) == 0) { // skip light level of 0, since they would be absolutely useless and unintuitive
+				newState = newState.cycle(LEVEL);
+			}
+			world.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SpectrumSoundEvents.RADIANCE_STAFF_PLACE, SoundSource.PLAYERS, 1.0F, (float) (0.75 + 0.05 * newState.getValue(LEVEL)));
+			world.setBlock(pos, newState, Block.UPDATE_CLIENTS);
+		} else {
+			// try placing a light
 			BlockPos targetPos = pos.relative(direction);
-			if (placeLight(world, targetPos, (ServerPlayer) player)) {
+			if (placeLight(world, targetPos, (ServerPlayer) player, context.getItemInHand())) {
 				RadianceStaffItem.playSoundAndParticles(world, targetPos, (ServerPlayer) player, world.random.nextInt(5), world.random.nextInt(5));
 			} else {
 				RadianceStaffItem.playDenySound(world, player);
 			}
-			return InteractionResult.CONSUME;
 		}
-		
-		return InteractionResult.PASS;
+		return InteractionResult.CONSUME;
 	}
 	
-	public void usage(Level world, ServerPlayer user) {
+	public void usage(Level world, ServerPlayer user, ItemStack radianceStaff) {
 		int useTimes = (user.getTicksUsingItem() / USE_DURATION);
 		int maxCheckDistance = Math.min(MAX_REACH_STEPS, useTimes);
 		
@@ -164,10 +176,9 @@ public class RadianceStaffItem extends Item implements InkPowered {
 				);
 				
 				if (world.getBrightness(LightLayer.BLOCK, targetPos) < MIN_LIGHT_LEVEL) {
-					if (placeLight(world, targetPos, user)) {
+					if (placeLight(world, targetPos, user, radianceStaff)) {
 						success = true;
 						playSoundAndParticles(world, targetPos, user, useTimes, iteration);
-						break;
 					}
 				}
 			}
@@ -181,6 +192,11 @@ public class RadianceStaffItem extends Item implements InkPowered {
 	@Override
 	public int getEnchantmentValue() {
 		return 8;
+	}
+	
+	@Override
+	public boolean canBeEnchantedWith(ItemStack stack, Holder<Enchantment> enchantment, EnchantingContext context) {
+		return super.canBeEnchantedWith(stack, enchantment, context) || enchantment.is(Enchantments.EFFICIENCY);
 	}
 	
 	@Override

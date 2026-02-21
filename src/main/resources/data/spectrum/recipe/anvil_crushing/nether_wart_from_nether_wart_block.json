@@ -1,0 +1,17 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": [
+    {
+      "item": "minecraft:nether_wart_block"
+    }
+  ],
+  "crushedItemsPerPointOfDamage": 1.5,
+  "experience": 0.0,
+  "result": {
+    "id": "minecraft:nether_wart",
+    "count": 9
+  },
+  "particleEffectIdentifier": "crimson_spore",
+  "particleCount": 4,
+  "soundEventIdentifier": "block.wart_block.break"
+}

@@ -302,7 +302,9 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 			return false;
 		}
 		if (enchanter.currentRecipe == null) {
-			return false;
+			// Hard-coded center enchanting recipe has no serialized recipe, so currentRecipe == null
+			// does not mean the enchanter has no valid recipe.
+			return isValidCenterEnchantingSetup(enchanter);
 		}
 		
 		var recipe = enchanter.currentRecipe.value();
@@ -427,7 +429,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	
 	public static Integer getEnchantingPrice(ItemStack stack, Holder<Enchantment> enchantment, int level) {
 		int enchantability = Math.max(1, stack.getItem().getEnchantmentValue()); // items like Elytras have an enchantability of 0, but can get unbreaking
-		if (stack.supportsEnchantment(enchantment) || SpectrumEnchantmentHelper.isEnchantableBook(stack)) {
+		if (stack.supportsEnchantment(enchantment) || SpectrumEnchantmentHelper.isEnchantableBook(stack) || stack.is(Items.ENCHANTED_BOOK)) {
 			return getRequiredExperienceForEnchantment(enchantability, enchantment, level);
 		}
 		return -1;
@@ -576,7 +578,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	
 	private static boolean recipeMatches(EnchanterBlockEntity blockEntity, Level world) {
 		if (blockEntity.currentRecipe == null) {
-			return false;
+			return isValidCenterEnchantingSetup(blockEntity);
 		}
 		if (blockEntity.currentRecipe.value() instanceof EnchanterRecipe recipe) {
 			return recipe.matches(blockEntity.virtualInventory.createInput(), world);
@@ -688,7 +690,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		}
 	}
 	
-	
+	@Environment(EnvType.CLIENT)
 	protected void stopCraftingMusic() {
 		CraftingBlockSoundInstance.stopPlayingOnPos(this.worldPosition);
 	}

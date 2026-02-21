@@ -14,10 +14,10 @@ import org.spongepowered.asm.mixin.injection.*;
 public class LilyPadBlockMixin {
 	@ModifyReturnValue(method = "mayPlaceOn", at = @At("RETURN"))
 	public boolean spectrum$extendLilyPlaceables(boolean original, BlockState floor, BlockGetter world, BlockPos pos) {
-		if (original)
-			return true;
-		FluidState fluidState = world.getFluidState(pos);
-		FluidState fluidState2 = world.getFluidState(pos.above());
-		return (fluidState.getType() == SpectrumFluids.SLUDGE.get() || fluidState.getType() == SpectrumFluids.LIQUID_CRYSTAL.get()) && fluidState2.getType() == Fluids.EMPTY;
-	}
+        if (original)
+            return true;
+        FluidState localState = world.getFluidState(pos);
+		FluidState aboveState = world.getFluidState(pos.above());
+		return (localState.getType() == SpectrumFluids.SLUDGE.get() || localState.getType() == SpectrumFluids.LIQUID_CRYSTAL.get()) && aboveState.getType() == Fluids.EMPTY;
+    }
 }

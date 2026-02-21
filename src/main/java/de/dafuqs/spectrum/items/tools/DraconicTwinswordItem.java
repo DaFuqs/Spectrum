@@ -106,6 +106,7 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
 			if (player.getCooldowns().isOnCooldown(stack.getItem()) || SlotReservingItem.isReservingSlot(stack)) {
 				stack.remove(DataComponents.ATTRIBUTE_MODIFIERS);
 			} else {
+				// TODO: this is fired EVERY tick
 				stack.set(DataComponents.ATTRIBUTE_MODIFIERS, modifiers);
 			}
 		}

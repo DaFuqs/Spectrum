@@ -10,6 +10,7 @@ import net.minecraft.core.registries.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
@@ -64,26 +65,31 @@ public class BlockPlacerBlock extends RedstoneInteractionBlock implements Entity
 				world.gameEvent(GameEvent.BLOCK_ACTIVATE, pos, GameEvent.Context.of(blockEntity.getBlockState()));
 			} else {
 				ItemStack stack = blockEntity.getItem(slot);
-				tryPlace(stack, pointer);
+				tryPlace(stack, pointer, blockEntity.getOwnerIfOnline());
 			}
 		}
 	}
 	
 	// We can't reuse the vanilla BlockPlacementDispenserBehavior, since we are using a different orientation for our block:
 	// BlockPlacerBlock.ORIENTATION instead of DispenserBlock.FACING
-	protected void tryPlace(@NotNull ItemStack stack, BlockSource pointer) {
+	protected void tryPlace(@NotNull ItemStack stack, BlockSource pointer, @Nullable Player owner) {
 		Level world = pointer.level();
 		if (stack.getItem() instanceof BlockItem blockItem) {
 			Direction facing = pointer.state().getValue(BlockPlacerBlock.ORIENTATION).front();
 			BlockPos placementPos = pointer.pos().relative(facing);
 			Direction placementDirection = world.isEmptyBlock(placementPos.below()) ? facing : Direction.UP;
 			
-			if (!GenericClaimModsCompat.canPlaceBlock(world, placementPos, null)) {
+			if (!GenericClaimModsCompat.canPlaceBlock(world, placementPos, owner)) {
 				return;
 			}
 			
 			try {
-				blockItem.place(new BlockPlacerPlacementContext(world, placementPos, facing, stack, placementDirection));
+				if (blockItem.place(new BlockPlacerPlacementContext(world, placementPos, facing, stack, placementDirection, owner)).consumesAction()) {
+					if (owner != null && owner.getAbilities().instabuild) {
+						stack.shrink(1);
+					}
+				}
+				;
 				world.levelEvent(LevelEvent.SOUND_DISPENSER_DISPENSE, pointer.pos(), 0);
 				world.levelEvent(LevelEvent.PARTICLES_SHOOT_SMOKE, pointer.pos(), pointer.state().getValue(BlockPlacerBlock.ORIENTATION).front().get3DDataValue());
 				world.gameEvent(null, GameEvent.BLOCK_PLACE, placementPos);
@@ -115,6 +121,14 @@ public class BlockPlacerBlock extends RedstoneInteractionBlock implements Entity
 	}
 	
 	@Override
+	public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+		super.setPlacedBy(level, pos, state, placer, stack);
+		if (placer instanceof ServerPlayer serverPlayer && level.getBlockEntity(pos) instanceof BlockPlacerBlockEntity blockPlacerBlockEntity) {
+			blockPlacerBlockEntity.setOwner(serverPlayer);
+		}
+	}
+	
+	@Override
 	public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean moved) {
 		Containers.dropContentsOnDestroy(state, newState, world, pos);
 		super.onRemove(state, world, pos, newState, moved);
@@ -132,8 +146,26 @@ public class BlockPlacerBlock extends RedstoneInteractionBlock implements Entity
 	
 	public static final class BlockPlacerPlacementContext extends DirectionalPlaceContext {
 		
-		public BlockPlacerPlacementContext(Level world, BlockPos pos, Direction facing, ItemStack stack, Direction side) {
+		// Shadows the variable facing in the superclass.
+		private final Direction facing;
+		private final Player cause;
+		
+		public BlockPlacerPlacementContext(Level world, BlockPos pos, Direction facing, ItemStack stack, Direction side, Player cause) {
 			super(world, pos, facing, stack, side);
+			this.facing = facing;
+			this.cause = cause;
+		}
+		
+		// Not global, as to avoid any exploits where Ender Droppers et al. can be placed without player consent.
+		@Nullable
+		@Override
+		public Player getPlayer() {
+			return this.getItemInHand().is(SpectrumItemTags.PLAYER_ATTRIBUTED_PLACEMENT) ? this.cause : null;
+		}
+		
+		@Override
+		public @NotNull Direction getHorizontalDirection() {
+			return facing.getOpposite();
 		}
 		
 		// SlabBlocks cause a non-funny StackOverflowError

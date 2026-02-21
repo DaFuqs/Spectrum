@@ -1,7 +1,7 @@
 {
   "values": [
+    "#spectrum:groundcover",
     "spectrum:rotten_ground",
-    "spectrum:slush",
-    "#spectrum:groundcover"
+    "spectrum:slush"
   ]
 }

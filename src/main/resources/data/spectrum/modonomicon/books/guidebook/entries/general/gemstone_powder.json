@@ -12,11 +12,15 @@
   "hide_while_locked": true,
   "parents": [
     {
-      "entry": "spectrum:general/item_crushing"
+      "entry": "spectrum:general/item_crushing",
+      "line_reversed": true
     },
     {
       "entry": "spectrum:general/shards",
       "line_reversed": true
+    },
+    {
+      "entry": "spectrum:general/gemstone_ores"
     }
   ],
   "background_u_index": 0,

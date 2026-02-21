@@ -168,6 +168,8 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 			
 			world.playLocalSound(pos, SpectrumSoundEvents.MEDIUM_CRYSTAL_RING, SoundSource.BLOCKS, 0.25F, 0.9F + world.getRandom().nextFloat() * 0.2F, true);
 			return ItemInteractionResult.sidedSuccess(world.isClientSide());
+		} else if (tryColorUsingStackInHand(stack, world, pos, player, hand)) {
+			return ItemInteractionResult.sidedSuccess(world.isClientSide());
 		} else if (this.pastelNodeType.usesFilters()) {
 			if (!world.isClientSide) {
 				player.openMenu(blockEntity);

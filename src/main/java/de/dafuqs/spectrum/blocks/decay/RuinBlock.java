@@ -11,6 +11,7 @@ import net.minecraft.core.particles.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
+import net.minecraft.util.valueproviders.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
@@ -25,12 +26,12 @@ public class RuinBlock extends DecayBlock {
 	public static final MapCodec<RuinBlock> CODEC = simpleCodec(RuinBlock::new);
 	
 	public RuinBlock(Properties settings) {
-		super(settings, SpectrumCommon.CONFIG.RuinDecayTickRate, SpectrumCommon.CONFIG.RuinCanDestroyBlockEntities, 3, 5F);
+		super(settings, SpectrumCommon.CONFIG.RuinDecayTickRate, SpectrumCommon.CONFIG.RuinCanDestroyBlockEntities, 3, 5F, UniformInt.of(2, 3));
 		registerDefaultState(getStateDefinition().any().setValue(CONVERSION, Conversion.NONE));
 	}
 	
 	@Override
-	protected MapCodec<? extends RuinBlock> codec() {
+	public MapCodec<? extends RuinBlock> codec() {
 		return CODEC;
 	}
 	
@@ -54,6 +55,9 @@ public class RuinBlock extends DecayBlock {
 	@Override
 	protected @Nullable BlockState getSpreadState(BlockState stateToSpreadFrom, BlockState stateToSpreadTo, Level world, BlockPos stateToSpreadToPos) {
 		if (stateToSpreadTo.getCollisionShape(world, stateToSpreadToPos).isEmpty() || stateToSpreadTo.is(SpectrumBlockTags.RUIN_SAFE)) {
+			return null;
+		}
+		if (SpectrumDimensionTags.is(world, SpectrumDimensionTags.RUIN_SAFE)) {
 			return null;
 		}
 		
@@ -82,9 +86,11 @@ public class RuinBlock extends DecayBlock {
 	public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean moved) {
 		super.onRemove(state, level, pos, newState, moved);
 		
-		Optional<Boolean> shouldCreatePortalFacingUp = shouldCreatePortalFacingUp(level, pos, state);
-		if (shouldCreatePortalFacingUp.isPresent()) {
-			level.setBlockAndUpdate(pos, SpectrumBlocks.DEEPER_DOWN_PORTAL.get().defaultBlockState().setValue(DeeperDownPortalBlock.FACING_UP, shouldCreatePortalFacingUp.get()));
+		if (newState.isAir()) {
+			Optional<Boolean> shouldCreatePortalFacingUp = shouldCreatePortalFacingUp(level, pos, state);
+			if (shouldCreatePortalFacingUp.isPresent()) {
+				level.setBlockAndUpdate(pos, SpectrumBlocks.DEEPER_DOWN_PORTAL.get().defaultBlockState().setValue(DeeperDownPortalBlock.FACING_UP, shouldCreatePortalFacingUp.get()));
+			}
 		}
 	}
 	

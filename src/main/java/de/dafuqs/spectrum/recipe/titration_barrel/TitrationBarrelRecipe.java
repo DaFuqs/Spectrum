@@ -41,7 +41,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<FluidRecipeI
 	public final FluidIngredient fluid;
 	
 	public final int minFermentationTimeHours;
-	public final FermentationData fermentationData;
+	public final Optional<FermentationData> fermentationData;
 	
 	public TitrationBarrelRecipe(
 			String group,
@@ -52,7 +52,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<FluidRecipeI
 			ItemStack outputItemStack,
 			Item tappingItem,
 			int minFermentationTimeHours,
-			FermentationData fermentationData
+			Optional<FermentationData> fermentationData
 	) {
 		super(group, secret, requiredAdvancementIdentifier);
 		
@@ -96,7 +96,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<FluidRecipeI
 	}
 	
 	@Override
-	public FermentationData getFermentationData() {
+	public Optional<FermentationData> getFermentationData() {
 		return this.fermentationData;
 	}
 	
@@ -138,7 +138,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<FluidRecipeI
 	
 	@Override
 	public float getAngelsSharePerMcDay() {
-		return this.fermentationData.angelsSharePercentPerMcDay();
+		return this.fermentationData.isEmpty() ? 0 : this.fermentationData.get().angelsSharePercentPerMcDay();
 	}
 	
 	@Override
@@ -149,44 +149,43 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<FluidRecipeI
 	}
 	
 	private ItemStack tapWith(float thickness, long secondsFermented, float downfall) {
-		ItemStack stack = this.outputItemStack.copy();
+		ItemStack stack = this.outputItemStack.copyWithCount(1);
 		return getFermentedStack(this.fermentationData, thickness, secondsFermented, downfall, stack);
 	}
 	
-	public static ItemStack getFermentedStack(@NotNull FermentationData fermentationData, float thickness, long secondsFermented, float downfall, ItemStack inputStack) {
+	public static ItemStack getFermentedStack(Optional<FermentationData> fermentationData, float thickness, long secondsFermented, float downfall, ItemStack inputStack) {
 		float ageIngameDays = TimeHelper.minecraftDaysFromSeconds(secondsFermented);
 		double alcPercent = 0;
-		if (fermentationData.fermentationSpeedMod() > 0) {
-			alcPercent = getAlcPercent(fermentationData.fermentationSpeedMod(), thickness, downfall, ageIngameDays);
-			alcPercent = Math.max(0, alcPercent);
-		}
-		
-		if (alcPercent >= 100 && inputStack.getItem() instanceof FermentedItem) {
-			return SpectrumItems.PURE_ALCOHOL.get().getDefaultInstance();
-		}
-		
-		// if it's not a set beverage (custom recipe) mark it as unknown
-		if (!(inputStack.getItem() instanceof FermentedItem))
-			inputStack.set(SpectrumDataComponentTypes.INFUSED_BEVERAGE, InfusedBeverageComponent.DEFAULT);
-		
-		var potionContents = inputStack.get(DataComponents.POTION_CONTENTS);
-		if (potionContents != null) {
-			float durationMultiplier = (float) (Support.logBase(1 + thickness, 2));
-			
-			List<MobEffectInstance> effects = new ArrayList<>();
-			for (FermentationStatusEffectEntry entry : fermentationData.statusEffectEntries()) {
-				int potency = -1;
-				int durationTicks = entry.baseDuration();
-				for (FermentationStatusEffectEntry.StatusEffectPotencyEntry potencyEntry : entry.potencyEntries()) {
-					if (thickness >= potencyEntry.minThickness() && alcPercent >= potencyEntry.minAlcPercent()) {
-						potency = potencyEntry.potency();
-					}
-				}
-				if (potency > -1)
-					effects.add(new MobEffectInstance(BuiltInRegistries.MOB_EFFECT.getHolderOrThrow(BuiltInRegistries.MOB_EFFECT.getResourceKey(entry.statusEffect()).get()), (int) (durationTicks * durationMultiplier), potency));
+		if (fermentationData.isPresent()) {
+			if (fermentationData.get().fermentationSpeedMod() > 0) {
+				alcPercent = getAlcPercent(fermentationData.get().fermentationSpeedMod(), thickness, downfall, ageIngameDays);
+				alcPercent = Math.max(0, alcPercent);
 			}
-			
-			inputStack.set(DataComponents.POTION_CONTENTS, new PotionContents(Optional.empty(), Optional.empty(), effects));
+			if (alcPercent >= 100 && inputStack.getItem() instanceof FermentedItem) {
+				return SpectrumItems.PURE_ALCOHOL.get().getDefaultInstance();
+			}
+		}
+		
+		if (fermentationData.isPresent() && !fermentationData.get().statusEffectEntries().isEmpty()) {
+			PotionContents potionContents = inputStack.get(DataComponents.POTION_CONTENTS);
+			if (potionContents != null) {
+				float durationMultiplier = (float) (Support.logBase(1 + thickness, 2));
+				
+				List<MobEffectInstance> effects = new ArrayList<>();
+				for (FermentationStatusEffectEntry entry : fermentationData.get().statusEffectEntries()) {
+					int potency = -1;
+					int durationTicks = entry.baseDuration();
+					for (FermentationStatusEffectEntry.StatusEffectPotencyEntry potencyEntry : entry.potencyEntries()) {
+						if (thickness >= potencyEntry.minThickness() && alcPercent >= potencyEntry.minAlcPercent()) {
+							potency = potencyEntry.potency();
+						}
+					}
+					if (potency > -1)
+						effects.add(new MobEffectInstance(BuiltInRegistries.MOB_EFFECT.getHolderOrThrow(BuiltInRegistries.MOB_EFFECT.getResourceKey(entry.statusEffect()).get()), (int) (durationTicks * durationMultiplier), potency));
+				}
+				
+				inputStack.set(DataComponents.POTION_CONTENTS, new PotionContents(Optional.empty(), Optional.empty(), effects));
+			}
 		}
 		
 		inputStack.set(SpectrumDataComponentTypes.BEVERAGE, new BeverageComponent((long) ageIngameDays, (int) alcPercent, thickness));
@@ -212,9 +211,9 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<FluidRecipeI
 	
 	// sadly we cannot use text.append() here, since the guidebook does not support it
 	// but this way it might be easier for translations either way
-	public static MutableComponent getDurationText(int minFermentationTimeHours, FermentationData fermentationData) {
+	public static MutableComponent getDurationText(int minFermentationTimeHours, Optional<FermentationData> fermentationData) {
 		MutableComponent text;
-		if (fermentationData.equals(FermentationData.DEFAULT)) {
+		if (fermentationData.isPresent()) {
 			if (minFermentationTimeHours == 1) {
 				text = Component.translatable("container.spectrum.rei.titration_barrel.time_hour");
 			} else if (minFermentationTimeHours == 24) {
@@ -259,7 +258,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<FluidRecipeI
 				ItemStack.STRICT_CODEC.fieldOf("result").forGetter(recipe -> recipe.outputItemStack),
 				BuiltInRegistries.ITEM.byNameCodec().optionalFieldOf("tapping_item", Items.AIR).forGetter(recipe -> recipe.tappingItem),
 				Codec.INT.optionalFieldOf("min_fermentation_time_hours", 24).forGetter(recipe -> recipe.minFermentationTimeHours),
-				FermentationData.CODEC.optionalFieldOf("fermentation", FermentationData.DEFAULT).forGetter(recipe -> recipe.fermentationData)
+				FermentationData.CODEC.optionalFieldOf("fermentation").forGetter(recipe -> recipe.fermentationData)
 		).apply(i, TitrationBarrelRecipe::new));
 		
 		private static final StreamCodec<RegistryFriendlyByteBuf, TitrationBarrelRecipe> PACKET_CODEC = PacketCodecHelper.tuple(
@@ -271,7 +270,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<FluidRecipeI
 				ItemStack.STREAM_CODEC, c -> c.outputItemStack,
 				ByteBufCodecs.registry(Registries.ITEM), recipe -> recipe.tappingItem,
 				ByteBufCodecs.VAR_INT, recipe -> recipe.minFermentationTimeHours,
-				FermentationData.PACKET_CODEC, recipe -> recipe.fermentationData,
+				ByteBufCodecs.optional(FermentationData.PACKET_CODEC), recipe -> recipe.fermentationData,
 				TitrationBarrelRecipe::new
 		);
 		

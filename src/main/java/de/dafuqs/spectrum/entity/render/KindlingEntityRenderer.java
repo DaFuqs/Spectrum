@@ -30,7 +30,7 @@ public class KindlingEntityRenderer extends MobRenderer<KindlingEntity, Kindling
 	
 	@Override
 	public ResourceLocation getTextureLocation(@NotNull KindlingEntity entity) {
-		KindlingVariant variant = entity.getKindlingVariant();
+		KindlingVariant variant = entity.getKindlingVariant().value();
 		boolean isClipped = entity.isClipped();
 		if (entity.getRemainingPersistentAngerTime() > 0) {
 			return isClipped ? variant.getAngryClippedTexture() : variant.getAngryTexture();

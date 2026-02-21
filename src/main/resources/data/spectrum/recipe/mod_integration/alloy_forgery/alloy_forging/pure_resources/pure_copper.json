@@ -7,12 +7,12 @@
     }
   ],
   "output": {
-    "id": "minecraft:copper_ingot",
+    "item": "minecraft:copper_ingot",
     "count": 4
   },
   "overrides": {
     "4+": {
-      "id": "minecraft:copper_ingot",
+      "item": "minecraft:copper_ingot",
       "count": 5
     }
   },

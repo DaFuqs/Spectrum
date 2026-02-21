@@ -1,12 +1,8 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube_bottom_top",
   "textures": {
-    "particle": "spectrum:block/stratine_floatblock_side",
-    "north": "spectrum:block/stratine_floatblock_side",
-    "east": "spectrum:block/stratine_floatblock_side",
-    "south": "spectrum:block/stratine_floatblock_side",
-    "west": "spectrum:block/stratine_floatblock_side",
-    "up": "spectrum:block/stratine_floatblock_vertical",
-    "down": "spectrum:block/stratine_floatblock_vertical"
+    "bottom": "spectrum:block/stratine_floatblock_bottom",
+    "side": "spectrum:block/stratine_floatblock",
+    "top": "spectrum:block/stratine_floatblock_top"
   }
 }

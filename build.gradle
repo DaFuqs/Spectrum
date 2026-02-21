@@ -1,5 +1,5 @@
 plugins {
-	id 'java-library'
+	id 'fabric-loom' version '1.10-SNAPSHOT'
 	id 'maven-publish'
 	id 'idea'
 	id 'net.neoforged.moddev' version '2.0.140'
@@ -27,6 +27,7 @@ repositories {
 		name = 'ParchmentMC'
 		url = 'https://maven.parchmentmc.org'
 	}
+	maven { url = "https://maven.kyrptonaught.dev" } // CustomPortalAPI as requirement for Starry Skies
 	mavenCentral()
 }
 
@@ -105,6 +106,7 @@ dependencies {
 
 	// external and compat
 	api("me.shedaniel.cloth:cloth-config-neoforge:${project.cloth_config_version}")
+	compileOnly("de.dafuqs.starryskies:StarrySkies:${project.starry_skies_version}")
 	compileOnly("me.shedaniel:RoughlyEnoughItems-neoforge:${project.rei_version}") // https://github.com/shedaniel/RoughlyEnoughItems
 	compileOnly("dev.emi:emi-neoforge:${emi_version}") // https://github.com/emilyploszaj/emi
 	implementation("com.klikli_dev:modonomicon-${project.minecraft_version}-neoforge:${project.modonomicon_version}") {

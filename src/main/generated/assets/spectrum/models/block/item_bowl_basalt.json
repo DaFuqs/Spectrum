@@ -1,0 +1,8 @@
+{
+  "parent": "spectrum:templates/item_bowl",
+  "textures": {
+    "base": "spectrum:block/polished_basalt",
+    "side": "spectrum:block/polished_basalt_pillar_side",
+    "texture": "spectrum:block/item_bowl_basalt"
+  }
+}

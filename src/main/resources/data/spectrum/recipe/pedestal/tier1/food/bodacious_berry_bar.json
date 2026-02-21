@@ -18,7 +18,12 @@
   "key": {
     "L": {
       "item": "spectrum:infused_beverage",
-      "recipeViewNbt": "{Variant: \"berry_liquor\", Color: 16729462 }",
+      "preview_components": {
+        "spectrum:infused_beverage": {
+          "variant": "berry_liquor",
+          "color": 16729462
+        }
+      },
       "predicates": {
         "spectrum:infused_beverage": [
           {

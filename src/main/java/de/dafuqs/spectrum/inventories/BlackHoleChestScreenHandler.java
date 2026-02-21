@@ -26,14 +26,14 @@ public class BlackHoleChestScreenHandler extends AbstractContainerMenu {
 	}
 	
 	protected BlackHoleChestScreenHandler(int syncId, Inventory playerInventory, FilterConfigurable.ExtendedDataWithPos data) {
-		this(syncId, playerInventory, playerInventory.player.level().getBlockEntity(data.pos(), SpectrumBlockEntities.BLACK_HOLE_CHEST.get()).orElseThrow(), data.data());
+		this(syncId, playerInventory, playerInventory.player.level().getBlockEntity(data.pos(), SpectrumBlockEntities.BLACK_HOLE_CHEST.get()).orElseThrow(), data);
 	}
 	
 	// serverside
-	public BlackHoleChestScreenHandler(int syncId, Inventory playerInventory, BlackHoleChestBlockEntity blockEntity, FilterConfigurable.ExtendedData data) {
+	public BlackHoleChestScreenHandler(int syncId, Inventory playerInventory, BlackHoleChestBlockEntity blockEntity, FilterConfigurable.ExtendedDataWithPos data) {
 		super(SpectrumScreenHandlerTypes.BLACK_HOLE_CHEST, syncId);
 		this.world = playerInventory.player.level();
-		this.filterInventory = FilterConfigurable.getFilterInventoryFromExtendedData(syncId, playerInventory, data, this);
+		this.filterInventory = FilterConfigurable.getFilterInventoryFromExtendedData(syncId, playerInventory, data.data(), this);
 		this.blockEntity = blockEntity;
 		
 		checkContainerSize(blockEntity, BlackHoleChestBlockEntity.INVENTORY_SIZE);
@@ -41,7 +41,7 @@ public class BlackHoleChestScreenHandler extends AbstractContainerMenu {
 		
 		int i = (ROWS - 4) * 18;
 		
-		// black hole chest slots
+		// chest slots
 		int j;
 		int k;
 		for (j = 0; j < ROWS; ++j) {
@@ -67,7 +67,7 @@ public class BlackHoleChestScreenHandler extends AbstractContainerMenu {
 		
 		// filter slots
 		for (k = 0; k < BlackHoleChestBlockEntity.ITEM_FILTER_SLOT_COUNT; ++k) {
-			this.addSlot(new BlackHoleChestFilterSlot(filterInventory, k, 8 + k * 23, 18));
+			this.addSlot(new FilterSlot(blockEntity, filterInventory, k, 8 + k * 23, 18));
 		}
 	}
 	
@@ -109,21 +109,6 @@ public class BlackHoleChestScreenHandler extends AbstractContainerMenu {
 	public void removed(Player player) {
 		super.removed(player);
 		blockEntity.stopOpen(player);
-	}
-	
-	protected class BlackHoleChestFilterSlot extends ShadowSlot {
-		
-		public BlackHoleChestFilterSlot(Container inventory, int index, int x, int y) {
-			super(inventory, index, x, y);
-		}
-		
-		@Override
-		public boolean onClicked(ItemStack heldStack, ClickAction type, Player player) {
-			if (blockEntity != null) {
-				blockEntity.setFilterItem(getContainerSlot(), heldStack.copyWithCount(1));
-			}
-			return super.onClicked(heldStack, type, player);
-		}
 	}
 	
 }

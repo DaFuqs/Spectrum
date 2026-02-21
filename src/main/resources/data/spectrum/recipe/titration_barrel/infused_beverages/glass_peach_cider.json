@@ -83,7 +83,7 @@
     "components": {
       "spectrum:infused_beverage": {
         "color": 15573110,
-        "variant": "(w+)"
+        "variant": "glass_peach_cider"
       }
     }
   },

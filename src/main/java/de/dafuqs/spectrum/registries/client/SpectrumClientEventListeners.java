@@ -16,8 +16,10 @@ import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.particle.render.*;
+import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.render.*;
+import de.dafuqs.spectrum.shaders.*;
 import de.dafuqs.spectrum.sound.*;
 import net.minecraft.*;
 import net.minecraft.client.*;
@@ -25,8 +27,11 @@ import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
+import net.minecraft.core.particles.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.server.packs.*;
+import net.minecraft.util.*;
 import net.minecraft.server.packs.resources.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
@@ -48,7 +53,9 @@ import java.util.*;
 
 public class SpectrumClientEventListeners {
 	
-	private static boolean postProcessWasOn = SpectrumCommon.CONFIG.PostProcess;
+	private static int lookingAtUniverseSpyholeTicks = 0;
+	private static @Nullable BlockHitResult lookingAtUniverseSpyholeHitResult = null;
+	private static boolean lookingAtUniverseSpyholeeffectsPlayed = false;
 	
 	public static void register(IEventBus modBus) {
 		modBus.addListener(SpectrumClientEventListeners::onReloadClientResources);
@@ -71,11 +78,38 @@ public class SpectrumClientEventListeners {
 		NeoForge.EVENT_BUS.addListener(SpectrumClientEventListeners::onWorldRenderStart);
 		NeoForge.EVENT_BUS.addListener(SpectrumClientEventListeners::onRenderBlockOutlines);
 		NeoForge.EVENT_BUS.addListener(SpectrumClientEventListeners::onDrawTooltips);
-		NeoForge.EVENT_BUS.addListener(SpectrumClientEventListeners::onLogin);
 		NeoForge.EVENT_BUS.addListener(SpectrumClientEventListeners::onLogout);
 		NeoForge.EVENT_BUS.addListener(SpectrumClientEventListeners::afterClientTick);
 	}
 	
+	private static void playLookingAtUniverseSpyholeParticles(Entity cameraEntity, ClientLevel world) {
+		int particleCountPerSide;
+		ParticleOptions particleType = ParticleTypes.PORTAL;
+		if (!lookingAtUniverseSpyholeeffectsPlayed) {
+			particleType = ParticleTypes.REVERSE_PORTAL;
+			cameraEntity.playSound(SpectrumSoundEvents.SOFT_HUM, 1.0F, 1.0F);
+			particleCountPerSide = 20;
+			lookingAtUniverseSpyholeeffectsPlayed = true;
+		} else {
+			particleCountPerSide = Math.max(1, 10 - lookingAtUniverseSpyholeTicks);
+		}
+		
+		BlockPos pos = lookingAtUniverseSpyholeHitResult.getBlockPos();
+		RandomSource random = world.getRandom();
+		for (int i = 0; i < particleCountPerSide; i++) {
+			for (Direction direction : Direction.values()) {
+				BlockPos blockPos = pos.relative(direction);
+				BlockState blockState = world.getBlockState(blockPos);
+				if (!blockState.isFaceSturdy(world, blockPos, direction.getOpposite())) {
+					double d = direction.getStepX() == 0 ? random.nextDouble() : 0.5 + direction.getStepX() * 0.6;
+					double e = direction.getStepY() == 0 ? random.nextDouble() : 0.5 + direction.getStepY() * 0.6;
+					double f = direction.getStepZ() == 0 ? random.nextDouble() : 0.5 + direction.getStepZ() * 0.6;
+					world.addParticle(particleType, pos.getX() + d, pos.getY() + e, pos.getZ() + f, 0.0, 0.0, 0.0);
+				}
+			}
+		}
+	}
+
 	private static void onDrawTooltips(RenderTooltipEvent.GatherComponents event) {
 		ItemStack stack = event.getItemStack();
 		
@@ -86,16 +120,6 @@ public class SpectrumClientEventListeners {
 		}
 		if (stack.is(SpectrumItemTags.COMING_SOON_TOOLTIP)) {
 			event.getTooltipElements().add(Either.left(Component.translatable("spectrum.tooltip.coming_soon").withStyle(ChatFormatting.RED)));
-		}
-	}
-	
-	private static void onLogin(ClientPlayerNetworkEvent.LoggingIn event) {
-		Minecraft client = Minecraft.getInstance();
-		ClientLevel world = client.level;
-		if (SpectrumCommon.CONFIG.PostProcess && world.dimension().equals(SpectrumDimensions.DIMENSION_KEY)) {
-			initializeColorGrading(client);
-		} else {
-			SpectrumShaders.clearDimensionShaders();
 		}
 	}
 	
@@ -118,16 +142,13 @@ public class SpectrumClientEventListeners {
 		HowlingSpireEffects.clientTick(world, cameraEntity, biome);
 		DimensionRenderEffects.clientTick(world, cameraEntity, biome);
 		
+		// Looking at a Universe Spyhole
+		if (lookingAtUniverseSpyholeTicks > 0 && lookingAtUniverseSpyholeHitResult != null) {
+			playLookingAtUniverseSpyholeParticles(cameraEntity, world);
+		}
+		
 		if (SpectrumCommon.CONFIG.PostProcess) {
-			if (!postProcessWasOn) {
-				initializeColorGrading(client);
-				postProcessWasOn = true;
-			}
-			
-			SpectrumShaders.updateDimensionShaders(world);
-		} else if (postProcessWasOn) {
-			SpectrumShaders.clearDimensionShaders();
-			postProcessWasOn = false;
+			SpectrumShaders.updateShaders(client, world);
 		}
 	}
 	
@@ -136,6 +157,30 @@ public class SpectrumClientEventListeners {
 		
 		if (stage == RenderLevelStageEvent.Stage.AFTER_SKY) {
 			HudRenderers.clearItemStackOverlay();
+			
+			Minecraft client = Minecraft.getInstance();
+			if (client.player != null) {
+				
+				boolean lookingAtUniverseSpyhole = (client.hitResult instanceof BlockHitResult blockHitResult) &&
+						client.player.level().getBlockState(blockHitResult.getBlockPos()).getBlock() == SpectrumBlocks.UNIVERSE_SPYHOLE.get();
+				
+				if (lookingAtUniverseSpyhole) {
+					lookingAtUniverseSpyholeTicks++;
+					lookingAtUniverseSpyholeHitResult = (BlockHitResult) client.hitResult;
+				} else {
+					lookingAtUniverseSpyholeTicks = 0;
+					lookingAtUniverseSpyholeHitResult = null;
+					lookingAtUniverseSpyholeeffectsPlayed = false;
+				}
+				
+				boolean newSmartCull = !lookingAtUniverseSpyhole;
+				if (client.smartCull != newSmartCull) {
+					client.smartCull = newSmartCull;
+					if (!newSmartCull) {
+						client.levelRenderer.needsUpdate(); // we need to draw caves etc...
+					}
+				}
+			}
 			return;
 		}
 		
@@ -168,12 +213,6 @@ public class SpectrumClientEventListeners {
 				return SpectrumCommon.MOD_ID + ":cache_clearer_client";
 			}
 		});
-	}
-	
-	private static void initializeColorGrading(Minecraft client) {
-		if (SpectrumShaders.colorGradingPostProcess.isEmpty()) {
-			SpectrumShaders.colorGradingPostProcess = SpectrumShaders.loadPostProcess(client, SpectrumShaders.COLOR_GRADING_ID);
-		}
 	}
 	
 	private static void onRenderBlockOutlines(RenderHighlightEvent.Block event) {

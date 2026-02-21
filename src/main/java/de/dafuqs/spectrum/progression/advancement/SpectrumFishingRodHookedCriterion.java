@@ -60,8 +60,8 @@ public class SpectrumFishingRodHookedCriterion extends SimpleCriterionTrigger<Sp
 		public static final Codec<Conditions> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 				ContextAwarePredicate.CODEC.optionalFieldOf("player").forGetter(Conditions::player),
 				ItemPredicate.CODEC.optionalFieldOf("rod").forGetter(Conditions::rod),
-				ContextAwarePredicate.CODEC.optionalFieldOf("bobber").forGetter(Conditions::bobber),
-				ContextAwarePredicate.CODEC.optionalFieldOf("fishing").forGetter(Conditions::hookedEntity),
+				EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("bobber").forGetter(Conditions::bobber),
+				EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("hooked_entity").forGetter(Conditions::hookedEntity),
 				EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("fished_entity").forGetter(Conditions::fishedEntity),
 				ItemPredicate.CODEC.optionalFieldOf("item").forGetter(Conditions::caughtItem),
 				FluidPredicate.CODEC.optionalFieldOf("fluid").forGetter(Conditions::fluidPredicate)
@@ -71,17 +71,16 @@ public class SpectrumFishingRodHookedCriterion extends SimpleCriterionTrigger<Sp
 			if (this.rod.isPresent() && !this.rod.get().test(rod)) return false;
 			if (this.bobber.isPresent() && !this.bobber.get().matches(bobberContext)) return false;
 			if (this.fluidPredicate.isPresent() && !this.fluidPredicate.get().matches(world, blockPos)) return false;
-			// FIXME - This doesn't seem right...
-			/*
-			if (fishedEntityContext == null && !fishedEntity.equals(LootContextPredicate.EMPTY) ||
-				!this.fishedEntity.test(fishedEntityContext)) return false;
-			if (hookedEntityContext == null && !hookedEntity.equals(LootContextPredicate.EMPTY) ||
-				!this.hookedEntity.test(hookedEntityContext)) return false;
-			 */
-			if (this.fishedEntity.isPresent() && !this.fishedEntity.get().matches(fishedEntityContext) && fishedEntityContext == null)
-				return false;
-			if (this.hookedEntity.isPresent() && this.hookedEntity.get().matches(hookedEntityContext) && hookedEntityContext == null)
-				return false;
+			
+			if (this.fishedEntity.isPresent()) {
+				if (fishedEntityContext == null || !this.fishedEntity.get().matches(fishedEntityContext))
+					return false;
+			}
+
+			if (this.hookedEntity.isPresent()) {
+				if (hookedEntityContext == null || !this.hookedEntity.get().matches(hookedEntityContext))
+					return false;
+			}
 			
 			if (this.caughtItem.isPresent()) {
 				if (hookedEntityContext != null) {

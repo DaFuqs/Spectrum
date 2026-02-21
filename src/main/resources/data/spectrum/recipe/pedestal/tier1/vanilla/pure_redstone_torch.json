@@ -1,0 +1,20 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 40,
+  "tier": "basic",
+  "colors": {},
+  "experience": 0.1,
+  "pattern": [
+    "R",
+    "S"
+  ],
+  "key": {
+    "R": "spectrum:pure_redstone",
+    "S": "minecraft:stick"
+  },
+  "result": {
+    "id": "minecraft:redstone_torch",
+    "count": 8
+  },
+  "required_advancement": "spectrum:lategame/collect_pure_resource"
+}

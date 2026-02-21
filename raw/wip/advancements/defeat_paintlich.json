@@ -2,7 +2,7 @@
   "parent": "spectrum:endgame/meet_paintlich",
   "display": {
     "icon": {
-      "item": "spectrum:preservation_stone"
+      "id": "spectrum:preservation_stone"
     },
     "hidden": true,
     "title": {

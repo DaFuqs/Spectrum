@@ -20,7 +20,8 @@ public class MonstrositySpawner implements CustomSpawner {
 	public int tick(ServerLevel world, boolean spawnMonsters, boolean spawnAnimals) {
 		// if we already have a Monstrosity that has a valid target
 		// If that is true, let that one do its thing
-		if (MonstrosityEntity.theOneAndOnly != null && MonstrosityEntity.theOneAndOnly.hasValidTarget()) {
+		MonstrosityEntity monstrosity = MonstrosityEntity.getTheOneAndOnlyServer();
+		if (monstrosity != null && monstrosity.hasValidTarget()) {
 			return 0;
 		}
 		// chance to spawn
@@ -35,16 +36,16 @@ public class MonstrositySpawner implements CustomSpawner {
 		for (Player playerEntity : world.getEntities(EntityType.PLAYER, player -> player.isAlive() && player.getY() < player.level().getMaxBuildHeight() - 64 && MonstrosityEntity.ENTITY_TARGETS.test(player))) {
 			// a monstrosity should spawn for the player
 			// do we already have one? If no create one
-			if (MonstrosityEntity.theOneAndOnly == null) {
-				MonstrosityEntity monstrosity = SpectrumEntityTypes.MONSTROSITY.get().create(world);
+			if (monstrosity == null) {
+				monstrosity = SpectrumEntityTypes.MONSTROSITY.get().create(world);
 				DifficultyInstance localDifficulty = world.getCurrentDifficultyAt(playerEntity.blockPosition());
 				monstrosity.finalizeSpawn(world, localDifficulty, MobSpawnType.NATURAL, null);
 				world.addFreshEntityWithPassengers(monstrosity);
 			}
 			
-			MonstrosityEntity.theOneAndOnly.setTarget(playerEntity);
-			MonstrosityEntity.theOneAndOnly.moveTo(playerEntity.blockPosition(), 0.0F, 0.0F);
-			MonstrosityEntity.theOneAndOnly.playAmbientSound();
+			monstrosity.setTarget(playerEntity);
+			monstrosity.moveTo(playerEntity.blockPosition(), 0.0F, 0.0F);
+			monstrosity.playAmbientSound();
 			
 			return 1;
 		}

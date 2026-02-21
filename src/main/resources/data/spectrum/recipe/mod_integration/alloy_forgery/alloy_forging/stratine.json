@@ -1,19 +1,21 @@
 {
   "type": "alloy_forgery:forging",
   "inputs": [
-    "spectrum:stratine_ore"
+    {
+      "item": "spectrum:stratine_ore"
+    }
   ],
   "output": {
-    "id": "spectrum:stratine_fragments",
+    "item": "spectrum:stratine_fragments",
     "count": 3
   },
   "overrides": {
     "3": {
-      "id": "spectrum:stratine_fragments",
+      "item": "spectrum:stratine_fragments",
       "count": 4
     },
     "4+": {
-      "id": "spectrum:stratine_fragments",
+      "item": "spectrum:stratine_fragments",
       "count": 5
     }
   },

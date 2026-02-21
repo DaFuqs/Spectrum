@@ -100,6 +100,7 @@ import java.util.*;
 import java.util.function.*;
 
 import static de.dafuqs.spectrum.SpectrumCommon.*;
+import static de.dafuqs.spectrum.data.SpectrumModelHelper.*;
 import static de.dafuqs.spectrum.registries.SpectrumItems.*;
 import static net.minecraft.world.level.block.Blocks.*;
 
@@ -121,27 +122,27 @@ public class SpectrumBlocks {
 	public static final DeferredRegister.Blocks REGISTRAR = DeferredRegister.createBlocks(MOD_ID);
 	private static final DeferredWorkQueue CLIENT_QUEUE = new DeferredWorkQueue("spectrum_client");
 	
-	public static final DeferredBlock<Block> PEDESTAL_BASIC_TOPAZ = register(pedestal(blockWithItem("pedestal_basic_topaz", () -> new PedestalBlock(craftingBlock(MapColor.DIAMOND, SpectrumBlockSoundGroups.TOPAZ_BLOCK), BuiltinPedestalVariant.BASIC_TOPAZ), block -> new PedestalBlockItem(block, IS.of(1), BuiltinPedestalVariant.BASIC_TOPAZ, "item.spectrum.pedestal.tooltip.basic_topaz"), InkColors.WHITE)));
-	public static final DeferredBlock<Block> PEDESTAL_BASIC_AMETHYST = register(pedestal(blockWithItem("pedestal_basic_amethyst", () -> new PedestalBlock(craftingBlock(MapColor.COLOR_PURPLE, SoundType.AMETHYST), BuiltinPedestalVariant.BASIC_AMETHYST), block -> new PedestalBlockItem(block, IS.of(1), BuiltinPedestalVariant.BASIC_AMETHYST, "item.spectrum.pedestal.tooltip.basic_amethyst"), InkColors.WHITE)));
-	public static final DeferredBlock<Block> PEDESTAL_BASIC_CITRINE = register(pedestal(blockWithItem("pedestal_basic_citrine", () -> new PedestalBlock(craftingBlock(MapColor.COLOR_YELLOW, SpectrumBlockSoundGroups.CITRINE_BLOCK), BuiltinPedestalVariant.BASIC_CITRINE), block -> new PedestalBlockItem(block, IS.of(1), BuiltinPedestalVariant.BASIC_CITRINE, "item.spectrum.pedestal.tooltip.basic_citrine"), InkColors.WHITE)));
-	public static final DeferredBlock<Block> PEDESTAL_ALL_BASIC = register(pedestal(blockWithItem("pedestal_all_basic", () -> new PedestalBlock(craftingBlock(MapColor.COLOR_PURPLE, SoundType.AMETHYST), BuiltinPedestalVariant.CMY), block -> new PedestalBlockItem(block, IS.of(1), BuiltinPedestalVariant.CMY, "item.spectrum.pedestal.tooltip.all_basic"), InkColors.WHITE)));
-	public static final DeferredBlock<Block> PEDESTAL_ONYX = register(pedestal(blockWithItem("pedestal_onyx", () -> new PedestalBlock(craftingBlock(MapColor.COLOR_BLACK, SpectrumBlockSoundGroups.ONYX_BLOCK), BuiltinPedestalVariant.ONYX), block -> new PedestalBlockItem(block, IS.of(1), BuiltinPedestalVariant.ONYX, "item.spectrum.pedestal.tooltip.onyx"), InkColors.WHITE)));
-	public static final DeferredBlock<Block> PEDESTAL_MOONSTONE = register(pedestal(blockWithItem("pedestal_moonstone", () -> new PedestalBlock(craftingBlock(MapColor.SNOW, SpectrumBlockSoundGroups.MOONSTONE_BLOCK), BuiltinPedestalVariant.MOONSTONE), block -> new PedestalBlockItem(block, IS.of(1), BuiltinPedestalVariant.MOONSTONE, "item.spectrum.pedestal.tooltip.moonstone"), InkColors.WHITE)));
+	public static final DeferredBlock<Block> PEDESTAL_BASIC_TOPAZ = register(pedestal(blockWithItem("pedestal_basic_topaz", () -> new PedestalBlock(craftingBlock(MapColor.DIAMOND, SpectrumBlockSoundGroups.TOPAZ_BLOCK), BuiltinPedestalVariant.BASIC_TOPAZ), block -> new PedestalBlockItem(block, IS.of(), BuiltinPedestalVariant.BASIC_TOPAZ, "item.spectrum.pedestal.tooltip.basic_topaz"), InkColors.WHITE)));
+	public static final DeferredBlock<Block> PEDESTAL_BASIC_AMETHYST = register(pedestal(blockWithItem("pedestal_basic_amethyst", () -> new PedestalBlock(craftingBlock(MapColor.COLOR_PURPLE, SoundType.AMETHYST), BuiltinPedestalVariant.BASIC_AMETHYST), block -> new PedestalBlockItem(block, IS.of(), BuiltinPedestalVariant.BASIC_AMETHYST, "item.spectrum.pedestal.tooltip.basic_amethyst"), InkColors.WHITE)));
+	public static final DeferredBlock<Block> PEDESTAL_BASIC_CITRINE = register(pedestal(blockWithItem("pedestal_basic_citrine", () -> new PedestalBlock(craftingBlock(MapColor.COLOR_YELLOW, SpectrumBlockSoundGroups.CITRINE_BLOCK), BuiltinPedestalVariant.BASIC_CITRINE), block -> new PedestalBlockItem(block, IS.of(), BuiltinPedestalVariant.BASIC_CITRINE, "item.spectrum.pedestal.tooltip.basic_citrine"), InkColors.WHITE)));
+	public static final DeferredBlock<Block> PEDESTAL_ALL_BASIC = register(pedestal(blockWithItem("pedestal_all_basic", () -> new PedestalBlock(craftingBlock(MapColor.COLOR_PURPLE, SoundType.AMETHYST), BuiltinPedestalVariant.CMY), block -> new PedestalBlockItem(block, IS.of(), BuiltinPedestalVariant.CMY, "item.spectrum.pedestal.tooltip.all_basic"), InkColors.WHITE)));
+	public static final DeferredBlock<Block> PEDESTAL_ONYX = register(pedestal(blockWithItem("pedestal_onyx", () -> new PedestalBlock(craftingBlock(MapColor.COLOR_BLACK, SpectrumBlockSoundGroups.ONYX_BLOCK), BuiltinPedestalVariant.ONYX), block -> new PedestalBlockItem(block, IS.of(), BuiltinPedestalVariant.ONYX, "item.spectrum.pedestal.tooltip.onyx"), InkColors.WHITE)));
+	public static final DeferredBlock<Block> PEDESTAL_MOONSTONE = register(pedestal(blockWithItem("pedestal_moonstone", () -> new PedestalBlock(craftingBlock(MapColor.SNOW, SpectrumBlockSoundGroups.MOONSTONE_BLOCK), BuiltinPedestalVariant.MOONSTONE), block -> new PedestalBlockItem(block, IS.of(), BuiltinPedestalVariant.MOONSTONE, "item.spectrum.pedestal.tooltip.moonstone"), InkColors.WHITE)));
 	
-	public static final DeferredBlock<Block> FUSION_SHRINE_BASALT = register(singleton(blockWithItem("fusion_shrine_basalt", () -> new FusionShrineBlock(craftingBlock(MapColor.COLOR_BLACK, SoundType.BASALT).lightLevel(value -> value.getValue(FusionShrineBlock.LIGHT_LEVEL))), IS.of(1), InkColors.GRAY), SpectrumTexturedModels.FUSION_SHRINE));
-	public static final DeferredBlock<Block> FUSION_SHRINE_CALCITE = register(singleton(blockWithItem("fusion_shrine_calcite", () -> new FusionShrineBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE).lightLevel(value -> value.getValue(FusionShrineBlock.LIGHT_LEVEL))), IS.of(1), InkColors.GRAY), SpectrumTexturedModels.FUSION_SHRINE));
+	public static final DeferredBlock<Block> FUSION_SHRINE_BASALT = register(singleton(blockWithItem("fusion_shrine_basalt", () -> new FusionShrineBlock(craftingBlock(MapColor.COLOR_BLACK, SoundType.BASALT).lightLevel(value -> value.getValue(FusionShrineBlock.LIGHT_LEVEL))), IS.of(), InkColors.GRAY), SpectrumTexturedModels.FUSION_SHRINE));
+	public static final DeferredBlock<Block> FUSION_SHRINE_CALCITE = register(singleton(blockWithItem("fusion_shrine_calcite", () -> new FusionShrineBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE).lightLevel(value -> value.getValue(FusionShrineBlock.LIGHT_LEVEL))), IS.of(), InkColors.GRAY), SpectrumTexturedModels.FUSION_SHRINE));
 	
-	public static final DeferredBlock<Block> ENCHANTER = register(singletonWithSoup(blockWithItem("enchanter", () -> new EnchanterBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), IS.of(1), InkColors.PURPLE), ModelLocationUtils::getModelLocation));
-	public static final DeferredBlock<Block> ITEM_BOWL_BASALT = register(singleton(blockWithItem("item_bowl_basalt", () -> new ItemBowlBlock(craftingBlock(MapColor.COLOR_BLACK, SoundType.BASALT)), IS.of(16), InkColors.PINK), TexturedModel.createDefault(b -> new TextureMapping().put(TextureSlot.TEXTURE, SpectrumCommon.locate("block/item_bowl_basalt")).put(TextureSlot.SIDE, SpectrumCommon.locate("block/polished_basalt_pillar_side")).put(SpectrumTextureKeys.BASE, SpectrumCommon.locate("block/polished_basalt")), SpectrumModels.BOWL)));
-	public static final DeferredBlock<Block> ITEM_BOWL_CALCITE = register(singleton(blockWithItem("item_bowl_calcite", () -> new ItemBowlBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), IS.of(16), InkColors.PINK), TexturedModel.createDefault(b -> new TextureMapping().put(TextureSlot.TEXTURE, SpectrumCommon.locate("block/item_bowl_calcite")).put(TextureSlot.SIDE, SpectrumCommon.locate("block/polished_calcite_pillar_side")).put(SpectrumTextureKeys.BASE, SpectrumCommon.locate("block/polished_calcite")), SpectrumModels.BOWL)));
-	public static final DeferredBlock<Block> ITEM_ROUNDEL = register(singleton(blockWithItem("item_roundel", () -> new ItemRoundelBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), IS.of(16), InkColors.PINK), SpectrumTexturedModels.ROUNDEL));
-	public static final DeferredBlock<Block> POTION_WORKSHOP = register(defaultNorthHorizontalFacing(blockWithItem("potion_workshop", () -> new PotionWorkshopBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), IS.of(1), InkColors.PURPLE), ModelLocationUtils::getModelLocation));
-	public static final DeferredBlock<SpiritInstillerBlock> SPIRIT_INSTILLER = register(singletonWithSoup(blockWithItem("spirit_instiller", () -> new SpiritInstillerBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), IS.of(1), InkColors.WHITE), ModelLocationUtils::getModelLocation).withPredefinedItemModel());
-	public static final DeferredBlock<CrystallarieumBlock> CRYSTALLARIEUM = register(singletonWithSoup(blockWithItem("crystallarieum", () -> new CrystallarieumBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), IS.of(1), InkColors.BROWN), ModelLocationUtils::getModelLocation).withPredefinedItemModel());
-	public static final DeferredBlock<Block> CINDERHEARTH = register(defaultNorthHorizontalFacing(blockWithItem("cinderhearth", () -> new CinderhearthBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), IS.of(1).fireResistant(), InkColors.ORANGE), ModelLocationUtils::getModelLocation));
+	public static final DeferredBlock<Block> ENCHANTER = register(singletonWithSoup(blockWithItem("enchanter", () -> new EnchanterBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), IS.of(), InkColors.PURPLE), ModelLocationUtils::getModelLocation));
+	public static final DeferredBlock<Block> ITEM_BOWL_BASALT = register(singleton(blockWithItem("item_bowl_basalt", () -> new ItemBowlBlock(craftingBlock(MapColor.COLOR_BLACK, SoundType.BASALT)), IS.of(), InkColors.PINK), TexturedModel.createDefault(b -> new TextureMapping().put(TextureSlot.TEXTURE, SpectrumCommon.locate("block/item_bowl_basalt")).put(TextureSlot.SIDE, SpectrumCommon.locate("block/polished_basalt_pillar_side")).put(SpectrumTextureKeys.BASE, SpectrumCommon.locate("block/polished_basalt")), SpectrumModels.BOWL)));
+	public static final DeferredBlock<Block> ITEM_BOWL_CALCITE = register(singleton(blockWithItem("item_bowl_calcite", () -> new ItemBowlBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), IS.of(), InkColors.PINK), TexturedModel.createDefault(b -> new TextureMapping().put(TextureSlot.TEXTURE, SpectrumCommon.locate("block/item_bowl_calcite")).put(TextureSlot.SIDE, SpectrumCommon.locate("block/polished_calcite_pillar_side")).put(SpectrumTextureKeys.BASE, SpectrumCommon.locate("block/polished_calcite")), SpectrumModels.BOWL)));
+	public static final DeferredBlock<Block> ITEM_ROUNDEL = register(singleton(blockWithItem("item_roundel", () -> new ItemRoundelBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), IS.of(), InkColors.PINK), SpectrumTexturedModels.ROUNDEL));
+	public static final DeferredBlock<Block> POTION_WORKSHOP = register(defaultNorthHorizontalFacing(blockWithItem("potion_workshop", () -> new PotionWorkshopBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), IS.of(), InkColors.PURPLE), ModelLocationUtils::getModelLocation));
+	public static final DeferredBlock<SpiritInstillerBlock> SPIRIT_INSTILLER = register(singletonWithSoup(blockWithItem("spirit_instiller", () -> new SpiritInstillerBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), IS.of(), InkColors.WHITE), ModelLocationUtils::getModelLocation).withPredefinedItemModel());
+	public static final DeferredBlock<CrystallarieumBlock> CRYSTALLARIEUM = register(singletonWithSoup(blockWithItem("crystallarieum", () -> new CrystallarieumBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), IS.of(), InkColors.BROWN), ModelLocationUtils::getModelLocation).withPredefinedItemModel());
+	public static final DeferredBlock<Block> CINDERHEARTH = register(defaultNorthHorizontalFacing(blockWithItem("cinderhearth", () -> new CinderhearthBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), IS.of().fireResistant(), InkColors.ORANGE), ModelLocationUtils::getModelLocation));
 	
-	public static final DeferredBlock<Block> COLOR_PICKER = register(defaultWestHorizontalFacing(blockWithItem("color_picker", () -> new ColorPickerBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), IS.of(8), InkColors.GREEN), ModelLocationUtils::getModelLocation));
-	public static final DeferredBlock<Block> CRYSTAL_APOTHECARY = register(singletonWithSoup(blockWithItem("crystal_apothecary", () -> new CrystalApothecaryBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), IS.of(8), InkColors.GREEN), (ModelLocationUtils::getModelLocation)));
+	public static final DeferredBlock<Block> COLOR_PICKER = register(defaultWestHorizontalFacing(blockWithItem("color_picker", () -> new ColorPickerBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), IS.of(), InkColors.GREEN), ModelLocationUtils::getModelLocation));
+	public static final DeferredBlock<Block> CRYSTAL_APOTHECARY = register(singletonWithSoup(blockWithItem("crystal_apothecary", () -> new CrystalApothecaryBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), IS.of(), InkColors.GREEN), (ModelLocationUtils::getModelLocation)));
 	
 	private static BlockBehaviour.Properties gemstone(MapColor mapColor, SoundType blockSoundGroup, int luminance) {
 		return settings(mapColor, blockSoundGroup, 1.5F).forceSolidOn().noOcclusion().lightLevel((state) -> luminance).pushReaction(PushReaction.DESTROY);
@@ -322,9 +323,12 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> PYRITE_TILE_STAIRS = register(blockWithItem("pyrite_tile_stairs", () -> new StairBlock(PYRITE_TILES.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(PYRITE_TILES.get())), InkColors.BROWN));
 	public static final DeferredBlock<Block> PYRITE_TILE_WALL = register(blockWithItem("pyrite_tile_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(PYRITE_TILES.get())), InkColors.BROWN));
 	
+	public static final DeferredBlock<Block> SPLINTERSPAWN_INFESTED_PYRITE = register(parented(blockWithItem("splinterspawn_infested_pyrite", () -> new RotatedPillarSplinterspawnInfestedBlock(PYRITE.get(), BlockBehaviour.Properties.ofFullCopy(PYRITE.get())), InkColors.BROWN), b -> PYRITE.get()));
+	public static final DeferredBlock<Block> SPLINTERSPAWN_INFESTED_SHALE_CLAY = register(parented(blockWithItem("splinterspawn_infested_shale_clay", () -> new SplinterspawnInfestedBlock(SHALE_CLAY.get(), BlockBehaviour.Properties.ofFullCopy(SHALE_CLAY.get())), InkColors.BROWN), b -> SHALE_CLAY.get()));
+	
 	public static final DeferredBlock<Block> DRAGONBONE = register(axisRotated(blockWithItem("dragonbone", () -> new DragonboneBlock(BlockBehaviour.Properties.ofFullCopy(BONE_BLOCK).strength(-1.0F, 22.0F).pushReaction(PushReaction.BLOCK)), InkColors.GREEN), TexturedModel.COLUMN));
 	public static final DeferredBlock<Block> CRACKED_DRAGONBONE = register(axisRotated(blockWithItem("cracked_dragonbone", () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(BONE_BLOCK).strength(100.0F, 1200.0F).pushReaction(PushReaction.BLOCK)), InkColors.GREEN), TexturedModel.COLUMN));
-	
+
 	public static final DeferredBlock<Block> POLISHED_BONE_ASH = register(blockWithItem("polished_bone_ash", () -> new Block(BlockBehaviour.Properties.ofFullCopy(CRACKED_DRAGONBONE.get()).destroyTime(1500.0F).mapColor(MapColor.SNOW)), InkColors.CYAN));
 	public static final DeferredBlock<Block> POLISHED_BONE_ASH_STAIRS = register(blockWithItem("polished_bone_ash_stairs", () -> new StairBlock(POLISHED_BONE_ASH.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(POLISHED_BONE_ASH.get())), InkColors.CYAN));
 	public static final DeferredBlock<Block> POLISHED_BONE_ASH_SLAB = register(blockWithItem("polished_bone_ash_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(POLISHED_BONE_ASH.get())), InkColors.CYAN));
@@ -362,12 +366,12 @@ public class SpectrumBlocks {
 		ResourceLocation sideAlt0 = SpectrumModels.FIRE_SIDE_ALT.createWithSuffix(block, "_side_alt0", fire0, ctx.modelOutput);
 		ResourceLocation sideAlt1 = SpectrumModels.FIRE_SIDE_ALT.createWithSuffix(block, "_side_alt1", fire1, ctx.modelOutput);
 		return MultiPartGenerator.multiPart(block)
-				.with(noSides, SpectrumModelHelper.createModelVariant(SpectrumModels.FIRE_FLOOR.createWithSuffix(block, "_floor0", fire0, ctx.modelOutput)), SpectrumModelHelper.createModelVariant(SpectrumModels.FIRE_FLOOR.createWithSuffix(block, "_floor1", fire1, ctx.modelOutput)))
-				.with(Condition.condition().term(PrimordialFireBlock.UP, true), SpectrumModelHelper.createModelVariant(SpectrumModels.FIRE_UP.createWithSuffix(block, "_up0", fire0, ctx.modelOutput)), SpectrumModelHelper.createModelVariant(SpectrumModels.FIRE_UP.createWithSuffix(block, "_up1", fire1, ctx.modelOutput)), SpectrumModelHelper.createModelVariant(SpectrumModels.FIRE_UP_ALT.createWithSuffix(block, "_up_alt0", fire0, ctx.modelOutput)), SpectrumModelHelper.createModelVariant(SpectrumModels.FIRE_UP_ALT.createWithSuffix(block, "_up_alt1", fire1, ctx.modelOutput)))
-				.with(Condition.or(noSides, Condition.condition().term(PrimordialFireBlock.NORTH, true)), SpectrumModelHelper.createModelVariant(side0), SpectrumModelHelper.createModelVariant(side1), SpectrumModelHelper.createModelVariant(sideAlt0), SpectrumModelHelper.createModelVariant(sideAlt1))
-				.with(Condition.or(noSides, Condition.condition().term(PrimordialFireBlock.SOUTH, true)), SpectrumModelHelper.createModelVariant(side0).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180), SpectrumModelHelper.createModelVariant(side1).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180), SpectrumModelHelper.createModelVariant(sideAlt0).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180), SpectrumModelHelper.createModelVariant(sideAlt1).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-				.with(Condition.or(noSides, Condition.condition().term(PrimordialFireBlock.WEST, true)), SpectrumModelHelper.createModelVariant(side0).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270), SpectrumModelHelper.createModelVariant(side1).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270), SpectrumModelHelper.createModelVariant(sideAlt0).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270), SpectrumModelHelper.createModelVariant(sideAlt1).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-				.with(Condition.or(noSides, Condition.condition().term(PrimordialFireBlock.EAST, true)), SpectrumModelHelper.createModelVariant(side0).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90), SpectrumModelHelper.createModelVariant(side1).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90), SpectrumModelHelper.createModelVariant(sideAlt0).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90), SpectrumModelHelper.createModelVariant(sideAlt1).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
+				.with(noSides, createModelVariant(SpectrumModels.FIRE_FLOOR.createWithSuffix(block, "_floor0", fire0, ctx.modelOutput)), createModelVariant(SpectrumModels.FIRE_FLOOR.createWithSuffix(block, "_floor1", fire1, ctx.modelOutput)))
+				.with(Condition.condition().term(PrimordialFireBlock.UP, true), createModelVariant(SpectrumModels.FIRE_UP.createWithSuffix(block, "_up0", fire0, ctx.modelOutput)), createModelVariant(SpectrumModels.FIRE_UP.createWithSuffix(block, "_up1", fire1, ctx.modelOutput)), createModelVariant(SpectrumModels.FIRE_UP_ALT.createWithSuffix(block, "_up_alt0", fire0, ctx.modelOutput)), createModelVariant(SpectrumModels.FIRE_UP_ALT.createWithSuffix(block, "_up_alt1", fire1, ctx.modelOutput)))
+				.with(Condition.or(noSides, Condition.condition().term(PrimordialFireBlock.NORTH, true)), createModelVariant(side0), createModelVariant(side1), createModelVariant(sideAlt0), createModelVariant(sideAlt1))
+				.with(Condition.or(noSides, Condition.condition().term(PrimordialFireBlock.SOUTH, true)), createModelVariant(side0).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180), createModelVariant(side1).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180), createModelVariant(sideAlt0).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180), createModelVariant(sideAlt1).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+				.with(Condition.or(noSides, Condition.condition().term(PrimordialFireBlock.WEST, true)), createModelVariant(side0).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270), createModelVariant(side1).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270), createModelVariant(sideAlt0).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270), createModelVariant(sideAlt1).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+				.with(Condition.or(noSides, Condition.condition().term(PrimordialFireBlock.EAST, true)), createModelVariant(side0).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90), createModelVariant(side1).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90), createModelVariant(sideAlt0).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90), createModelVariant(sideAlt1).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
 	}));
 	public static final DeferredBlock<Block> PRIMORDIAL_WALL_TORCH = register(defaultEastHorizontalFacing(block("primordial_wall_torch", () -> new WallTorchBlock(SpectrumParticleTypes.PRIMORDIAL_FLAME, BlockBehaviour.Properties.ofFullCopy(Blocks.SOUL_WALL_TORCH).lightLevel(s -> 13))), ModelLocationUtils::getModelLocation));
 	public static final DeferredBlock<TorchBlock> PRIMORDIAL_TORCH = register(singletonWithSoup(blockWithItem("primordial_torch", () -> new TorchBlock(SpectrumParticleTypes.PRIMORDIAL_FLAME, BlockBehaviour.Properties.ofFullCopy(Blocks.SOUL_TORCH).lightLevel(s -> 13)), block -> new StandingAndWallBlockItem(block, PRIMORDIAL_WALL_TORCH.get(), IS.of(), Direction.DOWN), InkColors.ORANGE), ModelLocationUtils::getModelLocation).withItemModel(SpectrumModelHelper::registerItemModel));
@@ -528,11 +532,11 @@ public class SpectrumBlocks {
 		return SpectrumModelHelper.createVariantsSupplier(attached, ModelTemplates.ATTACHED_STEM.create(attached, TextureMapping.attachedStem(block, attached), ctx.modelOutput)).with(SpectrumModelHelper.createWestDefaultHorizontalFacingVariantMap());
 	}));
 	
-	public static final DeferredBlock<PresentBlock> PRESENT = register(blockWithItem("present", () -> new PresentBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WOOL)), block1 -> new PresentBlockItem(block1, IS.of(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY)), InkColors.LIGHT_GRAY).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.property(PresentBlock.VARIANT).generate(variant -> SpectrumModelHelper.createModelVariant(SpectrumModels.PRESENT.createWithSuffix(block, "_" + variant.getSerializedName(), new TextureMapping().put(TextureSlot.TEXTURE, TextureMapping.getBlockTexture(block, "_" + variant.getSerializedName())).put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(variant.woolBase)), ctx.modelOutput))))).withPredefinedItemModel());
+	public static final DeferredBlock<PresentBlock> PRESENT = register(blockWithItem("present", () -> new PresentBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WOOL)), block1 -> new PresentBlockItem(block1, IS.of().component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY)), InkColors.LIGHT_GRAY).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.property(PresentBlock.VARIANT).generate(variant -> SpectrumModelHelper.createModelVariant(SpectrumModels.PRESENT.createWithSuffix(block, "_" + variant.getSerializedName(), new TextureMapping().put(TextureSlot.TEXTURE, TextureMapping.getBlockTexture(block, "_" + variant.getSerializedName())).put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(variant.woolBase)), ctx.modelOutput))))).withPredefinedItemModel());
 	public static final DeferredBlock<TitrationBarrelBlock> TITRATION_BARREL = register(blockWithItem("titration_barrel", () -> new TitrationBarrelBlock(BlockBehaviour.Properties.ofFullCopy(OAK_PLANKS).mapColor(MapColor.COLOR_RED)), InkColors.MAGENTA).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(SpectrumModelHelper.createUpDefaultHorizontalFacingVariantMap()).with(PropertyDispatch.property(TitrationBarrelBlock.BARREL_STATE).generate(state -> SpectrumModelHelper.createModelVariant(SpectrumTexturedModels.cubeBottomTop(b -> b, "_side", b -> b, "_top_" + state.getSerializedName(), b -> b, "_bottom").createWithSuffix(block, state == TitrationBarrelBlock.BarrelState.EMPTY ? "" : "_" + state.getSerializedName(), ctx.modelOutput))))));
 	
-	public static final DeferredBlock<Block> PARAMETRIC_MINING_DEVICE = register(blockWithItem("parametric_mining_device", () -> new ParametricMiningDeviceBlock(BlockBehaviour.Properties.ofFullCopy(BLACKSLAG.get()).noOcclusion().instabreak()), block -> new ParametricMiningDeviceItem(block, IS.of(8)), InkColors.RED));
-	public static final DeferredBlock<ThreatConfluxBlock> THREAT_CONFLUX = register(blockWithItem("threat_conflux", () -> new ThreatConfluxBlock(BlockBehaviour.Properties.ofFullCopy(BLACKSLAG.get()).noOcclusion().instabreak()), block -> new ThreatConfluxItem(block, IS.of(8)), InkColors.RED).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.property(ThreatConfluxBlock.ARMED).generate(armed -> SpectrumModelHelper.createModelVariant(block, armed == ThreatConfluxBlock.ArmedState.NOT_ARMED ? "" : "_armed")))));
+	public static final DeferredBlock<Block> PARAMETRIC_MINING_DEVICE = register(blockWithItem("parametric_mining_device", () -> new ParametricMiningDeviceBlock(BlockBehaviour.Properties.ofFullCopy(BLACKSLAG.get()).noOcclusion().instabreak()), block -> new ParametricMiningDeviceItem(block, IS.of(16)), InkColors.RED));
+	public static final DeferredBlock<ThreatConfluxBlock> THREAT_CONFLUX = register(blockWithItem("threat_conflux", () -> new ThreatConfluxBlock(BlockBehaviour.Properties.ofFullCopy(BLACKSLAG.get()).noOcclusion().instabreak()), block -> new ThreatConfluxItem(block, IS.of(16)), InkColors.RED).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.property(ThreatConfluxBlock.ARMED).generate(armed -> SpectrumModelHelper.createModelVariant(block, armed == ThreatConfluxBlock.ArmedState.NOT_ARMED ? "" : "_armed")))));
 	
 	public static final DeferredBlock<Block> BLOCK_FLOODER = register(simple(block("block_flooder", () -> new BlockFlooderBlock(settings(MapColor.CLAY, SoundType.ROOTED_DIRT, 0.0F)))));
 	public static final DeferredBlock<BottomlessBundleBlock> BOTTOMLESS_BUNDLE = register(blockWithItem("bottomless_bundle", () -> new BottomlessBundleBlock(settings(MapColor.ICE, SoundType.WOOL, 1.0F).noOcclusion().pushReaction(PushReaction.DESTROY)), block1 -> new BottomlessBundleItem(block1, IS.of(1)), InkColors.LIGHT_GRAY)
@@ -550,7 +554,7 @@ public class SpectrumBlocks {
 		return registrar.withBlockModel((ctx, block) -> {
 			ResourceLocation none = ModelTemplates.CUBE_ALL.createWithSuffix(block, "_none", SpectrumTextureMaps.all(block, "_none"), ctx.modelOutput);
 			ResourceLocation def = ModelTemplates.CUBE_ALL.createWithSuffix(block, "_default", SpectrumTextureMaps.all(block, "_default"), ctx.modelOutput);
-			return MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.property(DecayBlock.CONVERSION).select(DecayBlock.Conversion.NONE, SpectrumModelHelper.createModelVariant(none)).select(DecayBlock.Conversion.DEFAULT, SpectrumModelHelper.createModelVariant(def)).select(DecayBlock.Conversion.SPECIAL, SpectrumModelHelper.createModelVariant(def)));
+			return MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.property(DecayBlock.CONVERSION).select(DecayBlock.Conversion.NONE, createModelVariant(none)).select(DecayBlock.Conversion.DEFAULT, createModelVariant(def)).select(DecayBlock.Conversion.SPECIAL, createModelVariant(def)));
 		});
 	}
 	
@@ -575,14 +579,14 @@ public class SpectrumBlocks {
 	
 	// PASTEL NETWORK
 	private static BlockBehaviour.Properties pastelNode(SoundType soundGroup) {
-		return settings(MapColor.NONE, soundGroup, 1.5F).pushReaction(PushReaction.DESTROY).noOcclusion().requiresCorrectToolForDrops();
+		return settings(MapColor.NONE, soundGroup, 1.0F).pushReaction(PushReaction.DESTROY).noOcclusion();
 	}
 	
-	public static final DeferredBlock<PastelNodeBlock> CONNECTION_NODE = register(blockWithItem("connection_node", () -> new PastelNodeBlock(pastelNode(SoundType.AMETHYST_CLUSTER), PastelNodeType.CONNECTION), IS.of(16), InkColors.LIGHT_GRAY).withPredefinedItemModel());
-	public static final DeferredBlock<PastelNodeBlock> PROVIDER_NODE = register(blockWithItem("provider_node", () -> new PastelNodeBlock(pastelNode(SoundType.AMETHYST_CLUSTER), PastelNodeType.PROVIDER), IS.of(16), InkColors.MAGENTA).withPredefinedItemModel());
-	public static final DeferredBlock<PastelNodeBlock> STORAGE_NODE = register(blockWithItem("storage_node", () -> new PastelNodeBlock(pastelNode(SpectrumBlockSoundGroups.TOPAZ_CLUSTER), PastelNodeType.STORAGE), IS.of(16), InkColors.CYAN).withPredefinedItemModel());
-	public static final DeferredBlock<PastelNodeBlock> SENDER_NODE = register(blockWithItem("sender_node", () -> new PastelNodeBlock(pastelNode(SpectrumBlockSoundGroups.CITRINE_CLUSTER), PastelNodeType.SENDER), IS.of(16), InkColors.YELLOW).withPredefinedItemModel());
-	public static final DeferredBlock<PastelNodeBlock> GATHER_NODE = register(blockWithItem("gather_node", () -> new PastelNodeBlock(pastelNode(SpectrumBlockSoundGroups.ONYX_CLUSTER), PastelNodeType.GATHER), IS.of(16), InkColors.BLACK).withPredefinedItemModel());
+	public static final DeferredBlock<PastelNodeBlock> CONNECTION_NODE = register(blockWithItem("connection_node", () -> new PastelNodeBlock(pastelNode(SoundType.AMETHYST_CLUSTER), PastelNodeType.CONNECTION), IS.of(), InkColors.LIGHT_GRAY).withPredefinedItemModel());
+	public static final DeferredBlock<PastelNodeBlock> PROVIDER_NODE = register(blockWithItem("provider_node", () -> new PastelNodeBlock(pastelNode(SoundType.AMETHYST_CLUSTER), PastelNodeType.PROVIDER), IS.of(), InkColors.MAGENTA).withPredefinedItemModel());
+	public static final DeferredBlock<PastelNodeBlock> STORAGE_NODE = register(blockWithItem("storage_node", () -> new PastelNodeBlock(pastelNode(SpectrumBlockSoundGroups.TOPAZ_CLUSTER), PastelNodeType.STORAGE), IS.of(), InkColors.CYAN).withPredefinedItemModel());
+	public static final DeferredBlock<PastelNodeBlock> SENDER_NODE = register(blockWithItem("sender_node", () -> new PastelNodeBlock(pastelNode(SpectrumBlockSoundGroups.CITRINE_CLUSTER), PastelNodeType.SENDER), IS.of(), InkColors.YELLOW).withPredefinedItemModel());
+	public static final DeferredBlock<PastelNodeBlock> GATHER_NODE = register(blockWithItem("gather_node", () -> new PastelNodeBlock(pastelNode(SpectrumBlockSoundGroups.ONYX_CLUSTER), PastelNodeType.GATHER), IS.of(), InkColors.BLACK).withPredefinedItemModel());
 	
 	// COLORED BLOCK FAMILIES
 	
@@ -750,7 +754,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> SAWBLADE_GRASS = register(snowy(blockWithItem("sawblade_grass", () -> new BlackslagVegetationBlock(overgrownBlackslag(MapColor.SAND, SoundType.AZALEA_LEAVES)), InkColors.LIME), SpectrumTexturedModels.cubeBottomTopParticle(b -> b, "_side", b -> b, "_top", b -> BLACKSLAG.get(), "_top", b -> b, "_top"), SpectrumTexturedModels.cubeBottomTopParticle(b -> b, "_snow_side", b -> b, "_snow_top", b -> BLACKSLAG.get(), "_top", b -> b, "_snow_top")));
 	public static final DeferredBlock<Block> SHIMMEL = register(snowy(blockWithItem("shimmel", () -> new BlackslagVegetationBlock(overgrownBlackslag(MapColor.TERRACOTTA_GRAY, SoundType.WART_BLOCK)), InkColors.LIME), SpectrumTexturedModels.cubeBottomTopParticle(b -> b, "_side", b -> b, "_top", b -> BLACKSLAG.get(), "_top", b -> BLACKSLAG.get(), "_top"), SpectrumTexturedModels.cubeBottomTopParticle(b -> b, "_snow_side", b -> b, "_snow_top", b -> BLACKSLAG.get(), "_top", b -> BLACKSLAG.get(), "_top")));
 	public static final DeferredBlock<Block> OVERGROWN_BLACKSLAG = register(snowy(blockWithItem("overgrown_blackslag", () -> new BlackslagVegetationBlock(overgrownBlackslag(MapColor.PLANT, SoundType.VINE).speedFactor(0.925F)), InkColors.LIME), SpectrumTexturedModels.overgrown(b -> b, "_side", b -> b, "_top", b -> BLACKSLAG.get(), "_top", b -> b, "_fronds"), SpectrumTexturedModels.overgrown(b -> b, "_snow_side", b -> b, "_snow_top", b -> BLACKSLAG.get(), "_top", b -> b, "_snow_fronds")));
-	public static final DeferredBlock<RottenGroundBlock> ROTTEN_GROUND = register(blockWithItem("rotten_ground", () -> new RottenGroundBlock(BlockBehaviour.Properties.ofFullCopy(MUD).mapColor(MapColor.STONE).sound(SoundType.HONEY_BLOCK).jumpFactor(0.9F).strength(5F, 15F)), InkColors.GRAY).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block, SpectrumModelHelper.createModelVariant(TexturedModel.CUBE.create(block, ctx.modelOutput)).with(VariantProperties.WEIGHT, 4), SpectrumModelHelper.createModelVariant(SpectrumTexturedModels.cubeAll(b -> b, "_bony").createWithSuffix(block, "_bony", ctx.modelOutput)), SpectrumModelHelper.createModelVariant(SpectrumTexturedModels.cubeAll(b -> b, "_boil").createWithSuffix(block, "_boil", ctx.modelOutput)))));
+	public static final DeferredBlock<RottenGroundBlock> ROTTEN_GROUND = register(blockWithItem("rotten_ground", () -> new RottenGroundBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MUD).mapColor(MapColor.STONE).sound(SoundType.HONEY_BLOCK).jumpFactor(0.9F).strength(5F, 15F)), InkColors.GRAY).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block, SpectrumModelHelper.createModelVariant(TexturedModel.CUBE.create(block, ctx.modelOutput)).with(VariantProperties.WEIGHT, 4), SpectrumModelHelper.createModelVariant(SpectrumTexturedModels.cubeAll(b -> b, "_bony").createWithSuffix(block, "_bony", ctx.modelOutput)), SpectrumModelHelper.createModelVariant(SpectrumTexturedModels.cubeAll(b -> b, "_boil").createWithSuffix(block, "_boil", ctx.modelOutput)))));
 	
 	public static final float ASH_STRENGTH = 2F;
 	
@@ -766,12 +770,12 @@ public class SpectrumBlocks {
 		ResourceLocation ash3 = TextureMapping.getBlockTexture(ASH.get(), "3");
 		ResourceLocation ash4 = TextureMapping.getBlockTexture(ASH.get(), "4");
 		if (height == 8) return List.of(SpectrumModelHelper.createModelVariant(ash), SpectrumModelHelper.createModelVariant(ash2), SpectrumModelHelper.createModelVariant(ash3), SpectrumModelHelper.createModelVariant(ash4));
-		ModelTemplate layerModel = new ModelTemplate(Optional.of(ModelLocationUtils.getModelLocation(SNOW, "_height" + height * 2)), Optional.empty(), TextureSlot.PARTICLE, TextureSlot.TEXTURE);
+		ModelTemplate layerModel = new ModelTemplate(Optional.of(ModelLocationUtils.getModelLocation(Blocks.SNOW, "_height" + height * 2)), Optional.empty(), TextureSlot.PARTICLE, TextureSlot.TEXTURE);
 		return List.of(
-				SpectrumModelHelper.createModelVariant(layerModel.create(locate("block/ash_pile_height" + height * 2), TextureMapping.cube(ash), ctx.modelOutput)),
-				SpectrumModelHelper.createModelVariant(layerModel.create(locate("block/ash2_pile_height" + height * 2), TextureMapping.cube(ash2), ctx.modelOutput)),
-				SpectrumModelHelper.createModelVariant(layerModel.create(locate("block/ash3_pile_height" + height * 2), TextureMapping.cube(ash3), ctx.modelOutput)),
-				SpectrumModelHelper.createModelVariant(layerModel.create(locate("block/ash4_pile_height" + height * 2), TextureMapping.cube(ash4), ctx.modelOutput))
+				createModelVariant(layerModel.create(SpectrumCommon.locate("block/ash_pile_height" + height * 2), TextureMapping.cube(ash), ctx.modelOutput)),
+				createModelVariant(layerModel.create(SpectrumCommon.locate("block/ash2_pile_height" + height * 2), TextureMapping.cube(ash2), ctx.modelOutput)),
+				createModelVariant(layerModel.create(SpectrumCommon.locate("block/ash3_pile_height" + height * 2), TextureMapping.cube(ash3), ctx.modelOutput)),
+				createModelVariant(layerModel.create(SpectrumCommon.locate("block/ash4_pile_height" + height * 2), TextureMapping.cube(ash4), ctx.modelOutput))
 		);
 	}))));
 	
@@ -788,9 +792,9 @@ public class SpectrumBlocks {
 	public static DeferredBlock<FungusBlock> registerNoxshroom(String name, ResourceKey<ConfiguredFeature<?, ?>> feature, MapColor mapColor) {
 		return register(blockWithItem(name, () -> new FungusBlock(feature, SHIMMEL.get(), settings(mapColor, SoundType.FUNGUS, 0.0F).noCollission()), InkColors.LIME)
 				.withBlockItemModel((ctx, block) -> ModelTemplates.FLAT_ITEM.create(ModelLocationUtils.getModelLocation(block.asItem()), SpectrumTextureMaps.layer0(block, "_type_1"), ctx.output)).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block,
-						SpectrumModelHelper.createModelVariant(SpectrumTexturedModels.cross(b -> b, "_type_1").createWithSuffix(block, "_type_1", ctx.modelOutput)),
-						SpectrumModelHelper.createModelVariant(SpectrumTexturedModels.cross(b -> b, "_type_2").createWithSuffix(block, "_type_2", ctx.modelOutput)),
-						SpectrumModelHelper.createModelVariant(SpectrumTexturedModels.cross(b -> b, "_type_3").createWithSuffix(block, "_type_3", ctx.modelOutput)))));
+						createModelVariant(SpectrumTexturedModels.cross(b -> b, "_type_1").createWithSuffix(block, "_type_1", ctx.modelOutput)),
+						createModelVariant(SpectrumTexturedModels.cross(b -> b, "_type_2").createWithSuffix(block, "_type_2", ctx.modelOutput)),
+						createModelVariant(SpectrumTexturedModels.cross(b -> b, "_type_3").createWithSuffix(block, "_type_3", ctx.modelOutput)))));
 	}
 	
 	public static final DeferredBlock<FungusBlock> SLATE_NOXSHROOM = registerNoxshroom("slate_noxshroom", SpectrumConfiguredFeatures.SLATE_NOXFUNGUS, MapColor.COLOR_GRAY);
@@ -798,10 +802,10 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<FungusBlock> IVORY_NOXSHROOM = registerNoxshroom("ivory_noxshroom", SpectrumConfiguredFeatures.IVORY_NOXFUNGUS, MapColor.QUARTZ);
 	public static final DeferredBlock<FungusBlock> CHESTNUT_NOXSHROOM = registerNoxshroom("chestnut_noxshroom", SpectrumConfiguredFeatures.CHESTNUT_NOXFUNGUS, MapColor.CRIMSON_NYLIUM);
 	
-	public static final DeferredBlock<FlowerPotBlock> POTTED_SLATE_NOXSHROOM = register(pottedPlant(block("potted_slate_noxshroom", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, SLATE_NOXSHROOM, pottedPlant())), false));
-	public static final DeferredBlock<FlowerPotBlock> POTTED_EBONY_NOXSHROOM = register(pottedPlant(block("potted_ebony_noxshroom", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, EBONY_NOXSHROOM, pottedPlant())), false));
-	public static final DeferredBlock<FlowerPotBlock> POTTED_IVORY_NOXSHROOM = register(pottedPlant(block("potted_ivory_noxshroom", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, IVORY_NOXSHROOM, pottedPlant())), false));
-	public static final DeferredBlock<FlowerPotBlock> POTTED_CHESTNUT_NOXSHROOM = register(pottedPlant(block("potted_chestnut_noxshroom", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, CHESTNUT_NOXSHROOM, pottedPlant())), false));
+	public static final DeferredBlock<FlowerPotBlock> POTTED_SLATE_NOXSHROOM = register(pottedPlant(block("potted_slate_noxshroom", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, SLATE_NOXSHROOM, pottedPlant())), "_type_1"));
+	public static final DeferredBlock<FlowerPotBlock> POTTED_EBONY_NOXSHROOM = register(pottedPlant(block("potted_ebony_noxshroom", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, EBONY_NOXSHROOM, pottedPlant())), "_type_1"));
+	public static final DeferredBlock<FlowerPotBlock> POTTED_IVORY_NOXSHROOM = register(pottedPlant(block("potted_ivory_noxshroom", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, IVORY_NOXSHROOM, pottedPlant())), "_type_1"));
+	public static final DeferredBlock<FlowerPotBlock> POTTED_CHESTNUT_NOXSHROOM = register(pottedPlant(block("potted_chestnut_noxshroom", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, CHESTNUT_NOXSHROOM, pottedPlant())), "_type_1"));
 	
 	public static BlockBehaviour.Properties noxcap(MapColor color) {
 		return settings(color, SoundType.STEM, 4.0F).instrument(NoteBlockInstrument.BASS);
@@ -994,7 +998,7 @@ public class SpectrumBlocks {
 	public static DeferredBlock<TallDragonjagBlock> registerTallDragonjagBlock(String name, Dragonjag.Variant variant) {
 		return register(block(name, () -> new TallDragonjagBlock(settings(variant.getMapColor(), SoundType.GRASS, 1.0F), variant)).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.properties(DoublePlantBlock.HALF, TallDragonjagBlock.DEAD).generate((half, dead) -> {
 			String suffix = (half == DoubleBlockHalf.UPPER ? "_top" : "_bottom") + (dead ? "_dead" : "");
-			return SpectrumModelHelper.createModelVariant((half == DoubleBlockHalf.UPPER ? SpectrumTexturedModels.cross(b -> b, suffix) : SpectrumTexturedModels.doubleCross(b -> b, suffix)).createWithSuffix(block, suffix, ctx.modelOutput));
+			return createModelVariant((half == DoubleBlockHalf.UPPER ? SpectrumTexturedModels.cross(b -> b, suffix) : SpectrumTexturedModels.doubleCross(b -> b, suffix)).createWithSuffix(block, suffix, ctx.modelOutput));
 		}))));
 	}
 	
@@ -1026,8 +1030,8 @@ public class SpectrumBlocks {
 			}))));
 	public static final DeferredBlock<NightdewBlock> NIGHTDEW = register(block("nightdew", () -> new NightdewBlock(settings(MapColor.WARPED_NYLIUM, SoundType.CAVE_VINES, 0.0F).noCollission().offsetType(BlockBehaviour.OffsetType.XYZ).randomTicks().noOcclusion().instabreak())).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.property(TriStateVineBlock.LIFE_STAGE).generate(stage -> {
 		String suffix = (stage == TriStateVineBlock.LifeStage.STALK ? "" : "_tip");
-		if (stage == TriStateVineBlock.LifeStage.MATURE) return SpectrumModelHelper.createModelVariant(block, suffix);
-		return SpectrumModelHelper.createModelVariant(SpectrumTexturedModels.cross(b -> b, suffix).createWithSuffix(block, suffix, ctx.modelOutput));
+		if (stage == TriStateVineBlock.LifeStage.MATURE) return createModelVariant(block, suffix);
+		return createModelVariant(SpectrumTexturedModels.cross(b -> b, suffix).createWithSuffix(block, suffix, ctx.modelOutput));
 	}))));
 	public static final DeferredBlock<Block> SWEET_PEA = register(simplePlant(blockWithItem("sweet_pea", () -> new FlammableFlowerBlock(MobEffects.NIGHT_VISION, 5, settings(MapColor.COLOR_MAGENTA, SoundType.GRASS, 0.0F).offsetType(BlockBehaviour.OffsetType.XZ).noCollission().noOcclusion().lightLevel(s -> 11).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always)), InkColors.YELLOW)));
 	public static final DeferredBlock<Block> APRICOTTI = register(simplePlant(blockWithItem("apricotti", () -> new FlammableFlowerBlock(MobEffects.GLOWING, 5, settings(MapColor.COLOR_ORANGE, SoundType.GRASS, 0.0F).offsetType(BlockBehaviour.OffsetType.XZ).noCollission().noOcclusion().lightLevel(s -> 11).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always)), InkColors.YELLOW)));
@@ -1040,14 +1044,14 @@ public class SpectrumBlocks {
 	
 	public static final DeferredBlock<MossBallBlock> MOSS_BALL = register(blockWithItem("moss_ball", () -> new MossBallBlock(settings(MapColor.PLANT, SoundType.WET_GRASS, 1F).noCollission().noOcclusion().offsetType(BlockBehaviour.OffsetType.XYZ)), InkColors.GREEN).withBlockModel((ctx, block) -> {
 		List<Variant> variants = new ArrayList<>(SpectrumModelHelper.createHorizontalRotationVariantList(ModelLocationUtils.getModelLocation(block, "_tuft")));
-		variants.add(SpectrumModelHelper.createModelVariant(block, "").with(VariantProperties.WEIGHT, 4));
+		variants.add(createModelVariant(block, "").with(VariantProperties.WEIGHT, 4));
 		return MultiVariantGenerator.multiVariant(block, variants.toArray(Variant[]::new));
 	}));
 	public static final DeferredBlock<GiantMossBallBlock> GIANT_MOSS_BALL = register(blockWithItem("giant_moss_ball", () -> new GiantMossBallBlock(settings(MapColor.PLANT, SoundType.WET_GRASS, 10F).noCollission().noOcclusion().offsetType(BlockBehaviour.OffsetType.XYZ)), InkColors.GREEN).withBlockModel((ctx, block) -> SpectrumModelHelper.createVariantsSupplier(block, ModelLocationUtils.getModelLocation(block))));
 	
-	public static final DeferredBlock<Block> RESPLENDENT_BLOCK = register(defaultUpFacing(blockWithItem("resplendent_block", () -> new CushionedFacingBlock(BlockBehaviour.Properties.ofFullCopy(RED_WOOL)), IS.of(Rarity.UNCOMMON), InkColors.YELLOW), TexturedModel.CUBE_TOP_BOTTOM));
+	public static final DeferredBlock<Block> RESPLENDENT_BLOCK = register(defaultUpFacing(blockWithItem("resplendent_block", () -> new CushionedFacingBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_WOOL)), IS.of(Rarity.UNCOMMON), InkColors.YELLOW), TexturedModel.CUBE_TOP_BOTTOM));
 	public static final DeferredBlock<Block> RESPLENDENT_CUSHION = register(singleton(blockWithItem("resplendent_cushion", () -> new CushionBlock(BlockBehaviour.Properties.ofFullCopy(RESPLENDENT_BLOCK.get()).noOcclusion().isValidSpawn(SpectrumBlocks::never)), IS.of(Rarity.UNCOMMON), InkColors.YELLOW), SpectrumTexturedModels.CUSHION));
-	public static final DeferredBlock<Block> RESPLENDENT_CARPET = register(singleton(blockWithItem("resplendent_carpet", () -> new CushionedCarpetBlock(BlockBehaviour.Properties.ofFullCopy(RED_CARPET)), IS.of(Rarity.UNCOMMON), InkColors.YELLOW), TexturedModel.CARPET));
+	public static final DeferredBlock<Block> RESPLENDENT_CARPET = register(singleton(blockWithItem("resplendent_carpet", () -> new CushionedCarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_CARPET)), IS.of(Rarity.UNCOMMON), InkColors.YELLOW), TexturedModel.CARPET));
 	public static final DeferredBlock<SpectrumBedBlock> RESPLENDENT_BED = register(blockWithItem("resplendent_bed", () -> new SpectrumBedBlock(DyeColor.RED, BlockBehaviour.Properties.ofFullCopy(Blocks.RED_BED)), IS.of(1, Rarity.UNCOMMON), InkColors.YELLOW).withPredefinedItemModel().withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(SpectrumModelHelper.createSouthDefaultHorizontalFacingVariantMap()).with(PropertyDispatch.property(BedBlock.PART).select(BedPart.HEAD, SpectrumModelHelper.createModelVariant(block, "_head")).select(BedPart.FOOT, SpectrumModelHelper.createModelVariant(block, "_foot")))));
 	
 	// JADE VINES
@@ -1060,11 +1064,11 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<JadeVinePlantBlock> JADE_VINES = register(block("jade_vines", () -> new JadeVinePlantBlock(jadeVine().lightLevel((state) -> state.getValue(JadeVinePlantBlock.AGE) == 0 ? 0 : 5))).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.properties(BlockStateProperties.AGE_7, JadeVinePlantBlock.PART).generate((age, part) -> {
 		ModelTemplate model = SpectrumModels.jadeVines(part);
 		String suffix = "_" + part.getSerializedName() + (age == 0 ? "_dead" : age <= 2 ? "_leaves" : age <= 6 ? "_petals" : "_bloom");
-		if (age == 0) return SpectrumModelHelper.createModelVariant(model.createWithSuffix(block, suffix, SpectrumTextureMaps.flowerParticle(SpectrumTextures.JADE_VINE_PLANT_RIPE, SpectrumTextures.JADE_VINE_PLANT_RIPE_BREAKING), ctx.modelOutput));
-		if (age == 1) return SpectrumModelHelper.createModelVariant(model.createWithSuffix(block, suffix, SpectrumTextureMaps.flowerParticle(SpectrumTextures.JADE_VINE_PLANT, SpectrumTextures.JADE_VINE_PLANT_BREAKING), ctx.modelOutput));
-		if (age == 3) return SpectrumModelHelper.createModelVariant(model.createWithSuffix(block, suffix, SpectrumTextureMaps.flowerParticle(SpectrumTextures.JADE_VINE_PLANT_PETALS, SpectrumTextures.JADE_VINE_PLANT_BREAKING), ctx.modelOutput));
-		if (age == 7) return SpectrumModelHelper.createModelVariant(model.createWithSuffix(block, suffix, SpectrumTextureMaps.flowerParticle(SpectrumTextures.JADE_VINE_PLANT_BLOOMING, SpectrumTextures.JADE_VINE_PLANT_BREAKING), ctx.modelOutput));
-		return SpectrumModelHelper.createModelVariant(block, suffix);
+		if (age == 0) return createModelVariant(model.createWithSuffix(block, suffix, SpectrumTextureMaps.flowerParticle(SpectrumTextures.JADE_VINE_PLANT_RIPE, SpectrumTextures.JADE_VINE_PLANT_RIPE_BREAKING), ctx.modelOutput));
+		if (age == 1) return createModelVariant(model.createWithSuffix(block, suffix, SpectrumTextureMaps.flowerParticle(SpectrumTextures.JADE_VINE_PLANT, SpectrumTextures.JADE_VINE_PLANT_BREAKING), ctx.modelOutput));
+		if (age == 3) return createModelVariant(model.createWithSuffix(block, suffix, SpectrumTextureMaps.flowerParticle(SpectrumTextures.JADE_VINE_PLANT_PETALS, SpectrumTextures.JADE_VINE_PLANT_BREAKING), ctx.modelOutput));
+		if (age == 7) return createModelVariant(model.createWithSuffix(block, suffix, SpectrumTextureMaps.flowerParticle(SpectrumTextures.JADE_VINE_PLANT_BLOOMING, SpectrumTextures.JADE_VINE_PLANT_BREAKING), ctx.modelOutput));
+		return createModelVariant(block, suffix);
 	}))));
 	public static final DeferredBlock<Block> JADE_VINE_PETAL_BLOCK = register(simple(blockWithItem("jade_vine_petal_block", () -> new JadeVinePetalBlock(jadeVine().lightLevel(state -> 3)), InkColors.LIME)));
 	public static final DeferredBlock<Block> JADE_VINE_PETAL_CARPET = register(singleton(blockWithItem("jade_vine_petal_carpet", () -> new FlammableCarpetBlock(jadeVine().lightLevel(state -> 3)), InkColors.LIME), SpectrumTexturedModels.carpet(b -> JADE_VINE_PETAL_BLOCK.get(), "")));
@@ -1074,16 +1078,16 @@ public class SpectrumBlocks {
 		ResourceLocation top = SpectrumTexturedModels.cross(b -> b, "_top").createWithSuffix(block, "_top", ctx.modelOutput);
 		ResourceLocation fronds = ModelLocationUtils.getModelLocation(block, "_base");
 		return MultiPartGenerator.multiPart(block)
-				.with(Condition.condition().term(NephriteBlossomStemBlock.STEM_PART, StemComponent.STEM), SpectrumModelHelper.createModelVariant(bottom))
-				.with(Condition.condition().term(NephriteBlossomStemBlock.STEM_PART, StemComponent.STEMALT), SpectrumModelHelper.createModelVariant(top))
-				.with(Condition.condition().term(NephriteBlossomStemBlock.STEM_PART, StemComponent.BASE), SpectrumModelHelper.createModelVariant(fronds))
-				.with(Condition.condition().term(NephriteBlossomStemBlock.STEM_PART, StemComponent.BASE), SpectrumModelHelper.createModelVariant(bottom));
+				.with(Condition.condition().term(NephriteBlossomStemBlock.STEM_PART, StemComponent.STEM), createModelVariant(bottom))
+				.with(Condition.condition().term(NephriteBlossomStemBlock.STEM_PART, StemComponent.STEMALT), createModelVariant(top))
+				.with(Condition.condition().term(NephriteBlossomStemBlock.STEM_PART, StemComponent.BASE), createModelVariant(fronds))
+				.with(Condition.condition().term(NephriteBlossomStemBlock.STEM_PART, StemComponent.BASE), createModelVariant(bottom));
 	}));
 	public static final DeferredBlock<NephriteBlossomLeavesBlock> NEPHRITE_BLOSSOM_LEAVES = register(blockWithItem("nephrite_blossom_leaves", () -> new NephriteBlossomLeavesBlock(settings(MapColor.COLOR_PINK, SoundType.GRASS, 0.2F).noOcclusion().randomTicks().lightLevel(state -> 13)), InkColors.PINK).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.property(BlockStateProperties.AGE_2).generate(age -> {
 		String suffix = age == 0 ? "" : age == 1 ? "_flowering" : "_fruiting";
-		return SpectrumModelHelper.createModelVariant(SpectrumTexturedModels.leaves(b -> b, suffix).createWithSuffix(block, suffix, ctx.modelOutput));
+		return createModelVariant(SpectrumTexturedModels.leaves(b -> b, suffix).createWithSuffix(block, suffix, ctx.modelOutput));
 	}))));
-	public static final DeferredBlock<NephriteBlossomBulbBlock> NEPHRITE_BLOSSOM_BULB = register(cross(blockWithItem("nephrite_blossom_bulb", () -> new NephriteBlossomBulbBlock(BlockBehaviour.Properties.ofFullCopy(NEPHRITE_BLOSSOM_STEM.get())), IS.of(16), InkColors.PINK)).withItemModel(SpectrumModelHelper::registerItemModel));
+	public static final DeferredBlock<NephriteBlossomBulbBlock> NEPHRITE_BLOSSOM_BULB = register(cross(blockWithItem("nephrite_blossom_bulb", () -> new NephriteBlossomBulbBlock(BlockBehaviour.Properties.ofFullCopy(NEPHRITE_BLOSSOM_STEM.get())), IS.of(), InkColors.PINK)).withItemModel(SpectrumModelHelper::registerItemModel));
 	
 	public static BlockBehaviour.Properties jadeite() {
 		return settings(MapColor.WOOL, SoundType.WOOL, 0.1F).noCollission().noOcclusion().lightLevel(state -> 12).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always);
@@ -1093,10 +1097,10 @@ public class SpectrumBlocks {
 		ResourceLocation bottom = SpectrumTexturedModels.cross(b -> b, "_bottom").createWithSuffix(block, "_bottom", ctx.modelOutput);
 		ResourceLocation top = SpectrumTexturedModels.cross(b -> b, "_top").createWithSuffix(block, "_top", ctx.modelOutput);
 		ResourceLocation base = ModelLocationUtils.getModelLocation(block, "_base");
-		return MultiPartGenerator.multiPart(block).with(Condition.condition().term(JadeiteLotusStemBlock.STEM_PART, StemComponent.STEM), SpectrumModelHelper.createModelVariant(bottom)).with(Condition.condition().term(JadeiteLotusStemBlock.STEM_PART, StemComponent.STEMALT), SpectrumModelHelper.createModelVariant(top)).with(Condition.condition().term(JadeiteLotusStemBlock.STEM_PART, StemComponent.BASE), SpectrumModelHelper.createModelVariant(bottom)).with(Condition.condition().term(JadeiteLotusStemBlock.STEM_PART, StemComponent.BASE).term(BlockStateProperties.INVERTED, false), SpectrumModelHelper.createModelVariant(base)).with(Condition.condition().term(JadeiteLotusStemBlock.STEM_PART, StemComponent.BASE).term(BlockStateProperties.INVERTED, true), SpectrumModelHelper.createModelVariant(base).with(VariantProperties.X_ROT, VariantProperties.Rotation.R180));
+		return MultiPartGenerator.multiPart(block).with(Condition.condition().term(JadeiteLotusStemBlock.STEM_PART, StemComponent.STEM), createModelVariant(bottom)).with(Condition.condition().term(JadeiteLotusStemBlock.STEM_PART, StemComponent.STEMALT), createModelVariant(top)).with(Condition.condition().term(JadeiteLotusStemBlock.STEM_PART, StemComponent.BASE), createModelVariant(bottom)).with(Condition.condition().term(JadeiteLotusStemBlock.STEM_PART, StemComponent.BASE).term(BlockStateProperties.INVERTED, false), createModelVariant(base)).with(Condition.condition().term(JadeiteLotusStemBlock.STEM_PART, StemComponent.BASE).term(BlockStateProperties.INVERTED, true), createModelVariant(base).with(VariantProperties.X_ROT, VariantProperties.Rotation.R180));
 	}));
-	public static final DeferredBlock<Block> JADEITE_LOTUS_FLOWER = register(defaultUpFacingGetter(blockWithItem("jadeite_lotus_flower", () -> new JadeiteLotusFlowerBlock(settings(MapColor.SNOW, SoundType.WOOL, 2.0F).lightLevel(state -> 14).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always)), IS.of(16), InkColors.LIME), ModelLocationUtils::getModelLocation));
-	public static final DeferredBlock<JadeiteLotusBulbBlock> JADEITE_LOTUS_BULB = register(cross(blockWithItem("jadeite_lotus_bulb", () -> new JadeiteLotusBulbBlock(BlockBehaviour.Properties.ofFullCopy(JADEITE_LOTUS_STEM.get()).noOcclusion()), IS.of(16), InkColors.LIME)).withItemModel(SpectrumModelHelper::registerItemModel));
+	public static final DeferredBlock<Block> JADEITE_LOTUS_FLOWER = register(defaultUpFacingGetter(blockWithItem("jadeite_lotus_flower", () -> new JadeiteLotusFlowerBlock(settings(MapColor.SNOW, SoundType.WOOL, 2.0F).lightLevel(state -> 14).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always)), IS.of(), InkColors.LIME), ModelLocationUtils::getModelLocation));
+	public static final DeferredBlock<JadeiteLotusBulbBlock> JADEITE_LOTUS_BULB = register(cross(blockWithItem("jadeite_lotus_bulb", () -> new JadeiteLotusBulbBlock(BlockBehaviour.Properties.ofFullCopy(JADEITE_LOTUS_STEM.get()).noOcclusion()), IS.of(), InkColors.LIME)).withItemModel(SpectrumModelHelper::registerItemModel));
 	public static final DeferredBlock<Block> JADEITE_PETAL_BLOCK = register(simple(blockWithItem("jadeite_petal_block", () -> new JadeVinePetalBlock(jadeite()), InkColors.LIME)));
 	public static final DeferredBlock<Block> JADEITE_PETAL_CARPET = register(singleton(blockWithItem("jadeite_petal_carpet", () -> new FlammableCarpetBlock(jadeite()), InkColors.LIME), SpectrumTexturedModels.carpet(b -> JADEITE_PETAL_BLOCK.get(), "")));
 	
@@ -1125,8 +1129,9 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<ShimmerstoneOreBlock> BLACKSLAG_SHIMMERSTONE_ORE = register(singleton(blockWithItem("blackslag_shimmerstone_ore", () -> new ShimmerstoneOreBlock(UniformInt.of(2, 4), blackslagOre().randomTicks(), SpectrumAdvancements.REVEAL_SHIMMERSTONE, BLACKSLAG.get().defaultBlockState()), InkColors.YELLOW), TexturedModel.COLUMN_ALT));
 	public static final DeferredBlock<ShimmerstoneBlock> SHIMMERSTONE_BLOCK = register(simple(blockWithItem("shimmerstone_block", () -> new ShimmerstoneBlock(settings(MapColor.COLOR_YELLOW, SoundType.GLASS, 2.0F).lightLevel((state) -> 15)), InkColors.YELLOW)));
 	
-	public static final DeferredBlock<AzuriteOreBlock> AZURITE_ORE = register(simpleMirrored(blockWithItem("azurite_ore", () -> new AzuriteOreBlock(UniformInt.of(4, 7), ore().randomTicks(), SpectrumAdvancements.REVEAL_AZURITE, STONE.defaultBlockState()), InkColors.BLUE)));
-	public static final DeferredBlock<AzuriteOreBlock> DEEPSLATE_AZURITE_ORE = register(simpleMirrored(blockWithItem("deepslate_azurite_ore", () -> new AzuriteOreBlock(UniformInt.of(4, 7), deepslateOre().randomTicks(), SpectrumAdvancements.REVEAL_AZURITE, DEEPSLATE.defaultBlockState()), InkColors.BLUE)));
+	public static final DeferredBlock<AzuriteOreBlock> AZURITE_ORE = register(simpleMirrored(blockWithItem("azurite_ore", () -> new AzuriteOreBlock(UniformInt.of(4, 7), ore().randomTicks(), SpectrumAdvancements.REVEAL_AZURITE, Blocks.STONE.defaultBlockState()), InkColors.BLUE)));
+	public static final DeferredBlock<Block> RAW_AZURITE_BLOCK = register(simple(blockWithItem("raw_azurite_block", () -> new AzuriteBlock(ore().mapColor(MapColor.COLOR_BLUE)), InkColors.BLUE)));
+	public static final DeferredBlock<AzuriteOreBlock> DEEPSLATE_AZURITE_ORE = register(simpleMirrored(blockWithItem("deepslate_azurite_ore", () -> new AzuriteOreBlock(UniformInt.of(4, 7), deepslateOre().randomTicks(), SpectrumAdvancements.REVEAL_AZURITE, Blocks.DEEPSLATE.defaultBlockState()), InkColors.BLUE)));
 	public static final DeferredBlock<AzuriteOreBlock> BLACKSLAG_AZURITE_ORE = register(simpleMirrored(blockWithItem("blackslag_azurite_ore", () -> new AzuriteOreBlock(UniformInt.of(4, 7), blackslagOre().randomTicks(), SpectrumAdvancements.REVEAL_AZURITE, BLACKSLAG.get().defaultBlockState()), InkColors.BLUE)));
 	public static final DeferredBlock<Block> AZURITE_BLOCK = register(defaultUpFacing(blockWithItem("azurite_block", () -> new SpectrumFacingBlock(BlockBehaviour.Properties.ofFullCopy(LAPIS_BLOCK).mapColor(MapColor.COLOR_BLUE)), InkColors.BLUE), TexturedModel.CUBE_TOP_BOTTOM));
 	public static final DeferredBlock<SpectrumClusterBlock> AZURITE_CLUSTER = register(cluster(blockWithItem("azurite_cluster", () -> new SpectrumClusterBlock(gemstone(MapColor.COLOR_BLUE, SpectrumBlockSoundGroups.SMALL_ONYX_BUD, 2), SpectrumClusterBlock.GrowthStage.CLUSTER), IS.of(Rarity.UNCOMMON), InkColors.BLUE), SpectrumModels.CRYSTALLARIEUM_FARMABLE));
@@ -1134,13 +1139,15 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<SpectrumClusterBlock> SMALL_AZURITE_BUD = register(cluster(blockWithItem("small_azurite_bud", () -> new SpectrumClusterBlock(gemstone(MapColor.COLOR_BLUE, SpectrumBlockSoundGroups.ONYX_CLUSTER, 5), SpectrumClusterBlock.GrowthStage.SMALL), IS.of(Rarity.UNCOMMON), InkColors.BLUE), SpectrumModels.CRYSTALLARIEUM_FARMABLE));
 	
 	public static final DeferredBlock<Block> MALACHITE_ORE = register(simple(blockWithItem("malachite_ore", () -> new CloakedOreBlock(UniformInt.of(7, 11), ore(), SpectrumAdvancements.REVEAL_MALACHITE, STONE.defaultBlockState()), IS.of(Rarity.UNCOMMON), InkColors.GREEN)));
-	public static final DeferredBlock<Block> DEEPSLATE_MALACHITE_ORE = register(simple(blockWithItem("deepslate_malachite_ore", () -> new CloakedOreBlock(UniformInt.of(7, 11), deepslateOre(), SpectrumAdvancements.REVEAL_MALACHITE, DEEPSLATE.defaultBlockState()), IS.of(Rarity.UNCOMMON), InkColors.GREEN)));
+	public static final DeferredBlock<Block> RAW_MALACHITE_BLOCK = register(simple(blockWithItem("raw_malachite_block", () -> new Block(ore().mapColor(MapColor.EMERALD)), InkColors.GREEN)));
+	public static final DeferredBlock<Block> DEEPSLATE_MALACHITE_ORE = register(simple(blockWithItem("deepslate_malachite_ore", () -> new CloakedOreBlock(UniformInt.of(7, 11), deepslateOre(), SpectrumAdvancements.REVEAL_MALACHITE, Blocks.DEEPSLATE.defaultBlockState()), IS.of(Rarity.UNCOMMON), InkColors.GREEN)));
 	public static final DeferredBlock<Block> BLACKSLAG_MALACHITE_ORE = register(singleton(blockWithItem("blackslag_malachite_ore", () -> new CloakedOreBlock(UniformInt.of(7, 11), blackslagOre(), SpectrumAdvancements.REVEAL_MALACHITE, BLACKSLAG.get().defaultBlockState()), IS.of(Rarity.UNCOMMON), InkColors.GREEN), TexturedModel.COLUMN_ALT));
 	public static final DeferredBlock<Block> MALACHITE_BLOCK = register(defaultUpFacing(blockWithItem("malachite_block", () -> new SpectrumFacingBlock(gemstoneBlock(MapColor.EMERALD, SoundType.CHAIN)), IS.of(Rarity.UNCOMMON), InkColors.GREEN), TexturedModel.COLUMN_ALT));
 	public static final DeferredBlock<SpectrumClusterBlock> MALACHITE_CLUSTER = register(cluster(blockWithItem("malachite_cluster", () -> new SpectrumClusterBlock(gemstone(MapColor.EMERALD, SoundType.CHAIN, 9), SpectrumClusterBlock.GrowthStage.CLUSTER), IS.of(Rarity.UNCOMMON), InkColors.GREEN), SpectrumModels.CRYSTALLARIEUM_FARMABLE));
 	public static final DeferredBlock<SpectrumClusterBlock> LARGE_MALACHITE_BUD = register(cluster(blockWithItem("large_malachite_bud", () -> new SpectrumClusterBlock(gemstone(MapColor.EMERALD, SoundType.CHAIN, 7), SpectrumClusterBlock.GrowthStage.LARGE), IS.of(Rarity.UNCOMMON), InkColors.GREEN), SpectrumModels.CRYSTALLARIEUM_FARMABLE));
 	public static final DeferredBlock<SpectrumClusterBlock> SMALL_MALACHITE_BUD = register(cluster(blockWithItem("small_malachite_bud", () -> new SpectrumClusterBlock(gemstone(MapColor.EMERALD, SoundType.CHAIN, 5), SpectrumClusterBlock.GrowthStage.SMALL), IS.of(Rarity.UNCOMMON), InkColors.GREEN), SpectrumModels.CRYSTALLARIEUM_FARMABLE));
 	
+	public static final DeferredBlock<Block> RAW_BLOODSTONE_BLOCK = register(simple(blockWithItem("raw_bloodstone_block", () -> new Block(ore().mapColor(MapColor.COLOR_RED).sound(SpectrumBlockSoundGroups.ONYX_CLUSTER)), InkColors.RED)));
 	public static final DeferredBlock<Block> BLOODSTONE_BLOCK = register(defaultUpFacing(blockWithItem("bloodstone_block", () -> new SpectrumFacingBlock(gemstoneBlock(MapColor.COLOR_RED, SpectrumBlockSoundGroups.ONYX_CLUSTER)), IS.of(Rarity.UNCOMMON), InkColors.RED), TexturedModel.COLUMN));
 	public static final DeferredBlock<SpectrumClusterBlock> BLOODSTONE_CLUSTER = register(cluster(blockWithItem("bloodstone_cluster", () -> new SpectrumClusterBlock(gemstone(MapColor.COLOR_RED, SpectrumBlockSoundGroups.SMALL_ONYX_BUD, 6), SpectrumClusterBlock.GrowthStage.CLUSTER), IS.of(Rarity.UNCOMMON), InkColors.RED), SpectrumModels.CRYSTALLARIEUM_FARMABLE));
 	public static final DeferredBlock<SpectrumClusterBlock> LARGE_BLOODSTONE_BUD = register(cluster(blockWithItem("large_bloodstone_bud", () -> new SpectrumClusterBlock(gemstone(MapColor.COLOR_RED, SpectrumBlockSoundGroups.SMALL_ONYX_BUD, 4), SpectrumClusterBlock.GrowthStage.LARGE), IS.of(Rarity.UNCOMMON), InkColors.RED), SpectrumModels.CRYSTALLARIEUM_FARMABLE));
@@ -1153,8 +1160,8 @@ public class SpectrumBlocks {
 		return settings(mapColor, SoundType.METAL, 4.0F, 6.0F).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops();
 	}
 	
-	public static final DeferredBlock<FloatBlock> PALTAERIA_FLOATBLOCK = register(singleton(blockWithItem("paltaeria_floatblock", () -> new FloatBlock(gravityBlock(MapColor.COLOR_LIGHT_BLUE), 0.2F), block -> new FloatBlockItem(block, IS.of().fireResistant(), -0.02F), InkColors.RED), SpectrumTexturedModels.cubeBottomTop(b -> b, "", b -> b, "_top", b -> b, "_bottom")));
-	public static final DeferredBlock<FloatBlock> STRATINE_FLOATBLOCK = register(singleton(blockWithItem("stratine_floatblock", () -> new FloatBlock(gravityBlock(MapColor.NETHER), -0.2F), block -> new FloatBlockItem(block, IS.of(), 0.02F), InkColors.CYAN), SpectrumTexturedModels.cubeBottomTop(b -> b, "", b -> b, "_top", b -> b, "_bottom")));
+	public static final DeferredBlock<FloatBlock> PALTAERIA_FLOATBLOCK = register(singleton(blockWithItem("paltaeria_floatblock", () -> new FloatBlock(gravityBlock(MapColor.COLOR_LIGHT_BLUE), 0.2F), block -> new FloatBlockItem(block, IS.of().fireResistant(), 0.02F), InkColors.RED), SpectrumTexturedModels.cubeBottomTop(b -> b, "", b -> b, "_top", b -> b, "_bottom")));
+	public static final DeferredBlock<FloatBlock> STRATINE_FLOATBLOCK = register(singleton(blockWithItem("stratine_floatblock", () -> new FloatBlock(gravityBlock(MapColor.NETHER), -0.2F), block -> new FloatBlockItem(block, IS.of(), -0.02F), InkColors.CYAN), SpectrumTexturedModels.cubeBottomTop(b -> b, "", b -> b, "_top", b -> b, "_bottom")));
 	public static final DeferredBlock<FloatBlock> HOVER_BLOCK = register(singleton(blockWithItem("hover_block", () -> new FloatBlock(gravityBlock(MapColor.DIAMOND), 0.0F), block -> new FloatBlockItem(block, IS.of(), 0F) {
 		@Override
 		public double applyGravity(ItemStack stack, Level world, Entity entity) {
@@ -1194,19 +1201,19 @@ public class SpectrumBlocks {
 		ResourceLocation none = SpectrumTexturedModels.cross(b -> b, "_none").createWithSuffix(block, "_none", ctx.modelOutput);
 		ResourceLocation some = SpectrumTexturedModels.cross(b -> b, "_some").createWithSuffix(block, "_some", ctx.modelOutput);
 		ResourceLocation full = SpectrumTexturedModels.cross(b -> b, "_full").createWithSuffix(block, "_full", ctx.modelOutput);
-		return MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.property(BlockStateProperties.AGE_7).generate(age -> SpectrumModelHelper.createModelVariant(age < 3 ? none : age < 6 ? some : full)));
+		return MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.property(BlockStateProperties.AGE_7).generate(age -> createModelVariant(age < 3 ? none : age < 6 ? some : full)));
 	}));
-	public static final DeferredBlock<RadiatingEnderBlock> RADIATING_ENDER = register(blockWithItem("radiating_ender", () -> new RadiatingEnderBlock(BlockBehaviour.Properties.ofFullCopy(EMERALD_BLOCK).mapColor(MapColor.COLOR_PURPLE)), InkColors.PURPLE).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block, SpectrumModelHelper.createModelVariant(TexturedModel.CUBE_TOP_BOTTOM.create(block, ctx.modelOutput))).with(SpectrumModelHelper.createUpDefaultFacingVariantMap())));
+	public static final DeferredBlock<RadiatingEnderBlock> RADIATING_ENDER = register(blockWithItem("radiating_ender", () -> new RadiatingEnderBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.EMERALD_BLOCK).mapColor(MapColor.COLOR_PURPLE)), InkColors.PURPLE).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block, SpectrumModelHelper.createModelVariant(TexturedModel.CUBE_TOP_BOTTOM.create(block, ctx.modelOutput))).with(SpectrumModelHelper.createUpDefaultFacingVariantMap())));
 	public static final DeferredBlock<AmaranthCropBlock> AMARANTH = register(block("amaranth", () -> new AmaranthCropBlock(settings(MapColor.NONE, SoundType.CROP, 0.0F).noCollission().randomTicks())).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.properties(BlockStateProperties.AGE_7, TallCropBlock.HALF).generate((age, half) -> {
 		String suffix;
 		if (half == DoubleBlockHalf.LOWER) {
 			suffix = "_stage" + ((age + 1) / 2) + "_lower";
-			if (age > 0 && age % 2 == 0) return SpectrumModelHelper.createModelVariant(block, suffix);
+			if (age > 0 && age % 2 == 0) return createModelVariant(block, suffix);
 		} else {
 			suffix = "_stage" + Math.max(2, ((age + 1) / 2)) + "_upper";
-			if (age < 4 || age == 6) return SpectrumModelHelper.createModelVariant(block, suffix);
+			if (age < 4 || age == 6) return createModelVariant(block, suffix);
 		}
-		return SpectrumModelHelper.createModelVariant(SpectrumTexturedModels.cross(b -> b, suffix).createWithSuffix(block, suffix, ctx.modelOutput));
+		return createModelVariant(SpectrumTexturedModels.cross(b -> b, suffix).createWithSuffix(block, suffix, ctx.modelOutput));
 	}))));
 	
 	public static final DeferredBlock<MemoryBlock> MEMORY = register(singletonWithSoup(blockWithItem("memory", () -> new MemoryBlock(settings(MapColor.NONE, SoundType.AMETHYST, 0.0F).isViewBlocking(SpectrumBlocks::never).noOcclusion().randomTicks()), block -> new MemoryItem(block, IS.of(1, Rarity.UNCOMMON)), InkColors.LIGHT_GRAY), ModelLocationUtils::getModelLocation).withItemModel((ctx, item) -> SpectrumModelHelper.registerLayeredItemModel(ctx, item, ModelTemplates.THREE_LAYERED_ITEM, "_base", "_overlay", "_brighten")));
@@ -1225,11 +1232,11 @@ public class SpectrumBlocks {
 		ResourceLocation off = SpectrumModels.REDSTONE_TIMER.createWithSuffix(block, "_off", new TextureMapping().put(SpectrumTextureKeys.LIGHT, TextureMapping.getBlockTexture(REDSTONE_TORCH, "_off")), ctx.modelOutput);
 		for (Direction direction : Direction.Plane.HORIZONTAL) {
 			VariantProperties.Rotation rotation = SpectrumModelHelper.getSouthDefaultRotation(direction);
-			multipart.with(Condition.condition().term(BlockStateProperties.HORIZONTAL_FACING, direction).term(BlockStateProperties.POWERED, true), SpectrumModelHelper.createModelVariant(on).with(VariantProperties.Y_ROT, rotation));
-			multipart.with(Condition.condition().term(BlockStateProperties.HORIZONTAL_FACING, direction).term(BlockStateProperties.POWERED, false), SpectrumModelHelper.createModelVariant(off).with(VariantProperties.Y_ROT, rotation));
+			multipart.with(Condition.condition().term(BlockStateProperties.HORIZONTAL_FACING, direction).term(BlockStateProperties.POWERED, true), createModelVariant(on).with(VariantProperties.Y_ROT, rotation));
+			multipart.with(Condition.condition().term(BlockStateProperties.HORIZONTAL_FACING, direction).term(BlockStateProperties.POWERED, false), createModelVariant(off).with(VariantProperties.Y_ROT, rotation));
 			for (RedstoneTimerBlock.TimingStep step : RedstoneTimerBlock.TimingStep.values()) {
-				multipart.with(Condition.condition().term(BlockStateProperties.HORIZONTAL_FACING, direction).term(RedstoneTimerBlock.ACTIVE_TIME, step), SpectrumModelHelper.createModelVariant(block, "_left_" + step.ordinal()).with(VariantProperties.UV_LOCK, true).with(VariantProperties.Y_ROT, rotation));
-				multipart.with(Condition.condition().term(BlockStateProperties.HORIZONTAL_FACING, direction).term(RedstoneTimerBlock.INACTIVE_TIME, step), SpectrumModelHelper.createModelVariant(block, "_right_" + step.ordinal()).with(VariantProperties.UV_LOCK, true).with(VariantProperties.Y_ROT, rotation));
+				multipart.with(Condition.condition().term(BlockStateProperties.HORIZONTAL_FACING, direction).term(RedstoneTimerBlock.ACTIVE_TIME, step), createModelVariant(block, "_left_" + step.ordinal()).with(VariantProperties.UV_LOCK, true).with(VariantProperties.Y_ROT, rotation));
+				multipart.with(Condition.condition().term(BlockStateProperties.HORIZONTAL_FACING, direction).term(RedstoneTimerBlock.INACTIVE_TIME, step), createModelVariant(block, "_right_" + step.ordinal()).with(VariantProperties.UV_LOCK, true).with(VariantProperties.Y_ROT, rotation));
 			}
 		}
 		return multipart;
@@ -1238,10 +1245,10 @@ public class SpectrumBlocks {
 		MultiPartGenerator multipart = MultiPartGenerator.multiPart(block);
 		for (Direction direction : Direction.Plane.HORIZONTAL) {
 			VariantProperties.Rotation rotation = SpectrumModelHelper.getSouthDefaultRotation(direction);
-			multipart.with(Condition.condition().term(BlockStateProperties.HORIZONTAL_FACING, direction).term(BlockStateProperties.POWERED, true), SpectrumModelHelper.createModelVariant(block, "_base").with(VariantProperties.Y_ROT, rotation));
-			multipart.with(Condition.condition().term(BlockStateProperties.HORIZONTAL_FACING, direction).term(BlockStateProperties.POWERED, false), SpectrumModelHelper.createModelVariant(block, "_base_off").with(VariantProperties.Y_ROT, rotation));
+			multipart.with(Condition.condition().term(BlockStateProperties.HORIZONTAL_FACING, direction).term(BlockStateProperties.POWERED, true), createModelVariant(block, "_base").with(VariantProperties.Y_ROT, rotation));
+			multipart.with(Condition.condition().term(BlockStateProperties.HORIZONTAL_FACING, direction).term(BlockStateProperties.POWERED, false), createModelVariant(block, "_base_off").with(VariantProperties.Y_ROT, rotation));
 			for (RedstoneCalculatorBlock.CalculationMode mode : RedstoneCalculatorBlock.CalculationMode.values()) {
-				multipart.with(Condition.condition().term(BlockStateProperties.HORIZONTAL_FACING, direction).term(RedstoneCalculatorBlock.CALCULATION_MODE, mode), SpectrumModelHelper.createModelVariant(block, "_" + mode.getSerializedName()).with(VariantProperties.UV_LOCK, true).with(VariantProperties.Y_ROT, rotation));
+				multipart.with(Condition.condition().term(BlockStateProperties.HORIZONTAL_FACING, direction).term(RedstoneCalculatorBlock.CALCULATION_MODE, mode), createModelVariant(block, "_" + mode.getSerializedName()).with(VariantProperties.UV_LOCK, true).with(VariantProperties.Y_ROT, rotation));
 			}
 		}
 		return multipart;
@@ -1254,22 +1261,22 @@ public class SpectrumBlocks {
 		ResourceLocation receiverOff = SpectrumModels.REDSTONE_TRANSCEIVER_RECEIVER.createWithSuffix(block, "_receiver_off", new TextureMapping().put(SpectrumTextureKeys.LIGHT, TextureMapping.getBlockTexture(REDSTONE_TORCH, "_off")), ctx.modelOutput);
 		for (Direction direction : Direction.Plane.HORIZONTAL) {
 			VariantProperties.Rotation rotation = SpectrumModelHelper.getSouthDefaultRotation(direction);
-			multipart.with(Condition.condition().term(BlockStateProperties.HORIZONTAL_FACING, direction).term(RedstoneTransceiverBlock.SENDER, true).term(BlockStateProperties.POWERED, true), SpectrumModelHelper.createModelVariant(senderOn).with(VariantProperties.Y_ROT, rotation));
-			multipart.with(Condition.condition().term(BlockStateProperties.HORIZONTAL_FACING, direction).term(RedstoneTransceiverBlock.SENDER, true).term(BlockStateProperties.POWERED, false), SpectrumModelHelper.createModelVariant(senderOff).with(VariantProperties.Y_ROT, rotation));
-			multipart.with(Condition.condition().term(BlockStateProperties.HORIZONTAL_FACING, direction).term(RedstoneTransceiverBlock.SENDER, false).term(BlockStateProperties.POWERED, true), SpectrumModelHelper.createModelVariant(receiverOn).with(VariantProperties.Y_ROT, rotation));
-			multipart.with(Condition.condition().term(BlockStateProperties.HORIZONTAL_FACING, direction).term(RedstoneTransceiverBlock.SENDER, false).term(BlockStateProperties.POWERED, false), SpectrumModelHelper.createModelVariant(receiverOff).with(VariantProperties.Y_ROT, rotation));
+			multipart.with(Condition.condition().term(BlockStateProperties.HORIZONTAL_FACING, direction).term(RedstoneTransceiverBlock.SENDER, true).term(BlockStateProperties.POWERED, true), createModelVariant(senderOn).with(VariantProperties.Y_ROT, rotation));
+			multipart.with(Condition.condition().term(BlockStateProperties.HORIZONTAL_FACING, direction).term(RedstoneTransceiverBlock.SENDER, true).term(BlockStateProperties.POWERED, false), createModelVariant(senderOff).with(VariantProperties.Y_ROT, rotation));
+			multipart.with(Condition.condition().term(BlockStateProperties.HORIZONTAL_FACING, direction).term(RedstoneTransceiverBlock.SENDER, false).term(BlockStateProperties.POWERED, true), createModelVariant(receiverOn).with(VariantProperties.Y_ROT, rotation));
+			multipart.with(Condition.condition().term(BlockStateProperties.HORIZONTAL_FACING, direction).term(RedstoneTransceiverBlock.SENDER, false).term(BlockStateProperties.POWERED, false), createModelVariant(receiverOff).with(VariantProperties.Y_ROT, rotation));
 		}
 		for (DyeColor color : DyeColor.values()) {
-			ResourceLocation channel = SpectrumModels.REDSTONE_TRANSCEIVER_CHANNEL.createWithSuffix(block, "_channel_" + color.getSerializedName(), SpectrumTextureMaps.all(locate("block/" + color.getSerializedName() + "_block")), ctx.modelOutput);
+			ResourceLocation channel = SpectrumModels.REDSTONE_TRANSCEIVER_CHANNEL.createWithSuffix(block, "_channel_" + color.getSerializedName(), SpectrumTextureMaps.all(SpectrumCommon.locate("block/" + color.getSerializedName() + "_block")), ctx.modelOutput);
 			multipart.with(Condition.condition().term(RedstoneTransceiverBlock.CHANNEL, color), SpectrumModelHelper.createModelVariant(channel));
 		}
 		return multipart;
 	}));
-	public static final DeferredBlock<BlockPlacerBlock> BLOCK_PLACER = register(blockWithItem("block_placer", () -> new BlockPlacerBlock(BlockBehaviour.Properties.ofFullCopy(DISPENSER)), InkColors.CYAN).withBlockModel((ctx, block) -> SpectrumModelHelper.createVariantsSupplier(ctx, block, SpectrumTexturedModels.complexOrientable(b -> b, "_side", b -> b, "_top", b -> NOTCHED_POLISHED_CALCITE.get(), "_top", b -> b, "_front", b -> b, "_back", b -> b, "_side")).with(SpectrumModelHelper.createUpNorthDefaultOrientationVariantMap())));
-	public static final DeferredBlock<BlockDetectorBlock> BLOCK_DETECTOR = register(blockWithItem("block_detector", () -> new BlockDetectorBlock(BlockBehaviour.Properties.ofFullCopy(DISPENSER)), InkColors.CYAN).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(SpectrumModelHelper.createUpNorthDefaultOrientationVariantMap()).with(SpectrumModelHelper.createBooleanModelMap(BlockStateProperties.TRIGGERED, SpectrumTexturedModels.complexOrientable(b -> b, "_side", b -> b, "_top", b -> NOTCHED_POLISHED_BASALT.get(), "_top", b -> b, "_front", b -> b, "_back_active", b -> b, "_side").createWithSuffix(block, "_active", ctx.modelOutput), SpectrumTexturedModels.complexOrientable(b -> b, "_side", b -> b, "_top", b -> NOTCHED_POLISHED_BASALT.get(), "_top", b -> b, "_front", b -> b, "_back", b -> b, "_side").create(block, ctx.modelOutput)))));
-	public static final DeferredBlock<BlockBreakerBlock> BLOCK_BREAKER = register(blockWithItem("block_breaker", () -> new BlockBreakerBlock(BlockBehaviour.Properties.ofFullCopy(DISPENSER)), InkColors.CYAN).withBlockModel((ctx, block) -> SpectrumModelHelper.createVariantsSupplier(ctx, block, SpectrumTexturedModels.complexOrientable(b -> b, "_side", b -> b, "_top", b -> POLISHED_BONE_ASH_PILLAR.get(), "_top", b -> b, "_front", b -> b, "_back", b -> b, "_side")).with(SpectrumModelHelper.createUpNorthDefaultOrientationVariantMap())));
-	public static final DeferredBlock<EnderDropperBlock> ENDER_DROPPER = register(orientable(blockWithItem("ender_dropper", () -> new EnderDropperBlock(BlockBehaviour.Properties.ofFullCopy(DROPPER).mapColor(MapColor.COLOR_GRAY).requiresCorrectToolForDrops().strength(15F, 60.0F)), InkColors.PURPLE)));
-	public static final DeferredBlock<EnderHopperBlock> ENDER_HOPPER = register(singletonWithSoup(blockWithItem("ender_hopper", () -> new EnderHopperBlock(BlockBehaviour.Properties.ofFullCopy(HOPPER).mapColor(MapColor.COLOR_GRAY).requiresCorrectToolForDrops().strength(15F, 60.0F)), InkColors.PURPLE), ModelLocationUtils::getModelLocation).withItemModel(SpectrumModelHelper::registerItemModel));
+	public static final DeferredBlock<BlockPlacerBlock> BLOCK_PLACER = register(blockWithItem("block_placer", () -> new BlockPlacerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DISPENSER)), InkColors.CYAN).withBlockModel((ctx, block) -> SpectrumModelHelper.createVariantsSupplier(ctx, block, SpectrumTexturedModels.complexOrientable(b -> b, "_side", b -> b, "_top", b -> NOTCHED_POLISHED_CALCITE.get(), "_top", b -> b, "_front", b -> b, "_back", b -> b, "_side")).with(SpectrumModelHelper.createUpNorthDefaultOrientationVariantMap())));
+	public static final DeferredBlock<BlockDetectorBlock> BLOCK_DETECTOR = register(blockWithItem("block_detector", () -> new BlockDetectorBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DISPENSER)), InkColors.CYAN).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(SpectrumModelHelper.createUpNorthDefaultOrientationVariantMap()).with(SpectrumModelHelper.createBooleanModelMap(BlockStateProperties.TRIGGERED, SpectrumTexturedModels.complexOrientable(b -> b, "_side", b -> b, "_top", b -> NOTCHED_POLISHED_BASALT.get(), "_top", b -> b, "_front", b -> b, "_back_active", b -> b, "_side").createWithSuffix(block, "_active", ctx.modelOutput), SpectrumTexturedModels.complexOrientable(b -> b, "_side", b -> b, "_top", b -> NOTCHED_POLISHED_BASALT.get(), "_top", b -> b, "_front", b -> b, "_back", b -> b, "_side").create(block, ctx.modelOutput)))));
+	public static final DeferredBlock<BlockBreakerBlock> BLOCK_BREAKER = register(blockWithItem("block_breaker", () -> new BlockBreakerBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DISPENSER)), InkColors.CYAN).withBlockModel((ctx, block) -> SpectrumModelHelper.createVariantsSupplier(ctx, block, SpectrumTexturedModels.complexOrientable(b -> b, "_side", b -> b, "_top", b -> POLISHED_BONE_ASH_PILLAR.get(), "_top", b -> b, "_front", b -> b, "_back", b -> b, "_side")).with(SpectrumModelHelper.createUpNorthDefaultOrientationVariantMap())));
+	public static final DeferredBlock<EnderDropperBlock> ENDER_DROPPER = register(orientable(blockWithItem("ender_dropper", () -> new EnderDropperBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DROPPER).mapColor(MapColor.COLOR_GRAY).requiresCorrectToolForDrops().strength(15F, 60.0F)), InkColors.PURPLE)));
+	public static final DeferredBlock<EnderHopperBlock> ENDER_HOPPER = register(singletonWithSoup(blockWithItem("ender_hopper", () -> new EnderHopperBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.HOPPER).mapColor(MapColor.COLOR_GRAY).requiresCorrectToolForDrops().strength(15F, 60.0F)), InkColors.PURPLE), ModelLocationUtils::getModelLocation).withItemModel(SpectrumModelHelper::registerItemModel));
 	
 	public static final DeferredBlock<Block> OMINOUS_SAPLING = register(simplePlant(blockWithItem("ominous_sapling", () -> new OminousSaplingBlock(BlockBehaviour.Properties.ofFullCopy(OAK_SAPLING)), block -> new OminousSaplingBlockItem(block, IS.of()), InkColors.GREEN)));
 	
@@ -1283,7 +1290,7 @@ public class SpectrumBlocks {
 	}));
 	public static final DeferredBlock<Block> SPIRIT_SALLOW_HEART = register(singleton(blockWithItem("spirit_sallow_heart", () -> new Block(BlockBehaviour.Properties.ofFullCopy(OAK_WOOD).mapColor(MapColor.COLOR_GRAY).lightLevel(s -> 11)), InkColors.GREEN), SpectrumTexturedModels.cubeColumn(b -> b, "", b -> SPIRIT_SALLOW_LOG.get(), "_top")));
 	
-	public static final DeferredBlock<ExtraTickFarmlandBlock> SACRED_SOIL = register(blockWithItem("sacred_soil", () -> new ExtraTickFarmlandBlock(BlockBehaviour.Properties.ofFullCopy(FARMLAND).mapColor(MapColor.CLAY), DIRT.defaultBlockState()), InkColors.LIME).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.property(BlockStateProperties.MOISTURE).generate(moisture -> SpectrumModelHelper.createModelVariant(block, moisture == 7 ? "_moist" : "")))));
+	public static final DeferredBlock<ExtraTickFarmlandBlock> SACRED_SOIL = register(blockWithItem("sacred_soil", () -> new ExtraTickFarmlandBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FARMLAND).mapColor(MapColor.CLAY), Blocks.DIRT.defaultBlockState()), InkColors.LIME).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.property(BlockStateProperties.MOISTURE).generate(moisture -> SpectrumModelHelper.createModelVariant(block, moisture == 7 ? "_moist" : "")))));
 	
 	private static BlockBehaviour.Properties spiritVines(MapColor mapColor) {
 		return settings(mapColor, SoundType.CAVE_VINES, 0.0F).noCollission();
@@ -1302,7 +1309,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<SpiritVinesPlantStemBlock> WHITE_SPIRIT_SALLOW_VINES = register(spiritVines(block("white_spirit_sallow_vines_head", () -> new SpiritVinesPlantStemBlock(spiritVines(MapColor.TERRACOTTA_WHITE), BuiltinGemstoneColor.WHITE))));
 	
 	public static final DeferredBlock<Block> STUCK_STORM_STONE = register(defaultWestHorizontalFacing(block("stuck_storm_stone", () -> new StuckStormStoneBlock(settings(MapColor.NONE, SoundType.SMALL_AMETHYST_BUD, 0.0F).noCollission().noOcclusion().isSuffocating(SpectrumBlocks::never).noTerrainParticles().isViewBlocking(SpectrumBlocks::never).replaceable())), ModelLocationUtils::getModelLocation));
-	public static final DeferredBlock<DeeperDownPortalBlock> DEEPER_DOWN_PORTAL = register(block("deeper_down_portal", () -> new DeeperDownPortalBlock(settings(MapColor.COLOR_BLACK, SoundType.EMPTY, -1.0F, 3600000.0F).pushReaction(PushReaction.BLOCK).lightLevel(state -> 8).noLootTable())).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(SpectrumModelHelper.createBooleanModelMap(DeeperDownPortalBlock.FACING_UP, ModelLocationUtils.getModelLocation(block, "_up"), ModelLocationUtils.getModelLocation(block)))));
+	public static final DeferredBlock<DeeperDownPortalBlock> DEEPER_DOWN_PORTAL = register(block("deeper_down_portal", () -> new DeeperDownPortalBlock(settings(MapColor.COLOR_BLACK, SoundType.EMPTY, -1.0F, 3600000.0F).isValidSpawn(Blocks::never).pushReaction(PushReaction.BLOCK).lightLevel(state -> 8).noLootTable())).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(SpectrumModelHelper.createBooleanModelMap(DeeperDownPortalBlock.FACING_UP, ModelLocationUtils.getModelLocation(block, "_up"), ModelLocationUtils.getModelLocation(block)))));
 	
 	private static BlockBehaviour.Properties upgrade() {
 		return BlockBehaviour.Properties.ofFullCopy(POLISHED_BASALT.get()).forceSolidOn();
@@ -1318,7 +1325,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> UPGRADE_EXPERIENCE = register(parented(blockWithItem("upgrade_experience", () -> new UpgradeBlock(upgrade(), Upgradeable.UpgradeType.EXPERIENCE, 1, InkColors.PURPLE_COLOR), block -> new UpgradeBlockItem(block, IS.of(16), "upgrade_experience"), InkColors.LIGHT_GRAY), b -> b));
 	public static final DeferredBlock<Block> UPGRADE_EXPERIENCE2 = register(parented(blockWithItem("upgrade_experience2", () -> new UpgradeBlock(upgrade(), Upgradeable.UpgradeType.EXPERIENCE, 4, InkColors.PURPLE_COLOR), block -> new UpgradeBlockItem(block, IS.of(16, Rarity.UNCOMMON), "upgrade_experience2"), InkColors.LIGHT_GRAY), b -> UPGRADE_EXPERIENCE.get()));
 	
-	public static final DeferredBlock<RedstoneGravityBlock> REDSTONE_SAND = register(simple(blockWithItem("redstone_sand", () -> new RedstoneGravityBlock(BlockBehaviour.Properties.ofFullCopy(SAND).mapColor(MapColor.FIRE)), InkColors.RED)));
+	public static final DeferredBlock<RedstoneSandBlock> REDSTONE_SAND = register(simple(blockWithItem("redstone_sand", () -> new RedstoneSandBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SAND).mapColor(MapColor.FIRE)), InkColors.RED)));
 	public static final DeferredBlock<EnderGlassBlock> ENDER_GLASS = register(blockWithItem("ender_glass", () -> new EnderGlassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).mapColor(MapColor.COLOR_PURPLE).noOcclusion().isRedstoneConductor(SpectrumBlocks::never).isValidSpawn((state, world, pos, entityType) -> state.getValue(EnderGlassBlock.TRANSPARENCY_STATE) == EnderGlassBlock.TransparencyState.SOLID).isSuffocating((state, world, pos) -> state.getValue(EnderGlassBlock.TRANSPARENCY_STATE) == EnderGlassBlock.TransparencyState.SOLID).isViewBlocking((state, world, pos) -> state.getValue(EnderGlassBlock.TRANSPARENCY_STATE) == EnderGlassBlock.TransparencyState.SOLID)), InkColors.PURPLE).withBlockItemModel((ctx, block) -> SpectrumModelHelper.registerParentedItemModel(ctx, block, block, "_solid")).withBlockModel((ctx, block) ->
 			MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.property(EnderGlassBlock.TRANSPARENCY_STATE)
 					.generate(transparency -> SpectrumModelHelper.createModelVariant(SpectrumTexturedModels.cubeAll(b -> b, "_" + transparency.getSerializedName()).createWithSuffix(block, "_" + transparency.getSerializedName(), ctx.modelOutput))))));
@@ -1377,9 +1384,9 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<BloodOrchidBlock> BLOOD_ORCHID = register(blockWithItem("blood_orchid", () -> new BloodOrchidBlock(SpectrumStatusEffects.FRENZY, 10, BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY).offsetType(BlockBehaviour.OffsetType.NONE).randomTicks()), InkColors.RED).withBlockItemModel((ctx, block) -> SpectrumModelHelper.registerBlockTexturedItemModel(ctx, block, "5")).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.property(BloodOrchidBlock.AGE).generate(stage -> SpectrumModelHelper.createModelVariant(SpectrumTexturedModels.cross(b -> b, stage.toString()).createWithSuffix(block, stage.toString(), ctx.modelOutput))))));
 	public static final DeferredBlock<Block> POTTED_BLOOD_ORCHID = register(singleton(block("potted_blood_orchid", () -> new PottedBloodOrchidBlock(BLOOD_ORCHID.get(), pottedPlant())), SpectrumTexturedModels.flowerPotCross(b -> BLOOD_ORCHID.get(), "5", false)));
 	
-	public static final DeferredBlock<FlowerPotBlock> POTTED_SWEET_PEA = register(pottedPlant(block("potted_sweet_pea", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, SWEET_PEA, pottedPlant().lightLevel(s -> 11).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always))), false));
-	public static final DeferredBlock<FlowerPotBlock> POTTED_APRICOTTI = register(pottedPlant(block("potted_apricotti", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, APRICOTTI, pottedPlant().lightLevel(s -> 11).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always))), false));
-	public static final DeferredBlock<FlowerPotBlock> POTTED_VARIA_SPROUT = register(pottedPlant(block("potted_varia_sprout", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, VARIA_SPROUT, pottedPlant().lightLevel(s -> 11).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always))), false));
+	public static final DeferredBlock<FlowerPotBlock> POTTED_SWEET_PEA = register(pottedPlant(block("potted_sweet_pea", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, SWEET_PEA, pottedPlant().lightLevel(s -> 11).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always))), "_potted"));
+	public static final DeferredBlock<FlowerPotBlock> POTTED_APRICOTTI = register(pottedPlant(block("potted_apricotti", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, APRICOTTI, pottedPlant().lightLevel(s -> 11).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always))), "_potted"));
+	public static final DeferredBlock<FlowerPotBlock> POTTED_VARIA_SPROUT = register(pottedPlant(block("potted_varia_sprout", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, VARIA_SPROUT, pottedPlant().lightLevel(s -> 11).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always))), "_potted"));
 	public static final DeferredBlock<FlowerPotBlock> POTTED_HUMMING_BELL = register(pottedPlant(block("potted_humming_bell", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, HUMMING_BELL, pottedPlant().lightLevel(s -> 9).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always))), false));
 	
 	public static DeferredBlock<ColoredSaplingBlock> registerColoredSapling(String name, InkColor color, TreeGrower generator) {
@@ -1712,10 +1719,10 @@ public class SpectrumBlocks {
 		for (int i = 1; i <= 10; i++) modelIds.add(SpectrumTexturedModels.cubeBottomTop(b -> b, "_" + i, b -> b, "_top_" + tops[i], b -> b, "_bottom").createWithSuffix(block, "_" + i, ctx.modelOutput));
 		List<Variant> variants = new ArrayList<>();
 		for (VariantProperties.Rotation rotation : VariantProperties.Rotation.values()) {
-			variants.add(SpectrumModelHelper.createModelVariant(modelIds.getFirst()).with(VariantProperties.WEIGHT, 10));
+			variants.add(createModelVariant(modelIds.getFirst()).with(VariantProperties.WEIGHT, 10));
 			if (rotation != VariantProperties.Rotation.R0) variants.getLast().with(VariantProperties.Y_ROT, rotation);
 			for (int i = 1; i <= 10; i++) {
-				variants.add(SpectrumModelHelper.createModelVariant(modelIds.get(i)));
+				variants.add(createModelVariant(modelIds.get(i)));
 				if (rotation != VariantProperties.Rotation.R0) variants.getLast().with(VariantProperties.Y_ROT, rotation);
 			}
 		}
@@ -1733,7 +1740,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> PRESERVATION_ITEM_BOWL = register(singleton(blockWithItem("preservation_item_bowl", () -> new PreservationItemBowlBlock(preservationBlock().noOcclusion().isRedstoneConductor(SpectrumBlocks::never).isSuffocating(SpectrumBlocks::never).isViewBlocking(SpectrumBlocks::never)), InkColors.BLUE), TexturedModel.createDefault(b -> new TextureMapping().put(TextureSlot.TEXTURE, SpectrumCommon.locate("block/preservation_item_bowl")).put(TextureSlot.SIDE, SpectrumCommon.locate("block/preservation_bricks")).put(SpectrumTextureKeys.BASE, SpectrumCommon.locate("block/preservation_stone_top_0")), SpectrumModels.BOWL)));
 	public static final DeferredBlock<Block> DIKE_GATE_FOUNTAIN = register(defaultUpFacing(blockWithItem("dike_gate_fountain", () -> new SpectrumFacingBlock(preservationBlock()), InkColors.BLUE), SpectrumTexturedModels.cubeBottomTopParticle(b -> b, "_side", b -> b, "_top", b -> PRESERVATION_STONE.get(), "", b -> PRESERVATION_STONE.get(), "")));
 	public static final DeferredBlock<Block> PRESERVATION_BRICKS = register(simple(blockWithItem("preservation_bricks", () -> new Block(preservationBlock()), InkColors.BLUE)));
-	public static final DeferredBlock<Block> SHIMMERING_PRESERVATION_BRICKS = register(simple(blockWithItem("shimmering_preservation_bricks", () -> new Block(preservationBlock().lightLevel(s -> 5)), InkColors.BLUE)));
+	public static final DeferredBlock<Block> SHIMMERING_PRESERVATION_BRICKS = register(simple(blockWithItem("shimmering_preservation_bricks", () -> new Block(preservationBlock().lightLevel(s -> 5)), InkColors.BLUE).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block, createModelVariant(TexturedModel.CUBE.create(block, ctx.modelOutput)), createModelVariant(SpectrumTexturedModels.cubeAll(b -> b, "_fast").createWithSuffix(block, "_fast", ctx.modelOutput)), createModelVariant(SpectrumTexturedModels.cubeAll(b -> b, "_slow").createWithSuffix(block, "_slow", ctx.modelOutput)))));
 	public static final DeferredBlock<StatueBlock> COURIER_STATUE = register(blockWithItem("courier_statue", () -> new StatueBlock(preservationBlock()), InkColors.BLUE).withBlockItemModel((ctx, block) -> SpectrumModelHelper.registerParentedItemModel(ctx, block, block, "_top")).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(SpectrumModelHelper.createNorthDefaultHorizontalFacingVariantMap()).with(PropertyDispatch.property(StatueBlock.HALF).select(DoubleBlockHalf.LOWER, SpectrumModelHelper.createModelVariant(block, "_bottom")).select(DoubleBlockHalf.UPPER, SpectrumModelHelper.createModelVariant(block, "_top")))));
 	public static final DeferredBlock<ManxiBlock> MANXI = register(singletonWithSoup(block("manxi", () -> new ManxiBlock(preservationBlock().noOcclusion().noCollission().noLootTable())), b -> SpectrumModels.MOB_HEAD));
 	
@@ -1768,9 +1775,9 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<ShootingStarBlock> COLORFUL_SHOOTING_STAR = register(singleton(blockWithItem("colorful_shooting_star", () -> new ShootingStarBlock(shootingStar(), ShootingStar.Variant.COLORFUL), block -> new ShootingStarItem(block, IS.of(1, Rarity.UNCOMMON)), InkColors.PURPLE), SpectrumTexturedModels.SHOOTING_STAR));
 	public static final DeferredBlock<ShootingStarBlock> PRISTINE_SHOOTING_STAR = register(singleton(blockWithItem("pristine_shooting_star", () -> new ShootingStarBlock(shootingStar(), ShootingStar.Variant.PRISTINE), block -> new ShootingStarItem(block, IS.of(1, Rarity.UNCOMMON)), InkColors.PURPLE), SpectrumTexturedModels.SHOOTING_STAR));
 	public static final DeferredBlock<ShootingStarBlock> GEMSTONE_SHOOTING_STAR = register(singleton(blockWithItem("gemstone_shooting_star", () -> new ShootingStarBlock(shootingStar(), ShootingStar.Variant.GEMSTONE), block -> new ShootingStarItem(block, IS.of(1, Rarity.UNCOMMON)), InkColors.PURPLE), SpectrumTexturedModels.SHOOTING_STAR));
-	public static final DeferredBlock<Block> STARDUST_BLOCK = register(blockWithItem("stardust_block", () -> new ColoredFallingBlock(new ColorRGBA(DyeColor.PURPLE.getFireworkColor()), BlockBehaviour.Properties.ofFullCopy(SAND).mapColor(MapColor.COLOR_PURPLE)), IS.of(1, Rarity.UNCOMMON), InkColors.BLACK));
+	public static final DeferredBlock<Block> STARDUST_BLOCK = register(blockWithItem("stardust_block", () -> new ColoredFallingBlock(new ColorRGBA(DyeColor.PURPLE.getFireworkColor()), BlockBehaviour.Properties.ofFullCopy(Blocks.SAND).mapColor(MapColor.COLOR_PURPLE)), IS.of(Rarity.UNCOMMON), InkColors.BLACK));
 	
-	public static final DeferredBlock<IncandescentAmalgamBlock> INCANDESCENT_AMALGAM = register(singletonWithSoup(blockWithItem("incandescent_amalgam", () -> new IncandescentAmalgamBlock(BlockBehaviour.Properties.of().instabreak().noOcclusion()), block -> new IncandescentAmalgamItem(block, IS.of(16).food(SpectrumFoodComponents.INCANDESCENT_AMALGAM)), InkColors.RED), ModelLocationUtils::getModelLocation).withBlockItemModel(SpectrumModelHelper::registerBlockTexturedItemModel));
+	public static final DeferredBlock<IncandescentAmalgamBlock> INCANDESCENT_AMALGAM = register(singletonWithSoup(blockWithItem("incandescent_amalgam", () -> new IncandescentAmalgamBlock(BlockBehaviour.Properties.of().instabreak().noOcclusion()), block -> new IncandescentAmalgamItem(block, IS.of().food(SpectrumFoodComponents.INCANDESCENT_AMALGAM)), InkColors.RED), ModelLocationUtils::getModelLocation).withBlockItemModel(SpectrumModelHelper::registerBlockTexturedItemModel));
 	
 	private static BlockBehaviour.Properties idol(SoundType soundGroup) {
 		return settings(MapColor.TERRACOTTA_WHITE, soundGroup, 3.0F).requiresCorrectToolForDrops().noOcclusion();
@@ -1981,6 +1988,10 @@ public class SpectrumBlocks {
 		return registrar.withBlockModel((ctx, block) -> SpectrumModelHelper.pottedPlantBlockModel(ctx, (FlowerPotBlock) block, tinted));
 	}
 	
+	public static <T extends FlowerPotBlock> BlockRegistrar<T> pottedPlantWithCustomTexture(BlockRegistrar<T> registrar, String suffix) {
+		return cutout(registrar).withBlockModel((ctx, block) -> SpectrumModelHelper.pottedPlantWithCustomTextureBlockModel(ctx, block, suffix));
+	}
+	
 	public static <T extends Block> BlockRegistrar<T> log(BlockRegistrar<T> registrar) {
 		return registrar.withBlockModel(SpectrumModelHelper::logBlockModel);
 	}
@@ -1996,6 +2007,22 @@ public class SpectrumBlocks {
 			ResourceLocation on = SpectrumTexturedModels.cubeAll(b -> b, "_on").createWithSuffix(block, "_on", ctx.modelOutput);
 			return MultiVariantGenerator.multiVariant(block).with(SpectrumModelHelper.createBooleanModelMap(BlockStateProperties.LIT, on, off));
 		});
+	}
+	
+	public static <T extends Block> BlockRegistrar<T> powered(BlockRegistrar<T> registrar) {
+		return registrar
+				.withBlockItemModel((ctx, block) -> SpectrumModelHelper.registerParentedItemModel(ctx, block, block))
+				.withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(createPoweredMap(BlockStateProperties.POWER, ctx, block)));
+	}
+	
+	
+	public static PropertyDispatch createPoweredMap(IntegerProperty property, BlockModelGenerators ctx, Block block) {
+		var v = PropertyDispatch.property(property);
+		v.select(0, createModelVariant(SpectrumTexturedModels.cubeAll(b -> b, "").create(block, ctx.modelOutput)));
+		for (int i = 1; i < 16; i++) {
+			v.select(i, createModelVariant(SpectrumTexturedModels.cubeAll(b -> b, "_" + i).createWithSuffix(block, "_" + i, ctx.modelOutput)));
+		}
+		return v;
 	}
 	
 	public static <T extends Block> BlockRegistrar<T> barrellike(BlockRegistrar<T> registrar, UnaryOperator<Block> bottomBlock, String bottomSuffix) {
@@ -2015,7 +2042,7 @@ public class SpectrumBlocks {
 	}
 	
 	public static <T extends Block> BlockRegistrar<T> sugarStick(BlockRegistrar<T> registrar, UnaryOperator<Block> sugarBlock) {
-		return registrar.withItemModel(SpectrumModelHelper::registerItemModel).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.property(BlockStateProperties.AGE_2).generate(age -> SpectrumModelHelper.createModelVariant(SpectrumTexturedModels.sugarStick(age, sugarBlock).createWithSuffix(block, age.toString(), ctx.modelOutput)))));
+		return registrar.withItemModel(SpectrumModelHelper::registerItemModel).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.property(BlockStateProperties.AGE_2).generate(age -> createModelVariant(SpectrumTexturedModels.sugarStick(age, sugarBlock).createWithSuffix(block, age.toString(), ctx.modelOutput)))));
 	}
 	
 	public static <T extends Block> BlockRegistrar<T> detector(BlockRegistrar<T> registrar) {
@@ -2028,7 +2055,7 @@ public class SpectrumBlocks {
 		return registrar.withBlockModel((ctx, block) -> {
 			ResourceLocation horizontal = ModelTemplates.CUBE_ORIENTABLE.create(block, new TextureMapping().put(TextureSlot.TOP, TextureMapping.getBlockTexture(block, "_top")).put(TextureSlot.SIDE, TextureMapping.getBlockTexture(block, "_side")).put(TextureSlot.FRONT, TextureMapping.getBlockTexture(block, "_front")), ctx.modelOutput);
 			ResourceLocation vertical = ModelTemplates.CUBE_ORIENTABLE_VERTICAL.create(block, new TextureMapping().put(TextureSlot.SIDE, TextureMapping.getBlockTexture(block, "_top")).put(TextureSlot.FRONT, TextureMapping.getBlockTexture(block, "_front_vertical")), ctx.modelOutput);
-			return MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.property(BlockStateProperties.FACING).select(Direction.DOWN, SpectrumModelHelper.createModelVariant(vertical).with(VariantProperties.X_ROT, VariantProperties.Rotation.R180)).select(Direction.UP, SpectrumModelHelper.createModelVariant(vertical)).select(Direction.NORTH, SpectrumModelHelper.createModelVariant(horizontal)).select(Direction.EAST, SpectrumModelHelper.createModelVariant(horizontal).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)).select(Direction.SOUTH, SpectrumModelHelper.createModelVariant(horizontal).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180)).select(Direction.WEST, SpectrumModelHelper.createModelVariant(horizontal).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270)));
+			return MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.property(BlockStateProperties.FACING).select(Direction.DOWN, createModelVariant(vertical).with(VariantProperties.X_ROT, VariantProperties.Rotation.R180)).select(Direction.UP, createModelVariant(vertical)).select(Direction.NORTH, createModelVariant(horizontal)).select(Direction.EAST, createModelVariant(horizontal).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)).select(Direction.SOUTH, createModelVariant(horizontal).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180)).select(Direction.WEST, createModelVariant(horizontal).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270)));
 		});
 	}
 	
@@ -2045,36 +2072,36 @@ public class SpectrumBlocks {
 			SpectrumModels.BASE_PYLON_BODY.create(waist, SpectrumTextureMaps.sideEnd(waist, end), ctx.modelOutput);
 			SpectrumModels.BASE_PYLON_BODY.create(foot, SpectrumTextureMaps.sideEnd(foot, end), ctx.modelOutput);
 			return MultiPartGenerator.multiPart(block)
-					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.DOWN).term(PylonBlock.SECTION, PylonBlock.Section.HEAD), SpectrumModelHelper.createModelVariant(head).with(VariantProperties.X_ROT, VariantProperties.Rotation.R180))
-					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.DOWN).term(PylonBlock.SECTION, PylonBlock.Section.BODY), SpectrumModelHelper.createModelVariant(body).with(VariantProperties.X_ROT, VariantProperties.Rotation.R180))
-					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.DOWN).term(PylonBlock.SECTION, PylonBlock.Section.WAIST), SpectrumModelHelper.createModelVariant(waist).with(VariantProperties.X_ROT, VariantProperties.Rotation.R180))
-					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.DOWN).term(PylonBlock.SECTION, PylonBlock.Section.FOOT), SpectrumModelHelper.createModelVariant(foot).with(VariantProperties.X_ROT, VariantProperties.Rotation.R180))
-					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.DOWN).term(PylonBlock.PEDESTAL, true), SpectrumModelHelper.createModelVariant(pedestal).with(VariantProperties.X_ROT, VariantProperties.Rotation.R180))
-					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.UP).term(PylonBlock.SECTION, PylonBlock.Section.HEAD), SpectrumModelHelper.createModelVariant(head))
-					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.UP).term(PylonBlock.SECTION, PylonBlock.Section.BODY), SpectrumModelHelper.createModelVariant(body))
-					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.UP).term(PylonBlock.SECTION, PylonBlock.Section.WAIST), SpectrumModelHelper.createModelVariant(waist))
-					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.UP).term(PylonBlock.SECTION, PylonBlock.Section.FOOT), SpectrumModelHelper.createModelVariant(foot))
-					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.UP).term(PylonBlock.PEDESTAL, true), SpectrumModelHelper.createModelVariant(pedestal))
-					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.NORTH).term(PylonBlock.SECTION, PylonBlock.Section.HEAD), SpectrumModelHelper.createModelVariant(head).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90))
-					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.NORTH).term(PylonBlock.SECTION, PylonBlock.Section.BODY), SpectrumModelHelper.createModelVariant(body).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90))
-					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.NORTH).term(PylonBlock.SECTION, PylonBlock.Section.WAIST), SpectrumModelHelper.createModelVariant(waist).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90))
-					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.NORTH).term(PylonBlock.SECTION, PylonBlock.Section.FOOT), SpectrumModelHelper.createModelVariant(foot).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90))
-					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.NORTH).term(PylonBlock.PEDESTAL, true), SpectrumModelHelper.createModelVariant(pedestal).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90))
-					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.SOUTH).term(PylonBlock.SECTION, PylonBlock.Section.HEAD), SpectrumModelHelper.createModelVariant(head).with(VariantProperties.X_ROT, VariantProperties.Rotation.R270))
-					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.SOUTH).term(PylonBlock.SECTION, PylonBlock.Section.BODY), SpectrumModelHelper.createModelVariant(body).with(VariantProperties.X_ROT, VariantProperties.Rotation.R270))
-					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.SOUTH).term(PylonBlock.SECTION, PylonBlock.Section.WAIST), SpectrumModelHelper.createModelVariant(waist).with(VariantProperties.X_ROT, VariantProperties.Rotation.R270))
-					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.SOUTH).term(PylonBlock.SECTION, PylonBlock.Section.FOOT), SpectrumModelHelper.createModelVariant(foot).with(VariantProperties.X_ROT, VariantProperties.Rotation.R270))
-					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.SOUTH).term(PylonBlock.PEDESTAL, true), SpectrumModelHelper.createModelVariant(pedestal).with(VariantProperties.X_ROT, VariantProperties.Rotation.R270))
-					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.WEST).term(PylonBlock.SECTION, PylonBlock.Section.HEAD), SpectrumModelHelper.createModelVariant(head).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.WEST).term(PylonBlock.SECTION, PylonBlock.Section.BODY), SpectrumModelHelper.createModelVariant(body).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.WEST).term(PylonBlock.SECTION, PylonBlock.Section.WAIST), SpectrumModelHelper.createModelVariant(waist).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.WEST).term(PylonBlock.SECTION, PylonBlock.Section.FOOT), SpectrumModelHelper.createModelVariant(foot).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.WEST).term(PylonBlock.PEDESTAL, true), SpectrumModelHelper.createModelVariant(pedestal).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.EAST).term(PylonBlock.SECTION, PylonBlock.Section.HEAD), SpectrumModelHelper.createModelVariant(head).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.EAST).term(PylonBlock.SECTION, PylonBlock.Section.BODY), SpectrumModelHelper.createModelVariant(body).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.EAST).term(PylonBlock.SECTION, PylonBlock.Section.WAIST), SpectrumModelHelper.createModelVariant(waist).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.EAST).term(PylonBlock.SECTION, PylonBlock.Section.FOOT), SpectrumModelHelper.createModelVariant(foot).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.EAST).term(PylonBlock.PEDESTAL, true), SpectrumModelHelper.createModelVariant(pedestal).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
+					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.DOWN).term(PylonBlock.SECTION, PylonBlock.Section.HEAD), createModelVariant(head).with(VariantProperties.X_ROT, VariantProperties.Rotation.R180))
+					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.DOWN).term(PylonBlock.SECTION, PylonBlock.Section.BODY), createModelVariant(body).with(VariantProperties.X_ROT, VariantProperties.Rotation.R180))
+					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.DOWN).term(PylonBlock.SECTION, PylonBlock.Section.WAIST), createModelVariant(waist).with(VariantProperties.X_ROT, VariantProperties.Rotation.R180))
+					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.DOWN).term(PylonBlock.SECTION, PylonBlock.Section.FOOT), createModelVariant(foot).with(VariantProperties.X_ROT, VariantProperties.Rotation.R180))
+					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.DOWN).term(PylonBlock.PEDESTAL, true), createModelVariant(pedestal).with(VariantProperties.X_ROT, VariantProperties.Rotation.R180))
+					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.UP).term(PylonBlock.SECTION, PylonBlock.Section.HEAD), createModelVariant(head))
+					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.UP).term(PylonBlock.SECTION, PylonBlock.Section.BODY), createModelVariant(body))
+					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.UP).term(PylonBlock.SECTION, PylonBlock.Section.WAIST), createModelVariant(waist))
+					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.UP).term(PylonBlock.SECTION, PylonBlock.Section.FOOT), createModelVariant(foot))
+					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.UP).term(PylonBlock.PEDESTAL, true), createModelVariant(pedestal))
+					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.NORTH).term(PylonBlock.SECTION, PylonBlock.Section.HEAD), createModelVariant(head).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90))
+					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.NORTH).term(PylonBlock.SECTION, PylonBlock.Section.BODY), createModelVariant(body).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90))
+					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.NORTH).term(PylonBlock.SECTION, PylonBlock.Section.WAIST), createModelVariant(waist).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90))
+					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.NORTH).term(PylonBlock.SECTION, PylonBlock.Section.FOOT), createModelVariant(foot).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90))
+					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.NORTH).term(PylonBlock.PEDESTAL, true), createModelVariant(pedestal).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90))
+					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.SOUTH).term(PylonBlock.SECTION, PylonBlock.Section.HEAD), createModelVariant(head).with(VariantProperties.X_ROT, VariantProperties.Rotation.R270))
+					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.SOUTH).term(PylonBlock.SECTION, PylonBlock.Section.BODY), createModelVariant(body).with(VariantProperties.X_ROT, VariantProperties.Rotation.R270))
+					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.SOUTH).term(PylonBlock.SECTION, PylonBlock.Section.WAIST), createModelVariant(waist).with(VariantProperties.X_ROT, VariantProperties.Rotation.R270))
+					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.SOUTH).term(PylonBlock.SECTION, PylonBlock.Section.FOOT), createModelVariant(foot).with(VariantProperties.X_ROT, VariantProperties.Rotation.R270))
+					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.SOUTH).term(PylonBlock.PEDESTAL, true), createModelVariant(pedestal).with(VariantProperties.X_ROT, VariantProperties.Rotation.R270))
+					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.WEST).term(PylonBlock.SECTION, PylonBlock.Section.HEAD), createModelVariant(head).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.WEST).term(PylonBlock.SECTION, PylonBlock.Section.BODY), createModelVariant(body).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.WEST).term(PylonBlock.SECTION, PylonBlock.Section.WAIST), createModelVariant(waist).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.WEST).term(PylonBlock.SECTION, PylonBlock.Section.FOOT), createModelVariant(foot).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.WEST).term(PylonBlock.PEDESTAL, true), createModelVariant(pedestal).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.EAST).term(PylonBlock.SECTION, PylonBlock.Section.HEAD), createModelVariant(head).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.EAST).term(PylonBlock.SECTION, PylonBlock.Section.BODY), createModelVariant(body).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.EAST).term(PylonBlock.SECTION, PylonBlock.Section.WAIST), createModelVariant(waist).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.EAST).term(PylonBlock.SECTION, PylonBlock.Section.FOOT), createModelVariant(foot).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+					.with(Condition.condition().term(BlockStateProperties.FACING, Direction.EAST).term(PylonBlock.PEDESTAL, true), createModelVariant(pedestal).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
 		});
 	}
 	

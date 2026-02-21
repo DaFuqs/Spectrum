@@ -1,0 +1,28 @@
+{
+  "criteria": {
+    "collected_blazing_crystal": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_blazing_crystal"
+      }
+    },
+    "has_incandescent_essence": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:incandescent_essence"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "collected_blazing_crystal",
+      "has_incandescent_essence"
+    ]
+  ]
+}

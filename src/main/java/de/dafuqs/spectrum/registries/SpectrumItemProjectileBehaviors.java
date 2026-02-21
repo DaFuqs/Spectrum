@@ -37,6 +37,26 @@ public class SpectrumItemProjectileBehaviors {
 	}
 	
 	protected static void registerHarmless() {
+		// The code for consuming potions is written so it never gets consumed if a non-player drinks it
+		// Thank you, witches and wandering traders
+		ItemProjectileBehavior.register(new ItemProjectileBehavior() {
+			@Override
+			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, Entity owner, EntityHitResult hitResult) {
+				Entity hitEntity = hitResult.getEntity();
+				;
+				if (hitEntity instanceof LivingEntity livingEntity) {
+					stack.finishUsingItem(projectile.level(), livingEntity);
+					return new ItemStack(Items.GLASS_BOTTLE);
+				}
+				return stack;
+			}
+			
+			@Override
+			public ItemStack onBlockHit(ItemProjectileEntity projectile, ItemStack stack, Entity owner, BlockHitResult hitResult) {
+				return stack;
+			}
+		}, Items.POTION);
+		
 		ItemProjectileBehavior.register(new ItemProjectileBehavior() {
 			@Override
 			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, Entity owner, EntityHitResult hitResult) {

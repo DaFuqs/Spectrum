@@ -6,7 +6,7 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 5,
-  "x": -11,
+  "x": -12,
   "y": 1,
   "icon": "spectrum:textures/gui/guidebook/icons/idea.png",
   "condition": {

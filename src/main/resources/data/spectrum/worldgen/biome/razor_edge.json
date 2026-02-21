@@ -43,24 +43,6 @@
     "misc": [],
     "monster": [
       {
-        "type": "minecraft:zombie",
-        "weight": 100,
-        "minCount": 4,
-        "maxCount": 4
-      },
-      {
-        "type": "minecraft:skeleton",
-        "weight": 100,
-        "minCount": 4,
-        "maxCount": 4
-      },
-      {
-        "type": "minecraft:creeper",
-        "weight": 100,
-        "minCount": 4,
-        "maxCount": 4
-      },
-      {
         "type": "minecraft:stray",
         "weight": 200,
         "minCount": 4,
@@ -116,7 +98,8 @@
       "spectrum:dd_granite",
       "spectrum:dd_diorite",
       "spectrum:dd_andesite",
-      "spectrum:dd_stone"
+      "spectrum:dd_stone",
+      "spectrum:splinterspawn_infested_blocks"
     ],
     [],
     [

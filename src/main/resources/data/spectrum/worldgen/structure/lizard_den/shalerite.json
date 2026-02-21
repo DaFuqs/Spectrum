@@ -6,9 +6,9 @@
   "start_pool": "spectrum:lizard_den/centers_shalerite",
   "size": 1,
   "start_height": {
-    "type": "minecraft:biased_to_bottom",
+    "type": "minecraft:uniform",
     "min_inclusive": {
-      "above_bottom": 32
+      "above_bottom": 64
     },
     "max_inclusive": {
       "below_top": 64

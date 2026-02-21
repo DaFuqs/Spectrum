@@ -30,16 +30,5 @@ public class WorthinessChecker {
 		putPlayer(Players.DRA, CapeType.PALE_ASTRONOMY);
 		putPlayer(Players.OPL, CapeType.PALE_ASTRONOMY);
 		putPlayer(Players.MAYA, CapeType.PALE_ASTRONOMY);
-		
-		// What was once Immortal Devs
-		putPlayer(Players.PIE, CapeType.V1);
-		putPlayer(Players.GUDY, CapeType.GUDY);
-		putPlayer(Players.REO, CapeType.IMMORTAL);
-		putPlayer(Players.SOLLY, CapeType.IMMORTAL);
-		putPlayer(Players.ASH, CapeType.IMMORTAL);
-		putPlayer(Players.KALUCKY, CapeType.IMMORTAL);
-		putPlayer(Players.JACK, CapeType.IMMORTAL);
-		putPlayer(Players.SUNSETTE, CapeType.IMMORTAL);
-		putPlayer(Players.TWENTYFOUR, CapeType.IMMORTAL);
 	}
 }

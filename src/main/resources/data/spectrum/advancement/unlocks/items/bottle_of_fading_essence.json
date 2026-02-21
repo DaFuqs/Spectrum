@@ -1,0 +1,10 @@
+{
+  "criteria": {
+    "collected_incandescent_essence": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_incandescent_essence"
+      }
+    }
+  }
+}

@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.entity.variants.*;
 import net.minecraft.advancements.critereon.*;
+import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.phys.*;
@@ -14,8 +15,8 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public record LizardPredicate(Optional<InkColor> color, Optional<LizardFrillVariant> frills, Optional<LizardHornVariant> horns) implements EntitySubPredicate {
-	
+public record LizardPredicate(Optional<InkColor> color, Optional<Holder<LizardFrillVariant>> frills, Optional<Holder<LizardHornVariant>> horns) implements EntitySubPredicate {
+
 	public static final MapCodec<LizardPredicate> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
 			InkColor.CODEC.optionalFieldOf("color").forGetter(LizardPredicate::color),
 			LizardFrillVariant.CODEC.optionalFieldOf("frills_variant").forGetter(LizardPredicate::frills),
@@ -23,7 +24,7 @@ public record LizardPredicate(Optional<InkColor> color, Optional<LizardFrillVari
 	).apply(instance, LizardPredicate::new));
 	
 	@Override
-	public boolean matches(Entity entity, ServerLevel world, @Nullable Vec3 pos) {
+	public boolean matches(@NotNull Entity entity, @NotNull ServerLevel world, @Nullable Vec3 pos) {
 		if (!(entity instanceof LizardEntity lizard)) {
 			return false;
 		} else {
@@ -34,8 +35,8 @@ public record LizardPredicate(Optional<InkColor> color, Optional<LizardFrillVari
 	}
 	
 	@Override
-	public MapCodec<LizardPredicate> codec() {
-		return SpectrumEntitySubPredicateTypes.LIZARD.get();
+	public @NotNull MapCodec<LizardPredicate> codec() {
+		return SpectrumEntitySubPredicateTypes.LIZARD;
 	}
 	
 }

@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.progression;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.progression.advancement.*;
 import net.minecraft.advancements.*;
 import net.minecraft.core.registries.*;

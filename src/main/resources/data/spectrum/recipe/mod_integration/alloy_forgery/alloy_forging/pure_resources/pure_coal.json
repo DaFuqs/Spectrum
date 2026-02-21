@@ -7,12 +7,12 @@
     }
   ],
   "output": {
-    "id": "minecraft:coal",
+    "item": "minecraft:coal",
     "count": 4
   },
   "overrides": {
     "4+": {
-      "id": "minecraft:coal",
+      "item": "minecraft:coal",
       "count": 5
     }
   },

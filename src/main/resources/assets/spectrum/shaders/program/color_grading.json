@@ -22,6 +22,5 @@
     { "name": "Rubedo",       "type": "float",     "count": 1,  "values": [ 1.0] },
     { "name": "ColorTemperature", "type": "float",     "count": 1,  "values": [ 65.0] },
     { "name": "DesaturateThreshold", "type": "float",     "count": 1,  "values": [ 0.8] }
-
   ]
 }

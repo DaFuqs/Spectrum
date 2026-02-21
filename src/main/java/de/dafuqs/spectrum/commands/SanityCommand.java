@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.commands;
 
 import com.mojang.brigadier.arguments.*;
 import com.mojang.brigadier.tree.*;
+import de.dafuqs.fractal.api.*;
 import de.dafuqs.revelationary.*;
 import de.dafuqs.revelationary.advancement_criteria.*;
 import de.dafuqs.spectrum.*;
@@ -34,6 +35,7 @@ import net.minecraft.tags.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
+import net.minecraft.world.flag.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.item.enchantment.*;
@@ -44,6 +46,7 @@ import org.apache.commons.lang3.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
+import java.util.stream.*;
 
 public class SanityCommand {
 	
@@ -57,7 +60,7 @@ public class SanityCommand {
 			SpectrumCommon.locate("lategame/strike_up_hummingstone_hymn")         // its parent is 2 parents in
 	);
 	
-	private static final List<ResourceLocation> GUIDEBOOK_WARNING_WHITELIST = List.of(
+	private static final List<ResourceLocation> GUIDEBOOK_WARNING_WHITELIST = List.of( // TODO: unused
 			SpectrumCommon.locate("cuisine/cookbooks/brewers_handbook")           // "*_fluid" mod compat recipe page
 	);
 	
@@ -441,8 +444,30 @@ public class SanityCommand {
 			}
 		}
 		
+		// Recipes with invalid ingredients
+		for (RecipeHolder<?> recipe : source.getLevel().getRecipeManager().getRecipes()) {
+			ResourceLocation id = recipe.id();
+			Recipe<?> r = recipe.value();
+			int brokenCount = 0;
+			for (Ingredient ingredient : r.getIngredients()) {
+				if (ingredient.getItems().length == 0 && !ingredient.isEmpty() && ingredient != Ingredient.EMPTY) {
+					brokenCount++;
+				}
+			}
+			if (brokenCount > 0) {
+				SpectrumCommon.logWarning("[SANITY: Recipe Ingredients] Recipe '" + id + "' has " + brokenCount + " broken ingredient(s)");
+			}
+		}
+		
 		// items / blocks missing in the creative tab (this will also omit them from most recipe viewers)
 		Collection<ItemStack> itemGroupStacks = SpectrumItemGroups.MAIN.get().getSearchTabDisplayItems();
+		if (itemGroupStacks.isEmpty()) {
+			// since the creative group will only have content when queried, we build the contents if it is still empty
+			for (ItemSubGroup subGroup : SpectrumItemGroups.MAIN.fractal$getChildren()) {
+				subGroup.buildContents(new CreativeModeTab.ItemDisplayParameters(FeatureFlagSet.of(), false, registryManager));
+			}
+			itemGroupStacks = SpectrumItemGroups.MAIN.getSearchTabDisplayItems();
+		}
 		for (Map.Entry<ResourceKey<Item>, Item> item : BuiltInRegistries.ITEM.entrySet()) {
 			if (item.getKey().location().getNamespace().equals(modId) && !item.getValue().builtInRegistryHolder().is(SpectrumItemTags.COMING_SOON_TOOLTIP)) {
 				boolean found = false;

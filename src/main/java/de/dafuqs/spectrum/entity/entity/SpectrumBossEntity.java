@@ -19,7 +19,7 @@ import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
-public class SpectrumBossEntity extends PathfinderMob {
+public class SpectrumBossEntity extends FlyingMob {
 	
 	private static final EntityDataAccessor<Integer> INVINCIBILITY_TICKS = SynchedEntityData.defineId(SpectrumBossEntity.class, EntityDataSerializers.INT);
 	private final ServerBossEvent bossBar;

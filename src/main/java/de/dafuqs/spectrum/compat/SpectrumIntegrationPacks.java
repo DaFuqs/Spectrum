@@ -8,6 +8,8 @@ import de.dafuqs.spectrum.compat.exclusions_lib.*;
 import de.dafuqs.spectrum.compat.gobber.*;
 import de.dafuqs.spectrum.compat.malum.*;
 import de.dafuqs.spectrum.compat.modonomicon.*;
+import de.dafuqs.spectrum.compat.neepmeat.*;
+import de.dafuqs.spectrum.compat.starry_skies.*;
 import de.dafuqs.spectrum.compat.travelersbackpack.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.fml.event.lifecycle.*;
@@ -41,6 +43,11 @@ public class SpectrumIntegrationPacks {
 	public static final String CREATE_ID = "create";
 	public static final String MALUM_ID = "malum";
 	public static final String EXCLUSIONS_LIB_ID = "exclusions_lib";
+	public static final String STARRY_SKIES_ID = "starry_skies";
+	
+	// Client Only
+	public static final String EARS_ID = "ears";
+	public static final String IDWTIALSIMMOEDM_ID = "idwtialsimmoedm";
 
 	@SuppressWarnings("Convert2MethodRef")
 	public static void register(IEventBus modBus) {
@@ -57,6 +64,7 @@ public class SpectrumIntegrationPacks {
 		//registerIntegrationPack(BOTANIA_ID, () -> new BotaniaCompat());
 		registerIntegrationPack(MALUM_ID, () -> new MalumCompat());
 		registerIntegrationPack(CREATE_ID, () -> new CreateCompat());
+		registerIntegrationPack(STARRY_SKIES_ID, () -> new StarrySkiesCompat());
 		
 		for (ModIntegrationPack container : INTEGRATION_PACKS.values()) {
 			container.register();

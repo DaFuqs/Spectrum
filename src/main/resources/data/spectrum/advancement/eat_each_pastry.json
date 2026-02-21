@@ -123,6 +123,16 @@
         }
       }
     },
+    "cream_pastry": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:cream_pastry"
+          ]
+        }
+      }
+    },
     "lucky_roll": {
       "trigger": "minecraft:consume_item",
       "conditions": {
@@ -139,6 +149,36 @@
         "item": {
           "items": [
             "spectrum:scone"
+          ]
+        }
+      }
+    },
+    "myceylon_apple_pie": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:myceylon_apple_pie"
+          ]
+        }
+      }
+    },
+    "myceylon_pumpkin_pie": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:myceylon_pumpkin_pie"
+          ]
+        }
+      }
+    },
+    "rabbit_cream_pie": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:rabbit_cream_pie"
           ]
         }
       }

@@ -9,6 +9,7 @@ import net.minecraft.core.registries.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
+import net.minecraft.util.valueproviders.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
@@ -21,7 +22,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public abstract class DecayBlock extends Block {
+public abstract class DecayBlock extends DropExperienceBlock {
 	
 	public enum Conversion implements StringRepresentable {
 		NONE("none"),
@@ -52,8 +53,8 @@ public abstract class DecayBlock extends Block {
 	protected final float damageOnTouching;
 	protected final int tier;
 	
-	public DecayBlock(Properties settings, float spreadChance, boolean canSpreadToBlockEntities, int tier, float damageOnTouching) {
-		super(settings);
+	public DecayBlock(Properties settings, float spreadChance, boolean canSpreadToBlockEntities, int tier, float damageOnTouching, IntProvider xpRange) {
+		super(xpRange, settings);
 		this.spreadChance = spreadChance;
 		this.canSpreadToBlockEntities = canSpreadToBlockEntities;
 		this.damageOnTouching = damageOnTouching;

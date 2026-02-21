@@ -1,6 +1,6 @@
 {
   "type": "spectrum:pedestal",
-  "time": 3600,
+  "time": 1200,
   "tier": "advanced",
   "colors": {
     "spectrum:cyan": 16,

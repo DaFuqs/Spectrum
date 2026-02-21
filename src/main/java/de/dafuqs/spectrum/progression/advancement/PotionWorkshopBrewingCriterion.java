@@ -5,6 +5,7 @@ import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.blocks.potion_workshop.*;
+import de.dafuqs.spectrum.recipe.potion_workshop.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
@@ -22,7 +23,7 @@ public class PotionWorkshopBrewingCriterion extends SimpleCriterionTrigger<Potio
 	public static final String NAME = "potion_workshop_brewing";
 	
 	@SuppressWarnings("deprecation")
-	public void trigger(ServerPlayer player, ItemStack itemStack, int brewedCount, PotionWorkshopBlockEntity potionWorkshop) {
+	public void trigger(ServerPlayer player, ItemStack itemStack, int brewedCount, PotionWorkshopBlockEntity potionWorkshop, PotionMod.PotionFlags reagentFlags) {
 		List<ItemStack> reagents = new ArrayList<>();
 		for (int i : PotionWorkshopBlockEntity.REAGENT_SLOTS) {
 			reagents.add(potionWorkshop.getItem(i));
@@ -55,7 +56,7 @@ public class PotionWorkshopBrewingCriterion extends SimpleCriterionTrigger<Potio
 				}
 			}
 			
-			return conditions.matches(itemStack, effects, brewedCount, highestAmplifier, longestDuration, effects.size(), uniqueEffects.size(), reagents);
+			return conditions.matches(itemStack, effects, brewedCount, highestAmplifier, longestDuration, effects.size(), uniqueEffects.size(), reagents, reagentFlags);
 		});
 	}
 	
@@ -73,7 +74,8 @@ public class PotionWorkshopBrewingCriterion extends SimpleCriterionTrigger<Potio
 			MinMaxBounds.Ints maxAmplifierRange,
 			MinMaxBounds.Ints maxDurationRange,
 			MinMaxBounds.Ints effectCountRange,
-			MinMaxBounds.Ints uniqueEffectCountRange
+			MinMaxBounds.Ints uniqueEffectCountRange,
+			PotionMod.PotionFlags.Conditions reagentFlags
 	) implements SimpleCriterionTrigger.SimpleInstance {
 		
 		public static final Codec<Conditions> CODEC = RecordCodecBuilder.create(instance -> instance.group(
@@ -85,16 +87,18 @@ public class PotionWorkshopBrewingCriterion extends SimpleCriterionTrigger<Potio
 				MinMaxBounds.Ints.CODEC.optionalFieldOf("highest_amplifier", MinMaxBounds.Ints.ANY).forGetter(Conditions::maxAmplifierRange),
 				MinMaxBounds.Ints.CODEC.optionalFieldOf("longest_duration", MinMaxBounds.Ints.ANY).forGetter(Conditions::maxDurationRange),
 				MinMaxBounds.Ints.CODEC.optionalFieldOf("effect_count", MinMaxBounds.Ints.ANY).forGetter(Conditions::effectCountRange),
-				MinMaxBounds.Ints.CODEC.optionalFieldOf("unique_effect_count", MinMaxBounds.Ints.ANY).forGetter(Conditions::uniqueEffectCountRange)
+				MinMaxBounds.Ints.CODEC.optionalFieldOf("unique_effect_count", MinMaxBounds.Ints.ANY).forGetter(Conditions::uniqueEffectCountRange),
+				PotionMod.PotionFlags.Conditions.CODEC.optionalFieldOf("reagent_flags", PotionMod.PotionFlags.Conditions.ANY).forGetter(Conditions::reagentFlags)
 		).apply(instance, Conditions::new));
 		
-		public boolean matches(ItemStack stack, List<MobEffectInstance> effects, int brewedCount, int maxAmplifier, int maxDuration, int effectCount, int uniqueEffectCount, List<ItemStack> reagents) {
+		private boolean matches(ItemStack stack, List<MobEffectInstance> effects, int brewedCount, int maxAmplifier, int maxDuration, int effectCount, int uniqueEffectCount, List<ItemStack> reagents, PotionMod.PotionFlags reagentFlags) {
 			if (this.brewedCountRange.matches(brewedCount) &&
 					this.maxAmplifierRange.matches(maxAmplifier) &&
 					this.maxDurationRange.matches(maxDuration) &&
 					this.effectCountRange.matches(effectCount) &&
 					this.uniqueEffectCountRange.matches(uniqueEffectCount) &&
-					this.itemPredicate.test(stack)) {
+					this.itemPredicate.test(stack) &&
+					this.reagentFlags.test(reagentFlags)) {
 				
 				boolean anyReagentMatched = false;
 				for (ItemStack reagent : reagents) {

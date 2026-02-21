@@ -77,7 +77,7 @@ public abstract class PotionWorkshopRecipe extends GatedStackSpectrumRecipe<Reci
 	private boolean areStacksInReagentSlotsAllReagents(@NotNull RecipeInput inv) {
 		for (int i : PotionWorkshopBlockEntity.REAGENT_SLOTS) {
 			ItemStack itemStack = inv.getItem(i);
-			if (!itemStack.isEmpty() && !PotionWorkshopReactingRecipe.isReagent(itemStack.getItem())) {
+			if (!itemStack.isEmpty() && !PotionWorkshopReactingRecipe.isReagent(itemStack)) {
 				return false;
 			}
 		}

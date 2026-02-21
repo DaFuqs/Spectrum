@@ -23,7 +23,6 @@ import net.minecraft.core.component.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
-import net.minecraft.tags.*;
 import net.minecraft.world.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.effect.*;
@@ -35,6 +34,7 @@ import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.phys.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -63,6 +63,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 	@Unique
 	public SpectrumFishingBobberEntity spectrum$fishingBobber;
 	
+	
 	@ModifyVariable(method = "attack", name = "entityReachSq", at = @At(value = "STORE"))
 	protected double spectrum$increaseSweepMaxDistance(double original) {
 		var stack = this.getItemInHand(InteractionHand.MAIN_HAND);
@@ -79,14 +80,14 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 		RegistryAccess drm = registryAccess();
 		Tool tool = stack.get(DataComponents.TOOL);
 		float speed = original.call(inventory, state);
-
+		
 		// RAZING GAMING
 		int razingLevel = SpectrumEnchantmentHelper.getLevel(drm, SpectrumEnchantments.RAZING, stack);
 		if (razingLevel > 0 && tool != null && tool.getMiningSpeed(state) > tool.defaultMiningSpeed()) {
 			float hardness = state.getBlock().defaultDestroyTime();
 			speed = (float) Math.max(1 + hardness, Math.pow(2, 1 + razingLevel / 8F));
 		}
-
+		
 		// INERTIA GAMING
 		// inertia mining speed calculation logic is capped at 5 levels.
 		// Higher and the formula would do weird stuff
@@ -101,7 +102,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 				speed /= 4;
 			}
 		}
-
+		
 		return speed;
 	}
 	
@@ -316,12 +317,6 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 			return;
 		}
 		original.call(instance, entityPose);
-	}
-	
-	@Unique
-	private boolean isInexorableActive() {
-		Player player = (Player) (Object) this;
-		return SpectrumEnchantmentHelper.hasEnchantment(player.level().registryAccess(), SpectrumEnchantments.INEXORABLE, player.getItemInHand(player.getUsedItemHand()));
 	}
 	
 }

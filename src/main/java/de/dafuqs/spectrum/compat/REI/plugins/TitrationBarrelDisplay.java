@@ -10,6 +10,7 @@ import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.client.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.material.*;
 import net.neoforged.neoforge.fluids.crafting.*;
 import org.jetbrains.annotations.*;
 
@@ -19,7 +20,7 @@ public class TitrationBarrelDisplay extends GatedSpectrumDisplay {
 	
 	protected final EntryIngredient tappingIngredient;
 	protected final int minFermentationTimeHours;
-	protected final FermentationData fermentationData;
+	protected final Optional<FermentationData> fermentationData;
 	
 	public TitrationBarrelDisplay(@NotNull RecipeHolder<ITitrationBarrelRecipe> recipe) {
 		super(recipe, buildInputs(recipe.value()), List.of(buildOutputs(recipe.value())));

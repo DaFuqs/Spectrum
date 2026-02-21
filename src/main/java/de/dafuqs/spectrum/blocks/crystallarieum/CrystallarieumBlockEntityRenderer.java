@@ -124,19 +124,21 @@ public class CrystallarieumBlockEntityRenderer<T extends CrystallarieumBlockEnti
 	}
 	
 	private static void renderCatalysts(CrystallarieumBlockEntity crystal, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay, ItemStack catalystStack) {
+		int renderedStackCount = (int) Math.ceil(catalystStack.getCount() / 17.0);
+		
 		matrices.pushPose();
-		var stack = (int) Math.ceil(catalystStack.getCount() / 17.0);
 		matrices.translate(0.5, 0.4, 0.5);
 		matrices.mulPose(Axis.XP.rotationDegrees(270));
 		matrices.mulPose(Axis.YP.rotationDegrees(180));
 		matrices.mulPose(Axis.ZP.rotationDegrees(70));
-		if (stack == 1) {
+		
+		if (renderedStackCount == 1) {
 			Minecraft.getInstance().getItemRenderer().renderStatic(catalystStack, ItemDisplayContext.GROUND, light, overlay, matrices, vertexConsumers, crystal.getLevel(), 0);
 			matrices.popPose();
 			return;
 		}
 		
-		for (int i = 0; i < stack; i++) {
+		for (int i = 0; i < renderedStackCount; i++) {
 			Minecraft.getInstance().getItemRenderer().renderStatic(catalystStack, ItemDisplayContext.GROUND, light, overlay, matrices, vertexConsumers, crystal.getLevel(), 0);
 			matrices.translate(0, 0, -0.0225);
 			matrices.mulPose(Axis.ZP.rotationDegrees(53));

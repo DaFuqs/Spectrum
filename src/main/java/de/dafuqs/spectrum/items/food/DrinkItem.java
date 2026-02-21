@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.items.food;
 
+import de.dafuqs.spectrum.components.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.sounds.*;
@@ -54,6 +56,11 @@ public class DrinkItem extends Item {
 		super.appendHoverText(stack, context, tooltip, type);
 		if (this.tooltip != null) {
 			tooltip.add(this.tooltip);
+		}
+		
+		WithMilkComponent withMilk = stack.get(SpectrumDataComponentTypes.WITH_MILK);
+		if (withMilk != null) {
+			withMilk.addToTooltip(context, tooltip::add, type);
 		}
 	}
 	

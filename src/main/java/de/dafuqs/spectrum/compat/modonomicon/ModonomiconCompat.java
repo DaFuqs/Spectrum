@@ -10,6 +10,7 @@ import de.dafuqs.spectrum.compat.modonomicon.client.pages.*;
 import de.dafuqs.spectrum.compat.modonomicon.page_types.*;
 import de.dafuqs.spectrum.compat.modonomicon.pages.*;
 import de.dafuqs.spectrum.compat.modonomicon.unlock_conditions.*;
+import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.anvil_crushing.*;
 import de.dafuqs.spectrum.recipe.cinderhearth.*;
 import de.dafuqs.spectrum.recipe.crystallarieum.*;
@@ -54,7 +55,8 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
 	public static final ResourceLocation LINK_PAGE = SpectrumCommon.locate("link");
 	public static final ResourceLocation COLLECTION_PAGE = SpectrumCommon.locate("collection");
 	public static final ResourceLocation PRIMORDIAL_FIRE_BURNING_PAGE = SpectrumCommon.locate("primordial_fire_burning");
-	
+	public static final ResourceLocation INK_CONVERTING_PAGE = SpectrumCommon.locate("ink_converting");
+
 	// Unlock Conditions
 	public static final ResourceLocation ENCHANTMENT_REGISTERED = SpectrumCommon.locate("enchantment_registered");
 	public static final ResourceLocation RECIPE_LOADED_AND_UNLOCKED = SpectrumCommon.locate("recipe_loaded_and_unlocked");
@@ -88,6 +90,7 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
 		registerGatedRecipePage(CINDERHEARTH_SMELTING_PAGE, SpectrumRecipeTypes.CINDERHEARTH, false);
 		registerGatedRecipePage(TITRATION_BARREL_FERMENTING_PAGE, SpectrumRecipeTypes.TITRATION_BARREL, true);
 		registerGatedRecipePage(PRIMORDIAL_FIRE_BURNING_PAGE, SpectrumRecipeTypes.PRIMORDIAL_FIRE_BURNING, false);
+		registerGatedRecipePage(INK_CONVERTING_PAGE, SpectrumRecipeTypes.INK_CONVERTING, true);
 		
 		LoaderRegistry.registerPageLoader(STATUS_EFFECT_PAGE, (BookPageJsonLoader<?>) BookStatusEffectPage::fromJson, BookStatusEffectPage::fromNetwork);
 		LoaderRegistry.registerPageLoader(HINT_PAGE, (BookPageJsonLoader<?>) BookHintPage::fromJson, BookHintPage::fromNetwork);
@@ -125,6 +128,7 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
 		PageRendererRegistry.registerPageRenderer(CINDERHEARTH_SMELTING_PAGE, p -> new BookCinderhearthSmeltingPageRenderer((BookGatedRecipePage<CinderhearthRecipe>) p));
 		PageRendererRegistry.registerPageRenderer(TITRATION_BARREL_FERMENTING_PAGE, p -> new BookTitrationBarrelFermentingPageRenderer((BookGatedRecipePage<TitrationBarrelRecipe>) p));
 		PageRendererRegistry.registerPageRenderer(PRIMORDIAL_FIRE_BURNING_PAGE, p -> new BookPrimordialFireBurningPageRenderer<>((BookGatedRecipePage<PrimordialFireBurningRecipe>) p));
+		PageRendererRegistry.registerPageRenderer(INK_CONVERTING_PAGE, p -> new BookInkConvertingPageRenderer((BookGatedRecipePage<InkConvertingRecipe>) p));
 		
 		PageRendererRegistry.registerPageRenderer(STATUS_EFFECT_PAGE, p -> new BookStatusEffectPageRenderer((BookStatusEffectPage) p));
 		PageRendererRegistry.registerPageRenderer(HINT_PAGE, p -> new BookHintPageRenderer((BookHintPage) p));

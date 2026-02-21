@@ -47,25 +47,6 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:downstone_fragments",
-          "weight": 2,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 0,
-                "max": 2
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "rolls": 3,
-      "entries": [
-        {
-          "type": "minecraft:item",
           "name": "spectrum:raw_azurite"
         },
         {

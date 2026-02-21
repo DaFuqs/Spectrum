@@ -99,6 +99,13 @@ public class SpectrumModelHelper {
 		return BlockModelGenerators.createSimpleBlock(block, identifier);
 	}
 	
+	public static BlockStateGenerator pottedPlantWithCustomTextureBlockModel(BlockModelGenerators ctx, FlowerPotBlock block, String suffix) {
+		TextureMapping textureMap = TextureMapping.plant(TextureMapping.getBlockTexture(block.getPotted()).withSuffix(suffix));
+		ResourceLocation identifier = ModelTemplates.FLOWER_POT_CROSS.create(block, textureMap, ctx.modelOutput);
+		return BlockModelGenerators.createSimpleBlock(block, identifier);
+	}
+	
+	
 	public static BlockStateGenerator glassPaneBlockModel(BlockModelGenerators ctx, Block glassPaneBlock, Block glassBlock) {
 		TextureMapping textureMap = TextureMapping.pane(glassBlock, glassPaneBlock);
 		ResourceLocation post = ModelTemplates.STAINED_GLASS_PANE_POST.create(glassPaneBlock, textureMap, ctx.modelOutput);

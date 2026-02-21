@@ -48,8 +48,8 @@ public class RedstoneInteractionBlock extends Block {
 	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
 		Direction direction = ctx.getNearestLookingDirection().getOpposite();
 		Direction direction2 = switch (direction) {
-			case DOWN -> ctx.getPlayer().getDirection().getOpposite();
-			case UP -> ctx.getPlayer().getDirection();
+			case DOWN -> ctx.getHorizontalDirection().getOpposite();
+			case UP -> ctx.getHorizontalDirection();
 			case NORTH, SOUTH, WEST, EAST -> Direction.UP;
 		};
 		

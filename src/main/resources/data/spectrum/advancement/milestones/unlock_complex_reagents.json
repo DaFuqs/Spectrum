@@ -1,9 +1,9 @@
 {
   "criteria": {
-    "crafted_potion_in_potion_workshop": {
+    "unlocked_potion_workshop": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:midgame/brew_potion_in_potion_workshop_using_complex_reagent"
+        "advancement_identifier": "spectrum:unlocks/blocks/potion_workshop"
       }
     },
     "reached_midgame": {

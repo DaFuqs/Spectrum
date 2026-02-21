@@ -164,28 +164,24 @@ public class TitrationBarrelBlockEntity extends BlockEntity implements Implement
 		} else {
 			ITitrationBarrelRecipe recipe = optionalRecipe.get().value();
 			
-			long secondsFermented = (this.tapTime - this.sealTime) / 1000;
-			var output = recipe.getOutputCountAfterAngelsShare(world, biome.getBaseTemperature(), secondsFermented);
-			
-			if (recipe.getFluidInput().test(fluidStorage.getFluid())) {
+			if (recipe.getFluidInput().test(this.getFluidVariant())) {
 				if (recipe.canPlayerCraft(player)) {
 					boolean canTap = true;
 					Item tappingItem = recipe.getTappingItem();
 					if (tappingItem != Items.AIR) {
 						if (handStack.is(tappingItem)) {
-							output = Math.min(output, handStack.getCount());
-							handStack.shrink(output);
+							handStack.shrink(1);
 						} else {
 							message = Component.translatable("block.spectrum.titration_barrel.tapping_item_required").append(tappingItem.getDescription());
 							canTap = false;
 						}
 					}
 					if (canTap) {
+						long secondsFermented = (this.tapTime - this.sealTime) / 1000;
 						float downfall = ((BiomeAccessor) (Object) biome).getClimateSettings().downfall();
 						harvestedStack = recipe.getTitrationResult(this, secondsFermented, downfall);
-						harvestedStack.setCount(output);
 						
-						this.extractedBottles += output;
+						this.extractedBottles += 1;
 						shouldReset = isEmpty(biome.getBaseTemperature(), this.extractedBottles, recipe);
 					}
 				} else {
@@ -203,7 +199,9 @@ public class TitrationBarrelBlockEntity extends BlockEntity implements Implement
 		
 		if (player != null) {
 			SpectrumAdvancementCriteria.TITRATION_BARREL_TAPPING.trigger((ServerPlayer) player, harvestedStack, daysSealed, inventoryCount);
-			player.displayClientMessage(message, true);
+			if (message != null) { // if you read `Condition is always true` here, Your IDE is lying to you
+				player.displayClientMessage(message, true);
+			}
 		}
 		
 		if (shouldReset) {

@@ -133,7 +133,7 @@ public class PaintbrushItem extends Item implements SignApplicator {
 					context.getLevel().playSound(null, context.getClickedPos(), SpectrumSoundEvents.USE_FAIL, SoundSource.BLOCKS, 1.0F, 1.0F);
 				}
 			}
-			return false;
+			return true;
 		}
 		
 		return cursedColor(context);
@@ -261,8 +261,9 @@ public class PaintbrushItem extends Item implements SignApplicator {
 	
 	@Override
 	public boolean tryApplyToSign(Level world, SignBlockEntity signBlockEntity, boolean front, Player player) {
-		if (tryUseOnSign(world, signBlockEntity, front, player, player.getItemInHand(InteractionHand.MAIN_HAND))) return true;
-		if (tryUseOnSign(world, signBlockEntity, front, player, player.getItemInHand(InteractionHand.OFF_HAND))) return true;
+		// returning with false isn't entirely correct here, but otherwise the sign code would decrement the paintbrush stack
+		if (tryUseOnSign(world, signBlockEntity, front, player, player.getItemInHand(InteractionHand.MAIN_HAND))) return false;
+		if (tryUseOnSign(world, signBlockEntity, front, player, player.getItemInHand(InteractionHand.OFF_HAND))) return false;
 		
 		player.playSound(SpectrumSoundEvents.USE_FAIL, 1.0F, 1.0F);
 		return false;

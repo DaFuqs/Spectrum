@@ -414,7 +414,7 @@ public abstract class LivingEntityMixin {
 	private float spectrum$modifyDamage(float amount, DamageSource source) {
 		@Nullable MobEffectInstance vulnerability = getEffect(SpectrumStatusEffects.VULNERABILITY);
 		if (vulnerability != null) {
-			amount *= 1 + (SpectrumStatusEffects.VULNERABILITY_ADDITIONAL_DAMAGE_PERCENT_PER_LEVEL * vulnerability.getAmplifier());
+			amount *= 1 + (SpectrumStatusEffects.VULNERABILITY_ADDITIONAL_DAMAGE_PERCENT_PER_LEVEL * vulnerability.getAmplifier() + 1);
 		}
 		return amount;
 	}
@@ -578,9 +578,10 @@ public abstract class LivingEntityMixin {
 				
 				boolean damaged = false;
 				for (Tuple<DamageSource, Float> entry : composition.get()) {
-					int invincibilityFrameStore = target.hurtTime;
+					int invulnerableTimeStore = target.invulnerableTime;
+					target.invulnerableTime = 0;
 					damaged |= hurt(entry.getA(), entry.getB());
-					target.hurtTime = invincibilityFrameStore;
+					target.invulnerableTime = invulnerableTimeStore;
 				}
 				
 				SpectrumDamageTypes.recursiveDamageFlag = false;

@@ -17,7 +17,7 @@ import java.util.*;
 public abstract class SweetenableTitrationBarrelRecipe extends TitrationBarrelRecipe {
 	
 	public SweetenableTitrationBarrelRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier, List<IngredientStack> inputStacks, FluidIngredient fluid, ItemStack outputItemStack, Item tappingItem, int minFermentationTimeHours, FermentationData fermentationData) {
-		super(group, secret, requiredAdvancementIdentifier, inputStacks, fluid, outputItemStack, tappingItem, minFermentationTimeHours, fermentationData);
+		super(group, secret, requiredAdvancementIdentifier, inputStacks, fluid, outputItemStack, tappingItem, minFermentationTimeHours, Optional.of(fermentationData));
 	}
 	
 	@Override
@@ -68,7 +68,7 @@ public abstract class SweetenableTitrationBarrelRecipe extends TitrationBarrelRe
 	// another detail: the more rainy the weather (downfall) the more water evaporates
 	// compared to alcohol, making the drink stronger / weaker in return
 	protected double getAlcPercentWithBloominess(float ageIngameDays, float downfall, double bloominess, double thickness) {
-		return Support.logBase(1 + this.fermentationData.fermentationSpeedMod() + bloominess / 64, ageIngameDays * (0.5 + thickness / 2) * (0.5D + downfall / 2D));
+		return Support.logBase(1 + this.fermentationData.get().fermentationSpeedMod() + bloominess / 64, ageIngameDays * (0.5 + thickness / 2) * (0.5D + downfall / 2D));
 	}
 	
 }

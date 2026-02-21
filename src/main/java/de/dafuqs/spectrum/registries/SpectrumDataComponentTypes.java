@@ -36,7 +36,6 @@ public class SpectrumDataComponentTypes {
 	public static final Supplier<DataComponentType<PairedFoodComponent>> PAIRED_FOOD_COMPONENT = register("paired_food_component", builder -> builder.persistent(PairedFoodComponent.CODEC).networkSynchronized(PairedFoodComponent.PACKET_CODEC));
 	public static final Supplier<DataComponentType<CustomPotionDataComponent>> CUSTOM_POTION_DATA = register("custom_potion_data", builder -> builder.persistent(CustomPotionDataComponent.CODEC).networkSynchronized(CustomPotionDataComponent.PACKET_CODEC));
 	public static final Supplier<DataComponentType<EnderSpliceComponent>> ENDER_SPLICE = register("ender_splice", builder -> builder.persistent(EnderSpliceComponent.CODEC).networkSynchronized(EnderSpliceComponent.PACKET_CODEC));
-	public static final Supplier<DataComponentType<ExtendedBundleComponent>> EXTENDED_BUNDLE = register("extended_bundle", builder -> builder.persistent(ExtendedBundleComponent.CODEC).networkSynchronized(ExtendedBundleComponent.PACKET_CODEC));
 	public static final Supplier<DataComponentType<Unit>> HIDE_USAGE_TOOLTIP = register("hide_usage_tooltip", builder -> builder.persistent(Codec.unit(Unit.INSTANCE)).networkSynchronized(StreamCodec.unit(Unit.INSTANCE)));
 	public static final Supplier<DataComponentType<InertiaComponent>> INERTIA = register("inertia", builder -> builder.persistent(InertiaComponent.CODEC).networkSynchronized(InertiaComponent.PACKET_CODEC));
 	public static final Supplier<DataComponentType<InfusedBeverageComponent>> INFUSED_BEVERAGE = register("infused_beverage", builder -> builder.persistent(InfusedBeverageComponent.CODEC).networkSynchronized(InfusedBeverageComponent.PACKET_CODEC));
@@ -52,7 +51,7 @@ public class SpectrumDataComponentTypes {
 	public static final Supplier<DataComponentType<PairedItemComponent>> PAIRED_ITEM = register("paired_item", builder -> builder.persistent(PairedItemComponent.CODEC).networkSynchronized(PairedItemComponent.PACKET_CODEC));
 	public static final Supplier<DataComponentType<Long>> TIMESTAMP = register("timestamp", builder -> builder.persistent(Codec.LONG).networkSynchronized(ByteBufCodecs.VAR_LONG));
 	public static final Supplier<DataComponentType<ShootingStarComponent>> SHOOTING_STAR = register("shooting_star", builder -> builder.persistent(ShootingStarComponent.CODEC).networkSynchronized(ShootingStarComponent.PACKET_CODEC));
-	public static final Supplier<DataComponentType<UUID>> SLOT_RESERVER = register("slot_eserver", builder -> builder.persistent(UUIDUtil.AUTHLIB_CODEC).networkSynchronized(UUIDUtil.STREAM_CODEC));
+	public static final Supplier<DataComponentType<UUID>> SLOT_RESERVER = register("slot_reserver", builder -> builder.persistent(UUIDUtil.AUTHLIB_CODEC).networkSynchronized(UUIDUtil.STREAM_CODEC));
 	public static final Supplier<DataComponentType<Unit>> SOCKETED = register("socketed", builder -> builder.persistent(Codec.unit(Unit.INSTANCE)).networkSynchronized(StreamCodec.unit(Unit.INSTANCE)));
 	public static final Supplier<DataComponentType<Unit>> STABLE = register("stable", builder -> builder.persistent(Codec.unit(Unit.INSTANCE)).networkSynchronized(StreamCodec.unit(Unit.INSTANCE)));
 	public static final Supplier<DataComponentType<ResourceLocation>> STORED_BLOCK = register("stored_block", builder -> builder.persistent(ResourceLocation.CODEC).networkSynchronized(ResourceLocation.STREAM_CODEC));

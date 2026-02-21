@@ -1,6 +1,5 @@
 {
 	"parent": "block/block",
-	"credit": "Made by Azazelthedemonlord ~ https://azazelthedemonlord.newgrounds.com/ ~ ♡",
 	"textures": {
 		"0": "#all",
 		"particle": "#all"

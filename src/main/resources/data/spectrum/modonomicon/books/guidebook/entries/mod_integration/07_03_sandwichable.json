@@ -41,8 +41,12 @@
         "advancement_id": "spectrum:unlocks/enchantments/resonance_usage"
       },
       "items": [
-        "sandwichable:salty_rocks",
-        "sandwichable:salty_stone"
+        {
+          "id": "sandwichable:salty_rocks"
+        },
+        {
+          "id": "sandwichable:salty_stone"
+        }
       ],
       "text": "book.spectrum.guidebook.mod_integration.sandwichable.salty_resonance.text"
     }

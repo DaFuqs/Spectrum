@@ -7,12 +7,12 @@
     }
   ],
   "output": {
-    "id": "minecraft:emerald",
+    "item": "minecraft:emerald",
     "count": 4
   },
   "overrides": {
     "4+": {
-      "id": "minecraft:emerald",
+      "item": "minecraft:emerald",
       "count": 5
     }
   },

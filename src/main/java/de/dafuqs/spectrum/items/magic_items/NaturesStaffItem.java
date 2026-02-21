@@ -21,6 +21,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.*;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
@@ -33,7 +34,7 @@ import java.util.*;
 
 public class NaturesStaffItem extends Item implements InkPowered {
 	
-	public static final ItemStack ITEM_COST = new ItemStack(SpectrumItems.VEGETAL.get(), 1);
+	public static final Ingredient ITEM_COST = Ingredient.of(SpectrumItemTags.NATURES_STAFF_CONSUMABLE);
 	public static final InkCost INK_COST = new InkCost(InkColors.LIME, 20);
 	
 	public NaturesStaffItem(Properties settings) {
@@ -111,10 +112,6 @@ public class NaturesStaffItem extends Item implements InkPowered {
 		}
 	}
 	
-	public float getInkCostMod(HolderLookup.Provider lookup, ItemStack itemStack) {
-		return 3.0F / (3.0F + SpectrumEnchantmentHelper.getLevel(lookup, Enchantments.EFFICIENCY, itemStack));
-	}
-	
 	@Override
 	public InteractionResult useOn(UseOnContext context) {
 		Level world = context.getLevel();
@@ -169,7 +166,7 @@ public class NaturesStaffItem extends Item implements InkPowered {
 						}
 						world.setBlock(blockPos, destinationState, 3);
 						
-						payForUse(player, stack);
+						payForStaffUse(player, stack, INK_COST, ITEM_COST);
 						success = true;
 					} else if (sourceState.is(SpectrumBlockTags.NATURES_STAFF_STACKABLE)) {
 						// blockstate marked as stackable => stack more on top!
@@ -206,15 +203,14 @@ public class NaturesStaffItem extends Item implements InkPowered {
 						// fertilizable => grow!
 						success = true;
 					} else {
-						if (sourceState.isFaceSturdy(world, blockPos, context.getClickedFace())
-								&& BoneMealItem.growWaterPlant(Items.BONE_MEAL.getDefaultInstance(), world, blockPos.relative(context.getClickedFace()), context.getClickedFace())) {
+						if (sourceState.isFaceSturdy(world, blockPos, context.getClickedFace()) && BoneMealItem.growWaterPlant(Items.BONE_MEAL.getDefaultInstance(), world, blockPos.relative(context.getClickedFace()), context.getClickedFace())) {
 							success = true;
 						}
 					}
 				}
 				
 				if (success) {
-					payForUse(player, stack);
+					payForStaffUse(player, stack, INK_COST, ITEM_COST);
 					SpectrumAdvancementCriteria.NATURES_STAFF_CONVERSION.trigger(player, sourceState, world.getBlockState(blockPos));
 					return InteractionResult.CONSUME;
 				}
@@ -261,22 +257,6 @@ public class NaturesStaffItem extends Item implements InkPowered {
 		} else {
 			world.levelEvent(LevelEvent.PARTICLES_AND_SOUND_PLANT_GROWTH, blockPos, 15);
 		}
-	}
-	
-	private boolean payForUse(Player player, ItemStack stack) {
-		boolean paid = player.isCreative(); // free for creative players
-		if (!paid) { // try pay with ink
-			paid = InkPowered.tryDrainEnergy(player, INK_COST.color(), (long) (INK_COST.cost() * getInkCostMod(player.level().registryAccess(), stack)));
-		}
-		if (!paid && player.getInventory().contains(ITEM_COST)) {  // try pay with item
-			int efficiencyLevel = SpectrumEnchantmentHelper.getLevel(player.level().registryAccess(), Enchantments.EFFICIENCY, stack);
-			if (efficiencyLevel == 0) {
-				paid = InventoryHelper.removeFromInventoryWithRemainders(player, ITEM_COST);
-			} else {
-				paid = player.getRandom().nextFloat() > (2.0 / (2 + efficiencyLevel)) || InventoryHelper.removeFromInventoryWithRemainders(player, ITEM_COST);
-			}
-		}
-		return paid;
 	}
 	
 	private static boolean canUse(Player player) {

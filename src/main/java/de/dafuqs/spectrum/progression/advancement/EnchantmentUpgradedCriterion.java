@@ -31,7 +31,7 @@ public class EnchantmentUpgradedCriterion extends SimpleCriterionTrigger<Enchant
 		public static final Codec<Conditions> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 				ContextAwarePredicate.CODEC.optionalFieldOf("player").forGetter(Conditions::player),
 				EnchantmentPredicate.CODEC.optionalFieldOf("enchantments", new EnchantmentPredicate(Optional.empty(), MinMaxBounds.Ints.ANY)).forGetter(Conditions::enchantmentPredicate),
-				MinMaxBounds.Ints.CODEC.optionalFieldOf("spentExperience", MinMaxBounds.Ints.ANY).forGetter(Conditions::spentExperience)
+				MinMaxBounds.Ints.CODEC.optionalFieldOf("spent_experience", MinMaxBounds.Ints.ANY).forGetter(Conditions::spentExperience)
 		).apply(instance, Conditions::new));
 		
 		public boolean matches(ItemEnchantments itemEnchantmentsComponent, int spentExperience) {

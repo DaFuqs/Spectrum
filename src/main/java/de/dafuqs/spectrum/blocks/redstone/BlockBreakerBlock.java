@@ -21,6 +21,7 @@ import org.jetbrains.annotations.*;
 
 public class BlockBreakerBlock extends RedstoneInteractionBlock implements EntityBlock {
 	
+	
 	public static final MapCodec<BlockBreakerBlock> CODEC = simpleCodec(BlockBreakerBlock::new);
 	
 	private static ItemStack BREAK_STACK;
@@ -57,7 +58,7 @@ public class BlockBreakerBlock extends RedstoneInteractionBlock implements Entit
 		
 		if (isTriggered && !wasTriggered) {
 			if (!world.isClientSide) {
-				this.destroy(world, pos, state.getValue(ORIENTATION).front());
+				this.destroy((ServerLevel) world, pos, state.getValue(ORIENTATION).front());
 			}
 			world.setBlock(pos, state.setValue(TRIGGERED, true), Block.UPDATE_INVISIBLE);
 		} else if (!isTriggered && wasTriggered) {
@@ -65,7 +66,7 @@ public class BlockBreakerBlock extends RedstoneInteractionBlock implements Entit
 		}
 	}
 	
-	protected void destroy(Level world, BlockPos breakerPos, Direction direction) {
+	protected void destroy(ServerLevel world, BlockPos breakerPos, Direction direction) {
 		BlockPos breakingPos = breakerPos.relative(direction);
 		BlockState blockState = world.getBlockState(breakingPos);
 		
@@ -83,8 +84,7 @@ public class BlockBreakerBlock extends RedstoneInteractionBlock implements Entit
 		if (!(blockEntity instanceof BlockBreakerBlockEntity blockBreakerBlockEntity)) {
 			return;
 		}
-		Player owner = blockBreakerBlockEntity.getOwnerIfOnline();
-		
+		@Nullable Player owner = blockBreakerBlockEntity.getFakeOwner(world);
 		if (!GenericClaimModsCompat.canBreak(world, breakingPos, owner)) {
 			return;
 		}
@@ -92,10 +92,10 @@ public class BlockBreakerBlock extends RedstoneInteractionBlock implements Entit
 		this.breakBlock(world, breakingPos, owner);
 		
 		Vec3 centerPos = Vec3.atCenterOf(breakingPos);
-		((ServerLevel) world).sendParticles(ParticleTypes.EXPLOSION, centerPos.x(), centerPos.y(), centerPos.z(), 1, 0.0, 0.0, 0.0, 1.0);
+		world.sendParticles(ParticleTypes.EXPLOSION, centerPos.x(), centerPos.y(), centerPos.z(), 1, 0.0, 0.0, 0.0, 1.0);
 	}
 	
-	public void breakBlock(Level world, BlockPos pos, Player breaker) {
+	public void breakBlock(ServerLevel world, BlockPos pos, @Nullable Player breaker) {
 		BlockState blockState = world.getBlockState(pos);
 		FluidState fluidState = world.getFluidState(pos);
 		
@@ -106,9 +106,14 @@ public class BlockBreakerBlock extends RedstoneInteractionBlock implements Entit
 		if (BREAK_STACK == null) { // we initialize the item here instead of it being final because of load order shenanigans
 			BREAK_STACK = new ItemStack(SpectrumItems.MALACHITE_WORKSTAFF.get());
 		}
-		Block.dropResources(blockState, world, pos, blockEntity, breaker, BREAK_STACK);
 		
 		if (world.setBlock(pos, fluidState.createLegacyBlock(), Block.UPDATE_ALL, 512)) {
+			Block block = blockState.getBlock();
+			if (breaker == null) {
+				block.destroy(world, pos, blockState);
+			} else {
+				block.playerDestroy(world, breaker, pos, blockState, blockEntity, BREAK_STACK);
+			}
 			world.gameEvent(GameEvent.BLOCK_DESTROY, pos, GameEvent.Context.of(breaker, blockState));
 		}
 	}

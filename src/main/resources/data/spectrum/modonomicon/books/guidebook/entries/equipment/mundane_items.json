@@ -58,6 +58,11 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier2/vanilla/elytra",
+      "text": "book.spectrum.guidebook.mundane_items.early_elytra.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
       "recipe_id": "spectrum:pedestal/tier4/vanilla/elytra",
       "text": "book.spectrum.guidebook.mundane_items.elytra.text"
     },

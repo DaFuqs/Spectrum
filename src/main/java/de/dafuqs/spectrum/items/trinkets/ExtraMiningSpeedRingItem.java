@@ -47,7 +47,7 @@ public class ExtraMiningSpeedRingItem extends InkDrainCurioItem {
 		if (storedInk < 100) {
 			return 0;
 		} else {
-			return 1 + (int) (Math.log(storedInk / 100.0f) / Math.log(8));
+			return 2 + (2 * (int) (Math.log(storedInk / 100.0f) / Math.log(8)));
 		}
 	}
 	

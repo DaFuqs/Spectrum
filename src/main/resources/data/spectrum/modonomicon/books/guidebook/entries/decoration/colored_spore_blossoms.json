@@ -23,9 +23,15 @@
       "type": "spectrum:collection",
       "title": "book.spectrum.guidebook.colored_spore_blossoms.name",
       "items": [
-        "spectrum:cyan_spore_blossom",
-        "spectrum:magenta_spore_blossom",
-        "spectrum:yellow_spore_blossom"
+        {
+          "id": "spectrum:cyan_spore_blossom"
+        },
+        {
+          "id": "spectrum:magenta_spore_blossom"
+        },
+        {
+          "id": "spectrum:yellow_spore_blossom"
+        }
       ],
       "text": "book.spectrum.guidebook.colored_spore_blossoms.page0.text"
     },

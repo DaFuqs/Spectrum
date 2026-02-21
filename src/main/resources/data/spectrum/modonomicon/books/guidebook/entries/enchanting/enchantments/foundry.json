@@ -25,11 +25,11 @@
       "type": "modonomicon:spotlight",
       "title": "book.spectrum.guidebook.enchantment_characteristics",
       "item": {
-        "item": "minecraft:iron_pickaxe"
-      },
-      "components": {
-        "enchantments": {
-          "spectrum:foundry": 1
+        "id": "minecraft:iron_pickaxe",
+        "components": {
+          "minecraft:enchantments": {
+            "spectrum:foundry": 1
+          }
         }
       },
       "text": "book.spectrum.guidebook.foundry.page1.text"

@@ -10,6 +10,7 @@ import net.minecraft.client.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.crafting.*;
 import net.neoforged.neoforge.fluids.crafting.*;
+import net.minecraft.world.level.material.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -37,6 +38,7 @@ public class TitrationBarrelEmiRecipeGated extends GatedSpectrumEmiRecipe<ITitra
 	}
 	
 	@Override
+	@Environment(EnvType.CLIENT)
 	public void addUnlockedWidgets(WidgetHolder widgets) {
 		// input slots
 		int startX = Math.max(10, 40 - inputs.size() * 10);

@@ -28,6 +28,13 @@
     {
       "type": "modonomicon:spotlight",
       "item": {
+        "item": "minecraft:fermented_spider_eye"
+      },
+      "text": "book.spectrum.guidebook.potion_workshop_reagents.fermented_spider_eye.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
         "item": "minecraft:redstone"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.redstone.text"
@@ -293,7 +300,7 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "item.spectrum.four_leaf_clover",
+      "title": "block.spectrum.four_leaf_clover",
       "item": {
         "item": "spectrum:four_leaf_clover"
       },

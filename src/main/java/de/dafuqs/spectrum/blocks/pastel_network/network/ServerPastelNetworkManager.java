@@ -61,7 +61,7 @@ public class ServerPastelNetworkManager extends SavedData implements PastelNetwo
 				var wrapper = new CompoundTag();
 				wrapper.put("network", opt.get());
 				wrapper.put("scheduler", transgender(network.getTransmissions()));
-				// Trans missions?... do... do they really?
+				wrapper.put("graph", network.graphToNbt());
 				networkList.add(wrapper);
 			}
 		}
@@ -75,10 +75,12 @@ public class ServerPastelNetworkManager extends SavedData implements PastelNetwo
 			var comp = (CompoundTag) element;
 			var netNbt = comp.get("network");
 			var schedulerNbt = comp.getCompound("scheduler");
+			var graphNbt = comp.getCompound("graph");
 			
 			Optional<ServerPastelNetwork> network = CodecHelper.fromNbt(ServerPastelNetwork.CODEC, netNbt);
 			if (network.isPresent()) {
 				network.get().getTransmissions().putAll(transDecode(schedulerNbt, network.get()));
+				network.get().setGraph(ServerPastelNetwork.graphFromNbt(graphNbt));
 				manager.networks.add(network.get());
 			}
 		}

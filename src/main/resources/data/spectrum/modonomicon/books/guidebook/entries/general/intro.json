@@ -36,6 +36,12 @@
       "url": "https://discord.com/invite/EXU9XFXT8a"
     },
     {
+      "type": "modonomicon:crafting_recipe",
+      "title1": "book.spectrum.guidebook.intro.guidebook_recipe.title",
+      "recipe_id_1": "spectrum:crafting_table/guidebook",
+      "text": "book.spectrum.guidebook.intro.guidebook_recipe.text"
+    },
+    {
       "type": "modonomicon:text",
       "title": "book.spectrum.guidebook.intro.stuck.title",
       "text": "book.spectrum.guidebook.intro.stuck.text"

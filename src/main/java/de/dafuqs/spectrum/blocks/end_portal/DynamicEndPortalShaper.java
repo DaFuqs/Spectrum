@@ -26,6 +26,8 @@ class DynamicEndPortalShaper implements EndPortalShaper {
 				level.setBlock(pos, Blocks.END_PORTAL.defaultBlockState(), Block.UPDATE_CLIENTS);
 			}
 		}
+		
+		level.globalLevelEvent(LevelEvent.SOUND_END_PORTAL_SPAWN, startPos, 0);
 	}
 	
 	public void destroyNeighboringPortalBlocks(Level level, BlockPos startPos) {

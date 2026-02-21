@@ -33,11 +33,21 @@
       "type": "spectrum:collection",
       "title": "book.spectrum.guidebook.mod_integration.create.pure_zinc.title",
       "items": [
-        "spectrum:small_zinc_bud",
-        "spectrum:large_zinc_bud",
-        "spectrum:zinc_cluster",
-        "spectrum:pure_zinc_block",
-        "spectrum:pure_zinc"
+        {
+          "id": "spectrum:small_zinc_bud"
+        },
+        {
+          "id": "spectrum:large_zinc_bud"
+        },
+        {
+          "id": "spectrum:zinc_cluster"
+        },
+        {
+          "id": "spectrum:pure_zinc_block"
+        },
+        {
+          "id": "spectrum:pure_zinc"
+        }
       ],
       "text": "book.spectrum.guidebook.mod_integration.create.pure_zinc.text"
     },

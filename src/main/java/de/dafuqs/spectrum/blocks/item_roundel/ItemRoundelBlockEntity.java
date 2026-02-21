@@ -10,6 +10,9 @@ import net.minecraft.world.level.block.state.*;
 public class ItemRoundelBlockEntity extends InWorldInteractionBlockEntity {
 	
 	protected static final int INVENTORY_SIZE = 6;
+	protected static final String REVERSED_KEY = "reversed";
+	
+	protected boolean reversed = false;
 	
 	public ItemRoundelBlockEntity(BlockPos pos, BlockState state) {
 		this(SpectrumBlockEntities.ITEM_ROUNDEL.get(), pos, state, INVENTORY_SIZE);
@@ -27,5 +30,25 @@ public class ItemRoundelBlockEntity extends InWorldInteractionBlockEntity {
 	public CompoundTag getUpdateTag(HolderLookup.Provider registryLookup) {
 		this.unpackLootTable(null);
 		return super.getUpdateTag(registryLookup);
+	}
+	
+	@Override
+	public void loadAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
+		super.loadAdditional(nbt, registryLookup);
+		
+		this.reversed = nbt.getBoolean(REVERSED_KEY);
+	}
+	
+	@Override
+	public void saveAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
+		super.saveAdditional(nbt, registryLookup);
+		
+		nbt.putBoolean(REVERSED_KEY, reversed);
+	}
+	
+	public void reverse() {
+		this.reversed = !reversed;
+		this.setChanged();
+		updateInClientWorld();
 	}
 }

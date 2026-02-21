@@ -94,6 +94,9 @@ public class CrystalApothecaryBlockEntity extends RandomizableContainerBlockEnti
 			}
 		}
 		
+		List<ItemStack> needsAwarding = new ArrayList<>();
+		int totalNeedsAwarding = 0;
+		
 		// for each of those blocks generate some loot
 		double gameRuleTickModifier = world.getGameRules().getRule(GameRules.RULE_RANDOMTICKING).get() / 3.0;
 		for (Map.Entry<Block, Integer> match : matches.entrySet()) {
@@ -104,24 +107,70 @@ public class CrystalApothecaryBlockEntity extends RandomizableContainerBlockEnti
 			if (compensatedItemCount > 0) {
 				ItemStack compensatedStack = drop.compensatedStack().copy();
 				compensatedStack.setCount(compensatedItemCount);
-				
-				ItemStack remainingStack = InventoryHelper.smartAddToInventory(compensatedStack, blockEntity, null);
-				if (!remainingStack.isEmpty()) {
-					break; // overflow will be voided
+				needsAwarding.add(compensatedStack);
+				totalNeedsAwarding += compensatedItemCount;
+			}
+		}
+		
+		if (needsAwarding.size() <= 1) {
+			for (ItemStack awardStack : needsAwarding) {
+				InventoryHelper.smartAddToInventory(awardStack, blockEntity, null);
+			}
+			return;
+		}
+		
+		for (int slot = 0; slot < blockEntity.getContainerSize(); slot++) {
+			if (totalNeedsAwarding <= 0) {
+				break;
+			}
+			ItemStack currentStack = blockEntity.getItem(slot);
+			if (currentStack.isEmpty()) {
+				int selector = world.random.nextInt(totalNeedsAwarding);
+				int acc = 0;
+				for (ItemStack awardStack : needsAwarding) {
+					acc += awardStack.getCount();
+					if (selector < acc) {
+						int maxCount = Math.min(blockEntity.getMaxStackSize(), awardStack.getMaxStackSize());
+						int toAward = Math.min(maxCount, awardStack.getCount());
+						ItemStack newStack = awardStack.copy();
+						newStack.setCount(toAward);
+						awardStack.shrink(toAward);
+						blockEntity.setItem(slot, newStack);
+						totalNeedsAwarding -= toAward;
+						break;
+					}
+				}
+			} else {
+				int maxCount = Math.min(blockEntity.getMaxStackSize(), currentStack.getMaxStackSize());
+				if (currentStack.getCount() > maxCount) {
+					continue;
+				}
+				int wantsAdded = maxCount - currentStack.getCount();
+				for (ItemStack awardStack : needsAwarding) {
+					if (wantsAdded <= 0) {
+						break;
+					}
+					if (ItemStack.isSameItemSameComponents(currentStack, awardStack)) {
+						int canAdd = Math.min(wantsAdded, awardStack.getCount());
+						awardStack.shrink(canAdd);
+						currentStack.grow(canAdd);
+						totalNeedsAwarding -= canAdd;
+						wantsAdded -= canAdd;
+					}
 				}
 			}
 		}
 	}
 	
 	public static int countValidGemstoneClusterBlocksAroundBlockPos(Level world, BlockPos blockPos, Collection<Block> allowedBlocks) {
-		int count = 0;
+		Set<BlockPos> count = new TreeSet<>();
 		for (Direction direction : Direction.values()) {
 			BlockState offsetState = world.getBlockState(blockPos.relative(direction));
 			if (offsetState.isAir() || offsetState.getBlock() == Blocks.WATER || allowedBlocks.contains(offsetState.getBlock())) {
-				count++;
+				count.add(blockPos.relative(direction));
 			}
 		}
-		return count;
+		return count.size();
 	}
 	
 	@Override

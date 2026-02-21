@@ -1,0 +1,20 @@
+{
+  "type": "mekanism:pigment_extracting",
+  "input": {
+    "ingredient": {
+      "item": "spectrum:black_pigment"
+    }
+  },
+  "output": {
+    "amount": 768.0,
+    "pigment": "mekanism:black"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "mekanism"
+      ]
+    }
+  ]
+}

@@ -8,6 +8,7 @@ import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
+import net.minecraft.util.valueproviders.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
@@ -23,12 +24,12 @@ public class FailingBlock extends DecayBlock {
 	public static final IntegerProperty AGE = BlockStateProperties.AGE_15; // failing may spread 15 blocks max. It consuming obsidian resets that value
 	
 	public FailingBlock(Properties settings) {
-		super(settings, SpectrumCommon.CONFIG.FailingDecayTickRate, SpectrumCommon.CONFIG.FailingCanDestroyBlockEntities, 2, 2.5F);
+		super(settings, SpectrumCommon.CONFIG.FailingDecayTickRate, SpectrumCommon.CONFIG.FailingCanDestroyBlockEntities, 2, 2.5F, UniformInt.of(1, 2));
 		registerDefaultState(getStateDefinition().any().setValue(CONVERSION, Conversion.NONE).setValue(AGE, 0));
 	}
 	
 	@Override
-	protected MapCodec<? extends FailingBlock> codec() {
+	public MapCodec<? extends FailingBlock> codec() {
 		return CODEC;
 	}
 	

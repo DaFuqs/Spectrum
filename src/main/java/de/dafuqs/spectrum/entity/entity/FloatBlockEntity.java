@@ -35,8 +35,8 @@ import java.util.function.*;
  */
 public class FloatBlockEntity extends Entity {
 	
-	private static final float MAX_DAMAGE = 8.0F;
-	private static final float DAMAGE_PER_FALLEN_BLOCK = 0.5F;
+	private static final float MAX_DAMAGE = 12.0F;
+	private static final float DAMAGE_PER_FALLEN_BLOCK = 1.0F;
 	
 	private static final EntityDataAccessor<BlockPos> ORIGIN = SynchedEntityData.defineId(FloatBlockEntity.class, EntityDataSerializers.BLOCK_POS);
 	private static final EntityDataAccessor<Long> LAUNCH_TIME = SynchedEntityData.defineId(FloatBlockEntity.class, EntityDataSerializers.LONG);
@@ -193,7 +193,7 @@ public class FloatBlockEntity extends Entity {
 	}
 	
 	public void dealDamage() {
-		int traveledDistance = Mth.ceil(this.fallDistance - 1.0F);
+		int traveledDistance = Mth.ceil(this.moveDist - 1.0F);
 		if (traveledDistance > 0) {
 			int damage = (int) Math.min(Mth.floor(traveledDistance * DAMAGE_PER_FALLEN_BLOCK), MAX_DAMAGE);
 			if (damage > 0) {
@@ -201,7 +201,7 @@ public class FloatBlockEntity extends Entity {
 				Predicate<Entity> predicate = EntitySelector.NO_CREATIVE_OR_SPECTATOR.and(entity -> entity.isAlive() && (entity instanceof LivingEntity || entity instanceof ItemEntity));
 				this.level().getEntities(this, this.getBoundingBox(), predicate).forEach((entity) -> {
 					if (entity instanceof ItemEntity itemEntity) {
-						AnvilCrusher.crush(itemEntity, damage);
+						AnvilCrusher.crush(itemEntity, damage * 2);
 					} else {
 						entity.hurt(SpectrumDamageTypes.floatblock(entity.level()), damage);
 					}

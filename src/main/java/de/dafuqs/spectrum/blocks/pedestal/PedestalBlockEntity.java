@@ -4,6 +4,7 @@ import com.klikli_dev.modonomicon.api.multiblock.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -60,6 +61,10 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 	protected UpgradeHolder upgrades;
 	protected boolean inventoryChanged;
 	public @Nullable RecipeHolder<?> currentRecipe;
+	
+	private static final int RECIPE_RECALCULATION_TICKS = 4;
+	protected long cachedRecipeTime = Long.MIN_VALUE;
+	protected ItemStack cachedRecipeOutput = ItemStack.EMPTY;
 	
 	protected final CraftingDelegate propertyDelegate = new CraftingDelegate();
 	
@@ -282,7 +287,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		if (!pedestalBlockEntity.inventoryChanged) {
 			return pedestalBlockEntity.currentRecipe;
 		}
-		
+
 		// unchanged pedestal recipe?
 		if (currentRecipe instanceof PedestalRecipe pedestalRecipe && pedestalRecipe.matches(pedestalBlockEntity.createRecipeInput(), world)) {
 			return pedestalBlockEntity.currentRecipe;
@@ -295,17 +300,30 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 			}
 		}
 		
+		pedestalBlockEntity.cachedRecipeTime = Long.MIN_VALUE;
+		
+		// is a crafting tablet in the slot?
+		// only allow this recipe
+		@Nullable RecipeHolder<?> craftingTabletRecipe = pedestalBlockEntity.getStoredCraftingTabletRecipe();
+		
 		// current recipe does not match last recipe
 		// => search valid recipe
-		var pedestalRecipe = world.getRecipeManager().getRecipeFor(SpectrumRecipeTypes.PEDESTAL, pedestalBlockEntity.createRecipeInput(), world).orElse(null);
+		RecipeHolder<PedestalRecipe> pedestalRecipe = world.getRecipeManager().getRecipeFor(SpectrumRecipeTypes.PEDESTAL, pedestalBlockEntity.createRecipeInput(), world).orElse(null);
 		if (pedestalRecipe == null) {
 			if (SpectrumCommon.CONFIG.canPedestalCraftVanillaRecipes()) {
-				return world.getRecipeManager().getRecipeFor(RecipeType.CRAFTING, pedestalBlockEntity.createRecipeInput().getCraftingGridInput(), world).orElse(null);
+				RecipeHolder<?> holder = world.getRecipeManager().getRecipeFor(RecipeType.CRAFTING, pedestalBlockEntity.createRecipeInput().getCraftingGridInput(), world).orElse(null);
+				if (craftingTabletRecipe != null && !craftingTabletRecipe.equals(holder)) {
+					return null;
+				}
+				return holder;
 			}
 			return null;
 		}
 		
 		if (!pedestalRecipe.value().canCraft(pedestalBlockEntity)) {
+			return null;
+		}
+		if (craftingTabletRecipe != null && !craftingTabletRecipe.equals(pedestalRecipe)) {
 			return null;
 		}
 		return pedestalRecipe;
@@ -315,9 +333,9 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		if (recipe != null) {
 			ItemStack output;
 			if (recipe instanceof PedestalRecipe pedestalRecipe) {
-				output = pedestalRecipe.assemble(input, null);
+				output = pedestalRecipe.assemble(input, level.registryAccess());
 			} else if (recipe instanceof CraftingRecipe craftingRecipe) {
-				output = craftingRecipe.assemble(input.getCraftingGridInput(), null);
+				output = craftingRecipe.assemble(input.getCraftingGridInput(), level.registryAccess());
 			} else {
 				output = ItemStack.EMPTY;
 			}
@@ -701,15 +719,12 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 			return true;
 		}
 		
-		if (slot < 9 && inventory.get(CRAFTING_TABLET_SLOT_ID).is(SpectrumItems.CRAFTING_TABLET)) {
-			ItemStack craftingTabletItem = inventory.get(CRAFTING_TABLET_SLOT_ID);
-			
-			if (inventory.get(slot).getCount() > 0) {
+		if (slot < 9 && hasCraftingTablet()) {
+			RecipeHolder<?> holder = getStoredCraftingTabletRecipe();
+			if (holder == null) {
 				return false;
 			}
-			
-			var storedRecipeKey = CraftingTabletItem.getStoredRecipe(this.getLevel(), craftingTabletItem);
-			var storedRecipe = storedRecipeKey == null ? null : storedRecipeKey.value();
+			Recipe<?> storedRecipe = holder.value();
 			
 			int width = 3;
 			if (storedRecipe instanceof ShapedRecipe shapedRecipe) {
@@ -728,14 +743,28 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 			
 			int resultRecipeSlot = getCraftingRecipeSlotDependingOnWidth(slot, width);
 			if (resultRecipeSlot < storedRecipe.getIngredients().size()) {
-				Ingredient ingredient = storedRecipe.getIngredients().get(resultRecipeSlot);
-				return ingredient.test(stack);
+				ItemStack stackInSlot = this.getItem(slot);
+				if (storedRecipe instanceof PedestalRecipe pedestalRecipe) {
+					IngredientStack ingredientStack = pedestalRecipe.getIngredientStacks().get(resultRecipeSlot);
+					return ingredientStack.getIngredient().test(stack) && stackInSlot.getCount() < ingredientStack.getCount();
+				} else {
+					return stackInSlot.isEmpty() && storedRecipe.getIngredients().get(resultRecipeSlot).test(stack);
+				}
 			} else {
 				return false;
 			}
 		} else {
 			return slot < CRAFTING_TABLET_SLOT_ID;
 		}
+	}
+	
+	private boolean hasCraftingTablet() {
+		return inventory.get(CRAFTING_TABLET_SLOT_ID).getCount() > 0;
+	}
+	
+	private @Nullable RecipeHolder<?> getStoredCraftingTabletRecipe() {
+		ItemStack craftingTabletItem = inventory.get(CRAFTING_TABLET_SLOT_ID);
+		return CraftingTabletItem.getStoredRecipe(this.getLevel(), craftingTabletItem);
 	}
 	
 	private int getCraftingRecipeSlotDependingOnWidth(int slot, int recipeWidth) {
@@ -759,7 +788,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 	}
 	
 	public PedestalRecipeInput createRecipeInput() {
-		return PedestalRecipeInput.create(this.inventory, getOwnerIfOnline());
+		return PedestalRecipeInput.create(level, this.inventory, getOwnerIfOnline());
 	}
 	
 	public CraftingInput.Positioned createPositionedInput() {
@@ -771,16 +800,24 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		if (level == null || currentRecipe == null) {
 			return ItemStack.EMPTY;
 		}
+		long gameTime = level.getGameTime();
+		if(gameTime < this.cachedRecipeTime + RECIPE_RECALCULATION_TICKS) {
+			return cachedRecipeOutput;
+		}
+		
+		ItemStack cachedResult = ItemStack.EMPTY;
 		
 		if (currentRecipe instanceof PedestalRecipe pedestalRecipe) {
-			return pedestalRecipe.assemble(createRecipeInput(), level.registryAccess());
+			cachedResult = pedestalRecipe.assemble(createRecipeInput(), level.registryAccess());
 		}
 		
 		if (currentRecipe instanceof CraftingRecipe craftingRecipe) {
-			return craftingRecipe.assemble(createRecipeInput().getCraftingGridInput(), null);
+			cachedResult = craftingRecipe.assemble(createRecipeInput().getCraftingGridInput(), level.registryAccess());
 		}
 		
-		return ItemStack.EMPTY;
+		this.cachedRecipeTime = gameTime;
+		this.cachedRecipeOutput = cachedResult;
+		return cachedResult;
 	}
 	
 	public PedestalRecipeTier getHighestAvailableRecipeTier() {

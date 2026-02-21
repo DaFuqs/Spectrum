@@ -20,7 +20,7 @@
         {
           "name": "BlurDir",
           "values": [ 1.0, 0.0 ],
-          "RadiusMultiplier" : 0.225
+          "RadiusMultiplier": 0.2
         }
       ]
     },
@@ -33,7 +33,7 @@
         {
           "name": "BlurDir",
           "values": [ 0.0, 1.0 ],
-          "RadiusMultiplier" : 0.225
+          "RadiusMultiplier": 0.2
         }
       ]
     },
@@ -46,7 +46,7 @@
         {
           "name": "BlurDir",
           "values": [ 1.0, 0.0 ],
-          "RadiusMultiplier" : 0.0775
+          "RadiusMultiplier": 0.06
         }
       ]
     },
@@ -59,7 +59,7 @@
         {
           "name": "BlurDir",
           "values": [ 0.0, 1.0 ],
-          "RadiusMultiplier" : 0.0775
+          "RadiusMultiplier": 0.06
         }
       ]
     },

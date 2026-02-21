@@ -24,7 +24,6 @@ public class SpectrumModelLayers {
 	public static final ModelLayerLocation WOOLY_PIG_WOOL = new ModelLayerLocation(SpectrumCommon.locate("egg_laying_wooly_pig"), "wool");
 	
 	public static final ModelLayerLocation PRESERVATION_TURRET = new ModelLayerLocation(SpectrumCommon.locate("preservation_turret"), "main");
-	public static final ModelLayerLocation MONSTROSITY = new ModelLayerLocation(SpectrumCommon.locate("monstrosity"), "main");
 	public static final ModelLayerLocation LIZARD_SCALES = new ModelLayerLocation(SpectrumCommon.locate("lizard"), "main");
 	public static final ModelLayerLocation LIZARD_FRILLS = new ModelLayerLocation(SpectrumCommon.locate("lizard"), "frills");
 	public static final ModelLayerLocation LIZARD_HORNS = new ModelLayerLocation(SpectrumCommon.locate("lizard"), "horns");
@@ -34,7 +33,11 @@ public class SpectrumModelLayers {
 	public static final ModelLayerLocation KINDLING_COUGH = new ModelLayerLocation(SpectrumCommon.locate("kindling_cough"), "main");
 	public static final ModelLayerLocation ERASER = new ModelLayerLocation(SpectrumCommon.locate("eraser"), "body");
 	
-	
+	public static final ModelLayerLocation MARROW = new ModelLayerLocation(SpectrumCommon.locate("marrow"), "main");
+	public static final ModelLayerLocation MARROW_INNER_ARMOR = new ModelLayerLocation(SpectrumCommon.locate("marrow"), "inner_armor");
+	public static final ModelLayerLocation MARROW_OUTER_ARMOR = new ModelLayerLocation(SpectrumCommon.locate("marrow"), "outer_armor");
+	public static final ModelLayerLocation MARROW_OUTER_LAYER = new ModelLayerLocation(SpectrumCommon.locate("marrow"), "outer");
+
 	/**
 	 * Mob Heads
 	 */
@@ -157,7 +160,10 @@ public class SpectrumModelLayers {
 	public static final ModelLayerLocation LIZARD_HEAD_FRILLS = new ModelLayerLocation(SpectrumCommon.locate("lizard_head"), "frills");
 	public static final ModelLayerLocation MONSTROSITY_HEAD = new ModelLayerLocation(SpectrumCommon.locate("monstrosity_head"), "main");
 	public static final ModelLayerLocation PRESERVATION_TURRET_HEAD = new ModelLayerLocation(SpectrumCommon.locate("preservation_turret_head"), "main");
-	
+	public static final ModelLayerLocation MARROW_HEAD = new ModelLayerLocation(SpectrumCommon.locate("marrow_head"), "main");
+	public static final ModelLayerLocation MARROW_HEAD_OVERLAY = new ModelLayerLocation(SpectrumCommon.locate("marrow_head"), "overlay");
+	public static final ModelLayerLocation SPLINTERSPAWN_HEAD = new ModelLayerLocation(SpectrumCommon.locate("splinterspawn_head"), "main");
+
 	/**
 	 * Armor
 	 */
@@ -169,7 +175,6 @@ public class SpectrumModelLayers {
 		ClientHooks.registerLayerDefinition(WOOLY_PIG_HAT, EggLayingWoolyPigHatEntityModel::getTexturedModelData);
 		ClientHooks.registerLayerDefinition(WOOLY_PIG_WOOL, EggLayingWoolyPigWoolEntityModel::getTexturedModelData);
 		ClientHooks.registerLayerDefinition(PRESERVATION_TURRET, PreservationTurretEntityModel::getTexturedModelData);
-		ClientHooks.registerLayerDefinition(MONSTROSITY, MonstrosityEntityModel::getTexturedModelData);
 		ClientHooks.registerLayerDefinition(LIZARD_SCALES, LizardEntityModel::getTexturedModelData);
 		ClientHooks.registerLayerDefinition(LIZARD_FRILLS, LizardEntityModel::getTexturedModelData);
 		ClientHooks.registerLayerDefinition(LIZARD_HORNS, LizardEntityModel::getTexturedModelData);
@@ -178,6 +183,11 @@ public class SpectrumModelLayers {
 		ClientHooks.registerLayerDefinition(KINDLING_ARMOR, KindlingEntityModel::getTexturedModelData);
 		ClientHooks.registerLayerDefinition(KINDLING_COUGH, KindlingCoughEntityModel::getTexturedModelData);
 		ClientHooks.registerLayerDefinition(ERASER, EraserEntityModel::getTexturedModelData);
+		
+		ClientHooks.registerLayerDefinition(MARROW, SkeletonModel::createBodyLayer);
+		ClientHooks.registerLayerDefinition(MARROW_INNER_ARMOR, SkeletonModel::createBodyLayer);
+		ClientHooks.registerLayerDefinition(MARROW_OUTER_ARMOR, SkeletonModel::createBodyLayer);
+		ClientHooks.registerLayerDefinition(MARROW_OUTER_LAYER, SkeletonModel::createBodyLayer);
 		
 		ClientHooks.registerLayerDefinition(ALLAY_HEAD, AllayHeadModel::getTexturedModelData);
 		ClientHooks.registerLayerDefinition(AXOLOTL_BLUE_HEAD, AxolotlHeadModel::getTexturedModelData);
@@ -299,6 +309,10 @@ public class SpectrumModelLayers {
 		ClientHooks.registerLayerDefinition(LIZARD_HEAD, LizardHeadModel::getTexturedModelData);
 		ClientHooks.registerLayerDefinition(LIZARD_HEAD_FRILLS, LizardHeadModel::getTexturedModelDataFrills);
 		ClientHooks.registerLayerDefinition(PRESERVATION_TURRET_HEAD, PreservationTurretHeadModel::getTexturedModelData);
+		
+		ClientHooks.registerLayerDefinition(MARROW_HEAD, SkullModel::createMobHeadLayer);
+		ClientHooks.registerLayerDefinition(MARROW_HEAD_OVERLAY, SkullModel::createMobHeadLayer);
+		ClientHooks.registerLayerDefinition(SPLINTERSPAWN_HEAD, SkullModel::getTexturedModelData);
 		
 		ClientHooks.registerLayerDefinition(BEDROCK_LAYER, () -> LayerDefinition.create(BedrockArmorModel.getMeshDefinition(), 128, 128));
 	}

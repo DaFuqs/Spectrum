@@ -39,82 +39,82 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "ink.spectrum.black.name",
+      "title": "block.spectrum.black_sapling",
       "recipe_id": "spectrum:pedestal/tier1/saplings/black"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "ink.spectrum.blue.name",
+      "title": "block.spectrum.blue_sapling",
       "recipe_id": "spectrum:pedestal/tier1/saplings/blue"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "ink.spectrum.brown.name",
+      "title": "block.spectrum.brown_sapling",
       "recipe_id": "spectrum:pedestal/tier1/saplings/brown"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "ink.spectrum.cyan.name",
+      "title": "block.spectrum.cyan_sapling",
       "recipe_id": "spectrum:pedestal/tier1/saplings/cyan"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "ink.spectrum.gray.name",
+      "title": "block.spectrum.gray_sapling",
       "recipe_id": "spectrum:pedestal/tier1/saplings/gray"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "ink.spectrum.green.name",
+      "title": "block.spectrum.green_sapling",
       "recipe_id": "spectrum:pedestal/tier1/saplings/green"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "ink.spectrum.light_blue.name",
+      "title": "block.spectrum.light_blue_sapling",
       "recipe_id": "spectrum:pedestal/tier1/saplings/light_blue"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "ink.spectrum.light_gray.name",
+      "title": "block.spectrum.light_gray_sapling",
       "recipe_id": "spectrum:pedestal/tier1/saplings/light_gray"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "ink.spectrum.lime.name",
+      "title": "block.spectrum.lime_sapling",
       "recipe_id": "spectrum:pedestal/tier1/saplings/lime"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "ink.spectrum.magenta.name",
+      "title": "block.spectrum.magenta_sapling",
       "recipe_id": "spectrum:pedestal/tier1/saplings/magenta"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "ink.spectrum.orange.name",
+      "title": "block.spectrum.orange_sapling",
       "recipe_id": "spectrum:pedestal/tier1/saplings/orange"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "ink.spectrum.pink.name",
+      "title": "block.spectrum.pink_sapling",
       "recipe_id": "spectrum:pedestal/tier1/saplings/pink"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "ink.spectrum.purple.name",
+      "title": "block.spectrum.purple_sapling",
       "recipe_id": "spectrum:pedestal/tier1/saplings/purple"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "ink.spectrum.red.name",
+      "title": "block.spectrum.red_sapling",
       "recipe_id": "spectrum:pedestal/tier1/saplings/red"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "ink.spectrum.white.name",
+      "title": "block.spectrum.white_sapling",
       "recipe_id": "spectrum:pedestal/tier1/saplings/white"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "ink.spectrum.yellow.name",
+      "title": "block.spectrum.yellow_sapling",
       "recipe_id": "spectrum:pedestal/tier1/saplings/yellow"
     },
     {

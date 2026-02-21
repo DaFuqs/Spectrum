@@ -1,9 +1,4 @@
 {
-  "recipeGroup.spectrum.topaz_runes": "Topas-Runen",
-  "recipeGroup.spectrum.amethyst_runes": "Amethyst-Runen",
-  "recipeGroup.spectrum.citrine_runes": "Citrin-Runen",
-  "recipeGroup.spectrum.onyx_runes": "Onyx-Runen",
-  "recipeGroup.spectrum.moonstone_runes": "Mondstein-Runen",
   "recipeGroup.spectrum.colored_lamps": "Gefärbte Lampen",
   "recipeGroup.spectrum.gemstone_glass": "Edelsteinglas",
   "recipeGroup.spectrum.colored_saplings": "Farbige Setzlinge",
@@ -91,7 +86,6 @@
   "spectrum.subtitles.block.failing.place": "Hochfrequentes Quietschen",
   "spectrum.subtitles.block.ruin.place": "Hochfrequentes Quietschen",
   "spectrum.subtitles.spectrum_theme_plays": "Spectrum Theme spielt",
-  "spectrum.subtitles.boss_theme_plays": "Boss Theme spielt",
   "spectrum.subtitles.player_teleports": "Spieler teleportiert",
   "spectrum.subtitles.ender_splice_charges": "Ender Splice lädt auf",
   "spectrum.subtitles.ender_splice_binds": "Ender Splice bindet sich",
@@ -849,5 +843,9 @@
   "item.spectrum.neolith": "Neolith",
   "item.spectrum.bedrock_dust": "Bedrock Staub",
 
-  "block.minecraft.polished_basalt": "Basaltsäule"
+  "block.minecraft.polished_basalt": "Basaltsäule",
+
+  "lore.spectrum.remembrance_memory.line_1": "* 2002 - † 2025",
+  "lore.spectrum.remembrance_memory.line_2": "Niemals vergessen"
+
 }

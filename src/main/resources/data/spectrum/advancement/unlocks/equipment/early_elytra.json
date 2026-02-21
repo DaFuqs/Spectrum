@@ -1,0 +1,28 @@
+{
+  "criteria": {
+    "crafted_cmy_pedestal": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:craft_cmy_pedestal"
+      }
+    },
+    "collected_star_fragment": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:collect_star_fragment"
+      }
+    },
+    "plucked_resplendent_feather": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:pluck_resplendent_feather"
+      }
+    },
+    "collected_phantom_membrane": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_vanilla/phantom_membrane"
+      }
+    }
+  }
+}

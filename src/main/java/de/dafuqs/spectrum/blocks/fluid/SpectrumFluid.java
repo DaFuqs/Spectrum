@@ -97,7 +97,7 @@ public abstract class SpectrumFluid extends FlowingFluid {
 	public void onEntityCollision(BlockState state, Level world, BlockPos pos, Entity entity) {
 		if (!world.isClientSide) {
 			if (entity instanceof ItemEntity itemEntity && !itemEntity.hasPickUpDelay() && !itemEntity.isRemoved()) {
-				if (world.random.nextInt(100) == 0) {
+				if (world.random.nextInt(40) == 0) {
 					ItemStack itemStack = itemEntity.getItem();
 					FluidConvertingRecipe recipe = getConversionRecipeFor(getDippingRecipeType(), world, itemStack);
 					if (recipe != null && !recipe.getResultItem(world.registryAccess()).is(itemStack.getItem())) { // do not try to convert items into itself for performance reasons

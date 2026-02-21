@@ -10,14 +10,15 @@ import net.minecraft.world.phys.*;
 
 public interface AoEBreakingTool {
 	
-	default void onTryBreakBlock(ItemStack stack, BlockPos pos, Player player) {
+	default void afterBreakingBlock(ItemStack stack, BlockPos pos, Player player) {
 		Level world = player.level();
 		BlockHitResult hitResult = (BlockHitResult) player.pick(10, 1, false);
 		if (!world.isClientSide && hitResult.getType() == HitResult.Type.BLOCK) {
 			Direction side = hitResult.getDirection();
-			if (canUseAoE(player, stack)) {
-				AoEHelper.doAoEBlockBreaking(player, stack, pos, side, getAoERange(stack));
+			if (!canUseAoE(player, stack)) {
+				return;
 			}
+			AoEHelper.doAoEBlockBreaking(player, stack, pos, side, getAoERange(stack));
 		}
 	}
 	

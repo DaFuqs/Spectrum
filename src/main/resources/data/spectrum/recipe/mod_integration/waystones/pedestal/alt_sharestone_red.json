@@ -1,0 +1,32 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "sharestones",
+  "time": 180,
+  "tier": "basic",
+  "colors": {
+    "spectrum:cyan": 4
+  },
+  "experience": 0.2,
+  "pattern": [
+    "SSS",
+    "PEP",
+    "OOO"
+  ],
+  "key": {
+    "O": "minecraft:obsidian",
+    "S": "minecraft:stone_bricks",
+    "E": "spectrum:radiating_ender",
+    "P": "spectrum:red_pigment"
+  },
+  "result": {
+    "id": "waystones:red_sharestone",
+    "count": 2
+  },
+  "required_advancement": "spectrum:collect_radiating_ender",
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "waystones"
+    }
+  ]
+}

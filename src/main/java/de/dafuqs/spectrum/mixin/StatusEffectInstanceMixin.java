@@ -68,12 +68,4 @@ public abstract class StatusEffectInstanceMixin implements StatusEffectInstanceI
 		this.amplifier = newAmplifier;
 	}
 	
-	@ModifyReturnValue(method = "describeDuration()Ljava/lang/String;", at = @At("RETURN"))
-	private String describeDuration(String original) {
-		if (this.spectrum$severe) {
-			original = original + Component.translatable("item.spectrum.potion.tooltip.severe").getString();
-		}
-		return original;
-	}
-	
 }

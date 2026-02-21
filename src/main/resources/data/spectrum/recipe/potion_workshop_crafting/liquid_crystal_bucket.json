@@ -8,5 +8,6 @@
   "ingredient3": "spectrum:shimmerstone_gem",
   "result": {
     "id": "spectrum:liquid_crystal_bucket"
-  }
+  },
+  "required_advancement": "spectrum:unlocks/blocks/liquid_crystal"
 }

@@ -12,8 +12,9 @@ public class MalumCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
     public void register() {
 		
 	}
-	
-	@Override
+
+    @Environment(EnvType.CLIENT)
+    @Override
     public void registerClient() {
     
     }

@@ -23,12 +23,7 @@
     }
   ],
   "result": {
-    "id": "spectrum:glass_crest_crossbow",
-    "components": {
-      "enchantments": {
-        "minecraft:piercing": 5
-      }
-    }
+    "id": "spectrum:glass_crest_crossbow"
   },
   "required_advancement": "spectrum:unlocks/malachite/glass_crest_crossbow",
   "start_crafting_effect": "nothing",

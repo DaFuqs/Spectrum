@@ -230,11 +230,11 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> DRAGONROT_BUCKET = register("dragonrot_bucket", () -> new BucketItem(SpectrumFluids.DRAGONROT.get(), IS.of(1).craftRemainder(BUCKET)));
 	
 	// Decay bottles
-	public static final DeferredItem<Item> BOTTLE_OF_FADING = register("bottle_of_fading", () -> new DecayPlacerItem(SpectrumBlocks.FADING.get(), IS.of(16), List.of(Component.translatable("item.spectrum.bottle_of_fading.tooltip"))));
-	public static final DeferredItem<Item> BOTTLE_OF_FAILING = register("bottle_of_failing", () -> new DecayPlacerItem(SpectrumBlocks.FAILING.get(), IS.of(16), List.of(Component.translatable("item.spectrum.bottle_of_failing.tooltip"))));
-	public static final DeferredItem<Item> BOTTLE_OF_RUIN = register("bottle_of_ruin", () -> new DecayPlacerItem(SpectrumBlocks.RUIN.get(), IS.of(16), List.of(Component.translatable("item.spectrum.bottle_of_ruin.tooltip"))));
-	public static final DeferredItem<Item> BOTTLE_OF_FORFEITURE = register("bottle_of_forfeiture", () -> new DecayPlacerItem(SpectrumBlocks.FORFEITURE.get(), IS.of(16), List.of(CreativeOnlyItem.DESCRIPTION, Component.translatable("item.spectrum.bottle_of_forfeiture.tooltip"))));
-	public static final DeferredItem<Item> BOTTLE_OF_DECAY_AWAY = register("bottle_of_decay_away", () -> new DecayPlacerItem(SpectrumBlocks.DECAY_AWAY.get(), IS.of(16), List.of(Component.translatable("item.spectrum.bottle_of_decay_away.tooltip"))));
+	public static final DeferredItem<Item> BOTTLE_OF_FADING = register("bottle_of_fading", () -> new DecayPlacerItem(SpectrumBlocks.FADING.get(), IS.of(), List.of(Component.translatable("item.spectrum.bottle_of_fading.tooltip"))));
+	public static final DeferredItem<Item> BOTTLE_OF_FAILING = register("bottle_of_failing", () -> new DecayPlacerItem(SpectrumBlocks.FAILING.get(), IS.of(), List.of(Component.translatable("item.spectrum.bottle_of_failing.tooltip"))));
+	public static final DeferredItem<Item> BOTTLE_OF_RUIN = register("bottle_of_ruin", () -> new DecayPlacerItem(SpectrumBlocks.RUIN.get(), IS.of(), List.of(Component.translatable("item.spectrum.bottle_of_ruin.tooltip"))));
+	public static final DeferredItem<Item> BOTTLE_OF_FORFEITURE = register("bottle_of_forfeiture", () -> new DecayPlacerItem(SpectrumBlocks.FORFEITURE.get(), IS.of(), List.of(CreativeOnlyItem.DESCRIPTION, Component.translatable("item.spectrum.bottle_of_forfeiture.tooltip"))));
+	public static final DeferredItem<Item> BOTTLE_OF_DECAY_AWAY = register("bottle_of_decay_away", () -> new DecayPlacerItem(SpectrumBlocks.DECAY_AWAY.get(), IS.of(), List.of(Component.translatable("item.spectrum.bottle_of_decay_away.tooltip"))));
 	
 	// Resources
 	public static final DeferredItem<Item> SHIMMERSTONE_GEM = register("shimmerstone_gem", () -> new CloakedItemWithLoomPattern(IS.of(), (SpectrumBlocks.SHIMMERSTONE_ORE.get()).getCloakAdvancementIdentifier(), YELLOW_DYE, SpectrumBannerPatternKeys.SHIMMERSTONE));
@@ -261,8 +261,8 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> STARDUST = register("stardust", () -> new CloakedItemWithLoomPattern(IS.of(), SpectrumAdvancements.UNLOCK_SHOOTING_STARS, PURPLE_DYE, SpectrumBannerPatternKeys.SHIMMER));
 	public static final DeferredItem<Item> ASH_FLAKES = register("ash_flakes", () -> new AshItem(IS.of()));
 	
-	public static final DeferredItem<Item> HIBERNATING_JADE_VINE_BULB = register("hibernating_jade_vine_bulb", () -> new ItemWithTooltip(IS.of(16), "item.spectrum.hibernating_jade_vine_bulb.tooltip"));
-	public static final DeferredItem<Item> GERMINATED_JADE_VINE_BULB = register("germinated_jade_vine_bulb", () -> new GerminatedJadeVineBulbItem(IS.of(16), SpectrumAdvancements.COLLECT_HIBERNATING_JADE_VINE_BULB, LIME_DYE));
+	public static final DeferredItem<Item> HIBERNATING_JADE_VINE_BULB = register("hibernating_jade_vine_bulb", () -> new ItemWithTooltip(IS.of(), "item.spectrum.hibernating_jade_vine_bulb.tooltip"));
+	public static final DeferredItem<Item> GERMINATED_JADE_VINE_BULB = register("germinated_jade_vine_bulb", () -> new GerminatedJadeVineBulbItem(IS.of(), SpectrumAdvancements.COLLECT_HIBERNATING_JADE_VINE_BULB, LIME_DYE));
 	public static final DeferredItem<Item> JADE_VINE_PETALS = register("jade_vine_petals", () -> new CloakedItemWithLoomPattern(IS.of(), SpectrumAdvancements.COLLECT_JADE_VINE_PETALS, LIME_DYE, SpectrumBannerPatternKeys.JADE_VINE));
 	public static final DeferredItem<Item> JADEITE_PETALS = register("jadeite_petals", () -> new Item(IS.of(Rarity.UNCOMMON)));
 	public static final DeferredItem<Item> BLOOD_ORCHID_PETAL = register("blood_orchid_petal", () -> new CloakedItem(IS.of(), SpectrumAdvancements.REVEAL_BLOOD_ORCHID_PETALS, RED_DYE));
@@ -285,33 +285,33 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> FISSURE_PLUM = register("fissure_plum", () -> new AliasedTooltipItem(SpectrumBlocks.ABYSSAL_VINES.get(), IS.of().food(SpectrumFoodComponents.FISSURE_PLUM), "item.spectrum.fissure_plum.tooltip"));
 	public static final DeferredItem<Item> NIGHTDEW_SPROUT = register("nightdew_sprout", () -> new AliasedTooltipItem(SpectrumBlocks.NIGHTDEW.get(), IS.of().food(SpectrumFoodComponents.NIGHTDEW_SPROUT), "item.spectrum.nightdew_sprout.tooltip"));
 	public static final DeferredItem<Item> NECTARDEW_BURGEON = register("nectardew_burgeon", () -> new NectardewBurgeonItem(IS.of().food(SpectrumFoodComponents.NECTARDEW_BURGEON), "item.spectrum.nectardew_burgeon.tooltip", SpectrumAdvancements.COLLECT_NECTARDEW, SpectrumItems.NIGHTDEW_SPROUT.get()));
-	public static final DeferredItem<Item> RESTORATION_TEA = register("restoration_tea", () -> new RestorationTeaItem(IS.of(16).food(SpectrumFoodComponents.RESTORATION_TEA).craftRemainder(GLASS_BOTTLE).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.RESTORATION_TEA_SCONE_BONUS))));
+	public static final DeferredItem<Item> RESTORATION_TEA = register("restoration_tea", () -> new RestorationTeaItem(IS.of().food(SpectrumFoodComponents.RESTORATION_TEA).craftRemainder(GLASS_BOTTLE).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.RESTORATION_TEA_SCONE_BONUS))));
 	public static final DeferredItem<Item> KIMCHI = register("kimchi", () -> new KimchiItem(IS.of().food(SpectrumFoodComponents.KIMCHI)));
 	public static final DeferredItem<Item> CLOTTED_CREAM = register("clotted_cream", () -> new ClottedCreamItem(IS.of().food(SpectrumFoodComponents.CLOTTED_CREAM), new String[]{"item.spectrum.clotted_cream.tooltip", "item.spectrum.clotted_cream.tooltip2"}));
 	public static final DeferredItem<Item> FRESH_CHOCOLATE = register("fresh_chocolate", () -> new Item(IS.of().food(SpectrumFoodComponents.FRESH_CHOCOLATE)));
-	public static final DeferredItem<Item> HOT_CHOCOLATE = register("hot_chocolate", () -> new DrinkItem(IS.of(16).food(SpectrumFoodComponents.HOT_CHOCOLATE).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.HOT_CHOCOLATE_SCONE_BONUS))));
-	public static final DeferredItem<Item> KARAK_CHAI = register("karak_chai", () -> new DrinkItem(IS.of(16).food(SpectrumFoodComponents.KARAK_CHAI).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.KARAK_CHAI_SCONE_BONUS))));
-	public static final DeferredItem<Item> AZALEA_TEA = register("azalea_tea", () -> new AzaleaTeaItem(IS.of(16).food(SpectrumFoodComponents.AZALEA_TEA).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.AZALEA_TEA_SCONE_BONUS))));
+	public static final DeferredItem<Item> HOT_CHOCOLATE = register("hot_chocolate", () -> new DrinkItem(IS.of().food(SpectrumFoodComponents.HOT_CHOCOLATE).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.HOT_CHOCOLATE_SCONE_BONUS))));
+	public static final DeferredItem<Item> KARAK_CHAI = register("karak_chai", () -> new DrinkItem(IS.of().food(SpectrumFoodComponents.KARAK_CHAI).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.KARAK_CHAI_SCONE_BONUS))));
+	public static final DeferredItem<Item> AZALEA_TEA = register("azalea_tea", () -> new AzaleaTeaItem(IS.of().food(SpectrumFoodComponents.AZALEA_TEA).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.AZALEA_TEA_SCONE_BONUS))));
 	public static final DeferredItem<Item> BODACIOUS_BERRY_BAR = register("bodacious_berry_bar", () -> new Item(IS.of().food(SpectrumFoodComponents.BODACIOUS_BERRY_BAR)));
-	public static final DeferredItem<Item> DEMON_TEA = register("demon_tea", () -> new DrinkItem(IS.of(16).food(SpectrumFoodComponents.DEMON_TEA).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.DEMON_TEA_SCONE_BONUS))));
+	public static final DeferredItem<Item> DEMON_TEA = register("demon_tea", () -> new DrinkItem(IS.of().food(SpectrumFoodComponents.DEMON_TEA).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.DEMON_TEA_SCONE_BONUS))));
 	
 	public static final DeferredItem<Item> CHEONG = register("cheong", () -> new ItemWithTooltip(IS.of().food(SpectrumFoodComponents.CHEONG), "item.spectrum.cheong.tooltip"));
 	public static final DeferredItem<Item> MERMAIDS_JAM = register("mermaids_jam", () -> new Item(IS.of().food(SpectrumFoodComponents.MERMAIDS_JAM)));
 	public static final DeferredItem<Item> MERMAIDS_POPCORN = register("mermaids_popcorn", () -> new ItemWithTooltip(IS.of().food(SpectrumFoodComponents.MERMAIDS_POPCORN), "item.spectrum.mermaids_popcorn.tooltip"));
 	public static final DeferredItem<Item> LE_FISHE_AU_CHOCOLAT = register("le_fishe_au_chocolat", () -> new Item(IS.of().food(SpectrumFoodComponents.LE_FISHE_AU_CHOCOLAT).jukeboxPlayable(SpectrumJukeboxSongs.MUSIC_LE_FISHE_AU_CHOCOLAT)));
 	
-	public static final DeferredItem<Item> INFUSED_BEVERAGE = register("infused_beverage", () -> new BeverageItem(IS.of(16).food(SpectrumFoodComponents.BEVERAGE).craftRemainder(Items.GLASS_BOTTLE).component(DataComponents.POTION_CONTENTS, PotionContents.EMPTY).component(SpectrumDataComponentTypes.INFUSED_BEVERAGE, InfusedBeverageComponent.DEFAULT)));
-	public static final DeferredItem<Item> SUSPICIOUS_BREW = register("suspicious_brew", () -> new SuspiciousBrewItem(IS.of(16).food(SpectrumFoodComponents.BEVERAGE).craftRemainder(GLASS_BOTTLE)));
-	public static final DeferredItem<Item> REPRISE = register("reprise", () -> new RepriseItem(IS.of(16).food(SpectrumFoodComponents.BEVERAGE).craftRemainder(GLASS_BOTTLE)));
-	public static final DeferredItem<Item> PURE_ALCOHOL = register("pure_alcohol", () -> new DrinkItem(IS.of(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURE_ALCOHOL).craftRemainder(GLASS_BOTTLE)));
-	public static final DeferredItem<Item> JADE_WINE = register("jade_wine", () -> new JadeWineItem(IS.of(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.BEVERAGE).craftRemainder(GLASS_BOTTLE)));
-	public static final DeferredItem<Item> CHRYSOCOLLA = register("chrysocolla", () -> new DrinkItem(IS.of(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURE_ALCOHOL).craftRemainder(GLASS_BOTTLE)));
+	public static final DeferredItem<Item> INFUSED_BEVERAGE = register("infused_beverage", () -> new BeverageItem(IS.of().food(SpectrumFoodComponents.BEVERAGE).craftRemainder(Items.GLASS_BOTTLE).component(DataComponents.POTION_CONTENTS, PotionContents.EMPTY).component(SpectrumDataComponentTypes.INFUSED_BEVERAGE, InfusedBeverageComponent.DEFAULT)));
+	public static final DeferredItem<Item> SUSPICIOUS_BREW = register("suspicious_brew", () -> new SuspiciousBrewItem(IS.of().food(SpectrumFoodComponents.BEVERAGE).craftRemainder(GLASS_BOTTLE)));
+	public static final DeferredItem<Item> REPRISE = register("reprise", () -> new RepriseItem(IS.of().food(SpectrumFoodComponents.BEVERAGE).craftRemainder(GLASS_BOTTLE)));
+	public static final DeferredItem<Item> PURE_ALCOHOL = register("pure_alcohol", () -> new DrinkItem(IS.of(Rarity.UNCOMMON).food(SpectrumFoodComponents.PURE_ALCOHOL).craftRemainder(GLASS_BOTTLE)));
+	public static final DeferredItem<Item> JADE_WINE = register("jade_wine", () -> new JadeWineItem(IS.of(Rarity.UNCOMMON).food(SpectrumFoodComponents.BEVERAGE).craftRemainder(GLASS_BOTTLE)));
+	public static final DeferredItem<Item> CHRYSOCOLLA = register("chrysocolla", () -> new DrinkItem(IS.of(Rarity.UNCOMMON).food(SpectrumFoodComponents.PURE_ALCOHOL).craftRemainder(GLASS_BOTTLE)));
 	
 	public static final DeferredItem<Item> HONEY_PASTRY = register("honey_pastry", () -> new Item(IS.of().food(SpectrumFoodComponents.HONEY_PASTRY)));
-	public static final DeferredItem<Item> LUCKY_ROLL = register("lucky_roll", () -> new Item(IS.of(16).food(SpectrumFoodComponents.LUCKY_ROLL)));
-	public static final DeferredItem<Item> TRIPLE_MEAT_POT_PIE = register("triple_meat_pot_pie", () -> new Item(IS.of(8).food(SpectrumFoodComponents.TRIPLE_MEAT_POT_PIE)));
-	public static final DeferredItem<Item> GLISTERING_JELLY_TEA = register("glistering_jelly_tea", () -> new DrinkItem(IS.of(16).food(SpectrumFoodComponents.GLISTERING_JELLY_TEA).craftRemainder(GLASS_BOTTLE).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.GLISTERING_JELLY_TEA_SCONE_BONUS))));
-	public static final DeferredItem<Item> FREIGEIST = register("freigeist", () -> new FreigeistItem(IS.of(16).food(SpectrumFoodComponents.FREIGEIST).craftRemainder(GLASS_BOTTLE)));
+	public static final DeferredItem<Item> LUCKY_ROLL = register("lucky_roll", () -> new Item(IS.of().food(SpectrumFoodComponents.LUCKY_ROLL)));
+	public static final DeferredItem<Item> TRIPLE_MEAT_POT_PIE = register("triple_meat_pot_pie", () -> new Item(IS.of().food(SpectrumFoodComponents.TRIPLE_MEAT_POT_PIE)));
+	public static final DeferredItem<Item> GLISTERING_JELLY_TEA = register("glistering_jelly_tea", () -> new DrinkItem(IS.of().food(SpectrumFoodComponents.GLISTERING_JELLY_TEA).craftRemainder(GLASS_BOTTLE).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.GLISTERING_JELLY_TEA_SCONE_BONUS))));
+	public static final DeferredItem<Item> FREIGEIST = register("freigeist", () -> new FreigeistItem(IS.of().food(SpectrumFoodComponents.FREIGEIST).craftRemainder(GLASS_BOTTLE)));
 	public static final DeferredItem<Item> DIVINATION_HEART = register("divination_heart", () -> new Item(IS.of().food(SpectrumFoodComponents.DIVINATION_HEART)));
 	
 	public static final DeferredItem<Item> STAR_CANDY = register("star_candy", () -> new StarCandyItem(IS.of(Rarity.UNCOMMON).food(SpectrumFoodComponents.STAR_CANDY)));
@@ -352,9 +352,9 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> IMBRIFER_COOKBOOK = register("imbrifer_cookbook", () -> new CookbookItem(IS.of().stacksTo(1).rarity(Rarity.UNCOMMON), GuidebookItem.addressOf(GuidebookItem.CUISINE_CATEGORY_ID, locate("cuisine/cookbooks/imbrifer_cookbook"))));
 	public static final DeferredItem<Item> IMPERIAL_COOKBOOK = register("imperial_cookbook", () -> new CookbookItem(IS.of().stacksTo(1).rarity(Rarity.UNCOMMON), GuidebookItem.addressOf(GuidebookItem.CUISINE_CATEGORY_ID, locate("cuisine/cookbooks/imperial_cookbook"))));
 	public static final DeferredItem<Item> BREWERS_HANDBOOK = register("brewers_handbook", () -> new CookbookItem(IS.of().stacksTo(1).rarity(Rarity.UNCOMMON), GuidebookItem.addressOf(GuidebookItem.CUISINE_CATEGORY_ID, locate("cuisine/cookbooks/brewers_handbook"))));
-	public static final DeferredItem<Item> POISONERS_HANDBOOK = register("poisoners_handbook", () -> new CookbookItem(IS.of().stacksTo(1).rarity(Rarity.EPIC), GuidebookItem.addressOf(GuidebookItem.CUISINE_CATEGORY_ID, locate("dimension/lore/poisoners_handbook")), SpectrumStatusEffects.ETERNAL_SLUMBER_COLOR));
+	public static final DeferredItem<Item> POISONERS_HANDBOOK = register("poisoners_handbook", () -> new CookbookItem(IS.of().stacksTo(1).rarity(Rarity.EPIC), GuidebookItem.addressOf(GuidebookItem.DIMENSION_CATEGORY_ID, locate("dimension/poisoners_handbook")), SpectrumStatusEffects.ETERNAL_SLUMBER_COLOR));
 	
-	public static final DeferredItem<Item> AQUA_REGIA = register("aqua_regia", () -> new JadeWineItem(IS.of(16).food(SpectrumFoodComponents.AQUA_REGIA)));
+	public static final DeferredItem<Item> AQUA_REGIA = register("aqua_regia", () -> new JadeWineItem(IS.of(16).food(SpectrumFoodComponents.AQUA_REGIA).craftRemainder(GLASS_BOTTLE)));
 	public static final DeferredItem<Item> BAGNUN = register("bagnun", () -> new Item(IS.of().food(SpectrumFoodComponents.BAGNUN)));
 	public static final DeferredItem<Item> BANYASH = register("banyash", () -> new Item(IS.of().food(SpectrumFoodComponents.BANYASH)));
 	public static final DeferredItem<Item> BERLINER = register("berliner", () -> new Item(IS.of().food(SpectrumFoodComponents.BERLINER)));
@@ -367,15 +367,15 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> FISHCAKE = register("fishcake", () -> new Item(IS.of().food(SpectrumFoodComponents.FISHCAKE)));
 	public static final DeferredItem<Item> LIZARD_MEAT = register("lizard_meat", () -> new Item(IS.of().food(SpectrumFoodComponents.LIZARD_MEAT)));
 	public static final DeferredItem<Item> COOKED_LIZARD_MEAT = register("cooked_lizard_meat", () -> new Item(IS.of().food(SpectrumFoodComponents.COOKED_LIZARD_MEAT)));
-	public static final DeferredItem<Item> GOLDEN_BRISTLE_TEA = register("golden_bristle_tea", () -> new DrinkItem(IS.of(16).food(SpectrumFoodComponents.GOLDEN_BRISTLE_TEA).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.GOLDEN_BRISTLE_TEA_SCONE_BONUS))));
+	public static final DeferredItem<Item> GOLDEN_BRISTLE_TEA = register("golden_bristle_tea", () -> new DrinkItem(IS.of(16).food(SpectrumFoodComponents.GOLDEN_BRISTLE_TEA).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.GOLDEN_BRISTLE_TEA_SCONE_BONUS)).craftRemainder(GLASS_BOTTLE)));
 	public static final DeferredItem<Item> HARE_ROAST = register("hare_roast", () -> new Item(IS.of().food(SpectrumFoodComponents.HARE_ROAST)));
 	public static final DeferredItem<Item> JUNKET = register("junket", () -> new Item(IS.of().food(SpectrumFoodComponents.JUNKET)));
 	public static final DeferredItem<Item> KOI = register("koi", () -> new Item(IS.of().food(SpectrumFoodComponents.KOI)));
 	public static final DeferredItem<Item> MEATLOAF = register("meatloaf", () -> new Item(IS.of().food(SpectrumFoodComponents.MEATLOAF)));
 	public static final DeferredItem<Item> MEATLOAF_SANDWICH = register("meatloaf_sandwich", () -> new Item(IS.of().food(SpectrumFoodComponents.MEATLOAF_SANDWICH)));
 	public static final DeferredItem<Item> MELLOW_SHALLOT_SOUP = register("mellow_shallot_soup", () -> new Item(IS.of().food(SpectrumFoodComponents.MELLOW_SHALLOT_SOUP)));
-	public static final DeferredItem<Item> MORCHELLA = register("morchella", () -> new BeverageItem(IS.of(16).food(SpectrumFoodComponents.BEVERAGE).component(DataComponents.POTION_CONTENTS, PotionContents.EMPTY)));
-	public static final DeferredItem<Item> NECTERED_VIOGNIER = register("nectered_viognier", () -> new JadeWineItem(IS.of(16).food(SpectrumFoodComponents.NECTERED_VIOGNIER)));
+	public static final DeferredItem<Item> MORCHELLA = register("morchella", () -> new BeverageItem(IS.of(16).food(SpectrumFoodComponents.BEVERAGE).component(DataComponents.POTION_CONTENTS, PotionContents.EMPTY).craftRemainder(GLASS_BOTTLE)));
+	public static final DeferredItem<Item> NECTERED_VIOGNIER = register("nectered_viognier", () -> new JadeWineItem(IS.of(16).food(SpectrumFoodComponents.NECTERED_VIOGNIER).craftRemainder(GLASS_BOTTLE)));
 	public static final DeferredItem<Item> PEACHES_FLAMBE = register("peaches_flambe", () -> new Item(IS.of().food(SpectrumFoodComponents.PEACHES_FLAMBE)));
 	public static final DeferredItem<Item> PEACH_CREAM = register("peach_cream", () -> new DrinkItem(IS.of(16).food(SpectrumFoodComponents.PEACH_CREAM).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.PEACH_CREAM_SCONE_BONUS))));
 	public static final DeferredItem<Item> PEACH_JAM = register("peach_jam", () -> new Item(IS.of().food(SpectrumFoodComponents.PEACH_JAM)));
@@ -401,6 +401,8 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> KINDLING_SPAWN_EGG = register("kindling_spawn_egg", () -> new SpawnEggItem(SpectrumEntityTypes.KINDLING.get(), 0xda4261, 0xffd452, IS.of()));
 	public static final DeferredItem<Item> LIZARD_SPAWN_EGG = register("lizard_spawn_egg", () -> new SpawnEggItem(SpectrumEntityTypes.LIZARD.get(), 0x896459, 0x503a40, IS.of()));
 	public static final DeferredItem<Item> ERASER_SPAWN_EGG = register("eraser_spawn_egg", () -> new SpawnEggItem(SpectrumEntityTypes.ERASER.get(), 0x200d29, 0xc83e93, IS.of()));
+	public static final DeferredItem<Item> MARROW_SPAWN_EGG = register("marrow_spawn_egg", () -> new SpawnEggItem(SpectrumEntityTypes.MARROW.get(), 0x908188, 0xe2762f, IS.of()));
+	public static final DeferredItem<Item> SPLINTERSPAWN_SPAWN_EGG = register("splinterspawn_spawn_egg", () -> new SpawnEggItem(SpectrumEntityTypes.SPLINTERSPAWN.get(), 0x7b6b75, 0xf6db6f, IS.of()));
 	
 	// Magical Tools
 	public static final DeferredItem<Item> BAG_OF_HOLDING = register("bag_of_holding", () -> new BagOfHoldingItem(IS.of(1)));
@@ -418,12 +420,12 @@ public class SpectrumItems {
 	
 	public static final DeferredItem<Item> NIGHT_SALTS = register("night_salts", () -> new NightSaltsItem(IS.of(16)));
 	public static final DeferredItem<Item> SOOTHING_BOUQUET = register("soothing_bouquet", () -> new SoothingBouquetItem(IS.of(1, Rarity.RARE)));
-	public static final DeferredItem<Item> CONCEALING_OILS = register("concealing_oils", () -> new ConcealingOilsItem(IS.of(1)));
-	public static final DeferredItem<Item> BITTER_OILS = register("bitter_oils", () -> new DrinkItem(IS.of(16).food(SpectrumFoodComponents.BITTER_OILS)));
+	public static final DeferredItem<Item> CONCEALING_OILS = register("concealing_oils", () -> new ConcealingOilsItem(IS.of(16)));
+	public static final DeferredItem<Item> BITTER_OILS = register("bitter_oils", () -> new DrinkItem(IS.of(16).food(SpectrumFoodComponents.BITTER_OILS).craftRemainder(GLASS_BOTTLE)));
 	
 	public static final DeferredItem<Item> INCANDESCENT_ESSENCE = register("incandescent_essence", () -> new CloakedItem(IS.of().fireResistant(), SpectrumAdvancements.MIDGAME, ORANGE_DYE));
 	public static final DeferredItem<Item> FROSTBITE_ESSENCE = register("frostbite_essence", () -> new CloakedItem(IS.of(), SpectrumAdvancements.MIDGAME, LIGHT_BLUE_DYE));
-	public static final DeferredItem<Item> MOONSTONE_CORE = register("moonstone_core", () -> new CloakedItem(IS.of(16, Rarity.RARE), SpectrumAdvancements.FIND_FORGOTTEN_CITY, WHITE_DYE));
+	public static final DeferredItem<Item> MOONSTONE_CORE = register("moonstone_core", () -> new CloakedItem(IS.of(Rarity.RARE), SpectrumAdvancements.FIND_FORGOTTEN_CITY, WHITE_DYE));
 	
 	// Music discs
 	public static final DeferredItem<Item> MUSIC_DISC_DISCOVERY = register("music_disc_discovery", () -> new Item(IS.of(1, Rarity.RARE).jukeboxPlayable(SpectrumJukeboxSongs.DISCOVERY)));
@@ -437,9 +439,9 @@ public class SpectrumItems {
 	// Specialty Magical Tools
 	public static final DeferredItem<KnowledgeGemItem> KNOWLEDGE_GEM = register("knowledge_gem", () -> new KnowledgeGemItem(IS.of(1, Rarity.UNCOMMON), 10000));
 	public static final DeferredItem<Item> CELESTIAL_POCKETWATCH = register("celestial_pocketwatch", () -> new CelestialPocketWatchItem(IS.of(1, Rarity.UNCOMMON)));
-	public static final DeferredItem<Item> ARTISANS_ATLAS = register("artisans_atlas", () -> new ArtisansAtlasItem(IS.of(1, Rarity.UNCOMMON)));
+	public static final DeferredItem<Item> ARTISANS_ATLAS = register("artisans_atlas", () -> new ArtisansAtlasItem(IS.of(Rarity.UNCOMMON)));
 	public static final DeferredItem<Item> GILDED_BOOK = register("gilded_book", () -> new GildedBookItem(IS.of(Rarity.UNCOMMON)));
-	public static final DeferredItem<Item> ENCHANTMENT_CANVAS = register("enchantment_canvas", () -> new EnchantmentCanvasItem(IS.of(16, Rarity.UNCOMMON)));
+	public static final DeferredItem<Item> ENCHANTMENT_CANVAS = register("enchantment_canvas", () -> new EnchantmentCanvasItem(IS.of(Rarity.UNCOMMON)));
 	public static final DeferredItem<Item> EVERPROMISE_RIBBON = register("everpromise_ribbon", () -> new EverpromiseRibbonItem(IS.of()));
 	
 	// Lore
@@ -512,8 +514,7 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> SENDER_NODE_CRYSTAL = register("sender_node_crystal", () -> new Item(IS.of()));
 	public static final DeferredItem<Item> STORAGE_NODE_CRYSTAL = register("storage_node_crystal", () -> new Item(IS.of()));
 	public static final DeferredItem<Item> GATHER_NODE_CRYSTAL = register("gather_node_crystal", () -> new Item(IS.of()));
-	public static final DeferredItem<Item> EXTENDED_BUNDLE_ITEM = register("extended_bundle", () -> new ExtendedBundleItem(IS.of()));
-	
+
 	public static<I extends Item> DeferredItem<I> register(String id, Supplier<I> entry) {
 		return REGISTRAR.register(id, entry);
 	}

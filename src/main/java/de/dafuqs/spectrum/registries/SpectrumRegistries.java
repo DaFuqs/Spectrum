@@ -24,12 +24,8 @@ public class SpectrumRegistries {
 	public static final Registry<GemstoneColor> GEMSTONE_COLOR = register(SpectrumRegistryKeys.GEMSTONE_COLOR, true);
 	public static final Registry<GlassArrowVariant> GLASS_ARROW_VARIANT = register(SpectrumRegistryKeys.GLASS_ARROW_VARIANT, true);
 	public static final Registry<InkColor> INK_COLOR = register(SpectrumRegistryKeys.INK_COLOR, true);
-	public static final Registry<KindlingVariant> KINDLING_VARIANT = register(SpectrumRegistryKeys.KINDLING_VARIANT, true);
-	public static final Registry<LizardFrillVariant> LIZARD_FRILL_VARIANT = register(SpectrumRegistryKeys.LIZARD_FRILL_VARIANT, true);
-	public static final Registry<LizardHornVariant> LIZARD_HORN_VARIANT = register(SpectrumRegistryKeys.LIZARD_HORN_VARIANT, true);
 	public static final Registry<PastelUpgradeSignature> PASTEL_UPGRADE = register(SpectrumRegistryKeys.PASTEL_UPGRADE, false);
 	public static final Registry<RecipeScaling> RECIPE_SCALING = register(SpectrumRegistryKeys.RECIPE_SCALING, true);
-
 	public static final Registry<MapCodec<? extends ResonanceProcessor>> RESONANCE_PROCESSOR_TYPE = register(SpectrumRegistryKeys.RESONANCE_PROCESSOR_TYPE, false);
 	
 	public static void registerBuiltInRegistries(NewRegistryEvent event) {
@@ -37,20 +33,16 @@ public class SpectrumRegistries {
 		event.register(GEMSTONE_COLOR);
 		event.register(GLASS_ARROW_VARIANT);
 		event.register(INK_COLOR);
-		event.register(KINDLING_VARIANT);
-		event.register(LIZARD_FRILL_VARIANT);
-		event.register(LIZARD_HORN_VARIANT);
 		event.register(PASTEL_UPGRADE);
 		event.register(RECIPE_SCALING);
 		event.register(RESONANCE_PROCESSOR_TYPE);
 	}
-	
-	private static <T> Registry<T> register(ResourceKey<? extends Registry<T>> key, boolean synced) {
-		return new RegistryBuilder<>(key).sync(synced).create();
-	}
 
 	public static void registerDynamicRegistries(DataPackRegistryEvent.NewRegistry event) {
 		event.dataPackRegistry(SpectrumRegistryKeys.RESONANCE_PROCESSOR, ResonanceProcessor.CODEC, ResonanceProcessor.CODEC);
+		event.dataPackRegistry(SpectrumRegistryKeys.KINDLING_VARIANT, KindlingVariant.DIRECT_CODEC, KindlingVariant.DIRECT_CODEC);
+		event.dataPackRegistry(SpectrumRegistryKeys.LIZARD_FRILL_VARIANT, LizardFrillVariant.DIRECT_CODEC, LizardFrillVariant.DIRECT_CODEC);
+		event.dataPackRegistry(SpectrumRegistryKeys.LIZARD_HORN_VARIANT, LizardHornVariant.DIRECT_CODEC, LizardHornVariant.DIRECT_CODEC);
 	}
 	
 	

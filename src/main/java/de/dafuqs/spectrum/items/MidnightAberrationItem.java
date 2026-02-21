@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.items;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.conditional.*;
 import de.dafuqs.spectrum.registries.*;
@@ -66,8 +67,10 @@ public class MidnightAberrationItem extends CloakedItem {
 	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		super.appendHoverText(stack, context, tooltip, type);
 		
-		if (stack.has(SpectrumDataComponentTypes.STABLE))
+		if (stack.has(SpectrumDataComponentTypes.STABLE)) {
 			tooltip.add(Component.translatable("item.spectrum.midnight_aberration.tooltip.stable"));
+			CreativeOnlyItem.appendTooltip(tooltip);
+		}
 	}
 	
 	@Override

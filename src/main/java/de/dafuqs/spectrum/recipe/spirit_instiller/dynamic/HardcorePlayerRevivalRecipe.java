@@ -59,7 +59,7 @@ public class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe {
 	}
 	
 	@Override
-	public boolean canCraftWithStacks(RecipeInput inventory) {
+	public boolean canCraftWithStacks(InstanceRecipeInput<SpiritInstillerBlockEntity> inventory) {
 		ItemStack instillerStack = inventory.getItem(0);
 		if (instillerStack.is(Blocks.PLAYER_HEAD.asItem())) {
 			GameProfile gameProfile = getSkullOwner(instillerStack);

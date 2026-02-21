@@ -10,12 +10,14 @@ import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
+import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
+import net.minecraft.tags.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.item.*;
@@ -44,10 +46,14 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	float storageTarget, storagePos, lastStorageTarget, capTarget, capPos, lastCapTarget, orbTarget, orbPos, lastOrbTarget, yawTarget, orbYaw, lastYawTarget;
 	long interpTicks, interpLength = 1, age, storedXP, maxStoredXP;
 	
+	private final Object2BooleanMap<TagKey<Item>> filteredTags;
+	private boolean allTagsDeny = true;
+	
 	public BlackHoleChestBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntities.BLACK_HOLE_CHEST.get(), blockPos, blockState);
 		this.itemAndExperienceEventQueue = new ItemAndExperienceEventQueue(new BlockPositionSource(this.worldPosition), RANGE, this);
 		this.filterItems = NonNullList.withSize(ITEM_FILTER_SLOT_COUNT, ItemStack.EMPTY);
+		this.filteredTags = new Object2BooleanArrayMap<>();
 	}
 	
 	@SuppressWarnings("unused")
@@ -204,7 +210,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	
 	@Override
 	protected AbstractContainerMenu createMenu(int syncId, Inventory playerInventory) {
-		return new BlackHoleChestScreenHandler(syncId, playerInventory, this, new ExtendedData(this));
+		return new BlackHoleChestScreenHandler(syncId, playerInventory, this, new FilterConfigurable.ExtendedDataWithPos(this.worldPosition, this));
 	}
 	
 	@Override
@@ -224,6 +230,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	public void loadAdditional(CompoundTag tag, HolderLookup.Provider registryLookup) {
 		super.loadAdditional(tag, registryLookup);
 		FilterConfigurable.readFilterNbt(tag, filterItems);
+		this.updateTagFilteringItems();
 		age = tag.getLong("age");
 	}
 	
@@ -242,8 +249,8 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 			return false;
 		}
 		Entity entity = event.context().sourceEntity();
-		if (entity instanceof ItemEntity itemEntity) {
-			return acceptsItemStack(itemEntity.getItem());
+		if (entity instanceof ItemEntity) {
+			return true;
 		}
 		return entity instanceof ExperienceOrb && hasExperienceStorageItem();
 	}
@@ -265,7 +272,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 			}
 		} else if (entry instanceof ItemEntityEventQueue.EventEntry itemEntry) {
 			ItemEntity itemEntity = itemEntry.itemEntity;
-			if (itemEntity != null && itemEntity.isAlive() && ((ItemEntityAccessor) itemEntity).getPickupDelay() != 32767 && acceptsItemStack(itemEntity.getItem())) {
+			if (itemEntity != null && itemEntity.isAlive() && ((ItemEntityAccessor) itemEntity).getPickupDelay() != 32767 && this.acceptsItem(itemEntity.getItem().getItem())) {
 				int previousAmount = itemEntity.getItem().getCount();
 				ItemStack remainingStack = InventoryHelper.smartAddToInventory(itemEntity.getItem(), this, Direction.UP);
 				
@@ -325,26 +332,26 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 		return ITEM_FILTER_SLOT_COUNT;
 	}
 	
+	@Override
 	public void setFilterItem(int slot, ItemStack item) {
 		this.filterItems.set(slot, item);
+		this.updateTagFilteringItems();
 		this.setChanged();
 	}
 	
-	public boolean acceptsItemStack(ItemStack itemStack) {
-		if (itemStack.isEmpty()) {
-			return false;
-		}
-		
-		boolean allAir = true;
-		for (int i = 0; i < ITEM_FILTER_SLOT_COUNT; i++) {
-			ItemStack filterItem = this.filterItems.get(i);
-			if (itemStack.is(filterItem.getItem())) {
-				return true;
-			} else if (!filterItem.isEmpty()) {
-				allAir = false;
-			}
-		}
-		return allAir;
+	@Override
+	public Object2BooleanMap<TagKey<Item>> getFilteredTags() {
+		return this.filteredTags;
+	}
+	
+	@Override
+	public boolean onlyDenyListTags() {
+		return this.allTagsDeny;
+	}
+	
+	@Override
+	public void setOnlyDenyListTags(boolean onlyDenyListTags) {
+		this.allTagsDeny = onlyDenyListTags;
 	}
 	
 	public boolean hasExperienceStorageItem() {

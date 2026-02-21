@@ -1,4 +1,12 @@
 {
+  "item.night_salts.use": {
+    "subtitle": "spectrum.subtitles.night_salts.use",
+    "sounds": [
+      "minecraft:mob/sniffer/scenting1",
+      "minecraft:mob/sniffer/scenting2",
+      "minecraft:mob/sniffer/scenting3"
+    ]
+  },
   "item.primordial_lighter.use": {
     "subtitle": "spectrum.subtitles.primordial_lighter.use",
     "sounds": [
@@ -438,11 +446,26 @@
   "primordial_fire_crackle": {
     "subtitle": "spectrum.subtitles.primordial_fire_crackle",
     "sounds": [
-      "spectrum:primfire0",
-      "spectrum:primfire1",
-      "spectrum:primfire2",
-      "spectrum:primfire3",
-      "spectrum:primfire4"
+      {
+        "name": "spectrum:primfire0",
+        "volume": 0.6
+      },
+      {
+        "name": "spectrum:primfire1",
+        "volume": 0.6
+      },
+      {
+        "name": "spectrum:primfire2",
+        "volume": 0.6
+      },
+      {
+        "name": "spectrum:primfire3",
+        "volume": 0.6
+      },
+      {
+        "name": "spectrum:primfire4",
+        "volume": 0.6
+      }
     ]
   },
   "primordial_fire_dot": {
@@ -912,7 +935,10 @@
   },
   "spirit_instiller_crafting_finished": {
     "sounds": [
-      "spectrum:spirit_instiller_crafting_finished"
+      {
+        "name": "spectrum:spirit_instiller_crafting_finished",
+        "volume": 0.6
+      }
     ]
   },
   "natures_staff_use": {
@@ -2181,5 +2207,72 @@
       "spectrum:entity.lizard.ambient2",
       "spectrum:entity.lizard.ambient3"
     ]
+  },
+  "entity.marrow.ambient": {
+    "sounds": [
+      "mob/stray/idle1",
+      "mob/stray/idle2",
+      "mob/stray/idle3",
+      "mob/stray/idle4"
+    ],
+    "subtitle": "spectrum.subtitles.entity.marrow.ambient"
+  },
+  "entity.marrow.death": {
+    "sounds": [
+      "mob/stray/death1",
+      "mob/stray/death2"
+    ],
+    "subtitle": "spectrum.subtitles.entity.marrow.death"
+  },
+  "entity.marrow.hurt": {
+    "sounds": [
+      "mob/stray/hurt1",
+      "mob/stray/hurt2",
+      "mob/stray/hurt3",
+      "mob/stray/hurt4"
+    ],
+    "subtitle": "spectrum.subtitles.entity.marrow.hurt"
+  },
+  "entity.marrow.step": {
+    "sounds": [
+      "mob/stray/step1",
+      "mob/stray/step2",
+      "mob/stray/step3",
+      "mob/stray/step4"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+
+  "entity.splinterspawn.ambient": {
+    "sounds": [
+      "mob/silverfish/say1",
+      "mob/silverfish/say2",
+      "mob/silverfish/say3",
+      "mob/silverfish/say4"
+    ],
+    "subtitle": "spectrum.subtitles.entity.splinterspawn.ambient"
+  },
+  "entity.splinterspawn.death": {
+    "sounds": [
+      "mob/silverfish/kill"
+    ],
+    "subtitle": "spectrum.subtitles.entity.splinterspawn.death"
+  },
+  "entity.splinterspawn.hurt": {
+    "sounds": [
+      "mob/silverfish/hit1",
+      "mob/silverfish/hit2",
+      "mob/silverfish/hit3"
+    ],
+    "subtitle": "spectrum.subtitles.entity.splinterspawn.hurt"
+  },
+  "entity.splinterspawn.step": {
+    "sounds": [
+      "mob/silverfish/step1",
+      "mob/silverfish/step2",
+      "mob/silverfish/step3",
+      "mob/silverfish/step4"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
   }
 }

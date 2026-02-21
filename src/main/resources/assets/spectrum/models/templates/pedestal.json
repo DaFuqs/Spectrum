@@ -1,6 +1,5 @@
 {
 	"parent": "block/block",
-	"credit": "Made by Azazelthedemonlord ~ https://azazelthedemonlord.newgrounds.com/ ~ ♡",
 	"texture_size": [64, 64],
 	"textures": {
 		"0": "#pedestal",

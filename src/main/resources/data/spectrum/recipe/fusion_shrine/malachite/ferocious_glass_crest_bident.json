@@ -27,12 +27,7 @@
     }
   ],
   "result": {
-    "id": "spectrum:ferocious_glass_crest_bident",
-    "components": {
-      "enchantments": {
-        "minecraft:impaling": 6
-      }
-    }
+    "id": "spectrum:ferocious_glass_crest_bident"
   },
   "required_advancement": "spectrum:unlocks/malachite/ferocious_glass_crest_bident",
   "start_crafting_effect": "nothing",

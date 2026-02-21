@@ -84,17 +84,17 @@ public class BedrockAnvilScreenHandler extends ItemCombinerMenu {
 			player.giveExperienceLevels(-this.levelCost.get());
 		}
 		
-		this.inputSlots.setItem(0, ItemStack.EMPTY);
+		this.inputSlots.setItem(FIRST_INPUT_SLOT_INDEX, ItemStack.EMPTY);
 		if (this.repairItemCount > 0) {
-			ItemStack itemStack = this.inputSlots.getItem(1);
+			ItemStack itemStack = this.inputSlots.getItem(SECOND_INPUT_SLOT_INDEX);
 			if (!itemStack.isEmpty() && itemStack.getCount() > this.repairItemCount) {
 				itemStack.shrink(this.repairItemCount);
-				this.inputSlots.setItem(1, itemStack);
+				this.inputSlots.setItem(SECOND_INPUT_SLOT_INDEX, itemStack);
 			} else {
-				this.inputSlots.setItem(1, ItemStack.EMPTY);
+				this.inputSlots.setItem(SECOND_INPUT_SLOT_INDEX, ItemStack.EMPTY);
 			}
 		} else {
-			this.inputSlots.setItem(1, ItemStack.EMPTY);
+			this.inputSlots.setItem(SECOND_INPUT_SLOT_INDEX, ItemStack.EMPTY);
 		}
 		
 		this.levelCost.set(0);
@@ -104,14 +104,14 @@ public class BedrockAnvilScreenHandler extends ItemCombinerMenu {
 	public void createResult() {
 		boolean combined = false; // We added this line
 		
-		ItemStack inputStack = this.inputSlots.getItem(0);
+		ItemStack inputStack = this.inputSlots.getItem(FIRST_INPUT_SLOT_INDEX);
 		this.levelCost.set(0);  // We changed '1' -> '0'
 		int enchantmentLevelCost = 0;
 		long repairLevelCost = 0L;
 //		int renameCost = 0; // We removed this line - Renames are free
 		if (!inputStack.isEmpty() && EnchantmentHelper.canStoreEnchantments(inputStack)) {
 			ItemStack outputStack = inputStack.copy();
-			ItemStack repairSlotStack = this.inputSlots.getItem(1);
+			ItemStack repairSlotStack = this.inputSlots.getItem(SECOND_INPUT_SLOT_INDEX);
 			ItemEnchantments.Mutable builder = new ItemEnchantments.Mutable(EnchantmentHelper.getEnchantmentsForCrafting(outputStack));
 			repairLevelCost += (long) inputStack.getOrDefault(DataComponents.REPAIR_COST, 0)
 					+ (long) repairSlotStack.getOrDefault(DataComponents.REPAIR_COST, 0);
@@ -123,16 +123,14 @@ public class BedrockAnvilScreenHandler extends ItemCombinerMenu {
 			if (!repairSlotStack.isEmpty()) {
 				combined = true; // We added this line
 				
-				boolean enchantedBookInInputSlot = inputStack.is(Items.ENCHANTED_BOOK) && !inputStack.has(DataComponents.STORED_ENCHANTMENTS);
-				boolean enchantedBookInRepairSlot = repairSlotStack.is(Items.ENCHANTED_BOOK) && !inputStack.has(DataComponents.STORED_ENCHANTMENTS);
+				boolean enchantedBookInRepairSlot = repairSlotStack.is(Items.ENCHANTED_BOOK) && repairSlotStack.has(DataComponents.STORED_ENCHANTMENTS);
 				
-				int o;
 				int repairItemCount;
 				int newOutputStackDamage;
 				if (outputStack.isDamageableItem() && outputStack.getItem().isValidRepairItem(inputStack, repairSlotStack)) {
 					int toRepair = Math.min(outputStack.getDamageValue(), outputStack.getMaxDamage() / 4);
 					if (toRepair <= 0) {
-						this.resultSlots.setItem(0, ItemStack.EMPTY);
+						this.resultSlots.setItem(FIRST_INPUT_SLOT_INDEX, ItemStack.EMPTY);
 						this.levelCost.set(0);
 						return;
 					}
@@ -147,7 +145,7 @@ public class BedrockAnvilScreenHandler extends ItemCombinerMenu {
 					this.repairItemCount = repairItemCount;
 				} else {
 					if (!pigmentInRepairSlot && !enchantedBookInRepairSlot && (!outputStack.is(repairSlotStack.getItem()) || !outputStack.isDamageableItem())) {
-						this.resultSlots.setItem(0, ItemStack.EMPTY);
+						this.resultSlots.setItem(FIRST_INPUT_SLOT_INDEX, ItemStack.EMPTY);
 						this.levelCost.set(0);
 						return;
 					}
@@ -213,38 +211,30 @@ public class BedrockAnvilScreenHandler extends ItemCombinerMenu {
 					}
 					
 					if (foundUnacceptable && !foundAcceptable) {
-						this.resultSlots.setItem(0, ItemStack.EMPTY);
+						this.resultSlots.setItem(FIRST_INPUT_SLOT_INDEX, ItemStack.EMPTY);
 						this.levelCost.set(0);
 						return;
 					}
 				}
 			}
 			
-			if (this.newItemName != null && !StringUtil.isBlank(this.newItemName)) {
-				if (!this.newItemName.equals(inputStack.getHoverName().getString())) {
-					// We removed these - Renames are free
-//					 renameCost = 1;
-//					 enchantmentLevelCost += renameCost;
-					if (inputStack.getHoverName() instanceof MutableComponent inputText && inputText.getStyle().getColor() != null) {
-						outputStack.set(DataComponents.CUSTOM_NAME, Component.literal(this.newItemName).setStyle(Style.EMPTY.withColor(inputText.getStyle().getColor())));
-					} else {
-						outputStack.set(DataComponents.CUSTOM_NAME, Component.literal(this.newItemName));
-					}
+			// We tweaked the way renaming is handled
+			// - renamings are free
+			// - name coloring via pigment
+			if (pigmentInRepairSlot || this.newItemName != null && !StringUtil.isBlank(this.newItemName)) {
+				MutableComponent newName = Component.literal(this.newItemName);
+				if (inputStack.getHoverName() instanceof MutableComponent inputText) {
+					newName.setStyle(inputText.getStyle());
 				}
+				
+				if (pigmentInRepairSlot) {
+					int newColor = ((PigmentItem) repairSlotStack.getItem()).getInkColor().getColorInt();
+					newName = newName.setStyle(newName.getStyle().withColor(newColor));
+				}
+				
+				outputStack.set(DataComponents.CUSTOM_NAME, newName);
 			} else if (inputStack.has(DataComponents.CUSTOM_NAME)) {
-				// We removed these - Renames are free
-// 				 renameCost = 1;
-//				 enchantmentLevelCost += renameCost;
 				outputStack.remove(DataComponents.CUSTOM_NAME);
-			}
-			// TODO: we are setting DataComponentTypes.CUSTOM_NAME above, already.
-			Component text = outputStack.getHoverName();
-			if (pigmentInRepairSlot && text instanceof MutableComponent mutableText) {
-				var newColor = ((PigmentItem) repairSlotStack.getItem()).getInkColor().getColorInt();
-				Component newName = mutableText.setStyle(mutableText.getStyle().withColor(newColor));
-				if (!newName.equals(inputStack.getHoverName())) {
-					outputStack.set(DataComponents.CUSTOM_NAME, Component.literal(this.newItemName).withColor(newColor));
-				}
 			}
 			
 			// We added this if/elseif block
@@ -289,10 +279,10 @@ public class BedrockAnvilScreenHandler extends ItemCombinerMenu {
 				EnchantmentHelper.setEnchantments(outputStack, builder.toImmutable());
 			}
 			
-			this.resultSlots.setItem(0, outputStack);
+			this.resultSlots.setItem(FIRST_INPUT_SLOT_INDEX, outputStack);
 			this.broadcastChanges();
 		} else {
-			this.resultSlots.setItem(0, ItemStack.EMPTY);
+			this.resultSlots.setItem(FIRST_INPUT_SLOT_INDEX, ItemStack.EMPTY);
 			this.levelCost.set(0);
 		}
 	}

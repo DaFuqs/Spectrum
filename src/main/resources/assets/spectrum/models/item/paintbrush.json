@@ -1,7 +1,14 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "spectrum:item/paintbrush",
-    "layer1": "spectrum:item/paintbrush_tint"
-  }
+    "layer0": "spectrum:item/paintbrush"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "has_ink_color": 1.0
+      },
+      "model": "spectrum:item/paintbrush_tinted"
+    }
+  ]
 }

@@ -8,7 +8,13 @@
   "key": {
     "S": [
       {
-        "tag": "spectrum:gemstone_shards"
+        "item": "minecraft:amethyst_shard"
+      },
+      {
+        "item": "spectrum:citrine_shard"
+      },
+      {
+        "item": "spectrum:topaz_shard"
       }
     ],
     "B": [

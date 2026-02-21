@@ -139,22 +139,25 @@ public abstract class TriStateVineBlock extends BushBlock implements Bonemealabl
 		while (state.is(this)) {
 			count++;
 			state = world.getBlockState(pos.above(count));
-		}
-		
-		return count;
-	}
+        }
+
+        return count;
+    }
 	
 	@Override
-	public void destroy(LevelAccessor world, BlockPos pos, BlockState state) {
-		var roof = BlockReference.of(world, pos.above());
-		
-		if (roof.isOf(this)) {
-			roof.setProperty(LIFE_STAGE, getLowestLifeStage(world, pos.below(), state.getValue(LIFE_STAGE)));
-			roof.update(world);
+	protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
+		if (!state.is(newState.getBlock())) {
+			var roof = BlockReference.of(level, pos.above());
+			
+			if (roof.isOf(this)) {
+				roof.setProperty(LIFE_STAGE, getLowestLifeStage(level, pos.below(), state.getValue(LIFE_STAGE)));
+				roof.update(level);
+			}
+			
+			scheduleBreakCheck(level, pos);
 		}
-		
-		scheduleBreakCheck(world, pos);
-	}
+		super.onRemove(state, level, pos, newState, movedByPiston);
+    }
 	
 	public LifeStage getLowestLifeStage(LevelAccessor world, BlockPos pos, LifeStage stage) {
 		var state = world.getBlockState(pos);

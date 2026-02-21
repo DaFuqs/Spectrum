@@ -36,16 +36,96 @@
       "type": "spectrum:collection",
       "title": "book.spectrum.guidebook.present.page3.title",
       "items": [
-        "spectrum:present{Variant: \"red\", Wrapped: 1b}",
-        "spectrum:present{Variant: \"blue\", Wrapped: 1b}",
-        "spectrum:present{Variant: \"cyan\", Wrapped: 1b}",
-        "spectrum:present{Variant: \"green\", Wrapped: 1b}",
-        "spectrum:present{Variant: \"purple\", Wrapped: 1b}",
-        "spectrum:present{Variant: \"cake\", Wrapped: 1b}",
-        "spectrum:present{Variant: \"striped\", Wrapped: 1b}",
-        "spectrum:present{Variant: \"starry\", Wrapped: 1b}",
-        "spectrum:present{Variant: \"winter\", Wrapped: 1b}",
-        "spectrum:present{Variant: \"pride\", Wrapped: 1b}"
+        {
+          "id": "spectrum:present",
+          "components": {
+            "spectrum:wrapped_present": {
+              "variant": "red",
+              "colors": {}
+            }
+          }
+        },
+        {
+          "id": "spectrum:present",
+          "components": {
+            "spectrum:wrapped_present": {
+              "variant": "blue",
+              "colors": {}
+            }
+          }
+        },
+        {
+          "id": "spectrum:present",
+          "components": {
+            "spectrum:wrapped_present": {
+              "variant": "cyan",
+              "colors": {}
+            }
+          }
+        },
+        {
+          "id": "spectrum:present",
+          "components": {
+            "spectrum:wrapped_present": {
+              "variant": "green",
+              "colors": {}
+            }
+          }
+        },
+        {
+          "id": "spectrum:present",
+          "components": {
+            "spectrum:wrapped_present": {
+              "variant": "purple",
+              "colors": {}
+            }
+          }
+        },
+        {
+          "id": "spectrum:present",
+          "components": {
+            "spectrum:wrapped_present": {
+              "variant": "cake",
+              "colors": {}
+            }
+          }
+        },
+        {
+          "id": "spectrum:present",
+          "components": {
+            "spectrum:wrapped_present": {
+              "variant": "striped",
+              "colors": {}
+            }
+          }
+        },
+        {
+          "id": "spectrum:present",
+          "components": {
+            "spectrum:wrapped_present": {
+              "variant": "starry",
+              "colors": {}
+            }
+          }
+        },
+        {
+          "id": "spectrum:present",
+          "components": {
+            "spectrum:wrapped_present": {
+              "variant": "winter",
+              "colors": {}
+            }
+          }
+        },
+        {
+          "id": "spectrum:present",
+          "components": {
+            "spectrum:wrapped_present": {
+              "variant": "pride",
+              "colors": {}
+            }
+          }
+        }
       ],
       "text": "book.spectrum.guidebook.present.page3.text"
     }

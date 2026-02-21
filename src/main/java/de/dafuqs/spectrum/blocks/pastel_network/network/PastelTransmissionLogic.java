@@ -158,20 +158,19 @@ public class PastelTransmissionLogic {
 					}
 				}
 				
-				network.addTransmission(transmission.get(), transmission.get().getTransmissionDuration());
-				PastelTransmissionPayload.sendPastelTransmissionParticle(this.network, transmission.get().getTransmissionDuration(), transmission.get());
-				
-				if (transferMode == TransferMode.PULL) {
-					destinationNode.markTransferred();
-				} else if (transferMode == TransferMode.PUSH) {
-					sourceNode.markTransferred();
-				} else {
-					destinationNode.markTransferred();
-					sourceNode.markTransferred();
+				Optional<PastelTransmission> optionalTransmission = createTransmissionOnValidPath(sourceNode, destinationNode, proposedStack.copyWithCount(simulatedAmount), sourceNode.getTransferTime());
+				if (optionalTransmission.isPresent()) {
+					PastelTransmission trans = optionalTransmission.get();
+					int travelTime = trans.getTransmissionDuration();
+					this.network.addTransmission(trans, travelTime);
+					PastelTransmissionPayload.sendPastelTransmissionParticle(this.network, trans.getTransmissionDuration(), transmission.get());
+					
+					destinationNode.markTransferred(transferMode != TransferMode.PUSH);
+					sourceNode.markTransferred(transferMode != TransferMode.PULL);
+					
+					destinationNode.addItemCountUnderway(simulatedAmount);
+					return true;
 				}
-				
-				destinationNode.addItemCountUnderway(simulatedAmount);
-				return true;
 			}
 		}
 		return false;

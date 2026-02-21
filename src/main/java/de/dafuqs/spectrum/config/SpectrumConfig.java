@@ -29,6 +29,9 @@ public class SpectrumConfig implements ConfigData {
 	@Comment("Post process shaders")
 	public boolean PostProcess = true;
 	
+	@Comment("Post process shaders")
+	public boolean AlwaysSpawnLightBlockParticles = false;
+	
 	@Comment("Items transported by a Pastel Network spawn particles")
 	public boolean PastelNetworkParticles = true;
 	
@@ -77,6 +80,11 @@ public class SpectrumConfig implements ConfigData {
 	public int VanillaRecipeCraftingTimeTicks = 40;
 	
 	@Comment("""
+			How much an item gets repaired when crafting it with Moonstruck Nectar
+			""")
+	public float RepairAnythingRecipeRepairPercentage = 0.33F;
+	
+	@Comment("""
 			How fast decay will be spreading on random tick
 			can be used to slow down propagation speed of decay in the worlds
 			decay does use very few resources, but if your fear of someone letting decay
@@ -114,6 +122,9 @@ public class SpectrumConfig implements ConfigData {
 	@Comment("The audio volume for Spectrums crafting blocks. Set to 0.0 to turn those sounds off completely.")
 	public float BlockSoundVolume = 0.5F;
 	
+	@Comment("The volume for audio that plays when close to certain ores")
+	public float OreAuraSoundVolume = 0.5F;
+	
 	@ConfigEntry.Gui.Tooltip
 	@Comment("When empty, enchantments that the player has not unlocked show up with a scattered name. You can use a different name here")
 	public String NameForUnrevealedEnchantments = "";
@@ -130,6 +141,9 @@ public class SpectrumConfig implements ConfigData {
 	public float DisarmingChancePerLevelMobs = 0.01F;
 	@Comment("If > 0 the Disarming Enchantment is able to remove armor and hand tools from a hit player. Should be a far smaller chance than for mobs")
 	public float DisarmingChancePerLevelPlayers = 0.001F;
+	@Comment("Experience dropped my mined infested blocks is multiplied by this value")
+	public float PestControlExperienceMultiplier = 2.0F;
+	
 	@Comment("The duration a glow ink sac gives night vision when wearing a glow vision helmet in seconds")
 	public int GlowVisionGogglesDuration = 240;
 	@Comment("If the Omni Accelerator should be able to have interactions in PvP that can drain the targets XP, modify their equipment, ... (configured via the requires_omni_accelerator_pvp_enabled item tag)")
@@ -155,6 +169,57 @@ public class SpectrumConfig implements ConfigData {
 	public int BedrockArmorBootsProtection = 5;
 	public float BedrockArmorToughness = 3.0F;
 	public float BedrockArmorKnockbackResistance = 0.3F;
+	
+	// Tool Material Stats
+	public int LowHealthDurability = 16;
+	public float LowHealthMiningSpeed = 4.0F;
+	public float LowHealthAttackDamage = 2.0F;
+	public int LowHealthEnchantability = 10;
+	
+	public int VoidingDurability = 1143;
+	public float VoidingMiningSpeed = 20.0F;
+	public float VoidingAttackDamage = 1.0F;
+	public int VoidingEnchantability = 5;
+	
+	public int BedrockDurability = 0;
+	public float BedrockMiningSpeed = 15.0F;
+	public float BedrockAttackDamage = 5.0F;
+	public int BedrockEnchantability = 3;
+	
+	public int DraconicDurability = 10000;
+	public float DraconicMiningSpeed = 11.5F;
+	public float DraconicAttackDamage = 7.0F;
+	public int DraconicEnchantability = 1;
+	
+	public int MalachiteDurability = 1536;
+	public float MalachiteMiningSpeed = 14.0F;
+	public float MalachiteAttackDamage = 5.0F;
+	public int MalachiteEnchantability = 20;
+	
+	public int GlassCrestDurability = 6144;
+	public float GlassCrestMiningSpeed = 18.0F;
+	public float GlassCrestAttackDamage = 10.0F;
+	public int GlassCrestEnchantability = 5;
+	
+	public int VerdigrisDurability = 1536;
+	public float VerdigrisMiningSpeed = 7.0F;
+	public float VerdigrisAttackDamage = 2.5F;
+	public int VerdigrisEnchantability = 14;
+	
+	public int NectarDurability = 6144;
+	public float NectarMiningSpeed = 9.5F;
+	public float NectarAttackDamage = 9.0F;
+	public int NectarEnchantability = 30;
+	
+	public int DreamflayerDurability = 650;
+	public float DreamflayerMiningSpeed = 5.0F;
+	public float DreamflayerAttackDamage = 2.0F;
+	public int DreamflayerEnchantability = 20;
+	
+	public int NightfallDurability = 650;
+	public float NightfallMiningSpeed = 2.0F;
+	public float NightfallAttackDamage = 1.0F;
+	public int NightfallEnchantability = 0;
 	
 	public int MaxLevelForEffectsInLesserPotionPendant = 3;
 	public int MaxLevelForEffectsInGreaterPotionPendant = 1;

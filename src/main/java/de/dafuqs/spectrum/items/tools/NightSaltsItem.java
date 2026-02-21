@@ -67,10 +67,10 @@ public class NightSaltsItem extends Item implements SleepAlteringItem {
 	
 	@Override
 	public SoundEvent getDrinkingSound() {
-		return SoundEvents.SNIFFER_SCENTING;
-	}
-	
-	@Override
+		return SpectrumSoundEvents.NIGHT_SALTS_USE;
+    }
+
+    @Override
 	public void applyPenalties(Player player) {
 		player.addEffect(new MobEffectInstance(SpectrumStatusEffects.VULNERABILITY, 20 * 30));
 		player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20 * 30));

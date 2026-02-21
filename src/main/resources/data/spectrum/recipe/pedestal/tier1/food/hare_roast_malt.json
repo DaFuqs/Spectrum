@@ -21,7 +21,12 @@
     "A": "minecraft:potato",
     "M": {
       "item": "spectrum:infused_beverage",
-      "recipeViewNbt": "{Variant: \"malt_beer\", Color: 8272724 }",
+      "preview_components": {
+        "spectrum:infused_beverage": {
+          "variant": "malt_beer",
+          "color": 8272724
+        }
+      },
       "predicates": {
         "spectrum:infused_beverage": [
           {

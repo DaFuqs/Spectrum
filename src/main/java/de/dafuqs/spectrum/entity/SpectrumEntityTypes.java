@@ -50,6 +50,8 @@ public class SpectrumEntityTypes {
 	public static final DeferredHolder<EntityType<?>, EntityType<ItemProjectileEntity>> ITEM_PROJECTILE = register("item_projectile", EntityType.Builder.<ItemProjectileEntity>of(ItemProjectileEntity::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(6).updateInterval(20));
 	public static final DeferredHolder<EntityType<?>, EntityType<DragonTalonEntity>> DRAGON_TALON = register("dragon_talon", 4, 10, true, EntityDimensions.scalable(0.5F, 0.5F), true, DragonTalonEntity::new);
 	public static final DeferredHolder<EntityType<?>, EntityType<DraconicTwinswordEntity>> DRACONIC_TWINSWORD = register("draconic_twinsword", 6, 2, true, EntityDimensions.scalable(0.5F, 0.5F), true, DraconicTwinswordEntity::new);
+	public static final DeferredHolder<EntityType<?>, EntityType<Marrow>> MARROW = register("marrow", EntityType.Builder.of(Marrow::new, MobCategory.MONSTER).sized(0.6F, 1.99F).eyeHeight(1.74F).ridingOffset(-0.7F).clientTrackingRange(8));
+	public static final DeferredHolder<EntityType<?>, EntityType<Splinterspawn>> SPLINTERSPAWN = register("splinterspawn", EntityType.Builder.of(Splinterspawn::new, MobCategory.MONSTER).sized(0.4F, 0.3F).eyeHeight(0.13F).passengerAttachments(0.2375F).clientTrackingRange(8));
 	
 	public static void registerAttributes(EntityAttributeCreationEvent event) {
 		event.put(EGG_LAYING_WOOLY_PIG.get(), EggLayingWoolyPigEntity.createEggLayingWoolyPigAttributes().build());
@@ -58,6 +60,8 @@ public class SpectrumEntityTypes {
 		event.put(LIZARD.get(), LizardEntity.createLizardAttributes().build());
 		event.put(KINDLING.get(), KindlingEntity.createKindlingAttributes().build());
 		event.put(ERASER.get(), EraserEntity.createEraserAttributes().build());
+		event.put(MARROW.get(), Marrow.createEraserAttributes().build());
+		event.put(SPLINTERSPAWN.get(), Splinterspawn.createEraserAttributes().build());
 	}
 	
 	public static void registerSpawnPlacements(RegisterSpawnPlacementsEvent event) {

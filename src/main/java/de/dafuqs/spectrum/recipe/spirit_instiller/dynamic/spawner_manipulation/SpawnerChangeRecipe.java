@@ -13,7 +13,6 @@ import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
-import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.block.entity.*;
 
 import java.util.*;
@@ -61,12 +60,12 @@ public abstract class SpawnerChangeRecipe extends SpiritInstillerRecipe {
 	}
 	
 	@Override
-	public boolean canCraftWithStacks(RecipeInput inventory) {
+	public boolean canCraftWithStacks(InstanceRecipeInput<SpiritInstillerBlockEntity> inventory) {
 		CustomData blockEntityComponent = inventory.getItem(0).getOrDefault(DataComponents.BLOCK_ENTITY_DATA, CustomData.EMPTY);
-		return canCraftWithBlockEntityTag(blockEntityComponent, inventory.getItem(1), inventory.getItem(2));
+		return canCraftWithBlockEntityTag(inventory, blockEntityComponent, inventory.getItem(1), inventory.getItem(2));
 	}
 	
-	public abstract boolean canCraftWithBlockEntityTag(CustomData spawnerBlockEntityNbt, ItemStack leftBowlStack, ItemStack rightBowlStack);
+	public abstract boolean canCraftWithBlockEntityTag(InstanceRecipeInput<SpiritInstillerBlockEntity> recipeInput, CustomData spawnerBlockEntityNbt, ItemStack leftBowlStack, ItemStack rightBowlStack);
 	
 	public abstract CompoundTag getSpawnerResultNbt(CompoundTag nbt, ItemStack firstBowlStack, ItemStack secondBowlStack, InstanceRecipeInput<SpiritInstillerBlockEntity> recipeInput);
 	

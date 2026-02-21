@@ -13,8 +13,6 @@ import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.core.*;
-import net.minecraft.core.component.*;
-import net.minecraft.core.registries.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.*;
 import net.minecraft.network.chat.*;
@@ -23,6 +21,7 @@ import net.minecraft.network.protocol.game.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
+import net.minecraft.tags.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.*;
@@ -38,8 +37,8 @@ import net.neoforged.neoforge.items.*;
 import org.apache.commons.lang3.*;
 import org.jetbrains.annotations.*;
 
-import java.util.Optional;
 import java.util.*;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigurable, MenuProvider, PastelUpgradeable {
@@ -69,14 +68,23 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	protected int transferTime = PastelTransmissionLogic.DEFAULT_TRANSFER_TICKS_PER_NODE;
 	protected int filterSlotRows = DEFAULT_FILTER_SLOT_ROWS;
 	
+	protected BlockApiCache<Storage<ItemVariant>, Direction> connectedStorageCache = null;
+	protected Direction cachedDirection = null;
+
+	protected Boolean isInitialized = false;
+	
 	private final List<ItemStack> filterItems;
 	float rotationTarget, crystalRotation, lastRotationTarget, heightTarget, crystalHeight, lastHeightTarget, alphaTarget, ringAlpha, lastAlphaTarget;
 	long creationStamp = -1, interpTicks, interpLength = -1, spinTicks;
 	private ConnectionState connectionState;
 	
+	private final Object2BooleanMap<TagKey<Item>> filteredTags;
+	private boolean allTagsDeny = true;
+
 	public PastelNodeBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntities.PASTEL_NODE.get(), blockPos, blockState);
 		this.filterItems = NonNullList.withSize(MAX_FILTER_SLOTS, ItemStack.EMPTY);
+		this.filteredTags = new Object2BooleanArrayMap<>();
 		this.outerRing = Optional.empty();
 		this.innerRing = Optional.empty();
 		this.redstoneRing = Optional.empty();
@@ -92,6 +100,11 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	}
 	
 	public static void tick(@NotNull Level world, BlockPos pos, BlockState state, PastelNodeBlockEntity node) {
+		if (!node.isInitialized && !world.isClientSide()) { // kinda onLoad()?
+			node.getServerNetwork().ifPresent(network -> network.initializeNode(node));
+			node.isInitialized = true;
+		}
+
 		if (node.lamp && state.getValue(BlockStateProperties.LIT) != node.canTransfer()) {
 			world.setBlockAndUpdate(pos, state.setValue(BlockStateProperties.LIT, node.cachedUnpowered));
 		}
@@ -241,6 +254,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		
 		if (filterSlotRows < oldFilterSlotCount) {
 			for (int i = getDrawnSlots(); i < filterItems.size(); i++) {
+				updateTagFilteringItems();
 				filterItems.set(i, ItemStack.EMPTY);
 			}
 		}
@@ -304,13 +318,16 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		return canTransfer && notPowered;
 	}
 	
-	public void markTransferred() {
+	public void markTransferred(boolean setTransferCooldown) {
 		if (triggerTransfer) {
 			markTriggered();
 		}
-		
-		this.lastTransferTick = level.getGameTime();
-		this.setChanged();
+		if (setTransferCooldown && level != null) {
+			this.lastTransferTick = level.getGameTime();
+		}
+		if (triggerTransfer || setTransferCooldown) {
+			this.setChanged();
+		}
 	}
 	
 	@Override
@@ -324,12 +341,14 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		this.creationStamp = nbt.contains("creationStamp") ? nbt.getLong("creationStamp") : 0;
 		this.lastTransferTick = nbt.contains("LastTransferTick", Tag.TAG_LONG) ? nbt.getLong("LastTransferTick") : 0;
 		this.itemCountUnderway = nbt.contains("ItemCountUnderway", Tag.TAG_LONG) ? nbt.getLong("ItemCountUnderway") : 0;
+		this.color = nbt.contains("ColorId", Tag.TAG_INT) ? Optional.of(DyeColor.byId(nbt.getInt("ColorId"))) : Optional.empty();
 		this.outerRing = nbt.contains("OuterRing") ? Optional.ofNullable(SpectrumRegistries.PASTEL_UPGRADE.get(ResourceLocation.tryParse(nbt.getString("OuterRing")))) : Optional.empty();
 		this.innerRing = nbt.contains("InnerRing") ? Optional.ofNullable(SpectrumRegistries.PASTEL_UPGRADE.get(ResourceLocation.tryParse(nbt.getString("InnerRing")))) : Optional.empty();
 		this.redstoneRing = nbt.contains("RedstoneRing") ? Optional.ofNullable(SpectrumRegistries.PASTEL_UPGRADE.get(ResourceLocation.tryParse(nbt.getString("RedstoneRing")))) : Optional.empty();
 		
 		if (this.getNodeType().usesFilters()) {
 			FilterConfigurable.readFilterNbt(nbt, this.filterItems);
+			this.updateTagFilteringItems();
 		}
 	}
 	
@@ -341,6 +360,9 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		}
 		if (this.networkUUID.isPresent()) {
 			nbt.putUUID("NetworkUUID", this.networkUUID.get());
+		}
+		if (this.color.isPresent()) {
+			nbt.putInt("ColorId", this.color.get().getId());
 		}
 		nbt.putUUID("NodeID", this.nodeId);
 		nbt.putBoolean("Triggered", this.triggered);
@@ -425,55 +447,39 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		return this.filterItems;
 	}
 	
+	public Object2BooleanMap<TagKey<Item>> getFilteredTags() {
+		return this.filteredTags;
+	}
+	
+	@Override
+	public boolean onlyDenyListTags() {
+		return this.allTagsDeny;
+	}
+	
+	@Override
+	public void setOnlyDenyListTags(boolean onlyDenyListTags) {
+		this.allTagsDeny = onlyDenyListTags;
+	}
+
 	@Override
 	public void setFilterItem(int slot, ItemStack item) {
 		this.filterItems.set(slot, item);
+		this.updateTagFilteringItems();
 	}
 	
 	public Predicate<ItemStack> getTransferFilterTo(PastelNodeBlockEntity other) {
 		if (this.getNodeType().usesFilters() && !this.hasEmptyFilter()) {
 			if (other.getNodeType().usesFilters() && !other.hasEmptyFilter()) {
 				// unionize both filters
-				return Predicates.and(this::filter, other::filter);
+				return Predicates.and(variant1 -> this.acceptsItem(variant1.getItem()), variant -> other.acceptsItem(variant.getItem()));
 			} else {
-				return this::filter;
+				return variant -> this.acceptsItem(variant.getItem());
 			}
 		} else if (other.getNodeType().usesFilters() && !other.hasEmptyFilter()) {
-			return other::filter;
+			return variant -> other.acceptsItem(variant.getItem());
 		} else {
 			return itemVariant -> true;
 		}
-	}
-	
-	private boolean filter(ItemStack variant) {
-		return filterItems
-				.stream()
-				.anyMatch(filterItem -> {
-					ItemStack filterStack = filterItem;
-					
-					if (!filterStack.has(DataComponents.CUSTOM_NAME) || !filterStack.is(SpectrumItemTags.TAG_FILTERING_ITEMS))
-						return filterStack.getItem() == variant.getItem();
-					
-					var name = StringUtils.trim(filterStack.getHoverName().getString());
-					
-					// This is to allow nbt filtering without item / tag filtering.
-					if (StringUtils.equalsAnyIgnoreCase(name, "*", "any", "all", "everything", "c:*", "c:any", "c:all", "c:everything"))
-						return true;
-					
-					var id = ResourceLocation.tryParse(StringUtils.remove(name, '#')); // let's be nice and remove any pound signs
-					if (id == null)
-						return false;
-					
-					var tag = SpectrumCommon.CACHED_ITEM_TAG_MAP.computeIfAbsent(id, tagId -> BuiltInRegistries.ITEM.getTagNames()
-							.filter(t -> t.location().equals(tagId))
-							.findFirst()
-							.orElse(null));
-					
-					if (tag == null)
-						return false;
-					
-					return variant.getItem().builtInRegistryHolder().is(tag);
-				});
 	}
 	
 	public long getCreationStamp() {
@@ -488,7 +494,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	@Nullable
 	@Override
 	public AbstractContainerMenu createMenu(int syncId, Inventory inv, Player player) {
-		return new FilteringScreenHandler(syncId, inv, new ExtendedData(this));
+		return new FilteringScreenHandler(syncId, inv, new FilterConfigurable.ExtendedDataWithPos(this.worldPosition, this));
 	}
 	
 	@Override
@@ -503,7 +509,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	
 	@Override
 	public void writeClientSideData(AbstractContainerMenu menu, RegistryFriendlyByteBuf buffer) {
-		ExtendedData.PACKET_CODEC.encode(buffer, new ExtendedData(this));
+		FilterConfigurable.ExtendedDataWithPos.PACKET_CODEC.encode(buffer, new FilterConfigurable.ExtendedDataWithPos(this));
 	}
 	
 	public boolean equals(Object obj) {
@@ -537,6 +543,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	public void connectToNearbyNodes(@Nullable Entity user) {
 		// remove from existing network, if it had one and join new networks
 		Pastel.getServerInstance().removeNode(this, NodeRemovalReason.DISCONNECT);
+		this.setNetworkUUID(null);
 		
 		// scan for all connectable nearby nodes
 		Map<Optional<ServerPastelNetwork>, List<PastelNodeBlockEntity>> connectableNodes = new Object2ObjectArrayMap<>();
@@ -575,7 +582,12 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 			
 			network = Pastel.getServerInstance().createNetwork((ServerLevel) level, this);
 			for (PastelNodeBlockEntity entry : connectableNodes.get(Optional.empty())) {
-				network.addEdge(this, entry);
+				try {
+					network.addEdge(this, entry); // Sometimes throws 'IllegalStateException("Attempted to add an edge to a foreign network")' (why? idk. better safe than sorry)
+				} catch (Exception e) {
+					SpectrumCommon.logWarning("PastelNodeBlockEntity can't connectToNearbyNodes: " + e.getMessage());
+					e.printStackTrace();
+				}
 			}
 		} else if (foundNetworkCount == 1) {
 			// there is exactly one other network

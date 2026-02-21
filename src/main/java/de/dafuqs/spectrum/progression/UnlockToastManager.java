@@ -16,25 +16,26 @@ import net.minecraft.world.item.crafting.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
+import java.util.function.*;
 
 
 public class UnlockToastManager {
 	// Advancement Identifier + Recipe Variant => Recipe
 	public static final Map<ResourceLocation, Map<RecipeType<?>, Set<GatedRecipe<?>>>> gatedRecipes = new HashMap<>();
 	
-	public static final Map<ResourceLocation, Tuple<ItemStack, String>> MESSAGE_TOASTS = new HashMap<>() {{
-		put(SpectrumAdvancements.UNLOCK_SHOOTING_STARS, new Tuple<>(Items.SPYGLASS.getDefaultInstance(), "shooting_stars_unlocked"));
-		put(SpectrumAdvancements.OVERENCHANTING, new Tuple<>(SpectrumBlocks.ENCHANTER.asItem().getDefaultInstance(), "overchanting_unlocked"));
-		put(SpectrumAdvancements.APPLY_CONFLICTING_ENCHANTMENTS, new Tuple<>(SpectrumBlocks.ENCHANTER.asItem().getDefaultInstance(), "enchant_conflicting_enchantments_unlocked"));
-		put(SpectrumAdvancements.UNLOCK_COMPLEX_REAGENTS, new Tuple<>(SpectrumBlocks.POTION_WORKSHOP.asItem().getDefaultInstance(), "complex_reagents_unlocked"));
-		put(SpectrumAdvancements.FOURTH_BREWING_SLOT, new Tuple<>(SpectrumBlocks.POTION_WORKSHOP.asItem().getDefaultInstance(), "fourth_potion_reagent_unlocked"));
-		put(SpectrumAdvancements.MIDGAME, new Tuple<>(SpectrumBlocks.PEDESTAL_ONYX.asItem().getDefaultInstance(), "second_advancement_tree_unlocked"));
-		put(SpectrumAdvancements.LATEGAME, new Tuple<>(SpectrumBlocks.PEDESTAL_MOONSTONE.asItem().getDefaultInstance(), "third_advancement_tree_unlocked"));
-		put(SpectrumAdvancements.ASCEND_KINDLING, new Tuple<>(SpectrumBlocks.PEDESTAL_MOONSTONE.asItem().getDefaultInstance(), "ascend_kindling"));
-		put(SpectrumAdvancements.VIVISECT_KINDLING, new Tuple<>(SpectrumItems.DIVINATION_HEART.get().getDefaultInstance(), "vivisect_kindling"));
-		put(SpectrumAdvancements.PAINTBRUSH_COLORING, new Tuple<>(SpectrumItems.PAINTBRUSH.get().getDefaultInstance(), "block_coloring_unlocked"));
-		put(SpectrumAdvancements.PAINTBRUSH_INK_SLINGING, new Tuple<>(SpectrumItems.PAINTBRUSH.get().getDefaultInstance(), "ink_slinging_unlocked"));
-		put(SpectrumAdvancements.PASTEL_NODE_COLORING, new Tuple<>(SpectrumBlocks.SENDER_NODE.asItem().getDefaultInstance(), "pastel_node_coloring"));
+	public static final Map<ResourceLocation, Tuple<Supplier<ItemStack>, String>> MESSAGE_TOASTS = new HashMap<>() {{
+		put(SpectrumAdvancements.UNLOCK_SHOOTING_STARS, new Tuple<>(() -> Items.SPYGLASS.getDefaultInstance(), "shooting_stars_unlocked"));
+		put(SpectrumAdvancements.OVERENCHANTING, new Tuple<>(() -> SpectrumBlocks.ENCHANTER.asItem().getDefaultInstance(), "overchanting_unlocked"));
+		put(SpectrumAdvancements.APPLY_CONFLICTING_ENCHANTMENTS, new Tuple<>(() -> SpectrumBlocks.ENCHANTER.asItem().getDefaultInstance(), "enchant_conflicting_enchantments_unlocked"));
+		put(SpectrumAdvancements.UNLOCK_COMPLEX_REAGENTS, new Tuple<>(() -> SpectrumBlocks.POTION_WORKSHOP.asItem().getDefaultInstance(), "complex_reagents_unlocked"));
+		put(SpectrumAdvancements.FOURTH_BREWING_SLOT, new Tuple<>(() -> SpectrumBlocks.POTION_WORKSHOP.asItem().getDefaultInstance(), "fourth_potion_reagent_unlocked"));
+		put(SpectrumAdvancements.MIDGAME, new Tuple<>(() -> SpectrumBlocks.PEDESTAL_ONYX.asItem().getDefaultInstance(), "second_advancement_tree_unlocked"));
+		put(SpectrumAdvancements.LATEGAME, new Tuple<>(() -> SpectrumBlocks.PEDESTAL_MOONSTONE.asItem().getDefaultInstance(), "third_advancement_tree_unlocked"));
+		put(SpectrumAdvancements.ASCEND_KINDLING, new Tuple<>(() -> SpectrumBlocks.PEDESTAL_MOONSTONE.asItem().getDefaultInstance(), "ascend_kindling"));
+		put(SpectrumAdvancements.VIVISECT_KINDLING, new Tuple<>(() -> SpectrumItems.DIVINATION_HEART.get().getDefaultInstance(), "vivisect_kindling"));
+		put(SpectrumAdvancements.PAINTBRUSH_COLORING, new Tuple<>(() -> SpectrumItems.PAINTBRUSH.get().getDefaultInstance(), "block_coloring_unlocked"));
+		put(SpectrumAdvancements.PAINTBRUSH_INK_SLINGING, new Tuple<>(() -> SpectrumItems.PAINTBRUSH.get().getDefaultInstance(), "ink_slinging_unlocked"));
+		put(SpectrumAdvancements.PASTEL_NODE_COLORING, new Tuple<>(() -> SpectrumBlocks.SENDER_NODE.asItem().getDefaultInstance(), "pastel_node_coloring"));
 	}};
 	
 	public static void clear() {
@@ -75,7 +76,7 @@ public class UnlockToastManager {
 		
 		int unlockedRecipeCount = 0;
 		HashMap<RecipeType<?>, List<GatedRecipe<?>>> unlockedRecipesByType = new HashMap<>();
-		List<Tuple<ItemStack, String>> specialToasts = new ArrayList<>();
+		List<Tuple<Supplier<ItemStack>, String>> specialToasts = new ArrayList<>();
 		
 		for (ResourceLocation doneAdvancement : doneAdvancements) {
 			if (gatedRecipes.containsKey(doneAdvancement)) {
@@ -145,8 +146,8 @@ public class UnlockToastManager {
 			}
 		}
 		
-		for (Tuple<ItemStack, String> messageToast : specialToasts) {
-			MessageToast.showMessageToast(Minecraft.getInstance(), messageToast.getA(), messageToast.getB());
+		for (Tuple<Supplier<ItemStack>, String> messageToast : specialToasts) {
+			MessageToast.showMessageToast(Minecraft.getInstance(), messageToast.getA().get(), messageToast.getB());
 		}
 	}
 	

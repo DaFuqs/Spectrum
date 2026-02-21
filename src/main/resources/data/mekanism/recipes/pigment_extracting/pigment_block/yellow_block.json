@@ -1,0 +1,20 @@
+{
+  "type": "mekanism:pigment_extracting",
+  "input": {
+    "ingredient": {
+      "item": "spectrum:yellow_block"
+    }
+  },
+  "output": {
+    "amount": 6912,
+    "pigment": "mekanism:yellow"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "mekanism"
+      ]
+    }
+  ]
+}

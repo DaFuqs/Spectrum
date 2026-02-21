@@ -67,16 +67,36 @@
       },
       "title": "book.spectrum.guidebook.mod_integration.ae2.pure_resources.title",
       "items": [
-        "spectrum:small_certus_quartz_bud",
-        "spectrum:large_certus_quartz_bud",
-        "spectrum:certus_quartz_cluster",
-        "spectrum:pure_certus_quartz_block",
-        "spectrum:pure_certus_quartz",
-        "spectrum:small_fluix_bud",
-        "spectrum:large_fluix_bud",
-        "spectrum:fluix_cluster",
-        "spectrum:pure_fluix_block",
-        "spectrum:pure_fluix"
+        {
+          "id": "spectrum:small_certus_quartz_bud"
+        },
+        {
+          "id": "spectrum:large_certus_quartz_bud"
+        },
+        {
+          "id": "spectrum:certus_quartz_cluster"
+        },
+        {
+          "id": "spectrum:pure_certus_quartz_block"
+        },
+        {
+          "id": "spectrum:pure_certus_quartz"
+        },
+        {
+          "id": "spectrum:small_fluix_bud"
+        },
+        {
+          "id": "spectrum:large_fluix_bud"
+        },
+        {
+          "id": "spectrum:fluix_cluster"
+        },
+        {
+          "id": "spectrum:pure_fluix_block"
+        },
+        {
+          "id": "spectrum:pure_fluix"
+        }
       ],
       "text": "book.spectrum.guidebook.mod_integration.ae2.pure_resources.text"
     },

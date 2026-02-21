@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.present;
 
 import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
@@ -9,15 +10,12 @@ import net.minecraft.server.level.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
-import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 
 import java.util.*;
 
-public class PresentBlockEntity extends BlockEntity implements PlayerOwnedWithName {
+public class PresentBlockEntity extends PlacedItemBlockEntity implements PlayerOwnedWithName {
 	
-	protected ItemStack presentStack = ItemStack.EMPTY;
-	private UUID openerUUID;
 	protected int openingTicks = 0;
 	
 	public PresentBlockEntity(BlockPos pos, BlockState state) {
@@ -45,24 +43,14 @@ public class PresentBlockEntity extends BlockEntity implements PlayerOwnedWithNa
 	@Override
 	public void loadAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
 		super.loadAdditional(nbt, registryLookup);
-		this.presentStack = ItemStack.parseOptional(registryLookup, nbt.getCompound("Present"));
-		if (nbt.contains("OpenerUUID")) {
-			this.openerUUID = nbt.getUUID("OpenerUUID");
-		} else {
-			this.openerUUID = null;
-		}
 		if (nbt.contains("OpeningTick", Tag.TAG_ANY_NUMERIC)) {
 			this.openingTicks = nbt.getInt("OpeningTick");
 		}
 	}
 	
 	@Override
-	protected void saveAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
+	public void saveAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
 		super.saveAdditional(nbt, registryLookup);
-		nbt.put("Present", this.presentStack.saveOptional(registryLookup));
-		if (this.openerUUID != null) {
-			nbt.putUUID("OpenerUUID", this.openerUUID);
-		}
 		if (this.openingTicks > 0) {
 			nbt.putInt("OpeningTick", this.openingTicks);
 		}
@@ -76,52 +64,52 @@ public class PresentBlockEntity extends BlockEntity implements PlayerOwnedWithNa
 	
 	@Override
 	public UUID getOwnerUUID() {
-		return PresentBlockItem.getOwner(this.presentStack).flatMap(ResolvableProfile::id).orElse(null);
+		return PresentBlockItem.getOwner(this.stack).flatMap(ResolvableProfile::id).orElse(null);
 	}
 	
 	public ResolvableProfile getOwner() {
-		return PresentBlockItem.getOwner(this.presentStack).orElse(null);
+		return PresentBlockItem.getOwner(this.stack).orElse(null);
 	}
 	
 	@Override
 	public String getOwnerName() {
-		return PresentBlockItem.getOwner(this.presentStack).flatMap(ResolvableProfile::name).orElse("???");
+		return PresentBlockItem.getOwner(this.stack).flatMap(ResolvableProfile::name).orElse("???");
 	}
 	
 	@Override
 	public void setOwner(Player playerEntity) {
-		PresentBlockItem.setOwner(this.presentStack, playerEntity);
+		PresentBlockItem.setOwner(this.stack, playerEntity);
 		setChanged();
 	}
 	
 	public void setOpenerUUID(Player opener) {
-		this.openerUUID = opener.getUUID();
+		this.ownerUUID = opener.getUUID();
 		setChanged();
 	}
 	
 	public UUID getOpenerUUID() {
-		return this.openerUUID;
+		return this.ownerUUID;
 	}
 	
 	public ItemStack retrievePresent() {
-		return this.presentStack.copy();
+		return this.stack.copy();
 	}
 	
 	public Map<Integer, Integer> getColors() {
-		return PresentBlockItem.getWrapData(this.presentStack).colors();
+		return PresentBlockItem.getWrapData(this.stack).colors();
 	}
 	
 	public List<ItemStack> getStacks() {
-		return PresentBlockItem.getBundledStacks(this.presentStack).toList();
+		return PresentBlockItem.getBundledStacks(this.stack).toList();
 	}
 	
 	public void setPresent(ItemStack present) {
-		this.presentStack = present;
+		this.stack = present.copy();
 		setChanged();
 	}
 	
 	public boolean isEmpty() {
-		return PresentBlockItem.isEmpty(this.presentStack);
+		return PresentBlockItem.isEmpty(this.stack);
 	}
 	
 }

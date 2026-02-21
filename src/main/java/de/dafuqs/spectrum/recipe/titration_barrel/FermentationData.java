@@ -13,11 +13,9 @@ public record FermentationData(
 		List<FermentationStatusEffectEntry> statusEffectEntries
 ) {
 	
-	public static final FermentationData DEFAULT = new FermentationData(1f, 0.1f, List.of());
-	
 	public static final Codec<FermentationData> CODEC = RecordCodecBuilder.create(i -> i.group(
 			Codec.FLOAT.optionalFieldOf("fermentation_speed_mod", 1f).forGetter(FermentationData::fermentationSpeedMod),
-			Codec.FLOAT.optionalFieldOf("angels_share_percent_per_mc_day", 0.1f).forGetter(FermentationData::angelsSharePercentPerMcDay),
+			Codec.FLOAT.optionalFieldOf("angels_share_percent_per_mc_day", 0.02f).forGetter(FermentationData::angelsSharePercentPerMcDay),
 			FermentationStatusEffectEntry.CODEC.listOf().optionalFieldOf("effects", List.of()).forGetter(FermentationData::statusEffectEntries)
 	).apply(i, FermentationData::new));
 	

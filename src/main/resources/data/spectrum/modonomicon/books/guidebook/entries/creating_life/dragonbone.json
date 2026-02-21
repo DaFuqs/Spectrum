@@ -63,20 +63,48 @@
       "type": "spectrum:collection",
       "title": "book.spectrum.guidebook.all_variants",
       "items": [
-        "spectrum:polished_bone_ash",
-        "spectrum:polished_bone_ash_slab",
-        "spectrum:polished_bone_ash_stairs",
-        "spectrum:polished_bone_ash_wall",
-        "spectrum:bone_ash_bricks",
-        "spectrum:bone_ash_brick_slab",
-        "spectrum:bone_ash_brick_stairs",
-        "spectrum:bone_ash_brick_wall",
-        "spectrum:bone_ash_tiles",
-        "spectrum:bone_ash_tile_slab",
-        "spectrum:bone_ash_tile_stairs",
-        "spectrum:bone_ash_tile_wall",
-        "spectrum:polished_bone_ash_pillar",
-        "spectrum:bone_ash_shingles"
+        {
+          "id": "spectrum:polished_bone_ash"
+        },
+        {
+          "id": "spectrum:polished_bone_ash_slab"
+        },
+        {
+          "id": "spectrum:polished_bone_ash_stairs"
+        },
+        {
+          "id": "spectrum:polished_bone_ash_wall"
+        },
+        {
+          "id": "spectrum:bone_ash_bricks"
+        },
+        {
+          "id": "spectrum:bone_ash_brick_slab"
+        },
+        {
+          "id": "spectrum:bone_ash_brick_stairs"
+        },
+        {
+          "id": "spectrum:bone_ash_brick_wall"
+        },
+        {
+          "id": "spectrum:bone_ash_tiles"
+        },
+        {
+          "id": "spectrum:bone_ash_tile_slab"
+        },
+        {
+          "id": "spectrum:bone_ash_tile_stairs"
+        },
+        {
+          "id": "spectrum:bone_ash_tile_wall"
+        },
+        {
+          "id": "spectrum:polished_bone_ash_pillar"
+        },
+        {
+          "id": "spectrum:bone_ash_shingles"
+        }
       ]
     },
     {

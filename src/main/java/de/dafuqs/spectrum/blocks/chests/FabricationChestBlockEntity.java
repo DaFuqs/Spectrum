@@ -135,11 +135,14 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
 			
 			if (!tablet.is(SpectrumItems.CRAFTING_TABLET))
 				continue;
-			
-			var recipe = CraftingTabletItem.getStoredRecipe(level, tablet).value();
-			
-			
-			if (!isRecipeValid(recipe))
+
+			RecipeHolder<?> recipeHolder = CraftingTabletItem.getStoredRecipe(level, tablet);
+			if (recipeHolder == null)
+				continue;
+
+			Recipe<?> recipe = recipeHolder.value();
+
+			if (recipe == null || !isRecipeValid(recipe))
 				continue;
 			
 			var output = recipe.getResultItem(level.registryAccess());
@@ -165,8 +168,13 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
 			if (!tablet.is(SpectrumItems.CRAFTING_TABLET))
 				continue;
 			
-			Recipe<?> recipe = CraftingTabletItem.getStoredRecipe(level, tablet).value();
-			if (isRecipeValid(recipe) && isRecipeCraftable(recipe) && canSlotFitCraftingOutput(inventory.get(RESULT_SLOTS[i]), recipe))
+			RecipeHolder<?> recipeHolder = CraftingTabletItem.getStoredRecipe(level, tablet);
+			if (recipeHolder == null)
+				continue;
+
+			Recipe<?> recipe = recipeHolder.value();
+
+			if (recipe != null && isRecipeValid(recipe) && isRecipeCraftable(recipe) && canSlotFitCraftingOutput(inventory.get(RESULT_SLOTS[i]), recipe))
 				return true;
 		}
 		return false;
@@ -333,33 +341,10 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
 	}
 	
 	@Override
-	protected void onInvOpenOrClose(Level world, BlockPos pos, BlockState state, int oldViewerCount, int newViewerCount) {
-		super.onInvOpenOrClose(world, pos, state, oldViewerCount, newViewerCount);
-		updateFullState(true);
-	}
-	
-	@Override
-	public void setItem(int slot, ItemStack stack) {
-		super.setItem(slot, stack);
+	public void setChanged() {
 		updateFullState(false);
 	}
-	
-	@Override
-	public ItemStack removeItem(int slot, int amount) {
-		var stack = super.removeItem(slot, amount);
-		if (!stack.isEmpty())
-			updateFullState(false);
-		return stack;
-	}
-	
-	@Override
-	public ItemStack removeItemNoUpdate(int slot) {
-		var stack = super.removeItemNoUpdate(slot);
-		if (!stack.isEmpty())
-			updateFullState(false);
-		return stack;
-	}
-	
+
 	public void updateState(boolean full, boolean hasValidRecipes, List<ItemStack> cachedOutputs) {
 		this.isFull = full;
 		this.hasValidRecipes = hasValidRecipes;

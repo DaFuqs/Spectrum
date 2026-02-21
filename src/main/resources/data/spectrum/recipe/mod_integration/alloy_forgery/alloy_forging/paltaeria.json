@@ -1,0 +1,30 @@
+{
+  "type": "alloy_forgery:forging",
+  "inputs": [
+    {
+      "item": "spectrum:paltaeria_ore"
+    }
+  ],
+  "output": {
+    "item": "spectrum:paltaeria_fragments",
+    "count": 3
+  },
+  "overrides": {
+    "3": {
+      "item": "spectrum:paltaeria_fragments",
+      "count": 4
+    },
+    "4+": {
+      "item": "spectrum:paltaeria_fragments",
+      "count": 5
+    }
+  },
+  "min_forge_tier": 1,
+  "fuel_per_tick": 5,
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "alloy_forgery"
+    }
+  ]
+}

@@ -45,10 +45,18 @@
       "type": "spectrum:collection",
       "title": "category.neepmeat.grinding",
       "items": [
-        "minecraft:amethyst_shard",
-        "spectrum:quitoxic_reeds",
-        "spectrum:frostbite_crystal",
-        "spectrum:blazing_crystal"
+        {
+          "id": "minecraft:amethyst_shard"
+        },
+        {
+          "id": "spectrum:quitoxic_reeds"
+        },
+        {
+          "id": "spectrum:frostbite_crystal"
+        },
+        {
+          "id": "spectrum:blazing_crystal"
+        }
       ],
       "text": "book.spectrum.guidebook.mod_integration.neepmeat.grinding.text"
     },
@@ -72,11 +80,21 @@
         "advancement_id": "spectrum:midgame/collect_mob_head_using_treasure_hunter"
       },
       "items": [
-        "spectrum:guardian_head",
-        "spectrum:elder_guardian_head",
-        "minecraft:air",
-        "spectrum:silverfish_head",
-        "spectrum:endermite_head"
+        {
+          "id": "spectrum:guardian_head"
+        },
+        {
+          "id": "spectrum:elder_guardian_head"
+        },
+        {
+          "id": "minecraft:air"
+        },
+        {
+          "id": "spectrum:silverfish_head"
+        },
+        {
+          "id": "spectrum:endermite_head"
+        }
       ],
       "text": "book.spectrum.guidebook.mod_integration.neepmeat.enlightening.text"
     },
@@ -114,8 +132,12 @@
         "advancement_id": "spectrum:pluck_resplendent_feather"
       },
       "items": [
-        "spectrum:kindling_head",
-        "neepmeat:sacrificial_dagger"
+        {
+          "id": "spectrum:kindling_head"
+        },
+        {
+          "id": "neepmeat:sacrificial_dagger"
+        }
       ],
       "text": "book.spectrum.guidebook.mod_integration.neepmeat.kindling_vivisection.text"
     },

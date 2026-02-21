@@ -1,0 +1,21 @@
+{
+  "type": "spectrum:ink_converting",
+  "group": "colorful_azaleas_ink",
+  "ingredient": [
+    {
+      "item": "colorfulazaleas:light_gray_drooping_azalea_leaves"
+    }
+  ],
+  "ink_color": "spectrum:light_gray",
+  "amount": 10,
+
+  "required_advancement": "spectrum:midgame/spectrum_midgame",
+  "fabric:load_conditions": [
+   {
+     "condition": "fabric:all_mods_loaded",
+     "values": [
+  	   "colorfulazaleas"
+     ]
+   }
+  ]
+}

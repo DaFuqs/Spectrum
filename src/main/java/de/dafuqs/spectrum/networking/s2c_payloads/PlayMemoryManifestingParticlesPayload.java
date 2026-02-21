@@ -29,14 +29,11 @@ public record PlayMemoryManifestingParticlesPayload(BlockPos pos, int eggColor1,
 			PlayMemoryManifestingParticlesPayload::new
 	);
 	
-	public static void playMemoryManifestingParticles(
-			ServerLevel serverWorld, @NotNull BlockPos pos, EntityType<?> entityType, int amount) {
+	public static void playMemoryManifestingParticles(ServerLevel serverWorld, @NotNull BlockPos pos, EntityType<?> entityType, int amount) {
 		Tuple<Integer, Integer> eggColors = MemoryBlockEntity.getEggColorsForEntity(entityType);
 		PacketDistributor.sendToPlayersTrackingChunk(
-				serverWorld, new ChunkPos(pos), new PlayMemoryManifestingParticlesPayload(
-						pos, eggColors.getA(),
-						eggColors.getB(), amount
-				)
+				serverWorld, new ChunkPos(pos),
+				new PlayMemoryManifestingParticlesPayload(pos, eggColors.getA(), eggColors.getB(), amount)
 		);
 	}
 	
@@ -46,23 +43,21 @@ public record PlayMemoryManifestingParticlesPayload(BlockPos pos, int eggColor1,
 		RandomSource random = level.random;
 		
 		Vector3f colorVec1 = SpectrumColorHelper.colorIntToVec(payload.eggColor1);
-		Vector3f colorVec2 = SpectrumColorHelper.colorIntToVec(payload.eggColor1);
+		Vector3f colorVec2 = SpectrumColorHelper.colorIntToVec(payload.eggColor2);
 		
 		BlockPos pos = payload.pos;
 		for (int i = 0; i < payload.amount; i++) {
-			int randomLifetime = 30 + random.nextInt(20);
-			
 			// color1
 			level.addParticle(
-					new DynamicParticleEffect(ColoredCraftingParticleEffect.WHITE.getType(), 0.5F, colorVec1, 1.0F, randomLifetime, false, true),
-					pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ(),
+					new DynamicParticleEffect(ColoredCraftingParticleEffect.WHITE.getType(), 0.5F, colorVec1, 1.0F, 30 + random.nextInt(20), false, true),
+					pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
 					0.15 - random.nextFloat() * 0.3, random.nextFloat() * 0.15 + 0.1, 0.15 - random.nextFloat() * 0.3
 			);
 			
 			// color2
 			level.addParticle(
-					new DynamicParticleEffect(ColoredCraftingParticleEffect.WHITE.getType(), 0.5F, colorVec2, 1.0F, randomLifetime, false, true),
-					pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5,
+					new DynamicParticleEffect(ColoredCraftingParticleEffect.WHITE.getType(), 0.5F, colorVec2, 1.0F, 30 + random.nextInt(20), false, true),
+					pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
 					0.15 - random.nextFloat() * 0.3, random.nextFloat() * 0.15 + 0.1, 0.15 - random.nextFloat() * 0.3
 			);
 		}

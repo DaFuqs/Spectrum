@@ -93,8 +93,13 @@ public class PastelTransmission implements SchedulerMap.Callback {
 				destinationNode.addItemCountUnderway(-count);
 			}
 		}
-		if (inserted != count) {
-			InWorldInteractionHelper.scatter(world, destinationPos.getX() + 0.5, destinationPos.getY() + 0.5, destinationPos.getZ() + 0.5, stack, count - inserted);
+		it amount = stack.getCount();
+		if (inserted != amount) {
+			long diff = amount - inserted;
+			InWorldInteractionHelper.scatter(world, destinationPos.getX() + 0.5, destinationPos.getY() + 0.5, destinationPos.getZ() + 0.5, variant, diff);
+			if (destinationNode != null) {
+				destinationNode.addItemCountUnderway(-diff);
+			}
 		}
 	}
 	

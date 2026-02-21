@@ -2,9 +2,11 @@ package de.dafuqs.spectrum.recipe;
 
 import de.dafuqs.spectrum.api.recipe.*;
 import it.unimi.dsi.fastutil.objects.*;
+import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -15,6 +17,16 @@ public abstract class GatedStackSpectrumRecipe<C extends RecipeInput> extends Ga
 	}
 	
 	public abstract List<IngredientStack> getIngredientStacks();
+	
+	@Override
+	public @NotNull NonNullList<Ingredient> getIngredients() {
+		List<IngredientStack> ingredientStacks = getIngredientStacks();
+		NonNullList<Ingredient> ingredients = NonNullList.createWithCapacity(ingredientStacks.size());
+		for (IngredientStack stack : ingredientStacks) {
+			ingredients.add(stack.getIngredient());
+		}
+		return ingredients;
+	}
 	
 	protected boolean matchIngredientStacksExclusively(RecipeInput recipeInput, List<IngredientStack> ingredientStacks) {
 		// does the recipe fit into that inventory in the first place?

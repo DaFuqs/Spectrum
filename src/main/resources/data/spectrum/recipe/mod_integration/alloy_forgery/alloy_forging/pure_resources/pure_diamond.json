@@ -7,12 +7,12 @@
     }
   ],
   "output": {
-    "id": "minecraft:diamond",
+    "item": "minecraft:diamond",
     "count": 4
   },
   "overrides": {
     "4+": {
-      "id": "minecraft:diamond",
+      "item": "minecraft:diamond",
       "count": 5
     }
   },

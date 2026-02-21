@@ -118,6 +118,10 @@ public class PrimordialFireBurningRecipe extends GatedSpectrumRecipe<RecipeInput
 	}
 	
 	public static boolean processItemEntity(Level world, ItemEntity itemEntity) {
+		if ((itemEntity instanceof FireproofItemEntity)) {
+			return false;
+		}
+		
 		Vec3 pos = itemEntity.position();
 		
 		ItemStack inputStack = itemEntity.getItem();

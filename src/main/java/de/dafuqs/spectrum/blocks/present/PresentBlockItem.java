@@ -2,13 +2,11 @@ package de.dafuqs.spectrum.blocks.present;
 
 import com.mojang.authlib.*;
 import de.dafuqs.spectrum.components.*;
-import de.dafuqs.spectrum.items.bundles.*;
-import de.dafuqs.spectrum.items.tooltip.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
-import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.sounds.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
@@ -20,16 +18,15 @@ import net.minecraft.world.item.context.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.stream.*;
 
-public class PresentBlockItem extends PlaceableBundleBlockItem {
-	
-	public static final int MAX_STORAGE_STACKS = 5;
+public class PresentBlockItem extends BlockItem {
 	
 	public PresentBlockItem(Block block, Properties settings) {
-		super(new ExtendedBundleComponent(MAX_STORAGE_STACKS), block, settings);
+		super(block, settings);
 	}
 	
 	@Override
@@ -51,20 +48,94 @@ public class PresentBlockItem extends PlaceableBundleBlockItem {
 	}
 	
 	public static boolean isWrapped(ItemStack itemStack) {
-		return getWrapData(itemStack).wrapped();
+		return getWrapData(itemStack) != null;
 	}
 	
-	public static WrappedPresentComponent getWrapData(ItemStack itemStack) {
-		return itemStack.getOrDefault(SpectrumDataComponentTypes.WRAPPED_PRESENT, WrappedPresentComponent.DEFAULT);
+	public static @Nullable WrappedPresentComponent getWrapData(ItemStack itemStack) {
+		return itemStack.get(SpectrumDataComponentTypes.WRAPPED_PRESENT);
 	}
 	
 	public static void wrap(ItemStack itemStack, PresentBlock.WrappingPaper wrappingPaper, Map<Integer, Integer> colors) {
-		itemStack.set(SpectrumDataComponentTypes.WRAPPED_PRESENT, new WrappedPresentComponent(true, wrappingPaper, colors));
+		itemStack.set(SpectrumDataComponentTypes.WRAPPED_PRESENT, new WrappedPresentComponent(wrappingPaper, colors));
 	}
 	
 	@Override
-	public boolean overrideOtherStackedOnMe(ItemStack stack, ItemStack otherStack, Slot slot, ClickAction clickType, Player player, SlotAccess cursorStackReference) {
-		return !isCraftingInventory(slot) && super.overrideOtherStackedOnMe(stack, otherStack, slot, clickType, player, cursorStackReference);
+	public boolean overrideStackedOnOther(ItemStack stack, Slot slot, ClickAction action, Player player) {
+		if (isWrapped(stack)) {
+			return false;
+		}
+		
+		if (action != ClickAction.SECONDARY) {
+			return false;
+		}
+		
+		BundleContents bundleContents = stack.get(DataComponents.BUNDLE_CONTENTS);
+		if (bundleContents == null) {
+			return false;
+		}
+		
+		ItemStack itemStack = slot.getItem();
+		BundleContents.Mutable mutable = new BundleContents.Mutable(bundleContents);
+		if (itemStack.isEmpty()) {
+			this.playRemoveOneSound(player);
+			ItemStack itemStack2 = mutable.removeOne();
+			if (itemStack2 != null) {
+				ItemStack itemStack3 = slot.safeInsert(itemStack2);
+				mutable.tryInsert(itemStack3);
+			}
+		} else if (itemStack.getItem().canFitInsideContainerItems()) {
+			int i = mutable.tryTransfer(slot, player);
+			if (i > 0) {
+				this.playInsertSound(player);
+			}
+		}
+		
+		stack.set(DataComponents.BUNDLE_CONTENTS, mutable.toImmutable());
+		return true;
+	}
+	
+	@Override
+	public boolean overrideOtherStackedOnMe(ItemStack stack, ItemStack other, Slot slot, ClickAction action, Player player, SlotAccess access) {
+		if (isWrapped(stack)) {
+			return false;
+		}
+		if (isCraftingInventory(slot)) {
+			return false;
+		}
+		
+		if (action == ClickAction.SECONDARY && slot.allowModification(player)) {
+			BundleContents bundleContents = stack.get(DataComponents.BUNDLE_CONTENTS);
+			if (bundleContents == null) {
+				return false;
+			}
+			
+			BundleContents.Mutable mutable = new BundleContents.Mutable(bundleContents);
+			if (other.isEmpty()) {
+				ItemStack itemStack = mutable.removeOne();
+				if (itemStack != null) {
+					this.playRemoveOneSound(player);
+					access.set(itemStack);
+				}
+			} else {
+				int i = mutable.tryInsert(other);
+				if (i > 0) {
+					this.playInsertSound(player);
+				}
+			}
+			
+			stack.set(DataComponents.BUNDLE_CONTENTS, mutable.toImmutable());
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	private void playRemoveOneSound(Entity entity) {
+		entity.playSound(SoundEvents.BUNDLE_REMOVE_ONE, 0.8F, 0.8F + entity.level().getRandom().nextFloat() * 0.4F);
+	}
+	
+	private void playInsertSound(Entity entity) {
+		entity.playSound(SoundEvents.BUNDLE_INSERT, 0.8F, 0.8F + entity.level().getRandom().nextFloat() * 0.4F);
 	}
 	
 	@Override
@@ -84,11 +155,9 @@ public class PresentBlockItem extends PlaceableBundleBlockItem {
 	}
 	
 	@Override
-	public void onCraftedBy(ItemStack stack, Level world, Player player) {
+	public void onCraftedBy(@NotNull ItemStack stack, @NotNull Level world, @NotNull Player player) {
 		super.onCraftedBy(stack, world, player);
-		if (player != null) {
-			setOwner(stack, player);
-		}
+		setOwner(stack, player);
 	}
 	
 	@Override
@@ -100,17 +169,8 @@ public class PresentBlockItem extends PlaceableBundleBlockItem {
 		return stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).itemCopyStream();
 	}
 	
-	@Override
-	public Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
-		if (isWrapped(stack)) {
-			return Optional.empty();
-		}
-		
-		var list = NonNullList.withSize(MAX_STORAGE_STACKS, ItemStack.EMPTY);
-		var stacks = getBundledStacks(stack).toList();
-		for (int i = 0; i < stacks.size(); i++)
-			list.set(i, stacks.get(i));
-		return Optional.of(new PresentTooltipData(list));
+	public @NotNull Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
+		return !stack.has(DataComponents.HIDE_TOOLTIP) && !stack.has(DataComponents.HIDE_ADDITIONAL_TOOLTIP) && !isWrapped(stack) ? Optional.ofNullable(stack.get(DataComponents.BUNDLE_CONTENTS)).map(BundleTooltip::new) : Optional.empty();
 	}
 	
 	@Override
@@ -129,7 +189,7 @@ public class PresentBlockItem extends PlaceableBundleBlockItem {
 		} else {
 			tooltip.add((Component.translatable("block.spectrum.present.tooltip.description").withStyle(ChatFormatting.GRAY)));
 			tooltip.add((Component.translatable("block.spectrum.present.tooltip.description2").withStyle(ChatFormatting.GRAY)));
-			tooltip.add((Component.translatable("item.minecraft.bundle.fullness", getBundledStacks(stack).count(), MAX_STORAGE_STACKS)).withStyle(ChatFormatting.GRAY));
+			tooltip.add((Component.translatable("item.minecraft.bundle.fullness", getBundledStacks(stack).count(), 64)).withStyle(ChatFormatting.GRAY));
 		}
 	}
 	

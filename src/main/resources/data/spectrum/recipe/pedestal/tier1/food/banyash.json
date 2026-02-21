@@ -21,7 +21,12 @@
     "E": "#c:mushrooms",
     "M": {
       "item": "spectrum:infused_beverage",
-      "recipeViewNbt": "{Variant: \"rum\", Color: 10505507 }",
+      "preview_components": {
+        "spectrum:infused_beverage": {
+          "variant": "rum",
+          "color": 10505507
+        }
+      },
       "predicates": {
         "spectrum:infused_beverage": [
           {

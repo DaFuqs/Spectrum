@@ -19,7 +19,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.neoforged.fml.event.lifecycle.*;
 
-// Vanilla models see: ModelPredicateProviderRegistry
 public class SpectrumModelPredicateProviders {
 	
 	public static void registerClient(FMLClientSetupEvent event) {
@@ -34,20 +33,11 @@ public class SpectrumModelPredicateProviders {
 		registerAnimatedWandPredicates(SpectrumItems.STAFF_OF_REMEMBRANCE.get());
 		registerKnowledgeDropPredicates(SpectrumItems.KNOWLEDGE_GEM.get());
 		registerAshenCircletPredicates(SpectrumItems.ASHEN_CIRCLET.get());
-		registerNullableInkColorPredicate(SpectrumItems.INK_FLASK.get());
 		registerInkFillStateItemPredicate(SpectrumItems.INK_FLASK.get());
 		registerMoonPhasePredicates(SpectrumItems.CRESCENT_CLOCK.get());
 		registerActivatableItemPredicate(SpectrumItems.DREAMFLAYER.get());
-		registerOversizedItemPredicate(SpectrumItems.DREAMFLAYER.get());
-		registerOversizedItemPredicate(SpectrumItems.KNOTTED_SWORD.get());
-		registerOversizedItemPredicate(SpectrumItems.NECTAR_LANCE.get());
-		registerOversizedItemPredicate(SpectrumItems.BEDROCK_SWORD.get());
-		registerOversizedItemPredicate(SpectrumItems.BEDROCK_AXE.get());
+		registerNullableInkColorPredicate(SpectrumItems.PAINTBRUSH.get());
 		
-		registerOversizedItemPredicate(SpectrumItems.PAINTBRUSH.get());
-		
-		registerOversizedItemPredicate(SpectrumItems.DRACONIC_TWINSWORD.get());
-		registerOversizedItemPredicate(SpectrumItems.DRAGON_TALON.get());
 		registerSlotReservingItem(SpectrumItems.DRAGON_TALON.get());
 		registerSlotReservingItem(SpectrumItems.DRACONIC_TWINSWORD.get());
 		
@@ -60,7 +50,11 @@ public class SpectrumModelPredicateProviders {
 		registerOversizedItemPredicate(SpectrumItems.GLASS_CREST_CROSSBOW.get());
 		registerOversizedItemPredicate(SpectrumItems.FEROCIOUS_GLASS_CREST_BIDENT.get());
 		registerOversizedItemPredicate(SpectrumItems.FRACTAL_GLASS_CREST_BIDENT.get());
-		registerOversizedItemPredicate(SpectrumItems.OMNI_ACCELERATOR.get());
+		registerOversizedItemPredicate(SpectrumItems.DREAMFLAYER.get());
+		registerOversizedItemPredicate(SpectrumItems.KNOTTED_SWORD.get());
+		registerOversizedItemPredicate(SpectrumItems.NECTAR_LANCE.get());
+		registerOversizedItemPredicate(SpectrumItems.DRACONIC_TWINSWORD.get());
+		registerOversizedItemPredicate(SpectrumItems.DRAGON_TALON.get());
 		
 		registerBidentThrowingItemPredicate(SpectrumItems.MALACHITE_BIDENT.get());
 		registerBidentThrowingItemPredicate(SpectrumItems.FEROCIOUS_GLASS_CREST_BIDENT.get());
@@ -79,9 +73,9 @@ public class SpectrumModelPredicateProviders {
 	}
 	
 	private static void registerNullableInkColorPredicate(Item item) {
-		ItemProperties.register(item, ResourceLocation.parse("color"), (stack, clientWorld, entity, i) -> {
+		ItemProperties.register(item, ResourceLocation.parse("has_ink_color"), (stack, clientWorld, entity, i) -> {
 			var color = stack.get(SpectrumDataComponentTypes.INK_COLOR);
-			return color == null ? -1 : color.getColorInt();
+			return color == null ? 0.0F : 1.0F;
 		});
 	}
 	
@@ -140,9 +134,8 @@ public class SpectrumModelPredicateProviders {
 	 * 1.0: as projectile
 	 */
 	private static void registerBidentThrowingItemPredicate(Item item) {
-		ItemProperties.register(item, ResourceLocation.parse("bident_throwing"), (stack, world, entity, i) -> {
-			return entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 0.5F : 0.0F;
-		});
+		ItemProperties.register(item, ResourceLocation.parse("bident_throwing"), (stack, world, entity, i) ->
+				entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 0.5F : 0.0F);
 	}
 	
 	private static void registerPresentPredicates(Item item) {
@@ -161,7 +154,7 @@ public class SpectrumModelPredicateProviders {
 	private static void registerMoonPhasePredicates(Item item) {
 		ItemProperties.register(item, ResourceLocation.parse("phase"), (stack, world, entity, i) -> {
 			Entity holder = entity != null ? entity : stack.getEntityRepresentation();
-			if (entity == null) {
+			if (holder == null) {
 				return 0.0F;
 			} else {
 				if (world == null && holder.level() instanceof ClientLevel clientWorld) {

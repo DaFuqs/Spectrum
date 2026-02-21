@@ -15,7 +15,6 @@ import static net.minecraft.data.models.model.TextureSlot.*;
 public class SpectrumTexturedModels {
 	
 	public static final TexturedModel.Provider BASE_TRANS_LIGHT_CORE = TexturedModel.createDefault(b -> new TextureMapping().put(CASE, getBlockTexture(b)).put(BASE, getBlockTexture(b, "_base")).put(GLASS, getBlockTexture(b, "_glass")).put(SHELL, getBlockTexture(b, "_shell")).put(FILAMENT, getBlockTexture(b, "_filament")).put(ENDS, getBlockTexture(b, "_ends")), SpectrumModels.BASE_TRANS_LIGHT_CORE);
-	public static final TexturedModel.Provider BOWL = TexturedModel.createDefault(b -> new TextureMapping().put(SIDE, getBlockTexture(b, "_side")).put(TOP, getBlockTexture(b, "_top")).put(BOTTOM, getBlockTexture(b, "_bottom")).put(INNER, getBlockTexture(b, "_inner")), SpectrumModels.BOWL);
 	public static final TexturedModel.Provider CHIME = TexturedModel.createDefault(b -> new TextureMapping().put(BASE, SpectrumTextures.BALCITE_CHIME_BASE).put(GEMSTONE, getBlockTexture(b)), SpectrumModels.CHIME);
 	public static final TexturedModel.Provider CUBE_COLUMN_MIRRORED = TexturedModel.createDefault(TextureMapping::logColumn, ModelTemplates.CUBE_COLUMN_MIRRORED);
 	public static final TexturedModel.Provider CUSHION = TexturedModel.createDefault(b -> SpectrumTextureMaps.sideTopBottom(b, "_side", b, "_top", b, "_bottom"), SpectrumModels.CUSHION);

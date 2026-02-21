@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.item_roundel;
 
 import com.mojang.serialization.*;
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.blocks.*;
 import net.minecraft.core.*;
 import net.minecraft.world.*;
@@ -13,7 +14,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
 
-public class ItemRoundelBlock extends InWorldInteractionBlock {
+public class ItemRoundelBlock extends InWorldInteractionBlock implements PaintbrushTriggered {
 	
 	public static final MapCodec<ItemRoundelBlock> CODEC = simpleCodec(ItemRoundelBlock::new);
 	
@@ -40,6 +41,11 @@ public class ItemRoundelBlock extends InWorldInteractionBlock {
 	
 	@Override
 	public ItemInteractionResult useItemOn(ItemStack handStack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+		ItemInteractionResult actionResult = checkAndDoPaintbrushTrigger(state, world, pos, player, hand, hit);
+		if (actionResult.consumesAction()) {
+			return actionResult;
+		}
+		
 		if (world.isClientSide) {
 			return ItemInteractionResult.SUCCESS;
 		} else {
@@ -53,6 +59,16 @@ public class ItemRoundelBlock extends InWorldInteractionBlock {
 			}
 			return ItemInteractionResult.CONSUME;
 		}
+	}
+	
+	@Override
+	public ItemInteractionResult onPaintBrushTrigger(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+		BlockEntity blockEntity = world.getBlockEntity(pos);
+		if (blockEntity instanceof ItemRoundelBlockEntity itemRoundelBlockEntity) {
+			itemRoundelBlockEntity.reverse();
+			return ItemInteractionResult.sidedSuccess(world.isClientSide);
+		}
+		return ItemInteractionResult.FAIL;
 	}
 	
 }

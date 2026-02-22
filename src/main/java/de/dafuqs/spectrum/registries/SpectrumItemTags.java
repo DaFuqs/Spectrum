@@ -1,10 +1,14 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
+import net.minecraft.enchantment.*;
 import net.minecraft.item.*;
 import net.minecraft.registry.*;
+import net.minecraft.registry.entry.*;
 import net.minecraft.registry.tag.*;
 import net.minecraft.util.*;
+
+import java.util.*;
 
 public class SpectrumItemTags {
 	
@@ -32,13 +36,24 @@ public class SpectrumItemTags {
 	public static final TagKey<Item> TAG_FILTERING_ITEMS = of("tag_filtering_items");
 	public static final TagKey<Item> WEEPING_GALA_LOGS = of("weeping_gala_logs");
 	public static final TagKey<Item> PLAYER_ATTRIBUTED_PLACEMENT = of("player_attributed_placement");
-
+	
+	public static final TagKey<Item> ENCHANTER_ITEM_BLACKLIST = of("enchanter_copying_and_applying_item_blacklisted");
+	
 	private static TagKey<Item> of(String id) {
 		return TagKey.of(RegistryKeys.ITEM, SpectrumCommon.locate(id));
 	}
 	
 	private static TagKey<Item> common(String id) {
 		return TagKey.of(RegistryKeys.ITEM, new Identifier("c", id));
+	}
+	
+	public static boolean isIn(TagKey<Item> tag, Item item) {
+		Optional<RegistryKey<Item>> optionalKey = Registries.ITEM.getKey(item);
+		if (optionalKey.isEmpty()) {
+			return false;
+		}
+		Optional<RegistryEntry.Reference<Item>> registryEntry = Registries.ITEM.getEntry(optionalKey.get());
+		return registryEntry.filter(itemReference -> Registries.ITEM.getOrCreateEntryList(tag).contains(itemReference)).isPresent();
 	}
 	
 }

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "spectrum:block/storage_node"
+    }
+  }
+}

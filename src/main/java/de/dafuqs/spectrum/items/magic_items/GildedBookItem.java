@@ -18,7 +18,7 @@ public class GildedBookItem extends BookItem {
 	}
 	
 	@Override
-	public int getEnchantmentValue() {
+	public int getEnchantmentValue(@NotNull ItemStack stack) {
 		return Items.GOLDEN_PICKAXE.getEnchantmentValue();
 	}
 	

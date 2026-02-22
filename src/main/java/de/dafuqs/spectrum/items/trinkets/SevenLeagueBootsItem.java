@@ -38,7 +38,7 @@ public class SevenLeagueBootsItem extends SpectrumCurioItem {
 	}
 	
 	@Override
-	public int getEnchantmentValue() {
+	public int getEnchantmentValue(@NotNull ItemStack stack) {
 		return 8;
 	}
 	

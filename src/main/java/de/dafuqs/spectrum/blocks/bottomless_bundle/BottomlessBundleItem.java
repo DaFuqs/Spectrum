@@ -279,7 +279,7 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 	}
 	
 	@Override
-	public int getEnchantmentValue() {
+	public int getEnchantmentValue(@NotNull ItemStack stack) {
 		return 5;
 	}
 	

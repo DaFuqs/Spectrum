@@ -165,7 +165,7 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Loo
 	}
 	
 	@Override
-	public int getEnchantmentValue() {
+	public int getEnchantmentValue(@NotNull ItemStack stack) {
 		return 5;
 	}
 	

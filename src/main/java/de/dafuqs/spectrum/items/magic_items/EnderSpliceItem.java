@@ -251,7 +251,7 @@ public class EnderSpliceItem extends Item {
 	}
 	
 	@Override
-	public int getEnchantmentValue() {
+	public int getEnchantmentValue(@NotNull ItemStack stack) {
 		return 50;
 	}
 	

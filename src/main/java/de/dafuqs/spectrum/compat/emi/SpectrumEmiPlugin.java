@@ -2,23 +2,18 @@ package de.dafuqs.spectrum.compat.emi;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
-import de.dafuqs.spectrum.blocks.fluid.*;
 import de.dafuqs.spectrum.blocks.idols.*;
-import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.compat.emi.handlers.*;
 import de.dafuqs.spectrum.compat.emi.recipes.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.inventories.slots.*;
-import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import de.dafuqs.spectrum.registries.*;
 import dev.emi.emi.api.*;
 import dev.emi.emi.api.recipe.*;
 import dev.emi.emi.api.stack.*;
-import net.fabricmc.loader.api.*;
 import net.minecraft.block.*;
 import net.minecraft.client.gui.screen.ingame.*;
-import net.minecraft.fluid.*;
 import net.minecraft.inventory.*;
 import net.minecraft.recipe.*;
 import net.minecraft.registry.*;
@@ -154,7 +149,7 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 				return;
 			}
 			Identifier id = syntheticId("freezing", key.getBlock()); // The synthetic IDs generated here assume there will never be multiple conversions of the same block with different states
-			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.FREEZING, id, in, out, SpectrumAdvancements.UNLOCK_IDOLS));
+			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.FREEZING, id, in, out, SpectrumCommon.locate("unlocks/blocks/idols")));
 		});
 		FreezingIdolBlock.FREEZING_MAP.forEach((key, value) -> {
 			EmiStack in = EmiStack.of(key);
@@ -163,7 +158,7 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 				return;
 			}
 			Identifier id = syntheticId("freezing", key);
-			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.FREEZING, id, in, out, SpectrumAdvancements.UNLOCK_IDOLS));
+			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.FREEZING, id, in, out, SpectrumCommon.locate("unlocks/blocks/idols")));
 		});
 		FirestarterIdolBlock.BURNING_MAP.forEach((key, value) -> {
 			EmiStack in = EmiStack.of(key);
@@ -172,7 +167,7 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 				return;
 			}
 			Identifier id = syntheticId("heating", key);
-			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.HEATING, id, in, out, SpectrumAdvancements.UNLOCK_IDOLS));
+			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.HEATING, id, in, out, SpectrumCommon.locate("unlocks/blocks/idols")));
 		});
 		NaturesStaffConversionDataLoader.CONVERSIONS.forEach((key, value) -> {
 			EmiStack in = EmiStack.of(key);
@@ -181,118 +176,8 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 				return;
 			}
 			Identifier id = syntheticId("natures_staff", key);
-			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.NATURES_STAFF, id, in, out, SpectrumAdvancements.UNLOCK_NATURES_STAFF));
+			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.NATURES_STAFF, id, in, out, SpectrumCommon.locate("unlocks/items/natures_staff")));
 		});
-		
-		//WorldInteractionRecipe
-		long amount = SpectrumIntegrationPacks.CONNECTOR_LOADED ? 1_000 : 81_000;
-		EmiStack water = EmiStack.of(Fluids.WATER, amount);
-		EmiStack lava = EmiStack.of(Fluids.LAVA, amount);
-		EmiStack dragonrot = EmiStack.of(SpectrumFluids.DRAGONROT, amount);
-		EmiStack liquidCrystal = EmiStack.of(SpectrumFluids.LIQUID_CRYSTAL, amount);
-		EmiStack midnightSolution = EmiStack.of(SpectrumFluids.MIDNIGHT_SOLUTION, amount);
-		EmiStack mud = EmiStack.of(SpectrumFluids.MUD, amount);
-		EmiStack waterCatalyst = water.copy().setRemainder(water);
-		EmiStack lavaCatalyst = lava.copy().setRemainder(lava);
-		EmiStack dragonrotCatalyst = dragonrot.copy().setRemainder(dragonrot);
-		EmiStack liquidCrystalCatalyst = liquidCrystal.copy().setRemainder(liquidCrystal);
-		EmiStack midnightSolutionCatalyst = midnightSolution.copy().setRemainder(midnightSolution);
-		EmiStack mudCatalyst = mud.copy().setRemainder(mud);
-		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
-				.id(syntheticId("world/fluid_interaction", SpectrumBlocks.SLUSH))
-				.leftInput(dragonrotCatalyst)
-				.rightInput(waterCatalyst, false)
-				.output(EmiStack.of(SpectrumBlocks.SLUSH))
-				.requiredAdvancement(DragonrotConvertingRecipe.UNLOCK_IDENTIFIER)
-				.build());
-		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
-				.id(syntheticId("world/fluid_interaction", Blocks.BLACKSTONE))
-				.leftInput(dragonrotCatalyst)
-				.rightInput(lavaCatalyst, false)
-				.output(EmiStack.of(Blocks.BLACKSTONE))
-				.requiredAdvancement(DragonrotConvertingRecipe.UNLOCK_IDENTIFIER)
-				.build());
-		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
-				.id(syntheticId("world/fluid_interaction", Blocks.COARSE_DIRT))
-				.leftInput(dragonrotCatalyst)
-				.rightInput(mudCatalyst, false)
-				.output(EmiStack.of(Blocks.COARSE_DIRT))
-				.requiredAdvancement(DragonrotConvertingRecipe.UNLOCK_IDENTIFIER)
-				.requiredAdvancement(MudConvertingRecipe.UNLOCK_IDENTIFIER)
-				.build());
-		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
-				.id(syntheticId("world/fluid_interaction", SpectrumBlocks.ROTTEN_GROUND))
-				.leftInput(dragonrotCatalyst)
-				.rightInput(liquidCrystalCatalyst, false)
-				.output(EmiStack.of(SpectrumBlocks.ROTTEN_GROUND))
-				.requiredAdvancement(DragonrotConvertingRecipe.UNLOCK_IDENTIFIER)
-				.requiredAdvancement(LiquidCrystalConvertingRecipe.UNLOCK_IDENTIFIER)
-				.build());
-		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
-				.id(syntheticId("world/fluid_interaction", SpectrumBlocks.BLACK_SLUDGE))
-				.leftInput(dragonrotCatalyst)
-				.rightInput(midnightSolutionCatalyst, false)
-				.output(EmiStack.of(SpectrumBlocks.BLACK_SLUDGE))
-				.requiredAdvancement(DragonrotConvertingRecipe.UNLOCK_IDENTIFIER)
-				.requiredAdvancement(MidnightSolutionConvertingRecipe.UNLOCK_IDENTIFIER)
-				.build());
-		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
-				.id(syntheticId("world/fluid_interaction", SpectrumBlocks.FROSTBITE_CRYSTAL))
-				.leftInput(liquidCrystal)
-				.rightInput(waterCatalyst, false)
-				.output(EmiStack.of(SpectrumBlocks.FROSTBITE_CRYSTAL))
-				.requiredAdvancement(LiquidCrystalConvertingRecipe.UNLOCK_IDENTIFIER)
-				.build());
-		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
-				.id(syntheticId("world/fluid_interaction", Blocks.CALCITE))
-				.leftInput(liquidCrystalCatalyst)
-				.rightInput(waterCatalyst, false)
-				.output(EmiStack.of(Blocks.CALCITE))
-				.requiredAdvancement(LiquidCrystalConvertingRecipe.UNLOCK_IDENTIFIER)
-				.build());
-		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
-				.id(syntheticId("world/fluid_interaction", SpectrumBlocks.BLAZING_CRYSTAL))
-				.leftInput(liquidCrystal)
-				.rightInput(lavaCatalyst, false)
-				.output(EmiStack.of(SpectrumBlocks.BLAZING_CRYSTAL))
-				.requiredAdvancement(LiquidCrystalConvertingRecipe.UNLOCK_IDENTIFIER)
-				.build());
-		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
-				.id(syntheticId("world/fluid_interaction", Blocks.COBBLED_DEEPSLATE))
-				.leftInput(liquidCrystalCatalyst)
-				.rightInput(lavaCatalyst, false)
-				.output(EmiStack.of(Blocks.COBBLED_DEEPSLATE))
-				.requiredAdvancement(LiquidCrystalConvertingRecipe.UNLOCK_IDENTIFIER)
-				.build());
-		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
-				.id(syntheticId("world/fluid_interaction", Blocks.CLAY))
-				.leftInput(liquidCrystalCatalyst)
-				.rightInput(mudCatalyst, false)
-				.output(EmiStack.of(Blocks.CLAY))
-				.requiredAdvancement(LiquidCrystalConvertingRecipe.UNLOCK_IDENTIFIER)
-				.requiredAdvancement(MudConvertingRecipe.UNLOCK_IDENTIFIER)
-				.build());
-		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
-				.id(syntheticId("world/fluid_interaction", Blocks.TERRACOTTA))
-				.leftInput(midnightSolutionCatalyst)
-				.rightInput(lavaCatalyst, false)
-				.output(EmiStack.of(Blocks.TERRACOTTA))
-				.requiredAdvancement(MidnightSolutionConvertingRecipe.UNLOCK_IDENTIFIER)
-				.build());
-		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
-				.id(syntheticId("world/fluid_interaction", Blocks.DIRT))
-				.leftInput(mudCatalyst)
-				.rightInput(waterCatalyst, false)
-				.output(EmiStack.of(Blocks.DIRT))
-				.requiredAdvancement(MudConvertingRecipe.UNLOCK_IDENTIFIER)
-				.build());
-		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
-				.id(syntheticId("world/fluid_interaction", Blocks.MUD))
-				.leftInput(mudCatalyst)
-				.rightInput(lavaCatalyst, false)
-				.output(EmiStack.of(Blocks.MUD))
-				.requiredAdvancement(MudConvertingRecipe.UNLOCK_IDENTIFIER)
-				.build());
 	}
 
 	public void registerRecipeHandlers(EmiRegistry registry) {
@@ -313,14 +198,5 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 			registry.addRecipe(constructor.apply(recipe));
 		}
 	}
-	
-	private static void addRecipeSafe(EmiRegistry registry, Supplier<EmiRecipe> supplier) {
-		try {
-			registry.addRecipe(supplier.get());
-		} catch (Throwable e) {
-			SpectrumCommon.logWarning("Exception thrown when parsing EMI recipe (no ID available)");
-			SpectrumCommon.logError(e.toString());
-		}
-	}
-	
+
 }

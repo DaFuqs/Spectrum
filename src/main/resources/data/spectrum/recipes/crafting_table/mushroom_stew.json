@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "spectrum:gated_crafting_shapeless",
   "ingredients": [
     {
       "tag": "spectrum:noxshrooms"

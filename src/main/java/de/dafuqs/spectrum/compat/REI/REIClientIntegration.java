@@ -126,7 +126,7 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.registerRecipeFiller(CinderhearthRecipe.class, SpectrumRecipeTypes.CINDERHEARTH, CinderhearthDisplay::new);
 		registry.registerRecipeFiller(ITitrationBarrelRecipe.class, SpectrumRecipeTypes.TITRATION_BARREL, TitrationBarrelDisplay::new);
 		registry.registerRecipeFiller(PrimordialFireBurningRecipe.class, SpectrumRecipeTypes.PRIMORDIAL_FIRE_BURNING, PrimordialFireBurningDisplay::new);
-		
+
 		NaturesStaffConversionDataLoader.CONVERSIONS.forEach((key, value) -> registry.add(new NaturesStaffConversionsDisplay(EntryStacks.of(key), EntryStacks.of(value.getBlock()), NaturesStaffConversionDataLoader.UNLOCK_IDENTIFIERS.getOrDefault(key, null))));
 		FreezingIdolBlock.FREEZING_STATE_MAP.forEach((key, value) -> registry.add(new FreezingDisplay(BlockToBlockWithChanceDisplay.blockToEntryStack(key.getBlock()), BlockToBlockWithChanceDisplay.blockToEntryStack(value.getLeft().getBlock()), value.getRight())));
 		FreezingIdolBlock.FREEZING_MAP.forEach((key, value) -> registry.add(new FreezingDisplay(BlockToBlockWithChanceDisplay.blockToEntryStack(key), BlockToBlockWithChanceDisplay.blockToEntryStack(value.getLeft().getBlock()), value.getRight())));

@@ -40,7 +40,7 @@ public class EnchanterEmiRecipeGated extends GatedSpectrumEmiRecipe<GatedSpectru
 		}
 		inputs.add(EmiStack.of(KnowledgeGemItem.getKnowledgeDropStackWithXP(recipe.getRequiredExperience(), true)));
 	}
-	
+
 	private EnchanterEmiRecipeGated(EmiRecipeCategory category, GatedSpectrumRecipe<?> recipe, Text description, int craftingTime) {
 		super(category, recipe, 132, 80);
 		this.craftingTime = craftingTime;

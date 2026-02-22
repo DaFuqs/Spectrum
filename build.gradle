@@ -56,6 +56,12 @@ neoForge {
 			client()
 		}
 
+		client_dafuqs {
+			client()
+			programArgument '--username=DaFuqs'
+			programArgument '--uuid=5010ad09-0229-4d70-8a2c-bc254821dcb3'
+		}
+
 		server {
 			server()
 			programArgument '--nogui'

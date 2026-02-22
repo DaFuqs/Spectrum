@@ -29,6 +29,8 @@ public class WorthinessChecker {
 		public static final UUID DRA = UUID.fromString("f962000a-ee12-40ea-abd5-e15f7492f039");
 		public static final UUID OPL = UUID.fromString("f791d11d-5415-4c28-99e7-ac6a0b2fec28");
 		public static final UUID MAYA = UUID.fromString("a1732122-e22e-4edf-883c-09673eb55de8");
+		
+		public static final UUID DEV = UUID.fromString("380df991-f603-344c-a090-369bad2a924a");
 	}
 	
 	private static final HashMap<UUID, CapeType> PLAYER_MAP = new HashMap<>();
@@ -51,6 +53,8 @@ public class WorthinessChecker {
 		putPlayer(Players.DRA, CapeType.PALE_ASTRONOMY);
 		putPlayer(Players.OPL, CapeType.PALE_ASTRONOMY);
 		putPlayer(Players.MAYA, CapeType.PALE_ASTRONOMY);
+		
+		putPlayer(Players.DEV, CapeType.V1);
 	}
 	
 }

@@ -5457,7 +5457,7 @@
   "spectrum.subtitles.use_fail": "Use fails",
   "spectrum.subtitles.block.redstone_mechanism.trigger": "Mechanism triggers",
   "spectrum.subtitles.block.redstone_mechanism.break_block": "Block gets broken",
-  "spectrum.subtitles.block.vine.infuse,": "Vine infused",
+  "spectrum.subtitles.block.vine.infuse": "Vine infused",
   "spectrum.subtitles.block.vine.shear": "Vine sheared",
 
   "spectrum.toast.anvil_crushing_recipe_unlocked.title": "New Crushing recipe:",

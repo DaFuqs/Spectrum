@@ -67,7 +67,7 @@ function ClusterBlockState($block) {
       "x": 90
     },
     "facing=south": {
-      "model": "spectrum:block/$blockd",
+      "model": "spectrum:block/$block",
       "x": 90,
       "y": 180
     },

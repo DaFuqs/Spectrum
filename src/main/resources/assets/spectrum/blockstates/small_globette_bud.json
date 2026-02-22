@@ -14,7 +14,7 @@
       "x": 90
     },
     "facing=south": {
-      "model": "spectrum:block/",
+      "model": "spectrum:block/small_globette_bud",
       "x": 90,
       "y": 180
     },

@@ -23,6 +23,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
+import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -52,12 +53,12 @@ public class RadianceStaffItem extends Item implements InkPowered {
 		BlockState targetBlockState = world.getBlockState(targetPos);
 		if (targetBlockState.isAir()) {
 			if (payForStaffUse(playerEntity, radianceStaff, INK_COST, COST)) {
-				world.setBlock(targetPos, SpectrumBlocks.PERSISTENT_LIGHT.defaultBlockState(), 3);
+				world.setBlock(targetPos, SpectrumBlocks.PERSISTENT_LIGHT.get().defaultBlockState(), 3);
 				return true;
 			}
 		} else if (targetBlockState.is(Blocks.WATER)) {
 			if (payForStaffUse(playerEntity, radianceStaff, INK_COST, COST)) {
-				world.setBlock(targetPos, SpectrumBlocks.PERSISTENT_LIGHT.defaultBlockState().setValue(WATERLOGGED, true), 3);
+				world.setBlock(targetPos, SpectrumBlocks.PERSISTENT_LIGHT.get().defaultBlockState().setValue(WATERLOGGED, true), 3);
 				return true;
 			}
 		}
@@ -80,7 +81,7 @@ public class RadianceStaffItem extends Item implements InkPowered {
 	}
 	
 	@Override
-	@Environment(EnvType.CLIENT)
+	@OnlyIn(Dist.CLIENT)
 	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		if (InkPowered.canUseClient()) {
 			tooltip.add(Component.translatable("item.spectrum.radiance_staff.tooltip.ink", INK_COST.color().getColoredInkName()));
@@ -190,13 +191,13 @@ public class RadianceStaffItem extends Item implements InkPowered {
 	}
 	
 	@Override
-	public int getEnchantmentValue() {
+	public int getEnchantmentValue(@NotNull ItemStack stack) {
 		return 8;
 	}
 	
 	@Override
-	public boolean canBeEnchantedWith(ItemStack stack, Holder<Enchantment> enchantment, EnchantingContext context) {
-		return super.canBeEnchantedWith(stack, enchantment, context) || enchantment.is(Enchantments.EFFICIENCY);
+	public boolean supportsEnchantment(@NotNull ItemStack stack, @NotNull Holder<Enchantment> enchantment) {
+		return super.supportsEnchantment(stack, enchantment) || enchantment.is(Enchantments.EFFICIENCY);
 	}
 	
 	@Override

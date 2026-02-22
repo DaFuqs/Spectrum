@@ -2,10 +2,10 @@ package de.dafuqs.spectrum.api.block;
 
 import com.mojang.authlib.*;
 import de.dafuqs.spectrum.*;
-import net.fabricmc.fabric.api.entity.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.player.*;
+import net.neoforged.neoforge.common.util.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -44,7 +44,7 @@ public interface PlayerOwned {
 	default Player getFakeOwner(ServerLevel level) {
 		UUID ownerUUID = this.getOwnerUUID();
 		GameProfile fakeProfile = new GameProfile(ownerUUID, "[Block Breaker of " + ownerUUID + "]");
-		return FakePlayer.get(level, fakeProfile);
+		return new FakePlayer(level, fakeProfile); // todo: cache
 	}
 	
 	static void writeOwnerUUID(CompoundTag nbt, UUID ownerUUID) {

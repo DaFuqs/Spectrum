@@ -164,7 +164,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity implements Implement
 		} else {
 			ITitrationBarrelRecipe recipe = optionalRecipe.get().value();
 			
-			if (recipe.getFluidInput().test(this.getFluidVariant())) {
+			if (recipe.getFluidInput().test(this.fluidStorage.getFluid())) {
 				if (recipe.canPlayerCraft(player)) {
 					boolean canTap = true;
 					Item tappingItem = recipe.getTappingItem();

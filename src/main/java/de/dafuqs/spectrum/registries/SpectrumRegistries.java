@@ -28,6 +28,10 @@ public class SpectrumRegistries {
 	public static final Registry<RecipeScaling> RECIPE_SCALING = register(SpectrumRegistryKeys.RECIPE_SCALING, true);
 	public static final Registry<MapCodec<? extends ResonanceProcessor>> RESONANCE_PROCESSOR_TYPE = register(SpectrumRegistryKeys.RESONANCE_PROCESSOR_TYPE, false);
 	
+	private static <T> Registry<T> register(ResourceKey<? extends Registry<T>> key, boolean synced) {
+		return new RegistryBuilder<>(key).sync(synced).create();
+	}
+	
 	public static void registerBuiltInRegistries(NewRegistryEvent event) {
 		event.register(WORLD_EFFECT);
 		event.register(GEMSTONE_COLOR);
@@ -44,7 +48,6 @@ public class SpectrumRegistries {
 		event.dataPackRegistry(SpectrumRegistryKeys.LIZARD_FRILL_VARIANT, LizardFrillVariant.DIRECT_CODEC, LizardFrillVariant.DIRECT_CODEC);
 		event.dataPackRegistry(SpectrumRegistryKeys.LIZARD_HORN_VARIANT, LizardHornVariant.DIRECT_CODEC, LizardHornVariant.DIRECT_CODEC);
 	}
-	
 	
 	public static <T> T getRandomTagEntry(Registry<T> registry, TagKey<T> tag, RandomSource random, T fallback) {
 		Optional<HolderSet.Named<T>> tagEntries = registry.getTag(tag);

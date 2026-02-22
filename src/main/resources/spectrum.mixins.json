@@ -65,7 +65,6 @@
     "RandomChanceLootConditionMixin",
     "RandomChanceWithEnchantedBonusLootConditionMixin",
     "ServerPlayerEntityMixin",
-    "ServerPlayerGameModeFabricMixin",
     "ServerPlayerInteractionManagerMixin",
     "ServerPlayNetworkHandlerMixin",
     "ServerWorldMixin",

@@ -9,6 +9,7 @@ import dev.emi.emi.api.widget.*;
 import net.minecraft.client.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.crafting.*;
+import net.neoforged.api.distmarker.*;
 import net.neoforged.neoforge.fluids.crafting.*;
 import net.minecraft.world.level.material.*;
 import org.jetbrains.annotations.*;
@@ -31,14 +32,14 @@ public class TitrationBarrelEmiRecipeGated extends GatedSpectrumEmiRecipe<ITitra
 	}
 	
 	private static List<EmiStack> buildFermentationOutputVariations(ITitrationBarrelRecipe recipe) {
-		if (recipe instanceof TitrationBarrelRecipe titrationBarrelRecipe && titrationBarrelRecipe.getFermentationData() != null) {
+		if (recipe instanceof TitrationBarrelRecipe titrationBarrelRecipe && titrationBarrelRecipe.getFermentationData().isPresent()) {
 			return titrationBarrelRecipe.getOutputVariations(TitrationBarrelRecipe.FERMENTATION_DURATION_DISPLAY_TIME_MULTIPLIERS).stream().map(EmiStack::of).toList();
 		}
 		return null;
 	}
 	
 	@Override
-	@Environment(EnvType.CLIENT)
+	@OnlyIn(Dist.CLIENT)
 	public void addUnlockedWidgets(WidgetHolder widgets) {
 		// input slots
 		int startX = Math.max(10, 40 - inputs.size() * 10);

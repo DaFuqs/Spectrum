@@ -9,8 +9,9 @@ import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.entity.layers.*;
 import net.minecraft.client.renderer.texture.*;
+import net.neoforged.api.distmarker.*;
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public class LizardHornsFeatureRenderer<T extends LizardEntity> extends RenderLayer<T, LizardEntityModel<T>> {
 	
 	public LizardHornsFeatureRenderer(RenderLayerParent<T, LizardEntityModel<T>> context) {

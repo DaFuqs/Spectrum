@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.progression;
 
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.progression.advancement.*;
 import net.minecraft.advancements.*;
 import net.minecraft.core.registries.*;
@@ -41,8 +42,8 @@ public class SpectrumAdvancementCriteria {
 	public static ConfirmationButtonPressedCriterion CONFIRMATION_BUTTON_PRESSED = new ConfirmationButtonPressedCriterion();
 	public static BloodOrchidPluckingCriterion BLOOD_ORCHID_PLUCKING = new BloodOrchidPluckingCriterion();
 	public static DivinityTickCriterion DIVINITY_TICK = new DivinityTickCriterion();
-	public static PairedFoodEatenCriterion PAIRED_FOOD_EATEN = new PairedFoodEatenCriterion();
-	public static HummingstoneHymnCriterion CREATE_HUMMINGSTONE_HYMN = new HummingstoneHymnCriterion();
+	public static ConsumedPairedFoodCriterion COMSUMED_PAIRED_FOOD = new ConsumedPairedFoodCriterion();
+	public static HummingstoneHymnCriterion HUMMINGSTONE_HYMN = new HummingstoneHymnCriterion();
 	public static PastelNetworkCreationCriterion PASTEL_NETWORK_CREATING = new PastelNetworkCreationCriterion();
 	public static PastelNodeUpgradeCriterion PASTEL_NODE_UPGRADING = new PastelNodeUpgradeCriterion();
 	public static PreservationCheckCriterion PRESERVATION_CHECK = new PreservationCheckCriterion();
@@ -82,8 +83,8 @@ public class SpectrumAdvancementCriteria {
 		REGISTRAR.register(ConfirmationButtonPressedCriterion.NAME, () -> CONFIRMATION_BUTTON_PRESSED);
 		REGISTRAR.register(BloodOrchidPluckingCriterion.NAME, () -> BLOOD_ORCHID_PLUCKING);
 		REGISTRAR.register(DivinityTickCriterion.NAME, () -> DIVINITY_TICK);
-		REGISTRAR.register(PairedFoodEatenCriterion.NAME, () -> PAIRED_FOOD_EATEN);
-		REGISTRAR.register(HummingstoneHymnCriterion.NAME, () -> CREATE_HUMMINGSTONE_HYMN);
+		REGISTRAR.register(ConsumedPairedFoodCriterion.NAME, () -> COMSUMED_PAIRED_FOOD);
+		REGISTRAR.register(HummingstoneHymnCriterion.NAME, () -> HUMMINGSTONE_HYMN);
 		REGISTRAR.register(PastelNetworkCreationCriterion.NAME, () -> PASTEL_NETWORK_CREATING);
 		REGISTRAR.register(PastelNodeUpgradeCriterion.NAME, () -> PASTEL_NODE_UPGRADING);
 		REGISTRAR.register(PreservationCheckCriterion.NAME, () -> PRESERVATION_CHECK);

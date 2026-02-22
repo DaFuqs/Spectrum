@@ -6,8 +6,6 @@ import de.dafuqs.spectrum.inventories.slots.*;
 import de.dafuqs.spectrum.networking.c2s_payloads.*;
 import de.dafuqs.spectrum.registries.*;
 import it.unimi.dsi.fastutil.objects.*;
-import net.fabricmc.fabric.api.client.networking.v1.*;
-import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.core.registries.*;
@@ -62,7 +60,7 @@ public interface FilterConfigurable {
 		}
 		
 		boolean allAir = true;
-		for (ItemVariant filterItem : this.getItemFilters()) {
+		for (ItemStack filterItem : this.getItemFilters()) {
 			if (filterItem.getItem().equals(item)) {
 				return true;
 			}
@@ -79,8 +77,8 @@ public interface FilterConfigurable {
 		this.setOnlyDenyListTags(true);
 	}
 	
-	default boolean addTagFilteringItem(ItemVariant itemVariant) {
-		ItemStack stack = itemVariant.toStack();
+	default boolean addTagFilteringItem(ItemStack itemVariant) {
+		ItemStack stack = itemVariant.copyWithCount(1);
 		if (!stack.has(DataComponents.CUSTOM_NAME) || !stack.is(SpectrumItemTags.TAG_FILTERING_ITEMS)) {
 			this.setOnlyDenyListTags(false);
 			return false;
@@ -118,7 +116,7 @@ public interface FilterConfigurable {
 		this.getItemFilters().forEach(this::addTagFilteringItem);
 	}
 	
-	List<ItemVariant> getItemFilters();
+	List<ItemStack> getItemFilters();
 	
 	void setFilterItem(int slot, ItemStack item);
 	

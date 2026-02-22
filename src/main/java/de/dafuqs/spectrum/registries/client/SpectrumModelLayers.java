@@ -312,7 +312,7 @@ public class SpectrumModelLayers {
 		
 		ClientHooks.registerLayerDefinition(MARROW_HEAD, SkullModel::createMobHeadLayer);
 		ClientHooks.registerLayerDefinition(MARROW_HEAD_OVERLAY, SkullModel::createMobHeadLayer);
-		ClientHooks.registerLayerDefinition(SPLINTERSPAWN_HEAD, SkullModel::getTexturedModelData);
+		ClientHooks.registerLayerDefinition(SPLINTERSPAWN_HEAD, SilverfishHeadModel::getTexturedModelData);
 		
 		ClientHooks.registerLayerDefinition(BEDROCK_LAYER, () -> LayerDefinition.create(BedrockArmorModel.getMeshDefinition(), 128, 128));
 	}

@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.mob_head.*;
 import de.dafuqs.spectrum.blocks.mob_head.client.models.*;
 import de.dafuqs.spectrum.entity.render.*;
+import de.dafuqs.spectrum.entity.variants.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.minecraft.client.model.geom.*;
 import net.minecraft.client.renderer.*;
@@ -158,7 +159,7 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
 		// Spectrum
 		builder.put(SpectrumSkullType.EGG_LAYING_WOOLY_PIG, List.of(new Tuple<>(new EggLayingWoolyPigHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.EGG_LAYING_WOOLY_PIG_HEAD)), EggLayingWoolyPigEntityRenderer.TEXTURE)));
 		builder.put(SpectrumSkullType.ERASER, List.of(new Tuple<>(new SpiderHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.ERASER_HEAD)), SpectrumCommon.locate("textures/entity/eraser/eraser_combined.png"))));
-		builder.put(SpectrumSkullType.KINDLING, List.of(new Tuple<>(new KindlingHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.KINDLING_HEAD)), KindlingVariant.DEFAULT.getDefaultTexture())));
+		builder.put(SpectrumSkullType.KINDLING, List.of(new Tuple<>(new KindlingHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.KINDLING_HEAD)), SpectrumCommon.locate("textures/entity/kindling/kindling.png"))));
 		builder.put(SpectrumSkullType.LIZARD_BLACK, List.of(new Tuple<>(new LizardHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.LIZARD_HEAD), modelLoader.bakeLayer(SpectrumModelLayers.LIZARD_HEAD_FRILLS), InkColors.BLACK.getColorInt()), LizardHeadModel.HEAD_TEXTURE)));
 		builder.put(SpectrumSkullType.LIZARD_BLUE, List.of(new Tuple<>(new LizardHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.LIZARD_HEAD), modelLoader.bakeLayer(SpectrumModelLayers.LIZARD_HEAD_FRILLS), InkColors.BLUE.getColorInt()), LizardHeadModel.HEAD_TEXTURE)));
 		builder.put(SpectrumSkullType.LIZARD_BROWN, List.of(new Tuple<>(new LizardHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.LIZARD_HEAD), modelLoader.bakeLayer(SpectrumModelLayers.LIZARD_HEAD_FRILLS), InkColors.BROWN.getColorInt()), LizardHeadModel.HEAD_TEXTURE)));

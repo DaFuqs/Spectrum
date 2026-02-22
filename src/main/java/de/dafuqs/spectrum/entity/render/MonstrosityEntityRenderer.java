@@ -11,12 +11,13 @@ import net.minecraft.client.renderer.texture.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
+import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 import org.joml.*;
 
 import java.lang.Math;
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public class MonstrosityEntityRenderer extends EntityRenderer<MonstrosityEntity> {
 	
 	private static final Style STYLE = Style.EMPTY.withObfuscated(true);

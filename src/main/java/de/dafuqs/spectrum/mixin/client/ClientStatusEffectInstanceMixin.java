@@ -2,13 +2,13 @@ package de.dafuqs.spectrum.mixin.client;
 
 import com.llamalad7.mixinextras.injector.*;
 import de.dafuqs.spectrum.injectors.*;
-import net.fabricmc.api.*;
 import net.minecraft.client.resources.language.*;
 import net.minecraft.world.effect.*;
+import net.neoforged.api.distmarker.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 @Mixin(MobEffectInstance.class)
 public abstract class ClientStatusEffectInstanceMixin implements StatusEffectInstanceInjector {
 	

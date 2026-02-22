@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.inventories.slots;
 
 import de.dafuqs.spectrum.api.block.*;
-import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
@@ -18,7 +17,7 @@ public class FilterSlot extends ShadowSlot {
 	
 	@Override
 	public boolean onClicked(ItemStack heldStack, ClickAction type, Player player) {
-		filterConfigurable.setFilterItem(getContainerSlot(), ItemVariant.of(heldStack));
+		filterConfigurable.setFilterItem(getContainerSlot(), heldStack.copyWithCount(1));
 		return super.onClicked(heldStack, type, player);
 	}
 }

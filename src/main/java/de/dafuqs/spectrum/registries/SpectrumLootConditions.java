@@ -11,9 +11,13 @@ import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.level.storage.loot.predicates.*;
 import net.minecraft.world.phys.*;
+import net.neoforged.bus.api.*;
+import net.neoforged.neoforge.registries.*;
 import org.jetbrains.annotations.*;
 
 public class SpectrumLootConditions {
+	
+	public static final DeferredRegister<LootItemConditionType> REGISTRAR = DeferredRegister.create(Registries.LOOT_CONDITION_TYPE, SpectrumCommon.MOD_ID);
 	
 	public record SleepersNearbyLootCondition(int rangeBlocks, float base, float max, float bonus_per_sleeping_entity) implements LootItemCondition {
 		
@@ -26,7 +30,7 @@ public class SpectrumLootConditions {
 		
 		@Override
 		public @NotNull LootItemConditionType getType() {
-			return SLEEPERS_NEARBY;
+			return SLEEPERS_NEARBY.get();
 		}
 		
 		@Override
@@ -39,14 +43,14 @@ public class SpectrumLootConditions {
 		}
 	}
 	
-	public static final LootItemConditionType SLEEPERS_NEARBY = register("sleepers_nearby", SleepersNearbyLootCondition.CODEC);
+	public static final DeferredHolder<LootItemConditionType, LootItemConditionType> SLEEPERS_NEARBY = register("sleepers_nearby", SleepersNearbyLootCondition.CODEC);
 	
-	private static LootItemConditionType register(String name, MapCodec<? extends LootItemCondition> codec) {
-		return Registry.register(BuiltInRegistries.LOOT_CONDITION_TYPE, SpectrumCommon.locate(name), new LootItemConditionType(codec));
+	private static DeferredHolder<LootItemConditionType, LootItemConditionType> register(String name, MapCodec<? extends LootItemCondition> codec) {
+		return REGISTRAR.register(name, () -> new LootItemConditionType(codec));
 	}
 	
-	public static void register() {
-	
+	public static void register(IEventBus eventBus) {
+		REGISTRAR.register(eventBus);
 	}
 	
 }

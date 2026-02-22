@@ -60,8 +60,8 @@ public class SpectrumEntityTypes {
 		event.put(LIZARD.get(), LizardEntity.createLizardAttributes().build());
 		event.put(KINDLING.get(), KindlingEntity.createKindlingAttributes().build());
 		event.put(ERASER.get(), EraserEntity.createEraserAttributes().build());
-		event.put(MARROW.get(), Marrow.createEraserAttributes().build());
-		event.put(SPLINTERSPAWN.get(), Splinterspawn.createEraserAttributes().build());
+		event.put(MARROW.get(), Marrow.createMarrowAttributes().build());
+		event.put(SPLINTERSPAWN.get(), Splinterspawn.createSplinterSpawnAttributes().build());
 	}
 	
 	public static void registerSpawnPlacements(RegisterSpawnPlacementsEvent event) {

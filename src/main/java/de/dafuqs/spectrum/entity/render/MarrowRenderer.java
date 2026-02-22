@@ -3,13 +3,13 @@ package de.dafuqs.spectrum.entity.render;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.registries.client.*;
-import net.fabricmc.api.*;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.entity.layers.*;
 import net.minecraft.resources.*;
+import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public class MarrowRenderer extends SkeletonRenderer<Marrow> {
 	
 	public static final ResourceLocation MARROW_SKELETON_LOCATION = SpectrumCommon.locate("textures/entity/skeleton/marrow.png");

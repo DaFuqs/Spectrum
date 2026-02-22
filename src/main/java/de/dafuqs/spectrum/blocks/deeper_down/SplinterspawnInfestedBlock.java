@@ -58,7 +58,7 @@ public class SplinterspawnInfestedBlock extends Block {
 	}
 	
 	private void spawnInfestation(ServerLevel level, BlockPos pos) {
-		Splinterspawn splinterspawn = SpectrumEntityTypes.SPLINTERSPAWN.create(level);
+		Splinterspawn splinterspawn = SpectrumEntityTypes.SPLINTERSPAWN.get().create(level);
 		if (splinterspawn != null) {
 			splinterspawn.moveTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, 0.0F, 0.0F);
 			level.addFreshEntity(splinterspawn);
@@ -98,7 +98,7 @@ public class SplinterspawnInfestedBlock extends Block {
 		}
 		
 		if (EnchantmentHelper.hasTag(stack, SpectrumEnchantmentTags.AUTO_KILLS_SILVERFISH)) {
-			Silverfish splinterspawn = SpectrumEntityTypes.SPLINTERSPAWN.create(level);
+			Silverfish splinterspawn = SpectrumEntityTypes.SPLINTERSPAWN.get().create(level);
 			if (splinterspawn != null) {
 				spawnEntityKillAndDropXP(level, pos, dropExperience, splinterspawn);
 			}

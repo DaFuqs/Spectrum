@@ -5,6 +5,7 @@ import com.sammy.malum.registry.common.item.*;
 import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.compat.*;
+import net.neoforged.api.distmarker.*;
 
 public class MalumCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	
@@ -12,8 +13,8 @@ public class MalumCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
     public void register() {
 		
 	}
-
-    @Environment(EnvType.CLIENT)
+	
+	@OnlyIn(Dist.CLIENT)
     @Override
     public void registerClient() {
     

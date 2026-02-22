@@ -4,6 +4,7 @@ import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.compat.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.progression.*;
 import net.minecraft.*;
 import net.minecraft.client.*;
@@ -51,7 +52,7 @@ public interface InkPowered {
 	 * The colors that the object requires for working.
 	 * These are added as the player facing tooltip
 	 **/
-	@Environment(EnvType.CLIENT)
+	@OnlyIn(Dist.CLIENT)
 	default void addInkPoweredTooltip(List<Component> tooltip) {
 		if (canUseClient()) {
 			if (getUsedColors().size() > 1) {
@@ -60,7 +61,7 @@ public interface InkPowered {
 					tooltip.add(color.getColoredInkName().withStyle(ChatFormatting.GRAY));
 				}
 			} else {
-				tooltip.add(Component.translatable("spectrum.tooltip.ink_powered.consume", getUsedColors().get(0).getColoredInkName()).withStyle(ChatFormatting.GRAY));
+				tooltip.add(Component.translatable("spectrum.tooltip.ink_powered.consume", getUsedColors().getFirst().getColoredInkName()).withStyle(ChatFormatting.GRAY));
 			}
 		}
 	}

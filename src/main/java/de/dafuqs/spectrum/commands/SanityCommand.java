@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.commands;
 import com.mojang.brigadier.arguments.*;
 import com.mojang.brigadier.tree.*;
 import de.dafuqs.fractal.api.*;
+import de.dafuqs.fractal.interfaces.*;
 import de.dafuqs.revelationary.*;
 import de.dafuqs.revelationary.advancement_criteria.*;
 import de.dafuqs.spectrum.*;
@@ -463,10 +464,10 @@ public class SanityCommand {
 		Collection<ItemStack> itemGroupStacks = SpectrumItemGroups.MAIN.get().getSearchTabDisplayItems();
 		if (itemGroupStacks.isEmpty()) {
 			// since the creative group will only have content when queried, we build the contents if it is still empty
-			for (ItemSubGroup subGroup : SpectrumItemGroups.MAIN.fractal$getChildren()) {
+			for (CreativeSubTab subGroup : ((ICreativeTabParent) SpectrumItemGroups.MAIN.get()).fractal$getChildren()) {
 				subGroup.buildContents(new CreativeModeTab.ItemDisplayParameters(FeatureFlagSet.of(), false, registryManager));
 			}
-			itemGroupStacks = SpectrumItemGroups.MAIN.getSearchTabDisplayItems();
+			itemGroupStacks = SpectrumItemGroups.MAIN.get().getSearchTabDisplayItems();
 		}
 		for (Map.Entry<ResourceKey<Item>, Item> item : BuiltInRegistries.ITEM.entrySet()) {
 			if (item.getKey().location().getNamespace().equals(modId) && !item.getValue().builtInRegistryHolder().is(SpectrumItemTags.COMING_SOON_TOOLTIP)) {

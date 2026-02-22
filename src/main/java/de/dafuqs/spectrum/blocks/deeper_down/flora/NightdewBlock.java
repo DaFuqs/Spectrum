@@ -27,7 +27,7 @@ public class NightdewBlock extends TriStateVineBlock {
 	
 	@Override
 	public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state) {
-		return SpectrumItems.NIGHTDEW_SPROUT.getDefaultInstance();
+		return SpectrumItems.NIGHTDEW_SPROUT.get().getDefaultInstance();
     }
 
     @Override

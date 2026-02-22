@@ -57,7 +57,7 @@ public record PairedFoodComponent(Item item, boolean consumeAndApplyRequiredStac
 		}
 		
 		if (player instanceof ServerPlayer serverPlayer) {
-			SpectrumAdvancementCriteria.CONSUMED_PAIRED_FOOD.trigger(serverPlayer, eatenStack, foundRequiredStack);
+			SpectrumAdvancementCriteria.COMSUMED_PAIRED_FOOD.trigger(serverPlayer, eatenStack, foundRequiredStack);
 		}
 	}
 	

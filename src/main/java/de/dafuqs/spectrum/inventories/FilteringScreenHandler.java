@@ -21,23 +21,20 @@ public class FilteringScreenHandler extends AbstractContainerMenu {
 	
 	// clientside
 	public FilteringScreenHandler(int syncId, Inventory playerInventory, RegistryFriendlyByteBuf buf) {
-		this(syncId, playerInventory, FilterConfigurable.ExtendedData.PACKET_CODEC.decode(buf), new Integer[]{
-				data.data().rows(),
-				data.data().slotsPerRow(),
-				data.data().drawnSlots()
-		});
+		this(syncId, playerInventory, FilterConfigurable.ExtendedDataWithPos.PACKET_CODEC.decode(buf));
 	}
 	
-	public FilteringScreenHandler(int syncId, Inventory playerInventory, FilterConfigurable.ExtendedDataWithPos data, Function<AbstractContainerMenu, Tuple<Container, Integer[]>> filterInventoryFactory) {
-		this(SpectrumScreenHandlerTypes.FILTERING, syncId, playerInventory, (handler) -> new Tuple<>(FilterConfigurable.getFilterInventoryFromItemsHandler(syncId, playerInventory, data.filterItems(), handler), new Integer[]{
-				data.rows(),
-				data.slotsPerRow(),
-				data.drawnSlots()
-		}));
+	public FilteringScreenHandler(int syncId, Inventory playerInventory, FilterConfigurable.ExtendedDataWithPos data) {
+		this(SpectrumScreenHandlerTypes.FILTERING, syncId, playerInventory, data,
+				(handler) -> new Tuple<>(FilterConfigurable.getFilterInventoryFromItemsHandler(syncId, playerInventory, data.data().filterItems(), handler), new Integer[]{
+						data.data().rows(),
+						data.data().slotsPerRow(),
+						data.data().drawnSlots()
+				}));
 	}
 	
 	// serverside
-	protected FilteringScreenHandler(MenuType<?> type, int syncId, Inventory playerInventory, Function<AbstractContainerMenu, Tuple<Container, Integer[]>> filterInventoryFactory) {
+	protected FilteringScreenHandler(MenuType<?> type, int syncId, Inventory playerInventory, FilterConfigurable.ExtendedDataWithPos data, Function<AbstractContainerMenu, Tuple<Container, Integer[]>> filterInventoryFactory) {
 		super(type, syncId);
 		this.world = playerInventory.player.level();
 		this.filterConfigurable = (FilterConfigurable) playerInventory.player.level().getBlockEntity(data.pos());

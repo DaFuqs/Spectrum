@@ -94,7 +94,7 @@ public class BookCrystallarieumGrowingPageRenderer extends BookGatedRecipePageRe
         }
 
         // crystallarieum
-        parentScreen.renderItemStack(drawContext, recipeX + startX + offsetPerReagent, recipeY + 8, mouseX, mouseY, SpectrumBlocks.CRYSTALLARIEUM.get().asStackWithColor(recipe.getInkColor()));
+        parentScreen.renderItemStack(drawContext, recipeX + startX + offsetPerReagent, recipeY + 8, mouseX, mouseY, CrystallarieumBlock.withColor(SpectrumBlocks.CRYSTALLARIEUM.asItem().getDefaultInstance(), recipe.getInkColor()));
 
         // catalyst text
         renderBookTextHolder(drawContext, catalystText, 0, 42, BookEntryScreen.PAGE_WIDTH);

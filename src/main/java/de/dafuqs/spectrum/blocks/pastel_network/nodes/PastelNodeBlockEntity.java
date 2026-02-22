@@ -34,7 +34,6 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.neoforged.neoforge.capabilities.*;
 import net.neoforged.neoforge.items.*;
-import org.apache.commons.lang3.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -67,9 +66,6 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	protected int transferCount = PastelTransmissionLogic.DEFAULT_MAX_TRANSFER_AMOUNT;
 	protected int transferTime = PastelTransmissionLogic.DEFAULT_TRANSFER_TICKS_PER_NODE;
 	protected int filterSlotRows = DEFAULT_FILTER_SLOT_ROWS;
-	
-	protected BlockApiCache<Storage<ItemVariant>, Direction> connectedStorageCache = null;
-	protected Direction cachedDirection = null;
 
 	protected Boolean isInitialized = false;
 	
@@ -508,8 +504,8 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	}
 	
 	@Override
-	public void writeClientSideData(AbstractContainerMenu menu, RegistryFriendlyByteBuf buffer) {
-		FilterConfigurable.ExtendedDataWithPos.PACKET_CODEC.encode(buffer, new FilterConfigurable.ExtendedDataWithPos(this));
+	public void writeClientSideData(@NotNull AbstractContainerMenu menu, @NotNull RegistryFriendlyByteBuf buffer) {
+		FilterConfigurable.ExtendedDataWithPos.PACKET_CODEC.encode(buffer, new FilterConfigurable.ExtendedDataWithPos(this.getBlockPos(), this));
 	}
 	
 	public boolean equals(Object obj) {

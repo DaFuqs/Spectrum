@@ -24,9 +24,9 @@ import java.util.*;
 public class GuidebookItem extends ModonomiconItem implements LoomPatternProvider {
 	
 	public static final ResourceLocation GUIDEBOOK_ID = SpectrumCommon.locate("guidebook");
-	public static final BookAddress GUIDEBOOK_ADDRESS = BookAddress.defaultFor(GUIDEBOOK_ID);
 	
 	public static final ResourceLocation CUISINE_CATEGORY_ID = SpectrumCommon.locate("cuisine");
+	public static final ResourceLocation DIMENSION_CATEGORY_ID = SpectrumCommon.locate("dimension");
 	
 	private static final Set<UUID> alreadyReprocessedPlayers = new HashSet<>();
 	

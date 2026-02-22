@@ -15,7 +15,7 @@ public class SpectrumCommands {
 		PrimordialFireCommand.register(spectrumNode);
 		DumpRegistriesCommand.register(spectrumNode);
 		DumpTagsCommand.register(spectrumNode);
-		ListItemTagsCommand.register(spectrumNode, registryAccess);
+		ListItemTagsCommand.register(spectrumNode, event.getBuildContext());
 		
 		event.getDispatcher().getRoot().addChild(spectrumNode);
 	}

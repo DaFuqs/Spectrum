@@ -66,7 +66,7 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 		return itemStack.has(DataComponents.LOCK);
 	}
 	
-	public static ItemVariant getTemplateVariant(ItemStack stack) {
+	public static ItemStack getTemplateVariant(ItemStack stack) {
 		return stack.getOrDefault(SpectrumDataComponentTypes.BOTTOMLESS_STACK, BottomlessStack.DEFAULT).variant();
 	}
 	
@@ -402,15 +402,15 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 			}
 			
 			public int getMaxAllowed(ItemStack stack) {
-				if (this.count > 0 && !this.variant.matches(stack)) {
+				if (this.count > 0 && !ItemStack.isSameItemSameComponents(this.variant, stack)) {
 					return 0;
 				}
 				
 				long result;
-				ItemVariant stackVariant = ItemVariant.of(stack);
+				ItemStack stackVariant = stack.copyWithCount(1);
 				if (isEmpty()) {
 					result = this.max;
-				} else if (stackVariant.isBlank() || (long) stack.getCount() <= 0 || !stackVariant.getItem().canFitInsideContainerItems()) {
+				} else if (stackVariant.isEmpty() || !stackVariant.getItem().canFitInsideContainerItems(stack)) {
 					result = 0;
 				} else {
 					result = voiding ? Long.MAX_VALUE : this.max - this.count;

@@ -150,15 +150,15 @@ public interface InkPowered {
 			return false;
 		}
 		
+		if (player.isCreative()) {
+			return true;
+		}
+		
 		if(SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.MALUM_ID)) {
 			var effect = BuiltInRegistries.MOB_EFFECT.get(ResourceLocation.parse("malum:silenced"));
 			if (player.hasEffect(BuiltInRegistries.MOB_EFFECT.wrapAsHolder(effect))) {
 				return false;
 			}
-		}
-		
-		if (player.isCreative()) {
-			return true;
 		}
 		
 		// hands
@@ -173,10 +173,7 @@ public interface InkPowered {
 		List<ItemStack> inkStorages = CuriosApi
 				.getCuriosInventory(player)
 				.stream()
-				.flatMap(inventory -> inventory
-						.findCurios(itemStack1 -> itemStack1.getItem() instanceof InkStorageItem<?>)
-						.stream()
-				)
+				.flatMap(inventory -> inventory.findCurios(itemStack1 -> itemStack1.getItem() instanceof InkStorageItem<?>).stream())
 				.map(SlotResult::stack).toList();
 		for (ItemStack inkStorage : inkStorages) {
 			amount -= tryGetEnergy(inkStorage, color);
@@ -215,10 +212,7 @@ public interface InkPowered {
 		available += CuriosApi
 				.getCuriosInventory(player)
 				.stream()
-				.flatMap(inventory -> inventory
-						.findCurios(itemStack1 -> itemStack1.getItem() instanceof InkStorageItem<?>)
-						.stream()
-				)
+				.flatMap(inventory -> inventory.findCurios(itemStack1 -> itemStack1.getItem() instanceof InkStorageItem<?>).stream())
 				.map(SlotResult::stack).mapToLong(stack -> tryGetEnergy(stack, color)).sum();
 		
 		// inventory
@@ -226,57 +220,6 @@ public interface InkPowered {
 			available += tryGetEnergy(itemStack, color);
 		}
 		return available;
-	}
-	
-	static boolean hasAvailableInk(Player player, InkCost inkCost) {
-		return hasAvailableInk(player, inkCost.color(), inkCost.cost());
-	}
-	
-	static boolean hasAvailableInk(Player player, InkColor color, long amount) {
-		if (!canUse(player)) {
-			return false;
-		}
-
-		if(SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.MALUM_ID)) {
-			var effect = BuiltInRegistries.MOB_EFFECT.get(ResourceLocation.parse("malum:silenced"));
-			if (player.hasEffect(BuiltInRegistries.MOB_EFFECT.wrapAsHolder(effect))) {
-				return false;
-			}
-		}
-		
-		if (player.isCreative()) {
-			return true;
-		}
-		
-		// hands
-		for (ItemStack itemStack : player.getHandSlots()) {
-			amount -= tryGetEnergy(itemStack, color);
-			if (amount <= 0) {
-				return true;
-			}
-		}
-		
-		// trinket slot
-		Optional<TrinketComponent> optionalTrinketComponent = TrinketsApi.getTrinketComponent(player);
-		if (optionalTrinketComponent.isPresent()) {
-			List<Tuple<SlotReference, ItemStack>> trinketInkStorages = optionalTrinketComponent.get().getEquipped(itemStack -> itemStack.getItem() instanceof InkStorageItem<?>);
-			for (Tuple<SlotReference, ItemStack> trinketEnergyStorageStack : trinketInkStorages) {
-				amount -= tryGetEnergy(trinketEnergyStorageStack.getB(), color);
-				if (amount <= 0) {
-					return true;
-				}
-			}
-		}
-		
-		// inventory
-		for (ItemStack itemStack : player.getInventory().items) {
-			amount -= tryGetEnergy(itemStack, color);
-			if (amount <= 0) {
-				return true;
-			}
-		}
-		
-		return false;
 	}
 	
 	default boolean payForStaffUse(Player player, ItemStack stack, @NotNull InkCost inkCost, @Nullable Ingredient itemCost) {

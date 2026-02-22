@@ -12,7 +12,6 @@ import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.armor.*;
-import de.dafuqs.spectrum.items.bundles.*;
 import de.dafuqs.spectrum.items.conditional.*;
 import de.dafuqs.spectrum.items.conditional.CloakedItem;
 import de.dafuqs.spectrum.items.energy.*;
@@ -367,23 +366,23 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> FISHCAKE = register("fishcake", () -> new Item(IS.of().food(SpectrumFoodComponents.FISHCAKE)));
 	public static final DeferredItem<Item> LIZARD_MEAT = register("lizard_meat", () -> new Item(IS.of().food(SpectrumFoodComponents.LIZARD_MEAT)));
 	public static final DeferredItem<Item> COOKED_LIZARD_MEAT = register("cooked_lizard_meat", () -> new Item(IS.of().food(SpectrumFoodComponents.COOKED_LIZARD_MEAT)));
-	public static final DeferredItem<Item> GOLDEN_BRISTLE_TEA = register("golden_bristle_tea", () -> new DrinkItem(IS.of(16).food(SpectrumFoodComponents.GOLDEN_BRISTLE_TEA).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.GOLDEN_BRISTLE_TEA_SCONE_BONUS)).craftRemainder(GLASS_BOTTLE)));
+	public static final DeferredItem<Item> GOLDEN_BRISTLE_TEA = register("golden_bristle_tea", () -> new DrinkItem(IS.of().food(SpectrumFoodComponents.GOLDEN_BRISTLE_TEA).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.GOLDEN_BRISTLE_TEA_SCONE_BONUS)).craftRemainder(GLASS_BOTTLE)));
 	public static final DeferredItem<Item> HARE_ROAST = register("hare_roast", () -> new Item(IS.of().food(SpectrumFoodComponents.HARE_ROAST)));
 	public static final DeferredItem<Item> JUNKET = register("junket", () -> new Item(IS.of().food(SpectrumFoodComponents.JUNKET)));
 	public static final DeferredItem<Item> KOI = register("koi", () -> new Item(IS.of().food(SpectrumFoodComponents.KOI)));
 	public static final DeferredItem<Item> MEATLOAF = register("meatloaf", () -> new Item(IS.of().food(SpectrumFoodComponents.MEATLOAF)));
 	public static final DeferredItem<Item> MEATLOAF_SANDWICH = register("meatloaf_sandwich", () -> new Item(IS.of().food(SpectrumFoodComponents.MEATLOAF_SANDWICH)));
 	public static final DeferredItem<Item> MELLOW_SHALLOT_SOUP = register("mellow_shallot_soup", () -> new Item(IS.of().food(SpectrumFoodComponents.MELLOW_SHALLOT_SOUP)));
-	public static final DeferredItem<Item> MORCHELLA = register("morchella", () -> new BeverageItem(IS.of(16).food(SpectrumFoodComponents.BEVERAGE).component(DataComponents.POTION_CONTENTS, PotionContents.EMPTY).craftRemainder(GLASS_BOTTLE)));
-	public static final DeferredItem<Item> NECTERED_VIOGNIER = register("nectered_viognier", () -> new JadeWineItem(IS.of(16).food(SpectrumFoodComponents.NECTERED_VIOGNIER).craftRemainder(GLASS_BOTTLE)));
+	public static final DeferredItem<Item> MORCHELLA = register("morchella", () -> new BeverageItem(IS.of().food(SpectrumFoodComponents.BEVERAGE).component(DataComponents.POTION_CONTENTS, PotionContents.EMPTY).craftRemainder(GLASS_BOTTLE)));
+	public static final DeferredItem<Item> NECTERED_VIOGNIER = register("nectered_viognier", () -> new JadeWineItem(IS.of().food(SpectrumFoodComponents.NECTERED_VIOGNIER).craftRemainder(GLASS_BOTTLE)));
 	public static final DeferredItem<Item> PEACHES_FLAMBE = register("peaches_flambe", () -> new Item(IS.of().food(SpectrumFoodComponents.PEACHES_FLAMBE)));
-	public static final DeferredItem<Item> PEACH_CREAM = register("peach_cream", () -> new DrinkItem(IS.of(16).food(SpectrumFoodComponents.PEACH_CREAM).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.PEACH_CREAM_SCONE_BONUS))));
+	public static final DeferredItem<Item> PEACH_CREAM = register("peach_cream", () -> new DrinkItem(IS.of().food(SpectrumFoodComponents.PEACH_CREAM).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.PEACH_CREAM_SCONE_BONUS))));
 	public static final DeferredItem<Item> PEACH_JAM = register("peach_jam", () -> new Item(IS.of().food(SpectrumFoodComponents.PEACH_JAM)));
 	public static final DeferredItem<Item> RABBIT_CREAM_PIE = register("rabbit_cream_pie", () -> new ItemWithTooltip(IS.of().food(SpectrumFoodComponents.RABBIT_CREAM_PIE), "item.spectrum.rabbit_cream_pie.tooltip"));
 	public static final DeferredItem<Item> SEDATIVES = register("sedatives", () -> new SedativesItem(IS.of().food(SpectrumFoodComponents.SEDATIVES), "item.spectrum.sedatives.tooltip"));
-	public static final DeferredItem<Item> SLUSHSLIDE = register("slushslide", () -> new DrinkItem(IS.of(16).food(SpectrumFoodComponents.SLUSHSLIDE), "item.spectrum.slushslide.tooltip"));
+	public static final DeferredItem<Item> SLUSHSLIDE = register("slushslide", () -> new DrinkItem(IS.of().food(SpectrumFoodComponents.SLUSHSLIDE), "item.spectrum.slushslide.tooltip"));
 	public static final DeferredItem<Item> SURSTROMMING = register("surstromming", () -> new Item(IS.of().food(SpectrumFoodComponents.SURSTROMMING)));
-	public static final DeferredItem<Item> EVERNECTAR = register("evernectar", () -> new EvernectarItem(IS.of(1, Rarity.EPIC).food(SpectrumFoodComponents.EVERNECTAR).craftRemainder(GLASS_BOTTLE), "item.spectrum.evernectar.tooltip"));
+	public static final DeferredItem<Item> EVERNECTAR = register("evernectar", () -> new DrinkItem(IS.of(16, Rarity.EPIC).food(SpectrumFoodComponents.EVERNECTAR).craftRemainder(GLASS_BOTTLE), "item.spectrum.evernectar.tooltip"));
 	
 	// Banner Patterns
 	public static final DeferredItem<Item> LOGO_BANNER_PATTERN = register("logo_banner_pattern", () -> new BannerPatternItem(SpectrumBannerPatternTags.SPECTRUM_LOGO_TAG, IS.of(1, Rarity.UNCOMMON)));

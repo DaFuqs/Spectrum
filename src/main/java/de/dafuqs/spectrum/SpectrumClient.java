@@ -14,7 +14,6 @@ import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.*;
 import de.dafuqs.spectrum.render.*;
 import de.dafuqs.spectrum.render.armor.*;
-import de.dafuqs.spectrum.render.capes.*;
 import me.shedaniel.autoconfig.*;
 import net.minecraft.client.*;
 import net.minecraft.core.registries.*;
@@ -58,7 +57,6 @@ public class SpectrumClient implements RevealingCallback, ClientAdvancementPacke
 			NeoForge.EVENT_BUS.addListener(SpectrumTooltips::register);
 		}
 		modBus.addListener(SpectrumArmorRenderers::register);
-		WorthinessChecker.init();
 		
 		RevealingCallback.register(this);
 		ClientAdvancementPacketCallback.registerCallback(this);

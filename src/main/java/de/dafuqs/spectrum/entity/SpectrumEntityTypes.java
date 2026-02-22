@@ -66,6 +66,7 @@ public class SpectrumEntityTypes {
 	
 	public static void registerSpawnPlacements(RegisterSpawnPlacementsEvent event) {
 		event.register(ERASER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.AND);
+		event.register(MARROW.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.AND);
 	}
 	
 	// TODO: remove

@@ -32,7 +32,8 @@ public class SpectrumItemTags {
 	public static final TagKey<Item> TAG_FILTERING_ITEMS = of("tag_filtering_items");
 	public static final TagKey<Item> WEEPING_GALA_LOGS = of("weeping_gala_logs");
 	public static final TagKey<Item> PLAYER_ATTRIBUTED_PLACEMENT = of("player_attributed_placement");
-
+	public static final TagKey<Item> ENCHANTER_ENCHANTMENT_SOURCE_BLACKLISTED = of("enchanter_enchantment_source_blacklisted");
+	
 	private static TagKey<Item> of(String id) {
 		return TagKey.of(RegistryKeys.ITEM, SpectrumCommon.locate(id));
 	}

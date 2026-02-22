@@ -243,6 +243,9 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 						Map<Enchantment, Integer> currentEnchantedBookEnchantments = EnchantmentHelper.get(virtualSlotStack);
 						for (Enchantment enchantment : currentEnchantedBookEnchantments.keySet()) {
 							if ((isEnchantableBookInCenter || enchantment.isAcceptableItem(centerStack)) && (!existingEnchantments.containsKey(enchantment) || existingEnchantments.get(enchantment) < currentEnchantedBookEnchantments.get(enchantment))) {
+								if(SpectrumEnchantmentTags.isIn(SpectrumEnchantmentTags.IGNORED_BY_ENCHANTER_ENCHANTING, enchantment)) {
+									continue;
+								}
 								if (enchanterBlockEntity.canOwnerApplyConflictingEnchantments) {
 									enchantedBookWithAdditionalEnchantmentsFound = true;
 									break;
@@ -338,10 +341,13 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	public static Map<Enchantment, Integer> getHighestEnchantmentsInItemBowls(@NotNull EnchanterBlockEntity enchanterBlockEntity) {
 		List<ItemStack> bowlStacks = new ArrayList<>();
 		for (int i = 0; i < 8; i++) {
-			bowlStacks.add(enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack(2 + i));
+			ItemStack  bowlStack = enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack(2 + i);
+			if (!bowlStack.isIn(SpectrumItemTags.ENCHANTER_ENCHANTMENT_SOURCE_BLACKLISTED)) {
+				bowlStacks.add(bowlStack);
+			}
 		}
 		
-		return SpectrumEnchantmentHelper.collectHighestEnchantments(bowlStacks);
+		return SpectrumEnchantmentHelper.collectHighestEnchantments(bowlStacks, SpectrumEnchantmentTags.IGNORED_BY_ENCHANTER_ENCHANTING);
 	}
 	
 	public static int getRequiredExperienceToEnchantCenterItem(@NotNull EnchanterBlockEntity enchanterBlockEntity) {

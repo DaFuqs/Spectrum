@@ -8,6 +8,7 @@ import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.registry.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
 
@@ -141,13 +142,18 @@ public class SpectrumEnchantmentHelper {
 		return false;
 	}
 	
-	public static Map<Enchantment, Integer> collectHighestEnchantments(List<ItemStack> itemStacks) {
+	//This instance of collectHighestEnchantments is to enable the use of an optional filter
+	public static Map<Enchantment, Integer> collectHighestEnchantments(List<ItemStack> itemStacks, @Nullable TagKey<Enchantment> ignoreList) {
 		Map<Enchantment, Integer> enchantmentLevelMap = new LinkedHashMap<>();
-		
 		for (ItemStack itemStack : itemStacks) {
 			Map<Enchantment, Integer> itemStackEnchantments = EnchantmentHelper.get(itemStack);
 			for (Enchantment enchantment : itemStackEnchantments.keySet()) {
 				int level = itemStackEnchantments.get(enchantment);
+				
+				if (ignoreList != null && SpectrumEnchantmentTags.isIn(ignoreList, enchantment)) {
+					continue;
+				}
+					
 				if (enchantmentLevelMap.containsKey(enchantment)) {
 					int storedLevel = enchantmentLevelMap.get(enchantment);
 					if (level > storedLevel) {

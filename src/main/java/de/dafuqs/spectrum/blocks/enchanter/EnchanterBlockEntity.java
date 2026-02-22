@@ -338,7 +338,9 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	public static Map<Enchantment, Integer> getHighestEnchantmentsInItemBowls(@NotNull EnchanterBlockEntity enchanterBlockEntity) {
 		List<ItemStack> bowlStacks = new ArrayList<>();
 		for (int i = 0; i < 8; i++) {
-			bowlStacks.add(enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack(2 + i));
+			if (!SpectrumItemTags.isIn(SpectrumItemTags.ENCHANTER_ITEM_BLACKLIST, enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack(2 + i).getItem())) {
+				bowlStacks.add(enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack(2 + i));
+			}
 		}
 		
 		return SpectrumEnchantmentHelper.collectHighestEnchantments(bowlStacks, SpectrumEnchantmentTags.ENCHANTER_BLACKLIST);

@@ -63,14 +63,18 @@ public class SpectrumIntegrationPacks {
 		registerIntegrationPack(CREATE_ID, () -> new CreateCompat());
 		registerIntegrationPack(FARMERSDELIGHT_ID, () -> new FDCompat());
 		registerIntegrationPack(GOBBER_ID, () -> new GobberCompat());
-		registerIntegrationPack(MALUM_ID, () -> new MalumCompat());
 		registerIntegrationPack(NEEPMEAT_ID, () -> new NEEPMeatCompat());
 		
 		if (!CONNECTOR_LOADED) {
 			// Traveler's Backpack for Forge crashes due to Fabric lacking Fluid#getFluidType (a Forge method)
 			// This cannot be reasonably worked around AFAIK
 			// ~unilock, 2025
+			
+			//Malum for Fabric uses Create Porter Lib, Atemps to register enchantments though it create NoSuchField errors
+			// Needs replacement or hacky workaround
+			// ~Shibva, 2026
 			registerIntegrationPack(TRAVELERS_BACKPACK_ID, () -> new TravelersBackpackCompat());
+			registerIntegrationPack(MALUM_ID, () -> new MalumCompat());
 		}
 		
 		for (ModIntegrationPack container : INTEGRATION_PACKS.values()) {

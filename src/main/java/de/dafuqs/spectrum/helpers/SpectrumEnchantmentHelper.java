@@ -143,39 +143,17 @@ public class SpectrumEnchantmentHelper {
 	}
 	
 	//This instance of collectHighestEnchantments is to enable the use of an optional filter
-	public static Map<Enchantment, Integer> collectHighestEnchantments(List<ItemStack> itemStacks, TagKey<Enchantment> blacklist) {
+	public static Map<Enchantment, Integer> collectHighestEnchantments(List<ItemStack> itemStacks, @Nullable TagKey<Enchantment> ignoreList) {
 		Map<Enchantment, Integer> enchantmentLevelMap = new LinkedHashMap<>();
 		for (ItemStack itemStack : itemStacks) {
 			Map<Enchantment, Integer> itemStackEnchantments = EnchantmentHelper.get(itemStack);
 			for (Enchantment enchantment : itemStackEnchantments.keySet()) {
 				int level = itemStackEnchantments.get(enchantment);
 				
-				if (SpectrumEnchantmentTags.isIn(blacklist, enchantment)) {
+				if (ignoreList != null && SpectrumEnchantmentTags.isIn(ignoreList, enchantment)) {
 					continue;
 				}
 					
-				if (enchantmentLevelMap.containsKey(enchantment)) {
-					int storedLevel = enchantmentLevelMap.get(enchantment);
-					if (level > storedLevel) {
-						enchantmentLevelMap.put(enchantment, level);
-					}
-				} else {
-					enchantmentLevelMap.put(enchantment, level);
-				}
-			}
-		}
-		
-		return enchantmentLevelMap;
-	}
-	
-	//The filterless version of the method above
-	public static Map<Enchantment, Integer> collectHighestEnchantments(List<ItemStack> itemStacks) {
-		Map<Enchantment, Integer> enchantmentLevelMap = new LinkedHashMap<>();
-		for (ItemStack itemStack : itemStacks) {
-			Map<Enchantment, Integer> itemStackEnchantments = EnchantmentHelper.get(itemStack);
-			for (Enchantment enchantment : itemStackEnchantments.keySet()) {
-				int level = itemStackEnchantments.get(enchantment);
-				
 				if (enchantmentLevelMap.containsKey(enchantment)) {
 					int storedLevel = enchantmentLevelMap.get(enchantment);
 					if (level > storedLevel) {

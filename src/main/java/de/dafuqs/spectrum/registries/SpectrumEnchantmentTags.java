@@ -11,8 +11,7 @@ import java.util.*;
 public class SpectrumEnchantmentTags {
 	
 	public static final TagKey<Enchantment> SPECTRUM_ENCHANTMENT = of("enchantments");
-	
-	public static final TagKey<Enchantment> ENCHANTER_BLACKLIST = of("enchanter_copying_and_applying_blacklisted");
+	public static final TagKey<Enchantment> IGNORED_BY_ENCHANTER_ENCHANTING = of("ignored_by_enchanter_enchanting");
 	
 	private static TagKey<Enchantment> of(String id) {
 		return TagKey.of(RegistryKeys.ENCHANTMENT, SpectrumCommon.locate(id));

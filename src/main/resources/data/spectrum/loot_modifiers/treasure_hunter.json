@@ -678,7 +678,7 @@
       "head_stack": {
         "id": "spectrum:egg_laying_wooly_pig_head"
       },
-      "drop_chance_per_level": 0.1
+      "drop_chance_per_level": 0.02
     },
     {
       "entity": {
@@ -687,7 +687,7 @@
       "head_stack": {
         "id": "spectrum:kindling_head"
       },
-      "drop_chance_per_level": 0.1
+      "drop_chance_per_level": 0.02
     },
     {
       "entity": {
@@ -696,7 +696,7 @@
       "head_stack": {
         "id": "spectrum:preservation_turret_head"
       },
-      "drop_chance_per_level": 0.1
+      "drop_chance_per_level": 0.02
     },
     {
       "entity": {
@@ -705,7 +705,7 @@
       "head_stack": {
         "id": "spectrum:monstrosity_head"
       },
-      "drop_chance_per_level": 0.1
+      "drop_chance_per_level": 1.0
     },
     {
       "entity": {
@@ -714,9 +714,26 @@
       "head_stack": {
         "id": "spectrum:eraser_head"
       },
-      "drop_chance_per_level": 0.1
+      "drop_chance_per_level": 0.02
     },
-    
+    {
+      "entity": {
+        "type": "spectrum:marrow"
+      },
+      "head_stack": {
+        "id": "spectrum:marrow_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "spectrum:splinterspawn"
+      },
+      "head_stack": {
+        "id": "spectrum:splinterspawn_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
     
     
     {

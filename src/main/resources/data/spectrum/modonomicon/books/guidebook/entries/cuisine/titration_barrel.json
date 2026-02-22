@@ -44,7 +44,7 @@
       "title": "item.spectrum.clotted_cream",
       "anchor": "clotted_cream",
       "recipe_id": "spectrum:titration_barrel/clotted_cream",
-      "recipe_id2": "spectrum:titration_barrel/clotted_cream_fluid",
+      "recipe_id2": "spectrum:titration_barrel/clotted_cream",
       "text": "book.spectrum.guidebook.titration_barrel.page4.text"
     },
     {

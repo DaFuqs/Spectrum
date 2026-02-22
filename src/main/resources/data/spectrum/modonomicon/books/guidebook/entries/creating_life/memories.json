@@ -52,7 +52,7 @@
     {
       "type": "spectrum:spirit_instiller_crafting",
       "title": "book.spectrum.guidebook.spirit_instiller_recipe",
-      "recipe_id": "spectrum:spirit_instiller/memories/fox",
+      "recipe_id": "spectrum:spirit_instiller/memories/fox_red",
       "text": "book.spectrum.guidebook.memories.page1.text"
     },
     {

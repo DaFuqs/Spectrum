@@ -104,13 +104,13 @@
       "type": "spectrum:crystallarieum_growing",
       "title": "book.spectrum.guidebook.mod_integration.ae2.pure_certus_quartz_growing.title",
       "text": "book.spectrum.guidebook.mod_integration.ae2.pure_certus_quartz_growing.text",
-      "recipe_id": "spectrum:mod_integration/ae2/crystallarieum/certus_quartz_crystal"
+      "recipe_id": "spectrum:mod_integration/ae2/crystallarieum/certus_quartz"
     },
     {
       "type": "spectrum:crystallarieum_growing",
       "title": "book.spectrum.guidebook.mod_integration.ae2.pure_fluix_crystal_growing.title",
       "text": "book.spectrum.guidebook.mod_integration.ae2.pure_fluix_crystal_growing.text",
-      "recipe_id": "spectrum:mod_integration/ae2/crystallarieum/fluix_crystal"
+      "recipe_id": "spectrum:mod_integration/ae2/crystallarieum/fluix"
     },
     {
       "type": "spectrum:anvil_crushing",

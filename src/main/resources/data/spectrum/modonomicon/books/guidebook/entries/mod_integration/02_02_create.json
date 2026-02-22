@@ -75,7 +75,7 @@
     {
       "type": "spectrum:enchanter_upgrading",
       "title": "container.spectrum.rei.enchantment_upgrading.title",
-      "recipe_id": "spectrum:mod_integration/create/enchantment_upgrade/potato_recovery/1_to_2"
+      "recipe_id": "spectrum:mod_integration/create/enchantment_upgrade/potato_recovery"
     },
     {
       "type": "spectrum:enchanter_crafting",
@@ -85,7 +85,7 @@
     {
       "type": "spectrum:enchanter_upgrading",
       "title": "container.spectrum.rei.enchantment_upgrading.title",
-      "recipe_id": "spectrum:mod_integration/create/enchantment_upgrade/capacity/1_to_2"
+      "recipe_id": "spectrum:mod_integration/create/enchantment_upgrade/capacity"
     },
     {
       "type": "modonomicon:spotlight",

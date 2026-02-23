@@ -2203,13 +2203,13 @@ public class SpectrumBlocks {
 	
 	public static void registerClient(FMLClientSetupEvent event) {
 		// This will be obsolete starting MC 26.1
-		ItemBlockRenderTypes.setRenderLayer(TOPAZ_GLASS_PANE.get(), RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(AMETHYST_GLASS_PANE.get(), RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(CITRINE_GLASS_PANE.get(), RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(ONYX_GLASS_PANE.get(), RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(MOONSTONE_GLASS_PANE.get(), RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(RADIANT_GLASS_PANE.get(), RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(HUMMINGSTONE_GLASS_PANE.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(TOPAZ_GLASS_PANE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(AMETHYST_GLASS_PANE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(CITRINE_GLASS_PANE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(ONYX_GLASS_PANE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(MOONSTONE_GLASS_PANE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(RADIANT_GLASS_PANE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(HUMMINGSTONE_GLASS_PANE.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(SMALL_COAL_BUD.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(LARGE_COAL_BUD.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(COAL_CLUSTER.get(), RenderType.cutout());

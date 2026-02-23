@@ -2,7 +2,7 @@
   "type": "spectrum:anvil_crushing",
   "ingredient": [
     {
-      "tag": "c:gold_ores"
+      "tag": "minecraft:gold_ores"
     }
   ],
   "crushedItemsPerPointOfDamage": 0.75,

@@ -29,7 +29,8 @@ public class SpectrumFluids {
 	private static final DeferredRegister<Fluid> FLUID_REGISTRAR = DeferredRegister.create(Registries.FLUID, SpectrumCommon.MOD_ID);
 	
 	// LIQUID CRYSTAL
-	public static final DeferredHolder<FluidType, FluidType> LIQUID_CRYSTAL_TYPE = registerFluidType("liquid_crystal", () -> new FluidType(FluidType.Properties.create().canExtinguish(true).supportsBoating(true).canHydrate(true)));
+	public static final DeferredHolder<FluidType, FluidType> LIQUID_CRYSTAL_TYPE = registerFluidType("liquid_crystal", () ->
+			new FluidType(FluidType.Properties.create().canExtinguish(true).supportsBoating(true).canHydrate(true)));
 	public static final DeferredHolder<Fluid, SpectrumFluid> LIQUID_CRYSTAL = registerFluid("liquid_crystal", LiquidCrystalFluid.Still::new);
 	public static final DeferredHolder<Fluid, SpectrumFluid> FLOWING_LIQUID_CRYSTAL = registerFluid("flowing_liquid_crystal", LiquidCrystalFluid.Flowing::new);
 	public static final int LIQUID_CRYSTAL_TINT = 0xFFcbbbcb;
@@ -78,12 +79,16 @@ public class SpectrumFluids {
 		setupFluidRendering(event, SLUDGE_TYPE.get(), "sludge", SLUDGE_TINT, SLUDGE_OVERLAY_ALPHA);
 		setupFluidRendering(event, MIDNIGHT_SOLUTION_TYPE.get(), "midnight_solution", MIDNIGHT_SOLUTION_TINT, MIDNIGHT_SOLUTION_OVERLAY_ALPHA);
 		setupFluidRendering(event, DRAGONROT_TYPE.get(), "dragonrot", DRAGONROT_TINT, DRAGONROT_OVERLAY_ALPHA);
+		
+		ItemBlockRenderTypes.setRenderLayer(LIQUID_CRYSTAL.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(FLOWING_LIQUID_CRYSTAL.get(), RenderType.translucent());
 	}
 	
 	private static void setupFluidRendering(RegisterClientExtensionsEvent event, final FluidType fluidType, final String name, int tint, float overlayAlpha) {
 		ResourceLocation overlay = SpectrumCommon.locate("textures/misc/" + name + "_overlay.png");
 		ResourceLocation still = SpectrumCommon.locate("block/" + name + "_still");
 		ResourceLocation flowing = SpectrumCommon.locate("block/" + name + "_flow");
+		
 		
 		event.registerFluidType(new IClientFluidTypeExtensions() {
 			@Override

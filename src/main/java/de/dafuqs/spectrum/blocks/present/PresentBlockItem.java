@@ -75,10 +75,10 @@ public class PresentBlockItem extends BlockItem {
 				BundleContents.Mutable bundlecontents$mutable = new BundleContents.Mutable(bundlecontents);
 				if (itemstack.isEmpty()) {
 					this.playRemoveOneSound(player);
-					ItemStack itemstack1 = bundlecontents$mutable.removeOne();
-					if (itemstack1 != null) {
-						ItemStack itemstack2 = slot.safeInsert(itemstack1);
-						bundlecontents$mutable.tryInsert(itemstack2);
+					ItemStack removedStack = bundlecontents$mutable.removeOne();
+					if (removedStack != null) {
+						ItemStack putIntoSlotStack = slot.safeInsert(removedStack);
+						bundlecontents$mutable.tryInsert(putIntoSlotStack);
 					}
 				} else if (itemstack.canFitInsideContainerItems()) {
 					int i = bundlecontents$mutable.tryTransfer(slot, player);

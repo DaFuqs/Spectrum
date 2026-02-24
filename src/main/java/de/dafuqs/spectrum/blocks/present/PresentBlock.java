@@ -103,7 +103,7 @@ public class PresentBlock extends BaseEntityBlock {
 	}
 	
 	@Override
-	public void setPlacedBy(@NotNull Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+	public void setPlacedBy(@NotNull Level world, @NotNull BlockPos pos, BlockState state, @Nullable LivingEntity placer, @NotNull ItemStack itemStack) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		world.setBlockAndUpdate(pos, state.setValue(PresentBlock.VARIANT, PresentBlockItem.getWrapData(itemStack).variant()));
 		if (blockEntity instanceof PresentBlockEntity presentBlockEntity) {

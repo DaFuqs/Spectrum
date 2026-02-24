@@ -28,14 +28,18 @@ public class PlacedItemBlockEntity extends BlockEntity implements PlayerOwned {
 	@Override
 	public void loadAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
 		super.loadAdditional(nbt, registryLookup);
-		this.stack = ItemStack.parse(registryLookup, nbt.getCompound("stack")).orElse(ItemStack.EMPTY);
+		if(nbt.contains("stack")) {
+			this.stack = ItemStack.parse(registryLookup, nbt.getCompound("stack")).orElse(ItemStack.EMPTY);
+		}
 		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
 	}
 	
 	@Override
 	public void saveAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
 		super.saveAdditional(nbt, registryLookup);
-		nbt.put("stack", this.stack.save(registryLookup));
+		if(!this.stack.isEmpty()) {
+			nbt.put("stack", this.stack.save(registryLookup));
+		}
 		
 		PlayerOwned.writeOwnerUUID(nbt, this.ownerUUID);
 	}

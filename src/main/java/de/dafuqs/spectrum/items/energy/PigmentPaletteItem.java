@@ -44,7 +44,7 @@ public class PigmentPaletteItem extends SpectrumCurioItem implements InkStorageI
 	
 	// Omitting this would crash outside the dev env o.O
 	@Override
-	public ItemStack getDefaultInstance() {
+	public @NotNull ItemStack getDefaultInstance() {
 		return super.getDefaultInstance();
 	}
 	

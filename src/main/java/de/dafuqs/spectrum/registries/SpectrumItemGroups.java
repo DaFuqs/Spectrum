@@ -37,7 +37,7 @@ public class SpectrumItemGroups {
 			.displayItems((displayContext, entries) -> {
 				entries.accept(SpectrumBlocks.PEDESTAL_ALL_BASIC, CreativeModeTab.TabVisibility.PARENT_TAB_ONLY);
 				for (CreativeSubTab subGroup : ((ICreativeTabParent) SpectrumItemGroups.MAIN.get()).fractal$getChildren()) {
-					entries.acceptAll(subGroup.getSearchTabDisplayItems(), CreativeModeTab.TabVisibility.SEARCH_TAB_ONLY);
+					entries.acceptAll(subGroup.getDisplayItems());
 				}
 			})
 			.hideTitle()

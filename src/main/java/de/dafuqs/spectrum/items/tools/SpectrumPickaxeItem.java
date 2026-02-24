@@ -17,4 +17,5 @@ public class SpectrumPickaxeItem extends PickaxeItem implements Preenchanted {
 	public Map<ResourceKey<Enchantment>, Integer> getDefaultEnchantments() {
 		return Map.of();
 	}
+	
 }

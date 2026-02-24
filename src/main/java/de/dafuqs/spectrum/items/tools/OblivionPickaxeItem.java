@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.state.*;
 
 import java.util.*;
 
-public class OblivionPickaxeItem extends SpectrumPickaxeItem {
+public class OblivionPickaxeItem extends GlintlessPickaxe {
 	
 	public OblivionPickaxeItem(Tier material, Properties settings) {
 		super(material, settings);
@@ -35,8 +35,4 @@ public class OblivionPickaxeItem extends SpectrumPickaxeItem {
 		return Map.of(SpectrumEnchantments.VOIDING, 1);
 	}
 	
-	@Override
-	public boolean isFoil(ItemStack stack) {
-		return false;
-	}
 }

@@ -7,6 +7,7 @@ import net.minecraft.*;
 import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.sounds.*;
+import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
@@ -65,33 +66,33 @@ public class PresentBlockItem extends BlockItem {
 			return false;
 		}
 		
-		if (action != ClickAction.SECONDARY) {
+		if (stack.getCount() == 1 && action == ClickAction.SECONDARY) {
+			BundleContents bundlecontents = stack.get(DataComponents.BUNDLE_CONTENTS);
+			if (bundlecontents == null) {
+				return false;
+			} else {
+				ItemStack itemstack = slot.getItem();
+				BundleContents.Mutable bundlecontents$mutable = new BundleContents.Mutable(bundlecontents);
+				if (itemstack.isEmpty()) {
+					this.playRemoveOneSound(player);
+					ItemStack itemstack1 = bundlecontents$mutable.removeOne();
+					if (itemstack1 != null) {
+						ItemStack itemstack2 = slot.safeInsert(itemstack1);
+						bundlecontents$mutable.tryInsert(itemstack2);
+					}
+				} else if (itemstack.canFitInsideContainerItems()) {
+					int i = bundlecontents$mutable.tryTransfer(slot, player);
+					if (i > 0) {
+						this.playInsertSound(player);
+					}
+				}
+				
+				stack.set(DataComponents.BUNDLE_CONTENTS, bundlecontents$mutable.toImmutable());
+				return true;
+			}
+		} else {
 			return false;
 		}
-		
-		BundleContents bundleContents = stack.get(DataComponents.BUNDLE_CONTENTS);
-		if (bundleContents == null) {
-			return false;
-		}
-		
-		ItemStack itemStack = slot.getItem();
-		BundleContents.Mutable mutable = new BundleContents.Mutable(bundleContents);
-		if (itemStack.isEmpty()) {
-			this.playRemoveOneSound(player);
-			ItemStack itemStack2 = mutable.removeOne();
-			if (itemStack2 != null) {
-				ItemStack itemStack3 = slot.safeInsert(itemStack2);
-				mutable.tryInsert(itemStack3);
-			}
-		} else if (itemStack.getItem().canFitInsideContainerItems()) {
-			int i = mutable.tryTransfer(slot, player);
-			if (i > 0) {
-				this.playInsertSound(player);
-			}
-		}
-		
-		stack.set(DataComponents.BUNDLE_CONTENTS, mutable.toImmutable());
-		return true;
 	}
 	
 	@Override
@@ -103,28 +104,30 @@ public class PresentBlockItem extends BlockItem {
 			return false;
 		}
 		
-		if (action == ClickAction.SECONDARY && slot.allowModification(player)) {
-			BundleContents bundleContents = stack.get(DataComponents.BUNDLE_CONTENTS);
-			if (bundleContents == null) {
+		if (stack.getCount() != 1) {
+			return false;
+		} else if (action == ClickAction.SECONDARY && slot.allowModification(player)) {
+			BundleContents bundlecontents = stack.get(DataComponents.BUNDLE_CONTENTS);
+			if (bundlecontents == null) {
 				return false;
-			}
-			
-			BundleContents.Mutable mutable = new BundleContents.Mutable(bundleContents);
-			if (other.isEmpty()) {
-				ItemStack itemStack = mutable.removeOne();
-				if (itemStack != null) {
-					this.playRemoveOneSound(player);
-					access.set(itemStack);
-				}
 			} else {
-				int i = mutable.tryInsert(other);
-				if (i > 0) {
-					this.playInsertSound(player);
+				BundleContents.Mutable bundlecontents$mutable = new BundleContents.Mutable(bundlecontents);
+				if (other.isEmpty()) {
+					ItemStack itemstack = bundlecontents$mutable.removeOne();
+					if (itemstack != null) {
+						this.playRemoveOneSound(player);
+						access.set(itemstack);
+					}
+				} else {
+					int i = bundlecontents$mutable.tryInsert(other);
+					if (i > 0) {
+						this.playInsertSound(player);
+					}
 				}
+				
+				stack.set(DataComponents.BUNDLE_CONTENTS, bundlecontents$mutable.toImmutable());
+				return true;
 			}
-			
-			stack.set(DataComponents.BUNDLE_CONTENTS, mutable.toImmutable());
-			return true;
 		} else {
 			return false;
 		}
@@ -189,7 +192,11 @@ public class PresentBlockItem extends BlockItem {
 		} else {
 			tooltip.add((Component.translatable("block.spectrum.present.tooltip.description").withStyle(ChatFormatting.GRAY)));
 			tooltip.add((Component.translatable("block.spectrum.present.tooltip.description2").withStyle(ChatFormatting.GRAY)));
-			tooltip.add((Component.translatable("item.minecraft.bundle.fullness", getBundledStacks(stack).count(), 64)).withStyle(ChatFormatting.GRAY));
+			BundleContents bundlecontents = stack.get(DataComponents.BUNDLE_CONTENTS);
+			if (bundlecontents != null) {
+				int i = Mth.mulAndTruncate(bundlecontents.weight(), 64);
+				tooltip.add(Component.translatable("item.minecraft.bundle.fullness", i, 64).withStyle(ChatFormatting.GRAY));
+			}
 		}
 	}
 	

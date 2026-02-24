@@ -814,7 +814,7 @@
   "item.spectrum.memory.tooltip.unset_entity_type": "遗忘的记忆",
   "item.spectrum.memory.tooltip.extra_long_time_to_manifest": "显现这份记忆需要极长的时间",
   "item.spectrum.memory.tooltip.long_time_to_manifest": "显现这份记忆会耗费较长的时间",
-  "item.spectrum.memory.tooltip.medium_time_to_manifest": "可能在接下来的几天中显现",
+  "item.spectrum.memory.tooltip.medium_time_to_manifest": "可能会在接下来的几天中显现",
   "item.spectrum.memory.tooltip.short_time_to_manifest": "这份记忆将很快显现!",
   "item.spectrum.memory.tooltip.does_not_manifest": "你一生都无法显现这份记忆",
   "item.spectrum.bucket_of_eraser": "消色虫桶",
@@ -6505,12 +6505,13 @@
 
   "item.spectrum.potion.tooltip.invalid": "§5[?]",
 
-  "jukebox_song.spectrum.credits": "Radiarc – Irrelevance Fading",
-  "jukebox_song.spectrum.divinity": "Proper Motions – Everreflective",
-  "jukebox_song.spectrum.discovery": "DaveJF – The Mist",
+"jukebox_song.spectrum.credits": "Radiarc – 渐逝的虚无",
+"jukebox_song.spectrum.divinity": "Proper Motions – 永恒回响",
+"jukebox_song.spectrum.discovery": "DaveJF – 迷雾",
+"jukebox_song.spectrum.le_fishe_au_chocolat": "tyrono - 料理身份危机"
 
   "recipeGroup.spectrum.pylons": "宝石晶塔",
-  "recipeGroup.spectrum.pure_pastel_network": "Pure Pastel Network",
+  "recipeGroup.spectrum.pure_pastel_network": "纯化绘彩网络",
   "spectrum.subtitles.azure": "石青矿石：力场共鸣",
   "spectrum.subtitles.enchanter_finish": "附魔完成",
   "spectrum.subtitles.primordial_fire_dot": "原初火焰吞噬着你的灵魂",
@@ -6526,6 +6527,6 @@
   "tag.spectrum.unlocks_bag_of_holding": "解锁手持末影袋",
   "tag.spectrum.crossbows": "光谱世界弩",
 
-  "text.autoconfig.Spectrum.option.PostProcess": "Enable Post-Process Shaders"
+  "text.autoconfig.Spectrum.option.PostProcess": "启用后处理着色器"
 
 }

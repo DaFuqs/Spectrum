@@ -55,7 +55,7 @@ public abstract class ItemStackMixin {
 	// This mixin changes items, that only got their DefaultEnchantments to still be enchantable
 	@Inject(method = "isEnchantable()Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/enchantment/ItemEnchantments;isEmpty()Z"), cancellable = true)
 	public void spectrum$isEnchantable(CallbackInfoReturnable<Boolean> cir) {
-		var stack = (ItemStack) (Object) this;
+		ItemStack stack = (ItemStack) (Object) this;
 		if (this.getItem() instanceof Preenchanted preenchanted && preenchanted.onlyHasPreEnchantments(stack)) {
 			cir.setReturnValue(true);
 		}

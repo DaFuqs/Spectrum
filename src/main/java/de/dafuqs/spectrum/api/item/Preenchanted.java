@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.api.item;
 
+import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.core.registries.*;
@@ -33,9 +34,20 @@ public interface Preenchanted {
 	 * meaning enchantments had been added on top of the original ones.
 	 */
 	default boolean onlyHasPreEnchantments(ItemStack stack) {
-		var currentEnchants = stack.getOrDefault(DataComponents.ENCHANTMENTS, ItemEnchantments.EMPTY);
-		var defaultEnchants = getDefaultEnchantments();
-		return currentEnchants.equals(defaultEnchants);
+		ItemEnchantments stackEnchants = stack.getOrDefault(DataComponents.ENCHANTMENTS, ItemEnchantments.EMPTY);
+		
+		Map<ResourceKey<Enchantment>, Integer> defaultEnchants = new Object2IntArrayMap<>(getDefaultEnchantments());
+		for(Object2IntMap.Entry<Holder<Enchantment>> stackEnchantEntry : stackEnchants.entrySet()) {
+			@Nullable ResourceKey<Enchantment> stackEnchantKey = stackEnchantEntry.getKey().getKey();
+			int stackEnchantLevel = defaultEnchants.getOrDefault(stackEnchantKey, 0);
+			if(stackEnchantLevel == stackEnchantEntry.getIntValue()) {
+				defaultEnchants.remove(stackEnchantKey);
+			} else {
+				return false;
+			}
+		}
+		
+		return defaultEnchants.isEmpty();
 	}
 	
 }

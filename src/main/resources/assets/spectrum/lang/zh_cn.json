@@ -3763,8 +3763,8 @@
   "book.spectrum.guidebook.black_langast.page0.text": "这里到处都是[午夜溶液](entry://general/midnight_solution)。",
   "book.spectrum.guidebook.black_langast.page1.text": "这里到底发生了什么，才会让整片大地变成这片死寂的废土？肯定是一场可怕的灾难。无论造成这一切的是何物——或是何人……它的经历或许和我有些相似，只是结局要悲惨得多。\\\n\\\n在这里生长的那些*东西*——称它们为植物都是对[#](bb00bb)枯萎的灌木[#]()的侮辱——怎么看都透着一股诡异。",
 
-  "book.spectrum.guidebook.blackslag.page0.text": "一种黑而坚硬的石头，常见于深域深处。",
-  "book.spectrum.guidebook.blackslag.page1.text": "用[#](bb00bb)高炉[#]()熔炼比[#](bb00bb)熔炉[#]()更快。",
+  "book.spectrum.guidebook.blackslag.page0.text": "一种常见的深色坚硬石材，常见于深域深处。",
+  "book.spectrum.guidebook.blackslag.page1.text": "[高炉](item://minecraft:blast_furnace)熔炼这种石头的速度比普通熔炉更快。",
   "book.spectrum.guidebook.blackslag.page2.text": "[物品粉碎](entry://general/item_crushing)会使砖块和瓦块破裂。",
   "book.spectrum.guidebook.smelting_back": "回炉重造",
   "book.spectrum.guidebook.turn_back_to_polished": "通过加热，所有方块都可以恢复到平滑状态。",

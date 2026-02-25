@@ -44,7 +44,7 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 	private static final long MAX_STORED_AMOUNT_BASE = 20000;
 	
 	public BottomlessBundleItem(Block block, Item.Properties settings) {
-		super(block, settings.component(SpectrumDataComponentTypes.BOTTOMLESS_STACK, BottomlessStack.DEFAULT));
+		super(block, settings);
 	}
 	
 	public static long getMaxStoredAmount(int powerLevel) {
@@ -70,10 +70,8 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 		return stack.getOrDefault(SpectrumDataComponentTypes.BOTTOMLESS_STACK, BottomlessStack.DEFAULT).variant();
 	}
 	
-	public static long getStoredAmount(ItemStack voidBundleStack) {
-		return voidBundleStack
-				.getOrDefault(SpectrumDataComponentTypes.BOTTOMLESS_STACK, BottomlessStack.DEFAULT)
-				.count();
+	public static long getStoredAmount(ItemStack bottomlessBundleStack) {
+		return bottomlessBundleStack.getOrDefault(SpectrumDataComponentTypes.BOTTOMLESS_STACK, BottomlessStack.DEFAULT).count();
 	}
 	
 	@Override
@@ -102,12 +100,12 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 		}
 	}
 	
-	@Override
+	/*@Override
 	public InteractionResult useOn(UseOnContext context) {
 		if (context.getPlayer().isShiftKeyDown())
 			return super.useOn(context);
 		return InteractionResult.PASS;
-	}
+	}*/
 	
 	@Override
 	public boolean canFitInsideContainerItems() {
@@ -129,8 +127,7 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 		if (storedAmount == 0) {
 			tooltip.add(Component.translatable("item.spectrum.bottomless_bundle.tooltip.empty").withStyle(ChatFormatting.GRAY));
 			if (locked) {
-				tooltip.add(
-						Component.translatable("item.spectrum.bottomless_bundle.tooltip.locked").withStyle(ChatFormatting.GRAY));
+				tooltip.add(Component.translatable("item.spectrum.bottomless_bundle.tooltip.locked").withStyle(ChatFormatting.GRAY));
 			}
 		} else {
 			ItemStack variant = getTemplateVariant(stack);
@@ -140,13 +137,11 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 					.map(ench -> EnchantmentHelper.getItemEnchantmentLevel(ench, stack))
 					.orElse(0);
 			String totalStacks = Support.getShortenedNumberString(storedAmount / (float) variant.getItem().getDefaultMaxStackSize());
-			tooltip.add(Component.translatable("item.spectrum.bottomless_bundle.tooltip.count", storedAmount,
-					getMaxStoredAmount(powerLevel), totalStacks).withStyle(ChatFormatting.GRAY));
+			tooltip.add(Component.translatable("item.spectrum.bottomless_bundle.tooltip.count", storedAmount, getMaxStoredAmount(powerLevel), totalStacks).withStyle(ChatFormatting.GRAY));
 			if (locked) {
 				tooltip.add(Component.translatable("item.spectrum.bottomless_bundle.tooltip.locked").withStyle(ChatFormatting.GRAY));
 			} else {
-				tooltip.add(Component.translatable("item.spectrum.bottomless_bundle.tooltip.enter_inventory",
-						variant.getItem().getDescription().getString()).withStyle(ChatFormatting.GRAY));
+				tooltip.add(Component.translatable("item.spectrum.bottomless_bundle.tooltip.enter_inventory", variant.getItem().getDescription().getString()).withStyle(ChatFormatting.GRAY));
 			}
 		}
 		if (EnchantmentHelper.hasTag(stack, SpectrumEnchantmentTags.DELETES_OVERFLOW)) {
@@ -156,9 +151,9 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 	
 	@Override
 	public void onDestroyed(ItemEntity entity) {
-		var bottomlessStack = entity.getItem().get(SpectrumDataComponentTypes.BOTTOMLESS_STACK);
+		BottomlessBundleItem.BottomlessStack bottomlessStack = entity.getItem().get(SpectrumDataComponentTypes.BOTTOMLESS_STACK);
 		if (bottomlessStack != null) {
-			entity.getItem().set(SpectrumDataComponentTypes.BOTTOMLESS_STACK, BottomlessStack.DEFAULT);
+			entity.getItem().remove(SpectrumDataComponentTypes.BOTTOMLESS_STACK);
 			ItemUtils.onContainerDestroyed(entity, bottomlessStack.iterateCopy());
 		}
 	}
@@ -181,7 +176,7 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 				var remainder = slot.safeInsert(removed);
 				builder.add(remainder);
 			}
-		} else if (slotStack.getItem().canFitInsideContainerItems()) {
+		} else if (slotStack.getItem().canFitInsideContainerItems(slotStack)) {
 			var added = builder.add(slot, player);
 			if (added > 0) {
 				this.playInsertSound(player);
@@ -255,8 +250,7 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 	}
 	
 	private void playRemoveOneSound(Entity entity) {
-		entity.playSound(SoundEvents.BUNDLE_REMOVE_ONE, 0.8F,
-				0.8F + entity.level().getRandom().nextFloat() * 0.4F);
+		entity.playSound(SoundEvents.BUNDLE_REMOVE_ONE, 0.8F, 0.8F + entity.level().getRandom().nextFloat() * 0.4F);
 	}
 	
 	private void playInsertSound(Entity entity) {
@@ -264,13 +258,11 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 	}
 	
 	private void playDropContentsSound(Entity entity) {
-		entity.playSound(SoundEvents.BUNDLE_DROP_CONTENTS, 0.8F,
-				0.8F + entity.level().getRandom().nextFloat() * 0.4F);
+		entity.playSound(SoundEvents.BUNDLE_DROP_CONTENTS, 0.8F, 0.8F + entity.level().getRandom().nextFloat() * 0.4F);
 	}
 	
 	private void playZipSound(Entity entity, float basePitch) {
-		entity.playSound(SpectrumSoundEvents.BOTTOMLESS_BUNDLE_ZIP, 0.8F,
-				basePitch + entity.level().getRandom().nextFloat() * 0.4F);
+		entity.playSound(SpectrumSoundEvents.BOTTOMLESS_BUNDLE_ZIP, 0.8F, basePitch + entity.level().getRandom().nextFloat() * 0.4F);
 	}
 	
 	@Override
@@ -311,12 +303,9 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 		}
 		
 		@Override
-		public void render(ItemRenderer renderer, ItemStack stack, ItemDisplayContext mode, boolean leftHanded,
-						   PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay,
-						   BakedModel model) {
+		public void render(ItemRenderer renderer, ItemStack stack, ItemDisplayContext mode, boolean leftHanded, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay, BakedModel model) {
 			renderer.render(stack, mode, leftHanded, matrices, vertexConsumers, light, overlay, model);
-			if (mode != ItemDisplayContext.GUI
-					|| getStoredAmount(stack) <= 0)
+			if (mode != ItemDisplayContext.GUI || getStoredAmount(stack) <= 0)
 				return;
 			ItemStack bundledStack = BottomlessBundleItem.getTemplateVariant(stack);
 			Minecraft client = Minecraft.getInstance();
@@ -388,7 +377,7 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 			}
 			
 			public Builder(BottomlessStack prev, long max, boolean voiding, boolean locked) {
-				this.variant = prev.variant();
+				this.variant = prev.variant().copy();
 				this.max = max;
 				this.count = prev.count();
 				this.voiding = voiding;

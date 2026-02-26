@@ -1,10 +1,14 @@
 package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.loader.api.*;
 import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
+import net.minecraft.util.hit.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
@@ -28,7 +32,21 @@ public class MultiToolItem extends MiningToolItem {
 		if (canTill(context.getStack())) {
 			actionResult = Items.IRON_SHOVEL.useOnBlock(context);
 			if (!actionResult.isAccepted()) {
-				actionResult = Items.IRON_AXE.useOnBlock(context);
+				// LevelZ assumes that each item passed to Items.IRON_AXE.useOnBlock(context) is an axe
+				// This is ~~outrageous~~! ...valid actually
+				// https://github.com/Globox1997/LevelZ/blob/1.20/src/main/java/net/levelz/mixin/item/AxeItemMixin.java#L33
+				if(FabricLoader.getInstance().isModLoaded("levelz")) {
+					actionResult = Items.IRON_AXE.useOnBlock(new ItemUsageContext(context.getWorld(), context.getPlayer(), context.getHand(), Items.IRON_AXE.getDefaultStack(),
+							new BlockHitResult(context.getHitPos(), context.getSide(), context.getBlockPos(), context.hitsInsideBlock())));
+					
+					PlayerEntity playerEntity = context.getPlayer();
+					if (playerEntity != null) {
+						context.getStack().damage(1, playerEntity, (p) -> p.sendToolBreakStatus(context.getHand()));
+					}
+				} else {
+					actionResult = Items.IRON_AXE.useOnBlock(context);
+				}
+				
 				if (!actionResult.isAccepted()) {
 					actionResult = Items.IRON_HOE.useOnBlock(context);
 				}

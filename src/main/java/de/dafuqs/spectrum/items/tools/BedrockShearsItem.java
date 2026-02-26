@@ -7,8 +7,6 @@ import net.minecraft.world.item.enchantment.*;
 
 import java.util.*;
 
-// Waiting for https://github.com/FabricMC/fabric/pull/1804
-// Who's still waiting this with me in 2025??
 public class BedrockShearsItem extends ShearsItem implements Preenchanted {
 	
 	public BedrockShearsItem(Properties settings) {

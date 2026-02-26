@@ -18,7 +18,6 @@ public class SpectrumItemTags {
 	public static final TagKey<Item> COLORED_PLANKS = of("colored_planks");
 	public static final TagKey<Item> GEMSTONE_SHARDS = of("gemstone_shards");
 	public static final TagKey<Item> COMING_SOON_TOOLTIP = of("coming_soon_tooltip");
-	public static final TagKey<Item> PIGLIN_SAFE_EQUIPMENT = of("piglin_safe_equipment");
 	public static final TagKey<Item> ENCHANTABLE_BOOKS = of("enchantable_books");
 	public static final TagKey<Item> MEMORY_BONDING_AGENTS_CONCEALABLE = of("memory_bonding_agents_concealable");
 	public static final TagKey<Item> INDESTRUCTIBLE_BLACKLISTED = of("indestructible_blacklisted");

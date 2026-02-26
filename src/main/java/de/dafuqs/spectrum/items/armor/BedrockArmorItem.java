@@ -50,4 +50,10 @@ public class BedrockArmorItem extends ArmorItem implements Preenchanted {
 	public Map<ResourceKey<Enchantment>, Integer> getDefaultEnchantments() {
 		return Map.of();
 	}
+	
+	@Override
+	public boolean makesPiglinsNeutral(ItemStack stack, LivingEntity wearer) {
+		return true;
+	}
+	
 }

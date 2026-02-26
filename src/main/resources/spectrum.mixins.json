@@ -55,7 +55,6 @@
     "MC252934Mixin",
     "MobEntityMixin",
     "NoteBlockMixin",
-    "PiglinBrainMixin",
     "PistonBlockMixin",
     "PlantOnCustomFarmlandMixin",
     "PlayerEntityMixin",

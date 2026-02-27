@@ -63,12 +63,16 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 		// getTopY() returns the topmost "air" block
 		// which may or may not be the pos of the Fusion Shrine
 		// we search down until we find the shrine itself or a non-opaque block
+		
+		// New tag check: any block that is in the c:glass_blocks tag will be seen as valid REGARDLESS OF OPAQUENESS (this is due to colored glass and tinted glass being opaque)
+		//  Should be stable since it's a using common tag.  ~Shibva was here, 2026
+		
 		int topY = world.getTopY(Heightmap.Type.WORLD_SURFACE, shrinePos.getX(), shrinePos.getZ());
 		BlockPos.Mutable mutablePos = new BlockPos.Mutable(shrinePos.getX(), topY, shrinePos.getZ());
 		for (int y = topY; y > shrinePos.getY(); y--) {
 			mutablePos.setY(y - 1);
 			BlockState posState = world.getBlockState(mutablePos);
-			if (posState.getOpacity(world, mutablePos) > 0) {
+			if (posState.getOpacity(world, mutablePos) > 0 || ( posState.getOpacity(world, mutablePos) > 0 && !SpectrumBlockTags.isIn(SpectrumBlockTags.GLASS_BLOCKS, posState.getBlock())) ) {
 				break;
 			}
 		}

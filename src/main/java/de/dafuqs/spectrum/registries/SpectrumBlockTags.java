@@ -2,9 +2,13 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
 import net.minecraft.block.*;
+import net.minecraft.block.*;
 import net.minecraft.registry.*;
+import net.minecraft.registry.entry.*;
 import net.minecraft.registry.tag.*;
 import net.minecraft.util.*;
+
+import java.util.*;
 
 public class SpectrumBlockTags {
 	
@@ -78,7 +82,7 @@ public class SpectrumBlockTags {
 	
 	// COMMON TAGS ("c" namespace)
 	public static final TagKey<Block> LIGHTNING_RODS = common("lightning_rods");
-	
+	public static final TagKey<Block> GLASS_BLOCKS = common("glass_blocks");
 	
 	private static TagKey<Block> of(String id) {
 		return TagKey.of(RegistryKeys.BLOCK, SpectrumCommon.locate(id));
@@ -87,5 +91,14 @@ public class SpectrumBlockTags {
 	private static TagKey<Block> common(String id) {
 		return TagKey.of(RegistryKeys.BLOCK, new Identifier("c", id));
 	}
-
+	
+	
+	public static boolean isIn(TagKey<Block> tag, Block block) {
+		Optional<RegistryKey<Block>> optionalKey = Registries.BLOCK.getKey(block);
+		if (optionalKey.isEmpty()) {
+			return false;
+		}
+		Optional<RegistryEntry.Reference<Block>> registryEntry = Registries.BLOCK.getEntry(optionalKey.get());
+		return registryEntry.filter(blockReference -> Registries.BLOCK.getOrCreateEntryList(tag).contains(blockReference)).isPresent();
+	}
 }

@@ -15,9 +15,6 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 @Mixin(EnderMan.class)
 public abstract class EndermanEntityMixin {
 	
-	@Unique
-	private final BlockState carriedBlockState = SpectrumBlocks.RADIATING_ENDER.get().defaultBlockState();
-	
 	@Shadow
 	@Nullable
 	public abstract BlockState getCarriedBlock();
@@ -38,7 +35,7 @@ public abstract class EndermanEntityMixin {
 			
 			if (random.nextFloat() < chance) {
 				if (endermanEntity.getCarriedBlock() == null) {
-					endermanEntity.setCarriedBlock(carriedBlockState);
+					endermanEntity.setCarriedBlock(SpectrumBlocks.RADIATING_ENDER.get().defaultBlockState());
 				}
 			}
 		}

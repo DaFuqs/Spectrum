@@ -4,9 +4,7 @@ import com.llamalad7.mixinextras.injector.*;
 import com.llamalad7.mixinextras.injector.wrapoperation.*;
 import com.llamalad7.mixinextras.sugar.*;
 import com.llamalad7.mixinextras.sugar.ref.*;
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.damage_type.*;
-import de.dafuqs.spectrum.api.entity.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.blocks.memory.*;
@@ -15,14 +13,10 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.helpers.enchantments.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.*;
-import de.dafuqs.spectrum.networking.s2c_payloads.*;
-import de.dafuqs.spectrum.particle.*;
-import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.status_effects.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
-import net.minecraft.network.protocol.game.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
@@ -93,27 +87,6 @@ public abstract class LivingEntityMixin {
 	
 	@Shadow
 	protected boolean dead;
-	
-	// FabricDefaultAttributeRegistry seems to only allow adding full containers and only single entity types?
-	@Inject(method = "createLivingAttributes", require = 1, allow = 1, at = @At("RETURN"))
-	private static void spectrum$addAttributes(final CallbackInfoReturnable<AttributeSupplier.Builder> cir) {
-		cir.getReturnValue().add(SpectrumEntityAttributes.MENTAL_PRESENCE);
-	}
-	
-	@ModifyArg(method = "dropExperience", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/ExperienceOrb;award(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/phys/Vec3;I)V"), index = 2)
-	protected int spectrum$applyExuberance(int originalXP) {
-		return (int) (originalXP * spectrum$getExuberanceMod(this.lastHurtByPlayer));
-	}
-	
-	@Unique
-	private float spectrum$getExuberanceMod(Player attackingPlayer) {
-		if (attackingPlayer != null) {
-			int exuberanceLevel = SpectrumEnchantmentHelper.getEquipmentLevel(attackingPlayer.level().registryAccess(), SpectrumEnchantments.EXUBERANCE, attackingPlayer);
-			return 1.0F + exuberanceLevel * SpectrumCommon.CONFIG.ExuberanceBonusExperiencePercentPerLevel;
-		} else {
-			return 1.0F;
-		}
-	}
 	
 	@ModifyVariable(method = "travel", at = @At(value = "STORE"), ordinal = 0)
 	private boolean spectrum$noSlowFallingSlowdown(boolean b) {
@@ -216,31 +189,6 @@ public abstract class LivingEntityMixin {
 			((LivingEntity) (Object) this).addEffect(oilEffect);
 	}
 	
-	@ModifyReturnValue(method = "canBeAffected", at = @At("RETURN"))
-	private boolean spectrum$canHaveStatusEffect(boolean original, @Local(argsOnly = true) MobEffectInstance statusEffectInstance) {
-		var instance = (LivingEntity) (Object) this;
-		
-		if (original && this.hasEffect(SpectrumStatusEffects.IMMUNITY) && statusEffectInstance.getEffect().value().getCategory() == MobEffectCategory.HARMFUL) {
-			if (StatusEffectHelper.isSevere(statusEffectInstance)) {
-				var immunity = getEffect(SpectrumStatusEffects.IMMUNITY);
-				var cost = 600 * (statusEffectInstance.getAmplifier() + 1);
-				
-				if (immunity.getDuration() >= cost) {
-					immunity.spectrum$setDuration(Math.max(5, immunity.getDuration() - cost));
-					if (!instance.level().isClientSide()) {
-						((ServerLevel) instance.level()).getChunkSource().broadcastAndSend(instance, new ClientboundUpdateMobEffectPacket(instance.getId(), immunity, false));
-					}
-					return false;
-				} else {
-					return true;
-				}
-			}
-			
-			return false;
-		}
-		return original;
-	}
-	
 	@ModifyReturnValue(method = "canDisableShield", at = @At("RETURN"))
 	private boolean spectrum$lungeBreaksShields(boolean original) {
 		if ((LivingEntity) (Object) this instanceof Player player
@@ -250,14 +198,7 @@ public abstract class LivingEntityMixin {
 		return original;
 	}
 	
-	@ModifyExpressionValue(
-			method = {"hurt"},
-			at = {@At(
-					value = "CONSTANT",
-					args = {"floatValue=0F"},
-					ordinal = 2
-			)}
-	)
+	@ModifyExpressionValue(method = {"hurt"}, at = {@At(value = "CONSTANT", args = {"floatValue=0F"}, ordinal = 2)})
 	private float spectrum$parryingSwordShielding(float original, @Local(argsOnly = true) DamageSource source, @Local(ordinal = 2) float shieldedDamage) {
 		var entity = (LivingEntity) (Object) this;
 		var activeStack = entity.getUseItem();
@@ -300,16 +241,6 @@ public abstract class LivingEntityMixin {
 				|| !parryingSword.canDeflect(source, parryingSword.canPerfectParry(activeStack, entity, entity.getTicksUsingItem()));
 	}
 	
-	@ModifyVariable(method = "hurtArmor", at = @At("HEAD"), ordinal = 0, argsOnly = true)
-	private float spectrum$damageArmor(float amount, DamageSource source) {
-		if (source.is(SpectrumDamageTypeTags.DOES_NOT_DAMAGE_ARMOR)) {
-			return 0;
-		} else if (source.is(SpectrumDamageTypeTags.INCREASED_ARMOR_DAMAGE)) {
-			return amount * 10;
-		}
-		return amount;
-	}
-	
 	@ModifyArg(method = "getDamageAfterMagicAbsorb", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/damagesource/CombatRules;getDamageAfterMagicAbsorb(FF)F"), index = 1)
 	private float spectrum$modifyAppliedDamage(float protection, @Local(argsOnly = true) DamageSource source) {
 		var pair = spectrum$getArmorPiercing(source);
@@ -328,7 +259,7 @@ public abstract class LivingEntityMixin {
 	@ModifyVariable(method = "getDamageAfterArmorAbsorb", at = @At("STORE"), ordinal = 0, argsOnly = true)
 	private float spectrum$applyArmorToDamage(float amount, DamageSource source) {
 		float defense = getArmorValue();
-		float toughness = spectrum$getToughness();
+		float toughness = (float) this.getAttributeValue(Attributes.ARMOR_TOUGHNESS);
 		var modified = false;
 		var pair = spectrum$getArmorPiercing(source);
 		var entity = (LivingEntity) (Object) this;
@@ -373,43 +304,6 @@ public abstract class LivingEntityMixin {
 		return Optional.of(new Tuple<>(ap, stack));
 	}
 	
-	@Unique
-	private float spectrum$getToughness() {
-		return (float) this.getAttributeValue(Attributes.ARMOR_TOUGHNESS);
-	}
-	
-	@ModifyExpressionValue(method = "causeFallDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;calculateFallDamage(FF)I"))
-	private int spectrum$puffCircletDamageNegation(int original) {
-		LivingEntity thisEntity = (LivingEntity) (Object) this;
-		float cost = Math.min(original, PuffCircletItem.FALL_DAMAGE_NEGATING_COST);
-		// check if damage reduction is applicable to this entity
-		AzureDikeAttachmentType azureDikeAttachment = thisEntity.getData(AzureDikeAttachmentType.ATTACHMENT_TYPE);
-		if (original <= 0 || thisEntity.isInvulnerableTo(thisEntity.damageSources().fall()) || azureDikeAttachment.getCurrentCharges() <= cost) return original;
-		
-		// check if this entity is protected by puff circlet
-		if (SpectrumCurioItem.hasEquipped(thisEntity, SpectrumItems.PUFF_CIRCLET.get())) {
-			return original;
-		}
-		
-		// do damage reduction
-		azureDikeAttachment.absorbDamage(thisEntity, cost);
-		
-		// yoink
-		Vec3 velocity = thisEntity.getDeltaMovement();
-		thisEntity.setDeltaMovement(velocity.x(), 0.5, velocity.z());
-		Level world = thisEntity.level();
-		if (world.isClientSide) { // it is split here so the particles spawn immediately, without network lag
-			ParticleHelper.playParticleWithPatternAndVelocityClient(thisEntity.level(), thisEntity.position(), ColoredCraftingParticleEffect.WHITE, VectorPattern.EIGHT, 0.4);
-			ParticleHelper.playParticleWithPatternAndVelocityClient(thisEntity.level(), thisEntity.position(), ColoredCraftingParticleEffect.BLUE, VectorPattern.EIGHT_OFFSET, 0.5);
-		} else if (thisEntity instanceof ServerPlayer serverPlayerEntity) {
-			PlayParticleWithPatternAndVelocityPayload.playParticleWithPatternAndVelocity(serverPlayerEntity, (ServerLevel) thisEntity.level(), thisEntity.position(), ColoredCraftingParticleEffect.WHITE, VectorPattern.EIGHT, 0.4);
-			PlayParticleWithPatternAndVelocityPayload.playParticleWithPatternAndVelocity(serverPlayerEntity, (ServerLevel) thisEntity.level(), thisEntity.position(), ColoredCraftingParticleEffect.BLUE, VectorPattern.EIGHT_OFFSET, 0.5);
-		}
-		thisEntity.level().playSound(null, thisEntity.blockPosition(), SpectrumSoundEvents.PUFF_CIRCLET_PFFT, SoundSource.PLAYERS, 1.0F, 1.0F);
-		
-		return 0;
-	}
-	
 	@ModifyVariable(at = @At("HEAD"), method = "hurt", argsOnly = true)
 	private float spectrum$modifyDamage(float amount, DamageSource source) {
 		@Nullable MobEffectInstance vulnerability = getEffect(SpectrumStatusEffects.VULNERABILITY);
@@ -417,15 +311,6 @@ public abstract class LivingEntityMixin {
 			amount *= 1 + (SpectrumStatusEffects.VULNERABILITY_ADDITIONAL_DAMAGE_PERCENT_PER_LEVEL * vulnerability.getAmplifier() + 1);
 		}
 		return amount;
-	}
-	
-	@Inject(at = @At(value = "INVOKE", target = "net/minecraft/world/damagesource/DamageSource.is (Lnet/minecraft/tags/TagKey;)Z", ordinal = 1), method = "hurt")
-	private void spectrum$allowPartialBlocks(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-		var entity = (LivingEntity) (Object) this;
-		var activeItem = entity.getUseItem();
-		
-		if (!(activeItem.getItem() instanceof ParryingSwordItem))
-			return;
 	}
 	
 	@WrapOperation(at = @At(value = "INVOKE", target = "net/minecraft/world/entity/LivingEntity.actuallyHurt (Lnet/minecraft/world/damagesource/DamageSource;F)V", ordinal = 0), method = "hurt")
@@ -527,23 +412,6 @@ public abstract class LivingEntityMixin {
 				effect.spectrum$setDuration(20 * 60);
 			} else {
 				effect.spectrum$setDuration(Math.max(Math.round(effect.getDuration() * resistanceModifier * 3), 20 * 10));
-			}
-		}
-	}
-	
-	@Inject(at = @At("RETURN"), method = "hurt")
-	private void spectrum$applyDisarmingEnchantment(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-		// true if the entity got hurt
-		var entity = (LivingEntity) (Object) this;
-		if (amount > 0 && cir.getReturnValue() != null && cir.getReturnValue()) {
-			// Disarming does not trigger when dealing damage to enemies using thorns
-			if (!source.is(DamageTypes.THORNS)) {
-				if (source.getEntity() instanceof LivingEntity livingSource) {
-					int disarmingLevel = SpectrumEnchantmentHelper.getLevel(entity.level().registryAccess(), SpectrumEnchantments.DISARMING, livingSource.getMainHandItem());
-					if (disarmingLevel > 0 && Math.random() < disarmingLevel * SpectrumCommon.CONFIG.DisarmingChancePerLevelMobs) {
-						DisarmingHelper.disarmEntity(entity);
-					}
-				}
 			}
 		}
 	}

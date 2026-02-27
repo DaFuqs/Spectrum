@@ -52,6 +52,9 @@ public class MiscPlayerDataAttachmentType {
 	private boolean isLunging, bHopWindow, perfectCounter;
 	private int parryTicks;
 	
+	// Gleaming Pin
+	private long lastGleamingPinTriggerTick;
+	
 	public static MiscPlayerDataAttachmentType ofCodec(int ticksBeforeSleep, int sleepingWindow, int sleepInvincibility, Optional<Item> sleepConsumable) {
 		MiscPlayerDataAttachmentType data = new MiscPlayerDataAttachmentType();
 		data.ticksBeforeSleep = ticksBeforeSleep;
@@ -142,7 +145,7 @@ public class MiscPlayerDataAttachmentType {
 			
 			if (ticksBeforeSleep == 0) {
 				player.startSleeping(player.blockPosition());
-				((PlayerEntityAccessor) player).setSleepTimer(0);
+				((PlayerEntityAccessor) player).spectrum$setSleepTimer(0);
 				var world = player.level();
 				if (!world.isClientSide())
 					((ServerLevel) world).updateSleepingPlayerList();
@@ -223,6 +226,14 @@ public class MiscPlayerDataAttachmentType {
 	
 	public double getLastSyncedSleepPotency() {
 		return lastSyncedSleepPotency;
+	}
+	
+	public void setLastGleamingPinTriggerTick(long tick) {
+		this.lastGleamingPinTriggerTick = tick;
+	}
+	
+	public double getLastGleamingPinTriggerTick() {
+		return lastGleamingPinTriggerTick;
 	}
 	
 	public record Payload(UUID id, int ticksBeforeSleep, int sleepingWindow, int sleepInvincibility, Optional<Item> sleepConsumable) implements CustomPacketPayload {

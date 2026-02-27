@@ -22,8 +22,7 @@ public abstract class WitherEntityMixin extends LivingEntity {
 		super(entityType, world);
 	}
 	
-	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/item/ItemEntity;setExtendedLifetime()V"),
-			method = "dropCustomDeathLoot", locals = LocalCapture.CAPTURE_FAILSOFT)
+	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/item/ItemEntity;setExtendedLifetime()V"), method = "dropCustomDeathLoot", locals = LocalCapture.CAPTURE_FAILSOFT)
 	private void spawnEntity(ServerLevel world, DamageSource source, boolean causedByPlayer, CallbackInfo ci, ItemEntity itemEntity) {
 		Entity attackerEntity = source.getEntity();
 		if (attackerEntity instanceof LivingEntity livingAttacker) {
@@ -35,11 +34,4 @@ public abstract class WitherEntityMixin extends LivingEntity {
 		}
 	}
 	
-	@ModifyReturnValue(method = "addEffect", at = @At("TAIL"))
-	private boolean spectrum$allowWitherNaps(boolean original, @Local(argsOnly = true) MobEffectInstance effect, @Local(argsOnly = true) Entity source) {
-		if (effect.getEffect().is(SpectrumStatusEffectTags.SOPORIFIC)) {
-			return super.addEffect(effect, source);
-		}
-		return original;
-	}
 }

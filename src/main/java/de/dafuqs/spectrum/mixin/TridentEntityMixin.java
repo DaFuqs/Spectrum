@@ -26,7 +26,7 @@ public abstract class TridentEntityMixin extends AbstractArrow {
 	private boolean makeBidentDamageReasonable(Entity instance, DamageSource source, float amount, Operation<Boolean> original) {
 		if (((Object) this) instanceof BidentBaseEntity bidentEntity) {
 			var stack = bidentEntity.getTrackedStack();
-			float damage = (float) getDamage(stack);
+			float damage = (float) spectrum$getDamage(stack);
 			
 			DamageSource damageSource = SpectrumDamageTypes.impaling(level(), bidentEntity, getOwner());
 			if (this.level() instanceof ServerLevel serverWorld) {
@@ -39,7 +39,7 @@ public abstract class TridentEntityMixin extends AbstractArrow {
 	}
 	
 	@Unique
-	private double getDamage(ItemStack stack) {
+	private double spectrum$getDamage(ItemStack stack) {
 		ItemAttributeModifiers attributeModifiersComponent = stack.getOrDefault(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.EMPTY);
 		return attributeModifiersComponent.compute(1.0D, EquipmentSlot.MAINHAND);
 	}

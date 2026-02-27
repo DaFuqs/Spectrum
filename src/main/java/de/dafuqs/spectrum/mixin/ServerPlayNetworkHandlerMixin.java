@@ -1,12 +1,10 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.api.entity.*;
 import de.dafuqs.spectrum.api.item.*;
 import net.minecraft.network.protocol.game.*;
 import net.minecraft.server.level.*;
 import net.minecraft.server.network.*;
 import net.minecraft.world.*;
-import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
@@ -27,19 +25,19 @@ public class ServerPlayNetworkHandlerMixin {
 		var offItem = offStack.getItem();
 		
 		if (mainItem instanceof SplittableItem splittable && splittable.canSplit(player, InteractionHand.MAIN_HAND, mainStack)) {
-			splitItem(mainStack, splittable);
+			spectrum$splitItem(mainStack, splittable);
 			ci.cancel();
 		} else if (offItem instanceof SplittableItem splittable && splittable.canSplit(player, InteractionHand.OFF_HAND, offStack)) {
-			splitItem(offStack, splittable);
+			spectrum$splitItem(offStack, splittable);
 			ci.cancel();
 		} else if (mainItem instanceof MergeableItem mergeable && offItem instanceof MergeableItem && mergeable.canMerge(player, mainStack, offStack)) {
-			mergeItems(mainStack, offStack, mergeable);
+			spectrum$mergeItems(mainStack, offStack, mergeable);
 			ci.cancel();
 		}
 	}
 	
 	@Unique
-	private void splitItem(ItemStack stack, SplittableItem splittable) {
+	private void spectrum$splitItem(ItemStack stack, SplittableItem splittable) {
 		var split = splittable.getSplitResult(player, stack);
 		player.setItemInHand(InteractionHand.MAIN_HAND, split);
 		player.setItemInHand(InteractionHand.OFF_HAND, split.copy());
@@ -48,7 +46,7 @@ public class ServerPlayNetworkHandlerMixin {
 	}
 	
 	@Unique
-	private void mergeItems(ItemStack firstHalf, ItemStack secondHalf, MergeableItem mergeable) {
+	private void spectrum$mergeItems(ItemStack firstHalf, ItemStack secondHalf, MergeableItem mergeable) {
 		player.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
 		player.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
 		player.setItemInHand(InteractionHand.MAIN_HAND, mergeable.getMergeResult(player, firstHalf, secondHalf));

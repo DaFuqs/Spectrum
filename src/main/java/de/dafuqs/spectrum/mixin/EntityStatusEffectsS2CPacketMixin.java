@@ -13,25 +13,25 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 public abstract class EntityStatusEffectsS2CPacketMixin implements EntityStatusEffectS2CPacketInjector {
 	
 	@Unique
-	private boolean severe;
+	private boolean spectrum$severe;
 	
 	@Inject(method = "<init>(ILnet/minecraft/world/effect/MobEffectInstance;Z)V", at = @At("RETURN"))
 	public void initSevere(int entityId, MobEffectInstance effect, boolean keepFading, CallbackInfo ci) {
-		this.severe = StatusEffectHelper.isSevere(effect);
+		this.spectrum$severe = StatusEffectHelper.isSevere(effect);
 	}
 	
 	@Inject(method = "<init>(Lnet/minecraft/network/RegistryFriendlyByteBuf;)V", at = @At("RETURN"))
 	public void initSevere(RegistryFriendlyByteBuf buf, CallbackInfo ci) {
-		this.severe = buf.readBoolean();
+		this.spectrum$severe = buf.readBoolean();
 	}
 	
 	@Inject(method = "write", at = @At("RETURN"))
 	public void writeSevere(RegistryFriendlyByteBuf buf, CallbackInfo ci) {
-		buf.writeBoolean(severe);
+		buf.writeBoolean(spectrum$severe);
 	}
 	
 	@Override
 	public boolean spectrum$isSevere() {
-		return severe;
+		return spectrum$severe;
 	}
 }

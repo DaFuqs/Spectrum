@@ -27,7 +27,6 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.fluids.*;
-import net.neoforged.neoforge.fluids.capability.*;
 import net.neoforged.neoforge.fluids.capability.templates.*;
 import org.jetbrains.annotations.*;
 
@@ -258,9 +257,10 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		return this.tank;
 	}
 	
+	// TODO: unused
 	private void setLightForFluid(BlockPos blockPos, Fluid fluid) {
 		if (level == null) return;
-		int fluidLight = SpectrumEventListeners.getFluidLuminance(fluid);
+		int fluidLight = fluid.getFluidType().getLightLevel();
 		level.setBlock(blockPos, level.getBlockState(blockPos).setValue(FusionShrineBlock.LIGHT_LEVEL, fluidLight), Block.UPDATE_ALL);
 	}
 	

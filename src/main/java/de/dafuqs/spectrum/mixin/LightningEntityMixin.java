@@ -26,12 +26,12 @@ public abstract class LightningEntityMixin {
 		// do not spawn storm stones when using other forms of
 		// spawning thunder, like magic, ... in clear weather. Only when it is actually thundering
 		if (world.isThundering() && SpectrumCommon.CONFIG.StormStonesWorlds.contains(world.dimension().location().toString())) {
-			spawnStormStone(world, this.getStrikePosition());
+			spectrum$spawnStormStone(world, this.getStrikePosition());
 		}
 	}
 	
 	@Unique
-	private void spawnStormStone(@NotNull Level world, BlockPos affectedBlockPos) {
+	private void spectrum$spawnStormStone(@NotNull Level world, BlockPos affectedBlockPos) {
 		BlockState blockState = world.getBlockState(affectedBlockPos);
 		BlockPos aboveGroundBlockPos;
 		

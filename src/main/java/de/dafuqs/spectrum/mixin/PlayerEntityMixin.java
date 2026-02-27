@@ -3,21 +3,15 @@ package de.dafuqs.spectrum.mixin;
 import com.google.common.collect.*;
 import com.llamalad7.mixinextras.injector.*;
 import com.llamalad7.mixinextras.injector.wrapoperation.*;
-import com.llamalad7.mixinextras.sugar.*;
-import com.llamalad7.mixinextras.sugar.ref.*;
-import de.dafuqs.additionalentityattributes.*;
 import de.dafuqs.spectrum.api.entity.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.helpers.enchantments.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.*;
-import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.spectrum.status_effects.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.core.particles.*;
@@ -25,7 +19,6 @@ import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.*;
 import net.minecraft.world.damagesource.*;
-import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
@@ -34,7 +27,7 @@ import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
-import net.minecraft.world.phys.*;
+import org.jetbrains.annotations.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -49,13 +42,13 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 	}
 	
 	@Shadow
-	public abstract Iterable<ItemStack> getHandSlots();
+	public abstract @NotNull Iterable<ItemStack> getHandSlots();
 	
 	@Shadow
 	private int sleepCounter;
 	
 	@Shadow
-	public abstract boolean hurt(DamageSource source, float amount);
+	public abstract boolean hurt(@NotNull DamageSource source, float amount);
 	
 	@Shadow
 	protected abstract boolean canPlayerFitWithinBlocksAndEntitiesWhen(Pose pose);
@@ -114,25 +107,6 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 		}
 	}
 	
-	@Inject(method = "killedEntity", at = @At("HEAD"))
-	private void spectrum$rememberKillOther(ServerLevel world, LivingEntity other, CallbackInfoReturnable<Boolean> cir) {
-		Player entity = (Player) (Object) this;
-		LastKillAttachmentType.rememberKillTick(entity, entity.level().getGameTime());
-		
-		MobEffectInstance frenzy = entity.getEffect(SpectrumStatusEffects.FRENZY);
-		if (frenzy != null) {
-			((FrenzyStatusEffect) frenzy.getEffect()).onKill(entity, frenzy.getAmplifier());
-		}
-	}
-	
-	@Inject(method = "hurt", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;hurt(Lnet/minecraft/world/damagesource/DamageSource;F)Z"))
-	private void spectrum$stopSleep(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-		if (amount > 0) {
-			Player entity = (Player) (Object) this;
-			MiscPlayerDataAttachmentType.get(entity).notifyHit();
-		}
-	}
-	
 	@Inject(method = "attack", at = @At(value = "INVOKE", target = "net/minecraft/world/entity/player/Player.getAttributeValue (Lnet/minecraft/core/Holder;)D"))
 	protected void spectrum$calculateModifiers(Entity target, CallbackInfo ci) {
 		Player player = (Player) (Object) this;
@@ -147,12 +121,6 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 		}
 		map.put(Attributes.ATTACK_DAMAGE, jeopardantModifier);
 		
-		int improvedCriticalLevel = SpectrumEnchantmentHelper.getLevel(target.level().registryAccess(), SpectrumEnchantments.IMPROVED_CRITICAL, player.getMainHandItem());
-		if (improvedCriticalLevel > 0) {
-			AttributeModifier improvedCriticalModifier = new AttributeModifier(SpectrumEntityAttributes.CRIT_MODIFIER_ID, ImprovedCriticalHelper.getAddtionalCritDamageMultiplier(improvedCriticalLevel), AttributeModifier.Operation.ADD_VALUE);
-			map.put(AdditionalEntityAttributes.CRITICAL_BONUS_DAMAGE, improvedCriticalModifier);
-		}
-		
 		player.getAttributes().addTransientAttributeModifiers(map);
 	}
 	
@@ -160,7 +128,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 	protected List<LivingEntity> spectrum$increaseSweepRadius(List<LivingEntity> original, Entity target) {
 		var stack = this.getItemInHand(InteractionHand.MAIN_HAND);
 		if (stack.getItem() == SpectrumItems.DRACONIC_TWINSWORD.get()) {
-			var channeling = getChanneling(stack) + 1;
+			var channeling = spectrum$getChanneling(stack) + 1;
 			var size = channeling * 2 + 0.5;
 			var entities = this.level().getEntitiesOfClass(LivingEntity.class, target.getBoundingBox().inflate(size, 0.4 * channeling, size));
 			if (!level().isClientSide() && (channeling - 1) > 0) {
@@ -182,36 +150,6 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 		return original;
 	}
 	
-	@ModifyVariable(method = "attack", at = @At(value = "STORE"), index = 8, require = 1)
-	private boolean spectrum$binglebongle(boolean value, Entity target) {
-		if (hasForcedCrits(target)) {
-			return true;
-		}
-		
-		return value;
-	}
-	
-	@Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;getDeltaMovement()Lnet/minecraft/world/phys/Vec3;"))
-	private void spectrum$perfectCounter(Entity target, CallbackInfo ci, @Local(ordinal = 0) LocalFloatRef damage) {
-		var player = (Player) (Object) this;
-		if (MiscPlayerDataAttachmentType.get(player).consumePerfectCounter()) {
-			damage.set(damage.get() * 1.5F);
-		}
-	}
-	
-	@Unique
-	protected boolean hasForcedCrits(Entity target) {
-		var player = (Player) (Object) this;
-		var component = MiscPlayerDataAttachmentType.get(player);
-		
-		if (NectarLanceItem.sleepCrits(player, target)) {
-			return true;
-		} else if (component.isParrying()) {
-			component.setParryTicks(0);
-			return true;
-		} else return component.isLunging();
-	}
-	
 	@WrapOperation(method = "attack", at = @At(value = "INVOKE", target = "net/minecraft/world/level/Level.playSound (Lnet/minecraft/world/entity/player/Player;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V", ordinal = 2))
 	protected void spectrum$switchCritSound(Level instance, Player except, double x, double y, double z, SoundEvent sound, SoundSource category, float volume, float pitch, Operation<Void> original) {
 		var player = (Player) (Object) this;
@@ -227,7 +165,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 	@WrapOperation(method = "attack", at = @At(value = "INVOKE", target = "net/minecraft/world/level/Level.playSound (Lnet/minecraft/world/entity/player/Player;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V", ordinal = 1))
 	protected void spectrum$switchSweepSound(Level instance, Player except, double x, double y, double z, SoundEvent sound, SoundSource category, float volume, float pitch, Operation<Void> original) {
 		var stack = this.getItemInHand(InteractionHand.MAIN_HAND);
-		if (stack.getItem() == SpectrumItems.DRACONIC_TWINSWORD.get() && getChanneling(stack) > 0) {
+		if (stack.getItem() == SpectrumItems.DRACONIC_TWINSWORD.get() && spectrum$getChanneling(stack) > 0) {
 			this.level().playSound(except, x, y, z, SpectrumSoundEvents.ELECTRIC_DISCHARGE, category, 0.75F, 0.9F + random.nextFloat() * 0.2F);
 			return;
 		}
@@ -235,49 +173,23 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 	}
 	
 	@Unique
-	protected int getChanneling(ItemStack stack) {
+	protected int spectrum$getChanneling(ItemStack stack) {
 		return SpectrumEnchantmentHelper.getLevel(level().registryAccess(), Enchantments.CHANNELING, stack);
 	}
 	
-	@Inject(at = @At("TAIL"), method = "jumpFromGround")
-	protected void spectrum$jumpAdvancementCriterion(CallbackInfo ci) {
-		
-		if ((Object) this instanceof ServerPlayer serverPlayerEntity) {
-			SpectrumAdvancementCriteria.TAKE_OFF_BELT_JUMP.trigger(serverPlayerEntity);
-		}
-	}
-	
-	@ModifyVariable(method = "hurtArmor", at = @At("HEAD"), ordinal = 0, argsOnly = true)
-	private float spectrum$damageArmor(float amount, DamageSource source) {
-		if (source.is(SpectrumDamageTypeTags.DOES_NOT_DAMAGE_ARMOR)) {
-			return 0;
-		} else if (source.is(SpectrumDamageTypeTags.INCREASED_ARMOR_DAMAGE)) {
-			return amount * 10;
-		}
-		return amount;
-	}
-	
 	@Override
-	public void setSpectrumBobber(SpectrumFishingBobberEntity bobber) {
+	public void spectrum$setSpectrumBobber(SpectrumFishingBobberEntity bobber) {
 		this.spectrum$fishingBobber = bobber;
 	}
 	
 	@Override
-	public void setSleepTimer(int ticks) {
-		this.sleepCounter = ticks;
-	}
-	
-	@Override
-	public SpectrumFishingBobberEntity getSpectrumBobber() {
+	public SpectrumFishingBobberEntity spectrum$getSpectrumBobber() {
 		return this.spectrum$fishingBobber;
 	}
 	
-	@Inject(at = @At("HEAD"), method = "isHurt", cancellable = true)
-	public void canFoodHeal(CallbackInfoReturnable<Boolean> cir) {
-		Player player = (Player) (Object) this;
-		if (player.hasEffect(SpectrumStatusEffects.SCARRED)) {
-			cir.setReturnValue(false);
-		}
+	@Override
+	public void spectrum$setSleepTimer(int ticks) {
+		this.sleepCounter = ticks;
 	}
 	
 	// If the player holds an ExperienceStorageItem in their hands
@@ -300,13 +212,6 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 			}
 		}
 		return experience;
-	}
-	
-	@Inject(method = "stopSleepInBed", at = @At(value = "HEAD"))
-	public void spectrum$applyWakeUpEffects(boolean skipSleepTimer, boolean updateSleepingPlayers, CallbackInfo ci) {
-		var player = (Player) (Object) this;
-		if (!player.level().isClientSide())
-			MiscPlayerDataAttachmentType.get(player).resetSleepingState(true);
 	}
 	
 	@WrapOperation(method = "updatePlayerPose", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;setPose(Lnet/minecraft/world/entity/Pose;)V"))

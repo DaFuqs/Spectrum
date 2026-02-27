@@ -220,7 +220,7 @@ public class SpectrumModelPredicateProviders {
 				return 0.0F;
 			boolean isInMainHand = entity.getMainHandItem() == stack;
 			boolean isInOffhand = entity.getOffhandItem() == stack && !(entity.getMainHandItem().getItem() instanceof SpectrumFishingRodItem);
-			return (isInMainHand || isInOffhand) && entity instanceof Player && ((PlayerEntityAccessor) entity).getSpectrumBobber() != null ? 1.0F : 0.0F;
+			return (isInMainHand || isInOffhand) && entity instanceof Player && ((PlayerEntityAccessor) entity).spectrum$getSpectrumBobber() != null ? 1.0F : 0.0F;
 		});
 	}
 	

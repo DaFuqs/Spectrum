@@ -18,5 +18,23 @@
     "mainhand"
   ],
   "supported_items": "#spectrum:enchantable/exuberance",
-  "weight": 5
+  "weight": 5,
+  "effects": {
+    "minecraft:block_experience": [
+      {
+        "effect": {
+          "type": "minecraft:multiply",
+          "factor": 1.25
+        }
+      }
+    ],
+    "minecraft:mob_experience": [
+      {
+        "effect": {
+          "type": "minecraft:multiply",
+          "factor": 1.25
+        }
+      }
+    ]
+  }
 }

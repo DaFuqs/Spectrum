@@ -4,9 +4,9 @@ import de.dafuqs.spectrum.entity.entity.*;
 
 public interface PlayerEntityAccessor {
 	
-	void setSpectrumBobber(SpectrumFishingBobberEntity bobber);
+	void spectrum$setSpectrumBobber(SpectrumFishingBobberEntity bobber);
 	
-	SpectrumFishingBobberEntity getSpectrumBobber();
+	SpectrumFishingBobberEntity spectrum$getSpectrumBobber();
 	
-	void setSleepTimer(int ticks);
+	void spectrum$setSleepTimer(int ticks);
 }

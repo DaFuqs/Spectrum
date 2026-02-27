@@ -524,7 +524,7 @@ public abstract class SpectrumFishingBobberEntity extends Projectile {
 	public void setPlayerFishHook(@Nullable SpectrumFishingBobberEntity fishingBobber) {
 		Player playerEntity = this.getPlayerOwner();
 		if (playerEntity != null) {
-			((PlayerEntityAccessor) playerEntity).setSpectrumBobber(fishingBobber);
+			((PlayerEntityAccessor) playerEntity).spectrum$setSpectrumBobber(fishingBobber);
 		}
 	}
 	

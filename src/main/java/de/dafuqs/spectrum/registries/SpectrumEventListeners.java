@@ -1,25 +1,37 @@
 package de.dafuqs.spectrum.registries;
 
+import com.kwpugh.gobber2.events.*;
 import de.dafuqs.arrowhead.api.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.entity.spawners.*;
+import de.dafuqs.spectrum.events.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.helpers.enchantments.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.*;
+import de.dafuqs.spectrum.mixin.*;
+import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
+import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.client.*;
+import de.dafuqs.spectrum.status_effects.*;
+import dev.architectury.event.events.common.*;
 import net.minecraft.advancements.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.core.particles.*;
+import net.minecraft.network.protocol.game.*;
 import net.minecraft.server.*;
 import net.minecraft.server.level.*;
 import net.minecraft.server.packs.resources.*;
@@ -30,28 +42,36 @@ import net.minecraft.world.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.EntityEvent;
+import net.minecraft.world.entity.animal.horse.*;
 import net.minecraft.world.entity.item.*;
+import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.context.*;
+import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import net.minecraft.world.level.material.*;
+import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.fml.common.*;
 import net.neoforged.fml.loading.*;
 import net.neoforged.neoforge.event.*;
+import net.neoforged.neoforge.event.entity.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.entity.player.*;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.level.*;
+import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.server.*;
 import net.neoforged.neoforge.event.tick.*;
 import org.jetbrains.annotations.*;
+import org.spongepowered.asm.mixin.*;
 import top.theillusivec4.curios.api.*;
 import top.theillusivec4.curios.api.type.capability.*;
 
@@ -157,7 +177,6 @@ public class SpectrumEventListeners {
 	
 	@SubscribeEvent
 	public static InteractionResult triggerPrioritizedBlockInteraction(PlayerInteractEvent.RightClickBlock event) {
-		
 		Player player = event.getEntity();
 		InteractionHand hand = event.getHand();
 		BlockHitResult hitResult = event.getHitVec();
@@ -181,16 +200,6 @@ public class SpectrumEventListeners {
 			WhispyCircletItem.removeNegativeStatusEffects(player);
 		}
 		
-	}
-	
-	@SubscribeEvent
-	public static void triggerJeopardantKillCriterion(LivingDeathEvent event) {
-		Entity player = event.getSource().getEntity();
-		LivingEntity target = event.getEntity();
-		
-		if(player instanceof ServerPlayer && SpectrumCurioItem.hasEquipped((LivingEntity) player, SpectrumItems.JEOPARDANT.asItem())) {
-			SpectrumAdvancementCriteria.JEOPARDANT_KILL.trigger((ServerPlayer) player, target);
-		}
 	}
 	
 	@SubscribeEvent
@@ -292,11 +301,20 @@ public class SpectrumEventListeners {
 	
 	@SubscribeEvent
 	public static void onLivingDeath(LivingDeathEvent event) {
-		var killedEntity = event.getEntity();
-		var damageSource = event.getSource();
+		Entity sourceEntity = event.getSource().getEntity();
+		LivingEntity killedEntity = event.getEntity();
 		
-		if (damageSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
-			return;
+		if(sourceEntity instanceof LivingEntity livinSource) {
+			LastKillAttachmentType.rememberKillTick(livinSource, livinSource.level().getGameTime());
+			
+			MobEffectInstance frenzy = livinSource.getEffect(SpectrumStatusEffects.FRENZY);
+			if (frenzy != null) {
+				((FrenzyStatusEffect) frenzy.getEffect()).onKill(livinSource, frenzy.getAmplifier());
+			}
+		}
+		
+		if (event.getSource().getEntity() instanceof ServerPlayer player && SpectrumCurioItem.hasEquipped(player, SpectrumItems.JEOPARDANT.get())) {
+			SpectrumAdvancementCriteria.JEOPARDANT_KILL.trigger(player, event.getEntity());
 		}
 		
 		Optional<ICuriosItemHandler> curiosInventory = CuriosApi.getCuriosInventory(killedEntity);
@@ -335,9 +353,22 @@ public class SpectrumEventListeners {
 	}
 	
 	@SubscribeEvent
-	private static void preventFireDamage(LivingIncomingDamageEvent event) {
+	private static void preventFireDamage(EntityInvulnerabilityCheckEvent event) {
+		Entity entity = event.getEntity();
+		if(entity instanceof LivingEntity livingEntity) {
+			DamageSource source = event.getSource();
+			if (source.is(DamageTypeTags.IS_FIRE) && SpectrumCurioItem.hasEquipped(livingEntity, SpectrumItems.ASHEN_CIRCLET.get())) {
+				event.setInvulnerable(true);
+			}
+		}
+	}
+	
+	@SubscribeEvent
+	private static void onIncomingDamage(LivingIncomingDamageEvent event) {
 		LivingEntity entity = event.getEntity();
 		DamageSource source = event.getSource();
+		float original = event.getAmount();
+		LivingEntity thisEntity = entity;
 		
 		// If the player is damaged by lava and wears an ashen circlet:
 		// prevent damage and grant fire resistance
@@ -347,11 +378,35 @@ public class SpectrumEventListeners {
 				if (AshenCircletItem.getCooldownTicks(ashenCircletStack.get(), entity.level()) == 0) {
 					AshenCircletItem.grantFireResistance(ashenCircletStack.get(), entity);
 					event.setCanceled(true);
+					return;
 				}
 			}
-		} else if (source.is(DamageTypeTags.IS_FIRE) && SpectrumCurioItem.hasEquipped(entity, SpectrumItems.ASHEN_CIRCLET.get())) {
-			event.setCanceled(true);
 		}
+		
+		AzureDikeAttachmentType azureDikeAttachment = thisEntity.getData(AzureDikeAttachmentType.ATTACHMENT_TYPE);
+		if(source.is(DamageTypes.FALL)) {
+			// check if this entity is protected by puff circlet
+			float cost = Math.min(original, PuffCircletItem.FALL_DAMAGE_NEGATING_COST);
+			// check if damage reduction is applicable to this entity
+			if (azureDikeAttachment.getCurrentCharges() >= cost && SpectrumCurioItem.hasEquipped(thisEntity, SpectrumItems.PUFF_CIRCLET.get())) {
+				azureDikeAttachment.absorbDamage(thisEntity, cost);
+				
+				Vec3 velocity = thisEntity.getDeltaMovement();
+				thisEntity.setDeltaMovement(velocity.x(), 0.5, velocity.z());
+				Level world = thisEntity.level();
+				if (world.isClientSide) { // it is split here so the particles spawn immediately, without network lag
+					ParticleHelper.playParticleWithPatternAndVelocityClient(thisEntity.level(), thisEntity.position(), ColoredCraftingParticleEffect.WHITE, VectorPattern.EIGHT, 0.4);
+					ParticleHelper.playParticleWithPatternAndVelocityClient(thisEntity.level(), thisEntity.position(), ColoredCraftingParticleEffect.BLUE, VectorPattern.EIGHT_OFFSET, 0.5);
+				} else if (thisEntity instanceof ServerPlayer serverPlayerEntity) {
+					PlayParticleWithPatternAndVelocityPayload.playParticleWithPatternAndVelocity(serverPlayerEntity, (ServerLevel) thisEntity.level(), thisEntity.position(), ColoredCraftingParticleEffect.WHITE, VectorPattern.EIGHT, 0.4);
+					PlayParticleWithPatternAndVelocityPayload.playParticleWithPatternAndVelocity(serverPlayerEntity, (ServerLevel) thisEntity.level(), thisEntity.position(), ColoredCraftingParticleEffect.BLUE, VectorPattern.EIGHT_OFFSET, 0.5);
+				}
+				thisEntity.level().playSound(null, thisEntity.blockPosition(), SpectrumSoundEvents.PUFF_CIRCLET_PFFT, SoundSource.PLAYERS, 1.0F, 1.0F);
+				event.setCanceled(true);
+				return;
+			}
+		}
+		
 	}
 	
 	@SubscribeEvent
@@ -453,9 +508,327 @@ public class SpectrumEventListeners {
 		}
 	}
 	
-	// TODO: inline
-	public static int getFluidLuminance(Fluid fluid) {
-		return fluid.getFluidType().getLightLevel();
+	@SubscribeEvent
+	private static void dropHealingWhenScarred(LivingHealEvent event) {
+		if(event.getEntity().hasEffect(SpectrumStatusEffects.SCARRED)) {
+			event.setCanceled(true);
+		}
+	}
+	
+	@SubscribeEvent
+	private static void preventFallFlyingWhenScarred(PlayerFlyableFallEvent event) {
+		if(event.getEntity().hasEffect(SpectrumStatusEffects.SCARRED)) {
+			event.setMultiplier(0.05F);
+		}
+	}
+	
+	@SubscribeEvent
+	private static void triggerTakeoffBeltJumpCriterion(LivingEvent.LivingJumpEvent event) {
+		if (event.getEntity() instanceof ServerPlayer serverPlayerEntity) {
+			SpectrumAdvancementCriteria.TAKE_OFF_BELT_JUMP.trigger(serverPlayerEntity);
+		}
+	}
+	
+	@SubscribeEvent
+	private static void modifyArmorDamage(ArmorHurtEvent event) {
+		DamageSource source = event.getDamageSource();
+		if (source.is(SpectrumDamageTypeTags.DOES_NOT_DAMAGE_ARMOR)) {
+			event.setCanceled(true);
+		} else if (source.is(SpectrumDamageTypeTags.INCREASED_ARMOR_DAMAGE)) {
+			for(EquipmentSlot slot : EquipmentSlot.values()) {
+				event.setNewDamage(slot, event.getNewDamage(slot) * 10);
+			}
+		}
+	}
+	
+	@SubscribeEvent
+	private static void applyImprovedCriticalDamage(CriticalHitEvent event) {
+		Player player = event.getEntity();
+		Entity target = event.getTarget();
+		
+		int improvedCriticalLevel = SpectrumEnchantmentHelper.getLevel(player.level().registryAccess(), SpectrumEnchantments.IMPROVED_CRITICAL, event.getEntity().getMainHandItem());
+		if(improvedCriticalLevel > 0) {
+			event.setDamageMultiplier(event.getDamageMultiplier() + ImprovedCriticalHelper.getAddtionalCritDamageMultiplier(improvedCriticalLevel));
+		}
+		
+		MiscPlayerDataAttachmentType miscPlayerDataAttachmentType = MiscPlayerDataAttachmentType.get(player);
+		if (NectarLanceItem.sleepCrits(player, target) || miscPlayerDataAttachmentType.isParrying() || miscPlayerDataAttachmentType.isLunging()) {
+			if (miscPlayerDataAttachmentType.isParrying()) {
+				miscPlayerDataAttachmentType.setParryTicks(0);
+			}
+			
+			if (miscPlayerDataAttachmentType.consumePerfectCounter())
+				event.setDamageMultiplier(event.getDamageMultiplier() + 0.5F);
+			
+			if (!event.isCriticalHit()) {
+				event.setCriticalHit(true);
+				event.setDamageMultiplier(event.getDamageMultiplier() + 0.5F);
+			}
+		}
+	}
+	
+	@SubscribeEvent
+	private static void onLivingDamagePre(LivingDamageEvent.Pre event) {
+		LivingEntity hurtEntity = event.getEntity();
+		Entity sourceEntity = event.getSource().getEntity();
+		float newDamage = event.getNewDamage();
+		
+		if (sourceEntity instanceof LivingEntity livingAttacker) {
+			if (newDamage != 0F && hurtEntity.getHealth() == hurtEntity.getMaxHealth()) {
+				ItemStack mainHandStack = livingAttacker.getMainHandItem();
+				int level = SpectrumEnchantmentHelper.getLevel(livingAttacker.level().registryAccess(), SpectrumEnchantments.FIRST_STRIKE, mainHandStack);
+				if (level > 0) {
+					float additionalFirstStrikeDamage = SpectrumCommon.CONFIG.FirstStrikeDamagePerLevel * level;
+					event.setNewDamage(newDamage + additionalFirstStrikeDamage);
+				}
+			}
+		}
+	}
+	
+	@SubscribeEvent
+	private static void lovingDamagePost(LivingDamageEvent.Post event) {
+		LivingEntity hurtEntity = event.getEntity();
+		
+		// remember the hit
+		if (hurtEntity instanceof Player hurtPlayer) {
+			MiscPlayerDataAttachmentType.get(hurtPlayer).notifyHit();
+		}
+		
+		DamageSource source = event.getSource();
+		Entity sourceEntity = source.getEntity();
+		Level level = hurtEntity.level();
+		
+		// Gleaming Pin
+		if(hurtEntity instanceof ServerPlayer hurtServerPlayer) {
+			MiscPlayerDataAttachmentType miscAttachment = MiscPlayerDataAttachmentType.get(hurtServerPlayer);
+			Optional<ItemStack> gleamingPinStack = SpectrumCurioItem.getFirstEquipped(hurtEntity, SpectrumItems.GLEAMING_PIN.get());
+			if (gleamingPinStack.isPresent() && level.getGameTime() - miscAttachment.getLastGleamingPinTriggerTick() > GleamingPinItem.COOLDOWN_TICKS) {
+				GleamingPinItem.doGleamingPinEffect(hurtServerPlayer, (ServerLevel) level, gleamingPinStack.get());
+				miscAttachment.setLastGleamingPinTriggerTick(level.getGameTime());
+			}
+		}
+		
+		// Disarming
+		if(source.is(DamageTypes.THORNS)) {
+			return;
+		}
+		if (sourceEntity instanceof LivingEntity livingSource) {
+
+			int disarmingLevel = SpectrumEnchantmentHelper.getLevel(level.registryAccess(), SpectrumEnchantments.DISARMING, livingSource.getMainHandItem());
+			if (disarmingLevel > 0) {
+				float disarmingChance = disarmingLevel * (livingSource instanceof Player ? SpectrumCommon.CONFIG.DisarmingChancePerLevelPlayers : SpectrumCommon.CONFIG.DisarmingChancePerLevelMobs);
+				if(level.getRandom().nextFloat() < disarmingChance) {
+					disarmEntity(hurtEntity);
+				}
+			}
+		}
+	}
+	
+	private static void disarmEntity(LivingEntity livingEntity) {
+		// since endermen save their carried block as blockState, not in hand
+		// we have to use custom logic for them
+		if (livingEntity instanceof EnderMan endermanEntity) {
+			BlockState carriedBlockState = endermanEntity.getCarriedBlock();
+			if (carriedBlockState != null) {
+				Item item = carriedBlockState.getBlock().asItem();
+				if (item != null) {
+					endermanEntity.spawnAtLocation(item.getDefaultInstance());
+					endermanEntity.setCarriedBlock(null);
+				}
+			}
+			return;
+		}
+		
+		// choose a random slot and drop its content
+		List<EquipmentSlot> slots = new ArrayList<>(List.of(EquipmentSlot.values()));
+		Collections.shuffle(slots);
+		for (EquipmentSlot slot : slots) {
+			ItemStack slotStack = livingEntity.getItemBySlot(slot);
+			if (slotStack.isEmpty()) {
+				continue;
+			}
+			
+			// set to cannot drop? Skip that slot
+			if (livingEntity instanceof Mob mobEntity && ((MobEntityAccessor) mobEntity).invokeGetEquipmentDropChance(slot) <= 0) {
+				continue;
+			}
+			
+			livingEntity.spawnAtLocation(slotStack);
+			livingEntity.setItemSlot(slot, ItemStack.EMPTY);
+			livingEntity.level().playSound(null, livingEntity.blockPosition(), SoundEvents.BUNDLE_DROP_CONTENTS, SoundSource.NEUTRAL, 1.0F, 1.0F);
+			break;
+		}
+	}
+	
+	@SubscribeEvent
+	private static void playerWakeUp(PlayerWakeUpEvent event) {
+		Player player = event.getEntity();
+		
+		MiscPlayerDataAttachmentType.get(player).resetSleepingState(false);
+		player.removeEffect(SpectrumStatusEffects.SOMNOLENCE);
+	}
+	
+	// TODO: continue testing here
+	@SubscribeEvent
+	private static void onGameModeChange(PlayerEvent.PlayerChangeGameModeEvent event) {
+		if (event.getCurrentGameMode() != GameType.SPECTATOR && event.getNewGameMode() == GameType.SPECTATOR && event.getEntity() instanceof ServerPlayer serverPlayer && HardcoreDeathAttachmentType.hasHardcoreDeath(serverPlayer)) {
+			HardcoreDeathAttachmentType.clearHardcoreDeath(serverPlayer);
+		}
+	}
+	
+	@SubscribeEvent
+	private static void onProjectileImpact(ProjectileImpactEvent event) {
+		// if the target has a Puff circlet equipped
+		// protect it from this projectile
+		Projectile projectile = event.getProjectile();
+		HitResult hitResult = event.getRayTraceResult();
+		
+		if(projectile.getType().is(SpectrumEntityTypeTags.UNDEFLECTABLE)) {
+			return;
+		}
+		
+		if(!(hitResult instanceof EntityHitResult entityHitResult)) {
+			return;
+		}
+		
+		Level world = projectile.level();
+		if (!world.isClientSide) {
+			Entity entity = entityHitResult.getEntity();
+			if (entity instanceof LivingEntity livingEntity) {
+				boolean protect = false;
+				
+				MobEffectInstance reboundInstance = livingEntity.getEffect(SpectrumStatusEffects.PROJECTILE_REBOUND);
+				if (reboundInstance != null && entity.level().getRandom().nextFloat() < SpectrumStatusEffects.PROJECTILE_REBOUND_CHANCE_PER_LEVEL * (reboundInstance.getAmplifier() + 1)) {
+					protect = true;
+				} else {
+					if (SpectrumCurioItem.hasEquipped(livingEntity, SpectrumItems.PUFF_CIRCLET.get())) {
+						AzureDikeAttachmentType azureDikeAttachment = livingEntity.getData(AzureDikeAttachmentType.ATTACHMENT_TYPE);
+						if (azureDikeAttachment.getCurrentCharges() > 0) {
+							azureDikeAttachment.absorbDamage(livingEntity, PuffCircletItem.PROJECTILE_DEFLECTION_COST);
+							protect = true;
+						}
+					}
+				}
+				
+				if (protect) {
+					projectile.shoot(0, 0, 0, 0, 0);
+					
+					PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerLevel) world, projectile.position(),
+							ColoredCraftingParticleEffect.WHITE, 6,
+							new Vec3(0, 0, 0),
+							new Vec3(projectile.getX() - livingEntity.position().x, projectile.getY() - livingEntity.position().y, projectile.getZ() - livingEntity.position().z));
+					PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerLevel) world, projectile.position(),
+							ColoredCraftingParticleEffect.BLUE, 6,
+							new Vec3(0, 0, 0),
+							new Vec3(projectile.getX() - livingEntity.position().x, projectile.getY() - livingEntity.position().y, projectile.getZ() - livingEntity.position().z));
+					
+					world.playSound(null, projectile.blockPosition(), SpectrumSoundEvents.PUFF_CIRCLET_PFFT, SoundSource.PLAYERS, 1.0F, 1.0F);
+					livingEntity.hurtTime = Math.max(livingEntity.hurtTime, 1);
+					event.setCanceled(true);
+				}
+				
+			}
+		}
+	}
+	
+	@SubscribeEvent
+	private static void onEntityJoinLevel(EntityJoinLevelEvent event) {
+		event.getEntity().gameEvent(SpectrumGameEvents.ENTITY_SPAWNED);
+	}
+	
+	@SubscribeEvent
+	private static void onBlockBreak(BlockEvent.BreakEvent event) {
+		if(!event.isCanceled()) {
+			event.getLevel().gameEvent(SpectrumGameEvents.BLOCK_CHANGED, event.getPos(), GameEvent.Context.of(event.getState()));
+		}
+	}
+	
+	@SubscribeEvent
+	private static void onBlockPlace(BlockEvent.EntityPlaceEvent event) {
+		if(!event.isCanceled()) {
+			event.getLevel().gameEvent(SpectrumGameEvents.BLOCK_CHANGED, event.getPos(), GameEvent.Context.of(event.getPlacedBlock()));
+		}
+	}
+	
+	@SubscribeEvent
+	private static void onFarmlandTrample(BlockEvent.FarmlandTrampleEvent event) {
+		// if carrying puff circlet: no trampling
+		if (!event.isCanceled() && event.getEntity() instanceof LivingEntity livingEntity) {
+			if (SpectrumCurioItem.hasEquipped(livingEntity, SpectrumItems.PUFF_CIRCLET.get())) {
+				event.setCanceled(true);
+			}
+		}
+	}
+	
+	@SubscribeEvent
+	private static void onSleepFinished(SleepFinishedTimeEvent event) {
+		LevelAccessor l = event.getLevel();
+		var time = TimeHelper.getTimeOfDay(l.dayTime());
+		if (time.isDay()) {
+			event.setTimeAddition(-11000L);
+		}
+	}
+	
+	@SubscribeEvent
+	private static void onDropExperience(LivingExperienceDropEvent event) {
+		if(!event.isCanceled()) {
+			Player attackingPlayer = event.getAttackingPlayer();
+			float exuberanceMod = ExuberanceHelper.getExuberanceMod(attackingPlayer);
+			if(exuberanceMod > 0) {
+				event.setDroppedExperience((int) (exuberanceMod * event.getDroppedExperience()));
+			}
+		}
+	}
+	
+	@SubscribeEvent
+	private static void onEntityAttributeModification(EntityAttributeModificationEvent event) {
+		for(EntityType<? extends LivingEntity> et : event.getTypes()) {
+			event.add(et, SpectrumEntityAttributes.MENTAL_PRESENCE);
+		}
+	}
+	
+	@SubscribeEvent
+	private static void onMobEffectAdded(MobEffectEvent.Applicable event) {
+		LivingEntity entity = event.getEntity();
+		if (entity.hasEffect(SpectrumStatusEffects.IMMUNITY)) {
+			event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
+		}
+		event.setResult(MobEffectEvent.Applicable.Result.DEFAULT);
+	}
+	
+	@SubscribeEvent
+	private static void tickHorseInventory(EntityTickEvent.Post event) {
+		if(event.getEntity() instanceof AbstractHorse horse) {
+			if (horse instanceof AbstractChestedHorse thisEntity
+					&& !thisEntity.isNoGravity()
+					&& thisEntity.hasChest()
+					&& thisEntity.level() instanceof ServerLevel serverWorld) {
+				
+				double addedGravity = 0;
+				
+				Container horseInventory = horse.getInventory();
+				for (int i = 0; i < horseInventory.getContainerSize(); i++) {
+					ItemStack stack = horse.getInventory().getItem(i);
+					if (stack.getItem() instanceof GravitableItem gravitableItem) {
+						addedGravity += gravitableItem.applyGravity(stack, serverWorld, thisEntity);
+					}
+				}
+				
+				// when the animal is sent flying trigger a hidden advancement
+				if (addedGravity > 0.081 && serverWorld.getGameTime() % 20 == 0) {
+					Player owner = PlayerOwned.getPlayerEntityIfOnline(thisEntity.getOwnerUUID());
+					if (owner != null) {
+						Support.grantAdvancementCriterion((ServerPlayer) owner, "lategame/put_too_many_low_gravity_blocks_into_animal", "gravity");
+					}
+					
+					// take damage when at height heights
+					// otherwise the animal would just be floating forever
+					if (thisEntity.position().y > serverWorld.getHeight() + 1000) {
+						thisEntity.hurt(thisEntity.damageSources().fellOutOfWorld(), 10);
+					}
+				}
+			}
+		}
 	}
 	
 }

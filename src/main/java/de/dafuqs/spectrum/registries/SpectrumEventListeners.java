@@ -668,7 +668,6 @@ public class SpectrumEventListeners {
 		player.removeEffect(SpectrumStatusEffects.SOMNOLENCE);
 	}
 	
-	// TODO: continue testing here
 	@SubscribeEvent
 	private static void onGameModeChange(PlayerEvent.PlayerChangeGameModeEvent event) {
 		if (event.getCurrentGameMode() == GameType.SPECTATOR && event.getNewGameMode() != GameType.SPECTATOR
@@ -677,6 +676,7 @@ public class SpectrumEventListeners {
 		}
 	}
 	
+	// TODO: continue testing here
 	@SubscribeEvent
 	private static void onProjectileImpact(ProjectileImpactEvent event) {
 		// if the target has a Puff circlet equipped

@@ -47,9 +47,6 @@ public class DimensionRenderEffects {
 	
 	// TODO: this should also invalidate the values when the world or spectated entity changed
 	public static void clientTick(ClientLevel world, Entity entity, Holder<Biome> biome) {
-		if (client.isPaused())
-			return;
-		
 		lastDarkenTicks = darkenTicks;
 		float sleepPotency = -1;
 		@Nullable Holder<MobEffect> sleepEffect = null;

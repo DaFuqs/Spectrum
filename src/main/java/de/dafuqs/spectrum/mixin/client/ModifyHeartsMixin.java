@@ -21,11 +21,4 @@ public abstract class ModifyHeartsMixin {
 		return hardcore;
 	}
 	
-	@Inject(method = "forPlayer(Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/client/gui/Gui$HeartType;", at = @At(value = "HEAD"), cancellable = true)
-	private static void spectrum$deadlyPoisonHearts(Player player, CallbackInfoReturnable<Gui.HeartType> cir) {
-		if (player.hasEffect(SpectrumStatusEffects.DEADLY_POISON)) {
-			cir.setReturnValue(Gui.HeartType.POISIONED);
-		}
-	}
-	
 }

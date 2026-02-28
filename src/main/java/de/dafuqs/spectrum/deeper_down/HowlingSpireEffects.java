@@ -27,9 +27,6 @@ public class HowlingSpireEffects {
 	private static Minecraft client = Minecraft.getInstance();
 	
 	public static void clientTick(ClientLevel world, Entity cameraEntity, Holder<Biome> biome) {
-		if (client.isPaused())
-			return;
-		
 		lastSpireTicks = spireTicks;
 		BiomeAttenuatingSoundInstance.update(biome);
 		

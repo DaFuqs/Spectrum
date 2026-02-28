@@ -23,6 +23,7 @@ import de.dafuqs.spectrum.shaders.*;
 import de.dafuqs.spectrum.sound.*;
 import net.minecraft.*;
 import net.minecraft.client.*;
+import net.minecraft.client.gui.*;
 import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.core.*;
@@ -30,27 +31,33 @@ import net.minecraft.core.component.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.server.level.*;
 import net.minecraft.server.packs.*;
 import net.minecraft.util.*;
 import net.minecraft.server.packs.resources.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
+import net.neoforged.api.distmarker.*;
 import net.neoforged.bus.api.*;
+import net.neoforged.fml.common.*;
 import net.neoforged.neoforge.client.event.*;
+import net.neoforged.neoforge.client.gui.*;
 import net.neoforged.neoforge.common.*;
+import net.neoforged.neoforge.event.entity.player.*;
 import net.neoforged.neoforge.event.tick.*;
 import org.jetbrains.annotations.*;
 import oshi.util.tuples.*;
 
 import java.util.*;
 
-
+@EventBusSubscriber(modid = SpectrumCommon.MOD_ID, value = Dist.CLIENT)
 public class SpectrumClientEventListeners {
 	
 	private static int lookingAtUniverseSpyholeTicks = 0;
@@ -58,7 +65,7 @@ public class SpectrumClientEventListeners {
 	private static boolean lookingAtUniverseSpyholeeffectsPlayed = false;
 	
 	public static void register(IEventBus modBus) {
-		modBus.addListener(SpectrumClientEventListeners::onReloadClientResources);
+		/*modBus.addListener(SpectrumClientEventListeners::onReloadClientResources);
 		modBus.addListener(SpectrumColorProviders::registerBlocks);
 		modBus.addListener(SpectrumColorProviders::registerItems);
 		
@@ -73,13 +80,62 @@ public class SpectrumClientEventListeners {
 				}
 				return orig;
 			});
-		});*/
+		});
 		
 		NeoForge.EVENT_BUS.addListener(SpectrumClientEventListeners::onWorldRenderStart);
 		NeoForge.EVENT_BUS.addListener(SpectrumClientEventListeners::onRenderBlockOutlines);
 		NeoForge.EVENT_BUS.addListener(SpectrumClientEventListeners::onDrawTooltips);
 		NeoForge.EVENT_BUS.addListener(SpectrumClientEventListeners::onLogout);
 		NeoForge.EVENT_BUS.addListener(SpectrumClientEventListeners::afterClientTick);
+		NeoForge.EVENT_BUS.addListener(SpectrumClientEventListeners::hardcoreHearts);*/
+	}
+	
+	@SubscribeEvent
+	private static void onDrawTooltips(RenderTooltipEvent.GatherComponents event) {
+		ItemStack stack = event.getItemStack();
+		
+		if (stack.has(DataComponents.FOOD)) {
+			if (BuiltInRegistries.ITEM.getKey(stack.getItem()).getNamespace().equals(SpectrumCommon.MOD_ID)) {
+				TooltipHelper.addFoodComponentEffectTooltip(stack, event.getTooltipElements(), Item.TooltipContext.EMPTY.tickRate());
+			}
+		}
+		if (stack.is(SpectrumItemTags.COMING_SOON_TOOLTIP)) {
+			event.getTooltipElements().add(Either.left(Component.translatable("spectrum.tooltip.coming_soon").withStyle(ChatFormatting.RED)));
+		}
+	}
+	
+	@SubscribeEvent
+	private static void onLogout(ClientPlayerNetworkEvent.LoggingOut event) {
+		Pastel.clearClientInstance();
+	}
+	
+	@SubscribeEvent
+	private static void afterClientTick(ClientTickEvent.Post event) {
+		Minecraft client = Minecraft.getInstance();
+		ClientLevel world = client.level;
+		Entity cameraEntity = client.getCameraEntity();
+		if (world == null || cameraEntity == null) {
+			BiomeAttenuatingSoundInstance.clear();
+			BlockAuraSoundInstance.clear();
+			return;
+		}
+		
+		if (SpectrumCommon.CONFIG.PostProcess) {
+			SpectrumShaders.updateShaders(client, world);
+		}
+		
+		if(Minecraft.getInstance().isPaused()) {
+			return;
+		}
+		
+		Holder<Biome> biome = world.getBiome(client.getCameraEntity().blockPosition());
+		HowlingSpireEffects.clientTick(world, cameraEntity, biome);
+		DimensionRenderEffects.clientTick(world, cameraEntity, biome);
+		
+		// Looking at a Universe Spyhole
+		if (lookingAtUniverseSpyholeTicks > 0 && lookingAtUniverseSpyholeHitResult != null) {
+			playLookingAtUniverseSpyholeParticles(cameraEntity, world);
+		}
 	}
 	
 	private static void playLookingAtUniverseSpyholeParticles(Entity cameraEntity, ClientLevel world) {
@@ -109,49 +165,8 @@ public class SpectrumClientEventListeners {
 			}
 		}
 	}
-
-	private static void onDrawTooltips(RenderTooltipEvent.GatherComponents event) {
-		ItemStack stack = event.getItemStack();
-		
-		if (stack.has(DataComponents.FOOD)) {
-			if (BuiltInRegistries.ITEM.getKey(stack.getItem()).getNamespace().equals(SpectrumCommon.MOD_ID)) {
-				TooltipHelper.addFoodComponentEffectTooltip(stack, event.getTooltipElements(), Item.TooltipContext.EMPTY.tickRate());
-			}
-		}
-		if (stack.is(SpectrumItemTags.COMING_SOON_TOOLTIP)) {
-			event.getTooltipElements().add(Either.left(Component.translatable("spectrum.tooltip.coming_soon").withStyle(ChatFormatting.RED)));
-		}
-	}
 	
-	private static void onLogout(ClientPlayerNetworkEvent.LoggingOut event) {
-		Pastel.clearClientInstance();
-	}
-	
-	private static void afterClientTick(ClientTickEvent.Post event) {
-		Minecraft client = Minecraft.getInstance();
-		ClientLevel world = client.level;
-		Entity cameraEntity = client.getCameraEntity();
-		if (world == null || cameraEntity == null) {
-			BiomeAttenuatingSoundInstance.clear();
-			BlockAuraSoundInstance.clear();
-			return;
-		}
-		
-		Holder<Biome> biome = world.getBiome(client.getCameraEntity().blockPosition());
-		
-		HowlingSpireEffects.clientTick(world, cameraEntity, biome);
-		DimensionRenderEffects.clientTick(world, cameraEntity, biome);
-		
-		// Looking at a Universe Spyhole
-		if (lookingAtUniverseSpyholeTicks > 0 && lookingAtUniverseSpyholeHitResult != null) {
-			playLookingAtUniverseSpyholeParticles(cameraEntity, world);
-		}
-		
-		if (SpectrumCommon.CONFIG.PostProcess) {
-			SpectrumShaders.updateShaders(client, world);
-		}
-	}
-	
+	@SubscribeEvent
 	private static void onWorldRenderStart(RenderLevelStageEvent event) {
 		RenderLevelStageEvent.Stage stage = event.getStage();
 		
@@ -199,6 +214,7 @@ public class SpectrumClientEventListeners {
 		}
 	}
 	
+	@SubscribeEvent
 	private static void onReloadClientResources(RegisterClientReloadListenersEvent event) {
 		event.registerReloadListener(ParticleSpawnerParticlesDataLoader.INSTANCE);
 		
@@ -215,6 +231,7 @@ public class SpectrumClientEventListeners {
 		});
 	}
 	
+	@SubscribeEvent
 	private static void onRenderBlockOutlines(RenderHighlightEvent.Block event) {
 		boolean shouldCancel = false;
 		BlockHitResult target = event.getTarget();
@@ -346,6 +363,14 @@ public class SpectrumClientEventListeners {
 		}
 		
 		return false;
+	}
+	
+	@SubscribeEvent
+	private static void hardcoreHearts(PlayerHeartTypeEvent event) {
+		Player player = event.getEntity();
+		if(player.hasEffect(SpectrumStatusEffects.DEADLY_POISON)) {
+			event.setType(Gui.HeartType.POISIONED);
+		}
 	}
 	
 }

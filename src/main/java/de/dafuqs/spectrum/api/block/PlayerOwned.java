@@ -40,13 +40,6 @@ public interface PlayerOwned {
 		return null;
 	}
 	
-	@Nullable
-	default Player getFakeOwner(ServerLevel level) {
-		UUID ownerUUID = this.getOwnerUUID();
-		GameProfile fakeProfile = new GameProfile(ownerUUID, "[Block Breaker of " + ownerUUID + "]");
-		return new FakePlayer(level, fakeProfile); // todo: cache
-	}
-	
 	static void writeOwnerUUID(CompoundTag nbt, UUID ownerUUID) {
 		if (ownerUUID != null) {
 			nbt.putUUID("OwnerUUID", ownerUUID);

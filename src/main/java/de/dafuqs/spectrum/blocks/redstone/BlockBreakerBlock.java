@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.blocks.redstone;
 
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.compat.claims.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
@@ -84,7 +85,7 @@ public class BlockBreakerBlock extends RedstoneInteractionBlock implements Entit
 		if (!(blockEntity instanceof BlockBreakerBlockEntity blockBreakerBlockEntity)) {
 			return;
 		}
-		@Nullable Player owner = blockBreakerBlockEntity.getFakeOwner(world);
+		@Nullable Player owner = FakePlayerHelper.getFakePlayer(world, blockBreakerBlockEntity);
 		if (!GenericClaimModsCompat.canBreak(world, breakingPos, owner)) {
 			return;
 		}

@@ -344,11 +344,11 @@ public class SpectrumEventListeners {
 			}
 		}
 		
-		if (event.getEntity() instanceof ServerPlayer player) {
-			if (player.level().getLevelData().isHardcore() || HardcoreDeathAttachmentType.isInHardcore(player)) {
-				HardcoreDeathAttachmentType.setHardcoreDeath(player);
+		if (!event.isCanceled() && event.getEntity() instanceof ServerPlayer serverPlayer) {
+			if (serverPlayer.level().getLevelData().isHardcore() || HardcoreDeathAttachmentType.isInHardcore(serverPlayer)) {
+				HardcoreDeathAttachmentType.setHardcoreDeath(serverPlayer);
 			}
-			evaluateAndDropPlayerHead(player, event.getSource());
+			evaluateAndDropPlayerHead(serverPlayer, event.getSource());
 		}
 	}
 	
@@ -671,7 +671,8 @@ public class SpectrumEventListeners {
 	// TODO: continue testing here
 	@SubscribeEvent
 	private static void onGameModeChange(PlayerEvent.PlayerChangeGameModeEvent event) {
-		if (event.getCurrentGameMode() != GameType.SPECTATOR && event.getNewGameMode() == GameType.SPECTATOR && event.getEntity() instanceof ServerPlayer serverPlayer && HardcoreDeathAttachmentType.hasHardcoreDeath(serverPlayer)) {
+		if (event.getCurrentGameMode() == GameType.SPECTATOR && event.getNewGameMode() != GameType.SPECTATOR
+				&& event.getEntity() instanceof ServerPlayer serverPlayer && HardcoreDeathAttachmentType.hasHardcoreDeath(serverPlayer)) {
 			HardcoreDeathAttachmentType.clearHardcoreDeath(serverPlayer);
 		}
 	}

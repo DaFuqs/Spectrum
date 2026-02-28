@@ -19,7 +19,7 @@ import java.util.*;
 public class HardcoreDeathAttachmentType {
 	
 	public static final String NAME = "hardcore_death";
-	public static final AttachmentType<Boolean> ATTACHMENT_TYPE = AttachmentType.builder(() -> false).serialize(Codec.BOOL).build();
+	public static final AttachmentType<Boolean> ATTACHMENT_TYPE = AttachmentType.builder(() -> false).serialize(Codec.BOOL).copyOnDeath().build();
 	
 	public static void setHardcoreDeath(ServerPlayer serverPlayer) {
 		serverPlayer.setData(ATTACHMENT_TYPE, true);
@@ -28,7 +28,6 @@ public class HardcoreDeathAttachmentType {
 	
 	public static void clearHardcoreDeath(ServerPlayer serverPlayer) {
 		serverPlayer.setData(ATTACHMENT_TYPE, false);
-		serverPlayer.setGameMode(SpectrumCommon.minecraftServer.getDefaultGameType());
 	}
 	
 	public static boolean hasHardcoreDeath(LivingEntity livingEntity) {

@@ -41,6 +41,7 @@ public class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe {
 			ServerPlayer revivedPlayer = SpectrumCommon.minecraftServer.getPlayerList().getPlayerByName(gameProfile.getName());
 			if (revivedPlayer != null) {
 				HardcoreDeathAttachmentType.clearHardcoreDeath(revivedPlayer);
+				revivedPlayer.setGameMode(revivedPlayer.server.getDefaultGameType());
 				
 				Rotation blockRotation = spiritInstillerBlockEntity.getMultiblockRotation();
 				float yaw = 0.0F;
@@ -52,7 +53,7 @@ public class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe {
 				}
 				
 				BlockPos pos = spiritInstillerBlockEntity.getBlockPos();
-				revivedPlayer.teleportTo((ServerLevel) spiritInstillerBlockEntity.getLevel(), pos.getX(), pos.getY(), pos.getZ(), revivedPlayer.getYRot(), revivedPlayer.getXRot());
+				revivedPlayer.teleportTo((ServerLevel) spiritInstillerBlockEntity.getLevel(), pos.getX(), pos.getY(), pos.getZ(), yaw, revivedPlayer.getXRot());
 			}
 		}
 		return ItemStack.EMPTY;

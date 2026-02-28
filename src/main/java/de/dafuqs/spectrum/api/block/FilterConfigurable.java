@@ -143,7 +143,7 @@ public interface FilterConfigurable {
 	static void readFilterNbt(CompoundTag tag, List<ItemStack> filterItems) {
 		for (int i = 0; i < filterItems.size(); i++) {
 			if (tag.contains("FilterStack" + i))
-				filterItems.set(i, CodecHelper.fromNbt(ItemStack.CODEC, tag.get("FilterStack" + i), null));
+				filterItems.set(i, CodecHelper.fromNbt(ItemStack.CODEC, tag.get("FilterStack" + i), ItemStack.EMPTY));
 		}
 	}
 	

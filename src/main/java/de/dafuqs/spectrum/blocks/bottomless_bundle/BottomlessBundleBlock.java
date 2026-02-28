@@ -22,6 +22,7 @@ import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
+import net.neoforged.neoforge.items.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -84,12 +85,12 @@ public class BottomlessBundleBlock extends BaseEntityBlock {
 			} else {
 				BlockEntity be = world.getBlockEntity(pos);
 				if (be instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
-					var storage = bottomlessBundleBlockEntity.storage;
+					BottomlessItemHandler storage = bottomlessBundleBlockEntity.storage;
 					ItemStack storedVariant = storage.variant;
 					
 					// If same type or empty template -> try to insert
 					if ((storedVariant.isEmpty() || ItemStack.isSameItemSameComponents(storedVariant, stack))) {
-						if (!stack.isEmpty() && stack.getItem().canFitInsideContainerItems()) {
+						if (!stack.isEmpty() && stack.getItem().canFitInsideContainerItems(stack)) {
 							ItemStack remainder = storage.insertItem(0, stack, false);
 							stack.setCount(remainder.getCount());
 							world.playSound(null, pos, SoundEvents.BUNDLE_INSERT, SoundSource.BLOCKS, 0.8F, 0.8F + world.getRandom().nextFloat() * 0.4F);

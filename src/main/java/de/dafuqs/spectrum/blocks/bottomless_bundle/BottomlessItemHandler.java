@@ -24,7 +24,7 @@ public final class BottomlessItemHandler implements IItemHandler {
 		this.capacity = capacity;
 		this.deletesOverflow = deletesOverflow;
 	}
-	
+	// returns the amount that could get inserted
 	private long insert(ItemStack insertedVariant, long maxAmount) {
 		if (!isItemValid(0, insertedVariant)) return 0L;
 		long capacity = getCapacity();
@@ -61,12 +61,12 @@ public final class BottomlessItemHandler implements IItemHandler {
 		if (!isItemValid(slot, stack))
 			return stack;
 		
-		long leftover = insert(stack, stack.getCount());
-		if (leftover == 0L) {
+		long insertedAmount = insert(stack, stack.getCount());
+		if (insertedAmount == stack.getCount()) {
 			return ItemStack.EMPTY;
 		}
 		
-		stack.setCount((int) leftover);
+		stack.setCount((int) (stack.getCount() - insertedAmount));
 		return stack;
 	}
 	

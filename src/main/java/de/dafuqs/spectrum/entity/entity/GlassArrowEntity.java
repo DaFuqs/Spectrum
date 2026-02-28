@@ -18,13 +18,14 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
+import org.jetbrains.annotations.*;
 
 public class GlassArrowEntity extends AbstractArrow {
 	
 	private static final String VARIANT_STRING = "variant";
 	private static final EntityDataAccessor<GlassArrowVariant> VARIANT = SynchedEntityData.defineId(GlassArrowEntity.class, SpectrumTrackedDataHandlerRegistry.GLASS_ARROW_VARIANT);
 	
-	public static final float DAMAGE_MODIFIER = 1.25F;
+	public static final float DAMAGE_MODIFIER = 1.5F;
 	
 	public GlassArrowEntity(EntityType<? extends GlassArrowEntity> entityType, Level world) {
 		super(entityType, world);
@@ -66,7 +67,7 @@ public class GlassArrowEntity extends AbstractArrow {
 	}
 	
 	@Override
-	protected void onHitEntity(EntityHitResult entityHitResult) {
+	protected void onHitEntity(@NotNull EntityHitResult entityHitResult) {
 		LivingEntity livingEntityToResetHurtTime = null;
 		Level world = this.level();
 		
@@ -111,7 +112,7 @@ public class GlassArrowEntity extends AbstractArrow {
 	}
 	
 	@Override
-	protected void onHitBlock(BlockHitResult blockHitResult) {
+	protected void onHitBlock(@NotNull BlockHitResult blockHitResult) {
 		super.onHitBlock(blockHitResult);
 		if (getVariant() == GlassArrowVariant.MOONSTONE) {
 			MoonstoneStrike.create(this.level(), this, null, this.getX(), this.getY(), this.getZ(), 4);
@@ -133,7 +134,7 @@ public class GlassArrowEntity extends AbstractArrow {
 	}
 	
 	@Override
-	protected ItemStack getDefaultPickupItem() {
+	protected @NotNull ItemStack getDefaultPickupItem() {
 		return getVariant().getArrow().getDefaultInstance();
 	}
 	
@@ -156,11 +157,9 @@ public class GlassArrowEntity extends AbstractArrow {
 	}
 	
 	@Override
-	protected void doKnockback(LivingEntity target, DamageSource source) {
+	protected void doKnockback(@NotNull LivingEntity target, @NotNull DamageSource source) {
 		double punch = getVariant() == GlassArrowVariant.CITRINE ? 5 : 0;
-		punch += getWeaponItem() != null && level() instanceof ServerLevel serverWorld
-				? EnchantmentHelper.modifyKnockback(serverWorld, getWeaponItem(), target, source, 0.0F)
-				: 0.0F;
+		punch += this.level() instanceof ServerLevel serverWorld ? EnchantmentHelper.modifyKnockback(serverWorld, getWeaponItem(), target, source, 0.0F) : 0.0F;
 		if (punch > 0.0) {
 			double e = Math.max(0.0, 1.0 - target.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));
 			Vec3 vec3d = this.getDeltaMovement().multiply(1.0, 0.0, 1.0).normalize().scale(punch * 0.6 * e);
@@ -175,7 +174,7 @@ public class GlassArrowEntity extends AbstractArrow {
 	}
 	
 	@Override
-	public void addAdditionalSaveData(CompoundTag nbt) {
+	public void addAdditionalSaveData(@NotNull CompoundTag nbt) {
 		super.addAdditionalSaveData(nbt);
 		nbt.putString(VARIANT_STRING, SpectrumRegistries.GLASS_ARROW_VARIANT.getKey(this.getVariant()).toString());
 	}

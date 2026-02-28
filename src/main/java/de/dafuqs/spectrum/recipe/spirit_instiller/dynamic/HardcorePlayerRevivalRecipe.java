@@ -53,7 +53,7 @@ public class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe {
 				}
 				
 				BlockPos pos = spiritInstillerBlockEntity.getBlockPos();
-				revivedPlayer.teleportTo((ServerLevel) spiritInstillerBlockEntity.getLevel(), pos.getX(), pos.getY(), pos.getZ(), yaw, revivedPlayer.getXRot());
+				revivedPlayer.teleportTo((ServerLevel) spiritInstillerBlockEntity.getLevel(), pos.getX(), pos.getY() + 1, pos.getZ(), yaw, revivedPlayer.getXRot());
 			}
 		}
 		return ItemStack.EMPTY;

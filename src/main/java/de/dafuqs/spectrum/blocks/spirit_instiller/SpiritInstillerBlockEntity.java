@@ -333,9 +333,11 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 	
 	public void setValidStructure(boolean validStructure) {
 		if (!level.isClientSide()) {
+			if(validStructure != this.validStructure) {
+				setChanged();
+				updateInClientWorld();
+			}
 			this.validStructure = validStructure;
-			setChanged();
-			updateInClientWorld();
 		}
 	}
 	

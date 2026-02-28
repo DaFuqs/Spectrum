@@ -15,7 +15,7 @@ repositories {
 	maven { url = "https://maven.blamejared.com" } // JEI
 	maven { url = "https://maven.ladysnake.org/releases" } // Cardinal Components API
 	maven { url = "https://maven.jamieswhiteshirt.com/libs-release/" } // Entity Reach Attribute
-	maven { url = "https://api.modrinth.com/maven" } // Colorful Hearts, idwtialsimmoedm
+	maven { url = "https://api.modrinth.com/maven" }
 	maven { url = "https://cfa2.cursemaven.com" }
 	maven { url = "https://mvn.devos.one/releases/" } // Porting Lib
 	maven { url = "https://repo.unascribed.com" } // Ears API
@@ -132,15 +132,14 @@ dependencies {
 	}
 
 	// Mod Compat
-	// TODO: if it's just compat it should be replaced by "localRuntimeOnly compileOnly(...)",
-	// TODO: to avoid "polluting" the dev env of mods that would depend on spectrum ;)
-	implementation("maven.modrinth:colorful-hearts:${project.colorful_hearts_version}") { transitive = false }
-	implementation("maven.modrinth:sodium:${project.sodium_version}") { transitive = false }
-	implementation("com.unascribed:ears-api:${project.ears_version}")
-	implementation("maven.modrinth:create:${project.create_version}") { transitive = false }
-	/*implementation*/ compileOnly("maven.modrinth:lodestonelib:${project.lodestone_version}") { transitive = false }
-	/*implementation*/ compileOnly("maven.modrinth:malum:${project.malum_version}") { transitive = false }
-	implementation("maven.modrinth:travelersbackpack:${project.travelers_backpack_version}")
+	// KNOWN INCOMPAT: Colorful Hearts completely overrides neos heart rendering, making hearts unable to be modified by divinity / deadly poison
+	// implementation("maven.modrinth:colorful-hearts:${project.colorful_hearts_version}") { transitive = false }
+	runtimeOnly compileOnly("maven.modrinth:sodium:${project.sodium_version}") { transitive = false }
+	runtimeOnly compileOnly("com.unascribed:ears-api:${project.ears_version}") { transitive = false }
+	runtimeOnly compileOnly("maven.modrinth:create:${project.create_version}") { transitive = false }
+	runtimeOnly compileOnly("maven.modrinth:lodestonelib:${project.lodestone_version}") { transitive = false }
+	runtimeOnly compileOnly("maven.modrinth:malum:${project.malum_version}") { transitive = false }
+	runtimeOnly compileOnly("maven.modrinth:travelersbackpack:${project.travelers_backpack_version}") { transitive = false }
 	// implementation("maven.modrinth:botania:${project.botania_version}") // still on MC 1.20.1
 	// implementation("maven.modrinth:vanity:${project.vanityslots_version}")
 

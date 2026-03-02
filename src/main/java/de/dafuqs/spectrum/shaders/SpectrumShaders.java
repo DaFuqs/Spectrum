@@ -43,6 +43,11 @@ public class SpectrumShaders {
 		noiseEdgePostProcess.ifPresent(pps -> pps.resize(width, height));
 	}
 	
+	public static void disableShaders() {
+		colorGradingPostProcess = Optional.empty();
+		noiseEdgePostProcess = Optional.empty();
+	}
+	
 	public static void updateShaders(Minecraft client, ClientLevel world) {
 		tickNoise(client);
 		if (world.dimension().equals(SpectrumDimensions.DIMENSION_KEY)) {

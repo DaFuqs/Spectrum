@@ -407,7 +407,6 @@ public class SpectrumEventListeners {
 				}
 				entity.level().playSound(null, entity.blockPosition(), SpectrumSoundEvents.PUFF_CIRCLET_PFFT, SoundSource.PLAYERS, 1.0F, 1.0F);
 				event.setCanceled(true);
-				return;
 			}
 		}
 	}

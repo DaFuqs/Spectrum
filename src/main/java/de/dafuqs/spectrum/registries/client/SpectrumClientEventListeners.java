@@ -122,6 +122,8 @@ public class SpectrumClientEventListeners {
 		
 		if (SpectrumCommon.CONFIG.PostProcess) {
 			SpectrumShaders.updateShaders(client, world);
+		} else {
+			SpectrumShaders.disableShaders();
 		}
 		
 		if(Minecraft.getInstance().isPaused()) {

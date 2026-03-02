@@ -14,6 +14,7 @@ import net.minecraft.world.level.*;
 import net.neoforged.neoforge.attachment.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -29,6 +30,15 @@ public class AzureDikeAttachmentType {
 					Codec.INT.fieldOf("current_recharge_delay").forGetter(AzureDikeAttachmentType::getCurrentRechargeDelay)
 			).apply(i, AzureDikeAttachmentType::new));
 	
+	public static final StreamCodec<FriendlyByteBuf, AzureDikeAttachmentType> STREAM_CODEC = StreamCodec.composite(
+			ByteBufCodecs.FLOAT, AzureDikeAttachmentType::getMaxCharges,
+			ByteBufCodecs.FLOAT, AzureDikeAttachmentType::getCurrentCharges,
+			ByteBufCodecs.INT, AzureDikeAttachmentType::getTicksToReplenishCharge,
+			ByteBufCodecs.INT, AzureDikeAttachmentType::getTicksToReplenishChargeAfterGettingHit,
+			ByteBufCodecs.INT, AzureDikeAttachmentType::getTicksToReplenishCharge,
+			AzureDikeAttachmentType::new
+	);
+	
 	public static final IAttachmentCopyHandler<AzureDikeAttachmentType> COPY_HANDLER = (dike, holder, provider) -> {
 		AzureDikeAttachmentType copy = new AzureDikeAttachmentType();
 		copy.maxCharges = dike.maxCharges;
@@ -42,6 +52,7 @@ public class AzureDikeAttachmentType {
 					.serialize(CODEC)
 					.copyOnDeath()
 					.copyHandler(COPY_HANDLER)
+					.sync(STREAM_CODEC)
 					.build();
 	
 	public record Payload(int entityId, float maxProtection, float currentProtection, int ticksPerPointOfRecharge, int rechargeDelayTicksAfterGettingHit, int currentRechargeDelay) implements CustomPacketPayload {
@@ -73,7 +84,7 @@ public class AzureDikeAttachmentType {
 		}
 		
 		@Override
-		public Type<? extends CustomPacketPayload> type() {
+		public @NotNull Type<? extends CustomPacketPayload> type() {
 			return TYPE;
 		}
 	}

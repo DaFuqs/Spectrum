@@ -54,10 +54,13 @@ public class PrimordialFireAttachmentType {
 		}
 	}
 	
-	public static final AttachmentType<Long> ATTACHMENT_TYPE = AttachmentType.builder(() -> 0L).serialize(Codec.LONG).build();
+	public static final AttachmentType<Long> ATTACHMENT_TYPE = AttachmentType
+			.builder(() -> 0L)
+			.serialize(Codec.LONG)
+			.sync(ByteBufCodecs.VAR_LONG)
+			.build();
 	
 	public static final float BASE_PERCENT_DAMAGE = 0.1F;
-	
 	
 	private static Optional<OnPrimordialFireSoundInstance> soundInstance = Optional.empty();
 	

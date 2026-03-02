@@ -50,7 +50,6 @@ public interface AzureDikeItem {
 				int rechargeDelayTicksAfterGettingHit = (int) Math.max(1, AzureDikeAttachmentType.BASE_RECHARGE_DELAY_TICKS_AFTER_DAMAGE / rechargeDelayAfterDamageModifier);
 				
 				azureDikeComponent.set(Math.round((maxAzureDike * maxAzureDikeMultiplier)), ticksPerPointOfRecharge, rechargeDelayTicksAfterGettingHit, false);
-				azureDikeComponent.sync(livingEntity);
 			}
 		}
 	}

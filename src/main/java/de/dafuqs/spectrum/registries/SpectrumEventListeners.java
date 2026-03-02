@@ -367,8 +367,6 @@ public class SpectrumEventListeners {
 	private static void onIncomingDamage(LivingIncomingDamageEvent event) {
 		LivingEntity entity = event.getEntity();
 		DamageSource source = event.getSource();
-		float original = event.getAmount();
-		LivingEntity thisEntity = entity;
 		
 		// If the player is damaged by lava and wears an ashen circlet:
 		// prevent damage and grant fire resistance
@@ -383,30 +381,45 @@ public class SpectrumEventListeners {
 			}
 		}
 		
-		AzureDikeAttachmentType azureDikeAttachment = thisEntity.getData(AzureDikeAttachmentType.ATTACHMENT_TYPE);
-		if(source.is(DamageTypes.FALL)) {
+		@Nullable MobEffectInstance vulnerability = entity.getEffect(SpectrumStatusEffects.VULNERABILITY);
+		if (vulnerability != null) {
+			float vulnerabilityDamageMultiplier = 1 + (SpectrumStatusEffects.VULNERABILITY_ADDITIONAL_DAMAGE_PERCENT_PER_LEVEL * vulnerability.getAmplifier() + 1);
+			event.setAmount(event.getAmount() * vulnerabilityDamageMultiplier);
+		}
+		
+		if (source.is(DamageTypes.FALL)) {
 			// check if this entity is protected by puff circlet
-			float cost = Math.min(original, PuffCircletItem.FALL_DAMAGE_NEGATING_COST);
+			AzureDikeAttachmentType azureDikeAttachment = entity.getData(AzureDikeAttachmentType.ATTACHMENT_TYPE);
+			float cost = Math.min(event.getAmount(), PuffCircletItem.FALL_DAMAGE_NEGATING_COST);
 			// check if damage reduction is applicable to this entity
-			if (azureDikeAttachment.getCurrentCharges() >= cost && SpectrumCurioItem.hasEquipped(thisEntity, SpectrumItems.PUFF_CIRCLET.get())) {
-				azureDikeAttachment.absorbDamage(thisEntity, cost);
+			if (azureDikeAttachment.getCurrentCharges() >= cost && SpectrumCurioItem.hasEquipped(entity, SpectrumItems.PUFF_CIRCLET.get())) {
+				azureDikeAttachment.absorbDamage(entity, cost);
 				
-				Vec3 velocity = thisEntity.getDeltaMovement();
-				thisEntity.setDeltaMovement(velocity.x(), 0.5, velocity.z());
-				Level world = thisEntity.level();
+				Vec3 velocity = entity.getDeltaMovement();
+				entity.setDeltaMovement(velocity.x(), 0.5, velocity.z());
+				Level world = entity.level();
 				if (world.isClientSide) { // it is split here so the particles spawn immediately, without network lag
-					ParticleHelper.playParticleWithPatternAndVelocityClient(thisEntity.level(), thisEntity.position(), ColoredCraftingParticleEffect.WHITE, VectorPattern.EIGHT, 0.4);
-					ParticleHelper.playParticleWithPatternAndVelocityClient(thisEntity.level(), thisEntity.position(), ColoredCraftingParticleEffect.BLUE, VectorPattern.EIGHT_OFFSET, 0.5);
-				} else if (thisEntity instanceof ServerPlayer serverPlayerEntity) {
-					PlayParticleWithPatternAndVelocityPayload.playParticleWithPatternAndVelocity(serverPlayerEntity, (ServerLevel) thisEntity.level(), thisEntity.position(), ColoredCraftingParticleEffect.WHITE, VectorPattern.EIGHT, 0.4);
-					PlayParticleWithPatternAndVelocityPayload.playParticleWithPatternAndVelocity(serverPlayerEntity, (ServerLevel) thisEntity.level(), thisEntity.position(), ColoredCraftingParticleEffect.BLUE, VectorPattern.EIGHT_OFFSET, 0.5);
+					ParticleHelper.playParticleWithPatternAndVelocityClient(entity.level(), entity.position(), ColoredCraftingParticleEffect.WHITE, VectorPattern.EIGHT, 0.4);
+					ParticleHelper.playParticleWithPatternAndVelocityClient(entity.level(), entity.position(), ColoredCraftingParticleEffect.BLUE, VectorPattern.EIGHT_OFFSET, 0.5);
+				} else if (entity instanceof ServerPlayer serverPlayerEntity) {
+					PlayParticleWithPatternAndVelocityPayload.playParticleWithPatternAndVelocity(serverPlayerEntity, (ServerLevel) entity.level(), entity.position(), ColoredCraftingParticleEffect.WHITE, VectorPattern.EIGHT, 0.4);
+					PlayParticleWithPatternAndVelocityPayload.playParticleWithPatternAndVelocity(serverPlayerEntity, (ServerLevel) entity.level(), entity.position(), ColoredCraftingParticleEffect.BLUE, VectorPattern.EIGHT_OFFSET, 0.5);
 				}
-				thisEntity.level().playSound(null, thisEntity.blockPosition(), SpectrumSoundEvents.PUFF_CIRCLET_PFFT, SoundSource.PLAYERS, 1.0F, 1.0F);
+				entity.level().playSound(null, entity.blockPosition(), SpectrumSoundEvents.PUFF_CIRCLET_PFFT, SoundSource.PLAYERS, 1.0F, 1.0F);
 				event.setCanceled(true);
 				return;
 			}
 		}
-		
+	}
+	
+	@SubscribeEvent
+	private static void onIncomingDamage(LivingDamageEvent.Pre event) {
+		DamageSource source = event.getSource();
+		if (!source.is(SpectrumDamageTypeTags.BYPASSES_DIKE)) {
+			LivingEntity entity = event.getEntity();
+			AzureDikeAttachmentType azureDikeAttachment = entity.getData(AzureDikeAttachmentType.ATTACHMENT_TYPE);
+			event.setNewDamage(azureDikeAttachment.absorbDamage(entity, event.getNewDamage()));
+		}
 	}
 	
 	@SubscribeEvent
@@ -609,11 +622,7 @@ public class SpectrumEventListeners {
 		}
 		
 		// Disarming
-		if(source.is(DamageTypes.THORNS)) {
-			return;
-		}
-		if (sourceEntity instanceof LivingEntity livingSource) {
-
+		if (!source.is(DamageTypes.THORNS) && sourceEntity instanceof LivingEntity livingSource) {
 			int disarmingLevel = SpectrumEnchantmentHelper.getLevel(level.registryAccess(), SpectrumEnchantments.DISARMING, livingSource.getMainHandItem());
 			if (disarmingLevel > 0) {
 				float disarmingChance = disarmingLevel * (livingSource instanceof Player ? SpectrumCommon.CONFIG.DisarmingChancePerLevelPlayers : SpectrumCommon.CONFIG.DisarmingChancePerLevelMobs);

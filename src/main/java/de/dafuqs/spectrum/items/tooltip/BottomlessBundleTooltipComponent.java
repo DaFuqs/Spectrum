@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.core.*;
 import net.minecraft.world.item.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -20,16 +21,16 @@ public class BottomlessBundleTooltipComponent implements SpectrumTooltipComponen
 	public BottomlessBundleTooltipComponent(BottomlessBundleTooltipData tooltipData) {
 		BottomlessItemHandler handler = tooltipData.itemHandler();
 		
-		long amount = handler.count();
-		
-		long maxCount = handler.variant().getItem().getDefaultMaxStackSize();
-		double totalStacks = (float) amount / (float) maxCount;
+		long count = handler.count();
+		long maxStackSize = handler.variant().getItem().getDefaultMaxStackSize();
+		double totalStacks = (float) count / (float) maxStackSize;
+		ItemStack variant = handler.variant();
 		this.displayedSlotCount = Math.max(2, Math.min(MAX_DISPLAYED_SLOTS + 1, (int) Math.ceil(totalStacks) + 1));
 		
 		this.itemStacks = NonNullList.withSize(5, ItemStack.EMPTY);
 		for (int i = 0; i < Math.min(5, displayedSlotCount + 1); i++) {
-			ItemStack slotStack = handler.variant();
-			var stackAmount = Math.min(Math.min(maxCount, amount - i * maxCount), Integer.MAX_VALUE);
+			ItemStack slotStack = variant.copy();
+			var stackAmount = Math.min(Math.min(maxStackSize, count - i * maxStackSize), Integer.MAX_VALUE);
 			slotStack.setCount((int) stackAmount);
 			this.itemStacks.set(i, slotStack);
 		}
@@ -42,12 +43,12 @@ public class BottomlessBundleTooltipComponent implements SpectrumTooltipComponen
 	}
 	
 	@Override
-	public int getWidth(Font textRenderer) {
+	public int getWidth(@NotNull Font textRenderer) {
 		return displayedSlotCount * 20 + 2 + 4;
 	}
 	
 	@Override
-	public void renderImage(Font textRenderer, int x, int y, GuiGraphics context) {
+	public void renderImage(@NotNull Font textRenderer, int x, int y, @NotNull GuiGraphics context) {
 		int n = x + 1;
 		int o = y + 1;
 		

@@ -11,26 +11,26 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
 import org.jetbrains.annotations.*;
 
-public record BottomlessItemHandlerComponent(@NotNull BottomlessItemHandler handler) {
+public record BottomlessComponent(@NotNull BottomlessItemHandler handler) {
 	
-	public static final BottomlessItemHandlerComponent DEFAULT = new BottomlessItemHandlerComponent(new BottomlessItemHandler(BottomlessBundleItem.getMaxStoredAmount(0), false, false, ItemStack.EMPTY, 0));
+	public static final BottomlessComponent DEFAULT = new BottomlessComponent(new BottomlessItemHandler(BottomlessBundleItem.getMaxStoredAmount(0), false, false, ItemStack.EMPTY, 0));
 	
-	public static Codec<BottomlessItemHandlerComponent> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+	public static Codec<BottomlessComponent> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 			Codec.LONG.fieldOf("capacity").forGetter(component -> component.handler.capacity()),
 			Codec.BOOL.fieldOf("deletesOverflow").forGetter(component -> component.handler.deletesOverflow()),
 			Codec.BOOL.fieldOf("locked").forGetter(component -> component.handler.locked()),
 			ItemStack.OPTIONAL_CODEC.fieldOf("variant").forGetter(component -> component.handler.variant()),
 			Codec.LONG.fieldOf("count").forGetter(component -> component.handler.count())
-	).apply(instance, BottomlessItemHandlerComponent::new));
+	).apply(instance, BottomlessComponent::new));
 	
 	
-	public static StreamCodec<RegistryFriendlyByteBuf, BottomlessItemHandlerComponent> PACKET_CODEC = StreamCodec.composite(
+	public static StreamCodec<RegistryFriendlyByteBuf, BottomlessComponent> PACKET_CODEC = StreamCodec.composite(
 			ByteBufCodecs.VAR_LONG, component -> component.handler.capacity(),
 			ByteBufCodecs.BOOL, component -> component.handler.deletesOverflow(),
 			ByteBufCodecs.BOOL, component -> component.handler.locked(),
 			ItemStack.OPTIONAL_STREAM_CODEC, component -> component.handler.variant(),
 			ByteBufCodecs.VAR_LONG, component -> component.handler.count(),
-			BottomlessItemHandlerComponent::new
+			BottomlessComponent::new
 	);
 	
 	/**
@@ -40,8 +40,8 @@ public record BottomlessItemHandlerComponent(@NotNull BottomlessItemHandler hand
 	 * @param recalculateEnchantmentDependentValuesAndSet set the component if enchantment changed (always true serverside)
 	 * @return the component
 	 */
-	public @NotNull static BottomlessItemHandlerComponent get(ItemStack bottomlessBundle, @Nullable HolderLookup.Provider registryLookup, boolean recalculateEnchantmentDependentValuesAndSet) {
-		@Nullable BottomlessItemHandlerComponent existing = bottomlessBundle.get(SpectrumDataComponentTypes.BOTTOMLESS_STACK);
+	public @NotNull static BottomlessComponent get(ItemStack bottomlessBundle, @Nullable HolderLookup.Provider registryLookup, boolean recalculateEnchantmentDependentValuesAndSet) {
+		@Nullable BottomlessComponent existing = bottomlessBundle.get(SpectrumDataComponentTypes.BOTTOMLESS_STACK);
 		
 		ItemStack stack = ItemStack.EMPTY;
 		long count = 0;
@@ -58,7 +58,7 @@ public record BottomlessItemHandlerComponent(@NotNull BottomlessItemHandler hand
 			locked = existing.handler().locked();
 		}
 		
-		BottomlessItemHandlerComponent result = new BottomlessItemHandlerComponent(maxStoredAmount, deletesOverflow, locked, stack, count);
+		BottomlessComponent result = new BottomlessComponent(maxStoredAmount, deletesOverflow, locked, stack, count);
 		
 		if(recalculateEnchantmentDependentValuesAndSet) {
 			if(existing == null) {
@@ -74,7 +74,7 @@ public record BottomlessItemHandlerComponent(@NotNull BottomlessItemHandler hand
 	// only use for constructing new ones or changing values.
 	// use get() for lookups
 	@Deprecated
-	public BottomlessItemHandlerComponent(long capacity, boolean deletesOverflow, boolean locked, ItemStack variant, long count) {
+	public BottomlessComponent(long capacity, boolean deletesOverflow, boolean locked, ItemStack variant, long count) {
 		this(new BottomlessItemHandler(capacity, deletesOverflow, locked, variant, count));
 	}
 	

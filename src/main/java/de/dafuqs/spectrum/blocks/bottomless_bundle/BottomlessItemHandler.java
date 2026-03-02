@@ -90,7 +90,7 @@ public class BottomlessItemHandler implements IItemHandler, Iterable<ItemStack> 
 			return ItemStack.EMPTY;
 		}
 		
-		stack.setCount((int) (stack.getCount() - insertedAmount));
+		stack.shrink((int) insertedAmount);
 		return stack;
 	}
 	
@@ -106,7 +106,11 @@ public class BottomlessItemHandler implements IItemHandler, Iterable<ItemStack> 
 		}
 		
 		this.count -= amountToExtract;
-		return this.variant.copyWithCount(amount);
+		ItemStack result = this.variant.copyWithCount(amount);
+		if(this.count <= 0L) {
+			this.variant = ItemStack.EMPTY;
+		}
+		return result;
 	}
 	
 	public ItemStack extractSingleStack() {

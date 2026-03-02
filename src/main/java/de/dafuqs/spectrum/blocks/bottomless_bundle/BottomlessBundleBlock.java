@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.blocks.bottomless_bundle;
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
-import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
@@ -164,7 +163,7 @@ public class BottomlessBundleBlock extends BaseEntityBlock {
 	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
 		return super.getStateForPlacement(ctx)
 				.setValue(ROTATION, RotationSegment.convertToSegment(ctx.getRotation()))
-				.setValue(LOCKED, ctx.getItemInHand().has(DataComponents.LOCK));
+				.setValue(LOCKED, BottomlessComponent.get(ctx.getItemInHand(), null, false).handler().locked());
 	}
 	
 	protected BlockState rotate(BlockState state, Rotation rotation) {
@@ -180,7 +179,7 @@ public class BottomlessBundleBlock extends BaseEntityBlock {
 		if (!world.isClientSide) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
-				bottomlessBundleBlockEntity.setBundle(itemStack.copy());
+				bottomlessBundleBlockEntity.setBundle(itemStack.copy(), world.registryAccess());
 				world.updateNeighbourForOutputSignal(pos, this);
 			}
 		}

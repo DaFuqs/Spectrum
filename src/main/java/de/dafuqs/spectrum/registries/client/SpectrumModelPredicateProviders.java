@@ -18,7 +18,6 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.neoforged.fml.event.lifecycle.*;
-import org.jetbrains.annotations.*;
 
 public class SpectrumModelPredicateProviders {
 	
@@ -146,11 +145,11 @@ public class SpectrumModelPredicateProviders {
 	
 	private static void registerBottomlessBundlePredicates(Item item) {
 		ItemProperties.register(item, ResourceLocation.parse("locked"), (stack, level, entity, seed) -> {
-			BottomlessItemHandlerComponent component = stack.getOrDefault(SpectrumDataComponentTypes.BOTTOMLESS_STACK, BottomlessItemHandlerComponent.DEFAULT);
+			BottomlessComponent component = stack.getOrDefault(SpectrumDataComponentTypes.BOTTOMLESS_STACK, BottomlessComponent.DEFAULT);
 			return component.handler().locked() ? 1.0F : 0.0F;
 		});
 		ItemProperties.register(item, ResourceLocation.parse("filled"), (stack, level, entity, seed) -> {
-			BottomlessItemHandlerComponent component = stack.getOrDefault(SpectrumDataComponentTypes.BOTTOMLESS_STACK, BottomlessItemHandlerComponent.DEFAULT);
+			BottomlessComponent component = stack.getOrDefault(SpectrumDataComponentTypes.BOTTOMLESS_STACK, BottomlessComponent.DEFAULT);
 			return component.handler().count() > 0 ? 1.0F : 0.0F;
 		});
 	}

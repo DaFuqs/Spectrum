@@ -44,7 +44,7 @@ public class BottomlessBundleItem extends BlockItem {
 	}
 	
 	private static boolean dropOneBundledStack(ItemStack stack, Player player) {
-		BottomlessItemHandlerComponent bottomlessComponent = BottomlessItemHandlerComponent.get(stack, player.level().registryAccess(), true);
+		BottomlessComponent bottomlessComponent = BottomlessComponent.get(stack, player.level().registryAccess(), true);
 		BottomlessItemHandler storage = bottomlessComponent.handler();
 		
 		if (!storage.variant.isEmpty() && storage.count > 0) {
@@ -53,15 +53,10 @@ public class BottomlessBundleItem extends BlockItem {
 			storage.count -= extractCount;
 			player.drop(removed, true);
 			
-			stack.set(SpectrumDataComponentTypes.BOTTOMLESS_STACK, new BottomlessItemHandlerComponent(storage));
+			stack.set(SpectrumDataComponentTypes.BOTTOMLESS_STACK, new BottomlessComponent(storage));
 			return true;
 		}
 		return false;
-	}
-	
-	@Override
-	public void verifyComponentsAfterLoad(ItemStack stack) {
-		super.verifyComponentsAfterLoad(stack);
 	}
 	
 	@Override
@@ -69,11 +64,11 @@ public class BottomlessBundleItem extends BlockItem {
 		ItemStack handStack = user.getItemInHand(hand);
 		if (user.isShiftKeyDown()) {
 			
-			BottomlessItemHandlerComponent bottomlessComponent = BottomlessItemHandlerComponent.get(handStack, user.level().registryAccess(), true);
+			BottomlessComponent bottomlessComponent = BottomlessComponent.get(handStack, user.level().registryAccess(), true);
 			BottomlessItemHandler storage = bottomlessComponent.handler();
 			
 			if(bottomlessComponent.handler().locked()) {
-				handStack.set(SpectrumDataComponentTypes.BOTTOMLESS_STACK, new BottomlessItemHandlerComponent(
+				handStack.set(SpectrumDataComponentTypes.BOTTOMLESS_STACK, new BottomlessComponent(
 						storage.capacity(),
 						storage.deletesOverflow(),
 						false,
@@ -84,7 +79,7 @@ public class BottomlessBundleItem extends BlockItem {
 					playZipSound(user, 0.8F);
 				}
 			} else {
-				handStack.set(SpectrumDataComponentTypes.BOTTOMLESS_STACK, new BottomlessItemHandlerComponent(
+				handStack.set(SpectrumDataComponentTypes.BOTTOMLESS_STACK, new BottomlessComponent(
 						storage.capacity(),
 						storage.deletesOverflow(),
 						true,
@@ -94,8 +89,6 @@ public class BottomlessBundleItem extends BlockItem {
 				if (level.isClientSide) {
 					playZipSound(user, 1.0F);
 				}
-				
-				handStack.set(SpectrumDataComponentTypes.BOTTOMLESS_STACK, bottomlessComponent);
 			}
 			
 			return InteractionResultHolder.sidedSuccess(handStack, level.isClientSide());
@@ -115,7 +108,7 @@ public class BottomlessBundleItem extends BlockItem {
 	
 	@Override
 	public @NotNull Optional<TooltipComponent> getTooltipImage(ItemStack bundleStack) {
-		BottomlessItemHandlerComponent itemHandler = bundleStack.get(SpectrumDataComponentTypes.BOTTOMLESS_STACK);
+		BottomlessComponent itemHandler = bundleStack.get(SpectrumDataComponentTypes.BOTTOMLESS_STACK);
 		if(itemHandler == null) {
 			return Optional.empty();
 		}
@@ -124,7 +117,7 @@ public class BottomlessBundleItem extends BlockItem {
 	
 	@Override
 	public void appendHoverText(@NotNull ItemStack bundleStack, @NotNull TooltipContext context, @NotNull List<Component> tooltip, @NotNull TooltipFlag tooltipFlag) {
-		BottomlessItemHandlerComponent component = BottomlessItemHandlerComponent.get(bundleStack, context.level() == null ? null : context.level().registryAccess(), false);
+		BottomlessComponent component = BottomlessComponent.get(bundleStack, context.registries(), false);
 		BottomlessItemHandler itemHandler = component.handler();
 		boolean locked = itemHandler.locked();
 		long storedAmount = itemHandler.count();
@@ -150,7 +143,7 @@ public class BottomlessBundleItem extends BlockItem {
 	
 	@Override
 	public void onDestroyed(ItemEntity entity) {
-		BottomlessItemHandlerComponent component = entity.getItem().get(SpectrumDataComponentTypes.BOTTOMLESS_STACK);
+		BottomlessComponent component = entity.getItem().get(SpectrumDataComponentTypes.BOTTOMLESS_STACK);
 		if(component != null) {
 			ItemUtils.onContainerDestroyed(entity, component.handler());
 		}
@@ -158,6 +151,7 @@ public class BottomlessBundleItem extends BlockItem {
 	
 	/**
 	 * When the bundle is clicked onto another stack
+	 * Only fired clientside!
 	 */
 	@Override
 	public boolean overrideStackedOnOther(ItemStack bundleStack, @NotNull Slot slot, @NotNull ClickAction clickType, @NotNull Player player) {
@@ -166,18 +160,17 @@ public class BottomlessBundleItem extends BlockItem {
 		}
 		
 		ItemStack slotStack = slot.getItem();
-		BottomlessItemHandlerComponent component = bundleStack.getOrDefault(SpectrumDataComponentTypes.BOTTOMLESS_STACK, BottomlessItemHandlerComponent.DEFAULT);
-		BottomlessItemHandler itemHandler = component.handler();
-		
+		BottomlessItemCapability itemHandler = BottomlessItemCapability.get(bundleStack, player.level().registryAccess());
 		if (slotStack.isEmpty()) {
 			ItemStack removed = itemHandler.extractSingleStack();
 			if (!removed.isEmpty()) {
 				this.playRemoveOneSound(player);
-				var remainder = slot.safeInsert(removed);
+				ItemStack remainder = slot.safeInsert(removed);
 				itemHandler.insertItem(0, remainder, false);
 			}
 		} else if (slotStack.canFitInsideContainerItems()) {
 			ItemStack remainder = itemHandler.insertItem(0, slotStack, false);
+			slot.set(remainder);
 			if (slotStack.getCount() != remainder.getCount()) {
 				this.playInsertSound(player);
 			}
@@ -188,6 +181,7 @@ public class BottomlessBundleItem extends BlockItem {
 	
 	/**
 	 * When a stack is right-clicked onto the bundle
+	 * Only fired clientside!
 	 */
 	@Override
 	public boolean overrideOtherStackedOnMe(ItemStack bundleStack, ItemStack otherStack, Slot slot, ClickAction clickType, Player player, SlotAccess cursorStackReference) {
@@ -195,21 +189,18 @@ public class BottomlessBundleItem extends BlockItem {
 			return false;
 		}
 		
-		BottomlessItemHandlerComponent component = bundleStack.getOrDefault(SpectrumDataComponentTypes.BOTTOMLESS_STACK, BottomlessItemHandlerComponent.DEFAULT);
-		BottomlessItemHandler itemHandler = component.handler();
-		
+		BottomlessItemCapability itemHandler = BottomlessItemCapability.get(bundleStack, player.level().registryAccess());
 		if (otherStack.isEmpty()) {
 			var removed = itemHandler.extractSingleStack();
 			if (!removed.isEmpty()) {
 				this.playRemoveOneSound(player);
 				cursorStackReference.set(removed);
-				bundleStack.set(SpectrumDataComponentTypes.BOTTOMLESS_STACK, new BottomlessItemHandlerComponent(itemHandler));
 			}
 		} else {
 			ItemStack remainder = itemHandler.insertItem(0, otherStack, false);
 			if (otherStack.getCount() != remainder.getCount()) {
+				slot.set(remainder);
 				this.playInsertSound(player);
-				bundleStack.set(SpectrumDataComponentTypes.BOTTOMLESS_STACK, new BottomlessItemHandlerComponent(itemHandler));
 			}
 		}
 		
@@ -221,16 +212,12 @@ public class BottomlessBundleItem extends BlockItem {
 		// We unbundle, tick and then rebundle the stack, in case inventory tick would modify components, count or other properties
 		// The slot isn't technically correct, since it's the slot of the bundle, not that of the bundled stack
 		
-		// TODO
-		/*BottomlessStack.Builder builder = BottomlessStack.Builder.get(world, stack);
-		ItemStack bundledVariant = builder.getVariant();
-		ItemStack bundledStack = builder.getVariant().copyWithCount((int) Math.min(Integer.MAX_VALUE, builder.count));
-		long count = bundledStack.getCount();
+		BottomlessComponent component = BottomlessComponent.get(stack, world.registryAccess(), true);
+		BottomlessItemHandler handler = component.handler();
+		
+		ItemStack bundledVariant = handler.variant();
+		ItemStack bundledStack = bundledVariant.copyWithCount((int) Math.min(Integer.MAX_VALUE, handler.count()));
 		bundledStack.inventoryTick(world, entity, slot, selected);
-		if (!ItemStack.isSameItemSameComponents(bundledVariant, bundledStack) || bundledStack.getCount() != count) {
-			builder.set(bundledStack, Math.min(builder.getMaxAllowed(bundledStack), builder.count + bundledStack.getCount() - count));
-			builder.buildAndSet(stack);
-		}*/
 	}
 	
 	private void playRemoveOneSound(Entity entity) {
@@ -303,159 +290,6 @@ public class BottomlessBundleItem extends BlockItem {
 			matrices.popPose();*/
 		}
 	}
-	
-	/*
-	public record BottomlessStack(ItemStack variant, long count, boolean locked) {
-		
-		public static BottomlessStack DEFAULT = new BottomlessStack(ItemStack.EMPTY, 0, false);
-		
-		public static Codec<BottomlessStack> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-				ItemStack.OPTIONAL_CODEC.fieldOf("variant").forGetter(BottomlessStack::variant),
-				Codec.LONG.fieldOf("count").forGetter(BottomlessStack::count),
-				Codec.BOOL.fieldOf("locked").forGetter(BottomlessStack::locked)
-		).apply(instance, BottomlessStack::new));
-		
-		public static StreamCodec<RegistryFriendlyByteBuf, BottomlessStack> PACKET_CODEC = StreamCodec.composite(
-				ItemStack.STREAM_CODEC, BottomlessStack::variant,
-				ByteBufCodecs.VAR_LONG, BottomlessStack::count,
-				ByteBufCodecs.BOOL, BottomlessStack::locked,
-				BottomlessStack::new
-		);
-		
-		public Iterable<ItemStack> iterateCopy() {
-			return new Iterable<>() {
-				
-				@Override
-				public @NotNull Iterator<ItemStack> iterator() {
-					return new Iterator<>() {
-						
-						private final Builder builder = new Builder(BottomlessStack.this, Integer.MAX_VALUE, false, false);
-						
-						@Override
-						public boolean hasNext() {
-							return !builder.isEmpty();
-						}
-						
-						@Override
-						public ItemStack next() {
-							return builder.removeFirstStack();
-						}
-						
-					};
-				}
-				
-			};
-		}
-		
-		public static class Builder {
-			
-			private final boolean voiding, locked;
-			private final long max;
-			private long count;
-			private ItemStack variant;
-			
-			public static @Nullable Builder get(Level world, ItemStack bottomlessBundle) {
-				var prev = bottomlessBundle.getOrDefault(SpectrumDataComponentTypes.BOTTOMLESS_STACK, BottomlessStack.DEFAULT);
-				var max = BottomlessBundleItem.getMaxStoredAmount(SpectrumEnchantmentHelper.getLevel(world.registryAccess(), Enchantments.POWER, bottomlessBundle));
-				var voiding = EnchantmentHelper.hasTag(bottomlessBundle, SpectrumEnchantmentTags.DELETES_OVERFLOW_IN_INVENTORY);
-				var locked = bottomlessBundle.has(DataComponents.LOCK);
-				return new Builder(prev, max, voiding, locked);
-			}
-			
-			public Builder(BottomlessStack prev, long max, boolean voiding, boolean locked) {
-				this.variant = prev.variant();
-				this.max = max;
-				this.count = prev.count();
-				this.voiding = voiding;
-				this.locked = locked;
-			}
-			
-			public int getMaxAllowed(ItemStack stack) {
-				if (this.count > 0 && !ItemStack.isSameItemSameComponents(this.variant, stack)) {
-					return 0;
-				}
-				
-				long result;
-				if (isEmpty()) {
-					result = this.max;
-				} else if (stack.isEmpty() || !stack.getItem().canFitInsideContainerItems(stack)) {
-					result = 0;
-				} else {
-					result = voiding ? Long.MAX_VALUE : this.max - this.count;
-				}
-				return (int) Math.min(result, Integer.MAX_VALUE);
-			}
-			// returns the count that got added to the bundle
-			public int add(ItemStack stack) {
-				int toAdd = Math.min(stack.getCount(), this.getMaxAllowed(stack));
-				if (toAdd == 0)
-					return 0;
-				
-				if (this.count == 0)
-					this.variant = stack.copyWithCount(1);
-				
-				this.count += Math.min(this.max - this.count, toAdd);
-				return toAdd;
-			}
-			
-			public void setStack(ItemStack stack) {
-				this.variant = stack.copyWithCount(1);
-			}
-			
-			public void set(ItemStack stack, long count) {
-				if (stack.isEmpty() || count == 0) {
-					this.variant = ItemStack.EMPTY;
-					this.count = 0;
-				} else {
-					this.variant = stack.copyWithCount(1);
-					this.count = count;
-				}
-			}
-			// returns the count that got added to the bundle
-			public long add(Slot slot, Player player) {
-				var maxAllowed = this.getMaxAllowed(slot.getItem());
-				return this.add(slot.safeTake(slot.getItem().getCount(), maxAllowed, player));
-			}
-			
-			public ItemStack remove(int amount) {
-				if (isEmpty())
-					return ItemStack.EMPTY;
-				
-				var toRemove = Math.min((int) this.count, amount);
-				var removed = this.variant.copyWithCount(toRemove);
-				this.count -= toRemove;
-				if (this.count == 0)
-					this.variant = ItemStack.EMPTY;
-				
-				return removed;
-			}
-			
-			public ItemStack removeFirstStack() {
-				return remove(variant.getItem().getDefaultMaxStackSize());
-			}
-			
-			public long getCount() {
-				return count;
-			}
-			
-			public ItemStack getVariant() {
-				return variant;
-			}
-			
-			public boolean isEmpty() {
-				return count == 0 || variant.isEmpty();
-			}
-			
-			public void buildAndSet(ItemStack bottomlessBundleStack) {
-				if (this.isEmpty()) {
-					bottomlessBundleStack.remove(SpectrumDataComponentTypes.BOTTOMLESS_STACK);
-				} else {
-					bottomlessBundleStack.set(SpectrumDataComponentTypes.BOTTOMLESS_STACK, new BottomlessStack(variant, count, locked));
-				}
-			}
-		}
-		
-	}*/
 	
 	@Override
 	public boolean supportsEnchantment(@NotNull ItemStack stack, @NotNull Holder<Enchantment> enchantment) {

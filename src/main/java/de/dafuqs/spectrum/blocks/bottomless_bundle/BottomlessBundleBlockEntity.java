@@ -29,7 +29,7 @@ public class BottomlessBundleBlockEntity extends BlockEntity {
 	// Call whenever bundle/storage contents need to be synced with each other [(de)serialization, bundle stack set, bundle block break loot]
 	private void syncBundleWithStorage() {
 		if(this.itemHandler != null) {
-			this.bottomlessBundleStack.set(SpectrumDataComponentTypes.BOTTOMLESS_STACK, new BottomlessItemHandlerComponent(this.itemHandler));
+			this.bottomlessBundleStack.set(SpectrumDataComponentTypes.BOTTOMLESS_STACK, new BottomlessComponent(this.itemHandler));
 		}
 	}
 	
@@ -48,7 +48,7 @@ public class BottomlessBundleBlockEntity extends BlockEntity {
 	
 	public void setBundle(@NotNull ItemStack itemStack, HolderLookup.@NotNull Provider registryLookup) {
 		this.bottomlessBundleStack = itemStack;
-		BottomlessItemHandlerComponent component = BottomlessItemHandlerComponent.get(this.bottomlessBundleStack,registryLookup, true);
+		BottomlessComponent component = BottomlessComponent.get(this.bottomlessBundleStack,registryLookup, true);
 		this.itemHandler = component.handler();
 	}
 	

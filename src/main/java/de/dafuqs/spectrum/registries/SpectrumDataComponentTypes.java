@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import de.dafuqs.spectrum.components.*;
-import de.dafuqs.spectrum.explosion.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.core.registries.*;
@@ -30,7 +29,7 @@ public class SpectrumDataComponentTypes {
 	public static final Supplier<DataComponentType<Unit>> ACTIVATED = register("activated", builder -> builder.persistent(Codec.unit(Unit.INSTANCE)).networkSynchronized(StreamCodec.unit(Unit.INSTANCE)));
 	public static final Supplier<DataComponentType<Integer>> AOE = register("aoe", builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT));
 	public static final Supplier<DataComponentType<BeverageComponent>> BEVERAGE = register("beverage", builder -> builder.persistent(BeverageComponent.CODEC).networkSynchronized(BeverageComponent.PACKET_CODEC));
-	public static final Supplier<DataComponentType<BottomlessItemHandlerComponent>> BOTTOMLESS_STACK = register("bottomless_stack", builder -> builder.persistent(BottomlessItemHandlerComponent.CODEC).networkSynchronized(BottomlessItemHandlerComponent.PACKET_CODEC));
+	public static final Supplier<DataComponentType<BottomlessComponent>> BOTTOMLESS_STACK = register("bottomless_stack", builder -> builder.persistent(BottomlessComponent.CODEC).networkSynchronized(BottomlessComponent.PACKET_CODEC));
 	public static final Supplier<DataComponentType<ResourceLocation>> BOUND_ITEM = register("bound_item", builder -> builder.persistent(ResourceLocation.CODEC).networkSynchronized(ResourceLocation.STREAM_CODEC));
 	public static final Supplier<DataComponentType<ItemEnchantments>> CANVAS_ENCHANTMENTS = register("canvas_enchantments", (builder) -> builder.persistent(ItemEnchantments.CODEC).networkSynchronized(ItemEnchantments.STREAM_CODEC).cacheEncoding());
 	public static final Supplier<DataComponentType<PairedFoodComponent>> PAIRED_FOOD_COMPONENT = register("paired_food_component", builder -> builder.persistent(PairedFoodComponent.CODEC).networkSynchronized(PairedFoodComponent.PACKET_CODEC));

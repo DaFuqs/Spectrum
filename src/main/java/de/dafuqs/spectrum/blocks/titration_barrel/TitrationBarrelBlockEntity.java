@@ -58,6 +58,17 @@ public class TitrationBarrelBlockEntity extends BlockEntity implements Implement
 	
 	@Override
 	public void inventoryChanged() {
+		if(this.level == null || this.level.isClientSide) return;
+		
+		BlockState state = getBlockState();
+		BarrelState barrelState = state.getValue(BARREL_STATE);
+		boolean empty = isEmpty();
+		if(barrelState == BarrelState.EMPTY && !empty) {
+			level.setBlock(getBlockPos(), state.setValue(BARREL_STATE, BarrelState.FILLED), 3);
+		} else if(barrelState == BarrelState.FILLED && empty) {
+			level.setBlock(getBlockPos(), state.setValue(BARREL_STATE, BarrelState.EMPTY), 3);
+		}
+		
 		this.setChanged();
 	}
 	
@@ -258,6 +269,15 @@ public class TitrationBarrelBlockEntity extends BlockEntity implements Implement
 	
 	public boolean canTakeItem(Container target, int slot, ItemStack stack) {
 		return this.sealTime == -1;
+	}
+	
+	public boolean isInteractionAllowed() {
+		BlockState state = getBlockState();
+		if(state.hasProperty(BARREL_STATE)) {
+			BarrelState barrelState = state.getValue(BARREL_STATE);
+			return barrelState.isInteractionAllowed();
+		}
+		return false;
 	}
 	
 }

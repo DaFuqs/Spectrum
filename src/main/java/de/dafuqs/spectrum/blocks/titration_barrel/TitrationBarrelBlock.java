@@ -32,15 +32,26 @@ public class TitrationBarrelBlock extends HorizontalDirectionalBlock implements 
 	public static final MapCodec<TitrationBarrelBlock> CODEC = simpleCodec(TitrationBarrelBlock::new);
 	
 	public enum BarrelState implements StringRepresentable {
-		EMPTY,
-		FILLED,
-		SEALED,
-		TAPPED;
+		EMPTY(true),
+		FILLED(true),
+		SEALED(false),
+		TAPPED(true);
 		
 		@Override
 		public String getSerializedName() {
 			return this.toString().toLowerCase(Locale.ROOT);
 		}
+		
+		final boolean isInteractionAllowed;
+		
+		BarrelState(boolean isInteractionAllowed) {
+			this.isInteractionAllowed = isInteractionAllowed;
+		}
+		
+		public boolean isInteractionAllowed() {
+			return this.isInteractionAllowed;
+		}
+		
 	}
 	
 	public static final EnumProperty<BarrelState> BARREL_STATE = EnumProperty.create("barrel_state", BarrelState.class);

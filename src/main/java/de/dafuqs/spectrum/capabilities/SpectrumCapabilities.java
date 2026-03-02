@@ -15,10 +15,8 @@ import de.dafuqs.spectrum.blocks.redstone.*;
 import de.dafuqs.spectrum.blocks.spirit_instiller.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
-import net.minecraft.world.item.*;
 import net.neoforged.neoforge.capabilities.*;
 import net.neoforged.neoforge.fluids.capability.templates.*;
-import net.neoforged.neoforge.items.*;
 import net.neoforged.neoforge.items.wrapper.*;
 import org.jetbrains.annotations.*;
 
@@ -32,7 +30,12 @@ public class SpectrumCapabilities {
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.ENCHANTER.get(), (@NotNull EnchanterBlockEntity blockEntity, Direction direction) -> new InvWrapper(blockEntity));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.CINDERHEARTH.get(), (@NotNull CinderhearthBlockEntity blockEntity, Direction direction) -> new SidedInvWrapper(blockEntity, direction));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.CRYSTALLARIEUM.get(), (@NotNull CrystallarieumBlockEntity blockEntity, Direction direction) -> new InvWrapper(blockEntity));
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.TITRATION_BARREL.get(), (@NotNull TitrationBarrelBlockEntity blockEntity, Direction direction) -> new InvWrapper(blockEntity)); // TODO: block while sealed
+		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.TITRATION_BARREL.get(), (titrationBarrel, direction) -> {
+			if(!titrationBarrel.isInteractionAllowed()) {
+				new InvWrapper(titrationBarrel);
+			}
+			return null;
+		}); // TODO: do we return the itemstacks here?
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.POTION_WORKSHOP.get(), (@NotNull PotionWorkshopBlockEntity blockEntity, Direction direction) -> new SidedInvWrapper(blockEntity, direction));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.BLOCK_PLACER.get(), (@NotNull BlockPlacerBlockEntity blockEntity, Direction direction) -> new InvWrapper(blockEntity));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.BOTTOMLESS_BUNDLE.get(), (@NotNull BottomlessBundleBlockEntity blockEntity, Direction direction) -> blockEntity.storage());
@@ -50,13 +53,12 @@ public class SpectrumCapabilities {
 		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, SpectrumBlockEntities.TITRATION_BARREL.get(), (blockEntity, context) -> blockEntity.getFluidStorage());
 		
 		// ItemHandler.ITEM
-		event.registerItem(Capabilities.ItemHandler.ITEM, (stack, ctx) -> BottomlessCapabilityItemHandler.get(stack), SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem());
+		event.registerItem(Capabilities.ItemHandler.ITEM, (stack, ctx) -> BottomlessItemCapability.get(stack), SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem());
 		
 		/*
 			// BAG_OF_HOLDING only works server side
 			// the client does not know about the content of the ender chest, unless opened
 			event.registerItem(Capabilities.ItemHandler.ITEM, (ignored, ignored2) -> iterableProvider((player, stack) -> player == null ? List.of() : player.getEnderChestInventory().getItems()), SpectrumItems.BAG_OF_HOLDING);
-			
 		*/
 		
 		// FluidHandler.ITEM

@@ -304,35 +304,6 @@ public abstract class LivingEntityMixin {
 		return Optional.of(new Tuple<>(ap, stack));
 	}
 	
-	@ModifyVariable(at = @At("HEAD"), method = "hurt", argsOnly = true)
-	private float spectrum$modifyDamage(float amount, DamageSource source) {
-		@Nullable MobEffectInstance vulnerability = getEffect(SpectrumStatusEffects.VULNERABILITY);
-		if (vulnerability != null) {
-			amount *= 1 + (SpectrumStatusEffects.VULNERABILITY_ADDITIONAL_DAMAGE_PERCENT_PER_LEVEL * vulnerability.getAmplifier() + 1);
-		}
-		return amount;
-	}
-	
-	@WrapOperation(at = @At(value = "INVOKE", target = "net/minecraft/world/entity/LivingEntity.actuallyHurt (Lnet/minecraft/world/damagesource/DamageSource;F)V", ordinal = 0), method = "hurt")
-	private void spectrum$applyDike1(LivingEntity instance, DamageSource source, float amount, Operation<Void> original) {
-		if (source.is(SpectrumDamageTypeTags.BYPASSES_DIKE)) {
-			original.call(instance, source, amount);
-			return;
-		}
-		AzureDikeAttachmentType azureDikeAttachment = instance.getData(AzureDikeAttachmentType.ATTACHMENT_TYPE);
-		instance.actuallyHurt(source, azureDikeAttachment.absorbDamage(instance, amount));
-	}
-	
-	@WrapOperation(at = @At(value = "INVOKE", target = "net/minecraft/world/entity/LivingEntity.actuallyHurt (Lnet/minecraft/world/damagesource/DamageSource;F)V", ordinal = 1), method = "hurt")
-	private void spectrum$applyDike2(LivingEntity instance, DamageSource source, float amount, Operation<Void> original) {
-		if (source.is(SpectrumDamageTypeTags.BYPASSES_DIKE)) {
-			original.call(instance, source, amount);
-			return;
-		}
-		AzureDikeAttachmentType azureDikeAttachment = instance.getData(AzureDikeAttachmentType.ATTACHMENT_TYPE);
-		instance.actuallyHurt(source, azureDikeAttachment.absorbDamage(instance, amount));
-	}
-	
 	@Inject(method = "tickEffects", at = @At(value = "INVOKE", target = "Ljava/util/Iterator;remove()V"))
 	private void spectrum$fatalSlumberKill(CallbackInfo ci, @Local MobEffectInstance effectInstance) {
 		if (effectInstance.getEffect() == SpectrumStatusEffects.FATAL_SLUMBER) {

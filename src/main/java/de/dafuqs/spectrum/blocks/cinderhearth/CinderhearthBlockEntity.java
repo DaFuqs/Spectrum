@@ -432,9 +432,9 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 			int amountToDecrementInput = cinderhearth.getCurrentRecipe() instanceof CinderhearthRecipe cinderhearthRecipe ? cinderhearthRecipe.getIngredientStacks().getFirst().getCount() : 1;
 			inputStack.shrink(amountToDecrementInput);
 			
-			if (remainder.isEmpty()) {
+			if (!remainder.isEmpty()) {
 				boolean remainderAdded = InventoryHelper.addToInventory(cinderhearth, remainder, FIRST_OUTPUT_SLOT_ID, LAST_OUTPUT_SLOT_ID + 1);
-				if (!remainderAdded) {
+				if (!remainderAdded && inputStack.isEmpty()) {
 					cinderhearth.setItem(CinderhearthBlockEntity.INPUT_SLOT_ID, remainder);
 				}
 			}

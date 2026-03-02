@@ -1,7 +1,8 @@
 package de.dafuqs.spectrum.items.tooltip;
 
+import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import net.minecraft.world.inventory.tooltip.*;
 import net.minecraft.world.item.*;
 
-public record BottomlessBundleTooltipData(ItemStack variant, long amount) implements TooltipComponent {
+public record BottomlessBundleTooltipData(BottomlessItemHandler itemHandler) implements TooltipComponent {
 }

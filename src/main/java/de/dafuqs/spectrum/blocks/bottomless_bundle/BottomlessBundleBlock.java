@@ -22,7 +22,6 @@ import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import net.neoforged.neoforge.items.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -73,9 +72,9 @@ public class BottomlessBundleBlock extends BaseEntityBlock {
 			if (player.isShiftKeyDown()) {
 				BlockEntity be = world.getBlockEntity(pos);
 				if (be instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
-					long amount = bottomlessBundleBlockEntity.storage.amount;
-					ItemStack variant = bottomlessBundleBlockEntity.storage.variant;
-					long maxStoredAmount = bottomlessBundleBlockEntity.storage.getCapacity();
+					long amount = bottomlessBundleBlockEntity.storage().count;
+					ItemStack variant = bottomlessBundleBlockEntity.storage().variant;
+					long maxStoredAmount = bottomlessBundleBlockEntity.storage().getCapacity();
 					if (variant == null || variant.isEmpty()) {
 						player.displayClientMessage(Component.translatable("item.spectrum.bottomless_bundle.tooltip.empty"), true);
 					} else {
@@ -85,7 +84,7 @@ public class BottomlessBundleBlock extends BaseEntityBlock {
 			} else {
 				BlockEntity be = world.getBlockEntity(pos);
 				if (be instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
-					BottomlessItemHandler storage = bottomlessBundleBlockEntity.storage;
+					BottomlessItemHandler storage = bottomlessBundleBlockEntity.storage();
 					ItemStack storedVariant = storage.variant;
 					
 					// If same type or empty template -> try to insert
@@ -97,13 +96,13 @@ public class BottomlessBundleBlock extends BaseEntityBlock {
 						}
 					} else {
 						// extract one stack worth (or up to available amount)
-						if (!storage.variant.isEmpty() && storage.amount > 0) {
-							int extractCount = Math.min(storage.variant.getItem().getDefaultMaxStackSize(), (int) Math.min(Integer.MAX_VALUE, storage.amount));
+						if (!storage.variant.isEmpty() && storage.count > 0) {
+							int extractCount = Math.min(storage.variant.getItem().getDefaultMaxStackSize(), (int) Math.min(Integer.MAX_VALUE, storage.count));
 							ItemStack removed = storage.variant.copyWithCount(extractCount);
-							storage.amount -= extractCount;
-							if (storage.amount <= 0) {
+							storage.count -= extractCount;
+							if (storage.count <= 0) {
 								storage.variant = ItemStack.EMPTY;
-								storage.amount = 0;
+								storage.count = 0;
 							}
 							player.getInventory().placeItemBackInInventory(removed);
 							world.playSound(null, pos, SoundEvents.BUNDLE_REMOVE_ONE, SoundSource.BLOCKS, 0.8F, 0.8F + world.getRandom().nextFloat() * 0.4F);
@@ -142,8 +141,8 @@ public class BottomlessBundleBlock extends BaseEntityBlock {
 	public int getAnalogOutputSignal(BlockState state, Level world, BlockPos pos) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
-			float curr = bottomlessBundleBlockEntity.storage.amount;
-			float max = bottomlessBundleBlockEntity.storage.getCapacity();
+			float curr = bottomlessBundleBlockEntity.storage().count;
+			float max = bottomlessBundleBlockEntity.storage().getCapacity();
 			int signal = Mth.floor(curr / max * 14.0f) + (curr > 0 ? 1 : 0);
 			return signal;
 		}
@@ -181,7 +180,7 @@ public class BottomlessBundleBlock extends BaseEntityBlock {
 		if (!world.isClientSide) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
-				bottomlessBundleBlockEntity.setBundle(itemStack.copy(), world.registryAccess());
+				bottomlessBundleBlockEntity.setBundle(itemStack.copy());
 				world.updateNeighbourForOutputSignal(pos, this);
 			}
 		}

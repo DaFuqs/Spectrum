@@ -8,8 +8,9 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.component.*;
 import net.minecraft.world.item.*;
+import org.jetbrains.annotations.*;
 
-public record BottomlessStackPredicate(ItemPredicate template, LongRange count) implements SingleComponentItemPredicate<BottomlessBundleItem.BottomlessStack> {
+public record BottomlessStackPredicate(ItemPredicate template, LongRange count) implements SingleComponentItemPredicate<BottomlessItemHandlerComponent> {
 	
 	public static Codec<BottomlessStackPredicate> CODEC = RecordCodecBuilder.create(i -> i.group(
 			ItemPredicate.CODEC.optionalFieldOf("variant", ItemPredicate.Builder.item().build()).forGetter(c -> c.template),
@@ -17,15 +18,13 @@ public record BottomlessStackPredicate(ItemPredicate template, LongRange count) 
 	).apply(i, BottomlessStackPredicate::new));
 	
 	@Override
-	public DataComponentType<BottomlessBundleItem.BottomlessStack> componentType() {
-		// SpectrumDataComponentTypes.BOTTOMLESS_STACK is a Supplier-like holder; call get() to obtain the actual type.
+	public @NotNull DataComponentType<BottomlessItemHandlerComponent> componentType() {
 		return SpectrumDataComponentTypes.BOTTOMLESS_STACK.get();
 	}
 	
 	@Override
-	public boolean matches(ItemStack stack, BottomlessBundleItem.BottomlessStack component) {
-		// component.variant() already returns an ItemStack, so pass it directly to ItemPredicate.test(...)
-		return template.test(component.variant()) && count.test(component.count());
+	public boolean matches(@NotNull ItemStack stack, BottomlessItemHandlerComponent component) {
+		return template.test(component.handler().variant()) && count.test(component.handler().count());
 	}
 	
 }

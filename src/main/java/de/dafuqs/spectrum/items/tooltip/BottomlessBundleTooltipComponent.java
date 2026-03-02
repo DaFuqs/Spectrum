@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.items.tooltip;
 
 import de.dafuqs.spectrum.api.gui.*;
+import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.core.*;
 import net.minecraft.world.item.*;
@@ -16,16 +17,18 @@ public class BottomlessBundleTooltipComponent implements SpectrumTooltipComponen
 	private final int displayedSlotCount;
 	private final boolean drawDots;
 	
-	public BottomlessBundleTooltipComponent(BottomlessBundleTooltipData data) {
-		long amount = data.amount();
+	public BottomlessBundleTooltipComponent(BottomlessBundleTooltipData tooltipData) {
+		BottomlessItemHandler handler = tooltipData.itemHandler();
 		
-		long maxCount = data.variant().getItem().getDefaultMaxStackSize();
+		long amount = handler.count();
+		
+		long maxCount = handler.variant().getItem().getDefaultMaxStackSize();
 		double totalStacks = (float) amount / (float) maxCount;
 		this.displayedSlotCount = Math.max(2, Math.min(MAX_DISPLAYED_SLOTS + 1, (int) Math.ceil(totalStacks) + 1));
 		
 		this.itemStacks = NonNullList.withSize(5, ItemStack.EMPTY);
 		for (int i = 0; i < Math.min(5, displayedSlotCount + 1); i++) {
-			ItemStack slotStack = data.variant();
+			ItemStack slotStack = handler.variant();
 			var stackAmount = Math.min(Math.min(maxCount, amount - i * maxCount), Integer.MAX_VALUE);
 			slotStack.setCount((int) stackAmount);
 			this.itemStacks.set(i, slotStack);

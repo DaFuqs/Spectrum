@@ -1,8 +1,11 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
+import net.neoforged.neoforge.capabilities.*;
+import net.neoforged.neoforge.items.*;
+import org.jetbrains.annotations.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -11,38 +14,41 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 public abstract class PlayerInventoryMixin {
 	
 	@Inject(at = @At("HEAD"), method = "add(Lnet/minecraft/world/item/ItemStack;)Z", cancellable = true)
-	private void addStack(ItemStack stack, CallbackInfoReturnable<Integer> cir) {
-		Inventory playerInventory = (Inventory) (Object) this;
-		
-		for (int i = 0; i < playerInventory.getContainerSize(); i++) {
-			ItemStack inventoryStack = playerInventory.getItem(i);
-			if (inventoryStack.getItem() instanceof InventoryInsertionAcceptor inventoryInsertionAcceptor) {
-				if (inventoryInsertionAcceptor.acceptsItemStack(inventoryStack, stack)) {
-					int remainingCount = inventoryInsertionAcceptor.acceptItemStack(inventoryStack, stack, playerInventory.player);
-					stack.setCount(remainingCount);
-					if (remainingCount == 0) {
-						cir.cancel();
-						break;
-					}
-				}
+	private void addStack(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
+		if (!stack.isEmpty()) {
+			Inventory playerInventory = (Inventory) (Object) this;
+			spectrum$tryAddToItemStorages(stack, playerInventory);
+			if(stack.isEmpty()) {
+				cir.setReturnValue(true);
 			}
 		}
 	}
 	
 	@Inject(at = @At("HEAD"), method = "placeItemBackInInventory(Lnet/minecraft/world/item/ItemStack;Z)V", cancellable = true)
 	private void offer(ItemStack stack, boolean notifiesClient, CallbackInfo ci) {
-		Inventory playerInventory = (Inventory) (Object) this;
-		
+		if(!stack.isEmpty()) {
+			Inventory playerInventory = (Inventory) (Object) this;
+			spectrum$tryAddToItemStorages(stack, playerInventory);
+			if(stack.isEmpty()) {
+				ci.cancel();
+			}
+		}
+	}
+	
+	@Unique
+	private static void spectrum$tryAddToItemStorages(ItemStack stackToAdd, Inventory playerInventory) {
 		for (int i = 0; i < playerInventory.getContainerSize(); i++) {
 			ItemStack inventoryStack = playerInventory.getItem(i);
-			if (inventoryStack.getItem() instanceof InventoryInsertionAcceptor inventoryInsertionAcceptor) {
-				if (inventoryInsertionAcceptor.acceptsItemStack(inventoryStack, stack)) {
-					int remainingCount = inventoryInsertionAcceptor.acceptItemStack(inventoryStack, stack, playerInventory.player);
-					stack.setCount(remainingCount);
-					if (remainingCount == 0) {
-						ci.cancel();
-						break;
-					}
+			if(!inventoryStack.is(SpectrumItemTags.STORES_ITEMS_ADDED_TO_INVENTORY)) {
+				continue;
+			}
+			
+			@Nullable IItemHandler itemHandler = inventoryStack.getCapability(Capabilities.ItemHandler.ITEM);
+			if(itemHandler != null) {
+				ItemStack remainder = itemHandler.insertItem(i, stackToAdd, false);
+				stackToAdd.setCount(remainder.getCount());
+				if (remainder.isEmpty()) {
+					return;
 				}
 			}
 		}

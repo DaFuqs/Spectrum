@@ -2,10 +2,8 @@ package de.dafuqs.spectrum.blocks.bottomless_bundle;
 
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
-import net.minecraft.core.registries.*;
 import net.minecraft.nbt.*;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import org.jetbrains.annotations.*;
@@ -21,57 +19,37 @@ public class BottomlessBundleBlockEntity extends BlockEntity {
 	// Do not modify without syncing storage too!
 	// Contents are synced from/into storage whenever needed [i.e. (de)serialization or setting/fetching bundle item]
 	private ItemStack bottomlessBundleStack;
-	public BottomlessItemHandler storage;
+	private BottomlessItemHandler itemHandler;
 	
 	public BottomlessBundleBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntities.BOTTOMLESS_BUNDLE.get(), pos, state);
 		this.bottomlessBundleStack = SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem().getDefaultInstance();
-		this.storage = new BottomlessItemHandler(0, false);
-		
 	}
 	
-	@Override
-	public void loadAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
-		super.loadAdditional(nbt, registryLookup);
-		this.setBundleUnsynced(ItemStack.parse(registryLookup, nbt.getCompound("Bundle"))
-				.orElse(SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem().getDefaultInstance()), registryLookup);
-		syncStorageWithBundle();
-	}
-	
-	// Trivial sync methods. Call whenever bundle/storage contents need to be synced with each other [(de)serialization, bundle stack set, bundle block break loot]
+	// Call whenever bundle/storage contents need to be synced with each other [(de)serialization, bundle stack set, bundle block break loot]
 	private void syncBundleWithStorage() {
-		var builder = BottomlessBundleItem.BottomlessStack.Builder.of(this.level, this.bottomlessBundleStack);
-		// Use the Forge-native storage fields (variant ItemStack and amount long)
-		builder.set(this.storage.variant, this.storage.amount);
-		builder.buildAndSet(this.bottomlessBundleStack);
-	}
-	
-	private void syncStorageWithBundle() {
-		this.storage.variant = BottomlessBundleItem.getTemplateVariant(bottomlessBundleStack);
-		this.storage.amount = BottomlessBundleItem.getStoredAmount(bottomlessBundleStack);
+		if(this.itemHandler != null) {
+			this.bottomlessBundleStack.set(SpectrumDataComponentTypes.BOTTOMLESS_STACK, new BottomlessItemHandlerComponent(this.itemHandler));
+		}
 	}
 	
 	@Override
-	protected void saveAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
+	protected void saveAdditional(@NotNull CompoundTag nbt, HolderLookup.@NotNull Provider registryLookup) {
 		super.saveAdditional(nbt, registryLookup);
 		syncBundleWithStorage();
 		nbt.put("Bundle", this.bottomlessBundleStack.saveOptional(registryLookup));
 	}
 	
-	private boolean setBundleUnsynced(ItemStack itemStack, HolderLookup.Provider registryLookup) {
-		if (itemStack.getItem() instanceof BottomlessBundleItem) {
-			this.bottomlessBundleStack = itemStack;
-			
-			boolean voiding = EnchantmentHelper.hasTag(bottomlessBundleStack, SpectrumEnchantmentTags.DELETES_OVERFLOW);
-			int power = itemStack.getEnchantmentLevel(registryLookup.lookup(Registries.ENCHANTMENT).flatMap(impl -> impl.get(Enchantments.POWER)).orElse(null));
-			this.storage = new BottomlessItemHandler(BottomlessBundleItem.getMaxStoredAmount(power), voiding);
-			return true;
-		}
-		return false;
+	@Override
+	public void loadAdditional(@NotNull CompoundTag nbt, HolderLookup.@NotNull Provider registryLookup) {
+		super.loadAdditional(nbt, registryLookup);
+		this.setBundle(ItemStack.parse(registryLookup, nbt.getCompound("Bundle")).orElse(SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem().getDefaultInstance()), registryLookup);
 	}
 	
-	public void setBundle(@NotNull ItemStack itemStack, HolderLookup.Provider registryLookup) {
-		if (setBundleUnsynced(itemStack, registryLookup)) syncStorageWithBundle();
+	public void setBundle(@NotNull ItemStack itemStack, HolderLookup.@NotNull Provider registryLookup) {
+		this.bottomlessBundleStack = itemStack;
+		BottomlessItemHandlerComponent component = BottomlessItemHandlerComponent.get(this.bottomlessBundleStack,registryLookup, true);
+		this.itemHandler = component.handler();
 	}
 	
 	public ItemStack retrieveBundle() {
@@ -81,6 +59,10 @@ public class BottomlessBundleBlockEntity extends BlockEntity {
 			syncBundleWithStorage();
 			return this.bottomlessBundleStack;
 		}
+	}
+	
+	public BottomlessItemHandler storage() {
+		return itemHandler;
 	}
 	
 }

@@ -25,17 +25,15 @@ public class SpectrumItemTags {
 	public static final TagKey<Item> SHOOTING_STARS = of("shooting_stars");
 	public static final TagKey<Item> GLASS_ARROWS = of("glass_arrows");
 	public static final TagKey<Item> KINDLING_FOOD = of("kindling_food");
-	public static final TagKey<Item> COLORED_FENCES = of("colored_fences");
-	public static final TagKey<Item> COLORED_FENCE_GATES = of("colored_fence_gates");
 	public static final TagKey<Item> REQUIRES_OMNI_ACCELERATOR_PVP_ENABLED = of("requires_omni_accelerator_pvp_enabled");
 	public static final TagKey<Item> EMISSIVE = of("emissive");
 	public static final TagKey<Item> PASTEL_NODE_UPGRADES = of("pastel_node_upgrades");
 	public static final TagKey<Item> TAG_FILTERING_ITEMS = of("tag_filtering_items");
-	public static final TagKey<Item> WEEPING_GALA_LOGS = of("weeping_gala_logs");
 	public static final TagKey<Item> PLAYER_ATTRIBUTED_PLACEMENT = of("player_attributed_placement");
 	public static final TagKey<Item> NATURES_STAFF_CONSUMABLE = of("consumable/natures_staff");
 	public static final TagKey<Item> RADIANCE_STAFF_CONSUMABLE = of("consumable/radiance_staff");
 	public static final TagKey<Item> TRINKETS = of("trinkets");
+	public static final TagKey<Item> STORES_ITEMS_ADDED_TO_INVENTORY = of("stores_items_added_to_inventory"); // TODO: this might be fun as an item component / enchantment actually
 	
 	private static TagKey<Item> of(String id) {
 		return TagKey.create(Registries.ITEM, SpectrumCommon.locate(id));

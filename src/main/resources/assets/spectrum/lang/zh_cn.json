@@ -4606,11 +4606,11 @@
   "book.spectrum.guidebook.kofi_dafuqs.description": "技术总监 & 主创， 程序",
   "book.spectrum.guidebook.modrinth.name": "Modrinth",
 
-  "book.spectrum.guidebook.inventory_insertion.page0.text": "背包里装满[#](bb00bb)泥土[#]()的时候，继续开矿的结果很可能就是继续获得[#](bb00bb)泥土[#]()，而矿物径直落入[#](bb00bb)熔岩[#]()...\\\n要那么多泥土干嘛?给新人盖火柴盒?\\\n\\\n嘛，反正[#](bb00bb)熔岩[#]()的事一定要有个头！",
-  "book.spectrum.guidebook.inventory_insertion.page1.text": "将挖掘的方块和生物的掉落物直接吸纳到背包中，而不是掉在地上。\\\n\\\n最大等级:1\\\n适用于采掘工具、剪刀、武器、弓、弩和 光谱世界 的钓鱼竿。",
+  "book.spectrum.guidebook.inventory_insertion.page0.text": "假如每次挖矿，矿物掉进[#](bb00bb)熔岩[#]()里就能拿到一块[#](bb00bb)泥土[#]()的话，那我现在早就囤了一大堆[#](bb00bb)泥土[#]()了。\\\n要那么多泥土干嘛?给新人盖火柴盒?\\\n\\\n嘛，东西掉进[#](bb00bb)熔岩[#]()的事一定要有个头！我可没忘了你，恶魂之泪。",
+  "book.spectrum.guidebook.inventory_insertion.page1.text": "将挖掘的方块和生物掉落物直接吸纳到背包中，而不是掉在地上。\\\n\\\n最大等级:1\\\n适用于采掘工具、剪刀、武器、弓、弩和光谱世界的钓鱼竿。",
 
   "book.spectrum.guidebook.item_bowl.name": "物品底座",
-  "book.spectrum.guidebook.item_bowl.page0.text": "出行冒险的时候总会一个不小心忘了带上什么东西，也许把重要物品放在这个物品底座里会提醒我?\\\n*可能不会*\\\n\\\n有[#](bb00bb)玄武岩[#]()和[#](bb00bb)方解石[#]()两种变体。",
+  "book.spectrum.guidebook.item_bowl.page0.text": "出行冒险的时候总会忘了带上什么东西，也许把重要物品放在这个物品底座里会提醒我?\\\n*大概并不能。*\\\n\\\n我做了[#](bb00bb)玄武岩[#]()和[#](bb00bb)方解石[#]()两种款式。",
   "book.spectrum.guidebook.item_bowl.page1.text": "将最多一组物品放置在物品底座中会令其悬浮展示。\\\n右击物品底座或将物品掷入底座皆可进行放置。",
 
   "book.spectrum.guidebook.item_conversion": "物品转换",

@@ -92,16 +92,8 @@ public class SpectrumClientEventListeners {
 		}
 		
 		EnvironmentalData environmentalData = EnvironmentalRendering.getCurrentEnvironmentalData();
-		float brightnessMultiplier = environmentalData.fogBrightnessMultiplier();
-		if (brightnessMultiplier < 1) {
-			float red = event.getRed() * brightnessMultiplier;
-			float green = event.getGreen() * brightnessMultiplier;
-			float blue = event.getBlue() * brightnessMultiplier;
-			
-			event.setRed(red);
-			event.setGreen(green);
-			event.setBlue(blue);
-			EnvironmentalRendering.applyColor(new float[] {red, green, blue});
+		if (environmentalData != EnvironmentalData.NOOP) {
+			EnvironmentalRendering.applyColor(event, environmentalData);
 		}
 	}
 	

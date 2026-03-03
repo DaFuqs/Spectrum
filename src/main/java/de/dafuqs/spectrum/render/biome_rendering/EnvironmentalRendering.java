@@ -10,6 +10,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.biome.Biome;
+import net.neoforged.neoforge.client.event.*;
 import org.joml.*;
 
 import java.lang.Math;
@@ -23,15 +24,15 @@ public class EnvironmentalRendering {
 	
 	private static final Minecraft client = Minecraft.getInstance();
 	private static final Supplier<Float> delta = () -> client.getTimer().getGameTimeDeltaPartialTick(false);
-	private static long envLoop, overLoop, over;
-	private static boolean overActive;
+	private static long envLoop, overrideLoop, overrideActiveTicks;
+	private static boolean overrideActive;
 	
 	public static void tick(Entity entity) {
 		var blending = client.options.biomeBlendRadius().get();
 		var level = client.level;
 		
 		envLoop = level.getGameTime() % 3;
-		overLoop = level.getGameTime() % 4;
+		overrideLoop = level.getGameTime() % 4;
 		
 		if (envLoop == 0)
 			updateBiomeData(entity.blockPosition(), blending);
@@ -42,22 +43,22 @@ public class EnvironmentalRendering {
 	}
 	
 	private static void updateOverrides(Entity entity) {
-		if (overActive && over < 20) {
-			over++;
-		} else if (!overActive && over > 0) {
-			over--;
+		if (overrideActive && overrideActiveTicks < 20) {
+			overrideActiveTicks++;
+		} else if (!overrideActive && overrideActiveTicks > 0) {
+			overrideActiveTicks--;
 		}
 		
-		if (overLoop != 0)
+		if (overrideLoop != 0)
 			return;
 		
-		EnvironmentalDataOverride current = EnvironmentalDataOverride.get(entity);
-		overActive = current != EnvironmentalDataOverride.INACTIVE;
+		EnvironmentalDataOverride override = EnvironmentalDataOverride.get(entity);
+		overrideActive = override != EnvironmentalDataOverride.INACTIVE;
 		
-		if (!overActive && over > 0)
+		if (!overrideActive && overrideActiveTicks > 0)
 			return; // delay flushing the queue until the fadeout is done
 		
-		OVERRIDE_QUEUE.accept(current);
+		OVERRIDE_QUEUE.accept(override);
 	}
 	
 	private static void updateBiomeData(BlockPos center, int blendingRadius) {
@@ -123,34 +124,34 @@ public class EnvironmentalRendering {
 			interpolated[i] = Mth.lerp((envLoop + delta.get()) / 3F, ENVIRONMENTAL_RENDERING_QUEUE.last()[i], ENVIRONMENTAL_RENDERING_QUEUE.current()[i]);
 		}
 		
-		float delta = overDelta();
+		float overrideDelta = overrideDelta();
 		float[] override = processOverrides().dataOverride().asArray();
-		interpolated[0] += Math.clamp(Mth.lerp(delta, 0, override[0]), -1, 1);
-		interpolated[1] += Mth.lerp(delta, 0, override[1]);
-		interpolated[2] += Mth.lerp(delta, 0, override[2]);
-		interpolated[3] += Mth.lerp(delta, 0, override[3]);
-		
-		interpolated[0] = Math.clamp(interpolated[0], -0.1F, 1);
-		interpolated[1] = Math.clamp(interpolated[1], 0, 1);
-		interpolated[2] = Math.max(interpolated[2], -10F);
-		interpolated[3] = Math.max(interpolated[3], 0.125F);
+		interpolated[0] = Mth.lerp(overrideDelta, interpolated[0], override[0]);
+		interpolated[1] = Mth.lerp(overrideDelta, interpolated[1], override[1]);
+		interpolated[2] = Mth.lerp(overrideDelta, interpolated[2], override[2]);
+		interpolated[3] = Mth.lerp(overrideDelta, interpolated[3], override[3]);
 		
 		return EnvironmentalData.fromArray(interpolated);
 	}
 	
-	public static void applyColor(float[] out) {
+	public static void applyColor(ViewportEvent.ComputeFogColor event, EnvironmentalData environmentalData) {
 		EnvironmentalDataOverride environmentalDataOverride = processOverrides();
-		Vector3f color = environmentalDataOverride.color().colorMod();
+		Vector3f color = environmentalDataOverride.color().color();
 		float blend = environmentalDataOverride.color().blend();
-		float delta = overDelta();
+		float overrideDelta = overrideDelta();
 		
-		out[0] = Mth.lerp(delta * blend, out[0], color.x);
-		out[1] = Mth.lerp(delta * blend, out[1], color.y);
-		out[2] = Mth.lerp(delta * blend, out[2], color.z);
+		float brightnessMultiplier = environmentalData.fogBrightnessMultiplier();
+		float red = event.getRed() * brightnessMultiplier;
+		float green = event.getGreen() * brightnessMultiplier;
+		float blue = event.getBlue() * brightnessMultiplier;
+		
+		event.setRed(Mth.lerp(overrideDelta * blend, red, color.x));
+		event.setGreen(Mth.lerp(overrideDelta * blend, green, color.y));
+		event.setBlue(Mth.lerp(overrideDelta * blend, blue, color.z));
 	}
 	
-	private static float overDelta() {
-		float mutation = overActive ? over + delta.get() : over - delta.get();
+	private static float overrideDelta() {
+		float mutation = overrideActive ? overrideActiveTicks + delta.get() : overrideActiveTicks - delta.get();
 		return Math.clamp(mutation / 20F, 0, 1);
 	}
 	
@@ -159,12 +160,12 @@ public class EnvironmentalRendering {
 			return EnvironmentalDataOverride.INACTIVE;
 		}
 		
-		float[] cur = OVERRIDE_QUEUE.current().asArray();
-		float[] last = OVERRIDE_QUEUE.last().asArray();
+		float[] currentOverride = OVERRIDE_QUEUE.current().asArray();
+		float[] lastOverride = OVERRIDE_QUEUE.last().asArray();
 		
 		float[] interpolated = new float[8];
-		for (int i = 0; i < cur.length; i++) {
-			interpolated[i] = Mth.lerp((overLoop + delta.get()) / 4F, last[i], cur[i]);
+		for (int i = 0; i < currentOverride.length; i++) {
+			interpolated[i] = Mth.lerp((overrideLoop + delta.get()) / 4F, lastOverride[i], currentOverride[i]);
 		}
 		
 		return EnvironmentalDataOverride.fromArray(interpolated);
@@ -208,7 +209,7 @@ public class EnvironmentalRendering {
 		if (client.level.dimension().equals(SpectrumDimensions.DIMENSION_KEY))
 			return RenderState.ULTRA_DARK;
 		
-		if (overActive || over > 0)
+		if (overrideActive || overrideActiveTicks > 0)
 			return RenderState.ACTIVE;
 		
 		return RenderState.INACTIVE;

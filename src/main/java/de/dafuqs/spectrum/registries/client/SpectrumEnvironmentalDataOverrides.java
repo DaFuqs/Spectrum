@@ -13,33 +13,33 @@ import java.util.function.Predicate;
 public class SpectrumEnvironmentalDataOverrides {
 
     public static void register() {
-		EnvironmentalDataOverride.register(new EnvironmentalDataOverride(hasMobEffect(SpectrumStatusEffects.SOMNOLENCE),
-                        new EnvironmentalDataOverride.ColorData(SpectrumStatusEffects.ETERNAL_SLUMBER_COLOR, 0.575F),
-                        new EnvironmentalData(-0.25F, 2F, 0.125F, 0.25F),
-                        5)
-        );
+		EnvironmentalDataOverride.register(new EnvironmentalDataOverride(e -> e instanceof LivingEntity l && l.hasEffect(SpectrumStatusEffects.FRENZY) && (l.hasEffect(SpectrumStatusEffects.ETERNAL_SLUMBER) || l.hasEffect(SpectrumStatusEffects.FATAL_SLUMBER)),
+				new EnvironmentalDataOverride.ColorData(0xdf2449, 0.55F),
+				new EnvironmentalData(0.25F, 0.25F, 0.334F, 0.5F),
+				5)
+		);
+		
+		EnvironmentalDataOverride.register(new EnvironmentalDataOverride(hasMobEffect(SpectrumStatusEffects.FATAL_SLUMBER),
+				new EnvironmentalDataOverride.ColorData(0x8136c2, 0.65F),
+				new EnvironmentalData(0.1F, 0.6F, 0.05F, 0.1F),
+				10)
+		);
+		
+		EnvironmentalDataOverride.register(new EnvironmentalDataOverride(hasMobEffect(SpectrumStatusEffects.ETERNAL_SLUMBER),
+				new EnvironmentalDataOverride.ColorData(SpectrumStatusEffects.ETERNAL_SLUMBER_COLOR, 0.65F),
+				new EnvironmentalData(0.1F, 0.5F, 0.05F, 0.2F),
+				15)
+		);
 		
 		EnvironmentalDataOverride.register(new EnvironmentalDataOverride(hasMobEffect(SpectrumStatusEffects.FRENZY),
-						new EnvironmentalDataOverride.ColorData(0xdf420d, 0.1F),
-						new EnvironmentalData(0.1F, -0.1F, EnvironmentalDataOverride.NOOP.nearFogDistanceMultiplier(), EnvironmentalDataOverride.NOOP.farFogDistanceMultiplier()),
-						10)
+				new EnvironmentalDataOverride.ColorData(0xb9080e, 0.3F),
+				new EnvironmentalData(1.0F, 1.0F, 0.334F, 0.5F),
+				20)
 		);
-
-        EnvironmentalDataOverride.register(new EnvironmentalDataOverride(hasMobEffect(SpectrumStatusEffects.ETERNAL_SLUMBER),
-                        new EnvironmentalDataOverride.ColorData(SpectrumStatusEffects.ETERNAL_SLUMBER_COLOR, 0.65F),
-                        new EnvironmentalData(EnvironmentalDataOverride.NOOP.environmentalLightingMultiplier(), EnvironmentalDataOverride.NOOP.fogBrightnessMultiplier(), -1.0F, -0.334F),
-                        15)
-        );
-
-        EnvironmentalDataOverride.register(new EnvironmentalDataOverride(hasMobEffect(SpectrumStatusEffects.FATAL_SLUMBER),
-                        new EnvironmentalDataOverride.ColorData(0x8136c2, 0.65F),
-                        new EnvironmentalData(0.5F, -0.5F, -6F, -0.5F),
-                        20)
-        );
-
-        EnvironmentalDataOverride.register(new EnvironmentalDataOverride(e -> e instanceof LivingEntity l && l.hasEffect(SpectrumStatusEffects.FRENZY) && (l.hasEffect(SpectrumStatusEffects.ETERNAL_SLUMBER) || l.hasEffect(SpectrumStatusEffects.FATAL_SLUMBER)),
-                        new EnvironmentalDataOverride.ColorData(0xdf2449, 0.55F),
-                        new EnvironmentalData(0.25F, -0.25F, -2.0F, -0.334F),
+		
+		EnvironmentalDataOverride.register(new EnvironmentalDataOverride(hasMobEffect(SpectrumStatusEffects.SOMNOLENCE),
+                        new EnvironmentalDataOverride.ColorData(SpectrumStatusEffects.ETERNAL_SLUMBER_COLOR, 0.575F),
+                        new EnvironmentalData(0.5F, 0.5F, 0.125F, 0.25F),
                         25)
         );
     }

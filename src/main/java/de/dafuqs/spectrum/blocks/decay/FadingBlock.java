@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.blocks.decay;
 
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
@@ -20,7 +21,7 @@ public class FadingBlock extends DecayBlock {
 	public static final MapCodec<FadingBlock> CODEC = simpleCodec(FadingBlock::new);
 	
 	public FadingBlock(Properties settings) {
-		super(settings, SpectrumCommon.CONFIG.FadingDecayTickRate, SpectrumCommon.CONFIG.FadingCanDestroyBlockEntities, 1, 1F, UniformInt.of(0, 1));
+		super(settings, SpectrumConfig.CONFIG.FadingSpreadChanceOnRandomTick.get(), SpectrumConfig.CONFIG.FadingCanDestroyBlockEntities.get(), 1, 1F, UniformInt.of(0, 1));
 	}
 	
 	@Override

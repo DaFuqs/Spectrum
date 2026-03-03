@@ -9,6 +9,7 @@ import de.dafuqs.spectrum.blocks.gravity.*;
 import de.dafuqs.spectrum.blocks.jade_vines.*;
 import de.dafuqs.spectrum.blocks.rock_candy.*;
 import de.dafuqs.spectrum.components.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.armor.*;
@@ -481,8 +482,8 @@ public class SpectrumItems {
 	public static final DeferredItem<CreativeInkAssortmentItem> CREATIVE_INK_ASSORTMENT = register("creative_ink_assortment", () -> new CreativeInkAssortmentItem(IS.of(1, Rarity.EPIC)));
 	
 	public static final DeferredItem<GleamingPinItem> GLEAMING_PIN = register("gleaming_pin", () -> new GleamingPinItem(IS.of(1, Rarity.UNCOMMON)));
-	public static final DeferredItem<Item> LESSER_POTION_PENDANT = register("lesser_potion_pendant", () -> new PotionPendantItem(IS.of(1, Rarity.UNCOMMON), 1, SpectrumCommon.CONFIG.MaxLevelForEffectsInLesserPotionPendant - 1, SpectrumAdvancements.UNLOCK_LESSER_POTION_PENDANT));
-	public static final DeferredItem<Item> GREATER_POTION_PENDANT = register("greater_potion_pendant", () -> new PotionPendantItem(IS.of(1, Rarity.UNCOMMON), 3, SpectrumCommon.CONFIG.MaxLevelForEffectsInGreaterPotionPendant - 1, SpectrumAdvancements.UNLOCK_GREATER_POTION_PENDANT));
+	public static final DeferredItem<Item> LESSER_POTION_PENDANT = register("lesser_potion_pendant", () -> new PotionPendantItem(IS.of(1, Rarity.UNCOMMON), 1, SpectrumConfig.CONFIG.MaxLevelForEffectsInLesserPotionPendant.get() - 1, SpectrumAdvancements.UNLOCK_LESSER_POTION_PENDANT));
+	public static final DeferredItem<Item> GREATER_POTION_PENDANT = register("greater_potion_pendant", () -> new PotionPendantItem(IS.of(1, Rarity.UNCOMMON), 3, SpectrumConfig.CONFIG.MaxLevelForEffectsInGreaterPotionPendant.get() - 1, SpectrumAdvancements.UNLOCK_GREATER_POTION_PENDANT));
 	public static final DeferredItem<Item> ASHEN_CIRCLET = register("ashen_circlet", () -> new AshenCircletItem(IS.of(1, Rarity.UNCOMMON).fireResistant()));
 	public static final DeferredItem<Item> WEEPING_CIRCLET = register("weeping_circlet", () -> new WeepingCircletItem(IS.of(1, Rarity.UNCOMMON)));
 	public static final DeferredItem<Item> PUFF_CIRCLET = register("puff_circlet", () -> new PuffCircletItem(IS.of(1, Rarity.UNCOMMON), SpectrumAdvancements.UNLOCK_PUFF_CIRCLET));

@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.particle.client;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.deeper_down.client.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.*;
@@ -20,7 +21,7 @@ public class FallingAshParticle extends TextureSheetParticle {
 	private static Direction.Axis primaryAxis = Direction.Axis.X;
 	private static Direction.Axis lastAxis = primaryAxis;
 	private final float rotateFactor, lightness;
-	private final int simInterval = SpectrumCommon.CONFIG.WindSimInterval, simOffset;
+	private final int simInterval = SpectrumConfig.CONFIG.WindSimInterval.get(), simOffset;
 	private int slowTicks, axisTicks = 0;
 	
 	private static final BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(); // to prevent us from having to create lots of BlockPos objects per (render) tick
@@ -116,7 +117,7 @@ public class FallingAshParticle extends TextureSheetParticle {
 	}
 	
 	private boolean verifySimConfig(long time) {
-		return SpectrumCommon.CONFIG.WindSim && (time + simOffset) % simInterval == 0;
+		return SpectrumConfig.CONFIG.WindSim.get() && (time + simOffset) % simInterval == 0;
 	}
 	
 	private void adjustGravityForLift() {

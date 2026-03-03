@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.decay;
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
@@ -26,7 +27,7 @@ public class RuinBlock extends DecayBlock {
 	public static final MapCodec<RuinBlock> CODEC = simpleCodec(RuinBlock::new);
 	
 	public RuinBlock(Properties settings) {
-		super(settings, SpectrumCommon.CONFIG.RuinDecayTickRate, SpectrumCommon.CONFIG.RuinCanDestroyBlockEntities, 3, 5F, UniformInt.of(2, 3));
+		super(settings, SpectrumConfig.CONFIG.RuinDecayTickRate.get(), SpectrumConfig.CONFIG.RuinCanDestroyBlockEntities.get(), 3, 5F, UniformInt.of(2, 3));
 		registerDefaultState(getStateDefinition().any().setValue(CONVERSION, Conversion.NONE));
 	}
 	

@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.progression.toast;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
@@ -44,7 +45,7 @@ public class RevelationToast implements Toast {
 		List<FormattedCharSequence> wrappedText = textRenderer.split(text, 125);
 		List<FormattedCharSequence> wrappedTitle = textRenderer.split(title, 125);
 		int l;
-		long toastTimeMilliseconds = SpectrumCommon.CONFIG.ToastTimeMilliseconds;
+		long toastTimeMilliseconds = SpectrumConfig.CONFIG.ToastTimeMilliseconds.get();
 		if (startTime < toastTimeMilliseconds / 2) {
 			l = Mth.floor(Mth.clamp((float) (toastTimeMilliseconds / 2 - startTime) / 300.0F, 0.0F, 1.0F) * 255.0F) << 24 | 67108864;
 			int halfHeight = this.height() / 2;

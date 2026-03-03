@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
@@ -59,7 +60,7 @@ public class PersistentLightBlock extends LightBlock {
 	@Override
 	public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
 		super.animateTick(state, world, pos, random);
-		if (world.isClientSide && (SpectrumCommon.CONFIG.AlwaysSpawnLightBlockParticles || holdsRadianceStaffClient())) {
+		if (world.isClientSide && (SpectrumConfig.CONFIG.AlwaysSpawnLightBlockParticles.get() || holdsRadianceStaffClient())) {
 			world.addAlwaysVisibleParticle(SpectrumParticleTypes.SHIMMERSTONE_SPARKLE_SMALL, (double) pos.getX() + 0.2 + random.nextFloat() * 0.6, (double) pos.getY() + 0.1 + random.nextFloat() * 0.6, (double) pos.getZ() + 0.2 + random.nextFloat() * 0.6, 0.0D, 0.03D, 0.0D);
 		}
 	}

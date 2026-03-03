@@ -32,7 +32,9 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.neoforged.bus.api.*;
+import net.neoforged.fml.*;
 import net.neoforged.fml.common.*;
+import net.neoforged.fml.config.*;
 import net.neoforged.fml.event.lifecycle.*;
 import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.event.*;
@@ -54,7 +56,6 @@ public class SpectrumCommon {
 	public static final Logger LOGGER = LoggerFactory.getLogger("Spectrum");
 	// Todo: move to filter classes
 	public static final Map<ResourceLocation, TagKey<Item>> CACHED_ITEM_TAG_MAP = new HashMap<>();
-	public static SpectrumConfig CONFIG;
 
 	public static void logInfo(String message) {
 		LOGGER.info("{}", message);
@@ -88,16 +89,11 @@ public class SpectrumCommon {
 	@Nullable
 	public static MinecraftServer minecraftServer;
 	
-	static {
-		//Set up config
-		logInfo("Loading config file...");
-		AutoConfig.register(SpectrumConfig.class, JanksonConfigSerializer::new);
-		CONFIG = AutoConfig.getConfigHolder(SpectrumConfig.class).getConfig();
-		logInfo("Finished loading config file.");
-	}
-	
-	public SpectrumCommon(IEventBus modBus) {
+	public SpectrumCommon(ModContainer container, IEventBus modBus) {
 		logInfo("Starting Common Startup");
+		
+		//Register the config
+		container.registerConfig(ModConfig.Type.STARTUP, SpectrumConfig.CONFIG_SPEC);
 		
 		// Register internals
 		modBus.addListener(SpectrumRegistries::registerBuiltInRegistries);

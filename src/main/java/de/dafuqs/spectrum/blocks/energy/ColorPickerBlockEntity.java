@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.energy.storage.*;
 import de.dafuqs.spectrum.components.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
@@ -200,8 +201,8 @@ public class ColorPickerBlockEntity extends RandomizableContainerBlockEntity imp
 				inventory.get(INPUT_SLOT_ID).shrink(1);
 				this.inkStorage.addEnergy(inkColor, amount);
 				
-				if (SpectrumCommon.CONFIG.BlockSoundVolume > 0) {
-					world.playSound(null, worldPosition, SpectrumSoundEvents.COLOR_PICKER_PROCESSING, SoundSource.BLOCKS, SpectrumCommon.CONFIG.BlockSoundVolume / 3, 1.0F);
+				if (SpectrumConfig.CONFIG.BlockSoundVolume.get() > 0) {
+					world.playSound(null, worldPosition, SpectrumSoundEvents.COLOR_PICKER_PROCESSING, SoundSource.BLOCKS, SpectrumConfig.CONFIG.BlockSoundVolume.get() / 3, 1.0F);
 				}
 				PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity(world,
 						new Vec3(worldPosition.getX() + 0.5, worldPosition.getY() + 0.7, worldPosition.getZ() + 0.5),

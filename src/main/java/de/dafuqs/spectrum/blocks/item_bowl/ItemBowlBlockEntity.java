@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.events.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
@@ -130,7 +131,7 @@ public class ItemBowlBlockEntity extends InWorldInteractionBlockEntity {
 				this.getLevel().addParticle(sphereParticleEffect, this.worldPosition.getX() + 0.5D, this.worldPosition.getY() + 1.0D, this.worldPosition.getZ() + 0.5D, (orbTargetPos.x() - this.worldPosition.getX()) * 0.045, 0, (orbTargetPos.z() - this.worldPosition.getZ()) * 0.045);
 			}
 			
-			level.playSound(null, this.worldPosition, SpectrumSoundEvents.CRAFTING_DING, SoundSource.BLOCKS, SpectrumCommon.CONFIG.BlockSoundVolume, 0.7F + level.random.nextFloat() * 0.6F);
+			level.playSound(null, this.worldPosition, SpectrumSoundEvents.CRAFTING_DING, SoundSource.BLOCKS, SpectrumConfig.CONFIG.BlockSoundVolume.get(), 0.7F + level.random.nextFloat() * 0.6F);
 		}
 	}
 	

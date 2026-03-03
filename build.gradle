@@ -9,7 +9,7 @@ group = project.maven_group
 
 repositories {
 	maven { url = "https://maven.is-immensely.gay/releases" } // Revelationary, Fractal, AEA, Arrowhead, Dimensional Reverb...
-	maven { url = "https://maven.shedaniel.me/" } // Cloth Config, REI
+	maven { url = "https://maven.shedaniel.me/" } // REI
 	maven { url = "https://maven.terraformersmc.com/" } // Modmenu, EMI
 	maven { url = "https://maven.nucleoid.xyz/" } // Common Protection API
 	maven { url = "https://maven.blamejared.com" } // JEI
@@ -110,7 +110,6 @@ dependencies {
 	implementation jarJar("de.dafuqs:Fractal:${project.fractal_version}")
 
 	// external and compat
-	api("me.shedaniel.cloth:cloth-config-neoforge:${project.cloth_config_version}")
 	// compileOnly("de.dafuqs.starryskies:StarrySkies:${project.starry_skies_version}") // not on Neo 1.21.1
 	compileOnly("me.shedaniel:RoughlyEnoughItems-neoforge:${project.rei_version}") // https://github.com/shedaniel/RoughlyEnoughItems
 	compileOnly("dev.emi:emi-neoforge:${emi_version}") // https://github.com/emilyploszaj/emi
@@ -162,7 +161,6 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
 			version: version,
 			minecraft_version: minecraft_version,
 			neoforge_version_range: neoforge_version_range,
-			cloth_config_version_range: cloth_config_version_range,
 			curios_version_range: curios_version_range,
 			modonomicon_version_range: modonomicon_version_range,
 			revelationary_version_range: revelationary_version_range,

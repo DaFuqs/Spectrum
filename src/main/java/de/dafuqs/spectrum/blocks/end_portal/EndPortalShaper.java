@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.end_portal;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.config.*;
 import net.minecraft.core.*;
 import net.minecraft.world.level.*;
 
@@ -11,7 +12,7 @@ public interface EndPortalShaper {
 	
 	// Search for a valid end portal position. Found => create portal!
 	static void checkAndFillEndPortal(Level world, BlockPos blockPos) {
-		if (SpectrumCommon.CONFIG.AllowDynamicEndPortalShape) {
+		if (SpectrumConfig.CONFIG.AllowDynamicEndPortalShape.get()) {
 			DYNAMIC.placePortals(world, blockPos);
 		} else {
 			FIXED.placePortals(world, blockPos);
@@ -20,7 +21,7 @@ public interface EndPortalShaper {
 	
 	// Search for now invalid end portal positions
 	static void destroyPortals(Level world, BlockPos blockPos) {
-		if (SpectrumCommon.CONFIG.AllowDynamicEndPortalShape) {
+		if (SpectrumConfig.CONFIG.AllowDynamicEndPortalShape.get()) {
 			DYNAMIC.destroyNeighboringPortalBlocks(world, blockPos);
 		} else {
 			FIXED.destroyNeighboringPortalBlocks(world, blockPos);

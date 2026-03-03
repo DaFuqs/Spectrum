@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.registries;
 
 import com.google.common.base.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.config.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
@@ -14,99 +15,99 @@ public enum SpectrumToolMaterial implements Tier {
 	
 	LOW_HEALTH(
 			BlockTags.INCORRECT_FOR_IRON_TOOL,
-			SpectrumCommon.CONFIG.LowHealthDurability,
-			SpectrumCommon.CONFIG.LowHealthMiningSpeed,
-			SpectrumCommon.CONFIG.LowHealthAttackDamage,
-			SpectrumCommon.CONFIG.LowHealthEnchantability,
+			SpectrumConfig.CONFIG.LowHealthDurability.get(),
+			SpectrumConfig.CONFIG.LowHealthMiningSpeed.get(),
+			SpectrumConfig.CONFIG.LowHealthAttackDamage.get(),
+			SpectrumConfig.CONFIG.LowHealthEnchantability.get(),
 			Ingredient::of
 	),
 	
 	LOW_HEALTH_MINING_LEVEL_4(
 			BlockTags.INCORRECT_FOR_NETHERITE_TOOL,
-			SpectrumCommon.CONFIG.LowHealthDurability,
-			SpectrumCommon.CONFIG.LowHealthMiningSpeed,
-			SpectrumCommon.CONFIG.LowHealthAttackDamage,
-			SpectrumCommon.CONFIG.LowHealthEnchantability,
+			SpectrumConfig.CONFIG.LowHealthDurability.get(),
+			SpectrumConfig.CONFIG.LowHealthMiningSpeed.get(),
+			SpectrumConfig.CONFIG.LowHealthAttackDamage.get(),
+			SpectrumConfig.CONFIG.LowHealthEnchantability.get(),
 			Ingredient::of
 	),
 	
 	VOIDING(
 			BlockTags.INCORRECT_FOR_DIAMOND_TOOL,
-			SpectrumCommon.CONFIG.VoidingDurability,
-			SpectrumCommon.CONFIG.VoidingMiningSpeed,
-			SpectrumCommon.CONFIG.VoidingAttackDamage,
-			SpectrumCommon.CONFIG.VoidingEnchantability,
+			SpectrumConfig.CONFIG.VoidingDurability.get(),
+			SpectrumConfig.CONFIG.VoidingMiningSpeed.get(),
+			SpectrumConfig.CONFIG.VoidingAttackDamage.get(),
+			SpectrumConfig.CONFIG.VoidingEnchantability.get(),
 			Ingredient::of
 	),
 	
 	BEDROCK(
 			BlockTags.INCORRECT_FOR_NETHERITE_TOOL,
-			SpectrumCommon.CONFIG.BedrockDurability,
-			SpectrumCommon.CONFIG.BedrockMiningSpeed,
-			SpectrumCommon.CONFIG.BedrockAttackDamage,
-			SpectrumCommon.CONFIG.BedrockEnchantability,
+			0,
+			SpectrumConfig.CONFIG.BedrockMiningSpeed.get(),
+			SpectrumConfig.CONFIG.BedrockAttackDamage.get(),
+			SpectrumConfig.CONFIG.BedrockEnchantability.get(),
 			() -> Ingredient.of(SpectrumItems.BEDROCK_DUST)
 	),
 	
 	DRACONIC(
 			BlockTags.INCORRECT_FOR_NETHERITE_TOOL,
-			SpectrumCommon.CONFIG.DraconicDurability,
-			SpectrumCommon.CONFIG.DraconicMiningSpeed,
-			SpectrumCommon.CONFIG.DraconicAttackDamage,
-			SpectrumCommon.CONFIG.DraconicEnchantability,
+			SpectrumConfig.CONFIG.DraconicDurability.get(),
+			SpectrumConfig.CONFIG.DraconicMiningSpeed.get(),
+			SpectrumConfig.CONFIG.DraconicAttackDamage.get(),
+			SpectrumConfig.CONFIG.DraconicEnchantability.get(),
 			() -> Ingredient.of(SpectrumItems.PURE_BLOODSTONE)
 	),
 	
 	MALACHITE(
 			BlockTags.INCORRECT_FOR_NETHERITE_TOOL,
-			SpectrumCommon.CONFIG.MalachiteDurability,
-			SpectrumCommon.CONFIG.MalachiteMiningSpeed,
-			SpectrumCommon.CONFIG.MalachiteAttackDamage,
-			SpectrumCommon.CONFIG.MalachiteEnchantability,
+			SpectrumConfig.CONFIG.MalachiteDurability.get(),
+			SpectrumConfig.CONFIG.MalachiteMiningSpeed.get(),
+			SpectrumConfig.CONFIG.MalachiteAttackDamage.get(),
+			SpectrumConfig.CONFIG.MalachiteEnchantability.get(),
 			() -> Ingredient.of(SpectrumItems.PURE_MALACHITE)
 	),
 	
 	GLASS_CREST(
 			BlockTags.INCORRECT_FOR_NETHERITE_TOOL,
-			SpectrumCommon.CONFIG.GlassCrestDurability,
-			SpectrumCommon.CONFIG.GlassCrestMiningSpeed,
-			SpectrumCommon.CONFIG.GlassCrestAttackDamage,
-			SpectrumCommon.CONFIG.GlassCrestEnchantability,
+			SpectrumConfig.CONFIG.GlassCrestDurability.get(),
+			SpectrumConfig.CONFIG.GlassCrestMiningSpeed.get(),
+			SpectrumConfig.CONFIG.GlassCrestAttackDamage.get(),
+			SpectrumConfig.CONFIG.GlassCrestEnchantability.get(),
 			() -> Ingredient.of(SpectrumItems.PURE_MALACHITE)
 	),
 	
 	VERDIGRIS(
 			BlockTags.INCORRECT_FOR_DIAMOND_TOOL,
-			SpectrumCommon.CONFIG.VerdigrisDurability,
-			SpectrumCommon.CONFIG.VerdigrisMiningSpeed,
-			SpectrumCommon.CONFIG.VerdigrisAttackDamage,
-			SpectrumCommon.CONFIG.VerdigrisEnchantability,
+			SpectrumConfig.CONFIG.VerdigrisDurability.get(),
+			SpectrumConfig.CONFIG.VerdigrisMiningSpeed.get(),
+			SpectrumConfig.CONFIG.VerdigrisAttackDamage.get(),
+			SpectrumConfig.CONFIG.VerdigrisEnchantability.get(),
 			() -> Ingredient.of(SpectrumItems.NIGHTDEW_SPROUT)
 	),
 	
 	NECTAR(
 			BlockTags.INCORRECT_FOR_DIAMOND_TOOL,
-			SpectrumCommon.CONFIG.NectarDurability,
-			SpectrumCommon.CONFIG.NectarMiningSpeed,
-			SpectrumCommon.CONFIG.NectarAttackDamage,
-			SpectrumCommon.CONFIG.NectarEnchantability,
+			SpectrumConfig.CONFIG.NectarDurability.get(),
+			SpectrumConfig.CONFIG.NectarMiningSpeed.get(),
+			SpectrumConfig.CONFIG.NectarAttackDamage.get(),
+			SpectrumConfig.CONFIG.NectarEnchantability.get(),
 			() -> Ingredient.of(SpectrumItems.AETHER_VESTIGES)
 	),
 	
 	DREAMFLAYER(
 			BlockTags.INCORRECT_FOR_IRON_TOOL,
-			SpectrumCommon.CONFIG.DreamflayerDurability,
-			SpectrumCommon.CONFIG.DreamflayerMiningSpeed,
-			SpectrumCommon.CONFIG.DreamflayerAttackDamage,
-			SpectrumCommon.CONFIG.DreamflayerEnchantability,
+			SpectrumConfig.CONFIG.DreamflayerDurability.get(),
+			SpectrumConfig.CONFIG.DreamflayerMiningSpeed.get(),
+			SpectrumConfig.CONFIG.DreamflayerAttackDamage.get(),
+			SpectrumConfig.CONFIG.DreamflayerEnchantability.get(),
 			() -> Ingredient.of(SpectrumItems.BISMUTH_CRYSTAL)
 	),
 	
 	NIGHTFALL(BlockTags.INCORRECT_FOR_IRON_TOOL,
-			SpectrumCommon.CONFIG.NightfallDurability,
-			SpectrumCommon.CONFIG.NightfallMiningSpeed,
-			SpectrumCommon.CONFIG.NightfallAttackDamage,
-			SpectrumCommon.CONFIG.NightfallEnchantability,
+			SpectrumConfig.CONFIG.NightfallDurability.get(),
+			SpectrumConfig.CONFIG.NightfallMiningSpeed.get(),
+			SpectrumConfig.CONFIG.NightfallAttackDamage.get(),
+			SpectrumConfig.CONFIG.NightfallEnchantability.get(),
 			() -> Ingredient.of(SpectrumItems.MIDNIGHT_CHIP)
 	);
 	

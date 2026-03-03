@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.items.trinkets;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.network.chat.*;
@@ -63,7 +64,7 @@ public class GlowVisionGogglesItem extends SpectrumCurioItem implements InkPower
 				}
 				
 				if (paid) {
-					MobEffectInstance newNightVisionInstance = new MobEffectInstance(MobEffects.NIGHT_VISION, 20 * SpectrumCommon.CONFIG.GlowVisionGogglesDuration, 0, true, true);
+					MobEffectInstance newNightVisionInstance = new MobEffectInstance(MobEffects.NIGHT_VISION, 20 * SpectrumConfig.CONFIG.GlowVisionGogglesDuration.get(), 0, true, true);
 					serverPlayerEntity.addEffect(newNightVisionInstance);
 					world.playSound(null, serverPlayerEntity, SpectrumSoundEvents.ITEM_ARMOR_EQUIP_GLOW_VISION, SoundSource.PLAYERS, 0.2F, 1.0F);
 				}

@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.progression.toast;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import it.unimi.dsi.fastutil.objects.*;
@@ -87,7 +88,7 @@ public class UnlockedRecipeToast implements Toast {
 		drawContext.drawString(textRenderer, title, 30, 7, RenderHelper.GREEN_COLOR, false);
 		drawContext.drawString(textRenderer, text, 30, 18, 0, false);
 		
-		long toastTimeMilliseconds = SpectrumCommon.CONFIG.ToastTimeMilliseconds;
+		long toastTimeMilliseconds = SpectrumConfig.CONFIG.ToastTimeMilliseconds.get();
 		if (!this.soundPlayed && startTime > 0L) {
 			this.soundPlayed = true;
 			if (this.soundEvent != null) {

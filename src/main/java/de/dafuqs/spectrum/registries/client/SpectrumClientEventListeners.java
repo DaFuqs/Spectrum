@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.data_loaders.client.*;
 import de.dafuqs.spectrum.deeper_down.client.*;
 import de.dafuqs.spectrum.render.biome_rendering.*;
@@ -127,7 +128,7 @@ public class SpectrumClientEventListeners {
 			return;
 		}
 		
-		if (SpectrumCommon.CONFIG.PostProcess) {
+		if (SpectrumConfig.CONFIG.PostProcessShaders.get()) {
 			SpectrumShaders.updateShaders(client, world);
 		} else {
 			SpectrumShaders.disableShaders();

@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.blocks.decay;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.claims.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
@@ -83,7 +84,7 @@ public abstract class DecayBlock extends DropExperienceBlock {
 	public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		super.setPlacedBy(world, pos, state, placer, itemStack);
 		
-		if (!world.isClientSide && SpectrumCommon.CONFIG.LogPlacingOfDecay && placer != null) {
+		if (!world.isClientSide && SpectrumConfig.CONFIG.LogPlacingOfDecay.get() && placer != null) {
 			SpectrumCommon.logInfo(state.getBlock().getName().getString() + " was placed in " + world.dimension().location() + " at " + pos.getX() + " " + pos.getY() + " " + pos.getZ() + " by " + placer.getName());
 		}
 	}
@@ -96,7 +97,7 @@ public abstract class DecayBlock extends DropExperienceBlock {
 	}
 	
 	private boolean canSpreadTo(Level world, BlockPos targetBlockPos, BlockState stateAtTargetPos) {
-		if (SpectrumCommon.CONFIG.DecayIsStoppedByClaimMods && !GenericClaimModsCompat.canModify(world, targetBlockPos, null)) {
+		if (SpectrumConfig.CONFIG.DecayIsStoppedBySupportedClaimMods.get() && !GenericClaimModsCompat.canModify(world, targetBlockPos, null)) {
 			return false;
 		}
 		

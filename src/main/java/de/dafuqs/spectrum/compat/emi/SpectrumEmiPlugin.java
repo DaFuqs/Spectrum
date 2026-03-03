@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.compat.emi.handlers.*;
 import de.dafuqs.spectrum.compat.emi.recipes.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.inventories.slots.*;
@@ -85,7 +86,7 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 				EmiStack.of(SpectrumBlocks.PEDESTAL_MOONSTONE)
 		));
 		registry.addWorkstation(SpectrumEmiRecipeCategories.PEDESTAL_CRAFTING, pedestals);
-		if (SpectrumCommon.CONFIG.canPedestalCraftVanillaRecipes()) {
+		if (SpectrumConfig.CONFIG.canPedestalCraftVanillaRecipes()) {
 			registry.addWorkstation(VanillaEmiRecipeCategories.CRAFTING, pedestals);
 		}
 		

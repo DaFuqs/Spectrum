@@ -1,15 +1,14 @@
 package de.dafuqs.spectrum.registries;
 
-import com.kwpugh.gobber2.events.*;
 import de.dafuqs.arrowhead.api.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
-import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.components.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.entity.spawners.*;
 import de.dafuqs.spectrum.events.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -18,7 +17,6 @@ import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.*;
-import de.dafuqs.spectrum.mixin.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.*;
@@ -26,12 +24,10 @@ import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.client.*;
 import de.dafuqs.spectrum.status_effects.*;
-import dev.architectury.event.events.common.*;
 import net.minecraft.advancements.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.core.particles.*;
-import net.minecraft.network.protocol.game.*;
 import net.minecraft.server.*;
 import net.minecraft.server.level.*;
 import net.minecraft.server.packs.resources.*;
@@ -51,7 +47,6 @@ import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.context.*;
-import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
@@ -71,7 +66,6 @@ import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.server.*;
 import net.neoforged.neoforge.event.tick.*;
 import org.jetbrains.annotations.*;
-import org.spongepowered.asm.mixin.*;
 import top.theillusivec4.curios.api.*;
 import top.theillusivec4.curios.api.type.capability.*;
 
@@ -215,7 +209,7 @@ public class SpectrumEventListeners {
 		
 		if (serverLevel.getGameTime() % 100 == 0) {
 			if (TimeHelper.getTimeOfDay(serverLevel).isNight()) { // 90 chances in a night
-				if (SpectrumCommon.CONFIG.ShootingStarWorlds.contains(serverLevel.dimension().location().toString())) {
+				if (SpectrumConfig.CONFIG.ShootingStarDimensions.get().contains(serverLevel.dimension().location().toString())) {
 					ShootingStarSpawner.INSTANCE.tick(serverLevel, true, true);
 				}
 			}
@@ -590,7 +584,7 @@ public class SpectrumEventListeners {
 				ItemStack mainHandStack = livingAttacker.getMainHandItem();
 				int level = SpectrumEnchantmentHelper.getLevel(livingAttacker.level().registryAccess(), SpectrumEnchantments.FIRST_STRIKE, mainHandStack);
 				if (level > 0) {
-					float additionalFirstStrikeDamage = SpectrumCommon.CONFIG.FirstStrikeDamagePerLevel * level;
+					float additionalFirstStrikeDamage = SpectrumConfig.CONFIG.FirstStrikeDamagePerLevel.get() * level;
 					event.setNewDamage(newDamage + additionalFirstStrikeDamage);
 				}
 			}
@@ -624,7 +618,7 @@ public class SpectrumEventListeners {
 		if (!source.is(DamageTypes.THORNS) && sourceEntity instanceof LivingEntity livingSource) {
 			int disarmingLevel = SpectrumEnchantmentHelper.getLevel(level.registryAccess(), SpectrumEnchantments.DISARMING, livingSource.getMainHandItem());
 			if (disarmingLevel > 0) {
-				float disarmingChance = disarmingLevel * (livingSource instanceof Player ? SpectrumCommon.CONFIG.DisarmingChancePerLevelPlayers : SpectrumCommon.CONFIG.DisarmingChancePerLevelMobs);
+				float disarmingChance = disarmingLevel * (livingSource instanceof Player ? SpectrumConfig.CONFIG.DisarmingChancePerLevelPlayers.get() : SpectrumConfig.CONFIG.DisarmingChancePerLevelMobs.get());
 				if(level.getRandom().nextFloat() < disarmingChance) {
 					disarmEntity(hurtEntity);
 				}

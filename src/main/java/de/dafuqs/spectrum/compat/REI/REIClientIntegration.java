@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.compat.REI;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.compat.REI.plugins.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.recipe.*;
@@ -75,7 +75,7 @@ public class REIClientIntegration implements REIClientPlugin {
 				EntryStacks.of(SpectrumBlocks.PEDESTAL_MOONSTONE)
 		);
 		registry.addWorkstations(SpectrumPlugins.PEDESTAL_CRAFTING, pedestals);
-		if (SpectrumCommon.CONFIG.canPedestalCraftVanillaRecipes()) {
+		if (SpectrumConfig.CONFIG.canPedestalCraftVanillaRecipes()) {
 			registry.addWorkstations(BuiltinPlugin.CRAFTING, pedestals);
 		}
 		
@@ -136,7 +136,7 @@ public class REIClientIntegration implements REIClientPlugin {
 			// do not list recipes in REI at all, until they are unlocked
 			// secret recipes are never shown
 			if (display instanceof GatedRecipeDisplay gatedRecipeDisplay) {
-				if (!gatedRecipeDisplay.isUnlocked() && (SpectrumCommon.CONFIG.REIListsRecipesAsNotUnlocked || gatedRecipeDisplay.isSecret())) {
+				if (!gatedRecipeDisplay.isUnlocked() && (SpectrumConfig.CONFIG.REIListsUnrevealedRecipesAsNotUnlocked.get() || gatedRecipeDisplay.isSecret())) {
 					return EventResult.interruptFalse();
 				}
 			}
@@ -173,7 +173,7 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.register(SimpleTransferHandlerExtension.create(PedestalScreenHandler.class, SpectrumPlugins.PEDESTAL_CRAFTING,
 				new SimpleTransferHandler.IntRange(0, 9),
 				List.of(new SimpleTransferHandler.IntRange(9, 15), new SimpleTransferHandler.IntRange(16, 52))));
-		if (SpectrumCommon.CONFIG.canPedestalCraftVanillaRecipes()) {
+		if (SpectrumConfig.CONFIG.canPedestalCraftVanillaRecipes()) {
 			registry.register(SimpleTransferHandlerExtension.create(PedestalScreenHandler.class, BuiltinPlugin.CRAFTING,
 					new SimpleTransferHandler.IntRange(0, 9), new SimpleTransferHandler.IntRange(16, 52)));
 		}

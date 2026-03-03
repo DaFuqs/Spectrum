@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.registries;
 
 import com.google.common.base.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.config.*;
 import net.minecraft.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
@@ -22,28 +23,28 @@ public class SpectrumArmorMaterials {
 	
 	public static Holder<ArmorMaterial> GEMSTONE = register("gemstone",
 			Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
-				map.put(ArmorItem.Type.BOOTS, SpectrumCommon.CONFIG.GemstoneArmorBootsProtection);
-				map.put(ArmorItem.Type.LEGGINGS, SpectrumCommon.CONFIG.GemstoneArmorLeggingsProtection);
-				map.put(ArmorItem.Type.CHESTPLATE, SpectrumCommon.CONFIG.GemstoneArmorChestplateProtection);
-				map.put(ArmorItem.Type.HELMET, SpectrumCommon.CONFIG.GemstoneArmorHelmetProtection);
+				map.put(ArmorItem.Type.BOOTS, SpectrumConfig.CONFIG.GemstoneArmorBootsProtection.get());
+				map.put(ArmorItem.Type.LEGGINGS, SpectrumConfig.CONFIG.GemstoneArmorLeggingsProtection.get());
+				map.put(ArmorItem.Type.CHESTPLATE, SpectrumConfig.CONFIG.GemstoneArmorChestplateProtection.get());
+				map.put(ArmorItem.Type.HELMET, SpectrumConfig.CONFIG.GemstoneArmorHelmetProtection.get());
 			}),
 			15,
 			BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.AMETHYST_BLOCK_CHIME),
-			SpectrumCommon.CONFIG.GemstoneArmorToughness,
-			SpectrumCommon.CONFIG.GemstoneArmorKnockbackResistance,
+			SpectrumConfig.CONFIG.GemstoneArmorToughness.get(),
+			SpectrumConfig.CONFIG.GemstoneArmorKnockbackResistance.get(),
 			() -> Ingredient.of(SpectrumItemTags.GEMSTONE_SHARDS));
 	
 	public static Holder<ArmorMaterial> BEDROCK = register("bedrock",
 			Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
-				map.put(ArmorItem.Type.BOOTS, SpectrumCommon.CONFIG.BedrockArmorBootsProtection);
-				map.put(ArmorItem.Type.LEGGINGS, SpectrumCommon.CONFIG.BedrockArmorLeggingsProtection);
-				map.put(ArmorItem.Type.CHESTPLATE, SpectrumCommon.CONFIG.BedrockArmorChestplateProtection);
-				map.put(ArmorItem.Type.HELMET, SpectrumCommon.CONFIG.BedrockArmorHelmetProtection);
+				map.put(ArmorItem.Type.BOOTS, SpectrumConfig.CONFIG.BedrockArmorBootsProtection.get());
+				map.put(ArmorItem.Type.LEGGINGS, SpectrumConfig.CONFIG.BedrockArmorLeggingsProtection.get());
+				map.put(ArmorItem.Type.CHESTPLATE, SpectrumConfig.CONFIG.BedrockArmorChestplateProtection.get());
+				map.put(ArmorItem.Type.HELMET, SpectrumConfig.CONFIG.BedrockArmorHelmetProtection.get());
 			}),
 			5,
 			SoundEvents.ARMOR_EQUIP_NETHERITE,
-			SpectrumCommon.CONFIG.BedrockArmorToughness,
-			SpectrumCommon.CONFIG.BedrockArmorKnockbackResistance,
+			SpectrumConfig.CONFIG.BedrockArmorToughness.get(),
+			SpectrumConfig.CONFIG.BedrockArmorKnockbackResistance.get(),
 			() -> Ingredient.of(SpectrumItems.BEDROCK_DUST));
 	
 	public static void register(IEventBus eventBus) {

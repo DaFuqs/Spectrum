@@ -4,6 +4,7 @@ import com.google.common.collect.*;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -131,7 +132,7 @@ public class SplinterspawnInfestedBlock extends Block {
 		splinterspawn.moveTo(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, 0.0F, 0.0F);
 		level.addFreshEntity(splinterspawn);
 		splinterspawn.spawnAnim();
-		int experienceAmount = Support.getIntFromDecimalWithChance(splinterspawn.getExperienceReward(level, null) * SpectrumCommon.CONFIG.PestControlExperienceMultiplier, level.random);
+		int experienceAmount = Support.getIntFromDecimalWithChance(splinterspawn.getExperienceReward(level, null) * SpectrumConfig.CONFIG.PestControlExperienceMultiplier.get(), level.random);
 		splinterspawn.kill();
 		
 		if (dropExperience) {

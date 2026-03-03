@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.deeper_down.client;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.particle.client.*;
 import de.dafuqs.spectrum.registries.*;
@@ -63,7 +64,7 @@ public class HowlingSpireEffects {
 		}
 		
 		if (inHowlingSpires) {
-			var maxAsh = ashSpawns / (SpectrumCommon.CONFIG.ReducedParticles ? 2 : 1);
+			var maxAsh = ashSpawns / (SpectrumConfig.CONFIG.ReducedParticles.get() ? 2 : 1);
 			spawnHowlingSpiresAsh(cameraEntity, maxAsh, random, world, biome);
 		}
 		

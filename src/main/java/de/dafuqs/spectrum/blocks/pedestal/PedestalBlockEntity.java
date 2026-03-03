@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.items.magic_items.*;
@@ -167,7 +168,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 					SpectrumAdvancementCriteria.PEDESTAL_RECIPE_CALCULATED.trigger(serverPlayerEntity, calculatedPedestalRecipe.assemble(pedestalBlockEntity.createRecipeInput(), world.registryAccess()), (int) calculatedPedestalRecipe.getExperience(), pedestalBlockEntity.propertyDelegate.craftingTimeTotal);
 				}
 			} else {
-				pedestalBlockEntity.propertyDelegate.craftingTimeTotal = (int) Math.ceil(SpectrumCommon.CONFIG.VanillaRecipeCraftingTimeTicks / pedestalBlockEntity.upgrades.getEffectiveValue(UpgradeType.SPEED));
+				pedestalBlockEntity.propertyDelegate.craftingTimeTotal = (int) Math.ceil(SpectrumConfig.CONFIG.VanillaRecipeCraftingTimeTicks.get() / pedestalBlockEntity.upgrades.getEffectiveValue(UpgradeType.SPEED));
 			}
 			pedestalBlockEntity.setChanged();
 			PlayBlockBoundSoundInstancePayload.sendCancelBlockBoundSoundInstance((ServerLevel) pedestalBlockEntity.getLevel(), pedestalBlockEntity.getBlockPos());
@@ -294,7 +295,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		}
 		
 		// unchanged vanilla recipe?
-		if (SpectrumCommon.CONFIG.canPedestalCraftVanillaRecipes()) {
+		if (SpectrumConfig.CONFIG.canPedestalCraftVanillaRecipes()) {
 			if (currentRecipe instanceof CraftingRecipe craftingRecipe && craftingRecipe.matches(pedestalBlockEntity.createRecipeInput().getCraftingGridInput(), world)) {
 				return pedestalBlockEntity.currentRecipe;
 			}
@@ -310,7 +311,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		// => search valid recipe
 		RecipeHolder<PedestalRecipe> pedestalRecipe = world.getRecipeManager().getRecipeFor(SpectrumRecipeTypes.PEDESTAL, pedestalBlockEntity.createRecipeInput(), world).orElse(null);
 		if (pedestalRecipe == null) {
-			if (SpectrumCommon.CONFIG.canPedestalCraftVanillaRecipes()) {
+			if (SpectrumConfig.CONFIG.canPedestalCraftVanillaRecipes()) {
 				RecipeHolder<?> holder = world.getRecipeManager().getRecipeFor(RecipeType.CRAFTING, pedestalBlockEntity.createRecipeInput().getCraftingGridInput(), world).orElse(null);
 				if (craftingTabletRecipe != null && !craftingTabletRecipe.equals(holder)) {
 					return null;

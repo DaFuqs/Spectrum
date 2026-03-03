@@ -53,10 +53,3 @@ type="required"
 versionRange="${curios_version_range}"
 ordering="NONE"
 side="BOTH"
-
-[[dependencies.spectrum]]
-modId="cloth_config"
-type="required"
-versionRange="${cloth_config_version_range}"
-ordering="NONE"
-side="BOTH"

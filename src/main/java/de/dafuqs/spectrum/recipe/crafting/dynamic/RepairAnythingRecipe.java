@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.recipe.crafting.dynamic;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.world.item.*;
@@ -53,7 +54,7 @@ public class RepairAnythingRecipe extends CustomRecipe {
 			int damage = returnStack.getDamageValue();
 			int maxDamage = returnStack.getMaxDamage();
 			
-			int newDamage = Math.max(0, (int) (damage - (maxDamage * SpectrumCommon.CONFIG.RepairAnythingRecipeRepairPercentage)));
+			int newDamage = Math.max(0, (int) (damage - (maxDamage * SpectrumConfig.CONFIG.RepairAnythingRecipeRepairPercentage.get())));
 			returnStack.setDamageValue(newDamage);
 			return returnStack;
 		} else {

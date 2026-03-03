@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.*;
 import it.unimi.dsi.fastutil.objects.*;
@@ -192,7 +193,7 @@ public class BedrockAnvilScreenHandler extends ItemCombinerMenu {
 							foundUnacceptable = true;
 						} else {
 							foundAcceptable = true;
-							boolean capToMaxLevel = (inputStack.is(Items.ENCHANTED_BOOK) && !inputStack.has(DataComponents.STORED_ENCHANTMENTS)) || !SpectrumCommon.CONFIG.BedrockAnvilCanExceedMaxVanillaEnchantmentLevel; // We added this line
+							boolean capToMaxLevel = (inputStack.is(Items.ENCHANTED_BOOK) && !inputStack.has(DataComponents.STORED_ENCHANTMENTS)) || !SpectrumConfig.CONFIG.BedrockAnvilCanExceedMaxVanillaEnchantmentLevel.get(); // We added this line
 							if (capToMaxLevel && newEnchantmentLevel > enchantment.getMaxLevel()) { // We added 'capToMaxLevel &&'
 								newEnchantmentLevel = enchantment.getMaxLevel();
 							}

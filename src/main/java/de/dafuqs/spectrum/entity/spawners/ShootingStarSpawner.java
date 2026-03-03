@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.entity.spawners;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.shooting_star.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.server.level.*;
@@ -62,7 +63,7 @@ public class ShootingStarSpawner implements CustomSpawner {
 		if (playerEntity.hasEffect(MobEffects.NIGHT_VISION)) {
 			multiplier++;
 		}
-		return SpectrumCommon.CONFIG.ShootingStarChance * multiplier;
+		return SpectrumConfig.CONFIG.ShootingStarSpawnChance.get() * multiplier;
 	}
 	
 	public static void spawnShootingStar(ServerLevel serverWorld, @NotNull Player playerEntity) {

@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.conditional.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.world.entity.*;
@@ -25,7 +26,7 @@ public abstract class LightningEntityMixin {
 		
 		// do not spawn storm stones when using other forms of
 		// spawning thunder, like magic, ... in clear weather. Only when it is actually thundering
-		if (world.isThundering() && SpectrumCommon.CONFIG.StormStonesWorlds.contains(world.dimension().location().toString())) {
+		if (world.isThundering() && SpectrumConfig.CONFIG.StormStoneDimensions.get().contains(world.dimension().location().toString())) {
 			spectrum$spawnStormStone(world, this.getStrikePosition());
 		}
 	}
@@ -42,7 +43,7 @@ public abstract class LightningEntityMixin {
 			aboveGroundBlockPos = blockPos2.relative(Direction.from2DDataValue(world.getRandom().nextInt(6))).above();
 		} else {
 			// there is chance involved
-			if (world.random.nextFloat() > SpectrumCommon.CONFIG.StormStonesChance) {
+			if (world.random.nextFloat() > SpectrumConfig.CONFIG.StormStoneSpawnChance.get()) {
 				return;
 			}
 			aboveGroundBlockPos = affectedBlockPos.above();

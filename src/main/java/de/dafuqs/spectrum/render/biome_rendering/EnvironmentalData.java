@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.render.biome_rendering;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.config.*;
 import net.minecraft.util.*;
 
 public record EnvironmentalData(float environmentalLightingMultiplier, float fogBrightnessMultiplier, float nearFogDistanceMultiplier, float farFogDistanceMultiplier) {
@@ -25,7 +26,7 @@ public record EnvironmentalData(float environmentalLightingMultiplier, float fog
 	}
 	
 	public float environmentalLightingMultiplier() {
-		 return (float) Mth.lerp(SpectrumCommon.CONFIG.DimensionBrightnessMod, this.environmentalLightingMultiplier, 1.0);
+		 return (float) Mth.lerp(SpectrumConfig.CONFIG.DimensionBrightnessMod.get(), this.environmentalLightingMultiplier, 1.0);
 	}
 	
 }

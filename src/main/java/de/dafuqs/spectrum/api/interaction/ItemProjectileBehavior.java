@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.api.interaction;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.claims.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.advancements.critereon.*;
@@ -123,7 +124,7 @@ public interface ItemProjectileBehavior {
 			}
 			
 			if (target instanceof LivingEntity livingTarget) {
-				if (target instanceof Player && !SpectrumCommon.CONFIG.OmniAcceleratorPvP) {
+				if (target instanceof Player && !SpectrumConfig.CONFIG.OmniAcceleratorPvP.get()) {
 					if (stack.is(SpectrumItemTags.REQUIRES_OMNI_ACCELERATOR_PVP_ENABLED)) {
 						return stack;
 					}

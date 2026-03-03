@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.mixin;
 import com.llamalad7.mixinextras.sugar.*;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.sounds.*;
@@ -27,7 +28,7 @@ public abstract class GlassBottleItemMixin {
 		BlockState blockState = world.getBlockState(blockPos);
 		
 		if (blockState.is(SpectrumBlocks.FADING)
-				&& SpectrumCommon.CONFIG.CanBottleUpFading
+				&& SpectrumConfig.CONFIG.CanBottleUpFading.get()
 				&& AdvancementHelper.hasAdvancement(user, SpectrumAdvancements.UNLOCK_BOTTLE_OF_FADING)) {
 			
 			blockState.getBlock().playerWillDestroy(world, blockPos, blockState, user);
@@ -36,7 +37,7 @@ public abstract class GlassBottleItemMixin {
 			cir.setReturnValue(InteractionResultHolder.sidedSuccess(this.turnBottleIntoItem(handStack, user, SpectrumItems.BOTTLE_OF_FADING.get().getDefaultInstance()), world.isClientSide()));
 			
 		} else if (blockState.is(SpectrumBlocks.FAILING)
-				&& SpectrumCommon.CONFIG.CanBottleUpFailing
+				&& SpectrumConfig.CONFIG.CanBottleUpFailing.get()
 				&& AdvancementHelper.hasAdvancement(user, SpectrumAdvancements.UNLOCK_BOTTLE_OF_FAILING)) {
 			
 			blockState.getBlock().playerWillDestroy(world, blockPos, blockState, user);
@@ -45,7 +46,7 @@ public abstract class GlassBottleItemMixin {
 			cir.setReturnValue(InteractionResultHolder.sidedSuccess(this.turnBottleIntoItem(handStack, user, SpectrumItems.BOTTLE_OF_FAILING.get().getDefaultInstance()), world.isClientSide()));
 			
 		} else if (blockState.is(SpectrumBlocks.RUIN)
-				&& SpectrumCommon.CONFIG.CanBottleUpRuin
+				&& SpectrumConfig.CONFIG.CanBottleUpRuin.get()
 				&& AdvancementHelper.hasAdvancement(user, SpectrumAdvancements.UNLOCK_BOTTLE_OF_RUIN)) {
 			
 			blockState.getBlock().playerWillDestroy(world, blockPos, blockState, user);
@@ -54,7 +55,7 @@ public abstract class GlassBottleItemMixin {
 			cir.setReturnValue(InteractionResultHolder.sidedSuccess(this.turnBottleIntoItem(handStack, user, SpectrumItems.BOTTLE_OF_RUIN.get().getDefaultInstance()), world.isClientSide()));
 			
 		} else if (blockState.is(SpectrumBlocks.FORFEITURE)
-				&& SpectrumCommon.CONFIG.CanBottleUpForfeiture
+				&& SpectrumConfig.CONFIG.CanBottleUpForfeiture.get()
 				&& AdvancementHelper.hasAdvancement(user, SpectrumAdvancements.UNLOCK_BOTTLE_OF_FORFEITURE)) {
 			
 			blockState.getBlock().playerWillDestroy(world, blockPos, blockState, user);

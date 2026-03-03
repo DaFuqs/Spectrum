@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
@@ -28,9 +29,9 @@ public abstract class EndermanEntityMixin {
 			
 			float chance;
 			if (world.dimension().equals(Level.END)) {
-				chance = SpectrumCommon.CONFIG.EndermanHoldingEnderTreasureInEndChance;
+				chance = SpectrumConfig.CONFIG.EndermanHoldingTreasureInEndChance.get();
 			} else {
-				chance = SpectrumCommon.CONFIG.EndermanHoldingEnderTreasureChance;
+				chance = SpectrumConfig.CONFIG.EndermanHoldingTreasureChance.get();
 			}
 			
 			if (random.nextFloat() < chance) {

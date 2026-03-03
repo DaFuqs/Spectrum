@@ -179,6 +179,6 @@
   "tag.spectrum.stripped_colored_logs": "Stripped Coloured Logs",
   "tag.spectrum.stripped_colored_wood": "Stripped Coloured Wood",
 
-  "text.autoconfig.Spectrum.option.ColoredTreePatchChanceChunk": "Try to generate Coloured Trees all X chunks"
+  "config.spectrum.ColoredTreePatchChanceChunk": "Try to generate Coloured Trees all X chunks"
 
 }

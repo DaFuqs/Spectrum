@@ -11,7 +11,6 @@ public class SpectrumCommands {
 		LiteralCommandNode<CommandSourceStack> spectrumNode = Commands.literal("spectrum").build();
 		ShootingStarCommand.register(spectrumNode);
 		SanityCommand.register(spectrumNode);
-		PrintConfigCommand.register(spectrumNode);
 		PrimordialFireCommand.register(spectrumNode);
 		DumpRegistriesCommand.register(spectrumNode);
 		DumpTagsCommand.register(spectrumNode);

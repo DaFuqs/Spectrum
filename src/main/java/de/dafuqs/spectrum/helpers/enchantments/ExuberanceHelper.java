@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.helpers.enchantments;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
@@ -19,7 +20,7 @@ public class ExuberanceHelper {
 	}
 	
 	public static float getExuberanceMod(int level) {
-		return 1.0F + level * SpectrumCommon.CONFIG.ExuberanceBonusExperiencePercentPerLevel;
+		return 1.0F + level * SpectrumConfig.CONFIG.ExuberanceBonusExperiencePercentPerLevel.get();
 	}
 	
 }

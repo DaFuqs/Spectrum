@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.blocks.decay;
 
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
@@ -22,7 +23,7 @@ public class ForfeitureBlock extends DecayBlock {
 	// A special version of ruin that spreads indefinitely, even through air.
 	// There are no brakes on the Forfeiture train
 	public ForfeitureBlock(Properties settings) {
-		super(settings, SpectrumCommon.CONFIG.ForfeitureDecayTickRate, SpectrumCommon.CONFIG.ForfeitureCanDestroyBlockEntities, 4, 7.5F, UniformInt.of(3, 4));
+		super(settings, SpectrumConfig.CONFIG.ForfeitureDecayTickRate.get(), SpectrumConfig.CONFIG.ForfeitureCanDestroyBlockEntities.get(), 4, 7.5F, UniformInt.of(3, 4));
 		registerDefaultState(getStateDefinition().any().setValue(CONVERSION, Conversion.NONE));
 	}
 	

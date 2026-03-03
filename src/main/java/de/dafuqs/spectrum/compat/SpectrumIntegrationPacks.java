@@ -9,6 +9,7 @@ import de.dafuqs.spectrum.compat.gobber.*;
 import de.dafuqs.spectrum.compat.malum.*;
 import de.dafuqs.spectrum.compat.modonomicon.*;
 import de.dafuqs.spectrum.compat.travelersbackpack.*;
+import de.dafuqs.spectrum.config.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.fml.event.lifecycle.*;
 import net.neoforged.fml.loading.*;
@@ -27,7 +28,7 @@ public class SpectrumIntegrationPacks {
 	}
 	
 	protected static void registerIntegrationPack(String modId, Supplier<ModIntegrationPack> container) {
-		if (!SpectrumCommon.CONFIG.IntegrationPacksToSkipLoading.contains(modId) && SpectrumIntegrationPacks.isModLoaded(modId)) {
+		if (!SpectrumConfig.CONFIG.IntegrationPacksToSkipLoading.get().contains(modId) && SpectrumIntegrationPacks.isModLoaded(modId)) {
 			INTEGRATION_PACKS.put(modId, container.get());
 		}
 	}

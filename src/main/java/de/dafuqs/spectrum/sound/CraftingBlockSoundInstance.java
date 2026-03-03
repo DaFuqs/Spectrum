@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.sound;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.config.*;
 import net.minecraft.client.*;
 import net.minecraft.client.resources.sounds.*;
 import net.minecraft.core.*;
@@ -77,7 +78,7 @@ public class CraftingBlockSoundInstance extends AbstractSoundInstance implements
 	
 	private void updateVolume() {
 		Minecraft client = Minecraft.getInstance();
-		this.volume = Math.max(0, 0.75F * (SpectrumCommon.CONFIG.BlockSoundVolume - sourceBlockPos.distManhattan(client.player.blockPosition()) / 64F));
+		this.volume = Math.max(0, 0.75F * (SpectrumConfig.CONFIG.BlockSoundVolume.get() - sourceBlockPos.distManhattan(client.player.blockPosition()) / 64F));
 	}
 	
 	@Override

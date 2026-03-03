@@ -35,6 +35,8 @@ public class SpectrumClient implements RevealingCallback, ClientAdvancementPacke
 	
 	public SpectrumClient(IEventBus modBus, ModContainer modContainer) {
 		SpectrumCommon.logInfo("Running Client Startup");
+		modContainer.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
+		
 		modBus.addListener(SpectrumBlocks::registerClient);
 		modBus.addListener(SpectrumIntegrationPacks::registerClient);
 		modBus.addListener(SpectrumModelPredicateProviders::registerClient);
@@ -50,16 +52,13 @@ public class SpectrumClient implements RevealingCallback, ClientAdvancementPacke
 		SpectrumEnvironmentalDataOverrides.register();
 		SpectrumClientEventListeners.register(modBus);
 		
-		if (SpectrumCommon.CONFIG.AddItemTooltips) {
+		if (SpectrumConfig.CONFIG.AddItemTooltips.get()) {
 			NeoForge.EVENT_BUS.addListener(SpectrumTooltips::register);
 		}
 		modBus.addListener(SpectrumArmorRenderers::register);
 		
 		RevealingCallback.register(this);
 		ClientAdvancementPacketCallback.registerCallback(this);
-		
-		
-		modContainer.registerExtensionPoint(IConfigScreenFactory.class, (modCont, parent) -> AutoConfig.getConfigScreen(SpectrumConfig.class, parent).get());
 		
 		modBus.addListener(SpectrumFluids::registerClient);
 		modBus.addListener(SpectrumBlockEntities::registerClient);

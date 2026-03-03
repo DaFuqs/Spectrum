@@ -73,8 +73,7 @@ public class HudRenderers {
 				
 				ResourceLocation texture = AzureDikeAttachmentType.AZURE_DIKE_BAR_TEXTURE;
 				
-				x += SpectrumCommon.CONFIG.AzureDikeHudOffsetX;
-				y += hasArmor ? SpectrumCommon.CONFIG.AzureDikeHudOffsetYWithArmor : SpectrumCommon.CONFIG.AzureDikeHudOffsetY;
+				y += hasArmor ? -10 : 0; // TODO: verify
 				
 				RenderSystem.enableBlend();
 				

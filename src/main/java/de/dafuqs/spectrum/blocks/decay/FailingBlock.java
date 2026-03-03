@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.blocks.decay;
 
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
@@ -24,7 +25,7 @@ public class FailingBlock extends DecayBlock {
 	public static final IntegerProperty AGE = BlockStateProperties.AGE_15; // failing may spread 15 blocks max. It consuming obsidian resets that value
 	
 	public FailingBlock(Properties settings) {
-		super(settings, SpectrumCommon.CONFIG.FailingDecayTickRate, SpectrumCommon.CONFIG.FailingCanDestroyBlockEntities, 2, 2.5F, UniformInt.of(1, 2));
+		super(settings, SpectrumConfig.CONFIG.FailingDecayTickRate.get(), SpectrumConfig.CONFIG.FailingCanDestroyBlockEntities.get(), 2, 2.5F, UniformInt.of(1, 2));
 		registerDefaultState(getStateDefinition().any().setValue(CONVERSION, Conversion.NONE).setValue(AGE, 0));
 	}
 	

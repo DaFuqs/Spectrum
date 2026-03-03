@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.particle.client;
 
 import com.mojang.blaze3d.vertex.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.render.*;
 import net.minecraft.client.*;
@@ -42,7 +43,7 @@ public class PastelTransmissionParticle extends TransmissionParticle implements 
 		
 		// spawning sound & particles
 		Vec3 startPos = this.travelPositions.get(0);
-		world.playLocalSound(startPos.x(), startPos.y() + 0.25, startPos.z(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.15F * SpectrumCommon.CONFIG.BlockSoundVolume + world.random.nextFloat() / 10F, 0.8F + world.random.nextFloat() * 0.3F, true);
+		world.playLocalSound(startPos.x(), startPos.y() + 0.25, startPos.z(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.15F * SpectrumConfig.CONFIG.BlockSoundVolume.get() + world.random.nextFloat() / 10F, 0.8F + world.random.nextFloat() * 0.3F, true);
 		world.addParticle(ParticleTypes.BUBBLE_POP, startPos.x(), startPos.y() + 0.25, startPos.z(), 0, 0, 0);
 	}
 	
@@ -54,8 +55,7 @@ public class PastelTransmissionParticle extends TransmissionParticle implements 
 		float travelPercent = (float) this.age / this.lifetime;
 		if (travelPercent >= 1.0F) {
 			Vec3 destination = this.travelPositions.get(vertexCount);
-			level.playLocalSound(destination.x(), destination.y() + 0.25, destination.z(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS,
-					0.1F * SpectrumCommon.CONFIG.BlockSoundVolume + random.nextFloat() / 10F, 0.6F + level.random.nextFloat() * 0.3F, true);
+			level.playLocalSound(destination.x(), destination.y() + 0.25, destination.z(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.1F * SpectrumConfig.CONFIG.BlockSoundVolume.get() + random.nextFloat() / 10F, 0.6F + level.random.nextFloat() * 0.3F, true);
 			level.addParticle(ParticleTypes.BUBBLE_POP, destination.x(), destination.y() + 0.25, destination.z(), 0, 0, 0);
 			this.remove();
 			return;
@@ -75,7 +75,7 @@ public class PastelTransmissionParticle extends TransmissionParticle implements 
 		this.y = Mth.lerp(nodeProgress, source.y, destination.y);
 		this.z = Mth.lerp(nodeProgress, source.z, destination.z);
 		
-		if (SpectrumCommon.CONFIG.PastelNetworkParticles && this.age % 2 == 0) {
+		if (SpectrumConfig.CONFIG.PastelNetworkParticles.get() && this.age % 2 == 0) {
 			level.addParticle(particleEffect, x + random.nextDouble() * 0.4 - 0.2, y + random.nextDouble() * 0.4 - 0.2, z + random.nextDouble() * 0.4 - 0.2, random.nextDouble() * 0.4 - 0.2, random.nextDouble() * 0.4 - 0.2, random.nextDouble() * 0.4 - 0.2);
 		}
 	}

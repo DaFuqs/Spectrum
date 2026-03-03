@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.deeper_down;
+package de.dafuqs.spectrum.deeper_down.client;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.particle.*;
@@ -21,10 +21,13 @@ public class HowlingSpireEffects {
 	
 	private static final long ASH_UPDATE_INTERVAL = 1600;
 	private static final double BASE_ASH_VELOCITY = 0.25;
-	private static double targetAshVelocity = 0.215, lastAshVelocity = 0.215, ashScaleA = 20000, ashScaleB = 2200, ashScaleC = 200;
+	private static double targetAshVelocity = 0.215;
+	private static double ashScaleA = 20000;
+	private static double ashScaleB = 2200;
+	private static double ashScaleC = 200;
 	private static int ashSwitchTicks = 50, ashSpawns;
 	private static Direction.Axis ashAxis = Direction.Axis.X;
-	private static Minecraft client = Minecraft.getInstance();
+	private static final Minecraft client = Minecraft.getInstance();
 	
 	public static void clientTick(ClientLevel world, Entity cameraEntity, Holder<Biome> biome) {
 		lastSpireTicks = spireTicks;
@@ -44,6 +47,7 @@ public class HowlingSpireEffects {
 		
 		var ashVelocity = targetAshVelocity;
 		if (ashSwitchTicks < 50) {
+			double lastAshVelocity = 0.215;
 			ashVelocity = Mth.clampedLerp(lastAshVelocity, targetAshVelocity, ashSwitchTicks);
 			ashSwitchTicks++;
 		}

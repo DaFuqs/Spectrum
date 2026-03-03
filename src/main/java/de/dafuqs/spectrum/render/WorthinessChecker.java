@@ -5,6 +5,7 @@ import net.minecraft.resources.*;
 
 import java.util.*;
 
+// TODO: rename
 public class WorthinessChecker {
 	
 	public enum CapeType {

@@ -4,7 +4,6 @@ import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.config.*;
-import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.particle.*;
@@ -24,13 +23,10 @@ import net.neoforged.api.distmarker.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.fml.*;
 import net.neoforged.fml.common.*;
-import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.gui.*;
 import net.neoforged.neoforge.common.*;
-import net.neoforged.neoforge.event.*;
 
 import java.util.*;
-import java.util.function.*;
 
 @Mod(value = SpectrumCommon.MOD_ID, dist = Dist.CLIENT)
 public class SpectrumClient implements RevealingCallback, ClientAdvancementPacketCallback {
@@ -51,6 +47,7 @@ public class SpectrumClient implements RevealingCallback, ClientAdvancementPacke
 		NeoForge.EVENT_BUS.addListener(HudRenderers::registerPost);
 		modBus.addListener(SpectrumTooltipComponents::registerTooltipComponents);
 		modBus.addListener(SpectrumDimensions::registerClient);
+		SpectrumEnvironmentalDataOverrides.register();
 		SpectrumClientEventListeners.register(modBus);
 		
 		if (SpectrumCommon.CONFIG.AddItemTooltips) {

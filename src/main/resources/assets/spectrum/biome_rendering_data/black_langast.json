@@ -1,0 +1,16 @@
+{
+  "biome": "spectrum:black_langast",
+  "environmental_data": {
+    "darkening": 0.5,
+    "brightness_multiplier": 0.5,
+    "fog_near_multiplier": -5,
+    "fog_far_multiplier": 0.5
+  },
+  "color_grading": {
+    "saturation": 0.5,
+    "rubedo": 0,
+    "temperature": 60,
+    "threshold": 1.0,
+    "bloom": 0.1
+  }
+}

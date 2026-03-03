@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.shaders;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.deeper_down.*;
+import de.dafuqs.spectrum.render.biome_rendering.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.*;
@@ -65,7 +65,7 @@ public class SpectrumShaders {
 		if (world.dimension().equals(SpectrumDimensions.DIMENSION_KEY)) {
 			colorGradingPostProcess.ifPresent(pps -> {
 				for (int i = 0; i < 5; i++) {
-					pps.setUniform(COLOR_GRADING_UNIFORMS[i], DimensionRenderEffects.ColorGrading.GRADING_OUT[i]);
+					pps.setUniform(COLOR_GRADING_UNIFORMS[i], ColorGrading.GRADING_OUT[i]);
 				}
 			});
 		}

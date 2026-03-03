@@ -2,8 +2,7 @@ package de.dafuqs.spectrum.mixin.client;
 
 import com.llamalad7.mixinextras.injector.*;
 import com.mojang.blaze3d.systems.*;
-import de.dafuqs.spectrum.deeper_down.*;
-import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.render.biome_rendering.*;
 import de.dafuqs.spectrum.shaders.*;
 import net.minecraft.client.*;
 import net.minecraft.client.renderer.*;
@@ -17,13 +16,10 @@ public abstract class GameRendererMixin {
 	
 	@ModifyReturnValue(method = "getNightVisionScale", at = @At("RETURN"))
 	private static float spectrum$nerfNightVisionInDimension(float original, LivingEntity entity, float tickDelta) {
-		if (SpectrumDimensions.DIMENSION_KEY == entity.level().dimension()) {
+		if (EnvironmentalRendering.getRenderState().ultradark()) {
 			original /= 6F;
 		}
-		
-		if (DimensionRenderEffects.darkenTicks > 0) {
-			original *= 1F - DimensionRenderEffects.getDarknessInterpolation();
-		}
+		original *= 1F - EnvironmentalRendering.getCurrentEnvironmentalData().darkening();
 		
 		return original;
 	}
@@ -42,4 +38,5 @@ public abstract class GameRendererMixin {
 	private void resizeShaders(int width, int height, CallbackInfo ci) {
 		SpectrumShaders.resizeShaders(width, height);
 	}
+	
 }

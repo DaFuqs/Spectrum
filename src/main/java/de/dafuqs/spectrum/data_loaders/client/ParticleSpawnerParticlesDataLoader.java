@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.data_loaders;
+package de.dafuqs.spectrum.data_loaders.client;
 
 import com.google.gson.*;
 import de.dafuqs.revelationary.api.advancements.*;
@@ -21,16 +21,13 @@ public class ParticleSpawnerParticlesDataLoader extends SimpleJsonResourceReload
 	
 	/**
 	 * Defines an entry that appears in the particle spawners gui to be selected as particle
-	 * Theoretically the particle spawner can spawn all kinds of particle (my modifying its nbt)
-	 * But we are limiting us to a few reasonable ones there
 	 *
 	 * @param particleType      The particle type to dynamically fetch textures from
 	 * @param textureIdentifier The texture shown in its gui entry
 	 * @param supportsColoring  Weather the Particle Spawner enables CMY coloring for this particle (should be true, if grayscale)
 	 * @param unlockIdentifier  The advancement identifier required to being able to select this entry
 	 */
-	public record ParticleSpawnerEntry(ParticleType<?> particleType, ResourceLocation textureIdentifier, boolean supportsColoring, @Nullable ResourceLocation unlockIdentifier) {
-	}
+	public record ParticleSpawnerEntry(ParticleType<?> particleType, ResourceLocation textureIdentifier, boolean supportsColoring, @Nullable ResourceLocation unlockIdentifier) {}
 	
 	protected static final List<ParticleSpawnerEntry> PARTICLES = new ArrayList<>();
 	
@@ -39,7 +36,7 @@ public class ParticleSpawnerParticlesDataLoader extends SimpleJsonResourceReload
 	}
 	
 	@Override
-	protected void apply(Map<ResourceLocation, JsonElement> prepared, ResourceManager manager, ProfilerFiller profiler) {
+	protected void apply(Map<ResourceLocation, JsonElement> prepared, @NotNull ResourceManager manager, @NotNull ProfilerFiller profiler) {
 		PARTICLES.clear();
 		prepared.forEach((identifier, jsonElement) -> {
 			JsonObject jsonObject = jsonElement.getAsJsonObject();

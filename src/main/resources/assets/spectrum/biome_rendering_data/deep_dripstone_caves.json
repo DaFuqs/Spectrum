@@ -1,0 +1,16 @@
+{
+  "biome": "spectrum:deep_dripstone_caves",
+  "environmental_data": {
+    "darkening": 0.1,
+    "brightness_multiplier": 0.65,
+    "fog_near_multiplier": -4,
+    "fog_far_multiplier": 1.5
+  },
+  "color_grading": {
+    "saturation": 1,
+    "rubedo": 0.02,
+    "temperature": 60,
+    "threshold": 0.8,
+    "bloom": 0.3
+  }
+}

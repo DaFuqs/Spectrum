@@ -1,0 +1,16 @@
+{
+  "biome": "spectrum:howling_spires",
+  "environmental_data": {
+    "darkening": 0,
+    "brightness_multiplier": 1,
+    "fog_near_multiplier": -5.25,
+    "fog_far_multiplier": 1.25
+  },
+  "color_grading": {
+    "saturation": 1,
+    "rubedo": 0,
+    "temperature": 60,
+    "threshold": 0.9,
+    "bloom": 0.425
+  }
+}

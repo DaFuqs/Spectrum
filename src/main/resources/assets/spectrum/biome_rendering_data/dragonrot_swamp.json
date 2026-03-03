@@ -1,0 +1,16 @@
+{
+  "biome": "spectrum:dragonrot_swamp",
+  "environmental_data": {
+    "darkening": 0,
+    "brightness_multiplier": 1,
+    "fog_near_multiplier": -4,
+    "fog_far_multiplier": 1
+  },
+  "color_grading": {
+    "saturation": 0.7,
+    "rubedo": 0.05,
+    "temperature": 105,
+    "threshold": 0.75,
+    "bloom": 0.3
+  }
+}

@@ -1,22 +1,19 @@
 package de.dafuqs.spectrum.registries.client;
 
+import com.mojang.blaze3d.shaders.*;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.datafixers.util.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.interaction.*;
-import de.dafuqs.spectrum.api.render.*;
-import de.dafuqs.spectrum.attachment_types.*;
-import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
-import de.dafuqs.spectrum.data_loaders.*;
-import de.dafuqs.spectrum.deeper_down.*;
+import de.dafuqs.spectrum.data_loaders.client.*;
+import de.dafuqs.spectrum.deeper_down.client.*;
+import de.dafuqs.spectrum.render.biome_rendering.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.magic_items.*;
-import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.particle.render.*;
-import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.render.*;
 import de.dafuqs.spectrum.shaders.*;
@@ -31,14 +28,11 @@ import net.minecraft.core.component.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.network.chat.*;
-import net.minecraft.server.level.*;
-import net.minecraft.server.packs.*;
 import net.minecraft.util.*;
 import net.minecraft.server.packs.resources.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.*;
 import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
@@ -48,10 +42,7 @@ import net.neoforged.api.distmarker.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.fml.common.*;
 import net.neoforged.neoforge.client.event.*;
-import net.neoforged.neoforge.client.gui.*;
-import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.event.entity.player.*;
-import net.neoforged.neoforge.event.tick.*;
 import org.jetbrains.annotations.*;
 import oshi.util.tuples.*;
 
@@ -62,14 +53,10 @@ public class SpectrumClientEventListeners {
 	
 	private static int lookingAtUniverseSpyholeTicks = 0;
 	private static @Nullable BlockHitResult lookingAtUniverseSpyholeHitResult = null;
-	private static boolean lookingAtUniverseSpyholeeffectsPlayed = false;
+	private static boolean lookingAtUniverseSpyholeInitialEffectPlayed = false;
 	
 	public static void register(IEventBus modBus) {
-		/*modBus.addListener(SpectrumClientEventListeners::onReloadClientResources);
-		modBus.addListener(SpectrumColorProviders::registerBlocks);
-		modBus.addListener(SpectrumColorProviders::registerItems);
-		
-		// TODO: port
+		/* TODO: port
 		//DynamicItemRenderer.registerDynamicItemRenderer(SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem(), BottomlessBundleItem.Renderer::new);
 		//DynamicItemRenderer.registerDynamicItemRenderer(SpectrumItems.OMNI_ACCELERATOR.asItem(), OmniAcceleratorItem.Renderer::new);
 		/*ModelLoadingPlugin.register((ctx) -> {
@@ -80,14 +67,52 @@ public class SpectrumClientEventListeners {
 				}
 				return orig;
 			});
-		});
+		});*/
+	}
+	
+	@SubscribeEvent
+	private static void modifyFogDistance(ViewportEvent.RenderFog event) {
+		EnvironmentalRendering.RenderState state = EnvironmentalRendering.getRenderState();
+		if (state.active()) {
+			float farPlaneDistance = event.getFarPlaneDistance();
+			float originalFarPlaneDistance = farPlaneDistance;
+			
+			EnvironmentalData currentEnvironmentalData = EnvironmentalRendering.getCurrentEnvironmentalData();
+			farPlaneDistance = farPlaneDistance * currentEnvironmentalData.farFogMultiplier();
+			
+			if (state.ultradark()) {
+				event.setFogShape(FogShape.SPHERE);
+				farPlaneDistance = Math.min(farPlaneDistance * 1.25F, originalFarPlaneDistance);
+			}
+			
+			event.setNearPlaneDistance(state.ultradark()
+					? currentEnvironmentalData.nearFogDistanceMultiplier() * event.getNearPlaneDistance()
+					: event.getNearPlaneDistance() * (currentEnvironmentalData.nearFogDistanceMultiplier() / 10)
+			);
+			event.setFarPlaneDistance(farPlaneDistance);
+			
+			event.setCanceled(true);
+		}
+	}
+	
+	@SubscribeEvent
+	private static void modifyFogColor(ViewportEvent.ComputeFogColor event) {
+		if (!EnvironmentalRendering.getRenderState().active()) {
+			return;
+		}
 		
-		NeoForge.EVENT_BUS.addListener(SpectrumClientEventListeners::onWorldRenderStart);
-		NeoForge.EVENT_BUS.addListener(SpectrumClientEventListeners::onRenderBlockOutlines);
-		NeoForge.EVENT_BUS.addListener(SpectrumClientEventListeners::onDrawTooltips);
-		NeoForge.EVENT_BUS.addListener(SpectrumClientEventListeners::onLogout);
-		NeoForge.EVENT_BUS.addListener(SpectrumClientEventListeners::afterClientTick);
-		NeoForge.EVENT_BUS.addListener(SpectrumClientEventListeners::hardcoreHearts);*/
+		EnvironmentalData environmentalData = EnvironmentalRendering.getCurrentEnvironmentalData();
+		float brightnessMultiplier = environmentalData.brightnessMultiplier();
+		if (brightnessMultiplier < 1) {
+			float red = event.getRed() * brightnessMultiplier;
+			float green = event.getGreen() * brightnessMultiplier;
+			float blue = event.getBlue() * brightnessMultiplier;
+			
+			event.setRed(red);
+			event.setGreen(green);
+			event.setBlue(blue);
+			EnvironmentalRendering.applyColor(new float[] {red, green, blue});
+		}
 	}
 	
 	@SubscribeEvent
@@ -132,7 +157,7 @@ public class SpectrumClientEventListeners {
 		
 		Holder<Biome> biome = world.getBiome(client.getCameraEntity().blockPosition());
 		HowlingSpireEffects.clientTick(world, cameraEntity, biome);
-		DimensionRenderEffects.clientTick(world, cameraEntity, biome);
+		EnvironmentalRendering.tick(cameraEntity);
 		
 		// Looking at a Universe Spyhole
 		if (lookingAtUniverseSpyholeTicks > 0 && lookingAtUniverseSpyholeHitResult != null) {
@@ -143,11 +168,11 @@ public class SpectrumClientEventListeners {
 	private static void playLookingAtUniverseSpyholeParticles(Entity cameraEntity, ClientLevel world) {
 		int particleCountPerSide;
 		ParticleOptions particleType = ParticleTypes.PORTAL;
-		if (!lookingAtUniverseSpyholeeffectsPlayed) {
+		if (!lookingAtUniverseSpyholeInitialEffectPlayed) {
 			particleType = ParticleTypes.REVERSE_PORTAL;
 			cameraEntity.playSound(SpectrumSoundEvents.SOFT_HUM, 1.0F, 1.0F);
 			particleCountPerSide = 20;
-			lookingAtUniverseSpyholeeffectsPlayed = true;
+			lookingAtUniverseSpyholeInitialEffectPlayed = true;
 		} else {
 			particleCountPerSide = Math.max(1, 10 - lookingAtUniverseSpyholeTicks);
 		}
@@ -187,7 +212,7 @@ public class SpectrumClientEventListeners {
 				} else {
 					lookingAtUniverseSpyholeTicks = 0;
 					lookingAtUniverseSpyholeHitResult = null;
-					lookingAtUniverseSpyholeeffectsPlayed = false;
+					lookingAtUniverseSpyholeInitialEffectPlayed = false;
 				}
 				
 				boolean newSmartCull = !lookingAtUniverseSpyhole;
@@ -219,7 +244,7 @@ public class SpectrumClientEventListeners {
 	@SubscribeEvent
 	private static void onReloadClientResources(RegisterClientReloadListenersEvent event) {
 		event.registerReloadListener(ParticleSpawnerParticlesDataLoader.INSTANCE);
-		
+		event.registerReloadListener(BiomeRenderingDataLoader.INSTANCE);
 		event.registerReloadListener(new ResourceManagerReloadListener() {
 			@Override
 			public void onResourceManagerReload(@NotNull ResourceManager resourceManager) {

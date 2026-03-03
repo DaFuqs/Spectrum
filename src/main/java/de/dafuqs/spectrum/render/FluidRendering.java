@@ -35,7 +35,7 @@ public class FluidRendering {
 		return colors;
 	}
 	
-	
+	// TODO: move to modonomicon helper class
 	public static Ingredient fluidIngredientAsBucket(FluidIngredient ingredient) {
 		return Ingredient.of(Arrays.stream(ingredient.getStacks())
 				.map(stack -> stack.getFluid()

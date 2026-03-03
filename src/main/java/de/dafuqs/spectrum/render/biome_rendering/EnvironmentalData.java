@@ -2,17 +2,18 @@ package de.dafuqs.spectrum.render.biome_rendering;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import de.dafuqs.spectrum.*;
 import net.minecraft.util.*;
 
-public record EnvironmentalData(float darkening, float brightnessMultiplier, float nearFogDistanceMultiplier, float farFogMultiplier) {
+public record EnvironmentalData(float environmentalLightingMultiplier, float fogBrightnessMultiplier, float nearFogDistanceMultiplier, float farFogDistanceMultiplier) {
 	
-	public static final EnvironmentalData NOOP = new EnvironmentalData(0F, 1F, 1F, 1F);
+	public static final EnvironmentalData NOOP = new EnvironmentalData(1F, 1F, 1F, 1F);
 	
 	public static final Codec<EnvironmentalData> CODEC = RecordCodecBuilder.create(i -> i.group(
-			Codec.FLOAT.fieldOf("darkening").forGetter(EnvironmentalData::darkening),
-			ExtraCodecs.POSITIVE_FLOAT.fieldOf("brightness_multiplier").forGetter(EnvironmentalData::brightnessMultiplier),
+			Codec.FLOAT.fieldOf("environmental_lighting_multiplier").forGetter(EnvironmentalData::environmentalLightingMultiplier),
+			ExtraCodecs.POSITIVE_FLOAT.fieldOf("fog_brightness_multiplier").forGetter(EnvironmentalData::fogBrightnessMultiplier),
 			Codec.FLOAT.fieldOf("fog_near_multiplier").forGetter(EnvironmentalData::nearFogDistanceMultiplier),
-			Codec.FLOAT.fieldOf("fog_far_multiplier").forGetter(EnvironmentalData::farFogMultiplier)
+			Codec.FLOAT.fieldOf("fog_far_multiplier").forGetter(EnvironmentalData::farFogDistanceMultiplier)
 	).apply(i, EnvironmentalData::new));
 	
 	public static EnvironmentalData fromArray(float[] data) {
@@ -20,6 +21,11 @@ public record EnvironmentalData(float darkening, float brightnessMultiplier, flo
 	}
 	
 	public float[] asArray() {
-		return new float[]{darkening, brightnessMultiplier, nearFogDistanceMultiplier, farFogMultiplier};
+		return new float[]{environmentalLightingMultiplier, fogBrightnessMultiplier, nearFogDistanceMultiplier, farFogDistanceMultiplier};
 	}
+	
+	public float environmentalLightingMultiplier() {
+		 return (float) Mth.lerp(SpectrumCommon.CONFIG.DimensionBrightnessMod, this.environmentalLightingMultiplier, 1.0);
+	}
+	
 }

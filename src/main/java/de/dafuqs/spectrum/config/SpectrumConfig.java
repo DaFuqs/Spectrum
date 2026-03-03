@@ -35,8 +35,8 @@ public class SpectrumConfig implements ConfigData {
 	@Comment("Items transported by a Pastel Network spawn particles")
 	public boolean PastelNetworkParticles = true;
 	
-	@Comment("Adjusts the general brightness of the dimension (an increase of 1 is a lot, for reference)")
-	public float DimensionBrightnessMod = 1.0F;
+	@Comment("Adjusts the general brightness of the dimension (0 = default; 1 = darkening disabled")
+	public float DimensionBrightnessMod = 0.0F;
 	
 	@Comment("Mod Integration Packs to not load (in case of mod compat errors). Put the mod id of the mod with integration pack conflict here")
 	public List<String> IntegrationPacksToSkipLoading = new ArrayList<>();

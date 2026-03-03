@@ -1,16 +1,9 @@
 {
   "biome": "spectrum:noxshroom_forest",
   "environmental_data": {
-    "darkening": 0.05,
-    "brightness_multiplier": 0.8,
-    "fog_near_multiplier": -3,
-    "fog_far_multiplier": 1.5
-  },
-  "color_grading": {
-    "saturation": 1.05,
-    "rubedo": 0.015,
-    "temperature": 80,
-    "threshold": 0.7,
-    "bloom": 0.3125
+    "environmental_lighting_multiplier": 0.8,
+    "fog_brightness_multiplier": 0.8,
+    "fog_near_multiplier": 0.5,
+    "fog_far_multiplier": 0.75
   }
 }

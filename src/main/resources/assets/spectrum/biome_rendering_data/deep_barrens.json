@@ -1,13 +1,13 @@
 {
   "biome": "spectrum:deep_barrens",
   "environmental_data": {
-    "darkening": 0.325,
-    "brightness_multiplier": 0.75,
-    "fog_near_multiplier": -5,
-    "fog_far_multiplier": 0.5
+    "environmental_lighting_multiplier": 0.75,
+    "fog_brightness_multiplier": 0.75,
+    "fog_near_multiplier": 0.75,
+    "fog_far_multiplier": 1.0
   },
   "color_grading": {
-    "saturation": 0.5,
+    "saturation": 0.75,
     "rubedo": 0,
     "temperature": 55,
     "threshold": 0.7,

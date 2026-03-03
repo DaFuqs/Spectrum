@@ -71,38 +71,28 @@ public class SpectrumClientEventListeners {
 	}
 	
 	@SubscribeEvent
-	private static void modifyFogDistance(ViewportEvent.RenderFog event) {
+	private static void renderFog(ViewportEvent.RenderFog event) {
 		EnvironmentalRendering.RenderState state = EnvironmentalRendering.getRenderState();
 		if (state.active()) {
-			float farPlaneDistance = event.getFarPlaneDistance();
-			float originalFarPlaneDistance = farPlaneDistance;
-			
-			EnvironmentalData currentEnvironmentalData = EnvironmentalRendering.getCurrentEnvironmentalData();
-			farPlaneDistance = farPlaneDistance * currentEnvironmentalData.farFogMultiplier();
-			
 			if (state.ultradark()) {
 				event.setFogShape(FogShape.SPHERE);
-				farPlaneDistance = Math.min(farPlaneDistance * 1.25F, originalFarPlaneDistance);
 			}
-			
-			event.setNearPlaneDistance(state.ultradark()
-					? currentEnvironmentalData.nearFogDistanceMultiplier() * event.getNearPlaneDistance()
-					: event.getNearPlaneDistance() * (currentEnvironmentalData.nearFogDistanceMultiplier() / 10)
-			);
-			event.setFarPlaneDistance(farPlaneDistance);
+			EnvironmentalData currentEnvironmentalData = EnvironmentalRendering.getCurrentEnvironmentalData();
+			event.setNearPlaneDistance(event.getNearPlaneDistance() * currentEnvironmentalData.nearFogDistanceMultiplier());
+			event.setFarPlaneDistance(event.getFarPlaneDistance() * currentEnvironmentalData.farFogDistanceMultiplier());
 			
 			event.setCanceled(true);
 		}
 	}
 	
 	@SubscribeEvent
-	private static void modifyFogColor(ViewportEvent.ComputeFogColor event) {
+	private static void computeFogColor(ViewportEvent.ComputeFogColor event) {
 		if (!EnvironmentalRendering.getRenderState().active()) {
 			return;
 		}
 		
 		EnvironmentalData environmentalData = EnvironmentalRendering.getCurrentEnvironmentalData();
-		float brightnessMultiplier = environmentalData.brightnessMultiplier();
+		float brightnessMultiplier = environmentalData.fogBrightnessMultiplier();
 		if (brightnessMultiplier < 1) {
 			float red = event.getRed() * brightnessMultiplier;
 			float green = event.getGreen() * brightnessMultiplier;

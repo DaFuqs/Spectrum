@@ -96,13 +96,13 @@ public class EnvironmentalRendering {
 	}
 	
 	private static void processAndAcceptEnvironmentalData(BlockPos ref, float[] env) {
-		var depthDarkening = 0F;
-		var topSpace = client.level.getMaxBuildHeight() - ref.getY();
+		float depthDarkening = 0F;
+		int topSpace = client.level.getMaxBuildHeight() - ref.getY();
 		depthDarkening += Mth.clampedLerp(0.334F, 0F, topSpace / 48F);
 		
-		var bottomSpace = ref.getY() - client.level.getMinBuildHeight();
+		int bottomSpace = ref.getY() - client.level.getMinBuildHeight();
 		depthDarkening += Mth.clampedLerp(0.667F, 0F, bottomSpace / 64F);
-		var depthFog = Mth.clampedLerp(0.337F, 1F, bottomSpace / 48F);
+		float depthFog = Mth.clampedLerp(0.337F, 1F, bottomSpace / 48F);
 		
 		env[0] = Math.clamp(env[0] + depthDarkening / 2F, 0, 1);
 		env[1] = Math.clamp(env[1] - depthDarkening / 3F, 0.01F, 1);

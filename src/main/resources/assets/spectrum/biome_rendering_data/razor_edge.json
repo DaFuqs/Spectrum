@@ -1,9 +1,9 @@
 {
   "biome": "spectrum:razor_edge",
   "environmental_data": {
-    "darkening": 0,
-    "brightness_multiplier": 0.8,
-    "fog_near_multiplier": -2.25,
-    "fog_far_multiplier": 1.5
+    "environmental_lighting_multiplier": 0.9,
+    "fog_brightness_multiplier": 0.8,
+    "fog_near_multiplier": 0.5,
+    "fog_far_multiplier": 0.75
   }
 }

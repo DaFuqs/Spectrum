@@ -21,13 +21,13 @@ public class SpectrumEnvironmentalDataOverrides {
 		
 		EnvironmentalDataOverride.register(new EnvironmentalDataOverride(hasMobEffect(SpectrumStatusEffects.FRENZY),
 						new EnvironmentalDataOverride.ColorData(0xdf420d, 0.1F),
-						new EnvironmentalData(0.1F, -0.1F, EnvironmentalDataOverride.NOOP.nearFogDistanceMultiplier(), EnvironmentalDataOverride.NOOP.farFogMultiplier()),
+						new EnvironmentalData(0.1F, -0.1F, EnvironmentalDataOverride.NOOP.nearFogDistanceMultiplier(), EnvironmentalDataOverride.NOOP.farFogDistanceMultiplier()),
 						10)
 		);
 
         EnvironmentalDataOverride.register(new EnvironmentalDataOverride(hasMobEffect(SpectrumStatusEffects.ETERNAL_SLUMBER),
                         new EnvironmentalDataOverride.ColorData(SpectrumStatusEffects.ETERNAL_SLUMBER_COLOR, 0.65F),
-                        new EnvironmentalData(EnvironmentalDataOverride.NOOP.darkening(), EnvironmentalDataOverride.NOOP.brightnessMultiplier(), -1.0F, -0.334F),
+                        new EnvironmentalData(EnvironmentalDataOverride.NOOP.environmentalLightingMultiplier(), EnvironmentalDataOverride.NOOP.fogBrightnessMultiplier(), -1.0F, -0.334F),
                         15)
         );
 

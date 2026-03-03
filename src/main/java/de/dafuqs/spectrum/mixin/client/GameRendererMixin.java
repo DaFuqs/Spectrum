@@ -19,7 +19,7 @@ public abstract class GameRendererMixin {
 		if (EnvironmentalRendering.getRenderState().ultradark()) {
 			original /= 6F;
 		}
-		original *= 1F - EnvironmentalRendering.getCurrentEnvironmentalData().darkening();
+		original *= EnvironmentalRendering.getCurrentEnvironmentalData().environmentalLightingMultiplier();
 		
 		return original;
 	}

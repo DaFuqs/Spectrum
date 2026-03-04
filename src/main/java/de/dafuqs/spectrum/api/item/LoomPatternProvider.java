@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.entity.*;
 
 import java.util.*;
 
-// TODO: still needed? => LoomPattern component
+// TODO: LoomPattern component in 1.21.11
 public interface LoomPatternProvider {
 	
 	Component PATTERN_AVAILABLE_TOOLTIP_TEXT = Component.translatable("item.spectrum.tooltip.loom_pattern_available").withStyle(ChatFormatting.GRAY);

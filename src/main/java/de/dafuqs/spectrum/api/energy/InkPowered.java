@@ -14,6 +14,7 @@ import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.*;
+import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
@@ -154,9 +155,10 @@ public interface InkPowered {
 			return true;
 		}
 		
+		// TODO: make this a status effect tag
 		if(SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.MALUM_ID)) {
-			var effect = BuiltInRegistries.MOB_EFFECT.get(ResourceLocation.parse("malum:silenced"));
-			if (player.hasEffect(BuiltInRegistries.MOB_EFFECT.wrapAsHolder(effect))) {
+			MobEffect effect = BuiltInRegistries.MOB_EFFECT.get(ResourceLocation.parse("malum:silenced"));
+			if (effect != null && player.hasEffect(BuiltInRegistries.MOB_EFFECT.wrapAsHolder(effect))) {
 				return false;
 			}
 		}
@@ -232,7 +234,7 @@ public interface InkPowered {
 			if (player.getRandom().nextFloat() > (2.0 / (2 + efficiencyLevel))) {
 				return true;
 			}
-			paid = ContainerHelper.clearOrCountMatchingItems(player.getInventory(), itemCost::test, 1, false) == 1;
+			paid = ContainerHelper.clearOrCountMatchingItems(player.getInventory(), itemCost, 1, false) == 1;
 		}
 		return paid;
 	}

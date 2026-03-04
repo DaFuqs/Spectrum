@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.component.*;
 import net.minecraft.world.item.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -17,12 +18,12 @@ public record InfusedBeveragePredicate(Optional<String> variant) implements Sing
 	).apply(i, InfusedBeveragePredicate::new));
 	
 	@Override
-	public DataComponentType<InfusedBeverageComponent> componentType() {
+	public @NotNull DataComponentType<InfusedBeverageComponent> componentType() {
 		return SpectrumDataComponentTypes.INFUSED_BEVERAGE.get();
 	}
 	
 	@Override
-	public boolean matches(ItemStack stack, InfusedBeverageComponent component) {
+	public boolean matches(@NotNull ItemStack stack, @NotNull InfusedBeverageComponent component) {
 		return variant.isEmpty() || component.variant().equals(variant.get());
 	}
 }

@@ -44,8 +44,8 @@ public class SpectrumGenericContainerScreen extends AbstractContainerScreen<Gene
 		
 		var tr = this.font;
 		
-		drawContext.drawString(tr, title, titleX, titleY, RenderHelper.GREEN_COLOR, false);
-		drawContext.drawString(tr, this.playerInventoryTitle, inventoryX, inventoryLabelY, RenderHelper.GREEN_COLOR, false);
+		drawContext.drawString(tr, title, titleX, titleY, RenderHelper.SPECTRUM_CONTAINER_TEXT_COLOR, false);
+		drawContext.drawString(tr, this.playerInventoryTitle, inventoryX, inventoryLabelY, RenderHelper.SPECTRUM_CONTAINER_TEXT_COLOR, false);
 	}
 	
 	

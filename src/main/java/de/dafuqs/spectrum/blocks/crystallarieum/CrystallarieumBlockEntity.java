@@ -211,7 +211,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		
 		this.fluidStorage.readFromNBT(registryLookup, nbt);
 		this.canWork = nbt.getBoolean("CanWork");
-		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
+		this.ownerUUID = PlayerOwnedWithName.readOwnerUUID(nbt);
 		this.currentCatalyst = CrystallarieumCatalyst.EMPTY;
 		this.currentRecipe = MultiblockCrafter.getRecipeHolderFromNbt(level, nbt, CrystallarieumRecipe.class);
 		this.currentGrowthStageTicks = nbt.getInt("CurrentGrowthStageDuration");

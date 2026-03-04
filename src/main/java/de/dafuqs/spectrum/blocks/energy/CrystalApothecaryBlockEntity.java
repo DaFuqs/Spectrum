@@ -28,7 +28,7 @@ import net.minecraft.world.phys.*;
 
 import java.util.*;
 
-public class CrystalApothecaryBlockEntity extends RandomizableContainerBlockEntity implements PlayerOwnedWithName, BlockPosEventQueue.Callback<BlockPosEventQueue.EventEntry> {
+public class CrystalApothecaryBlockEntity extends RandomizableContainerBlockEntity implements PlayerOwnedWithName, BlockPosEventQueue.Callback<BlockPosEventQueue.Entry> {
 	
 	private static final int RANGE = 12;
 	private static final ItemStack HARVEST_ITEMSTACK = ItemStack.EMPTY;
@@ -193,11 +193,11 @@ public class CrystalApothecaryBlockEntity extends RandomizableContainerBlockEnti
 		if (!this.tryLoadLootTable(nbt)) {
 			ContainerHelper.loadAllItems(nbt, this.inventory, registryLookup);
 		}
-		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
+		this.ownerUUID = PlayerOwnedWithName.readOwnerUUID(nbt);
 		if (nbt.contains("ListenerPaused")) {
 			this.listenerPaused = nbt.getBoolean("ListenerPaused");
 		}
-		this.ownerName = PlayerOwned.readOwnerName(nbt);
+		this.ownerName = PlayerOwnedWithName.readOwnerName(nbt);
 		if (nbt.contains("LastWorldTime")) {
 			this.compensationWorldTime = nbt.getLong("LastWorldTime");
 		}
@@ -214,7 +214,7 @@ public class CrystalApothecaryBlockEntity extends RandomizableContainerBlockEnti
 			nbt.putLong("LastWorldTime", this.getLevel().getGameTime());
 		}
 		PlayerOwned.writeOwnerUUID(nbt, this.ownerUUID);
-		PlayerOwned.writeOwnerName(nbt, this.ownerName);
+		PlayerOwnedWithName.writeOwnerName(nbt, this.ownerName);
 	}
 	
 	@Override
@@ -252,9 +252,9 @@ public class CrystalApothecaryBlockEntity extends RandomizableContainerBlockEnti
 	}
 	
 	@Override
-	public void triggerEvent(Level world, GameEventListener listener, BlockPosEventQueue.EventEntry entry) {
+	public void triggerEvent(Level world, GameEventListener listener, BlockPosEventQueue.Entry entry) {
 		if (listener instanceof BlockPosEventQueue && this.getLevel() != null) {
-			BlockPos eventPos = entry.eventSourceBlockPos;
+			BlockPos eventPos = entry.eventSourceBlockPos();
 			BlockState eventState = world.getBlockState(eventPos);
 			if (eventState.is(SpectrumBlockTags.CRYSTAL_APOTHECARY_HARVESTABLE)) {
 				// harvest

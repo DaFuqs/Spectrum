@@ -358,7 +358,7 @@ public abstract class LivingEntityMixin {
 		if ((!entity.hasEffect(SpectrumMobEffects.IMMUNITY)) && AetherGracedNectarGlovesItem.testEffectFor(entity, effectType)) {
 			var cost = (effect.getAmplifier() + 1) * AetherGracedNectarGlovesItem.HARMFUL_EFFECT_COST;
 			
-			if (StatusEffectHelper.isSevere(effect))
+			if (MobEffectHelper.isSevere(effect))
 				cost *= 3;
 			
 			if (AetherGracedNectarGlovesItem.tryBlockEffect(entity, cost)) {
@@ -425,6 +425,7 @@ public abstract class LivingEntityMixin {
 		}
 	}
 	
+	// TODO: move to event
 	@Inject(method = "hurt", at = @At(value = "INVOKE", target = "net/minecraft/world/entity/LivingEntity.isDeadOrDying ()Z", ordinal = 1))
 	private void spectrum$TriggerArmorWithHitEffect(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		LivingEntity thisEntity = (LivingEntity) (Object) this;

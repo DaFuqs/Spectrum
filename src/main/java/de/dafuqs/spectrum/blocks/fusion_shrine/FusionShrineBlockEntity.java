@@ -212,7 +212,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		
 		this.craftingTime = nbt.getShort("CraftingTime");
 		this.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
-		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
+		this.ownerUUID = PlayerOwnedWithName.readOwnerUUID(nbt);
 		
 		this.currentRecipe = null;
 		this.currentRecipe = MultiblockCrafter.getRecipeHolderFromNbt(level, nbt, FusionShrineRecipe.class);

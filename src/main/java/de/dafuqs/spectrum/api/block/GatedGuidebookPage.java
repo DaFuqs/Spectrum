@@ -21,6 +21,7 @@ public interface GatedGuidebookPage {
 			SpectrumCommon.locate("creating_life/egg_laying_wooly_pig"), SpectrumCommon.locate("midgame/remember_egg_laying_wooly_pig") // recipe should only be revealed after remembering it
 	);
 	
+	// TODO: use
 	static void runSanityCheck(ResourceLocation entryId, int pageNr, String pageAdvancement, GatedRecipe<?>... recipes) {
 		if (!FMLEnvironment.production) {
 			if (pageAdvancement != null && !pageAdvancement.isEmpty()) {

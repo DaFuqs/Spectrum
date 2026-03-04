@@ -8,7 +8,6 @@ import net.minecraft.network.codec.*;
 public record MemoryComponent(int ticksToManifest, boolean spawnAsAdult, boolean brokenPromise, boolean unrecognizable) {
 	
 	// zero or negative ticks to manifest: never hatch
-	
 	public static final MemoryComponent DEFAULT = new MemoryComponent(-1, false, false, false);
 	
 	public static final Codec<MemoryComponent> CODEC = RecordCodecBuilder.create(i -> i.group(

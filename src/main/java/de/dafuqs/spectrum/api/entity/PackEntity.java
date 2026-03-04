@@ -95,14 +95,11 @@ public interface PackEntity<T extends Mob & PackEntity<T>> {
 						.findAny();
 			}
 			
-			if (newLeader.isPresent()) {
-				E leader = newLeader.get();
-				possiblePackmates.stream()
-						.filter((e) -> e != leader)
-						.filter((e) -> !e.hasLeader())
-						.limit(leader.getMaxGroupSize() - leader.getGroupSize())
-						.forEach((e) -> e.joinGroupOf(leader));
-			}
+			newLeader.ifPresent(leader -> possiblePackmates.stream()
+					.filter((e) -> e != leader)
+					.filter((e) -> !e.hasLeader())
+					.limit(leader.getMaxGroupSize() - leader.getGroupSize())
+					.forEach((e) -> e.joinGroupOf(leader)));
 		}
 		
 		@Override

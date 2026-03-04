@@ -60,5 +60,4 @@ public interface InkStorageItem<PStorage extends InkStorage> {
 		setEnergyStorage(stack, storage);
 	}
 	
-	
 }

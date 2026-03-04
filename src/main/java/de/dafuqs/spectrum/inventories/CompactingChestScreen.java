@@ -8,6 +8,7 @@ import net.minecraft.client.gui.screens.inventory.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
+import org.jetbrains.annotations.*;
 
 public class CompactingChestScreen extends AbstractContainerScreen<CompactingChestScreenHandler> {
 	
@@ -21,8 +22,6 @@ public class CompactingChestScreen extends AbstractContainerScreen<CompactingChe
 	@Override
 	protected void init() {
 		super.init();
-		
-		//client.keyboard.setRepeatEvents(true);
 		setupInputFields();
 	}
 	
@@ -30,12 +29,10 @@ public class CompactingChestScreen extends AbstractContainerScreen<CompactingChe
 		int x = (this.width - this.imageWidth) / 2 + 3;
 		int y = (this.height - this.imageHeight) / 2 + 3;
 		
-		Button craftingModeButton = Button.builder(Component.literal("Mode"), this::craftingModeButtonPressed)
+		addWidget(Button.builder(Component.literal("Mode"), this::craftingModeButtonPressed)
 				.size(16, 16)
 				.pos(x + 154, y + 6)
-				.build();
-		//new ButtonWidget(x + 154, y + 6, 16, 16, Text.literal("Mode"), this::craftingModeButtonPressed);
-		addWidget(craftingModeButton);
+				.build());
 	}
 	
 	private void craftingModeButtonPressed(Button buttonWidget) {
@@ -50,9 +47,8 @@ public class CompactingChestScreen extends AbstractContainerScreen<CompactingChe
 		Component title = this.title;
 		int inventoryX = 8;
 		int intInventoryY = 83;
-		
-		drawContext.drawString(this.font, title, titleX, titleY, RenderHelper.GREEN_COLOR, false);
-		drawContext.drawString(this.font, this.playerInventoryTitle, inventoryX, intInventoryY, RenderHelper.GREEN_COLOR, false);
+		drawContext.drawString(this.font, title, titleX, titleY, RenderHelper.SPECTRUM_CONTAINER_TEXT_COLOR, false);
+		drawContext.drawString(this.font, this.playerInventoryTitle, inventoryX, intInventoryY, RenderHelper.SPECTRUM_CONTAINER_TEXT_COLOR, false);
 	}
 	
 	@Override
@@ -66,7 +62,7 @@ public class CompactingChestScreen extends AbstractContainerScreen<CompactingChe
 	}
 	
 	@Override
-	public void render(GuiGraphics drawContext, int mouseX, int mouseY, float delta) {
+	public void render(@NotNull GuiGraphics drawContext, int mouseX, int mouseY, float delta) {
 		renderBackground(drawContext, mouseX, mouseY, delta);
 		super.render(drawContext, mouseX, mouseY, delta);
 		

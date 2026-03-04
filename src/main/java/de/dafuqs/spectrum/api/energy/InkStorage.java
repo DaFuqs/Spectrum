@@ -17,6 +17,7 @@ import static de.dafuqs.spectrum.helpers.Support.*;
 /**
  * This interface defines that an object can
  * store pigment energy and how much
+ * TODO: migrate to capability
  **/
 public interface InkStorage extends Clearable {
 	

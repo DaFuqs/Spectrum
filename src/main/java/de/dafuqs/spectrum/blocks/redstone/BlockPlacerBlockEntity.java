@@ -46,7 +46,7 @@ public class BlockPlacerBlockEntity extends DispenserBlockEntity implements Play
 	@Override
 	public void loadAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
 		super.loadAdditional(nbt, registryLookup);
-		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
+		this.ownerUUID = PlayerOwnedWithName.readOwnerUUID(nbt);
 	}
 	
 	@Override

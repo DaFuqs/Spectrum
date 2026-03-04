@@ -347,7 +347,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		this.craftingTime = nbt.getShort("CraftingTime");
 		this.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
 		this.inventoryChanged = true;
-		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
+		this.ownerUUID = PlayerOwnedWithName.readOwnerUUID(nbt);
 		this.validStructure = nbt.getBoolean("validStructure");
 		if (nbt.contains("MultiblockRotation")) {
 			try {

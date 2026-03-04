@@ -9,9 +9,11 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
 
-public class BlockPosEventQueue extends EventQueue<BlockPosEventQueue.EventEntry> {
+public class BlockPosEventQueue extends EventQueue<BlockPosEventQueue.Entry> {
 	
-	public BlockPosEventQueue(PositionSource positionSource, int range, Callback<EventEntry> listener) {
+	public record Entry(Holder<GameEvent> gameEvent, BlockPos eventSourceBlockPos, int distance) { }
+	
+	public BlockPosEventQueue(PositionSource positionSource, int range, Callback<Entry> listener) {
 		super(positionSource, range, listener);
 	}
 	
@@ -19,22 +21,10 @@ public class BlockPosEventQueue extends EventQueue<BlockPosEventQueue.EventEntry
 	public void acceptEvent(Level world, GameEvent.ListenerInfo event, Vec3 sourcePos) {
 		if (world instanceof ServerLevel) {
 			Vec3 emitterPos = event.source();
-			EventEntry eventEntry = new EventEntry(event.gameEvent(), BlockPos.containing(emitterPos.x, emitterPos.y, emitterPos.z), Mth.floor(event.source().distanceTo(sourcePos)));
-			int delay = eventEntry.distance * 2;
-			this.schedule(eventEntry, delay);
+			Entry entry = new Entry(event.gameEvent(), BlockPos.containing(emitterPos.x, emitterPos.y, emitterPos.z), Mth.floor(event.source().distanceTo(sourcePos)));
+			int delay = entry.distance * 2;
+			this.schedule(entry, delay);
 			TypedTransmissionPayload.playTransmissionParticle((ServerLevel) world, new TypedTransmission(emitterPos, this.positionSource, delay, TypedTransmission.Variant.BLOCK_POS));
-		}
-	}
-	
-	public static class EventEntry {
-		public final Holder<GameEvent> gameEvent;
-		public final BlockPos eventSourceBlockPos;
-		public final int distance;
-		
-		public EventEntry(Holder<GameEvent> gameEvent, BlockPos eventSourceBlockPos, int distance) {
-			this.gameEvent = gameEvent;
-			this.eventSourceBlockPos = eventSourceBlockPos;
-			this.distance = distance;
 		}
 	}
 	

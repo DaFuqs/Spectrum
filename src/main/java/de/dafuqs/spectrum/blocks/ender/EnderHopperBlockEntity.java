@@ -208,8 +208,8 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 	public void loadAdditional(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider registryLookup) {
 		super.loadAdditional(tag, registryLookup);
 		
-		this.ownerUUID = PlayerOwned.readOwnerUUID(tag);
-		this.ownerName = PlayerOwned.readOwnerName(tag);
+		this.ownerUUID = PlayerOwnedWithName.readOwnerUUID(tag);
+		this.ownerName = PlayerOwnedWithName.readOwnerName(tag);
 	}
 	
 	@Override
@@ -217,7 +217,7 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 		super.saveAdditional(tag, registryLookup);
 		
 		PlayerOwned.writeOwnerUUID(tag, this.ownerUUID);
-		PlayerOwned.writeOwnerName(tag, this.ownerName);
+		PlayerOwnedWithName.writeOwnerName(tag, this.ownerName);
 	}
 	
 }

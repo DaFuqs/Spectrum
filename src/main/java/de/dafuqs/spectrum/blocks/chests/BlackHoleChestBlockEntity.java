@@ -261,8 +261,8 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 			return;
 		}
 		
-		if (entry instanceof ExperienceOrbEventQueue.EventEntry experienceEntry) {
-			ExperienceOrb experienceOrbEntity = experienceEntry.experienceOrbEntity;
+		if (entry instanceof ExperienceOrbEventQueue.Entry experienceEntry) {
+			ExperienceOrb experienceOrbEntity = experienceEntry.experienceOrbEntity();
 			if (experienceOrbEntity != null && experienceOrbEntity.isAlive() && hasExperienceStorageItem()) {
 				ExperienceStorageItem.addStoredExperience(world.registryAccess(), this.inventory.get(EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT), experienceOrbEntity.getValue()); // overflow experience is void, to not lag the world on large farms
 				
@@ -270,8 +270,8 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 				world.playSound(null, experienceOrbEntity.blockPosition(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundSource.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.9F + world.random.nextFloat() * 0.2F);
 				experienceOrbEntity.remove(Entity.RemovalReason.DISCARDED);
 			}
-		} else if (entry instanceof ItemEntityEventQueue.EventEntry itemEntry) {
-			ItemEntity itemEntity = itemEntry.itemEntity;
+		} else if (entry instanceof ItemEntityEventQueue.Entry itemEntry) {
+			ItemEntity itemEntity = itemEntry.itemEntity();
 			if (itemEntity != null && itemEntity.isAlive() && ((ItemEntityAccessor) itemEntity).getPickupDelay() != 32767 && this.acceptsItem(itemEntity.getItem().getItem())) {
 				int previousAmount = itemEntity.getItem().getCount();
 				ItemStack remainingStack = InventoryHelper.smartAddToInventory(itemEntity.getItem(), this, Direction.UP);
@@ -380,7 +380,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	}
 	
 	@Override
-	public ItemStack removeItem(int slot, int amount) {
+	public @NotNull ItemStack removeItem(int slot, int amount) {
 		var stack = super.removeItem(slot, amount);
 		if (!stack.isEmpty())
 			updateFullState(false);
@@ -388,7 +388,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	}
 	
 	@Override
-	public ItemStack removeItemNoUpdate(int slot) {
+	public @NotNull ItemStack removeItemNoUpdate(int slot) {
 		var stack = super.removeItemNoUpdate(slot);
 		if (!stack.isEmpty())
 			updateFullState(false);

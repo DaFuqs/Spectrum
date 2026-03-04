@@ -9,6 +9,7 @@ import net.minecraft.network.codec.*;
 import net.minecraft.server.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.phys.*;
+import org.jetbrains.annotations.*;
 
 import java.util.concurrent.atomic.*;
 
@@ -27,7 +28,7 @@ public record CommandPredicate(String command) implements CommandSource {
 	}
 	
 	@Override
-	public void sendSystemMessage(Component message) {
+	public void sendSystemMessage(@NotNull Component message) {
 	}
 	
 	@Override

@@ -19,12 +19,12 @@ public class SpectrumGameEvents {
 	
 	public static Holder<GameEvent> WIRELESS_REDSTONE_SIGNAL = register("wireless_redstone_signal", 16);
 	
-	public static void register(IEventBus eventBus) {
-		REGISTRAR.register(eventBus);
+	private static Holder<GameEvent> register(String name, int range) {
+		return REGISTRAR.register(name, () -> new GameEvent(range));
 	}
 	
-	private static Holder<GameEvent> register(String id, int range) {
-		return REGISTRAR.register(id, () -> new GameEvent(range));
+	public static void register(IEventBus eventBus) {
+		REGISTRAR.register(eventBus);
 	}
 	
 }

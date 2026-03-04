@@ -65,10 +65,10 @@ public class DropSelfResonanceProcessor extends ResonanceProcessor {
 	public void copyNbt(BlockEntity blockEntity, ItemStack convertedStack) {
 		CompoundTag newNbt = new CompoundTag();
 		
-		CompoundTag BlockEntityNbt = blockEntity.saveCustomAndMetadata(blockEntity.getLevel().registryAccess());
+		CompoundTag blockEntityNbt = blockEntity.saveCustomAndMetadata(blockEntity.getLevel().registryAccess());
 		for (String s : nbtToCopy) {
-			if (BlockEntityNbt.contains(s)) {
-				newNbt.put(s, BlockEntityNbt.get(s));
+			if (blockEntityNbt.contains(s)) {
+				newNbt.put(s, blockEntityNbt.get(s));
 			}
 		}
 		

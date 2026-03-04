@@ -6,6 +6,7 @@ import net.minecraft.world.item.*;
 
 import java.util.function.*;
 
+// TODO: remove
 public class ComponentHelper {
 	
 	public static <T> void setOrRemove(ItemStack stack, Supplier<DataComponentType<T>> type, T value, boolean set) {

@@ -39,8 +39,8 @@ public class CinderhearthScreen extends AbstractContainerScreen<CinderhearthScre
 		int titleY = 6;
 		Component title = this.title;
 		
-		drawContext.drawString(this.font, title, titleX, titleY, RenderHelper.GREEN_COLOR, false);
-		drawContext.drawString(this.font, this.playerInventoryTitle, ColorPickerScreenHandler.PLAYER_INVENTORY_START_X, ColorPickerScreenHandler.PLAYER_INVENTORY_START_Y - 10, RenderHelper.GREEN_COLOR, false);
+		drawContext.drawString(this.font, title, titleX, titleY, RenderHelper.SPECTRUM_CONTAINER_TEXT_COLOR, false);
+		drawContext.drawString(this.font, this.playerInventoryTitle, ColorPickerScreenHandler.PLAYER_INVENTORY_START_X, ColorPickerScreenHandler.PLAYER_INVENTORY_START_Y - 10, RenderHelper.SPECTRUM_CONTAINER_TEXT_COLOR, false);
 	}
 	
 	@Override

@@ -91,7 +91,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 	public void loadAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
 		super.loadAdditional(nbt, registryLookup);
 		
-		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
+		this.ownerUUID = PlayerOwnedWithName.readOwnerUUID(nbt);
 		if (nbt.contains("MemoryItem", Tag.TAG_COMPOUND)) {
 			this.memoryItemStack = ItemStack.parseOptional(registryLookup, nbt.getCompound("MemoryItem"));
 		}

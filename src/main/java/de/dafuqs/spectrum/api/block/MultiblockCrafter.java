@@ -19,21 +19,6 @@ public interface MultiblockCrafter extends Upgradeable, PlayerOwned {
 	
 	Vec3 RECIPE_STACK_VELOCITY = new Vec3(0.0, 0.3, 0.0);
 	
-	@SuppressWarnings("unchecked")
-	static <T extends Recipe<?>> @Nullable T getRecipeFromNbt(@Nullable Level world, CompoundTag nbt, Class<T> recipeClass) {
-		if (nbt.contains("CurrentRecipe")) {
-			String recipeString = nbt.getString("CurrentRecipe");
-			if (!recipeString.isEmpty()) {
-				var recipe = SpectrumCommon.getRecipeManager(world).flatMap(m -> m.byKey(ResourceLocation.parse(recipeString)));
-				
-				if (recipe.isPresent() && recipeClass.isInstance(recipe.get())) {
-					return (T) recipe.get().value();
-				}
-			}
-		}
-		return null;
-	}
-	
 	static @Nullable RecipeHolder<?> getRecipeHolderFromNbt(@Nullable Level world, CompoundTag nbt) {
 		if (nbt.contains("CurrentRecipe")) {
 			String recipeString = nbt.getString("CurrentRecipe");

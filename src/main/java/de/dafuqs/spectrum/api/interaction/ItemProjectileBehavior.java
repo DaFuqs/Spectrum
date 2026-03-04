@@ -83,7 +83,6 @@ public interface ItemProjectileBehavior {
 	// TODO: check and use return value
 	ItemStack onBlockHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, BlockHitResult hitResult);
 	
-	
 	static ItemProjectileBehavior damaging(float damage, boolean destroyItemOnHit) {
 		return new Damaging() {
 			@Override

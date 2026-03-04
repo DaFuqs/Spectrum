@@ -7,7 +7,6 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screens.inventory.*;
-import net.minecraft.network.chat.*;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
@@ -42,8 +41,8 @@ public class PotionWorkshopScreen extends AbstractContainerScreen<PotionWorkshop
 		int playerInventoryX = 8;
 		int playerInventoryY = 109;
 		
-		drawContext.drawString(this.font, title, titleX, titleY, RenderHelper.GREEN_COLOR, false);
-		drawContext.drawString(this.font, this.playerInventoryTitle, playerInventoryX, playerInventoryY, RenderHelper.GREEN_COLOR, false);
+		drawContext.drawString(this.font, title, titleX, titleY, RenderHelper.SPECTRUM_CONTAINER_TEXT_COLOR, false);
+		drawContext.drawString(this.font, this.playerInventoryTitle, playerInventoryX, playerInventoryY, RenderHelper.SPECTRUM_CONTAINER_TEXT_COLOR, false);
 	}
 	
 	@Override

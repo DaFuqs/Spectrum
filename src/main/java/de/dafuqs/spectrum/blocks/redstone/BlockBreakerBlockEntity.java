@@ -40,7 +40,7 @@ public class BlockBreakerBlockEntity extends BlockEntity implements PlayerOwned 
 	public void loadAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
 		super.loadAdditional(nbt, registryLookup);
 		
-		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
+		this.ownerUUID = PlayerOwnedWithName.readOwnerUUID(nbt);
 	}
 	
 }

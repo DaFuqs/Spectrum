@@ -416,7 +416,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 		super.loadAdditional(nbt, registryLookup);
 		this.inventory = NonNullList.withSize(INVENTORY_SIZE, ItemStack.EMPTY);
 		ContainerHelper.loadAllItems(nbt, this.inventory, registryLookup);
-		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
+		this.ownerUUID = PlayerOwnedWithName.readOwnerUUID(nbt);
 		if (nbt.contains("LastBrewedRecipe") && this.getLevel() != null) {
 			var id = ResourceLocation.parse(nbt.getString("LastBrewedRecipe"));
 			var optRecipe = registryLookup.lookup(Registries.RECIPE)

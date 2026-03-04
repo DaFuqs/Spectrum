@@ -10,7 +10,7 @@ import java.util.*;
 public interface EntityColorProcessor<E extends Entity> {
 	
 	/**
-	 * Logic for coloring an entity type in a dyecolor
+	 * Logic for coloring an entity type in a dye color
 	 *
 	 * @param entity   The entity to be colored
 	 * @param dyeColor The color to color the entity in

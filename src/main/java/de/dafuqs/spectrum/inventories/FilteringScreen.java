@@ -34,8 +34,8 @@ public class FilteringScreen extends AbstractContainerScreen<FilteringScreenHand
 		int inventoryX = 8;
 		int intInventoryY = 41 + ((int) Math.round(rows * 1.5) * STRIP_HEIGHT);
 		
-		drawContext.drawString(this.font, title, titleX, titleY, RenderHelper.GREEN_COLOR, false);
-		drawContext.drawString(this.font, this.playerInventoryTitle, inventoryX, intInventoryY, RenderHelper.GREEN_COLOR, false);
+		drawContext.drawString(this.font, title, titleX, titleY, RenderHelper.SPECTRUM_CONTAINER_TEXT_COLOR, false);
+		drawContext.drawString(this.font, this.playerInventoryTitle, inventoryX, intInventoryY, RenderHelper.SPECTRUM_CONTAINER_TEXT_COLOR, false);
 	}
 	
 	@Override

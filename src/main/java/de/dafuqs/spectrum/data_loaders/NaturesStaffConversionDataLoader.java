@@ -27,7 +27,7 @@ public class NaturesStaffConversionDataLoader extends SimpleJsonResourceReloadLi
 	}
 	
 	@Override
-	protected void apply(Map<ResourceLocation, JsonElement> prepared, ResourceManager manager, ProfilerFiller profiler) {
+	protected void apply(Map<ResourceLocation, JsonElement> prepared, @NotNull ResourceManager manager, @NotNull ProfilerFiller profiler) {
 		CONVERSIONS.clear();
 		prepared.forEach((identifier, jsonElement) -> {
 			JsonObject jsonObject = jsonElement.getAsJsonObject();

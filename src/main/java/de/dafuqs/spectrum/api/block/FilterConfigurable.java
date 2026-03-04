@@ -226,18 +226,6 @@ public interface FilterConfigurable {
 		}
 	}
 	
-	static void writeScreenOpeningData(RegistryFriendlyByteBuf buf, FilterConfigurable configurable) {
-		writeScreenOpeningData(buf, configurable.getItemFilters(), configurable.getFilterRows(), configurable.getSlotsPerRow(), configurable.getDrawnSlots());
-	}
-	
-	static void writeScreenOpeningData(RegistryFriendlyByteBuf buf, List<ItemStack> filterItems, int rows, int slotsPerRow, int drawnSlots) {
-		buf.writeInt(filterItems.size());
-		ItemStack.LIST_STREAM_CODEC.encode(buf, filterItems);
-		buf.writeInt(rows);
-		buf.writeInt(slotsPerRow);
-		buf.writeInt(drawnSlots);
-	}
-	
 	default boolean hasEmptyFilter() {
 		return getItemFilters().stream().allMatch(ItemStack::isEmpty);
 	}

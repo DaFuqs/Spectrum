@@ -57,7 +57,7 @@ public class MessageToast implements Toast {
 			
 			for (Iterator<FormattedCharSequence> var12 = wrappedTitle.iterator(); var12.hasNext(); m += 9) {
 				FormattedCharSequence orderedText = var12.next();
-				drawContext.drawString(textRenderer, orderedText, 30, m, RenderHelper.GREEN_COLOR | l, false);
+				drawContext.drawString(textRenderer, orderedText, 30, m, RenderHelper.SPECTRUM_CONTAINER_TEXT_COLOR | l, false);
 			}
 		} else {
 			l = Mth.floor(Mth.clamp((float) (startTime - toastTimeMilliseconds / 2) / 300.0F, 0.0F, 1.0F) * 252.0F) << 24 | 67108864;

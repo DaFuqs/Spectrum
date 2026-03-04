@@ -8,6 +8,7 @@ import net.minecraft.world.entity.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
+import org.jetbrains.annotations.*;
 
 /**
  * Since Sucking chests can react to both spawned items and experience
@@ -25,7 +26,7 @@ public class ItemAndExperienceEventQueue implements GameEventListener {
 	}
 	
 	@Override
-	public PositionSource getListenerSource() {
+	public @NotNull PositionSource getListenerSource() {
 		return this.itemListener.eventQueue.getListenerSource();
 	}
 	
@@ -51,7 +52,7 @@ public class ItemAndExperienceEventQueue implements GameEventListener {
 		this.experienceListener.eventQueue.tick(world);
 	}
 	
-	public static class ItemEntityEventListener implements EventQueue.Callback<ItemEntityEventQueue.EventEntry> {
+	public static class ItemEntityEventListener implements EventQueue.Callback<ItemEntityEventQueue.Entry> {
 		public final EventQueue.Callback<Object> parentListener;
 		public final ItemEntityEventQueue eventQueue;
 		
@@ -66,12 +67,12 @@ public class ItemAndExperienceEventQueue implements GameEventListener {
 		}
 		
 		@Override
-		public void triggerEvent(Level world, GameEventListener listener, ItemEntityEventQueue.EventEntry entry) {
+		public void triggerEvent(Level world, GameEventListener listener, ItemEntityEventQueue.Entry entry) {
 			this.parentListener.triggerEvent(world, listener, entry);
 		}
 	}
 	
-	public static class ExperienceOrbEventListener implements EventQueue.Callback<ExperienceOrbEventQueue.EventEntry> {
+	public static class ExperienceOrbEventListener implements EventQueue.Callback<ExperienceOrbEventQueue.Entry> {
 		public final EventQueue.Callback<Object> parentListener;
 		public final ExperienceOrbEventQueue eventQueue;
 		
@@ -86,7 +87,7 @@ public class ItemAndExperienceEventQueue implements GameEventListener {
 		}
 		
 		@Override
-		public void triggerEvent(Level world, GameEventListener listener, ExperienceOrbEventQueue.EventEntry entry) {
+		public void triggerEvent(Level world, GameEventListener listener, ExperienceOrbEventQueue.Entry entry) {
 			this.parentListener.triggerEvent(world, listener, entry);
 		}
 	}

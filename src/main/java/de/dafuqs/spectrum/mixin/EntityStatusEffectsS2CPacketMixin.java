@@ -17,7 +17,7 @@ public abstract class EntityStatusEffectsS2CPacketMixin implements EntityStatusE
 	
 	@Inject(method = "<init>(ILnet/minecraft/world/effect/MobEffectInstance;Z)V", at = @At("RETURN"))
 	public void initSevere(int entityId, MobEffectInstance effect, boolean keepFading, CallbackInfo ci) {
-		this.spectrum$severe = StatusEffectHelper.isSevere(effect);
+		this.spectrum$severe = MobEffectHelper.isSevere(effect);
 	}
 	
 	@Inject(method = "<init>(Lnet/minecraft/network/RegistryFriendlyByteBuf;)V", at = @At("RETURN"))

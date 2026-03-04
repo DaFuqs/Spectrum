@@ -7,6 +7,7 @@ import net.minecraft.network.codec.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.*;
+import org.jetbrains.annotations.*;
 
 import java.util.function.*;
 
@@ -31,7 +32,7 @@ public enum WeatherPredicate implements StringRepresentable {
 	}
 	
 	@Override
-	public String getSerializedName() {
+	public @NotNull String getSerializedName() {
 		return name().toLowerCase();
 	}
 	

@@ -19,10 +19,6 @@ public class Orientation {
 		return new Orientation(longitude, latitude);
 	}
 	
-	public static Orientation fromVector(Vec3 vector) {
-		return getVectorOrientation(vector);
-	}
-	
 	public Vec3 toVector(double r) {
 		return new Vec3(
 				r * Math.sin(latitude) * Math.cos(longitude),
@@ -41,14 +37,6 @@ public class Orientation {
 	
 	public Orientation subtract(Orientation other) {
 		return new Orientation(longitude - other.longitude, latitude - other.latitude);
-	}
-	
-	public double getLongitude() {
-		return longitude;
-	}
-	
-	public double getLatitude() {
-		return latitude;
 	}
 
 	/**

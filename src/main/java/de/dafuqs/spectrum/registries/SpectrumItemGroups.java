@@ -32,7 +32,7 @@ public class SpectrumItemGroups {
 	
 	public static final DeferredRegister<CreativeModeTab> REGISTRAR = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, SpectrumCommon.MOD_ID);
 	
-	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MAIN = REGISTRAR.register("main", () -> CreativeModeTab.builder()
+	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MAIN = REGISTRAR.register(ItemGroupIDs.MAIN_GROUP_ID.getPath(), () -> CreativeModeTab.builder()
 			.icon(() -> new ItemStack(SpectrumBlocks.PEDESTAL_ALL_BASIC))
 			.displayItems((displayContext, entries) -> {
 				entries.accept(SpectrumBlocks.PEDESTAL_ALL_BASIC, CreativeModeTab.TabVisibility.PARENT_TAB_ONLY);

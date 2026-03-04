@@ -10,6 +10,7 @@ import net.minecraft.world.phys.*;
 
 public interface AoEBreakingTool {
 	
+	// TODO: readd
 	default void afterBreakingBlock(ItemStack stack, BlockPos pos, Player player) {
 		Level world = player.level();
 		BlockHitResult hitResult = (BlockHitResult) player.pick(10, 1, false);

@@ -4,6 +4,7 @@ import net.minecraft.world.item.*;
 
 import java.util.*;
 
+// TODO: remove if possible
 public interface StackTracking {
 	
 	Optional<ItemStack> spectrum$getTrackedStack();

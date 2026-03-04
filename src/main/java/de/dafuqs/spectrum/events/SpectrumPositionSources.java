@@ -15,12 +15,12 @@ public class SpectrumPositionSources {
 	
 	public static DeferredHolder<PositionSourceType<?>, ExactPositionSource.Type> EXACT = register("exact", ExactPositionSource.Type::new);
 	
-	public static void register(IEventBus bus) {
-		REGISTRAR.register(bus);
+	private static <S extends PositionSourceType<T>, T extends PositionSource> DeferredHolder<PositionSourceType<?>, S> register(String name, Supplier<S> positionSourceType) {
+		return REGISTRAR.register(name, positionSourceType);
 	}
 	
-	private static <S extends PositionSourceType<T>, T extends PositionSource> DeferredHolder<PositionSourceType<?>, S> register(String id, Supplier<S> positionSourceType) {
-		return REGISTRAR.register(id, positionSourceType);
+	public static void register(IEventBus bus) {
+		REGISTRAR.register(bus);
 	}
 	
 }

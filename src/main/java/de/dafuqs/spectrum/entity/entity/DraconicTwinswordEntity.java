@@ -34,7 +34,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class DraconicTwinswordEntity extends BidentBaseEntity implements NonLivingAttackable {
+public class DraconicTwinswordEntity extends BidentBaseEntity {
 	
 	private static final EntityDataAccessor<Boolean> HIT = SynchedEntityData.defineId(DraconicTwinswordEntity.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> PROPELLED = SynchedEntityData.defineId(DraconicTwinswordEntity.class, EntityDataSerializers.BOOLEAN);
@@ -193,7 +193,7 @@ public class DraconicTwinswordEntity extends BidentBaseEntity implements NonLivi
 		}
 		
 		if (!attacked.onGround() && propelled) {
-			damage *= 3 + ImprovedCriticalHelper.getAddtionalCritDamageMultiplier(level().registryAccess(), stack);
+			damage *= 3 + ImprovedCriticalHelper.getAdditionalCritDamageMultiplier(level().registryAccess(), stack);
 			crit = true;
 		}
 		

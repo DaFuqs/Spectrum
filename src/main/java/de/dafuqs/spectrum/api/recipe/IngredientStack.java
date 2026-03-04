@@ -97,10 +97,10 @@ public class IngredientStack implements ICustomIngredient {
 	}
 	
 	@Override
-	public boolean test(ItemStack itemStack) {
-		return this.ingredient.test(itemStack)
-				&& this.count <= itemStack.getCount()
-				&& this.componentPredicate.test(itemStack.getComponents());
+	public boolean test(@NotNull ItemStack stack) {
+		return this.ingredient.test(stack)
+				&& this.count <= stack.getCount()
+				&& this.componentPredicate.test(stack.getComponents());
 	}
 	
 	@Override

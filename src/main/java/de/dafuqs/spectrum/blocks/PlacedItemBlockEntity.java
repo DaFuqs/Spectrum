@@ -31,7 +31,7 @@ public class PlacedItemBlockEntity extends BlockEntity implements PlayerOwned {
 		if(nbt.contains("stack")) {
 			this.stack = ItemStack.parse(registryLookup, nbt.getCompound("stack")).orElse(ItemStack.EMPTY);
 		}
-		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
+		this.ownerUUID = PlayerOwnedWithName.readOwnerUUID(nbt);
 	}
 	
 	@Override

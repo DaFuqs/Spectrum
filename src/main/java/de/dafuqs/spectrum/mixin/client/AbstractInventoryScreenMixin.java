@@ -20,12 +20,12 @@ public class AbstractInventoryScreenMixin {
 	
 	@ModifyArg(method = "renderBackgrounds", at = @At(value = "INVOKE", target = "net/minecraft/client/gui/GuiGraphics.blitSprite (Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 0))
 	private ResourceLocation spectrum$modifyWideBackground(ResourceLocation texture, @Local MobEffectInstance effect) {
-		return StatusEffectHelper.getTextureLocation(texture, effect, StatusEffectHelper.RenderType.GUI_LARGE);
+		return MobEffectHelper.getTextureLocation(texture, effect, MobEffectHelper.RenderType.GUI_LARGE);
 	}
 	
 	@ModifyArg(method = "renderBackgrounds", at = @At(value = "INVOKE", target = "net/minecraft/client/gui/GuiGraphics.blitSprite (Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 1))
 	private ResourceLocation spectrum$modifyBackground(ResourceLocation texture, @Share("effect") LocalRef<MobEffectInstance> effect) {
-		return StatusEffectHelper.getTextureLocation(texture, effect.get(), StatusEffectHelper.RenderType.GUI_SMALL);
+		return MobEffectHelper.getTextureLocation(texture, effect.get(), MobEffectHelper.RenderType.GUI_SMALL);
 	}
 	
 }

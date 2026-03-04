@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.blocks.redstone;
 
 import de.dafuqs.spectrum.events.*;
 import de.dafuqs.spectrum.events.listeners.*;
-import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
@@ -15,7 +14,7 @@ import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
-public class RedstoneTransceiverBlockEntity extends BlockEntity implements WirelessRedstoneSignalEventQueue.Callback<WirelessRedstoneSignalEventQueue.EventEntry> {
+public class RedstoneTransceiverBlockEntity extends BlockEntity implements WirelessRedstoneSignalEventQueue.Callback<WirelessRedstoneSignalEventQueue.Entry> {
 	
 	private static final int RANGE = 16;
 	private final WirelessRedstoneSignalEventQueue listener;
@@ -52,6 +51,19 @@ public class RedstoneTransceiverBlockEntity extends BlockEntity implements Wirel
 		return world.getBlockState(pos).getValue(RedstoneTransceiverBlock.CHANNEL);
 	}
 	
+	public static DyeColor getRedstoneEventDyeColor(GameEvent.ListenerInfo message) {
+		return message.context().affectedState().getOptionalValue(RedstoneTransceiverBlock.CHANNEL).orElse(null);
+	}
+	
+	public static int getRedstoneEventPower(Level world, GameEvent.ListenerInfo message) {
+		var pos = message.source();
+		var blockEntity = world.getBlockEntity(BlockPos.containing(pos.x, pos.y, pos.z));
+		if (blockEntity instanceof RedstoneTransceiverBlockEntity transceiver) {
+			return transceiver.getCurrentSignalStrength();
+		}
+		return 0;
+	}
+	
 	@Override
 	public void saveAdditional(CompoundTag tag, HolderLookup.Provider registryLookup) {
 		super.saveAdditional(tag, registryLookup);
@@ -79,13 +91,13 @@ public class RedstoneTransceiverBlockEntity extends BlockEntity implements Wirel
 		return !this.isRemoved()
 				&& message.gameEvent() == SpectrumGameEvents.WIRELESS_REDSTONE_SIGNAL
 				&& !isSender(this.getLevel(), this.worldPosition)
-				&& EventHelper.getRedstoneEventDyeColor(message) == getChannel(this.getLevel(), this.worldPosition);
+				&& getRedstoneEventDyeColor(message) == getChannel(this.getLevel(), this.worldPosition);
 	}
 	
 	@Override
-	public void triggerEvent(Level world, GameEventListener listener, WirelessRedstoneSignalEventQueue.EventEntry redstoneEvent) {
-		if (!isSender(this.getLevel(), this.worldPosition) && EventHelper.getRedstoneEventDyeColor(redstoneEvent.gameEvent()) == getChannel(this.getLevel(), this.worldPosition)) {
-			int receivedSignal = EventHelper.getRedstoneEventPower(world, redstoneEvent.gameEvent());
+	public void triggerEvent(Level world, GameEventListener listener, WirelessRedstoneSignalEventQueue.Entry redstoneEvent) {
+		if (!isSender(this.getLevel(), this.worldPosition) && getRedstoneEventDyeColor(redstoneEvent.gameEvent()) == getChannel(this.getLevel(), this.worldPosition)) {
+			int receivedSignal = getRedstoneEventPower(world, redstoneEvent.gameEvent());
 			this.currentSignal = receivedSignal;
 			// trigger a block update in all cases, even when powered does not change. That way connected blocks
 			// can react on the strength change of the block, since we store the power in the block entity, not the block state

@@ -2,19 +2,14 @@ package de.dafuqs.spectrum.helpers;
 
 import com.mojang.datafixers.util.*;
 import com.mojang.serialization.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class SchedulerMap<K> implements Iterable<Map.Entry<K, Integer>> {
-	
-	private final Map<K, Integer> map;
+public record SchedulerMap<K>(Map<K, Integer> map) implements Iterable<Map.Entry<K, Integer>> {
 	
 	public SchedulerMap() {
 		this(new HashMap<>());
-	}
-	
-	public SchedulerMap(Map<K, Integer> map) {
-		this.map = map;
 	}
 	
 	public void put(K val, int ticks) {
@@ -37,11 +32,11 @@ public class SchedulerMap<K> implements Iterable<Map.Entry<K, Integer>> {
 		return map.get(val);
 	}
 	
-	public final String toString() {
+	public @NotNull String toString() {
 		return map.toString();
 	}
 	
-	public final int size() {
+	public int size() {
 		return map.size();
 	}
 	
@@ -68,7 +63,7 @@ public class SchedulerMap<K> implements Iterable<Map.Entry<K, Integer>> {
 	}
 	
 	@Override
-	public Iterator<Map.Entry<K, Integer>> iterator() {
+	public @NotNull Iterator<Map.Entry<K, Integer>> iterator() {
 		return map.entrySet().iterator();
 	}
 	
@@ -78,10 +73,6 @@ public class SchedulerMap<K> implements Iterable<Map.Entry<K, Integer>> {
 			list.forEach(p -> map.put(p.getFirst(), p.getSecond()));
 			return new SchedulerMap<>(map);
 		}, m -> m.map.entrySet().stream().map(e -> new Pair<>(e.getKey(), e.getValue())).toList());
-	}
-	
-	public Map<K, Integer> getMap() {
-		return map;
 	}
 	
 	public interface Callback {

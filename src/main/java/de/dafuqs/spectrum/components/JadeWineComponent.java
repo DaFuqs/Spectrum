@@ -8,6 +8,7 @@ import net.minecraft.network.chat.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
+import org.jetbrains.annotations.*;
 
 import java.util.function.*;
 
@@ -27,7 +28,7 @@ public record JadeWineComponent(float bloominess, boolean sweetened) implements 
 	);
 	
 	@Override
-	public void addToTooltip(Item.TooltipContext context, Consumer<Component> tooltip, TooltipFlag type) {
+	public void addToTooltip(Item.@NotNull TooltipContext context, @NotNull Consumer<Component> tooltip, @NotNull TooltipFlag type) {
 		if (sweetened)
 			tooltip.accept(Component.translatable("item.spectrum.jade_wine.tooltip.bloominess_sweetened", bloominess).withStyle(ChatFormatting.GRAY));
 		else

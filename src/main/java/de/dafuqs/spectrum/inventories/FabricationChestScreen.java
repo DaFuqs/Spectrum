@@ -24,10 +24,11 @@ public class FabricationChestScreen extends AbstractContainerScreen<FabricationC
 		int titleY = 6;
 		Component title = this.title;
 		int inventoryX = 8;
+		
 		int intInventoryY = 126;
 		
-		drawContext.drawString(this.font, title, titleX, titleY, RenderHelper.GREEN_COLOR, false);
-		drawContext.drawString(this.font, this.playerInventoryTitle, inventoryX, intInventoryY, RenderHelper.GREEN_COLOR, false);
+		drawContext.drawString(this.font, title, titleX, titleY, RenderHelper.SPECTRUM_CONTAINER_TEXT_COLOR, false);
+		drawContext.drawString(this.font, this.playerInventoryTitle, inventoryX, intInventoryY, RenderHelper.SPECTRUM_CONTAINER_TEXT_COLOR, false);
 	}
 	
 	@Override

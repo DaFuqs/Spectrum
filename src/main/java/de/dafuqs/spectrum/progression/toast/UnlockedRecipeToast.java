@@ -85,7 +85,7 @@ public class UnlockedRecipeToast implements Toast {
 		
 		Minecraft client = manager.getMinecraft();
 		Font textRenderer = client.font;
-		drawContext.drawString(textRenderer, title, 30, 7, RenderHelper.GREEN_COLOR, false);
+		drawContext.drawString(textRenderer, title, 30, 7, RenderHelper.SPECTRUM_CONTAINER_TEXT_COLOR, false);
 		drawContext.drawString(textRenderer, text, 30, 18, 0, false);
 		
 		long toastTimeMilliseconds = SpectrumConfig.CONFIG.ToastTimeMilliseconds.get();

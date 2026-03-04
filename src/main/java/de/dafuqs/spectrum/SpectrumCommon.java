@@ -79,6 +79,7 @@ public class SpectrumCommon {
 		return ResourceLocation.fromNamespaceAndPath(namespace, path.toLowerCase(Locale.ROOT));
 	}
 	
+	// TODO: remove if possible
 	@Nullable
 	public static MinecraftServer minecraftServer;
 	

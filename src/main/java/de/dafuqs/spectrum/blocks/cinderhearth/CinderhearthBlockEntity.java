@@ -200,7 +200,7 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 		} else {
 			this.structure = CinderHearthStructureType.NONE;
 		}
-		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
+		this.ownerUUID = PlayerOwnedWithName.readOwnerUUID(nbt);
 		this.currentRecipe = MultiblockCrafter.getRecipeHolderFromNbt(level, nbt);
 		if (nbt.contains("Upgrades", Tag.TAG_LIST)) {
 			this.upgrades = UpgradeHolder.fromNbt(nbt.getList("Upgrades", Tag.TAG_COMPOUND));

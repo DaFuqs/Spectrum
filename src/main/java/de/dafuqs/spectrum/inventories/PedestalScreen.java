@@ -65,8 +65,8 @@ public class PedestalScreen extends AbstractContainerScreen<PedestalScreenHandle
 		int intInventoryY = 100;
 		var tr = this.font;
 		
-		drawContext.drawString(tr, title, titleX, titleY, RenderHelper.GREEN_COLOR, false);
-		drawContext.drawString(tr, this.playerInventoryTitle, inventoryX, intInventoryY, RenderHelper.GREEN_COLOR, false);
+		drawContext.drawString(tr, title, titleX, titleY, RenderHelper.SPECTRUM_CONTAINER_TEXT_COLOR, false);
+		drawContext.drawString(tr, this.playerInventoryTitle, inventoryX, intInventoryY, RenderHelper.SPECTRUM_CONTAINER_TEXT_COLOR, false);
 		
 		// if structure could be improved:
 		// show red blinking information icon

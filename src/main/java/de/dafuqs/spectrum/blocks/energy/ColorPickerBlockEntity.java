@@ -91,7 +91,7 @@ public class ColorPickerBlockEntity extends RandomizableContainerBlockEntity imp
 			ContainerHelper.loadAllItems(nbt, this.inventory, registryLookup);
 		}
 		CodecHelper.fromNbt(InkStorageComponent.CODEC, nbt.get("InkStorage")).ifPresent(storage -> this.inkStorage = new TotalCappedInkStorage(storage.maxEnergyTotal(), storage.storedEnergy()));
-		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
+		this.ownerUUID = PlayerOwnedWithName.readOwnerUUID(nbt);
 		if (nbt.contains("SelectedColor", Tag.TAG_STRING)) {
 			this.selectedColor = Optional.of(SpectrumRegistries.INK_COLOR.wrapAsHolder(InkColor.ofIdString(nbt.getString("SelectedColor")).get()));
 		} else {

@@ -583,41 +583,9 @@ public class InventoryHelper {
 		return remainders;
 	}
 	
-	public static boolean canExtract(Container inv, ItemStack stack, int slot, Direction facing) {
-		return !(inv instanceof WorldlyContainer) || ((WorldlyContainer) inv).canTakeItemThroughFace(slot, stack, facing);
-	}
-	
 	public static boolean canCombineItemStacks(ItemStack currentItemStack, ItemStack additionalItemStack) {
 		return currentItemStack.isEmpty() || additionalItemStack.isEmpty() || (ItemStack.isSameItemSameComponents(currentItemStack, additionalItemStack)
 				&& (currentItemStack.getCount() + additionalItemStack.getCount() <= currentItemStack.getMaxStackSize()));
-	}
-	
-	@Nullable
-	public static Container getInventoryAt(Level world, double x, double y, double z) {
-		Container inventory = null;
-		BlockPos blockPos = BlockPos.containing(x, y, z);
-		BlockState blockState = world.getBlockState(blockPos);
-		Block block = blockState.getBlock();
-		if (block instanceof WorldlyContainerHolder) {
-			inventory = ((WorldlyContainerHolder) block).getContainer(blockState, world, blockPos);
-		} else if (blockState.hasBlockEntity()) {
-			BlockEntity blockEntity = world.getBlockEntity(blockPos);
-			if (blockEntity instanceof Container) {
-				inventory = (Container) blockEntity;
-				if (inventory instanceof ChestBlockEntity && block instanceof ChestBlock) {
-					inventory = ChestBlock.getContainer((ChestBlock) block, blockState, world, blockPos, true);
-				}
-			}
-		}
-		
-		if (inventory == null) {
-			List<Entity> list = world.getEntities((Entity) null, new AABB(x - 0.5D, y - 0.5D, z - 0.5D, x + 0.5D, y + 0.5D, z + 0.5D), EntitySelector.CONTAINER_ENTITY_SELECTOR);
-			if (!list.isEmpty()) {
-				inventory = (Container) list.get(world.random.nextInt(list.size()));
-			}
-		}
-		
-		return inventory;
 	}
 	
 	public static Optional<ItemStack> extractLastStack(Container inventory) {

@@ -36,10 +36,6 @@ public class SpectrumColorHelper {
 	
 	private static final Pattern PARSE_PATTERN = Pattern.compile("#([0-9a-fA-F]{2})(?:([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})?)?");
 	
-	private int parseHex(String str) {
-		return Integer.valueOf(str, 16);
-	}
-	
 	/**
 	 * Parses a hex color code into an ARGB int. The following patterns are accepted:
 	 * <ul>

@@ -22,6 +22,7 @@ public class ExperienceHelper {
 		}
 	}
 	
+	// taken from ExperienceOrb.getIcon()
 	public static int getExperienceOrbSizeForExperience(int experience) {
 		if (experience >= 2477) {
 			return 10;

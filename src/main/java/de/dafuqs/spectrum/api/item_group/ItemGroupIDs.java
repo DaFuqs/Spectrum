@@ -24,7 +24,7 @@ public class ItemGroupIDs {
 	
 	public static final ResourceLocation BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/container/creative_item_group.png");
 	
-	// Sprites (put into \resources\assets\spectrum\textures\gui\sprites\container\creative_inventory)
+	// Sprites
 	public static final ResourceLocation SCROLLBAR_ENABLED_TEXTURE = SpectrumCommon.locate("container/creative_inventory/scrollbar_enabled");
 	public static final ResourceLocation SCROLLBAR_DISABLED_TEXTURE = SpectrumCommon.locate("container/creative_inventory/scrollbar_disabled");
 	

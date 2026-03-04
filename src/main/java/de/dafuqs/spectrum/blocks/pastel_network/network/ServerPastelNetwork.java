@@ -377,7 +377,7 @@ public class ServerPastelNetwork extends PastelNetwork<ServerLevel> {
 	}
 	
 	public Map<PastelTransmission, Integer> getTransmissions() {
-		return transmissions.getMap();
+		return transmissions.map();
 	}
 	
 	private void tickNodeEffects() {

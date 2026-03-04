@@ -554,7 +554,7 @@ public class SpectrumEventListeners {
 		
 		int improvedCriticalLevel = SpectrumEnchantmentHelper.getLevel(player.level().registryAccess(), SpectrumEnchantmentKeys.IMPROVED_CRITICAL, event.getEntity().getMainHandItem());
 		if(improvedCriticalLevel > 0) {
-			event.setDamageMultiplier(event.getDamageMultiplier() + ImprovedCriticalHelper.getAddtionalCritDamageMultiplier(improvedCriticalLevel));
+			event.setDamageMultiplier(event.getDamageMultiplier() + ImprovedCriticalHelper.getAdditionalCritDamageMultiplier(improvedCriticalLevel));
 		}
 		
 		MiscPlayerDataAttachmentType miscPlayerDataAttachmentType = MiscPlayerDataAttachmentType.get(player);

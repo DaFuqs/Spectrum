@@ -136,15 +136,15 @@ public class EnderDropperBlockEntity extends DispenserBlockEntity implements Pla
 	@Override
 	public void loadAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
 		super.loadAdditional(nbt, registryLookup);
-		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
-		this.ownerName = PlayerOwned.readOwnerName(nbt);
+		this.ownerUUID = PlayerOwnedWithName.readOwnerUUID(nbt);
+		this.ownerName = PlayerOwnedWithName.readOwnerName(nbt);
 	}
 	
 	@Override
 	public void saveAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
 		super.saveAdditional(nbt, registryLookup);
 		PlayerOwned.writeOwnerUUID(nbt, this.ownerUUID);
-		PlayerOwned.writeOwnerName(nbt, this.ownerName);
+		PlayerOwnedWithName.writeOwnerName(nbt, this.ownerName);
 	}
 	
 	@Override

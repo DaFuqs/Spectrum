@@ -7,7 +7,7 @@ import org.joml.*;
 
 public class RenderHelper {
 
-	public static final int GREEN_COLOR = 3289650;
+	public static final int SPECTRUM_CONTAINER_TEXT_COLOR = 3289650;
 	
 	/**
 	 * Draws a filled triangle

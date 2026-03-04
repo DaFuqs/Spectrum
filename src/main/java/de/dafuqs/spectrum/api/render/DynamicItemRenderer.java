@@ -9,8 +9,8 @@ import net.minecraft.world.item.*;
 
 import java.util.function.*;
 
+// TODO: make usable on neoforge
 // Similar to FAPIs DynamicItemRenderer, except with a little more information.
-
 @FunctionalInterface
 public interface DynamicItemRenderer {
 	

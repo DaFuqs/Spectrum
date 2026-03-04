@@ -4,8 +4,6 @@ import com.google.gson.*;
 import com.mojang.datafixers.util.*;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import de.dafuqs.spectrum.api.predicate.location.*;
-import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
@@ -19,6 +17,7 @@ import net.minecraft.util.random.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.material.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -77,7 +76,7 @@ public class EntityFishingDataLoader extends SimpleJsonResourceReloadListener {
 	}
 	
 	@Override
-	protected void apply(Map<ResourceLocation, JsonElement> prepared, ResourceManager manager, ProfilerFiller profiler) {
+	protected void apply(Map<ResourceLocation, JsonElement> prepared, @NotNull ResourceManager manager, @NotNull ProfilerFiller profiler) {
 		ENTITY_FISHING_ENTRIES.clear();
 		ENTITY_FISHING_ENTRIES_WITH_DIMENSION.clear();
 		

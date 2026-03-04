@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.enchanter;
 
 import de.dafuqs.revelationary.api.advancements.*;
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.blocks.*;
@@ -677,7 +676,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		if (nbt.contains("item_facing", Tag.TAG_STRING)) {
 			this.itemFacing = Direction.valueOf(nbt.getString("item_facing").toUpperCase(Locale.ROOT));
 		}
-		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
+		this.ownerUUID = PlayerOwnedWithName.readOwnerUUID(nbt);
 		
 		this.currentRecipe = null;
 		this.currentRecipe = MultiblockCrafter.getRecipeHolderFromNbt(level, nbt);

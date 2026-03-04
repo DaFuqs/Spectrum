@@ -50,5 +50,26 @@ public class EnchantedBookUnsoulingRecipe extends PrimordialFireBurningRecipe {
 	public @NotNull RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeSerializers.ENCHANTED_BOOK_UNSOULING;
 	}
-	
+	public static class Serializer implements RecipeSerializer<EnchantedBookUnsoulingRecipe> {
+		
+		public static final MapCodec<EnchantedBookUnsoulingRecipe> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+				CodecHelper.LOOKUP.forGetter(c -> null)
+		).apply(i, EnchantedBookUnsoulingRecipe::new));
+		
+		public static final StreamCodec<RegistryFriendlyByteBuf, EnchantedBookUnsoulingRecipe> PACKET_CODEC = StreamCodec.composite(
+				PacketCodecHelper.LOOKUP, c -> null,
+				EnchantedBookUnsoulingRecipe::new
+		);
+		
+		@Override
+		public @NotNull MapCodec<EnchantedBookUnsoulingRecipe> codec() {
+			return CODEC;
+		}
+		
+		@Override
+		public @NotNull StreamCodec<RegistryFriendlyByteBuf, EnchantedBookUnsoulingRecipe> streamCodec() {
+			return PACKET_CODEC;
+		}
+		
+	}
 }

@@ -6,6 +6,7 @@ import net.minecraft.world.entity.animal.*;
 import net.minecraft.world.entity.animal.horse.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.entity.projectile.*;
+import net.neoforged.neoforge.common.util.*;
 
 import java.util.*;
 
@@ -26,8 +27,7 @@ public class EntityHelper {
 	}
 	
 	public static boolean isRealPlayer(Entity entity) {
-		// this should filter out most fake players (kibe, FAPI)
-		return entity instanceof Player && entity.getClass().getCanonicalName().startsWith("net.minecraft");
+		return !(entity instanceof FakePlayer);
 	}
 	
 	public static boolean isRealPlayerProjectileOrPet(Entity entity) {

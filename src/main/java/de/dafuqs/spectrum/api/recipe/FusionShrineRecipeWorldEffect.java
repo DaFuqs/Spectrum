@@ -9,12 +9,10 @@ import net.minecraft.commands.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.resources.*;
 import net.minecraft.server.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.phys.*;
-import net.neoforged.bus.api.*;
-import net.neoforged.neoforge.registries.*;
+import org.jetbrains.annotations.*;
 
 /**
  * Effects that are played when crafting with the fusion shrine
@@ -117,7 +115,7 @@ public interface FusionShrineRecipeWorldEffect {
 		}
 		
 		@Override
-		public void sendSystemMessage(Component message) {
+		public void sendSystemMessage(@NotNull Component message) {
 		}
 		
 		@Override

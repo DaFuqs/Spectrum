@@ -53,7 +53,6 @@ public interface InkStorageBlockEntity<PStorage extends InkStorage> {
 		return false;
 	}
 	
-	
 	/**
 	 * Drains ink exponentially increased by the amount of upgrades used
 	 *
@@ -69,7 +68,6 @@ public interface InkStorageBlockEntity<PStorage extends InkStorage> {
 		setInkDirty();
 		return false;
 	}
-	
 	
 	void setInkDirty();
 	

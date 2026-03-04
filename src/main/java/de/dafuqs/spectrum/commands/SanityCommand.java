@@ -240,9 +240,7 @@ public class SanityCommand {
 			if (recipe.isPresent()) {
 				if (recipe.get().value() instanceof GatedSpectrumRecipe<?> gatedSpectrumRecipe) {
 					String group = gatedSpectrumRecipe.getGroup();
-					if (group == null) {
-						SpectrumCommon.logWarning("Recipe with null group found! :" + gatedSpectrumRecipe.getGroup());
-					} else if (!group.isEmpty()) {
+					if (!group.isEmpty()) {
 						recipeGroups.add(group);
 					}
 				}

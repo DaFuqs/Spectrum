@@ -5,7 +5,6 @@ import com.llamalad7.mixinextras.injector.wrapoperation.*;
 import com.llamalad7.mixinextras.sugar.*;
 import com.llamalad7.mixinextras.sugar.ref.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.mob_effect.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.network.protocol.game.*;
@@ -44,7 +43,7 @@ public abstract class LivingEntityPreventStatusClearMixin {
 	
 	@WrapWithCondition(method = "removeAllEffects", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;onEffectRemoved(Lnet/minecraft/world/effect/MobEffectInstance;)V"))
 	private boolean spectrum$preventStatusClear(LivingEntity instance, MobEffectInstance effect, @Share("blockRemoval") LocalBooleanRef blockRemoval) {
-		if (StatusEffectHelper.isSevere(effect)) {
+		if (MobEffectHelper.isSevere(effect)) {
 			if (affectedByImmunity(instance, effect.getAmplifier()))
 				return true;
 			
@@ -73,7 +72,7 @@ public abstract class LivingEntityPreventStatusClearMixin {
 		if (effect == null)
 			return original.call(instance, effectRegistryEntry);
 		
-		cancel = StatusEffectHelper.isSevere(effect);
+		cancel = MobEffectHelper.isSevere(effect);
 		
 		if (cancel) {
 			cancel = !affectedByImmunity(instance, effect.getAmplifier());

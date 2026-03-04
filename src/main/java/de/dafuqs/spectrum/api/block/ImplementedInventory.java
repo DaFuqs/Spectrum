@@ -4,6 +4,7 @@ import net.minecraft.core.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
+import org.jetbrains.annotations.*;
 
 /**
  * A simple {@code Inventory} implementation with only default methods + an item list getter.
@@ -64,7 +65,7 @@ public interface ImplementedInventory extends Container {
 	 * Retrieves the item in the slot.
 	 */
 	@Override
-	default ItemStack getItem(int slot) {
+	default @NotNull ItemStack getItem(int slot) {
 		return getItems().get(slot);
 	}
 	
@@ -76,7 +77,7 @@ public interface ImplementedInventory extends Container {
 	 *              takes all items in that slot.
 	 */
 	@Override
-	default ItemStack removeItem(int slot, int count) {
+	default @NotNull ItemStack removeItem(int slot, int count) {
 		ItemStack result = ContainerHelper.removeItem(getItems(), slot, count);
 		if (!result.isEmpty()) {
 			setChanged();
@@ -91,7 +92,7 @@ public interface ImplementedInventory extends Container {
 	 * @param slot The slot to remove from.
 	 */
 	@Override
-	default ItemStack removeItemNoUpdate(int slot) {
+	default @NotNull ItemStack removeItemNoUpdate(int slot) {
 		ItemStack stack = ContainerHelper.takeItem(getItems(), slot);
 		if (!stack.isEmpty()) {
 			inventoryChanged();
@@ -108,7 +109,7 @@ public interface ImplementedInventory extends Container {
 	 *              it gets resized to this inventory's maximum amount.
 	 */
 	@Override
-	default void setItem(int slot, ItemStack stack) {
+	default void setItem(int slot, @NotNull ItemStack stack) {
 		getItems().set(slot, stack);
 		if (stack.getCount() > stack.getMaxStackSize()) {
 			stack.setCount(stack.getMaxStackSize());
@@ -139,7 +140,7 @@ public interface ImplementedInventory extends Container {
 	 * @return true if the player can use the inventory, false otherwise.
 	 */
 	@Override
-	default boolean stillValid(Player player) {
+	default boolean stillValid(@NotNull Player player) {
 		return true;
 	}
 	

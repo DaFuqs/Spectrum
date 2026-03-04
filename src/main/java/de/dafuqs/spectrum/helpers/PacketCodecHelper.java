@@ -20,7 +20,6 @@ import java.util.function.*;
 
 public class PacketCodecHelper {
 	
-	public static StreamCodec<ByteBuf, Fraction> FRACTION = PacketCodecHelper.pair(ByteBufCodecs.VAR_INT, ByteBufCodecs.VAR_INT).map(pair -> Fraction.getFraction(pair.getA(), pair.getB()), frac -> new Tuple<>(frac.getNumerator(), frac.getDenominator()));
 	public static final StreamCodec<ByteBuf, Vec3i> VEC3I = StreamCodec.composite(ByteBufCodecs.VAR_INT, Vec3i::getX, ByteBufCodecs.VAR_INT, Vec3i::getY, ByteBufCodecs.VAR_INT, Vec3i::getZ, Vec3i::new);
 	public static final StreamCodec<ByteBuf, Vec3> VEC3D = StreamCodec.composite(ByteBufCodecs.DOUBLE, Vec3::x, ByteBufCodecs.DOUBLE, Vec3::y, ByteBufCodecs.DOUBLE, Vec3::z, Vec3::new);
 	public static final StreamCodec<ByteBuf, MinMaxBounds.Ints> INT_RANGE = StreamCodec.composite(
@@ -37,9 +36,7 @@ public class PacketCodecHelper {
 	);
 	
 	public static final StreamCodec<ByteBuf, BlockState> BLOCK_STATE = ByteBufCodecs.STRING_UTF8.map(string -> RecipeUtils.blockStateDataFromString(string).result().orElse(Blocks.AIR.defaultBlockState()), RecipeUtils::blockStateToString);
-	
-	public static final StreamCodec<RegistryFriendlyByteBuf, HolderLookup.Provider> LOOKUP = StreamCodec.of((buf, value) -> {
-	}, RegistryFriendlyByteBuf::registryAccess);
+	public static final StreamCodec<RegistryFriendlyByteBuf, HolderLookup.Provider> LOOKUP = StreamCodec.of((buf, value) -> {}, RegistryFriendlyByteBuf::registryAccess);
 	
 	public static <O extends ByteBuf, L, R> StreamCodec<O, Tuple<L, R>> pair(StreamCodec<? super O, L> left, StreamCodec<? super O, R> right) {
 		return StreamCodec.composite(left, Tuple::getA, right, Tuple::getB, Tuple::new);

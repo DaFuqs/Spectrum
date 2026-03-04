@@ -17,15 +17,14 @@ import java.util.stream.*;
 
 public class CodecHelper {
 	
-	public static Codec<Fraction> FRACTION = Codec.mapPair(
-			Codec.INT.fieldOf("numerator"),
-			Codec.INT.fieldOf("denominator")
-	).codec().xmap(
-			pair -> Fraction.getFraction(pair.getFirst(), pair.getSecond()),
-			frac -> new com.mojang.datafixers.util.Pair<>(frac.getNumerator(), frac.getDenominator())
-	);
-	
 	public static Codec<ResourceLocation> SPECTRUM_DEFAULTED_IDENTIFIER = Codec.STRING.xmap(SpectrumCommon::ofSpectrumDefaulted, ResourceLocation::toString);
+	
+	public static <L, R> MapCodec<Tuple<L, R>> mapPair(MapCodec<L> leftCodec, MapCodec<R> rightCodec) {
+		return RecordCodecBuilder.mapCodec(i -> i.group(
+				leftCodec.forGetter(Tuple::getA),
+				rightCodec.forGetter(Tuple::getB)
+		).apply(i, Tuple::new));
+	}
 	
 	public static MapCodec<HolderLookup.Provider> LOOKUP = new MapCodec<>() {
 		@Override
@@ -48,13 +47,6 @@ public class CodecHelper {
 			return recordBuilder;
 		}
 	};
-	
-	public static <L, R> MapCodec<Tuple<L, R>> mapPair(MapCodec<L> leftCodec, MapCodec<R> rightCodec) {
-		return RecordCodecBuilder.mapCodec(i -> i.group(
-				leftCodec.forGetter(Tuple::getA),
-				rightCodec.forGetter(Tuple::getB)
-		).apply(i, Tuple::new));
-	}
 	
 	public static <K, V> MapCodec<Map<K, V>> registryMap(Registry<K> registry, Codec<V> valueCodec) {
 		Codec<K> keyCodec = registry.byNameCodec();

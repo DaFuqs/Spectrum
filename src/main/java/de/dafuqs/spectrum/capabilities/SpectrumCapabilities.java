@@ -35,7 +35,7 @@ public class SpectrumCapabilities {
 				new InvWrapper(titrationBarrel);
 			}
 			return null;
-		}); // TODO: do we return the itemstacks here?
+		});
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.POTION_WORKSHOP.get(), (@NotNull PotionWorkshopBlockEntity blockEntity, Direction direction) -> new SidedInvWrapper(blockEntity, direction));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.BLOCK_PLACER.get(), (@NotNull BlockPlacerBlockEntity blockEntity, Direction direction) -> new InvWrapper(blockEntity));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.BOTTOMLESS_BUNDLE.get(), (@NotNull BottomlessBundleBlockEntity blockEntity, Direction direction) -> blockEntity.storage());

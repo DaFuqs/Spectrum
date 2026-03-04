@@ -152,7 +152,7 @@ public class PrimordialFireAttachmentType {
 				Minecraft.getInstance().getSoundManager().play(soundInstance.get());
 			}
 			
-			double fluidHeight = entity.getFluidHeight(FluidTags.WATER);
+			double fluidHeight = entity.getFluidTypeHeight(NeoForgeMod.WATER_TYPE.value());
 			if (fluidHeight > 0) {
 				
 				Level world = entity.level();

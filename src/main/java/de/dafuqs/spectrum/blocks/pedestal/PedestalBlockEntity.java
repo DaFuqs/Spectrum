@@ -577,7 +577,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		if (nbt.contains("CraftingTimeTotal")) {
 			this.propertyDelegate.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
 		}
-		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
+		this.ownerUUID = PlayerOwnedWithName.readOwnerUUID(nbt);
 		if (nbt.contains("Upgrades", Tag.TAG_LIST)) {
 			this.upgrades = UpgradeHolder.fromNbt(nbt.getList("Upgrades", Tag.TAG_COMPOUND));
 		} else {

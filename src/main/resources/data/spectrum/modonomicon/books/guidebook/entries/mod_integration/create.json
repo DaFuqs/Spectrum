@@ -49,6 +49,10 @@
           "id": "spectrum:pure_zinc"
         }
       ],
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/crystallarieum"
+      },
       "text": "book.spectrum.guidebook.mod_integration.create.pure_zinc.text"
     },
     {

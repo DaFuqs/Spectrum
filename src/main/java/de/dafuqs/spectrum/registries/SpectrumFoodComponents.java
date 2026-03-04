@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.registries;
 
-import de.dafuqs.spectrum.status_effects.*;
+import de.dafuqs.spectrum.mob_effect.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.food.*;
 
@@ -183,7 +183,7 @@ public class SpectrumFoodComponents {
 	
 	public static final FoodProperties FREIGEIST = new FoodProperties.Builder()
 			.nutrition(2).saturationModifier(SAT_POOR).alwaysEdible()
-			.effect(() -> new MobEffectInstance(SpectrumMobEffects.ASCENSION, AscensionStatusEffect.MUSIC_INTRO_TICKS), 1.0F)
+			.effect(() -> new MobEffectInstance(SpectrumMobEffects.ASCENSION, AscensionMobEffect.MUSIC_INTRO_TICKS), 1.0F)
 			.build();
 	
 	public static final FoodProperties INCANDESCENT_AMALGAM = new FoodProperties.Builder()
@@ -192,7 +192,7 @@ public class SpectrumFoodComponents {
 	
 	public static final FoodProperties DIVINATION_HEART = new FoodProperties.Builder()
 			.nutrition(2).saturationModifier(SAT_POOR).alwaysEdible()
-			.effect(() -> new MobEffectInstance(SpectrumMobEffects.DIVINITY, 600, DivinityStatusEffect.ASCENSION_AMPLIFIER), 1.0F)
+			.effect(() -> new MobEffectInstance(SpectrumMobEffects.DIVINITY, 600, DivinityMobEffect.ASCENSION_AMPLIFIER), 1.0F)
 			.build();
 	
 	public static final FoodProperties BITTER_OILS = new FoodProperties.Builder()

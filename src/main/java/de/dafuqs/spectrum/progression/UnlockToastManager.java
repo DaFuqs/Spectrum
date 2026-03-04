@@ -20,10 +20,11 @@ import java.util.function.*;
 
 
 public class UnlockToastManager {
+
 	// Advancement Identifier + Recipe Variant => Recipe
-	public static final Map<ResourceLocation, Map<RecipeType<?>, Set<GatedRecipe<?>>>> gatedRecipes = new HashMap<>();
+	private static final Map<ResourceLocation, Map<RecipeType<?>, Set<GatedRecipe<?>>>> gatedRecipes = new HashMap<>();
 	
-	public static final Map<ResourceLocation, Tuple<Supplier<ItemStack>, String>> MESSAGE_TOASTS = new HashMap<>() {{
+	private static final Map<ResourceLocation, Tuple<Supplier<ItemStack>, String>> MESSAGE_TOASTS = new HashMap<>() {{
 		put(SpectrumAdvancements.UNLOCK_SHOOTING_STARS, new Tuple<>(() -> Items.SPYGLASS.getDefaultInstance(), "shooting_stars_unlocked"));
 		put(SpectrumAdvancements.OVERENCHANTING, new Tuple<>(() -> SpectrumBlocks.ENCHANTER.asItem().getDefaultInstance(), "overchanting_unlocked"));
 		put(SpectrumAdvancements.APPLY_CONFLICTING_ENCHANTMENTS, new Tuple<>(() -> SpectrumBlocks.ENCHANTER.asItem().getDefaultInstance(), "enchant_conflicting_enchantments_unlocked"));

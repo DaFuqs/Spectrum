@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.items.trinkets;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.spectrum.status_effects.*;
+import de.dafuqs.spectrum.mob_effect.*;
 import net.minecraft.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
@@ -46,7 +46,7 @@ public class CircletOfArroganceItem extends SpectrumCurioItem {
 	}
 	
 	private static void giveEffect(LivingEntity entity) {
-		entity.addEffect(new MobEffectInstance(SpectrumMobEffects.DIVINITY, EFFECT_DURATION, DivinityStatusEffect.CIRCLET_AMPLIFIER, true, true));
+		entity.addEffect(new MobEffectInstance(SpectrumMobEffects.DIVINITY, EFFECT_DURATION, DivinityMobEffect.CIRCLET_AMPLIFIER, true, true));
 	}
 	
 	@Override

@@ -4,7 +4,7 @@ import com.llamalad7.mixinextras.injector.*;
 import com.llamalad7.mixinextras.sugar.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.spectrum.status_effects.*;
+import de.dafuqs.spectrum.mob_effect.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.resources.*;
@@ -40,21 +40,21 @@ public abstract class InGameHudMixin {
 	
 	@Inject(method = "renderCrosshair", at = @At("HEAD"), cancellable = true)
 	private void spectrum$disableCrosshairSomnolence(GuiGraphics context, DeltaTracker tickCounter, CallbackInfo ci) {
-		var potency = SleepStatusEffect.getSleepScaling(getCameraPlayer());
+		var potency = SleepMobEffect.getSleepScaling(getCameraPlayer());
 		if (potency > 0.25F)
 			ci.cancel();
 	}
 	
 	@Inject(method = "renderItemHotbar", at = @At("HEAD"), cancellable = true)
 	private void spectrum$disableHotbarSomnolence(GuiGraphics context, DeltaTracker tickCounter, CallbackInfo ci) {
-		var potency = SleepStatusEffect.getSleepScaling(getCameraPlayer());
+		var potency = SleepMobEffect.getSleepScaling(getCameraPlayer());
 		if (potency > 0.4F)
 			ci.cancel();
 	}
 	
 	@Inject(method = "renderPlayerHealth", at = @At("HEAD"), cancellable = true)
 	private void spectrum$disableStatusSomnolence(GuiGraphics context, CallbackInfo ci) {
-		var potency = SleepStatusEffect.getSleepScaling(getCameraPlayer());
+		var potency = SleepMobEffect.getSleepScaling(getCameraPlayer());
 		if (potency > 0.4F)
 			ci.cancel();
 	}

@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.mixin.client;
 
 import com.llamalad7.mixinextras.injector.*;
-import de.dafuqs.spectrum.status_effects.*;
+import de.dafuqs.spectrum.mob_effect.*;
 import net.minecraft.client.*;
 import net.minecraft.util.*;
 import org.objectweb.asm.*;
@@ -20,7 +20,7 @@ public class MouseMixin {
 		if (player == null)
 			return original;
 		
-		var potency = SleepStatusEffect.getSleepScaling(player);
+		var potency = SleepMobEffect.getSleepScaling(player);
 		
 		if (potency == -1)
 			return original;
@@ -36,7 +36,7 @@ public class MouseMixin {
 		if (player == null)
 			return original;
 		
-		var potency = SleepStatusEffect.getSleepScaling(player);
+		var potency = SleepMobEffect.getSleepScaling(player);
 		
 		if (potency < 1.9)
 			return original;

@@ -5,6 +5,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.*;
 import com.llamalad7.mixinextras.sugar.*;
 import com.llamalad7.mixinextras.sugar.ref.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.mob_effect.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.network.protocol.game.*;
@@ -47,7 +48,7 @@ public abstract class LivingEntityPreventStatusClearMixin {
 			if (affectedByImmunity(instance, effect.getAmplifier()))
 				return true;
 			
-			SpectrumMobEffects.cutDuration(instance, effect);
+			MobEffectHelper.cutDuration(instance, effect);
 			
 			blockRemoval.set(true);
 			return false;

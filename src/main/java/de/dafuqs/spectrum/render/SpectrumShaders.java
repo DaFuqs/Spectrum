@@ -1,9 +1,9 @@
-package de.dafuqs.spectrum.shaders;
+package de.dafuqs.spectrum.render;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.registries.SpectrumDimensionKeys;
 import de.dafuqs.spectrum.render.biome_rendering.*;
 import de.dafuqs.spectrum.entity.entity.*;
-import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.*;
 import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.renderer.*;

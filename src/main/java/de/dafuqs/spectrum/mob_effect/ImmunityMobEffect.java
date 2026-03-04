@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.status_effects;
+package de.dafuqs.spectrum.mob_effect;
 
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
@@ -9,9 +9,9 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class ImmunityStatusEffect extends MobEffect {
+public class ImmunityMobEffect extends MobEffect {
 	
-	public ImmunityStatusEffect(MobEffectCategory statusEffectCategory, int color) {
+	public ImmunityMobEffect(MobEffectCategory statusEffectCategory, int color) {
 		super(statusEffectCategory, color);
 	}
 	
@@ -22,17 +22,18 @@ public class ImmunityStatusEffect extends MobEffect {
 	
 	@Override
 	public boolean applyEffectTick(LivingEntity entity, int amplifier) {
-		removeOtherStatusEffects(entity);
+		removeOtherMobEffects(entity);
 		return super.applyEffectTick(entity, amplifier);
 	}
 	
 	@Override
 	public void onEffectStarted(LivingEntity entity, int amplifier) {
 		super.onEffectStarted(entity, amplifier);
-		removeOtherStatusEffects(entity);
+		removeOtherMobEffects(entity);
 	}
 	
-	public static void removeOtherStatusEffects(@NotNull LivingEntity entity) {
+	// TODO: can this use an effect cure?
+	public static void removeOtherMobEffects(@NotNull LivingEntity entity) {
 		Set<Holder<MobEffect>> effectsToRemove = new HashSet<>();
 		for (MobEffectInstance instance : entity.getActiveEffects()) {
 			if (!instance.getEffect().is(SpectrumMobEffectTags.BYPASSES_IMMUNITY)) {

@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.recipe.pedestal;
 import com.mojang.serialization.*;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import io.netty.buffer.*;
@@ -43,14 +44,14 @@ public enum PedestalRecipeTier implements StringRepresentable {
 	}
 	
 	@Contract(pure = true)
-	public static Optional<PedestalRecipeTier> getHighestUnlockedRecipeTier(Player playerEntity) {
-		if (AdvancementHelper.hasAdvancement(playerEntity, COMPLEX.unlockAdvancementId)) {
+	public static Optional<PedestalRecipeTier> getHighestUnlockedRecipeTier(Player player) {
+		if (AdvancementHelper.hasAdvancement(player, COMPLEX.unlockAdvancementId)) {
 			return Optional.of(PedestalRecipeTier.COMPLEX);
-		} else if (AdvancementHelper.hasAdvancement(playerEntity, ADVANCED.unlockAdvancementId)) {
+		} else if (AdvancementHelper.hasAdvancement(player, ADVANCED.unlockAdvancementId)) {
 			return Optional.of(PedestalRecipeTier.ADVANCED);
-		} else if (AdvancementHelper.hasAdvancement(playerEntity, SIMPLE.unlockAdvancementId)) {
+		} else if (AdvancementHelper.hasAdvancement(player, SIMPLE.unlockAdvancementId)) {
 			return Optional.of(PedestalRecipeTier.SIMPLE);
-		} else if (AdvancementHelper.hasAdvancement(playerEntity, BASIC.unlockAdvancementId)) {
+		} else if (AdvancementHelper.hasAdvancement(player, BASIC.unlockAdvancementId)) {
 			return Optional.of(PedestalRecipeTier.BASIC);
 		}
 		return Optional.empty();
@@ -114,7 +115,7 @@ public enum PedestalRecipeTier implements StringRepresentable {
 	}
 	
 	@Override
-	public String getSerializedName() {
+	public @NotNull String getSerializedName() {
 		return name().toLowerCase();
 	}
 }

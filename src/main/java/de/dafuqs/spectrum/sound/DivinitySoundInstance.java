@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.sound;
 
 
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.spectrum.status_effects.*;
+import de.dafuqs.spectrum.mob_effect.*;
 import net.minecraft.client.*;
 import net.minecraft.client.resources.sounds.*;
 import net.minecraft.sounds.*;
@@ -38,10 +38,10 @@ public class DivinitySoundInstance extends AbstractSoundInstance implements Tick
 	public void tick() {
 		Minecraft client = Minecraft.getInstance();
 		time++;
-		if (time > AscensionStatusEffect.MUSIC_INTRO_TICKS) {
+		if (time > AscensionMobEffect.MUSIC_INTRO_TICKS) {
 			this.volume = 0.8F;
 		} else {
-			this.volume = 0.5F + ((float) time / AscensionStatusEffect.MUSIC_INTRO_TICKS) * 0.2F;
+			this.volume = 0.5F + ((float) time / AscensionMobEffect.MUSIC_INTRO_TICKS) * 0.2F;
 		}
 		Player player = client.player;
 		if (instances > 1 || player == null || !(player.hasEffect(SpectrumMobEffects.ASCENSION) || player.hasEffect(SpectrumMobEffects.DIVINITY))) {

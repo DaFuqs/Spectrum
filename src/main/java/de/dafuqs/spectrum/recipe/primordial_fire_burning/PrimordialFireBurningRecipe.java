@@ -163,12 +163,12 @@ public class PrimordialFireBurningRecipe extends GatedSpectrumRecipe<RecipeInput
 		);
 		
 		@Override
-		public MapCodec<PrimordialFireBurningRecipe> codec() {
+		public @NotNull MapCodec<PrimordialFireBurningRecipe> codec() {
 			return CODEC;
 		}
 		
 		@Override
-		public StreamCodec<RegistryFriendlyByteBuf, PrimordialFireBurningRecipe> streamCodec() {
+		public @NotNull StreamCodec<RegistryFriendlyByteBuf, PrimordialFireBurningRecipe> streamCodec() {
 			return PACKET_CODEC;
 		}
 		

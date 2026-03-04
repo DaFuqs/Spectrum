@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.mob_effect.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.component.*;
@@ -52,7 +53,7 @@ public class NightfallsBladeItem extends TieredItem implements InkPoweredPotionF
 	
 	@Override
 	public long adjustFinalCostFor(@NotNull InkPoweredStatusEffectInstance instance) {
-		var mod = SpectrumMobEffects.isStrongSleepEffect(instance) ? 1 : 0;
+		var mod = MobEffectHelper.isStrongSleepEffect(instance) ? 1 : 0;
 		return Math.round(Math.pow(instance.getInkCost().cost(), 1.75 + instance.getStatusEffectInstance().getAmplifier() + mod));
 	}
 	

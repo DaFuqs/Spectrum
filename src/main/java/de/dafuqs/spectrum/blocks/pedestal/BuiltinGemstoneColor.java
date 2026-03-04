@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.recipe.pedestal;
+package de.dafuqs.spectrum.blocks.pedestal;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.color.*;

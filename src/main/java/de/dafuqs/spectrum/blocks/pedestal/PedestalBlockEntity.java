@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.pedestal;
 
 import com.klikli_dev.modonomicon.api.multiblock.*;
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.recipe.*;

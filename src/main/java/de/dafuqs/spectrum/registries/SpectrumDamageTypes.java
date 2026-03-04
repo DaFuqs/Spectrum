@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.api.damage_type.*;
 import de.dafuqs.spectrum.entity.entity.*;
-import de.dafuqs.spectrum.spells.*;
+import de.dafuqs.spectrum.magic.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.damagesource.*;

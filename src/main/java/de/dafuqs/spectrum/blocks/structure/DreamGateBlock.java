@@ -5,7 +5,7 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.spectrum.status_effects.*;
+import de.dafuqs.spectrum.mob_effect.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
@@ -39,7 +39,7 @@ public class DreamGateBlock extends DikeGateBlock {
 					return Shapes.empty();
 				}
 				
-				var sleep = SleepStatusEffect.getGeneralSleepResistanceIfEntityHasSoporificEffect(livingEntity);
+				var sleep = SleepMobEffect.getGeneralSleepResistanceIfEntityHasSoporificEffect(livingEntity);
 				if (sleep != -1) {
 					if (entity instanceof ServerPlayer player) {
 						Support.grantAdvancementCriterion(player, "lategame/enter_strange_preservation_ruin", "enter_dream_gate");
@@ -59,7 +59,7 @@ public class DreamGateBlock extends DikeGateBlock {
 			if (livingEntity instanceof Player player && player.getAbilities().instabuild)
 				return;
 			
-			var sleep = SleepStatusEffect.getGeneralSleepResistanceIfEntityHasSoporificEffect(livingEntity);
+			var sleep = SleepMobEffect.getGeneralSleepResistanceIfEntityHasSoporificEffect(livingEntity);
 			if (sleep == -1 && serverWorld.getGameTime() % 5 == 0) {
 				entity.hurt(SpectrumDamageTypes.sleep(serverWorld, null), 2);
 				PlayParticleWithExactVelocityPayload.playParticles(serverWorld, pos, SpectrumParticleTypes.AZURE_DIKE_RUNES, 10);

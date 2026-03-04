@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.anvil_crushing.*;
 import de.dafuqs.spectrum.recipe.cinderhearth.*;
+import de.dafuqs.spectrum.recipe.color_picker.*;
 import de.dafuqs.spectrum.recipe.crafting.dynamic.*;
 import de.dafuqs.spectrum.recipe.crystallarieum.*;
 import de.dafuqs.spectrum.recipe.enchanter.*;
@@ -20,7 +21,6 @@ import de.dafuqs.spectrum.recipe.spirit_instiller.dynamic.*;
 import de.dafuqs.spectrum.recipe.spirit_instiller.dynamic.spawner_manipulation.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.dynamic.*;
-import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.world.item.crafting.*;
 import net.neoforged.bus.api.*;
@@ -96,7 +96,7 @@ public class SpectrumRecipeSerializers {
 	// Primordial Fire
 	public static final RecipeSerializer<PrimordialFireBurningRecipe> PRIMORDIAL_FIRE_BURNING_RECIPE_SERIALIZER = register("primordial_fire_burning", new PrimordialFireBurningRecipe.Serializer());
 	public static final RecipeSerializer<MemoryDementiaRecipe> MEMORY_DEMENTIA = register("memory_dementia", new EmptyRecipeSerializer<>(MemoryDementiaRecipe::new));
-	public static final RecipeSerializer<EnchantedBookUnsoulingRecipe> ENCHANTED_BOOK_UNSOULING = register("enchanted_book_unsouling", new EnchantedBookUnsoulingRecipe.Serializer());
+	public static final RecipeSerializer<EnchantedBookUnsoulingRecipe> ENCHANTED_BOOK_UNSOULING = register("enchanted_book_unsouling", new EmptyRecipeSerializer<>(EnchantedBookUnsoulingRecipe::new));
 	
 	static <S extends RecipeSerializer<T>, T extends Recipe<?>> S register(String id, S serializer) {
 		REGISTRAR.register(id, () -> serializer);

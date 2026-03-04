@@ -14,7 +14,7 @@ import de.dafuqs.spectrum.helpers.enchantments.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.spectrum.status_effects.*;
+import de.dafuqs.spectrum.mob_effect.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.level.*;
@@ -131,7 +131,7 @@ public abstract class LivingEntityMixin {
 	private float spectrum$increaseSlipperiness(float original) {
 		var entity = (LivingEntity) (Object) this;
 		var random = entity.getRandom();
-		var potency = SleepStatusEffect.getSleepScaling(entity);
+		var potency = SleepMobEffect.getSleepScaling(entity);
 		if (potency != -1) {
 			potency *= 2;
 			
@@ -312,7 +312,7 @@ public abstract class LivingEntityMixin {
 				return;
 			
 			var damage = Float.MAX_VALUE;
-			if (SleepStatusEffect.isImmuneish(entity)) {
+			if (SleepMobEffect.isImmuneish(entity)) {
 				if (entity instanceof Player)
 					damage = entity.getHealth() * 0.95F;
 				else
@@ -367,15 +367,15 @@ public abstract class LivingEntityMixin {
 			}
 		}
 		
-		var resistanceModifier = Mth.clamp(SleepStatusEffect.getSleepResistance(effect, entity), 0.1F, 10F);
+		var resistanceModifier = Mth.clamp(SleepMobEffect.getSleepResistance(effect, entity), 0.1F, 10F);
 		if (effectType == SpectrumMobEffects.ETERNAL_SLUMBER) {
-			if (SleepStatusEffect.isImmuneish(entity)) {
+			if (SleepMobEffect.isImmuneish(entity)) {
 				effect.spectrum$setDuration(Math.round(effect.getDuration() / resistanceModifier));
 			} else if (!entity.getType().is(SpectrumEntityTypeTags.SLEEP_RESISTANT)) {
 				effect.spectrum$setDuration(MobEffectInstance.INFINITE_DURATION);
 			}
 		} else if (effectType == SpectrumMobEffects.FATAL_SLUMBER) {
-			if (SleepStatusEffect.isImmuneish(entity) && entity.getType().is(Tags.EntityTypes.BOSSES)) {
+			if (SleepMobEffect.isImmuneish(entity) && entity.getType().is(Tags.EntityTypes.BOSSES)) {
 				effect.spectrum$setDuration(20 * 60);
 			} else {
 				effect.spectrum$setDuration(Math.max(Math.round(effect.getDuration() * resistanceModifier * 3), 20 * 10));
@@ -465,13 +465,14 @@ public abstract class LivingEntityMixin {
 	
 	@Inject(method = "addEffect(Lnet/minecraft/world/effect/MobEffectInstance;Lnet/minecraft/world/entity/Entity;)Z", at = @At(value = "INVOKE", target = "Ljava/util/Map;get(Ljava/lang/Object;)Ljava/lang/Object;"))
 	private void spectrum$addStatusEffect(MobEffectInstance effect, Entity source, CallbackInfoReturnable<Boolean> cir) {
-		if (EffectProlongingStatusEffect.canBeExtended(effect.getEffect())) {
+		if (MobEffectHelper.canBeExtended(effect.getEffect())) {
 			MobEffectInstance effectProlongingInstance = this.getEffect(SpectrumMobEffects.EFFECT_PROLONGING);
 			if (effectProlongingInstance != null) {
-				effect.spectrum$setDuration(EffectProlongingStatusEffect.getExtendedDuration(effect.getDuration(), effectProlongingInstance.getAmplifier()));
+				effect.spectrum$setDuration(MobEffectHelper.getExtendedDuration(effect.getDuration(), effectProlongingInstance.getAmplifier()));
 			}
 		}
 	}
+	
 	
 	@Inject(method = "dropAllDeathLoot", at = @At("HEAD"), cancellable = true)
 	protected void drop(ServerLevel world, DamageSource damageSource, CallbackInfo ci) {

@@ -7,6 +7,7 @@ import net.minecraft.commands.arguments.blocks.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.world.level.block.state.*;
 
+// TODO: use vanilla lookups instead
 public class RecipeUtils {
 	
 	public static BlockState blockStateFromString(String string) throws CommandSyntaxException {

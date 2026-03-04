@@ -27,10 +27,7 @@ public abstract class PotionWorkshopRecipe extends GatedStackSpectrumRecipe<Reci
 	protected final IngredientStack ingredient2;
 	protected final IngredientStack ingredient3;
 	
-	public PotionWorkshopRecipe(
-			String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier, int craftingTime, int color,
-			IngredientStack ingredient1, IngredientStack ingredient2, IngredientStack ingredient3
-	) {
+	public PotionWorkshopRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier, int craftingTime, int color, IngredientStack ingredient1, IngredientStack ingredient2, IngredientStack ingredient3) {
 		super(group, secret, requiredAdvancementIdentifier);
 		this.color = color;
 		this.craftingTime = craftingTime;

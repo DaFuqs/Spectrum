@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.status_effects;
+package de.dafuqs.spectrum.mob_effect;
 
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
@@ -17,7 +17,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class DivinityStatusEffect extends MobEffect {
+public class DivinityMobEffect extends MobEffect {
 	
 	public static final int CIRCLET_AMPLIFIER = 0;
 	public static final int ASCENSION_AMPLIFIER = 1;
@@ -26,7 +26,7 @@ public class DivinityStatusEffect extends MobEffect {
 	// (since `applyEffectTick` triggers every tick for fancy effects, but we want to proc some effects only sometimes)
 	private static int SAVED_DURATION;
 	
-	public DivinityStatusEffect(MobEffectCategory statusEffectCategory, int color) {
+	public DivinityMobEffect(MobEffectCategory statusEffectCategory, int color) {
 		super(statusEffectCategory, color);
 	}
 	
@@ -62,7 +62,7 @@ public class DivinityStatusEffect extends MobEffect {
 	}
 	
 	@Override
-	public void onEffectStarted(LivingEntity entity, int amplifier) {
+	public void onEffectStarted(@NotNull LivingEntity entity, int amplifier) {
 		super.onEffectStarted(entity, amplifier);
 		if (entity instanceof Player) {
 			if (entity instanceof ServerPlayer player) {
@@ -72,11 +72,6 @@ public class DivinityStatusEffect extends MobEffect {
 				}
 			}
 		}
-	}
-	
-	@Override
-	public void removeAttributeModifiers(AttributeMap attributes) {
-		super.removeAttributeModifiers(attributes);
 	}
 	
 	@Override

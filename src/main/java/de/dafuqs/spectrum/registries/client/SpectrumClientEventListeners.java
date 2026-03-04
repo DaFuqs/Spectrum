@@ -19,7 +19,6 @@ import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.particle.render.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.render.*;
-import de.dafuqs.spectrum.shaders.*;
 import de.dafuqs.spectrum.sound.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.*;

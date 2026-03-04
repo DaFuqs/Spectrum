@@ -4,7 +4,7 @@ import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.spectrum.spells.*;
+import de.dafuqs.spectrum.magic.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.valueproviders.*;
 import net.minecraft.world.entity.*;

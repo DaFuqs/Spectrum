@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.spells;
+package de.dafuqs.spectrum.magic;
 
 import com.google.common.collect.*;
 import de.dafuqs.spectrum.api.block.*;

@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.spectrum.status_effects.*;
+import de.dafuqs.spectrum.mob_effect.*;
 import net.minecraft.world.entity.*;
 import org.jetbrains.annotations.*;
 import org.spongepowered.asm.mixin.*;
@@ -18,13 +18,13 @@ public abstract class MobEntityMixin {
 	public void slowDownAIticks(CallbackInfo ci) {
 		var entity = (Mob) (Object) this;
 		
-		if ((entity.hasEffect(SpectrumMobEffects.ETERNAL_SLUMBER) || entity.hasEffect(SpectrumMobEffects.FATAL_SLUMBER)) && !SleepStatusEffect.isImmuneish(entity)) {
+		if ((entity.hasEffect(SpectrumMobEffects.ETERNAL_SLUMBER) || entity.hasEffect(SpectrumMobEffects.FATAL_SLUMBER)) && !SleepMobEffect.isImmuneish(entity)) {
 			target = null;
 			ci.cancel();
 			return;
 		}
 		
-		var potency = SleepStatusEffect.getSleepScaling(entity);
+		var potency = SleepMobEffect.getSleepScaling(entity);
 		
 		if (potency <= 0 || entity.getRandom().nextFloat() > potency * 0.15)
 			return;

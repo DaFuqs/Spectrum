@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.compat.REI.plugins;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.compat.REI.*;
-import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.recipe.color_picker.InkConvertingRecipe;
 import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.client.*;

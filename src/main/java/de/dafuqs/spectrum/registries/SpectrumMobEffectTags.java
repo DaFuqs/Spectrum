@@ -12,7 +12,7 @@ public class SpectrumMobEffectTags {
 	public static TagKey<MobEffect> BYPASSES_NECTAR_GLOVES = of("bypasses_nectar_gloves");
 	public static TagKey<MobEffect> BYPASSES_IMMUNITY = of("bypasses_immunity");
 	public static TagKey<MobEffect> CANNOT_BE_SEVERE = of("cannot_be_severe");
-	public static TagKey<MobEffect> NO_DURATION_EXTENSION = of("no_duration_extension");
+	public static TagKey<MobEffect> NO_DURATION_EXTENSION = of("no_duration_extension"); // TODO:
 	public static TagKey<MobEffect> SOPORIFIC = of("soporific");
 	public static TagKey<MobEffect> NIGHT_ALCHEMY = of("night_alchemy");
 	public static TagKey<MobEffect> STACKING = of("stacking");

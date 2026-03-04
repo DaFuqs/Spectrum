@@ -7,7 +7,7 @@ import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.*;
-import de.dafuqs.spectrum.spells.*;
+import de.dafuqs.spectrum.magic.*;
 import net.minecraft.client.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;

@@ -1,18 +1,19 @@
-package de.dafuqs.spectrum.status_effects;
+package de.dafuqs.spectrum.mob_effect;
 
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.level.*;
+import org.jetbrains.annotations.*;
 
-public class NourishingStatusEffect extends MobEffect {
+public class NourishingMobEffect extends MobEffect {
 	
-	public NourishingStatusEffect(MobEffectCategory statusEffectCategory, int color) {
+	public NourishingMobEffect(MobEffectCategory statusEffectCategory, int color) {
 		super(statusEffectCategory, color);
 	}
 	
 	@Override
-	public String getDescriptionId() {
+	public @NotNull String getDescriptionId() {
 		return MobEffects.SATURATION.value().getDescriptionId();
 	}
 	

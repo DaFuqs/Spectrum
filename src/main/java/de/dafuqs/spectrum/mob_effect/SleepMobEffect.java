@@ -1,21 +1,22 @@
-package de.dafuqs.spectrum.status_effects;
+package de.dafuqs.spectrum.mob_effect;
 
 import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
 import net.neoforged.neoforge.common.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class SleepStatusEffect extends MobEffect {
+public class SleepMobEffect extends MobEffect {
 	
 	private final boolean scales;
 	
-	public SleepStatusEffect(MobEffectCategory category, int color, boolean scales) {
+	public SleepMobEffect(MobEffectCategory category, int color, boolean scales) {
 		super(category, color);
 		this.scales = scales;
 	}
@@ -108,12 +109,10 @@ public class SleepStatusEffect extends MobEffect {
 		}
 	}
 	
-	// Sleep effects don't scale except for uh, calming ufck
-	//TODO verify that you can't more than one level of eternal or fatal slumber
-//    @Override
-//    public double adjustModifierAmount(int amplifier, EntityAttributeModifier modifier) {
-//        if (scales)
-//            return super.adjustModifierAmount(amplifier, modifier);
-//        return modifier.getValue();
-//    }
+	// Sleep effects don't scale except for calming
+	@Override
+	public void addAttributeModifiers(@NotNull AttributeMap attributeMap, int amplifier) {
+		super.addAttributeModifiers(attributeMap, scales ? amplifier : 0);
+	}
+	
 }

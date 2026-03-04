@@ -14,6 +14,7 @@ import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.deeper_down.flora.*;
 import de.dafuqs.spectrum.blocks.gemstone.*;
+import de.dafuqs.spectrum.blocks.pedestal.BuiltinGemstoneColor;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.recipe.*;
@@ -47,7 +48,6 @@ import org.apache.commons.lang3.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
-import java.util.stream.*;
 
 public class SanityCommand {
 	

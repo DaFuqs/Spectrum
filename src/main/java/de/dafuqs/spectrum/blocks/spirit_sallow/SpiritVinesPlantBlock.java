@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.blocks.spirit_sallow;
 
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.api.item.*;
-import de.dafuqs.spectrum.recipe.pedestal.*;
+import de.dafuqs.spectrum.blocks.pedestal.BuiltinGemstoneColor;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;

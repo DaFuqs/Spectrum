@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.spectrum.status_effects.*;
+import de.dafuqs.spectrum.mob_effect.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.*;
@@ -31,7 +31,7 @@ public abstract class BrainMixin<E extends LivingEntity> {
 		if (effect == null)
 			return;
 		
-		var scaling = SleepStatusEffect.getSleepScaling(entity);
+		var scaling = SleepMobEffect.getSleepScaling(entity);
 		if (scaling <= 0 || entity.getRandom().nextFloat() > Math.min(scaling * 0.05, 0.3))
 			return;
 		

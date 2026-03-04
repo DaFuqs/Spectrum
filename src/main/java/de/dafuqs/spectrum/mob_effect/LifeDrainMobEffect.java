@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.status_effects;
+package de.dafuqs.spectrum.mob_effect;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
@@ -7,17 +7,18 @@ import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
+import org.jetbrains.annotations.*;
 
-public class LifeDrainStatusEffect extends MobEffect {
+public class LifeDrainMobEffect extends MobEffect {
 	
 	public static final ResourceLocation ATTRIBUTE_ID = SpectrumCommon.locate("effect.life_drain");
 	
-	public LifeDrainStatusEffect(MobEffectCategory category, int color) {
+	public LifeDrainMobEffect(MobEffectCategory category, int color) {
 		super(category, color);
 	}
 	
 	@Override
-	public boolean applyEffectTick(LivingEntity entity, int amplifier) {
+	public boolean applyEffectTick(@NotNull LivingEntity entity, int amplifier) {
 		if (entity instanceof Player player && (player.isCreative() || player.isSpectator())) {
 			return true;
 		}

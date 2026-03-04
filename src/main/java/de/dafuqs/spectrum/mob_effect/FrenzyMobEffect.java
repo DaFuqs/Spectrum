@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.status_effects;
+package de.dafuqs.spectrum.mob_effect;
 
 import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.registries.*;
@@ -10,11 +10,11 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class FrenzyStatusEffect extends MobEffect {
+public class FrenzyMobEffect extends MobEffect {
 	
 	public static final long REQUIRE_KILL_EVERY_X_TICKS = 200;
 	
-	public FrenzyStatusEffect(MobEffectCategory category, int color) {
+	public FrenzyMobEffect(MobEffectCategory category, int color) {
 		super(category, color);
 	}
 	
@@ -49,7 +49,7 @@ public class FrenzyStatusEffect extends MobEffect {
 			updateAttributes(entity, amplifier, -1);
 		}
 		
-		var potency = (SleepStatusEffect.getSleepScaling(entity) * (amplifier + 1) / 3) / 20;
+		var potency = (SleepMobEffect.getSleepScaling(entity) * (amplifier + 1) / 3) / 20;
 		if (potency > 0 && entity.getHealth() > potency) {
 			entity.hurt(SpectrumDamageTypes.sleep(entity.level(), null), potency);
 		}

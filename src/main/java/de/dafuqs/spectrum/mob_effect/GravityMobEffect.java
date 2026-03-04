@@ -1,14 +1,14 @@
-package de.dafuqs.spectrum.status_effects;
+package de.dafuqs.spectrum.mob_effect;
 
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 
-public class GravityStatusEffect extends MobEffect {
+public class GravityMobEffect extends MobEffect {
 	
 	protected final float gravityPerLevel;
 	
-	public GravityStatusEffect(MobEffectCategory statusEffectCategory, int color, float gravityPerLevel) {
+	public GravityMobEffect(MobEffectCategory statusEffectCategory, int color, float gravityPerLevel) {
 		super(statusEffectCategory, color);
 		this.gravityPerLevel = gravityPerLevel;
 	}

@@ -23,7 +23,7 @@ import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.client.*;
-import de.dafuqs.spectrum.status_effects.*;
+import de.dafuqs.spectrum.mob_effect.*;
 import net.minecraft.advancements.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
@@ -303,7 +303,7 @@ public class SpectrumEventListeners {
 			
 			MobEffectInstance frenzy = livinSource.getEffect(SpectrumMobEffects.FRENZY);
 			if (frenzy != null) {
-				((FrenzyStatusEffect) frenzy.getEffect()).onKill(livinSource, frenzy.getAmplifier());
+				((FrenzyMobEffect) frenzy.getEffect()).onKill(livinSource, frenzy.getAmplifier());
 			}
 		}
 		

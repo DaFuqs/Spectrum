@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.items.tools;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.spectrum.status_effects.*;
+import de.dafuqs.spectrum.mob_effect.*;
 import net.minecraft.server.level.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.damagesource.*;
@@ -71,7 +71,7 @@ public class NectarLanceItem extends LightGreatswordItem implements SlotBackgrou
 				applyDoTProc(magicDamage, base + 5F, 0.1F, target, effect, true, false);
 			}
 		} else if (SpectrumMobEffectTags.has(target, SpectrumMobEffectTags.SOPORIFIC)) {
-			var scaling = SleepStatusEffect.getSleepScaling(target);
+			var scaling = SleepMobEffect.getSleepScaling(target);
 			if (scaling > 0) {
 				target.hurt(SpectrumDamageTypes.sleep(target.level(), target), scaling);
 				target.playSound(SpectrumSoundEvents.DEEP_CRYSTAL_RING, 0.5F, 0.8F + target.getRandom().nextFloat() * 0.4F);
@@ -115,7 +115,7 @@ public class NectarLanceItem extends LightGreatswordItem implements SlotBackgrou
 		if (livingEntity.isSleeping())
 			return true;
 		
-		var scaling = SleepStatusEffect.getSleepScaling(livingEntity);
+		var scaling = SleepMobEffect.getSleepScaling(livingEntity);
 		return scaling > 0 && livingEntity.getRandom().nextFloat() <= scaling / 3F;
 	}
 	

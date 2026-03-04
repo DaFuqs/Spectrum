@@ -16,9 +16,8 @@ import java.util.*;
 import java.util.function.*;
 
 public class RawShapedPedestalRecipe {
-	public static final MapCodec<RawShapedPedestalRecipe> CODEC = RawShapedPedestalRecipe.Data.CODEC.flatXmap(
-			RawShapedPedestalRecipe::fromData,
-			(recipe) -> recipe.data.map(DataResult::success).orElseGet(() -> DataResult.error(() -> "Cannot encode unpacked recipe")));
+
+	public static final MapCodec<RawShapedPedestalRecipe> CODEC = RawShapedPedestalRecipe.Data.CODEC.flatXmap(RawShapedPedestalRecipe::fromData, (recipe) -> recipe.data.map(DataResult::success).orElseGet(() -> DataResult.error(() -> "Cannot encode unpacked recipe")));
 	
 	public static final StreamCodec<RegistryFriendlyByteBuf, RawShapedPedestalRecipe> PACKET_CODEC = StreamCodec.ofMember(RawShapedPedestalRecipe::writeToBuf, RawShapedPedestalRecipe::readFromBuf);
 	

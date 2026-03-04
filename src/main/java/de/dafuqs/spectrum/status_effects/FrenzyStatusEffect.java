@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.status_effects;
 
 import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.registries.*;
+import net.minecraft.world.damagesource.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
@@ -90,5 +91,11 @@ public class FrenzyStatusEffect extends MobEffect {
 	public void fillEffectCures(Set<EffectCure> cures, @NotNull MobEffectInstance effectInstance) {
 		cures.add(SpectrumStatusEffectCures.SEDATIVES);
 	}
+	
+	// TODO: move hurt reset code here
+	/*@Override
+	public void onMobHurt(LivingEntity livingEntity, int amplifier, DamageSource damageSource, float amount) {
+		super.onMobHurt(livingEntity, amplifier, damageSource, amount);
+	}*/
 	
 }

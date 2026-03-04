@@ -7,7 +7,6 @@ import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.pastel.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.entity.variants.*;
-import de.dafuqs.spectrum.explosion.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.recipe.*;
 import net.minecraft.core.*;

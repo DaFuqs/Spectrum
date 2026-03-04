@@ -11,6 +11,7 @@
     "AnimalEntityMixin",
     "AnvilBlockMixin",
     "ApplyBonusLootFunctionMixin",
+    "BlockBehaviorMixin",
     "BlockMixin",
     "BrainMixin",
     "BrewingRecipeRegistryMixin",

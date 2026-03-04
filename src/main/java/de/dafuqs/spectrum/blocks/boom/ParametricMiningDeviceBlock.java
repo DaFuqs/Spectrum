@@ -1,11 +1,16 @@
 package de.dafuqs.spectrum.blocks.boom;
 
+import appeng.entity.*;
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.blocks.*;
-import de.dafuqs.spectrum.explosion.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
+import net.minecraft.core.particles.*;
 import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
 import net.minecraft.world.*;
+import net.minecraft.world.damagesource.*;
+import net.minecraft.world.entity.item.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.*;
@@ -15,6 +20,8 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
+import net.neoforged.neoforge.event.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -38,11 +45,10 @@ public class ParametricMiningDeviceBlock extends PlacedItemBlock {
 	}
 	
 	@Override
-	public MapCodec<? extends ParametricMiningDeviceBlock> codec() {
+	public @NotNull MapCodec<? extends ParametricMiningDeviceBlock> codec() {
 		return CODEC;
 	}
 	
-	// Wall mounting stuffs
 	@Override
 	protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
 		Direction direction = state.getValue(FACING);
@@ -51,7 +57,7 @@ public class ParametricMiningDeviceBlock extends PlacedItemBlock {
 	}
 	
 	@Override
-	protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+	protected @NotNull BlockState updateShape(BlockState state, @NotNull Direction direction, @NotNull BlockState neighborState, @NotNull LevelAccessor world, @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
 		return direction == state.getValue(FACING).getOpposite() && !state.canSurvive(world, pos) ? Blocks.AIR.defaultBlockState() : super.updateShape(state, direction, neighborState, world, pos, neighborPos);
 	}
 	
@@ -61,48 +67,43 @@ public class ParametricMiningDeviceBlock extends PlacedItemBlock {
 	}
 	
 	@Override
-	protected BlockState rotate(BlockState state, Rotation rotation) {
+	protected @NotNull BlockState rotate(BlockState state, Rotation rotation) {
 		return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
 	}
 	
 	@Override
-	protected BlockState mirror(BlockState state, Mirror mirror) {
+	protected @NotNull BlockState mirror(BlockState state, Mirror mirror) {
 		return state.rotate(mirror.getRotation(state.getValue(FACING)));
 	}
 	
-	
 	@Override
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
 		builder.add(FACING);
 	}
 	
 	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+	public @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos, @NotNull CollisionContext context) {
 		return SHAPES.get(state.getValue(FACING));
 	}
 	
-	// misc
 	@Override
-	public VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+	public @NotNull VoxelShape getCollisionShape(@NotNull BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos, @NotNull CollisionContext context) {
 		return Shapes.empty();
 	}
 	
 	// actual logic
 	// press to boom
 	@Override
-	protected InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hitResult) {
-		if (world.isClientSide()) {
+	protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
+		if (level.isClientSide()) {
 			return InteractionResult.SUCCESS;
 		}
 		
-		if ((world.getBlockEntity(pos) instanceof PlacedItemBlockEntity blockEntity)) {
+		if ((level.getBlockEntity(pos) instanceof PlacedItemBlockEntity blockEntity)) {
 			ItemStack stack = blockEntity.getStack();
-			Player owner = blockEntity.getOwnerIfOnline();
-			
-			world.removeBlock(pos, false);
-			
-			ModularExplosionDefinition.explode((ServerLevel) world, pos, state.getValue(FACING).getOpposite(), owner, stack);
+			level.removeBlock(pos, false);
+			ExplosionWithStack.explode((ServerLevel) level, player, stack, Vec3.atCenterOf(pos));
 		}
 		
 		return InteractionResult.CONSUME;

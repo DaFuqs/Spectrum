@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.blocks.boom;
 
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.blocks.*;
-import de.dafuqs.spectrum.explosion.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
@@ -155,7 +154,7 @@ public class ThreatConfluxBlock extends PlacedItemBlock implements FluidLogging.
 		
 		world.removeBlock(pos, false);
 		
-		ModularExplosionDefinition.explode(world, pos, owner, stack);
+		//ExplosionWithStack.explode(world, pos, owner, stack);
 	}
 	
 }

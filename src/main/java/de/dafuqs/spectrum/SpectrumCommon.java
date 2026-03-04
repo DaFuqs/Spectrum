@@ -13,7 +13,6 @@ import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.events.*;
-import de.dafuqs.spectrum.explosion.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.loot.*;
 import de.dafuqs.spectrum.networking.*;

@@ -8,10 +8,10 @@ import net.minecraft.world.level.block.*;
 
 import java.util.*;
 
-public class ThreatConfluxItem extends ModularExplosionBlockItem {
+public class ThreatConfluxItem extends BlockItem {
 	
 	public ThreatConfluxItem(Block block, Item.Properties properties) {
-		super(block, 5, 20, 5, properties);
+		super(block, properties);
 	}
 	
 	@Override

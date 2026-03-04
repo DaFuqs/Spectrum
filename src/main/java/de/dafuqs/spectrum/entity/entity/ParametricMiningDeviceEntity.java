@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.entity.entity;
 
+import de.dafuqs.spectrum.blocks.boom.*;
 import de.dafuqs.spectrum.entity.*;
-import de.dafuqs.spectrum.explosion.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
@@ -33,7 +33,8 @@ public class ParametricMiningDeviceEntity extends ThrowableItemProjectile {
 		if (!world.isClientSide()) {
 			Entity owner = getOwner();
 			Player playerOwner = owner instanceof Player player ? player : null;
-			ModularExplosionDefinition.explode((ServerLevel) world, result.getEntity().blockPosition(), playerOwner, getItem());
+			// TODO
+			// ExplosionWithStack.explode((ServerLevel) world, result.getEntity().blockPosition(), playerOwner, getItem());
 		}
 		world.broadcastEntityEvent(this, EntityEvent.DEATH);
 		
@@ -46,7 +47,8 @@ public class ParametricMiningDeviceEntity extends ThrowableItemProjectile {
 		if (!world.isClientSide) {
 			Entity owner = getOwner();
 			Player playerOwner = owner instanceof Player player ? player : null;
-			ModularExplosionDefinition.explode((ServerLevel) world, blockHitResult.getBlockPos(), blockHitResult.getDirection().getOpposite(), playerOwner, getItem());
+			// TODO
+			// ModularExplosionDefinition.explode((ServerLevel) world, blockHitResult.getBlockPos(), blockHitResult.getDirection().getOpposite(), playerOwner, getItem());
 		}
 		world.broadcastEntityEvent(this, EntityEvent.DEATH);
 		

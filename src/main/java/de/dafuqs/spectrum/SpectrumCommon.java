@@ -147,9 +147,6 @@ public class SpectrumCommon {
 		SpectrumLootFunctionTypes.register(modBus);
 		SpectrumLootConditionTypes.register(modBus);
 		
-		logInfo("Setting up server side Mod Compat...");
-		SpectrumIntegrationPacks.register(modBus);
-		
 		// GUI
 		logInfo("Registering Screen Handler Types...");
 		SpectrumScreenHandlerTypes.register(modBus);

@@ -72,6 +72,11 @@ public class SpectrumClientEventListeners {
 	}
 	
 	@SubscribeEvent
+	private static void registerDimensionSpecialEffectsEvent(RegisterDimensionSpecialEffectsEvent event) {
+		event.register(SpectrumDimensionKeys.DIMENSION_EFFECTS_ID, new DeeperDownDimensionEffects());
+	}
+	
+	@SubscribeEvent
 	private static void renderFog(ViewportEvent.RenderFog event) {
 		EnvironmentalRendering.RenderState state = EnvironmentalRendering.getRenderState();
 		if (state.active()) {

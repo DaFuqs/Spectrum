@@ -13,7 +13,6 @@ import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.*;
 import de.dafuqs.spectrum.render.*;
 import de.dafuqs.spectrum.render.armor.*;
-import me.shedaniel.autoconfig.*;
 import net.minecraft.client.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
@@ -48,7 +47,6 @@ public class SpectrumClient implements RevealingCallback, ClientAdvancementPacke
 		
 		NeoForge.EVENT_BUS.addListener(HudRenderers::registerPost);
 		modBus.addListener(SpectrumTooltipComponents::registerTooltipComponents);
-		modBus.addListener(SpectrumDimensions::registerClient);
 		SpectrumEnvironmentalDataOverrides.register();
 		SpectrumClientEventListeners.register(modBus);
 		
